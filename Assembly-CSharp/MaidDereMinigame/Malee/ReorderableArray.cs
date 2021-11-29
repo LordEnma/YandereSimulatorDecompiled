@@ -7,7 +7,7 @@ namespace MaidDereMinigame.Malee
 {
 	// Token: 0x020005AE RID: 1454
 	[Serializable]
-	public abstract class ReorderableArray<T> : ICloneable, IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable
+	public abstract class ReorderableArray<T> : ICloneable, IList<!0>, ICollection<!0>, IEnumerable<!0>, IEnumerable
 	{
 		// Token: 0x06002491 RID: 9361 RVA: 0x001F7738 File Offset: 0x001F5938
 		public ReorderableArray() : this(0)
@@ -17,7 +17,7 @@ namespace MaidDereMinigame.Malee
 		// Token: 0x06002492 RID: 9362 RVA: 0x001F7741 File Offset: 0x001F5941
 		public ReorderableArray(int length)
 		{
-			this.array = new List<T>(length);
+			this.array = new List<!0>(length);
 		}
 
 		// Token: 0x1700052B RID: 1323
@@ -66,7 +66,7 @@ namespace MaidDereMinigame.Malee
 		// Token: 0x06002498 RID: 9368 RVA: 0x001F779A File Offset: 0x001F599A
 		public object Clone()
 		{
-			return new List<T>(this.array);
+			return new List<!0>(this.array);
 		}
 
 		// Token: 0x06002499 RID: 9369 RVA: 0x001F77A7 File Offset: 0x001F59A7
@@ -144,6 +144,6 @@ namespace MaidDereMinigame.Malee
 
 		// Token: 0x04004C10 RID: 19472
 		[SerializeField]
-		private List<T> array = new List<T>();
+		private List<T> array = new List<!0>();
 	}
 }

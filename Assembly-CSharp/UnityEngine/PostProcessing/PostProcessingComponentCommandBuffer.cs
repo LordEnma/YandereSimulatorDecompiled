@@ -4,7 +4,7 @@ using UnityEngine.Rendering;
 namespace UnityEngine.PostProcessing
 {
 	// Token: 0x0200056E RID: 1390
-	public abstract class PostProcessingComponentCommandBuffer<T> : PostProcessingComponent<T> where T : PostProcessingModel
+	public abstract class PostProcessingComponentCommandBuffer<T> : PostProcessingComponent<!0> where T : PostProcessingModel
 	{
 		// Token: 0x06002353 RID: 9043
 		public abstract CameraEvent GetCameraEvent();

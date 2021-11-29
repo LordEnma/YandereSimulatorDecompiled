@@ -310,7 +310,7 @@ namespace UnityEngine.PostProcessing
 				name = name
 			};
 			KeyValuePair<CameraEvent, CommandBuffer> value2 = new KeyValuePair<CameraEvent, CommandBuffer>(evt, value);
-			this.m_CommandBuffers.Add(typeof(T), value2);
+			this.m_CommandBuffers.Add(typeof(!!0), value2);
 			this.m_Camera.AddCommandBuffer(evt, value2.Value);
 			return value2.Value;
 		}
@@ -318,7 +318,7 @@ namespace UnityEngine.PostProcessing
 		// Token: 0x06002342 RID: 9026 RVA: 0x001F0350 File Offset: 0x001EE550
 		private void RemoveCommandBuffer<T>() where T : PostProcessingModel
 		{
-			Type typeFromHandle = typeof(T);
+			Type typeFromHandle = typeof(!!0);
 			KeyValuePair<CameraEvent, CommandBuffer> keyValuePair;
 			if (!this.m_CommandBuffers.TryGetValue(typeFromHandle, out keyValuePair))
 			{
@@ -334,7 +334,7 @@ namespace UnityEngine.PostProcessing
 		{
 			KeyValuePair<CameraEvent, CommandBuffer> keyValuePair;
 			CommandBuffer result;
-			if (!this.m_CommandBuffers.TryGetValue(typeof(T), out keyValuePair))
+			if (!this.m_CommandBuffers.TryGetValue(typeof(!!0), out keyValuePair))
 			{
 				result = this.AddCommandBuffer<T>(evt, name);
 			}
