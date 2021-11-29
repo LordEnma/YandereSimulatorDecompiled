@@ -39,7 +39,7 @@ public class BetterList<T>
 	// Token: 0x0600031C RID: 796 RVA: 0x000203A8 File Offset: 0x0001E5A8
 	private void AllocateMore()
 	{
-		T[] array = (this.buffer != null) ? new T[Mathf.Max(this.buffer.Length << 1, 32)] : new T[32];
+		T[] array = (this.buffer != null) ? new !0[Mathf.Max(this.buffer.Length << 1, 32)] : new !0[32];
 		if (this.buffer != null && this.size > 0)
 		{
 			this.buffer.CopyTo(array, 0);
@@ -54,7 +54,7 @@ public class BetterList<T>
 		{
 			if (this.size < this.buffer.Length)
 			{
-				T[] array = new T[this.size];
+				T[] array = new !0[this.size];
 				for (int i = 0; i < this.size; i++)
 				{
 					array[i] = this.buffer[i];
@@ -89,7 +89,7 @@ public class BetterList<T>
 		{
 			this.AllocateMore();
 		}
-		T[] array = this.buffer;
+		!0[] array = this.buffer;
 		int num = this.size;
 		this.size = num + 1;
 		array[num] = item;
@@ -154,18 +154,18 @@ public class BetterList<T>
 	{
 		if (this.buffer != null)
 		{
-			EqualityComparer<T> @default = EqualityComparer<T>.Default;
+			EqualityComparer<T> @default = EqualityComparer<!0>.Default;
 			for (int i = 0; i < this.size; i++)
 			{
 				if (@default.Equals(this.buffer[i], item))
 				{
 					this.size--;
-					this.buffer[i] = default(T);
+					this.buffer[i] = default(!0);
 					for (int j = i; j < this.size; j++)
 					{
 						this.buffer[j] = this.buffer[j + 1];
 					}
-					this.buffer[this.size] = default(T);
+					this.buffer[this.size] = default(!0);
 					return true;
 				}
 			}
@@ -179,12 +179,12 @@ public class BetterList<T>
 		if (this.buffer != null && index > -1 && index < this.size)
 		{
 			this.size--;
-			this.buffer[index] = default(T);
+			this.buffer[index] = default(!0);
 			for (int i = index; i < this.size; i++)
 			{
 				this.buffer[i] = this.buffer[i + 1];
 			}
-			this.buffer[this.size] = default(T);
+			this.buffer[this.size] = default(!0);
 		}
 	}
 
@@ -193,14 +193,14 @@ public class BetterList<T>
 	{
 		if (this.buffer != null && this.size != 0)
 		{
-			T[] array = this.buffer;
+			!0[] array = this.buffer;
 			int num = this.size - 1;
 			this.size = num;
 			T result = array[num];
-			this.buffer[this.size] = default(T);
+			this.buffer[this.size] = default(!0);
 			return result;
 		}
-		return default(T);
+		return default(!0);
 	}
 
 	// Token: 0x06000327 RID: 807 RVA: 0x0002078D File Offset: 0x0001E98D

@@ -8,7 +8,7 @@ public class ArrayWrapper<T> : IEnumerable
 	// Token: 0x06001EF4 RID: 7924 RVA: 0x001B56F4 File Offset: 0x001B38F4
 	public ArrayWrapper(int size)
 	{
-		this.elements = new T[size];
+		this.elements = new !0[size];
 	}
 
 	// Token: 0x06001EF5 RID: 7925 RVA: 0x001B5708 File Offset: 0x001B3908
