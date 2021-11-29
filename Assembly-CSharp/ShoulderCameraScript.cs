@@ -1,0 +1,712 @@
+﻿using System;
+using UnityEngine;
+
+// Token: 0x0200041F RID: 1055
+public class ShoulderCameraScript : MonoBehaviour
+{
+	// Token: 0x06001C73 RID: 7283 RVA: 0x0014BA80 File Offset: 0x00149C80
+	private void LateUpdate()
+	{
+		if (!this.PauseScreen.Show)
+		{
+			if (this.OverShoulder)
+			{
+				if (this.RPGCamera.enabled)
+				{
+					this.ShoulderFocus.position = this.RPGCamera.cameraPivot.position;
+					this.LastPosition = base.transform.position;
+					this.RPGCamera.enabled = false;
+				}
+				if (this.Yandere.TargetStudent.Counselor)
+				{
+					base.transform.position = Vector3.Lerp(base.transform.position, this.ShoulderPOV.position + new Vector3(0f, -0.49f, 0f), Time.deltaTime * 10f);
+				}
+				else
+				{
+					base.transform.position = Vector3.Lerp(base.transform.position, this.ShoulderPOV.position, Time.deltaTime * 10f);
+				}
+				this.ShoulderFocus.position = Vector3.Lerp(this.ShoulderFocus.position, this.Yandere.TargetStudent.transform.position + Vector3.up * this.Height, Time.deltaTime * 10f);
+				base.transform.LookAt(this.ShoulderFocus);
+				return;
+			}
+			if (this.AimingCamera)
+			{
+				if (!this.Yandere.StudentManager.Eighties)
+				{
+					base.transform.position = this.CameraPOV.position;
+					base.transform.LookAt(this.CameraFocus);
+					return;
+				}
+				this.EightiesSpineFollower.localEulerAngles = new Vector3(this.Yandere.Spine[3].localEulerAngles.x, 0f, 0f);
+				this.EightiesSpineFollower.transform.position = new Vector3(this.Yandere.transform.position.x, this.Yandere.Spine[3].position.y, this.Yandere.transform.position.z);
+				if (this.Yandere.Stance.Current == StanceType.Standing)
+				{
+					base.transform.position = this.EightiesCameraPOV.position;
+					base.transform.LookAt(this.EightiesCameraFocus);
+					return;
+				}
+				if (this.Yandere.Stance.Current == StanceType.Crouching)
+				{
+					base.transform.position = new Vector3(this.Yandere.transform.position.x, this.Yandere.transform.position.y + 1f, this.Yandere.transform.position.z);
+					return;
+				}
+				if (this.Yandere.Stance.Current == StanceType.Crawling)
+				{
+					base.transform.position = new Vector3(this.Yandere.transform.position.x, this.Yandere.transform.position.y + 0.5f, this.Yandere.transform.position.z);
+					return;
+				}
+			}
+			else if (this.Noticed)
+			{
+				if (!this.Yandere.Drown)
+				{
+					if (this.NoticedTimer == 0f)
+					{
+						this.Yandere.CameraEffects.UpdateDOF(1f);
+						base.GetComponent<Camera>().cullingMask &= -8193;
+						StudentScript component = this.Yandere.Senpai.GetComponent<StudentScript>();
+						if (component.Teacher)
+						{
+							this.GoingToCounselor = true;
+							this.NoticedHeight = 1.6f;
+							this.NoticedLimit = 6;
+						}
+						if (component.Club == ClubType.Council)
+						{
+							this.GoingToCounselor = true;
+							this.NoticedHeight = 1.375f;
+							this.NoticedLimit = 6;
+						}
+						else if (component.Witnessed == StudentWitnessType.Stalking)
+						{
+							this.NoticedHeight = 1.481275f;
+							this.NoticedLimit = 7;
+						}
+						else
+						{
+							this.NoticedHeight = 1.375f;
+							this.NoticedLimit = 6;
+						}
+						this.NoticedPOV.position = this.Yandere.Senpai.position + this.Yandere.Senpai.forward + Vector3.up * this.NoticedHeight;
+						this.NoticedPOV.LookAt(this.Yandere.Senpai.position + Vector3.up * this.NoticedHeight);
+						this.NoticedFocus.position = base.transform.position + base.transform.forward;
+						this.NoticedSpeed = 10f;
+					}
+					this.NoticedTimer += Time.deltaTime;
+					if (this.Phase == 1)
+					{
+						if (Input.GetButtonDown("A") && !this.Yandere.Attacking)
+						{
+							this.Yandere.transform.rotation = Quaternion.LookRotation(this.Yandere.Senpai.position - this.Yandere.transform.position);
+							this.NoticedTimer += 10f;
+						}
+						this.NoticedFocus.position = Vector3.Lerp(this.NoticedFocus.position, this.Yandere.Senpai.position + Vector3.up * this.NoticedHeight, Time.deltaTime * 10f);
+						this.NoticedPOV.Translate(Vector3.forward * Time.deltaTime * -0.075f);
+						if (this.NoticedTimer > 1f && !this.Spoken && !this.Yandere.Senpai.GetComponent<StudentScript>().Teacher)
+						{
+							this.Yandere.Senpai.GetComponent<StudentScript>().DetermineSenpaiReaction();
+							this.Spoken = true;
+						}
+						if (this.NoticedTimer > (float)this.NoticedLimit || this.Skip)
+						{
+							this.Yandere.Senpai.GetComponent<StudentScript>().Character.SetActive(false);
+							base.GetComponent<Camera>().cullingMask |= 8192;
+							this.NoticedPOV.position = this.Yandere.transform.position + this.Yandere.transform.forward + Vector3.up * 1.375f;
+							this.NoticedPOV.LookAt(this.Yandere.transform.position + Vector3.up * 1.375f);
+							this.NoticedFocus.position = this.Yandere.transform.position + Vector3.up * 1.375f;
+							base.transform.position = this.NoticedPOV.position;
+							this.NoticedTimer = (float)this.NoticedLimit;
+							this.Phase = 2;
+							if (this.GoingToCounselor)
+							{
+								this.Yandere.CharacterAnimation.CrossFade("f02_disappointed_00");
+							}
+							else
+							{
+								this.Yandere.CharacterAnimation["f02_sadEyebrows_00"].weight = 1f;
+								this.Yandere.CharacterAnimation.CrossFade("f02_whimper_00");
+								this.Yandere.Subtitle.UpdateLabel(SubtitleType.YandereWhimper, 1, 3.5f);
+								Debug.Log("Yandere-chan shoulder be whimpering now.");
+								if (this.Yandere.StudentManager.Eighties)
+								{
+									this.Yandere.LoseGentleEyes();
+								}
+								this.Yandere.CameraEffects.UpdateDOF(1f);
+							}
+						}
+					}
+					else if (this.Phase == 2)
+					{
+						if (Input.GetButtonDown("A"))
+						{
+							this.NoticedTimer += 10f;
+						}
+						if (!this.GoingToCounselor)
+						{
+							this.Yandere.EyeShrink = Mathf.MoveTowards(this.Yandere.EyeShrink, 0.5f, Time.deltaTime * 0.125f);
+						}
+						this.NoticedPOV.Translate(Vector3.forward * Time.deltaTime * 0.075f);
+						this.Yandere.CameraEffects.UpdateDOF(0.75f);
+						if (this.GoingToCounselor)
+						{
+							this.Yandere.CharacterAnimation.CrossFade("f02_disappointed_00");
+						}
+						else
+						{
+							this.Yandere.CharacterAnimation.CrossFade("f02_whimper_00");
+							if (this.Yandere.CharacterAnimation["f02_whimper_00"].time > 3.5f)
+							{
+								this.Yandere.CharacterAnimation["f02_whimper_00"].speed -= Time.deltaTime;
+							}
+						}
+						if (this.NoticedTimer > (float)(this.NoticedLimit + 4))
+						{
+							if (!this.GoingToCounselor)
+							{
+								this.NoticedPOV.Translate(Vector3.back * 2f);
+								this.NoticedPOV.transform.position = new Vector3(this.NoticedPOV.transform.position.x, this.Yandere.transform.position.y + 1f, this.NoticedPOV.transform.position.z);
+								this.NoticedSpeed = 1f;
+								this.Yandere.Character.GetComponent<Animation>().CrossFade("f02_down_22");
+								this.HeartbrokenCamera.SetActive(true);
+								this.Yandere.Police.Invalid = true;
+								this.Yandere.Collapse = true;
+								this.Phase = 3;
+							}
+							else
+							{
+								this.Yandere.Police.Darkness.enabled = true;
+								this.Yandere.HUD.enabled = true;
+								this.Yandere.HUD.alpha = 1f;
+								if (this.Yandere.Police.Timer == 300f && this.Yandere.Police.Corpses - this.Yandere.Police.HiddenCorpses <= 0)
+								{
+									this.HUD.SetActive(false);
+								}
+								this.Phase = 4;
+							}
+						}
+					}
+					else if (this.Phase == 3)
+					{
+						this.NoticedFocus.transform.position = new Vector3(this.NoticedFocus.transform.position.x, Mathf.Lerp(this.NoticedFocus.transform.position.y, this.Yandere.transform.position.y + 1f, Time.deltaTime), this.NoticedFocus.transform.position.z);
+					}
+					else if (this.Phase == 4)
+					{
+						this.Yandere.Police.Darkness.color += new Color(0f, 0f, 0f, Time.deltaTime);
+						this.NoticedPOV.Translate(Vector3.forward * Time.deltaTime * 0.075f);
+						if (this.Yandere.Police.Darkness.color.a >= 1f)
+						{
+							if (this.Yandere.Police.Timer != 300f || this.Yandere.Police.Corpses - this.Yandere.Police.HiddenCorpses > 0)
+							{
+								Debug.Log("Ending day instead of going to counselor.");
+								this.HUD.SetActive(true);
+								this.Portal.EndDay();
+								base.enabled = false;
+							}
+							else
+							{
+								if (this.Yandere.Mask != null)
+								{
+									this.Yandere.Mask.Drop();
+								}
+								this.Yandere.StudentManager.PreventAlarm();
+								this.Counselor.Crime = this.Yandere.Senpai.GetComponent<StudentScript>().Witnessed;
+								this.Counselor.MyAnimation.Play("CounselorArmsCrossed");
+								this.Counselor.Laptop.SetActive(false);
+								this.Counselor.Interrogating = true;
+								this.Counselor.LookAtPlayer = true;
+								this.Counselor.Stern = true;
+								this.Counselor.Timer = 0f;
+								this.Counselor.transform.position = new Vector3(-28.93333f, 0f, 12f);
+								this.Counselor.RedPen.SetActive(false);
+								base.transform.Translate(Vector3.forward * -1f);
+								this.Yandere.Senpai.GetComponent<StudentScript>().Character.SetActive(true);
+								this.Yandere.transform.localEulerAngles = new Vector3(0f, -90f, 0f);
+								this.Yandere.transform.position = new Vector3(-27.51f, 0f, 12f);
+								this.Yandere.Police.Darkness.color = new Color(0f, 0f, 0f, 1f);
+								this.Yandere.CharacterAnimation.Play("f02_sit_00");
+								this.Yandere.Noticed = false;
+								this.Yandere.Sanity = 100f;
+								Physics.SyncTransforms();
+								this.GoingToCounselor = false;
+								base.enabled = false;
+								this.NoticedTimer = 0f;
+								this.Phase = 1;
+							}
+						}
+					}
+					if (this.Phase < 5)
+					{
+						base.transform.position = Vector3.Lerp(base.transform.position, this.NoticedPOV.position, Time.deltaTime * this.NoticedSpeed);
+						base.transform.LookAt(this.NoticedFocus);
+						return;
+					}
+				}
+			}
+			else if (this.Scolding)
+			{
+				if (this.Timer == 0f)
+				{
+					this.NoticedHeight = 1.6f;
+					this.NoticedPOV.position = this.Teacher.position + this.Teacher.forward + Vector3.up * this.NoticedHeight;
+					this.NoticedPOV.LookAt(this.Teacher.position + Vector3.up * this.NoticedHeight);
+					this.NoticedFocus.position = this.Teacher.position + Vector3.up * this.NoticedHeight;
+					this.NoticedSpeed = 10f;
+				}
+				base.transform.position = Vector3.Lerp(base.transform.position, this.NoticedPOV.position, Time.deltaTime * this.NoticedSpeed);
+				base.transform.LookAt(this.NoticedFocus);
+				this.Timer += Time.deltaTime;
+				if (this.Timer > 6f)
+				{
+					this.Portal.ClassDarkness.enabled = true;
+					this.Portal.Transition = true;
+					this.Portal.FadeOut = true;
+				}
+				if (this.Timer > 7f)
+				{
+					this.Scolding = false;
+					this.Timer = 0f;
+					return;
+				}
+			}
+			else if (this.Counter)
+			{
+				if (this.Timer == 0f)
+				{
+					this.StruggleFocus.position = base.transform.position + base.transform.forward;
+					this.StrugglePOV.position = base.transform.position;
+				}
+				base.transform.position = Vector3.Lerp(base.transform.position, this.StrugglePOV.position, Time.deltaTime * 10f);
+				base.transform.LookAt(this.StruggleFocus);
+				this.Timer += Time.deltaTime;
+				if (this.Timer > 0.5f && this.Phase < 2)
+				{
+					this.Yandere.CameraEffects.MurderWitnessed();
+					this.Yandere.Jukebox.GameOver();
+					this.Phase++;
+				}
+				if (this.Timer > 1.4f && this.Phase < 3)
+				{
+					this.Yandere.Subtitle.UpdateLabel(SubtitleType.TeacherAttackReaction, 1, 4f);
+					this.Phase++;
+				}
+				if (this.Timer > 6f && this.Yandere.Armed)
+				{
+					this.Yandere.EquippedWeapon.Drop();
+				}
+				if (this.Timer > 6.66666f && this.Phase < 4)
+				{
+					base.GetComponent<AudioSource>().PlayOneShot(this.Slam);
+					this.Phase++;
+				}
+				if (this.Timer > 10f && this.Phase < 5)
+				{
+					this.HeartbrokenCamera.SetActive(true);
+					this.Phase++;
+				}
+				if (this.Timer < 5f)
+				{
+					this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(0f, 1.4f, 0.7f), Time.deltaTime);
+					this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(0.5f, 1.4f, 0.3f), Time.deltaTime);
+					return;
+				}
+				if (this.Timer < 10f)
+				{
+					if (this.Timer < 6.5f)
+					{
+						this.PullBackTimer = Mathf.MoveTowards(this.PullBackTimer, 1.5f, Time.deltaTime);
+					}
+					else
+					{
+						this.PullBackTimer = Mathf.MoveTowards(this.PullBackTimer, 0f, Time.deltaTime * 0.42857143f);
+					}
+					base.transform.Translate(Vector3.back * Time.deltaTime * 10f * this.PullBackTimer);
+					this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(0f, 0.3f, -0.766666f), Time.deltaTime);
+					this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(0.75f, 0.3f, -0.966666f), Time.deltaTime);
+					return;
+				}
+				this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(0f, 0.3f, -0.766666f), Time.deltaTime);
+				this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(0.75f, 0.3f, -0.966666f), Time.deltaTime);
+				return;
+			}
+			else if (this.ObstacleCounter)
+			{
+				this.StruggleFocus.position += new Vector3(this.Shake * UnityEngine.Random.Range(-1f, 1f), this.Shake * UnityEngine.Random.Range(-0.5f, 0.5f), this.Shake * UnityEngine.Random.Range(-1f, 1f));
+				this.Shake = Mathf.Lerp(this.Shake, 0f, Time.deltaTime * 5f);
+				if (this.Yandere.Armed)
+				{
+					this.Yandere.EquippedWeapon.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+				}
+				if (this.Timer == 0f)
+				{
+					this.StruggleFocus.position = base.transform.position + base.transform.forward;
+					this.StrugglePOV.position = base.transform.position;
+				}
+				base.transform.position = Vector3.Lerp(base.transform.position, this.StrugglePOV.position, Time.deltaTime * 10f);
+				base.transform.LookAt(this.StruggleFocus);
+				this.Timer += Time.deltaTime;
+				if (this.Timer > 0.5f && this.Phase < 2)
+				{
+					this.Yandere.CameraEffects.MurderWitnessed();
+					this.Yandere.Jukebox.GameOver();
+					this.Phase++;
+				}
+				if (this.Timer > 7.6f && this.Phase < 3)
+				{
+					if (this.Yandere.Armed)
+					{
+						this.Yandere.EquippedWeapon.Drop();
+					}
+					this.Shake += 0.2f;
+					this.Phase++;
+				}
+				if (this.Timer > 10f && this.Phase < 4)
+				{
+					this.Shake += 0.2f;
+					this.Phase++;
+				}
+				if (this.Timer > 12f && this.Phase < 5)
+				{
+					this.HeartbrokenCamera.GetComponent<Camera>().cullingMask |= 512;
+					this.HeartbrokenCamera.SetActive(true);
+					this.Phase++;
+				}
+				if (this.Timer < 6f)
+				{
+					this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.166666f, 1.2f, 0.82f), Time.deltaTime);
+					this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(0.66666f, 1.2f, 0.82f), Time.deltaTime);
+					return;
+				}
+				if (this.Timer < 8.5f)
+				{
+					this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.166666f, 1.2f, 0.82f), Time.deltaTime);
+					this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(2f, 1.2f, 0.82f), Time.deltaTime);
+					return;
+				}
+				if (this.Timer < 12f)
+				{
+					this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.85f, 0.5f, 1.75f), Time.deltaTime * 2f);
+					this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(-0.85f, 0.5f, 3f), Time.deltaTime * 2f);
+					return;
+				}
+				this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.85f, 1.1f, 1.75f), Time.deltaTime * 2f);
+				this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(-0.85f, 1f, 4f), Time.deltaTime * 2f);
+				return;
+			}
+			else if (this.Struggle)
+			{
+				base.transform.position = Vector3.Lerp(base.transform.position, this.StrugglePOV.position, Time.deltaTime * 10f);
+				base.transform.LookAt(this.StruggleFocus);
+				if (this.Yandere.Lost)
+				{
+					this.StruggleFocus.localPosition = Vector3.MoveTowards(this.StruggleFocus.localPosition, this.LossFocus, Time.deltaTime);
+					this.StrugglePOV.localPosition = Vector3.MoveTowards(this.StrugglePOV.localPosition, this.LossPOV, Time.deltaTime);
+					if (this.Timer == 0f)
+					{
+						AudioSource component2 = base.GetComponent<AudioSource>();
+						component2.clip = this.StruggleLose;
+						component2.Play();
+					}
+					this.Timer += Time.deltaTime;
+					if (this.Timer < 3f)
+					{
+						base.transform.Translate(Vector3.back * (Time.deltaTime * 10f * this.Timer * (3f - this.Timer)));
+						return;
+					}
+					if (!this.HeartbrokenCamera.activeInHierarchy)
+					{
+						this.HeartbrokenCamera.SetActive(true);
+						this.Yandere.Jukebox.GameOver();
+						base.enabled = false;
+						return;
+					}
+				}
+			}
+			else
+			{
+				if (this.Yandere.Attacked)
+				{
+					this.Focus.transform.parent = null;
+					this.Focus.transform.position = Vector3.Lerp(this.Focus.transform.position, this.Yandere.Hips.position, Time.deltaTime);
+					base.transform.LookAt(this.Focus);
+					return;
+				}
+				if (this.LookDown)
+				{
+					this.Timer += Time.deltaTime;
+					if (this.Timer < 5f)
+					{
+						base.transform.position = Vector3.Lerp(base.transform.position, this.Yandere.Hips.position + Vector3.up * 3f + Vector3.right * 0.1f, Time.deltaTime * this.Timer);
+						this.Focus.transform.parent = null;
+						this.Focus.transform.position = Vector3.Lerp(this.Focus.transform.position, this.Yandere.Hips.position, Time.deltaTime * this.Timer);
+						base.transform.LookAt(this.Focus);
+						return;
+					}
+					if (!this.HeartbrokenCamera.activeInHierarchy)
+					{
+						this.HeartbrokenCamera.SetActive(true);
+						this.Yandere.Jukebox.GameOver();
+						base.enabled = false;
+						return;
+					}
+				}
+				else
+				{
+					if (this.Summoning)
+					{
+						if (this.Phase == 1)
+						{
+							this.NoticedPOV.position = this.Yandere.transform.position + this.Yandere.transform.forward * 1.7f + this.Yandere.transform.right * 0.15f + Vector3.up * 1.375f;
+							this.NoticedFocus.position = base.transform.position + base.transform.forward;
+							this.NoticedSpeed = 10f;
+							this.Phase++;
+						}
+						else if (this.Phase == 2)
+						{
+							this.NoticedPOV.Translate(this.NoticedPOV.forward * (Time.deltaTime * -0.1f));
+							this.NoticedFocus.position = Vector3.Lerp(this.NoticedFocus.position, this.Yandere.transform.position + this.Yandere.transform.right * 0.15f + Vector3.up * 1.375f, Time.deltaTime * 10f);
+							this.Timer += Time.deltaTime;
+							if (this.Timer > 2f)
+							{
+								this.Yandere.Stand.Spawn();
+								this.NoticedPOV.position = this.Yandere.transform.position + this.Yandere.transform.forward * 2f + Vector3.up * 2.4f;
+								this.Timer = 0f;
+								this.Phase++;
+							}
+						}
+						else if (this.Phase == 3)
+						{
+							this.NoticedPOV.Translate(this.NoticedPOV.forward * (Time.deltaTime * -0.1f));
+							this.NoticedFocus.position = this.Yandere.transform.position + Vector3.up * 2.4f;
+							this.Yandere.Stand.Stand.SetActive(true);
+							this.Timer += Time.deltaTime;
+							if (this.Timer > 5f)
+							{
+								this.Phase++;
+							}
+						}
+						else if (this.Phase == 4)
+						{
+							this.Yandere.Stand.transform.localPosition = new Vector3(this.Yandere.Stand.transform.localPosition.x, 0f, this.Yandere.Stand.transform.localPosition.z);
+							this.Yandere.Jukebox.PlayJojo();
+							this.Yandere.Talking = true;
+							this.Summoning = false;
+							this.Timer = 0f;
+							this.Phase = 1;
+						}
+						base.transform.position = Vector3.Lerp(base.transform.position, this.NoticedPOV.position, Time.deltaTime * this.NoticedSpeed);
+						base.transform.LookAt(this.NoticedFocus);
+						return;
+					}
+					if ((this.Yandere.Talking || this.Yandere.Won) && !this.RPGCamera.enabled)
+					{
+						this.Timer += Time.deltaTime;
+						if (this.Timer < 0.5f)
+						{
+							base.transform.position = Vector3.Lerp(base.transform.position, this.LastPosition, Time.deltaTime * this.ReturnSpeed);
+							if (this.Yandere.Talking)
+							{
+								this.ShoulderFocus.position = Vector3.Lerp(this.ShoulderFocus.position, this.RPGCamera.cameraPivot.position, Time.deltaTime * this.ReturnSpeed);
+								base.transform.LookAt(this.ShoulderFocus);
+								return;
+							}
+							this.StruggleFocus.position = Vector3.Lerp(this.StruggleFocus.position, this.RPGCamera.cameraPivot.position, Time.deltaTime * this.ReturnSpeed);
+							base.transform.LookAt(this.StruggleFocus);
+							return;
+						}
+						else
+						{
+							this.RPGCamera.enabled = true;
+							this.Yandere.MyController.enabled = true;
+							this.Yandere.Talking = false;
+							if (!this.Yandere.Sprayed)
+							{
+								this.Yandere.CanMove = true;
+							}
+							this.Yandere.Pursuer = null;
+							this.Yandere.Chased = false;
+							this.Yandere.Won = false;
+							this.Timer = 0f;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Token: 0x06001C74 RID: 7284 RVA: 0x0014D9C7 File Offset: 0x0014BBC7
+	public void YandereNo()
+	{
+		AudioSource component = base.GetComponent<AudioSource>();
+		component.clip = this.StruggleLose;
+		component.Play();
+	}
+
+	// Token: 0x06001C75 RID: 7285 RVA: 0x0014D9E0 File Offset: 0x0014BBE0
+	public void GameOver()
+	{
+		this.NoticedPOV.parent = this.Yandere.transform;
+		this.NoticedFocus.parent = this.Yandere.transform;
+		this.NoticedFocus.localPosition = new Vector3(0f, 1f, 0f);
+		this.NoticedPOV.localPosition = new Vector3(0f, 1f, 2f);
+		this.NoticedPOV.LookAt(this.NoticedFocus.position);
+		this.Yandere.CharacterAnimation.CrossFade("f02_down_22");
+		this.Yandere.HeartCamera.gameObject.SetActive(false);
+		this.HeartbrokenCamera.SetActive(true);
+		this.Yandere.RPGCamera.enabled = false;
+		this.Yandere.Collapse = true;
+		this.Yandere.HUD.alpha = 0f;
+		this.Yandere.StudentManager.Students[1].Pathfinding.canSearch = false;
+		this.Yandere.StudentManager.Students[1].Pathfinding.canMove = false;
+		this.Yandere.StudentManager.Students[1].Fleeing = false;
+	}
+
+	// Token: 0x04003288 RID: 12936
+	public PauseScreenScript PauseScreen;
+
+	// Token: 0x04003289 RID: 12937
+	public CounselorScript Counselor;
+
+	// Token: 0x0400328A RID: 12938
+	public YandereScript Yandere;
+
+	// Token: 0x0400328B RID: 12939
+	public RPG_Camera RPGCamera;
+
+	// Token: 0x0400328C RID: 12940
+	public PortalScript Portal;
+
+	// Token: 0x0400328D RID: 12941
+	public GameObject HeartbrokenCamera;
+
+	// Token: 0x0400328E RID: 12942
+	public GameObject HUD;
+
+	// Token: 0x0400328F RID: 12943
+	public Transform Smartphone;
+
+	// Token: 0x04003290 RID: 12944
+	public Transform Teacher;
+
+	// Token: 0x04003291 RID: 12945
+	public Transform ShoulderFocus;
+
+	// Token: 0x04003292 RID: 12946
+	public Transform ShoulderPOV;
+
+	// Token: 0x04003293 RID: 12947
+	public Transform EightiesSpineFollower;
+
+	// Token: 0x04003294 RID: 12948
+	public Transform EightiesCameraFocus;
+
+	// Token: 0x04003295 RID: 12949
+	public Transform EightiesCameraPOV;
+
+	// Token: 0x04003296 RID: 12950
+	public Transform CameraFocus;
+
+	// Token: 0x04003297 RID: 12951
+	public Transform CameraPOV;
+
+	// Token: 0x04003298 RID: 12952
+	public Transform NoticedFocus;
+
+	// Token: 0x04003299 RID: 12953
+	public Transform NoticedPOV;
+
+	// Token: 0x0400329A RID: 12954
+	public Transform StruggleFocus;
+
+	// Token: 0x0400329B RID: 12955
+	public Transform StrugglePOV;
+
+	// Token: 0x0400329C RID: 12956
+	public Transform Focus;
+
+	// Token: 0x0400329D RID: 12957
+	public Vector3 LastPosition;
+
+	// Token: 0x0400329E RID: 12958
+	public Vector3 TeacherLossFocus;
+
+	// Token: 0x0400329F RID: 12959
+	public Vector3 TeacherLossPOV;
+
+	// Token: 0x040032A0 RID: 12960
+	public Vector3 LossFocus;
+
+	// Token: 0x040032A1 RID: 12961
+	public Vector3 LossPOV;
+
+	// Token: 0x040032A2 RID: 12962
+	public bool GoingToCounselor;
+
+	// Token: 0x040032A3 RID: 12963
+	public bool ObstacleCounter;
+
+	// Token: 0x040032A4 RID: 12964
+	public bool AimingCamera;
+
+	// Token: 0x040032A5 RID: 12965
+	public bool OverShoulder;
+
+	// Token: 0x040032A6 RID: 12966
+	public bool Summoning;
+
+	// Token: 0x040032A7 RID: 12967
+	public bool LookDown;
+
+	// Token: 0x040032A8 RID: 12968
+	public bool Scolding;
+
+	// Token: 0x040032A9 RID: 12969
+	public bool Struggle;
+
+	// Token: 0x040032AA RID: 12970
+	public bool Counter;
+
+	// Token: 0x040032AB RID: 12971
+	public bool Noticed;
+
+	// Token: 0x040032AC RID: 12972
+	public bool Spoken;
+
+	// Token: 0x040032AD RID: 12973
+	public bool Skip;
+
+	// Token: 0x040032AE RID: 12974
+	public AudioClip StruggleLose;
+
+	// Token: 0x040032AF RID: 12975
+	public AudioClip Slam;
+
+	// Token: 0x040032B0 RID: 12976
+	public float NoticedHeight;
+
+	// Token: 0x040032B1 RID: 12977
+	public float NoticedTimer;
+
+	// Token: 0x040032B2 RID: 12978
+	public float NoticedSpeed;
+
+	// Token: 0x040032B3 RID: 12979
+	public float ReturnSpeed = 10f;
+
+	// Token: 0x040032B4 RID: 12980
+	public float Height;
+
+	// Token: 0x040032B5 RID: 12981
+	public float Shake;
+
+	// Token: 0x040032B6 RID: 12982
+	public float PullBackTimer;
+
+	// Token: 0x040032B7 RID: 12983
+	public float Timer;
+
+	// Token: 0x040032B8 RID: 12984
+	public int NoticedLimit;
+
+	// Token: 0x040032B9 RID: 12985
+	public int Phase;
+}
