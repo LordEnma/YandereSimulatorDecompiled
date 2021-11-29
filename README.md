@@ -15,4 +15,4 @@ The Copyright Laws of the United States recognizes a “fair use” of copyright
 
 This repository is covered by fair use and any DMCA takedown notice will be countered
 
-If you have any problems, please contact me directly
+If you have any legal problems, please contact me
