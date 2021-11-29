@@ -7,7 +7,7 @@ In case your curious, I used dnSpy for decompiling the code
 
 ## LEGAL NOTICE
 
-THIS IS NOT THE SOURCE CODE FOR YANDERE SIMULATOR, BUT THE COMPILED CODE FROM THE RETAIL BUILD OF THE GAME
+THIS IS NOT THE SOURCE CODE FOR YANDERE SIMULATOR, BUT THE COMPILED CODE OF THE RETAIL BUILD OF THE GAME
 
 The Copyright Laws of the United States recognizes a “fair use” of copyrighted content. Section 107 of the U.S. Copyright Act states
 
