@@ -1,6 +1,8 @@
 # YandereSimulatorDecompiled
 Disassembled Decompiled Code from DLL's from Yandere Simulator, build from 11/25/2021
 
+This is being provided as is, and will not be updated everytime a new build is released, but when I feel like updating
+
 In case your curious, I used dnSpy for decompiling the code
 
 ## LEGAL NOTICE
