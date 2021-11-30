@@ -19,7 +19,7 @@ public static class GlobalsHelper
 	// Token: 0x060014ED RID: 5357 RVA: 0x000D63BF File Offset: 0x000D45BF
 	public static T GetEnum<T>(string key) where T : struct, IConvertible
 	{
-		return (T)((object)PlayerPrefs.GetInt(key));
+		return (!!0)((object)PlayerPrefs.GetInt(key));
 	}
 
 	// Token: 0x060014EE RID: 5358 RVA: 0x000D63D1 File Offset: 0x000D45D1
