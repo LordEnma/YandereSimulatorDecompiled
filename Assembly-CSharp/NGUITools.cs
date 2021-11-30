@@ -144,7 +144,7 @@ public static class NGUITools
 	// Token: 0x060003E3 RID: 995 RVA: 0x00028885 File Offset: 0x00026A85
 	public static T[] FindActive<T>() where T : Component
 	{
-		return UnityEngine.Object.FindObjectsOfType(typeof(T)) as T[];
+		return UnityEngine.Object.FindObjectsOfType(typeof(!!0)) as !!0[];
 	}
 
 	// Token: 0x060003E4 RID: 996 RVA: 0x0002889C File Offset: 0x00026A9C
@@ -419,7 +419,7 @@ public static class NGUITools
 	// Token: 0x060003EE RID: 1006 RVA: 0x000290C4 File Offset: 0x000272C4
 	public static string GetTypeName<T>()
 	{
-		string text = typeof(T).ToString();
+		string text = typeof(!!0).ToString();
 		if (text.StartsWith("UI"))
 		{
 			text = text.Substring(2);
@@ -915,10 +915,10 @@ public static class NGUITools
 	{
 		GameObject gameObject = NGUITools.AddChild(parent);
 		string typeName;
-		if (!NGUITools.mTypeNames.TryGetValue(typeof(T), out typeName) || typeName == null)
+		if (!NGUITools.mTypeNames.TryGetValue(typeof(!!0), out typeName) || typeName == null)
 		{
 			typeName = NGUITools.GetTypeName<T>();
-			NGUITools.mTypeNames[typeof(T)] = typeName;
+			NGUITools.mTypeNames[typeof(!!0)] = typeName;
 		}
 		gameObject.name = typeName;
 		return gameObject.AddComponent<T>();
@@ -929,10 +929,10 @@ public static class NGUITools
 	{
 		GameObject gameObject = parent.AddChild(undo);
 		string typeName;
-		if (!NGUITools.mTypeNames.TryGetValue(typeof(T), out typeName) || typeName == null)
+		if (!NGUITools.mTypeNames.TryGetValue(typeof(!!0), out typeName) || typeName == null)
 		{
 			typeName = NGUITools.GetTypeName<T>();
-			NGUITools.mTypeNames[typeof(T)] = typeName;
+			NGUITools.mTypeNames[typeof(!!0)] = typeName;
 		}
 		gameObject.name = typeName;
 		return gameObject.AddComponent<T>();
@@ -984,7 +984,7 @@ public static class NGUITools
 	{
 		if (go == null)
 		{
-			return default(T);
+			return default(!!0);
 		}
 		return go.GetComponentInParent<T>();
 	}
@@ -994,7 +994,7 @@ public static class NGUITools
 	{
 		if (trans == null)
 		{
-			return default(T);
+			return default(!!0);
 		}
 		return trans.GetComponentInParent<T>();
 	}
@@ -2667,7 +2667,7 @@ public static class NGUITools
 		UIWidget uiwidget;
 		if (NGUITools.mWidgets.TryGetValue(id, out uiwidget) && uiwidget)
 		{
-			return (T)((object)uiwidget);
+			return (!!0)((object)uiwidget);
 		}
 		if (NGUITools.mRoot == null)
 		{
@@ -2704,9 +2704,9 @@ public static class NGUITools
 		NGUITools.mWidgets[id] = uiwidget;
 		if (onInit != null)
 		{
-			onInit((T)((object)uiwidget));
+			onInit((!!0)((object)uiwidget));
 		}
-		return (T)((object)uiwidget);
+		return (!!0)((object)uiwidget);
 	}
 
 	// Token: 0x06000442 RID: 1090 RVA: 0x0002BCB8 File Offset: 0x00029EB8
