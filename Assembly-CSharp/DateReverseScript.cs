@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200026E RID: 622
+// Token: 0x0200026F RID: 623
 public class DateReverseScript : MonoBehaviour
 {
-	// Token: 0x06001329 RID: 4905 RVA: 0x000AA8BF File Offset: 0x000A8ABF
+	// Token: 0x06001330 RID: 4912 RVA: 0x000AAD63 File Offset: 0x000A8F63
 	private void Start()
 	{
 		Time.timeScale = 1f;
 		this.UpdateDate();
 	}
 
-	// Token: 0x0600132A RID: 4906 RVA: 0x000AA8D4 File Offset: 0x000A8AD4
+	// Token: 0x06001331 RID: 4913 RVA: 0x000AAD78 File Offset: 0x000A8F78
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))
@@ -54,7 +54,7 @@ public class DateReverseScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600132B RID: 4907 RVA: 0x000AAA7C File Offset: 0x000A8C7C
+	// Token: 0x06001332 RID: 4914 RVA: 0x000AAF20 File Offset: 0x000A9120
 	private void UpdateDate()
 	{
 		if (this.Day < 1)
@@ -104,60 +104,60 @@ public class DateReverseScript : MonoBehaviour
 		});
 	}
 
-	// Token: 0x04001B56 RID: 6998
+	// Token: 0x04001B6F RID: 7023
 	public AudioSource MyAudio;
 
-	// Token: 0x04001B57 RID: 6999
+	// Token: 0x04001B70 RID: 7024
 	public string[] MonthName;
 
-	// Token: 0x04001B58 RID: 7000
+	// Token: 0x04001B71 RID: 7025
 	public string Prefix;
 
-	// Token: 0x04001B59 RID: 7001
+	// Token: 0x04001B72 RID: 7026
 	public UILabel Label;
 
-	// Token: 0x04001B5A RID: 7002
+	// Token: 0x04001B73 RID: 7027
 	public AudioClip Finish;
 
-	// Token: 0x04001B5B RID: 7003
+	// Token: 0x04001B74 RID: 7028
 	public float TimeLimit;
 
-	// Token: 0x04001B5C RID: 7004
+	// Token: 0x04001B75 RID: 7029
 	public float LifeTime;
 
-	// Token: 0x04001B5D RID: 7005
+	// Token: 0x04001B76 RID: 7030
 	public float Timer;
 
-	// Token: 0x04001B5E RID: 7006
+	// Token: 0x04001B77 RID: 7031
 	public int RollDirection;
 
-	// Token: 0x04001B5F RID: 7007
+	// Token: 0x04001B78 RID: 7032
 	public int Month;
 
-	// Token: 0x04001B60 RID: 7008
+	// Token: 0x04001B79 RID: 7033
 	public int Year;
 
-	// Token: 0x04001B61 RID: 7009
+	// Token: 0x04001B7A RID: 7034
 	public int Day;
 
-	// Token: 0x04001B62 RID: 7010
+	// Token: 0x04001B7B RID: 7035
 	public int SlowMonth;
 
-	// Token: 0x04001B63 RID: 7011
+	// Token: 0x04001B7C RID: 7036
 	public int SlowYear;
 
-	// Token: 0x04001B64 RID: 7012
+	// Token: 0x04001B7D RID: 7037
 	public int SlowDay;
 
-	// Token: 0x04001B65 RID: 7013
+	// Token: 0x04001B7E RID: 7038
 	public int EndMonth;
 
-	// Token: 0x04001B66 RID: 7014
+	// Token: 0x04001B7F RID: 7039
 	public int EndYear;
 
-	// Token: 0x04001B67 RID: 7015
+	// Token: 0x04001B80 RID: 7040
 	public int EndDay;
 
-	// Token: 0x04001B68 RID: 7016
+	// Token: 0x04001B81 RID: 7041
 	public bool Rollback;
 }

@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002B0 RID: 688
+// Token: 0x020002B1 RID: 689
 [Serializable]
 public class Stance
 {
-	// Token: 0x0600143B RID: 5179 RVA: 0x000C48A0 File Offset: 0x000C2AA0
+	// Token: 0x06001442 RID: 5186 RVA: 0x000C5028 File Offset: 0x000C3228
 	public Stance(StanceType initialStance)
 	{
 		this.current = initialStance;
@@ -13,8 +13,8 @@ public class Stance
 	}
 
 	// Token: 0x17000368 RID: 872
-	// (get) Token: 0x0600143C RID: 5180 RVA: 0x000C48B6 File Offset: 0x000C2AB6
-	// (set) Token: 0x0600143D RID: 5181 RVA: 0x000C48BE File Offset: 0x000C2ABE
+	// (get) Token: 0x06001443 RID: 5187 RVA: 0x000C503E File Offset: 0x000C323E
+	// (set) Token: 0x06001444 RID: 5188 RVA: 0x000C5046 File Offset: 0x000C3246
 	public StanceType Current
 	{
 		get
@@ -29,7 +29,7 @@ public class Stance
 	}
 
 	// Token: 0x17000369 RID: 873
-	// (get) Token: 0x0600143E RID: 5182 RVA: 0x000C48D3 File Offset: 0x000C2AD3
+	// (get) Token: 0x06001445 RID: 5189 RVA: 0x000C505B File Offset: 0x000C325B
 	public StanceType Previous
 	{
 		get
@@ -38,11 +38,11 @@ public class Stance
 		}
 	}
 
-	// Token: 0x04001EF7 RID: 7927
+	// Token: 0x04001F17 RID: 7959
 	[SerializeField]
 	private StanceType current;
 
-	// Token: 0x04001EF8 RID: 7928
+	// Token: 0x04001F18 RID: 7960
 	[SerializeField]
 	private StanceType previous;
 }

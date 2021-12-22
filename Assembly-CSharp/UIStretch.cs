@@ -280,23 +280,23 @@ public class UIStretch : MonoBehaviour
 	// Token: 0x04000786 RID: 1926
 	private bool mStarted;
 
-	// Token: 0x02000641 RID: 1601
+	// Token: 0x02000643 RID: 1603
 	[DoNotObfuscateNGUI]
 	public enum Style
 	{
-		// Token: 0x04004E2B RID: 20011
+		// Token: 0x04004E6A RID: 20074
 		None,
-		// Token: 0x04004E2C RID: 20012
+		// Token: 0x04004E6B RID: 20075
 		Horizontal,
-		// Token: 0x04004E2D RID: 20013
+		// Token: 0x04004E6C RID: 20076
 		Vertical,
-		// Token: 0x04004E2E RID: 20014
+		// Token: 0x04004E6D RID: 20077
 		Both,
-		// Token: 0x04004E2F RID: 20015
+		// Token: 0x04004E6E RID: 20078
 		BasedOnHeight,
-		// Token: 0x04004E30 RID: 20016
+		// Token: 0x04004E6F RID: 20079
 		FillKeepingRatio,
-		// Token: 0x04004E31 RID: 20017
+		// Token: 0x04004E70 RID: 20080
 		FitInternalKeepingRatio
 	}
 }

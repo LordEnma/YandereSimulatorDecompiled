@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200045E RID: 1118
+// Token: 0x0200045F RID: 1119
 public class TalkingScript : MonoBehaviour
 {
-	// Token: 0x06001E4E RID: 7758 RVA: 0x001A0B58 File Offset: 0x0019ED58
+	// Token: 0x06001E58 RID: 7768 RVA: 0x001A187C File Offset: 0x0019FA7C
 	private void Update()
 	{
 		if (this.S.Talking)
 		{
-			if (this.S.Sleuthing)
+			if (this.S.Sleuthing && this.S.Club == ClubType.Photography)
 			{
 				this.ClubBonus = 5;
 			}
@@ -515,7 +515,7 @@ public class TalkingScript : MonoBehaviour
 								this.S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 0, 5f);
 							}
 						}
-						else if (this.S.StudentManager.LockerRoomArea.bounds.Contains(this.S.Yandere.transform.position) || this.S.StudentManager.WestBathroomArea.bounds.Contains(this.S.Yandere.transform.position) || this.S.StudentManager.EastBathroomArea.bounds.Contains(this.S.Yandere.transform.position) || this.S.StudentManager.HeadmasterArea.bounds.Contains(this.S.Yandere.transform.position) || this.S.MyRenderer.sharedMesh == this.S.SchoolSwimsuit || this.S.MyRenderer.sharedMesh == this.S.SwimmingTrunks)
+						else if (this.S.StudentManager.LockerRoomArea.bounds.Contains(this.S.Yandere.transform.position) || this.S.StudentManager.WestBathroomArea.bounds.Contains(this.S.Yandere.transform.position) || this.S.StudentManager.EastBathroomArea.bounds.Contains(this.S.Yandere.transform.position) || this.S.StudentManager.HeadmasterArea.bounds.Contains(this.S.Yandere.transform.position) || this.S.MyRenderer.sharedMesh == this.S.SchoolSwimsuit || this.S.MyRenderer.sharedMesh == this.S.SwimmingTrunks || this.S.Traumatized)
 						{
 							this.S.CharacterAnimation.CrossFade(this.S.GossipAnim);
 							this.S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 1, 5f);
@@ -1720,7 +1720,7 @@ public class TalkingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E4F RID: 7759 RVA: 0x001A670C File Offset: 0x001A490C
+	// Token: 0x06001E59 RID: 7769 RVA: 0x001A744C File Offset: 0x001A564C
 	private void CalculateRepBonus()
 	{
 		this.S.RepBonus = 0;
@@ -1744,48 +1744,48 @@ public class TalkingScript : MonoBehaviour
 		this.S.RepBonus += this.S.Yandere.Class.PsychologyGrade + this.S.Yandere.Class.PsychologyBonus;
 	}
 
-	// Token: 0x04003E11 RID: 15889
+	// Token: 0x04003E41 RID: 15937
 	private const float LongestTime = 100f;
 
-	// Token: 0x04003E12 RID: 15890
+	// Token: 0x04003E42 RID: 15938
 	private const float LongTime = 5f;
 
-	// Token: 0x04003E13 RID: 15891
+	// Token: 0x04003E43 RID: 15939
 	private const float MediumTime = 3f;
 
-	// Token: 0x04003E14 RID: 15892
+	// Token: 0x04003E44 RID: 15940
 	private const float ShortTime = 2f;
 
-	// Token: 0x04003E15 RID: 15893
+	// Token: 0x04003E45 RID: 15941
 	public StudentScript S;
 
-	// Token: 0x04003E16 RID: 15894
+	// Token: 0x04003E46 RID: 15942
 	public WeaponScript StuckBoxCutter;
 
-	// Token: 0x04003E17 RID: 15895
+	// Token: 0x04003E47 RID: 15943
 	public bool NegativeResponse;
 
-	// Token: 0x04003E18 RID: 15896
+	// Token: 0x04003E48 RID: 15944
 	public bool FadeIn;
 
-	// Token: 0x04003E19 RID: 15897
+	// Token: 0x04003E49 RID: 15945
 	public bool Follow;
 
-	// Token: 0x04003E1A RID: 15898
+	// Token: 0x04003E4A RID: 15946
 	public bool Grudge;
 
-	// Token: 0x04003E1B RID: 15899
+	// Token: 0x04003E4B RID: 15947
 	public bool Refuse;
 
-	// Token: 0x04003E1C RID: 15900
+	// Token: 0x04003E4C RID: 15948
 	public bool Fake;
 
-	// Token: 0x04003E1D RID: 15901
+	// Token: 0x04003E4D RID: 15949
 	public string IdleAnim = "";
 
-	// Token: 0x04003E1E RID: 15902
+	// Token: 0x04003E4E RID: 15950
 	public float Timer;
 
-	// Token: 0x04003E1F RID: 15903
+	// Token: 0x04003E4F RID: 15951
 	public int ClubBonus;
 }

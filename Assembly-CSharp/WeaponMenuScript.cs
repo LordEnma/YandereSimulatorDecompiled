@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004B4 RID: 1204
+// Token: 0x020004B5 RID: 1205
 public class WeaponMenuScript : MonoBehaviour
 {
-	// Token: 0x06001F86 RID: 8070 RVA: 0x001B9DB8 File Offset: 0x001B7FB8
+	// Token: 0x06001F90 RID: 8080 RVA: 0x001BAB74 File Offset: 0x001B8D74
 	private void Start()
 	{
 		this.KeyboardMenu.localScale = Vector3.zero;
@@ -13,7 +13,7 @@ public class WeaponMenuScript : MonoBehaviour
 		this.UpdateSprites();
 	}
 
-	// Token: 0x06001F87 RID: 8071 RVA: 0x001B9DF4 File Offset: 0x001B7FF4
+	// Token: 0x06001F91 RID: 8081 RVA: 0x001BABB0 File Offset: 0x001B8DB0
 	private void Update()
 	{
 		if (!this.PauseScreen.Show && !this.Yandere.DebugMenu.activeInHierarchy)
@@ -237,7 +237,7 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F88 RID: 8072 RVA: 0x001BA650 File Offset: 0x001B8850
+	// Token: 0x06001F92 RID: 8082 RVA: 0x001BB40C File Offset: 0x001B960C
 	public void Equip()
 	{
 		if (this.Yandere.Weapon[this.Selected] != null)
@@ -289,7 +289,7 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F89 RID: 8073 RVA: 0x001BA84C File Offset: 0x001B8A4C
+	// Token: 0x06001F93 RID: 8083 RVA: 0x001BB608 File Offset: 0x001B9808
 	public void UpdateSprites()
 	{
 		for (int i = 1; i < 3; i++)
@@ -446,7 +446,7 @@ public class WeaponMenuScript : MonoBehaviour
 		this.BG[4].color = this.OriginalColor;
 	}
 
-	// Token: 0x06001F8A RID: 8074 RVA: 0x001BB658 File Offset: 0x001B9858
+	// Token: 0x06001F94 RID: 8084 RVA: 0x001BC414 File Offset: 0x001BA614
 	private void DropMask()
 	{
 		if (this.Yandere.Mask != null)
@@ -464,7 +464,7 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F8B RID: 8075 RVA: 0x001BB6F4 File Offset: 0x001B98F4
+	// Token: 0x06001F95 RID: 8085 RVA: 0x001BC4B0 File Offset: 0x001BA6B0
 	private void DropBookbag()
 	{
 		if (this.Yandere.Bookbag != null)
@@ -474,73 +474,73 @@ public class WeaponMenuScript : MonoBehaviour
 		this.UpdateSprites();
 	}
 
-	// Token: 0x06001F8C RID: 8076 RVA: 0x001BB71F File Offset: 0x001B991F
+	// Token: 0x06001F96 RID: 8086 RVA: 0x001BC4DB File Offset: 0x001BA6DB
 	public void InstantHide()
 	{
 		this.KeyboardMenu.localScale = Vector3.zero;
 		base.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x040041AE RID: 16814
+	// Token: 0x040041DE RID: 16862
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040041AF RID: 16815
+	// Token: 0x040041DF RID: 16863
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x040041B0 RID: 16816
+	// Token: 0x040041E0 RID: 16864
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x040041B1 RID: 16817
+	// Token: 0x040041E1 RID: 16865
 	public YandereScript Yandere;
 
-	// Token: 0x040041B2 RID: 16818
+	// Token: 0x040041E2 RID: 16866
 	public InputManagerScript IM;
 
-	// Token: 0x040041B3 RID: 16819
+	// Token: 0x040041E3 RID: 16867
 	public UIPanel KeyboardPanel;
 
-	// Token: 0x040041B4 RID: 16820
+	// Token: 0x040041E4 RID: 16868
 	public UIPanel Panel;
 
-	// Token: 0x040041B5 RID: 16821
+	// Token: 0x040041E5 RID: 16869
 	public Transform KeyboardMenu;
 
-	// Token: 0x040041B6 RID: 16822
+	// Token: 0x040041E6 RID: 16870
 	public bool KeyboardShow;
 
-	// Token: 0x040041B7 RID: 16823
+	// Token: 0x040041E7 RID: 16871
 	public bool Released = true;
 
-	// Token: 0x040041B8 RID: 16824
+	// Token: 0x040041E8 RID: 16872
 	public bool Show;
 
-	// Token: 0x040041B9 RID: 16825
+	// Token: 0x040041E9 RID: 16873
 	public UISprite[] BG;
 
-	// Token: 0x040041BA RID: 16826
+	// Token: 0x040041EA RID: 16874
 	public UISprite[] Outline;
 
-	// Token: 0x040041BB RID: 16827
+	// Token: 0x040041EB RID: 16875
 	public UISprite[] Item;
 
-	// Token: 0x040041BC RID: 16828
+	// Token: 0x040041EC RID: 16876
 	public UISprite[] KeyboardBG;
 
-	// Token: 0x040041BD RID: 16829
+	// Token: 0x040041ED RID: 16877
 	public UISprite[] KeyboardOutline;
 
-	// Token: 0x040041BE RID: 16830
+	// Token: 0x040041EE RID: 16878
 	public UISprite[] KeyboardItem;
 
-	// Token: 0x040041BF RID: 16831
+	// Token: 0x040041EF RID: 16879
 	public int Selected = 1;
 
-	// Token: 0x040041C0 RID: 16832
+	// Token: 0x040041F0 RID: 16880
 	public Color OriginalColor;
 
-	// Token: 0x040041C1 RID: 16833
+	// Token: 0x040041F1 RID: 16881
 	public Transform Button;
 
-	// Token: 0x040041C2 RID: 16834
+	// Token: 0x040041F2 RID: 16882
 	public float Timer;
 }

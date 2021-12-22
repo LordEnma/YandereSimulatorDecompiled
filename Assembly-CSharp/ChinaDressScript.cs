@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000243 RID: 579
+// Token: 0x02000244 RID: 580
 public class ChinaDressScript : MonoBehaviour
 {
-	// Token: 0x06001247 RID: 4679 RVA: 0x0008C4D0 File Offset: 0x0008A6D0
+	// Token: 0x0600124A RID: 4682 RVA: 0x0008C5F4 File Offset: 0x0008A7F4
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -16,6 +16,6 @@ public class ChinaDressScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400170F RID: 5903
+	// Token: 0x04001711 RID: 5905
 	public PromptScript Prompt;
 }

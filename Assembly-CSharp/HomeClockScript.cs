@@ -2,10 +2,10 @@
 using System.Globalization;
 using UnityEngine;
 
-// Token: 0x02000313 RID: 787
+// Token: 0x02000314 RID: 788
 public class HomeClockScript : MonoBehaviour
 {
-	// Token: 0x06001849 RID: 6217 RVA: 0x000EA6A8 File Offset: 0x000E88A8
+	// Token: 0x06001850 RID: 6224 RVA: 0x000EAE68 File Offset: 0x000E9068
 	private void Start()
 	{
 		this.DayLabel.text = this.GetWeekdayText(DateGlobals.Weekday);
@@ -20,7 +20,7 @@ public class HomeClockScript : MonoBehaviour
 		this.UpdateMoneyLabel();
 	}
 
-	// Token: 0x0600184A RID: 6218 RVA: 0x000EA708 File Offset: 0x000E8908
+	// Token: 0x06001851 RID: 6225 RVA: 0x000EAEC8 File Offset: 0x000E90C8
 	private void Update()
 	{
 		if (this.ShakeMoney)
@@ -37,7 +37,7 @@ public class HomeClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600184B RID: 6219 RVA: 0x000EA820 File Offset: 0x000E8A20
+	// Token: 0x06001852 RID: 6226 RVA: 0x000EAFE0 File Offset: 0x000E91E0
 	private string GetWeekdayText(DayOfWeek weekday)
 	{
 		if (weekday == DayOfWeek.Sunday)
@@ -67,13 +67,13 @@ public class HomeClockScript : MonoBehaviour
 		return "SATURDAY";
 	}
 
-	// Token: 0x0600184C RID: 6220 RVA: 0x000EA870 File Offset: 0x000E8A70
+	// Token: 0x06001853 RID: 6227 RVA: 0x000EB030 File Offset: 0x000E9230
 	public void UpdateMoneyLabel()
 	{
 		this.MoneyLabel.text = "$" + PlayerGlobals.Money.ToString("F2", NumberFormatInfo.InvariantInfo);
 	}
 
-	// Token: 0x0600184D RID: 6221 RVA: 0x000EA8AC File Offset: 0x000E8AAC
+	// Token: 0x06001854 RID: 6228 RVA: 0x000EB06C File Offset: 0x000E926C
 	public void MoneyFail()
 	{
 		if (this.Origin != Vector3.zero)
@@ -88,30 +88,30 @@ public class HomeClockScript : MonoBehaviour
 		this.MyAudio.Play();
 	}
 
-	// Token: 0x04002418 RID: 9240
+	// Token: 0x04002438 RID: 9272
 	public UILabel MoneyLabel;
 
-	// Token: 0x04002419 RID: 9241
+	// Token: 0x04002439 RID: 9273
 	public UILabel HourLabel;
 
-	// Token: 0x0400241A RID: 9242
+	// Token: 0x0400243A RID: 9274
 	public UILabel DayLabel;
 
-	// Token: 0x0400241B RID: 9243
+	// Token: 0x0400243B RID: 9275
 	public AudioSource MyAudio;
 
-	// Token: 0x0400241C RID: 9244
+	// Token: 0x0400243C RID: 9276
 	public bool ShakeMoney;
 
-	// Token: 0x0400241D RID: 9245
+	// Token: 0x0400243D RID: 9277
 	public Vector3 Origin;
 
-	// Token: 0x0400241E RID: 9246
+	// Token: 0x0400243E RID: 9278
 	public float Shake;
 
-	// Token: 0x0400241F RID: 9247
+	// Token: 0x0400243F RID: 9279
 	public float G;
 
-	// Token: 0x04002420 RID: 9248
+	// Token: 0x04002440 RID: 9280
 	public float B;
 }

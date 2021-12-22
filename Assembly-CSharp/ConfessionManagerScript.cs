@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000255 RID: 597
+// Token: 0x02000256 RID: 598
 public class ConfessionManagerScript : MonoBehaviour
 {
-	// Token: 0x0600129E RID: 4766 RVA: 0x000969E8 File Offset: 0x00094BE8
+	// Token: 0x060012A3 RID: 4771 RVA: 0x00096BE0 File Offset: 0x00094DE0
 	private void Start()
 	{
 		this.StudentManager.Yandere.Class.Portal.EndEvents();
@@ -25,7 +25,7 @@ public class ConfessionManagerScript : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x0600129F RID: 4767 RVA: 0x00096B1C File Offset: 0x00094D1C
+	// Token: 0x060012A4 RID: 4772 RVA: 0x00096D14 File Offset: 0x00094F14
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -425,7 +425,7 @@ public class ConfessionManagerScript : MonoBehaviour
 		this.Darkness.color = new Color(0f, 0f, 0f, Mathf.MoveTowards(this.Darkness.color.a, 0f, Time.deltaTime * 0.5f));
 	}
 
-	// Token: 0x060012A0 RID: 4768 RVA: 0x00097FA4 File Offset: 0x000961A4
+	// Token: 0x060012A5 RID: 4773 RVA: 0x0009819C File Offset: 0x0009639C
 	private void LateUpdate()
 	{
 		if (this.Phase > 4 && this.Reject)
@@ -434,144 +434,144 @@ public class ConfessionManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001864 RID: 6244
+	// Token: 0x04001868 RID: 6248
 	public ShoulderCameraScript ShoulderCamera;
 
-	// Token: 0x04001865 RID: 6245
+	// Token: 0x04001869 RID: 6249
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001866 RID: 6246
+	// Token: 0x0400186A RID: 6250
 	public HeartbrokenScript Heartbroken;
 
-	// Token: 0x04001867 RID: 6247
+	// Token: 0x0400186B RID: 6251
 	public JukeboxScript OriginalJukebox;
 
-	// Token: 0x04001868 RID: 6248
+	// Token: 0x0400186C RID: 6252
 	public CosmeticScript OsanaCosmetic;
 
-	// Token: 0x04001869 RID: 6249
+	// Token: 0x0400186D RID: 6253
 	public AudioClip ConfessionAccepted;
 
-	// Token: 0x0400186A RID: 6250
+	// Token: 0x0400186E RID: 6254
 	public AudioClip ConfessionRejected;
 
-	// Token: 0x0400186B RID: 6251
+	// Token: 0x0400186F RID: 6255
 	public AudioClip ConfessionGiggle;
 
-	// Token: 0x0400186C RID: 6252
+	// Token: 0x04001870 RID: 6256
 	public AudioClip[] ConfessionMusic;
 
-	// Token: 0x0400186D RID: 6253
+	// Token: 0x04001871 RID: 6257
 	public GameObject OriginalBlossoms;
 
-	// Token: 0x0400186E RID: 6254
+	// Token: 0x04001872 RID: 6258
 	public GameObject HeartBeatCamera;
 
-	// Token: 0x0400186F RID: 6255
+	// Token: 0x04001873 RID: 6259
 	public GameObject ContinueButton;
 
-	// Token: 0x04001870 RID: 6256
+	// Token: 0x04001874 RID: 6260
 	public GameObject MainCamera;
 
-	// Token: 0x04001871 RID: 6257
+	// Token: 0x04001875 RID: 6261
 	public Transform ConfessionCamera;
 
-	// Token: 0x04001872 RID: 6258
+	// Token: 0x04001876 RID: 6262
 	public Transform OriginalPOV;
 
-	// Token: 0x04001873 RID: 6259
+	// Token: 0x04001877 RID: 6263
 	public Transform ReactionPOV;
 
-	// Token: 0x04001874 RID: 6260
+	// Token: 0x04001878 RID: 6264
 	public Transform SenpaiNeck;
 
-	// Token: 0x04001875 RID: 6261
+	// Token: 0x04001879 RID: 6265
 	public Transform SenpaiPOV;
 
-	// Token: 0x04001876 RID: 6262
+	// Token: 0x0400187A RID: 6266
 	public string[] ConfessSubs;
 
-	// Token: 0x04001877 RID: 6263
+	// Token: 0x0400187B RID: 6267
 	public string[] AcceptSubs;
 
-	// Token: 0x04001878 RID: 6264
+	// Token: 0x0400187C RID: 6268
 	public string[] RejectSubs;
 
-	// Token: 0x04001879 RID: 6265
+	// Token: 0x0400187D RID: 6269
 	public float[] ConfessTimes;
 
-	// Token: 0x0400187A RID: 6266
+	// Token: 0x0400187E RID: 6270
 	public float[] AcceptTimes;
 
-	// Token: 0x0400187B RID: 6267
+	// Token: 0x0400187F RID: 6271
 	public float[] RejectTimes;
 
-	// Token: 0x0400187C RID: 6268
+	// Token: 0x04001880 RID: 6272
 	public UISprite TimelessDarkness;
 
-	// Token: 0x0400187D RID: 6269
+	// Token: 0x04001881 RID: 6273
 	public UILabel SubtitleLabel;
 
-	// Token: 0x0400187E RID: 6270
+	// Token: 0x04001882 RID: 6274
 	public UISprite Darkness;
 
-	// Token: 0x0400187F RID: 6271
+	// Token: 0x04001883 RID: 6275
 	public UIPanel Panel;
 
-	// Token: 0x04001880 RID: 6272
+	// Token: 0x04001884 RID: 6276
 	public AudioSource MyAudio;
 
-	// Token: 0x04001881 RID: 6273
+	// Token: 0x04001885 RID: 6277
 	public AudioSource Jukebox;
 
-	// Token: 0x04001882 RID: 6274
+	// Token: 0x04001886 RID: 6278
 	public Animation Yandere;
 
-	// Token: 0x04001883 RID: 6275
+	// Token: 0x04001887 RID: 6279
 	public Animation Senpai;
 
-	// Token: 0x04001884 RID: 6276
+	// Token: 0x04001888 RID: 6280
 	public Animation Osana;
 
-	// Token: 0x04001885 RID: 6277
+	// Token: 0x04001889 RID: 6281
 	public Renderer Tears;
 
-	// Token: 0x04001886 RID: 6278
+	// Token: 0x0400188A RID: 6282
 	public float RotateSpeed;
 
-	// Token: 0x04001887 RID: 6279
+	// Token: 0x0400188B RID: 6283
 	public float TearSpeed;
 
-	// Token: 0x04001888 RID: 6280
+	// Token: 0x0400188C RID: 6284
 	public float TearTimer;
 
-	// Token: 0x04001889 RID: 6281
+	// Token: 0x0400188D RID: 6285
 	public float Timer;
 
-	// Token: 0x0400188A RID: 6282
+	// Token: 0x0400188E RID: 6286
 	public bool CheatRejection;
 
-	// Token: 0x0400188B RID: 6283
+	// Token: 0x0400188F RID: 6287
 	public bool ReverseTears;
 
-	// Token: 0x0400188C RID: 6284
+	// Token: 0x04001890 RID: 6288
 	public bool Eighties;
 
-	// Token: 0x0400188D RID: 6285
+	// Token: 0x04001891 RID: 6289
 	public bool FadeOut;
 
-	// Token: 0x0400188E RID: 6286
+	// Token: 0x04001892 RID: 6290
 	public bool Reject;
 
-	// Token: 0x0400188F RID: 6287
+	// Token: 0x04001893 RID: 6291
 	public int TearPhase;
 
-	// Token: 0x04001890 RID: 6288
+	// Token: 0x04001894 RID: 6292
 	public int Phase;
 
-	// Token: 0x04001891 RID: 6289
+	// Token: 0x04001895 RID: 6293
 	public int MusicID;
 
-	// Token: 0x04001892 RID: 6290
+	// Token: 0x04001896 RID: 6294
 	public int SubID;
 }

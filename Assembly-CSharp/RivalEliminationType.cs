@@ -1,32 +1,32 @@
 ﻿using System;
 
-// Token: 0x020002A1 RID: 673
+// Token: 0x020002A2 RID: 674
 public enum RivalEliminationType
 {
-	// Token: 0x04001E0B RID: 7691
+	// Token: 0x04001E2B RID: 7723
 	None,
-	// Token: 0x04001E0C RID: 7692
+	// Token: 0x04001E2C RID: 7724
 	Murdered,
-	// Token: 0x04001E0D RID: 7693
+	// Token: 0x04001E2D RID: 7725
 	MurderedWitnessed,
-	// Token: 0x04001E0E RID: 7694
+	// Token: 0x04001E2E RID: 7726
 	Arrested,
-	// Token: 0x04001E0F RID: 7695
+	// Token: 0x04001E2F RID: 7727
 	Befriended,
-	// Token: 0x04001E10 RID: 7696
+	// Token: 0x04001E30 RID: 7728
 	Expelled,
-	// Token: 0x04001E11 RID: 7697
+	// Token: 0x04001E31 RID: 7729
 	Matchmade,
-	// Token: 0x04001E12 RID: 7698
+	// Token: 0x04001E32 RID: 7730
 	Rejected,
-	// Token: 0x04001E13 RID: 7699
+	// Token: 0x04001E33 RID: 7731
 	Ruined,
-	// Token: 0x04001E14 RID: 7700
+	// Token: 0x04001E34 RID: 7732
 	SuicideBully,
-	// Token: 0x04001E15 RID: 7701
+	// Token: 0x04001E35 RID: 7733
 	SuicideFake,
-	// Token: 0x04001E16 RID: 7702
+	// Token: 0x04001E36 RID: 7734
 	Vanished,
-	// Token: 0x04001E17 RID: 7703
+	// Token: 0x04001E37 RID: 7735
 	Accident
 }

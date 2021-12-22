@@ -4,17 +4,17 @@ using UnityEngine.EventSystems;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
-	// Token: 0x02000534 RID: 1332
+	// Token: 0x02000536 RID: 1334
 	[ExecuteInEditMode]
 	public class MobileControlRig : MonoBehaviour
 	{
-		// Token: 0x060021F9 RID: 8697 RVA: 0x001E9101 File Offset: 0x001E7301
+		// Token: 0x0600220A RID: 8714 RVA: 0x001EA835 File Offset: 0x001E8A35
 		private void OnEnable()
 		{
 			this.CheckEnableControlRig();
 		}
 
-		// Token: 0x060021FA RID: 8698 RVA: 0x001E9109 File Offset: 0x001E7309
+		// Token: 0x0600220B RID: 8715 RVA: 0x001EA83D File Offset: 0x001E8A3D
 		private void Start()
 		{
 			if (UnityEngine.Object.FindObjectOfType<EventSystem>() == null)
@@ -25,13 +25,13 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x060021FB RID: 8699 RVA: 0x001E912F File Offset: 0x001E732F
+		// Token: 0x0600220C RID: 8716 RVA: 0x001EA863 File Offset: 0x001E8A63
 		private void CheckEnableControlRig()
 		{
 			this.EnableControlRig(false);
 		}
 
-		// Token: 0x060021FC RID: 8700 RVA: 0x001E9138 File Offset: 0x001E7338
+		// Token: 0x0600220D RID: 8717 RVA: 0x001EA86C File Offset: 0x001E8A6C
 		private void EnableControlRig(bool enabled)
 		{
 			foreach (object obj in base.transform)

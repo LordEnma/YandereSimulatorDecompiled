@@ -1,11 +1,11 @@
 ﻿using System;
 
-// Token: 0x020002EF RID: 751
+// Token: 0x020002F0 RID: 752
 public static class HomeGlobals
 {
 	// Token: 0x170003BF RID: 959
-	// (get) Token: 0x060015FE RID: 5630 RVA: 0x000DA864 File Offset: 0x000D8A64
-	// (set) Token: 0x060015FF RID: 5631 RVA: 0x000DA894 File Offset: 0x000D8A94
+	// (get) Token: 0x06001605 RID: 5637 RVA: 0x000DB024 File Offset: 0x000D9224
+	// (set) Token: 0x06001606 RID: 5638 RVA: 0x000DB054 File Offset: 0x000D9254
 	public static bool LateForSchool
 	{
 		get
@@ -19,8 +19,8 @@ public static class HomeGlobals
 	}
 
 	// Token: 0x170003C0 RID: 960
-	// (get) Token: 0x06001600 RID: 5632 RVA: 0x000DA8C4 File Offset: 0x000D8AC4
-	// (set) Token: 0x06001601 RID: 5633 RVA: 0x000DA8F4 File Offset: 0x000D8AF4
+	// (get) Token: 0x06001607 RID: 5639 RVA: 0x000DB084 File Offset: 0x000D9284
+	// (set) Token: 0x06001608 RID: 5640 RVA: 0x000DB0B4 File Offset: 0x000D92B4
 	public static bool Night
 	{
 		get
@@ -34,8 +34,8 @@ public static class HomeGlobals
 	}
 
 	// Token: 0x170003C1 RID: 961
-	// (get) Token: 0x06001602 RID: 5634 RVA: 0x000DA924 File Offset: 0x000D8B24
-	// (set) Token: 0x06001603 RID: 5635 RVA: 0x000DA954 File Offset: 0x000D8B54
+	// (get) Token: 0x06001609 RID: 5641 RVA: 0x000DB0E4 File Offset: 0x000D92E4
+	// (set) Token: 0x0600160A RID: 5642 RVA: 0x000DB114 File Offset: 0x000D9314
 	public static bool StartInBasement
 	{
 		get
@@ -49,8 +49,8 @@ public static class HomeGlobals
 	}
 
 	// Token: 0x170003C2 RID: 962
-	// (get) Token: 0x06001604 RID: 5636 RVA: 0x000DA984 File Offset: 0x000D8B84
-	// (set) Token: 0x06001605 RID: 5637 RVA: 0x000DA9B4 File Offset: 0x000D8BB4
+	// (get) Token: 0x0600160B RID: 5643 RVA: 0x000DB144 File Offset: 0x000D9344
+	// (set) Token: 0x0600160C RID: 5644 RVA: 0x000DB174 File Offset: 0x000D9374
 	public static bool MiyukiDefeated
 	{
 		get
@@ -63,7 +63,7 @@ public static class HomeGlobals
 		}
 	}
 
-	// Token: 0x06001606 RID: 5638 RVA: 0x000DA9E4 File Offset: 0x000D8BE4
+	// Token: 0x0600160D RID: 5645 RVA: 0x000DB1A4 File Offset: 0x000D93A4
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_LateForSchool");
@@ -72,15 +72,15 @@ public static class HomeGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MiyukiDefeated");
 	}
 
-	// Token: 0x040021C5 RID: 8645
+	// Token: 0x040021E5 RID: 8677
 	private const string Str_LateForSchool = "LateForSchool";
 
-	// Token: 0x040021C6 RID: 8646
+	// Token: 0x040021E6 RID: 8678
 	private const string Str_Night = "Night";
 
-	// Token: 0x040021C7 RID: 8647
+	// Token: 0x040021E7 RID: 8679
 	private const string Str_StartInBasement = "StartInBasement";
 
-	// Token: 0x040021C8 RID: 8648
+	// Token: 0x040021E8 RID: 8680
 	private const string Str_MiyukiDefeated = "MiyukiDefeated";
 }

@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020003FA RID: 1018
+// Token: 0x020003FB RID: 1019
 [Serializable]
 public class PlayerSaveData
 {
-	// Token: 0x06001BF0 RID: 7152 RVA: 0x00143548 File Offset: 0x00141748
+	// Token: 0x06001BF8 RID: 7160 RVA: 0x00143E08 File Offset: 0x00142008
 	public static PlayerSaveData ReadFromGlobals()
 	{
 		PlayerSaveData playerSaveData = new PlayerSaveData();
@@ -72,7 +72,7 @@ public class PlayerSaveData
 		return playerSaveData;
 	}
 
-	// Token: 0x06001BF1 RID: 7153 RVA: 0x00143754 File Offset: 0x00141954
+	// Token: 0x06001BF9 RID: 7161 RVA: 0x00144014 File Offset: 0x00142214
 	public static void WriteToGlobals(PlayerSaveData data)
 	{
 		PlayerGlobals.Alerts = data.alerts;
@@ -122,72 +122,72 @@ public class PlayerSaveData
 		}
 	}
 
-	// Token: 0x040030E9 RID: 12521
+	// Token: 0x04003113 RID: 12563
 	public int alerts;
 
-	// Token: 0x040030EA RID: 12522
+	// Token: 0x04003114 RID: 12564
 	public int enlightenment;
 
-	// Token: 0x040030EB RID: 12523
+	// Token: 0x04003115 RID: 12565
 	public int enlightenmentBonus;
 
-	// Token: 0x040030EC RID: 12524
+	// Token: 0x04003116 RID: 12566
 	public bool headset;
 
-	// Token: 0x040030ED RID: 12525
+	// Token: 0x04003117 RID: 12567
 	public int kills;
 
-	// Token: 0x040030EE RID: 12526
+	// Token: 0x04003118 RID: 12568
 	public int numbness;
 
-	// Token: 0x040030EF RID: 12527
+	// Token: 0x04003119 RID: 12569
 	public int numbnessBonus;
 
-	// Token: 0x040030F0 RID: 12528
+	// Token: 0x0400311A RID: 12570
 	public int pantiesEquipped;
 
-	// Token: 0x040030F1 RID: 12529
+	// Token: 0x0400311B RID: 12571
 	public int pantyShots;
 
-	// Token: 0x040030F2 RID: 12530
+	// Token: 0x0400311C RID: 12572
 	public IntHashSet photo = new IntHashSet();
 
-	// Token: 0x040030F3 RID: 12531
+	// Token: 0x0400311D RID: 12573
 	public IntHashSet photoOnCorkboard = new IntHashSet();
 
-	// Token: 0x040030F4 RID: 12532
+	// Token: 0x0400311E RID: 12574
 	public IntAndVector2Dictionary photoPosition = new IntAndVector2Dictionary();
 
-	// Token: 0x040030F5 RID: 12533
+	// Token: 0x0400311F RID: 12575
 	public IntAndFloatDictionary photoRotation = new IntAndFloatDictionary();
 
-	// Token: 0x040030F6 RID: 12534
+	// Token: 0x04003120 RID: 12576
 	public float reputation;
 
-	// Token: 0x040030F7 RID: 12535
+	// Token: 0x04003121 RID: 12577
 	public int seduction;
 
-	// Token: 0x040030F8 RID: 12536
+	// Token: 0x04003122 RID: 12578
 	public int seductionBonus;
 
-	// Token: 0x040030F9 RID: 12537
+	// Token: 0x04003123 RID: 12579
 	public IntHashSet senpaiPhoto = new IntHashSet();
 
-	// Token: 0x040030FA RID: 12538
+	// Token: 0x04003124 RID: 12580
 	public int senpaiShots;
 
-	// Token: 0x040030FB RID: 12539
+	// Token: 0x04003125 RID: 12581
 	public int socialBonus;
 
-	// Token: 0x040030FC RID: 12540
+	// Token: 0x04003126 RID: 12582
 	public int speedBonus;
 
-	// Token: 0x040030FD RID: 12541
+	// Token: 0x04003127 RID: 12583
 	public int stealthBonus;
 
-	// Token: 0x040030FE RID: 12542
+	// Token: 0x04003128 RID: 12584
 	public IntHashSet studentFriend = new IntHashSet();
 
-	// Token: 0x040030FF RID: 12543
+	// Token: 0x04003129 RID: 12585
 	public IntHashSet studentPantyShot = new IntHashSet();
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002DA RID: 730
+// Token: 0x020002DB RID: 731
 public class GenericBentoScript : MonoBehaviour
 {
-	// Token: 0x060014C9 RID: 5321 RVA: 0x000CD344 File Offset: 0x000CB544
+	// Token: 0x060014D0 RID: 5328 RVA: 0x000CDAE8 File Offset: 0x000CBCE8
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f || this.Prompt.Circle[1].fillAmount == 0f || this.Prompt.Circle[2].fillAmount == 0f || this.Prompt.Circle[3].fillAmount == 0f)
@@ -84,7 +84,7 @@ public class GenericBentoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014CA RID: 5322 RVA: 0x000CD698 File Offset: 0x000CB898
+	// Token: 0x060014D1 RID: 5329 RVA: 0x000CDE3C File Offset: 0x000CC03C
 	private void ShutOff()
 	{
 		Debug.Log("Shutting off a bento. This bento should be inaccessible from now on...");
@@ -105,7 +105,7 @@ public class GenericBentoScript : MonoBehaviour
 		this.Prompt.Hide();
 	}
 
-	// Token: 0x060014CB RID: 5323 RVA: 0x000CD808 File Offset: 0x000CBA08
+	// Token: 0x060014D2 RID: 5330 RVA: 0x000CDFAC File Offset: 0x000CC1AC
 	public void UpdatePrompts()
 	{
 		if (!this.Tampered)
@@ -134,33 +134,33 @@ public class GenericBentoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040020BB RID: 8379
+	// Token: 0x040020DB RID: 8411
 	public GameObject EmptyGameObject;
 
-	// Token: 0x040020BC RID: 8380
+	// Token: 0x040020DC RID: 8412
 	public GameObject Lid;
 
-	// Token: 0x040020BD RID: 8381
+	// Token: 0x040020DD RID: 8413
 	public Transform PoisonSpot;
 
-	// Token: 0x040020BE RID: 8382
+	// Token: 0x040020DE RID: 8414
 	public PromptScript Prompt;
 
-	// Token: 0x040020BF RID: 8383
+	// Token: 0x040020DF RID: 8415
 	public bool Emetic;
 
-	// Token: 0x040020C0 RID: 8384
+	// Token: 0x040020E0 RID: 8416
 	public bool Tranquil;
 
-	// Token: 0x040020C1 RID: 8385
+	// Token: 0x040020E1 RID: 8417
 	public bool Headache;
 
-	// Token: 0x040020C2 RID: 8386
+	// Token: 0x040020E2 RID: 8418
 	public bool Lethal;
 
-	// Token: 0x040020C3 RID: 8387
+	// Token: 0x040020E3 RID: 8419
 	public bool Tampered;
 
-	// Token: 0x040020C4 RID: 8388
+	// Token: 0x040020E4 RID: 8420
 	public int StudentID;
 }

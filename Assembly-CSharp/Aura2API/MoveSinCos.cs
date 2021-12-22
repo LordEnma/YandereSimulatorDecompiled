@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Aura2API
 {
-	// Token: 0x020005B3 RID: 1459
+	// Token: 0x020005B5 RID: 1461
 	public class MoveSinCos : MonoBehaviour
 	{
-		// Token: 0x060024B3 RID: 9395 RVA: 0x001F7D68 File Offset: 0x001F5F68
+		// Token: 0x060024C4 RID: 9412 RVA: 0x001F949C File Offset: 0x001F769C
 		private void Start()
 		{
 			this._initialPosition = base.transform.position;
 		}
 
-		// Token: 0x060024B4 RID: 9396 RVA: 0x001F7D7C File Offset: 0x001F5F7C
+		// Token: 0x060024C5 RID: 9413 RVA: 0x001F94B0 File Offset: 0x001F76B0
 		private void Update()
 		{
 			Vector3 vector = this.sinDirection.normalized * Mathf.Sin(Time.time * this.sinSpeed + this.sinOffset) * this.sinAmplitude;
@@ -22,34 +22,34 @@ namespace Aura2API
 			base.transform.position = this._initialPosition + vector + vector2;
 		}
 
-		// Token: 0x04004C2F RID: 19503
+		// Token: 0x04004C6E RID: 19566
 		private Vector3 _initialPosition;
 
-		// Token: 0x04004C30 RID: 19504
+		// Token: 0x04004C6F RID: 19567
 		public float cosAmplitude;
 
-		// Token: 0x04004C31 RID: 19505
+		// Token: 0x04004C70 RID: 19568
 		public Vector3 cosDirection = Vector3.right;
 
-		// Token: 0x04004C32 RID: 19506
+		// Token: 0x04004C71 RID: 19569
 		public float cosOffset;
 
-		// Token: 0x04004C33 RID: 19507
+		// Token: 0x04004C72 RID: 19570
 		public float cosSpeed;
 
-		// Token: 0x04004C34 RID: 19508
+		// Token: 0x04004C73 RID: 19571
 		public float sinAmplitude;
 
-		// Token: 0x04004C35 RID: 19509
+		// Token: 0x04004C74 RID: 19572
 		public Vector3 sinDirection = Vector3.up;
 
-		// Token: 0x04004C36 RID: 19510
+		// Token: 0x04004C75 RID: 19573
 		public float sinOffset;
 
-		// Token: 0x04004C37 RID: 19511
+		// Token: 0x04004C76 RID: 19574
 		public float sinSpeed;
 
-		// Token: 0x04004C38 RID: 19512
+		// Token: 0x04004C77 RID: 19575
 		public Space space = Space.Self;
 	}
 }

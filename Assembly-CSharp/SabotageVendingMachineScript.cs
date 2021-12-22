@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003EA RID: 1002
+// Token: 0x020003EB RID: 1003
 public class SabotageVendingMachineScript : MonoBehaviour
 {
-	// Token: 0x06001BC1 RID: 7105 RVA: 0x0014220D File Offset: 0x0014040D
+	// Token: 0x06001BC9 RID: 7113 RVA: 0x00142ACD File Offset: 0x00140CCD
 	private void Start()
 	{
 		this.Prompt.enabled = false;
 		this.Prompt.Hide();
 	}
 
-	// Token: 0x06001BC2 RID: 7106 RVA: 0x00142228 File Offset: 0x00140428
+	// Token: 0x06001BCA RID: 7114 RVA: 0x00142AE8 File Offset: 0x00140CE8
 	private void Update()
 	{
 		if (this.Yandere.Armed)
@@ -47,15 +47,15 @@ public class SabotageVendingMachineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003096 RID: 12438
+	// Token: 0x040030C0 RID: 12480
 	public VendingMachineScript VendingMachine;
 
-	// Token: 0x04003097 RID: 12439
+	// Token: 0x040030C1 RID: 12481
 	public GameObject SabotageSparks;
 
-	// Token: 0x04003098 RID: 12440
+	// Token: 0x040030C2 RID: 12482
 	public YandereScript Yandere;
 
-	// Token: 0x04003099 RID: 12441
+	// Token: 0x040030C3 RID: 12483
 	public PromptScript Prompt;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000267 RID: 615
+// Token: 0x02000268 RID: 616
 public class CreepyCutsceneScript : MonoBehaviour
 {
-	// Token: 0x060012F8 RID: 4856 RVA: 0x000A7800 File Offset: 0x000A5A00
+	// Token: 0x060012FF RID: 4863 RVA: 0x000A7CA4 File Offset: 0x000A5EA4
 	private void Update()
 	{
 		if (Input.GetButtonDown("A"))
@@ -39,21 +39,21 @@ public class CreepyCutsceneScript : MonoBehaviour
 		this.Label.alpha = 1f;
 	}
 
-	// Token: 0x04001AE6 RID: 6886
+	// Token: 0x04001AFF RID: 6911
 	public StreetShopInterfaceScript ShopInterface;
 
-	// Token: 0x04001AE7 RID: 6887
+	// Token: 0x04001B00 RID: 6912
 	public TypewriterEffect Typewriter;
 
-	// Token: 0x04001AE8 RID: 6888
+	// Token: 0x04001B01 RID: 6913
 	public GameObject Jukebox;
 
-	// Token: 0x04001AE9 RID: 6889
+	// Token: 0x04001B02 RID: 6914
 	public UILabel Label;
 
-	// Token: 0x04001AEA RID: 6890
+	// Token: 0x04001B03 RID: 6915
 	public string[] Lines;
 
-	// Token: 0x04001AEB RID: 6891
+	// Token: 0x04001B04 RID: 6916
 	public int ID;
 }

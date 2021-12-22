@@ -409,19 +409,19 @@ public class RPG_Camera : MonoBehaviour
 	// Token: 0x0400082A RID: 2090
 	private static float halfPlaneWidth;
 
-	// Token: 0x02000648 RID: 1608
+	// Token: 0x0200064A RID: 1610
 	public struct ClipPlaneVertexes
 	{
-		// Token: 0x04004E4E RID: 20046
+		// Token: 0x04004E8D RID: 20109
 		public Vector3 UpperLeft;
 
-		// Token: 0x04004E4F RID: 20047
+		// Token: 0x04004E8E RID: 20110
 		public Vector3 UpperRight;
 
-		// Token: 0x04004E50 RID: 20048
+		// Token: 0x04004E8F RID: 20111
 		public Vector3 LowerLeft;
 
-		// Token: 0x04004E51 RID: 20049
+		// Token: 0x04004E90 RID: 20112
 		public Vector3 LowerRight;
 	}
 }

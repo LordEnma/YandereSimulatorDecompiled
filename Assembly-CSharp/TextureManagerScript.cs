@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200046A RID: 1130
+// Token: 0x0200046B RID: 1131
 public class TextureManagerScript : MonoBehaviour
 {
-	// Token: 0x06001E82 RID: 7810 RVA: 0x001AAF00 File Offset: 0x001A9100
+	// Token: 0x06001E8C RID: 7820 RVA: 0x001ABC8C File Offset: 0x001A9E8C
 	public Texture2D MergeTextures(Texture2D BackgroundTex, Texture2D TopTex)
 	{
 		Texture2D texture2D = new Texture2D(1024, 1024);
@@ -22,24 +22,24 @@ public class TextureManagerScript : MonoBehaviour
 		return texture2D;
 	}
 
-	// Token: 0x04003EDF RID: 16095
+	// Token: 0x04003F0F RID: 16143
 	public Texture[] UniformTextures;
 
-	// Token: 0x04003EE0 RID: 16096
+	// Token: 0x04003F10 RID: 16144
 	public Texture[] CasualTextures;
 
-	// Token: 0x04003EE1 RID: 16097
+	// Token: 0x04003F11 RID: 16145
 	public Texture[] SocksTextures;
 
-	// Token: 0x04003EE2 RID: 16098
+	// Token: 0x04003F12 RID: 16146
 	public Texture2D PurpleStockings;
 
-	// Token: 0x04003EE3 RID: 16099
+	// Token: 0x04003F13 RID: 16147
 	public Texture2D GreenStockings;
 
-	// Token: 0x04003EE4 RID: 16100
+	// Token: 0x04003F14 RID: 16148
 	public Texture2D Base2D;
 
-	// Token: 0x04003EE5 RID: 16101
+	// Token: 0x04003F15 RID: 16149
 	public Texture2D Overlay2D;
 }

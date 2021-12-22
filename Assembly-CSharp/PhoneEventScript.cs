@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200039A RID: 922
+// Token: 0x0200039B RID: 923
 public class PhoneEventScript : MonoBehaviour
 {
-	// Token: 0x06001A57 RID: 6743 RVA: 0x0011987C File Offset: 0x00117A7C
+	// Token: 0x06001A5F RID: 6751 RVA: 0x0011A0BC File Offset: 0x001182BC
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -18,12 +18,12 @@ public class PhoneEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A58 RID: 6744 RVA: 0x001198DB File Offset: 0x00117ADB
+	// Token: 0x06001A60 RID: 6752 RVA: 0x0011A11B File Offset: 0x0011831B
 	private void OnAwake()
 	{
 	}
 
-	// Token: 0x06001A59 RID: 6745 RVA: 0x001198E0 File Offset: 0x00117AE0
+	// Token: 0x06001A61 RID: 6753 RVA: 0x0011A120 File Offset: 0x00118320
 	private void Update()
 	{
 		if (!this.Clock.StopTime && this.EventCheck)
@@ -291,7 +291,7 @@ public class PhoneEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A5A RID: 6746 RVA: 0x0011A68C File Offset: 0x0011888C
+	// Token: 0x06001A62 RID: 6754 RVA: 0x0011AECC File Offset: 0x001190CC
 	private void SettleFriend()
 	{
 		this.EventFriend.MoveTowardsTarget(this.SpyLocation.position);
@@ -301,7 +301,7 @@ public class PhoneEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A5B RID: 6747 RVA: 0x0011A714 File Offset: 0x00118914
+	// Token: 0x06001A63 RID: 6755 RVA: 0x0011AF54 File Offset: 0x00119154
 	private void EndEvent()
 	{
 		Debug.Log("A phone event ended.");
@@ -357,90 +357,90 @@ public class PhoneEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x04002B65 RID: 11109
+	// Token: 0x04002B8F RID: 11151
 	public OsanaClubEventScript OsanaClubEvent;
 
-	// Token: 0x04002B66 RID: 11110
+	// Token: 0x04002B90 RID: 11152
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002B67 RID: 11111
+	// Token: 0x04002B91 RID: 11153
 	public BucketPourScript DumpPoint;
 
-	// Token: 0x04002B68 RID: 11112
+	// Token: 0x04002B92 RID: 11154
 	public YandereScript Yandere;
 
-	// Token: 0x04002B69 RID: 11113
+	// Token: 0x04002B93 RID: 11155
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002B6A RID: 11114
+	// Token: 0x04002B94 RID: 11156
 	public ClockScript Clock;
 
-	// Token: 0x04002B6B RID: 11115
+	// Token: 0x04002B95 RID: 11157
 	public StudentScript EventStudent;
 
-	// Token: 0x04002B6C RID: 11116
+	// Token: 0x04002B96 RID: 11158
 	public StudentScript EventFriend;
 
-	// Token: 0x04002B6D RID: 11117
+	// Token: 0x04002B97 RID: 11159
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002B6E RID: 11118
+	// Token: 0x04002B98 RID: 11160
 	public Transform EventLocation;
 
-	// Token: 0x04002B6F RID: 11119
+	// Token: 0x04002B99 RID: 11161
 	public Transform SpyLocation;
 
-	// Token: 0x04002B70 RID: 11120
+	// Token: 0x04002B9A RID: 11162
 	public AudioClip[] EventClip;
 
-	// Token: 0x04002B71 RID: 11121
+	// Token: 0x04002B9B RID: 11163
 	public string[] EventSpeech;
 
-	// Token: 0x04002B72 RID: 11122
+	// Token: 0x04002B9C RID: 11164
 	public float[] SpeechTimes;
 
-	// Token: 0x04002B73 RID: 11123
+	// Token: 0x04002B9D RID: 11165
 	public string[] EventAnim;
 
-	// Token: 0x04002B74 RID: 11124
+	// Token: 0x04002B9E RID: 11166
 	public GameObject VoiceClip;
 
-	// Token: 0x04002B75 RID: 11125
+	// Token: 0x04002B9F RID: 11167
 	public bool EndedPrematurely;
 
-	// Token: 0x04002B76 RID: 11126
+	// Token: 0x04002BA0 RID: 11168
 	public bool EventActive;
 
-	// Token: 0x04002B77 RID: 11127
+	// Token: 0x04002BA1 RID: 11169
 	public bool EventCheck;
 
-	// Token: 0x04002B78 RID: 11128
+	// Token: 0x04002BA2 RID: 11170
 	public bool EventOver;
 
-	// Token: 0x04002B79 RID: 11129
+	// Token: 0x04002BA3 RID: 11171
 	public bool HintGiven;
 
-	// Token: 0x04002B7A RID: 11130
+	// Token: 0x04002BA4 RID: 11172
 	public int EventStudentID = 7;
 
-	// Token: 0x04002B7B RID: 11131
+	// Token: 0x04002BA5 RID: 11173
 	public int EventFriendID = 34;
 
-	// Token: 0x04002B7C RID: 11132
+	// Token: 0x04002BA6 RID: 11174
 	public float EventTime = 7.5f;
 
-	// Token: 0x04002B7D RID: 11133
+	// Token: 0x04002BA7 RID: 11175
 	public int EventPhase = 1;
 
-	// Token: 0x04002B7E RID: 11134
+	// Token: 0x04002BA8 RID: 11176
 	public DayOfWeek EventDay = DayOfWeek.Monday;
 
-	// Token: 0x04002B7F RID: 11135
+	// Token: 0x04002BA9 RID: 11177
 	public float CurrentClipLength;
 
-	// Token: 0x04002B80 RID: 11136
+	// Token: 0x04002BAA RID: 11178
 	public float FailSafe;
 
-	// Token: 0x04002B81 RID: 11137
+	// Token: 0x04002BAB RID: 11179
 	public float Timer;
 }

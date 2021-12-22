@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004B3 RID: 1203
+// Token: 0x020004B4 RID: 1204
 public class WeaponManagerScript : MonoBehaviour
 {
-	// Token: 0x06001F75 RID: 8053 RVA: 0x001B9410 File Offset: 0x001B7610
+	// Token: 0x06001F7F RID: 8063 RVA: 0x001BA1CC File Offset: 0x001B83CC
 	public void Start()
 	{
 		for (int i = 0; i < this.Weapons.Length; i++)
@@ -31,7 +31,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F76 RID: 8054 RVA: 0x001B94F0 File Offset: 0x001B76F0
+	// Token: 0x06001F80 RID: 8064 RVA: 0x001BA2AC File Offset: 0x001B84AC
 	public void UpdateLabels()
 	{
 		foreach (WeaponScript weaponScript in this.Weapons)
@@ -43,7 +43,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F77 RID: 8055 RVA: 0x001B9528 File Offset: 0x001B7728
+	// Token: 0x06001F81 RID: 8065 RVA: 0x001BA2E4 File Offset: 0x001B84E4
 	public void CheckWeapons()
 	{
 		this.MurderWeapons = 0;
@@ -72,7 +72,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F78 RID: 8056 RVA: 0x001B95F0 File Offset: 0x001B77F0
+	// Token: 0x06001F82 RID: 8066 RVA: 0x001BA3AC File Offset: 0x001B85AC
 	public void CleanWeapons()
 	{
 		foreach (WeaponScript weaponScript in this.Weapons)
@@ -85,7 +85,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F79 RID: 8057 RVA: 0x001B9634 File Offset: 0x001B7834
+	// Token: 0x06001F83 RID: 8067 RVA: 0x001BA3F0 File Offset: 0x001B85F0
 	public void ChangeBloodTexture()
 	{
 		foreach (WeaponScript weaponScript in this.Weapons)
@@ -106,7 +106,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F7A RID: 8058 RVA: 0x001B9700 File Offset: 0x001B7900
+	// Token: 0x06001F84 RID: 8068 RVA: 0x001BA4BC File Offset: 0x001B86BC
 	private void Update()
 	{
 		if (this.OriginalWeapon > -1)
@@ -119,7 +119,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F7B RID: 8059 RVA: 0x001B975C File Offset: 0x001B795C
+	// Token: 0x06001F85 RID: 8069 RVA: 0x001BA518 File Offset: 0x001B8718
 	public void TrackDumpedWeapons()
 	{
 		for (int i = 0; i < this.Weapons.Length; i++)
@@ -131,7 +131,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F7C RID: 8060 RVA: 0x001B97A8 File Offset: 0x001B79A8
+	// Token: 0x06001F86 RID: 8070 RVA: 0x001BA564 File Offset: 0x001B8764
 	public void SetEquippedWeapon1(WeaponScript Weapon)
 	{
 		for (int i = 0; i < this.Weapons.Length; i++)
@@ -143,7 +143,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F7D RID: 8061 RVA: 0x001B97E0 File Offset: 0x001B79E0
+	// Token: 0x06001F87 RID: 8071 RVA: 0x001BA59C File Offset: 0x001B879C
 	public void SetEquippedWeapon2(WeaponScript Weapon)
 	{
 		for (int i = 0; i < this.Weapons.Length; i++)
@@ -155,7 +155,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F7E RID: 8062 RVA: 0x001B9818 File Offset: 0x001B7A18
+	// Token: 0x06001F88 RID: 8072 RVA: 0x001BA5D4 File Offset: 0x001B87D4
 	public void SetEquippedWeapon3(WeaponScript Weapon)
 	{
 		for (int i = 0; i < this.Weapons.Length; i++)
@@ -167,7 +167,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F7F RID: 8063 RVA: 0x001B9850 File Offset: 0x001B7A50
+	// Token: 0x06001F89 RID: 8073 RVA: 0x001BA60C File Offset: 0x001B880C
 	public void EquipWeaponsFromSave()
 	{
 		this.OriginalEquipped = this.Yandere.Equipped;
@@ -215,7 +215,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F80 RID: 8064 RVA: 0x001B9A2C File Offset: 0x001B7C2C
+	// Token: 0x06001F8A RID: 8074 RVA: 0x001BA7E8 File Offset: 0x001B89E8
 	public void UpdateDelinquentWeapons()
 	{
 		for (int i = 1; i < this.DelinquentWeapons.Length; i++)
@@ -232,7 +232,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F81 RID: 8065 RVA: 0x001B9ABC File Offset: 0x001B7CBC
+	// Token: 0x06001F8B RID: 8075 RVA: 0x001BA878 File Offset: 0x001B8A78
 	public void RestoreWeaponToStudent()
 	{
 		if (this.ReturnWeaponID > -1)
@@ -253,7 +253,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F82 RID: 8066 RVA: 0x001B9CD8 File Offset: 0x001B7ED8
+	// Token: 0x06001F8C RID: 8076 RVA: 0x001BAA94 File Offset: 0x001B8C94
 	public void UpdateAllWeapons()
 	{
 		for (int i = 1; i < this.Weapons.Length; i++)
@@ -262,7 +262,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F83 RID: 8067 RVA: 0x001B9D08 File Offset: 0x001B7F08
+	// Token: 0x06001F8D RID: 8077 RVA: 0x001BAAC4 File Offset: 0x001B8CC4
 	public void CountBloodyWeapons()
 	{
 		this.BloodyWeapons = 0;
@@ -275,7 +275,7 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F84 RID: 8068 RVA: 0x001B9D4C File Offset: 0x001B7F4C
+	// Token: 0x06001F8E RID: 8078 RVA: 0x001BAB08 File Offset: 0x001B8D08
 	public void DisableAllWeapons()
 	{
 		for (int i = 1; i < this.Weapons.Length; i++)
@@ -284,69 +284,69 @@ public class WeaponManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004198 RID: 16792
+	// Token: 0x040041C8 RID: 16840
 	public WeaponScript[] DelinquentWeapons;
 
-	// Token: 0x04004199 RID: 16793
+	// Token: 0x040041C9 RID: 16841
 	public WeaponScript[] BroughtWeapons;
 
-	// Token: 0x0400419A RID: 16794
+	// Token: 0x040041CA RID: 16842
 	public WeaponScript[] Weapons;
 
-	// Token: 0x0400419B RID: 16795
+	// Token: 0x040041CB RID: 16843
 	public YandereScript Yandere;
 
-	// Token: 0x0400419C RID: 16796
+	// Token: 0x040041CC RID: 16844
 	public JsonScript JSON;
 
-	// Token: 0x0400419D RID: 16797
+	// Token: 0x040041CD RID: 16845
 	public int[] Victims;
 
-	// Token: 0x0400419E RID: 16798
+	// Token: 0x040041CE RID: 16846
 	public int MisplacedWeapons;
 
-	// Token: 0x0400419F RID: 16799
+	// Token: 0x040041CF RID: 16847
 	public int MurderWeapons;
 
-	// Token: 0x040041A0 RID: 16800
+	// Token: 0x040041D0 RID: 16848
 	public int Fingerprints;
 
-	// Token: 0x040041A1 RID: 16801
+	// Token: 0x040041D1 RID: 16849
 	public int YandereWeapon1 = -1;
 
-	// Token: 0x040041A2 RID: 16802
+	// Token: 0x040041D2 RID: 16850
 	public int YandereWeapon2 = -1;
 
-	// Token: 0x040041A3 RID: 16803
+	// Token: 0x040041D3 RID: 16851
 	public int YandereWeapon3 = -1;
 
-	// Token: 0x040041A4 RID: 16804
+	// Token: 0x040041D4 RID: 16852
 	public int ReturnWeaponID = -1;
 
-	// Token: 0x040041A5 RID: 16805
+	// Token: 0x040041D5 RID: 16853
 	public int ReturnStudentID = -1;
 
-	// Token: 0x040041A6 RID: 16806
+	// Token: 0x040041D6 RID: 16854
 	public int OriginalEquipped = -1;
 
-	// Token: 0x040041A7 RID: 16807
+	// Token: 0x040041D7 RID: 16855
 	public int OriginalWeapon = -1;
 
-	// Token: 0x040041A8 RID: 16808
+	// Token: 0x040041D8 RID: 16856
 	public int WeaponsTouched;
 
-	// Token: 0x040041A9 RID: 16809
+	// Token: 0x040041D9 RID: 16857
 	public int Frame;
 
-	// Token: 0x040041AA RID: 16810
+	// Token: 0x040041DA RID: 16858
 	public Texture Flower;
 
-	// Token: 0x040041AB RID: 16811
+	// Token: 0x040041DB RID: 16859
 	public Texture Blood;
 
-	// Token: 0x040041AC RID: 16812
+	// Token: 0x040041DC RID: 16860
 	public bool YandereGuilty;
 
-	// Token: 0x040041AD RID: 16813
+	// Token: 0x040041DD RID: 16861
 	public int BloodyWeapons;
 }

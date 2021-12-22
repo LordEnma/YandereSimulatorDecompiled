@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000299 RID: 665
+// Token: 0x0200029A RID: 666
 public class EightiesCutsceneScript : MonoBehaviour
 {
-	// Token: 0x060013F5 RID: 5109 RVA: 0x000BCF80 File Offset: 0x000BB180
+	// Token: 0x060013FC RID: 5116 RVA: 0x000BD51C File Offset: 0x000BB71C
 	private void Start()
 	{
 		GameGlobals.Eighties = true;
@@ -126,7 +126,7 @@ public class EightiesCutsceneScript : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x060013F6 RID: 5110 RVA: 0x000BD358 File Offset: 0x000BB558
+	// Token: 0x060013FD RID: 5117 RVA: 0x000BD8F4 File Offset: 0x000BBAF4
 	private void Update()
 	{
 		if (this.Phase < 3)
@@ -318,7 +318,7 @@ public class EightiesCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013F7 RID: 5111 RVA: 0x000BD940 File Offset: 0x000BBB40
+	// Token: 0x060013FE RID: 5118 RVA: 0x000BDEDC File Offset: 0x000BC0DC
 	private void Save()
 	{
 		int profile = GameGlobals.Profile;
@@ -328,135 +328,135 @@ public class EightiesCutsceneScript : MonoBehaviour
 		Debug.Log("Saved current state of the game to Slot #" + num.ToString());
 	}
 
-	// Token: 0x04001D98 RID: 7576
+	// Token: 0x04001DB8 RID: 7608
 	public GameObject SkipTutorialButton;
 
-	// Token: 0x04001D99 RID: 7577
+	// Token: 0x04001DB9 RID: 7609
 	public GameObject SkipTutorialWindow;
 
-	// Token: 0x04001D9A RID: 7578
+	// Token: 0x04001DBA RID: 7610
 	public GameObject Panel;
 
-	// Token: 0x04001D9B RID: 7579
+	// Token: 0x04001DBB RID: 7611
 	public TypewriterEffect Typewriter;
 
-	// Token: 0x04001D9C RID: 7580
+	// Token: 0x04001DBC RID: 7612
 	public UITexture Silhouette;
 
-	// Token: 0x04001D9D RID: 7581
+	// Token: 0x04001DBD RID: 7613
 	public AudioSource MyAudio;
 
-	// Token: 0x04001D9E RID: 7582
+	// Token: 0x04001DBE RID: 7614
 	public AudioSource BGM;
 
-	// Token: 0x04001D9F RID: 7583
+	// Token: 0x04001DBF RID: 7615
 	public UISprite Darkness;
 
-	// Token: 0x04001DA0 RID: 7584
+	// Token: 0x04001DC0 RID: 7616
 	public UILabel Label;
 
-	// Token: 0x04001DA1 RID: 7585
+	// Token: 0x04001DC1 RID: 7617
 	public Texture[] RivalSilhouettes;
 
-	// Token: 0x04001DA2 RID: 7586
+	// Token: 0x04001DC2 RID: 7618
 	public string[] Lines;
 
-	// Token: 0x04001DA3 RID: 7587
+	// Token: 0x04001DC3 RID: 7619
 	public string[] CutsceneLines1;
 
-	// Token: 0x04001DA4 RID: 7588
+	// Token: 0x04001DC4 RID: 7620
 	public string[] CutsceneLines2;
 
-	// Token: 0x04001DA5 RID: 7589
+	// Token: 0x04001DC5 RID: 7621
 	public string[] CutsceneLines3;
 
-	// Token: 0x04001DA6 RID: 7590
+	// Token: 0x04001DC6 RID: 7622
 	public string[] CutsceneLines4;
 
-	// Token: 0x04001DA7 RID: 7591
+	// Token: 0x04001DC7 RID: 7623
 	public string[] CutsceneLines5;
 
-	// Token: 0x04001DA8 RID: 7592
+	// Token: 0x04001DC8 RID: 7624
 	public string[] CutsceneLines6;
 
-	// Token: 0x04001DA9 RID: 7593
+	// Token: 0x04001DC9 RID: 7625
 	public string[] CutsceneLines7;
 
-	// Token: 0x04001DAA RID: 7594
+	// Token: 0x04001DCA RID: 7626
 	public string[] CutsceneLines8;
 
-	// Token: 0x04001DAB RID: 7595
+	// Token: 0x04001DCB RID: 7627
 	public string[] CutsceneLines9;
 
-	// Token: 0x04001DAC RID: 7596
+	// Token: 0x04001DCC RID: 7628
 	public string[] CutsceneLines10;
 
-	// Token: 0x04001DAD RID: 7597
+	// Token: 0x04001DCD RID: 7629
 	public string[] CutsceneLines11;
 
-	// Token: 0x04001DAE RID: 7598
+	// Token: 0x04001DCE RID: 7630
 	public string[] FinalCutsceneLines;
 
-	// Token: 0x04001DAF RID: 7599
+	// Token: 0x04001DCF RID: 7631
 	public AudioClip[] Clips;
 
-	// Token: 0x04001DB0 RID: 7600
+	// Token: 0x04001DD0 RID: 7632
 	public AudioClip[] CutsceneClips1;
 
-	// Token: 0x04001DB1 RID: 7601
+	// Token: 0x04001DD1 RID: 7633
 	public AudioClip[] CutsceneClips2;
 
-	// Token: 0x04001DB2 RID: 7602
+	// Token: 0x04001DD2 RID: 7634
 	public AudioClip[] CutsceneClips3;
 
-	// Token: 0x04001DB3 RID: 7603
+	// Token: 0x04001DD3 RID: 7635
 	public AudioClip[] CutsceneClips4;
 
-	// Token: 0x04001DB4 RID: 7604
+	// Token: 0x04001DD4 RID: 7636
 	public AudioClip[] CutsceneClips5;
 
-	// Token: 0x04001DB5 RID: 7605
+	// Token: 0x04001DD5 RID: 7637
 	public AudioClip[] CutsceneClips6;
 
-	// Token: 0x04001DB6 RID: 7606
+	// Token: 0x04001DD6 RID: 7638
 	public AudioClip[] CutsceneClips7;
 
-	// Token: 0x04001DB7 RID: 7607
+	// Token: 0x04001DD7 RID: 7639
 	public AudioClip[] CutsceneClips8;
 
-	// Token: 0x04001DB8 RID: 7608
+	// Token: 0x04001DD8 RID: 7640
 	public AudioClip[] CutsceneClips9;
 
-	// Token: 0x04001DB9 RID: 7609
+	// Token: 0x04001DD9 RID: 7641
 	public AudioClip[] CutsceneClips10;
 
-	// Token: 0x04001DBA RID: 7610
+	// Token: 0x04001DDA RID: 7642
 	public AudioClip[] CutsceneClips11;
 
-	// Token: 0x04001DBB RID: 7611
+	// Token: 0x04001DDB RID: 7643
 	public AudioClip[] FinalCutsceneClips;
 
-	// Token: 0x04001DBC RID: 7612
+	// Token: 0x04001DDC RID: 7644
 	public float Speed;
 
-	// Token: 0x04001DBD RID: 7613
+	// Token: 0x04001DDD RID: 7645
 	public int RivalLine;
 
-	// Token: 0x04001DBE RID: 7614
+	// Token: 0x04001DDE RID: 7646
 	public int DarkLine;
 
-	// Token: 0x04001DBF RID: 7615
+	// Token: 0x04001DDF RID: 7647
 	public int Phase;
 
-	// Token: 0x04001DC0 RID: 7616
+	// Token: 0x04001DE0 RID: 7648
 	public int ID;
 
-	// Token: 0x04001DC1 RID: 7617
+	// Token: 0x04001DE1 RID: 7649
 	public string[] EliminationNames;
 
-	// Token: 0x04001DC2 RID: 7618
+	// Token: 0x04001DE2 RID: 7650
 	public string[] EliminationDetails;
 
-	// Token: 0x04001DC3 RID: 7619
+	// Token: 0x04001DE3 RID: 7651
 	public bool SkipTutorial;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000379 RID: 889
+// Token: 0x0200037A RID: 890
 public class NoteWindowScript : MonoBehaviour
 {
-	// Token: 0x060019EE RID: 6638 RVA: 0x0010F4DC File Offset: 0x0010D6DC
+	// Token: 0x060019F6 RID: 6646 RVA: 0x0010FDB8 File Offset: 0x0010DFB8
 	private void Start()
 	{
 		this.SubMenu.transform.localScale = Vector3.zero;
@@ -22,7 +22,7 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019EF RID: 6639 RVA: 0x0010F5AC File Offset: 0x0010D7AC
+	// Token: 0x060019F7 RID: 6647 RVA: 0x0010FE88 File Offset: 0x0010E088
 	public void BecomeLifeNote()
 	{
 		this.Stationery.mainTexture = this.LifeNoteTexture;
@@ -52,7 +52,7 @@ public class NoteWindowScript : MonoBehaviour
 		this.LifeNote = true;
 	}
 
-	// Token: 0x060019F0 RID: 6640 RVA: 0x0010F780 File Offset: 0x0010D980
+	// Token: 0x060019F8 RID: 6648 RVA: 0x0011005C File Offset: 0x0010E25C
 	private void Update()
 	{
 		float t = Time.unscaledDeltaTime * 10f;
@@ -145,19 +145,19 @@ public class NoteWindowScript : MonoBehaviour
 						this.NoteLocker.NoteLeft = true;
 						if (this.NoteLocker.Student.StudentID == 30)
 						{
-							if (this.SlotLabels[1].text == this.Subjects[9])
+							if (this.NoteSubject == NoteWindowScript.NoteSubjectType.CompensatedDating || this.NoteSubject == NoteWindowScript.NoteSubjectType.DomesticAbuse)
 							{
 								this.NoteLocker.Success = true;
 							}
 						}
 						else if (this.NoteLocker.Student.StudentID == 5)
 						{
-							if (this.NoteLocker.Student.Bullied && this.SlotLabels[1].text == this.Subjects[7] && this.MeetID > 7)
+							if (this.NoteLocker.Student.Bullied && this.NoteSubject == NoteWindowScript.NoteSubjectType.Bullying && this.MeetID > 7)
 							{
 								this.NoteLocker.Success = true;
 							}
 						}
-						else if (this.NoteLocker.Student.StudentID == this.Yandere.StudentManager.RivalID && this.SlotLabels[1].text == this.Subjects[10])
+						else if (this.NoteLocker.Student.StudentID == this.Yandere.StudentManager.RivalID && this.NoteSubject == NoteWindowScript.NoteSubjectType.DomesticAbuse)
 						{
 							this.NoteLocker.Success = true;
 							if (SchemeGlobals.GetSchemeStage(6) == 5)
@@ -168,48 +168,48 @@ public class NoteWindowScript : MonoBehaviour
 						}
 						if (this.NoteLocker.Student.Persona == PersonaType.Loner || this.NoteLocker.Student.Persona == PersonaType.Sleuth)
 						{
-							if (this.SlotLabels[1].text == this.Subjects[1])
+							if (this.NoteSubject == NoteWindowScript.NoteSubjectType.MakingFriends)
 							{
 								this.NoteLocker.Success = true;
 							}
 						}
-						else if (this.NoteLocker.Student.Persona == PersonaType.TeachersPet && this.SlotLabels[1].text == this.Subjects[2])
+						else if (this.NoteLocker.Student.Persona == PersonaType.TeachersPet && this.NoteSubject == NoteWindowScript.NoteSubjectType.LowGrades)
 						{
 							this.NoteLocker.Success = true;
 						}
 						else if (this.NoteLocker.Student.Persona == PersonaType.Heroic || this.NoteLocker.Student.Persona == PersonaType.Sleuth)
 						{
-							if (this.SlotLabels[1].text == this.Subjects[3])
+							if (this.NoteSubject == NoteWindowScript.NoteSubjectType.FightingEvil)
 							{
 								this.NoteLocker.Success = true;
 							}
 						}
 						else if (this.NoteLocker.Student.Persona == PersonaType.Coward || this.NoteLocker.Student.Persona == PersonaType.Sleuth)
 						{
-							if (this.SlotLabels[1].text == this.Subjects[1] || this.SlotLabels[1].text == this.Subjects[4])
+							if (this.NoteSubject == NoteWindowScript.NoteSubjectType.MakingFriends || this.NoteSubject == NoteWindowScript.NoteSubjectType.SuspiciousActivity)
 							{
 								this.NoteLocker.Success = true;
 							}
 						}
 						else if (this.NoteLocker.Student.Persona == PersonaType.SocialButterfly || this.NoteLocker.Student.Persona == PersonaType.Sleuth)
 						{
-							if (this.SlotLabels[1].text == this.Subjects[5])
+							if (this.NoteSubject == NoteWindowScript.NoteSubjectType.YourFriends)
 							{
 								this.NoteLocker.Success = true;
 							}
 						}
-						else if (this.NoteLocker.Student.Persona == PersonaType.PhoneAddict && this.SlotLabels[1].text == this.Subjects[6])
+						else if (this.NoteLocker.Student.Persona == PersonaType.PhoneAddict && this.NoteSubject == NoteWindowScript.NoteSubjectType.SocialMedia)
 						{
 							this.NoteLocker.Success = true;
 						}
 						else if (this.NoteLocker.Student.StudentID == 2 || this.NoteLocker.Student.StudentID == 3 || this.NoteLocker.Student.Club == ClubType.Occult)
 						{
-							if (this.SlotLabels[1].text == this.Subjects[8])
+							if (this.NoteSubject == NoteWindowScript.NoteSubjectType.TheSupernatural)
 							{
 								this.NoteLocker.Success = true;
 							}
 						}
-						else if (this.NoteLocker.Student.Club == ClubType.Bully && (this.SlotLabels[1].text == this.Subjects[5] || this.SlotLabels[1].text == this.Subjects[10]))
+						else if (this.NoteLocker.Student.Club == ClubType.Bully && (this.NoteSubject == NoteWindowScript.NoteSubjectType.YourFriends || this.NoteSubject == NoteWindowScript.NoteSubjectType.CompensatedDating))
 						{
 							this.NoteLocker.Success = true;
 						}
@@ -260,6 +260,10 @@ public class NoteWindowScript : MonoBehaviour
 				{
 					this.SlotLabels[this.Slot].text = this.SubLabels[this.SubSlot].text;
 					this.SlotsFilled[this.Slot] = true;
+					if (this.Slot == 1)
+					{
+						this.NoteSubject = (NoteWindowScript.NoteSubjectType)this.SubSlot;
+					}
 					if (this.Slot == 2)
 					{
 						this.MeetID = this.SubSlot;
@@ -311,7 +315,7 @@ public class NoteWindowScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060019F1 RID: 6641 RVA: 0x00110468 File Offset: 0x0010E668
+	// Token: 0x060019F9 RID: 6649 RVA: 0x00110C64 File Offset: 0x0010EE64
 	private void UpdateHighlights()
 	{
 		for (int i = 1; i < this.SlotHighlights.Length; i++)
@@ -321,7 +325,7 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019F2 RID: 6642 RVA: 0x001104C4 File Offset: 0x0010E6C4
+	// Token: 0x060019FA RID: 6650 RVA: 0x00110CC0 File Offset: 0x0010EEC0
 	private void UpdateSubLabels()
 	{
 		if (this.Slot == 1)
@@ -388,7 +392,7 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019F3 RID: 6643 RVA: 0x00110718 File Offset: 0x0010E918
+	// Token: 0x060019FB RID: 6651 RVA: 0x00110F14 File Offset: 0x0010F114
 	public void CheckForCompletion()
 	{
 		if (this.SlotsFilled[1] && this.SlotsFilled[2] && this.SlotsFilled[3])
@@ -398,7 +402,7 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019F4 RID: 6644 RVA: 0x00110768 File Offset: 0x0010E968
+	// Token: 0x060019FC RID: 6652 RVA: 0x00110F64 File Offset: 0x0010F164
 	private void Exit()
 	{
 		this.UpdateHighlights();
@@ -426,7 +430,7 @@ public class NoteWindowScript : MonoBehaviour
 		this.SlotsFilled[3] = false;
 	}
 
-	// Token: 0x060019F5 RID: 6645 RVA: 0x001108B0 File Offset: 0x0010EAB0
+	// Token: 0x060019FD RID: 6653 RVA: 0x001110AC File Offset: 0x0010F2AC
 	private void DisableOptions()
 	{
 		if (this.Clock.HourTime >= 7.25f)
@@ -481,102 +485,132 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040029EC RID: 10732
+	// Token: 0x04002A12 RID: 10770
 	public InputManagerScript InputManager;
 
-	// Token: 0x040029ED RID: 10733
+	// Token: 0x04002A13 RID: 10771
 	public NoteLockerScript NoteLocker;
 
-	// Token: 0x040029EE RID: 10734
+	// Token: 0x04002A14 RID: 10772
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040029EF RID: 10735
+	// Token: 0x04002A15 RID: 10773
 	public YandereScript Yandere;
 
-	// Token: 0x040029F0 RID: 10736
+	// Token: 0x04002A16 RID: 10774
 	public ClockScript Clock;
 
-	// Token: 0x040029F1 RID: 10737
+	// Token: 0x04002A17 RID: 10775
 	public Transform SubHighlight;
 
-	// Token: 0x040029F2 RID: 10738
+	// Token: 0x04002A18 RID: 10776
 	public Transform SubMenu;
 
-	// Token: 0x040029F3 RID: 10739
+	// Token: 0x04002A19 RID: 10777
 	public UISprite[] SlotHighlights;
 
-	// Token: 0x040029F4 RID: 10740
+	// Token: 0x04002A1A RID: 10778
 	public UILabel[] SlotLabels;
 
-	// Token: 0x040029F5 RID: 10741
+	// Token: 0x04002A1B RID: 10779
 	public UILabel[] SubLabels;
 
-	// Token: 0x040029F6 RID: 10742
+	// Token: 0x04002A1C RID: 10780
 	public string[] OriginalText;
 
-	// Token: 0x040029F7 RID: 10743
+	// Token: 0x04002A1D RID: 10781
 	public string[] Subjects;
 
-	// Token: 0x040029F8 RID: 10744
+	// Token: 0x04002A1E RID: 10782
 	public string[] Locations;
 
-	// Token: 0x040029F9 RID: 10745
+	// Token: 0x04002A1F RID: 10783
 	public string[] Times;
 
-	// Token: 0x040029FA RID: 10746
+	// Token: 0x04002A20 RID: 10784
 	public float[] Hours;
 
-	// Token: 0x040029FB RID: 10747
+	// Token: 0x04002A21 RID: 10785
 	public bool[] SlotsFilled;
 
-	// Token: 0x040029FC RID: 10748
+	// Token: 0x04002A22 RID: 10786
 	public int SubSlot;
 
-	// Token: 0x040029FD RID: 10749
+	// Token: 0x04002A23 RID: 10787
 	public int MeetID;
 
-	// Token: 0x040029FE RID: 10750
+	// Token: 0x04002A24 RID: 10788
 	public int Slot = 1;
 
-	// Token: 0x040029FF RID: 10751
+	// Token: 0x04002A25 RID: 10789
 	public float Rotation;
 
-	// Token: 0x04002A00 RID: 10752
+	// Token: 0x04002A26 RID: 10790
 	public float TimeID;
 
-	// Token: 0x04002A01 RID: 10753
+	// Token: 0x04002A27 RID: 10791
 	public int ID;
 
-	// Token: 0x04002A02 RID: 10754
+	// Token: 0x04002A28 RID: 10792
 	public bool Selecting;
 
-	// Token: 0x04002A03 RID: 10755
+	// Token: 0x04002A29 RID: 10793
 	public bool Fade;
 
-	// Token: 0x04002A04 RID: 10756
+	// Token: 0x04002A2A RID: 10794
 	public bool Show;
 
-	// Token: 0x04002A05 RID: 10757
+	// Token: 0x04002A2B RID: 10795
+	public NoteWindowScript.NoteSubjectType NoteSubject;
+
+	// Token: 0x04002A2C RID: 10796
 	public UITexture Stationery;
 
-	// Token: 0x04002A06 RID: 10758
+	// Token: 0x04002A2D RID: 10797
 	public UISprite Background1;
 
-	// Token: 0x04002A07 RID: 10759
+	// Token: 0x04002A2E RID: 10798
 	public UISprite Background2;
 
-	// Token: 0x04002A08 RID: 10760
+	// Token: 0x04002A2F RID: 10799
 	public Texture LifeNoteTexture;
 
-	// Token: 0x04002A09 RID: 10761
+	// Token: 0x04002A30 RID: 10800
 	public UILabel[] Labels;
 
-	// Token: 0x04002A0A RID: 10762
+	// Token: 0x04002A31 RID: 10801
 	public bool LifeNote;
 
-	// Token: 0x04002A0B RID: 10763
+	// Token: 0x04002A32 RID: 10802
 	public int TargetStudent;
 
-	// Token: 0x04002A0C RID: 10764
+	// Token: 0x04002A33 RID: 10803
 	public string[] MurderMethods;
+
+	// Token: 0x02000663 RID: 1635
+	public enum NoteSubjectType
+	{
+		// Token: 0x04004F33 RID: 20275
+		Empty,
+		// Token: 0x04004F34 RID: 20276
+		MakingFriends,
+		// Token: 0x04004F35 RID: 20277
+		LowGrades,
+		// Token: 0x04004F36 RID: 20278
+		FightingEvil,
+		// Token: 0x04004F37 RID: 20279
+		SuspiciousActivity,
+		// Token: 0x04004F38 RID: 20280
+		YourFriends,
+		// Token: 0x04004F39 RID: 20281
+		SocialMedia,
+		// Token: 0x04004F3A RID: 20282
+		Bullying,
+		// Token: 0x04004F3B RID: 20283
+		TheSupernatural,
+		// Token: 0x04004F3C RID: 20284
+		CompensatedDating,
+		// Token: 0x04004F3D RID: 20285
+		DomesticAbuse
+	}
 }

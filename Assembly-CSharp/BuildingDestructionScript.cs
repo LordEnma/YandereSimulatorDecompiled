@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000100 RID: 256
+// Token: 0x02000101 RID: 257
 public class BuildingDestructionScript : MonoBehaviour
 {
-	// Token: 0x06000A8F RID: 2703 RVA: 0x0005EBE0 File Offset: 0x0005CDE0
+	// Token: 0x06000A92 RID: 2706 RVA: 0x0005ECCC File Offset: 0x0005CECC
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
@@ -29,12 +29,12 @@ public class BuildingDestructionScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C65 RID: 3173
+	// Token: 0x04000C67 RID: 3175
 	public Transform NewSchool;
 
-	// Token: 0x04000C66 RID: 3174
+	// Token: 0x04000C68 RID: 3176
 	public bool Sink;
 
-	// Token: 0x04000C67 RID: 3175
+	// Token: 0x04000C69 RID: 3177
 	public int Phase;
 }

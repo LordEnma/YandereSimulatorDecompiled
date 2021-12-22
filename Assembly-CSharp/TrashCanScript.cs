@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200047F RID: 1151
+// Token: 0x02000480 RID: 1152
 public class TrashCanScript : MonoBehaviour
 {
-	// Token: 0x06001ECD RID: 7885 RVA: 0x001AFBD4 File Offset: 0x001ADDD4
+	// Token: 0x06001ED7 RID: 7895 RVA: 0x001B09A4 File Offset: 0x001AEBA4
 	private void Update()
 	{
 		if (!this.Occupied)
@@ -140,7 +140,7 @@ public class TrashCanScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ECE RID: 7886 RVA: 0x001B02AC File Offset: 0x001AE4AC
+	// Token: 0x06001ED8 RID: 7896 RVA: 0x001B107C File Offset: 0x001AF27C
 	public void UpdatePrompt()
 	{
 		if (this.Occupied)
@@ -174,36 +174,36 @@ public class TrashCanScript : MonoBehaviour
 		this.Prompt.HideButton[0] = true;
 	}
 
-	// Token: 0x04003FEA RID: 16362
+	// Token: 0x0400401A RID: 16410
 	public WeaponScript ConcealedWeapon;
 
-	// Token: 0x04003FEB RID: 16363
+	// Token: 0x0400401B RID: 16411
 	public ContainerScript Container;
 
-	// Token: 0x04003FEC RID: 16364
+	// Token: 0x0400401C RID: 16412
 	public YandereScript Yandere;
 
-	// Token: 0x04003FED RID: 16365
+	// Token: 0x0400401D RID: 16413
 	public PromptScript Prompt;
 
-	// Token: 0x04003FEE RID: 16366
+	// Token: 0x0400401E RID: 16414
 	public Transform TrashPosition;
 
-	// Token: 0x04003FEF RID: 16367
+	// Token: 0x0400401F RID: 16415
 	public Rigidbody MyRigidbody;
 
-	// Token: 0x04003FF0 RID: 16368
+	// Token: 0x04004020 RID: 16416
 	public GameObject Item;
 
-	// Token: 0x04003FF1 RID: 16369
+	// Token: 0x04004021 RID: 16417
 	public bool Occupied;
 
-	// Token: 0x04003FF2 RID: 16370
+	// Token: 0x04004022 RID: 16418
 	public bool Wearable;
 
-	// Token: 0x04003FF3 RID: 16371
+	// Token: 0x04004023 RID: 16419
 	public bool Weapon;
 
-	// Token: 0x04003FF4 RID: 16372
+	// Token: 0x04004024 RID: 16420
 	public float KinematicTimer;
 }

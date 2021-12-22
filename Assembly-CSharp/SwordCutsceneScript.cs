@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000458 RID: 1112
+// Token: 0x02000459 RID: 1113
 public class SwordCutsceneScript : MonoBehaviour
 {
-	// Token: 0x06001E3C RID: 7740 RVA: 0x0019F1B0 File Offset: 0x0019D3B0
+	// Token: 0x06001E46 RID: 7750 RVA: 0x0019FE3C File Offset: 0x0019E03C
 	private void Start()
 	{
 		this.Segments = this.HeartSegment.gameObject.GetComponentsInChildren<Transform>();
@@ -12,7 +12,7 @@ public class SwordCutsceneScript : MonoBehaviour
 		base.transform.eulerAngles = new Vector3(0f, -45f, 0f);
 	}
 
-	// Token: 0x06001E3D RID: 7741 RVA: 0x0019F214 File Offset: 0x0019D414
+	// Token: 0x06001E47 RID: 7751 RVA: 0x0019FEA0 File Offset: 0x0019E0A0
 	private void Update()
 	{
 		Debug.Log(this.YandereAnimation["f02_swordPull_00"].time);
@@ -49,7 +49,7 @@ public class SwordCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E3E RID: 7742 RVA: 0x0019F3CC File Offset: 0x0019D5CC
+	// Token: 0x06001E48 RID: 7752 RVA: 0x001A0058 File Offset: 0x0019E258
 	private void LateUpdate()
 	{
 		if (this.YandereAnimation["f02_swordPull_00"].time > 16.5f && this.YandereAnimation["f02_swordPull_00"].time < 22.5f)
@@ -63,21 +63,21 @@ public class SwordCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003DCD RID: 15821
+	// Token: 0x04003DFD RID: 15869
 	public Animation YandereAnimation;
 
-	// Token: 0x04003DCE RID: 15822
+	// Token: 0x04003DFE RID: 15870
 	public Animation SwordAnimation;
 
-	// Token: 0x04003DCF RID: 15823
+	// Token: 0x04003DFF RID: 15871
 	public Transform SecondAngle;
 
-	// Token: 0x04003DD0 RID: 15824
+	// Token: 0x04003E00 RID: 15872
 	public Transform HeartSegment;
 
-	// Token: 0x04003DD1 RID: 15825
+	// Token: 0x04003E01 RID: 15873
 	public Transform[] Segments;
 
-	// Token: 0x04003DD2 RID: 15826
+	// Token: 0x04003E02 RID: 15874
 	public float Intensity;
 }

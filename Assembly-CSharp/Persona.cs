@@ -1,18 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002AD RID: 685
+// Token: 0x020002AE RID: 686
 [Serializable]
 public class Persona
 {
-	// Token: 0x06001436 RID: 5174 RVA: 0x000C476A File Offset: 0x000C296A
+	// Token: 0x0600143D RID: 5181 RVA: 0x000C4EF2 File Offset: 0x000C30F2
 	public Persona(PersonaType type)
 	{
 		this.type = type;
 	}
 
 	// Token: 0x17000366 RID: 870
-	// (get) Token: 0x06001437 RID: 5175 RVA: 0x000C4779 File Offset: 0x000C2979
+	// (get) Token: 0x0600143E RID: 5182 RVA: 0x000C4F01 File Offset: 0x000C3101
 	public PersonaType Type
 	{
 		get
@@ -21,11 +21,11 @@ public class Persona
 		}
 	}
 
-	// Token: 0x04001EF0 RID: 7920
+	// Token: 0x04001F10 RID: 7952
 	[SerializeField]
 	private PersonaType type;
 
-	// Token: 0x04001EF1 RID: 7921
+	// Token: 0x04001F11 RID: 7953
 	public static readonly PersonaTypeAndStringDictionary PersonaNames = new PersonaTypeAndStringDictionary
 	{
 		{

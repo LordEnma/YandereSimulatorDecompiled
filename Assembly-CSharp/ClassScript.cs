@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000248 RID: 584
+// Token: 0x02000249 RID: 585
 public class ClassScript : MonoBehaviour
 {
-	// Token: 0x06001253 RID: 4691 RVA: 0x0008C9B0 File Offset: 0x0008ABB0
+	// Token: 0x06001256 RID: 4694 RVA: 0x0008CAD4 File Offset: 0x0008ACD4
 	private void Start()
 	{
 		if (this.Portal == null || !this.Portal.StudentManager.ReturnedFromSave)
@@ -35,7 +35,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001254 RID: 4692 RVA: 0x0008CADC File Offset: 0x0008ACDC
+	// Token: 0x06001257 RID: 4695 RVA: 0x0008CC00 File Offset: 0x0008AE00
 	public void GetStats()
 	{
 		if (!this.Initialized)
@@ -102,7 +102,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001255 RID: 4693 RVA: 0x0008CC6C File Offset: 0x0008AE6C
+	// Token: 0x06001258 RID: 4696 RVA: 0x0008CD90 File Offset: 0x0008AF90
 	private void Update()
 	{
 		if (this.Show)
@@ -144,19 +144,37 @@ public class ClassScript : MonoBehaviour
 					this.DescLabel.text = this.Desc[this.Selected];
 					this.UpdateSubjectLabels();
 				}
-				if (this.InputManager.TappedRight && this.StudyPoints > 0 && this.Subject[this.Selected] + this.SubjectTemp[this.Selected] < 100)
+				if (this.InputManager.TappedRight)
 				{
-					this.SubjectTemp[this.Selected]++;
-					this.StudyPoints--;
-					this.UpdateLabel();
-					this.UpdateBars();
+					this.AddStudyPoints();
 				}
-				if (this.InputManager.TappedLeft && this.SubjectTemp[this.Selected] > 0)
+				if (this.InputManager.TappedLeft)
 				{
-					this.SubjectTemp[this.Selected]--;
-					this.StudyPoints++;
-					this.UpdateLabel();
-					this.UpdateBars();
+					this.SubtractStudyPoints();
+				}
+				if (Input.GetAxisRaw("DpadX") > 0.5f || Input.GetAxisRaw("Horizontal") > 0.5f)
+				{
+					this.HoldRightTimer += Time.deltaTime;
+					if (this.HoldRightTimer > 0.5f)
+					{
+						this.AddStudyPoints();
+					}
+				}
+				else
+				{
+					this.HoldRightTimer = 0f;
+				}
+				if (Input.GetAxisRaw("DpadX") < -0.5f || Input.GetAxisRaw("Horizontal") < -0.5f)
+				{
+					this.HoldLeftTimer += Time.deltaTime;
+					if (this.HoldLeftTimer > 0.5f)
+					{
+						this.SubtractStudyPoints();
+					}
+				}
+				else
+				{
+					this.HoldLeftTimer = 0f;
 				}
 				if (Input.GetButtonDown("A"))
 				{
@@ -272,7 +290,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001256 RID: 4694 RVA: 0x0008D458 File Offset: 0x0008B658
+	// Token: 0x06001259 RID: 4697 RVA: 0x0008D598 File Offset: 0x0008B798
 	private void UpdateSubjectLabels()
 	{
 		for (int i = 1; i < 6; i++)
@@ -282,7 +300,7 @@ public class ClassScript : MonoBehaviour
 		this.SubjectLabels[this.Selected].color = new Color(1f, 1f, 1f, 1f);
 	}
 
-	// Token: 0x06001257 RID: 4695 RVA: 0x0008D4C4 File Offset: 0x0008B6C4
+	// Token: 0x0600125A RID: 4698 RVA: 0x0008D604 File Offset: 0x0008B804
 	public void UpdateLabel()
 	{
 		this.StudyPointsLabel.text = "STUDY POINTS: " + this.StudyPoints.ToString();
@@ -290,7 +308,7 @@ public class ClassScript : MonoBehaviour
 		this.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001258 RID: 4696 RVA: 0x0008D514 File Offset: 0x0008B714
+	// Token: 0x0600125B RID: 4699 RVA: 0x0008D654 File Offset: 0x0008B854
 	private void UpdateBars()
 	{
 		for (int i = 1; i < 6; i++)
@@ -375,7 +393,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001259 RID: 4697 RVA: 0x0008D98C File Offset: 0x0008BB8C
+	// Token: 0x0600125C RID: 4700 RVA: 0x0008DACC File Offset: 0x0008BCCC
 	private void CheckForGradeUp()
 	{
 		if (this.Biology >= 20 && this.BiologyGrade < 1)
@@ -579,7 +597,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600125A RID: 4698 RVA: 0x0008DE48 File Offset: 0x0008C048
+	// Token: 0x0600125D RID: 4701 RVA: 0x0008DF88 File Offset: 0x0008C188
 	private void GivePoints()
 	{
 		this.BiologyGrade = 0;
@@ -600,7 +618,7 @@ public class ClassScript : MonoBehaviour
 		this.UpdateBars();
 	}
 
-	// Token: 0x0600125B RID: 4699 RVA: 0x0008DEEC File Offset: 0x0008C0EC
+	// Token: 0x0600125E RID: 4702 RVA: 0x0008E02C File Offset: 0x0008C22C
 	private void MaxPhysical()
 	{
 		this.PhysicalGrade = 0;
@@ -609,192 +627,222 @@ public class ClassScript : MonoBehaviour
 		this.UpdateBars();
 	}
 
-	// Token: 0x0400171D RID: 5917
-	public CutsceneManagerScript CutsceneManager;
+	// Token: 0x0600125F RID: 4703 RVA: 0x0008E054 File Offset: 0x0008C254
+	private void AddStudyPoints()
+	{
+		if (this.StudyPoints > 0 && this.Subject[this.Selected] + this.SubjectTemp[this.Selected] < 100)
+		{
+			this.SubjectTemp[this.Selected]++;
+			this.StudyPoints--;
+			this.UpdateLabel();
+			this.UpdateBars();
+		}
+	}
 
-	// Token: 0x0400171E RID: 5918
-	public InputManagerScript InputManager;
+	// Token: 0x06001260 RID: 4704 RVA: 0x0008E0BC File Offset: 0x0008C2BC
+	private void SubtractStudyPoints()
+	{
+		if (this.SubjectTemp[this.Selected] > 0)
+		{
+			this.SubjectTemp[this.Selected]--;
+			this.StudyPoints++;
+			this.UpdateLabel();
+			this.UpdateBars();
+		}
+	}
 
 	// Token: 0x0400171F RID: 5919
-	public PromptBarScript PromptBar;
+	public CutsceneManagerScript CutsceneManager;
 
 	// Token: 0x04001720 RID: 5920
-	public SchemesScript Schemes;
+	public InputManagerScript InputManager;
 
 	// Token: 0x04001721 RID: 5921
-	public PortalScript Portal;
+	public PromptBarScript PromptBar;
 
 	// Token: 0x04001722 RID: 5922
-	public GameObject Poison;
+	public SchemesScript Schemes;
 
 	// Token: 0x04001723 RID: 5923
-	public UILabel StudyPointsLabel;
+	public PortalScript Portal;
 
 	// Token: 0x04001724 RID: 5924
-	public UILabel[] SubjectLabels;
+	public GameObject Poison;
 
 	// Token: 0x04001725 RID: 5925
-	public UILabel GradeUpDesc;
+	public UILabel StudyPointsLabel;
 
 	// Token: 0x04001726 RID: 5926
-	public UILabel GradeUpName;
+	public UILabel[] SubjectLabels;
 
 	// Token: 0x04001727 RID: 5927
-	public UILabel DescLabel;
+	public UILabel GradeUpDesc;
 
 	// Token: 0x04001728 RID: 5928
-	public UISprite Darkness;
+	public UILabel GradeUpName;
 
 	// Token: 0x04001729 RID: 5929
-	public Transform[] Subject1Bars;
+	public UILabel DescLabel;
 
 	// Token: 0x0400172A RID: 5930
-	public Transform[] Subject2Bars;
+	public UISprite Darkness;
 
 	// Token: 0x0400172B RID: 5931
-	public Transform[] Subject3Bars;
+	public Transform[] Subject1Bars;
 
 	// Token: 0x0400172C RID: 5932
-	public Transform[] Subject4Bars;
+	public Transform[] Subject2Bars;
 
 	// Token: 0x0400172D RID: 5933
-	public Transform[] Subject5Bars;
+	public Transform[] Subject3Bars;
 
 	// Token: 0x0400172E RID: 5934
-	public string[] Subject1GradeText;
+	public Transform[] Subject4Bars;
 
 	// Token: 0x0400172F RID: 5935
-	public string[] Subject2GradeText;
+	public Transform[] Subject5Bars;
 
 	// Token: 0x04001730 RID: 5936
-	public string[] Subject3GradeText;
+	public string[] Subject1GradeText;
 
 	// Token: 0x04001731 RID: 5937
-	public string[] Subject3GradeTextEighties;
+	public string[] Subject2GradeText;
 
 	// Token: 0x04001732 RID: 5938
-	public string[] Subject4GradeText;
+	public string[] Subject3GradeText;
 
 	// Token: 0x04001733 RID: 5939
-	public string[] Subject5GradeText;
+	public string[] Subject3GradeTextEighties;
 
 	// Token: 0x04001734 RID: 5940
-	public Transform GradeUpWindow;
+	public string[] Subject4GradeText;
 
 	// Token: 0x04001735 RID: 5941
-	public Transform Highlight;
+	public string[] Subject5GradeText;
 
 	// Token: 0x04001736 RID: 5942
-	public int[] SubjectTemp;
+	public Transform GradeUpWindow;
 
 	// Token: 0x04001737 RID: 5943
-	public int[] Subject;
+	public Transform Highlight;
 
 	// Token: 0x04001738 RID: 5944
-	public string[] Desc;
+	public int[] SubjectTemp;
 
 	// Token: 0x04001739 RID: 5945
-	public int GradeUpSubject;
+	public int[] Subject;
 
 	// Token: 0x0400173A RID: 5946
-	public int BonusPoints;
+	public string[] Desc;
 
 	// Token: 0x0400173B RID: 5947
-	public int StudyPoints;
+	public int GradeUpSubject;
 
 	// Token: 0x0400173C RID: 5948
-	public int Selected;
+	public int BonusPoints;
 
 	// Token: 0x0400173D RID: 5949
-	public int Grade;
+	public int StudyPoints;
 
 	// Token: 0x0400173E RID: 5950
-	public bool GradeUp;
+	public int Selected;
 
 	// Token: 0x0400173F RID: 5951
-	public bool Show;
+	public int Grade;
 
 	// Token: 0x04001740 RID: 5952
-	public int Biology;
+	public bool GradeUp;
 
 	// Token: 0x04001741 RID: 5953
-	public int Chemistry;
+	public bool Show;
 
 	// Token: 0x04001742 RID: 5954
-	public int Language;
+	public int Biology;
 
 	// Token: 0x04001743 RID: 5955
-	public int Physical;
+	public int Chemistry;
 
 	// Token: 0x04001744 RID: 5956
-	public int Psychology;
+	public int Language;
 
 	// Token: 0x04001745 RID: 5957
-	public int BiologyGrade;
+	public int Physical;
 
 	// Token: 0x04001746 RID: 5958
-	public int ChemistryGrade;
+	public int Psychology;
 
 	// Token: 0x04001747 RID: 5959
-	public int LanguageGrade;
+	public int BiologyGrade;
 
 	// Token: 0x04001748 RID: 5960
-	public int PhysicalGrade;
+	public int ChemistryGrade;
 
 	// Token: 0x04001749 RID: 5961
-	public int PsychologyGrade;
+	public int LanguageGrade;
 
 	// Token: 0x0400174A RID: 5962
-	public int BiologyBonus;
+	public int PhysicalGrade;
 
 	// Token: 0x0400174B RID: 5963
-	public int ChemistryBonus;
+	public int PsychologyGrade;
 
 	// Token: 0x0400174C RID: 5964
-	public int LanguageBonus;
+	public int BiologyBonus;
 
 	// Token: 0x0400174D RID: 5965
-	public int PhysicalBonus;
+	public int ChemistryBonus;
 
 	// Token: 0x0400174E RID: 5966
-	public int PsychologyBonus;
+	public int LanguageBonus;
 
 	// Token: 0x0400174F RID: 5967
-	public int Seduction;
+	public int PhysicalBonus;
 
 	// Token: 0x04001750 RID: 5968
-	public int Numbness;
+	public int PsychologyBonus;
 
 	// Token: 0x04001751 RID: 5969
-	public int Social;
+	public int Seduction;
 
 	// Token: 0x04001752 RID: 5970
-	public int Stealth;
+	public int Numbness;
 
 	// Token: 0x04001753 RID: 5971
-	public int Speed;
+	public int Social;
 
 	// Token: 0x04001754 RID: 5972
-	public int Enlightenment;
+	public int Stealth;
 
 	// Token: 0x04001755 RID: 5973
-	public int SpeedBonus;
+	public int Speed;
 
 	// Token: 0x04001756 RID: 5974
-	public int SocialBonus;
+	public int Enlightenment;
 
 	// Token: 0x04001757 RID: 5975
-	public int StealthBonus;
+	public int SpeedBonus;
 
 	// Token: 0x04001758 RID: 5976
-	public int SeductionBonus;
+	public int SocialBonus;
 
 	// Token: 0x04001759 RID: 5977
-	public int NumbnessBonus;
+	public int StealthBonus;
 
 	// Token: 0x0400175A RID: 5978
-	public int EnlightenmentBonus;
+	public int SeductionBonus;
 
 	// Token: 0x0400175B RID: 5979
+	public int NumbnessBonus;
+
+	// Token: 0x0400175C RID: 5980
+	public int EnlightenmentBonus;
+
+	// Token: 0x0400175D RID: 5981
+	public float HoldRightTimer;
+
+	// Token: 0x0400175E RID: 5982
+	public float HoldLeftTimer;
+
+	// Token: 0x0400175F RID: 5983
 	public bool Initialized;
 }

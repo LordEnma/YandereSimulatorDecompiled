@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000381 RID: 897
+// Token: 0x02000382 RID: 898
 public class OfferHelpScript : MonoBehaviour
 {
-	// Token: 0x06001A0A RID: 6666 RVA: 0x00111670 File Offset: 0x0010F870
+	// Token: 0x06001A12 RID: 6674 RVA: 0x00111E6C File Offset: 0x0011006C
 	private void Start()
 	{
 		this.Prompt.enabled = true;
@@ -189,7 +189,7 @@ public class OfferHelpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A0B RID: 6667 RVA: 0x00111EE0 File Offset: 0x001100E0
+	// Token: 0x06001A13 RID: 6675 RVA: 0x001126DC File Offset: 0x001108DC
 	private void Update()
 	{
 		if (!this.Unable)
@@ -243,6 +243,11 @@ public class OfferHelpScript : MonoBehaviour
 						this.Student.Follower.GetDestinations();
 						this.Student.Follower.CurrentDestination = this.BystanderSpot;
 						this.Student.Follower.Pathfinding.target = this.BystanderSpot;
+					}
+					if (!GameGlobals.Eighties && this.EventStudentID == 11 && !this.Eavesdropped)
+					{
+						this.EventSpeech[3] = this.AltSpeech;
+						this.EventClip[3] = this.AltClip;
 					}
 				}
 				else if (!flag)
@@ -346,7 +351,7 @@ public class OfferHelpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A0C RID: 6668 RVA: 0x00112684 File Offset: 0x00110884
+	// Token: 0x06001A14 RID: 6676 RVA: 0x00112EB4 File Offset: 0x001110B4
 	public void UpdateLocation()
 	{
 		if (this.Eighties)
@@ -395,7 +400,7 @@ public class OfferHelpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A0D RID: 6669 RVA: 0x001128A8 File Offset: 0x00110AA8
+	// Token: 0x06001A15 RID: 6677 RVA: 0x001130D8 File Offset: 0x001112D8
 	public void Continue()
 	{
 		Debug.Log("Proceeding to next line.");
@@ -460,69 +465,78 @@ public class OfferHelpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002A46 RID: 10822
+	// Token: 0x04002A6D RID: 10861
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002A47 RID: 10823
+	// Token: 0x04002A6E RID: 10862
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002A48 RID: 10824
+	// Token: 0x04002A6F RID: 10863
 	public StudentScript Student;
 
-	// Token: 0x04002A49 RID: 10825
+	// Token: 0x04002A70 RID: 10864
 	public YandereScript Yandere;
 
-	// Token: 0x04002A4A RID: 10826
+	// Token: 0x04002A71 RID: 10865
 	public PromptScript Prompt;
 
-	// Token: 0x04002A4B RID: 10827
+	// Token: 0x04002A72 RID: 10866
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04002A4C RID: 10828
+	// Token: 0x04002A73 RID: 10867
 	public Vector3 OriginalRotation;
 
-	// Token: 0x04002A4D RID: 10829
+	// Token: 0x04002A74 RID: 10868
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002A4E RID: 10830
+	// Token: 0x04002A75 RID: 10869
 	public Transform BystanderSpot;
 
-	// Token: 0x04002A4F RID: 10831
+	// Token: 0x04002A76 RID: 10870
 	public Transform[] Locations;
 
-	// Token: 0x04002A50 RID: 10832
+	// Token: 0x04002A77 RID: 10871
 	public AudioClip[] EventClip;
 
-	// Token: 0x04002A51 RID: 10833
+	// Token: 0x04002A78 RID: 10872
 	public string[] EventSpeech;
 
-	// Token: 0x04002A52 RID: 10834
+	// Token: 0x04002A79 RID: 10873
 	public string[] EventAnim;
 
-	// Token: 0x04002A53 RID: 10835
+	// Token: 0x04002A7A RID: 10874
 	public int[] EventSpeaker;
 
-	// Token: 0x04002A54 RID: 10836
+	// Token: 0x04002A7B RID: 10875
+	public bool Eavesdropped;
+
+	// Token: 0x04002A7C RID: 10876
 	public bool Eighties;
 
-	// Token: 0x04002A55 RID: 10837
+	// Token: 0x04002A7D RID: 10877
 	public bool Offering;
 
-	// Token: 0x04002A56 RID: 10838
+	// Token: 0x04002A7E RID: 10878
 	public bool Spoken;
 
-	// Token: 0x04002A57 RID: 10839
+	// Token: 0x04002A7F RID: 10879
 	public bool Unable;
 
-	// Token: 0x04002A58 RID: 10840
+	// Token: 0x04002A80 RID: 10880
 	public int EventStudentID;
 
-	// Token: 0x04002A59 RID: 10841
+	// Token: 0x04002A81 RID: 10881
 	public int EventPhase = 1;
 
-	// Token: 0x04002A5A RID: 10842
+	// Token: 0x04002A82 RID: 10882
 	public float Timer;
 
-	// Token: 0x04002A5B RID: 10843
+	// Token: 0x04002A83 RID: 10883
 	public AudioClip ShortSilence;
+
+	// Token: 0x04002A84 RID: 10884
+	public AudioClip AltClip;
+
+	// Token: 0x04002A85 RID: 10885
+	public string AltSpeech;
 }

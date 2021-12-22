@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200042C RID: 1068
+// Token: 0x0200042D RID: 1069
 public class SnapStudentScript : MonoBehaviour
 {
-	// Token: 0x06001CA4 RID: 7332 RVA: 0x001519B0 File Offset: 0x0014FBB0
+	// Token: 0x06001CAC RID: 7340 RVA: 0x001522D4 File Offset: 0x001504D4
 	private void Start()
 	{
 		this.MyAnim.enabled = false;
@@ -12,7 +12,7 @@ public class SnapStudentScript : MonoBehaviour
 		this.MyAnim.enabled = true;
 	}
 
-	// Token: 0x06001CA5 RID: 7333 RVA: 0x00151A0C File Offset: 0x0014FC0C
+	// Token: 0x06001CAD RID: 7341 RVA: 0x00152330 File Offset: 0x00150530
 	private void Update()
 	{
 		if (Vector3.Distance(base.transform.position, this.Yandere.transform.position) < 1f)
@@ -89,30 +89,30 @@ public class SnapStudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400334B RID: 13131
+	// Token: 0x04003376 RID: 13174
 	public SnappedYandereScript Yandere;
 
-	// Token: 0x0400334C RID: 13132
+	// Token: 0x04003377 RID: 13175
 	public Quaternion targetRotation;
 
-	// Token: 0x0400334D RID: 13133
+	// Token: 0x04003378 RID: 13176
 	public StudentScript Student;
 
-	// Token: 0x0400334E RID: 13134
+	// Token: 0x04003379 RID: 13177
 	public Animation MyAnim;
 
-	// Token: 0x0400334F RID: 13135
+	// Token: 0x0400337A RID: 13178
 	public string FearAnim;
 
-	// Token: 0x04003350 RID: 13136
+	// Token: 0x0400337B RID: 13179
 	public string[] AttackAnims;
 
-	// Token: 0x04003351 RID: 13137
+	// Token: 0x0400337C RID: 13180
 	public bool VoicedConcern;
 
-	// Token: 0x04003352 RID: 13138
+	// Token: 0x0400337D RID: 13181
 	public AudioClip[] StudentFear;
 
-	// Token: 0x04003353 RID: 13139
+	// Token: 0x0400337E RID: 13182
 	public AudioClip SenpaiFear;
 }

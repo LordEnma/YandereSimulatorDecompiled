@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000471 RID: 1137
+// Token: 0x02000472 RID: 1138
 public class TitleMenuScript : MonoBehaviour
 {
-	// Token: 0x06001E9D RID: 7837 RVA: 0x001AD3E0 File Offset: 0x001AB5E0
+	// Token: 0x06001EA7 RID: 7847 RVA: 0x001AE16C File Offset: 0x001AC36C
 	private void Start()
 	{
 		RenderSettings.ambientLight = new Color(0.25f, 0.25f, 0.25f, 1f);
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x06001E9E RID: 7838 RVA: 0x001AD40C File Offset: 0x001AB60C
+	// Token: 0x06001EA8 RID: 7848 RVA: 0x001AE198 File Offset: 0x001AC398
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -59,174 +59,174 @@ public class TitleMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F29 RID: 16169
+	// Token: 0x04003F59 RID: 16217
 	public ColorCorrectionCurves ColorCorrection;
 
-	// Token: 0x04003F2A RID: 16170
+	// Token: 0x04003F5A RID: 16218
 	public InputManagerScript InputManager;
 
-	// Token: 0x04003F2B RID: 16171
+	// Token: 0x04003F5B RID: 16219
 	public TitleSaveFilesScript SaveFiles;
 
-	// Token: 0x04003F2C RID: 16172
+	// Token: 0x04003F5C RID: 16220
 	public SelectiveGrayscale Grayscale;
 
-	// Token: 0x04003F2D RID: 16173
+	// Token: 0x04003F5D RID: 16221
 	public TitleSponsorScript Sponsors;
 
-	// Token: 0x04003F2E RID: 16174
+	// Token: 0x04003F5E RID: 16222
 	public TitleExtrasScript Extras;
 
-	// Token: 0x04003F2F RID: 16175
+	// Token: 0x04003F5F RID: 16223
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003F30 RID: 16176
+	// Token: 0x04003F60 RID: 16224
 	public SSAOEffect SSAO;
 
-	// Token: 0x04003F31 RID: 16177
+	// Token: 0x04003F61 RID: 16225
 	public JsonScript JSON;
 
-	// Token: 0x04003F32 RID: 16178
+	// Token: 0x04003F62 RID: 16226
 	public UISprite[] MediumSprites;
 
-	// Token: 0x04003F33 RID: 16179
+	// Token: 0x04003F63 RID: 16227
 	public UISprite[] LightSprites;
 
-	// Token: 0x04003F34 RID: 16180
+	// Token: 0x04003F64 RID: 16228
 	public UISprite[] DarkSprites;
 
-	// Token: 0x04003F35 RID: 16181
+	// Token: 0x04003F65 RID: 16229
 	public UILabel TitleLabel;
 
-	// Token: 0x04003F36 RID: 16182
+	// Token: 0x04003F66 RID: 16230
 	public UILabel SimulatorLabel;
 
-	// Token: 0x04003F37 RID: 16183
+	// Token: 0x04003F67 RID: 16231
 	public UILabel[] ColoredLabels;
 
-	// Token: 0x04003F38 RID: 16184
+	// Token: 0x04003F68 RID: 16232
 	public Color MediumColor;
 
-	// Token: 0x04003F39 RID: 16185
+	// Token: 0x04003F69 RID: 16233
 	public Color LightColor;
 
-	// Token: 0x04003F3A RID: 16186
+	// Token: 0x04003F6A RID: 16234
 	public Color DarkColor;
 
-	// Token: 0x04003F3B RID: 16187
+	// Token: 0x04003F6B RID: 16235
 	public Transform VictimHead;
 
-	// Token: 0x04003F3C RID: 16188
+	// Token: 0x04003F6C RID: 16236
 	public Transform RightHand;
 
-	// Token: 0x04003F3D RID: 16189
+	// Token: 0x04003F6D RID: 16237
 	public Transform TwintailL;
 
-	// Token: 0x04003F3E RID: 16190
+	// Token: 0x04003F6E RID: 16238
 	public Transform TwintailR;
 
-	// Token: 0x04003F3F RID: 16191
+	// Token: 0x04003F6F RID: 16239
 	public Animation LoveSickYandere;
 
-	// Token: 0x04003F40 RID: 16192
+	// Token: 0x04003F70 RID: 16240
 	public GameObject BloodProjector;
 
-	// Token: 0x04003F41 RID: 16193
+	// Token: 0x04003F71 RID: 16241
 	public GameObject LoveSickLogo;
 
-	// Token: 0x04003F42 RID: 16194
+	// Token: 0x04003F72 RID: 16242
 	public GameObject BloodCamera;
 
-	// Token: 0x04003F43 RID: 16195
+	// Token: 0x04003F73 RID: 16243
 	public GameObject Yandere;
 
-	// Token: 0x04003F44 RID: 16196
+	// Token: 0x04003F74 RID: 16244
 	public GameObject Knife;
 
-	// Token: 0x04003F45 RID: 16197
+	// Token: 0x04003F75 RID: 16245
 	public GameObject Logo;
 
-	// Token: 0x04003F46 RID: 16198
+	// Token: 0x04003F76 RID: 16246
 	public GameObject Sun;
 
-	// Token: 0x04003F47 RID: 16199
+	// Token: 0x04003F77 RID: 16247
 	public AudioSource LoveSickMusic;
 
-	// Token: 0x04003F48 RID: 16200
+	// Token: 0x04003F78 RID: 16248
 	public AudioSource CuteMusic;
 
-	// Token: 0x04003F49 RID: 16201
+	// Token: 0x04003F79 RID: 16249
 	public AudioSource DarkMusic;
 
-	// Token: 0x04003F4A RID: 16202
+	// Token: 0x04003F7A RID: 16250
 	public Renderer[] YandereEye;
 
-	// Token: 0x04003F4B RID: 16203
+	// Token: 0x04003F7B RID: 16251
 	public Material CuteSkybox;
 
-	// Token: 0x04003F4C RID: 16204
+	// Token: 0x04003F7C RID: 16252
 	public Material DarkSkybox;
 
-	// Token: 0x04003F4D RID: 16205
+	// Token: 0x04003F7D RID: 16253
 	public Transform Highlight;
 
-	// Token: 0x04003F4E RID: 16206
+	// Token: 0x04003F7E RID: 16254
 	public Transform[] Spine;
 
-	// Token: 0x04003F4F RID: 16207
+	// Token: 0x04003F7F RID: 16255
 	public Transform[] Arm;
 
-	// Token: 0x04003F50 RID: 16208
+	// Token: 0x04003F80 RID: 16256
 	public UISprite Darkness;
 
-	// Token: 0x04003F51 RID: 16209
+	// Token: 0x04003F81 RID: 16257
 	public Vector3 PermaPositionL;
 
-	// Token: 0x04003F52 RID: 16210
+	// Token: 0x04003F82 RID: 16258
 	public Vector3 PermaPositionR;
 
-	// Token: 0x04003F53 RID: 16211
+	// Token: 0x04003F83 RID: 16259
 	public bool NeverChange;
 
-	// Token: 0x04003F54 RID: 16212
+	// Token: 0x04003F84 RID: 16260
 	public bool LoveSick;
 
-	// Token: 0x04003F55 RID: 16213
+	// Token: 0x04003F85 RID: 16261
 	public bool FadeOut;
 
-	// Token: 0x04003F56 RID: 16214
+	// Token: 0x04003F86 RID: 16262
 	public bool Turning;
 
-	// Token: 0x04003F57 RID: 16215
+	// Token: 0x04003F87 RID: 16263
 	public bool Fading = true;
 
-	// Token: 0x04003F58 RID: 16216
+	// Token: 0x04003F88 RID: 16264
 	public int SelectionCount = 8;
 
-	// Token: 0x04003F59 RID: 16217
+	// Token: 0x04003F89 RID: 16265
 	public int Selected;
 
-	// Token: 0x04003F5A RID: 16218
+	// Token: 0x04003F8A RID: 16266
 	public float InputTimer;
 
-	// Token: 0x04003F5B RID: 16219
+	// Token: 0x04003F8B RID: 16267
 	public float FadeSpeed = 1f;
 
-	// Token: 0x04003F5C RID: 16220
+	// Token: 0x04003F8C RID: 16268
 	public float LateTimer;
 
-	// Token: 0x04003F5D RID: 16221
+	// Token: 0x04003F8D RID: 16269
 	public float RotationY;
 
-	// Token: 0x04003F5E RID: 16222
+	// Token: 0x04003F8E RID: 16270
 	public float RotationZ;
 
-	// Token: 0x04003F5F RID: 16223
+	// Token: 0x04003F8F RID: 16271
 	public float Volume;
 
-	// Token: 0x04003F60 RID: 16224
+	// Token: 0x04003F90 RID: 16272
 	public float Timer;
 
-	// Token: 0x04003F61 RID: 16225
+	// Token: 0x04003F91 RID: 16273
 	public int Phase;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002D7 RID: 727
+// Token: 0x020002D8 RID: 728
 public class GateScript : MonoBehaviour
 {
-	// Token: 0x060014BE RID: 5310 RVA: 0x000CC1C4 File Offset: 0x000CA3C4
+	// Token: 0x060014C5 RID: 5317 RVA: 0x000CC968 File Offset: 0x000CAB68
 	private void Update()
 	{
 		if (!this.ManuallyAdjusted)
@@ -111,7 +111,7 @@ public class GateScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014BF RID: 5311 RVA: 0x000CC688 File Offset: 0x000CA888
+	// Token: 0x060014C6 RID: 5318 RVA: 0x000CCE2C File Offset: 0x000CB02C
 	public void PlayAudio()
 	{
 		this.RightGateAudio.clip = this.Start;
@@ -123,60 +123,60 @@ public class GateScript : MonoBehaviour
 		this.AudioPlayed = false;
 	}
 
-	// Token: 0x04002093 RID: 8339
+	// Token: 0x040020B3 RID: 8371
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002094 RID: 8340
+	// Token: 0x040020B4 RID: 8372
 	public PromptScript Prompt;
 
-	// Token: 0x04002095 RID: 8341
+	// Token: 0x040020B5 RID: 8373
 	public ClockScript Clock;
 
-	// Token: 0x04002096 RID: 8342
+	// Token: 0x040020B6 RID: 8374
 	public Collider EmergencyDoor;
 
-	// Token: 0x04002097 RID: 8343
+	// Token: 0x040020B7 RID: 8375
 	public Collider GateCollider;
 
-	// Token: 0x04002098 RID: 8344
+	// Token: 0x040020B8 RID: 8376
 	public Transform RightGate;
 
-	// Token: 0x04002099 RID: 8345
+	// Token: 0x040020B9 RID: 8377
 	public Transform LeftGate;
 
-	// Token: 0x0400209A RID: 8346
+	// Token: 0x040020BA RID: 8378
 	public bool ManuallyAdjusted;
 
-	// Token: 0x0400209B RID: 8347
+	// Token: 0x040020BB RID: 8379
 	public bool AudioPlayed;
 
-	// Token: 0x0400209C RID: 8348
+	// Token: 0x040020BC RID: 8380
 	public bool UpdateGates;
 
-	// Token: 0x0400209D RID: 8349
+	// Token: 0x040020BD RID: 8381
 	public bool Crushing;
 
-	// Token: 0x0400209E RID: 8350
+	// Token: 0x040020BE RID: 8382
 	public bool Closed;
 
-	// Token: 0x0400209F RID: 8351
+	// Token: 0x040020BF RID: 8383
 	public AudioSource RightGateAudio;
 
-	// Token: 0x040020A0 RID: 8352
+	// Token: 0x040020C0 RID: 8384
 	public AudioSource LeftGateAudio;
 
-	// Token: 0x040020A1 RID: 8353
+	// Token: 0x040020C1 RID: 8385
 	public AudioSource RightGateLoop;
 
-	// Token: 0x040020A2 RID: 8354
+	// Token: 0x040020C2 RID: 8386
 	public AudioSource LeftGateLoop;
 
-	// Token: 0x040020A3 RID: 8355
+	// Token: 0x040020C3 RID: 8387
 	public AudioClip Start;
 
-	// Token: 0x040020A4 RID: 8356
+	// Token: 0x040020C4 RID: 8388
 	public AudioClip StopOpen;
 
-	// Token: 0x040020A5 RID: 8357
+	// Token: 0x040020C5 RID: 8389
 	public AudioClip StopClose;
 }

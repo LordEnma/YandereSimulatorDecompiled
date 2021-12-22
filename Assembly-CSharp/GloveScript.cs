@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000300 RID: 768
+// Token: 0x02000301 RID: 769
 public class GloveScript : MonoBehaviour
 {
-	// Token: 0x06001803 RID: 6147 RVA: 0x000E2DEC File Offset: 0x000E0FEC
+	// Token: 0x0600180A RID: 6154 RVA: 0x000E35AC File Offset: 0x000E17AC
 	private void Start()
 	{
 		Physics.IgnoreCollision(GameObject.Find("YandereChan").GetComponent<YandereScript>().GetComponent<Collider>(), this.MyCollider);
@@ -14,7 +14,7 @@ public class GloveScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001804 RID: 6148 RVA: 0x000E2E50 File Offset: 0x000E1050
+	// Token: 0x0600180B RID: 6155 RVA: 0x000E3610 File Offset: 0x000E1810
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -47,21 +47,21 @@ public class GloveScript : MonoBehaviour
 		this.Prompt.HideButton[0] = (this.Prompt.Yandere.Schoolwear != 1 || this.Prompt.Yandere.ClubAttire);
 	}
 
-	// Token: 0x040022A9 RID: 8873
+	// Token: 0x040022C9 RID: 8905
 	public PromptScript Prompt;
 
-	// Token: 0x040022AA RID: 8874
+	// Token: 0x040022CA RID: 8906
 	public PickUpScript PickUp;
 
-	// Token: 0x040022AB RID: 8875
+	// Token: 0x040022CB RID: 8907
 	public Collider MyCollider;
 
-	// Token: 0x040022AC RID: 8876
+	// Token: 0x040022CC RID: 8908
 	public Projector Blood;
 
-	// Token: 0x040022AD RID: 8877
+	// Token: 0x040022CD RID: 8909
 	public bool Raincoat;
 
-	// Token: 0x040022AE RID: 8878
+	// Token: 0x040022CE RID: 8910
 	public int GloveID;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003D2 RID: 978
+// Token: 0x020003D3 RID: 979
 public class RivalBagScript : MonoBehaviour
 {
-	// Token: 0x06001B5F RID: 7007 RVA: 0x00134210 File Offset: 0x00132410
+	// Token: 0x06001B67 RID: 7015 RVA: 0x00134AD0 File Offset: 0x00132CD0
 	private void Start()
 	{
 		if (this.Schemes.StudentManager.Students[this.Schemes.StudentManager.RivalID] == null || StudentGlobals.StudentSlave == this.Schemes.StudentManager.RivalID)
@@ -15,7 +15,7 @@ public class RivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B60 RID: 7008 RVA: 0x00134280 File Offset: 0x00132480
+	// Token: 0x06001B68 RID: 7016 RVA: 0x00134B40 File Offset: 0x00132D40
 	private void Update()
 	{
 		if (this.Clock.Period == 2 || this.Clock.Period > 3)
@@ -62,12 +62,12 @@ public class RivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002EB1 RID: 11953
+	// Token: 0x04002EDB RID: 11995
 	public SchemesScript Schemes;
 
-	// Token: 0x04002EB2 RID: 11954
+	// Token: 0x04002EDC RID: 11996
 	public ClockScript Clock;
 
-	// Token: 0x04002EB3 RID: 11955
+	// Token: 0x04002EDD RID: 11997
 	public PromptScript Prompt;
 }

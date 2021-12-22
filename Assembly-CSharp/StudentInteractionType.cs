@@ -1,64 +1,64 @@
 ﻿using System;
 
-// Token: 0x02000452 RID: 1106
+// Token: 0x02000453 RID: 1107
 public enum StudentInteractionType
 {
-	// Token: 0x04003790 RID: 14224
+	// Token: 0x040037BC RID: 14268
 	Idle,
-	// Token: 0x04003791 RID: 14225
+	// Token: 0x040037BD RID: 14269
 	Forgiving,
-	// Token: 0x04003792 RID: 14226
+	// Token: 0x040037BE RID: 14270
 	ReceivingCompliment,
-	// Token: 0x04003793 RID: 14227
+	// Token: 0x040037BF RID: 14271
 	Gossiping,
-	// Token: 0x04003794 RID: 14228
+	// Token: 0x040037C0 RID: 14272
 	Bye,
-	// Token: 0x04003795 RID: 14229
+	// Token: 0x040037C1 RID: 14273
 	GivingTask,
-	// Token: 0x04003796 RID: 14230
+	// Token: 0x040037C2 RID: 14274
 	FollowingPlayer,
-	// Token: 0x04003797 RID: 14231
+	// Token: 0x040037C3 RID: 14275
 	GoingAway,
-	// Token: 0x04003798 RID: 14232
+	// Token: 0x040037C4 RID: 14276
 	DistractingTarget,
-	// Token: 0x04003799 RID: 14233
+	// Token: 0x040037C5 RID: 14277
 	PersonalGrudge,
-	// Token: 0x0400379A RID: 14234
+	// Token: 0x040037C6 RID: 14278
 	ClubInfo,
-	// Token: 0x0400379B RID: 14235
+	// Token: 0x040037C7 RID: 14279
 	ClubJoin,
-	// Token: 0x0400379C RID: 14236
+	// Token: 0x040037C8 RID: 14280
 	ClubQuit,
-	// Token: 0x0400379D RID: 14237
+	// Token: 0x040037C9 RID: 14281
 	ClubBye,
-	// Token: 0x0400379E RID: 14238
+	// Token: 0x040037CA RID: 14282
 	ClubActivity,
-	// Token: 0x0400379F RID: 14239
+	// Token: 0x040037CB RID: 14283
 	ClubUnwelcome,
-	// Token: 0x040037A0 RID: 14240
+	// Token: 0x040037CC RID: 14284
 	ClubKick,
-	// Token: 0x040037A1 RID: 14241
+	// Token: 0x040037CD RID: 14285
 	ClubGrudge,
-	// Token: 0x040037A2 RID: 14242
+	// Token: 0x040037CE RID: 14286
 	ClubPractice,
-	// Token: 0x040037A3 RID: 14243
+	// Token: 0x040037CF RID: 14287
 	NamingCrush,
-	// Token: 0x040037A4 RID: 14244
+	// Token: 0x040037D0 RID: 14288
 	ChangingAppearance,
-	// Token: 0x040037A5 RID: 14245
+	// Token: 0x040037D1 RID: 14289
 	Court,
-	// Token: 0x040037A6 RID: 14246
+	// Token: 0x040037D2 RID: 14290
 	Advice,
-	// Token: 0x040037A7 RID: 14247
+	// Token: 0x040037D3 RID: 14291
 	Feeding,
-	// Token: 0x040037A8 RID: 14248
+	// Token: 0x040037D4 RID: 14292
 	TaskInquiry,
-	// Token: 0x040037A9 RID: 14249
+	// Token: 0x040037D5 RID: 14293
 	TakingSnack,
-	// Token: 0x040037AA RID: 14250
+	// Token: 0x040037D6 RID: 14294
 	GivingHelp,
-	// Token: 0x040037AB RID: 14251
+	// Token: 0x040037D7 RID: 14295
 	SentToLocker,
-	// Token: 0x040037AC RID: 14252
+	// Token: 0x040037D8 RID: 14296
 	WaitingForBeatEmUpResult
 }

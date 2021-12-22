@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200032B RID: 811
+// Token: 0x0200032C RID: 812
 public class IdeasMenuScript : MonoBehaviour
 {
-	// Token: 0x060018AA RID: 6314 RVA: 0x000F1F98 File Offset: 0x000F0198
+	// Token: 0x060018B1 RID: 6321 RVA: 0x000F2788 File Offset: 0x000F0988
 	private void Start()
 	{
 		for (int i = 1; i < 11; i++)
@@ -20,7 +20,7 @@ public class IdeasMenuScript : MonoBehaviour
 		this.List.SetActive(true);
 	}
 
-	// Token: 0x060018AB RID: 6315 RVA: 0x000F1FF8 File Offset: 0x000F01F8
+	// Token: 0x060018B2 RID: 6322 RVA: 0x000F27E8 File Offset: 0x000F09E8
 	private void Update()
 	{
 		if (this.List.activeInHierarchy)
@@ -75,7 +75,7 @@ public class IdeasMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018AC RID: 6316 RVA: 0x000F2278 File Offset: 0x000F0478
+	// Token: 0x060018B3 RID: 6323 RVA: 0x000F2A68 File Offset: 0x000F0C68
 	private void UpdateHighlightPosition()
 	{
 		if (this.Selected < 1)
@@ -105,39 +105,39 @@ public class IdeasMenuScript : MonoBehaviour
 		this.Highlight.transform.localPosition = new Vector3(-125f, (float)(550 - this.Selected * 50), 0f);
 	}
 
-	// Token: 0x04002583 RID: 9603
+	// Token: 0x040025A3 RID: 9635
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002584 RID: 9604
+	// Token: 0x040025A4 RID: 9636
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04002585 RID: 9605
+	// Token: 0x040025A5 RID: 9637
 	public Transform Highlight;
 
-	// Token: 0x04002586 RID: 9606
+	// Token: 0x040025A6 RID: 9638
 	public UILabel Description;
 
-	// Token: 0x04002587 RID: 9607
+	// Token: 0x040025A7 RID: 9639
 	public string[] IdeaNames;
 
-	// Token: 0x04002588 RID: 9608
+	// Token: 0x040025A8 RID: 9640
 	public string[] Ideas;
 
-	// Token: 0x04002589 RID: 9609
+	// Token: 0x040025A9 RID: 9641
 	public UILabel[] Labels;
 
-	// Token: 0x0400258A RID: 9610
+	// Token: 0x040025AA RID: 9642
 	public GameObject List;
 
-	// Token: 0x0400258B RID: 9611
+	// Token: 0x040025AB RID: 9643
 	public int ListSize = 21;
 
-	// Token: 0x0400258C RID: 9612
+	// Token: 0x040025AC RID: 9644
 	public int Selected = 1;
 
-	// Token: 0x0400258D RID: 9613
+	// Token: 0x040025AD RID: 9645
 	public int Offset;
 
-	// Token: 0x0400258E RID: 9614
+	// Token: 0x040025AE RID: 9646
 	public int Limit = 27;
 }

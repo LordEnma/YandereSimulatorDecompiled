@@ -7,11 +7,11 @@ public class ArrayLayout
 	// Token: 0x04000A85 RID: 2693
 	public ArrayLayout.rowData[] rows = new ArrayLayout.rowData[6];
 
-	// Token: 0x02000649 RID: 1609
+	// Token: 0x0200064B RID: 1611
 	[Serializable]
 	public struct rowData
 	{
-		// Token: 0x04004E52 RID: 20050
+		// Token: 0x04004E91 RID: 20113
 		public bool[] row;
 	}
 }

@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004AB RID: 1195
+// Token: 0x020004AC RID: 1196
 [Serializable]
 public class Timer
 {
-	// Token: 0x06001F53 RID: 8019 RVA: 0x001B648D File Offset: 0x001B468D
+	// Token: 0x06001F5D RID: 8029 RVA: 0x001B7249 File Offset: 0x001B5449
 	public Timer(float targetSeconds)
 	{
 		this.currentSeconds = 0f;
@@ -13,7 +13,7 @@ public class Timer
 	}
 
 	// Token: 0x170004C1 RID: 1217
-	// (get) Token: 0x06001F54 RID: 8020 RVA: 0x001B64A7 File Offset: 0x001B46A7
+	// (get) Token: 0x06001F5E RID: 8030 RVA: 0x001B7263 File Offset: 0x001B5463
 	public float CurrentSeconds
 	{
 		get
@@ -23,7 +23,7 @@ public class Timer
 	}
 
 	// Token: 0x170004C2 RID: 1218
-	// (get) Token: 0x06001F55 RID: 8021 RVA: 0x001B64AF File Offset: 0x001B46AF
+	// (get) Token: 0x06001F5F RID: 8031 RVA: 0x001B726B File Offset: 0x001B546B
 	public float TargetSeconds
 	{
 		get
@@ -33,7 +33,7 @@ public class Timer
 	}
 
 	// Token: 0x170004C3 RID: 1219
-	// (get) Token: 0x06001F56 RID: 8022 RVA: 0x001B64B7 File Offset: 0x001B46B7
+	// (get) Token: 0x06001F60 RID: 8032 RVA: 0x001B7273 File Offset: 0x001B5473
 	public bool IsDone
 	{
 		get
@@ -43,7 +43,7 @@ public class Timer
 	}
 
 	// Token: 0x170004C4 RID: 1220
-	// (get) Token: 0x06001F57 RID: 8023 RVA: 0x001B64CA File Offset: 0x001B46CA
+	// (get) Token: 0x06001F61 RID: 8033 RVA: 0x001B7286 File Offset: 0x001B5486
 	public float Progress
 	{
 		get
@@ -52,29 +52,29 @@ public class Timer
 		}
 	}
 
-	// Token: 0x06001F58 RID: 8024 RVA: 0x001B64DE File Offset: 0x001B46DE
+	// Token: 0x06001F62 RID: 8034 RVA: 0x001B729A File Offset: 0x001B549A
 	public void Reset()
 	{
 		this.currentSeconds = 0f;
 	}
 
-	// Token: 0x06001F59 RID: 8025 RVA: 0x001B64EB File Offset: 0x001B46EB
+	// Token: 0x06001F63 RID: 8035 RVA: 0x001B72A7 File Offset: 0x001B54A7
 	public void SubtractTarget()
 	{
 		this.currentSeconds -= this.targetSeconds;
 	}
 
-	// Token: 0x06001F5A RID: 8026 RVA: 0x001B6500 File Offset: 0x001B4700
+	// Token: 0x06001F64 RID: 8036 RVA: 0x001B72BC File Offset: 0x001B54BC
 	public void Tick(float dt)
 	{
 		this.currentSeconds += dt;
 	}
 
-	// Token: 0x04004119 RID: 16665
+	// Token: 0x04004149 RID: 16713
 	[SerializeField]
 	private float currentSeconds;
 
-	// Token: 0x0400411A RID: 16666
+	// Token: 0x0400414A RID: 16714
 	[SerializeField]
 	private float targetSeconds;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000245 RID: 581
+// Token: 0x02000246 RID: 582
 public class CigsScript : MonoBehaviour
 {
-	// Token: 0x0600124C RID: 4684 RVA: 0x0008C78C File Offset: 0x0008A98C
+	// Token: 0x0600124F RID: 4687 RVA: 0x0008C8B0 File Offset: 0x0008AAB0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -20,6 +20,6 @@ public class CigsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001716 RID: 5910
+	// Token: 0x04001718 RID: 5912
 	public PromptScript Prompt;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004DE RID: 1246
+// Token: 0x020004E0 RID: 1248
 public class YanvaniaWitchScript : MonoBehaviour
 {
-	// Token: 0x06002080 RID: 8320 RVA: 0x001DC3A4 File Offset: 0x001DA5A4
+	// Token: 0x06002091 RID: 8337 RVA: 0x001DDAD8 File Offset: 0x001DBCD8
 	private void Update()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -38,7 +38,7 @@ public class YanvaniaWitchScript : MonoBehaviour
 		this.HitReactTimer += Time.deltaTime * 10f;
 	}
 
-	// Token: 0x06002081 RID: 8321 RVA: 0x001DC558 File Offset: 0x001DA758
+	// Token: 0x06002092 RID: 8338 RVA: 0x001DDC8C File Offset: 0x001DBE8C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.HP > 0f)
@@ -76,42 +76,42 @@ public class YanvaniaWitchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004729 RID: 18217
+	// Token: 0x04004768 RID: 18280
 	public YanvaniaYanmontScript Yanmont;
 
-	// Token: 0x0400472A RID: 18218
+	// Token: 0x04004769 RID: 18281
 	public GameObject GroundImpact;
 
-	// Token: 0x0400472B RID: 18219
+	// Token: 0x0400476A RID: 18282
 	public GameObject BlackHole;
 
-	// Token: 0x0400472C RID: 18220
+	// Token: 0x0400476B RID: 18283
 	public GameObject Character;
 
-	// Token: 0x0400472D RID: 18221
+	// Token: 0x0400476C RID: 18284
 	public GameObject HitEffect;
 
-	// Token: 0x0400472E RID: 18222
+	// Token: 0x0400476D RID: 18285
 	public GameObject Wall;
 
-	// Token: 0x0400472F RID: 18223
+	// Token: 0x0400476E RID: 18286
 	public AudioClip DeathScream;
 
-	// Token: 0x04004730 RID: 18224
+	// Token: 0x0400476F RID: 18287
 	public AudioClip HitSound;
 
-	// Token: 0x04004731 RID: 18225
+	// Token: 0x04004770 RID: 18288
 	public float HitReactTimer;
 
-	// Token: 0x04004732 RID: 18226
+	// Token: 0x04004771 RID: 18289
 	public float AttackTimer = 10f;
 
-	// Token: 0x04004733 RID: 18227
+	// Token: 0x04004772 RID: 18290
 	public float HP = 100f;
 
-	// Token: 0x04004734 RID: 18228
+	// Token: 0x04004773 RID: 18291
 	public bool CastSpell;
 
-	// Token: 0x04004735 RID: 18229
+	// Token: 0x04004774 RID: 18292
 	public bool Casting;
 }

@@ -438,12 +438,12 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 	[NonSerialized]
 	private Dictionary<string, int> mSpriteIndices = new Dictionary<string, int>();
 
-	// Token: 0x0200060B RID: 1547
+	// Token: 0x0200060D RID: 1549
 	private enum Coordinates
 	{
-		// Token: 0x04004D9F RID: 19871
+		// Token: 0x04004DDE RID: 19934
 		Pixels,
-		// Token: 0x04004DA0 RID: 19872
+		// Token: 0x04004DDF RID: 19935
 		TexCoords
 	}
 }

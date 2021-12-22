@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000280 RID: 640
+// Token: 0x02000281 RID: 641
 [Serializable]
 public class DetectionMarkerScript : MonoBehaviour
 {
-	// Token: 0x0600137C RID: 4988 RVA: 0x000B2DF4 File Offset: 0x000B0FF4
+	// Token: 0x06001383 RID: 4995 RVA: 0x000B336C File Offset: 0x000B156C
 	private void Start()
 	{
 		base.transform.LookAt(new Vector3(this.Target.position.x, base.transform.position.y, this.Target.position.z));
@@ -14,7 +14,7 @@ public class DetectionMarkerScript : MonoBehaviour
 		this.Tex.color = new Color(this.Tex.color.r, this.Tex.color.g, this.Tex.color.b, 0f);
 	}
 
-	// Token: 0x0600137D RID: 4989 RVA: 0x000B2ECC File Offset: 0x000B10CC
+	// Token: 0x06001384 RID: 4996 RVA: 0x000B3444 File Offset: 0x000B1644
 	private void Update()
 	{
 		if (this.Tex.color.a > 0f && base.transform != null && this.Target != null)
@@ -23,9 +23,9 @@ public class DetectionMarkerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001C9E RID: 7326
+	// Token: 0x04001CBE RID: 7358
 	public Transform Target;
 
-	// Token: 0x04001C9F RID: 7327
+	// Token: 0x04001CBF RID: 7359
 	public UITexture Tex;
 }

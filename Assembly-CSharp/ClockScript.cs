@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
-// Token: 0x0200024C RID: 588
+// Token: 0x0200024D RID: 589
 public class ClockScript : MonoBehaviour
 {
-	// Token: 0x06001264 RID: 4708 RVA: 0x0008E9F0 File Offset: 0x0008CBF0
+	// Token: 0x06001269 RID: 4713 RVA: 0x0008EBE8 File Offset: 0x0008CDE8
 	private void Start()
 	{
 		this.Profile.bloom.enabled = true;
@@ -120,7 +120,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001265 RID: 4709 RVA: 0x0008EE04 File Offset: 0x0008D004
+	// Token: 0x0600126A RID: 4714 RVA: 0x0008EFFC File Offset: 0x0008D1FC
 	public void Update()
 	{
 		if (this.FadeIn && Time.deltaTime < 1f)
@@ -397,7 +397,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001266 RID: 4710 RVA: 0x0008FB60 File Offset: 0x0008DD60
+	// Token: 0x0600126B RID: 4715 RVA: 0x0008FD58 File Offset: 0x0008DF58
 	public void EndTimeSkip()
 	{
 		if (GameGlobals.AlphabetMode)
@@ -421,7 +421,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001267 RID: 4711 RVA: 0x0008FC64 File Offset: 0x0008DE64
+	// Token: 0x0600126C RID: 4716 RVA: 0x0008FE5C File Offset: 0x0008E05C
 	public string GetWeekdayText(DayOfWeek weekday)
 	{
 		if (weekday == DayOfWeek.Sunday)
@@ -458,7 +458,7 @@ public class ClockScript : MonoBehaviour
 		return "SATURDAY";
 	}
 
-	// Token: 0x06001268 RID: 4712 RVA: 0x0008FCE4 File Offset: 0x0008DEE4
+	// Token: 0x0600126D RID: 4717 RVA: 0x0008FEDC File Offset: 0x0008E0DC
 	private void ActivateTrespassZones()
 	{
 		if (!this.SchoolBell.isPlaying || this.SchoolBell.time > 1f)
@@ -472,7 +472,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001269 RID: 4713 RVA: 0x0008FD3C File Offset: 0x0008DF3C
+	// Token: 0x0600126E RID: 4718 RVA: 0x0008FF34 File Offset: 0x0008E134
 	public void DeactivateTrespassZones()
 	{
 		this.Yandere.Trespassing = false;
@@ -489,7 +489,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600126A RID: 4714 RVA: 0x0008FDBC File Offset: 0x0008DFBC
+	// Token: 0x0600126F RID: 4719 RVA: 0x0008FFB4 File Offset: 0x0008E1B4
 	public void ActivateLateStudent()
 	{
 		if (this.StudentManager.Students[7] != null)
@@ -502,7 +502,7 @@ public class ClockScript : MonoBehaviour
 		this.LateStudent = false;
 	}
 
-	// Token: 0x0600126B RID: 4715 RVA: 0x0008FE40 File Offset: 0x0008E040
+	// Token: 0x06001270 RID: 4720 RVA: 0x00090038 File Offset: 0x0008E238
 	public void NightLighting()
 	{
 		this.MainLight.color = new Color(0.25f, 0.25f, 0.5f);
@@ -511,7 +511,7 @@ public class ClockScript : MonoBehaviour
 		RenderSettings.skybox.SetColor("_Tint", new Color(0.1f, 0.1f, 0.2f));
 	}
 
-	// Token: 0x0600126C RID: 4716 RVA: 0x0008FEC4 File Offset: 0x0008E0C4
+	// Token: 0x06001271 RID: 4721 RVA: 0x000900BC File Offset: 0x0008E2BC
 	public void UpdateClock()
 	{
 		this.LastMinute = this.Minute;
@@ -539,7 +539,7 @@ public class ClockScript : MonoBehaviour
 		this.TimeLabel.text = this.TimeText;
 	}
 
-	// Token: 0x0600126D RID: 4717 RVA: 0x0008FFD4 File Offset: 0x0008E1D4
+	// Token: 0x06001272 RID: 4722 RVA: 0x000901CC File Offset: 0x0008E3CC
 	public void BecomeEighties()
 	{
 		this.StudentManager.EightiesifyLabel(this.TimeLabel);
@@ -549,195 +549,195 @@ public class ClockScript : MonoBehaviour
 		this.LateStudent = false;
 	}
 
-	// Token: 0x0400176C RID: 5996
+	// Token: 0x04001770 RID: 6000
 	private string MinuteNumber = string.Empty;
 
-	// Token: 0x0400176D RID: 5997
+	// Token: 0x04001771 RID: 6001
 	private string HourNumber = string.Empty;
 
-	// Token: 0x0400176E RID: 5998
+	// Token: 0x04001772 RID: 6002
 	public Collider MeetingRoomTrespassZone;
 
-	// Token: 0x0400176F RID: 5999
+	// Token: 0x04001773 RID: 6003
 	public Collider[] TrespassZones;
 
-	// Token: 0x04001770 RID: 6000
+	// Token: 0x04001774 RID: 6004
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04001771 RID: 6001
+	// Token: 0x04001775 RID: 6005
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001772 RID: 6002
+	// Token: 0x04001776 RID: 6006
 	public CameraEffectsScript CameraEffects;
 
-	// Token: 0x04001773 RID: 6003
+	// Token: 0x04001777 RID: 6007
 	public LoveManagerScript LoveManager;
 
-	// Token: 0x04001774 RID: 6004
+	// Token: 0x04001778 RID: 6008
 	public YandereScript Yandere;
 
-	// Token: 0x04001775 RID: 6005
+	// Token: 0x04001779 RID: 6009
 	public PoliceScript Police;
 
-	// Token: 0x04001776 RID: 6006
+	// Token: 0x0400177A RID: 6010
 	public ClockScript Clock;
 
-	// Token: 0x04001777 RID: 6007
+	// Token: 0x0400177B RID: 6011
 	public MotionBlur Blur;
 
-	// Token: 0x04001778 RID: 6008
+	// Token: 0x0400177C RID: 6012
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04001779 RID: 6009
+	// Token: 0x0400177D RID: 6013
 	public Transform PromptParent;
 
-	// Token: 0x0400177A RID: 6010
+	// Token: 0x0400177E RID: 6014
 	public Transform MinuteHand;
 
-	// Token: 0x0400177B RID: 6011
+	// Token: 0x0400177F RID: 6015
 	public Transform HourHand;
 
-	// Token: 0x0400177C RID: 6012
+	// Token: 0x04001780 RID: 6016
 	public Transform Sun;
 
-	// Token: 0x0400177D RID: 6013
+	// Token: 0x04001781 RID: 6017
 	public GameObject SunFlare;
 
-	// Token: 0x0400177E RID: 6014
+	// Token: 0x04001782 RID: 6018
 	public UILabel PeriodLabel;
 
-	// Token: 0x0400177F RID: 6015
+	// Token: 0x04001783 RID: 6019
 	public UILabel TimeLabel;
 
-	// Token: 0x04001780 RID: 6016
+	// Token: 0x04001784 RID: 6020
 	public UILabel DayLabel;
 
-	// Token: 0x04001781 RID: 6017
+	// Token: 0x04001785 RID: 6021
 	public Light MainLight;
 
-	// Token: 0x04001782 RID: 6018
+	// Token: 0x04001786 RID: 6022
 	public float HalfwayTime;
 
-	// Token: 0x04001783 RID: 6019
+	// Token: 0x04001787 RID: 6023
 	public float PresentTime;
 
-	// Token: 0x04001784 RID: 6020
+	// Token: 0x04001788 RID: 6024
 	public float TargetTime;
 
-	// Token: 0x04001785 RID: 6021
+	// Token: 0x04001789 RID: 6025
 	public float StartTime;
 
-	// Token: 0x04001786 RID: 6022
+	// Token: 0x0400178A RID: 6026
 	public float HourTime;
 
-	// Token: 0x04001787 RID: 6023
+	// Token: 0x0400178B RID: 6027
 	public float AmbientLightDim;
 
-	// Token: 0x04001788 RID: 6024
+	// Token: 0x0400178C RID: 6028
 	public float BloomFadeSpeed = 10f;
 
-	// Token: 0x04001789 RID: 6025
+	// Token: 0x0400178D RID: 6029
 	public float TimeSkipSpeed = 1f;
 
-	// Token: 0x0400178A RID: 6026
+	// Token: 0x0400178E RID: 6030
 	public float BathroomDim;
 
-	// Token: 0x0400178B RID: 6027
+	// Token: 0x0400178F RID: 6031
 	public float CameraTimer;
 
-	// Token: 0x0400178C RID: 6028
+	// Token: 0x04001790 RID: 6032
 	public float DayProgress;
 
-	// Token: 0x0400178D RID: 6029
+	// Token: 0x04001791 RID: 6033
 	public float LastMinute;
 
-	// Token: 0x0400178E RID: 6030
+	// Token: 0x04001792 RID: 6034
 	public float BloomWait;
 
-	// Token: 0x0400178F RID: 6031
+	// Token: 0x04001793 RID: 6035
 	public float StartHour;
 
-	// Token: 0x04001790 RID: 6032
+	// Token: 0x04001794 RID: 6036
 	public float TimeSpeed;
 
-	// Token: 0x04001791 RID: 6033
+	// Token: 0x04001795 RID: 6037
 	public float Minute;
 
-	// Token: 0x04001792 RID: 6034
+	// Token: 0x04001796 RID: 6038
 	public float Timer;
 
-	// Token: 0x04001793 RID: 6035
+	// Token: 0x04001797 RID: 6039
 	public float Hour;
 
-	// Token: 0x04001794 RID: 6036
+	// Token: 0x04001798 RID: 6040
 	public PhaseOfDay Phase;
 
-	// Token: 0x04001795 RID: 6037
+	// Token: 0x04001799 RID: 6041
 	public int Weekday;
 
-	// Token: 0x04001796 RID: 6038
+	// Token: 0x0400179A RID: 6042
 	public int Period;
 
-	// Token: 0x04001797 RID: 6039
+	// Token: 0x0400179B RID: 6043
 	public int Day = 1;
 
-	// Token: 0x04001798 RID: 6040
+	// Token: 0x0400179C RID: 6044
 	public int ID;
 
-	// Token: 0x04001799 RID: 6041
+	// Token: 0x0400179D RID: 6045
 	public string TimeText = string.Empty;
 
-	// Token: 0x0400179A RID: 6042
+	// Token: 0x0400179E RID: 6046
 	public bool IgnorePhotographyClub;
 
-	// Token: 0x0400179B RID: 6043
+	// Token: 0x0400179F RID: 6047
 	public bool LateStudent;
 
-	// Token: 0x0400179C RID: 6044
+	// Token: 0x040017A0 RID: 6048
 	public bool UpdateBloom;
 
-	// Token: 0x0400179D RID: 6045
+	// Token: 0x040017A1 RID: 6049
 	public bool MissionMode;
 
-	// Token: 0x0400179E RID: 6046
+	// Token: 0x040017A2 RID: 6050
 	public bool ReduceKnee;
 
-	// Token: 0x0400179F RID: 6047
+	// Token: 0x040017A3 RID: 6051
 	public bool StopTime;
 
-	// Token: 0x040017A0 RID: 6048
+	// Token: 0x040017A4 RID: 6052
 	public bool TimeSkip;
 
-	// Token: 0x040017A1 RID: 6049
+	// Token: 0x040017A5 RID: 6053
 	public bool FadeIn;
 
-	// Token: 0x040017A2 RID: 6050
+	// Token: 0x040017A6 RID: 6054
 	public bool Horror;
 
-	// Token: 0x040017A3 RID: 6051
+	// Token: 0x040017A7 RID: 6055
 	public bool Lerp;
 
-	// Token: 0x040017A4 RID: 6052
+	// Token: 0x040017A8 RID: 6056
 	public AudioSource SchoolBell;
 
-	// Token: 0x040017A5 RID: 6053
+	// Token: 0x040017A9 RID: 6057
 	public Color SkyboxColor;
 
-	// Token: 0x040017A6 RID: 6054
+	// Token: 0x040017AA RID: 6058
 	public float BloomIntensity = 11f;
 
-	// Token: 0x040017A7 RID: 6055
+	// Token: 0x040017AB RID: 6059
 	public float BloomRadius = 7f;
 
-	// Token: 0x040017A8 RID: 6056
+	// Token: 0x040017AC RID: 6060
 	public float BloomKnee = 1f;
 
-	// Token: 0x040017A9 RID: 6057
+	// Token: 0x040017AD RID: 6061
 	public UISprite BathroomDimSprite;
 
-	// Token: 0x040017AA RID: 6058
+	// Token: 0x040017AE RID: 6062
 	public Light[] BathroomLight;
 
-	// Token: 0x040017AB RID: 6059
+	// Token: 0x040017AF RID: 6063
 	public Collider[] Bathroom;
 }

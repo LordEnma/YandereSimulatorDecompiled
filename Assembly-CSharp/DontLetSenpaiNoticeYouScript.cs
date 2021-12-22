@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000CE RID: 206
 public class DontLetSenpaiNoticeYouScript : MonoBehaviour
 {
-	// Token: 0x060009CE RID: 2510 RVA: 0x00051990 File Offset: 0x0004FB90
+	// Token: 0x060009CE RID: 2510 RVA: 0x00051A8C File Offset: 0x0004FC8C
 	private void Start()
 	{
 		while (this.ID < this.Letters.Length)
@@ -18,7 +18,7 @@ public class DontLetSenpaiNoticeYouScript : MonoBehaviour
 		this.ID = 0;
 	}
 
-	// Token: 0x060009CF RID: 2511 RVA: 0x00051A44 File Offset: 0x0004FC44
+	// Token: 0x060009CF RID: 2511 RVA: 0x00051B40 File Offset: 0x0004FD40
 	private void Update()
 	{
 		if (Input.GetButtonDown("A"))

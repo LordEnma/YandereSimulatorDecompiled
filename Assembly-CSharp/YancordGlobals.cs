@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002FE RID: 766
+// Token: 0x020002FF RID: 767
 public static class YancordGlobals
 {
 	// Token: 0x17000474 RID: 1140
-	// (get) Token: 0x060017FD RID: 6141 RVA: 0x000E27C8 File Offset: 0x000E09C8
-	// (set) Token: 0x060017FE RID: 6142 RVA: 0x000E27F8 File Offset: 0x000E09F8
+	// (get) Token: 0x06001804 RID: 6148 RVA: 0x000E2F88 File Offset: 0x000E1188
+	// (set) Token: 0x06001805 RID: 6149 RVA: 0x000E2FB8 File Offset: 0x000E11B8
 	public static bool JoinedYancord
 	{
 		get
@@ -20,8 +20,8 @@ public static class YancordGlobals
 	}
 
 	// Token: 0x17000475 RID: 1141
-	// (get) Token: 0x060017FF RID: 6143 RVA: 0x000E2828 File Offset: 0x000E0A28
-	// (set) Token: 0x06001800 RID: 6144 RVA: 0x000E2858 File Offset: 0x000E0A58
+	// (get) Token: 0x06001806 RID: 6150 RVA: 0x000E2FE8 File Offset: 0x000E11E8
+	// (set) Token: 0x06001807 RID: 6151 RVA: 0x000E3018 File Offset: 0x000E1218
 	public static int CurrentConversation
 	{
 		get
@@ -34,16 +34,16 @@ public static class YancordGlobals
 		}
 	}
 
-	// Token: 0x06001801 RID: 6145 RVA: 0x000E2888 File Offset: 0x000E0A88
+	// Token: 0x06001808 RID: 6152 RVA: 0x000E3048 File Offset: 0x000E1248
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_JoinedYancord");
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CurrentConversation");
 	}
 
-	// Token: 0x040022A7 RID: 8871
+	// Token: 0x040022C7 RID: 8903
 	private const string Str_JoinedYancord = "JoinedYancord";
 
-	// Token: 0x040022A8 RID: 8872
+	// Token: 0x040022C8 RID: 8904
 	private const string Str_CurrentConversation = "CurrentConversation";
 }

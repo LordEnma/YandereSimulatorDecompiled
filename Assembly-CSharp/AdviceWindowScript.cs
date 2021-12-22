@@ -263,7 +263,7 @@ public class AdviceWindowScript : MonoBehaviour
 			if (this.ShowOffID == 1)
 			{
 				string str;
-				if (DatingGlobals.GetSuitorTrait(1) < DatingGlobals.GetTraitDemonstrated(1) + 1)
+				if (this.StudentManager.DatingMinigame.Trait[this.ShowOffID] < this.StudentManager.DatingMinigame.TraitDemonstrated[this.ShowOffID] + 1)
 				{
 					str = "This will not impress your rival. To increase the suitor's courage, lead him to the ''haunted'' painting in the third-floor Art Room.";
 					this.AdviceLabel.color = new Color(1f, 0f, 0f, 1f);
@@ -272,12 +272,12 @@ public class AdviceWindowScript : MonoBehaviour
 				{
 					str = "This is enough to impress your rival.";
 				}
-				this.AdviceLabel.text = "Your suitor's courage is ''Level " + DatingGlobals.GetSuitorTrait(1).ToString() + "''. " + str;
+				this.AdviceLabel.text = "Your suitor's courage is ''Level " + this.StudentManager.DatingMinigame.Trait[this.ShowOffID].ToString() + "''. " + str;
 			}
 			else if (this.ShowOffID == 2)
 			{
 				string str;
-				if (DatingGlobals.GetSuitorTrait(2) < DatingGlobals.GetTraitDemonstrated(2) + 1)
+				if (this.StudentManager.DatingMinigame.Trait[this.ShowOffID] < this.StudentManager.DatingMinigame.TraitDemonstrated[this.ShowOffID] + 1)
 				{
 					str = "This will not impress your rival. To increase the suitor's intelligence, lead him to the library and study with him.";
 					this.AdviceLabel.color = new Color(1f, 0f, 0f, 1f);
@@ -286,12 +286,12 @@ public class AdviceWindowScript : MonoBehaviour
 				{
 					str = "This is enough to impress your rival.";
 				}
-				this.AdviceLabel.text = "Your suitor's intelligence is ''Level " + DatingGlobals.GetSuitorTrait(2).ToString() + "''. " + str;
+				this.AdviceLabel.text = "Your suitor's intelligence is ''Level " + this.StudentManager.DatingMinigame.Trait[this.ShowOffID].ToString() + "''. " + str;
 			}
 			else if (this.ShowOffID == 3)
 			{
 				string str;
-				if (DatingGlobals.GetSuitorTrait(3) < DatingGlobals.GetTraitDemonstrated(3) + 1)
+				if (this.StudentManager.DatingMinigame.Trait[this.ShowOffID] < this.StudentManager.DatingMinigame.TraitDemonstrated[this.ShowOffID] + 1)
 				{
 					str = "This will not impress your rival. To increase the suitor's strength, lead him to the running track and train him.";
 					this.AdviceLabel.color = new Color(1f, 0f, 0f, 1f);
@@ -300,7 +300,7 @@ public class AdviceWindowScript : MonoBehaviour
 				{
 					str = "This is enough to impress your rival.";
 				}
-				this.AdviceLabel.text = "Your suitor's strength is ''Level " + DatingGlobals.GetSuitorTrait(3).ToString() + "''. " + str;
+				this.AdviceLabel.text = "Your suitor's strength is ''Level " + this.StudentManager.DatingMinigame.Trait[this.ShowOffID].ToString() + "''. " + str;
 			}
 		}
 		else if (this.Selected == 5)
@@ -323,15 +323,15 @@ public class AdviceWindowScript : MonoBehaviour
 		this.StatsLabel.text = string.Concat(new string[]
 		{
 			"SUITOR STATS\n\nCOURAGE: ",
-			DatingGlobals.GetSuitorTrait(1).ToString(),
+			this.StudentManager.DatingMinigame.Trait[1].ToString(),
 			"\n\nINTELLIGENCE: ",
-			DatingGlobals.GetSuitorTrait(2).ToString(),
+			this.StudentManager.DatingMinigame.Trait[2].ToString(),
 			"\n\nSTRENGTH: ",
-			DatingGlobals.GetSuitorTrait(3).ToString()
+			this.StudentManager.DatingMinigame.Trait[3].ToString()
 		});
 	}
 
-	// Token: 0x060009A3 RID: 2467 RVA: 0x0004D918 File Offset: 0x0004BB18
+	// Token: 0x060009A3 RID: 2467 RVA: 0x0004D9E0 File Offset: 0x0004BBE0
 	private void CalculateMultiplier()
 	{
 		this.HUDElement[1].SetActive(false);
@@ -463,7 +463,7 @@ public class AdviceWindowScript : MonoBehaviour
 		});
 	}
 
-	// Token: 0x060009A4 RID: 2468 RVA: 0x0004DD44 File Offset: 0x0004BF44
+	// Token: 0x060009A4 RID: 2468 RVA: 0x0004DE0C File Offset: 0x0004C00C
 	public void CalculateLove()
 	{
 		this.Start();
@@ -539,10 +539,11 @@ public class AdviceWindowScript : MonoBehaviour
 		}
 		if (this.RivalRespectedTrait == this.ShowOffID)
 		{
-			if (DatingGlobals.GetSuitorTrait(this.ShowOffID) > DatingGlobals.GetTraitDemonstrated(this.ShowOffID))
+			if (this.StudentManager.DatingMinigame.Trait[this.ShowOffID] > this.StudentManager.DatingMinigame.TraitDemonstrated[this.ShowOffID])
 			{
 				this.Affection += (float)this.Multiplier;
 				this.Outcomes[5] = "Your rival was impressed with the suitor's " + this.ShowOffs[this.ShowOffID] + ".";
+				this.TraitsDemonstrated[this.ShowOffID]++;
 			}
 			else
 			{
@@ -553,7 +554,6 @@ public class AdviceWindowScript : MonoBehaviour
 		{
 			this.Outcomes[5] = "Your rival didn't really care when her suitor tried to show off his " + this.ShowOffs[this.ShowOffID] + ".";
 		}
-		this.TraitsDemonstrated[this.ShowOffID]++;
 		this.Outcomes[6] = "Your rival's affection for the suitor increased by " + (this.Affection - DatingGlobals.Affection).ToString() + " points.";
 		if (this.Affection < (float)(DateGlobals.Week * 10))
 		{
@@ -562,6 +562,10 @@ public class AdviceWindowScript : MonoBehaviour
 		else
 		{
 			this.Outcomes[7] = "Your rival is now in love with her suitor! She will confess to him at 5:00 PM on Friday!";
+			if (DateGlobals.Weekday == DayOfWeek.Friday)
+			{
+				this.StudentManager.LoveManager.ConfessToSuitor = true;
+			}
 		}
 		this.ResultLabel.text = string.Concat(new string[]
 		{
@@ -585,7 +589,7 @@ public class AdviceWindowScript : MonoBehaviour
 		Debug.Log("Affection is now: " + this.Affection.ToString());
 	}
 
-	// Token: 0x060009A5 RID: 2469 RVA: 0x0004E210 File Offset: 0x0004C410
+	// Token: 0x060009A5 RID: 2469 RVA: 0x0004E30C File Offset: 0x0004C50C
 	public void SaveTopicsAndCompliments()
 	{
 		for (int i = 1; i < 26; i++)

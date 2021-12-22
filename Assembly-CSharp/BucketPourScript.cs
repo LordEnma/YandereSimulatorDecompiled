@@ -1,17 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000FD RID: 253
+// Token: 0x020000FE RID: 254
 public class BucketPourScript : MonoBehaviour
 {
-	// Token: 0x06000A82 RID: 2690 RVA: 0x0005CBAA File Offset: 0x0005ADAA
+	// Token: 0x06000A85 RID: 2693 RVA: 0x0005CD1E File Offset: 0x0005AF1E
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000A83 RID: 2691 RVA: 0x0005CBAC File Offset: 0x0005ADAC
+	// Token: 0x06000A86 RID: 2694 RVA: 0x0005CD20 File Offset: 0x0005AF20
 	private void Update()
 	{
+		bool flag = false;
 		if (this.Yandere.PickUp != null)
 		{
 			if (this.Yandere.PickUp.Bucket != null)
@@ -22,6 +23,7 @@ public class BucketPourScript : MonoBehaviour
 					{
 						this.Prompt.Label[0].text = "     Pour";
 						this.Prompt.enabled = true;
+						flag = true;
 					}
 				}
 				else if (this.Yandere.PickUp.Bucket.Dumbbells == 5)
@@ -54,7 +56,7 @@ public class BucketPourScript : MonoBehaviour
 			this.Prompt.Circle[0].fillAmount = 1f;
 			if (!this.Yandere.Chased && this.Yandere.Chasers == 0)
 			{
-				if (this.Prompt.Label[0].text == "     Pour")
+				if (flag)
 				{
 					this.Yandere.Stool = base.transform;
 					this.Yandere.CanMove = false;
@@ -75,7 +77,7 @@ public class BucketPourScript : MonoBehaviour
 		}
 		if (this.Yandere.Pouring)
 		{
-			if (this.PourHeight == "Low" && Input.GetButtonDown("B") && this.Prompt.DistanceSqr < 1f)
+			if (Input.GetButtonDown("B") && this.Prompt.DistanceSqr < 1f)
 			{
 				this.SplashCamera.Show = true;
 				this.SplashCamera.MyCamera.enabled = true;
@@ -105,24 +107,24 @@ public class BucketPourScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C32 RID: 3122
+	// Token: 0x04000C34 RID: 3124
 	public SplashCameraScript SplashCamera;
 
-	// Token: 0x04000C33 RID: 3123
+	// Token: 0x04000C35 RID: 3125
 	public YandereScript Yandere;
 
-	// Token: 0x04000C34 RID: 3124
+	// Token: 0x04000C36 RID: 3126
 	public PromptScript Prompt;
 
-	// Token: 0x04000C35 RID: 3125
+	// Token: 0x04000C37 RID: 3127
 	public string PourHeight = string.Empty;
 
-	// Token: 0x04000C36 RID: 3126
+	// Token: 0x04000C38 RID: 3128
 	public float PourDistance;
 
-	// Token: 0x04000C37 RID: 3127
+	// Token: 0x04000C39 RID: 3129
 	public float PourTime;
 
-	// Token: 0x04000C38 RID: 3128
+	// Token: 0x04000C3A RID: 3130
 	public int ID;
 }

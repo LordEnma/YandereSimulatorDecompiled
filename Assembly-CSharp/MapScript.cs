@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000358 RID: 856
+// Token: 0x02000359 RID: 857
 public class MapScript : MonoBehaviour
 {
-	// Token: 0x06001967 RID: 6503 RVA: 0x00101C24 File Offset: 0x000FFE24
+	// Token: 0x0600196E RID: 6510 RVA: 0x00102480 File Offset: 0x00100680
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -21,7 +21,7 @@ public class MapScript : MonoBehaviour
 		this.Y = 0.5f;
 	}
 
-	// Token: 0x06001968 RID: 6504 RVA: 0x00101C98 File Offset: 0x000FFE98
+	// Token: 0x0600196F RID: 6511 RVA: 0x001024F4 File Offset: 0x001006F4
 	private void Update()
 	{
 		if (Input.GetButtonDown("Back") && this.Yandere.CanMove && !this.Yandere.StudentManager.TutorialWindow.Show && this.Yandere.Police.Darkness.color.a <= 0f)
@@ -178,7 +178,7 @@ public class MapScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001969 RID: 6505 RVA: 0x001026D8 File Offset: 0x001008D8
+	// Token: 0x06001970 RID: 6512 RVA: 0x00102F34 File Offset: 0x00101134
 	private void DisableCamera()
 	{
 		this.Border.transform.localScale = new Vector3(0f, 0f, 0f);
@@ -187,63 +187,63 @@ public class MapScript : MonoBehaviour
 		this.MyCamera.enabled = false;
 	}
 
-	// Token: 0x04002867 RID: 10343
+	// Token: 0x0400288C RID: 10380
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002868 RID: 10344
+	// Token: 0x0400288D RID: 10381
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x04002869 RID: 10345
+	// Token: 0x0400288E RID: 10382
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x0400286A RID: 10346
+	// Token: 0x0400288F RID: 10383
 	public PromptBarScript PromptBar;
 
-	// Token: 0x0400286B RID: 10347
+	// Token: 0x04002890 RID: 10384
 	public YandereScript Yandere;
 
-	// Token: 0x0400286C RID: 10348
+	// Token: 0x04002891 RID: 10385
 	public GameObject Compass;
 
-	// Token: 0x0400286D RID: 10349
+	// Token: 0x04002892 RID: 10386
 	public Transform YandereMapMarker;
 
-	// Token: 0x0400286E RID: 10350
+	// Token: 0x04002893 RID: 10387
 	public Transform PortalMapMarker;
 
-	// Token: 0x0400286F RID: 10351
+	// Token: 0x04002894 RID: 10388
 	public UILabel ElevationLabel;
 
-	// Token: 0x04002870 RID: 10352
+	// Token: 0x04002895 RID: 10389
 	public UISprite Border;
 
-	// Token: 0x04002871 RID: 10353
+	// Token: 0x04002896 RID: 10390
 	public Camera MyCamera;
 
-	// Token: 0x04002872 RID: 10354
+	// Token: 0x04002897 RID: 10391
 	public float HorizontalLimit;
 
-	// Token: 0x04002873 RID: 10355
+	// Token: 0x04002898 RID: 10392
 	public float VerticalLimit;
 
-	// Token: 0x04002874 RID: 10356
+	// Token: 0x04002899 RID: 10393
 	public float X;
 
-	// Token: 0x04002875 RID: 10357
+	// Token: 0x0400289A RID: 10394
 	public float Y;
 
-	// Token: 0x04002876 RID: 10358
+	// Token: 0x0400289B RID: 10395
 	public float W;
 
-	// Token: 0x04002877 RID: 10359
+	// Token: 0x0400289C RID: 10396
 	public float H;
 
-	// Token: 0x04002878 RID: 10360
+	// Token: 0x0400289D RID: 10397
 	public bool Show;
 
-	// Token: 0x04002879 RID: 10361
+	// Token: 0x0400289E RID: 10398
 	public Texture RyobaFace;
 
-	// Token: 0x0400287A RID: 10362
+	// Token: 0x0400289F RID: 10399
 	public UILabel[] Labels;
 }

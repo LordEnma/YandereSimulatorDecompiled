@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 // Token: 0x020000CC RID: 204
 public class AntiCheatScript : MonoBehaviour
 {
-	// Token: 0x060009C5 RID: 2501 RVA: 0x0005129A File Offset: 0x0004F49A
+	// Token: 0x060009C5 RID: 2501 RVA: 0x00051396 File Offset: 0x0004F596
 	private void Start()
 	{
 		this.MyAudio = base.GetComponent<AudioSource>();
 	}
 
-	// Token: 0x060009C6 RID: 2502 RVA: 0x000512A8 File Offset: 0x0004F4A8
+	// Token: 0x060009C6 RID: 2502 RVA: 0x000513A4 File Offset: 0x0004F5A4
 	private void Update()
 	{
 		if (this.Check && !this.MyAudio.isPlaying)
@@ -20,7 +20,7 @@ public class AntiCheatScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009C7 RID: 2503 RVA: 0x000512DC File Offset: 0x0004F4DC
+	// Token: 0x060009C7 RID: 2503 RVA: 0x000513D8 File Offset: 0x0004F5D8
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "YandereChan")
