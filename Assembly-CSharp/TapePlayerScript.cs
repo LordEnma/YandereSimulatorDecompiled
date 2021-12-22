@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000461 RID: 1121
+// Token: 0x02000462 RID: 1122
 public class TapePlayerScript : MonoBehaviour
 {
-	// Token: 0x06001E5E RID: 7774 RVA: 0x001A92BC File Offset: 0x001A74BC
+	// Token: 0x06001E68 RID: 7784 RVA: 0x001AA048 File Offset: 0x001A8248
 	private void Start()
 	{
 		this.Tape.SetActive(false);
 	}
 
-	// Token: 0x06001E5F RID: 7775 RVA: 0x001A92CC File Offset: 0x001A74CC
+	// Token: 0x06001E69 RID: 7785 RVA: 0x001AA058 File Offset: 0x001A8258
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -61,45 +61,45 @@ public class TapePlayerScript : MonoBehaviour
 		this.RWButton.localEulerAngles = new Vector3(Mathf.MoveTowards(this.RWButton.localEulerAngles.x, 0f, 1.6666666f), this.RWButton.localEulerAngles.y, this.RWButton.localEulerAngles.z);
 	}
 
-	// Token: 0x04003E83 RID: 16003
+	// Token: 0x04003EB3 RID: 16051
 	public TapePlayerMenuScript TapePlayerMenu;
 
-	// Token: 0x04003E84 RID: 16004
+	// Token: 0x04003EB4 RID: 16052
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003E85 RID: 16005
+	// Token: 0x04003EB5 RID: 16053
 	public YandereScript Yandere;
 
-	// Token: 0x04003E86 RID: 16006
+	// Token: 0x04003EB6 RID: 16054
 	public PromptScript Prompt;
 
-	// Token: 0x04003E87 RID: 16007
+	// Token: 0x04003EB7 RID: 16055
 	public Transform RWButton;
 
-	// Token: 0x04003E88 RID: 16008
+	// Token: 0x04003EB8 RID: 16056
 	public Transform FFButton;
 
-	// Token: 0x04003E89 RID: 16009
+	// Token: 0x04003EB9 RID: 16057
 	public Camera TapePlayerCamera;
 
-	// Token: 0x04003E8A RID: 16010
+	// Token: 0x04003EBA RID: 16058
 	public Transform[] Rolls;
 
-	// Token: 0x04003E8B RID: 16011
+	// Token: 0x04003EBB RID: 16059
 	public GameObject NoteWindow;
 
-	// Token: 0x04003E8C RID: 16012
+	// Token: 0x04003EBC RID: 16060
 	public GameObject Tape;
 
-	// Token: 0x04003E8D RID: 16013
+	// Token: 0x04003EBD RID: 16061
 	public bool FastForward;
 
-	// Token: 0x04003E8E RID: 16014
+	// Token: 0x04003EBE RID: 16062
 	public bool Rewind;
 
-	// Token: 0x04003E8F RID: 16015
+	// Token: 0x04003EBF RID: 16063
 	public bool Spin;
 
-	// Token: 0x04003E90 RID: 16016
+	// Token: 0x04003EC0 RID: 16064
 	public float SpinSpeed;
 }

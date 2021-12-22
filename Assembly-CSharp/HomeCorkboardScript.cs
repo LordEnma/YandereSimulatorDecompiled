@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000315 RID: 789
+// Token: 0x02000316 RID: 790
 public class HomeCorkboardScript : MonoBehaviour
 {
-	// Token: 0x06001851 RID: 6225 RVA: 0x000EA9D8 File Offset: 0x000E8BD8
+	// Token: 0x06001858 RID: 6232 RVA: 0x000EB198 File Offset: 0x000E9398
 	private void Update()
 	{
 		if (!this.HomeYandere.CanMove)
@@ -35,21 +35,21 @@ public class HomeCorkboardScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002423 RID: 9251
+	// Token: 0x04002443 RID: 9283
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002424 RID: 9252
+	// Token: 0x04002444 RID: 9284
 	public PhotoGalleryScript PhotoGallery;
 
-	// Token: 0x04002425 RID: 9253
+	// Token: 0x04002445 RID: 9285
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x04002426 RID: 9254
+	// Token: 0x04002446 RID: 9286
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x04002427 RID: 9255
+	// Token: 0x04002447 RID: 9287
 	public HomeWindowScript HomeWindow;
 
-	// Token: 0x04002428 RID: 9256
+	// Token: 0x04002448 RID: 9288
 	public bool Loaded;
 }

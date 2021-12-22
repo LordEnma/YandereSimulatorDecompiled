@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002F5 RID: 757
+// Token: 0x020002F6 RID: 758
 public static class SchemeGlobals
 {
 	// Token: 0x1700041A RID: 1050
-	// (get) Token: 0x060016DB RID: 5851 RVA: 0x000DDB20 File Offset: 0x000DBD20
-	// (set) Token: 0x060016DC RID: 5852 RVA: 0x000DDB50 File Offset: 0x000DBD50
+	// (get) Token: 0x060016E2 RID: 5858 RVA: 0x000DE2E0 File Offset: 0x000DC4E0
+	// (set) Token: 0x060016E3 RID: 5859 RVA: 0x000DE310 File Offset: 0x000DC510
 	public static int CurrentScheme
 	{
 		get
@@ -20,8 +20,8 @@ public static class SchemeGlobals
 	}
 
 	// Token: 0x1700041B RID: 1051
-	// (get) Token: 0x060016DD RID: 5853 RVA: 0x000DDB80 File Offset: 0x000DBD80
-	// (set) Token: 0x060016DE RID: 5854 RVA: 0x000DDBB0 File Offset: 0x000DBDB0
+	// (get) Token: 0x060016E4 RID: 5860 RVA: 0x000DE340 File Offset: 0x000DC540
+	// (set) Token: 0x060016E5 RID: 5861 RVA: 0x000DE370 File Offset: 0x000DC570
 	public static bool EmbarassingSecret
 	{
 		get
@@ -35,8 +35,8 @@ public static class SchemeGlobals
 	}
 
 	// Token: 0x1700041C RID: 1052
-	// (get) Token: 0x060016DF RID: 5855 RVA: 0x000DDBE0 File Offset: 0x000DBDE0
-	// (set) Token: 0x060016E0 RID: 5856 RVA: 0x000DDC10 File Offset: 0x000DBE10
+	// (get) Token: 0x060016E6 RID: 5862 RVA: 0x000DE3A0 File Offset: 0x000DC5A0
+	// (set) Token: 0x060016E7 RID: 5863 RVA: 0x000DE3D0 File Offset: 0x000DC5D0
 	public static bool HelpingKokona
 	{
 		get
@@ -49,13 +49,13 @@ public static class SchemeGlobals
 		}
 	}
 
-	// Token: 0x060016E1 RID: 5857 RVA: 0x000DDC40 File Offset: 0x000DBE40
+	// Token: 0x060016E8 RID: 5864 RVA: 0x000DE400 File Offset: 0x000DC600
 	public static int GetSchemePreviousStage(int schemeID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_SchemePreviousStage_" + schemeID.ToString());
 	}
 
-	// Token: 0x060016E2 RID: 5858 RVA: 0x000DDC78 File Offset: 0x000DBE78
+	// Token: 0x060016E9 RID: 5865 RVA: 0x000DE438 File Offset: 0x000DC638
 	public static void SetSchemePreviousStage(int schemeID, int value)
 	{
 		string text = schemeID.ToString();
@@ -63,19 +63,19 @@ public static class SchemeGlobals
 		PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_SchemePreviousStage_" + text, value);
 	}
 
-	// Token: 0x060016E3 RID: 5859 RVA: 0x000DDCD4 File Offset: 0x000DBED4
+	// Token: 0x060016EA RID: 5866 RVA: 0x000DE494 File Offset: 0x000DC694
 	public static int[] KeysOfSchemePreviousStage()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_SchemePreviousStage_");
 	}
 
-	// Token: 0x060016E4 RID: 5860 RVA: 0x000DDD04 File Offset: 0x000DBF04
+	// Token: 0x060016EB RID: 5867 RVA: 0x000DE4C4 File Offset: 0x000DC6C4
 	public static int GetSchemeStage(int schemeID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStage_" + schemeID.ToString());
 	}
 
-	// Token: 0x060016E5 RID: 5861 RVA: 0x000DDD3C File Offset: 0x000DBF3C
+	// Token: 0x060016EC RID: 5868 RVA: 0x000DE4FC File Offset: 0x000DC6FC
 	public static void SetSchemeStage(int schemeID, int value)
 	{
 		string text = schemeID.ToString();
@@ -83,19 +83,19 @@ public static class SchemeGlobals
 		PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStage_" + text, value);
 	}
 
-	// Token: 0x060016E6 RID: 5862 RVA: 0x000DDD98 File Offset: 0x000DBF98
+	// Token: 0x060016ED RID: 5869 RVA: 0x000DE558 File Offset: 0x000DC758
 	public static int[] KeysOfSchemeStage()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStage_");
 	}
 
-	// Token: 0x060016E7 RID: 5863 RVA: 0x000DDDC8 File Offset: 0x000DBFC8
+	// Token: 0x060016EE RID: 5870 RVA: 0x000DE588 File Offset: 0x000DC788
 	public static bool GetSchemeStatus(int schemeID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStatus_" + schemeID.ToString());
 	}
 
-	// Token: 0x060016E8 RID: 5864 RVA: 0x000DDE00 File Offset: 0x000DC000
+	// Token: 0x060016EF RID: 5871 RVA: 0x000DE5C0 File Offset: 0x000DC7C0
 	public static void SetSchemeStatus(int schemeID, bool value)
 	{
 		string text = schemeID.ToString();
@@ -103,19 +103,19 @@ public static class SchemeGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStatus_" + text, value);
 	}
 
-	// Token: 0x060016E9 RID: 5865 RVA: 0x000DDE5C File Offset: 0x000DC05C
+	// Token: 0x060016F0 RID: 5872 RVA: 0x000DE61C File Offset: 0x000DC81C
 	public static int[] KeysOfSchemeStatus()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_SchemeStatus_");
 	}
 
-	// Token: 0x060016EA RID: 5866 RVA: 0x000DDE8C File Offset: 0x000DC08C
+	// Token: 0x060016F1 RID: 5873 RVA: 0x000DE64C File Offset: 0x000DC84C
 	public static bool GetSchemeUnlocked(int schemeID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_SchemeUnlocked_" + schemeID.ToString());
 	}
 
-	// Token: 0x060016EB RID: 5867 RVA: 0x000DDEC4 File Offset: 0x000DC0C4
+	// Token: 0x060016F2 RID: 5874 RVA: 0x000DE684 File Offset: 0x000DC884
 	public static void SetSchemeUnlocked(int schemeID, bool value)
 	{
 		string text = schemeID.ToString();
@@ -123,19 +123,19 @@ public static class SchemeGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_SchemeUnlocked_" + text, value);
 	}
 
-	// Token: 0x060016EC RID: 5868 RVA: 0x000DDF20 File Offset: 0x000DC120
+	// Token: 0x060016F3 RID: 5875 RVA: 0x000DE6E0 File Offset: 0x000DC8E0
 	public static int[] KeysOfSchemeUnlocked()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_SchemeUnlocked_");
 	}
 
-	// Token: 0x060016ED RID: 5869 RVA: 0x000DDF50 File Offset: 0x000DC150
+	// Token: 0x060016F4 RID: 5876 RVA: 0x000DE710 File Offset: 0x000DC910
 	public static bool GetServicePurchased(int serviceID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_ServicePurchased_" + serviceID.ToString());
 	}
 
-	// Token: 0x060016EE RID: 5870 RVA: 0x000DDF88 File Offset: 0x000DC188
+	// Token: 0x060016F5 RID: 5877 RVA: 0x000DE748 File Offset: 0x000DC948
 	public static void SetServicePurchased(int serviceID, bool value)
 	{
 		string text = serviceID.ToString();
@@ -143,13 +143,13 @@ public static class SchemeGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ServicePurchased_" + text, value);
 	}
 
-	// Token: 0x060016EF RID: 5871 RVA: 0x000DDFE4 File Offset: 0x000DC1E4
+	// Token: 0x060016F6 RID: 5878 RVA: 0x000DE7A4 File Offset: 0x000DC9A4
 	public static int[] KeysOfServicePurchased()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_ServicePurchased_");
 	}
 
-	// Token: 0x060016F0 RID: 5872 RVA: 0x000DE014 File Offset: 0x000DC214
+	// Token: 0x060016F7 RID: 5879 RVA: 0x000DE7D4 File Offset: 0x000DC9D4
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CurrentScheme");
@@ -162,27 +162,27 @@ public static class SchemeGlobals
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_ServicePurchased_", SchemeGlobals.KeysOfServicePurchased());
 	}
 
-	// Token: 0x0400222B RID: 8747
+	// Token: 0x0400224B RID: 8779
 	private const string Str_CurrentScheme = "CurrentScheme";
 
-	// Token: 0x0400222C RID: 8748
+	// Token: 0x0400224C RID: 8780
 	private const string Str_EmbarassingSecret = "EmbarassingSecret";
 
-	// Token: 0x0400222D RID: 8749
+	// Token: 0x0400224D RID: 8781
 	private const string Str_HelpingKokona = "HelpingKokona";
 
-	// Token: 0x0400222E RID: 8750
+	// Token: 0x0400224E RID: 8782
 	private const string Str_SchemePreviousStage = "SchemePreviousStage_";
 
-	// Token: 0x0400222F RID: 8751
+	// Token: 0x0400224F RID: 8783
 	private const string Str_SchemeStage = "SchemeStage_";
 
-	// Token: 0x04002230 RID: 8752
+	// Token: 0x04002250 RID: 8784
 	private const string Str_SchemeStatus = "SchemeStatus_";
 
-	// Token: 0x04002231 RID: 8753
+	// Token: 0x04002251 RID: 8785
 	private const string Str_SchemeUnlocked = "SchemeUnlocked_";
 
-	// Token: 0x04002232 RID: 8754
+	// Token: 0x04002252 RID: 8786
 	private const string Str_ServicePurchased = "ServicePurchased_";
 }

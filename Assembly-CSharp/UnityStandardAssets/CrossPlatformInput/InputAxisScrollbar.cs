@@ -3,21 +3,21 @@ using UnityEngine;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
-	// Token: 0x02000532 RID: 1330
+	// Token: 0x02000534 RID: 1332
 	public class InputAxisScrollbar : MonoBehaviour
 	{
-		// Token: 0x060021ED RID: 8685 RVA: 0x001E8E72 File Offset: 0x001E7072
+		// Token: 0x060021FE RID: 8702 RVA: 0x001EA5A6 File Offset: 0x001E87A6
 		private void Update()
 		{
 		}
 
-		// Token: 0x060021EE RID: 8686 RVA: 0x001E8E74 File Offset: 0x001E7074
+		// Token: 0x060021FF RID: 8703 RVA: 0x001EA5A8 File Offset: 0x001E87A8
 		public void HandleInput(float value)
 		{
 			CrossPlatformInputManager.SetAxis(this.axis, value * 2f - 1f);
 		}
 
-		// Token: 0x040049A8 RID: 18856
+		// Token: 0x040049E7 RID: 18919
 		public string axis;
 	}
 }

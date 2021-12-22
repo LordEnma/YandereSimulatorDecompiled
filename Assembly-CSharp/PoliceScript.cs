@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020003A8 RID: 936
+// Token: 0x020003A9 RID: 937
 public class PoliceScript : MonoBehaviour
 {
-	// Token: 0x06001AA3 RID: 6819 RVA: 0x001205D0 File Offset: 0x0011E7D0
+	// Token: 0x06001AAB RID: 6827 RVA: 0x00120E28 File Offset: 0x0011F028
 	private void Start()
 	{
 		if (SchoolGlobals.SchoolAtmosphere > 0.5f)
@@ -29,7 +29,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AA4 RID: 6820 RVA: 0x00120778 File Offset: 0x0011E978
+	// Token: 0x06001AAC RID: 6828 RVA: 0x00120FD0 File Offset: 0x0011F1D0
 	private void Update()
 	{
 		if (this.Show)
@@ -356,7 +356,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AA5 RID: 6821 RVA: 0x0012161C File Offset: 0x0011F81C
+	// Token: 0x06001AAD RID: 6829 RVA: 0x00121E74 File Offset: 0x00120074
 	private void DetermineResults()
 	{
 		this.ResultsLabels[0].transform.parent.gameObject.SetActive(true);
@@ -548,34 +548,34 @@ public class PoliceScript : MonoBehaviour
 						}
 						if (DateGlobals.Weekday == DayOfWeek.Friday)
 						{
-							if (!this.StudentManager.RivalEliminated && this.StudentManager.SabotageProgress < 5 && !this.StudentManager.LoveManager.ConfessToSuitor)
+							if (this.StudentManager.RivalEliminated || this.StudentManager.SabotageProgress == 5 || this.StudentManager.LoveManager.ConfessToSuitor)
 							{
-								this.ResultsLabels[0].text = "It is 6:00 PM on Friday.";
-								this.ResultsLabels[1].text = this.Protagonist + "'s rival asks Senpai to meet her under the cherry tree behind the school.";
-								this.ResultsLabels[2].text = "As cherry blossoms fall around them...";
-								this.ResultsLabels[3].text = "...she confesses her feelings for Senpai.";
-								this.ResultsLabels[4].text = this.Protagonist + " watches from a short distance away...";
-								this.BeginConfession = true;
+								if (!this.StudentManager.RivalEliminated)
+								{
+									if (this.StudentManager.LoveManager.ConfessToSuitor)
+									{
+										this.StudentManager.RivalEliminated = true;
+										this.EndOfDay.RivalEliminationMethod = RivalEliminationType.Matchmade;
+									}
+									else if (this.StudentManager.SabotageProgress == 5)
+									{
+										this.StudentManager.RivalEliminated = true;
+										this.EndOfDay.RivalEliminationMethod = RivalEliminationType.Rejected;
+									}
+								}
+								this.ResultsLabels[0].text = this.Protagonist + "'s rival is no longer a threat.";
+								this.ResultsLabels[1].text = this.Protagonist + " considers confessing her love to Senpai...";
+								this.ResultsLabels[2].text = "...but she cannot build up the courage to speak to him.";
+								this.ResultsLabels[3].text = this.Protagonist + " follows Senpai out of school and watches him from a distance until he has returned to his home.";
+								this.ResultsLabels[4].text = "Then, " + this.Protagonist + " returns to her own home, and considers what she should do next...";
 								return;
 							}
-							if (!this.StudentManager.RivalEliminated)
-							{
-								if (this.StudentManager.LoveManager.ConfessToSuitor)
-								{
-									this.StudentManager.RivalEliminated = true;
-									this.EndOfDay.RivalEliminationMethod = RivalEliminationType.Matchmade;
-								}
-								else if (this.StudentManager.SabotageProgress == 5)
-								{
-									this.StudentManager.RivalEliminated = true;
-									this.EndOfDay.RivalEliminationMethod = RivalEliminationType.Rejected;
-								}
-							}
-							this.ResultsLabels[0].text = this.Protagonist + "'s rival is no longer a threat.";
-							this.ResultsLabels[1].text = this.Protagonist + " considers confessing her love to Senpai...";
-							this.ResultsLabels[2].text = "...but she cannot build up the courage to speak to him.";
-							this.ResultsLabels[3].text = this.Protagonist + " follows Senpai out of school and watches him from a distance until he has returned to his home.";
-							this.ResultsLabels[4].text = "Then, " + this.Protagonist + " returns to her own home, and considers what she should do next...";
+							this.ResultsLabels[0].text = "It is 6:00 PM on Friday.";
+							this.ResultsLabels[1].text = this.Protagonist + "'s rival asks Senpai to meet her under the cherry tree behind the school.";
+							this.ResultsLabels[2].text = "As cherry blossoms fall around them...";
+							this.ResultsLabels[3].text = "...she confesses her feelings for Senpai.";
+							this.ResultsLabels[4].text = this.Protagonist + " watches from a short distance away...";
+							this.BeginConfession = true;
 							return;
 						}
 						else
@@ -718,7 +718,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AA6 RID: 6822 RVA: 0x001226F0 File Offset: 0x001208F0
+	// Token: 0x06001AAE RID: 6830 RVA: 0x00122F44 File Offset: 0x00121144
 	public void KillStudents()
 	{
 		Debug.Log("KillStudents() is being called.");
@@ -864,7 +864,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AA7 RID: 6823 RVA: 0x00122AE0 File Offset: 0x00120CE0
+	// Token: 0x06001AAF RID: 6831 RVA: 0x00123334 File Offset: 0x00121534
 	public void BeginFadingOut()
 	{
 		this.DayOver = true;
@@ -879,7 +879,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AA8 RID: 6824 RVA: 0x00122B48 File Offset: 0x00120D48
+	// Token: 0x06001AB0 RID: 6832 RVA: 0x0012339C File Offset: 0x0012159C
 	public void UpdateCorpses()
 	{
 		foreach (RagdollScript ragdollScript in this.CorpseList)
@@ -895,288 +895,288 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002C46 RID: 11334
+	// Token: 0x04002C70 RID: 11376
 	public LowRepGameOverScript LowRepGameOver;
 
-	// Token: 0x04002C47 RID: 11335
+	// Token: 0x04002C71 RID: 11377
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002C48 RID: 11336
+	// Token: 0x04002C72 RID: 11378
 	public ClubManagerScript ClubManager;
 
-	// Token: 0x04002C49 RID: 11337
+	// Token: 0x04002C73 RID: 11379
 	public HeartbrokenScript Heartbroken;
 
-	// Token: 0x04002C4A RID: 11338
+	// Token: 0x04002C74 RID: 11380
 	public LoveManagerScript LoveManager;
 
-	// Token: 0x04002C4B RID: 11339
+	// Token: 0x04002C75 RID: 11381
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04002C4C RID: 11340
+	// Token: 0x04002C76 RID: 11382
 	public ReputationScript Reputation;
 
-	// Token: 0x04002C4D RID: 11341
+	// Token: 0x04002C77 RID: 11383
 	public TranqCaseScript TranqCase;
 
-	// Token: 0x04002C4E RID: 11342
+	// Token: 0x04002C78 RID: 11384
 	public EndOfDayScript EndOfDay;
 
-	// Token: 0x04002C4F RID: 11343
+	// Token: 0x04002C79 RID: 11385
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002C50 RID: 11344
+	// Token: 0x04002C7A RID: 11386
 	public YandereScript Yandere;
 
-	// Token: 0x04002C51 RID: 11345
+	// Token: 0x04002C7B RID: 11387
 	public ClockScript Clock;
 
-	// Token: 0x04002C52 RID: 11346
+	// Token: 0x04002C7C RID: 11388
 	public JsonScript JSON;
 
-	// Token: 0x04002C53 RID: 11347
+	// Token: 0x04002C7D RID: 11389
 	public UIPanel Panel;
 
-	// Token: 0x04002C54 RID: 11348
+	// Token: 0x04002C7E RID: 11390
 	public GameObject HeartbeatCamera;
 
-	// Token: 0x04002C55 RID: 11349
+	// Token: 0x04002C7F RID: 11391
 	public GameObject DetectionCamera;
 
-	// Token: 0x04002C56 RID: 11350
+	// Token: 0x04002C80 RID: 11392
 	public GameObject SuicideStudent;
 
-	// Token: 0x04002C57 RID: 11351
+	// Token: 0x04002C81 RID: 11393
 	public GameObject UICamera;
 
-	// Token: 0x04002C58 RID: 11352
+	// Token: 0x04002C82 RID: 11394
 	public GameObject Icons;
 
-	// Token: 0x04002C59 RID: 11353
+	// Token: 0x04002C83 RID: 11395
 	public GameObject FPS;
 
-	// Token: 0x04002C5A RID: 11354
+	// Token: 0x04002C84 RID: 11396
 	public Transform GarbageParent;
 
-	// Token: 0x04002C5B RID: 11355
+	// Token: 0x04002C85 RID: 11397
 	public Transform BloodParent;
 
-	// Token: 0x04002C5C RID: 11356
+	// Token: 0x04002C86 RID: 11398
 	public Transform LimbParent;
 
-	// Token: 0x04002C5D RID: 11357
+	// Token: 0x04002C87 RID: 11399
 	public RagdollScript[] CorpseList;
 
-	// Token: 0x04002C5E RID: 11358
+	// Token: 0x04002C88 RID: 11400
 	public UILabel[] ResultsLabels;
 
-	// Token: 0x04002C5F RID: 11359
+	// Token: 0x04002C89 RID: 11401
 	public UILabel ContinueLabel;
 
-	// Token: 0x04002C60 RID: 11360
+	// Token: 0x04002C8A RID: 11402
 	public UILabel TimeLabel;
 
-	// Token: 0x04002C61 RID: 11361
+	// Token: 0x04002C8B RID: 11403
 	public UISprite ContinueButton;
 
-	// Token: 0x04002C62 RID: 11362
+	// Token: 0x04002C8C RID: 11404
 	public UISprite Darkness;
 
-	// Token: 0x04002C63 RID: 11363
+	// Token: 0x04002C8D RID: 11405
 	public UISprite BloodIcon;
 
-	// Token: 0x04002C64 RID: 11364
+	// Token: 0x04002C8E RID: 11406
 	public UISprite UniformIcon;
 
-	// Token: 0x04002C65 RID: 11365
+	// Token: 0x04002C8F RID: 11407
 	public UISprite WeaponIcon;
 
-	// Token: 0x04002C66 RID: 11366
+	// Token: 0x04002C90 RID: 11408
 	public UISprite CorpseIcon;
 
-	// Token: 0x04002C67 RID: 11367
+	// Token: 0x04002C91 RID: 11409
 	public UISprite PartsIcon;
 
-	// Token: 0x04002C68 RID: 11368
+	// Token: 0x04002C92 RID: 11410
 	public UISprite SanityIcon;
 
-	// Token: 0x04002C69 RID: 11369
+	// Token: 0x04002C93 RID: 11411
 	public string ElectrocutedStudentName = string.Empty;
 
-	// Token: 0x04002C6A RID: 11370
+	// Token: 0x04002C94 RID: 11412
 	public string DrownedStudentName = string.Empty;
 
-	// Token: 0x04002C6B RID: 11371
+	// Token: 0x04002C95 RID: 11413
 	public bool BloodDisposed;
 
-	// Token: 0x04002C6C RID: 11372
+	// Token: 0x04002C96 RID: 11414
 	public bool UniformDisposed;
 
-	// Token: 0x04002C6D RID: 11373
+	// Token: 0x04002C97 RID: 11415
 	public bool WeaponDisposed;
 
-	// Token: 0x04002C6E RID: 11374
+	// Token: 0x04002C98 RID: 11416
 	public bool CorpseDisposed;
 
-	// Token: 0x04002C6F RID: 11375
+	// Token: 0x04002C99 RID: 11417
 	public bool PartsDisposed;
 
-	// Token: 0x04002C70 RID: 11376
+	// Token: 0x04002C9A RID: 11418
 	public bool SanityRestored;
 
-	// Token: 0x04002C71 RID: 11377
+	// Token: 0x04002C9B RID: 11419
 	public bool MurderSuicideScene;
 
-	// Token: 0x04002C72 RID: 11378
+	// Token: 0x04002C9C RID: 11420
 	public bool ElectroScene;
 
-	// Token: 0x04002C73 RID: 11379
+	// Token: 0x04002C9D RID: 11421
 	public bool SuicideScene;
 
-	// Token: 0x04002C74 RID: 11380
+	// Token: 0x04002C9E RID: 11422
 	public bool PoisonScene;
 
-	// Token: 0x04002C75 RID: 11381
+	// Token: 0x04002C9F RID: 11423
 	public bool MurderScene;
 
-	// Token: 0x04002C76 RID: 11382
+	// Token: 0x04002CA0 RID: 11424
 	public bool SkippingPastPoison;
 
-	// Token: 0x04002C77 RID: 11383
+	// Token: 0x04002CA1 RID: 11425
 	public bool StudentFoundCorpse;
 
-	// Token: 0x04002C78 RID: 11384
+	// Token: 0x04002CA2 RID: 11426
 	public bool BeginConfession;
 
-	// Token: 0x04002C79 RID: 11385
+	// Token: 0x04002CA3 RID: 11427
 	public bool GenocideEnding;
 
-	// Token: 0x04002C7A RID: 11386
+	// Token: 0x04002CA4 RID: 11428
 	public bool TeacherReport;
 
-	// Token: 0x04002C7B RID: 11387
+	// Token: 0x04002CA5 RID: 11429
 	public bool ClubActivity;
 
-	// Token: 0x04002C7C RID: 11388
+	// Token: 0x04002CA6 RID: 11430
 	public bool CouncilDeath;
 
-	// Token: 0x04002C7D RID: 11389
+	// Token: 0x04002CA7 RID: 11431
 	public bool MaskReported;
 
-	// Token: 0x04002C7E RID: 11390
+	// Token: 0x04002CA8 RID: 11432
 	public bool SelfReported;
 
-	// Token: 0x04002C7F RID: 11391
+	// Token: 0x04002CA9 RID: 11433
 	public bool FadeResults;
 
-	// Token: 0x04002C80 RID: 11392
+	// Token: 0x04002CAA RID: 11434
 	public bool ShowResults;
 
-	// Token: 0x04002C81 RID: 11393
+	// Token: 0x04002CAB RID: 11435
 	public bool SuicideNote;
 
-	// Token: 0x04002C82 RID: 11394
+	// Token: 0x04002CAC RID: 11436
 	public bool TextUpdated;
 
-	// Token: 0x04002C83 RID: 11395
+	// Token: 0x04002CAD RID: 11437
 	public bool GameOver;
 
-	// Token: 0x04002C84 RID: 11396
+	// Token: 0x04002CAE RID: 11438
 	public bool DayOver;
 
-	// Token: 0x04002C85 RID: 11397
+	// Token: 0x04002CAF RID: 11439
 	public bool Delayed;
 
-	// Token: 0x04002C86 RID: 11398
+	// Token: 0x04002CB0 RID: 11440
 	public bool FadeOut;
 
-	// Token: 0x04002C87 RID: 11399
+	// Token: 0x04002CB1 RID: 11441
 	public bool Invalid;
 
-	// Token: 0x04002C88 RID: 11400
+	// Token: 0x04002CB2 RID: 11442
 	public bool Suicide;
 
-	// Token: 0x04002C89 RID: 11401
+	// Token: 0x04002CB3 RID: 11443
 	public bool Called;
 
-	// Token: 0x04002C8A RID: 11402
+	// Token: 0x04002CB4 RID: 11444
 	public bool LowRep;
 
-	// Token: 0x04002C8B RID: 11403
+	// Token: 0x04002CB5 RID: 11445
 	public bool Show;
 
-	// Token: 0x04002C8C RID: 11404
+	// Token: 0x04002CB6 RID: 11446
 	public int IncineratedWeapons;
 
-	// Token: 0x04002C8D RID: 11405
+	// Token: 0x04002CB7 RID: 11447
 	public int RedPaintClothing;
 
-	// Token: 0x04002C8E RID: 11406
+	// Token: 0x04002CB8 RID: 11448
 	public int SuicideVictims;
 
-	// Token: 0x04002C8F RID: 11407
+	// Token: 0x04002CB9 RID: 11449
 	public int BloodyClothing;
 
-	// Token: 0x04002C90 RID: 11408
+	// Token: 0x04002CBA RID: 11450
 	public int BloodyWeapons;
 
-	// Token: 0x04002C91 RID: 11409
+	// Token: 0x04002CBB RID: 11451
 	public int HiddenCorpses;
 
-	// Token: 0x04002C92 RID: 11410
+	// Token: 0x04002CBC RID: 11452
 	public int MurderWeapons;
 
-	// Token: 0x04002C93 RID: 11411
+	// Token: 0x04002CBD RID: 11453
 	public int PhotoEvidence;
 
-	// Token: 0x04002C94 RID: 11412
+	// Token: 0x04002CBE RID: 11454
 	public int DrownVictims;
 
-	// Token: 0x04002C95 RID: 11413
+	// Token: 0x04002CBF RID: 11455
 	public int BodyParts;
 
-	// Token: 0x04002C96 RID: 11414
+	// Token: 0x04002CC0 RID: 11456
 	public int SuicideID;
 
-	// Token: 0x04002C97 RID: 11415
+	// Token: 0x04002CC1 RID: 11457
 	public int Witnesses;
 
-	// Token: 0x04002C98 RID: 11416
+	// Token: 0x04002CC2 RID: 11458
 	public int Corpses;
 
-	// Token: 0x04002C99 RID: 11417
+	// Token: 0x04002CC3 RID: 11459
 	public int Deaths;
 
-	// Token: 0x04002C9A RID: 11418
+	// Token: 0x04002CC4 RID: 11460
 	public int Frame;
 
-	// Token: 0x04002C9B RID: 11419
+	// Token: 0x04002CC5 RID: 11461
 	public float ResultsTimer;
 
-	// Token: 0x04002C9C RID: 11420
+	// Token: 0x04002CC6 RID: 11462
 	public float Timer;
 
-	// Token: 0x04002C9D RID: 11421
+	// Token: 0x04002CC7 RID: 11463
 	public float TargetX;
 
-	// Token: 0x04002C9E RID: 11422
+	// Token: 0x04002CC8 RID: 11464
 	public float TargetY;
 
-	// Token: 0x04002C9F RID: 11423
+	// Token: 0x04002CC9 RID: 11465
 	public int Minutes;
 
-	// Token: 0x04002CA0 RID: 11424
+	// Token: 0x04002CCA RID: 11466
 	public int Seconds;
 
-	// Token: 0x04002CA1 RID: 11425
+	// Token: 0x04002CCB RID: 11467
 	public string Protagonist = "Ayano";
 
-	// Token: 0x04002CA2 RID: 11426
+	// Token: 0x04002CCC RID: 11468
 	public int SuspensionLength;
 
-	// Token: 0x04002CA3 RID: 11427
+	// Token: 0x04002CCD RID: 11469
 	public int RemainingDays;
 
-	// Token: 0x04002CA4 RID: 11428
+	// Token: 0x04002CCE RID: 11470
 	public bool Suspended;
 }

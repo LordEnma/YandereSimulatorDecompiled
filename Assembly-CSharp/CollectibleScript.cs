@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000252 RID: 594
+// Token: 0x02000253 RID: 595
 public class CollectibleScript : MonoBehaviour
 {
-	// Token: 0x06001281 RID: 4737 RVA: 0x00093098 File Offset: 0x00091298
+	// Token: 0x06001286 RID: 4742 RVA: 0x00093290 File Offset: 0x00091490
 	private void Start()
 	{
 		if ((this.CollectibleType == CollectibleType.BasementTape && CollectibleGlobals.GetBasementTapeCollected(this.ID)) || (this.CollectibleType == CollectibleType.Manga && CollectibleGlobals.GetMangaCollected(this.ID)) || (this.CollectibleType == CollectibleType.Tape && CollectibleGlobals.GetTapeCollected(this.ID)) || (this.CollectibleType == CollectibleType.Panty && CollectibleGlobals.GetPantyPurchased(11)))
@@ -18,7 +18,7 @@ public class CollectibleScript : MonoBehaviour
 	}
 
 	// Token: 0x17000337 RID: 823
-	// (get) Token: 0x06001282 RID: 4738 RVA: 0x00093144 File Offset: 0x00091344
+	// (get) Token: 0x06001287 RID: 4743 RVA: 0x0009333C File Offset: 0x0009153C
 	public CollectibleType CollectibleType
 	{
 		get
@@ -52,7 +52,7 @@ public class CollectibleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001283 RID: 4739 RVA: 0x000931D8 File Offset: 0x000913D8
+	// Token: 0x06001288 RID: 4744 RVA: 0x000933D0 File Offset: 0x000915D0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -90,7 +90,7 @@ public class CollectibleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001284 RID: 4740 RVA: 0x00093318 File Offset: 0x00091518
+	// Token: 0x06001289 RID: 4745 RVA: 0x00093510 File Offset: 0x00091710
 	private void CountPanties()
 	{
 		int num = 1;
@@ -107,15 +107,15 @@ public class CollectibleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001825 RID: 6181
+	// Token: 0x04001829 RID: 6185
 	public PromptScript Prompt;
 
-	// Token: 0x04001826 RID: 6182
+	// Token: 0x0400182A RID: 6186
 	public string Name = string.Empty;
 
-	// Token: 0x04001827 RID: 6183
+	// Token: 0x0400182B RID: 6187
 	public int Type;
 
-	// Token: 0x04001828 RID: 6184
+	// Token: 0x0400182C RID: 6188
 	public int ID;
 }

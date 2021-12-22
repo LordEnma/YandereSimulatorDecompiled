@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000E5 RID: 229
+// Token: 0x020000E6 RID: 230
 public class BlendshapeScript : MonoBehaviour
 {
-	// Token: 0x06000A2D RID: 2605 RVA: 0x0005A2D8 File Offset: 0x000584D8
+	// Token: 0x06000A30 RID: 2608 RVA: 0x0005A44C File Offset: 0x0005864C
 	private void LateUpdate()
 	{
 		this.Happiness += Time.deltaTime * 10f;
@@ -13,12 +13,12 @@ public class BlendshapeScript : MonoBehaviour
 		this.MyMesh.SetBlendShapeWeight(8, 100f);
 	}
 
-	// Token: 0x04000B80 RID: 2944
+	// Token: 0x04000B82 RID: 2946
 	public SkinnedMeshRenderer MyMesh;
 
-	// Token: 0x04000B81 RID: 2945
+	// Token: 0x04000B83 RID: 2947
 	public float Happiness;
 
-	// Token: 0x04000B82 RID: 2946
+	// Token: 0x04000B84 RID: 2948
 	public float Blink;
 }

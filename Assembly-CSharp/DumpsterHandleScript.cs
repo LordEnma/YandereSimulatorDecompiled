@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000290 RID: 656
+// Token: 0x02000291 RID: 657
 public class DumpsterHandleScript : MonoBehaviour
 {
-	// Token: 0x060013B3 RID: 5043 RVA: 0x000BA227 File Offset: 0x000B8427
+	// Token: 0x060013BA RID: 5050 RVA: 0x000BA7C3 File Offset: 0x000B89C3
 	private void Start()
 	{
 		this.Panel.SetActive(false);
 	}
 
-	// Token: 0x060013B4 RID: 5044 RVA: 0x000BA238 File Offset: 0x000B8438
+	// Token: 0x060013BB RID: 5051 RVA: 0x000BA7D4 File Offset: 0x000B89D4
 	private void Update()
 	{
 		this.Prompt.HideButton[3] = (this.Prompt.Yandere.PickUp != null || this.Prompt.Yandere.Dragging || this.Prompt.Yandere.Carrying);
@@ -76,7 +76,7 @@ public class DumpsterHandleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013B5 RID: 5045 RVA: 0x000BA7FC File Offset: 0x000B89FC
+	// Token: 0x060013BC RID: 5052 RVA: 0x000BAD98 File Offset: 0x000B8F98
 	private void StopGrabbing()
 	{
 		this.Prompt.Yandere.DumpsterGrabbing = false;
@@ -87,30 +87,30 @@ public class DumpsterHandleScript : MonoBehaviour
 		this.Grabbed = false;
 	}
 
-	// Token: 0x04001D3F RID: 7487
+	// Token: 0x04001D5F RID: 7519
 	public DumpsterLidScript DumpsterLid;
 
-	// Token: 0x04001D40 RID: 7488
+	// Token: 0x04001D60 RID: 7520
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04001D41 RID: 7489
+	// Token: 0x04001D61 RID: 7521
 	public PromptScript Prompt;
 
-	// Token: 0x04001D42 RID: 7490
+	// Token: 0x04001D62 RID: 7522
 	public Transform GrabSpot;
 
-	// Token: 0x04001D43 RID: 7491
+	// Token: 0x04001D63 RID: 7523
 	public GameObject Panel;
 
-	// Token: 0x04001D44 RID: 7492
+	// Token: 0x04001D64 RID: 7524
 	public bool Grabbed;
 
-	// Token: 0x04001D45 RID: 7493
+	// Token: 0x04001D65 RID: 7525
 	public float Direction;
 
-	// Token: 0x04001D46 RID: 7494
+	// Token: 0x04001D66 RID: 7526
 	public float PullLimit;
 
-	// Token: 0x04001D47 RID: 7495
+	// Token: 0x04001D67 RID: 7527
 	public float PushLimit;
 }

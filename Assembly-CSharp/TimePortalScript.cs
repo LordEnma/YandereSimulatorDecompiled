@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200046C RID: 1132
+// Token: 0x0200046D RID: 1133
 public class TimePortalScript : MonoBehaviour
 {
-	// Token: 0x06001E87 RID: 7815 RVA: 0x001AB640 File Offset: 0x001A9840
+	// Token: 0x06001E91 RID: 7825 RVA: 0x001AC3CC File Offset: 0x001AA5CC
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))
@@ -28,18 +28,18 @@ public class TimePortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003EF8 RID: 16120
+	// Token: 0x04003F28 RID: 16168
 	public DelinquentScript[] Delinquent;
 
-	// Token: 0x04003EF9 RID: 16121
+	// Token: 0x04003F29 RID: 16169
 	public GameObject BlackHole;
 
-	// Token: 0x04003EFA RID: 16122
+	// Token: 0x04003F2A RID: 16170
 	public float Timer;
 
-	// Token: 0x04003EFB RID: 16123
+	// Token: 0x04003F2B RID: 16171
 	public bool Suck;
 
-	// Token: 0x04003EFC RID: 16124
+	// Token: 0x04003F2C RID: 16172
 	public int ID;
 }

@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200025E RID: 606
+// Token: 0x0200025F RID: 607
 public class CounselorDoorScript : MonoBehaviour
 {
-	// Token: 0x060012CF RID: 4815 RVA: 0x000A0F35 File Offset: 0x0009F135
+	// Token: 0x060012D5 RID: 4821 RVA: 0x000A1205 File Offset: 0x0009F405
 	private void Start()
 	{
 	}
 
-	// Token: 0x060012D0 RID: 4816 RVA: 0x000A0F38 File Offset: 0x0009F138
+	// Token: 0x060012D6 RID: 4822 RVA: 0x000A1208 File Offset: 0x0009F408
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -79,21 +79,21 @@ public class CounselorDoorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040019C9 RID: 6601
+	// Token: 0x040019D0 RID: 6608
 	public CounselorScript Counselor;
 
-	// Token: 0x040019CA RID: 6602
+	// Token: 0x040019D1 RID: 6609
 	public PromptScript Prompt;
 
-	// Token: 0x040019CB RID: 6603
+	// Token: 0x040019D2 RID: 6610
 	public UISprite Darkness;
 
-	// Token: 0x040019CC RID: 6604
+	// Token: 0x040019D3 RID: 6611
 	public bool FadeOut;
 
-	// Token: 0x040019CD RID: 6605
+	// Token: 0x040019D4 RID: 6612
 	public bool FadeIn;
 
-	// Token: 0x040019CE RID: 6606
+	// Token: 0x040019D5 RID: 6613
 	public bool Exit;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200032C RID: 812
+// Token: 0x0200032D RID: 813
 public class IdolStageScript : MonoBehaviour
 {
-	// Token: 0x060018AE RID: 6318 RVA: 0x000F2398 File Offset: 0x000F0598
+	// Token: 0x060018B5 RID: 6325 RVA: 0x000F2B88 File Offset: 0x000F0D88
 	private void Update()
 	{
 		for (int i = 1; i < 5; i++)
@@ -49,21 +49,21 @@ public class IdolStageScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400258F RID: 9615
+	// Token: 0x040025AF RID: 9647
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002590 RID: 9616
+	// Token: 0x040025B0 RID: 9648
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002591 RID: 9617
+	// Token: 0x040025B1 RID: 9649
 	public AudioSource[] Music;
 
-	// Token: 0x04002592 RID: 9618
+	// Token: 0x040025B2 RID: 9650
 	public Transform[] Spot;
 
-	// Token: 0x04002593 RID: 9619
+	// Token: 0x040025B3 RID: 9651
 	public Transform Yandere;
 
-	// Token: 0x04002594 RID: 9620
+	// Token: 0x040025B4 RID: 9652
 	public bool RestoreVolume;
 }

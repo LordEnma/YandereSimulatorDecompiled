@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020003AB RID: 939
+// Token: 0x020003AC RID: 940
 public class PopulationManagerScript : MonoBehaviour
 {
-	// Token: 0x06001AAF RID: 6831 RVA: 0x00122C34 File Offset: 0x00120E34
+	// Token: 0x06001AB7 RID: 6839 RVA: 0x00123488 File Offset: 0x00121688
 	public Vector3 GetCrowdedLocation()
 	{
 		AreaScript crowdedArea = this.GetCrowdedArea();
@@ -38,7 +38,7 @@ public class PopulationManagerScript : MonoBehaviour
 		return new Vector3(vector.x, (float)num2, vector.z);
 	}
 
-	// Token: 0x06001AB0 RID: 6832 RVA: 0x00122D64 File Offset: 0x00120F64
+	// Token: 0x06001AB8 RID: 6840 RVA: 0x001235B8 File Offset: 0x001217B8
 	public AreaScript GetCrowdedArea()
 	{
 		AreaScript result = null;
@@ -55,11 +55,11 @@ public class PopulationManagerScript : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x04002CA5 RID: 11429
+	// Token: 0x04002CCF RID: 11471
 	[Tooltip("All defined areas should go in here. If your area is not in here, it will not count as an actual area.")]
 	[SerializeField]
 	private List<AreaScript> _definedAreas;
 
-	// Token: 0x04002CA6 RID: 11430
+	// Token: 0x04002CD0 RID: 11472
 	public Transform Cube;
 }

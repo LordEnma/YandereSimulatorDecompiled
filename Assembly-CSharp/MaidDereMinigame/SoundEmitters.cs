@@ -3,7 +3,7 @@ using MaidDereMinigame.Malee;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x02000599 RID: 1433
+	// Token: 0x0200059B RID: 1435
 	[Serializable]
 	public class SoundEmitters : ReorderableArray<SoundEmitter>
 	{

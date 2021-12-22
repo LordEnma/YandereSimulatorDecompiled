@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000E8 RID: 232
+// Token: 0x020000E9 RID: 233
 public class BloodPoolScript : MonoBehaviour
 {
-	// Token: 0x06000A35 RID: 2613 RVA: 0x0005A7EC File Offset: 0x000589EC
+	// Token: 0x06000A38 RID: 2616 RVA: 0x0005A960 File Offset: 0x00058B60
 	private void Start()
 	{
 		if (PlayerGlobals.PantiesEquipped == 11 && this.Blood)
@@ -31,7 +31,7 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A36 RID: 2614 RVA: 0x0005A8FC File Offset: 0x00058AFC
+	// Token: 0x06000A39 RID: 2617 RVA: 0x0005AA70 File Offset: 0x00058C70
 	private void Update()
 	{
 		if (this.Grow)
@@ -44,7 +44,7 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A37 RID: 2615 RVA: 0x0005A96D File Offset: 0x00058B6D
+	// Token: 0x06000A3A RID: 2618 RVA: 0x0005AAE1 File Offset: 0x00058CE1
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "BloodSpawner")
@@ -53,21 +53,21 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000B95 RID: 2965
+	// Token: 0x04000B97 RID: 2967
 	public float TargetSize;
 
-	// Token: 0x04000B96 RID: 2966
+	// Token: 0x04000B98 RID: 2968
 	public bool Blood = true;
 
-	// Token: 0x04000B97 RID: 2967
+	// Token: 0x04000B99 RID: 2969
 	public bool Grow;
 
-	// Token: 0x04000B98 RID: 2968
+	// Token: 0x04000B9A RID: 2970
 	public Renderer MyRenderer;
 
-	// Token: 0x04000B99 RID: 2969
+	// Token: 0x04000B9B RID: 2971
 	public Material BloodPool;
 
-	// Token: 0x04000B9A RID: 2970
+	// Token: 0x04000B9C RID: 2972
 	public Material Flower;
 }

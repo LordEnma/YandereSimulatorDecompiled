@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000EA RID: 234
+// Token: 0x020000EB RID: 235
 public class BloodSprayColliderScript : MonoBehaviour
 {
-	// Token: 0x06000A42 RID: 2626 RVA: 0x0005B1C0 File Offset: 0x000593C0
+	// Token: 0x06000A45 RID: 2629 RVA: 0x0005B334 File Offset: 0x00059534
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 13)

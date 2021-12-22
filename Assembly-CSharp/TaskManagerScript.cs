@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000464 RID: 1124
+// Token: 0x02000465 RID: 1125
 public class TaskManagerScript : MonoBehaviour
 {
-	// Token: 0x06001E69 RID: 7785 RVA: 0x001A9B3C File Offset: 0x001A7D3C
+	// Token: 0x06001E73 RID: 7795 RVA: 0x001AA8C8 File Offset: 0x001A8AC8
 	public void Start()
 	{
 		for (int i = 1; i < 101; i++)
@@ -30,7 +30,7 @@ public class TaskManagerScript : MonoBehaviour
 		this.Initialized = true;
 	}
 
-	// Token: 0x06001E6A RID: 7786 RVA: 0x001A9BD0 File Offset: 0x001A7DD0
+	// Token: 0x06001E74 RID: 7796 RVA: 0x001AA95C File Offset: 0x001A8B5C
 	public void CheckTaskPickups()
 	{
 		if (!this.StudentManager.Eighties)
@@ -68,7 +68,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E6B RID: 7787 RVA: 0x001A9D94 File Offset: 0x001A7F94
+	// Token: 0x06001E75 RID: 7797 RVA: 0x001AAB20 File Offset: 0x001A8D20
 	public void UpdateTaskStatus()
 	{
 		if (!this.StudentManager.Eighties)
@@ -232,7 +232,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E6C RID: 7788 RVA: 0x001AA40C File Offset: 0x001A860C
+	// Token: 0x06001E76 RID: 7798 RVA: 0x001AB198 File Offset: 0x001A9398
 	public void SaveTaskStatuses()
 	{
 		for (int i = 1; i < 101; i++)
@@ -245,24 +245,24 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003EAC RID: 16044
+	// Token: 0x04003EDC RID: 16092
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003EAD RID: 16045
+	// Token: 0x04003EDD RID: 16093
 	public YandereScript Yandere;
 
-	// Token: 0x04003EAE RID: 16046
+	// Token: 0x04003EDE RID: 16094
 	public GameObject[] TaskObjects;
 
-	// Token: 0x04003EAF RID: 16047
+	// Token: 0x04003EDF RID: 16095
 	public PromptScript[] Prompts;
 
-	// Token: 0x04003EB0 RID: 16048
+	// Token: 0x04003EE0 RID: 16096
 	public bool[] GirlsQuestioned;
 
-	// Token: 0x04003EB1 RID: 16049
+	// Token: 0x04003EE1 RID: 16097
 	public int[] TaskStatus;
 
-	// Token: 0x04003EB2 RID: 16050
+	// Token: 0x04003EE2 RID: 16098
 	public bool Initialized;
 }

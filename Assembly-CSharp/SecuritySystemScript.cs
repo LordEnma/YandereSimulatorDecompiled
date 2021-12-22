@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000416 RID: 1046
+// Token: 0x02000417 RID: 1047
 public class SecuritySystemScript : MonoBehaviour
 {
-	// Token: 0x06001C4D RID: 7245 RVA: 0x001486D6 File Offset: 0x001468D6
+	// Token: 0x06001C55 RID: 7253 RVA: 0x00148FB2 File Offset: 0x001471B2
 	private void Start()
 	{
 		if (PlayerGlobals.Kills == 0 && !SchoolGlobals.HighSecurity)
@@ -15,7 +15,7 @@ public class SecuritySystemScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C4E RID: 7246 RVA: 0x00148704 File Offset: 0x00146904
+	// Token: 0x06001C56 RID: 7254 RVA: 0x00148FE0 File Offset: 0x001471E0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -45,18 +45,18 @@ public class SecuritySystemScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003213 RID: 12819
+	// Token: 0x0400323E RID: 12862
 	public PromptScript Prompt;
 
-	// Token: 0x04003214 RID: 12820
+	// Token: 0x0400323F RID: 12863
 	public bool Evidence;
 
-	// Token: 0x04003215 RID: 12821
+	// Token: 0x04003240 RID: 12864
 	public bool Masked;
 
-	// Token: 0x04003216 RID: 12822
+	// Token: 0x04003241 RID: 12865
 	public SecurityCameraScript[] Cameras;
 
-	// Token: 0x04003217 RID: 12823
+	// Token: 0x04003242 RID: 12866
 	public MetalDetectorScript[] Detectors;
 }

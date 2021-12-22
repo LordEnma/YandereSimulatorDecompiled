@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200029F RID: 671
+// Token: 0x020002A0 RID: 672
 public class EmergencyShowerScript : MonoBehaviour
 {
-	// Token: 0x06001406 RID: 5126 RVA: 0x000BE9F8 File Offset: 0x000BCBF8
+	// Token: 0x0600140D RID: 5133 RVA: 0x000BEF9C File Offset: 0x000BD19C
 	private void Update()
 	{
 		if (this.Yandere.Bloodiness > 0f && this.Yandere.PickUp != null && this.Yandere.PickUp.Clothing && !this.Yandere.PickUp.Evidence && this.Yandere.PickUp.Gloves == null)
@@ -20,7 +20,7 @@ public class EmergencyShowerScript : MonoBehaviour
 					this.Yandere.CanMove = false;
 					this.CleanUniform = this.Yandere.PickUp.gameObject.GetComponent<FoldedUniformScript>();
 					this.Yandere.EmptyHands();
-					this.CleanUniform.transform.position = new Vector3(26.25f, 5f, -8f);
+					this.CleanUniform.transform.position = base.transform.position + base.transform.up + base.transform.forward * 1.5f;
 					AudioSource.PlayClipAtPoint(this.CurtainClose, base.transform.position);
 					this.Bathing = true;
 					this.Phase = 1;
@@ -46,13 +46,13 @@ public class EmergencyShowerScript : MonoBehaviour
 					PickUpScript component;
 					if (this.Yandere.ClubAttire)
 					{
-						component = UnityEngine.Object.Instantiate<GameObject>(this.TallLocker.BloodyClubUniform[(int)this.Yandere.Club], new Vector3(25.75f, 5f, -8f), Quaternion.identity).GetComponent<PickUpScript>();
+						component = UnityEngine.Object.Instantiate<GameObject>(this.TallLocker.BloodyClubUniform[(int)this.Yandere.Club], this.Yandere.transform.position + this.Yandere.transform.forward + this.Yandere.transform.right * -0.5f, Quaternion.identity).GetComponent<PickUpScript>();
 						this.Yandere.StudentManager.ChangingBooths[(int)this.Yandere.Club].CannotChange = true;
 						this.Yandere.StudentManager.ChangingBooths[(int)this.Yandere.Club].CheckYandereClub();
 					}
 					else
 					{
-						component = UnityEngine.Object.Instantiate<GameObject>(this.TallLocker.BloodyUniform[this.Yandere.Schoolwear], new Vector3(25.75f, 5f, -8f), Quaternion.identity).GetComponent<PickUpScript>();
+						component = UnityEngine.Object.Instantiate<GameObject>(this.TallLocker.BloodyUniform[this.Yandere.Schoolwear], this.Yandere.transform.position + this.Yandere.transform.forward + this.Yandere.transform.right * -0.5f, Quaternion.identity).GetComponent<PickUpScript>();
 					}
 					AudioSource.PlayClipAtPoint(this.ClothRustle, base.transform.position);
 					if (this.Yandere.RedPaint)
@@ -113,48 +113,48 @@ public class EmergencyShowerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001DF5 RID: 7669
+	// Token: 0x04001E15 RID: 7701
 	public FoldedUniformScript CleanUniform;
 
-	// Token: 0x04001DF6 RID: 7670
+	// Token: 0x04001E16 RID: 7702
 	public SkinnedMeshRenderer Curtain;
 
-	// Token: 0x04001DF7 RID: 7671
+	// Token: 0x04001E17 RID: 7703
 	public TallLockerScript TallLocker;
 
-	// Token: 0x04001DF8 RID: 7672
+	// Token: 0x04001E18 RID: 7704
 	public GameObject CensorSteam;
 
-	// Token: 0x04001DF9 RID: 7673
+	// Token: 0x04001E19 RID: 7705
 	public YandereScript Yandere;
 
-	// Token: 0x04001DFA RID: 7674
+	// Token: 0x04001E1A RID: 7706
 	public PromptScript Prompt;
 
-	// Token: 0x04001DFB RID: 7675
+	// Token: 0x04001E1B RID: 7707
 	public Transform BatheSpot;
 
-	// Token: 0x04001DFC RID: 7676
+	// Token: 0x04001E1C RID: 7708
 	public float OpenValue;
 
-	// Token: 0x04001DFD RID: 7677
+	// Token: 0x04001E1D RID: 7709
 	public float Timer;
 
-	// Token: 0x04001DFE RID: 7678
+	// Token: 0x04001E1E RID: 7710
 	public int Phase = 1;
 
-	// Token: 0x04001DFF RID: 7679
+	// Token: 0x04001E1F RID: 7711
 	public bool Bathing;
 
-	// Token: 0x04001E00 RID: 7680
+	// Token: 0x04001E20 RID: 7712
 	public AudioSource MyAudio;
 
-	// Token: 0x04001E01 RID: 7681
+	// Token: 0x04001E21 RID: 7713
 	public AudioClip CurtainClose;
 
-	// Token: 0x04001E02 RID: 7682
+	// Token: 0x04001E22 RID: 7714
 	public AudioClip CurtainOpen;
 
-	// Token: 0x04001E03 RID: 7683
+	// Token: 0x04001E23 RID: 7715
 	public AudioClip ClothRustle;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000CD RID: 205
 public class AppearanceWindowScript : MonoBehaviour
 {
-	// Token: 0x060009C9 RID: 2505 RVA: 0x0005131C File Offset: 0x0004F51C
+	// Token: 0x060009C9 RID: 2505 RVA: 0x00051418 File Offset: 0x0004F618
 	private void Start()
 	{
 		this.Window.localScale = Vector3.zero;
@@ -14,7 +14,7 @@ public class AppearanceWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009CA RID: 2506 RVA: 0x0005135C File Offset: 0x0004F55C
+	// Token: 0x060009CA RID: 2506 RVA: 0x00051458 File Offset: 0x0004F658
 	private void Update()
 	{
 		if (!this.Show)
@@ -199,7 +199,7 @@ public class AppearanceWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009CB RID: 2507 RVA: 0x000518D8 File Offset: 0x0004FAD8
+	// Token: 0x060009CB RID: 2507 RVA: 0x000519D4 File Offset: 0x0004FBD4
 	private void UpdateHighlight()
 	{
 		if (this.Selected < 1)
@@ -213,7 +213,7 @@ public class AppearanceWindowScript : MonoBehaviour
 		this.Highlight.transform.localPosition = new Vector3(this.Highlight.transform.localPosition.x, 300f - 50f * (float)this.Selected, this.Highlight.transform.localPosition.z);
 	}
 
-	// Token: 0x060009CC RID: 2508 RVA: 0x0005195B File Offset: 0x0004FB5B
+	// Token: 0x060009CC RID: 2508 RVA: 0x00051A57 File Offset: 0x0004FC57
 	private void Exit()
 	{
 		this.Selected = 1;

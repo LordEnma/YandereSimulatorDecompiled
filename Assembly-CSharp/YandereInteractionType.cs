@@ -1,50 +1,50 @@
 ﻿using System;
 
-// Token: 0x020004C1 RID: 1217
+// Token: 0x020004C3 RID: 1219
 public enum YandereInteractionType
 {
-	// Token: 0x04004343 RID: 17219
+	// Token: 0x04004382 RID: 17282
 	Idle,
-	// Token: 0x04004344 RID: 17220
+	// Token: 0x04004383 RID: 17283
 	Apologizing,
-	// Token: 0x04004345 RID: 17221
+	// Token: 0x04004384 RID: 17284
 	Compliment,
-	// Token: 0x04004346 RID: 17222
+	// Token: 0x04004385 RID: 17285
 	Gossip,
-	// Token: 0x04004347 RID: 17223
+	// Token: 0x04004386 RID: 17286
 	Bye,
-	// Token: 0x04004348 RID: 17224
+	// Token: 0x04004387 RID: 17287
 	FollowMe = 6,
-	// Token: 0x04004349 RID: 17225
+	// Token: 0x04004388 RID: 17288
 	GoAway,
-	// Token: 0x0400434A RID: 17226
+	// Token: 0x04004389 RID: 17289
 	DistractThem,
-	// Token: 0x0400434B RID: 17227
+	// Token: 0x0400438A RID: 17290
 	ClubInfo = 10,
-	// Token: 0x0400434C RID: 17228
+	// Token: 0x0400438B RID: 17291
 	ClubJoin,
-	// Token: 0x0400434D RID: 17229
+	// Token: 0x0400438C RID: 17292
 	ClubQuit,
-	// Token: 0x0400434E RID: 17230
+	// Token: 0x0400438D RID: 17293
 	ClubBye,
-	// Token: 0x0400434F RID: 17231
+	// Token: 0x0400438E RID: 17294
 	ClubActivity,
-	// Token: 0x04004350 RID: 17232
+	// Token: 0x0400438F RID: 17295
 	NamingCrush = 17,
-	// Token: 0x04004351 RID: 17233
+	// Token: 0x04004390 RID: 17296
 	ChangingAppearance,
-	// Token: 0x04004352 RID: 17234
+	// Token: 0x04004391 RID: 17297
 	Court,
-	// Token: 0x04004353 RID: 17235
+	// Token: 0x04004392 RID: 17298
 	Advice,
-	// Token: 0x04004354 RID: 17236
+	// Token: 0x04004393 RID: 17299
 	Feed,
-	// Token: 0x04004355 RID: 17237
+	// Token: 0x04004394 RID: 17300
 	TaskInquiry,
-	// Token: 0x04004356 RID: 17238
+	// Token: 0x04004395 RID: 17301
 	GivingSnack,
-	// Token: 0x04004357 RID: 17239
+	// Token: 0x04004396 RID: 17302
 	AskingForHelp,
-	// Token: 0x04004358 RID: 17240
+	// Token: 0x04004397 RID: 17303
 	SendingToLocker
 }

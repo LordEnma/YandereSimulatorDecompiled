@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000473 RID: 1139
+// Token: 0x02000474 RID: 1140
 public class TitleSaveFilesScript : MonoBehaviour
 {
-	// Token: 0x06001EA2 RID: 7842 RVA: 0x001AD8FC File Offset: 0x001ABAFC
+	// Token: 0x06001EAC RID: 7852 RVA: 0x001AE688 File Offset: 0x001AC888
 	private void Update()
 	{
 		if (this.NewTitleScreen.Speed > 3f && !this.NewTitleScreen.FadeOut)
@@ -46,16 +46,12 @@ public class TitleSaveFilesScript : MonoBehaviour
 						this.PromptBar.ClearButtons();
 						this.PromptBar.Label[0].text = "Make Selection";
 						this.PromptBar.Label[1].text = "Go Back";
-						if (!this.NewTitleScreen.Eighties && GameGlobals.Debug)
-						{
-							this.PromptBar.Label[3].text = "Quick Start";
-						}
 						this.PromptBar.Label[4].text = "Change Selection";
 						this.UpdateHighlight();
 						this.PromptBar.UpdateButtons();
 						this.PromptBar.Show = true;
 					}
-					if (Input.GetButtonDown("A") || (GameGlobals.Debug && Input.GetButtonDown("Y")))
+					if (Input.GetButtonDown("A") || (this.PromptBar.Label[3].text != "" && Input.GetButtonDown("Y")))
 					{
 						Debug.Log("Now checking Profile " + (this.EightiesPrefix + this.ID).ToString() + ".");
 						if (PlayerPrefs.GetInt("ProfileCreated_" + (this.EightiesPrefix + this.ID).ToString()) == 0)
@@ -84,9 +80,14 @@ public class TitleSaveFilesScript : MonoBehaviour
 							GameGlobals.Eighties = this.NewTitleScreen.Eighties;
 						}
 						this.NewTitleScreen.FadeOut = true;
-						if (this.NewTitleScreen.Eighties && GameGlobals.Debug && Input.GetButtonDown("Y"))
+						if (Input.GetButtonDown("Y"))
 						{
-							this.NewTitleScreen.QuickStart = true;
+							if (!this.NewTitleScreen.Eighties)
+							{
+								this.NewTitleScreen.QuickStart = true;
+								return;
+							}
+							this.NewTitleScreen.WeekSelect = true;
 							return;
 						}
 					}
@@ -134,23 +135,32 @@ public class TitleSaveFilesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EA3 RID: 7843 RVA: 0x001ADD90 File Offset: 0x001ABF90
+	// Token: 0x06001EAD RID: 7853 RVA: 0x001AEB04 File Offset: 0x001ACD04
 	private void UpdateHighlight()
 	{
 		this.Highlight.localPosition = new Vector3(0f, 700f - 350f * (float)this.ID, 0f);
+		this.PromptBar.Label[2].text = "";
+		this.PromptBar.Label[3].text = "";
 		if (PlayerPrefs.GetInt("ProfileCreated_" + (this.EightiesPrefix + this.ID).ToString()) > 0)
 		{
 			this.PromptBar.Label[2].text = "Delete";
 			this.PromptBar.UpdateButtons();
 		}
+		else if (!this.NewTitleScreen.Eighties)
+		{
+			if (GameGlobals.Debug)
+			{
+				this.PromptBar.Label[3].text = "Quick Start";
+			}
+		}
 		else
 		{
-			this.PromptBar.Label[2].text = "";
+			this.PromptBar.Label[3].text = "Debug";
 		}
 		this.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001EA4 RID: 7844 RVA: 0x001ADE38 File Offset: 0x001AC038
+	// Token: 0x06001EAE RID: 7854 RVA: 0x001AEC08 File Offset: 0x001ACE08
 	public void UpdateOutlines()
 	{
 		UILabel[] componentsInChildren = base.GetComponentsInChildren<UILabel>();
@@ -160,45 +170,45 @@ public class TitleSaveFilesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F72 RID: 16242
+	// Token: 0x04003FA2 RID: 16290
 	public NewTitleScreenScript NewTitleScreen;
 
-	// Token: 0x04003F73 RID: 16243
+	// Token: 0x04003FA3 RID: 16291
 	public InputManagerScript InputManager;
 
-	// Token: 0x04003F74 RID: 16244
+	// Token: 0x04003FA4 RID: 16292
 	public TitleSaveDataScript[] SaveDatas;
 
-	// Token: 0x04003F75 RID: 16245
+	// Token: 0x04003FA5 RID: 16293
 	public UILabel CorruptSaveLabel;
 
-	// Token: 0x04003F76 RID: 16246
+	// Token: 0x04003FA6 RID: 16294
 	public UILabel NewSaveLabel;
 
-	// Token: 0x04003F77 RID: 16247
+	// Token: 0x04003FA7 RID: 16295
 	public GameObject ConfirmationWindow;
 
-	// Token: 0x04003F78 RID: 16248
+	// Token: 0x04003FA8 RID: 16296
 	public GameObject ErrorWindow;
 
-	// Token: 0x04003F79 RID: 16249
+	// Token: 0x04003FA9 RID: 16297
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003F7A RID: 16250
+	// Token: 0x04003FAA RID: 16298
 	public TitleMenuScript Menu;
 
-	// Token: 0x04003F7B RID: 16251
+	// Token: 0x04003FAB RID: 16299
 	public Transform Highlight;
 
-	// Token: 0x04003F7C RID: 16252
+	// Token: 0x04003FAC RID: 16300
 	public bool Started;
 
-	// Token: 0x04003F7D RID: 16253
+	// Token: 0x04003FAD RID: 16301
 	public bool Show;
 
-	// Token: 0x04003F7E RID: 16254
+	// Token: 0x04003FAE RID: 16302
 	public int EightiesPrefix;
 
-	// Token: 0x04003F7F RID: 16255
+	// Token: 0x04003FAF RID: 16303
 	public int ID = 1;
 }

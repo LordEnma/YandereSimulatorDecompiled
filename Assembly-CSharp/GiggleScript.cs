@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002E1 RID: 737
+// Token: 0x020002E2 RID: 738
 public class GiggleScript : MonoBehaviour
 {
-	// Token: 0x060014E5 RID: 5349 RVA: 0x000D5930 File Offset: 0x000D3B30
+	// Token: 0x060014EC RID: 5356 RVA: 0x000D60F0 File Offset: 0x000D42F0
 	private void Start()
 	{
 		float num = 500f * (2f - SchoolGlobals.SchoolAtmosphere);
 		base.transform.localScale = new Vector3(num, base.transform.localScale.y, num);
 	}
 
-	// Token: 0x060014E6 RID: 5350 RVA: 0x000D5971 File Offset: 0x000D3B71
+	// Token: 0x060014ED RID: 5357 RVA: 0x000D6131 File Offset: 0x000D4331
 	private void Update()
 	{
 		if (this.Frame > 0)
@@ -21,7 +21,7 @@ public class GiggleScript : MonoBehaviour
 		this.Frame++;
 	}
 
-	// Token: 0x060014E7 RID: 5351 RVA: 0x000D5998 File Offset: 0x000D3B98
+	// Token: 0x060014EE RID: 5358 RVA: 0x000D6158 File Offset: 0x000D4358
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9 && !this.Distracted)
@@ -169,24 +169,24 @@ public class GiggleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002152 RID: 8530
+	// Token: 0x04002172 RID: 8562
 	public GameObject EmptyGameObject;
 
-	// Token: 0x04002153 RID: 8531
+	// Token: 0x04002173 RID: 8563
 	public GameObject Giggle;
 
-	// Token: 0x04002154 RID: 8532
+	// Token: 0x04002174 RID: 8564
 	public StudentScript Student;
 
-	// Token: 0x04002155 RID: 8533
+	// Token: 0x04002175 RID: 8565
 	public bool StudentIsBusy;
 
-	// Token: 0x04002156 RID: 8534
+	// Token: 0x04002176 RID: 8566
 	public bool Distracted;
 
-	// Token: 0x04002157 RID: 8535
+	// Token: 0x04002177 RID: 8567
 	public bool BangSnap;
 
-	// Token: 0x04002158 RID: 8536
+	// Token: 0x04002178 RID: 8568
 	public int Frame;
 }

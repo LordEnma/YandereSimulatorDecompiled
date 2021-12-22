@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000D2 RID: 210
 public class ArcTrailScript : MonoBehaviour
 {
-	// Token: 0x060009D8 RID: 2520 RVA: 0x00051F19 File Offset: 0x00050119
+	// Token: 0x060009D8 RID: 2520 RVA: 0x00052015 File Offset: 0x00050215
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)

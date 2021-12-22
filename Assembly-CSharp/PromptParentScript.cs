@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003BB RID: 955
+// Token: 0x020003BC RID: 956
 public class PromptParentScript : MonoBehaviour
 {
-	// Token: 0x04002D79 RID: 11641
+	// Token: 0x04002DA3 RID: 11683
 	public GameObject SquareObject;
 }

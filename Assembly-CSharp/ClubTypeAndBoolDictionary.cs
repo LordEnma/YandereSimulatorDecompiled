@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Token: 0x02000496 RID: 1174
+// Token: 0x02000497 RID: 1175
 [Serializable]
 public class ClubTypeAndBoolDictionary : SerializableDictionary<ClubType, bool>
 {

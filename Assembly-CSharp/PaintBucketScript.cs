@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200038B RID: 907
+// Token: 0x0200038C RID: 908
 public class PaintBucketScript : MonoBehaviour
 {
-	// Token: 0x06001A29 RID: 6697 RVA: 0x00114D4C File Offset: 0x00112F4C
+	// Token: 0x06001A31 RID: 6705 RVA: 0x0011557C File Offset: 0x0011377C
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -30,6 +30,6 @@ public class PaintBucketScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002AA7 RID: 10919
+	// Token: 0x04002AD1 RID: 10961
 	public PromptScript Prompt;
 }

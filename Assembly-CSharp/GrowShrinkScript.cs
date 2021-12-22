@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000306 RID: 774
+// Token: 0x02000307 RID: 775
 public class GrowShrinkScript : MonoBehaviour
 {
-	// Token: 0x06001813 RID: 6163 RVA: 0x000E37B0 File Offset: 0x000E19B0
+	// Token: 0x0600181A RID: 6170 RVA: 0x000E3F70 File Offset: 0x000E2170
 	private void Start()
 	{
 		this.OriginalPosition = base.transform.localPosition;
 		base.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x06001814 RID: 6164 RVA: 0x000E37D4 File Offset: 0x000E19D4
+	// Token: 0x0600181B RID: 6171 RVA: 0x000E3F94 File Offset: 0x000E2194
 	private void Update()
 	{
 		this.Timer += Time.deltaTime * 2f;
@@ -51,7 +51,7 @@ public class GrowShrinkScript : MonoBehaviour
 		base.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
 	}
 
-	// Token: 0x06001815 RID: 6165 RVA: 0x000E3994 File Offset: 0x000E1B94
+	// Token: 0x0600181C RID: 6172 RVA: 0x000E4154 File Offset: 0x000E2354
 	public void Return()
 	{
 		base.transform.localPosition = this.OriginalPosition;
@@ -67,33 +67,33 @@ public class GrowShrinkScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x040022D6 RID: 8918
+	// Token: 0x040022F6 RID: 8950
 	public float FallSpeed;
 
-	// Token: 0x040022D7 RID: 8919
+	// Token: 0x040022F7 RID: 8951
 	public float Threshold = 1f;
 
-	// Token: 0x040022D8 RID: 8920
+	// Token: 0x040022F8 RID: 8952
 	public float Slowdown = 0.5f;
 
-	// Token: 0x040022D9 RID: 8921
+	// Token: 0x040022F9 RID: 8953
 	public float Strength = 1f;
 
-	// Token: 0x040022DA RID: 8922
+	// Token: 0x040022FA RID: 8954
 	public float Target = 1f;
 
-	// Token: 0x040022DB RID: 8923
+	// Token: 0x040022FB RID: 8955
 	public float Scale;
 
-	// Token: 0x040022DC RID: 8924
+	// Token: 0x040022FC RID: 8956
 	public float Speed = 5f;
 
-	// Token: 0x040022DD RID: 8925
+	// Token: 0x040022FD RID: 8957
 	public float Timer;
 
-	// Token: 0x040022DE RID: 8926
+	// Token: 0x040022FE RID: 8958
 	public bool Shrink;
 
-	// Token: 0x040022DF RID: 8927
+	// Token: 0x040022FF RID: 8959
 	public Vector3 OriginalPosition;
 }

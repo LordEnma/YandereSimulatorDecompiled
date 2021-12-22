@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000EF RID: 239
+// Token: 0x020000F0 RID: 240
 public class BodyPartScript : MonoBehaviour
 {
-	// Token: 0x06000A4C RID: 2636 RVA: 0x0005B918 File Offset: 0x00059B18
+	// Token: 0x06000A4F RID: 2639 RVA: 0x0005BA8C File Offset: 0x00059C8C
 	private void Update()
 	{
 		if (this.Prompt != null)
@@ -31,21 +31,21 @@ public class BodyPartScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000BC9 RID: 3017
+	// Token: 0x04000BCB RID: 3019
 	public bool Sacrifice;
 
-	// Token: 0x04000BCA RID: 3018
+	// Token: 0x04000BCC RID: 3020
 	public int StudentID;
 
-	// Token: 0x04000BCB RID: 3019
+	// Token: 0x04000BCD RID: 3021
 	public int Type;
 
-	// Token: 0x04000BCC RID: 3020
+	// Token: 0x04000BCE RID: 3022
 	public GameObject GarbageBag;
 
-	// Token: 0x04000BCD RID: 3021
+	// Token: 0x04000BCF RID: 3023
 	public PromptScript Prompt;
 
-	// Token: 0x04000BCE RID: 3022
+	// Token: 0x04000BD0 RID: 3024
 	public AudioClip WrapSFX;
 }

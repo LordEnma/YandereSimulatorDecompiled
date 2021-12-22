@@ -314,23 +314,23 @@ public class UITextList : MonoBehaviour
 	// Token: 0x04000791 RID: 1937
 	private static Dictionary<string, BetterList<UITextList.Paragraph>> mHistory = new Dictionary<string, BetterList<UITextList.Paragraph>>();
 
-	// Token: 0x02000642 RID: 1602
+	// Token: 0x02000644 RID: 1604
 	[DoNotObfuscateNGUI]
 	public enum Style
 	{
-		// Token: 0x04004E33 RID: 20019
+		// Token: 0x04004E72 RID: 20082
 		Text,
-		// Token: 0x04004E34 RID: 20020
+		// Token: 0x04004E73 RID: 20083
 		Chat
 	}
 
-	// Token: 0x02000643 RID: 1603
+	// Token: 0x02000645 RID: 1605
 	protected class Paragraph
 	{
-		// Token: 0x04004E35 RID: 20021
+		// Token: 0x04004E74 RID: 20084
 		public string text;
 
-		// Token: 0x04004E36 RID: 20022
+		// Token: 0x04004E75 RID: 20085
 		public string[] lines;
 	}
 }

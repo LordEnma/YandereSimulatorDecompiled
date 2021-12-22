@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020004B7 RID: 1207
+// Token: 0x020004B8 RID: 1208
 public class WeaponTrail : MonoBehaviour
 {
 	// Token: 0x170004C5 RID: 1221
-	// (set) Token: 0x06001F99 RID: 8089 RVA: 0x001BCEE1 File Offset: 0x001BB0E1
+	// (set) Token: 0x06001FA3 RID: 8099 RVA: 0x001BDC9D File Offset: 0x001BBE9D
 	public bool Emit
 	{
 		set
@@ -15,7 +15,7 @@ public class WeaponTrail : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F9A RID: 8090 RVA: 0x001BCEEC File Offset: 0x001BB0EC
+	// Token: 0x06001FA4 RID: 8100 RVA: 0x001BDCA8 File Offset: 0x001BBEA8
 	public void Start()
 	{
 		this._lastPosition = base.transform.position;
@@ -32,13 +32,13 @@ public class WeaponTrail : MonoBehaviour
 		this._o.GetComponent<MeshFilter>().mesh = this._trailMesh;
 	}
 
-	// Token: 0x06001F9B RID: 8091 RVA: 0x001BCFD4 File Offset: 0x001BB1D4
+	// Token: 0x06001FA5 RID: 8101 RVA: 0x001BDD90 File Offset: 0x001BBF90
 	private void OnDisable()
 	{
 		UnityEngine.Object.Destroy(this._o);
 	}
 
-	// Token: 0x06001F9C RID: 8092 RVA: 0x001BCFE4 File Offset: 0x001BB1E4
+	// Token: 0x06001FA6 RID: 8102 RVA: 0x001BDDA0 File Offset: 0x001BBFA0
 	private void Update()
 	{
 		if (this._emit && this._emitTime != 0f)
@@ -207,88 +207,88 @@ public class WeaponTrail : MonoBehaviour
 		this._trailMesh.Clear();
 	}
 
-	// Token: 0x04004217 RID: 16919
+	// Token: 0x04004247 RID: 16967
 	[SerializeField]
 	private bool _emit = true;
 
-	// Token: 0x04004218 RID: 16920
+	// Token: 0x04004248 RID: 16968
 	[SerializeField]
 	private float _emitTime;
 
-	// Token: 0x04004219 RID: 16921
+	// Token: 0x04004249 RID: 16969
 	[SerializeField]
 	private Material _material;
 
-	// Token: 0x0400421A RID: 16922
+	// Token: 0x0400424A RID: 16970
 	[SerializeField]
 	private float _lifeTime = 1f;
 
-	// Token: 0x0400421B RID: 16923
+	// Token: 0x0400424B RID: 16971
 	[SerializeField]
 	private Color[] _colors;
 
-	// Token: 0x0400421C RID: 16924
+	// Token: 0x0400424C RID: 16972
 	[SerializeField]
 	private float[] _sizes;
 
-	// Token: 0x0400421D RID: 16925
+	// Token: 0x0400424D RID: 16973
 	[SerializeField]
 	private float _minVertexDistance = 0.1f;
 
-	// Token: 0x0400421E RID: 16926
+	// Token: 0x0400424E RID: 16974
 	[SerializeField]
 	private float _maxVertexDistance = 10f;
 
-	// Token: 0x0400421F RID: 16927
+	// Token: 0x0400424F RID: 16975
 	[SerializeField]
 	private float _maxAngle = 3f;
 
-	// Token: 0x04004220 RID: 16928
+	// Token: 0x04004250 RID: 16976
 	[SerializeField]
 	private bool _autoDestruct;
 
-	// Token: 0x04004221 RID: 16929
+	// Token: 0x04004251 RID: 16977
 	[SerializeField]
 	private Transform _base;
 
-	// Token: 0x04004222 RID: 16930
+	// Token: 0x04004252 RID: 16978
 	[SerializeField]
 	private Transform _tip;
 
-	// Token: 0x04004223 RID: 16931
+	// Token: 0x04004253 RID: 16979
 	private List<WeaponTrail.Point> _points = new List<WeaponTrail.Point>();
 
-	// Token: 0x04004224 RID: 16932
+	// Token: 0x04004254 RID: 16980
 	private GameObject _o;
 
-	// Token: 0x04004225 RID: 16933
+	// Token: 0x04004255 RID: 16981
 	private Mesh _trailMesh;
 
-	// Token: 0x04004226 RID: 16934
+	// Token: 0x04004256 RID: 16982
 	private Vector3 _lastPosition;
 
-	// Token: 0x04004227 RID: 16935
+	// Token: 0x04004257 RID: 16983
 	private Vector3 _lastCameraPosition1;
 
-	// Token: 0x04004228 RID: 16936
+	// Token: 0x04004258 RID: 16984
 	private Vector3 _lastCameraPosition2;
 
-	// Token: 0x04004229 RID: 16937
+	// Token: 0x04004259 RID: 16985
 	private bool _lastFrameEmit = true;
 
-	// Token: 0x02000667 RID: 1639
+	// Token: 0x0200066A RID: 1642
 	public class Point
 	{
-		// Token: 0x04004F0D RID: 20237
+		// Token: 0x04004F58 RID: 20312
 		public float timeCreated;
 
-		// Token: 0x04004F0E RID: 20238
+		// Token: 0x04004F59 RID: 20313
 		public Vector3 basePosition;
 
-		// Token: 0x04004F0F RID: 20239
+		// Token: 0x04004F5A RID: 20314
 		public Vector3 tipPosition;
 
-		// Token: 0x04004F10 RID: 20240
+		// Token: 0x04004F5B RID: 20315
 		public bool lineBreak;
 	}
 }

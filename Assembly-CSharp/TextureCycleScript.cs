@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000469 RID: 1129
+// Token: 0x0200046A RID: 1130
 public class TextureCycleScript : MonoBehaviour
 {
-	// Token: 0x06001E7E RID: 7806 RVA: 0x001AAE7A File Offset: 0x001A907A
+	// Token: 0x06001E88 RID: 7816 RVA: 0x001ABC06 File Offset: 0x001A9E06
 	private void Awake()
 	{
 	}
 
 	// Token: 0x170004AB RID: 1195
-	// (get) Token: 0x06001E7F RID: 7807 RVA: 0x001AAE7C File Offset: 0x001A907C
+	// (get) Token: 0x06001E89 RID: 7817 RVA: 0x001ABC08 File Offset: 0x001A9E08
 	private float SecondsPerFrame
 	{
 		get
@@ -19,7 +19,7 @@ public class TextureCycleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E80 RID: 7808 RVA: 0x001AAE8C File Offset: 0x001A908C
+	// Token: 0x06001E8A RID: 7818 RVA: 0x001ABC18 File Offset: 0x001A9E18
 	private void Update()
 	{
 		this.ID++;
@@ -35,33 +35,33 @@ public class TextureCycleScript : MonoBehaviour
 		this.Sprite.mainTexture = this.Textures[this.Frame];
 	}
 
-	// Token: 0x04003ED7 RID: 16087
+	// Token: 0x04003F07 RID: 16135
 	public UITexture Sprite;
 
-	// Token: 0x04003ED8 RID: 16088
+	// Token: 0x04003F08 RID: 16136
 	[SerializeField]
 	private int Start;
 
-	// Token: 0x04003ED9 RID: 16089
+	// Token: 0x04003F09 RID: 16137
 	[SerializeField]
 	private int Frame;
 
-	// Token: 0x04003EDA RID: 16090
+	// Token: 0x04003F0A RID: 16138
 	[SerializeField]
 	private int Limit;
 
-	// Token: 0x04003EDB RID: 16091
+	// Token: 0x04003F0B RID: 16139
 	[SerializeField]
 	private float FramesPerSecond;
 
-	// Token: 0x04003EDC RID: 16092
+	// Token: 0x04003F0C RID: 16140
 	[SerializeField]
 	private float CurrentSeconds;
 
-	// Token: 0x04003EDD RID: 16093
+	// Token: 0x04003F0D RID: 16141
 	[SerializeField]
 	private Texture[] Textures;
 
-	// Token: 0x04003EDE RID: 16094
+	// Token: 0x04003F0E RID: 16142
 	public int ID;
 }

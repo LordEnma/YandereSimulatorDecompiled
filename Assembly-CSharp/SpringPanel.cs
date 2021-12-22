@@ -121,7 +121,7 @@ public class SpringPanel : MonoBehaviour
 	[NonSerialized]
 	private float mDelta;
 
-	// Token: 0x020005EE RID: 1518
-	// (Invoke) Token: 0x0600252F RID: 9519
+	// Token: 0x020005F0 RID: 1520
+	// (Invoke) Token: 0x06002540 RID: 9536
 	public delegate void OnFinished();
 }

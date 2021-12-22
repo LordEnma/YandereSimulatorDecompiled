@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000320 RID: 800
+// Token: 0x02000321 RID: 801
 public class HomePrisonerScript : MonoBehaviour
 {
-	// Token: 0x0600187D RID: 6269 RVA: 0x000EF350 File Offset: 0x000ED550
+	// Token: 0x06001884 RID: 6276 RVA: 0x000EFB40 File Offset: 0x000EDD40
 	private void Start()
 	{
 		this.Sanity = StudentGlobals.GetStudentSanity(SchoolGlobals.KidnapVictim);
@@ -99,7 +99,7 @@ public class HomePrisonerScript : MonoBehaviour
 		this.EightiesPrisoner.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600187E RID: 6270 RVA: 0x000EF854 File Offset: 0x000EDA54
+	// Token: 0x06001885 RID: 6277 RVA: 0x000F0044 File Offset: 0x000EE244
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -297,7 +297,7 @@ public class HomePrisonerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600187F RID: 6271 RVA: 0x000F00D4 File Offset: 0x000EE2D4
+	// Token: 0x06001886 RID: 6278 RVA: 0x000F08C4 File Offset: 0x000EEAC4
 	public void UpdateDesc()
 	{
 		this.HomeCamera.PromptBar.Label[0].text = "Accept";
@@ -340,120 +340,120 @@ public class HomePrisonerScript : MonoBehaviour
 		this.HomeCamera.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x040024EF RID: 9455
+	// Token: 0x0400250F RID: 9487
 	public HomePrisonerChanScript EightiesPrisoner;
 
-	// Token: 0x040024F0 RID: 9456
+	// Token: 0x04002510 RID: 9488
 	public InputManagerScript InputManager;
 
-	// Token: 0x040024F1 RID: 9457
+	// Token: 0x04002511 RID: 9489
 	public HomePrisonerChanScript Prisoner;
 
-	// Token: 0x040024F2 RID: 9458
+	// Token: 0x04002512 RID: 9490
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x040024F3 RID: 9459
+	// Token: 0x04002513 RID: 9491
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x040024F4 RID: 9460
+	// Token: 0x04002514 RID: 9492
 	public HomeWindowScript HomeWindow;
 
-	// Token: 0x040024F5 RID: 9461
+	// Token: 0x04002515 RID: 9493
 	public HomeDarknessScript Darkness;
 
-	// Token: 0x040024F6 RID: 9462
+	// Token: 0x04002516 RID: 9494
 	public UILabel[] OptionLabels;
 
-	// Token: 0x040024F7 RID: 9463
+	// Token: 0x04002517 RID: 9495
 	public string[] Descriptions;
 
-	// Token: 0x040024F8 RID: 9464
+	// Token: 0x04002518 RID: 9496
 	public Transform TortureDestination;
 
-	// Token: 0x040024F9 RID: 9465
+	// Token: 0x04002519 RID: 9497
 	public Transform TortureTarget;
 
-	// Token: 0x040024FA RID: 9466
+	// Token: 0x0400251A RID: 9498
 	public GameObject NowLoading;
 
-	// Token: 0x040024FB RID: 9467
+	// Token: 0x0400251B RID: 9499
 	public Transform Highlight;
 
-	// Token: 0x040024FC RID: 9468
+	// Token: 0x0400251C RID: 9500
 	public AudioSource Jukebox;
 
-	// Token: 0x040024FD RID: 9469
+	// Token: 0x0400251D RID: 9501
 	public UILabel SanityLabel;
 
-	// Token: 0x040024FE RID: 9470
+	// Token: 0x0400251E RID: 9502
 	public UILabel DescLabel;
 
-	// Token: 0x040024FF RID: 9471
+	// Token: 0x0400251F RID: 9503
 	public UILabel Subtitle;
 
-	// Token: 0x04002500 RID: 9472
+	// Token: 0x04002520 RID: 9504
 	public bool PlayedAudio;
 
-	// Token: 0x04002501 RID: 9473
+	// Token: 0x04002521 RID: 9505
 	public bool ZoomIn;
 
-	// Token: 0x04002502 RID: 9474
+	// Token: 0x04002522 RID: 9506
 	public float Sanity = 100f;
 
-	// Token: 0x04002503 RID: 9475
+	// Token: 0x04002523 RID: 9507
 	public float Timer;
 
-	// Token: 0x04002504 RID: 9476
+	// Token: 0x04002524 RID: 9508
 	public int ID = 1;
 
-	// Token: 0x04002505 RID: 9477
+	// Token: 0x04002525 RID: 9509
 	public AudioClip FirstTorture;
 
-	// Token: 0x04002506 RID: 9478
+	// Token: 0x04002526 RID: 9510
 	public AudioClip Under50Torture;
 
-	// Token: 0x04002507 RID: 9479
+	// Token: 0x04002527 RID: 9511
 	public AudioClip Over50Torture;
 
-	// Token: 0x04002508 RID: 9480
+	// Token: 0x04002528 RID: 9512
 	public AudioClip TortureHit;
 
-	// Token: 0x04002509 RID: 9481
+	// Token: 0x04002529 RID: 9513
 	public string[] FullSanityBanterText;
 
-	// Token: 0x0400250A RID: 9482
+	// Token: 0x0400252A RID: 9514
 	public string[] HighSanityBanterText;
 
-	// Token: 0x0400250B RID: 9483
+	// Token: 0x0400252B RID: 9515
 	public string[] LowSanityBanterText;
 
-	// Token: 0x0400250C RID: 9484
+	// Token: 0x0400252C RID: 9516
 	public string[] NoSanityBanterText;
 
-	// Token: 0x0400250D RID: 9485
+	// Token: 0x0400252D RID: 9517
 	public string[] BanterText;
 
-	// Token: 0x0400250E RID: 9486
+	// Token: 0x0400252E RID: 9518
 	public AudioClip[] FullSanityBanter;
 
-	// Token: 0x0400250F RID: 9487
+	// Token: 0x0400252F RID: 9519
 	public AudioClip[] HighSanityBanter;
 
-	// Token: 0x04002510 RID: 9488
+	// Token: 0x04002530 RID: 9520
 	public AudioClip[] LowSanityBanter;
 
-	// Token: 0x04002511 RID: 9489
+	// Token: 0x04002531 RID: 9521
 	public AudioClip[] NoSanityBanter;
 
-	// Token: 0x04002512 RID: 9490
+	// Token: 0x04002532 RID: 9522
 	public AudioClip[] Banter;
 
-	// Token: 0x04002513 RID: 9491
+	// Token: 0x04002533 RID: 9523
 	public float BanterTimer;
 
-	// Token: 0x04002514 RID: 9492
+	// Token: 0x04002534 RID: 9524
 	public bool Bantering;
 
-	// Token: 0x04002515 RID: 9493
+	// Token: 0x04002535 RID: 9525
 	public int BanterID;
 }

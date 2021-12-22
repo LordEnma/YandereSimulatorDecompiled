@@ -2,16 +2,16 @@
 using Pathfinding;
 using UnityEngine;
 
-// Token: 0x02000444 RID: 1092
+// Token: 0x02000445 RID: 1093
 public class StreetCivilianScript : MonoBehaviour
 {
-	// Token: 0x06001CFC RID: 7420 RVA: 0x001582DD File Offset: 0x001564DD
+	// Token: 0x06001D04 RID: 7428 RVA: 0x00158C01 File Offset: 0x00156E01
 	private void Start()
 	{
 		this.Pathfinding.target = this.Destinations[0];
 	}
 
-	// Token: 0x06001CFD RID: 7421 RVA: 0x001582F4 File Offset: 0x001564F4
+	// Token: 0x06001D05 RID: 7429 RVA: 0x00158C18 File Offset: 0x00156E18
 	private void Update()
 	{
 		if (Vector3.Distance(base.transform.position, this.Destinations[this.ID].position) < 0.55f)
@@ -37,7 +37,7 @@ public class StreetCivilianScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CFE RID: 7422 RVA: 0x001583FC File Offset: 0x001565FC
+	// Token: 0x06001D06 RID: 7430 RVA: 0x00158D20 File Offset: 0x00156F20
 	public void MoveTowardsTarget(Vector3 target)
 	{
 		Vector3 a = target - base.transform.position;
@@ -48,21 +48,21 @@ public class StreetCivilianScript : MonoBehaviour
 		base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.Destinations[this.ID].rotation, 10f * Time.deltaTime);
 	}
 
-	// Token: 0x0400348C RID: 13452
+	// Token: 0x040034B7 RID: 13495
 	public CharacterController MyController;
 
-	// Token: 0x0400348D RID: 13453
+	// Token: 0x040034B8 RID: 13496
 	public Animation MyAnimation;
 
-	// Token: 0x0400348E RID: 13454
+	// Token: 0x040034B9 RID: 13497
 	public AIPath Pathfinding;
 
-	// Token: 0x0400348F RID: 13455
+	// Token: 0x040034BA RID: 13498
 	public Transform[] Destinations;
 
-	// Token: 0x04003490 RID: 13456
+	// Token: 0x040034BB RID: 13499
 	public float Timer;
 
-	// Token: 0x04003491 RID: 13457
+	// Token: 0x040034BC RID: 13500
 	public int ID;
 }

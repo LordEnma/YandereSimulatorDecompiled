@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x020003F1 RID: 1009
+// Token: 0x020003F2 RID: 1010
 [Serializable]
 public class CollectibleSaveData
 {
-	// Token: 0x06001BD5 RID: 7125 RVA: 0x00142A7C File Offset: 0x00140C7C
+	// Token: 0x06001BDD RID: 7133 RVA: 0x0014333C File Offset: 0x0014153C
 	public static CollectibleSaveData ReadFromGlobals()
 	{
 		CollectibleSaveData collectibleSaveData = new CollectibleSaveData();
@@ -46,7 +46,7 @@ public class CollectibleSaveData
 		return collectibleSaveData;
 	}
 
-	// Token: 0x06001BD6 RID: 7126 RVA: 0x00142B80 File Offset: 0x00140D80
+	// Token: 0x06001BDE RID: 7134 RVA: 0x00143440 File Offset: 0x00141640
 	public static void WriteToGlobals(CollectibleSaveData data)
 	{
 		foreach (int tapeID in data.basementTapeCollected)
@@ -71,18 +71,18 @@ public class CollectibleSaveData
 		}
 	}
 
-	// Token: 0x040030B8 RID: 12472
+	// Token: 0x040030E2 RID: 12514
 	public IntHashSet basementTapeCollected = new IntHashSet();
 
-	// Token: 0x040030B9 RID: 12473
+	// Token: 0x040030E3 RID: 12515
 	public IntHashSet basementTapeListened = new IntHashSet();
 
-	// Token: 0x040030BA RID: 12474
+	// Token: 0x040030E4 RID: 12516
 	public IntHashSet mangaCollected = new IntHashSet();
 
-	// Token: 0x040030BB RID: 12475
+	// Token: 0x040030E5 RID: 12517
 	public IntHashSet tapeCollected = new IntHashSet();
 
-	// Token: 0x040030BC RID: 12476
+	// Token: 0x040030E6 RID: 12518
 	public IntHashSet tapeListened = new IntHashSet();
 }

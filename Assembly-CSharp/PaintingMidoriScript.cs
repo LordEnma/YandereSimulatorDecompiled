@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200038C RID: 908
+// Token: 0x0200038D RID: 909
 public class PaintingMidoriScript : MonoBehaviour
 {
-	// Token: 0x06001A2B RID: 6699 RVA: 0x00114E98 File Offset: 0x00113098
+	// Token: 0x06001A33 RID: 6707 RVA: 0x001156C8 File Offset: 0x001138C8
 	private void Update()
 	{
 		if (Input.GetKeyDown("z"))
@@ -27,12 +27,12 @@ public class PaintingMidoriScript : MonoBehaviour
 		base.transform.localEulerAngles = new Vector3(0f, this.Rotation, 0f);
 	}
 
-	// Token: 0x04002AA8 RID: 10920
+	// Token: 0x04002AD2 RID: 10962
 	public Animation Anim;
 
-	// Token: 0x04002AA9 RID: 10921
+	// Token: 0x04002AD3 RID: 10963
 	public float Rotation;
 
-	// Token: 0x04002AAA RID: 10922
+	// Token: 0x04002AD4 RID: 10964
 	public int ID;
 }

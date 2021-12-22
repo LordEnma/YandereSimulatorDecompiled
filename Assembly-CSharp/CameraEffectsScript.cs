@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.PostProcessing;
 using XInputDotNetPure;
 
-// Token: 0x02000233 RID: 563
+// Token: 0x02000234 RID: 564
 public class CameraEffectsScript : MonoBehaviour
 {
-	// Token: 0x06001213 RID: 4627 RVA: 0x0008A800 File Offset: 0x00088A00
+	// Token: 0x06001216 RID: 4630 RVA: 0x0008A924 File Offset: 0x00088B24
 	private void Start()
 	{
 		this.MurderStreaks.color = new Color(this.MurderStreaks.color.r, this.MurderStreaks.color.g, this.MurderStreaks.color.b, 0f);
@@ -15,7 +15,7 @@ public class CameraEffectsScript : MonoBehaviour
 		this.SmartphoneCamera.depthTextureMode = DepthTextureMode.DepthNormals;
 	}
 
-	// Token: 0x06001214 RID: 4628 RVA: 0x0008A8B4 File Offset: 0x00088AB4
+	// Token: 0x06001217 RID: 4631 RVA: 0x0008A9D8 File Offset: 0x00088BD8
 	private void Update()
 	{
 		if (this.VibrationCheck)
@@ -49,7 +49,7 @@ public class CameraEffectsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001215 RID: 4629 RVA: 0x0008AA80 File Offset: 0x00088C80
+	// Token: 0x06001218 RID: 4632 RVA: 0x0008ABA4 File Offset: 0x00088DA4
 	public void Alarm()
 	{
 		GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
@@ -60,7 +60,7 @@ public class CameraEffectsScript : MonoBehaviour
 		AudioSource.PlayClipAtPoint(this.Noticed, this.Yandere.Head.position);
 	}
 
-	// Token: 0x06001216 RID: 4630 RVA: 0x0008AB1C File Offset: 0x00088D1C
+	// Token: 0x06001219 RID: 4633 RVA: 0x0008AC40 File Offset: 0x00088E40
 	public void MurderWitnessed()
 	{
 		GamePad.SetVibration(PlayerIndex.One, 1f, 1f);
@@ -70,7 +70,7 @@ public class CameraEffectsScript : MonoBehaviour
 		this.Yandere.Jukebox.SFX.PlayOneShot(this.Yandere.Noticed ? this.SenpaiNoticed : this.MurderNoticed);
 	}
 
-	// Token: 0x06001217 RID: 4631 RVA: 0x0008ABC0 File Offset: 0x00088DC0
+	// Token: 0x0600121A RID: 4634 RVA: 0x0008ACE4 File Offset: 0x00088EE4
 	public void DisableCamera()
 	{
 		if (!this.OneCamera)
@@ -81,7 +81,7 @@ public class CameraEffectsScript : MonoBehaviour
 		this.OneCamera = false;
 	}
 
-	// Token: 0x06001218 RID: 4632 RVA: 0x0008ABDC File Offset: 0x00088DDC
+	// Token: 0x0600121B RID: 4635 RVA: 0x0008AD00 File Offset: 0x00088F00
 	public void UpdateBloom(float Bloom)
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -89,7 +89,7 @@ public class CameraEffectsScript : MonoBehaviour
 		this.Profile.bloom.settings = settings;
 	}
 
-	// Token: 0x06001219 RID: 4633 RVA: 0x0008AC18 File Offset: 0x00088E18
+	// Token: 0x0600121C RID: 4636 RVA: 0x0008AD3C File Offset: 0x00088F3C
 	public void UpdateThreshold(float Threshold)
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -97,7 +97,7 @@ public class CameraEffectsScript : MonoBehaviour
 		this.Profile.bloom.settings = settings;
 	}
 
-	// Token: 0x0600121A RID: 4634 RVA: 0x0008AC54 File Offset: 0x00088E54
+	// Token: 0x0600121D RID: 4637 RVA: 0x0008AD78 File Offset: 0x00088F78
 	public void UpdateBloomKnee(float Knee)
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -105,7 +105,7 @@ public class CameraEffectsScript : MonoBehaviour
 		this.Profile.bloom.settings = settings;
 	}
 
-	// Token: 0x0600121B RID: 4635 RVA: 0x0008AC90 File Offset: 0x00088E90
+	// Token: 0x0600121E RID: 4638 RVA: 0x0008ADB4 File Offset: 0x00088FB4
 	public void UpdateBloomRadius(float Radius)
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -113,13 +113,13 @@ public class CameraEffectsScript : MonoBehaviour
 		this.Profile.bloom.settings = settings;
 	}
 
-	// Token: 0x0600121C RID: 4636 RVA: 0x0008ACCC File Offset: 0x00088ECC
+	// Token: 0x0600121F RID: 4639 RVA: 0x0008ADF0 File Offset: 0x00088FF0
 	public void EnableBloom()
 	{
 		this.Profile.bloom.enabled = true;
 	}
 
-	// Token: 0x0600121D RID: 4637 RVA: 0x0008ACE0 File Offset: 0x00088EE0
+	// Token: 0x06001220 RID: 4640 RVA: 0x0008AE04 File Offset: 0x00089004
 	public void UpdateChroma(float Chroma)
 	{
 		ChromaticAberrationModel.Settings settings = this.Profile.chromaticAberration.settings;
@@ -127,7 +127,7 @@ public class CameraEffectsScript : MonoBehaviour
 		this.Profile.chromaticAberration.settings = settings;
 	}
 
-	// Token: 0x0600121E RID: 4638 RVA: 0x0008AD18 File Offset: 0x00088F18
+	// Token: 0x06001221 RID: 4641 RVA: 0x0008AE3C File Offset: 0x0008903C
 	public void UpdateVignette(float Vignette)
 	{
 		VignetteModel.Settings settings = this.Profile.vignette.settings;
@@ -139,7 +139,7 @@ public class CameraEffectsScript : MonoBehaviour
 		this.Profile.vignette.settings = settings;
 	}
 
-	// Token: 0x0600121F RID: 4639 RVA: 0x0008ADA0 File Offset: 0x00088FA0
+	// Token: 0x06001222 RID: 4642 RVA: 0x0008AEC4 File Offset: 0x000890C4
 	public void SetVignettePink()
 	{
 		VignetteModel.Settings settings = this.Profile.vignette.settings;
@@ -147,7 +147,7 @@ public class CameraEffectsScript : MonoBehaviour
 		this.Profile.vignette.settings = settings;
 	}
 
-	// Token: 0x06001220 RID: 4640 RVA: 0x0008ADF0 File Offset: 0x00088FF0
+	// Token: 0x06001223 RID: 4643 RVA: 0x0008AF14 File Offset: 0x00089114
 	public void UpdateDOF(float Focus)
 	{
 		Focus *= ((float)Screen.width / 1280f + (float)Screen.height / 720f) * 0.5f;
@@ -156,39 +156,39 @@ public class CameraEffectsScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x040016B9 RID: 5817
+	// Token: 0x040016BB RID: 5819
 	public PostProcessingProfile Profile;
 
-	// Token: 0x040016BA RID: 5818
+	// Token: 0x040016BC RID: 5820
 	public YandereScript Yandere;
 
-	// Token: 0x040016BB RID: 5819
+	// Token: 0x040016BD RID: 5821
 	public UITexture MurderStreaks;
 
-	// Token: 0x040016BC RID: 5820
+	// Token: 0x040016BE RID: 5822
 	public UITexture Streaks;
 
-	// Token: 0x040016BD RID: 5821
+	// Token: 0x040016BF RID: 5823
 	public float EffectStrength;
 
-	// Token: 0x040016BE RID: 5822
+	// Token: 0x040016C0 RID: 5824
 	public float VibrationTimer;
 
-	// Token: 0x040016BF RID: 5823
+	// Token: 0x040016C1 RID: 5825
 	public bool VibrationCheck;
 
-	// Token: 0x040016C0 RID: 5824
+	// Token: 0x040016C2 RID: 5826
 	public bool OneCamera;
 
-	// Token: 0x040016C1 RID: 5825
+	// Token: 0x040016C3 RID: 5827
 	public AudioClip MurderNoticed;
 
-	// Token: 0x040016C2 RID: 5826
+	// Token: 0x040016C4 RID: 5828
 	public AudioClip SenpaiNoticed;
 
-	// Token: 0x040016C3 RID: 5827
+	// Token: 0x040016C5 RID: 5829
 	public AudioClip Noticed;
 
-	// Token: 0x040016C4 RID: 5828
+	// Token: 0x040016C6 RID: 5830
 	public Camera SmartphoneCamera;
 }

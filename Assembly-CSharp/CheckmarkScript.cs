@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004F6 RID: 1270
+// Token: 0x020004F8 RID: 1272
 public class CheckmarkScript : MonoBehaviour
 {
-	// Token: 0x060020E9 RID: 8425 RVA: 0x001E18F7 File Offset: 0x001DFAF7
+	// Token: 0x060020FA RID: 8442 RVA: 0x001E302B File Offset: 0x001E122B
 	private void Start()
 	{
 		while (this.ID < this.Checkmarks.Length)
@@ -15,7 +15,7 @@ public class CheckmarkScript : MonoBehaviour
 		this.ID = 0;
 	}
 
-	// Token: 0x060020EA RID: 8426 RVA: 0x001E1934 File Offset: 0x001DFB34
+	// Token: 0x060020FB RID: 8443 RVA: 0x001E3068 File Offset: 0x001E1268
 	private void Update()
 	{
 		if (Input.GetKeyDown("space") && this.ButtonPresses < 26)
@@ -30,12 +30,12 @@ public class CheckmarkScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400483B RID: 18491
+	// Token: 0x0400487A RID: 18554
 	public GameObject[] Checkmarks;
 
-	// Token: 0x0400483C RID: 18492
+	// Token: 0x0400487B RID: 18555
 	public int ButtonPresses;
 
-	// Token: 0x0400483D RID: 18493
+	// Token: 0x0400487C RID: 18556
 	public int ID;
 }

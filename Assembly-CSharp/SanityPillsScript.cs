@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003ED RID: 1005
+// Token: 0x020003EE RID: 1006
 public class SanityPillsScript : MonoBehaviour
 {
-	// Token: 0x06001BCA RID: 7114 RVA: 0x00142698 File Offset: 0x00140898
+	// Token: 0x06001BD2 RID: 7122 RVA: 0x00142F58 File Offset: 0x00141158
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -18,6 +18,6 @@ public class SanityPillsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040030A3 RID: 12451
+	// Token: 0x040030CD RID: 12493
 	public PromptScript Prompt;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003E2 RID: 994
+// Token: 0x020003E3 RID: 995
 public class RivalPhoneScript : MonoBehaviour
 {
-	// Token: 0x06001BA8 RID: 7080 RVA: 0x00141040 File Offset: 0x0013F240
+	// Token: 0x06001BB0 RID: 7088 RVA: 0x00141900 File Offset: 0x0013FB00
 	private void Start()
 	{
 		this.OriginalParent = base.transform.parent;
@@ -14,7 +14,7 @@ public class RivalPhoneScript : MonoBehaviour
 		this.Prompt.Hide();
 	}
 
-	// Token: 0x06001BA9 RID: 7081 RVA: 0x00141098 File Offset: 0x0013F298
+	// Token: 0x06001BB1 RID: 7089 RVA: 0x00141958 File Offset: 0x0013FB58
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -46,7 +46,7 @@ public class RivalPhoneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BAA RID: 7082 RVA: 0x00141240 File Offset: 0x0013F440
+	// Token: 0x06001BB2 RID: 7090 RVA: 0x00141B00 File Offset: 0x0013FD00
 	public void ReturnToOrigin()
 	{
 		base.transform.parent = this.OriginalParent;
@@ -59,30 +59,30 @@ public class RivalPhoneScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x04003062 RID: 12386
+	// Token: 0x0400308C RID: 12428
 	public DoorGapScript StolenPhoneDropoff;
 
-	// Token: 0x04003063 RID: 12387
+	// Token: 0x0400308D RID: 12429
 	public Renderer MyRenderer;
 
-	// Token: 0x04003064 RID: 12388
+	// Token: 0x0400308E RID: 12430
 	public PromptScript Prompt;
 
-	// Token: 0x04003065 RID: 12389
+	// Token: 0x0400308F RID: 12431
 	public bool LewdPhotos;
 
-	// Token: 0x04003066 RID: 12390
+	// Token: 0x04003090 RID: 12432
 	public bool Stolen;
 
-	// Token: 0x04003067 RID: 12391
+	// Token: 0x04003091 RID: 12433
 	public int StudentID;
 
-	// Token: 0x04003068 RID: 12392
+	// Token: 0x04003092 RID: 12434
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04003069 RID: 12393
+	// Token: 0x04003093 RID: 12435
 	public Quaternion OriginalRotation;
 
-	// Token: 0x0400306A RID: 12394
+	// Token: 0x04003094 RID: 12436
 	public Transform OriginalParent;
 }

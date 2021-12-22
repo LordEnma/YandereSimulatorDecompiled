@@ -6,10 +6,10 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using UnityEngine;
 
-// Token: 0x0200050A RID: 1290
+// Token: 0x0200050C RID: 1292
 internal class YanSaveResolver : DefaultContractResolver
 {
-	// Token: 0x06002118 RID: 8472 RVA: 0x001E48F4 File Offset: 0x001E2AF4
+	// Token: 0x06002129 RID: 8489 RVA: 0x001E6028 File Offset: 0x001E4228
 	protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
 	{
 		IList<JsonProperty> list = base.CreateProperties(type, memberSerialization);

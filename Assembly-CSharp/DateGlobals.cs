@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002EB RID: 747
+// Token: 0x020002EC RID: 748
 public static class DateGlobals
 {
 	// Token: 0x17000383 RID: 899
-	// (get) Token: 0x0600156D RID: 5485 RVA: 0x000D8584 File Offset: 0x000D6784
-	// (set) Token: 0x0600156E RID: 5486 RVA: 0x000D85B4 File Offset: 0x000D67B4
+	// (get) Token: 0x06001574 RID: 5492 RVA: 0x000D8D44 File Offset: 0x000D6F44
+	// (set) Token: 0x06001575 RID: 5493 RVA: 0x000D8D74 File Offset: 0x000D6F74
 	public static int Week
 	{
 		get
@@ -20,8 +20,8 @@ public static class DateGlobals
 	}
 
 	// Token: 0x17000384 RID: 900
-	// (get) Token: 0x0600156F RID: 5487 RVA: 0x000D85E4 File Offset: 0x000D67E4
-	// (set) Token: 0x06001570 RID: 5488 RVA: 0x000D8614 File Offset: 0x000D6814
+	// (get) Token: 0x06001576 RID: 5494 RVA: 0x000D8DA4 File Offset: 0x000D6FA4
+	// (set) Token: 0x06001577 RID: 5495 RVA: 0x000D8DD4 File Offset: 0x000D6FD4
 	public static DayOfWeek Weekday
 	{
 		get
@@ -35,8 +35,8 @@ public static class DateGlobals
 	}
 
 	// Token: 0x17000385 RID: 901
-	// (get) Token: 0x06001571 RID: 5489 RVA: 0x000D8644 File Offset: 0x000D6844
-	// (set) Token: 0x06001572 RID: 5490 RVA: 0x000D8674 File Offset: 0x000D6874
+	// (get) Token: 0x06001578 RID: 5496 RVA: 0x000D8E04 File Offset: 0x000D7004
+	// (set) Token: 0x06001579 RID: 5497 RVA: 0x000D8E34 File Offset: 0x000D7034
 	public static int PassDays
 	{
 		get
@@ -50,8 +50,8 @@ public static class DateGlobals
 	}
 
 	// Token: 0x17000386 RID: 902
-	// (get) Token: 0x06001573 RID: 5491 RVA: 0x000D86A4 File Offset: 0x000D68A4
-	// (set) Token: 0x06001574 RID: 5492 RVA: 0x000D86D4 File Offset: 0x000D68D4
+	// (get) Token: 0x0600157A RID: 5498 RVA: 0x000D8E64 File Offset: 0x000D7064
+	// (set) Token: 0x0600157B RID: 5499 RVA: 0x000D8E94 File Offset: 0x000D7094
 	public static bool DayPassed
 	{
 		get
@@ -65,8 +65,8 @@ public static class DateGlobals
 	}
 
 	// Token: 0x17000387 RID: 903
-	// (get) Token: 0x06001575 RID: 5493 RVA: 0x000D8704 File Offset: 0x000D6904
-	// (set) Token: 0x06001576 RID: 5494 RVA: 0x000D8734 File Offset: 0x000D6934
+	// (get) Token: 0x0600157C RID: 5500 RVA: 0x000D8EC4 File Offset: 0x000D70C4
+	// (set) Token: 0x0600157D RID: 5501 RVA: 0x000D8EF4 File Offset: 0x000D70F4
 	public static int GameplayDay
 	{
 		get
@@ -79,7 +79,7 @@ public static class DateGlobals
 		}
 	}
 
-	// Token: 0x06001577 RID: 5495 RVA: 0x000D8764 File Offset: 0x000D6964
+	// Token: 0x0600157E RID: 5502 RVA: 0x000D8F24 File Offset: 0x000D7124
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Week");
@@ -89,18 +89,18 @@ public static class DateGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_GameplayDay");
 	}
 
-	// Token: 0x04002182 RID: 8578
+	// Token: 0x040021A2 RID: 8610
 	private const string Str_Week = "Week";
 
-	// Token: 0x04002183 RID: 8579
+	// Token: 0x040021A3 RID: 8611
 	private const string Str_Weekday = "Weekday";
 
-	// Token: 0x04002184 RID: 8580
+	// Token: 0x040021A4 RID: 8612
 	private const string Str_PassDays = "PassDays";
 
-	// Token: 0x04002185 RID: 8581
+	// Token: 0x040021A5 RID: 8613
 	private const string Str_DayPassed = "DayPassed";
 
-	// Token: 0x04002186 RID: 8582
+	// Token: 0x040021A6 RID: 8614
 	private const string Str_GameplayDay = "GameplayDay";
 }

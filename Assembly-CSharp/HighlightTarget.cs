@@ -1,22 +1,22 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004E6 RID: 1254
+// Token: 0x020004E8 RID: 1256
 [Serializable]
 public struct HighlightTarget
 {
-	// Token: 0x040047FC RID: 18428
+	// Token: 0x0400483B RID: 18491
 	public Color TargetColor;
 
-	// Token: 0x040047FD RID: 18429
+	// Token: 0x0400483C RID: 18492
 	[ColorUsage(true, true, 0f, 3f, 0f, 3f)]
 	public Color ReplacementColor;
 
-	// Token: 0x040047FE RID: 18430
+	// Token: 0x0400483D RID: 18493
 	[Range(0f, 1f)]
 	public float Threshold;
 
-	// Token: 0x040047FF RID: 18431
+	// Token: 0x0400483E RID: 18494
 	[Range(0f, 1f)]
 	public float SmoothColorInterpolation;
 }

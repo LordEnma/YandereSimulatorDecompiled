@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000247 RID: 583
+// Token: 0x02000248 RID: 584
 public class CirnoIceAttackScript : MonoBehaviour
 {
-	// Token: 0x06001250 RID: 4688 RVA: 0x0008C921 File Offset: 0x0008AB21
+	// Token: 0x06001253 RID: 4691 RVA: 0x0008CA45 File Offset: 0x0008AC45
 	private void Start()
 	{
 		Physics.IgnoreLayerCollision(18, 13, true);
 		Physics.IgnoreLayerCollision(18, 18, true);
 	}
 
-	// Token: 0x06001251 RID: 4689 RVA: 0x0008C938 File Offset: 0x0008AB38
+	// Token: 0x06001254 RID: 4692 RVA: 0x0008CA5C File Offset: 0x0008AC5C
 	private void OnCollisionEnter(Collision collision)
 	{
 		UnityEngine.Object.Instantiate<GameObject>(this.IceExplosion, base.transform.position, Quaternion.identity);
@@ -27,6 +27,6 @@ public class CirnoIceAttackScript : MonoBehaviour
 		UnityEngine.Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x0400171C RID: 5916
+	// Token: 0x0400171E RID: 5918
 	public GameObject IceExplosion;
 }

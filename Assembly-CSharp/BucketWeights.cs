@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000FC RID: 252
+// Token: 0x020000FD RID: 253
 [Serializable]
 public class BucketWeights : BucketContents
 {
 	// Token: 0x17000209 RID: 521
-	// (get) Token: 0x06000A7B RID: 2683 RVA: 0x0005CB7B File Offset: 0x0005AD7B
-	// (set) Token: 0x06000A7C RID: 2684 RVA: 0x0005CB83 File Offset: 0x0005AD83
+	// (get) Token: 0x06000A7E RID: 2686 RVA: 0x0005CCEF File Offset: 0x0005AEEF
+	// (set) Token: 0x06000A7F RID: 2687 RVA: 0x0005CCF7 File Offset: 0x0005AEF7
 	public int Count
 	{
 		get
@@ -21,7 +21,7 @@ public class BucketWeights : BucketContents
 	}
 
 	// Token: 0x1700020A RID: 522
-	// (get) Token: 0x06000A7D RID: 2685 RVA: 0x0005CB93 File Offset: 0x0005AD93
+	// (get) Token: 0x06000A80 RID: 2688 RVA: 0x0005CD07 File Offset: 0x0005AF07
 	public override BucketContentsType Type
 	{
 		get
@@ -31,7 +31,7 @@ public class BucketWeights : BucketContents
 	}
 
 	// Token: 0x1700020B RID: 523
-	// (get) Token: 0x06000A7E RID: 2686 RVA: 0x0005CB96 File Offset: 0x0005AD96
+	// (get) Token: 0x06000A81 RID: 2689 RVA: 0x0005CD0A File Offset: 0x0005AF0A
 	public override bool IsCleaningAgent
 	{
 		get
@@ -41,7 +41,7 @@ public class BucketWeights : BucketContents
 	}
 
 	// Token: 0x1700020C RID: 524
-	// (get) Token: 0x06000A7F RID: 2687 RVA: 0x0005CB99 File Offset: 0x0005AD99
+	// (get) Token: 0x06000A82 RID: 2690 RVA: 0x0005CD0D File Offset: 0x0005AF0D
 	public override bool IsFlammable
 	{
 		get
@@ -50,13 +50,13 @@ public class BucketWeights : BucketContents
 		}
 	}
 
-	// Token: 0x06000A80 RID: 2688 RVA: 0x0005CB9C File Offset: 0x0005AD9C
+	// Token: 0x06000A83 RID: 2691 RVA: 0x0005CD10 File Offset: 0x0005AF10
 	public override bool CanBeLifted(int strength)
 	{
 		return strength > 0;
 	}
 
-	// Token: 0x04000C31 RID: 3121
+	// Token: 0x04000C33 RID: 3123
 	[SerializeField]
 	private int count;
 }

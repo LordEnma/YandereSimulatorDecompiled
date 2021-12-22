@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003CB RID: 971
+// Token: 0x020003CC RID: 972
 public class RendererListScript : MonoBehaviour
 {
-	// Token: 0x06001B41 RID: 6977 RVA: 0x00131E5C File Offset: 0x0013005C
+	// Token: 0x06001B49 RID: 6985 RVA: 0x0013271C File Offset: 0x0013091C
 	private void Start()
 	{
 		Transform[] componentsInChildren = base.gameObject.GetComponentsInChildren<Transform>();
@@ -19,7 +19,7 @@ public class RendererListScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B42 RID: 6978 RVA: 0x00131EB4 File Offset: 0x001300B4
+	// Token: 0x06001B4A RID: 6986 RVA: 0x00132774 File Offset: 0x00130974
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.LeftControl))
@@ -31,6 +31,6 @@ public class RendererListScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002E70 RID: 11888
+	// Token: 0x04002E9A RID: 11930
 	public Renderer[] Renderers;
 }

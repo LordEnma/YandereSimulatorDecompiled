@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200030F RID: 783
+// Token: 0x02000310 RID: 784
 public class HidingSpotScript : MonoBehaviour
 {
-	// Token: 0x06001837 RID: 6199 RVA: 0x000E8E20 File Offset: 0x000E7020
+	// Token: 0x0600183E RID: 6206 RVA: 0x000E95E0 File Offset: 0x000E77E0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -36,21 +36,21 @@ public class HidingSpotScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040023C3 RID: 9155
+	// Token: 0x040023E3 RID: 9187
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040023C4 RID: 9156
+	// Token: 0x040023E4 RID: 9188
 	public PromptScript Prompt;
 
-	// Token: 0x040023C5 RID: 9157
+	// Token: 0x040023E5 RID: 9189
 	public Transform Exit;
 
-	// Token: 0x040023C6 RID: 9158
+	// Token: 0x040023E6 RID: 9190
 	public Transform Spot;
 
-	// Token: 0x040023C7 RID: 9159
+	// Token: 0x040023E7 RID: 9191
 	public string AnimName;
 
-	// Token: 0x040023C8 RID: 9160
+	// Token: 0x040023E8 RID: 9192
 	public bool Bench;
 }

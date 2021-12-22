@@ -1,27 +1,27 @@
 ﻿using System;
 
-// Token: 0x02000503 RID: 1283
+// Token: 0x02000505 RID: 1285
 [Serializable]
 public struct SerializedStaticClass
 {
-	// Token: 0x0400486F RID: 18543
+	// Token: 0x040048AE RID: 18606
 	public string TypePath;
 
-	// Token: 0x04004870 RID: 18544
+	// Token: 0x040048AF RID: 18607
 	public ValueDict PropertyValues;
 
-	// Token: 0x04004871 RID: 18545
+	// Token: 0x040048B0 RID: 18608
 	public ValueDict FieldValues;
 
-	// Token: 0x04004872 RID: 18546
+	// Token: 0x040048B1 RID: 18609
 	public ReferenceDict PropertyReferences;
 
-	// Token: 0x04004873 RID: 18547
+	// Token: 0x040048B2 RID: 18610
 	public ReferenceDict FieldReferences;
 
-	// Token: 0x04004874 RID: 18548
+	// Token: 0x040048B3 RID: 18611
 	public ReferenceArrayDict PropertyReferenceArrays;
 
-	// Token: 0x04004875 RID: 18549
+	// Token: 0x040048B4 RID: 18612
 	public ReferenceArrayDict FieldReferenceArrays;
 }

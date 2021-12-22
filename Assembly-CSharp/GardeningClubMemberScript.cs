@@ -2,10 +2,10 @@
 using Pathfinding;
 using UnityEngine;
 
-// Token: 0x020002D5 RID: 725
+// Token: 0x020002D6 RID: 726
 public class GardeningClubMemberScript : MonoBehaviour
 {
-	// Token: 0x060014B5 RID: 5301 RVA: 0x000CB560 File Offset: 0x000C9760
+	// Token: 0x060014BC RID: 5308 RVA: 0x000CBD04 File Offset: 0x000C9F04
 	private void Start()
 	{
 		Animation component = base.GetComponent<Animation>();
@@ -20,7 +20,7 @@ public class GardeningClubMemberScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014B6 RID: 5302 RVA: 0x000CB620 File Offset: 0x000C9820
+	// Token: 0x060014BD RID: 5309 RVA: 0x000CBDC4 File Offset: 0x000C9FC4
 	private void Update()
 	{
 		if (!this.Angry)
@@ -165,7 +165,7 @@ public class GardeningClubMemberScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014B7 RID: 5303 RVA: 0x000CBBF4 File Offset: 0x000C9DF4
+	// Token: 0x060014BE RID: 5310 RVA: 0x000CC398 File Offset: 0x000CA598
 	private void Punish()
 	{
 		Animation component = base.GetComponent<Animation>();
@@ -181,7 +181,7 @@ public class GardeningClubMemberScript : MonoBehaviour
 		this.PickpocketPanel.enabled = false;
 	}
 
-	// Token: 0x060014B8 RID: 5304 RVA: 0x000CBC88 File Offset: 0x000C9E88
+	// Token: 0x060014BF RID: 5311 RVA: 0x000CC42C File Offset: 0x000CA62C
 	private void LookForYandere()
 	{
 		float num = Vector3.Distance(base.transform.position, this.Yandere.transform.position);
@@ -249,96 +249,96 @@ public class GardeningClubMemberScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002071 RID: 8305
+	// Token: 0x04002091 RID: 8337
 	public PickpocketMinigameScript PickpocketMinigame;
 
-	// Token: 0x04002072 RID: 8306
+	// Token: 0x04002092 RID: 8338
 	public DetectionMarkerScript DetectionMarker;
 
-	// Token: 0x04002073 RID: 8307
+	// Token: 0x04002093 RID: 8339
 	public CameraEffectsScript CameraEffects;
 
-	// Token: 0x04002074 RID: 8308
+	// Token: 0x04002094 RID: 8340
 	public CharacterController MyController;
 
-	// Token: 0x04002075 RID: 8309
+	// Token: 0x04002095 RID: 8341
 	public CabinetDoorScript CabinetDoor;
 
-	// Token: 0x04002076 RID: 8310
+	// Token: 0x04002096 RID: 8342
 	public ReputationScript Reputation;
 
-	// Token: 0x04002077 RID: 8311
+	// Token: 0x04002097 RID: 8343
 	public SubtitleScript Subtitle;
 
-	// Token: 0x04002078 RID: 8312
+	// Token: 0x04002098 RID: 8344
 	public YandereScript Yandere;
 
-	// Token: 0x04002079 RID: 8313
+	// Token: 0x04002099 RID: 8345
 	public PromptScript Prompt;
 
-	// Token: 0x0400207A RID: 8314
+	// Token: 0x0400209A RID: 8346
 	public DoorScript ShedDoor;
 
-	// Token: 0x0400207B RID: 8315
+	// Token: 0x0400209B RID: 8347
 	public AIPath Pathfinding;
 
-	// Token: 0x0400207C RID: 8316
+	// Token: 0x0400209C RID: 8348
 	public UIPanel PickpocketPanel;
 
-	// Token: 0x0400207D RID: 8317
+	// Token: 0x0400209D RID: 8349
 	public UISprite TimeBar;
 
-	// Token: 0x0400207E RID: 8318
+	// Token: 0x0400209E RID: 8350
 	public Transform PickpocketSpot;
 
-	// Token: 0x0400207F RID: 8319
+	// Token: 0x0400209F RID: 8351
 	public Transform Destination;
 
-	// Token: 0x04002080 RID: 8320
+	// Token: 0x040020A0 RID: 8352
 	public GameObject Padlock;
 
-	// Token: 0x04002081 RID: 8321
+	// Token: 0x040020A1 RID: 8353
 	public GameObject Marker;
 
-	// Token: 0x04002082 RID: 8322
+	// Token: 0x040020A2 RID: 8354
 	public GameObject Key;
 
-	// Token: 0x04002083 RID: 8323
+	// Token: 0x040020A3 RID: 8355
 	public bool Moving;
 
-	// Token: 0x04002084 RID: 8324
+	// Token: 0x040020A4 RID: 8356
 	public bool Leader;
 
-	// Token: 0x04002085 RID: 8325
+	// Token: 0x040020A5 RID: 8357
 	public bool Angry;
 
-	// Token: 0x04002086 RID: 8326
+	// Token: 0x040020A6 RID: 8358
 	public string AngryAnim = "idle_01";
 
-	// Token: 0x04002087 RID: 8327
+	// Token: 0x040020A7 RID: 8359
 	public string IdleAnim = string.Empty;
 
-	// Token: 0x04002088 RID: 8328
+	// Token: 0x040020A8 RID: 8360
 	public string WalkAnim = string.Empty;
 
-	// Token: 0x04002089 RID: 8329
+	// Token: 0x040020A9 RID: 8361
 	public float Timer;
 
-	// Token: 0x0400208A RID: 8330
+	// Token: 0x040020AA RID: 8362
 	public int Phase = 1;
 
-	// Token: 0x0400208B RID: 8331
+	// Token: 0x040020AB RID: 8363
 	public int ID = 1;
 
-	// Token: 0x0400208C RID: 8332
+	// Token: 0x040020AC RID: 8364
 	public GardeningClubMemberScript ClubLeader;
 
-	// Token: 0x0400208D RID: 8333
+	// Token: 0x040020AD RID: 8365
 	public Camera VisionCone;
 
-	// Token: 0x0400208E RID: 8334
+	// Token: 0x040020AE RID: 8366
 	public Transform Eyes;
 
-	// Token: 0x0400208F RID: 8335
+	// Token: 0x040020AF RID: 8367
 	public float Alarm;
 }

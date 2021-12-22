@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004D1 RID: 1233
+// Token: 0x020004D3 RID: 1235
 public class YanvaniaDoubleFireballScript : MonoBehaviour
 {
-	// Token: 0x06002055 RID: 8277 RVA: 0x001D8AA8 File Offset: 0x001D6CA8
+	// Token: 0x06002066 RID: 8294 RVA: 0x001DA1DC File Offset: 0x001D83DC
 	private void Start()
 	{
 		UnityEngine.Object.Instantiate<GameObject>(this.LightningEffect, new Vector3(base.transform.position.x, 8f, 0f), Quaternion.identity);
 		this.Direction = ((this.Dracula.position.x > base.transform.position.x) ? -1 : 1);
 	}
 
-	// Token: 0x06002056 RID: 8278 RVA: 0x001D8B14 File Offset: 0x001D6D14
+	// Token: 0x06002067 RID: 8295 RVA: 0x001DA248 File Offset: 0x001D8448
 	private void Update()
 	{
 		if (this.Timer > 1f && !this.SpawnedFirst)
@@ -63,39 +63,39 @@ public class YanvaniaDoubleFireballScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400469D RID: 18077
+	// Token: 0x040046DC RID: 18140
 	public GameObject Lavaball;
 
-	// Token: 0x0400469E RID: 18078
+	// Token: 0x040046DD RID: 18141
 	public GameObject FirstLavaball;
 
-	// Token: 0x0400469F RID: 18079
+	// Token: 0x040046DE RID: 18142
 	public GameObject SecondLavaball;
 
-	// Token: 0x040046A0 RID: 18080
+	// Token: 0x040046DF RID: 18143
 	public GameObject LightningEffect;
 
-	// Token: 0x040046A1 RID: 18081
+	// Token: 0x040046E0 RID: 18144
 	public Transform Dracula;
 
-	// Token: 0x040046A2 RID: 18082
+	// Token: 0x040046E1 RID: 18145
 	public bool SpawnedFirst;
 
-	// Token: 0x040046A3 RID: 18083
+	// Token: 0x040046E2 RID: 18146
 	public bool SpawnedSecond;
 
-	// Token: 0x040046A4 RID: 18084
+	// Token: 0x040046E3 RID: 18147
 	public float FirstPosition;
 
-	// Token: 0x040046A5 RID: 18085
+	// Token: 0x040046E4 RID: 18148
 	public float SecondPosition;
 
-	// Token: 0x040046A6 RID: 18086
+	// Token: 0x040046E5 RID: 18149
 	public int Direction;
 
-	// Token: 0x040046A7 RID: 18087
+	// Token: 0x040046E6 RID: 18150
 	public float Timer;
 
-	// Token: 0x040046A8 RID: 18088
+	// Token: 0x040046E7 RID: 18151
 	public float Speed;
 }

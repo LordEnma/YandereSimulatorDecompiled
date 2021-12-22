@@ -652,31 +652,31 @@ public class EventDelegate
 	// Token: 0x040004A8 RID: 1192
 	private static int s_Hash = "EventDelegate".GetHashCode();
 
-	// Token: 0x020005E4 RID: 1508
+	// Token: 0x020005E6 RID: 1510
 	[Serializable]
 	public class Parameter
 	{
-		// Token: 0x06002517 RID: 9495 RVA: 0x001F89CA File Offset: 0x001F6BCA
+		// Token: 0x06002528 RID: 9512 RVA: 0x001FA0FE File Offset: 0x001F82FE
 		public Parameter()
 		{
 		}
 
-		// Token: 0x06002518 RID: 9496 RVA: 0x001F89E2 File Offset: 0x001F6BE2
+		// Token: 0x06002529 RID: 9513 RVA: 0x001FA116 File Offset: 0x001F8316
 		public Parameter(UnityEngine.Object obj, string field)
 		{
 			this.obj = obj;
 			this.field = field;
 		}
 
-		// Token: 0x06002519 RID: 9497 RVA: 0x001F8A08 File Offset: 0x001F6C08
+		// Token: 0x0600252A RID: 9514 RVA: 0x001FA13C File Offset: 0x001F833C
 		public Parameter(object val)
 		{
 			this.mValue = val;
 		}
 
 		// Token: 0x1700053F RID: 1343
-		// (get) Token: 0x0600251A RID: 9498 RVA: 0x001F8A28 File Offset: 0x001F6C28
-		// (set) Token: 0x0600251B RID: 9499 RVA: 0x001F8B39 File Offset: 0x001F6D39
+		// (get) Token: 0x0600252B RID: 9515 RVA: 0x001FA15C File Offset: 0x001F835C
+		// (set) Token: 0x0600252C RID: 9516 RVA: 0x001FA26D File Offset: 0x001F846D
 		public object value
 		{
 			get
@@ -725,7 +725,7 @@ public class EventDelegate
 		}
 
 		// Token: 0x17000540 RID: 1344
-		// (get) Token: 0x0600251C RID: 9500 RVA: 0x001F8B42 File Offset: 0x001F6D42
+		// (get) Token: 0x0600252D RID: 9517 RVA: 0x001FA276 File Offset: 0x001F8476
 		public Type type
 		{
 			get
@@ -742,34 +742,34 @@ public class EventDelegate
 			}
 		}
 
-		// Token: 0x04004D2B RID: 19755
+		// Token: 0x04004D6A RID: 19818
 		public UnityEngine.Object obj;
 
-		// Token: 0x04004D2C RID: 19756
+		// Token: 0x04004D6B RID: 19819
 		public string field;
 
-		// Token: 0x04004D2D RID: 19757
+		// Token: 0x04004D6C RID: 19820
 		[NonSerialized]
 		private object mValue;
 
-		// Token: 0x04004D2E RID: 19758
+		// Token: 0x04004D6D RID: 19821
 		[NonSerialized]
 		public Type expectedType = typeof(void);
 
-		// Token: 0x04004D2F RID: 19759
+		// Token: 0x04004D6E RID: 19822
 		[NonSerialized]
 		public bool cached;
 
-		// Token: 0x04004D30 RID: 19760
+		// Token: 0x04004D6F RID: 19823
 		[NonSerialized]
 		public PropertyInfo propInfo;
 
-		// Token: 0x04004D31 RID: 19761
+		// Token: 0x04004D70 RID: 19824
 		[NonSerialized]
 		public FieldInfo fieldInfo;
 	}
 
-	// Token: 0x020005E5 RID: 1509
-	// (Invoke) Token: 0x0600251E RID: 9502
+	// Token: 0x020005E7 RID: 1511
+	// (Invoke) Token: 0x0600252F RID: 9519
 	public delegate void Callback();
 }

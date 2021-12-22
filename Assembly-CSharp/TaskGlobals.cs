@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002F9 RID: 761
+// Token: 0x020002FA RID: 762
 public static class TaskGlobals
 {
-	// Token: 0x06001789 RID: 6025 RVA: 0x000E0ABC File Offset: 0x000DECBC
+	// Token: 0x06001790 RID: 6032 RVA: 0x000E127C File Offset: 0x000DF47C
 	public static bool GetGuitarPhoto(int photoID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_GuitarPhoto_" + photoID.ToString());
 	}
 
-	// Token: 0x0600178A RID: 6026 RVA: 0x000E0AF4 File Offset: 0x000DECF4
+	// Token: 0x06001791 RID: 6033 RVA: 0x000E12B4 File Offset: 0x000DF4B4
 	public static void SetGuitarPhoto(int photoID, bool value)
 	{
 		string text = photoID.ToString();
@@ -18,19 +18,19 @@ public static class TaskGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_GuitarPhoto_" + text, value);
 	}
 
-	// Token: 0x0600178B RID: 6027 RVA: 0x000E0B50 File Offset: 0x000DED50
+	// Token: 0x06001792 RID: 6034 RVA: 0x000E1310 File Offset: 0x000DF510
 	public static int[] KeysOfGuitarPhoto()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_GuitarPhoto_");
 	}
 
-	// Token: 0x0600178C RID: 6028 RVA: 0x000E0B80 File Offset: 0x000DED80
+	// Token: 0x06001793 RID: 6035 RVA: 0x000E1340 File Offset: 0x000DF540
 	public static bool GetKittenPhoto(int photoID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_KittenPhoto_" + photoID.ToString());
 	}
 
-	// Token: 0x0600178D RID: 6029 RVA: 0x000E0BB8 File Offset: 0x000DEDB8
+	// Token: 0x06001794 RID: 6036 RVA: 0x000E1378 File Offset: 0x000DF578
 	public static void SetKittenPhoto(int photoID, bool value)
 	{
 		string text = photoID.ToString();
@@ -38,19 +38,19 @@ public static class TaskGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_KittenPhoto_" + text, value);
 	}
 
-	// Token: 0x0600178E RID: 6030 RVA: 0x000E0C14 File Offset: 0x000DEE14
+	// Token: 0x06001795 RID: 6037 RVA: 0x000E13D4 File Offset: 0x000DF5D4
 	public static int[] KeysOfKittenPhoto()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_KittenPhoto_");
 	}
 
-	// Token: 0x0600178F RID: 6031 RVA: 0x000E0C44 File Offset: 0x000DEE44
+	// Token: 0x06001796 RID: 6038 RVA: 0x000E1404 File Offset: 0x000DF604
 	public static bool GetHorudaPhoto(int photoID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_HorudaPhoto_" + photoID.ToString());
 	}
 
-	// Token: 0x06001790 RID: 6032 RVA: 0x000E0C7C File Offset: 0x000DEE7C
+	// Token: 0x06001797 RID: 6039 RVA: 0x000E143C File Offset: 0x000DF63C
 	public static void SetHorudaPhoto(int photoID, bool value)
 	{
 		string text = photoID.ToString();
@@ -58,19 +58,19 @@ public static class TaskGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_HorudaPhoto_" + text, value);
 	}
 
-	// Token: 0x06001791 RID: 6033 RVA: 0x000E0CD8 File Offset: 0x000DEED8
+	// Token: 0x06001798 RID: 6040 RVA: 0x000E1498 File Offset: 0x000DF698
 	public static int[] KeysOfHorudaPhoto()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_HorudaPhoto_");
 	}
 
-	// Token: 0x06001792 RID: 6034 RVA: 0x000E0D08 File Offset: 0x000DEF08
+	// Token: 0x06001799 RID: 6041 RVA: 0x000E14C8 File Offset: 0x000DF6C8
 	public static int GetTaskStatus(int taskID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_TaskStatus_" + taskID.ToString());
 	}
 
-	// Token: 0x06001793 RID: 6035 RVA: 0x000E0D40 File Offset: 0x000DEF40
+	// Token: 0x0600179A RID: 6042 RVA: 0x000E1500 File Offset: 0x000DF700
 	public static void SetTaskStatus(int taskID, int value)
 	{
 		string text = taskID.ToString();
@@ -78,13 +78,13 @@ public static class TaskGlobals
 		PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_TaskStatus_" + text, value);
 	}
 
-	// Token: 0x06001794 RID: 6036 RVA: 0x000E0D9C File Offset: 0x000DEF9C
+	// Token: 0x0600179B RID: 6043 RVA: 0x000E155C File Offset: 0x000DF75C
 	public static int[] KeysOfTaskStatus()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_TaskStatus_");
 	}
 
-	// Token: 0x06001795 RID: 6037 RVA: 0x000E0DCC File Offset: 0x000DEFCC
+	// Token: 0x0600179C RID: 6044 RVA: 0x000E158C File Offset: 0x000DF78C
 	public static void DeleteAll()
 	{
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_GuitarPhoto_", TaskGlobals.KeysOfGuitarPhoto());
@@ -93,15 +93,15 @@ public static class TaskGlobals
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_TaskStatus_", TaskGlobals.KeysOfTaskStatus());
 	}
 
-	// Token: 0x04002272 RID: 8818
+	// Token: 0x04002292 RID: 8850
 	private const string Str_GuitarPhoto = "GuitarPhoto_";
 
-	// Token: 0x04002273 RID: 8819
+	// Token: 0x04002293 RID: 8851
 	private const string Str_KittenPhoto = "KittenPhoto_";
 
-	// Token: 0x04002274 RID: 8820
+	// Token: 0x04002294 RID: 8852
 	private const string Str_HorudaPhoto = "HorudaPhoto_";
 
-	// Token: 0x04002275 RID: 8821
+	// Token: 0x04002295 RID: 8853
 	private const string Str_TaskStatus = "TaskStatus_";
 }
