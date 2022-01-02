@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004B5 RID: 1205
 public class WeaponMenuScript : MonoBehaviour
 {
-	// Token: 0x06001F90 RID: 8080 RVA: 0x001BAB74 File Offset: 0x001B8D74
+	// Token: 0x06001F93 RID: 8083 RVA: 0x001BB04C File Offset: 0x001B924C
 	private void Start()
 	{
 		this.KeyboardMenu.localScale = Vector3.zero;
@@ -13,7 +13,7 @@ public class WeaponMenuScript : MonoBehaviour
 		this.UpdateSprites();
 	}
 
-	// Token: 0x06001F91 RID: 8081 RVA: 0x001BABB0 File Offset: 0x001B8DB0
+	// Token: 0x06001F94 RID: 8084 RVA: 0x001BB088 File Offset: 0x001B9288
 	private void Update()
 	{
 		if (!this.PauseScreen.Show && !this.Yandere.DebugMenu.activeInHierarchy)
@@ -23,12 +23,6 @@ public class WeaponMenuScript : MonoBehaviour
 				if ((this.IM.DPadUp && this.IM.TappedUp) || (this.IM.DPadDown && this.IM.TappedDown) || (this.IM.DPadLeft && this.IM.TappedLeft) || (this.IM.DPadRight && this.IM.TappedRight))
 				{
 					this.Yandere.EmptyHands();
-					if (this.IM.DPadLeft || this.IM.DPadRight || this.IM.DPadUp || this.Yandere.Mask != null)
-					{
-						this.KeyboardShow = false;
-						this.Panel.enabled = true;
-						this.Show = true;
-					}
 					if (this.IM.DPadLeft)
 					{
 						this.Button.localPosition = new Vector3(-320f, 0f, 0f);
@@ -41,6 +35,10 @@ public class WeaponMenuScript : MonoBehaviour
 					}
 					else if (this.IM.DPadUp)
 					{
+						if (!this.Show)
+						{
+							this.Selected = 6;
+						}
 						if (this.Selected == 6)
 						{
 							this.Button.localPosition = new Vector3(64f, 190f, 0f);
@@ -64,6 +62,12 @@ public class WeaponMenuScript : MonoBehaviour
 							this.Button.localPosition = new Vector3(64f, -125f, 0f);
 							this.Selected = 4;
 						}
+					}
+					if (this.IM.DPadLeft || this.IM.DPadRight || this.IM.DPadUp || this.Yandere.Mask != null)
+					{
+						this.KeyboardShow = false;
+						this.Panel.enabled = true;
+						this.Show = true;
 					}
 					this.UpdateSprites();
 				}
@@ -181,6 +185,16 @@ public class WeaponMenuScript : MonoBehaviour
 							this.Yandere.Mopping = false;
 						}
 					}
+					if (this.EquipCaseWeaponButton.enabled && Input.GetButtonDown("Y"))
+					{
+						if (this.Yandere.Container.TrashCan.ConcealedWeapon != null)
+						{
+							WeaponScript concealedWeapon = this.Yandere.Container.TrashCan.ConcealedWeapon;
+						}
+						this.Yandere.Container.TrashCan.RemoveContents();
+						this.UpdateSprites();
+						this.Show = false;
+					}
 					if (Input.GetButtonDown("B"))
 					{
 						this.Show = false;
@@ -226,9 +240,18 @@ public class WeaponMenuScript : MonoBehaviour
 		{
 			this.KeyboardMenu.localScale = Vector3.Lerp(this.KeyboardMenu.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 			this.Timer += Time.deltaTime;
-			if (this.Timer > 3f)
+			if (this.Timer > 5f)
 			{
 				this.KeyboardShow = false;
+			}
+			if (this.EquipCaseWeaponKey.enabled && Input.GetButtonDown("Y"))
+			{
+				if (this.Yandere.Container.TrashCan.ConcealedWeapon != null)
+				{
+					WeaponScript concealedWeapon2 = this.Yandere.Container.TrashCan.ConcealedWeapon;
+				}
+				this.Yandere.Container.TrashCan.RemoveContents();
+				this.UpdateSprites();
 			}
 			if (!this.Yandere.CanMove || this.Yandere.Aiming || this.PauseScreen.Show || this.InputDevice.Type == InputDeviceType.Gamepad || Input.GetButton("Y"))
 			{
@@ -237,7 +260,7 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F92 RID: 8082 RVA: 0x001BB40C File Offset: 0x001B960C
+	// Token: 0x06001F95 RID: 8085 RVA: 0x001BB9C8 File Offset: 0x001B9BC8
 	public void Equip()
 	{
 		if (this.Yandere.Weapon[this.Selected] != null)
@@ -289,9 +312,11 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F93 RID: 8083 RVA: 0x001BB608 File Offset: 0x001B9808
+	// Token: 0x06001F96 RID: 8086 RVA: 0x001BBBC4 File Offset: 0x001B9DC4
 	public void UpdateSprites()
 	{
+		this.EquipCaseWeaponButton.enabled = false;
+		this.EquipCaseWeaponKey.enabled = false;
 		for (int i = 1; i < 3; i++)
 		{
 			UISprite uisprite = this.KeyboardBG[i];
@@ -365,6 +390,11 @@ public class WeaponMenuScript : MonoBehaviour
 			uisprite7.color = new Color(uisprite7.color.r, uisprite7.color.g, uisprite7.color.b, 1f);
 			uisprite9.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
 			uisprite12.color = new Color(uisprite12.color.r, uisprite12.color.g, uisprite12.color.b, 1f);
+			if (this.Yandere.Container.TrashCan != null && this.Yandere.Container.TrashCan.Item != null)
+			{
+				this.EquipCaseWeaponButton.enabled = true;
+				this.EquipCaseWeaponKey.enabled = true;
+			}
 		}
 		UISprite uisprite13 = this.KeyboardItem[5];
 		UISprite uisprite14 = this.Item[5];
@@ -446,7 +476,7 @@ public class WeaponMenuScript : MonoBehaviour
 		this.BG[4].color = this.OriginalColor;
 	}
 
-	// Token: 0x06001F94 RID: 8084 RVA: 0x001BC414 File Offset: 0x001BA614
+	// Token: 0x06001F97 RID: 8087 RVA: 0x001BCA34 File Offset: 0x001BAC34
 	private void DropMask()
 	{
 		if (this.Yandere.Mask != null)
@@ -464,7 +494,7 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F95 RID: 8085 RVA: 0x001BC4B0 File Offset: 0x001BA6B0
+	// Token: 0x06001F98 RID: 8088 RVA: 0x001BCAD0 File Offset: 0x001BACD0
 	private void DropBookbag()
 	{
 		if (this.Yandere.Bookbag != null)
@@ -474,73 +504,79 @@ public class WeaponMenuScript : MonoBehaviour
 		this.UpdateSprites();
 	}
 
-	// Token: 0x06001F96 RID: 8086 RVA: 0x001BC4DB File Offset: 0x001BA6DB
+	// Token: 0x06001F99 RID: 8089 RVA: 0x001BCAFB File Offset: 0x001BACFB
 	public void InstantHide()
 	{
 		this.KeyboardMenu.localScale = Vector3.zero;
 		base.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x040041DE RID: 16862
+	// Token: 0x040041E5 RID: 16869
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040041DF RID: 16863
+	// Token: 0x040041E6 RID: 16870
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x040041E0 RID: 16864
+	// Token: 0x040041E7 RID: 16871
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x040041E1 RID: 16865
+	// Token: 0x040041E8 RID: 16872
 	public YandereScript Yandere;
 
-	// Token: 0x040041E2 RID: 16866
+	// Token: 0x040041E9 RID: 16873
 	public InputManagerScript IM;
 
-	// Token: 0x040041E3 RID: 16867
+	// Token: 0x040041EA RID: 16874
 	public UIPanel KeyboardPanel;
 
-	// Token: 0x040041E4 RID: 16868
+	// Token: 0x040041EB RID: 16875
 	public UIPanel Panel;
 
-	// Token: 0x040041E5 RID: 16869
+	// Token: 0x040041EC RID: 16876
 	public Transform KeyboardMenu;
 
-	// Token: 0x040041E6 RID: 16870
+	// Token: 0x040041ED RID: 16877
 	public bool KeyboardShow;
 
-	// Token: 0x040041E7 RID: 16871
+	// Token: 0x040041EE RID: 16878
 	public bool Released = true;
 
-	// Token: 0x040041E8 RID: 16872
+	// Token: 0x040041EF RID: 16879
 	public bool Show;
 
-	// Token: 0x040041E9 RID: 16873
+	// Token: 0x040041F0 RID: 16880
 	public UISprite[] BG;
 
-	// Token: 0x040041EA RID: 16874
+	// Token: 0x040041F1 RID: 16881
 	public UISprite[] Outline;
 
-	// Token: 0x040041EB RID: 16875
+	// Token: 0x040041F2 RID: 16882
 	public UISprite[] Item;
 
-	// Token: 0x040041EC RID: 16876
+	// Token: 0x040041F3 RID: 16883
 	public UISprite[] KeyboardBG;
 
-	// Token: 0x040041ED RID: 16877
+	// Token: 0x040041F4 RID: 16884
 	public UISprite[] KeyboardOutline;
 
-	// Token: 0x040041EE RID: 16878
+	// Token: 0x040041F5 RID: 16885
 	public UISprite[] KeyboardItem;
 
-	// Token: 0x040041EF RID: 16879
+	// Token: 0x040041F6 RID: 16886
+	public UISprite EquipCaseWeaponButton;
+
+	// Token: 0x040041F7 RID: 16887
+	public UILabel EquipCaseWeaponKey;
+
+	// Token: 0x040041F8 RID: 16888
 	public int Selected = 1;
 
-	// Token: 0x040041F0 RID: 16880
+	// Token: 0x040041F9 RID: 16889
 	public Color OriginalColor;
 
-	// Token: 0x040041F1 RID: 16881
+	// Token: 0x040041FA RID: 16890
 	public Transform Button;
 
-	// Token: 0x040041F2 RID: 16882
+	// Token: 0x040041FB RID: 16891
 	public float Timer;
 }

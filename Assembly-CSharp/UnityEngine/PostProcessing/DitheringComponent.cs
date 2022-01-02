@@ -5,8 +5,8 @@ namespace UnityEngine.PostProcessing
 	// Token: 0x02000554 RID: 1364
 	public sealed class DitheringComponent : PostProcessingComponentRenderTexture<DitheringModel>
 	{
-		// Token: 0x170004F0 RID: 1264
-		// (get) Token: 0x060022C5 RID: 8901 RVA: 0x001EED2A File Offset: 0x001ECF2A
+		// Token: 0x170004F1 RID: 1265
+		// (get) Token: 0x060022C8 RID: 8904 RVA: 0x001EF31A File Offset: 0x001ED51A
 		public override bool active
 		{
 			get
@@ -15,13 +15,13 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022C6 RID: 8902 RVA: 0x001EED49 File Offset: 0x001ECF49
+		// Token: 0x060022C9 RID: 8905 RVA: 0x001EF339 File Offset: 0x001ED539
 		public override void OnDisable()
 		{
 			this.noiseTextures = null;
 		}
 
-		// Token: 0x060022C7 RID: 8903 RVA: 0x001EED54 File Offset: 0x001ECF54
+		// Token: 0x060022CA RID: 8906 RVA: 0x001EF344 File Offset: 0x001ED544
 		private void LoadNoiseTextures()
 		{
 			this.noiseTextures = new Texture2D[64];
@@ -31,7 +31,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022C8 RID: 8904 RVA: 0x001EED9C File Offset: 0x001ECF9C
+		// Token: 0x060022CB RID: 8907 RVA: 0x001EF38C File Offset: 0x001ED58C
 		public override void Prepare(Material uberMaterial)
 		{
 			int num = this.textureIndex + 1;
@@ -52,22 +52,22 @@ namespace UnityEngine.PostProcessing
 			uberMaterial.SetVector(DitheringComponent.Uniforms._DitheringCoords, new Vector4((float)this.context.width / (float)texture2D.width, (float)this.context.height / (float)texture2D.height, value, value2));
 		}
 
-		// Token: 0x04004A98 RID: 19096
+		// Token: 0x04004AA1 RID: 19105
 		private Texture2D[] noiseTextures;
 
-		// Token: 0x04004A99 RID: 19097
+		// Token: 0x04004AA2 RID: 19106
 		private int textureIndex;
 
-		// Token: 0x04004A9A RID: 19098
+		// Token: 0x04004AA3 RID: 19107
 		private const int k_TextureCount = 64;
 
 		// Token: 0x02000699 RID: 1689
 		private static class Uniforms
 		{
-			// Token: 0x04005035 RID: 20533
+			// Token: 0x0400503E RID: 20542
 			internal static readonly int _DitheringTex = Shader.PropertyToID("_DitheringTex");
 
-			// Token: 0x04005036 RID: 20534
+			// Token: 0x0400503F RID: 20543
 			internal static readonly int _DitheringCoords = Shader.PropertyToID("_DitheringCoords");
 		}
 	}

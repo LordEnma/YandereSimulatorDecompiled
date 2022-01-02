@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000335 RID: 821
 public class InstantDeathColliderScript : MonoBehaviour
 {
-	// Token: 0x060018C9 RID: 6345 RVA: 0x000F4397 File Offset: 0x000F2597
+	// Token: 0x060018CB RID: 6347 RVA: 0x000F464B File Offset: 0x000F284B
 	private void Update()
 	{
 		this.Frame++;
@@ -14,7 +14,7 @@ public class InstantDeathColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018CA RID: 6346 RVA: 0x000F43BC File Offset: 0x000F25BC
+	// Token: 0x060018CC RID: 6348 RVA: 0x000F4670 File Offset: 0x000F2870
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -38,6 +38,6 @@ public class InstantDeathColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002612 RID: 9746
+	// Token: 0x04002616 RID: 9750
 	public int Frame;
 }

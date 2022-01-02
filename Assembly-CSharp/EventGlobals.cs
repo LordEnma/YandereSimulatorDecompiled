@@ -4,8 +4,8 @@
 public static class EventGlobals
 {
 	// Token: 0x1700038C RID: 908
-	// (get) Token: 0x06001597 RID: 5527 RVA: 0x000D967C File Offset: 0x000D787C
-	// (set) Token: 0x06001598 RID: 5528 RVA: 0x000D96AC File Offset: 0x000D78AC
+	// (get) Token: 0x06001597 RID: 5527 RVA: 0x000D98CC File Offset: 0x000D7ACC
+	// (set) Token: 0x06001598 RID: 5528 RVA: 0x000D98FC File Offset: 0x000D7AFC
 	public static bool BefriendConversation
 	{
 		get
@@ -19,8 +19,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x1700038D RID: 909
-	// (get) Token: 0x06001599 RID: 5529 RVA: 0x000D96DC File Offset: 0x000D78DC
-	// (set) Token: 0x0600159A RID: 5530 RVA: 0x000D970C File Offset: 0x000D790C
+	// (get) Token: 0x06001599 RID: 5529 RVA: 0x000D992C File Offset: 0x000D7B2C
+	// (set) Token: 0x0600159A RID: 5530 RVA: 0x000D995C File Offset: 0x000D7B5C
 	public static bool StalkerConversation
 	{
 		get
@@ -34,8 +34,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x1700038E RID: 910
-	// (get) Token: 0x0600159B RID: 5531 RVA: 0x000D973C File Offset: 0x000D793C
-	// (set) Token: 0x0600159C RID: 5532 RVA: 0x000D976C File Offset: 0x000D796C
+	// (get) Token: 0x0600159B RID: 5531 RVA: 0x000D998C File Offset: 0x000D7B8C
+	// (set) Token: 0x0600159C RID: 5532 RVA: 0x000D99BC File Offset: 0x000D7BBC
 	public static bool KidnapConversation
 	{
 		get
@@ -49,8 +49,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x1700038F RID: 911
-	// (get) Token: 0x0600159D RID: 5533 RVA: 0x000D979C File Offset: 0x000D799C
-	// (set) Token: 0x0600159E RID: 5534 RVA: 0x000D97CC File Offset: 0x000D79CC
+	// (get) Token: 0x0600159D RID: 5533 RVA: 0x000D99EC File Offset: 0x000D7BEC
+	// (set) Token: 0x0600159E RID: 5534 RVA: 0x000D9A1C File Offset: 0x000D7C1C
 	public static bool OsanaConversation
 	{
 		get
@@ -64,8 +64,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000390 RID: 912
-	// (get) Token: 0x0600159F RID: 5535 RVA: 0x000D97FC File Offset: 0x000D79FC
-	// (set) Token: 0x060015A0 RID: 5536 RVA: 0x000D982C File Offset: 0x000D7A2C
+	// (get) Token: 0x0600159F RID: 5535 RVA: 0x000D9A4C File Offset: 0x000D7C4C
+	// (set) Token: 0x060015A0 RID: 5536 RVA: 0x000D9A7C File Offset: 0x000D7C7C
 	public static bool OsanaEvent1
 	{
 		get
@@ -79,8 +79,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000391 RID: 913
-	// (get) Token: 0x060015A1 RID: 5537 RVA: 0x000D985C File Offset: 0x000D7A5C
-	// (set) Token: 0x060015A2 RID: 5538 RVA: 0x000D988C File Offset: 0x000D7A8C
+	// (get) Token: 0x060015A1 RID: 5537 RVA: 0x000D9AAC File Offset: 0x000D7CAC
+	// (set) Token: 0x060015A2 RID: 5538 RVA: 0x000D9ADC File Offset: 0x000D7CDC
 	public static bool OsanaEvent2
 	{
 		get
@@ -94,8 +94,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000392 RID: 914
-	// (get) Token: 0x060015A3 RID: 5539 RVA: 0x000D98BC File Offset: 0x000D7ABC
-	// (set) Token: 0x060015A4 RID: 5540 RVA: 0x000D98EC File Offset: 0x000D7AEC
+	// (get) Token: 0x060015A3 RID: 5539 RVA: 0x000D9B0C File Offset: 0x000D7D0C
+	// (set) Token: 0x060015A4 RID: 5540 RVA: 0x000D9B3C File Offset: 0x000D7D3C
 	public static bool Event1
 	{
 		get
@@ -109,8 +109,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000393 RID: 915
-	// (get) Token: 0x060015A5 RID: 5541 RVA: 0x000D991C File Offset: 0x000D7B1C
-	// (set) Token: 0x060015A6 RID: 5542 RVA: 0x000D994C File Offset: 0x000D7B4C
+	// (get) Token: 0x060015A5 RID: 5541 RVA: 0x000D9B6C File Offset: 0x000D7D6C
+	// (set) Token: 0x060015A6 RID: 5542 RVA: 0x000D9B9C File Offset: 0x000D7D9C
 	public static bool Event2
 	{
 		get
@@ -124,8 +124,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000394 RID: 916
-	// (get) Token: 0x060015A7 RID: 5543 RVA: 0x000D997C File Offset: 0x000D7B7C
-	// (set) Token: 0x060015A8 RID: 5544 RVA: 0x000D99AC File Offset: 0x000D7BAC
+	// (get) Token: 0x060015A7 RID: 5543 RVA: 0x000D9BCC File Offset: 0x000D7DCC
+	// (set) Token: 0x060015A8 RID: 5544 RVA: 0x000D9BFC File Offset: 0x000D7DFC
 	public static bool LivingRoom
 	{
 		get
@@ -139,8 +139,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000395 RID: 917
-	// (get) Token: 0x060015A9 RID: 5545 RVA: 0x000D99DC File Offset: 0x000D7BDC
-	// (set) Token: 0x060015AA RID: 5546 RVA: 0x000D9A0C File Offset: 0x000D7C0C
+	// (get) Token: 0x060015A9 RID: 5545 RVA: 0x000D9C2C File Offset: 0x000D7E2C
+	// (set) Token: 0x060015AA RID: 5546 RVA: 0x000D9C5C File Offset: 0x000D7E5C
 	public static bool LearnedAboutPhotographer
 	{
 		get
@@ -153,7 +153,7 @@ public static class EventGlobals
 		}
 	}
 
-	// Token: 0x060015AB RID: 5547 RVA: 0x000D9A3C File Offset: 0x000D7C3C
+	// Token: 0x060015AB RID: 5547 RVA: 0x000D9C8C File Offset: 0x000D7E8C
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_BefriendConversation");
@@ -168,33 +168,33 @@ public static class EventGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_LearnedAboutPhotographer");
 	}
 
-	// Token: 0x040021B0 RID: 8624
+	// Token: 0x040021B3 RID: 8627
 	private const string Str_BefriendConversation = "BefriendConversation";
 
-	// Token: 0x040021B1 RID: 8625
+	// Token: 0x040021B4 RID: 8628
 	private const string Str_StalkerConversation = "StalkerConversation";
 
-	// Token: 0x040021B2 RID: 8626
+	// Token: 0x040021B5 RID: 8629
 	private const string Str_KidnapConversation = "KidnapConversation";
 
-	// Token: 0x040021B3 RID: 8627
+	// Token: 0x040021B6 RID: 8630
 	private const string Str_OsanaConversation = "OsanaConversation";
 
-	// Token: 0x040021B4 RID: 8628
+	// Token: 0x040021B7 RID: 8631
 	private const string Str_Event1 = "Event1";
 
-	// Token: 0x040021B5 RID: 8629
+	// Token: 0x040021B8 RID: 8632
 	private const string Str_Event2 = "Event2";
 
-	// Token: 0x040021B6 RID: 8630
+	// Token: 0x040021B9 RID: 8633
 	private const string Str_OsanaEvent1 = "OsanaEvent1";
 
-	// Token: 0x040021B7 RID: 8631
+	// Token: 0x040021BA RID: 8634
 	private const string Str_OsanaEvent2 = "OsanaEvent2";
 
-	// Token: 0x040021B8 RID: 8632
+	// Token: 0x040021BB RID: 8635
 	private const string Str_LivingRoom = "LivingRoom";
 
-	// Token: 0x040021B9 RID: 8633
+	// Token: 0x040021BC RID: 8636
 	private const string Str_LearnedAboutPhotographer = "LearnedAboutPhotographer";
 }

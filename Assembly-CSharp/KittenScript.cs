@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000347 RID: 839
 public class KittenScript : MonoBehaviour
 {
-	// Token: 0x06001932 RID: 6450 RVA: 0x000FBE28 File Offset: 0x000FA028
+	// Token: 0x06001934 RID: 6452 RVA: 0x000FC0E8 File Offset: 0x000FA2E8
 	private void LateUpdate()
 	{
 		if (Vector3.Distance(base.transform.position, this.Yandere.transform.position) < 5f)
@@ -20,30 +20,30 @@ public class KittenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040027A6 RID: 10150
+	// Token: 0x040027AA RID: 10154
 	public YandereScript Yandere;
 
-	// Token: 0x040027A7 RID: 10151
+	// Token: 0x040027AB RID: 10155
 	public GameObject Character;
 
-	// Token: 0x040027A8 RID: 10152
+	// Token: 0x040027AC RID: 10156
 	public string[] AnimationNames;
 
-	// Token: 0x040027A9 RID: 10153
+	// Token: 0x040027AD RID: 10157
 	public Transform Target;
 
-	// Token: 0x040027AA RID: 10154
+	// Token: 0x040027AE RID: 10158
 	public Transform Head;
 
-	// Token: 0x040027AB RID: 10155
+	// Token: 0x040027AF RID: 10159
 	public string CurrentAnim = string.Empty;
 
-	// Token: 0x040027AC RID: 10156
+	// Token: 0x040027B0 RID: 10160
 	public string IdleAnim = string.Empty;
 
-	// Token: 0x040027AD RID: 10157
+	// Token: 0x040027B1 RID: 10161
 	public bool Wait;
 
-	// Token: 0x040027AE RID: 10158
+	// Token: 0x040027B2 RID: 10162
 	public float Timer;
 }

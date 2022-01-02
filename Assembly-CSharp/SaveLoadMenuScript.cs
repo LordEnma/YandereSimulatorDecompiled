@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000406 RID: 1030
 public class SaveLoadMenuScript : MonoBehaviour
 {
-	// Token: 0x06001C22 RID: 7202 RVA: 0x00145C31 File Offset: 0x00143E31
+	// Token: 0x06001C24 RID: 7204 RVA: 0x0014602D File Offset: 0x0014422D
 	public void Start()
 	{
 		if (GameGlobals.Profile == 0)
@@ -20,7 +20,7 @@ public class SaveLoadMenuScript : MonoBehaviour
 		base.StartCoroutine(this.GetThumbnails());
 	}
 
-	// Token: 0x06001C23 RID: 7203 RVA: 0x00145C70 File Offset: 0x00143E70
+	// Token: 0x06001C25 RID: 7205 RVA: 0x0014606C File Offset: 0x0014426C
 	public void Update()
 	{
 		if (!this.ConfirmWindow.activeInHierarchy)
@@ -317,7 +317,7 @@ public class SaveLoadMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C24 RID: 7204 RVA: 0x00146661 File Offset: 0x00144861
+	// Token: 0x06001C26 RID: 7206 RVA: 0x00146A5D File Offset: 0x00144C5D
 	public IEnumerator GetThumbnails()
 	{
 		int num;
@@ -371,7 +371,7 @@ public class SaveLoadMenuScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06001C25 RID: 7205 RVA: 0x00146670 File Offset: 0x00144870
+	// Token: 0x06001C27 RID: 7207 RVA: 0x00146A6C File Offset: 0x00144C6C
 	public void UpdateHighlight()
 	{
 		if (this.Row < 1)
@@ -394,63 +394,63 @@ public class SaveLoadMenuScript : MonoBehaviour
 		this.Selected = this.Column + (this.Row - 1) * 5;
 	}
 
-	// Token: 0x04003181 RID: 12673
+	// Token: 0x04003188 RID: 12680
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003182 RID: 12674
+	// Token: 0x04003189 RID: 12681
 	public InputManagerScript InputManager;
 
-	// Token: 0x04003183 RID: 12675
+	// Token: 0x0400318A RID: 12682
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04003184 RID: 12676
+	// Token: 0x0400318B RID: 12683
 	public GameObject ConfirmWindow;
 
-	// Token: 0x04003185 RID: 12677
+	// Token: 0x0400318C RID: 12684
 	public GameObject WarningWindow;
 
-	// Token: 0x04003186 RID: 12678
+	// Token: 0x0400318D RID: 12685
 	public ClockScript Clock;
 
-	// Token: 0x04003187 RID: 12679
+	// Token: 0x0400318E RID: 12686
 	public Texture DefaultThumbnail;
 
-	// Token: 0x04003188 RID: 12680
+	// Token: 0x0400318F RID: 12687
 	public UILabel AreYouSureLabel;
 
-	// Token: 0x04003189 RID: 12681
+	// Token: 0x04003190 RID: 12688
 	public UILabel Header;
 
-	// Token: 0x0400318A RID: 12682
+	// Token: 0x04003191 RID: 12689
 	public UITexture[] Thumbnails;
 
-	// Token: 0x0400318B RID: 12683
+	// Token: 0x04003192 RID: 12690
 	public UILabel[] DataLabels;
 
-	// Token: 0x0400318C RID: 12684
+	// Token: 0x04003193 RID: 12691
 	public Transform Highlight;
 
-	// Token: 0x0400318D RID: 12685
+	// Token: 0x04003194 RID: 12692
 	public Camera UICamera;
 
-	// Token: 0x0400318E RID: 12686
+	// Token: 0x04003195 RID: 12693
 	public bool GrabScreenshot;
 
-	// Token: 0x0400318F RID: 12687
+	// Token: 0x04003196 RID: 12694
 	public bool Loading;
 
-	// Token: 0x04003190 RID: 12688
+	// Token: 0x04003197 RID: 12695
 	public bool Saving;
 
-	// Token: 0x04003191 RID: 12689
+	// Token: 0x04003198 RID: 12696
 	public int Profile;
 
-	// Token: 0x04003192 RID: 12690
+	// Token: 0x04003199 RID: 12697
 	public int Row = 1;
 
-	// Token: 0x04003193 RID: 12691
+	// Token: 0x0400319A RID: 12698
 	public int Column = 1;
 
-	// Token: 0x04003194 RID: 12692
+	// Token: 0x0400319B RID: 12699
 	public int Selected = 1;
 }

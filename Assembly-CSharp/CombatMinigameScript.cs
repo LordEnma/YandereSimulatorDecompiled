@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000254 RID: 596
 public class CombatMinigameScript : MonoBehaviour
 {
-	// Token: 0x0600128B RID: 4747 RVA: 0x0009355C File Offset: 0x0009175C
+	// Token: 0x0600128B RID: 4747 RVA: 0x000935C4 File Offset: 0x000917C4
 	private void Start()
 	{
 		this.RedVignette.color = new Color(1f, 1f, 1f, 0f);
@@ -20,7 +20,7 @@ public class CombatMinigameScript : MonoBehaviour
 		this.BG.enabled = false;
 	}
 
-	// Token: 0x0600128C RID: 4748 RVA: 0x00093628 File Offset: 0x00091828
+	// Token: 0x0600128C RID: 4748 RVA: 0x00093690 File Offset: 0x00091890
 	public void StartCombat()
 	{
 		this.StartPoint = this.MainCamera.transform.position;
@@ -45,7 +45,7 @@ public class CombatMinigameScript : MonoBehaviour
 		this.Delinquent.MyWeapon.GetComponent<Rigidbody>().useGravity = false;
 	}
 
-	// Token: 0x0600128D RID: 4749 RVA: 0x00093714 File Offset: 0x00091914
+	// Token: 0x0600128D RID: 4749 RVA: 0x0009377C File Offset: 0x0009197C
 	private void Update()
 	{
 		if (this.Zoom)
@@ -640,7 +640,7 @@ public class CombatMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600128E RID: 4750 RVA: 0x00095A70 File Offset: 0x00093C70
+	// Token: 0x0600128E RID: 4750 RVA: 0x00095AD8 File Offset: 0x00093CD8
 	private void Slowdown()
 	{
 		Time.timeScale = this.SlowdownFactor * this.Difficulty;
@@ -648,7 +648,7 @@ public class CombatMinigameScript : MonoBehaviour
 		this.MyAudio.pitch = this.SlowdownFactor * this.Difficulty;
 	}
 
-	// Token: 0x0600128F RID: 4751 RVA: 0x00095AC0 File Offset: 0x00093CC0
+	// Token: 0x0600128F RID: 4751 RVA: 0x00095B28 File Offset: 0x00093D28
 	private void ChooseButton()
 	{
 		this.ButtonPrompts[1].enabled = false;
@@ -687,7 +687,7 @@ public class CombatMinigameScript : MonoBehaviour
 		this.Timer = this.StartTime;
 	}
 
-	// Token: 0x06001290 RID: 4752 RVA: 0x00095C10 File Offset: 0x00093E10
+	// Token: 0x06001290 RID: 4752 RVA: 0x00095C78 File Offset: 0x00093E78
 	public void DisablePrompts()
 	{
 		this.ButtonPrompts[1].enabled = false;
@@ -705,7 +705,7 @@ public class CombatMinigameScript : MonoBehaviour
 		this.ButtonID = 0;
 	}
 
-	// Token: 0x06001291 RID: 4753 RVA: 0x00095CD4 File Offset: 0x00093ED4
+	// Token: 0x06001291 RID: 4753 RVA: 0x00095D3C File Offset: 0x00093F3C
 	private void AdjustMidpoint()
 	{
 		if (this.Strength == 0f)
@@ -727,7 +727,7 @@ public class CombatMinigameScript : MonoBehaviour
 		this.MainCamera.LookAt(this.Midpoint.position);
 	}
 
-	// Token: 0x06001292 RID: 4754 RVA: 0x00095E14 File Offset: 0x00094014
+	// Token: 0x06001292 RID: 4754 RVA: 0x00095E7C File Offset: 0x0009407C
 	public void Stop()
 	{
 		if (this.Delinquent != null)
@@ -738,7 +738,7 @@ public class CombatMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001293 RID: 4755 RVA: 0x00095E48 File Offset: 0x00094048
+	// Token: 0x06001293 RID: 4755 RVA: 0x00095EB0 File Offset: 0x000940B0
 	public void ResetValues()
 	{
 		this.Label.text = "State: A";
@@ -755,7 +755,7 @@ public class CombatMinigameScript : MonoBehaviour
 		this.Delinquent = null;
 	}
 
-	// Token: 0x06001294 RID: 4756 RVA: 0x00095EF4 File Offset: 0x000940F4
+	// Token: 0x06001294 RID: 4756 RVA: 0x00095F5C File Offset: 0x0009415C
 	public void ReleaseYandere()
 	{
 		Debug.Log("Yandere-chan has been released from combat.");

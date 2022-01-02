@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002C3 RID: 707
 public class FallCheckerScript : MonoBehaviour
 {
-	// Token: 0x06001480 RID: 5248 RVA: 0x000C7FB8 File Offset: 0x000C61B8
+	// Token: 0x06001480 RID: 5248 RVA: 0x000C8200 File Offset: 0x000C6400
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Ragdoll == null && other.gameObject.layer == 11)
@@ -25,7 +25,7 @@ public class FallCheckerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001481 RID: 5249 RVA: 0x000C80BC File Offset: 0x000C62BC
+	// Token: 0x06001481 RID: 5249 RVA: 0x000C8304 File Offset: 0x000C6504
 	private void Update()
 	{
 		if (this.Ragdoll != null)
@@ -44,12 +44,12 @@ public class FallCheckerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001FCA RID: 8138
+	// Token: 0x04001FCD RID: 8141
 	public DumpsterLidScript Dumpster;
 
-	// Token: 0x04001FCB RID: 8139
+	// Token: 0x04001FCE RID: 8142
 	public RagdollScript Ragdoll;
 
-	// Token: 0x04001FCC RID: 8140
+	// Token: 0x04001FCF RID: 8143
 	public Collider MyCollider;
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x0200031B RID: 795
 public class HomeInternetScript : MonoBehaviour
 {
-	// Token: 0x06001868 RID: 6248 RVA: 0x000EC130 File Offset: 0x000EA330
+	// Token: 0x0600186A RID: 6250 RVA: 0x000EC414 File Offset: 0x000EA614
 	private void Awake()
 	{
 		this.StudentPost1.localPosition = new Vector3(this.StudentPost1.localPosition.x, -180f, this.StudentPost1.localPosition.z);
@@ -58,7 +58,7 @@ public class HomeInternetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001869 RID: 6249 RVA: 0x000EC45C File Offset: 0x000EA65C
+	// Token: 0x0600186B RID: 6251 RVA: 0x000EC740 File Offset: 0x000EA940
 	private void Update()
 	{
 		if (!this.HomeYandere.CanMove && !this.PauseScreen.Show)
@@ -494,7 +494,7 @@ public class HomeInternetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600186A RID: 6250 RVA: 0x000EDD88 File Offset: 0x000EBF88
+	// Token: 0x0600186C RID: 6252 RVA: 0x000EE06C File Offset: 0x000EC26C
 	private void ExitPost()
 	{
 		this.Highlights[1].enabled = false;
@@ -508,7 +508,7 @@ public class HomeInternetScript : MonoBehaviour
 		this.WritingPost = false;
 	}
 
-	// Token: 0x0600186B RID: 6251 RVA: 0x000EDE14 File Offset: 0x000EC014
+	// Token: 0x0600186D RID: 6253 RVA: 0x000EE0F8 File Offset: 0x000EC2F8
 	private void UpdateHighlight()
 	{
 		if (this.Selected > 3)
@@ -525,7 +525,7 @@ public class HomeInternetScript : MonoBehaviour
 		this.Highlights[this.Selected].enabled = true;
 	}
 
-	// Token: 0x0600186C RID: 6252 RVA: 0x000EDE80 File Offset: 0x000EC080
+	// Token: 0x0600186E RID: 6254 RVA: 0x000EE164 File Offset: 0x000EC364
 	private void UpdateMenuHighlight()
 	{
 		if (this.MenuSelected > 10)
@@ -539,7 +539,7 @@ public class HomeInternetScript : MonoBehaviour
 		this.MenuHighlight.transform.localPosition = new Vector3(this.MenuHighlight.transform.localPosition.x, 220f - 40f * (float)this.MenuSelected, this.MenuHighlight.transform.localPosition.z);
 	}
 
-	// Token: 0x0600186D RID: 6253 RVA: 0x000EDF04 File Offset: 0x000EC104
+	// Token: 0x0600186F RID: 6255 RVA: 0x000EE1E8 File Offset: 0x000EC3E8
 	private void CheckForCompletion()
 	{
 		if (this.PostLabels[1].text != string.Empty && this.PostLabels[2].text != string.Empty && this.PostLabels[3].text != string.Empty)
@@ -549,7 +549,7 @@ public class HomeInternetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600186E RID: 6254 RVA: 0x000EDF74 File Offset: 0x000EC174
+	// Token: 0x06001870 RID: 6256 RVA: 0x000EE258 File Offset: 0x000EC458
 	private void GetPortrait(int ID)
 	{
 		WWW www = new WWW(string.Concat(new string[]
@@ -563,192 +563,192 @@ public class HomeInternetScript : MonoBehaviour
 		this.CurrentPortrait = www.texture;
 	}
 
-	// Token: 0x04002463 RID: 9315
+	// Token: 0x04002467 RID: 9319
 	public StudentInfoMenuScript StudentInfoMenu;
 
-	// Token: 0x04002464 RID: 9316
+	// Token: 0x04002468 RID: 9320
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002465 RID: 9317
+	// Token: 0x04002469 RID: 9321
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04002466 RID: 9318
+	// Token: 0x0400246A RID: 9322
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002467 RID: 9319
+	// Token: 0x0400246B RID: 9323
 	public HomeClockScript Clock;
 
-	// Token: 0x04002468 RID: 9320
+	// Token: 0x0400246C RID: 9324
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x04002469 RID: 9321
+	// Token: 0x0400246D RID: 9325
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x0400246A RID: 9322
+	// Token: 0x0400246E RID: 9326
 	public HomeWindowScript HomeWindow;
 
-	// Token: 0x0400246B RID: 9323
+	// Token: 0x0400246F RID: 9327
 	public UILabel YanderePostLabel;
 
-	// Token: 0x0400246C RID: 9324
+	// Token: 0x04002470 RID: 9328
 	public UILabel YancordLabel;
 
-	// Token: 0x0400246D RID: 9325
+	// Token: 0x04002471 RID: 9329
 	public UILabel AcceptLabel;
 
-	// Token: 0x0400246E RID: 9326
+	// Token: 0x04002472 RID: 9330
 	public UITexture YancordLogo;
 
-	// Token: 0x0400246F RID: 9327
+	// Token: 0x04002473 RID: 9331
 	public GameObject InternetPrompts;
 
-	// Token: 0x04002470 RID: 9328
+	// Token: 0x04002474 RID: 9332
 	public GameObject NavigationMenu;
 
-	// Token: 0x04002471 RID: 9329
+	// Token: 0x04002475 RID: 9333
 	public GameObject OnlineShopping;
 
-	// Token: 0x04002472 RID: 9330
+	// Token: 0x04002476 RID: 9334
 	public GameObject SocialMedia;
 
-	// Token: 0x04002473 RID: 9331
+	// Token: 0x04002477 RID: 9335
 	public GameObject NewPostText;
 
-	// Token: 0x04002474 RID: 9332
+	// Token: 0x04002478 RID: 9336
 	public GameObject ChangeLabel;
 
-	// Token: 0x04002475 RID: 9333
+	// Token: 0x04002479 RID: 9337
 	public GameObject ChangeIcon;
 
-	// Token: 0x04002476 RID: 9334
+	// Token: 0x0400247A RID: 9338
 	public GameObject WriteLabel;
 
-	// Token: 0x04002477 RID: 9335
+	// Token: 0x0400247B RID: 9339
 	public GameObject WriteIcon;
 
-	// Token: 0x04002478 RID: 9336
+	// Token: 0x0400247C RID: 9340
 	public GameObject PostLabel;
 
-	// Token: 0x04002479 RID: 9337
+	// Token: 0x0400247D RID: 9341
 	public GameObject PostIcon;
 
-	// Token: 0x0400247A RID: 9338
+	// Token: 0x0400247E RID: 9342
 	public GameObject BG;
 
-	// Token: 0x0400247B RID: 9339
+	// Token: 0x0400247F RID: 9343
 	public Transform MenuHighlight;
 
-	// Token: 0x0400247C RID: 9340
+	// Token: 0x04002480 RID: 9344
 	public Transform StudentPost1;
 
-	// Token: 0x0400247D RID: 9341
+	// Token: 0x04002481 RID: 9345
 	public Transform StudentPost2;
 
-	// Token: 0x0400247E RID: 9342
+	// Token: 0x04002482 RID: 9346
 	public Transform YandereReply;
 
-	// Token: 0x0400247F RID: 9343
+	// Token: 0x04002483 RID: 9347
 	public Transform YanderePost;
 
-	// Token: 0x04002480 RID: 9344
+	// Token: 0x04002484 RID: 9348
 	public Transform LameReply;
 
-	// Token: 0x04002481 RID: 9345
+	// Token: 0x04002485 RID: 9349
 	public Transform NewPost;
 
-	// Token: 0x04002482 RID: 9346
+	// Token: 0x04002486 RID: 9350
 	public Transform Menu;
 
-	// Token: 0x04002483 RID: 9347
+	// Token: 0x04002487 RID: 9351
 	public Transform[] StudentReplies;
 
-	// Token: 0x04002484 RID: 9348
+	// Token: 0x04002488 RID: 9352
 	public UISprite[] Highlights;
 
-	// Token: 0x04002485 RID: 9349
+	// Token: 0x04002489 RID: 9353
 	public UILabel[] PostLabels;
 
-	// Token: 0x04002486 RID: 9350
+	// Token: 0x0400248A RID: 9354
 	public UILabel[] MenuLabels;
 
-	// Token: 0x04002487 RID: 9351
+	// Token: 0x0400248B RID: 9355
 	public string[] Locations;
 
-	// Token: 0x04002488 RID: 9352
+	// Token: 0x0400248C RID: 9356
 	public string[] Actions;
 
-	// Token: 0x04002489 RID: 9353
+	// Token: 0x0400248D RID: 9357
 	public bool PostSequence;
 
-	// Token: 0x0400248A RID: 9354
+	// Token: 0x0400248E RID: 9358
 	public bool WritingPost;
 
-	// Token: 0x0400248B RID: 9355
+	// Token: 0x0400248F RID: 9359
 	public bool ShowMenu;
 
-	// Token: 0x0400248C RID: 9356
+	// Token: 0x04002490 RID: 9360
 	public bool FadeOut;
 
-	// Token: 0x0400248D RID: 9357
+	// Token: 0x04002491 RID: 9361
 	public bool Success;
 
-	// Token: 0x0400248E RID: 9358
+	// Token: 0x04002492 RID: 9362
 	public bool Posted;
 
-	// Token: 0x0400248F RID: 9359
+	// Token: 0x04002493 RID: 9363
 	public int MenuSelected = 1;
 
-	// Token: 0x04002490 RID: 9360
+	// Token: 0x04002494 RID: 9364
 	public int Selected = 1;
 
-	// Token: 0x04002491 RID: 9361
+	// Token: 0x04002495 RID: 9365
 	public int ID = 1;
 
-	// Token: 0x04002492 RID: 9362
+	// Token: 0x04002496 RID: 9366
 	public int Location;
 
-	// Token: 0x04002493 RID: 9363
+	// Token: 0x04002497 RID: 9367
 	public int Student;
 
-	// Token: 0x04002494 RID: 9364
+	// Token: 0x04002498 RID: 9368
 	public int Action;
 
-	// Token: 0x04002495 RID: 9365
+	// Token: 0x04002499 RID: 9369
 	public float Timer;
 
-	// Token: 0x04002496 RID: 9366
+	// Token: 0x0400249A RID: 9370
 	public UITexture StudentPost1Portrait;
 
-	// Token: 0x04002497 RID: 9367
+	// Token: 0x0400249B RID: 9371
 	public UITexture StudentPost2Portrait;
 
-	// Token: 0x04002498 RID: 9368
+	// Token: 0x0400249C RID: 9372
 	public UITexture LamePostPortrait;
 
-	// Token: 0x04002499 RID: 9369
+	// Token: 0x0400249D RID: 9373
 	public Texture CurrentPortrait;
 
-	// Token: 0x0400249A RID: 9370
+	// Token: 0x0400249E RID: 9374
 	public UITexture[] Portraits;
 
-	// Token: 0x0400249B RID: 9371
+	// Token: 0x0400249F RID: 9375
 	public int Height;
 
-	// Token: 0x0400249C RID: 9372
+	// Token: 0x040024A0 RID: 9376
 	public Transform Highlight;
 
-	// Token: 0x0400249D RID: 9373
+	// Token: 0x040024A1 RID: 9377
 	public Transform ItemList;
 
-	// Token: 0x0400249E RID: 9374
+	// Token: 0x040024A2 RID: 9378
 	public GameObject AreYouSure;
 
-	// Token: 0x0400249F RID: 9375
+	// Token: 0x040024A3 RID: 9379
 	public AudioSource MyAudio;
 
-	// Token: 0x040024A0 RID: 9376
+	// Token: 0x040024A4 RID: 9380
 	public UILabel MoneyLabel;
 
-	// Token: 0x040024A1 RID: 9377
+	// Token: 0x040024A5 RID: 9381
 	public float Shake;
 }

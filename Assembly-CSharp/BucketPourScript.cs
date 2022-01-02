@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x020000FE RID: 254
 public class BucketPourScript : MonoBehaviour
 {
-	// Token: 0x06000A85 RID: 2693 RVA: 0x0005CD1E File Offset: 0x0005AF1E
+	// Token: 0x06000A85 RID: 2693 RVA: 0x0005CD36 File Offset: 0x0005AF36
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000A86 RID: 2694 RVA: 0x0005CD20 File Offset: 0x0005AF20
+	// Token: 0x06000A86 RID: 2694 RVA: 0x0005CD38 File Offset: 0x0005AF38
 	private void Update()
 	{
 		bool flag = false;

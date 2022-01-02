@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000CF RID: 207
 public class HatredScript : MonoBehaviour
 {
-	// Token: 0x060009D1 RID: 2513 RVA: 0x00051CCE File Offset: 0x0004FECE
+	// Token: 0x060009D1 RID: 2513 RVA: 0x00051CE6 File Offset: 0x0004FEE6
 	private void Start()
 	{
 		this.Character.SetActive(false);

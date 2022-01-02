@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000377 RID: 887
 public class NoAnimationWarningScript : MonoBehaviour
 {
-	// Token: 0x060019ED RID: 6637 RVA: 0x0010F0EA File Offset: 0x0010D2EA
+	// Token: 0x060019EF RID: 6639 RVA: 0x0010F3C6 File Offset: 0x0010D5C6
 	private void Start()
 	{
 		this.Darkness.color = new Color(0f, 0f, 0f, 1f);
 	}
 
-	// Token: 0x060019EE RID: 6638 RVA: 0x0010F110 File Offset: 0x0010D310
+	// Token: 0x060019F0 RID: 6640 RVA: 0x0010F3EC File Offset: 0x0010D5EC
 	private void Update()
 	{
 		if (!this.FadeOut)
@@ -35,12 +35,12 @@ public class NoAnimationWarningScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040029EE RID: 10734
+	// Token: 0x040029F2 RID: 10738
 	public UISprite Darkness;
 
-	// Token: 0x040029EF RID: 10735
+	// Token: 0x040029F3 RID: 10739
 	public bool FadeOut;
 
-	// Token: 0x040029F0 RID: 10736
+	// Token: 0x040029F4 RID: 10740
 	public float Alpha;
 }

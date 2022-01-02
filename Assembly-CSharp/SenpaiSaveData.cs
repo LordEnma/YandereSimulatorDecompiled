@@ -4,7 +4,7 @@
 [Serializable]
 public class SenpaiSaveData
 {
-	// Token: 0x06001C07 RID: 7175 RVA: 0x00144818 File Offset: 0x00142A18
+	// Token: 0x06001C09 RID: 7177 RVA: 0x00144C14 File Offset: 0x00142E14
 	public static SenpaiSaveData ReadFromGlobals()
 	{
 		return new SenpaiSaveData
@@ -19,7 +19,7 @@ public class SenpaiSaveData
 		};
 	}
 
-	// Token: 0x06001C08 RID: 7176 RVA: 0x00144878 File Offset: 0x00142A78
+	// Token: 0x06001C0A RID: 7178 RVA: 0x00144C74 File Offset: 0x00142E74
 	public static void WriteToGlobals(SenpaiSaveData data)
 	{
 		SenpaiGlobals.CustomSenpai = data.customSenpai;
@@ -31,24 +31,24 @@ public class SenpaiSaveData
 		SenpaiGlobals.SenpaiSkinColor = data.senpaiSkinColor;
 	}
 
-	// Token: 0x0400313D RID: 12605
+	// Token: 0x04003144 RID: 12612
 	public bool customSenpai;
 
-	// Token: 0x0400313E RID: 12606
+	// Token: 0x04003145 RID: 12613
 	public string senpaiEyeColor = string.Empty;
 
-	// Token: 0x0400313F RID: 12607
+	// Token: 0x04003146 RID: 12614
 	public int senpaiEyeWear;
 
-	// Token: 0x04003140 RID: 12608
+	// Token: 0x04003147 RID: 12615
 	public int senpaiFacialHair;
 
-	// Token: 0x04003141 RID: 12609
+	// Token: 0x04003148 RID: 12616
 	public string senpaiHairColor = string.Empty;
 
-	// Token: 0x04003142 RID: 12610
+	// Token: 0x04003149 RID: 12617
 	public int senpaiHairStyle;
 
-	// Token: 0x04003143 RID: 12611
+	// Token: 0x0400314A RID: 12618
 	public int senpaiSkinColor;
 }

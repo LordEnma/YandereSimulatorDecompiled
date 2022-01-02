@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020002D3 RID: 723
 public class FunGirlScript : MonoBehaviour
 {
-	// Token: 0x060014AF RID: 5295 RVA: 0x000CAF4D File Offset: 0x000C914D
+	// Token: 0x060014AF RID: 5295 RVA: 0x000CB195 File Offset: 0x000C9395
 	private void Start()
 	{
 		this.ChaseYandereChan();
 	}
 
-	// Token: 0x060014B0 RID: 5296 RVA: 0x000CAF58 File Offset: 0x000C9158
+	// Token: 0x060014B0 RID: 5296 RVA: 0x000CB1A0 File Offset: 0x000C93A0
 	private void Update()
 	{
 		if (this.Speed < 5f)
@@ -29,7 +29,7 @@ public class FunGirlScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014B1 RID: 5297 RVA: 0x000CB008 File Offset: 0x000C9208
+	// Token: 0x060014B1 RID: 5297 RVA: 0x000CB250 File Offset: 0x000C9450
 	private void ChaseYandereChan()
 	{
 		SchoolGlobals.SchoolAtmosphereSet = true;
@@ -48,18 +48,18 @@ public class FunGirlScript : MonoBehaviour
 		this.HUD.enabled = false;
 	}
 
-	// Token: 0x0400206F RID: 8303
+	// Token: 0x04002072 RID: 8306
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002070 RID: 8304
+	// Token: 0x04002073 RID: 8307
 	public GameObject Jukebox;
 
-	// Token: 0x04002071 RID: 8305
+	// Token: 0x04002074 RID: 8308
 	public Transform Yandere;
 
-	// Token: 0x04002072 RID: 8306
+	// Token: 0x04002075 RID: 8309
 	public UIPanel HUD;
 
-	// Token: 0x04002073 RID: 8307
+	// Token: 0x04002076 RID: 8310
 	public float Speed;
 }

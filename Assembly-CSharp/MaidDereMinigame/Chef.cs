@@ -8,8 +8,8 @@ namespace MaidDereMinigame
 	[RequireComponent(typeof(Animator))]
 	public class Chef : MonoBehaviour
 	{
-		// Token: 0x17000520 RID: 1312
-		// (get) Token: 0x060023D9 RID: 9177 RVA: 0x001F5990 File Offset: 0x001F3B90
+		// Token: 0x17000521 RID: 1313
+		// (get) Token: 0x060023DC RID: 9180 RVA: 0x001F5F80 File Offset: 0x001F4180
 		public static Chef Instance
 		{
 			get
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060023DA RID: 9178 RVA: 0x001F59AE File Offset: 0x001F3BAE
+		// Token: 0x060023DD RID: 9181 RVA: 0x001F5F9E File Offset: 0x001F419E
 		private void Awake()
 		{
 			this.cookQueue = new Foods();
@@ -31,32 +31,32 @@ namespace MaidDereMinigame
 			this.isPaused = true;
 		}
 
-		// Token: 0x060023DB RID: 9179 RVA: 0x001F59DF File Offset: 0x001F3BDF
+		// Token: 0x060023DE RID: 9182 RVA: 0x001F5FCF File Offset: 0x001F41CF
 		private void OnEnable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(this.Pause));
 		}
 
-		// Token: 0x060023DC RID: 9180 RVA: 0x001F5A01 File Offset: 0x001F3C01
+		// Token: 0x060023DF RID: 9183 RVA: 0x001F5FF1 File Offset: 0x001F41F1
 		private void OnDisable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(this.Pause));
 		}
 
-		// Token: 0x060023DD RID: 9181 RVA: 0x001F5A23 File Offset: 0x001F3C23
+		// Token: 0x060023E0 RID: 9184 RVA: 0x001F6013 File Offset: 0x001F4213
 		public void Pause(bool toPause)
 		{
 			this.isPaused = toPause;
 			this.animator.speed = (float)(this.isPaused ? 0 : 1);
 		}
 
-		// Token: 0x060023DE RID: 9182 RVA: 0x001F5A44 File Offset: 0x001F3C44
+		// Token: 0x060023E1 RID: 9185 RVA: 0x001F6034 File Offset: 0x001F4234
 		public static void AddToQueue(Food foodItem)
 		{
 			Chef.Instance.cookQueue.Add(foodItem);
 		}
 
-		// Token: 0x060023DF RID: 9183 RVA: 0x001F5A56 File Offset: 0x001F3C56
+		// Token: 0x060023E2 RID: 9186 RVA: 0x001F6046 File Offset: 0x001F4246
 		public static Food GrabFromQueue()
 		{
 			Food result = Chef.Instance.cookQueue[0];
@@ -64,7 +64,7 @@ namespace MaidDereMinigame
 			return result;
 		}
 
-		// Token: 0x060023E0 RID: 9184 RVA: 0x001F5A78 File Offset: 0x001F3C78
+		// Token: 0x060023E3 RID: 9187 RVA: 0x001F6068 File Offset: 0x001F4268
 		private void Update()
 		{
 			if (this.isPaused)
@@ -98,57 +98,57 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060023E1 RID: 9185 RVA: 0x001F5B5C File Offset: 0x001F3D5C
+		// Token: 0x060023E4 RID: 9188 RVA: 0x001F614C File Offset: 0x001F434C
 		public void Deliver()
 		{
 			UnityEngine.Object.FindObjectOfType<ServingCounter>().AddPlate(this.currentPlate);
 		}
 
-		// Token: 0x060023E2 RID: 9186 RVA: 0x001F5B6E File Offset: 0x001F3D6E
+		// Token: 0x060023E5 RID: 9189 RVA: 0x001F615E File Offset: 0x001F435E
 		public void Queue()
 		{
 			this.state = Chef.ChefState.Queueing;
 		}
 
-		// Token: 0x04004B8A RID: 19338
+		// Token: 0x04004B93 RID: 19347
 		private static Chef instance;
 
-		// Token: 0x04004B8B RID: 19339
+		// Token: 0x04004B94 RID: 19348
 		[Reorderable]
 		public Foods cookQueue;
 
-		// Token: 0x04004B8C RID: 19340
+		// Token: 0x04004B95 RID: 19349
 		public FoodMenu foodMenu;
 
-		// Token: 0x04004B8D RID: 19341
+		// Token: 0x04004B96 RID: 19350
 		public Meter cookMeter;
 
-		// Token: 0x04004B8E RID: 19342
+		// Token: 0x04004B97 RID: 19351
 		public float cookTime = 3f;
 
-		// Token: 0x04004B8F RID: 19343
+		// Token: 0x04004B98 RID: 19352
 		private Chef.ChefState state;
 
-		// Token: 0x04004B90 RID: 19344
+		// Token: 0x04004B99 RID: 19353
 		private Food currentPlate;
 
-		// Token: 0x04004B91 RID: 19345
+		// Token: 0x04004B9A RID: 19354
 		private Animator animator;
 
-		// Token: 0x04004B92 RID: 19346
+		// Token: 0x04004B9B RID: 19355
 		private float timeToFinishDish;
 
-		// Token: 0x04004B93 RID: 19347
+		// Token: 0x04004B9C RID: 19356
 		private bool isPaused;
 
 		// Token: 0x020006D6 RID: 1750
 		public enum ChefState
 		{
-			// Token: 0x0400517C RID: 20860
+			// Token: 0x04005185 RID: 20869
 			Queueing,
-			// Token: 0x0400517D RID: 20861
+			// Token: 0x04005186 RID: 20870
 			Cooking,
-			// Token: 0x0400517E RID: 20862
+			// Token: 0x04005187 RID: 20871
 			Delivering
 		}
 	}

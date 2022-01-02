@@ -3,12 +3,12 @@
 // Token: 0x0200048F RID: 1167
 public enum Direction
 {
-	// Token: 0x04004128 RID: 16680
+	// Token: 0x0400412F RID: 16687
 	North,
-	// Token: 0x04004129 RID: 16681
+	// Token: 0x04004130 RID: 16688
 	East,
-	// Token: 0x0400412A RID: 16682
+	// Token: 0x04004131 RID: 16689
 	South,
-	// Token: 0x0400412B RID: 16683
+	// Token: 0x04004132 RID: 16690
 	West
 }

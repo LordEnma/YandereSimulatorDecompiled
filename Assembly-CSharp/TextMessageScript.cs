@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000399 RID: 921
 public class TextMessageScript : MonoBehaviour
 {
-	// Token: 0x06001A5A RID: 6746 RVA: 0x00119FB8 File Offset: 0x001181B8
+	// Token: 0x06001A5C RID: 6748 RVA: 0x0011A294 File Offset: 0x00118494
 	private void Start()
 	{
 		if (!this.Attachment && this.Image != null)
@@ -18,21 +18,21 @@ public class TextMessageScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A5B RID: 6747 RVA: 0x0011A039 File Offset: 0x00118239
+	// Token: 0x06001A5D RID: 6749 RVA: 0x0011A315 File Offset: 0x00118515
 	private void Update()
 	{
 		base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 	}
 
-	// Token: 0x04002B8B RID: 11147
+	// Token: 0x04002B8F RID: 11151
 	public UILabel Label;
 
-	// Token: 0x04002B8C RID: 11148
+	// Token: 0x04002B90 RID: 11152
 	public GameObject Image;
 
-	// Token: 0x04002B8D RID: 11149
+	// Token: 0x04002B91 RID: 11153
 	public bool Attachment;
 
-	// Token: 0x04002B8E RID: 11150
+	// Token: 0x04002B92 RID: 11154
 	public bool Right;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000417 RID: 1047
 public class SecuritySystemScript : MonoBehaviour
 {
-	// Token: 0x06001C55 RID: 7253 RVA: 0x00148FB2 File Offset: 0x001471B2
+	// Token: 0x06001C57 RID: 7255 RVA: 0x001493BA File Offset: 0x001475BA
 	private void Start()
 	{
 		if (PlayerGlobals.Kills == 0 && !SchoolGlobals.HighSecurity)
@@ -15,7 +15,7 @@ public class SecuritySystemScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C56 RID: 7254 RVA: 0x00148FE0 File Offset: 0x001471E0
+	// Token: 0x06001C58 RID: 7256 RVA: 0x001493E8 File Offset: 0x001475E8
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -40,23 +40,23 @@ public class SecuritySystemScript : MonoBehaviour
 				base.enabled = false;
 				return;
 			}
-			this.Prompt.Yandere.NotificationManager.CustomText = "ID card required!";
+			this.Prompt.Yandere.NotificationManager.CustomText = "Faculty ID card required!";
 			this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 		}
 	}
 
-	// Token: 0x0400323E RID: 12862
+	// Token: 0x04003245 RID: 12869
 	public PromptScript Prompt;
 
-	// Token: 0x0400323F RID: 12863
+	// Token: 0x04003246 RID: 12870
 	public bool Evidence;
 
-	// Token: 0x04003240 RID: 12864
+	// Token: 0x04003247 RID: 12871
 	public bool Masked;
 
-	// Token: 0x04003241 RID: 12865
+	// Token: 0x04003248 RID: 12872
 	public SecurityCameraScript[] Cameras;
 
-	// Token: 0x04003242 RID: 12866
+	// Token: 0x04003249 RID: 12873
 	public MetalDetectorScript[] Detectors;
 }

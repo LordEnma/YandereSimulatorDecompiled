@@ -6,9 +6,9 @@ namespace UnityEngine.PostProcessing
 	[Serializable]
 	public class MotionBlurModel : PostProcessingModel
 	{
-		// Token: 0x1700050B RID: 1291
-		// (get) Token: 0x06002338 RID: 9016 RVA: 0x001F0ED9 File Offset: 0x001EF0D9
-		// (set) Token: 0x06002339 RID: 9017 RVA: 0x001F0EE1 File Offset: 0x001EF0E1
+		// Token: 0x1700050C RID: 1292
+		// (get) Token: 0x0600233B RID: 9019 RVA: 0x001F14C9 File Offset: 0x001EF6C9
+		// (set) Token: 0x0600233C RID: 9020 RVA: 0x001F14D1 File Offset: 0x001EF6D1
 		public MotionBlurModel.Settings settings
 		{
 			get
@@ -21,13 +21,13 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600233A RID: 9018 RVA: 0x001F0EEA File Offset: 0x001EF0EA
+		// Token: 0x0600233D RID: 9021 RVA: 0x001F14DA File Offset: 0x001EF6DA
 		public override void Reset()
 		{
 			this.m_Settings = MotionBlurModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004AC4 RID: 19140
+		// Token: 0x04004ACD RID: 19149
 		[SerializeField]
 		private MotionBlurModel.Settings m_Settings = MotionBlurModel.Settings.defaultSettings;
 
@@ -35,8 +35,8 @@ namespace UnityEngine.PostProcessing
 		[Serializable]
 		public struct Settings
 		{
-			// Token: 0x1700059F RID: 1439
-			// (get) Token: 0x06002735 RID: 10037 RVA: 0x001FFD00 File Offset: 0x001FDF00
+			// Token: 0x170005A0 RID: 1440
+			// (get) Token: 0x06002738 RID: 10040 RVA: 0x00200314 File Offset: 0x001FE514
 			public static MotionBlurModel.Settings defaultSettings
 			{
 				get
@@ -50,17 +50,17 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x04005141 RID: 20801
+			// Token: 0x0400514A RID: 20810
 			[Range(0f, 360f)]
 			[Tooltip("The angle of rotary shutter. Larger values give longer exposure.")]
 			public float shutterAngle;
 
-			// Token: 0x04005142 RID: 20802
+			// Token: 0x0400514B RID: 20811
 			[Range(4f, 32f)]
 			[Tooltip("The amount of sample points, which affects quality and performances.")]
 			public int sampleCount;
 
-			// Token: 0x04005143 RID: 20803
+			// Token: 0x0400514C RID: 20812
 			[Range(0f, 1f)]
 			[Tooltip("The strength of multiple frame blending. The opacity of preceding frames are determined from this coefficient and time differences.")]
 			public float frameBlending;

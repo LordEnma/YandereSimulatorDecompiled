@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020000ED RID: 237
 public class BlowtorchScript : MonoBehaviour
 {
-	// Token: 0x06000A49 RID: 2633 RVA: 0x0005B3B3 File Offset: 0x000595B3
+	// Token: 0x06000A49 RID: 2633 RVA: 0x0005B3CB File Offset: 0x000595CB
 	private void Start()
 	{
 		this.Flame.localScale = Vector3.zero;
 		base.enabled = false;
 	}
 
-	// Token: 0x06000A4A RID: 2634 RVA: 0x0005B3CC File Offset: 0x000595CC
+	// Token: 0x06000A4A RID: 2634 RVA: 0x0005B3E4 File Offset: 0x000595E4
 	private void Update()
 	{
 		this.Timer = Mathf.MoveTowards(this.Timer, 5f, Time.deltaTime);

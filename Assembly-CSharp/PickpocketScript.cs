@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003A4 RID: 932
 public class PickpocketScript : MonoBehaviour
 {
-	// Token: 0x06001A9A RID: 6810 RVA: 0x0011FE40 File Offset: 0x0011E040
+	// Token: 0x06001A9C RID: 6812 RVA: 0x0012011C File Offset: 0x0011E31C
 	private void Start()
 	{
 		if (this.Student.StudentID != 71)
@@ -29,7 +29,7 @@ public class PickpocketScript : MonoBehaviour
 		this.NotNurse = true;
 	}
 
-	// Token: 0x06001A9B RID: 6811 RVA: 0x0011FF10 File Offset: 0x0011E110
+	// Token: 0x06001A9D RID: 6813 RVA: 0x001201EC File Offset: 0x0011E3EC
 	private void Update()
 	{
 		if (this.Prompt.transform.parent != null)
@@ -148,10 +148,11 @@ public class PickpocketScript : MonoBehaviour
 			this.Prompt.Hide();
 			this.Key.SetActive(false);
 			base.enabled = false;
+			base.gameObject.SetActive(false);
 		}
 	}
 
-	// Token: 0x06001A9C RID: 6812 RVA: 0x00120488 File Offset: 0x0011E688
+	// Token: 0x06001A9E RID: 6814 RVA: 0x00120770 File Offset: 0x0011E970
 	private void Punish()
 	{
 		Debug.Log("Punishing Yandere-chan for pickpocketing.");
@@ -178,7 +179,7 @@ public class PickpocketScript : MonoBehaviour
 		this.Student.PatrolTimer = 0f;
 	}
 
-	// Token: 0x06001A9D RID: 6813 RVA: 0x001205CC File Offset: 0x0011E7CC
+	// Token: 0x06001A9F RID: 6815 RVA: 0x001208B4 File Offset: 0x0011EAB4
 	private void Succeed()
 	{
 		if (this.ID == 1)
@@ -187,46 +188,50 @@ public class PickpocketScript : MonoBehaviour
 			this.Student.StudentManager.ShedDoor.Locked = false;
 			this.Student.ClubManager.Padlock.SetActive(false);
 			this.Student.Yandere.Inventory.ShedKey = true;
-			return;
 		}
-		this.Student.StudentManager.CabinetDoor.Prompt.Label[0].text = "     Open";
-		this.Student.StudentManager.CabinetDoor.Locked = false;
-		this.Student.Yandere.Inventory.CabinetKey = true;
+		else
+		{
+			this.Student.StudentManager.CabinetDoor.Prompt.Label[0].text = "     Open";
+			this.Student.StudentManager.CabinetDoor.Locked = false;
+			this.Student.Yandere.Inventory.CabinetKey = true;
+		}
+		this.Student.Yandere.NotificationManager.CustomText = "Got the key!";
+		this.Student.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 	}
 
-	// Token: 0x04002C50 RID: 11344
+	// Token: 0x04002C54 RID: 11348
 	public PickpocketMinigameScript PickpocketMinigame;
 
-	// Token: 0x04002C51 RID: 11345
+	// Token: 0x04002C55 RID: 11349
 	public StudentScript Student;
 
-	// Token: 0x04002C52 RID: 11346
+	// Token: 0x04002C56 RID: 11350
 	public PromptScript Prompt;
 
-	// Token: 0x04002C53 RID: 11347
+	// Token: 0x04002C57 RID: 11351
 	public UIPanel PickpocketPanel;
 
-	// Token: 0x04002C54 RID: 11348
+	// Token: 0x04002C58 RID: 11352
 	public UISprite TimeBar;
 
-	// Token: 0x04002C55 RID: 11349
+	// Token: 0x04002C59 RID: 11353
 	public Transform PickpocketSpot;
 
-	// Token: 0x04002C56 RID: 11350
+	// Token: 0x04002C5A RID: 11354
 	public GameObject AlarmDisc;
 
-	// Token: 0x04002C57 RID: 11351
+	// Token: 0x04002C5B RID: 11355
 	public GameObject Key;
 
-	// Token: 0x04002C58 RID: 11352
+	// Token: 0x04002C5C RID: 11356
 	public float Timer;
 
-	// Token: 0x04002C59 RID: 11353
+	// Token: 0x04002C5D RID: 11357
 	public int ID = 1;
 
-	// Token: 0x04002C5A RID: 11354
+	// Token: 0x04002C5E RID: 11358
 	public bool NotNurse;
 
-	// Token: 0x04002C5B RID: 11355
+	// Token: 0x04002C5F RID: 11359
 	public bool Test;
 }

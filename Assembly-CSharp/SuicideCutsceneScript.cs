@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200045B RID: 1115
 public class SuicideCutsceneScript : MonoBehaviour
 {
-	// Token: 0x06001E4C RID: 7756 RVA: 0x001A0268 File Offset: 0x0019E468
+	// Token: 0x06001E4E RID: 7758 RVA: 0x001A06F4 File Offset: 0x0019E8F4
 	private void Start()
 	{
 		this.PointLight.color = new Color(0.1f, 0.1f, 0.1f, 1f);
@@ -18,7 +18,7 @@ public class SuicideCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E4D RID: 7757 RVA: 0x001A02F0 File Offset: 0x0019E4F0
+	// Token: 0x06001E4F RID: 7759 RVA: 0x001A077C File Offset: 0x0019E97C
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -56,45 +56,46 @@ public class SuicideCutsceneScript : MonoBehaviour
 				{
 					PlayerPrefs.SetInt("Suicide", 1);
 				}
+				SchoolGlobals.SchoolAtmosphere -= 0.1f;
 				GameGlobals.SenpaiMourning = true;
 				SceneManager.LoadScene("HomeScene");
 			}
 		}
 	}
 
-	// Token: 0x04003E05 RID: 15877
+	// Token: 0x04003E0C RID: 15884
 	public AudioSource MyAudio;
 
-	// Token: 0x04003E06 RID: 15878
+	// Token: 0x04003E0D RID: 15885
 	public AudioClip EightiesMother;
 
-	// Token: 0x04003E07 RID: 15879
+	// Token: 0x04003E0E RID: 15886
 	public Light DirectionalLight;
 
-	// Token: 0x04003E08 RID: 15880
+	// Token: 0x04003E0F RID: 15887
 	public Light PointLight;
 
-	// Token: 0x04003E09 RID: 15881
+	// Token: 0x04003E10 RID: 15888
 	public Transform Door;
 
-	// Token: 0x04003E0A RID: 15882
+	// Token: 0x04003E11 RID: 15889
 	public Animation Mom;
 
-	// Token: 0x04003E0B RID: 15883
+	// Token: 0x04003E12 RID: 15890
 	public float Timer;
 
-	// Token: 0x04003E0C RID: 15884
+	// Token: 0x04003E13 RID: 15891
 	public float Rotation;
 
-	// Token: 0x04003E0D RID: 15885
+	// Token: 0x04003E14 RID: 15892
 	public float Speed;
 
-	// Token: 0x04003E0E RID: 15886
+	// Token: 0x04003E15 RID: 15893
 	public int ID;
 
-	// Token: 0x04003E0F RID: 15887
+	// Token: 0x04003E16 RID: 15894
 	public GameObject[] RivalHair;
 
-	// Token: 0x04003E10 RID: 15888
+	// Token: 0x04003E17 RID: 15895
 	public GameObject[] EightiesHair;
 }

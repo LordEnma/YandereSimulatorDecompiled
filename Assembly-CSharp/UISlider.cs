@@ -177,11 +177,11 @@ public class UISlider : UIProgressBar
 	// Token: 0x020005DE RID: 1502
 	private enum Direction
 	{
-		// Token: 0x04004D5A RID: 19802
+		// Token: 0x04004D63 RID: 19811
 		Horizontal,
-		// Token: 0x04004D5B RID: 19803
+		// Token: 0x04004D64 RID: 19812
 		Vertical,
-		// Token: 0x04004D5C RID: 19804
+		// Token: 0x04004D65 RID: 19813
 		Upgraded
 	}
 }

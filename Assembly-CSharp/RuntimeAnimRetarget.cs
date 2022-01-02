@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003EA RID: 1002
 public class RuntimeAnimRetarget : MonoBehaviour
 {
-	// Token: 0x06001BC6 RID: 7110 RVA: 0x00142A2A File Offset: 0x00140C2A
+	// Token: 0x06001BC8 RID: 7112 RVA: 0x00142E26 File Offset: 0x00141026
 	private void Start()
 	{
 		Debug.Log(this.Source.name);
@@ -12,7 +12,7 @@ public class RuntimeAnimRetarget : MonoBehaviour
 		this.TargetSkelNodes = this.Target.GetComponentsInChildren<Component>();
 	}
 
-	// Token: 0x06001BC7 RID: 7111 RVA: 0x00142A60 File Offset: 0x00140C60
+	// Token: 0x06001BC9 RID: 7113 RVA: 0x00142E5C File Offset: 0x0014105C
 	private void LateUpdate()
 	{
 		this.TargetSkelNodes[1].transform.localPosition = this.SourceSkelNodes[1].transform.localPosition;
@@ -22,15 +22,15 @@ public class RuntimeAnimRetarget : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040030BC RID: 12476
+	// Token: 0x040030C3 RID: 12483
 	public GameObject Source;
 
-	// Token: 0x040030BD RID: 12477
+	// Token: 0x040030C4 RID: 12484
 	public GameObject Target;
 
-	// Token: 0x040030BE RID: 12478
+	// Token: 0x040030C5 RID: 12485
 	private Component[] SourceSkelNodes;
 
-	// Token: 0x040030BF RID: 12479
+	// Token: 0x040030C6 RID: 12486
 	private Component[] TargetSkelNodes;
 }

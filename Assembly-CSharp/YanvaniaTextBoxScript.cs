@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004DB RID: 1243
 public class YanvaniaTextBoxScript : MonoBehaviour
 {
-	// Token: 0x06002081 RID: 8321 RVA: 0x001DBE14 File Offset: 0x001DA014
+	// Token: 0x06002084 RID: 8324 RVA: 0x001DC404 File Offset: 0x001DA604
 	private void Start()
 	{
 		this.Portrait.transform.localScale = Vector3.zero;
@@ -15,7 +15,7 @@ public class YanvaniaTextBoxScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06002082 RID: 8322 RVA: 0x001DBF20 File Offset: 0x001DA120
+	// Token: 0x06002085 RID: 8325 RVA: 0x001DC510 File Offset: 0x001DA710
 	private void Update()
 	{
 		if (!this.Leave)
@@ -225,7 +225,7 @@ public class YanvaniaTextBoxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002083 RID: 8323 RVA: 0x001DC930 File Offset: 0x001DAB30
+	// Token: 0x06002086 RID: 8326 RVA: 0x001DCF20 File Offset: 0x001DB120
 	private void SpawnLabel()
 	{
 		this.NewLabel = UnityEngine.Object.Instantiate<GameObject>(this.Label, base.transform.position, Quaternion.identity);
@@ -239,84 +239,84 @@ public class YanvaniaTextBoxScript : MonoBehaviour
 		this.NewLabelScript.enabled = false;
 	}
 
-	// Token: 0x0400472A RID: 18218
+	// Token: 0x04004733 RID: 18227
 	private TypewriterEffect NewTypewriter;
 
-	// Token: 0x0400472B RID: 18219
+	// Token: 0x04004734 RID: 18228
 	private UILabel NewLabelScript;
 
-	// Token: 0x0400472C RID: 18220
+	// Token: 0x04004735 RID: 18229
 	private GameObject NewLabel;
 
-	// Token: 0x0400472D RID: 18221
+	// Token: 0x04004736 RID: 18230
 	public YanvaniaJukeboxScript Jukebox;
 
-	// Token: 0x0400472E RID: 18222
+	// Token: 0x04004737 RID: 18231
 	public YanvaniaDraculaScript Dracula;
 
-	// Token: 0x0400472F RID: 18223
+	// Token: 0x04004738 RID: 18232
 	public YanvaniaYanmontScript Yanmont;
 
-	// Token: 0x04004730 RID: 18224
+	// Token: 0x04004739 RID: 18233
 	public Transform NewLabelSpawnPoint;
 
-	// Token: 0x04004731 RID: 18225
+	// Token: 0x0400473A RID: 18234
 	public GameObject Glass;
 
-	// Token: 0x04004732 RID: 18226
+	// Token: 0x0400473B RID: 18235
 	public GameObject Label;
 
-	// Token: 0x04004733 RID: 18227
+	// Token: 0x0400473C RID: 18236
 	public UILabel SpeakerLabel;
 
-	// Token: 0x04004734 RID: 18228
+	// Token: 0x0400473D RID: 18237
 	public UITexture BloodWipe;
 
-	// Token: 0x04004735 RID: 18229
+	// Token: 0x0400473E RID: 18238
 	public UITexture Portrait;
 
-	// Token: 0x04004736 RID: 18230
+	// Token: 0x0400473F RID: 18239
 	public UITexture Border;
 
-	// Token: 0x04004737 RID: 18231
+	// Token: 0x04004740 RID: 18240
 	public UITexture BG;
 
-	// Token: 0x04004738 RID: 18232
+	// Token: 0x04004741 RID: 18241
 	public bool UpdatePortrait;
 
-	// Token: 0x04004739 RID: 18233
+	// Token: 0x04004742 RID: 18242
 	public bool Display;
 
-	// Token: 0x0400473A RID: 18234
+	// Token: 0x04004743 RID: 18243
 	public bool Leave;
 
-	// Token: 0x0400473B RID: 18235
+	// Token: 0x04004744 RID: 18244
 	public bool Grow;
 
-	// Token: 0x0400473C RID: 18236
+	// Token: 0x04004745 RID: 18245
 	public string[] SpeakerNames;
 
-	// Token: 0x0400473D RID: 18237
+	// Token: 0x04004746 RID: 18246
 	public Texture[] Portraits;
 
-	// Token: 0x0400473E RID: 18238
+	// Token: 0x04004747 RID: 18247
 	public AudioClip[] Voices;
 
-	// Token: 0x0400473F RID: 18239
+	// Token: 0x04004748 RID: 18248
 	public string[] Lines;
 
-	// Token: 0x04004740 RID: 18240
+	// Token: 0x04004749 RID: 18249
 	public int PortraitID = 1;
 
-	// Token: 0x04004741 RID: 18241
+	// Token: 0x0400474A RID: 18250
 	public int LineID;
 
-	// Token: 0x04004742 RID: 18242
+	// Token: 0x0400474B RID: 18251
 	public float NewLineTimer;
 
-	// Token: 0x04004743 RID: 18243
+	// Token: 0x0400474C RID: 18252
 	public float AnimTimer;
 
-	// Token: 0x04004744 RID: 18244
+	// Token: 0x0400474D RID: 18253
 	public float Timer;
 }

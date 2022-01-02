@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000369 RID: 873
 public class MoneyWadScript : MonoBehaviour
 {
-	// Token: 0x060019A2 RID: 6562 RVA: 0x001059AC File Offset: 0x00103BAC
+	// Token: 0x060019A4 RID: 6564 RVA: 0x00105C88 File Offset: 0x00103E88
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -19,6 +19,6 @@ public class MoneyWadScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002908 RID: 10504
+	// Token: 0x0400290C RID: 10508
 	public PromptScript Prompt;
 }

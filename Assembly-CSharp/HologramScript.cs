@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000312 RID: 786
 public class HologramScript : MonoBehaviour
 {
-	// Token: 0x06001843 RID: 6211 RVA: 0x000E9D40 File Offset: 0x000E7F40
+	// Token: 0x06001845 RID: 6213 RVA: 0x000EA024 File Offset: 0x000E8224
 	public void UpdateHolograms()
 	{
 		GameObject[] holograms = this.Holograms;
@@ -14,12 +14,12 @@ public class HologramScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001844 RID: 6212 RVA: 0x000E9D70 File Offset: 0x000E7F70
+	// Token: 0x06001846 RID: 6214 RVA: 0x000EA054 File Offset: 0x000E8254
 	private bool TrueFalse()
 	{
 		return UnityEngine.Random.value >= 0.5f;
 	}
 
-	// Token: 0x040023F1 RID: 9201
+	// Token: 0x040023F5 RID: 9205
 	public GameObject[] Holograms;
 }

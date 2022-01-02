@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000468 RID: 1128
 public class TeleportScript : MonoBehaviour
 {
-	// Token: 0x06001E83 RID: 7811 RVA: 0x001AB999 File Offset: 0x001A9B99
+	// Token: 0x06001E85 RID: 7813 RVA: 0x001ABE4D File Offset: 0x001AA04D
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -14,9 +14,9 @@ public class TeleportScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003EFD RID: 16125
+	// Token: 0x04003F04 RID: 16132
 	public PromptScript Prompt;
 
-	// Token: 0x04003EFE RID: 16126
+	// Token: 0x04003F05 RID: 16133
 	public Transform Destination;
 }

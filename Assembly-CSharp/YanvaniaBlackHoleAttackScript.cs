@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020004CC RID: 1228
 public class YanvaniaBlackHoleAttackScript : MonoBehaviour
 {
-	// Token: 0x06002053 RID: 8275 RVA: 0x001D9B5D File Offset: 0x001D7D5D
+	// Token: 0x06002056 RID: 8278 RVA: 0x001DA14D File Offset: 0x001D834D
 	private void Start()
 	{
 		this.Yanmont = GameObject.Find("YanmontChan").GetComponent<YanvaniaYanmontScript>();
 	}
 
-	// Token: 0x06002054 RID: 8276 RVA: 0x001D9B74 File Offset: 0x001D7D74
+	// Token: 0x06002057 RID: 8279 RVA: 0x001DA164 File Offset: 0x001D8364
 	private void Update()
 	{
 		base.transform.position = Vector3.MoveTowards(base.transform.position, this.Yanmont.transform.position + Vector3.up, Time.deltaTime);
@@ -20,7 +20,7 @@ public class YanvaniaBlackHoleAttackScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002055 RID: 8277 RVA: 0x001D9BFC File Offset: 0x001D7DFC
+	// Token: 0x06002058 RID: 8280 RVA: 0x001DA1EC File Offset: 0x001D83EC
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.tag == "Player")
@@ -35,9 +35,9 @@ public class YanvaniaBlackHoleAttackScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040046C4 RID: 18116
+	// Token: 0x040046CD RID: 18125
 	public YanvaniaYanmontScript Yanmont;
 
-	// Token: 0x040046C5 RID: 18117
+	// Token: 0x040046CE RID: 18126
 	public GameObject BlackExplosion;
 }

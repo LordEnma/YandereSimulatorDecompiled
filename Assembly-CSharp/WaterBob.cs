@@ -5,30 +5,30 @@ using UnityEngine;
 [ExecuteAlways]
 public class WaterBob : MonoBehaviour
 {
-	// Token: 0x060020C7 RID: 8391 RVA: 0x001E276C File Offset: 0x001E096C
+	// Token: 0x060020CA RID: 8394 RVA: 0x001E2D5C File Offset: 0x001E0F5C
 	private void Awake()
 	{
 		this.initialPosition = base.transform.position;
 		this.offset = 1f - UnityEngine.Random.value * 2f;
 	}
 
-	// Token: 0x060020C8 RID: 8392 RVA: 0x001E2798 File Offset: 0x001E0998
+	// Token: 0x060020CB RID: 8395 RVA: 0x001E2D88 File Offset: 0x001E0F88
 	private void Update()
 	{
 		base.transform.position = this.initialPosition - Vector3.up * Mathf.Sin((Time.time + this.offset) * this.period) * this.height;
 	}
 
-	// Token: 0x04004850 RID: 18512
+	// Token: 0x04004859 RID: 18521
 	[SerializeField]
 	private float height = 0.1f;
 
-	// Token: 0x04004851 RID: 18513
+	// Token: 0x0400485A RID: 18522
 	[SerializeField]
 	private float period = 1f;
 
-	// Token: 0x04004852 RID: 18514
+	// Token: 0x0400485B RID: 18523
 	private Vector3 initialPosition;
 
-	// Token: 0x04004853 RID: 18515
+	// Token: 0x0400485C RID: 18524
 	private float offset;
 }

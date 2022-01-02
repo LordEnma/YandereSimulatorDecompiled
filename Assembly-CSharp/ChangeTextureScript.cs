@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200023C RID: 572
 public class ChangeTextureScript : MonoBehaviour
 {
-	// Token: 0x06001236 RID: 4662 RVA: 0x0008B898 File Offset: 0x00089A98
+	// Token: 0x06001236 RID: 4662 RVA: 0x0008B908 File Offset: 0x00089B08
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.LeftAlt))

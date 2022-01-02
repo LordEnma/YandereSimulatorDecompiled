@@ -293,11 +293,11 @@ public class UIRoot : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Scaling
 	{
-		// Token: 0x04004E57 RID: 20055
+		// Token: 0x04004E60 RID: 20064
 		Flexible,
-		// Token: 0x04004E58 RID: 20056
+		// Token: 0x04004E61 RID: 20065
 		Constrained,
-		// Token: 0x04004E59 RID: 20057
+		// Token: 0x04004E62 RID: 20066
 		ConstrainedOnMobiles
 	}
 
@@ -305,13 +305,13 @@ public class UIRoot : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Constraint
 	{
-		// Token: 0x04004E5B RID: 20059
+		// Token: 0x04004E64 RID: 20068
 		Fit,
-		// Token: 0x04004E5C RID: 20060
+		// Token: 0x04004E65 RID: 20069
 		Fill,
-		// Token: 0x04004E5D RID: 20061
+		// Token: 0x04004E66 RID: 20070
 		FitWidth,
-		// Token: 0x04004E5E RID: 20062
+		// Token: 0x04004E67 RID: 20071
 		FitHeight
 	}
 }

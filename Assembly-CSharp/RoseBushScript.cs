@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E8 RID: 1000
 public class RoseBushScript : MonoBehaviour
 {
-	// Token: 0x06001BC0 RID: 7104 RVA: 0x00142718 File Offset: 0x00140918
+	// Token: 0x06001BC2 RID: 7106 RVA: 0x00142B14 File Offset: 0x00140D14
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -16,6 +16,6 @@ public class RoseBushScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040030B2 RID: 12466
+	// Token: 0x040030B9 RID: 12473
 	public PromptScript Prompt;
 }

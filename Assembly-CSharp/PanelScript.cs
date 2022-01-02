@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200038E RID: 910
 public class PanelScript : MonoBehaviour
 {
-	// Token: 0x06001A35 RID: 6709 RVA: 0x001157A8 File Offset: 0x001139A8
+	// Token: 0x06001A37 RID: 6711 RVA: 0x00115A84 File Offset: 0x00113C84
 	private void Update()
 	{
 		if (this.Player.position.z > this.StairsZ || this.Player.position.z < -this.StairsZ)
@@ -38,30 +38,30 @@ public class PanelScript : MonoBehaviour
 		this.DoorBox.Show = false;
 	}
 
-	// Token: 0x04002AD5 RID: 10965
+	// Token: 0x04002AD9 RID: 10969
 	public UILabel BuildingLabel;
 
-	// Token: 0x04002AD6 RID: 10966
+	// Token: 0x04002ADA RID: 10970
 	public DoorBoxScript DoorBox;
 
-	// Token: 0x04002AD7 RID: 10967
+	// Token: 0x04002ADB RID: 10971
 	public Transform Player;
 
-	// Token: 0x04002AD8 RID: 10968
+	// Token: 0x04002ADC RID: 10972
 	public string Floor = string.Empty;
 
-	// Token: 0x04002AD9 RID: 10969
+	// Token: 0x04002ADD RID: 10973
 	public float PracticeBuildingZ;
 
-	// Token: 0x04002ADA RID: 10970
+	// Token: 0x04002ADE RID: 10974
 	public float StairsZ;
 
-	// Token: 0x04002ADB RID: 10971
+	// Token: 0x04002ADF RID: 10975
 	public float Floor1Height;
 
-	// Token: 0x04002ADC RID: 10972
+	// Token: 0x04002AE0 RID: 10976
 	public float Floor2Height;
 
-	// Token: 0x04002ADD RID: 10973
+	// Token: 0x04002AE1 RID: 10977
 	public float Floor3Height;
 }

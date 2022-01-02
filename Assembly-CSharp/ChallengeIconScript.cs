@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000106 RID: 262
 public class ChallengeIconScript : MonoBehaviour
 {
-	// Token: 0x06000AAA RID: 2730 RVA: 0x000631DC File Offset: 0x000613DC
+	// Token: 0x06000AAA RID: 2730 RVA: 0x0006324C File Offset: 0x0006144C
 	private void Start()
 	{
 		if (GameGlobals.LoveSick)
@@ -19,7 +19,7 @@ public class ChallengeIconScript : MonoBehaviour
 		this.B = 1f;
 	}
 
-	// Token: 0x06000AAB RID: 2731 RVA: 0x00063234 File Offset: 0x00061434
+	// Token: 0x06000AAB RID: 2731 RVA: 0x000632A4 File Offset: 0x000614A4
 	private void Update()
 	{
 		if (base.transform.position.x > -0.125f && base.transform.position.x < 0.125f)

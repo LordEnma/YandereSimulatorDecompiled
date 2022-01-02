@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002D7 RID: 727
 public class GasterBeamScript : MonoBehaviour
 {
-	// Token: 0x060014C1 RID: 5313 RVA: 0x000CC7E6 File Offset: 0x000CA9E6
+	// Token: 0x060014C1 RID: 5313 RVA: 0x000CCA2E File Offset: 0x000CAC2E
 	private void Start()
 	{
 		if (this.LoveLoveBeam)
@@ -13,7 +13,7 @@ public class GasterBeamScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014C2 RID: 5314 RVA: 0x000CC810 File Offset: 0x000CAA10
+	// Token: 0x060014C2 RID: 5314 RVA: 0x000CCA58 File Offset: 0x000CAC58
 	private void Update()
 	{
 		if (this.LoveLoveBeam)
@@ -30,7 +30,7 @@ public class GasterBeamScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014C3 RID: 5315 RVA: 0x000CC8A8 File Offset: 0x000CAAA8
+	// Token: 0x060014C3 RID: 5315 RVA: 0x000CCAF0 File Offset: 0x000CACF0
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -48,12 +48,12 @@ public class GasterBeamScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040020B0 RID: 8368
+	// Token: 0x040020B3 RID: 8371
 	public float Strength = 1000f;
 
-	// Token: 0x040020B1 RID: 8369
+	// Token: 0x040020B4 RID: 8372
 	public float Target = 2f;
 
-	// Token: 0x040020B2 RID: 8370
+	// Token: 0x040020B5 RID: 8373
 	public bool LoveLoveBeam;
 }

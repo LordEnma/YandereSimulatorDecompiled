@@ -1036,33 +1036,33 @@ public class UIDrawCall : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Clipping
 	{
-		// Token: 0x04004DA3 RID: 19875
+		// Token: 0x04004DAC RID: 19884
 		None,
-		// Token: 0x04004DA4 RID: 19876
+		// Token: 0x04004DAD RID: 19885
 		TextureMask,
-		// Token: 0x04004DA5 RID: 19877
+		// Token: 0x04004DAE RID: 19886
 		SoftClip = 3,
-		// Token: 0x04004DA6 RID: 19878
+		// Token: 0x04004DAF RID: 19887
 		ConstrainButDontClip
 	}
 
 	// Token: 0x020005F6 RID: 1526
-	// (Invoke) Token: 0x06002544 RID: 9540
+	// (Invoke) Token: 0x06002547 RID: 9543
 	public delegate void OnRenderCallback(Material mat);
 
 	// Token: 0x020005F7 RID: 1527
-	// (Invoke) Token: 0x06002548 RID: 9544
+	// (Invoke) Token: 0x0600254B RID: 9547
 	public delegate void OnCreateDrawCall(UIDrawCall dc, MeshFilter filter, MeshRenderer ren);
 
 	// Token: 0x020005F8 RID: 1528
 	[DoNotObfuscateNGUI]
 	public enum ShadowMode
 	{
-		// Token: 0x04004DA8 RID: 19880
+		// Token: 0x04004DB1 RID: 19889
 		None,
-		// Token: 0x04004DA9 RID: 19881
+		// Token: 0x04004DB2 RID: 19890
 		Receive,
-		// Token: 0x04004DAA RID: 19882
+		// Token: 0x04004DB3 RID: 19891
 		CastAndReceive
 	}
 }

@@ -180,11 +180,11 @@ public class UIScrollBar : UISlider
 	// Token: 0x020005D9 RID: 1497
 	private enum Direction
 	{
-		// Token: 0x04004D49 RID: 19785
+		// Token: 0x04004D52 RID: 19794
 		Horizontal,
-		// Token: 0x04004D4A RID: 19786
+		// Token: 0x04004D53 RID: 19795
 		Vertical,
-		// Token: 0x04004D4B RID: 19787
+		// Token: 0x04004D54 RID: 19796
 		Upgraded
 	}
 }

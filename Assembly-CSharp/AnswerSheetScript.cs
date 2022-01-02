@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000CB RID: 203
 public class AnswerSheetScript : MonoBehaviour
 {
-	// Token: 0x060009C2 RID: 2498 RVA: 0x00051257 File Offset: 0x0004F457
+	// Token: 0x060009C2 RID: 2498 RVA: 0x0005126F File Offset: 0x0004F46F
 	private void Start()
 	{
 		this.OriginalMesh = this.MyMesh.mesh;
@@ -15,7 +15,7 @@ public class AnswerSheetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009C3 RID: 2499 RVA: 0x0005128C File Offset: 0x0004F48C
+	// Token: 0x060009C3 RID: 2499 RVA: 0x000512A4 File Offset: 0x0004F4A4
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200046F RID: 1135
 public class TimelineScript : MonoBehaviour
 {
-	// Token: 0x06001E97 RID: 7831 RVA: 0x001AC638 File Offset: 0x001AA838
+	// Token: 0x06001E99 RID: 7833 RVA: 0x001ACAEC File Offset: 0x001AACEC
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(0f, -0.6f, 1f);
@@ -142,40 +142,40 @@ public class TimelineScript : MonoBehaviour
 		this.SpawnMiscData("Kocho Shuyona observes Ryoba entering the office of Saisho Saikou.");
 		this.SpawnSaikouData("Ichirou Saikou enrolls in Akademi.");
 		this.Height -= 150;
-		this.SpawnYear(2003);
+		this.SpawnYear(2004);
 		this.SpawnMiscData("A woman falls in love with the investigative journalist who accused Ryoba of murder.");
 		this.Height -= 200;
 		this.SpawnMiscData("Taro Yamada is born.");
 		this.Height -= 100;
-		this.SpawnYear(2004);
+		this.SpawnYear(2005);
 		this.SpawnSaikouData("Ichirou Saikou's daughter is born. She is named Megami.");
 		this.SpawnMiscData("The investigative journalist's daughter is born.");
 		this.SpawnAishiData("Ryoba gives birth to a daughter. She is named Ayano.");
 		this.Height -= 150;
 		this.SpawnAishiData("Ryoba's sister gives birth to a daughter.");
 		this.Height -= 150;
-		this.SpawnYear(2006);
+		this.SpawnYear(2007);
 		this.SpawnSaikouData("Ichirou Saikou's son is born. He is named Kencho.");
 		this.Height -= 150;
-		this.SpawnYear(2019);
+		this.SpawnYear(2020);
 		this.SpawnSaikouData("Saisho Saikou steps down as CEO of Saikou Corp and appoints his son Ichirou as the new CEO.");
 		this.Height -= 200;
-		this.SpawnYear(2020);
+		this.SpawnYear(2021);
 		this.SpawnMiscData("An urban legend is born about a mysterious hacker and information broker named ''Info-chan.''");
 		this.Height -= 200;
-		this.SpawnYear(2021);
+		this.SpawnYear(2022);
 		this.SpawnAishiData("Ayano Aishi enrolls in Akademi.");
 		this.Height -= 100;
-		this.SpawnYear(2022);
+		this.SpawnYear(2023);
 		this.Long = true;
 		this.Height -= 100;
-		this.SpawnMiscData("The Saikou family announces to the world that Saisho Saikou has passed away at the age of 94.");
+		this.SpawnMiscData("The Saikou family announces to the world that Saisho Saikou has passed away at the age of 95.");
 		this.Height -= 150;
 		this.Hide = true;
 		this.SpawnMiscData("Ayano Aishi finds her Senpai.");
 	}
 
-	// Token: 0x06001E98 RID: 7832 RVA: 0x001ACED0 File Offset: 0x001AB0D0
+	// Token: 0x06001E9A RID: 7834 RVA: 0x001AD384 File Offset: 0x001AB584
 	private void Update()
 	{
 		if (base.transform.localPosition.y > 9.75f)
@@ -237,7 +237,7 @@ public class TimelineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E99 RID: 7833 RVA: 0x001AD1E4 File Offset: 0x001AB3E4
+	// Token: 0x06001E9B RID: 7835 RVA: 0x001AD698 File Offset: 0x001AB898
 	private void SpawnYear(int Year)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.YearObject);
@@ -248,7 +248,7 @@ public class TimelineScript : MonoBehaviour
 		this.Height -= 50;
 	}
 
-	// Token: 0x06001E9A RID: 7834 RVA: 0x001AD278 File Offset: 0x001AB478
+	// Token: 0x06001E9C RID: 7836 RVA: 0x001AD72C File Offset: 0x001AB92C
 	private void SpawnAishiData(string Data)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.TextObject);
@@ -258,7 +258,7 @@ public class TimelineScript : MonoBehaviour
 		gameObject.GetComponent<UILabel>().text = (Data ?? "");
 	}
 
-	// Token: 0x06001E9B RID: 7835 RVA: 0x001AD2F8 File Offset: 0x001AB4F8
+	// Token: 0x06001E9D RID: 7837 RVA: 0x001AD7AC File Offset: 0x001AB9AC
 	private void SpawnSaikouData(string Data)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.TextObject);
@@ -268,7 +268,7 @@ public class TimelineScript : MonoBehaviour
 		gameObject.GetComponent<UILabel>().text = (Data ?? "");
 	}
 
-	// Token: 0x06001E9C RID: 7836 RVA: 0x001AD378 File Offset: 0x001AB578
+	// Token: 0x06001E9E RID: 7838 RVA: 0x001AD82C File Offset: 0x001ABA2C
 	private void SpawnMiscData(string Data)
 	{
 		GameObject gameObject;
@@ -292,45 +292,45 @@ public class TimelineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F32 RID: 16178
+	// Token: 0x04003F39 RID: 16185
 	public InputManagerScript InputManager;
 
-	// Token: 0x04003F33 RID: 16179
+	// Token: 0x04003F3A RID: 16186
 	public GameObject LongTextObject;
 
-	// Token: 0x04003F34 RID: 16180
+	// Token: 0x04003F3B RID: 16187
 	public GameObject TextObject;
 
-	// Token: 0x04003F35 RID: 16181
+	// Token: 0x04003F3C RID: 16188
 	public GameObject YearObject;
 
-	// Token: 0x04003F36 RID: 16182
+	// Token: 0x04003F3D RID: 16189
 	public AudioSource Ambience;
 
-	// Token: 0x04003F37 RID: 16183
+	// Token: 0x04003F3E RID: 16190
 	public AudioSource MyAudio;
 
-	// Token: 0x04003F38 RID: 16184
+	// Token: 0x04003F3F RID: 16191
 	public UISprite Darkness;
 
-	// Token: 0x04003F39 RID: 16185
+	// Token: 0x04003F40 RID: 16192
 	public UILabel FinalLabel;
 
-	// Token: 0x04003F3A RID: 16186
+	// Token: 0x04003F41 RID: 16193
 	public float MaxHeight;
 
-	// Token: 0x04003F3B RID: 16187
+	// Token: 0x04003F42 RID: 16194
 	public float Speed = 0.05f;
 
-	// Token: 0x04003F3C RID: 16188
+	// Token: 0x04003F43 RID: 16195
 	public float Timer;
 
-	// Token: 0x04003F3D RID: 16189
+	// Token: 0x04003F44 RID: 16196
 	public bool Hide;
 
-	// Token: 0x04003F3E RID: 16190
+	// Token: 0x04003F45 RID: 16197
 	public bool Long;
 
-	// Token: 0x04003F3F RID: 16191
+	// Token: 0x04003F46 RID: 16198
 	public int Height;
 }

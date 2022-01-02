@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200034D RID: 845
 public class LifeNoteScript : MonoBehaviour
 {
-	// Token: 0x06001944 RID: 6468 RVA: 0x000FCA4C File Offset: 0x000FAC4C
+	// Token: 0x06001946 RID: 6470 RVA: 0x000FCD0C File Offset: 0x000FAF0C
 	private void Start()
 	{
 		Application.targetFrameRate = 60;
@@ -18,7 +18,7 @@ public class LifeNoteScript : MonoBehaviour
 		this.TextWindow.color = new Color(1f, 1f, 1f, 0f);
 	}
 
-	// Token: 0x06001945 RID: 6469 RVA: 0x000FCB1C File Offset: 0x000FAD1C
+	// Token: 0x06001947 RID: 6471 RVA: 0x000FCDDC File Offset: 0x000FAFDC
 	private void Update()
 	{
 		if (this.Controls.activeInHierarchy)
@@ -146,72 +146,72 @@ public class LifeNoteScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040027D1 RID: 10193
+	// Token: 0x040027D5 RID: 10197
 	public UITexture Darkness;
 
-	// Token: 0x040027D2 RID: 10194
+	// Token: 0x040027D6 RID: 10198
 	public UITexture TextWindow;
 
-	// Token: 0x040027D3 RID: 10195
+	// Token: 0x040027D7 RID: 10199
 	public UITexture FinalDarkness;
 
-	// Token: 0x040027D4 RID: 10196
+	// Token: 0x040027D8 RID: 10200
 	public Transform BackgroundArt;
 
-	// Token: 0x040027D5 RID: 10197
+	// Token: 0x040027D9 RID: 10201
 	public TypewriterEffect Typewriter;
 
-	// Token: 0x040027D6 RID: 10198
+	// Token: 0x040027DA RID: 10202
 	public GameObject Controls;
 
-	// Token: 0x040027D7 RID: 10199
+	// Token: 0x040027DB RID: 10203
 	public AudioSource MyAudio;
 
-	// Token: 0x040027D8 RID: 10200
+	// Token: 0x040027DC RID: 10204
 	public AudioClip[] Voices;
 
-	// Token: 0x040027D9 RID: 10201
+	// Token: 0x040027DD RID: 10205
 	public string[] Lines;
 
-	// Token: 0x040027DA RID: 10202
+	// Token: 0x040027DE RID: 10206
 	public int[] Alphas;
 
-	// Token: 0x040027DB RID: 10203
+	// Token: 0x040027DF RID: 10207
 	public bool[] Reds;
 
-	// Token: 0x040027DC RID: 10204
+	// Token: 0x040027E0 RID: 10208
 	public UILabel Label;
 
-	// Token: 0x040027DD RID: 10205
+	// Token: 0x040027E1 RID: 10209
 	public float Timer;
 
-	// Token: 0x040027DE RID: 10206
+	// Token: 0x040027E2 RID: 10210
 	public int Frame;
 
-	// Token: 0x040027DF RID: 10207
+	// Token: 0x040027E3 RID: 10211
 	public int ID;
 
-	// Token: 0x040027E0 RID: 10208
+	// Token: 0x040027E4 RID: 10212
 	public float AutoTimer;
 
-	// Token: 0x040027E1 RID: 10209
+	// Token: 0x040027E5 RID: 10213
 	public float Alpha;
 
-	// Token: 0x040027E2 RID: 10210
+	// Token: 0x040027E6 RID: 10214
 	public string Text;
 
-	// Token: 0x040027E3 RID: 10211
+	// Token: 0x040027E7 RID: 10215
 	public AudioClip[] SFX;
 
-	// Token: 0x040027E4 RID: 10212
+	// Token: 0x040027E8 RID: 10216
 	public bool Spoke;
 
-	// Token: 0x040027E5 RID: 10213
+	// Token: 0x040027E9 RID: 10217
 	public bool Auto;
 
-	// Token: 0x040027E6 RID: 10214
+	// Token: 0x040027EA RID: 10218
 	public AudioSource SFXAudioSource;
 
-	// Token: 0x040027E7 RID: 10215
+	// Token: 0x040027EB RID: 10219
 	public AudioSource Jukebox;
 }

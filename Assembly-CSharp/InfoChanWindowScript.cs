@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000330 RID: 816
 public class InfoChanWindowScript : MonoBehaviour
 {
-	// Token: 0x060018C0 RID: 6336 RVA: 0x000F3CDC File Offset: 0x000F1EDC
+	// Token: 0x060018C2 RID: 6338 RVA: 0x000F3F90 File Offset: 0x000F2190
 	private void Update()
 	{
 		if (this.Drop)
@@ -37,7 +37,7 @@ public class InfoChanWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018C1 RID: 6337 RVA: 0x000F3E4A File Offset: 0x000F204A
+	// Token: 0x060018C3 RID: 6339 RVA: 0x000F40FE File Offset: 0x000F22FE
 	public void DropObject()
 	{
 		this.Rotation = 0f;
@@ -48,39 +48,39 @@ public class InfoChanWindowScript : MonoBehaviour
 		this.Open = true;
 	}
 
-	// Token: 0x040025DE RID: 9694
+	// Token: 0x040025E2 RID: 9698
 	public DropsScript DropMenu;
 
-	// Token: 0x040025DF RID: 9695
+	// Token: 0x040025E3 RID: 9699
 	public Transform DropPoint;
 
-	// Token: 0x040025E0 RID: 9696
+	// Token: 0x040025E4 RID: 9700
 	public GameObject[] Drops;
 
-	// Token: 0x040025E1 RID: 9697
+	// Token: 0x040025E5 RID: 9701
 	public int[] ItemsToDrop;
 
-	// Token: 0x040025E2 RID: 9698
+	// Token: 0x040025E6 RID: 9702
 	public int Orders;
 
-	// Token: 0x040025E3 RID: 9699
+	// Token: 0x040025E7 RID: 9703
 	public int ID;
 
-	// Token: 0x040025E4 RID: 9700
+	// Token: 0x040025E8 RID: 9704
 	public float Rotation;
 
-	// Token: 0x040025E5 RID: 9701
+	// Token: 0x040025E9 RID: 9705
 	public float Timer;
 
-	// Token: 0x040025E6 RID: 9702
+	// Token: 0x040025EA RID: 9706
 	public bool Dropped;
 
-	// Token: 0x040025E7 RID: 9703
+	// Token: 0x040025EB RID: 9707
 	public bool Drop;
 
-	// Token: 0x040025E8 RID: 9704
+	// Token: 0x040025EC RID: 9708
 	public bool Test;
 
-	// Token: 0x040025E9 RID: 9705
+	// Token: 0x040025ED RID: 9709
 	public bool Open = true;
 }

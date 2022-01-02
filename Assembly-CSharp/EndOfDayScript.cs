@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020002A4 RID: 676
 public class EndOfDayScript : MonoBehaviour
 {
-	// Token: 0x06001411 RID: 5137 RVA: 0x000BF614 File Offset: 0x000BD814
+	// Token: 0x06001411 RID: 5137 RVA: 0x000BF85C File Offset: 0x000BDA5C
 	public void Start()
 	{
 		this.VoidGoddess.Start();
@@ -73,7 +73,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001412 RID: 5138 RVA: 0x000BF9A4 File Offset: 0x000BDBA4
+	// Token: 0x06001412 RID: 5138 RVA: 0x000BFBEC File Offset: 0x000BDDEC
 	private void Update()
 	{
 		this.Yandere.UpdateSlouch();
@@ -223,7 +223,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001413 RID: 5139 RVA: 0x000C0054 File Offset: 0x000BE254
+	// Token: 0x06001413 RID: 5139 RVA: 0x000C029C File Offset: 0x000BE49C
 	public void UpdateScene()
 	{
 		this.Label.color = new Color(0f, 0f, 0f, 1f);
@@ -1735,7 +1735,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001414 RID: 5140 RVA: 0x000C3BA8 File Offset: 0x000C1DA8
+	// Token: 0x06001414 RID: 5140 RVA: 0x000C3DF0 File Offset: 0x000C1FF0
 	private void TeleportYandere()
 	{
 		this.Yandere.MyController.enabled = false;
@@ -1745,7 +1745,7 @@ public class EndOfDayScript : MonoBehaviour
 		Physics.SyncTransforms();
 	}
 
-	// Token: 0x06001415 RID: 5141 RVA: 0x000C3C2C File Offset: 0x000C1E2C
+	// Token: 0x06001415 RID: 5141 RVA: 0x000C3E74 File Offset: 0x000C2074
 	private void Finish()
 	{
 		Debug.Log("We have reached the end of the End-of-Day sequence.");
@@ -2108,7 +2108,7 @@ public class EndOfDayScript : MonoBehaviour
 		PlayerGlobals.WeaponWitnessed += this.WeaponWitnessed;
 	}
 
-	// Token: 0x06001416 RID: 5142 RVA: 0x000C486C File Offset: 0x000C2A6C
+	// Token: 0x06001416 RID: 5142 RVA: 0x000C4AB4 File Offset: 0x000C2CB4
 	private void DisableThings(StudentScript TargetStudent)
 	{
 		if (TargetStudent != null)
@@ -2129,7 +2129,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001417 RID: 5143 RVA: 0x000C4938 File Offset: 0x000C2B38
+	// Token: 0x06001417 RID: 5143 RVA: 0x000C4B80 File Offset: 0x000C2D80
 	private void CheckForNatureOfDeath()
 	{
 		if (this.StudentManager.Students[this.StudentManager.RivalID] != null)
@@ -2251,309 +2251,309 @@ public class EndOfDayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001E4E RID: 7758
+	// Token: 0x04001E51 RID: 7761
 	public SecuritySystemScript SecuritySystem;
 
-	// Token: 0x04001E4F RID: 7759
+	// Token: 0x04001E52 RID: 7762
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001E50 RID: 7760
+	// Token: 0x04001E53 RID: 7763
 	public WeaponManagerScript WeaponManager;
 
-	// Token: 0x04001E51 RID: 7761
+	// Token: 0x04001E54 RID: 7764
 	public ClubManagerScript ClubManager;
 
-	// Token: 0x04001E52 RID: 7762
+	// Token: 0x04001E55 RID: 7765
 	public HeartbrokenScript Heartbroken;
 
-	// Token: 0x04001E53 RID: 7763
+	// Token: 0x04001E56 RID: 7766
 	public IncineratorScript Incinerator;
 
-	// Token: 0x04001E54 RID: 7764
+	// Token: 0x04001E57 RID: 7767
 	public LoveManagerScript LoveManager;
 
-	// Token: 0x04001E55 RID: 7765
+	// Token: 0x04001E58 RID: 7768
 	public RummageSpotScript RummageSpot;
 
-	// Token: 0x04001E56 RID: 7766
+	// Token: 0x04001E59 RID: 7769
 	public VoidGoddessScript VoidGoddess;
 
-	// Token: 0x04001E57 RID: 7767
+	// Token: 0x04001E5A RID: 7770
 	public WoodChipperScript WoodChipper;
 
-	// Token: 0x04001E58 RID: 7768
+	// Token: 0x04001E5B RID: 7771
 	public ReputationScript Reputation;
 
-	// Token: 0x04001E59 RID: 7769
+	// Token: 0x04001E5C RID: 7772
 	public DumpsterLidScript Dumpster;
 
-	// Token: 0x04001E5A RID: 7770
+	// Token: 0x04001E5D RID: 7773
 	public CounselorScript Counselor;
 
-	// Token: 0x04001E5B RID: 7771
+	// Token: 0x04001E5E RID: 7774
 	public WeaponScript MurderWeapon;
 
-	// Token: 0x04001E5C RID: 7772
+	// Token: 0x04001E5F RID: 7775
 	public TranqCaseScript TranqCase;
 
-	// Token: 0x04001E5D RID: 7773
+	// Token: 0x04001E60 RID: 7776
 	public YandereScript Yandere;
 
-	// Token: 0x04001E5E RID: 7774
+	// Token: 0x04001E61 RID: 7777
 	public RagdollScript Corpse;
 
-	// Token: 0x04001E5F RID: 7775
+	// Token: 0x04001E62 RID: 7778
 	public StudentScript Senpai;
 
-	// Token: 0x04001E60 RID: 7776
+	// Token: 0x04001E63 RID: 7779
 	public StudentScript Patsy;
 
-	// Token: 0x04001E61 RID: 7777
+	// Token: 0x04001E64 RID: 7780
 	public PoliceScript Police;
 
-	// Token: 0x04001E62 RID: 7778
+	// Token: 0x04001E65 RID: 7781
 	public Transform EODCamera;
 
-	// Token: 0x04001E63 RID: 7779
+	// Token: 0x04001E66 RID: 7782
 	public StudentScript Rival;
 
-	// Token: 0x04001E64 RID: 7780
+	// Token: 0x04001E67 RID: 7783
 	public ClassScript Class;
 
-	// Token: 0x04001E65 RID: 7781
+	// Token: 0x04001E68 RID: 7784
 	public ClockScript Clock;
 
-	// Token: 0x04001E66 RID: 7782
+	// Token: 0x04001E69 RID: 7785
 	public JsonScript JSON;
 
-	// Token: 0x04001E67 RID: 7783
+	// Token: 0x04001E6A RID: 7786
 	public GardenHoleScript[] GardenHoles;
 
-	// Token: 0x04001E68 RID: 7784
+	// Token: 0x04001E6B RID: 7787
 	public StudentScript[] WitnessList;
 
-	// Token: 0x04001E69 RID: 7785
+	// Token: 0x04001E6C RID: 7788
 	public Animation[] CopAnimation;
 
-	// Token: 0x04001E6A RID: 7786
+	// Token: 0x04001E6D RID: 7789
 	public GameObject MainCamera;
 
-	// Token: 0x04001E6B RID: 7787
+	// Token: 0x04001E6E RID: 7790
 	public UISprite EndOfDayDarkness;
 
-	// Token: 0x04001E6C RID: 7788
+	// Token: 0x04001E6F RID: 7791
 	public UILabel Label;
 
-	// Token: 0x04001E6D RID: 7789
+	// Token: 0x04001E70 RID: 7792
 	public bool RivalDismemberedAndIncinerated;
 
-	// Token: 0x04001E6E RID: 7790
+	// Token: 0x04001E71 RID: 7793
 	public bool RivalBuried;
 
-	// Token: 0x04001E6F RID: 7791
+	// Token: 0x04001E72 RID: 7794
 	public bool LearnedAboutPhotographer;
 
-	// Token: 0x04001E70 RID: 7792
+	// Token: 0x04001E73 RID: 7795
 	public bool ExplosiveDeviceUsed;
 
-	// Token: 0x04001E71 RID: 7793
+	// Token: 0x04001E74 RID: 7796
 	public bool PreviouslyActivated;
 
-	// Token: 0x04001E72 RID: 7794
+	// Token: 0x04001E75 RID: 7797
 	public bool LearnedOsanaInfo1;
 
-	// Token: 0x04001E73 RID: 7795
+	// Token: 0x04001E76 RID: 7798
 	public bool LearnedOsanaInfo2;
 
-	// Token: 0x04001E74 RID: 7796
+	// Token: 0x04001E77 RID: 7799
 	public bool GoToSuicideScene;
 
-	// Token: 0x04001E75 RID: 7797
+	// Token: 0x04001E78 RID: 7800
 	public bool PoliceArrived;
 
-	// Token: 0x04001E76 RID: 7798
+	// Token: 0x04001E79 RID: 7801
 	public bool RaibaruLoner;
 
-	// Token: 0x04001E77 RID: 7799
+	// Token: 0x04001E7A RID: 7802
 	public bool StopMourning;
 
-	// Token: 0x04001E78 RID: 7800
+	// Token: 0x04001E7B RID: 7803
 	public bool ClubClosed;
 
-	// Token: 0x04001E79 RID: 7801
+	// Token: 0x04001E7C RID: 7804
 	public bool ClubKicked;
 
-	// Token: 0x04001E7A RID: 7802
+	// Token: 0x04001E7D RID: 7805
 	public bool ErectFence;
 
-	// Token: 0x04001E7B RID: 7803
+	// Token: 0x04001E7E RID: 7806
 	public bool PoolEvent;
 
-	// Token: 0x04001E7C RID: 7804
+	// Token: 0x04001E7F RID: 7807
 	public bool GameOver;
 
-	// Token: 0x04001E7D RID: 7805
+	// Token: 0x04001E80 RID: 7808
 	public bool Darken;
 
-	// Token: 0x04001E7E RID: 7806
+	// Token: 0x04001E81 RID: 7809
 	public int ClothingWithRedPaint;
 
-	// Token: 0x04001E7F RID: 7807
+	// Token: 0x04001E82 RID: 7810
 	public int ShrineItemsCollected;
 
-	// Token: 0x04001E80 RID: 7808
+	// Token: 0x04001E83 RID: 7811
 	public int WeaponWitnessed;
 
-	// Token: 0x04001E81 RID: 7809
+	// Token: 0x04001E84 RID: 7812
 	public int BloodWitnessed;
 
-	// Token: 0x04001E82 RID: 7810
+	// Token: 0x04001E85 RID: 7813
 	public int FragileTarget;
 
-	// Token: 0x04001E83 RID: 7811
+	// Token: 0x04001E86 RID: 7814
 	public int EyeWitnesses;
 
-	// Token: 0x04001E84 RID: 7812
+	// Token: 0x04001E87 RID: 7815
 	public int NewFriends;
 
-	// Token: 0x04001E85 RID: 7813
+	// Token: 0x04001E88 RID: 7816
 	public int ClubLimit;
 
-	// Token: 0x04001E86 RID: 7814
+	// Token: 0x04001E89 RID: 7817
 	public int DeadPerps;
 
-	// Token: 0x04001E87 RID: 7815
+	// Token: 0x04001E8A RID: 7818
 	public int Arrests;
 
-	// Token: 0x04001E88 RID: 7816
+	// Token: 0x04001E8B RID: 7819
 	public int Corpses;
 
-	// Token: 0x04001E89 RID: 7817
+	// Token: 0x04001E8C RID: 7820
 	public int Victims;
 
-	// Token: 0x04001E8A RID: 7818
+	// Token: 0x04001E8D RID: 7821
 	public int Weapons;
 
-	// Token: 0x04001E8B RID: 7819
+	// Token: 0x04001E8E RID: 7822
 	public int Phase = 1;
 
-	// Token: 0x04001E8C RID: 7820
+	// Token: 0x04001E8F RID: 7823
 	public int MatchmakingGifts;
 
-	// Token: 0x04001E8D RID: 7821
+	// Token: 0x04001E90 RID: 7824
 	public int SenpaiGifts;
 
-	// Token: 0x04001E8E RID: 7822
+	// Token: 0x04001E91 RID: 7825
 	public int ArticleID;
 
-	// Token: 0x04001E8F RID: 7823
+	// Token: 0x04001E92 RID: 7826
 	public int WeaponID;
 
-	// Token: 0x04001E90 RID: 7824
+	// Token: 0x04001E93 RID: 7827
 	public int ArrestID;
 
-	// Token: 0x04001E91 RID: 7825
+	// Token: 0x04001E94 RID: 7828
 	public int ClubID;
 
-	// Token: 0x04001E92 RID: 7826
+	// Token: 0x04001E95 RID: 7829
 	public int ID;
 
-	// Token: 0x04001E93 RID: 7827
+	// Token: 0x04001E96 RID: 7830
 	public string[] ClubNames;
 
-	// Token: 0x04001E94 RID: 7828
+	// Token: 0x04001E97 RID: 7831
 	public int[] VictimArray;
 
-	// Token: 0x04001E95 RID: 7829
+	// Token: 0x04001E98 RID: 7832
 	public ClubType[] ClubArray;
 
-	// Token: 0x04001E96 RID: 7830
+	// Token: 0x04001E99 RID: 7833
 	private SaveFile saveFile;
 
-	// Token: 0x04001E97 RID: 7831
+	// Token: 0x04001E9A RID: 7834
 	public GameObject TextWindow;
 
-	// Token: 0x04001E98 RID: 7832
+	// Token: 0x04001E9B RID: 7835
 	public GameObject Cops;
 
-	// Token: 0x04001E99 RID: 7833
+	// Token: 0x04001E9C RID: 7836
 	public GameObject SearchingCop;
 
-	// Token: 0x04001E9A RID: 7834
+	// Token: 0x04001E9D RID: 7837
 	public GameObject MurderScene;
 
-	// Token: 0x04001E9B RID: 7835
+	// Token: 0x04001E9E RID: 7838
 	public GameObject ShruggingCops;
 
-	// Token: 0x04001E9C RID: 7836
+	// Token: 0x04001E9F RID: 7839
 	public GameObject TabletCop;
 
-	// Token: 0x04001E9D RID: 7837
+	// Token: 0x04001EA0 RID: 7840
 	public GameObject SecuritySystemScene;
 
-	// Token: 0x04001E9E RID: 7838
+	// Token: 0x04001EA1 RID: 7841
 	public GameObject OpenTranqCase;
 
-	// Token: 0x04001E9F RID: 7839
+	// Token: 0x04001EA2 RID: 7842
 	public GameObject ClosedTranqCase;
 
-	// Token: 0x04001EA0 RID: 7840
+	// Token: 0x04001EA3 RID: 7843
 	public GameObject GaudyRing;
 
-	// Token: 0x04001EA1 RID: 7841
+	// Token: 0x04001EA4 RID: 7844
 	public GameObject AnswerSheet;
 
-	// Token: 0x04001EA2 RID: 7842
+	// Token: 0x04001EA5 RID: 7845
 	public GameObject Fence;
 
-	// Token: 0x04001EA3 RID: 7843
+	// Token: 0x04001EA6 RID: 7846
 	public GameObject SCP;
 
-	// Token: 0x04001EA4 RID: 7844
+	// Token: 0x04001EA7 RID: 7847
 	public GameObject Headmaster;
 
-	// Token: 0x04001EA5 RID: 7845
+	// Token: 0x04001EA8 RID: 7848
 	public GameObject ArrestingCops;
 
-	// Token: 0x04001EA6 RID: 7846
+	// Token: 0x04001EA9 RID: 7849
 	public GameObject Mask;
 
-	// Token: 0x04001EA7 RID: 7847
+	// Token: 0x04001EAA RID: 7850
 	public GameObject EyeWitnessScene;
 
-	// Token: 0x04001EA8 RID: 7848
+	// Token: 0x04001EAB RID: 7851
 	public GameObject ScaredCops;
 
-	// Token: 0x04001EA9 RID: 7849
+	// Token: 0x04001EAC RID: 7852
 	public GameObject EightiesGaudyRing;
 
-	// Token: 0x04001EAA RID: 7850
+	// Token: 0x04001EAD RID: 7853
 	public StudentScript KidnappedVictim;
 
-	// Token: 0x04001EAB RID: 7851
+	// Token: 0x04001EAE RID: 7854
 	public Renderer TabletPortrait;
 
-	// Token: 0x04001EAC RID: 7852
+	// Token: 0x04001EAF RID: 7855
 	public Transform CardboardBox;
 
-	// Token: 0x04001EAD RID: 7853
+	// Token: 0x04001EB0 RID: 7856
 	public RivalEliminationType RivalEliminationMethod;
 
-	// Token: 0x04001EAE RID: 7854
+	// Token: 0x04001EB1 RID: 7857
 	public Vector3 YandereInitialPosition;
 
-	// Token: 0x04001EAF RID: 7855
+	// Token: 0x04001EB2 RID: 7858
 	public Quaternion YandereInitialRotation;
 
-	// Token: 0x04001EB0 RID: 7856
+	// Token: 0x04001EB3 RID: 7859
 	public string Protagonist = "Ayano";
 
-	// Token: 0x04001EB1 RID: 7857
+	// Token: 0x04001EB4 RID: 7860
 	public string RivalName = "";
 
-	// Token: 0x04001EB2 RID: 7858
+	// Token: 0x04001EB5 RID: 7861
 	public string[] EightiesRivalNames;
 
-	// Token: 0x04001EB3 RID: 7859
+	// Token: 0x04001EB6 RID: 7862
 	public string[] RivalNames;
 }

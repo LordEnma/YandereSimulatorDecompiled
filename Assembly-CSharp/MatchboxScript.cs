@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200035E RID: 862
 public class MatchboxScript : MonoBehaviour
 {
-	// Token: 0x0600197D RID: 6525 RVA: 0x001033E8 File Offset: 0x001015E8
+	// Token: 0x0600197F RID: 6527 RVA: 0x001036A8 File Offset: 0x001018A8
 	private void Update()
 	{
 		if (!this.Prompt.PauseScreen.Show)
@@ -17,9 +17,9 @@ public class MatchboxScript : MonoBehaviour
 					this.Prompt.HideButton[0] = false;
 					this.Prompt.HideButton[3] = true;
 				}
-				if (this.Prompt.Circle[0].fillAmount == 0f)
+				if (this.Prompt.Circle[0].fillAmount < 1f && this.Prompt.Circle[0].fillAmount > 0f)
 				{
-					this.Prompt.Circle[0].fillAmount = 1f;
+					this.Prompt.Circle[0].fillAmount = 0f;
 					this.MyAudio.Play();
 					Rigidbody component = UnityEngine.Object.Instantiate<GameObject>(this.Match, this.Prompt.Yandere.ItemParent.position, this.Prompt.Yandere.transform.rotation).GetComponent<Rigidbody>();
 					component.isKinematic = false;
@@ -46,21 +46,21 @@ public class MatchboxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040028B5 RID: 10421
+	// Token: 0x040028B9 RID: 10425
 	public YandereScript Yandere;
 
-	// Token: 0x040028B6 RID: 10422
+	// Token: 0x040028BA RID: 10426
 	public PromptScript Prompt;
 
-	// Token: 0x040028B7 RID: 10423
+	// Token: 0x040028BB RID: 10427
 	public PickUpScript PickUp;
 
-	// Token: 0x040028B8 RID: 10424
+	// Token: 0x040028BC RID: 10428
 	public GameObject Match;
 
-	// Token: 0x040028B9 RID: 10425
+	// Token: 0x040028BD RID: 10429
 	public AudioSource MyAudio;
 
-	// Token: 0x040028BA RID: 10426
+	// Token: 0x040028BE RID: 10430
 	public int Ammo;
 }

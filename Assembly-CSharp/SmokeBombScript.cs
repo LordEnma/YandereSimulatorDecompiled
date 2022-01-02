@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200042B RID: 1067
 public class SmokeBombScript : MonoBehaviour
 {
-	// Token: 0x06001CA4 RID: 7332 RVA: 0x00151F04 File Offset: 0x00150104
+	// Token: 0x06001CA6 RID: 7334 RVA: 0x00152310 File Offset: 0x00150510
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -24,7 +24,7 @@ public class SmokeBombScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CA5 RID: 7333 RVA: 0x00151F70 File Offset: 0x00150170
+	// Token: 0x06001CA7 RID: 7335 RVA: 0x0015237C File Offset: 0x0015057C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -34,21 +34,27 @@ public class SmokeBombScript : MonoBehaviour
 			{
 				if (this.Stink)
 				{
-					this.GoAway(component);
-					return;
+					if (component != null && !component.Yandere.Noticed && !component.Guarding && !component.Fleeing)
+					{
+						this.GoAway(component);
+						return;
+					}
 				}
-				if (this.Amnesia && !component.Chasing)
+				else
 				{
-					component.ReturnToNormal();
+					if (this.Amnesia && !component.Chasing)
+					{
+						component.ReturnToNormal();
+					}
+					this.Students[this.ID] = component;
+					component.Blind = true;
+					this.ID++;
 				}
-				this.Students[this.ID] = component;
-				component.Blind = true;
-				this.ID++;
 			}
 		}
 	}
 
-	// Token: 0x06001CA6 RID: 7334 RVA: 0x00151FEC File Offset: 0x001501EC
+	// Token: 0x06001CA8 RID: 7336 RVA: 0x00152420 File Offset: 0x00150620
 	private void OnTriggerStay(Collider other)
 	{
 		if (this.Stink)
@@ -56,7 +62,7 @@ public class SmokeBombScript : MonoBehaviour
 			if (other.gameObject.layer == 9)
 			{
 				StudentScript component = other.gameObject.GetComponent<StudentScript>();
-				if (component != null && !component.Yandere.Noticed)
+				if (component != null && !component.Yandere.Noticed && !component.Guarding && !component.Fleeing)
 				{
 					this.GoAway(component);
 					return;
@@ -73,7 +79,7 @@ public class SmokeBombScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CA7 RID: 7335 RVA: 0x0015207C File Offset: 0x0015027C
+	// Token: 0x06001CA9 RID: 7337 RVA: 0x001524C0 File Offset: 0x001506C0
 	private void OnTriggerExit(Collider other)
 	{
 		if (!this.Stink && !this.Amnesia && other.gameObject.layer == 9)
@@ -87,7 +93,7 @@ public class SmokeBombScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CA8 RID: 7336 RVA: 0x001520DC File Offset: 0x001502DC
+	// Token: 0x06001CAA RID: 7338 RVA: 0x00152520 File Offset: 0x00150720
 	private void GoAway(StudentScript Student)
 	{
 		if (!Student.Chasing && !Student.WitnessedMurder && !Student.WitnessedCorpse && !Student.Fleeing && !Student.Yandere.Noticed && !Student.Hunting && !Student.Confessing)
@@ -121,21 +127,21 @@ public class SmokeBombScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400336E RID: 13166
+	// Token: 0x04003375 RID: 13173
 	public StudentScript[] Students;
 
-	// Token: 0x0400336F RID: 13167
+	// Token: 0x04003376 RID: 13174
 	public float TimeLimit = 15f;
 
-	// Token: 0x04003370 RID: 13168
+	// Token: 0x04003377 RID: 13175
 	public float Timer;
 
-	// Token: 0x04003371 RID: 13169
+	// Token: 0x04003378 RID: 13176
 	public bool Amnesia;
 
-	// Token: 0x04003372 RID: 13170
+	// Token: 0x04003379 RID: 13177
 	public bool Stink;
 
-	// Token: 0x04003373 RID: 13171
+	// Token: 0x0400337A RID: 13178
 	public int ID;
 }

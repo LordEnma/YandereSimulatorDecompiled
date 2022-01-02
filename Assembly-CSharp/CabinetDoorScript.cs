@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000104 RID: 260
 public class CabinetDoorScript : MonoBehaviour
 {
-	// Token: 0x06000A9C RID: 2716 RVA: 0x00061123 File Offset: 0x0005F323
+	// Token: 0x06000A9C RID: 2716 RVA: 0x0006113B File Offset: 0x0005F33B
 	private void Start()
 	{
 		this.Eighties = GameGlobals.Eighties;
@@ -14,7 +14,7 @@ public class CabinetDoorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A9D RID: 2717 RVA: 0x00061148 File Offset: 0x0005F348
+	// Token: 0x06000A9D RID: 2717 RVA: 0x00061160 File Offset: 0x0005F360
 	private void Update()
 	{
 		if (!this.Eighties)
@@ -70,7 +70,7 @@ public class CabinetDoorScript : MonoBehaviour
 		base.transform.localPosition = new Vector3(Mathf.Lerp(base.transform.localPosition.x, 0f, Time.deltaTime * 10f), base.transform.localPosition.y, base.transform.localPosition.z);
 	}
 
-	// Token: 0x06000A9E RID: 2718 RVA: 0x00061447 File Offset: 0x0005F647
+	// Token: 0x06000A9E RID: 2718 RVA: 0x0006145F File Offset: 0x0005F65F
 	private void UpdateLabel()
 	{
 		if (this.Open)

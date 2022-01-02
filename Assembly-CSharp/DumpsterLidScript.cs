@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000292 RID: 658
 public class DumpsterLidScript : MonoBehaviour
 {
-	// Token: 0x060013BE RID: 5054 RVA: 0x000BADF9 File Offset: 0x000B8FF9
+	// Token: 0x060013BE RID: 5054 RVA: 0x000BB041 File Offset: 0x000B9241
 	private void Start()
 	{
 		this.FallChecker.SetActive(false);
 		this.Prompt.HideButton[3] = true;
 	}
 
-	// Token: 0x060013BF RID: 5055 RVA: 0x000BAE18 File Offset: 0x000B9018
+	// Token: 0x060013BF RID: 5055 RVA: 0x000BB060 File Offset: 0x000B9260
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -106,51 +106,51 @@ public class DumpsterLidScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013C0 RID: 5056 RVA: 0x000BB2D8 File Offset: 0x000B94D8
+	// Token: 0x060013C0 RID: 5056 RVA: 0x000BB520 File Offset: 0x000B9720
 	public void SetVictimMissing()
 	{
 		StudentGlobals.SetStudentMissing(this.StudentToGoMissing, true);
 	}
 
-	// Token: 0x04001D68 RID: 7528
+	// Token: 0x04001D6B RID: 7531
 	public StudentScript Victim;
 
-	// Token: 0x04001D69 RID: 7529
+	// Token: 0x04001D6C RID: 7532
 	public Transform SlideLocation;
 
-	// Token: 0x04001D6A RID: 7530
+	// Token: 0x04001D6D RID: 7533
 	public Transform GarbageDebris;
 
-	// Token: 0x04001D6B RID: 7531
+	// Token: 0x04001D6E RID: 7534
 	public Transform Hinge;
 
-	// Token: 0x04001D6C RID: 7532
+	// Token: 0x04001D6F RID: 7535
 	public GameObject FallChecker;
 
-	// Token: 0x04001D6D RID: 7533
+	// Token: 0x04001D70 RID: 7536
 	public GameObject Corpse;
 
-	// Token: 0x04001D6E RID: 7534
+	// Token: 0x04001D71 RID: 7537
 	public PromptScript[] DragPrompts;
 
-	// Token: 0x04001D6F RID: 7535
+	// Token: 0x04001D72 RID: 7538
 	public PromptScript Prompt;
 
-	// Token: 0x04001D70 RID: 7536
+	// Token: 0x04001D73 RID: 7539
 	public float DisposalSpot;
 
-	// Token: 0x04001D71 RID: 7537
+	// Token: 0x04001D74 RID: 7540
 	public float Rotation;
 
-	// Token: 0x04001D72 RID: 7538
+	// Token: 0x04001D75 RID: 7541
 	public bool Slide;
 
-	// Token: 0x04001D73 RID: 7539
+	// Token: 0x04001D76 RID: 7542
 	public bool Fill;
 
-	// Token: 0x04001D74 RID: 7540
+	// Token: 0x04001D77 RID: 7543
 	public bool Open;
 
-	// Token: 0x04001D75 RID: 7541
+	// Token: 0x04001D78 RID: 7544
 	public int StudentToGoMissing;
 }

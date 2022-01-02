@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003B5 RID: 949
 public class PowerOutletScript : MonoBehaviour
 {
-	// Token: 0x06001ADB RID: 6875 RVA: 0x00128B98 File Offset: 0x00126D98
+	// Token: 0x06001ADD RID: 6877 RVA: 0x00128ED4 File Offset: 0x001270D4
 	private void Update()
 	{
 		if (this.PowerStrip == null)
@@ -71,21 +71,21 @@ public class PowerOutletScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002D4A RID: 11594
+	// Token: 0x04002D4E RID: 11598
 	public PromptScript Prompt;
 
-	// Token: 0x04002D4B RID: 11595
+	// Token: 0x04002D4F RID: 11599
 	public PowerSwitchScript PowerSwitch;
 
-	// Token: 0x04002D4C RID: 11596
+	// Token: 0x04002D50 RID: 11600
 	public GameObject PowerStrip;
 
-	// Token: 0x04002D4D RID: 11597
+	// Token: 0x04002D51 RID: 11601
 	public GameObject PluggedOutlet;
 
-	// Token: 0x04002D4E RID: 11598
+	// Token: 0x04002D52 RID: 11602
 	public GameObject SabotagedOutlet;
 
-	// Token: 0x04002D4F RID: 11599
+	// Token: 0x04002D53 RID: 11603
 	public bool Sabotaged;
 }

@@ -602,7 +602,7 @@ public class UISpriteCollection : UIBasicSprite
 	// Token: 0x0200063D RID: 1597
 	public struct Sprite
 	{
-		// Token: 0x060025F5 RID: 9717 RVA: 0x001FA83C File Offset: 0x001F8A3C
+		// Token: 0x060025F8 RID: 9720 RVA: 0x001FAE2C File Offset: 0x001F902C
 		public Vector4 GetDrawingDimensions(float pixelSize)
 		{
 			float num = -this.pivot.x * this.width;
@@ -663,54 +663,54 @@ public class UISpriteCollection : UIBasicSprite
 			return new Vector4(num, num2, num3, num4);
 		}
 
-		// Token: 0x04004E5F RID: 20063
+		// Token: 0x04004E68 RID: 20072
 		public UISpriteData sprite;
 
-		// Token: 0x04004E60 RID: 20064
+		// Token: 0x04004E69 RID: 20073
 		public Vector2 pos;
 
-		// Token: 0x04004E61 RID: 20065
+		// Token: 0x04004E6A RID: 20074
 		public float rot;
 
-		// Token: 0x04004E62 RID: 20066
+		// Token: 0x04004E6B RID: 20075
 		public float width;
 
-		// Token: 0x04004E63 RID: 20067
+		// Token: 0x04004E6C RID: 20076
 		public float height;
 
-		// Token: 0x04004E64 RID: 20068
+		// Token: 0x04004E6D RID: 20077
 		public Color32 color;
 
-		// Token: 0x04004E65 RID: 20069
+		// Token: 0x04004E6E RID: 20078
 		public Vector2 pivot;
 
-		// Token: 0x04004E66 RID: 20070
+		// Token: 0x04004E6F RID: 20079
 		public UIBasicSprite.Type type;
 
-		// Token: 0x04004E67 RID: 20071
+		// Token: 0x04004E70 RID: 20080
 		public UIBasicSprite.Flip flip;
 
-		// Token: 0x04004E68 RID: 20072
+		// Token: 0x04004E71 RID: 20081
 		public bool enabled;
 	}
 
 	// Token: 0x0200063E RID: 1598
-	// (Invoke) Token: 0x060025F7 RID: 9719
+	// (Invoke) Token: 0x060025FA RID: 9722
 	public delegate void OnHoverCB(object obj, bool isOver);
 
 	// Token: 0x0200063F RID: 1599
-	// (Invoke) Token: 0x060025FB RID: 9723
+	// (Invoke) Token: 0x060025FE RID: 9726
 	public delegate void OnPressCB(object obj, bool isPressed);
 
 	// Token: 0x02000640 RID: 1600
-	// (Invoke) Token: 0x060025FF RID: 9727
+	// (Invoke) Token: 0x06002602 RID: 9730
 	public delegate void OnClickCB(object obj);
 
 	// Token: 0x02000641 RID: 1601
-	// (Invoke) Token: 0x06002603 RID: 9731
+	// (Invoke) Token: 0x06002606 RID: 9734
 	public delegate void OnDragCB(object obj, Vector2 delta);
 
 	// Token: 0x02000642 RID: 1602
-	// (Invoke) Token: 0x06002607 RID: 9735
+	// (Invoke) Token: 0x0600260A RID: 9738
 	public delegate void OnTooltipCB(object obj, bool show);
 }

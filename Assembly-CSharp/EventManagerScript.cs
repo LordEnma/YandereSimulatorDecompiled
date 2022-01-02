@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002B4 RID: 692
 public class EventManagerScript : MonoBehaviour
 {
-	// Token: 0x0600144A RID: 5194 RVA: 0x000C5118 File Offset: 0x000C3318
+	// Token: 0x0600144A RID: 5194 RVA: 0x000C5360 File Offset: 0x000C3560
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -27,7 +27,7 @@ public class EventManagerScript : MonoBehaviour
 		this.NoteLocker.CanLeaveNote = true;
 	}
 
-	// Token: 0x0600144B RID: 5195 RVA: 0x000C519C File Offset: 0x000C339C
+	// Token: 0x0600144B RID: 5195 RVA: 0x000C53E4 File Offset: 0x000C35E4
 	private void Update()
 	{
 		if (this.VoiceClip != null)
@@ -280,7 +280,7 @@ public class EventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600144C RID: 5196 RVA: 0x000C5DB8 File Offset: 0x000C3FB8
+	// Token: 0x0600144C RID: 5196 RVA: 0x000C6000 File Offset: 0x000C4200
 	private void SettleFriend()
 	{
 		this.EventStudent[2].MoveTowardsTarget(this.EventLocation[2].position);
@@ -290,7 +290,7 @@ public class EventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600144D RID: 5197 RVA: 0x000C5E4C File Offset: 0x000C404C
+	// Token: 0x0600144D RID: 5197 RVA: 0x000C6094 File Offset: 0x000C4294
 	public void EndEvent()
 	{
 		if (this.VoiceClip != null)
@@ -323,96 +323,96 @@ public class EventManagerScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x04001F25 RID: 7973
+	// Token: 0x04001F28 RID: 7976
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001F26 RID: 7974
+	// Token: 0x04001F29 RID: 7977
 	public NoteLockerScript NoteLocker;
 
-	// Token: 0x04001F27 RID: 7975
+	// Token: 0x04001F2A RID: 7978
 	public UILabel EventSubtitle;
 
-	// Token: 0x04001F28 RID: 7976
+	// Token: 0x04001F2B RID: 7979
 	public YandereScript Yandere;
 
-	// Token: 0x04001F29 RID: 7977
+	// Token: 0x04001F2C RID: 7980
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04001F2A RID: 7978
+	// Token: 0x04001F2D RID: 7981
 	public ClockScript Clock;
 
-	// Token: 0x04001F2B RID: 7979
+	// Token: 0x04001F2E RID: 7982
 	public StudentScript[] EventStudent;
 
-	// Token: 0x04001F2C RID: 7980
+	// Token: 0x04001F2F RID: 7983
 	public Transform[] EventLocation;
 
-	// Token: 0x04001F2D RID: 7981
+	// Token: 0x04001F30 RID: 7984
 	public AudioClip[] EventClip;
 
-	// Token: 0x04001F2E RID: 7982
+	// Token: 0x04001F31 RID: 7985
 	public string[] EventSpeech;
 
-	// Token: 0x04001F2F RID: 7983
+	// Token: 0x04001F32 RID: 7986
 	public string[] EventAnim;
 
-	// Token: 0x04001F30 RID: 7984
+	// Token: 0x04001F33 RID: 7987
 	public int[] EventSpeaker;
 
-	// Token: 0x04001F31 RID: 7985
+	// Token: 0x04001F34 RID: 7988
 	public GameObject VoiceClip;
 
-	// Token: 0x04001F32 RID: 7986
+	// Token: 0x04001F35 RID: 7989
 	public AudioSource VoiceClipSource;
 
-	// Token: 0x04001F33 RID: 7987
+	// Token: 0x04001F36 RID: 7990
 	public bool StopWalking;
 
-	// Token: 0x04001F34 RID: 7988
+	// Token: 0x04001F37 RID: 7991
 	public bool EventCheck;
 
-	// Token: 0x04001F35 RID: 7989
+	// Token: 0x04001F38 RID: 7992
 	public bool CanHappen;
 
-	// Token: 0x04001F36 RID: 7990
+	// Token: 0x04001F39 RID: 7993
 	public bool HintGiven;
 
-	// Token: 0x04001F37 RID: 7991
+	// Token: 0x04001F3A RID: 7994
 	public bool EventOn;
 
-	// Token: 0x04001F38 RID: 7992
+	// Token: 0x04001F3B RID: 7995
 	public bool Suitor;
 
-	// Token: 0x04001F39 RID: 7993
+	// Token: 0x04001F3C RID: 7996
 	public bool Spoken;
 
-	// Token: 0x04001F3A RID: 7994
+	// Token: 0x04001F3D RID: 7997
 	public bool Osana;
 
-	// Token: 0x04001F3B RID: 7995
+	// Token: 0x04001F3E RID: 7998
 	public float StartTimer;
 
-	// Token: 0x04001F3C RID: 7996
+	// Token: 0x04001F3F RID: 7999
 	public float Timer;
 
-	// Token: 0x04001F3D RID: 7997
+	// Token: 0x04001F40 RID: 8000
 	public float Scale;
 
-	// Token: 0x04001F3E RID: 7998
+	// Token: 0x04001F41 RID: 8001
 	public float StartTime = 13.01f;
 
-	// Token: 0x04001F3F RID: 7999
+	// Token: 0x04001F42 RID: 8002
 	public float EndTime = 13.5f;
 
-	// Token: 0x04001F40 RID: 8000
+	// Token: 0x04001F43 RID: 8003
 	public int EventStudent1;
 
-	// Token: 0x04001F41 RID: 8001
+	// Token: 0x04001F44 RID: 8004
 	public int EventStudent2;
 
-	// Token: 0x04001F42 RID: 8002
+	// Token: 0x04001F45 RID: 8005
 	public int EventPhase;
 
-	// Token: 0x04001F43 RID: 8003
+	// Token: 0x04001F46 RID: 8006
 	public int OsanaID = 1;
 }

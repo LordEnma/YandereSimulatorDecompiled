@@ -6,19 +6,19 @@ namespace UnityEngine.PostProcessing
 	// Token: 0x02000578 RID: 1400
 	public sealed class RenderTextureFactory : IDisposable
 	{
-		// Token: 0x06002388 RID: 9096 RVA: 0x001F22F3 File Offset: 0x001F04F3
+		// Token: 0x0600238B RID: 9099 RVA: 0x001F28E3 File Offset: 0x001F0AE3
 		public RenderTextureFactory()
 		{
 			this.m_TemporaryRTs = new HashSet<RenderTexture>();
 		}
 
-		// Token: 0x06002389 RID: 9097 RVA: 0x001F2308 File Offset: 0x001F0508
+		// Token: 0x0600238C RID: 9100 RVA: 0x001F28F8 File Offset: 0x001F0AF8
 		public RenderTexture Get(RenderTexture baseRenderTexture)
 		{
 			return this.Get(baseRenderTexture.width, baseRenderTexture.height, baseRenderTexture.depth, baseRenderTexture.format, baseRenderTexture.sRGB ? RenderTextureReadWrite.sRGB : RenderTextureReadWrite.Linear, baseRenderTexture.filterMode, baseRenderTexture.wrapMode, "FactoryTempTexture");
 		}
 
-		// Token: 0x0600238A RID: 9098 RVA: 0x001F2350 File Offset: 0x001F0550
+		// Token: 0x0600238D RID: 9101 RVA: 0x001F2940 File Offset: 0x001F0B40
 		public RenderTexture Get(int width, int height, int depthBuffer = 0, RenderTextureFormat format = RenderTextureFormat.ARGBHalf, RenderTextureReadWrite rw = RenderTextureReadWrite.Default, FilterMode filterMode = FilterMode.Bilinear, TextureWrapMode wrapMode = TextureWrapMode.Clamp, string name = "FactoryTempTexture")
 		{
 			RenderTexture temporary = RenderTexture.GetTemporary(width, height, depthBuffer, format, rw);
@@ -29,7 +29,7 @@ namespace UnityEngine.PostProcessing
 			return temporary;
 		}
 
-		// Token: 0x0600238B RID: 9099 RVA: 0x001F2390 File Offset: 0x001F0590
+		// Token: 0x0600238E RID: 9102 RVA: 0x001F2980 File Offset: 0x001F0B80
 		public void Release(RenderTexture rt)
 		{
 			if (rt == null)
@@ -44,7 +44,7 @@ namespace UnityEngine.PostProcessing
 			RenderTexture.ReleaseTemporary(rt);
 		}
 
-		// Token: 0x0600238C RID: 9100 RVA: 0x001F23D0 File Offset: 0x001F05D0
+		// Token: 0x0600238F RID: 9103 RVA: 0x001F29C0 File Offset: 0x001F0BC0
 		public void ReleaseAll()
 		{
 			foreach (RenderTexture temp in this.m_TemporaryRTs)
@@ -54,13 +54,13 @@ namespace UnityEngine.PostProcessing
 			this.m_TemporaryRTs.Clear();
 		}
 
-		// Token: 0x0600238D RID: 9101 RVA: 0x001F240B File Offset: 0x001F060B
+		// Token: 0x06002390 RID: 9104 RVA: 0x001F29FB File Offset: 0x001F0BFB
 		public void Dispose()
 		{
 			this.ReleaseAll();
 		}
 
-		// Token: 0x04004B04 RID: 19204
+		// Token: 0x04004B0D RID: 19213
 		private HashSet<RenderTexture> m_TemporaryRTs;
 	}
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public abstract class Entity
 {
-	// Token: 0x06001438 RID: 5176 RVA: 0x000C4EC3 File Offset: 0x000C30C3
+	// Token: 0x06001438 RID: 5176 RVA: 0x000C510B File Offset: 0x000C330B
 	public Entity(GenderType gender)
 	{
 		this.gender = gender;
@@ -13,7 +13,7 @@ public abstract class Entity
 	}
 
 	// Token: 0x17000363 RID: 867
-	// (get) Token: 0x06001439 RID: 5177 RVA: 0x000C4ED9 File Offset: 0x000C30D9
+	// (get) Token: 0x06001439 RID: 5177 RVA: 0x000C5121 File Offset: 0x000C3321
 	public GenderType Gender
 	{
 		get
@@ -23,8 +23,8 @@ public abstract class Entity
 	}
 
 	// Token: 0x17000364 RID: 868
-	// (get) Token: 0x0600143A RID: 5178 RVA: 0x000C4EE1 File Offset: 0x000C30E1
-	// (set) Token: 0x0600143B RID: 5179 RVA: 0x000C4EE9 File Offset: 0x000C30E9
+	// (get) Token: 0x0600143A RID: 5178 RVA: 0x000C5129 File Offset: 0x000C3329
+	// (set) Token: 0x0600143B RID: 5179 RVA: 0x000C5131 File Offset: 0x000C3331
 	public DeathType DeathType
 	{
 		get
@@ -41,11 +41,11 @@ public abstract class Entity
 	// (get) Token: 0x0600143C RID: 5180
 	public abstract EntityType EntityType { get; }
 
-	// Token: 0x04001EFA RID: 7930
+	// Token: 0x04001EFD RID: 7933
 	[SerializeField]
 	private GenderType gender;
 
-	// Token: 0x04001EFB RID: 7931
+	// Token: 0x04001EFE RID: 7934
 	[SerializeField]
 	private DeathType deathType;
 }

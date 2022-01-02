@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200033D RID: 829
 public class InventoryTestScript : MonoBehaviour
 {
-	// Token: 0x060018E4 RID: 6372 RVA: 0x000F8B64 File Offset: 0x000F6D64
+	// Token: 0x060018E6 RID: 6374 RVA: 0x000F8E18 File Offset: 0x000F7018
 	private void Start()
 	{
 		this.RightGrid.localScale = new Vector3(0f, 0f, 0f);
@@ -12,7 +12,7 @@ public class InventoryTestScript : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x060018E5 RID: 6373 RVA: 0x000F8BBC File Offset: 0x000F6DBC
+	// Token: 0x060018E7 RID: 6375 RVA: 0x000F8E70 File Offset: 0x000F7070
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))
@@ -117,7 +117,7 @@ public class InventoryTestScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018E6 RID: 6374 RVA: 0x000F91F8 File Offset: 0x000F73F8
+	// Token: 0x060018E8 RID: 6376 RVA: 0x000F94AC File Offset: 0x000F76AC
 	private void CheckOpenSpace()
 	{
 		this.UseColumn = 0;
@@ -146,7 +146,7 @@ public class InventoryTestScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018E7 RID: 6375 RVA: 0x000F9284 File Offset: 0x000F7484
+	// Token: 0x060018E9 RID: 6377 RVA: 0x000F9538 File Offset: 0x000F7738
 	private void UpdateHighlight()
 	{
 		if (this.Column == 5)
@@ -192,93 +192,93 @@ public class InventoryTestScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3((float)this.Column, (float)(this.Row * -1), 0f);
 	}
 
-	// Token: 0x040026D8 RID: 9944
+	// Token: 0x040026DC RID: 9948
 	public SimpleDetectClickScript[] Items;
 
-	// Token: 0x040026D9 RID: 9945
+	// Token: 0x040026DD RID: 9949
 	public Animation SkirtAnimation;
 
-	// Token: 0x040026DA RID: 9946
+	// Token: 0x040026DE RID: 9950
 	public Animation GirlAnimation;
 
-	// Token: 0x040026DB RID: 9947
+	// Token: 0x040026DF RID: 9951
 	public GameObject Skirt;
 
-	// Token: 0x040026DC RID: 9948
+	// Token: 0x040026E0 RID: 9952
 	public GameObject Girl;
 
-	// Token: 0x040026DD RID: 9949
+	// Token: 0x040026E1 RID: 9953
 	public Renderer SkirtRenderer;
 
-	// Token: 0x040026DE RID: 9950
+	// Token: 0x040026E2 RID: 9954
 	public Renderer GirlRenderer;
 
-	// Token: 0x040026DF RID: 9951
+	// Token: 0x040026E3 RID: 9955
 	public Transform RightGridHighlightParent;
 
-	// Token: 0x040026E0 RID: 9952
+	// Token: 0x040026E4 RID: 9956
 	public Transform LeftGridHighlightParent;
 
-	// Token: 0x040026E1 RID: 9953
+	// Token: 0x040026E5 RID: 9957
 	public Transform RightGridItemParent;
 
-	// Token: 0x040026E2 RID: 9954
+	// Token: 0x040026E6 RID: 9958
 	public Transform LeftGridItemParent;
 
-	// Token: 0x040026E3 RID: 9955
+	// Token: 0x040026E7 RID: 9959
 	public Transform Highlight;
 
-	// Token: 0x040026E4 RID: 9956
+	// Token: 0x040026E8 RID: 9960
 	public Transform RightGrid;
 
-	// Token: 0x040026E5 RID: 9957
+	// Token: 0x040026E9 RID: 9961
 	public Transform LeftGrid;
 
-	// Token: 0x040026E6 RID: 9958
+	// Token: 0x040026EA RID: 9962
 	public float Alpha;
 
-	// Token: 0x040026E7 RID: 9959
+	// Token: 0x040026EB RID: 9963
 	public bool Open = true;
 
-	// Token: 0x040026E8 RID: 9960
+	// Token: 0x040026EC RID: 9964
 	public int OpenSpace = 1;
 
-	// Token: 0x040026E9 RID: 9961
+	// Token: 0x040026ED RID: 9965
 	public int UseColumn;
 
-	// Token: 0x040026EA RID: 9962
+	// Token: 0x040026EE RID: 9966
 	public int UseGrid;
 
-	// Token: 0x040026EB RID: 9963
+	// Token: 0x040026EF RID: 9967
 	public int Column = 1;
 
-	// Token: 0x040026EC RID: 9964
+	// Token: 0x040026F0 RID: 9968
 	public int Grid = 1;
 
-	// Token: 0x040026ED RID: 9965
+	// Token: 0x040026F1 RID: 9969
 	public int Row = 1;
 
-	// Token: 0x040026EE RID: 9966
+	// Token: 0x040026F2 RID: 9970
 	public bool[] LeftSpaces1;
 
-	// Token: 0x040026EF RID: 9967
+	// Token: 0x040026F3 RID: 9971
 	public bool[] LeftSpaces2;
 
-	// Token: 0x040026F0 RID: 9968
+	// Token: 0x040026F4 RID: 9972
 	public bool[] LeftSpaces3;
 
-	// Token: 0x040026F1 RID: 9969
+	// Token: 0x040026F5 RID: 9973
 	public bool[] LeftSpaces4;
 
-	// Token: 0x040026F2 RID: 9970
+	// Token: 0x040026F6 RID: 9974
 	public bool[] RightSpaces1;
 
-	// Token: 0x040026F3 RID: 9971
+	// Token: 0x040026F7 RID: 9975
 	public bool[] RightSpaces2;
 
-	// Token: 0x040026F4 RID: 9972
+	// Token: 0x040026F8 RID: 9976
 	public bool[] RightSpaces3;
 
-	// Token: 0x040026F5 RID: 9973
+	// Token: 0x040026F9 RID: 9977
 	public bool[] RightSpaces4;
 }

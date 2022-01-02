@@ -7,7 +7,7 @@ namespace UnityStandardAssets.Vehicles.Car
 	// Token: 0x02000525 RID: 1317
 	public class SkidTrail : MonoBehaviour
 	{
-		// Token: 0x06002183 RID: 8579 RVA: 0x001E8BEE File Offset: 0x001E6DEE
+		// Token: 0x06002186 RID: 8582 RVA: 0x001E91DE File Offset: 0x001E73DE
 		private IEnumerator Start()
 		{
 			for (;;)
@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			yield break;
 		}
 
-		// Token: 0x04004975 RID: 18805
+		// Token: 0x0400497E RID: 18814
 		[SerializeField]
 		private float m_PersistTime;
 	}

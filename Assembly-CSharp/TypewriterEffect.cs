@@ -265,13 +265,13 @@ public class TypewriterEffect : MonoBehaviour
 	// Token: 0x020005C4 RID: 1476
 	private struct FadeEntry
 	{
-		// Token: 0x04004CF6 RID: 19702
+		// Token: 0x04004CFF RID: 19711
 		public int index;
 
-		// Token: 0x04004CF7 RID: 19703
+		// Token: 0x04004D00 RID: 19712
 		public string text;
 
-		// Token: 0x04004CF8 RID: 19704
+		// Token: 0x04004D01 RID: 19713
 		public float alpha;
 	}
 }

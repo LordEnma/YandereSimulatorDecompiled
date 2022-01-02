@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200031A RID: 794
 public class HomeExitScript : MonoBehaviour
 {
-	// Token: 0x06001864 RID: 6244 RVA: 0x000EBCB8 File Offset: 0x000E9EB8
+	// Token: 0x06001866 RID: 6246 RVA: 0x000EBF9C File Offset: 0x000EA19C
 	private void Start()
 	{
 		UILabel uilabel = this.Labels[1];
@@ -31,7 +31,7 @@ public class HomeExitScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001865 RID: 6245 RVA: 0x000EBDF4 File Offset: 0x000E9FF4
+	// Token: 0x06001867 RID: 6247 RVA: 0x000EC0D8 File Offset: 0x000EA2D8
 	private void Update()
 	{
 		if (!this.HomeYandere.CanMove && !this.HomeDarkness.FadeOut && this.HomeWindow.Sprite.color.a > 0.9f)
@@ -91,7 +91,7 @@ public class HomeExitScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001866 RID: 6246 RVA: 0x000EC08C File Offset: 0x000EA28C
+	// Token: 0x06001868 RID: 6248 RVA: 0x000EC370 File Offset: 0x000EA570
 	public void GoToSchool()
 	{
 		if (SchoolGlobals.SchoolAtmosphere < 0.5f || GameGlobals.LoveSick)
@@ -107,33 +107,33 @@ public class HomeExitScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x04002459 RID: 9305
+	// Token: 0x0400245D RID: 9309
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400245A RID: 9306
+	// Token: 0x0400245E RID: 9310
 	public HomeDarknessScript HomeDarkness;
 
-	// Token: 0x0400245B RID: 9307
+	// Token: 0x0400245F RID: 9311
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x0400245C RID: 9308
+	// Token: 0x04002460 RID: 9312
 	public BringItemScript HomeBringItem;
 
-	// Token: 0x0400245D RID: 9309
+	// Token: 0x04002461 RID: 9313
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x0400245E RID: 9310
+	// Token: 0x04002462 RID: 9314
 	public HomeWindowScript HomeWindow;
 
-	// Token: 0x0400245F RID: 9311
+	// Token: 0x04002463 RID: 9315
 	public GameObject BringItemPrompt;
 
-	// Token: 0x04002460 RID: 9312
+	// Token: 0x04002464 RID: 9316
 	public Transform Highlight;
 
-	// Token: 0x04002461 RID: 9313
+	// Token: 0x04002465 RID: 9317
 	public UILabel[] Labels;
 
-	// Token: 0x04002462 RID: 9314
+	// Token: 0x04002466 RID: 9318
 	public int ID = 1;
 }

@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020000E4 RID: 228
 public class BlasterScript : MonoBehaviour
 {
-	// Token: 0x06000A2A RID: 2602 RVA: 0x0005A2CB File Offset: 0x000584CB
+	// Token: 0x06000A2A RID: 2602 RVA: 0x0005A2E3 File Offset: 0x000584E3
 	private void Start()
 	{
 		this.Skull.localScale = Vector3.zero;
 		this.Beam.localScale = Vector3.zero;
 	}
 
-	// Token: 0x06000A2B RID: 2603 RVA: 0x0005A2F0 File Offset: 0x000584F0
+	// Token: 0x06000A2B RID: 2603 RVA: 0x0005A308 File Offset: 0x00058508
 	private void Update()
 	{
 		AnimationState animationState = base.GetComponent<Animation>()["Blast"];
@@ -26,7 +26,7 @@ public class BlasterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A2C RID: 2604 RVA: 0x0005A398 File Offset: 0x00058598
+	// Token: 0x06000A2C RID: 2604 RVA: 0x0005A3B0 File Offset: 0x000585B0
 	private void LateUpdate()
 	{
 		AnimationState animationState = base.GetComponent<Animation>()["Blast"];

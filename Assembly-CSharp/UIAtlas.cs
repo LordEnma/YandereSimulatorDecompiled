@@ -513,8 +513,8 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 	[Serializable]
 	private class Sprite
 	{
-		// Token: 0x17000541 RID: 1345
-		// (get) Token: 0x06002585 RID: 9605 RVA: 0x001FA5A0 File Offset: 0x001F87A0
+		// Token: 0x17000542 RID: 1346
+		// (get) Token: 0x06002588 RID: 9608 RVA: 0x001FAB90 File Offset: 0x001F8D90
 		public bool hasPadding
 		{
 			get
@@ -523,37 +523,37 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 			}
 		}
 
-		// Token: 0x04004DEC RID: 19948
+		// Token: 0x04004DF5 RID: 19957
 		public string name = "Unity Bug";
 
-		// Token: 0x04004DED RID: 19949
+		// Token: 0x04004DF6 RID: 19958
 		public Rect outer = new Rect(0f, 0f, 1f, 1f);
 
-		// Token: 0x04004DEE RID: 19950
+		// Token: 0x04004DF7 RID: 19959
 		public Rect inner = new Rect(0f, 0f, 1f, 1f);
 
-		// Token: 0x04004DEF RID: 19951
+		// Token: 0x04004DF8 RID: 19960
 		public bool rotated;
 
-		// Token: 0x04004DF0 RID: 19952
+		// Token: 0x04004DF9 RID: 19961
 		public float paddingLeft;
 
-		// Token: 0x04004DF1 RID: 19953
+		// Token: 0x04004DFA RID: 19962
 		public float paddingRight;
 
-		// Token: 0x04004DF2 RID: 19954
+		// Token: 0x04004DFB RID: 19963
 		public float paddingTop;
 
-		// Token: 0x04004DF3 RID: 19955
+		// Token: 0x04004DFC RID: 19964
 		public float paddingBottom;
 	}
 
 	// Token: 0x02000611 RID: 1553
 	private enum Coordinates
 	{
-		// Token: 0x04004DF5 RID: 19957
+		// Token: 0x04004DFE RID: 19966
 		Pixels,
-		// Token: 0x04004DF6 RID: 19958
+		// Token: 0x04004DFF RID: 19967
 		TexCoords
 	}
 }

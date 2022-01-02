@@ -6,9 +6,9 @@ namespace UnityEngine.PostProcessing
 	[Serializable]
 	public class UserLutModel : PostProcessingModel
 	{
-		// Token: 0x1700050D RID: 1293
-		// (get) Token: 0x06002340 RID: 9024 RVA: 0x001F0F3B File Offset: 0x001EF13B
-		// (set) Token: 0x06002341 RID: 9025 RVA: 0x001F0F43 File Offset: 0x001EF143
+		// Token: 0x1700050E RID: 1294
+		// (get) Token: 0x06002343 RID: 9027 RVA: 0x001F152B File Offset: 0x001EF72B
+		// (set) Token: 0x06002344 RID: 9028 RVA: 0x001F1533 File Offset: 0x001EF733
 		public UserLutModel.Settings settings
 		{
 			get
@@ -21,13 +21,13 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002342 RID: 9026 RVA: 0x001F0F4C File Offset: 0x001EF14C
+		// Token: 0x06002345 RID: 9029 RVA: 0x001F153C File Offset: 0x001EF73C
 		public override void Reset()
 		{
 			this.m_Settings = UserLutModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004AC6 RID: 19142
+		// Token: 0x04004ACF RID: 19151
 		[SerializeField]
 		private UserLutModel.Settings m_Settings = UserLutModel.Settings.defaultSettings;
 
@@ -35,8 +35,8 @@ namespace UnityEngine.PostProcessing
 		[Serializable]
 		public struct Settings
 		{
-			// Token: 0x170005A1 RID: 1441
-			// (get) Token: 0x06002737 RID: 10039 RVA: 0x001FFE0C File Offset: 0x001FE00C
+			// Token: 0x170005A2 RID: 1442
+			// (get) Token: 0x0600273A RID: 10042 RVA: 0x00200420 File Offset: 0x001FE620
 			public static UserLutModel.Settings defaultSettings
 			{
 				get
@@ -49,11 +49,11 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x0400515A RID: 20826
+			// Token: 0x04005163 RID: 20835
 			[Tooltip("Custom lookup texture (strip format, e.g. 256x16).")]
 			public Texture2D lut;
 
-			// Token: 0x0400515B RID: 20827
+			// Token: 0x04005164 RID: 20836
 			[Range(0f, 1f)]
 			[Tooltip("Blending factor.")]
 			public float contribution;

@@ -3,10 +3,10 @@
 // Token: 0x020004C2 RID: 1218
 public enum SanityType
 {
-	// Token: 0x0400437E RID: 17278
+	// Token: 0x04004387 RID: 17287
 	High,
-	// Token: 0x0400437F RID: 17279
+	// Token: 0x04004388 RID: 17288
 	Medium,
-	// Token: 0x04004380 RID: 17280
+	// Token: 0x04004389 RID: 17289
 	Low
 }

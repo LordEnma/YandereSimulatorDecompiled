@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000470 RID: 1136
 public class TitleDemoChecklistScript : MonoBehaviour
 {
-	// Token: 0x06001E9E RID: 7838 RVA: 0x001AD478 File Offset: 0x001AB678
+	// Token: 0x06001EA0 RID: 7840 RVA: 0x001AD92C File Offset: 0x001ABB2C
 	private void Start()
 	{
 		this.UpdateHighlight();
@@ -107,13 +107,13 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E9F RID: 7839 RVA: 0x001AD7DC File Offset: 0x001AB9DC
+	// Token: 0x06001EA1 RID: 7841 RVA: 0x001ADC90 File Offset: 0x001ABE90
 	public void GetIndex()
 	{
 		this.Selected = this.Column + this.Row * this.Columns + 1;
 	}
 
-	// Token: 0x06001EA0 RID: 7840 RVA: 0x001AD7FC File Offset: 0x001AB9FC
+	// Token: 0x06001EA2 RID: 7842 RVA: 0x001ADCB0 File Offset: 0x001ABEB0
 	private void Update()
 	{
 		if (this.Zoom)
@@ -255,7 +255,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EA1 RID: 7841 RVA: 0x001ADE10 File Offset: 0x001AC010
+	// Token: 0x06001EA3 RID: 7843 RVA: 0x001AE2C4 File Offset: 0x001AC4C4
 	private void UpdateHighlight()
 	{
 		this.Highlight.localPosition = new Vector3(-350f + (float)this.Column * 100f, 100f - (float)this.Row * 100f, this.Highlight.localPosition.z);
@@ -264,7 +264,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		this.ItemDescLabel.text = this.ItemDescs[this.Selected];
 	}
 
-	// Token: 0x06001EA2 RID: 7842 RVA: 0x001ADE9C File Offset: 0x001AC09C
+	// Token: 0x06001EA4 RID: 7844 RVA: 0x001AE350 File Offset: 0x001AC550
 	private void ResetConfirmations()
 	{
 		this.ResetLabel.text = "Are you ABSOLUTELY CERTAIN that you want to reset your Demo Checklist progress?\n\nMash the Confirm button 10 times to reaffirm this decision.";
@@ -284,75 +284,75 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		this.ConfirmBlocks[10].color = new Color(1f, 1f, 1f, 0.5f);
 	}
 
-	// Token: 0x04003F40 RID: 16192
+	// Token: 0x04003F47 RID: 16199
 	public NewTitleScreenScript NewTitleScreen;
 
-	// Token: 0x04003F41 RID: 16193
+	// Token: 0x04003F48 RID: 16200
 	public InputManagerScript InputManager;
 
-	// Token: 0x04003F42 RID: 16194
+	// Token: 0x04003F49 RID: 16201
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003F43 RID: 16195
+	// Token: 0x04003F4A RID: 16202
 	public UISprite[] ConfirmBlocks;
 
-	// Token: 0x04003F44 RID: 16196
+	// Token: 0x04003F4B RID: 16203
 	public string[] ItemNames;
 
-	// Token: 0x04003F45 RID: 16197
+	// Token: 0x04003F4C RID: 16204
 	public string[] ItemDescs;
 
-	// Token: 0x04003F46 RID: 16198
+	// Token: 0x04003F4D RID: 16205
 	public UILabel ItemNameLabel;
 
-	// Token: 0x04003F47 RID: 16199
+	// Token: 0x04003F4E RID: 16206
 	public UILabel ItemDescLabel;
 
-	// Token: 0x04003F48 RID: 16200
+	// Token: 0x04003F4F RID: 16207
 	public UILabel ResetLabel;
 
-	// Token: 0x04003F49 RID: 16201
+	// Token: 0x04003F50 RID: 16208
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04003F4A RID: 16202
+	// Token: 0x04003F51 RID: 16209
 	public GameObject ResetWindow;
 
-	// Token: 0x04003F4B RID: 16203
+	// Token: 0x04003F52 RID: 16210
 	public Transform Highlight;
 
-	// Token: 0x04003F4C RID: 16204
+	// Token: 0x04003F53 RID: 16211
 	public bool DeletingGlobals;
 
-	// Token: 0x04003F4D RID: 16205
+	// Token: 0x04003F54 RID: 16212
 	public bool Shrink;
 
-	// Token: 0x04003F4E RID: 16206
+	// Token: 0x04003F55 RID: 16213
 	public bool Show;
 
-	// Token: 0x04003F4F RID: 16207
+	// Token: 0x04003F56 RID: 16214
 	public bool Zoom;
 
-	// Token: 0x04003F50 RID: 16208
+	// Token: 0x04003F57 RID: 16215
 	public int Confirmations;
 
-	// Token: 0x04003F51 RID: 16209
+	// Token: 0x04003F58 RID: 16216
 	public int Columns;
 
-	// Token: 0x04003F52 RID: 16210
+	// Token: 0x04003F59 RID: 16217
 	public int Rows;
 
-	// Token: 0x04003F53 RID: 16211
+	// Token: 0x04003F5A RID: 16218
 	private int Column;
 
-	// Token: 0x04003F54 RID: 16212
+	// Token: 0x04003F5B RID: 16219
 	private int Row;
 
-	// Token: 0x04003F55 RID: 16213
+	// Token: 0x04003F5C RID: 16220
 	private int Selected = 1;
 
-	// Token: 0x04003F56 RID: 16214
+	// Token: 0x04003F5D RID: 16221
 	public UITexture[] Items;
 
-	// Token: 0x04003F57 RID: 16215
+	// Token: 0x04003F5E RID: 16222
 	public Texture[] ItemTextures;
 }

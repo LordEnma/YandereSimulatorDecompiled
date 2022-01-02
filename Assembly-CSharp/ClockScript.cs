@@ -5,7 +5,7 @@ using UnityEngine.PostProcessing;
 // Token: 0x0200024D RID: 589
 public class ClockScript : MonoBehaviour
 {
-	// Token: 0x06001269 RID: 4713 RVA: 0x0008EBE8 File Offset: 0x0008CDE8
+	// Token: 0x06001269 RID: 4713 RVA: 0x0008EC58 File Offset: 0x0008CE58
 	private void Start()
 	{
 		this.Profile.bloom.enabled = true;
@@ -74,6 +74,7 @@ public class ClockScript : MonoBehaviour
 		if (!SchoolGlobals.SchoolAtmosphereSet)
 		{
 			SchoolGlobals.SchoolAtmosphereSet = true;
+			SchoolGlobals.PreviousSchoolAtmosphere = 1f;
 			SchoolGlobals.SchoolAtmosphere = 1f;
 		}
 		if (SchoolGlobals.SchoolAtmosphere < 0.5f)
@@ -120,7 +121,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600126A RID: 4714 RVA: 0x0008EFFC File Offset: 0x0008D1FC
+	// Token: 0x0600126A RID: 4714 RVA: 0x0008F078 File Offset: 0x0008D278
 	public void Update()
 	{
 		if (this.FadeIn && Time.deltaTime < 1f)
@@ -285,12 +286,9 @@ public class ClockScript : MonoBehaviour
 		{
 			if (this.Period < 5)
 			{
-				foreach (GameObject gameObject in this.StudentManager.Graffiti)
+				if (this.StudentManager.Bully && this.StudentManager.Bullies > 0)
 				{
-					if (gameObject != null)
-					{
-						gameObject.SetActive(false);
-					}
+					this.StudentManager.UpdateGraffiti();
 				}
 				this.PeriodLabel.text = "CLEANING TIME";
 				this.DeactivateTrespassZones();
@@ -320,11 +318,11 @@ public class ClockScript : MonoBehaviour
 		{
 			if (this.StudentManager.WestBathroomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.EastBathroomArea.bounds.Contains(this.Yandere.transform.position))
 			{
-				for (int j = 1; j < this.Bathroom.Length; j++)
+				for (int i = 1; i < this.Bathroom.Length; i++)
 				{
-					if (this.Bathroom[j].bounds.Contains(this.Yandere.transform.position))
+					if (this.Bathroom[i].bounds.Contains(this.Yandere.transform.position))
 					{
-						if (!this.BathroomLight[j].enabled)
+						if (!this.BathroomLight[i].enabled)
 						{
 							this.BathroomDim = 0.5f;
 						}
@@ -397,7 +395,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600126B RID: 4715 RVA: 0x0008FD58 File Offset: 0x0008DF58
+	// Token: 0x0600126B RID: 4715 RVA: 0x0008FDC0 File Offset: 0x0008DFC0
 	public void EndTimeSkip()
 	{
 		if (GameGlobals.AlphabetMode)
@@ -421,7 +419,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600126C RID: 4716 RVA: 0x0008FE5C File Offset: 0x0008E05C
+	// Token: 0x0600126C RID: 4716 RVA: 0x0008FEC4 File Offset: 0x0008E0C4
 	public string GetWeekdayText(DayOfWeek weekday)
 	{
 		if (weekday == DayOfWeek.Sunday)
@@ -458,7 +456,7 @@ public class ClockScript : MonoBehaviour
 		return "SATURDAY";
 	}
 
-	// Token: 0x0600126D RID: 4717 RVA: 0x0008FEDC File Offset: 0x0008E0DC
+	// Token: 0x0600126D RID: 4717 RVA: 0x0008FF44 File Offset: 0x0008E144
 	private void ActivateTrespassZones()
 	{
 		if (!this.SchoolBell.isPlaying || this.SchoolBell.time > 1f)
@@ -472,7 +470,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600126E RID: 4718 RVA: 0x0008FF34 File Offset: 0x0008E134
+	// Token: 0x0600126E RID: 4718 RVA: 0x0008FF9C File Offset: 0x0008E19C
 	public void DeactivateTrespassZones()
 	{
 		this.Yandere.Trespassing = false;
@@ -489,7 +487,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600126F RID: 4719 RVA: 0x0008FFB4 File Offset: 0x0008E1B4
+	// Token: 0x0600126F RID: 4719 RVA: 0x0009001C File Offset: 0x0008E21C
 	public void ActivateLateStudent()
 	{
 		if (this.StudentManager.Students[7] != null)
@@ -502,7 +500,7 @@ public class ClockScript : MonoBehaviour
 		this.LateStudent = false;
 	}
 
-	// Token: 0x06001270 RID: 4720 RVA: 0x00090038 File Offset: 0x0008E238
+	// Token: 0x06001270 RID: 4720 RVA: 0x000900A0 File Offset: 0x0008E2A0
 	public void NightLighting()
 	{
 		this.MainLight.color = new Color(0.25f, 0.25f, 0.5f);
@@ -511,7 +509,7 @@ public class ClockScript : MonoBehaviour
 		RenderSettings.skybox.SetColor("_Tint", new Color(0.1f, 0.1f, 0.2f));
 	}
 
-	// Token: 0x06001271 RID: 4721 RVA: 0x000900BC File Offset: 0x0008E2BC
+	// Token: 0x06001271 RID: 4721 RVA: 0x00090124 File Offset: 0x0008E324
 	public void UpdateClock()
 	{
 		this.LastMinute = this.Minute;
@@ -539,7 +537,7 @@ public class ClockScript : MonoBehaviour
 		this.TimeLabel.text = this.TimeText;
 	}
 
-	// Token: 0x06001272 RID: 4722 RVA: 0x000901CC File Offset: 0x0008E3CC
+	// Token: 0x06001272 RID: 4722 RVA: 0x00090234 File Offset: 0x0008E434
 	public void BecomeEighties()
 	{
 		this.StudentManager.EightiesifyLabel(this.TimeLabel);

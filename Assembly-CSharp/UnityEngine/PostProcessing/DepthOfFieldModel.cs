@@ -6,9 +6,9 @@ namespace UnityEngine.PostProcessing
 	[Serializable]
 	public class DepthOfFieldModel : PostProcessingModel
 	{
-		// Token: 0x17000506 RID: 1286
-		// (get) Token: 0x06002324 RID: 8996 RVA: 0x001F0DE4 File Offset: 0x001EEFE4
-		// (set) Token: 0x06002325 RID: 8997 RVA: 0x001F0DEC File Offset: 0x001EEFEC
+		// Token: 0x17000507 RID: 1287
+		// (get) Token: 0x06002327 RID: 8999 RVA: 0x001F13D4 File Offset: 0x001EF5D4
+		// (set) Token: 0x06002328 RID: 9000 RVA: 0x001F13DC File Offset: 0x001EF5DC
 		public DepthOfFieldModel.Settings settings
 		{
 			get
@@ -21,26 +21,26 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002326 RID: 8998 RVA: 0x001F0DF5 File Offset: 0x001EEFF5
+		// Token: 0x06002329 RID: 9001 RVA: 0x001F13E5 File Offset: 0x001EF5E5
 		public override void Reset()
 		{
 			this.m_Settings = DepthOfFieldModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004ABF RID: 19135
+		// Token: 0x04004AC8 RID: 19144
 		[SerializeField]
 		private DepthOfFieldModel.Settings m_Settings = DepthOfFieldModel.Settings.defaultSettings;
 
 		// Token: 0x020006C2 RID: 1730
 		public enum KernelSize
 		{
-			// Token: 0x04005125 RID: 20773
+			// Token: 0x0400512E RID: 20782
 			Small,
-			// Token: 0x04005126 RID: 20774
+			// Token: 0x0400512F RID: 20783
 			Medium,
-			// Token: 0x04005127 RID: 20775
+			// Token: 0x04005130 RID: 20784
 			Large,
-			// Token: 0x04005128 RID: 20776
+			// Token: 0x04005131 RID: 20785
 			VeryLarge
 		}
 
@@ -48,8 +48,8 @@ namespace UnityEngine.PostProcessing
 		[Serializable]
 		public struct Settings
 		{
-			// Token: 0x1700059A RID: 1434
-			// (get) Token: 0x06002730 RID: 10032 RVA: 0x001FFBAC File Offset: 0x001FDDAC
+			// Token: 0x1700059B RID: 1435
+			// (get) Token: 0x06002733 RID: 10035 RVA: 0x002001C0 File Offset: 0x001FE3C0
 			public static DepthOfFieldModel.Settings defaultSettings
 			{
 				get
@@ -65,26 +65,26 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x04005129 RID: 20777
+			// Token: 0x04005132 RID: 20786
 			[Min(0.1f)]
 			[Tooltip("Distance to the point of focus.")]
 			public float focusDistance;
 
-			// Token: 0x0400512A RID: 20778
+			// Token: 0x04005133 RID: 20787
 			[Range(0.05f, 32f)]
 			[Tooltip("Ratio of aperture (known as f-stop or f-number). The smaller the value is, the shallower the depth of field is.")]
 			public float aperture;
 
-			// Token: 0x0400512B RID: 20779
+			// Token: 0x04005134 RID: 20788
 			[Range(1f, 300f)]
 			[Tooltip("Distance between the lens and the film. The larger the value is, the shallower the depth of field is.")]
 			public float focalLength;
 
-			// Token: 0x0400512C RID: 20780
+			// Token: 0x04005135 RID: 20789
 			[Tooltip("Calculate the focal length automatically from the field-of-view value set on the camera. Using this setting isn't recommended.")]
 			public bool useCameraFov;
 
-			// Token: 0x0400512D RID: 20781
+			// Token: 0x04005136 RID: 20790
 			[Tooltip("Convolution kernel size of the bokeh filter, which determines the maximum radius of bokeh. It also affects the performance (the larger the kernel is, the longer the GPU time is required).")]
 			public DepthOfFieldModel.KernelSize kernelSize;
 		}

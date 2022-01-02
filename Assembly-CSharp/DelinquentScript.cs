@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000279 RID: 633
 public class DelinquentScript : MonoBehaviour
 {
-	// Token: 0x06001367 RID: 4967 RVA: 0x000B1158 File Offset: 0x000AF358
+	// Token: 0x06001367 RID: 4967 RVA: 0x000B1388 File Offset: 0x000AF588
 	private void Start()
 	{
 		this.EasterHair.SetActive(false);
@@ -19,7 +19,7 @@ public class DelinquentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001368 RID: 4968 RVA: 0x000B1224 File Offset: 0x000AF424
+	// Token: 0x06001368 RID: 4968 RVA: 0x000B1454 File Offset: 0x000AF654
 	private void Update()
 	{
 		this.DistanceToPlayer = Vector3.Distance(base.transform.position, this.Yandere.transform.position);
@@ -306,7 +306,7 @@ public class DelinquentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001369 RID: 4969 RVA: 0x000B2014 File Offset: 0x000B0214
+	// Token: 0x06001369 RID: 4969 RVA: 0x000B2244 File Offset: 0x000B0444
 	private void Shove()
 	{
 		if (!this.Yandere.Shoved && !this.Yandere.Tripping && this.DistanceToPlayer < 0.5f)
@@ -339,7 +339,7 @@ public class DelinquentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600136A RID: 4970 RVA: 0x000B21C4 File Offset: 0x000B03C4
+	// Token: 0x0600136A RID: 4970 RVA: 0x000B23F4 File Offset: 0x000B05F4
 	private void LateUpdate()
 	{
 		if (!this.Threatening)
@@ -361,195 +361,195 @@ public class DelinquentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600136B RID: 4971 RVA: 0x000B22A9 File Offset: 0x000B04A9
+	// Token: 0x0600136B RID: 4971 RVA: 0x000B24D9 File Offset: 0x000B06D9
 	private void OnEnable()
 	{
 		this.Character.GetComponent<Animation>().CrossFade(this.IdleAnim, 1f);
 	}
 
-	// Token: 0x04001C45 RID: 7237
+	// Token: 0x04001C48 RID: 7240
 	private Quaternion targetRotation;
 
-	// Token: 0x04001C46 RID: 7238
+	// Token: 0x04001C49 RID: 7241
 	public DelinquentManagerScript DelinquentManager;
 
-	// Token: 0x04001C47 RID: 7239
+	// Token: 0x04001C4A RID: 7242
 	public YandereScript Yandere;
 
-	// Token: 0x04001C48 RID: 7240
+	// Token: 0x04001C4B RID: 7243
 	public Quaternion OriginalRotation;
 
-	// Token: 0x04001C49 RID: 7241
+	// Token: 0x04001C4C RID: 7244
 	public Vector3 LookAtTarget;
 
-	// Token: 0x04001C4A RID: 7242
+	// Token: 0x04001C4D RID: 7245
 	public GameObject Character;
 
-	// Token: 0x04001C4B RID: 7243
+	// Token: 0x04001C4E RID: 7246
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x04001C4C RID: 7244
+	// Token: 0x04001C4F RID: 7247
 	public GameObject MyWeapon;
 
-	// Token: 0x04001C4D RID: 7245
+	// Token: 0x04001C50 RID: 7248
 	public GameObject Jukebox;
 
-	// Token: 0x04001C4E RID: 7246
+	// Token: 0x04001C51 RID: 7249
 	public Mesh LongSkirt;
 
-	// Token: 0x04001C4F RID: 7247
+	// Token: 0x04001C52 RID: 7250
 	public Camera Eyes;
 
-	// Token: 0x04001C50 RID: 7248
+	// Token: 0x04001C53 RID: 7251
 	public Transform RightBreast;
 
-	// Token: 0x04001C51 RID: 7249
+	// Token: 0x04001C54 RID: 7252
 	public Transform LeftBreast;
 
-	// Token: 0x04001C52 RID: 7250
+	// Token: 0x04001C55 RID: 7253
 	public Transform Default;
 
-	// Token: 0x04001C53 RID: 7251
+	// Token: 0x04001C56 RID: 7254
 	public Transform Weapon;
 
-	// Token: 0x04001C54 RID: 7252
+	// Token: 0x04001C57 RID: 7255
 	public Transform Neck;
 
-	// Token: 0x04001C55 RID: 7253
+	// Token: 0x04001C58 RID: 7256
 	public Transform Head;
 
-	// Token: 0x04001C56 RID: 7254
+	// Token: 0x04001C59 RID: 7257
 	public Plane[] Planes;
 
-	// Token: 0x04001C57 RID: 7255
+	// Token: 0x04001C5A RID: 7258
 	public string CooldownAnim = "f02_idleShort_00";
 
-	// Token: 0x04001C58 RID: 7256
+	// Token: 0x04001C5B RID: 7259
 	public string ThreatenAnim = "f02_threaten_00";
 
-	// Token: 0x04001C59 RID: 7257
+	// Token: 0x04001C5C RID: 7260
 	public string SurpriseAnim = "f02_surprise_00";
 
-	// Token: 0x04001C5A RID: 7258
+	// Token: 0x04001C5D RID: 7261
 	public string ShoveAnim = "f02_shoveB_00";
 
-	// Token: 0x04001C5B RID: 7259
+	// Token: 0x04001C5E RID: 7262
 	public string SwingAnim = "f02_swingA_00";
 
-	// Token: 0x04001C5C RID: 7260
+	// Token: 0x04001C5F RID: 7263
 	public string RunAnim = "f02_spring_00";
 
-	// Token: 0x04001C5D RID: 7261
+	// Token: 0x04001C60 RID: 7264
 	public string IdleAnim = string.Empty;
 
-	// Token: 0x04001C5E RID: 7262
+	// Token: 0x04001C61 RID: 7265
 	public string Prefix = "f02_";
 
-	// Token: 0x04001C5F RID: 7263
+	// Token: 0x04001C62 RID: 7266
 	public bool ExpressedSurprise;
 
-	// Token: 0x04001C60 RID: 7264
+	// Token: 0x04001C63 RID: 7267
 	public bool LookAtPlayer;
 
-	// Token: 0x04001C61 RID: 7265
+	// Token: 0x04001C64 RID: 7268
 	public bool Threatening;
 
-	// Token: 0x04001C62 RID: 7266
+	// Token: 0x04001C65 RID: 7269
 	public bool Attacking;
 
-	// Token: 0x04001C63 RID: 7267
+	// Token: 0x04001C66 RID: 7270
 	public bool HeadStill;
 
-	// Token: 0x04001C64 RID: 7268
+	// Token: 0x04001C67 RID: 7271
 	public bool Cooldown;
 
-	// Token: 0x04001C65 RID: 7269
+	// Token: 0x04001C68 RID: 7272
 	public bool Shoving;
 
-	// Token: 0x04001C66 RID: 7270
+	// Token: 0x04001C69 RID: 7273
 	public bool Rapping;
 
-	// Token: 0x04001C67 RID: 7271
+	// Token: 0x04001C6A RID: 7274
 	public bool Run;
 
-	// Token: 0x04001C68 RID: 7272
+	// Token: 0x04001C6B RID: 7275
 	public float DistanceToPlayer;
 
-	// Token: 0x04001C69 RID: 7273
+	// Token: 0x04001C6C RID: 7276
 	public float RunSpeed;
 
-	// Token: 0x04001C6A RID: 7274
+	// Token: 0x04001C6D RID: 7277
 	public float BustSize;
 
-	// Token: 0x04001C6B RID: 7275
+	// Token: 0x04001C6E RID: 7278
 	public float Rotation;
 
-	// Token: 0x04001C6C RID: 7276
+	// Token: 0x04001C6F RID: 7279
 	public float Timer;
 
-	// Token: 0x04001C6D RID: 7277
+	// Token: 0x04001C70 RID: 7280
 	public int AudioPhase = 1;
 
-	// Token: 0x04001C6E RID: 7278
+	// Token: 0x04001C71 RID: 7281
 	public int Spaces;
 
-	// Token: 0x04001C6F RID: 7279
+	// Token: 0x04001C72 RID: 7282
 	public AudioClip[] ProximityClips;
 
-	// Token: 0x04001C70 RID: 7280
+	// Token: 0x04001C73 RID: 7283
 	public AudioClip[] SurrenderClips;
 
-	// Token: 0x04001C71 RID: 7281
+	// Token: 0x04001C74 RID: 7284
 	public AudioClip[] SurpriseClips;
 
-	// Token: 0x04001C72 RID: 7282
+	// Token: 0x04001C75 RID: 7285
 	public AudioClip[] ThreatenClips;
 
-	// Token: 0x04001C73 RID: 7283
+	// Token: 0x04001C76 RID: 7286
 	public AudioClip[] AggroClips;
 
-	// Token: 0x04001C74 RID: 7284
+	// Token: 0x04001C77 RID: 7287
 	public AudioClip[] ShoveClips;
 
-	// Token: 0x04001C75 RID: 7285
+	// Token: 0x04001C78 RID: 7288
 	public AudioClip[] CaseClips;
 
-	// Token: 0x04001C76 RID: 7286
+	// Token: 0x04001C79 RID: 7289
 	public AudioClip SurpriseClip;
 
-	// Token: 0x04001C77 RID: 7287
+	// Token: 0x04001C7A RID: 7290
 	public AudioClip AttackClip;
 
-	// Token: 0x04001C78 RID: 7288
+	// Token: 0x04001C7B RID: 7291
 	public AudioClip Crumple;
 
-	// Token: 0x04001C79 RID: 7289
+	// Token: 0x04001C7C RID: 7292
 	public AudioClip Strike;
 
-	// Token: 0x04001C7A RID: 7290
+	// Token: 0x04001C7D RID: 7293
 	public GameObject DefaultHair;
 
-	// Token: 0x04001C7B RID: 7291
+	// Token: 0x04001C7E RID: 7294
 	public GameObject Mask;
 
-	// Token: 0x04001C7C RID: 7292
+	// Token: 0x04001C7F RID: 7295
 	public GameObject EasterHair;
 
-	// Token: 0x04001C7D RID: 7293
+	// Token: 0x04001C80 RID: 7296
 	public GameObject Bandanas;
 
-	// Token: 0x04001C7E RID: 7294
+	// Token: 0x04001C81 RID: 7297
 	public Renderer HairRenderer;
 
-	// Token: 0x04001C7F RID: 7295
+	// Token: 0x04001C82 RID: 7298
 	public Color HairColor;
 
-	// Token: 0x04001C80 RID: 7296
+	// Token: 0x04001C83 RID: 7299
 	public Texture BlondThugHair;
 
-	// Token: 0x04001C81 RID: 7297
+	// Token: 0x04001C84 RID: 7300
 	public Transform TimePortal;
 
-	// Token: 0x04001C82 RID: 7298
+	// Token: 0x04001C85 RID: 7301
 	public bool Suck;
 }

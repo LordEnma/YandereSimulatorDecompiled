@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000262 RID: 610
 public class CourtroomScript : MonoBehaviour
 {
-	// Token: 0x060012E9 RID: 4841 RVA: 0x000A5BD0 File Offset: 0x000A3DD0
+	// Token: 0x060012E9 RID: 4841 RVA: 0x000A5DD4 File Offset: 0x000A3FD4
 	private void Start()
 	{
 		this.Subtitle.text = "";
@@ -21,7 +21,7 @@ public class CourtroomScript : MonoBehaviour
 		this.ResetBloom();
 	}
 
-	// Token: 0x060012EA RID: 4842 RVA: 0x000A5C98 File Offset: 0x000A3E98
+	// Token: 0x060012EA RID: 4842 RVA: 0x000A5E9C File Offset: 0x000A409C
 	public void UpdateFactLabels()
 	{
 		this.Fact[1] = this.RivalNames[1] + " " + this.Eliminations[this.Stats.EliminationIDs[1]];
@@ -93,7 +93,7 @@ public class CourtroomScript : MonoBehaviour
 		this.GuiltyPoints[28] = this.Stats.Grudges * 20;
 	}
 
-	// Token: 0x060012EB RID: 4843 RVA: 0x000A63F0 File Offset: 0x000A45F0
+	// Token: 0x060012EB RID: 4843 RVA: 0x000A65F4 File Offset: 0x000A47F4
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -405,7 +405,7 @@ public class CourtroomScript : MonoBehaviour
 		this.UpdateDOF(3f);
 	}
 
-	// Token: 0x060012EC RID: 4844 RVA: 0x000A7278 File Offset: 0x000A5478
+	// Token: 0x060012EC RID: 4844 RVA: 0x000A747C File Offset: 0x000A567C
 	public void PopulateRankPanel()
 	{
 		this.RankIcon.transform.localScale = new Vector3(0f, 0f, 0f);
@@ -449,7 +449,7 @@ public class CourtroomScript : MonoBehaviour
 		this.RankIcon.mainTexture = this.RankIcons[this.Rank];
 	}
 
-	// Token: 0x060012ED RID: 4845 RVA: 0x000A7488 File Offset: 0x000A5688
+	// Token: 0x060012ED RID: 4845 RVA: 0x000A768C File Offset: 0x000A588C
 	private void UpdateDOF(float Value)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -458,7 +458,7 @@ public class CourtroomScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x060012EE RID: 4846 RVA: 0x000A74CC File Offset: 0x000A56CC
+	// Token: 0x060012EE RID: 4846 RVA: 0x000A76D0 File Offset: 0x000A58D0
 	private void ResetBloom()
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -469,153 +469,153 @@ public class CourtroomScript : MonoBehaviour
 		this.Profile.bloom.settings = settings;
 	}
 
-	// Token: 0x04001AAF RID: 6831
+	// Token: 0x04001AB1 RID: 6833
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04001AB0 RID: 6832
+	// Token: 0x04001AB2 RID: 6834
 	public EightiesStatsScript Stats;
 
-	// Token: 0x04001AB1 RID: 6833
+	// Token: 0x04001AB3 RID: 6835
 	public ParticleSystem[] SpeechLines;
 
-	// Token: 0x04001AB2 RID: 6834
+	// Token: 0x04001AB4 RID: 6836
 	public Transform[] CameraPosition;
 
-	// Token: 0x04001AB3 RID: 6835
+	// Token: 0x04001AB5 RID: 6837
 	public AudioClip[] ScoreJingles;
 
-	// Token: 0x04001AB4 RID: 6836
+	// Token: 0x04001AB6 RID: 6838
 	public AudioClip[] Voice;
 
-	// Token: 0x04001AB5 RID: 6837
+	// Token: 0x04001AB7 RID: 6839
 	public GameObject SkipButton;
 
-	// Token: 0x04001AB6 RID: 6838
+	// Token: 0x04001AB8 RID: 6840
 	public Transform BalanceBar;
 
-	// Token: 0x04001AB7 RID: 6839
+	// Token: 0x04001AB9 RID: 6841
 	public Transform RightScale;
 
-	// Token: 0x04001AB8 RID: 6840
+	// Token: 0x04001ABA RID: 6842
 	public Transform LeftScale;
 
-	// Token: 0x04001AB9 RID: 6841
+	// Token: 0x04001ABB RID: 6843
 	public Transform Scale;
 
-	// Token: 0x04001ABA RID: 6842
+	// Token: 0x04001ABC RID: 6844
 	public AudioSource Jukebox;
 
-	// Token: 0x04001ABB RID: 6843
+	// Token: 0x04001ABD RID: 6845
 	public AudioSource MyAudio;
 
-	// Token: 0x04001ABC RID: 6844
+	// Token: 0x04001ABE RID: 6846
 	public AudioSource Walla;
 
-	// Token: 0x04001ABD RID: 6845
+	// Token: 0x04001ABF RID: 6847
 	public Texture[] RankIcons;
 
-	// Token: 0x04001ABE RID: 6846
+	// Token: 0x04001AC0 RID: 6848
 	public UITexture Polaroid;
 
-	// Token: 0x04001ABF RID: 6847
+	// Token: 0x04001AC1 RID: 6849
 	public UITexture RankIcon;
 
-	// Token: 0x04001AC0 RID: 6848
+	// Token: 0x04001AC2 RID: 6850
 	public Animation Yandere;
 
-	// Token: 0x04001AC1 RID: 6849
+	// Token: 0x04001AC3 RID: 6851
 	public UISprite Darkness;
 
-	// Token: 0x04001AC2 RID: 6850
+	// Token: 0x04001AC4 RID: 6852
 	public UIPanel RankPanel;
 
-	// Token: 0x04001AC3 RID: 6851
+	// Token: 0x04001AC5 RID: 6853
 	public UILabel FactLabel;
 
-	// Token: 0x04001AC4 RID: 6852
+	// Token: 0x04001AC6 RID: 6854
 	public UILabel RankDesc;
 
-	// Token: 0x04001AC5 RID: 6853
+	// Token: 0x04001AC7 RID: 6855
 	public UILabel Subtitle;
 
-	// Token: 0x04001AC6 RID: 6854
+	// Token: 0x04001AC8 RID: 6856
 	public int[] EliminationSuspicion;
 
-	// Token: 0x04001AC7 RID: 6855
+	// Token: 0x04001AC9 RID: 6857
 	public int[] DetailSuspicion;
 
-	// Token: 0x04001AC8 RID: 6856
+	// Token: 0x04001ACA RID: 6858
 	public int[] GuiltyPoints;
 
-	// Token: 0x04001AC9 RID: 6857
+	// Token: 0x04001ACB RID: 6859
 	public string[] OpeningStatement;
 
-	// Token: 0x04001ACA RID: 6858
+	// Token: 0x04001ACC RID: 6860
 	public string[] Eliminations;
 
-	// Token: 0x04001ACB RID: 6859
+	// Token: 0x04001ACD RID: 6861
 	public string[] RivalNames;
 
-	// Token: 0x04001ACC RID: 6860
+	// Token: 0x04001ACE RID: 6862
 	public string[] Details;
 
-	// Token: 0x04001ACD RID: 6861
+	// Token: 0x04001ACF RID: 6863
 	public string[] Fact;
 
-	// Token: 0x04001ACE RID: 6862
+	// Token: 0x04001AD0 RID: 6864
 	public float TargetRotation;
 
-	// Token: 0x04001ACF RID: 6863
+	// Token: 0x04001AD1 RID: 6865
 	public float MusicTimer;
 
-	// Token: 0x04001AD0 RID: 6864
+	// Token: 0x04001AD2 RID: 6866
 	public float Rotation;
 
-	// Token: 0x04001AD1 RID: 6865
+	// Token: 0x04001AD3 RID: 6867
 	public float Speed;
 
-	// Token: 0x04001AD2 RID: 6866
+	// Token: 0x04001AD4 RID: 6868
 	public float Timer;
 
-	// Token: 0x04001AD3 RID: 6867
+	// Token: 0x04001AD5 RID: 6869
 	public bool Innocent;
 
-	// Token: 0x04001AD4 RID: 6868
+	// Token: 0x04001AD6 RID: 6870
 	public int Innocence;
 
-	// Token: 0x04001AD5 RID: 6869
+	// Token: 0x04001AD7 RID: 6871
 	public int FactID;
 
-	// Token: 0x04001AD6 RID: 6870
+	// Token: 0x04001AD8 RID: 6872
 	public int Guilt;
 
-	// Token: 0x04001AD7 RID: 6871
+	// Token: 0x04001AD9 RID: 6873
 	public int Phase;
 
-	// Token: 0x04001AD8 RID: 6872
+	// Token: 0x04001ADA RID: 6874
 	public int Score;
 
-	// Token: 0x04001AD9 RID: 6873
+	// Token: 0x04001ADB RID: 6875
 	public int Rank;
 
-	// Token: 0x04001ADA RID: 6874
+	// Token: 0x04001ADC RID: 6876
 	public AudioClip Deaths;
 
-	// Token: 0x04001ADB RID: 6875
+	// Token: 0x04001ADD RID: 6877
 	public AudioClip Disappearances;
 
-	// Token: 0x04001ADC RID: 6876
+	// Token: 0x04001ADE RID: 6878
 	public AudioClip DeathsAndDisappearances;
 
-	// Token: 0x04001ADD RID: 6877
+	// Token: 0x04001ADF RID: 6879
 	public AudioClip SomeDeaths;
 
-	// Token: 0x04001ADE RID: 6878
+	// Token: 0x04001AE0 RID: 6880
 	public AudioClip SomeDisappearances;
 
-	// Token: 0x04001ADF RID: 6879
+	// Token: 0x04001AE1 RID: 6881
 	public AudioClip GuiltyClip;
 
-	// Token: 0x04001AE0 RID: 6880
+	// Token: 0x04001AE2 RID: 6882
 	public AudioClip InnocentClip;
 }

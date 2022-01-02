@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000480 RID: 1152
 public class TrashCanScript : MonoBehaviour
 {
-	// Token: 0x06001ED7 RID: 7895 RVA: 0x001B09A4 File Offset: 0x001AEBA4
+	// Token: 0x06001ED9 RID: 7897 RVA: 0x001B0E58 File Offset: 0x001AF058
 	private void Update()
 	{
 		if (!this.Occupied)
@@ -52,13 +52,7 @@ public class TrashCanScript : MonoBehaviour
 		}
 		else if (this.Prompt.Circle[0].fillAmount == 0f)
 		{
-			this.Prompt.Circle[0].fillAmount = 1f;
-			this.Item.GetComponent<PromptScript>().Circle[3].fillAmount = -1f;
-			this.Item.GetComponent<PromptScript>().enabled = true;
-			this.Item = null;
-			this.Occupied = false;
-			this.Weapon = false;
-			this.UpdatePrompt();
+			this.RemoveContents();
 		}
 		if (this.Item != null)
 		{
@@ -140,7 +134,7 @@ public class TrashCanScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ED8 RID: 7896 RVA: 0x001B107C File Offset: 0x001AF27C
+	// Token: 0x06001EDA RID: 7898 RVA: 0x001B14D4 File Offset: 0x001AF6D4
 	public void UpdatePrompt()
 	{
 		if (this.Occupied)
@@ -174,36 +168,50 @@ public class TrashCanScript : MonoBehaviour
 		this.Prompt.HideButton[0] = true;
 	}
 
-	// Token: 0x0400401A RID: 16410
-	public WeaponScript ConcealedWeapon;
-
-	// Token: 0x0400401B RID: 16411
-	public ContainerScript Container;
-
-	// Token: 0x0400401C RID: 16412
-	public YandereScript Yandere;
-
-	// Token: 0x0400401D RID: 16413
-	public PromptScript Prompt;
-
-	// Token: 0x0400401E RID: 16414
-	public Transform TrashPosition;
-
-	// Token: 0x0400401F RID: 16415
-	public Rigidbody MyRigidbody;
-
-	// Token: 0x04004020 RID: 16416
-	public GameObject Item;
+	// Token: 0x06001EDB RID: 7899 RVA: 0x001B15E8 File Offset: 0x001AF7E8
+	public void RemoveContents()
+	{
+		Debug.Log("The object that was in this container has been removed.");
+		this.Prompt.Circle[0].fillAmount = 1f;
+		this.Item.GetComponent<PromptScript>().Circle[3].fillAmount = -1f;
+		this.Item.GetComponent<PromptScript>().enabled = true;
+		this.Item = null;
+		this.ConcealedWeapon = null;
+		this.Occupied = false;
+		this.Weapon = false;
+		this.UpdatePrompt();
+	}
 
 	// Token: 0x04004021 RID: 16417
-	public bool Occupied;
+	public WeaponScript ConcealedWeapon;
 
 	// Token: 0x04004022 RID: 16418
-	public bool Wearable;
+	public ContainerScript Container;
 
 	// Token: 0x04004023 RID: 16419
-	public bool Weapon;
+	public YandereScript Yandere;
 
 	// Token: 0x04004024 RID: 16420
+	public PromptScript Prompt;
+
+	// Token: 0x04004025 RID: 16421
+	public Transform TrashPosition;
+
+	// Token: 0x04004026 RID: 16422
+	public Rigidbody MyRigidbody;
+
+	// Token: 0x04004027 RID: 16423
+	public GameObject Item;
+
+	// Token: 0x04004028 RID: 16424
+	public bool Occupied;
+
+	// Token: 0x04004029 RID: 16425
+	public bool Wearable;
+
+	// Token: 0x0400402A RID: 16426
+	public bool Weapon;
+
+	// Token: 0x0400402B RID: 16427
 	public float KinematicTimer;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200045C RID: 1116
 public class SuitorBoostScript : MonoBehaviour
 {
-	// Token: 0x06001E4F RID: 7759 RVA: 0x001A04BC File Offset: 0x0019E6BC
+	// Token: 0x06001E51 RID: 7761 RVA: 0x001A0958 File Offset: 0x0019EB58
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -180,7 +180,7 @@ public class SuitorBoostScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E50 RID: 7760 RVA: 0x001A0EE8 File Offset: 0x0019F0E8
+	// Token: 0x06001E52 RID: 7762 RVA: 0x001A1384 File Offset: 0x0019F584
 	private void LateUpdate()
 	{
 		if (this.TraitID == 2 && this.Boosting && this.Phase > 1 && this.Phase < 5)
@@ -190,72 +190,72 @@ public class SuitorBoostScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003E11 RID: 15889
+	// Token: 0x04003E18 RID: 15896
 	public LoveManagerScript LoveManager;
 
-	// Token: 0x04003E12 RID: 15890
+	// Token: 0x04003E19 RID: 15897
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003E13 RID: 15891
+	// Token: 0x04003E1A RID: 15898
 	public YandereScript Yandere;
 
-	// Token: 0x04003E14 RID: 15892
+	// Token: 0x04003E1B RID: 15899
 	public PromptScript Prompt;
 
-	// Token: 0x04003E15 RID: 15893
+	// Token: 0x04003E1C RID: 15900
 	public UISprite Darkness;
 
-	// Token: 0x04003E16 RID: 15894
+	// Token: 0x04003E1D RID: 15901
 	public UILabel Label;
 
-	// Token: 0x04003E17 RID: 15895
+	// Token: 0x04003E1E RID: 15902
 	public Transform YandereSitSpot;
 
-	// Token: 0x04003E18 RID: 15896
+	// Token: 0x04003E1F RID: 15903
 	public Transform SuitorSitSpot;
 
-	// Token: 0x04003E19 RID: 15897
+	// Token: 0x04003E20 RID: 15904
 	public Transform YandereChair;
 
-	// Token: 0x04003E1A RID: 15898
+	// Token: 0x04003E21 RID: 15905
 	public Transform SuitorChair;
 
-	// Token: 0x04003E1B RID: 15899
+	// Token: 0x04003E22 RID: 15906
 	public Transform YandereSpot;
 
-	// Token: 0x04003E1C RID: 15900
+	// Token: 0x04003E23 RID: 15907
 	public Transform SuitorSpot;
 
-	// Token: 0x04003E1D RID: 15901
+	// Token: 0x04003E24 RID: 15908
 	public Transform LookTarget;
 
-	// Token: 0x04003E1E RID: 15902
+	// Token: 0x04003E25 RID: 15909
 	public Transform TextBox;
 
-	// Token: 0x04003E1F RID: 15903
+	// Token: 0x04003E26 RID: 15910
 	public Transform BoostSpot;
 
-	// Token: 0x04003E20 RID: 15904
+	// Token: 0x04003E27 RID: 15911
 	public bool TaughtSuitor;
 
-	// Token: 0x04003E21 RID: 15905
+	// Token: 0x04003E28 RID: 15912
 	public bool TimeSkipping;
 
-	// Token: 0x04003E22 RID: 15906
+	// Token: 0x04003E29 RID: 15913
 	public bool Boosting;
 
-	// Token: 0x04003E23 RID: 15907
+	// Token: 0x04003E2A RID: 15914
 	public bool FadeOut;
 
-	// Token: 0x04003E24 RID: 15908
+	// Token: 0x04003E2B RID: 15915
 	public float Timer;
 
-	// Token: 0x04003E25 RID: 15909
+	// Token: 0x04003E2C RID: 15916
 	public string BoostText;
 
-	// Token: 0x04003E26 RID: 15910
+	// Token: 0x04003E2D RID: 15917
 	public int TraitID = 2;
 
-	// Token: 0x04003E27 RID: 15911
+	// Token: 0x04003E2E RID: 15918
 	public int Phase = 1;
 }

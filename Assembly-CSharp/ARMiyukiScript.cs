@@ -13,10 +13,10 @@ public class ARMiyukiScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000991 RID: 2449 RVA: 0x0004C8BE File Offset: 0x0004AABE
+	// Token: 0x06000991 RID: 2449 RVA: 0x0004C8C0 File Offset: 0x0004AAC0
 	private void Update()
 	{
-		if (!this.Student && this.Yandere.AR)
+		if (!this.Student && this.Yandere.AR && Time.timeScale == 1f)
 		{
 			base.transform.LookAt(this.Enemy.position);
 			if (Input.GetButtonDown("X"))
@@ -26,7 +26,7 @@ public class ARMiyukiScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000992 RID: 2450 RVA: 0x0004C900 File Offset: 0x0004AB00
+	// Token: 0x06000992 RID: 2450 RVA: 0x0004C918 File Offset: 0x0004AB18
 	public void Shoot()
 	{
 		if (this.Enemy == null)

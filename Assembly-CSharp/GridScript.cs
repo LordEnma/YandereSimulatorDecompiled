@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000306 RID: 774
 public class GridScript : MonoBehaviour
 {
-	// Token: 0x06001818 RID: 6168 RVA: 0x000E3E7C File Offset: 0x000E207C
+	// Token: 0x0600181A RID: 6170 RVA: 0x000E414C File Offset: 0x000E234C
 	private void Start()
 	{
 		while (this.ID < this.Rows * this.Columns)
@@ -22,21 +22,21 @@ public class GridScript : MonoBehaviour
 		base.transform.position = new Vector3(-52f, 0f, -52f);
 	}
 
-	// Token: 0x040022F0 RID: 8944
+	// Token: 0x040022F4 RID: 8948
 	public GameObject Tile;
 
-	// Token: 0x040022F1 RID: 8945
+	// Token: 0x040022F5 RID: 8949
 	public int Row;
 
-	// Token: 0x040022F2 RID: 8946
+	// Token: 0x040022F6 RID: 8950
 	public int Column;
 
-	// Token: 0x040022F3 RID: 8947
+	// Token: 0x040022F7 RID: 8951
 	public int Rows = 25;
 
-	// Token: 0x040022F4 RID: 8948
+	// Token: 0x040022F8 RID: 8952
 	public int Columns = 25;
 
-	// Token: 0x040022F5 RID: 8949
+	// Token: 0x040022F9 RID: 8953
 	public int ID;
 }

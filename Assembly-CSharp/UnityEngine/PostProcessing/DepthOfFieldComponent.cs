@@ -5,8 +5,8 @@ namespace UnityEngine.PostProcessing
 	// Token: 0x02000553 RID: 1363
 	public sealed class DepthOfFieldComponent : PostProcessingComponentRenderTexture<DepthOfFieldModel>
 	{
-		// Token: 0x170004EF RID: 1263
-		// (get) Token: 0x060022BC RID: 8892 RVA: 0x001EE8EB File Offset: 0x001ECAEB
+		// Token: 0x170004F0 RID: 1264
+		// (get) Token: 0x060022BF RID: 8895 RVA: 0x001EEEDB File Offset: 0x001ED0DB
 		public override bool active
 		{
 			get
@@ -15,13 +15,13 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022BD RID: 8893 RVA: 0x001EE90A File Offset: 0x001ECB0A
+		// Token: 0x060022C0 RID: 8896 RVA: 0x001EEEFA File Offset: 0x001ED0FA
 		public override DepthTextureMode GetCameraFlags()
 		{
 			return DepthTextureMode.Depth;
 		}
 
-		// Token: 0x060022BE RID: 8894 RVA: 0x001EE910 File Offset: 0x001ECB10
+		// Token: 0x060022C1 RID: 8897 RVA: 0x001EEF00 File Offset: 0x001ED100
 		private float CalculateFocalLength()
 		{
 			DepthOfFieldModel.Settings settings = base.model.settings;
@@ -33,20 +33,20 @@ namespace UnityEngine.PostProcessing
 			return 0.012f / Mathf.Tan(0.5f * num);
 		}
 
-		// Token: 0x060022BF RID: 8895 RVA: 0x001EE968 File Offset: 0x001ECB68
+		// Token: 0x060022C2 RID: 8898 RVA: 0x001EEF58 File Offset: 0x001ED158
 		private float CalculateMaxCoCRadius(int screenHeight)
 		{
 			float num = (float)base.model.settings.kernelSize * 4f + 6f;
 			return Mathf.Min(0.05f, num / (float)screenHeight);
 		}
 
-		// Token: 0x060022C0 RID: 8896 RVA: 0x001EE9A1 File Offset: 0x001ECBA1
+		// Token: 0x060022C3 RID: 8899 RVA: 0x001EEF91 File Offset: 0x001ED191
 		private bool CheckHistory(int width, int height)
 		{
 			return this.m_CoCHistory != null && this.m_CoCHistory.IsCreated() && this.m_CoCHistory.width == width && this.m_CoCHistory.height == height;
 		}
 
-		// Token: 0x060022C1 RID: 8897 RVA: 0x001EE9DC File Offset: 0x001ECBDC
+		// Token: 0x060022C4 RID: 8900 RVA: 0x001EEFCC File Offset: 0x001ED1CC
 		private RenderTextureFormat SelectFormat(RenderTextureFormat primary, RenderTextureFormat secondary)
 		{
 			if (SystemInfo.SupportsRenderTextureFormat(primary))
@@ -60,7 +60,7 @@ namespace UnityEngine.PostProcessing
 			return RenderTextureFormat.Default;
 		}
 
-		// Token: 0x060022C2 RID: 8898 RVA: 0x001EE9F4 File Offset: 0x001ECBF4
+		// Token: 0x060022C5 RID: 8901 RVA: 0x001EEFE4 File Offset: 0x001ED1E4
 		public void Prepare(RenderTexture source, Material uberMaterial, bool antialiasCoC, Vector2 taaJitter, float taaBlending)
 		{
 			DepthOfFieldModel.Settings settings = base.model.settings;
@@ -114,7 +114,7 @@ namespace UnityEngine.PostProcessing
 			this.context.renderTextureFactory.Release(renderTexture3);
 		}
 
-		// Token: 0x060022C3 RID: 8899 RVA: 0x001EED00 File Offset: 0x001ECF00
+		// Token: 0x060022C6 RID: 8902 RVA: 0x001EF2F0 File Offset: 0x001ED4F0
 		public override void OnDisable()
 		{
 			if (this.m_CoCHistory != null)
@@ -124,49 +124,49 @@ namespace UnityEngine.PostProcessing
 			this.m_CoCHistory = null;
 		}
 
-		// Token: 0x04004A95 RID: 19093
+		// Token: 0x04004A9E RID: 19102
 		private const string k_ShaderString = "Hidden/Post FX/Depth Of Field";
 
-		// Token: 0x04004A96 RID: 19094
+		// Token: 0x04004A9F RID: 19103
 		private RenderTexture m_CoCHistory;
 
-		// Token: 0x04004A97 RID: 19095
+		// Token: 0x04004AA0 RID: 19104
 		private const float k_FilmHeight = 0.024f;
 
 		// Token: 0x02000698 RID: 1688
 		private static class Uniforms
 		{
-			// Token: 0x0400502A RID: 20522
+			// Token: 0x04005033 RID: 20531
 			internal static readonly int _DepthOfFieldTex = Shader.PropertyToID("_DepthOfFieldTex");
 
-			// Token: 0x0400502B RID: 20523
+			// Token: 0x04005034 RID: 20532
 			internal static readonly int _DepthOfFieldCoCTex = Shader.PropertyToID("_DepthOfFieldCoCTex");
 
-			// Token: 0x0400502C RID: 20524
+			// Token: 0x04005035 RID: 20533
 			internal static readonly int _Distance = Shader.PropertyToID("_Distance");
 
-			// Token: 0x0400502D RID: 20525
+			// Token: 0x04005036 RID: 20534
 			internal static readonly int _LensCoeff = Shader.PropertyToID("_LensCoeff");
 
-			// Token: 0x0400502E RID: 20526
+			// Token: 0x04005037 RID: 20535
 			internal static readonly int _MaxCoC = Shader.PropertyToID("_MaxCoC");
 
-			// Token: 0x0400502F RID: 20527
+			// Token: 0x04005038 RID: 20536
 			internal static readonly int _RcpMaxCoC = Shader.PropertyToID("_RcpMaxCoC");
 
-			// Token: 0x04005030 RID: 20528
+			// Token: 0x04005039 RID: 20537
 			internal static readonly int _RcpAspect = Shader.PropertyToID("_RcpAspect");
 
-			// Token: 0x04005031 RID: 20529
+			// Token: 0x0400503A RID: 20538
 			internal static readonly int _MainTex = Shader.PropertyToID("_MainTex");
 
-			// Token: 0x04005032 RID: 20530
+			// Token: 0x0400503B RID: 20539
 			internal static readonly int _CoCTex = Shader.PropertyToID("_CoCTex");
 
-			// Token: 0x04005033 RID: 20531
+			// Token: 0x0400503C RID: 20540
 			internal static readonly int _TaaParams = Shader.PropertyToID("_TaaParams");
 
-			// Token: 0x04005034 RID: 20532
+			// Token: 0x0400503D RID: 20541
 			internal static readonly int _DepthOfFieldParams = Shader.PropertyToID("_DepthOfFieldParams");
 		}
 	}

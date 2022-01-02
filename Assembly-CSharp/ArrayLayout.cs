@@ -11,7 +11,7 @@ public class ArrayLayout
 	[Serializable]
 	public struct rowData
 	{
-		// Token: 0x04004E91 RID: 20113
+		// Token: 0x04004E9A RID: 20122
 		public bool[] row;
 	}
 }

@@ -1027,15 +1027,15 @@ public abstract class UIBasicSprite : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum Type
 	{
-		// Token: 0x04004D8E RID: 19854
+		// Token: 0x04004D97 RID: 19863
 		Simple,
-		// Token: 0x04004D8F RID: 19855
+		// Token: 0x04004D98 RID: 19864
 		Sliced,
-		// Token: 0x04004D90 RID: 19856
+		// Token: 0x04004D99 RID: 19865
 		Tiled,
-		// Token: 0x04004D91 RID: 19857
+		// Token: 0x04004D9A RID: 19866
 		Filled,
-		// Token: 0x04004D92 RID: 19858
+		// Token: 0x04004D9B RID: 19867
 		Advanced
 	}
 
@@ -1043,15 +1043,15 @@ public abstract class UIBasicSprite : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum FillDirection
 	{
-		// Token: 0x04004D94 RID: 19860
+		// Token: 0x04004D9D RID: 19869
 		Horizontal,
-		// Token: 0x04004D95 RID: 19861
+		// Token: 0x04004D9E RID: 19870
 		Vertical,
-		// Token: 0x04004D96 RID: 19862
+		// Token: 0x04004D9F RID: 19871
 		Radial90,
-		// Token: 0x04004D97 RID: 19863
+		// Token: 0x04004DA0 RID: 19872
 		Radial180,
-		// Token: 0x04004D98 RID: 19864
+		// Token: 0x04004DA1 RID: 19873
 		Radial360
 	}
 
@@ -1059,11 +1059,11 @@ public abstract class UIBasicSprite : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum AdvancedType
 	{
-		// Token: 0x04004D9A RID: 19866
+		// Token: 0x04004DA3 RID: 19875
 		Invisible,
-		// Token: 0x04004D9B RID: 19867
+		// Token: 0x04004DA4 RID: 19876
 		Sliced,
-		// Token: 0x04004D9C RID: 19868
+		// Token: 0x04004DA5 RID: 19877
 		Tiled
 	}
 
@@ -1071,13 +1071,13 @@ public abstract class UIBasicSprite : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum Flip
 	{
-		// Token: 0x04004D9E RID: 19870
+		// Token: 0x04004DA7 RID: 19879
 		Nothing,
-		// Token: 0x04004D9F RID: 19871
+		// Token: 0x04004DA8 RID: 19880
 		Horizontally,
-		// Token: 0x04004DA0 RID: 19872
+		// Token: 0x04004DA9 RID: 19881
 		Vertically,
-		// Token: 0x04004DA1 RID: 19873
+		// Token: 0x04004DAA RID: 19882
 		Both
 	}
 }

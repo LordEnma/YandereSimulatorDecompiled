@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000105 RID: 261
 public class CalendarScript : MonoBehaviour
 {
-	// Token: 0x06000AA0 RID: 2720 RVA: 0x00061488 File Offset: 0x0005F688
+	// Token: 0x06000AA0 RID: 2720 RVA: 0x000614A0 File Offset: 0x0005F6A0
 	private void Start()
 	{
 		this.NewTitleScreenProfile.colorGrading.enabled = false;
@@ -92,7 +92,11 @@ public class CalendarScript : MonoBehaviour
 		}
 		if (DateGlobals.PassDays > 0 && !SchoolGlobals.HighSecurity)
 		{
-			SchoolGlobals.SchoolAtmosphere += 0.05f;
+			Debug.Log("Previous school atmosphere was: " + SchoolGlobals.PreviousSchoolAtmosphere.ToString() + ". Current school atmosphere is: " + SchoolGlobals.SchoolAtmosphere.ToString());
+			if (SchoolGlobals.SchoolAtmosphere >= SchoolGlobals.PreviousSchoolAtmosphere)
+			{
+				SchoolGlobals.SchoolAtmosphere += 0.05f;
+			}
 		}
 		this.ImproveSchoolAtmosphere();
 		DateGlobals.DayPassed = true;
@@ -119,24 +123,24 @@ public class CalendarScript : MonoBehaviour
 			this.SkipButton.transform.localPosition = new Vector3(-120f, -500f, 0f);
 			if (DateGlobals.Week == 1)
 			{
-				this.DayNumber[1].text = "3";
-				this.DayNumber[2].text = "4";
-				this.DayNumber[3].text = "5";
-				this.DayNumber[4].text = "6";
-				this.DayNumber[5].text = "7";
-				this.DayNumber[6].text = "8";
-				this.DayNumber[7].text = "9";
+				this.DayNumber[1].text = "2";
+				this.DayNumber[2].text = "3";
+				this.DayNumber[3].text = "4";
+				this.DayNumber[4].text = "5";
+				this.DayNumber[5].text = "6";
+				this.DayNumber[6].text = "7";
+				this.DayNumber[7].text = "8";
 				this.Adjustment = -50;
 			}
 			else if (DateGlobals.Week == 2)
 			{
-				this.DayNumber[1].text = "10";
-				this.DayNumber[2].text = "11";
-				this.DayNumber[3].text = "12";
-				this.DayNumber[4].text = "13";
-				this.DayNumber[5].text = "14";
-				this.DayNumber[6].text = "15";
-				this.DayNumber[7].text = "16";
+				this.DayNumber[1].text = "9";
+				this.DayNumber[2].text = "10";
+				this.DayNumber[3].text = "11";
+				this.DayNumber[4].text = "12";
+				this.DayNumber[5].text = "13";
+				this.DayNumber[6].text = "14";
+				this.DayNumber[7].text = "15";
 				this.Adjustment = -50;
 				this.AmaiButton.SetActive(true);
 			}
@@ -148,7 +152,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA1 RID: 2721 RVA: 0x00061980 File Offset: 0x0005FB80
+	// Token: 0x06000AA1 RID: 2721 RVA: 0x000619D4 File Offset: 0x0005FBD4
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -264,7 +268,7 @@ public class CalendarScript : MonoBehaviour
 							GameGlobals.ShowAbduction = false;
 							DateGlobals.Weekday++;
 							this.Incremented = false;
-							if (!SchoolGlobals.HighSecurity)
+							if (!SchoolGlobals.HighSecurity && SchoolGlobals.SchoolAtmosphere >= SchoolGlobals.PreviousSchoolAtmosphere)
 							{
 								SchoolGlobals.SchoolAtmosphere += 0.05f;
 							}
@@ -313,7 +317,7 @@ public class CalendarScript : MonoBehaviour
 						{
 							this.ResetWeekWindow.SetActive(true);
 						}
-						else if (Input.GetButtonDown("X"))
+						else if (Input.GetButtonDown("X") && this.Eighties)
 						{
 							this.Switch = true;
 						}
@@ -455,7 +459,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA2 RID: 2722 RVA: 0x000623DC File Offset: 0x000605DC
+	// Token: 0x06000AA2 RID: 2722 RVA: 0x00062444 File Offset: 0x00060644
 	public void ChangeDayColor()
 	{
 		foreach (UILabel uilabel in this.DayLabel)
@@ -484,7 +488,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA3 RID: 2723 RVA: 0x00062494 File Offset: 0x00060694
+	// Token: 0x06000AA3 RID: 2723 RVA: 0x000624FC File Offset: 0x000606FC
 	public void LoveSickCheck()
 	{
 		if (GameGlobals.LoveSick)
@@ -525,7 +529,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA4 RID: 2724 RVA: 0x00062628 File Offset: 0x00060828
+	// Token: 0x06000AA4 RID: 2724 RVA: 0x00062690 File Offset: 0x00060890
 	public void SetVignettePink()
 	{
 		VignetteModel.Settings settings = this.NewTitleScreenProfile.vignette.settings;
@@ -533,7 +537,7 @@ public class CalendarScript : MonoBehaviour
 		this.NewTitleScreenProfile.vignette.settings = settings;
 	}
 
-	// Token: 0x06000AA5 RID: 2725 RVA: 0x00062678 File Offset: 0x00060878
+	// Token: 0x06000AA5 RID: 2725 RVA: 0x000626E0 File Offset: 0x000608E0
 	private void ImproveSchoolAtmosphere()
 	{
 		if (SchoolGlobals.SchoolAtmosphere > 1f)
@@ -548,9 +552,10 @@ public class CalendarScript : MonoBehaviour
 		this.Vignette.intensity = num * 5f;
 		this.Vignette.blur = num;
 		this.Vignette.chromaticAberration = num;
+		SchoolGlobals.PreviousSchoolAtmosphere = SchoolGlobals.SchoolAtmosphere;
 	}
 
-	// Token: 0x06000AA6 RID: 2726 RVA: 0x0006279C File Offset: 0x0006099C
+	// Token: 0x06000AA6 RID: 2726 RVA: 0x0006280C File Offset: 0x00060A0C
 	private void BecomeEighties()
 	{
 		this.Vignette.enabled = false;
@@ -712,7 +717,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA7 RID: 2727 RVA: 0x00063068 File Offset: 0x00061268
+	// Token: 0x06000AA7 RID: 2727 RVA: 0x000630D8 File Offset: 0x000612D8
 	public void EightiesifyLabel(UILabel Label)
 	{
 		Label.trueTypeFont = this.VCR;
@@ -722,7 +727,7 @@ public class CalendarScript : MonoBehaviour
 		Label.effectColor = new Color(0f, 0f, 0f, 1f);
 	}
 
-	// Token: 0x06000AA8 RID: 2728 RVA: 0x000630D0 File Offset: 0x000612D0
+	// Token: 0x06000AA8 RID: 2728 RVA: 0x00063140 File Offset: 0x00061340
 	public void ResetSaveFile()
 	{
 		int num = GameGlobals.Profile;

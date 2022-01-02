@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200044F RID: 1103
 public class StudentInfoScript : MonoBehaviour
 {
-	// Token: 0x06001D2D RID: 7469 RVA: 0x0015CF90 File Offset: 0x0015B190
+	// Token: 0x06001D2F RID: 7471 RVA: 0x0015D3D4 File Offset: 0x0015B5D4
 	private void Start()
 	{
 		StudentGlobals.SetStudentPhotographed(98, true);
@@ -18,7 +18,7 @@ public class StudentInfoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D2E RID: 7470 RVA: 0x0015CFE8 File Offset: 0x0015B1E8
+	// Token: 0x06001D30 RID: 7472 RVA: 0x0015D42C File Offset: 0x0015B62C
 	public void UpdateInfo(int ID)
 	{
 		if (!this.UpdatedOnce)
@@ -178,7 +178,7 @@ public class StudentInfoScript : MonoBehaviour
 		this.UpdateRepChart();
 	}
 
-	// Token: 0x06001D2F RID: 7471 RVA: 0x0015D57C File Offset: 0x0015B77C
+	// Token: 0x06001D31 RID: 7473 RVA: 0x0015D9C0 File Offset: 0x0015BBC0
 	private void Update()
 	{
 		if (this.CurrentStudent == 100)
@@ -516,7 +516,7 @@ public class StudentInfoScript : MonoBehaviour
 		this.ReputationChart.transform.localScale = Vector3.Lerp(this.ReputationChart.transform.localScale, new Vector3(0f, 0f, 0f), Time.unscaledDeltaTime * 10f);
 	}
 
-	// Token: 0x06001D30 RID: 7472 RVA: 0x0015E810 File Offset: 0x0015CA10
+	// Token: 0x06001D32 RID: 7474 RVA: 0x0015EC54 File Offset: 0x0015CE54
 	private void UpdateAdditionalInfo(int ID)
 	{
 		if (!this.Eighties)
@@ -579,7 +579,7 @@ public class StudentInfoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D31 RID: 7473 RVA: 0x0015E9E0 File Offset: 0x0015CBE0
+	// Token: 0x06001D33 RID: 7475 RVA: 0x0015EE24 File Offset: 0x0015D024
 	private void UpdateTopics()
 	{
 		for (int i = 1; i < this.TopicIcons.Length; i++)
@@ -601,7 +601,7 @@ public class StudentInfoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D32 RID: 7474 RVA: 0x0015EA7C File Offset: 0x0015CC7C
+	// Token: 0x06001D34 RID: 7476 RVA: 0x0015EEC0 File Offset: 0x0015D0C0
 	private void UpdateRepChart()
 	{
 		Vector3 vector = Vector3.zero;
@@ -622,124 +622,124 @@ public class StudentInfoScript : MonoBehaviour
 		this.ReputationChart.fields[2].Value = vector.z;
 	}
 
-	// Token: 0x0400359C RID: 13724
+	// Token: 0x040035A3 RID: 13731
 	public StudentInfoMenuScript StudentInfoMenu;
 
-	// Token: 0x0400359D RID: 13725
+	// Token: 0x040035A4 RID: 13732
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x0400359E RID: 13726
+	// Token: 0x040035A5 RID: 13733
 	public DialogueWheelScript DialogueWheel;
 
-	// Token: 0x0400359F RID: 13727
+	// Token: 0x040035A6 RID: 13734
 	public HomeInternetScript HomeInternet;
 
-	// Token: 0x040035A0 RID: 13728
+	// Token: 0x040035A7 RID: 13735
 	public TopicManagerScript TopicManager;
 
-	// Token: 0x040035A1 RID: 13729
+	// Token: 0x040035A8 RID: 13736
 	public NoteLockerScript NoteLocker;
 
-	// Token: 0x040035A2 RID: 13730
+	// Token: 0x040035A9 RID: 13737
 	public RadarChart ReputationChart;
 
-	// Token: 0x040035A3 RID: 13731
+	// Token: 0x040035AA RID: 13738
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040035A4 RID: 13732
+	// Token: 0x040035AB RID: 13739
 	public ShutterScript Shutter;
 
-	// Token: 0x040035A5 RID: 13733
+	// Token: 0x040035AC RID: 13740
 	public YandereScript Yandere;
 
-	// Token: 0x040035A6 RID: 13734
+	// Token: 0x040035AD RID: 13741
 	public JsonScript JSON;
 
-	// Token: 0x040035A7 RID: 13735
+	// Token: 0x040035AE RID: 13742
 	public Texture GuidanceCounselor;
 
-	// Token: 0x040035A8 RID: 13736
+	// Token: 0x040035AF RID: 13743
 	public Texture DefaultPortrait;
 
-	// Token: 0x040035A9 RID: 13737
+	// Token: 0x040035B0 RID: 13744
 	public Texture BlankPortrait;
 
-	// Token: 0x040035AA RID: 13738
+	// Token: 0x040035B1 RID: 13745
 	public Texture Headmaster;
 
-	// Token: 0x040035AB RID: 13739
+	// Token: 0x040035B2 RID: 13746
 	public Texture InfoChan;
 
-	// Token: 0x040035AC RID: 13740
+	// Token: 0x040035B3 RID: 13747
 	public Transform ReputationBar;
 
-	// Token: 0x040035AD RID: 13741
+	// Token: 0x040035B4 RID: 13748
 	public GameObject Static;
 
-	// Token: 0x040035AE RID: 13742
+	// Token: 0x040035B5 RID: 13749
 	public GameObject Topics;
 
-	// Token: 0x040035AF RID: 13743
+	// Token: 0x040035B6 RID: 13750
 	public UILabel OccupationLabel;
 
-	// Token: 0x040035B0 RID: 13744
+	// Token: 0x040035B7 RID: 13751
 	public UILabel ReputationLabel;
 
-	// Token: 0x040035B1 RID: 13745
+	// Token: 0x040035B8 RID: 13752
 	public UILabel RealNameLabel;
 
-	// Token: 0x040035B2 RID: 13746
+	// Token: 0x040035B9 RID: 13753
 	public UILabel StrengthLabel;
 
-	// Token: 0x040035B3 RID: 13747
+	// Token: 0x040035BA RID: 13754
 	public UILabel PersonaLabel;
 
-	// Token: 0x040035B4 RID: 13748
+	// Token: 0x040035BB RID: 13755
 	public UILabel ClassLabel;
 
-	// Token: 0x040035B5 RID: 13749
+	// Token: 0x040035BC RID: 13756
 	public UILabel CrushLabel;
 
-	// Token: 0x040035B6 RID: 13750
+	// Token: 0x040035BD RID: 13757
 	public UILabel ClubLabel;
 
-	// Token: 0x040035B7 RID: 13751
+	// Token: 0x040035BE RID: 13758
 	public UILabel InfoLabel;
 
-	// Token: 0x040035B8 RID: 13752
+	// Token: 0x040035BF RID: 13759
 	public UILabel NameLabel;
 
-	// Token: 0x040035B9 RID: 13753
+	// Token: 0x040035C0 RID: 13760
 	public UITexture Portrait;
 
-	// Token: 0x040035BA RID: 13754
+	// Token: 0x040035C1 RID: 13761
 	public string[] OpinionSpriteNames;
 
-	// Token: 0x040035BB RID: 13755
+	// Token: 0x040035C2 RID: 13762
 	public string[] Strings;
 
-	// Token: 0x040035BC RID: 13756
+	// Token: 0x040035C3 RID: 13763
 	public int CurrentStudent;
 
-	// Token: 0x040035BD RID: 13757
+	// Token: 0x040035C4 RID: 13764
 	public bool UpdatedOnce;
 
-	// Token: 0x040035BE RID: 13758
+	// Token: 0x040035C5 RID: 13765
 	public bool Eighties;
 
-	// Token: 0x040035BF RID: 13759
+	// Token: 0x040035C6 RID: 13766
 	public bool ShowRep;
 
-	// Token: 0x040035C0 RID: 13760
+	// Token: 0x040035C7 RID: 13767
 	public bool Back;
 
-	// Token: 0x040035C1 RID: 13761
+	// Token: 0x040035C8 RID: 13768
 	public UISprite[] TopicIcons;
 
-	// Token: 0x040035C2 RID: 13762
+	// Token: 0x040035C9 RID: 13769
 	public UISprite[] TopicOpinionIcons;
 
-	// Token: 0x040035C3 RID: 13763
+	// Token: 0x040035CA RID: 13770
 	private static readonly IntAndStringDictionary StrengthStrings = new IntAndStringDictionary
 	{
 		{

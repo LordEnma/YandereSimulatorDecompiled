@@ -1502,11 +1502,11 @@ public class UIInput : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum InputType
 	{
-		// Token: 0x04004E27 RID: 20007
+		// Token: 0x04004E30 RID: 20016
 		Standard,
-		// Token: 0x04004E28 RID: 20008
+		// Token: 0x04004E31 RID: 20017
 		AutoCorrect,
-		// Token: 0x04004E29 RID: 20009
+		// Token: 0x04004E32 RID: 20018
 		Password
 	}
 
@@ -1514,19 +1514,19 @@ public class UIInput : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Validation
 	{
-		// Token: 0x04004E2B RID: 20011
+		// Token: 0x04004E34 RID: 20020
 		None,
-		// Token: 0x04004E2C RID: 20012
+		// Token: 0x04004E35 RID: 20021
 		Integer,
-		// Token: 0x04004E2D RID: 20013
+		// Token: 0x04004E36 RID: 20022
 		Float,
-		// Token: 0x04004E2E RID: 20014
+		// Token: 0x04004E37 RID: 20023
 		Alphanumeric,
-		// Token: 0x04004E2F RID: 20015
+		// Token: 0x04004E38 RID: 20024
 		Username,
-		// Token: 0x04004E30 RID: 20016
+		// Token: 0x04004E39 RID: 20025
 		Name,
-		// Token: 0x04004E31 RID: 20017
+		// Token: 0x04004E3A RID: 20026
 		Filename
 	}
 
@@ -1534,21 +1534,21 @@ public class UIInput : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum KeyboardType
 	{
-		// Token: 0x04004E33 RID: 20019
+		// Token: 0x04004E3C RID: 20028
 		Default,
-		// Token: 0x04004E34 RID: 20020
+		// Token: 0x04004E3D RID: 20029
 		ASCIICapable,
-		// Token: 0x04004E35 RID: 20021
+		// Token: 0x04004E3E RID: 20030
 		NumbersAndPunctuation,
-		// Token: 0x04004E36 RID: 20022
+		// Token: 0x04004E3F RID: 20031
 		URL,
-		// Token: 0x04004E37 RID: 20023
+		// Token: 0x04004E40 RID: 20032
 		NumberPad,
-		// Token: 0x04004E38 RID: 20024
+		// Token: 0x04004E41 RID: 20033
 		PhonePad,
-		// Token: 0x04004E39 RID: 20025
+		// Token: 0x04004E42 RID: 20034
 		NamePhonePad,
-		// Token: 0x04004E3A RID: 20026
+		// Token: 0x04004E43 RID: 20035
 		EmailAddress
 	}
 
@@ -1556,15 +1556,15 @@ public class UIInput : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum OnReturnKey
 	{
-		// Token: 0x04004E3C RID: 20028
+		// Token: 0x04004E45 RID: 20037
 		Default,
-		// Token: 0x04004E3D RID: 20029
+		// Token: 0x04004E46 RID: 20038
 		Submit,
-		// Token: 0x04004E3E RID: 20030
+		// Token: 0x04004E47 RID: 20039
 		NewLine
 	}
 
 	// Token: 0x02000631 RID: 1585
-	// (Invoke) Token: 0x060025E2 RID: 9698
+	// (Invoke) Token: 0x060025E5 RID: 9701
 	public delegate char OnValidate(string text, int charIndex, char addedChar);
 }
