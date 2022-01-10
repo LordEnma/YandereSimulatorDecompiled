@@ -1,32 +1,32 @@
 ﻿using System;
 
-// Token: 0x020002A2 RID: 674
+// Token: 0x020002A3 RID: 675
 public enum RivalEliminationType
 {
-	// Token: 0x04001E2E RID: 7726
-	None,
 	// Token: 0x04001E2F RID: 7727
-	Murdered,
+	None,
 	// Token: 0x04001E30 RID: 7728
-	MurderedWitnessed,
+	Murdered,
 	// Token: 0x04001E31 RID: 7729
-	Arrested,
+	MurderedWitnessed,
 	// Token: 0x04001E32 RID: 7730
-	Befriended,
+	Arrested,
 	// Token: 0x04001E33 RID: 7731
-	Expelled,
+	Befriended,
 	// Token: 0x04001E34 RID: 7732
-	Matchmade,
+	Expelled,
 	// Token: 0x04001E35 RID: 7733
-	Rejected,
+	Matchmade,
 	// Token: 0x04001E36 RID: 7734
-	Ruined,
+	Rejected,
 	// Token: 0x04001E37 RID: 7735
-	SuicideBully,
+	Ruined,
 	// Token: 0x04001E38 RID: 7736
-	SuicideFake,
+	SuicideBully,
 	// Token: 0x04001E39 RID: 7737
-	Vanished,
+	SuicideFake,
 	// Token: 0x04001E3A RID: 7738
+	Vanished,
+	// Token: 0x04001E3B RID: 7739
 	Accident
 }

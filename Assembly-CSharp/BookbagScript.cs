@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F3 RID: 243
 public class BookbagScript : MonoBehaviour
 {
-	// Token: 0x06000A58 RID: 2648 RVA: 0x0005BEC4 File Offset: 0x0005A0C4
+	// Token: 0x06000A58 RID: 2648 RVA: 0x0005BED8 File Offset: 0x0005A0D8
 	private void Start()
 	{
 		this.MyRigidbody.useGravity = false;
@@ -16,7 +16,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A59 RID: 2649 RVA: 0x0005BF18 File Offset: 0x0005A118
+	// Token: 0x06000A59 RID: 2649 RVA: 0x0005BF2C File Offset: 0x0005A12C
 	private void Update()
 	{
 		if (this.Prompt.Yandere.PickUp != null || this.ConcealedPickup != null)
@@ -61,7 +61,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A5A RID: 2650 RVA: 0x0005C140 File Offset: 0x0005A340
+	// Token: 0x06000A5A RID: 2650 RVA: 0x0005C154 File Offset: 0x0005A354
 	public void Drop()
 	{
 		this.Prompt.Yandere.Bookbag = null;

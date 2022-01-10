@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003AB RID: 939
+// Token: 0x020003AD RID: 941
 public class PoolSwitchScript : MonoBehaviour
 {
-	// Token: 0x06001AB6 RID: 6838 RVA: 0x001237A5 File Offset: 0x001219A5
+	// Token: 0x06001ABD RID: 6845 RVA: 0x00123B7D File Offset: 0x00121D7D
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001AB7 RID: 6839 RVA: 0x001237A7 File Offset: 0x001219A7
+	// Token: 0x06001ABE RID: 6846 RVA: 0x00123B7F File Offset: 0x00121D7F
 	private void Update()
 	{
 	}

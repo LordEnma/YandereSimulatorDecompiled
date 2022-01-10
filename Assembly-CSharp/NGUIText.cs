@@ -2649,61 +2649,61 @@ public static class NGUIText
 		0.25f
 	};
 
-	// Token: 0x020005EA RID: 1514
+	// Token: 0x020005EC RID: 1516
 	[DoNotObfuscateNGUI]
 	public enum Alignment
 	{
-		// Token: 0x04004D7B RID: 19835
+		// Token: 0x04004D8F RID: 19855
 		Automatic,
-		// Token: 0x04004D7C RID: 19836
+		// Token: 0x04004D90 RID: 19856
 		Left,
-		// Token: 0x04004D7D RID: 19837
+		// Token: 0x04004D91 RID: 19857
 		Center,
-		// Token: 0x04004D7E RID: 19838
+		// Token: 0x04004D92 RID: 19858
 		Right,
-		// Token: 0x04004D7F RID: 19839
+		// Token: 0x04004D93 RID: 19859
 		Justified
 	}
 
-	// Token: 0x020005EB RID: 1515
+	// Token: 0x020005ED RID: 1517
 	[DoNotObfuscateNGUI]
 	public enum SymbolStyle
 	{
-		// Token: 0x04004D81 RID: 19841
+		// Token: 0x04004D95 RID: 19861
 		None,
-		// Token: 0x04004D82 RID: 19842
+		// Token: 0x04004D96 RID: 19862
 		Normal,
-		// Token: 0x04004D83 RID: 19843
+		// Token: 0x04004D97 RID: 19863
 		Colored,
-		// Token: 0x04004D84 RID: 19844
+		// Token: 0x04004D98 RID: 19864
 		NoOutline
 	}
 
-	// Token: 0x020005EC RID: 1516
+	// Token: 0x020005EE RID: 1518
 	public class GlyphInfo
 	{
-		// Token: 0x04004D85 RID: 19845
+		// Token: 0x04004D99 RID: 19865
 		public Vector2 v0;
 
-		// Token: 0x04004D86 RID: 19846
+		// Token: 0x04004D9A RID: 19866
 		public Vector2 v1;
 
-		// Token: 0x04004D87 RID: 19847
+		// Token: 0x04004D9B RID: 19867
 		public Vector2 u0;
 
-		// Token: 0x04004D88 RID: 19848
+		// Token: 0x04004D9C RID: 19868
 		public Vector2 u1;
 
-		// Token: 0x04004D89 RID: 19849
+		// Token: 0x04004D9D RID: 19869
 		public Vector2 u2;
 
-		// Token: 0x04004D8A RID: 19850
+		// Token: 0x04004D9E RID: 19870
 		public Vector2 u3;
 
-		// Token: 0x04004D8B RID: 19851
+		// Token: 0x04004D9F RID: 19871
 		public float advance;
 
-		// Token: 0x04004D8C RID: 19852
+		// Token: 0x04004DA0 RID: 19872
 		public int channel;
 	}
 }

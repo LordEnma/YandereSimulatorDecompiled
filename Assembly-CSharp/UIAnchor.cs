@@ -225,27 +225,27 @@ public class UIAnchor : MonoBehaviour
 	// Token: 0x04000628 RID: 1576
 	private bool mStarted;
 
-	// Token: 0x0200060F RID: 1551
+	// Token: 0x02000611 RID: 1553
 	[DoNotObfuscateNGUI]
 	public enum Side
 	{
-		// Token: 0x04004DEC RID: 19948
+		// Token: 0x04004E00 RID: 19968
 		BottomLeft,
-		// Token: 0x04004DED RID: 19949
+		// Token: 0x04004E01 RID: 19969
 		Left,
-		// Token: 0x04004DEE RID: 19950
+		// Token: 0x04004E02 RID: 19970
 		TopLeft,
-		// Token: 0x04004DEF RID: 19951
+		// Token: 0x04004E03 RID: 19971
 		Top,
-		// Token: 0x04004DF0 RID: 19952
+		// Token: 0x04004E04 RID: 19972
 		TopRight,
-		// Token: 0x04004DF1 RID: 19953
+		// Token: 0x04004E05 RID: 19973
 		Right,
-		// Token: 0x04004DF2 RID: 19954
+		// Token: 0x04004E06 RID: 19974
 		BottomRight,
-		// Token: 0x04004DF3 RID: 19955
+		// Token: 0x04004E07 RID: 19975
 		Bottom,
-		// Token: 0x04004DF4 RID: 19956
+		// Token: 0x04004E08 RID: 19976
 		Center
 	}
 }

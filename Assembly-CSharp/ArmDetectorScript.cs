@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 // Token: 0x020000D4 RID: 212
 public class ArmDetectorScript : MonoBehaviour
 {
-	// Token: 0x060009DE RID: 2526 RVA: 0x00052110 File Offset: 0x00050310
+	// Token: 0x060009DE RID: 2526 RVA: 0x00052124 File Offset: 0x00050324
 	private void Start()
 	{
 		this.DemonDress.SetActive(false);
 	}
 
-	// Token: 0x060009DF RID: 2527 RVA: 0x00052120 File Offset: 0x00050320
+	// Token: 0x060009DF RID: 2527 RVA: 0x00052134 File Offset: 0x00050334
 	private void Update()
 	{
 		if (!this.SummonDemon && this.Arms > 9)
@@ -298,7 +298,7 @@ public class ArmDetectorScript : MonoBehaviour
 		this.SacrificeTimer -= Time.deltaTime;
 	}
 
-	// Token: 0x060009E0 RID: 2528 RVA: 0x00053374 File Offset: 0x00051574
+	// Token: 0x060009E0 RID: 2528 RVA: 0x00053388 File Offset: 0x00051588
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.transform.parent == this.LimbParent)
@@ -348,7 +348,7 @@ public class ArmDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009E1 RID: 2529 RVA: 0x00053540 File Offset: 0x00051740
+	// Token: 0x060009E1 RID: 2529 RVA: 0x00053554 File Offset: 0x00051754
 	private void Shuffle(int Start)
 	{
 		for (int i = Start; i < this.ArmArray.Length - 1; i++)
@@ -357,7 +357,7 @@ public class ArmDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009E2 RID: 2530 RVA: 0x00053574 File Offset: 0x00051774
+	// Token: 0x060009E2 RID: 2530 RVA: 0x00053588 File Offset: 0x00051788
 	private void ShuffleBodies(int Start)
 	{
 		for (int i = Start; i < this.BodyArray.Length - 1; i++)

@@ -1498,73 +1498,73 @@ public class UIInput : MonoBehaviour
 	[NonSerialized]
 	public Action onDownArrow;
 
-	// Token: 0x0200062D RID: 1581
+	// Token: 0x0200062F RID: 1583
 	[DoNotObfuscateNGUI]
 	public enum InputType
 	{
-		// Token: 0x04004E30 RID: 20016
+		// Token: 0x04004E44 RID: 20036
 		Standard,
-		// Token: 0x04004E31 RID: 20017
+		// Token: 0x04004E45 RID: 20037
 		AutoCorrect,
-		// Token: 0x04004E32 RID: 20018
+		// Token: 0x04004E46 RID: 20038
 		Password
-	}
-
-	// Token: 0x0200062E RID: 1582
-	[DoNotObfuscateNGUI]
-	public enum Validation
-	{
-		// Token: 0x04004E34 RID: 20020
-		None,
-		// Token: 0x04004E35 RID: 20021
-		Integer,
-		// Token: 0x04004E36 RID: 20022
-		Float,
-		// Token: 0x04004E37 RID: 20023
-		Alphanumeric,
-		// Token: 0x04004E38 RID: 20024
-		Username,
-		// Token: 0x04004E39 RID: 20025
-		Name,
-		// Token: 0x04004E3A RID: 20026
-		Filename
-	}
-
-	// Token: 0x0200062F RID: 1583
-	[DoNotObfuscateNGUI]
-	public enum KeyboardType
-	{
-		// Token: 0x04004E3C RID: 20028
-		Default,
-		// Token: 0x04004E3D RID: 20029
-		ASCIICapable,
-		// Token: 0x04004E3E RID: 20030
-		NumbersAndPunctuation,
-		// Token: 0x04004E3F RID: 20031
-		URL,
-		// Token: 0x04004E40 RID: 20032
-		NumberPad,
-		// Token: 0x04004E41 RID: 20033
-		PhonePad,
-		// Token: 0x04004E42 RID: 20034
-		NamePhonePad,
-		// Token: 0x04004E43 RID: 20035
-		EmailAddress
 	}
 
 	// Token: 0x02000630 RID: 1584
 	[DoNotObfuscateNGUI]
-	public enum OnReturnKey
+	public enum Validation
 	{
-		// Token: 0x04004E45 RID: 20037
-		Default,
-		// Token: 0x04004E46 RID: 20038
-		Submit,
-		// Token: 0x04004E47 RID: 20039
-		NewLine
+		// Token: 0x04004E48 RID: 20040
+		None,
+		// Token: 0x04004E49 RID: 20041
+		Integer,
+		// Token: 0x04004E4A RID: 20042
+		Float,
+		// Token: 0x04004E4B RID: 20043
+		Alphanumeric,
+		// Token: 0x04004E4C RID: 20044
+		Username,
+		// Token: 0x04004E4D RID: 20045
+		Name,
+		// Token: 0x04004E4E RID: 20046
+		Filename
 	}
 
 	// Token: 0x02000631 RID: 1585
-	// (Invoke) Token: 0x060025E5 RID: 9701
+	[DoNotObfuscateNGUI]
+	public enum KeyboardType
+	{
+		// Token: 0x04004E50 RID: 20048
+		Default,
+		// Token: 0x04004E51 RID: 20049
+		ASCIICapable,
+		// Token: 0x04004E52 RID: 20050
+		NumbersAndPunctuation,
+		// Token: 0x04004E53 RID: 20051
+		URL,
+		// Token: 0x04004E54 RID: 20052
+		NumberPad,
+		// Token: 0x04004E55 RID: 20053
+		PhonePad,
+		// Token: 0x04004E56 RID: 20054
+		NamePhonePad,
+		// Token: 0x04004E57 RID: 20055
+		EmailAddress
+	}
+
+	// Token: 0x02000632 RID: 1586
+	[DoNotObfuscateNGUI]
+	public enum OnReturnKey
+	{
+		// Token: 0x04004E59 RID: 20057
+		Default,
+		// Token: 0x04004E5A RID: 20058
+		Submit,
+		// Token: 0x04004E5B RID: 20059
+		NewLine
+	}
+
+	// Token: 0x02000633 RID: 1587
+	// (Invoke) Token: 0x060025F0 RID: 9712
 	public delegate char OnValidate(string text, int charIndex, char addedChar);
 }

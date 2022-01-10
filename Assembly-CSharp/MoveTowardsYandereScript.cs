@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200036C RID: 876
+// Token: 0x0200036D RID: 877
 public class MoveTowardsYandereScript : MonoBehaviour
 {
-	// Token: 0x060019AD RID: 6573 RVA: 0x001062AE File Offset: 0x001044AE
+	// Token: 0x060019B1 RID: 6577 RVA: 0x00106656 File Offset: 0x00104856
 	private void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>().Spine[3];
 		this.Distance = Vector3.Distance(base.transform.position, this.Yandere.position);
 	}
 
-	// Token: 0x060019AE RID: 6574 RVA: 0x001062F0 File Offset: 0x001044F0
+	// Token: 0x060019B2 RID: 6578 RVA: 0x00106698 File Offset: 0x00104898
 	private void Update()
 	{
 		if (Vector3.Distance(base.transform.position, this.Yandere.position) > this.Distance * 0.5f && base.transform.position.y < this.Yandere.position.y + 0.5f)
@@ -26,18 +26,18 @@ public class MoveTowardsYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002919 RID: 10521
+	// Token: 0x0400291F RID: 10527
 	public ParticleSystem Smoke;
 
-	// Token: 0x0400291A RID: 10522
+	// Token: 0x04002920 RID: 10528
 	public Transform Yandere;
 
-	// Token: 0x0400291B RID: 10523
+	// Token: 0x04002921 RID: 10529
 	public float Distance;
 
-	// Token: 0x0400291C RID: 10524
+	// Token: 0x04002922 RID: 10530
 	public float Speed;
 
-	// Token: 0x0400291D RID: 10525
+	// Token: 0x04002923 RID: 10531
 	public bool Fall;
 }

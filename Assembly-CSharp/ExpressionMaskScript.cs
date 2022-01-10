@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002BE RID: 702
+// Token: 0x020002BF RID: 703
 public class ExpressionMaskScript : MonoBehaviour
 {
-	// Token: 0x06001472 RID: 5234 RVA: 0x000C728C File Offset: 0x000C548C
+	// Token: 0x06001476 RID: 5238 RVA: 0x000C756C File Offset: 0x000C576C
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.LeftAlt))
@@ -37,9 +37,9 @@ public class ExpressionMaskScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001F8C RID: 8076
+	// Token: 0x04001F90 RID: 8080
 	public Renderer Mask;
 
-	// Token: 0x04001F8D RID: 8077
+	// Token: 0x04001F91 RID: 8081
 	public int ID;
 }

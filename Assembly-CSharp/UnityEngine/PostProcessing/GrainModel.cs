@@ -2,13 +2,13 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000568 RID: 1384
+	// Token: 0x0200056A RID: 1386
 	[Serializable]
 	public class GrainModel : PostProcessingModel
 	{
 		// Token: 0x1700050B RID: 1291
-		// (get) Token: 0x06002337 RID: 9015 RVA: 0x001F1498 File Offset: 0x001EF698
-		// (set) Token: 0x06002338 RID: 9016 RVA: 0x001F14A0 File Offset: 0x001EF6A0
+		// (get) Token: 0x06002342 RID: 9026 RVA: 0x001F1E38 File Offset: 0x001F0038
+		// (set) Token: 0x06002343 RID: 9027 RVA: 0x001F1E40 File Offset: 0x001F0040
 		public GrainModel.Settings settings
 		{
 			get
@@ -21,22 +21,22 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002339 RID: 9017 RVA: 0x001F14A9 File Offset: 0x001EF6A9
+		// Token: 0x06002344 RID: 9028 RVA: 0x001F1E49 File Offset: 0x001F0049
 		public override void Reset()
 		{
 			this.m_Settings = GrainModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004ACC RID: 19148
+		// Token: 0x04004AE0 RID: 19168
 		[SerializeField]
 		private GrainModel.Settings m_Settings = GrainModel.Settings.defaultSettings;
 
-		// Token: 0x020006C8 RID: 1736
+		// Token: 0x020006CA RID: 1738
 		[Serializable]
 		public struct Settings
 		{
 			// Token: 0x1700059F RID: 1439
-			// (get) Token: 0x06002737 RID: 10039 RVA: 0x002002D0 File Offset: 0x001FE4D0
+			// (get) Token: 0x06002742 RID: 10050 RVA: 0x00200C70 File Offset: 0x001FEE70
 			public static GrainModel.Settings defaultSettings
 			{
 				get
@@ -51,21 +51,21 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x04005146 RID: 20806
+			// Token: 0x0400515A RID: 20826
 			[Tooltip("Enable the use of colored grain.")]
 			public bool colored;
 
-			// Token: 0x04005147 RID: 20807
+			// Token: 0x0400515B RID: 20827
 			[Range(0f, 1f)]
 			[Tooltip("Grain strength. Higher means more visible grain.")]
 			public float intensity;
 
-			// Token: 0x04005148 RID: 20808
+			// Token: 0x0400515C RID: 20828
 			[Range(0.3f, 3f)]
 			[Tooltip("Grain particle size.")]
 			public float size;
 
-			// Token: 0x04005149 RID: 20809
+			// Token: 0x0400515D RID: 20829
 			[Range(0f, 1f)]
 			[Tooltip("Controls the noisiness response curve based on scene luminance. Lower values mean less noise in dark areas.")]
 			public float luminanceContribution;

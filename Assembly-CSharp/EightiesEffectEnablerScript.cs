@@ -2,10 +2,10 @@
 using RetroAesthetics;
 using UnityEngine;
 
-// Token: 0x0200029B RID: 667
+// Token: 0x0200029C RID: 668
 public class EightiesEffectEnablerScript : MonoBehaviour
 {
-	// Token: 0x06001400 RID: 5120 RVA: 0x000BE190 File Offset: 0x000BC390
+	// Token: 0x06001403 RID: 5123 RVA: 0x000BE234 File Offset: 0x000BC434
 	public void Start()
 	{
 		if (this.EightiesEffects != null)
@@ -19,7 +19,7 @@ public class EightiesEffectEnablerScript : MonoBehaviour
 		this.UpdateEightiesEffects();
 	}
 
-	// Token: 0x06001401 RID: 5121 RVA: 0x000BE1E0 File Offset: 0x000BC3E0
+	// Token: 0x06001404 RID: 5124 RVA: 0x000BE284 File Offset: 0x000BC484
 	public void UpdateEightiesEffects()
 	{
 		if (this.EightiesEffects != null)
@@ -39,12 +39,12 @@ public class EightiesEffectEnablerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001DE7 RID: 7655
+	// Token: 0x04001DE8 RID: 7656
 	public RetroCameraEffect EightiesEffects;
 
-	// Token: 0x04001DE8 RID: 7656
+	// Token: 0x04001DE9 RID: 7657
 	public CameraFilterPack_Colors_Adjust_PreFilters EightiesFilter;
 
-	// Token: 0x04001DE9 RID: 7657
+	// Token: 0x04001DEA RID: 7658
 	public int Eights;
 }

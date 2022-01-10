@@ -1,24 +1,24 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000327 RID: 807
+// Token: 0x02000328 RID: 808
 public class HomeWindowScript : MonoBehaviour
 {
-	// Token: 0x0600189F RID: 6303 RVA: 0x000F1C28 File Offset: 0x000EFE28
+	// Token: 0x060018A3 RID: 6307 RVA: 0x000F1F60 File Offset: 0x000F0160
 	private void Start()
 	{
 		this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, 0f);
 	}
 
-	// Token: 0x060018A0 RID: 6304 RVA: 0x000F1C7C File Offset: 0x000EFE7C
+	// Token: 0x060018A4 RID: 6308 RVA: 0x000F1FB4 File Offset: 0x000F01B4
 	private void Update()
 	{
 		this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, Mathf.Lerp(this.Sprite.color.a, this.Show ? 1f : 0f, Time.deltaTime * 10f));
 	}
 
-	// Token: 0x04002573 RID: 9587
+	// Token: 0x04002577 RID: 9591
 	public UISprite Sprite;
 
-	// Token: 0x04002574 RID: 9588
+	// Token: 0x04002578 RID: 9592
 	public bool Show;
 }

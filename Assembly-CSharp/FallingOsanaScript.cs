@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002C4 RID: 708
+// Token: 0x020002C5 RID: 709
 public class FallingOsanaScript : MonoBehaviour
 {
-	// Token: 0x06001483 RID: 5251 RVA: 0x000C843C File Offset: 0x000C663C
+	// Token: 0x06001487 RID: 5255 RVA: 0x000C871C File Offset: 0x000C691C
 	private void Update()
 	{
 		if (base.transform.position.y > 0f)
@@ -18,9 +18,9 @@ public class FallingOsanaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001FD0 RID: 8144
+	// Token: 0x04001FD4 RID: 8148
 	public StudentScript Osana;
 
-	// Token: 0x04001FD1 RID: 8145
+	// Token: 0x04001FD5 RID: 8149
 	public GameObject GroundImpact;
 }

@@ -1,12 +1,12 @@
 ﻿using System;
 
-// Token: 0x020003BD RID: 957
+// Token: 0x020003BF RID: 959
 public enum PromptOwnerType
 {
-	// Token: 0x04002DAA RID: 11690
+	// Token: 0x04002DB0 RID: 11696
 	Unknown,
-	// Token: 0x04002DAB RID: 11691
+	// Token: 0x04002DB1 RID: 11697
 	Door,
-	// Token: 0x04002DAC RID: 11692
+	// Token: 0x04002DB2 RID: 11698
 	Person
 }

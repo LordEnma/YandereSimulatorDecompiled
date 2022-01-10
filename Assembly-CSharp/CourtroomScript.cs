@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000262 RID: 610
 public class CourtroomScript : MonoBehaviour
 {
-	// Token: 0x060012E9 RID: 4841 RVA: 0x000A5DD4 File Offset: 0x000A3FD4
+	// Token: 0x060012E9 RID: 4841 RVA: 0x000A5DF0 File Offset: 0x000A3FF0
 	private void Start()
 	{
 		this.Subtitle.text = "";
@@ -21,7 +21,7 @@ public class CourtroomScript : MonoBehaviour
 		this.ResetBloom();
 	}
 
-	// Token: 0x060012EA RID: 4842 RVA: 0x000A5E9C File Offset: 0x000A409C
+	// Token: 0x060012EA RID: 4842 RVA: 0x000A5EB8 File Offset: 0x000A40B8
 	public void UpdateFactLabels()
 	{
 		this.Fact[1] = this.RivalNames[1] + " " + this.Eliminations[this.Stats.EliminationIDs[1]];
@@ -93,7 +93,7 @@ public class CourtroomScript : MonoBehaviour
 		this.GuiltyPoints[28] = this.Stats.Grudges * 20;
 	}
 
-	// Token: 0x060012EB RID: 4843 RVA: 0x000A65F4 File Offset: 0x000A47F4
+	// Token: 0x060012EB RID: 4843 RVA: 0x000A6610 File Offset: 0x000A4810
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -405,7 +405,7 @@ public class CourtroomScript : MonoBehaviour
 		this.UpdateDOF(3f);
 	}
 
-	// Token: 0x060012EC RID: 4844 RVA: 0x000A747C File Offset: 0x000A567C
+	// Token: 0x060012EC RID: 4844 RVA: 0x000A7498 File Offset: 0x000A5698
 	public void PopulateRankPanel()
 	{
 		this.RankIcon.transform.localScale = new Vector3(0f, 0f, 0f);
@@ -449,7 +449,7 @@ public class CourtroomScript : MonoBehaviour
 		this.RankIcon.mainTexture = this.RankIcons[this.Rank];
 	}
 
-	// Token: 0x060012ED RID: 4845 RVA: 0x000A768C File Offset: 0x000A588C
+	// Token: 0x060012ED RID: 4845 RVA: 0x000A76A8 File Offset: 0x000A58A8
 	private void UpdateDOF(float Value)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -458,7 +458,7 @@ public class CourtroomScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x060012EE RID: 4846 RVA: 0x000A76D0 File Offset: 0x000A58D0
+	// Token: 0x060012EE RID: 4846 RVA: 0x000A76EC File Offset: 0x000A58EC
 	private void ResetBloom()
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;

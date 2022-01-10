@@ -338,17 +338,17 @@ public class UIKeyNavigation : MonoBehaviour
 	// Token: 0x040003A2 RID: 930
 	public static int mLastFrame = 0;
 
-	// Token: 0x020005CF RID: 1487
+	// Token: 0x020005D1 RID: 1489
 	[DoNotObfuscateNGUI]
 	public enum Constraint
 	{
-		// Token: 0x04004D2C RID: 19756
+		// Token: 0x04004D40 RID: 19776
 		None,
-		// Token: 0x04004D2D RID: 19757
+		// Token: 0x04004D41 RID: 19777
 		Vertical,
-		// Token: 0x04004D2E RID: 19758
+		// Token: 0x04004D42 RID: 19778
 		Horizontal,
-		// Token: 0x04004D2F RID: 19759
+		// Token: 0x04004D43 RID: 19779
 		Explicit
 	}
 }

@@ -2,11 +2,11 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000551 RID: 1361
+	// Token: 0x02000553 RID: 1363
 	public sealed class ChromaticAberrationComponent : PostProcessingComponentRenderTexture<ChromaticAberrationModel>
 	{
 		// Token: 0x170004EE RID: 1262
-		// (get) Token: 0x060022A4 RID: 8868 RVA: 0x001EDFB8 File Offset: 0x001EC1B8
+		// (get) Token: 0x060022AF RID: 8879 RVA: 0x001EE958 File Offset: 0x001ECB58
 		public override bool active
 		{
 			get
@@ -15,14 +15,14 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022A5 RID: 8869 RVA: 0x001EDFEE File Offset: 0x001EC1EE
+		// Token: 0x060022B0 RID: 8880 RVA: 0x001EE98E File Offset: 0x001ECB8E
 		public override void OnDisable()
 		{
 			GraphicsUtils.Destroy(this.m_SpectrumLut);
 			this.m_SpectrumLut = null;
 		}
 
-		// Token: 0x060022A6 RID: 8870 RVA: 0x001EE004 File Offset: 0x001EC204
+		// Token: 0x060022B1 RID: 8881 RVA: 0x001EE9A4 File Offset: 0x001ECBA4
 		public override void Prepare(Material uberMaterial)
 		{
 			ChromaticAberrationModel.Settings settings = base.model.settings;
@@ -55,16 +55,16 @@ namespace UnityEngine.PostProcessing
 			uberMaterial.SetTexture(ChromaticAberrationComponent.Uniforms._ChromaticAberration_Spectrum, texture2D);
 		}
 
-		// Token: 0x04004A98 RID: 19096
+		// Token: 0x04004AAC RID: 19116
 		private Texture2D m_SpectrumLut;
 
-		// Token: 0x02000696 RID: 1686
+		// Token: 0x02000698 RID: 1688
 		private static class Uniforms
 		{
-			// Token: 0x0400501D RID: 20509
+			// Token: 0x04005031 RID: 20529
 			internal static readonly int _ChromaticAberration_Amount = Shader.PropertyToID("_ChromaticAberration_Amount");
 
-			// Token: 0x0400501E RID: 20510
+			// Token: 0x04005032 RID: 20530
 			internal static readonly int _ChromaticAberration_Spectrum = Shader.PropertyToID("_ChromaticAberration_Spectrum");
 		}
 	}

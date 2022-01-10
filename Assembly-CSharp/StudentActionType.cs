@@ -1,106 +1,106 @@
 ﻿using System;
 
-// Token: 0x02000452 RID: 1106
+// Token: 0x02000454 RID: 1108
 public enum StudentActionType
 {
-	// Token: 0x04003790 RID: 14224
-	AtLocker,
-	// Token: 0x04003791 RID: 14225
-	Socializing,
-	// Token: 0x04003792 RID: 14226
-	Gaming,
-	// Token: 0x04003793 RID: 14227
-	Shamed,
-	// Token: 0x04003794 RID: 14228
-	Slave,
-	// Token: 0x04003795 RID: 14229
-	Relax,
-	// Token: 0x04003796 RID: 14230
-	SitAndTakeNotes,
-	// Token: 0x04003797 RID: 14231
-	Peek,
-	// Token: 0x04003798 RID: 14232
-	ClubAction,
-	// Token: 0x04003799 RID: 14233
-	SitAndSocialize,
-	// Token: 0x0400379A RID: 14234
-	SitAndEatBento,
-	// Token: 0x0400379B RID: 14235
-	ChangeShoes,
-	// Token: 0x0400379C RID: 14236
-	GradePapers,
-	// Token: 0x0400379D RID: 14237
-	Patrol,
-	// Token: 0x0400379E RID: 14238
-	Read,
-	// Token: 0x0400379F RID: 14239
-	Texting,
-	// Token: 0x040037A0 RID: 14240
-	Mourn,
-	// Token: 0x040037A1 RID: 14241
-	Cuddle,
-	// Token: 0x040037A2 RID: 14242
-	Teaching,
-	// Token: 0x040037A3 RID: 14243
-	SearchPatrol,
 	// Token: 0x040037A4 RID: 14244
-	Wait,
+	AtLocker,
 	// Token: 0x040037A5 RID: 14245
-	Clean,
+	Socializing,
 	// Token: 0x040037A6 RID: 14246
-	Gossip,
+	Gaming,
 	// Token: 0x040037A7 RID: 14247
-	Graffiti,
+	Shamed,
 	// Token: 0x040037A8 RID: 14248
-	Bully,
+	Slave,
 	// Token: 0x040037A9 RID: 14249
-	Follow,
+	Relax,
 	// Token: 0x040037AA RID: 14250
-	Sulk,
+	SitAndTakeNotes,
 	// Token: 0x040037AB RID: 14251
-	Sleuth,
+	Peek,
 	// Token: 0x040037AC RID: 14252
-	Stalk,
+	ClubAction,
 	// Token: 0x040037AD RID: 14253
-	Sketch,
+	SitAndSocialize,
 	// Token: 0x040037AE RID: 14254
-	Sunbathe,
+	SitAndEatBento,
 	// Token: 0x040037AF RID: 14255
-	Shock,
+	ChangeShoes,
 	// Token: 0x040037B0 RID: 14256
-	Miyuki,
+	GradePapers,
 	// Token: 0x040037B1 RID: 14257
-	Meeting,
+	Patrol,
 	// Token: 0x040037B2 RID: 14258
-	Lyrics,
+	Read,
 	// Token: 0x040037B3 RID: 14259
-	Practice,
+	Texting,
 	// Token: 0x040037B4 RID: 14260
-	Sew,
+	Mourn,
 	// Token: 0x040037B5 RID: 14261
-	Paint,
+	Cuddle,
 	// Token: 0x040037B6 RID: 14262
-	UpdateAppearance,
+	Teaching,
 	// Token: 0x040037B7 RID: 14263
-	LightCig,
+	SearchPatrol,
 	// Token: 0x040037B8 RID: 14264
-	PlaceBag,
+	Wait,
 	// Token: 0x040037B9 RID: 14265
-	Sleep,
+	Clean,
 	// Token: 0x040037BA RID: 14266
-	LightFire,
+	Gossip,
 	// Token: 0x040037BB RID: 14267
-	Jog,
+	Graffiti,
 	// Token: 0x040037BC RID: 14268
-	PrepareFood,
+	Bully,
 	// Token: 0x040037BD RID: 14269
-	Perform,
+	Follow,
 	// Token: 0x040037BE RID: 14270
-	PhotoShoot,
+	Sulk,
 	// Token: 0x040037BF RID: 14271
-	GravurePose,
+	Sleuth,
 	// Token: 0x040037C0 RID: 14272
-	Guard,
+	Stalk,
 	// Token: 0x040037C1 RID: 14273
+	Sketch,
+	// Token: 0x040037C2 RID: 14274
+	Sunbathe,
+	// Token: 0x040037C3 RID: 14275
+	Shock,
+	// Token: 0x040037C4 RID: 14276
+	Miyuki,
+	// Token: 0x040037C5 RID: 14277
+	Meeting,
+	// Token: 0x040037C6 RID: 14278
+	Lyrics,
+	// Token: 0x040037C7 RID: 14279
+	Practice,
+	// Token: 0x040037C8 RID: 14280
+	Sew,
+	// Token: 0x040037C9 RID: 14281
+	Paint,
+	// Token: 0x040037CA RID: 14282
+	UpdateAppearance,
+	// Token: 0x040037CB RID: 14283
+	LightCig,
+	// Token: 0x040037CC RID: 14284
+	PlaceBag,
+	// Token: 0x040037CD RID: 14285
+	Sleep,
+	// Token: 0x040037CE RID: 14286
+	LightFire,
+	// Token: 0x040037CF RID: 14287
+	Jog,
+	// Token: 0x040037D0 RID: 14288
+	PrepareFood,
+	// Token: 0x040037D1 RID: 14289
+	Perform,
+	// Token: 0x040037D2 RID: 14290
+	PhotoShoot,
+	// Token: 0x040037D3 RID: 14291
+	GravurePose,
+	// Token: 0x040037D4 RID: 14292
+	Guard,
+	// Token: 0x040037D5 RID: 14293
 	Random
 }

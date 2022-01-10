@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000270 RID: 624
 public class DatingMinigameScript : MonoBehaviour
 {
-	// Token: 0x06001334 RID: 4916 RVA: 0x000AB288 File Offset: 0x000A9488
+	// Token: 0x06001334 RID: 4916 RVA: 0x000AB2A4 File Offset: 0x000A94A4
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -58,7 +58,7 @@ public class DatingMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001335 RID: 4917 RVA: 0x000AB4DC File Offset: 0x000A96DC
+	// Token: 0x06001335 RID: 4917 RVA: 0x000AB4F8 File Offset: 0x000A96F8
 	private void CalculateAffection()
 	{
 		if (this.Affection > 100f)
@@ -93,7 +93,7 @@ public class DatingMinigameScript : MonoBehaviour
 		this.AffectionLevel = 5;
 	}
 
-	// Token: 0x06001336 RID: 4918 RVA: 0x000AB574 File Offset: 0x000A9774
+	// Token: 0x06001336 RID: 4918 RVA: 0x000AB590 File Offset: 0x000A9790
 	private void Update()
 	{
 		if (this.Testing)
@@ -731,13 +731,13 @@ public class DatingMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001337 RID: 4919 RVA: 0x000AD6C5 File Offset: 0x000AB8C5
+	// Token: 0x06001337 RID: 4919 RVA: 0x000AD6E1 File Offset: 0x000AB8E1
 	private void LateUpdate()
 	{
 		int phase = this.Phase;
 	}
 
-	// Token: 0x06001338 RID: 4920 RVA: 0x000AD6D0 File Offset: 0x000AB8D0
+	// Token: 0x06001338 RID: 4920 RVA: 0x000AD6EC File Offset: 0x000AB8EC
 	private void CalculateMultiplier()
 	{
 		this.Multiplier = 5;
@@ -784,7 +784,7 @@ public class DatingMinigameScript : MonoBehaviour
 		this.MultiplierLabel.text = "Multiplier: " + this.Multiplier.ToString() + "x";
 	}
 
-	// Token: 0x06001339 RID: 4921 RVA: 0x000AD8EB File Offset: 0x000ABAEB
+	// Token: 0x06001339 RID: 4921 RVA: 0x000AD907 File Offset: 0x000ABB07
 	private void UpdateHighlight()
 	{
 		if (this.Selected < 1)
@@ -798,7 +798,7 @@ public class DatingMinigameScript : MonoBehaviour
 		this.HighlightTarget = 450f - 100f * (float)this.Selected;
 	}
 
-	// Token: 0x0600133A RID: 4922 RVA: 0x000AD928 File Offset: 0x000ABB28
+	// Token: 0x0600133A RID: 4922 RVA: 0x000AD944 File Offset: 0x000ABB44
 	private void UpdateTopicHighlight()
 	{
 		if (this.Row < 1)
@@ -822,14 +822,14 @@ public class DatingMinigameScript : MonoBehaviour
 		this.TopicNameLabel.text = (ConversationGlobals.GetTopicDiscovered(this.TopicSelected) ? this.TopicNames[this.TopicSelected] : "??????????");
 	}
 
-	// Token: 0x0600133B RID: 4923 RVA: 0x000AD9FC File Offset: 0x000ABBFC
+	// Token: 0x0600133B RID: 4923 RVA: 0x000ADA18 File Offset: 0x000ABC18
 	private void DetermineOpinion()
 	{
 		int[] topics = this.JSON.Topics[this.LoveManager.RivalID].Topics;
 		this.Opinion = topics[this.TopicSelected];
 	}
 
-	// Token: 0x0600133C RID: 4924 RVA: 0x000ADA34 File Offset: 0x000ABC34
+	// Token: 0x0600133C RID: 4924 RVA: 0x000ADA50 File Offset: 0x000ABC50
 	private void UpdateTopics()
 	{
 		for (int i = 1; i < this.TopicIcons.Length; i++)
@@ -860,7 +860,7 @@ public class DatingMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600133D RID: 4925 RVA: 0x000ADB1C File Offset: 0x000ABD1C
+	// Token: 0x0600133D RID: 4925 RVA: 0x000ADB38 File Offset: 0x000ABD38
 	private void UpdateComplimentHighlight()
 	{
 		for (int i = 1; i < this.TopicIcons.Length; i++)
@@ -887,7 +887,7 @@ public class DatingMinigameScript : MonoBehaviour
 		this.ComplimentBGs[this.ComplimentSelected].color = Color.white;
 	}
 
-	// Token: 0x0600133E RID: 4926 RVA: 0x000ADBC8 File Offset: 0x000ABDC8
+	// Token: 0x0600133E RID: 4926 RVA: 0x000ADBE4 File Offset: 0x000ABDE4
 	private void UpdateTraitHighlight()
 	{
 		if (this.TraitSelected < 1)
@@ -905,7 +905,7 @@ public class DatingMinigameScript : MonoBehaviour
 		this.TraitBGs[this.TraitSelected].color = Color.white;
 	}
 
-	// Token: 0x0600133F RID: 4927 RVA: 0x000ADC34 File Offset: 0x000ABE34
+	// Token: 0x0600133F RID: 4927 RVA: 0x000ADC50 File Offset: 0x000ABE50
 	private void UpdateGiftHighlight()
 	{
 		for (int i = 1; i < this.GiftBGs.Length; i++)
@@ -932,7 +932,7 @@ public class DatingMinigameScript : MonoBehaviour
 		this.GiftBGs[this.GiftSelected].color = Color.white;
 	}
 
-	// Token: 0x06001340 RID: 4928 RVA: 0x000ADCDC File Offset: 0x000ABEDC
+	// Token: 0x06001340 RID: 4928 RVA: 0x000ADCF8 File Offset: 0x000ABEF8
 	public void SaveTopicsAndCompliments()
 	{
 		for (int i = 1; i < 26; i++)

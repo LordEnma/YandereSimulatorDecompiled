@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000422 RID: 1058
+// Token: 0x02000424 RID: 1060
 public class SimpleDetectClickScript : MonoBehaviour
 {
-	// Token: 0x06001C8D RID: 7309 RVA: 0x00150BF4 File Offset: 0x0014EDF4
+	// Token: 0x06001C94 RID: 7316 RVA: 0x00150EF8 File Offset: 0x0014F0F8
 	private void Update()
 	{
 		RaycastHit raycastHit;
@@ -14,12 +14,12 @@ public class SimpleDetectClickScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400332F RID: 13103
+	// Token: 0x04003335 RID: 13109
 	public InventoryItemScript InventoryItem;
 
-	// Token: 0x04003330 RID: 13104
+	// Token: 0x04003336 RID: 13110
 	public Collider MyCollider;
 
-	// Token: 0x04003331 RID: 13105
+	// Token: 0x04003337 RID: 13111
 	public bool Clicked;
 }

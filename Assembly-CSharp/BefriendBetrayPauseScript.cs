@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020000E2 RID: 226
 public class BefriendBetrayPauseScript : MonoBehaviour
 {
-	// Token: 0x06000A24 RID: 2596 RVA: 0x00059DC6 File Offset: 0x00057FC6
+	// Token: 0x06000A24 RID: 2596 RVA: 0x00059DDA File Offset: 0x00057FDA
 	private void Start()
 	{
 		this.Panel.enabled = false;
 	}
 
-	// Token: 0x06000A25 RID: 2597 RVA: 0x00059DD4 File Offset: 0x00057FD4
+	// Token: 0x06000A25 RID: 2597 RVA: 0x00059DE8 File Offset: 0x00057FE8
 	private void Update()
 	{
 		if (this.Yandere.CanMove && Input.GetButtonDown("Start"))

@@ -1,18 +1,18 @@
 ﻿using System;
 
-// Token: 0x02000502 RID: 1282
+// Token: 0x02000504 RID: 1284
 [Serializable]
 public struct YanSaveData
 {
-	// Token: 0x040048A1 RID: 18593
+	// Token: 0x040048B5 RID: 18613
 	public string LoadedLevelName;
 
-	// Token: 0x040048A2 RID: 18594
+	// Token: 0x040048B6 RID: 18614
 	public SerializedGameObject[] SerializedGameObjects;
 
-	// Token: 0x040048A3 RID: 18595
+	// Token: 0x040048B7 RID: 18615
 	public SerializedStaticClass[] SerializedStaticClasses;
 
-	// Token: 0x040048A4 RID: 18596
+	// Token: 0x040048B8 RID: 18616
 	public ValueDict SerializedPlayerPrefs;
 }

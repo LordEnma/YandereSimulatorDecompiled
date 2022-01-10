@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000277 RID: 631
 public class DelinquentManagerScript : MonoBehaviour
 {
-	// Token: 0x06001360 RID: 4960 RVA: 0x000B0FCF File Offset: 0x000AF1CF
+	// Token: 0x06001360 RID: 4960 RVA: 0x000B0FEB File Offset: 0x000AF1EB
 	private void Start()
 	{
 		this.Delinquents.SetActive(false);
@@ -13,7 +13,7 @@ public class DelinquentManagerScript : MonoBehaviour
 		this.Phase++;
 	}
 
-	// Token: 0x06001361 RID: 4961 RVA: 0x000B1004 File Offset: 0x000AF204
+	// Token: 0x06001361 RID: 4961 RVA: 0x000B1020 File Offset: 0x000AF220
 	private void Update()
 	{
 		this.SpeechTimer = Mathf.MoveTowards(this.SpeechTimer, 0f, Time.deltaTime);
@@ -69,7 +69,7 @@ public class DelinquentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001362 RID: 4962 RVA: 0x000B127C File Offset: 0x000AF47C
+	// Token: 0x06001362 RID: 4962 RVA: 0x000B1298 File Offset: 0x000AF498
 	public void CheckTime()
 	{
 		if (this.Clock.HourTime < 13f)
@@ -89,7 +89,7 @@ public class DelinquentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001363 RID: 4963 RVA: 0x000B1300 File Offset: 0x000AF500
+	// Token: 0x06001363 RID: 4963 RVA: 0x000B131C File Offset: 0x000AF51C
 	public void EasterEgg()
 	{
 		this.RapBeat.SetActive(true);

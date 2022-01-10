@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002F9 RID: 761
+// Token: 0x020002FA RID: 762
 public static class StudentGlobals
 {
 	// Token: 0x1700042D RID: 1069
-	// (get) Token: 0x06001720 RID: 5920 RVA: 0x000DF554 File Offset: 0x000DD754
-	// (set) Token: 0x06001721 RID: 5921 RVA: 0x000DF584 File Offset: 0x000DD784
+	// (get) Token: 0x06001724 RID: 5924 RVA: 0x000DF87C File Offset: 0x000DDA7C
+	// (set) Token: 0x06001725 RID: 5925 RVA: 0x000DF8AC File Offset: 0x000DDAAC
 	public static bool CustomSuitor
 	{
 		get
@@ -20,8 +20,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x1700042E RID: 1070
-	// (get) Token: 0x06001722 RID: 5922 RVA: 0x000DF5B4 File Offset: 0x000DD7B4
-	// (set) Token: 0x06001723 RID: 5923 RVA: 0x000DF5E4 File Offset: 0x000DD7E4
+	// (get) Token: 0x06001726 RID: 5926 RVA: 0x000DF8DC File Offset: 0x000DDADC
+	// (set) Token: 0x06001727 RID: 5927 RVA: 0x000DF90C File Offset: 0x000DDB0C
 	public static int CustomSuitorAccessory
 	{
 		get
@@ -35,8 +35,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x1700042F RID: 1071
-	// (get) Token: 0x06001724 RID: 5924 RVA: 0x000DF614 File Offset: 0x000DD814
-	// (set) Token: 0x06001725 RID: 5925 RVA: 0x000DF644 File Offset: 0x000DD844
+	// (get) Token: 0x06001728 RID: 5928 RVA: 0x000DF93C File Offset: 0x000DDB3C
+	// (set) Token: 0x06001729 RID: 5929 RVA: 0x000DF96C File Offset: 0x000DDB6C
 	public static bool CustomSuitorBlonde
 	{
 		get
@@ -50,8 +50,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000430 RID: 1072
-	// (get) Token: 0x06001726 RID: 5926 RVA: 0x000DF674 File Offset: 0x000DD874
-	// (set) Token: 0x06001727 RID: 5927 RVA: 0x000DF6A4 File Offset: 0x000DD8A4
+	// (get) Token: 0x0600172A RID: 5930 RVA: 0x000DF99C File Offset: 0x000DDB9C
+	// (set) Token: 0x0600172B RID: 5931 RVA: 0x000DF9CC File Offset: 0x000DDBCC
 	public static bool CustomSuitorBlack
 	{
 		get
@@ -65,8 +65,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000431 RID: 1073
-	// (get) Token: 0x06001728 RID: 5928 RVA: 0x000DF6D4 File Offset: 0x000DD8D4
-	// (set) Token: 0x06001729 RID: 5929 RVA: 0x000DF704 File Offset: 0x000DD904
+	// (get) Token: 0x0600172C RID: 5932 RVA: 0x000DF9FC File Offset: 0x000DDBFC
+	// (set) Token: 0x0600172D RID: 5933 RVA: 0x000DFA2C File Offset: 0x000DDC2C
 	public static int CustomSuitorEyewear
 	{
 		get
@@ -80,8 +80,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000432 RID: 1074
-	// (get) Token: 0x0600172A RID: 5930 RVA: 0x000DF734 File Offset: 0x000DD934
-	// (set) Token: 0x0600172B RID: 5931 RVA: 0x000DF764 File Offset: 0x000DD964
+	// (get) Token: 0x0600172E RID: 5934 RVA: 0x000DFA5C File Offset: 0x000DDC5C
+	// (set) Token: 0x0600172F RID: 5935 RVA: 0x000DFA8C File Offset: 0x000DDC8C
 	public static int CustomSuitorHair
 	{
 		get
@@ -95,8 +95,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000433 RID: 1075
-	// (get) Token: 0x0600172C RID: 5932 RVA: 0x000DF794 File Offset: 0x000DD994
-	// (set) Token: 0x0600172D RID: 5933 RVA: 0x000DF7C4 File Offset: 0x000DD9C4
+	// (get) Token: 0x06001730 RID: 5936 RVA: 0x000DFABC File Offset: 0x000DDCBC
+	// (set) Token: 0x06001731 RID: 5937 RVA: 0x000DFAEC File Offset: 0x000DDCEC
 	public static int CustomSuitorJewelry
 	{
 		get
@@ -110,8 +110,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000434 RID: 1076
-	// (get) Token: 0x0600172E RID: 5934 RVA: 0x000DF7F4 File Offset: 0x000DD9F4
-	// (set) Token: 0x0600172F RID: 5935 RVA: 0x000DF824 File Offset: 0x000DDA24
+	// (get) Token: 0x06001732 RID: 5938 RVA: 0x000DFB1C File Offset: 0x000DDD1C
+	// (set) Token: 0x06001733 RID: 5939 RVA: 0x000DFB4C File Offset: 0x000DDD4C
 	public static bool CustomSuitorTan
 	{
 		get
@@ -125,8 +125,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000435 RID: 1077
-	// (get) Token: 0x06001730 RID: 5936 RVA: 0x000DF854 File Offset: 0x000DDA54
-	// (set) Token: 0x06001731 RID: 5937 RVA: 0x000DF884 File Offset: 0x000DDA84
+	// (get) Token: 0x06001734 RID: 5940 RVA: 0x000DFB7C File Offset: 0x000DDD7C
+	// (set) Token: 0x06001735 RID: 5941 RVA: 0x000DFBAC File Offset: 0x000DDDAC
 	public static int ExpelProgress
 	{
 		get
@@ -140,8 +140,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000436 RID: 1078
-	// (get) Token: 0x06001732 RID: 5938 RVA: 0x000DF8B4 File Offset: 0x000DDAB4
-	// (set) Token: 0x06001733 RID: 5939 RVA: 0x000DF8E4 File Offset: 0x000DDAE4
+	// (get) Token: 0x06001736 RID: 5942 RVA: 0x000DFBDC File Offset: 0x000DDDDC
+	// (set) Token: 0x06001737 RID: 5943 RVA: 0x000DFC0C File Offset: 0x000DDE0C
 	public static int FemaleUniform
 	{
 		get
@@ -155,8 +155,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000437 RID: 1079
-	// (get) Token: 0x06001734 RID: 5940 RVA: 0x000DF914 File Offset: 0x000DDB14
-	// (set) Token: 0x06001735 RID: 5941 RVA: 0x000DF944 File Offset: 0x000DDB44
+	// (get) Token: 0x06001738 RID: 5944 RVA: 0x000DFC3C File Offset: 0x000DDE3C
+	// (set) Token: 0x06001739 RID: 5945 RVA: 0x000DFC6C File Offset: 0x000DDE6C
 	public static int MaleUniform
 	{
 		get
@@ -170,8 +170,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000438 RID: 1080
-	// (get) Token: 0x06001736 RID: 5942 RVA: 0x000DF974 File Offset: 0x000DDB74
-	// (set) Token: 0x06001737 RID: 5943 RVA: 0x000DF9A4 File Offset: 0x000DDBA4
+	// (get) Token: 0x0600173A RID: 5946 RVA: 0x000DFC9C File Offset: 0x000DDE9C
+	// (set) Token: 0x0600173B RID: 5947 RVA: 0x000DFCCC File Offset: 0x000DDECC
 	public static int MemorialStudents
 	{
 		get
@@ -185,8 +185,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000439 RID: 1081
-	// (get) Token: 0x06001738 RID: 5944 RVA: 0x000DF9D4 File Offset: 0x000DDBD4
-	// (set) Token: 0x06001739 RID: 5945 RVA: 0x000DFA04 File Offset: 0x000DDC04
+	// (get) Token: 0x0600173C RID: 5948 RVA: 0x000DFCFC File Offset: 0x000DDEFC
+	// (set) Token: 0x0600173D RID: 5949 RVA: 0x000DFD2C File Offset: 0x000DDF2C
 	public static int MemorialStudent1
 	{
 		get
@@ -200,8 +200,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x1700043A RID: 1082
-	// (get) Token: 0x0600173A RID: 5946 RVA: 0x000DFA34 File Offset: 0x000DDC34
-	// (set) Token: 0x0600173B RID: 5947 RVA: 0x000DFA64 File Offset: 0x000DDC64
+	// (get) Token: 0x0600173E RID: 5950 RVA: 0x000DFD5C File Offset: 0x000DDF5C
+	// (set) Token: 0x0600173F RID: 5951 RVA: 0x000DFD8C File Offset: 0x000DDF8C
 	public static int MemorialStudent2
 	{
 		get
@@ -215,8 +215,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x1700043B RID: 1083
-	// (get) Token: 0x0600173C RID: 5948 RVA: 0x000DFA94 File Offset: 0x000DDC94
-	// (set) Token: 0x0600173D RID: 5949 RVA: 0x000DFAC4 File Offset: 0x000DDCC4
+	// (get) Token: 0x06001740 RID: 5952 RVA: 0x000DFDBC File Offset: 0x000DDFBC
+	// (set) Token: 0x06001741 RID: 5953 RVA: 0x000DFDEC File Offset: 0x000DDFEC
 	public static int MemorialStudent3
 	{
 		get
@@ -230,8 +230,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x1700043C RID: 1084
-	// (get) Token: 0x0600173E RID: 5950 RVA: 0x000DFAF4 File Offset: 0x000DDCF4
-	// (set) Token: 0x0600173F RID: 5951 RVA: 0x000DFB24 File Offset: 0x000DDD24
+	// (get) Token: 0x06001742 RID: 5954 RVA: 0x000DFE1C File Offset: 0x000DE01C
+	// (set) Token: 0x06001743 RID: 5955 RVA: 0x000DFE4C File Offset: 0x000DE04C
 	public static int MemorialStudent4
 	{
 		get
@@ -245,8 +245,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x1700043D RID: 1085
-	// (get) Token: 0x06001740 RID: 5952 RVA: 0x000DFB54 File Offset: 0x000DDD54
-	// (set) Token: 0x06001741 RID: 5953 RVA: 0x000DFB84 File Offset: 0x000DDD84
+	// (get) Token: 0x06001744 RID: 5956 RVA: 0x000DFE7C File Offset: 0x000DE07C
+	// (set) Token: 0x06001745 RID: 5957 RVA: 0x000DFEAC File Offset: 0x000DE0AC
 	public static int MemorialStudent5
 	{
 		get
@@ -260,8 +260,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x1700043E RID: 1086
-	// (get) Token: 0x06001742 RID: 5954 RVA: 0x000DFBB4 File Offset: 0x000DDDB4
-	// (set) Token: 0x06001743 RID: 5955 RVA: 0x000DFBE4 File Offset: 0x000DDDE4
+	// (get) Token: 0x06001746 RID: 5958 RVA: 0x000DFEDC File Offset: 0x000DE0DC
+	// (set) Token: 0x06001747 RID: 5959 RVA: 0x000DFF0C File Offset: 0x000DE10C
 	public static int MemorialStudent6
 	{
 		get
@@ -275,8 +275,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x1700043F RID: 1087
-	// (get) Token: 0x06001744 RID: 5956 RVA: 0x000DFC14 File Offset: 0x000DDE14
-	// (set) Token: 0x06001745 RID: 5957 RVA: 0x000DFC44 File Offset: 0x000DDE44
+	// (get) Token: 0x06001748 RID: 5960 RVA: 0x000DFF3C File Offset: 0x000DE13C
+	// (set) Token: 0x06001749 RID: 5961 RVA: 0x000DFF6C File Offset: 0x000DE16C
 	public static int MemorialStudent7
 	{
 		get
@@ -290,8 +290,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000440 RID: 1088
-	// (get) Token: 0x06001746 RID: 5958 RVA: 0x000DFC74 File Offset: 0x000DDE74
-	// (set) Token: 0x06001747 RID: 5959 RVA: 0x000DFCA4 File Offset: 0x000DDEA4
+	// (get) Token: 0x0600174A RID: 5962 RVA: 0x000DFF9C File Offset: 0x000DE19C
+	// (set) Token: 0x0600174B RID: 5963 RVA: 0x000DFFCC File Offset: 0x000DE1CC
 	public static int MemorialStudent8
 	{
 		get
@@ -305,8 +305,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000441 RID: 1089
-	// (get) Token: 0x06001748 RID: 5960 RVA: 0x000DFCD4 File Offset: 0x000DDED4
-	// (set) Token: 0x06001749 RID: 5961 RVA: 0x000DFD04 File Offset: 0x000DDF04
+	// (get) Token: 0x0600174C RID: 5964 RVA: 0x000DFFFC File Offset: 0x000DE1FC
+	// (set) Token: 0x0600174D RID: 5965 RVA: 0x000E002C File Offset: 0x000DE22C
 	public static int MemorialStudent9
 	{
 		get
@@ -319,13 +319,13 @@ public static class StudentGlobals
 		}
 	}
 
-	// Token: 0x0600174A RID: 5962 RVA: 0x000DFD34 File Offset: 0x000DDF34
+	// Token: 0x0600174E RID: 5966 RVA: 0x000E005C File Offset: 0x000DE25C
 	public static string GetStudentAccessory(int studentID)
 	{
 		return PlayerPrefs.GetString("Profile_" + GameGlobals.Profile.ToString() + "_StudentAccessory_" + studentID.ToString());
 	}
 
-	// Token: 0x0600174B RID: 5963 RVA: 0x000DFD6C File Offset: 0x000DDF6C
+	// Token: 0x0600174F RID: 5967 RVA: 0x000E0094 File Offset: 0x000DE294
 	public static void SetStudentAccessory(int studentID, string value)
 	{
 		string text = studentID.ToString();
@@ -333,19 +333,19 @@ public static class StudentGlobals
 		PlayerPrefs.SetString("Profile_" + GameGlobals.Profile.ToString() + "_StudentAccessory_" + text, value);
 	}
 
-	// Token: 0x0600174C RID: 5964 RVA: 0x000DFDC8 File Offset: 0x000DDFC8
+	// Token: 0x06001750 RID: 5968 RVA: 0x000E00F0 File Offset: 0x000DE2F0
 	public static int[] KeysOfStudentAccessory()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentAccessory_");
 	}
 
-	// Token: 0x0600174D RID: 5965 RVA: 0x000DFDF8 File Offset: 0x000DDFF8
+	// Token: 0x06001751 RID: 5969 RVA: 0x000E0120 File Offset: 0x000DE320
 	public static bool GetStudentArrested(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentArrested_" + studentID.ToString());
 	}
 
-	// Token: 0x0600174E RID: 5966 RVA: 0x000DFE30 File Offset: 0x000DE030
+	// Token: 0x06001752 RID: 5970 RVA: 0x000E0158 File Offset: 0x000DE358
 	public static void SetStudentArrested(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -353,19 +353,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentArrested_" + text, value);
 	}
 
-	// Token: 0x0600174F RID: 5967 RVA: 0x000DFE8C File Offset: 0x000DE08C
+	// Token: 0x06001753 RID: 5971 RVA: 0x000E01B4 File Offset: 0x000DE3B4
 	public static int[] KeysOfStudentArrested()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentArrested_");
 	}
 
-	// Token: 0x06001750 RID: 5968 RVA: 0x000DFEBC File Offset: 0x000DE0BC
+	// Token: 0x06001754 RID: 5972 RVA: 0x000E01E4 File Offset: 0x000DE3E4
 	public static bool GetStudentBroken(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentBroken_" + studentID.ToString());
 	}
 
-	// Token: 0x06001751 RID: 5969 RVA: 0x000DFEF4 File Offset: 0x000DE0F4
+	// Token: 0x06001755 RID: 5973 RVA: 0x000E021C File Offset: 0x000DE41C
 	public static void SetStudentBroken(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -373,19 +373,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentBroken_" + text, value);
 	}
 
-	// Token: 0x06001752 RID: 5970 RVA: 0x000DFF50 File Offset: 0x000DE150
+	// Token: 0x06001756 RID: 5974 RVA: 0x000E0278 File Offset: 0x000DE478
 	public static int[] KeysOfStudentBroken()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentBroken_");
 	}
 
-	// Token: 0x06001753 RID: 5971 RVA: 0x000DFF80 File Offset: 0x000DE180
+	// Token: 0x06001757 RID: 5975 RVA: 0x000E02A8 File Offset: 0x000DE4A8
 	public static float GetStudentBustSize(int studentID)
 	{
 		return PlayerPrefs.GetFloat("Profile_" + GameGlobals.Profile.ToString() + "_StudentBustSize_" + studentID.ToString());
 	}
 
-	// Token: 0x06001754 RID: 5972 RVA: 0x000DFFB8 File Offset: 0x000DE1B8
+	// Token: 0x06001758 RID: 5976 RVA: 0x000E02E0 File Offset: 0x000DE4E0
 	public static void SetStudentBustSize(int studentID, float value)
 	{
 		string text = studentID.ToString();
@@ -393,19 +393,19 @@ public static class StudentGlobals
 		PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_StudentBustSize_" + text, value);
 	}
 
-	// Token: 0x06001755 RID: 5973 RVA: 0x000E0014 File Offset: 0x000DE214
+	// Token: 0x06001759 RID: 5977 RVA: 0x000E033C File Offset: 0x000DE53C
 	public static int[] KeysOfStudentBustSize()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentBustSize_");
 	}
 
-	// Token: 0x06001756 RID: 5974 RVA: 0x000E0044 File Offset: 0x000DE244
+	// Token: 0x0600175A RID: 5978 RVA: 0x000E036C File Offset: 0x000DE56C
 	public static Color GetStudentColor(int studentID)
 	{
 		return GlobalsHelper.GetColor("Profile_" + GameGlobals.Profile.ToString() + "_StudentColor_" + studentID.ToString());
 	}
 
-	// Token: 0x06001757 RID: 5975 RVA: 0x000E007C File Offset: 0x000DE27C
+	// Token: 0x0600175B RID: 5979 RVA: 0x000E03A4 File Offset: 0x000DE5A4
 	public static void SetStudentColor(int studentID, Color value)
 	{
 		string text = studentID.ToString();
@@ -413,19 +413,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetColor("Profile_" + GameGlobals.Profile.ToString() + "_StudentColor_" + text, value);
 	}
 
-	// Token: 0x06001758 RID: 5976 RVA: 0x000E00D8 File Offset: 0x000DE2D8
+	// Token: 0x0600175C RID: 5980 RVA: 0x000E0400 File Offset: 0x000DE600
 	public static int[] KeysOfStudentColor()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentColor_");
 	}
 
-	// Token: 0x06001759 RID: 5977 RVA: 0x000E0108 File Offset: 0x000DE308
+	// Token: 0x0600175D RID: 5981 RVA: 0x000E0430 File Offset: 0x000DE630
 	public static bool GetStudentDead(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentDead_" + studentID.ToString());
 	}
 
-	// Token: 0x0600175A RID: 5978 RVA: 0x000E0140 File Offset: 0x000DE340
+	// Token: 0x0600175E RID: 5982 RVA: 0x000E0468 File Offset: 0x000DE668
 	public static void SetStudentDead(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -433,19 +433,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentDead_" + text, value);
 	}
 
-	// Token: 0x0600175B RID: 5979 RVA: 0x000E019C File Offset: 0x000DE39C
+	// Token: 0x0600175F RID: 5983 RVA: 0x000E04C4 File Offset: 0x000DE6C4
 	public static int[] KeysOfStudentDead()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentDead_");
 	}
 
-	// Token: 0x0600175C RID: 5980 RVA: 0x000E01CC File Offset: 0x000DE3CC
+	// Token: 0x06001760 RID: 5984 RVA: 0x000E04F4 File Offset: 0x000DE6F4
 	public static bool GetStudentDying(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentDying_" + studentID.ToString());
 	}
 
-	// Token: 0x0600175D RID: 5981 RVA: 0x000E0204 File Offset: 0x000DE404
+	// Token: 0x06001761 RID: 5985 RVA: 0x000E052C File Offset: 0x000DE72C
 	public static void SetStudentDying(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -453,19 +453,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentDying_" + text, value);
 	}
 
-	// Token: 0x0600175E RID: 5982 RVA: 0x000E0260 File Offset: 0x000DE460
+	// Token: 0x06001762 RID: 5986 RVA: 0x000E0588 File Offset: 0x000DE788
 	public static int[] KeysOfStudentDying()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentDying_");
 	}
 
-	// Token: 0x0600175F RID: 5983 RVA: 0x000E0290 File Offset: 0x000DE490
+	// Token: 0x06001763 RID: 5987 RVA: 0x000E05B8 File Offset: 0x000DE7B8
 	public static bool GetStudentExpelled(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentExpelled_" + studentID.ToString());
 	}
 
-	// Token: 0x06001760 RID: 5984 RVA: 0x000E02C8 File Offset: 0x000DE4C8
+	// Token: 0x06001764 RID: 5988 RVA: 0x000E05F0 File Offset: 0x000DE7F0
 	public static void SetStudentExpelled(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -473,19 +473,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentExpelled_" + text, value);
 	}
 
-	// Token: 0x06001761 RID: 5985 RVA: 0x000E0324 File Offset: 0x000DE524
+	// Token: 0x06001765 RID: 5989 RVA: 0x000E064C File Offset: 0x000DE84C
 	public static int[] KeysOfStudentExpelled()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentExpelled_");
 	}
 
-	// Token: 0x06001762 RID: 5986 RVA: 0x000E0354 File Offset: 0x000DE554
+	// Token: 0x06001766 RID: 5990 RVA: 0x000E067C File Offset: 0x000DE87C
 	public static bool GetStudentExposed(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentExposed_" + studentID.ToString());
 	}
 
-	// Token: 0x06001763 RID: 5987 RVA: 0x000E038C File Offset: 0x000DE58C
+	// Token: 0x06001767 RID: 5991 RVA: 0x000E06B4 File Offset: 0x000DE8B4
 	public static void SetStudentExposed(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -493,19 +493,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentExposed_" + text, value);
 	}
 
-	// Token: 0x06001764 RID: 5988 RVA: 0x000E03E8 File Offset: 0x000DE5E8
+	// Token: 0x06001768 RID: 5992 RVA: 0x000E0710 File Offset: 0x000DE910
 	public static int[] KeysOfStudentExposed()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentExposed_");
 	}
 
-	// Token: 0x06001765 RID: 5989 RVA: 0x000E0418 File Offset: 0x000DE618
+	// Token: 0x06001769 RID: 5993 RVA: 0x000E0740 File Offset: 0x000DE940
 	public static Color GetStudentEyeColor(int studentID)
 	{
 		return GlobalsHelper.GetColor("Profile_" + GameGlobals.Profile.ToString() + "_StudentEyeColor_" + studentID.ToString());
 	}
 
-	// Token: 0x06001766 RID: 5990 RVA: 0x000E0450 File Offset: 0x000DE650
+	// Token: 0x0600176A RID: 5994 RVA: 0x000E0778 File Offset: 0x000DE978
 	public static void SetStudentEyeColor(int studentID, Color value)
 	{
 		string text = studentID.ToString();
@@ -513,19 +513,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetColor("Profile_" + GameGlobals.Profile.ToString() + "_StudentEyeColor_" + text, value);
 	}
 
-	// Token: 0x06001767 RID: 5991 RVA: 0x000E04AC File Offset: 0x000DE6AC
+	// Token: 0x0600176B RID: 5995 RVA: 0x000E07D4 File Offset: 0x000DE9D4
 	public static int[] KeysOfStudentEyeColor()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentEyeColor_");
 	}
 
-	// Token: 0x06001768 RID: 5992 RVA: 0x000E04DC File Offset: 0x000DE6DC
+	// Token: 0x0600176C RID: 5996 RVA: 0x000E0804 File Offset: 0x000DEA04
 	public static bool GetStudentGrudge(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentGrudge_" + studentID.ToString());
 	}
 
-	// Token: 0x06001769 RID: 5993 RVA: 0x000E0514 File Offset: 0x000DE714
+	// Token: 0x0600176D RID: 5997 RVA: 0x000E083C File Offset: 0x000DEA3C
 	public static void SetStudentGrudge(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -533,19 +533,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentGrudge_" + text, value);
 	}
 
-	// Token: 0x0600176A RID: 5994 RVA: 0x000E0570 File Offset: 0x000DE770
+	// Token: 0x0600176E RID: 5998 RVA: 0x000E0898 File Offset: 0x000DEA98
 	public static int[] KeysOfStudentGrudge()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentGrudge_");
 	}
 
-	// Token: 0x0600176B RID: 5995 RVA: 0x000E05A0 File Offset: 0x000DE7A0
+	// Token: 0x0600176F RID: 5999 RVA: 0x000E08C8 File Offset: 0x000DEAC8
 	public static string GetStudentHairstyle(int studentID)
 	{
 		return PlayerPrefs.GetString("Profile_" + GameGlobals.Profile.ToString() + "_StudentHairstyle_" + studentID.ToString());
 	}
 
-	// Token: 0x0600176C RID: 5996 RVA: 0x000E05D8 File Offset: 0x000DE7D8
+	// Token: 0x06001770 RID: 6000 RVA: 0x000E0900 File Offset: 0x000DEB00
 	public static void SetStudentHairstyle(int studentID, string value)
 	{
 		string text = studentID.ToString();
@@ -553,19 +553,19 @@ public static class StudentGlobals
 		PlayerPrefs.SetString("Profile_" + GameGlobals.Profile.ToString() + "_StudentHairstyle_" + text, value);
 	}
 
-	// Token: 0x0600176D RID: 5997 RVA: 0x000E0634 File Offset: 0x000DE834
+	// Token: 0x06001771 RID: 6001 RVA: 0x000E095C File Offset: 0x000DEB5C
 	public static int[] KeysOfStudentHairstyle()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentHairstyle_");
 	}
 
-	// Token: 0x0600176E RID: 5998 RVA: 0x000E0664 File Offset: 0x000DE864
+	// Token: 0x06001772 RID: 6002 RVA: 0x000E098C File Offset: 0x000DEB8C
 	public static bool GetStudentKidnapped(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentKidnapped_" + studentID.ToString());
 	}
 
-	// Token: 0x0600176F RID: 5999 RVA: 0x000E069C File Offset: 0x000DE89C
+	// Token: 0x06001773 RID: 6003 RVA: 0x000E09C4 File Offset: 0x000DEBC4
 	public static void SetStudentKidnapped(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -573,19 +573,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentKidnapped_" + text, value);
 	}
 
-	// Token: 0x06001770 RID: 6000 RVA: 0x000E06F8 File Offset: 0x000DE8F8
+	// Token: 0x06001774 RID: 6004 RVA: 0x000E0A20 File Offset: 0x000DEC20
 	public static int[] KeysOfStudentKidnapped()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentKidnapped_");
 	}
 
-	// Token: 0x06001771 RID: 6001 RVA: 0x000E0728 File Offset: 0x000DE928
+	// Token: 0x06001775 RID: 6005 RVA: 0x000E0A50 File Offset: 0x000DEC50
 	public static bool GetStudentMissing(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentMissing_" + studentID.ToString());
 	}
 
-	// Token: 0x06001772 RID: 6002 RVA: 0x000E0760 File Offset: 0x000DE960
+	// Token: 0x06001776 RID: 6006 RVA: 0x000E0A88 File Offset: 0x000DEC88
 	public static void SetStudentMissing(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -593,19 +593,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentMissing_" + text, value);
 	}
 
-	// Token: 0x06001773 RID: 6003 RVA: 0x000E07BC File Offset: 0x000DE9BC
+	// Token: 0x06001777 RID: 6007 RVA: 0x000E0AE4 File Offset: 0x000DECE4
 	public static int[] KeysOfStudentMissing()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentMissing_");
 	}
 
-	// Token: 0x06001774 RID: 6004 RVA: 0x000E07EC File Offset: 0x000DE9EC
+	// Token: 0x06001778 RID: 6008 RVA: 0x000E0B14 File Offset: 0x000DED14
 	public static string GetStudentName(int studentID)
 	{
 		return PlayerPrefs.GetString("Profile_" + GameGlobals.Profile.ToString() + "_StudentName_" + studentID.ToString());
 	}
 
-	// Token: 0x06001775 RID: 6005 RVA: 0x000E0824 File Offset: 0x000DEA24
+	// Token: 0x06001779 RID: 6009 RVA: 0x000E0B4C File Offset: 0x000DED4C
 	public static void SetStudentName(int studentID, string value)
 	{
 		string text = studentID.ToString();
@@ -613,19 +613,19 @@ public static class StudentGlobals
 		PlayerPrefs.SetString("Profile_" + GameGlobals.Profile.ToString() + "_StudentName_" + text, value);
 	}
 
-	// Token: 0x06001776 RID: 6006 RVA: 0x000E0880 File Offset: 0x000DEA80
+	// Token: 0x0600177A RID: 6010 RVA: 0x000E0BA8 File Offset: 0x000DEDA8
 	public static int[] KeysOfStudentName()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentName_");
 	}
 
-	// Token: 0x06001777 RID: 6007 RVA: 0x000E08B0 File Offset: 0x000DEAB0
+	// Token: 0x0600177B RID: 6011 RVA: 0x000E0BD8 File Offset: 0x000DEDD8
 	public static bool GetStudentPhotographed(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentPhotographed_" + studentID.ToString());
 	}
 
-	// Token: 0x06001778 RID: 6008 RVA: 0x000E08E8 File Offset: 0x000DEAE8
+	// Token: 0x0600177C RID: 6012 RVA: 0x000E0C10 File Offset: 0x000DEE10
 	public static void SetStudentPhotographed(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -633,19 +633,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentPhotographed_" + text, value);
 	}
 
-	// Token: 0x06001779 RID: 6009 RVA: 0x000E0944 File Offset: 0x000DEB44
+	// Token: 0x0600177D RID: 6013 RVA: 0x000E0C6C File Offset: 0x000DEE6C
 	public static int[] KeysOfStudentPhotographed()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentPhotographed_");
 	}
 
-	// Token: 0x0600177A RID: 6010 RVA: 0x000E0974 File Offset: 0x000DEB74
+	// Token: 0x0600177E RID: 6014 RVA: 0x000E0C9C File Offset: 0x000DEE9C
 	public static bool GetStudentPhoneStolen(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentPhoneStolen_" + studentID.ToString());
 	}
 
-	// Token: 0x0600177B RID: 6011 RVA: 0x000E09AC File Offset: 0x000DEBAC
+	// Token: 0x0600177F RID: 6015 RVA: 0x000E0CD4 File Offset: 0x000DEED4
 	public static void SetStudentPhoneStolen(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -653,19 +653,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentPhoneStolen_" + text, value);
 	}
 
-	// Token: 0x0600177C RID: 6012 RVA: 0x000E0A08 File Offset: 0x000DEC08
+	// Token: 0x06001780 RID: 6016 RVA: 0x000E0D30 File Offset: 0x000DEF30
 	public static int[] KeysOfStudentPhoneStolen()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentPhoneStolen_");
 	}
 
-	// Token: 0x0600177D RID: 6013 RVA: 0x000E0A38 File Offset: 0x000DEC38
+	// Token: 0x06001781 RID: 6017 RVA: 0x000E0D60 File Offset: 0x000DEF60
 	public static bool GetStudentReplaced(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentReplaced_" + studentID.ToString());
 	}
 
-	// Token: 0x0600177E RID: 6014 RVA: 0x000E0A70 File Offset: 0x000DEC70
+	// Token: 0x06001782 RID: 6018 RVA: 0x000E0D98 File Offset: 0x000DEF98
 	public static void SetStudentReplaced(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -673,19 +673,19 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentReplaced_" + text, value);
 	}
 
-	// Token: 0x0600177F RID: 6015 RVA: 0x000E0ACC File Offset: 0x000DECCC
+	// Token: 0x06001783 RID: 6019 RVA: 0x000E0DF4 File Offset: 0x000DEFF4
 	public static int[] KeysOfStudentReplaced()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentReplaced_");
 	}
 
-	// Token: 0x06001780 RID: 6016 RVA: 0x000E0AFC File Offset: 0x000DECFC
+	// Token: 0x06001784 RID: 6020 RVA: 0x000E0E24 File Offset: 0x000DF024
 	public static int GetStudentReputation(int studentID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_StudentReputation_" + studentID.ToString());
 	}
 
-	// Token: 0x06001781 RID: 6017 RVA: 0x000E0B34 File Offset: 0x000DED34
+	// Token: 0x06001785 RID: 6021 RVA: 0x000E0E5C File Offset: 0x000DF05C
 	public static void SetStudentReputation(int studentID, int value)
 	{
 		string text = studentID.ToString();
@@ -693,19 +693,19 @@ public static class StudentGlobals
 		PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_StudentReputation_" + text, value);
 	}
 
-	// Token: 0x06001782 RID: 6018 RVA: 0x000E0B90 File Offset: 0x000DED90
+	// Token: 0x06001786 RID: 6022 RVA: 0x000E0EB8 File Offset: 0x000DF0B8
 	public static int[] KeysOfStudentReputation()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentReputation_");
 	}
 
-	// Token: 0x06001783 RID: 6019 RVA: 0x000E0BC0 File Offset: 0x000DEDC0
+	// Token: 0x06001787 RID: 6023 RVA: 0x000E0EE8 File Offset: 0x000DF0E8
 	public static float GetStudentSanity(int studentID)
 	{
 		return PlayerPrefs.GetFloat("Profile_" + GameGlobals.Profile.ToString() + "_StudentSanity_" + studentID.ToString());
 	}
 
-	// Token: 0x06001784 RID: 6020 RVA: 0x000E0BF8 File Offset: 0x000DEDF8
+	// Token: 0x06001788 RID: 6024 RVA: 0x000E0F20 File Offset: 0x000DF120
 	public static void SetStudentSanity(int studentID, float value)
 	{
 		string text = studentID.ToString();
@@ -713,15 +713,15 @@ public static class StudentGlobals
 		PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_StudentSanity_" + text, value);
 	}
 
-	// Token: 0x06001785 RID: 6021 RVA: 0x000E0C54 File Offset: 0x000DEE54
+	// Token: 0x06001789 RID: 6025 RVA: 0x000E0F7C File Offset: 0x000DF17C
 	public static int[] KeysOfStudentSanity()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentSanity_");
 	}
 
 	// Token: 0x17000442 RID: 1090
-	// (get) Token: 0x06001786 RID: 6022 RVA: 0x000E0C84 File Offset: 0x000DEE84
-	// (set) Token: 0x06001787 RID: 6023 RVA: 0x000E0CB4 File Offset: 0x000DEEB4
+	// (get) Token: 0x0600178A RID: 6026 RVA: 0x000E0FAC File Offset: 0x000DF1AC
+	// (set) Token: 0x0600178B RID: 6027 RVA: 0x000E0FDC File Offset: 0x000DF1DC
 	public static int StudentSlave
 	{
 		get
@@ -735,8 +735,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000443 RID: 1091
-	// (get) Token: 0x06001788 RID: 6024 RVA: 0x000E0CE4 File Offset: 0x000DEEE4
-	// (set) Token: 0x06001789 RID: 6025 RVA: 0x000E0D14 File Offset: 0x000DEF14
+	// (get) Token: 0x0600178C RID: 6028 RVA: 0x000E100C File Offset: 0x000DF20C
+	// (set) Token: 0x0600178D RID: 6029 RVA: 0x000E103C File Offset: 0x000DF23C
 	public static int FragileSlave
 	{
 		get
@@ -750,8 +750,8 @@ public static class StudentGlobals
 	}
 
 	// Token: 0x17000444 RID: 1092
-	// (get) Token: 0x0600178A RID: 6026 RVA: 0x000E0D44 File Offset: 0x000DEF44
-	// (set) Token: 0x0600178B RID: 6027 RVA: 0x000E0D74 File Offset: 0x000DEF74
+	// (get) Token: 0x0600178E RID: 6030 RVA: 0x000E106C File Offset: 0x000DF26C
+	// (set) Token: 0x0600178F RID: 6031 RVA: 0x000E109C File Offset: 0x000DF29C
 	public static int FragileTarget
 	{
 		get
@@ -764,7 +764,7 @@ public static class StudentGlobals
 		}
 	}
 
-	// Token: 0x0600178C RID: 6028 RVA: 0x000E0DA4 File Offset: 0x000DEFA4
+	// Token: 0x06001790 RID: 6032 RVA: 0x000E10CC File Offset: 0x000DF2CC
 	public static Vector3 GetReputationTriangle(int studentID)
 	{
 		return GlobalsHelper.GetVector3(string.Concat(new string[]
@@ -777,7 +777,7 @@ public static class StudentGlobals
 		}));
 	}
 
-	// Token: 0x0600178D RID: 6029 RVA: 0x000E0DF4 File Offset: 0x000DEFF4
+	// Token: 0x06001791 RID: 6033 RVA: 0x000E111C File Offset: 0x000DF31C
 	public static void SetReputationTriangle(int studentID, Vector3 triangle)
 	{
 		GlobalsHelper.SetVector3(string.Concat(new string[]
@@ -790,13 +790,13 @@ public static class StudentGlobals
 		}), triangle);
 	}
 
-	// Token: 0x0600178E RID: 6030 RVA: 0x000E0E44 File Offset: 0x000DF044
+	// Token: 0x06001792 RID: 6034 RVA: 0x000E116C File Offset: 0x000DF36C
 	public static bool GetStudentRansomed(int studentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentRansomed_" + studentID.ToString());
 	}
 
-	// Token: 0x0600178F RID: 6031 RVA: 0x000E0E7C File Offset: 0x000DF07C
+	// Token: 0x06001793 RID: 6035 RVA: 0x000E11A4 File Offset: 0x000DF3A4
 	public static void SetStudentRansomed(int studentID, bool value)
 	{
 		string text = studentID.ToString();
@@ -804,13 +804,13 @@ public static class StudentGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_StudentRansomed_" + text, value);
 	}
 
-	// Token: 0x06001790 RID: 6032 RVA: 0x000E0ED8 File Offset: 0x000DF0D8
+	// Token: 0x06001794 RID: 6036 RVA: 0x000E1200 File Offset: 0x000DF400
 	public static int[] KeysOfStudentRansomed()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentRansomed_");
 	}
 
-	// Token: 0x06001791 RID: 6033 RVA: 0x000E0F08 File Offset: 0x000DF108
+	// Token: 0x06001795 RID: 6037 RVA: 0x000E1230 File Offset: 0x000DF430
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CustomSuitor");
@@ -860,141 +860,141 @@ public static class StudentGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MemorialStudent9");
 	}
 
-	// Token: 0x04002268 RID: 8808
+	// Token: 0x0400226C RID: 8812
 	private const string Str_CustomSuitor = "CustomSuitor";
 
-	// Token: 0x04002269 RID: 8809
+	// Token: 0x0400226D RID: 8813
 	private const string Str_CustomSuitorAccessory = "CustomSuitorAccessory";
 
-	// Token: 0x0400226A RID: 8810
+	// Token: 0x0400226E RID: 8814
 	private const string Str_CustomSuitorBlonde = "CustomSuitorBlonde";
 
-	// Token: 0x0400226B RID: 8811
+	// Token: 0x0400226F RID: 8815
 	private const string Str_CustomSuitorBlack = "CustomSuitorBlack";
 
-	// Token: 0x0400226C RID: 8812
+	// Token: 0x04002270 RID: 8816
 	private const string Str_CustomSuitorEyewear = "CustomSuitorEyewear";
 
-	// Token: 0x0400226D RID: 8813
+	// Token: 0x04002271 RID: 8817
 	private const string Str_CustomSuitorHair = "CustomSuitorHair";
 
-	// Token: 0x0400226E RID: 8814
+	// Token: 0x04002272 RID: 8818
 	private const string Str_CustomSuitorJewelry = "CustomSuitorJewelry";
 
-	// Token: 0x0400226F RID: 8815
+	// Token: 0x04002273 RID: 8819
 	private const string Str_CustomSuitorTan = "CustomSuitorTan";
 
-	// Token: 0x04002270 RID: 8816
+	// Token: 0x04002274 RID: 8820
 	private const string Str_ExpelProgress = "ExpelProgress";
 
-	// Token: 0x04002271 RID: 8817
+	// Token: 0x04002275 RID: 8821
 	private const string Str_FemaleUniform = "FemaleUniform";
 
-	// Token: 0x04002272 RID: 8818
+	// Token: 0x04002276 RID: 8822
 	private const string Str_MaleUniform = "MaleUniform";
 
-	// Token: 0x04002273 RID: 8819
+	// Token: 0x04002277 RID: 8823
 	private const string Str_StudentAccessory = "StudentAccessory_";
 
-	// Token: 0x04002274 RID: 8820
+	// Token: 0x04002278 RID: 8824
 	private const string Str_StudentArrested = "StudentArrested_";
 
-	// Token: 0x04002275 RID: 8821
+	// Token: 0x04002279 RID: 8825
 	private const string Str_StudentBroken = "StudentBroken_";
 
-	// Token: 0x04002276 RID: 8822
+	// Token: 0x0400227A RID: 8826
 	private const string Str_StudentBustSize = "StudentBustSize_";
 
-	// Token: 0x04002277 RID: 8823
+	// Token: 0x0400227B RID: 8827
 	private const string Str_StudentColor = "StudentColor_";
 
-	// Token: 0x04002278 RID: 8824
+	// Token: 0x0400227C RID: 8828
 	private const string Str_StudentDead = "StudentDead_";
 
-	// Token: 0x04002279 RID: 8825
+	// Token: 0x0400227D RID: 8829
 	private const string Str_StudentDying = "StudentDying_";
 
-	// Token: 0x0400227A RID: 8826
+	// Token: 0x0400227E RID: 8830
 	private const string Str_StudentExpelled = "StudentExpelled_";
 
-	// Token: 0x0400227B RID: 8827
+	// Token: 0x0400227F RID: 8831
 	private const string Str_StudentExposed = "StudentExposed_";
 
-	// Token: 0x0400227C RID: 8828
+	// Token: 0x04002280 RID: 8832
 	private const string Str_StudentEyeColor = "StudentEyeColor_";
 
-	// Token: 0x0400227D RID: 8829
+	// Token: 0x04002281 RID: 8833
 	private const string Str_StudentGrudge = "StudentGrudge_";
 
-	// Token: 0x0400227E RID: 8830
+	// Token: 0x04002282 RID: 8834
 	private const string Str_StudentHairstyle = "StudentHairstyle_";
 
-	// Token: 0x0400227F RID: 8831
+	// Token: 0x04002283 RID: 8835
 	private const string Str_StudentKidnapped = "StudentKidnapped_";
 
-	// Token: 0x04002280 RID: 8832
+	// Token: 0x04002284 RID: 8836
 	private const string Str_StudentMissing = "StudentMissing_";
 
-	// Token: 0x04002281 RID: 8833
+	// Token: 0x04002285 RID: 8837
 	private const string Str_StudentName = "StudentName_";
 
-	// Token: 0x04002282 RID: 8834
+	// Token: 0x04002286 RID: 8838
 	private const string Str_StudentPhotographed = "StudentPhotographed_";
 
-	// Token: 0x04002283 RID: 8835
+	// Token: 0x04002287 RID: 8839
 	private const string Str_StudentPhoneStolen = "StudentPhoneStolen_";
 
-	// Token: 0x04002284 RID: 8836
+	// Token: 0x04002288 RID: 8840
 	private const string Str_StudentReplaced = "StudentReplaced_";
 
-	// Token: 0x04002285 RID: 8837
+	// Token: 0x04002289 RID: 8841
 	private const string Str_StudentReputation = "StudentReputation_";
 
-	// Token: 0x04002286 RID: 8838
+	// Token: 0x0400228A RID: 8842
 	private const string Str_StudentSanity = "StudentSanity_";
 
-	// Token: 0x04002287 RID: 8839
+	// Token: 0x0400228B RID: 8843
 	private const string Str_StudentSlave = "StudentSlave";
 
-	// Token: 0x04002288 RID: 8840
+	// Token: 0x0400228C RID: 8844
 	private const string Str_FragileSlave = "FragileSlave";
 
-	// Token: 0x04002289 RID: 8841
+	// Token: 0x0400228D RID: 8845
 	private const string Str_FragileTarget = "FragileTarget";
 
-	// Token: 0x0400228A RID: 8842
+	// Token: 0x0400228E RID: 8846
 	private const string Str_ReputationTriangle = "ReputatonTriangle";
 
-	// Token: 0x0400228B RID: 8843
+	// Token: 0x0400228F RID: 8847
 	private const string Str_StudentRansomed = "StudentRansomed_";
 
-	// Token: 0x0400228C RID: 8844
+	// Token: 0x04002290 RID: 8848
 	private const string Str_MemorialStudents = "MemorialStudents";
 
-	// Token: 0x0400228D RID: 8845
+	// Token: 0x04002291 RID: 8849
 	private const string Str_MemorialStudent1 = "MemorialStudent1";
 
-	// Token: 0x0400228E RID: 8846
+	// Token: 0x04002292 RID: 8850
 	private const string Str_MemorialStudent2 = "MemorialStudent2";
 
-	// Token: 0x0400228F RID: 8847
+	// Token: 0x04002293 RID: 8851
 	private const string Str_MemorialStudent3 = "MemorialStudent3";
 
-	// Token: 0x04002290 RID: 8848
+	// Token: 0x04002294 RID: 8852
 	private const string Str_MemorialStudent4 = "MemorialStudent4";
 
-	// Token: 0x04002291 RID: 8849
+	// Token: 0x04002295 RID: 8853
 	private const string Str_MemorialStudent5 = "MemorialStudent5";
 
-	// Token: 0x04002292 RID: 8850
+	// Token: 0x04002296 RID: 8854
 	private const string Str_MemorialStudent6 = "MemorialStudent6";
 
-	// Token: 0x04002293 RID: 8851
+	// Token: 0x04002297 RID: 8855
 	private const string Str_MemorialStudent7 = "MemorialStudent7";
 
-	// Token: 0x04002294 RID: 8852
+	// Token: 0x04002298 RID: 8856
 	private const string Str_MemorialStudent8 = "MemorialStudent8";
 
-	// Token: 0x04002295 RID: 8853
+	// Token: 0x04002299 RID: 8857
 	private const string Str_MemorialStudent9 = "MemorialStudent9";
 }

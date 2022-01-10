@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003BA RID: 954
+// Token: 0x020003BC RID: 956
 public class PromptBarScript : MonoBehaviour
 {
-	// Token: 0x06001AF3 RID: 6899 RVA: 0x0012B408 File Offset: 0x00129608
+	// Token: 0x06001AFA RID: 6906 RVA: 0x0012B7E0 File Offset: 0x001299E0
 	private void Awake()
 	{
 		base.transform.localPosition = new Vector3(base.transform.localPosition.x, -627f, base.transform.localPosition.z);
@@ -16,13 +16,13 @@ public class PromptBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AF4 RID: 6900 RVA: 0x0012B488 File Offset: 0x00129688
+	// Token: 0x06001AFB RID: 6907 RVA: 0x0012B860 File Offset: 0x00129A60
 	private void Start()
 	{
 		this.UpdateButtons();
 	}
 
-	// Token: 0x06001AF5 RID: 6901 RVA: 0x0012B490 File Offset: 0x00129690
+	// Token: 0x06001AFC RID: 6908 RVA: 0x0012B868 File Offset: 0x00129A68
 	private void Update()
 	{
 		float t = Time.unscaledDeltaTime * 10f;
@@ -48,7 +48,7 @@ public class PromptBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AF6 RID: 6902 RVA: 0x0012B5C4 File Offset: 0x001297C4
+	// Token: 0x06001AFD RID: 6909 RVA: 0x0012B99C File Offset: 0x00129B9C
 	public void UpdateButtons()
 	{
 		if (this.Panel != null)
@@ -64,7 +64,7 @@ public class PromptBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AF7 RID: 6903 RVA: 0x0012B66C File Offset: 0x0012986C
+	// Token: 0x06001AFE RID: 6910 RVA: 0x0012BA44 File Offset: 0x00129C44
 	public void ClearButtons()
 	{
 		this.ID = 0;
@@ -77,21 +77,21 @@ public class PromptBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002D9E RID: 11678
+	// Token: 0x04002DA4 RID: 11684
 	public UISprite[] Button;
 
-	// Token: 0x04002D9F RID: 11679
+	// Token: 0x04002DA5 RID: 11685
 	public UILabel[] Label;
 
-	// Token: 0x04002DA0 RID: 11680
+	// Token: 0x04002DA6 RID: 11686
 	public UILabel[] ButtonLabel;
 
-	// Token: 0x04002DA1 RID: 11681
+	// Token: 0x04002DA7 RID: 11687
 	public UIPanel Panel;
 
-	// Token: 0x04002DA2 RID: 11682
+	// Token: 0x04002DA8 RID: 11688
 	public bool Show;
 
-	// Token: 0x04002DA3 RID: 11683
+	// Token: 0x04002DA9 RID: 11689
 	public int ID;
 }

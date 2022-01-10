@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x020000E7 RID: 231
 public class BloodCleanerScript : MonoBehaviour
 {
-	// Token: 0x06000A32 RID: 2610 RVA: 0x0005A4CC File Offset: 0x000586CC
+	// Token: 0x06000A32 RID: 2610 RVA: 0x0005A4E0 File Offset: 0x000586E0
 	private void Start()
 	{
 		if (this.Super)
@@ -16,7 +16,7 @@ public class BloodCleanerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A33 RID: 2611 RVA: 0x0005A4F8 File Offset: 0x000586F8
+	// Token: 0x06000A33 RID: 2611 RVA: 0x0005A50C File Offset: 0x0005870C
 	private void Update()
 	{
 		if (this.Blood < 100f)

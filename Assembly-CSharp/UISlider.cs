@@ -174,14 +174,14 @@ public class UISlider : UIProgressBar
 	[SerializeField]
 	protected bool mInverted;
 
-	// Token: 0x020005DE RID: 1502
+	// Token: 0x020005E0 RID: 1504
 	private enum Direction
 	{
-		// Token: 0x04004D63 RID: 19811
+		// Token: 0x04004D77 RID: 19831
 		Horizontal,
-		// Token: 0x04004D64 RID: 19812
+		// Token: 0x04004D78 RID: 19832
 		Vertical,
-		// Token: 0x04004D65 RID: 19813
+		// Token: 0x04004D79 RID: 19833
 		Upgraded
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000250 RID: 592
 public class ClubManagerScript : MonoBehaviour
 {
-	// Token: 0x06001279 RID: 4729 RVA: 0x00090564 File Offset: 0x0008E764
+	// Token: 0x06001279 RID: 4729 RVA: 0x00090578 File Offset: 0x0008E778
 	private void Start()
 	{
 		this.MyAudio = base.GetComponent<AudioSource>();
@@ -56,7 +56,7 @@ public class ClubManagerScript : MonoBehaviour
 		this.AcidVats[2].Prompt.Hide();
 	}
 
-	// Token: 0x0600127A RID: 4730 RVA: 0x000908B8 File Offset: 0x0008EAB8
+	// Token: 0x0600127A RID: 4730 RVA: 0x000908CC File Offset: 0x0008EACC
 	private void Update()
 	{
 		if (this.Club != ClubType.None)
@@ -132,7 +132,7 @@ public class ClubManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600127B RID: 4731 RVA: 0x00090BEC File Offset: 0x0008EDEC
+	// Token: 0x0600127B RID: 4731 RVA: 0x00090C00 File Offset: 0x0008EE00
 	public void ClubActivity()
 	{
 		this.Yandere.CameraEffects.UpdateDOF(2f);
@@ -501,7 +501,7 @@ public class ClubManagerScript : MonoBehaviour
 		this.Watermark.SetActive(false);
 	}
 
-	// Token: 0x0600127C RID: 4732 RVA: 0x00091D04 File Offset: 0x0008FF04
+	// Token: 0x0600127C RID: 4732 RVA: 0x00091D18 File Offset: 0x0008FF18
 	public void CheckClub(ClubType Check)
 	{
 		if (Check == ClubType.Cooking)
@@ -718,7 +718,7 @@ public class ClubManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600127D RID: 4733 RVA: 0x0009237C File Offset: 0x0009057C
+	// Token: 0x0600127D RID: 4733 RVA: 0x00092390 File Offset: 0x00090590
 	public void CheckGrudge(ClubType Check)
 	{
 		if (Check == ClubType.Cooking)
@@ -862,7 +862,7 @@ public class ClubManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600127E RID: 4734 RVA: 0x00092658 File Offset: 0x00090858
+	// Token: 0x0600127E RID: 4734 RVA: 0x0009266C File Offset: 0x0009086C
 	public void ActivateClubBenefit()
 	{
 		this.Yandere.WeaponManager.UpdateAllWeapons();
@@ -968,7 +968,7 @@ public class ClubManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600127F RID: 4735 RVA: 0x00092944 File Offset: 0x00090B44
+	// Token: 0x0600127F RID: 4735 RVA: 0x00092958 File Offset: 0x00090B58
 	public void DeactivateClubBenefit()
 	{
 		if (this.Yandere.Club == ClubType.Cooking)
@@ -1080,7 +1080,7 @@ public class ClubManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001280 RID: 4736 RVA: 0x00092CC4 File Offset: 0x00090EC4
+	// Token: 0x06001280 RID: 4736 RVA: 0x00092CD8 File Offset: 0x00090ED8
 	public void UpdateMasks()
 	{
 		bool flag = this.Yandere.Mask != null;

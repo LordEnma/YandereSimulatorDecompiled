@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000345 RID: 837
+// Token: 0x02000346 RID: 838
 public class JukeboxScript : MonoBehaviour
 {
-	// Token: 0x06001927 RID: 6439 RVA: 0x000FABC8 File Offset: 0x000F8DC8
+	// Token: 0x0600192B RID: 6443 RVA: 0x000FAF28 File Offset: 0x000F9128
 	public void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -139,7 +139,7 @@ public class JukeboxScript : MonoBehaviour
 		this.Hitman.time = 26f;
 	}
 
-	// Token: 0x06001928 RID: 6440 RVA: 0x000FAFDC File Offset: 0x000F91DC
+	// Token: 0x0600192C RID: 6444 RVA: 0x000FB33C File Offset: 0x000F953C
 	private void Update()
 	{
 		if (!this.Yandere.PauseScreen.Show && !this.Yandere.EasterEggMenu.activeInHierarchy && Input.GetKeyDown(KeyCode.M))
@@ -388,7 +388,7 @@ public class JukeboxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001929 RID: 6441 RVA: 0x000FBBE8 File Offset: 0x000F9DE8
+	// Token: 0x0600192D RID: 6445 RVA: 0x000FBF48 File Offset: 0x000FA148
 	public void StartStopMusic()
 	{
 		if (this.Custom.isPlaying)
@@ -414,7 +414,7 @@ public class JukeboxScript : MonoBehaviour
 		this.Volume = 0f;
 	}
 
-	// Token: 0x0600192A RID: 6442 RVA: 0x000FBC8D File Offset: 0x000F9E8D
+	// Token: 0x0600192E RID: 6446 RVA: 0x000FBFED File Offset: 0x000FA1ED
 	public void Shipgirl()
 	{
 		this.Egg = true;
@@ -422,7 +422,7 @@ public class JukeboxScript : MonoBehaviour
 		this.AzurLane.enabled = true;
 	}
 
-	// Token: 0x0600192B RID: 6443 RVA: 0x000FBCA8 File Offset: 0x000F9EA8
+	// Token: 0x0600192F RID: 6447 RVA: 0x000FC008 File Offset: 0x000FA208
 	public void MiyukiMusic()
 	{
 		this.Egg = true;
@@ -430,7 +430,7 @@ public class JukeboxScript : MonoBehaviour
 		this.Miyuki.enabled = true;
 	}
 
-	// Token: 0x0600192C RID: 6444 RVA: 0x000FBCC3 File Offset: 0x000F9EC3
+	// Token: 0x06001930 RID: 6448 RVA: 0x000FC023 File Offset: 0x000FA223
 	public void KillVolume()
 	{
 		this.FullSanity.volume = 0f;
@@ -439,7 +439,7 @@ public class JukeboxScript : MonoBehaviour
 		this.Volume = 0.5f;
 	}
 
-	// Token: 0x0600192D RID: 6445 RVA: 0x000FBD00 File Offset: 0x000F9F00
+	// Token: 0x06001931 RID: 6449 RVA: 0x000FC060 File Offset: 0x000FA260
 	public void GameOver()
 	{
 		this.AttackOnTitan.Stop();
@@ -476,7 +476,7 @@ public class JukeboxScript : MonoBehaviour
 		this.NoSanity.Stop();
 	}
 
-	// Token: 0x0600192E RID: 6446 RVA: 0x000FBE6D File Offset: 0x000FA06D
+	// Token: 0x06001932 RID: 6450 RVA: 0x000FC1CD File Offset: 0x000FA3CD
 	public void PlayJojo()
 	{
 		this.Egg = true;
@@ -484,7 +484,7 @@ public class JukeboxScript : MonoBehaviour
 		this.Jojo.enabled = true;
 	}
 
-	// Token: 0x0600192F RID: 6447 RVA: 0x000FBE88 File Offset: 0x000FA088
+	// Token: 0x06001933 RID: 6451 RVA: 0x000FC1E8 File Offset: 0x000FA3E8
 	public void PlayCustom()
 	{
 		this.Egg = true;
@@ -493,315 +493,315 @@ public class JukeboxScript : MonoBehaviour
 		this.Custom.Play();
 	}
 
-	// Token: 0x0400273C RID: 10044
+	// Token: 0x04002740 RID: 10048
 	public YandereScript Yandere;
 
-	// Token: 0x0400273D RID: 10045
+	// Token: 0x04002741 RID: 10049
 	public AudioSource SFX;
 
-	// Token: 0x0400273E RID: 10046
+	// Token: 0x04002742 RID: 10050
 	public AudioSource AttackOnTitan;
 
-	// Token: 0x0400273F RID: 10047
+	// Token: 0x04002743 RID: 10051
 	public AudioSource Megalovania;
 
-	// Token: 0x04002740 RID: 10048
+	// Token: 0x04002744 RID: 10052
 	public AudioSource MissionMode;
 
-	// Token: 0x04002741 RID: 10049
+	// Token: 0x04002745 RID: 10053
 	public AudioSource Skeletons;
 
-	// Token: 0x04002742 RID: 10050
+	// Token: 0x04002746 RID: 10054
 	public AudioSource Vaporwave;
 
-	// Token: 0x04002743 RID: 10051
+	// Token: 0x04002747 RID: 10055
 	public AudioSource AzurLane;
 
-	// Token: 0x04002744 RID: 10052
+	// Token: 0x04002748 RID: 10056
 	public AudioSource LifeNote;
 
-	// Token: 0x04002745 RID: 10053
+	// Token: 0x04002749 RID: 10057
 	public AudioSource Berserk;
 
-	// Token: 0x04002746 RID: 10054
+	// Token: 0x0400274A RID: 10058
 	public AudioSource Metroid;
 
-	// Token: 0x04002747 RID: 10055
+	// Token: 0x0400274B RID: 10059
 	public AudioSource Nuclear;
 
-	// Token: 0x04002748 RID: 10056
+	// Token: 0x0400274C RID: 10060
 	public AudioSource Slender;
 
-	// Token: 0x04002749 RID: 10057
+	// Token: 0x0400274D RID: 10061
 	public AudioSource Sukeban;
 
-	// Token: 0x0400274A RID: 10058
+	// Token: 0x0400274E RID: 10062
 	public AudioSource Custom;
 
-	// Token: 0x0400274B RID: 10059
+	// Token: 0x0400274F RID: 10063
 	public AudioSource Hatred;
 
-	// Token: 0x0400274C RID: 10060
+	// Token: 0x04002750 RID: 10064
 	public AudioSource Hitman;
 
-	// Token: 0x0400274D RID: 10061
+	// Token: 0x04002751 RID: 10065
 	public AudioSource Horror;
 
-	// Token: 0x0400274E RID: 10062
+	// Token: 0x04002752 RID: 10066
 	public AudioSource Touhou;
 
-	// Token: 0x0400274F RID: 10063
+	// Token: 0x04002753 RID: 10067
 	public AudioSource Falcon;
 
-	// Token: 0x04002750 RID: 10064
+	// Token: 0x04002754 RID: 10068
 	public AudioSource Miyuki;
 
-	// Token: 0x04002751 RID: 10065
+	// Token: 0x04002755 RID: 10069
 	public AudioSource Ebola;
 
-	// Token: 0x04002752 RID: 10066
+	// Token: 0x04002756 RID: 10070
 	public AudioSource Demon;
 
-	// Token: 0x04002753 RID: 10067
+	// Token: 0x04002757 RID: 10071
 	public AudioSource Ninja;
 
-	// Token: 0x04002754 RID: 10068
+	// Token: 0x04002758 RID: 10072
 	public AudioSource Punch;
 
-	// Token: 0x04002755 RID: 10069
+	// Token: 0x04002759 RID: 10073
 	public AudioSource Galo;
 
-	// Token: 0x04002756 RID: 10070
+	// Token: 0x0400275A RID: 10074
 	public AudioSource Jojo;
 
-	// Token: 0x04002757 RID: 10071
+	// Token: 0x0400275B RID: 10075
 	public AudioSource Lied;
 
-	// Token: 0x04002758 RID: 10072
+	// Token: 0x0400275C RID: 10076
 	public AudioSource Nier;
 
-	// Token: 0x04002759 RID: 10073
+	// Token: 0x0400275D RID: 10077
 	public AudioSource Sith;
 
-	// Token: 0x0400275A RID: 10074
+	// Token: 0x0400275E RID: 10078
 	public AudioSource DK;
 
-	// Token: 0x0400275B RID: 10075
+	// Token: 0x0400275F RID: 10079
 	public AudioSource Confession;
 
-	// Token: 0x0400275C RID: 10076
+	// Token: 0x04002760 RID: 10080
 	public AudioSource FullSanity;
 
-	// Token: 0x0400275D RID: 10077
+	// Token: 0x04002761 RID: 10081
 	public AudioSource HalfSanity;
 
-	// Token: 0x0400275E RID: 10078
+	// Token: 0x04002762 RID: 10082
 	public AudioSource NoSanity;
 
-	// Token: 0x0400275F RID: 10079
+	// Token: 0x04002763 RID: 10083
 	public AudioSource Chase;
 
-	// Token: 0x04002760 RID: 10080
+	// Token: 0x04002764 RID: 10084
 	public float LastVolume;
 
-	// Token: 0x04002761 RID: 10081
+	// Token: 0x04002765 RID: 10085
 	public float FadeSpeed;
 
-	// Token: 0x04002762 RID: 10082
+	// Token: 0x04002766 RID: 10086
 	public float ClubDip;
 
-	// Token: 0x04002763 RID: 10083
+	// Token: 0x04002767 RID: 10087
 	public float Volume;
 
-	// Token: 0x04002764 RID: 10084
+	// Token: 0x04002768 RID: 10088
 	public float Dip = 1f;
 
-	// Token: 0x04002765 RID: 10085
+	// Token: 0x04002769 RID: 10089
 	public int BGMLimit = 12;
 
-	// Token: 0x04002766 RID: 10086
+	// Token: 0x0400276A RID: 10090
 	public int Track;
 
-	// Token: 0x04002767 RID: 10087
+	// Token: 0x0400276B RID: 10091
 	public int BGM;
 
-	// Token: 0x04002768 RID: 10088
+	// Token: 0x0400276C RID: 10092
 	public bool Initialized;
 
-	// Token: 0x04002769 RID: 10089
+	// Token: 0x0400276D RID: 10093
 	public bool StartMusic;
 
-	// Token: 0x0400276A RID: 10090
+	// Token: 0x0400276E RID: 10094
 	public bool Egg;
 
-	// Token: 0x0400276B RID: 10091
+	// Token: 0x0400276F RID: 10095
 	public AudioClip[] FullSanities;
 
-	// Token: 0x0400276C RID: 10092
+	// Token: 0x04002770 RID: 10096
 	public AudioClip[] HalfSanities;
 
-	// Token: 0x0400276D RID: 10093
+	// Token: 0x04002771 RID: 10097
 	public AudioClip[] NoSanities;
 
-	// Token: 0x0400276E RID: 10094
+	// Token: 0x04002772 RID: 10098
 	public AudioClip[] OriginalFull;
 
-	// Token: 0x0400276F RID: 10095
+	// Token: 0x04002773 RID: 10099
 	public AudioClip[] OriginalHalf;
 
-	// Token: 0x04002770 RID: 10096
+	// Token: 0x04002774 RID: 10100
 	public AudioClip[] OriginalNo;
 
-	// Token: 0x04002771 RID: 10097
+	// Token: 0x04002775 RID: 10101
 	public AudioClip[] AlternateFull;
 
-	// Token: 0x04002772 RID: 10098
+	// Token: 0x04002776 RID: 10102
 	public AudioClip[] AlternateHalf;
 
-	// Token: 0x04002773 RID: 10099
+	// Token: 0x04002777 RID: 10103
 	public AudioClip[] AlternateNo;
 
-	// Token: 0x04002774 RID: 10100
+	// Token: 0x04002778 RID: 10104
 	public AudioClip[] ThirdFull;
 
-	// Token: 0x04002775 RID: 10101
+	// Token: 0x04002779 RID: 10105
 	public AudioClip[] ThirdHalf;
 
-	// Token: 0x04002776 RID: 10102
+	// Token: 0x0400277A RID: 10106
 	public AudioClip[] ThirdNo;
 
-	// Token: 0x04002777 RID: 10103
+	// Token: 0x0400277B RID: 10107
 	public AudioClip[] FourthFull;
 
-	// Token: 0x04002778 RID: 10104
+	// Token: 0x0400277C RID: 10108
 	public AudioClip[] FourthHalf;
 
-	// Token: 0x04002779 RID: 10105
+	// Token: 0x0400277D RID: 10109
 	public AudioClip[] FourthNo;
 
-	// Token: 0x0400277A RID: 10106
+	// Token: 0x0400277E RID: 10110
 	public AudioClip[] FifthFull;
 
-	// Token: 0x0400277B RID: 10107
+	// Token: 0x0400277F RID: 10111
 	public AudioClip[] FifthHalf;
 
-	// Token: 0x0400277C RID: 10108
+	// Token: 0x04002780 RID: 10112
 	public AudioClip[] FifthNo;
 
-	// Token: 0x0400277D RID: 10109
+	// Token: 0x04002781 RID: 10113
 	public AudioClip[] SixthFull;
 
-	// Token: 0x0400277E RID: 10110
+	// Token: 0x04002782 RID: 10114
 	public AudioClip[] SixthHalf;
 
-	// Token: 0x0400277F RID: 10111
+	// Token: 0x04002783 RID: 10115
 	public AudioClip[] SixthNo;
 
-	// Token: 0x04002780 RID: 10112
+	// Token: 0x04002784 RID: 10116
 	public AudioClip[] SeventhFull;
 
-	// Token: 0x04002781 RID: 10113
+	// Token: 0x04002785 RID: 10117
 	public AudioClip[] SeventhHalf;
 
-	// Token: 0x04002782 RID: 10114
+	// Token: 0x04002786 RID: 10118
 	public AudioClip[] SeventhNo;
 
-	// Token: 0x04002783 RID: 10115
+	// Token: 0x04002787 RID: 10119
 	public AudioClip[] EighthFull;
 
-	// Token: 0x04002784 RID: 10116
+	// Token: 0x04002788 RID: 10120
 	public AudioClip[] EighthHalf;
 
-	// Token: 0x04002785 RID: 10117
+	// Token: 0x04002789 RID: 10121
 	public AudioClip[] EighthNo;
 
-	// Token: 0x04002786 RID: 10118
+	// Token: 0x0400278A RID: 10122
 	public AudioClip[] NinthFull;
 
-	// Token: 0x04002787 RID: 10119
+	// Token: 0x0400278B RID: 10123
 	public AudioClip[] NinthHalf;
 
-	// Token: 0x04002788 RID: 10120
+	// Token: 0x0400278C RID: 10124
 	public AudioClip[] NinthNo;
 
-	// Token: 0x04002789 RID: 10121
+	// Token: 0x0400278D RID: 10125
 	public AudioClip[] TenthFull;
 
-	// Token: 0x0400278A RID: 10122
+	// Token: 0x0400278E RID: 10126
 	public AudioClip[] TenthHalf;
 
-	// Token: 0x0400278B RID: 10123
+	// Token: 0x0400278F RID: 10127
 	public AudioClip[] TenthNo;
 
-	// Token: 0x0400278C RID: 10124
+	// Token: 0x04002790 RID: 10128
 	public AudioClip[] EleventhFull;
 
-	// Token: 0x0400278D RID: 10125
+	// Token: 0x04002791 RID: 10129
 	public AudioClip[] EleventhHalf;
 
-	// Token: 0x0400278E RID: 10126
+	// Token: 0x04002792 RID: 10130
 	public AudioClip[] EleventhNo;
 
-	// Token: 0x0400278F RID: 10127
+	// Token: 0x04002793 RID: 10131
 	public AudioClip[] TwelfthFull;
 
-	// Token: 0x04002790 RID: 10128
+	// Token: 0x04002794 RID: 10132
 	public AudioClip[] TwelfthHalf;
 
-	// Token: 0x04002791 RID: 10129
+	// Token: 0x04002795 RID: 10133
 	public AudioClip[] TwelfthNo;
 
-	// Token: 0x04002792 RID: 10130
+	// Token: 0x04002796 RID: 10134
 	public AudioClip[] EightiesOneFull;
 
-	// Token: 0x04002793 RID: 10131
+	// Token: 0x04002797 RID: 10135
 	public AudioClip[] EightiesOneHalf;
 
-	// Token: 0x04002794 RID: 10132
+	// Token: 0x04002798 RID: 10136
 	public AudioClip[] EightiesOneNo;
 
-	// Token: 0x04002795 RID: 10133
+	// Token: 0x04002799 RID: 10137
 	public AudioClip[] EightiesTwoFull;
 
-	// Token: 0x04002796 RID: 10134
+	// Token: 0x0400279A RID: 10138
 	public AudioClip[] EightiesTwoHalf;
 
-	// Token: 0x04002797 RID: 10135
+	// Token: 0x0400279B RID: 10139
 	public AudioClip[] EightiesTwoNo;
 
-	// Token: 0x04002798 RID: 10136
+	// Token: 0x0400279C RID: 10140
 	public AudioClip[] EightiesThreeFull;
 
-	// Token: 0x04002799 RID: 10137
+	// Token: 0x0400279D RID: 10141
 	public AudioClip[] EightiesThreeHalf;
 
-	// Token: 0x0400279A RID: 10138
+	// Token: 0x0400279E RID: 10142
 	public AudioClip[] EightiesThreeNo;
 
-	// Token: 0x0400279B RID: 10139
+	// Token: 0x0400279F RID: 10143
 	public AudioClip[] EightiesFourFull;
 
-	// Token: 0x0400279C RID: 10140
+	// Token: 0x040027A0 RID: 10144
 	public AudioClip[] EightiesFourHalf;
 
-	// Token: 0x0400279D RID: 10141
+	// Token: 0x040027A1 RID: 10145
 	public AudioClip[] EightiesFourNo;
 
-	// Token: 0x0400279E RID: 10142
+	// Token: 0x040027A2 RID: 10146
 	public AudioClip[] EightiesFiveFull;
 
-	// Token: 0x0400279F RID: 10143
+	// Token: 0x040027A3 RID: 10147
 	public AudioClip[] EightiesFiveHalf;
 
-	// Token: 0x040027A0 RID: 10144
+	// Token: 0x040027A4 RID: 10148
 	public AudioClip[] EightiesFiveNo;
 
-	// Token: 0x040027A1 RID: 10145
+	// Token: 0x040027A5 RID: 10149
 	public AudioClip[] EightiesSixFull;
 
-	// Token: 0x040027A2 RID: 10146
+	// Token: 0x040027A6 RID: 10150
 	public AudioClip[] EightiesSixHalf;
 
-	// Token: 0x040027A3 RID: 10147
+	// Token: 0x040027A7 RID: 10151
 	public AudioClip[] EightiesSixNo;
 }

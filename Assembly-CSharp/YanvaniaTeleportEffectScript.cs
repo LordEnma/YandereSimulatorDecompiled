@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004DA RID: 1242
+// Token: 0x020004DC RID: 1244
 public class YanvaniaTeleportEffectScript : MonoBehaviour
 {
-	// Token: 0x06002081 RID: 8321 RVA: 0x001DC2C0 File Offset: 0x001DA4C0
+	// Token: 0x0600208C RID: 8332 RVA: 0x001DCC60 File Offset: 0x001DAE60
 	private void Start()
 	{
 		this.FirstBeam.material.color = new Color(this.FirstBeam.material.color.r, this.FirstBeam.material.color.g, this.FirstBeam.material.color.b, 0f);
@@ -13,26 +13,26 @@ public class YanvaniaTeleportEffectScript : MonoBehaviour
 		this.SecondBeamParent.transform.localScale = new Vector3(this.SecondBeamParent.transform.localScale.x, 0f, this.SecondBeamParent.transform.localScale.z);
 	}
 
-	// Token: 0x06002082 RID: 8322 RVA: 0x001DC3F7 File Offset: 0x001DA5F7
+	// Token: 0x0600208D RID: 8333 RVA: 0x001DCD97 File Offset: 0x001DAF97
 	private void Update()
 	{
 	}
 
-	// Token: 0x0400472D RID: 18221
+	// Token: 0x04004741 RID: 18241
 	public YanvaniaDraculaScript Dracula;
 
-	// Token: 0x0400472E RID: 18222
+	// Token: 0x04004742 RID: 18242
 	public Transform SecondBeamParent;
 
-	// Token: 0x0400472F RID: 18223
+	// Token: 0x04004743 RID: 18243
 	public Renderer SecondBeam;
 
-	// Token: 0x04004730 RID: 18224
+	// Token: 0x04004744 RID: 18244
 	public Renderer FirstBeam;
 
-	// Token: 0x04004731 RID: 18225
+	// Token: 0x04004745 RID: 18245
 	public bool InformedDracula;
 
-	// Token: 0x04004732 RID: 18226
+	// Token: 0x04004746 RID: 18246
 	public float Timer;
 }

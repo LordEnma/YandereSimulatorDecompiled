@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000243 RID: 579
 public class ChemistScannerScript : MonoBehaviour
 {
-	// Token: 0x06001248 RID: 4680 RVA: 0x0008C3EC File Offset: 0x0008A5EC
+	// Token: 0x06001248 RID: 4680 RVA: 0x0008C400 File Offset: 0x0008A600
 	private void Update()
 	{
 		if (this.Student.Ragdoll != null && this.Student.Ragdoll.enabled)

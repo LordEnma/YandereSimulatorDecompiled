@@ -3,21 +3,25 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-// Token: 0x02000343 RID: 835
+// Token: 0x02000344 RID: 836
 [Serializable]
 public class TopicJson : JsonData
 {
 	// Token: 0x1700048F RID: 1167
-	// (get) Token: 0x0600191D RID: 6429 RVA: 0x000FA8CD File Offset: 0x000F8ACD
+	// (get) Token: 0x06001921 RID: 6433 RVA: 0x000FAC15 File Offset: 0x000F8E15
 	public static string FilePath
 	{
 		get
 		{
-			return Path.Combine(JsonData.FolderPath, "Topics.json");
+			if (!GameGlobals.Eighties)
+			{
+				return Path.Combine(JsonData.FolderPath, "Topics.json");
+			}
+			return Path.Combine(JsonData.FolderPath, "EightiesTopics.json");
 		}
 	}
 
-	// Token: 0x0600191E RID: 6430 RVA: 0x000FA8E0 File Offset: 0x000F8AE0
+	// Token: 0x06001922 RID: 6434 RVA: 0x000FAC40 File Offset: 0x000F8E40
 	public static TopicJson[] LoadFromJson(string path)
 	{
 		TopicJson[] array = new TopicJson[101];
@@ -40,7 +44,7 @@ public class TopicJson : JsonData
 	}
 
 	// Token: 0x17000490 RID: 1168
-	// (get) Token: 0x0600191F RID: 6431 RVA: 0x000FA965 File Offset: 0x000F8B65
+	// (get) Token: 0x06001923 RID: 6435 RVA: 0x000FACC5 File Offset: 0x000F8EC5
 	public int[] Topics
 	{
 		get
@@ -49,7 +53,7 @@ public class TopicJson : JsonData
 		}
 	}
 
-	// Token: 0x04002738 RID: 10040
+	// Token: 0x0400273C RID: 10044
 	[SerializeField]
 	private int[] topics;
 }

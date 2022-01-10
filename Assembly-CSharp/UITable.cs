@@ -266,33 +266,33 @@ public class UITable : UIWidgetContainer
 	// Token: 0x0400044A RID: 1098
 	protected bool mReposition;
 
-	// Token: 0x020005DF RID: 1503
-	// (Invoke) Token: 0x06002516 RID: 9494
+	// Token: 0x020005E1 RID: 1505
+	// (Invoke) Token: 0x06002521 RID: 9505
 	public delegate void OnReposition();
 
-	// Token: 0x020005E0 RID: 1504
+	// Token: 0x020005E2 RID: 1506
 	[DoNotObfuscateNGUI]
 	public enum Direction
 	{
-		// Token: 0x04004D67 RID: 19815
+		// Token: 0x04004D7B RID: 19835
 		Down,
-		// Token: 0x04004D68 RID: 19816
+		// Token: 0x04004D7C RID: 19836
 		Up
 	}
 
-	// Token: 0x020005E1 RID: 1505
+	// Token: 0x020005E3 RID: 1507
 	[DoNotObfuscateNGUI]
 	public enum Sorting
 	{
-		// Token: 0x04004D6A RID: 19818
+		// Token: 0x04004D7E RID: 19838
 		None,
-		// Token: 0x04004D6B RID: 19819
+		// Token: 0x04004D7F RID: 19839
 		Alphabetic,
-		// Token: 0x04004D6C RID: 19820
+		// Token: 0x04004D80 RID: 19840
 		Horizontal,
-		// Token: 0x04004D6D RID: 19821
+		// Token: 0x04004D81 RID: 19841
 		Vertical,
-		// Token: 0x04004D6E RID: 19822
+		// Token: 0x04004D82 RID: 19842
 		Custom
 	}
 }

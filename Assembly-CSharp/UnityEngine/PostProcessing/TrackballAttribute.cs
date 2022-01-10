@@ -2,16 +2,16 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200054C RID: 1356
+	// Token: 0x0200054E RID: 1358
 	public sealed class TrackballAttribute : PropertyAttribute
 	{
-		// Token: 0x0600228C RID: 8844 RVA: 0x001ED2DF File Offset: 0x001EB4DF
+		// Token: 0x06002297 RID: 8855 RVA: 0x001EDC7F File Offset: 0x001EBE7F
 		public TrackballAttribute(string method)
 		{
 			this.method = method;
 		}
 
-		// Token: 0x04004A8F RID: 19087
+		// Token: 0x04004AA3 RID: 19107
 		public readonly string method;
 	}
 }

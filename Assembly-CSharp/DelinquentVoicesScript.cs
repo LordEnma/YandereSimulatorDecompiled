@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200027A RID: 634
 public class DelinquentVoicesScript : MonoBehaviour
 {
-	// Token: 0x0600136D RID: 4973 RVA: 0x000B256A File Offset: 0x000B076A
+	// Token: 0x0600136D RID: 4973 RVA: 0x000B2586 File Offset: 0x000B0786
 	private void Start()
 	{
 		this.Timer = 5f;
 	}
 
-	// Token: 0x0600136E RID: 4974 RVA: 0x000B2578 File Offset: 0x000B0778
+	// Token: 0x0600136E RID: 4974 RVA: 0x000B2594 File Offset: 0x000B0794
 	private void Update()
 	{
 		if (this.Radio != null)

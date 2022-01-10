@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020000DA RID: 218
 public class AudioMenuScript : MonoBehaviour
 {
-	// Token: 0x06000A04 RID: 2564 RVA: 0x0005645B File Offset: 0x0005465B
+	// Token: 0x06000A04 RID: 2564 RVA: 0x0005646F File Offset: 0x0005466F
 	private void Start()
 	{
 		this.UpdateText();
 	}
 
-	// Token: 0x06000A05 RID: 2565 RVA: 0x00056464 File Offset: 0x00054664
+	// Token: 0x06000A05 RID: 2565 RVA: 0x00056478 File Offset: 0x00054678
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.C))
@@ -82,7 +82,7 @@ public class AudioMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A06 RID: 2566 RVA: 0x00056694 File Offset: 0x00054894
+	// Token: 0x06000A06 RID: 2566 RVA: 0x000566A8 File Offset: 0x000548A8
 	public void UpdateText()
 	{
 		if (this.Jukebox != null)
@@ -98,7 +98,7 @@ public class AudioMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A07 RID: 2567 RVA: 0x0005673C File Offset: 0x0005493C
+	// Token: 0x06000A07 RID: 2567 RVA: 0x00056750 File Offset: 0x00054950
 	private void UpdateHighlight()
 	{
 		if (this.Selected == 0)

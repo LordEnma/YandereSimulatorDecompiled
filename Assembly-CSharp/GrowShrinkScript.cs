@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000307 RID: 775
+// Token: 0x02000308 RID: 776
 public class GrowShrinkScript : MonoBehaviour
 {
-	// Token: 0x0600181C RID: 6172 RVA: 0x000E4240 File Offset: 0x000E2440
+	// Token: 0x06001820 RID: 6176 RVA: 0x000E4568 File Offset: 0x000E2768
 	private void Start()
 	{
 		this.OriginalPosition = base.transform.localPosition;
 		base.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x0600181D RID: 6173 RVA: 0x000E4264 File Offset: 0x000E2464
+	// Token: 0x06001821 RID: 6177 RVA: 0x000E458C File Offset: 0x000E278C
 	private void Update()
 	{
 		this.Timer += Time.deltaTime * 2f;
@@ -51,7 +51,7 @@ public class GrowShrinkScript : MonoBehaviour
 		base.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
 	}
 
-	// Token: 0x0600181E RID: 6174 RVA: 0x000E4424 File Offset: 0x000E2624
+	// Token: 0x06001822 RID: 6178 RVA: 0x000E474C File Offset: 0x000E294C
 	public void Return()
 	{
 		base.transform.localPosition = this.OriginalPosition;
@@ -67,33 +67,33 @@ public class GrowShrinkScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x040022FA RID: 8954
+	// Token: 0x040022FE RID: 8958
 	public float FallSpeed;
 
-	// Token: 0x040022FB RID: 8955
+	// Token: 0x040022FF RID: 8959
 	public float Threshold = 1f;
 
-	// Token: 0x040022FC RID: 8956
+	// Token: 0x04002300 RID: 8960
 	public float Slowdown = 0.5f;
 
-	// Token: 0x040022FD RID: 8957
+	// Token: 0x04002301 RID: 8961
 	public float Strength = 1f;
 
-	// Token: 0x040022FE RID: 8958
+	// Token: 0x04002302 RID: 8962
 	public float Target = 1f;
 
-	// Token: 0x040022FF RID: 8959
+	// Token: 0x04002303 RID: 8963
 	public float Scale;
 
-	// Token: 0x04002300 RID: 8960
+	// Token: 0x04002304 RID: 8964
 	public float Speed = 5f;
 
-	// Token: 0x04002301 RID: 8961
+	// Token: 0x04002305 RID: 8965
 	public float Timer;
 
-	// Token: 0x04002302 RID: 8962
+	// Token: 0x04002306 RID: 8966
 	public bool Shrink;
 
-	// Token: 0x04002303 RID: 8963
+	// Token: 0x04002307 RID: 8967
 	public Vector3 OriginalPosition;
 }

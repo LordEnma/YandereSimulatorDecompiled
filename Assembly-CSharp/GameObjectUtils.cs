@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000494 RID: 1172
+// Token: 0x02000496 RID: 1174
 public static class GameObjectUtils
 {
-	// Token: 0x06001F34 RID: 7988 RVA: 0x001B7104 File Offset: 0x001B5304
+	// Token: 0x06001F3F RID: 7999 RVA: 0x001B7A84 File Offset: 0x001B5C84
 	public static void SetLayerRecursively(GameObject obj, int newLayer)
 	{
 		obj.layer = newLayer;
@@ -14,7 +14,7 @@ public static class GameObjectUtils
 		}
 	}
 
-	// Token: 0x06001F35 RID: 7989 RVA: 0x001B7168 File Offset: 0x001B5368
+	// Token: 0x06001F40 RID: 8000 RVA: 0x001B7AE8 File Offset: 0x001B5CE8
 	public static void SetTagRecursively(GameObject obj, string newTag)
 	{
 		obj.tag = newTag;

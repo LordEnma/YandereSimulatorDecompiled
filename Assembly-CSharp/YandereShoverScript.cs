@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004C9 RID: 1225
+// Token: 0x020004CB RID: 1227
 public class YandereShoverScript : MonoBehaviour
 {
-	// Token: 0x0600204F RID: 8271 RVA: 0x001D9CA0 File Offset: 0x001D7EA0
+	// Token: 0x0600205A RID: 8282 RVA: 0x001DA640 File Offset: 0x001D8840
 	private void OnTriggerStay(Collider other)
 	{
 		if (other.gameObject.layer == 13)
@@ -64,9 +64,9 @@ public class YandereShoverScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040046BE RID: 18110
+	// Token: 0x040046D2 RID: 18130
 	public YandereScript Yandere;
 
-	// Token: 0x040046BF RID: 18111
+	// Token: 0x040046D3 RID: 18131
 	public bool PreventNudity;
 }

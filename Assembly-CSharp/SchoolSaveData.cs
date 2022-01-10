@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x020003FF RID: 1023
+// Token: 0x02000401 RID: 1025
 [Serializable]
 public class SchoolSaveData
 {
-	// Token: 0x06001C06 RID: 7174 RVA: 0x00144A6C File Offset: 0x00142C6C
+	// Token: 0x06001C0D RID: 7181 RVA: 0x00144DE0 File Offset: 0x00142FE0
 	public static SchoolSaveData ReadFromGlobals()
 	{
 		SchoolSaveData schoolSaveData = new SchoolSaveData();
@@ -31,7 +31,7 @@ public class SchoolSaveData
 		return schoolSaveData;
 	}
 
-	// Token: 0x06001C07 RID: 7175 RVA: 0x00144B20 File Offset: 0x00142D20
+	// Token: 0x06001C0E RID: 7182 RVA: 0x00144E94 File Offset: 0x00143094
 	public static void WriteToGlobals(SchoolSaveData data)
 	{
 		foreach (int demonID in data.demonActive)
@@ -50,27 +50,27 @@ public class SchoolSaveData
 		SchoolGlobals.SCP = data.scp;
 	}
 
-	// Token: 0x0400313C RID: 12604
+	// Token: 0x04003142 RID: 12610
 	public IntHashSet demonActive = new IntHashSet();
 
-	// Token: 0x0400313D RID: 12605
+	// Token: 0x04003143 RID: 12611
 	public IntHashSet gardenGraveOccupied = new IntHashSet();
 
-	// Token: 0x0400313E RID: 12606
+	// Token: 0x04003144 RID: 12612
 	public int kidnapVictim;
 
-	// Token: 0x0400313F RID: 12607
+	// Token: 0x04003145 RID: 12613
 	public int population;
 
-	// Token: 0x04003140 RID: 12608
+	// Token: 0x04003146 RID: 12614
 	public bool roofFence;
 
-	// Token: 0x04003141 RID: 12609
+	// Token: 0x04003147 RID: 12615
 	public float schoolAtmosphere;
 
-	// Token: 0x04003142 RID: 12610
+	// Token: 0x04003148 RID: 12616
 	public bool schoolAtmosphereSet;
 
-	// Token: 0x04003143 RID: 12611
+	// Token: 0x04003149 RID: 12617
 	public bool scp;
 }

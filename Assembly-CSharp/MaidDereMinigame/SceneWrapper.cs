@@ -5,11 +5,11 @@ using UnityEngine.SceneManagement;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005A4 RID: 1444
+	// Token: 0x020005A6 RID: 1446
 	[CreateAssetMenu(fileName = "New Scene Wrapper", menuName = "Scenes/New Scene Wrapper")]
 	public class SceneWrapper : ScriptableObject
 	{
-		// Token: 0x0600246F RID: 9327 RVA: 0x001F88D4 File Offset: 0x001F6AD4
+		// Token: 0x0600247A RID: 9338 RVA: 0x001F9274 File Offset: 0x001F7474
 		public SceneObject GetSceneByBuildIndex(int buildIndex)
 		{
 			foreach (SceneObject sceneObject in this.m_Scenes)
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			return null;
 		}
 
-		// Token: 0x06002470 RID: 9328 RVA: 0x001F892C File Offset: 0x001F6B2C
+		// Token: 0x0600247B RID: 9339 RVA: 0x001F92CC File Offset: 0x001F74CC
 		public SceneObject GetSceneByName(string name)
 		{
 			foreach (SceneObject sceneObject in this.m_Scenes)
@@ -35,13 +35,13 @@ namespace MaidDereMinigame
 			return null;
 		}
 
-		// Token: 0x06002471 RID: 9329 RVA: 0x001F8988 File Offset: 0x001F6B88
+		// Token: 0x0600247C RID: 9340 RVA: 0x001F9328 File Offset: 0x001F7528
 		public static void LoadScene(SceneObject sceneObject)
 		{
 			GameController.Scenes.LoadLevel(sceneObject);
 		}
 
-		// Token: 0x06002472 RID: 9330 RVA: 0x001F8998 File Offset: 0x001F6B98
+		// Token: 0x0600247D RID: 9341 RVA: 0x001F9338 File Offset: 0x001F7538
 		public void LoadLevel(SceneObject sceneObject)
 		{
 			int num = -1;
@@ -60,7 +60,7 @@ namespace MaidDereMinigame
 			SceneManager.LoadScene(num);
 		}
 
-		// Token: 0x06002473 RID: 9331 RVA: 0x001F89F8 File Offset: 0x001F6BF8
+		// Token: 0x0600247E RID: 9342 RVA: 0x001F9398 File Offset: 0x001F7598
 		public int GetSceneID(SceneObject scene)
 		{
 			for (int i = 0; i < this.m_Scenes.Count; i++)
@@ -73,13 +73,13 @@ namespace MaidDereMinigame
 			return -1;
 		}
 
-		// Token: 0x06002474 RID: 9332 RVA: 0x001F8A32 File Offset: 0x001F6C32
+		// Token: 0x0600247F RID: 9343 RVA: 0x001F93D2 File Offset: 0x001F75D2
 		public SceneObject GetSceneByIndex(int scene)
 		{
 			return this.m_Scenes[scene];
 		}
 
-		// Token: 0x04004C28 RID: 19496
+		// Token: 0x04004C3C RID: 19516
 		[Reorderable]
 		public SceneObjectMetaData m_Scenes;
 	}

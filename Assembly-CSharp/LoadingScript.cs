@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000352 RID: 850
+// Token: 0x02000353 RID: 851
 public class LoadingScript : MonoBehaviour
 {
-	// Token: 0x0600195A RID: 6490 RVA: 0x0010039A File Offset: 0x000FE59A
+	// Token: 0x0600195E RID: 6494 RVA: 0x001006FA File Offset: 0x000FE8FA
 	private void Start()
 	{
 		SceneManager.LoadScene("SchoolScene");

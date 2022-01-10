@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002F5 RID: 757
+// Token: 0x020002F6 RID: 758
 public static class SaveFileGlobals
 {
 	// Token: 0x17000419 RID: 1049
-	// (get) Token: 0x060016DF RID: 5855 RVA: 0x000DE4A0 File Offset: 0x000DC6A0
-	// (set) Token: 0x060016E0 RID: 5856 RVA: 0x000DE4D0 File Offset: 0x000DC6D0
+	// (get) Token: 0x060016E3 RID: 5859 RVA: 0x000DE7C8 File Offset: 0x000DC9C8
+	// (set) Token: 0x060016E4 RID: 5860 RVA: 0x000DE7F8 File Offset: 0x000DC9F8
 	public static int CurrentSaveFile
 	{
 		get
@@ -19,12 +19,12 @@ public static class SaveFileGlobals
 		}
 	}
 
-	// Token: 0x060016E1 RID: 5857 RVA: 0x000DE500 File Offset: 0x000DC700
+	// Token: 0x060016E5 RID: 5861 RVA: 0x000DE828 File Offset: 0x000DCA28
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CurrentSaveFile");
 	}
 
-	// Token: 0x0400224D RID: 8781
+	// Token: 0x04002251 RID: 8785
 	private const string Str_CurrentSaveFile = "CurrentSaveFile";
 }

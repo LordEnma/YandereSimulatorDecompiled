@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000350 RID: 848
+// Token: 0x02000351 RID: 849
 public class ListScript : MonoBehaviour
 {
-	// Token: 0x06001950 RID: 6480 RVA: 0x000FDB08 File Offset: 0x000FBD08
+	// Token: 0x06001954 RID: 6484 RVA: 0x000FDE68 File Offset: 0x000FC068
 	public void Start()
 	{
 		if (this.AutoFill)
@@ -16,9 +16,9 @@ public class ListScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002806 RID: 10246
+	// Token: 0x0400280A RID: 10250
 	public Transform[] List;
 
-	// Token: 0x04002807 RID: 10247
+	// Token: 0x0400280B RID: 10251
 	public bool AutoFill;
 }

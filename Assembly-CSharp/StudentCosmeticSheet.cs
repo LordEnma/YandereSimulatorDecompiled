@@ -2,42 +2,42 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200044C RID: 1100
+// Token: 0x0200044E RID: 1102
 public struct StudentCosmeticSheet
 {
-	// Token: 0x04003563 RID: 13667
+	// Token: 0x04003577 RID: 13687
 	public int Gender;
 
-	// Token: 0x04003564 RID: 13668
+	// Token: 0x04003578 RID: 13688
 	public int Hairstyle;
 
-	// Token: 0x04003565 RID: 13669
+	// Token: 0x04003579 RID: 13689
 	public int Accessory;
 
-	// Token: 0x04003566 RID: 13670
+	// Token: 0x0400357A RID: 13690
 	public float BreastSize;
 
-	// Token: 0x04003567 RID: 13671
+	// Token: 0x0400357B RID: 13691
 	public string Stockings;
 
-	// Token: 0x04003568 RID: 13672
+	// Token: 0x0400357C RID: 13692
 	public Color HairColor;
 
-	// Token: 0x04003569 RID: 13673
+	// Token: 0x0400357D RID: 13693
 	public Color EyeColor;
 
-	// Token: 0x0400356A RID: 13674
+	// Token: 0x0400357E RID: 13694
 	public List<float> Blendshapes;
 
-	// Token: 0x0400356B RID: 13675
+	// Token: 0x0400357F RID: 13695
 	public bool Male;
 
-	// Token: 0x0400356C RID: 13676
+	// Token: 0x04003580 RID: 13696
 	public bool CustomHair;
 
-	// Token: 0x0400356D RID: 13677
+	// Token: 0x04003581 RID: 13697
 	public bool Bloody;
 
-	// Token: 0x0400356E RID: 13678
+	// Token: 0x04003582 RID: 13698
 	public int Schoolwear;
 }

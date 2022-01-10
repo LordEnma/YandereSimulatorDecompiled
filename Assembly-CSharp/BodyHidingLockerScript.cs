@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000EE RID: 238
 public class BodyHidingLockerScript : MonoBehaviour
 {
-	// Token: 0x06000A4C RID: 2636 RVA: 0x0005B48C File Offset: 0x0005968C
+	// Token: 0x06000A4C RID: 2636 RVA: 0x0005B4A0 File Offset: 0x000596A0
 	private void Update()
 	{
 		if (this.Rotation != 0f)
@@ -118,7 +118,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A4D RID: 2637 RVA: 0x0005BA38 File Offset: 0x00059C38
+	// Token: 0x06000A4D RID: 2637 RVA: 0x0005BA4C File Offset: 0x00059C4C
 	public void UpdateCorpse()
 	{
 		this.Corpse = this.StudentManager.Students[this.StudentID].Ragdoll;

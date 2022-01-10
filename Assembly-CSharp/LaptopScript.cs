@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200034A RID: 842
+// Token: 0x0200034B RID: 843
 public class LaptopScript : MonoBehaviour
 {
-	// Token: 0x0600193C RID: 6460 RVA: 0x000FC684 File Offset: 0x000FA884
+	// Token: 0x06001940 RID: 6464 RVA: 0x000FC9E4 File Offset: 0x000FABE4
 	private void Start()
 	{
 		if (SchoolGlobals.SCP || GameGlobals.AlphabetMode)
@@ -22,7 +22,7 @@ public class LaptopScript : MonoBehaviour
 		this.MyAudio = base.GetComponent<AudioSource>();
 	}
 
-	// Token: 0x0600193D RID: 6461 RVA: 0x000FC728 File Offset: 0x000FA928
+	// Token: 0x06001941 RID: 6465 RVA: 0x000FCA88 File Offset: 0x000FAC88
 	private void Update()
 	{
 		if (this.FirstFrame == 2)
@@ -98,7 +98,7 @@ public class LaptopScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600193E RID: 6462 RVA: 0x000FCABC File Offset: 0x000FACBC
+	// Token: 0x06001942 RID: 6466 RVA: 0x000FCE1C File Offset: 0x000FB01C
 	private void TurnOff()
 	{
 		this.MyAudio.clip = this.ShutDown;
@@ -111,54 +111,54 @@ public class LaptopScript : MonoBehaviour
 		this.Off = true;
 	}
 
-	// Token: 0x040027BF RID: 10175
+	// Token: 0x040027C3 RID: 10179
 	public SkinnedMeshRenderer SCPRenderer;
 
-	// Token: 0x040027C0 RID: 10176
+	// Token: 0x040027C4 RID: 10180
 	public Camera LaptopCamera;
 
-	// Token: 0x040027C1 RID: 10177
+	// Token: 0x040027C5 RID: 10181
 	public JukeboxScript Jukebox;
 
-	// Token: 0x040027C2 RID: 10178
+	// Token: 0x040027C6 RID: 10182
 	public YandereScript Yandere;
 
-	// Token: 0x040027C3 RID: 10179
+	// Token: 0x040027C7 RID: 10183
 	public AudioSource MyAudio;
 
-	// Token: 0x040027C4 RID: 10180
+	// Token: 0x040027C8 RID: 10184
 	public DynamicBone Hair;
 
-	// Token: 0x040027C5 RID: 10181
+	// Token: 0x040027C9 RID: 10185
 	public Transform LaptopScreen;
 
-	// Token: 0x040027C6 RID: 10182
+	// Token: 0x040027CA RID: 10186
 	public AudioClip ShutDown;
 
-	// Token: 0x040027C7 RID: 10183
+	// Token: 0x040027CB RID: 10187
 	public GameObject SCP;
 
-	// Token: 0x040027C8 RID: 10184
+	// Token: 0x040027CC RID: 10188
 	public bool React;
 
-	// Token: 0x040027C9 RID: 10185
+	// Token: 0x040027CD RID: 10189
 	public bool Off;
 
-	// Token: 0x040027CA RID: 10186
+	// Token: 0x040027CE RID: 10190
 	public float[] Cues;
 
-	// Token: 0x040027CB RID: 10187
+	// Token: 0x040027CF RID: 10191
 	public string[] Subs;
 
-	// Token: 0x040027CC RID: 10188
+	// Token: 0x040027D0 RID: 10192
 	public Mesh[] Uniforms;
 
-	// Token: 0x040027CD RID: 10189
+	// Token: 0x040027D1 RID: 10193
 	public int FirstFrame;
 
-	// Token: 0x040027CE RID: 10190
+	// Token: 0x040027D2 RID: 10194
 	public float Timer;
 
-	// Token: 0x040027CF RID: 10191
+	// Token: 0x040027D3 RID: 10195
 	public UILabel EventSubtitle;
 }

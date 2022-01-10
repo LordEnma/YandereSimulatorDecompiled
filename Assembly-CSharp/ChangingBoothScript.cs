@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200023D RID: 573
 public class ChangingBoothScript : MonoBehaviour
 {
-	// Token: 0x06001238 RID: 4664 RVA: 0x0008B972 File Offset: 0x00089B72
+	// Token: 0x06001238 RID: 4664 RVA: 0x0008B986 File Offset: 0x00089B86
 	private void Start()
 	{
 		this.CheckYandereClub();
 	}
 
-	// Token: 0x06001239 RID: 4665 RVA: 0x0008B97C File Offset: 0x00089B7C
+	// Token: 0x06001239 RID: 4665 RVA: 0x0008B990 File Offset: 0x00089B90
 	private void Update()
 	{
 		if (!this.Occupied && this.Prompt.Circle[0].fillAmount == 0f)
@@ -116,7 +116,7 @@ public class ChangingBoothScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600123A RID: 4666 RVA: 0x0008BE3C File Offset: 0x0008A03C
+	// Token: 0x0600123A RID: 4666 RVA: 0x0008BE50 File Offset: 0x0008A050
 	public void CheckYandereClub()
 	{
 		if (this.Yandere.Club != this.ClubID)

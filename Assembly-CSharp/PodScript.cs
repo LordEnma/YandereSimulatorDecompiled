@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003A6 RID: 934
+// Token: 0x020003A8 RID: 936
 public class PodScript : MonoBehaviour
 {
-	// Token: 0x06001AA5 RID: 6821 RVA: 0x00120DAC File Offset: 0x0011EFAC
+	// Token: 0x06001AAC RID: 6828 RVA: 0x001210F4 File Offset: 0x0011F2F4
 	private void Start()
 	{
 		this.Timer = 1f;
 	}
 
-	// Token: 0x06001AA6 RID: 6822 RVA: 0x00120DBC File Offset: 0x0011EFBC
+	// Token: 0x06001AAD RID: 6829 RVA: 0x00121104 File Offset: 0x0011F304
 	private void LateUpdate()
 	{
 		this.PodTarget.transform.parent.eulerAngles = new Vector3(0f, this.AimTarget.parent.eulerAngles.y, 0f);
@@ -28,21 +28,21 @@ public class PodScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002C68 RID: 11368
+	// Token: 0x04002C6E RID: 11374
 	public GameObject Projectile;
 
-	// Token: 0x04002C69 RID: 11369
+	// Token: 0x04002C6F RID: 11375
 	public Transform SpawnPoint;
 
-	// Token: 0x04002C6A RID: 11370
+	// Token: 0x04002C70 RID: 11376
 	public Transform PodTarget;
 
-	// Token: 0x04002C6B RID: 11371
+	// Token: 0x04002C71 RID: 11377
 	public Transform AimTarget;
 
-	// Token: 0x04002C6C RID: 11372
+	// Token: 0x04002C72 RID: 11378
 	public float FireRate;
 
-	// Token: 0x04002C6D RID: 11373
+	// Token: 0x04002C73 RID: 11379
 	public float Timer;
 }

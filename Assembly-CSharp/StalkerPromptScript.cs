@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x0200043A RID: 1082
+// Token: 0x0200043C RID: 1084
 public class StalkerPromptScript : MonoBehaviour
 {
-	// Token: 0x06001CDB RID: 7387 RVA: 0x00155B2C File Offset: 0x00153D2C
+	// Token: 0x06001CE2 RID: 7394 RVA: 0x00155E30 File Offset: 0x00154030
 	private void Start()
 	{
 		this.Eighties = GameGlobals.Eighties;
@@ -19,7 +19,7 @@ public class StalkerPromptScript : MonoBehaviour
 					return;
 				}
 			}
-			else
+			else if (this.ID == 5)
 			{
 				this.BagsToBurn = DateGlobals.Week;
 				this.BagsToBurnLabel.text = "BAGS TO BURN: " + this.BagsToBurn.ToString();
@@ -28,11 +28,11 @@ public class StalkerPromptScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CDC RID: 7388 RVA: 0x00155BA8 File Offset: 0x00153DA8
+	// Token: 0x06001CE3 RID: 7395 RVA: 0x00155EB4 File Offset: 0x001540B4
 	private void Update()
 	{
 		base.transform.LookAt(this.Yandere.MainCamera.transform);
-		if (Vector3.Distance(base.transform.position, this.Yandere.transform.position) < 5f)
+		if (Vector3.Distance(base.transform.position, this.Yandere.transform.position) < this.MaximumDistance)
 		{
 			if (!this.ServedPurpose)
 			{
@@ -130,6 +130,47 @@ public class StalkerPromptScript : MonoBehaviour
 				}
 				else if (this.ID == 2)
 				{
+					this.Yandere.Pebbles = 10;
+					this.Yandere.UpdatePebbles();
+					this.MyAudio.Play();
+				}
+				else if (this.ID == 3)
+				{
+					if (this.Yandere.CanMove)
+					{
+						this.Door.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
+						this.Yandere.transform.localScale = new Vector3(0f, 1f, 0f);
+						this.Yandere.Invisible = true;
+						this.Yandere.CanMove = false;
+						this.Label.text = "Exit";
+						this.MyAudio.clip = this.PowerDown;
+					}
+					else
+					{
+						this.Door.transform.localEulerAngles = new Vector3(0f, 135f, 0f);
+						this.Yandere.transform.localScale = new Vector3(1f, 1f, 1f);
+						this.Yandere.Invisible = false;
+						this.Yandere.CanMove = true;
+						this.Label.text = "Hide";
+						this.MyAudio.clip = this.SwingOpen;
+					}
+					this.MyAudio.Play();
+				}
+				else if (this.ID == 4)
+				{
+					AudioSource.PlayClipAtPoint(this.PowerDown, Camera.main.transform.position);
+					if (this.BagID == 1)
+					{
+						this.Yandere.LethalPoison = true;
+					}
+					else
+					{
+						this.Yandere.Sedative = true;
+					}
+					base.transform.parent.parent.gameObject.SetActive(false);
+				}
+				else if (this.ID == 5)
+				{
 					this.Yandere.MyAnimation.CrossFade(this.Yandere.IdleAnim);
 					this.BagsToBurnLabel.gameObject.SetActive(false);
 					this.Yandere.CanMove = false;
@@ -151,7 +192,7 @@ public class StalkerPromptScript : MonoBehaviour
 			}
 			this.Alpha = Mathf.MoveTowards(this.Alpha, 0f, Time.deltaTime);
 		}
-		if (this.Label != null && this.Door != null)
+		if (this.Label != null && this.Door != null && !this.Eighties)
 		{
 			if (this.Open)
 			{
@@ -183,6 +224,8 @@ public class StalkerPromptScript : MonoBehaviour
 			this.MyAudio.volume -= Time.deltaTime;
 			if (this.Darkness.material.color.a >= 1f)
 			{
+				PlayerGlobals.BoughtSedative = this.Yandere.Sedative;
+				PlayerGlobals.BoughtPoison = this.Yandere.LethalPoison;
 				SceneManager.LoadScene("LivingRoomScene");
 			}
 		}
@@ -200,7 +243,7 @@ public class StalkerPromptScript : MonoBehaviour
 		this.MySprite.color = new Color(1f, 1f, 1f, this.Alpha);
 	}
 
-	// Token: 0x06001CDD RID: 7389 RVA: 0x001563D0 File Offset: 0x001545D0
+	// Token: 0x06001CE4 RID: 7396 RVA: 0x001568D0 File Offset: 0x00154AD0
 	public void BeginCarryingCat()
 	{
 		this.Yandere.MyAnimation["f02_grip_00"].layer = 1;
@@ -214,7 +257,7 @@ public class StalkerPromptScript : MonoBehaviour
 		this.CatCage.GetComponent<Collider>().isTrigger = true;
 	}
 
-	// Token: 0x06001CDE RID: 7390 RVA: 0x001564A8 File Offset: 0x001546A8
+	// Token: 0x06001CE5 RID: 7397 RVA: 0x001569A8 File Offset: 0x00154BA8
 	public void CountBags()
 	{
 		this.BagsToBurn--;
@@ -227,117 +270,120 @@ public class StalkerPromptScript : MonoBehaviour
 		this.BagsToBurnLabel.text = "BAGS TO BURN: " + this.BagsToBurn.ToString();
 	}
 
-	// Token: 0x04003414 RID: 13332
+	// Token: 0x0400341A RID: 13338
 	public StalkerPromptScript ExitPrompt;
 
-	// Token: 0x04003415 RID: 13333
+	// Token: 0x0400341B RID: 13339
 	public FamilyVoiceScript FatherVoice;
 
-	// Token: 0x04003416 RID: 13334
+	// Token: 0x0400341C RID: 13340
 	public StalkerYandereScript Yandere;
 
-	// Token: 0x04003417 RID: 13335
+	// Token: 0x0400341D RID: 13341
 	public SmoothLookAtScript Cat;
 
-	// Token: 0x04003418 RID: 13336
+	// Token: 0x0400341E RID: 13342
 	public StalkerScript Stalker;
 
-	// Token: 0x04003419 RID: 13337
+	// Token: 0x0400341F RID: 13343
 	public GameObject DomesticDispute;
 
-	// Token: 0x0400341A RID: 13338
+	// Token: 0x04003420 RID: 13344
 	public GameObject StairBlocker;
 
-	// Token: 0x0400341B RID: 13339
+	// Token: 0x04003421 RID: 13345
 	public GameObject CatPrompt;
 
-	// Token: 0x0400341C RID: 13340
+	// Token: 0x04003422 RID: 13346
 	public GameObject FrontDoor;
 
-	// Token: 0x0400341D RID: 13341
+	// Token: 0x04003423 RID: 13347
 	public GameObject Button;
 
-	// Token: 0x0400341E RID: 13342
+	// Token: 0x04003424 RID: 13348
 	public GameObject Father;
 
-	// Token: 0x0400341F RID: 13343
+	// Token: 0x04003425 RID: 13349
 	public GameObject Mother;
 
-	// Token: 0x04003420 RID: 13344
+	// Token: 0x04003426 RID: 13350
 	public GameObject Lights;
 
-	// Token: 0x04003421 RID: 13345
+	// Token: 0x04003427 RID: 13351
 	public GameObject Fire;
 
-	// Token: 0x04003422 RID: 13346
+	// Token: 0x04003428 RID: 13352
 	public UILabel BagsToBurnLabel;
 
-	// Token: 0x04003423 RID: 13347
+	// Token: 0x04003429 RID: 13353
 	public UILabel Label;
 
-	// Token: 0x04003424 RID: 13348
+	// Token: 0x0400342A RID: 13354
 	public Transform KitchenDoor;
 
-	// Token: 0x04003425 RID: 13349
+	// Token: 0x0400342B RID: 13355
 	public Transform CatCage;
 
-	// Token: 0x04003426 RID: 13350
+	// Token: 0x0400342C RID: 13356
 	public Transform Door;
 
-	// Token: 0x04003427 RID: 13351
+	// Token: 0x0400342D RID: 13357
 	public AudioSource FireAudio;
 
-	// Token: 0x04003428 RID: 13352
+	// Token: 0x0400342E RID: 13358
 	public AudioSource MyAudio;
 
-	// Token: 0x04003429 RID: 13353
+	// Token: 0x0400342F RID: 13359
 	public AudioClip SwingOpen;
 
-	// Token: 0x0400342A RID: 13354
+	// Token: 0x04003430 RID: 13360
 	public AudioClip PowerDown;
 
-	// Token: 0x0400342B RID: 13355
+	// Token: 0x04003431 RID: 13361
 	public UISprite MySprite;
 
-	// Token: 0x0400342C RID: 13356
+	// Token: 0x04003432 RID: 13362
 	public Renderer Darkness;
 
-	// Token: 0x0400342D RID: 13357
+	// Token: 0x04003433 RID: 13363
 	public bool ServedPurpose;
 
-	// Token: 0x0400342E RID: 13358
+	// Token: 0x04003434 RID: 13364
 	public bool Eighties;
 
-	// Token: 0x0400342F RID: 13359
+	// Token: 0x04003435 RID: 13365
 	public bool OpenDoor;
 
-	// Token: 0x04003430 RID: 13360
+	// Token: 0x04003436 RID: 13366
 	public bool FadeOut;
 
-	// Token: 0x04003431 RID: 13361
+	// Token: 0x04003437 RID: 13367
 	public bool Open;
 
-	// Token: 0x04003432 RID: 13362
+	// Token: 0x04003438 RID: 13368
 	public float TargetRotation = 5.5f;
 
-	// Token: 0x04003433 RID: 13363
+	// Token: 0x04003439 RID: 13369
+	public float MaximumDistance = 5f;
+
+	// Token: 0x0400343A RID: 13370
 	public float MinimumDistance = 2f;
 
-	// Token: 0x04003434 RID: 13364
+	// Token: 0x0400343B RID: 13371
 	public float Rotation;
 
-	// Token: 0x04003435 RID: 13365
+	// Token: 0x0400343C RID: 13372
 	public float Alpha;
 
-	// Token: 0x04003436 RID: 13366
+	// Token: 0x0400343D RID: 13373
 	public float Speed;
 
-	// Token: 0x04003437 RID: 13367
+	// Token: 0x0400343E RID: 13374
 	public int BagsToBurn;
 
-	// Token: 0x04003438 RID: 13368
+	// Token: 0x0400343F RID: 13375
 	public int BagID;
 
-	// Token: 0x04003439 RID: 13369
+	// Token: 0x04003440 RID: 13376
 	public int ID;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000EB RID: 235
 public class BloodSprayColliderScript : MonoBehaviour
 {
-	// Token: 0x06000A45 RID: 2629 RVA: 0x0005B34C File Offset: 0x0005954C
+	// Token: 0x06000A45 RID: 2629 RVA: 0x0005B360 File Offset: 0x00059560
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 13)

@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x0200046F RID: 1135
+// Token: 0x02000471 RID: 1137
 public class TimelineScript : MonoBehaviour
 {
-	// Token: 0x06001E99 RID: 7833 RVA: 0x001ACAEC File Offset: 0x001AACEC
+	// Token: 0x06001EA4 RID: 7844 RVA: 0x001AD46C File Offset: 0x001AB66C
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(0f, -0.6f, 1f);
@@ -175,7 +175,7 @@ public class TimelineScript : MonoBehaviour
 		this.SpawnMiscData("Ayano Aishi finds her Senpai.");
 	}
 
-	// Token: 0x06001E9A RID: 7834 RVA: 0x001AD384 File Offset: 0x001AB584
+	// Token: 0x06001EA5 RID: 7845 RVA: 0x001ADD04 File Offset: 0x001ABF04
 	private void Update()
 	{
 		if (base.transform.localPosition.y > 9.75f)
@@ -237,7 +237,7 @@ public class TimelineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E9B RID: 7835 RVA: 0x001AD698 File Offset: 0x001AB898
+	// Token: 0x06001EA6 RID: 7846 RVA: 0x001AE018 File Offset: 0x001AC218
 	private void SpawnYear(int Year)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.YearObject);
@@ -248,7 +248,7 @@ public class TimelineScript : MonoBehaviour
 		this.Height -= 50;
 	}
 
-	// Token: 0x06001E9C RID: 7836 RVA: 0x001AD72C File Offset: 0x001AB92C
+	// Token: 0x06001EA7 RID: 7847 RVA: 0x001AE0AC File Offset: 0x001AC2AC
 	private void SpawnAishiData(string Data)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.TextObject);
@@ -258,7 +258,7 @@ public class TimelineScript : MonoBehaviour
 		gameObject.GetComponent<UILabel>().text = (Data ?? "");
 	}
 
-	// Token: 0x06001E9D RID: 7837 RVA: 0x001AD7AC File Offset: 0x001AB9AC
+	// Token: 0x06001EA8 RID: 7848 RVA: 0x001AE12C File Offset: 0x001AC32C
 	private void SpawnSaikouData(string Data)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.TextObject);
@@ -268,7 +268,7 @@ public class TimelineScript : MonoBehaviour
 		gameObject.GetComponent<UILabel>().text = (Data ?? "");
 	}
 
-	// Token: 0x06001E9E RID: 7838 RVA: 0x001AD82C File Offset: 0x001ABA2C
+	// Token: 0x06001EA9 RID: 7849 RVA: 0x001AE1AC File Offset: 0x001AC3AC
 	private void SpawnMiscData(string Data)
 	{
 		GameObject gameObject;
@@ -292,45 +292,45 @@ public class TimelineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F39 RID: 16185
+	// Token: 0x04003F4D RID: 16205
 	public InputManagerScript InputManager;
 
-	// Token: 0x04003F3A RID: 16186
+	// Token: 0x04003F4E RID: 16206
 	public GameObject LongTextObject;
 
-	// Token: 0x04003F3B RID: 16187
+	// Token: 0x04003F4F RID: 16207
 	public GameObject TextObject;
 
-	// Token: 0x04003F3C RID: 16188
+	// Token: 0x04003F50 RID: 16208
 	public GameObject YearObject;
 
-	// Token: 0x04003F3D RID: 16189
+	// Token: 0x04003F51 RID: 16209
 	public AudioSource Ambience;
 
-	// Token: 0x04003F3E RID: 16190
+	// Token: 0x04003F52 RID: 16210
 	public AudioSource MyAudio;
 
-	// Token: 0x04003F3F RID: 16191
+	// Token: 0x04003F53 RID: 16211
 	public UISprite Darkness;
 
-	// Token: 0x04003F40 RID: 16192
+	// Token: 0x04003F54 RID: 16212
 	public UILabel FinalLabel;
 
-	// Token: 0x04003F41 RID: 16193
+	// Token: 0x04003F55 RID: 16213
 	public float MaxHeight;
 
-	// Token: 0x04003F42 RID: 16194
+	// Token: 0x04003F56 RID: 16214
 	public float Speed = 0.05f;
 
-	// Token: 0x04003F43 RID: 16195
+	// Token: 0x04003F57 RID: 16215
 	public float Timer;
 
-	// Token: 0x04003F44 RID: 16196
+	// Token: 0x04003F58 RID: 16216
 	public bool Hide;
 
-	// Token: 0x04003F45 RID: 16197
+	// Token: 0x04003F59 RID: 16217
 	public bool Long;
 
-	// Token: 0x04003F46 RID: 16198
+	// Token: 0x04003F5A RID: 16218
 	public int Height;
 }

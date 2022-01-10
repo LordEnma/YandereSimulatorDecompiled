@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002BD RID: 701
+// Token: 0x020002BE RID: 702
 public class ExclamationScript : MonoBehaviour
 {
-	// Token: 0x0600146F RID: 5231 RVA: 0x000C70A8 File Offset: 0x000C52A8
+	// Token: 0x06001473 RID: 5235 RVA: 0x000C7388 File Offset: 0x000C5588
 	private void Start()
 	{
 		base.transform.localScale = Vector3.zero;
@@ -12,7 +12,7 @@ public class ExclamationScript : MonoBehaviour
 		this.MainCamera = Camera.main;
 	}
 
-	// Token: 0x06001470 RID: 5232 RVA: 0x000C7100 File Offset: 0x000C5300
+	// Token: 0x06001474 RID: 5236 RVA: 0x000C73E0 File Offset: 0x000C55E0
 	private void Update()
 	{
 		this.Timer -= Time.deltaTime;
@@ -39,15 +39,15 @@ public class ExclamationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001F88 RID: 8072
+	// Token: 0x04001F8C RID: 8076
 	public Renderer Graphic;
 
-	// Token: 0x04001F89 RID: 8073
+	// Token: 0x04001F8D RID: 8077
 	public float Alpha;
 
-	// Token: 0x04001F8A RID: 8074
+	// Token: 0x04001F8E RID: 8078
 	public float Timer;
 
-	// Token: 0x04001F8B RID: 8075
+	// Token: 0x04001F8F RID: 8079
 	public Camera MainCamera;
 }

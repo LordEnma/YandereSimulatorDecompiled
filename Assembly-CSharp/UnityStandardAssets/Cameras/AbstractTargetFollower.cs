@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Cameras
 {
-	// Token: 0x0200053C RID: 1340
+	// Token: 0x0200053E RID: 1342
 	public abstract class AbstractTargetFollower : MonoBehaviour
 	{
-		// Token: 0x06002251 RID: 8785 RVA: 0x001EB724 File Offset: 0x001E9924
+		// Token: 0x0600225C RID: 8796 RVA: 0x001EC0C4 File Offset: 0x001EA2C4
 		protected virtual void Start()
 		{
 			if (this.m_AutoTargetPlayer)
@@ -20,7 +20,7 @@ namespace UnityStandardAssets.Cameras
 			this.targetRigidbody = this.m_Target.GetComponent<Rigidbody>();
 		}
 
-		// Token: 0x06002252 RID: 8786 RVA: 0x001EB754 File Offset: 0x001E9954
+		// Token: 0x0600225D RID: 8797 RVA: 0x001EC0F4 File Offset: 0x001EA2F4
 		private void FixedUpdate()
 		{
 			if (this.m_AutoTargetPlayer && (this.m_Target == null || !this.m_Target.gameObject.activeSelf))
@@ -33,7 +33,7 @@ namespace UnityStandardAssets.Cameras
 			}
 		}
 
-		// Token: 0x06002253 RID: 8787 RVA: 0x001EB7A4 File Offset: 0x001E99A4
+		// Token: 0x0600225E RID: 8798 RVA: 0x001EC144 File Offset: 0x001EA344
 		private void LateUpdate()
 		{
 			if (this.m_AutoTargetPlayer && (this.m_Target == null || !this.m_Target.gameObject.activeSelf))
@@ -46,7 +46,7 @@ namespace UnityStandardAssets.Cameras
 			}
 		}
 
-		// Token: 0x06002254 RID: 8788 RVA: 0x001EB7F4 File Offset: 0x001E99F4
+		// Token: 0x0600225F RID: 8799 RVA: 0x001EC194 File Offset: 0x001EA394
 		public void ManualUpdate()
 		{
 			if (this.m_AutoTargetPlayer && (this.m_Target == null || !this.m_Target.gameObject.activeSelf))
@@ -59,10 +59,10 @@ namespace UnityStandardAssets.Cameras
 			}
 		}
 
-		// Token: 0x06002255 RID: 8789
+		// Token: 0x06002260 RID: 8800
 		protected abstract void FollowTarget(float deltaTime);
 
-		// Token: 0x06002256 RID: 8790 RVA: 0x001EB844 File Offset: 0x001E9A44
+		// Token: 0x06002261 RID: 8801 RVA: 0x001EC1E4 File Offset: 0x001EA3E4
 		public void FindAndTargetPlayer()
 		{
 			GameObject gameObject = GameObject.FindGameObjectWithTag("Player");
@@ -72,14 +72,14 @@ namespace UnityStandardAssets.Cameras
 			}
 		}
 
-		// Token: 0x06002257 RID: 8791 RVA: 0x001EB870 File Offset: 0x001E9A70
+		// Token: 0x06002262 RID: 8802 RVA: 0x001EC210 File Offset: 0x001EA410
 		public virtual void SetTarget(Transform newTransform)
 		{
 			this.m_Target = newTransform;
 		}
 
 		// Token: 0x170004E6 RID: 1254
-		// (get) Token: 0x06002258 RID: 8792 RVA: 0x001EB879 File Offset: 0x001E9A79
+		// (get) Token: 0x06002263 RID: 8803 RVA: 0x001EC219 File Offset: 0x001EA419
 		public Transform Target
 		{
 			get
@@ -88,29 +88,29 @@ namespace UnityStandardAssets.Cameras
 			}
 		}
 
-		// Token: 0x04004A15 RID: 18965
+		// Token: 0x04004A29 RID: 18985
 		[SerializeField]
 		protected Transform m_Target;
 
-		// Token: 0x04004A16 RID: 18966
+		// Token: 0x04004A2A RID: 18986
 		[SerializeField]
 		private bool m_AutoTargetPlayer = true;
 
-		// Token: 0x04004A17 RID: 18967
+		// Token: 0x04004A2B RID: 18987
 		[SerializeField]
 		private AbstractTargetFollower.UpdateType m_UpdateType;
 
-		// Token: 0x04004A18 RID: 18968
+		// Token: 0x04004A2C RID: 18988
 		protected Rigidbody targetRigidbody;
 
-		// Token: 0x0200068D RID: 1677
+		// Token: 0x0200068F RID: 1679
 		public enum UpdateType
 		{
-			// Token: 0x04004FED RID: 20461
+			// Token: 0x04005001 RID: 20481
 			FixedUpdate,
-			// Token: 0x04004FEE RID: 20462
+			// Token: 0x04005002 RID: 20482
 			LateUpdate,
-			// Token: 0x04004FEF RID: 20463
+			// Token: 0x04005003 RID: 20483
 			ManualUpdate
 		}
 	}

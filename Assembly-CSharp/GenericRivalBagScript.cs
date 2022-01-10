@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002DD RID: 733
+// Token: 0x020002DE RID: 734
 public class GenericRivalBagScript : MonoBehaviour
 {
-	// Token: 0x060014D7 RID: 5335 RVA: 0x000CF858 File Offset: 0x000CDA58
+	// Token: 0x060014DB RID: 5339 RVA: 0x000CFB38 File Offset: 0x000CDD38
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -108,7 +108,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014D8 RID: 5336 RVA: 0x000CFADC File Offset: 0x000CDCDC
+	// Token: 0x060014DC RID: 5340 RVA: 0x000CFDBC File Offset: 0x000CDFBC
 	private void Update()
 	{
 		if (!this.Window.activeInHierarchy)
@@ -246,6 +246,14 @@ public class GenericRivalBagScript : MonoBehaviour
 						{
 							this.Rival.MyBento.Tampered = true;
 							this.Rival.MyBento.Lethal = true;
+							if (this.Prompt.Yandere.Inventory.LethalPoison)
+							{
+								this.Prompt.Yandere.Inventory.LethalPoison = false;
+							}
+							else
+							{
+								this.Prompt.Yandere.Inventory.ChemicalPoison = false;
+							}
 						}
 						else if (this.Selected == 3)
 						{
@@ -335,7 +343,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014D9 RID: 5337 RVA: 0x000D01C8 File Offset: 0x000CE3C8
+	// Token: 0x060014DD RID: 5341 RVA: 0x000D04F0 File Offset: 0x000CE6F0
 	private void CloseWindow()
 	{
 		this.Selected = 1;
@@ -348,7 +356,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		this.PromptBar.Show = false;
 	}
 
-	// Token: 0x060014DA RID: 5338 RVA: 0x000D0238 File Offset: 0x000CE438
+	// Token: 0x060014DE RID: 5342 RVA: 0x000D0560 File Offset: 0x000CE760
 	private void UpdateHighlight()
 	{
 		if (this.Selected > this.Limit)
@@ -362,7 +370,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(0f, (float)(400 - this.Selected * 100), 0f);
 	}
 
-	// Token: 0x060014DB RID: 5339 RVA: 0x000D029C File Offset: 0x000CE49C
+	// Token: 0x060014DF RID: 5343 RVA: 0x000D05C4 File Offset: 0x000CE7C4
 	private void UpdateMenuLabels()
 	{
 		Debug.Log("Updating menu labels as of right now.");
@@ -428,7 +436,7 @@ public class GenericRivalBagScript : MonoBehaviour
 			{
 				this.Label[1].color = new Color(1f, 1f, 1f, 0.5f);
 			}
-			if (this.Prompt.Yandere.Inventory.LethalPoisons > 0)
+			if (this.Prompt.Yandere.Inventory.LethalPoisons == 0)
 			{
 				this.Label[2].color = new Color(1f, 1f, 1f, 0.5f);
 			}
@@ -531,150 +539,150 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040020F9 RID: 8441
+	// Token: 0x040020FD RID: 8445
 	public InputManagerScript InputManager;
 
-	// Token: 0x040020FA RID: 8442
+	// Token: 0x040020FE RID: 8446
 	public GenericRivalEventScript Event;
 
-	// Token: 0x040020FB RID: 8443
+	// Token: 0x040020FF RID: 8447
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040020FC RID: 8444
+	// Token: 0x04002100 RID: 8448
 	public StudentScript Rival;
 
-	// Token: 0x040020FD RID: 8445
+	// Token: 0x04002101 RID: 8449
 	public PromptScript Prompt;
 
-	// Token: 0x040020FE RID: 8446
+	// Token: 0x04002102 RID: 8450
 	public JsonScript JSON;
 
-	// Token: 0x040020FF RID: 8447
+	// Token: 0x04002103 RID: 8451
 	public Transform Highlight;
 
-	// Token: 0x04002100 RID: 8448
+	// Token: 0x04002104 RID: 8452
 	public GameObject Window;
 
-	// Token: 0x04002101 RID: 8449
+	// Token: 0x04002105 RID: 8453
 	public UILabel[] Label;
 
-	// Token: 0x04002102 RID: 8450
+	// Token: 0x04002106 RID: 8454
 	public bool BorrowedBook;
 
-	// Token: 0x04002103 RID: 8451
+	// Token: 0x04002107 RID: 8455
 	public bool Alcohol;
 
-	// Token: 0x04002104 RID: 8452
+	// Token: 0x04002108 RID: 8456
 	public bool Condoms;
 
-	// Token: 0x04002105 RID: 8453
+	// Token: 0x04002109 RID: 8457
 	public bool Cigarettes;
 
-	// Token: 0x04002106 RID: 8454
+	// Token: 0x0400210A RID: 8458
 	public bool StolenRing;
 
-	// Token: 0x04002107 RID: 8455
+	// Token: 0x0400210B RID: 8459
 	public bool AnswerSheet;
 
-	// Token: 0x04002108 RID: 8456
+	// Token: 0x0400210C RID: 8460
 	public bool Narcotics;
 
-	// Token: 0x04002109 RID: 8457
+	// Token: 0x0400210D RID: 8461
 	public bool BentoStolen;
 
-	// Token: 0x0400210A RID: 8458
+	// Token: 0x0400210E RID: 8462
 	public bool NoBento;
 
-	// Token: 0x0400210B RID: 8459
+	// Token: 0x0400210F RID: 8463
 	public int Selected;
 
-	// Token: 0x0400210C RID: 8460
+	// Token: 0x04002110 RID: 8464
 	public int Limit;
 
-	// Token: 0x0400210D RID: 8461
+	// Token: 0x04002111 RID: 8465
 	public int Menu;
 
-	// Token: 0x0400210E RID: 8462
+	// Token: 0x04002112 RID: 8466
 	public int[] RivalOpinions;
 
-	// Token: 0x0400210F RID: 8463
+	// Token: 0x04002113 RID: 8467
 	public string[] Subjects;
 
-	// Token: 0x04002110 RID: 8464
+	// Token: 0x04002114 RID: 8468
 	public string[] RivalDislikes;
 
-	// Token: 0x04002111 RID: 8465
+	// Token: 0x04002115 RID: 8469
 	public string[] RivalLikes;
 
-	// Token: 0x04002112 RID: 8466
+	// Token: 0x04002116 RID: 8470
 	public int Dislikes = 1;
 
-	// Token: 0x04002113 RID: 8467
+	// Token: 0x04002117 RID: 8471
 	public int Likes = 1;
 
-	// Token: 0x04002114 RID: 8468
+	// Token: 0x04002118 RID: 8472
 	public int[] DesiredHairstyles;
 
-	// Token: 0x04002115 RID: 8469
+	// Token: 0x04002119 RID: 8473
 	public int[] DesiredAccessories;
 
-	// Token: 0x04002116 RID: 8470
+	// Token: 0x0400211A RID: 8474
 	public int[] DesiredEyewears;
 
-	// Token: 0x04002117 RID: 8471
+	// Token: 0x0400211B RID: 8475
 	public int[] DesiredSkins;
 
-	// Token: 0x04002118 RID: 8472
+	// Token: 0x0400211C RID: 8476
 	public string[] DesiredHairColors;
 
-	// Token: 0x04002119 RID: 8473
+	// Token: 0x0400211D RID: 8477
 	public bool[] DesiredJewelries;
 
-	// Token: 0x0400211A RID: 8474
+	// Token: 0x0400211E RID: 8478
 	public int[] DesiredTraits;
 
-	// Token: 0x0400211B RID: 8475
+	// Token: 0x0400211F RID: 8479
 	public int DesiredHairstyle;
 
-	// Token: 0x0400211C RID: 8476
+	// Token: 0x04002120 RID: 8480
 	public int DesiredAccessory;
 
-	// Token: 0x0400211D RID: 8477
+	// Token: 0x04002121 RID: 8481
 	public int DesiredEyewear;
 
-	// Token: 0x0400211E RID: 8478
+	// Token: 0x04002122 RID: 8482
 	public int DesiredSkin;
 
-	// Token: 0x0400211F RID: 8479
+	// Token: 0x04002123 RID: 8483
 	public string DesiredHairColor;
 
-	// Token: 0x04002120 RID: 8480
+	// Token: 0x04002124 RID: 8484
 	public bool DesiredJewelry;
 
-	// Token: 0x04002121 RID: 8481
+	// Token: 0x04002125 RID: 8485
 	public int DesiredTrait;
 
-	// Token: 0x04002122 RID: 8482
+	// Token: 0x04002126 RID: 8486
 	public string DesiredHairstyleText;
 
-	// Token: 0x04002123 RID: 8483
+	// Token: 0x04002127 RID: 8487
 	public string DesiredAccessoryText;
 
-	// Token: 0x04002124 RID: 8484
+	// Token: 0x04002128 RID: 8488
 	public string DesiredEyewearText;
 
-	// Token: 0x04002125 RID: 8485
+	// Token: 0x04002129 RID: 8489
 	public string DesiredSkinText;
 
-	// Token: 0x04002126 RID: 8486
+	// Token: 0x0400212A RID: 8490
 	public string DesiredHairColorText;
 
-	// Token: 0x04002127 RID: 8487
+	// Token: 0x0400212B RID: 8491
 	public string DesiredJewelryText;
 
-	// Token: 0x04002128 RID: 8488
+	// Token: 0x0400212C RID: 8492
 	public string DesiredTraitText;
 
-	// Token: 0x04002129 RID: 8489
+	// Token: 0x0400212D RID: 8493
 	public bool Initialized;
 }

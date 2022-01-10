@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Token: 0x020004A2 RID: 1186
+// Token: 0x020004A4 RID: 1188
 [Serializable]
 public class SubtitleTypeAndAudioClipArrayDictionary : SerializableDictionary<SubtitleType, AudioClipArrayWrapper>
 {

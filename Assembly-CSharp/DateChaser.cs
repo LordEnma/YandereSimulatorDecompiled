@@ -4,20 +4,20 @@ using UnityEngine;
 // Token: 0x0200026E RID: 622
 public class DateChaser : MonoBehaviour
 {
-	// Token: 0x0600132A RID: 4906 RVA: 0x000AAD28 File Offset: 0x000A8F28
+	// Token: 0x0600132A RID: 4906 RVA: 0x000AAD44 File Offset: 0x000A8F44
 	private static DateTime fromUnix(long unix)
 	{
 		return DateChaser.epoch.AddSeconds((double)unix);
 	}
 
-	// Token: 0x0600132B RID: 4907 RVA: 0x000AAD44 File Offset: 0x000A8F44
+	// Token: 0x0600132B RID: 4907 RVA: 0x000AAD60 File Offset: 0x000A8F60
 	private void Start()
 	{
 		Application.targetFrameRate = 60;
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x0600132C RID: 4908 RVA: 0x000AAD58 File Offset: 0x000A8F58
+	// Token: 0x0600132C RID: 4908 RVA: 0x000AAD74 File Offset: 0x000A8F74
 	private void Update()
 	{
 		if (this.Animate)
@@ -45,7 +45,7 @@ public class DateChaser : MonoBehaviour
 		this.CurrentDate = this.startDate;
 	}
 
-	// Token: 0x0600132D RID: 4909 RVA: 0x000AAE99 File Offset: 0x000A9099
+	// Token: 0x0600132D RID: 4909 RVA: 0x000AAEB5 File Offset: 0x000A90B5
 	private void onDayTick(int day)
 	{
 		this.Label.text = this.CurrentTimeString;

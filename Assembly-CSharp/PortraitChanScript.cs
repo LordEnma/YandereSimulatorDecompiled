@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003AF RID: 943
+// Token: 0x020003B1 RID: 945
 public class PortraitChanScript : MonoBehaviour
 {
-	// Token: 0x04002D10 RID: 11536
+	// Token: 0x04002D16 RID: 11542
 	public float EyeShrink;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x020003F4 RID: 1012
+// Token: 0x020003F6 RID: 1014
 [Serializable]
 public class DateSaveData
 {
-	// Token: 0x06001BE5 RID: 7141 RVA: 0x00143B0E File Offset: 0x00141D0E
+	// Token: 0x06001BEC RID: 7148 RVA: 0x00143E82 File Offset: 0x00142082
 	public static DateSaveData ReadFromGlobals()
 	{
 		return new DateSaveData
@@ -14,16 +14,16 @@ public class DateSaveData
 		};
 	}
 
-	// Token: 0x06001BE6 RID: 7142 RVA: 0x00143B2B File Offset: 0x00141D2B
+	// Token: 0x06001BED RID: 7149 RVA: 0x00143E9F File Offset: 0x0014209F
 	public static void WriteToGlobals(DateSaveData data)
 	{
 		DateGlobals.Week = data.week;
 		DateGlobals.Weekday = data.weekday;
 	}
 
-	// Token: 0x040030F0 RID: 12528
+	// Token: 0x040030F6 RID: 12534
 	public int week;
 
-	// Token: 0x040030F1 RID: 12529
+	// Token: 0x040030F7 RID: 12535
 	public DayOfWeek weekday;
 }

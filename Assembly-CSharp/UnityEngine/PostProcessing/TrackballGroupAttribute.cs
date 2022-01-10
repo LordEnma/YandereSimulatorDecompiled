@@ -2,7 +2,7 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200054D RID: 1357
+	// Token: 0x0200054F RID: 1359
 	public sealed class TrackballGroupAttribute : PropertyAttribute
 	{
 	}

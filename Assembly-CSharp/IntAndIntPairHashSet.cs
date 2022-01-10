@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Token: 0x020004A7 RID: 1191
+// Token: 0x020004A9 RID: 1193
 [Serializable]
 public class IntAndIntPairHashSet : SerializableHashSet<IntAndIntPair>
 {

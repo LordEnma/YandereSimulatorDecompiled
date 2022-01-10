@@ -5,7 +5,7 @@ using UnityEngine.PostProcessing;
 // Token: 0x020000D7 RID: 215
 public class AsylumIntroScript : MonoBehaviour
 {
-	// Token: 0x060009EF RID: 2543 RVA: 0x000539E0 File Offset: 0x00051BE0
+	// Token: 0x060009EF RID: 2543 RVA: 0x000539F4 File Offset: 0x00051BF4
 	private void Start()
 	{
 		this.Profile.colorGrading.enabled = true;
@@ -29,7 +29,7 @@ public class AsylumIntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009F0 RID: 2544 RVA: 0x00053B04 File Offset: 0x00051D04
+	// Token: 0x060009F0 RID: 2544 RVA: 0x00053B18 File Offset: 0x00051D18
 	private void Update()
 	{
 		if (this.SkipPanel.enabled)
@@ -109,7 +109,7 @@ public class AsylumIntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009F1 RID: 2545 RVA: 0x00053EF8 File Offset: 0x000520F8
+	// Token: 0x060009F1 RID: 2545 RVA: 0x00053F0C File Offset: 0x0005210C
 	private void UpdateDOF(float Value)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -118,7 +118,7 @@ public class AsylumIntroScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x060009F2 RID: 2546 RVA: 0x00053F3C File Offset: 0x0005213C
+	// Token: 0x060009F2 RID: 2546 RVA: 0x00053F50 File Offset: 0x00052150
 	public void SetVignetteBlack()
 	{
 		VignetteModel.Settings settings = this.Profile.vignette.settings;
@@ -129,7 +129,7 @@ public class AsylumIntroScript : MonoBehaviour
 		this.Profile.vignette.settings = settings;
 	}
 
-	// Token: 0x060009F3 RID: 2547 RVA: 0x00053FB0 File Offset: 0x000521B0
+	// Token: 0x060009F3 RID: 2547 RVA: 0x00053FC4 File Offset: 0x000521C4
 	private void UpdateSkipPanel()
 	{
 		this.SkipTimer += Time.deltaTime;

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000275 RID: 629
 public class DebugEnablerScript : MonoBehaviour
 {
-	// Token: 0x06001356 RID: 4950 RVA: 0x000AE6BC File Offset: 0x000AC8BC
+	// Token: 0x06001356 RID: 4950 RVA: 0x000AE6D8 File Offset: 0x000AC8D8
 	private void Start()
 	{
 		if (MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.LoveSick || (!GameGlobals.Eighties && DateGlobals.Week == 2))
@@ -18,7 +18,7 @@ public class DebugEnablerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001357 RID: 4951 RVA: 0x000AE714 File Offset: 0x000AC914
+	// Token: 0x06001357 RID: 4951 RVA: 0x000AE730 File Offset: 0x000AC930
 	public void EnableDebug()
 	{
 		Debug.Log("Enabling the use of debug commands.");

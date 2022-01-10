@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000424 RID: 1060
+// Token: 0x02000426 RID: 1062
 public class SithBeamScript : MonoBehaviour
 {
-	// Token: 0x06001C92 RID: 7314 RVA: 0x00150F28 File Offset: 0x0014F128
+	// Token: 0x06001C99 RID: 7321 RVA: 0x0015122C File Offset: 0x0014F42C
 	private void Update()
 	{
 		if (this.Projectile)
@@ -18,7 +18,7 @@ public class SithBeamScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C93 RID: 7315 RVA: 0x00150F9C File Offset: 0x0014F19C
+	// Token: 0x06001C9A RID: 7322 RVA: 0x001512A0 File Offset: 0x0014F4A0
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -69,30 +69,30 @@ public class SithBeamScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003334 RID: 13108
+	// Token: 0x0400333A RID: 13114
 	public GameObject BloodEffect;
 
-	// Token: 0x04003335 RID: 13109
+	// Token: 0x0400333B RID: 13115
 	public Collider MyCollider;
 
-	// Token: 0x04003336 RID: 13110
+	// Token: 0x0400333C RID: 13116
 	public float Damage = 10f;
 
-	// Token: 0x04003337 RID: 13111
+	// Token: 0x0400333D RID: 13117
 	public float Lifespan;
 
-	// Token: 0x04003338 RID: 13112
+	// Token: 0x0400333E RID: 13118
 	public int RandomNumber;
 
-	// Token: 0x04003339 RID: 13113
+	// Token: 0x0400333F RID: 13119
 	public AudioClip Hit;
 
-	// Token: 0x0400333A RID: 13114
+	// Token: 0x04003340 RID: 13120
 	public AudioClip[] FemalePain;
 
-	// Token: 0x0400333B RID: 13115
+	// Token: 0x04003341 RID: 13121
 	public AudioClip[] MalePain;
 
-	// Token: 0x0400333C RID: 13116
+	// Token: 0x04003342 RID: 13122
 	public bool Projectile;
 }

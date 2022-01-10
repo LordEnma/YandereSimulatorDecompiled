@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200023F RID: 575
 public class CheapFilmGrainScript : MonoBehaviour
 {
-	// Token: 0x0600123E RID: 4670 RVA: 0x0008C0E6 File Offset: 0x0008A2E6
+	// Token: 0x0600123E RID: 4670 RVA: 0x0008C0FA File Offset: 0x0008A2FA
 	private void Update()
 	{
 		this.MyRenderer.material.mainTextureScale = new Vector2(UnityEngine.Random.Range(this.Floor, this.Ceiling), UnityEngine.Random.Range(this.Floor, this.Ceiling));

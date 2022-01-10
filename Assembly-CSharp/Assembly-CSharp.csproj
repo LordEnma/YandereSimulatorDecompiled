@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{4CA95C1F-0109-46EE-A42E-2E0C6564D7C5}</ProjectGuid>
+    <ProjectGuid>{E843333F-005F-4BD0-BD71-5FCDB667C7AC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Assembly-CSharp</RootNamespace>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -653,6 +653,7 @@
     <Compile Include="DirectionalMicScript.cs" />
     <Compile Include="DisabledYanSaveMember.cs" />
     <Compile Include="DiscordVerificationScript.cs" />
+    <Compile Include="DistractionScript.cs" />
     <Compile Include="DoItScript.cs" />
     <Compile Include="DokiScript.cs" />
     <Compile Include="DoNotObfuscateNGUI.cs" />
@@ -1022,6 +1023,7 @@
     <Compile Include="PassTimeScript.cs" />
     <Compile Include="PathfindingTestScript.cs" />
     <Compile Include="PauseScreenScript.cs" />
+    <Compile Include="PebbleScript.cs" />
     <Compile Include="PeekScript.cs" />
     <Compile Include="Persona.cs" />
     <Compile Include="PersonaSubtitleScript.cs" />

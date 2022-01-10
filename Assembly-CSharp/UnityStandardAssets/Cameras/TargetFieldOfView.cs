@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Cameras
 {
-	// Token: 0x02000543 RID: 1347
+	// Token: 0x02000545 RID: 1349
 	public class TargetFieldOfView : AbstractTargetFollower
 	{
-		// Token: 0x0600226E RID: 8814 RVA: 0x001EC441 File Offset: 0x001EA641
+		// Token: 0x06002279 RID: 8825 RVA: 0x001ECDE1 File Offset: 0x001EAFE1
 		protected override void Start()
 		{
 			base.Start();
@@ -14,7 +14,7 @@ namespace UnityStandardAssets.Cameras
 			this.m_Cam = base.GetComponentInChildren<Camera>();
 		}
 
-		// Token: 0x0600226F RID: 8815 RVA: 0x001EC46C File Offset: 0x001EA66C
+		// Token: 0x0600227A RID: 8826 RVA: 0x001ECE0C File Offset: 0x001EB00C
 		protected override void FollowTarget(float deltaTime)
 		{
 			float magnitude = (this.m_Target.position - base.transform.position).magnitude;
@@ -22,14 +22,14 @@ namespace UnityStandardAssets.Cameras
 			this.m_Cam.fieldOfView = Mathf.SmoothDamp(this.m_Cam.fieldOfView, target, ref this.m_FovAdjustVelocity, this.m_FovAdjustTime);
 		}
 
-		// Token: 0x06002270 RID: 8816 RVA: 0x001EC4DF File Offset: 0x001EA6DF
+		// Token: 0x0600227B RID: 8827 RVA: 0x001ECE7F File Offset: 0x001EB07F
 		public override void SetTarget(Transform newTransform)
 		{
 			base.SetTarget(newTransform);
 			this.m_BoundSize = TargetFieldOfView.MaxBoundsExtent(newTransform, this.m_IncludeEffectsInSize);
 		}
 
-		// Token: 0x06002271 RID: 8817 RVA: 0x001EC4FC File Offset: 0x001EA6FC
+		// Token: 0x0600227C RID: 8828 RVA: 0x001ECE9C File Offset: 0x001EB09C
 		public static float MaxBoundsExtent(Transform obj, bool includeEffects)
 		{
 			Renderer[] componentsInChildren = obj.GetComponentsInChildren<Renderer>();
@@ -58,28 +58,28 @@ namespace UnityStandardAssets.Cameras
 			});
 		}
 
-		// Token: 0x04004A4D RID: 19021
+		// Token: 0x04004A61 RID: 19041
 		[SerializeField]
 		private float m_FovAdjustTime = 1f;
 
-		// Token: 0x04004A4E RID: 19022
+		// Token: 0x04004A62 RID: 19042
 		[SerializeField]
 		private float m_ZoomAmountMultiplier = 2f;
 
-		// Token: 0x04004A4F RID: 19023
+		// Token: 0x04004A63 RID: 19043
 		[SerializeField]
 		private bool m_IncludeEffectsInSize;
 
-		// Token: 0x04004A50 RID: 19024
+		// Token: 0x04004A64 RID: 19044
 		private float m_BoundSize;
 
-		// Token: 0x04004A51 RID: 19025
+		// Token: 0x04004A65 RID: 19045
 		private float m_FovAdjustVelocity;
 
-		// Token: 0x04004A52 RID: 19026
+		// Token: 0x04004A66 RID: 19046
 		private Camera m_Cam;
 
-		// Token: 0x04004A53 RID: 19027
+		// Token: 0x04004A67 RID: 19047
 		private Transform m_LastTarget;
 	}
 }

@@ -4,19 +4,19 @@ using UnityEngine;
 // Token: 0x02000258 RID: 600
 public class ConsoleLogScript : MonoBehaviour
 {
-	// Token: 0x060012AA RID: 4778 RVA: 0x00098ECF File Offset: 0x000970CF
+	// Token: 0x060012AA RID: 4778 RVA: 0x00098EE3 File Offset: 0x000970E3
 	private void OnEnable()
 	{
 		Application.logMessageReceived += this.Log;
 	}
 
-	// Token: 0x060012AB RID: 4779 RVA: 0x00098EE2 File Offset: 0x000970E2
+	// Token: 0x060012AB RID: 4779 RVA: 0x00098EF6 File Offset: 0x000970F6
 	private void OnDisable()
 	{
 		Application.logMessageReceived -= this.Log;
 	}
 
-	// Token: 0x060012AC RID: 4780 RVA: 0x00098EF8 File Offset: 0x000970F8
+	// Token: 0x060012AC RID: 4780 RVA: 0x00098F0C File Offset: 0x0009710C
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.KeypadEnter))
@@ -37,7 +37,7 @@ public class ConsoleLogScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012AD RID: 4781 RVA: 0x00098F88 File Offset: 0x00097188
+	// Token: 0x060012AD RID: 4781 RVA: 0x00098F9C File Offset: 0x0009719C
 	public void Log(string logString, string stackTrace, LogType type)
 	{
 		this.myLog = this.myLog + "\n" + logString;
@@ -47,7 +47,7 @@ public class ConsoleLogScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012AE RID: 4782 RVA: 0x00098FE4 File Offset: 0x000971E4
+	// Token: 0x060012AE RID: 4782 RVA: 0x00098FF8 File Offset: 0x000971F8
 	private void OnGUI()
 	{
 		if (!this.doShow)

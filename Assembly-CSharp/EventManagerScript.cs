@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002B4 RID: 692
+// Token: 0x020002B5 RID: 693
 public class EventManagerScript : MonoBehaviour
 {
-	// Token: 0x0600144A RID: 5194 RVA: 0x000C5360 File Offset: 0x000C3560
+	// Token: 0x0600144E RID: 5198 RVA: 0x000C5598 File Offset: 0x000C3798
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -27,7 +27,7 @@ public class EventManagerScript : MonoBehaviour
 		this.NoteLocker.CanLeaveNote = true;
 	}
 
-	// Token: 0x0600144B RID: 5195 RVA: 0x000C53E4 File Offset: 0x000C35E4
+	// Token: 0x0600144F RID: 5199 RVA: 0x000C561C File Offset: 0x000C381C
 	private void Update()
 	{
 		if (this.VoiceClip != null)
@@ -105,10 +105,7 @@ public class EventManagerScript : MonoBehaviour
 							{
 								this.Yandere.PauseScreen.Hint.QuickID = 13;
 							}
-							if ((double)this.StartTime > 15.5)
-							{
-								this.EventStudent[1].FollowTargetDestination.localPosition = new Vector3(1f, 0f, 1f);
-							}
+							double num = (double)this.StartTime;
 						}
 						this.EventStudent[2].EmptyHands();
 						this.EventStudent[1].SpeechLines.Stop();
@@ -121,7 +118,7 @@ public class EventManagerScript : MonoBehaviour
 		}
 		if (this.EventOn)
 		{
-			float num = Vector3.Distance(this.Yandere.transform.position, this.EventStudent[this.EventSpeaker[this.EventPhase]].transform.position);
+			float num2 = Vector3.Distance(this.Yandere.transform.position, this.EventStudent[this.EventSpeaker[this.EventPhase]].transform.position);
 			if (this.Clock.HourTime > this.EndTime || this.EventStudent[1].WitnessedCorpse || this.EventStudent[2].WitnessedCorpse || this.EventStudent[1].Dying || this.EventStudent[2].Dying || this.EventStudent[1].Splashed || this.EventStudent[2].Splashed || this.EventStudent[1].Alarmed || this.EventStudent[2].Alarmed)
 			{
 				this.EndEvent();
@@ -140,6 +137,10 @@ public class EventManagerScript : MonoBehaviour
 					if (this.EventStudent[1].Pathfinding.canMove)
 					{
 						this.EventStudent[1].CharacterAnimation.CrossFade(this.EventStudent[1].WalkAnim);
+					}
+					if (this.EventStudent[2].DistanceToDestination > 1f)
+					{
+						this.EventStudent[2].CharacterAnimation.CrossFade(this.EventStudent[2].WalkAnim);
 					}
 					this.EventStudent[2].CurrentDestination = this.EventStudent[1].FollowTargetDestination;
 					this.EventStudent[2].Pathfinding.target = this.EventStudent[1].FollowTargetDestination;
@@ -186,7 +187,7 @@ public class EventManagerScript : MonoBehaviour
 				if (!this.Spoken)
 				{
 					this.EventStudent[this.EventSpeaker[this.EventPhase]].CharacterAnimation.CrossFade(this.EventAnim[this.EventPhase]);
-					if (num < 10f)
+					if (num2 < 10f)
 					{
 						this.EventSubtitle.text = this.EventSpeech[this.EventPhase];
 					}
@@ -204,9 +205,9 @@ public class EventManagerScript : MonoBehaviour
 					{
 						this.EventSubtitle.transform.localScale = Vector3.zero;
 					}
-					else if (num < 10f)
+					else if (num2 < 10f)
 					{
-						this.Scale = Mathf.Abs((num - 10f) * 0.2f);
+						this.Scale = Mathf.Abs((num2 - 10f) * 0.2f);
 						if (this.Scale < 0f)
 						{
 							this.Scale = 0f;
@@ -237,7 +238,7 @@ public class EventManagerScript : MonoBehaviour
 							this.EndEvent();
 						}
 					}
-					if (!this.Suitor && this.Yandere.transform.position.y > this.EventStudent[1].transform.position.y - 1f && this.EventPhase == 7 && num < 5f)
+					if (!this.Suitor && this.Yandere.transform.position.y > this.EventStudent[1].transform.position.y - 1f && this.EventPhase == 7 && num2 < 5f)
 					{
 						if (this.EventStudent1 == 25)
 						{
@@ -269,7 +270,7 @@ public class EventManagerScript : MonoBehaviour
 				}
 				if (base.enabled)
 				{
-					if (num < 3f)
+					if (num2 < 3f)
 					{
 						this.Yandere.Eavesdropping = true;
 						return;
@@ -280,7 +281,7 @@ public class EventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600144C RID: 5196 RVA: 0x000C6000 File Offset: 0x000C4200
+	// Token: 0x06001450 RID: 5200 RVA: 0x000C6248 File Offset: 0x000C4448
 	private void SettleFriend()
 	{
 		this.EventStudent[2].MoveTowardsTarget(this.EventLocation[2].position);
@@ -290,7 +291,7 @@ public class EventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600144D RID: 5197 RVA: 0x000C6094 File Offset: 0x000C4294
+	// Token: 0x06001451 RID: 5201 RVA: 0x000C62DC File Offset: 0x000C44DC
 	public void EndEvent()
 	{
 		if (this.VoiceClip != null)
@@ -307,10 +308,7 @@ public class EventManagerScript : MonoBehaviour
 		this.EventStudent[2].EventManager = null;
 		this.EventStudent[2].InEvent = false;
 		this.EventStudent[2].Private = false;
-		if ((double)this.StartTime > 15.5)
-		{
-			this.EventStudent[1].FollowTargetDestination.localPosition = new Vector3(1f, 0f, 0f);
-		}
+		double num = (double)this.StartTime;
 		if (!this.StudentManager.Stop)
 		{
 			this.StudentManager.UpdateStudents(0);
@@ -323,96 +321,96 @@ public class EventManagerScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x04001F28 RID: 7976
+	// Token: 0x04001F29 RID: 7977
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001F29 RID: 7977
+	// Token: 0x04001F2A RID: 7978
 	public NoteLockerScript NoteLocker;
 
-	// Token: 0x04001F2A RID: 7978
+	// Token: 0x04001F2B RID: 7979
 	public UILabel EventSubtitle;
 
-	// Token: 0x04001F2B RID: 7979
+	// Token: 0x04001F2C RID: 7980
 	public YandereScript Yandere;
 
-	// Token: 0x04001F2C RID: 7980
+	// Token: 0x04001F2D RID: 7981
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04001F2D RID: 7981
+	// Token: 0x04001F2E RID: 7982
 	public ClockScript Clock;
 
-	// Token: 0x04001F2E RID: 7982
+	// Token: 0x04001F2F RID: 7983
 	public StudentScript[] EventStudent;
 
-	// Token: 0x04001F2F RID: 7983
+	// Token: 0x04001F30 RID: 7984
 	public Transform[] EventLocation;
 
-	// Token: 0x04001F30 RID: 7984
+	// Token: 0x04001F31 RID: 7985
 	public AudioClip[] EventClip;
 
-	// Token: 0x04001F31 RID: 7985
+	// Token: 0x04001F32 RID: 7986
 	public string[] EventSpeech;
 
-	// Token: 0x04001F32 RID: 7986
+	// Token: 0x04001F33 RID: 7987
 	public string[] EventAnim;
 
-	// Token: 0x04001F33 RID: 7987
+	// Token: 0x04001F34 RID: 7988
 	public int[] EventSpeaker;
 
-	// Token: 0x04001F34 RID: 7988
+	// Token: 0x04001F35 RID: 7989
 	public GameObject VoiceClip;
 
-	// Token: 0x04001F35 RID: 7989
+	// Token: 0x04001F36 RID: 7990
 	public AudioSource VoiceClipSource;
 
-	// Token: 0x04001F36 RID: 7990
+	// Token: 0x04001F37 RID: 7991
 	public bool StopWalking;
 
-	// Token: 0x04001F37 RID: 7991
+	// Token: 0x04001F38 RID: 7992
 	public bool EventCheck;
 
-	// Token: 0x04001F38 RID: 7992
+	// Token: 0x04001F39 RID: 7993
 	public bool CanHappen;
 
-	// Token: 0x04001F39 RID: 7993
+	// Token: 0x04001F3A RID: 7994
 	public bool HintGiven;
 
-	// Token: 0x04001F3A RID: 7994
+	// Token: 0x04001F3B RID: 7995
 	public bool EventOn;
 
-	// Token: 0x04001F3B RID: 7995
+	// Token: 0x04001F3C RID: 7996
 	public bool Suitor;
 
-	// Token: 0x04001F3C RID: 7996
+	// Token: 0x04001F3D RID: 7997
 	public bool Spoken;
 
-	// Token: 0x04001F3D RID: 7997
+	// Token: 0x04001F3E RID: 7998
 	public bool Osana;
 
-	// Token: 0x04001F3E RID: 7998
+	// Token: 0x04001F3F RID: 7999
 	public float StartTimer;
 
-	// Token: 0x04001F3F RID: 7999
+	// Token: 0x04001F40 RID: 8000
 	public float Timer;
 
-	// Token: 0x04001F40 RID: 8000
+	// Token: 0x04001F41 RID: 8001
 	public float Scale;
 
-	// Token: 0x04001F41 RID: 8001
+	// Token: 0x04001F42 RID: 8002
 	public float StartTime = 13.01f;
 
-	// Token: 0x04001F42 RID: 8002
+	// Token: 0x04001F43 RID: 8003
 	public float EndTime = 13.5f;
 
-	// Token: 0x04001F43 RID: 8003
+	// Token: 0x04001F44 RID: 8004
 	public int EventStudent1;
 
-	// Token: 0x04001F44 RID: 8004
+	// Token: 0x04001F45 RID: 8005
 	public int EventStudent2;
 
-	// Token: 0x04001F45 RID: 8005
+	// Token: 0x04001F46 RID: 8006
 	public int EventPhase;
 
-	// Token: 0x04001F46 RID: 8006
+	// Token: 0x04001F47 RID: 8007
 	public int OsanaID = 1;
 }

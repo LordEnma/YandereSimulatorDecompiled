@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000261 RID: 609
 public class CountdownScript : MonoBehaviour
 {
-	// Token: 0x060012E7 RID: 4839 RVA: 0x000A5D91 File Offset: 0x000A3F91
+	// Token: 0x060012E7 RID: 4839 RVA: 0x000A5DAD File Offset: 0x000A3FAD
 	private void Update()
 	{
 		this.Sprite.fillAmount = Mathf.MoveTowards(this.Sprite.fillAmount, 0f, Time.deltaTime * this.Speed);

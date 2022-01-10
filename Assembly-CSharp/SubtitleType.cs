@@ -1,536 +1,536 @@
 ﻿using System;
 
-// Token: 0x02000457 RID: 1111
+// Token: 0x02000459 RID: 1113
 public enum SubtitleType
 {
-	// Token: 0x04003B36 RID: 15158
-	AcceptFood,
-	// Token: 0x04003B37 RID: 15159
-	AccidentApology,
-	// Token: 0x04003B38 RID: 15160
-	AskForHelp,
-	// Token: 0x04003B39 RID: 15161
-	BloodApology,
-	// Token: 0x04003B3A RID: 15162
-	BloodReaction,
-	// Token: 0x04003B3B RID: 15163
-	BloodAndInsanityReaction,
-	// Token: 0x04003B3C RID: 15164
-	BloodPoolReaction,
-	// Token: 0x04003B3D RID: 15165
-	BloodyWeaponReaction,
-	// Token: 0x04003B3E RID: 15166
-	Custom,
-	// Token: 0x04003B3F RID: 15167
-	ClassApology,
-	// Token: 0x04003B40 RID: 15168
-	ClubAccept,
-	// Token: 0x04003B41 RID: 15169
-	ClubActivity,
-	// Token: 0x04003B42 RID: 15170
-	ClubConfirm,
-	// Token: 0x04003B43 RID: 15171
-	ClubDeny,
-	// Token: 0x04003B44 RID: 15172
-	ClubEarly,
-	// Token: 0x04003B45 RID: 15173
-	ClubExclusive,
-	// Token: 0x04003B46 RID: 15174
-	ClubFarewell,
-	// Token: 0x04003B47 RID: 15175
-	ClubGreeting,
-	// Token: 0x04003B48 RID: 15176
-	ClubGrudge,
-	// Token: 0x04003B49 RID: 15177
-	ClubJoin,
 	// Token: 0x04003B4A RID: 15178
-	ClubKick,
+	AcceptFood,
 	// Token: 0x04003B4B RID: 15179
-	ClubLate,
+	AccidentApology,
 	// Token: 0x04003B4C RID: 15180
-	ClubCookingInfo,
+	AskForHelp,
 	// Token: 0x04003B4D RID: 15181
-	ClubDramaInfo,
+	BloodApology,
 	// Token: 0x04003B4E RID: 15182
-	ClubOccultInfo,
+	BloodReaction,
 	// Token: 0x04003B4F RID: 15183
-	ClubArtInfo,
+	BloodAndInsanityReaction,
 	// Token: 0x04003B50 RID: 15184
-	ClubLightMusicInfo,
+	BloodPoolReaction,
 	// Token: 0x04003B51 RID: 15185
-	ClubMartialArtsInfo,
+	BloodyWeaponReaction,
 	// Token: 0x04003B52 RID: 15186
-	ClubPlaceholderInfo,
+	Custom,
 	// Token: 0x04003B53 RID: 15187
-	ClubPhotoInfoLight,
+	ClassApology,
 	// Token: 0x04003B54 RID: 15188
-	ClubPhotoInfoDark,
+	ClubAccept,
 	// Token: 0x04003B55 RID: 15189
-	ClubScienceInfo,
+	ClubActivity,
 	// Token: 0x04003B56 RID: 15190
-	ClubSportsInfo,
+	ClubConfirm,
 	// Token: 0x04003B57 RID: 15191
-	ClubGardenInfo,
+	ClubDeny,
 	// Token: 0x04003B58 RID: 15192
-	ClubGamingInfo,
+	ClubEarly,
 	// Token: 0x04003B59 RID: 15193
-	ClubDelinquentInfo,
+	ClubExclusive,
 	// Token: 0x04003B5A RID: 15194
-	ClubNewspaperInfo,
+	ClubFarewell,
 	// Token: 0x04003B5B RID: 15195
-	ClubNo,
+	ClubGreeting,
 	// Token: 0x04003B5C RID: 15196
-	ClubQuit,
+	ClubGrudge,
 	// Token: 0x04003B5D RID: 15197
-	ClubRefuse,
+	ClubJoin,
 	// Token: 0x04003B5E RID: 15198
-	ClubRejoin,
+	ClubKick,
 	// Token: 0x04003B5F RID: 15199
-	ClubUnwelcome,
+	ClubLate,
 	// Token: 0x04003B60 RID: 15200
-	ClubYes,
+	ClubCookingInfo,
 	// Token: 0x04003B61 RID: 15201
-	ClubPractice,
+	ClubDramaInfo,
 	// Token: 0x04003B62 RID: 15202
-	ClubPracticeYes,
+	ClubOccultInfo,
 	// Token: 0x04003B63 RID: 15203
-	ClubPracticeNo,
+	ClubArtInfo,
 	// Token: 0x04003B64 RID: 15204
-	CleaningApology,
+	ClubLightMusicInfo,
 	// Token: 0x04003B65 RID: 15205
-	CorpseReaction,
+	ClubMartialArtsInfo,
 	// Token: 0x04003B66 RID: 15206
-	CowardGrudge,
+	ClubPlaceholderInfo,
 	// Token: 0x04003B67 RID: 15207
-	CowardMurderReaction,
+	ClubPhotoInfoLight,
 	// Token: 0x04003B68 RID: 15208
-	DelinquentAnnoy,
+	ClubPhotoInfoDark,
 	// Token: 0x04003B69 RID: 15209
-	DelinquentCase,
+	ClubScienceInfo,
 	// Token: 0x04003B6A RID: 15210
-	DelinquentShove,
+	ClubSportsInfo,
 	// Token: 0x04003B6B RID: 15211
-	DelinquentReaction,
+	ClubGardenInfo,
 	// Token: 0x04003B6C RID: 15212
-	DelinquentWeaponReaction,
+	ClubGamingInfo,
 	// Token: 0x04003B6D RID: 15213
-	DelinquentTaunt,
+	ClubDelinquentInfo,
 	// Token: 0x04003B6E RID: 15214
-	DelinquentThreatened,
+	ClubNewspaperInfo,
 	// Token: 0x04003B6F RID: 15215
-	DelinquentCalm,
+	ClubNo,
 	// Token: 0x04003B70 RID: 15216
-	DelinquentFight,
+	ClubQuit,
 	// Token: 0x04003B71 RID: 15217
-	DelinquentAvenge,
+	ClubRefuse,
 	// Token: 0x04003B72 RID: 15218
-	DelinquentWin,
+	ClubRejoin,
 	// Token: 0x04003B73 RID: 15219
-	DelinquentSurrender,
+	ClubUnwelcome,
 	// Token: 0x04003B74 RID: 15220
-	DelinquentNoSurrender,
+	ClubYes,
 	// Token: 0x04003B75 RID: 15221
-	DelinquentMurderReaction,
+	ClubPractice,
 	// Token: 0x04003B76 RID: 15222
-	DelinquentCorpseReaction,
+	ClubPracticeYes,
 	// Token: 0x04003B77 RID: 15223
-	DelinquentFriendCorpseReaction,
+	ClubPracticeNo,
 	// Token: 0x04003B78 RID: 15224
-	DelinquentResume,
+	CleaningApology,
 	// Token: 0x04003B79 RID: 15225
-	DelinquentFlee,
+	CorpseReaction,
 	// Token: 0x04003B7A RID: 15226
-	DelinquentEnemyFlee,
+	CowardGrudge,
 	// Token: 0x04003B7B RID: 15227
-	DelinquentFriendFlee,
+	CowardMurderReaction,
 	// Token: 0x04003B7C RID: 15228
-	DelinquentInjuredFlee,
+	DelinquentAnnoy,
 	// Token: 0x04003B7D RID: 15229
-	DelinquentCheer,
+	DelinquentCase,
 	// Token: 0x04003B7E RID: 15230
-	DelinquentHmm,
+	DelinquentShove,
 	// Token: 0x04003B7F RID: 15231
-	DelinquentGrudge,
+	DelinquentReaction,
 	// Token: 0x04003B80 RID: 15232
-	Dismissive,
+	DelinquentWeaponReaction,
 	// Token: 0x04003B81 RID: 15233
-	DrownReaction,
+	DelinquentTaunt,
 	// Token: 0x04003B82 RID: 15234
-	Dying,
+	DelinquentThreatened,
 	// Token: 0x04003B83 RID: 15235
-	EavesdropReaction,
+	DelinquentCalm,
 	// Token: 0x04003B84 RID: 15236
-	EventEavesdropReaction,
+	DelinquentFight,
 	// Token: 0x04003B85 RID: 15237
-	EavesdropApology,
+	DelinquentAvenge,
 	// Token: 0x04003B86 RID: 15238
-	Eulogy,
+	DelinquentWin,
 	// Token: 0x04003B87 RID: 15239
-	EventApology,
+	DelinquentSurrender,
 	// Token: 0x04003B88 RID: 15240
-	EvilCorpseReaction,
+	DelinquentNoSurrender,
 	// Token: 0x04003B89 RID: 15241
-	EvilDelinquentCorpseReaction,
+	DelinquentMurderReaction,
 	// Token: 0x04003B8A RID: 15242
-	EvilGrudge,
+	DelinquentCorpseReaction,
 	// Token: 0x04003B8B RID: 15243
-	EvilMurderReaction,
+	DelinquentFriendCorpseReaction,
 	// Token: 0x04003B8C RID: 15244
-	Forgiving,
+	DelinquentResume,
 	// Token: 0x04003B8D RID: 15245
-	ForgivingAccident,
+	DelinquentFlee,
 	// Token: 0x04003B8E RID: 15246
-	ForgivingInsanity,
+	DelinquentEnemyFlee,
 	// Token: 0x04003B8F RID: 15247
-	GasWarning,
+	DelinquentFriendFlee,
 	// Token: 0x04003B90 RID: 15248
-	GiveHelp,
+	DelinquentInjuredFlee,
 	// Token: 0x04003B91 RID: 15249
-	Greeting,
+	DelinquentCheer,
 	// Token: 0x04003B92 RID: 15250
-	GrudgeRefusal,
+	DelinquentHmm,
 	// Token: 0x04003B93 RID: 15251
-	GrudgeWarning,
+	DelinquentGrudge,
 	// Token: 0x04003B94 RID: 15252
-	HeroMurderReaction,
+	Dismissive,
 	// Token: 0x04003B95 RID: 15253
-	HmmReaction,
+	DrownReaction,
 	// Token: 0x04003B96 RID: 15254
-	HoldingBloodyClothingApology,
+	Dying,
 	// Token: 0x04003B97 RID: 15255
-	HoldingBloodyClothingReaction,
+	EavesdropReaction,
 	// Token: 0x04003B98 RID: 15256
-	Impatience,
+	EventEavesdropReaction,
 	// Token: 0x04003B99 RID: 15257
-	InfoNotice,
+	EavesdropApology,
 	// Token: 0x04003B9A RID: 15258
-	InsanityApology,
+	Eulogy,
 	// Token: 0x04003B9B RID: 15259
-	InsanityReaction,
+	EventApology,
 	// Token: 0x04003B9C RID: 15260
-	InterruptionReaction,
+	EvilCorpseReaction,
 	// Token: 0x04003B9D RID: 15261
-	IntrusionReaction,
+	EvilDelinquentCorpseReaction,
 	// Token: 0x04003B9E RID: 15262
-	KilledMood,
+	EvilGrudge,
 	// Token: 0x04003B9F RID: 15263
-	LewdApology,
+	EvilMurderReaction,
 	// Token: 0x04003BA0 RID: 15264
-	LewdReaction,
+	Forgiving,
 	// Token: 0x04003BA1 RID: 15265
-	LightSwitchReaction,
+	ForgivingAccident,
 	// Token: 0x04003BA2 RID: 15266
-	LimbReaction,
+	ForgivingInsanity,
 	// Token: 0x04003BA3 RID: 15267
-	LonerCorpseReaction,
+	GasWarning,
 	// Token: 0x04003BA4 RID: 15268
-	LonerMurderReaction,
+	GiveHelp,
 	// Token: 0x04003BA5 RID: 15269
-	LostPhone,
+	Greeting,
 	// Token: 0x04003BA6 RID: 15270
-	LovestruckCorpseReport,
+	GrudgeRefusal,
 	// Token: 0x04003BA7 RID: 15271
-	LovestruckDeathReaction,
+	GrudgeWarning,
 	// Token: 0x04003BA8 RID: 15272
-	LovestruckMurderReport,
+	HeroMurderReaction,
 	// Token: 0x04003BA9 RID: 15273
-	MurderReaction,
+	HmmReaction,
 	// Token: 0x04003BAA RID: 15274
-	NoteReaction,
+	HoldingBloodyClothingApology,
 	// Token: 0x04003BAB RID: 15275
-	NoteReactionMale,
+	HoldingBloodyClothingReaction,
 	// Token: 0x04003BAC RID: 15276
-	ObstacleMurderReaction,
+	Impatience,
 	// Token: 0x04003BAD RID: 15277
-	ObstaclePoisonReaction,
+	InfoNotice,
 	// Token: 0x04003BAE RID: 15278
-	OfferSnack,
+	InsanityApology,
 	// Token: 0x04003BAF RID: 15279
-	OsanaObstacleDeathReaction,
+	InsanityReaction,
 	// Token: 0x04003BB0 RID: 15280
-	ParanoidReaction,
+	InterruptionReaction,
 	// Token: 0x04003BB1 RID: 15281
-	PetBloodReaction,
+	IntrusionReaction,
 	// Token: 0x04003BB2 RID: 15282
-	PetBloodReport,
+	KilledMood,
 	// Token: 0x04003BB3 RID: 15283
-	PetCorpseReaction,
+	LewdApology,
 	// Token: 0x04003BB4 RID: 15284
-	PetCorpseReport,
+	LewdReaction,
 	// Token: 0x04003BB5 RID: 15285
-	PetLimbReaction,
+	LightSwitchReaction,
 	// Token: 0x04003BB6 RID: 15286
-	PetLimbReport,
+	LimbReaction,
 	// Token: 0x04003BB7 RID: 15287
-	PetMurderReaction,
+	LonerCorpseReaction,
 	// Token: 0x04003BB8 RID: 15288
-	PetMurderReport,
+	LonerMurderReaction,
 	// Token: 0x04003BB9 RID: 15289
-	PetWeaponReaction,
+	LostPhone,
 	// Token: 0x04003BBA RID: 15290
-	PetWeaponReport,
+	LovestruckCorpseReport,
 	// Token: 0x04003BBB RID: 15291
-	PetBloodyWeaponReaction,
+	LovestruckDeathReaction,
 	// Token: 0x04003BBC RID: 15292
-	PetBloodyWeaponReport,
+	LovestruckMurderReport,
 	// Token: 0x04003BBD RID: 15293
-	PhotoAnnoyance,
+	MurderReaction,
 	// Token: 0x04003BBE RID: 15294
-	PickpocketReaction,
+	NoteReaction,
 	// Token: 0x04003BBF RID: 15295
-	PickpocketApology,
+	NoteReactionMale,
 	// Token: 0x04003BC0 RID: 15296
-	PlayerCompliment,
+	ObstacleMurderReaction,
 	// Token: 0x04003BC1 RID: 15297
-	PlayerDistract,
+	ObstaclePoisonReaction,
 	// Token: 0x04003BC2 RID: 15298
-	PlayerFarewell,
+	OfferSnack,
 	// Token: 0x04003BC3 RID: 15299
-	PlayerFollow,
+	OsanaObstacleDeathReaction,
 	// Token: 0x04003BC4 RID: 15300
-	PlayerGossip,
+	ParanoidReaction,
 	// Token: 0x04003BC5 RID: 15301
-	PlayerLeave,
+	PetBloodReaction,
 	// Token: 0x04003BC6 RID: 15302
-	PlayerLove,
+	PetBloodReport,
 	// Token: 0x04003BC7 RID: 15303
-	PoisonApology,
+	PetCorpseReaction,
 	// Token: 0x04003BC8 RID: 15304
-	PoisonReaction,
+	PetCorpseReport,
 	// Token: 0x04003BC9 RID: 15305
-	PrankReaction,
+	PetLimbReaction,
 	// Token: 0x04003BCA RID: 15306
-	RaibaruRivalDeathReaction,
+	PetLimbReport,
 	// Token: 0x04003BCB RID: 15307
-	RejectFood,
+	PetMurderReaction,
 	// Token: 0x04003BCC RID: 15308
-	RejectHelp,
+	PetMurderReport,
 	// Token: 0x04003BCD RID: 15309
-	RepeatReaction,
+	PetWeaponReaction,
 	// Token: 0x04003BCE RID: 15310
-	RequestMedicine,
+	PetWeaponReport,
 	// Token: 0x04003BCF RID: 15311
-	ReturningWeapon,
+	PetBloodyWeaponReaction,
 	// Token: 0x04003BD0 RID: 15312
-	RivalEavesdropReaction,
+	PetBloodyWeaponReport,
 	// Token: 0x04003BD1 RID: 15313
-	RivalLostPhone,
+	PhotoAnnoyance,
 	// Token: 0x04003BD2 RID: 15314
-	RivalLove,
+	PickpocketReaction,
 	// Token: 0x04003BD3 RID: 15315
-	RivalPickpocketReaction,
+	PickpocketApology,
 	// Token: 0x04003BD4 RID: 15316
-	RivalSplashReaction,
+	PlayerCompliment,
 	// Token: 0x04003BD5 RID: 15317
-	SadApology,
+	PlayerDistract,
 	// Token: 0x04003BD6 RID: 15318
-	SendToLocker,
+	PlayerFarewell,
 	// Token: 0x04003BD7 RID: 15319
-	SenpaiBloodReaction,
+	PlayerFollow,
 	// Token: 0x04003BD8 RID: 15320
-	SenpaiCorpseReaction,
+	PlayerGossip,
 	// Token: 0x04003BD9 RID: 15321
-	SenpaiInsanityReaction,
+	PlayerLeave,
 	// Token: 0x04003BDA RID: 15322
-	SenpaiLewdReaction,
+	PlayerLove,
 	// Token: 0x04003BDB RID: 15323
-	SenpaiMurderReaction,
+	PoisonApology,
 	// Token: 0x04003BDC RID: 15324
-	SenpaiStalkingReaction,
+	PoisonReaction,
 	// Token: 0x04003BDD RID: 15325
-	SenpaiViolenceReaction,
+	PrankReaction,
 	// Token: 0x04003BDE RID: 15326
-	SenpaiWeaponReaction,
+	RaibaruRivalDeathReaction,
 	// Token: 0x04003BDF RID: 15327
-	SenpaiRivalDeathReaction,
+	RejectFood,
 	// Token: 0x04003BE0 RID: 15328
-	SocialDeathReaction,
+	RejectHelp,
 	// Token: 0x04003BE1 RID: 15329
-	SocialFear,
+	RepeatReaction,
 	// Token: 0x04003BE2 RID: 15330
-	SocialReport,
+	RequestMedicine,
 	// Token: 0x04003BE3 RID: 15331
-	SocialTerror,
+	ReturningWeapon,
 	// Token: 0x04003BE4 RID: 15332
-	SplashReaction,
+	RivalEavesdropReaction,
 	// Token: 0x04003BE5 RID: 15333
-	SplashReactionMale,
+	RivalLostPhone,
 	// Token: 0x04003BE6 RID: 15334
-	SuitorLove,
+	RivalLove,
 	// Token: 0x04003BE7 RID: 15335
-	SuspiciousApology,
+	RivalPickpocketReaction,
 	// Token: 0x04003BE8 RID: 15336
-	SuspiciousReaction,
+	RivalSplashReaction,
 	// Token: 0x04003BE9 RID: 15337
-	StopFollowApology,
+	SadApology,
 	// Token: 0x04003BEA RID: 15338
-	StudentDistract,
+	SendToLocker,
 	// Token: 0x04003BEB RID: 15339
-	StudentDistractRefuse,
+	SenpaiBloodReaction,
 	// Token: 0x04003BEC RID: 15340
-	StudentDistractBullyRefuse,
+	SenpaiCorpseReaction,
 	// Token: 0x04003BED RID: 15341
-	StudentFarewell,
+	SenpaiInsanityReaction,
 	// Token: 0x04003BEE RID: 15342
-	StudentFollow,
+	SenpaiLewdReaction,
 	// Token: 0x04003BEF RID: 15343
-	StudentGossip,
+	SenpaiMurderReaction,
 	// Token: 0x04003BF0 RID: 15344
-	StudentHighCompliment,
+	SenpaiStalkingReaction,
 	// Token: 0x04003BF1 RID: 15345
-	StudentLeave,
+	SenpaiViolenceReaction,
 	// Token: 0x04003BF2 RID: 15346
-	StudentLowCompliment,
+	SenpaiWeaponReaction,
 	// Token: 0x04003BF3 RID: 15347
-	StudentMidCompliment,
+	SenpaiRivalDeathReaction,
 	// Token: 0x04003BF4 RID: 15348
-	StudentMurderReport,
+	SocialDeathReaction,
 	// Token: 0x04003BF5 RID: 15349
-	StudentStay,
+	SocialFear,
 	// Token: 0x04003BF6 RID: 15350
-	Task6Line,
+	SocialReport,
 	// Token: 0x04003BF7 RID: 15351
-	Task7Line,
+	SocialTerror,
 	// Token: 0x04003BF8 RID: 15352
-	Task8Line,
+	SplashReaction,
 	// Token: 0x04003BF9 RID: 15353
-	Task11Line,
+	SplashReactionMale,
 	// Token: 0x04003BFA RID: 15354
-	Task13Line,
+	SuitorLove,
 	// Token: 0x04003BFB RID: 15355
-	Task14Line,
+	SuspiciousApology,
 	// Token: 0x04003BFC RID: 15356
-	Task15Line,
+	SuspiciousReaction,
 	// Token: 0x04003BFD RID: 15357
-	Task25Line,
+	StopFollowApology,
 	// Token: 0x04003BFE RID: 15358
-	Task28Line,
+	StudentDistract,
 	// Token: 0x04003BFF RID: 15359
-	Task30Line,
+	StudentDistractRefuse,
 	// Token: 0x04003C00 RID: 15360
-	Task32Line,
+	StudentDistractBullyRefuse,
 	// Token: 0x04003C01 RID: 15361
-	Task33Line,
+	StudentFarewell,
 	// Token: 0x04003C02 RID: 15362
-	Task34Line,
+	StudentFollow,
 	// Token: 0x04003C03 RID: 15363
-	Task36Line,
+	StudentGossip,
 	// Token: 0x04003C04 RID: 15364
-	Task37Line,
+	StudentHighCompliment,
 	// Token: 0x04003C05 RID: 15365
-	Task38Line,
+	StudentLeave,
 	// Token: 0x04003C06 RID: 15366
-	Task46Line,
+	StudentLowCompliment,
 	// Token: 0x04003C07 RID: 15367
-	Task52Line,
+	StudentMidCompliment,
 	// Token: 0x04003C08 RID: 15368
-	Task76Line,
+	StudentMurderReport,
 	// Token: 0x04003C09 RID: 15369
-	Task77Line,
+	StudentStay,
 	// Token: 0x04003C0A RID: 15370
-	Task78Line,
+	Task6Line,
 	// Token: 0x04003C0B RID: 15371
-	Task79Line,
+	Task7Line,
 	// Token: 0x04003C0C RID: 15372
-	Task80Line,
+	Task8Line,
 	// Token: 0x04003C0D RID: 15373
-	Task81Line,
+	Task11Line,
 	// Token: 0x04003C0E RID: 15374
-	TaskGenericLine,
+	Task13Line,
 	// Token: 0x04003C0F RID: 15375
-	TaskGenericLineMale,
+	Task14Line,
 	// Token: 0x04003C10 RID: 15376
-	TaskGenericLineFemale,
+	Task15Line,
 	// Token: 0x04003C11 RID: 15377
-	TaskGenericEightiesLine,
+	Task25Line,
 	// Token: 0x04003C12 RID: 15378
-	TaskGenericEightiesLineMale,
+	Task28Line,
 	// Token: 0x04003C13 RID: 15379
-	TaskGenericEightiesLineFemale,
+	Task30Line,
 	// Token: 0x04003C14 RID: 15380
-	TaskInquiry,
+	Task32Line,
 	// Token: 0x04003C15 RID: 15381
-	TeacherAttackReaction,
+	Task33Line,
 	// Token: 0x04003C16 RID: 15382
-	TeacherBloodHostile,
+	Task34Line,
 	// Token: 0x04003C17 RID: 15383
-	TeacherBloodReaction,
+	Task36Line,
 	// Token: 0x04003C18 RID: 15384
-	TeacherCorpseInspection,
+	Task37Line,
 	// Token: 0x04003C19 RID: 15385
-	TeacherCorpseReaction,
+	Task38Line,
 	// Token: 0x04003C1A RID: 15386
-	TeacherCoverUpHostile,
+	Task46Line,
 	// Token: 0x04003C1B RID: 15387
-	TeacherInsanityHostile,
+	Task52Line,
 	// Token: 0x04003C1C RID: 15388
-	TeacherInsanityReaction,
+	Task76Line,
 	// Token: 0x04003C1D RID: 15389
-	TeacherLateReaction,
+	Task77Line,
 	// Token: 0x04003C1E RID: 15390
-	TeacherLewdReaction,
+	Task78Line,
 	// Token: 0x04003C1F RID: 15391
-	TeacherMurderReaction,
+	Task79Line,
 	// Token: 0x04003C20 RID: 15392
-	TeacherPoliceReport,
+	Task80Line,
 	// Token: 0x04003C21 RID: 15393
-	TeacherPrankReaction,
+	Task81Line,
 	// Token: 0x04003C22 RID: 15394
-	TeacherReportReaction,
+	TaskGenericLine,
 	// Token: 0x04003C23 RID: 15395
-	TeacherTheftReaction,
+	TaskGenericLineMale,
 	// Token: 0x04003C24 RID: 15396
-	TeacherTrespassingReaction,
+	TaskGenericLineFemale,
 	// Token: 0x04003C25 RID: 15397
-	TeacherWeaponHostile,
+	TaskGenericEightiesLine,
 	// Token: 0x04003C26 RID: 15398
-	TeacherWeaponReaction,
+	TaskGenericEightiesLineMale,
 	// Token: 0x04003C27 RID: 15399
-	TheftApology,
+	TaskGenericEightiesLineFemale,
 	// Token: 0x04003C28 RID: 15400
-	TheftReaction,
+	TaskInquiry,
 	// Token: 0x04003C29 RID: 15401
-	TutorialApology,
+	TeacherAttackReaction,
 	// Token: 0x04003C2A RID: 15402
-	TutorialReaction,
+	TeacherBloodHostile,
 	// Token: 0x04003C2B RID: 15403
-	ViolenceApology,
+	TeacherBloodReaction,
 	// Token: 0x04003C2C RID: 15404
-	ViolenceReaction,
+	TeacherCorpseInspection,
 	// Token: 0x04003C2D RID: 15405
-	WeaponApology,
+	TeacherCorpseReaction,
 	// Token: 0x04003C2E RID: 15406
-	WeaponReaction,
+	TeacherCoverUpHostile,
 	// Token: 0x04003C2F RID: 15407
-	WeaponAndBloodApology,
+	TeacherInsanityHostile,
 	// Token: 0x04003C30 RID: 15408
-	WeaponAndBloodReaction,
+	TeacherInsanityReaction,
 	// Token: 0x04003C31 RID: 15409
-	WeaponAndInsanityReaction,
+	TeacherLateReaction,
 	// Token: 0x04003C32 RID: 15410
-	WeaponAndBloodAndInsanityReaction,
+	TeacherLewdReaction,
 	// Token: 0x04003C33 RID: 15411
-	WetBloodReaction,
+	TeacherMurderReaction,
 	// Token: 0x04003C34 RID: 15412
-	YandereWhimper,
+	TeacherPoliceReport,
 	// Token: 0x04003C35 RID: 15413
-	StrictReport,
+	TeacherPrankReaction,
 	// Token: 0x04003C36 RID: 15414
-	CasualReport,
+	TeacherReportReaction,
 	// Token: 0x04003C37 RID: 15415
-	GraceReport,
+	TeacherTheftReaction,
 	// Token: 0x04003C38 RID: 15416
-	EdgyReport,
+	TeacherTrespassingReaction,
 	// Token: 0x04003C39 RID: 15417
-	BreakingUp,
+	TeacherWeaponHostile,
 	// Token: 0x04003C3A RID: 15418
-	Spraying,
+	TeacherWeaponReaction,
 	// Token: 0x04003C3B RID: 15419
-	Shoving,
+	TheftApology,
 	// Token: 0x04003C3C RID: 15420
-	Chasing,
+	TheftReaction,
 	// Token: 0x04003C3D RID: 15421
-	CouncilCorpseReaction,
+	TutorialApology,
 	// Token: 0x04003C3E RID: 15422
+	TutorialReaction,
+	// Token: 0x04003C3F RID: 15423
+	ViolenceApology,
+	// Token: 0x04003C40 RID: 15424
+	ViolenceReaction,
+	// Token: 0x04003C41 RID: 15425
+	WeaponApology,
+	// Token: 0x04003C42 RID: 15426
+	WeaponReaction,
+	// Token: 0x04003C43 RID: 15427
+	WeaponAndBloodApology,
+	// Token: 0x04003C44 RID: 15428
+	WeaponAndBloodReaction,
+	// Token: 0x04003C45 RID: 15429
+	WeaponAndInsanityReaction,
+	// Token: 0x04003C46 RID: 15430
+	WeaponAndBloodAndInsanityReaction,
+	// Token: 0x04003C47 RID: 15431
+	WetBloodReaction,
+	// Token: 0x04003C48 RID: 15432
+	YandereWhimper,
+	// Token: 0x04003C49 RID: 15433
+	StrictReport,
+	// Token: 0x04003C4A RID: 15434
+	CasualReport,
+	// Token: 0x04003C4B RID: 15435
+	GraceReport,
+	// Token: 0x04003C4C RID: 15436
+	EdgyReport,
+	// Token: 0x04003C4D RID: 15437
+	BreakingUp,
+	// Token: 0x04003C4E RID: 15438
+	Spraying,
+	// Token: 0x04003C4F RID: 15439
+	Shoving,
+	// Token: 0x04003C50 RID: 15440
+	Chasing,
+	// Token: 0x04003C51 RID: 15441
+	CouncilCorpseReaction,
+	// Token: 0x04003C52 RID: 15442
 	CouncilToCounselor
 }

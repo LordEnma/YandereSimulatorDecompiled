@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004C0 RID: 1216
+// Token: 0x020004C2 RID: 1218
 public class YandereHairScript : MonoBehaviour
 {
-	// Token: 0x06001FD5 RID: 8149 RVA: 0x001C452E File Offset: 0x001C272E
+	// Token: 0x06001FE0 RID: 8160 RVA: 0x001C4EAE File Offset: 0x001C30AE
 	private void Start()
 	{
 		ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/YandereHair/Hair_" + this.Yandere.Hairstyle.ToString() + ".png");
 		this.Limit = this.Yandere.Hairstyles.Length - 1;
 	}
 
-	// Token: 0x06001FD6 RID: 8150 RVA: 0x001C4570 File Offset: 0x001C2770
+	// Token: 0x06001FE1 RID: 8161 RVA: 0x001C4EF0 File Offset: 0x001C30F0
 	private void Update()
 	{
 		if (this.Yandere.Hairstyle < this.Limit)
@@ -30,12 +30,12 @@ public class YandereHairScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004308 RID: 17160
+	// Token: 0x0400431C RID: 17180
 	public YandereScript Yandere;
 
-	// Token: 0x04004309 RID: 17161
+	// Token: 0x0400431D RID: 17181
 	public int Frame;
 
-	// Token: 0x0400430A RID: 17162
+	// Token: 0x0400431E RID: 17182
 	public int Limit;
 }

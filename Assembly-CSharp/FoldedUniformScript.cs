@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002CB RID: 715
+// Token: 0x020002CC RID: 716
 public class FoldedUniformScript : MonoBehaviour
 {
-	// Token: 0x06001499 RID: 5273 RVA: 0x000CA234 File Offset: 0x000C8434
+	// Token: 0x0600149D RID: 5277 RVA: 0x000CA514 File Offset: 0x000C8714
 	private void Start()
 	{
 		for (int i = 1; i < this.Uniforms.Length; i++)
@@ -39,7 +39,7 @@ public class FoldedUniformScript : MonoBehaviour
 			this.Yandere.StudentManager.NewUniforms++;
 			this.Yandere.StudentManager.UpdateStudents(0);
 			this.Yandere.StudentManager.Uniforms[this.Yandere.StudentManager.NewUniforms] = base.transform;
-			Debug.Log("A new uniform has appeared. There are now " + this.Yandere.StudentManager.NewUniforms.ToString() + " new uniforms at school.");
+			Debug.Log("A new uniform has been spawned. The number of ''New Uniforms'' at school is now " + this.Yandere.StudentManager.NewUniforms.ToString() + ".");
 		}
 		if (this.Type == 2)
 		{
@@ -62,7 +62,7 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600149A RID: 5274 RVA: 0x000CA428 File Offset: 0x000C8628
+	// Token: 0x0600149E RID: 5278 RVA: 0x000CA708 File Offset: 0x000C8908
 	private void Update()
 	{
 		if (this.Clean)
@@ -98,7 +98,7 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600149B RID: 5275 RVA: 0x000CA5B8 File Offset: 0x000C87B8
+	// Token: 0x0600149F RID: 5279 RVA: 0x000CA898 File Offset: 0x000C8A98
 	public void CleanUp()
 	{
 		Debug.Log("Firing the ''CleanUp()'' function.");
@@ -113,42 +113,42 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002029 RID: 8233
+	// Token: 0x0400202D RID: 8237
 	public YandereScript Yandere;
 
-	// Token: 0x0400202A RID: 8234
+	// Token: 0x0400202E RID: 8238
 	public PromptScript Prompt;
 
-	// Token: 0x0400202B RID: 8235
+	// Token: 0x0400202F RID: 8239
 	public GameObject SteamCloud;
 
-	// Token: 0x0400202C RID: 8236
+	// Token: 0x04002030 RID: 8240
 	public bool InPosition = true;
 
-	// Token: 0x0400202D RID: 8237
+	// Token: 0x04002031 RID: 8241
 	public bool Clean;
 
-	// Token: 0x0400202E RID: 8238
+	// Token: 0x04002032 RID: 8242
 	public bool Spare;
 
-	// Token: 0x0400202F RID: 8239
+	// Token: 0x04002033 RID: 8243
 	public float Timer;
 
-	// Token: 0x04002030 RID: 8240
+	// Token: 0x04002034 RID: 8244
 	public int Type;
 
-	// Token: 0x04002031 RID: 8241
+	// Token: 0x04002035 RID: 8245
 	public GameObject[] Uniforms;
 
-	// Token: 0x04002032 RID: 8242
+	// Token: 0x04002036 RID: 8246
 	public Renderer[] MyRenderer;
 
-	// Token: 0x04002033 RID: 8243
+	// Token: 0x04002037 RID: 8247
 	public Texture CleanTexture;
 
-	// Token: 0x04002034 RID: 8244
+	// Token: 0x04002038 RID: 8248
 	public Texture EightiesTexture;
 
-	// Token: 0x04002035 RID: 8245
+	// Token: 0x04002039 RID: 8249
 	public Texture BloodyEightiesTexture;
 }

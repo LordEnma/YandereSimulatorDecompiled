@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Aura2API
 {
-	// Token: 0x020005B1 RID: 1457
+	// Token: 0x020005B3 RID: 1459
 	public class AuraFreeCamera : MonoBehaviour
 	{
-		// Token: 0x060024B9 RID: 9401 RVA: 0x001F9588 File Offset: 0x001F7788
+		// Token: 0x060024C4 RID: 9412 RVA: 0x001F9F28 File Offset: 0x001F8128
 		private void Start()
 		{
 			this.m_yaw = base.transform.rotation.eulerAngles.y;
@@ -14,7 +14,7 @@ namespace Aura2API
 			Cursor.visible = this.showCursor;
 		}
 
-		// Token: 0x060024BA RID: 9402 RVA: 0x001F95DC File Offset: 0x001F77DC
+		// Token: 0x060024C5 RID: 9413 RVA: 0x001F9F7C File Offset: 0x001F817C
 		private void Update()
 		{
 			if (!this.freeLookEnabled)
@@ -31,25 +31,25 @@ namespace Aura2API
 			base.transform.position += base.transform.forward * d + base.transform.right * d2 + Vector3.up * d3;
 		}
 
-		// Token: 0x04004C59 RID: 19545
+		// Token: 0x04004C6D RID: 19565
 		public bool freeLookEnabled;
 
-		// Token: 0x04004C5A RID: 19546
+		// Token: 0x04004C6E RID: 19566
 		public bool showCursor;
 
-		// Token: 0x04004C5B RID: 19547
+		// Token: 0x04004C6F RID: 19567
 		public float lookSpeed = 5f;
 
-		// Token: 0x04004C5C RID: 19548
+		// Token: 0x04004C70 RID: 19568
 		public float moveSpeed = 5f;
 
-		// Token: 0x04004C5D RID: 19549
+		// Token: 0x04004C71 RID: 19569
 		public float sprintSpeed = 50f;
 
-		// Token: 0x04004C5E RID: 19550
+		// Token: 0x04004C72 RID: 19570
 		private float m_yaw;
 
-		// Token: 0x04004C5F RID: 19551
+		// Token: 0x04004C73 RID: 19571
 		private float m_pitch;
 	}
 }

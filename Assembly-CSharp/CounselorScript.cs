@@ -5,7 +5,7 @@ using XInputDotNetPure;
 // Token: 0x02000260 RID: 608
 public class CounselorScript : MonoBehaviour
 {
-	// Token: 0x060012D8 RID: 4824 RVA: 0x000A17B4 File Offset: 0x0009F9B4
+	// Token: 0x060012D8 RID: 4824 RVA: 0x000A17D0 File Offset: 0x0009F9D0
 	private void Start()
 	{
 		this.CounselorPunishments = CounselorGlobals.CounselorPunishments;
@@ -81,7 +81,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012D9 RID: 4825 RVA: 0x000A1B6C File Offset: 0x0009FD6C
+	// Token: 0x060012D9 RID: 4825 RVA: 0x000A1B88 File Offset: 0x0009FD88
 	private void Update()
 	{
 		if (this.LookAtPlayer)
@@ -437,7 +437,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012DA RID: 4826 RVA: 0x000A2AA8 File Offset: 0x000A0CA8
+	// Token: 0x060012DA RID: 4826 RVA: 0x000A2AC4 File Offset: 0x000A0CC4
 	public void Talk()
 	{
 		this.MyAnimation.CrossFade("CounselorComputerAttention", 1f);
@@ -464,7 +464,7 @@ public class CounselorScript : MonoBehaviour
 		this.UpdateList();
 	}
 
-	// Token: 0x060012DB RID: 4827 RVA: 0x000A2BF4 File Offset: 0x000A0DF4
+	// Token: 0x060012DB RID: 4827 RVA: 0x000A2C10 File Offset: 0x000A0E10
 	private void UpdateList()
 	{
 		for (int i = 1; i < this.Labels.Length; i++)
@@ -553,7 +553,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012DC RID: 4828 RVA: 0x000A2F60 File Offset: 0x000A1160
+	// Token: 0x060012DC RID: 4828 RVA: 0x000A2F7C File Offset: 0x000A117C
 	private void UpdateHighlight()
 	{
 		if (this.Selected < 1)
@@ -567,7 +567,7 @@ public class CounselorScript : MonoBehaviour
 		this.Highlight.transform.localPosition = new Vector3(this.Highlight.transform.localPosition.x, 200f - 50f * (float)this.Selected, this.Highlight.transform.localPosition.z);
 	}
 
-	// Token: 0x060012DD RID: 4829 RVA: 0x000A2FE4 File Offset: 0x000A11E4
+	// Token: 0x060012DD RID: 4829 RVA: 0x000A3000 File Offset: 0x000A1200
 	private void LateUpdate()
 	{
 		if (Vector3.Distance(base.transform.position, this.Yandere.transform.position) < 5f)
@@ -636,7 +636,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012DE RID: 4830 RVA: 0x000A341C File Offset: 0x000A161C
+	// Token: 0x060012DE RID: 4830 RVA: 0x000A3438 File Offset: 0x000A1638
 	public void Quit()
 	{
 		Debug.Log("CounselorScript has called the Quit() function.");
@@ -702,7 +702,7 @@ public class CounselorScript : MonoBehaviour
 		Physics.SyncTransforms();
 	}
 
-	// Token: 0x060012DF RID: 4831 RVA: 0x000A3794 File Offset: 0x000A1994
+	// Token: 0x060012DF RID: 4831 RVA: 0x000A37B0 File Offset: 0x000A19B0
 	private void UpdateInterrogation()
 	{
 		if (this.VibrationCheck)
@@ -1433,7 +1433,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012E0 RID: 4832 RVA: 0x000A58BC File Offset: 0x000A3ABC
+	// Token: 0x060012E0 RID: 4832 RVA: 0x000A58D8 File Offset: 0x000A3AD8
 	public void SaveExcusesUsed()
 	{
 		CounselorGlobals.BloodExcuseUsed = this.BloodExcuseUsed;
@@ -1444,7 +1444,7 @@ public class CounselorScript : MonoBehaviour
 		CounselorGlobals.WeaponExcuseUsed = this.WeaponExcuseUsed;
 	}
 
-	// Token: 0x060012E1 RID: 4833 RVA: 0x000A590C File Offset: 0x000A3B0C
+	// Token: 0x060012E1 RID: 4833 RVA: 0x000A5928 File Offset: 0x000A3B28
 	public void LoadExcusesUsed()
 	{
 		this.BloodExcuseUsed = CounselorGlobals.BloodExcuseUsed;
@@ -1455,7 +1455,7 @@ public class CounselorScript : MonoBehaviour
 		this.WeaponExcuseUsed = CounselorGlobals.WeaponExcuseUsed;
 	}
 
-	// Token: 0x060012E2 RID: 4834 RVA: 0x000A595C File Offset: 0x000A3B5C
+	// Token: 0x060012E2 RID: 4834 RVA: 0x000A5978 File Offset: 0x000A3B78
 	public void SaveCounselorData()
 	{
 		CounselorGlobals.CounselorPunishments = this.CounselorPunishments;
@@ -1478,7 +1478,7 @@ public class CounselorScript : MonoBehaviour
 		CounselorGlobals.DelinquentPunishments = this.DelinquentPunishments;
 	}
 
-	// Token: 0x060012E3 RID: 4835 RVA: 0x000A5A2F File Offset: 0x000A3C2F
+	// Token: 0x060012E3 RID: 4835 RVA: 0x000A5A4B File Offset: 0x000A3C4B
 	public void ExpelStudents()
 	{
 		if (this.ExpelledDelinquents)
@@ -1491,7 +1491,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012E4 RID: 4836 RVA: 0x000A5A64 File Offset: 0x000A3C64
+	// Token: 0x060012E4 RID: 4836 RVA: 0x000A5A80 File Offset: 0x000A3C80
 	public void SilenceClips(AudioClip[] ClipArray)
 	{
 		for (int i = 0; i < 11; i++)
@@ -1503,7 +1503,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012E5 RID: 4837 RVA: 0x000A5A90 File Offset: 0x000A3C90
+	// Token: 0x060012E5 RID: 4837 RVA: 0x000A5AAC File Offset: 0x000A3CAC
 	public void SpawnDelinquents()
 	{
 		for (int i = 1; i < 6; i++)

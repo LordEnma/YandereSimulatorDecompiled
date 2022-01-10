@@ -2,28 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020002E5 RID: 741
+// Token: 0x020002E6 RID: 742
 public static class KeysHelper
 {
-	// Token: 0x06001505 RID: 5381 RVA: 0x000D7215 File Offset: 0x000D5415
+	// Token: 0x06001509 RID: 5385 RVA: 0x000D753D File Offset: 0x000D573D
 	public static int[] GetIntegerKeys(string key)
 	{
 		return Array.ConvertAll<string, int>(KeysHelper.SplitList(KeysHelper.GetKeyList(KeysHelper.GetKeyListKey(key))), (string str) => int.Parse(str));
 	}
 
-	// Token: 0x06001506 RID: 5382 RVA: 0x000D724B File Offset: 0x000D544B
+	// Token: 0x0600150A RID: 5386 RVA: 0x000D7573 File Offset: 0x000D5773
 	public static string[] GetStringKeys(string key)
 	{
 		return KeysHelper.SplitList(KeysHelper.GetKeyList(KeysHelper.GetKeyListKey(key)));
 	}
 
-	// Token: 0x06001507 RID: 5383 RVA: 0x000D725D File Offset: 0x000D545D
+	// Token: 0x0600150B RID: 5387 RVA: 0x000D7585 File Offset: 0x000D5785
 	public static T[] GetEnumKeys<T>(string key) where T : struct, IConvertible
 	{
 		return Array.ConvertAll<string, T>(KeysHelper.SplitList(KeysHelper.GetKeyList(KeysHelper.GetKeyListKey(key))), (string str) => (T)((object)Enum.Parse(typeof(T), str)));
 	}
 
-	// Token: 0x06001508 RID: 5384 RVA: 0x000D7294 File Offset: 0x000D5494
+	// Token: 0x0600150C RID: 5388 RVA: 0x000D75BC File Offset: 0x000D57BC
 	public static KeyValuePair<T, U>[] GetKeys<T, U>(string key) where T : struct where U : struct
 	{
 		string[] array = KeysHelper.SplitList(KeysHelper.GetKeyList(KeysHelper.GetKeyListKey(key)));
@@ -39,7 +39,7 @@ public static class KeysHelper
 		return array2;
 	}
 
-	// Token: 0x06001509 RID: 5385 RVA: 0x000D7310 File Offset: 0x000D5510
+	// Token: 0x0600150D RID: 5389 RVA: 0x000D7638 File Offset: 0x000D5838
 	public static void AddIfMissing(string key, string id)
 	{
 		string keyListKey = KeysHelper.GetKeyListKey(key);
@@ -50,25 +50,25 @@ public static class KeysHelper
 		}
 	}
 
-	// Token: 0x0600150A RID: 5386 RVA: 0x000D7341 File Offset: 0x000D5541
+	// Token: 0x0600150E RID: 5390 RVA: 0x000D7669 File Offset: 0x000D5869
 	public static void Delete(string key)
 	{
 		Globals.Delete(KeysHelper.GetKeyListKey(key));
 	}
 
-	// Token: 0x0600150B RID: 5387 RVA: 0x000D734E File Offset: 0x000D554E
+	// Token: 0x0600150F RID: 5391 RVA: 0x000D7676 File Offset: 0x000D5876
 	private static string GetKeyListKey(string key)
 	{
 		return key + "Keys";
 	}
 
-	// Token: 0x0600150C RID: 5388 RVA: 0x000D735B File Offset: 0x000D555B
+	// Token: 0x06001510 RID: 5392 RVA: 0x000D7683 File Offset: 0x000D5883
 	private static string GetKeyList(string keyListKey)
 	{
 		return PlayerPrefs.GetString(keyListKey);
 	}
 
-	// Token: 0x0600150D RID: 5389 RVA: 0x000D7363 File Offset: 0x000D5563
+	// Token: 0x06001511 RID: 5393 RVA: 0x000D768B File Offset: 0x000D588B
 	private static string[] SplitList(string keyList)
 	{
 		if (keyList.Length <= 0)
@@ -81,31 +81,31 @@ public static class KeysHelper
 		});
 	}
 
-	// Token: 0x0600150E RID: 5390 RVA: 0x000D7386 File Offset: 0x000D5586
+	// Token: 0x06001512 RID: 5394 RVA: 0x000D76AE File Offset: 0x000D58AE
 	private static int FindKey(string[] keyListStrings, string key)
 	{
 		return Array.IndexOf<string>(keyListStrings, key);
 	}
 
-	// Token: 0x0600150F RID: 5391 RVA: 0x000D738F File Offset: 0x000D558F
+	// Token: 0x06001513 RID: 5395 RVA: 0x000D76B7 File Offset: 0x000D58B7
 	private static bool HasKey(string[] keyListStrings, string key)
 	{
 		return KeysHelper.FindKey(keyListStrings, key) > -1;
 	}
 
-	// Token: 0x06001510 RID: 5392 RVA: 0x000D739C File Offset: 0x000D559C
+	// Token: 0x06001514 RID: 5396 RVA: 0x000D76C4 File Offset: 0x000D58C4
 	private static void AppendKey(string keyListKey, string keyList, string key)
 	{
 		string value = (keyList.Length == 0) ? (keyList + key) : (keyList + "|" + key);
 		PlayerPrefs.SetString(keyListKey, value);
 	}
 
-	// Token: 0x0400217E RID: 8574
+	// Token: 0x04002182 RID: 8578
 	private const string KeyListPrefix = "Keys";
 
-	// Token: 0x0400217F RID: 8575
+	// Token: 0x04002183 RID: 8579
 	private const char KeyListSeparator = '|';
 
-	// Token: 0x04002180 RID: 8576
+	// Token: 0x04002184 RID: 8580
 	public const char PairSeparator = '^';
 }

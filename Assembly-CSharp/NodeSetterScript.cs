@@ -1,32 +1,32 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000378 RID: 888
+// Token: 0x02000379 RID: 889
 public class NodeSetterScript : MonoBehaviour
 {
-	// Token: 0x060019F2 RID: 6642 RVA: 0x0010F4C1 File Offset: 0x0010D6C1
+	// Token: 0x060019F6 RID: 6646 RVA: 0x0010F869 File Offset: 0x0010DA69
 	private void Start()
 	{
 	}
 
-	// Token: 0x040029F5 RID: 10741
+	// Token: 0x040029FB RID: 10747
 	public GameObject[] Nodes;
 
-	// Token: 0x040029F6 RID: 10742
+	// Token: 0x040029FC RID: 10748
 	public GameObject Node;
 
-	// Token: 0x040029F7 RID: 10743
+	// Token: 0x040029FD RID: 10749
 	public bool Stairs;
 
-	// Token: 0x040029F8 RID: 10744
+	// Token: 0x040029FE RID: 10750
 	public bool Door;
 
-	// Token: 0x040029F9 RID: 10745
+	// Token: 0x040029FF RID: 10751
 	public float Height;
 
-	// Token: 0x040029FA RID: 10746
+	// Token: 0x04002A00 RID: 10752
 	public int Column;
 
-	// Token: 0x040029FB RID: 10747
+	// Token: 0x04002A01 RID: 10753
 	public int Row;
 }

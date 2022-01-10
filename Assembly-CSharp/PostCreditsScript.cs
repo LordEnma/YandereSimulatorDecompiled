@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020003B4 RID: 948
+// Token: 0x020003B6 RID: 950
 public class PostCreditsScript : MonoBehaviour
 {
-	// Token: 0x06001ADA RID: 6874 RVA: 0x0012894C File Offset: 0x00126B4C
+	// Token: 0x06001AE1 RID: 6881 RVA: 0x00128D24 File Offset: 0x00126F24
 	private void Start()
 	{
 		this.Darkness.color = new Color(0f, 0f, 0f, 1f);
@@ -15,7 +15,7 @@ public class PostCreditsScript : MonoBehaviour
 		this.LovesickLogo.SetActive(false);
 	}
 
-	// Token: 0x06001ADB RID: 6875 RVA: 0x001289B4 File Offset: 0x00126BB4
+	// Token: 0x06001AE2 RID: 6882 RVA: 0x00128D8C File Offset: 0x00126F8C
 	private void Update()
 	{
 		this.SkipTimer += Time.deltaTime;
@@ -127,66 +127,66 @@ public class PostCreditsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002D39 RID: 11577
+	// Token: 0x04002D3F RID: 11583
 	public GameObject LovesickLogo;
 
-	// Token: 0x04002D3A RID: 11578
+	// Token: 0x04002D40 RID: 11584
 	public UITexture Logo;
 
-	// Token: 0x04002D3B RID: 11579
+	// Token: 0x04002D41 RID: 11585
 	public UIPanel SkipPanel;
 
-	// Token: 0x04002D3C RID: 11580
+	// Token: 0x04002D42 RID: 11586
 	public AudioSource Headmaster;
 
-	// Token: 0x04002D3D RID: 11581
+	// Token: 0x04002D43 RID: 11587
 	public AudioSource Jukebox;
 
-	// Token: 0x04002D3E RID: 11582
+	// Token: 0x04002D44 RID: 11588
 	public AudioSource Buzzing;
 
-	// Token: 0x04002D3F RID: 11583
+	// Token: 0x04002D45 RID: 11589
 	public AudioClip CinematicHit;
 
-	// Token: 0x04002D40 RID: 11584
+	// Token: 0x04002D46 RID: 11590
 	public Transform Destination;
 
-	// Token: 0x04002D41 RID: 11585
+	// Token: 0x04002D47 RID: 11591
 	public UISprite SkipCircle;
 
-	// Token: 0x04002D42 RID: 11586
+	// Token: 0x04002D48 RID: 11592
 	public UISprite Darkness;
 
-	// Token: 0x04002D43 RID: 11587
+	// Token: 0x04002D49 RID: 11593
 	public UILabel Subtitle;
 
-	// Token: 0x04002D44 RID: 11588
+	// Token: 0x04002D4A RID: 11594
 	public string[] Lines;
 
-	// Token: 0x04002D45 RID: 11589
+	// Token: 0x04002D4B RID: 11595
 	public float[] Times;
 
-	// Token: 0x04002D46 RID: 11590
+	// Token: 0x04002D4C RID: 11596
 	public float SkipTimer;
 
-	// Token: 0x04002D47 RID: 11591
+	// Token: 0x04002D4D RID: 11597
 	public float Rotation;
 
-	// Token: 0x04002D48 RID: 11592
+	// Token: 0x04002D4E RID: 11598
 	public float Alpha;
 
-	// Token: 0x04002D49 RID: 11593
+	// Token: 0x04002D4F RID: 11599
 	public float Speed;
 
-	// Token: 0x04002D4A RID: 11594
+	// Token: 0x04002D50 RID: 11600
 	public float Timer;
 
-	// Token: 0x04002D4B RID: 11595
+	// Token: 0x04002D51 RID: 11601
 	public bool EndEarly;
 
-	// Token: 0x04002D4C RID: 11596
+	// Token: 0x04002D52 RID: 11602
 	public int SpeechID;
 
-	// Token: 0x04002D4D RID: 11597
+	// Token: 0x04002D53 RID: 11603
 	public int Phase;
 }

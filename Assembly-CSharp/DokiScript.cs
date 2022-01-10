@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000287 RID: 647
+// Token: 0x02000288 RID: 648
 public class DokiScript : MonoBehaviour
 {
-	// Token: 0x06001395 RID: 5013 RVA: 0x000B78A0 File Offset: 0x000B5AA0
+	// Token: 0x06001398 RID: 5016 RVA: 0x000B793C File Offset: 0x000B5B3C
 	private void Update()
 	{
 		if (!this.Yandere.Egg)
@@ -60,33 +60,33 @@ public class DokiScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001CFC RID: 7420
+	// Token: 0x04001CFD RID: 7421
 	public MusicCreditScript Credits;
 
-	// Token: 0x04001CFD RID: 7421
+	// Token: 0x04001CFE RID: 7422
 	public YandereScript Yandere;
 
-	// Token: 0x04001CFE RID: 7422
+	// Token: 0x04001CFF RID: 7423
 	public PromptScript OtherPrompt;
 
-	// Token: 0x04001CFF RID: 7423
+	// Token: 0x04001D00 RID: 7424
 	public PromptScript Prompt;
 
-	// Token: 0x04001D00 RID: 7424
+	// Token: 0x04001D01 RID: 7425
 	public GameObject TransformEffect;
 
-	// Token: 0x04001D01 RID: 7425
+	// Token: 0x04001D02 RID: 7426
 	public Texture DokiTexture;
 
-	// Token: 0x04001D02 RID: 7426
+	// Token: 0x04001D03 RID: 7427
 	public Texture[] DokiSocks;
 
-	// Token: 0x04001D03 RID: 7427
+	// Token: 0x04001D04 RID: 7428
 	public Texture[] DokiHair;
 
-	// Token: 0x04001D04 RID: 7428
+	// Token: 0x04001D05 RID: 7429
 	public string[] DokiName;
 
-	// Token: 0x04001D05 RID: 7429
+	// Token: 0x04001D06 RID: 7430
 	public int ID;
 }

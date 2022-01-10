@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000233 RID: 563
 public class CameraDistanceDisableScript : MonoBehaviour
 {
-	// Token: 0x06001214 RID: 4628 RVA: 0x0008A94F File Offset: 0x00088B4F
+	// Token: 0x06001214 RID: 4628 RVA: 0x0008A963 File Offset: 0x00088B63
 	private void Update()
 	{
 		if (Vector3.Distance(this.Yandere.position, this.RenderTarget.position) > 15f)

@@ -557,21 +557,21 @@ public class UIProgressBar : UIWidgetContainer
 	// Token: 0x04000408 RID: 1032
 	public List<EventDelegate> onChange = new List<EventDelegate>();
 
-	// Token: 0x020005D7 RID: 1495
+	// Token: 0x020005D9 RID: 1497
 	[DoNotObfuscateNGUI]
 	public enum FillDirection
 	{
-		// Token: 0x04004D4D RID: 19789
+		// Token: 0x04004D61 RID: 19809
 		LeftToRight,
-		// Token: 0x04004D4E RID: 19790
+		// Token: 0x04004D62 RID: 19810
 		RightToLeft,
-		// Token: 0x04004D4F RID: 19791
+		// Token: 0x04004D63 RID: 19811
 		BottomToTop,
-		// Token: 0x04004D50 RID: 19792
+		// Token: 0x04004D64 RID: 19812
 		TopToBottom
 	}
 
-	// Token: 0x020005D8 RID: 1496
-	// (Invoke) Token: 0x0600250E RID: 9486
+	// Token: 0x020005DA RID: 1498
+	// (Invoke) Token: 0x06002519 RID: 9497
 	public delegate void OnDragFinished();
 }

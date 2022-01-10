@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005A8 RID: 1448
+	// Token: 0x020005AA RID: 1450
 	public class FoodMenu : MonoBehaviour
 	{
 		// Token: 0x1700052A RID: 1322
-		// (get) Token: 0x0600247F RID: 9343 RVA: 0x001F8B30 File Offset: 0x001F6D30
+		// (get) Token: 0x0600248A RID: 9354 RVA: 0x001F94D0 File Offset: 0x001F76D0
 		public static FoodMenu Instance
 		{
 			get
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002480 RID: 9344 RVA: 0x001F8B50 File Offset: 0x001F6D50
+		// Token: 0x0600248B RID: 9355 RVA: 0x001F94F0 File Offset: 0x001F76F0
 		private void Awake()
 		{
 			this.SetMenuIcons();
@@ -31,7 +31,7 @@ namespace MaidDereMinigame
 			this.startZ = this.menuSelector.position.z;
 		}
 
-		// Token: 0x06002481 RID: 9345 RVA: 0x001F8BAC File Offset: 0x001F6DAC
+		// Token: 0x0600248C RID: 9356 RVA: 0x001F954C File Offset: 0x001F774C
 		public void SetMenuIcons()
 		{
 			this.menuSlots = new List<Transform>();
@@ -46,7 +46,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002482 RID: 9346 RVA: 0x001F8C23 File Offset: 0x001F6E23
+		// Token: 0x0600248D RID: 9357 RVA: 0x001F95C3 File Offset: 0x001F77C3
 		public void SetActive(int index)
 		{
 			this.menuSelectorTarget = this.menuSlots[index].position.x;
@@ -54,7 +54,7 @@ namespace MaidDereMinigame
 			this.activeIndex = index;
 		}
 
-		// Token: 0x06002483 RID: 9347 RVA: 0x001F8C53 File Offset: 0x001F6E53
+		// Token: 0x0600248E RID: 9358 RVA: 0x001F95F3 File Offset: 0x001F77F3
 		public Food GetActiveFood()
 		{
 			Food food = UnityEngine.Object.Instantiate<Food>(this.foodItems[this.activeIndex]);
@@ -62,7 +62,7 @@ namespace MaidDereMinigame
 			return food;
 		}
 
-		// Token: 0x06002484 RID: 9348 RVA: 0x001F8C88 File Offset: 0x001F6E88
+		// Token: 0x0600248F RID: 9359 RVA: 0x001F9628 File Offset: 0x001F7828
 		public Food GetRandomFood()
 		{
 			int index = UnityEngine.Random.Range(0, this.foodItems.Count);
@@ -71,7 +71,7 @@ namespace MaidDereMinigame
 			return food;
 		}
 
-		// Token: 0x06002485 RID: 9349 RVA: 0x001F8CD0 File Offset: 0x001F6ED0
+		// Token: 0x06002490 RID: 9360 RVA: 0x001F9670 File Offset: 0x001F7870
 		private void Update()
 		{
 			if (this.interpolator < 1f)
@@ -95,14 +95,14 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002486 RID: 9350 RVA: 0x001F8D86 File Offset: 0x001F6F86
+		// Token: 0x06002491 RID: 9361 RVA: 0x001F9726 File Offset: 0x001F7926
 		private void IncrementSelection()
 		{
 			this.SetActive((this.activeIndex + 1) % this.menuSlots.Count);
 			SFXController.PlaySound(SFXController.Sounds.MenuSelect);
 		}
 
-		// Token: 0x06002487 RID: 9351 RVA: 0x001F8DA9 File Offset: 0x001F6FA9
+		// Token: 0x06002492 RID: 9362 RVA: 0x001F9749 File Offset: 0x001F7949
 		private void DecrementSelection()
 		{
 			if (this.activeIndex == 0)
@@ -116,38 +116,38 @@ namespace MaidDereMinigame
 			SFXController.PlaySound(SFXController.Sounds.MenuSelect);
 		}
 
-		// Token: 0x04004C2F RID: 19503
+		// Token: 0x04004C43 RID: 19523
 		private static FoodMenu instance;
 
-		// Token: 0x04004C30 RID: 19504
+		// Token: 0x04004C44 RID: 19524
 		[Reorderable]
 		public Foods foodItems;
 
-		// Token: 0x04004C31 RID: 19505
+		// Token: 0x04004C45 RID: 19525
 		public Transform menuSelector;
 
-		// Token: 0x04004C32 RID: 19506
+		// Token: 0x04004C46 RID: 19526
 		public Transform menuSlotParent;
 
-		// Token: 0x04004C33 RID: 19507
+		// Token: 0x04004C47 RID: 19527
 		public float selectorMoveSpeed = 3f;
 
-		// Token: 0x04004C34 RID: 19508
+		// Token: 0x04004C48 RID: 19528
 		private List<Transform> menuSlots;
 
-		// Token: 0x04004C35 RID: 19509
+		// Token: 0x04004C49 RID: 19529
 		private float menuSelectorTarget;
 
-		// Token: 0x04004C36 RID: 19510
+		// Token: 0x04004C4A RID: 19530
 		private float startY;
 
-		// Token: 0x04004C37 RID: 19511
+		// Token: 0x04004C4B RID: 19531
 		private float startZ;
 
-		// Token: 0x04004C38 RID: 19512
+		// Token: 0x04004C4C RID: 19532
 		private float interpolator;
 
-		// Token: 0x04004C39 RID: 19513
+		// Token: 0x04004C4D RID: 19533
 		private int activeIndex;
 	}
 }

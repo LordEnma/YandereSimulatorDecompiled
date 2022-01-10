@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200025A RID: 602
 public class ContainerScript : MonoBehaviour
 {
-	// Token: 0x060012B2 RID: 4786 RVA: 0x000990C0 File Offset: 0x000972C0
+	// Token: 0x060012B2 RID: 4786 RVA: 0x000990D4 File Offset: 0x000972D4
 	public void Start()
 	{
 		this.GardenArea = GameObject.Find("GardenArea").GetComponent<Collider>();
@@ -14,7 +14,7 @@ public class ContainerScript : MonoBehaviour
 		this.SWStairs = GameObject.Find("SWStairs").GetComponent<Collider>();
 	}
 
-	// Token: 0x060012B3 RID: 4787 RVA: 0x00099138 File Offset: 0x00097338
+	// Token: 0x060012B3 RID: 4787 RVA: 0x0009914C File Offset: 0x0009734C
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -111,7 +111,7 @@ public class ContainerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012B4 RID: 4788 RVA: 0x00099604 File Offset: 0x00097804
+	// Token: 0x060012B4 RID: 4788 RVA: 0x00099618 File Offset: 0x00097818
 	public void Drop()
 	{
 		base.transform.parent = null;
@@ -128,7 +128,7 @@ public class ContainerScript : MonoBehaviour
 		component.useGravity = true;
 	}
 
-	// Token: 0x060012B5 RID: 4789 RVA: 0x000996CC File Offset: 0x000978CC
+	// Token: 0x060012B5 RID: 4789 RVA: 0x000996E0 File Offset: 0x000978E0
 	public void UpdatePrompts()
 	{
 		if (this.Weapon != null)

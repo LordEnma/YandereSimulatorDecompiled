@@ -992,45 +992,45 @@ public class UIScrollView : MonoBehaviour
 	[HideInInspector]
 	public UICenterOnChild centerOnChild;
 
-	// Token: 0x020005DA RID: 1498
+	// Token: 0x020005DC RID: 1500
 	[DoNotObfuscateNGUI]
 	public enum Movement
 	{
-		// Token: 0x04004D56 RID: 19798
+		// Token: 0x04004D6A RID: 19818
 		Horizontal,
-		// Token: 0x04004D57 RID: 19799
+		// Token: 0x04004D6B RID: 19819
 		Vertical,
-		// Token: 0x04004D58 RID: 19800
+		// Token: 0x04004D6C RID: 19820
 		Unrestricted,
-		// Token: 0x04004D59 RID: 19801
+		// Token: 0x04004D6D RID: 19821
 		Custom
 	}
 
-	// Token: 0x020005DB RID: 1499
+	// Token: 0x020005DD RID: 1501
 	[DoNotObfuscateNGUI]
 	public enum DragEffect
 	{
-		// Token: 0x04004D5B RID: 19803
+		// Token: 0x04004D6F RID: 19823
 		None,
-		// Token: 0x04004D5C RID: 19804
+		// Token: 0x04004D70 RID: 19824
 		Momentum,
-		// Token: 0x04004D5D RID: 19805
+		// Token: 0x04004D71 RID: 19825
 		MomentumAndSpring
 	}
 
-	// Token: 0x020005DC RID: 1500
+	// Token: 0x020005DE RID: 1502
 	[DoNotObfuscateNGUI]
 	public enum ShowCondition
 	{
-		// Token: 0x04004D5F RID: 19807
+		// Token: 0x04004D73 RID: 19827
 		Always,
-		// Token: 0x04004D60 RID: 19808
+		// Token: 0x04004D74 RID: 19828
 		OnlyIfNeeded,
-		// Token: 0x04004D61 RID: 19809
+		// Token: 0x04004D75 RID: 19829
 		WhenDragging
 	}
 
-	// Token: 0x020005DD RID: 1501
-	// (Invoke) Token: 0x06002512 RID: 9490
+	// Token: 0x020005DF RID: 1503
+	// (Invoke) Token: 0x0600251D RID: 9501
 	public delegate void OnDragNotification();
 }

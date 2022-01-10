@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x020002AA RID: 682
+// Token: 0x020002AB RID: 683
 public enum GenderType
 {
-	// Token: 0x04001EEE RID: 7918
-	Male,
 	// Token: 0x04001EEF RID: 7919
+	Male,
+	// Token: 0x04001EF0 RID: 7920
 	Female
 }

@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000421 RID: 1057
+// Token: 0x02000423 RID: 1059
 public class ShutterScript : MonoBehaviour
 {
 	// Token: 0x170004A1 RID: 1185
-	// (get) Token: 0x06001C81 RID: 7297 RVA: 0x0014E847 File Offset: 0x0014CA47
+	// (get) Token: 0x06001C88 RID: 7304 RVA: 0x0014EB4B File Offset: 0x0014CD4B
 	public int OnlyPhotography
 	{
 		get
@@ -15,7 +15,7 @@ public class ShutterScript : MonoBehaviour
 	}
 
 	// Token: 0x170004A2 RID: 1186
-	// (get) Token: 0x06001C82 RID: 7298 RVA: 0x0014E84E File Offset: 0x0014CA4E
+	// (get) Token: 0x06001C89 RID: 7305 RVA: 0x0014EB52 File Offset: 0x0014CD52
 	public int OnlyCharacters
 	{
 		get
@@ -25,7 +25,7 @@ public class ShutterScript : MonoBehaviour
 	}
 
 	// Token: 0x170004A3 RID: 1187
-	// (get) Token: 0x06001C83 RID: 7299 RVA: 0x0014E855 File Offset: 0x0014CA55
+	// (get) Token: 0x06001C8A RID: 7306 RVA: 0x0014EB59 File Offset: 0x0014CD59
 	public int OnlyRagdolls
 	{
 		get
@@ -35,7 +35,7 @@ public class ShutterScript : MonoBehaviour
 	}
 
 	// Token: 0x170004A4 RID: 1188
-	// (get) Token: 0x06001C84 RID: 7300 RVA: 0x0014E85C File Offset: 0x0014CA5C
+	// (get) Token: 0x06001C8B RID: 7307 RVA: 0x0014EB60 File Offset: 0x0014CD60
 	public int OnlyBlood
 	{
 		get
@@ -44,7 +44,7 @@ public class ShutterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C85 RID: 7301 RVA: 0x0014E864 File Offset: 0x0014CA64
+	// Token: 0x06001C8C RID: 7308 RVA: 0x0014EB68 File Offset: 0x0014CD68
 	private void Start()
 	{
 		if (MissionModeGlobals.MissionMode)
@@ -58,7 +58,7 @@ public class ShutterScript : MonoBehaviour
 		this.OriginalPosition = this.PhotoIcons.transform.localPosition;
 	}
 
-	// Token: 0x06001C86 RID: 7302 RVA: 0x0014E908 File Offset: 0x0014CB08
+	// Token: 0x06001C8D RID: 7309 RVA: 0x0014EC0C File Offset: 0x0014CE0C
 	private void Update()
 	{
 		bool selfie = this.Yandere.Selfie;
@@ -452,7 +452,7 @@ public class ShutterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C87 RID: 7303 RVA: 0x0014F98C File Offset: 0x0014DB8C
+	// Token: 0x06001C8E RID: 7310 RVA: 0x0014FC90 File Offset: 0x0014DE90
 	public void Snap()
 	{
 		this.ErrorWindow.transform.localScale = Vector3.zero;
@@ -474,7 +474,7 @@ public class ShutterScript : MonoBehaviour
 		this.Frame = 0;
 	}
 
-	// Token: 0x06001C88 RID: 7304 RVA: 0x0014FAB8 File Offset: 0x0014DCB8
+	// Token: 0x06001C8F RID: 7311 RVA: 0x0014FDBC File Offset: 0x0014DFBC
 	public void CheckPhoto()
 	{
 		Debug.Log("We are now checking what Yandere-chan took a picture of.");
@@ -668,7 +668,7 @@ public class ShutterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C89 RID: 7305 RVA: 0x00150358 File Offset: 0x0014E558
+	// Token: 0x06001C90 RID: 7312 RVA: 0x0015065C File Offset: 0x0014E85C
 	public void SpawnMessage()
 	{
 		if (this.NewMessage != null)
@@ -848,7 +848,7 @@ public class ShutterScript : MonoBehaviour
 		this.NewMessage.GetComponent<TextMessageScript>().Label.text = text;
 	}
 
-	// Token: 0x06001C8A RID: 7306 RVA: 0x001507AC File Offset: 0x0014E9AC
+	// Token: 0x06001C91 RID: 7313 RVA: 0x00150AB0 File Offset: 0x0014ECB0
 	public void ResumeGameplay()
 	{
 		this.ErrorWindow.transform.localScale = Vector3.zero;
@@ -911,7 +911,7 @@ public class ShutterScript : MonoBehaviour
 		Physics.Raycast(Vector3.zero, Vector3.forward, out this.hit, float.PositiveInfinity, this.OnlyPhotography);
 	}
 
-	// Token: 0x06001C8B RID: 7307 RVA: 0x00150A0C File Offset: 0x0014EC0C
+	// Token: 0x06001C92 RID: 7314 RVA: 0x00150D10 File Offset: 0x0014EF10
 	public void Penalize()
 	{
 		this.PenaltyTimer += Time.deltaTime;
@@ -952,204 +952,204 @@ public class ShutterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040032EC RID: 13036
+	// Token: 0x040032F2 RID: 13042
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040032ED RID: 13037
+	// Token: 0x040032F3 RID: 13043
 	public TaskManagerScript TaskManager;
 
-	// Token: 0x040032EE RID: 13038
+	// Token: 0x040032F4 RID: 13044
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x040032EF RID: 13039
+	// Token: 0x040032F5 RID: 13045
 	public StudentInfoScript StudentInfo;
 
-	// Token: 0x040032F0 RID: 13040
+	// Token: 0x040032F6 RID: 13046
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040032F1 RID: 13041
+	// Token: 0x040032F7 RID: 13047
 	public SubtitleScript Subtitle;
 
-	// Token: 0x040032F2 RID: 13042
+	// Token: 0x040032F8 RID: 13048
 	public SchemesScript Schemes;
 
-	// Token: 0x040032F3 RID: 13043
+	// Token: 0x040032F9 RID: 13049
 	public StudentScript Student;
 
-	// Token: 0x040032F4 RID: 13044
+	// Token: 0x040032FA RID: 13050
 	public YandereScript Yandere;
 
-	// Token: 0x040032F5 RID: 13045
+	// Token: 0x040032FB RID: 13051
 	public StudentScript FaceStudent;
 
-	// Token: 0x040032F6 RID: 13046
+	// Token: 0x040032FC RID: 13052
 	public RenderTexture SmartphoneScreen;
 
-	// Token: 0x040032F7 RID: 13047
+	// Token: 0x040032FD RID: 13053
 	public Camera SmartphoneCamera;
 
-	// Token: 0x040032F8 RID: 13048
+	// Token: 0x040032FE RID: 13054
 	public Camera MainCamera;
 
-	// Token: 0x040032F9 RID: 13049
+	// Token: 0x040032FF RID: 13055
 	public Transform SelfieRayParent;
 
-	// Token: 0x040032FA RID: 13050
+	// Token: 0x04003300 RID: 13056
 	public Transform TextMessages;
 
-	// Token: 0x040032FB RID: 13051
+	// Token: 0x04003301 RID: 13057
 	public Transform ErrorWindow;
 
-	// Token: 0x040032FC RID: 13052
+	// Token: 0x04003302 RID: 13058
 	public Transform Palm;
 
-	// Token: 0x040032FD RID: 13053
+	// Token: 0x04003303 RID: 13059
 	public UILabel PhotoDescLabel;
 
-	// Token: 0x040032FE RID: 13054
+	// Token: 0x04003304 RID: 13060
 	public UISprite Sprite;
 
-	// Token: 0x040032FF RID: 13055
+	// Token: 0x04003305 RID: 13061
 	public GameObject NotificationManager;
 
-	// Token: 0x04003300 RID: 13056
+	// Token: 0x04003306 RID: 13062
 	public GameObject BullyPhotoCollider;
 
-	// Token: 0x04003301 RID: 13057
+	// Token: 0x04003307 RID: 13063
 	public GameObject PhotoDescription;
 
-	// Token: 0x04003302 RID: 13058
+	// Token: 0x04003308 RID: 13064
 	public GameObject HeartbeatCamera;
 
-	// Token: 0x04003303 RID: 13059
+	// Token: 0x04003309 RID: 13065
 	public GameObject EightiesCamera;
 
-	// Token: 0x04003304 RID: 13060
+	// Token: 0x0400330A RID: 13066
 	public GameObject CameraButtons;
 
-	// Token: 0x04003305 RID: 13061
+	// Token: 0x0400330B RID: 13067
 	public GameObject NewMessage;
 
-	// Token: 0x04003306 RID: 13062
+	// Token: 0x0400330C RID: 13068
 	public GameObject PhotoIcons;
 
-	// Token: 0x04003307 RID: 13063
+	// Token: 0x0400330D RID: 13069
 	public GameObject MainMenu;
 
-	// Token: 0x04003308 RID: 13064
+	// Token: 0x0400330E RID: 13070
 	public GameObject SubPanel;
 
-	// Token: 0x04003309 RID: 13065
+	// Token: 0x0400330F RID: 13071
 	public GameObject Message;
 
-	// Token: 0x0400330A RID: 13066
+	// Token: 0x04003310 RID: 13072
 	public GameObject Panel;
 
-	// Token: 0x0400330B RID: 13067
+	// Token: 0x04003311 RID: 13073
 	public GameObject ViolenceX;
 
-	// Token: 0x0400330C RID: 13068
+	// Token: 0x04003312 RID: 13074
 	public GameObject PantiesX;
 
-	// Token: 0x0400330D RID: 13069
+	// Token: 0x04003313 RID: 13075
 	public GameObject SenpaiX;
 
-	// Token: 0x0400330E RID: 13070
+	// Token: 0x04003314 RID: 13076
 	public GameObject BullyX;
 
-	// Token: 0x0400330F RID: 13071
+	// Token: 0x04003315 RID: 13077
 	public GameObject InfoX;
 
-	// Token: 0x04003310 RID: 13072
+	// Token: 0x04003316 RID: 13078
 	public bool BountyComplete;
 
-	// Token: 0x04003311 RID: 13073
+	// Token: 0x04003317 RID: 13079
 	public bool AirGuitarShot;
 
-	// Token: 0x04003312 RID: 13074
+	// Token: 0x04003318 RID: 13080
 	public bool DisplayError;
 
-	// Token: 0x04003313 RID: 13075
+	// Token: 0x04003319 RID: 13081
 	public bool MissionMode;
 
-	// Token: 0x04003314 RID: 13076
+	// Token: 0x0400331A RID: 13082
 	public bool PlushieShot;
 
-	// Token: 0x04003315 RID: 13077
+	// Token: 0x0400331B RID: 13083
 	public bool BountyShot;
 
-	// Token: 0x04003316 RID: 13078
+	// Token: 0x0400331C RID: 13084
 	public bool HorudaShot;
 
-	// Token: 0x04003317 RID: 13079
+	// Token: 0x0400331D RID: 13085
 	public bool KittenShot;
 
-	// Token: 0x04003318 RID: 13080
+	// Token: 0x0400331E RID: 13086
 	public bool OsanaShot;
 
-	// Token: 0x04003319 RID: 13081
+	// Token: 0x0400331F RID: 13087
 	public bool FreeSpace;
 
-	// Token: 0x0400331A RID: 13082
+	// Token: 0x04003320 RID: 13088
 	public bool TakePhoto;
 
-	// Token: 0x0400331B RID: 13083
+	// Token: 0x04003321 RID: 13089
 	public bool TookPhoto;
 
-	// Token: 0x0400331C RID: 13084
+	// Token: 0x04003322 RID: 13090
 	public bool Snapping;
 
-	// Token: 0x0400331D RID: 13085
+	// Token: 0x04003323 RID: 13091
 	public bool Close;
 
-	// Token: 0x0400331E RID: 13086
+	// Token: 0x04003324 RID: 13092
 	public bool Disguise;
 
-	// Token: 0x0400331F RID: 13087
+	// Token: 0x04003325 RID: 13093
 	public bool Nemesis;
 
-	// Token: 0x04003320 RID: 13088
+	// Token: 0x04003326 RID: 13094
 	public bool NotFace;
 
-	// Token: 0x04003321 RID: 13089
+	// Token: 0x04003327 RID: 13095
 	public bool Skirt;
 
-	// Token: 0x04003322 RID: 13090
+	// Token: 0x04003328 RID: 13096
 	public RaycastHit hit;
 
-	// Token: 0x04003323 RID: 13091
+	// Token: 0x04003329 RID: 13097
 	public float ReactionDistance;
 
-	// Token: 0x04003324 RID: 13092
+	// Token: 0x0400332A RID: 13098
 	public float PenaltyTimer;
 
-	// Token: 0x04003325 RID: 13093
+	// Token: 0x0400332B RID: 13099
 	public float Timer;
 
-	// Token: 0x04003326 RID: 13094
+	// Token: 0x0400332C RID: 13100
 	private float currentPercent;
 
-	// Token: 0x04003327 RID: 13095
+	// Token: 0x0400332D RID: 13101
 	public int TargetStudent;
 
-	// Token: 0x04003328 RID: 13096
+	// Token: 0x0400332E RID: 13102
 	public int NemesisShots;
 
-	// Token: 0x04003329 RID: 13097
+	// Token: 0x0400332F RID: 13103
 	public int Frame;
 
-	// Token: 0x0400332A RID: 13098
+	// Token: 0x04003330 RID: 13104
 	public int Slot;
 
-	// Token: 0x0400332B RID: 13099
+	// Token: 0x04003331 RID: 13105
 	public int ID;
 
-	// Token: 0x0400332C RID: 13100
+	// Token: 0x04003332 RID: 13106
 	public string PlushieName = "";
 
-	// Token: 0x0400332D RID: 13101
+	// Token: 0x04003333 RID: 13107
 	public AudioSource MyAudio;
 
-	// Token: 0x0400332E RID: 13102
+	// Token: 0x04003334 RID: 13108
 	public Vector3 OriginalPosition;
 }

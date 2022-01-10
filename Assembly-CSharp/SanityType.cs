@@ -1,12 +1,12 @@
 ﻿using System;
 
-// Token: 0x020004C2 RID: 1218
+// Token: 0x020004C4 RID: 1220
 public enum SanityType
 {
-	// Token: 0x04004387 RID: 17287
+	// Token: 0x0400439B RID: 17307
 	High,
-	// Token: 0x04004388 RID: 17288
+	// Token: 0x0400439C RID: 17308
 	Medium,
-	// Token: 0x04004389 RID: 17289
+	// Token: 0x0400439D RID: 17309
 	Low
 }

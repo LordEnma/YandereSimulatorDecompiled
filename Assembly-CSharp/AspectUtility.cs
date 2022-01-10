@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000D6 RID: 214
 public class AspectUtility : MonoBehaviour
 {
-	// Token: 0x060009E5 RID: 2533 RVA: 0x000535CC File Offset: 0x000517CC
+	// Token: 0x060009E5 RID: 2533 RVA: 0x000535E0 File Offset: 0x000517E0
 	private void Start()
 	{
 		AspectUtility.cam = base.GetComponent<Camera>();
@@ -21,7 +21,7 @@ public class AspectUtility : MonoBehaviour
 		AspectUtility.SetCamera();
 	}
 
-	// Token: 0x060009E6 RID: 2534 RVA: 0x00053624 File Offset: 0x00051824
+	// Token: 0x060009E6 RID: 2534 RVA: 0x00053638 File Offset: 0x00051838
 	public static void SetCamera()
 	{
 		float num = (float)Screen.width / (float)Screen.height;
@@ -58,7 +58,7 @@ public class AspectUtility : MonoBehaviour
 	}
 
 	// Token: 0x170001F6 RID: 502
-	// (get) Token: 0x060009E7 RID: 2535 RVA: 0x00053780 File Offset: 0x00051980
+	// (get) Token: 0x060009E7 RID: 2535 RVA: 0x00053794 File Offset: 0x00051994
 	public static int screenHeight
 	{
 		get
@@ -68,7 +68,7 @@ public class AspectUtility : MonoBehaviour
 	}
 
 	// Token: 0x170001F7 RID: 503
-	// (get) Token: 0x060009E8 RID: 2536 RVA: 0x000537A8 File Offset: 0x000519A8
+	// (get) Token: 0x060009E8 RID: 2536 RVA: 0x000537BC File Offset: 0x000519BC
 	public static int screenWidth
 	{
 		get
@@ -78,7 +78,7 @@ public class AspectUtility : MonoBehaviour
 	}
 
 	// Token: 0x170001F8 RID: 504
-	// (get) Token: 0x060009E9 RID: 2537 RVA: 0x000537D0 File Offset: 0x000519D0
+	// (get) Token: 0x060009E9 RID: 2537 RVA: 0x000537E4 File Offset: 0x000519E4
 	public static int xOffset
 	{
 		get
@@ -88,7 +88,7 @@ public class AspectUtility : MonoBehaviour
 	}
 
 	// Token: 0x170001F9 RID: 505
-	// (get) Token: 0x060009EA RID: 2538 RVA: 0x000537F8 File Offset: 0x000519F8
+	// (get) Token: 0x060009EA RID: 2538 RVA: 0x0005380C File Offset: 0x00051A0C
 	public static int yOffset
 	{
 		get
@@ -98,7 +98,7 @@ public class AspectUtility : MonoBehaviour
 	}
 
 	// Token: 0x170001FA RID: 506
-	// (get) Token: 0x060009EB RID: 2539 RVA: 0x00053820 File Offset: 0x00051A20
+	// (get) Token: 0x060009EB RID: 2539 RVA: 0x00053834 File Offset: 0x00051A34
 	public static Rect screenRect
 	{
 		get
@@ -108,7 +108,7 @@ public class AspectUtility : MonoBehaviour
 	}
 
 	// Token: 0x170001FB RID: 507
-	// (get) Token: 0x060009EC RID: 2540 RVA: 0x00053898 File Offset: 0x00051A98
+	// (get) Token: 0x060009EC RID: 2540 RVA: 0x000538AC File Offset: 0x00051AAC
 	public static Vector3 mousePosition
 	{
 		get
@@ -121,7 +121,7 @@ public class AspectUtility : MonoBehaviour
 	}
 
 	// Token: 0x170001FC RID: 508
-	// (get) Token: 0x060009ED RID: 2541 RVA: 0x000538F8 File Offset: 0x00051AF8
+	// (get) Token: 0x060009ED RID: 2541 RVA: 0x0005390C File Offset: 0x00051B0C
 	public static Vector2 guiMousePosition
 	{
 		get
