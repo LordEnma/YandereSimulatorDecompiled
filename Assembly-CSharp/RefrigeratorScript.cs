@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003CD RID: 973
 public class RefrigeratorScript : MonoBehaviour
 {
-	// Token: 0x06001B50 RID: 6992 RVA: 0x00132254 File Offset: 0x00130454
+	// Token: 0x06001B50 RID: 6992 RVA: 0x00132424 File Offset: 0x00130624
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -207,57 +207,57 @@ public class RefrigeratorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002E95 RID: 11925
+	// Token: 0x04002E99 RID: 11929
 	public CookingEventScript CookingEvent;
 
-	// Token: 0x04002E96 RID: 11926
+	// Token: 0x04002E9A RID: 11930
 	public YandereScript Yandere;
 
-	// Token: 0x04002E97 RID: 11927
+	// Token: 0x04002E9B RID: 11931
 	public PromptScript Prompt;
 
-	// Token: 0x04002E98 RID: 11928
+	// Token: 0x04002E9C RID: 11932
 	public PickUpScript PlatePickUp;
 
-	// Token: 0x04002E99 RID: 11929
+	// Token: 0x04002E9D RID: 11933
 	public PromptScript PlatePrompt;
 
-	// Token: 0x04002E9A RID: 11930
+	// Token: 0x04002E9E RID: 11934
 	public Collider PlateCollider;
 
-	// Token: 0x04002E9B RID: 11931
+	// Token: 0x04002E9F RID: 11935
 	public GameObject[] Octodogs;
 
-	// Token: 0x04002E9C RID: 11932
+	// Token: 0x04002EA0 RID: 11936
 	public GameObject Refrigerator;
 
-	// Token: 0x04002E9D RID: 11933
+	// Token: 0x04002EA1 RID: 11937
 	public GameObject Octodog;
 
-	// Token: 0x04002E9E RID: 11934
+	// Token: 0x04002EA2 RID: 11938
 	public GameObject Sausage;
 
-	// Token: 0x04002E9F RID: 11935
+	// Token: 0x04002EA3 RID: 11939
 	public Transform CookingSpot;
 
-	// Token: 0x04002EA0 RID: 11936
+	// Token: 0x04002EA4 RID: 11940
 	public Transform CookingClub;
 
-	// Token: 0x04002EA1 RID: 11937
+	// Token: 0x04002EA5 RID: 11941
 	public Transform JarLid;
 
-	// Token: 0x04002EA2 RID: 11938
+	// Token: 0x04002EA6 RID: 11942
 	public Transform Knife;
 
-	// Token: 0x04002EA3 RID: 11939
+	// Token: 0x04002EA7 RID: 11943
 	public Transform Jar;
 
-	// Token: 0x04002EA4 RID: 11940
+	// Token: 0x04002EA8 RID: 11944
 	public bool Empty;
 
-	// Token: 0x04002EA5 RID: 11941
+	// Token: 0x04002EA9 RID: 11945
 	public int EventPhase;
 
-	// Token: 0x04002EA6 RID: 11942
+	// Token: 0x04002EAA RID: 11946
 	public float Rotation;
 }

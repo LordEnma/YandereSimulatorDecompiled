@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003A3 RID: 931
 public class PianoScript : MonoBehaviour
 {
-	// Token: 0x06001A96 RID: 6806 RVA: 0x0011EC10 File Offset: 0x0011CE10
+	// Token: 0x06001A96 RID: 6806 RVA: 0x0011ED78 File Offset: 0x0011CF78
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount < 1f && this.Prompt.Circle[0].fillAmount > 0f)
@@ -19,12 +19,12 @@ public class PianoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002BFB RID: 11259
+	// Token: 0x04002BFE RID: 11262
 	public PromptScript Prompt;
 
-	// Token: 0x04002BFC RID: 11260
+	// Token: 0x04002BFF RID: 11263
 	public AudioSource[] Notes;
 
-	// Token: 0x04002BFD RID: 11261
+	// Token: 0x04002C00 RID: 11264
 	public int ID;
 }

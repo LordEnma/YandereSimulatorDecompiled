@@ -5,8 +5,8 @@ using UnityEngine;
 public static class PoseModeGlobals
 {
 	// Token: 0x17000416 RID: 1046
-	// (get) Token: 0x060016DC RID: 5852 RVA: 0x000DE638 File Offset: 0x000DC838
-	// (set) Token: 0x060016DD RID: 5853 RVA: 0x000DE668 File Offset: 0x000DC868
+	// (get) Token: 0x060016DC RID: 5852 RVA: 0x000DE724 File Offset: 0x000DC924
+	// (set) Token: 0x060016DD RID: 5853 RVA: 0x000DE754 File Offset: 0x000DC954
 	public static Vector3 PosePosition
 	{
 		get
@@ -20,8 +20,8 @@ public static class PoseModeGlobals
 	}
 
 	// Token: 0x17000417 RID: 1047
-	// (get) Token: 0x060016DE RID: 5854 RVA: 0x000DE698 File Offset: 0x000DC898
-	// (set) Token: 0x060016DF RID: 5855 RVA: 0x000DE6C8 File Offset: 0x000DC8C8
+	// (get) Token: 0x060016DE RID: 5854 RVA: 0x000DE784 File Offset: 0x000DC984
+	// (set) Token: 0x060016DF RID: 5855 RVA: 0x000DE7B4 File Offset: 0x000DC9B4
 	public static Vector3 PoseRotation
 	{
 		get
@@ -35,8 +35,8 @@ public static class PoseModeGlobals
 	}
 
 	// Token: 0x17000418 RID: 1048
-	// (get) Token: 0x060016E0 RID: 5856 RVA: 0x000DE6F8 File Offset: 0x000DC8F8
-	// (set) Token: 0x060016E1 RID: 5857 RVA: 0x000DE728 File Offset: 0x000DC928
+	// (get) Token: 0x060016E0 RID: 5856 RVA: 0x000DE7E4 File Offset: 0x000DC9E4
+	// (set) Token: 0x060016E1 RID: 5857 RVA: 0x000DE814 File Offset: 0x000DCA14
 	public static Vector3 PoseScale
 	{
 		get
@@ -49,7 +49,7 @@ public static class PoseModeGlobals
 		}
 	}
 
-	// Token: 0x060016E2 RID: 5858 RVA: 0x000DE758 File Offset: 0x000DC958
+	// Token: 0x060016E2 RID: 5858 RVA: 0x000DE844 File Offset: 0x000DCA44
 	public static void DeleteAll()
 	{
 		GlobalsHelper.DeleteVector3("Profile_" + GameGlobals.Profile.ToString() + "_PosePosition");
@@ -57,12 +57,12 @@ public static class PoseModeGlobals
 		GlobalsHelper.DeleteVector3("Profile_" + GameGlobals.Profile.ToString() + "_PoseScale");
 	}
 
-	// Token: 0x0400224E RID: 8782
+	// Token: 0x04002251 RID: 8785
 	private const string Str_PosePosition = "PosePosition";
 
-	// Token: 0x0400224F RID: 8783
+	// Token: 0x04002252 RID: 8786
 	private const string Str_PoseRotation = "PoseRotation";
 
-	// Token: 0x04002250 RID: 8784
+	// Token: 0x04002253 RID: 8787
 	private const string Str_PoseScale = "PoseScale";
 }

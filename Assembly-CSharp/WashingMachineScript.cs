@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004B5 RID: 1205
+// Token: 0x020004B6 RID: 1206
 public class WashingMachineScript : MonoBehaviour
 {
-	// Token: 0x06001F8A RID: 8074 RVA: 0x001BA73D File Offset: 0x001B893D
+	// Token: 0x06001F8C RID: 8076 RVA: 0x001BB40D File Offset: 0x001B960D
 	private void Start()
 	{
 		this.Panel.SetActive(false);
 	}
 
-	// Token: 0x06001F8B RID: 8075 RVA: 0x001BA74C File Offset: 0x001B894C
+	// Token: 0x06001F8D RID: 8077 RVA: 0x001BB41C File Offset: 0x001B961C
 	private void Update()
 	{
 		if (!this.Washing)
@@ -171,63 +171,63 @@ public class WashingMachineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040041CF RID: 16847
+	// Token: 0x040041D6 RID: 16854
 	public GameObject CleanUniform;
 
-	// Token: 0x040041D0 RID: 16848
+	// Token: 0x040041D7 RID: 16855
 	public GameObject Colliders;
 
-	// Token: 0x040041D1 RID: 16849
+	// Token: 0x040041D8 RID: 16856
 	public GameObject Panel;
 
-	// Token: 0x040041D2 RID: 16850
+	// Token: 0x040041D9 RID: 16857
 	public AudioSource MyAudio;
 
-	// Token: 0x040041D3 RID: 16851
+	// Token: 0x040041DA RID: 16858
 	public AudioClip OpenSFX;
 
-	// Token: 0x040041D4 RID: 16852
+	// Token: 0x040041DB RID: 16859
 	public AudioClip ShutSFX;
 
-	// Token: 0x040041D5 RID: 16853
+	// Token: 0x040041DC RID: 16860
 	public AudioClip WashSFX;
 
-	// Token: 0x040041D6 RID: 16854
+	// Token: 0x040041DD RID: 16861
 	public PromptScript Prompt;
 
-	// Token: 0x040041D7 RID: 16855
+	// Token: 0x040041DE RID: 16862
 	public Transform Tumbler;
 
-	// Token: 0x040041D8 RID: 16856
+	// Token: 0x040041DF RID: 16863
 	public Transform Door;
 
-	// Token: 0x040041D9 RID: 16857
+	// Token: 0x040041E0 RID: 16864
 	public UILabel TimeLabel;
 
-	// Token: 0x040041DA RID: 16858
+	// Token: 0x040041E1 RID: 16865
 	public UISprite Circle;
 
-	// Token: 0x040041DB RID: 16859
+	// Token: 0x040041E2 RID: 16866
 	public float AnimationTimer;
 
-	// Token: 0x040041DC RID: 16860
+	// Token: 0x040041E3 RID: 16867
 	public float WashTimer;
 
-	// Token: 0x040041DD RID: 16861
+	// Token: 0x040041E4 RID: 16868
 	public float Rotation;
 
-	// Token: 0x040041DE RID: 16862
+	// Token: 0x040041E5 RID: 16869
 	public float Speed;
 
-	// Token: 0x040041DF RID: 16863
+	// Token: 0x040041E6 RID: 16870
 	public bool Washing;
 
-	// Token: 0x040041E0 RID: 16864
+	// Token: 0x040041E7 RID: 16871
 	public bool Open;
 
-	// Token: 0x040041E1 RID: 16865
+	// Token: 0x040041E8 RID: 16872
 	public PickUpScript[] ClothingList;
 
-	// Token: 0x040041E2 RID: 16866
+	// Token: 0x040041E9 RID: 16873
 	public int ClothingInMachine;
 }

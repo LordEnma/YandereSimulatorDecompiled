@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200024F RID: 591
 public class ClubAmbienceScript : MonoBehaviour
 {
-	// Token: 0x06001277 RID: 4727 RVA: 0x0009040C File Offset: 0x0008E60C
+	// Token: 0x06001277 RID: 4727 RVA: 0x00090414 File Offset: 0x0008E614
 	private void Update()
 	{
 		if (this.Yandere.position.y > base.transform.position.y - 0.1f && this.Yandere.position.y < base.transform.position.y + 0.1f)
@@ -37,21 +37,21 @@ public class ClubAmbienceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040017B4 RID: 6068
+	// Token: 0x040017B5 RID: 6069
 	public JukeboxScript Jukebox;
 
-	// Token: 0x040017B5 RID: 6069
+	// Token: 0x040017B6 RID: 6070
 	public Transform Yandere;
 
-	// Token: 0x040017B6 RID: 6070
+	// Token: 0x040017B7 RID: 6071
 	public bool CreateAmbience;
 
-	// Token: 0x040017B7 RID: 6071
+	// Token: 0x040017B8 RID: 6072
 	public bool EffectJukebox;
 
-	// Token: 0x040017B8 RID: 6072
+	// Token: 0x040017B9 RID: 6073
 	public float ClubDip;
 
-	// Token: 0x040017B9 RID: 6073
+	// Token: 0x040017BA RID: 6074
 	public float MaxVolume;
 }

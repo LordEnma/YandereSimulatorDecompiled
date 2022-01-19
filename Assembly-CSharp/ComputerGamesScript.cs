@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000255 RID: 597
 public class ComputerGamesScript : MonoBehaviour
 {
-	// Token: 0x06001296 RID: 4758 RVA: 0x00095FEC File Offset: 0x000941EC
+	// Token: 0x06001296 RID: 4758 RVA: 0x00095FF4 File Offset: 0x000941F4
 	private void Start()
 	{
 		this.GameWindow.gameObject.SetActive(false);
@@ -19,7 +19,7 @@ public class ComputerGamesScript : MonoBehaviour
 		this.DisableGames();
 	}
 
-	// Token: 0x06001297 RID: 4759 RVA: 0x00096044 File Offset: 0x00094244
+	// Token: 0x06001297 RID: 4759 RVA: 0x0009604C File Offset: 0x0009424C
 	private void Update()
 	{
 		if (this.ShowWindow)
@@ -133,7 +133,7 @@ public class ComputerGamesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001298 RID: 4760 RVA: 0x00096644 File Offset: 0x00094844
+	// Token: 0x06001298 RID: 4760 RVA: 0x0009664C File Offset: 0x0009484C
 	public void EnableGames()
 	{
 		for (int i = 1; i < this.ComputerGames.Length; i++)
@@ -143,7 +143,7 @@ public class ComputerGamesScript : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001299 RID: 4761 RVA: 0x00096680 File Offset: 0x00094880
+	// Token: 0x06001299 RID: 4761 RVA: 0x00096688 File Offset: 0x00094888
 	private void PlayGames()
 	{
 		this.Yandere.Character.GetComponent<Animation>().CrossFade("f02_playingGames_00");
@@ -154,13 +154,13 @@ public class ComputerGamesScript : MonoBehaviour
 		this.UpdateImage();
 	}
 
-	// Token: 0x0600129A RID: 4762 RVA: 0x000966DB File Offset: 0x000948DB
+	// Token: 0x0600129A RID: 4762 RVA: 0x000966E3 File Offset: 0x000948E3
 	private void UpdateImage()
 	{
 		this.MyTexture.mainTexture = this.Textures[this.Subject];
 	}
 
-	// Token: 0x0600129B RID: 4763 RVA: 0x000966F8 File Offset: 0x000948F8
+	// Token: 0x0600129B RID: 4763 RVA: 0x00096700 File Offset: 0x00094900
 	public void DisableGames()
 	{
 		for (int i = 1; i < this.ComputerGames.Length; i++)
@@ -174,7 +174,7 @@ public class ComputerGamesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600129C RID: 4764 RVA: 0x00096748 File Offset: 0x00094948
+	// Token: 0x0600129C RID: 4764 RVA: 0x00096750 File Offset: 0x00094950
 	private void EnableChairs()
 	{
 		for (int i = 1; i < this.Chairs.Length; i++)
@@ -184,7 +184,7 @@ public class ComputerGamesScript : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x0600129D RID: 4765 RVA: 0x00096784 File Offset: 0x00094984
+	// Token: 0x0600129D RID: 4765 RVA: 0x0009678C File Offset: 0x0009498C
 	private void DisableChairs()
 	{
 		for (int i = 1; i < this.Chairs.Length; i++)
@@ -193,7 +193,7 @@ public class ComputerGamesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600129E RID: 4766 RVA: 0x000967B4 File Offset: 0x000949B4
+	// Token: 0x0600129E RID: 4766 RVA: 0x000967BC File Offset: 0x000949BC
 	private void ActivateBenefit()
 	{
 		if (this.Subject == 1)
@@ -249,7 +249,7 @@ public class ComputerGamesScript : MonoBehaviour
 		this.Police.UpdateCorpses();
 	}
 
-	// Token: 0x0600129F RID: 4767 RVA: 0x00096944 File Offset: 0x00094B44
+	// Token: 0x0600129F RID: 4767 RVA: 0x0009694C File Offset: 0x00094B4C
 	private void DeactivateBenefit()
 	{
 		if (this.Subject == 1)
@@ -305,7 +305,7 @@ public class ComputerGamesScript : MonoBehaviour
 		this.Police.UpdateCorpses();
 	}
 
-	// Token: 0x060012A0 RID: 4768 RVA: 0x00096AD4 File Offset: 0x00094CD4
+	// Token: 0x060012A0 RID: 4768 RVA: 0x00096ADC File Offset: 0x00094CDC
 	public void DeactivateAllBenefits()
 	{
 		this.Yandere.Class.BiologyBonus = 0;
@@ -325,7 +325,7 @@ public class ComputerGamesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012A1 RID: 4769 RVA: 0x00096BB8 File Offset: 0x00094DB8
+	// Token: 0x060012A1 RID: 4769 RVA: 0x00096BC0 File Offset: 0x00094DC0
 	private void UpdateHighlight()
 	{
 		if (this.Subject < 1)
@@ -340,72 +340,72 @@ public class ComputerGamesScript : MonoBehaviour
 		this.DescLabel.text = this.Descriptions[this.Subject];
 	}
 
-	// Token: 0x04001851 RID: 6225
+	// Token: 0x04001852 RID: 6226
 	public PromptScript[] ComputerGames;
 
-	// Token: 0x04001852 RID: 6226
+	// Token: 0x04001853 RID: 6227
 	public Collider[] Chairs;
 
-	// Token: 0x04001853 RID: 6227
+	// Token: 0x04001854 RID: 6228
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001854 RID: 6228
+	// Token: 0x04001855 RID: 6229
 	public InputManagerScript InputManager;
 
-	// Token: 0x04001855 RID: 6229
+	// Token: 0x04001856 RID: 6230
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04001856 RID: 6230
+	// Token: 0x04001857 RID: 6231
 	public YandereScript Yandere;
 
-	// Token: 0x04001857 RID: 6231
+	// Token: 0x04001858 RID: 6232
 	public PoliceScript Police;
 
-	// Token: 0x04001858 RID: 6232
+	// Token: 0x04001859 RID: 6233
 	public PoisonScript Poison;
 
-	// Token: 0x04001859 RID: 6233
+	// Token: 0x0400185A RID: 6234
 	public Quaternion targetRotation;
 
-	// Token: 0x0400185A RID: 6234
+	// Token: 0x0400185B RID: 6235
 	public Transform GameWindow;
 
-	// Token: 0x0400185B RID: 6235
+	// Token: 0x0400185C RID: 6236
 	public Transform MainCamera;
 
-	// Token: 0x0400185C RID: 6236
+	// Token: 0x0400185D RID: 6237
 	public Transform Highlight;
 
-	// Token: 0x0400185D RID: 6237
+	// Token: 0x0400185E RID: 6238
 	public bool ShowWindow;
 
-	// Token: 0x0400185E RID: 6238
+	// Token: 0x0400185F RID: 6239
 	public bool Gaming;
 
-	// Token: 0x0400185F RID: 6239
+	// Token: 0x04001860 RID: 6240
 	public float Timer;
 
-	// Token: 0x04001860 RID: 6240
+	// Token: 0x04001861 RID: 6241
 	public int Subject = 1;
 
-	// Token: 0x04001861 RID: 6241
+	// Token: 0x04001862 RID: 6242
 	public int GameID;
 
-	// Token: 0x04001862 RID: 6242
+	// Token: 0x04001863 RID: 6243
 	public int ID = 1;
 
-	// Token: 0x04001863 RID: 6243
+	// Token: 0x04001864 RID: 6244
 	public Color OriginalColor;
 
-	// Token: 0x04001864 RID: 6244
+	// Token: 0x04001865 RID: 6245
 	public string[] Descriptions;
 
-	// Token: 0x04001865 RID: 6245
+	// Token: 0x04001866 RID: 6246
 	public UITexture MyTexture;
 
-	// Token: 0x04001866 RID: 6246
+	// Token: 0x04001867 RID: 6247
 	public Texture[] Textures;
 
-	// Token: 0x04001867 RID: 6247
+	// Token: 0x04001868 RID: 6248
 	public UILabel DescLabel;
 }

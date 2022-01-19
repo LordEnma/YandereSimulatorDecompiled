@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000333 RID: 819
 public class InputDeviceScript : MonoBehaviour
 {
-	// Token: 0x060018C9 RID: 6345 RVA: 0x000F447C File Offset: 0x000F267C
+	// Token: 0x060018C9 RID: 6345 RVA: 0x000F45C8 File Offset: 0x000F27C8
 	private void Start()
 	{
 		this.joystickNames = new string[20];
@@ -14,7 +14,7 @@ public class InputDeviceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018CA RID: 6346 RVA: 0x000F44BC File Offset: 0x000F26BC
+	// Token: 0x060018CA RID: 6346 RVA: 0x000F4608 File Offset: 0x000F2808
 	private void Update()
 	{
 		this.MouseDelta = Input.mousePosition - this.MousePrevious;
@@ -54,21 +54,21 @@ public class InputDeviceScript : MonoBehaviour
 		this.Vertical = Input.GetAxis("Vertical");
 	}
 
-	// Token: 0x040025F5 RID: 9717
+	// Token: 0x040025F8 RID: 9720
 	public InputDeviceType Type = InputDeviceType.Gamepad;
 
-	// Token: 0x040025F6 RID: 9718
+	// Token: 0x040025F9 RID: 9721
 	public Vector3 MousePrevious;
 
-	// Token: 0x040025F7 RID: 9719
+	// Token: 0x040025FA RID: 9722
 	public Vector3 MouseDelta;
 
-	// Token: 0x040025F8 RID: 9720
+	// Token: 0x040025FB RID: 9723
 	public float Horizontal;
 
-	// Token: 0x040025F9 RID: 9721
+	// Token: 0x040025FC RID: 9724
 	public float Vertical;
 
-	// Token: 0x040025FA RID: 9722
+	// Token: 0x040025FD RID: 9725
 	public string[] joystickNames;
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class UIRect : MonoBehaviour
 {
 	// Token: 0x1700008D RID: 141
-	// (get) Token: 0x060004D3 RID: 1235 RVA: 0x00030E09 File Offset: 0x0002F009
+	// (get) Token: 0x060004D3 RID: 1235 RVA: 0x00030E01 File Offset: 0x0002F001
 	public GameObject cachedGameObject
 	{
 		get
@@ -19,7 +19,7 @@ public abstract class UIRect : MonoBehaviour
 	}
 
 	// Token: 0x1700008E RID: 142
-	// (get) Token: 0x060004D4 RID: 1236 RVA: 0x00030E2B File Offset: 0x0002F02B
+	// (get) Token: 0x060004D4 RID: 1236 RVA: 0x00030E23 File Offset: 0x0002F023
 	public Transform cachedTransform
 	{
 		get
@@ -33,7 +33,7 @@ public abstract class UIRect : MonoBehaviour
 	}
 
 	// Token: 0x1700008F RID: 143
-	// (get) Token: 0x060004D5 RID: 1237 RVA: 0x00030E4D File Offset: 0x0002F04D
+	// (get) Token: 0x060004D5 RID: 1237 RVA: 0x00030E45 File Offset: 0x0002F045
 	public Camera anchorCamera
 	{
 		get
@@ -47,7 +47,7 @@ public abstract class UIRect : MonoBehaviour
 	}
 
 	// Token: 0x17000090 RID: 144
-	// (get) Token: 0x060004D6 RID: 1238 RVA: 0x00030E70 File Offset: 0x0002F070
+	// (get) Token: 0x060004D6 RID: 1238 RVA: 0x00030E68 File Offset: 0x0002F068
 	public bool isFullyAnchored
 	{
 		get
@@ -57,7 +57,7 @@ public abstract class UIRect : MonoBehaviour
 	}
 
 	// Token: 0x17000091 RID: 145
-	// (get) Token: 0x060004D7 RID: 1239 RVA: 0x00030EC5 File Offset: 0x0002F0C5
+	// (get) Token: 0x060004D7 RID: 1239 RVA: 0x00030EBD File Offset: 0x0002F0BD
 	public virtual bool isAnchoredHorizontally
 	{
 		get
@@ -67,7 +67,7 @@ public abstract class UIRect : MonoBehaviour
 	}
 
 	// Token: 0x17000092 RID: 146
-	// (get) Token: 0x060004D8 RID: 1240 RVA: 0x00030EEB File Offset: 0x0002F0EB
+	// (get) Token: 0x060004D8 RID: 1240 RVA: 0x00030EE3 File Offset: 0x0002F0E3
 	public virtual bool isAnchoredVertically
 	{
 		get
@@ -77,7 +77,7 @@ public abstract class UIRect : MonoBehaviour
 	}
 
 	// Token: 0x17000093 RID: 147
-	// (get) Token: 0x060004D9 RID: 1241 RVA: 0x00030F11 File Offset: 0x0002F111
+	// (get) Token: 0x060004D9 RID: 1241 RVA: 0x00030F09 File Offset: 0x0002F109
 	public virtual bool canBeAnchored
 	{
 		get
@@ -87,7 +87,7 @@ public abstract class UIRect : MonoBehaviour
 	}
 
 	// Token: 0x17000094 RID: 148
-	// (get) Token: 0x060004DA RID: 1242 RVA: 0x00030F14 File Offset: 0x0002F114
+	// (get) Token: 0x060004DA RID: 1242 RVA: 0x00030F0C File Offset: 0x0002F10C
 	public UIRect parent
 	{
 		get
@@ -102,7 +102,7 @@ public abstract class UIRect : MonoBehaviour
 	}
 
 	// Token: 0x17000095 RID: 149
-	// (get) Token: 0x060004DB RID: 1243 RVA: 0x00030F44 File Offset: 0x0002F144
+	// (get) Token: 0x060004DB RID: 1243 RVA: 0x00030F3C File Offset: 0x0002F13C
 	public UIRoot root
 	{
 		get
@@ -121,7 +121,7 @@ public abstract class UIRect : MonoBehaviour
 	}
 
 	// Token: 0x17000096 RID: 150
-	// (get) Token: 0x060004DC RID: 1244 RVA: 0x00030F94 File Offset: 0x0002F194
+	// (get) Token: 0x060004DC RID: 1244 RVA: 0x00030F8C File Offset: 0x0002F18C
 	public bool isAnchored
 	{
 		get
@@ -147,7 +147,7 @@ public abstract class UIRect : MonoBehaviour
 	public abstract Vector3[] worldCorners { get; }
 
 	// Token: 0x1700009A RID: 154
-	// (get) Token: 0x060004E2 RID: 1250 RVA: 0x00030FF4 File Offset: 0x0002F1F4
+	// (get) Token: 0x060004E2 RID: 1250 RVA: 0x00030FEC File Offset: 0x0002F1EC
 	protected float cameraRayDistance
 	{
 		get
@@ -172,7 +172,7 @@ public abstract class UIRect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004E3 RID: 1251 RVA: 0x000310A0 File Offset: 0x0002F2A0
+	// Token: 0x060004E3 RID: 1251 RVA: 0x00031098 File Offset: 0x0002F298
 	public virtual void Invalidate(bool includeChildren)
 	{
 		this.mChanged = true;
@@ -185,7 +185,7 @@ public abstract class UIRect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004E4 RID: 1252 RVA: 0x000310E0 File Offset: 0x0002F2E0
+	// Token: 0x060004E4 RID: 1252 RVA: 0x000310D8 File Offset: 0x0002F2D8
 	public virtual Vector3[] GetSides(Transform relativeTo)
 	{
 		if (this.anchorCamera != null)
@@ -207,7 +207,7 @@ public abstract class UIRect : MonoBehaviour
 		return UIRect.mSides;
 	}
 
-	// Token: 0x060004E5 RID: 1253 RVA: 0x00031168 File Offset: 0x0002F368
+	// Token: 0x060004E5 RID: 1253 RVA: 0x00031160 File Offset: 0x0002F360
 	protected Vector3 GetLocalPos(UIRect.AnchorPoint ac, Transform trans)
 	{
 		if (ac.targetCam == null)
@@ -231,7 +231,7 @@ public abstract class UIRect : MonoBehaviour
 		return vector2;
 	}
 
-	// Token: 0x060004E6 RID: 1254 RVA: 0x0003125D File Offset: 0x0002F45D
+	// Token: 0x060004E6 RID: 1254 RVA: 0x00031255 File Offset: 0x0002F455
 	protected virtual void OnEnable()
 	{
 		this.mUpdateFrame = -1;
@@ -247,7 +247,7 @@ public abstract class UIRect : MonoBehaviour
 		this.mUpdateFrame = -1;
 	}
 
-	// Token: 0x060004E7 RID: 1255 RVA: 0x00031291 File Offset: 0x0002F491
+	// Token: 0x060004E7 RID: 1255 RVA: 0x00031289 File Offset: 0x0002F489
 	protected virtual void OnInit()
 	{
 		this.mChanged = true;
@@ -259,7 +259,7 @@ public abstract class UIRect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004E8 RID: 1256 RVA: 0x000312C7 File Offset: 0x0002F4C7
+	// Token: 0x060004E8 RID: 1256 RVA: 0x000312BF File Offset: 0x0002F4BF
 	protected virtual void OnDisable()
 	{
 		if (this.mParent)
@@ -272,7 +272,7 @@ public abstract class UIRect : MonoBehaviour
 		this.mParentFound = false;
 	}
 
-	// Token: 0x060004E9 RID: 1257 RVA: 0x00031304 File Offset: 0x0002F504
+	// Token: 0x060004E9 RID: 1257 RVA: 0x000312FC File Offset: 0x0002F4FC
 	protected virtual void Awake()
 	{
 		NGUITools.CheckForPrefabStage(base.gameObject);
@@ -281,7 +281,7 @@ public abstract class UIRect : MonoBehaviour
 		this.mTrans = base.transform;
 	}
 
-	// Token: 0x060004EA RID: 1258 RVA: 0x00031330 File Offset: 0x0002F530
+	// Token: 0x060004EA RID: 1258 RVA: 0x00031328 File Offset: 0x0002F528
 	protected void Start()
 	{
 		this.mStarted = true;
@@ -289,7 +289,7 @@ public abstract class UIRect : MonoBehaviour
 		this.OnStart();
 	}
 
-	// Token: 0x060004EB RID: 1259 RVA: 0x00031348 File Offset: 0x0002F548
+	// Token: 0x060004EB RID: 1259 RVA: 0x00031340 File Offset: 0x0002F540
 	public void Update()
 	{
 		if (!this.mCam)
@@ -312,7 +312,7 @@ public abstract class UIRect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004EC RID: 1260 RVA: 0x000313AC File Offset: 0x0002F5AC
+	// Token: 0x060004EC RID: 1260 RVA: 0x000313A4 File Offset: 0x0002F5A4
 	protected void UpdateAnchorsInternal(int frame)
 	{
 		this.mUpdateFrame = frame;
@@ -356,7 +356,7 @@ public abstract class UIRect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004ED RID: 1261 RVA: 0x000314FA File Offset: 0x0002F6FA
+	// Token: 0x060004ED RID: 1261 RVA: 0x000314F2 File Offset: 0x0002F6F2
 	public void UpdateAnchors()
 	{
 		if (this.isAnchored)
@@ -370,7 +370,7 @@ public abstract class UIRect : MonoBehaviour
 	// Token: 0x060004EE RID: 1262
 	protected abstract void OnAnchor();
 
-	// Token: 0x060004EF RID: 1263 RVA: 0x0003151D File Offset: 0x0002F71D
+	// Token: 0x060004EF RID: 1263 RVA: 0x00031515 File Offset: 0x0002F715
 	public void SetAnchor(Transform t)
 	{
 		this.leftAnchor.target = t;
@@ -381,7 +381,7 @@ public abstract class UIRect : MonoBehaviour
 		this.UpdateAnchors();
 	}
 
-	// Token: 0x060004F0 RID: 1264 RVA: 0x0003155C File Offset: 0x0002F75C
+	// Token: 0x060004F0 RID: 1264 RVA: 0x00031554 File Offset: 0x0002F754
 	public void SetAnchor(GameObject go)
 	{
 		Transform target = (go != null) ? go.transform : null;
@@ -393,7 +393,7 @@ public abstract class UIRect : MonoBehaviour
 		this.UpdateAnchors();
 	}
 
-	// Token: 0x060004F1 RID: 1265 RVA: 0x000315B8 File Offset: 0x0002F7B8
+	// Token: 0x060004F1 RID: 1265 RVA: 0x000315B0 File Offset: 0x0002F7B0
 	public void SetAnchor(GameObject go, int left, int bottom, int right, int top)
 	{
 		Transform target = (go != null) ? go.transform : null;
@@ -413,7 +413,7 @@ public abstract class UIRect : MonoBehaviour
 		this.UpdateAnchors();
 	}
 
-	// Token: 0x060004F2 RID: 1266 RVA: 0x00031688 File Offset: 0x0002F888
+	// Token: 0x060004F2 RID: 1266 RVA: 0x00031680 File Offset: 0x0002F880
 	public void SetAnchor(GameObject go, float left, float bottom, float right, float top)
 	{
 		Transform target = (go != null) ? go.transform : null;
@@ -433,7 +433,7 @@ public abstract class UIRect : MonoBehaviour
 		this.UpdateAnchors();
 	}
 
-	// Token: 0x060004F3 RID: 1267 RVA: 0x00031748 File Offset: 0x0002F948
+	// Token: 0x060004F3 RID: 1267 RVA: 0x00031740 File Offset: 0x0002F940
 	public void SetAnchor(GameObject go, float left, int leftOffset, float bottom, int bottomOffset, float right, int rightOffset, float top, int topOffset)
 	{
 		Transform target = (go != null) ? go.transform : null;
@@ -453,7 +453,7 @@ public abstract class UIRect : MonoBehaviour
 		this.UpdateAnchors();
 	}
 
-	// Token: 0x060004F4 RID: 1268 RVA: 0x0003180C File Offset: 0x0002FA0C
+	// Token: 0x060004F4 RID: 1268 RVA: 0x00031804 File Offset: 0x0002FA04
 	public void SetAnchor(float left, int leftOffset, float bottom, int bottomOffset, float right, int rightOffset, float top, int topOffset)
 	{
 		Transform parent = this.cachedTransform.parent;
@@ -473,13 +473,13 @@ public abstract class UIRect : MonoBehaviour
 		this.UpdateAnchors();
 	}
 
-	// Token: 0x060004F5 RID: 1269 RVA: 0x000318C8 File Offset: 0x0002FAC8
+	// Token: 0x060004F5 RID: 1269 RVA: 0x000318C0 File Offset: 0x0002FAC0
 	public void SetScreenRect(int left, int top, int width, int height)
 	{
 		this.SetAnchor(0f, left, 1f, -top - height, 0f, left + width, 1f, -top);
 	}
 
-	// Token: 0x060004F6 RID: 1270 RVA: 0x000318FC File Offset: 0x0002FAFC
+	// Token: 0x060004F6 RID: 1270 RVA: 0x000318F4 File Offset: 0x0002FAF4
 	public void ResetAnchors()
 	{
 		this.mAnchorsCached = true;
@@ -495,7 +495,7 @@ public abstract class UIRect : MonoBehaviour
 		this.mUpdateAnchors = true;
 	}
 
-	// Token: 0x060004F7 RID: 1271 RVA: 0x00031A1D File Offset: 0x0002FC1D
+	// Token: 0x060004F7 RID: 1271 RVA: 0x00031A15 File Offset: 0x0002FC15
 	public void ResetAndUpdateAnchors()
 	{
 		this.ResetAnchors();
@@ -505,7 +505,7 @@ public abstract class UIRect : MonoBehaviour
 	// Token: 0x060004F8 RID: 1272
 	public abstract void SetRect(float x, float y, float width, float height);
 
-	// Token: 0x060004F9 RID: 1273 RVA: 0x00031A2C File Offset: 0x0002FC2C
+	// Token: 0x060004F9 RID: 1273 RVA: 0x00031A24 File Offset: 0x0002FC24
 	private void FindCameraFor(UIRect.AnchorPoint ap)
 	{
 		if (ap.target == null || ap.rect != null)
@@ -516,7 +516,7 @@ public abstract class UIRect : MonoBehaviour
 		ap.targetCam = NGUITools.FindCameraForLayer(ap.target.gameObject.layer);
 	}
 
-	// Token: 0x060004FA RID: 1274 RVA: 0x00031A78 File Offset: 0x0002FC78
+	// Token: 0x060004FA RID: 1274 RVA: 0x00031A70 File Offset: 0x0002FC70
 	public virtual void ParentHasChanged()
 	{
 		this.mParentFound = false;
@@ -539,107 +539,107 @@ public abstract class UIRect : MonoBehaviour
 	// Token: 0x060004FB RID: 1275
 	protected abstract void OnStart();
 
-	// Token: 0x060004FC RID: 1276 RVA: 0x00031AF6 File Offset: 0x0002FCF6
+	// Token: 0x060004FC RID: 1276 RVA: 0x00031AEE File Offset: 0x0002FCEE
 	protected virtual void OnUpdate()
 	{
 	}
 
-	// Token: 0x04000552 RID: 1362
+	// Token: 0x04000553 RID: 1363
 	public UIRect.AnchorPoint leftAnchor = new UIRect.AnchorPoint();
 
-	// Token: 0x04000553 RID: 1363
+	// Token: 0x04000554 RID: 1364
 	public UIRect.AnchorPoint rightAnchor = new UIRect.AnchorPoint(1f);
 
-	// Token: 0x04000554 RID: 1364
+	// Token: 0x04000555 RID: 1365
 	public UIRect.AnchorPoint bottomAnchor = new UIRect.AnchorPoint();
 
-	// Token: 0x04000555 RID: 1365
+	// Token: 0x04000556 RID: 1366
 	public UIRect.AnchorPoint topAnchor = new UIRect.AnchorPoint(1f);
 
-	// Token: 0x04000556 RID: 1366
-	public UIRect.AnchorUpdate updateAnchors = UIRect.AnchorUpdate.OnUpdate;
-
 	// Token: 0x04000557 RID: 1367
-	[NonSerialized]
-	protected GameObject mGo;
+	public UIRect.AnchorUpdate updateAnchors = UIRect.AnchorUpdate.OnUpdate;
 
 	// Token: 0x04000558 RID: 1368
 	[NonSerialized]
-	protected Transform mTrans;
+	protected GameObject mGo;
 
 	// Token: 0x04000559 RID: 1369
 	[NonSerialized]
-	protected BetterList<UIRect> mChildren = new BetterList<UIRect>();
+	protected Transform mTrans;
 
 	// Token: 0x0400055A RID: 1370
 	[NonSerialized]
-	protected bool mChanged = true;
+	protected BetterList<UIRect> mChildren = new BetterList<UIRect>();
 
 	// Token: 0x0400055B RID: 1371
 	[NonSerialized]
-	protected bool mParentFound;
+	protected bool mChanged = true;
 
 	// Token: 0x0400055C RID: 1372
 	[NonSerialized]
-	private bool mUpdateAnchors = true;
+	protected bool mParentFound;
 
 	// Token: 0x0400055D RID: 1373
 	[NonSerialized]
-	private int mUpdateFrame = -1;
+	private bool mUpdateAnchors = true;
 
 	// Token: 0x0400055E RID: 1374
 	[NonSerialized]
-	private bool mAnchorsCached;
+	private int mUpdateFrame = -1;
 
 	// Token: 0x0400055F RID: 1375
 	[NonSerialized]
-	private UIRoot mRoot;
+	private bool mAnchorsCached;
 
 	// Token: 0x04000560 RID: 1376
 	[NonSerialized]
-	private UIRect mParent;
+	private UIRoot mRoot;
 
 	// Token: 0x04000561 RID: 1377
 	[NonSerialized]
-	private bool mRootSet;
+	private UIRect mParent;
 
 	// Token: 0x04000562 RID: 1378
 	[NonSerialized]
-	protected Camera mCam;
+	private bool mRootSet;
 
 	// Token: 0x04000563 RID: 1379
-	protected bool mStarted;
+	[NonSerialized]
+	protected Camera mCam;
 
 	// Token: 0x04000564 RID: 1380
+	protected bool mStarted;
+
+	// Token: 0x04000565 RID: 1381
 	[NonSerialized]
 	public float finalAlpha = 1f;
 
-	// Token: 0x04000565 RID: 1381
+	// Token: 0x04000566 RID: 1382
 	protected static Vector3[] mSides = new Vector3[4];
 
-	// Token: 0x02000602 RID: 1538
+	// Token: 0x02000603 RID: 1539
 	[Serializable]
 	public class AnchorPoint
 	{
-		// Token: 0x06002575 RID: 9589 RVA: 0x001FB248 File Offset: 0x001F9448
+		// Token: 0x06002577 RID: 9591 RVA: 0x001FBF18 File Offset: 0x001FA118
 		public AnchorPoint()
 		{
 		}
 
-		// Token: 0x06002576 RID: 9590 RVA: 0x001FB250 File Offset: 0x001F9450
+		// Token: 0x06002578 RID: 9592 RVA: 0x001FBF20 File Offset: 0x001FA120
 		public AnchorPoint(float relative)
 		{
 			this.relative = relative;
 		}
 
-		// Token: 0x06002577 RID: 9591 RVA: 0x001FB25F File Offset: 0x001F945F
+		// Token: 0x06002579 RID: 9593 RVA: 0x001FBF2F File Offset: 0x001FA12F
 		public void Set(float relative, float absolute)
 		{
 			this.relative = relative;
 			this.absolute = Mathf.FloorToInt(absolute + 0.5f);
 		}
 
-		// Token: 0x06002578 RID: 9592 RVA: 0x001FB27A File Offset: 0x001F947A
+		// Token: 0x0600257A RID: 9594 RVA: 0x001FBF4A File Offset: 0x001FA14A
 		public void Set(Transform target, float relative, float absolute)
 		{
 			this.target = target;
@@ -647,13 +647,13 @@ public abstract class UIRect : MonoBehaviour
 			this.absolute = Mathf.FloorToInt(absolute + 0.5f);
 		}
 
-		// Token: 0x06002579 RID: 9593 RVA: 0x001FB29C File Offset: 0x001F949C
+		// Token: 0x0600257B RID: 9595 RVA: 0x001FBF6C File Offset: 0x001FA16C
 		public void SetToNearest(float abs0, float abs1, float abs2)
 		{
 			this.SetToNearest(0f, 0.5f, 1f, abs0, abs1, abs2);
 		}
 
-		// Token: 0x0600257A RID: 9594 RVA: 0x001FB2B8 File Offset: 0x001F94B8
+		// Token: 0x0600257C RID: 9596 RVA: 0x001FBF88 File Offset: 0x001FA188
 		public void SetToNearest(float rel0, float rel1, float rel2, float abs0, float abs1, float abs2)
 		{
 			float num = Mathf.Abs(abs0);
@@ -672,7 +672,7 @@ public abstract class UIRect : MonoBehaviour
 			this.Set(rel2, abs2);
 		}
 
-		// Token: 0x0600257B RID: 9595 RVA: 0x001FB30C File Offset: 0x001F950C
+		// Token: 0x0600257D RID: 9597 RVA: 0x001FBFDC File Offset: 0x001FA1DC
 		public void SetHorizontal(Transform parent, float localPos)
 		{
 			if (this.rect)
@@ -690,7 +690,7 @@ public abstract class UIRect : MonoBehaviour
 			this.absolute = Mathf.FloorToInt(localPos - vector.x + 0.5f);
 		}
 
-		// Token: 0x0600257C RID: 9596 RVA: 0x001FB3A4 File Offset: 0x001F95A4
+		// Token: 0x0600257E RID: 9598 RVA: 0x001FC074 File Offset: 0x001FA274
 		public void SetVertical(Transform parent, float localPos)
 		{
 			if (this.rect)
@@ -708,7 +708,7 @@ public abstract class UIRect : MonoBehaviour
 			this.absolute = Mathf.FloorToInt(localPos - vector.y + 0.5f);
 		}
 
-		// Token: 0x0600257D RID: 9597 RVA: 0x001FB43C File Offset: 0x001F963C
+		// Token: 0x0600257F RID: 9599 RVA: 0x001FC10C File Offset: 0x001FA30C
 		public Vector3[] GetSides(Transform relativeTo)
 		{
 			if (this.target != null)
@@ -726,33 +726,33 @@ public abstract class UIRect : MonoBehaviour
 			return null;
 		}
 
-		// Token: 0x04004DC8 RID: 19912
+		// Token: 0x04004DCF RID: 19919
 		public Transform target;
 
-		// Token: 0x04004DC9 RID: 19913
+		// Token: 0x04004DD0 RID: 19920
 		public float relative;
 
-		// Token: 0x04004DCA RID: 19914
+		// Token: 0x04004DD1 RID: 19921
 		public int absolute;
 
-		// Token: 0x04004DCB RID: 19915
+		// Token: 0x04004DD2 RID: 19922
 		[NonSerialized]
 		public UIRect rect;
 
-		// Token: 0x04004DCC RID: 19916
+		// Token: 0x04004DD3 RID: 19923
 		[NonSerialized]
 		public Camera targetCam;
 	}
 
-	// Token: 0x02000603 RID: 1539
+	// Token: 0x02000604 RID: 1540
 	[DoNotObfuscateNGUI]
 	public enum AnchorUpdate
 	{
-		// Token: 0x04004DCE RID: 19918
+		// Token: 0x04004DD5 RID: 19925
 		OnEnable,
-		// Token: 0x04004DCF RID: 19919
+		// Token: 0x04004DD6 RID: 19926
 		OnUpdate,
-		// Token: 0x04004DD0 RID: 19920
+		// Token: 0x04004DD7 RID: 19927
 		OnStart
 	}
 }

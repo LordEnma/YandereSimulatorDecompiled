@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x0200027F RID: 639
 public class DetectClickScript : MonoBehaviour
 {
-	// Token: 0x0600137C RID: 4988 RVA: 0x000B3447 File Offset: 0x000B1647
+	// Token: 0x0600137C RID: 4988 RVA: 0x000B34AB File Offset: 0x000B16AB
 	private void Start()
 	{
 		this.OriginalPosition = base.transform.localPosition;
 		this.OriginalColor = this.Sprite.color;
 	}
 
-	// Token: 0x0600137D RID: 4989 RVA: 0x000B346C File Offset: 0x000B166C
+	// Token: 0x0600137D RID: 4989 RVA: 0x000B34D0 File Offset: 0x000B16D0
 	private void Update()
 	{
 		RaycastHit raycastHit;
@@ -22,7 +22,7 @@ public class DetectClickScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600137E RID: 4990 RVA: 0x000B34F5 File Offset: 0x000B16F5
+	// Token: 0x0600137E RID: 4990 RVA: 0x000B3559 File Offset: 0x000B1759
 	private void OnTriggerEnter()
 	{
 		if (this.Label.color.a == 1f)
@@ -31,30 +31,30 @@ public class DetectClickScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600137F RID: 4991 RVA: 0x000B351E File Offset: 0x000B171E
+	// Token: 0x0600137F RID: 4991 RVA: 0x000B3582 File Offset: 0x000B1782
 	private void OnTriggerExit()
 	{
 		this.Sprite.color = this.OriginalColor;
 	}
 
-	// Token: 0x04001CB9 RID: 7353
+	// Token: 0x04001CBB RID: 7355
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04001CBA RID: 7354
+	// Token: 0x04001CBC RID: 7356
 	public Color OriginalColor;
 
-	// Token: 0x04001CBB RID: 7355
+	// Token: 0x04001CBD RID: 7357
 	public Collider MyCollider;
 
-	// Token: 0x04001CBC RID: 7356
+	// Token: 0x04001CBE RID: 7358
 	public Camera GUICamera;
 
-	// Token: 0x04001CBD RID: 7357
+	// Token: 0x04001CBF RID: 7359
 	public UISprite Sprite;
 
-	// Token: 0x04001CBE RID: 7358
+	// Token: 0x04001CC0 RID: 7360
 	public UILabel Label;
 
-	// Token: 0x04001CBF RID: 7359
+	// Token: 0x04001CC1 RID: 7361
 	public bool Clicked;
 }

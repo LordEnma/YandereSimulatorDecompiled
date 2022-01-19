@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000104 RID: 260
 public class CabinetDoorScript : MonoBehaviour
 {
-	// Token: 0x06000A9C RID: 2716 RVA: 0x0006114F File Offset: 0x0005F34F
+	// Token: 0x06000A9C RID: 2716 RVA: 0x00061157 File Offset: 0x0005F357
 	private void Start()
 	{
 		this.Eighties = GameGlobals.Eighties;
@@ -14,7 +14,7 @@ public class CabinetDoorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A9D RID: 2717 RVA: 0x00061174 File Offset: 0x0005F374
+	// Token: 0x06000A9D RID: 2717 RVA: 0x0006117C File Offset: 0x0005F37C
 	private void Update()
 	{
 		if (!this.Eighties)
@@ -70,7 +70,7 @@ public class CabinetDoorScript : MonoBehaviour
 		base.transform.localPosition = new Vector3(Mathf.Lerp(base.transform.localPosition.x, 0f, Time.deltaTime * 10f), base.transform.localPosition.y, base.transform.localPosition.z);
 	}
 
-	// Token: 0x06000A9E RID: 2718 RVA: 0x00061473 File Offset: 0x0005F673
+	// Token: 0x06000A9E RID: 2718 RVA: 0x0006147B File Offset: 0x0005F67B
 	private void UpdateLabel()
 	{
 		if (this.Open)
@@ -81,18 +81,18 @@ public class CabinetDoorScript : MonoBehaviour
 		this.Prompt.Label[0].text = "     Open";
 	}
 
-	// Token: 0x04000CAD RID: 3245
+	// Token: 0x04000CAE RID: 3246
 	public PromptScript Prompt;
 
-	// Token: 0x04000CAE RID: 3246
+	// Token: 0x04000CAF RID: 3247
 	public bool Eighties;
 
-	// Token: 0x04000CAF RID: 3247
+	// Token: 0x04000CB0 RID: 3248
 	public bool Locked;
 
-	// Token: 0x04000CB0 RID: 3248
+	// Token: 0x04000CB1 RID: 3249
 	public bool Open;
 
-	// Token: 0x04000CB1 RID: 3249
+	// Token: 0x04000CB2 RID: 3250
 	public float Timer;
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Equip Random Item")]
 public class EquipRandomItem : MonoBehaviour
 {
-	// Token: 0x06000083 RID: 131 RVA: 0x00010EB0 File Offset: 0x0000F0B0
+	// Token: 0x06000083 RID: 131 RVA: 0x00010EA8 File Offset: 0x0000F0A8
 	private void OnClick()
 	{
 		if (this.equipment == null)
@@ -27,6 +27,6 @@ public class EquipRandomItem : MonoBehaviour
 		this.equipment.Equip(invGameItem);
 	}
 
-	// Token: 0x04000253 RID: 595
+	// Token: 0x04000254 RID: 596
 	public InvEquipment equipment;
 }

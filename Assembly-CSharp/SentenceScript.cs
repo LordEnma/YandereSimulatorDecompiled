@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200041B RID: 1051
+// Token: 0x0200041C RID: 1052
 public class SentenceScript : MonoBehaviour
 {
-	// Token: 0x06001C64 RID: 7268 RVA: 0x00149948 File Offset: 0x00147B48
+	// Token: 0x06001C66 RID: 7270 RVA: 0x0014B05A File Offset: 0x0014925A
 	private void Update()
 	{
 		if (Input.GetButtonDown("A"))
@@ -14,12 +14,12 @@ public class SentenceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003252 RID: 12882
+	// Token: 0x04003257 RID: 12887
 	public UILabel Sentence;
 
-	// Token: 0x04003253 RID: 12883
+	// Token: 0x04003258 RID: 12888
 	public string[] Words;
 
-	// Token: 0x04003254 RID: 12884
+	// Token: 0x04003259 RID: 12889
 	public int ID;
 }

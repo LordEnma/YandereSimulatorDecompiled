@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005A5 RID: 1445
+	// Token: 0x020005A6 RID: 1446
 	[CreateAssetMenu(fileName = "New Scene Object", menuName = "Scenes/New Scene Object")]
 	[Serializable]
 	public class SceneObject : ScriptableObject
 	{
-		// Token: 0x04004C3B RID: 19515
+		// Token: 0x04004C42 RID: 19522
 		public int sceneBuildNumber = -1;
 	}
 }

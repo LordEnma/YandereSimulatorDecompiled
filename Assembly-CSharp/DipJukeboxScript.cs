@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000283 RID: 643
 public class DipJukeboxScript : MonoBehaviour
 {
-	// Token: 0x0600138C RID: 5004 RVA: 0x000B76A0 File Offset: 0x000B58A0
+	// Token: 0x0600138C RID: 5004 RVA: 0x000B7704 File Offset: 0x000B5904
 	private void Update()
 	{
 		if (this.MyAudio.isPlaying)
@@ -30,12 +30,12 @@ public class DipJukeboxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001CF6 RID: 7414
+	// Token: 0x04001CF8 RID: 7416
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04001CF7 RID: 7415
+	// Token: 0x04001CF9 RID: 7417
 	public AudioSource MyAudio;
 
-	// Token: 0x04001CF8 RID: 7416
+	// Token: 0x04001CFA RID: 7418
 	public Transform Yandere;
 }

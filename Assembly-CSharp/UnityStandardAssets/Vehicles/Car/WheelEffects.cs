@@ -4,21 +4,21 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x02000529 RID: 1321
+	// Token: 0x0200052A RID: 1322
 	[RequireComponent(typeof(AudioSource))]
 	public class WheelEffects : MonoBehaviour
 	{
 		// Token: 0x170004D6 RID: 1238
-		// (get) Token: 0x06002196 RID: 8598 RVA: 0x001E9BF9 File Offset: 0x001E7DF9
-		// (set) Token: 0x06002197 RID: 8599 RVA: 0x001E9C01 File Offset: 0x001E7E01
+		// (get) Token: 0x06002198 RID: 8600 RVA: 0x001EA8C9 File Offset: 0x001E8AC9
+		// (set) Token: 0x06002199 RID: 8601 RVA: 0x001EA8D1 File Offset: 0x001E8AD1
 		public bool skidding { get; private set; }
 
 		// Token: 0x170004D7 RID: 1239
-		// (get) Token: 0x06002198 RID: 8600 RVA: 0x001E9C0A File Offset: 0x001E7E0A
-		// (set) Token: 0x06002199 RID: 8601 RVA: 0x001E9C12 File Offset: 0x001E7E12
+		// (get) Token: 0x0600219A RID: 8602 RVA: 0x001EA8DA File Offset: 0x001E8ADA
+		// (set) Token: 0x0600219B RID: 8603 RVA: 0x001EA8E2 File Offset: 0x001E8AE2
 		public bool PlayingAudio { get; private set; }
 
-		// Token: 0x0600219A RID: 8602 RVA: 0x001E9C1C File Offset: 0x001E7E1C
+		// Token: 0x0600219C RID: 8604 RVA: 0x001EA8EC File Offset: 0x001E8AEC
 		private void Start()
 		{
 			this.skidParticles = base.transform.root.GetComponentInChildren<ParticleSystem>();
@@ -39,7 +39,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x0600219B RID: 8603 RVA: 0x001E9CAC File Offset: 0x001E7EAC
+		// Token: 0x0600219D RID: 8605 RVA: 0x001EA97C File Offset: 0x001E8B7C
 		public void EmitTyreSmoke()
 		{
 			this.skidParticles.transform.position = base.transform.position - base.transform.up * this.m_WheelCollider.radius;
@@ -50,21 +50,21 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x0600219C RID: 8604 RVA: 0x001E9D15 File Offset: 0x001E7F15
+		// Token: 0x0600219E RID: 8606 RVA: 0x001EA9E5 File Offset: 0x001E8BE5
 		public void PlayAudio()
 		{
 			this.m_AudioSource.Play();
 			this.PlayingAudio = true;
 		}
 
-		// Token: 0x0600219D RID: 8605 RVA: 0x001E9D29 File Offset: 0x001E7F29
+		// Token: 0x0600219F RID: 8607 RVA: 0x001EA9F9 File Offset: 0x001E8BF9
 		public void StopAudio()
 		{
 			this.m_AudioSource.Stop();
 			this.PlayingAudio = false;
 		}
 
-		// Token: 0x0600219E RID: 8606 RVA: 0x001E9D3D File Offset: 0x001E7F3D
+		// Token: 0x060021A0 RID: 8608 RVA: 0x001EAA0D File Offset: 0x001E8C0D
 		public IEnumerator StartSkidTrail()
 		{
 			this.skidding = true;
@@ -78,7 +78,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			yield break;
 		}
 
-		// Token: 0x0600219F RID: 8607 RVA: 0x001E9D4C File Offset: 0x001E7F4C
+		// Token: 0x060021A1 RID: 8609 RVA: 0x001EAA1C File Offset: 0x001E8C1C
 		public void EndSkidTrail()
 		{
 			if (!this.skidding)
@@ -90,22 +90,22 @@ namespace UnityStandardAssets.Vehicles.Car
 			UnityEngine.Object.Destroy(this.m_SkidTrail.gameObject, 10f);
 		}
 
-		// Token: 0x04004996 RID: 18838
+		// Token: 0x0400499D RID: 18845
 		public Transform SkidTrailPrefab;
 
-		// Token: 0x04004997 RID: 18839
+		// Token: 0x0400499E RID: 18846
 		public static Transform skidTrailsDetachedParent;
 
-		// Token: 0x04004998 RID: 18840
+		// Token: 0x0400499F RID: 18847
 		public ParticleSystem skidParticles;
 
-		// Token: 0x0400499B RID: 18843
+		// Token: 0x040049A2 RID: 18850
 		private AudioSource m_AudioSource;
 
-		// Token: 0x0400499C RID: 18844
+		// Token: 0x040049A3 RID: 18851
 		private Transform m_SkidTrail;
 
-		// Token: 0x0400499D RID: 18845
+		// Token: 0x040049A4 RID: 18852
 		private WheelCollider m_WheelCollider;
 	}
 }

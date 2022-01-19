@@ -6,14 +6,14 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Envelop Content")]
 public class EnvelopContent : MonoBehaviour
 {
-	// Token: 0x060000FE RID: 254 RVA: 0x000130C7 File Offset: 0x000112C7
+	// Token: 0x060000FE RID: 254 RVA: 0x000130BF File Offset: 0x000112BF
 	private void Start()
 	{
 		this.mStarted = true;
 		this.Execute();
 	}
 
-	// Token: 0x060000FF RID: 255 RVA: 0x000130D6 File Offset: 0x000112D6
+	// Token: 0x060000FF RID: 255 RVA: 0x000130CE File Offset: 0x000112CE
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -22,7 +22,7 @@ public class EnvelopContent : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000100 RID: 256 RVA: 0x000130E8 File Offset: 0x000112E8
+	// Token: 0x06000100 RID: 256 RVA: 0x000130E0 File Offset: 0x000112E0
 	[ContextMenu("Execute")]
 	public void Execute()
 	{
@@ -46,24 +46,24 @@ public class EnvelopContent : MonoBehaviour
 		NGUITools.UpdateWidgetCollider(base.gameObject);
 	}
 
-	// Token: 0x040002C3 RID: 707
+	// Token: 0x040002C4 RID: 708
 	public Transform targetRoot;
 
-	// Token: 0x040002C4 RID: 708
+	// Token: 0x040002C5 RID: 709
 	public int padLeft;
 
-	// Token: 0x040002C5 RID: 709
+	// Token: 0x040002C6 RID: 710
 	public int padRight;
 
-	// Token: 0x040002C6 RID: 710
+	// Token: 0x040002C7 RID: 711
 	public int padBottom;
 
-	// Token: 0x040002C7 RID: 711
+	// Token: 0x040002C8 RID: 712
 	public int padTop;
 
-	// Token: 0x040002C8 RID: 712
+	// Token: 0x040002C9 RID: 713
 	public bool ignoreDisabled = true;
 
-	// Token: 0x040002C9 RID: 713
+	// Token: 0x040002CA RID: 714
 	private bool mStarted;
 }

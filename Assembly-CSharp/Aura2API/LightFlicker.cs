@@ -3,30 +3,30 @@ using UnityEngine;
 
 namespace Aura2API
 {
-	// Token: 0x020005B6 RID: 1462
+	// Token: 0x020005B7 RID: 1463
 	public class LightFlicker : MonoBehaviour
 	{
-		// Token: 0x060024CD RID: 9421 RVA: 0x001FA29B File Offset: 0x001F849B
+		// Token: 0x060024CF RID: 9423 RVA: 0x001FAF6B File Offset: 0x001F916B
 		private void Start()
 		{
 			UnityEngine.Random.InitState((int)base.transform.position.x + (int)base.transform.position.y);
 			this._initialFactor = base.GetComponent<Light>().intensity;
 		}
 
-		// Token: 0x060024CE RID: 9422 RVA: 0x001FA2D6 File Offset: 0x001F84D6
+		// Token: 0x060024D0 RID: 9424 RVA: 0x001FAFA6 File Offset: 0x001F91A6
 		private void OnEnable()
 		{
 			this._initPos = base.transform.localPosition;
 			this._currentPos = this._initPos;
 		}
 
-		// Token: 0x060024CF RID: 9423 RVA: 0x001FA2F5 File Offset: 0x001F84F5
+		// Token: 0x060024D1 RID: 9425 RVA: 0x001FAFC5 File Offset: 0x001F91C5
 		private void OnDisable()
 		{
 			base.transform.localPosition = this._initPos;
 		}
 
-		// Token: 0x060024D0 RID: 9424 RVA: 0x001FA308 File Offset: 0x001F8508
+		// Token: 0x060024D2 RID: 9426 RVA: 0x001FAFD8 File Offset: 0x001F91D8
 		private void Update()
 		{
 			this._deltaTime = Time.deltaTime;
@@ -45,43 +45,43 @@ namespace Aura2API
 			this._timeLeft -= this._deltaTime;
 		}
 
-		// Token: 0x04004C7E RID: 19582
+		// Token: 0x04004C85 RID: 19589
 		public float maxFactor = 1.2f;
 
-		// Token: 0x04004C7F RID: 19583
+		// Token: 0x04004C86 RID: 19590
 		public float minFactor = 1f;
 
-		// Token: 0x04004C80 RID: 19584
+		// Token: 0x04004C87 RID: 19591
 		public float moveRange = 0.1f;
 
-		// Token: 0x04004C81 RID: 19585
+		// Token: 0x04004C88 RID: 19592
 		public float speed = 0.1f;
 
-		// Token: 0x04004C82 RID: 19586
+		// Token: 0x04004C89 RID: 19593
 		private float _currentFactor = 1f;
 
-		// Token: 0x04004C83 RID: 19587
+		// Token: 0x04004C8A RID: 19594
 		private Vector3 _currentPos;
 
-		// Token: 0x04004C84 RID: 19588
+		// Token: 0x04004C8B RID: 19595
 		private float _deltaTime;
 
-		// Token: 0x04004C85 RID: 19589
+		// Token: 0x04004C8C RID: 19596
 		private Vector3 _initPos;
 
-		// Token: 0x04004C86 RID: 19590
+		// Token: 0x04004C8D RID: 19597
 		private float _targetFactor;
 
-		// Token: 0x04004C87 RID: 19591
+		// Token: 0x04004C8E RID: 19598
 		private Vector3 _targetPos;
 
-		// Token: 0x04004C88 RID: 19592
+		// Token: 0x04004C8F RID: 19599
 		private float _initialFactor;
 
-		// Token: 0x04004C89 RID: 19593
+		// Token: 0x04004C90 RID: 19600
 		private float _time;
 
-		// Token: 0x04004C8A RID: 19594
+		// Token: 0x04004C91 RID: 19601
 		private float _timeLeft;
 	}
 }

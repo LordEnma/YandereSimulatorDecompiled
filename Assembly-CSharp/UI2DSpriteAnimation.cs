@@ -5,7 +5,7 @@ using UnityEngine;
 public class UI2DSpriteAnimation : MonoBehaviour
 {
 	// Token: 0x17000115 RID: 277
-	// (get) Token: 0x0600068F RID: 1679 RVA: 0x00037FAB File Offset: 0x000361AB
+	// (get) Token: 0x0600068F RID: 1679 RVA: 0x00037FA3 File Offset: 0x000361A3
 	public bool isPlaying
 	{
 		get
@@ -15,8 +15,8 @@ public class UI2DSpriteAnimation : MonoBehaviour
 	}
 
 	// Token: 0x17000116 RID: 278
-	// (get) Token: 0x06000690 RID: 1680 RVA: 0x00037FB3 File Offset: 0x000361B3
-	// (set) Token: 0x06000691 RID: 1681 RVA: 0x00037FBB File Offset: 0x000361BB
+	// (get) Token: 0x06000690 RID: 1680 RVA: 0x00037FAB File Offset: 0x000361AB
+	// (set) Token: 0x06000691 RID: 1681 RVA: 0x00037FB3 File Offset: 0x000361B3
 	public int framesPerSecond
 	{
 		get
@@ -29,7 +29,7 @@ public class UI2DSpriteAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000692 RID: 1682 RVA: 0x00037FC4 File Offset: 0x000361C4
+	// Token: 0x06000692 RID: 1682 RVA: 0x00037FBC File Offset: 0x000361BC
 	public void Play()
 	{
 		if (this.frames != null && this.frames.Length != 0)
@@ -47,26 +47,26 @@ public class UI2DSpriteAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000693 RID: 1683 RVA: 0x00038046 File Offset: 0x00036246
+	// Token: 0x06000693 RID: 1683 RVA: 0x0003803E File Offset: 0x0003623E
 	public void Pause()
 	{
 		base.enabled = false;
 	}
 
-	// Token: 0x06000694 RID: 1684 RVA: 0x0003804F File Offset: 0x0003624F
+	// Token: 0x06000694 RID: 1684 RVA: 0x00038047 File Offset: 0x00036247
 	public void ResetToBeginning()
 	{
 		this.frameIndex = ((this.framerate < 0) ? (this.frames.Length - 1) : 0);
 		this.UpdateSprite();
 	}
 
-	// Token: 0x06000695 RID: 1685 RVA: 0x00038073 File Offset: 0x00036273
+	// Token: 0x06000695 RID: 1685 RVA: 0x0003806B File Offset: 0x0003626B
 	private void Start()
 	{
 		this.Play();
 	}
 
-	// Token: 0x06000696 RID: 1686 RVA: 0x0003807C File Offset: 0x0003627C
+	// Token: 0x06000696 RID: 1686 RVA: 0x00038074 File Offset: 0x00036274
 	private void Update()
 	{
 		if (this.frames == null || this.frames.Length == 0)
@@ -92,7 +92,7 @@ public class UI2DSpriteAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000697 RID: 1687 RVA: 0x00038124 File Offset: 0x00036324
+	// Token: 0x06000697 RID: 1687 RVA: 0x0003811C File Offset: 0x0003631C
 	private void UpdateSprite()
 	{
 		if (this.mUnitySprite == null && this.mNguiSprite == null)
@@ -121,28 +121,28 @@ public class UI2DSpriteAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000615 RID: 1557
+	// Token: 0x04000616 RID: 1558
 	public int frameIndex;
 
-	// Token: 0x04000616 RID: 1558
+	// Token: 0x04000617 RID: 1559
 	[SerializeField]
 	protected int framerate = 20;
 
-	// Token: 0x04000617 RID: 1559
+	// Token: 0x04000618 RID: 1560
 	public bool ignoreTimeScale = true;
 
-	// Token: 0x04000618 RID: 1560
+	// Token: 0x04000619 RID: 1561
 	public bool loop = true;
 
-	// Token: 0x04000619 RID: 1561
+	// Token: 0x0400061A RID: 1562
 	public Sprite[] frames;
 
-	// Token: 0x0400061A RID: 1562
+	// Token: 0x0400061B RID: 1563
 	private SpriteRenderer mUnitySprite;
 
-	// Token: 0x0400061B RID: 1563
+	// Token: 0x0400061C RID: 1564
 	private UI2DSprite mNguiSprite;
 
-	// Token: 0x0400061C RID: 1564
+	// Token: 0x0400061D RID: 1565
 	private float mUpdate;
 }

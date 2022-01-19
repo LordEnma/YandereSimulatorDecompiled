@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x020000D3 RID: 211
 public class AreaScript : MonoBehaviour
 {
-	// Token: 0x060009DB RID: 2523 RVA: 0x00052094 File Offset: 0x00050294
+	// Token: 0x060009DB RID: 2523 RVA: 0x0005208C File Offset: 0x0005028C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Student"))
@@ -19,7 +19,7 @@ public class AreaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009DC RID: 2524 RVA: 0x000520D8 File Offset: 0x000502D8
+	// Token: 0x060009DC RID: 2524 RVA: 0x000520D0 File Offset: 0x000502D0
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.CompareTag("Student"))
@@ -33,19 +33,19 @@ public class AreaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A5B RID: 2651
+	// Token: 0x04000A5C RID: 2652
 	[Header("Do not touch any of these values. They get updated at runtime.")]
 	[Tooltip("The amount of students in this area.")]
 	public int Population;
 
-	// Token: 0x04000A5C RID: 2652
+	// Token: 0x04000A5D RID: 2653
 	[Tooltip("A list of students in this area.")]
 	public List<StudentScript> Students;
 
-	// Token: 0x04000A5D RID: 2653
+	// Token: 0x04000A5E RID: 2654
 	[Tooltip("This area's crowd. Students will go here.")]
 	public List<StudentScript> Crowd;
 
-	// Token: 0x04000A5E RID: 2654
+	// Token: 0x04000A5F RID: 2655
 	public int ID;
 }

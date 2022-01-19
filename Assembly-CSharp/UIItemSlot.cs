@@ -12,7 +12,7 @@ public abstract class UIItemSlot : MonoBehaviour
 	// Token: 0x06000090 RID: 144
 	protected abstract InvGameItem Replace(InvGameItem item);
 
-	// Token: 0x06000091 RID: 145 RVA: 0x000111F8 File Offset: 0x0000F3F8
+	// Token: 0x06000091 RID: 145 RVA: 0x000111F0 File Offset: 0x0000F3F0
 	private void OnTooltip(bool show)
 	{
 		InvGameItem invGameItem = show ? this.mItem : null;
@@ -73,7 +73,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		UITooltip.Hide();
 	}
 
-	// Token: 0x06000092 RID: 146 RVA: 0x00011382 File Offset: 0x0000F582
+	// Token: 0x06000092 RID: 146 RVA: 0x0001137A File Offset: 0x0000F57A
 	private void OnClick()
 	{
 		if (UIItemSlot.mDraggedItem != null)
@@ -92,7 +92,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000093 RID: 147 RVA: 0x000113C0 File Offset: 0x0000F5C0
+	// Token: 0x06000093 RID: 147 RVA: 0x000113B8 File Offset: 0x0000F5B8
 	private void OnDrag(Vector2 delta)
 	{
 		if (UIItemSlot.mDraggedItem == null && this.mItem != null)
@@ -104,7 +104,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000094 RID: 148 RVA: 0x000113FC File Offset: 0x0000F5FC
+	// Token: 0x06000094 RID: 148 RVA: 0x000113F4 File Offset: 0x0000F5F4
 	private void OnDrop(GameObject go)
 	{
 		InvGameItem invGameItem = this.Replace(UIItemSlot.mDraggedItem);
@@ -124,7 +124,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		this.UpdateCursor();
 	}
 
-	// Token: 0x06000095 RID: 149 RVA: 0x00011454 File Offset: 0x0000F654
+	// Token: 0x06000095 RID: 149 RVA: 0x0001144C File Offset: 0x0000F64C
 	private void UpdateCursor()
 	{
 		if (UIItemSlot.mDraggedItem != null && UIItemSlot.mDraggedItem.baseItem != null)
@@ -135,7 +135,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		UICursor.Clear();
 	}
 
-	// Token: 0x06000096 RID: 150 RVA: 0x000114A4 File Offset: 0x0000F6A4
+	// Token: 0x06000096 RID: 150 RVA: 0x0001149C File Offset: 0x0000F69C
 	private void Update()
 	{
 		InvGameItem observedItem = this.observedItem;
@@ -173,30 +173,30 @@ public abstract class UIItemSlot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400025C RID: 604
+	// Token: 0x0400025D RID: 605
 	public UISprite icon;
 
-	// Token: 0x0400025D RID: 605
+	// Token: 0x0400025E RID: 606
 	public UIWidget background;
 
-	// Token: 0x0400025E RID: 606
+	// Token: 0x0400025F RID: 607
 	public UILabel label;
 
-	// Token: 0x0400025F RID: 607
+	// Token: 0x04000260 RID: 608
 	public AudioClip grabSound;
 
-	// Token: 0x04000260 RID: 608
+	// Token: 0x04000261 RID: 609
 	public AudioClip placeSound;
 
-	// Token: 0x04000261 RID: 609
+	// Token: 0x04000262 RID: 610
 	public AudioClip errorSound;
 
-	// Token: 0x04000262 RID: 610
+	// Token: 0x04000263 RID: 611
 	private InvGameItem mItem;
 
-	// Token: 0x04000263 RID: 611
+	// Token: 0x04000264 RID: 612
 	private string mText = "";
 
-	// Token: 0x04000264 RID: 612
+	// Token: 0x04000265 RID: 613
 	private static InvGameItem mDraggedItem;
 }

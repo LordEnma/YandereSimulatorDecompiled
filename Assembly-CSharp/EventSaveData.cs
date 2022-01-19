@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x020003F8 RID: 1016
+// Token: 0x020003F9 RID: 1017
 [Serializable]
 public class EventSaveData
 {
-	// Token: 0x06001BF2 RID: 7154 RVA: 0x001441AB File Offset: 0x001423AB
+	// Token: 0x06001BF4 RID: 7156 RVA: 0x001458B3 File Offset: 0x00143AB3
 	public static EventSaveData ReadFromGlobals()
 	{
 		return new EventSaveData
@@ -17,7 +17,7 @@ public class EventSaveData
 		};
 	}
 
-	// Token: 0x06001BF3 RID: 7155 RVA: 0x001441E9 File Offset: 0x001423E9
+	// Token: 0x06001BF5 RID: 7157 RVA: 0x001458F1 File Offset: 0x00143AF1
 	public static void WriteToGlobals(EventSaveData data)
 	{
 		EventGlobals.BefriendConversation = data.befriendConversation;
@@ -27,18 +27,18 @@ public class EventSaveData
 		EventGlobals.LivingRoom = data.livingRoom;
 	}
 
-	// Token: 0x04003100 RID: 12544
+	// Token: 0x04003105 RID: 12549
 	public bool befriendConversation;
 
-	// Token: 0x04003101 RID: 12545
+	// Token: 0x04003106 RID: 12550
 	public bool event1;
 
-	// Token: 0x04003102 RID: 12546
+	// Token: 0x04003107 RID: 12551
 	public bool event2;
 
-	// Token: 0x04003103 RID: 12547
+	// Token: 0x04003108 RID: 12552
 	public bool kidnapConversation;
 
-	// Token: 0x04003104 RID: 12548
+	// Token: 0x04003109 RID: 12553
 	public bool livingRoom;
 }

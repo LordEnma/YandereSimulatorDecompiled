@@ -8,7 +8,7 @@ using UnityEngine;
 public class UILocalize : MonoBehaviour
 {
 	// Token: 0x1700018D RID: 397
-	// (set) Token: 0x060007EA RID: 2026 RVA: 0x00042190 File Offset: 0x00040390
+	// (set) Token: 0x060007EA RID: 2026 RVA: 0x00042188 File Offset: 0x00040388
 	public string value
 	{
 		set
@@ -43,7 +43,7 @@ public class UILocalize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060007EB RID: 2027 RVA: 0x0004223C File Offset: 0x0004043C
+	// Token: 0x060007EB RID: 2027 RVA: 0x00042234 File Offset: 0x00040434
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -52,14 +52,14 @@ public class UILocalize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060007EC RID: 2028 RVA: 0x0004224C File Offset: 0x0004044C
+	// Token: 0x060007EC RID: 2028 RVA: 0x00042244 File Offset: 0x00040444
 	private void Start()
 	{
 		this.mStarted = true;
 		this.OnLocalize();
 	}
 
-	// Token: 0x060007ED RID: 2029 RVA: 0x0004225C File Offset: 0x0004045C
+	// Token: 0x060007ED RID: 2029 RVA: 0x00042254 File Offset: 0x00040454
 	private void OnLocalize()
 	{
 		if (string.IsNullOrEmpty(this.key))
@@ -76,9 +76,9 @@ public class UILocalize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000713 RID: 1811
+	// Token: 0x04000714 RID: 1812
 	public string key;
 
-	// Token: 0x04000714 RID: 1812
+	// Token: 0x04000715 RID: 1813
 	private bool mStarted;
 }

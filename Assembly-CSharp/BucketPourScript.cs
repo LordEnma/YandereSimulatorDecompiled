@@ -4,15 +4,14 @@ using UnityEngine;
 // Token: 0x020000FE RID: 254
 public class BucketPourScript : MonoBehaviour
 {
-	// Token: 0x06000A85 RID: 2693 RVA: 0x0005CD4A File Offset: 0x0005AF4A
+	// Token: 0x06000A85 RID: 2693 RVA: 0x0005CD42 File Offset: 0x0005AF42
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000A86 RID: 2694 RVA: 0x0005CD4C File Offset: 0x0005AF4C
+	// Token: 0x06000A86 RID: 2694 RVA: 0x0005CD44 File Offset: 0x0005AF44
 	private void Update()
 	{
-		bool flag = false;
 		if (this.Yandere.PickUp != null)
 		{
 			if (this.Yandere.PickUp.Bucket != null)
@@ -23,7 +22,6 @@ public class BucketPourScript : MonoBehaviour
 					{
 						this.Prompt.Label[0].text = "     Pour";
 						this.Prompt.enabled = true;
-						flag = true;
 					}
 				}
 				else if (this.Yandere.PickUp.Bucket.Dumbbells == 5)
@@ -56,7 +54,15 @@ public class BucketPourScript : MonoBehaviour
 			this.Prompt.Circle[0].fillAmount = 1f;
 			if (!this.Yandere.Chased && this.Yandere.Chasers == 0)
 			{
-				if (flag)
+				if (this.Yandere.PickUp.Bucket.Dumbbells == 5)
+				{
+					this.Yandere.CharacterAnimation.CrossFade("f02_bucketDrop_00");
+					this.Yandere.MyController.radius = 0f;
+					this.Yandere.BucketDropping = true;
+					this.Yandere.DropSpot = base.transform;
+					this.Yandere.CanMove = false;
+				}
+				else
 				{
 					this.Yandere.Stool = base.transform;
 					this.Yandere.CanMove = false;
@@ -64,14 +70,6 @@ public class BucketPourScript : MonoBehaviour
 					this.Yandere.PourDistance = this.PourDistance;
 					this.Yandere.PourHeight = this.PourHeight;
 					this.Yandere.PourTime = this.PourTime;
-				}
-				else
-				{
-					this.Yandere.CharacterAnimation.CrossFade("f02_bucketDrop_00");
-					this.Yandere.MyController.radius = 0f;
-					this.Yandere.BucketDropping = true;
-					this.Yandere.DropSpot = base.transform;
-					this.Yandere.CanMove = false;
 				}
 			}
 		}
@@ -107,24 +105,24 @@ public class BucketPourScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C34 RID: 3124
+	// Token: 0x04000C35 RID: 3125
 	public SplashCameraScript SplashCamera;
 
-	// Token: 0x04000C35 RID: 3125
+	// Token: 0x04000C36 RID: 3126
 	public YandereScript Yandere;
 
-	// Token: 0x04000C36 RID: 3126
+	// Token: 0x04000C37 RID: 3127
 	public PromptScript Prompt;
 
-	// Token: 0x04000C37 RID: 3127
+	// Token: 0x04000C38 RID: 3128
 	public string PourHeight = string.Empty;
 
-	// Token: 0x04000C38 RID: 3128
+	// Token: 0x04000C39 RID: 3129
 	public float PourDistance;
 
-	// Token: 0x04000C39 RID: 3129
+	// Token: 0x04000C3A RID: 3130
 	public float PourTime;
 
-	// Token: 0x04000C3A RID: 3130
+	// Token: 0x04000C3B RID: 3131
 	public int ID;
 }

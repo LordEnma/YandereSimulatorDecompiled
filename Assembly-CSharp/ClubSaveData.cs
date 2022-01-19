@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x020003F3 RID: 1011
+// Token: 0x020003F4 RID: 1012
 [Serializable]
 public class ClubSaveData
 {
-	// Token: 0x06001BE3 RID: 7139 RVA: 0x001438F8 File Offset: 0x00141AF8
+	// Token: 0x06001BE5 RID: 7141 RVA: 0x00145000 File Offset: 0x00143200
 	public static ClubSaveData ReadFromGlobals()
 	{
 		ClubSaveData clubSaveData = new ClubSaveData();
@@ -33,7 +33,7 @@ public class ClubSaveData
 		return clubSaveData;
 	}
 
-	// Token: 0x06001BE4 RID: 7140 RVA: 0x001439A4 File Offset: 0x00141BA4
+	// Token: 0x06001BE6 RID: 7142 RVA: 0x001450AC File Offset: 0x001432AC
 	public static void WriteToGlobals(ClubSaveData data)
 	{
 		ClubGlobals.Club = data.club;
@@ -51,15 +51,15 @@ public class ClubSaveData
 		}
 	}
 
-	// Token: 0x040030EB RID: 12523
+	// Token: 0x040030F0 RID: 12528
 	public ClubType club;
 
-	// Token: 0x040030EC RID: 12524
+	// Token: 0x040030F1 RID: 12529
 	public ClubTypeHashSet clubClosed = new ClubTypeHashSet();
 
-	// Token: 0x040030ED RID: 12525
+	// Token: 0x040030F2 RID: 12530
 	public ClubTypeHashSet clubKicked = new ClubTypeHashSet();
 
-	// Token: 0x040030EE RID: 12526
+	// Token: 0x040030F3 RID: 12531
 	public ClubTypeHashSet quitClub = new ClubTypeHashSet();
 }

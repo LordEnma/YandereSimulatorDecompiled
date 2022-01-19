@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200035B RID: 859
 public class MaskScript : MonoBehaviour
 {
-	// Token: 0x06001978 RID: 6520 RVA: 0x001035CC File Offset: 0x001017CC
+	// Token: 0x06001978 RID: 6520 RVA: 0x00103734 File Offset: 0x00101934
 	private void Start()
 	{
 		if (GameGlobals.MasksBanned)
@@ -19,7 +19,7 @@ public class MaskScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001979 RID: 6521 RVA: 0x0010362C File Offset: 0x0010182C
+	// Token: 0x06001979 RID: 6521 RVA: 0x00103794 File Offset: 0x00101994
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -47,7 +47,7 @@ public class MaskScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600197A RID: 6522 RVA: 0x00103774 File Offset: 0x00101974
+	// Token: 0x0600197A RID: 6522 RVA: 0x001038DC File Offset: 0x00101ADC
 	public void Drop()
 	{
 		this.Prompt.MyCollider.isTrigger = false;
@@ -62,36 +62,36 @@ public class MaskScript : MonoBehaviour
 		this.StudentManager.UpdateStudents(0);
 	}
 
-	// Token: 0x040028A8 RID: 10408
+	// Token: 0x040028AB RID: 10411
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040028A9 RID: 10409
+	// Token: 0x040028AC RID: 10412
 	public ClubManagerScript ClubManager;
 
-	// Token: 0x040028AA RID: 10410
+	// Token: 0x040028AD RID: 10413
 	public YandereScript Yandere;
 
-	// Token: 0x040028AB RID: 10411
+	// Token: 0x040028AE RID: 10414
 	public PromptScript Prompt;
 
-	// Token: 0x040028AC RID: 10412
+	// Token: 0x040028AF RID: 10415
 	public PickUpScript PickUp;
 
-	// Token: 0x040028AD RID: 10413
+	// Token: 0x040028B0 RID: 10416
 	public Projector Blood;
 
-	// Token: 0x040028AE RID: 10414
+	// Token: 0x040028B1 RID: 10417
 	public Renderer MyRenderer;
 
-	// Token: 0x040028AF RID: 10415
+	// Token: 0x040028B2 RID: 10418
 	public MeshFilter MyFilter;
 
-	// Token: 0x040028B0 RID: 10416
+	// Token: 0x040028B3 RID: 10419
 	public Texture[] Textures;
 
-	// Token: 0x040028B1 RID: 10417
+	// Token: 0x040028B4 RID: 10420
 	public Mesh[] Meshes;
 
-	// Token: 0x040028B2 RID: 10418
+	// Token: 0x040028B5 RID: 10421
 	public int ID;
 }

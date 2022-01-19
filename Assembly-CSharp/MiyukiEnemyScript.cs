@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000369 RID: 873
 public class MiyukiEnemyScript : MonoBehaviour
 {
-	// Token: 0x060019A4 RID: 6564 RVA: 0x00105CBE File Offset: 0x00103EBE
+	// Token: 0x060019A4 RID: 6564 RVA: 0x00105E26 File Offset: 0x00104026
 	private void Start()
 	{
 		base.transform.position = this.SpawnPoints[this.ID].position;
 		base.transform.rotation = this.SpawnPoints[this.ID].rotation;
 	}
 
-	// Token: 0x060019A5 RID: 6565 RVA: 0x00105CFC File Offset: 0x00103EFC
+	// Token: 0x060019A5 RID: 6565 RVA: 0x00105E64 File Offset: 0x00104064
 	private void Update()
 	{
 		if (this.Enemy.activeInHierarchy)
@@ -56,7 +56,7 @@ public class MiyukiEnemyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019A6 RID: 6566 RVA: 0x00105F50 File Offset: 0x00104150
+	// Token: 0x060019A6 RID: 6566 RVA: 0x001060B8 File Offset: 0x001042B8
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Enemy.activeInHierarchy && other.gameObject.tag == "missile")
@@ -78,39 +78,39 @@ public class MiyukiEnemyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002906 RID: 10502
+	// Token: 0x04002909 RID: 10505
 	public float Float;
 
-	// Token: 0x04002907 RID: 10503
+	// Token: 0x0400290A RID: 10506
 	public float Limit;
 
-	// Token: 0x04002908 RID: 10504
+	// Token: 0x0400290B RID: 10507
 	public float Speed;
 
-	// Token: 0x04002909 RID: 10505
+	// Token: 0x0400290C RID: 10508
 	public bool Dead;
 
-	// Token: 0x0400290A RID: 10506
+	// Token: 0x0400290D RID: 10509
 	public bool Down;
 
-	// Token: 0x0400290B RID: 10507
+	// Token: 0x0400290E RID: 10510
 	public GameObject DeathEffect;
 
-	// Token: 0x0400290C RID: 10508
+	// Token: 0x0400290F RID: 10511
 	public GameObject HitEffect;
 
-	// Token: 0x0400290D RID: 10509
+	// Token: 0x04002910 RID: 10512
 	public GameObject Enemy;
 
-	// Token: 0x0400290E RID: 10510
+	// Token: 0x04002911 RID: 10513
 	public Transform[] SpawnPoints;
 
-	// Token: 0x0400290F RID: 10511
+	// Token: 0x04002912 RID: 10514
 	public float RespawnTimer;
 
-	// Token: 0x04002910 RID: 10512
+	// Token: 0x04002913 RID: 10515
 	public float Health;
 
-	// Token: 0x04002911 RID: 10513
+	// Token: 0x04002914 RID: 10516
 	public int ID;
 }

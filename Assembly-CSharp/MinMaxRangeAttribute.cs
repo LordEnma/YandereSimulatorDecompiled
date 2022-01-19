@@ -4,16 +4,16 @@ using UnityEngine;
 // Token: 0x02000074 RID: 116
 public class MinMaxRangeAttribute : PropertyAttribute
 {
-	// Token: 0x06000373 RID: 883 RVA: 0x000224F8 File Offset: 0x000206F8
+	// Token: 0x06000373 RID: 883 RVA: 0x000224F0 File Offset: 0x000206F0
 	public MinMaxRangeAttribute(float minLimit, float maxLimit)
 	{
 		this.minLimit = minLimit;
 		this.maxLimit = maxLimit;
 	}
 
-	// Token: 0x040004B3 RID: 1203
+	// Token: 0x040004B4 RID: 1204
 	public float minLimit;
 
-	// Token: 0x040004B4 RID: 1204
+	// Token: 0x040004B5 RID: 1205
 	public float maxLimit;
 }

@@ -5,7 +5,7 @@ using UnityEngine.PostProcessing;
 // Token: 0x020000D7 RID: 215
 public class AsylumIntroScript : MonoBehaviour
 {
-	// Token: 0x060009EF RID: 2543 RVA: 0x000539F4 File Offset: 0x00051BF4
+	// Token: 0x060009EF RID: 2543 RVA: 0x000539EC File Offset: 0x00051BEC
 	private void Start()
 	{
 		this.Profile.colorGrading.enabled = true;
@@ -29,7 +29,7 @@ public class AsylumIntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009F0 RID: 2544 RVA: 0x00053B18 File Offset: 0x00051D18
+	// Token: 0x060009F0 RID: 2544 RVA: 0x00053B10 File Offset: 0x00051D10
 	private void Update()
 	{
 		if (this.SkipPanel.enabled)
@@ -109,7 +109,7 @@ public class AsylumIntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009F1 RID: 2545 RVA: 0x00053F0C File Offset: 0x0005210C
+	// Token: 0x060009F1 RID: 2545 RVA: 0x00053F04 File Offset: 0x00052104
 	private void UpdateDOF(float Value)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -118,7 +118,7 @@ public class AsylumIntroScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x060009F2 RID: 2546 RVA: 0x00053F50 File Offset: 0x00052150
+	// Token: 0x060009F2 RID: 2546 RVA: 0x00053F48 File Offset: 0x00052148
 	public void SetVignetteBlack()
 	{
 		VignetteModel.Settings settings = this.Profile.vignette.settings;
@@ -129,7 +129,7 @@ public class AsylumIntroScript : MonoBehaviour
 		this.Profile.vignette.settings = settings;
 	}
 
-	// Token: 0x060009F3 RID: 2547 RVA: 0x00053FC4 File Offset: 0x000521C4
+	// Token: 0x060009F3 RID: 2547 RVA: 0x00053FBC File Offset: 0x000521BC
 	private void UpdateSkipPanel()
 	{
 		this.SkipTimer += Time.deltaTime;
@@ -156,45 +156,45 @@ public class AsylumIntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A8A RID: 2698
+	// Token: 0x04000A8B RID: 2699
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04000A8B RID: 2699
+	// Token: 0x04000A8C RID: 2700
 	public StalkerYandereScript Yandere;
 
-	// Token: 0x04000A8C RID: 2700
+	// Token: 0x04000A8D RID: 2701
 	public RPG_Camera RPGCamera;
 
-	// Token: 0x04000A8D RID: 2701
+	// Token: 0x04000A8E RID: 2702
 	public Renderer Darkness;
 
-	// Token: 0x04000A8E RID: 2702
+	// Token: 0x04000A8F RID: 2703
 	public Vector3 Rotation;
 
-	// Token: 0x04000A8F RID: 2703
+	// Token: 0x04000A90 RID: 2704
 	public float Alpha;
 
-	// Token: 0x04000A90 RID: 2704
+	// Token: 0x04000A91 RID: 2705
 	public float Speed;
 
-	// Token: 0x04000A91 RID: 2705
+	// Token: 0x04000A92 RID: 2706
 	public float Timer;
 
-	// Token: 0x04000A92 RID: 2706
+	// Token: 0x04000A93 RID: 2707
 	public float DOF;
 
-	// Token: 0x04000A93 RID: 2707
+	// Token: 0x04000A94 RID: 2708
 	public int Phase;
 
-	// Token: 0x04000A94 RID: 2708
+	// Token: 0x04000A95 RID: 2709
 	public GameObject[] Bags;
 
-	// Token: 0x04000A95 RID: 2709
+	// Token: 0x04000A96 RID: 2710
 	public UIPanel SkipPanel;
 
-	// Token: 0x04000A96 RID: 2710
+	// Token: 0x04000A97 RID: 2711
 	public UISprite SkipCircle;
 
-	// Token: 0x04000A97 RID: 2711
+	// Token: 0x04000A98 RID: 2712
 	private float SkipTimer;
 }

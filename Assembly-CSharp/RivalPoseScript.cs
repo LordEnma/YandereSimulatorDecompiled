@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000D0 RID: 208
 public class RivalPoseScript : MonoBehaviour
 {
-	// Token: 0x060009D3 RID: 2515 RVA: 0x00051CFC File Offset: 0x0004FEFC
+	// Token: 0x060009D3 RID: 2515 RVA: 0x00051CF4 File Offset: 0x0004FEF4
 	private void Start()
 	{
 		int femaleUniform = StudentGlobals.FemaleUniform;
@@ -58,27 +58,27 @@ public class RivalPoseScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A4E RID: 2638
+	// Token: 0x04000A4F RID: 2639
 	public GameObject Character;
 
-	// Token: 0x04000A4F RID: 2639
+	// Token: 0x04000A50 RID: 2640
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x04000A50 RID: 2640
+	// Token: 0x04000A51 RID: 2641
 	public Texture[] FemaleUniformTextures;
 
-	// Token: 0x04000A51 RID: 2641
+	// Token: 0x04000A52 RID: 2642
 	public Mesh[] FemaleUniforms;
 
-	// Token: 0x04000A52 RID: 2642
+	// Token: 0x04000A53 RID: 2643
 	public Texture[] TestTextures;
 
-	// Token: 0x04000A53 RID: 2643
+	// Token: 0x04000A54 RID: 2644
 	public Texture HairTexture;
 
-	// Token: 0x04000A54 RID: 2644
+	// Token: 0x04000A55 RID: 2645
 	public string[] AnimNames;
 
-	// Token: 0x04000A55 RID: 2645
+	// Token: 0x04000A56 RID: 2646
 	public int ID = -1;
 }

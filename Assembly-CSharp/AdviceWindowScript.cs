@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000C3 RID: 195
 public class AdviceWindowScript : MonoBehaviour
 {
-	// Token: 0x0600099F RID: 2463 RVA: 0x0004CFB0 File Offset: 0x0004B1B0
+	// Token: 0x0600099F RID: 2463 RVA: 0x0004CFA8 File Offset: 0x0004B1A8
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -79,7 +79,7 @@ public class AdviceWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009A0 RID: 2464 RVA: 0x0004D178 File Offset: 0x0004B378
+	// Token: 0x060009A0 RID: 2464 RVA: 0x0004D170 File Offset: 0x0004B370
 	private void Update()
 	{
 		if (this.InputManager.TappedDown)
@@ -199,7 +199,7 @@ public class AdviceWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009A1 RID: 2465 RVA: 0x0004D470 File Offset: 0x0004B670
+	// Token: 0x060009A1 RID: 2465 RVA: 0x0004D468 File Offset: 0x0004B668
 	private void UpdateHighlight()
 	{
 		if (this.Selected > 5)
@@ -213,7 +213,7 @@ public class AdviceWindowScript : MonoBehaviour
 		this.Highlight.transform.localPosition = new Vector3(0f, (float)(570 - 150 * this.Selected), 0f);
 	}
 
-	// Token: 0x060009A2 RID: 2466 RVA: 0x0004D4D4 File Offset: 0x0004B6D4
+	// Token: 0x060009A2 RID: 2466 RVA: 0x0004D4CC File Offset: 0x0004B6CC
 	public void UpdateText()
 	{
 		this.PositiveLabel.text = this.Subjects[this.PositiveID];
@@ -331,7 +331,7 @@ public class AdviceWindowScript : MonoBehaviour
 		});
 	}
 
-	// Token: 0x060009A3 RID: 2467 RVA: 0x0004D9F8 File Offset: 0x0004BBF8
+	// Token: 0x060009A3 RID: 2467 RVA: 0x0004D9F0 File Offset: 0x0004BBF0
 	private void CalculateMultiplier()
 	{
 		this.HUDElement[1].SetActive(false);
@@ -463,7 +463,7 @@ public class AdviceWindowScript : MonoBehaviour
 		});
 	}
 
-	// Token: 0x060009A4 RID: 2468 RVA: 0x0004DE24 File Offset: 0x0004C024
+	// Token: 0x060009A4 RID: 2468 RVA: 0x0004DE1C File Offset: 0x0004C01C
 	public void CalculateLove()
 	{
 		this.Start();
@@ -589,7 +589,7 @@ public class AdviceWindowScript : MonoBehaviour
 		Debug.Log("Affection is now: " + this.Affection.ToString());
 	}
 
-	// Token: 0x060009A5 RID: 2469 RVA: 0x0004E324 File Offset: 0x0004C524
+	// Token: 0x060009A5 RID: 2469 RVA: 0x0004E31C File Offset: 0x0004C51C
 	public void SaveTopicsAndCompliments()
 	{
 		for (int i = 1; i < 26; i++)
@@ -613,159 +613,159 @@ public class AdviceWindowScript : MonoBehaviour
 		Debug.Log("Saving suitor data stored in AdviceWindowScript.");
 	}
 
-	// Token: 0x04000858 RID: 2136
+	// Token: 0x04000859 RID: 2137
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000859 RID: 2137
+	// Token: 0x0400085A RID: 2138
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400085A RID: 2138
+	// Token: 0x0400085B RID: 2139
 	public PromptBarScript PromptBar;
 
-	// Token: 0x0400085B RID: 2139
+	// Token: 0x0400085C RID: 2140
 	public YandereScript Yandere;
 
-	// Token: 0x0400085C RID: 2140
+	// Token: 0x0400085D RID: 2141
 	public Transform Highlight;
 
-	// Token: 0x0400085D RID: 2141
+	// Token: 0x0400085E RID: 2142
 	public JsonScript JSON;
 
-	// Token: 0x0400085E RID: 2142
+	// Token: 0x0400085F RID: 2143
 	public bool[] Week1Compliments;
 
-	// Token: 0x0400085F RID: 2143
+	// Token: 0x04000860 RID: 2144
 	public bool[] Week2Compliments;
 
-	// Token: 0x04000860 RID: 2144
+	// Token: 0x04000861 RID: 2145
 	public bool[] Week3Compliments;
 
-	// Token: 0x04000861 RID: 2145
+	// Token: 0x04000862 RID: 2146
 	public bool[] Week4Compliments;
 
-	// Token: 0x04000862 RID: 2146
+	// Token: 0x04000863 RID: 2147
 	public bool[] Week5Compliments;
 
-	// Token: 0x04000863 RID: 2147
+	// Token: 0x04000864 RID: 2148
 	public bool[] Week6Compliments;
 
-	// Token: 0x04000864 RID: 2148
+	// Token: 0x04000865 RID: 2149
 	public bool[] Week7Compliments;
 
-	// Token: 0x04000865 RID: 2149
+	// Token: 0x04000866 RID: 2150
 	public bool[] Week8Compliments;
 
-	// Token: 0x04000866 RID: 2150
+	// Token: 0x04000867 RID: 2151
 	public bool[] Week9Compliments;
 
-	// Token: 0x04000867 RID: 2151
+	// Token: 0x04000868 RID: 2152
 	public bool[] Week10Compliments;
 
-	// Token: 0x04000868 RID: 2152
+	// Token: 0x04000869 RID: 2153
 	public bool[] RivalComplimentsDesired;
 
-	// Token: 0x04000869 RID: 2153
+	// Token: 0x0400086A RID: 2154
 	public bool[] GiftsInPossession;
 
-	// Token: 0x0400086A RID: 2154
+	// Token: 0x0400086B RID: 2155
 	public bool[] ComplimentsGiven;
 
-	// Token: 0x0400086B RID: 2155
+	// Token: 0x0400086C RID: 2156
 	public bool[] TopicsDiscussed;
 
-	// Token: 0x0400086C RID: 2156
+	// Token: 0x0400086D RID: 2157
 	public bool[] GiftsGiven;
 
-	// Token: 0x0400086D RID: 2157
+	// Token: 0x0400086E RID: 2158
 	public int[] TraitsDemonstrated;
 
-	// Token: 0x0400086E RID: 2158
+	// Token: 0x0400086F RID: 2159
 	public int[] RivalOpinions;
 
-	// Token: 0x0400086F RID: 2159
+	// Token: 0x04000870 RID: 2160
 	public UILabel PositiveLabel;
 
-	// Token: 0x04000870 RID: 2160
+	// Token: 0x04000871 RID: 2161
 	public UILabel NegativeLabel;
 
-	// Token: 0x04000871 RID: 2161
+	// Token: 0x04000872 RID: 2162
 	public UILabel ComplimentLabel;
 
-	// Token: 0x04000872 RID: 2162
+	// Token: 0x04000873 RID: 2163
 	public UILabel ShowOffLabel;
 
-	// Token: 0x04000873 RID: 2163
+	// Token: 0x04000874 RID: 2164
 	public UILabel GiftLabel;
 
-	// Token: 0x04000874 RID: 2164
+	// Token: 0x04000875 RID: 2165
 	public UILabel AdviceLabel;
 
-	// Token: 0x04000875 RID: 2165
+	// Token: 0x04000876 RID: 2166
 	public UILabel StatsLabel;
 
-	// Token: 0x04000876 RID: 2166
+	// Token: 0x04000877 RID: 2167
 	public string[] Subjects;
 
-	// Token: 0x04000877 RID: 2167
+	// Token: 0x04000878 RID: 2168
 	public string[] Compliments;
 
-	// Token: 0x04000878 RID: 2168
+	// Token: 0x04000879 RID: 2169
 	public string[] ShowOffs;
 
-	// Token: 0x04000879 RID: 2169
+	// Token: 0x0400087A RID: 2170
 	public string[] Gifts;
 
-	// Token: 0x0400087A RID: 2170
+	// Token: 0x0400087B RID: 2171
 	public int RivalRespectedTrait = 2;
 
-	// Token: 0x0400087B RID: 2171
+	// Token: 0x0400087C RID: 2172
 	public int Selected = 1;
 
-	// Token: 0x0400087C RID: 2172
+	// Token: 0x0400087D RID: 2173
 	public int PositiveID = 1;
 
-	// Token: 0x0400087D RID: 2173
+	// Token: 0x0400087E RID: 2174
 	public int NegativeID = 1;
 
-	// Token: 0x0400087E RID: 2174
+	// Token: 0x0400087F RID: 2175
 	public int ComplimentID = 1;
 
-	// Token: 0x0400087F RID: 2175
+	// Token: 0x04000880 RID: 2176
 	public int ShowOffID = 1;
 
-	// Token: 0x04000880 RID: 2176
+	// Token: 0x04000881 RID: 2177
 	public int GiftID = 1;
 
-	// Token: 0x04000881 RID: 2177
+	// Token: 0x04000882 RID: 2178
 	public bool DataNeedsSaving;
 
-	// Token: 0x04000882 RID: 2178
+	// Token: 0x04000883 RID: 2179
 	public bool Initialized;
 
-	// Token: 0x04000883 RID: 2179
+	// Token: 0x04000884 RID: 2180
 	public StudentScript Suitor;
 
-	// Token: 0x04000884 RID: 2180
+	// Token: 0x04000885 RID: 2181
 	public int Multiplier = 1;
 
-	// Token: 0x04000885 RID: 2181
+	// Token: 0x04000886 RID: 2182
 	public UILabel AttractionLabel;
 
-	// Token: 0x04000886 RID: 2182
+	// Token: 0x04000887 RID: 2183
 	public string[] AttractionText;
 
-	// Token: 0x04000887 RID: 2183
+	// Token: 0x04000888 RID: 2184
 	public GameObject[] HUDElement;
 
-	// Token: 0x04000888 RID: 2184
+	// Token: 0x04000889 RID: 2185
 	public GameObject ResultsScreen;
 
-	// Token: 0x04000889 RID: 2185
+	// Token: 0x0400088A RID: 2186
 	public UILabel ResultLabel;
 
-	// Token: 0x0400088A RID: 2186
+	// Token: 0x0400088B RID: 2187
 	public string[] Outcomes;
 
-	// Token: 0x0400088B RID: 2187
+	// Token: 0x0400088C RID: 2188
 	public float Affection;
 }

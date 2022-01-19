@@ -3,8 +3,8 @@
 // Token: 0x020002AB RID: 683
 public enum GenderType
 {
-	// Token: 0x04001EEF RID: 7919
+	// Token: 0x04001EF2 RID: 7922
 	Male,
-	// Token: 0x04001EF0 RID: 7920
+	// Token: 0x04001EF3 RID: 7923
 	Female
 }

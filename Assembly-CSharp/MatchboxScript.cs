@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200035F RID: 863
 public class MatchboxScript : MonoBehaviour
 {
-	// Token: 0x06001983 RID: 6531 RVA: 0x00103A48 File Offset: 0x00101C48
+	// Token: 0x06001983 RID: 6531 RVA: 0x00103BB0 File Offset: 0x00101DB0
 	private void Update()
 	{
 		if (!this.Prompt.PauseScreen.Show)
@@ -46,21 +46,21 @@ public class MatchboxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040028BF RID: 10431
+	// Token: 0x040028C2 RID: 10434
 	public YandereScript Yandere;
 
-	// Token: 0x040028C0 RID: 10432
+	// Token: 0x040028C3 RID: 10435
 	public PromptScript Prompt;
 
-	// Token: 0x040028C1 RID: 10433
+	// Token: 0x040028C4 RID: 10436
 	public PickUpScript PickUp;
 
-	// Token: 0x040028C2 RID: 10434
+	// Token: 0x040028C5 RID: 10437
 	public GameObject Match;
 
-	// Token: 0x040028C3 RID: 10435
+	// Token: 0x040028C6 RID: 10438
 	public AudioSource MyAudio;
 
-	// Token: 0x040028C4 RID: 10436
+	// Token: 0x040028C7 RID: 10439
 	public int Ammo;
 }

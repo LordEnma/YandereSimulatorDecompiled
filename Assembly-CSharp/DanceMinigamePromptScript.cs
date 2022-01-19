@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200026D RID: 621
 public class DanceMinigamePromptScript : MonoBehaviour
 {
-	// Token: 0x06001328 RID: 4904 RVA: 0x000AAB80 File Offset: 0x000A8D80
+	// Token: 0x06001328 RID: 4904 RVA: 0x000AABC0 File Offset: 0x000A8DC0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -30,24 +30,24 @@ public class DanceMinigamePromptScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001B5C RID: 7004
+	// Token: 0x04001B5E RID: 7006
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001B5D RID: 7005
+	// Token: 0x04001B5F RID: 7007
 	public Renderer OriginalRenderer;
 
-	// Token: 0x04001B5E RID: 7006
+	// Token: 0x04001B60 RID: 7008
 	public DDRManager DanceManager;
 
-	// Token: 0x04001B5F RID: 7007
+	// Token: 0x04001B61 RID: 7009
 	public PromptScript Prompt;
 
-	// Token: 0x04001B60 RID: 7008
+	// Token: 0x04001B62 RID: 7010
 	public ClockScript Clock;
 
-	// Token: 0x04001B61 RID: 7009
+	// Token: 0x04001B63 RID: 7011
 	public GameObject DanceMinigame;
 
-	// Token: 0x04001B62 RID: 7010
+	// Token: 0x04001B64 RID: 7012
 	public Transform PlayerLocation;
 }

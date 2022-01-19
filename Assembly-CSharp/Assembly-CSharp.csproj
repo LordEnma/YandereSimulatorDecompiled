@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E843333F-005F-4BD0-BD71-5FCDB667C7AC}</ProjectGuid>
+    <ProjectGuid>{8E56777F-729A-482F-916A-C9D7555C858B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Assembly-CSharp</RootNamespace>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -1098,6 +1098,7 @@
     <Compile Include="RefrigeratorScript.cs" />
     <Compile Include="RendererListScript.cs" />
     <Compile Include="ReputationScript.cs" />
+    <Compile Include="ReputationSetterScript.cs" />
     <Compile Include="ResolutionScript.cs" />
     <Compile Include="RestScript.cs" />
     <Compile Include="RetroAesthetics\CombineMeshes.cs" />

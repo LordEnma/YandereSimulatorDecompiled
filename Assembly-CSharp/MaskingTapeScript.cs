@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200035C RID: 860
 public class MaskingTapeScript : MonoBehaviour
 {
-	// Token: 0x0600197C RID: 6524 RVA: 0x001037FC File Offset: 0x001019FC
+	// Token: 0x0600197C RID: 6524 RVA: 0x00103964 File Offset: 0x00101B64
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -16,9 +16,9 @@ public class MaskingTapeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040028B3 RID: 10419
+	// Token: 0x040028B6 RID: 10422
 	public CarryableCardboardBoxScript Box;
 
-	// Token: 0x040028B4 RID: 10420
+	// Token: 0x040028B7 RID: 10423
 	public PromptScript Prompt;
 }

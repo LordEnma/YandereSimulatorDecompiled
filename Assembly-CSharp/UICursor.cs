@@ -6,19 +6,19 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/UI Cursor")]
 public class UICursor : MonoBehaviour
 {
-	// Token: 0x06000085 RID: 133 RVA: 0x00010F3F File Offset: 0x0000F13F
+	// Token: 0x06000085 RID: 133 RVA: 0x00010F37 File Offset: 0x0000F137
 	private void Awake()
 	{
 		UICursor.instance = this;
 	}
 
-	// Token: 0x06000086 RID: 134 RVA: 0x00010F47 File Offset: 0x0000F147
+	// Token: 0x06000086 RID: 134 RVA: 0x00010F3F File Offset: 0x0000F13F
 	private void OnDestroy()
 	{
 		UICursor.instance = null;
 	}
 
-	// Token: 0x06000087 RID: 135 RVA: 0x00010F50 File Offset: 0x0000F150
+	// Token: 0x06000087 RID: 135 RVA: 0x00010F48 File Offset: 0x0000F148
 	private void Start()
 	{
 		this.mTrans = base.transform;
@@ -38,7 +38,7 @@ public class UICursor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000088 RID: 136 RVA: 0x00010FE8 File Offset: 0x0000F1E8
+	// Token: 0x06000088 RID: 136 RVA: 0x00010FE0 File Offset: 0x0000F1E0
 	private void Update()
 	{
 		Vector3 mousePosition = Input.mousePosition;
@@ -66,7 +66,7 @@ public class UICursor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000089 RID: 137 RVA: 0x00011100 File Offset: 0x0000F300
+	// Token: 0x06000089 RID: 137 RVA: 0x000110F8 File Offset: 0x0000F2F8
 	public static void Clear()
 	{
 		if (UICursor.instance != null && UICursor.instance.mSprite != null)
@@ -75,7 +75,7 @@ public class UICursor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600008A RID: 138 RVA: 0x0001113C File Offset: 0x0000F33C
+	// Token: 0x0600008A RID: 138 RVA: 0x00011134 File Offset: 0x0000F334
 	public static void Set(INGUIAtlas atlas, string sprite)
 	{
 		if (UICursor.instance != null && UICursor.instance.mSprite)
@@ -87,21 +87,21 @@ public class UICursor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000254 RID: 596
+	// Token: 0x04000255 RID: 597
 	public static UICursor instance;
 
-	// Token: 0x04000255 RID: 597
+	// Token: 0x04000256 RID: 598
 	public Camera uiCamera;
 
-	// Token: 0x04000256 RID: 598
+	// Token: 0x04000257 RID: 599
 	private Transform mTrans;
 
-	// Token: 0x04000257 RID: 599
+	// Token: 0x04000258 RID: 600
 	private UISprite mSprite;
 
-	// Token: 0x04000258 RID: 600
+	// Token: 0x04000259 RID: 601
 	private INGUIAtlas mAtlas;
 
-	// Token: 0x04000259 RID: 601
+	// Token: 0x0400025A RID: 602
 	private string mSpriteName;
 }

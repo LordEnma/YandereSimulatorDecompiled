@@ -7,8 +7,8 @@ using UnityEngine;
 public class UIDraggableCamera : MonoBehaviour
 {
 	// Token: 0x17000015 RID: 21
-	// (get) Token: 0x060001A0 RID: 416 RVA: 0x00016BF4 File Offset: 0x00014DF4
-	// (set) Token: 0x060001A1 RID: 417 RVA: 0x00016BFC File Offset: 0x00014DFC
+	// (get) Token: 0x060001A0 RID: 416 RVA: 0x00016BEC File Offset: 0x00014DEC
+	// (set) Token: 0x060001A1 RID: 417 RVA: 0x00016BF4 File Offset: 0x00014DF4
 	public Vector2 currentMomentum
 	{
 		get
@@ -21,7 +21,7 @@ public class UIDraggableCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001A2 RID: 418 RVA: 0x00016C08 File Offset: 0x00014E08
+	// Token: 0x060001A2 RID: 418 RVA: 0x00016C00 File Offset: 0x00014E00
 	private void Start()
 	{
 		this.mCam = base.GetComponent<Camera>();
@@ -34,7 +34,7 @@ public class UIDraggableCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001A3 RID: 419 RVA: 0x00016C70 File Offset: 0x00014E70
+	// Token: 0x060001A3 RID: 419 RVA: 0x00016C68 File Offset: 0x00014E68
 	private Vector3 CalculateConstrainOffset()
 	{
 		if (this.rootForBounds == null || this.rootForBounds.childCount == 0)
@@ -50,7 +50,7 @@ public class UIDraggableCamera : MonoBehaviour
 		return NGUIMath.ConstrainRect(minRect, maxRect, vector, vector2);
 	}
 
-	// Token: 0x060001A4 RID: 420 RVA: 0x00016D9C File Offset: 0x00014F9C
+	// Token: 0x060001A4 RID: 420 RVA: 0x00016D94 File Offset: 0x00014F94
 	public bool ConstrainToBounds(bool immediate)
 	{
 		if (this.mTrans != null && this.rootForBounds != null)
@@ -74,7 +74,7 @@ public class UIDraggableCamera : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x060001A5 RID: 421 RVA: 0x00016E28 File Offset: 0x00015028
+	// Token: 0x060001A5 RID: 421 RVA: 0x00016E20 File Offset: 0x00015020
 	public void Press(bool isPressed)
 	{
 		if (isPressed)
@@ -103,7 +103,7 @@ public class UIDraggableCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001A6 RID: 422 RVA: 0x00016EA8 File Offset: 0x000150A8
+	// Token: 0x060001A6 RID: 422 RVA: 0x00016EA0 File Offset: 0x000150A0
 	public void Drag(Vector2 delta)
 	{
 		if (this.smoothDragStart && !this.mDragStarted)
@@ -126,7 +126,7 @@ public class UIDraggableCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001A7 RID: 423 RVA: 0x00016F84 File Offset: 0x00015184
+	// Token: 0x060001A7 RID: 423 RVA: 0x00016F7C File Offset: 0x0001517C
 	public void Scroll(float delta)
 	{
 		if (base.enabled && NGUITools.GetActive(base.gameObject))
@@ -139,7 +139,7 @@ public class UIDraggableCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001A8 RID: 424 RVA: 0x00016FDC File Offset: 0x000151DC
+	// Token: 0x060001A8 RID: 424 RVA: 0x00016FD4 File Offset: 0x000151D4
 	private void Update()
 	{
 		float deltaTime = RealTime.deltaTime;
@@ -175,45 +175,45 @@ public class UIDraggableCamera : MonoBehaviour
 		NGUIMath.SpringDampen(ref this.mMomentum, 9f, deltaTime);
 	}
 
-	// Token: 0x04000356 RID: 854
+	// Token: 0x04000357 RID: 855
 	public Transform rootForBounds;
 
-	// Token: 0x04000357 RID: 855
+	// Token: 0x04000358 RID: 856
 	public Vector2 scale = Vector2.one;
 
-	// Token: 0x04000358 RID: 856
+	// Token: 0x04000359 RID: 857
 	public float scrollWheelFactor;
 
-	// Token: 0x04000359 RID: 857
+	// Token: 0x0400035A RID: 858
 	public UIDragObject.DragEffect dragEffect = UIDragObject.DragEffect.MomentumAndSpring;
 
-	// Token: 0x0400035A RID: 858
+	// Token: 0x0400035B RID: 859
 	public bool smoothDragStart = true;
 
-	// Token: 0x0400035B RID: 859
+	// Token: 0x0400035C RID: 860
 	public float momentumAmount = 35f;
 
-	// Token: 0x0400035C RID: 860
+	// Token: 0x0400035D RID: 861
 	private Camera mCam;
 
-	// Token: 0x0400035D RID: 861
+	// Token: 0x0400035E RID: 862
 	private Transform mTrans;
 
-	// Token: 0x0400035E RID: 862
+	// Token: 0x0400035F RID: 863
 	private bool mPressed;
 
-	// Token: 0x0400035F RID: 863
+	// Token: 0x04000360 RID: 864
 	private Vector2 mMomentum = Vector2.zero;
 
-	// Token: 0x04000360 RID: 864
+	// Token: 0x04000361 RID: 865
 	private Bounds mBounds;
 
-	// Token: 0x04000361 RID: 865
+	// Token: 0x04000362 RID: 866
 	private float mScroll;
 
-	// Token: 0x04000362 RID: 866
+	// Token: 0x04000363 RID: 867
 	private UIRoot mRoot;
 
-	// Token: 0x04000363 RID: 867
+	// Token: 0x04000364 RID: 868
 	private bool mDragStarted;
 }

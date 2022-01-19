@@ -3,25 +3,25 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x02000526 RID: 1318
+	// Token: 0x02000527 RID: 1319
 	public class Mudguard : MonoBehaviour
 	{
-		// Token: 0x0600218E RID: 8590 RVA: 0x001E9B31 File Offset: 0x001E7D31
+		// Token: 0x06002190 RID: 8592 RVA: 0x001EA801 File Offset: 0x001E8A01
 		private void Start()
 		{
 			this.m_OriginalRotation = base.transform.localRotation;
 		}
 
-		// Token: 0x0600218F RID: 8591 RVA: 0x001E9B44 File Offset: 0x001E7D44
+		// Token: 0x06002191 RID: 8593 RVA: 0x001EA814 File Offset: 0x001E8A14
 		private void Update()
 		{
 			base.transform.localRotation = this.m_OriginalRotation * Quaternion.Euler(0f, this.carController.CurrentSteerAngle, 0f);
 		}
 
-		// Token: 0x04004990 RID: 18832
+		// Token: 0x04004997 RID: 18839
 		public CarController carController;
 
-		// Token: 0x04004991 RID: 18833
+		// Token: 0x04004998 RID: 18840
 		private Quaternion m_OriginalRotation;
 	}
 }

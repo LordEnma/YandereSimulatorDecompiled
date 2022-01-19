@@ -7,7 +7,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/UI/Orthographic Camera")]
 public class UIOrthoCamera : MonoBehaviour
 {
-	// Token: 0x060007EF RID: 2031 RVA: 0x000422B9 File Offset: 0x000404B9
+	// Token: 0x060007EF RID: 2031 RVA: 0x000422B1 File Offset: 0x000404B1
 	private void Start()
 	{
 		this.mCam = base.GetComponent<Camera>();
@@ -15,7 +15,7 @@ public class UIOrthoCamera : MonoBehaviour
 		this.mCam.orthographic = true;
 	}
 
-	// Token: 0x060007F0 RID: 2032 RVA: 0x000422E0 File Offset: 0x000404E0
+	// Token: 0x060007F0 RID: 2032 RVA: 0x000422D8 File Offset: 0x000404D8
 	private void Update()
 	{
 		float num = this.mCam.rect.yMin * (float)Screen.height;
@@ -26,9 +26,9 @@ public class UIOrthoCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000715 RID: 1813
+	// Token: 0x04000716 RID: 1814
 	private Camera mCam;
 
-	// Token: 0x04000716 RID: 1814
+	// Token: 0x04000717 RID: 1815
 	private Transform mTrans;
 }

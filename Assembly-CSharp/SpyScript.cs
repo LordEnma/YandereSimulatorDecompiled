@@ -1,15 +1,15 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200043A RID: 1082
+// Token: 0x0200043B RID: 1083
 public class SpyScript : MonoBehaviour
 {
-	// Token: 0x06001CD8 RID: 7384 RVA: 0x001555C8 File Offset: 0x001537C8
+	// Token: 0x06001CDA RID: 7386 RVA: 0x00156CDC File Offset: 0x00154EDC
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001CD9 RID: 7385 RVA: 0x001555CC File Offset: 0x001537CC
+	// Token: 0x06001CDB RID: 7387 RVA: 0x00156CE0 File Offset: 0x00154EE0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -47,7 +47,7 @@ public class SpyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CDA RID: 7386 RVA: 0x00155784 File Offset: 0x00153984
+	// Token: 0x06001CDC RID: 7388 RVA: 0x00156E98 File Offset: 0x00155098
 	public void End()
 	{
 		this.PromptBar.ClearButtons();
@@ -60,36 +60,36 @@ public class SpyScript : MonoBehaviour
 		this.Phase = 0;
 	}
 
-	// Token: 0x04003400 RID: 13312
+	// Token: 0x04003405 RID: 13317
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003401 RID: 13313
+	// Token: 0x04003406 RID: 13318
 	public YandereScript Yandere;
 
-	// Token: 0x04003402 RID: 13314
+	// Token: 0x04003407 RID: 13319
 	public PromptScript Prompt;
 
-	// Token: 0x04003403 RID: 13315
+	// Token: 0x04003408 RID: 13320
 	public GameObject SpyCamera;
 
-	// Token: 0x04003404 RID: 13316
+	// Token: 0x04003409 RID: 13321
 	public Transform SpyTarget;
 
-	// Token: 0x04003405 RID: 13317
+	// Token: 0x0400340A RID: 13322
 	public Transform SpySpot;
 
-	// Token: 0x04003406 RID: 13318
+	// Token: 0x0400340B RID: 13323
 	public float Timer;
 
-	// Token: 0x04003407 RID: 13319
+	// Token: 0x0400340C RID: 13324
 	public bool RecordEvent;
 
-	// Token: 0x04003408 RID: 13320
+	// Token: 0x0400340D RID: 13325
 	public bool CanRecord;
 
-	// Token: 0x04003409 RID: 13321
+	// Token: 0x0400340E RID: 13326
 	public bool Recording;
 
-	// Token: 0x0400340A RID: 13322
+	// Token: 0x0400340F RID: 13327
 	public int Phase;
 }

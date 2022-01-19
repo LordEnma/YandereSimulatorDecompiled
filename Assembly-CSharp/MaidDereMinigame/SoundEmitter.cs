@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x0200059E RID: 1438
+	// Token: 0x0200059F RID: 1439
 	[Serializable]
 	public class SoundEmitter
 	{
-		// Token: 0x0600245F RID: 9311 RVA: 0x001F8D4C File Offset: 0x001F6F4C
+		// Token: 0x06002461 RID: 9313 RVA: 0x001F9A1C File Offset: 0x001F7C1C
 		public AudioSource GetSource()
 		{
 			for (int i = 0; i < this.sources.Count; i++)
@@ -21,17 +21,17 @@ namespace MaidDereMinigame
 			return this.sources[0];
 		}
 
-		// Token: 0x04004C24 RID: 19492
+		// Token: 0x04004C2B RID: 19499
 		public SFXController.Sounds sound;
 
-		// Token: 0x04004C25 RID: 19493
+		// Token: 0x04004C2C RID: 19500
 		public bool interupt;
 
-		// Token: 0x04004C26 RID: 19494
+		// Token: 0x04004C2D RID: 19501
 		[Reorderable]
 		public AudioSources sources;
 
-		// Token: 0x04004C27 RID: 19495
+		// Token: 0x04004C2E RID: 19502
 		[Reorderable]
 		public AudioClips clips;
 	}

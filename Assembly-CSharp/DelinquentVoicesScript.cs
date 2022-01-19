@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200027A RID: 634
 public class DelinquentVoicesScript : MonoBehaviour
 {
-	// Token: 0x0600136D RID: 4973 RVA: 0x000B2586 File Offset: 0x000B0786
+	// Token: 0x0600136D RID: 4973 RVA: 0x000B25EA File Offset: 0x000B07EA
 	private void Start()
 	{
 		this.Timer = 5f;
 	}
 
-	// Token: 0x0600136E RID: 4974 RVA: 0x000B2594 File Offset: 0x000B0794
+	// Token: 0x0600136E RID: 4974 RVA: 0x000B25F8 File Offset: 0x000B07F8
 	private void Update()
 	{
 		if (this.Radio != null)
@@ -49,21 +49,21 @@ public class DelinquentVoicesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001C86 RID: 7302
+	// Token: 0x04001C88 RID: 7304
 	public YandereScript Yandere;
 
-	// Token: 0x04001C87 RID: 7303
+	// Token: 0x04001C89 RID: 7305
 	public RadioScript Radio;
 
-	// Token: 0x04001C88 RID: 7304
+	// Token: 0x04001C8A RID: 7306
 	public SubtitleScript Subtitle;
 
-	// Token: 0x04001C89 RID: 7305
+	// Token: 0x04001C8B RID: 7307
 	public float Timer;
 
-	// Token: 0x04001C8A RID: 7306
+	// Token: 0x04001C8C RID: 7308
 	public int RandomID;
 
-	// Token: 0x04001C8B RID: 7307
+	// Token: 0x04001C8D RID: 7309
 	public int LastID;
 }

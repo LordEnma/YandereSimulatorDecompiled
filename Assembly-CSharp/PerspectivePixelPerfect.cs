@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000037 RID: 55
 public class PerspectivePixelPerfect : MonoBehaviour
 {
-	// Token: 0x060000E3 RID: 227 RVA: 0x00012914 File Offset: 0x00010B14
+	// Token: 0x060000E3 RID: 227 RVA: 0x0001290C File Offset: 0x00010B0C
 	[ContextMenu("Execute")]
 	private void Start()
 	{
@@ -19,7 +19,7 @@ public class PerspectivePixelPerfect : MonoBehaviour
 		transform.localScale = new Vector3(num2, num2, 1f);
 	}
 
-	// Token: 0x040002A8 RID: 680
+	// Token: 0x040002A9 RID: 681
 	[Tooltip("Bias is a value above 0 that determines how far offset the object will be from the near clip, in percent (near to far clip)")]
 	public float bias = 0.001f;
 }

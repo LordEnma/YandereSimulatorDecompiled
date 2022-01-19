@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Token: 0x0200049E RID: 1182
+// Token: 0x0200049F RID: 1183
 [Serializable]
 public class IntAndIntDictionary : SerializableDictionary<int, int>
 {

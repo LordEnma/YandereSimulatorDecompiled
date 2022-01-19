@@ -4,26 +4,26 @@ using UnityEngine;
 // Token: 0x020000D8 RID: 216
 public class AttackManagerScript : MonoBehaviour
 {
-	// Token: 0x060009F5 RID: 2549 RVA: 0x00054098 File Offset: 0x00052298
+	// Token: 0x060009F5 RID: 2549 RVA: 0x00054090 File Offset: 0x00052290
 	private void Awake()
 	{
 		this.Yandere = base.GetComponent<YandereScript>();
 	}
 
-	// Token: 0x060009F6 RID: 2550 RVA: 0x000540A6 File Offset: 0x000522A6
+	// Token: 0x060009F6 RID: 2550 RVA: 0x0005409E File Offset: 0x0005229E
 	private void Start()
 	{
 		this.Censor = GameGlobals.CensorKillingAnims;
 		this.OriginalBloodEffect = this.BloodEffect;
 	}
 
-	// Token: 0x060009F7 RID: 2551 RVA: 0x000540BF File Offset: 0x000522BF
+	// Token: 0x060009F7 RID: 2551 RVA: 0x000540B7 File Offset: 0x000522B7
 	public bool IsAttacking()
 	{
 		return this.Victim != null;
 	}
 
-	// Token: 0x060009F8 RID: 2552 RVA: 0x000540D0 File Offset: 0x000522D0
+	// Token: 0x060009F8 RID: 2552 RVA: 0x000540C8 File Offset: 0x000522C8
 	private float GetReachDistance(WeaponType weaponType, SanityType sanityType)
 	{
 		if (weaponType == WeaponType.Knife)
@@ -97,7 +97,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009F9 RID: 2553 RVA: 0x000541BC File Offset: 0x000523BC
+	// Token: 0x060009F9 RID: 2553 RVA: 0x000541B4 File Offset: 0x000523B4
 	public void Attack(GameObject victim, WeaponScript weapon)
 	{
 		this.Victim = victim;
@@ -143,7 +143,7 @@ public class AttackManagerScript : MonoBehaviour
 		this.Distance = this.GetReachDistance(weapon.Type, sanityType);
 	}
 
-	// Token: 0x060009FA RID: 2554 RVA: 0x000543B4 File Offset: 0x000525B4
+	// Token: 0x060009FA RID: 2554 RVA: 0x000543AC File Offset: 0x000525AC
 	private void Update()
 	{
 		if (this.IsAttacking())
@@ -257,7 +257,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009FB RID: 2555 RVA: 0x0005482C File Offset: 0x00052A2C
+	// Token: 0x060009FB RID: 2555 RVA: 0x00054824 File Offset: 0x00052A24
 	private void SpecialEffect(WeaponScript weapon, SanityType sanityType)
 	{
 		this.BloodEffect = this.OriginalBloodEffect;
@@ -765,7 +765,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009FC RID: 2556 RVA: 0x00055E74 File Offset: 0x00054074
+	// Token: 0x060009FC RID: 2556 RVA: 0x00055E6C File Offset: 0x0005406C
 	private void LoopCheck(WeaponScript weapon)
 	{
 		if (Input.GetButtonDown("X") && !this.Yandere.Chased && this.Yandere.Chasers == 0)
@@ -853,7 +853,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009FD RID: 2557 RVA: 0x0005632E File Offset: 0x0005452E
+	// Token: 0x060009FD RID: 2557 RVA: 0x00056326 File Offset: 0x00054526
 	private void CheckForSpecialCase(WeaponScript weapon)
 	{
 		if (weapon.WeaponID == 8 && GameGlobals.Paranormal)
@@ -864,7 +864,7 @@ public class AttackManagerScript : MonoBehaviour
 	}
 
 	// Token: 0x170001FD RID: 509
-	// (get) Token: 0x060009FE RID: 2558 RVA: 0x0005635C File Offset: 0x0005455C
+	// (get) Token: 0x060009FE RID: 2558 RVA: 0x00056354 File Offset: 0x00054554
 	public int OnlyDefault
 	{
 		get
@@ -873,7 +873,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009FF RID: 2559 RVA: 0x00056360 File Offset: 0x00054560
+	// Token: 0x060009FF RID: 2559 RVA: 0x00056358 File Offset: 0x00054558
 	private void CheckForWalls()
 	{
 		this.RaycastOrigin = this.Yandere.Zoom.transform;
@@ -885,66 +885,66 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A98 RID: 2712
+	// Token: 0x04000A99 RID: 2713
 	public GameObject BloodEffect;
 
-	// Token: 0x04000A99 RID: 2713
+	// Token: 0x04000A9A RID: 2714
 	private GameObject OriginalBloodEffect;
 
-	// Token: 0x04000A9A RID: 2714
+	// Token: 0x04000A9B RID: 2715
 	private GameObject Victim;
 
-	// Token: 0x04000A9B RID: 2715
+	// Token: 0x04000A9C RID: 2716
 	private YandereScript Yandere;
 
-	// Token: 0x04000A9C RID: 2716
+	// Token: 0x04000A9D RID: 2717
 	private string VictimAnimName = string.Empty;
 
-	// Token: 0x04000A9D RID: 2717
+	// Token: 0x04000A9E RID: 2718
 	private string AnimName = string.Empty;
 
-	// Token: 0x04000A9E RID: 2718
+	// Token: 0x04000A9F RID: 2719
 	public bool PingPong;
 
-	// Token: 0x04000A9F RID: 2719
+	// Token: 0x04000AA0 RID: 2720
 	public bool Stealth;
 
-	// Token: 0x04000AA0 RID: 2720
+	// Token: 0x04000AA1 RID: 2721
 	public bool Censor;
 
-	// Token: 0x04000AA1 RID: 2721
+	// Token: 0x04000AA2 RID: 2722
 	public bool Loop;
 
-	// Token: 0x04000AA2 RID: 2722
+	// Token: 0x04000AA3 RID: 2723
 	public int EffectPhase;
 
-	// Token: 0x04000AA3 RID: 2723
+	// Token: 0x04000AA4 RID: 2724
 	public int LoopPhase;
 
-	// Token: 0x04000AA4 RID: 2724
+	// Token: 0x04000AA5 RID: 2725
 	public float AttackTimer;
 
-	// Token: 0x04000AA5 RID: 2725
+	// Token: 0x04000AA6 RID: 2726
 	public float Distance;
 
-	// Token: 0x04000AA6 RID: 2726
+	// Token: 0x04000AA7 RID: 2727
 	public float Timer;
 
-	// Token: 0x04000AA7 RID: 2727
+	// Token: 0x04000AA8 RID: 2728
 	public float LoopStart;
 
-	// Token: 0x04000AA8 RID: 2728
+	// Token: 0x04000AA9 RID: 2729
 	public float LoopEnd;
 
-	// Token: 0x04000AA9 RID: 2729
+	// Token: 0x04000AAA RID: 2730
 	public Animation YandereAnim;
 
-	// Token: 0x04000AAA RID: 2730
+	// Token: 0x04000AAB RID: 2731
 	public Animation VictimAnim;
 
-	// Token: 0x04000AAB RID: 2731
+	// Token: 0x04000AAC RID: 2732
 	public RaycastHit hit;
 
-	// Token: 0x04000AAC RID: 2732
+	// Token: 0x04000AAD RID: 2733
 	public Transform RaycastOrigin;
 }
