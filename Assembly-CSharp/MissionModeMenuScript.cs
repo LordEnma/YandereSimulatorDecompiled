@@ -477,7 +477,7 @@ public class MissionModeMenuScript : MonoBehaviour
 						this.NemesisDifficulty++;
 						this.UpdateNemesisDifficulty();
 					}
-					if (this.PromptBar.Label[0].text == "Toggle")
+					if (this.Toggling)
 					{
 						if (this.CustomObjectives[this.CustomSelected].alpha == 0.5f)
 						{
@@ -838,7 +838,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600005E RID: 94 RVA: 0x0000CAF8 File Offset: 0x0000ACF8
+	// Token: 0x0600005E RID: 94 RVA: 0x0000CAE4 File Offset: 0x0000ACE4
 	private void GetNumbers()
 	{
 		this.TargetNumber = (int)char.GetNumericValue(this.MissionIDString[0]) * 10 + (int)char.GetNumericValue(this.MissionIDString[1]);
@@ -860,7 +860,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.PopulationNumber = (int)char.GetNumericValue(this.MissionIDString[18]);
 	}
 
-	// Token: 0x0600005F RID: 95 RVA: 0x0000CCD4 File Offset: 0x0000AED4
+	// Token: 0x0600005F RID: 95 RVA: 0x0000CCC0 File Offset: 0x0000AEC0
 	private void LateUpdate()
 	{
 		if (this.Speed > 3f)
@@ -870,7 +870,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.Neck.transform.localEulerAngles = new Vector3(this.Neck.transform.localEulerAngles.x + this.Rotation, this.Neck.transform.localEulerAngles.y, this.Neck.transform.localEulerAngles.z);
 	}
 
-	// Token: 0x06000060 RID: 96 RVA: 0x0000CD71 File Offset: 0x0000AF71
+	// Token: 0x06000060 RID: 96 RVA: 0x0000CD5D File Offset: 0x0000AF5D
 	private void UpdateHighlight()
 	{
 		if (this.Selected == 0)
@@ -884,7 +884,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000061 RID: 97 RVA: 0x0000CD94 File Offset: 0x0000AF94
+	// Token: 0x06000061 RID: 97 RVA: 0x0000CD80 File Offset: 0x0000AF80
 	private void ChooseTarget()
 	{
 		Debug.Log("Calling the ChooseTarget() function.");
@@ -956,7 +956,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000062 RID: 98 RVA: 0x0000D00A File Offset: 0x0000B20A
+	// Token: 0x06000062 RID: 98 RVA: 0x0000CFF6 File Offset: 0x0000B1F6
 	private void UpdateDifficulty()
 	{
 		if (this.Difficulty < 1)
@@ -975,7 +975,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.ErasePreviousCondition();
 	}
 
-	// Token: 0x06000063 RID: 99 RVA: 0x0000D04C File Offset: 0x0000B24C
+	// Token: 0x06000063 RID: 99 RVA: 0x0000D038 File Offset: 0x0000B238
 	private void UpdateDifficultyLabel()
 	{
 		this.CustomDifficultyLabel.text = "Difficulty Level - " + this.Difficulty.ToString();
@@ -1020,7 +1020,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06000064 RID: 100 RVA: 0x0000D178 File Offset: 0x0000B378
+	// Token: 0x06000064 RID: 100 RVA: 0x0000D164 File Offset: 0x0000B364
 	private void UpdateNemesisDifficulty()
 	{
 		if (this.NemesisDifficulty < 0)
@@ -1042,7 +1042,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.NemesisPortrait.mainTexture = ((this.NemesisDifficulty > 2) ? this.BlankPortrait : this.NemesisGraphic);
 	}
 
-	// Token: 0x06000065 RID: 101 RVA: 0x0000D214 File Offset: 0x0000B414
+	// Token: 0x06000065 RID: 101 RVA: 0x0000D200 File Offset: 0x0000B400
 	private void PickNewCondition()
 	{
 		int num = UnityEngine.Random.Range(1, this.ConditionDescs.Length);
@@ -1087,7 +1087,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.UpdateDifficultyLabel();
 	}
 
-	// Token: 0x06000066 RID: 102 RVA: 0x0000D3C0 File Offset: 0x0000B5C0
+	// Token: 0x06000066 RID: 102 RVA: 0x0000D3AC File Offset: 0x0000B5AC
 	private void ErasePreviousCondition()
 	{
 		if (this.Conditions[this.Difficulty + 1] == 1)
@@ -1106,7 +1106,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.UpdateDifficultyLabel();
 	}
 
-	// Token: 0x06000067 RID: 103 RVA: 0x0000D434 File Offset: 0x0000B634
+	// Token: 0x06000067 RID: 103 RVA: 0x0000D420 File Offset: 0x0000B620
 	public void UpdateGraphics()
 	{
 		Debug.Log("Populating the Mission Mode criteria list!");
@@ -1169,7 +1169,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000068 RID: 104 RVA: 0x0000D6D6 File Offset: 0x0000B8D6
+	// Token: 0x06000068 RID: 104 RVA: 0x0000D6C2 File Offset: 0x0000B8C2
 	private void UpdatePopulation()
 	{
 		this.CustomPopulationLabel.text = "";
@@ -1177,7 +1177,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		OptionGlobals.HighPopulation = false;
 	}
 
-	// Token: 0x06000069 RID: 105 RVA: 0x0000D700 File Offset: 0x0000B900
+	// Token: 0x06000069 RID: 105 RVA: 0x0000D6EC File Offset: 0x0000B8EC
 	private void UpdateObjectiveHighlight()
 	{
 		if (this.Row < 1)
@@ -1208,6 +1208,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.PromptBar.Label[2].text = (((this.Column == 1 && this.Row < 5) || (this.Column == 2 && this.Row == 6)) ? "Change" : string.Empty);
 		this.ObjectiveHighlight.localPosition = new Vector3(-1050f + 650f * (float)this.Column, 450f - 150f * (float)this.Row - (float)num, this.ObjectiveHighlight.localPosition.z);
 		this.CustomSelected = this.Row + (this.Column - 1) * 6;
+		this.Toggling = false;
 		if (this.CustomSelected == 1 || this.CustomSelected == 12)
 		{
 			this.PromptBar.Label[0].text = "Forward";
@@ -1219,6 +1220,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		else
 		{
 			this.PromptBar.Label[0].text = "Toggle";
+			this.Toggling = true;
 		}
 		if (this.CustomSelected == 1 || this.CustomSelected == 12)
 		{
@@ -1235,7 +1237,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x0600006A RID: 106 RVA: 0x0000D8F4 File Offset: 0x0000BAF4
+	// Token: 0x0600006A RID: 106 RVA: 0x0000D8EC File Offset: 0x0000BAEC
 	private void CalculateMissionID()
 	{
 		this.TargetString = ((this.TargetID < 10) ? "0" : "") + this.TargetID.ToString();
@@ -1281,7 +1283,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.MissionIDLabel.text = this.MissionID;
 	}
 
-	// Token: 0x0600006B RID: 107 RVA: 0x0000DB1C File Offset: 0x0000BD1C
+	// Token: 0x0600006B RID: 107 RVA: 0x0000DB14 File Offset: 0x0000BD14
 	private void StartMission()
 	{
 		this.MyAudio.PlayOneShot(this.InfoLines[6]);
@@ -1323,7 +1325,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.Phase = 4;
 	}
 
-	// Token: 0x0600006C RID: 108 RVA: 0x0000DC44 File Offset: 0x0000BE44
+	// Token: 0x0600006C RID: 108 RVA: 0x0000DC3C File Offset: 0x0000BE3C
 	private void ChangeFont()
 	{
 		foreach (UILabel uilabel in UnityEngine.Object.FindObjectsOfType<UILabel>())
@@ -1337,7 +1339,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600006D RID: 109 RVA: 0x0000DC99 File Offset: 0x0000BE99
+	// Token: 0x0600006D RID: 109 RVA: 0x0000DC91 File Offset: 0x0000BE91
 	private void ChangeLabel(UILabel Text)
 	{
 		Text.trueTypeFont = this.Arial;
@@ -1542,77 +1544,80 @@ public class MissionModeMenuScript : MonoBehaviour
 	public bool[] InfoSpoke;
 
 	// Token: 0x040001A8 RID: 424
-	public int TargetNumber;
+	public bool Toggling;
 
 	// Token: 0x040001A9 RID: 425
-	public int WeaponNumber;
+	public int TargetNumber;
 
 	// Token: 0x040001AA RID: 426
-	public int ClothingNumber;
+	public int WeaponNumber;
 
 	// Token: 0x040001AB RID: 427
-	public int DisposalNumber;
+	public int ClothingNumber;
 
 	// Token: 0x040001AC RID: 428
-	public int NemesisNumber;
+	public int DisposalNumber;
 
 	// Token: 0x040001AD RID: 429
-	public int PopulationNumber;
+	public int NemesisNumber;
 
 	// Token: 0x040001AE RID: 430
-	public int Condition5Number;
+	public int PopulationNumber;
 
 	// Token: 0x040001AF RID: 431
-	public int Condition6Number;
+	public int Condition5Number;
 
 	// Token: 0x040001B0 RID: 432
-	public int Condition7Number;
+	public int Condition6Number;
 
 	// Token: 0x040001B1 RID: 433
-	public int Condition8Number;
+	public int Condition7Number;
 
 	// Token: 0x040001B2 RID: 434
-	public int Condition9Number;
+	public int Condition8Number;
 
 	// Token: 0x040001B3 RID: 435
-	public int Condition10Number;
+	public int Condition9Number;
 
 	// Token: 0x040001B4 RID: 436
-	public int Condition11Number;
+	public int Condition10Number;
 
 	// Token: 0x040001B5 RID: 437
-	public int Condition12Number;
+	public int Condition11Number;
 
 	// Token: 0x040001B6 RID: 438
-	public int Condition13Number;
+	public int Condition12Number;
 
 	// Token: 0x040001B7 RID: 439
-	public int Condition14Number;
+	public int Condition13Number;
 
 	// Token: 0x040001B8 RID: 440
-	public int Condition15Number;
+	public int Condition14Number;
 
 	// Token: 0x040001B9 RID: 441
-	public string TargetString = string.Empty;
+	public int Condition15Number;
 
 	// Token: 0x040001BA RID: 442
-	public string WeaponString = string.Empty;
+	public string TargetString = string.Empty;
 
 	// Token: 0x040001BB RID: 443
-	public string ClothingString = string.Empty;
+	public string WeaponString = string.Empty;
 
 	// Token: 0x040001BC RID: 444
-	public string DisposalString = string.Empty;
+	public string ClothingString = string.Empty;
 
 	// Token: 0x040001BD RID: 445
-	public string MissionID = string.Empty;
+	public string DisposalString = string.Empty;
 
 	// Token: 0x040001BE RID: 446
-	public string[] ConditionString;
+	public string MissionID = string.Empty;
 
 	// Token: 0x040001BF RID: 447
-	public UILabel MissionIDLabel;
+	public string[] ConditionString;
 
 	// Token: 0x040001C0 RID: 448
+	public UILabel MissionIDLabel;
+
+	// Token: 0x040001C1 RID: 449
 	public Font Arial;
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Wrap Content")]
 public class UIWrapContent : MonoBehaviour
 {
-	// Token: 0x060002E3 RID: 739 RVA: 0x0001EED7 File Offset: 0x0001D0D7
+	// Token: 0x060002E3 RID: 739 RVA: 0x0001EECF File Offset: 0x0001D0CF
 	protected virtual void Start()
 	{
 		this.SortBasedOnScrollMovement();
@@ -18,13 +18,13 @@ public class UIWrapContent : MonoBehaviour
 		this.mFirstTime = false;
 	}
 
-	// Token: 0x060002E4 RID: 740 RVA: 0x0001EF17 File Offset: 0x0001D117
+	// Token: 0x060002E4 RID: 740 RVA: 0x0001EF0F File Offset: 0x0001D10F
 	protected virtual void OnMove(UIPanel panel)
 	{
 		this.WrapContent();
 	}
 
-	// Token: 0x060002E5 RID: 741 RVA: 0x0001EF20 File Offset: 0x0001D120
+	// Token: 0x060002E5 RID: 741 RVA: 0x0001EF18 File Offset: 0x0001D118
 	[ContextMenu("Sort Based on Scroll Movement")]
 	public virtual void SortBasedOnScrollMovement()
 	{
@@ -52,7 +52,7 @@ public class UIWrapContent : MonoBehaviour
 		this.ResetChildPositions();
 	}
 
-	// Token: 0x060002E6 RID: 742 RVA: 0x0001EFC4 File Offset: 0x0001D1C4
+	// Token: 0x060002E6 RID: 742 RVA: 0x0001EFBC File Offset: 0x0001D1BC
 	[ContextMenu("Sort Alphabetically")]
 	public virtual void SortAlphabetically()
 	{
@@ -73,7 +73,7 @@ public class UIWrapContent : MonoBehaviour
 		this.ResetChildPositions();
 	}
 
-	// Token: 0x060002E7 RID: 743 RVA: 0x0001F048 File Offset: 0x0001D248
+	// Token: 0x060002E7 RID: 743 RVA: 0x0001F040 File Offset: 0x0001D240
 	protected bool CacheScrollView()
 	{
 		this.mTrans = base.transform;
@@ -98,7 +98,7 @@ public class UIWrapContent : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x060002E8 RID: 744 RVA: 0x0001F0C4 File Offset: 0x0001D2C4
+	// Token: 0x060002E8 RID: 744 RVA: 0x0001F0BC File Offset: 0x0001D2BC
 	protected virtual void ResetChildPositions()
 	{
 		int i = 0;
@@ -112,7 +112,7 @@ public class UIWrapContent : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002E9 RID: 745 RVA: 0x0001F140 File Offset: 0x0001D340
+	// Token: 0x060002E9 RID: 745 RVA: 0x0001F138 File Offset: 0x0001D338
 	public virtual void WrapContent()
 	{
 		float num = (float)(this.itemSize * this.mChildren.Count) * 0.5f;
@@ -244,7 +244,7 @@ public class UIWrapContent : MonoBehaviour
 		this.mScroll.InvalidateBounds();
 	}
 
-	// Token: 0x060002EA RID: 746 RVA: 0x0001F5AE File Offset: 0x0001D7AE
+	// Token: 0x060002EA RID: 746 RVA: 0x0001F5A6 File Offset: 0x0001D7A6
 	private void OnValidate()
 	{
 		if (this.maxIndex < this.minIndex)
@@ -257,7 +257,7 @@ public class UIWrapContent : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002EB RID: 747 RVA: 0x0001F5E4 File Offset: 0x0001D7E4
+	// Token: 0x060002EB RID: 747 RVA: 0x0001F5DC File Offset: 0x0001D7DC
 	protected virtual void UpdateItem(Transform item, int index)
 	{
 		if (this.onInitializeItem != null)
@@ -267,43 +267,43 @@ public class UIWrapContent : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000467 RID: 1127
+	// Token: 0x04000468 RID: 1128
 	public int itemSize = 100;
 
-	// Token: 0x04000468 RID: 1128
+	// Token: 0x04000469 RID: 1129
 	public bool cullContent = true;
 
-	// Token: 0x04000469 RID: 1129
+	// Token: 0x0400046A RID: 1130
 	public int minIndex;
 
-	// Token: 0x0400046A RID: 1130
+	// Token: 0x0400046B RID: 1131
 	public int maxIndex;
 
-	// Token: 0x0400046B RID: 1131
+	// Token: 0x0400046C RID: 1132
 	public bool hideInactive;
 
-	// Token: 0x0400046C RID: 1132
+	// Token: 0x0400046D RID: 1133
 	public UIWrapContent.OnInitializeItem onInitializeItem;
 
-	// Token: 0x0400046D RID: 1133
+	// Token: 0x0400046E RID: 1134
 	protected Transform mTrans;
 
-	// Token: 0x0400046E RID: 1134
+	// Token: 0x0400046F RID: 1135
 	protected UIPanel mPanel;
 
-	// Token: 0x0400046F RID: 1135
+	// Token: 0x04000470 RID: 1136
 	protected UIScrollView mScroll;
 
-	// Token: 0x04000470 RID: 1136
+	// Token: 0x04000471 RID: 1137
 	protected bool mHorizontal;
 
-	// Token: 0x04000471 RID: 1137
+	// Token: 0x04000472 RID: 1138
 	protected bool mFirstTime = true;
 
-	// Token: 0x04000472 RID: 1138
+	// Token: 0x04000473 RID: 1139
 	protected List<Transform> mChildren = new List<Transform>();
 
-	// Token: 0x020005E5 RID: 1509
-	// (Invoke) Token: 0x06002529 RID: 9513
+	// Token: 0x020005E6 RID: 1510
+	// (Invoke) Token: 0x0600252B RID: 9515
 	public delegate void OnInitializeItem(GameObject go, int wrapIndex, int realIndex);
 }

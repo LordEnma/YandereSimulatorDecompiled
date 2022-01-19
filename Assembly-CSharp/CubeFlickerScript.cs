@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000269 RID: 617
 public class CubeFlickerScript : MonoBehaviour
 {
-	// Token: 0x06001301 RID: 4865 RVA: 0x000A8030 File Offset: 0x000A6230
+	// Token: 0x06001301 RID: 4865 RVA: 0x000A8070 File Offset: 0x000A6270
 	private void Update()
 	{
 		this.Cube[0].localScale = new Vector3(UnityEngine.Random.Range(0f, 0.1f), UnityEngine.Random.Range(0f, 0.1f), UnityEngine.Random.Range(0f, 0.1f));
@@ -19,6 +19,6 @@ public class CubeFlickerScript : MonoBehaviour
 		this.Cube[4].position = base.transform.position + new Vector3(UnityEngine.Random.Range(-1f, 1f), UnityEngine.Random.Range(1f, 2f), UnityEngine.Random.Range(-1f, 1f));
 	}
 
-	// Token: 0x04001B07 RID: 6919
+	// Token: 0x04001B09 RID: 6921
 	public Transform[] Cube;
 }

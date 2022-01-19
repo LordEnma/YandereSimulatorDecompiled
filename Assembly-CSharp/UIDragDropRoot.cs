@@ -5,13 +5,13 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Drag and Drop Root")]
 public class UIDragDropRoot : MonoBehaviour
 {
-	// Token: 0x06000182 RID: 386 RVA: 0x00015F10 File Offset: 0x00014110
+	// Token: 0x06000182 RID: 386 RVA: 0x00015F08 File Offset: 0x00014108
 	private void OnEnable()
 	{
 		UIDragDropRoot.root = base.transform;
 	}
 
-	// Token: 0x06000183 RID: 387 RVA: 0x00015F1D File Offset: 0x0001411D
+	// Token: 0x06000183 RID: 387 RVA: 0x00015F15 File Offset: 0x00014115
 	private void OnDisable()
 	{
 		if (UIDragDropRoot.root == base.transform)
@@ -20,6 +20,6 @@ public class UIDragDropRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400032F RID: 815
+	// Token: 0x04000330 RID: 816
 	public static Transform root;
 }

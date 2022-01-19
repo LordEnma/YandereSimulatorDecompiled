@@ -9,7 +9,7 @@ using UnityEngine.Rendering;
 public class AmplifyMotionObjectBase : MonoBehaviour
 {
 	// Token: 0x170001EF RID: 495
-	// (get) Token: 0x0600094C RID: 2380 RVA: 0x0004ADD0 File Offset: 0x00048FD0
+	// (get) Token: 0x0600094C RID: 2380 RVA: 0x0004ADC8 File Offset: 0x00048FC8
 	internal bool FixedStep
 	{
 		get
@@ -19,7 +19,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001F0 RID: 496
-	// (get) Token: 0x0600094D RID: 2381 RVA: 0x0004ADD8 File Offset: 0x00048FD8
+	// (get) Token: 0x0600094D RID: 2381 RVA: 0x0004ADD0 File Offset: 0x00048FD0
 	internal int ObjectId
 	{
 		get
@@ -29,7 +29,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001F1 RID: 497
-	// (get) Token: 0x0600094E RID: 2382 RVA: 0x0004ADE0 File Offset: 0x00048FE0
+	// (get) Token: 0x0600094E RID: 2382 RVA: 0x0004ADD8 File Offset: 0x00048FD8
 	public ObjectType Type
 	{
 		get
@@ -38,7 +38,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600094F RID: 2383 RVA: 0x0004ADE8 File Offset: 0x00048FE8
+	// Token: 0x0600094F RID: 2383 RVA: 0x0004ADE0 File Offset: 0x00048FE0
 	internal void RegisterCamera(AmplifyMotionCamera camera)
 	{
 		Camera component = camera.GetComponent<Camera>();
@@ -67,7 +67,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000950 RID: 2384 RVA: 0x0004AE90 File Offset: 0x00049090
+	// Token: 0x06000950 RID: 2384 RVA: 0x0004AE88 File Offset: 0x00049088
 	internal void UnregisterCamera(AmplifyMotionCamera camera)
 	{
 		Camera component = camera.GetComponent<Camera>();
@@ -83,7 +83,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000951 RID: 2385 RVA: 0x0004AEE0 File Offset: 0x000490E0
+	// Token: 0x06000951 RID: 2385 RVA: 0x0004AED8 File Offset: 0x000490D8
 	private bool InitializeType()
 	{
 		Renderer component = base.GetComponent<Renderer>();
@@ -117,7 +117,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		return component != null;
 	}
 
-	// Token: 0x06000952 RID: 2386 RVA: 0x0004AF90 File Offset: 0x00049190
+	// Token: 0x06000952 RID: 2386 RVA: 0x0004AF88 File Offset: 0x00049188
 	private void OnEnable()
 	{
 		bool flag = this.InitializeType();
@@ -149,13 +149,13 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000953 RID: 2387 RVA: 0x0004B050 File Offset: 0x00049250
+	// Token: 0x06000953 RID: 2387 RVA: 0x0004B048 File Offset: 0x00049248
 	private void OnDisable()
 	{
 		AmplifyMotionEffectBase.UnregisterObject(this);
 	}
 
-	// Token: 0x06000954 RID: 2388 RVA: 0x0004B058 File Offset: 0x00049258
+	// Token: 0x06000954 RID: 2388 RVA: 0x0004B050 File Offset: 0x00049250
 	private void TryInitializeStates()
 	{
 		foreach (KeyValuePair<Camera, MotionState> keyValuePair in this.m_states)
@@ -168,7 +168,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000955 RID: 2389 RVA: 0x0004B0AF File Offset: 0x000492AF
+	// Token: 0x06000955 RID: 2389 RVA: 0x0004B0A7 File Offset: 0x000492A7
 	private void Start()
 	{
 		if (AmplifyMotionEffectBase.Instance != null)
@@ -178,7 +178,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		this.m_lastPosition = base.transform.position;
 	}
 
-	// Token: 0x06000956 RID: 2390 RVA: 0x0004B0D5 File Offset: 0x000492D5
+	// Token: 0x06000956 RID: 2390 RVA: 0x0004B0CD File Offset: 0x000492CD
 	private void Update()
 	{
 		if (AmplifyMotionEffectBase.Instance != null)
@@ -187,7 +187,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000957 RID: 2391 RVA: 0x0004B0EC File Offset: 0x000492EC
+	// Token: 0x06000957 RID: 2391 RVA: 0x0004B0E4 File Offset: 0x000492E4
 	private static void RecursiveResetMotionAtFrame(Transform transform, AmplifyMotionObjectBase obj, int frame)
 	{
 		if (obj != null)
@@ -201,19 +201,19 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000958 RID: 2392 RVA: 0x0004B154 File Offset: 0x00049354
+	// Token: 0x06000958 RID: 2392 RVA: 0x0004B14C File Offset: 0x0004934C
 	public void ResetMotionNow()
 	{
 		AmplifyMotionObjectBase.RecursiveResetMotionAtFrame(base.transform, this, Time.frameCount);
 	}
 
-	// Token: 0x06000959 RID: 2393 RVA: 0x0004B167 File Offset: 0x00049367
+	// Token: 0x06000959 RID: 2393 RVA: 0x0004B15F File Offset: 0x0004935F
 	public void ResetMotionAtFrame(int frame)
 	{
 		AmplifyMotionObjectBase.RecursiveResetMotionAtFrame(base.transform, this, frame);
 	}
 
-	// Token: 0x0600095A RID: 2394 RVA: 0x0004B176 File Offset: 0x00049376
+	// Token: 0x0600095A RID: 2394 RVA: 0x0004B16E File Offset: 0x0004936E
 	private void CheckTeleportReset(AmplifyMotionEffectBase inst)
 	{
 		if (Vector3.SqrMagnitude(base.transform.position - this.m_lastPosition) > inst.MinResetDeltaDistSqr)
@@ -222,7 +222,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600095B RID: 2395 RVA: 0x0004B1B4 File Offset: 0x000493B4
+	// Token: 0x0600095B RID: 2395 RVA: 0x0004B1AC File Offset: 0x000493AC
 	internal void OnUpdateTransform(AmplifyMotionEffectBase inst, Camera camera, CommandBuffer updateCB, bool starting)
 	{
 		MotionState motionState;
@@ -235,7 +235,7 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		this.m_lastPosition = base.transform.position;
 	}
 
-	// Token: 0x0600095C RID: 2396 RVA: 0x0004B21C File Offset: 0x0004941C
+	// Token: 0x0600095C RID: 2396 RVA: 0x0004B214 File Offset: 0x00049414
 	internal void OnRenderVectors(Camera camera, CommandBuffer renderCB, float scale, Quality quality)
 	{
 		MotionState motionState;
@@ -249,41 +249,41 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040007F6 RID: 2038
+	// Token: 0x040007F7 RID: 2039
 	internal static bool ApplyToChildren = true;
 
-	// Token: 0x040007F7 RID: 2039
+	// Token: 0x040007F8 RID: 2040
 	[SerializeField]
 	private bool m_applyToChildren = AmplifyMotionObjectBase.ApplyToChildren;
 
-	// Token: 0x040007F8 RID: 2040
+	// Token: 0x040007F9 RID: 2041
 	private ObjectType m_type;
 
-	// Token: 0x040007F9 RID: 2041
+	// Token: 0x040007FA RID: 2042
 	private Dictionary<Camera, MotionState> m_states = new Dictionary<Camera, MotionState>();
 
-	// Token: 0x040007FA RID: 2042
+	// Token: 0x040007FB RID: 2043
 	private bool m_fixedStep;
 
-	// Token: 0x040007FB RID: 2043
+	// Token: 0x040007FC RID: 2044
 	private int m_objectId;
 
-	// Token: 0x040007FC RID: 2044
+	// Token: 0x040007FD RID: 2045
 	private Vector3 m_lastPosition = Vector3.zero;
 
-	// Token: 0x040007FD RID: 2045
+	// Token: 0x040007FE RID: 2046
 	private int m_resetAtFrame = -1;
 
-	// Token: 0x02000648 RID: 1608
+	// Token: 0x02000649 RID: 1609
 	public enum MinMaxCurveState
 	{
-		// Token: 0x04004E94 RID: 20116
+		// Token: 0x04004E9B RID: 20123
 		Scalar,
-		// Token: 0x04004E95 RID: 20117
+		// Token: 0x04004E9C RID: 20124
 		Curve,
-		// Token: 0x04004E96 RID: 20118
+		// Token: 0x04004E9D RID: 20125
 		TwoCurves,
-		// Token: 0x04004E97 RID: 20119
+		// Token: 0x04004E9E RID: 20126
 		TwoScalars
 	}
 }

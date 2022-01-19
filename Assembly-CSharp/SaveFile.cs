@@ -5,18 +5,18 @@ using System.Xml;
 using System.Xml.Serialization;
 using UnityEngine;
 
-// Token: 0x02000407 RID: 1031
+// Token: 0x02000408 RID: 1032
 [Serializable]
 public class SaveFile
 {
-	// Token: 0x06001C1D RID: 7197 RVA: 0x00145E22 File Offset: 0x00144022
+	// Token: 0x06001C1F RID: 7199 RVA: 0x0014752A File Offset: 0x0014572A
 	public SaveFile(int index)
 	{
 		this.data = new SaveFileData();
 		this.index = index;
 	}
 
-	// Token: 0x06001C1E RID: 7198 RVA: 0x00145E3C File Offset: 0x0014403C
+	// Token: 0x06001C20 RID: 7200 RVA: 0x00147544 File Offset: 0x00145744
 	private SaveFile(SaveFileData data, int index)
 	{
 		this.data = data;
@@ -24,7 +24,7 @@ public class SaveFile
 	}
 
 	// Token: 0x1700049E RID: 1182
-	// (get) Token: 0x06001C1F RID: 7199 RVA: 0x00145E52 File Offset: 0x00144052
+	// (get) Token: 0x06001C21 RID: 7201 RVA: 0x0014755A File Offset: 0x0014575A
 	public SaveFileData Data
 	{
 		get
@@ -33,20 +33,20 @@ public class SaveFile
 		}
 	}
 
-	// Token: 0x06001C20 RID: 7200 RVA: 0x00145E5A File Offset: 0x0014405A
+	// Token: 0x06001C22 RID: 7202 RVA: 0x00147562 File Offset: 0x00145762
 	public static string GetSaveFolderPath(int index)
 	{
 		return Path.Combine(SaveFile.SavesPath, "Save" + index.ToString());
 	}
 
-	// Token: 0x06001C21 RID: 7201 RVA: 0x00145E77 File Offset: 0x00144077
+	// Token: 0x06001C23 RID: 7203 RVA: 0x0014757F File Offset: 0x0014577F
 	private static string GetFullSaveFileName(int index)
 	{
 		return Path.Combine(SaveFile.GetSaveFolderPath(index), SaveFile.SaveName);
 	}
 
 	// Token: 0x1700049F RID: 1183
-	// (get) Token: 0x06001C22 RID: 7202 RVA: 0x00145E89 File Offset: 0x00144089
+	// (get) Token: 0x06001C24 RID: 7204 RVA: 0x00147591 File Offset: 0x00145791
 	private static bool SavesFolderExists
 	{
 		get
@@ -55,19 +55,19 @@ public class SaveFile
 		}
 	}
 
-	// Token: 0x06001C23 RID: 7203 RVA: 0x00145E95 File Offset: 0x00144095
+	// Token: 0x06001C25 RID: 7205 RVA: 0x0014759D File Offset: 0x0014579D
 	public static bool SaveFolderExists(int index)
 	{
 		return Directory.Exists(SaveFile.GetSaveFolderPath(index));
 	}
 
-	// Token: 0x06001C24 RID: 7204 RVA: 0x00145EA2 File Offset: 0x001440A2
+	// Token: 0x06001C26 RID: 7206 RVA: 0x001475AA File Offset: 0x001457AA
 	public static bool Exists(int index)
 	{
 		return File.Exists(SaveFile.GetFullSaveFileName(index));
 	}
 
-	// Token: 0x06001C25 RID: 7205 RVA: 0x00145EB0 File Offset: 0x001440B0
+	// Token: 0x06001C27 RID: 7207 RVA: 0x001475B8 File Offset: 0x001457B8
 	public static SaveFile Load(int index)
 	{
 		SaveFile result;
@@ -93,7 +93,7 @@ public class SaveFile
 		return result;
 	}
 
-	// Token: 0x06001C26 RID: 7206 RVA: 0x00145F50 File Offset: 0x00144150
+	// Token: 0x06001C28 RID: 7208 RVA: 0x00147658 File Offset: 0x00145858
 	public static void Delete(int index)
 	{
 		try
@@ -113,7 +113,7 @@ public class SaveFile
 		}
 	}
 
-	// Token: 0x06001C27 RID: 7207 RVA: 0x00145FB8 File Offset: 0x001441B8
+	// Token: 0x06001C29 RID: 7209 RVA: 0x001476C0 File Offset: 0x001458C0
 	public void Save()
 	{
 		try
@@ -154,7 +154,7 @@ public class SaveFile
 		}
 	}
 
-	// Token: 0x06001C28 RID: 7208 RVA: 0x001460C4 File Offset: 0x001442C4
+	// Token: 0x06001C2A RID: 7210 RVA: 0x001477CC File Offset: 0x001459CC
 	public void ReadFromGlobals()
 	{
 		this.data.applicationData = ApplicationSaveData.ReadFromGlobals();
@@ -180,7 +180,7 @@ public class SaveFile
 		this.data.yanvaniaData = YanvaniaSaveData.ReadFromGlobals();
 	}
 
-	// Token: 0x06001C29 RID: 7209 RVA: 0x00146224 File Offset: 0x00144424
+	// Token: 0x06001C2B RID: 7211 RVA: 0x0014792C File Offset: 0x00145B2C
 	public void WriteToGlobals()
 	{
 		ApplicationSaveData.WriteToGlobals(this.data.applicationData);
@@ -206,17 +206,17 @@ public class SaveFile
 		YanvaniaSaveData.WriteToGlobals(this.data.yanvaniaData);
 	}
 
-	// Token: 0x0400318A RID: 12682
+	// Token: 0x0400318F RID: 12687
 	[SerializeField]
 	private SaveFileData data;
 
-	// Token: 0x0400318B RID: 12683
+	// Token: 0x04003190 RID: 12688
 	[SerializeField]
 	private int index;
 
-	// Token: 0x0400318C RID: 12684
+	// Token: 0x04003191 RID: 12689
 	private static readonly string SavesPath = Path.Combine(Application.persistentDataPath, "Saves");
 
-	// Token: 0x0400318D RID: 12685
+	// Token: 0x04003192 RID: 12690
 	private static readonly string SaveName = "Save.txt";
 }

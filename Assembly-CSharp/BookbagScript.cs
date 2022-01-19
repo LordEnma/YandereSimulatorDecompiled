@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F3 RID: 243
 public class BookbagScript : MonoBehaviour
 {
-	// Token: 0x06000A58 RID: 2648 RVA: 0x0005BED8 File Offset: 0x0005A0D8
+	// Token: 0x06000A58 RID: 2648 RVA: 0x0005BED0 File Offset: 0x0005A0D0
 	private void Start()
 	{
 		this.MyRigidbody.useGravity = false;
@@ -16,7 +16,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A59 RID: 2649 RVA: 0x0005BF2C File Offset: 0x0005A12C
+	// Token: 0x06000A59 RID: 2649 RVA: 0x0005BF24 File Offset: 0x0005A124
 	private void Update()
 	{
 		if (this.Prompt.Yandere.PickUp != null || this.ConcealedPickup != null)
@@ -61,7 +61,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A5A RID: 2650 RVA: 0x0005C154 File Offset: 0x0005A354
+	// Token: 0x06000A5A RID: 2650 RVA: 0x0005C14C File Offset: 0x0005A34C
 	public void Drop()
 	{
 		this.Prompt.Yandere.Bookbag = null;
@@ -73,24 +73,24 @@ public class BookbagScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x04000BF6 RID: 3062
+	// Token: 0x04000BF7 RID: 3063
 	public PickUpScript ConcealedPickup;
 
-	// Token: 0x04000BF7 RID: 3063
+	// Token: 0x04000BF8 RID: 3064
 	public Rigidbody MyRigidbody;
 
-	// Token: 0x04000BF8 RID: 3064
+	// Token: 0x04000BF9 RID: 3065
 	public PromptScript Prompt;
 
-	// Token: 0x04000BF9 RID: 3065
+	// Token: 0x04000BFA RID: 3066
 	public Texture EightiesBookBagTexture;
 
-	// Token: 0x04000BFA RID: 3066
+	// Token: 0x04000BFB RID: 3067
 	public Mesh EightiesBookBag;
 
-	// Token: 0x04000BFB RID: 3067
+	// Token: 0x04000BFC RID: 3068
 	public Renderer MyRenderer;
 
-	// Token: 0x04000BFC RID: 3068
+	// Token: 0x04000BFD RID: 3069
 	public MeshFilter MyMesh;
 }

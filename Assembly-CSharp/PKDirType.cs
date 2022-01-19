@@ -1,16 +1,16 @@
 ﻿using System;
 
-// Token: 0x020004C7 RID: 1223
+// Token: 0x020004C8 RID: 1224
 public enum PKDirType
 {
-	// Token: 0x040043BA RID: 17338
+	// Token: 0x040043C1 RID: 17345
 	None,
-	// Token: 0x040043BB RID: 17339
+	// Token: 0x040043C2 RID: 17346
 	Up,
-	// Token: 0x040043BC RID: 17340
+	// Token: 0x040043C3 RID: 17347
 	Down,
-	// Token: 0x040043BD RID: 17341
+	// Token: 0x040043C4 RID: 17348
 	Right,
-	// Token: 0x040043BE RID: 17342
+	// Token: 0x040043C5 RID: 17349
 	Left
 }

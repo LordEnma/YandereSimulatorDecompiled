@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000444 RID: 1092
+// Token: 0x02000445 RID: 1093
 public class StealthBushScript : MonoBehaviour
 {
-	// Token: 0x06001D08 RID: 7432 RVA: 0x001595E8 File Offset: 0x001577E8
+	// Token: 0x06001D0A RID: 7434 RVA: 0x0015AD80 File Offset: 0x00158F80
 	private void OnTriggerEnter(Collider other)
 	{
 		StalkerYandereScript component = other.gameObject.GetComponent<StalkerYandereScript>();
@@ -14,7 +14,7 @@ public class StealthBushScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D09 RID: 7433 RVA: 0x00159614 File Offset: 0x00157814
+	// Token: 0x06001D0B RID: 7435 RVA: 0x0015ADAC File Offset: 0x00158FAC
 	private void OnTriggerExit(Collider other)
 	{
 		StalkerYandereScript component = other.gameObject.GetComponent<StalkerYandereScript>();

@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace YandereSimulator.Yancord
 {
-	// Token: 0x02000518 RID: 1304
+	// Token: 0x02000519 RID: 1305
 	public static class PlayerPrefsHelper
 	{
-		// Token: 0x0600214D RID: 8525 RVA: 0x001E76AD File Offset: 0x001E58AD
+		// Token: 0x0600214F RID: 8527 RVA: 0x001E837D File Offset: 0x001E657D
 		public static void SetBool(string name, bool flag)
 		{
 			PlayerPrefs.SetInt(name, flag ? 1 : 0);
 		}
 
-		// Token: 0x0600214E RID: 8526 RVA: 0x001E76BC File Offset: 0x001E58BC
+		// Token: 0x06002150 RID: 8528 RVA: 0x001E838C File Offset: 0x001E658C
 		public static bool GetBool(string name)
 		{
 			return PlayerPrefs.GetInt(name) == 1;

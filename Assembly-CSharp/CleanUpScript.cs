@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200024A RID: 586
 public class CleanUpScript : MonoBehaviour
 {
-	// Token: 0x06001262 RID: 4706 RVA: 0x0008E198 File Offset: 0x0008C398
+	// Token: 0x06001262 RID: 4706 RVA: 0x0008E1A0 File Offset: 0x0008C3A0
 	private void Update()
 	{
 		if (this.Prompt.Yandere.PickUp != null && this.Prompt.Yandere.PickUp.Mop != null && this.Prompt.Yandere.PickUp.Mop.Bleached)
@@ -43,18 +43,18 @@ public class CleanUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001760 RID: 5984
+	// Token: 0x04001761 RID: 5985
 	public Projector BloodProjector;
 
-	// Token: 0x04001761 RID: 5985
+	// Token: 0x04001762 RID: 5986
 	public UISprite CleanUpDarkness;
 
-	// Token: 0x04001762 RID: 5986
+	// Token: 0x04001763 RID: 5987
 	public PromptScript Prompt;
 
-	// Token: 0x04001763 RID: 5987
+	// Token: 0x04001764 RID: 5988
 	public bool FadeOut;
 
-	// Token: 0x04001764 RID: 5988
+	// Token: 0x04001765 RID: 5989
 	public bool FadeIn;
 }

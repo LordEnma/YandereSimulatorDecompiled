@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004B2 RID: 1202
+// Token: 0x020004B3 RID: 1203
 public class VoidGoddessScript : MonoBehaviour
 {
-	// Token: 0x06001F7C RID: 8060 RVA: 0x001B83F8 File Offset: 0x001B65F8
+	// Token: 0x06001F7E RID: 8062 RVA: 0x001B90C8 File Offset: 0x001B72C8
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -80,7 +80,7 @@ public class VoidGoddessScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F7D RID: 8061 RVA: 0x001B8774 File Offset: 0x001B6974
+	// Token: 0x06001F7F RID: 8063 RVA: 0x001B9444 File Offset: 0x001B7644
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -391,7 +391,7 @@ public class VoidGoddessScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F7E RID: 8062 RVA: 0x001B9354 File Offset: 0x001B7554
+	// Token: 0x06001F80 RID: 8064 RVA: 0x001BA024 File Offset: 0x001B8224
 	private void UpdateHighlight()
 	{
 		if (this.Row < 0)
@@ -414,7 +414,7 @@ public class VoidGoddessScript : MonoBehaviour
 		this.Selected = 1 + this.Row * 10 + this.Column;
 	}
 
-	// Token: 0x06001F7F RID: 8063 RVA: 0x001B9404 File Offset: 0x001B7604
+	// Token: 0x06001F81 RID: 8065 RVA: 0x001BA0D4 File Offset: 0x001B82D4
 	public void UpdatePortraits()
 	{
 		this.ID = 1;
@@ -442,81 +442,81 @@ public class VoidGoddessScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004171 RID: 16753
+	// Token: 0x04004178 RID: 16760
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04004172 RID: 16754
+	// Token: 0x04004179 RID: 16761
 	public InputManagerScript InputManager;
 
-	// Token: 0x04004173 RID: 16755
+	// Token: 0x0400417A RID: 16762
 	public PromptScript Prompt;
 
-	// Token: 0x04004174 RID: 16756
+	// Token: 0x0400417B RID: 16763
 	public GameObject BloodyUniform;
 
-	// Token: 0x04004175 RID: 16757
+	// Token: 0x0400417C RID: 16764
 	public GameObject SeveredLimb;
 
-	// Token: 0x04004176 RID: 16758
+	// Token: 0x0400417D RID: 16765
 	public GameObject NewPortrait;
 
-	// Token: 0x04004177 RID: 16759
+	// Token: 0x0400417E RID: 16766
 	public GameObject BloodPool;
 
-	// Token: 0x04004178 RID: 16760
+	// Token: 0x0400417F RID: 16767
 	public GameObject Portrait;
 
-	// Token: 0x04004179 RID: 16761
+	// Token: 0x04004180 RID: 16768
 	public GameObject Goddess;
 
-	// Token: 0x0400417A RID: 16762
+	// Token: 0x04004181 RID: 16769
 	public Transform BloodParent;
 
-	// Token: 0x0400417B RID: 16763
+	// Token: 0x04004182 RID: 16770
 	public Transform Highlight;
 
-	// Token: 0x0400417C RID: 16764
+	// Token: 0x04004183 RID: 16771
 	public Transform Window;
 
-	// Token: 0x0400417D RID: 16765
+	// Token: 0x04004184 RID: 16772
 	public Transform Head;
 
-	// Token: 0x0400417E RID: 16766
+	// Token: 0x04004185 RID: 16773
 	public UITexture[] Portraits;
 
-	// Token: 0x0400417F RID: 16767
+	// Token: 0x04004186 RID: 16774
 	public Animation[] Legs;
 
-	// Token: 0x04004180 RID: 16768
+	// Token: 0x04004187 RID: 16775
 	public bool PassingJudgement;
 
-	// Token: 0x04004181 RID: 16769
+	// Token: 0x04004188 RID: 16776
 	public bool Initialized;
 
-	// Token: 0x04004182 RID: 16770
+	// Token: 0x04004189 RID: 16777
 	public bool Disabled;
 
-	// Token: 0x04004183 RID: 16771
+	// Token: 0x0400418A RID: 16778
 	public bool Follow;
 
-	// Token: 0x04004184 RID: 16772
+	// Token: 0x0400418B RID: 16779
 	public int Selected;
 
-	// Token: 0x04004185 RID: 16773
+	// Token: 0x0400418C RID: 16780
 	public int Column;
 
-	// Token: 0x04004186 RID: 16774
+	// Token: 0x0400418D RID: 16781
 	public int Row;
 
-	// Token: 0x04004187 RID: 16775
+	// Token: 0x0400418E RID: 16782
 	public int ID;
 
-	// Token: 0x04004188 RID: 16776
+	// Token: 0x0400418F RID: 16783
 	public Texture Headmaster;
 
-	// Token: 0x04004189 RID: 16777
+	// Token: 0x04004190 RID: 16784
 	public Texture Counselor;
 
-	// Token: 0x0400418A RID: 16778
+	// Token: 0x04004191 RID: 16785
 	public Texture Infochan;
 }

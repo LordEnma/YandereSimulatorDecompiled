@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000436 RID: 1078
+// Token: 0x02000437 RID: 1079
 public class SpinScript : MonoBehaviour
 {
-	// Token: 0x06001CCD RID: 7373 RVA: 0x001550B8 File Offset: 0x001532B8
+	// Token: 0x06001CCF RID: 7375 RVA: 0x001567CC File Offset: 0x001549CC
 	private void Update()
 	{
 		this.RotationX += this.X * Time.deltaTime;
@@ -13,21 +13,21 @@ public class SpinScript : MonoBehaviour
 		base.transform.localEulerAngles = new Vector3(this.RotationX, this.RotationY, this.RotationZ);
 	}
 
-	// Token: 0x040033EC RID: 13292
+	// Token: 0x040033F1 RID: 13297
 	public float X;
 
-	// Token: 0x040033ED RID: 13293
+	// Token: 0x040033F2 RID: 13298
 	public float Y;
 
-	// Token: 0x040033EE RID: 13294
+	// Token: 0x040033F3 RID: 13299
 	public float Z;
 
-	// Token: 0x040033EF RID: 13295
+	// Token: 0x040033F4 RID: 13300
 	private float RotationX;
 
-	// Token: 0x040033F0 RID: 13296
+	// Token: 0x040033F5 RID: 13301
 	private float RotationY;
 
-	// Token: 0x040033F1 RID: 13297
+	// Token: 0x040033F6 RID: 13302
 	private float RotationZ;
 }

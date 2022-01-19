@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x02000263 RID: 611
 public class CrackScript : MonoBehaviour
 {
-	// Token: 0x060012F0 RID: 4848 RVA: 0x000A7767 File Offset: 0x000A5967
+	// Token: 0x060012F0 RID: 4848 RVA: 0x000A77A7 File Offset: 0x000A59A7
 	private void Update()
 	{
 		this.Texture.fillAmount += Time.deltaTime * 10f;
 	}
 
-	// Token: 0x04001AE3 RID: 6883
+	// Token: 0x04001AE5 RID: 6885
 	public UITexture Texture;
 }

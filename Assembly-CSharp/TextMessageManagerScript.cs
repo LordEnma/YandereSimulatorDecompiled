@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200046B RID: 1131
+// Token: 0x0200046C RID: 1132
 public class TextMessageManagerScript : MonoBehaviour
 {
-	// Token: 0x06001E92 RID: 7826 RVA: 0x001AC818 File Offset: 0x001AAA18
+	// Token: 0x06001E94 RID: 7828 RVA: 0x001AD4E8 File Offset: 0x001AB6E8
 	private void Update()
 	{
 		if (Input.GetButtonDown("B"))
@@ -21,7 +21,7 @@ public class TextMessageManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E93 RID: 7827 RVA: 0x001AC8C0 File Offset: 0x001AAAC0
+	// Token: 0x06001E95 RID: 7829 RVA: 0x001AD590 File Offset: 0x001AB790
 	public void SpawnMessage(int ServiceID)
 	{
 		this.PromptBar.ClearButtons();
@@ -56,27 +56,27 @@ public class TextMessageManagerScript : MonoBehaviour
 		this.NewMessage.GetComponent<TextMessageScript>().Label.text = this.MessageText;
 	}
 
-	// Token: 0x04003F1A RID: 16154
+	// Token: 0x04003F21 RID: 16161
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04003F1B RID: 16155
+	// Token: 0x04003F22 RID: 16162
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003F1C RID: 16156
+	// Token: 0x04003F23 RID: 16163
 	public GameObject ServicesMenu;
 
-	// Token: 0x04003F1D RID: 16157
+	// Token: 0x04003F24 RID: 16164
 	public string[] Messages;
 
-	// Token: 0x04003F1E RID: 16158
+	// Token: 0x04003F25 RID: 16165
 	private GameObject NewMessage;
 
-	// Token: 0x04003F1F RID: 16159
+	// Token: 0x04003F26 RID: 16166
 	public GameObject Message;
 
-	// Token: 0x04003F20 RID: 16160
+	// Token: 0x04003F27 RID: 16167
 	public int MessageHeight;
 
-	// Token: 0x04003F21 RID: 16161
+	// Token: 0x04003F28 RID: 16168
 	public string MessageText = string.Empty;
 }

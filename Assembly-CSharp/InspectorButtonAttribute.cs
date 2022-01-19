@@ -6,8 +6,8 @@ using UnityEngine;
 public class InspectorButtonAttribute : PropertyAttribute
 {
 	// Token: 0x170001F3 RID: 499
-	// (get) Token: 0x06000966 RID: 2406 RVA: 0x0004B3BF File Offset: 0x000495BF
-	// (set) Token: 0x06000967 RID: 2407 RVA: 0x0004B3C7 File Offset: 0x000495C7
+	// (get) Token: 0x06000966 RID: 2406 RVA: 0x0004B3B7 File Offset: 0x000495B7
+	// (set) Token: 0x06000967 RID: 2407 RVA: 0x0004B3BF File Offset: 0x000495BF
 	public float ButtonWidth
 	{
 		get
@@ -20,18 +20,18 @@ public class InspectorButtonAttribute : PropertyAttribute
 		}
 	}
 
-	// Token: 0x06000968 RID: 2408 RVA: 0x0004B3D0 File Offset: 0x000495D0
+	// Token: 0x06000968 RID: 2408 RVA: 0x0004B3C8 File Offset: 0x000495C8
 	public InspectorButtonAttribute(string MethodName)
 	{
 		this.MethodName = MethodName;
 	}
 
-	// Token: 0x04000802 RID: 2050
+	// Token: 0x04000803 RID: 2051
 	public static float kDefaultButtonWidth = 150f;
 
-	// Token: 0x04000803 RID: 2051
+	// Token: 0x04000804 RID: 2052
 	public readonly string MethodName;
 
-	// Token: 0x04000804 RID: 2052
+	// Token: 0x04000805 RID: 2053
 	private float _buttonWidth = InspectorButtonAttribute.kDefaultButtonWidth;
 }

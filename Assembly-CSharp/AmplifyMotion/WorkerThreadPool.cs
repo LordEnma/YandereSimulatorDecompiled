@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace AmplifyMotion
 {
-	// Token: 0x02000583 RID: 1411
+	// Token: 0x02000584 RID: 1412
 	internal class WorkerThreadPool
 	{
-		// Token: 0x060023E1 RID: 9185 RVA: 0x001F6568 File Offset: 0x001F4768
+		// Token: 0x060023E3 RID: 9187 RVA: 0x001F7238 File Offset: 0x001F5438
 		internal void InitializeAsyncUpdateThreads(int threadCount, bool systemThreadPool)
 		{
 			if (systemThreadPool)
@@ -42,7 +42,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x060023E2 RID: 9186 RVA: 0x001F668C File Offset: 0x001F488C
+		// Token: 0x060023E4 RID: 9188 RVA: 0x001F735C File Offset: 0x001F555C
 		internal void FinalizeAsyncUpdateThreads()
 		{
 			if (!this.m_threadPoolFallback)
@@ -76,7 +76,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x060023E3 RID: 9187 RVA: 0x001F6784 File Offset: 0x001F4984
+		// Token: 0x060023E5 RID: 9189 RVA: 0x001F7454 File Offset: 0x001F5654
 		internal void EnqueueAsyncUpdate(MotionState state)
 		{
 			if (!this.m_threadPoolFallback)
@@ -100,13 +100,13 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x060023E4 RID: 9188 RVA: 0x001F682C File Offset: 0x001F4A2C
+		// Token: 0x060023E6 RID: 9190 RVA: 0x001F74FC File Offset: 0x001F56FC
 		private static void AsyncUpdateCallback(object obj)
 		{
 			((MotionState)obj).AsyncUpdate();
 		}
 
-		// Token: 0x060023E5 RID: 9189 RVA: 0x001F683C File Offset: 0x001F4A3C
+		// Token: 0x060023E7 RID: 9191 RVA: 0x001F750C File Offset: 0x001F570C
 		private static void AsyncUpdateThread(object obj)
 		{
 			KeyValuePair<object, int> keyValuePair = (KeyValuePair<object, int>)obj;
@@ -151,34 +151,34 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x04004B81 RID: 19329
+		// Token: 0x04004B88 RID: 19336
 		private const int ThreadStateQueueCapacity = 1024;
 
-		// Token: 0x04004B82 RID: 19330
+		// Token: 0x04004B89 RID: 19337
 		internal Queue<MotionState>[] m_threadStateQueues;
 
-		// Token: 0x04004B83 RID: 19331
+		// Token: 0x04004B8A RID: 19338
 		internal object[] m_threadStateQueueLocks;
 
-		// Token: 0x04004B84 RID: 19332
+		// Token: 0x04004B8B RID: 19339
 		private int m_threadPoolSize;
 
-		// Token: 0x04004B85 RID: 19333
+		// Token: 0x04004B8C RID: 19340
 		private ManualResetEvent m_threadPoolTerminateSignal;
 
-		// Token: 0x04004B86 RID: 19334
+		// Token: 0x04004B8D RID: 19341
 		private AutoResetEvent[] m_threadPoolContinueSignals;
 
-		// Token: 0x04004B87 RID: 19335
+		// Token: 0x04004B8E RID: 19342
 		private Thread[] m_threadPool;
 
-		// Token: 0x04004B88 RID: 19336
+		// Token: 0x04004B8F RID: 19343
 		private bool m_threadPoolFallback;
 
-		// Token: 0x04004B89 RID: 19337
+		// Token: 0x04004B90 RID: 19344
 		internal object m_threadPoolLock;
 
-		// Token: 0x04004B8A RID: 19338
+		// Token: 0x04004B91 RID: 19345
 		internal int m_threadPoolIndex;
 	}
 }

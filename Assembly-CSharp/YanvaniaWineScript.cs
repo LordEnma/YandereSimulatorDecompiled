@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004E1 RID: 1249
+// Token: 0x020004E2 RID: 1250
 public class YanvaniaWineScript : MonoBehaviour
 {
-	// Token: 0x0600209D RID: 8349 RVA: 0x001DE96C File Offset: 0x001DCB6C
+	// Token: 0x0600209F RID: 8351 RVA: 0x001DF63C File Offset: 0x001DD83C
 	private void Update()
 	{
 		if (base.transform.parent == null)
@@ -20,9 +20,9 @@ public class YanvaniaWineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004783 RID: 18307
+	// Token: 0x0400478A RID: 18314
 	public GameObject Shards;
 
-	// Token: 0x04004784 RID: 18308
+	// Token: 0x0400478B RID: 18315
 	public float Rotation;
 }

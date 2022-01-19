@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace Aura2API
 {
-	// Token: 0x020005B8 RID: 1464
+	// Token: 0x020005B9 RID: 1465
 	public class SinRotationOffset : MonoBehaviour
 	{
-		// Token: 0x060024D5 RID: 9429 RVA: 0x001FA537 File Offset: 0x001F8737
+		// Token: 0x060024D7 RID: 9431 RVA: 0x001FB207 File Offset: 0x001F9407
 		private void Start()
 		{
 			this._initialRotation = ((this.space == Space.Self) ? base.transform.localRotation : base.transform.rotation);
 		}
 
-		// Token: 0x060024D6 RID: 9430 RVA: 0x001FA560 File Offset: 0x001F8760
+		// Token: 0x060024D8 RID: 9432 RVA: 0x001FB230 File Offset: 0x001F9430
 		private void Update()
 		{
 			Quaternion rhs = Quaternion.AngleAxis(this.sinAmplitude * Mathf.Sin(Time.time * this.sinSpeed + this.sinOffset), this.sinDirection);
@@ -24,22 +24,22 @@ namespace Aura2API
 			base.transform.rotation = this._initialRotation * rhs;
 		}
 
-		// Token: 0x04004C95 RID: 19605
+		// Token: 0x04004C9C RID: 19612
 		private Quaternion _initialRotation;
 
-		// Token: 0x04004C96 RID: 19606
+		// Token: 0x04004C9D RID: 19613
 		public float sinAmplitude = 15f;
 
-		// Token: 0x04004C97 RID: 19607
+		// Token: 0x04004C9E RID: 19614
 		public Vector3 sinDirection = Vector3.up;
 
-		// Token: 0x04004C98 RID: 19608
+		// Token: 0x04004C9F RID: 19615
 		public float sinOffset;
 
-		// Token: 0x04004C99 RID: 19609
+		// Token: 0x04004CA0 RID: 19616
 		public float sinSpeed = 1f;
 
-		// Token: 0x04004C9A RID: 19610
+		// Token: 0x04004CA1 RID: 19617
 		public Space space = Space.Self;
 	}
 }

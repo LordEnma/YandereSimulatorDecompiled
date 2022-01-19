@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020000DB RID: 219
 public class AudioSoftwareScript : MonoBehaviour
 {
-	// Token: 0x06000A09 RID: 2569 RVA: 0x000567E1 File Offset: 0x000549E1
+	// Token: 0x06000A09 RID: 2569 RVA: 0x000567D9 File Offset: 0x000549D9
 	private void Start()
 	{
 		this.Screen.SetActive(false);
 	}
 
-	// Token: 0x06000A0A RID: 2570 RVA: 0x000567F0 File Offset: 0x000549F0
+	// Token: 0x06000A0A RID: 2570 RVA: 0x000567E8 File Offset: 0x000549E8
 	private void Update()
 	{
 		if (this.ConversationRecorded && this.Yandere.Inventory.RivalPhone)
@@ -73,36 +73,36 @@ public class AudioSoftwareScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000ABB RID: 2747
+	// Token: 0x04000ABC RID: 2748
 	public YandereScript Yandere;
 
-	// Token: 0x04000ABC RID: 2748
+	// Token: 0x04000ABD RID: 2749
 	public PromptScript Prompt;
 
-	// Token: 0x04000ABD RID: 2749
+	// Token: 0x04000ABE RID: 2750
 	public Quaternion targetRotation;
 
-	// Token: 0x04000ABE RID: 2750
+	// Token: 0x04000ABF RID: 2751
 	public Collider ChairCollider;
 
-	// Token: 0x04000ABF RID: 2751
+	// Token: 0x04000AC0 RID: 2752
 	public UILabel EventSubtitle;
 
-	// Token: 0x04000AC0 RID: 2752
+	// Token: 0x04000AC1 RID: 2753
 	public GameObject Screen;
 
-	// Token: 0x04000AC1 RID: 2753
+	// Token: 0x04000AC2 RID: 2754
 	public Transform SitSpot;
 
-	// Token: 0x04000AC2 RID: 2754
+	// Token: 0x04000AC3 RID: 2755
 	public bool ConversationRecorded;
 
-	// Token: 0x04000AC3 RID: 2755
+	// Token: 0x04000AC4 RID: 2756
 	public bool AudioDoctored;
 
-	// Token: 0x04000AC4 RID: 2756
+	// Token: 0x04000AC5 RID: 2757
 	public bool Editing;
 
-	// Token: 0x04000AC5 RID: 2757
+	// Token: 0x04000AC6 RID: 2758
 	public float Timer;
 }

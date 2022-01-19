@@ -4,15 +4,15 @@ using UnityEngine;
 // Token: 0x02000388 RID: 904
 public class OsanaTextMessageScript : MonoBehaviour
 {
-	// Token: 0x04002ABB RID: 10939
+	// Token: 0x04002ABE RID: 10942
 	public AudioClip[] OsanaClips;
 
-	// Token: 0x04002ABC RID: 10940
+	// Token: 0x04002ABF RID: 10943
 	public int[] OsanaSpeakers;
 
-	// Token: 0x04002ABD RID: 10941
+	// Token: 0x04002AC0 RID: 10944
 	public string[] OsanaTexts;
 
-	// Token: 0x04002ABE RID: 10942
+	// Token: 0x04002AC1 RID: 10945
 	public int[] OsanaHeights;
 }

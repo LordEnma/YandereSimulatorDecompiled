@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Drag and Drop Container")]
 public class UIDragDropContainer : MonoBehaviour
 {
-	// Token: 0x06000167 RID: 359 RVA: 0x00015413 File Offset: 0x00013613
+	// Token: 0x06000167 RID: 359 RVA: 0x0001540B File Offset: 0x0001360B
 	protected virtual void Start()
 	{
 		if (this.reparentTarget == null)
@@ -14,6 +14,6 @@ public class UIDragDropContainer : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400031A RID: 794
+	// Token: 0x0400031B RID: 795
 	public Transform reparentTarget;
 }

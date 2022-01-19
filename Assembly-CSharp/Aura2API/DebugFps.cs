@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Aura2API
 {
-	// Token: 0x020005B5 RID: 1461
+	// Token: 0x020005B6 RID: 1462
 	public class DebugFps : MonoBehaviour
 	{
-		// Token: 0x060024CA RID: 9418 RVA: 0x001FA180 File Offset: 0x001F8380
+		// Token: 0x060024CC RID: 9420 RVA: 0x001FAE50 File Offset: 0x001F9050
 		private void Update()
 		{
 			if (Time.time - this._timestamp > this.interval)
@@ -21,7 +21,7 @@ namespace Aura2API
 			this._accumulationValue += this._rawFps;
 		}
 
-		// Token: 0x060024CB RID: 9419 RVA: 0x001FA204 File Offset: 0x001F8404
+		// Token: 0x060024CD RID: 9421 RVA: 0x001FAED4 File Offset: 0x001F90D4
 		private void OnGUI()
 		{
 			GUI.color = Color.white;
@@ -36,22 +36,22 @@ namespace Aura2API
 			}));
 		}
 
-		// Token: 0x04004C78 RID: 19576
+		// Token: 0x04004C7F RID: 19583
 		public float interval = 1f;
 
-		// Token: 0x04004C79 RID: 19577
+		// Token: 0x04004C80 RID: 19584
 		private float _accumulationValue;
 
-		// Token: 0x04004C7A RID: 19578
+		// Token: 0x04004C81 RID: 19585
 		private int _framesCount;
 
-		// Token: 0x04004C7B RID: 19579
+		// Token: 0x04004C82 RID: 19586
 		private float _timestamp;
 
-		// Token: 0x04004C7C RID: 19580
+		// Token: 0x04004C83 RID: 19587
 		private float _rawFps;
 
-		// Token: 0x04004C7D RID: 19581
+		// Token: 0x04004C84 RID: 19588
 		private float _meanFps;
 	}
 }

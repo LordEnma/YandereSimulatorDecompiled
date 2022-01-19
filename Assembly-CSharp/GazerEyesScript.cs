@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002DA RID: 730
 public class GazerEyesScript : MonoBehaviour
 {
-	// Token: 0x060014CC RID: 5324 RVA: 0x000CD3C0 File Offset: 0x000CB5C0
+	// Token: 0x060014CC RID: 5324 RVA: 0x000CD4AC File Offset: 0x000CB6AC
 	private void Start()
 	{
 		base.GetComponent<Animation>()["Eyeballs_Run"].speed = 0f;
@@ -12,7 +12,7 @@ public class GazerEyesScript : MonoBehaviour
 		base.GetComponent<Animation>()["Eyeballs_Idle"].speed = 0f;
 	}
 
-	// Token: 0x060014CD RID: 5325 RVA: 0x000CD41C File Offset: 0x000CB61C
+	// Token: 0x060014CD RID: 5325 RVA: 0x000CD508 File Offset: 0x000CB708
 	private void Update()
 	{
 		this.StudentManager.UpdateStudents(0);
@@ -83,7 +83,7 @@ public class GazerEyesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014CE RID: 5326 RVA: 0x000CD6E8 File Offset: 0x000CB8E8
+	// Token: 0x060014CE RID: 5326 RVA: 0x000CD7D4 File Offset: 0x000CB9D4
 	public void ChangeEffect()
 	{
 		this.Effect++;
@@ -100,7 +100,7 @@ public class GazerEyesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014CF RID: 5327 RVA: 0x000CD790 File Offset: 0x000CB990
+	// Token: 0x060014CF RID: 5327 RVA: 0x000CD87C File Offset: 0x000CBA7C
 	public void Attack()
 	{
 		if (!this.Shinigami)
@@ -157,7 +157,7 @@ public class GazerEyesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014D0 RID: 5328 RVA: 0x000CDA8C File Offset: 0x000CBC8C
+	// Token: 0x060014D0 RID: 5328 RVA: 0x000CDB78 File Offset: 0x000CBD78
 	public void ElectrocuteStudent(StudentScript Target)
 	{
 		if (Target.StudentID == 1)
@@ -252,51 +252,51 @@ public class GazerEyesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040020CD RID: 8397
+	// Token: 0x040020D0 RID: 8400
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040020CE RID: 8398
+	// Token: 0x040020D1 RID: 8401
 	public YandereScript Yandere;
 
-	// Token: 0x040020CF RID: 8399
+	// Token: 0x040020D2 RID: 8402
 	public GameObject FemaleBloodyScream;
 
-	// Token: 0x040020D0 RID: 8400
+	// Token: 0x040020D3 RID: 8403
 	public GameObject MaleBloodyScream;
 
-	// Token: 0x040020D1 RID: 8401
+	// Token: 0x040020D4 RID: 8404
 	public GameObject ParticleEffect;
 
-	// Token: 0x040020D2 RID: 8402
+	// Token: 0x040020D5 RID: 8405
 	public GameObject Laser;
 
-	// Token: 0x040020D3 RID: 8403
+	// Token: 0x040020D6 RID: 8406
 	public SkinnedMeshRenderer[] Eyes;
 
-	// Token: 0x040020D4 RID: 8404
+	// Token: 0x040020D7 RID: 8407
 	public float[] BlinkStrength;
 
-	// Token: 0x040020D5 RID: 8405
+	// Token: 0x040020D8 RID: 8408
 	public Texture[] EyeTextures;
 
-	// Token: 0x040020D6 RID: 8406
+	// Token: 0x040020D9 RID: 8409
 	public bool[] Blink;
 
-	// Token: 0x040020D7 RID: 8407
+	// Token: 0x040020DA RID: 8410
 	public float RandomNumber;
 
-	// Token: 0x040020D8 RID: 8408
+	// Token: 0x040020DB RID: 8411
 	public float AnimTime;
 
-	// Token: 0x040020D9 RID: 8409
+	// Token: 0x040020DC RID: 8412
 	public bool Attacking;
 
-	// Token: 0x040020DA RID: 8410
+	// Token: 0x040020DD RID: 8413
 	public int Effect;
 
-	// Token: 0x040020DB RID: 8411
+	// Token: 0x040020DE RID: 8414
 	public int ID;
 
-	// Token: 0x040020DC RID: 8412
+	// Token: 0x040020DF RID: 8415
 	public bool Shinigami;
 }

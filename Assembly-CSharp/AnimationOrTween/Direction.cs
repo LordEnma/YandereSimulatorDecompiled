@@ -2,15 +2,15 @@
 
 namespace AnimationOrTween
 {
-	// Token: 0x02000585 RID: 1413
+	// Token: 0x02000586 RID: 1414
 	[DoNotObfuscateNGUI]
 	public enum Direction
 	{
-		// Token: 0x04004B9C RID: 19356
+		// Token: 0x04004BA3 RID: 19363
 		Reverse = -1,
-		// Token: 0x04004B9D RID: 19357
+		// Token: 0x04004BA4 RID: 19364
 		Toggle,
-		// Token: 0x04004B9E RID: 19358
+		// Token: 0x04004BA5 RID: 19365
 		Forward
 	}
 }

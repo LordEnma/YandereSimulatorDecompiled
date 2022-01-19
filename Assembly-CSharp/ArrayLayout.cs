@@ -4,14 +4,14 @@
 [Serializable]
 public class ArrayLayout
 {
-	// Token: 0x04000A85 RID: 2693
+	// Token: 0x04000A86 RID: 2694
 	public ArrayLayout.rowData[] rows = new ArrayLayout.rowData[6];
 
-	// Token: 0x0200064D RID: 1613
+	// Token: 0x0200064E RID: 1614
 	[Serializable]
 	public struct rowData
 	{
-		// Token: 0x04004EAE RID: 20142
+		// Token: 0x04004EB5 RID: 20149
 		public bool[] row;
 	}
 }

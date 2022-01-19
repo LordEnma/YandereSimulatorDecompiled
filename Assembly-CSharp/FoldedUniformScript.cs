@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002CC RID: 716
 public class FoldedUniformScript : MonoBehaviour
 {
-	// Token: 0x0600149D RID: 5277 RVA: 0x000CA514 File Offset: 0x000C8714
+	// Token: 0x0600149D RID: 5277 RVA: 0x000CA600 File Offset: 0x000C8800
 	private void Start()
 	{
 		for (int i = 1; i < this.Uniforms.Length; i++)
@@ -62,7 +62,7 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600149E RID: 5278 RVA: 0x000CA708 File Offset: 0x000C8908
+	// Token: 0x0600149E RID: 5278 RVA: 0x000CA7F4 File Offset: 0x000C89F4
 	private void Update()
 	{
 		if (this.Clean)
@@ -98,7 +98,7 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600149F RID: 5279 RVA: 0x000CA898 File Offset: 0x000C8A98
+	// Token: 0x0600149F RID: 5279 RVA: 0x000CA984 File Offset: 0x000C8B84
 	public void CleanUp()
 	{
 		Debug.Log("Firing the ''CleanUp()'' function.");
@@ -113,42 +113,42 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400202D RID: 8237
+	// Token: 0x04002030 RID: 8240
 	public YandereScript Yandere;
 
-	// Token: 0x0400202E RID: 8238
+	// Token: 0x04002031 RID: 8241
 	public PromptScript Prompt;
 
-	// Token: 0x0400202F RID: 8239
+	// Token: 0x04002032 RID: 8242
 	public GameObject SteamCloud;
 
-	// Token: 0x04002030 RID: 8240
+	// Token: 0x04002033 RID: 8243
 	public bool InPosition = true;
 
-	// Token: 0x04002031 RID: 8241
+	// Token: 0x04002034 RID: 8244
 	public bool Clean;
 
-	// Token: 0x04002032 RID: 8242
+	// Token: 0x04002035 RID: 8245
 	public bool Spare;
 
-	// Token: 0x04002033 RID: 8243
+	// Token: 0x04002036 RID: 8246
 	public float Timer;
 
-	// Token: 0x04002034 RID: 8244
+	// Token: 0x04002037 RID: 8247
 	public int Type;
 
-	// Token: 0x04002035 RID: 8245
+	// Token: 0x04002038 RID: 8248
 	public GameObject[] Uniforms;
 
-	// Token: 0x04002036 RID: 8246
+	// Token: 0x04002039 RID: 8249
 	public Renderer[] MyRenderer;
 
-	// Token: 0x04002037 RID: 8247
+	// Token: 0x0400203A RID: 8250
 	public Texture CleanTexture;
 
-	// Token: 0x04002038 RID: 8248
+	// Token: 0x0400203B RID: 8251
 	public Texture EightiesTexture;
 
-	// Token: 0x04002039 RID: 8249
+	// Token: 0x0400203C RID: 8252
 	public Texture BloodyEightiesTexture;
 }

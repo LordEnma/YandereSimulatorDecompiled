@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200045C RID: 1116
+// Token: 0x0200045D RID: 1117
 public class SuckScript : MonoBehaviour
 {
-	// Token: 0x06001E57 RID: 7767 RVA: 0x001A0F54 File Offset: 0x0019F154
+	// Token: 0x06001E59 RID: 7769 RVA: 0x001A1C24 File Offset: 0x0019FE24
 	private void Update()
 	{
 		this.Strength += Time.deltaTime;
@@ -19,9 +19,9 @@ public class SuckScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003E1E RID: 15902
+	// Token: 0x04003E25 RID: 15909
 	public StudentScript Student;
 
-	// Token: 0x04003E1F RID: 15903
+	// Token: 0x04003E26 RID: 15910
 	public float Strength;
 }

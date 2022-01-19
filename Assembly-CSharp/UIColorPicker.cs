@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(UITexture))]
 public class UIColorPicker : MonoBehaviour
 {
-	// Token: 0x060006FD RID: 1789 RVA: 0x0003CB18 File Offset: 0x0003AD18
+	// Token: 0x060006FD RID: 1789 RVA: 0x0003CB10 File Offset: 0x0003AD10
 	private void Start()
 	{
 		this.mTrans = base.transform;
@@ -34,14 +34,14 @@ public class UIColorPicker : MonoBehaviour
 		this.Select(this.value);
 	}
 
-	// Token: 0x060006FE RID: 1790 RVA: 0x0003CC4F File Offset: 0x0003AE4F
+	// Token: 0x060006FE RID: 1790 RVA: 0x0003CC47 File Offset: 0x0003AE47
 	private void OnDestroy()
 	{
 		UnityEngine.Object.Destroy(this.mTex);
 		this.mTex = null;
 	}
 
-	// Token: 0x060006FF RID: 1791 RVA: 0x0003CC63 File Offset: 0x0003AE63
+	// Token: 0x060006FF RID: 1791 RVA: 0x0003CC5B File Offset: 0x0003AE5B
 	private void OnPress(bool pressed)
 	{
 		if (base.enabled && pressed && UICamera.currentScheme != UICamera.ControlScheme.Controller)
@@ -50,7 +50,7 @@ public class UIColorPicker : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000700 RID: 1792 RVA: 0x0003CC7D File Offset: 0x0003AE7D
+	// Token: 0x06000700 RID: 1792 RVA: 0x0003CC75 File Offset: 0x0003AE75
 	private void OnDrag(Vector2 delta)
 	{
 		if (base.enabled)
@@ -59,7 +59,7 @@ public class UIColorPicker : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000701 RID: 1793 RVA: 0x0003CC90 File Offset: 0x0003AE90
+	// Token: 0x06000701 RID: 1793 RVA: 0x0003CC88 File Offset: 0x0003AE88
 	private void OnPan(Vector2 delta)
 	{
 		if (base.enabled)
@@ -70,7 +70,7 @@ public class UIColorPicker : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000702 RID: 1794 RVA: 0x0003CCF8 File Offset: 0x0003AEF8
+	// Token: 0x06000702 RID: 1794 RVA: 0x0003CCF0 File Offset: 0x0003AEF0
 	private void Sample()
 	{
 		Vector3 vector = this.mTrans.InverseTransformPoint(UICamera.lastWorldPosition);
@@ -90,7 +90,7 @@ public class UIColorPicker : MonoBehaviour
 		UIColorPicker.current = null;
 	}
 
-	// Token: 0x06000703 RID: 1795 RVA: 0x0003CE6C File Offset: 0x0003B06C
+	// Token: 0x06000703 RID: 1795 RVA: 0x0003CE64 File Offset: 0x0003B064
 	public void Select(Vector2 v)
 	{
 		v.x = Mathf.Clamp01(v.x);
@@ -110,7 +110,7 @@ public class UIColorPicker : MonoBehaviour
 		UIColorPicker.current = null;
 	}
 
-	// Token: 0x06000704 RID: 1796 RVA: 0x0003CF90 File Offset: 0x0003B190
+	// Token: 0x06000704 RID: 1796 RVA: 0x0003CF88 File Offset: 0x0003B188
 	public Vector2 Select(Color c)
 	{
 		if (this.mUITex == null)
@@ -155,7 +155,7 @@ public class UIColorPicker : MonoBehaviour
 		return this.mPos;
 	}
 
-	// Token: 0x06000705 RID: 1797 RVA: 0x0003D17C File Offset: 0x0003B37C
+	// Token: 0x06000705 RID: 1797 RVA: 0x0003D174 File Offset: 0x0003B374
 	public static Color Sample(float x, float y)
 	{
 		if (UIColorPicker.mRed == null)
@@ -209,52 +209,52 @@ public class UIColorPicker : MonoBehaviour
 		return new Color(vector.x, vector.y, vector.z, 1f);
 	}
 
-	// Token: 0x0400069B RID: 1691
+	// Token: 0x0400069C RID: 1692
 	public static UIColorPicker current;
 
-	// Token: 0x0400069C RID: 1692
+	// Token: 0x0400069D RID: 1693
 	public Color value = Color.white;
 
-	// Token: 0x0400069D RID: 1693
+	// Token: 0x0400069E RID: 1694
 	public UIWidget selectionWidget;
 
-	// Token: 0x0400069E RID: 1694
-	public List<EventDelegate> onChange = new List<EventDelegate>();
-
 	// Token: 0x0400069F RID: 1695
-	[NonSerialized]
-	private Transform mTrans;
+	public List<EventDelegate> onChange = new List<EventDelegate>();
 
 	// Token: 0x040006A0 RID: 1696
 	[NonSerialized]
-	private UITexture mUITex;
+	private Transform mTrans;
 
 	// Token: 0x040006A1 RID: 1697
 	[NonSerialized]
-	private Texture2D mTex;
+	private UITexture mUITex;
 
 	// Token: 0x040006A2 RID: 1698
 	[NonSerialized]
-	private UICamera mCam;
+	private Texture2D mTex;
 
 	// Token: 0x040006A3 RID: 1699
 	[NonSerialized]
-	private Vector2 mPos;
+	private UICamera mCam;
 
 	// Token: 0x040006A4 RID: 1700
 	[NonSerialized]
-	private int mWidth;
+	private Vector2 mPos;
 
 	// Token: 0x040006A5 RID: 1701
 	[NonSerialized]
-	private int mHeight;
+	private int mWidth;
 
 	// Token: 0x040006A6 RID: 1702
-	private static AnimationCurve mRed;
+	[NonSerialized]
+	private int mHeight;
 
 	// Token: 0x040006A7 RID: 1703
-	private static AnimationCurve mGreen;
+	private static AnimationCurve mRed;
 
 	// Token: 0x040006A8 RID: 1704
+	private static AnimationCurve mGreen;
+
+	// Token: 0x040006A9 RID: 1705
 	private static AnimationCurve mBlue;
 }

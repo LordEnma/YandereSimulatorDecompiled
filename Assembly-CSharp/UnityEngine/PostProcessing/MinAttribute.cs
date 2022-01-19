@@ -2,16 +2,16 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200054D RID: 1357
+	// Token: 0x0200054E RID: 1358
 	public sealed class MinAttribute : PropertyAttribute
 	{
-		// Token: 0x06002296 RID: 8854 RVA: 0x001EDC70 File Offset: 0x001EBE70
+		// Token: 0x06002298 RID: 8856 RVA: 0x001EE940 File Offset: 0x001ECB40
 		public MinAttribute(float min)
 		{
 			this.min = min;
 		}
 
-		// Token: 0x04004AA2 RID: 19106
+		// Token: 0x04004AA9 RID: 19113
 		public readonly float min;
 	}
 }

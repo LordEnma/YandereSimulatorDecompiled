@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200003C RID: 60
 public class Tutorial5 : MonoBehaviour
 {
-	// Token: 0x060000F2 RID: 242 RVA: 0x00012DA8 File Offset: 0x00010FA8
+	// Token: 0x060000F2 RID: 242 RVA: 0x00012DA0 File Offset: 0x00010FA0
 	public void SetDurationToCurrentProgress()
 	{
 		UITweener[] componentsInChildren = base.GetComponentsInChildren<UITweener>();

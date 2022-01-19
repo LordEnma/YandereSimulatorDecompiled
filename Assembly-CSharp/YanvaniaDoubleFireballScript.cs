@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004D5 RID: 1237
+// Token: 0x020004D6 RID: 1238
 public class YanvaniaDoubleFireballScript : MonoBehaviour
 {
-	// Token: 0x06002074 RID: 8308 RVA: 0x001DB16C File Offset: 0x001D936C
+	// Token: 0x06002076 RID: 8310 RVA: 0x001DBE3C File Offset: 0x001DA03C
 	private void Start()
 	{
 		UnityEngine.Object.Instantiate<GameObject>(this.LightningEffect, new Vector3(base.transform.position.x, 8f, 0f), Quaternion.identity);
 		this.Direction = ((this.Dracula.position.x > base.transform.position.x) ? -1 : 1);
 	}
 
-	// Token: 0x06002075 RID: 8309 RVA: 0x001DB1D8 File Offset: 0x001D93D8
+	// Token: 0x06002077 RID: 8311 RVA: 0x001DBEA8 File Offset: 0x001DA0A8
 	private void Update()
 	{
 		if (this.Timer > 1f && !this.SpawnedFirst)
@@ -63,39 +63,39 @@ public class YanvaniaDoubleFireballScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040046F9 RID: 18169
+	// Token: 0x04004700 RID: 18176
 	public GameObject Lavaball;
 
-	// Token: 0x040046FA RID: 18170
+	// Token: 0x04004701 RID: 18177
 	public GameObject FirstLavaball;
 
-	// Token: 0x040046FB RID: 18171
+	// Token: 0x04004702 RID: 18178
 	public GameObject SecondLavaball;
 
-	// Token: 0x040046FC RID: 18172
+	// Token: 0x04004703 RID: 18179
 	public GameObject LightningEffect;
 
-	// Token: 0x040046FD RID: 18173
+	// Token: 0x04004704 RID: 18180
 	public Transform Dracula;
 
-	// Token: 0x040046FE RID: 18174
+	// Token: 0x04004705 RID: 18181
 	public bool SpawnedFirst;
 
-	// Token: 0x040046FF RID: 18175
+	// Token: 0x04004706 RID: 18182
 	public bool SpawnedSecond;
 
-	// Token: 0x04004700 RID: 18176
+	// Token: 0x04004707 RID: 18183
 	public float FirstPosition;
 
-	// Token: 0x04004701 RID: 18177
+	// Token: 0x04004708 RID: 18184
 	public float SecondPosition;
 
-	// Token: 0x04004702 RID: 18178
+	// Token: 0x04004709 RID: 18185
 	public int Direction;
 
-	// Token: 0x04004703 RID: 18179
+	// Token: 0x0400470A RID: 18186
 	public float Timer;
 
-	// Token: 0x04004704 RID: 18180
+	// Token: 0x0400470B RID: 18187
 	public float Speed;
 }

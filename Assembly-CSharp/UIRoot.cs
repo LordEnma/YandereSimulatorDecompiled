@@ -8,7 +8,7 @@ using UnityEngine;
 public class UIRoot : MonoBehaviour
 {
 	// Token: 0x170001A7 RID: 423
-	// (get) Token: 0x06000841 RID: 2113 RVA: 0x00044C69 File Offset: 0x00042E69
+	// (get) Token: 0x06000841 RID: 2113 RVA: 0x00044C61 File Offset: 0x00042E61
 	public UIRoot.Constraint constraint
 	{
 		get
@@ -33,7 +33,7 @@ public class UIRoot : MonoBehaviour
 	}
 
 	// Token: 0x170001A8 RID: 424
-	// (get) Token: 0x06000842 RID: 2114 RVA: 0x00044C8C File Offset: 0x00042E8C
+	// (get) Token: 0x06000842 RID: 2114 RVA: 0x00044C84 File Offset: 0x00042E84
 	public UIRoot.Scaling activeScaling
 	{
 		get
@@ -48,7 +48,7 @@ public class UIRoot : MonoBehaviour
 	}
 
 	// Token: 0x170001A9 RID: 425
-	// (get) Token: 0x06000843 RID: 2115 RVA: 0x00044CA8 File Offset: 0x00042EA8
+	// (get) Token: 0x06000843 RID: 2115 RVA: 0x00044CA0 File Offset: 0x00042EA0
 	public int activeHeight
 	{
 		get
@@ -108,7 +108,7 @@ public class UIRoot : MonoBehaviour
 	}
 
 	// Token: 0x170001AA RID: 426
-	// (get) Token: 0x06000844 RID: 2116 RVA: 0x00044E0C File Offset: 0x0004300C
+	// (get) Token: 0x06000844 RID: 2116 RVA: 0x00044E04 File Offset: 0x00043004
 	public float pixelSizeAdjustment
 	{
 		get
@@ -122,7 +122,7 @@ public class UIRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000845 RID: 2117 RVA: 0x00044E3C File Offset: 0x0004303C
+	// Token: 0x06000845 RID: 2117 RVA: 0x00044E34 File Offset: 0x00043034
 	public static float GetPixelSizeAdjustment(GameObject go)
 	{
 		UIRoot uiroot = NGUITools.FindInParents<UIRoot>(go);
@@ -133,7 +133,7 @@ public class UIRoot : MonoBehaviour
 		return uiroot.pixelSizeAdjustment;
 	}
 
-	// Token: 0x06000846 RID: 2118 RVA: 0x00044E68 File Offset: 0x00043068
+	// Token: 0x06000846 RID: 2118 RVA: 0x00044E60 File Offset: 0x00043060
 	public float GetPixelSizeAdjustment(int height)
 	{
 		height = Mathf.Max(2, height);
@@ -152,25 +152,25 @@ public class UIRoot : MonoBehaviour
 		return 1f;
 	}
 
-	// Token: 0x06000847 RID: 2119 RVA: 0x00044EBF File Offset: 0x000430BF
+	// Token: 0x06000847 RID: 2119 RVA: 0x00044EB7 File Offset: 0x000430B7
 	protected virtual void Awake()
 	{
 		this.mTrans = base.transform;
 	}
 
-	// Token: 0x06000848 RID: 2120 RVA: 0x00044ECD File Offset: 0x000430CD
+	// Token: 0x06000848 RID: 2120 RVA: 0x00044EC5 File Offset: 0x000430C5
 	protected virtual void OnEnable()
 	{
 		UIRoot.list.Add(this);
 	}
 
-	// Token: 0x06000849 RID: 2121 RVA: 0x00044EDA File Offset: 0x000430DA
+	// Token: 0x06000849 RID: 2121 RVA: 0x00044ED2 File Offset: 0x000430D2
 	protected virtual void OnDisable()
 	{
 		UIRoot.list.Remove(this);
 	}
 
-	// Token: 0x0600084A RID: 2122 RVA: 0x00044EE8 File Offset: 0x000430E8
+	// Token: 0x0600084A RID: 2122 RVA: 0x00044EE0 File Offset: 0x000430E0
 	protected virtual void Start()
 	{
 		UIOrthoCamera componentInChildren = base.GetComponentInChildren<UIOrthoCamera>();
@@ -191,13 +191,13 @@ public class UIRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600084B RID: 2123 RVA: 0x00044F3F File Offset: 0x0004313F
+	// Token: 0x0600084B RID: 2123 RVA: 0x00044F37 File Offset: 0x00043137
 	private void Update()
 	{
 		this.UpdateScale(true);
 	}
 
-	// Token: 0x0600084C RID: 2124 RVA: 0x00044F48 File Offset: 0x00043148
+	// Token: 0x0600084C RID: 2124 RVA: 0x00044F40 File Offset: 0x00043140
 	public void UpdateScale(bool updateAnchors = true)
 	{
 		if (this.mTrans != null)
@@ -219,7 +219,7 @@ public class UIRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600084D RID: 2125 RVA: 0x00044FE8 File Offset: 0x000431E8
+	// Token: 0x0600084D RID: 2125 RVA: 0x00044FE0 File Offset: 0x000431E0
 	public static void Broadcast(string funcName)
 	{
 		int i = 0;
@@ -235,7 +235,7 @@ public class UIRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600084E RID: 2126 RVA: 0x0004502C File Offset: 0x0004322C
+	// Token: 0x0600084E RID: 2126 RVA: 0x00045024 File Offset: 0x00043224
 	public static void Broadcast(string funcName, object param)
 	{
 		if (param == null)
@@ -256,62 +256,62 @@ public class UIRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000745 RID: 1861
+	// Token: 0x04000746 RID: 1862
 	public static List<UIRoot> list = new List<UIRoot>();
 
-	// Token: 0x04000746 RID: 1862
+	// Token: 0x04000747 RID: 1863
 	public UIRoot.Scaling scalingStyle;
 
-	// Token: 0x04000747 RID: 1863
+	// Token: 0x04000748 RID: 1864
 	public int manualWidth = 1280;
 
-	// Token: 0x04000748 RID: 1864
+	// Token: 0x04000749 RID: 1865
 	public int manualHeight = 720;
 
-	// Token: 0x04000749 RID: 1865
+	// Token: 0x0400074A RID: 1866
 	public int minimumHeight = 320;
 
-	// Token: 0x0400074A RID: 1866
+	// Token: 0x0400074B RID: 1867
 	public int maximumHeight = 1536;
 
-	// Token: 0x0400074B RID: 1867
+	// Token: 0x0400074C RID: 1868
 	public bool fitWidth;
 
-	// Token: 0x0400074C RID: 1868
+	// Token: 0x0400074D RID: 1869
 	public bool fitHeight = true;
 
-	// Token: 0x0400074D RID: 1869
+	// Token: 0x0400074E RID: 1870
 	public bool adjustByDPI;
 
-	// Token: 0x0400074E RID: 1870
+	// Token: 0x0400074F RID: 1871
 	public bool shrinkPortraitUI;
 
-	// Token: 0x0400074F RID: 1871
+	// Token: 0x04000750 RID: 1872
 	private Transform mTrans;
-
-	// Token: 0x0200063D RID: 1597
-	[DoNotObfuscateNGUI]
-	public enum Scaling
-	{
-		// Token: 0x04004E74 RID: 20084
-		Flexible,
-		// Token: 0x04004E75 RID: 20085
-		Constrained,
-		// Token: 0x04004E76 RID: 20086
-		ConstrainedOnMobiles
-	}
 
 	// Token: 0x0200063E RID: 1598
 	[DoNotObfuscateNGUI]
+	public enum Scaling
+	{
+		// Token: 0x04004E7B RID: 20091
+		Flexible,
+		// Token: 0x04004E7C RID: 20092
+		Constrained,
+		// Token: 0x04004E7D RID: 20093
+		ConstrainedOnMobiles
+	}
+
+	// Token: 0x0200063F RID: 1599
+	[DoNotObfuscateNGUI]
 	public enum Constraint
 	{
-		// Token: 0x04004E78 RID: 20088
+		// Token: 0x04004E7F RID: 20095
 		Fit,
-		// Token: 0x04004E79 RID: 20089
+		// Token: 0x04004E80 RID: 20096
 		Fill,
-		// Token: 0x04004E7A RID: 20090
+		// Token: 0x04004E81 RID: 20097
 		FitWidth,
-		// Token: 0x04004E7B RID: 20091
+		// Token: 0x04004E82 RID: 20098
 		FitHeight
 	}
 }

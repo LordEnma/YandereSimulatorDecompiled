@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200037A RID: 890
 public class NoteLockerScript : MonoBehaviour
 {
-	// Token: 0x060019F8 RID: 6648 RVA: 0x0010F874 File Offset: 0x0010DA74
+	// Token: 0x060019F8 RID: 6648 RVA: 0x0010F9DC File Offset: 0x0010DBDC
 	private void Update()
 	{
 		if (this.Student != null)
@@ -191,7 +191,7 @@ public class NoteLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019F9 RID: 6649 RVA: 0x00110148 File Offset: 0x0010E348
+	// Token: 0x060019F9 RID: 6649 RVA: 0x001102B0 File Offset: 0x0010E4B0
 	private void Finish()
 	{
 		if (this.Success)
@@ -239,88 +239,88 @@ public class NoteLockerScript : MonoBehaviour
 		this.Student.Follower != null;
 	}
 
-	// Token: 0x060019FA RID: 6650 RVA: 0x001103AC File Offset: 0x0010E5AC
+	// Token: 0x060019FA RID: 6650 RVA: 0x00110514 File Offset: 0x0010E714
 	private void DetermineSchedule()
 	{
 		this.Student.MeetSpot = this.MeetSpots.List[this.MeetID];
 		this.Student.MeetTime = this.MeetTime;
 	}
 
-	// Token: 0x04002A02 RID: 10754
+	// Token: 0x04002A05 RID: 10757
 	public FindStudentLockerScript FindStudentLocker;
 
-	// Token: 0x04002A03 RID: 10755
+	// Token: 0x04002A06 RID: 10758
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002A04 RID: 10756
+	// Token: 0x04002A07 RID: 10759
 	public NoteWindowScript NoteWindow;
 
-	// Token: 0x04002A05 RID: 10757
+	// Token: 0x04002A08 RID: 10760
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002A06 RID: 10758
+	// Token: 0x04002A09 RID: 10761
 	public StudentScript Student;
 
-	// Token: 0x04002A07 RID: 10759
+	// Token: 0x04002A0A RID: 10762
 	public YandereScript Yandere;
 
-	// Token: 0x04002A08 RID: 10760
+	// Token: 0x04002A0B RID: 10763
 	public ListScript MeetSpots;
 
-	// Token: 0x04002A09 RID: 10761
+	// Token: 0x04002A0C RID: 10764
 	public PromptScript Prompt;
 
-	// Token: 0x04002A0A RID: 10762
+	// Token: 0x04002A0D RID: 10765
 	public GameObject NewBall;
 
-	// Token: 0x04002A0B RID: 10763
+	// Token: 0x04002A0E RID: 10766
 	public GameObject NewNote;
 
-	// Token: 0x04002A0C RID: 10764
+	// Token: 0x04002A0F RID: 10767
 	public GameObject Locker;
 
-	// Token: 0x04002A0D RID: 10765
+	// Token: 0x04002A10 RID: 10768
 	public GameObject Ball;
 
-	// Token: 0x04002A0E RID: 10766
+	// Token: 0x04002A11 RID: 10769
 	public GameObject Note;
 
-	// Token: 0x04002A0F RID: 10767
+	// Token: 0x04002A12 RID: 10770
 	public AudioClip NoteSuccess;
 
-	// Token: 0x04002A10 RID: 10768
+	// Token: 0x04002A13 RID: 10771
 	public AudioClip NoteFail;
 
-	// Token: 0x04002A11 RID: 10769
+	// Token: 0x04002A14 RID: 10772
 	public AudioClip NoteFind;
 
-	// Token: 0x04002A12 RID: 10770
+	// Token: 0x04002A15 RID: 10773
 	public bool CheckingNote;
 
-	// Token: 0x04002A13 RID: 10771
+	// Token: 0x04002A16 RID: 10774
 	public bool CanLeaveNote = true;
 
-	// Token: 0x04002A14 RID: 10772
+	// Token: 0x04002A17 RID: 10775
 	public bool SpawnedNote;
 
-	// Token: 0x04002A15 RID: 10773
+	// Token: 0x04002A18 RID: 10776
 	public bool NoteLeft;
 
-	// Token: 0x04002A16 RID: 10774
+	// Token: 0x04002A19 RID: 10777
 	public bool Success;
 
-	// Token: 0x04002A17 RID: 10775
+	// Token: 0x04002A1A RID: 10778
 	public float MeetTime;
 
-	// Token: 0x04002A18 RID: 10776
+	// Token: 0x04002A1B RID: 10779
 	public float Timer;
 
-	// Token: 0x04002A19 RID: 10777
+	// Token: 0x04002A1C RID: 10780
 	public int LockerOwner;
 
-	// Token: 0x04002A1A RID: 10778
+	// Token: 0x04002A1D RID: 10781
 	public int MeetID;
 
-	// Token: 0x04002A1B RID: 10779
+	// Token: 0x04002A1E RID: 10782
 	public int Phase = 1;
 }

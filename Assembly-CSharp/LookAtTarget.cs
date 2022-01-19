@@ -5,13 +5,13 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Look At Target")]
 public class LookAtTarget : MonoBehaviour
 {
-	// Token: 0x060000DB RID: 219 RVA: 0x000126E4 File Offset: 0x000108E4
+	// Token: 0x060000DB RID: 219 RVA: 0x000126DC File Offset: 0x000108DC
 	private void Start()
 	{
 		this.mTrans = base.transform;
 	}
 
-	// Token: 0x060000DC RID: 220 RVA: 0x000126F4 File Offset: 0x000108F4
+	// Token: 0x060000DC RID: 220 RVA: 0x000126EC File Offset: 0x000108EC
 	private void LateUpdate()
 	{
 		if (this.target != null)
@@ -25,15 +25,15 @@ public class LookAtTarget : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400029F RID: 671
+	// Token: 0x040002A0 RID: 672
 	public int level;
 
-	// Token: 0x040002A0 RID: 672
+	// Token: 0x040002A1 RID: 673
 	public Transform target;
 
-	// Token: 0x040002A1 RID: 673
+	// Token: 0x040002A2 RID: 674
 	public float speed = 8f;
 
-	// Token: 0x040002A2 RID: 674
+	// Token: 0x040002A3 RID: 675
 	private Transform mTrans;
 }

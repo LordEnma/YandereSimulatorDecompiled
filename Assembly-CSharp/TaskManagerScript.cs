@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000467 RID: 1127
+// Token: 0x02000468 RID: 1128
 public class TaskManagerScript : MonoBehaviour
 {
-	// Token: 0x06001E80 RID: 7808 RVA: 0x001AB6FC File Offset: 0x001A98FC
+	// Token: 0x06001E82 RID: 7810 RVA: 0x001AC3CC File Offset: 0x001AA5CC
 	public void Start()
 	{
 		for (int i = 1; i < 101; i++)
@@ -30,7 +30,7 @@ public class TaskManagerScript : MonoBehaviour
 		this.Initialized = true;
 	}
 
-	// Token: 0x06001E81 RID: 7809 RVA: 0x001AB790 File Offset: 0x001A9990
+	// Token: 0x06001E83 RID: 7811 RVA: 0x001AC460 File Offset: 0x001AA660
 	public void CheckTaskPickups()
 	{
 		if (!this.StudentManager.Eighties)
@@ -68,7 +68,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E82 RID: 7810 RVA: 0x001AB954 File Offset: 0x001A9B54
+	// Token: 0x06001E84 RID: 7812 RVA: 0x001AC624 File Offset: 0x001AA824
 	public void UpdateTaskStatus()
 	{
 		if (!this.StudentManager.Eighties)
@@ -232,7 +232,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E83 RID: 7811 RVA: 0x001ABFCC File Offset: 0x001AA1CC
+	// Token: 0x06001E85 RID: 7813 RVA: 0x001ACC9C File Offset: 0x001AAE9C
 	public void SaveTaskStatuses()
 	{
 		for (int i = 1; i < 101; i++)
@@ -245,24 +245,24 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003EF7 RID: 16119
+	// Token: 0x04003EFE RID: 16126
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003EF8 RID: 16120
+	// Token: 0x04003EFF RID: 16127
 	public YandereScript Yandere;
 
-	// Token: 0x04003EF9 RID: 16121
+	// Token: 0x04003F00 RID: 16128
 	public GameObject[] TaskObjects;
 
-	// Token: 0x04003EFA RID: 16122
+	// Token: 0x04003F01 RID: 16129
 	public PromptScript[] Prompts;
 
-	// Token: 0x04003EFB RID: 16123
+	// Token: 0x04003F02 RID: 16130
 	public bool[] GirlsQuestioned;
 
-	// Token: 0x04003EFC RID: 16124
+	// Token: 0x04003F03 RID: 16131
 	public int[] TaskStatus;
 
-	// Token: 0x04003EFD RID: 16125
+	// Token: 0x04003F04 RID: 16132
 	public bool Initialized;
 }

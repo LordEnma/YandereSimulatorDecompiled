@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Equip Items")]
 public class EquipItems : MonoBehaviour
 {
-	// Token: 0x06000081 RID: 129 RVA: 0x00010DDC File Offset: 0x0000EFDC
+	// Token: 0x06000081 RID: 129 RVA: 0x00010DD4 File Offset: 0x0000EFD4
 	private void Start()
 	{
 		if (this.itemIDs != null && this.itemIDs.Length != 0)
@@ -40,6 +40,6 @@ public class EquipItems : MonoBehaviour
 		UnityEngine.Object.Destroy(this);
 	}
 
-	// Token: 0x04000252 RID: 594
+	// Token: 0x04000253 RID: 595
 	public int[] itemIDs;
 }

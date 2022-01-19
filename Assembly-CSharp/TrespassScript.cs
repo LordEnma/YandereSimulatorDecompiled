@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000483 RID: 1155
+// Token: 0x02000484 RID: 1156
 public class TrespassScript : MonoBehaviour
 {
-	// Token: 0x06001EE8 RID: 7912 RVA: 0x001B1FF0 File Offset: 0x001B01F0
+	// Token: 0x06001EEA RID: 7914 RVA: 0x001B2CC0 File Offset: 0x001B0EC0
 	private void OnTriggerEnter(Collider other)
 	{
 		if (base.enabled && other.gameObject.layer == 13)
@@ -22,7 +22,7 @@ public class TrespassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EE9 RID: 7913 RVA: 0x001B206C File Offset: 0x001B026C
+	// Token: 0x06001EEB RID: 7915 RVA: 0x001B2D3C File Offset: 0x001B0F3C
 	private void OnTriggerExit(Collider other)
 	{
 		if (this.Yandere != null && other.gameObject == this.YandereObject)
@@ -36,21 +36,21 @@ public class TrespassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004040 RID: 16448
+	// Token: 0x04004047 RID: 16455
 	public GameObject YandereObject;
 
-	// Token: 0x04004041 RID: 16449
+	// Token: 0x04004048 RID: 16456
 	public YandereScript Yandere;
 
-	// Token: 0x04004042 RID: 16450
+	// Token: 0x04004049 RID: 16457
 	public PoliceScript Police;
 
-	// Token: 0x04004043 RID: 16451
+	// Token: 0x0400404A RID: 16458
 	public bool HideNotification;
 
-	// Token: 0x04004044 RID: 16452
+	// Token: 0x0400404B RID: 16459
 	public bool OffLimits;
 
-	// Token: 0x04004045 RID: 16453
+	// Token: 0x0400404C RID: 16460
 	public bool FacultyRoom;
 }

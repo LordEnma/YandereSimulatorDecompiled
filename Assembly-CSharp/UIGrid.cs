@@ -7,7 +7,7 @@ using UnityEngine;
 public class UIGrid : UIWidgetContainer
 {
 	// Token: 0x17000017 RID: 23
-	// (set) Token: 0x060001C0 RID: 448 RVA: 0x00017596 File Offset: 0x00015796
+	// (set) Token: 0x060001C0 RID: 448 RVA: 0x0001758E File Offset: 0x0001578E
 	public bool repositionNow
 	{
 		set
@@ -20,7 +20,7 @@ public class UIGrid : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x060001C1 RID: 449 RVA: 0x000175AC File Offset: 0x000157AC
+	// Token: 0x060001C1 RID: 449 RVA: 0x000175A4 File Offset: 0x000157A4
 	public List<Transform> GetChildList()
 	{
 		Transform transform = base.transform;
@@ -59,7 +59,7 @@ public class UIGrid : UIWidgetContainer
 		return list;
 	}
 
-	// Token: 0x060001C2 RID: 450 RVA: 0x00017698 File Offset: 0x00015898
+	// Token: 0x060001C2 RID: 450 RVA: 0x00017690 File Offset: 0x00015890
 	public Transform GetChild(int index)
 	{
 		List<Transform> childList = this.GetChildList();
@@ -70,13 +70,13 @@ public class UIGrid : UIWidgetContainer
 		return childList[index];
 	}
 
-	// Token: 0x060001C3 RID: 451 RVA: 0x000176BE File Offset: 0x000158BE
+	// Token: 0x060001C3 RID: 451 RVA: 0x000176B6 File Offset: 0x000158B6
 	public int GetIndex(Transform trans)
 	{
 		return this.GetChildList().IndexOf(trans);
 	}
 
-	// Token: 0x060001C4 RID: 452 RVA: 0x000176CC File Offset: 0x000158CC
+	// Token: 0x060001C4 RID: 452 RVA: 0x000176C4 File Offset: 0x000158C4
 	[Obsolete("Use gameObject.AddChild or transform.parent = gridTransform")]
 	public void AddChild(Transform trans)
 	{
@@ -87,7 +87,7 @@ public class UIGrid : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x060001C5 RID: 453 RVA: 0x000176EF File Offset: 0x000158EF
+	// Token: 0x060001C5 RID: 453 RVA: 0x000176E7 File Offset: 0x000158E7
 	[Obsolete("Use gameObject.AddChild or transform.parent = gridTransform")]
 	public void AddChild(Transform trans, bool sort)
 	{
@@ -98,7 +98,7 @@ public class UIGrid : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x060001C6 RID: 454 RVA: 0x00017714 File Offset: 0x00015914
+	// Token: 0x060001C6 RID: 454 RVA: 0x0001770C File Offset: 0x0001590C
 	public bool RemoveChild(Transform t)
 	{
 		List<Transform> childList = this.GetChildList();
@@ -110,14 +110,14 @@ public class UIGrid : UIWidgetContainer
 		return false;
 	}
 
-	// Token: 0x060001C7 RID: 455 RVA: 0x0001773B File Offset: 0x0001593B
+	// Token: 0x060001C7 RID: 455 RVA: 0x00017733 File Offset: 0x00015933
 	protected virtual void Init()
 	{
 		this.mInitDone = true;
 		this.mPanel = NGUITools.FindInParents<UIPanel>(base.gameObject);
 	}
 
-	// Token: 0x060001C8 RID: 456 RVA: 0x00017758 File Offset: 0x00015958
+	// Token: 0x060001C8 RID: 456 RVA: 0x00017750 File Offset: 0x00015950
 	protected virtual void Start()
 	{
 		if (!this.mInitDone)
@@ -131,14 +131,14 @@ public class UIGrid : UIWidgetContainer
 		base.enabled = false;
 	}
 
-	// Token: 0x060001C9 RID: 457 RVA: 0x00017795 File Offset: 0x00015995
+	// Token: 0x060001C9 RID: 457 RVA: 0x0001778D File Offset: 0x0001598D
 	protected virtual void Update()
 	{
 		this.Reposition();
 		base.enabled = false;
 	}
 
-	// Token: 0x060001CA RID: 458 RVA: 0x000177A4 File Offset: 0x000159A4
+	// Token: 0x060001CA RID: 458 RVA: 0x0001779C File Offset: 0x0001599C
 	private void OnValidate()
 	{
 		if (!Application.isPlaying && NGUITools.GetActive(this))
@@ -147,30 +147,30 @@ public class UIGrid : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x060001CB RID: 459 RVA: 0x000177BB File Offset: 0x000159BB
+	// Token: 0x060001CB RID: 459 RVA: 0x000177B3 File Offset: 0x000159B3
 	public static int SortByName(Transform a, Transform b)
 	{
 		return string.Compare(a.name, b.name);
 	}
 
-	// Token: 0x060001CC RID: 460 RVA: 0x000177D0 File Offset: 0x000159D0
+	// Token: 0x060001CC RID: 460 RVA: 0x000177C8 File Offset: 0x000159C8
 	public static int SortHorizontal(Transform a, Transform b)
 	{
 		return a.localPosition.x.CompareTo(b.localPosition.x);
 	}
 
-	// Token: 0x060001CD RID: 461 RVA: 0x000177FC File Offset: 0x000159FC
+	// Token: 0x060001CD RID: 461 RVA: 0x000177F4 File Offset: 0x000159F4
 	public static int SortVertical(Transform a, Transform b)
 	{
 		return b.localPosition.y.CompareTo(a.localPosition.y);
 	}
 
-	// Token: 0x060001CE RID: 462 RVA: 0x00017827 File Offset: 0x00015A27
+	// Token: 0x060001CE RID: 462 RVA: 0x0001781F File Offset: 0x00015A1F
 	protected virtual void Sort(List<Transform> list)
 	{
 	}
 
-	// Token: 0x060001CF RID: 463 RVA: 0x0001782C File Offset: 0x00015A2C
+	// Token: 0x060001CF RID: 463 RVA: 0x00017824 File Offset: 0x00015A24
 	[ContextMenu("Execute")]
 	public virtual void Reposition()
 	{
@@ -199,7 +199,7 @@ public class UIGrid : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x060001D0 RID: 464 RVA: 0x000178B4 File Offset: 0x00015AB4
+	// Token: 0x060001D0 RID: 464 RVA: 0x000178AC File Offset: 0x00015AAC
 	public void ConstrainWithinPanel()
 	{
 		if (this.mPanel != null)
@@ -213,7 +213,7 @@ public class UIGrid : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x060001D1 RID: 465 RVA: 0x00017900 File Offset: 0x00015B00
+	// Token: 0x060001D1 RID: 465 RVA: 0x000178F8 File Offset: 0x00015AF8
 	protected virtual void ResetPosition(List<Transform> list)
 	{
 		this.mReposition = false;
@@ -300,82 +300,82 @@ public class UIGrid : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x0400037C RID: 892
+	// Token: 0x0400037D RID: 893
 	public UIGrid.Arrangement arrangement;
 
-	// Token: 0x0400037D RID: 893
+	// Token: 0x0400037E RID: 894
 	public UIGrid.Sorting sorting;
 
-	// Token: 0x0400037E RID: 894
+	// Token: 0x0400037F RID: 895
 	public UIWidget.Pivot pivot;
 
-	// Token: 0x0400037F RID: 895
+	// Token: 0x04000380 RID: 896
 	public int maxPerLine;
 
-	// Token: 0x04000380 RID: 896
+	// Token: 0x04000381 RID: 897
 	public float cellWidth = 200f;
 
-	// Token: 0x04000381 RID: 897
+	// Token: 0x04000382 RID: 898
 	public float cellHeight = 200f;
 
-	// Token: 0x04000382 RID: 898
+	// Token: 0x04000383 RID: 899
 	public bool animateSmoothly;
 
-	// Token: 0x04000383 RID: 899
+	// Token: 0x04000384 RID: 900
 	public bool hideInactive;
 
-	// Token: 0x04000384 RID: 900
+	// Token: 0x04000385 RID: 901
 	public bool keepWithinPanel;
 
-	// Token: 0x04000385 RID: 901
+	// Token: 0x04000386 RID: 902
 	public UIGrid.OnReposition onReposition;
 
-	// Token: 0x04000386 RID: 902
+	// Token: 0x04000387 RID: 903
 	public Comparison<Transform> onCustomSort;
 
-	// Token: 0x04000387 RID: 903
+	// Token: 0x04000388 RID: 904
 	[HideInInspector]
 	[SerializeField]
 	private bool sorted;
 
-	// Token: 0x04000388 RID: 904
+	// Token: 0x04000389 RID: 905
 	protected bool mReposition;
 
-	// Token: 0x04000389 RID: 905
+	// Token: 0x0400038A RID: 906
 	protected UIPanel mPanel;
 
-	// Token: 0x0400038A RID: 906
+	// Token: 0x0400038B RID: 907
 	protected bool mInitDone;
 
-	// Token: 0x020005CC RID: 1484
-	// (Invoke) Token: 0x06002505 RID: 9477
-	public delegate void OnReposition();
-
 	// Token: 0x020005CD RID: 1485
-	[DoNotObfuscateNGUI]
-	public enum Arrangement
-	{
-		// Token: 0x04004D2C RID: 19756
-		Horizontal,
-		// Token: 0x04004D2D RID: 19757
-		Vertical,
-		// Token: 0x04004D2E RID: 19758
-		CellSnap
-	}
+	// (Invoke) Token: 0x06002507 RID: 9479
+	public delegate void OnReposition();
 
 	// Token: 0x020005CE RID: 1486
 	[DoNotObfuscateNGUI]
+	public enum Arrangement
+	{
+		// Token: 0x04004D33 RID: 19763
+		Horizontal,
+		// Token: 0x04004D34 RID: 19764
+		Vertical,
+		// Token: 0x04004D35 RID: 19765
+		CellSnap
+	}
+
+	// Token: 0x020005CF RID: 1487
+	[DoNotObfuscateNGUI]
 	public enum Sorting
 	{
-		// Token: 0x04004D30 RID: 19760
+		// Token: 0x04004D37 RID: 19767
 		None,
-		// Token: 0x04004D31 RID: 19761
+		// Token: 0x04004D38 RID: 19768
 		Alphabetic,
-		// Token: 0x04004D32 RID: 19762
+		// Token: 0x04004D39 RID: 19769
 		Horizontal,
-		// Token: 0x04004D33 RID: 19763
+		// Token: 0x04004D3A RID: 19770
 		Vertical,
-		// Token: 0x04004D34 RID: 19764
+		// Token: 0x04004D3B RID: 19771
 		Custom
 	}
 }

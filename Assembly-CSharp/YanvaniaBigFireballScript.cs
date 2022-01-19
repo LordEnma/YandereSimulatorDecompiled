@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004CD RID: 1229
+// Token: 0x020004CE RID: 1230
 public class YanvaniaBigFireballScript : MonoBehaviour
 {
-	// Token: 0x0600205F RID: 8287 RVA: 0x001DAA88 File Offset: 0x001D8C88
+	// Token: 0x06002061 RID: 8289 RVA: 0x001DB758 File Offset: 0x001D9958
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "YanmontChan")
@@ -15,6 +15,6 @@ public class YanvaniaBigFireballScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040046E0 RID: 18144
+	// Token: 0x040046E7 RID: 18151
 	public GameObject Explosion;
 }

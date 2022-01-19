@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/UI/Anchor")]
 public class UIAnchor : MonoBehaviour
 {
-	// Token: 0x06000699 RID: 1689 RVA: 0x0003822B File Offset: 0x0003642B
+	// Token: 0x06000699 RID: 1689 RVA: 0x00038223 File Offset: 0x00036423
 	private void OnEnable()
 	{
 		this.mTrans = base.transform;
@@ -14,13 +14,13 @@ public class UIAnchor : MonoBehaviour
 		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Combine(UICamera.onScreenResize, new UICamera.OnScreenResize(this.ScreenSizeChanged));
 	}
 
-	// Token: 0x0600069A RID: 1690 RVA: 0x00038265 File Offset: 0x00036465
+	// Token: 0x0600069A RID: 1690 RVA: 0x0003825D File Offset: 0x0003645D
 	private void OnDisable()
 	{
 		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Remove(UICamera.onScreenResize, new UICamera.OnScreenResize(this.ScreenSizeChanged));
 	}
 
-	// Token: 0x0600069B RID: 1691 RVA: 0x00038287 File Offset: 0x00036487
+	// Token: 0x0600069B RID: 1691 RVA: 0x0003827F File Offset: 0x0003647F
 	private void ScreenSizeChanged()
 	{
 		if (this.mStarted && this.runOnlyOnce)
@@ -29,7 +29,7 @@ public class UIAnchor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600069C RID: 1692 RVA: 0x000382A0 File Offset: 0x000364A0
+	// Token: 0x0600069C RID: 1692 RVA: 0x00038298 File Offset: 0x00036498
 	private void Start()
 	{
 		if (this.container == null && this.widgetContainer != null)
@@ -46,7 +46,7 @@ public class UIAnchor : MonoBehaviour
 		this.mStarted = true;
 	}
 
-	// Token: 0x0600069D RID: 1693 RVA: 0x00038324 File Offset: 0x00036524
+	// Token: 0x0600069D RID: 1693 RVA: 0x0003831C File Offset: 0x0003651C
 	private void Update()
 	{
 		if (this.mAnim != null && this.mAnim.enabled && this.mAnim.isPlaying)
@@ -187,65 +187,65 @@ public class UIAnchor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400061D RID: 1565
+	// Token: 0x0400061E RID: 1566
 	public Camera uiCamera;
 
-	// Token: 0x0400061E RID: 1566
+	// Token: 0x0400061F RID: 1567
 	public GameObject container;
 
-	// Token: 0x0400061F RID: 1567
+	// Token: 0x04000620 RID: 1568
 	public UIAnchor.Side side = UIAnchor.Side.Center;
 
-	// Token: 0x04000620 RID: 1568
+	// Token: 0x04000621 RID: 1569
 	public bool runOnlyOnce = true;
 
-	// Token: 0x04000621 RID: 1569
+	// Token: 0x04000622 RID: 1570
 	public Vector2 relativeOffset = Vector2.zero;
 
-	// Token: 0x04000622 RID: 1570
+	// Token: 0x04000623 RID: 1571
 	public Vector2 pixelOffset = Vector2.zero;
 
-	// Token: 0x04000623 RID: 1571
+	// Token: 0x04000624 RID: 1572
 	[HideInInspector]
 	[SerializeField]
 	private UIWidget widgetContainer;
 
-	// Token: 0x04000624 RID: 1572
+	// Token: 0x04000625 RID: 1573
 	private Transform mTrans;
 
-	// Token: 0x04000625 RID: 1573
+	// Token: 0x04000626 RID: 1574
 	private Animation mAnim;
 
-	// Token: 0x04000626 RID: 1574
+	// Token: 0x04000627 RID: 1575
 	private Rect mRect;
 
-	// Token: 0x04000627 RID: 1575
+	// Token: 0x04000628 RID: 1576
 	private UIRoot mRoot;
 
-	// Token: 0x04000628 RID: 1576
+	// Token: 0x04000629 RID: 1577
 	private bool mStarted;
 
-	// Token: 0x02000611 RID: 1553
+	// Token: 0x02000612 RID: 1554
 	[DoNotObfuscateNGUI]
 	public enum Side
 	{
-		// Token: 0x04004E00 RID: 19968
-		BottomLeft,
-		// Token: 0x04004E01 RID: 19969
-		Left,
-		// Token: 0x04004E02 RID: 19970
-		TopLeft,
-		// Token: 0x04004E03 RID: 19971
-		Top,
-		// Token: 0x04004E04 RID: 19972
-		TopRight,
-		// Token: 0x04004E05 RID: 19973
-		Right,
-		// Token: 0x04004E06 RID: 19974
-		BottomRight,
 		// Token: 0x04004E07 RID: 19975
-		Bottom,
+		BottomLeft,
 		// Token: 0x04004E08 RID: 19976
+		Left,
+		// Token: 0x04004E09 RID: 19977
+		TopLeft,
+		// Token: 0x04004E0A RID: 19978
+		Top,
+		// Token: 0x04004E0B RID: 19979
+		TopRight,
+		// Token: 0x04004E0C RID: 19980
+		Right,
+		// Token: 0x04004E0D RID: 19981
+		BottomRight,
+		// Token: 0x04004E0E RID: 19982
+		Bottom,
+		// Token: 0x04004E0F RID: 19983
 		Center
 	}
 }

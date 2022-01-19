@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200024C RID: 588
 public class CloakingDeviceScript : MonoBehaviour
 {
-	// Token: 0x06001267 RID: 4711 RVA: 0x0008EBD8 File Offset: 0x0008CDD8
+	// Token: 0x06001267 RID: 4711 RVA: 0x0008EBE0 File Offset: 0x0008CDE0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -18,6 +18,6 @@ public class CloakingDeviceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400176F RID: 5999
+	// Token: 0x04001770 RID: 6000
 	public PromptScript Prompt;
 }

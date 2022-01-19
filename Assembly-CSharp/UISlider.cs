@@ -7,7 +7,7 @@ using UnityEngine;
 public class UISlider : UIProgressBar
 {
 	// Token: 0x1700003F RID: 63
-	// (get) Token: 0x060002B4 RID: 692 RVA: 0x0001DC78 File Offset: 0x0001BE78
+	// (get) Token: 0x060002B4 RID: 692 RVA: 0x0001DC70 File Offset: 0x0001BE70
 	public bool isColliderEnabled
 	{
 		get
@@ -23,8 +23,8 @@ public class UISlider : UIProgressBar
 	}
 
 	// Token: 0x17000040 RID: 64
-	// (get) Token: 0x060002B5 RID: 693 RVA: 0x0001DCB4 File Offset: 0x0001BEB4
-	// (set) Token: 0x060002B6 RID: 694 RVA: 0x0001DCBC File Offset: 0x0001BEBC
+	// (get) Token: 0x060002B5 RID: 693 RVA: 0x0001DCAC File Offset: 0x0001BEAC
+	// (set) Token: 0x060002B6 RID: 694 RVA: 0x0001DCB4 File Offset: 0x0001BEB4
 	[Obsolete("Use 'value' instead")]
 	public float sliderValue
 	{
@@ -39,8 +39,8 @@ public class UISlider : UIProgressBar
 	}
 
 	// Token: 0x17000041 RID: 65
-	// (get) Token: 0x060002B7 RID: 695 RVA: 0x0001DCC5 File Offset: 0x0001BEC5
-	// (set) Token: 0x060002B8 RID: 696 RVA: 0x0001DCCD File Offset: 0x0001BECD
+	// (get) Token: 0x060002B7 RID: 695 RVA: 0x0001DCBD File Offset: 0x0001BEBD
+	// (set) Token: 0x060002B8 RID: 696 RVA: 0x0001DCC5 File Offset: 0x0001BEC5
 	[Obsolete("Use 'fillDirection' instead")]
 	public bool inverted
 	{
@@ -53,7 +53,7 @@ public class UISlider : UIProgressBar
 		}
 	}
 
-	// Token: 0x060002B9 RID: 697 RVA: 0x0001DCD0 File Offset: 0x0001BED0
+	// Token: 0x060002B9 RID: 697 RVA: 0x0001DCC8 File Offset: 0x0001BEC8
 	protected override void Upgrade()
 	{
 		if (this.direction != UISlider.Direction.Upgraded)
@@ -75,7 +75,7 @@ public class UISlider : UIProgressBar
 		}
 	}
 
-	// Token: 0x060002BA RID: 698 RVA: 0x0001DD48 File Offset: 0x0001BF48
+	// Token: 0x060002BA RID: 698 RVA: 0x0001DD40 File Offset: 0x0001BF40
 	protected override void OnStart()
 	{
 		UIEventListener uieventListener = UIEventListener.Get((this.mBG != null && (this.mBG.GetComponent<Collider>() != null || this.mBG.GetComponent<Collider2D>() != null)) ? this.mBG.gameObject : base.gameObject);
@@ -89,7 +89,7 @@ public class UISlider : UIProgressBar
 		}
 	}
 
-	// Token: 0x060002BB RID: 699 RVA: 0x0001DE94 File Offset: 0x0001C094
+	// Token: 0x060002BB RID: 699 RVA: 0x0001DE8C File Offset: 0x0001C08C
 	protected void OnPressBackground(GameObject go, bool isPressed)
 	{
 		if (UICamera.currentScheme == UICamera.ControlScheme.Controller)
@@ -104,7 +104,7 @@ public class UISlider : UIProgressBar
 		}
 	}
 
-	// Token: 0x060002BC RID: 700 RVA: 0x0001DED1 File Offset: 0x0001C0D1
+	// Token: 0x060002BC RID: 700 RVA: 0x0001DEC9 File Offset: 0x0001C0C9
 	protected void OnDragBackground(GameObject go, Vector2 delta)
 	{
 		if (UICamera.currentScheme == UICamera.ControlScheme.Controller)
@@ -115,7 +115,7 @@ public class UISlider : UIProgressBar
 		base.value = base.ScreenToValue(UICamera.lastEventPosition);
 	}
 
-	// Token: 0x060002BD RID: 701 RVA: 0x0001DEF8 File Offset: 0x0001C0F8
+	// Token: 0x060002BD RID: 701 RVA: 0x0001DEF0 File Offset: 0x0001C0F0
 	protected void OnPressForeground(GameObject go, bool isPressed)
 	{
 		if (UICamera.currentScheme == UICamera.ControlScheme.Controller)
@@ -134,7 +134,7 @@ public class UISlider : UIProgressBar
 		}
 	}
 
-	// Token: 0x060002BE RID: 702 RVA: 0x0001DF5D File Offset: 0x0001C15D
+	// Token: 0x060002BE RID: 702 RVA: 0x0001DF55 File Offset: 0x0001C155
 	protected void OnDragForeground(GameObject go, Vector2 delta)
 	{
 		if (UICamera.currentScheme == UICamera.ControlScheme.Controller)
@@ -145,7 +145,7 @@ public class UISlider : UIProgressBar
 		base.value = this.mOffset + base.ScreenToValue(UICamera.lastEventPosition);
 	}
 
-	// Token: 0x060002BF RID: 703 RVA: 0x0001DF8B File Offset: 0x0001C18B
+	// Token: 0x060002BF RID: 703 RVA: 0x0001DF83 File Offset: 0x0001C183
 	public override void OnPan(Vector2 delta)
 	{
 		if (base.enabled && this.isColliderEnabled)
@@ -154,34 +154,34 @@ public class UISlider : UIProgressBar
 		}
 	}
 
-	// Token: 0x0400043A RID: 1082
+	// Token: 0x0400043B RID: 1083
 	[HideInInspector]
 	[SerializeField]
 	private Transform foreground;
 
-	// Token: 0x0400043B RID: 1083
+	// Token: 0x0400043C RID: 1084
 	[HideInInspector]
 	[SerializeField]
 	private float rawValue = 1f;
 
-	// Token: 0x0400043C RID: 1084
+	// Token: 0x0400043D RID: 1085
 	[HideInInspector]
 	[SerializeField]
 	private UISlider.Direction direction = UISlider.Direction.Upgraded;
 
-	// Token: 0x0400043D RID: 1085
+	// Token: 0x0400043E RID: 1086
 	[HideInInspector]
 	[SerializeField]
 	protected bool mInverted;
 
-	// Token: 0x020005E0 RID: 1504
+	// Token: 0x020005E1 RID: 1505
 	private enum Direction
 	{
-		// Token: 0x04004D77 RID: 19831
+		// Token: 0x04004D7E RID: 19838
 		Horizontal,
-		// Token: 0x04004D78 RID: 19832
+		// Token: 0x04004D7F RID: 19839
 		Vertical,
-		// Token: 0x04004D79 RID: 19833
+		// Token: 0x04004D80 RID: 19840
 		Upgraded
 	}
 }

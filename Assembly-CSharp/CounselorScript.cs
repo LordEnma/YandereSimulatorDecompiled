@@ -5,7 +5,7 @@ using XInputDotNetPure;
 // Token: 0x02000260 RID: 608
 public class CounselorScript : MonoBehaviour
 {
-	// Token: 0x060012D8 RID: 4824 RVA: 0x000A17D0 File Offset: 0x0009F9D0
+	// Token: 0x060012D8 RID: 4824 RVA: 0x000A17E4 File Offset: 0x0009F9E4
 	private void Start()
 	{
 		this.CounselorPunishments = CounselorGlobals.CounselorPunishments;
@@ -81,7 +81,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012D9 RID: 4825 RVA: 0x000A1B88 File Offset: 0x0009FD88
+	// Token: 0x060012D9 RID: 4825 RVA: 0x000A1B9C File Offset: 0x0009FD9C
 	private void Update()
 	{
 		if (this.LookAtPlayer)
@@ -437,7 +437,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012DA RID: 4826 RVA: 0x000A2AC4 File Offset: 0x000A0CC4
+	// Token: 0x060012DA RID: 4826 RVA: 0x000A2AD8 File Offset: 0x000A0CD8
 	public void Talk()
 	{
 		this.MyAnimation.CrossFade("CounselorComputerAttention", 1f);
@@ -464,7 +464,7 @@ public class CounselorScript : MonoBehaviour
 		this.UpdateList();
 	}
 
-	// Token: 0x060012DB RID: 4827 RVA: 0x000A2C10 File Offset: 0x000A0E10
+	// Token: 0x060012DB RID: 4827 RVA: 0x000A2C24 File Offset: 0x000A0E24
 	private void UpdateList()
 	{
 		for (int i = 1; i < this.Labels.Length; i++)
@@ -553,7 +553,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012DC RID: 4828 RVA: 0x000A2F7C File Offset: 0x000A117C
+	// Token: 0x060012DC RID: 4828 RVA: 0x000A2F90 File Offset: 0x000A1190
 	private void UpdateHighlight()
 	{
 		if (this.Selected < 1)
@@ -564,10 +564,18 @@ public class CounselorScript : MonoBehaviour
 		{
 			this.Selected = 1;
 		}
+		if (this.Selected == 6)
+		{
+			this.NarcoticsWindow.gameObject.SetActive(true);
+		}
+		else
+		{
+			this.NarcoticsWindow.gameObject.SetActive(false);
+		}
 		this.Highlight.transform.localPosition = new Vector3(this.Highlight.transform.localPosition.x, 200f - 50f * (float)this.Selected, this.Highlight.transform.localPosition.z);
 	}
 
-	// Token: 0x060012DD RID: 4829 RVA: 0x000A3000 File Offset: 0x000A1200
+	// Token: 0x060012DD RID: 4829 RVA: 0x000A3040 File Offset: 0x000A1240
 	private void LateUpdate()
 	{
 		if (Vector3.Distance(base.transform.position, this.Yandere.transform.position) < 5f)
@@ -636,7 +644,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012DE RID: 4830 RVA: 0x000A3438 File Offset: 0x000A1638
+	// Token: 0x060012DE RID: 4830 RVA: 0x000A3478 File Offset: 0x000A1678
 	public void Quit()
 	{
 		Debug.Log("CounselorScript has called the Quit() function.");
@@ -702,7 +710,7 @@ public class CounselorScript : MonoBehaviour
 		Physics.SyncTransforms();
 	}
 
-	// Token: 0x060012DF RID: 4831 RVA: 0x000A37B0 File Offset: 0x000A19B0
+	// Token: 0x060012DF RID: 4831 RVA: 0x000A37F0 File Offset: 0x000A19F0
 	private void UpdateInterrogation()
 	{
 		if (this.VibrationCheck)
@@ -1433,7 +1441,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012E0 RID: 4832 RVA: 0x000A58D8 File Offset: 0x000A3AD8
+	// Token: 0x060012E0 RID: 4832 RVA: 0x000A5918 File Offset: 0x000A3B18
 	public void SaveExcusesUsed()
 	{
 		CounselorGlobals.BloodExcuseUsed = this.BloodExcuseUsed;
@@ -1444,7 +1452,7 @@ public class CounselorScript : MonoBehaviour
 		CounselorGlobals.WeaponExcuseUsed = this.WeaponExcuseUsed;
 	}
 
-	// Token: 0x060012E1 RID: 4833 RVA: 0x000A5928 File Offset: 0x000A3B28
+	// Token: 0x060012E1 RID: 4833 RVA: 0x000A5968 File Offset: 0x000A3B68
 	public void LoadExcusesUsed()
 	{
 		this.BloodExcuseUsed = CounselorGlobals.BloodExcuseUsed;
@@ -1455,7 +1463,7 @@ public class CounselorScript : MonoBehaviour
 		this.WeaponExcuseUsed = CounselorGlobals.WeaponExcuseUsed;
 	}
 
-	// Token: 0x060012E2 RID: 4834 RVA: 0x000A5978 File Offset: 0x000A3B78
+	// Token: 0x060012E2 RID: 4834 RVA: 0x000A59B8 File Offset: 0x000A3BB8
 	public void SaveCounselorData()
 	{
 		CounselorGlobals.CounselorPunishments = this.CounselorPunishments;
@@ -1478,7 +1486,7 @@ public class CounselorScript : MonoBehaviour
 		CounselorGlobals.DelinquentPunishments = this.DelinquentPunishments;
 	}
 
-	// Token: 0x060012E3 RID: 4835 RVA: 0x000A5A4B File Offset: 0x000A3C4B
+	// Token: 0x060012E3 RID: 4835 RVA: 0x000A5A8B File Offset: 0x000A3C8B
 	public void ExpelStudents()
 	{
 		if (this.ExpelledDelinquents)
@@ -1491,7 +1499,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012E4 RID: 4836 RVA: 0x000A5A80 File Offset: 0x000A3C80
+	// Token: 0x060012E4 RID: 4836 RVA: 0x000A5AC0 File Offset: 0x000A3CC0
 	public void SilenceClips(AudioClip[] ClipArray)
 	{
 		for (int i = 0; i < 11; i++)
@@ -1503,7 +1511,7 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012E5 RID: 4837 RVA: 0x000A5AAC File Offset: 0x000A3CAC
+	// Token: 0x060012E5 RID: 4837 RVA: 0x000A5AEC File Offset: 0x000A3CEC
 	public void SpawnDelinquents()
 	{
 		for (int i = 1; i < 6; i++)
@@ -1515,88 +1523,88 @@ public class CounselorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040019D8 RID: 6616
+	// Token: 0x040019D9 RID: 6617
 	public CutsceneManagerScript CutsceneManager;
 
-	// Token: 0x040019D9 RID: 6617
+	// Token: 0x040019DA RID: 6618
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040019DA RID: 6618
+	// Token: 0x040019DB RID: 6619
 	public CounselorDoorScript CounselorDoor;
 
-	// Token: 0x040019DB RID: 6619
+	// Token: 0x040019DC RID: 6620
 	public InputManagerScript InputManager;
 
-	// Token: 0x040019DC RID: 6620
+	// Token: 0x040019DD RID: 6621
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040019DD RID: 6621
+	// Token: 0x040019DE RID: 6622
 	public EndOfDayScript EndOfDay;
 
-	// Token: 0x040019DE RID: 6622
+	// Token: 0x040019DF RID: 6623
 	public SubtitleScript Subtitle;
 
-	// Token: 0x040019DF RID: 6623
+	// Token: 0x040019E0 RID: 6624
 	public SchemesScript Schemes;
 
-	// Token: 0x040019E0 RID: 6624
+	// Token: 0x040019E1 RID: 6625
 	public StudentScript Student;
 
-	// Token: 0x040019E1 RID: 6625
+	// Token: 0x040019E2 RID: 6626
 	public YandereScript Yandere;
 
-	// Token: 0x040019E2 RID: 6626
+	// Token: 0x040019E3 RID: 6627
 	public Animation MyAnimation;
 
-	// Token: 0x040019E3 RID: 6627
+	// Token: 0x040019E4 RID: 6628
 	public AudioSource MyAudio;
 
-	// Token: 0x040019E4 RID: 6628
+	// Token: 0x040019E5 RID: 6629
 	public PromptScript Prompt;
 
-	// Token: 0x040019E5 RID: 6629
+	// Token: 0x040019E6 RID: 6630
 	public GameObject DelinquentRadio;
 
-	// Token: 0x040019E6 RID: 6630
+	// Token: 0x040019E7 RID: 6631
 	public AudioClip[] EightiesCounselorLectureClips;
 
-	// Token: 0x040019E7 RID: 6631
+	// Token: 0x040019E8 RID: 6632
 	public AudioClip[] EightiesCounselorReportClips;
 
-	// Token: 0x040019E8 RID: 6632
+	// Token: 0x040019E9 RID: 6633
 	public AudioClip[] CounselorGreetingClips;
 
-	// Token: 0x040019E9 RID: 6633
+	// Token: 0x040019EA RID: 6634
 	public AudioClip[] CounselorLectureClips;
 
-	// Token: 0x040019EA RID: 6634
+	// Token: 0x040019EB RID: 6635
 	public AudioClip[] CounselorReportClips;
 
-	// Token: 0x040019EB RID: 6635
+	// Token: 0x040019EC RID: 6636
 	public AudioClip[] EightiesRivalClips;
 
-	// Token: 0x040019EC RID: 6636
+	// Token: 0x040019ED RID: 6637
 	public AudioClip[] RivalClips;
 
-	// Token: 0x040019ED RID: 6637
+	// Token: 0x040019EE RID: 6638
 	public AudioClip CounselorFarewellClip;
 
-	// Token: 0x040019EE RID: 6638
+	// Token: 0x040019EF RID: 6639
 	public readonly string CounselorFarewellText = "Don't misbehave.";
 
-	// Token: 0x040019EF RID: 6639
+	// Token: 0x040019F0 RID: 6640
 	public AudioClip CounselorBusyClip;
 
-	// Token: 0x040019F0 RID: 6640
+	// Token: 0x040019F1 RID: 6641
 	public readonly string CounselorBusyText = "I'm sorry, I've got my hands full for the rest of today. I won't be available until tomorrow.";
 
-	// Token: 0x040019F1 RID: 6641
+	// Token: 0x040019F2 RID: 6642
 	public bool MustReturnStolenRing;
 
-	// Token: 0x040019F2 RID: 6642
+	// Token: 0x040019F3 RID: 6643
 	public string RivalName;
 
-	// Token: 0x040019F3 RID: 6643
+	// Token: 0x040019F4 RID: 6644
 	private string[] CounselorGreetingText = new string[]
 	{
 		"",
@@ -1604,7 +1612,7 @@ public class CounselorScript : MonoBehaviour
 		"Can I help you?"
 	};
 
-	// Token: 0x040019F4 RID: 6644
+	// Token: 0x040019F5 RID: 6645
 	private string[] CounselorLectureText = new string[]
 	{
 		"",
@@ -1618,7 +1626,7 @@ public class CounselorScript : MonoBehaviour
 		"(This line of text doesn't show up outside of the Eighties.)"
 	};
 
-	// Token: 0x040019F5 RID: 6645
+	// Token: 0x040019F6 RID: 6646
 	private string[] EightiesCounselorLectureText = new string[]
 	{
 		"",
@@ -1632,7 +1640,7 @@ public class CounselorScript : MonoBehaviour
 		"Enough! I have no choice but to inform the police immediately. Explain yourself to them, not me."
 	};
 
-	// Token: 0x040019F6 RID: 6646
+	// Token: 0x040019F7 RID: 6647
 	private string[] CounselorReportText = new string[]
 	{
 		"",
@@ -1644,7 +1652,7 @@ public class CounselorScript : MonoBehaviour
 		"(This line of text doesn't show up outside of the Eighties.)"
 	};
 
-	// Token: 0x040019F7 RID: 6647
+	// Token: 0x040019F8 RID: 6648
 	private string[] EightiesCounselorReportText = new string[]
 	{
 		"",
@@ -1656,7 +1664,7 @@ public class CounselorScript : MonoBehaviour
 		"...are you serious? Illegal narcotics?! If this is true, she'll be expelled immediately, and the police WILL be informed."
 	};
 
-	// Token: 0x040019F8 RID: 6648
+	// Token: 0x040019F9 RID: 6649
 	private string[] LectureIntro = new string[]
 	{
 		"",
@@ -1669,7 +1677,7 @@ public class CounselorScript : MonoBehaviour
 		"The guidance counselor enters your rival's classroom and says that she needs to speak with her..."
 	};
 
-	// Token: 0x040019F9 RID: 6649
+	// Token: 0x040019FA RID: 6650
 	private string[] RivalText = new string[]
 	{
 		"",
@@ -1683,7 +1691,7 @@ public class CounselorScript : MonoBehaviour
 		"(This line of text doesn't show up outside of the Eighties.)"
 	};
 
-	// Token: 0x040019FA RID: 6650
+	// Token: 0x040019FB RID: 6651
 	private string[] EightiesRivalText = new string[]
 	{
 		"",
@@ -1697,540 +1705,543 @@ public class CounselorScript : MonoBehaviour
 		"No! Please! Don't call the police! I'm begging you!"
 	};
 
-	// Token: 0x040019FB RID: 6651
+	// Token: 0x040019FC RID: 6652
 	public UILabel[] Labels;
 
-	// Token: 0x040019FC RID: 6652
+	// Token: 0x040019FD RID: 6653
 	public Transform CounselorWindow;
 
-	// Token: 0x040019FD RID: 6653
-	public Transform Highlight;
-
 	// Token: 0x040019FE RID: 6654
-	public Transform Chibi;
+	public Transform NarcoticsWindow;
 
 	// Token: 0x040019FF RID: 6655
-	public SkinnedMeshRenderer Face;
+	public Transform Highlight;
 
 	// Token: 0x04001A00 RID: 6656
-	public UILabel CounselorSubtitle;
+	public Transform Chibi;
 
 	// Token: 0x04001A01 RID: 6657
-	public UISprite EndOfDayDarkness;
+	public SkinnedMeshRenderer Face;
 
 	// Token: 0x04001A02 RID: 6658
-	public UILabel LectureSubtitle;
+	public UILabel CounselorSubtitle;
 
 	// Token: 0x04001A03 RID: 6659
-	public UISprite ExpelProgress;
+	public UISprite EndOfDayDarkness;
 
 	// Token: 0x04001A04 RID: 6660
-	public UILabel LectureLabel;
+	public UILabel LectureSubtitle;
 
 	// Token: 0x04001A05 RID: 6661
-	public bool ShowWindow;
+	public UISprite ExpelProgress;
 
 	// Token: 0x04001A06 RID: 6662
-	public bool Lecturing;
+	public UILabel LectureLabel;
 
 	// Token: 0x04001A07 RID: 6663
-	public bool Eighties;
+	public bool ShowWindow;
 
 	// Token: 0x04001A08 RID: 6664
-	public bool Busy;
+	public bool Lecturing;
 
 	// Token: 0x04001A09 RID: 6665
-	public int Selected = 1;
+	public bool Eighties;
 
 	// Token: 0x04001A0A RID: 6666
-	public int LecturePhase = 1;
+	public bool Busy;
 
 	// Token: 0x04001A0B RID: 6667
-	public int LectureID = 5;
+	public int Selected = 1;
 
 	// Token: 0x04001A0C RID: 6668
-	public float ExpelTimer;
+	public int LecturePhase = 1;
 
 	// Token: 0x04001A0D RID: 6669
-	public float ChinTimer;
+	public int LectureID = 5;
 
 	// Token: 0x04001A0E RID: 6670
-	public float TalkTimer = 1f;
+	public float ExpelTimer;
 
 	// Token: 0x04001A0F RID: 6671
-	public float Timer;
+	public float ChinTimer;
 
 	// Token: 0x04001A10 RID: 6672
-	public UITexture ChibiTexture;
+	public float TalkTimer = 1f;
 
 	// Token: 0x04001A11 RID: 6673
-	public Texture[] EightiesRivalHeads;
+	public float Timer;
 
 	// Token: 0x04001A12 RID: 6674
-	public Texture[] RivalHeads;
+	public UITexture ChibiTexture;
 
 	// Token: 0x04001A13 RID: 6675
-	public int SadMouthID = 1;
+	public Texture[] EightiesRivalHeads;
 
 	// Token: 0x04001A14 RID: 6676
-	public int MadBrowID = 5;
+	public Texture[] RivalHeads;
 
 	// Token: 0x04001A15 RID: 6677
-	public int SadBrowID = 6;
+	public int SadMouthID = 1;
 
 	// Token: 0x04001A16 RID: 6678
-	public int AngryEyesID = 9;
+	public int MadBrowID = 5;
 
 	// Token: 0x04001A17 RID: 6679
-	public int MouthOpenID = 2;
+	public int SadBrowID = 6;
 
 	// Token: 0x04001A18 RID: 6680
-	public int RivalExpelProgress;
+	public int AngryEyesID = 9;
 
 	// Token: 0x04001A19 RID: 6681
-	public int CounselorPunishments;
+	public int MouthOpenID = 2;
 
 	// Token: 0x04001A1A RID: 6682
-	public int CounselorVisits;
+	public int RivalExpelProgress;
 
 	// Token: 0x04001A1B RID: 6683
-	public int CounselorTape;
+	public int CounselorPunishments;
 
 	// Token: 0x04001A1C RID: 6684
-	public int BloodVisits;
+	public int CounselorVisits;
 
 	// Token: 0x04001A1D RID: 6685
-	public int InsanityVisits;
+	public int CounselorTape;
 
 	// Token: 0x04001A1E RID: 6686
-	public int LewdVisits;
+	public int BloodVisits;
 
 	// Token: 0x04001A1F RID: 6687
-	public int TheftVisits;
+	public int InsanityVisits;
 
 	// Token: 0x04001A20 RID: 6688
-	public int TrespassVisits;
+	public int LewdVisits;
 
 	// Token: 0x04001A21 RID: 6689
-	public int WeaponVisits;
+	public int TheftVisits;
 
 	// Token: 0x04001A22 RID: 6690
-	public int BloodBlameUsed;
+	public int TrespassVisits;
 
 	// Token: 0x04001A23 RID: 6691
-	public int InsanityBlameUsed;
+	public int WeaponVisits;
 
 	// Token: 0x04001A24 RID: 6692
-	public int LewdBlameUsed;
+	public int BloodBlameUsed;
 
 	// Token: 0x04001A25 RID: 6693
-	public int TheftBlameUsed;
+	public int InsanityBlameUsed;
 
 	// Token: 0x04001A26 RID: 6694
-	public int TrespassBlameUsed;
+	public int LewdBlameUsed;
 
 	// Token: 0x04001A27 RID: 6695
-	public int WeaponBlameUsed;
+	public int TheftBlameUsed;
 
 	// Token: 0x04001A28 RID: 6696
-	public int ApologiesUsed;
+	public int TrespassBlameUsed;
 
 	// Token: 0x04001A29 RID: 6697
-	public int WeaponsBanned;
+	public int WeaponBlameUsed;
 
 	// Token: 0x04001A2A RID: 6698
-	public int DelinquentPunishments;
+	public int ApologiesUsed;
 
 	// Token: 0x04001A2B RID: 6699
-	public bool ReportedAlcohol;
+	public int WeaponsBanned;
 
 	// Token: 0x04001A2C RID: 6700
-	public bool ReportedCondoms;
+	public int DelinquentPunishments;
 
 	// Token: 0x04001A2D RID: 6701
-	public bool ReportedCigarettes;
+	public bool ReportedAlcohol;
 
 	// Token: 0x04001A2E RID: 6702
-	public bool ReportedTheft;
+	public bool ReportedCondoms;
 
 	// Token: 0x04001A2F RID: 6703
-	public bool ReportedCheating;
+	public bool ReportedCigarettes;
 
 	// Token: 0x04001A30 RID: 6704
-	public bool ReportedNarcotics;
+	public bool ReportedTheft;
 
 	// Token: 0x04001A31 RID: 6705
-	public Vector3 LookAtTarget;
+	public bool ReportedCheating;
 
 	// Token: 0x04001A32 RID: 6706
-	public bool LookAtPlayer;
+	public bool ReportedNarcotics;
 
 	// Token: 0x04001A33 RID: 6707
-	public Transform Default;
+	public Vector3 LookAtTarget;
 
 	// Token: 0x04001A34 RID: 6708
-	public Transform Head;
+	public bool LookAtPlayer;
 
 	// Token: 0x04001A35 RID: 6709
-	public bool Angry;
+	public Transform Default;
 
 	// Token: 0x04001A36 RID: 6710
-	public bool Stern;
+	public Transform Head;
 
 	// Token: 0x04001A37 RID: 6711
-	public bool Sad;
+	public bool Angry;
 
 	// Token: 0x04001A38 RID: 6712
-	public float MouthTarget;
+	public bool Stern;
 
 	// Token: 0x04001A39 RID: 6713
-	public float MouthTimer;
+	public bool Sad;
 
 	// Token: 0x04001A3A RID: 6714
-	public float TimerLimit;
+	public float MouthTarget;
 
 	// Token: 0x04001A3B RID: 6715
-	public float MouthOpen;
+	public float MouthTimer;
 
 	// Token: 0x04001A3C RID: 6716
-	public float TalkSpeed;
+	public float TimerLimit;
 
 	// Token: 0x04001A3D RID: 6717
-	public float BS_SadMouth;
+	public float MouthOpen;
 
 	// Token: 0x04001A3E RID: 6718
-	public float BS_MadBrow;
+	public float TalkSpeed;
 
 	// Token: 0x04001A3F RID: 6719
-	public float BS_SadBrow;
+	public float BS_SadMouth;
 
 	// Token: 0x04001A40 RID: 6720
-	public float BS_AngryEyes;
+	public float BS_MadBrow;
 
 	// Token: 0x04001A41 RID: 6721
-	public DetectClickScript[] CounselorOption;
+	public float BS_SadBrow;
 
 	// Token: 0x04001A42 RID: 6722
-	public InputDeviceScript InputDevice;
+	public float BS_AngryEyes;
 
 	// Token: 0x04001A43 RID: 6723
-	public StudentWitnessType Crime;
+	public DetectClickScript[] CounselorOption;
 
 	// Token: 0x04001A44 RID: 6724
-	public UITexture GenkaChibi;
+	public InputDeviceScript InputDevice;
 
 	// Token: 0x04001A45 RID: 6725
-	public CameraShake Shake;
+	public StudentWitnessType Crime;
 
 	// Token: 0x04001A46 RID: 6726
-	public Texture HappyChibi;
+	public UITexture GenkaChibi;
 
 	// Token: 0x04001A47 RID: 6727
-	public Texture AnnoyedChibi;
+	public CameraShake Shake;
 
 	// Token: 0x04001A48 RID: 6728
-	public Texture MadChibi;
+	public Texture HappyChibi;
 
 	// Token: 0x04001A49 RID: 6729
-	public GameObject CounselorOptions;
+	public Texture AnnoyedChibi;
 
 	// Token: 0x04001A4A RID: 6730
-	public GameObject CounselorBar;
+	public Texture MadChibi;
 
 	// Token: 0x04001A4B RID: 6731
-	public GameObject Reticle;
+	public GameObject CounselorOptions;
 
 	// Token: 0x04001A4C RID: 6732
-	public GameObject Laptop;
+	public GameObject CounselorBar;
 
 	// Token: 0x04001A4D RID: 6733
-	public GameObject RedPen;
+	public GameObject Reticle;
 
 	// Token: 0x04001A4E RID: 6734
-	public Transform CameraTarget;
+	public GameObject Laptop;
 
 	// Token: 0x04001A4F RID: 6735
-	public int InterrogationPhase;
+	public GameObject RedPen;
 
 	// Token: 0x04001A50 RID: 6736
-	public int Patience;
+	public Transform CameraTarget;
 
 	// Token: 0x04001A51 RID: 6737
-	public int CrimeID;
+	public int InterrogationPhase;
 
 	// Token: 0x04001A52 RID: 6738
-	public int Answer;
+	public int Patience;
 
 	// Token: 0x04001A53 RID: 6739
-	public bool MustExpelDelinquents;
+	public int CrimeID;
 
 	// Token: 0x04001A54 RID: 6740
-	public bool ExpelledDelinquents;
+	public int Answer;
 
 	// Token: 0x04001A55 RID: 6741
-	public bool SilentTreatment;
+	public bool MustExpelDelinquents;
 
 	// Token: 0x04001A56 RID: 6742
-	public bool Interrogating;
+	public bool ExpelledDelinquents;
 
 	// Token: 0x04001A57 RID: 6743
-	public bool Expelled;
+	public bool SilentTreatment;
 
 	// Token: 0x04001A58 RID: 6744
-	public bool Slammed;
+	public bool Interrogating;
 
 	// Token: 0x04001A59 RID: 6745
-	public AudioSource Rumble;
+	public bool Expelled;
 
 	// Token: 0x04001A5A RID: 6746
-	public AudioClip EightiesCountdown;
+	public bool Slammed;
 
 	// Token: 0x04001A5B RID: 6747
-	public AudioClip Countdown;
+	public AudioSource Rumble;
 
 	// Token: 0x04001A5C RID: 6748
-	public AudioClip Choice;
+	public AudioClip EightiesCountdown;
 
 	// Token: 0x04001A5D RID: 6749
-	public AudioClip Slam;
+	public AudioClip Countdown;
 
 	// Token: 0x04001A5E RID: 6750
-	public RiggedAccessoryAttacher EightiesAttacher;
+	public AudioClip Choice;
 
 	// Token: 0x04001A5F RID: 6751
-	public GameObject[] EightiesMesh;
+	public AudioClip Slam;
 
 	// Token: 0x04001A60 RID: 6752
-	public GameObject[] OriginalMesh;
+	public RiggedAccessoryAttacher EightiesAttacher;
 
 	// Token: 0x04001A61 RID: 6753
-	public GameObject EightiesPaper;
+	public GameObject[] EightiesMesh;
 
 	// Token: 0x04001A62 RID: 6754
-	public Transform PelvisRoot;
+	public GameObject[] OriginalMesh;
 
 	// Token: 0x04001A63 RID: 6755
-	public bool UpdatedFace;
+	public GameObject EightiesPaper;
 
 	// Token: 0x04001A64 RID: 6756
-	public AudioClip[] GreetingClips;
+	public Transform PelvisRoot;
 
 	// Token: 0x04001A65 RID: 6757
-	public string[] Greetings;
+	public bool UpdatedFace;
 
 	// Token: 0x04001A66 RID: 6758
-	public AudioClip[] BloodLectureClips;
+	public AudioClip[] GreetingClips;
 
 	// Token: 0x04001A67 RID: 6759
-	public string[] BloodLectures;
+	public string[] Greetings;
 
 	// Token: 0x04001A68 RID: 6760
-	public AudioClip[] InsanityLectureClips;
+	public AudioClip[] BloodLectureClips;
 
 	// Token: 0x04001A69 RID: 6761
-	public string[] InsanityLectures;
+	public string[] BloodLectures;
 
 	// Token: 0x04001A6A RID: 6762
-	public AudioClip[] LewdLectureClips;
+	public AudioClip[] InsanityLectureClips;
 
 	// Token: 0x04001A6B RID: 6763
-	public string[] LewdLectures;
+	public string[] InsanityLectures;
 
 	// Token: 0x04001A6C RID: 6764
-	public AudioClip[] TheftLectureClips;
+	public AudioClip[] LewdLectureClips;
 
 	// Token: 0x04001A6D RID: 6765
-	public string[] TheftLectures;
+	public string[] LewdLectures;
 
 	// Token: 0x04001A6E RID: 6766
-	public AudioClip[] TrespassLectureClips;
+	public AudioClip[] TheftLectureClips;
 
 	// Token: 0x04001A6F RID: 6767
-	public string[] TrespassLectures;
+	public string[] TheftLectures;
 
 	// Token: 0x04001A70 RID: 6768
-	public AudioClip[] WeaponLectureClips;
+	public AudioClip[] TrespassLectureClips;
 
 	// Token: 0x04001A71 RID: 6769
-	public string[] WeaponLectures;
+	public string[] TrespassLectures;
 
 	// Token: 0x04001A72 RID: 6770
-	public AudioClip[] SilentClips;
+	public AudioClip[] WeaponLectureClips;
 
 	// Token: 0x04001A73 RID: 6771
-	public string[] Silents;
+	public string[] WeaponLectures;
 
 	// Token: 0x04001A74 RID: 6772
-	public AudioClip[] SuspensionClips;
+	public AudioClip[] SilentClips;
 
 	// Token: 0x04001A75 RID: 6773
-	public string[] Suspensions;
+	public string[] Silents;
 
 	// Token: 0x04001A76 RID: 6774
-	public AudioClip[] AcceptExcuseClips;
+	public AudioClip[] SuspensionClips;
 
 	// Token: 0x04001A77 RID: 6775
-	public string[] AcceptExcuses;
+	public string[] Suspensions;
 
 	// Token: 0x04001A78 RID: 6776
-	public AudioClip[] RejectExcuseClips;
+	public AudioClip[] AcceptExcuseClips;
 
 	// Token: 0x04001A79 RID: 6777
-	public string[] RejectExcuses;
+	public string[] AcceptExcuses;
 
 	// Token: 0x04001A7A RID: 6778
-	public AudioClip[] RejectLieClips;
+	public AudioClip[] RejectExcuseClips;
 
 	// Token: 0x04001A7B RID: 6779
-	public string[] RejectLies;
+	public string[] RejectExcuses;
 
 	// Token: 0x04001A7C RID: 6780
-	public AudioClip[] AcceptBlameClips;
+	public AudioClip[] RejectLieClips;
 
 	// Token: 0x04001A7D RID: 6781
-	public string[] AcceptBlames;
+	public string[] RejectLies;
 
 	// Token: 0x04001A7E RID: 6782
-	public AudioClip[] RejectApologyClips;
+	public AudioClip[] AcceptBlameClips;
 
 	// Token: 0x04001A7F RID: 6783
-	public string[] RejectApologies;
+	public string[] AcceptBlames;
 
 	// Token: 0x04001A80 RID: 6784
-	public AudioClip[] RejectBlameClips;
+	public AudioClip[] RejectApologyClips;
 
 	// Token: 0x04001A81 RID: 6785
-	public string[] RejectBlames;
+	public string[] RejectApologies;
 
 	// Token: 0x04001A82 RID: 6786
-	public AudioClip[] RejectFlirtClips;
+	public AudioClip[] RejectBlameClips;
 
 	// Token: 0x04001A83 RID: 6787
-	public string[] RejectFlirts;
+	public string[] RejectBlames;
 
 	// Token: 0x04001A84 RID: 6788
-	public AudioClip[] BadClosingClips;
+	public AudioClip[] RejectFlirtClips;
 
 	// Token: 0x04001A85 RID: 6789
-	public string[] BadClosings;
+	public string[] RejectFlirts;
 
 	// Token: 0x04001A86 RID: 6790
-	public AudioClip[] BlameClosingClips;
+	public AudioClip[] BadClosingClips;
 
 	// Token: 0x04001A87 RID: 6791
-	public string[] BlameClosings;
+	public string[] BadClosings;
 
 	// Token: 0x04001A88 RID: 6792
-	public AudioClip[] FreeToLeaveClips;
+	public AudioClip[] BlameClosingClips;
 
 	// Token: 0x04001A89 RID: 6793
-	public string[] FreeToLeaves;
+	public string[] BlameClosings;
 
 	// Token: 0x04001A8A RID: 6794
-	public AudioClip AcceptApologyClip;
+	public AudioClip[] FreeToLeaveClips;
 
 	// Token: 0x04001A8B RID: 6795
-	public string AcceptApology;
+	public string[] FreeToLeaves;
 
 	// Token: 0x04001A8C RID: 6796
-	public AudioClip RejectThreatClip;
+	public AudioClip AcceptApologyClip;
 
 	// Token: 0x04001A8D RID: 6797
-	public string RejectThreat;
+	public string AcceptApology;
 
 	// Token: 0x04001A8E RID: 6798
-	public AudioClip ExpelDelinquentsClip;
+	public AudioClip RejectThreatClip;
 
 	// Token: 0x04001A8F RID: 6799
-	public string ExpelDelinquents;
+	public string RejectThreat;
 
 	// Token: 0x04001A90 RID: 6800
-	public AudioClip DelinquentsDeadClip;
+	public AudioClip ExpelDelinquentsClip;
 
 	// Token: 0x04001A91 RID: 6801
-	public string DelinquentsDead;
+	public string ExpelDelinquents;
 
 	// Token: 0x04001A92 RID: 6802
-	public AudioClip DelinquentsExpelledClip;
+	public AudioClip DelinquentsDeadClip;
 
 	// Token: 0x04001A93 RID: 6803
-	public string DelinquentsExpelled;
+	public string DelinquentsDead;
 
 	// Token: 0x04001A94 RID: 6804
-	public AudioClip DelinquentsGoneClip;
+	public AudioClip DelinquentsExpelledClip;
 
 	// Token: 0x04001A95 RID: 6805
-	public string DelinquentsGone;
+	public string DelinquentsExpelled;
 
 	// Token: 0x04001A96 RID: 6806
-	public AudioClip[] ExcuseClips;
+	public AudioClip DelinquentsGoneClip;
 
 	// Token: 0x04001A97 RID: 6807
-	public string[] Excuses;
+	public string DelinquentsGone;
 
 	// Token: 0x04001A98 RID: 6808
-	public AudioClip[] LieClips;
+	public AudioClip[] ExcuseClips;
 
 	// Token: 0x04001A99 RID: 6809
-	public string[] Lies;
+	public string[] Excuses;
 
 	// Token: 0x04001A9A RID: 6810
-	public AudioClip[] DelinquentClips;
+	public AudioClip[] LieClips;
 
 	// Token: 0x04001A9B RID: 6811
-	public string[] Delinquents;
+	public string[] Lies;
 
 	// Token: 0x04001A9C RID: 6812
-	public AudioClip ApologyClip;
+	public AudioClip[] DelinquentClips;
 
 	// Token: 0x04001A9D RID: 6813
-	public string Apology;
+	public string[] Delinquents;
 
 	// Token: 0x04001A9E RID: 6814
-	public AudioClip FlirtClip;
+	public AudioClip ApologyClip;
 
 	// Token: 0x04001A9F RID: 6815
-	public string Flirt;
+	public string Apology;
 
 	// Token: 0x04001AA0 RID: 6816
-	public AudioClip ThreatenClip;
+	public AudioClip FlirtClip;
 
 	// Token: 0x04001AA1 RID: 6817
-	public string Threaten;
+	public string Flirt;
 
 	// Token: 0x04001AA2 RID: 6818
-	public AudioClip Silence;
+	public AudioClip ThreatenClip;
 
 	// Token: 0x04001AA3 RID: 6819
-	public float VibrationTimer;
+	public string Threaten;
 
 	// Token: 0x04001AA4 RID: 6820
-	public bool VibrationCheck;
+	public AudioClip Silence;
 
 	// Token: 0x04001AA5 RID: 6821
-	public UILabel RIVAL;
+	public float VibrationTimer;
 
 	// Token: 0x04001AA6 RID: 6822
-	public UILabel EXPELLED;
+	public bool VibrationCheck;
 
 	// Token: 0x04001AA7 RID: 6823
-	public int BloodExcuseUsed;
+	public UILabel RIVAL;
 
 	// Token: 0x04001AA8 RID: 6824
-	public int InsanityExcuseUsed;
+	public UILabel EXPELLED;
 
 	// Token: 0x04001AA9 RID: 6825
-	public int LewdExcuseUsed;
+	public int BloodExcuseUsed;
 
 	// Token: 0x04001AAA RID: 6826
-	public int TheftExcuseUsed;
+	public int InsanityExcuseUsed;
 
 	// Token: 0x04001AAB RID: 6827
-	public int TrespassExcuseUsed;
+	public int LewdExcuseUsed;
 
 	// Token: 0x04001AAC RID: 6828
-	public int WeaponExcuseUsed;
+	public int TheftExcuseUsed;
 
 	// Token: 0x04001AAD RID: 6829
+	public int TrespassExcuseUsed;
+
+	// Token: 0x04001AAE RID: 6830
+	public int WeaponExcuseUsed;
+
+	// Token: 0x04001AAF RID: 6831
 	public AudioClip LongestSilence;
 }

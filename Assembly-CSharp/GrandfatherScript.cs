@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000304 RID: 772
 public class GrandfatherScript : MonoBehaviour
 {
-	// Token: 0x06001816 RID: 6166 RVA: 0x000E4204 File Offset: 0x000E2404
+	// Token: 0x06001816 RID: 6166 RVA: 0x000E42F0 File Offset: 0x000E24F0
 	private void Update()
 	{
 		if (!this.Flip)
@@ -40,27 +40,27 @@ public class GrandfatherScript : MonoBehaviour
 		this.HourHand.localEulerAngles = new Vector3(this.HourHand.localEulerAngles.x, this.HourHand.localEulerAngles.y, this.Clock.Hour * 30f);
 	}
 
-	// Token: 0x040022EA RID: 8938
+	// Token: 0x040022ED RID: 8941
 	public ClockScript Clock;
 
-	// Token: 0x040022EB RID: 8939
+	// Token: 0x040022EE RID: 8942
 	public Transform MinuteHand;
 
-	// Token: 0x040022EC RID: 8940
+	// Token: 0x040022EF RID: 8943
 	public Transform HourHand;
 
-	// Token: 0x040022ED RID: 8941
+	// Token: 0x040022F0 RID: 8944
 	public Transform Pendulum;
 
-	// Token: 0x040022EE RID: 8942
+	// Token: 0x040022F1 RID: 8945
 	public float Rotation;
 
-	// Token: 0x040022EF RID: 8943
+	// Token: 0x040022F2 RID: 8946
 	public float Force;
 
-	// Token: 0x040022F0 RID: 8944
+	// Token: 0x040022F3 RID: 8947
 	public float Speed;
 
-	// Token: 0x040022F1 RID: 8945
+	// Token: 0x040022F4 RID: 8948
 	public bool Flip;
 }
