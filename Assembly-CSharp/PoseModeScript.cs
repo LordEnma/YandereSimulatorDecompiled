@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003B2 RID: 946
 public class PoseModeScript : MonoBehaviour
 {
-	// Token: 0x06001AD2 RID: 6866 RVA: 0x00125871 File Offset: 0x00123A71
+	// Token: 0x06001AD3 RID: 6867 RVA: 0x00125CB5 File Offset: 0x00123EB5
 	private void Start()
 	{
 		this.PoseModeCamera.gameObject.SetActive(false);
@@ -12,7 +12,7 @@ public class PoseModeScript : MonoBehaviour
 		this.Panel.enabled = false;
 	}
 
-	// Token: 0x06001AD3 RID: 6867 RVA: 0x001258A0 File Offset: 0x00123AA0
+	// Token: 0x06001AD4 RID: 6868 RVA: 0x00125CE4 File Offset: 0x00123EE4
 	private void Update()
 	{
 		if (this.Show)
@@ -672,7 +672,7 @@ public class PoseModeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AD4 RID: 6868 RVA: 0x00127308 File Offset: 0x00125508
+	// Token: 0x06001AD5 RID: 6869 RVA: 0x0012774C File Offset: 0x0012594C
 	private void UpdateHighlight()
 	{
 		if (!this.Animating)
@@ -713,7 +713,7 @@ public class PoseModeScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 400f - (float)this.Selected * 50f, this.Highlight.localPosition.z);
 	}
 
-	// Token: 0x06001AD5 RID: 6869 RVA: 0x00127434 File Offset: 0x00125634
+	// Token: 0x06001AD6 RID: 6870 RVA: 0x00127878 File Offset: 0x00125A78
 	public void UpdateLabels()
 	{
 		for (int i = 1; i < this.OptionLabels.Length; i++)
@@ -989,7 +989,7 @@ public class PoseModeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AD6 RID: 6870 RVA: 0x0012864D File Offset: 0x0012684D
+	// Token: 0x06001AD7 RID: 6871 RVA: 0x00128A91 File Offset: 0x00126C91
 	private void RememberPose()
 	{
 		PoseModeGlobals.PosePosition = this.Bone.localPosition;
@@ -997,7 +997,7 @@ public class PoseModeScript : MonoBehaviour
 		PoseModeGlobals.PoseScale = this.Bone.localScale;
 	}
 
-	// Token: 0x06001AD7 RID: 6871 RVA: 0x0012867F File Offset: 0x0012687F
+	// Token: 0x06001AD8 RID: 6872 RVA: 0x00128AC3 File Offset: 0x00126CC3
 	private void ResetPose()
 	{
 		this.Bone.localPosition = PoseModeGlobals.PosePosition;
@@ -1005,7 +1005,7 @@ public class PoseModeScript : MonoBehaviour
 		this.Bone.localScale = PoseModeGlobals.PoseScale;
 	}
 
-	// Token: 0x06001AD8 RID: 6872 RVA: 0x001286B4 File Offset: 0x001268B4
+	// Token: 0x06001AD9 RID: 6873 RVA: 0x00128AF8 File Offset: 0x00126CF8
 	private void CapColors()
 	{
 		Material material = this.Student.Cosmetic.HairRenderer.material;
@@ -1061,7 +1061,7 @@ public class PoseModeScript : MonoBehaviour
 		this.Student.Cosmetic.LeftEyeRenderer.material.color = material2.color;
 	}
 
-	// Token: 0x06001AD9 RID: 6873 RVA: 0x00128A34 File Offset: 0x00126C34
+	// Token: 0x06001ADA RID: 6874 RVA: 0x00128E78 File Offset: 0x00127078
 	private void CreateAnimationArray()
 	{
 		this.AnimID = 1;
@@ -1074,7 +1074,7 @@ public class PoseModeScript : MonoBehaviour
 		this.AnimID--;
 	}
 
-	// Token: 0x06001ADA RID: 6874 RVA: 0x00128AC4 File Offset: 0x00126CC4
+	// Token: 0x06001ADB RID: 6875 RVA: 0x00128F08 File Offset: 0x00127108
 	private void CalculateValue()
 	{
 		if (Input.GetAxis("Horizontal") > 0.5f || Input.GetAxis("Horizontal") < -0.5f)
@@ -1104,7 +1104,7 @@ public class PoseModeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ADB RID: 6875 RVA: 0x00128B6D File Offset: 0x00126D6D
+	// Token: 0x06001ADC RID: 6876 RVA: 0x00128FB1 File Offset: 0x001271B1
 	private void Exit()
 	{
 		this.PromptBar.ClearButtons();
@@ -1115,102 +1115,102 @@ public class PoseModeScript : MonoBehaviour
 		this.UpdateHighlight();
 	}
 
-	// Token: 0x04002D1B RID: 11547
+	// Token: 0x04002D21 RID: 11553
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002D1C RID: 11548
+	// Token: 0x04002D22 RID: 11554
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002D1D RID: 11549
+	// Token: 0x04002D23 RID: 11555
 	public ParticleSystem Marker;
 
-	// Token: 0x04002D1E RID: 11550
+	// Token: 0x04002D24 RID: 11556
 	public StudentScript Student;
 
-	// Token: 0x04002D1F RID: 11551
+	// Token: 0x04002D25 RID: 11557
 	public YandereScript Yandere;
 
-	// Token: 0x04002D20 RID: 11552
+	// Token: 0x04002D26 RID: 11558
 	public UIPanel Panel;
 
-	// Token: 0x04002D21 RID: 11553
+	// Token: 0x04002D27 RID: 11559
 	public UILabel[] OptionLabels;
 
-	// Token: 0x04002D22 RID: 11554
+	// Token: 0x04002D28 RID: 11560
 	public UILabel HeaderLabel;
 
-	// Token: 0x04002D23 RID: 11555
+	// Token: 0x04002D29 RID: 11561
 	public Transform Highlight;
 
-	// Token: 0x04002D24 RID: 11556
+	// Token: 0x04002D2A RID: 11562
 	public Transform Bone;
 
-	// Token: 0x04002D25 RID: 11557
+	// Token: 0x04002D2B RID: 11563
 	public GameObject Warning;
 
-	// Token: 0x04002D26 RID: 11558
+	// Token: 0x04002D2C RID: 11564
 	public Camera PoseModeCamera;
 
-	// Token: 0x04002D27 RID: 11559
+	// Token: 0x04002D2D RID: 11565
 	public bool ChoosingBodyRegion;
 
-	// Token: 0x04002D28 RID: 11560
+	// Token: 0x04002D2E RID: 11566
 	public bool ChoosingAction = true;
 
-	// Token: 0x04002D29 RID: 11561
+	// Token: 0x04002D2F RID: 11567
 	public bool ChoosingBone = true;
 
-	// Token: 0x04002D2A RID: 11562
+	// Token: 0x04002D30 RID: 11568
 	public bool SavingLoading;
 
-	// Token: 0x04002D2B RID: 11563
+	// Token: 0x04002D31 RID: 11569
 	public bool Customizing;
 
-	// Token: 0x04002D2C RID: 11564
+	// Token: 0x04002D32 RID: 11570
 	public bool EditingFace;
 
-	// Token: 0x04002D2D RID: 11565
+	// Token: 0x04002D33 RID: 11571
 	public bool Animating;
 
-	// Token: 0x04002D2E RID: 11566
+	// Token: 0x04002D34 RID: 11572
 	public bool Placing;
 
-	// Token: 0x04002D2F RID: 11567
+	// Token: 0x04002D35 RID: 11573
 	public bool Posing;
 
-	// Token: 0x04002D30 RID: 11568
+	// Token: 0x04002D36 RID: 11574
 	public bool Show;
 
-	// Token: 0x04002D31 RID: 11569
+	// Token: 0x04002D37 RID: 11575
 	public int SaveSlot = 1;
 
-	// Token: 0x04002D32 RID: 11570
+	// Token: 0x04002D38 RID: 11576
 	public int Selected = 1;
 
-	// Token: 0x04002D33 RID: 11571
+	// Token: 0x04002D39 RID: 11577
 	public int Region = 1;
 
-	// Token: 0x04002D34 RID: 11572
+	// Token: 0x04002D3A RID: 11578
 	public int AnimID = 1;
 
-	// Token: 0x04002D35 RID: 11573
+	// Token: 0x04002D3B RID: 11579
 	public int Degree = 1;
 
-	// Token: 0x04002D36 RID: 11574
+	// Token: 0x04002D3C RID: 11580
 	public int Offset;
 
-	// Token: 0x04002D37 RID: 11575
+	// Token: 0x04002D3D RID: 11581
 	public int Limit;
 
-	// Token: 0x04002D38 RID: 11576
+	// Token: 0x04002D3E RID: 11582
 	public int Value;
 
-	// Token: 0x04002D39 RID: 11577
+	// Token: 0x04002D3F RID: 11583
 	public string[] StockingNames;
 
-	// Token: 0x04002D3A RID: 11578
+	// Token: 0x04002D40 RID: 11584
 	public int StockingID;
 
-	// Token: 0x04002D3B RID: 11579
+	// Token: 0x04002D41 RID: 11585
 	public string[] AnimationArray;
 }

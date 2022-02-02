@@ -4,7 +4,7 @@
 [Serializable]
 public class ApplicationSaveData
 {
-	// Token: 0x06001BDF RID: 7135 RVA: 0x00144E64 File Offset: 0x00143064
+	// Token: 0x06001BE0 RID: 7136 RVA: 0x001452A8 File Offset: 0x001434A8
 	public static ApplicationSaveData ReadFromGlobals()
 	{
 		return new ApplicationSaveData
@@ -13,12 +13,12 @@ public class ApplicationSaveData
 		};
 	}
 
-	// Token: 0x06001BE0 RID: 7136 RVA: 0x00144E76 File Offset: 0x00143076
+	// Token: 0x06001BE1 RID: 7137 RVA: 0x001452BA File Offset: 0x001434BA
 	public static void WriteToGlobals(ApplicationSaveData data)
 	{
 		ApplicationGlobals.VersionNumber = data.versionNumber;
 	}
 
-	// Token: 0x040030E0 RID: 12512
+	// Token: 0x040030E6 RID: 12518
 	public float versionNumber;
 }

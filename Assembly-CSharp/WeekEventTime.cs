@@ -5,14 +5,14 @@ using UnityEngine;
 [Serializable]
 public class WeekEventTime : IScheduledEventTime
 {
-	// Token: 0x06001467 RID: 5223 RVA: 0x000C687D File Offset: 0x000C4A7D
+	// Token: 0x06001468 RID: 5224 RVA: 0x000C6A81 File Offset: 0x000C4C81
 	public WeekEventTime(int week)
 	{
 		this.week = week;
 	}
 
 	// Token: 0x1700036E RID: 878
-	// (get) Token: 0x06001468 RID: 5224 RVA: 0x000C688C File Offset: 0x000C4A8C
+	// (get) Token: 0x06001469 RID: 5225 RVA: 0x000C6A90 File Offset: 0x000C4C90
 	public ScheduledEventTimeType ScheduleType
 	{
 		get
@@ -21,25 +21,25 @@ public class WeekEventTime : IScheduledEventTime
 		}
 	}
 
-	// Token: 0x06001469 RID: 5225 RVA: 0x000C688F File Offset: 0x000C4A8F
+	// Token: 0x0600146A RID: 5226 RVA: 0x000C6A93 File Offset: 0x000C4C93
 	public bool OccurringNow(DateAndTime currentTime)
 	{
 		return currentTime.Week == this.week;
 	}
 
-	// Token: 0x0600146A RID: 5226 RVA: 0x000C689F File Offset: 0x000C4A9F
+	// Token: 0x0600146B RID: 5227 RVA: 0x000C6AA3 File Offset: 0x000C4CA3
 	public bool OccursInTheFuture(DateAndTime currentTime)
 	{
 		return currentTime.Week < this.week;
 	}
 
-	// Token: 0x0600146B RID: 5227 RVA: 0x000C68AF File Offset: 0x000C4AAF
+	// Token: 0x0600146C RID: 5228 RVA: 0x000C6AB3 File Offset: 0x000C4CB3
 	public bool OccurredInThePast(DateAndTime currentTime)
 	{
 		return currentTime.Week > this.week;
 	}
 
-	// Token: 0x04001F5C RID: 8028
+	// Token: 0x04001F60 RID: 8032
 	[SerializeField]
 	private int week;
 }

@@ -6,11 +6,11 @@ namespace AnimationOrTween
 	[DoNotObfuscateNGUI]
 	public enum EnableCondition
 	{
-		// Token: 0x04004BA7 RID: 19367
+		// Token: 0x04004BB2 RID: 19378
 		DoNothing,
-		// Token: 0x04004BA8 RID: 19368
+		// Token: 0x04004BB3 RID: 19379
 		EnableThenPlay,
-		// Token: 0x04004BA9 RID: 19369
+		// Token: 0x04004BB4 RID: 19380
 		IgnoreDisabledState
 	}
 }

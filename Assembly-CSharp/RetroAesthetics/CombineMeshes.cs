@@ -7,13 +7,13 @@ namespace RetroAesthetics
 	[ExecuteInEditMode]
 	public class CombineMeshes : MonoBehaviour
 	{
-		// Token: 0x06002280 RID: 8832 RVA: 0x001EDC22 File Offset: 0x001EBE22
+		// Token: 0x06002284 RID: 8836 RVA: 0x001EE4C2 File Offset: 0x001EC6C2
 		private void CombineButtonHandler()
 		{
 			this.CombineChildMeshes();
 		}
 
-		// Token: 0x06002281 RID: 8833 RVA: 0x001EDC2C File Offset: 0x001EBE2C
+		// Token: 0x06002285 RID: 8837 RVA: 0x001EE4CC File Offset: 0x001EC6CC
 		public virtual void CombineChildMeshes()
 		{
 			Vector3 position = base.transform.position;
@@ -49,7 +49,7 @@ namespace RetroAesthetics
 			base.transform.position = position;
 		}
 
-		// Token: 0x04004A6F RID: 19055
+		// Token: 0x04004A7A RID: 19066
 		[InspectorButton("CombineButtonHandler")]
 		public bool combineChildMeshes;
 	}

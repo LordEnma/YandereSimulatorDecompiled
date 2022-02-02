@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000306 RID: 774
 public class GreenRoomScript : MonoBehaviour
 {
-	// Token: 0x0600181A RID: 6170 RVA: 0x000E44B5 File Offset: 0x000E26B5
+	// Token: 0x0600181B RID: 6171 RVA: 0x000E48D1 File Offset: 0x000E2AD1
 	private void Start()
 	{
 		this.QualityManager.Obscurance.enabled = false;
 		this.UpdateColor();
 	}
 
-	// Token: 0x0600181B RID: 6171 RVA: 0x000E44CE File Offset: 0x000E26CE
+	// Token: 0x0600181C RID: 6172 RVA: 0x000E48EA File Offset: 0x000E2AEA
 	private void Update()
 	{
 		if (Input.GetKeyDown("z"))
@@ -20,7 +20,7 @@ public class GreenRoomScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600181C RID: 6172 RVA: 0x000E44E4 File Offset: 0x000E26E4
+	// Token: 0x0600181D RID: 6173 RVA: 0x000E4900 File Offset: 0x000E2B00
 	private void UpdateColor()
 	{
 		this.ID++;
@@ -32,15 +32,15 @@ public class GreenRoomScript : MonoBehaviour
 		this.Renderers[1].material.color = this.Colors[this.ID];
 	}
 
-	// Token: 0x040022F7 RID: 8951
+	// Token: 0x040022FC RID: 8956
 	public QualityManagerScript QualityManager;
 
-	// Token: 0x040022F8 RID: 8952
+	// Token: 0x040022FD RID: 8957
 	public Color[] Colors;
 
-	// Token: 0x040022F9 RID: 8953
+	// Token: 0x040022FE RID: 8958
 	public Renderer[] Renderers;
 
-	// Token: 0x040022FA RID: 8954
+	// Token: 0x040022FF RID: 8959
 	public int ID;
 }

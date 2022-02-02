@@ -81,7 +81,6 @@ public class CalendarScript : MonoBehaviour
 		}
 		if (!SchoolGlobals.SchoolAtmosphereSet)
 		{
-			OptionGlobals.EnableShadows = false;
 			SchoolGlobals.SchoolAtmosphereSet = true;
 			SchoolGlobals.SchoolAtmosphere = 1f;
 			PlayerGlobals.Money = 10f;
@@ -152,7 +151,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA1 RID: 2721 RVA: 0x000619F0 File Offset: 0x0005FBF0
+	// Token: 0x06000AA1 RID: 2721 RVA: 0x000619E8 File Offset: 0x0005FBE8
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -177,6 +176,16 @@ public class CalendarScript : MonoBehaviour
 						base.GetComponent<AudioSource>().pitch = 1f - (0.8f - SchoolGlobals.SchoolAtmosphere * 0.8f);
 						base.GetComponent<AudioSource>().Play();
 					}
+					if (DateGlobals.Weekday == DayOfWeek.Friday)
+					{
+						if (!this.Skipping)
+						{
+							DateGlobals.GameplayDay++;
+							DateGlobals.Weekday++;
+							this.ChangeDayColor();
+							goto IL_1B3;
+						}
+					}
 					while (DateGlobals.PassDays > 0)
 					{
 						DateGlobals.GameplayDay++;
@@ -184,6 +193,8 @@ public class CalendarScript : MonoBehaviour
 						DateGlobals.PassDays--;
 						this.ChangeDayColor();
 					}
+					this.Skipping = false;
+					IL_1B3:
 					this.Target = 250f * (float)DateGlobals.Weekday + (float)this.Adjustment;
 					if (DateGlobals.Weekday > DayOfWeek.Saturday)
 					{
@@ -268,6 +279,7 @@ public class CalendarScript : MonoBehaviour
 							GameGlobals.ShowAbduction = false;
 							DateGlobals.Weekday++;
 							this.Incremented = false;
+							this.Skipping = true;
 							if (!SchoolGlobals.HighSecurity && SchoolGlobals.SchoolAtmosphere >= SchoolGlobals.PreviousSchoolAtmosphere)
 							{
 								SchoolGlobals.SchoolAtmosphere += 0.05f;
@@ -459,7 +471,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA2 RID: 2722 RVA: 0x00062460 File Offset: 0x00060660
+	// Token: 0x06000AA2 RID: 2722 RVA: 0x00062494 File Offset: 0x00060694
 	public void ChangeDayColor()
 	{
 		foreach (UILabel uilabel in this.DayLabel)
@@ -488,7 +500,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA3 RID: 2723 RVA: 0x00062518 File Offset: 0x00060718
+	// Token: 0x06000AA3 RID: 2723 RVA: 0x0006254C File Offset: 0x0006074C
 	public void LoveSickCheck()
 	{
 		if (GameGlobals.LoveSick)
@@ -529,7 +541,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA4 RID: 2724 RVA: 0x000626AC File Offset: 0x000608AC
+	// Token: 0x06000AA4 RID: 2724 RVA: 0x000626E0 File Offset: 0x000608E0
 	public void SetVignettePink()
 	{
 		VignetteModel.Settings settings = this.NewTitleScreenProfile.vignette.settings;
@@ -537,7 +549,7 @@ public class CalendarScript : MonoBehaviour
 		this.NewTitleScreenProfile.vignette.settings = settings;
 	}
 
-	// Token: 0x06000AA5 RID: 2725 RVA: 0x000626FC File Offset: 0x000608FC
+	// Token: 0x06000AA5 RID: 2725 RVA: 0x00062730 File Offset: 0x00060930
 	private void ImproveSchoolAtmosphere()
 	{
 		if (SchoolGlobals.SchoolAtmosphere > 1f)
@@ -555,7 +567,7 @@ public class CalendarScript : MonoBehaviour
 		SchoolGlobals.PreviousSchoolAtmosphere = SchoolGlobals.SchoolAtmosphere;
 	}
 
-	// Token: 0x06000AA6 RID: 2726 RVA: 0x00062828 File Offset: 0x00060A28
+	// Token: 0x06000AA6 RID: 2726 RVA: 0x0006285C File Offset: 0x00060A5C
 	private void BecomeEighties()
 	{
 		this.Vignette.enabled = false;
@@ -717,7 +729,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA7 RID: 2727 RVA: 0x000630F4 File Offset: 0x000612F4
+	// Token: 0x06000AA7 RID: 2727 RVA: 0x00063128 File Offset: 0x00061328
 	public void EightiesifyLabel(UILabel Label)
 	{
 		Label.trueTypeFont = this.VCR;
@@ -727,7 +739,7 @@ public class CalendarScript : MonoBehaviour
 		Label.effectColor = new Color(0f, 0f, 0f, 1f);
 	}
 
-	// Token: 0x06000AA8 RID: 2728 RVA: 0x0006315C File Offset: 0x0006135C
+	// Token: 0x06000AA8 RID: 2728 RVA: 0x00063190 File Offset: 0x00061390
 	public void ResetSaveFile()
 	{
 		int num = GameGlobals.Profile;
@@ -864,41 +876,44 @@ public class CalendarScript : MonoBehaviour
 	public bool LoveSick;
 
 	// Token: 0x04000CD3 RID: 3283
-	public bool FadeOut;
+	public bool Skipping;
 
 	// Token: 0x04000CD4 RID: 3284
-	public bool Switch;
+	public bool FadeOut;
 
 	// Token: 0x04000CD5 RID: 3285
-	public bool Reset;
+	public bool Switch;
 
 	// Token: 0x04000CD6 RID: 3286
-	public float Timer;
+	public bool Reset;
 
 	// Token: 0x04000CD7 RID: 3287
-	public float Target;
+	public float Timer;
 
 	// Token: 0x04000CD8 RID: 3288
-	public float Offset = 66.66666f;
+	public float Target;
 
 	// Token: 0x04000CD9 RID: 3289
-	public int Adjustment;
+	public float Offset = 66.66666f;
 
 	// Token: 0x04000CDA RID: 3290
-	public int Phase = 1;
+	public int Adjustment;
 
 	// Token: 0x04000CDB RID: 3291
-	public AudioClip EightiesJingle;
+	public int Phase = 1;
 
 	// Token: 0x04000CDC RID: 3292
-	public UILabel[] Labels;
+	public AudioClip EightiesJingle;
 
 	// Token: 0x04000CDD RID: 3293
-	public GameObject SundayLabel;
+	public UILabel[] Labels;
 
 	// Token: 0x04000CDE RID: 3294
-	public GameObject EndingLabel;
+	public GameObject SundayLabel;
 
 	// Token: 0x04000CDF RID: 3295
+	public GameObject EndingLabel;
+
+	// Token: 0x04000CE0 RID: 3296
 	public Font VCR;
 }

@@ -3,10 +3,10 @@
 // Token: 0x020003BF RID: 959
 public enum PromptOwnerType
 {
-	// Token: 0x04002DB4 RID: 11700
+	// Token: 0x04002DBA RID: 11706
 	Unknown,
-	// Token: 0x04002DB5 RID: 11701
+	// Token: 0x04002DBB RID: 11707
 	Door,
-	// Token: 0x04002DB6 RID: 11702
+	// Token: 0x04002DBC RID: 11708
 	Person
 }

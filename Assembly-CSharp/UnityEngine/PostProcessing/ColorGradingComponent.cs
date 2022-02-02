@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class ColorGradingComponent : PostProcessingComponentRenderTexture<ColorGradingModel>
 	{
 		// Token: 0x170004EF RID: 1263
-		// (get) Token: 0x060022B5 RID: 8885 RVA: 0x001EF794 File Offset: 0x001ED994
+		// (get) Token: 0x060022B9 RID: 8889 RVA: 0x001F0034 File Offset: 0x001EE234
 		public override bool active
 		{
 			get
@@ -15,13 +15,13 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022B6 RID: 8886 RVA: 0x001EF7B3 File Offset: 0x001ED9B3
+		// Token: 0x060022BA RID: 8890 RVA: 0x001F0053 File Offset: 0x001EE253
 		private float StandardIlluminantY(float x)
 		{
 			return 2.87f * x - 3f * x * x - 0.27509508f;
 		}
 
-		// Token: 0x060022B7 RID: 8887 RVA: 0x001EF7CC File Offset: 0x001ED9CC
+		// Token: 0x060022BB RID: 8891 RVA: 0x001F006C File Offset: 0x001EE26C
 		private Vector3 CIExyToLMS(float x, float y)
 		{
 			float num = 1f;
@@ -33,7 +33,7 @@ namespace UnityEngine.PostProcessing
 			return new Vector3(x2, y2, z);
 		}
 
-		// Token: 0x060022B8 RID: 8888 RVA: 0x001EF844 File Offset: 0x001EDA44
+		// Token: 0x060022BC RID: 8892 RVA: 0x001F00E4 File Offset: 0x001EE2E4
 		private Vector3 CalculateColorBalance(float temperature, float tint)
 		{
 			float num = temperature / 55f;
@@ -45,7 +45,7 @@ namespace UnityEngine.PostProcessing
 			return new Vector3(vector.x / vector2.x, vector.y / vector2.y, vector.z / vector2.z);
 		}
 
-		// Token: 0x060022B9 RID: 8889 RVA: 0x001EF8E0 File Offset: 0x001EDAE0
+		// Token: 0x060022BD RID: 8893 RVA: 0x001F0180 File Offset: 0x001EE380
 		private static Color NormalizeColor(Color c)
 		{
 			float num = (c.r + c.g + c.b) / 3f;
@@ -62,13 +62,13 @@ namespace UnityEngine.PostProcessing
 			};
 		}
 
-		// Token: 0x060022BA RID: 8890 RVA: 0x001EF973 File Offset: 0x001EDB73
+		// Token: 0x060022BE RID: 8894 RVA: 0x001F0213 File Offset: 0x001EE413
 		private static Vector3 ClampVector(Vector3 v, float min, float max)
 		{
 			return new Vector3(Mathf.Clamp(v.x, min, max), Mathf.Clamp(v.y, min, max), Mathf.Clamp(v.z, min, max));
 		}
 
-		// Token: 0x060022BB RID: 8891 RVA: 0x001EF9A4 File Offset: 0x001EDBA4
+		// Token: 0x060022BF RID: 8895 RVA: 0x001F0244 File Offset: 0x001EE444
 		public static Vector3 GetLiftValue(Color lift)
 		{
 			Color color = ColorGradingComponent.NormalizeColor(lift);
@@ -79,7 +79,7 @@ namespace UnityEngine.PostProcessing
 			return ColorGradingComponent.ClampVector(new Vector3(x, y, z), -1f, 1f);
 		}
 
-		// Token: 0x060022BC RID: 8892 RVA: 0x001EFA2C File Offset: 0x001EDC2C
+		// Token: 0x060022C0 RID: 8896 RVA: 0x001F02CC File Offset: 0x001EE4CC
 		public static Vector3 GetGammaValue(Color gamma)
 		{
 			Color color = ColorGradingComponent.NormalizeColor(gamma);
@@ -94,7 +94,7 @@ namespace UnityEngine.PostProcessing
 			return ColorGradingComponent.ClampVector(new Vector3(x, y, z), 0f, 5f);
 		}
 
-		// Token: 0x060022BD RID: 8893 RVA: 0x001EFB30 File Offset: 0x001EDD30
+		// Token: 0x060022C1 RID: 8897 RVA: 0x001F03D0 File Offset: 0x001EE5D0
 		public static Vector3 GetGainValue(Color gain)
 		{
 			Color color = ColorGradingComponent.NormalizeColor(gain);
@@ -106,7 +106,7 @@ namespace UnityEngine.PostProcessing
 			return ColorGradingComponent.ClampVector(new Vector3(x, y, z), 0f, 4f);
 		}
 
-		// Token: 0x060022BE RID: 8894 RVA: 0x001EFBF8 File Offset: 0x001EDDF8
+		// Token: 0x060022C2 RID: 8898 RVA: 0x001F0498 File Offset: 0x001EE698
 		public static void CalculateLiftGammaGain(Color lift, Color gamma, Color gain, out Vector3 outLift, out Vector3 outGamma, out Vector3 outGain)
 		{
 			outLift = ColorGradingComponent.GetLiftValue(lift);
@@ -114,7 +114,7 @@ namespace UnityEngine.PostProcessing
 			outGain = ColorGradingComponent.GetGainValue(gain);
 		}
 
-		// Token: 0x060022BF RID: 8895 RVA: 0x001EFC20 File Offset: 0x001EDE20
+		// Token: 0x060022C3 RID: 8899 RVA: 0x001F04C0 File Offset: 0x001EE6C0
 		public static Vector3 GetSlopeValue(Color slope)
 		{
 			Color color = ColorGradingComponent.NormalizeColor(slope);
@@ -126,7 +126,7 @@ namespace UnityEngine.PostProcessing
 			return ColorGradingComponent.ClampVector(new Vector3(x, y, z), 0f, 2f);
 		}
 
-		// Token: 0x060022C0 RID: 8896 RVA: 0x001EFCC8 File Offset: 0x001EDEC8
+		// Token: 0x060022C4 RID: 8900 RVA: 0x001F0568 File Offset: 0x001EE768
 		public static Vector3 GetPowerValue(Color power)
 		{
 			Color color = ColorGradingComponent.NormalizeColor(power);
@@ -141,7 +141,7 @@ namespace UnityEngine.PostProcessing
 			return ColorGradingComponent.ClampVector(new Vector3(x, y, z), 0.5f, 2.5f);
 		}
 
-		// Token: 0x060022C1 RID: 8897 RVA: 0x001EFDAC File Offset: 0x001EDFAC
+		// Token: 0x060022C5 RID: 8901 RVA: 0x001F064C File Offset: 0x001EE84C
 		public static Vector3 GetOffsetValue(Color offset)
 		{
 			Color color = ColorGradingComponent.NormalizeColor(offset);
@@ -153,7 +153,7 @@ namespace UnityEngine.PostProcessing
 			return ColorGradingComponent.ClampVector(new Vector3(x, y, z), -0.8f, 0.8f);
 		}
 
-		// Token: 0x060022C2 RID: 8898 RVA: 0x001EFE42 File Offset: 0x001EE042
+		// Token: 0x060022C6 RID: 8902 RVA: 0x001F06E2 File Offset: 0x001EE8E2
 		public static void CalculateSlopePowerOffset(Color slope, Color power, Color offset, out Vector3 outSlope, out Vector3 outPower, out Vector3 outOffset)
 		{
 			outSlope = ColorGradingComponent.GetSlopeValue(slope);
@@ -161,7 +161,7 @@ namespace UnityEngine.PostProcessing
 			outOffset = ColorGradingComponent.GetOffsetValue(offset);
 		}
 
-		// Token: 0x060022C3 RID: 8899 RVA: 0x001EFE6A File Offset: 0x001EE06A
+		// Token: 0x060022C7 RID: 8903 RVA: 0x001F070A File Offset: 0x001EE90A
 		private TextureFormat GetCurveFormat()
 		{
 			if (SystemInfo.SupportsTextureFormat(TextureFormat.RGBAHalf))
@@ -171,7 +171,7 @@ namespace UnityEngine.PostProcessing
 			return TextureFormat.RGBA32;
 		}
 
-		// Token: 0x060022C4 RID: 8900 RVA: 0x001EFE7C File Offset: 0x001EE07C
+		// Token: 0x060022C8 RID: 8904 RVA: 0x001F071C File Offset: 0x001EE91C
 		private Texture2D GetCurveTexture()
 		{
 			if (this.m_GradingCurves == null)
@@ -207,13 +207,13 @@ namespace UnityEngine.PostProcessing
 			return this.m_GradingCurves;
 		}
 
-		// Token: 0x060022C5 RID: 8901 RVA: 0x001EFFE8 File Offset: 0x001EE1E8
+		// Token: 0x060022C9 RID: 8905 RVA: 0x001F0888 File Offset: 0x001EEA88
 		private bool IsLogLutValid(RenderTexture lut)
 		{
 			return lut != null && lut.IsCreated() && lut.height == 32;
 		}
 
-		// Token: 0x060022C6 RID: 8902 RVA: 0x001F0007 File Offset: 0x001EE207
+		// Token: 0x060022CA RID: 8906 RVA: 0x001F08A7 File Offset: 0x001EEAA7
 		private RenderTextureFormat GetLutFormat()
 		{
 			if (SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGBHalf))
@@ -223,7 +223,7 @@ namespace UnityEngine.PostProcessing
 			return RenderTextureFormat.ARGB32;
 		}
 
-		// Token: 0x060022C7 RID: 8903 RVA: 0x001F0014 File Offset: 0x001EE214
+		// Token: 0x060022CB RID: 8907 RVA: 0x001F08B4 File Offset: 0x001EEAB4
 		private void GenerateLut()
 		{
 			ColorGradingModel.Settings settings = base.model.settings;
@@ -291,7 +291,7 @@ namespace UnityEngine.PostProcessing
 			Graphics.Blit(null, base.model.bakedLut, material, 0);
 		}
 
-		// Token: 0x060022C8 RID: 8904 RVA: 0x001F03C0 File Offset: 0x001EE5C0
+		// Token: 0x060022CC RID: 8908 RVA: 0x001F0C60 File Offset: 0x001EEE60
 		public override void Prepare(Material uberMaterial)
 		{
 			if (base.model.isDirty || !this.IsLogLutValid(base.model.bakedLut))
@@ -307,14 +307,14 @@ namespace UnityEngine.PostProcessing
 			uberMaterial.SetFloat(ColorGradingComponent.Uniforms._ExposureEV, value);
 		}
 
-		// Token: 0x060022C9 RID: 8905 RVA: 0x001F04AC File Offset: 0x001EE6AC
+		// Token: 0x060022CD RID: 8909 RVA: 0x001F0D4C File Offset: 0x001EEF4C
 		public void OnGUI()
 		{
 			RenderTexture bakedLut = base.model.bakedLut;
 			GUI.DrawTexture(new Rect(this.context.viewport.x * (float)Screen.width + 8f, 8f, (float)bakedLut.width, (float)bakedLut.height), bakedLut);
 		}
 
-		// Token: 0x060022CA RID: 8906 RVA: 0x001F0503 File Offset: 0x001EE703
+		// Token: 0x060022CE RID: 8910 RVA: 0x001F0DA3 File Offset: 0x001EEFA3
 		public override void OnDisable()
 		{
 			GraphicsUtils.Destroy(this.m_GradingCurves);
@@ -323,82 +323,82 @@ namespace UnityEngine.PostProcessing
 			base.model.bakedLut = null;
 		}
 
-		// Token: 0x04004AB4 RID: 19124
+		// Token: 0x04004ABF RID: 19135
 		private const int k_InternalLogLutSize = 32;
 
-		// Token: 0x04004AB5 RID: 19125
+		// Token: 0x04004AC0 RID: 19136
 		private const int k_CurvePrecision = 128;
 
-		// Token: 0x04004AB6 RID: 19126
+		// Token: 0x04004AC1 RID: 19137
 		private const float k_CurveStep = 0.0078125f;
 
-		// Token: 0x04004AB7 RID: 19127
+		// Token: 0x04004AC2 RID: 19138
 		private Texture2D m_GradingCurves;
 
-		// Token: 0x04004AB8 RID: 19128
+		// Token: 0x04004AC3 RID: 19139
 		private Color[] m_pixels = new Color[256];
 
-		// Token: 0x0200069A RID: 1690
+		// Token: 0x02000694 RID: 1684
 		private static class Uniforms
 		{
-			// Token: 0x0400503A RID: 20538
+			// Token: 0x04005017 RID: 20503
 			internal static readonly int _LutParams = Shader.PropertyToID("_LutParams");
 
-			// Token: 0x0400503B RID: 20539
+			// Token: 0x04005018 RID: 20504
 			internal static readonly int _NeutralTonemapperParams1 = Shader.PropertyToID("_NeutralTonemapperParams1");
 
-			// Token: 0x0400503C RID: 20540
+			// Token: 0x04005019 RID: 20505
 			internal static readonly int _NeutralTonemapperParams2 = Shader.PropertyToID("_NeutralTonemapperParams2");
 
-			// Token: 0x0400503D RID: 20541
+			// Token: 0x0400501A RID: 20506
 			internal static readonly int _HueShift = Shader.PropertyToID("_HueShift");
 
-			// Token: 0x0400503E RID: 20542
+			// Token: 0x0400501B RID: 20507
 			internal static readonly int _Saturation = Shader.PropertyToID("_Saturation");
 
-			// Token: 0x0400503F RID: 20543
+			// Token: 0x0400501C RID: 20508
 			internal static readonly int _Contrast = Shader.PropertyToID("_Contrast");
 
-			// Token: 0x04005040 RID: 20544
+			// Token: 0x0400501D RID: 20509
 			internal static readonly int _Balance = Shader.PropertyToID("_Balance");
 
-			// Token: 0x04005041 RID: 20545
+			// Token: 0x0400501E RID: 20510
 			internal static readonly int _Lift = Shader.PropertyToID("_Lift");
 
-			// Token: 0x04005042 RID: 20546
+			// Token: 0x0400501F RID: 20511
 			internal static readonly int _InvGamma = Shader.PropertyToID("_InvGamma");
 
-			// Token: 0x04005043 RID: 20547
+			// Token: 0x04005020 RID: 20512
 			internal static readonly int _Gain = Shader.PropertyToID("_Gain");
 
-			// Token: 0x04005044 RID: 20548
+			// Token: 0x04005021 RID: 20513
 			internal static readonly int _Slope = Shader.PropertyToID("_Slope");
 
-			// Token: 0x04005045 RID: 20549
+			// Token: 0x04005022 RID: 20514
 			internal static readonly int _Power = Shader.PropertyToID("_Power");
 
-			// Token: 0x04005046 RID: 20550
+			// Token: 0x04005023 RID: 20515
 			internal static readonly int _Offset = Shader.PropertyToID("_Offset");
 
-			// Token: 0x04005047 RID: 20551
+			// Token: 0x04005024 RID: 20516
 			internal static readonly int _ChannelMixerRed = Shader.PropertyToID("_ChannelMixerRed");
 
-			// Token: 0x04005048 RID: 20552
+			// Token: 0x04005025 RID: 20517
 			internal static readonly int _ChannelMixerGreen = Shader.PropertyToID("_ChannelMixerGreen");
 
-			// Token: 0x04005049 RID: 20553
+			// Token: 0x04005026 RID: 20518
 			internal static readonly int _ChannelMixerBlue = Shader.PropertyToID("_ChannelMixerBlue");
 
-			// Token: 0x0400504A RID: 20554
+			// Token: 0x04005027 RID: 20519
 			internal static readonly int _Curves = Shader.PropertyToID("_Curves");
 
-			// Token: 0x0400504B RID: 20555
+			// Token: 0x04005028 RID: 20520
 			internal static readonly int _LogLut = Shader.PropertyToID("_LogLut");
 
-			// Token: 0x0400504C RID: 20556
+			// Token: 0x04005029 RID: 20521
 			internal static readonly int _LogLut_Params = Shader.PropertyToID("_LogLut_Params");
 
-			// Token: 0x0400504D RID: 20557
+			// Token: 0x0400502A RID: 20522
 			internal static readonly int _ExposureEV = Shader.PropertyToID("_ExposureEV");
 		}
 	}

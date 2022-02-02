@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002D1 RID: 721
 public class FootstepScript : MonoBehaviour
 {
-	// Token: 0x060014AA RID: 5290 RVA: 0x000CB192 File Offset: 0x000C9392
+	// Token: 0x060014AB RID: 5291 RVA: 0x000CB5AE File Offset: 0x000C97AE
 	private void Start()
 	{
 		if (!this.Student.Nemesis)
@@ -13,7 +13,7 @@ public class FootstepScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014AB RID: 5291 RVA: 0x000CB1A8 File Offset: 0x000C93A8
+	// Token: 0x060014AC RID: 5292 RVA: 0x000CB5C4 File Offset: 0x000C97C4
 	private void Update()
 	{
 		if (!this.FootUp)
@@ -44,24 +44,24 @@ public class FootstepScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002063 RID: 8291
+	// Token: 0x04002068 RID: 8296
 	public StudentScript Student;
 
-	// Token: 0x04002064 RID: 8292
+	// Token: 0x04002069 RID: 8297
 	public AudioSource MyAudio;
 
-	// Token: 0x04002065 RID: 8293
+	// Token: 0x0400206A RID: 8298
 	public AudioClip[] WalkFootsteps;
 
-	// Token: 0x04002066 RID: 8294
+	// Token: 0x0400206B RID: 8299
 	public AudioClip[] RunFootsteps;
 
-	// Token: 0x04002067 RID: 8295
+	// Token: 0x0400206C RID: 8300
 	public float DownThreshold = 0.02f;
 
-	// Token: 0x04002068 RID: 8296
+	// Token: 0x0400206D RID: 8301
 	public float UpThreshold = 0.025f;
 
-	// Token: 0x04002069 RID: 8297
+	// Token: 0x0400206E RID: 8302
 	public bool FootUp;
 }

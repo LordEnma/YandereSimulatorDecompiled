@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020002E0 RID: 736
 public class GenocideEndingScript : MonoBehaviour
 {
-	// Token: 0x060014E6 RID: 5350 RVA: 0x000D5F48 File Offset: 0x000D4148
+	// Token: 0x060014E7 RID: 5351 RVA: 0x000D6364 File Offset: 0x000D4564
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -65,7 +65,7 @@ public class GenocideEndingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014E7 RID: 5351 RVA: 0x000D61CC File Offset: 0x000D43CC
+	// Token: 0x060014E8 RID: 5352 RVA: 0x000D65E8 File Offset: 0x000D47E8
 	private void Update()
 	{
 		if (!this.EightiesEnding)
@@ -173,13 +173,13 @@ public class GenocideEndingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014E8 RID: 5352 RVA: 0x000D65B4 File Offset: 0x000D47B4
+	// Token: 0x060014E9 RID: 5353 RVA: 0x000D69D0 File Offset: 0x000D4BD0
 	private void LateUpdate()
 	{
 		this.Neck.transform.localEulerAngles = new Vector3(0f, this.Neck.transform.localEulerAngles.y, this.Neck.transform.localEulerAngles.z);
 	}
 
-	// Token: 0x060014E9 RID: 5353 RVA: 0x000D6608 File Offset: 0x000D4808
+	// Token: 0x060014EA RID: 5354 RVA: 0x000D6A24 File Offset: 0x000D4C24
 	public void YellowifyLabel(UILabel Label)
 	{
 		Label.trueTypeFont = this.Arial;
@@ -189,93 +189,93 @@ public class GenocideEndingScript : MonoBehaviour
 		Label.effectDistance = new Vector2(4f, 4f);
 	}
 
-	// Token: 0x04002156 RID: 8534
+	// Token: 0x0400215B RID: 8539
 	public AudioSource MyAudio;
 
-	// Token: 0x04002157 RID: 8535
+	// Token: 0x0400215C RID: 8540
 	public UISprite SecondDarkness;
 
-	// Token: 0x04002158 RID: 8536
+	// Token: 0x0400215D RID: 8541
 	public UISprite Darkness;
 
-	// Token: 0x04002159 RID: 8537
+	// Token: 0x0400215E RID: 8542
 	public UILabel Subtitle;
 
-	// Token: 0x0400215A RID: 8538
+	// Token: 0x0400215F RID: 8543
 	public Animation Senpai;
 
-	// Token: 0x0400215B RID: 8539
+	// Token: 0x04002160 RID: 8544
 	public Transform Neck;
 
-	// Token: 0x0400215C RID: 8540
+	// Token: 0x04002161 RID: 8545
 	public AudioClip[] EightiesSpeechClip;
 
-	// Token: 0x0400215D RID: 8541
+	// Token: 0x04002162 RID: 8546
 	public AudioClip[] SpeechClip;
 
-	// Token: 0x0400215E RID: 8542
+	// Token: 0x04002163 RID: 8547
 	public AudioClip OsanaClip;
 
-	// Token: 0x0400215F RID: 8543
+	// Token: 0x04002164 RID: 8548
 	public AudioClip Slam;
 
-	// Token: 0x04002160 RID: 8544
+	// Token: 0x04002165 RID: 8549
 	public string[] EightiesText;
 
-	// Token: 0x04002161 RID: 8545
+	// Token: 0x04002166 RID: 8550
 	public string[] SpeechText;
 
-	// Token: 0x04002162 RID: 8546
+	// Token: 0x04002167 RID: 8551
 	public float[] SpeechDelay;
 
-	// Token: 0x04002163 RID: 8547
+	// Token: 0x04002168 RID: 8552
 	public float[] SpeechTime;
 
-	// Token: 0x04002164 RID: 8548
+	// Token: 0x04002169 RID: 8553
 	public GameObject RIVAL;
 
-	// Token: 0x04002165 RID: 8549
+	// Token: 0x0400216A RID: 8554
 	public GameObject ELIMINATED;
 
-	// Token: 0x04002166 RID: 8550
+	// Token: 0x0400216B RID: 8555
 	public GameObject SenpaiRopes;
 
-	// Token: 0x04002167 RID: 8551
+	// Token: 0x0400216C RID: 8556
 	public GameObject OsanaRopes;
 
-	// Token: 0x04002168 RID: 8552
+	// Token: 0x0400216D RID: 8557
 	public GameObject Osana;
 
-	// Token: 0x04002169 RID: 8553
+	// Token: 0x0400216E RID: 8558
 	public int SpeechPhase;
 
-	// Token: 0x0400216A RID: 8554
+	// Token: 0x0400216F RID: 8559
 	public float SecondAlpha;
 
-	// Token: 0x0400216B RID: 8555
+	// Token: 0x04002170 RID: 8560
 	public float FadeSpeed = 0.2f;
 
-	// Token: 0x0400216C RID: 8556
+	// Token: 0x04002171 RID: 8561
 	public float TimeLimit;
 
-	// Token: 0x0400216D RID: 8557
+	// Token: 0x04002172 RID: 8562
 	public float Alpha;
 
-	// Token: 0x0400216E RID: 8558
+	// Token: 0x04002173 RID: 8563
 	public float Delay;
 
-	// Token: 0x0400216F RID: 8559
+	// Token: 0x04002174 RID: 8564
 	public float Timer;
 
-	// Token: 0x04002170 RID: 8560
+	// Token: 0x04002175 RID: 8565
 	public bool EightiesEnding;
 
-	// Token: 0x04002171 RID: 8561
+	// Token: 0x04002176 RID: 8566
 	public bool FadeOut;
 
-	// Token: 0x04002172 RID: 8562
+	// Token: 0x04002177 RID: 8567
 	public GameObject[] RivalHair;
 
-	// Token: 0x04002173 RID: 8563
+	// Token: 0x04002178 RID: 8568
 	public Font Arial;
 }

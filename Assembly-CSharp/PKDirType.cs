@@ -3,14 +3,14 @@
 // Token: 0x020004C8 RID: 1224
 public enum PKDirType
 {
-	// Token: 0x040043C1 RID: 17345
+	// Token: 0x040043CA RID: 17354
 	None,
-	// Token: 0x040043C2 RID: 17346
+	// Token: 0x040043CB RID: 17355
 	Up,
-	// Token: 0x040043C3 RID: 17347
+	// Token: 0x040043CC RID: 17356
 	Down,
-	// Token: 0x040043C4 RID: 17348
+	// Token: 0x040043CD RID: 17357
 	Right,
-	// Token: 0x040043C5 RID: 17349
+	// Token: 0x040043CE RID: 17358
 	Left
 }

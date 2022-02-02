@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002BF RID: 703
 public class ExpressionMaskScript : MonoBehaviour
 {
-	// Token: 0x06001476 RID: 5238 RVA: 0x000C7640 File Offset: 0x000C5840
+	// Token: 0x06001477 RID: 5239 RVA: 0x000C7844 File Offset: 0x000C5A44
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.LeftAlt))
@@ -37,9 +37,9 @@ public class ExpressionMaskScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001F93 RID: 8083
+	// Token: 0x04001F97 RID: 8087
 	public Renderer Mask;
 
-	// Token: 0x04001F94 RID: 8084
+	// Token: 0x04001F98 RID: 8088
 	public int ID;
 }

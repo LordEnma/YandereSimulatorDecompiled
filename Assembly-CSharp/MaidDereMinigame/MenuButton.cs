@@ -7,19 +7,19 @@ namespace MaidDereMinigame
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class MenuButton : MonoBehaviour
 	{
-		// Token: 0x06002477 RID: 9335 RVA: 0x001F9DEB File Offset: 0x001F7FEB
+		// Token: 0x0600247B RID: 9339 RVA: 0x001FA68B File Offset: 0x001F888B
 		public void Init()
 		{
 			this.spriteRenderer = base.GetComponent<SpriteRenderer>();
 		}
 
-		// Token: 0x06002478 RID: 9336 RVA: 0x001F9DF9 File Offset: 0x001F7FF9
+		// Token: 0x0600247C RID: 9340 RVA: 0x001FA699 File Offset: 0x001F8899
 		private void OnMouseEnter()
 		{
 			this.menu.SetActiveMenuButton(this.index);
 		}
 
-		// Token: 0x06002479 RID: 9337 RVA: 0x001F9E0C File Offset: 0x001F800C
+		// Token: 0x0600247D RID: 9341 RVA: 0x001FA6AC File Offset: 0x001F88AC
 		public void DoClick()
 		{
 			switch (this.buttonType)
@@ -60,40 +60,40 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x04004C3D RID: 19517
+		// Token: 0x04004C48 RID: 19528
 		public MenuButton.ButtonType buttonType;
 
-		// Token: 0x04004C3E RID: 19518
+		// Token: 0x04004C49 RID: 19529
 		public SceneObject targetScene;
 
-		// Token: 0x04004C3F RID: 19519
+		// Token: 0x04004C4A RID: 19530
 		[HideInInspector]
 		public int index;
 
-		// Token: 0x04004C40 RID: 19520
+		// Token: 0x04004C4B RID: 19531
 		[HideInInspector]
 		public Menu menu;
 
-		// Token: 0x04004C41 RID: 19521
+		// Token: 0x04004C4C RID: 19532
 		[HideInInspector]
 		public SpriteRenderer spriteRenderer;
 
-		// Token: 0x020006E3 RID: 1763
+		// Token: 0x020006DD RID: 1757
 		public enum ButtonType
 		{
-			// Token: 0x040051DA RID: 20954
+			// Token: 0x040051B7 RID: 20919
 			Start,
-			// Token: 0x040051DB RID: 20955
+			// Token: 0x040051B8 RID: 20920
 			Controls,
-			// Token: 0x040051DC RID: 20956
+			// Token: 0x040051B9 RID: 20921
 			Credits,
-			// Token: 0x040051DD RID: 20957
+			// Token: 0x040051BA RID: 20922
 			Exit,
-			// Token: 0x040051DE RID: 20958
+			// Token: 0x040051BB RID: 20923
 			Easy,
-			// Token: 0x040051DF RID: 20959
+			// Token: 0x040051BC RID: 20924
 			Medium,
-			// Token: 0x040051E0 RID: 20960
+			// Token: 0x040051BD RID: 20925
 			Hard
 		}
 	}

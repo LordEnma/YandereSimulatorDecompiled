@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200027E RID: 638
 public class DemonSlashScript : MonoBehaviour
 {
-	// Token: 0x06001378 RID: 4984 RVA: 0x000B3381 File Offset: 0x000B1581
+	// Token: 0x06001379 RID: 4985 RVA: 0x000B34D1 File Offset: 0x000B16D1
 	private void Start()
 	{
 		this.MyAudio = base.GetComponent<AudioSource>();
 	}
 
-	// Token: 0x06001379 RID: 4985 RVA: 0x000B3390 File Offset: 0x000B1590
+	// Token: 0x0600137A RID: 4986 RVA: 0x000B34E0 File Offset: 0x000B16E0
 	private void Update()
 	{
 		if (this.MyCollider.enabled)
@@ -24,7 +24,7 @@ public class DemonSlashScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600137A RID: 4986 RVA: 0x000B33E0 File Offset: 0x000B15E0
+	// Token: 0x0600137B RID: 4987 RVA: 0x000B3530 File Offset: 0x000B1730
 	private void OnTriggerEnter(Collider other)
 	{
 		Transform root = other.gameObject.transform.root;
@@ -46,18 +46,18 @@ public class DemonSlashScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001CB6 RID: 7350
+	// Token: 0x04001CB9 RID: 7353
 	public GameObject FemaleBloodyScream;
 
-	// Token: 0x04001CB7 RID: 7351
+	// Token: 0x04001CBA RID: 7354
 	public GameObject MaleBloodyScream;
 
-	// Token: 0x04001CB8 RID: 7352
+	// Token: 0x04001CBB RID: 7355
 	public AudioSource MyAudio;
 
-	// Token: 0x04001CB9 RID: 7353
+	// Token: 0x04001CBC RID: 7356
 	public Collider MyCollider;
 
-	// Token: 0x04001CBA RID: 7354
+	// Token: 0x04001CBD RID: 7357
 	public float Timer;
 }

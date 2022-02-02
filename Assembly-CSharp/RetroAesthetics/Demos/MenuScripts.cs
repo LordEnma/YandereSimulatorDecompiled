@@ -7,7 +7,7 @@ namespace RetroAesthetics.Demos
 	// Token: 0x0200054B RID: 1355
 	public class MenuScripts : MonoBehaviour
 	{
-		// Token: 0x06002290 RID: 8848 RVA: 0x001EE5E0 File Offset: 0x001EC7E0
+		// Token: 0x06002294 RID: 8852 RVA: 0x001EEE80 File Offset: 0x001ED080
 		private void Start()
 		{
 			if (this.fadeInMenu)
@@ -20,7 +20,7 @@ namespace RetroAesthetics.Demos
 			}
 		}
 
-		// Token: 0x06002291 RID: 8849 RVA: 0x001EE614 File Offset: 0x001EC814
+		// Token: 0x06002295 RID: 8853 RVA: 0x001EEEB4 File Offset: 0x001ED0B4
 		public virtual void StartLevel()
 		{
 			if (this.levelScene == null)
@@ -46,7 +46,7 @@ namespace RetroAesthetics.Demos
 			this.LoadNextScene();
 		}
 
-		// Token: 0x06002292 RID: 8850 RVA: 0x001EE6B2 File Offset: 0x001EC8B2
+		// Token: 0x06002296 RID: 8854 RVA: 0x001EEF52 File Offset: 0x001ED152
 		private void LoadNextScene()
 		{
 			if (this._loadingSceneAsync != null)
@@ -56,22 +56,22 @@ namespace RetroAesthetics.Demos
 			SceneManager.LoadSceneAsync(this.levelScene);
 		}
 
-		// Token: 0x04004A94 RID: 19092
+		// Token: 0x04004A9F RID: 19103
 		public SceneField loadingScene;
 
-		// Token: 0x04004A95 RID: 19093
+		// Token: 0x04004AA0 RID: 19104
 		public SceneField levelScene;
 
-		// Token: 0x04004A96 RID: 19094
+		// Token: 0x04004AA1 RID: 19105
 		public bool fadeInMenu = true;
 
-		// Token: 0x04004A97 RID: 19095
+		// Token: 0x04004AA2 RID: 19106
 		public bool fadeOutMenu = true;
 
-		// Token: 0x04004A98 RID: 19096
+		// Token: 0x04004AA3 RID: 19107
 		private RetroCameraEffect _cameraEffect;
 
-		// Token: 0x04004A99 RID: 19097
+		// Token: 0x04004AA4 RID: 19108
 		private AsyncOperation _loadingSceneAsync;
 	}
 }

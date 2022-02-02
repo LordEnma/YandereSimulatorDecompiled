@@ -8,13 +8,13 @@ using UnityEngine;
 // Token: 0x020004A8 RID: 1192
 public class SerializableHashSet<T> : HashSet<T>, ISerializationCallbackReceiver, IXmlSerializable
 {
-	// Token: 0x06001F5F RID: 8031 RVA: 0x001B8B70 File Offset: 0x001B6D70
+	// Token: 0x06001F61 RID: 8033 RVA: 0x001B9098 File Offset: 0x001B7298
 	public SerializableHashSet()
 	{
 		this.elements = new List<T>();
 	}
 
-	// Token: 0x06001F60 RID: 8032 RVA: 0x001B8B84 File Offset: 0x001B6D84
+	// Token: 0x06001F62 RID: 8034 RVA: 0x001B90AC File Offset: 0x001B72AC
 	public void OnBeforeSerialize()
 	{
 		this.elements.Clear();
@@ -24,7 +24,7 @@ public class SerializableHashSet<T> : HashSet<T>, ISerializationCallbackReceiver
 		}
 	}
 
-	// Token: 0x06001F61 RID: 8033 RVA: 0x001B8BE4 File Offset: 0x001B6DE4
+	// Token: 0x06001F63 RID: 8035 RVA: 0x001B910C File Offset: 0x001B730C
 	public void OnAfterDeserialize()
 	{
 		base.Clear();
@@ -34,13 +34,13 @@ public class SerializableHashSet<T> : HashSet<T>, ISerializationCallbackReceiver
 		}
 	}
 
-	// Token: 0x06001F62 RID: 8034 RVA: 0x001B8C20 File Offset: 0x001B6E20
+	// Token: 0x06001F64 RID: 8036 RVA: 0x001B9148 File Offset: 0x001B7348
 	public XmlSchema GetSchema()
 	{
 		return null;
 	}
 
-	// Token: 0x06001F63 RID: 8035 RVA: 0x001B8C24 File Offset: 0x001B6E24
+	// Token: 0x06001F65 RID: 8037 RVA: 0x001B914C File Offset: 0x001B734C
 	public void ReadXml(XmlReader reader)
 	{
 		XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
@@ -60,7 +60,7 @@ public class SerializableHashSet<T> : HashSet<T>, ISerializationCallbackReceiver
 		}
 	}
 
-	// Token: 0x06001F64 RID: 8036 RVA: 0x001B8C88 File Offset: 0x001B6E88
+	// Token: 0x06001F66 RID: 8038 RVA: 0x001B91B0 File Offset: 0x001B73B0
 	public void WriteXml(XmlWriter writer)
 	{
 		XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
@@ -72,10 +72,10 @@ public class SerializableHashSet<T> : HashSet<T>, ISerializationCallbackReceiver
 		}
 	}
 
-	// Token: 0x04004167 RID: 16743
+	// Token: 0x0400416F RID: 16751
 	[SerializeField]
 	private List<T> elements;
 
-	// Token: 0x04004168 RID: 16744
+	// Token: 0x04004170 RID: 16752
 	private const string XML_Element = "Element";
 }

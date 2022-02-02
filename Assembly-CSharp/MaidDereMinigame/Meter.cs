@@ -6,13 +6,13 @@ namespace MaidDereMinigame
 	// Token: 0x020005AD RID: 1453
 	public class Meter : MonoBehaviour
 	{
-		// Token: 0x0600249C RID: 9372 RVA: 0x001FA58C File Offset: 0x001F878C
+		// Token: 0x060024A0 RID: 9376 RVA: 0x001FAE2C File Offset: 0x001F902C
 		private void Awake()
 		{
 			this.startPos = this.fillBar.transform.localPosition.x;
 		}
 
-		// Token: 0x0600249D RID: 9373 RVA: 0x001FA5AC File Offset: 0x001F87AC
+		// Token: 0x060024A1 RID: 9377 RVA: 0x001FAE4C File Offset: 0x001F904C
 		public void SetFill(float interpolater)
 		{
 			float num = Mathf.Lerp(this.emptyPos, this.startPos, interpolater);
@@ -20,13 +20,13 @@ namespace MaidDereMinigame
 			this.fillBar.transform.localPosition = new Vector3(num, 0f, 0f);
 		}
 
-		// Token: 0x04004C5D RID: 19549
+		// Token: 0x04004C68 RID: 19560
 		public SpriteRenderer fillBar;
 
-		// Token: 0x04004C5E RID: 19550
+		// Token: 0x04004C69 RID: 19561
 		public float emptyPos;
 
-		// Token: 0x04004C5F RID: 19551
+		// Token: 0x04004C6A RID: 19562
 		private float startPos;
 	}
 }

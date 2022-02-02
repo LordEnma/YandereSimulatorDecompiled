@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000516 RID: 1302
 public class LookAtSCP : MonoBehaviour
 {
-	// Token: 0x06002145 RID: 8517 RVA: 0x001E8081 File Offset: 0x001E6281
+	// Token: 0x06002149 RID: 8521 RVA: 0x001E8921 File Offset: 0x001E6B21
 	private void Start()
 	{
 		if (this.SCP == null)
@@ -14,12 +14,12 @@ public class LookAtSCP : MonoBehaviour
 		base.transform.LookAt(this.SCP);
 	}
 
-	// Token: 0x06002146 RID: 8518 RVA: 0x001E80B7 File Offset: 0x001E62B7
+	// Token: 0x0600214A RID: 8522 RVA: 0x001E8957 File Offset: 0x001E6B57
 	private void LateUpdate()
 	{
 		base.transform.LookAt(this.SCP);
 	}
 
-	// Token: 0x040048F8 RID: 18680
+	// Token: 0x04004903 RID: 18691
 	public Transform SCP;
 }

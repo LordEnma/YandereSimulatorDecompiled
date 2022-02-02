@@ -5,13 +5,13 @@ namespace YandereSimulator.Yancord
 	// Token: 0x0200051D RID: 1309
 	public enum Status
 	{
-		// Token: 0x04004919 RID: 18713
+		// Token: 0x04004924 RID: 18724
 		Online,
-		// Token: 0x0400491A RID: 18714
+		// Token: 0x04004925 RID: 18725
 		Idle,
-		// Token: 0x0400491B RID: 18715
+		// Token: 0x04004926 RID: 18726
 		DontDisturb,
-		// Token: 0x0400491C RID: 18716
+		// Token: 0x04004927 RID: 18727
 		Invisible
 	}
 }

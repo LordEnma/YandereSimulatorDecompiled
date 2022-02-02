@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020003E7 RID: 999
 public class RivalRejectionProgressScript : MonoBehaviour
 {
-	// Token: 0x06001BBF RID: 7103 RVA: 0x001439F0 File Offset: 0x00141BF0
+	// Token: 0x06001BC0 RID: 7104 RVA: 0x00143E34 File Offset: 0x00142034
 	private void Start()
 	{
 		this.Label.text = string.Concat(new string[]
@@ -26,7 +26,7 @@ public class RivalRejectionProgressScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BC0 RID: 7104 RVA: 0x00143ADC File Offset: 0x00141CDC
+	// Token: 0x06001BC1 RID: 7105 RVA: 0x00143F20 File Offset: 0x00142120
 	private void Update()
 	{
 		if (this.Phase == 1)
@@ -66,24 +66,24 @@ public class RivalRejectionProgressScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040030A7 RID: 12455
+	// Token: 0x040030AD RID: 12461
 	public UILabel PercentLabel;
 
-	// Token: 0x040030A8 RID: 12456
+	// Token: 0x040030AE RID: 12462
 	public UILabel Label;
 
-	// Token: 0x040030A9 RID: 12457
+	// Token: 0x040030AF RID: 12463
 	public Texture[] RivalHeads;
 
-	// Token: 0x040030AA RID: 12458
+	// Token: 0x040030B0 RID: 12464
 	public UITexture RivalHead;
 
-	// Token: 0x040030AB RID: 12459
+	// Token: 0x040030B1 RID: 12465
 	public UISprite Darkness;
 
-	// Token: 0x040030AC RID: 12460
+	// Token: 0x040030B2 RID: 12466
 	public float Timer;
 
-	// Token: 0x040030AD RID: 12461
+	// Token: 0x040030B3 RID: 12467
 	public int Phase = 1;
 }

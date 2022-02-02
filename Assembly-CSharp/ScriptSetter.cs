@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000502 RID: 1282
 public class ScriptSetter : MonoBehaviour
 {
-	// Token: 0x0600211F RID: 8479 RVA: 0x001E5174 File Offset: 0x001E3374
+	// Token: 0x06002123 RID: 8483 RVA: 0x001E5A14 File Offset: 0x001E3C14
 	private void Start()
 	{
 		foreach (Component component in base.GetComponents(typeof(Component)))
@@ -33,9 +33,9 @@ public class ScriptSetter : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040048AF RID: 18607
+	// Token: 0x040048BA RID: 18618
 	public StudentScript OldStudent;
 
-	// Token: 0x040048B0 RID: 18608
+	// Token: 0x040048BB RID: 18619
 	public StudentScript NewStudent;
 }

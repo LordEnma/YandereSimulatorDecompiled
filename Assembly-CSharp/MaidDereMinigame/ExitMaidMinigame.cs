@@ -6,7 +6,7 @@ namespace MaidDereMinigame
 	// Token: 0x020005A9 RID: 1449
 	public class ExitMaidMinigame : MonoBehaviour
 	{
-		// Token: 0x06002484 RID: 9348 RVA: 0x001FA0C0 File Offset: 0x001F82C0
+		// Token: 0x06002488 RID: 9352 RVA: 0x001FA960 File Offset: 0x001F8B60
 		private void OnMouseOver()
 		{
 			if (Input.GetMouseButtonDown(0))

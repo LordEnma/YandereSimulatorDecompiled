@@ -4,15 +4,14 @@ using UnityEngine;
 // Token: 0x0200031B RID: 795
 public class HomeExitScript : MonoBehaviour
 {
-	// Token: 0x0600186A RID: 6250 RVA: 0x000EC3C0 File Offset: 0x000EA5C0
+	// Token: 0x0600186B RID: 6251 RVA: 0x000EC7E8 File Offset: 0x000EA9E8
 	private void Start()
 	{
 		UILabel uilabel = this.Labels[1];
 		if (HomeGlobals.Night)
 		{
 			uilabel.color = new Color(uilabel.color.r, uilabel.color.g, uilabel.color.b, 0.5f);
-			Debug.Log("Scheme #6 is at stage: " + SchemeGlobals.GetSchemeStage(6).ToString());
-			if (SchemeGlobals.GetSchemeStage(6) == 9 && !StudentGlobals.GetStudentDead(10 + DateGlobals.Week) && !StudentGlobals.GetStudentKidnapped(10 + DateGlobals.Week))
+			if (SchemeGlobals.GetSchemeStage(6) == 9 && !StudentGlobals.GetStudentDead(10 + DateGlobals.Week) && !StudentGlobals.GetStudentKidnapped(10 + DateGlobals.Week) && GameGlobals.RivalEliminationID == 0)
 			{
 				UILabel uilabel2 = this.Labels[4];
 				uilabel2.color = new Color(uilabel2.color.r, uilabel2.color.g, uilabel2.color.b, 1f);
@@ -31,7 +30,7 @@ public class HomeExitScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600186B RID: 6251 RVA: 0x000EC4FC File Offset: 0x000EA6FC
+	// Token: 0x0600186C RID: 6252 RVA: 0x000EC910 File Offset: 0x000EAB10
 	private void Update()
 	{
 		if (!this.HomeYandere.CanMove && !this.HomeDarkness.FadeOut && this.HomeWindow.Sprite.color.a > 0.9f)
@@ -91,7 +90,7 @@ public class HomeExitScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600186C RID: 6252 RVA: 0x000EC794 File Offset: 0x000EA994
+	// Token: 0x0600186D RID: 6253 RVA: 0x000ECBA8 File Offset: 0x000EADA8
 	public void GoToSchool()
 	{
 		if (SchoolGlobals.SchoolAtmosphere < 0.5f || GameGlobals.LoveSick)
@@ -107,33 +106,33 @@ public class HomeExitScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x04002464 RID: 9316
+	// Token: 0x04002469 RID: 9321
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002465 RID: 9317
+	// Token: 0x0400246A RID: 9322
 	public HomeDarknessScript HomeDarkness;
 
-	// Token: 0x04002466 RID: 9318
+	// Token: 0x0400246B RID: 9323
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x04002467 RID: 9319
+	// Token: 0x0400246C RID: 9324
 	public BringItemScript HomeBringItem;
 
-	// Token: 0x04002468 RID: 9320
+	// Token: 0x0400246D RID: 9325
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x04002469 RID: 9321
+	// Token: 0x0400246E RID: 9326
 	public HomeWindowScript HomeWindow;
 
-	// Token: 0x0400246A RID: 9322
+	// Token: 0x0400246F RID: 9327
 	public GameObject BringItemPrompt;
 
-	// Token: 0x0400246B RID: 9323
+	// Token: 0x04002470 RID: 9328
 	public Transform Highlight;
 
-	// Token: 0x0400246C RID: 9324
+	// Token: 0x04002471 RID: 9329
 	public UILabel[] Labels;
 
-	// Token: 0x0400246D RID: 9325
+	// Token: 0x04002472 RID: 9330
 	public int ID = 1;
 }
