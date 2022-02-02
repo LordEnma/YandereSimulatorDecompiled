@@ -7,7 +7,7 @@ namespace UnityStandardAssets.Cameras
 	[ExecuteInEditMode]
 	public class AutoCam : PivotBasedCameraRig
 	{
-		// Token: 0x06002267 RID: 8807 RVA: 0x001ECF00 File Offset: 0x001EB100
+		// Token: 0x0600226B RID: 8811 RVA: 0x001ED7A0 File Offset: 0x001EB9A0
 		protected override void FollowTarget(float deltaTime)
 		{
 			if (deltaTime <= 0f || this.m_Target == null)
@@ -66,48 +66,48 @@ namespace UnityStandardAssets.Cameras
 			base.transform.rotation = Quaternion.Lerp(base.transform.rotation, b, this.m_TurnSpeed * this.m_CurrentTurnAmount * deltaTime);
 		}
 
-		// Token: 0x04004A34 RID: 18996
+		// Token: 0x04004A3F RID: 19007
 		[SerializeField]
 		private float m_MoveSpeed = 3f;
 
-		// Token: 0x04004A35 RID: 18997
+		// Token: 0x04004A40 RID: 19008
 		[SerializeField]
 		private float m_TurnSpeed = 1f;
 
-		// Token: 0x04004A36 RID: 18998
+		// Token: 0x04004A41 RID: 19009
 		[SerializeField]
 		private float m_RollSpeed = 0.2f;
 
-		// Token: 0x04004A37 RID: 18999
+		// Token: 0x04004A42 RID: 19010
 		[SerializeField]
 		private bool m_FollowVelocity;
 
-		// Token: 0x04004A38 RID: 19000
+		// Token: 0x04004A43 RID: 19011
 		[SerializeField]
 		private bool m_FollowTilt = true;
 
-		// Token: 0x04004A39 RID: 19001
+		// Token: 0x04004A44 RID: 19012
 		[SerializeField]
 		private float m_SpinTurnLimit = 90f;
 
-		// Token: 0x04004A3A RID: 19002
+		// Token: 0x04004A45 RID: 19013
 		[SerializeField]
 		private float m_TargetVelocityLowerLimit = 4f;
 
-		// Token: 0x04004A3B RID: 19003
+		// Token: 0x04004A46 RID: 19014
 		[SerializeField]
 		private float m_SmoothTurnTime = 0.2f;
 
-		// Token: 0x04004A3C RID: 19004
+		// Token: 0x04004A47 RID: 19015
 		private float m_LastFlatAngle;
 
-		// Token: 0x04004A3D RID: 19005
+		// Token: 0x04004A48 RID: 19016
 		private float m_CurrentTurnAmount;
 
-		// Token: 0x04004A3E RID: 19006
+		// Token: 0x04004A49 RID: 19017
 		private float m_TurnSpeedVelocityChange;
 
-		// Token: 0x04004A3F RID: 19007
+		// Token: 0x04004A4A RID: 19018
 		private Vector3 m_RollUp = Vector3.up;
 	}
 }

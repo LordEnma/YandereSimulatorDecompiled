@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004E9 RID: 1257
 public class ZoomScript : MonoBehaviour
 {
-	// Token: 0x060020C2 RID: 8386 RVA: 0x001E2900 File Offset: 0x001E0B00
+	// Token: 0x060020C6 RID: 8390 RVA: 0x001E31A0 File Offset: 0x001E13A0
 	private void Update()
 	{
 		if (this.Yandere.FollowHips)
@@ -125,7 +125,7 @@ public class ZoomScript : MonoBehaviour
 		base.transform.localPosition = Vector3.MoveTowards(base.transform.localPosition, this.Target, Time.deltaTime * this.ShakeStrength * 0.1f);
 	}
 
-	// Token: 0x060020C3 RID: 8387 RVA: 0x001E3170 File Offset: 0x001E1370
+	// Token: 0x060020C7 RID: 8391 RVA: 0x001E3A10 File Offset: 0x001E1C10
 	public void LateUpdate()
 	{
 		base.transform.eulerAngles = Vector3.zero;
@@ -143,45 +143,45 @@ public class ZoomScript : MonoBehaviour
 		base.transform.localPosition = new Vector3(0f, base.transform.localPosition.y, 0f);
 	}
 
-	// Token: 0x0400483A RID: 18490
+	// Token: 0x04004845 RID: 18501
 	public CardboardBoxScript CardboardBox;
 
-	// Token: 0x0400483B RID: 18491
+	// Token: 0x04004846 RID: 18502
 	public RPG_Camera CameraScript;
 
-	// Token: 0x0400483C RID: 18492
+	// Token: 0x04004847 RID: 18503
 	public YandereScript Yandere;
 
-	// Token: 0x0400483D RID: 18493
+	// Token: 0x04004848 RID: 18504
 	public float TargetZoom;
 
-	// Token: 0x0400483E RID: 18494
+	// Token: 0x04004849 RID: 18505
 	public float Zoom;
 
-	// Token: 0x0400483F RID: 18495
+	// Token: 0x0400484A RID: 18506
 	public float ShakeStrength;
 
-	// Token: 0x04004840 RID: 18496
+	// Token: 0x0400484B RID: 18507
 	public float midOffset = 0.25f;
 
-	// Token: 0x04004841 RID: 18497
+	// Token: 0x0400484C RID: 18508
 	public float Slender;
 
-	// Token: 0x04004842 RID: 18498
+	// Token: 0x0400484D RID: 18509
 	public float Height;
 
-	// Token: 0x04004843 RID: 18499
+	// Token: 0x0400484E RID: 18510
 	public float Timer;
 
-	// Token: 0x04004844 RID: 18500
+	// Token: 0x0400484F RID: 18511
 	public Vector3 Target;
 
-	// Token: 0x04004845 RID: 18501
+	// Token: 0x04004850 RID: 18512
 	public bool OverShoulder;
 
-	// Token: 0x04004846 RID: 18502
+	// Token: 0x04004851 RID: 18513
 	public bool MoveCamera;
 
-	// Token: 0x04004847 RID: 18503
+	// Token: 0x04004852 RID: 18514
 	public GameObject TallHat;
 }

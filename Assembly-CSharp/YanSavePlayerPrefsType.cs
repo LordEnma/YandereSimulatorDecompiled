@@ -3,10 +3,10 @@
 // Token: 0x02000512 RID: 1298
 public enum YanSavePlayerPrefsType
 {
-	// Token: 0x040048EA RID: 18666
+	// Token: 0x040048F5 RID: 18677
 	Float,
-	// Token: 0x040048EB RID: 18667
+	// Token: 0x040048F6 RID: 18678
 	Int,
-	// Token: 0x040048EC RID: 18668
+	// Token: 0x040048F7 RID: 18679
 	String
 }

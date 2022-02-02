@@ -6,18 +6,18 @@ namespace UnityEngine.PostProcessing
 	public abstract class PostProcessingComponent<T> : PostProcessingComponentBase where T : PostProcessingModel
 	{
 		// Token: 0x17000511 RID: 1297
-		// (get) Token: 0x0600236F RID: 9071 RVA: 0x001F3829 File Offset: 0x001F1A29
-		// (set) Token: 0x06002370 RID: 9072 RVA: 0x001F3831 File Offset: 0x001F1A31
+		// (get) Token: 0x06002373 RID: 9075 RVA: 0x001F40C9 File Offset: 0x001F22C9
+		// (set) Token: 0x06002374 RID: 9076 RVA: 0x001F40D1 File Offset: 0x001F22D1
 		public T model { get; internal set; }
 
-		// Token: 0x06002371 RID: 9073 RVA: 0x001F383A File Offset: 0x001F1A3A
+		// Token: 0x06002375 RID: 9077 RVA: 0x001F40DA File Offset: 0x001F22DA
 		public virtual void Init(PostProcessingContext pcontext, T pmodel)
 		{
 			this.context = pcontext;
 			this.model = pmodel;
 		}
 
-		// Token: 0x06002372 RID: 9074 RVA: 0x001F384A File Offset: 0x001F1A4A
+		// Token: 0x06002376 RID: 9078 RVA: 0x001F40EA File Offset: 0x001F22EA
 		public override PostProcessingModel GetModel()
 		{
 			return this.model;

@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class RangeInt
 {
-	// Token: 0x06001F43 RID: 8003 RVA: 0x001B881C File Offset: 0x001B6A1C
+	// Token: 0x06001F45 RID: 8005 RVA: 0x001B8D44 File Offset: 0x001B6F44
 	public RangeInt(int value, int min, int max)
 	{
 		this.value = value;
@@ -13,14 +13,14 @@ public class RangeInt
 		this.max = max;
 	}
 
-	// Token: 0x06001F44 RID: 8004 RVA: 0x001B8839 File Offset: 0x001B6A39
+	// Token: 0x06001F46 RID: 8006 RVA: 0x001B8D61 File Offset: 0x001B6F61
 	public RangeInt(int min, int max) : this(min, min, max)
 	{
 	}
 
 	// Token: 0x170004BD RID: 1213
-	// (get) Token: 0x06001F45 RID: 8005 RVA: 0x001B8844 File Offset: 0x001B6A44
-	// (set) Token: 0x06001F46 RID: 8006 RVA: 0x001B884C File Offset: 0x001B6A4C
+	// (get) Token: 0x06001F47 RID: 8007 RVA: 0x001B8D6C File Offset: 0x001B6F6C
+	// (set) Token: 0x06001F48 RID: 8008 RVA: 0x001B8D74 File Offset: 0x001B6F74
 	public int Value
 	{
 		get
@@ -34,7 +34,7 @@ public class RangeInt
 	}
 
 	// Token: 0x170004BE RID: 1214
-	// (get) Token: 0x06001F47 RID: 8007 RVA: 0x001B8855 File Offset: 0x001B6A55
+	// (get) Token: 0x06001F49 RID: 8009 RVA: 0x001B8D7D File Offset: 0x001B6F7D
 	public int Min
 	{
 		get
@@ -44,7 +44,7 @@ public class RangeInt
 	}
 
 	// Token: 0x170004BF RID: 1215
-	// (get) Token: 0x06001F48 RID: 8008 RVA: 0x001B885D File Offset: 0x001B6A5D
+	// (get) Token: 0x06001F4A RID: 8010 RVA: 0x001B8D85 File Offset: 0x001B6F85
 	public int Max
 	{
 		get
@@ -54,7 +54,7 @@ public class RangeInt
 	}
 
 	// Token: 0x170004C0 RID: 1216
-	// (get) Token: 0x06001F49 RID: 8009 RVA: 0x001B8865 File Offset: 0x001B6A65
+	// (get) Token: 0x06001F4B RID: 8011 RVA: 0x001B8D8D File Offset: 0x001B6F8D
 	public int Next
 	{
 		get
@@ -68,7 +68,7 @@ public class RangeInt
 	}
 
 	// Token: 0x170004C1 RID: 1217
-	// (get) Token: 0x06001F4A RID: 8010 RVA: 0x001B8884 File Offset: 0x001B6A84
+	// (get) Token: 0x06001F4C RID: 8012 RVA: 0x001B8DAC File Offset: 0x001B6FAC
 	public int Previous
 	{
 		get
@@ -81,15 +81,15 @@ public class RangeInt
 		}
 	}
 
-	// Token: 0x0400415F RID: 16735
+	// Token: 0x04004167 RID: 16743
 	[SerializeField]
 	private int value;
 
-	// Token: 0x04004160 RID: 16736
+	// Token: 0x04004168 RID: 16744
 	[SerializeField]
 	private int min;
 
-	// Token: 0x04004161 RID: 16737
+	// Token: 0x04004169 RID: 16745
 	[SerializeField]
 	private int max;
 }

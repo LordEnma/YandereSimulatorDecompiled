@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000444 RID: 1092
 public class StatsScript : MonoBehaviour
 {
-	// Token: 0x06001D05 RID: 7429 RVA: 0x0015A0B8 File Offset: 0x001582B8
+	// Token: 0x06001D06 RID: 7430 RVA: 0x0015A4F8 File Offset: 0x001586F8
 	private void Awake()
 	{
 		this.ClubLabels = new ClubTypeAndStringDictionary
@@ -61,7 +61,7 @@ public class StatsScript : MonoBehaviour
 		};
 	}
 
-	// Token: 0x06001D06 RID: 7430 RVA: 0x0015A164 File Offset: 0x00158364
+	// Token: 0x06001D07 RID: 7431 RVA: 0x0015A5A4 File Offset: 0x001587A4
 	private void Start()
 	{
 		if (this.PauseScreen.Eighties)
@@ -75,7 +75,7 @@ public class StatsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D07 RID: 7431 RVA: 0x0015A1F0 File Offset: 0x001583F0
+	// Token: 0x06001D08 RID: 7432 RVA: 0x0015A630 File Offset: 0x00158830
 	private void Update()
 	{
 		if (Input.GetButtonDown("B"))
@@ -92,7 +92,7 @@ public class StatsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D08 RID: 7432 RVA: 0x0015A29C File Offset: 0x0015849C
+	// Token: 0x06001D09 RID: 7433 RVA: 0x0015A6DC File Offset: 0x001588DC
 	public void UpdateStats()
 	{
 		Debug.Log("The Stats script just checked the Class script for info and updated the bars accordingly.");
@@ -270,57 +270,57 @@ public class StatsScript : MonoBehaviour
 		this.ClubLabel.text = "Club: " + str;
 	}
 
-	// Token: 0x040034C0 RID: 13504
+	// Token: 0x040034C6 RID: 13510
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x040034C1 RID: 13505
+	// Token: 0x040034C7 RID: 13511
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040034C2 RID: 13506
+	// Token: 0x040034C8 RID: 13512
 	public ClassScript Class;
 
-	// Token: 0x040034C3 RID: 13507
+	// Token: 0x040034C9 RID: 13513
 	public UISprite[] Subject1Bars;
 
-	// Token: 0x040034C4 RID: 13508
+	// Token: 0x040034CA RID: 13514
 	public UISprite[] Subject2Bars;
 
-	// Token: 0x040034C5 RID: 13509
+	// Token: 0x040034CB RID: 13515
 	public UISprite[] Subject3Bars;
 
-	// Token: 0x040034C6 RID: 13510
+	// Token: 0x040034CC RID: 13516
 	public UISprite[] Subject4Bars;
 
-	// Token: 0x040034C7 RID: 13511
+	// Token: 0x040034CD RID: 13517
 	public UISprite[] Subject5Bars;
 
-	// Token: 0x040034C8 RID: 13512
+	// Token: 0x040034CE RID: 13518
 	public UISprite[] Subject6Bars;
 
-	// Token: 0x040034C9 RID: 13513
+	// Token: 0x040034CF RID: 13519
 	public UISprite[] Subject7Bars;
 
-	// Token: 0x040034CA RID: 13514
+	// Token: 0x040034D0 RID: 13520
 	public UISprite[] Subject8Bars;
 
-	// Token: 0x040034CB RID: 13515
+	// Token: 0x040034D1 RID: 13521
 	public UILabel[] Ranks;
 
-	// Token: 0x040034CC RID: 13516
+	// Token: 0x040034D2 RID: 13522
 	public UILabel ClubLabel;
 
-	// Token: 0x040034CD RID: 13517
+	// Token: 0x040034D3 RID: 13523
 	public int Grade;
 
-	// Token: 0x040034CE RID: 13518
+	// Token: 0x040034D4 RID: 13524
 	public int BarID;
 
-	// Token: 0x040034CF RID: 13519
+	// Token: 0x040034D5 RID: 13525
 	public UITexture Portrait;
 
-	// Token: 0x040034D0 RID: 13520
+	// Token: 0x040034D6 RID: 13526
 	public Texture RyobaPortrait;
 
-	// Token: 0x040034D1 RID: 13521
+	// Token: 0x040034D7 RID: 13527
 	private ClubTypeAndStringDictionary ClubLabels;
 }

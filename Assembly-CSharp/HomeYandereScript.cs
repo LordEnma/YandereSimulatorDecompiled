@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200032A RID: 810
 public class HomeYandereScript : MonoBehaviour
 {
-	// Token: 0x060018A9 RID: 6313 RVA: 0x000F2178 File Offset: 0x000F0378
+	// Token: 0x060018AA RID: 6314 RVA: 0x000F258C File Offset: 0x000F078C
 	public void Start()
 	{
 		Cursor.lockState = CursorLockMode.None;
@@ -83,6 +83,7 @@ public class HomeYandereScript : MonoBehaviour
 		Time.timeScale = 1f;
 		this.IdleAnim = "f02_idleShort_00";
 		this.WalkAnim = "f02_newWalk_00";
+		this.RunAnim = "f02_newSprint_00";
 		if (GameGlobals.Eighties)
 		{
 			this.StudentManager.Eighties = true;
@@ -90,7 +91,8 @@ public class HomeYandereScript : MonoBehaviour
 			this.Hairstyle = 0;
 			this.UpdateHair();
 			this.IdleAnim = "f02_ryobaIdle_00";
-			this.WalkAnim = "f02_walkCouncilGrace_00";
+			this.WalkAnim = "f02_ryobaWalk_00";
+			this.RunAnim = "f02_ryobaRun_00";
 			if (DateGlobals.Weekday != DayOfWeek.Sunday)
 			{
 				if (!this.Pajamas.gameObject.activeInHierarchy)
@@ -128,7 +130,7 @@ public class HomeYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018AA RID: 6314 RVA: 0x000F2654 File Offset: 0x000F0854
+	// Token: 0x060018AB RID: 6315 RVA: 0x000F2A80 File Offset: 0x000F0C80
 	private void Update()
 	{
 		if (this.UpdateFace)
@@ -172,7 +174,7 @@ public class HomeYandereScript : MonoBehaviour
 				{
 					if (this.Running)
 					{
-						this.CharacterAnimation.CrossFade("f02_run_00");
+						this.CharacterAnimation.CrossFade(this.RunAnim);
 						this.MyController.Move(base.transform.forward * this.RunSpeed * Time.deltaTime);
 					}
 					else
@@ -217,7 +219,7 @@ public class HomeYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018AB RID: 6315 RVA: 0x000F29A0 File Offset: 0x000F0BA0
+	// Token: 0x060018AC RID: 6316 RVA: 0x000F2DD0 File Offset: 0x000F0FD0
 	private void LateUpdate()
 	{
 		if (!this.CannotAlphabet && Input.GetKeyDown(this.Letter[this.AlphabetID]))
@@ -239,7 +241,7 @@ public class HomeYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018AC RID: 6316 RVA: 0x000F2A28 File Offset: 0x000F0C28
+	// Token: 0x060018AD RID: 6317 RVA: 0x000F2E58 File Offset: 0x000F1058
 	private void UpdateHair()
 	{
 		if (this.Hairstyle == 0)
@@ -261,7 +263,7 @@ public class HomeYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018AD RID: 6317 RVA: 0x000F2AA8 File Offset: 0x000F0CA8
+	// Token: 0x060018AE RID: 6318 RVA: 0x000F2ED8 File Offset: 0x000F10D8
 	private void ChangeSchoolwear()
 	{
 		this.MyRenderer.sharedMesh = this.Uniforms[StudentGlobals.FemaleUniform];
@@ -271,7 +273,7 @@ public class HomeYandereScript : MonoBehaviour
 		base.StartCoroutine(this.ApplyCustomCostume());
 	}
 
-	// Token: 0x060018AE RID: 6318 RVA: 0x000F2B30 File Offset: 0x000F0D30
+	// Token: 0x060018AF RID: 6319 RVA: 0x000F2F60 File Offset: 0x000F1160
 	private void WearPajamas()
 	{
 		this.Pajamas.gameObject.SetActive(true);
@@ -286,7 +288,7 @@ public class HomeYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018AF RID: 6319 RVA: 0x000F2BC0 File Offset: 0x000F0DC0
+	// Token: 0x060018B0 RID: 6320 RVA: 0x000F2FF0 File Offset: 0x000F11F0
 	private void Nude()
 	{
 		this.MyRenderer.sharedMesh = this.NudeMesh;
@@ -295,7 +297,7 @@ public class HomeYandereScript : MonoBehaviour
 		this.MyRenderer.materials[2].mainTexture = this.NudeTexture;
 	}
 
-	// Token: 0x060018B0 RID: 6320 RVA: 0x000F2C26 File Offset: 0x000F0E26
+	// Token: 0x060018B1 RID: 6321 RVA: 0x000F3056 File Offset: 0x000F1256
 	private IEnumerator ApplyCustomCostume()
 	{
 		if (StudentGlobals.FemaleUniform == 1)
@@ -346,7 +348,7 @@ public class HomeYandereScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060018B1 RID: 6321 RVA: 0x000F2C35 File Offset: 0x000F0E35
+	// Token: 0x060018B2 RID: 6322 RVA: 0x000F3065 File Offset: 0x000F1265
 	private IEnumerator ApplyCustomFace()
 	{
 		WWW CustomFace = new WWW("file:///" + Application.streamingAssetsPath + "/CustomFace.png");
@@ -365,138 +367,141 @@ public class HomeYandereScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x0400257D RID: 9597
+	// Token: 0x04002582 RID: 9602
 	public CharacterController MyController;
 
-	// Token: 0x0400257E RID: 9598
+	// Token: 0x04002583 RID: 9603
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x0400257F RID: 9599
+	// Token: 0x04002584 RID: 9604
 	public HomeVideoGamesScript HomeVideoGames;
 
-	// Token: 0x04002580 RID: 9600
+	// Token: 0x04002585 RID: 9605
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x04002581 RID: 9601
+	// Token: 0x04002586 RID: 9606
 	public UISprite HomeDarkness;
 
-	// Token: 0x04002582 RID: 9602
+	// Token: 0x04002587 RID: 9607
 	public Animation CharacterAnimation;
 
-	// Token: 0x04002583 RID: 9603
+	// Token: 0x04002588 RID: 9608
 	public GameObject CutsceneYandere;
 
-	// Token: 0x04002584 RID: 9604
+	// Token: 0x04002589 RID: 9609
 	public GameObject Controller;
 
-	// Token: 0x04002585 RID: 9605
+	// Token: 0x0400258A RID: 9610
 	public GameObject Character;
 
-	// Token: 0x04002586 RID: 9606
+	// Token: 0x0400258B RID: 9611
 	public GameObject RyobaHair;
 
-	// Token: 0x04002587 RID: 9607
+	// Token: 0x0400258C RID: 9612
 	public GameObject Disc;
 
-	// Token: 0x04002588 RID: 9608
+	// Token: 0x0400258D RID: 9613
 	public Renderer LongHairRenderer;
 
-	// Token: 0x04002589 RID: 9609
+	// Token: 0x0400258E RID: 9614
 	public Renderer PonytailRenderer;
 
-	// Token: 0x0400258A RID: 9610
+	// Token: 0x0400258F RID: 9615
 	public AudioClip MiyukiReaction;
 
-	// Token: 0x0400258B RID: 9611
+	// Token: 0x04002590 RID: 9616
 	public AudioClip DiscScratch;
 
-	// Token: 0x0400258C RID: 9612
+	// Token: 0x04002591 RID: 9617
 	public AudioSource MyAudio;
 
-	// Token: 0x0400258D RID: 9613
+	// Token: 0x04002592 RID: 9618
 	public Texture EightiesSocks;
 
-	// Token: 0x0400258E RID: 9614
+	// Token: 0x04002593 RID: 9619
 	public Texture BlondePony;
 
-	// Token: 0x0400258F RID: 9615
+	// Token: 0x04002594 RID: 9620
 	public Texture BlondeLong;
 
-	// Token: 0x04002590 RID: 9616
+	// Token: 0x04002595 RID: 9621
 	public float WalkSpeed;
 
-	// Token: 0x04002591 RID: 9617
+	// Token: 0x04002596 RID: 9622
 	public float RunSpeed;
 
-	// Token: 0x04002592 RID: 9618
+	// Token: 0x04002597 RID: 9623
 	public bool CannotAlphabet;
 
-	// Token: 0x04002593 RID: 9619
+	// Token: 0x04002598 RID: 9624
 	public bool UpdateFace;
 
-	// Token: 0x04002594 RID: 9620
+	// Token: 0x04002599 RID: 9625
 	public bool CanMove;
 
-	// Token: 0x04002595 RID: 9621
+	// Token: 0x0400259A RID: 9626
 	public bool Running;
 
-	// Token: 0x04002596 RID: 9622
+	// Token: 0x0400259B RID: 9627
 	public bool HidePony;
 
-	// Token: 0x04002597 RID: 9623
+	// Token: 0x0400259C RID: 9628
 	public string IdleAnim = "";
 
-	// Token: 0x04002598 RID: 9624
+	// Token: 0x0400259D RID: 9629
 	public string WalkAnim = "";
 
-	// Token: 0x04002599 RID: 9625
-	public int Hairstyle;
-
-	// Token: 0x0400259A RID: 9626
-	public int VictimID;
-
-	// Token: 0x0400259B RID: 9627
-	public float Timer;
-
-	// Token: 0x0400259C RID: 9628
-	public float BreastSize = 1f;
-
-	// Token: 0x0400259D RID: 9629
-	public Transform BreastR;
-
 	// Token: 0x0400259E RID: 9630
-	public Transform BreastL;
+	public string RunAnim = "";
 
 	// Token: 0x0400259F RID: 9631
-	public int AlphabetID;
+	public int Hairstyle;
 
 	// Token: 0x040025A0 RID: 9632
-	public string[] Letter;
+	public int VictimID;
 
 	// Token: 0x040025A1 RID: 9633
-	public SkinnedMeshRenderer MyRenderer;
+	public float Timer;
 
 	// Token: 0x040025A2 RID: 9634
-	public Texture[] UniformTextures;
+	public float BreastSize = 1f;
 
 	// Token: 0x040025A3 RID: 9635
-	public Texture FaceTexture;
+	public Transform BreastR;
 
 	// Token: 0x040025A4 RID: 9636
-	public Mesh[] Uniforms;
+	public Transform BreastL;
 
 	// Token: 0x040025A5 RID: 9637
-	public RiggedAccessoryAttacher Pajamas;
+	public int AlphabetID;
 
 	// Token: 0x040025A6 RID: 9638
-	public Texture PajamaTexture;
+	public string[] Letter;
 
 	// Token: 0x040025A7 RID: 9639
-	public Mesh PajamaMesh;
+	public SkinnedMeshRenderer MyRenderer;
 
 	// Token: 0x040025A8 RID: 9640
-	public Texture NudeTexture;
+	public Texture[] UniformTextures;
 
 	// Token: 0x040025A9 RID: 9641
+	public Texture FaceTexture;
+
+	// Token: 0x040025AA RID: 9642
+	public Mesh[] Uniforms;
+
+	// Token: 0x040025AB RID: 9643
+	public RiggedAccessoryAttacher Pajamas;
+
+	// Token: 0x040025AC RID: 9644
+	public Texture PajamaTexture;
+
+	// Token: 0x040025AD RID: 9645
+	public Mesh PajamaMesh;
+
+	// Token: 0x040025AE RID: 9646
+	public Texture NudeTexture;
+
+	// Token: 0x040025AF RID: 9647
 	public Mesh NudeMesh;
 }

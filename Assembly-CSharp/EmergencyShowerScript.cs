@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002A1 RID: 673
 public class EmergencyShowerScript : MonoBehaviour
 {
-	// Token: 0x06001410 RID: 5136 RVA: 0x000BF2EC File Offset: 0x000BD4EC
+	// Token: 0x06001411 RID: 5137 RVA: 0x000BF4FC File Offset: 0x000BD6FC
 	private void Update()
 	{
 		if (this.Yandere.Bloodiness > 0f && this.Yandere.PickUp != null && this.Yandere.PickUp.Clothing && !this.Yandere.PickUp.Evidence && this.Yandere.PickUp.Gloves == null)
@@ -113,48 +113,48 @@ public class EmergencyShowerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001E1B RID: 7707
+	// Token: 0x04001E1F RID: 7711
 	public FoldedUniformScript CleanUniform;
 
-	// Token: 0x04001E1C RID: 7708
+	// Token: 0x04001E20 RID: 7712
 	public SkinnedMeshRenderer Curtain;
 
-	// Token: 0x04001E1D RID: 7709
+	// Token: 0x04001E21 RID: 7713
 	public TallLockerScript TallLocker;
 
-	// Token: 0x04001E1E RID: 7710
+	// Token: 0x04001E22 RID: 7714
 	public GameObject CensorSteam;
 
-	// Token: 0x04001E1F RID: 7711
+	// Token: 0x04001E23 RID: 7715
 	public YandereScript Yandere;
 
-	// Token: 0x04001E20 RID: 7712
+	// Token: 0x04001E24 RID: 7716
 	public PromptScript Prompt;
 
-	// Token: 0x04001E21 RID: 7713
+	// Token: 0x04001E25 RID: 7717
 	public Transform BatheSpot;
 
-	// Token: 0x04001E22 RID: 7714
+	// Token: 0x04001E26 RID: 7718
 	public float OpenValue;
 
-	// Token: 0x04001E23 RID: 7715
+	// Token: 0x04001E27 RID: 7719
 	public float Timer;
 
-	// Token: 0x04001E24 RID: 7716
+	// Token: 0x04001E28 RID: 7720
 	public int Phase = 1;
 
-	// Token: 0x04001E25 RID: 7717
+	// Token: 0x04001E29 RID: 7721
 	public bool Bathing;
 
-	// Token: 0x04001E26 RID: 7718
+	// Token: 0x04001E2A RID: 7722
 	public AudioSource MyAudio;
 
-	// Token: 0x04001E27 RID: 7719
+	// Token: 0x04001E2B RID: 7723
 	public AudioClip CurtainClose;
 
-	// Token: 0x04001E28 RID: 7720
+	// Token: 0x04001E2C RID: 7724
 	public AudioClip CurtainOpen;
 
-	// Token: 0x04001E29 RID: 7721
+	// Token: 0x04001E2D RID: 7725
 	public AudioClip ClothRustle;
 }

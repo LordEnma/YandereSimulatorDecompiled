@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000347 RID: 839
 public class KatanaCaseScript : MonoBehaviour
 {
-	// Token: 0x06001935 RID: 6453 RVA: 0x000FC391 File Offset: 0x000FA591
+	// Token: 0x06001936 RID: 6454 RVA: 0x000FC7C9 File Offset: 0x000FA9C9
 	private void Start()
 	{
 		this.CasePrompt.enabled = false;
 	}
 
-	// Token: 0x06001936 RID: 6454 RVA: 0x000FC3A0 File Offset: 0x000FA5A0
+	// Token: 0x06001937 RID: 6455 RVA: 0x000FC7D8 File Offset: 0x000FA9D8
 	private void Update()
 	{
 		if (this.Key.activeInHierarchy && this.KeyPrompt.Circle[0].fillAmount == 0f)
@@ -57,21 +57,21 @@ public class KatanaCaseScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040027AB RID: 10155
+	// Token: 0x040027B1 RID: 10161
 	public PromptScript CasePrompt;
 
-	// Token: 0x040027AC RID: 10156
+	// Token: 0x040027B2 RID: 10162
 	public PromptScript KeyPrompt;
 
-	// Token: 0x040027AD RID: 10157
+	// Token: 0x040027B3 RID: 10163
 	public Transform Door;
 
-	// Token: 0x040027AE RID: 10158
+	// Token: 0x040027B4 RID: 10164
 	public GameObject Key;
 
-	// Token: 0x040027AF RID: 10159
+	// Token: 0x040027B5 RID: 10165
 	public float Rotation;
 
-	// Token: 0x040027B0 RID: 10160
+	// Token: 0x040027B6 RID: 10166
 	public bool Open;
 }

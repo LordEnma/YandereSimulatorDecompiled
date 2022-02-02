@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000361 RID: 865
 public class MechaScript : MonoBehaviour
 {
-	// Token: 0x06001987 RID: 6535 RVA: 0x00103E34 File Offset: 0x00102034
+	// Token: 0x06001988 RID: 6536 RVA: 0x0010426C File Offset: 0x0010246C
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -106,7 +106,7 @@ public class MechaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001988 RID: 6536 RVA: 0x001042C8 File Offset: 0x001024C8
+	// Token: 0x06001989 RID: 6537 RVA: 0x00104700 File Offset: 0x00102900
 	private void UpdateMovement()
 	{
 		if (!this.Prompt.Yandere.ToggleRun)
@@ -165,48 +165,48 @@ public class MechaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040028C9 RID: 10441
+	// Token: 0x040028CF RID: 10447
 	public CharacterController MyController;
 
-	// Token: 0x040028CA RID: 10442
+	// Token: 0x040028D0 RID: 10448
 	public GameObject StudentCrusher;
 
-	// Token: 0x040028CB RID: 10443
+	// Token: 0x040028D1 RID: 10449
 	public GameObject DestructiveShell;
 
-	// Token: 0x040028CC RID: 10444
+	// Token: 0x040028D2 RID: 10450
 	public GameObject MechaShell;
 
-	// Token: 0x040028CD RID: 10445
+	// Token: 0x040028D3 RID: 10451
 	public GameObject ShellType;
 
-	// Token: 0x040028CE RID: 10446
+	// Token: 0x040028D4 RID: 10452
 	public GameObject[] Sparks;
 
-	// Token: 0x040028CF RID: 10447
+	// Token: 0x040028D5 RID: 10453
 	public PromptScript Prompt;
 
-	// Token: 0x040028D0 RID: 10448
+	// Token: 0x040028D6 RID: 10454
 	public Transform[] SpawnPoints;
 
-	// Token: 0x040028D1 RID: 10449
+	// Token: 0x040028D7 RID: 10455
 	public Transform[] Wheels;
 
-	// Token: 0x040028D2 RID: 10450
+	// Token: 0x040028D8 RID: 10456
 	public Camera MainCamera;
 
-	// Token: 0x040028D3 RID: 10451
+	// Token: 0x040028D9 RID: 10457
 	public float Speed;
 
-	// Token: 0x040028D4 RID: 10452
+	// Token: 0x040028DA RID: 10458
 	public float Timer;
 
-	// Token: 0x040028D5 RID: 10453
+	// Token: 0x040028DB RID: 10459
 	public int ShotsFired;
 
-	// Token: 0x040028D6 RID: 10454
+	// Token: 0x040028DC RID: 10460
 	public bool Running;
 
-	// Token: 0x040028D7 RID: 10455
+	// Token: 0x040028DD RID: 10461
 	public bool Fire;
 }

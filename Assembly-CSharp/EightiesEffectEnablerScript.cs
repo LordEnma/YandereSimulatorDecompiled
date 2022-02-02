@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x0200029C RID: 668
 public class EightiesEffectEnablerScript : MonoBehaviour
 {
-	// Token: 0x06001403 RID: 5123 RVA: 0x000BE298 File Offset: 0x000BC498
+	// Token: 0x06001404 RID: 5124 RVA: 0x000BE49C File Offset: 0x000BC69C
 	public void Start()
 	{
 		if (this.EightiesEffects != null)
@@ -19,7 +19,7 @@ public class EightiesEffectEnablerScript : MonoBehaviour
 		this.UpdateEightiesEffects();
 	}
 
-	// Token: 0x06001404 RID: 5124 RVA: 0x000BE2E8 File Offset: 0x000BC4E8
+	// Token: 0x06001405 RID: 5125 RVA: 0x000BE4EC File Offset: 0x000BC6EC
 	public void UpdateEightiesEffects()
 	{
 		if (this.EightiesEffects != null)
@@ -36,15 +36,17 @@ public class EightiesEffectEnablerScript : MonoBehaviour
 		if (this.EightiesFilter != null)
 		{
 			this.EightiesFilter.enabled = !OptionGlobals.DisableTint;
+			return;
 		}
+		Debug.Log("No 80s tint in this scene. Consider adding one?");
 	}
 
-	// Token: 0x04001DEA RID: 7658
+	// Token: 0x04001DEE RID: 7662
 	public RetroCameraEffect EightiesEffects;
 
-	// Token: 0x04001DEB RID: 7659
+	// Token: 0x04001DEF RID: 7663
 	public CameraFilterPack_Colors_Adjust_PreFilters EightiesFilter;
 
-	// Token: 0x04001DEC RID: 7660
+	// Token: 0x04001DF0 RID: 7664
 	public int Eights;
 }

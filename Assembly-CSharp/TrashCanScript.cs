@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000483 RID: 1155
 public class TrashCanScript : MonoBehaviour
 {
-	// Token: 0x06001EE6 RID: 7910 RVA: 0x001B24A8 File Offset: 0x001B06A8
+	// Token: 0x06001EE7 RID: 7911 RVA: 0x001B2980 File Offset: 0x001B0B80
 	private void Update()
 	{
 		if (!this.Occupied)
@@ -21,28 +21,7 @@ public class TrashCanScript : MonoBehaviour
 				if (this.Prompt.Circle[0].fillAmount == 0f)
 				{
 					this.Prompt.Circle[0].fillAmount = 1f;
-					if (this.Yandere.PickUp != null)
-					{
-						this.Item = this.Yandere.PickUp.gameObject;
-						this.Yandere.MyController.radius = 0.5f;
-						this.Yandere.EmptyHands();
-					}
-					else
-					{
-						this.ConcealedWeapon = this.Yandere.EquippedWeapon;
-						this.Item = this.Yandere.EquippedWeapon.gameObject;
-						this.Yandere.DropTimer[this.Yandere.Equipped] = 0.5f;
-						this.Yandere.DropWeapon(this.Yandere.Equipped);
-						this.ConcealedWeapon.MyRigidbody.isKinematic = true;
-						this.Weapon = true;
-					}
-					this.Item.transform.parent = this.TrashPosition;
-					this.Item.GetComponent<Rigidbody>().useGravity = false;
-					this.Item.GetComponent<Collider>().enabled = false;
-					this.Item.GetComponent<PromptScript>().Hide();
-					this.Item.GetComponent<PromptScript>().enabled = false;
-					this.Occupied = true;
-					this.UpdatePrompt();
+					this.StashItem();
 				}
 				if (!this.Yandere.Armed)
 				{
@@ -134,7 +113,7 @@ public class TrashCanScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EE7 RID: 7911 RVA: 0x001B2B24 File Offset: 0x001B0D24
+	// Token: 0x06001EE8 RID: 7912 RVA: 0x001B2ED4 File Offset: 0x001B10D4
 	public void UpdatePrompt()
 	{
 		if (this.Occupied)
@@ -168,7 +147,7 @@ public class TrashCanScript : MonoBehaviour
 		this.Prompt.HideButton[0] = true;
 	}
 
-	// Token: 0x06001EE8 RID: 7912 RVA: 0x001B2C38 File Offset: 0x001B0E38
+	// Token: 0x06001EE9 RID: 7913 RVA: 0x001B2FE8 File Offset: 0x001B11E8
 	public void RemoveContents()
 	{
 		Debug.Log("The object that was in this container has been removed.");
@@ -182,36 +161,63 @@ public class TrashCanScript : MonoBehaviour
 		this.UpdatePrompt();
 	}
 
-	// Token: 0x0400403C RID: 16444
-	public WeaponScript ConcealedWeapon;
-
-	// Token: 0x0400403D RID: 16445
-	public ContainerScript Container;
-
-	// Token: 0x0400403E RID: 16446
-	public YandereScript Yandere;
-
-	// Token: 0x0400403F RID: 16447
-	public PromptScript Prompt;
-
-	// Token: 0x04004040 RID: 16448
-	public Transform TrashPosition;
-
-	// Token: 0x04004041 RID: 16449
-	public Rigidbody MyRigidbody;
-
-	// Token: 0x04004042 RID: 16450
-	public GameObject Item;
-
-	// Token: 0x04004043 RID: 16451
-	public bool Occupied;
+	// Token: 0x06001EEA RID: 7914 RVA: 0x001B3068 File Offset: 0x001B1268
+	public void StashItem()
+	{
+		if (this.Yandere.PickUp != null)
+		{
+			this.Item = this.Yandere.PickUp.gameObject;
+			this.Yandere.MyController.radius = 0.5f;
+			this.Yandere.EmptyHands();
+		}
+		else
+		{
+			this.ConcealedWeapon = this.Yandere.EquippedWeapon;
+			this.Item = this.Yandere.EquippedWeapon.gameObject;
+			this.Yandere.DropTimer[this.Yandere.Equipped] = 0.5f;
+			this.Yandere.DropWeapon(this.Yandere.Equipped);
+			this.ConcealedWeapon.MyRigidbody.isKinematic = true;
+			this.Weapon = true;
+		}
+		this.Item.transform.parent = this.TrashPosition;
+		this.Item.GetComponent<Rigidbody>().useGravity = false;
+		this.Item.GetComponent<Collider>().enabled = false;
+		this.Item.GetComponent<PromptScript>().Hide();
+		this.Item.GetComponent<PromptScript>().enabled = false;
+		this.Occupied = true;
+		this.UpdatePrompt();
+	}
 
 	// Token: 0x04004044 RID: 16452
-	public bool Wearable;
+	public WeaponScript ConcealedWeapon;
 
 	// Token: 0x04004045 RID: 16453
-	public bool Weapon;
+	public ContainerScript Container;
 
 	// Token: 0x04004046 RID: 16454
+	public YandereScript Yandere;
+
+	// Token: 0x04004047 RID: 16455
+	public PromptScript Prompt;
+
+	// Token: 0x04004048 RID: 16456
+	public Transform TrashPosition;
+
+	// Token: 0x04004049 RID: 16457
+	public Rigidbody MyRigidbody;
+
+	// Token: 0x0400404A RID: 16458
+	public GameObject Item;
+
+	// Token: 0x0400404B RID: 16459
+	public bool Occupied;
+
+	// Token: 0x0400404C RID: 16460
+	public bool Wearable;
+
+	// Token: 0x0400404D RID: 16461
+	public bool Weapon;
+
+	// Token: 0x0400404E RID: 16462
 	public float KinematicTimer;
 }

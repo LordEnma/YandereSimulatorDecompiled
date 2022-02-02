@@ -3,9 +3,9 @@
 // Token: 0x020003B4 RID: 948
 public struct SerializedPose
 {
-	// Token: 0x04002D3D RID: 11581
+	// Token: 0x04002D43 RID: 11587
 	public string CosmeticData;
 
-	// Token: 0x04002D3E RID: 11582
+	// Token: 0x04002D44 RID: 11588
 	public BoneData[] BoneData;
 }

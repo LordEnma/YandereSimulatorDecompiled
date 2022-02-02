@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200025E RID: 606
 public class CosmeticScript : MonoBehaviour
 {
-	// Token: 0x060012C3 RID: 4803 RVA: 0x0009C2A8 File Offset: 0x0009A4A8
+	// Token: 0x060012C4 RID: 4804 RVA: 0x0009C3CC File Offset: 0x0009A5CC
 	public void Start()
 	{
 		if (this.StudentManager != null)
@@ -225,6 +225,7 @@ public class CosmeticScript : MonoBehaviour
 				else if (this.StudentID == 84 && StudentGlobals.GetStudentDead(81) && StudentGlobals.GetStudentDead(82) && StudentGlobals.GetStudentDead(83) && StudentGlobals.GetStudentDead(85))
 				{
 					this.Student.Club = ClubType.None;
+					this.StudentManager.Bullies = 0;
 					this.Club = ClubType.None;
 					this.Hairstyle = 53;
 				}
@@ -236,12 +237,12 @@ public class CosmeticScript : MonoBehaviour
 					this.Student.SmartPhone.GetComponent<Renderer>().material.mainTexture = this.SmartphoneTextures[this.StudentID];
 					this.Student.SmartPhone.transform.localPosition = new Vector3(0.01f, 0.005f, 0.01f);
 					this.Student.SmartPhone.transform.localEulerAngles = new Vector3(0f, -160f, 165f);
+					this.Bookbag.GetComponent<MeshFilter>().mesh = this.ModernBookBagMesh;
 				}
 				this.RightWristband.GetComponent<Renderer>().material.mainTexture = this.WristwearTextures[this.StudentID];
 				this.LeftWristband.GetComponent<Renderer>().material.mainTexture = this.WristwearTextures[this.StudentID];
 				this.Bookbag.GetComponent<Renderer>().material.mainTexture = this.BookbagTextures[this.StudentID];
 				this.HoodieRenderer.material.mainTexture = this.HoodieTextures[this.StudentID];
-				this.Bookbag.GetComponent<MeshFilter>().mesh = this.ModernBookBagMesh;
 				if (this.PhoneCharms.Length != 0)
 				{
 					this.PhoneCharms[this.StudentID].SetActive(true);
@@ -1322,7 +1323,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C4 RID: 4804 RVA: 0x0009F88C File Offset: 0x0009DA8C
+	// Token: 0x060012C5 RID: 4805 RVA: 0x0009F9BC File Offset: 0x0009DBBC
 	public void SetMaleUniform()
 	{
 		if (this.StudentID == 1)
@@ -1465,7 +1466,7 @@ public class CosmeticScript : MonoBehaviour
 		this.MyRenderer.materials[this.UniformID].mainTexture = this.UniformTexture;
 	}
 
-	// Token: 0x060012C5 RID: 4805 RVA: 0x0009FD90 File Offset: 0x0009DF90
+	// Token: 0x060012C6 RID: 4806 RVA: 0x0009FEC0 File Offset: 0x0009E0C0
 	public void SetFemaleUniform()
 	{
 		if (this.Club != ClubType.Council)
@@ -1569,7 +1570,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C6 RID: 4806 RVA: 0x000A0164 File Offset: 0x0009E364
+	// Token: 0x060012C7 RID: 4807 RVA: 0x000A0294 File Offset: 0x0009E494
 	public void CensorPanties()
 	{
 		if (!this.Student.ClubAttire && this.Student.Schoolwear == 1)
@@ -1581,14 +1582,14 @@ public class CosmeticScript : MonoBehaviour
 		this.RemoveCensor();
 	}
 
-	// Token: 0x060012C7 RID: 4807 RVA: 0x000A01CB File Offset: 0x0009E3CB
+	// Token: 0x060012C8 RID: 4808 RVA: 0x000A02FB File Offset: 0x0009E4FB
 	public void RemoveCensor()
 	{
 		this.MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
 		this.MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
 	}
 
-	// Token: 0x060012C8 RID: 4808 RVA: 0x000A0208 File Offset: 0x0009E408
+	// Token: 0x060012C9 RID: 4809 RVA: 0x000A0338 File Offset: 0x0009E538
 	private void TaskCheck()
 	{
 		if (this.StudentID == 37)
@@ -1615,7 +1616,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C9 RID: 4809 RVA: 0x000A028C File Offset: 0x0009E48C
+	// Token: 0x060012CA RID: 4810 RVA: 0x000A03BC File Offset: 0x0009E5BC
 	private void TurnOnCheck()
 	{
 		if (!this.TurnedOn && !this.TakingPortrait && this.Male)
@@ -1649,7 +1650,7 @@ public class CosmeticScript : MonoBehaviour
 		this.TurnedOn = true;
 	}
 
-	// Token: 0x060012CA RID: 4810 RVA: 0x000A0440 File Offset: 0x0009E640
+	// Token: 0x060012CB RID: 4811 RVA: 0x000A0570 File Offset: 0x0009E770
 	private void DestroyUnneccessaryObjects()
 	{
 		foreach (GameObject gameObject in this.FemaleAccessories)
@@ -1731,7 +1732,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012CB RID: 4811 RVA: 0x000A0681 File Offset: 0x0009E881
+	// Token: 0x060012CC RID: 4812 RVA: 0x000A07B1 File Offset: 0x0009E9B1
 	public IEnumerator PutOnStockings()
 	{
 		this.RightStockings[0].SetActive(false);
@@ -2001,7 +2002,7 @@ public class CosmeticScript : MonoBehaviour
 		{
 			this.MyStockings = this.EightiesRivalStockings[20];
 		}
-		else if (this.Stockings == "Loose" && !this.Kidnapped)
+		else if (this.Stockings == "Loose")
 		{
 			this.MyStockings = null;
 			this.RightStockings[0].SetActive(true);
@@ -2024,7 +2025,7 @@ public class CosmeticScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060012CC RID: 4812 RVA: 0x000A0690 File Offset: 0x0009E890
+	// Token: 0x060012CD RID: 4813 RVA: 0x000A07C0 File Offset: 0x0009E9C0
 	public void WearIndoorShoes()
 	{
 		if (!this.Male)
@@ -2036,7 +2037,7 @@ public class CosmeticScript : MonoBehaviour
 		this.MyRenderer.materials[this.UniformID].mainTexture = this.CasualTexture;
 	}
 
-	// Token: 0x060012CD RID: 4813 RVA: 0x000A06F4 File Offset: 0x0009E8F4
+	// Token: 0x060012CE RID: 4814 RVA: 0x000A0824 File Offset: 0x0009EA24
 	public void WearOutdoorShoes()
 	{
 		if (!this.Male)
@@ -2048,7 +2049,7 @@ public class CosmeticScript : MonoBehaviour
 		this.MyRenderer.materials[this.UniformID].mainTexture = this.UniformTexture;
 	}
 
-	// Token: 0x060012CE RID: 4814 RVA: 0x000A0758 File Offset: 0x0009E958
+	// Token: 0x060012CF RID: 4815 RVA: 0x000A0888 File Offset: 0x0009EA88
 	public void EyeTypeCheck()
 	{
 		int num = 0;
@@ -2134,7 +2135,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012CF RID: 4815 RVA: 0x000A0C60 File Offset: 0x0009EE60
+	// Token: 0x060012D0 RID: 4816 RVA: 0x000A0D90 File Offset: 0x0009EF90
 	public void DeactivateBullyAccessories()
 	{
 		if (this.FemaleUniformID < 2 || this.FemaleUniformID == 3)
@@ -2146,7 +2147,7 @@ public class CosmeticScript : MonoBehaviour
 		this.Hoodie.SetActive(false);
 	}
 
-	// Token: 0x060012D0 RID: 4816 RVA: 0x000A0CB0 File Offset: 0x0009EEB0
+	// Token: 0x060012D1 RID: 4817 RVA: 0x000A0DE0 File Offset: 0x0009EFE0
 	public void ActivateBullyAccessories()
 	{
 		if (this.FemaleUniformID < 2 || this.FemaleUniformID == 3)
@@ -2158,7 +2159,7 @@ public class CosmeticScript : MonoBehaviour
 		this.Hoodie.SetActive(true);
 	}
 
-	// Token: 0x060012D1 RID: 4817 RVA: 0x000A0D00 File Offset: 0x0009EF00
+	// Token: 0x060012D2 RID: 4818 RVA: 0x000A0E30 File Offset: 0x0009F030
 	public void LoadCosmeticSheet(StudentCosmeticSheet mySheet)
 	{
 		if (this.Male != mySheet.Male)
@@ -2202,7 +2203,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012D2 RID: 4818 RVA: 0x000A0EDC File Offset: 0x0009F0DC
+	// Token: 0x060012D3 RID: 4819 RVA: 0x000A100C File Offset: 0x0009F20C
 	public StudentCosmeticSheet CosmeticSheet()
 	{
 		StudentCosmeticSheet studentCosmeticSheet = default(StudentCosmeticSheet);
@@ -2228,7 +2229,7 @@ public class CosmeticScript : MonoBehaviour
 		return studentCosmeticSheet;
 	}
 
-	// Token: 0x060012D3 RID: 4819 RVA: 0x000A1014 File Offset: 0x0009F214
+	// Token: 0x060012D4 RID: 4820 RVA: 0x000A1144 File Offset: 0x0009F344
 	public void DisableAccessories()
 	{
 		foreach (GameObject gameObject in this.FemaleAccessories)
@@ -2387,636 +2388,636 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001900 RID: 6400
+	// Token: 0x04001903 RID: 6403
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001901 RID: 6401
+	// Token: 0x04001904 RID: 6404
 	public TextureManagerScript TextureManager;
 
-	// Token: 0x04001902 RID: 6402
+	// Token: 0x04001905 RID: 6405
 	public SkinnedMeshUpdater SkinUpdater;
 
-	// Token: 0x04001903 RID: 6403
+	// Token: 0x04001906 RID: 6406
 	public LoveManagerScript LoveManager;
 
-	// Token: 0x04001904 RID: 6404
+	// Token: 0x04001907 RID: 6407
 	public Animation CharacterAnimation;
 
-	// Token: 0x04001905 RID: 6405
+	// Token: 0x04001908 RID: 6408
 	public ModelSwapScript ModelSwap;
 
-	// Token: 0x04001906 RID: 6406
+	// Token: 0x04001909 RID: 6409
 	public StudentScript Student;
 
-	// Token: 0x04001907 RID: 6407
+	// Token: 0x0400190A RID: 6410
 	public JsonScript JSON;
 
-	// Token: 0x04001908 RID: 6408
+	// Token: 0x0400190B RID: 6411
 	public GameObject[] TeacherAccessories;
 
-	// Token: 0x04001909 RID: 6409
+	// Token: 0x0400190C RID: 6412
 	public GameObject[] FemaleAccessories;
 
-	// Token: 0x0400190A RID: 6410
+	// Token: 0x0400190D RID: 6413
 	public GameObject[] MaleAccessories;
 
-	// Token: 0x0400190B RID: 6411
+	// Token: 0x0400190E RID: 6414
 	public GameObject[] ClubAccessories;
 
-	// Token: 0x0400190C RID: 6412
+	// Token: 0x0400190F RID: 6415
 	public GameObject[] PunkAccessories;
 
-	// Token: 0x0400190D RID: 6413
+	// Token: 0x04001910 RID: 6416
 	public GameObject[] RightStockings;
 
-	// Token: 0x0400190E RID: 6414
+	// Token: 0x04001911 RID: 6417
 	public GameObject[] LeftStockings;
 
-	// Token: 0x0400190F RID: 6415
+	// Token: 0x04001912 RID: 6418
 	public GameObject[] CouncilBrows;
 
-	// Token: 0x04001910 RID: 6416
+	// Token: 0x04001913 RID: 6419
 	public GameObject[] PhoneCharms;
 
-	// Token: 0x04001911 RID: 6417
+	// Token: 0x04001914 RID: 6420
 	public GameObject[] TeacherHair;
 
-	// Token: 0x04001912 RID: 6418
+	// Token: 0x04001915 RID: 6421
 	public GameObject[] FacialHair;
 
-	// Token: 0x04001913 RID: 6419
+	// Token: 0x04001916 RID: 6422
 	public GameObject[] FemaleHair;
 
-	// Token: 0x04001914 RID: 6420
+	// Token: 0x04001917 RID: 6423
 	public GameObject[] MusicNotes;
 
-	// Token: 0x04001915 RID: 6421
+	// Token: 0x04001918 RID: 6424
 	public GameObject[] Kerchiefs;
 
-	// Token: 0x04001916 RID: 6422
+	// Token: 0x04001919 RID: 6425
 	public GameObject[] CatGifts;
 
-	// Token: 0x04001917 RID: 6423
+	// Token: 0x0400191A RID: 6426
 	public GameObject[] MaleHair;
 
-	// Token: 0x04001918 RID: 6424
+	// Token: 0x0400191B RID: 6427
 	public GameObject[] RedCloth;
 
-	// Token: 0x04001919 RID: 6425
+	// Token: 0x0400191C RID: 6428
 	public GameObject[] Scanners;
 
-	// Token: 0x0400191A RID: 6426
+	// Token: 0x0400191D RID: 6429
 	public GameObject[] Eyewear;
 
-	// Token: 0x0400191B RID: 6427
+	// Token: 0x0400191E RID: 6430
 	public GameObject[] Goggles;
 
-	// Token: 0x0400191C RID: 6428
+	// Token: 0x0400191F RID: 6431
 	public GameObject[] Flowers;
 
-	// Token: 0x0400191D RID: 6429
+	// Token: 0x04001920 RID: 6432
 	public GameObject[] Masks;
 
-	// Token: 0x0400191E RID: 6430
+	// Token: 0x04001921 RID: 6433
 	public GameObject[] Roses;
 
-	// Token: 0x0400191F RID: 6431
+	// Token: 0x04001922 RID: 6434
 	public Renderer[] TeacherHairRenderers;
 
-	// Token: 0x04001920 RID: 6432
+	// Token: 0x04001923 RID: 6435
 	public Renderer[] FacialHairRenderers;
 
-	// Token: 0x04001921 RID: 6433
+	// Token: 0x04001924 RID: 6436
 	public Renderer[] FemaleHairRenderers;
 
-	// Token: 0x04001922 RID: 6434
+	// Token: 0x04001925 RID: 6437
 	public Renderer[] MaleHairRenderers;
 
-	// Token: 0x04001923 RID: 6435
+	// Token: 0x04001926 RID: 6438
 	public Renderer[] Fingernails;
 
-	// Token: 0x04001924 RID: 6436
+	// Token: 0x04001927 RID: 6439
 	public Texture[] GanguroSwimsuitTextures;
 
-	// Token: 0x04001925 RID: 6437
+	// Token: 0x04001928 RID: 6440
 	public Texture[] GanguroUniformTextures;
 
-	// Token: 0x04001926 RID: 6438
+	// Token: 0x04001929 RID: 6441
 	public Texture[] GanguroCasualTextures;
 
-	// Token: 0x04001927 RID: 6439
+	// Token: 0x0400192A RID: 6442
 	public Texture[] GanguroSocksTextures;
 
-	// Token: 0x04001928 RID: 6440
+	// Token: 0x0400192B RID: 6443
 	public Texture[] GanguroNailTextures;
 
-	// Token: 0x04001929 RID: 6441
+	// Token: 0x0400192C RID: 6444
 	public Texture[] ObstacleUniformTextures;
 
-	// Token: 0x0400192A RID: 6442
+	// Token: 0x0400192D RID: 6445
 	public Texture[] ObstacleCasualTextures;
 
-	// Token: 0x0400192B RID: 6443
+	// Token: 0x0400192E RID: 6446
 	public Texture[] ObstacleSocksTextures;
 
-	// Token: 0x0400192C RID: 6444
+	// Token: 0x0400192F RID: 6447
 	public Texture[] OccultUniformTextures;
 
-	// Token: 0x0400192D RID: 6445
+	// Token: 0x04001930 RID: 6448
 	public Texture[] OccultCasualTextures;
 
-	// Token: 0x0400192E RID: 6446
+	// Token: 0x04001931 RID: 6449
 	public Texture[] OccultSocksTextures;
 
-	// Token: 0x0400192F RID: 6447
+	// Token: 0x04001932 RID: 6450
 	public Texture[] FemaleUniformTextures;
 
-	// Token: 0x04001930 RID: 6448
+	// Token: 0x04001933 RID: 6451
 	public Texture[] FemaleCasualTextures;
 
-	// Token: 0x04001931 RID: 6449
+	// Token: 0x04001934 RID: 6452
 	public Texture[] FemaleSocksTextures;
 
-	// Token: 0x04001932 RID: 6450
+	// Token: 0x04001935 RID: 6453
 	public Texture[] MaleUniformTextures;
 
-	// Token: 0x04001933 RID: 6451
+	// Token: 0x04001936 RID: 6454
 	public Texture[] MaleCasualTextures;
 
-	// Token: 0x04001934 RID: 6452
+	// Token: 0x04001937 RID: 6455
 	public Texture[] MaleSocksTextures;
 
-	// Token: 0x04001935 RID: 6453
+	// Token: 0x04001938 RID: 6456
 	public Texture[] SmartphoneTextures;
 
-	// Token: 0x04001936 RID: 6454
+	// Token: 0x04001939 RID: 6457
 	public Texture[] HoodieTextures;
 
-	// Token: 0x04001937 RID: 6455
+	// Token: 0x0400193A RID: 6458
 	public Texture[] FaceTextures;
 
-	// Token: 0x04001938 RID: 6456
+	// Token: 0x0400193B RID: 6459
 	public Texture[] SkinTextures;
 
-	// Token: 0x04001939 RID: 6457
+	// Token: 0x0400193C RID: 6460
 	public Texture[] WristwearTextures;
 
-	// Token: 0x0400193A RID: 6458
+	// Token: 0x0400193D RID: 6461
 	public Texture[] CardiganTextures;
 
-	// Token: 0x0400193B RID: 6459
+	// Token: 0x0400193E RID: 6462
 	public Texture[] BookbagTextures;
 
-	// Token: 0x0400193C RID: 6460
+	// Token: 0x0400193F RID: 6463
 	public Texture[] EyeTextures;
 
-	// Token: 0x0400193D RID: 6461
+	// Token: 0x04001940 RID: 6464
 	public Texture[] CheekTextures;
 
-	// Token: 0x0400193E RID: 6462
+	// Token: 0x04001941 RID: 6465
 	public Texture[] ForeheadTextures;
 
-	// Token: 0x0400193F RID: 6463
+	// Token: 0x04001942 RID: 6466
 	public Texture[] MouthTextures;
 
-	// Token: 0x04001940 RID: 6464
+	// Token: 0x04001943 RID: 6467
 	public Texture[] NoseTextures;
 
-	// Token: 0x04001941 RID: 6465
+	// Token: 0x04001944 RID: 6468
 	public Texture[] ApronTextures;
 
-	// Token: 0x04001942 RID: 6466
+	// Token: 0x04001945 RID: 6469
 	public Texture[] CanTextures;
 
-	// Token: 0x04001943 RID: 6467
+	// Token: 0x04001946 RID: 6470
 	public Texture[] Trunks;
 
-	// Token: 0x04001944 RID: 6468
+	// Token: 0x04001947 RID: 6471
 	public Texture[] MusicStockings;
 
-	// Token: 0x04001945 RID: 6469
+	// Token: 0x04001948 RID: 6472
 	public Mesh[] FemaleUniforms;
 
-	// Token: 0x04001946 RID: 6470
+	// Token: 0x04001949 RID: 6473
 	public Mesh[] MaleUniforms;
 
-	// Token: 0x04001947 RID: 6471
+	// Token: 0x0400194A RID: 6474
 	public Mesh[] Berets;
 
-	// Token: 0x04001948 RID: 6472
+	// Token: 0x0400194B RID: 6475
 	public Color[] BullyColor;
 
-	// Token: 0x04001949 RID: 6473
+	// Token: 0x0400194C RID: 6476
 	public SkinnedMeshRenderer CardiganRenderer;
 
-	// Token: 0x0400194A RID: 6474
+	// Token: 0x0400194D RID: 6477
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x0400194B RID: 6475
+	// Token: 0x0400194E RID: 6478
 	public Renderer FacialHairRenderer;
 
-	// Token: 0x0400194C RID: 6476
+	// Token: 0x0400194F RID: 6479
 	public Renderer RightEyeRenderer;
 
-	// Token: 0x0400194D RID: 6477
+	// Token: 0x04001950 RID: 6480
 	public Renderer LeftEyeRenderer;
 
-	// Token: 0x0400194E RID: 6478
+	// Token: 0x04001951 RID: 6481
 	public Renderer HoodieRenderer;
 
-	// Token: 0x0400194F RID: 6479
+	// Token: 0x04001952 RID: 6482
 	public Renderer ScarfRenderer;
 
-	// Token: 0x04001950 RID: 6480
+	// Token: 0x04001953 RID: 6483
 	public Renderer HairRenderer;
 
-	// Token: 0x04001951 RID: 6481
+	// Token: 0x04001954 RID: 6484
 	public Renderer CanRenderer;
 
-	// Token: 0x04001952 RID: 6482
+	// Token: 0x04001955 RID: 6485
 	public Mesh EightiesDelinquentMesh;
 
-	// Token: 0x04001953 RID: 6483
+	// Token: 0x04001956 RID: 6486
 	public Mesh ModernBookBagMesh;
 
-	// Token: 0x04001954 RID: 6484
+	// Token: 0x04001957 RID: 6487
 	public Mesh DelinquentMesh;
 
-	// Token: 0x04001955 RID: 6485
+	// Token: 0x04001958 RID: 6488
 	public Mesh SchoolUniform;
 
-	// Token: 0x04001956 RID: 6486
+	// Token: 0x04001959 RID: 6489
 	public Mesh SukebanMesh;
 
-	// Token: 0x04001957 RID: 6487
+	// Token: 0x0400195A RID: 6490
 	public Texture DefaultFaceTexture;
 
-	// Token: 0x04001958 RID: 6488
+	// Token: 0x0400195B RID: 6491
 	public Texture TeacherBodyTexture;
 
-	// Token: 0x04001959 RID: 6489
+	// Token: 0x0400195C RID: 6492
 	public Texture EightiesCoachFaceTexture;
 
-	// Token: 0x0400195A RID: 6490
+	// Token: 0x0400195D RID: 6493
 	public Texture CoachPaleBodyTexture;
 
-	// Token: 0x0400195B RID: 6491
+	// Token: 0x0400195E RID: 6494
 	public Texture CoachBodyTexture;
 
-	// Token: 0x0400195C RID: 6492
+	// Token: 0x0400195F RID: 6495
 	public Texture CoachFaceTexture;
 
-	// Token: 0x0400195D RID: 6493
+	// Token: 0x04001960 RID: 6496
 	public Texture UniformTexture;
 
-	// Token: 0x0400195E RID: 6494
+	// Token: 0x04001961 RID: 6497
 	public Texture CasualTexture;
 
-	// Token: 0x0400195F RID: 6495
+	// Token: 0x04001962 RID: 6498
 	public Texture SocksTexture;
 
-	// Token: 0x04001960 RID: 6496
+	// Token: 0x04001963 RID: 6499
 	public Texture FaceTexture;
 
-	// Token: 0x04001961 RID: 6497
+	// Token: 0x04001964 RID: 6500
 	public Texture PurpleStockings;
 
-	// Token: 0x04001962 RID: 6498
+	// Token: 0x04001965 RID: 6501
 	public Texture YellowStockings;
 
-	// Token: 0x04001963 RID: 6499
+	// Token: 0x04001966 RID: 6502
 	public Texture BlackStockings;
 
-	// Token: 0x04001964 RID: 6500
+	// Token: 0x04001967 RID: 6503
 	public Texture GreenStockings;
 
-	// Token: 0x04001965 RID: 6501
+	// Token: 0x04001968 RID: 6504
 	public Texture BlueStockings;
 
-	// Token: 0x04001966 RID: 6502
+	// Token: 0x04001969 RID: 6505
 	public Texture CyanStockings;
 
-	// Token: 0x04001967 RID: 6503
+	// Token: 0x0400196A RID: 6506
 	public Texture RedStockings;
 
-	// Token: 0x04001968 RID: 6504
+	// Token: 0x0400196B RID: 6507
 	public Texture YellowSocks;
 
-	// Token: 0x04001969 RID: 6505
+	// Token: 0x0400196C RID: 6508
 	public Texture GreenSocks;
 
-	// Token: 0x0400196A RID: 6506
+	// Token: 0x0400196D RID: 6509
 	public Texture BlueSocks;
 
-	// Token: 0x0400196B RID: 6507
+	// Token: 0x0400196E RID: 6510
 	public Texture RedSocks;
 
-	// Token: 0x0400196C RID: 6508
+	// Token: 0x0400196F RID: 6511
 	public Texture BlackKneeSocks;
 
-	// Token: 0x0400196D RID: 6509
+	// Token: 0x04001970 RID: 6512
 	public Texture KizanaStockings;
 
-	// Token: 0x0400196E RID: 6510
+	// Token: 0x04001971 RID: 6513
 	public Texture OsanaStockings;
 
-	// Token: 0x0400196F RID: 6511
+	// Token: 0x04001972 RID: 6514
 	public Texture AmaiStockings;
 
-	// Token: 0x04001970 RID: 6512
+	// Token: 0x04001973 RID: 6515
 	public Texture DafuniStockings;
 
-	// Token: 0x04001971 RID: 6513
+	// Token: 0x04001974 RID: 6516
 	public Texture TurtleStockings;
 
-	// Token: 0x04001972 RID: 6514
+	// Token: 0x04001975 RID: 6517
 	public Texture TigerStockings;
 
-	// Token: 0x04001973 RID: 6515
+	// Token: 0x04001976 RID: 6518
 	public Texture BirdStockings;
 
-	// Token: 0x04001974 RID: 6516
+	// Token: 0x04001977 RID: 6519
 	public Texture DragonStockings;
 
-	// Token: 0x04001975 RID: 6517
+	// Token: 0x04001978 RID: 6520
 	public Texture[] EightiesRivalStockings;
 
-	// Token: 0x04001976 RID: 6518
+	// Token: 0x04001979 RID: 6521
 	public Texture[] CustomStockings;
 
-	// Token: 0x04001977 RID: 6519
+	// Token: 0x0400197A RID: 6522
 	public Texture MyStockings;
 
-	// Token: 0x04001978 RID: 6520
+	// Token: 0x0400197B RID: 6523
 	public Texture BlackBody;
 
-	// Token: 0x04001979 RID: 6521
+	// Token: 0x0400197C RID: 6524
 	public Texture BlackFace;
 
-	// Token: 0x0400197A RID: 6522
+	// Token: 0x0400197D RID: 6525
 	public Texture GrayFace;
 
-	// Token: 0x0400197B RID: 6523
+	// Token: 0x0400197E RID: 6526
 	public Texture EightiesDelinquentUniformTexture;
 
-	// Token: 0x0400197C RID: 6524
+	// Token: 0x0400197F RID: 6527
 	public Texture EightiesDelinquentCasualTexture;
 
-	// Token: 0x0400197D RID: 6525
+	// Token: 0x04001980 RID: 6528
 	public Texture EightiesDelinquentSocksTexture;
 
-	// Token: 0x0400197E RID: 6526
+	// Token: 0x04001981 RID: 6529
 	public Texture EightiesMaleUniformTexture;
 
-	// Token: 0x0400197F RID: 6527
+	// Token: 0x04001982 RID: 6530
 	public Texture EightiesMaleCasualTexture;
 
-	// Token: 0x04001980 RID: 6528
+	// Token: 0x04001983 RID: 6531
 	public Texture EightiesMaleSocksTexture;
 
-	// Token: 0x04001981 RID: 6529
+	// Token: 0x04001984 RID: 6532
 	public Texture OsanaSwimsuitTexture;
 
-	// Token: 0x04001982 RID: 6530
+	// Token: 0x04001985 RID: 6533
 	public Texture ObstacleSwimsuitTexture;
 
-	// Token: 0x04001983 RID: 6531
+	// Token: 0x04001986 RID: 6534
 	public Texture ObstacleTowelTexture;
 
-	// Token: 0x04001984 RID: 6532
+	// Token: 0x04001987 RID: 6535
 	public Texture ObstacleGymTexture;
 
-	// Token: 0x04001985 RID: 6533
+	// Token: 0x04001988 RID: 6536
 	public Texture TanSwimsuitTexture;
 
-	// Token: 0x04001986 RID: 6534
+	// Token: 0x04001989 RID: 6537
 	public Texture TanTowelTexture;
 
-	// Token: 0x04001987 RID: 6535
+	// Token: 0x0400198A RID: 6538
 	public Texture TanGymTexture;
 
-	// Token: 0x04001988 RID: 6536
+	// Token: 0x0400198B RID: 6539
 	public Texture WaifuIrisTexture;
 
-	// Token: 0x04001989 RID: 6537
+	// Token: 0x0400198C RID: 6540
 	public Texture WaifuEyeTexture;
 
-	// Token: 0x0400198A RID: 6538
+	// Token: 0x0400198D RID: 6541
 	public Texture AmaiApron;
 
-	// Token: 0x0400198B RID: 6539
+	// Token: 0x0400198E RID: 6542
 	public Texture NewspaperArmbandTexture;
 
-	// Token: 0x0400198C RID: 6540
+	// Token: 0x0400198F RID: 6543
 	public Texture TanCouncilUniform;
 
-	// Token: 0x0400198D RID: 6541
+	// Token: 0x04001990 RID: 6544
 	public GameObject RightIrisLight;
 
-	// Token: 0x0400198E RID: 6542
+	// Token: 0x04001991 RID: 6545
 	public GameObject LeftIrisLight;
 
-	// Token: 0x0400198F RID: 6543
+	// Token: 0x04001992 RID: 6546
 	public GameObject RightWristband;
 
-	// Token: 0x04001990 RID: 6544
+	// Token: 0x04001993 RID: 6547
 	public GameObject LeftWristband;
 
-	// Token: 0x04001991 RID: 6545
+	// Token: 0x04001994 RID: 6548
 	public GameObject Cardigan;
 
-	// Token: 0x04001992 RID: 6546
+	// Token: 0x04001995 RID: 6549
 	public GameObject Bookbag;
 
-	// Token: 0x04001993 RID: 6547
+	// Token: 0x04001996 RID: 6550
 	public GameObject ThickBrows;
 
-	// Token: 0x04001994 RID: 6548
+	// Token: 0x04001997 RID: 6551
 	public GameObject Character;
 
-	// Token: 0x04001995 RID: 6549
+	// Token: 0x04001998 RID: 6552
 	public GameObject RightShoe;
 
-	// Token: 0x04001996 RID: 6550
+	// Token: 0x04001999 RID: 6553
 	public GameObject LeftShoe;
 
-	// Token: 0x04001997 RID: 6551
+	// Token: 0x0400199A RID: 6554
 	public GameObject SadBrows;
 
-	// Token: 0x04001998 RID: 6552
+	// Token: 0x0400199B RID: 6555
 	public GameObject Armband;
 
-	// Token: 0x04001999 RID: 6553
+	// Token: 0x0400199C RID: 6556
 	public GameObject Hoodie;
 
-	// Token: 0x0400199A RID: 6554
+	// Token: 0x0400199D RID: 6557
 	public GameObject Tongue;
 
-	// Token: 0x0400199B RID: 6555
+	// Token: 0x0400199E RID: 6558
 	public Transform RightBreast;
 
-	// Token: 0x0400199C RID: 6556
+	// Token: 0x0400199F RID: 6559
 	public Transform LeftBreast;
 
-	// Token: 0x0400199D RID: 6557
+	// Token: 0x040019A0 RID: 6560
 	public Transform RightTemple;
 
-	// Token: 0x0400199E RID: 6558
+	// Token: 0x040019A1 RID: 6561
 	public Transform LeftTemple;
 
-	// Token: 0x0400199F RID: 6559
+	// Token: 0x040019A2 RID: 6562
 	public Transform Head;
 
-	// Token: 0x040019A0 RID: 6560
+	// Token: 0x040019A3 RID: 6563
 	public Transform Neck;
 
-	// Token: 0x040019A1 RID: 6561
+	// Token: 0x040019A4 RID: 6564
 	public Color CorrectColor;
 
-	// Token: 0x040019A2 RID: 6562
+	// Token: 0x040019A5 RID: 6565
 	public Color ColorValue;
 
-	// Token: 0x040019A3 RID: 6563
+	// Token: 0x040019A6 RID: 6566
 	public Mesh EightiesNurseMesh;
 
-	// Token: 0x040019A4 RID: 6564
+	// Token: 0x040019A7 RID: 6567
 	public Mesh TeacherMesh;
 
-	// Token: 0x040019A5 RID: 6565
+	// Token: 0x040019A8 RID: 6568
 	public Mesh CoachMesh;
 
-	// Token: 0x040019A6 RID: 6566
+	// Token: 0x040019A9 RID: 6569
 	public Mesh NurseMesh;
 
-	// Token: 0x040019A7 RID: 6567
+	// Token: 0x040019AA RID: 6570
 	public bool MysteriousObstacle;
 
-	// Token: 0x040019A8 RID: 6568
+	// Token: 0x040019AB RID: 6571
 	public bool DoNotChangeFace;
 
-	// Token: 0x040019A9 RID: 6569
+	// Token: 0x040019AC RID: 6572
 	public bool TakingPortrait;
 
-	// Token: 0x040019AA RID: 6570
+	// Token: 0x040019AD RID: 6573
 	public bool Initialized;
 
-	// Token: 0x040019AB RID: 6571
+	// Token: 0x040019AE RID: 6574
 	public bool CustomEyes;
 
-	// Token: 0x040019AC RID: 6572
+	// Token: 0x040019AF RID: 6575
 	public bool CustomHair;
 
-	// Token: 0x040019AD RID: 6573
+	// Token: 0x040019B0 RID: 6576
 	public bool LookCamera;
 
-	// Token: 0x040019AE RID: 6574
+	// Token: 0x040019B1 RID: 6577
 	public bool HomeScene;
 
-	// Token: 0x040019AF RID: 6575
+	// Token: 0x040019B2 RID: 6578
 	public bool Kidnapped;
 
-	// Token: 0x040019B0 RID: 6576
+	// Token: 0x040019B3 RID: 6579
 	public bool Randomize;
 
-	// Token: 0x040019B1 RID: 6577
+	// Token: 0x040019B4 RID: 6580
 	public bool Cutscene;
 
-	// Token: 0x040019B2 RID: 6578
+	// Token: 0x040019B5 RID: 6581
 	public bool Eighties;
 
-	// Token: 0x040019B3 RID: 6579
+	// Token: 0x040019B6 RID: 6582
 	public bool Modified;
 
-	// Token: 0x040019B4 RID: 6580
+	// Token: 0x040019B7 RID: 6583
 	public bool TurnedOn;
 
-	// Token: 0x040019B5 RID: 6581
+	// Token: 0x040019B8 RID: 6584
 	public bool Medibang;
 
-	// Token: 0x040019B6 RID: 6582
+	// Token: 0x040019B9 RID: 6585
 	public bool Teacher;
 
-	// Token: 0x040019B7 RID: 6583
+	// Token: 0x040019BA RID: 6586
 	public bool Yandere;
 
-	// Token: 0x040019B8 RID: 6584
+	// Token: 0x040019BB RID: 6587
 	public bool Empty;
 
-	// Token: 0x040019B9 RID: 6585
+	// Token: 0x040019BC RID: 6588
 	public bool Male;
 
-	// Token: 0x040019BA RID: 6586
+	// Token: 0x040019BD RID: 6589
 	public float BreastSize;
 
-	// Token: 0x040019BB RID: 6587
+	// Token: 0x040019BE RID: 6590
 	public string OriginalStockings = string.Empty;
 
-	// Token: 0x040019BC RID: 6588
+	// Token: 0x040019BF RID: 6591
 	public string HairColor = string.Empty;
 
-	// Token: 0x040019BD RID: 6589
+	// Token: 0x040019C0 RID: 6592
 	public string Stockings = string.Empty;
 
-	// Token: 0x040019BE RID: 6590
+	// Token: 0x040019C1 RID: 6593
 	public string EyeColor = string.Empty;
 
-	// Token: 0x040019BF RID: 6591
+	// Token: 0x040019C2 RID: 6594
 	public string EyeType = string.Empty;
 
-	// Token: 0x040019C0 RID: 6592
+	// Token: 0x040019C3 RID: 6595
 	public string Name = string.Empty;
 
-	// Token: 0x040019C1 RID: 6593
+	// Token: 0x040019C4 RID: 6596
 	public int FacialHairstyle;
 
-	// Token: 0x040019C2 RID: 6594
+	// Token: 0x040019C5 RID: 6597
 	public int FemaleUniformID;
 
-	// Token: 0x040019C3 RID: 6595
+	// Token: 0x040019C6 RID: 6598
 	public int MaleUniformID;
 
-	// Token: 0x040019C4 RID: 6596
+	// Token: 0x040019C7 RID: 6599
 	public int Accessory;
 
-	// Token: 0x040019C5 RID: 6597
+	// Token: 0x040019C8 RID: 6600
 	public int Direction;
 
-	// Token: 0x040019C6 RID: 6598
+	// Token: 0x040019C9 RID: 6601
 	public int Hairstyle;
 
-	// Token: 0x040019C7 RID: 6599
+	// Token: 0x040019CA RID: 6602
 	public int SkinColor;
 
-	// Token: 0x040019C8 RID: 6600
+	// Token: 0x040019CB RID: 6603
 	public int StudentID;
 
-	// Token: 0x040019C9 RID: 6601
+	// Token: 0x040019CC RID: 6604
 	public int EyewearID;
 
-	// Token: 0x040019CA RID: 6602
+	// Token: 0x040019CD RID: 6605
 	public ClubType Club;
 
-	// Token: 0x040019CB RID: 6603
+	// Token: 0x040019CE RID: 6606
 	public int ID;
 
-	// Token: 0x040019CC RID: 6604
+	// Token: 0x040019CF RID: 6607
 	public GameObject[] GaloAccessories;
 
-	// Token: 0x040019CD RID: 6605
+	// Token: 0x040019D0 RID: 6608
 	public Material[] EightiesNurseMaterials;
 
-	// Token: 0x040019CE RID: 6606
+	// Token: 0x040019D1 RID: 6609
 	public Material[] NurseMaterials;
 
-	// Token: 0x040019CF RID: 6607
+	// Token: 0x040019D2 RID: 6610
 	public GameObject CardiganPrefab;
 
-	// Token: 0x040019D0 RID: 6608
+	// Token: 0x040019D3 RID: 6611
 	public int FaceID;
 
-	// Token: 0x040019D1 RID: 6609
+	// Token: 0x040019D4 RID: 6612
 	public int SkinID;
 
-	// Token: 0x040019D2 RID: 6610
+	// Token: 0x040019D5 RID: 6613
 	public int UniformID;
 }

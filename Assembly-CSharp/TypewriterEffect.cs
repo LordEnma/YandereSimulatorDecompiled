@@ -262,16 +262,16 @@ public class TypewriterEffect : MonoBehaviour
 	// Token: 0x040002DC RID: 732
 	private BetterList<TypewriterEffect.FadeEntry> mFade = new BetterList<TypewriterEffect.FadeEntry>();
 
-	// Token: 0x020005C7 RID: 1479
+	// Token: 0x020005C1 RID: 1473
 	private struct FadeEntry
 	{
-		// Token: 0x04004D1A RID: 19738
+		// Token: 0x04004CF7 RID: 19703
 		public int index;
 
-		// Token: 0x04004D1B RID: 19739
+		// Token: 0x04004CF8 RID: 19704
 		public string text;
 
-		// Token: 0x04004D1C RID: 19740
+		// Token: 0x04004CF9 RID: 19705
 		public float alpha;
 	}
 }

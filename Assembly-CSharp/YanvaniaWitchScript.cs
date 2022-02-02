@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004E3 RID: 1251
 public class YanvaniaWitchScript : MonoBehaviour
 {
-	// Token: 0x060020A1 RID: 8353 RVA: 0x001DF738 File Offset: 0x001DD938
+	// Token: 0x060020A5 RID: 8357 RVA: 0x001DFFD8 File Offset: 0x001DE1D8
 	private void Update()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -38,7 +38,7 @@ public class YanvaniaWitchScript : MonoBehaviour
 		this.HitReactTimer += Time.deltaTime * 10f;
 	}
 
-	// Token: 0x060020A2 RID: 8354 RVA: 0x001DF8EC File Offset: 0x001DDAEC
+	// Token: 0x060020A6 RID: 8358 RVA: 0x001E018C File Offset: 0x001DE38C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.HP > 0f)
@@ -76,42 +76,42 @@ public class YanvaniaWitchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400478C RID: 18316
+	// Token: 0x04004797 RID: 18327
 	public YanvaniaYanmontScript Yanmont;
 
-	// Token: 0x0400478D RID: 18317
+	// Token: 0x04004798 RID: 18328
 	public GameObject GroundImpact;
 
-	// Token: 0x0400478E RID: 18318
+	// Token: 0x04004799 RID: 18329
 	public GameObject BlackHole;
 
-	// Token: 0x0400478F RID: 18319
+	// Token: 0x0400479A RID: 18330
 	public GameObject Character;
 
-	// Token: 0x04004790 RID: 18320
+	// Token: 0x0400479B RID: 18331
 	public GameObject HitEffect;
 
-	// Token: 0x04004791 RID: 18321
+	// Token: 0x0400479C RID: 18332
 	public GameObject Wall;
 
-	// Token: 0x04004792 RID: 18322
+	// Token: 0x0400479D RID: 18333
 	public AudioClip DeathScream;
 
-	// Token: 0x04004793 RID: 18323
+	// Token: 0x0400479E RID: 18334
 	public AudioClip HitSound;
 
-	// Token: 0x04004794 RID: 18324
+	// Token: 0x0400479F RID: 18335
 	public float HitReactTimer;
 
-	// Token: 0x04004795 RID: 18325
+	// Token: 0x040047A0 RID: 18336
 	public float AttackTimer = 10f;
 
-	// Token: 0x04004796 RID: 18326
+	// Token: 0x040047A1 RID: 18337
 	public float HP = 100f;
 
-	// Token: 0x04004797 RID: 18327
+	// Token: 0x040047A2 RID: 18338
 	public bool CastSpell;
 
-	// Token: 0x04004798 RID: 18328
+	// Token: 0x040047A3 RID: 18339
 	public bool Casting;
 }

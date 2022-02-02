@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8E56777F-729A-482F-916A-C9D7555C858B}</ProjectGuid>
+    <ProjectGuid>{1F35DF33-0D72-4912-AC80-D9DC0D644506}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Assembly-CSharp</RootNamespace>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -173,12 +173,6 @@
     <Compile Include="AudioListenerScript.cs" />
     <Compile Include="AudioMenuScript.cs" />
     <Compile Include="AudioSoftwareScript.cs" />
-    <Compile Include="Aura2API\AuraFreeCamera.cs" />
-    <Compile Include="Aura2API\AutoMoveAndRotate.cs" />
-    <Compile Include="Aura2API\DebugFps.cs" />
-    <Compile Include="Aura2API\LightFlicker.cs" />
-    <Compile Include="Aura2API\MoveSinCos.cs" />
-    <Compile Include="Aura2API\SinRotationOffset.cs" />
     <Compile Include="BakeSaleScript.cs" />
     <Compile Include="BarScript.cs" />
     <Compile Include="BatheEventScript.cs" />

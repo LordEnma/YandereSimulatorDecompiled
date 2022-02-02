@@ -1498,73 +1498,73 @@ public class UIInput : MonoBehaviour
 	[NonSerialized]
 	public Action onDownArrow;
 
-	// Token: 0x02000630 RID: 1584
+	// Token: 0x0200062A RID: 1578
 	[DoNotObfuscateNGUI]
 	public enum InputType
 	{
-		// Token: 0x04004E4B RID: 20043
+		// Token: 0x04004E28 RID: 20008
 		Standard,
-		// Token: 0x04004E4C RID: 20044
+		// Token: 0x04004E29 RID: 20009
 		AutoCorrect,
-		// Token: 0x04004E4D RID: 20045
+		// Token: 0x04004E2A RID: 20010
 		Password
 	}
 
-	// Token: 0x02000631 RID: 1585
+	// Token: 0x0200062B RID: 1579
 	[DoNotObfuscateNGUI]
 	public enum Validation
 	{
-		// Token: 0x04004E4F RID: 20047
+		// Token: 0x04004E2C RID: 20012
 		None,
-		// Token: 0x04004E50 RID: 20048
+		// Token: 0x04004E2D RID: 20013
 		Integer,
-		// Token: 0x04004E51 RID: 20049
+		// Token: 0x04004E2E RID: 20014
 		Float,
-		// Token: 0x04004E52 RID: 20050
+		// Token: 0x04004E2F RID: 20015
 		Alphanumeric,
-		// Token: 0x04004E53 RID: 20051
+		// Token: 0x04004E30 RID: 20016
 		Username,
-		// Token: 0x04004E54 RID: 20052
+		// Token: 0x04004E31 RID: 20017
 		Name,
-		// Token: 0x04004E55 RID: 20053
+		// Token: 0x04004E32 RID: 20018
 		Filename
 	}
 
-	// Token: 0x02000632 RID: 1586
+	// Token: 0x0200062C RID: 1580
 	[DoNotObfuscateNGUI]
 	public enum KeyboardType
 	{
-		// Token: 0x04004E57 RID: 20055
+		// Token: 0x04004E34 RID: 20020
 		Default,
-		// Token: 0x04004E58 RID: 20056
+		// Token: 0x04004E35 RID: 20021
 		ASCIICapable,
-		// Token: 0x04004E59 RID: 20057
+		// Token: 0x04004E36 RID: 20022
 		NumbersAndPunctuation,
-		// Token: 0x04004E5A RID: 20058
+		// Token: 0x04004E37 RID: 20023
 		URL,
-		// Token: 0x04004E5B RID: 20059
+		// Token: 0x04004E38 RID: 20024
 		NumberPad,
-		// Token: 0x04004E5C RID: 20060
+		// Token: 0x04004E39 RID: 20025
 		PhonePad,
-		// Token: 0x04004E5D RID: 20061
+		// Token: 0x04004E3A RID: 20026
 		NamePhonePad,
-		// Token: 0x04004E5E RID: 20062
+		// Token: 0x04004E3B RID: 20027
 		EmailAddress
 	}
 
-	// Token: 0x02000633 RID: 1587
+	// Token: 0x0200062D RID: 1581
 	[DoNotObfuscateNGUI]
 	public enum OnReturnKey
 	{
-		// Token: 0x04004E60 RID: 20064
+		// Token: 0x04004E3D RID: 20029
 		Default,
-		// Token: 0x04004E61 RID: 20065
+		// Token: 0x04004E3E RID: 20030
 		Submit,
-		// Token: 0x04004E62 RID: 20066
+		// Token: 0x04004E3F RID: 20031
 		NewLine
 	}
 
-	// Token: 0x02000634 RID: 1588
-	// (Invoke) Token: 0x060025F2 RID: 9714
+	// Token: 0x0200062E RID: 1582
+	// (Invoke) Token: 0x060025E2 RID: 9698
 	public delegate char OnValidate(string text, int charIndex, char addedChar);
 }

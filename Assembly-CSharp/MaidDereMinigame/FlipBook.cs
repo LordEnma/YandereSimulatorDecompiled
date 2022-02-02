@@ -9,7 +9,7 @@ namespace MaidDereMinigame
 	public class FlipBook : MonoBehaviour
 	{
 		// Token: 0x17000528 RID: 1320
-		// (get) Token: 0x06002465 RID: 9317 RVA: 0x001F9A83 File Offset: 0x001F7C83
+		// (get) Token: 0x06002469 RID: 9321 RVA: 0x001FA323 File Offset: 0x001F8523
 		public static FlipBook Instance
 		{
 			get
@@ -22,13 +22,13 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002466 RID: 9318 RVA: 0x001F9AA1 File Offset: 0x001F7CA1
+		// Token: 0x0600246A RID: 9322 RVA: 0x001FA341 File Offset: 0x001F8541
 		private void Awake()
 		{
 			base.StartCoroutine(this.OpenBook());
 		}
 
-		// Token: 0x06002467 RID: 9319 RVA: 0x001F9AB0 File Offset: 0x001F7CB0
+		// Token: 0x0600246B RID: 9323 RVA: 0x001FA350 File Offset: 0x001F8550
 		private IEnumerator OpenBook()
 		{
 			yield return new WaitForSeconds(1f);
@@ -36,7 +36,7 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x06002468 RID: 9320 RVA: 0x001F9ABF File Offset: 0x001F7CBF
+		// Token: 0x0600246C RID: 9324 RVA: 0x001FA35F File Offset: 0x001F855F
 		private void Update()
 		{
 			if (this.stopInputs)
@@ -49,20 +49,20 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002469 RID: 9321 RVA: 0x001F9AEE File Offset: 0x001F7CEE
+		// Token: 0x0600246D RID: 9325 RVA: 0x001FA38E File Offset: 0x001F858E
 		public void StopInputs()
 		{
 			this.stopInputs = true;
 		}
 
-		// Token: 0x0600246A RID: 9322 RVA: 0x001F9AF7 File Offset: 0x001F7CF7
+		// Token: 0x0600246E RID: 9326 RVA: 0x001FA397 File Offset: 0x001F8597
 		public void FlipToPage(int page)
 		{
 			SFXController.PlaySound(SFXController.Sounds.PageTurn);
 			base.StartCoroutine(this.FlipToPageRoutine(page));
 		}
 
-		// Token: 0x0600246B RID: 9323 RVA: 0x001F9B0D File Offset: 0x001F7D0D
+		// Token: 0x0600246F RID: 9327 RVA: 0x001FA3AD File Offset: 0x001F85AD
 		private IEnumerator FlipToPageRoutine(int page)
 		{
 			bool flag = this.curPage < page;
@@ -96,19 +96,19 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x04004C2F RID: 19503
+		// Token: 0x04004C3A RID: 19514
 		private static FlipBook instance;
 
-		// Token: 0x04004C30 RID: 19504
+		// Token: 0x04004C3B RID: 19515
 		public List<FlipBookPage> flipBookPages;
 
-		// Token: 0x04004C31 RID: 19505
+		// Token: 0x04004C3C RID: 19516
 		private int curPage;
 
-		// Token: 0x04004C32 RID: 19506
+		// Token: 0x04004C3D RID: 19517
 		private bool canGoBack;
 
-		// Token: 0x04004C33 RID: 19507
+		// Token: 0x04004C3E RID: 19518
 		private bool stopInputs;
 	}
 }

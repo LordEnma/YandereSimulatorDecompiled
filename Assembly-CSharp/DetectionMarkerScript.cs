@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class DetectionMarkerScript : MonoBehaviour
 {
-	// Token: 0x06001383 RID: 4995 RVA: 0x000B361C File Offset: 0x000B181C
+	// Token: 0x06001384 RID: 4996 RVA: 0x000B376C File Offset: 0x000B196C
 	private void Start()
 	{
 		base.transform.LookAt(new Vector3(this.Target.position.x, base.transform.position.y, this.Target.position.z));
@@ -14,7 +14,7 @@ public class DetectionMarkerScript : MonoBehaviour
 		this.Tex.color = new Color(this.Tex.color.r, this.Tex.color.g, this.Tex.color.b, 0f);
 	}
 
-	// Token: 0x06001384 RID: 4996 RVA: 0x000B36F4 File Offset: 0x000B18F4
+	// Token: 0x06001385 RID: 4997 RVA: 0x000B3844 File Offset: 0x000B1A44
 	private void Update()
 	{
 		if (this.Tex.color.a > 0f && base.transform != null && this.Target != null)
@@ -23,9 +23,9 @@ public class DetectionMarkerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001CC3 RID: 7363
+	// Token: 0x04001CC6 RID: 7366
 	public Transform Target;
 
-	// Token: 0x04001CC4 RID: 7364
+	// Token: 0x04001CC7 RID: 7367
 	public UITexture Tex;
 }

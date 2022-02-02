@@ -218,34 +218,34 @@ public class InvGameItem
 	// Token: 0x04000288 RID: 648
 	private InvBaseItem mBaseItem;
 
-	// Token: 0x020005C2 RID: 1474
+	// Token: 0x020005BC RID: 1468
 	public enum Quality
 	{
-		// Token: 0x04004CF9 RID: 19705
+		// Token: 0x04004CD6 RID: 19670
 		Broken,
-		// Token: 0x04004CFA RID: 19706
+		// Token: 0x04004CD7 RID: 19671
 		Cursed,
-		// Token: 0x04004CFB RID: 19707
+		// Token: 0x04004CD8 RID: 19672
 		Damaged,
-		// Token: 0x04004CFC RID: 19708
+		// Token: 0x04004CD9 RID: 19673
 		Worn,
-		// Token: 0x04004CFD RID: 19709
+		// Token: 0x04004CDA RID: 19674
 		Sturdy,
-		// Token: 0x04004CFE RID: 19710
+		// Token: 0x04004CDB RID: 19675
 		Polished,
-		// Token: 0x04004CFF RID: 19711
+		// Token: 0x04004CDC RID: 19676
 		Improved,
-		// Token: 0x04004D00 RID: 19712
+		// Token: 0x04004CDD RID: 19677
 		Crafted,
-		// Token: 0x04004D01 RID: 19713
+		// Token: 0x04004CDE RID: 19678
 		Superior,
-		// Token: 0x04004D02 RID: 19714
+		// Token: 0x04004CDF RID: 19679
 		Enchanted,
-		// Token: 0x04004D03 RID: 19715
+		// Token: 0x04004CE0 RID: 19680
 		Epic,
-		// Token: 0x04004D04 RID: 19716
+		// Token: 0x04004CE1 RID: 19681
 		Legendary,
-		// Token: 0x04004D05 RID: 19717
+		// Token: 0x04004CE2 RID: 19682
 		_LastDoNotUse
 	}
 }

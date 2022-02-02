@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x020004E8 RID: 1256
 public class YouTubeScript : MonoBehaviour
 {
-	// Token: 0x060020BF RID: 8383 RVA: 0x001E2558 File Offset: 0x001E0758
+	// Token: 0x060020C3 RID: 8387 RVA: 0x001E2DF8 File Offset: 0x001E0FF8
 	private void Start()
 	{
 		if (this.Girl != null)
@@ -14,7 +14,7 @@ public class YouTubeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020C0 RID: 8384 RVA: 0x001E2584 File Offset: 0x001E0784
+	// Token: 0x060020C4 RID: 8388 RVA: 0x001E2E24 File Offset: 0x001E1024
 	private void Update()
 	{
 		if (this.Type == 6)
@@ -96,60 +96,60 @@ public class YouTubeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004827 RID: 18471
+	// Token: 0x04004832 RID: 18482
 	public RetroCameraEffect EightiesEffects;
 
-	// Token: 0x04004828 RID: 18472
+	// Token: 0x04004833 RID: 18483
 	public CameraEffectsScript CameraEffects;
 
-	// Token: 0x04004829 RID: 18473
+	// Token: 0x04004834 RID: 18484
 	public NormalBufferView VaporwaveVisuals;
 
-	// Token: 0x0400482A RID: 18474
+	// Token: 0x04004835 RID: 18485
 	public Camera MyCamera;
 
-	// Token: 0x0400482B RID: 18475
+	// Token: 0x04004836 RID: 18486
 	public YandereScript Yandere;
 
-	// Token: 0x0400482C RID: 18476
+	// Token: 0x04004837 RID: 18487
 	public GameObject[] Label;
 
-	// Token: 0x0400482D RID: 18477
+	// Token: 0x04004838 RID: 18488
 	public GameObject[] Trees;
 
-	// Token: 0x0400482E RID: 18478
+	// Token: 0x04004839 RID: 18489
 	public Animation Girl;
 
-	// Token: 0x0400482F RID: 18479
+	// Token: 0x0400483A RID: 18490
 	public float Strength;
 
-	// Token: 0x04004830 RID: 18480
+	// Token: 0x0400483B RID: 18491
 	public float Focus = 1f;
 
-	// Token: 0x04004831 RID: 18481
+	// Token: 0x0400483C RID: 18492
 	public float Bloom = 60f;
 
-	// Token: 0x04004832 RID: 18482
+	// Token: 0x0400483D RID: 18493
 	public float Knee = 1f;
 
-	// Token: 0x04004833 RID: 18483
+	// Token: 0x0400483E RID: 18494
 	public float Radius = 7f;
 
-	// Token: 0x04004834 RID: 18484
+	// Token: 0x0400483F RID: 18495
 	public float Threshold;
 
-	// Token: 0x04004835 RID: 18485
+	// Token: 0x04004840 RID: 18496
 	public float Speed;
 
-	// Token: 0x04004836 RID: 18486
+	// Token: 0x04004841 RID: 18497
 	public float Timer;
 
-	// Token: 0x04004837 RID: 18487
+	// Token: 0x04004842 RID: 18498
 	public bool Begin;
 
-	// Token: 0x04004838 RID: 18488
+	// Token: 0x04004843 RID: 18499
 	public int Phase;
 
-	// Token: 0x04004839 RID: 18489
+	// Token: 0x04004844 RID: 18500
 	public int Type;
 }

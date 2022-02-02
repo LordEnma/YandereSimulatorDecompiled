@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004D4 RID: 1236
 public class YanvaniaCandlestickScript : MonoBehaviour
 {
-	// Token: 0x06002072 RID: 8306 RVA: 0x001DBD74 File Offset: 0x001D9F74
+	// Token: 0x06002076 RID: 8310 RVA: 0x001DC614 File Offset: 0x001DA814
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 19 && !this.Destroyed)
@@ -16,12 +16,12 @@ public class YanvaniaCandlestickScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040046FB RID: 18171
+	// Token: 0x04004706 RID: 18182
 	public GameObject DestroyedCandlestick;
 
-	// Token: 0x040046FC RID: 18172
+	// Token: 0x04004707 RID: 18183
 	public bool Destroyed;
 
-	// Token: 0x040046FD RID: 18173
+	// Token: 0x04004708 RID: 18184
 	public AudioClip Break;
 }

@@ -12,7 +12,7 @@ namespace UnityEngine.PostProcessing
 	[AddComponentMenu("Effects/Post-Processing Behaviour", -1)]
 	public class PostProcessingBehaviour : MonoBehaviour
 	{
-		// Token: 0x06002358 RID: 9048 RVA: 0x001F2C00 File Offset: 0x001F0E00
+		// Token: 0x0600235C RID: 9052 RVA: 0x001F34A0 File Offset: 0x001F16A0
 		private void OnEnable()
 		{
 			this.m_CommandBuffers = new Dictionary<Type, KeyValuePair<CameraEvent, CommandBuffer>>();
@@ -44,7 +44,7 @@ namespace UnityEngine.PostProcessing
 			base.useGUILayout = false;
 		}
 
-		// Token: 0x06002359 RID: 9049 RVA: 0x001F2DB4 File Offset: 0x001F0FB4
+		// Token: 0x0600235D RID: 9053 RVA: 0x001F3654 File Offset: 0x001F1854
 		private void OnPreCull()
 		{
 			this.m_Camera = base.GetComponent<Camera>();
@@ -94,7 +94,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600235A RID: 9050 RVA: 0x001F3064 File Offset: 0x001F1264
+		// Token: 0x0600235E RID: 9054 RVA: 0x001F3904 File Offset: 0x001F1B04
 		private void OnPreRender()
 		{
 			if (this.profile == null)
@@ -111,7 +111,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600235B RID: 9051 RVA: 0x001F30C4 File Offset: 0x001F12C4
+		// Token: 0x0600235F RID: 9055 RVA: 0x001F3964 File Offset: 0x001F1B64
 		private void OnPostRender()
 		{
 			if (this.profile == null || this.m_Camera == null)
@@ -124,7 +124,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600235C RID: 9052 RVA: 0x001F3128 File Offset: 0x001F1328
+		// Token: 0x06002360 RID: 9056 RVA: 0x001F39C8 File Offset: 0x001F1BC8
 		private void OnRenderImage(RenderTexture source, RenderTexture destination)
 		{
 			if (this.profile == null || this.m_Camera == null)
@@ -200,7 +200,7 @@ namespace UnityEngine.PostProcessing
 			this.m_RenderTextureFactory.ReleaseAll();
 		}
 
-		// Token: 0x0600235D RID: 9053 RVA: 0x001F3374 File Offset: 0x001F1574
+		// Token: 0x06002361 RID: 9057 RVA: 0x001F3C14 File Offset: 0x001F1E14
 		private void OnGUI()
 		{
 			if (Event.current.type != EventType.Repaint)
@@ -227,7 +227,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600235E RID: 9054 RVA: 0x001F3430 File Offset: 0x001F1630
+		// Token: 0x06002362 RID: 9058 RVA: 0x001F3CD0 File Offset: 0x001F1ED0
 		private void OnDisable()
 		{
 			foreach (KeyValuePair<CameraEvent, CommandBuffer> keyValuePair in this.m_CommandBuffers.Values)
@@ -246,7 +246,7 @@ namespace UnityEngine.PostProcessing
 			GraphicsUtils.Dispose();
 		}
 
-		// Token: 0x0600235F RID: 9055 RVA: 0x001F34EC File Offset: 0x001F16EC
+		// Token: 0x06002363 RID: 9059 RVA: 0x001F3D8C File Offset: 0x001F1F8C
 		public void ResetTemporalEffects()
 		{
 			this.m_Taa.ResetHistory();
@@ -254,7 +254,7 @@ namespace UnityEngine.PostProcessing
 			this.m_EyeAdaptation.ResetHistory();
 		}
 
-		// Token: 0x06002360 RID: 9056 RVA: 0x001F3510 File Offset: 0x001F1710
+		// Token: 0x06002364 RID: 9060 RVA: 0x001F3DB0 File Offset: 0x001F1FB0
 		private void CheckObservers()
 		{
 			foreach (KeyValuePair<PostProcessingComponentBase, bool> keyValuePair in this.m_ComponentStates)
@@ -289,7 +289,7 @@ namespace UnityEngine.PostProcessing
 			this.m_ComponentsToEnable.Clear();
 		}
 
-		// Token: 0x06002361 RID: 9057 RVA: 0x001F362C File Offset: 0x001F182C
+		// Token: 0x06002365 RID: 9061 RVA: 0x001F3ECC File Offset: 0x001F20CC
 		private void DisableComponents()
 		{
 			foreach (PostProcessingComponentBase postProcessingComponentBase in this.m_Components)
@@ -302,7 +302,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002362 RID: 9058 RVA: 0x001F3690 File Offset: 0x001F1890
+		// Token: 0x06002366 RID: 9062 RVA: 0x001F3F30 File Offset: 0x001F2130
 		private CommandBuffer AddCommandBuffer<T>(CameraEvent evt, string name) where T : PostProcessingModel
 		{
 			CommandBuffer value = new CommandBuffer
@@ -315,7 +315,7 @@ namespace UnityEngine.PostProcessing
 			return value2.Value;
 		}
 
-		// Token: 0x06002363 RID: 9059 RVA: 0x001F36E4 File Offset: 0x001F18E4
+		// Token: 0x06002367 RID: 9063 RVA: 0x001F3F84 File Offset: 0x001F2184
 		private void RemoveCommandBuffer<T>() where T : PostProcessingModel
 		{
 			Type typeFromHandle = typeof(T);
@@ -329,7 +329,7 @@ namespace UnityEngine.PostProcessing
 			keyValuePair.Value.Dispose();
 		}
 
-		// Token: 0x06002364 RID: 9060 RVA: 0x001F3740 File Offset: 0x001F1940
+		// Token: 0x06002368 RID: 9064 RVA: 0x001F3FE0 File Offset: 0x001F21E0
 		private CommandBuffer GetCommandBuffer<T>(CameraEvent evt, string name) where T : PostProcessingModel
 		{
 			KeyValuePair<CameraEvent, CommandBuffer> keyValuePair;
@@ -350,7 +350,7 @@ namespace UnityEngine.PostProcessing
 			return result;
 		}
 
-		// Token: 0x06002365 RID: 9061 RVA: 0x001F3798 File Offset: 0x001F1998
+		// Token: 0x06002369 RID: 9065 RVA: 0x001F4038 File Offset: 0x001F2238
 		private void TryExecuteCommandBuffer<T>(PostProcessingComponentCommandBuffer<T> component) where T : PostProcessingModel
 		{
 			if (component.active)
@@ -363,7 +363,7 @@ namespace UnityEngine.PostProcessing
 			this.RemoveCommandBuffer<T>();
 		}
 
-		// Token: 0x06002366 RID: 9062 RVA: 0x001F37D4 File Offset: 0x001F19D4
+		// Token: 0x0600236A RID: 9066 RVA: 0x001F4074 File Offset: 0x001F2274
 		private bool TryPrepareUberImageEffect<T>(PostProcessingComponentRenderTexture<T> component, Material material) where T : PostProcessingModel
 		{
 			if (!component.active)
@@ -374,98 +374,98 @@ namespace UnityEngine.PostProcessing
 			return true;
 		}
 
-		// Token: 0x06002367 RID: 9063 RVA: 0x001F37E8 File Offset: 0x001F19E8
+		// Token: 0x0600236B RID: 9067 RVA: 0x001F4088 File Offset: 0x001F2288
 		private T AddComponent<T>(T component) where T : PostProcessingComponentBase
 		{
 			this.m_Components.Add(component);
 			return component;
 		}
 
-		// Token: 0x04004AEC RID: 19180
+		// Token: 0x04004AF7 RID: 19191
 		public PostProcessingProfile profile;
 
-		// Token: 0x04004AED RID: 19181
+		// Token: 0x04004AF8 RID: 19192
 		public Func<Vector2, Matrix4x4> jitteredMatrixFunc;
 
-		// Token: 0x04004AEE RID: 19182
+		// Token: 0x04004AF9 RID: 19193
 		private Dictionary<Type, KeyValuePair<CameraEvent, CommandBuffer>> m_CommandBuffers;
 
-		// Token: 0x04004AEF RID: 19183
+		// Token: 0x04004AFA RID: 19194
 		private List<PostProcessingComponentBase> m_Components;
 
-		// Token: 0x04004AF0 RID: 19184
+		// Token: 0x04004AFB RID: 19195
 		private Dictionary<PostProcessingComponentBase, bool> m_ComponentStates;
 
-		// Token: 0x04004AF1 RID: 19185
+		// Token: 0x04004AFC RID: 19196
 		private MaterialFactory m_MaterialFactory;
 
-		// Token: 0x04004AF2 RID: 19186
+		// Token: 0x04004AFD RID: 19197
 		private RenderTextureFactory m_RenderTextureFactory;
 
-		// Token: 0x04004AF3 RID: 19187
+		// Token: 0x04004AFE RID: 19198
 		private PostProcessingContext m_Context;
 
-		// Token: 0x04004AF4 RID: 19188
+		// Token: 0x04004AFF RID: 19199
 		private Camera m_Camera;
 
-		// Token: 0x04004AF5 RID: 19189
+		// Token: 0x04004B00 RID: 19200
 		private PostProcessingProfile m_PreviousProfile;
 
-		// Token: 0x04004AF6 RID: 19190
+		// Token: 0x04004B01 RID: 19201
 		private bool m_RenderingInSceneView;
 
-		// Token: 0x04004AF7 RID: 19191
+		// Token: 0x04004B02 RID: 19202
 		private BuiltinDebugViewsComponent m_DebugViews;
 
-		// Token: 0x04004AF8 RID: 19192
+		// Token: 0x04004B03 RID: 19203
 		private AmbientOcclusionComponent m_AmbientOcclusion;
 
-		// Token: 0x04004AF9 RID: 19193
+		// Token: 0x04004B04 RID: 19204
 		private ScreenSpaceReflectionComponent m_ScreenSpaceReflection;
 
-		// Token: 0x04004AFA RID: 19194
+		// Token: 0x04004B05 RID: 19205
 		private FogComponent m_FogComponent;
 
-		// Token: 0x04004AFB RID: 19195
+		// Token: 0x04004B06 RID: 19206
 		private MotionBlurComponent m_MotionBlur;
 
-		// Token: 0x04004AFC RID: 19196
+		// Token: 0x04004B07 RID: 19207
 		private TaaComponent m_Taa;
 
-		// Token: 0x04004AFD RID: 19197
+		// Token: 0x04004B08 RID: 19208
 		private EyeAdaptationComponent m_EyeAdaptation;
 
-		// Token: 0x04004AFE RID: 19198
+		// Token: 0x04004B09 RID: 19209
 		private DepthOfFieldComponent m_DepthOfField;
 
-		// Token: 0x04004AFF RID: 19199
+		// Token: 0x04004B0A RID: 19210
 		private BloomComponent m_Bloom;
 
-		// Token: 0x04004B00 RID: 19200
+		// Token: 0x04004B0B RID: 19211
 		private ChromaticAberrationComponent m_ChromaticAberration;
 
-		// Token: 0x04004B01 RID: 19201
+		// Token: 0x04004B0C RID: 19212
 		private ColorGradingComponent m_ColorGrading;
 
-		// Token: 0x04004B02 RID: 19202
+		// Token: 0x04004B0D RID: 19213
 		private UserLutComponent m_UserLut;
 
-		// Token: 0x04004B03 RID: 19203
+		// Token: 0x04004B0E RID: 19214
 		private GrainComponent m_Grain;
 
-		// Token: 0x04004B04 RID: 19204
+		// Token: 0x04004B0F RID: 19215
 		private VignetteComponent m_Vignette;
 
-		// Token: 0x04004B05 RID: 19205
+		// Token: 0x04004B10 RID: 19216
 		private DitheringComponent m_Dithering;
 
-		// Token: 0x04004B06 RID: 19206
+		// Token: 0x04004B11 RID: 19217
 		private FxaaComponent m_Fxaa;
 
-		// Token: 0x04004B07 RID: 19207
+		// Token: 0x04004B12 RID: 19218
 		private List<PostProcessingComponentBase> m_ComponentsToEnable = new List<PostProcessingComponentBase>();
 
-		// Token: 0x04004B08 RID: 19208
+		// Token: 0x04004B13 RID: 19219
 		private List<PostProcessingComponentBase> m_ComponentsToDisable = new List<PostProcessingComponentBase>();
 	}
 }

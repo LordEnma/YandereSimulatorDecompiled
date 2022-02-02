@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003C5 RID: 965
 public class RagdollScript : MonoBehaviour
 {
-	// Token: 0x06001B2F RID: 6959 RVA: 0x0012F438 File Offset: 0x0012D638
+	// Token: 0x06001B30 RID: 6960 RVA: 0x0012F8B8 File Offset: 0x0012DAB8
 	private void Start()
 	{
 		this.ElectrocutionAnimation = false;
@@ -56,7 +56,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B30 RID: 6960 RVA: 0x0012F5E4 File Offset: 0x0012D7E4
+	// Token: 0x06001B31 RID: 6961 RVA: 0x0012FA64 File Offset: 0x0012DC64
 	private void Update()
 	{
 		if (this.UpdateNextFrame)
@@ -453,7 +453,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B31 RID: 6961 RVA: 0x0013091C File Offset: 0x0012EB1C
+	// Token: 0x06001B32 RID: 6962 RVA: 0x00130D9C File Offset: 0x0012EF9C
 	private void LateUpdate()
 	{
 		if (!this.Male)
@@ -521,7 +521,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B32 RID: 6962 RVA: 0x00130D3C File Offset: 0x0012EF3C
+	// Token: 0x06001B33 RID: 6963 RVA: 0x001311BC File Offset: 0x0012F3BC
 	public void StopDragging()
 	{
 		Rigidbody[] allRigidbodies = this.Student.Ragdoll.AllRigidbodies;
@@ -546,7 +546,7 @@ public class RagdollScript : MonoBehaviour
 		this.Dragged = false;
 	}
 
-	// Token: 0x06001B33 RID: 6963 RVA: 0x00130E2C File Offset: 0x0012F02C
+	// Token: 0x06001B34 RID: 6964 RVA: 0x001312AC File Offset: 0x0012F4AC
 	private void PickNearestLimb()
 	{
 		if (this.Concealed)
@@ -567,7 +567,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B34 RID: 6964 RVA: 0x00130EC0 File Offset: 0x0012F0C0
+	// Token: 0x06001B35 RID: 6965 RVA: 0x00131340 File Offset: 0x0012F540
 	public void Dump()
 	{
 		if (this.DumpType == RagdollDumpType.Incinerator)
@@ -595,7 +595,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B35 RID: 6965 RVA: 0x00130FA0 File Offset: 0x0012F1A0
+	// Token: 0x06001B36 RID: 6966 RVA: 0x00131420 File Offset: 0x0012F620
 	public void Fall()
 	{
 		base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.0001f, base.transform.position.z);
@@ -628,9 +628,10 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B36 RID: 6966 RVA: 0x001310F8 File Offset: 0x0012F2F8
+	// Token: 0x06001B37 RID: 6967 RVA: 0x00131578 File Offset: 0x0012F778
 	public void QuickDismember()
 	{
+		Debug.Log("QuickDismember() was called.");
 		for (int i = 0; i < this.BodyParts.Length; i++)
 		{
 			GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.BodyParts[i], this.SpawnPoints[i].position, Quaternion.identity);
@@ -643,24 +644,17 @@ public class RagdollScript : MonoBehaviour
 		{
 			this.BloodPoolSpawner.Start();
 		}
-		if (this.MyTarp == null)
+		if (!this.Student.StudentManager.NEStairs.bounds.Contains(this.BloodPoolSpawner.transform.position) && !this.Student.StudentManager.NWStairs.bounds.Contains(this.BloodPoolSpawner.transform.position) && !this.Student.StudentManager.SEStairs.bounds.Contains(this.BloodPoolSpawner.transform.position) && !this.Student.StudentManager.SWStairs.bounds.Contains(this.BloodPoolSpawner.transform.position))
 		{
-			if (!this.Student.StudentManager.NEStairs.bounds.Contains(this.BloodPoolSpawner.transform.position) && !this.Student.StudentManager.NWStairs.bounds.Contains(this.BloodPoolSpawner.transform.position) && !this.Student.StudentManager.SEStairs.bounds.Contains(this.BloodPoolSpawner.transform.position) && !this.Student.StudentManager.SWStairs.bounds.Contains(this.BloodPoolSpawner.transform.position))
-			{
-				this.BloodPoolSpawner.SpawnBigPool();
-			}
-		}
-		else
-		{
-			UnityEngine.Object.Destroy(this.MyTarp);
-			UnityEngine.Object.Instantiate<GameObject>(this.TarpBag, this.Student.Hips.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
+			this.BloodPoolSpawner.SpawnBigPool();
 		}
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001B37 RID: 6967 RVA: 0x001312C4 File Offset: 0x0012F4C4
+	// Token: 0x06001B38 RID: 6968 RVA: 0x001316F0 File Offset: 0x0012F8F0
 	public void Dismember()
 	{
+		Debug.Log("Dismembering a character.");
 		if (!this.Dismembered)
 		{
 			if (!GameGlobals.Debug)
@@ -670,106 +664,105 @@ public class RagdollScript : MonoBehaviour
 			this.Student.LiquidProjector.material.mainTexture = this.Student.BloodTexture;
 			for (int i = 0; i < this.BodyParts.Length; i++)
 			{
-				if (this.Decapitated)
+				if (this.MyTarp == null)
 				{
-					i++;
-					this.Decapitated = false;
-				}
-				GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.BodyParts[i], this.SpawnPoints[i].position, Quaternion.identity);
-				gameObject.transform.parent = this.Yandere.LimbParent;
-				gameObject.transform.eulerAngles = this.SpawnPoints[i].eulerAngles;
-				BodyPartScript component = gameObject.GetComponent<BodyPartScript>();
-				component.StudentID = this.StudentID;
-				component.Sacrifice = this.Sacrifice;
-				if (this.Yandere.StudentManager.NoGravity)
-				{
-					gameObject.GetComponent<Rigidbody>().useGravity = false;
-				}
-				if (i == 0)
-				{
-					if (!this.Student.OriginallyTeacher)
+					if (this.Decapitated)
 					{
-						if (!this.Male)
+						i++;
+						this.Decapitated = false;
+					}
+					GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.BodyParts[i], this.SpawnPoints[i].position, Quaternion.identity);
+					gameObject.transform.parent = this.Yandere.LimbParent;
+					gameObject.transform.eulerAngles = this.SpawnPoints[i].eulerAngles;
+					BodyPartScript component = gameObject.GetComponent<BodyPartScript>();
+					component.StudentID = this.StudentID;
+					component.Sacrifice = this.Sacrifice;
+					if (this.Yandere.StudentManager.NoGravity)
+					{
+						gameObject.GetComponent<Rigidbody>().useGravity = false;
+					}
+					if (i == 0)
+					{
+						if (!this.Student.OriginallyTeacher)
 						{
-							this.Student.Cosmetic.FemaleHair[this.Student.Cosmetic.Hairstyle].transform.parent = gameObject.transform;
-							if (this.Student.Cosmetic.FemaleAccessories[this.Student.Cosmetic.Accessory] != null && this.Student.Cosmetic.Accessory != 3 && this.Student.Cosmetic.Accessory != 6)
+							if (!this.Male)
 							{
-								this.Student.Cosmetic.FemaleAccessories[this.Student.Cosmetic.Accessory].transform.parent = gameObject.transform;
+								this.Student.Cosmetic.FemaleHair[this.Student.Cosmetic.Hairstyle].transform.parent = gameObject.transform;
+								if (this.Student.Cosmetic.FemaleAccessories[this.Student.Cosmetic.Accessory] != null && this.Student.Cosmetic.Accessory != 3 && this.Student.Cosmetic.Accessory != 6)
+								{
+									this.Student.Cosmetic.FemaleAccessories[this.Student.Cosmetic.Accessory].transform.parent = gameObject.transform;
+								}
+							}
+							else
+							{
+								Transform transform = this.Student.Cosmetic.MaleHair[this.Student.Cosmetic.Hairstyle].transform;
+								transform.parent = gameObject.transform;
+								transform.localScale *= 1.0638298f;
+								if (transform.transform.localPosition.y < -1f)
+								{
+									transform.transform.localPosition = new Vector3(transform.transform.localPosition.x, transform.transform.localPosition.y - 0.095f, transform.transform.localPosition.z);
+								}
+								if (this.Student.Cosmetic.MaleAccessories[this.Student.Cosmetic.Accessory] != null)
+								{
+									this.Student.Cosmetic.MaleAccessories[this.Student.Cosmetic.Accessory].transform.parent = gameObject.transform;
+								}
 							}
 						}
 						else
 						{
-							Transform transform = this.Student.Cosmetic.MaleHair[this.Student.Cosmetic.Hairstyle].transform;
-							transform.parent = gameObject.transform;
-							transform.localScale *= 1.0638298f;
-							if (transform.transform.localPosition.y < -1f)
+							this.Student.Cosmetic.TeacherHair[this.Student.Cosmetic.Hairstyle].transform.parent = gameObject.transform;
+							if (this.Student.Cosmetic.TeacherAccessories[this.Student.Cosmetic.Accessory] != null)
 							{
-								transform.transform.localPosition = new Vector3(transform.transform.localPosition.x, transform.transform.localPosition.y - 0.095f, transform.transform.localPosition.z);
-							}
-							if (this.Student.Cosmetic.MaleAccessories[this.Student.Cosmetic.Accessory] != null)
-							{
-								this.Student.Cosmetic.MaleAccessories[this.Student.Cosmetic.Accessory].transform.parent = gameObject.transform;
+								this.Student.Cosmetic.TeacherAccessories[this.Student.Cosmetic.Accessory].transform.parent = gameObject.transform;
 							}
 						}
-					}
-					else
-					{
-						this.Student.Cosmetic.TeacherHair[this.Student.Cosmetic.Hairstyle].transform.parent = gameObject.transform;
-						if (this.Student.Cosmetic.TeacherAccessories[this.Student.Cosmetic.Accessory] != null)
+						if (this.Student.Club != ClubType.Photography && this.Student.Club < ClubType.Gaming && this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club] != null)
 						{
-							this.Student.Cosmetic.TeacherAccessories[this.Student.Cosmetic.Accessory].transform.parent = gameObject.transform;
+							this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club].transform.parent = gameObject.transform;
+							if (this.Student.Club == ClubType.Occult)
+							{
+								if (!this.Male)
+								{
+									this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club].transform.localPosition = new Vector3(0f, -1.5f, 0.01f);
+									this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club].transform.localEulerAngles = Vector3.zero;
+								}
+								else
+								{
+									this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club].transform.localPosition = new Vector3(0f, -1.42f, 0.005f);
+									this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club].transform.localEulerAngles = Vector3.zero;
+								}
+							}
 						}
-					}
-					if (this.Student.Club != ClubType.Photography && this.Student.Club < ClubType.Gaming && this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club] != null)
-					{
-						this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club].transform.parent = gameObject.transform;
-						if (this.Student.Club == ClubType.Occult)
+						gameObject.GetComponent<Renderer>().materials[0].mainTexture = this.Student.Cosmetic.FaceTexture;
+						if (i == 0)
 						{
-							if (!this.Male)
-							{
-								this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club].transform.localPosition = new Vector3(0f, -1.5f, 0.01f);
-								this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club].transform.localEulerAngles = Vector3.zero;
-							}
-							else
-							{
-								this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club].transform.localPosition = new Vector3(0f, -1.42f, 0.005f);
-								this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club].transform.localEulerAngles = Vector3.zero;
-							}
+							gameObject.transform.position += new Vector3(0f, 1f, 0f);
 						}
 					}
-					gameObject.GetComponent<Renderer>().materials[0].mainTexture = this.Student.Cosmetic.FaceTexture;
-					if (i == 0)
+					else if (i == 1)
 					{
-						gameObject.transform.position += new Vector3(0f, 1f, 0f);
+						if (this.Student.Club == ClubType.Photography && this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club] != null)
+						{
+							this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club].transform.parent = gameObject.transform;
+						}
+					}
+					else if (i == 2 && !this.Student.Male && this.Student.Cosmetic.Accessory == 6)
+					{
+						this.Student.Cosmetic.FemaleAccessories[this.Student.Cosmetic.Accessory].transform.parent = gameObject.transform;
+					}
+					if (!this.Student.StudentManager.NEStairs.bounds.Contains(this.BloodPoolSpawner.transform.position) && !this.Student.StudentManager.NWStairs.bounds.Contains(this.BloodPoolSpawner.transform.position) && !this.Student.StudentManager.SEStairs.bounds.Contains(this.BloodPoolSpawner.transform.position) && !this.Student.StudentManager.SWStairs.bounds.Contains(this.BloodPoolSpawner.transform.position))
+					{
+						this.BloodPoolSpawner.SpawnBigPool();
+						if (this.BloodPoolSpawner.BloodParent == null)
+						{
+							this.BloodPoolSpawner.Start();
+						}
 					}
 				}
-				else if (i == 1)
+				else
 				{
-					if (this.Student.Club == ClubType.Photography && this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club] != null)
-					{
-						this.Student.Cosmetic.ClubAccessories[(int)this.Student.Club].transform.parent = gameObject.transform;
-					}
+					UnityEngine.Object.Instantiate<GameObject>(this.TarpBag, this.Student.Hips.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
 				}
-				else if (i == 2 && !this.Student.Male && this.Student.Cosmetic.Accessory == 6)
-				{
-					this.Student.Cosmetic.FemaleAccessories[this.Student.Cosmetic.Accessory].transform.parent = gameObject.transform;
-				}
-			}
-			if (this.BloodPoolSpawner.BloodParent == null)
-			{
-				this.BloodPoolSpawner.Start();
-			}
-			if (this.MyTarp == null)
-			{
-				if (!this.Student.StudentManager.NEStairs.bounds.Contains(this.BloodPoolSpawner.transform.position) && !this.Student.StudentManager.NWStairs.bounds.Contains(this.BloodPoolSpawner.transform.position) && !this.Student.StudentManager.SEStairs.bounds.Contains(this.BloodPoolSpawner.transform.position) && !this.Student.StudentManager.SWStairs.bounds.Contains(this.BloodPoolSpawner.transform.position))
-				{
-					this.BloodPoolSpawner.SpawnBigPool();
-				}
-			}
-			else
-			{
-				UnityEngine.Object.Destroy(this.MyTarp);
-				UnityEngine.Object.Instantiate<GameObject>(this.TarpBag, this.Student.Hips.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
 			}
 			this.Police.PartsIcon.gameObject.SetActive(true);
 			this.Police.BodyParts += 6;
@@ -777,10 +770,14 @@ public class RagdollScript : MonoBehaviour
 			this.Police.Corpses--;
 			base.gameObject.SetActive(false);
 			this.Dismembered = true;
+			if (this.MyTarp != null)
+			{
+				UnityEngine.Object.Destroy(this.MyTarp);
+			}
 		}
 	}
 
-	// Token: 0x06001B38 RID: 6968 RVA: 0x00131A5C File Offset: 0x0012FC5C
+	// Token: 0x06001B39 RID: 6969 RVA: 0x00131EA0 File Offset: 0x001300A0
 	public void Remove()
 	{
 		this.Student.Removed = true;
@@ -796,7 +793,7 @@ public class RagdollScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001B39 RID: 6969 RVA: 0x00131ABC File Offset: 0x0012FCBC
+	// Token: 0x06001B3A RID: 6970 RVA: 0x00131F00 File Offset: 0x00130100
 	public void DestroyRigidbodies()
 	{
 		this.BloodPoolSpawner.gameObject.SetActive(false);
@@ -814,7 +811,7 @@ public class RagdollScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001B3A RID: 6970 RVA: 0x00131B58 File Offset: 0x0012FD58
+	// Token: 0x06001B3B RID: 6971 RVA: 0x00131F9C File Offset: 0x0013019C
 	public void DisableRigidbodies()
 	{
 		for (int i = 0; i < this.AllRigidbodies.Length; i++)
@@ -826,7 +823,7 @@ public class RagdollScript : MonoBehaviour
 		this.StopAnimation = true;
 	}
 
-	// Token: 0x06001B3B RID: 6971 RVA: 0x00131BA4 File Offset: 0x0012FDA4
+	// Token: 0x06001B3C RID: 6972 RVA: 0x00131FE8 File Offset: 0x001301E8
 	public void EnableRigidbodies()
 	{
 		for (int i = 0; i < this.AllRigidbodies.Length; i++)
@@ -839,7 +836,7 @@ public class RagdollScript : MonoBehaviour
 		this.StopAnimation = false;
 	}
 
-	// Token: 0x06001B3C RID: 6972 RVA: 0x00131C10 File Offset: 0x0012FE10
+	// Token: 0x06001B3D RID: 6973 RVA: 0x00132054 File Offset: 0x00130254
 	public void HideAccessories()
 	{
 		this.Student.Cosmetic.RightStockings[0].SetActive(false);
@@ -850,7 +847,7 @@ public class RagdollScript : MonoBehaviour
 		this.Student.Cosmetic.Hoodie.SetActive(false);
 	}
 
-	// Token: 0x06001B3D RID: 6973 RVA: 0x00131CA8 File Offset: 0x0012FEA8
+	// Token: 0x06001B3E RID: 6974 RVA: 0x001320EC File Offset: 0x001302EC
 	public void ConcealInTrashBag()
 	{
 		this.Prompt.Label[0].text = "     Dismember";
@@ -906,282 +903,282 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002E2F RID: 11823
+	// Token: 0x04002E35 RID: 11829
 	public BloodPoolSpawnerScript BloodPoolSpawner;
 
-	// Token: 0x04002E30 RID: 11824
+	// Token: 0x04002E36 RID: 11830
 	public DetectionMarkerScript DetectionMarker;
 
-	// Token: 0x04002E31 RID: 11825
+	// Token: 0x04002E37 RID: 11831
 	public IncineratorScript Incinerator;
 
-	// Token: 0x04002E32 RID: 11826
+	// Token: 0x04002E38 RID: 11832
 	public WoodChipperScript WoodChipper;
 
-	// Token: 0x04002E33 RID: 11827
+	// Token: 0x04002E39 RID: 11833
 	public TranqCaseScript TranqCase;
 
-	// Token: 0x04002E34 RID: 11828
+	// Token: 0x04002E3A RID: 11834
 	public StudentScript Student;
 
-	// Token: 0x04002E35 RID: 11829
+	// Token: 0x04002E3B RID: 11835
 	public YandereScript Yandere;
 
-	// Token: 0x04002E36 RID: 11830
+	// Token: 0x04002E3C RID: 11836
 	public PoliceScript Police;
 
-	// Token: 0x04002E37 RID: 11831
+	// Token: 0x04002E3D RID: 11837
 	public PromptScript Prompt;
 
-	// Token: 0x04002E38 RID: 11832
+	// Token: 0x04002E3E RID: 11838
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x04002E39 RID: 11833
+	// Token: 0x04002E3F RID: 11839
 	public Collider BloodSpawnerCollider;
 
-	// Token: 0x04002E3A RID: 11834
+	// Token: 0x04002E40 RID: 11840
 	public Animation CharacterAnimation;
 
-	// Token: 0x04002E3B RID: 11835
+	// Token: 0x04002E41 RID: 11841
 	public Collider HideCollider;
 
-	// Token: 0x04002E3C RID: 11836
+	// Token: 0x04002E42 RID: 11842
 	public Rigidbody[] AllRigidbodies;
 
-	// Token: 0x04002E3D RID: 11837
+	// Token: 0x04002E43 RID: 11843
 	public Collider[] AllColliders;
 
-	// Token: 0x04002E3E RID: 11838
+	// Token: 0x04002E44 RID: 11844
 	public Rigidbody[] Rigidbodies;
 
-	// Token: 0x04002E3F RID: 11839
+	// Token: 0x04002E45 RID: 11845
 	public Transform[] SpawnPoints;
 
-	// Token: 0x04002E40 RID: 11840
+	// Token: 0x04002E46 RID: 11846
 	public GameObject[] BodyParts;
 
-	// Token: 0x04002E41 RID: 11841
+	// Token: 0x04002E47 RID: 11847
 	public Transform NearestLimb;
 
-	// Token: 0x04002E42 RID: 11842
+	// Token: 0x04002E48 RID: 11848
 	public Transform RightBreast;
 
-	// Token: 0x04002E43 RID: 11843
+	// Token: 0x04002E49 RID: 11849
 	public Transform LeftBreast;
 
-	// Token: 0x04002E44 RID: 11844
+	// Token: 0x04002E4A RID: 11850
 	public Transform PelvisRoot;
 
-	// Token: 0x04002E45 RID: 11845
+	// Token: 0x04002E4B RID: 11851
 	public Transform Ponytail;
 
-	// Token: 0x04002E46 RID: 11846
+	// Token: 0x04002E4C RID: 11852
 	public Transform RightEye;
 
-	// Token: 0x04002E47 RID: 11847
+	// Token: 0x04002E4D RID: 11853
 	public Transform LeftEye;
 
-	// Token: 0x04002E48 RID: 11848
+	// Token: 0x04002E4E RID: 11854
 	public Transform HairR;
 
-	// Token: 0x04002E49 RID: 11849
+	// Token: 0x04002E4F RID: 11855
 	public Transform HairL;
 
-	// Token: 0x04002E4A RID: 11850
+	// Token: 0x04002E50 RID: 11856
 	public Transform[] Limb;
 
-	// Token: 0x04002E4B RID: 11851
+	// Token: 0x04002E51 RID: 11857
 	public Transform Head;
 
-	// Token: 0x04002E4C RID: 11852
+	// Token: 0x04002E52 RID: 11858
 	public Vector3 RightEyeOrigin;
 
-	// Token: 0x04002E4D RID: 11853
+	// Token: 0x04002E53 RID: 11859
 	public Vector3 LeftEyeOrigin;
 
-	// Token: 0x04002E4E RID: 11854
+	// Token: 0x04002E54 RID: 11860
 	public Vector3[] LimbAnchor;
 
-	// Token: 0x04002E4F RID: 11855
+	// Token: 0x04002E55 RID: 11861
 	public GameObject Character;
 
-	// Token: 0x04002E50 RID: 11856
+	// Token: 0x04002E56 RID: 11862
 	public GameObject TarpBag;
 
-	// Token: 0x04002E51 RID: 11857
+	// Token: 0x04002E57 RID: 11863
 	public GameObject MyTarp;
 
-	// Token: 0x04002E52 RID: 11858
+	// Token: 0x04002E58 RID: 11864
 	public GameObject Zs;
 
-	// Token: 0x04002E53 RID: 11859
+	// Token: 0x04002E59 RID: 11865
 	public bool ElectrocutionAnimation;
 
-	// Token: 0x04002E54 RID: 11860
+	// Token: 0x04002E5A RID: 11866
 	public bool MurderSuicideAnimation;
 
-	// Token: 0x04002E55 RID: 11861
+	// Token: 0x04002E5B RID: 11867
 	public bool BurningAnimation;
 
-	// Token: 0x04002E56 RID: 11862
+	// Token: 0x04002E5C RID: 11868
 	public bool ChokingAnimation;
 
-	// Token: 0x04002E57 RID: 11863
+	// Token: 0x04002E5D RID: 11869
 	public bool RigidbodiesManuallyDisabled;
 
-	// Token: 0x04002E58 RID: 11864
+	// Token: 0x04002E5E RID: 11870
 	public bool TeleportNextFrame;
 
-	// Token: 0x04002E59 RID: 11865
+	// Token: 0x04002E5F RID: 11871
 	public bool ColoredOutline;
 
-	// Token: 0x04002E5A RID: 11866
+	// Token: 0x04002E60 RID: 11872
 	public bool AddingToCount;
 
-	// Token: 0x04002E5B RID: 11867
+	// Token: 0x04002E61 RID: 11873
 	public bool MurderSuicide;
 
-	// Token: 0x04002E5C RID: 11868
+	// Token: 0x04002E62 RID: 11874
 	public bool AddedOutline;
 
-	// Token: 0x04002E5D RID: 11869
+	// Token: 0x04002E63 RID: 11875
 	public bool Cauterizable;
 
-	// Token: 0x04002E5E RID: 11870
+	// Token: 0x04002E64 RID: 11876
 	public bool Electrocuted;
 
-	// Token: 0x04002E5F RID: 11871
+	// Token: 0x04002E65 RID: 11877
 	public bool StopAnimation = true;
 
-	// Token: 0x04002E60 RID: 11872
+	// Token: 0x04002E66 RID: 11878
 	public bool Decapitated;
 
-	// Token: 0x04002E61 RID: 11873
+	// Token: 0x04002E67 RID: 11879
 	public bool Dismembered;
 
-	// Token: 0x04002E62 RID: 11874
+	// Token: 0x04002E68 RID: 11880
 	public bool NeckSnapped;
 
-	// Token: 0x04002E63 RID: 11875
+	// Token: 0x04002E69 RID: 11881
 	public bool Cauterized;
 
-	// Token: 0x04002E64 RID: 11876
+	// Token: 0x04002E6A RID: 11882
 	public bool Disturbing;
 
-	// Token: 0x04002E65 RID: 11877
+	// Token: 0x04002E6B RID: 11883
 	public bool Concealed;
 
-	// Token: 0x04002E66 RID: 11878
+	// Token: 0x04002E6C RID: 11884
 	public bool Sacrifice;
 
-	// Token: 0x04002E67 RID: 11879
+	// Token: 0x04002E6D RID: 11885
 	public bool Wrappable;
 
-	// Token: 0x04002E68 RID: 11880
+	// Token: 0x04002E6E RID: 11886
 	public bool Disposed;
 
-	// Token: 0x04002E69 RID: 11881
+	// Token: 0x04002E6F RID: 11887
 	public bool Poisoned;
 
-	// Token: 0x04002E6A RID: 11882
+	// Token: 0x04002E70 RID: 11888
 	public bool Tranquil;
 
-	// Token: 0x04002E6B RID: 11883
+	// Token: 0x04002E71 RID: 11889
 	public bool Burning;
 
-	// Token: 0x04002E6C RID: 11884
+	// Token: 0x04002E72 RID: 11890
 	public bool Carried;
 
-	// Token: 0x04002E6D RID: 11885
+	// Token: 0x04002E73 RID: 11891
 	public bool Choking;
 
-	// Token: 0x04002E6E RID: 11886
+	// Token: 0x04002E74 RID: 11892
 	public bool Dragged;
 
-	// Token: 0x04002E6F RID: 11887
+	// Token: 0x04002E75 RID: 11893
 	public bool Drowned;
 
-	// Token: 0x04002E70 RID: 11888
+	// Token: 0x04002E76 RID: 11894
 	public bool Falling;
 
-	// Token: 0x04002E71 RID: 11889
+	// Token: 0x04002E77 RID: 11895
 	public bool Nemesis;
 
-	// Token: 0x04002E72 RID: 11890
+	// Token: 0x04002E78 RID: 11896
 	public bool Settled;
 
-	// Token: 0x04002E73 RID: 11891
+	// Token: 0x04002E79 RID: 11897
 	public bool Suicide;
 
-	// Token: 0x04002E74 RID: 11892
+	// Token: 0x04002E7A RID: 11898
 	public bool Burned;
 
-	// Token: 0x04002E75 RID: 11893
+	// Token: 0x04002E7B RID: 11899
 	public bool Dumped;
 
-	// Token: 0x04002E76 RID: 11894
+	// Token: 0x04002E7C RID: 11900
 	public bool Hidden;
 
-	// Token: 0x04002E77 RID: 11895
+	// Token: 0x04002E7D RID: 11901
 	public bool Pushed;
 
-	// Token: 0x04002E78 RID: 11896
+	// Token: 0x04002E7E RID: 11902
 	public bool Male;
 
-	// Token: 0x04002E79 RID: 11897
+	// Token: 0x04002E7F RID: 11903
 	public float AnimStartTime;
 
-	// Token: 0x04002E7A RID: 11898
+	// Token: 0x04002E80 RID: 11904
 	public float SettleTimer;
 
-	// Token: 0x04002E7B RID: 11899
+	// Token: 0x04002E81 RID: 11905
 	public float BreastSize;
 
-	// Token: 0x04002E7C RID: 11900
+	// Token: 0x04002E82 RID: 11906
 	public float DumpTimer;
 
-	// Token: 0x04002E7D RID: 11901
+	// Token: 0x04002E83 RID: 11907
 	public float EyeShrink;
 
-	// Token: 0x04002E7E RID: 11902
+	// Token: 0x04002E84 RID: 11908
 	public float FallTimer;
 
-	// Token: 0x04002E7F RID: 11903
+	// Token: 0x04002E85 RID: 11909
 	public int StudentID;
 
-	// Token: 0x04002E80 RID: 11904
+	// Token: 0x04002E86 RID: 11910
 	public RagdollDumpType DumpType;
 
-	// Token: 0x04002E81 RID: 11905
+	// Token: 0x04002E87 RID: 11911
 	public int LimbID;
 
-	// Token: 0x04002E82 RID: 11906
+	// Token: 0x04002E88 RID: 11912
 	public int Frame;
 
-	// Token: 0x04002E83 RID: 11907
+	// Token: 0x04002E89 RID: 11913
 	public string DumpedAnim = string.Empty;
 
-	// Token: 0x04002E84 RID: 11908
+	// Token: 0x04002E8A RID: 11914
 	public string LiftAnim = string.Empty;
 
-	// Token: 0x04002E85 RID: 11909
+	// Token: 0x04002E8B RID: 11915
 	public string IdleAnim = string.Empty;
 
-	// Token: 0x04002E86 RID: 11910
+	// Token: 0x04002E8C RID: 11916
 	public string WalkAnim = string.Empty;
 
-	// Token: 0x04002E87 RID: 11911
+	// Token: 0x04002E8D RID: 11917
 	public string RunAnim = string.Empty;
 
-	// Token: 0x04002E88 RID: 11912
+	// Token: 0x04002E8E RID: 11918
 	public bool UpdateNextFrame;
 
-	// Token: 0x04002E89 RID: 11913
+	// Token: 0x04002E8F RID: 11919
 	public Vector3 NextPosition;
 
-	// Token: 0x04002E8A RID: 11914
+	// Token: 0x04002E90 RID: 11920
 	public Quaternion NextRotation;
 
-	// Token: 0x04002E8B RID: 11915
+	// Token: 0x04002E91 RID: 11921
 	public int Frames;
 }

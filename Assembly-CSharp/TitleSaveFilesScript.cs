@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000477 RID: 1143
 public class TitleSaveFilesScript : MonoBehaviour
 {
-	// Token: 0x06001EBB RID: 7867 RVA: 0x001B018C File Offset: 0x001AE38C
+	// Token: 0x06001EBC RID: 7868 RVA: 0x001B0664 File Offset: 0x001AE864
 	private void Update()
 	{
 		if (this.NewTitleScreen.Speed > 3f && !this.NewTitleScreen.FadeOut)
@@ -135,7 +135,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EBC RID: 7868 RVA: 0x001B0608 File Offset: 0x001AE808
+	// Token: 0x06001EBD RID: 7869 RVA: 0x001B0AE0 File Offset: 0x001AECE0
 	private void UpdateHighlight()
 	{
 		this.Highlight.localPosition = new Vector3(0f, 700f - 350f * (float)this.ID, 0f);
@@ -160,7 +160,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 		this.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001EBD RID: 7869 RVA: 0x001B070C File Offset: 0x001AE90C
+	// Token: 0x06001EBE RID: 7870 RVA: 0x001B0BE4 File Offset: 0x001AEDE4
 	public void UpdateOutlines()
 	{
 		UILabel[] componentsInChildren = base.GetComponentsInChildren<UILabel>();
@@ -170,45 +170,45 @@ public class TitleSaveFilesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003FC4 RID: 16324
+	// Token: 0x04003FCC RID: 16332
 	public NewTitleScreenScript NewTitleScreen;
 
-	// Token: 0x04003FC5 RID: 16325
+	// Token: 0x04003FCD RID: 16333
 	public InputManagerScript InputManager;
 
-	// Token: 0x04003FC6 RID: 16326
+	// Token: 0x04003FCE RID: 16334
 	public TitleSaveDataScript[] SaveDatas;
 
-	// Token: 0x04003FC7 RID: 16327
+	// Token: 0x04003FCF RID: 16335
 	public UILabel CorruptSaveLabel;
 
-	// Token: 0x04003FC8 RID: 16328
+	// Token: 0x04003FD0 RID: 16336
 	public UILabel NewSaveLabel;
 
-	// Token: 0x04003FC9 RID: 16329
+	// Token: 0x04003FD1 RID: 16337
 	public GameObject ConfirmationWindow;
 
-	// Token: 0x04003FCA RID: 16330
+	// Token: 0x04003FD2 RID: 16338
 	public GameObject ErrorWindow;
 
-	// Token: 0x04003FCB RID: 16331
+	// Token: 0x04003FD3 RID: 16339
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003FCC RID: 16332
+	// Token: 0x04003FD4 RID: 16340
 	public TitleMenuScript Menu;
 
-	// Token: 0x04003FCD RID: 16333
+	// Token: 0x04003FD5 RID: 16341
 	public Transform Highlight;
 
-	// Token: 0x04003FCE RID: 16334
+	// Token: 0x04003FD6 RID: 16342
 	public bool Started;
 
-	// Token: 0x04003FCF RID: 16335
+	// Token: 0x04003FD7 RID: 16343
 	public bool Show;
 
-	// Token: 0x04003FD0 RID: 16336
+	// Token: 0x04003FD8 RID: 16344
 	public int EightiesPrefix;
 
-	// Token: 0x04003FD1 RID: 16337
+	// Token: 0x04003FD9 RID: 16345
 	public int ID = 1;
 }

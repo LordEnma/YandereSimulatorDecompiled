@@ -8,13 +8,13 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	[RequireComponent(typeof(AeroplaneController))]
 	public class AeroplaneUserControl2Axis : MonoBehaviour
 	{
-		// Token: 0x060021D8 RID: 8664 RVA: 0x001EBA71 File Offset: 0x001E9C71
+		// Token: 0x060021DC RID: 8668 RVA: 0x001EC311 File Offset: 0x001EA511
 		private void Awake()
 		{
 			this.m_Aeroplane = base.GetComponent<AeroplaneController>();
 		}
 
-		// Token: 0x060021D9 RID: 8665 RVA: 0x001EBA80 File Offset: 0x001E9C80
+		// Token: 0x060021DD RID: 8669 RVA: 0x001EC320 File Offset: 0x001EA520
 		private void FixedUpdate()
 		{
 			float axis = CrossPlatformInputManager.GetAxis("Horizontal");
@@ -24,7 +24,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_Aeroplane.Move(axis, axis2, 0f, throttleInput, button);
 		}
 
-		// Token: 0x060021DA RID: 8666 RVA: 0x001EBACC File Offset: 0x001E9CCC
+		// Token: 0x060021DE RID: 8670 RVA: 0x001EC36C File Offset: 0x001EA56C
 		private void AdjustInputForMobileControls(ref float roll, ref float pitch, ref float throttle)
 		{
 			float num = roll * this.maxRollAngle * 0.017453292f;
@@ -35,13 +35,13 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			throttle = Mathf.Clamp(num3 - this.m_Aeroplane.Throttle, -1f, 1f);
 		}
 
-		// Token: 0x040049EC RID: 18924
+		// Token: 0x040049F7 RID: 18935
 		public float maxRollAngle = 80f;
 
-		// Token: 0x040049ED RID: 18925
+		// Token: 0x040049F8 RID: 18936
 		public float maxPitchAngle = 80f;
 
-		// Token: 0x040049EE RID: 18926
+		// Token: 0x040049F9 RID: 18937
 		private AeroplaneController m_Aeroplane;
 	}
 }

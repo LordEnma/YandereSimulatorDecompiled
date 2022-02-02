@@ -3,10 +3,10 @@
 // Token: 0x02000411 RID: 1041
 public enum SchoolAtmosphereType
 {
-	// Token: 0x0400322F RID: 12847
+	// Token: 0x04003235 RID: 12853
 	High,
-	// Token: 0x04003230 RID: 12848
+	// Token: 0x04003236 RID: 12854
 	Medium,
-	// Token: 0x04003231 RID: 12849
+	// Token: 0x04003237 RID: 12855
 	Low
 }

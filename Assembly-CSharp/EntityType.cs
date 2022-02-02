@@ -3,10 +3,10 @@
 // Token: 0x020002AA RID: 682
 public enum EntityType
 {
-	// Token: 0x04001EEE RID: 7918
+	// Token: 0x04001EF2 RID: 7922
 	Player,
-	// Token: 0x04001EEF RID: 7919
+	// Token: 0x04001EF3 RID: 7923
 	Student,
-	// Token: 0x04001EF0 RID: 7920
+	// Token: 0x04001EF4 RID: 7924
 	Teacher
 }

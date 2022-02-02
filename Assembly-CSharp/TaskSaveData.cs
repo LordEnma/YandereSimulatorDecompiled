@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [Serializable]
 public class TaskSaveData
 {
-	// Token: 0x06001C18 RID: 7192 RVA: 0x0014720C File Offset: 0x0014540C
+	// Token: 0x06001C19 RID: 7193 RVA: 0x00147650 File Offset: 0x00145850
 	public static TaskSaveData ReadFromGlobals()
 	{
 		TaskSaveData taskSaveData = new TaskSaveData();
@@ -37,7 +37,7 @@ public class TaskSaveData
 		return taskSaveData;
 	}
 
-	// Token: 0x06001C19 RID: 7193 RVA: 0x001472DC File Offset: 0x001454DC
+	// Token: 0x06001C1A RID: 7194 RVA: 0x00147720 File Offset: 0x00145920
 	public static void WriteToGlobals(TaskSaveData data)
 	{
 		foreach (int photoID in data.kittenPhoto)
@@ -54,15 +54,15 @@ public class TaskSaveData
 		}
 	}
 
-	// Token: 0x04003174 RID: 12660
+	// Token: 0x0400317A RID: 12666
 	public IntHashSet guitarPhoto = new IntHashSet();
 
-	// Token: 0x04003175 RID: 12661
+	// Token: 0x0400317B RID: 12667
 	public IntHashSet kittenPhoto = new IntHashSet();
 
-	// Token: 0x04003176 RID: 12662
+	// Token: 0x0400317C RID: 12668
 	public IntHashSet horudaPhoto = new IntHashSet();
 
-	// Token: 0x04003177 RID: 12663
+	// Token: 0x0400317D RID: 12669
 	public IntAndIntDictionary taskStatus = new IntAndIntDictionary();
 }

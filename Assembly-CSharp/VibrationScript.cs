@@ -5,13 +5,13 @@ using XInputDotNetPure;
 // Token: 0x020004B2 RID: 1202
 public class VibrationScript : MonoBehaviour
 {
-	// Token: 0x06001F7B RID: 8059 RVA: 0x001B9073 File Offset: 0x001B7273
+	// Token: 0x06001F7D RID: 8061 RVA: 0x001B959B File Offset: 0x001B779B
 	private void Start()
 	{
 		GamePad.SetVibration(PlayerIndex.One, this.Strength1, this.Strength2);
 	}
 
-	// Token: 0x06001F7C RID: 8060 RVA: 0x001B9087 File Offset: 0x001B7287
+	// Token: 0x06001F7E RID: 8062 RVA: 0x001B95AF File Offset: 0x001B77AF
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -22,15 +22,15 @@ public class VibrationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004174 RID: 16756
+	// Token: 0x0400417C RID: 16764
 	public float Strength1;
 
-	// Token: 0x04004175 RID: 16757
+	// Token: 0x0400417D RID: 16765
 	public float Strength2;
 
-	// Token: 0x04004176 RID: 16758
+	// Token: 0x0400417E RID: 16766
 	public float TimeLimit;
 
-	// Token: 0x04004177 RID: 16759
+	// Token: 0x0400417F RID: 16767
 	public float Timer;
 }

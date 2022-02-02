@@ -4,7 +4,7 @@
 [Serializable]
 public class YanvaniaSaveData
 {
-	// Token: 0x06001C1B RID: 7195 RVA: 0x001473F0 File Offset: 0x001455F0
+	// Token: 0x06001C1C RID: 7196 RVA: 0x00147834 File Offset: 0x00145A34
 	public static YanvaniaSaveData ReadFromGlobals()
 	{
 		return new YanvaniaSaveData
@@ -14,16 +14,16 @@ public class YanvaniaSaveData
 		};
 	}
 
-	// Token: 0x06001C1C RID: 7196 RVA: 0x0014740D File Offset: 0x0014560D
+	// Token: 0x06001C1D RID: 7197 RVA: 0x00147851 File Offset: 0x00145A51
 	public static void WriteToGlobals(YanvaniaSaveData data)
 	{
 		YanvaniaGlobals.DraculaDefeated = data.draculaDefeated;
 		YanvaniaGlobals.MidoriEasterEgg = data.midoriEasterEgg;
 	}
 
-	// Token: 0x04003178 RID: 12664
+	// Token: 0x0400317E RID: 12670
 	public bool draculaDefeated;
 
-	// Token: 0x04003179 RID: 12665
+	// Token: 0x0400317F RID: 12671
 	public bool midoriEasterEgg;
 }

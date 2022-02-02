@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004D8 RID: 1240
 public class YanvaniaIntroScript : MonoBehaviour
 {
-	// Token: 0x06002080 RID: 8320 RVA: 0x001DD0A4 File Offset: 0x001DB2A4
+	// Token: 0x06002084 RID: 8324 RVA: 0x001DD944 File Offset: 0x001DBB44
 	private void Start()
 	{
 		this.BlackRight.gameObject.SetActive(true);
@@ -17,7 +17,7 @@ public class YanvaniaIntroScript : MonoBehaviour
 		this.FinalStage.transform.localPosition = new Vector3(-1300f, this.FinalStage.transform.localPosition.y, this.FinalStage.transform.localPosition.z);
 	}
 
-	// Token: 0x06002081 RID: 8321 RVA: 0x001DD1A4 File Offset: 0x001DB3A4
+	// Token: 0x06002085 RID: 8325 RVA: 0x001DDA44 File Offset: 0x001DBC44
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -62,7 +62,7 @@ public class YanvaniaIntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002082 RID: 8322 RVA: 0x001DD5FD File Offset: 0x001DB7FD
+	// Token: 0x06002086 RID: 8326 RVA: 0x001DDE9D File Offset: 0x001DC09D
 	private void Finish()
 	{
 		if (!this.Jukebox.activeInHierarchy)
@@ -74,36 +74,36 @@ public class YanvaniaIntroScript : MonoBehaviour
 		UnityEngine.Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x04004731 RID: 18225
+	// Token: 0x0400473C RID: 18236
 	public YanvaniaZombieSpawnerScript ZombieSpawner;
 
-	// Token: 0x04004732 RID: 18226
+	// Token: 0x0400473D RID: 18237
 	public YanvaniaYanmontScript Yanmont;
 
-	// Token: 0x04004733 RID: 18227
+	// Token: 0x0400473E RID: 18238
 	public GameObject Jukebox;
 
-	// Token: 0x04004734 RID: 18228
+	// Token: 0x0400473F RID: 18239
 	public Transform BlackRight;
 
-	// Token: 0x04004735 RID: 18229
+	// Token: 0x04004740 RID: 18240
 	public Transform BlackLeft;
 
-	// Token: 0x04004736 RID: 18230
+	// Token: 0x04004741 RID: 18241
 	public UILabel FinalStage;
 
-	// Token: 0x04004737 RID: 18231
+	// Token: 0x04004742 RID: 18242
 	public UILabel Heartbreak;
 
-	// Token: 0x04004738 RID: 18232
+	// Token: 0x04004743 RID: 18243
 	public UITexture Triangle;
 
-	// Token: 0x04004739 RID: 18233
+	// Token: 0x04004744 RID: 18244
 	public float LeaveTime;
 
-	// Token: 0x0400473A RID: 18234
+	// Token: 0x04004745 RID: 18245
 	public float Position;
 
-	// Token: 0x0400473B RID: 18235
+	// Token: 0x04004746 RID: 18246
 	public float Timer;
 }

@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000354 RID: 852
 public class LocationScript : MonoBehaviour
 {
-	// Token: 0x06001960 RID: 6496 RVA: 0x00100878 File Offset: 0x000FEA78
+	// Token: 0x06001961 RID: 6497 RVA: 0x00100CB0 File Offset: 0x000FEEB0
 	private void Start()
 	{
 		this.Label.color = new Color(this.Label.color.r, this.Label.color.g, this.Label.color.b, 0f);
 		this.BG.color = new Color(this.BG.color.r, this.BG.color.g, this.BG.color.b, 0f);
 	}
 
-	// Token: 0x06001961 RID: 6497 RVA: 0x00100910 File Offset: 0x000FEB10
+	// Token: 0x06001962 RID: 6498 RVA: 0x00100D48 File Offset: 0x000FEF48
 	private void Update()
 	{
 		if (this.Show)
@@ -32,12 +32,12 @@ public class LocationScript : MonoBehaviour
 		this.Label.color = new Color(this.Label.color.r, this.Label.color.g, this.Label.color.b, this.BG.color.a);
 	}
 
-	// Token: 0x04002859 RID: 10329
+	// Token: 0x0400285F RID: 10335
 	public UILabel Label;
 
-	// Token: 0x0400285A RID: 10330
+	// Token: 0x04002860 RID: 10336
 	public UISprite BG;
 
-	// Token: 0x0400285B RID: 10331
+	// Token: 0x04002861 RID: 10337
 	public bool Show;
 }

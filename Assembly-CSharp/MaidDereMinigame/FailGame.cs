@@ -8,7 +8,7 @@ namespace MaidDereMinigame
 	public class FailGame : MonoBehaviour
 	{
 		// Token: 0x17000529 RID: 1321
-		// (get) Token: 0x06002486 RID: 9350 RVA: 0x001FA0D8 File Offset: 0x001F82D8
+		// (get) Token: 0x0600248A RID: 9354 RVA: 0x001FA978 File Offset: 0x001F8B78
 		public static FailGame Instance
 		{
 			get
@@ -21,7 +21,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002487 RID: 9351 RVA: 0x001FA0F8 File Offset: 0x001F82F8
+		// Token: 0x0600248B RID: 9355 RVA: 0x001FA998 File Offset: 0x001F8B98
 		private void Awake()
 		{
 			this.spriteRenderer = base.GetComponent<SpriteRenderer>();
@@ -29,7 +29,7 @@ namespace MaidDereMinigame
 			this.targetTransitionTime = GameController.Instance.activeDifficultyVariables.transitionTime * this.fadeMultiplier;
 		}
 
-		// Token: 0x06002488 RID: 9352 RVA: 0x001FA144 File Offset: 0x001F8344
+		// Token: 0x0600248C RID: 9356 RVA: 0x001FA9E4 File Offset: 0x001F8BE4
 		public static void GameFailed()
 		{
 			FailGame.Instance.StartCoroutine(FailGame.Instance.GameFailedRoutine());
@@ -37,7 +37,7 @@ namespace MaidDereMinigame
 			SFXController.PlaySound(SFXController.Sounds.GameFail);
 		}
 
-		// Token: 0x06002489 RID: 9353 RVA: 0x001FA176 File Offset: 0x001F8376
+		// Token: 0x0600248D RID: 9357 RVA: 0x001FAA16 File Offset: 0x001F8C16
 		private IEnumerator GameFailedRoutine()
 		{
 			UnityEngine.Object.FindObjectOfType<InteractionMenu>().gameObject.SetActive(false);
@@ -64,7 +64,7 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x0600248A RID: 9354 RVA: 0x001FA185 File Offset: 0x001F8385
+		// Token: 0x0600248E RID: 9358 RVA: 0x001FAA25 File Offset: 0x001F8C25
 		private IEnumerator SlowPitch()
 		{
 			GameStarter starter = UnityEngine.Object.FindObjectOfType<GameStarter>();
@@ -79,22 +79,22 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x04004C44 RID: 19524
+		// Token: 0x04004C4F RID: 19535
 		private static FailGame instance;
 
-		// Token: 0x04004C45 RID: 19525
+		// Token: 0x04004C50 RID: 19536
 		public float fadeMultiplier = 2f;
 
-		// Token: 0x04004C46 RID: 19526
+		// Token: 0x04004C51 RID: 19537
 		private SpriteRenderer spriteRenderer;
 
-		// Token: 0x04004C47 RID: 19527
+		// Token: 0x04004C52 RID: 19538
 		private SpriteRenderer textRenderer;
 
-		// Token: 0x04004C48 RID: 19528
+		// Token: 0x04004C53 RID: 19539
 		private float targetTransitionTime;
 
-		// Token: 0x04004C49 RID: 19529
+		// Token: 0x04004C54 RID: 19540
 		private float transitionTime;
 	}
 }

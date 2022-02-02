@@ -7,36 +7,36 @@ namespace YandereSimulator.Yancord
 	[Serializable]
 	public class NewTextMessage
 	{
-		// Token: 0x04004909 RID: 18697
+		// Token: 0x04004914 RID: 18708
 		public string Message;
 
-		// Token: 0x0400490A RID: 18698
+		// Token: 0x04004915 RID: 18709
 		public bool isQuestion;
 
-		// Token: 0x0400490B RID: 18699
+		// Token: 0x04004916 RID: 18710
 		public bool sentByPlayer;
 
-		// Token: 0x0400490C RID: 18700
+		// Token: 0x04004917 RID: 18711
 		public bool isSystemMessage;
 
-		// Token: 0x0400490D RID: 18701
+		// Token: 0x04004918 RID: 18712
 		[Header("== Question Related ==")]
 		public string OptionQ;
 
-		// Token: 0x0400490E RID: 18702
+		// Token: 0x04004919 RID: 18713
 		public string OptionR;
 
-		// Token: 0x0400490F RID: 18703
+		// Token: 0x0400491A RID: 18714
 		public string OptionF;
 
-		// Token: 0x04004910 RID: 18704
+		// Token: 0x0400491B RID: 18715
 		[Space(20f)]
 		public string ReactionQ;
 
-		// Token: 0x04004911 RID: 18705
+		// Token: 0x0400491C RID: 18716
 		public string ReactionR;
 
-		// Token: 0x04004912 RID: 18706
+		// Token: 0x0400491D RID: 18717
 		public string ReactionF;
 	}
 }

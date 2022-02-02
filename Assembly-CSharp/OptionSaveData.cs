@@ -4,7 +4,7 @@
 [Serializable]
 public class OptionSaveData
 {
-	// Token: 0x06001C00 RID: 7168 RVA: 0x00145B48 File Offset: 0x00143D48
+	// Token: 0x06001C01 RID: 7169 RVA: 0x00145F8C File Offset: 0x0014418C
 	public static OptionSaveData ReadFromGlobals()
 	{
 		return new OptionSaveData
@@ -24,7 +24,7 @@ public class OptionSaveData
 		};
 	}
 
-	// Token: 0x06001C01 RID: 7169 RVA: 0x00145BE0 File Offset: 0x00143DE0
+	// Token: 0x06001C02 RID: 7170 RVA: 0x00146024 File Offset: 0x00144224
 	public static void WriteToGlobals(OptionSaveData data)
 	{
 		OptionGlobals.DisableBloom = data.disableBloom;
@@ -41,39 +41,39 @@ public class OptionSaveData
 		OptionGlobals.ParticleCount = data.particleCount;
 	}
 
-	// Token: 0x04003119 RID: 12569
+	// Token: 0x0400311F RID: 12575
 	public bool disableBloom;
 
-	// Token: 0x0400311A RID: 12570
+	// Token: 0x04003120 RID: 12576
 	public int disableFarAnimations = 5;
 
-	// Token: 0x0400311B RID: 12571
+	// Token: 0x04003121 RID: 12577
 	public bool disableOutlines;
 
-	// Token: 0x0400311C RID: 12572
+	// Token: 0x04003122 RID: 12578
 	public bool disablePostAliasing;
 
-	// Token: 0x0400311D RID: 12573
+	// Token: 0x04003123 RID: 12579
 	public bool enableShadows;
 
-	// Token: 0x0400311E RID: 12574
+	// Token: 0x04003124 RID: 12580
 	public int drawDistance;
 
-	// Token: 0x0400311F RID: 12575
+	// Token: 0x04003125 RID: 12581
 	public int drawDistanceLimit;
 
-	// Token: 0x04003120 RID: 12576
+	// Token: 0x04003126 RID: 12582
 	public bool fog;
 
-	// Token: 0x04003121 RID: 12577
+	// Token: 0x04003127 RID: 12583
 	public int fpsIndex;
 
-	// Token: 0x04003122 RID: 12578
+	// Token: 0x04003128 RID: 12584
 	public bool highPopulation;
 
-	// Token: 0x04003123 RID: 12579
+	// Token: 0x04003129 RID: 12585
 	public int lowDetailStudents;
 
-	// Token: 0x04003124 RID: 12580
+	// Token: 0x0400312A RID: 12586
 	public int particleCount;
 }

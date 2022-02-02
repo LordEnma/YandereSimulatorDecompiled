@@ -6,7 +6,7 @@ using UnityEngine;
 // Token: 0x0200029A RID: 666
 public class StudentEditorScript : MonoBehaviour
 {
-	// Token: 0x060013F8 RID: 5112 RVA: 0x000BD2B0 File Offset: 0x000BB4B0
+	// Token: 0x060013F9 RID: 5113 RVA: 0x000BD4B4 File Offset: 0x000BB6B4
 	private void Awake()
 	{
 		Dictionary<string, object>[] array = EditorManagerScript.DeserializeJson("Students.json");
@@ -30,7 +30,7 @@ public class StudentEditorScript : MonoBehaviour
 		this.inputManager = UnityEngine.Object.FindObjectOfType<InputManagerScript>();
 	}
 
-	// Token: 0x060013F9 RID: 5113 RVA: 0x000BD40A File Offset: 0x000BB60A
+	// Token: 0x060013FA RID: 5114 RVA: 0x000BD60E File Offset: 0x000BB80E
 	private void OnEnable()
 	{
 		this.promptBar.Label[0].text = string.Empty;
@@ -38,7 +38,7 @@ public class StudentEditorScript : MonoBehaviour
 		this.promptBar.UpdateButtons();
 	}
 
-	// Token: 0x060013FA RID: 5114 RVA: 0x000BD448 File Offset: 0x000BB648
+	// Token: 0x060013FB RID: 5115 RVA: 0x000BD64C File Offset: 0x000BB84C
 	private static ScheduleBlock[] DeserializeScheduleBlocks(Dictionary<string, object> dict)
 	{
 		string[] array = TFUtils.LoadString(dict, "ScheduleTime").Split(new char[]
@@ -61,7 +61,7 @@ public class StudentEditorScript : MonoBehaviour
 		return array4;
 	}
 
-	// Token: 0x060013FB RID: 5115 RVA: 0x000BD4E0 File Offset: 0x000BB6E0
+	// Token: 0x060013FC RID: 5116 RVA: 0x000BD6E4 File Offset: 0x000BB8E4
 	private static string GetStudentText(StudentEditorScript.StudentData data)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
@@ -98,7 +98,7 @@ public class StudentEditorScript : MonoBehaviour
 		return stringBuilder.ToString();
 	}
 
-	// Token: 0x060013FC RID: 5116 RVA: 0x000BD7A0 File Offset: 0x000BB9A0
+	// Token: 0x060013FD RID: 5117 RVA: 0x000BD9A4 File Offset: 0x000BBBA4
 	private void HandleInput()
 	{
 		if (Input.GetButtonDown("B"))
@@ -124,49 +124,49 @@ public class StudentEditorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013FD RID: 5117 RVA: 0x000BD85C File Offset: 0x000BBA5C
+	// Token: 0x060013FE RID: 5118 RVA: 0x000BDA60 File Offset: 0x000BBC60
 	private void Update()
 	{
 		this.HandleInput();
 	}
 
-	// Token: 0x04001DB5 RID: 7605
+	// Token: 0x04001DB9 RID: 7609
 	[SerializeField]
 	private UIPanel mainPanel;
 
-	// Token: 0x04001DB6 RID: 7606
+	// Token: 0x04001DBA RID: 7610
 	[SerializeField]
 	private UIPanel studentPanel;
 
-	// Token: 0x04001DB7 RID: 7607
+	// Token: 0x04001DBB RID: 7611
 	[SerializeField]
 	private UILabel bodyLabel;
 
-	// Token: 0x04001DB8 RID: 7608
+	// Token: 0x04001DBC RID: 7612
 	[SerializeField]
 	private Transform listLabelsOrigin;
 
-	// Token: 0x04001DB9 RID: 7609
+	// Token: 0x04001DBD RID: 7613
 	[SerializeField]
 	private UILabel studentLabelTemplate;
 
-	// Token: 0x04001DBA RID: 7610
+	// Token: 0x04001DBE RID: 7614
 	[SerializeField]
 	private PromptBarScript promptBar;
 
-	// Token: 0x04001DBB RID: 7611
+	// Token: 0x04001DBF RID: 7615
 	private StudentEditorScript.StudentData[] students;
 
-	// Token: 0x04001DBC RID: 7612
+	// Token: 0x04001DC0 RID: 7616
 	private int studentIndex;
 
-	// Token: 0x04001DBD RID: 7613
+	// Token: 0x04001DC1 RID: 7617
 	private InputManagerScript inputManager;
 
-	// Token: 0x0200065B RID: 1627
+	// Token: 0x02000655 RID: 1621
 	private class StudentAttendanceInfo
 	{
-		// Token: 0x0600262A RID: 9770 RVA: 0x001FD3F9 File Offset: 0x001FB5F9
+		// Token: 0x0600261A RID: 9754 RVA: 0x001FD5B5 File Offset: 0x001FB7B5
 		public static StudentEditorScript.StudentAttendanceInfo Deserialize(Dictionary<string, object> dict)
 		{
 			return new StudentEditorScript.StudentAttendanceInfo
@@ -177,20 +177,20 @@ public class StudentEditorScript : MonoBehaviour
 			};
 		}
 
-		// Token: 0x04004F2E RID: 20270
+		// Token: 0x04004F0B RID: 20235
 		public int classNumber;
 
-		// Token: 0x04004F2F RID: 20271
+		// Token: 0x04004F0C RID: 20236
 		public int seatNumber;
 
-		// Token: 0x04004F30 RID: 20272
+		// Token: 0x04004F0D RID: 20237
 		public int club;
 	}
 
-	// Token: 0x0200065C RID: 1628
+	// Token: 0x02000656 RID: 1622
 	private class StudentPersonality
 	{
-		// Token: 0x0600262C RID: 9772 RVA: 0x001FD43B File Offset: 0x001FB63B
+		// Token: 0x0600261C RID: 9756 RVA: 0x001FD5F7 File Offset: 0x001FB7F7
 		public static StudentEditorScript.StudentPersonality Deserialize(Dictionary<string, object> dict)
 		{
 			return new StudentEditorScript.StudentPersonality
@@ -200,17 +200,17 @@ public class StudentEditorScript : MonoBehaviour
 			};
 		}
 
-		// Token: 0x04004F31 RID: 20273
+		// Token: 0x04004F0E RID: 20238
 		public PersonaType persona;
 
-		// Token: 0x04004F32 RID: 20274
+		// Token: 0x04004F0F RID: 20239
 		public int crush;
 	}
 
-	// Token: 0x0200065D RID: 1629
+	// Token: 0x02000657 RID: 1623
 	private class StudentStats
 	{
-		// Token: 0x0600262E RID: 9774 RVA: 0x001FD46C File Offset: 0x001FB66C
+		// Token: 0x0600261E RID: 9758 RVA: 0x001FD628 File Offset: 0x001FB828
 		public static StudentEditorScript.StudentStats Deserialize(Dictionary<string, object> dict)
 		{
 			return new StudentEditorScript.StudentStats
@@ -219,14 +219,14 @@ public class StudentEditorScript : MonoBehaviour
 			};
 		}
 
-		// Token: 0x04004F33 RID: 20275
+		// Token: 0x04004F10 RID: 20240
 		public int strength;
 	}
 
-	// Token: 0x0200065E RID: 1630
+	// Token: 0x02000658 RID: 1624
 	private class StudentCosmetics
 	{
-		// Token: 0x06002630 RID: 9776 RVA: 0x001FD48C File Offset: 0x001FB68C
+		// Token: 0x06002620 RID: 9760 RVA: 0x001FD648 File Offset: 0x001FB848
 		public static StudentEditorScript.StudentCosmetics Deserialize(Dictionary<string, object> dict)
 		{
 			return new StudentEditorScript.StudentCosmetics
@@ -240,29 +240,29 @@ public class StudentEditorScript : MonoBehaviour
 			};
 		}
 
-		// Token: 0x04004F34 RID: 20276
+		// Token: 0x04004F11 RID: 20241
 		public float breastSize;
 
-		// Token: 0x04004F35 RID: 20277
+		// Token: 0x04004F12 RID: 20242
 		public string hairstyle;
 
-		// Token: 0x04004F36 RID: 20278
+		// Token: 0x04004F13 RID: 20243
 		public string color;
 
-		// Token: 0x04004F37 RID: 20279
+		// Token: 0x04004F14 RID: 20244
 		public string eyes;
 
-		// Token: 0x04004F38 RID: 20280
+		// Token: 0x04004F15 RID: 20245
 		public string stockings;
 
-		// Token: 0x04004F39 RID: 20281
+		// Token: 0x04004F16 RID: 20246
 		public string accessory;
 	}
 
-	// Token: 0x0200065F RID: 1631
+	// Token: 0x02000659 RID: 1625
 	private class StudentData
 	{
-		// Token: 0x06002632 RID: 9778 RVA: 0x001FD50C File Offset: 0x001FB70C
+		// Token: 0x06002622 RID: 9762 RVA: 0x001FD6C8 File Offset: 0x001FB8C8
 		public static StudentEditorScript.StudentData Deserialize(Dictionary<string, object> dict)
 		{
 			return new StudentEditorScript.StudentData
@@ -279,31 +279,31 @@ public class StudentEditorScript : MonoBehaviour
 			};
 		}
 
-		// Token: 0x04004F3A RID: 20282
+		// Token: 0x04004F17 RID: 20247
 		public int id;
 
-		// Token: 0x04004F3B RID: 20283
+		// Token: 0x04004F18 RID: 20248
 		public string name;
 
-		// Token: 0x04004F3C RID: 20284
+		// Token: 0x04004F19 RID: 20249
 		public bool isMale;
 
-		// Token: 0x04004F3D RID: 20285
+		// Token: 0x04004F1A RID: 20250
 		public StudentEditorScript.StudentAttendanceInfo attendanceInfo;
 
-		// Token: 0x04004F3E RID: 20286
+		// Token: 0x04004F1B RID: 20251
 		public StudentEditorScript.StudentPersonality personality;
 
-		// Token: 0x04004F3F RID: 20287
+		// Token: 0x04004F1C RID: 20252
 		public StudentEditorScript.StudentStats stats;
 
-		// Token: 0x04004F40 RID: 20288
+		// Token: 0x04004F1D RID: 20253
 		public StudentEditorScript.StudentCosmetics cosmetics;
 
-		// Token: 0x04004F41 RID: 20289
+		// Token: 0x04004F1E RID: 20254
 		public ScheduleBlock[] scheduleBlocks;
 
-		// Token: 0x04004F42 RID: 20290
+		// Token: 0x04004F1F RID: 20255
 		public string info;
 	}
 }
