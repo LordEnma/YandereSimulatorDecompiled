@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000276 RID: 630
 public class DebugMenuScript : MonoBehaviour
 {
-	// Token: 0x0600135A RID: 4954 RVA: 0x000AE9E4 File Offset: 0x000ACBE4
+	// Token: 0x0600135A RID: 4954 RVA: 0x000AE9DC File Offset: 0x000ACBDC
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(base.transform.localPosition.x, 0f, base.transform.localPosition.z);
@@ -15,7 +15,7 @@ public class DebugMenuScript : MonoBehaviour
 		this.NoDebug = true;
 	}
 
-	// Token: 0x0600135B RID: 4955 RVA: 0x000AEA4C File Offset: 0x000ACC4C
+	// Token: 0x0600135B RID: 4955 RVA: 0x000AEA44 File Offset: 0x000ACC44
 	private void Update()
 	{
 		if (!this.MissionMode && !this.NoDebug)
@@ -777,7 +777,7 @@ public class DebugMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600135C RID: 4956 RVA: 0x000B06AC File Offset: 0x000AE8AC
+	// Token: 0x0600135C RID: 4956 RVA: 0x000B06A4 File Offset: 0x000AE8A4
 	public void Censor()
 	{
 		if (GameGlobals.CensorPanties)
@@ -857,7 +857,7 @@ public class DebugMenuScript : MonoBehaviour
 		this.StudentManager.CensorStudents();
 	}
 
-	// Token: 0x0600135D RID: 4957 RVA: 0x000B0BDC File Offset: 0x000AEDDC
+	// Token: 0x0600135D RID: 4957 RVA: 0x000B0BD4 File Offset: 0x000AEDD4
 	public void EasterEggCheck()
 	{
 		Debug.Log("Checking for easter eggs.");
@@ -909,14 +909,14 @@ public class DebugMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600135E RID: 4958 RVA: 0x000B1004 File Offset: 0x000AF204
+	// Token: 0x0600135E RID: 4958 RVA: 0x000B0FFC File Offset: 0x000AF1FC
 	public void UpdateCensor()
 	{
 		this.Censor();
 		this.Censor();
 	}
 
-	// Token: 0x0600135F RID: 4959 RVA: 0x000B1014 File Offset: 0x000AF214
+	// Token: 0x0600135F RID: 4959 RVA: 0x000B100C File Offset: 0x000AF20C
 	public void DebugTest()
 	{
 		if (this.DebugInt == 0)
@@ -947,129 +947,129 @@ public class DebugMenuScript : MonoBehaviour
 		this.DebugInt++;
 	}
 
-	// Token: 0x04001C12 RID: 7186
+	// Token: 0x04001C13 RID: 7187
 	public FakeStudentSpawnerScript FakeStudentSpawner;
 
-	// Token: 0x04001C13 RID: 7187
+	// Token: 0x04001C14 RID: 7188
 	public DelinquentManagerScript DelinquentManager;
 
-	// Token: 0x04001C14 RID: 7188
+	// Token: 0x04001C15 RID: 7189
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001C15 RID: 7189
+	// Token: 0x04001C16 RID: 7190
 	public CameraEffectsScript CameraEffects;
 
-	// Token: 0x04001C16 RID: 7190
+	// Token: 0x04001C17 RID: 7191
 	public WeaponManagerScript WeaponManager;
 
-	// Token: 0x04001C17 RID: 7191
+	// Token: 0x04001C18 RID: 7192
 	public ReputationScript Reputation;
 
-	// Token: 0x04001C18 RID: 7192
+	// Token: 0x04001C19 RID: 7193
 	public CounselorScript Counselor;
 
-	// Token: 0x04001C19 RID: 7193
+	// Token: 0x04001C1A RID: 7194
 	public DebugConsole DebugConsole;
 
-	// Token: 0x04001C1A RID: 7194
+	// Token: 0x04001C1B RID: 7195
 	public YandereScript Yandere;
 
-	// Token: 0x04001C1B RID: 7195
+	// Token: 0x04001C1C RID: 7196
 	public BentoScript Bento;
 
-	// Token: 0x04001C1C RID: 7196
+	// Token: 0x04001C1D RID: 7197
 	public ClockScript Clock;
 
-	// Token: 0x04001C1D RID: 7197
+	// Token: 0x04001C1E RID: 7198
 	public PrayScript Turtle;
 
-	// Token: 0x04001C1E RID: 7198
+	// Token: 0x04001C1F RID: 7199
 	public ZoomScript Zoom;
 
-	// Token: 0x04001C1F RID: 7199
+	// Token: 0x04001C20 RID: 7200
 	public AstarPath Astar;
 
-	// Token: 0x04001C20 RID: 7200
+	// Token: 0x04001C21 RID: 7201
 	public OsanaFridayBeforeClassEvent1Script OsanaEvent1;
 
-	// Token: 0x04001C21 RID: 7201
+	// Token: 0x04001C22 RID: 7202
 	public OsanaFridayBeforeClassEvent2Script OsanaEvent2;
 
-	// Token: 0x04001C22 RID: 7202
+	// Token: 0x04001C23 RID: 7203
 	public OsanaFridayLunchEventScript OsanaEvent3;
 
-	// Token: 0x04001C23 RID: 7203
+	// Token: 0x04001C24 RID: 7204
 	public GameObject EasterEggWindow;
 
-	// Token: 0x04001C24 RID: 7204
+	// Token: 0x04001C25 RID: 7205
 	public GameObject SacrificialArm;
 
-	// Token: 0x04001C25 RID: 7205
+	// Token: 0x04001C26 RID: 7206
 	public GameObject DebugPoisons;
 
-	// Token: 0x04001C26 RID: 7206
+	// Token: 0x04001C27 RID: 7207
 	public GameObject CircularSaw;
 
-	// Token: 0x04001C27 RID: 7207
+	// Token: 0x04001C28 RID: 7208
 	public GameObject GreenScreen;
 
-	// Token: 0x04001C28 RID: 7208
+	// Token: 0x04001C29 RID: 7209
 	public GameObject Knife;
 
-	// Token: 0x04001C29 RID: 7209
+	// Token: 0x04001C2A RID: 7210
 	public Transform[] TeleportSpot;
 
-	// Token: 0x04001C2A RID: 7210
+	// Token: 0x04001C2B RID: 7211
 	public Transform RooftopSpot;
 
-	// Token: 0x04001C2B RID: 7211
+	// Token: 0x04001C2C RID: 7212
 	public Transform MidoriSpot;
 
-	// Token: 0x04001C2C RID: 7212
+	// Token: 0x04001C2D RID: 7213
 	public Transform Lockers;
 
-	// Token: 0x04001C2D RID: 7213
+	// Token: 0x04001C2E RID: 7214
 	public GameObject MissionModeWindow;
 
-	// Token: 0x04001C2E RID: 7214
+	// Token: 0x04001C2F RID: 7215
 	public GameObject Window;
 
-	// Token: 0x04001C2F RID: 7215
+	// Token: 0x04001C30 RID: 7216
 	public GameObject[] ElectrocutionKit;
 
-	// Token: 0x04001C30 RID: 7216
+	// Token: 0x04001C31 RID: 7217
 	public bool WaitingForNumber;
 
-	// Token: 0x04001C31 RID: 7217
+	// Token: 0x04001C32 RID: 7218
 	public bool TryNextFrame;
 
-	// Token: 0x04001C32 RID: 7218
+	// Token: 0x04001C33 RID: 7219
 	public bool MissionMode;
 
-	// Token: 0x04001C33 RID: 7219
+	// Token: 0x04001C34 RID: 7220
 	public bool NoDebug;
 
-	// Token: 0x04001C34 RID: 7220
+	// Token: 0x04001C35 RID: 7221
 	public int KidnappedVictim = 11;
 
-	// Token: 0x04001C35 RID: 7221
+	// Token: 0x04001C36 RID: 7222
 	public int RooftopStudent = 7;
 
-	// Token: 0x04001C36 RID: 7222
+	// Token: 0x04001C37 RID: 7223
 	public int DebugInputs;
 
-	// Token: 0x04001C37 RID: 7223
+	// Token: 0x04001C38 RID: 7224
 	public float Timer;
 
-	// Token: 0x04001C38 RID: 7224
+	// Token: 0x04001C39 RID: 7225
 	public int ID;
 
-	// Token: 0x04001C39 RID: 7225
+	// Token: 0x04001C3A RID: 7226
 	public Texture PantyCensorTexture;
 
-	// Token: 0x04001C3A RID: 7226
+	// Token: 0x04001C3B RID: 7227
 	private int DebugInt;
 
-	// Token: 0x04001C3B RID: 7227
+	// Token: 0x04001C3C RID: 7228
 	public GameObject Mop;
 }

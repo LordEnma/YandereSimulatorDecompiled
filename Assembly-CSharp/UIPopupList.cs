@@ -1199,11 +1199,11 @@ public class UIPopupList : UIWidgetContainer
 	[DoNotObfuscateNGUI]
 	public enum Position
 	{
-		// Token: 0x04004D32 RID: 19762
+		// Token: 0x04004D38 RID: 19768
 		Auto,
-		// Token: 0x04004D33 RID: 19763
+		// Token: 0x04004D39 RID: 19769
 		Above,
-		// Token: 0x04004D34 RID: 19764
+		// Token: 0x04004D3A RID: 19770
 		Below
 	}
 
@@ -1211,9 +1211,9 @@ public class UIPopupList : UIWidgetContainer
 	[DoNotObfuscateNGUI]
 	public enum Selection
 	{
-		// Token: 0x04004D36 RID: 19766
+		// Token: 0x04004D3C RID: 19772
 		OnPress,
-		// Token: 0x04004D37 RID: 19767
+		// Token: 0x04004D3D RID: 19773
 		OnClick
 	}
 
@@ -1221,17 +1221,17 @@ public class UIPopupList : UIWidgetContainer
 	[DoNotObfuscateNGUI]
 	public enum OpenOn
 	{
-		// Token: 0x04004D39 RID: 19769
+		// Token: 0x04004D3F RID: 19775
 		ClickOrTap,
-		// Token: 0x04004D3A RID: 19770
+		// Token: 0x04004D40 RID: 19776
 		RightClick,
-		// Token: 0x04004D3B RID: 19771
+		// Token: 0x04004D41 RID: 19777
 		DoubleClick,
-		// Token: 0x04004D3C RID: 19772
+		// Token: 0x04004D42 RID: 19778
 		Manual
 	}
 
 	// Token: 0x020005D1 RID: 1489
-	// (Invoke) Token: 0x060024FB RID: 9467
+	// (Invoke) Token: 0x060024FD RID: 9469
 	public delegate void LegacyEvent(string val);
 }

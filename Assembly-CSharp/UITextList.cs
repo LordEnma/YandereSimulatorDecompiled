@@ -318,19 +318,19 @@ public class UITextList : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Style
 	{
-		// Token: 0x04004E73 RID: 20083
+		// Token: 0x04004E79 RID: 20089
 		Text,
-		// Token: 0x04004E74 RID: 20084
+		// Token: 0x04004E7A RID: 20090
 		Chat
 	}
 
 	// Token: 0x02000642 RID: 1602
 	protected class Paragraph
 	{
-		// Token: 0x04004E75 RID: 20085
+		// Token: 0x04004E7B RID: 20091
 		public string text;
 
-		// Token: 0x04004E76 RID: 20086
+		// Token: 0x04004E7C RID: 20092
 		public string[] lines;
 	}
 }

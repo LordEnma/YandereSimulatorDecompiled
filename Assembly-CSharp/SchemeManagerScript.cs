@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200040E RID: 1038
 public class SchemeManagerScript : MonoBehaviour
 {
-	// Token: 0x06001C41 RID: 7233 RVA: 0x00149CCC File Offset: 0x00147ECC
+	// Token: 0x06001C41 RID: 7233 RVA: 0x00149DD0 File Offset: 0x00147FD0
 	private void Update()
 	{
 		if (this.CurrentScheme < 6)
@@ -48,18 +48,18 @@ public class SchemeManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003202 RID: 12802
+	// Token: 0x04003203 RID: 12803
 	public SchemesScript Schemes;
 
-	// Token: 0x04003203 RID: 12803
+	// Token: 0x04003204 RID: 12804
 	public ClockScript Clock;
 
-	// Token: 0x04003204 RID: 12804
+	// Token: 0x04003205 RID: 12805
 	public bool ClockCheck;
 
-	// Token: 0x04003205 RID: 12805
+	// Token: 0x04003206 RID: 12806
 	public float Timer;
 
-	// Token: 0x04003206 RID: 12806
+	// Token: 0x04003207 RID: 12807
 	public int CurrentScheme;
 }

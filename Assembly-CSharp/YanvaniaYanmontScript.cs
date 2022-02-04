@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CharacterController))]
 public class YanvaniaYanmontScript : MonoBehaviour
 {
-	// Token: 0x060020A8 RID: 8360 RVA: 0x001E0300 File Offset: 0x001DE500
+	// Token: 0x060020AA RID: 8362 RVA: 0x001E0618 File Offset: 0x001DE818
 	private void Awake()
 	{
 		this.MyAnimation = this.Character.GetComponent<Animation>();
@@ -26,7 +26,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		Physics.IgnoreLayerCollision(19, 19, true);
 	}
 
-	// Token: 0x060020A9 RID: 8361 RVA: 0x001E046C File Offset: 0x001DE66C
+	// Token: 0x060020AB RID: 8363 RVA: 0x001E0784 File Offset: 0x001DE984
 	private void Start()
 	{
 		this.WhipChain[0].transform.localScale = Vector3.zero;
@@ -40,7 +40,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		this.originalThreshold = this.fallingDamageThreshold;
 	}
 
-	// Token: 0x060020AA RID: 8362 RVA: 0x001E0518 File Offset: 0x001DE718
+	// Token: 0x060020AC RID: 8364 RVA: 0x001E0830 File Offset: 0x001DEA30
 	private void FixedUpdate()
 	{
 		if (this.CanMove)
@@ -324,7 +324,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020AB RID: 8363 RVA: 0x001E1310 File Offset: 0x001DF510
+	// Token: 0x060020AD RID: 8365 RVA: 0x001E1628 File Offset: 0x001DF828
 	private void Update()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -602,18 +602,18 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020AC RID: 8364 RVA: 0x001E1CD5 File Offset: 0x001DFED5
+	// Token: 0x060020AE RID: 8366 RVA: 0x001E1FED File Offset: 0x001E01ED
 	private void LateUpdate()
 	{
 	}
 
-	// Token: 0x060020AD RID: 8365 RVA: 0x001E1CD7 File Offset: 0x001DFED7
+	// Token: 0x060020AF RID: 8367 RVA: 0x001E1FEF File Offset: 0x001E01EF
 	private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
 		this.contactPoint = this.hit.point;
 	}
 
-	// Token: 0x060020AE RID: 8366 RVA: 0x001E1CEC File Offset: 0x001DFEEC
+	// Token: 0x060020B0 RID: 8368 RVA: 0x001E2004 File Offset: 0x001E0204
 	private void FallingDamageAlert(float fallDistance)
 	{
 		AudioClipPlayer.Play2D(this.LandSound, base.transform.position, UnityEngine.Random.Range(0.9f, 1.1f));
@@ -621,7 +621,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		this.fallingDamageThreshold = this.originalThreshold;
 	}
 
-	// Token: 0x060020AF RID: 8367 RVA: 0x001E1D44 File Offset: 0x001DFF44
+	// Token: 0x060020B1 RID: 8369 RVA: 0x001E205C File Offset: 0x001E025C
 	private void SpinRight()
 	{
 		if (!this.SpunRight)
@@ -635,7 +635,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		this.Character.GetComponent<Animation>().CrossFade(this.WhipRightAnim, 0.1f);
 	}
 
-	// Token: 0x060020B0 RID: 8368 RVA: 0x001E1DBC File Offset: 0x001DFFBC
+	// Token: 0x060020B2 RID: 8370 RVA: 0x001E20D4 File Offset: 0x001E02D4
 	private void SpinLeft()
 	{
 		if (!this.SpunLeft)
@@ -649,7 +649,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		this.Character.GetComponent<Animation>().CrossFade(this.WhipLeftAnim, 0.1f);
 	}
 
-	// Token: 0x060020B1 RID: 8369 RVA: 0x001E1E34 File Offset: 0x001E0034
+	// Token: 0x060020B3 RID: 8371 RVA: 0x001E214C File Offset: 0x001E034C
 	private void StraightenWhip()
 	{
 		for (int i = 1; i < this.WhipChain.Length; i++)
@@ -665,7 +665,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		this.Loose = false;
 	}
 
-	// Token: 0x060020B2 RID: 8370 RVA: 0x001E1EE4 File Offset: 0x001E00E4
+	// Token: 0x060020B4 RID: 8372 RVA: 0x001E21FC File Offset: 0x001E03FC
 	private void LoosenWhip()
 	{
 		if (!this.Loose)
@@ -683,7 +683,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020B3 RID: 8371 RVA: 0x001E1F58 File Offset: 0x001E0158
+	// Token: 0x060020B5 RID: 8373 RVA: 0x001E2270 File Offset: 0x001E0470
 	private void StopAttacking()
 	{
 		this.Character.GetComponent<Animation>()[this.CrouchPoseAnim].weight = 0f;
@@ -697,7 +697,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		this.SpunLeft = false;
 	}
 
-	// Token: 0x060020B4 RID: 8372 RVA: 0x001E1FC8 File Offset: 0x001E01C8
+	// Token: 0x060020B6 RID: 8374 RVA: 0x001E22E0 File Offset: 0x001E04E0
 	public void TakeDamage(int Damage)
 	{
 		if (this.WhipCollider[1].enabled)
@@ -743,309 +743,309 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040047A4 RID: 18340
+	// Token: 0x040047AA RID: 18346
 	private GameObject NewBlood;
 
-	// Token: 0x040047A5 RID: 18341
+	// Token: 0x040047AB RID: 18347
 	public YanvaniaCameraScript YanvaniaCamera;
 
-	// Token: 0x040047A6 RID: 18342
+	// Token: 0x040047AC RID: 18348
 	public InputManagerScript InputManager;
 
-	// Token: 0x040047A7 RID: 18343
+	// Token: 0x040047AD RID: 18349
 	public YanvaniaDraculaScript Dracula;
 
-	// Token: 0x040047A8 RID: 18344
+	// Token: 0x040047AE RID: 18350
 	public Animation MyAnimation;
 
-	// Token: 0x040047A9 RID: 18345
+	// Token: 0x040047AF RID: 18351
 	public CharacterController MyController;
 
-	// Token: 0x040047AA RID: 18346
+	// Token: 0x040047B0 RID: 18352
 	public GameObject BossHealthBar;
 
-	// Token: 0x040047AB RID: 18347
+	// Token: 0x040047B1 RID: 18353
 	public GameObject LevelUpEffect;
 
-	// Token: 0x040047AC RID: 18348
+	// Token: 0x040047B2 RID: 18354
 	public GameObject DeathBlood;
 
-	// Token: 0x040047AD RID: 18349
+	// Token: 0x040047B3 RID: 18355
 	public GameObject Character;
 
-	// Token: 0x040047AE RID: 18350
+	// Token: 0x040047B4 RID: 18356
 	public GameObject BlackBG;
 
-	// Token: 0x040047AF RID: 18351
+	// Token: 0x040047B5 RID: 18357
 	public GameObject TextBox;
 
-	// Token: 0x040047B0 RID: 18352
+	// Token: 0x040047B6 RID: 18358
 	public Renderer MyRenderer;
 
-	// Token: 0x040047B1 RID: 18353
+	// Token: 0x040047B7 RID: 18359
 	public Transform TryAgainWindow;
 
-	// Token: 0x040047B2 RID: 18354
+	// Token: 0x040047B8 RID: 18360
 	public Transform HealthBar;
 
-	// Token: 0x040047B3 RID: 18355
+	// Token: 0x040047B9 RID: 18361
 	public Transform EXPBar;
 
-	// Token: 0x040047B4 RID: 18356
+	// Token: 0x040047BA RID: 18362
 	public Transform Hips;
 
-	// Token: 0x040047B5 RID: 18357
+	// Token: 0x040047BB RID: 18363
 	public Transform TrailStart;
 
-	// Token: 0x040047B6 RID: 18358
+	// Token: 0x040047BC RID: 18364
 	public Transform TrailEnd;
 
-	// Token: 0x040047B7 RID: 18359
+	// Token: 0x040047BD RID: 18365
 	public UITexture Photograph;
 
-	// Token: 0x040047B8 RID: 18360
+	// Token: 0x040047BE RID: 18366
 	public UILabel LevelLabel;
 
-	// Token: 0x040047B9 RID: 18361
+	// Token: 0x040047BF RID: 18367
 	public UISprite Darkness;
 
-	// Token: 0x040047BA RID: 18362
+	// Token: 0x040047C0 RID: 18368
 	public Collider[] SphereCollider;
 
-	// Token: 0x040047BB RID: 18363
+	// Token: 0x040047C1 RID: 18369
 	public Collider[] WhipCollider;
 
-	// Token: 0x040047BC RID: 18364
+	// Token: 0x040047C2 RID: 18370
 	public Transform[] WhipChain;
 
-	// Token: 0x040047BD RID: 18365
+	// Token: 0x040047C3 RID: 18371
 	public AudioClip[] Voices;
 
-	// Token: 0x040047BE RID: 18366
+	// Token: 0x040047C4 RID: 18372
 	public AudioClip[] Injuries;
 
-	// Token: 0x040047BF RID: 18367
+	// Token: 0x040047C5 RID: 18373
 	public AudioClip DeathSound;
 
-	// Token: 0x040047C0 RID: 18368
+	// Token: 0x040047C6 RID: 18374
 	public AudioClip LandSound;
 
-	// Token: 0x040047C1 RID: 18369
+	// Token: 0x040047C7 RID: 18375
 	public AudioClip WhipSound;
 
-	// Token: 0x040047C2 RID: 18370
+	// Token: 0x040047C8 RID: 18376
 	public bool Attacking;
 
-	// Token: 0x040047C3 RID: 18371
+	// Token: 0x040047C9 RID: 18377
 	public bool Crouching;
 
-	// Token: 0x040047C4 RID: 18372
+	// Token: 0x040047CA RID: 18378
 	public bool Dangling;
 
-	// Token: 0x040047C5 RID: 18373
+	// Token: 0x040047CB RID: 18379
 	public bool EnterCutscene;
 
-	// Token: 0x040047C6 RID: 18374
+	// Token: 0x040047CC RID: 18380
 	public bool Cutscene;
 
-	// Token: 0x040047C7 RID: 18375
+	// Token: 0x040047CD RID: 18381
 	public bool CanMove;
 
-	// Token: 0x040047C8 RID: 18376
+	// Token: 0x040047CE RID: 18382
 	public bool Injured;
 
-	// Token: 0x040047C9 RID: 18377
+	// Token: 0x040047CF RID: 18383
 	public bool Loose;
 
-	// Token: 0x040047CA RID: 18378
+	// Token: 0x040047D0 RID: 18384
 	public bool Red;
 
-	// Token: 0x040047CB RID: 18379
+	// Token: 0x040047D1 RID: 18385
 	public bool SpunUp;
 
-	// Token: 0x040047CC RID: 18380
+	// Token: 0x040047D2 RID: 18386
 	public bool SpunDown;
 
-	// Token: 0x040047CD RID: 18381
+	// Token: 0x040047D3 RID: 18387
 	public bool SpunRight;
 
-	// Token: 0x040047CE RID: 18382
+	// Token: 0x040047D4 RID: 18388
 	public bool SpunLeft;
 
-	// Token: 0x040047CF RID: 18383
+	// Token: 0x040047D5 RID: 18389
 	public float TargetRotation;
 
-	// Token: 0x040047D0 RID: 18384
+	// Token: 0x040047D6 RID: 18390
 	public float Rotation;
 
-	// Token: 0x040047D1 RID: 18385
+	// Token: 0x040047D7 RID: 18391
 	public float RecoveryTimer;
 
-	// Token: 0x040047D2 RID: 18386
+	// Token: 0x040047D8 RID: 18392
 	public float DeathTimer;
 
-	// Token: 0x040047D3 RID: 18387
+	// Token: 0x040047D9 RID: 18393
 	public float FlashTimer;
 
-	// Token: 0x040047D4 RID: 18388
+	// Token: 0x040047DA RID: 18394
 	public float IdleTimer;
 
-	// Token: 0x040047D5 RID: 18389
+	// Token: 0x040047DB RID: 18395
 	public float WhipTimer;
 
-	// Token: 0x040047D6 RID: 18390
+	// Token: 0x040047DC RID: 18396
 	public float TapTimer;
 
-	// Token: 0x040047D7 RID: 18391
+	// Token: 0x040047DD RID: 18397
 	public float PreviousY;
 
-	// Token: 0x040047D8 RID: 18392
+	// Token: 0x040047DE RID: 18398
 	public float MaxHealth = 100f;
 
-	// Token: 0x040047D9 RID: 18393
+	// Token: 0x040047DF RID: 18399
 	public float Health = 100f;
 
-	// Token: 0x040047DA RID: 18394
+	// Token: 0x040047E0 RID: 18400
 	public float EXP;
 
-	// Token: 0x040047DB RID: 18395
+	// Token: 0x040047E1 RID: 18401
 	public int Frames;
 
-	// Token: 0x040047DC RID: 18396
+	// Token: 0x040047E2 RID: 18402
 	public int Level;
 
-	// Token: 0x040047DD RID: 18397
+	// Token: 0x040047E3 RID: 18403
 	public int Taps;
 
-	// Token: 0x040047DE RID: 18398
+	// Token: 0x040047E4 RID: 18404
 	public float walkSpeed = 6f;
 
-	// Token: 0x040047DF RID: 18399
+	// Token: 0x040047E5 RID: 18405
 	public float runSpeed = 11f;
 
-	// Token: 0x040047E0 RID: 18400
+	// Token: 0x040047E6 RID: 18406
 	public bool limitDiagonalSpeed = true;
 
-	// Token: 0x040047E1 RID: 18401
+	// Token: 0x040047E7 RID: 18407
 	public bool toggleRun;
 
-	// Token: 0x040047E2 RID: 18402
+	// Token: 0x040047E8 RID: 18408
 	public float jumpSpeed = 8f;
 
-	// Token: 0x040047E3 RID: 18403
+	// Token: 0x040047E9 RID: 18409
 	public float gravity = 20f;
 
-	// Token: 0x040047E4 RID: 18404
+	// Token: 0x040047EA RID: 18410
 	public float fallingDamageThreshold = 10f;
 
-	// Token: 0x040047E5 RID: 18405
+	// Token: 0x040047EB RID: 18411
 	public bool slideWhenOverSlopeLimit;
 
-	// Token: 0x040047E6 RID: 18406
+	// Token: 0x040047EC RID: 18412
 	public bool slideOnTaggedObjects;
 
-	// Token: 0x040047E7 RID: 18407
+	// Token: 0x040047ED RID: 18413
 	public float slideSpeed = 12f;
 
-	// Token: 0x040047E8 RID: 18408
+	// Token: 0x040047EE RID: 18414
 	public bool airControl;
 
-	// Token: 0x040047E9 RID: 18409
+	// Token: 0x040047EF RID: 18415
 	public float antiBumpFactor = 0.75f;
 
-	// Token: 0x040047EA RID: 18410
+	// Token: 0x040047F0 RID: 18416
 	public int antiBunnyHopFactor = 1;
 
-	// Token: 0x040047EB RID: 18411
+	// Token: 0x040047F1 RID: 18417
 	private Vector3 moveDirection = Vector3.zero;
 
-	// Token: 0x040047EC RID: 18412
+	// Token: 0x040047F2 RID: 18418
 	public bool grounded;
 
-	// Token: 0x040047ED RID: 18413
+	// Token: 0x040047F3 RID: 18419
 	private CharacterController controller;
 
-	// Token: 0x040047EE RID: 18414
+	// Token: 0x040047F4 RID: 18420
 	private Transform myTransform;
 
-	// Token: 0x040047EF RID: 18415
+	// Token: 0x040047F5 RID: 18421
 	private float speed;
 
-	// Token: 0x040047F0 RID: 18416
+	// Token: 0x040047F6 RID: 18422
 	private RaycastHit hit;
 
-	// Token: 0x040047F1 RID: 18417
+	// Token: 0x040047F7 RID: 18423
 	private float fallStartLevel;
 
-	// Token: 0x040047F2 RID: 18418
+	// Token: 0x040047F8 RID: 18424
 	private bool falling;
 
-	// Token: 0x040047F3 RID: 18419
+	// Token: 0x040047F9 RID: 18425
 	private float slideLimit;
 
-	// Token: 0x040047F4 RID: 18420
+	// Token: 0x040047FA RID: 18426
 	private float rayDistance;
 
-	// Token: 0x040047F5 RID: 18421
+	// Token: 0x040047FB RID: 18427
 	private Vector3 contactPoint;
 
-	// Token: 0x040047F6 RID: 18422
+	// Token: 0x040047FC RID: 18428
 	private bool playerControl;
 
-	// Token: 0x040047F7 RID: 18423
+	// Token: 0x040047FD RID: 18429
 	private int jumpTimer;
 
-	// Token: 0x040047F8 RID: 18424
+	// Token: 0x040047FE RID: 18430
 	private float originalThreshold;
 
-	// Token: 0x040047F9 RID: 18425
+	// Token: 0x040047FF RID: 18431
 	public float inputX;
 
-	// Token: 0x040047FA RID: 18426
+	// Token: 0x04004800 RID: 18432
 	public string DeathAnim = "f02_yanvaniaDeath_00";
 
-	// Token: 0x040047FB RID: 18427
+	// Token: 0x04004801 RID: 18433
 	public string AttackAnim = "f02_yanvaniaAttack_00";
 
-	// Token: 0x040047FC RID: 18428
+	// Token: 0x04004802 RID: 18434
 	public string CrouchAttackAnim = "f02_yanvaniaCrouchAttack_00";
 
-	// Token: 0x040047FD RID: 18429
+	// Token: 0x04004803 RID: 18435
 	public string IdleAnim = "f02_yanvaniaIdle_00";
 
-	// Token: 0x040047FE RID: 18430
+	// Token: 0x04004804 RID: 18436
 	public string DramaticIdleAnim = "f02_yanvaniaDramaticIdle_00";
 
-	// Token: 0x040047FF RID: 18431
+	// Token: 0x04004805 RID: 18437
 	public string JumpAnim = "f02_yanvaniaJump_00";
 
-	// Token: 0x04004800 RID: 18432
+	// Token: 0x04004806 RID: 18438
 	public string FallAnim = "f02_yanvaniaFall_00";
 
-	// Token: 0x04004801 RID: 18433
+	// Token: 0x04004807 RID: 18439
 	public string CrouchAnim = "f02_yanvaniaCrouch_00";
 
-	// Token: 0x04004802 RID: 18434
+	// Token: 0x04004808 RID: 18440
 	public string CrouchPoseAnim = "f02_yanvaniaCrouchPose_00";
 
-	// Token: 0x04004803 RID: 18435
+	// Token: 0x04004809 RID: 18441
 	public string WalkAnim = "f02_yanvaniaWalk_00";
 
-	// Token: 0x04004804 RID: 18436
+	// Token: 0x0400480A RID: 18442
 	public string RunAnim = "f02_yanvaniaRun_00";
 
-	// Token: 0x04004805 RID: 18437
+	// Token: 0x0400480B RID: 18443
 	public string WhipNeutralAnim = "f02_yanvaniaWhip_Neutral";
 
-	// Token: 0x04004806 RID: 18438
+	// Token: 0x0400480C RID: 18444
 	public string WhipUpAnim = "f02_yanvaniaWhip_Up";
 
-	// Token: 0x04004807 RID: 18439
+	// Token: 0x0400480D RID: 18445
 	public string WhipRightAnim = "f02_yanvaniaWhip_Right";
 
-	// Token: 0x04004808 RID: 18440
+	// Token: 0x0400480E RID: 18446
 	public string WhipDownAnim = "f02_yanvaniaWhip_Down";
 
-	// Token: 0x04004809 RID: 18441
+	// Token: 0x0400480F RID: 18447
 	public string WhipLeftAnim = "f02_yanvaniaWhip_Left";
 }

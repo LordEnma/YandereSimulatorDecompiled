@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002CD RID: 717
 public class FollowSkirtScript : MonoBehaviour
 {
-	// Token: 0x060014A2 RID: 5282 RVA: 0x000CAE1C File Offset: 0x000C901C
+	// Token: 0x060014A2 RID: 5282 RVA: 0x000CAED0 File Offset: 0x000C90D0
 	private void LateUpdate()
 	{
 		this.SkirtHips.position = this.TargetSkirtHips.position;
@@ -21,33 +21,33 @@ public class FollowSkirtScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002042 RID: 8258
+	// Token: 0x04002043 RID: 8259
 	public Transform[] TargetSkirtFront;
 
-	// Token: 0x04002043 RID: 8259
+	// Token: 0x04002044 RID: 8260
 	public Transform[] TargetSkirtBack;
 
-	// Token: 0x04002044 RID: 8260
+	// Token: 0x04002045 RID: 8261
 	public Transform[] TargetSkirtRight;
 
-	// Token: 0x04002045 RID: 8261
+	// Token: 0x04002046 RID: 8262
 	public Transform[] TargetSkirtLeft;
 
-	// Token: 0x04002046 RID: 8262
+	// Token: 0x04002047 RID: 8263
 	public Transform[] SkirtFront;
 
-	// Token: 0x04002047 RID: 8263
+	// Token: 0x04002048 RID: 8264
 	public Transform[] SkirtBack;
 
-	// Token: 0x04002048 RID: 8264
+	// Token: 0x04002049 RID: 8265
 	public Transform[] SkirtRight;
 
-	// Token: 0x04002049 RID: 8265
+	// Token: 0x0400204A RID: 8266
 	public Transform[] SkirtLeft;
 
-	// Token: 0x0400204A RID: 8266
+	// Token: 0x0400204B RID: 8267
 	public Transform TargetSkirtHips;
 
-	// Token: 0x0400204B RID: 8267
+	// Token: 0x0400204C RID: 8268
 	public Transform SkirtHips;
 }

@@ -5,15 +5,15 @@ using UnityEngine;
 // Token: 0x02000510 RID: 1296
 public class YanSaveStaticIdentifier : MonoBehaviour
 {
-	// Token: 0x040048ED RID: 18669
+	// Token: 0x040048F3 RID: 18675
 	[SerializeField]
 	public List<string> StaticTypeNames = new List<string>();
 
-	// Token: 0x040048EE RID: 18670
+	// Token: 0x040048F4 RID: 18676
 	[SerializeField]
 	public List<KeyValuePair<Type, string>> DisabledMembers = new List<KeyValuePair<Type, string>>();
 
-	// Token: 0x040048EF RID: 18671
+	// Token: 0x040048F5 RID: 18677
 	[SerializeField]
 	public List<YanSavePlayerPrefTracker> PrefTrackers = new List<YanSavePlayerPrefTracker>();
 }

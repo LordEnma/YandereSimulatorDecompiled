@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class FxaaComponent : PostProcessingComponentRenderTexture<AntialiasingModel>
 	{
 		// Token: 0x170004F4 RID: 1268
-		// (get) Token: 0x060022EC RID: 8940 RVA: 0x001F1A42 File Offset: 0x001EFC42
+		// (get) Token: 0x060022EE RID: 8942 RVA: 0x001F1D5A File Offset: 0x001EFF5A
 		public override bool active
 		{
 			get
@@ -15,7 +15,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022ED RID: 8941 RVA: 0x001F1A74 File Offset: 0x001EFC74
+		// Token: 0x060022EF RID: 8943 RVA: 0x001F1D8C File Offset: 0x001EFF8C
 		public void Render(RenderTexture source, RenderTexture destination)
 		{
 			AntialiasingModel.FxaaSettings fxaaSettings = base.model.settings.fxaaSettings;
@@ -30,10 +30,10 @@ namespace UnityEngine.PostProcessing
 		// Token: 0x02000699 RID: 1689
 		private static class Uniforms
 		{
-			// Token: 0x04005043 RID: 20547
+			// Token: 0x04005049 RID: 20553
 			internal static readonly int _QualitySettings = Shader.PropertyToID("_QualitySettings");
 
-			// Token: 0x04005044 RID: 20548
+			// Token: 0x0400504A RID: 20554
 			internal static readonly int _ConsoleSettings = Shader.PropertyToID("_ConsoleSettings");
 		}
 	}

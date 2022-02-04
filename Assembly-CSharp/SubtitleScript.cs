@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200045B RID: 1115
 public class SubtitleScript : MonoBehaviour
 {
-	// Token: 0x06001E4B RID: 7755 RVA: 0x0019D1BC File Offset: 0x0019B3BC
+	// Token: 0x06001E4D RID: 7757 RVA: 0x0019D4C8 File Offset: 0x0019B6C8
 	private void Awake()
 	{
 		if (GameGlobals.Eighties)
@@ -846,19 +846,19 @@ public class SubtitleScript : MonoBehaviour
 		};
 	}
 
-	// Token: 0x06001E4C RID: 7756 RVA: 0x0019E955 File Offset: 0x0019CB55
+	// Token: 0x06001E4E RID: 7758 RVA: 0x0019EC61 File Offset: 0x0019CE61
 	private void Start()
 	{
 		this.Label.text = string.Empty;
 	}
 
-	// Token: 0x06001E4D RID: 7757 RVA: 0x0019E967 File Offset: 0x0019CB67
+	// Token: 0x06001E4F RID: 7759 RVA: 0x0019EC73 File Offset: 0x0019CE73
 	private string GetRandomString(string[] strings)
 	{
 		return strings[UnityEngine.Random.Range(0, strings.Length)];
 	}
 
-	// Token: 0x06001E4E RID: 7758 RVA: 0x0019E974 File Offset: 0x0019CB74
+	// Token: 0x06001E50 RID: 7760 RVA: 0x0019EC80 File Offset: 0x0019CE80
 	public void UpdateLabel(SubtitleType subtitleType, int ID, float Duration)
 	{
 		if (!this.Jukebox.Yandere.Talking && subtitleType == this.PreviousSubtitle && this.Timer > 0f)
@@ -2223,7 +2223,7 @@ public class SubtitleScript : MonoBehaviour
 		this.Timer = Duration;
 	}
 
-	// Token: 0x06001E4F RID: 7759 RVA: 0x001A1824 File Offset: 0x0019FA24
+	// Token: 0x06001E51 RID: 7761 RVA: 0x001A1B30 File Offset: 0x0019FD30
 	private void Update()
 	{
 		if (this.Timer > 0f)
@@ -2238,7 +2238,7 @@ public class SubtitleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E50 RID: 7760 RVA: 0x001A1888 File Offset: 0x0019FA88
+	// Token: 0x06001E52 RID: 7762 RVA: 0x001A1B94 File Offset: 0x0019FD94
 	private void PlayVoice(SubtitleType subtitleType, int ID)
 	{
 		if (this.CurrentClip != null)
@@ -2251,7 +2251,7 @@ public class SubtitleScript : MonoBehaviour
 		this.PlayClip(audioClipArrayWrapper[ID], base.transform.position);
 	}
 
-	// Token: 0x06001E51 RID: 7761 RVA: 0x001A18E8 File Offset: 0x0019FAE8
+	// Token: 0x06001E53 RID: 7763 RVA: 0x001A1BF4 File Offset: 0x0019FDF4
 	public float GetClipLength(int StudentID, int TaskPhase)
 	{
 		if (StudentID == 6)
@@ -2340,7 +2340,7 @@ public class SubtitleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E52 RID: 7762 RVA: 0x001A1AB8 File Offset: 0x0019FCB8
+	// Token: 0x06001E54 RID: 7764 RVA: 0x001A1DC4 File Offset: 0x0019FFC4
 	public float GetClubClipLength(ClubType Club, int ClubPhase)
 	{
 		if (Club == ClubType.Cooking)
@@ -2405,7 +2405,7 @@ public class SubtitleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E53 RID: 7763 RVA: 0x001A1C28 File Offset: 0x0019FE28
+	// Token: 0x06001E55 RID: 7765 RVA: 0x001A1F34 File Offset: 0x001A0134
 	private void PlayClip(AudioClip clip, Vector3 pos)
 	{
 		if (clip != null)
@@ -2437,7 +2437,7 @@ public class SubtitleScript : MonoBehaviour
 		Debug.Log("Could not play a voice line. The audio clip was null.");
 	}
 
-	// Token: 0x06001E54 RID: 7764 RVA: 0x001A1D78 File Offset: 0x0019FF78
+	// Token: 0x06001E56 RID: 7766 RVA: 0x001A2084 File Offset: 0x001A0284
 	public void Silence(AudioClip[] ClipArray)
 	{
 		for (int i = 0; i < 11; i++)
@@ -2449,1362 +2449,1362 @@ public class SubtitleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003C61 RID: 15457
+	// Token: 0x04003C67 RID: 15463
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04003C62 RID: 15458
+	// Token: 0x04003C68 RID: 15464
 	public Transform Yandere;
 
-	// Token: 0x04003C63 RID: 15459
+	// Token: 0x04003C69 RID: 15465
 	public UILabel Label;
 
-	// Token: 0x04003C64 RID: 15460
+	// Token: 0x04003C6A RID: 15466
 	public string[] WeaponBloodInsanityReactions;
 
-	// Token: 0x04003C65 RID: 15461
+	// Token: 0x04003C6B RID: 15467
 	public string[] WeaponBloodReactions;
 
-	// Token: 0x04003C66 RID: 15462
+	// Token: 0x04003C6C RID: 15468
 	public string[] WeaponInsanityReactions;
 
-	// Token: 0x04003C67 RID: 15463
+	// Token: 0x04003C6D RID: 15469
 	public string[] BloodInsanityReactions;
 
-	// Token: 0x04003C68 RID: 15464
+	// Token: 0x04003C6E RID: 15470
 	public string[] BloodReactions;
 
-	// Token: 0x04003C69 RID: 15465
+	// Token: 0x04003C6F RID: 15471
 	public string[] BloodPoolReactions;
 
-	// Token: 0x04003C6A RID: 15466
+	// Token: 0x04003C70 RID: 15472
 	public string[] BloodyWeaponReactions;
 
-	// Token: 0x04003C6B RID: 15467
+	// Token: 0x04003C71 RID: 15473
 	public string[] LimbReactions;
 
-	// Token: 0x04003C6C RID: 15468
+	// Token: 0x04003C72 RID: 15474
 	public string[] WetBloodReactions;
 
-	// Token: 0x04003C6D RID: 15469
+	// Token: 0x04003C73 RID: 15475
 	public string[] InsanityReactions;
 
-	// Token: 0x04003C6E RID: 15470
+	// Token: 0x04003C74 RID: 15476
 	public string[] LewdReactions;
 
-	// Token: 0x04003C6F RID: 15471
+	// Token: 0x04003C75 RID: 15477
 	public string[] SuspiciousReactions;
 
-	// Token: 0x04003C70 RID: 15472
+	// Token: 0x04003C76 RID: 15478
 	public string[] MurderReactions;
 
-	// Token: 0x04003C71 RID: 15473
+	// Token: 0x04003C77 RID: 15479
 	public string[] CowardMurderReactions;
 
-	// Token: 0x04003C72 RID: 15474
+	// Token: 0x04003C78 RID: 15480
 	public string[] EvilMurderReactions;
 
-	// Token: 0x04003C73 RID: 15475
+	// Token: 0x04003C79 RID: 15481
 	public string[] HoldingBloodyClothingReactions;
 
-	// Token: 0x04003C74 RID: 15476
+	// Token: 0x04003C7A RID: 15482
 	public string[] PetBloodReports;
 
-	// Token: 0x04003C75 RID: 15477
+	// Token: 0x04003C7B RID: 15483
 	public string[] PetBloodReactions;
 
-	// Token: 0x04003C76 RID: 15478
+	// Token: 0x04003C7C RID: 15484
 	public string[] PetCorpseReports;
 
-	// Token: 0x04003C77 RID: 15479
+	// Token: 0x04003C7D RID: 15485
 	public string[] PetCorpseReactions;
 
-	// Token: 0x04003C78 RID: 15480
+	// Token: 0x04003C7E RID: 15486
 	public string[] PetLimbReports;
 
-	// Token: 0x04003C79 RID: 15481
+	// Token: 0x04003C7F RID: 15487
 	public string[] PetLimbReactions;
 
-	// Token: 0x04003C7A RID: 15482
+	// Token: 0x04003C80 RID: 15488
 	public string[] PetMurderReports;
 
-	// Token: 0x04003C7B RID: 15483
+	// Token: 0x04003C81 RID: 15489
 	public string[] PetMurderReactions;
 
-	// Token: 0x04003C7C RID: 15484
+	// Token: 0x04003C82 RID: 15490
 	public string[] PetWeaponReports;
 
-	// Token: 0x04003C7D RID: 15485
+	// Token: 0x04003C83 RID: 15491
 	public string[] PetWeaponReactions;
 
-	// Token: 0x04003C7E RID: 15486
+	// Token: 0x04003C84 RID: 15492
 	public string[] PetBloodyWeaponReports;
 
-	// Token: 0x04003C7F RID: 15487
+	// Token: 0x04003C85 RID: 15493
 	public string[] PetBloodyWeaponReactions;
 
-	// Token: 0x04003C80 RID: 15488
+	// Token: 0x04003C86 RID: 15494
 	public string[] HeroMurderReactions;
 
-	// Token: 0x04003C81 RID: 15489
+	// Token: 0x04003C87 RID: 15495
 	public string[] LonerMurderReactions;
 
-	// Token: 0x04003C82 RID: 15490
+	// Token: 0x04003C88 RID: 15496
 	public string[] LonerCorpseReactions;
 
-	// Token: 0x04003C83 RID: 15491
+	// Token: 0x04003C89 RID: 15497
 	public string[] EvilCorpseReactions;
 
-	// Token: 0x04003C84 RID: 15492
+	// Token: 0x04003C8A RID: 15498
 	public string[] EvilDelinquentCorpseReactions;
 
-	// Token: 0x04003C85 RID: 15493
+	// Token: 0x04003C8B RID: 15499
 	public string[] SocialDeathReactions;
 
-	// Token: 0x04003C86 RID: 15494
+	// Token: 0x04003C8C RID: 15500
 	public string[] LovestruckDeathReactions;
 
-	// Token: 0x04003C87 RID: 15495
+	// Token: 0x04003C8D RID: 15501
 	public string[] LovestruckMurderReports;
 
-	// Token: 0x04003C88 RID: 15496
+	// Token: 0x04003C8E RID: 15502
 	public string[] LovestruckCorpseReports;
 
-	// Token: 0x04003C89 RID: 15497
+	// Token: 0x04003C8F RID: 15503
 	public string[] SocialReports;
 
-	// Token: 0x04003C8A RID: 15498
+	// Token: 0x04003C90 RID: 15504
 	public string[] SocialFears;
 
-	// Token: 0x04003C8B RID: 15499
+	// Token: 0x04003C91 RID: 15505
 	public string[] SocialTerrors;
 
-	// Token: 0x04003C8C RID: 15500
+	// Token: 0x04003C92 RID: 15506
 	public string[] RepeatReactions;
 
-	// Token: 0x04003C8D RID: 15501
+	// Token: 0x04003C93 RID: 15507
 	public string[] CorpseReactions;
 
-	// Token: 0x04003C8E RID: 15502
+	// Token: 0x04003C94 RID: 15508
 	public string[] PoisonReactions;
 
-	// Token: 0x04003C8F RID: 15503
+	// Token: 0x04003C95 RID: 15509
 	public string[] PrankReactions;
 
-	// Token: 0x04003C90 RID: 15504
+	// Token: 0x04003C96 RID: 15510
 	public string[] InterruptReactions;
 
-	// Token: 0x04003C91 RID: 15505
+	// Token: 0x04003C97 RID: 15511
 	public string[] IntrusionReactions;
 
-	// Token: 0x04003C92 RID: 15506
+	// Token: 0x04003C98 RID: 15512
 	public string[] NoteReactions;
 
-	// Token: 0x04003C93 RID: 15507
+	// Token: 0x04003C99 RID: 15513
 	public string[] NoteReactionsMale;
 
-	// Token: 0x04003C94 RID: 15508
+	// Token: 0x04003C9A RID: 15514
 	public string[] OfferSnacks;
 
-	// Token: 0x04003C95 RID: 15509
+	// Token: 0x04003C9B RID: 15515
 	public string[] FoodAccepts;
 
-	// Token: 0x04003C96 RID: 15510
+	// Token: 0x04003C9C RID: 15516
 	public string[] FoodRejects;
 
-	// Token: 0x04003C97 RID: 15511
+	// Token: 0x04003C9D RID: 15517
 	public string[] EavesdropReactions;
 
-	// Token: 0x04003C98 RID: 15512
+	// Token: 0x04003C9E RID: 15518
 	public string[] ViolenceReactions;
 
-	// Token: 0x04003C99 RID: 15513
+	// Token: 0x04003C9F RID: 15519
 	public string[] EventEavesdropReactions;
 
-	// Token: 0x04003C9A RID: 15514
+	// Token: 0x04003CA0 RID: 15520
 	public string[] RivalEavesdropReactions;
 
-	// Token: 0x04003C9B RID: 15515
+	// Token: 0x04003CA1 RID: 15521
 	public string[] PickpocketReactions;
 
-	// Token: 0x04003C9C RID: 15516
+	// Token: 0x04003CA2 RID: 15522
 	public string[] RivalPickpocketReactions;
 
-	// Token: 0x04003C9D RID: 15517
+	// Token: 0x04003CA3 RID: 15523
 	public string[] DrownReactions;
 
-	// Token: 0x04003C9E RID: 15518
+	// Token: 0x04003CA4 RID: 15524
 	public string[] ParanoidReactions;
 
-	// Token: 0x04003C9F RID: 15519
+	// Token: 0x04003CA5 RID: 15525
 	public string[] TheftReactions;
 
-	// Token: 0x04003CA0 RID: 15520
+	// Token: 0x04003CA6 RID: 15526
 	public string[] TutorialReactions;
 
-	// Token: 0x04003CA1 RID: 15521
+	// Token: 0x04003CA7 RID: 15527
 	public string[] KilledMoods;
 
-	// Token: 0x04003CA2 RID: 15522
+	// Token: 0x04003CA8 RID: 15528
 	public string[] SendToLockers;
 
-	// Token: 0x04003CA3 RID: 15523
+	// Token: 0x04003CA9 RID: 15529
 	public string[] KnifeReactions;
 
-	// Token: 0x04003CA4 RID: 15524
+	// Token: 0x04003CAA RID: 15530
 	public string[] SyringeReactions;
 
-	// Token: 0x04003CA5 RID: 15525
+	// Token: 0x04003CAB RID: 15531
 	public string[] KatanaReactions;
 
-	// Token: 0x04003CA6 RID: 15526
+	// Token: 0x04003CAC RID: 15532
 	public string[] SawReactions;
 
-	// Token: 0x04003CA7 RID: 15527
+	// Token: 0x04003CAD RID: 15533
 	public string[] RitualReactions;
 
-	// Token: 0x04003CA8 RID: 15528
+	// Token: 0x04003CAE RID: 15534
 	public string[] BatReactions;
 
-	// Token: 0x04003CA9 RID: 15529
+	// Token: 0x04003CAF RID: 15535
 	public string[] ShovelReactions;
 
-	// Token: 0x04003CAA RID: 15530
+	// Token: 0x04003CB0 RID: 15536
 	public string[] DumbbellReactions;
 
-	// Token: 0x04003CAB RID: 15531
+	// Token: 0x04003CB1 RID: 15537
 	public string[] AxeReactions;
 
-	// Token: 0x04003CAC RID: 15532
+	// Token: 0x04003CB2 RID: 15538
 	public string[] PropReactions;
 
-	// Token: 0x04003CAD RID: 15533
+	// Token: 0x04003CB3 RID: 15539
 	public string[] DelinkWeaponReactions;
 
-	// Token: 0x04003CAE RID: 15534
+	// Token: 0x04003CB4 RID: 15540
 	public string[] ExtinguisherReactions;
 
-	// Token: 0x04003CAF RID: 15535
+	// Token: 0x04003CB5 RID: 15541
 	public string[] WrenchReactions;
 
-	// Token: 0x04003CB0 RID: 15536
+	// Token: 0x04003CB6 RID: 15542
 	public string[] GuitarReactions;
 
-	// Token: 0x04003CB1 RID: 15537
+	// Token: 0x04003CB7 RID: 15543
 	public string[] ScrapReactions;
 
-	// Token: 0x04003CB2 RID: 15538
+	// Token: 0x04003CB8 RID: 15544
 	public string[] WeaponBloodApologies;
 
-	// Token: 0x04003CB3 RID: 15539
+	// Token: 0x04003CB9 RID: 15545
 	public string[] WeaponApologies;
 
-	// Token: 0x04003CB4 RID: 15540
+	// Token: 0x04003CBA RID: 15546
 	public string[] BloodApologies;
 
-	// Token: 0x04003CB5 RID: 15541
+	// Token: 0x04003CBB RID: 15547
 	public string[] InsanityApologies;
 
-	// Token: 0x04003CB6 RID: 15542
+	// Token: 0x04003CBC RID: 15548
 	public string[] LewdApologies;
 
-	// Token: 0x04003CB7 RID: 15543
+	// Token: 0x04003CBD RID: 15549
 	public string[] SuspiciousApologies;
 
-	// Token: 0x04003CB8 RID: 15544
+	// Token: 0x04003CBE RID: 15550
 	public string[] EventApologies;
 
-	// Token: 0x04003CB9 RID: 15545
+	// Token: 0x04003CBF RID: 15551
 	public string[] ClassApologies;
 
-	// Token: 0x04003CBA RID: 15546
+	// Token: 0x04003CC0 RID: 15552
 	public string[] AccidentApologies;
 
-	// Token: 0x04003CBB RID: 15547
+	// Token: 0x04003CC1 RID: 15553
 	public string[] SadApologies;
 
-	// Token: 0x04003CBC RID: 15548
+	// Token: 0x04003CC2 RID: 15554
 	public string[] EavesdropApologies;
 
-	// Token: 0x04003CBD RID: 15549
+	// Token: 0x04003CC3 RID: 15555
 	public string[] ViolenceApologies;
 
-	// Token: 0x04003CBE RID: 15550
+	// Token: 0x04003CC4 RID: 15556
 	public string[] PickpocketApologies;
 
-	// Token: 0x04003CBF RID: 15551
+	// Token: 0x04003CC5 RID: 15557
 	public string[] CleaningApologies;
 
-	// Token: 0x04003CC0 RID: 15552
+	// Token: 0x04003CC6 RID: 15558
 	public string[] PoisonApologies;
 
-	// Token: 0x04003CC1 RID: 15553
+	// Token: 0x04003CC7 RID: 15559
 	public string[] HoldingBloodyClothingApologies;
 
-	// Token: 0x04003CC2 RID: 15554
+	// Token: 0x04003CC8 RID: 15560
 	public string[] TheftApologies;
 
-	// Token: 0x04003CC3 RID: 15555
+	// Token: 0x04003CC9 RID: 15561
 	public string[] TutorialApologies;
 
-	// Token: 0x04003CC4 RID: 15556
+	// Token: 0x04003CCA RID: 15562
 	public string[] Greetings;
 
-	// Token: 0x04003CC5 RID: 15557
+	// Token: 0x04003CCB RID: 15563
 	public string[] PlayerFarewells;
 
-	// Token: 0x04003CC6 RID: 15558
+	// Token: 0x04003CCC RID: 15564
 	public string[] StudentFarewells;
 
-	// Token: 0x04003CC7 RID: 15559
+	// Token: 0x04003CCD RID: 15565
 	public string[] Forgivings;
 
-	// Token: 0x04003CC8 RID: 15560
+	// Token: 0x04003CCE RID: 15566
 	public string[] AccidentForgivings;
 
-	// Token: 0x04003CC9 RID: 15561
+	// Token: 0x04003CCF RID: 15567
 	public string[] InsanityForgivings;
 
-	// Token: 0x04003CCA RID: 15562
+	// Token: 0x04003CD0 RID: 15568
 	public string[] PlayerCompliments;
 
-	// Token: 0x04003CCB RID: 15563
+	// Token: 0x04003CD1 RID: 15569
 	public string[] StudentHighCompliments;
 
-	// Token: 0x04003CCC RID: 15564
+	// Token: 0x04003CD2 RID: 15570
 	public string[] StudentMidCompliments;
 
-	// Token: 0x04003CCD RID: 15565
+	// Token: 0x04003CD3 RID: 15571
 	public string[] StudentLowCompliments;
 
-	// Token: 0x04003CCE RID: 15566
+	// Token: 0x04003CD4 RID: 15572
 	public string[] PlayerGossip;
 
-	// Token: 0x04003CCF RID: 15567
+	// Token: 0x04003CD5 RID: 15573
 	public string[] StudentGossip;
 
-	// Token: 0x04003CD0 RID: 15568
+	// Token: 0x04003CD6 RID: 15574
 	public string[] PlayerFollows;
 
-	// Token: 0x04003CD1 RID: 15569
+	// Token: 0x04003CD7 RID: 15575
 	public string[] StudentFollows;
 
-	// Token: 0x04003CD2 RID: 15570
+	// Token: 0x04003CD8 RID: 15576
 	public string[] PlayerLeaves;
 
-	// Token: 0x04003CD3 RID: 15571
+	// Token: 0x04003CD9 RID: 15577
 	public string[] StudentLeaves;
 
-	// Token: 0x04003CD4 RID: 15572
+	// Token: 0x04003CDA RID: 15578
 	public string[] StudentStays;
 
-	// Token: 0x04003CD5 RID: 15573
+	// Token: 0x04003CDB RID: 15579
 	public string[] PlayerDistracts;
 
-	// Token: 0x04003CD6 RID: 15574
+	// Token: 0x04003CDC RID: 15580
 	public string[] StudentDistracts;
 
-	// Token: 0x04003CD7 RID: 15575
+	// Token: 0x04003CDD RID: 15581
 	public string[] StudentDistractRefuses;
 
-	// Token: 0x04003CD8 RID: 15576
+	// Token: 0x04003CDE RID: 15582
 	public string[] StudentDistractBullyRefuses;
 
-	// Token: 0x04003CD9 RID: 15577
+	// Token: 0x04003CDF RID: 15583
 	public string[] StopFollowApologies;
 
-	// Token: 0x04003CDA RID: 15578
+	// Token: 0x04003CE0 RID: 15584
 	public string[] GrudgeWarnings;
 
-	// Token: 0x04003CDB RID: 15579
+	// Token: 0x04003CE1 RID: 15585
 	public string[] GrudgeRefusals;
 
-	// Token: 0x04003CDC RID: 15580
+	// Token: 0x04003CE2 RID: 15586
 	public string[] CowardGrudges;
 
-	// Token: 0x04003CDD RID: 15581
+	// Token: 0x04003CE3 RID: 15587
 	public string[] EvilGrudges;
 
-	// Token: 0x04003CDE RID: 15582
+	// Token: 0x04003CE4 RID: 15588
 	public string[] PlayerLove;
 
-	// Token: 0x04003CDF RID: 15583
+	// Token: 0x04003CE5 RID: 15589
 	public string[] SuitorLove;
 
-	// Token: 0x04003CE0 RID: 15584
+	// Token: 0x04003CE6 RID: 15590
 	public string[] RivalLove;
 
-	// Token: 0x04003CE1 RID: 15585
+	// Token: 0x04003CE7 RID: 15591
 	public string[] RequestMedicines;
 
-	// Token: 0x04003CE2 RID: 15586
+	// Token: 0x04003CE8 RID: 15592
 	public string[] ReturningWeapons;
 
-	// Token: 0x04003CE3 RID: 15587
+	// Token: 0x04003CE9 RID: 15593
 	public string[] Impatiences;
 
-	// Token: 0x04003CE4 RID: 15588
+	// Token: 0x04003CEA RID: 15594
 	public string[] ImpatientFarewells;
 
-	// Token: 0x04003CE5 RID: 15589
+	// Token: 0x04003CEB RID: 15595
 	public string[] Deaths;
 
-	// Token: 0x04003CE6 RID: 15590
+	// Token: 0x04003CEC RID: 15596
 	public string[] SenpaiInsanityReactions;
 
-	// Token: 0x04003CE7 RID: 15591
+	// Token: 0x04003CED RID: 15597
 	public string[] SenpaiWeaponReactions;
 
-	// Token: 0x04003CE8 RID: 15592
+	// Token: 0x04003CEE RID: 15598
 	public string[] SenpaiBloodReactions;
 
-	// Token: 0x04003CE9 RID: 15593
+	// Token: 0x04003CEF RID: 15599
 	public string[] SenpaiLewdReactions;
 
-	// Token: 0x04003CEA RID: 15594
+	// Token: 0x04003CF0 RID: 15600
 	public string[] SenpaiStalkingReactions;
 
-	// Token: 0x04003CEB RID: 15595
+	// Token: 0x04003CF1 RID: 15601
 	public string[] SenpaiMurderReactions;
 
-	// Token: 0x04003CEC RID: 15596
+	// Token: 0x04003CF2 RID: 15602
 	public string[] SenpaiCorpseReactions;
 
-	// Token: 0x04003CED RID: 15597
+	// Token: 0x04003CF3 RID: 15603
 	public string[] SenpaiViolenceReactions;
 
-	// Token: 0x04003CEE RID: 15598
+	// Token: 0x04003CF4 RID: 15604
 	public string[] SenpaiRivalDeathReactions;
 
-	// Token: 0x04003CEF RID: 15599
+	// Token: 0x04003CF5 RID: 15605
 	public string[] RaibaruRivalDeathReactions;
 
-	// Token: 0x04003CF0 RID: 15600
+	// Token: 0x04003CF6 RID: 15606
 	public string[] OsanaObstacleDeathReactions;
 
-	// Token: 0x04003CF1 RID: 15601
+	// Token: 0x04003CF7 RID: 15607
 	public string[] TeacherInsanityReactions;
 
-	// Token: 0x04003CF2 RID: 15602
+	// Token: 0x04003CF8 RID: 15608
 	public string[] TeacherWeaponReactions;
 
-	// Token: 0x04003CF3 RID: 15603
+	// Token: 0x04003CF9 RID: 15609
 	public string[] TeacherBloodReactions;
 
-	// Token: 0x04003CF4 RID: 15604
+	// Token: 0x04003CFA RID: 15610
 	public string[] TeacherInsanityHostiles;
 
-	// Token: 0x04003CF5 RID: 15605
+	// Token: 0x04003CFB RID: 15611
 	public string[] TeacherWeaponHostiles;
 
-	// Token: 0x04003CF6 RID: 15606
+	// Token: 0x04003CFC RID: 15612
 	public string[] TeacherBloodHostiles;
 
-	// Token: 0x04003CF7 RID: 15607
+	// Token: 0x04003CFD RID: 15613
 	public string[] TeacherCoverUpHostiles;
 
-	// Token: 0x04003CF8 RID: 15608
+	// Token: 0x04003CFE RID: 15614
 	public string[] TeacherLewdReactions;
 
-	// Token: 0x04003CF9 RID: 15609
+	// Token: 0x04003CFF RID: 15615
 	public string[] TeacherTrespassReactions;
 
-	// Token: 0x04003CFA RID: 15610
+	// Token: 0x04003D00 RID: 15616
 	public string[] TeacherLateReactions;
 
-	// Token: 0x04003CFB RID: 15611
+	// Token: 0x04003D01 RID: 15617
 	public string[] TeacherReportReactions;
 
-	// Token: 0x04003CFC RID: 15612
+	// Token: 0x04003D02 RID: 15618
 	public string[] TeacherCorpseReactions;
 
-	// Token: 0x04003CFD RID: 15613
+	// Token: 0x04003D03 RID: 15619
 	public string[] TeacherCorpseInspections;
 
-	// Token: 0x04003CFE RID: 15614
+	// Token: 0x04003D04 RID: 15620
 	public string[] TeacherPoliceReports;
 
-	// Token: 0x04003CFF RID: 15615
+	// Token: 0x04003D05 RID: 15621
 	public string[] TeacherAttackReactions;
 
-	// Token: 0x04003D00 RID: 15616
+	// Token: 0x04003D06 RID: 15622
 	public string[] TeacherMurderReactions;
 
-	// Token: 0x04003D01 RID: 15617
+	// Token: 0x04003D07 RID: 15623
 	public string[] TeacherPrankReactions;
 
-	// Token: 0x04003D02 RID: 15618
+	// Token: 0x04003D08 RID: 15624
 	public string[] TeacherTheftReactions;
 
-	// Token: 0x04003D03 RID: 15619
+	// Token: 0x04003D09 RID: 15625
 	public string[] DelinquentAnnoys;
 
-	// Token: 0x04003D04 RID: 15620
+	// Token: 0x04003D0A RID: 15626
 	public string[] DelinquentCases;
 
-	// Token: 0x04003D05 RID: 15621
+	// Token: 0x04003D0B RID: 15627
 	public string[] DelinquentShoves;
 
-	// Token: 0x04003D06 RID: 15622
+	// Token: 0x04003D0C RID: 15628
 	public string[] DelinquentReactions;
 
-	// Token: 0x04003D07 RID: 15623
+	// Token: 0x04003D0D RID: 15629
 	public string[] DelinquentWeaponReactions;
 
-	// Token: 0x04003D08 RID: 15624
+	// Token: 0x04003D0E RID: 15630
 	public string[] DelinquentThreateneds;
 
-	// Token: 0x04003D09 RID: 15625
+	// Token: 0x04003D0F RID: 15631
 	public string[] DelinquentTaunts;
 
-	// Token: 0x04003D0A RID: 15626
+	// Token: 0x04003D10 RID: 15632
 	public string[] DelinquentCalms;
 
-	// Token: 0x04003D0B RID: 15627
+	// Token: 0x04003D11 RID: 15633
 	public string[] DelinquentFights;
 
-	// Token: 0x04003D0C RID: 15628
+	// Token: 0x04003D12 RID: 15634
 	public string[] DelinquentAvenges;
 
-	// Token: 0x04003D0D RID: 15629
+	// Token: 0x04003D13 RID: 15635
 	public string[] DelinquentWins;
 
-	// Token: 0x04003D0E RID: 15630
+	// Token: 0x04003D14 RID: 15636
 	public string[] DelinquentSurrenders;
 
-	// Token: 0x04003D0F RID: 15631
+	// Token: 0x04003D15 RID: 15637
 	public string[] DelinquentNoSurrenders;
 
-	// Token: 0x04003D10 RID: 15632
+	// Token: 0x04003D16 RID: 15638
 	public string[] DelinquentMurderReactions;
 
-	// Token: 0x04003D11 RID: 15633
+	// Token: 0x04003D17 RID: 15639
 	public string[] DelinquentCorpseReactions;
 
-	// Token: 0x04003D12 RID: 15634
+	// Token: 0x04003D18 RID: 15640
 	public string[] DelinquentFriendCorpseReactions;
 
-	// Token: 0x04003D13 RID: 15635
+	// Token: 0x04003D19 RID: 15641
 	public string[] DelinquentResumes;
 
-	// Token: 0x04003D14 RID: 15636
+	// Token: 0x04003D1A RID: 15642
 	public string[] DelinquentFlees;
 
-	// Token: 0x04003D15 RID: 15637
+	// Token: 0x04003D1B RID: 15643
 	public string[] DelinquentEnemyFlees;
 
-	// Token: 0x04003D16 RID: 15638
+	// Token: 0x04003D1C RID: 15644
 	public string[] DelinquentFriendFlees;
 
-	// Token: 0x04003D17 RID: 15639
+	// Token: 0x04003D1D RID: 15645
 	public string[] DelinquentInjuredFlees;
 
-	// Token: 0x04003D18 RID: 15640
+	// Token: 0x04003D1E RID: 15646
 	public string[] DelinquentCheers;
 
-	// Token: 0x04003D19 RID: 15641
+	// Token: 0x04003D1F RID: 15647
 	public string[] DelinquentHmms;
 
-	// Token: 0x04003D1A RID: 15642
+	// Token: 0x04003D20 RID: 15648
 	public string[] DelinquentGrudges;
 
-	// Token: 0x04003D1B RID: 15643
+	// Token: 0x04003D21 RID: 15649
 	public string[] Dismissives;
 
-	// Token: 0x04003D1C RID: 15644
+	// Token: 0x04003D22 RID: 15650
 	public string[] LostPhones;
 
-	// Token: 0x04003D1D RID: 15645
+	// Token: 0x04003D23 RID: 15651
 	public string[] RivalLostPhones;
 
-	// Token: 0x04003D1E RID: 15646
+	// Token: 0x04003D24 RID: 15652
 	public string[] StudentMurderReports;
 
-	// Token: 0x04003D1F RID: 15647
+	// Token: 0x04003D25 RID: 15653
 	public string[] YandereWhimpers;
 
-	// Token: 0x04003D20 RID: 15648
+	// Token: 0x04003D26 RID: 15654
 	public string[] SplashReactions;
 
-	// Token: 0x04003D21 RID: 15649
+	// Token: 0x04003D27 RID: 15655
 	public string[] SplashReactionsMale;
 
-	// Token: 0x04003D22 RID: 15650
+	// Token: 0x04003D28 RID: 15656
 	public string[] RivalSplashReactions;
 
-	// Token: 0x04003D23 RID: 15651
+	// Token: 0x04003D29 RID: 15657
 	public string[] LightSwitchReactions;
 
-	// Token: 0x04003D24 RID: 15652
+	// Token: 0x04003D2A RID: 15658
 	public string[] PhotoAnnoyances;
 
-	// Token: 0x04003D25 RID: 15653
+	// Token: 0x04003D2B RID: 15659
 	public string[] Task6Lines;
 
-	// Token: 0x04003D26 RID: 15654
+	// Token: 0x04003D2C RID: 15660
 	public string[] Task7Lines;
 
-	// Token: 0x04003D27 RID: 15655
+	// Token: 0x04003D2D RID: 15661
 	public string[] Task8Lines;
 
-	// Token: 0x04003D28 RID: 15656
+	// Token: 0x04003D2E RID: 15662
 	public string[] Task11Lines;
 
-	// Token: 0x04003D29 RID: 15657
+	// Token: 0x04003D2F RID: 15663
 	public string[] Task13Lines;
 
-	// Token: 0x04003D2A RID: 15658
+	// Token: 0x04003D30 RID: 15664
 	public string[] Task14Lines;
 
-	// Token: 0x04003D2B RID: 15659
+	// Token: 0x04003D31 RID: 15665
 	public string[] Task15Lines;
 
-	// Token: 0x04003D2C RID: 15660
+	// Token: 0x04003D32 RID: 15666
 	public string[] Task25Lines;
 
-	// Token: 0x04003D2D RID: 15661
+	// Token: 0x04003D33 RID: 15667
 	public string[] Task28Lines;
 
-	// Token: 0x04003D2E RID: 15662
+	// Token: 0x04003D34 RID: 15668
 	public string[] Task30Lines;
 
-	// Token: 0x04003D2F RID: 15663
+	// Token: 0x04003D35 RID: 15669
 	public string[] Task32Lines;
 
-	// Token: 0x04003D30 RID: 15664
+	// Token: 0x04003D36 RID: 15670
 	public string[] Task33Lines;
 
-	// Token: 0x04003D31 RID: 15665
+	// Token: 0x04003D37 RID: 15671
 	public string[] Task34Lines;
 
-	// Token: 0x04003D32 RID: 15666
+	// Token: 0x04003D38 RID: 15672
 	public string[] Task36Lines;
 
-	// Token: 0x04003D33 RID: 15667
+	// Token: 0x04003D39 RID: 15673
 	public string[] Task37Lines;
 
-	// Token: 0x04003D34 RID: 15668
+	// Token: 0x04003D3A RID: 15674
 	public string[] Task38Lines;
 
-	// Token: 0x04003D35 RID: 15669
+	// Token: 0x04003D3B RID: 15675
 	public string[] Task46Lines;
 
-	// Token: 0x04003D36 RID: 15670
+	// Token: 0x04003D3C RID: 15676
 	public string[] Task52Lines;
 
-	// Token: 0x04003D37 RID: 15671
+	// Token: 0x04003D3D RID: 15677
 	public string[] Task76Lines;
 
-	// Token: 0x04003D38 RID: 15672
+	// Token: 0x04003D3E RID: 15678
 	public string[] Task77Lines;
 
-	// Token: 0x04003D39 RID: 15673
+	// Token: 0x04003D3F RID: 15679
 	public string[] Task78Lines;
 
-	// Token: 0x04003D3A RID: 15674
+	// Token: 0x04003D40 RID: 15680
 	public string[] Task79Lines;
 
-	// Token: 0x04003D3B RID: 15675
+	// Token: 0x04003D41 RID: 15681
 	public string[] Task80Lines;
 
-	// Token: 0x04003D3C RID: 15676
+	// Token: 0x04003D42 RID: 15682
 	public string[] Task81Lines;
 
-	// Token: 0x04003D3D RID: 15677
+	// Token: 0x04003D43 RID: 15683
 	public string[] TaskGenericLines;
 
-	// Token: 0x04003D3E RID: 15678
+	// Token: 0x04003D44 RID: 15684
 	public string[] TaskGenericEightiesLines;
 
-	// Token: 0x04003D3F RID: 15679
+	// Token: 0x04003D45 RID: 15685
 	public string[] TaskGenericEightiesLinesMale;
 
-	// Token: 0x04003D40 RID: 15680
+	// Token: 0x04003D46 RID: 15686
 	public string[] TaskGenericEightiesLinesFemale;
 
-	// Token: 0x04003D41 RID: 15681
+	// Token: 0x04003D47 RID: 15687
 	public string[] TaskInquiries;
 
-	// Token: 0x04003D42 RID: 15682
+	// Token: 0x04003D48 RID: 15688
 	public string[] Task79LinesEighties;
 
-	// Token: 0x04003D43 RID: 15683
+	// Token: 0x04003D49 RID: 15689
 	public string[] Club0Info;
 
-	// Token: 0x04003D44 RID: 15684
+	// Token: 0x04003D4A RID: 15690
 	public string[] Club1Info;
 
-	// Token: 0x04003D45 RID: 15685
+	// Token: 0x04003D4B RID: 15691
 	public string[] Club2Info;
 
-	// Token: 0x04003D46 RID: 15686
+	// Token: 0x04003D4C RID: 15692
 	public string[] Club3Info;
 
-	// Token: 0x04003D47 RID: 15687
+	// Token: 0x04003D4D RID: 15693
 	public string[] Club4Info;
 
-	// Token: 0x04003D48 RID: 15688
+	// Token: 0x04003D4E RID: 15694
 	public string[] Club5Info;
 
-	// Token: 0x04003D49 RID: 15689
+	// Token: 0x04003D4F RID: 15695
 	public string[] Club6Info;
 
-	// Token: 0x04003D4A RID: 15690
+	// Token: 0x04003D50 RID: 15696
 	public string[] Club7InfoLight;
 
-	// Token: 0x04003D4B RID: 15691
+	// Token: 0x04003D51 RID: 15697
 	public string[] Club7InfoDark;
 
-	// Token: 0x04003D4C RID: 15692
+	// Token: 0x04003D52 RID: 15698
 	public string[] Club8Info;
 
-	// Token: 0x04003D4D RID: 15693
+	// Token: 0x04003D53 RID: 15699
 	public string[] Club9Info;
 
-	// Token: 0x04003D4E RID: 15694
+	// Token: 0x04003D54 RID: 15700
 	public string[] Club10Info;
 
-	// Token: 0x04003D4F RID: 15695
+	// Token: 0x04003D55 RID: 15701
 	public string[] Club11Info;
 
-	// Token: 0x04003D50 RID: 15696
+	// Token: 0x04003D56 RID: 15702
 	public string[] Club12Info;
 
-	// Token: 0x04003D51 RID: 15697
+	// Token: 0x04003D57 RID: 15703
 	public string[] Club13Info;
 
-	// Token: 0x04003D52 RID: 15698
+	// Token: 0x04003D58 RID: 15704
 	public string[] SubClub3Info;
 
-	// Token: 0x04003D53 RID: 15699
+	// Token: 0x04003D59 RID: 15705
 	public string[] ClubGreetings;
 
-	// Token: 0x04003D54 RID: 15700
+	// Token: 0x04003D5A RID: 15706
 	public string[] ClubUnwelcomes;
 
-	// Token: 0x04003D55 RID: 15701
+	// Token: 0x04003D5B RID: 15707
 	public string[] ClubKicks;
 
-	// Token: 0x04003D56 RID: 15702
+	// Token: 0x04003D5C RID: 15708
 	public string[] ClubJoins;
 
-	// Token: 0x04003D57 RID: 15703
+	// Token: 0x04003D5D RID: 15709
 	public string[] ClubAccepts;
 
-	// Token: 0x04003D58 RID: 15704
+	// Token: 0x04003D5E RID: 15710
 	public string[] ClubRefuses;
 
-	// Token: 0x04003D59 RID: 15705
+	// Token: 0x04003D5F RID: 15711
 	public string[] ClubRejoins;
 
-	// Token: 0x04003D5A RID: 15706
+	// Token: 0x04003D60 RID: 15712
 	public string[] ClubExclusives;
 
-	// Token: 0x04003D5B RID: 15707
+	// Token: 0x04003D61 RID: 15713
 	public string[] ClubGrudges;
 
-	// Token: 0x04003D5C RID: 15708
+	// Token: 0x04003D62 RID: 15714
 	public string[] ClubQuits;
 
-	// Token: 0x04003D5D RID: 15709
+	// Token: 0x04003D63 RID: 15715
 	public string[] ClubConfirms;
 
-	// Token: 0x04003D5E RID: 15710
+	// Token: 0x04003D64 RID: 15716
 	public string[] ClubDenies;
 
-	// Token: 0x04003D5F RID: 15711
+	// Token: 0x04003D65 RID: 15717
 	public string[] ClubFarewells;
 
-	// Token: 0x04003D60 RID: 15712
+	// Token: 0x04003D66 RID: 15718
 	public string[] ClubActivities;
 
-	// Token: 0x04003D61 RID: 15713
+	// Token: 0x04003D67 RID: 15719
 	public string[] ClubEarlies;
 
-	// Token: 0x04003D62 RID: 15714
+	// Token: 0x04003D68 RID: 15720
 	public string[] ClubLates;
 
-	// Token: 0x04003D63 RID: 15715
+	// Token: 0x04003D69 RID: 15721
 	public string[] ClubYeses;
 
-	// Token: 0x04003D64 RID: 15716
+	// Token: 0x04003D6A RID: 15722
 	public string[] ClubNoes;
 
-	// Token: 0x04003D65 RID: 15717
+	// Token: 0x04003D6B RID: 15723
 	public string[] ClubPractices;
 
-	// Token: 0x04003D66 RID: 15718
+	// Token: 0x04003D6C RID: 15724
 	public string[] ClubPracticeYeses;
 
-	// Token: 0x04003D67 RID: 15719
+	// Token: 0x04003D6D RID: 15725
 	public string[] ClubPracticeNoes;
 
-	// Token: 0x04003D68 RID: 15720
+	// Token: 0x04003D6E RID: 15726
 	public string[] Eulogies;
 
-	// Token: 0x04003D69 RID: 15721
+	// Token: 0x04003D6F RID: 15727
 	public string[] AskForHelps;
 
-	// Token: 0x04003D6A RID: 15722
+	// Token: 0x04003D70 RID: 15728
 	public string[] GiveHelps;
 
-	// Token: 0x04003D6B RID: 15723
+	// Token: 0x04003D71 RID: 15729
 	public string[] RejectHelps;
 
-	// Token: 0x04003D6C RID: 15724
+	// Token: 0x04003D72 RID: 15730
 	public string[] GasWarnings;
 
-	// Token: 0x04003D6D RID: 15725
+	// Token: 0x04003D73 RID: 15731
 	public string[] ObstacleMurderReactions;
 
-	// Token: 0x04003D6E RID: 15726
+	// Token: 0x04003D74 RID: 15732
 	public string[] ObstaclePoisonReactions;
 
-	// Token: 0x04003D6F RID: 15727
+	// Token: 0x04003D75 RID: 15733
 	public string[] StrictReport;
 
-	// Token: 0x04003D70 RID: 15728
+	// Token: 0x04003D76 RID: 15734
 	public string[] CasualReport;
 
-	// Token: 0x04003D71 RID: 15729
+	// Token: 0x04003D77 RID: 15735
 	public string[] GraceReport;
 
-	// Token: 0x04003D72 RID: 15730
+	// Token: 0x04003D78 RID: 15736
 	public string[] EdgyReport;
 
-	// Token: 0x04003D73 RID: 15731
+	// Token: 0x04003D79 RID: 15737
 	public string[] BreakingUp;
 
-	// Token: 0x04003D74 RID: 15732
+	// Token: 0x04003D7A RID: 15738
 	public string[] Spraying;
 
-	// Token: 0x04003D75 RID: 15733
+	// Token: 0x04003D7B RID: 15739
 	public string[] Shoving;
 
-	// Token: 0x04003D76 RID: 15734
+	// Token: 0x04003D7C RID: 15740
 	public string[] Chasing;
 
-	// Token: 0x04003D77 RID: 15735
+	// Token: 0x04003D7D RID: 15741
 	public string[] CouncilCorpseReactions;
 
-	// Token: 0x04003D78 RID: 15736
+	// Token: 0x04003D7E RID: 15742
 	public string[] CouncilToCounselors;
 
-	// Token: 0x04003D79 RID: 15737
+	// Token: 0x04003D7F RID: 15743
 	public string[] HmmReactions;
 
-	// Token: 0x04003D7A RID: 15738
+	// Token: 0x04003D80 RID: 15744
 	public string InfoNotice;
 
-	// Token: 0x04003D7B RID: 15739
+	// Token: 0x04003D81 RID: 15745
 	public string CustomText;
 
-	// Token: 0x04003D7C RID: 15740
+	// Token: 0x04003D82 RID: 15746
 	public int PreviousRandom;
 
-	// Token: 0x04003D7D RID: 15741
+	// Token: 0x04003D83 RID: 15747
 	public int RandomID;
 
-	// Token: 0x04003D7E RID: 15742
+	// Token: 0x04003D84 RID: 15748
 	public float Timer;
 
-	// Token: 0x04003D7F RID: 15743
+	// Token: 0x04003D85 RID: 15749
 	public int StudentID;
 
-	// Token: 0x04003D80 RID: 15744
+	// Token: 0x04003D86 RID: 15750
 	public PersonaSubtitleScript PersonaSubtitle;
 
-	// Token: 0x04003D81 RID: 15745
+	// Token: 0x04003D87 RID: 15751
 	public AudioClip LongestSilence;
 
-	// Token: 0x04003D82 RID: 15746
+	// Token: 0x04003D88 RID: 15752
 	public SubtitleType PreviousSubtitle;
 
-	// Token: 0x04003D83 RID: 15747
+	// Token: 0x04003D89 RID: 15753
 	private int PreviousStudentID;
 
-	// Token: 0x04003D84 RID: 15748
+	// Token: 0x04003D8A RID: 15754
 	public AudioClip[] NoteReactionClips;
 
-	// Token: 0x04003D85 RID: 15749
+	// Token: 0x04003D8B RID: 15755
 	public AudioClip[] NoteReactionMaleClips;
 
-	// Token: 0x04003D86 RID: 15750
+	// Token: 0x04003D8C RID: 15756
 	public AudioClip[] GrudgeWarningClips;
 
-	// Token: 0x04003D87 RID: 15751
+	// Token: 0x04003D8D RID: 15757
 	public AudioClip[] SenpaiInsanityReactionClips;
 
-	// Token: 0x04003D88 RID: 15752
+	// Token: 0x04003D8E RID: 15758
 	public AudioClip[] SenpaiWeaponReactionClips;
 
-	// Token: 0x04003D89 RID: 15753
+	// Token: 0x04003D8F RID: 15759
 	public AudioClip[] SenpaiBloodReactionClips;
 
-	// Token: 0x04003D8A RID: 15754
+	// Token: 0x04003D90 RID: 15760
 	public AudioClip[] SenpaiLewdReactionClips;
 
-	// Token: 0x04003D8B RID: 15755
+	// Token: 0x04003D91 RID: 15761
 	public AudioClip[] SenpaiStalkingReactionClips;
 
-	// Token: 0x04003D8C RID: 15756
+	// Token: 0x04003D92 RID: 15762
 	public AudioClip[] SenpaiMurderReactionClips;
 
-	// Token: 0x04003D8D RID: 15757
+	// Token: 0x04003D93 RID: 15763
 	public AudioClip[] SenpaiViolenceReactionClips;
 
-	// Token: 0x04003D8E RID: 15758
+	// Token: 0x04003D94 RID: 15764
 	public AudioClip[] SenpaiRivalDeathReactionClips;
 
-	// Token: 0x04003D8F RID: 15759
+	// Token: 0x04003D95 RID: 15765
 	public AudioClip[] RaibaruRivalDeathReactionClips;
 
-	// Token: 0x04003D90 RID: 15760
+	// Token: 0x04003D96 RID: 15766
 	public AudioClip[] OsanaObstacleDeathReactionClips;
 
-	// Token: 0x04003D91 RID: 15761
+	// Token: 0x04003D97 RID: 15767
 	public AudioClip[] YandereWhimperClips;
 
-	// Token: 0x04003D92 RID: 15762
+	// Token: 0x04003D98 RID: 15768
 	public AudioClip[] TheftClips;
 
-	// Token: 0x04003D93 RID: 15763
+	// Token: 0x04003D99 RID: 15769
 	public AudioClip[] TeacherWeaponClips;
 
-	// Token: 0x04003D94 RID: 15764
+	// Token: 0x04003D9A RID: 15770
 	public AudioClip[] TeacherBloodClips;
 
-	// Token: 0x04003D95 RID: 15765
+	// Token: 0x04003D9B RID: 15771
 	public AudioClip[] TeacherInsanityClips;
 
-	// Token: 0x04003D96 RID: 15766
+	// Token: 0x04003D9C RID: 15772
 	public AudioClip[] TeacherWeaponHostileClips;
 
-	// Token: 0x04003D97 RID: 15767
+	// Token: 0x04003D9D RID: 15773
 	public AudioClip[] TeacherBloodHostileClips;
 
-	// Token: 0x04003D98 RID: 15768
+	// Token: 0x04003D9E RID: 15774
 	public AudioClip[] TeacherInsanityHostileClips;
 
-	// Token: 0x04003D99 RID: 15769
+	// Token: 0x04003D9F RID: 15775
 	public AudioClip[] TeacherCoverUpHostileClips;
 
-	// Token: 0x04003D9A RID: 15770
+	// Token: 0x04003DA0 RID: 15776
 	public AudioClip[] TeacherLewdClips;
 
-	// Token: 0x04003D9B RID: 15771
+	// Token: 0x04003DA1 RID: 15777
 	public AudioClip[] TeacherTrespassClips;
 
-	// Token: 0x04003D9C RID: 15772
+	// Token: 0x04003DA2 RID: 15778
 	public AudioClip[] TeacherLateClips;
 
-	// Token: 0x04003D9D RID: 15773
+	// Token: 0x04003DA3 RID: 15779
 	public AudioClip[] TeacherReportClips;
 
-	// Token: 0x04003D9E RID: 15774
+	// Token: 0x04003DA4 RID: 15780
 	public AudioClip[] TeacherCorpseClips;
 
-	// Token: 0x04003D9F RID: 15775
+	// Token: 0x04003DA5 RID: 15781
 	public AudioClip[] TeacherInspectClips;
 
-	// Token: 0x04003DA0 RID: 15776
+	// Token: 0x04003DA6 RID: 15782
 	public AudioClip[] TeacherPoliceClips;
 
-	// Token: 0x04003DA1 RID: 15777
+	// Token: 0x04003DA7 RID: 15783
 	public AudioClip[] TeacherAttackClips;
 
-	// Token: 0x04003DA2 RID: 15778
+	// Token: 0x04003DA8 RID: 15784
 	public AudioClip[] TeacherMurderClips;
 
-	// Token: 0x04003DA3 RID: 15779
+	// Token: 0x04003DA9 RID: 15785
 	public AudioClip[] TeacherPrankClips;
 
-	// Token: 0x04003DA4 RID: 15780
+	// Token: 0x04003DAA RID: 15786
 	public AudioClip[] TeacherTheftClips;
 
-	// Token: 0x04003DA5 RID: 15781
+	// Token: 0x04003DAB RID: 15787
 	public AudioClip[] LostPhoneClips;
 
-	// Token: 0x04003DA6 RID: 15782
+	// Token: 0x04003DAC RID: 15788
 	public AudioClip[] RivalLostPhoneClips;
 
-	// Token: 0x04003DA7 RID: 15783
+	// Token: 0x04003DAD RID: 15789
 	public AudioClip[] PickpocketReactionClips;
 
-	// Token: 0x04003DA8 RID: 15784
+	// Token: 0x04003DAE RID: 15790
 	public AudioClip[] RivalPickpocketReactionClips;
 
-	// Token: 0x04003DA9 RID: 15785
+	// Token: 0x04003DAF RID: 15791
 	public AudioClip[] SplashReactionClips;
 
-	// Token: 0x04003DAA RID: 15786
+	// Token: 0x04003DB0 RID: 15792
 	public AudioClip[] SplashReactionMaleClips;
 
-	// Token: 0x04003DAB RID: 15787
+	// Token: 0x04003DB1 RID: 15793
 	public AudioClip[] RivalSplashReactionClips;
 
-	// Token: 0x04003DAC RID: 15788
+	// Token: 0x04003DB2 RID: 15794
 	public AudioClip[] DrownReactionClips;
 
-	// Token: 0x04003DAD RID: 15789
+	// Token: 0x04003DB3 RID: 15795
 	public AudioClip[] LightSwitchClips;
 
-	// Token: 0x04003DAE RID: 15790
+	// Token: 0x04003DB4 RID: 15796
 	public AudioClip[] Task6Clips;
 
-	// Token: 0x04003DAF RID: 15791
+	// Token: 0x04003DB5 RID: 15797
 	public AudioClip[] Task7Clips;
 
-	// Token: 0x04003DB0 RID: 15792
+	// Token: 0x04003DB6 RID: 15798
 	public AudioClip[] Task8Clips;
 
-	// Token: 0x04003DB1 RID: 15793
+	// Token: 0x04003DB7 RID: 15799
 	public AudioClip[] Task11Clips;
 
-	// Token: 0x04003DB2 RID: 15794
+	// Token: 0x04003DB8 RID: 15800
 	public AudioClip[] Task13Clips;
 
-	// Token: 0x04003DB3 RID: 15795
+	// Token: 0x04003DB9 RID: 15801
 	public AudioClip[] Task14Clips;
 
-	// Token: 0x04003DB4 RID: 15796
+	// Token: 0x04003DBA RID: 15802
 	public AudioClip[] Task15Clips;
 
-	// Token: 0x04003DB5 RID: 15797
+	// Token: 0x04003DBB RID: 15803
 	public AudioClip[] Task25Clips;
 
-	// Token: 0x04003DB6 RID: 15798
+	// Token: 0x04003DBC RID: 15804
 	public AudioClip[] Task28Clips;
 
-	// Token: 0x04003DB7 RID: 15799
+	// Token: 0x04003DBD RID: 15805
 	public AudioClip[] Task30Clips;
 
-	// Token: 0x04003DB8 RID: 15800
+	// Token: 0x04003DBE RID: 15806
 	public AudioClip[] Task32Clips;
 
-	// Token: 0x04003DB9 RID: 15801
+	// Token: 0x04003DBF RID: 15807
 	public AudioClip[] Task33Clips;
 
-	// Token: 0x04003DBA RID: 15802
+	// Token: 0x04003DC0 RID: 15808
 	public AudioClip[] Task34Clips;
 
-	// Token: 0x04003DBB RID: 15803
+	// Token: 0x04003DC1 RID: 15809
 	public AudioClip[] Task36Clips;
 
-	// Token: 0x04003DBC RID: 15804
+	// Token: 0x04003DC2 RID: 15810
 	public AudioClip[] Task37Clips;
 
-	// Token: 0x04003DBD RID: 15805
+	// Token: 0x04003DC3 RID: 15811
 	public AudioClip[] Task38Clips;
 
-	// Token: 0x04003DBE RID: 15806
+	// Token: 0x04003DC4 RID: 15812
 	public AudioClip[] Task46Clips;
 
-	// Token: 0x04003DBF RID: 15807
+	// Token: 0x04003DC5 RID: 15813
 	public AudioClip[] Task52Clips;
 
-	// Token: 0x04003DC0 RID: 15808
+	// Token: 0x04003DC6 RID: 15814
 	public AudioClip[] Task76Clips;
 
-	// Token: 0x04003DC1 RID: 15809
+	// Token: 0x04003DC7 RID: 15815
 	public AudioClip[] Task77Clips;
 
-	// Token: 0x04003DC2 RID: 15810
+	// Token: 0x04003DC8 RID: 15816
 	public AudioClip[] Task78Clips;
 
-	// Token: 0x04003DC3 RID: 15811
+	// Token: 0x04003DC9 RID: 15817
 	public AudioClip[] Task79Clips;
 
-	// Token: 0x04003DC4 RID: 15812
+	// Token: 0x04003DCA RID: 15818
 	public AudioClip[] Task80Clips;
 
-	// Token: 0x04003DC5 RID: 15813
+	// Token: 0x04003DCB RID: 15819
 	public AudioClip[] Task81Clips;
 
-	// Token: 0x04003DC6 RID: 15814
+	// Token: 0x04003DCC RID: 15820
 	public AudioClip[] TaskGenericMaleClips;
 
-	// Token: 0x04003DC7 RID: 15815
+	// Token: 0x04003DCD RID: 15821
 	public AudioClip[] TaskGenericFemaleClips;
 
-	// Token: 0x04003DC8 RID: 15816
+	// Token: 0x04003DCE RID: 15822
 	public AudioClip[] TaskGenericEightiesMaleClips;
 
-	// Token: 0x04003DC9 RID: 15817
+	// Token: 0x04003DCF RID: 15823
 	public AudioClip[] TaskGenericEightiesFemaleClips;
 
-	// Token: 0x04003DCA RID: 15818
+	// Token: 0x04003DD0 RID: 15824
 	public AudioClip[] TaskInquiryClips;
 
-	// Token: 0x04003DCB RID: 15819
+	// Token: 0x04003DD1 RID: 15825
 	public AudioClip[] Task79ClipsEighties;
 
-	// Token: 0x04003DCC RID: 15820
+	// Token: 0x04003DD2 RID: 15826
 	public AudioClip[] TutorialReactionClips;
 
-	// Token: 0x04003DCD RID: 15821
+	// Token: 0x04003DD3 RID: 15827
 	public AudioClip[] Club0Clips;
 
-	// Token: 0x04003DCE RID: 15822
+	// Token: 0x04003DD4 RID: 15828
 	public AudioClip[] Club1Clips;
 
-	// Token: 0x04003DCF RID: 15823
+	// Token: 0x04003DD5 RID: 15829
 	public AudioClip[] Club2Clips;
 
-	// Token: 0x04003DD0 RID: 15824
+	// Token: 0x04003DD6 RID: 15830
 	public AudioClip[] Club3Clips;
 
-	// Token: 0x04003DD1 RID: 15825
+	// Token: 0x04003DD7 RID: 15831
 	public AudioClip[] Club4Clips;
 
-	// Token: 0x04003DD2 RID: 15826
+	// Token: 0x04003DD8 RID: 15832
 	public AudioClip[] Club5Clips;
 
-	// Token: 0x04003DD3 RID: 15827
+	// Token: 0x04003DD9 RID: 15833
 	public AudioClip[] Club6Clips;
 
-	// Token: 0x04003DD4 RID: 15828
+	// Token: 0x04003DDA RID: 15834
 	public AudioClip[] Club7ClipsLight;
 
-	// Token: 0x04003DD5 RID: 15829
+	// Token: 0x04003DDB RID: 15835
 	public AudioClip[] Club7ClipsDark;
 
-	// Token: 0x04003DD6 RID: 15830
+	// Token: 0x04003DDC RID: 15836
 	public AudioClip[] Club8Clips;
 
-	// Token: 0x04003DD7 RID: 15831
+	// Token: 0x04003DDD RID: 15837
 	public AudioClip[] Club9Clips;
 
-	// Token: 0x04003DD8 RID: 15832
+	// Token: 0x04003DDE RID: 15838
 	public AudioClip[] Club10Clips;
 
-	// Token: 0x04003DD9 RID: 15833
+	// Token: 0x04003DDF RID: 15839
 	public AudioClip[] Club11Clips;
 
-	// Token: 0x04003DDA RID: 15834
+	// Token: 0x04003DE0 RID: 15840
 	public AudioClip[] Club12Clips;
 
-	// Token: 0x04003DDB RID: 15835
+	// Token: 0x04003DE1 RID: 15841
 	public AudioClip[] Club13Clips;
 
-	// Token: 0x04003DDC RID: 15836
+	// Token: 0x04003DE2 RID: 15842
 	public AudioClip[] SubClub3Clips;
 
-	// Token: 0x04003DDD RID: 15837
+	// Token: 0x04003DE3 RID: 15843
 	public AudioClip[] ClubGreetingClips;
 
-	// Token: 0x04003DDE RID: 15838
+	// Token: 0x04003DE4 RID: 15844
 	public AudioClip[] ClubUnwelcomeClips;
 
-	// Token: 0x04003DDF RID: 15839
+	// Token: 0x04003DE5 RID: 15845
 	public AudioClip[] ClubKickClips;
 
-	// Token: 0x04003DE0 RID: 15840
+	// Token: 0x04003DE6 RID: 15846
 	public AudioClip[] ClubJoinClips;
 
-	// Token: 0x04003DE1 RID: 15841
+	// Token: 0x04003DE7 RID: 15847
 	public AudioClip[] ClubAcceptClips;
 
-	// Token: 0x04003DE2 RID: 15842
+	// Token: 0x04003DE8 RID: 15848
 	public AudioClip[] ClubRefuseClips;
 
-	// Token: 0x04003DE3 RID: 15843
+	// Token: 0x04003DE9 RID: 15849
 	public AudioClip[] ClubRejoinClips;
 
-	// Token: 0x04003DE4 RID: 15844
+	// Token: 0x04003DEA RID: 15850
 	public AudioClip[] ClubExclusiveClips;
 
-	// Token: 0x04003DE5 RID: 15845
+	// Token: 0x04003DEB RID: 15851
 	public AudioClip[] ClubGrudgeClips;
 
-	// Token: 0x04003DE6 RID: 15846
+	// Token: 0x04003DEC RID: 15852
 	public AudioClip[] ClubQuitClips;
 
-	// Token: 0x04003DE7 RID: 15847
+	// Token: 0x04003DED RID: 15853
 	public AudioClip[] ClubConfirmClips;
 
-	// Token: 0x04003DE8 RID: 15848
+	// Token: 0x04003DEE RID: 15854
 	public AudioClip[] ClubDenyClips;
 
-	// Token: 0x04003DE9 RID: 15849
+	// Token: 0x04003DEF RID: 15855
 	public AudioClip[] ClubFarewellClips;
 
-	// Token: 0x04003DEA RID: 15850
+	// Token: 0x04003DF0 RID: 15856
 	public AudioClip[] ClubActivityClips;
 
-	// Token: 0x04003DEB RID: 15851
+	// Token: 0x04003DF1 RID: 15857
 	public AudioClip[] ClubEarlyClips;
 
-	// Token: 0x04003DEC RID: 15852
+	// Token: 0x04003DF2 RID: 15858
 	public AudioClip[] ClubLateClips;
 
-	// Token: 0x04003DED RID: 15853
+	// Token: 0x04003DF3 RID: 15859
 	public AudioClip[] ClubYesClips;
 
-	// Token: 0x04003DEE RID: 15854
+	// Token: 0x04003DF4 RID: 15860
 	public AudioClip[] ClubNoClips;
 
-	// Token: 0x04003DEF RID: 15855
+	// Token: 0x04003DF5 RID: 15861
 	public AudioClip[] ClubPracticeClips;
 
-	// Token: 0x04003DF0 RID: 15856
+	// Token: 0x04003DF6 RID: 15862
 	public AudioClip[] ClubPracticeYesClips;
 
-	// Token: 0x04003DF1 RID: 15857
+	// Token: 0x04003DF7 RID: 15863
 	public AudioClip[] ClubPracticeNoClips;
 
-	// Token: 0x04003DF2 RID: 15858
+	// Token: 0x04003DF8 RID: 15864
 	public AudioClip[] EavesdropClips;
 
-	// Token: 0x04003DF3 RID: 15859
+	// Token: 0x04003DF9 RID: 15865
 	public AudioClip[] FoodRejectionClips;
 
-	// Token: 0x04003DF4 RID: 15860
+	// Token: 0x04003DFA RID: 15866
 	public AudioClip[] ViolenceClips;
 
-	// Token: 0x04003DF5 RID: 15861
+	// Token: 0x04003DFB RID: 15867
 	public AudioClip[] EventEavesdropClips;
 
-	// Token: 0x04003DF6 RID: 15862
+	// Token: 0x04003DFC RID: 15868
 	public AudioClip[] RivalEavesdropClips;
 
-	// Token: 0x04003DF7 RID: 15863
+	// Token: 0x04003DFD RID: 15869
 	public AudioClip[] DelinquentAnnoyClips;
 
-	// Token: 0x04003DF8 RID: 15864
+	// Token: 0x04003DFE RID: 15870
 	public AudioClip[] DelinquentCaseClips;
 
-	// Token: 0x04003DF9 RID: 15865
+	// Token: 0x04003DFF RID: 15871
 	public AudioClip[] DelinquentShoveClips;
 
-	// Token: 0x04003DFA RID: 15866
+	// Token: 0x04003E00 RID: 15872
 	public AudioClip[] DelinquentReactionClips;
 
-	// Token: 0x04003DFB RID: 15867
+	// Token: 0x04003E01 RID: 15873
 	public AudioClip[] DelinquentWeaponReactionClips;
 
-	// Token: 0x04003DFC RID: 15868
+	// Token: 0x04003E02 RID: 15874
 	public AudioClip[] DelinquentThreatenedClips;
 
-	// Token: 0x04003DFD RID: 15869
+	// Token: 0x04003E03 RID: 15875
 	public AudioClip[] DelinquentTauntClips;
 
-	// Token: 0x04003DFE RID: 15870
+	// Token: 0x04003E04 RID: 15876
 	public AudioClip[] DelinquentCalmClips;
 
-	// Token: 0x04003DFF RID: 15871
+	// Token: 0x04003E05 RID: 15877
 	public AudioClip[] DelinquentFightClips;
 
-	// Token: 0x04003E00 RID: 15872
+	// Token: 0x04003E06 RID: 15878
 	public AudioClip[] DelinquentAvengeClips;
 
-	// Token: 0x04003E01 RID: 15873
+	// Token: 0x04003E07 RID: 15879
 	public AudioClip[] DelinquentWinClips;
 
-	// Token: 0x04003E02 RID: 15874
+	// Token: 0x04003E08 RID: 15880
 	public AudioClip[] DelinquentSurrenderClips;
 
-	// Token: 0x04003E03 RID: 15875
+	// Token: 0x04003E09 RID: 15881
 	public AudioClip[] DelinquentNoSurrenderClips;
 
-	// Token: 0x04003E04 RID: 15876
+	// Token: 0x04003E0A RID: 15882
 	public AudioClip[] DelinquentMurderReactionClips;
 
-	// Token: 0x04003E05 RID: 15877
+	// Token: 0x04003E0B RID: 15883
 	public AudioClip[] DelinquentCorpseReactionClips;
 
-	// Token: 0x04003E06 RID: 15878
+	// Token: 0x04003E0C RID: 15884
 	public AudioClip[] DelinquentFriendCorpseReactionClips;
 
-	// Token: 0x04003E07 RID: 15879
+	// Token: 0x04003E0D RID: 15885
 	public AudioClip[] DelinquentResumeClips;
 
-	// Token: 0x04003E08 RID: 15880
+	// Token: 0x04003E0E RID: 15886
 	public AudioClip[] DelinquentFleeClips;
 
-	// Token: 0x04003E09 RID: 15881
+	// Token: 0x04003E0F RID: 15887
 	public AudioClip[] DelinquentEnemyFleeClips;
 
-	// Token: 0x04003E0A RID: 15882
+	// Token: 0x04003E10 RID: 15888
 	public AudioClip[] DelinquentFriendFleeClips;
 
-	// Token: 0x04003E0B RID: 15883
+	// Token: 0x04003E11 RID: 15889
 	public AudioClip[] DelinquentInjuredFleeClips;
 
-	// Token: 0x04003E0C RID: 15884
+	// Token: 0x04003E12 RID: 15890
 	public AudioClip[] DelinquentCheerClips;
 
-	// Token: 0x04003E0D RID: 15885
+	// Token: 0x04003E13 RID: 15891
 	public AudioClip[] DelinquentHmmClips;
 
-	// Token: 0x04003E0E RID: 15886
+	// Token: 0x04003E14 RID: 15892
 	public AudioClip[] DelinquentGrudgeClips;
 
-	// Token: 0x04003E0F RID: 15887
+	// Token: 0x04003E15 RID: 15893
 	public AudioClip[] DismissiveClips;
 
-	// Token: 0x04003E10 RID: 15888
+	// Token: 0x04003E16 RID: 15894
 	public AudioClip[] EvilDelinquentCorpseReactionClips;
 
-	// Token: 0x04003E11 RID: 15889
+	// Token: 0x04003E17 RID: 15895
 	public AudioClip[] EulogyClips;
 
-	// Token: 0x04003E12 RID: 15890
+	// Token: 0x04003E18 RID: 15896
 	public AudioClip[] ObstacleMurderReactionClips;
 
-	// Token: 0x04003E13 RID: 15891
+	// Token: 0x04003E19 RID: 15897
 	public AudioClip[] ObstaclePoisonReactionClips;
 
-	// Token: 0x04003E14 RID: 15892
+	// Token: 0x04003E1A RID: 15898
 	public AudioClip[] GasWarningClips;
 
-	// Token: 0x04003E15 RID: 15893
+	// Token: 0x04003E1B RID: 15899
 	public AudioClip[] StudentStayClips;
 
-	// Token: 0x04003E16 RID: 15894
+	// Token: 0x04003E1C RID: 15900
 	public AudioClip[] StrictReportClips;
 
-	// Token: 0x04003E17 RID: 15895
+	// Token: 0x04003E1D RID: 15901
 	public AudioClip[] CasualReportClips;
 
-	// Token: 0x04003E18 RID: 15896
+	// Token: 0x04003E1E RID: 15902
 	public AudioClip[] GraceReportClips;
 
-	// Token: 0x04003E19 RID: 15897
+	// Token: 0x04003E1F RID: 15903
 	public AudioClip[] EdgyReportClips;
 
-	// Token: 0x04003E1A RID: 15898
+	// Token: 0x04003E20 RID: 15904
 	public AudioClip[] BreakUpClips;
 
-	// Token: 0x04003E1B RID: 15899
+	// Token: 0x04003E21 RID: 15905
 	public AudioClip[] ChaseClips;
 
-	// Token: 0x04003E1C RID: 15900
+	// Token: 0x04003E22 RID: 15906
 	public AudioClip[] ShoveClips;
 
-	// Token: 0x04003E1D RID: 15901
+	// Token: 0x04003E23 RID: 15907
 	public AudioClip[] SprayClips;
 
-	// Token: 0x04003E1E RID: 15902
+	// Token: 0x04003E24 RID: 15908
 	public AudioClip[] HmmClips;
 
-	// Token: 0x04003E1F RID: 15903
+	// Token: 0x04003E25 RID: 15909
 	public AudioClip[] CouncilCorpseClips;
 
-	// Token: 0x04003E20 RID: 15904
+	// Token: 0x04003E26 RID: 15910
 	public AudioClip[] CouncilCounselorClips;
 
-	// Token: 0x04003E21 RID: 15905
+	// Token: 0x04003E27 RID: 15911
 	private SubtitleTypeAndAudioClipArrayDictionary SubtitleClipArrays;
 
-	// Token: 0x04003E22 RID: 15906
+	// Token: 0x04003E28 RID: 15912
 	public GameObject CurrentClip;
 
-	// Token: 0x04003E23 RID: 15907
+	// Token: 0x04003E29 RID: 15913
 	public StudentScript Speaker;
 
-	// Token: 0x04003E24 RID: 15908
+	// Token: 0x04003E2A RID: 15914
 	public UISprite Darkness;
 
-	// Token: 0x04003E25 RID: 15909
+	// Token: 0x04003E2B RID: 15915
 	public UILabel EventSubtitle;
 }

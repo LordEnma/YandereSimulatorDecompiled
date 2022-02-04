@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200048B RID: 1163
 public class UniformSwapperScript : MonoBehaviour
 {
-	// Token: 0x06001F09 RID: 7945 RVA: 0x001B82D0 File Offset: 0x001B64D0
+	// Token: 0x06001F0B RID: 7947 RVA: 0x001B85DC File Offset: 0x001B67DC
 	private void Start()
 	{
 		int maleUniform = StudentGlobals.MaleUniform;
@@ -51,7 +51,7 @@ public class UniformSwapperScript : MonoBehaviour
 		this.MyRenderer.materials[this.UniformID].mainTexture = mainTexture;
 	}
 
-	// Token: 0x06001F0A RID: 7946 RVA: 0x001B83EF File Offset: 0x001B65EF
+	// Token: 0x06001F0C RID: 7948 RVA: 0x001B86FB File Offset: 0x001B68FB
 	private void LateUpdate()
 	{
 		if (this.LookTarget != null)
@@ -60,30 +60,30 @@ public class UniformSwapperScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004143 RID: 16707
+	// Token: 0x04004149 RID: 16713
 	public Texture[] UniformTextures;
 
-	// Token: 0x04004144 RID: 16708
+	// Token: 0x0400414A RID: 16714
 	public Mesh[] UniformMeshes;
 
-	// Token: 0x04004145 RID: 16709
+	// Token: 0x0400414B RID: 16715
 	public Texture FaceTexture;
 
-	// Token: 0x04004146 RID: 16710
+	// Token: 0x0400414C RID: 16716
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x04004147 RID: 16711
+	// Token: 0x0400414D RID: 16717
 	public int UniformID;
 
-	// Token: 0x04004148 RID: 16712
+	// Token: 0x0400414E RID: 16718
 	public int FaceID;
 
-	// Token: 0x04004149 RID: 16713
+	// Token: 0x0400414F RID: 16719
 	public int SkinID;
 
-	// Token: 0x0400414A RID: 16714
+	// Token: 0x04004150 RID: 16720
 	public Transform LookTarget;
 
-	// Token: 0x0400414B RID: 16715
+	// Token: 0x04004151 RID: 16721
 	public Transform Head;
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020004BC RID: 1212
 public class WeekSelectScript : MonoBehaviour
 {
-	// Token: 0x06001FBA RID: 8122 RVA: 0x001C0728 File Offset: 0x001BE928
+	// Token: 0x06001FBC RID: 8124 RVA: 0x001C0A34 File Offset: 0x001BEC34
 	private void Start()
 	{
 		this.Darkness.alpha = 1f;
@@ -13,7 +13,7 @@ public class WeekSelectScript : MonoBehaviour
 		this.UpdateText();
 	}
 
-	// Token: 0x06001FBB RID: 8123 RVA: 0x001C0748 File Offset: 0x001BE948
+	// Token: 0x06001FBD RID: 8125 RVA: 0x001C0A54 File Offset: 0x001BEC54
 	private void Update()
 	{
 		if (this.Fading)
@@ -340,7 +340,7 @@ public class WeekSelectScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FBC RID: 8124 RVA: 0x001C0E9C File Offset: 0x001BF09C
+	// Token: 0x06001FBE RID: 8126 RVA: 0x001C11A8 File Offset: 0x001BF3A8
 	private void UpdateArrow()
 	{
 		if (this.SettingWeek)
@@ -370,7 +370,7 @@ public class WeekSelectScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FBD RID: 8125 RVA: 0x001C0F9C File Offset: 0x001BF19C
+	// Token: 0x06001FBF RID: 8127 RVA: 0x001C12A8 File Offset: 0x001BF4A8
 	private void UpdateText()
 	{
 		this.WeekLabel.text = "STARTING WEEK: " + DateGlobals.Week.ToString();
@@ -390,7 +390,7 @@ public class WeekSelectScript : MonoBehaviour
 		this.Stats.Start();
 	}
 
-	// Token: 0x06001FBE RID: 8126 RVA: 0x001C1018 File Offset: 0x001BF218
+	// Token: 0x06001FC0 RID: 8128 RVA: 0x001C1324 File Offset: 0x001BF524
 	private void SetGrudges(bool Grudge)
 	{
 		for (int i = 2; i < 12; i++)
@@ -399,7 +399,7 @@ public class WeekSelectScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FBF RID: 8127 RVA: 0x001C103C File Offset: 0x001BF23C
+	// Token: 0x06001FC1 RID: 8129 RVA: 0x001C1348 File Offset: 0x001BF548
 	private void MakeFriends(bool Friend)
 	{
 		for (int i = 2; i < 86; i++)
@@ -409,53 +409,55 @@ public class WeekSelectScript : MonoBehaviour
 		if (Friend)
 		{
 			PlayerGlobals.Friends = 84;
+			GameGlobals.YakuzaPhase = 1;
 			return;
 		}
 		PlayerGlobals.Friends = 0;
+		GameGlobals.YakuzaPhase = 0;
 	}
 
-	// Token: 0x04004286 RID: 17030
+	// Token: 0x0400428C RID: 17036
 	public InputManagerScript InputManager;
 
-	// Token: 0x04004287 RID: 17031
+	// Token: 0x0400428D RID: 17037
 	public EightiesStatsScript Stats;
 
-	// Token: 0x04004288 RID: 17032
+	// Token: 0x0400428E RID: 17038
 	public GameObject[] Shadow;
 
-	// Token: 0x04004289 RID: 17033
+	// Token: 0x0400428F RID: 17039
 	public UISprite Darkness;
 
-	// Token: 0x0400428A RID: 17034
+	// Token: 0x04004290 RID: 17040
 	public UILabel WeekLabel;
 
-	// Token: 0x0400428B RID: 17035
+	// Token: 0x04004291 RID: 17041
 	public Transform Arrow;
 
-	// Token: 0x0400428C RID: 17036
+	// Token: 0x04004292 RID: 17042
 	public bool SettingDetails;
 
-	// Token: 0x0400428D RID: 17037
+	// Token: 0x04004293 RID: 17043
 	public bool SettingRivals;
 
-	// Token: 0x0400428E RID: 17038
+	// Token: 0x04004294 RID: 17044
 	public bool SettingWeek;
 
-	// Token: 0x0400428F RID: 17039
+	// Token: 0x04004295 RID: 17045
 	public bool Fading;
 
-	// Token: 0x04004290 RID: 17040
+	// Token: 0x04004296 RID: 17046
 	public int DetailID = 1;
 
-	// Token: 0x04004291 RID: 17041
+	// Token: 0x04004297 RID: 17047
 	public int RivalID = 1;
 
-	// Token: 0x04004292 RID: 17042
+	// Token: 0x04004298 RID: 17048
 	public int WeekID = 1;
 
-	// Token: 0x04004293 RID: 17043
+	// Token: 0x04004299 RID: 17049
 	public int FadeID = 1;
 
-	// Token: 0x04004294 RID: 17044
+	// Token: 0x0400429A RID: 17050
 	public int[] Specifics;
 }

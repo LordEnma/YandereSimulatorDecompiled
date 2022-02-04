@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000460 RID: 1120
 public class SundayRivalCutsceneScript : MonoBehaviour
 {
-	// Token: 0x06001E62 RID: 7778 RVA: 0x001A2EE0 File Offset: 0x001A10E0
+	// Token: 0x06001E64 RID: 7780 RVA: 0x001A31EC File Offset: 0x001A13EC
 	private void Start()
 	{
 		if (!GameGlobals.Eighties && DateGlobals.Weekday == DayOfWeek.Sunday)
@@ -39,7 +39,7 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001E63 RID: 7779 RVA: 0x001A31A4 File Offset: 0x001A13A4
+	// Token: 0x06001E65 RID: 7781 RVA: 0x001A34B0 File Offset: 0x001A16B0
 	private void Update()
 	{
 		if (Input.GetKeyDown("="))
@@ -160,63 +160,63 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003E51 RID: 15953
+	// Token: 0x04003E57 RID: 15959
 	public HomeSenpaiShrineScript HomeSenpaiShrine;
 
-	// Token: 0x04003E52 RID: 15954
+	// Token: 0x04003E58 RID: 15960
 	public HomeDarknessScript HomeDarkness;
 
-	// Token: 0x04003E53 RID: 15955
+	// Token: 0x04003E59 RID: 15961
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x04003E54 RID: 15956
+	// Token: 0x04003E5A RID: 15962
 	public PhoneScript Phone;
 
-	// Token: 0x04003E55 RID: 15957
+	// Token: 0x04003E5B RID: 15963
 	public GameObject InfoTextConvo;
 
-	// Token: 0x04003E56 RID: 15958
+	// Token: 0x04003E5C RID: 15964
 	public GameObject InfoTextPanel;
 
-	// Token: 0x04003E57 RID: 15959
+	// Token: 0x04003E5D RID: 15965
 	public AudioClip YoureSafeNow;
 
-	// Token: 0x04003E58 RID: 15960
+	// Token: 0x04003E5E RID: 15966
 	public AudioSource Vibration;
 
-	// Token: 0x04003E59 RID: 15961
+	// Token: 0x04003E5F RID: 15967
 	public GameObject GrabbyHand;
 
-	// Token: 0x04003E5A RID: 15962
+	// Token: 0x04003E60 RID: 15968
 	public GameObject HomeClock;
 
-	// Token: 0x04003E5B RID: 15963
+	// Token: 0x04003E61 RID: 15969
 	public UISprite SkipCircle;
 
-	// Token: 0x04003E5C RID: 15964
+	// Token: 0x04003E62 RID: 15970
 	public UIPanel SkipPanel;
 
-	// Token: 0x04003E5D RID: 15965
+	// Token: 0x04003E63 RID: 15971
 	public float Alpha = 1f;
 
-	// Token: 0x04003E5E RID: 15966
+	// Token: 0x04003E64 RID: 15972
 	public float Speed;
 
-	// Token: 0x04003E5F RID: 15967
+	// Token: 0x04003E65 RID: 15973
 	public float Timer;
 
-	// Token: 0x04003E60 RID: 15968
+	// Token: 0x04003E66 RID: 15974
 	public float X;
 
-	// Token: 0x04003E61 RID: 15969
+	// Token: 0x04003E67 RID: 15975
 	public float Y;
 
-	// Token: 0x04003E62 RID: 15970
+	// Token: 0x04003E68 RID: 15976
 	public float Z;
 
-	// Token: 0x04003E63 RID: 15971
+	// Token: 0x04003E69 RID: 15977
 	public int Phase;
 
-	// Token: 0x04003E64 RID: 15972
+	// Token: 0x04003E6A RID: 15978
 	public bool RestoreDOF;
 }

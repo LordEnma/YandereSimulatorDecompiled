@@ -6,7 +6,7 @@ namespace RetroAesthetics
 	// Token: 0x02000549 RID: 1353
 	public class UVScroller : MonoBehaviour
 	{
-		// Token: 0x0600228A RID: 8842 RVA: 0x001EE61C File Offset: 0x001EC81C
+		// Token: 0x0600228C RID: 8844 RVA: 0x001EE934 File Offset: 0x001ECB34
 		private void Start()
 		{
 			Renderer component = base.GetComponent<Renderer>();
@@ -24,23 +24,23 @@ namespace RetroAesthetics
 			}
 		}
 
-		// Token: 0x0600228B RID: 8843 RVA: 0x001EE690 File Offset: 0x001EC890
+		// Token: 0x0600228D RID: 8845 RVA: 0x001EE9A8 File Offset: 0x001ECBA8
 		private void Update()
 		{
 			this.offset += this.scrollSpeed * Time.deltaTime * (float)Application.targetFrameRate;
 			this.target.SetTextureOffset(this.textureName, this.offset);
 		}
 
-		// Token: 0x04004A7D RID: 19069
+		// Token: 0x04004A83 RID: 19075
 		public Vector2 scrollSpeed = new Vector2(-1f, 0f);
 
-		// Token: 0x04004A7E RID: 19070
+		// Token: 0x04004A84 RID: 19076
 		public string textureName = "_GridTex";
 
-		// Token: 0x04004A7F RID: 19071
+		// Token: 0x04004A85 RID: 19077
 		private Material target;
 
-		// Token: 0x04004A80 RID: 19072
+		// Token: 0x04004A86 RID: 19078
 		private Vector2 offset = Vector2.zero;
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000392 RID: 914
 public class PassTimeBookScript : MonoBehaviour
 {
-	// Token: 0x06001A43 RID: 6723 RVA: 0x00116714 File Offset: 0x00114914
+	// Token: 0x06001A43 RID: 6723 RVA: 0x001167D0 File Offset: 0x001149D0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -72,7 +72,7 @@ public class PassTimeBookScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A44 RID: 6724 RVA: 0x00116B18 File Offset: 0x00114D18
+	// Token: 0x06001A44 RID: 6724 RVA: 0x00116BD4 File Offset: 0x00114DD4
 	public void DisplayErrorMessage()
 	{
 		if (this.Yandere.Armed)
@@ -116,18 +116,18 @@ public class PassTimeBookScript : MonoBehaviour
 		this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 	}
 
-	// Token: 0x04002AF5 RID: 10997
+	// Token: 0x04002AF6 RID: 10998
 	public YandereScript Yandere;
 
-	// Token: 0x04002AF6 RID: 10998
+	// Token: 0x04002AF7 RID: 10999
 	public PromptScript Prompt;
 
-	// Token: 0x04002AF7 RID: 10999
+	// Token: 0x04002AF8 RID: 11000
 	public UISprite Darkness;
 
-	// Token: 0x04002AF8 RID: 11000
+	// Token: 0x04002AF9 RID: 11001
 	public bool TimeSkipping;
 
-	// Token: 0x04002AF9 RID: 11001
+	// Token: 0x04002AFA RID: 11002
 	public bool FadeOut;
 }
