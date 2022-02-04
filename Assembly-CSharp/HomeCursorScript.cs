@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000318 RID: 792
 public class HomeCursorScript : MonoBehaviour
 {
-	// Token: 0x06001861 RID: 6241 RVA: 0x000EBE18 File Offset: 0x000EA018
+	// Token: 0x06001861 RID: 6241 RVA: 0x000EBED0 File Offset: 0x000EA0D0
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.gameObject == this.Photograph)
@@ -19,7 +19,7 @@ public class HomeCursorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001862 RID: 6242 RVA: 0x000EBE98 File Offset: 0x000EA098
+	// Token: 0x06001862 RID: 6242 RVA: 0x000EBF50 File Offset: 0x000EA150
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 16)
@@ -43,7 +43,7 @@ public class HomeCursorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001863 RID: 6243 RVA: 0x000EBFB0 File Offset: 0x000EA1B0
+	// Token: 0x06001863 RID: 6243 RVA: 0x000EC068 File Offset: 0x000EA268
 	private void PhotographNull()
 	{
 		this.Highlight.position = new Vector3(this.Highlight.position.x, 100f, this.Highlight.position.z);
@@ -51,18 +51,18 @@ public class HomeCursorScript : MonoBehaviour
 		this.PhotoGallery.UpdateButtonPrompts();
 	}
 
-	// Token: 0x04002459 RID: 9305
+	// Token: 0x0400245A RID: 9306
 	public PhotoGalleryScript PhotoGallery;
 
-	// Token: 0x0400245A RID: 9306
+	// Token: 0x0400245B RID: 9307
 	public GameObject Photograph;
 
-	// Token: 0x0400245B RID: 9307
+	// Token: 0x0400245C RID: 9308
 	public Transform Highlight;
 
-	// Token: 0x0400245C RID: 9308
+	// Token: 0x0400245D RID: 9309
 	public GameObject Tack;
 
-	// Token: 0x0400245D RID: 9309
+	// Token: 0x0400245E RID: 9310
 	public Transform CircleHighlight;
 }

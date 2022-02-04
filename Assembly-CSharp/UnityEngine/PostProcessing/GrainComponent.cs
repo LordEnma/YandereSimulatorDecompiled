@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class GrainComponent : PostProcessingComponentRenderTexture<GrainModel>
 	{
 		// Token: 0x170004F5 RID: 1269
-		// (get) Token: 0x060022EF RID: 8943 RVA: 0x001F1B2A File Offset: 0x001EFD2A
+		// (get) Token: 0x060022F1 RID: 8945 RVA: 0x001F1E42 File Offset: 0x001F0042
 		public override bool active
 		{
 			get
@@ -15,14 +15,14 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022F0 RID: 8944 RVA: 0x001F1B68 File Offset: 0x001EFD68
+		// Token: 0x060022F2 RID: 8946 RVA: 0x001F1E80 File Offset: 0x001F0080
 		public override void OnDisable()
 		{
 			GraphicsUtils.Destroy(this.m_GrainLookupRT);
 			this.m_GrainLookupRT = null;
 		}
 
-		// Token: 0x060022F1 RID: 8945 RVA: 0x001F1B7C File Offset: 0x001EFD7C
+		// Token: 0x060022F3 RID: 8947 RVA: 0x001F1E94 File Offset: 0x001F0094
 		public override void Prepare(Material uberMaterial)
 		{
 			GrainModel.Settings settings = base.model.settings;
@@ -50,22 +50,22 @@ namespace UnityEngine.PostProcessing
 			uberMaterial.SetVector(GrainComponent.Uniforms._Grain_Params2, new Vector4((float)this.context.width / (float)this.m_GrainLookupRT.width / settings.size, (float)this.context.height / (float)this.m_GrainLookupRT.height / settings.size, value, value2));
 		}
 
-		// Token: 0x04004AD6 RID: 19158
+		// Token: 0x04004ADC RID: 19164
 		private RenderTexture m_GrainLookupRT;
 
 		// Token: 0x0200069A RID: 1690
 		private static class Uniforms
 		{
-			// Token: 0x04005045 RID: 20549
+			// Token: 0x0400504B RID: 20555
 			internal static readonly int _Grain_Params1 = Shader.PropertyToID("_Grain_Params1");
 
-			// Token: 0x04005046 RID: 20550
+			// Token: 0x0400504C RID: 20556
 			internal static readonly int _Grain_Params2 = Shader.PropertyToID("_Grain_Params2");
 
-			// Token: 0x04005047 RID: 20551
+			// Token: 0x0400504D RID: 20557
 			internal static readonly int _GrainTex = Shader.PropertyToID("_GrainTex");
 
-			// Token: 0x04005048 RID: 20552
+			// Token: 0x0400504E RID: 20558
 			internal static readonly int _Phase = Shader.PropertyToID("_Phase");
 		}
 	}

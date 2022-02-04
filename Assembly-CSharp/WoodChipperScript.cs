@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020004BF RID: 1215
 public class WoodChipperScript : MonoBehaviour
 {
-	// Token: 0x06001FC7 RID: 8135 RVA: 0x001C171F File Offset: 0x001BF91F
+	// Token: 0x06001FC9 RID: 8137 RVA: 0x001C1A37 File Offset: 0x001BFC37
 	private void Start()
 	{
 		this.MyAudio = base.GetComponent<AudioSource>();
 	}
 
-	// Token: 0x06001FC8 RID: 8136 RVA: 0x001C1730 File Offset: 0x001BF930
+	// Token: 0x06001FCA RID: 8138 RVA: 0x001C1A48 File Offset: 0x001BFC48
 	private void Update()
 	{
 		if (!this.Acid)
@@ -265,7 +265,7 @@ public class WoodChipperScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FC9 RID: 8137 RVA: 0x001C2178 File Offset: 0x001C0378
+	// Token: 0x06001FCB RID: 8139 RVA: 0x001C2490 File Offset: 0x001C0690
 	public void SetVictimsMissing()
 	{
 		int[] victimList = this.VictimList;
@@ -275,69 +275,69 @@ public class WoodChipperScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040042A9 RID: 17065
+	// Token: 0x040042AF RID: 17071
 	public ParticleSystem BloodSpray;
 
-	// Token: 0x040042AA RID: 17066
+	// Token: 0x040042B0 RID: 17072
 	public PromptScript BucketPrompt;
 
-	// Token: 0x040042AB RID: 17067
+	// Token: 0x040042B1 RID: 17073
 	public YandereScript Yandere;
 
-	// Token: 0x040042AC RID: 17068
+	// Token: 0x040042B2 RID: 17074
 	public PickUpScript Bucket;
 
-	// Token: 0x040042AD RID: 17069
+	// Token: 0x040042B3 RID: 17075
 	public PromptScript Prompt;
 
-	// Token: 0x040042AE RID: 17070
+	// Token: 0x040042B4 RID: 17076
 	public AudioClip CloseAudio;
 
-	// Token: 0x040042AF RID: 17071
+	// Token: 0x040042B5 RID: 17077
 	public AudioClip ShredAudio;
 
-	// Token: 0x040042B0 RID: 17072
+	// Token: 0x040042B6 RID: 17078
 	public AudioClip OpenAudio;
 
-	// Token: 0x040042B1 RID: 17073
+	// Token: 0x040042B7 RID: 17079
 	public Transform BucketPoint;
 
-	// Token: 0x040042B2 RID: 17074
+	// Token: 0x040042B8 RID: 17080
 	public Transform DumpPoint;
 
-	// Token: 0x040042B3 RID: 17075
+	// Token: 0x040042B9 RID: 17081
 	public Transform Lid;
 
-	// Token: 0x040042B4 RID: 17076
+	// Token: 0x040042BA RID: 17082
 	public float Rotation;
 
-	// Token: 0x040042B5 RID: 17077
+	// Token: 0x040042BB RID: 17083
 	public float Timer;
 
-	// Token: 0x040042B6 RID: 17078
+	// Token: 0x040042BC RID: 17084
 	public bool Shredding;
 
-	// Token: 0x040042B7 RID: 17079
+	// Token: 0x040042BD RID: 17085
 	public bool Occupied;
 
-	// Token: 0x040042B8 RID: 17080
+	// Token: 0x040042BE RID: 17086
 	public bool Acid;
 
-	// Token: 0x040042B9 RID: 17081
+	// Token: 0x040042BF RID: 17087
 	public bool Open;
 
-	// Token: 0x040042BA RID: 17082
+	// Token: 0x040042C0 RID: 17088
 	public int VictimID;
 
-	// Token: 0x040042BB RID: 17083
+	// Token: 0x040042C1 RID: 17089
 	public int Victims;
 
-	// Token: 0x040042BC RID: 17084
+	// Token: 0x040042C2 RID: 17090
 	public int ID;
 
-	// Token: 0x040042BD RID: 17085
+	// Token: 0x040042C3 RID: 17091
 	public int[] VictimList;
 
-	// Token: 0x040042BE RID: 17086
+	// Token: 0x040042C4 RID: 17092
 	public AudioSource MyAudio;
 }

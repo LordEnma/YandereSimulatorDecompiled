@@ -11,7 +11,7 @@ namespace MaidDereMinigame
 	public class GameController : MonoBehaviour
 	{
 		// Token: 0x17000525 RID: 1317
-		// (get) Token: 0x06002449 RID: 9289 RVA: 0x001F9DA2 File Offset: 0x001F7FA2
+		// (get) Token: 0x0600244B RID: 9291 RVA: 0x001FA0BA File Offset: 0x001F82BA
 		public static GameController Instance
 		{
 			get
@@ -25,7 +25,7 @@ namespace MaidDereMinigame
 		}
 
 		// Token: 0x17000526 RID: 1318
-		// (get) Token: 0x0600244A RID: 9290 RVA: 0x001F9DC0 File Offset: 0x001F7FC0
+		// (get) Token: 0x0600244C RID: 9292 RVA: 0x001FA0D8 File Offset: 0x001F82D8
 		public static SceneWrapper Scenes
 		{
 			get
@@ -34,7 +34,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x0600244B RID: 9291 RVA: 0x001F9DCC File Offset: 0x001F7FCC
+		// Token: 0x0600244D RID: 9293 RVA: 0x001FA0E4 File Offset: 0x001F82E4
 		public static void GoToExitScene(bool fadeOut = true)
 		{
 			GameController.Instance.StartCoroutine(GameController.Instance.FadeWithAction(delegate
@@ -54,7 +54,7 @@ namespace MaidDereMinigame
 			}, fadeOut, true));
 		}
 
-		// Token: 0x0600244C RID: 9292 RVA: 0x001F9E04 File Offset: 0x001F8004
+		// Token: 0x0600244E RID: 9294 RVA: 0x001FA11C File Offset: 0x001F831C
 		private void Awake()
 		{
 			if (GameController.Instance != this)
@@ -66,7 +66,7 @@ namespace MaidDereMinigame
 			UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
 		}
 
-		// Token: 0x0600244D RID: 9293 RVA: 0x001F9E36 File Offset: 0x001F8036
+		// Token: 0x0600244F RID: 9295 RVA: 0x001FA14E File Offset: 0x001F834E
 		public static void SetPause(bool toPause)
 		{
 			if (GameController.PauseGame != null)
@@ -75,7 +75,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x0600244E RID: 9294 RVA: 0x001F9E4A File Offset: 0x001F804A
+		// Token: 0x06002450 RID: 9296 RVA: 0x001FA162 File Offset: 0x001F8362
 		public void LoadScene(SceneObject scene)
 		{
 			base.StartCoroutine(this.FadeWithAction(delegate
@@ -84,7 +84,7 @@ namespace MaidDereMinigame
 			}, true, false));
 		}
 
-		// Token: 0x0600244F RID: 9295 RVA: 0x001F9E7A File Offset: 0x001F807A
+		// Token: 0x06002451 RID: 9297 RVA: 0x001FA192 File Offset: 0x001F8392
 		private IEnumerator FadeWithAction(Action PostFadeAction, bool doFadeOut = true, bool destroyGameController = false)
 		{
 			float timeToFade = 0f;
@@ -126,7 +126,7 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x06002450 RID: 9296 RVA: 0x001F9E9E File Offset: 0x001F809E
+		// Token: 0x06002452 RID: 9298 RVA: 0x001FA1B6 File Offset: 0x001F83B6
 		public static void TimeUp()
 		{
 			GameController.SetPause(true);
@@ -135,7 +135,7 @@ namespace MaidDereMinigame
 			UnityEngine.Object.FindObjectOfType<GameStarter>().GetComponent<AudioSource>().Stop();
 		}
 
-		// Token: 0x06002451 RID: 9297 RVA: 0x001F9EE0 File Offset: 0x001F80E0
+		// Token: 0x06002453 RID: 9299 RVA: 0x001FA1F8 File Offset: 0x001F83F8
 		public static void AddTip(float tip)
 		{
 			if (GameController.Instance.tips == null)
@@ -146,7 +146,7 @@ namespace MaidDereMinigame
 			GameController.Instance.tips.Add(tip);
 		}
 
-		// Token: 0x06002452 RID: 9298 RVA: 0x001F9F2C File Offset: 0x001F812C
+		// Token: 0x06002454 RID: 9300 RVA: 0x001FA244 File Offset: 0x001F8444
 		public static float GetTotalDollars()
 		{
 			float num = 0f;
@@ -157,7 +157,7 @@ namespace MaidDereMinigame
 			return num + GameController.Instance.activeDifficultyVariables.basePay;
 		}
 
-		// Token: 0x06002453 RID: 9299 RVA: 0x001F9FA8 File Offset: 0x001F81A8
+		// Token: 0x06002455 RID: 9301 RVA: 0x001FA2C0 File Offset: 0x001F84C0
 		public static void AddAngryCustomer()
 		{
 			GameController.Instance.angryCustomers++;
@@ -168,54 +168,54 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x04004C11 RID: 19473
+		// Token: 0x04004C17 RID: 19479
 		private static GameController instance;
 
-		// Token: 0x04004C12 RID: 19474
+		// Token: 0x04004C18 RID: 19480
 		[Reorderable]
 		public Sprites numbers;
 
-		// Token: 0x04004C13 RID: 19475
+		// Token: 0x04004C19 RID: 19481
 		public SceneWrapper scenes;
 
-		// Token: 0x04004C14 RID: 19476
+		// Token: 0x04004C1A RID: 19482
 		[Tooltip("Scene Object Reference to return to when the game ends.")]
 		public SceneObject returnScene;
 
-		// Token: 0x04004C15 RID: 19477
+		// Token: 0x04004C1B RID: 19483
 		public SetupVariables activeDifficultyVariables;
 
-		// Token: 0x04004C16 RID: 19478
+		// Token: 0x04004C1C RID: 19484
 		public SetupVariables easyVariables;
 
-		// Token: 0x04004C17 RID: 19479
+		// Token: 0x04004C1D RID: 19485
 		public SetupVariables mediumVariables;
 
-		// Token: 0x04004C18 RID: 19480
+		// Token: 0x04004C1E RID: 19486
 		public SetupVariables hardVariables;
 
-		// Token: 0x04004C19 RID: 19481
+		// Token: 0x04004C1F RID: 19487
 		private List<float> tips;
 
-		// Token: 0x04004C1A RID: 19482
+		// Token: 0x04004C20 RID: 19488
 		private SpriteRenderer spriteRenderer;
 
-		// Token: 0x04004C1B RID: 19483
+		// Token: 0x04004C21 RID: 19489
 		private int angryCustomers;
 
-		// Token: 0x04004C1C RID: 19484
+		// Token: 0x04004C22 RID: 19490
 		[HideInInspector]
 		public TipPage tipPage;
 
-		// Token: 0x04004C1D RID: 19485
+		// Token: 0x04004C23 RID: 19491
 		[HideInInspector]
 		public float totalPayout;
 
-		// Token: 0x04004C1E RID: 19486
+		// Token: 0x04004C24 RID: 19492
 		[HideInInspector]
 		public SpriteRenderer whiteFadeOutPost;
 
-		// Token: 0x04004C1F RID: 19487
+		// Token: 0x04004C25 RID: 19493
 		public static BoolParameterEvent PauseGame;
 	}
 }

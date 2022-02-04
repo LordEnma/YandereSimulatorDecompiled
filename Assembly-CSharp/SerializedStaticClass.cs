@@ -4,24 +4,24 @@
 [Serializable]
 public struct SerializedStaticClass
 {
-	// Token: 0x040048DD RID: 18653
+	// Token: 0x040048E3 RID: 18659
 	public string TypePath;
 
-	// Token: 0x040048DE RID: 18654
+	// Token: 0x040048E4 RID: 18660
 	public ValueDict PropertyValues;
 
-	// Token: 0x040048DF RID: 18655
+	// Token: 0x040048E5 RID: 18661
 	public ValueDict FieldValues;
 
-	// Token: 0x040048E0 RID: 18656
+	// Token: 0x040048E6 RID: 18662
 	public ReferenceDict PropertyReferences;
 
-	// Token: 0x040048E1 RID: 18657
+	// Token: 0x040048E7 RID: 18663
 	public ReferenceDict FieldReferences;
 
-	// Token: 0x040048E2 RID: 18658
+	// Token: 0x040048E8 RID: 18664
 	public ReferenceArrayDict PropertyReferenceArrays;
 
-	// Token: 0x040048E3 RID: 18659
+	// Token: 0x040048E9 RID: 18665
 	public ReferenceArrayDict FieldReferenceArrays;
 }

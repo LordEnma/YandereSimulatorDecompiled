@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000372 RID: 882
 public class MythTreeScript : MonoBehaviour
 {
-	// Token: 0x060019C3 RID: 6595 RVA: 0x00108256 File Offset: 0x00106456
+	// Token: 0x060019C3 RID: 6595 RVA: 0x00108312 File Offset: 0x00106512
 	private void Start()
 	{
 		if (SchemeGlobals.GetSchemeStage(2) > 2 || GameGlobals.Eighties)
@@ -13,7 +13,7 @@ public class MythTreeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019C4 RID: 6596 RVA: 0x00108270 File Offset: 0x00106470
+	// Token: 0x060019C4 RID: 6596 RVA: 0x0010832C File Offset: 0x0010652C
 	private void Update()
 	{
 		if (!this.Spoken)
@@ -37,18 +37,18 @@ public class MythTreeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002955 RID: 10581
+	// Token: 0x04002956 RID: 10582
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002956 RID: 10582
+	// Token: 0x04002957 RID: 10583
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002957 RID: 10583
+	// Token: 0x04002958 RID: 10584
 	public YandereScript Yandere;
 
-	// Token: 0x04002958 RID: 10584
+	// Token: 0x04002959 RID: 10585
 	public bool Spoken;
 
-	// Token: 0x04002959 RID: 10585
+	// Token: 0x0400295A RID: 10586
 	public AudioSource MyAudio;
 }

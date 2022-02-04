@@ -6,35 +6,35 @@ namespace AnimationOrTween
 	[DoNotObfuscateNGUI]
 	public enum Trigger
 	{
-		// Token: 0x04004B9E RID: 19358
-		OnClick,
-		// Token: 0x04004B9F RID: 19359
-		OnHover,
-		// Token: 0x04004BA0 RID: 19360
-		OnPress,
-		// Token: 0x04004BA1 RID: 19361
-		OnHoverTrue,
-		// Token: 0x04004BA2 RID: 19362
-		OnHoverFalse,
-		// Token: 0x04004BA3 RID: 19363
-		OnPressTrue,
 		// Token: 0x04004BA4 RID: 19364
-		OnPressFalse,
+		OnClick,
 		// Token: 0x04004BA5 RID: 19365
-		OnActivate,
+		OnHover,
 		// Token: 0x04004BA6 RID: 19366
-		OnActivateTrue,
+		OnPress,
 		// Token: 0x04004BA7 RID: 19367
-		OnActivateFalse,
+		OnHoverTrue,
 		// Token: 0x04004BA8 RID: 19368
-		OnDoubleClick,
+		OnHoverFalse,
 		// Token: 0x04004BA9 RID: 19369
-		OnSelect,
+		OnPressTrue,
 		// Token: 0x04004BAA RID: 19370
-		OnSelectTrue,
+		OnPressFalse,
 		// Token: 0x04004BAB RID: 19371
-		OnSelectFalse,
+		OnActivate,
 		// Token: 0x04004BAC RID: 19372
+		OnActivateTrue,
+		// Token: 0x04004BAD RID: 19373
+		OnActivateFalse,
+		// Token: 0x04004BAE RID: 19374
+		OnDoubleClick,
+		// Token: 0x04004BAF RID: 19375
+		OnSelect,
+		// Token: 0x04004BB0 RID: 19376
+		OnSelectTrue,
+		// Token: 0x04004BB1 RID: 19377
+		OnSelectFalse,
+		// Token: 0x04004BB2 RID: 19378
 		Manual
 	}
 }

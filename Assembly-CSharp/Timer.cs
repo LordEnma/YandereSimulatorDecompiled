@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class Timer
 {
-	// Token: 0x06001F6F RID: 8047 RVA: 0x001B9299 File Offset: 0x001B7499
+	// Token: 0x06001F71 RID: 8049 RVA: 0x001B95A5 File Offset: 0x001B77A5
 	public Timer(float targetSeconds)
 	{
 		this.currentSeconds = 0f;
@@ -13,7 +13,7 @@ public class Timer
 	}
 
 	// Token: 0x170004C2 RID: 1218
-	// (get) Token: 0x06001F70 RID: 8048 RVA: 0x001B92B3 File Offset: 0x001B74B3
+	// (get) Token: 0x06001F72 RID: 8050 RVA: 0x001B95BF File Offset: 0x001B77BF
 	public float CurrentSeconds
 	{
 		get
@@ -23,7 +23,7 @@ public class Timer
 	}
 
 	// Token: 0x170004C3 RID: 1219
-	// (get) Token: 0x06001F71 RID: 8049 RVA: 0x001B92BB File Offset: 0x001B74BB
+	// (get) Token: 0x06001F73 RID: 8051 RVA: 0x001B95C7 File Offset: 0x001B77C7
 	public float TargetSeconds
 	{
 		get
@@ -33,7 +33,7 @@ public class Timer
 	}
 
 	// Token: 0x170004C4 RID: 1220
-	// (get) Token: 0x06001F72 RID: 8050 RVA: 0x001B92C3 File Offset: 0x001B74C3
+	// (get) Token: 0x06001F74 RID: 8052 RVA: 0x001B95CF File Offset: 0x001B77CF
 	public bool IsDone
 	{
 		get
@@ -43,7 +43,7 @@ public class Timer
 	}
 
 	// Token: 0x170004C5 RID: 1221
-	// (get) Token: 0x06001F73 RID: 8051 RVA: 0x001B92D6 File Offset: 0x001B74D6
+	// (get) Token: 0x06001F75 RID: 8053 RVA: 0x001B95E2 File Offset: 0x001B77E2
 	public float Progress
 	{
 		get
@@ -52,29 +52,29 @@ public class Timer
 		}
 	}
 
-	// Token: 0x06001F74 RID: 8052 RVA: 0x001B92EA File Offset: 0x001B74EA
+	// Token: 0x06001F76 RID: 8054 RVA: 0x001B95F6 File Offset: 0x001B77F6
 	public void Reset()
 	{
 		this.currentSeconds = 0f;
 	}
 
-	// Token: 0x06001F75 RID: 8053 RVA: 0x001B92F7 File Offset: 0x001B74F7
+	// Token: 0x06001F77 RID: 8055 RVA: 0x001B9603 File Offset: 0x001B7803
 	public void SubtractTarget()
 	{
 		this.currentSeconds -= this.targetSeconds;
 	}
 
-	// Token: 0x06001F76 RID: 8054 RVA: 0x001B930C File Offset: 0x001B750C
+	// Token: 0x06001F78 RID: 8056 RVA: 0x001B9618 File Offset: 0x001B7818
 	public void Tick(float dt)
 	{
 		this.currentSeconds += dt;
 	}
 
-	// Token: 0x04004173 RID: 16755
+	// Token: 0x04004179 RID: 16761
 	[SerializeField]
 	private float currentSeconds;
 
-	// Token: 0x04004174 RID: 16756
+	// Token: 0x0400417A RID: 16762
 	[SerializeField]
 	private float targetSeconds;
 }

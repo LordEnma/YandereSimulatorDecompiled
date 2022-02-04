@@ -50,13 +50,13 @@ public class GrassGenerator : MonoBehaviour
 	[Serializable]
 	public class GrassPlane
 	{
-		// Token: 0x04004CC8 RID: 19656
+		// Token: 0x04004CCE RID: 19662
 		public Vector3 LocalCenter;
 
-		// Token: 0x04004CC9 RID: 19657
+		// Token: 0x04004CCF RID: 19663
 		public Vector2 Size;
 
-		// Token: 0x04004CCA RID: 19658
+		// Token: 0x04004CD0 RID: 19664
 		public bool Intersect;
 	}
 }

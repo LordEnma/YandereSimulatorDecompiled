@@ -6,11 +6,11 @@ namespace AnimationOrTween
 	[DoNotObfuscateNGUI]
 	public enum Direction
 	{
-		// Token: 0x04004BAE RID: 19374
+		// Token: 0x04004BB4 RID: 19380
 		Reverse = -1,
-		// Token: 0x04004BAF RID: 19375
+		// Token: 0x04004BB5 RID: 19381
 		Toggle,
-		// Token: 0x04004BB0 RID: 19376
+		// Token: 0x04004BB6 RID: 19382
 		Forward
 	}
 }

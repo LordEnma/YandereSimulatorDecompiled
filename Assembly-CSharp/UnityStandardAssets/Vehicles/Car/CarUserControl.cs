@@ -8,13 +8,13 @@ namespace UnityStandardAssets.Vehicles.Car
 	[RequireComponent(typeof(CarController))]
 	public class CarUserControl : MonoBehaviour
 	{
-		// Token: 0x06002191 RID: 8593 RVA: 0x001EB04E File Offset: 0x001E924E
+		// Token: 0x06002193 RID: 8595 RVA: 0x001EB366 File Offset: 0x001E9566
 		private void Awake()
 		{
 			this.m_Car = base.GetComponent<CarController>();
 		}
 
-		// Token: 0x06002192 RID: 8594 RVA: 0x001EB05C File Offset: 0x001E925C
+		// Token: 0x06002194 RID: 8596 RVA: 0x001EB374 File Offset: 0x001E9574
 		private void FixedUpdate()
 		{
 			float axis = CrossPlatformInputManager.GetAxis("Horizontal");
@@ -23,7 +23,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.m_Car.Move(axis, axis2, axis2, axis3);
 		}
 
-		// Token: 0x040049A1 RID: 18849
+		// Token: 0x040049A7 RID: 18855
 		private CarController m_Car;
 	}
 }

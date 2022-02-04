@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000330 RID: 816
 public class IncineratorScript : MonoBehaviour
 {
-	// Token: 0x060018C2 RID: 6338 RVA: 0x000F3AA4 File Offset: 0x000F1CA4
+	// Token: 0x060018C2 RID: 6338 RVA: 0x000F3B60 File Offset: 0x000F1D60
 	private void Start()
 	{
 		this.Panel.SetActive(false);
@@ -19,7 +19,7 @@ public class IncineratorScript : MonoBehaviour
 		this.MyAudio = base.GetComponent<AudioSource>();
 	}
 
-	// Token: 0x060018C3 RID: 6339 RVA: 0x000F3B10 File Offset: 0x000F1D10
+	// Token: 0x060018C3 RID: 6339 RVA: 0x000F3BCC File Offset: 0x000F1DCC
 	private void Update()
 	{
 		if (this.Animate)
@@ -272,7 +272,7 @@ public class IncineratorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018C4 RID: 6340 RVA: 0x000F4790 File Offset: 0x000F2990
+	// Token: 0x060018C4 RID: 6340 RVA: 0x000F484C File Offset: 0x000F2A4C
 	public void SetVictimsMissing()
 	{
 		int[] confirmedDead = this.ConfirmedDead;
@@ -282,7 +282,7 @@ public class IncineratorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018C5 RID: 6341 RVA: 0x000F47BC File Offset: 0x000F29BC
+	// Token: 0x060018C5 RID: 6341 RVA: 0x000F4878 File Offset: 0x000F2A78
 	public void DumpGarbageBag(PickUpScript PickUp)
 	{
 		Debug.Log("A garbage bag was dumped into the incinerator!");
@@ -299,120 +299,120 @@ public class IncineratorScript : MonoBehaviour
 		this.Open = true;
 	}
 
-	// Token: 0x040025C8 RID: 9672
+	// Token: 0x040025C9 RID: 9673
 	public YandereScript Yandere;
 
-	// Token: 0x040025C9 RID: 9673
+	// Token: 0x040025CA RID: 9674
 	public PromptScript Prompt;
 
-	// Token: 0x040025CA RID: 9674
+	// Token: 0x040025CB RID: 9675
 	public ClockScript Clock;
 
-	// Token: 0x040025CB RID: 9675
+	// Token: 0x040025CC RID: 9676
 	public AudioClip IncineratorActivate;
 
-	// Token: 0x040025CC RID: 9676
+	// Token: 0x040025CD RID: 9677
 	public AudioClip IncineratorClose;
 
-	// Token: 0x040025CD RID: 9677
+	// Token: 0x040025CE RID: 9678
 	public AudioClip IncineratorOpen;
 
-	// Token: 0x040025CE RID: 9678
+	// Token: 0x040025CF RID: 9679
 	public AudioSource FlameSound;
 
-	// Token: 0x040025CF RID: 9679
+	// Token: 0x040025D0 RID: 9680
 	public AudioSource MyAudio;
 
-	// Token: 0x040025D0 RID: 9680
+	// Token: 0x040025D1 RID: 9681
 	public ParticleSystem Flames;
 
-	// Token: 0x040025D1 RID: 9681
+	// Token: 0x040025D2 RID: 9682
 	public ParticleSystem Smoke;
 
-	// Token: 0x040025D2 RID: 9682
+	// Token: 0x040025D3 RID: 9683
 	public Transform DumpPoint;
 
-	// Token: 0x040025D3 RID: 9683
+	// Token: 0x040025D4 RID: 9684
 	public Transform RightDoor;
 
-	// Token: 0x040025D4 RID: 9684
+	// Token: 0x040025D5 RID: 9685
 	public Transform LeftDoor;
 
-	// Token: 0x040025D5 RID: 9685
+	// Token: 0x040025D6 RID: 9686
 	public GameObject OutOfOrderSign;
 
-	// Token: 0x040025D6 RID: 9686
+	// Token: 0x040025D7 RID: 9687
 	public GameObject Panel;
 
-	// Token: 0x040025D7 RID: 9687
+	// Token: 0x040025D8 RID: 9688
 	public UILabel TimeLabel;
 
-	// Token: 0x040025D8 RID: 9688
+	// Token: 0x040025D9 RID: 9689
 	public UISprite Circle;
 
-	// Token: 0x040025D9 RID: 9689
+	// Token: 0x040025DA RID: 9690
 	public bool YandereHoldingEvidence;
 
-	// Token: 0x040025DA RID: 9690
+	// Token: 0x040025DB RID: 9691
 	public bool ActivateAfterClosing;
 
-	// Token: 0x040025DB RID: 9691
+	// Token: 0x040025DC RID: 9692
 	public bool CannotIncinerate;
 
-	// Token: 0x040025DC RID: 9692
+	// Token: 0x040025DD RID: 9693
 	public bool Animate;
 
-	// Token: 0x040025DD RID: 9693
+	// Token: 0x040025DE RID: 9694
 	public bool Ready;
 
-	// Token: 0x040025DE RID: 9694
+	// Token: 0x040025DF RID: 9695
 	public bool Open;
 
-	// Token: 0x040025DF RID: 9695
+	// Token: 0x040025E0 RID: 9696
 	public int ClothingWithRedPaint;
 
-	// Token: 0x040025E0 RID: 9696
+	// Token: 0x040025E1 RID: 9697
 	public int DestroyedEvidence;
 
-	// Token: 0x040025E1 RID: 9697
+	// Token: 0x040025E2 RID: 9698
 	public int BloodyClothing;
 
-	// Token: 0x040025E2 RID: 9698
+	// Token: 0x040025E3 RID: 9699
 	public int MurderWeapons;
 
-	// Token: 0x040025E3 RID: 9699
+	// Token: 0x040025E4 RID: 9700
 	public int BodyParts;
 
-	// Token: 0x040025E4 RID: 9700
+	// Token: 0x040025E5 RID: 9701
 	public int Corpses;
 
-	// Token: 0x040025E5 RID: 9701
+	// Token: 0x040025E6 RID: 9702
 	public int Victims;
 
-	// Token: 0x040025E6 RID: 9702
+	// Token: 0x040025E7 RID: 9703
 	public int Limbs;
 
-	// Token: 0x040025E7 RID: 9703
+	// Token: 0x040025E8 RID: 9704
 	public int ID;
 
-	// Token: 0x040025E8 RID: 9704
+	// Token: 0x040025E9 RID: 9705
 	public float OpenTimer;
 
-	// Token: 0x040025E9 RID: 9705
+	// Token: 0x040025EA RID: 9706
 	public float Timer;
 
-	// Token: 0x040025EA RID: 9706
+	// Token: 0x040025EB RID: 9707
 	public int[] EvidenceList;
 
-	// Token: 0x040025EB RID: 9707
+	// Token: 0x040025EC RID: 9708
 	public int[] CorpseList;
 
-	// Token: 0x040025EC RID: 9708
+	// Token: 0x040025ED RID: 9709
 	public int[] VictimList;
 
-	// Token: 0x040025ED RID: 9709
+	// Token: 0x040025EE RID: 9710
 	public int[] LimbList;
 
-	// Token: 0x040025EE RID: 9710
+	// Token: 0x040025EF RID: 9711
 	public int[] ConfirmedDead;
 }

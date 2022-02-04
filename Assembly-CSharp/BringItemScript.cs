@@ -5,7 +5,7 @@ using UnityEngine;
 public class BringItemScript : MonoBehaviour
 {
 	// Token: 0x06000A65 RID: 2661 RVA: 0x0005C584 File Offset: 0x0005A784
-	private void Start()
+	private void Initialize()
 	{
 		for (int i = 1; i < 8; i++)
 		{
@@ -50,6 +50,11 @@ public class BringItemScript : MonoBehaviour
 	// Token: 0x06000A66 RID: 2662 RVA: 0x0005C710 File Offset: 0x0005A910
 	private void Update()
 	{
+		if (!this.Initialized)
+		{
+			this.Initialize();
+			this.Initialized = true;
+		}
 		if (this.HomeWindow.Sprite.color.a > 0.9f)
 		{
 			if (this.InputManager.TappedDown)
@@ -129,4 +134,7 @@ public class BringItemScript : MonoBehaviour
 
 	// Token: 0x04000C18 RID: 3096
 	public int ID = 1;
+
+	// Token: 0x04000C19 RID: 3097
+	public bool Initialized;
 }

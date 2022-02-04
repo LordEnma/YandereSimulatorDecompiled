@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002DC RID: 732
 public class GenericBentoScript : MonoBehaviour
 {
-	// Token: 0x060014D5 RID: 5333 RVA: 0x000CE518 File Offset: 0x000CC718
+	// Token: 0x060014D5 RID: 5333 RVA: 0x000CE5CC File Offset: 0x000CC7CC
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f || this.Prompt.Circle[1].fillAmount == 0f || this.Prompt.Circle[2].fillAmount == 0f || this.Prompt.Circle[3].fillAmount == 0f)
@@ -47,16 +47,14 @@ public class GenericBentoScript : MonoBehaviour
 				{
 					if (this.Prompt.Yandere.Inventory.LethalPoison)
 					{
+						this.Prompt.Yandere.Inventory.LethalPoison = false;
 						this.Prompt.Yandere.Inventory.LethalPoisons--;
-						if (this.Prompt.Yandere.Inventory.LethalPoisons == 0)
-						{
-							this.Prompt.Yandere.Inventory.LethalPoison = false;
-						}
 						this.Prompt.Yandere.PoisonType = 2;
 					}
 					else
 					{
 						this.Prompt.Yandere.Inventory.ChemicalPoison = false;
+						this.Prompt.Yandere.Inventory.LethalPoisons--;
 						this.Prompt.Yandere.PoisonType = 2;
 					}
 					this.Lethal = true;
@@ -84,7 +82,7 @@ public class GenericBentoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014D6 RID: 5334 RVA: 0x000CE86C File Offset: 0x000CCA6C
+	// Token: 0x060014D6 RID: 5334 RVA: 0x000CE924 File Offset: 0x000CCB24
 	private void ShutOff()
 	{
 		Debug.Log("Shutting off a bento. This bento should be inaccessible from now on...");
@@ -105,7 +103,7 @@ public class GenericBentoScript : MonoBehaviour
 		this.Prompt.Hide();
 	}
 
-	// Token: 0x060014D7 RID: 5335 RVA: 0x000CE9DC File Offset: 0x000CCBDC
+	// Token: 0x060014D7 RID: 5335 RVA: 0x000CEA94 File Offset: 0x000CCC94
 	public void UpdatePrompts()
 	{
 		if (!this.Tampered)
@@ -134,33 +132,33 @@ public class GenericBentoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040020EA RID: 8426
+	// Token: 0x040020EB RID: 8427
 	public GameObject EmptyGameObject;
 
-	// Token: 0x040020EB RID: 8427
+	// Token: 0x040020EC RID: 8428
 	public GameObject Lid;
 
-	// Token: 0x040020EC RID: 8428
+	// Token: 0x040020ED RID: 8429
 	public Transform PoisonSpot;
 
-	// Token: 0x040020ED RID: 8429
+	// Token: 0x040020EE RID: 8430
 	public PromptScript Prompt;
 
-	// Token: 0x040020EE RID: 8430
+	// Token: 0x040020EF RID: 8431
 	public bool Emetic;
 
-	// Token: 0x040020EF RID: 8431
+	// Token: 0x040020F0 RID: 8432
 	public bool Tranquil;
 
-	// Token: 0x040020F0 RID: 8432
+	// Token: 0x040020F1 RID: 8433
 	public bool Headache;
 
-	// Token: 0x040020F1 RID: 8433
+	// Token: 0x040020F2 RID: 8434
 	public bool Lethal;
 
-	// Token: 0x040020F2 RID: 8434
+	// Token: 0x040020F3 RID: 8435
 	public bool Tampered;
 
-	// Token: 0x040020F3 RID: 8435
+	// Token: 0x040020F4 RID: 8436
 	public int StudentID;
 }

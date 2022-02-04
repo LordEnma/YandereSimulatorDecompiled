@@ -348,18 +348,18 @@ public class UIGrid : UIWidgetContainer
 	protected bool mInitDone;
 
 	// Token: 0x020005C7 RID: 1479
-	// (Invoke) Token: 0x060024F7 RID: 9463
+	// (Invoke) Token: 0x060024F9 RID: 9465
 	public delegate void OnReposition();
 
 	// Token: 0x020005C8 RID: 1480
 	[DoNotObfuscateNGUI]
 	public enum Arrangement
 	{
-		// Token: 0x04004D10 RID: 19728
+		// Token: 0x04004D16 RID: 19734
 		Horizontal,
-		// Token: 0x04004D11 RID: 19729
+		// Token: 0x04004D17 RID: 19735
 		Vertical,
-		// Token: 0x04004D12 RID: 19730
+		// Token: 0x04004D18 RID: 19736
 		CellSnap
 	}
 
@@ -367,15 +367,15 @@ public class UIGrid : UIWidgetContainer
 	[DoNotObfuscateNGUI]
 	public enum Sorting
 	{
-		// Token: 0x04004D14 RID: 19732
+		// Token: 0x04004D1A RID: 19738
 		None,
-		// Token: 0x04004D15 RID: 19733
+		// Token: 0x04004D1B RID: 19739
 		Alphabetic,
-		// Token: 0x04004D16 RID: 19734
+		// Token: 0x04004D1C RID: 19740
 		Horizontal,
-		// Token: 0x04004D17 RID: 19735
+		// Token: 0x04004D1D RID: 19741
 		Vertical,
-		// Token: 0x04004D18 RID: 19736
+		// Token: 0x04004D1E RID: 19742
 		Custom
 	}
 }

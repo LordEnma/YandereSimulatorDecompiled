@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D5 RID: 981
 public class RingScript : MonoBehaviour
 {
-	// Token: 0x06001B71 RID: 7025 RVA: 0x00136CA8 File Offset: 0x00134EA8
+	// Token: 0x06001B71 RID: 7025 RVA: 0x00136DAC File Offset: 0x00134FAC
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -26,9 +26,9 @@ public class RingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002EF1 RID: 12017
+	// Token: 0x04002EF2 RID: 12018
 	public RingEventScript RingEvent;
 
-	// Token: 0x04002EF2 RID: 12018
+	// Token: 0x04002EF3 RID: 12019
 	public PromptScript Prompt;
 }

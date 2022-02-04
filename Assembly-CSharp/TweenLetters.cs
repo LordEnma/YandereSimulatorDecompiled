@@ -216,24 +216,24 @@ public class TweenLetters : UITweener
 	[DoNotObfuscateNGUI]
 	public enum AnimationLetterOrder
 	{
-		// Token: 0x04004DC4 RID: 19908
+		// Token: 0x04004DCA RID: 19914
 		Forward,
-		// Token: 0x04004DC5 RID: 19909
+		// Token: 0x04004DCB RID: 19915
 		Reverse,
-		// Token: 0x04004DC6 RID: 19910
+		// Token: 0x04004DCC RID: 19916
 		Random
 	}
 
 	// Token: 0x02000606 RID: 1542
 	private class LetterProperties
 	{
-		// Token: 0x04004DC7 RID: 19911
+		// Token: 0x04004DCD RID: 19917
 		public float start;
 
-		// Token: 0x04004DC8 RID: 19912
+		// Token: 0x04004DCE RID: 19918
 		public float duration;
 
-		// Token: 0x04004DC9 RID: 19913
+		// Token: 0x04004DCF RID: 19919
 		public Vector2 offset;
 	}
 
@@ -241,33 +241,33 @@ public class TweenLetters : UITweener
 	[Serializable]
 	public class AnimationProperties
 	{
-		// Token: 0x04004DCA RID: 19914
+		// Token: 0x04004DD0 RID: 19920
 		public TweenLetters.AnimationLetterOrder animationOrder = TweenLetters.AnimationLetterOrder.Random;
 
-		// Token: 0x04004DCB RID: 19915
+		// Token: 0x04004DD1 RID: 19921
 		[Range(0f, 1f)]
 		public float overlap = 0.5f;
 
-		// Token: 0x04004DCC RID: 19916
+		// Token: 0x04004DD2 RID: 19922
 		public bool randomDurations;
 
-		// Token: 0x04004DCD RID: 19917
+		// Token: 0x04004DD3 RID: 19923
 		[MinMaxRange(0f, 1f)]
 		public Vector2 randomness = new Vector2(0.25f, 0.75f);
 
-		// Token: 0x04004DCE RID: 19918
+		// Token: 0x04004DD4 RID: 19924
 		public Vector2 offsetRange = Vector2.zero;
 
-		// Token: 0x04004DCF RID: 19919
+		// Token: 0x04004DD5 RID: 19925
 		public Vector3 pos = Vector3.zero;
 
-		// Token: 0x04004DD0 RID: 19920
+		// Token: 0x04004DD6 RID: 19926
 		public Vector3 rot = Vector3.zero;
 
-		// Token: 0x04004DD1 RID: 19921
+		// Token: 0x04004DD7 RID: 19927
 		public Vector3 scale = Vector3.one;
 
-		// Token: 0x04004DD2 RID: 19922
+		// Token: 0x04004DD8 RID: 19928
 		public float alpha = 1f;
 	}
 }

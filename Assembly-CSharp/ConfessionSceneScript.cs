@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000257 RID: 599
 public class ConfessionSceneScript : MonoBehaviour
 {
-	// Token: 0x060012A8 RID: 4776 RVA: 0x000983B0 File Offset: 0x000965B0
+	// Token: 0x060012A8 RID: 4776 RVA: 0x000983A8 File Offset: 0x000965A8
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -14,7 +14,7 @@ public class ConfessionSceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012A9 RID: 4777 RVA: 0x000983DC File Offset: 0x000965DC
+	// Token: 0x060012A9 RID: 4777 RVA: 0x000983D4 File Offset: 0x000965D4
 	private void Update()
 	{
 		if (this.Phase == 1)
@@ -202,102 +202,102 @@ public class ConfessionSceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400189B RID: 6299
+	// Token: 0x0400189C RID: 6300
 	public Transform[] CameraDestinations;
 
-	// Token: 0x0400189C RID: 6300
+	// Token: 0x0400189D RID: 6301
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x0400189D RID: 6301
+	// Token: 0x0400189E RID: 6302
 	public LoveManagerScript LoveManager;
 
-	// Token: 0x0400189E RID: 6302
+	// Token: 0x0400189F RID: 6303
 	public PromptBarScript PromptBar;
 
-	// Token: 0x0400189F RID: 6303
+	// Token: 0x040018A0 RID: 6304
 	public JukeboxScript Jukebox;
 
-	// Token: 0x040018A0 RID: 6304
+	// Token: 0x040018A1 RID: 6305
 	public YandereScript Yandere;
 
-	// Token: 0x040018A1 RID: 6305
+	// Token: 0x040018A2 RID: 6306
 	public ClockScript Clock;
 
-	// Token: 0x040018A2 RID: 6306
+	// Token: 0x040018A3 RID: 6307
 	public Bloom BloomEffect;
 
-	// Token: 0x040018A3 RID: 6307
+	// Token: 0x040018A4 RID: 6308
 	public StudentScript Suitor;
 
-	// Token: 0x040018A4 RID: 6308
+	// Token: 0x040018A5 RID: 6309
 	public StudentScript Rival;
 
-	// Token: 0x040018A5 RID: 6309
+	// Token: 0x040018A6 RID: 6310
 	public ParticleSystem MythBlossoms;
 
-	// Token: 0x040018A6 RID: 6310
+	// Token: 0x040018A7 RID: 6311
 	public GameObject HeartBeatCamera;
 
-	// Token: 0x040018A7 RID: 6311
+	// Token: 0x040018A8 RID: 6312
 	public GameObject ConfessionBG;
 
-	// Token: 0x040018A8 RID: 6312
+	// Token: 0x040018A9 RID: 6313
 	public Transform MainCamera;
 
-	// Token: 0x040018A9 RID: 6313
+	// Token: 0x040018AA RID: 6314
 	public Transform RivalSpot;
 
-	// Token: 0x040018AA RID: 6314
+	// Token: 0x040018AB RID: 6315
 	public Transform KissSpot;
 
-	// Token: 0x040018AB RID: 6315
+	// Token: 0x040018AC RID: 6316
 	public string[] Text;
 
-	// Token: 0x040018AC RID: 6316
+	// Token: 0x040018AD RID: 6317
 	public GameObject[] Letters;
 
-	// Token: 0x040018AD RID: 6317
+	// Token: 0x040018AE RID: 6318
 	public UISprite Darkness;
 
-	// Token: 0x040018AE RID: 6318
+	// Token: 0x040018AF RID: 6319
 	public UILabel Label;
 
-	// Token: 0x040018AF RID: 6319
+	// Token: 0x040018B0 RID: 6320
 	public UIPanel Panel;
 
-	// Token: 0x040018B0 RID: 6320
+	// Token: 0x040018B1 RID: 6321
 	public AudioSource MyAudio;
 
-	// Token: 0x040018B1 RID: 6321
+	// Token: 0x040018B2 RID: 6322
 	public AudioSource Jingle;
 
-	// Token: 0x040018B2 RID: 6322
+	// Token: 0x040018B3 RID: 6323
 	public AudioClip EightiesConfessionMusic;
 
-	// Token: 0x040018B3 RID: 6323
+	// Token: 0x040018B4 RID: 6324
 	public bool MoveSuitor;
 
-	// Token: 0x040018B4 RID: 6324
+	// Token: 0x040018B5 RID: 6325
 	public bool ShowLabel;
 
-	// Token: 0x040018B5 RID: 6325
+	// Token: 0x040018B6 RID: 6326
 	public bool Kissing;
 
-	// Token: 0x040018B6 RID: 6326
+	// Token: 0x040018B7 RID: 6327
 	public int TextPhase = 1;
 
-	// Token: 0x040018B7 RID: 6327
+	// Token: 0x040018B8 RID: 6328
 	public int LetterID = 1;
 
-	// Token: 0x040018B8 RID: 6328
+	// Token: 0x040018B9 RID: 6329
 	public int Phase = 1;
 
-	// Token: 0x040018B9 RID: 6329
+	// Token: 0x040018BA RID: 6330
 	public float LetterTimer = 0.1f;
 
-	// Token: 0x040018BA RID: 6330
+	// Token: 0x040018BB RID: 6331
 	public float Speed;
 
-	// Token: 0x040018BB RID: 6331
+	// Token: 0x040018BC RID: 6332
 	public float Timer;
 }

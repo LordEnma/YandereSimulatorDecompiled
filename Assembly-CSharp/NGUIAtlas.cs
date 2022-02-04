@@ -441,9 +441,9 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 	// Token: 0x0200060A RID: 1546
 	private enum Coordinates
 	{
-		// Token: 0x04004DDF RID: 19935
+		// Token: 0x04004DE5 RID: 19941
 		Pixels,
-		// Token: 0x04004DE0 RID: 19936
+		// Token: 0x04004DE6 RID: 19942
 		TexCoords
 	}
 }

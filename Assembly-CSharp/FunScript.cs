@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020002D5 RID: 725
 public class FunScript : MonoBehaviour
 {
-	// Token: 0x060014B8 RID: 5304 RVA: 0x000CBAD0 File Offset: 0x000C9CD0
+	// Token: 0x060014B8 RID: 5304 RVA: 0x000CBB84 File Offset: 0x000C9D84
 	private void Start()
 	{
 		if (PlayerPrefs.GetInt("DebugNumber") > 0)
@@ -106,7 +106,7 @@ public class FunScript : MonoBehaviour
 		this.Girl.color = new Color(this.R, this.G, this.B, 0f);
 	}
 
-	// Token: 0x060014B9 RID: 5305 RVA: 0x000CBE60 File Offset: 0x000CA060
+	// Token: 0x060014B9 RID: 5305 RVA: 0x000CBF14 File Offset: 0x000CA114
 	private void Update()
 	{
 		if (Input.GetKeyDown(",") && PlayerPrefs.GetInt("DebugNumber") > 0)
@@ -177,51 +177,51 @@ public class FunScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002083 RID: 8323
+	// Token: 0x04002084 RID: 8324
 	public TypewriterEffect Typewriter;
 
-	// Token: 0x04002084 RID: 8324
+	// Token: 0x04002085 RID: 8325
 	public GameObject Controls;
 
-	// Token: 0x04002085 RID: 8325
+	// Token: 0x04002086 RID: 8326
 	public GameObject Skip;
 
-	// Token: 0x04002086 RID: 8326
+	// Token: 0x04002087 RID: 8327
 	public Texture[] Portraits;
 
-	// Token: 0x04002087 RID: 8327
+	// Token: 0x04002088 RID: 8328
 	public string[] Lines;
 
-	// Token: 0x04002088 RID: 8328
+	// Token: 0x04002089 RID: 8329
 	public UITexture Girl;
 
-	// Token: 0x04002089 RID: 8329
+	// Token: 0x0400208A RID: 8330
 	public UILabel Label;
 
-	// Token: 0x0400208A RID: 8330
+	// Token: 0x0400208B RID: 8331
 	public float OutroTimer;
 
-	// Token: 0x0400208B RID: 8331
+	// Token: 0x0400208C RID: 8332
 	public float Timer;
 
-	// Token: 0x0400208C RID: 8332
+	// Token: 0x0400208D RID: 8333
 	public int DebugNumber;
 
-	// Token: 0x0400208D RID: 8333
+	// Token: 0x0400208E RID: 8334
 	public int ID;
 
-	// Token: 0x0400208E RID: 8334
+	// Token: 0x0400208F RID: 8335
 	public bool VeryFun;
 
-	// Token: 0x0400208F RID: 8335
+	// Token: 0x04002090 RID: 8336
 	public float R = 1f;
 
-	// Token: 0x04002090 RID: 8336
+	// Token: 0x04002091 RID: 8337
 	public float G = 1f;
 
-	// Token: 0x04002091 RID: 8337
+	// Token: 0x04002092 RID: 8338
 	public float B = 1f;
 
-	// Token: 0x04002092 RID: 8338
+	// Token: 0x04002093 RID: 8339
 	public string Text;
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000471 RID: 1137
 public class TimeStopKnifeScript : MonoBehaviour
 {
-	// Token: 0x06001EA3 RID: 7843 RVA: 0x001AE46C File Offset: 0x001AC66C
+	// Token: 0x06001EA5 RID: 7845 RVA: 0x001AE778 File Offset: 0x001AC978
 	private void Start()
 	{
 		base.transform.localScale = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x06001EA4 RID: 7844 RVA: 0x001AE490 File Offset: 0x001AC690
+	// Token: 0x06001EA6 RID: 7846 RVA: 0x001AE79C File Offset: 0x001AC99C
 	private void Update()
 	{
 		if (!this.Unfreeze)
@@ -33,7 +33,7 @@ public class TimeStopKnifeScript : MonoBehaviour
 		base.transform.Translate(Vector3.forward * this.Speed * Time.deltaTime, Space.Self);
 	}
 
-	// Token: 0x06001EA5 RID: 7845 RVA: 0x001AE570 File Offset: 0x001AC770
+	// Token: 0x06001EA7 RID: 7847 RVA: 0x001AE87C File Offset: 0x001ACA7C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Unfreeze && other.gameObject.layer == 9)
@@ -55,18 +55,18 @@ public class TimeStopKnifeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F57 RID: 16215
+	// Token: 0x04003F5D RID: 16221
 	public GameObject FemaleScream;
 
-	// Token: 0x04003F58 RID: 16216
+	// Token: 0x04003F5E RID: 16222
 	public GameObject MaleScream;
 
-	// Token: 0x04003F59 RID: 16217
+	// Token: 0x04003F5F RID: 16223
 	public bool Unfreeze;
 
-	// Token: 0x04003F5A RID: 16218
+	// Token: 0x04003F60 RID: 16224
 	public float Speed = 0.1f;
 
-	// Token: 0x04003F5B RID: 16219
+	// Token: 0x04003F61 RID: 16225
 	private float Timer;
 }

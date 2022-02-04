@@ -5,15 +5,15 @@ using UnityEngine;
 [Serializable]
 public struct BoneData
 {
-	// Token: 0x04002D45 RID: 11589
+	// Token: 0x04002D46 RID: 11590
 	public string BoneName;
 
-	// Token: 0x04002D46 RID: 11590
+	// Token: 0x04002D47 RID: 11591
 	public Quaternion LocalRotation;
 
-	// Token: 0x04002D47 RID: 11591
+	// Token: 0x04002D48 RID: 11592
 	public Vector3 LocalPosition;
 
-	// Token: 0x04002D48 RID: 11592
+	// Token: 0x04002D49 RID: 11593
 	public Vector3 LocalScale;
 }
