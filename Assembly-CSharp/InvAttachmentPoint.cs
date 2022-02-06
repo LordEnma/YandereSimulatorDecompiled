@@ -29,12 +29,12 @@ public class InvAttachmentPoint : MonoBehaviour
 		return this.mChild;
 	}
 
-	// Token: 0x04000270 RID: 624
+	// Token: 0x04000271 RID: 625
 	public InvBaseItem.Slot slot;
 
-	// Token: 0x04000271 RID: 625
+	// Token: 0x04000272 RID: 626
 	private GameObject mPrefab;
 
-	// Token: 0x04000272 RID: 626
+	// Token: 0x04000273 RID: 627
 	private GameObject mChild;
 }

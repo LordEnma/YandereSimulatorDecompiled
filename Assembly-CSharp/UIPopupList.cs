@@ -1017,193 +1017,193 @@ public class UIPopupList : UIWidgetContainer
 		transform.parent = parent;
 	}
 
-	// Token: 0x040003CA RID: 970
+	// Token: 0x040003CB RID: 971
 	public static UIPopupList current;
 
-	// Token: 0x040003CB RID: 971
+	// Token: 0x040003CC RID: 972
 	protected static GameObject mChild;
 
-	// Token: 0x040003CC RID: 972
+	// Token: 0x040003CD RID: 973
 	protected static float mFadeOutComplete;
 
-	// Token: 0x040003CD RID: 973
+	// Token: 0x040003CE RID: 974
 	private const float animSpeed = 0.15f;
 
-	// Token: 0x040003CE RID: 974
+	// Token: 0x040003CF RID: 975
 	public UnityEngine.Object atlas;
 
-	// Token: 0x040003CF RID: 975
+	// Token: 0x040003D0 RID: 976
 	public UnityEngine.Object bitmapFont;
 
-	// Token: 0x040003D0 RID: 976
+	// Token: 0x040003D1 RID: 977
 	public Font trueTypeFont;
 
-	// Token: 0x040003D1 RID: 977
+	// Token: 0x040003D2 RID: 978
 	public int fontSize = 16;
 
-	// Token: 0x040003D2 RID: 978
+	// Token: 0x040003D3 RID: 979
 	public FontStyle fontStyle;
 
-	// Token: 0x040003D3 RID: 979
+	// Token: 0x040003D4 RID: 980
 	public string backgroundSprite;
 
-	// Token: 0x040003D4 RID: 980
+	// Token: 0x040003D5 RID: 981
 	public string highlightSprite;
 
-	// Token: 0x040003D5 RID: 981
+	// Token: 0x040003D6 RID: 982
 	public Sprite background2DSprite;
 
-	// Token: 0x040003D6 RID: 982
+	// Token: 0x040003D7 RID: 983
 	public Sprite highlight2DSprite;
 
-	// Token: 0x040003D7 RID: 983
+	// Token: 0x040003D8 RID: 984
 	public UIPopupList.Position position;
 
-	// Token: 0x040003D8 RID: 984
+	// Token: 0x040003D9 RID: 985
 	public UIPopupList.Selection selection;
 
-	// Token: 0x040003D9 RID: 985
+	// Token: 0x040003DA RID: 986
 	public NGUIText.Alignment alignment = NGUIText.Alignment.Left;
 
-	// Token: 0x040003DA RID: 986
+	// Token: 0x040003DB RID: 987
 	public List<string> items = new List<string>();
 
-	// Token: 0x040003DB RID: 987
+	// Token: 0x040003DC RID: 988
 	public List<object> itemData = new List<object>();
 
-	// Token: 0x040003DC RID: 988
+	// Token: 0x040003DD RID: 989
 	public List<Action> itemCallbacks = new List<Action>();
 
-	// Token: 0x040003DD RID: 989
+	// Token: 0x040003DE RID: 990
 	public Vector2 padding = new Vector3(4f, 4f);
 
-	// Token: 0x040003DE RID: 990
+	// Token: 0x040003DF RID: 991
 	public Color textColor = Color.white;
 
-	// Token: 0x040003DF RID: 991
+	// Token: 0x040003E0 RID: 992
 	public Color backgroundColor = Color.white;
 
-	// Token: 0x040003E0 RID: 992
+	// Token: 0x040003E1 RID: 993
 	public Color highlightColor = new Color(0.88235295f, 0.78431374f, 0.5882353f, 1f);
 
-	// Token: 0x040003E1 RID: 993
+	// Token: 0x040003E2 RID: 994
 	public bool isAnimated = true;
 
-	// Token: 0x040003E2 RID: 994
+	// Token: 0x040003E3 RID: 995
 	public bool isLocalized;
 
-	// Token: 0x040003E3 RID: 995
+	// Token: 0x040003E4 RID: 996
 	public UILabel.Modifier textModifier;
 
-	// Token: 0x040003E4 RID: 996
+	// Token: 0x040003E5 RID: 997
 	public bool separatePanel = true;
 
-	// Token: 0x040003E5 RID: 997
+	// Token: 0x040003E6 RID: 998
 	public int overlap;
 
-	// Token: 0x040003E6 RID: 998
+	// Token: 0x040003E7 RID: 999
 	public UIPopupList.OpenOn openOn;
 
-	// Token: 0x040003E7 RID: 999
-	public List<EventDelegate> onChange = new List<EventDelegate>();
-
 	// Token: 0x040003E8 RID: 1000
-	[HideInInspector]
-	[SerializeField]
-	protected string mSelectedItem;
+	public List<EventDelegate> onChange = new List<EventDelegate>();
 
 	// Token: 0x040003E9 RID: 1001
 	[HideInInspector]
 	[SerializeField]
-	protected UIPanel mPanel;
+	protected string mSelectedItem;
 
 	// Token: 0x040003EA RID: 1002
 	[HideInInspector]
 	[SerializeField]
-	protected UIBasicSprite mBackground;
+	protected UIPanel mPanel;
 
 	// Token: 0x040003EB RID: 1003
 	[HideInInspector]
 	[SerializeField]
-	protected UIBasicSprite mHighlight;
+	protected UIBasicSprite mBackground;
 
 	// Token: 0x040003EC RID: 1004
 	[HideInInspector]
 	[SerializeField]
-	protected UILabel mHighlightedLabel;
+	protected UIBasicSprite mHighlight;
 
 	// Token: 0x040003ED RID: 1005
 	[HideInInspector]
 	[SerializeField]
-	protected List<UILabel> mLabelList = new List<UILabel>();
+	protected UILabel mHighlightedLabel;
 
 	// Token: 0x040003EE RID: 1006
 	[HideInInspector]
 	[SerializeField]
-	protected float mBgBorder;
+	protected List<UILabel> mLabelList = new List<UILabel>();
 
 	// Token: 0x040003EF RID: 1007
+	[HideInInspector]
+	[SerializeField]
+	protected float mBgBorder;
+
+	// Token: 0x040003F0 RID: 1008
 	[Tooltip("Whether the selection will be persistent even after the popup list is closed. By default the selection is cleared when the popup is closed so that the same selection can be chosen again the next time the popup list is opened. If enabled, the selection will persist, but selecting the same choice in succession will not result in the onChange notification being triggered more than once.")]
 	public bool keepValue;
 
-	// Token: 0x040003F0 RID: 1008
+	// Token: 0x040003F1 RID: 1009
 	[NonSerialized]
 	protected GameObject mSelection;
 
-	// Token: 0x040003F1 RID: 1009
+	// Token: 0x040003F2 RID: 1010
 	[NonSerialized]
 	protected int mOpenFrame;
-
-	// Token: 0x040003F2 RID: 1010
-	[HideInInspector]
-	[SerializeField]
-	private GameObject eventReceiver;
 
 	// Token: 0x040003F3 RID: 1011
 	[HideInInspector]
 	[SerializeField]
-	private string functionName = "OnSelectionChange";
+	private GameObject eventReceiver;
 
 	// Token: 0x040003F4 RID: 1012
 	[HideInInspector]
 	[SerializeField]
-	private float textScale;
+	private string functionName = "OnSelectionChange";
 
 	// Token: 0x040003F5 RID: 1013
 	[HideInInspector]
 	[SerializeField]
-	private UILabel textLabel;
+	private float textScale;
 
 	// Token: 0x040003F6 RID: 1014
+	[HideInInspector]
+	[SerializeField]
+	private UILabel textLabel;
+
+	// Token: 0x040003F7 RID: 1015
 	[NonSerialized]
 	public Vector3 startingPosition;
 
-	// Token: 0x040003F7 RID: 1015
-	private UIPopupList.LegacyEvent mLegacyEvent;
-
 	// Token: 0x040003F8 RID: 1016
-	[NonSerialized]
-	protected bool mExecuting;
+	private UIPopupList.LegacyEvent mLegacyEvent;
 
 	// Token: 0x040003F9 RID: 1017
 	[NonSerialized]
-	protected bool mStarted;
+	protected bool mExecuting;
 
 	// Token: 0x040003FA RID: 1018
-	protected bool mTweening;
+	[NonSerialized]
+	protected bool mStarted;
 
 	// Token: 0x040003FB RID: 1019
+	protected bool mTweening;
+
+	// Token: 0x040003FC RID: 1020
 	public GameObject source;
 
 	// Token: 0x020005CE RID: 1486
 	[DoNotObfuscateNGUI]
 	public enum Position
 	{
-		// Token: 0x04004D38 RID: 19768
+		// Token: 0x04004D3B RID: 19771
 		Auto,
-		// Token: 0x04004D39 RID: 19769
+		// Token: 0x04004D3C RID: 19772
 		Above,
-		// Token: 0x04004D3A RID: 19770
+		// Token: 0x04004D3D RID: 19773
 		Below
 	}
 
@@ -1211,9 +1211,9 @@ public class UIPopupList : UIWidgetContainer
 	[DoNotObfuscateNGUI]
 	public enum Selection
 	{
-		// Token: 0x04004D3C RID: 19772
+		// Token: 0x04004D3F RID: 19775
 		OnPress,
-		// Token: 0x04004D3D RID: 19773
+		// Token: 0x04004D40 RID: 19776
 		OnClick
 	}
 
@@ -1221,17 +1221,17 @@ public class UIPopupList : UIWidgetContainer
 	[DoNotObfuscateNGUI]
 	public enum OpenOn
 	{
-		// Token: 0x04004D3F RID: 19775
-		ClickOrTap,
-		// Token: 0x04004D40 RID: 19776
-		RightClick,
-		// Token: 0x04004D41 RID: 19777
-		DoubleClick,
 		// Token: 0x04004D42 RID: 19778
+		ClickOrTap,
+		// Token: 0x04004D43 RID: 19779
+		RightClick,
+		// Token: 0x04004D44 RID: 19780
+		DoubleClick,
+		// Token: 0x04004D45 RID: 19781
 		Manual
 	}
 
 	// Token: 0x020005D1 RID: 1489
-	// (Invoke) Token: 0x060024FD RID: 9469
+	// (Invoke) Token: 0x06002500 RID: 9472
 	public delegate void LegacyEvent(string val);
 }

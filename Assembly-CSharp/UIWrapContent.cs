@@ -267,43 +267,43 @@ public class UIWrapContent : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000468 RID: 1128
+	// Token: 0x04000469 RID: 1129
 	public int itemSize = 100;
 
-	// Token: 0x04000469 RID: 1129
+	// Token: 0x0400046A RID: 1130
 	public bool cullContent = true;
 
-	// Token: 0x0400046A RID: 1130
+	// Token: 0x0400046B RID: 1131
 	public int minIndex;
 
-	// Token: 0x0400046B RID: 1131
+	// Token: 0x0400046C RID: 1132
 	public int maxIndex;
 
-	// Token: 0x0400046C RID: 1132
+	// Token: 0x0400046D RID: 1133
 	public bool hideInactive;
 
-	// Token: 0x0400046D RID: 1133
+	// Token: 0x0400046E RID: 1134
 	public UIWrapContent.OnInitializeItem onInitializeItem;
 
-	// Token: 0x0400046E RID: 1134
+	// Token: 0x0400046F RID: 1135
 	protected Transform mTrans;
 
-	// Token: 0x0400046F RID: 1135
+	// Token: 0x04000470 RID: 1136
 	protected UIPanel mPanel;
 
-	// Token: 0x04000470 RID: 1136
+	// Token: 0x04000471 RID: 1137
 	protected UIScrollView mScroll;
 
-	// Token: 0x04000471 RID: 1137
+	// Token: 0x04000472 RID: 1138
 	protected bool mHorizontal;
 
-	// Token: 0x04000472 RID: 1138
+	// Token: 0x04000473 RID: 1139
 	protected bool mFirstTime = true;
 
-	// Token: 0x04000473 RID: 1139
+	// Token: 0x04000474 RID: 1140
 	protected List<Transform> mChildren = new List<Transform>();
 
 	// Token: 0x020005E0 RID: 1504
-	// (Invoke) Token: 0x0600251D RID: 9501
+	// (Invoke) Token: 0x06002520 RID: 9504
 	public delegate void OnInitializeItem(GameObject go, int wrapIndex, int realIndex);
 }

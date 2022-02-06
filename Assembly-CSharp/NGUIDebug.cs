@@ -184,12 +184,12 @@ public class NGUIDebug : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040004B6 RID: 1206
+	// Token: 0x040004B7 RID: 1207
 	private static bool mRayDebug = false;
 
-	// Token: 0x040004B7 RID: 1207
+	// Token: 0x040004B8 RID: 1208
 	private static List<string> mLines = new List<string>();
 
-	// Token: 0x040004B8 RID: 1208
+	// Token: 0x040004B9 RID: 1209
 	private static NGUIDebug mInstance = null;
 }

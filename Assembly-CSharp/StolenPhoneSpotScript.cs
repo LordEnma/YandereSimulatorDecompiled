@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000446 RID: 1094
 public class StolenPhoneSpotScript : MonoBehaviour
 {
-	// Token: 0x06001D0E RID: 7438 RVA: 0x0015B324 File Offset: 0x00159524
+	// Token: 0x06001D10 RID: 7440 RVA: 0x0015B4BC File Offset: 0x001596BC
 	private void Update()
 	{
 		if (this.Prompt.Yandere.Inventory.RivalPhone)
@@ -44,12 +44,12 @@ public class StolenPhoneSpotScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040034D9 RID: 13529
+	// Token: 0x040034DC RID: 13532
 	public RivalPhoneScript RivalPhone;
 
-	// Token: 0x040034DA RID: 13530
+	// Token: 0x040034DD RID: 13533
 	public PromptScript Prompt;
 
-	// Token: 0x040034DB RID: 13531
+	// Token: 0x040034DE RID: 13534
 	public Transform PhoneSpot;
 }

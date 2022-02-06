@@ -7,7 +7,7 @@ namespace UnityStandardAssets.Vehicles.Car
 	[RequireComponent(typeof(CarController))]
 	public class CarAudio : MonoBehaviour
 	{
-		// Token: 0x0600216D RID: 8557 RVA: 0x001EA520 File Offset: 0x001E8720
+		// Token: 0x06002170 RID: 8560 RVA: 0x001EA724 File Offset: 0x001E8924
 		private void StartSound()
 		{
 			this.m_CarController = base.GetComponent<CarController>();
@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.m_StartedSound = true;
 		}
 
-		// Token: 0x0600216E RID: 8558 RVA: 0x001EA594 File Offset: 0x001E8794
+		// Token: 0x06002171 RID: 8561 RVA: 0x001EA798 File Offset: 0x001E8998
 		private void StopSound()
 		{
 			AudioSource[] components = base.GetComponents<AudioSource>();
@@ -32,7 +32,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.m_StartedSound = false;
 		}
 
-		// Token: 0x0600216F RID: 8559 RVA: 0x001EA5C8 File Offset: 0x001E87C8
+		// Token: 0x06002172 RID: 8562 RVA: 0x001EA7CC File Offset: 0x001E89CC
 		private void Update()
 		{
 			float sqrMagnitude = (Camera.main.transform.position - base.transform.position).sqrMagnitude;
@@ -78,7 +78,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x06002170 RID: 8560 RVA: 0x001EA87C File Offset: 0x001E8A7C
+		// Token: 0x06002173 RID: 8563 RVA: 0x001EAA80 File Offset: 0x001E8C80
 		private AudioSource SetUpEngineAudioSource(AudioClip clip)
 		{
 			AudioSource audioSource = base.gameObject.AddComponent<AudioSource>();
@@ -93,72 +93,72 @@ namespace UnityStandardAssets.Vehicles.Car
 			return audioSource;
 		}
 
-		// Token: 0x06002171 RID: 8561 RVA: 0x001EA8EB File Offset: 0x001E8AEB
+		// Token: 0x06002174 RID: 8564 RVA: 0x001EAAEF File Offset: 0x001E8CEF
 		private static float ULerp(float from, float to, float value)
 		{
 			return (1f - value) * from + value * to;
 		}
 
-		// Token: 0x0400496A RID: 18794
+		// Token: 0x0400496D RID: 18797
 		public CarAudio.EngineAudioOptions engineSoundStyle = CarAudio.EngineAudioOptions.FourChannel;
 
-		// Token: 0x0400496B RID: 18795
+		// Token: 0x0400496E RID: 18798
 		public AudioClip lowAccelClip;
 
-		// Token: 0x0400496C RID: 18796
+		// Token: 0x0400496F RID: 18799
 		public AudioClip lowDecelClip;
 
-		// Token: 0x0400496D RID: 18797
+		// Token: 0x04004970 RID: 18800
 		public AudioClip highAccelClip;
 
-		// Token: 0x0400496E RID: 18798
+		// Token: 0x04004971 RID: 18801
 		public AudioClip highDecelClip;
 
-		// Token: 0x0400496F RID: 18799
+		// Token: 0x04004972 RID: 18802
 		public float pitchMultiplier = 1f;
 
-		// Token: 0x04004970 RID: 18800
+		// Token: 0x04004973 RID: 18803
 		public float lowPitchMin = 1f;
 
-		// Token: 0x04004971 RID: 18801
+		// Token: 0x04004974 RID: 18804
 		public float lowPitchMax = 6f;
 
-		// Token: 0x04004972 RID: 18802
+		// Token: 0x04004975 RID: 18805
 		public float highPitchMultiplier = 0.25f;
 
-		// Token: 0x04004973 RID: 18803
+		// Token: 0x04004976 RID: 18806
 		public float maxRolloffDistance = 500f;
 
-		// Token: 0x04004974 RID: 18804
+		// Token: 0x04004977 RID: 18807
 		public float dopplerLevel = 1f;
 
-		// Token: 0x04004975 RID: 18805
+		// Token: 0x04004978 RID: 18808
 		public bool useDoppler = true;
 
-		// Token: 0x04004976 RID: 18806
+		// Token: 0x04004979 RID: 18809
 		private AudioSource m_LowAccel;
 
-		// Token: 0x04004977 RID: 18807
+		// Token: 0x0400497A RID: 18810
 		private AudioSource m_LowDecel;
 
-		// Token: 0x04004978 RID: 18808
+		// Token: 0x0400497B RID: 18811
 		private AudioSource m_HighAccel;
 
-		// Token: 0x04004979 RID: 18809
+		// Token: 0x0400497C RID: 18812
 		private AudioSource m_HighDecel;
 
-		// Token: 0x0400497A RID: 18810
+		// Token: 0x0400497D RID: 18813
 		private bool m_StartedSound;
 
-		// Token: 0x0400497B RID: 18811
+		// Token: 0x0400497E RID: 18814
 		private CarController m_CarController;
 
 		// Token: 0x0200067C RID: 1660
 		public enum EngineAudioOptions
 		{
-			// Token: 0x04004FB7 RID: 20407
+			// Token: 0x04004FBA RID: 20410
 			Simple,
-			// Token: 0x04004FB8 RID: 20408
+			// Token: 0x04004FBB RID: 20411
 			FourChannel
 		}
 	}

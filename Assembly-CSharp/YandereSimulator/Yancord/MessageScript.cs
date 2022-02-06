@@ -6,7 +6,7 @@ namespace YandereSimulator.Yancord
 	// Token: 0x0200051A RID: 1306
 	public class MessageScript : MonoBehaviour
 	{
-		// Token: 0x06002157 RID: 8535 RVA: 0x001E8F54 File Offset: 0x001E7154
+		// Token: 0x0600215A RID: 8538 RVA: 0x001E9158 File Offset: 0x001E7358
 		public void Awake()
 		{
 			if (this.MyProfile != null)
@@ -23,18 +23,18 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x04004916 RID: 18710
+		// Token: 0x04004919 RID: 18713
 		[Header("== Partner Informations ==")]
 		public Profile MyProfile;
 
-		// Token: 0x04004917 RID: 18711
+		// Token: 0x0400491A RID: 18714
 		[Space(20f)]
 		public UILabel NameLabel;
 
-		// Token: 0x04004918 RID: 18712
+		// Token: 0x0400491B RID: 18715
 		public UILabel MessageLabel;
 
-		// Token: 0x04004919 RID: 18713
+		// Token: 0x0400491C RID: 18716
 		public UITexture ProfilPictureTexture;
 	}
 }

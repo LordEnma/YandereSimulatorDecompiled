@@ -86,33 +86,33 @@ public class UIForwardEvents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000373 RID: 883
+	// Token: 0x04000374 RID: 884
 	public GameObject target;
 
-	// Token: 0x04000374 RID: 884
+	// Token: 0x04000375 RID: 885
 	public bool onHover;
 
-	// Token: 0x04000375 RID: 885
+	// Token: 0x04000376 RID: 886
 	public bool onPress;
 
-	// Token: 0x04000376 RID: 886
+	// Token: 0x04000377 RID: 887
 	public bool onClick;
 
-	// Token: 0x04000377 RID: 887
+	// Token: 0x04000378 RID: 888
 	public bool onDoubleClick;
 
-	// Token: 0x04000378 RID: 888
+	// Token: 0x04000379 RID: 889
 	public bool onSelect;
 
-	// Token: 0x04000379 RID: 889
+	// Token: 0x0400037A RID: 890
 	public bool onDrag;
 
-	// Token: 0x0400037A RID: 890
+	// Token: 0x0400037B RID: 891
 	public bool onDrop;
 
-	// Token: 0x0400037B RID: 891
+	// Token: 0x0400037C RID: 892
 	public bool onSubmit;
 
-	// Token: 0x0400037C RID: 892
+	// Token: 0x0400037D RID: 893
 	public bool onScroll;
 }

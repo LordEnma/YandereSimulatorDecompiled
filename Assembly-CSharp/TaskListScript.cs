@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000467 RID: 1127
 public class TaskListScript : MonoBehaviour
 {
-	// Token: 0x06001E80 RID: 7808 RVA: 0x001AC7E8 File Offset: 0x001AA9E8
+	// Token: 0x06001E83 RID: 7811 RVA: 0x001ACA08 File Offset: 0x001AAC08
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -70,7 +70,7 @@ public class TaskListScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E81 RID: 7809 RVA: 0x001AC95C File Offset: 0x001AAB5C
+	// Token: 0x06001E84 RID: 7812 RVA: 0x001ACB7C File Offset: 0x001AAD7C
 	public void UpdateTaskList()
 	{
 		if (!this.TaskWindow.TaskManager.Initialized)
@@ -99,7 +99,7 @@ public class TaskListScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E82 RID: 7810 RVA: 0x001ACA79 File Offset: 0x001AAC79
+	// Token: 0x06001E85 RID: 7813 RVA: 0x001ACC99 File Offset: 0x001AAE99
 	public IEnumerator UpdateTaskInfo()
 	{
 		this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 200f - 25f * (float)this.ID, this.Highlight.localPosition.z);
@@ -153,7 +153,7 @@ public class TaskListScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06001E83 RID: 7811 RVA: 0x001ACA88 File Offset: 0x001AAC88
+	// Token: 0x06001E86 RID: 7814 RVA: 0x001ACCA8 File Offset: 0x001AAEA8
 	public void Exit()
 	{
 		this.PauseScreen.PromptBar.ClearButtons();
@@ -168,66 +168,66 @@ public class TaskListScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04003EF6 RID: 16118
+	// Token: 0x04003EF9 RID: 16121
 	public TutorialWindowScript TutorialWindow;
 
-	// Token: 0x04003EF7 RID: 16119
+	// Token: 0x04003EFA RID: 16122
 	public InputManagerScript InputManager;
 
-	// Token: 0x04003EF8 RID: 16120
+	// Token: 0x04003EFB RID: 16123
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04003EF9 RID: 16121
+	// Token: 0x04003EFC RID: 16124
 	public TaskWindowScript TaskWindow;
 
-	// Token: 0x04003EFA RID: 16122
+	// Token: 0x04003EFD RID: 16125
 	public JsonScript JSON;
 
-	// Token: 0x04003EFB RID: 16123
+	// Token: 0x04003EFE RID: 16126
 	public GameObject MainMenu;
 
-	// Token: 0x04003EFC RID: 16124
+	// Token: 0x04003EFF RID: 16127
 	public UITexture StudentIcon;
 
-	// Token: 0x04003EFD RID: 16125
+	// Token: 0x04003F00 RID: 16128
 	public UITexture TaskIcon;
 
-	// Token: 0x04003EFE RID: 16126
+	// Token: 0x04003F01 RID: 16129
 	public UILabel TaskDesc;
 
-	// Token: 0x04003EFF RID: 16127
+	// Token: 0x04003F02 RID: 16130
 	public Texture QuestionMark;
 
-	// Token: 0x04003F00 RID: 16128
+	// Token: 0x04003F03 RID: 16131
 	public Transform Highlight;
 
-	// Token: 0x04003F01 RID: 16129
+	// Token: 0x04003F04 RID: 16132
 	public Texture Silhouette;
 
-	// Token: 0x04003F02 RID: 16130
+	// Token: 0x04003F05 RID: 16133
 	public UILabel[] TaskNameLabels;
 
-	// Token: 0x04003F03 RID: 16131
+	// Token: 0x04003F06 RID: 16134
 	public UISprite[] Checkmarks;
 
-	// Token: 0x04003F04 RID: 16132
+	// Token: 0x04003F07 RID: 16135
 	public Texture[] TutorialTextures;
 
-	// Token: 0x04003F05 RID: 16133
+	// Token: 0x04003F08 RID: 16136
 	public string[] TutorialDescs;
 
-	// Token: 0x04003F06 RID: 16134
+	// Token: 0x04003F09 RID: 16137
 	public string[] TutorialNames;
 
-	// Token: 0x04003F07 RID: 16135
+	// Token: 0x04003F0A RID: 16138
 	public int ListPosition;
 
-	// Token: 0x04003F08 RID: 16136
+	// Token: 0x04003F0B RID: 16139
 	public int Limit = 84;
 
-	// Token: 0x04003F09 RID: 16137
+	// Token: 0x04003F0C RID: 16140
 	public int ID = 1;
 
-	// Token: 0x04003F0A RID: 16138
+	// Token: 0x04003F0D RID: 16141
 	public bool Tutorials;
 }

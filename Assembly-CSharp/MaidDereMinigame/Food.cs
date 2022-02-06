@@ -7,13 +7,13 @@ namespace MaidDereMinigame
 	[CreateAssetMenu(fileName = "New Food Item", menuName = "Food")]
 	public class Food : ScriptableObject
 	{
-		// Token: 0x04004C0D RID: 19469
+		// Token: 0x04004C10 RID: 19472
 		public Sprite largeSprite;
 
-		// Token: 0x04004C0E RID: 19470
+		// Token: 0x04004C11 RID: 19473
 		public Sprite smallSprite;
 
-		// Token: 0x04004C0F RID: 19471
+		// Token: 0x04004C12 RID: 19474
 		public float cookTimeMultiplier = 1f;
 	}
 }

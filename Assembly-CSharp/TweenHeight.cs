@@ -120,27 +120,27 @@ public class TweenHeight : UITweener
 		this.value = this.to;
 	}
 
-	// Token: 0x040005B9 RID: 1465
+	// Token: 0x040005BA RID: 1466
 	public int from = 100;
 
-	// Token: 0x040005BA RID: 1466
+	// Token: 0x040005BB RID: 1467
 	public int to = 100;
 
-	// Token: 0x040005BB RID: 1467
+	// Token: 0x040005BC RID: 1468
 	[Tooltip("If set, 'from' value will be set to match the specified rectangle")]
 	public UIWidget fromTarget;
 
-	// Token: 0x040005BC RID: 1468
+	// Token: 0x040005BD RID: 1469
 	[Tooltip("If set, 'to' value will be set to match the specified rectangle")]
 	public UIWidget toTarget;
 
-	// Token: 0x040005BD RID: 1469
+	// Token: 0x040005BE RID: 1470
 	[Tooltip("Whether there is a table that should be updated")]
 	public bool updateTable;
 
-	// Token: 0x040005BE RID: 1470
+	// Token: 0x040005BF RID: 1471
 	private UIWidget mWidget;
 
-	// Token: 0x040005BF RID: 1471
+	// Token: 0x040005C0 RID: 1472
 	private UITable mTable;
 }

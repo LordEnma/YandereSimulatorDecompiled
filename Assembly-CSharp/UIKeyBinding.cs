@@ -259,27 +259,27 @@ public class UIKeyBinding : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x04000392 RID: 914
+	// Token: 0x04000393 RID: 915
 	public static List<UIKeyBinding> list = new List<UIKeyBinding>();
 
-	// Token: 0x04000393 RID: 915
+	// Token: 0x04000394 RID: 916
 	public KeyCode keyCode;
 
-	// Token: 0x04000394 RID: 916
+	// Token: 0x04000395 RID: 917
 	public UIKeyBinding.Modifier modifier;
 
-	// Token: 0x04000395 RID: 917
-	public UIKeyBinding.Action action;
-
 	// Token: 0x04000396 RID: 918
-	[NonSerialized]
-	private bool mIgnoreUp;
+	public UIKeyBinding.Action action;
 
 	// Token: 0x04000397 RID: 919
 	[NonSerialized]
-	private bool mIsInput;
+	private bool mIgnoreUp;
 
 	// Token: 0x04000398 RID: 920
+	[NonSerialized]
+	private bool mIsInput;
+
+	// Token: 0x04000399 RID: 921
 	[NonSerialized]
 	private bool mPress;
 
@@ -287,11 +287,11 @@ public class UIKeyBinding : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Action
 	{
-		// Token: 0x04004D20 RID: 19744
+		// Token: 0x04004D23 RID: 19747
 		PressAndClick,
-		// Token: 0x04004D21 RID: 19745
+		// Token: 0x04004D24 RID: 19748
 		Select,
-		// Token: 0x04004D22 RID: 19746
+		// Token: 0x04004D25 RID: 19749
 		All
 	}
 
@@ -299,15 +299,15 @@ public class UIKeyBinding : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Modifier
 	{
-		// Token: 0x04004D24 RID: 19748
-		Any,
-		// Token: 0x04004D25 RID: 19749
-		Shift,
-		// Token: 0x04004D26 RID: 19750
-		Ctrl,
 		// Token: 0x04004D27 RID: 19751
-		Alt,
+		Any,
 		// Token: 0x04004D28 RID: 19752
+		Shift,
+		// Token: 0x04004D29 RID: 19753
+		Ctrl,
+		// Token: 0x04004D2A RID: 19754
+		Alt,
+		// Token: 0x04004D2B RID: 19755
 		None
 	}
 }

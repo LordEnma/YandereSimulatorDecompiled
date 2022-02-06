@@ -871,124 +871,124 @@ public class UIScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000411 RID: 1041
+	// Token: 0x04000412 RID: 1042
 	public static BetterList<UIScrollView> list = new BetterList<UIScrollView>();
 
-	// Token: 0x04000412 RID: 1042
+	// Token: 0x04000413 RID: 1043
 	public UIScrollView.Movement movement;
 
-	// Token: 0x04000413 RID: 1043
+	// Token: 0x04000414 RID: 1044
 	public UIScrollView.DragEffect dragEffect = UIScrollView.DragEffect.MomentumAndSpring;
 
-	// Token: 0x04000414 RID: 1044
+	// Token: 0x04000415 RID: 1045
 	public bool restrictWithinPanel = true;
 
-	// Token: 0x04000415 RID: 1045
+	// Token: 0x04000416 RID: 1046
 	[Tooltip("Whether the scroll view will execute its constrain within bounds logic on every drag operation")]
 	public bool constrainOnDrag;
 
-	// Token: 0x04000416 RID: 1046
+	// Token: 0x04000417 RID: 1047
 	public bool disableDragIfFits;
 
-	// Token: 0x04000417 RID: 1047
+	// Token: 0x04000418 RID: 1048
 	public bool smoothDragStart = true;
 
-	// Token: 0x04000418 RID: 1048
+	// Token: 0x04000419 RID: 1049
 	public bool iOSDragEmulation = true;
 
-	// Token: 0x04000419 RID: 1049
+	// Token: 0x0400041A RID: 1050
 	public float scrollWheelFactor = 0.25f;
 
-	// Token: 0x0400041A RID: 1050
+	// Token: 0x0400041B RID: 1051
 	public float momentumAmount = 35f;
 
-	// Token: 0x0400041B RID: 1051
+	// Token: 0x0400041C RID: 1052
 	public float dampenStrength = 9f;
 
-	// Token: 0x0400041C RID: 1052
+	// Token: 0x0400041D RID: 1053
 	public UIProgressBar horizontalScrollBar;
 
-	// Token: 0x0400041D RID: 1053
+	// Token: 0x0400041E RID: 1054
 	public UIProgressBar verticalScrollBar;
 
-	// Token: 0x0400041E RID: 1054
+	// Token: 0x0400041F RID: 1055
 	public UIScrollView.ShowCondition showScrollBars = UIScrollView.ShowCondition.OnlyIfNeeded;
 
-	// Token: 0x0400041F RID: 1055
+	// Token: 0x04000420 RID: 1056
 	public Vector2 customMovement = new Vector2(1f, 0f);
 
-	// Token: 0x04000420 RID: 1056
+	// Token: 0x04000421 RID: 1057
 	public UIWidget.Pivot contentPivot;
 
-	// Token: 0x04000421 RID: 1057
+	// Token: 0x04000422 RID: 1058
 	public UIScrollView.OnDragNotification onDragStarted;
 
-	// Token: 0x04000422 RID: 1058
+	// Token: 0x04000423 RID: 1059
 	public UIScrollView.OnDragNotification onDragFinished;
 
-	// Token: 0x04000423 RID: 1059
+	// Token: 0x04000424 RID: 1060
 	public UIScrollView.OnDragNotification onMomentumMove;
 
-	// Token: 0x04000424 RID: 1060
+	// Token: 0x04000425 RID: 1061
 	public UIScrollView.OnDragNotification onStoppedMoving;
 
-	// Token: 0x04000425 RID: 1061
+	// Token: 0x04000426 RID: 1062
 	[HideInInspector]
 	[SerializeField]
 	private Vector3 scale = new Vector3(1f, 0f, 0f);
 
-	// Token: 0x04000426 RID: 1062
+	// Token: 0x04000427 RID: 1063
 	[SerializeField]
 	[HideInInspector]
 	private Vector2 relativePositionOnReset = Vector2.zero;
 
-	// Token: 0x04000427 RID: 1063
+	// Token: 0x04000428 RID: 1064
 	protected Transform mTrans;
 
-	// Token: 0x04000428 RID: 1064
+	// Token: 0x04000429 RID: 1065
 	protected UIPanel mPanel;
 
-	// Token: 0x04000429 RID: 1065
+	// Token: 0x0400042A RID: 1066
 	protected Plane mPlane;
 
-	// Token: 0x0400042A RID: 1066
+	// Token: 0x0400042B RID: 1067
 	protected Vector3 mLastPos;
 
-	// Token: 0x0400042B RID: 1067
+	// Token: 0x0400042C RID: 1068
 	protected bool mPressed;
 
-	// Token: 0x0400042C RID: 1068
+	// Token: 0x0400042D RID: 1069
 	protected Vector3 mMomentum = Vector3.zero;
 
-	// Token: 0x0400042D RID: 1069
+	// Token: 0x0400042E RID: 1070
 	protected float mScroll;
 
-	// Token: 0x0400042E RID: 1070
+	// Token: 0x0400042F RID: 1071
 	protected Bounds mBounds;
 
-	// Token: 0x0400042F RID: 1071
+	// Token: 0x04000430 RID: 1072
 	protected bool mCalculatedBounds;
 
-	// Token: 0x04000430 RID: 1072
+	// Token: 0x04000431 RID: 1073
 	protected bool mShouldMove;
 
-	// Token: 0x04000431 RID: 1073
+	// Token: 0x04000432 RID: 1074
 	protected bool mIgnoreCallbacks;
 
-	// Token: 0x04000432 RID: 1074
+	// Token: 0x04000433 RID: 1075
 	protected int mDragID = -10;
 
-	// Token: 0x04000433 RID: 1075
+	// Token: 0x04000434 RID: 1076
 	protected Vector2 mDragStartOffset = Vector2.zero;
 
-	// Token: 0x04000434 RID: 1076
+	// Token: 0x04000435 RID: 1077
 	protected bool mDragStarted;
 
-	// Token: 0x04000435 RID: 1077
+	// Token: 0x04000436 RID: 1078
 	[NonSerialized]
 	private bool mStarted;
 
-	// Token: 0x04000436 RID: 1078
+	// Token: 0x04000437 RID: 1079
 	[HideInInspector]
 	public UICenterOnChild centerOnChild;
 
@@ -996,13 +996,13 @@ public class UIScrollView : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Movement
 	{
-		// Token: 0x04004D54 RID: 19796
-		Horizontal,
-		// Token: 0x04004D55 RID: 19797
-		Vertical,
-		// Token: 0x04004D56 RID: 19798
-		Unrestricted,
 		// Token: 0x04004D57 RID: 19799
+		Horizontal,
+		// Token: 0x04004D58 RID: 19800
+		Vertical,
+		// Token: 0x04004D59 RID: 19801
+		Unrestricted,
+		// Token: 0x04004D5A RID: 19802
 		Custom
 	}
 
@@ -1010,11 +1010,11 @@ public class UIScrollView : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum DragEffect
 	{
-		// Token: 0x04004D59 RID: 19801
+		// Token: 0x04004D5C RID: 19804
 		None,
-		// Token: 0x04004D5A RID: 19802
+		// Token: 0x04004D5D RID: 19805
 		Momentum,
-		// Token: 0x04004D5B RID: 19803
+		// Token: 0x04004D5E RID: 19806
 		MomentumAndSpring
 	}
 
@@ -1022,15 +1022,15 @@ public class UIScrollView : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum ShowCondition
 	{
-		// Token: 0x04004D5D RID: 19805
+		// Token: 0x04004D60 RID: 19808
 		Always,
-		// Token: 0x04004D5E RID: 19806
+		// Token: 0x04004D61 RID: 19809
 		OnlyIfNeeded,
-		// Token: 0x04004D5F RID: 19807
+		// Token: 0x04004D62 RID: 19810
 		WhenDragging
 	}
 
 	// Token: 0x020005DA RID: 1498
-	// (Invoke) Token: 0x06002511 RID: 9489
+	// (Invoke) Token: 0x06002514 RID: 9492
 	public delegate void OnDragNotification();
 }

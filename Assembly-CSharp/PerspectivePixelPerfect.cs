@@ -19,7 +19,7 @@ public class PerspectivePixelPerfect : MonoBehaviour
 		transform.localScale = new Vector3(num2, num2, 1f);
 	}
 
-	// Token: 0x040002A9 RID: 681
+	// Token: 0x040002AA RID: 682
 	[Tooltip("Bias is a value above 0 that determines how far offset the object will be from the near clip, in percent (near to far clip)")]
 	public float bias = 0.001f;
 }

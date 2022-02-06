@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003EC RID: 1004
 public class RummageSpotScript : MonoBehaviour
 {
-	// Token: 0x06001BCE RID: 7118 RVA: 0x00144B3C File Offset: 0x00142D3C
+	// Token: 0x06001BD0 RID: 7120 RVA: 0x00144CD4 File Offset: 0x00142ED4
 	private void Start()
 	{
 		if (this.ID == 1)
@@ -26,7 +26,7 @@ public class RummageSpotScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BCF RID: 7119 RVA: 0x00144BC4 File Offset: 0x00142DC4
+	// Token: 0x06001BD1 RID: 7121 RVA: 0x00144D5C File Offset: 0x00142F5C
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -56,7 +56,7 @@ public class RummageSpotScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BD0 RID: 7120 RVA: 0x00144D04 File Offset: 0x00142F04
+	// Token: 0x06001BD2 RID: 7122 RVA: 0x00144E9C File Offset: 0x0014309C
 	public void GetReward()
 	{
 		if (this.ID == 1)
@@ -85,30 +85,30 @@ public class RummageSpotScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040030CC RID: 12492
+	// Token: 0x040030CF RID: 12495
 	public GameObject AlarmDisc;
 
-	// Token: 0x040030CD RID: 12493
+	// Token: 0x040030D0 RID: 12496
 	public DoorGapScript DoorGap;
 
-	// Token: 0x040030CE RID: 12494
+	// Token: 0x040030D1 RID: 12497
 	public SchemesScript Schemes;
 
-	// Token: 0x040030CF RID: 12495
+	// Token: 0x040030D2 RID: 12498
 	public YandereScript Yandere;
 
-	// Token: 0x040030D0 RID: 12496
+	// Token: 0x040030D3 RID: 12499
 	public PromptScript Prompt;
 
-	// Token: 0x040030D1 RID: 12497
+	// Token: 0x040030D4 RID: 12500
 	public ClockScript Clock;
 
-	// Token: 0x040030D2 RID: 12498
+	// Token: 0x040030D5 RID: 12501
 	public Transform Target;
 
-	// Token: 0x040030D3 RID: 12499
+	// Token: 0x040030D6 RID: 12502
 	public int Phase;
 
-	// Token: 0x040030D4 RID: 12500
+	// Token: 0x040030D7 RID: 12503
 	public int ID;
 }

@@ -51,21 +51,21 @@ public class BakeSaleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000AC7 RID: 2759
+	// Token: 0x04000AC8 RID: 2760
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000AC8 RID: 2760
+	// Token: 0x04000AC9 RID: 2761
 	public GameObject AmaiSuccess;
 
-	// Token: 0x04000AC9 RID: 2761
+	// Token: 0x04000ACA RID: 2762
 	public GameObject AmaiFail;
 
-	// Token: 0x04000ACA RID: 2762
+	// Token: 0x04000ACB RID: 2763
 	public Transform MeetSpot;
 
-	// Token: 0x04000ACB RID: 2763
+	// Token: 0x04000ACC RID: 2764
 	public float Timer;
 
-	// Token: 0x04000ACC RID: 2764
+	// Token: 0x04000ACD RID: 2765
 	public int ID = 46;
 }

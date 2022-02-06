@@ -9,20 +9,20 @@ namespace UnityStandardAssets.CrossPlatformInput
 	[RequireComponent(typeof(Image))]
 	public class TouchPad : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IPointerUpHandler
 	{
-		// Token: 0x06002229 RID: 8745 RVA: 0x001ED237 File Offset: 0x001EB437
+		// Token: 0x0600222C RID: 8748 RVA: 0x001ED43B File Offset: 0x001EB63B
 		private void OnEnable()
 		{
 			this.CreateVirtualAxes();
 		}
 
-		// Token: 0x0600222A RID: 8746 RVA: 0x001ED23F File Offset: 0x001EB43F
+		// Token: 0x0600222D RID: 8749 RVA: 0x001ED443 File Offset: 0x001EB643
 		private void Start()
 		{
 			this.m_Image = base.GetComponent<Image>();
 			this.m_Center = this.m_Image.transform.position;
 		}
 
-		// Token: 0x0600222B RID: 8747 RVA: 0x001ED264 File Offset: 0x001EB464
+		// Token: 0x0600222E RID: 8750 RVA: 0x001ED468 File Offset: 0x001EB668
 		private void CreateVirtualAxes()
 		{
 			this.m_UseX = (this.axesToUse == TouchPad.AxisOption.Both || this.axesToUse == TouchPad.AxisOption.OnlyHorizontal);
@@ -39,7 +39,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x0600222C RID: 8748 RVA: 0x001ED2ED File Offset: 0x001EB4ED
+		// Token: 0x0600222F RID: 8751 RVA: 0x001ED4F1 File Offset: 0x001EB6F1
 		private void UpdateVirtualAxes(Vector3 value)
 		{
 			value = value.normalized;
@@ -53,7 +53,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x0600222D RID: 8749 RVA: 0x001ED32A File Offset: 0x001EB52A
+		// Token: 0x06002230 RID: 8752 RVA: 0x001ED52E File Offset: 0x001EB72E
 		public void OnPointerDown(PointerEventData data)
 		{
 			this.m_Dragging = true;
@@ -64,7 +64,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x0600222E RID: 8750 RVA: 0x001ED358 File Offset: 0x001EB558
+		// Token: 0x06002231 RID: 8753 RVA: 0x001ED55C File Offset: 0x001EB75C
 		private void Update()
 		{
 			if (!this.m_Dragging)
@@ -85,7 +85,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x0600222F RID: 8751 RVA: 0x001ED459 File Offset: 0x001EB659
+		// Token: 0x06002232 RID: 8754 RVA: 0x001ED65D File Offset: 0x001EB85D
 		public void OnPointerUp(PointerEventData data)
 		{
 			this.m_Dragging = false;
@@ -93,7 +93,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			this.UpdateVirtualAxes(Vector3.zero);
 		}
 
-		// Token: 0x06002230 RID: 8752 RVA: 0x001ED474 File Offset: 0x001EB674
+		// Token: 0x06002233 RID: 8755 RVA: 0x001ED678 File Offset: 0x001EB878
 		private void OnDisable()
 		{
 			if (CrossPlatformInputManager.AxisExists(this.horizontalAxisName))
@@ -106,79 +106,79 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x04004A2B RID: 18987
+		// Token: 0x04004A2E RID: 18990
 		public TouchPad.AxisOption axesToUse;
 
-		// Token: 0x04004A2C RID: 18988
+		// Token: 0x04004A2F RID: 18991
 		public TouchPad.ControlStyle controlStyle;
 
-		// Token: 0x04004A2D RID: 18989
+		// Token: 0x04004A30 RID: 18992
 		public string horizontalAxisName = "Horizontal";
 
-		// Token: 0x04004A2E RID: 18990
+		// Token: 0x04004A31 RID: 18993
 		public string verticalAxisName = "Vertical";
 
-		// Token: 0x04004A2F RID: 18991
+		// Token: 0x04004A32 RID: 18994
 		public float Xsensitivity = 1f;
 
-		// Token: 0x04004A30 RID: 18992
+		// Token: 0x04004A33 RID: 18995
 		public float Ysensitivity = 1f;
 
-		// Token: 0x04004A31 RID: 18993
+		// Token: 0x04004A34 RID: 18996
 		private Vector3 m_StartPos;
 
-		// Token: 0x04004A32 RID: 18994
+		// Token: 0x04004A35 RID: 18997
 		private Vector2 m_PreviousDelta;
 
-		// Token: 0x04004A33 RID: 18995
+		// Token: 0x04004A36 RID: 18998
 		private Vector3 m_JoytickOutput;
 
-		// Token: 0x04004A34 RID: 18996
+		// Token: 0x04004A37 RID: 18999
 		private bool m_UseX;
 
-		// Token: 0x04004A35 RID: 18997
+		// Token: 0x04004A38 RID: 19000
 		private bool m_UseY;
 
-		// Token: 0x04004A36 RID: 18998
+		// Token: 0x04004A39 RID: 19001
 		private CrossPlatformInputManager.VirtualAxis m_HorizontalVirtualAxis;
 
-		// Token: 0x04004A37 RID: 18999
+		// Token: 0x04004A3A RID: 19002
 		private CrossPlatformInputManager.VirtualAxis m_VerticalVirtualAxis;
 
-		// Token: 0x04004A38 RID: 19000
+		// Token: 0x04004A3B RID: 19003
 		private bool m_Dragging;
 
-		// Token: 0x04004A39 RID: 19001
+		// Token: 0x04004A3C RID: 19004
 		private int m_Id = -1;
 
-		// Token: 0x04004A3A RID: 19002
+		// Token: 0x04004A3D RID: 19005
 		private Vector2 m_PreviousTouchPos;
 
-		// Token: 0x04004A3B RID: 19003
+		// Token: 0x04004A3E RID: 19006
 		private Vector3 m_Center;
 
-		// Token: 0x04004A3C RID: 19004
+		// Token: 0x04004A3F RID: 19007
 		private Image m_Image;
 
 		// Token: 0x02000688 RID: 1672
 		public enum AxisOption
 		{
-			// Token: 0x04004FE3 RID: 20451
+			// Token: 0x04004FE6 RID: 20454
 			Both,
-			// Token: 0x04004FE4 RID: 20452
+			// Token: 0x04004FE7 RID: 20455
 			OnlyHorizontal,
-			// Token: 0x04004FE5 RID: 20453
+			// Token: 0x04004FE8 RID: 20456
 			OnlyVertical
 		}
 
 		// Token: 0x02000689 RID: 1673
 		public enum ControlStyle
 		{
-			// Token: 0x04004FE7 RID: 20455
+			// Token: 0x04004FEA RID: 20458
 			Absolute,
-			// Token: 0x04004FE8 RID: 20456
+			// Token: 0x04004FEB RID: 20459
 			Relative,
-			// Token: 0x04004FE9 RID: 20457
+			// Token: 0x04004FEC RID: 20460
 			Swipe
 		}
 	}

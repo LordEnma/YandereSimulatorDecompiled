@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002DB RID: 731
 public class GazerHairScript : MonoBehaviour
 {
-	// Token: 0x060014D3 RID: 5331 RVA: 0x000CE4F0 File Offset: 0x000CC6F0
+	// Token: 0x060014D3 RID: 5331 RVA: 0x000CE580 File Offset: 0x000CC780
 	private void Update()
 	{
 		this.ID = 0;
@@ -20,18 +20,18 @@ public class GazerHairScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040020E6 RID: 8422
+	// Token: 0x040020E8 RID: 8424
 	public SkinnedMeshRenderer MyMesh;
 
-	// Token: 0x040020E7 RID: 8423
+	// Token: 0x040020E9 RID: 8425
 	public float[] TargetWeight;
 
-	// Token: 0x040020E8 RID: 8424
+	// Token: 0x040020EA RID: 8426
 	public float[] Weight;
 
-	// Token: 0x040020E9 RID: 8425
+	// Token: 0x040020EB RID: 8427
 	public float Strength = 100f;
 
-	// Token: 0x040020EA RID: 8426
+	// Token: 0x040020EC RID: 8428
 	public int ID;
 }

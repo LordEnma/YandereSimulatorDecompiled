@@ -502,76 +502,76 @@ public class UIProgressBar : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x040003FC RID: 1020
+	// Token: 0x040003FD RID: 1021
 	public static UIProgressBar current;
 
-	// Token: 0x040003FD RID: 1021
+	// Token: 0x040003FE RID: 1022
 	public UIProgressBar.OnDragFinished onDragFinished;
 
-	// Token: 0x040003FE RID: 1022
-	public Transform thumb;
-
 	// Token: 0x040003FF RID: 1023
-	[HideInInspector]
-	[SerializeField]
-	protected UIWidget mBG;
+	public Transform thumb;
 
 	// Token: 0x04000400 RID: 1024
 	[HideInInspector]
 	[SerializeField]
-	protected UIWidget mFG;
+	protected UIWidget mBG;
 
 	// Token: 0x04000401 RID: 1025
 	[HideInInspector]
 	[SerializeField]
-	protected float mValue = 1f;
+	protected UIWidget mFG;
 
 	// Token: 0x04000402 RID: 1026
 	[HideInInspector]
 	[SerializeField]
-	protected UIProgressBar.FillDirection mFill;
+	protected float mValue = 1f;
 
 	// Token: 0x04000403 RID: 1027
-	[NonSerialized]
-	protected bool mStarted;
+	[HideInInspector]
+	[SerializeField]
+	protected UIProgressBar.FillDirection mFill;
 
 	// Token: 0x04000404 RID: 1028
 	[NonSerialized]
-	protected Transform mTrans;
+	protected bool mStarted;
 
 	// Token: 0x04000405 RID: 1029
 	[NonSerialized]
-	protected bool mIsDirty;
+	protected Transform mTrans;
 
 	// Token: 0x04000406 RID: 1030
 	[NonSerialized]
-	protected Camera mCam;
+	protected bool mIsDirty;
 
 	// Token: 0x04000407 RID: 1031
 	[NonSerialized]
-	protected float mOffset;
+	protected Camera mCam;
 
 	// Token: 0x04000408 RID: 1032
-	public int numberOfSteps;
+	[NonSerialized]
+	protected float mOffset;
 
 	// Token: 0x04000409 RID: 1033
+	public int numberOfSteps;
+
+	// Token: 0x0400040A RID: 1034
 	public List<EventDelegate> onChange = new List<EventDelegate>();
 
 	// Token: 0x020005D4 RID: 1492
 	[DoNotObfuscateNGUI]
 	public enum FillDirection
 	{
-		// Token: 0x04004D4B RID: 19787
-		LeftToRight,
-		// Token: 0x04004D4C RID: 19788
-		RightToLeft,
-		// Token: 0x04004D4D RID: 19789
-		BottomToTop,
 		// Token: 0x04004D4E RID: 19790
+		LeftToRight,
+		// Token: 0x04004D4F RID: 19791
+		RightToLeft,
+		// Token: 0x04004D50 RID: 19792
+		BottomToTop,
+		// Token: 0x04004D51 RID: 19793
 		TopToBottom
 	}
 
 	// Token: 0x020005D5 RID: 1493
-	// (Invoke) Token: 0x0600250D RID: 9485
+	// (Invoke) Token: 0x06002510 RID: 9488
 	public delegate void OnDragFinished();
 }

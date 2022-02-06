@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000358 RID: 856
 public class LowRepGameOverScript : MonoBehaviour
 {
-	// Token: 0x0600196F RID: 6511 RVA: 0x00101DDC File Offset: 0x000FFFDC
+	// Token: 0x06001971 RID: 6513 RVA: 0x00101EE8 File Offset: 0x001000E8
 	private void Start()
 	{
 		this.GossipGroup[1].SetActive(false);
@@ -35,7 +35,7 @@ public class LowRepGameOverScript : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x06001970 RID: 6512 RVA: 0x00101FD0 File Offset: 0x001001D0
+	// Token: 0x06001972 RID: 6514 RVA: 0x001020DC File Offset: 0x001002DC
 	private void Update()
 	{
 		this.Darkness.material.color = new Color(this.Darkness.material.color.r, this.Darkness.material.color.g, this.Darkness.material.color.b, this.Darkness.material.color.a - Time.deltaTime * 0.5f);
@@ -215,7 +215,7 @@ public class LowRepGameOverScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001971 RID: 6513 RVA: 0x001029C4 File Offset: 0x00100BC4
+	// Token: 0x06001973 RID: 6515 RVA: 0x00102AD0 File Offset: 0x00100CD0
 	private void Giggle()
 	{
 		this.GiggleID = UnityEngine.Random.Range(1, this.Giggles.Length);
@@ -232,48 +232,48 @@ public class LowRepGameOverScript : MonoBehaviour
 		AudioSource.PlayClipAtPoint(this.Giggles[this.GiggleID], this.MyCamera.transform.position + Vector3.up * this.Timer);
 	}
 
-	// Token: 0x04002887 RID: 10375
+	// Token: 0x0400288A RID: 10378
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002888 RID: 10376
+	// Token: 0x0400288B RID: 10379
 	public YandereScript Yandere;
 
-	// Token: 0x04002889 RID: 10377
+	// Token: 0x0400288C RID: 10380
 	public StudentScript Senpai;
 
-	// Token: 0x0400288A RID: 10378
+	// Token: 0x0400288D RID: 10381
 	public Renderer Darkness;
 
-	// Token: 0x0400288B RID: 10379
+	// Token: 0x0400288E RID: 10382
 	public Transform SenpaiSpot;
 
-	// Token: 0x0400288C RID: 10380
+	// Token: 0x0400288F RID: 10383
 	public Transform MyCamera;
 
-	// Token: 0x0400288D RID: 10381
+	// Token: 0x04002890 RID: 10384
 	public Transform[] CameraPosition;
 
-	// Token: 0x0400288E RID: 10382
+	// Token: 0x04002891 RID: 10385
 	public GameObject[] GossipGroup;
 
-	// Token: 0x0400288F RID: 10383
+	// Token: 0x04002892 RID: 10386
 	public AudioClip[] Giggles;
 
-	// Token: 0x04002890 RID: 10384
+	// Token: 0x04002893 RID: 10387
 	public float GiggleTimer;
 
-	// Token: 0x04002891 RID: 10385
+	// Token: 0x04002894 RID: 10388
 	public float Timer;
 
-	// Token: 0x04002892 RID: 10386
+	// Token: 0x04002895 RID: 10389
 	public int PreviousGiggle;
 
-	// Token: 0x04002893 RID: 10387
+	// Token: 0x04002896 RID: 10390
 	public int GigglePhase;
 
-	// Token: 0x04002894 RID: 10388
+	// Token: 0x04002897 RID: 10391
 	public int GiggleID;
 
-	// Token: 0x04002895 RID: 10389
+	// Token: 0x04002898 RID: 10392
 	public int Phase;
 }

@@ -2813,48 +2813,48 @@ public static class NGUITools
 		NGUITools.mColorSpace = ColorSpace.Uninitialized;
 	}
 
-	// Token: 0x040004DE RID: 1246
+	// Token: 0x040004DF RID: 1247
 	[NonSerialized]
 	private static AudioListener mListener;
 
-	// Token: 0x040004DF RID: 1247
+	// Token: 0x040004E0 RID: 1248
 	[NonSerialized]
 	public static AudioSource audioSource;
 
-	// Token: 0x040004E0 RID: 1248
+	// Token: 0x040004E1 RID: 1249
 	private static bool mLoaded = false;
 
-	// Token: 0x040004E1 RID: 1249
+	// Token: 0x040004E2 RID: 1250
 	private static float mGlobalVolume = 1f;
 
-	// Token: 0x040004E2 RID: 1250
+	// Token: 0x040004E3 RID: 1251
 	private static float mLastTimestamp = 0f;
 
-	// Token: 0x040004E3 RID: 1251
+	// Token: 0x040004E4 RID: 1252
 	private static AudioClip mLastClip;
 
-	// Token: 0x040004E4 RID: 1252
+	// Token: 0x040004E5 RID: 1253
 	private static Dictionary<Type, string> mTypeNames = new Dictionary<Type, string>();
 
-	// Token: 0x040004E5 RID: 1253
+	// Token: 0x040004E6 RID: 1254
 	private static Vector3[] mSides = new Vector3[4];
 
-	// Token: 0x040004E6 RID: 1254
+	// Token: 0x040004E7 RID: 1255
 	public static KeyCode[] keys;
 
-	// Token: 0x040004E7 RID: 1255
+	// Token: 0x040004E8 RID: 1256
 	private static Dictionary<string, UIWidget> mWidgets;
 
-	// Token: 0x040004E8 RID: 1256
+	// Token: 0x040004E9 RID: 1257
 	private static UIPanel mRoot;
 
-	// Token: 0x040004E9 RID: 1257
+	// Token: 0x040004EA RID: 1258
 	private static GameObject mGo;
 
-	// Token: 0x040004EA RID: 1258
+	// Token: 0x040004EB RID: 1259
 	private static ColorSpace mColorSpace;
 
 	// Token: 0x020005EA RID: 1514
-	// (Invoke) Token: 0x0600253E RID: 9534
+	// (Invoke) Token: 0x06002541 RID: 9537
 	public delegate void OnInitFunc<T>(T w) where T : UIWidget;
 }

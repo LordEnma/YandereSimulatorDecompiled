@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000500 RID: 1280
 public class RiggedAttacher : MonoBehaviour
 {
-	// Token: 0x0600211E RID: 8478 RVA: 0x001E5A7A File Offset: 0x001E3C7A
+	// Token: 0x06002121 RID: 8481 RVA: 0x001E5C7E File Offset: 0x001E3E7E
 	private void Start()
 	{
 		this.Attaching(this.BasePelvisRoot, this.AttachmentPelvisRoot);
 	}
 
-	// Token: 0x0600211F RID: 8479 RVA: 0x001E5A90 File Offset: 0x001E3C90
+	// Token: 0x06002122 RID: 8482 RVA: 0x001E5C94 File Offset: 0x001E3E94
 	private void Attaching(Transform Base, Transform Attachment)
 	{
 		Attachment.transform.SetParent(Base);
@@ -31,9 +31,9 @@ public class RiggedAttacher : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040048B9 RID: 18617
+	// Token: 0x040048BC RID: 18620
 	public Transform BasePelvisRoot;
 
-	// Token: 0x040048BA RID: 18618
+	// Token: 0x040048BD RID: 18621
 	public Transform AttachmentPelvisRoot;
 }

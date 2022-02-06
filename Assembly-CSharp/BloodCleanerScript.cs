@@ -77,27 +77,27 @@ public class BloodCleanerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000B86 RID: 2950
+	// Token: 0x04000B87 RID: 2951
 	public Transform BloodParent;
 
-	// Token: 0x04000B87 RID: 2951
+	// Token: 0x04000B88 RID: 2952
 	public PromptScript Prompt;
 
-	// Token: 0x04000B88 RID: 2952
+	// Token: 0x04000B89 RID: 2953
 	public AIPath Pathfinding;
 
-	// Token: 0x04000B89 RID: 2953
+	// Token: 0x04000B8A RID: 2954
 	public GameObject Lens;
 
-	// Token: 0x04000B8A RID: 2954
+	// Token: 0x04000B8B RID: 2955
 	public UILabel Label;
 
-	// Token: 0x04000B8B RID: 2955
+	// Token: 0x04000B8C RID: 2956
 	public float Distance;
 
-	// Token: 0x04000B8C RID: 2956
+	// Token: 0x04000B8D RID: 2957
 	public float Blood;
 
-	// Token: 0x04000B8D RID: 2957
+	// Token: 0x04000B8E RID: 2958
 	public bool Super;
 }

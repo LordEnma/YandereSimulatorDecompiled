@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E8 RID: 1000
 public class RobotArmScript : MonoBehaviour
 {
-	// Token: 0x06001BC3 RID: 7107 RVA: 0x00144178 File Offset: 0x00142378
+	// Token: 0x06001BC5 RID: 7109 RVA: 0x00144310 File Offset: 0x00142510
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -139,7 +139,7 @@ public class RobotArmScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BC4 RID: 7108 RVA: 0x001447A4 File Offset: 0x001429A4
+	// Token: 0x06001BC6 RID: 7110 RVA: 0x0014493C File Offset: 0x00142B3C
 	public void ActivateArms()
 	{
 		this.Prompt.Circle[0].fillAmount = 1f;
@@ -160,7 +160,7 @@ public class RobotArmScript : MonoBehaviour
 		this.MyAudio.Play();
 	}
 
-	// Token: 0x06001BC5 RID: 7109 RVA: 0x00144849 File Offset: 0x00142A49
+	// Token: 0x06001BC7 RID: 7111 RVA: 0x001449E1 File Offset: 0x00142BE1
 	public void ToggleWork()
 	{
 		this.Prompt.Circle[1].fillAmount = 1f;
@@ -169,48 +169,48 @@ public class RobotArmScript : MonoBehaviour
 		this.Work = !this.Work;
 	}
 
-	// Token: 0x040030B5 RID: 12469
+	// Token: 0x040030B8 RID: 12472
 	public SkinnedMeshRenderer RobotArms;
 
-	// Token: 0x040030B6 RID: 12470
+	// Token: 0x040030B9 RID: 12473
 	public AudioSource MyAudio;
 
-	// Token: 0x040030B7 RID: 12471
+	// Token: 0x040030BA RID: 12474
 	public PromptScript Prompt;
 
-	// Token: 0x040030B8 RID: 12472
+	// Token: 0x040030BB RID: 12475
 	public Transform TerminalTarget;
 
-	// Token: 0x040030B9 RID: 12473
+	// Token: 0x040030BC RID: 12476
 	public ParticleSystem[] Sparks;
 
-	// Token: 0x040030BA RID: 12474
+	// Token: 0x040030BD RID: 12477
 	public AudioClip ArmsOff;
 
-	// Token: 0x040030BB RID: 12475
+	// Token: 0x040030BE RID: 12478
 	public AudioClip ArmsOn;
 
-	// Token: 0x040030BC RID: 12476
+	// Token: 0x040030BF RID: 12479
 	public float StartWorkTimer;
 
-	// Token: 0x040030BD RID: 12477
+	// Token: 0x040030C0 RID: 12480
 	public float StopWorkTimer;
 
-	// Token: 0x040030BE RID: 12478
+	// Token: 0x040030C1 RID: 12481
 	public float[] ArmValue;
 
-	// Token: 0x040030BF RID: 12479
+	// Token: 0x040030C2 RID: 12482
 	public float[] Timer;
 
-	// Token: 0x040030C0 RID: 12480
+	// Token: 0x040030C3 RID: 12483
 	public bool UpdateArms;
 
-	// Token: 0x040030C1 RID: 12481
+	// Token: 0x040030C4 RID: 12484
 	public bool Work;
 
-	// Token: 0x040030C2 RID: 12482
+	// Token: 0x040030C5 RID: 12485
 	public bool[] On;
 
-	// Token: 0x040030C3 RID: 12483
+	// Token: 0x040030C6 RID: 12486
 	public int ID;
 }

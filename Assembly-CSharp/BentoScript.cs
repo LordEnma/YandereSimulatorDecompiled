@@ -118,21 +118,21 @@ public class BentoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000B78 RID: 2936
+	// Token: 0x04000B79 RID: 2937
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000B79 RID: 2937
+	// Token: 0x04000B7A RID: 2938
 	public YandereScript Yandere;
 
-	// Token: 0x04000B7A RID: 2938
+	// Token: 0x04000B7B RID: 2939
 	public Transform PoisonSpot;
 
-	// Token: 0x04000B7B RID: 2939
+	// Token: 0x04000B7C RID: 2940
 	public PromptScript Prompt;
 
-	// Token: 0x04000B7C RID: 2940
+	// Token: 0x04000B7D RID: 2941
 	public int Poison;
 
-	// Token: 0x04000B7D RID: 2941
+	// Token: 0x04000B7E RID: 2942
 	public int ID;
 }

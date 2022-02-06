@@ -209,52 +209,52 @@ public class UIColorPicker : MonoBehaviour
 		return new Color(vector.x, vector.y, vector.z, 1f);
 	}
 
-	// Token: 0x0400069C RID: 1692
+	// Token: 0x0400069D RID: 1693
 	public static UIColorPicker current;
 
-	// Token: 0x0400069D RID: 1693
+	// Token: 0x0400069E RID: 1694
 	public Color value = Color.white;
 
-	// Token: 0x0400069E RID: 1694
+	// Token: 0x0400069F RID: 1695
 	public UIWidget selectionWidget;
 
-	// Token: 0x0400069F RID: 1695
-	public List<EventDelegate> onChange = new List<EventDelegate>();
-
 	// Token: 0x040006A0 RID: 1696
-	[NonSerialized]
-	private Transform mTrans;
+	public List<EventDelegate> onChange = new List<EventDelegate>();
 
 	// Token: 0x040006A1 RID: 1697
 	[NonSerialized]
-	private UITexture mUITex;
+	private Transform mTrans;
 
 	// Token: 0x040006A2 RID: 1698
 	[NonSerialized]
-	private Texture2D mTex;
+	private UITexture mUITex;
 
 	// Token: 0x040006A3 RID: 1699
 	[NonSerialized]
-	private UICamera mCam;
+	private Texture2D mTex;
 
 	// Token: 0x040006A4 RID: 1700
 	[NonSerialized]
-	private Vector2 mPos;
+	private UICamera mCam;
 
 	// Token: 0x040006A5 RID: 1701
 	[NonSerialized]
-	private int mWidth;
+	private Vector2 mPos;
 
 	// Token: 0x040006A6 RID: 1702
 	[NonSerialized]
-	private int mHeight;
+	private int mWidth;
 
 	// Token: 0x040006A7 RID: 1703
-	private static AnimationCurve mRed;
+	[NonSerialized]
+	private int mHeight;
 
 	// Token: 0x040006A8 RID: 1704
-	private static AnimationCurve mGreen;
+	private static AnimationCurve mRed;
 
 	// Token: 0x040006A9 RID: 1705
+	private static AnimationCurve mGreen;
+
+	// Token: 0x040006AA RID: 1706
 	private static AnimationCurve mBlue;
 }

@@ -91,35 +91,35 @@ public class PropertyBinding : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040004EB RID: 1259
+	// Token: 0x040004EC RID: 1260
 	public PropertyReference source;
 
-	// Token: 0x040004EC RID: 1260
+	// Token: 0x040004ED RID: 1261
 	public PropertyReference target;
 
-	// Token: 0x040004ED RID: 1261
+	// Token: 0x040004EE RID: 1262
 	public PropertyBinding.Direction direction;
 
-	// Token: 0x040004EE RID: 1262
+	// Token: 0x040004EF RID: 1263
 	public PropertyBinding.UpdateCondition update = PropertyBinding.UpdateCondition.OnUpdate;
 
-	// Token: 0x040004EF RID: 1263
+	// Token: 0x040004F0 RID: 1264
 	public bool editMode = true;
 
-	// Token: 0x040004F0 RID: 1264
+	// Token: 0x040004F1 RID: 1265
 	private object mLastValue;
 
 	// Token: 0x020005EB RID: 1515
 	[DoNotObfuscateNGUI]
 	public enum UpdateCondition
 	{
-		// Token: 0x04004D8C RID: 19852
-		OnStart,
-		// Token: 0x04004D8D RID: 19853
-		OnUpdate,
-		// Token: 0x04004D8E RID: 19854
-		OnLateUpdate,
 		// Token: 0x04004D8F RID: 19855
+		OnStart,
+		// Token: 0x04004D90 RID: 19856
+		OnUpdate,
+		// Token: 0x04004D91 RID: 19857
+		OnLateUpdate,
+		// Token: 0x04004D92 RID: 19858
 		OnFixedUpdate
 	}
 
@@ -127,11 +127,11 @@ public class PropertyBinding : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Direction
 	{
-		// Token: 0x04004D91 RID: 19857
+		// Token: 0x04004D94 RID: 19860
 		SourceUpdatesTarget,
-		// Token: 0x04004D92 RID: 19858
+		// Token: 0x04004D95 RID: 19861
 		TargetUpdatesSource,
-		// Token: 0x04004D93 RID: 19859
+		// Token: 0x04004D96 RID: 19862
 		BiDirectional
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003C9 RID: 969
 public class RandomPatrolScript : MonoBehaviour
 {
-	// Token: 0x06001B49 RID: 6985 RVA: 0x0013262C File Offset: 0x0013082C
+	// Token: 0x06001B4B RID: 6987 RVA: 0x001327C4 File Offset: 0x001309C4
 	private void Start()
 	{
 		for (int i = 1; i < 5; i++)
@@ -41,9 +41,9 @@ public class RandomPatrolScript : MonoBehaviour
 		transform4.localEulerAngles = new Vector3(transform4.localEulerAngles.x, UnityEngine.Random.Range(0f, 360f), transform4.localEulerAngles.z);
 	}
 
-	// Token: 0x04002E99 RID: 11929
+	// Token: 0x04002E9C RID: 11932
 	public Transform[] PatrolPoints;
 
-	// Token: 0x04002E9A RID: 11930
+	// Token: 0x04002E9D RID: 11933
 	public int[] Height;
 }

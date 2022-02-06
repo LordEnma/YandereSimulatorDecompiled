@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000489 RID: 1161
 public class TypewriterScript : MonoBehaviour
 {
-	// Token: 0x06001F03 RID: 7939 RVA: 0x001B81D0 File Offset: 0x001B63D0
+	// Token: 0x06001F06 RID: 7942 RVA: 0x001B83F0 File Offset: 0x001B65F0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -45,7 +45,7 @@ public class TypewriterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F04 RID: 7940 RVA: 0x001B8308 File Offset: 0x001B6508
+	// Token: 0x06001F07 RID: 7943 RVA: 0x001B8528 File Offset: 0x001B6728
 	private void CloseWindow()
 	{
 		this.Prompt.Yandere.RPGCamera.enabled = true;
@@ -54,7 +54,7 @@ public class TypewriterScript : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x06001F05 RID: 7941 RVA: 0x001B8347 File Offset: 0x001B6547
+	// Token: 0x06001F08 RID: 7944 RVA: 0x001B8567 File Offset: 0x001B6767
 	private void Disable()
 	{
 		this.Prompt.enabled = false;
@@ -62,9 +62,9 @@ public class TypewriterScript : MonoBehaviour
 		this.Prompt.Hide();
 	}
 
-	// Token: 0x04004133 RID: 16691
+	// Token: 0x04004136 RID: 16694
 	public PromptScript Prompt;
 
-	// Token: 0x04004134 RID: 16692
+	// Token: 0x04004137 RID: 16695
 	public GameObject Window;
 }

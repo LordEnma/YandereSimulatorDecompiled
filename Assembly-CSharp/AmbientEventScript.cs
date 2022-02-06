@@ -279,99 +279,99 @@ public class AmbientEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x040008BF RID: 2239
+	// Token: 0x040008C0 RID: 2240
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040008C0 RID: 2240
+	// Token: 0x040008C1 RID: 2241
 	public AmbientEventScript GrudgeReaction;
 
-	// Token: 0x040008C1 RID: 2241
+	// Token: 0x040008C2 RID: 2242
 	public AmbientEventScript PoliceReaction;
 
-	// Token: 0x040008C2 RID: 2242
+	// Token: 0x040008C3 RID: 2243
 	public HidingSpotScript HidingSpot;
 
-	// Token: 0x040008C3 RID: 2243
+	// Token: 0x040008C4 RID: 2244
 	public UILabel EventSubtitle;
 
-	// Token: 0x040008C4 RID: 2244
+	// Token: 0x040008C5 RID: 2245
 	public YandereScript Yandere;
 
-	// Token: 0x040008C5 RID: 2245
+	// Token: 0x040008C6 RID: 2246
 	public ClockScript Clock;
 
-	// Token: 0x040008C6 RID: 2246
+	// Token: 0x040008C7 RID: 2247
 	public StudentScript[] EventStudent;
 
-	// Token: 0x040008C7 RID: 2247
+	// Token: 0x040008C8 RID: 2248
 	public Transform[] EventLocation;
 
-	// Token: 0x040008C8 RID: 2248
+	// Token: 0x040008C9 RID: 2249
 	public AudioClip[] EventClip;
 
-	// Token: 0x040008C9 RID: 2249
+	// Token: 0x040008CA RID: 2250
 	public string[] EventSpeech;
 
-	// Token: 0x040008CA RID: 2250
+	// Token: 0x040008CB RID: 2251
 	public string[] EventAnim;
 
-	// Token: 0x040008CB RID: 2251
+	// Token: 0x040008CC RID: 2252
 	public int[] EventSpeaker;
 
-	// Token: 0x040008CC RID: 2252
+	// Token: 0x040008CD RID: 2253
 	public GameObject VoiceClip;
 
-	// Token: 0x040008CD RID: 2253
+	// Token: 0x040008CE RID: 2254
 	public bool RotateSpine;
 
-	// Token: 0x040008CE RID: 2254
+	// Token: 0x040008CF RID: 2255
 	public bool Sitting;
 
-	// Token: 0x040008CF RID: 2255
+	// Token: 0x040008D0 RID: 2256
 	public bool EventOn;
 
-	// Token: 0x040008D0 RID: 2256
+	// Token: 0x040008D1 RID: 2257
 	public bool Spoken;
 
-	// Token: 0x040008D1 RID: 2257
+	// Token: 0x040008D2 RID: 2258
 	public bool Private;
 
-	// Token: 0x040008D2 RID: 2258
+	// Token: 0x040008D3 RID: 2259
 	public int EventPhase;
 
-	// Token: 0x040008D3 RID: 2259
+	// Token: 0x040008D4 RID: 2260
 	public float StartTime = 13.001f;
 
-	// Token: 0x040008D4 RID: 2260
+	// Token: 0x040008D5 RID: 2261
 	public float Delay = 0.5f;
 
-	// Token: 0x040008D5 RID: 2261
+	// Token: 0x040008D6 RID: 2262
 	public float Timer;
 
-	// Token: 0x040008D6 RID: 2262
+	// Token: 0x040008D7 RID: 2263
 	public float Scale;
 
-	// Token: 0x040008D7 RID: 2263
+	// Token: 0x040008D8 RID: 2264
 	public int[] StudentID;
 
-	// Token: 0x040008D8 RID: 2264
+	// Token: 0x040008D9 RID: 2265
 	public DayOfWeek EventDay;
 
-	// Token: 0x040008D9 RID: 2265
+	// Token: 0x040008DA RID: 2266
 	public float MouthTimer;
 
-	// Token: 0x040008DA RID: 2266
+	// Token: 0x040008DB RID: 2267
 	public float MouthTarget;
 
-	// Token: 0x040008DB RID: 2267
+	// Token: 0x040008DC RID: 2268
 	public float MouthExtent;
 
-	// Token: 0x040008DC RID: 2268
+	// Token: 0x040008DD RID: 2269
 	public float TimerLimit = 0.1f;
 
-	// Token: 0x040008DD RID: 2269
+	// Token: 0x040008DE RID: 2270
 	public float TalkSpeed;
 
-	// Token: 0x040008DE RID: 2270
+	// Token: 0x040008DF RID: 2271
 	public float LipStrength;
 }

@@ -40,15 +40,15 @@ public class UIShowControlScheme : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000437 RID: 1079
+	// Token: 0x04000438 RID: 1080
 	public GameObject target;
 
-	// Token: 0x04000438 RID: 1080
+	// Token: 0x04000439 RID: 1081
 	public bool mouse;
 
-	// Token: 0x04000439 RID: 1081
+	// Token: 0x0400043A RID: 1082
 	public bool touch;
 
-	// Token: 0x0400043A RID: 1082
+	// Token: 0x0400043B RID: 1083
 	public bool controller = true;
 }

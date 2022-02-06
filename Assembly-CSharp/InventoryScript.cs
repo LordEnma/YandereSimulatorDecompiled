@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x0200033D RID: 829
 public class InventoryScript : MonoBehaviour
 {
-	// Token: 0x060018E8 RID: 6376 RVA: 0x000F9648 File Offset: 0x000F7848
+	// Token: 0x060018EA RID: 6378 RVA: 0x000F9744 File Offset: 0x000F7944
 	private void Start()
 	{
 		this.DirectionalMic = PlayerGlobals.DirectionalMic;
@@ -64,189 +64,189 @@ public class InventoryScript : MonoBehaviour
 		this.UpdateMoney();
 	}
 
-	// Token: 0x060018E9 RID: 6377 RVA: 0x000F976C File Offset: 0x000F796C
+	// Token: 0x060018EB RID: 6379 RVA: 0x000F9868 File Offset: 0x000F7A68
 	public void UpdateMoney()
 	{
 		this.MoneyLabel.text = "$" + this.Money.ToString("F2", NumberFormatInfo.InvariantInfo);
 	}
 
-	// Token: 0x040026AE RID: 9902
+	// Token: 0x040026B1 RID: 9905
 	public SchemesScript Schemes;
 
-	// Token: 0x040026AF RID: 9903
+	// Token: 0x040026B2 RID: 9906
 	public GameObject ExplosiveDeviceSet;
 
-	// Token: 0x040026B0 RID: 9904
+	// Token: 0x040026B3 RID: 9907
 	public bool FinishedHomework;
 
-	// Token: 0x040026B1 RID: 9905
+	// Token: 0x040026B4 RID: 9908
 	public bool ModifiedUniform;
 
-	// Token: 0x040026B2 RID: 9906
+	// Token: 0x040026B5 RID: 9909
 	public bool DirectionalMic;
 
-	// Token: 0x040026B3 RID: 9907
+	// Token: 0x040026B6 RID: 9910
 	public bool DuplicateSheet;
 
-	// Token: 0x040026B4 RID: 9908
+	// Token: 0x040026B7 RID: 9911
 	public bool AnswerSheet;
 
-	// Token: 0x040026B5 RID: 9909
+	// Token: 0x040026B8 RID: 9912
 	public bool MaskingTape;
 
-	// Token: 0x040026B6 RID: 9910
+	// Token: 0x040026B9 RID: 9913
 	public bool RivalPhone;
 
-	// Token: 0x040026B7 RID: 9911
+	// Token: 0x040026BA RID: 9914
 	public bool Narcotics;
 
-	// Token: 0x040026B8 RID: 9912
+	// Token: 0x040026BB RID: 9915
 	public bool LockPick;
 
-	// Token: 0x040026B9 RID: 9913
+	// Token: 0x040026BC RID: 9916
 	public bool Condoms;
 
-	// Token: 0x040026BA RID: 9914
+	// Token: 0x040026BD RID: 9917
 	public bool Headset;
 
-	// Token: 0x040026BB RID: 9915
+	// Token: 0x040026BE RID: 9918
 	public bool FakeID;
 
-	// Token: 0x040026BC RID: 9916
+	// Token: 0x040026BF RID: 9919
 	public bool IDCard;
 
-	// Token: 0x040026BD RID: 9917
+	// Token: 0x040026C0 RID: 9920
 	public bool Book;
 
-	// Token: 0x040026BE RID: 9918
+	// Token: 0x040026C1 RID: 9921
 	public bool Cigs;
 
-	// Token: 0x040026BF RID: 9919
+	// Token: 0x040026C2 RID: 9922
 	public bool Ring;
 
-	// Token: 0x040026C0 RID: 9920
+	// Token: 0x040026C3 RID: 9923
 	public bool Rose;
 
-	// Token: 0x040026C1 RID: 9921
+	// Token: 0x040026C4 RID: 9924
 	public bool Sake;
 
-	// Token: 0x040026C2 RID: 9922
+	// Token: 0x040026C5 RID: 9925
 	public bool Soda;
 
-	// Token: 0x040026C3 RID: 9923
+	// Token: 0x040026C6 RID: 9926
 	public bool Bra;
 
-	// Token: 0x040026C4 RID: 9924
+	// Token: 0x040026C7 RID: 9927
 	public bool AmnesiaBomb;
 
-	// Token: 0x040026C5 RID: 9925
+	// Token: 0x040026C8 RID: 9928
 	public bool SmokeBomb;
 
-	// Token: 0x040026C6 RID: 9926
+	// Token: 0x040026C9 RID: 9929
 	public bool StinkBomb;
 
-	// Token: 0x040026C7 RID: 9927
+	// Token: 0x040026CA RID: 9930
 	public bool LethalPoison;
 
-	// Token: 0x040026C8 RID: 9928
+	// Token: 0x040026CB RID: 9931
 	public bool ChemicalPoison;
 
-	// Token: 0x040026C9 RID: 9929
+	// Token: 0x040026CC RID: 9932
 	public bool EmeticPoison;
 
-	// Token: 0x040026CA RID: 9930
+	// Token: 0x040026CD RID: 9933
 	public bool RatPoison;
 
-	// Token: 0x040026CB RID: 9931
+	// Token: 0x040026CE RID: 9934
 	public bool HeadachePoison;
 
-	// Token: 0x040026CC RID: 9932
+	// Token: 0x040026CF RID: 9935
 	public bool Tranquilizer;
 
-	// Token: 0x040026CD RID: 9933
+	// Token: 0x040026D0 RID: 9936
 	public bool Sedative;
 
-	// Token: 0x040026CE RID: 9934
+	// Token: 0x040026D1 RID: 9937
 	public bool CabinetKey;
 
-	// Token: 0x040026CF RID: 9935
+	// Token: 0x040026D2 RID: 9938
 	public bool CaseKey;
 
-	// Token: 0x040026D0 RID: 9936
+	// Token: 0x040026D3 RID: 9939
 	public bool SafeKey;
 
-	// Token: 0x040026D1 RID: 9937
+	// Token: 0x040026D4 RID: 9940
 	public bool ShedKey;
 
-	// Token: 0x040026D2 RID: 9938
+	// Token: 0x040026D5 RID: 9941
 	public bool Ammonium;
 
-	// Token: 0x040026D3 RID: 9939
+	// Token: 0x040026D6 RID: 9942
 	public bool Balloons;
 
-	// Token: 0x040026D4 RID: 9940
+	// Token: 0x040026D7 RID: 9943
 	public bool Bandages;
 
-	// Token: 0x040026D5 RID: 9941
+	// Token: 0x040026D8 RID: 9944
 	public bool Glass;
 
-	// Token: 0x040026D6 RID: 9942
+	// Token: 0x040026D9 RID: 9945
 	public bool Hairpins;
 
-	// Token: 0x040026D7 RID: 9943
+	// Token: 0x040026DA RID: 9946
 	public bool Nails;
 
-	// Token: 0x040026D8 RID: 9944
+	// Token: 0x040026DB RID: 9947
 	public bool Paper;
 
-	// Token: 0x040026D9 RID: 9945
+	// Token: 0x040026DC RID: 9948
 	public bool PaperClips;
 
-	// Token: 0x040026DA RID: 9946
+	// Token: 0x040026DD RID: 9949
 	public bool SilverFulminate;
 
-	// Token: 0x040026DB RID: 9947
+	// Token: 0x040026DE RID: 9950
 	public bool WoodenSticks;
 
-	// Token: 0x040026DC RID: 9948
+	// Token: 0x040026DF RID: 9951
 	public int MysteriousKeys;
 
-	// Token: 0x040026DD RID: 9949
+	// Token: 0x040026E0 RID: 9952
 	public int LethalPoisons;
 
-	// Token: 0x040026DE RID: 9950
+	// Token: 0x040026E1 RID: 9953
 	public int RivalPhoneID;
 
-	// Token: 0x040026DF RID: 9951
+	// Token: 0x040026E2 RID: 9954
 	public int SenpaiShots;
 
-	// Token: 0x040026E0 RID: 9952
+	// Token: 0x040026E3 RID: 9955
 	public int PantyShots;
 
-	// Token: 0x040026E1 RID: 9953
+	// Token: 0x040026E4 RID: 9956
 	public float Money;
 
-	// Token: 0x040026E2 RID: 9954
+	// Token: 0x040026E5 RID: 9957
 	public bool[] ShrineCollectibles;
 
-	// Token: 0x040026E3 RID: 9955
+	// Token: 0x040026E6 RID: 9958
 	public UILabel MoneyLabel;
 
-	// Token: 0x040026E4 RID: 9956
+	// Token: 0x040026E7 RID: 9959
 	public bool ArrivedWithRatPoison;
 
-	// Token: 0x040026E5 RID: 9957
+	// Token: 0x040026E8 RID: 9960
 	public bool ArrivedWithSake;
 
-	// Token: 0x040026E6 RID: 9958
+	// Token: 0x040026E9 RID: 9961
 	public bool ArrivedWithCigs;
 
-	// Token: 0x040026E7 RID: 9959
+	// Token: 0x040026EA RID: 9962
 	public bool ArrivedWithCondoms;
 
-	// Token: 0x040026E8 RID: 9960
+	// Token: 0x040026EB RID: 9963
 	public bool ArrivedWithSedative;
 
-	// Token: 0x040026E9 RID: 9961
+	// Token: 0x040026EC RID: 9964
 	public bool ArrivedWithPoison;
 }

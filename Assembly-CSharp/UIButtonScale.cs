@@ -77,21 +77,21 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400030E RID: 782
+	// Token: 0x0400030F RID: 783
 	public Transform tweenTarget;
 
-	// Token: 0x0400030F RID: 783
+	// Token: 0x04000310 RID: 784
 	public Vector3 hover = new Vector3(1.1f, 1.1f, 1.1f);
 
-	// Token: 0x04000310 RID: 784
+	// Token: 0x04000311 RID: 785
 	public Vector3 pressed = new Vector3(1.05f, 1.05f, 1.05f);
 
-	// Token: 0x04000311 RID: 785
+	// Token: 0x04000312 RID: 786
 	public float duration = 0.2f;
 
-	// Token: 0x04000312 RID: 786
+	// Token: 0x04000313 RID: 787
 	private Vector3 mScale;
 
-	// Token: 0x04000313 RID: 787
+	// Token: 0x04000314 RID: 788
 	private bool mStarted;
 }

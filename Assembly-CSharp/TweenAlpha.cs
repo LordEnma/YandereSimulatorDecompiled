@@ -161,47 +161,47 @@ public class TweenAlpha : UITweener
 		this.to = this.value;
 	}
 
-	// Token: 0x040005A0 RID: 1440
+	// Token: 0x040005A1 RID: 1441
 	[Range(0f, 1f)]
 	public float from = 1f;
 
-	// Token: 0x040005A1 RID: 1441
+	// Token: 0x040005A2 RID: 1442
 	[Range(0f, 1f)]
 	public float to = 1f;
 
-	// Token: 0x040005A2 RID: 1442
+	// Token: 0x040005A3 RID: 1443
 	[Tooltip("If used on a renderer, the material should probably be cleaned up after this script gets destroyed...")]
 	public bool autoCleanup;
 
-	// Token: 0x040005A3 RID: 1443
+	// Token: 0x040005A4 RID: 1444
 	[Tooltip("Color to adjust")]
 	public string colorProperty;
 
-	// Token: 0x040005A4 RID: 1444
+	// Token: 0x040005A5 RID: 1445
 	[NonSerialized]
 	private bool mCached;
 
-	// Token: 0x040005A5 RID: 1445
+	// Token: 0x040005A6 RID: 1446
 	[NonSerialized]
 	private UIRect mRect;
 
-	// Token: 0x040005A6 RID: 1446
+	// Token: 0x040005A7 RID: 1447
 	[NonSerialized]
 	private Material mShared;
 
-	// Token: 0x040005A7 RID: 1447
+	// Token: 0x040005A8 RID: 1448
 	[NonSerialized]
 	private Material mMat;
 
-	// Token: 0x040005A8 RID: 1448
+	// Token: 0x040005A9 RID: 1449
 	[NonSerialized]
 	private Light mLight;
 
-	// Token: 0x040005A9 RID: 1449
+	// Token: 0x040005AA RID: 1450
 	[NonSerialized]
 	private SpriteRenderer mSr;
 
-	// Token: 0x040005AA RID: 1450
+	// Token: 0x040005AB RID: 1451
 	[NonSerialized]
 	private float mBaseIntensity = 1f;
 }

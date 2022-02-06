@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000276 RID: 630
 public class DebugMenuScript : MonoBehaviour
 {
-	// Token: 0x0600135A RID: 4954 RVA: 0x000AE9DC File Offset: 0x000ACBDC
+	// Token: 0x0600135A RID: 4954 RVA: 0x000AEA88 File Offset: 0x000ACC88
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(base.transform.localPosition.x, 0f, base.transform.localPosition.z);
@@ -15,7 +15,7 @@ public class DebugMenuScript : MonoBehaviour
 		this.NoDebug = true;
 	}
 
-	// Token: 0x0600135B RID: 4955 RVA: 0x000AEA44 File Offset: 0x000ACC44
+	// Token: 0x0600135B RID: 4955 RVA: 0x000AEAF0 File Offset: 0x000ACCF0
 	private void Update()
 	{
 		if (!this.MissionMode && !this.NoDebug)
@@ -397,6 +397,11 @@ public class DebugMenuScript : MonoBehaviour
 							{
 								this.StudentManager.Students[this.ID].Friend = true;
 							}
+							for (int i = 1; i < 26; i++)
+							{
+								ConversationGlobals.SetTopicLearnedByStudent(i, this.ID, true);
+								ConversationGlobals.SetTopicDiscovered(i, true);
+							}
 							this.ID++;
 						}
 						this.Window.SetActive(false);
@@ -435,6 +440,7 @@ public class DebugMenuScript : MonoBehaviour
 						}
 						else
 						{
+							Debug.Log("Killing all students now.");
 							this.ID = 2;
 							while (this.ID < 101)
 							{
@@ -443,7 +449,6 @@ public class DebugMenuScript : MonoBehaviour
 								{
 									studentScript5.SpawnAlarmDisc();
 									studentScript5.BecomeRagdoll();
-									studentScript5.Ragdoll.Dismember();
 									studentScript5.DeathType = DeathType.EasterEgg;
 								}
 								this.ID++;
@@ -473,9 +478,9 @@ public class DebugMenuScript : MonoBehaviour
 						GameGlobals.Eighties = eighties;
 						StudentGlobals.FemaleUniform = 6;
 						StudentGlobals.MaleUniform = 6;
-						for (int i = 1; i < 101; i++)
+						for (int j = 1; j < 101; j++)
 						{
-							StudentGlobals.SetStudentPhotographed(i, true);
+							StudentGlobals.SetStudentPhotographed(j, true);
 						}
 						SceneManager.LoadScene("LoadingScene");
 					}
@@ -486,18 +491,18 @@ public class DebugMenuScript : MonoBehaviour
 						{
 							this.Yandere.Follower.transform.position = this.Yandere.transform.position;
 						}
-						for (int j = 46; j < 51; j++)
+						for (int k = 46; k < 51; k++)
 						{
-							if (this.StudentManager.Students[j] != null)
+							if (this.StudentManager.Students[k] != null)
 							{
-								this.StudentManager.Students[j].transform.position = this.TeleportSpot[5].position;
-								if (!this.StudentManager.Students[j].Indoors)
+								this.StudentManager.Students[k].transform.position = this.TeleportSpot[5].position;
+								if (!this.StudentManager.Students[k].Indoors)
 								{
-									if (this.StudentManager.Students[j].ShoeRemoval.Locker == null)
+									if (this.StudentManager.Students[k].ShoeRemoval.Locker == null)
 									{
-										this.StudentManager.Students[j].ShoeRemoval.Start();
+										this.StudentManager.Students[k].ShoeRemoval.Start();
 									}
-									this.StudentManager.Students[j].ShoeRemoval.PutOnShoes();
+									this.StudentManager.Students[k].ShoeRemoval.PutOnShoes();
 								}
 							}
 						}
@@ -577,9 +582,9 @@ public class DebugMenuScript : MonoBehaviour
 						PlayerGlobals.SetStudentFriend(11, true);
 						this.StudentManager.Students[6].Friend = true;
 						this.StudentManager.Students[11].Friend = true;
-						for (int k = 0; k < 11; k++)
+						for (int l = 0; l < 11; l++)
 						{
-							DatingGlobals.SetComplimentGiven(k, false);
+							DatingGlobals.SetComplimentGiven(l, false);
 						}
 						this.ID = 1;
 						while (this.ID < 26)
@@ -777,7 +782,7 @@ public class DebugMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600135C RID: 4956 RVA: 0x000B06A4 File Offset: 0x000AE8A4
+	// Token: 0x0600135C RID: 4956 RVA: 0x000B0774 File Offset: 0x000AE974
 	public void Censor()
 	{
 		if (GameGlobals.CensorPanties)
@@ -857,7 +862,7 @@ public class DebugMenuScript : MonoBehaviour
 		this.StudentManager.CensorStudents();
 	}
 
-	// Token: 0x0600135D RID: 4957 RVA: 0x000B0BD4 File Offset: 0x000AEDD4
+	// Token: 0x0600135D RID: 4957 RVA: 0x000B0CA4 File Offset: 0x000AEEA4
 	public void EasterEggCheck()
 	{
 		Debug.Log("Checking for easter eggs.");
@@ -909,14 +914,14 @@ public class DebugMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600135E RID: 4958 RVA: 0x000B0FFC File Offset: 0x000AF1FC
+	// Token: 0x0600135E RID: 4958 RVA: 0x000B10CC File Offset: 0x000AF2CC
 	public void UpdateCensor()
 	{
 		this.Censor();
 		this.Censor();
 	}
 
-	// Token: 0x0600135F RID: 4959 RVA: 0x000B100C File Offset: 0x000AF20C
+	// Token: 0x0600135F RID: 4959 RVA: 0x000B10DC File Offset: 0x000AF2DC
 	public void DebugTest()
 	{
 		if (this.DebugInt == 0)
@@ -947,129 +952,129 @@ public class DebugMenuScript : MonoBehaviour
 		this.DebugInt++;
 	}
 
-	// Token: 0x04001C13 RID: 7187
+	// Token: 0x04001C15 RID: 7189
 	public FakeStudentSpawnerScript FakeStudentSpawner;
 
-	// Token: 0x04001C14 RID: 7188
+	// Token: 0x04001C16 RID: 7190
 	public DelinquentManagerScript DelinquentManager;
 
-	// Token: 0x04001C15 RID: 7189
+	// Token: 0x04001C17 RID: 7191
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001C16 RID: 7190
+	// Token: 0x04001C18 RID: 7192
 	public CameraEffectsScript CameraEffects;
 
-	// Token: 0x04001C17 RID: 7191
+	// Token: 0x04001C19 RID: 7193
 	public WeaponManagerScript WeaponManager;
 
-	// Token: 0x04001C18 RID: 7192
+	// Token: 0x04001C1A RID: 7194
 	public ReputationScript Reputation;
 
-	// Token: 0x04001C19 RID: 7193
+	// Token: 0x04001C1B RID: 7195
 	public CounselorScript Counselor;
 
-	// Token: 0x04001C1A RID: 7194
+	// Token: 0x04001C1C RID: 7196
 	public DebugConsole DebugConsole;
 
-	// Token: 0x04001C1B RID: 7195
+	// Token: 0x04001C1D RID: 7197
 	public YandereScript Yandere;
 
-	// Token: 0x04001C1C RID: 7196
+	// Token: 0x04001C1E RID: 7198
 	public BentoScript Bento;
 
-	// Token: 0x04001C1D RID: 7197
+	// Token: 0x04001C1F RID: 7199
 	public ClockScript Clock;
 
-	// Token: 0x04001C1E RID: 7198
+	// Token: 0x04001C20 RID: 7200
 	public PrayScript Turtle;
 
-	// Token: 0x04001C1F RID: 7199
+	// Token: 0x04001C21 RID: 7201
 	public ZoomScript Zoom;
 
-	// Token: 0x04001C20 RID: 7200
+	// Token: 0x04001C22 RID: 7202
 	public AstarPath Astar;
 
-	// Token: 0x04001C21 RID: 7201
+	// Token: 0x04001C23 RID: 7203
 	public OsanaFridayBeforeClassEvent1Script OsanaEvent1;
 
-	// Token: 0x04001C22 RID: 7202
+	// Token: 0x04001C24 RID: 7204
 	public OsanaFridayBeforeClassEvent2Script OsanaEvent2;
 
-	// Token: 0x04001C23 RID: 7203
+	// Token: 0x04001C25 RID: 7205
 	public OsanaFridayLunchEventScript OsanaEvent3;
 
-	// Token: 0x04001C24 RID: 7204
+	// Token: 0x04001C26 RID: 7206
 	public GameObject EasterEggWindow;
 
-	// Token: 0x04001C25 RID: 7205
+	// Token: 0x04001C27 RID: 7207
 	public GameObject SacrificialArm;
 
-	// Token: 0x04001C26 RID: 7206
+	// Token: 0x04001C28 RID: 7208
 	public GameObject DebugPoisons;
 
-	// Token: 0x04001C27 RID: 7207
+	// Token: 0x04001C29 RID: 7209
 	public GameObject CircularSaw;
 
-	// Token: 0x04001C28 RID: 7208
+	// Token: 0x04001C2A RID: 7210
 	public GameObject GreenScreen;
 
-	// Token: 0x04001C29 RID: 7209
+	// Token: 0x04001C2B RID: 7211
 	public GameObject Knife;
 
-	// Token: 0x04001C2A RID: 7210
+	// Token: 0x04001C2C RID: 7212
 	public Transform[] TeleportSpot;
 
-	// Token: 0x04001C2B RID: 7211
+	// Token: 0x04001C2D RID: 7213
 	public Transform RooftopSpot;
 
-	// Token: 0x04001C2C RID: 7212
+	// Token: 0x04001C2E RID: 7214
 	public Transform MidoriSpot;
 
-	// Token: 0x04001C2D RID: 7213
+	// Token: 0x04001C2F RID: 7215
 	public Transform Lockers;
 
-	// Token: 0x04001C2E RID: 7214
+	// Token: 0x04001C30 RID: 7216
 	public GameObject MissionModeWindow;
 
-	// Token: 0x04001C2F RID: 7215
+	// Token: 0x04001C31 RID: 7217
 	public GameObject Window;
 
-	// Token: 0x04001C30 RID: 7216
+	// Token: 0x04001C32 RID: 7218
 	public GameObject[] ElectrocutionKit;
 
-	// Token: 0x04001C31 RID: 7217
+	// Token: 0x04001C33 RID: 7219
 	public bool WaitingForNumber;
 
-	// Token: 0x04001C32 RID: 7218
+	// Token: 0x04001C34 RID: 7220
 	public bool TryNextFrame;
 
-	// Token: 0x04001C33 RID: 7219
+	// Token: 0x04001C35 RID: 7221
 	public bool MissionMode;
 
-	// Token: 0x04001C34 RID: 7220
+	// Token: 0x04001C36 RID: 7222
 	public bool NoDebug;
 
-	// Token: 0x04001C35 RID: 7221
+	// Token: 0x04001C37 RID: 7223
 	public int KidnappedVictim = 11;
 
-	// Token: 0x04001C36 RID: 7222
+	// Token: 0x04001C38 RID: 7224
 	public int RooftopStudent = 7;
 
-	// Token: 0x04001C37 RID: 7223
+	// Token: 0x04001C39 RID: 7225
 	public int DebugInputs;
 
-	// Token: 0x04001C38 RID: 7224
+	// Token: 0x04001C3A RID: 7226
 	public float Timer;
 
-	// Token: 0x04001C39 RID: 7225
+	// Token: 0x04001C3B RID: 7227
 	public int ID;
 
-	// Token: 0x04001C3A RID: 7226
+	// Token: 0x04001C3C RID: 7228
 	public Texture PantyCensorTexture;
 
-	// Token: 0x04001C3B RID: 7227
+	// Token: 0x04001C3D RID: 7229
 	private int DebugInt;
 
-	// Token: 0x04001C3C RID: 7228
+	// Token: 0x04001C3E RID: 7230
 	public GameObject Mop;
 }

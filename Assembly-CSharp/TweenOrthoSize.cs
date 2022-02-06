@@ -83,12 +83,12 @@ public class TweenOrthoSize : UITweener
 		this.to = this.value;
 	}
 
-	// Token: 0x040005C7 RID: 1479
+	// Token: 0x040005C8 RID: 1480
 	public float from = 1f;
 
-	// Token: 0x040005C8 RID: 1480
+	// Token: 0x040005C9 RID: 1481
 	public float to = 1f;
 
-	// Token: 0x040005C9 RID: 1481
+	// Token: 0x040005CA RID: 1482
 	private Camera mCam;
 }

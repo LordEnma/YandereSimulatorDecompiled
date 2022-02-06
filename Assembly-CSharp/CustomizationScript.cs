@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200026B RID: 619
 public class CustomizationScript : MonoBehaviour
 {
-	// Token: 0x06001307 RID: 4871 RVA: 0x000A8604 File Offset: 0x000A6804
+	// Token: 0x06001307 RID: 4871 RVA: 0x000A86B0 File Offset: 0x000A68B0
 	private void Awake()
 	{
 		this.Data = new CustomizationScript.CustomizationData();
@@ -21,7 +21,7 @@ public class CustomizationScript : MonoBehaviour
 		this.Data.femaleUniform = new global::RangeInt(1, this.MinFemaleUniform, this.MaxFemaleUniform);
 	}
 
-	// Token: 0x06001308 RID: 4872 RVA: 0x000A8704 File Offset: 0x000A6904
+	// Token: 0x06001308 RID: 4872 RVA: 0x000A87B0 File Offset: 0x000A69B0
 	private void Start()
 	{
 		this.OriginalDOFStatus = this.Profile.depthOfField.enabled;
@@ -73,7 +73,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x17000339 RID: 825
-	// (get) Token: 0x06001309 RID: 4873 RVA: 0x000A8A31 File Offset: 0x000A6C31
+	// (get) Token: 0x06001309 RID: 4873 RVA: 0x000A8ADD File Offset: 0x000A6CDD
 	private int MinSkinColor
 	{
 		get
@@ -83,7 +83,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x1700033A RID: 826
-	// (get) Token: 0x0600130A RID: 4874 RVA: 0x000A8A34 File Offset: 0x000A6C34
+	// (get) Token: 0x0600130A RID: 4874 RVA: 0x000A8AE0 File Offset: 0x000A6CE0
 	private int MaxSkinColor
 	{
 		get
@@ -93,7 +93,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x1700033B RID: 827
-	// (get) Token: 0x0600130B RID: 4875 RVA: 0x000A8A37 File Offset: 0x000A6C37
+	// (get) Token: 0x0600130B RID: 4875 RVA: 0x000A8AE3 File Offset: 0x000A6CE3
 	private int MinHairstyle
 	{
 		get
@@ -103,7 +103,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x1700033C RID: 828
-	// (get) Token: 0x0600130C RID: 4876 RVA: 0x000A8A3A File Offset: 0x000A6C3A
+	// (get) Token: 0x0600130C RID: 4876 RVA: 0x000A8AE6 File Offset: 0x000A6CE6
 	private int MaxHairstyle
 	{
 		get
@@ -113,7 +113,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x1700033D RID: 829
-	// (get) Token: 0x0600130D RID: 4877 RVA: 0x000A8A46 File Offset: 0x000A6C46
+	// (get) Token: 0x0600130D RID: 4877 RVA: 0x000A8AF2 File Offset: 0x000A6CF2
 	private int MinHairColor
 	{
 		get
@@ -123,7 +123,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x1700033E RID: 830
-	// (get) Token: 0x0600130E RID: 4878 RVA: 0x000A8A49 File Offset: 0x000A6C49
+	// (get) Token: 0x0600130E RID: 4878 RVA: 0x000A8AF5 File Offset: 0x000A6CF5
 	private int MaxHairColor
 	{
 		get
@@ -133,7 +133,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x1700033F RID: 831
-	// (get) Token: 0x0600130F RID: 4879 RVA: 0x000A8A54 File Offset: 0x000A6C54
+	// (get) Token: 0x0600130F RID: 4879 RVA: 0x000A8B00 File Offset: 0x000A6D00
 	private int MinEyeColor
 	{
 		get
@@ -143,7 +143,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x17000340 RID: 832
-	// (get) Token: 0x06001310 RID: 4880 RVA: 0x000A8A57 File Offset: 0x000A6C57
+	// (get) Token: 0x06001310 RID: 4880 RVA: 0x000A8B03 File Offset: 0x000A6D03
 	private int MaxEyeColor
 	{
 		get
@@ -153,7 +153,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x17000341 RID: 833
-	// (get) Token: 0x06001311 RID: 4881 RVA: 0x000A8A62 File Offset: 0x000A6C62
+	// (get) Token: 0x06001311 RID: 4881 RVA: 0x000A8B0E File Offset: 0x000A6D0E
 	private int MinEyewear
 	{
 		get
@@ -163,7 +163,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x17000342 RID: 834
-	// (get) Token: 0x06001312 RID: 4882 RVA: 0x000A8A65 File Offset: 0x000A6C65
+	// (get) Token: 0x06001312 RID: 4882 RVA: 0x000A8B11 File Offset: 0x000A6D11
 	private int MaxEyewear
 	{
 		get
@@ -173,7 +173,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x17000343 RID: 835
-	// (get) Token: 0x06001313 RID: 4883 RVA: 0x000A8A68 File Offset: 0x000A6C68
+	// (get) Token: 0x06001313 RID: 4883 RVA: 0x000A8B14 File Offset: 0x000A6D14
 	private int MinFacialHair
 	{
 		get
@@ -183,7 +183,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x17000344 RID: 836
-	// (get) Token: 0x06001314 RID: 4884 RVA: 0x000A8A6B File Offset: 0x000A6C6B
+	// (get) Token: 0x06001314 RID: 4884 RVA: 0x000A8B17 File Offset: 0x000A6D17
 	private int MaxFacialHair
 	{
 		get
@@ -193,7 +193,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x17000345 RID: 837
-	// (get) Token: 0x06001315 RID: 4885 RVA: 0x000A8A77 File Offset: 0x000A6C77
+	// (get) Token: 0x06001315 RID: 4885 RVA: 0x000A8B23 File Offset: 0x000A6D23
 	private int MinMaleUniform
 	{
 		get
@@ -203,7 +203,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x17000346 RID: 838
-	// (get) Token: 0x06001316 RID: 4886 RVA: 0x000A8A7A File Offset: 0x000A6C7A
+	// (get) Token: 0x06001316 RID: 4886 RVA: 0x000A8B26 File Offset: 0x000A6D26
 	private int MaxMaleUniform
 	{
 		get
@@ -213,7 +213,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x17000347 RID: 839
-	// (get) Token: 0x06001317 RID: 4887 RVA: 0x000A8A86 File Offset: 0x000A6C86
+	// (get) Token: 0x06001317 RID: 4887 RVA: 0x000A8B32 File Offset: 0x000A6D32
 	private int MinFemaleUniform
 	{
 		get
@@ -223,7 +223,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x17000348 RID: 840
-	// (get) Token: 0x06001318 RID: 4888 RVA: 0x000A8A89 File Offset: 0x000A6C89
+	// (get) Token: 0x06001318 RID: 4888 RVA: 0x000A8B35 File Offset: 0x000A6D35
 	private int MaxFemaleUniform
 	{
 		get
@@ -233,7 +233,7 @@ public class CustomizationScript : MonoBehaviour
 	}
 
 	// Token: 0x17000349 RID: 841
-	// (get) Token: 0x06001319 RID: 4889 RVA: 0x000A8A95 File Offset: 0x000A6C95
+	// (get) Token: 0x06001319 RID: 4889 RVA: 0x000A8B41 File Offset: 0x000A6D41
 	private float CameraSpeed
 	{
 		get
@@ -242,7 +242,7 @@ public class CustomizationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600131A RID: 4890 RVA: 0x000A8AA4 File Offset: 0x000A6CA4
+	// Token: 0x0600131A RID: 4890 RVA: 0x000A8B50 File Offset: 0x000A6D50
 	private void Update()
 	{
 		if (!this.MyAudio.loop && !this.MyAudio.isPlaying)
@@ -619,20 +619,20 @@ public class CustomizationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600131B RID: 4891 RVA: 0x000AA136 File Offset: 0x000A8336
+	// Token: 0x0600131B RID: 4891 RVA: 0x000AA1E2 File Offset: 0x000A83E2
 	private void LateUpdate()
 	{
 		this.YandereHead.LookAt(this.SenpaiHead.position);
 	}
 
-	// Token: 0x0600131C RID: 4892 RVA: 0x000AA14E File Offset: 0x000A834E
+	// Token: 0x0600131C RID: 4892 RVA: 0x000AA1FA File Offset: 0x000A83FA
 	private void UpdateSkin(int skinColor)
 	{
 		this.UpdateMaleUniform(this.Data.maleUniform.Value, skinColor);
 		this.SkinColorLabel.text = "Skin Color " + skinColor.ToString();
 	}
 
-	// Token: 0x0600131D RID: 4893 RVA: 0x000AA184 File Offset: 0x000A8384
+	// Token: 0x0600131D RID: 4893 RVA: 0x000AA230 File Offset: 0x000A8430
 	private void UpdateHairStyle(int hairstyle)
 	{
 		for (int i = 1; i < this.Hairstyles.Length; i++)
@@ -648,7 +648,7 @@ public class CustomizationScript : MonoBehaviour
 		this.UpdateColor(this.Data.hairColor.Value);
 	}
 
-	// Token: 0x0600131E RID: 4894 RVA: 0x000AA20C File Offset: 0x000A840C
+	// Token: 0x0600131E RID: 4894 RVA: 0x000AA2B8 File Offset: 0x000A84B8
 	private void UpdateFacialHair(int facialHair)
 	{
 		for (int i = 1; i < this.FacialHairstyles.Length; i++)
@@ -664,7 +664,7 @@ public class CustomizationScript : MonoBehaviour
 		this.UpdateColor(this.Data.hairColor.Value);
 	}
 
-	// Token: 0x0600131F RID: 4895 RVA: 0x000AA294 File Offset: 0x000A8494
+	// Token: 0x0600131F RID: 4895 RVA: 0x000AA340 File Offset: 0x000A8540
 	private void UpdateColor(int hairColor)
 	{
 		KeyValuePair<Color, string> keyValuePair = CustomizationScript.ColorPairs[hairColor];
@@ -687,7 +687,7 @@ public class CustomizationScript : MonoBehaviour
 		this.HairColorLabel.text = "Hair Color " + hairColor.ToString();
 	}
 
-	// Token: 0x06001320 RID: 4896 RVA: 0x000AA390 File Offset: 0x000A8590
+	// Token: 0x06001320 RID: 4896 RVA: 0x000AA43C File Offset: 0x000A863C
 	private void UpdateEyes(int eyeColor)
 	{
 		KeyValuePair<Color, string> keyValuePair = CustomizationScript.ColorPairs[eyeColor];
@@ -698,7 +698,7 @@ public class CustomizationScript : MonoBehaviour
 		this.EyeColorLabel.text = "Eye Color " + eyeColor.ToString();
 	}
 
-	// Token: 0x06001321 RID: 4897 RVA: 0x000AA3FC File Offset: 0x000A85FC
+	// Token: 0x06001321 RID: 4897 RVA: 0x000AA4A8 File Offset: 0x000A86A8
 	private void UpdateEyewear(int eyewear)
 	{
 		for (int i = 1; i < this.Eyewears.Length; i++)
@@ -712,7 +712,7 @@ public class CustomizationScript : MonoBehaviour
 		this.EyeWearLabel.text = "Eye Wear " + eyewear.ToString();
 	}
 
-	// Token: 0x06001322 RID: 4898 RVA: 0x000AA458 File Offset: 0x000A8658
+	// Token: 0x06001322 RID: 4898 RVA: 0x000AA504 File Offset: 0x000A8704
 	private void UpdateMaleUniform(int maleUniform, int skinColor)
 	{
 		this.SenpaiRenderer.sharedMesh = this.MaleUniforms[maleUniform];
@@ -755,7 +755,7 @@ public class CustomizationScript : MonoBehaviour
 		this.MaleUniformLabel.text = "Male Uniform " + maleUniform.ToString();
 	}
 
-	// Token: 0x06001323 RID: 4899 RVA: 0x000AA698 File Offset: 0x000A8898
+	// Token: 0x06001323 RID: 4899 RVA: 0x000AA744 File Offset: 0x000A8944
 	private void UpdateFemaleUniform(int femaleUniform)
 	{
 		this.YandereRenderer.sharedMesh = this.FemaleUniforms[femaleUniform];
@@ -766,7 +766,7 @@ public class CustomizationScript : MonoBehaviour
 		this.FemaleUniformLabel.text = "Female Uniform " + femaleUniform.ToString();
 	}
 
-	// Token: 0x06001324 RID: 4900 RVA: 0x000AA738 File Offset: 0x000A8938
+	// Token: 0x06001324 RID: 4900 RVA: 0x000AA7E4 File Offset: 0x000A89E4
 	private void LoveSickColorSwap()
 	{
 		foreach (GameObject gameObject in UnityEngine.Object.FindObjectsOfType<GameObject>())
@@ -789,258 +789,258 @@ public class CustomizationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001B14 RID: 6932
+	// Token: 0x04001B16 RID: 6934
 	[SerializeField]
 	private CustomizationScript.CustomizationData Data;
 
-	// Token: 0x04001B15 RID: 6933
+	// Token: 0x04001B17 RID: 6935
 	[SerializeField]
 	private InputManagerScript InputManager;
 
-	// Token: 0x04001B16 RID: 6934
+	// Token: 0x04001B18 RID: 6936
 	[SerializeField]
 	private Renderer FacialHairRenderer;
 
-	// Token: 0x04001B17 RID: 6935
+	// Token: 0x04001B19 RID: 6937
 	[SerializeField]
 	private SkinnedMeshRenderer YandereRenderer;
 
-	// Token: 0x04001B18 RID: 6936
+	// Token: 0x04001B1A RID: 6938
 	[SerializeField]
 	private SkinnedMeshRenderer SenpaiRenderer;
 
-	// Token: 0x04001B19 RID: 6937
+	// Token: 0x04001B1B RID: 6939
 	[SerializeField]
 	private Renderer HairRenderer;
 
-	// Token: 0x04001B1A RID: 6938
+	// Token: 0x04001B1C RID: 6940
 	[SerializeField]
 	private AudioSource MyAudio;
 
-	// Token: 0x04001B1B RID: 6939
+	// Token: 0x04001B1D RID: 6941
 	[SerializeField]
 	private Renderer EyeR;
 
-	// Token: 0x04001B1C RID: 6940
+	// Token: 0x04001B1E RID: 6942
 	[SerializeField]
 	private Renderer EyeL;
 
-	// Token: 0x04001B1D RID: 6941
+	// Token: 0x04001B1F RID: 6943
 	[SerializeField]
 	private Transform UniformHighlight;
 
-	// Token: 0x04001B1E RID: 6942
+	// Token: 0x04001B20 RID: 6944
 	[SerializeField]
 	private Transform ApologyWindow;
 
-	// Token: 0x04001B1F RID: 6943
+	// Token: 0x04001B21 RID: 6945
 	[SerializeField]
 	private Transform YandereHead;
 
-	// Token: 0x04001B20 RID: 6944
+	// Token: 0x04001B22 RID: 6946
 	[SerializeField]
 	private Transform YandereNeck;
 
-	// Token: 0x04001B21 RID: 6945
+	// Token: 0x04001B23 RID: 6947
 	[SerializeField]
 	private Transform SenpaiHead;
 
-	// Token: 0x04001B22 RID: 6946
+	// Token: 0x04001B24 RID: 6948
 	[SerializeField]
 	private Transform Highlight;
 
-	// Token: 0x04001B23 RID: 6947
+	// Token: 0x04001B25 RID: 6949
 	[SerializeField]
 	private Transform Yandere;
 
-	// Token: 0x04001B24 RID: 6948
+	// Token: 0x04001B26 RID: 6950
 	[SerializeField]
 	private Transform Senpai;
 
-	// Token: 0x04001B25 RID: 6949
+	// Token: 0x04001B27 RID: 6951
 	[SerializeField]
 	private Transform[] Corridor;
 
-	// Token: 0x04001B26 RID: 6950
+	// Token: 0x04001B28 RID: 6952
 	[SerializeField]
 	private UIPanel CustomizePanel;
 
-	// Token: 0x04001B27 RID: 6951
+	// Token: 0x04001B29 RID: 6953
 	[SerializeField]
 	private UIPanel UniformPanel;
 
-	// Token: 0x04001B28 RID: 6952
+	// Token: 0x04001B2A RID: 6954
 	[SerializeField]
 	private UIPanel FinishPanel;
 
-	// Token: 0x04001B29 RID: 6953
+	// Token: 0x04001B2B RID: 6955
 	[SerializeField]
 	private UIPanel GenderPanel;
 
-	// Token: 0x04001B2A RID: 6954
+	// Token: 0x04001B2C RID: 6956
 	[SerializeField]
 	private UIPanel WhitePanel;
 
-	// Token: 0x04001B2B RID: 6955
+	// Token: 0x04001B2D RID: 6957
 	[SerializeField]
 	private UILabel FacialHairStyleLabel;
 
-	// Token: 0x04001B2C RID: 6956
+	// Token: 0x04001B2E RID: 6958
 	[SerializeField]
 	private UILabel FemaleUniformLabel;
 
-	// Token: 0x04001B2D RID: 6957
+	// Token: 0x04001B2F RID: 6959
 	[SerializeField]
 	private UILabel MaleUniformLabel;
 
-	// Token: 0x04001B2E RID: 6958
+	// Token: 0x04001B30 RID: 6960
 	[SerializeField]
 	private UILabel SkinColorLabel;
 
-	// Token: 0x04001B2F RID: 6959
+	// Token: 0x04001B31 RID: 6961
 	[SerializeField]
 	private UILabel HairStyleLabel;
 
-	// Token: 0x04001B30 RID: 6960
+	// Token: 0x04001B32 RID: 6962
 	[SerializeField]
 	private UILabel HairColorLabel;
 
-	// Token: 0x04001B31 RID: 6961
+	// Token: 0x04001B33 RID: 6963
 	[SerializeField]
 	private UILabel EyeColorLabel;
 
-	// Token: 0x04001B32 RID: 6962
+	// Token: 0x04001B34 RID: 6964
 	[SerializeField]
 	private UILabel EyeWearLabel;
 
-	// Token: 0x04001B33 RID: 6963
+	// Token: 0x04001B35 RID: 6965
 	[SerializeField]
 	private GameObject LoveSickCamera;
 
-	// Token: 0x04001B34 RID: 6964
+	// Token: 0x04001B36 RID: 6966
 	[SerializeField]
 	private GameObject CensorCloud;
 
-	// Token: 0x04001B35 RID: 6965
+	// Token: 0x04001B37 RID: 6967
 	[SerializeField]
 	private GameObject BigCloud;
 
-	// Token: 0x04001B36 RID: 6966
+	// Token: 0x04001B38 RID: 6968
 	[SerializeField]
 	private GameObject Hearts;
 
-	// Token: 0x04001B37 RID: 6967
+	// Token: 0x04001B39 RID: 6969
 	[SerializeField]
 	private GameObject Cloud;
 
-	// Token: 0x04001B38 RID: 6968
+	// Token: 0x04001B3A RID: 6970
 	[SerializeField]
 	private UISprite Black;
 
-	// Token: 0x04001B39 RID: 6969
+	// Token: 0x04001B3B RID: 6971
 	[SerializeField]
 	private UISprite White;
 
-	// Token: 0x04001B3A RID: 6970
+	// Token: 0x04001B3C RID: 6972
 	private bool SkipToCalendar;
 
-	// Token: 0x04001B3B RID: 6971
+	// Token: 0x04001B3D RID: 6973
 	private bool Apologize;
 
-	// Token: 0x04001B3C RID: 6972
+	// Token: 0x04001B3E RID: 6974
 	private bool LoveSick;
 
-	// Token: 0x04001B3D RID: 6973
-	private bool FadeOut;
-
-	// Token: 0x04001B3E RID: 6974
-	[SerializeField]
-	private float ScrollSpeed;
-
 	// Token: 0x04001B3F RID: 6975
-	[SerializeField]
-	private float Timer;
+	private bool FadeOut;
 
 	// Token: 0x04001B40 RID: 6976
 	[SerializeField]
-	private int Selected = 1;
+	private float ScrollSpeed;
 
 	// Token: 0x04001B41 RID: 6977
 	[SerializeField]
-	private int Phase = 1;
+	private float Timer;
 
 	// Token: 0x04001B42 RID: 6978
 	[SerializeField]
-	private Texture[] FemaleUniformTextures;
+	private int Selected = 1;
 
 	// Token: 0x04001B43 RID: 6979
 	[SerializeField]
-	private Texture[] MaleUniformTextures;
+	private int Phase = 1;
 
 	// Token: 0x04001B44 RID: 6980
 	[SerializeField]
-	private Texture[] FaceTextures;
+	private Texture[] FemaleUniformTextures;
 
 	// Token: 0x04001B45 RID: 6981
 	[SerializeField]
-	private Texture[] SkinTextures;
+	private Texture[] MaleUniformTextures;
 
 	// Token: 0x04001B46 RID: 6982
 	[SerializeField]
-	private GameObject[] FacialHairstyles;
+	private Texture[] FaceTextures;
 
 	// Token: 0x04001B47 RID: 6983
 	[SerializeField]
-	private GameObject[] Hairstyles;
+	private Texture[] SkinTextures;
 
 	// Token: 0x04001B48 RID: 6984
 	[SerializeField]
-	private GameObject[] Eyewears;
+	private GameObject[] FacialHairstyles;
 
 	// Token: 0x04001B49 RID: 6985
 	[SerializeField]
-	private Mesh[] FemaleUniforms;
+	private GameObject[] Hairstyles;
 
 	// Token: 0x04001B4A RID: 6986
 	[SerializeField]
-	private Mesh[] MaleUniforms;
+	private GameObject[] Eyewears;
 
 	// Token: 0x04001B4B RID: 6987
 	[SerializeField]
-	private Texture FemaleFace;
+	private Mesh[] FemaleUniforms;
 
 	// Token: 0x04001B4C RID: 6988
 	[SerializeField]
-	private string HairColorName = string.Empty;
+	private Mesh[] MaleUniforms;
 
 	// Token: 0x04001B4D RID: 6989
 	[SerializeField]
-	private string EyeColorName = string.Empty;
+	private Texture FemaleFace;
 
 	// Token: 0x04001B4E RID: 6990
 	[SerializeField]
-	private AudioClip LoveSickIntro;
+	private string HairColorName = string.Empty;
 
 	// Token: 0x04001B4F RID: 6991
 	[SerializeField]
-	private AudioClip LoveSickLoop;
+	private string EyeColorName = string.Empty;
 
 	// Token: 0x04001B50 RID: 6992
-	public float AbsoluteRotation;
+	[SerializeField]
+	private AudioClip LoveSickIntro;
 
 	// Token: 0x04001B51 RID: 6993
-	public float Adjustment;
+	[SerializeField]
+	private AudioClip LoveSickLoop;
 
 	// Token: 0x04001B52 RID: 6994
-	public float Rotation;
+	public float AbsoluteRotation;
 
 	// Token: 0x04001B53 RID: 6995
-	public PostProcessingProfile Profile;
+	public float Adjustment;
 
 	// Token: 0x04001B54 RID: 6996
-	public bool OriginalDOFStatus;
+	public float Rotation;
 
 	// Token: 0x04001B55 RID: 6997
+	public PostProcessingProfile Profile;
+
+	// Token: 0x04001B56 RID: 6998
+	public bool OriginalDOFStatus;
+
+	// Token: 0x04001B57 RID: 6999
 	private static readonly KeyValuePair<Color, string>[] ColorPairs = new KeyValuePair<Color, string>[]
 	{
 		new KeyValuePair<Color, string>(default(Color), string.Empty),
@@ -1059,28 +1059,28 @@ public class CustomizationScript : MonoBehaviour
 	// Token: 0x0200064E RID: 1614
 	private class CustomizationData
 	{
-		// Token: 0x04004EE7 RID: 20199
+		// Token: 0x04004EEA RID: 20202
 		public global::RangeInt skinColor;
 
-		// Token: 0x04004EE8 RID: 20200
+		// Token: 0x04004EEB RID: 20203
 		public global::RangeInt hairstyle;
 
-		// Token: 0x04004EE9 RID: 20201
+		// Token: 0x04004EEC RID: 20204
 		public global::RangeInt hairColor;
 
-		// Token: 0x04004EEA RID: 20202
+		// Token: 0x04004EED RID: 20205
 		public global::RangeInt eyeColor;
 
-		// Token: 0x04004EEB RID: 20203
+		// Token: 0x04004EEE RID: 20206
 		public global::RangeInt eyewear;
 
-		// Token: 0x04004EEC RID: 20204
+		// Token: 0x04004EEF RID: 20207
 		public global::RangeInt facialHair;
 
-		// Token: 0x04004EED RID: 20205
+		// Token: 0x04004EF0 RID: 20208
 		public global::RangeInt maleUniform;
 
-		// Token: 0x04004EEE RID: 20206
+		// Token: 0x04004EF1 RID: 20209
 		public global::RangeInt femaleUniform;
 	}
 }

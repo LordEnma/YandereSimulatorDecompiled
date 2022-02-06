@@ -256,48 +256,48 @@ public class UIRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000746 RID: 1862
+	// Token: 0x04000747 RID: 1863
 	public static List<UIRoot> list = new List<UIRoot>();
 
-	// Token: 0x04000747 RID: 1863
+	// Token: 0x04000748 RID: 1864
 	public UIRoot.Scaling scalingStyle;
 
-	// Token: 0x04000748 RID: 1864
+	// Token: 0x04000749 RID: 1865
 	public int manualWidth = 1280;
 
-	// Token: 0x04000749 RID: 1865
+	// Token: 0x0400074A RID: 1866
 	public int manualHeight = 720;
 
-	// Token: 0x0400074A RID: 1866
+	// Token: 0x0400074B RID: 1867
 	public int minimumHeight = 320;
 
-	// Token: 0x0400074B RID: 1867
+	// Token: 0x0400074C RID: 1868
 	public int maximumHeight = 1536;
 
-	// Token: 0x0400074C RID: 1868
+	// Token: 0x0400074D RID: 1869
 	public bool fitWidth;
 
-	// Token: 0x0400074D RID: 1869
+	// Token: 0x0400074E RID: 1870
 	public bool fitHeight = true;
 
-	// Token: 0x0400074E RID: 1870
+	// Token: 0x0400074F RID: 1871
 	public bool adjustByDPI;
 
-	// Token: 0x0400074F RID: 1871
+	// Token: 0x04000750 RID: 1872
 	public bool shrinkPortraitUI;
 
-	// Token: 0x04000750 RID: 1872
+	// Token: 0x04000751 RID: 1873
 	private Transform mTrans;
 
 	// Token: 0x02000638 RID: 1592
 	[DoNotObfuscateNGUI]
 	public enum Scaling
 	{
-		// Token: 0x04004E5E RID: 20062
+		// Token: 0x04004E61 RID: 20065
 		Flexible,
-		// Token: 0x04004E5F RID: 20063
+		// Token: 0x04004E62 RID: 20066
 		Constrained,
-		// Token: 0x04004E60 RID: 20064
+		// Token: 0x04004E63 RID: 20067
 		ConstrainedOnMobiles
 	}
 
@@ -305,13 +305,13 @@ public class UIRoot : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Constraint
 	{
-		// Token: 0x04004E62 RID: 20066
-		Fit,
-		// Token: 0x04004E63 RID: 20067
-		Fill,
-		// Token: 0x04004E64 RID: 20068
-		FitWidth,
 		// Token: 0x04004E65 RID: 20069
+		Fit,
+		// Token: 0x04004E66 RID: 20070
+		Fill,
+		// Token: 0x04004E67 RID: 20071
+		FitWidth,
+		// Token: 0x04004E68 RID: 20072
 		FitHeight
 	}
 }

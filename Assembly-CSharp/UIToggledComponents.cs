@@ -48,18 +48,18 @@ public class UIToggledComponents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000460 RID: 1120
+	// Token: 0x04000461 RID: 1121
 	public List<MonoBehaviour> activate;
 
-	// Token: 0x04000461 RID: 1121
+	// Token: 0x04000462 RID: 1122
 	public List<MonoBehaviour> deactivate;
 
-	// Token: 0x04000462 RID: 1122
+	// Token: 0x04000463 RID: 1123
 	[HideInInspector]
 	[SerializeField]
 	private MonoBehaviour target;
 
-	// Token: 0x04000463 RID: 1123
+	// Token: 0x04000464 RID: 1124
 	[HideInInspector]
 	[SerializeField]
 	private bool inverse;

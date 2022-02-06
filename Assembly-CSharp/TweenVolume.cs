@@ -101,14 +101,14 @@ public class TweenVolume : UITweener
 		this.to = this.value;
 	}
 
-	// Token: 0x040005DF RID: 1503
+	// Token: 0x040005E0 RID: 1504
 	[Range(0f, 1f)]
 	public float from = 1f;
 
-	// Token: 0x040005E0 RID: 1504
+	// Token: 0x040005E1 RID: 1505
 	[Range(0f, 1f)]
 	public float to = 1f;
 
-	// Token: 0x040005E1 RID: 1505
+	// Token: 0x040005E2 RID: 1506
 	private AudioSource mSource;
 }

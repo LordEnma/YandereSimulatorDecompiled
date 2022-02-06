@@ -39,18 +39,18 @@ public class LagRotation : MonoBehaviour
 		this.Interpolate(this.ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime);
 	}
 
-	// Token: 0x0400029A RID: 666
+	// Token: 0x0400029B RID: 667
 	public float speed = 10f;
 
-	// Token: 0x0400029B RID: 667
+	// Token: 0x0400029C RID: 668
 	public bool ignoreTimeScale;
 
-	// Token: 0x0400029C RID: 668
+	// Token: 0x0400029D RID: 669
 	private Transform mTrans;
 
-	// Token: 0x0400029D RID: 669
+	// Token: 0x0400029E RID: 670
 	private Quaternion mRelative;
 
-	// Token: 0x0400029E RID: 670
+	// Token: 0x0400029F RID: 671
 	private Quaternion mAbsolute;
 }

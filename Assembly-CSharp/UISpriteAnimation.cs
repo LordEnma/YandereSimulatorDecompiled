@@ -169,38 +169,38 @@ public class UISpriteAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000757 RID: 1879
-	public int frameIndex;
-
 	// Token: 0x04000758 RID: 1880
-	[HideInInspector]
-	[SerializeField]
-	protected int mFPS = 30;
+	public int frameIndex;
 
 	// Token: 0x04000759 RID: 1881
 	[HideInInspector]
 	[SerializeField]
-	protected string mPrefix = "";
+	protected int mFPS = 30;
 
 	// Token: 0x0400075A RID: 1882
 	[HideInInspector]
 	[SerializeField]
-	protected bool mLoop = true;
+	protected string mPrefix = "";
 
 	// Token: 0x0400075B RID: 1883
 	[HideInInspector]
 	[SerializeField]
-	protected bool mSnap = true;
+	protected bool mLoop = true;
 
 	// Token: 0x0400075C RID: 1884
-	protected UISprite mSprite;
+	[HideInInspector]
+	[SerializeField]
+	protected bool mSnap = true;
 
 	// Token: 0x0400075D RID: 1885
-	protected float mDelta;
+	protected UISprite mSprite;
 
 	// Token: 0x0400075E RID: 1886
-	protected bool mActive = true;
+	protected float mDelta;
 
 	// Token: 0x0400075F RID: 1887
+	protected bool mActive = true;
+
+	// Token: 0x04000760 RID: 1888
 	protected List<string> mSpriteNames = new List<string>();
 }

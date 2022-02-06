@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000447 RID: 1095
 public class StopAnimationScript : MonoBehaviour
 {
-	// Token: 0x06001D10 RID: 7440 RVA: 0x0015B4F7 File Offset: 0x001596F7
+	// Token: 0x06001D12 RID: 7442 RVA: 0x0015B68F File Offset: 0x0015988F
 	private void Start()
 	{
 		this.StudentManager = GameObject.Find("StudentManager").GetComponent<StudentManagerScript>();
 		this.Anim = base.GetComponent<Animation>();
 	}
 
-	// Token: 0x06001D11 RID: 7441 RVA: 0x0015B51C File Offset: 0x0015971C
+	// Token: 0x06001D13 RID: 7443 RVA: 0x0015B6B4 File Offset: 0x001598B4
 	private void Update()
 	{
 		if (this.StudentManager.DisableFarAnims)
@@ -36,12 +36,12 @@ public class StopAnimationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040034DC RID: 13532
+	// Token: 0x040034DF RID: 13535
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040034DD RID: 13533
+	// Token: 0x040034E0 RID: 13536
 	public Transform Yandere;
 
-	// Token: 0x040034DE RID: 13534
+	// Token: 0x040034E1 RID: 13537
 	private Animation Anim;
 }

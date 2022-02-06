@@ -20,6 +20,6 @@ public class UIDragDropRoot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000330 RID: 816
+	// Token: 0x04000331 RID: 817
 	public static Transform root;
 }

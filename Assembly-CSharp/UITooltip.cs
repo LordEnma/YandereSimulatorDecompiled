@@ -175,45 +175,45 @@ public class UITooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000799 RID: 1945
+	// Token: 0x0400079A RID: 1946
 	protected static UITooltip mInstance;
 
-	// Token: 0x0400079A RID: 1946
+	// Token: 0x0400079B RID: 1947
 	public Camera uiCamera;
 
-	// Token: 0x0400079B RID: 1947
+	// Token: 0x0400079C RID: 1948
 	public UILabel text;
 
-	// Token: 0x0400079C RID: 1948
+	// Token: 0x0400079D RID: 1949
 	public GameObject tooltipRoot;
 
-	// Token: 0x0400079D RID: 1949
+	// Token: 0x0400079E RID: 1950
 	public UISprite background;
 
-	// Token: 0x0400079E RID: 1950
+	// Token: 0x0400079F RID: 1951
 	public float appearSpeed = 10f;
 
-	// Token: 0x0400079F RID: 1951
+	// Token: 0x040007A0 RID: 1952
 	public bool scalingTransitions = true;
 
-	// Token: 0x040007A0 RID: 1952
+	// Token: 0x040007A1 RID: 1953
 	protected GameObject mTooltip;
 
-	// Token: 0x040007A1 RID: 1953
+	// Token: 0x040007A2 RID: 1954
 	protected Transform mTrans;
 
-	// Token: 0x040007A2 RID: 1954
+	// Token: 0x040007A3 RID: 1955
 	protected float mTarget;
 
-	// Token: 0x040007A3 RID: 1955
+	// Token: 0x040007A4 RID: 1956
 	protected float mCurrent;
 
-	// Token: 0x040007A4 RID: 1956
+	// Token: 0x040007A5 RID: 1957
 	protected Vector3 mPos;
 
-	// Token: 0x040007A5 RID: 1957
+	// Token: 0x040007A6 RID: 1958
 	protected Vector3 mSize = Vector3.zero;
 
-	// Token: 0x040007A6 RID: 1958
+	// Token: 0x040007A7 RID: 1959
 	protected UIWidget[] mWidgets;
 }

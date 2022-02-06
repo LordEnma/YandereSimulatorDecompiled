@@ -122,21 +122,21 @@ public class UIImageButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400038C RID: 908
+	// Token: 0x0400038D RID: 909
 	public UISprite target;
 
-	// Token: 0x0400038D RID: 909
+	// Token: 0x0400038E RID: 910
 	public string normalSprite;
 
-	// Token: 0x0400038E RID: 910
+	// Token: 0x0400038F RID: 911
 	public string hoverSprite;
 
-	// Token: 0x0400038F RID: 911
+	// Token: 0x04000390 RID: 912
 	public string pressedSprite;
 
-	// Token: 0x04000390 RID: 912
+	// Token: 0x04000391 RID: 913
 	public string disabledSprite;
 
-	// Token: 0x04000391 RID: 913
+	// Token: 0x04000392 RID: 914
 	public bool pixelSnap = true;
 }

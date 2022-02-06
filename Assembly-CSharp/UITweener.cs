@@ -407,18 +407,18 @@ public abstract class UITweener : MonoBehaviour
 	{
 	}
 
-	// Token: 0x040005E9 RID: 1513
-	public static UITweener current;
-
 	// Token: 0x040005EA RID: 1514
-	[HideInInspector]
-	public UITweener.Method method;
+	public static UITweener current;
 
 	// Token: 0x040005EB RID: 1515
 	[HideInInspector]
-	public UITweener.Style style;
+	public UITweener.Method method;
 
 	// Token: 0x040005EC RID: 1516
+	[HideInInspector]
+	public UITweener.Style style;
+
+	// Token: 0x040005ED RID: 1517
 	[HideInInspector]
 	public AnimationCurve animationCurve = new AnimationCurve(new Keyframe[]
 	{
@@ -426,79 +426,79 @@ public abstract class UITweener : MonoBehaviour
 		new Keyframe(1f, 1f, 1f, 0f)
 	});
 
-	// Token: 0x040005ED RID: 1517
+	// Token: 0x040005EE RID: 1518
 	[HideInInspector]
 	public bool ignoreTimeScale = true;
 
-	// Token: 0x040005EE RID: 1518
+	// Token: 0x040005EF RID: 1519
 	[HideInInspector]
 	public float delay;
 
-	// Token: 0x040005EF RID: 1519
+	// Token: 0x040005F0 RID: 1520
 	[HideInInspector]
 	public float duration = 1f;
 
-	// Token: 0x040005F0 RID: 1520
+	// Token: 0x040005F1 RID: 1521
 	[HideInInspector]
 	public bool steeperCurves;
 
-	// Token: 0x040005F1 RID: 1521
+	// Token: 0x040005F2 RID: 1522
 	[HideInInspector]
 	public int tweenGroup;
 
-	// Token: 0x040005F2 RID: 1522
+	// Token: 0x040005F3 RID: 1523
 	[Tooltip("By default, Update() will be used for tweening. Setting this to 'true' will make the tween happen in FixedUpdate() insted.")]
 	public bool useFixedUpdate;
 
-	// Token: 0x040005F3 RID: 1523
+	// Token: 0x040005F4 RID: 1524
 	[HideInInspector]
 	public List<EventDelegate> onFinished = new List<EventDelegate>();
 
-	// Token: 0x040005F4 RID: 1524
+	// Token: 0x040005F5 RID: 1525
 	[HideInInspector]
 	public GameObject eventReceiver;
 
-	// Token: 0x040005F5 RID: 1525
+	// Token: 0x040005F6 RID: 1526
 	[HideInInspector]
 	public string callWhenFinished;
 
-	// Token: 0x040005F6 RID: 1526
+	// Token: 0x040005F7 RID: 1527
 	[NonSerialized]
 	public float timeScale = 1f;
 
-	// Token: 0x040005F7 RID: 1527
+	// Token: 0x040005F8 RID: 1528
 	private bool mStarted;
 
-	// Token: 0x040005F8 RID: 1528
+	// Token: 0x040005F9 RID: 1529
 	private float mStartTime;
 
-	// Token: 0x040005F9 RID: 1529
+	// Token: 0x040005FA RID: 1530
 	private float mDuration;
 
-	// Token: 0x040005FA RID: 1530
+	// Token: 0x040005FB RID: 1531
 	private float mAmountPerDelta = 1000f;
 
-	// Token: 0x040005FB RID: 1531
+	// Token: 0x040005FC RID: 1532
 	private float mFactor;
 
-	// Token: 0x040005FC RID: 1532
+	// Token: 0x040005FD RID: 1533
 	private List<EventDelegate> mTemp;
 
 	// Token: 0x02000608 RID: 1544
 	[DoNotObfuscateNGUI]
 	public enum Method
 	{
-		// Token: 0x04004DDA RID: 19930
-		Linear,
-		// Token: 0x04004DDB RID: 19931
-		EaseIn,
-		// Token: 0x04004DDC RID: 19932
-		EaseOut,
 		// Token: 0x04004DDD RID: 19933
-		EaseInOut,
+		Linear,
 		// Token: 0x04004DDE RID: 19934
-		BounceIn,
+		EaseIn,
 		// Token: 0x04004DDF RID: 19935
+		EaseOut,
+		// Token: 0x04004DE0 RID: 19936
+		EaseInOut,
+		// Token: 0x04004DE1 RID: 19937
+		BounceIn,
+		// Token: 0x04004DE2 RID: 19938
 		BounceOut
 	}
 
@@ -506,11 +506,11 @@ public abstract class UITweener : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Style
 	{
-		// Token: 0x04004DE1 RID: 19937
+		// Token: 0x04004DE4 RID: 19940
 		Once,
-		// Token: 0x04004DE2 RID: 19938
+		// Token: 0x04004DE5 RID: 19941
 		Loop,
-		// Token: 0x04004DE3 RID: 19939
+		// Token: 0x04004DE6 RID: 19942
 		PingPong
 	}
 }

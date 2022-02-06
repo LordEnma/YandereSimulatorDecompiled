@@ -4,25 +4,25 @@ using UnityEngine;
 // Token: 0x020004EE RID: 1262
 public class CameraDepthTextureMode : MonoBehaviour
 {
-	// Token: 0x060020D7 RID: 8407 RVA: 0x001E4E9A File Offset: 0x001E309A
+	// Token: 0x060020DA RID: 8410 RVA: 0x001E509E File Offset: 0x001E329E
 	private void OnValidate()
 	{
 		this.SetCameraDepthTextureMode();
 	}
 
-	// Token: 0x060020D8 RID: 8408 RVA: 0x001E4EA2 File Offset: 0x001E30A2
+	// Token: 0x060020DB RID: 8411 RVA: 0x001E50A6 File Offset: 0x001E32A6
 	private void Awake()
 	{
 		this.SetCameraDepthTextureMode();
 	}
 
-	// Token: 0x060020D9 RID: 8409 RVA: 0x001E4EAA File Offset: 0x001E30AA
+	// Token: 0x060020DC RID: 8412 RVA: 0x001E50AE File Offset: 0x001E32AE
 	private void SetCameraDepthTextureMode()
 	{
 		base.GetComponent<Camera>().depthTextureMode = this.depthTextureMode;
 	}
 
-	// Token: 0x04004881 RID: 18561
+	// Token: 0x04004884 RID: 18564
 	[SerializeField]
 	private DepthTextureMode depthTextureMode;
 }

@@ -163,45 +163,45 @@ public class UIEventTrigger : MonoBehaviour
 		UIEventTrigger.current = null;
 	}
 
-	// Token: 0x04000365 RID: 869
+	// Token: 0x04000366 RID: 870
 	public static UIEventTrigger current;
 
-	// Token: 0x04000366 RID: 870
+	// Token: 0x04000367 RID: 871
 	public List<EventDelegate> onHoverOver = new List<EventDelegate>();
 
-	// Token: 0x04000367 RID: 871
+	// Token: 0x04000368 RID: 872
 	public List<EventDelegate> onHoverOut = new List<EventDelegate>();
 
-	// Token: 0x04000368 RID: 872
+	// Token: 0x04000369 RID: 873
 	public List<EventDelegate> onPress = new List<EventDelegate>();
 
-	// Token: 0x04000369 RID: 873
+	// Token: 0x0400036A RID: 874
 	public List<EventDelegate> onRelease = new List<EventDelegate>();
 
-	// Token: 0x0400036A RID: 874
+	// Token: 0x0400036B RID: 875
 	public List<EventDelegate> onSelect = new List<EventDelegate>();
 
-	// Token: 0x0400036B RID: 875
+	// Token: 0x0400036C RID: 876
 	public List<EventDelegate> onDeselect = new List<EventDelegate>();
 
-	// Token: 0x0400036C RID: 876
+	// Token: 0x0400036D RID: 877
 	public List<EventDelegate> onClick = new List<EventDelegate>();
 
-	// Token: 0x0400036D RID: 877
+	// Token: 0x0400036E RID: 878
 	public List<EventDelegate> onDoubleClick = new List<EventDelegate>();
 
-	// Token: 0x0400036E RID: 878
+	// Token: 0x0400036F RID: 879
 	public List<EventDelegate> onDragStart = new List<EventDelegate>();
 
-	// Token: 0x0400036F RID: 879
+	// Token: 0x04000370 RID: 880
 	public List<EventDelegate> onDragEnd = new List<EventDelegate>();
 
-	// Token: 0x04000370 RID: 880
+	// Token: 0x04000371 RID: 881
 	public List<EventDelegate> onDragOver = new List<EventDelegate>();
 
-	// Token: 0x04000371 RID: 881
+	// Token: 0x04000372 RID: 882
 	public List<EventDelegate> onDragOut = new List<EventDelegate>();
 
-	// Token: 0x04000372 RID: 882
+	// Token: 0x04000373 RID: 883
 	public List<EventDelegate> onDrag = new List<EventDelegate>();
 }

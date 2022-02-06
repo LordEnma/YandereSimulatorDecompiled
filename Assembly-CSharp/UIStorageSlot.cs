@@ -29,9 +29,9 @@ public class UIStorageSlot : UIItemSlot
 		return this.storage.Replace(this.slot, item);
 	}
 
-	// Token: 0x0400026E RID: 622
+	// Token: 0x0400026F RID: 623
 	public UIItemStorage storage;
 
-	// Token: 0x0400026F RID: 623
+	// Token: 0x04000270 RID: 624
 	public int slot;
 }

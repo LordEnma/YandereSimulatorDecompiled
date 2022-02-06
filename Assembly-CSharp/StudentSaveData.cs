@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class StudentSaveData
 {
-	// Token: 0x06001C16 RID: 7190 RVA: 0x00146CB0 File Offset: 0x00144EB0
+	// Token: 0x06001C18 RID: 7192 RVA: 0x00146E48 File Offset: 0x00145048
 	public static StudentSaveData ReadFromGlobals()
 	{
 		StudentSaveData studentSaveData = new StudentSaveData();
@@ -132,7 +132,7 @@ public class StudentSaveData
 		return studentSaveData;
 	}
 
-	// Token: 0x06001C17 RID: 7191 RVA: 0x001470A8 File Offset: 0x001452A8
+	// Token: 0x06001C19 RID: 7193 RVA: 0x00147240 File Offset: 0x00145440
 	public static void WriteToGlobals(StudentSaveData data)
 	{
 		StudentGlobals.CustomSuitor = data.customSuitor;
@@ -223,93 +223,93 @@ public class StudentSaveData
 		}
 	}
 
-	// Token: 0x0400315D RID: 12637
+	// Token: 0x04003160 RID: 12640
 	public bool customSuitor;
 
-	// Token: 0x0400315E RID: 12638
+	// Token: 0x04003161 RID: 12641
 	public int customSuitorAccessory;
 
-	// Token: 0x0400315F RID: 12639
+	// Token: 0x04003162 RID: 12642
 	public bool customSuitorBlonde;
 
-	// Token: 0x04003160 RID: 12640
+	// Token: 0x04003163 RID: 12643
 	public int customSuitorEyewear;
 
-	// Token: 0x04003161 RID: 12641
+	// Token: 0x04003164 RID: 12644
 	public int customSuitorHair;
 
-	// Token: 0x04003162 RID: 12642
+	// Token: 0x04003165 RID: 12645
 	public int customSuitorJewelry;
 
-	// Token: 0x04003163 RID: 12643
+	// Token: 0x04003166 RID: 12646
 	public bool customSuitorTan;
 
-	// Token: 0x04003164 RID: 12644
+	// Token: 0x04003167 RID: 12647
 	public int expelProgress;
 
-	// Token: 0x04003165 RID: 12645
+	// Token: 0x04003168 RID: 12648
 	public int femaleUniform;
 
-	// Token: 0x04003166 RID: 12646
+	// Token: 0x04003169 RID: 12649
 	public int maleUniform;
 
-	// Token: 0x04003167 RID: 12647
+	// Token: 0x0400316A RID: 12650
 	public IntAndStringDictionary studentAccessory = new IntAndStringDictionary();
 
-	// Token: 0x04003168 RID: 12648
+	// Token: 0x0400316B RID: 12651
 	public IntHashSet studentArrested = new IntHashSet();
 
-	// Token: 0x04003169 RID: 12649
+	// Token: 0x0400316C RID: 12652
 	public IntHashSet studentBroken = new IntHashSet();
 
-	// Token: 0x0400316A RID: 12650
+	// Token: 0x0400316D RID: 12653
 	public IntAndFloatDictionary studentBustSize = new IntAndFloatDictionary();
 
-	// Token: 0x0400316B RID: 12651
+	// Token: 0x0400316E RID: 12654
 	public IntAndColorDictionary studentColor = new IntAndColorDictionary();
 
-	// Token: 0x0400316C RID: 12652
+	// Token: 0x0400316F RID: 12655
 	public IntHashSet studentDead = new IntHashSet();
 
-	// Token: 0x0400316D RID: 12653
+	// Token: 0x04003170 RID: 12656
 	public IntHashSet studentDying = new IntHashSet();
 
-	// Token: 0x0400316E RID: 12654
+	// Token: 0x04003171 RID: 12657
 	public IntHashSet studentExpelled = new IntHashSet();
 
-	// Token: 0x0400316F RID: 12655
+	// Token: 0x04003172 RID: 12658
 	public IntHashSet studentExposed = new IntHashSet();
 
-	// Token: 0x04003170 RID: 12656
+	// Token: 0x04003173 RID: 12659
 	public IntAndColorDictionary studentEyeColor = new IntAndColorDictionary();
 
-	// Token: 0x04003171 RID: 12657
+	// Token: 0x04003174 RID: 12660
 	public IntHashSet studentGrudge = new IntHashSet();
 
-	// Token: 0x04003172 RID: 12658
+	// Token: 0x04003175 RID: 12661
 	public IntAndStringDictionary studentHairstyle = new IntAndStringDictionary();
 
-	// Token: 0x04003173 RID: 12659
+	// Token: 0x04003176 RID: 12662
 	public IntHashSet studentKidnapped = new IntHashSet();
 
-	// Token: 0x04003174 RID: 12660
+	// Token: 0x04003177 RID: 12663
 	public IntHashSet studentMissing = new IntHashSet();
 
-	// Token: 0x04003175 RID: 12661
+	// Token: 0x04003178 RID: 12664
 	public IntAndStringDictionary studentName = new IntAndStringDictionary();
 
-	// Token: 0x04003176 RID: 12662
+	// Token: 0x04003179 RID: 12665
 	public IntHashSet studentPhotographed = new IntHashSet();
 
-	// Token: 0x04003177 RID: 12663
+	// Token: 0x0400317A RID: 12666
 	public IntHashSet studentReplaced = new IntHashSet();
 
-	// Token: 0x04003178 RID: 12664
+	// Token: 0x0400317B RID: 12667
 	public IntAndIntDictionary studentReputation = new IntAndIntDictionary();
 
-	// Token: 0x04003179 RID: 12665
+	// Token: 0x0400317C RID: 12668
 	public IntAndFloatDictionary studentSanity = new IntAndFloatDictionary();
 
-	// Token: 0x0400317A RID: 12666
+	// Token: 0x0400317D RID: 12669
 	public IntHashSet studentSlave = new IntHashSet();
 }

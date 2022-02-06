@@ -5,9 +5,9 @@ using UnityEngine;
 [Serializable]
 public struct DisabledYanSaveMember
 {
-	// Token: 0x040048F1 RID: 18673
+	// Token: 0x040048F4 RID: 18676
 	public Component Component;
 
-	// Token: 0x040048F2 RID: 18674
+	// Token: 0x040048F5 RID: 18677
 	public string Name;
 }

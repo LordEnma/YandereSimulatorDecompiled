@@ -96,42 +96,42 @@ public class UIPlaySound : MonoBehaviour
 		NGUITools.PlaySound(this.audioClip, this.volume, this.pitch);
 	}
 
-	// Token: 0x040003B4 RID: 948
+	// Token: 0x040003B5 RID: 949
 	public AudioClip audioClip;
 
-	// Token: 0x040003B5 RID: 949
+	// Token: 0x040003B6 RID: 950
 	public UIPlaySound.Trigger trigger;
 
-	// Token: 0x040003B6 RID: 950
+	// Token: 0x040003B7 RID: 951
 	[Range(0f, 1f)]
 	public float volume = 1f;
 
-	// Token: 0x040003B7 RID: 951
+	// Token: 0x040003B8 RID: 952
 	[Range(0f, 2f)]
 	public float pitch = 1f;
 
-	// Token: 0x040003B8 RID: 952
+	// Token: 0x040003B9 RID: 953
 	private bool mIsOver;
 
 	// Token: 0x020005CD RID: 1485
 	[DoNotObfuscateNGUI]
 	public enum Trigger
 	{
-		// Token: 0x04004D2F RID: 19759
-		OnClick,
-		// Token: 0x04004D30 RID: 19760
-		OnMouseOver,
-		// Token: 0x04004D31 RID: 19761
-		OnMouseOut,
 		// Token: 0x04004D32 RID: 19762
-		OnPress,
+		OnClick,
 		// Token: 0x04004D33 RID: 19763
-		OnRelease,
+		OnMouseOver,
 		// Token: 0x04004D34 RID: 19764
-		Custom,
+		OnMouseOut,
 		// Token: 0x04004D35 RID: 19765
-		OnEnable,
+		OnPress,
 		// Token: 0x04004D36 RID: 19766
+		OnRelease,
+		// Token: 0x04004D37 RID: 19767
+		Custom,
+		// Token: 0x04004D38 RID: 19768
+		OnEnable,
+		// Token: 0x04004D39 RID: 19769
 		OnDisable
 	}
 }

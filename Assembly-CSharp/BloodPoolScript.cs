@@ -53,21 +53,21 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000B98 RID: 2968
+	// Token: 0x04000B99 RID: 2969
 	public float TargetSize;
 
-	// Token: 0x04000B99 RID: 2969
+	// Token: 0x04000B9A RID: 2970
 	public bool Blood = true;
 
-	// Token: 0x04000B9A RID: 2970
+	// Token: 0x04000B9B RID: 2971
 	public bool Grow;
 
-	// Token: 0x04000B9B RID: 2971
+	// Token: 0x04000B9C RID: 2972
 	public Renderer MyRenderer;
 
-	// Token: 0x04000B9C RID: 2972
+	// Token: 0x04000B9D RID: 2973
 	public Material BloodPool;
 
-	// Token: 0x04000B9D RID: 2973
+	// Token: 0x04000B9E RID: 2974
 	public Material Flower;
 }

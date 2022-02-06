@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200036C RID: 876
 public class MopScript : MonoBehaviour
 {
-	// Token: 0x060019AD RID: 6573 RVA: 0x00106826 File Offset: 0x00104A26
+	// Token: 0x060019AF RID: 6575 RVA: 0x00106932 File Offset: 0x00104B32
 	private void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
@@ -12,7 +12,7 @@ public class MopScript : MonoBehaviour
 		this.UpdateBlood();
 	}
 
-	// Token: 0x060019AE RID: 6574 RVA: 0x00106850 File Offset: 0x00104A50
+	// Token: 0x060019B0 RID: 6576 RVA: 0x0010695C File Offset: 0x00104B5C
 	private void Update()
 	{
 		if (this.PickUp.Clock.Period == 5)
@@ -117,7 +117,7 @@ public class MopScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019AF RID: 6575 RVA: 0x00106BD0 File Offset: 0x00104DD0
+	// Token: 0x060019B1 RID: 6577 RVA: 0x00106CDC File Offset: 0x00104EDC
 	public void UpdateBlood()
 	{
 		if (this.Bloodiness > 100f)
@@ -129,7 +129,7 @@ public class MopScript : MonoBehaviour
 		this.Blood.material.color = new Color(this.Blood.material.color.r, this.Blood.material.color.g, this.Blood.material.color.b, this.Bloodiness / 100f * 0.9f);
 	}
 
-	// Token: 0x060019B0 RID: 6576 RVA: 0x00106C6D File Offset: 0x00104E6D
+	// Token: 0x060019B2 RID: 6578 RVA: 0x00106D79 File Offset: 0x00104F79
 	public void Dip()
 	{
 		this.Yandere.YandereVision = false;
@@ -139,33 +139,33 @@ public class MopScript : MonoBehaviour
 		this.Prompt.enabled = false;
 	}
 
-	// Token: 0x0400291F RID: 10527
+	// Token: 0x04002922 RID: 10530
 	public ParticleSystem Sparkles;
 
-	// Token: 0x04002920 RID: 10528
+	// Token: 0x04002923 RID: 10531
 	public YandereScript Yandere;
 
-	// Token: 0x04002921 RID: 10529
+	// Token: 0x04002924 RID: 10532
 	public PromptScript Prompt;
 
-	// Token: 0x04002922 RID: 10530
+	// Token: 0x04002925 RID: 10533
 	public PickUpScript PickUp;
 
-	// Token: 0x04002923 RID: 10531
+	// Token: 0x04002926 RID: 10534
 	public Collider HeadCollider;
 
-	// Token: 0x04002924 RID: 10532
+	// Token: 0x04002927 RID: 10535
 	public Vector3 Rotation;
 
-	// Token: 0x04002925 RID: 10533
+	// Token: 0x04002928 RID: 10536
 	public Renderer Blood;
 
-	// Token: 0x04002926 RID: 10534
+	// Token: 0x04002929 RID: 10537
 	public Transform Head;
 
-	// Token: 0x04002927 RID: 10535
+	// Token: 0x0400292A RID: 10538
 	public float Bloodiness;
 
-	// Token: 0x04002928 RID: 10536
+	// Token: 0x0400292B RID: 10539
 	public bool Bleached;
 }

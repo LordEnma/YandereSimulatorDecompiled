@@ -278,59 +278,59 @@ public class UITextList : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000788 RID: 1928
+	// Token: 0x04000789 RID: 1929
 	public UILabel textLabel;
 
-	// Token: 0x04000789 RID: 1929
+	// Token: 0x0400078A RID: 1930
 	public UIProgressBar scrollBar;
 
-	// Token: 0x0400078A RID: 1930
+	// Token: 0x0400078B RID: 1931
 	public UITextList.Style style;
 
-	// Token: 0x0400078B RID: 1931
+	// Token: 0x0400078C RID: 1932
 	public int paragraphHistory = 100;
 
-	// Token: 0x0400078C RID: 1932
+	// Token: 0x0400078D RID: 1933
 	protected char[] mSeparator = new char[]
 	{
 		'\n'
 	};
 
-	// Token: 0x0400078D RID: 1933
+	// Token: 0x0400078E RID: 1934
 	protected float mScroll;
 
-	// Token: 0x0400078E RID: 1934
+	// Token: 0x0400078F RID: 1935
 	protected int mTotalLines;
 
-	// Token: 0x0400078F RID: 1935
+	// Token: 0x04000790 RID: 1936
 	protected int mLastWidth;
 
-	// Token: 0x04000790 RID: 1936
+	// Token: 0x04000791 RID: 1937
 	protected int mLastHeight;
 
-	// Token: 0x04000791 RID: 1937
+	// Token: 0x04000792 RID: 1938
 	private BetterList<UITextList.Paragraph> mParagraphs;
 
-	// Token: 0x04000792 RID: 1938
+	// Token: 0x04000793 RID: 1939
 	private static Dictionary<string, BetterList<UITextList.Paragraph>> mHistory = new Dictionary<string, BetterList<UITextList.Paragraph>>();
 
 	// Token: 0x02000641 RID: 1601
 	[DoNotObfuscateNGUI]
 	public enum Style
 	{
-		// Token: 0x04004E79 RID: 20089
+		// Token: 0x04004E7C RID: 20092
 		Text,
-		// Token: 0x04004E7A RID: 20090
+		// Token: 0x04004E7D RID: 20093
 		Chat
 	}
 
 	// Token: 0x02000642 RID: 1602
 	protected class Paragraph
 	{
-		// Token: 0x04004E7B RID: 20091
+		// Token: 0x04004E7E RID: 20094
 		public string text;
 
-		// Token: 0x04004E7C RID: 20092
+		// Token: 0x04004E7F RID: 20095
 		public string[] lines;
 	}
 }

@@ -230,73 +230,73 @@ public class UIStretch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000778 RID: 1912
+	// Token: 0x04000779 RID: 1913
 	public Camera uiCamera;
 
-	// Token: 0x04000779 RID: 1913
+	// Token: 0x0400077A RID: 1914
 	public GameObject container;
 
-	// Token: 0x0400077A RID: 1914
+	// Token: 0x0400077B RID: 1915
 	public UIStretch.Style style;
 
-	// Token: 0x0400077B RID: 1915
+	// Token: 0x0400077C RID: 1916
 	public bool runOnlyOnce = true;
 
-	// Token: 0x0400077C RID: 1916
+	// Token: 0x0400077D RID: 1917
 	public Vector2 relativeSize = Vector2.one;
 
-	// Token: 0x0400077D RID: 1917
+	// Token: 0x0400077E RID: 1918
 	public Vector2 initialSize = Vector2.one;
 
-	// Token: 0x0400077E RID: 1918
+	// Token: 0x0400077F RID: 1919
 	public Vector2 borderPadding = Vector2.zero;
 
-	// Token: 0x0400077F RID: 1919
+	// Token: 0x04000780 RID: 1920
 	[HideInInspector]
 	[SerializeField]
 	private UIWidget widgetContainer;
 
-	// Token: 0x04000780 RID: 1920
+	// Token: 0x04000781 RID: 1921
 	private Transform mTrans;
 
-	// Token: 0x04000781 RID: 1921
+	// Token: 0x04000782 RID: 1922
 	private UIWidget mWidget;
 
-	// Token: 0x04000782 RID: 1922
+	// Token: 0x04000783 RID: 1923
 	private UISprite mSprite;
 
-	// Token: 0x04000783 RID: 1923
+	// Token: 0x04000784 RID: 1924
 	private UIPanel mPanel;
 
-	// Token: 0x04000784 RID: 1924
+	// Token: 0x04000785 RID: 1925
 	private UIRoot mRoot;
 
-	// Token: 0x04000785 RID: 1925
+	// Token: 0x04000786 RID: 1926
 	private Animation mAnim;
 
-	// Token: 0x04000786 RID: 1926
+	// Token: 0x04000787 RID: 1927
 	private Rect mRect;
 
-	// Token: 0x04000787 RID: 1927
+	// Token: 0x04000788 RID: 1928
 	private bool mStarted;
 
 	// Token: 0x02000640 RID: 1600
 	[DoNotObfuscateNGUI]
 	public enum Style
 	{
-		// Token: 0x04004E71 RID: 20081
-		None,
-		// Token: 0x04004E72 RID: 20082
-		Horizontal,
-		// Token: 0x04004E73 RID: 20083
-		Vertical,
 		// Token: 0x04004E74 RID: 20084
-		Both,
+		None,
 		// Token: 0x04004E75 RID: 20085
-		BasedOnHeight,
+		Horizontal,
 		// Token: 0x04004E76 RID: 20086
-		FillKeepingRatio,
+		Vertical,
 		// Token: 0x04004E77 RID: 20087
+		Both,
+		// Token: 0x04004E78 RID: 20088
+		BasedOnHeight,
+		// Token: 0x04004E79 RID: 20089
+		FillKeepingRatio,
+		// Token: 0x04004E7A RID: 20090
 		FitInternalKeepingRatio
 	}
 }

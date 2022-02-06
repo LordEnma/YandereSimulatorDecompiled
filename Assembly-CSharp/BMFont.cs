@@ -172,36 +172,36 @@ public class BMFont
 		}
 	}
 
-	// Token: 0x0400047E RID: 1150
+	// Token: 0x0400047F RID: 1151
 	[HideInInspector]
 	[SerializeField]
 	private int mSize = 16;
 
-	// Token: 0x0400047F RID: 1151
+	// Token: 0x04000480 RID: 1152
 	[HideInInspector]
 	[SerializeField]
 	private int mBase;
 
-	// Token: 0x04000480 RID: 1152
+	// Token: 0x04000481 RID: 1153
 	[HideInInspector]
 	[SerializeField]
 	private int mWidth;
 
-	// Token: 0x04000481 RID: 1153
+	// Token: 0x04000482 RID: 1154
 	[HideInInspector]
 	[SerializeField]
 	private int mHeight;
 
-	// Token: 0x04000482 RID: 1154
+	// Token: 0x04000483 RID: 1155
 	[HideInInspector]
 	[SerializeField]
 	private string mSpriteName;
 
-	// Token: 0x04000483 RID: 1155
+	// Token: 0x04000484 RID: 1156
 	[HideInInspector]
 	[SerializeField]
 	private List<BMGlyph> mSaved = new List<BMGlyph>();
 
-	// Token: 0x04000484 RID: 1156
+	// Token: 0x04000485 RID: 1157
 	private Dictionary<int, BMGlyph> mDict = new Dictionary<int, BMGlyph>();
 }

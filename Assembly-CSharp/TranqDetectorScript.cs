@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000481 RID: 1153
 public class TranqDetectorScript : MonoBehaviour
 {
-	// Token: 0x06001EE2 RID: 7906 RVA: 0x001B277E File Offset: 0x001B097E
+	// Token: 0x06001EE5 RID: 7909 RVA: 0x001B299E File Offset: 0x001B0B9E
 	private void Start()
 	{
 		this.Checklist.alpha = 0f;
 		this.BasementPrisoner = SchoolGlobals.KidnapVictim;
 	}
 
-	// Token: 0x06001EE3 RID: 7907 RVA: 0x001B279C File Offset: 0x001B099C
+	// Token: 0x06001EE6 RID: 7910 RVA: 0x001B29BC File Offset: 0x001B0BBC
 	private void Update()
 	{
 		if (!this.StopChecking)
@@ -90,7 +90,7 @@ public class TranqDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EE4 RID: 7908 RVA: 0x001B2A34 File Offset: 0x001B0C34
+	// Token: 0x06001EE7 RID: 7911 RVA: 0x001B2C54 File Offset: 0x001B0E54
 	public void TranqCheck()
 	{
 		if (!this.StopChecking && !this.CannotKidnap && this.TranquilizerIcon.spriteName == "Yes" && this.FollowerIcon.spriteName == "Yes" && this.BiologyIcon.spriteName == "Yes" && this.SyringeIcon.spriteName == "Yes" && this.DoorIcon.spriteName == "Yes")
@@ -119,7 +119,7 @@ public class TranqDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EE5 RID: 7909 RVA: 0x001B2BAC File Offset: 0x001B0DAC
+	// Token: 0x06001EE8 RID: 7912 RVA: 0x001B2DCC File Offset: 0x001B0FCC
 	public void GarroteAttack()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -130,45 +130,45 @@ public class TranqDetectorScript : MonoBehaviour
 		this.StopChecking = true;
 	}
 
-	// Token: 0x0400403B RID: 16443
+	// Token: 0x0400403E RID: 16446
 	public YandereScript Yandere;
 
-	// Token: 0x0400403C RID: 16444
+	// Token: 0x0400403F RID: 16447
 	public DoorScript Door;
 
-	// Token: 0x0400403D RID: 16445
+	// Token: 0x04004040 RID: 16448
 	public UIPanel Checklist;
 
-	// Token: 0x0400403E RID: 16446
+	// Token: 0x04004041 RID: 16449
 	public Collider MyCollider;
 
-	// Token: 0x0400403F RID: 16447
+	// Token: 0x04004042 RID: 16450
 	public UILabel KidnappingLabel;
 
-	// Token: 0x04004040 RID: 16448
+	// Token: 0x04004043 RID: 16451
 	public UISprite TranquilizerIcon;
 
-	// Token: 0x04004041 RID: 16449
+	// Token: 0x04004044 RID: 16452
 	public UISprite FollowerIcon;
 
-	// Token: 0x04004042 RID: 16450
+	// Token: 0x04004045 RID: 16453
 	public UISprite BiologyIcon;
 
-	// Token: 0x04004043 RID: 16451
+	// Token: 0x04004046 RID: 16454
 	public UISprite SyringeIcon;
 
-	// Token: 0x04004044 RID: 16452
+	// Token: 0x04004047 RID: 16455
 	public UISprite DoorIcon;
 
-	// Token: 0x04004045 RID: 16453
+	// Token: 0x04004048 RID: 16456
 	public bool StopChecking;
 
-	// Token: 0x04004046 RID: 16454
+	// Token: 0x04004049 RID: 16457
 	public bool CannotKidnap;
 
-	// Token: 0x04004047 RID: 16455
+	// Token: 0x0400404A RID: 16458
 	public int BasementPrisoner;
 
-	// Token: 0x04004048 RID: 16456
+	// Token: 0x0400404B RID: 16459
 	public AudioClip[] TranqClips;
 }

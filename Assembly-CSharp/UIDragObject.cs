@@ -291,72 +291,72 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000331 RID: 817
+	// Token: 0x04000332 RID: 818
 	public Transform target;
 
-	// Token: 0x04000332 RID: 818
+	// Token: 0x04000333 RID: 819
 	public UIPanel panelRegion;
 
-	// Token: 0x04000333 RID: 819
+	// Token: 0x04000334 RID: 820
 	public Vector3 scrollMomentum = Vector3.zero;
 
-	// Token: 0x04000334 RID: 820
+	// Token: 0x04000335 RID: 821
 	public bool restrictWithinPanel;
 
-	// Token: 0x04000335 RID: 821
+	// Token: 0x04000336 RID: 822
 	public UIRect contentRect;
 
-	// Token: 0x04000336 RID: 822
+	// Token: 0x04000337 RID: 823
 	public UIDragObject.DragEffect dragEffect = UIDragObject.DragEffect.MomentumAndSpring;
 
-	// Token: 0x04000337 RID: 823
+	// Token: 0x04000338 RID: 824
 	public float momentumAmount = 35f;
 
-	// Token: 0x04000338 RID: 824
+	// Token: 0x04000339 RID: 825
 	[SerializeField]
 	protected Vector3 scale = new Vector3(1f, 1f, 0f);
 
-	// Token: 0x04000339 RID: 825
+	// Token: 0x0400033A RID: 826
 	[SerializeField]
 	[HideInInspector]
 	private float scrollWheelFactor;
 
-	// Token: 0x0400033A RID: 826
+	// Token: 0x0400033B RID: 827
 	private Plane mPlane;
 
-	// Token: 0x0400033B RID: 827
+	// Token: 0x0400033C RID: 828
 	private Vector3 mTargetPos;
 
-	// Token: 0x0400033C RID: 828
+	// Token: 0x0400033D RID: 829
 	private Vector3 mLastPos;
 
-	// Token: 0x0400033D RID: 829
+	// Token: 0x0400033E RID: 830
 	private Vector3 mMomentum = Vector3.zero;
 
-	// Token: 0x0400033E RID: 830
+	// Token: 0x0400033F RID: 831
 	private Vector3 mScroll = Vector3.zero;
 
-	// Token: 0x0400033F RID: 831
+	// Token: 0x04000340 RID: 832
 	private Bounds mBounds;
 
-	// Token: 0x04000340 RID: 832
+	// Token: 0x04000341 RID: 833
 	private int mTouchID;
 
-	// Token: 0x04000341 RID: 833
+	// Token: 0x04000342 RID: 834
 	private bool mStarted;
 
-	// Token: 0x04000342 RID: 834
+	// Token: 0x04000343 RID: 835
 	private bool mPressed;
 
 	// Token: 0x020005C6 RID: 1478
 	[DoNotObfuscateNGUI]
 	public enum DragEffect
 	{
-		// Token: 0x04004D12 RID: 19730
+		// Token: 0x04004D15 RID: 19733
 		None,
-		// Token: 0x04004D13 RID: 19731
+		// Token: 0x04004D16 RID: 19734
 		Momentum,
-		// Token: 0x04004D14 RID: 19732
+		// Token: 0x04004D17 RID: 19735
 		MomentumAndSpring
 	}
 }

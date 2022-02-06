@@ -75,17 +75,17 @@ public class TweenFill : UITweener
 		this.to = this.value;
 	}
 
-	// Token: 0x040005B5 RID: 1461
+	// Token: 0x040005B6 RID: 1462
 	[Range(0f, 1f)]
 	public float from = 1f;
 
-	// Token: 0x040005B6 RID: 1462
+	// Token: 0x040005B7 RID: 1463
 	[Range(0f, 1f)]
 	public float to = 1f;
 
-	// Token: 0x040005B7 RID: 1463
+	// Token: 0x040005B8 RID: 1464
 	private bool mCached;
 
-	// Token: 0x040005B8 RID: 1464
+	// Token: 0x040005B9 RID: 1465
 	private UIBasicSprite mSprite;
 }

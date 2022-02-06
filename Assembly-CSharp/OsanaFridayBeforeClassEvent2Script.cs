@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003DB RID: 987
 public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 {
-	// Token: 0x06001B84 RID: 7044 RVA: 0x001386A0 File Offset: 0x001368A0
+	// Token: 0x06001B86 RID: 7046 RVA: 0x00138838 File Offset: 0x00136A38
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -14,7 +14,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B85 RID: 7045 RVA: 0x00138734 File Offset: 0x00136934
+	// Token: 0x06001B87 RID: 7047 RVA: 0x001388CC File Offset: 0x00136ACC
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -211,7 +211,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B86 RID: 7046 RVA: 0x001392E8 File Offset: 0x001374E8
+	// Token: 0x06001B88 RID: 7048 RVA: 0x00139480 File Offset: 0x00137680
 	public void EndEvent()
 	{
 		Debug.Log("Osana's second Friday before class event has ended.");
@@ -279,7 +279,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001B87 RID: 7047 RVA: 0x00139644 File Offset: 0x00137844
+	// Token: 0x06001B89 RID: 7049 RVA: 0x001397DC File Offset: 0x001379DC
 	private void SettleRival()
 	{
 		this.Rival.MoveTowardsTarget(this.Location[1].position);
@@ -289,7 +289,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B88 RID: 7048 RVA: 0x001396D0 File Offset: 0x001378D0
+	// Token: 0x06001B8A RID: 7050 RVA: 0x00139868 File Offset: 0x00137A68
 	private void SettleGanguro()
 	{
 		this.Ganguro.MoveTowardsTarget(this.Location[2].position);
@@ -299,99 +299,99 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002F34 RID: 12084
+	// Token: 0x04002F37 RID: 12087
 	public OsanaFridayBeforeClassEvent1Script OtherEvent;
 
-	// Token: 0x04002F35 RID: 12085
+	// Token: 0x04002F38 RID: 12088
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002F36 RID: 12086
+	// Token: 0x04002F39 RID: 12089
 	public AudioSoftwareScript AudioSoftware;
 
-	// Token: 0x04002F37 RID: 12087
+	// Token: 0x04002F3A RID: 12090
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002F38 RID: 12088
+	// Token: 0x04002F3B RID: 12091
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002F39 RID: 12089
+	// Token: 0x04002F3C RID: 12092
 	public YandereScript Yandere;
 
-	// Token: 0x04002F3A RID: 12090
+	// Token: 0x04002F3D RID: 12093
 	public ClockScript Clock;
 
-	// Token: 0x04002F3B RID: 12091
+	// Token: 0x04002F3E RID: 12094
 	public SpyScript Spy;
 
-	// Token: 0x04002F3C RID: 12092
+	// Token: 0x04002F3F RID: 12095
 	public StudentScript Ganguro;
 
-	// Token: 0x04002F3D RID: 12093
+	// Token: 0x04002F40 RID: 12096
 	public StudentScript Friend;
 
-	// Token: 0x04002F3E RID: 12094
+	// Token: 0x04002F41 RID: 12097
 	public StudentScript Rival;
 
-	// Token: 0x04002F3F RID: 12095
+	// Token: 0x04002F42 RID: 12098
 	public Transform[] Location;
 
-	// Token: 0x04002F40 RID: 12096
+	// Token: 0x04002F43 RID: 12099
 	public AudioClip[] SpeechClip;
 
-	// Token: 0x04002F41 RID: 12097
+	// Token: 0x04002F44 RID: 12100
 	public string[] SpeechText;
 
-	// Token: 0x04002F42 RID: 12098
+	// Token: 0x04002F45 RID: 12101
 	public float[] SpeechTime;
 
-	// Token: 0x04002F43 RID: 12099
+	// Token: 0x04002F46 RID: 12102
 	public string[] EventAnim;
 
-	// Token: 0x04002F44 RID: 12100
+	// Token: 0x04002F47 RID: 12103
 	public GameObject AlarmDisc;
 
-	// Token: 0x04002F45 RID: 12101
+	// Token: 0x04002F48 RID: 12104
 	public GameObject VoiceClip;
 
-	// Token: 0x04002F46 RID: 12102
+	// Token: 0x04002F49 RID: 12105
 	public Quaternion targetRotation;
 
-	// Token: 0x04002F47 RID: 12103
+	// Token: 0x04002F4A RID: 12106
 	public float Distance;
 
-	// Token: 0x04002F48 RID: 12104
+	// Token: 0x04002F4B RID: 12107
 	public float Scale;
 
-	// Token: 0x04002F49 RID: 12105
+	// Token: 0x04002F4C RID: 12108
 	public float Timer;
 
-	// Token: 0x04002F4A RID: 12106
+	// Token: 0x04002F4D RID: 12109
 	public DayOfWeek EventDay;
 
-	// Token: 0x04002F4B RID: 12107
+	// Token: 0x04002F4E RID: 12110
 	public int SpeechPhase = 1;
 
-	// Token: 0x04002F4C RID: 12108
+	// Token: 0x04002F4F RID: 12111
 	public int GanguroID = 81;
 
-	// Token: 0x04002F4D RID: 12109
+	// Token: 0x04002F50 RID: 12112
 	public int FriendID = 10;
 
-	// Token: 0x04002F4E RID: 12110
+	// Token: 0x04002F51 RID: 12113
 	public int RivalID = 11;
 
-	// Token: 0x04002F4F RID: 12111
+	// Token: 0x04002F52 RID: 12114
 	public int Phase;
 
-	// Token: 0x04002F50 RID: 12112
+	// Token: 0x04002F53 RID: 12115
 	public int Frame;
 
-	// Token: 0x04002F51 RID: 12113
+	// Token: 0x04002F54 RID: 12116
 	public bool IgnoreFriend;
 
-	// Token: 0x04002F52 RID: 12114
+	// Token: 0x04002F55 RID: 12117
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04002F53 RID: 12115
+	// Token: 0x04002F56 RID: 12118
 	public Vector3 OriginalRotation;
 }

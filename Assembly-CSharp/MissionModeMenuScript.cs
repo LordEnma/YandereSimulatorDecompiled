@@ -633,6 +633,7 @@ public class MissionModeMenuScript : MonoBehaviour
 						this.ErrorLabel.text = "Invalid Mission ID (Cannot be negative number)";
 						return;
 					}
+					this.Valid = false;
 					this.GetNumbers();
 					bool flag = false;
 					if ((this.TargetNumber > 11 && this.TargetNumber < 21) || this.TargetNumber > 97)
@@ -690,11 +691,12 @@ public class MissionModeMenuScript : MonoBehaviour
 						return;
 					}
 					this.ErrorLabel.text = "Valid Mission ID!";
+					this.Valid = true;
 					return;
 				}
 				else if (Input.GetButtonDown("A"))
 				{
-					if (this.ErrorLabel.text == "Valid Mission ID!")
+					if (this.Valid)
 					{
 						Debug.Log("Target ID is: " + this.TargetNumber.ToString() + " and Weapon ID is: " + this.WeaponNumber.ToString());
 						this.TargetID = this.TargetNumber;
@@ -1547,77 +1549,80 @@ public class MissionModeMenuScript : MonoBehaviour
 	public bool Toggling;
 
 	// Token: 0x040001A9 RID: 425
-	public int TargetNumber;
+	public bool Valid;
 
 	// Token: 0x040001AA RID: 426
-	public int WeaponNumber;
+	public int TargetNumber;
 
 	// Token: 0x040001AB RID: 427
-	public int ClothingNumber;
+	public int WeaponNumber;
 
 	// Token: 0x040001AC RID: 428
-	public int DisposalNumber;
+	public int ClothingNumber;
 
 	// Token: 0x040001AD RID: 429
-	public int NemesisNumber;
+	public int DisposalNumber;
 
 	// Token: 0x040001AE RID: 430
-	public int PopulationNumber;
+	public int NemesisNumber;
 
 	// Token: 0x040001AF RID: 431
-	public int Condition5Number;
+	public int PopulationNumber;
 
 	// Token: 0x040001B0 RID: 432
-	public int Condition6Number;
+	public int Condition5Number;
 
 	// Token: 0x040001B1 RID: 433
-	public int Condition7Number;
+	public int Condition6Number;
 
 	// Token: 0x040001B2 RID: 434
-	public int Condition8Number;
+	public int Condition7Number;
 
 	// Token: 0x040001B3 RID: 435
-	public int Condition9Number;
+	public int Condition8Number;
 
 	// Token: 0x040001B4 RID: 436
-	public int Condition10Number;
+	public int Condition9Number;
 
 	// Token: 0x040001B5 RID: 437
-	public int Condition11Number;
+	public int Condition10Number;
 
 	// Token: 0x040001B6 RID: 438
-	public int Condition12Number;
+	public int Condition11Number;
 
 	// Token: 0x040001B7 RID: 439
-	public int Condition13Number;
+	public int Condition12Number;
 
 	// Token: 0x040001B8 RID: 440
-	public int Condition14Number;
+	public int Condition13Number;
 
 	// Token: 0x040001B9 RID: 441
-	public int Condition15Number;
+	public int Condition14Number;
 
 	// Token: 0x040001BA RID: 442
-	public string TargetString = string.Empty;
+	public int Condition15Number;
 
 	// Token: 0x040001BB RID: 443
-	public string WeaponString = string.Empty;
+	public string TargetString = string.Empty;
 
 	// Token: 0x040001BC RID: 444
-	public string ClothingString = string.Empty;
+	public string WeaponString = string.Empty;
 
 	// Token: 0x040001BD RID: 445
-	public string DisposalString = string.Empty;
+	public string ClothingString = string.Empty;
 
 	// Token: 0x040001BE RID: 446
-	public string MissionID = string.Empty;
+	public string DisposalString = string.Empty;
 
 	// Token: 0x040001BF RID: 447
-	public string[] ConditionString;
+	public string MissionID = string.Empty;
 
 	// Token: 0x040001C0 RID: 448
-	public UILabel MissionIDLabel;
+	public string[] ConditionString;
 
 	// Token: 0x040001C1 RID: 449
+	public UILabel MissionIDLabel;
+
+	// Token: 0x040001C2 RID: 450
 	public Font Arial;
 }

@@ -14,6 +14,6 @@ public class UIDragDropContainer : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400031B RID: 795
+	// Token: 0x0400031C RID: 796
 	public Transform reparentTarget;
 }

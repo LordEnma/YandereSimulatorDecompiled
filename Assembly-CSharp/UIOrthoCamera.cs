@@ -26,9 +26,9 @@ public class UIOrthoCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000716 RID: 1814
+	// Token: 0x04000717 RID: 1815
 	private Camera mCam;
 
-	// Token: 0x04000717 RID: 1815
+	// Token: 0x04000718 RID: 1816
 	private Transform mTrans;
 }

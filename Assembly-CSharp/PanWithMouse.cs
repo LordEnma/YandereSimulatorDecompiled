@@ -29,18 +29,18 @@ public class PanWithMouse : MonoBehaviour
 		this.mTrans.localRotation = this.mStart * Quaternion.Euler(-this.mRot.y * this.degrees.y, this.mRot.x * this.degrees.x, 0f);
 	}
 
-	// Token: 0x040002A4 RID: 676
+	// Token: 0x040002A5 RID: 677
 	public Vector2 degrees = new Vector2(5f, 3f);
 
-	// Token: 0x040002A5 RID: 677
+	// Token: 0x040002A6 RID: 678
 	public float range = 1f;
 
-	// Token: 0x040002A6 RID: 678
+	// Token: 0x040002A7 RID: 679
 	private Transform mTrans;
 
-	// Token: 0x040002A7 RID: 679
+	// Token: 0x040002A8 RID: 680
 	private Quaternion mStart;
 
-	// Token: 0x040002A8 RID: 680
+	// Token: 0x040002A9 RID: 681
 	private Vector2 mRot = Vector2.zero;
 }

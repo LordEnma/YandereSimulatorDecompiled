@@ -99,12 +99,12 @@ public class TweenFOV : UITweener
 		this.value = this.to;
 	}
 
-	// Token: 0x040005B2 RID: 1458
+	// Token: 0x040005B3 RID: 1459
 	public float from = 45f;
 
-	// Token: 0x040005B3 RID: 1459
+	// Token: 0x040005B4 RID: 1460
 	public float to = 45f;
 
-	// Token: 0x040005B4 RID: 1460
+	// Token: 0x040005B5 RID: 1461
 	private Camera mCam;
 }

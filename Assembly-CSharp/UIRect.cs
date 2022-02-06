@@ -544,102 +544,102 @@ public abstract class UIRect : MonoBehaviour
 	{
 	}
 
-	// Token: 0x04000553 RID: 1363
+	// Token: 0x04000554 RID: 1364
 	public UIRect.AnchorPoint leftAnchor = new UIRect.AnchorPoint();
 
-	// Token: 0x04000554 RID: 1364
+	// Token: 0x04000555 RID: 1365
 	public UIRect.AnchorPoint rightAnchor = new UIRect.AnchorPoint(1f);
 
-	// Token: 0x04000555 RID: 1365
+	// Token: 0x04000556 RID: 1366
 	public UIRect.AnchorPoint bottomAnchor = new UIRect.AnchorPoint();
 
-	// Token: 0x04000556 RID: 1366
+	// Token: 0x04000557 RID: 1367
 	public UIRect.AnchorPoint topAnchor = new UIRect.AnchorPoint(1f);
 
-	// Token: 0x04000557 RID: 1367
-	public UIRect.AnchorUpdate updateAnchors = UIRect.AnchorUpdate.OnUpdate;
-
 	// Token: 0x04000558 RID: 1368
-	[NonSerialized]
-	protected GameObject mGo;
+	public UIRect.AnchorUpdate updateAnchors = UIRect.AnchorUpdate.OnUpdate;
 
 	// Token: 0x04000559 RID: 1369
 	[NonSerialized]
-	protected Transform mTrans;
+	protected GameObject mGo;
 
 	// Token: 0x0400055A RID: 1370
 	[NonSerialized]
-	protected BetterList<UIRect> mChildren = new BetterList<UIRect>();
+	protected Transform mTrans;
 
 	// Token: 0x0400055B RID: 1371
 	[NonSerialized]
-	protected bool mChanged = true;
+	protected BetterList<UIRect> mChildren = new BetterList<UIRect>();
 
 	// Token: 0x0400055C RID: 1372
 	[NonSerialized]
-	protected bool mParentFound;
+	protected bool mChanged = true;
 
 	// Token: 0x0400055D RID: 1373
 	[NonSerialized]
-	private bool mUpdateAnchors = true;
+	protected bool mParentFound;
 
 	// Token: 0x0400055E RID: 1374
 	[NonSerialized]
-	private int mUpdateFrame = -1;
+	private bool mUpdateAnchors = true;
 
 	// Token: 0x0400055F RID: 1375
 	[NonSerialized]
-	private bool mAnchorsCached;
+	private int mUpdateFrame = -1;
 
 	// Token: 0x04000560 RID: 1376
 	[NonSerialized]
-	private UIRoot mRoot;
+	private bool mAnchorsCached;
 
 	// Token: 0x04000561 RID: 1377
 	[NonSerialized]
-	private UIRect mParent;
+	private UIRoot mRoot;
 
 	// Token: 0x04000562 RID: 1378
 	[NonSerialized]
-	private bool mRootSet;
+	private UIRect mParent;
 
 	// Token: 0x04000563 RID: 1379
 	[NonSerialized]
-	protected Camera mCam;
+	private bool mRootSet;
 
 	// Token: 0x04000564 RID: 1380
-	protected bool mStarted;
+	[NonSerialized]
+	protected Camera mCam;
 
 	// Token: 0x04000565 RID: 1381
+	protected bool mStarted;
+
+	// Token: 0x04000566 RID: 1382
 	[NonSerialized]
 	public float finalAlpha = 1f;
 
-	// Token: 0x04000566 RID: 1382
+	// Token: 0x04000567 RID: 1383
 	protected static Vector3[] mSides = new Vector3[4];
 
 	// Token: 0x020005FD RID: 1533
 	[Serializable]
 	public class AnchorPoint
 	{
-		// Token: 0x06002569 RID: 9577 RVA: 0x001FC3F8 File Offset: 0x001FA5F8
+		// Token: 0x0600256C RID: 9580 RVA: 0x001FC5FC File Offset: 0x001FA7FC
 		public AnchorPoint()
 		{
 		}
 
-		// Token: 0x0600256A RID: 9578 RVA: 0x001FC400 File Offset: 0x001FA600
+		// Token: 0x0600256D RID: 9581 RVA: 0x001FC604 File Offset: 0x001FA804
 		public AnchorPoint(float relative)
 		{
 			this.relative = relative;
 		}
 
-		// Token: 0x0600256B RID: 9579 RVA: 0x001FC40F File Offset: 0x001FA60F
+		// Token: 0x0600256E RID: 9582 RVA: 0x001FC613 File Offset: 0x001FA813
 		public void Set(float relative, float absolute)
 		{
 			this.relative = relative;
 			this.absolute = Mathf.FloorToInt(absolute + 0.5f);
 		}
 
-		// Token: 0x0600256C RID: 9580 RVA: 0x001FC42A File Offset: 0x001FA62A
+		// Token: 0x0600256F RID: 9583 RVA: 0x001FC62E File Offset: 0x001FA82E
 		public void Set(Transform target, float relative, float absolute)
 		{
 			this.target = target;
@@ -647,13 +647,13 @@ public abstract class UIRect : MonoBehaviour
 			this.absolute = Mathf.FloorToInt(absolute + 0.5f);
 		}
 
-		// Token: 0x0600256D RID: 9581 RVA: 0x001FC44C File Offset: 0x001FA64C
+		// Token: 0x06002570 RID: 9584 RVA: 0x001FC650 File Offset: 0x001FA850
 		public void SetToNearest(float abs0, float abs1, float abs2)
 		{
 			this.SetToNearest(0f, 0.5f, 1f, abs0, abs1, abs2);
 		}
 
-		// Token: 0x0600256E RID: 9582 RVA: 0x001FC468 File Offset: 0x001FA668
+		// Token: 0x06002571 RID: 9585 RVA: 0x001FC66C File Offset: 0x001FA86C
 		public void SetToNearest(float rel0, float rel1, float rel2, float abs0, float abs1, float abs2)
 		{
 			float num = Mathf.Abs(abs0);
@@ -672,7 +672,7 @@ public abstract class UIRect : MonoBehaviour
 			this.Set(rel2, abs2);
 		}
 
-		// Token: 0x0600256F RID: 9583 RVA: 0x001FC4BC File Offset: 0x001FA6BC
+		// Token: 0x06002572 RID: 9586 RVA: 0x001FC6C0 File Offset: 0x001FA8C0
 		public void SetHorizontal(Transform parent, float localPos)
 		{
 			if (this.rect)
@@ -690,7 +690,7 @@ public abstract class UIRect : MonoBehaviour
 			this.absolute = Mathf.FloorToInt(localPos - vector.x + 0.5f);
 		}
 
-		// Token: 0x06002570 RID: 9584 RVA: 0x001FC554 File Offset: 0x001FA754
+		// Token: 0x06002573 RID: 9587 RVA: 0x001FC758 File Offset: 0x001FA958
 		public void SetVertical(Transform parent, float localPos)
 		{
 			if (this.rect)
@@ -708,7 +708,7 @@ public abstract class UIRect : MonoBehaviour
 			this.absolute = Mathf.FloorToInt(localPos - vector.y + 0.5f);
 		}
 
-		// Token: 0x06002571 RID: 9585 RVA: 0x001FC5EC File Offset: 0x001FA7EC
+		// Token: 0x06002574 RID: 9588 RVA: 0x001FC7F0 File Offset: 0x001FA9F0
 		public Vector3[] GetSides(Transform relativeTo)
 		{
 			if (this.target != null)
@@ -726,20 +726,20 @@ public abstract class UIRect : MonoBehaviour
 			return null;
 		}
 
-		// Token: 0x04004DB2 RID: 19890
+		// Token: 0x04004DB5 RID: 19893
 		public Transform target;
 
-		// Token: 0x04004DB3 RID: 19891
+		// Token: 0x04004DB6 RID: 19894
 		public float relative;
 
-		// Token: 0x04004DB4 RID: 19892
+		// Token: 0x04004DB7 RID: 19895
 		public int absolute;
 
-		// Token: 0x04004DB5 RID: 19893
+		// Token: 0x04004DB8 RID: 19896
 		[NonSerialized]
 		public UIRect rect;
 
-		// Token: 0x04004DB6 RID: 19894
+		// Token: 0x04004DB9 RID: 19897
 		[NonSerialized]
 		public Camera targetCam;
 	}
@@ -748,11 +748,11 @@ public abstract class UIRect : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum AnchorUpdate
 	{
-		// Token: 0x04004DB8 RID: 19896
+		// Token: 0x04004DBB RID: 19899
 		OnEnable,
-		// Token: 0x04004DB9 RID: 19897
+		// Token: 0x04004DBC RID: 19900
 		OnUpdate,
-		// Token: 0x04004DBA RID: 19898
+		// Token: 0x04004DBD RID: 19901
 		OnStart
 	}
 }

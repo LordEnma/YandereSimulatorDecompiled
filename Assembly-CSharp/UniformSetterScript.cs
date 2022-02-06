@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200048A RID: 1162
 public class UniformSetterScript : MonoBehaviour
 {
-	// Token: 0x06001F07 RID: 7943 RVA: 0x001B8370 File Offset: 0x001B6570
+	// Token: 0x06001F0A RID: 7946 RVA: 0x001B8590 File Offset: 0x001B6790
 	public void Start()
 	{
 		if (this.MyRenderer == null)
@@ -27,7 +27,7 @@ public class UniformSetterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F08 RID: 7944 RVA: 0x001B8420 File Offset: 0x001B6620
+	// Token: 0x06001F0B RID: 7947 RVA: 0x001B8640 File Offset: 0x001B6840
 	public void SetMaleUniform()
 	{
 		int num = StudentGlobals.MaleUniform;
@@ -59,7 +59,7 @@ public class UniformSetterScript : MonoBehaviour
 		this.MyRenderer.materials[this.UniformID].mainTexture = this.MaleUniformTextures[num];
 	}
 
-	// Token: 0x06001F09 RID: 7945 RVA: 0x001B850C File Offset: 0x001B670C
+	// Token: 0x06001F0C RID: 7948 RVA: 0x001B872C File Offset: 0x001B692C
 	public void SetFemaleUniform()
 	{
 		int num = StudentGlobals.FemaleUniform;
@@ -83,63 +83,63 @@ public class UniformSetterScript : MonoBehaviour
 		this.MyRenderer.materials[2].mainTexture = this.OsanaFace;
 	}
 
-	// Token: 0x04004135 RID: 16693
+	// Token: 0x04004138 RID: 16696
 	public Texture[] FemaleUniformTextures;
 
-	// Token: 0x04004136 RID: 16694
+	// Token: 0x04004139 RID: 16697
 	public Texture[] MaleUniformTextures;
 
-	// Token: 0x04004137 RID: 16695
+	// Token: 0x0400413A RID: 16698
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x04004138 RID: 16696
+	// Token: 0x0400413B RID: 16699
 	public Mesh[] FemaleUniforms;
 
-	// Token: 0x04004139 RID: 16697
+	// Token: 0x0400413C RID: 16700
 	public Mesh[] MaleUniforms;
 
-	// Token: 0x0400413A RID: 16698
+	// Token: 0x0400413D RID: 16701
 	public Texture SenpaiFace;
 
-	// Token: 0x0400413B RID: 16699
+	// Token: 0x0400413E RID: 16702
 	public Texture SenpaiSkin;
 
-	// Token: 0x0400413C RID: 16700
+	// Token: 0x0400413F RID: 16703
 	public Texture RyobaFace;
 
-	// Token: 0x0400413D RID: 16701
+	// Token: 0x04004140 RID: 16704
 	public Texture AyanoFace;
 
-	// Token: 0x0400413E RID: 16702
+	// Token: 0x04004141 RID: 16705
 	public Texture OsanaFace;
 
-	// Token: 0x0400413F RID: 16703
+	// Token: 0x04004142 RID: 16706
 	public int FaceID;
 
-	// Token: 0x04004140 RID: 16704
+	// Token: 0x04004143 RID: 16707
 	public int SkinID;
 
-	// Token: 0x04004141 RID: 16705
+	// Token: 0x04004144 RID: 16708
 	public int UniformID;
 
-	// Token: 0x04004142 RID: 16706
+	// Token: 0x04004145 RID: 16709
 	public int StudentID;
 
-	// Token: 0x04004143 RID: 16707
+	// Token: 0x04004146 RID: 16710
 	public bool AttachHair;
 
-	// Token: 0x04004144 RID: 16708
+	// Token: 0x04004147 RID: 16711
 	public bool Male;
 
-	// Token: 0x04004145 RID: 16709
+	// Token: 0x04004148 RID: 16712
 	public Transform Head;
 
-	// Token: 0x04004146 RID: 16710
+	// Token: 0x04004149 RID: 16713
 	public GameObject[] Hair;
 
-	// Token: 0x04004147 RID: 16711
+	// Token: 0x0400414A RID: 16714
 	public int HairID;
 
-	// Token: 0x04004148 RID: 16712
+	// Token: 0x0400414B RID: 16715
 	public int ForceUniform;
 }

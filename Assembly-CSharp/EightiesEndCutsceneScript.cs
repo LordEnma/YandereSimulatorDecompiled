@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200029D RID: 669
 public class EightiesEndCutsceneScript : MonoBehaviour
 {
-	// Token: 0x06001407 RID: 5127 RVA: 0x000BE5EC File Offset: 0x000BC7EC
+	// Token: 0x06001407 RID: 5127 RVA: 0x000BE67C File Offset: 0x000BC87C
 	private void Start()
 	{
 		this.MainCamera.transform.localPosition = new Vector3(0f, 1.482f, -10f);
@@ -81,7 +81,7 @@ public class EightiesEndCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001408 RID: 5128 RVA: 0x000BE900 File Offset: 0x000BCB00
+	// Token: 0x06001408 RID: 5128 RVA: 0x000BE990 File Offset: 0x000BCB90
 	private void Update()
 	{
 		if (this.WarmUp)
@@ -195,96 +195,96 @@ public class EightiesEndCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001DF2 RID: 7666
+	// Token: 0x04001DF4 RID: 7668
 	public UISprite SkipCircle;
 
-	// Token: 0x04001DF3 RID: 7667
+	// Token: 0x04001DF5 RID: 7669
 	public UIPanel SkipPanel;
 
-	// Token: 0x04001DF4 RID: 7668
+	// Token: 0x04001DF6 RID: 7670
 	public AudioSource Jukebox;
 
-	// Token: 0x04001DF5 RID: 7669
+	// Token: 0x04001DF7 RID: 7671
 	public AudioSource MyAudio;
 
-	// Token: 0x04001DF6 RID: 7670
+	// Token: 0x04001DF8 RID: 7672
 	public ClockScript Clock;
 
-	// Token: 0x04001DF7 RID: 7671
+	// Token: 0x04001DF9 RID: 7673
 	public UISprite Darkness;
 
-	// Token: 0x04001DF8 RID: 7672
+	// Token: 0x04001DFA RID: 7674
 	public Camera MainCamera;
 
-	// Token: 0x04001DF9 RID: 7673
+	// Token: 0x04001DFB RID: 7675
 	public UILabel Subtitle;
 
-	// Token: 0x04001DFA RID: 7674
+	// Token: 0x04001DFC RID: 7676
 	public GameObject Cops;
 
-	// Token: 0x04001DFB RID: 7675
+	// Token: 0x04001DFD RID: 7677
 	public AudioClip[] Clip;
 
-	// Token: 0x04001DFC RID: 7676
+	// Token: 0x04001DFE RID: 7678
 	public string[] Text;
 
-	// Token: 0x04001DFD RID: 7677
+	// Token: 0x04001DFF RID: 7679
 	public float SkipTimer;
 
-	// Token: 0x04001DFE RID: 7678
+	// Token: 0x04001E00 RID: 7680
 	public float Rotation;
 
-	// Token: 0x04001DFF RID: 7679
+	// Token: 0x04001E01 RID: 7681
 	public float Speed;
 
-	// Token: 0x04001E00 RID: 7680
+	// Token: 0x04001E02 RID: 7682
 	public float Timer;
 
-	// Token: 0x04001E01 RID: 7681
+	// Token: 0x04001E03 RID: 7683
 	public int Phase;
 
-	// Token: 0x04001E02 RID: 7682
+	// Token: 0x04001E04 RID: 7684
 	public int Disappearances;
 
-	// Token: 0x04001E03 RID: 7683
+	// Token: 0x04001E05 RID: 7685
 	public int Deaths;
 
-	// Token: 0x04001E04 RID: 7684
+	// Token: 0x04001E06 RID: 7686
 	public bool Debugging;
 
-	// Token: 0x04001E05 RID: 7685
+	// Token: 0x04001E07 RID: 7687
 	public bool SkipLine6;
 
-	// Token: 0x04001E06 RID: 7686
+	// Token: 0x04001E08 RID: 7688
 	public bool FadeOut;
 
-	// Token: 0x04001E07 RID: 7687
+	// Token: 0x04001E09 RID: 7689
 	public bool WarmUp;
 
-	// Token: 0x04001E08 RID: 7688
+	// Token: 0x04001E0A RID: 7690
 	public AudioClip DeadClip;
 
-	// Token: 0x04001E09 RID: 7689
+	// Token: 0x04001E0B RID: 7691
 	public AudioClip AllDeadClip;
 
-	// Token: 0x04001E0A RID: 7690
+	// Token: 0x04001E0C RID: 7692
 	public AudioClip MissingClip;
 
-	// Token: 0x04001E0B RID: 7691
+	// Token: 0x04001E0D RID: 7693
 	public AudioClip AllMissingClip;
 
-	// Token: 0x04001E0C RID: 7692
+	// Token: 0x04001E0E RID: 7694
 	public AudioClip SomeMissingClip;
 
-	// Token: 0x04001E0D RID: 7693
+	// Token: 0x04001E0F RID: 7695
 	public AudioClip DeadOrMissingClip;
 
-	// Token: 0x04001E0E RID: 7694
+	// Token: 0x04001E10 RID: 7696
 	public AudioClip AllDeadOrMissingClip;
 
-	// Token: 0x04001E0F RID: 7695
+	// Token: 0x04001E11 RID: 7697
 	public AudioClip SomeDeadOrMissingClip;
 
-	// Token: 0x04001E10 RID: 7696
+	// Token: 0x04001E12 RID: 7698
 	public AudioClip PacifistClip;
 }

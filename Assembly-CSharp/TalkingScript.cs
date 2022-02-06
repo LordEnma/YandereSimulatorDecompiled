@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000462 RID: 1122
 public class TalkingScript : MonoBehaviour
 {
-	// Token: 0x06001E6A RID: 7786 RVA: 0x001A3B08 File Offset: 0x001A1D08
+	// Token: 0x06001E6D RID: 7789 RVA: 0x001A3D04 File Offset: 0x001A1F04
 	private void Update()
 	{
 		if (this.S.Talking)
@@ -1720,7 +1720,7 @@ public class TalkingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E6B RID: 7787 RVA: 0x001A96F0 File Offset: 0x001A78F0
+	// Token: 0x06001E6E RID: 7790 RVA: 0x001A98EC File Offset: 0x001A7AEC
 	private void CalculateRepBonus()
 	{
 		this.S.RepBonus = 0;
@@ -1744,48 +1744,48 @@ public class TalkingScript : MonoBehaviour
 		this.S.RepBonus += this.S.Yandere.Class.PsychologyGrade + this.S.Yandere.Class.PsychologyBonus;
 	}
 
-	// Token: 0x04003E70 RID: 15984
+	// Token: 0x04003E73 RID: 15987
 	private const float LongestTime = 100f;
 
-	// Token: 0x04003E71 RID: 15985
+	// Token: 0x04003E74 RID: 15988
 	private const float LongTime = 5f;
 
-	// Token: 0x04003E72 RID: 15986
+	// Token: 0x04003E75 RID: 15989
 	private const float MediumTime = 3f;
 
-	// Token: 0x04003E73 RID: 15987
+	// Token: 0x04003E76 RID: 15990
 	private const float ShortTime = 2f;
 
-	// Token: 0x04003E74 RID: 15988
+	// Token: 0x04003E77 RID: 15991
 	public StudentScript S;
 
-	// Token: 0x04003E75 RID: 15989
+	// Token: 0x04003E78 RID: 15992
 	public WeaponScript StuckBoxCutter;
 
-	// Token: 0x04003E76 RID: 15990
+	// Token: 0x04003E79 RID: 15993
 	public bool NegativeResponse;
 
-	// Token: 0x04003E77 RID: 15991
+	// Token: 0x04003E7A RID: 15994
 	public bool FadeIn;
 
-	// Token: 0x04003E78 RID: 15992
+	// Token: 0x04003E7B RID: 15995
 	public bool Follow;
 
-	// Token: 0x04003E79 RID: 15993
+	// Token: 0x04003E7C RID: 15996
 	public bool Grudge;
 
-	// Token: 0x04003E7A RID: 15994
+	// Token: 0x04003E7D RID: 15997
 	public bool Refuse;
 
-	// Token: 0x04003E7B RID: 15995
+	// Token: 0x04003E7E RID: 15998
 	public bool Fake;
 
-	// Token: 0x04003E7C RID: 15996
+	// Token: 0x04003E7F RID: 15999
 	public string IdleAnim = "";
 
-	// Token: 0x04003E7D RID: 15997
+	// Token: 0x04003E80 RID: 16000
 	public float Timer;
 
-	// Token: 0x04003E7E RID: 15998
+	// Token: 0x04003E81 RID: 16001
 	public int ClubBonus;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000468 RID: 1128
 public class TaskManagerScript : MonoBehaviour
 {
-	// Token: 0x06001E85 RID: 7813 RVA: 0x001ACB6C File Offset: 0x001AAD6C
+	// Token: 0x06001E88 RID: 7816 RVA: 0x001ACD8C File Offset: 0x001AAF8C
 	public void Start()
 	{
 		for (int i = 1; i < 101; i++)
@@ -30,7 +30,7 @@ public class TaskManagerScript : MonoBehaviour
 		this.Initialized = true;
 	}
 
-	// Token: 0x06001E86 RID: 7814 RVA: 0x001ACC00 File Offset: 0x001AAE00
+	// Token: 0x06001E89 RID: 7817 RVA: 0x001ACE20 File Offset: 0x001AB020
 	public void CheckTaskPickups()
 	{
 		if (!this.StudentManager.Eighties)
@@ -68,7 +68,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E87 RID: 7815 RVA: 0x001ACDC4 File Offset: 0x001AAFC4
+	// Token: 0x06001E8A RID: 7818 RVA: 0x001ACFE4 File Offset: 0x001AB1E4
 	public void UpdateTaskStatus()
 	{
 		if (!this.StudentManager.Eighties)
@@ -232,7 +232,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E88 RID: 7816 RVA: 0x001AD43C File Offset: 0x001AB63C
+	// Token: 0x06001E8B RID: 7819 RVA: 0x001AD65C File Offset: 0x001AB85C
 	public void SaveTaskStatuses()
 	{
 		for (int i = 1; i < 101; i++)
@@ -245,24 +245,24 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F0B RID: 16139
+	// Token: 0x04003F0E RID: 16142
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003F0C RID: 16140
+	// Token: 0x04003F0F RID: 16143
 	public YandereScript Yandere;
 
-	// Token: 0x04003F0D RID: 16141
+	// Token: 0x04003F10 RID: 16144
 	public GameObject[] TaskObjects;
 
-	// Token: 0x04003F0E RID: 16142
+	// Token: 0x04003F11 RID: 16145
 	public PromptScript[] Prompts;
 
-	// Token: 0x04003F0F RID: 16143
+	// Token: 0x04003F12 RID: 16146
 	public bool[] GirlsQuestioned;
 
-	// Token: 0x04003F10 RID: 16144
+	// Token: 0x04003F13 RID: 16147
 	public int[] TaskStatus;
 
-	// Token: 0x04003F11 RID: 16145
+	// Token: 0x04003F14 RID: 16148
 	public bool Initialized;
 }

@@ -86,47 +86,47 @@ public class SpringPosition : MonoBehaviour
 		return springPosition;
 	}
 
-	// Token: 0x04000594 RID: 1428
+	// Token: 0x04000595 RID: 1429
 	public static SpringPosition current;
 
-	// Token: 0x04000595 RID: 1429
+	// Token: 0x04000596 RID: 1430
 	public Vector3 target = Vector3.zero;
 
-	// Token: 0x04000596 RID: 1430
+	// Token: 0x04000597 RID: 1431
 	public float strength = 10f;
 
-	// Token: 0x04000597 RID: 1431
+	// Token: 0x04000598 RID: 1432
 	public bool worldSpace;
 
-	// Token: 0x04000598 RID: 1432
+	// Token: 0x04000599 RID: 1433
 	public bool ignoreTimeScale;
 
-	// Token: 0x04000599 RID: 1433
+	// Token: 0x0400059A RID: 1434
 	public bool updateScrollView;
 
-	// Token: 0x0400059A RID: 1434
-	public SpringPosition.OnFinished onFinished;
-
 	// Token: 0x0400059B RID: 1435
-	[SerializeField]
-	[HideInInspector]
-	private GameObject eventReceiver;
+	public SpringPosition.OnFinished onFinished;
 
 	// Token: 0x0400059C RID: 1436
 	[SerializeField]
 	[HideInInspector]
-	public string callWhenFinished;
+	private GameObject eventReceiver;
 
 	// Token: 0x0400059D RID: 1437
-	private Transform mTrans;
+	[SerializeField]
+	[HideInInspector]
+	public string callWhenFinished;
 
 	// Token: 0x0400059E RID: 1438
-	private float mThreshold;
+	private Transform mTrans;
 
 	// Token: 0x0400059F RID: 1439
+	private float mThreshold;
+
+	// Token: 0x040005A0 RID: 1440
 	private UIScrollView mSv;
 
 	// Token: 0x02000604 RID: 1540
-	// (Invoke) Token: 0x0600257F RID: 9599
+	// (Invoke) Token: 0x06002582 RID: 9602
 	public delegate void OnFinished();
 }

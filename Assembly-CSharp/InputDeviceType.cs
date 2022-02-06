@@ -3,8 +3,8 @@
 // Token: 0x02000332 RID: 818
 public enum InputDeviceType
 {
-	// Token: 0x040025FD RID: 9725
+	// Token: 0x04002600 RID: 9728
 	Gamepad = 1,
-	// Token: 0x040025FE RID: 9726
+	// Token: 0x04002601 RID: 9729
 	MouseAndKeyboard
 }

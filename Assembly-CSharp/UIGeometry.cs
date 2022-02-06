@@ -112,28 +112,28 @@ public class UIGeometry
 		}
 	}
 
-	// Token: 0x0400054C RID: 1356
+	// Token: 0x0400054D RID: 1357
 	public List<Vector3> verts = new List<Vector3>();
 
-	// Token: 0x0400054D RID: 1357
+	// Token: 0x0400054E RID: 1358
 	public List<Vector2> uvs = new List<Vector2>();
 
-	// Token: 0x0400054E RID: 1358
+	// Token: 0x0400054F RID: 1359
 	public List<Color> cols = new List<Color>();
 
-	// Token: 0x0400054F RID: 1359
+	// Token: 0x04000550 RID: 1360
 	public UIGeometry.OnCustomWrite onCustomWrite;
 
-	// Token: 0x04000550 RID: 1360
+	// Token: 0x04000551 RID: 1361
 	private List<Vector3> mRtpVerts = new List<Vector3>();
 
-	// Token: 0x04000551 RID: 1361
+	// Token: 0x04000552 RID: 1362
 	private Vector3 mRtpNormal;
 
-	// Token: 0x04000552 RID: 1362
+	// Token: 0x04000553 RID: 1363
 	private Vector4 mRtpTan;
 
 	// Token: 0x020005FC RID: 1532
-	// (Invoke) Token: 0x06002566 RID: 9574
+	// (Invoke) Token: 0x06002569 RID: 9577
 	public delegate void OnCustomWrite(List<Vector3> v, List<Vector2> u, List<Color> c, List<Vector3> n, List<Vector4> t, List<Vector4> u2);
 }

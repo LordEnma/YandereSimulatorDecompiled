@@ -367,35 +367,35 @@ public class ActiveAnimation : MonoBehaviour
 		return activeAnimation;
 	}
 
-	// Token: 0x04000474 RID: 1140
+	// Token: 0x04000475 RID: 1141
 	public static ActiveAnimation current;
 
-	// Token: 0x04000475 RID: 1141
-	public List<EventDelegate> onFinished = new List<EventDelegate>();
-
 	// Token: 0x04000476 RID: 1142
-	[HideInInspector]
-	public GameObject eventReceiver;
+	public List<EventDelegate> onFinished = new List<EventDelegate>();
 
 	// Token: 0x04000477 RID: 1143
 	[HideInInspector]
-	public string callWhenFinished;
+	public GameObject eventReceiver;
 
 	// Token: 0x04000478 RID: 1144
-	private Animation mAnim;
+	[HideInInspector]
+	public string callWhenFinished;
 
 	// Token: 0x04000479 RID: 1145
-	private AnimationOrTween.Direction mLastDirection;
+	private Animation mAnim;
 
 	// Token: 0x0400047A RID: 1146
-	private AnimationOrTween.Direction mDisableDirection;
+	private AnimationOrTween.Direction mLastDirection;
 
 	// Token: 0x0400047B RID: 1147
-	private bool mNotify;
+	private AnimationOrTween.Direction mDisableDirection;
 
 	// Token: 0x0400047C RID: 1148
-	private Animator mAnimator;
+	private bool mNotify;
 
 	// Token: 0x0400047D RID: 1149
+	private Animator mAnimator;
+
+	// Token: 0x0400047E RID: 1150
 	private string mClip = "";
 }

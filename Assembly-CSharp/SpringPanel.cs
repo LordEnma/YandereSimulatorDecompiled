@@ -93,35 +93,35 @@ public class SpringPanel : MonoBehaviour
 		return component;
 	}
 
-	// Token: 0x040004F6 RID: 1270
+	// Token: 0x040004F7 RID: 1271
 	public static SpringPanel current;
 
-	// Token: 0x040004F7 RID: 1271
+	// Token: 0x040004F8 RID: 1272
 	public Vector3 target = Vector3.zero;
 
-	// Token: 0x040004F8 RID: 1272
+	// Token: 0x040004F9 RID: 1273
 	public float strength = 10f;
 
-	// Token: 0x040004F9 RID: 1273
-	public SpringPanel.OnFinished onFinished;
-
 	// Token: 0x040004FA RID: 1274
-	[NonSerialized]
-	private UIPanel mPanel;
+	public SpringPanel.OnFinished onFinished;
 
 	// Token: 0x040004FB RID: 1275
 	[NonSerialized]
-	private Transform mTrans;
+	private UIPanel mPanel;
 
 	// Token: 0x040004FC RID: 1276
 	[NonSerialized]
-	private UIScrollView mDrag;
+	private Transform mTrans;
 
 	// Token: 0x040004FD RID: 1277
+	[NonSerialized]
+	private UIScrollView mDrag;
+
+	// Token: 0x040004FE RID: 1278
 	[NonSerialized]
 	private float mDelta;
 
 	// Token: 0x020005ED RID: 1517
-	// (Invoke) Token: 0x06002542 RID: 9538
+	// (Invoke) Token: 0x06002545 RID: 9541
 	public delegate void OnFinished();
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200023B RID: 571
 public class ChainScript : MonoBehaviour
 {
-	// Token: 0x06001234 RID: 4660 RVA: 0x0008B86C File Offset: 0x00089A6C
+	// Token: 0x06001234 RID: 4660 RVA: 0x0008B8F0 File Offset: 0x00089AF0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -28,18 +28,18 @@ public class ChainScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040016DB RID: 5851
+	// Token: 0x040016DD RID: 5853
 	public PromptScript Prompt;
 
-	// Token: 0x040016DC RID: 5852
+	// Token: 0x040016DE RID: 5854
 	public TarpScript Tarp;
 
-	// Token: 0x040016DD RID: 5853
+	// Token: 0x040016DF RID: 5855
 	public AudioClip ChainRattle;
 
-	// Token: 0x040016DE RID: 5854
+	// Token: 0x040016E0 RID: 5856
 	public GameObject[] Chains;
 
-	// Token: 0x040016DF RID: 5855
+	// Token: 0x040016E1 RID: 5857
 	public int Unlocked;
 }

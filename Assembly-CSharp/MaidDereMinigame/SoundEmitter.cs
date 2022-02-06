@@ -8,7 +8,7 @@ namespace MaidDereMinigame
 	[Serializable]
 	public class SoundEmitter
 	{
-		// Token: 0x06002467 RID: 9319 RVA: 0x001FA5D4 File Offset: 0x001F87D4
+		// Token: 0x0600246A RID: 9322 RVA: 0x001FA7D8 File Offset: 0x001F89D8
 		public AudioSource GetSource()
 		{
 			for (int i = 0; i < this.sources.Count; i++)
@@ -21,17 +21,17 @@ namespace MaidDereMinigame
 			return this.sources[0];
 		}
 
-		// Token: 0x04004C3C RID: 19516
+		// Token: 0x04004C3F RID: 19519
 		public SFXController.Sounds sound;
 
-		// Token: 0x04004C3D RID: 19517
+		// Token: 0x04004C40 RID: 19520
 		public bool interupt;
 
-		// Token: 0x04004C3E RID: 19518
+		// Token: 0x04004C41 RID: 19521
 		[Reorderable]
 		public AudioSources sources;
 
-		// Token: 0x04004C3F RID: 19519
+		// Token: 0x04004C42 RID: 19522
 		[Reorderable]
 		public AudioClips clips;
 	}

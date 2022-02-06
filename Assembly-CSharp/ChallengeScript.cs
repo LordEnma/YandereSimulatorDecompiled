@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000107 RID: 263
 public class ChallengeScript : MonoBehaviour
 {
-	// Token: 0x06000AAD RID: 2733 RVA: 0x00063564 File Offset: 0x00061764
+	// Token: 0x06000AAD RID: 2733 RVA: 0x000635E8 File Offset: 0x000617E8
 	private void Update()
 	{
 		if (!this.Viewing)
@@ -107,48 +107,48 @@ public class ChallengeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000CEB RID: 3307
+	// Token: 0x04000CED RID: 3309
 	public InputManagerScript InputManager;
 
-	// Token: 0x04000CEC RID: 3308
+	// Token: 0x04000CEE RID: 3310
 	public CalendarScript Calendar;
 
-	// Token: 0x04000CED RID: 3309
+	// Token: 0x04000CEF RID: 3311
 	public GameObject ViewButton;
 
-	// Token: 0x04000CEE RID: 3310
+	// Token: 0x04000CF0 RID: 3312
 	public Transform Arrows;
 
-	// Token: 0x04000CEF RID: 3311
+	// Token: 0x04000CF1 RID: 3313
 	public Transform[] ChallengeList;
 
-	// Token: 0x04000CF0 RID: 3312
+	// Token: 0x04000CF2 RID: 3314
 	public int[] Challenges;
 
-	// Token: 0x04000CF1 RID: 3313
+	// Token: 0x04000CF3 RID: 3315
 	public UIPanel[] Panels;
 
-	// Token: 0x04000CF2 RID: 3314
+	// Token: 0x04000CF4 RID: 3316
 	public UIPanel ChallengePanel;
 
-	// Token: 0x04000CF3 RID: 3315
+	// Token: 0x04000CF5 RID: 3317
 	public UIPanel CalendarPanel;
 
-	// Token: 0x04000CF4 RID: 3316
+	// Token: 0x04000CF6 RID: 3318
 	public UITexture LargeIcon;
 
-	// Token: 0x04000CF5 RID: 3317
+	// Token: 0x04000CF7 RID: 3319
 	public UISprite Shadow;
 
-	// Token: 0x04000CF6 RID: 3318
+	// Token: 0x04000CF8 RID: 3320
 	public bool Viewing;
 
-	// Token: 0x04000CF7 RID: 3319
+	// Token: 0x04000CF9 RID: 3321
 	public bool Switch;
 
-	// Token: 0x04000CF8 RID: 3320
+	// Token: 0x04000CFA RID: 3322
 	public int Phase = 1;
 
-	// Token: 0x04000CF9 RID: 3321
+	// Token: 0x04000CFB RID: 3323
 	public int List;
 }

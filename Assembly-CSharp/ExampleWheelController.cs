@@ -29,19 +29,19 @@ public class ExampleWheelController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000800 RID: 2048
+	// Token: 0x04000801 RID: 2049
 	public float acceleration;
 
-	// Token: 0x04000801 RID: 2049
+	// Token: 0x04000802 RID: 2050
 	public Renderer motionVectorRenderer;
 
-	// Token: 0x04000802 RID: 2050
+	// Token: 0x04000803 RID: 2051
 	private Rigidbody m_Rigidbody;
 
 	// Token: 0x02000644 RID: 1604
 	private static class Uniforms
 	{
-		// Token: 0x04004E82 RID: 20098
+		// Token: 0x04004E85 RID: 20101
 		internal static readonly int _MotionAmount = Shader.PropertyToID("_MotionAmount");
 	}
 }

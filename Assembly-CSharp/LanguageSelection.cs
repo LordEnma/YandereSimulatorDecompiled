@@ -55,9 +55,9 @@ public class LanguageSelection : MonoBehaviour
 		this.Refresh();
 	}
 
-	// Token: 0x040002CB RID: 715
+	// Token: 0x040002CC RID: 716
 	private UIPopupList mList;
 
-	// Token: 0x040002CC RID: 716
+	// Token: 0x040002CD RID: 717
 	private bool mStarted;
 }

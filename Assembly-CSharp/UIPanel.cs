@@ -1609,187 +1609,187 @@ public class UIPanel : UIRect
 		return NGUITools.screenSize;
 	}
 
-	// Token: 0x04000718 RID: 1816
+	// Token: 0x04000719 RID: 1817
 	public static List<UIPanel> list = new List<UIPanel>();
 
-	// Token: 0x04000719 RID: 1817
+	// Token: 0x0400071A RID: 1818
 	public UIPanel.OnGeometryUpdated onGeometryUpdated;
 
-	// Token: 0x0400071A RID: 1818
+	// Token: 0x0400071B RID: 1819
 	public bool showInPanelTool = true;
 
-	// Token: 0x0400071B RID: 1819
+	// Token: 0x0400071C RID: 1820
 	public bool generateNormals;
 
-	// Token: 0x0400071C RID: 1820
+	// Token: 0x0400071D RID: 1821
 	public bool generateUV2;
 
-	// Token: 0x0400071D RID: 1821
+	// Token: 0x0400071E RID: 1822
 	public UIDrawCall.ShadowMode shadowMode;
 
-	// Token: 0x0400071E RID: 1822
+	// Token: 0x0400071F RID: 1823
 	public bool widgetsAreStatic;
 
-	// Token: 0x0400071F RID: 1823
+	// Token: 0x04000720 RID: 1824
 	public bool cullWhileDragging = true;
 
-	// Token: 0x04000720 RID: 1824
+	// Token: 0x04000721 RID: 1825
 	public bool alwaysOnScreen;
 
-	// Token: 0x04000721 RID: 1825
+	// Token: 0x04000722 RID: 1826
 	public bool anchorOffset;
 
-	// Token: 0x04000722 RID: 1826
+	// Token: 0x04000723 RID: 1827
 	public bool softBorderPadding = true;
 
-	// Token: 0x04000723 RID: 1827
+	// Token: 0x04000724 RID: 1828
 	public UIPanel.RenderQueue renderQueue;
 
-	// Token: 0x04000724 RID: 1828
-	public int startingRenderQueue = 3000;
-
 	// Token: 0x04000725 RID: 1829
-	[NonSerialized]
-	public List<UIWidget> widgets = new List<UIWidget>();
+	public int startingRenderQueue = 3000;
 
 	// Token: 0x04000726 RID: 1830
 	[NonSerialized]
-	public List<UIDrawCall> drawCalls = new List<UIDrawCall>();
+	public List<UIWidget> widgets = new List<UIWidget>();
 
 	// Token: 0x04000727 RID: 1831
 	[NonSerialized]
-	public Matrix4x4 worldToLocal = Matrix4x4.identity;
+	public List<UIDrawCall> drawCalls = new List<UIDrawCall>();
 
 	// Token: 0x04000728 RID: 1832
 	[NonSerialized]
-	public Vector4 drawCallClipRange = new Vector4(0f, 0f, 1f, 1f);
+	public Matrix4x4 worldToLocal = Matrix4x4.identity;
 
 	// Token: 0x04000729 RID: 1833
-	public UIPanel.OnClippingMoved onClipMove;
+	[NonSerialized]
+	public Vector4 drawCallClipRange = new Vector4(0f, 0f, 1f, 1f);
 
 	// Token: 0x0400072A RID: 1834
-	public UIPanel.OnCreateMaterial onCreateMaterial;
+	public UIPanel.OnClippingMoved onClipMove;
 
 	// Token: 0x0400072B RID: 1835
-	public UIDrawCall.OnCreateDrawCall onCreateDrawCall;
+	public UIPanel.OnCreateMaterial onCreateMaterial;
 
 	// Token: 0x0400072C RID: 1836
-	[HideInInspector]
-	[SerializeField]
-	private Texture2D mClipTexture;
+	public UIDrawCall.OnCreateDrawCall onCreateDrawCall;
 
 	// Token: 0x0400072D RID: 1837
 	[HideInInspector]
 	[SerializeField]
-	private float mAlpha = 1f;
+	private Texture2D mClipTexture;
 
 	// Token: 0x0400072E RID: 1838
 	[HideInInspector]
 	[SerializeField]
-	private UIDrawCall.Clipping mClipping;
+	private float mAlpha = 1f;
 
 	// Token: 0x0400072F RID: 1839
 	[HideInInspector]
 	[SerializeField]
-	private Vector4 mClipRange = new Vector4(0f, 0f, 300f, 200f);
+	private UIDrawCall.Clipping mClipping;
 
 	// Token: 0x04000730 RID: 1840
 	[HideInInspector]
 	[SerializeField]
-	private Vector2 mClipSoftness = new Vector2(4f, 4f);
+	private Vector4 mClipRange = new Vector4(0f, 0f, 300f, 200f);
 
 	// Token: 0x04000731 RID: 1841
 	[HideInInspector]
 	[SerializeField]
-	private int mDepth;
+	private Vector2 mClipSoftness = new Vector2(4f, 4f);
 
 	// Token: 0x04000732 RID: 1842
 	[HideInInspector]
 	[SerializeField]
-	private int mSortingOrder;
+	private int mDepth;
 
 	// Token: 0x04000733 RID: 1843
 	[HideInInspector]
 	[SerializeField]
-	private string mSortingLayerName;
+	private int mSortingOrder;
 
 	// Token: 0x04000734 RID: 1844
-	private bool mRebuild;
+	[HideInInspector]
+	[SerializeField]
+	private string mSortingLayerName;
 
 	// Token: 0x04000735 RID: 1845
-	private bool mResized;
+	private bool mRebuild;
 
 	// Token: 0x04000736 RID: 1846
+	private bool mResized;
+
+	// Token: 0x04000737 RID: 1847
 	[SerializeField]
 	private Vector2 mClipOffset = Vector2.zero;
 
-	// Token: 0x04000737 RID: 1847
+	// Token: 0x04000738 RID: 1848
 	private int mMatrixFrame = -1;
 
-	// Token: 0x04000738 RID: 1848
+	// Token: 0x04000739 RID: 1849
 	private int mAlphaFrameID;
 
-	// Token: 0x04000739 RID: 1849
+	// Token: 0x0400073A RID: 1850
 	private int mLayer = -1;
 
-	// Token: 0x0400073A RID: 1850
+	// Token: 0x0400073B RID: 1851
 	private static float[] mTemp = new float[4];
 
-	// Token: 0x0400073B RID: 1851
+	// Token: 0x0400073C RID: 1852
 	private Vector2 mMin = Vector2.zero;
 
-	// Token: 0x0400073C RID: 1852
+	// Token: 0x0400073D RID: 1853
 	private Vector2 mMax = Vector2.zero;
 
-	// Token: 0x0400073D RID: 1853
+	// Token: 0x0400073E RID: 1854
 	private bool mSortWidgets;
 
-	// Token: 0x0400073E RID: 1854
+	// Token: 0x0400073F RID: 1855
 	private bool mUpdateScroll;
 
-	// Token: 0x0400073F RID: 1855
+	// Token: 0x04000740 RID: 1856
 	public bool useSortingOrder;
 
-	// Token: 0x04000740 RID: 1856
+	// Token: 0x04000741 RID: 1857
 	private UIPanel mParentPanel;
 
-	// Token: 0x04000741 RID: 1857
+	// Token: 0x04000742 RID: 1858
 	private static Vector3[] mCorners = new Vector3[4];
 
-	// Token: 0x04000742 RID: 1858
+	// Token: 0x04000743 RID: 1859
 	private static int mUpdateFrame = -1;
 
-	// Token: 0x04000743 RID: 1859
+	// Token: 0x04000744 RID: 1860
 	[NonSerialized]
 	private bool mHasMoved;
 
-	// Token: 0x04000744 RID: 1860
+	// Token: 0x04000745 RID: 1861
 	private UIDrawCall.OnRenderCallback mOnRender;
 
-	// Token: 0x04000745 RID: 1861
+	// Token: 0x04000746 RID: 1862
 	private bool mForced;
 
 	// Token: 0x02000634 RID: 1588
 	[DoNotObfuscateNGUI]
 	public enum RenderQueue
 	{
-		// Token: 0x04004E5A RID: 20058
+		// Token: 0x04004E5D RID: 20061
 		Automatic,
-		// Token: 0x04004E5B RID: 20059
+		// Token: 0x04004E5E RID: 20062
 		StartAt,
-		// Token: 0x04004E5C RID: 20060
+		// Token: 0x04004E5F RID: 20063
 		Explicit
 	}
 
 	// Token: 0x02000635 RID: 1589
-	// (Invoke) Token: 0x060025EC RID: 9708
+	// (Invoke) Token: 0x060025EF RID: 9711
 	public delegate void OnGeometryUpdated();
 
 	// Token: 0x02000636 RID: 1590
-	// (Invoke) Token: 0x060025F0 RID: 9712
+	// (Invoke) Token: 0x060025F3 RID: 9715
 	public delegate void OnClippingMoved(UIPanel panel);
 
 	// Token: 0x02000637 RID: 1591
-	// (Invoke) Token: 0x060025F4 RID: 9716
+	// (Invoke) Token: 0x060025F7 RID: 9719
 	public delegate Material OnCreateMaterial(UIWidget widget, Material mat);
 }

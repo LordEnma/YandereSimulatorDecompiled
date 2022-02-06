@@ -7,13 +7,13 @@ namespace MaidDereMinigame
 	[RequireComponent(typeof(Camera))]
 	public class CameraForcedAspect : MonoBehaviour
 	{
-		// Token: 0x06002444 RID: 9284 RVA: 0x001F9FAC File Offset: 0x001F81AC
+		// Token: 0x06002447 RID: 9287 RVA: 0x001FA1B0 File Offset: 0x001F83B0
 		private void Awake()
 		{
 			this.cam = base.GetComponent<Camera>();
 		}
 
-		// Token: 0x06002445 RID: 9285 RVA: 0x001F9FBC File Offset: 0x001F81BC
+		// Token: 0x06002448 RID: 9288 RVA: 0x001FA1C0 File Offset: 0x001F83C0
 		private void Start()
 		{
 			float num = this.targetAspect.x / this.targetAspect.y;
@@ -37,10 +37,10 @@ namespace MaidDereMinigame
 			this.cam.rect = rect2;
 		}
 
-		// Token: 0x04004C15 RID: 19477
+		// Token: 0x04004C18 RID: 19480
 		public Vector2 targetAspect = new Vector2(16f, 9f);
 
-		// Token: 0x04004C16 RID: 19478
+		// Token: 0x04004C19 RID: 19481
 		private Camera cam;
 	}
 }

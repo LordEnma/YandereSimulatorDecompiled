@@ -19,18 +19,18 @@ public class AccessoryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000854 RID: 2132
+	// Token: 0x04000855 RID: 2133
 	public PromptScript Prompt;
 
-	// Token: 0x04000855 RID: 2133
+	// Token: 0x04000856 RID: 2134
 	public Transform Target;
 
-	// Token: 0x04000856 RID: 2134
+	// Token: 0x04000857 RID: 2135
 	public float X;
 
-	// Token: 0x04000857 RID: 2135
+	// Token: 0x04000858 RID: 2136
 	public float Y;
 
-	// Token: 0x04000858 RID: 2136
+	// Token: 0x04000859 RID: 2137
 	public float Z;
 }

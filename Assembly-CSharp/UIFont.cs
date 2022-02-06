@@ -824,60 +824,60 @@ public class UIFont : MonoBehaviour, INGUIFont
 		return false;
 	}
 
-	// Token: 0x040006AA RID: 1706
+	// Token: 0x040006AB RID: 1707
 	[HideInInspector]
 	[SerializeField]
 	private Material mMat;
 
-	// Token: 0x040006AB RID: 1707
+	// Token: 0x040006AC RID: 1708
 	[HideInInspector]
 	[SerializeField]
 	private Rect mUVRect = new Rect(0f, 0f, 1f, 1f);
 
-	// Token: 0x040006AC RID: 1708
+	// Token: 0x040006AD RID: 1709
 	[HideInInspector]
 	[SerializeField]
 	private BMFont mFont = new BMFont();
 
-	// Token: 0x040006AD RID: 1709
+	// Token: 0x040006AE RID: 1710
 	[HideInInspector]
 	[SerializeField]
 	private UnityEngine.Object mAtlas;
 
-	// Token: 0x040006AE RID: 1710
+	// Token: 0x040006AF RID: 1711
 	[HideInInspector]
 	[SerializeField]
 	private UnityEngine.Object mReplacement;
 
-	// Token: 0x040006AF RID: 1711
+	// Token: 0x040006B0 RID: 1712
 	[HideInInspector]
 	[SerializeField]
 	private List<BMSymbol> mSymbols = new List<BMSymbol>();
 
-	// Token: 0x040006B0 RID: 1712
+	// Token: 0x040006B1 RID: 1713
 	[HideInInspector]
 	[SerializeField]
 	private Font mDynamicFont;
 
-	// Token: 0x040006B1 RID: 1713
+	// Token: 0x040006B2 RID: 1714
 	[HideInInspector]
 	[SerializeField]
 	private int mDynamicFontSize = 16;
 
-	// Token: 0x040006B2 RID: 1714
+	// Token: 0x040006B3 RID: 1715
 	[HideInInspector]
 	[SerializeField]
 	private FontStyle mDynamicFontStyle;
 
-	// Token: 0x040006B3 RID: 1715
+	// Token: 0x040006B4 RID: 1716
 	[NonSerialized]
 	private UISpriteData mSprite;
 
-	// Token: 0x040006B4 RID: 1716
+	// Token: 0x040006B5 RID: 1717
 	[NonSerialized]
 	private int mPMA = -1;
 
-	// Token: 0x040006B5 RID: 1717
+	// Token: 0x040006B6 RID: 1718
 	[NonSerialized]
 	private int mPacked = -1;
 }

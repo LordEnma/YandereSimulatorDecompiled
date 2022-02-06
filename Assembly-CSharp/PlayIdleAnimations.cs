@@ -65,18 +65,18 @@ public class PlayIdleAnimations : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040002AA RID: 682
+	// Token: 0x040002AB RID: 683
 	private Animation mAnim;
 
-	// Token: 0x040002AB RID: 683
+	// Token: 0x040002AC RID: 684
 	private AnimationClip mIdle;
 
-	// Token: 0x040002AC RID: 684
+	// Token: 0x040002AD RID: 685
 	private List<AnimationClip> mBreaks = new List<AnimationClip>();
 
-	// Token: 0x040002AD RID: 685
+	// Token: 0x040002AE RID: 686
 	private float mNextBreak;
 
-	// Token: 0x040002AE RID: 686
+	// Token: 0x040002AF RID: 687
 	private int mLastIndex;
 }

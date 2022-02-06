@@ -98,15 +98,15 @@ public class TweenRotation : UITweener
 		this.value = Quaternion.Euler(this.to);
 	}
 
-	// Token: 0x040005CF RID: 1487
+	// Token: 0x040005D0 RID: 1488
 	public Vector3 from;
 
-	// Token: 0x040005D0 RID: 1488
+	// Token: 0x040005D1 RID: 1489
 	public Vector3 to;
 
-	// Token: 0x040005D1 RID: 1489
+	// Token: 0x040005D2 RID: 1490
 	public bool quaternionLerp;
 
-	// Token: 0x040005D2 RID: 1490
+	// Token: 0x040005D3 RID: 1491
 	private Transform mTrans;
 }

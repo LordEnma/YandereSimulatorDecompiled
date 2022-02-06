@@ -17,12 +17,12 @@ public class ArcScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A57 RID: 2647
+	// Token: 0x04000A58 RID: 2648
 	private static readonly Vector3 NEW_ARC_RELATIVE_FORCE = Vector3.forward * 375f;
 
-	// Token: 0x04000A58 RID: 2648
+	// Token: 0x04000A59 RID: 2649
 	public GameObject ArcTrail;
 
-	// Token: 0x04000A59 RID: 2649
+	// Token: 0x04000A5A RID: 2650
 	public float Timer;
 }

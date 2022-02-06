@@ -59,21 +59,21 @@ public class LagPosition : MonoBehaviour
 		this.Interpolate(this.ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime);
 	}
 
-	// Token: 0x04000294 RID: 660
+	// Token: 0x04000295 RID: 661
 	public Vector3 speed = new Vector3(10f, 10f, 10f);
 
-	// Token: 0x04000295 RID: 661
+	// Token: 0x04000296 RID: 662
 	public bool ignoreTimeScale;
 
-	// Token: 0x04000296 RID: 662
+	// Token: 0x04000297 RID: 663
 	private Transform mTrans;
 
-	// Token: 0x04000297 RID: 663
+	// Token: 0x04000298 RID: 664
 	private Vector3 mRelative;
 
-	// Token: 0x04000298 RID: 664
+	// Token: 0x04000299 RID: 665
 	private Vector3 mAbsolute;
 
-	// Token: 0x04000299 RID: 665
+	// Token: 0x0400029A RID: 666
 	private bool mStarted;
 }

@@ -265,77 +265,77 @@ public class UIToggle : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x0400044C RID: 1100
+	// Token: 0x0400044D RID: 1101
 	public static BetterList<UIToggle> list = new BetterList<UIToggle>();
 
-	// Token: 0x0400044D RID: 1101
+	// Token: 0x0400044E RID: 1102
 	public static UIToggle current;
 
-	// Token: 0x0400044E RID: 1102
+	// Token: 0x0400044F RID: 1103
 	public int group;
 
-	// Token: 0x0400044F RID: 1103
+	// Token: 0x04000450 RID: 1104
 	public UIWidget activeSprite;
 
-	// Token: 0x04000450 RID: 1104
+	// Token: 0x04000451 RID: 1105
 	public bool invertSpriteState;
 
-	// Token: 0x04000451 RID: 1105
+	// Token: 0x04000452 RID: 1106
 	public Animation activeAnimation;
 
-	// Token: 0x04000452 RID: 1106
+	// Token: 0x04000453 RID: 1107
 	public Animator animator;
 
-	// Token: 0x04000453 RID: 1107
+	// Token: 0x04000454 RID: 1108
 	public UITweener tween;
 
-	// Token: 0x04000454 RID: 1108
+	// Token: 0x04000455 RID: 1109
 	public bool startsActive;
 
-	// Token: 0x04000455 RID: 1109
+	// Token: 0x04000456 RID: 1110
 	public bool instantTween;
 
-	// Token: 0x04000456 RID: 1110
+	// Token: 0x04000457 RID: 1111
 	public bool optionCanBeNone;
 
-	// Token: 0x04000457 RID: 1111
+	// Token: 0x04000458 RID: 1112
 	public List<EventDelegate> onChange = new List<EventDelegate>();
 
-	// Token: 0x04000458 RID: 1112
-	public UIToggle.Validate validator;
-
 	// Token: 0x04000459 RID: 1113
-	[HideInInspector]
-	[SerializeField]
-	private UISprite checkSprite;
+	public UIToggle.Validate validator;
 
 	// Token: 0x0400045A RID: 1114
 	[HideInInspector]
 	[SerializeField]
-	private Animation checkAnimation;
+	private UISprite checkSprite;
 
 	// Token: 0x0400045B RID: 1115
 	[HideInInspector]
 	[SerializeField]
-	private GameObject eventReceiver;
+	private Animation checkAnimation;
 
 	// Token: 0x0400045C RID: 1116
 	[HideInInspector]
 	[SerializeField]
-	private string functionName = "OnActivate";
+	private GameObject eventReceiver;
 
 	// Token: 0x0400045D RID: 1117
 	[HideInInspector]
 	[SerializeField]
-	private bool startsChecked;
+	private string functionName = "OnActivate";
 
 	// Token: 0x0400045E RID: 1118
-	private bool mIsActive = true;
+	[HideInInspector]
+	[SerializeField]
+	private bool startsChecked;
 
 	// Token: 0x0400045F RID: 1119
+	private bool mIsActive = true;
+
+	// Token: 0x04000460 RID: 1120
 	private bool mStarted;
 
 	// Token: 0x020005DF RID: 1503
-	// (Invoke) Token: 0x06002519 RID: 9497
+	// (Invoke) Token: 0x0600251C RID: 9500
 	public delegate bool Validate(bool choice);
 }

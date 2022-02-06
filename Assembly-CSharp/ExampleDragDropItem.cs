@@ -28,6 +28,6 @@ public class ExampleDragDropItem : UIDragDropItem
 		base.OnDragDropRelease(surface);
 	}
 
-	// Token: 0x04000292 RID: 658
+	// Token: 0x04000293 RID: 659
 	public GameObject prefab;
 }

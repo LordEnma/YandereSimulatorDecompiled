@@ -6,7 +6,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 	// Token: 0x0200053A RID: 1338
 	public class TiltInput : MonoBehaviour
 	{
-		// Token: 0x06002225 RID: 8741 RVA: 0x001ED0E8 File Offset: 0x001EB2E8
+		// Token: 0x06002228 RID: 8744 RVA: 0x001ED2EC File Offset: 0x001EB4EC
 		private void OnEnable()
 		{
 			if (this.mapping.type == TiltInput.AxisMapping.MappingType.NamedAxis)
@@ -16,7 +16,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002226 RID: 8742 RVA: 0x001ED118 File Offset: 0x001EB318
+		// Token: 0x06002229 RID: 8745 RVA: 0x001ED31C File Offset: 0x001EB51C
 		private void Update()
 		{
 			float value = 0f;
@@ -55,33 +55,33 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002227 RID: 8743 RVA: 0x001ED217 File Offset: 0x001EB417
+		// Token: 0x0600222A RID: 8746 RVA: 0x001ED41B File Offset: 0x001EB61B
 		private void OnDisable()
 		{
 			this.m_SteerAxis.Remove();
 		}
 
-		// Token: 0x04004A26 RID: 18982
+		// Token: 0x04004A29 RID: 18985
 		public TiltInput.AxisMapping mapping;
 
-		// Token: 0x04004A27 RID: 18983
+		// Token: 0x04004A2A RID: 18986
 		public TiltInput.AxisOptions tiltAroundAxis;
 
-		// Token: 0x04004A28 RID: 18984
+		// Token: 0x04004A2B RID: 18987
 		public float fullTiltAngle = 25f;
 
-		// Token: 0x04004A29 RID: 18985
+		// Token: 0x04004A2C RID: 18988
 		public float centreAngleOffset;
 
-		// Token: 0x04004A2A RID: 18986
+		// Token: 0x04004A2D RID: 18989
 		private CrossPlatformInputManager.VirtualAxis m_SteerAxis;
 
 		// Token: 0x02000686 RID: 1670
 		public enum AxisOptions
 		{
-			// Token: 0x04004FDE RID: 20446
+			// Token: 0x04004FE1 RID: 20449
 			ForwardAxis,
-			// Token: 0x04004FDF RID: 20447
+			// Token: 0x04004FE2 RID: 20450
 			SidewaysAxis
 		}
 
@@ -89,22 +89,22 @@ namespace UnityStandardAssets.CrossPlatformInput
 		[Serializable]
 		public class AxisMapping
 		{
-			// Token: 0x04004FE0 RID: 20448
+			// Token: 0x04004FE3 RID: 20451
 			public TiltInput.AxisMapping.MappingType type;
 
-			// Token: 0x04004FE1 RID: 20449
+			// Token: 0x04004FE4 RID: 20452
 			public string axisName;
 
 			// Token: 0x020006E9 RID: 1769
 			public enum MappingType
 			{
-				// Token: 0x040051DB RID: 20955
-				NamedAxis,
-				// Token: 0x040051DC RID: 20956
-				MousePositionX,
-				// Token: 0x040051DD RID: 20957
-				MousePositionY,
 				// Token: 0x040051DE RID: 20958
+				NamedAxis,
+				// Token: 0x040051DF RID: 20959
+				MousePositionX,
+				// Token: 0x040051E0 RID: 20960
+				MousePositionY,
+				// Token: 0x040051E1 RID: 20961
 				MousePositionZ
 			}
 		}

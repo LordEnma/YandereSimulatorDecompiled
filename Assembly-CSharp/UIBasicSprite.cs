@@ -953,89 +953,89 @@ public abstract class UIBasicSprite : UIWidget
 		cols.Add(col);
 	}
 
-	// Token: 0x040004FE RID: 1278
+	// Token: 0x040004FF RID: 1279
 	[HideInInspector]
 	[SerializeField]
 	protected UIBasicSprite.Type mType;
 
-	// Token: 0x040004FF RID: 1279
+	// Token: 0x04000500 RID: 1280
 	[HideInInspector]
 	[SerializeField]
 	protected UIBasicSprite.FillDirection mFillDirection = UIBasicSprite.FillDirection.Radial360;
 
-	// Token: 0x04000500 RID: 1280
+	// Token: 0x04000501 RID: 1281
 	[Range(0f, 1f)]
 	[HideInInspector]
 	[SerializeField]
 	protected float mFillAmount = 1f;
 
-	// Token: 0x04000501 RID: 1281
+	// Token: 0x04000502 RID: 1282
 	[HideInInspector]
 	[SerializeField]
 	protected bool mInvert;
 
-	// Token: 0x04000502 RID: 1282
+	// Token: 0x04000503 RID: 1283
 	[HideInInspector]
 	[SerializeField]
 	protected UIBasicSprite.Flip mFlip;
 
-	// Token: 0x04000503 RID: 1283
+	// Token: 0x04000504 RID: 1284
 	[HideInInspector]
 	[SerializeField]
 	protected bool mApplyGradient;
 
-	// Token: 0x04000504 RID: 1284
+	// Token: 0x04000505 RID: 1285
 	[HideInInspector]
 	[SerializeField]
 	protected Color mGradientTop = Color.white;
 
-	// Token: 0x04000505 RID: 1285
+	// Token: 0x04000506 RID: 1286
 	[HideInInspector]
 	[SerializeField]
 	protected Color mGradientBottom = new Color(0.7f, 0.7f, 0.7f);
 
-	// Token: 0x04000506 RID: 1286
+	// Token: 0x04000507 RID: 1287
 	[NonSerialized]
 	protected Rect mInnerUV;
 
-	// Token: 0x04000507 RID: 1287
+	// Token: 0x04000508 RID: 1288
 	[NonSerialized]
 	protected Rect mOuterUV;
 
-	// Token: 0x04000508 RID: 1288
+	// Token: 0x04000509 RID: 1289
 	public UIBasicSprite.AdvancedType centerType = UIBasicSprite.AdvancedType.Sliced;
 
-	// Token: 0x04000509 RID: 1289
+	// Token: 0x0400050A RID: 1290
 	public UIBasicSprite.AdvancedType leftType = UIBasicSprite.AdvancedType.Sliced;
 
-	// Token: 0x0400050A RID: 1290
+	// Token: 0x0400050B RID: 1291
 	public UIBasicSprite.AdvancedType rightType = UIBasicSprite.AdvancedType.Sliced;
 
-	// Token: 0x0400050B RID: 1291
+	// Token: 0x0400050C RID: 1292
 	public UIBasicSprite.AdvancedType bottomType = UIBasicSprite.AdvancedType.Sliced;
 
-	// Token: 0x0400050C RID: 1292
+	// Token: 0x0400050D RID: 1293
 	public UIBasicSprite.AdvancedType topType = UIBasicSprite.AdvancedType.Sliced;
 
-	// Token: 0x0400050D RID: 1293
+	// Token: 0x0400050E RID: 1294
 	protected static Vector2[] mTempPos = new Vector2[4];
 
-	// Token: 0x0400050E RID: 1294
+	// Token: 0x0400050F RID: 1295
 	protected static Vector2[] mTempUVs = new Vector2[4];
 
 	// Token: 0x020005EE RID: 1518
 	[DoNotObfuscateNGUI]
 	public enum Type
 	{
-		// Token: 0x04004D95 RID: 19861
-		Simple,
-		// Token: 0x04004D96 RID: 19862
-		Sliced,
-		// Token: 0x04004D97 RID: 19863
-		Tiled,
 		// Token: 0x04004D98 RID: 19864
-		Filled,
+		Simple,
 		// Token: 0x04004D99 RID: 19865
+		Sliced,
+		// Token: 0x04004D9A RID: 19866
+		Tiled,
+		// Token: 0x04004D9B RID: 19867
+		Filled,
+		// Token: 0x04004D9C RID: 19868
 		Advanced
 	}
 
@@ -1043,15 +1043,15 @@ public abstract class UIBasicSprite : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum FillDirection
 	{
-		// Token: 0x04004D9B RID: 19867
-		Horizontal,
-		// Token: 0x04004D9C RID: 19868
-		Vertical,
-		// Token: 0x04004D9D RID: 19869
-		Radial90,
 		// Token: 0x04004D9E RID: 19870
-		Radial180,
+		Horizontal,
 		// Token: 0x04004D9F RID: 19871
+		Vertical,
+		// Token: 0x04004DA0 RID: 19872
+		Radial90,
+		// Token: 0x04004DA1 RID: 19873
+		Radial180,
+		// Token: 0x04004DA2 RID: 19874
 		Radial360
 	}
 
@@ -1059,11 +1059,11 @@ public abstract class UIBasicSprite : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum AdvancedType
 	{
-		// Token: 0x04004DA1 RID: 19873
+		// Token: 0x04004DA4 RID: 19876
 		Invisible,
-		// Token: 0x04004DA2 RID: 19874
+		// Token: 0x04004DA5 RID: 19877
 		Sliced,
-		// Token: 0x04004DA3 RID: 19875
+		// Token: 0x04004DA6 RID: 19878
 		Tiled
 	}
 
@@ -1071,13 +1071,13 @@ public abstract class UIBasicSprite : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum Flip
 	{
-		// Token: 0x04004DA5 RID: 19877
-		Nothing,
-		// Token: 0x04004DA6 RID: 19878
-		Horizontally,
-		// Token: 0x04004DA7 RID: 19879
-		Vertically,
 		// Token: 0x04004DA8 RID: 19880
+		Nothing,
+		// Token: 0x04004DA9 RID: 19881
+		Horizontally,
+		// Token: 0x04004DAA RID: 19882
+		Vertically,
+		// Token: 0x04004DAB RID: 19883
 		Both
 	}
 }

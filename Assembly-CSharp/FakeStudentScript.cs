@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020002C1 RID: 705
 public class FakeStudentScript : MonoBehaviour
 {
-	// Token: 0x0600147C RID: 5244 RVA: 0x000C80A1 File Offset: 0x000C62A1
+	// Token: 0x0600147C RID: 5244 RVA: 0x000C8131 File Offset: 0x000C6331
 	private void Start()
 	{
 		this.targetRotation = base.transform.rotation;
 		this.Student.Club = this.Club;
 	}
 
-	// Token: 0x0600147D RID: 5245 RVA: 0x000C80C8 File Offset: 0x000C62C8
+	// Token: 0x0600147D RID: 5245 RVA: 0x000C8158 File Offset: 0x000C6358
 	private void Update()
 	{
 		if (!this.Student.Talking)
@@ -53,36 +53,36 @@ public class FakeStudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001FB0 RID: 8112
+	// Token: 0x04001FB2 RID: 8114
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001FB1 RID: 8113
+	// Token: 0x04001FB3 RID: 8115
 	public DialogueWheelScript DialogueWheel;
 
-	// Token: 0x04001FB2 RID: 8114
+	// Token: 0x04001FB4 RID: 8116
 	public SubtitleScript Subtitle;
 
-	// Token: 0x04001FB3 RID: 8115
+	// Token: 0x04001FB5 RID: 8117
 	public YandereScript Yandere;
 
-	// Token: 0x04001FB4 RID: 8116
+	// Token: 0x04001FB6 RID: 8118
 	public StudentScript Student;
 
-	// Token: 0x04001FB5 RID: 8117
+	// Token: 0x04001FB7 RID: 8119
 	public PromptScript Prompt;
 
-	// Token: 0x04001FB6 RID: 8118
+	// Token: 0x04001FB8 RID: 8120
 	public Quaternion targetRotation;
 
-	// Token: 0x04001FB7 RID: 8119
+	// Token: 0x04001FB9 RID: 8121
 	public float RotationTimer;
 
-	// Token: 0x04001FB8 RID: 8120
+	// Token: 0x04001FBA RID: 8122
 	public bool Rotate;
 
-	// Token: 0x04001FB9 RID: 8121
+	// Token: 0x04001FBB RID: 8123
 	public ClubType Club;
 
-	// Token: 0x04001FBA RID: 8122
+	// Token: 0x04001FBC RID: 8124
 	public string LeaderAnim;
 }

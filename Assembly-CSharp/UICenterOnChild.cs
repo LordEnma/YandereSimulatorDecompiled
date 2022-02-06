@@ -273,25 +273,25 @@ public class UICenterOnChild : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000314 RID: 788
+	// Token: 0x04000315 RID: 789
 	public float springStrength = 8f;
 
-	// Token: 0x04000315 RID: 789
+	// Token: 0x04000316 RID: 790
 	public float nextPageThreshold;
 
-	// Token: 0x04000316 RID: 790
+	// Token: 0x04000317 RID: 791
 	public SpringPanel.OnFinished onFinished;
 
-	// Token: 0x04000317 RID: 791
+	// Token: 0x04000318 RID: 792
 	public UICenterOnChild.OnCenterCallback onCenter;
 
-	// Token: 0x04000318 RID: 792
+	// Token: 0x04000319 RID: 793
 	private UIScrollView mScrollView;
 
-	// Token: 0x04000319 RID: 793
+	// Token: 0x0400031A RID: 794
 	private GameObject mCenteredObject;
 
 	// Token: 0x020005C4 RID: 1476
-	// (Invoke) Token: 0x060024F5 RID: 9461
+	// (Invoke) Token: 0x060024F8 RID: 9464
 	public delegate void OnCenterCallback(GameObject centeredObject);
 }

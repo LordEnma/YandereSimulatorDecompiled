@@ -410,40 +410,40 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 		}
 	}
 
-	// Token: 0x040005FD RID: 1533
+	// Token: 0x040005FE RID: 1534
 	[HideInInspector]
 	[SerializeField]
 	private Material material;
 
-	// Token: 0x040005FE RID: 1534
+	// Token: 0x040005FF RID: 1535
 	[HideInInspector]
 	[SerializeField]
 	private List<UISpriteData> mSprites = new List<UISpriteData>();
 
-	// Token: 0x040005FF RID: 1535
+	// Token: 0x04000600 RID: 1536
 	[HideInInspector]
 	[SerializeField]
 	private float mPixelSize = 1f;
 
-	// Token: 0x04000600 RID: 1536
+	// Token: 0x04000601 RID: 1537
 	[HideInInspector]
 	[SerializeField]
 	private UnityEngine.Object mReplacement;
 
-	// Token: 0x04000601 RID: 1537
+	// Token: 0x04000602 RID: 1538
 	[NonSerialized]
 	private int mPMA = -1;
 
-	// Token: 0x04000602 RID: 1538
+	// Token: 0x04000603 RID: 1539
 	[NonSerialized]
 	private Dictionary<string, int> mSpriteIndices = new Dictionary<string, int>();
 
 	// Token: 0x0200060A RID: 1546
 	private enum Coordinates
 	{
-		// Token: 0x04004DE5 RID: 19941
+		// Token: 0x04004DE8 RID: 19944
 		Pixels,
-		// Token: 0x04004DE6 RID: 19942
+		// Token: 0x04004DE9 RID: 19945
 		TexCoords
 	}
 }

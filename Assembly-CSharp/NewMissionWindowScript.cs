@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000375 RID: 885
 public class NewMissionWindowScript : MonoBehaviour
 {
-	// Token: 0x060019D0 RID: 6608 RVA: 0x00109BA0 File Offset: 0x00107DA0
+	// Token: 0x060019D2 RID: 6610 RVA: 0x00109CAC File Offset: 0x00107EAC
 	private void Start()
 	{
 		this.UpdateHighlight();
@@ -18,7 +18,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.DifficultyOptions.localScale = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x060019D1 RID: 6609 RVA: 0x00109C24 File Offset: 0x00107E24
+	// Token: 0x060019D3 RID: 6611 RVA: 0x00109D30 File Offset: 0x00107F30
 	private void ChangeFont(UILabel Text)
 	{
 		Text.trueTypeFont = this.Arial;
@@ -28,7 +28,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019D2 RID: 6610 RVA: 0x00109C48 File Offset: 0x00107E48
+	// Token: 0x060019D4 RID: 6612 RVA: 0x00109D54 File Offset: 0x00107F54
 	private void Update()
 	{
 		if (!this.ChangingDifficulty)
@@ -261,7 +261,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.UpdateNemesisList();
 	}
 
-	// Token: 0x060019D3 RID: 6611 RVA: 0x0010AB68 File Offset: 0x00108D68
+	// Token: 0x060019D5 RID: 6613 RVA: 0x0010AC74 File Offset: 0x00108E74
 	private void Increment(int Number)
 	{
 		this.Target[this.Column + Number]++;
@@ -296,7 +296,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.Portrait[this.Column + Number].mainTexture = www.texture;
 	}
 
-	// Token: 0x060019D4 RID: 6612 RVA: 0x0010ACCC File Offset: 0x00108ECC
+	// Token: 0x060019D6 RID: 6614 RVA: 0x0010ADD8 File Offset: 0x00108FD8
 	private void Decrement(int Number)
 	{
 		this.Target[this.Column + Number]--;
@@ -335,7 +335,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.Portrait[this.Column + Number].mainTexture = www.texture;
 	}
 
-	// Token: 0x060019D5 RID: 6613 RVA: 0x0010AE74 File Offset: 0x00109074
+	// Token: 0x060019D7 RID: 6615 RVA: 0x0010AF80 File Offset: 0x00109180
 	private void Randomize()
 	{
 		int i;
@@ -362,7 +362,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.Column = 2;
 	}
 
-	// Token: 0x060019D6 RID: 6614 RVA: 0x0010B004 File Offset: 0x00109204
+	// Token: 0x060019D8 RID: 6616 RVA: 0x0010B110 File Offset: 0x00109310
 	public void UpdateHighlight()
 	{
 		this.MissionModeMenu.PromptBar.Label[0].text = "";
@@ -435,7 +435,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.MissionModeMenu.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x060019D7 RID: 6615 RVA: 0x0010B230 File Offset: 0x00109430
+	// Token: 0x060019D9 RID: 6617 RVA: 0x0010B33C File Offset: 0x0010953C
 	private void SaveInfo()
 	{
 		for (int i = 1; i < 11; i++)
@@ -447,7 +447,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		MissionModeGlobals.NemesisAggression = this.NemesisAggression;
 	}
 
-	// Token: 0x060019D8 RID: 6616 RVA: 0x0010B29C File Offset: 0x0010949C
+	// Token: 0x060019DA RID: 6618 RVA: 0x0010B3A8 File Offset: 0x001095A8
 	public void FillOutInfo()
 	{
 		for (int i = 1; i < 11; i++)
@@ -478,7 +478,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019D9 RID: 6617 RVA: 0x0010B3EE File Offset: 0x001095EE
+	// Token: 0x060019DB RID: 6619 RVA: 0x0010B4FA File Offset: 0x001096FA
 	public void HideButtons()
 	{
 		this.Button[0].SetActive(false);
@@ -487,7 +487,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.Button[3].SetActive(false);
 	}
 
-	// Token: 0x060019DA RID: 6618 RVA: 0x0010B428 File Offset: 0x00109628
+	// Token: 0x060019DC RID: 6620 RVA: 0x0010B534 File Offset: 0x00109734
 	private void UpdateNemesisDifficulty()
 	{
 		if (this.NemesisDifficulty < 0)
@@ -507,7 +507,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.NemesisPortrait.mainTexture = ((this.NemesisDifficulty > 2) ? this.AnonymousPortrait : this.NemesisGraphic);
 	}
 
-	// Token: 0x060019DB RID: 6619 RVA: 0x0010B4A4 File Offset: 0x001096A4
+	// Token: 0x060019DD RID: 6621 RVA: 0x0010B5B0 File Offset: 0x001097B0
 	private void UpdateNemesisList()
 	{
 		if (this.NemesisDifficulty == 0)
@@ -548,84 +548,84 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.NemesisObjectives[4].localScale = Vector3.Lerp(this.NemesisObjectives[4].localScale, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
 	}
 
-	// Token: 0x04002975 RID: 10613
+	// Token: 0x04002978 RID: 10616
 	public MissionModeMenuScript MissionModeMenu;
 
-	// Token: 0x04002976 RID: 10614
+	// Token: 0x04002979 RID: 10617
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002977 RID: 10615
+	// Token: 0x0400297A RID: 10618
 	public JsonScript JSON;
 
-	// Token: 0x04002978 RID: 10616
+	// Token: 0x0400297B RID: 10619
 	public GameObject[] DeathSkulls;
 
-	// Token: 0x04002979 RID: 10617
+	// Token: 0x0400297C RID: 10620
 	public GameObject[] Button;
 
-	// Token: 0x0400297A RID: 10618
+	// Token: 0x0400297D RID: 10621
 	public UILabel[] MethodLabel;
 
-	// Token: 0x0400297B RID: 10619
+	// Token: 0x0400297E RID: 10622
 	public UILabel[] NameLabel;
 
-	// Token: 0x0400297C RID: 10620
+	// Token: 0x0400297F RID: 10623
 	public UITexture[] Portrait;
 
-	// Token: 0x0400297D RID: 10621
+	// Token: 0x04002980 RID: 10624
 	public bool ChangingDifficulty;
 
-	// Token: 0x0400297E RID: 10622
+	// Token: 0x04002981 RID: 10625
 	public int[] UnsafeNumbers;
 
-	// Token: 0x0400297F RID: 10623
+	// Token: 0x04002982 RID: 10626
 	public int[] Target;
 
-	// Token: 0x04002980 RID: 10624
+	// Token: 0x04002983 RID: 10627
 	public int[] Method;
 
-	// Token: 0x04002981 RID: 10625
+	// Token: 0x04002984 RID: 10628
 	public string[] MethodNames;
 
-	// Token: 0x04002982 RID: 10626
+	// Token: 0x04002985 RID: 10629
 	public int Selected;
 
-	// Token: 0x04002983 RID: 10627
+	// Token: 0x04002986 RID: 10630
 	public int Column;
 
-	// Token: 0x04002984 RID: 10628
+	// Token: 0x04002987 RID: 10631
 	public int Row;
 
-	// Token: 0x04002985 RID: 10629
+	// Token: 0x04002988 RID: 10632
 	public Transform DifficultyOptions;
 
-	// Token: 0x04002986 RID: 10630
+	// Token: 0x04002989 RID: 10633
 	public Transform Highlight;
 
-	// Token: 0x04002987 RID: 10631
+	// Token: 0x0400298A RID: 10634
 	public Texture BlankPortrait;
 
-	// Token: 0x04002988 RID: 10632
+	// Token: 0x0400298B RID: 10635
 	public Font Arial;
 
-	// Token: 0x04002989 RID: 10633
+	// Token: 0x0400298C RID: 10636
 	public int NemesisDifficulty;
 
-	// Token: 0x0400298A RID: 10634
+	// Token: 0x0400298D RID: 10637
 	public bool NemesisAggression;
 
-	// Token: 0x0400298B RID: 10635
+	// Token: 0x0400298E RID: 10638
 	public UILabel NemesisLabel;
 
-	// Token: 0x0400298C RID: 10636
+	// Token: 0x0400298F RID: 10639
 	public UITexture NemesisPortrait;
 
-	// Token: 0x0400298D RID: 10637
+	// Token: 0x04002990 RID: 10640
 	public Texture AnonymousPortrait;
 
-	// Token: 0x0400298E RID: 10638
+	// Token: 0x04002991 RID: 10641
 	public Texture NemesisGraphic;
 
-	// Token: 0x0400298F RID: 10639
+	// Token: 0x04002992 RID: 10642
 	public Transform[] NemesisObjectives;
 }

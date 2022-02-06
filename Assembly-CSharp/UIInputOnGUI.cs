@@ -20,7 +20,7 @@ public class UIInputOnGUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040006E3 RID: 1763
+	// Token: 0x040006E4 RID: 1764
 	[NonSerialized]
 	private UIInput mInput;
 }

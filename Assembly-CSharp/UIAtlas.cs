@@ -471,41 +471,41 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 		return false;
 	}
 
-	// Token: 0x0400062A RID: 1578
+	// Token: 0x0400062B RID: 1579
 	[HideInInspector]
 	[SerializeField]
 	private Material material;
 
-	// Token: 0x0400062B RID: 1579
+	// Token: 0x0400062C RID: 1580
 	[HideInInspector]
 	[SerializeField]
 	private List<UISpriteData> mSprites = new List<UISpriteData>();
 
-	// Token: 0x0400062C RID: 1580
+	// Token: 0x0400062D RID: 1581
 	[HideInInspector]
 	[SerializeField]
 	private float mPixelSize = 1f;
 
-	// Token: 0x0400062D RID: 1581
+	// Token: 0x0400062E RID: 1582
 	[HideInInspector]
 	[SerializeField]
 	private UnityEngine.Object mReplacement;
 
-	// Token: 0x0400062E RID: 1582
+	// Token: 0x0400062F RID: 1583
 	[HideInInspector]
 	[SerializeField]
 	private UIAtlas.Coordinates mCoordinates;
 
-	// Token: 0x0400062F RID: 1583
+	// Token: 0x04000630 RID: 1584
 	[HideInInspector]
 	[SerializeField]
 	private List<UIAtlas.Sprite> sprites = new List<UIAtlas.Sprite>();
 
-	// Token: 0x04000630 RID: 1584
+	// Token: 0x04000631 RID: 1585
 	[NonSerialized]
 	private int mPMA = -1;
 
-	// Token: 0x04000631 RID: 1585
+	// Token: 0x04000632 RID: 1586
 	[NonSerialized]
 	private Dictionary<string, int> mSpriteIndices = new Dictionary<string, int>();
 
@@ -513,8 +513,8 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 	[Serializable]
 	private class Sprite
 	{
-		// Token: 0x17000542 RID: 1346
-		// (get) Token: 0x06002587 RID: 9607 RVA: 0x001FC6E0 File Offset: 0x001FA8E0
+		// Token: 0x17000543 RID: 1347
+		// (get) Token: 0x0600258A RID: 9610 RVA: 0x001FC8E4 File Offset: 0x001FAAE4
 		public bool hasPadding
 		{
 			get
@@ -523,37 +523,37 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 			}
 		}
 
-		// Token: 0x04004DF3 RID: 19955
+		// Token: 0x04004DF6 RID: 19958
 		public string name = "Unity Bug";
 
-		// Token: 0x04004DF4 RID: 19956
+		// Token: 0x04004DF7 RID: 19959
 		public Rect outer = new Rect(0f, 0f, 1f, 1f);
 
-		// Token: 0x04004DF5 RID: 19957
+		// Token: 0x04004DF8 RID: 19960
 		public Rect inner = new Rect(0f, 0f, 1f, 1f);
 
-		// Token: 0x04004DF6 RID: 19958
+		// Token: 0x04004DF9 RID: 19961
 		public bool rotated;
 
-		// Token: 0x04004DF7 RID: 19959
+		// Token: 0x04004DFA RID: 19962
 		public float paddingLeft;
 
-		// Token: 0x04004DF8 RID: 19960
+		// Token: 0x04004DFB RID: 19963
 		public float paddingRight;
 
-		// Token: 0x04004DF9 RID: 19961
+		// Token: 0x04004DFC RID: 19964
 		public float paddingTop;
 
-		// Token: 0x04004DFA RID: 19962
+		// Token: 0x04004DFD RID: 19965
 		public float paddingBottom;
 	}
 
 	// Token: 0x0200060E RID: 1550
 	private enum Coordinates
 	{
-		// Token: 0x04004DFC RID: 19964
+		// Token: 0x04004DFF RID: 19967
 		Pixels,
-		// Token: 0x04004DFD RID: 19965
+		// Token: 0x04004E00 RID: 19968
 		TexCoords
 	}
 }

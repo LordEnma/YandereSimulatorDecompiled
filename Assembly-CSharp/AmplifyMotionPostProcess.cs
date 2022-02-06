@@ -30,6 +30,6 @@ public sealed class AmplifyMotionPostProcess : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040007FF RID: 2047
+	// Token: 0x04000800 RID: 2048
 	private AmplifyMotionEffectBase m_instance;
 }

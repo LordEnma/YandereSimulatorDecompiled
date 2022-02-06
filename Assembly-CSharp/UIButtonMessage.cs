@@ -91,36 +91,36 @@ public class UIButtonMessage : MonoBehaviour
 		this.target.SendMessage(this.functionName, base.gameObject, SendMessageOptions.DontRequireReceiver);
 	}
 
-	// Token: 0x040002FC RID: 764
+	// Token: 0x040002FD RID: 765
 	public GameObject target;
 
-	// Token: 0x040002FD RID: 765
+	// Token: 0x040002FE RID: 766
 	public string functionName;
 
-	// Token: 0x040002FE RID: 766
+	// Token: 0x040002FF RID: 767
 	public UIButtonMessage.Trigger trigger;
 
-	// Token: 0x040002FF RID: 767
+	// Token: 0x04000300 RID: 768
 	public bool includeChildren;
 
-	// Token: 0x04000300 RID: 768
+	// Token: 0x04000301 RID: 769
 	private bool mStarted;
 
 	// Token: 0x020005C3 RID: 1475
 	[DoNotObfuscateNGUI]
 	public enum Trigger
 	{
-		// Token: 0x04004D06 RID: 19718
-		OnClick,
-		// Token: 0x04004D07 RID: 19719
-		OnMouseOver,
-		// Token: 0x04004D08 RID: 19720
-		OnMouseOut,
 		// Token: 0x04004D09 RID: 19721
-		OnPress,
+		OnClick,
 		// Token: 0x04004D0A RID: 19722
-		OnRelease,
+		OnMouseOver,
 		// Token: 0x04004D0B RID: 19723
+		OnMouseOut,
+		// Token: 0x04004D0C RID: 19724
+		OnPress,
+		// Token: 0x04004D0D RID: 19725
+		OnRelease,
+		// Token: 0x04004D0E RID: 19726
 		OnDoubleClick
 	}
 }

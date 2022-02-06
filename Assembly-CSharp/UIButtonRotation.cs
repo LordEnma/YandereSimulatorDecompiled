@@ -77,21 +77,21 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000308 RID: 776
+	// Token: 0x04000309 RID: 777
 	public Transform tweenTarget;
 
-	// Token: 0x04000309 RID: 777
+	// Token: 0x0400030A RID: 778
 	public Vector3 hover = Vector3.zero;
 
-	// Token: 0x0400030A RID: 778
+	// Token: 0x0400030B RID: 779
 	public Vector3 pressed = Vector3.zero;
 
-	// Token: 0x0400030B RID: 779
+	// Token: 0x0400030C RID: 780
 	public float duration = 0.2f;
 
-	// Token: 0x0400030C RID: 780
+	// Token: 0x0400030D RID: 781
 	private Quaternion mRot;
 
-	// Token: 0x0400030D RID: 781
+	// Token: 0x0400030E RID: 782
 	private bool mStarted;
 }

@@ -118,15 +118,15 @@ public class UISavedOption : MonoBehaviour
 		PlayerPrefs.SetFloat(this.key, UIProgressBar.current.value);
 	}
 
-	// Token: 0x0400040A RID: 1034
+	// Token: 0x0400040B RID: 1035
 	public string keyName;
 
-	// Token: 0x0400040B RID: 1035
+	// Token: 0x0400040C RID: 1036
 	private UIPopupList mList;
 
-	// Token: 0x0400040C RID: 1036
+	// Token: 0x0400040D RID: 1037
 	private UIToggle mCheck;
 
-	// Token: 0x0400040D RID: 1037
+	// Token: 0x0400040E RID: 1038
 	private UIProgressBar mSlider;
 }

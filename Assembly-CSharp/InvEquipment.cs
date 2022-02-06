@@ -152,9 +152,9 @@ public class InvEquipment : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x04000283 RID: 643
+	// Token: 0x04000284 RID: 644
 	private InvGameItem[] mItems;
 
-	// Token: 0x04000284 RID: 644
+	// Token: 0x04000285 RID: 645
 	private InvAttachmentPoint[] mAttachments;
 }

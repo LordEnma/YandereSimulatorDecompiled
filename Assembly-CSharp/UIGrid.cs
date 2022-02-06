@@ -300,66 +300,66 @@ public class UIGrid : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x0400037D RID: 893
+	// Token: 0x0400037E RID: 894
 	public UIGrid.Arrangement arrangement;
 
-	// Token: 0x0400037E RID: 894
+	// Token: 0x0400037F RID: 895
 	public UIGrid.Sorting sorting;
 
-	// Token: 0x0400037F RID: 895
+	// Token: 0x04000380 RID: 896
 	public UIWidget.Pivot pivot;
 
-	// Token: 0x04000380 RID: 896
+	// Token: 0x04000381 RID: 897
 	public int maxPerLine;
 
-	// Token: 0x04000381 RID: 897
+	// Token: 0x04000382 RID: 898
 	public float cellWidth = 200f;
 
-	// Token: 0x04000382 RID: 898
+	// Token: 0x04000383 RID: 899
 	public float cellHeight = 200f;
 
-	// Token: 0x04000383 RID: 899
+	// Token: 0x04000384 RID: 900
 	public bool animateSmoothly;
 
-	// Token: 0x04000384 RID: 900
+	// Token: 0x04000385 RID: 901
 	public bool hideInactive;
 
-	// Token: 0x04000385 RID: 901
+	// Token: 0x04000386 RID: 902
 	public bool keepWithinPanel;
 
-	// Token: 0x04000386 RID: 902
+	// Token: 0x04000387 RID: 903
 	public UIGrid.OnReposition onReposition;
 
-	// Token: 0x04000387 RID: 903
+	// Token: 0x04000388 RID: 904
 	public Comparison<Transform> onCustomSort;
 
-	// Token: 0x04000388 RID: 904
+	// Token: 0x04000389 RID: 905
 	[HideInInspector]
 	[SerializeField]
 	private bool sorted;
 
-	// Token: 0x04000389 RID: 905
+	// Token: 0x0400038A RID: 906
 	protected bool mReposition;
 
-	// Token: 0x0400038A RID: 906
+	// Token: 0x0400038B RID: 907
 	protected UIPanel mPanel;
 
-	// Token: 0x0400038B RID: 907
+	// Token: 0x0400038C RID: 908
 	protected bool mInitDone;
 
 	// Token: 0x020005C7 RID: 1479
-	// (Invoke) Token: 0x060024F9 RID: 9465
+	// (Invoke) Token: 0x060024FC RID: 9468
 	public delegate void OnReposition();
 
 	// Token: 0x020005C8 RID: 1480
 	[DoNotObfuscateNGUI]
 	public enum Arrangement
 	{
-		// Token: 0x04004D16 RID: 19734
+		// Token: 0x04004D19 RID: 19737
 		Horizontal,
-		// Token: 0x04004D17 RID: 19735
+		// Token: 0x04004D1A RID: 19738
 		Vertical,
-		// Token: 0x04004D18 RID: 19736
+		// Token: 0x04004D1B RID: 19739
 		CellSnap
 	}
 
@@ -367,15 +367,15 @@ public class UIGrid : UIWidgetContainer
 	[DoNotObfuscateNGUI]
 	public enum Sorting
 	{
-		// Token: 0x04004D1A RID: 19738
-		None,
-		// Token: 0x04004D1B RID: 19739
-		Alphabetic,
-		// Token: 0x04004D1C RID: 19740
-		Horizontal,
 		// Token: 0x04004D1D RID: 19741
-		Vertical,
+		None,
 		// Token: 0x04004D1E RID: 19742
+		Alphabetic,
+		// Token: 0x04004D1F RID: 19743
+		Horizontal,
+		// Token: 0x04004D20 RID: 19744
+		Vertical,
+		// Token: 0x04004D21 RID: 19745
 		Custom
 	}
 }

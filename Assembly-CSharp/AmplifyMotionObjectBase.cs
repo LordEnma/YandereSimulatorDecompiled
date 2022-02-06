@@ -249,41 +249,41 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040007F7 RID: 2039
+	// Token: 0x040007F8 RID: 2040
 	internal static bool ApplyToChildren = true;
 
-	// Token: 0x040007F8 RID: 2040
+	// Token: 0x040007F9 RID: 2041
 	[SerializeField]
 	private bool m_applyToChildren = AmplifyMotionObjectBase.ApplyToChildren;
 
-	// Token: 0x040007F9 RID: 2041
+	// Token: 0x040007FA RID: 2042
 	private ObjectType m_type;
 
-	// Token: 0x040007FA RID: 2042
+	// Token: 0x040007FB RID: 2043
 	private Dictionary<Camera, MotionState> m_states = new Dictionary<Camera, MotionState>();
 
-	// Token: 0x040007FB RID: 2043
+	// Token: 0x040007FC RID: 2044
 	private bool m_fixedStep;
 
-	// Token: 0x040007FC RID: 2044
+	// Token: 0x040007FD RID: 2045
 	private int m_objectId;
 
-	// Token: 0x040007FD RID: 2045
+	// Token: 0x040007FE RID: 2046
 	private Vector3 m_lastPosition = Vector3.zero;
 
-	// Token: 0x040007FE RID: 2046
+	// Token: 0x040007FF RID: 2047
 	private int m_resetAtFrame = -1;
 
 	// Token: 0x02000643 RID: 1603
 	public enum MinMaxCurveState
 	{
-		// Token: 0x04004E7E RID: 20094
-		Scalar,
-		// Token: 0x04004E7F RID: 20095
-		Curve,
-		// Token: 0x04004E80 RID: 20096
-		TwoCurves,
 		// Token: 0x04004E81 RID: 20097
+		Scalar,
+		// Token: 0x04004E82 RID: 20098
+		Curve,
+		// Token: 0x04004E83 RID: 20099
+		TwoCurves,
+		// Token: 0x04004E84 RID: 20100
 		TwoScalars
 	}
 }

@@ -173,30 +173,30 @@ public abstract class UIItemSlot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400025D RID: 605
+	// Token: 0x0400025E RID: 606
 	public UISprite icon;
 
-	// Token: 0x0400025E RID: 606
+	// Token: 0x0400025F RID: 607
 	public UIWidget background;
 
-	// Token: 0x0400025F RID: 607
+	// Token: 0x04000260 RID: 608
 	public UILabel label;
 
-	// Token: 0x04000260 RID: 608
+	// Token: 0x04000261 RID: 609
 	public AudioClip grabSound;
 
-	// Token: 0x04000261 RID: 609
+	// Token: 0x04000262 RID: 610
 	public AudioClip placeSound;
 
-	// Token: 0x04000262 RID: 610
+	// Token: 0x04000263 RID: 611
 	public AudioClip errorSound;
 
-	// Token: 0x04000263 RID: 611
+	// Token: 0x04000264 RID: 612
 	private InvGameItem mItem;
 
-	// Token: 0x04000264 RID: 612
+	// Token: 0x04000265 RID: 613
 	private string mText = "";
 
-	// Token: 0x04000265 RID: 613
+	// Token: 0x04000266 RID: 614
 	private static InvGameItem mDraggedItem;
 }
