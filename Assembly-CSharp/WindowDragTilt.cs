@@ -22,18 +22,18 @@ public class WindowDragTilt : MonoBehaviour
 		this.mTrans.localRotation = Quaternion.Euler(0f, 0f, -this.mAngle);
 	}
 
-	// Token: 0x040002BF RID: 703
+	// Token: 0x040002C0 RID: 704
 	public int updateOrder;
 
-	// Token: 0x040002C0 RID: 704
+	// Token: 0x040002C1 RID: 705
 	public float degrees = 30f;
 
-	// Token: 0x040002C1 RID: 705
+	// Token: 0x040002C2 RID: 706
 	private Vector3 mLastPos;
 
-	// Token: 0x040002C2 RID: 706
+	// Token: 0x040002C3 RID: 707
 	private Transform mTrans;
 
-	// Token: 0x040002C3 RID: 707
+	// Token: 0x040002C4 RID: 708
 	private float mAngle;
 }

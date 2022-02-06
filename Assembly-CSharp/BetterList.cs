@@ -238,13 +238,13 @@ public class BetterList<T>
 		}
 	}
 
-	// Token: 0x0400049A RID: 1178
+	// Token: 0x0400049B RID: 1179
 	public T[] buffer;
 
-	// Token: 0x0400049B RID: 1179
+	// Token: 0x0400049C RID: 1180
 	public int size;
 
 	// Token: 0x020005E1 RID: 1505
-	// (Invoke) Token: 0x06002521 RID: 9505
+	// (Invoke) Token: 0x06002524 RID: 9508
 	public delegate int CompareFunc(T left, T right);
 }

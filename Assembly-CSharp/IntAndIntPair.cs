@@ -4,12 +4,12 @@
 [Serializable]
 public class IntAndIntPair : SerializablePair<int, int>
 {
-	// Token: 0x06001F6F RID: 8047 RVA: 0x001B9591 File Offset: 0x001B7791
+	// Token: 0x06001F72 RID: 8050 RVA: 0x001B97B1 File Offset: 0x001B79B1
 	public IntAndIntPair(int first, int second) : base(first, second)
 	{
 	}
 
-	// Token: 0x06001F70 RID: 8048 RVA: 0x001B959B File Offset: 0x001B779B
+	// Token: 0x06001F73 RID: 8051 RVA: 0x001B97BB File Offset: 0x001B79BB
 	public IntAndIntPair() : base(0, 0)
 	{
 	}

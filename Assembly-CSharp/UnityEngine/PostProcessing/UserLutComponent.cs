@@ -5,8 +5,8 @@ namespace UnityEngine.PostProcessing
 	// Token: 0x0200055F RID: 1375
 	public sealed class UserLutComponent : PostProcessingComponentRenderTexture<UserLutModel>
 	{
-		// Token: 0x170004FC RID: 1276
-		// (get) Token: 0x06002314 RID: 8980 RVA: 0x001F31D4 File Offset: 0x001F13D4
+		// Token: 0x170004FD RID: 1277
+		// (get) Token: 0x06002317 RID: 8983 RVA: 0x001F33D8 File Offset: 0x001F15D8
 		public override bool active
 		{
 			get
@@ -16,7 +16,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002315 RID: 8981 RVA: 0x001F3244 File Offset: 0x001F1444
+		// Token: 0x06002318 RID: 8984 RVA: 0x001F3448 File Offset: 0x001F1648
 		public override void Prepare(Material uberMaterial)
 		{
 			UserLutModel.Settings settings = base.model.settings;
@@ -25,7 +25,7 @@ namespace UnityEngine.PostProcessing
 			uberMaterial.SetVector(UserLutComponent.Uniforms._UserLut_Params, new Vector4(1f / (float)settings.lut.width, 1f / (float)settings.lut.height, (float)settings.lut.height - 1f, settings.contribution));
 		}
 
-		// Token: 0x06002316 RID: 8982 RVA: 0x001F32C8 File Offset: 0x001F14C8
+		// Token: 0x06002319 RID: 8985 RVA: 0x001F34CC File Offset: 0x001F16CC
 		public void OnGUI()
 		{
 			UserLutModel.Settings settings = base.model.settings;
@@ -35,10 +35,10 @@ namespace UnityEngine.PostProcessing
 		// Token: 0x020006A2 RID: 1698
 		private static class Uniforms
 		{
-			// Token: 0x040050AB RID: 20651
+			// Token: 0x040050AE RID: 20654
 			internal static readonly int _UserLut = Shader.PropertyToID("_UserLut");
 
-			// Token: 0x040050AC RID: 20652
+			// Token: 0x040050AF RID: 20655
 			internal static readonly int _UserLut_Params = Shader.PropertyToID("_UserLut_Params");
 		}
 	}

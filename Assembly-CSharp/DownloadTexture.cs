@@ -35,12 +35,12 @@ public class DownloadTexture : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400028F RID: 655
+	// Token: 0x04000290 RID: 656
 	public string url = "http://www.yourwebsite.com/logo.png";
 
-	// Token: 0x04000290 RID: 656
+	// Token: 0x04000291 RID: 657
 	public bool pixelPerfect = true;
 
-	// Token: 0x04000291 RID: 657
+	// Token: 0x04000292 RID: 658
 	private Texture2D mTex;
 }

@@ -154,24 +154,24 @@ public class TweenColor : UITweener
 		this.value = this.to;
 	}
 
-	// Token: 0x040005AB RID: 1451
+	// Token: 0x040005AC RID: 1452
 	public Color from = Color.white;
 
-	// Token: 0x040005AC RID: 1452
+	// Token: 0x040005AD RID: 1453
 	public Color to = Color.white;
 
-	// Token: 0x040005AD RID: 1453
+	// Token: 0x040005AE RID: 1454
 	private bool mCached;
 
-	// Token: 0x040005AE RID: 1454
+	// Token: 0x040005AF RID: 1455
 	private UIWidget mWidget;
 
-	// Token: 0x040005AF RID: 1455
+	// Token: 0x040005B0 RID: 1456
 	private Material mMat;
 
-	// Token: 0x040005B0 RID: 1456
+	// Token: 0x040005B1 RID: 1457
 	private Light mLight;
 
-	// Token: 0x040005B1 RID: 1457
+	// Token: 0x040005B2 RID: 1458
 	private SpriteRenderer mSr;
 }

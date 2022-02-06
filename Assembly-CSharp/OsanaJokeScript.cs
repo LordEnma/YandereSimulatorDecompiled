@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000384 RID: 900
 public class OsanaJokeScript : MonoBehaviour
 {
-	// Token: 0x06001A1E RID: 6686 RVA: 0x001140A0 File Offset: 0x001122A0
+	// Token: 0x06001A20 RID: 6688 RVA: 0x001141B8 File Offset: 0x001123B8
 	private void Update()
 	{
 		if (this.Advance)
@@ -45,33 +45,33 @@ public class OsanaJokeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002A9A RID: 10906
+	// Token: 0x04002A9D RID: 10909
 	public ConstantRandomRotation[] Rotation;
 
-	// Token: 0x04002A9B RID: 10907
+	// Token: 0x04002A9E RID: 10910
 	public GameObject BloodSplatterEffect;
 
-	// Token: 0x04002A9C RID: 10908
+	// Token: 0x04002A9F RID: 10911
 	public AudioClip BloodSplatterSFX;
 
-	// Token: 0x04002A9D RID: 10909
+	// Token: 0x04002AA0 RID: 10912
 	public AudioClip VictoryMusic;
 
-	// Token: 0x04002A9E RID: 10910
+	// Token: 0x04002AA1 RID: 10913
 	public AudioSource Jukebox;
 
-	// Token: 0x04002A9F RID: 10911
+	// Token: 0x04002AA2 RID: 10914
 	public Transform Head;
 
-	// Token: 0x04002AA0 RID: 10912
+	// Token: 0x04002AA3 RID: 10915
 	public UILabel Label;
 
-	// Token: 0x04002AA1 RID: 10913
+	// Token: 0x04002AA4 RID: 10916
 	public bool Advance;
 
-	// Token: 0x04002AA2 RID: 10914
+	// Token: 0x04002AA5 RID: 10917
 	public float Timer;
 
-	// Token: 0x04002AA3 RID: 10915
+	// Token: 0x04002AA6 RID: 10918
 	public int ID;
 }

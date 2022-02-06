@@ -11,9 +11,9 @@ public class MinMaxRangeAttribute : PropertyAttribute
 		this.maxLimit = maxLimit;
 	}
 
-	// Token: 0x040004B4 RID: 1204
+	// Token: 0x040004B5 RID: 1205
 	public float minLimit;
 
-	// Token: 0x040004B5 RID: 1205
+	// Token: 0x040004B6 RID: 1206
 	public float maxLimit;
 }

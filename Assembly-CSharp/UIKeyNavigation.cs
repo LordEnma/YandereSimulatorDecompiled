@@ -304,51 +304,51 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000399 RID: 921
+	// Token: 0x0400039A RID: 922
 	public static BetterList<UIKeyNavigation> list = new BetterList<UIKeyNavigation>();
 
-	// Token: 0x0400039A RID: 922
+	// Token: 0x0400039B RID: 923
 	public UIKeyNavigation.Constraint constraint;
 
-	// Token: 0x0400039B RID: 923
+	// Token: 0x0400039C RID: 924
 	public GameObject onUp;
 
-	// Token: 0x0400039C RID: 924
+	// Token: 0x0400039D RID: 925
 	public GameObject onDown;
 
-	// Token: 0x0400039D RID: 925
+	// Token: 0x0400039E RID: 926
 	public GameObject onLeft;
 
-	// Token: 0x0400039E RID: 926
+	// Token: 0x0400039F RID: 927
 	public GameObject onRight;
 
-	// Token: 0x0400039F RID: 927
+	// Token: 0x040003A0 RID: 928
 	public GameObject onClick;
 
-	// Token: 0x040003A0 RID: 928
+	// Token: 0x040003A1 RID: 929
 	public GameObject onTab;
 
-	// Token: 0x040003A1 RID: 929
+	// Token: 0x040003A2 RID: 930
 	public bool startsSelected;
 
-	// Token: 0x040003A2 RID: 930
+	// Token: 0x040003A3 RID: 931
 	[NonSerialized]
 	private bool mStarted;
 
-	// Token: 0x040003A3 RID: 931
+	// Token: 0x040003A4 RID: 932
 	public static int mLastFrame = 0;
 
 	// Token: 0x020005CC RID: 1484
 	[DoNotObfuscateNGUI]
 	public enum Constraint
 	{
-		// Token: 0x04004D2A RID: 19754
-		None,
-		// Token: 0x04004D2B RID: 19755
-		Vertical,
-		// Token: 0x04004D2C RID: 19756
-		Horizontal,
 		// Token: 0x04004D2D RID: 19757
+		None,
+		// Token: 0x04004D2E RID: 19758
+		Vertical,
+		// Token: 0x04004D2F RID: 19759
+		Horizontal,
+		// Token: 0x04004D30 RID: 19760
 		Explicit
 	}
 }

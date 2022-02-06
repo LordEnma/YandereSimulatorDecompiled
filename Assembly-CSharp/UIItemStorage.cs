@@ -79,27 +79,27 @@ public class UIItemStorage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000266 RID: 614
+	// Token: 0x04000267 RID: 615
 	public int maxItemCount = 8;
 
-	// Token: 0x04000267 RID: 615
+	// Token: 0x04000268 RID: 616
 	public int maxRows = 4;
 
-	// Token: 0x04000268 RID: 616
+	// Token: 0x04000269 RID: 617
 	public int maxColumns = 4;
 
-	// Token: 0x04000269 RID: 617
+	// Token: 0x0400026A RID: 618
 	public GameObject template;
 
-	// Token: 0x0400026A RID: 618
+	// Token: 0x0400026B RID: 619
 	public UIWidget background;
 
-	// Token: 0x0400026B RID: 619
+	// Token: 0x0400026C RID: 620
 	public int spacing = 128;
 
-	// Token: 0x0400026C RID: 620
+	// Token: 0x0400026D RID: 621
 	public int padding = 10;
 
-	// Token: 0x0400026D RID: 621
+	// Token: 0x0400026E RID: 622
 	private List<InvGameItem> mItems = new List<InvGameItem>();
 }

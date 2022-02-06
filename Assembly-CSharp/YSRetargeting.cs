@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000503 RID: 1283
 public class YSRetargeting : MonoBehaviour
 {
-	// Token: 0x06002127 RID: 8487 RVA: 0x001E5E1C File Offset: 0x001E401C
+	// Token: 0x0600212A RID: 8490 RVA: 0x001E6020 File Offset: 0x001E4220
 	private void Start()
 	{
 		this.SourceBones = new Component[160];
@@ -190,12 +190,12 @@ public class YSRetargeting : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002128 RID: 8488 RVA: 0x001E649E File Offset: 0x001E469E
+	// Token: 0x0600212B RID: 8491 RVA: 0x001E66A2 File Offset: 0x001E48A2
 	private void Update()
 	{
 	}
 
-	// Token: 0x06002129 RID: 8489 RVA: 0x001E64A0 File Offset: 0x001E46A0
+	// Token: 0x0600212C RID: 8492 RVA: 0x001E66A4 File Offset: 0x001E48A4
 	private void LateUpdate()
 	{
 		for (int i = 0; i < this.TargetBones.Length; i++)
@@ -208,21 +208,21 @@ public class YSRetargeting : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040048C2 RID: 18626
+	// Token: 0x040048C5 RID: 18629
 	public GameObject Source;
 
-	// Token: 0x040048C3 RID: 18627
+	// Token: 0x040048C6 RID: 18630
 	public GameObject Target;
 
-	// Token: 0x040048C4 RID: 18628
+	// Token: 0x040048C7 RID: 18631
 	private Component[] SourceSkelNodes;
 
-	// Token: 0x040048C5 RID: 18629
+	// Token: 0x040048C8 RID: 18632
 	private Component[] TargetSkelNodes;
 
-	// Token: 0x040048C6 RID: 18630
+	// Token: 0x040048C9 RID: 18633
 	private Component[] SourceBones;
 
-	// Token: 0x040048C7 RID: 18631
+	// Token: 0x040048CA RID: 18634
 	private Component[] TargetBones;
 }

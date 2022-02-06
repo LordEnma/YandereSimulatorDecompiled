@@ -4,12 +4,12 @@
 [Serializable]
 public class ScheduleBlockArrayWrapper : ArrayWrapper<ScheduleBlock>
 {
-	// Token: 0x06001F1B RID: 7963 RVA: 0x001B887D File Offset: 0x001B6A7D
+	// Token: 0x06001F1E RID: 7966 RVA: 0x001B8A9D File Offset: 0x001B6C9D
 	public ScheduleBlockArrayWrapper(int size) : base(size)
 	{
 	}
 
-	// Token: 0x06001F1C RID: 7964 RVA: 0x001B8886 File Offset: 0x001B6A86
+	// Token: 0x06001F1F RID: 7967 RVA: 0x001B8AA6 File Offset: 0x001B6CA6
 	public ScheduleBlockArrayWrapper(ScheduleBlock[] elements) : base(elements)
 	{
 	}

@@ -57,42 +57,42 @@ public class UIDragResize : MonoBehaviour
 		this.mDragging = false;
 	}
 
-	// Token: 0x04000343 RID: 835
+	// Token: 0x04000344 RID: 836
 	public UIWidget target;
 
-	// Token: 0x04000344 RID: 836
+	// Token: 0x04000345 RID: 837
 	public UIWidget.Pivot pivot = UIWidget.Pivot.BottomRight;
 
-	// Token: 0x04000345 RID: 837
+	// Token: 0x04000346 RID: 838
 	public int minWidth = 100;
 
-	// Token: 0x04000346 RID: 838
+	// Token: 0x04000347 RID: 839
 	public int minHeight = 100;
 
-	// Token: 0x04000347 RID: 839
+	// Token: 0x04000348 RID: 840
 	public int maxWidth = 100000;
 
-	// Token: 0x04000348 RID: 840
+	// Token: 0x04000349 RID: 841
 	public int maxHeight = 100000;
 
-	// Token: 0x04000349 RID: 841
+	// Token: 0x0400034A RID: 842
 	public bool updateAnchors;
 
-	// Token: 0x0400034A RID: 842
+	// Token: 0x0400034B RID: 843
 	private Plane mPlane;
 
-	// Token: 0x0400034B RID: 843
+	// Token: 0x0400034C RID: 844
 	private Vector3 mRayPos;
 
-	// Token: 0x0400034C RID: 844
+	// Token: 0x0400034D RID: 845
 	private Vector3 mLocalPos;
 
-	// Token: 0x0400034D RID: 845
+	// Token: 0x0400034E RID: 846
 	private int mWidth;
 
-	// Token: 0x0400034E RID: 846
+	// Token: 0x0400034F RID: 847
 	private int mHeight;
 
-	// Token: 0x0400034F RID: 847
+	// Token: 0x04000350 RID: 848
 	private bool mDragging;
 }

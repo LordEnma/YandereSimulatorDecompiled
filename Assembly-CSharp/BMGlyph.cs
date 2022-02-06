@@ -72,33 +72,33 @@ public class BMGlyph
 		}
 	}
 
-	// Token: 0x04000485 RID: 1157
+	// Token: 0x04000486 RID: 1158
 	public int index;
 
-	// Token: 0x04000486 RID: 1158
+	// Token: 0x04000487 RID: 1159
 	public int x;
 
-	// Token: 0x04000487 RID: 1159
+	// Token: 0x04000488 RID: 1160
 	public int y;
 
-	// Token: 0x04000488 RID: 1160
+	// Token: 0x04000489 RID: 1161
 	public int width;
 
-	// Token: 0x04000489 RID: 1161
+	// Token: 0x0400048A RID: 1162
 	public int height;
 
-	// Token: 0x0400048A RID: 1162
+	// Token: 0x0400048B RID: 1163
 	public int offsetX;
 
-	// Token: 0x0400048B RID: 1163
+	// Token: 0x0400048C RID: 1164
 	public int offsetY;
 
-	// Token: 0x0400048C RID: 1164
+	// Token: 0x0400048D RID: 1165
 	public int advance;
 
-	// Token: 0x0400048D RID: 1165
+	// Token: 0x0400048E RID: 1166
 	public int channel;
 
-	// Token: 0x0400048E RID: 1166
+	// Token: 0x0400048F RID: 1167
 	public List<int> kerning;
 }

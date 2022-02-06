@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000374 RID: 884
 public class NemesisScript : MonoBehaviour
 {
-	// Token: 0x060019C9 RID: 6601 RVA: 0x00108544 File Offset: 0x00106744
+	// Token: 0x060019CB RID: 6603 RVA: 0x00108650 File Offset: 0x00106850
 	private void Start()
 	{
 		foreach (GameObject gameObject in this.Cosmetic.FemaleHair)
@@ -113,7 +113,7 @@ public class NemesisScript : MonoBehaviour
 		this.Aggressive = MissionModeGlobals.NemesisAggression;
 	}
 
-	// Token: 0x060019CA RID: 6602 RVA: 0x00108A30 File Offset: 0x00106C30
+	// Token: 0x060019CC RID: 6604 RVA: 0x00108B3C File Offset: 0x00106D3C
 	private void Update()
 	{
 		if (this.PutOnDisguise)
@@ -317,7 +317,7 @@ public class NemesisScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019CB RID: 6603 RVA: 0x00109500 File Offset: 0x00107700
+	// Token: 0x060019CD RID: 6605 RVA: 0x0010960C File Offset: 0x0010780C
 	private void LookForYandere()
 	{
 		this.Student.VisionDistance = 25f;
@@ -333,7 +333,7 @@ public class NemesisScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019CC RID: 6604 RVA: 0x0010957C File Offset: 0x0010777C
+	// Token: 0x060019CE RID: 6606 RVA: 0x00109688 File Offset: 0x00107888
 	private void UpdateLKP()
 	{
 		if (!this.Chasing)
@@ -359,7 +359,7 @@ public class NemesisScript : MonoBehaviour
 		this.InView = true;
 	}
 
-	// Token: 0x060019CD RID: 6605 RVA: 0x0010962C File Offset: 0x0010782C
+	// Token: 0x060019CF RID: 6607 RVA: 0x00109738 File Offset: 0x00107938
 	private void SpecialEffect()
 	{
 		Animation component = this.Student.Character.GetComponent<Animation>();
@@ -388,7 +388,7 @@ public class NemesisScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019CE RID: 6606 RVA: 0x0010979C File Offset: 0x0010799C
+	// Token: 0x060019D0 RID: 6608 RVA: 0x001098A8 File Offset: 0x00107AA8
 	private void HideObjects()
 	{
 		this.Student.Cosmetic.RightStockings[0].SetActive(false);
@@ -463,69 +463,69 @@ public class NemesisScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400295F RID: 10591
+	// Token: 0x04002962 RID: 10594
 	public MissionModeScript MissionMode;
 
-	// Token: 0x04002960 RID: 10592
+	// Token: 0x04002963 RID: 10595
 	public CosmeticScript Cosmetic;
 
-	// Token: 0x04002961 RID: 10593
+	// Token: 0x04002964 RID: 10596
 	public StudentScript Student;
 
-	// Token: 0x04002962 RID: 10594
+	// Token: 0x04002965 RID: 10597
 	public YandereScript Yandere;
 
-	// Token: 0x04002963 RID: 10595
+	// Token: 0x04002966 RID: 10598
 	public AudioClip YandereDeath;
 
-	// Token: 0x04002964 RID: 10596
+	// Token: 0x04002967 RID: 10599
 	public Texture NemesisUniform;
 
-	// Token: 0x04002965 RID: 10597
+	// Token: 0x04002968 RID: 10600
 	public Texture NemesisFace;
 
-	// Token: 0x04002966 RID: 10598
+	// Token: 0x04002969 RID: 10601
 	public Texture NemesisEyes;
 
-	// Token: 0x04002967 RID: 10599
+	// Token: 0x0400296A RID: 10602
 	public GameObject BloodEffect;
 
-	// Token: 0x04002968 RID: 10600
+	// Token: 0x0400296B RID: 10603
 	public GameObject NemesisHair;
 
-	// Token: 0x04002969 RID: 10601
+	// Token: 0x0400296C RID: 10604
 	public GameObject Knife;
 
-	// Token: 0x0400296A RID: 10602
+	// Token: 0x0400296D RID: 10605
 	public bool PutOnDisguise;
 
-	// Token: 0x0400296B RID: 10603
+	// Token: 0x0400296E RID: 10606
 	public bool Aggressive;
 
-	// Token: 0x0400296C RID: 10604
+	// Token: 0x0400296F RID: 10607
 	public bool Attacking;
 
-	// Token: 0x0400296D RID: 10605
+	// Token: 0x04002970 RID: 10608
 	public bool Chasing;
 
-	// Token: 0x0400296E RID: 10606
+	// Token: 0x04002971 RID: 10609
 	public bool InView;
 
-	// Token: 0x0400296F RID: 10607
+	// Token: 0x04002972 RID: 10610
 	public bool Dying;
 
-	// Token: 0x04002970 RID: 10608
+	// Token: 0x04002973 RID: 10611
 	public int EffectPhase;
 
-	// Token: 0x04002971 RID: 10609
+	// Token: 0x04002974 RID: 10612
 	public int Difficulty;
 
-	// Token: 0x04002972 RID: 10610
+	// Token: 0x04002975 RID: 10613
 	public int ID;
 
-	// Token: 0x04002973 RID: 10611
+	// Token: 0x04002976 RID: 10614
 	public float OriginalYPosition;
 
-	// Token: 0x04002974 RID: 10612
+	// Token: 0x04002977 RID: 10615
 	public float ScanTimer = 6f;
 }

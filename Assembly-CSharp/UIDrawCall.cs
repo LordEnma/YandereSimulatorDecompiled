@@ -854,215 +854,215 @@ public class UIDrawCall : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400050F RID: 1295
+	// Token: 0x04000510 RID: 1296
 	private static BetterList<UIDrawCall> mActiveList = new BetterList<UIDrawCall>();
 
-	// Token: 0x04000510 RID: 1296
-	private static BetterList<UIDrawCall> mInactiveList = new BetterList<UIDrawCall>();
-
 	// Token: 0x04000511 RID: 1297
-	[HideInInspector]
-	[NonSerialized]
-	public int widgetCount;
+	private static BetterList<UIDrawCall> mInactiveList = new BetterList<UIDrawCall>();
 
 	// Token: 0x04000512 RID: 1298
 	[HideInInspector]
 	[NonSerialized]
-	public int depthStart = int.MaxValue;
+	public int widgetCount;
 
 	// Token: 0x04000513 RID: 1299
 	[HideInInspector]
 	[NonSerialized]
-	public int depthEnd = int.MinValue;
+	public int depthStart = int.MaxValue;
 
 	// Token: 0x04000514 RID: 1300
 	[HideInInspector]
 	[NonSerialized]
-	public UIPanel manager;
+	public int depthEnd = int.MinValue;
 
 	// Token: 0x04000515 RID: 1301
 	[HideInInspector]
 	[NonSerialized]
-	public UIPanel panel;
+	public UIPanel manager;
 
 	// Token: 0x04000516 RID: 1302
 	[HideInInspector]
 	[NonSerialized]
-	public Texture2D clipTexture;
+	public UIPanel panel;
 
 	// Token: 0x04000517 RID: 1303
 	[HideInInspector]
 	[NonSerialized]
-	public bool alwaysOnScreen;
+	public Texture2D clipTexture;
 
 	// Token: 0x04000518 RID: 1304
 	[HideInInspector]
 	[NonSerialized]
-	public List<Vector3> verts = new List<Vector3>();
+	public bool alwaysOnScreen;
 
 	// Token: 0x04000519 RID: 1305
 	[HideInInspector]
 	[NonSerialized]
-	public List<Vector3> norms = new List<Vector3>();
+	public List<Vector3> verts = new List<Vector3>();
 
 	// Token: 0x0400051A RID: 1306
 	[HideInInspector]
 	[NonSerialized]
-	public List<Vector4> tans = new List<Vector4>();
+	public List<Vector3> norms = new List<Vector3>();
 
 	// Token: 0x0400051B RID: 1307
 	[HideInInspector]
 	[NonSerialized]
-	public List<Vector2> uvs = new List<Vector2>();
+	public List<Vector4> tans = new List<Vector4>();
 
 	// Token: 0x0400051C RID: 1308
 	[HideInInspector]
 	[NonSerialized]
-	public List<Vector4> uv2 = new List<Vector4>();
+	public List<Vector2> uvs = new List<Vector2>();
 
 	// Token: 0x0400051D RID: 1309
 	[HideInInspector]
 	[NonSerialized]
-	public List<Color> cols = new List<Color>();
+	public List<Vector4> uv2 = new List<Vector4>();
 
 	// Token: 0x0400051E RID: 1310
+	[HideInInspector]
 	[NonSerialized]
-	private Material mMaterial;
+	public List<Color> cols = new List<Color>();
 
 	// Token: 0x0400051F RID: 1311
 	[NonSerialized]
-	private Texture mTexture;
+	private Material mMaterial;
 
 	// Token: 0x04000520 RID: 1312
 	[NonSerialized]
-	private Shader mShader;
+	private Texture mTexture;
 
 	// Token: 0x04000521 RID: 1313
 	[NonSerialized]
-	private int mClipCount;
+	private Shader mShader;
 
 	// Token: 0x04000522 RID: 1314
 	[NonSerialized]
-	private Transform mTrans;
+	private int mClipCount;
 
 	// Token: 0x04000523 RID: 1315
 	[NonSerialized]
-	private Mesh mMesh;
+	private Transform mTrans;
 
 	// Token: 0x04000524 RID: 1316
 	[NonSerialized]
-	private MeshFilter mFilter;
+	private Mesh mMesh;
 
 	// Token: 0x04000525 RID: 1317
 	[NonSerialized]
-	private MeshRenderer mRenderer;
+	private MeshFilter mFilter;
 
 	// Token: 0x04000526 RID: 1318
 	[NonSerialized]
-	private Material mDynamicMat;
+	private MeshRenderer mRenderer;
 
 	// Token: 0x04000527 RID: 1319
 	[NonSerialized]
-	private int[] mIndices;
+	private Material mDynamicMat;
 
 	// Token: 0x04000528 RID: 1320
 	[NonSerialized]
-	private UIDrawCall.ShadowMode mShadowMode;
+	private int[] mIndices;
 
 	// Token: 0x04000529 RID: 1321
 	[NonSerialized]
-	private bool mRebuildMat = true;
+	private UIDrawCall.ShadowMode mShadowMode;
 
 	// Token: 0x0400052A RID: 1322
 	[NonSerialized]
-	private bool mLegacyShader;
+	private bool mRebuildMat = true;
 
 	// Token: 0x0400052B RID: 1323
 	[NonSerialized]
-	private int mRenderQueue = 3000;
+	private bool mLegacyShader;
 
 	// Token: 0x0400052C RID: 1324
 	[NonSerialized]
-	private int mTriangles;
+	private int mRenderQueue = 3000;
 
 	// Token: 0x0400052D RID: 1325
 	[NonSerialized]
-	public bool isDirty;
+	private int mTriangles;
 
 	// Token: 0x0400052E RID: 1326
 	[NonSerialized]
-	private bool mTextureClip;
+	public bool isDirty;
 
 	// Token: 0x0400052F RID: 1327
 	[NonSerialized]
-	private bool mIsNew = true;
+	private bool mTextureClip;
 
 	// Token: 0x04000530 RID: 1328
-	public UIDrawCall.OnRenderCallback onRender;
+	[NonSerialized]
+	private bool mIsNew = true;
 
 	// Token: 0x04000531 RID: 1329
-	public UIDrawCall.OnCreateDrawCall onCreateDrawCall;
+	public UIDrawCall.OnRenderCallback onRender;
 
 	// Token: 0x04000532 RID: 1330
-	[NonSerialized]
-	private string mSortingLayerName;
+	public UIDrawCall.OnCreateDrawCall onCreateDrawCall;
 
 	// Token: 0x04000533 RID: 1331
 	[NonSerialized]
-	private int mSortingOrder;
+	private string mSortingLayerName;
 
 	// Token: 0x04000534 RID: 1332
-	private static ColorSpace mColorSpace = ColorSpace.Uninitialized;
+	[NonSerialized]
+	private int mSortingOrder;
 
 	// Token: 0x04000535 RID: 1333
-	private const int maxIndexBufferCache = 10;
+	private static ColorSpace mColorSpace = ColorSpace.Uninitialized;
 
 	// Token: 0x04000536 RID: 1334
-	private static List<int[]> mCache = new List<int[]>(10);
+	private const int maxIndexBufferCache = 10;
 
 	// Token: 0x04000537 RID: 1335
-	protected MaterialPropertyBlock mBlock;
+	private static List<int[]> mCache = new List<int[]>(10);
 
 	// Token: 0x04000538 RID: 1336
-	private static int[] ClipRange = null;
+	protected MaterialPropertyBlock mBlock;
 
 	// Token: 0x04000539 RID: 1337
-	private static int[] ClipArgs = null;
+	private static int[] ClipRange = null;
 
 	// Token: 0x0400053A RID: 1338
+	private static int[] ClipArgs = null;
+
+	// Token: 0x0400053B RID: 1339
 	private static int dx9BugWorkaround = -1;
 
 	// Token: 0x020005F2 RID: 1522
 	[DoNotObfuscateNGUI]
 	public enum Clipping
 	{
-		// Token: 0x04004DAA RID: 19882
-		None,
-		// Token: 0x04004DAB RID: 19883
-		TextureMask,
-		// Token: 0x04004DAC RID: 19884
-		SoftClip = 3,
 		// Token: 0x04004DAD RID: 19885
+		None,
+		// Token: 0x04004DAE RID: 19886
+		TextureMask,
+		// Token: 0x04004DAF RID: 19887
+		SoftClip = 3,
+		// Token: 0x04004DB0 RID: 19888
 		ConstrainButDontClip
 	}
 
 	// Token: 0x020005F3 RID: 1523
-	// (Invoke) Token: 0x06002546 RID: 9542
+	// (Invoke) Token: 0x06002549 RID: 9545
 	public delegate void OnRenderCallback(Material mat);
 
 	// Token: 0x020005F4 RID: 1524
-	// (Invoke) Token: 0x0600254A RID: 9546
+	// (Invoke) Token: 0x0600254D RID: 9549
 	public delegate void OnCreateDrawCall(UIDrawCall dc, MeshFilter filter, MeshRenderer ren);
 
 	// Token: 0x020005F5 RID: 1525
 	[DoNotObfuscateNGUI]
 	public enum ShadowMode
 	{
-		// Token: 0x04004DAF RID: 19887
+		// Token: 0x04004DB2 RID: 19890
 		None,
-		// Token: 0x04004DB0 RID: 19888
+		// Token: 0x04004DB3 RID: 19891
 		Receive,
-		// Token: 0x04004DB1 RID: 19889
+		// Token: 0x04004DB4 RID: 19892
 		CastAndReceive
 	}
 }

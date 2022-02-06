@@ -559,50 +559,50 @@ public class UISpriteCollection : UIBasicSprite
 		}
 	}
 
-	// Token: 0x04000760 RID: 1888
+	// Token: 0x04000761 RID: 1889
 	[HideInInspector]
 	[SerializeField]
 	private UnityEngine.Object mAtlas;
 
-	// Token: 0x04000761 RID: 1889
+	// Token: 0x04000762 RID: 1890
 	[NonSerialized]
 	private Dictionary<object, UISpriteCollection.Sprite> mSprites = new Dictionary<object, UISpriteCollection.Sprite>();
 
-	// Token: 0x04000762 RID: 1890
+	// Token: 0x04000763 RID: 1891
 	[NonSerialized]
 	private UISpriteData mSprite;
 
-	// Token: 0x04000763 RID: 1891
+	// Token: 0x04000764 RID: 1892
 	public UISpriteCollection.OnHoverCB onHover;
 
-	// Token: 0x04000764 RID: 1892
+	// Token: 0x04000765 RID: 1893
 	public UISpriteCollection.OnPressCB onPress;
 
-	// Token: 0x04000765 RID: 1893
+	// Token: 0x04000766 RID: 1894
 	public UISpriteCollection.OnClickCB onClick;
 
-	// Token: 0x04000766 RID: 1894
+	// Token: 0x04000767 RID: 1895
 	public UISpriteCollection.OnDragCB onDrag;
 
-	// Token: 0x04000767 RID: 1895
-	public UISpriteCollection.OnTooltipCB onTooltip;
-
 	// Token: 0x04000768 RID: 1896
-	[NonSerialized]
-	private object mLastHover;
+	public UISpriteCollection.OnTooltipCB onTooltip;
 
 	// Token: 0x04000769 RID: 1897
 	[NonSerialized]
-	private object mLastPress;
+	private object mLastHover;
 
 	// Token: 0x0400076A RID: 1898
+	[NonSerialized]
+	private object mLastPress;
+
+	// Token: 0x0400076B RID: 1899
 	[NonSerialized]
 	private object mLastTooltip;
 
 	// Token: 0x0200063A RID: 1594
 	public struct Sprite
 	{
-		// Token: 0x060025F7 RID: 9719 RVA: 0x001FC97C File Offset: 0x001FAB7C
+		// Token: 0x060025FA RID: 9722 RVA: 0x001FCB80 File Offset: 0x001FAD80
 		public Vector4 GetDrawingDimensions(float pixelSize)
 		{
 			float num = -this.pivot.x * this.width;
@@ -663,54 +663,54 @@ public class UISpriteCollection : UIBasicSprite
 			return new Vector4(num, num2, num3, num4);
 		}
 
-		// Token: 0x04004E66 RID: 20070
+		// Token: 0x04004E69 RID: 20073
 		public UISpriteData sprite;
 
-		// Token: 0x04004E67 RID: 20071
+		// Token: 0x04004E6A RID: 20074
 		public Vector2 pos;
 
-		// Token: 0x04004E68 RID: 20072
+		// Token: 0x04004E6B RID: 20075
 		public float rot;
 
-		// Token: 0x04004E69 RID: 20073
+		// Token: 0x04004E6C RID: 20076
 		public float width;
 
-		// Token: 0x04004E6A RID: 20074
+		// Token: 0x04004E6D RID: 20077
 		public float height;
 
-		// Token: 0x04004E6B RID: 20075
+		// Token: 0x04004E6E RID: 20078
 		public Color32 color;
 
-		// Token: 0x04004E6C RID: 20076
+		// Token: 0x04004E6F RID: 20079
 		public Vector2 pivot;
 
-		// Token: 0x04004E6D RID: 20077
+		// Token: 0x04004E70 RID: 20080
 		public UIBasicSprite.Type type;
 
-		// Token: 0x04004E6E RID: 20078
+		// Token: 0x04004E71 RID: 20081
 		public UIBasicSprite.Flip flip;
 
-		// Token: 0x04004E6F RID: 20079
+		// Token: 0x04004E72 RID: 20082
 		public bool enabled;
 	}
 
 	// Token: 0x0200063B RID: 1595
-	// (Invoke) Token: 0x060025F9 RID: 9721
+	// (Invoke) Token: 0x060025FC RID: 9724
 	public delegate void OnHoverCB(object obj, bool isOver);
 
 	// Token: 0x0200063C RID: 1596
-	// (Invoke) Token: 0x060025FD RID: 9725
+	// (Invoke) Token: 0x06002600 RID: 9728
 	public delegate void OnPressCB(object obj, bool isPressed);
 
 	// Token: 0x0200063D RID: 1597
-	// (Invoke) Token: 0x06002601 RID: 9729
+	// (Invoke) Token: 0x06002604 RID: 9732
 	public delegate void OnClickCB(object obj);
 
 	// Token: 0x0200063E RID: 1598
-	// (Invoke) Token: 0x06002605 RID: 9733
+	// (Invoke) Token: 0x06002608 RID: 9736
 	public delegate void OnDragCB(object obj, Vector2 delta);
 
 	// Token: 0x0200063F RID: 1599
-	// (Invoke) Token: 0x06002609 RID: 9737
+	// (Invoke) Token: 0x0600260C RID: 9740
 	public delegate void OnTooltipCB(object obj, bool show);
 }

@@ -632,31 +632,31 @@ public class UISprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x04000751 RID: 1873
+	// Token: 0x04000752 RID: 1874
 	[HideInInspector]
 	[SerializeField]
 	private UnityEngine.Object mAtlas;
 
-	// Token: 0x04000752 RID: 1874
+	// Token: 0x04000753 RID: 1875
 	[HideInInspector]
 	[SerializeField]
 	private string mSpriteName;
 
-	// Token: 0x04000753 RID: 1875
+	// Token: 0x04000754 RID: 1876
 	[HideInInspector]
 	[SerializeField]
 	private bool mFixedAspect;
 
-	// Token: 0x04000754 RID: 1876
+	// Token: 0x04000755 RID: 1877
 	[HideInInspector]
 	[SerializeField]
 	private bool mFillCenter = true;
 
-	// Token: 0x04000755 RID: 1877
+	// Token: 0x04000756 RID: 1878
 	[NonSerialized]
 	protected UISpriteData mSprite;
 
-	// Token: 0x04000756 RID: 1878
+	// Token: 0x04000757 RID: 1879
 	[NonSerialized]
 	private bool mSpriteSet;
 }

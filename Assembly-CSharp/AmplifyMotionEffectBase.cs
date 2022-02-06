@@ -1129,174 +1129,174 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040007AC RID: 1964
+	// Token: 0x040007AD RID: 1965
 	[Header("Motion Blur")]
 	public Quality QualityLevel = Quality.Standard;
 
-	// Token: 0x040007AD RID: 1965
+	// Token: 0x040007AE RID: 1966
 	public int QualitySteps = 1;
 
-	// Token: 0x040007AE RID: 1966
+	// Token: 0x040007AF RID: 1967
 	public float MotionScale = 3f;
 
-	// Token: 0x040007AF RID: 1967
+	// Token: 0x040007B0 RID: 1968
 	public float CameraMotionMult = 1f;
 
-	// Token: 0x040007B0 RID: 1968
+	// Token: 0x040007B1 RID: 1969
 	public float MinVelocity = 1f;
 
-	// Token: 0x040007B1 RID: 1969
+	// Token: 0x040007B2 RID: 1970
 	public float MaxVelocity = 10f;
 
-	// Token: 0x040007B2 RID: 1970
+	// Token: 0x040007B3 RID: 1971
 	public float DepthThreshold = 0.01f;
 
-	// Token: 0x040007B3 RID: 1971
+	// Token: 0x040007B4 RID: 1972
 	public bool Noise;
 
-	// Token: 0x040007B4 RID: 1972
+	// Token: 0x040007B5 RID: 1973
 	[Header("Camera")]
 	public Camera[] OverlayCameras = new Camera[0];
 
-	// Token: 0x040007B5 RID: 1973
+	// Token: 0x040007B6 RID: 1974
 	public LayerMask CullingMask = -1;
 
-	// Token: 0x040007B6 RID: 1974
+	// Token: 0x040007B7 RID: 1975
 	[Header("Objects")]
 	public bool AutoRegisterObjs = true;
 
-	// Token: 0x040007B7 RID: 1975
+	// Token: 0x040007B8 RID: 1976
 	public float MinResetDeltaDist = 1000f;
 
-	// Token: 0x040007B8 RID: 1976
+	// Token: 0x040007B9 RID: 1977
 	[NonSerialized]
 	public float MinResetDeltaDistSqr;
 
-	// Token: 0x040007B9 RID: 1977
+	// Token: 0x040007BA RID: 1978
 	public int ResetFrameDelay = 1;
 
-	// Token: 0x040007BA RID: 1978
+	// Token: 0x040007BB RID: 1979
 	[Header("Low-Level")]
 	[FormerlySerializedAs("workerThreads")]
 	public int WorkerThreads;
 
-	// Token: 0x040007BB RID: 1979
+	// Token: 0x040007BC RID: 1980
 	public bool SystemThreadPool;
 
-	// Token: 0x040007BC RID: 1980
+	// Token: 0x040007BD RID: 1981
 	public bool ForceCPUOnly;
 
-	// Token: 0x040007BD RID: 1981
+	// Token: 0x040007BE RID: 1982
 	public bool DebugMode;
 
-	// Token: 0x040007BE RID: 1982
+	// Token: 0x040007BF RID: 1983
 	private Camera m_camera;
 
-	// Token: 0x040007BF RID: 1983
+	// Token: 0x040007C0 RID: 1984
 	private bool m_starting = true;
 
-	// Token: 0x040007C0 RID: 1984
+	// Token: 0x040007C1 RID: 1985
 	private int m_width;
 
-	// Token: 0x040007C1 RID: 1985
+	// Token: 0x040007C2 RID: 1986
 	private int m_height;
 
-	// Token: 0x040007C2 RID: 1986
+	// Token: 0x040007C3 RID: 1987
 	private RenderTexture m_motionRT;
 
-	// Token: 0x040007C3 RID: 1987
+	// Token: 0x040007C4 RID: 1988
 	private Material m_blurMaterial;
 
-	// Token: 0x040007C4 RID: 1988
+	// Token: 0x040007C5 RID: 1989
 	private Material m_solidVectorsMaterial;
 
-	// Token: 0x040007C5 RID: 1989
+	// Token: 0x040007C6 RID: 1990
 	private Material m_skinnedVectorsMaterial;
 
-	// Token: 0x040007C6 RID: 1990
+	// Token: 0x040007C7 RID: 1991
 	private Material m_clothVectorsMaterial;
 
-	// Token: 0x040007C7 RID: 1991
+	// Token: 0x040007C8 RID: 1992
 	private Material m_reprojectionMaterial;
 
-	// Token: 0x040007C8 RID: 1992
+	// Token: 0x040007C9 RID: 1993
 	private Material m_combineMaterial;
 
-	// Token: 0x040007C9 RID: 1993
+	// Token: 0x040007CA RID: 1994
 	private Material m_dilationMaterial;
 
-	// Token: 0x040007CA RID: 1994
+	// Token: 0x040007CB RID: 1995
 	private Material m_depthMaterial;
 
-	// Token: 0x040007CB RID: 1995
+	// Token: 0x040007CC RID: 1996
 	private Material m_debugMaterial;
 
-	// Token: 0x040007CC RID: 1996
+	// Token: 0x040007CD RID: 1997
 	private Dictionary<Camera, AmplifyMotionCamera> m_linkedCameras = new Dictionary<Camera, AmplifyMotionCamera>();
 
-	// Token: 0x040007CD RID: 1997
+	// Token: 0x040007CE RID: 1998
 	internal Camera[] m_linkedCameraKeys;
 
-	// Token: 0x040007CE RID: 1998
+	// Token: 0x040007CF RID: 1999
 	internal AmplifyMotionCamera[] m_linkedCameraValues;
 
-	// Token: 0x040007CF RID: 1999
+	// Token: 0x040007D0 RID: 2000
 	internal bool m_linkedCamerasChanged = true;
 
-	// Token: 0x040007D0 RID: 2000
+	// Token: 0x040007D1 RID: 2001
 	private AmplifyMotionPostProcess m_currentPostProcess;
 
-	// Token: 0x040007D1 RID: 2001
+	// Token: 0x040007D2 RID: 2002
 	private int m_globalObjectId = 1;
 
-	// Token: 0x040007D2 RID: 2002
+	// Token: 0x040007D3 RID: 2003
 	private float m_deltaTime;
 
-	// Token: 0x040007D3 RID: 2003
+	// Token: 0x040007D4 RID: 2004
 	private float m_fixedDeltaTime;
 
-	// Token: 0x040007D4 RID: 2004
+	// Token: 0x040007D5 RID: 2005
 	private float m_motionScaleNorm;
 
-	// Token: 0x040007D5 RID: 2005
+	// Token: 0x040007D6 RID: 2006
 	private float m_fixedMotionScaleNorm;
 
-	// Token: 0x040007D6 RID: 2006
+	// Token: 0x040007D7 RID: 2007
 	private Quality m_qualityLevel;
 
-	// Token: 0x040007D7 RID: 2007
+	// Token: 0x040007D8 RID: 2008
 	private AmplifyMotionCamera m_baseCamera;
 
-	// Token: 0x040007D8 RID: 2008
+	// Token: 0x040007D9 RID: 2009
 	private WorkerThreadPool m_workerThreadPool;
 
-	// Token: 0x040007D9 RID: 2009
+	// Token: 0x040007DA RID: 2010
 	public static Dictionary<GameObject, AmplifyMotionObjectBase> m_activeObjects = new Dictionary<GameObject, AmplifyMotionObjectBase>();
 
-	// Token: 0x040007DA RID: 2010
+	// Token: 0x040007DB RID: 2011
 	public static Dictionary<Camera, AmplifyMotionCamera> m_activeCameras = new Dictionary<Camera, AmplifyMotionCamera>();
 
-	// Token: 0x040007DB RID: 2011
+	// Token: 0x040007DC RID: 2012
 	private static bool m_isD3D = false;
 
-	// Token: 0x040007DC RID: 2012
+	// Token: 0x040007DD RID: 2013
 	private bool m_canUseGPU;
 
-	// Token: 0x040007DD RID: 2013
+	// Token: 0x040007DE RID: 2014
 	private const CameraEvent m_updateCBEvent = CameraEvent.BeforeImageEffectsOpaque;
 
-	// Token: 0x040007DE RID: 2014
+	// Token: 0x040007DF RID: 2015
 	private CommandBuffer m_updateCB;
 
-	// Token: 0x040007DF RID: 2015
+	// Token: 0x040007E0 RID: 2016
 	private const CameraEvent m_fixedUpdateCBEvent = CameraEvent.BeforeImageEffectsOpaque;
 
-	// Token: 0x040007E0 RID: 2016
+	// Token: 0x040007E1 RID: 2017
 	private CommandBuffer m_fixedUpdateCB;
 
-	// Token: 0x040007E1 RID: 2017
+	// Token: 0x040007E2 RID: 2018
 	private static bool m_ignoreMotionScaleWarning = false;
 
-	// Token: 0x040007E2 RID: 2018
+	// Token: 0x040007E3 RID: 2019
 	private static AmplifyMotionEffectBase m_firstInstance = null;
 }

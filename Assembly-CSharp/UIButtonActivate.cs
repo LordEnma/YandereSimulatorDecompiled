@@ -14,9 +14,9 @@ public class UIButtonActivate : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040002EB RID: 747
+	// Token: 0x040002EC RID: 748
 	public GameObject target;
 
-	// Token: 0x040002EC RID: 748
+	// Token: 0x040002ED RID: 749
 	public bool state = true;
 }

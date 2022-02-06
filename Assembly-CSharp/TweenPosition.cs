@@ -134,19 +134,19 @@ public class TweenPosition : UITweener
 		this.value = this.to;
 	}
 
-	// Token: 0x040005CA RID: 1482
+	// Token: 0x040005CB RID: 1483
 	public Vector3 from;
 
-	// Token: 0x040005CB RID: 1483
+	// Token: 0x040005CC RID: 1484
 	public Vector3 to;
 
-	// Token: 0x040005CC RID: 1484
+	// Token: 0x040005CD RID: 1485
 	[HideInInspector]
 	public bool worldSpace;
 
-	// Token: 0x040005CD RID: 1485
+	// Token: 0x040005CE RID: 1486
 	private Transform mTrans;
 
-	// Token: 0x040005CE RID: 1486
+	// Token: 0x040005CF RID: 1487
 	private UIRect mRect;
 }

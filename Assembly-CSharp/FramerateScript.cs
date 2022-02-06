@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020002D3 RID: 723
 public class FramerateScript : MonoBehaviour
 {
-	// Token: 0x060014B1 RID: 5297 RVA: 0x000CB93B File Offset: 0x000C9B3B
+	// Token: 0x060014B1 RID: 5297 RVA: 0x000CB9CB File Offset: 0x000C9BCB
 	private void Start()
 	{
 		this.timeleft = this.updateInterval;
 	}
 
-	// Token: 0x060014B2 RID: 5298 RVA: 0x000CB94C File Offset: 0x000C9B4C
+	// Token: 0x060014B2 RID: 5298 RVA: 0x000CB9DC File Offset: 0x000C9BDC
 	private void Update()
 	{
 		this.FpsCurrent = 1f / Time.unscaledDeltaTime;
@@ -29,24 +29,24 @@ public class FramerateScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002078 RID: 8312
+	// Token: 0x0400207A RID: 8314
 	public float updateInterval = 0.5f;
 
-	// Token: 0x04002079 RID: 8313
+	// Token: 0x0400207B RID: 8315
 	private float accum;
 
-	// Token: 0x0400207A RID: 8314
+	// Token: 0x0400207C RID: 8316
 	private int frames;
 
-	// Token: 0x0400207B RID: 8315
+	// Token: 0x0400207D RID: 8317
 	private float timeleft;
 
-	// Token: 0x0400207C RID: 8316
+	// Token: 0x0400207E RID: 8318
 	public float FpsAverage;
 
-	// Token: 0x0400207D RID: 8317
+	// Token: 0x0400207F RID: 8319
 	public float FpsCurrent;
 
-	// Token: 0x0400207E RID: 8318
+	// Token: 0x04002080 RID: 8320
 	public UILabel FPSLabel;
 }

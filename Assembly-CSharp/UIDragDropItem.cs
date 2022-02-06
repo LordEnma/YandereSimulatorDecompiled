@@ -429,84 +429,84 @@ public class UIDragDropItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400031C RID: 796
+	// Token: 0x0400031D RID: 797
 	[Tooltip("What kind of restriction is applied to the drag & drop logic before dragging is made possible.")]
 	public UIDragDropItem.Restriction restriction;
 
-	// Token: 0x0400031D RID: 797
+	// Token: 0x0400031E RID: 798
 	[Tooltip("By default, dragging only happens while holding the mouse button / touch. If desired, you can opt to use a click-based approach instead. Note that this only works with a mouse.")]
 	public bool clickToDrag;
 
-	// Token: 0x0400031E RID: 798
+	// Token: 0x0400031F RID: 799
 	[Tooltip("Whether a copy of the item will be dragged instead of the item itself.")]
 	public bool cloneOnDrag;
 
-	// Token: 0x0400031F RID: 799
+	// Token: 0x04000320 RID: 800
 	[Tooltip("Whether this drag and drop item can be interacted with. If not, only tooltips will work.")]
 	public bool interactable = true;
 
-	// Token: 0x04000320 RID: 800
+	// Token: 0x04000321 RID: 801
 	[Tooltip("How long the user has to press on an item before the drag action activates.")]
 	[HideInInspector]
 	public float pressAndHoldDelay = 1f;
 
-	// Token: 0x04000321 RID: 801
+	// Token: 0x04000322 RID: 802
 	[NonSerialized]
 	protected Transform mTrans;
 
-	// Token: 0x04000322 RID: 802
+	// Token: 0x04000323 RID: 803
 	[NonSerialized]
 	protected Transform mParent;
 
-	// Token: 0x04000323 RID: 803
+	// Token: 0x04000324 RID: 804
 	[NonSerialized]
 	protected Collider mCollider;
 
-	// Token: 0x04000324 RID: 804
+	// Token: 0x04000325 RID: 805
 	[NonSerialized]
 	protected Collider2D mCollider2D;
 
-	// Token: 0x04000325 RID: 805
+	// Token: 0x04000326 RID: 806
 	[NonSerialized]
 	protected UIButton mButton;
 
-	// Token: 0x04000326 RID: 806
+	// Token: 0x04000327 RID: 807
 	[NonSerialized]
 	protected UIRoot mRoot;
 
-	// Token: 0x04000327 RID: 807
+	// Token: 0x04000328 RID: 808
 	[NonSerialized]
 	protected UIGrid mGrid;
 
-	// Token: 0x04000328 RID: 808
+	// Token: 0x04000329 RID: 809
 	[NonSerialized]
 	protected UITable mTable;
 
-	// Token: 0x04000329 RID: 809
+	// Token: 0x0400032A RID: 810
 	[NonSerialized]
 	protected float mDragStartTime;
 
-	// Token: 0x0400032A RID: 810
+	// Token: 0x0400032B RID: 811
 	[NonSerialized]
 	protected UIDragScrollView mDragScrollView;
 
-	// Token: 0x0400032B RID: 811
+	// Token: 0x0400032C RID: 812
 	[NonSerialized]
 	protected bool mPressed;
 
-	// Token: 0x0400032C RID: 812
+	// Token: 0x0400032D RID: 813
 	[NonSerialized]
 	protected bool mDragging;
 
-	// Token: 0x0400032D RID: 813
+	// Token: 0x0400032E RID: 814
 	[NonSerialized]
 	protected UICamera.MouseOrTouch mTouch;
 
-	// Token: 0x0400032E RID: 814
+	// Token: 0x0400032F RID: 815
 	[NonSerialized]
 	public static List<UIDragDropItem> draggedItems = new List<UIDragDropItem>();
 
-	// Token: 0x0400032F RID: 815
+	// Token: 0x04000330 RID: 816
 	[NonSerialized]
 	private static int mIgnoreClick = 0;
 
@@ -514,13 +514,13 @@ public class UIDragDropItem : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Restriction
 	{
-		// Token: 0x04004D0D RID: 19725
-		None,
-		// Token: 0x04004D0E RID: 19726
-		Horizontal,
-		// Token: 0x04004D0F RID: 19727
-		Vertical,
 		// Token: 0x04004D10 RID: 19728
+		None,
+		// Token: 0x04004D11 RID: 19729
+		Horizontal,
+		// Token: 0x04004D12 RID: 19730
+		Vertical,
+		// Token: 0x04004D13 RID: 19731
 		PressAndHold
 	}
 }

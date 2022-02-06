@@ -23,12 +23,12 @@ public class SpinWithMouse : MonoBehaviour
 		this.mTrans.localRotation = Quaternion.Euler(0f, -0.5f * delta.x * this.speed, 0f) * this.mTrans.localRotation;
 	}
 
-	// Token: 0x040002B4 RID: 692
+	// Token: 0x040002B5 RID: 693
 	public Transform target;
 
-	// Token: 0x040002B5 RID: 693
+	// Token: 0x040002B6 RID: 694
 	public float speed = 1f;
 
-	// Token: 0x040002B6 RID: 694
+	// Token: 0x040002B7 RID: 695
 	private Transform mTrans;
 }

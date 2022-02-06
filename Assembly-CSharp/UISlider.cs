@@ -154,22 +154,22 @@ public class UISlider : UIProgressBar
 		}
 	}
 
-	// Token: 0x0400043B RID: 1083
+	// Token: 0x0400043C RID: 1084
 	[HideInInspector]
 	[SerializeField]
 	private Transform foreground;
 
-	// Token: 0x0400043C RID: 1084
+	// Token: 0x0400043D RID: 1085
 	[HideInInspector]
 	[SerializeField]
 	private float rawValue = 1f;
 
-	// Token: 0x0400043D RID: 1085
+	// Token: 0x0400043E RID: 1086
 	[HideInInspector]
 	[SerializeField]
 	private UISlider.Direction direction = UISlider.Direction.Upgraded;
 
-	// Token: 0x0400043E RID: 1086
+	// Token: 0x0400043F RID: 1087
 	[HideInInspector]
 	[SerializeField]
 	protected bool mInverted;
@@ -177,11 +177,11 @@ public class UISlider : UIProgressBar
 	// Token: 0x020005DB RID: 1499
 	private enum Direction
 	{
-		// Token: 0x04004D61 RID: 19809
+		// Token: 0x04004D64 RID: 19812
 		Horizontal,
-		// Token: 0x04004D62 RID: 19810
+		// Token: 0x04004D65 RID: 19813
 		Vertical,
-		// Token: 0x04004D63 RID: 19811
+		// Token: 0x04004D66 RID: 19814
 		Upgraded
 	}
 }

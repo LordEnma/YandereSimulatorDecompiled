@@ -120,18 +120,18 @@ public class InvDatabase : MonoBehaviour
 		return -1;
 	}
 
-	// Token: 0x0400027E RID: 638
+	// Token: 0x0400027F RID: 639
 	private static InvDatabase[] mList;
 
-	// Token: 0x0400027F RID: 639
+	// Token: 0x04000280 RID: 640
 	private static bool mIsDirty = true;
 
-	// Token: 0x04000280 RID: 640
+	// Token: 0x04000281 RID: 641
 	public int databaseID;
 
-	// Token: 0x04000281 RID: 641
+	// Token: 0x04000282 RID: 642
 	public List<InvBaseItem> items = new List<InvBaseItem>();
 
-	// Token: 0x04000282 RID: 642
+	// Token: 0x04000283 RID: 643
 	public UnityEngine.Object iconAtlas;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000329 RID: 809
 public class HomeYandereDetectorScript : MonoBehaviour
 {
-	// Token: 0x060018A7 RID: 6311 RVA: 0x000F2605 File Offset: 0x000F0805
+	// Token: 0x060018A9 RID: 6313 RVA: 0x000F26F1 File Offset: 0x000F08F1
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Player")
@@ -13,7 +13,7 @@ public class HomeYandereDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018A8 RID: 6312 RVA: 0x000F2620 File Offset: 0x000F0820
+	// Token: 0x060018AA RID: 6314 RVA: 0x000F270C File Offset: 0x000F090C
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.tag == "Player")
@@ -22,6 +22,6 @@ public class HomeYandereDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002582 RID: 9602
+	// Token: 0x04002585 RID: 9605
 	public bool YandereDetected;
 }

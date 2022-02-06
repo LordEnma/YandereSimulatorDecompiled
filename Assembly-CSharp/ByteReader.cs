@@ -209,12 +209,12 @@ public class ByteReader
 		return null;
 	}
 
-	// Token: 0x0400049C RID: 1180
+	// Token: 0x0400049D RID: 1181
 	private byte[] mBuffer;
 
-	// Token: 0x0400049D RID: 1181
+	// Token: 0x0400049E RID: 1182
 	private int mOffset;
 
-	// Token: 0x0400049E RID: 1182
+	// Token: 0x0400049F RID: 1183
 	private static BetterList<string> mTemp = new BetterList<string>();
 }

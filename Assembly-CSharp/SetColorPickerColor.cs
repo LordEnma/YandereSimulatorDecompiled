@@ -18,7 +18,7 @@ public class SetColorPickerColor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040002AF RID: 687
+	// Token: 0x040002B0 RID: 688
 	[NonSerialized]
 	private UIWidget mWidget;
 }

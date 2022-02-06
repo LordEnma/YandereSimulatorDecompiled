@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200023A RID: 570
 public class CensorBloodScript : MonoBehaviour
 {
-	// Token: 0x06001232 RID: 4658 RVA: 0x0008B7F0 File Offset: 0x000899F0
+	// Token: 0x06001232 RID: 4658 RVA: 0x0008B874 File Offset: 0x00089A74
 	private void Start()
 	{
 		if (GameGlobals.CensorBlood)
@@ -15,9 +15,9 @@ public class CensorBloodScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040016D9 RID: 5849
+	// Token: 0x040016DB RID: 5851
 	public ParticleSystem MyParticles;
 
-	// Token: 0x040016DA RID: 5850
+	// Token: 0x040016DC RID: 5852
 	public Texture Flower;
 }

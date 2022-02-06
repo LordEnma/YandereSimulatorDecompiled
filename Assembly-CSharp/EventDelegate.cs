@@ -610,73 +610,73 @@ public class EventDelegate
 		return false;
 	}
 
-	// Token: 0x0400049F RID: 1183
+	// Token: 0x040004A0 RID: 1184
 	[SerializeField]
 	private MonoBehaviour mTarget;
 
-	// Token: 0x040004A0 RID: 1184
+	// Token: 0x040004A1 RID: 1185
 	[SerializeField]
 	private string mMethodName;
 
-	// Token: 0x040004A1 RID: 1185
+	// Token: 0x040004A2 RID: 1186
 	[SerializeField]
 	private EventDelegate.Parameter[] mParameters;
 
-	// Token: 0x040004A2 RID: 1186
-	public bool oneShot;
-
 	// Token: 0x040004A3 RID: 1187
-	[NonSerialized]
-	private EventDelegate.Callback mCachedCallback;
+	public bool oneShot;
 
 	// Token: 0x040004A4 RID: 1188
 	[NonSerialized]
-	private bool mRawDelegate;
+	private EventDelegate.Callback mCachedCallback;
 
 	// Token: 0x040004A5 RID: 1189
 	[NonSerialized]
-	private bool mCached;
+	private bool mRawDelegate;
 
 	// Token: 0x040004A6 RID: 1190
 	[NonSerialized]
-	private MethodInfo mMethod;
+	private bool mCached;
 
 	// Token: 0x040004A7 RID: 1191
 	[NonSerialized]
-	private ParameterInfo[] mParameterInfos;
+	private MethodInfo mMethod;
 
 	// Token: 0x040004A8 RID: 1192
 	[NonSerialized]
-	private object[] mArgs;
+	private ParameterInfo[] mParameterInfos;
 
 	// Token: 0x040004A9 RID: 1193
+	[NonSerialized]
+	private object[] mArgs;
+
+	// Token: 0x040004AA RID: 1194
 	private static int s_Hash = "EventDelegate".GetHashCode();
 
 	// Token: 0x020005E3 RID: 1507
 	[Serializable]
 	public class Parameter
 	{
-		// Token: 0x0600252A RID: 9514 RVA: 0x001FC23E File Offset: 0x001FA43E
+		// Token: 0x0600252D RID: 9517 RVA: 0x001FC442 File Offset: 0x001FA642
 		public Parameter()
 		{
 		}
 
-		// Token: 0x0600252B RID: 9515 RVA: 0x001FC256 File Offset: 0x001FA456
+		// Token: 0x0600252E RID: 9518 RVA: 0x001FC45A File Offset: 0x001FA65A
 		public Parameter(UnityEngine.Object obj, string field)
 		{
 			this.obj = obj;
 			this.field = field;
 		}
 
-		// Token: 0x0600252C RID: 9516 RVA: 0x001FC27C File Offset: 0x001FA47C
+		// Token: 0x0600252F RID: 9519 RVA: 0x001FC480 File Offset: 0x001FA680
 		public Parameter(object val)
 		{
 			this.mValue = val;
 		}
 
-		// Token: 0x17000540 RID: 1344
-		// (get) Token: 0x0600252D RID: 9517 RVA: 0x001FC29C File Offset: 0x001FA49C
-		// (set) Token: 0x0600252E RID: 9518 RVA: 0x001FC3AD File Offset: 0x001FA5AD
+		// Token: 0x17000541 RID: 1345
+		// (get) Token: 0x06002530 RID: 9520 RVA: 0x001FC4A0 File Offset: 0x001FA6A0
+		// (set) Token: 0x06002531 RID: 9521 RVA: 0x001FC5B1 File Offset: 0x001FA7B1
 		public object value
 		{
 			get
@@ -724,8 +724,8 @@ public class EventDelegate
 			}
 		}
 
-		// Token: 0x17000541 RID: 1345
-		// (get) Token: 0x0600252F RID: 9519 RVA: 0x001FC3B6 File Offset: 0x001FA5B6
+		// Token: 0x17000542 RID: 1346
+		// (get) Token: 0x06002532 RID: 9522 RVA: 0x001FC5BA File Offset: 0x001FA7BA
 		public Type type
 		{
 			get
@@ -742,34 +742,34 @@ public class EventDelegate
 			}
 		}
 
-		// Token: 0x04004D71 RID: 19825
+		// Token: 0x04004D74 RID: 19828
 		public UnityEngine.Object obj;
 
-		// Token: 0x04004D72 RID: 19826
-		public string field;
-
-		// Token: 0x04004D73 RID: 19827
-		[NonSerialized]
-		private object mValue;
-
-		// Token: 0x04004D74 RID: 19828
-		[NonSerialized]
-		public Type expectedType = typeof(void);
-
 		// Token: 0x04004D75 RID: 19829
-		[NonSerialized]
-		public bool cached;
+		public string field;
 
 		// Token: 0x04004D76 RID: 19830
 		[NonSerialized]
-		public PropertyInfo propInfo;
+		private object mValue;
 
 		// Token: 0x04004D77 RID: 19831
+		[NonSerialized]
+		public Type expectedType = typeof(void);
+
+		// Token: 0x04004D78 RID: 19832
+		[NonSerialized]
+		public bool cached;
+
+		// Token: 0x04004D79 RID: 19833
+		[NonSerialized]
+		public PropertyInfo propInfo;
+
+		// Token: 0x04004D7A RID: 19834
 		[NonSerialized]
 		public FieldInfo fieldInfo;
 	}
 
 	// Token: 0x020005E4 RID: 1508
-	// (Invoke) Token: 0x06002531 RID: 9521
+	// (Invoke) Token: 0x06002534 RID: 9524
 	public delegate void Callback();
 }

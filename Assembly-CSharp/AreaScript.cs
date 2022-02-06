@@ -33,19 +33,19 @@ public class AreaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A5C RID: 2652
+	// Token: 0x04000A5D RID: 2653
 	[Header("Do not touch any of these values. They get updated at runtime.")]
 	[Tooltip("The amount of students in this area.")]
 	public int Population;
 
-	// Token: 0x04000A5D RID: 2653
+	// Token: 0x04000A5E RID: 2654
 	[Tooltip("A list of students in this area.")]
 	public List<StudentScript> Students;
 
-	// Token: 0x04000A5E RID: 2654
+	// Token: 0x04000A5F RID: 2655
 	[Tooltip("This area's crowd. Students will go here.")]
 	public List<StudentScript> Crowd;
 
-	// Token: 0x04000A5F RID: 2655
+	// Token: 0x04000A60 RID: 2656
 	public int ID;
 }

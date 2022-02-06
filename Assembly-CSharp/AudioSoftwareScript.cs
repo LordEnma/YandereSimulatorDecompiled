@@ -73,36 +73,36 @@ public class AudioSoftwareScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000ABC RID: 2748
+	// Token: 0x04000ABD RID: 2749
 	public YandereScript Yandere;
 
-	// Token: 0x04000ABD RID: 2749
+	// Token: 0x04000ABE RID: 2750
 	public PromptScript Prompt;
 
-	// Token: 0x04000ABE RID: 2750
+	// Token: 0x04000ABF RID: 2751
 	public Quaternion targetRotation;
 
-	// Token: 0x04000ABF RID: 2751
+	// Token: 0x04000AC0 RID: 2752
 	public Collider ChairCollider;
 
-	// Token: 0x04000AC0 RID: 2752
+	// Token: 0x04000AC1 RID: 2753
 	public UILabel EventSubtitle;
 
-	// Token: 0x04000AC1 RID: 2753
+	// Token: 0x04000AC2 RID: 2754
 	public GameObject Screen;
 
-	// Token: 0x04000AC2 RID: 2754
+	// Token: 0x04000AC3 RID: 2755
 	public Transform SitSpot;
 
-	// Token: 0x04000AC3 RID: 2755
+	// Token: 0x04000AC4 RID: 2756
 	public bool ConversationRecorded;
 
-	// Token: 0x04000AC4 RID: 2756
+	// Token: 0x04000AC5 RID: 2757
 	public bool AudioDoctored;
 
-	// Token: 0x04000AC5 RID: 2757
+	// Token: 0x04000AC6 RID: 2758
 	public bool Editing;
 
-	// Token: 0x04000AC6 RID: 2758
+	// Token: 0x04000AC7 RID: 2759
 	public float Timer;
 }

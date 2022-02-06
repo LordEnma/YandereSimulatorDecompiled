@@ -2055,233 +2055,233 @@ public class UILabel : UIWidget
 		}
 	}
 
-	// Token: 0x040006E4 RID: 1764
-	public UILabel.Crispness keepCrispWhenShrunk = UILabel.Crispness.OnDesktop;
-
 	// Token: 0x040006E5 RID: 1765
-	[HideInInspector]
-	[SerializeField]
-	private Font mTrueTypeFont;
+	public UILabel.Crispness keepCrispWhenShrunk = UILabel.Crispness.OnDesktop;
 
 	// Token: 0x040006E6 RID: 1766
 	[HideInInspector]
 	[SerializeField]
-	private UnityEngine.Object mFont;
+	private Font mTrueTypeFont;
 
 	// Token: 0x040006E7 RID: 1767
+	[HideInInspector]
+	[SerializeField]
+	private UnityEngine.Object mFont;
+
+	// Token: 0x040006E8 RID: 1768
 	[Multiline(6)]
 	[HideInInspector]
 	[SerializeField]
 	private string mText = "";
 
-	// Token: 0x040006E8 RID: 1768
+	// Token: 0x040006E9 RID: 1769
 	[HideInInspector]
 	[SerializeField]
 	private int mFontSize = 16;
 
-	// Token: 0x040006E9 RID: 1769
+	// Token: 0x040006EA RID: 1770
 	[HideInInspector]
 	[SerializeField]
 	private FontStyle mFontStyle;
 
-	// Token: 0x040006EA RID: 1770
+	// Token: 0x040006EB RID: 1771
 	[HideInInspector]
 	[SerializeField]
 	private NGUIText.Alignment mAlignment;
 
-	// Token: 0x040006EB RID: 1771
+	// Token: 0x040006EC RID: 1772
 	[HideInInspector]
 	[SerializeField]
 	private bool mEncoding = true;
 
-	// Token: 0x040006EC RID: 1772
+	// Token: 0x040006ED RID: 1773
 	[HideInInspector]
 	[SerializeField]
 	private int mMaxLineCount;
 
-	// Token: 0x040006ED RID: 1773
+	// Token: 0x040006EE RID: 1774
 	[HideInInspector]
 	[SerializeField]
 	private UILabel.Effect mEffectStyle;
 
-	// Token: 0x040006EE RID: 1774
+	// Token: 0x040006EF RID: 1775
 	[HideInInspector]
 	[SerializeField]
 	private Color mEffectColor = Color.black;
 
-	// Token: 0x040006EF RID: 1775
+	// Token: 0x040006F0 RID: 1776
 	[HideInInspector]
 	[SerializeField]
 	private NGUIText.SymbolStyle mSymbols = NGUIText.SymbolStyle.Normal;
 
-	// Token: 0x040006F0 RID: 1776
+	// Token: 0x040006F1 RID: 1777
 	[HideInInspector]
 	[SerializeField]
 	private Vector2 mEffectDistance = Vector2.one;
 
-	// Token: 0x040006F1 RID: 1777
+	// Token: 0x040006F2 RID: 1778
 	[HideInInspector]
 	[SerializeField]
 	private UILabel.Overflow mOverflow;
 
-	// Token: 0x040006F2 RID: 1778
+	// Token: 0x040006F3 RID: 1779
 	[HideInInspector]
 	[SerializeField]
 	private bool mApplyGradient;
 
-	// Token: 0x040006F3 RID: 1779
+	// Token: 0x040006F4 RID: 1780
 	[HideInInspector]
 	[SerializeField]
 	private Color mGradientTop = Color.white;
 
-	// Token: 0x040006F4 RID: 1780
+	// Token: 0x040006F5 RID: 1781
 	[HideInInspector]
 	[SerializeField]
 	private Color mGradientBottom = new Color(0.7f, 0.7f, 0.7f);
 
-	// Token: 0x040006F5 RID: 1781
+	// Token: 0x040006F6 RID: 1782
 	[HideInInspector]
 	[SerializeField]
 	private int mSpacingX;
 
-	// Token: 0x040006F6 RID: 1782
+	// Token: 0x040006F7 RID: 1783
 	[HideInInspector]
 	[SerializeField]
 	private int mSpacingY;
 
-	// Token: 0x040006F7 RID: 1783
+	// Token: 0x040006F8 RID: 1784
 	[HideInInspector]
 	[SerializeField]
 	private bool mUseFloatSpacing;
 
-	// Token: 0x040006F8 RID: 1784
+	// Token: 0x040006F9 RID: 1785
 	[HideInInspector]
 	[SerializeField]
 	private float mFloatSpacingX;
 
-	// Token: 0x040006F9 RID: 1785
+	// Token: 0x040006FA RID: 1786
 	[HideInInspector]
 	[SerializeField]
 	private float mFloatSpacingY;
 
-	// Token: 0x040006FA RID: 1786
+	// Token: 0x040006FB RID: 1787
 	[HideInInspector]
 	[SerializeField]
 	private bool mOverflowEllipsis;
 
-	// Token: 0x040006FB RID: 1787
+	// Token: 0x040006FC RID: 1788
 	[HideInInspector]
 	[SerializeField]
 	private int mOverflowWidth;
 
-	// Token: 0x040006FC RID: 1788
+	// Token: 0x040006FD RID: 1789
 	[HideInInspector]
 	[SerializeField]
 	private int mOverflowHeight;
 
-	// Token: 0x040006FD RID: 1789
+	// Token: 0x040006FE RID: 1790
 	[HideInInspector]
 	[SerializeField]
 	private UILabel.Modifier mModifier;
 
-	// Token: 0x040006FE RID: 1790
+	// Token: 0x040006FF RID: 1791
 	[HideInInspector]
 	[SerializeField]
 	private bool mShrinkToFit;
 
-	// Token: 0x040006FF RID: 1791
+	// Token: 0x04000700 RID: 1792
 	[HideInInspector]
 	[SerializeField]
 	private int mMaxLineWidth;
 
-	// Token: 0x04000700 RID: 1792
+	// Token: 0x04000701 RID: 1793
 	[HideInInspector]
 	[SerializeField]
 	private int mMaxLineHeight;
 
-	// Token: 0x04000701 RID: 1793
+	// Token: 0x04000702 RID: 1794
 	[HideInInspector]
 	[SerializeField]
 	private float mLineWidth;
 
-	// Token: 0x04000702 RID: 1794
+	// Token: 0x04000703 RID: 1795
 	[HideInInspector]
 	[SerializeField]
 	private bool mMultiline = true;
 
-	// Token: 0x04000703 RID: 1795
+	// Token: 0x04000704 RID: 1796
 	[NonSerialized]
 	private Font mActiveTTF;
 
-	// Token: 0x04000704 RID: 1796
+	// Token: 0x04000705 RID: 1797
 	[NonSerialized]
 	private float mDensity = 1f;
 
-	// Token: 0x04000705 RID: 1797
+	// Token: 0x04000706 RID: 1798
 	[NonSerialized]
 	private bool mShouldBeProcessed = true;
 
-	// Token: 0x04000706 RID: 1798
+	// Token: 0x04000707 RID: 1799
 	[NonSerialized]
 	private string mProcessedText;
 
-	// Token: 0x04000707 RID: 1799
+	// Token: 0x04000708 RID: 1800
 	[NonSerialized]
 	private bool mPremultiply;
 
-	// Token: 0x04000708 RID: 1800
+	// Token: 0x04000709 RID: 1801
 	[NonSerialized]
 	private Vector2 mCalculatedSize = Vector2.zero;
 
-	// Token: 0x04000709 RID: 1801
+	// Token: 0x0400070A RID: 1802
 	[NonSerialized]
 	private float mScale = 1f;
 
-	// Token: 0x0400070A RID: 1802
+	// Token: 0x0400070B RID: 1803
 	[NonSerialized]
 	private int mFinalFontSize;
 
-	// Token: 0x0400070B RID: 1803
+	// Token: 0x0400070C RID: 1804
 	[NonSerialized]
 	private int mLastWidth;
 
-	// Token: 0x0400070C RID: 1804
+	// Token: 0x0400070D RID: 1805
 	[NonSerialized]
 	private int mLastHeight;
 
-	// Token: 0x0400070D RID: 1805
+	// Token: 0x0400070E RID: 1806
 	public UILabel.ModifierFunc customModifier;
 
-	// Token: 0x0400070E RID: 1806
+	// Token: 0x0400070F RID: 1807
 	private static BetterList<UILabel> mList = new BetterList<UILabel>();
 
-	// Token: 0x0400070F RID: 1807
+	// Token: 0x04000710 RID: 1808
 	private static Dictionary<Font, int> mFontUsage = new Dictionary<Font, int>();
 
-	// Token: 0x04000710 RID: 1808
+	// Token: 0x04000711 RID: 1809
 	[NonSerialized]
 	private static BetterList<UIDrawCall> mTempDrawcalls;
 
-	// Token: 0x04000711 RID: 1809
+	// Token: 0x04000712 RID: 1810
 	private static bool mTexRebuildAdded = false;
 
-	// Token: 0x04000712 RID: 1810
+	// Token: 0x04000713 RID: 1811
 	private static List<Vector3> mTempVerts = new List<Vector3>();
 
-	// Token: 0x04000713 RID: 1811
+	// Token: 0x04000714 RID: 1812
 	private static List<int> mTempIndices = new List<int>();
 
 	// Token: 0x0200062F RID: 1583
 	[DoNotObfuscateNGUI]
 	public enum Effect
 	{
-		// Token: 0x04004E47 RID: 20039
-		None,
-		// Token: 0x04004E48 RID: 20040
-		Shadow,
-		// Token: 0x04004E49 RID: 20041
-		Outline,
 		// Token: 0x04004E4A RID: 20042
+		None,
+		// Token: 0x04004E4B RID: 20043
+		Shadow,
+		// Token: 0x04004E4C RID: 20044
+		Outline,
+		// Token: 0x04004E4D RID: 20045
 		Outline8
 	}
 
@@ -2289,13 +2289,13 @@ public class UILabel : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum Overflow
 	{
-		// Token: 0x04004E4C RID: 20044
-		ShrinkContent,
-		// Token: 0x04004E4D RID: 20045
-		ClampContent,
-		// Token: 0x04004E4E RID: 20046
-		ResizeFreely,
 		// Token: 0x04004E4F RID: 20047
+		ShrinkContent,
+		// Token: 0x04004E50 RID: 20048
+		ClampContent,
+		// Token: 0x04004E51 RID: 20049
+		ResizeFreely,
+		// Token: 0x04004E52 RID: 20050
 		ResizeHeight
 	}
 
@@ -2303,11 +2303,11 @@ public class UILabel : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum Crispness
 	{
-		// Token: 0x04004E51 RID: 20049
+		// Token: 0x04004E54 RID: 20052
 		Never,
-		// Token: 0x04004E52 RID: 20050
+		// Token: 0x04004E55 RID: 20053
 		OnDesktop,
-		// Token: 0x04004E53 RID: 20051
+		// Token: 0x04004E56 RID: 20054
 		Always
 	}
 
@@ -2315,17 +2315,17 @@ public class UILabel : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum Modifier
 	{
-		// Token: 0x04004E55 RID: 20053
-		None,
-		// Token: 0x04004E56 RID: 20054
-		ToUppercase,
-		// Token: 0x04004E57 RID: 20055
-		ToLowercase,
 		// Token: 0x04004E58 RID: 20056
+		None,
+		// Token: 0x04004E59 RID: 20057
+		ToUppercase,
+		// Token: 0x04004E5A RID: 20058
+		ToLowercase,
+		// Token: 0x04004E5B RID: 20059
 		Custom = 255
 	}
 
 	// Token: 0x02000633 RID: 1587
-	// (Invoke) Token: 0x060025E8 RID: 9704
+	// (Invoke) Token: 0x060025EB RID: 9707
 	public delegate string ModifierFunc(string s);
 }

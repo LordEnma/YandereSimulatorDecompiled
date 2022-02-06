@@ -49,21 +49,21 @@ public class DontLetSenpaiNoticeYouScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A31 RID: 2609
+	// Token: 0x04000A32 RID: 2610
 	public UILabel[] Letters;
 
-	// Token: 0x04000A32 RID: 2610
+	// Token: 0x04000A33 RID: 2611
 	public Vector3[] Origins;
 
-	// Token: 0x04000A33 RID: 2611
+	// Token: 0x04000A34 RID: 2612
 	public AudioClip Slam;
 
-	// Token: 0x04000A34 RID: 2612
+	// Token: 0x04000A35 RID: 2613
 	public bool Proceed;
 
-	// Token: 0x04000A35 RID: 2613
+	// Token: 0x04000A36 RID: 2614
 	public int ShakeID;
 
-	// Token: 0x04000A36 RID: 2614
+	// Token: 0x04000A37 RID: 2615
 	public int ID;
 }

@@ -40,6 +40,6 @@ public class EquipItems : MonoBehaviour
 		UnityEngine.Object.Destroy(this);
 	}
 
-	// Token: 0x04000253 RID: 595
+	// Token: 0x04000254 RID: 596
 	public int[] itemIDs;
 }

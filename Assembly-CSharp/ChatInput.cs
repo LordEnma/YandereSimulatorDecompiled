@@ -35,12 +35,12 @@ public class ChatInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400028C RID: 652
+	// Token: 0x0400028D RID: 653
 	public UITextList textList;
 
-	// Token: 0x0400028D RID: 653
+	// Token: 0x0400028E RID: 654
 	public bool fillWithDummyData;
 
-	// Token: 0x0400028E RID: 654
+	// Token: 0x0400028F RID: 655
 	private UIInput mInput;
 }

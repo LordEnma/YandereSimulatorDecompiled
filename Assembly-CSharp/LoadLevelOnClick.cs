@@ -15,6 +15,6 @@ public class LoadLevelOnClick : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400029F RID: 671
+	// Token: 0x040002A0 RID: 672
 	public string levelName;
 }

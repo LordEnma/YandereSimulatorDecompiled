@@ -37,24 +37,24 @@ public class ARMiyukiScript : MonoBehaviour
 		UnityEngine.Object.Instantiate<GameObject>(this.Bullet, this.BulletSpawnPoint.position, base.transform.rotation);
 	}
 
-	// Token: 0x04000837 RID: 2103
+	// Token: 0x04000838 RID: 2104
 	public Transform BulletSpawnPoint;
 
-	// Token: 0x04000838 RID: 2104
+	// Token: 0x04000839 RID: 2105
 	public StudentScript MyStudent;
 
-	// Token: 0x04000839 RID: 2105
+	// Token: 0x0400083A RID: 2106
 	public YandereScript Yandere;
 
-	// Token: 0x0400083A RID: 2106
+	// Token: 0x0400083B RID: 2107
 	public GameObject Bullet;
 
-	// Token: 0x0400083B RID: 2107
+	// Token: 0x0400083C RID: 2108
 	public Transform Enemy;
 
-	// Token: 0x0400083C RID: 2108
+	// Token: 0x0400083D RID: 2109
 	public GameObject MagicalGirl;
 
-	// Token: 0x0400083D RID: 2109
+	// Token: 0x0400083E RID: 2110
 	public bool Student;
 }

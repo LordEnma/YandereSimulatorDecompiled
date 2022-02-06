@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000371 RID: 881
 public class MusicTest : MonoBehaviour
 {
-	// Token: 0x060019C0 RID: 6592 RVA: 0x00108194 File Offset: 0x00106394
+	// Token: 0x060019C2 RID: 6594 RVA: 0x001082A0 File Offset: 0x001064A0
 	private void Start()
 	{
 		int num = this.freqData.Length;
@@ -29,7 +29,7 @@ public class MusicTest : MonoBehaviour
 		base.InvokeRepeating("check", 0f, 0.033333335f);
 	}
 
-	// Token: 0x060019C1 RID: 6593 RVA: 0x0010824C File Offset: 0x0010644C
+	// Token: 0x060019C3 RID: 6595 RVA: 0x00108358 File Offset: 0x00106558
 	private void check()
 	{
 		base.GetComponent<AudioSource>().GetSpectrumData(this.freqData, 0, FFTWindow.Rectangular);
@@ -51,15 +51,15 @@ public class MusicTest : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002952 RID: 10578
+	// Token: 0x04002955 RID: 10581
 	public float[] freqData;
 
-	// Token: 0x04002953 RID: 10579
+	// Token: 0x04002956 RID: 10582
 	public AudioSource MainSong;
 
-	// Token: 0x04002954 RID: 10580
+	// Token: 0x04002957 RID: 10583
 	public float[] band;
 
-	// Token: 0x04002955 RID: 10581
+	// Token: 0x04002958 RID: 10584
 	public GameObject[] g;
 }

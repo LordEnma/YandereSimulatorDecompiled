@@ -26,9 +26,9 @@ public class BefriendBetrayPauseScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000B76 RID: 2934
+	// Token: 0x04000B77 RID: 2935
 	public StalkerYandereScript Yandere;
 
-	// Token: 0x04000B77 RID: 2935
+	// Token: 0x04000B78 RID: 2936
 	public UIPanel Panel;
 }

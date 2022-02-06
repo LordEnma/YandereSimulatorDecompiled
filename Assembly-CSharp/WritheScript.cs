@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020004C1 RID: 1217
 public class WritheScript : MonoBehaviour
 {
-	// Token: 0x06001FD6 RID: 8150 RVA: 0x001C375A File Offset: 0x001C195A
+	// Token: 0x06001FD9 RID: 8153 RVA: 0x001C395E File Offset: 0x001C1B5E
 	private void Start()
 	{
 		this.StartTime = Time.time;
 		this.Duration = UnityEngine.Random.Range(1f, 5f);
 	}
 
-	// Token: 0x06001FD7 RID: 8151 RVA: 0x001C377C File Offset: 0x001C197C
+	// Token: 0x06001FDA RID: 8154 RVA: 0x001C3980 File Offset: 0x001C1B80
 	private void Update()
 	{
 		if (this.Rotation == this.EndValue)
@@ -43,24 +43,24 @@ public class WritheScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040042E1 RID: 17121
+	// Token: 0x040042E4 RID: 17124
 	public float Rotation;
 
-	// Token: 0x040042E2 RID: 17122
+	// Token: 0x040042E5 RID: 17125
 	public float StartTime;
 
-	// Token: 0x040042E3 RID: 17123
+	// Token: 0x040042E6 RID: 17126
 	public float Duration;
 
-	// Token: 0x040042E4 RID: 17124
+	// Token: 0x040042E7 RID: 17127
 	public float StartValue;
 
-	// Token: 0x040042E5 RID: 17125
+	// Token: 0x040042E8 RID: 17128
 	public float EndValue;
 
-	// Token: 0x040042E6 RID: 17126
+	// Token: 0x040042E9 RID: 17129
 	public int ID;
 
-	// Token: 0x040042E7 RID: 17127
+	// Token: 0x040042EA RID: 17130
 	public bool SpecialCase;
 }

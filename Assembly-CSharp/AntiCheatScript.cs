@@ -31,12 +31,12 @@ public class AntiCheatScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A24 RID: 2596
+	// Token: 0x04000A25 RID: 2597
 	public AudioSource MyAudio;
 
-	// Token: 0x04000A25 RID: 2597
+	// Token: 0x04000A26 RID: 2598
 	public GameObject Jukebox;
 
-	// Token: 0x04000A26 RID: 2598
+	// Token: 0x04000A27 RID: 2599
 	public bool Check;
 }

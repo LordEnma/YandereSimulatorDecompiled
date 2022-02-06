@@ -76,9 +76,9 @@ public class UILocalize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000714 RID: 1812
+	// Token: 0x04000715 RID: 1813
 	public string key;
 
-	// Token: 0x04000715 RID: 1813
+	// Token: 0x04000716 RID: 1814
 	private bool mStarted;
 }

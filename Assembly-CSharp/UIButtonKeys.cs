@@ -48,18 +48,18 @@ public class UIButtonKeys : UIKeyNavigation
 		}
 	}
 
-	// Token: 0x040002F7 RID: 759
+	// Token: 0x040002F8 RID: 760
 	public UIButtonKeys selectOnClick;
 
-	// Token: 0x040002F8 RID: 760
+	// Token: 0x040002F9 RID: 761
 	public UIButtonKeys selectOnUp;
 
-	// Token: 0x040002F9 RID: 761
+	// Token: 0x040002FA RID: 762
 	public UIButtonKeys selectOnDown;
 
-	// Token: 0x040002FA RID: 762
+	// Token: 0x040002FB RID: 763
 	public UIButtonKeys selectOnLeft;
 
-	// Token: 0x040002FB RID: 763
+	// Token: 0x040002FC RID: 764
 	public UIButtonKeys selectOnRight;
 }

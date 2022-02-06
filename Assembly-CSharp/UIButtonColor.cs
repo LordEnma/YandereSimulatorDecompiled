@@ -303,38 +303,38 @@ public class UIButtonColor : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x040002ED RID: 749
+	// Token: 0x040002EE RID: 750
 	public GameObject tweenTarget;
 
-	// Token: 0x040002EE RID: 750
+	// Token: 0x040002EF RID: 751
 	public Color hover = new Color(0.88235295f, 0.78431374f, 0.5882353f, 1f);
 
-	// Token: 0x040002EF RID: 751
+	// Token: 0x040002F0 RID: 752
 	public Color pressed = new Color(0.7176471f, 0.6392157f, 0.48235294f, 1f);
 
-	// Token: 0x040002F0 RID: 752
+	// Token: 0x040002F1 RID: 753
 	public Color disabledColor = Color.grey;
 
-	// Token: 0x040002F1 RID: 753
-	public float duration = 0.2f;
-
 	// Token: 0x040002F2 RID: 754
-	[NonSerialized]
-	protected Color mStartingColor;
+	public float duration = 0.2f;
 
 	// Token: 0x040002F3 RID: 755
 	[NonSerialized]
-	protected Color mDefaultColor;
+	protected Color mStartingColor;
 
 	// Token: 0x040002F4 RID: 756
 	[NonSerialized]
-	protected bool mInitDone;
+	protected Color mDefaultColor;
 
 	// Token: 0x040002F5 RID: 757
 	[NonSerialized]
-	protected UIWidget mWidget;
+	protected bool mInitDone;
 
 	// Token: 0x040002F6 RID: 758
+	[NonSerialized]
+	protected UIWidget mWidget;
+
+	// Token: 0x040002F7 RID: 759
 	[NonSerialized]
 	protected UIButtonColor.State mState;
 
@@ -342,13 +342,13 @@ public class UIButtonColor : UIWidgetContainer
 	[DoNotObfuscateNGUI]
 	public enum State
 	{
-		// Token: 0x04004D01 RID: 19713
-		Normal,
-		// Token: 0x04004D02 RID: 19714
-		Hover,
-		// Token: 0x04004D03 RID: 19715
-		Pressed,
 		// Token: 0x04004D04 RID: 19716
+		Normal,
+		// Token: 0x04004D05 RID: 19717
+		Hover,
+		// Token: 0x04004D06 RID: 19718
+		Pressed,
+		// Token: 0x04004D07 RID: 19719
 		Disabled
 	}
 }

@@ -175,45 +175,45 @@ public class UIDraggableCamera : MonoBehaviour
 		NGUIMath.SpringDampen(ref this.mMomentum, 9f, deltaTime);
 	}
 
-	// Token: 0x04000357 RID: 855
+	// Token: 0x04000358 RID: 856
 	public Transform rootForBounds;
 
-	// Token: 0x04000358 RID: 856
+	// Token: 0x04000359 RID: 857
 	public Vector2 scale = Vector2.one;
 
-	// Token: 0x04000359 RID: 857
+	// Token: 0x0400035A RID: 858
 	public float scrollWheelFactor;
 
-	// Token: 0x0400035A RID: 858
+	// Token: 0x0400035B RID: 859
 	public UIDragObject.DragEffect dragEffect = UIDragObject.DragEffect.MomentumAndSpring;
 
-	// Token: 0x0400035B RID: 859
+	// Token: 0x0400035C RID: 860
 	public bool smoothDragStart = true;
 
-	// Token: 0x0400035C RID: 860
+	// Token: 0x0400035D RID: 861
 	public float momentumAmount = 35f;
 
-	// Token: 0x0400035D RID: 861
+	// Token: 0x0400035E RID: 862
 	private Camera mCam;
 
-	// Token: 0x0400035E RID: 862
+	// Token: 0x0400035F RID: 863
 	private Transform mTrans;
 
-	// Token: 0x0400035F RID: 863
+	// Token: 0x04000360 RID: 864
 	private bool mPressed;
 
-	// Token: 0x04000360 RID: 864
+	// Token: 0x04000361 RID: 865
 	private Vector2 mMomentum = Vector2.zero;
 
-	// Token: 0x04000361 RID: 865
+	// Token: 0x04000362 RID: 866
 	private Bounds mBounds;
 
-	// Token: 0x04000362 RID: 866
+	// Token: 0x04000363 RID: 867
 	private float mScroll;
 
-	// Token: 0x04000363 RID: 867
+	// Token: 0x04000364 RID: 868
 	private UIRoot mRoot;
 
-	// Token: 0x04000364 RID: 868
+	// Token: 0x04000365 RID: 869
 	private bool mDragStarted;
 }

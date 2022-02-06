@@ -3,62 +3,62 @@
 // Token: 0x02000456 RID: 1110
 public enum StudentInteractionType
 {
-	// Token: 0x040037E7 RID: 14311
-	Idle,
-	// Token: 0x040037E8 RID: 14312
-	Forgiving,
-	// Token: 0x040037E9 RID: 14313
-	ReceivingCompliment,
 	// Token: 0x040037EA RID: 14314
-	Gossiping,
+	Idle,
 	// Token: 0x040037EB RID: 14315
-	Bye,
+	Forgiving,
 	// Token: 0x040037EC RID: 14316
-	GivingTask,
+	ReceivingCompliment,
 	// Token: 0x040037ED RID: 14317
-	FollowingPlayer,
+	Gossiping,
 	// Token: 0x040037EE RID: 14318
-	GoingAway,
+	Bye,
 	// Token: 0x040037EF RID: 14319
-	DistractingTarget,
+	GivingTask,
 	// Token: 0x040037F0 RID: 14320
-	PersonalGrudge,
+	FollowingPlayer,
 	// Token: 0x040037F1 RID: 14321
-	ClubInfo,
+	GoingAway,
 	// Token: 0x040037F2 RID: 14322
-	ClubJoin,
+	DistractingTarget,
 	// Token: 0x040037F3 RID: 14323
-	ClubQuit,
+	PersonalGrudge,
 	// Token: 0x040037F4 RID: 14324
-	ClubBye,
+	ClubInfo,
 	// Token: 0x040037F5 RID: 14325
-	ClubActivity,
+	ClubJoin,
 	// Token: 0x040037F6 RID: 14326
-	ClubUnwelcome,
+	ClubQuit,
 	// Token: 0x040037F7 RID: 14327
-	ClubKick,
+	ClubBye,
 	// Token: 0x040037F8 RID: 14328
-	ClubGrudge,
+	ClubActivity,
 	// Token: 0x040037F9 RID: 14329
-	ClubPractice,
+	ClubUnwelcome,
 	// Token: 0x040037FA RID: 14330
-	NamingCrush,
+	ClubKick,
 	// Token: 0x040037FB RID: 14331
-	ChangingAppearance,
+	ClubGrudge,
 	// Token: 0x040037FC RID: 14332
-	Court,
+	ClubPractice,
 	// Token: 0x040037FD RID: 14333
-	Advice,
+	NamingCrush,
 	// Token: 0x040037FE RID: 14334
-	Feeding,
+	ChangingAppearance,
 	// Token: 0x040037FF RID: 14335
-	TaskInquiry,
+	Court,
 	// Token: 0x04003800 RID: 14336
-	TakingSnack,
+	Advice,
 	// Token: 0x04003801 RID: 14337
-	GivingHelp,
+	Feeding,
 	// Token: 0x04003802 RID: 14338
-	SentToLocker,
+	TaskInquiry,
 	// Token: 0x04003803 RID: 14339
+	TakingSnack,
+	// Token: 0x04003804 RID: 14340
+	GivingHelp,
+	// Token: 0x04003805 RID: 14341
+	SentToLocker,
+	// Token: 0x04003806 RID: 14342
 	WaitingForBeatEmUpResult
 }

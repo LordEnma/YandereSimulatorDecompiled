@@ -10,6 +10,6 @@ public class ClimbFollowScript : MonoBehaviour
 		base.transform.position = new Vector3(base.transform.position.x, this.Yandere.position.y, base.transform.position.z);
 	}
 
-	// Token: 0x04000252 RID: 594
+	// Token: 0x04000253 RID: 595
 	public Transform Yandere;
 }

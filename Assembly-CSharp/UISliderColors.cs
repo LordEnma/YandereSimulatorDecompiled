@@ -44,10 +44,10 @@ public class UISliderColors : MonoBehaviour
 		this.sprite.color = color;
 	}
 
-	// Token: 0x040002B7 RID: 695
+	// Token: 0x040002B8 RID: 696
 	public UISprite sprite;
 
-	// Token: 0x040002B8 RID: 696
+	// Token: 0x040002B9 RID: 697
 	public Color[] colors = new Color[]
 	{
 		Color.red,
@@ -55,9 +55,9 @@ public class UISliderColors : MonoBehaviour
 		Color.green
 	};
 
-	// Token: 0x040002B9 RID: 697
+	// Token: 0x040002BA RID: 698
 	private UIProgressBar mBar;
 
-	// Token: 0x040002BA RID: 698
+	// Token: 0x040002BB RID: 699
 	private UIBasicSprite mSprite;
 }

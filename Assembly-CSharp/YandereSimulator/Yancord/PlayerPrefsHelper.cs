@@ -6,13 +6,13 @@ namespace YandereSimulator.Yancord
 	// Token: 0x02000519 RID: 1305
 	public static class PlayerPrefsHelper
 	{
-		// Token: 0x06002155 RID: 8533 RVA: 0x001E8F35 File Offset: 0x001E7135
+		// Token: 0x06002158 RID: 8536 RVA: 0x001E9139 File Offset: 0x001E7339
 		public static void SetBool(string name, bool flag)
 		{
 			PlayerPrefs.SetInt(name, flag ? 1 : 0);
 		}
 
-		// Token: 0x06002156 RID: 8534 RVA: 0x001E8F44 File Offset: 0x001E7144
+		// Token: 0x06002159 RID: 8537 RVA: 0x001E9148 File Offset: 0x001E7348
 		public static bool GetBool(string name)
 		{
 			return PlayerPrefs.GetInt(name) == 1;

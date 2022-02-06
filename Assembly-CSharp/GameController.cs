@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000294 RID: 660
 public class GameController : MonoBehaviour
 {
-	// Token: 0x060013C6 RID: 5062 RVA: 0x000BB858 File Offset: 0x000B9A58
+	// Token: 0x060013C6 RID: 5062 RVA: 0x000BB8D8 File Offset: 0x000B9AD8
 	private void Update()
 	{
 		this.m_Player.transform.Rotate(new Vector3(0f, Input.GetAxis("Horizontal") * Time.deltaTime * 200f, 0f));
 		this.m_Player.transform.Translate(base.transform.forward * Input.GetAxis("Vertical") * Time.deltaTime * 4f);
 	}
 
-	// Token: 0x060013C7 RID: 5063 RVA: 0x000BB8D8 File Offset: 0x000B9AD8
+	// Token: 0x060013C7 RID: 5063 RVA: 0x000BB958 File Offset: 0x000B9B58
 	private void OnGUI()
 	{
 		GUI.Label(new Rect(50f, 50f, 200f, 20f), "Press arrow key to move");
@@ -23,6 +23,6 @@ public class GameController : MonoBehaviour
 		components[2].enabled = GUI.Toggle(new Rect(50f, 140f, 100f, 20f), components[2].enabled, "Tail");
 	}
 
-	// Token: 0x04001D81 RID: 7553
+	// Token: 0x04001D83 RID: 7555
 	public GameObject m_Player;
 }

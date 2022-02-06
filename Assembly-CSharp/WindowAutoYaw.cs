@@ -31,15 +31,15 @@ public class WindowAutoYaw : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040002BB RID: 699
+	// Token: 0x040002BC RID: 700
 	public int updateOrder;
 
-	// Token: 0x040002BC RID: 700
+	// Token: 0x040002BD RID: 701
 	public Camera uiCamera;
 
-	// Token: 0x040002BD RID: 701
+	// Token: 0x040002BE RID: 702
 	public float yawAmount = 20f;
 
-	// Token: 0x040002BE RID: 702
+	// Token: 0x040002BF RID: 703
 	private Transform mTrans;
 }

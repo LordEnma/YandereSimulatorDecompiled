@@ -313,57 +313,57 @@ public class AlarmDiscScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400088D RID: 2189
+	// Token: 0x0400088E RID: 2190
 	public AudioClip[] LongFemaleScreams;
 
-	// Token: 0x0400088E RID: 2190
+	// Token: 0x0400088F RID: 2191
 	public AudioClip[] LongMaleScreams;
 
-	// Token: 0x0400088F RID: 2191
+	// Token: 0x04000890 RID: 2192
 	public AudioClip[] FemaleScreams;
 
-	// Token: 0x04000890 RID: 2192
+	// Token: 0x04000891 RID: 2193
 	public AudioClip[] MaleScreams;
 
-	// Token: 0x04000891 RID: 2193
+	// Token: 0x04000892 RID: 2194
 	public AudioClip[] DelinquentScreams;
 
-	// Token: 0x04000892 RID: 2194
+	// Token: 0x04000893 RID: 2195
 	public StudentScript Originator;
 
-	// Token: 0x04000893 RID: 2195
+	// Token: 0x04000894 RID: 2196
 	public RadioScript SourceRadio;
 
-	// Token: 0x04000894 RID: 2196
+	// Token: 0x04000895 RID: 2197
 	public StudentScript Student;
 
-	// Token: 0x04000895 RID: 2197
+	// Token: 0x04000896 RID: 2198
 	public bool FocusOnYandere;
 
-	// Token: 0x04000896 RID: 2198
+	// Token: 0x04000897 RID: 2199
 	public bool StudentIsBusy;
 
-	// Token: 0x04000897 RID: 2199
+	// Token: 0x04000898 RID: 2200
 	public bool Delinquent;
 
-	// Token: 0x04000898 RID: 2200
+	// Token: 0x04000899 RID: 2201
 	public bool NoScream;
 
-	// Token: 0x04000899 RID: 2201
+	// Token: 0x0400089A RID: 2202
 	public bool Shocking;
 
-	// Token: 0x0400089A RID: 2202
+	// Token: 0x0400089B RID: 2203
 	public bool Radio;
 
-	// Token: 0x0400089B RID: 2203
+	// Token: 0x0400089C RID: 2204
 	public bool Male;
 
-	// Token: 0x0400089C RID: 2204
+	// Token: 0x0400089D RID: 2205
 	public bool Long;
 
-	// Token: 0x0400089D RID: 2205
+	// Token: 0x0400089E RID: 2206
 	public float Hesitation = 1f;
 
-	// Token: 0x0400089E RID: 2206
+	// Token: 0x0400089F RID: 2207
 	public int Frame;
 }

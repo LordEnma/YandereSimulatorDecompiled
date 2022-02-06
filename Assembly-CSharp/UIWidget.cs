@@ -1241,171 +1241,171 @@ public class UIWidget : UIRect
 	{
 	}
 
-	// Token: 0x0400056D RID: 1389
+	// Token: 0x0400056E RID: 1390
 	[HideInInspector]
 	[SerializeField]
 	protected Color mColor = Color.white;
 
-	// Token: 0x0400056E RID: 1390
+	// Token: 0x0400056F RID: 1391
 	[HideInInspector]
 	[SerializeField]
 	protected UIWidget.Pivot mPivot = UIWidget.Pivot.Center;
 
-	// Token: 0x0400056F RID: 1391
+	// Token: 0x04000570 RID: 1392
 	[HideInInspector]
 	[SerializeField]
 	protected int mWidth = 100;
 
-	// Token: 0x04000570 RID: 1392
+	// Token: 0x04000571 RID: 1393
 	[HideInInspector]
 	[SerializeField]
 	protected int mHeight = 100;
 
-	// Token: 0x04000571 RID: 1393
+	// Token: 0x04000572 RID: 1394
 	[HideInInspector]
 	[SerializeField]
 	protected int mDepth;
 
-	// Token: 0x04000572 RID: 1394
+	// Token: 0x04000573 RID: 1395
 	[Tooltip("Custom material, if desired")]
 	[HideInInspector]
 	[SerializeField]
 	protected Material mMat;
 
-	// Token: 0x04000573 RID: 1395
+	// Token: 0x04000574 RID: 1396
 	public UIWidget.OnDimensionsChanged onChange;
 
-	// Token: 0x04000574 RID: 1396
+	// Token: 0x04000575 RID: 1397
 	public UIWidget.OnPostFillCallback onPostFill;
 
-	// Token: 0x04000575 RID: 1397
+	// Token: 0x04000576 RID: 1398
 	public UIDrawCall.OnRenderCallback mOnRender;
 
-	// Token: 0x04000576 RID: 1398
+	// Token: 0x04000577 RID: 1399
 	public bool autoResizeBoxCollider;
 
-	// Token: 0x04000577 RID: 1399
+	// Token: 0x04000578 RID: 1400
 	public bool hideIfOffScreen;
 
-	// Token: 0x04000578 RID: 1400
+	// Token: 0x04000579 RID: 1401
 	public UIWidget.AspectRatioSource keepAspectRatio;
 
-	// Token: 0x04000579 RID: 1401
+	// Token: 0x0400057A RID: 1402
 	public float aspectRatio = 1f;
 
-	// Token: 0x0400057A RID: 1402
-	public UIWidget.HitCheck hitCheck;
-
 	// Token: 0x0400057B RID: 1403
-	[NonSerialized]
-	public UIPanel panel;
+	public UIWidget.HitCheck hitCheck;
 
 	// Token: 0x0400057C RID: 1404
 	[NonSerialized]
-	public UIGeometry geometry = new UIGeometry();
+	public UIPanel panel;
 
 	// Token: 0x0400057D RID: 1405
 	[NonSerialized]
-	public bool fillGeometry = true;
+	public UIGeometry geometry = new UIGeometry();
 
 	// Token: 0x0400057E RID: 1406
 	[NonSerialized]
-	protected bool mPlayMode = true;
+	public bool fillGeometry = true;
 
 	// Token: 0x0400057F RID: 1407
 	[NonSerialized]
-	protected Vector4 mDrawRegion = new Vector4(0f, 0f, 1f, 1f);
+	protected bool mPlayMode = true;
 
 	// Token: 0x04000580 RID: 1408
 	[NonSerialized]
-	private Matrix4x4 mLocalToPanel;
+	protected Vector4 mDrawRegion = new Vector4(0f, 0f, 1f, 1f);
 
 	// Token: 0x04000581 RID: 1409
 	[NonSerialized]
-	private bool mIsVisibleByAlpha = true;
+	private Matrix4x4 mLocalToPanel;
 
 	// Token: 0x04000582 RID: 1410
 	[NonSerialized]
-	private bool mIsVisibleByPanel = true;
+	private bool mIsVisibleByAlpha = true;
 
 	// Token: 0x04000583 RID: 1411
 	[NonSerialized]
-	private bool mIsInFront = true;
+	private bool mIsVisibleByPanel = true;
 
 	// Token: 0x04000584 RID: 1412
 	[NonSerialized]
-	private float mLastAlpha;
+	private bool mIsInFront = true;
 
 	// Token: 0x04000585 RID: 1413
 	[NonSerialized]
-	private bool mMoved;
+	private float mLastAlpha;
 
 	// Token: 0x04000586 RID: 1414
 	[NonSerialized]
-	public UIDrawCall drawCall;
+	private bool mMoved;
 
 	// Token: 0x04000587 RID: 1415
 	[NonSerialized]
-	protected Vector3[] mCorners = new Vector3[4];
+	public UIDrawCall drawCall;
 
 	// Token: 0x04000588 RID: 1416
 	[NonSerialized]
-	private int mAlphaFrameID = -1;
+	protected Vector3[] mCorners = new Vector3[4];
 
 	// Token: 0x04000589 RID: 1417
-	private int mMatrixFrame = -1;
+	[NonSerialized]
+	private int mAlphaFrameID = -1;
 
 	// Token: 0x0400058A RID: 1418
-	private Vector3 mOldV0;
+	private int mMatrixFrame = -1;
 
 	// Token: 0x0400058B RID: 1419
+	private Vector3 mOldV0;
+
+	// Token: 0x0400058C RID: 1420
 	private Vector3 mOldV1;
 
 	// Token: 0x020005FF RID: 1535
 	[DoNotObfuscateNGUI]
 	public enum Pivot
 	{
-		// Token: 0x04004DBC RID: 19900
-		TopLeft,
-		// Token: 0x04004DBD RID: 19901
-		Top,
-		// Token: 0x04004DBE RID: 19902
-		TopRight,
 		// Token: 0x04004DBF RID: 19903
-		Left,
+		TopLeft,
 		// Token: 0x04004DC0 RID: 19904
-		Center,
+		Top,
 		// Token: 0x04004DC1 RID: 19905
-		Right,
+		TopRight,
 		// Token: 0x04004DC2 RID: 19906
-		BottomLeft,
+		Left,
 		// Token: 0x04004DC3 RID: 19907
-		Bottom,
+		Center,
 		// Token: 0x04004DC4 RID: 19908
+		Right,
+		// Token: 0x04004DC5 RID: 19909
+		BottomLeft,
+		// Token: 0x04004DC6 RID: 19910
+		Bottom,
+		// Token: 0x04004DC7 RID: 19911
 		BottomRight
 	}
 
 	// Token: 0x02000600 RID: 1536
-	// (Invoke) Token: 0x06002573 RID: 9587
+	// (Invoke) Token: 0x06002576 RID: 9590
 	public delegate void OnDimensionsChanged();
 
 	// Token: 0x02000601 RID: 1537
-	// (Invoke) Token: 0x06002577 RID: 9591
+	// (Invoke) Token: 0x0600257A RID: 9594
 	public delegate void OnPostFillCallback(UIWidget widget, int bufferOffset, List<Vector3> verts, List<Vector2> uvs, List<Color> cols);
 
 	// Token: 0x02000602 RID: 1538
 	[DoNotObfuscateNGUI]
 	public enum AspectRatioSource
 	{
-		// Token: 0x04004DC6 RID: 19910
+		// Token: 0x04004DC9 RID: 19913
 		Free,
-		// Token: 0x04004DC7 RID: 19911
+		// Token: 0x04004DCA RID: 19914
 		BasedOnWidth,
-		// Token: 0x04004DC8 RID: 19912
+		// Token: 0x04004DCB RID: 19915
 		BasedOnHeight
 	}
 
 	// Token: 0x02000603 RID: 1539
-	// (Invoke) Token: 0x0600257B RID: 9595
+	// (Invoke) Token: 0x0600257E RID: 9598
 	public delegate bool HitCheck(Vector3 worldPos);
 }

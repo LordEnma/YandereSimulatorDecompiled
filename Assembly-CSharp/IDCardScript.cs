@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200032C RID: 812
 public class IDCardScript : MonoBehaviour
 {
-	// Token: 0x060018B6 RID: 6326 RVA: 0x000F32F4 File Offset: 0x000F14F4
+	// Token: 0x060018B8 RID: 6328 RVA: 0x000F33F0 File Offset: 0x000F15F0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -25,9 +25,9 @@ public class IDCardScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040025B3 RID: 9651
+	// Token: 0x040025B6 RID: 9654
 	public PromptScript Prompt;
 
-	// Token: 0x040025B4 RID: 9652
+	// Token: 0x040025B7 RID: 9655
 	public bool Fake;
 }

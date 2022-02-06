@@ -5,8 +5,8 @@ namespace UnityEngine.PostProcessing
 	// Token: 0x02000560 RID: 1376
 	public sealed class VignetteComponent : PostProcessingComponentRenderTexture<VignetteModel>
 	{
-		// Token: 0x170004FD RID: 1277
-		// (get) Token: 0x06002318 RID: 8984 RVA: 0x001F3336 File Offset: 0x001F1536
+		// Token: 0x170004FE RID: 1278
+		// (get) Token: 0x0600231B RID: 8987 RVA: 0x001F353A File Offset: 0x001F173A
 		public override bool active
 		{
 			get
@@ -15,7 +15,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002319 RID: 8985 RVA: 0x001F3358 File Offset: 0x001F1558
+		// Token: 0x0600231C RID: 8988 RVA: 0x001F355C File Offset: 0x001F175C
 		public override void Prepare(Material uberMaterial)
 		{
 			VignetteModel.Settings settings = base.model.settings;
@@ -39,19 +39,19 @@ namespace UnityEngine.PostProcessing
 		// Token: 0x020006A3 RID: 1699
 		private static class Uniforms
 		{
-			// Token: 0x040050AD RID: 20653
+			// Token: 0x040050B0 RID: 20656
 			internal static readonly int _Vignette_Color = Shader.PropertyToID("_Vignette_Color");
 
-			// Token: 0x040050AE RID: 20654
+			// Token: 0x040050B1 RID: 20657
 			internal static readonly int _Vignette_Center = Shader.PropertyToID("_Vignette_Center");
 
-			// Token: 0x040050AF RID: 20655
+			// Token: 0x040050B2 RID: 20658
 			internal static readonly int _Vignette_Settings = Shader.PropertyToID("_Vignette_Settings");
 
-			// Token: 0x040050B0 RID: 20656
+			// Token: 0x040050B3 RID: 20659
 			internal static readonly int _Vignette_Mask = Shader.PropertyToID("_Vignette_Mask");
 
-			// Token: 0x040050B1 RID: 20657
+			// Token: 0x040050B4 RID: 20660
 			internal static readonly int _Vignette_Opacity = Shader.PropertyToID("_Vignette_Opacity");
 		}
 	}

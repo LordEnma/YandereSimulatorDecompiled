@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200035D RID: 861
 public class MatchScript : MonoBehaviour
 {
-	// Token: 0x0600197F RID: 6527 RVA: 0x00103EC4 File Offset: 0x001020C4
+	// Token: 0x06001981 RID: 6529 RVA: 0x00103FD0 File Offset: 0x001021D0
 	private void Update()
 	{
 		base.transform.Rotate(360f * Time.deltaTime, 360f * Time.deltaTime, 360f * Time.deltaTime);
 	}
 
-	// Token: 0x06001980 RID: 6528 RVA: 0x00103EF4 File Offset: 0x001020F4
+	// Token: 0x06001982 RID: 6530 RVA: 0x00104000 File Offset: 0x00102200
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.layer == 0 || collision.gameObject.layer == 8)
@@ -36,24 +36,24 @@ public class MatchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040028BF RID: 10431
+	// Token: 0x040028C2 RID: 10434
 	public GameObject Distraction;
 
-	// Token: 0x040028C0 RID: 10432
+	// Token: 0x040028C3 RID: 10435
 	public GameObject GiggleDisc;
 
-	// Token: 0x040028C1 RID: 10433
+	// Token: 0x040028C4 RID: 10436
 	public GameObject GasCloud;
 
-	// Token: 0x040028C2 RID: 10434
+	// Token: 0x040028C5 RID: 10437
 	public GameObject Flash;
 
-	// Token: 0x040028C3 RID: 10435
+	// Token: 0x040028C6 RID: 10438
 	public AudioClip Bang;
 
-	// Token: 0x040028C4 RID: 10436
+	// Token: 0x040028C7 RID: 10439
 	public bool StinkBomb;
 
-	// Token: 0x040028C5 RID: 10437
+	// Token: 0x040028C8 RID: 10440
 	public bool Pebble;
 }

@@ -885,66 +885,66 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A99 RID: 2713
+	// Token: 0x04000A9A RID: 2714
 	public GameObject BloodEffect;
 
-	// Token: 0x04000A9A RID: 2714
+	// Token: 0x04000A9B RID: 2715
 	private GameObject OriginalBloodEffect;
 
-	// Token: 0x04000A9B RID: 2715
+	// Token: 0x04000A9C RID: 2716
 	private GameObject Victim;
 
-	// Token: 0x04000A9C RID: 2716
+	// Token: 0x04000A9D RID: 2717
 	private YandereScript Yandere;
 
-	// Token: 0x04000A9D RID: 2717
+	// Token: 0x04000A9E RID: 2718
 	private string VictimAnimName = string.Empty;
 
-	// Token: 0x04000A9E RID: 2718
+	// Token: 0x04000A9F RID: 2719
 	private string AnimName = string.Empty;
 
-	// Token: 0x04000A9F RID: 2719
+	// Token: 0x04000AA0 RID: 2720
 	public bool PingPong;
 
-	// Token: 0x04000AA0 RID: 2720
+	// Token: 0x04000AA1 RID: 2721
 	public bool Stealth;
 
-	// Token: 0x04000AA1 RID: 2721
+	// Token: 0x04000AA2 RID: 2722
 	public bool Censor;
 
-	// Token: 0x04000AA2 RID: 2722
+	// Token: 0x04000AA3 RID: 2723
 	public bool Loop;
 
-	// Token: 0x04000AA3 RID: 2723
+	// Token: 0x04000AA4 RID: 2724
 	public int EffectPhase;
 
-	// Token: 0x04000AA4 RID: 2724
+	// Token: 0x04000AA5 RID: 2725
 	public int LoopPhase;
 
-	// Token: 0x04000AA5 RID: 2725
+	// Token: 0x04000AA6 RID: 2726
 	public float AttackTimer;
 
-	// Token: 0x04000AA6 RID: 2726
+	// Token: 0x04000AA7 RID: 2727
 	public float Distance;
 
-	// Token: 0x04000AA7 RID: 2727
+	// Token: 0x04000AA8 RID: 2728
 	public float Timer;
 
-	// Token: 0x04000AA8 RID: 2728
+	// Token: 0x04000AA9 RID: 2729
 	public float LoopStart;
 
-	// Token: 0x04000AA9 RID: 2729
+	// Token: 0x04000AAA RID: 2730
 	public float LoopEnd;
 
-	// Token: 0x04000AAA RID: 2730
+	// Token: 0x04000AAB RID: 2731
 	public Animation YandereAnim;
 
-	// Token: 0x04000AAB RID: 2731
+	// Token: 0x04000AAC RID: 2732
 	public Animation VictimAnim;
 
-	// Token: 0x04000AAC RID: 2732
+	// Token: 0x04000AAD RID: 2733
 	public RaycastHit hit;
 
-	// Token: 0x04000AAD RID: 2733
+	// Token: 0x04000AAE RID: 2734
 	public Transform RaycastOrigin;
 }

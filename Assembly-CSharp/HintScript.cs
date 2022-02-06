@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000312 RID: 786
 public class HintScript : MonoBehaviour
 {
-	// Token: 0x06001847 RID: 6215 RVA: 0x000EA3A4 File Offset: 0x000E85A4
+	// Token: 0x06001849 RID: 6217 RVA: 0x000EA490 File Offset: 0x000E8690
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(0.2043f, 0f, 1f);
@@ -18,7 +18,7 @@ public class HintScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001848 RID: 6216 RVA: 0x000EA3FC File Offset: 0x000E85FC
+	// Token: 0x0600184A RID: 6218 RVA: 0x000EA4E8 File Offset: 0x000E86E8
 	private void Update()
 	{
 		if (this.MyPanel.alpha == 1f)
@@ -86,27 +86,27 @@ public class HintScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040023FA RID: 9210
+	// Token: 0x040023FD RID: 9213
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x040023FB RID: 9211
+	// Token: 0x040023FE RID: 9214
 	public AudioSource MyAudio;
 
-	// Token: 0x040023FC RID: 9212
+	// Token: 0x040023FF RID: 9215
 	public float Speed = 10f;
 
-	// Token: 0x040023FD RID: 9213
+	// Token: 0x04002400 RID: 9216
 	public float Timer;
 
-	// Token: 0x040023FE RID: 9214
+	// Token: 0x04002401 RID: 9217
 	public int QuickID;
 
-	// Token: 0x040023FF RID: 9215
+	// Token: 0x04002402 RID: 9218
 	public bool DisplayTutorial;
 
-	// Token: 0x04002400 RID: 9216
+	// Token: 0x04002403 RID: 9219
 	public bool Show;
 
-	// Token: 0x04002401 RID: 9217
+	// Token: 0x04002404 RID: 9220
 	public UIPanel MyPanel;
 }

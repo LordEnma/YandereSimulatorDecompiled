@@ -22,12 +22,12 @@ public class AnimatedWidget : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000591 RID: 1425
+	// Token: 0x04000592 RID: 1426
 	public float width = 1f;
 
-	// Token: 0x04000592 RID: 1426
+	// Token: 0x04000593 RID: 1427
 	public float height = 1f;
 
-	// Token: 0x04000593 RID: 1427
+	// Token: 0x04000594 RID: 1428
 	private UIWidget mWidget;
 }

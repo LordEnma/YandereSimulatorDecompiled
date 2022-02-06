@@ -4,7 +4,7 @@ using System.Reflection;
 // Token: 0x0200050C RID: 1292
 public static class YanSaveHelpers
 {
-	// Token: 0x06002138 RID: 8504 RVA: 0x001E86A8 File Offset: 0x001E68A8
+	// Token: 0x0600213B RID: 8507 RVA: 0x001E88AC File Offset: 0x001E6AAC
 	public static Type GrabType(string type)
 	{
 		if (string.IsNullOrEmpty(type))

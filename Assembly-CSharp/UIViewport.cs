@@ -43,18 +43,18 @@ public class UIViewport : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040007A7 RID: 1959
+	// Token: 0x040007A8 RID: 1960
 	public Camera sourceCamera;
 
-	// Token: 0x040007A8 RID: 1960
+	// Token: 0x040007A9 RID: 1961
 	public Transform topLeft;
 
-	// Token: 0x040007A9 RID: 1961
+	// Token: 0x040007AA RID: 1962
 	public Transform bottomRight;
 
-	// Token: 0x040007AA RID: 1962
+	// Token: 0x040007AB RID: 1963
 	public float fullSize = 1f;
 
-	// Token: 0x040007AB RID: 1963
+	// Token: 0x040007AC RID: 1964
 	private Camera mCam;
 }

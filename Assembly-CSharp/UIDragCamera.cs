@@ -42,6 +42,6 @@ public class UIDragCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400031A RID: 794
+	// Token: 0x0400031B RID: 795
 	public UIDraggableCamera draggableCamera;
 }

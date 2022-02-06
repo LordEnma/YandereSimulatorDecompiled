@@ -96,27 +96,27 @@ public class UIButtonOffset : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000301 RID: 769
+	// Token: 0x04000302 RID: 770
 	public Transform tweenTarget;
 
-	// Token: 0x04000302 RID: 770
+	// Token: 0x04000303 RID: 771
 	public Vector3 hover = Vector3.zero;
 
-	// Token: 0x04000303 RID: 771
+	// Token: 0x04000304 RID: 772
 	public Vector3 pressed = new Vector3(2f, -2f);
 
-	// Token: 0x04000304 RID: 772
-	public float duration = 0.2f;
-
 	// Token: 0x04000305 RID: 773
-	[NonSerialized]
-	private Vector3 mPos;
+	public float duration = 0.2f;
 
 	// Token: 0x04000306 RID: 774
 	[NonSerialized]
-	private bool mStarted;
+	private Vector3 mPos;
 
 	// Token: 0x04000307 RID: 775
+	[NonSerialized]
+	private bool mStarted;
+
+	// Token: 0x04000308 RID: 776
 	[NonSerialized]
 	private bool mPressed;
 }

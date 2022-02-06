@@ -1336,165 +1336,165 @@ public class UIInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040006B6 RID: 1718
+	// Token: 0x040006B7 RID: 1719
 	public static UIInput current;
 
-	// Token: 0x040006B7 RID: 1719
+	// Token: 0x040006B8 RID: 1720
 	public static UIInput selection;
 
-	// Token: 0x040006B8 RID: 1720
+	// Token: 0x040006B9 RID: 1721
 	public UILabel label;
 
-	// Token: 0x040006B9 RID: 1721
+	// Token: 0x040006BA RID: 1722
 	public UIInput.InputType inputType;
 
-	// Token: 0x040006BA RID: 1722
+	// Token: 0x040006BB RID: 1723
 	public UIInput.OnReturnKey onReturnKey;
 
-	// Token: 0x040006BB RID: 1723
+	// Token: 0x040006BC RID: 1724
 	public UIInput.KeyboardType keyboardType;
 
-	// Token: 0x040006BC RID: 1724
+	// Token: 0x040006BD RID: 1725
 	public bool hideInput;
 
-	// Token: 0x040006BD RID: 1725
+	// Token: 0x040006BE RID: 1726
 	[NonSerialized]
 	public bool selectAllTextOnFocus = true;
 
-	// Token: 0x040006BE RID: 1726
+	// Token: 0x040006BF RID: 1727
 	public bool submitOnUnselect;
 
-	// Token: 0x040006BF RID: 1727
+	// Token: 0x040006C0 RID: 1728
 	public UIInput.Validation validation;
 
-	// Token: 0x040006C0 RID: 1728
+	// Token: 0x040006C1 RID: 1729
 	public int characterLimit;
 
-	// Token: 0x040006C1 RID: 1729
+	// Token: 0x040006C2 RID: 1730
 	public string savedAs;
 
-	// Token: 0x040006C2 RID: 1730
+	// Token: 0x040006C3 RID: 1731
 	[HideInInspector]
 	[SerializeField]
 	private GameObject selectOnTab;
 
-	// Token: 0x040006C3 RID: 1731
+	// Token: 0x040006C4 RID: 1732
 	public Color activeTextColor = Color.white;
 
-	// Token: 0x040006C4 RID: 1732
+	// Token: 0x040006C5 RID: 1733
 	public Color caretColor = new Color(1f, 1f, 1f, 0.8f);
 
-	// Token: 0x040006C5 RID: 1733
+	// Token: 0x040006C6 RID: 1734
 	public Color selectionColor = new Color(1f, 0.8745098f, 0.5529412f, 0.5f);
 
-	// Token: 0x040006C6 RID: 1734
+	// Token: 0x040006C7 RID: 1735
 	public List<EventDelegate> onSubmit = new List<EventDelegate>();
 
-	// Token: 0x040006C7 RID: 1735
+	// Token: 0x040006C8 RID: 1736
 	public List<EventDelegate> onChange = new List<EventDelegate>();
 
-	// Token: 0x040006C8 RID: 1736
+	// Token: 0x040006C9 RID: 1737
 	public UIInput.OnValidate onValidate;
 
-	// Token: 0x040006C9 RID: 1737
+	// Token: 0x040006CA RID: 1738
 	[SerializeField]
 	[HideInInspector]
 	protected string mValue;
 
-	// Token: 0x040006CA RID: 1738
+	// Token: 0x040006CB RID: 1739
 	[NonSerialized]
 	protected string mDefaultText = "";
 
-	// Token: 0x040006CB RID: 1739
+	// Token: 0x040006CC RID: 1740
 	[NonSerialized]
 	protected Color mDefaultColor = Color.white;
 
-	// Token: 0x040006CC RID: 1740
+	// Token: 0x040006CD RID: 1741
 	[NonSerialized]
 	protected float mPosition;
 
-	// Token: 0x040006CD RID: 1741
+	// Token: 0x040006CE RID: 1742
 	[NonSerialized]
 	protected bool mDoInit = true;
 
-	// Token: 0x040006CE RID: 1742
+	// Token: 0x040006CF RID: 1743
 	[NonSerialized]
 	protected NGUIText.Alignment mAlignment = NGUIText.Alignment.Left;
 
-	// Token: 0x040006CF RID: 1743
+	// Token: 0x040006D0 RID: 1744
 	[NonSerialized]
 	protected bool mLoadSavedValue = true;
 
-	// Token: 0x040006D0 RID: 1744
+	// Token: 0x040006D1 RID: 1745
 	protected static int mDrawStart = 0;
 
-	// Token: 0x040006D1 RID: 1745
-	protected static string mLastIME = "";
-
 	// Token: 0x040006D2 RID: 1746
-	[NonSerialized]
-	protected int mSelectionStart;
+	protected static string mLastIME = "";
 
 	// Token: 0x040006D3 RID: 1747
 	[NonSerialized]
-	protected int mSelectionEnd;
+	protected int mSelectionStart;
 
 	// Token: 0x040006D4 RID: 1748
 	[NonSerialized]
-	protected UITexture mHighlight;
+	protected int mSelectionEnd;
 
 	// Token: 0x040006D5 RID: 1749
 	[NonSerialized]
-	protected UITexture mCaret;
+	protected UITexture mHighlight;
 
 	// Token: 0x040006D6 RID: 1750
 	[NonSerialized]
-	protected Texture2D mBlankTex;
+	protected UITexture mCaret;
 
 	// Token: 0x040006D7 RID: 1751
 	[NonSerialized]
-	protected float mNextBlink;
+	protected Texture2D mBlankTex;
 
 	// Token: 0x040006D8 RID: 1752
 	[NonSerialized]
-	protected float mLastAlpha;
+	protected float mNextBlink;
 
 	// Token: 0x040006D9 RID: 1753
 	[NonSerialized]
-	protected string mCached = "";
+	protected float mLastAlpha;
 
 	// Token: 0x040006DA RID: 1754
 	[NonSerialized]
-	protected int mSelectMe = -1;
+	protected string mCached = "";
 
 	// Token: 0x040006DB RID: 1755
 	[NonSerialized]
-	protected int mSelectTime = -1;
+	protected int mSelectMe = -1;
 
 	// Token: 0x040006DC RID: 1756
 	[NonSerialized]
-	protected bool mStarted;
+	protected int mSelectTime = -1;
 
 	// Token: 0x040006DD RID: 1757
 	[NonSerialized]
-	private UIInputOnGUI mOnGUI;
+	protected bool mStarted;
 
 	// Token: 0x040006DE RID: 1758
 	[NonSerialized]
-	private UICamera mCam;
+	private UIInputOnGUI mOnGUI;
 
 	// Token: 0x040006DF RID: 1759
 	[NonSerialized]
-	private bool mEllipsis;
+	private UICamera mCam;
 
 	// Token: 0x040006E0 RID: 1760
-	private static int mIgnoreKey = 0;
+	[NonSerialized]
+	private bool mEllipsis;
 
 	// Token: 0x040006E1 RID: 1761
+	private static int mIgnoreKey = 0;
+
+	// Token: 0x040006E2 RID: 1762
 	[NonSerialized]
 	public Action onUpArrow;
 
-	// Token: 0x040006E2 RID: 1762
+	// Token: 0x040006E3 RID: 1763
 	[NonSerialized]
 	public Action onDownArrow;
 
@@ -1502,11 +1502,11 @@ public class UIInput : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum InputType
 	{
-		// Token: 0x04004E2E RID: 20014
+		// Token: 0x04004E31 RID: 20017
 		Standard,
-		// Token: 0x04004E2F RID: 20015
+		// Token: 0x04004E32 RID: 20018
 		AutoCorrect,
-		// Token: 0x04004E30 RID: 20016
+		// Token: 0x04004E33 RID: 20019
 		Password
 	}
 
@@ -1514,19 +1514,19 @@ public class UIInput : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Validation
 	{
-		// Token: 0x04004E32 RID: 20018
-		None,
-		// Token: 0x04004E33 RID: 20019
-		Integer,
-		// Token: 0x04004E34 RID: 20020
-		Float,
 		// Token: 0x04004E35 RID: 20021
-		Alphanumeric,
+		None,
 		// Token: 0x04004E36 RID: 20022
-		Username,
+		Integer,
 		// Token: 0x04004E37 RID: 20023
-		Name,
+		Float,
 		// Token: 0x04004E38 RID: 20024
+		Alphanumeric,
+		// Token: 0x04004E39 RID: 20025
+		Username,
+		// Token: 0x04004E3A RID: 20026
+		Name,
+		// Token: 0x04004E3B RID: 20027
 		Filename
 	}
 
@@ -1534,21 +1534,21 @@ public class UIInput : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum KeyboardType
 	{
-		// Token: 0x04004E3A RID: 20026
-		Default,
-		// Token: 0x04004E3B RID: 20027
-		ASCIICapable,
-		// Token: 0x04004E3C RID: 20028
-		NumbersAndPunctuation,
 		// Token: 0x04004E3D RID: 20029
-		URL,
+		Default,
 		// Token: 0x04004E3E RID: 20030
-		NumberPad,
+		ASCIICapable,
 		// Token: 0x04004E3F RID: 20031
-		PhonePad,
+		NumbersAndPunctuation,
 		// Token: 0x04004E40 RID: 20032
-		NamePhonePad,
+		URL,
 		// Token: 0x04004E41 RID: 20033
+		NumberPad,
+		// Token: 0x04004E42 RID: 20034
+		PhonePad,
+		// Token: 0x04004E43 RID: 20035
+		NamePhonePad,
+		// Token: 0x04004E44 RID: 20036
 		EmailAddress
 	}
 
@@ -1556,15 +1556,15 @@ public class UIInput : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum OnReturnKey
 	{
-		// Token: 0x04004E43 RID: 20035
+		// Token: 0x04004E46 RID: 20038
 		Default,
-		// Token: 0x04004E44 RID: 20036
+		// Token: 0x04004E47 RID: 20039
 		Submit,
-		// Token: 0x04004E45 RID: 20037
+		// Token: 0x04004E48 RID: 20040
 		NewLine
 	}
 
 	// Token: 0x0200062E RID: 1582
-	// (Invoke) Token: 0x060025E4 RID: 9700
+	// (Invoke) Token: 0x060025E7 RID: 9703
 	public delegate char OnValidate(string text, int charIndex, char addedChar);
 }

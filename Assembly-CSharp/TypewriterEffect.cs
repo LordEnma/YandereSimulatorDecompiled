@@ -214,64 +214,64 @@ public class TypewriterEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040002CD RID: 717
+	// Token: 0x040002CE RID: 718
 	public static TypewriterEffect current;
 
-	// Token: 0x040002CE RID: 718
+	// Token: 0x040002CF RID: 719
 	public int charsPerSecond = 20;
 
-	// Token: 0x040002CF RID: 719
+	// Token: 0x040002D0 RID: 720
 	public float fadeInTime;
 
-	// Token: 0x040002D0 RID: 720
+	// Token: 0x040002D1 RID: 721
 	public float delayOnPeriod;
 
-	// Token: 0x040002D1 RID: 721
+	// Token: 0x040002D2 RID: 722
 	public float delayOnNewLine;
 
-	// Token: 0x040002D2 RID: 722
+	// Token: 0x040002D3 RID: 723
 	public UIScrollView scrollView;
 
-	// Token: 0x040002D3 RID: 723
+	// Token: 0x040002D4 RID: 724
 	public bool keepFullDimensions;
 
-	// Token: 0x040002D4 RID: 724
+	// Token: 0x040002D5 RID: 725
 	public List<EventDelegate> onFinished = new List<EventDelegate>();
 
-	// Token: 0x040002D5 RID: 725
+	// Token: 0x040002D6 RID: 726
 	public UILabel mLabel;
 
-	// Token: 0x040002D6 RID: 726
+	// Token: 0x040002D7 RID: 727
 	public string mFullText = "";
 
-	// Token: 0x040002D7 RID: 727
+	// Token: 0x040002D8 RID: 728
 	public int mCurrentOffset;
 
-	// Token: 0x040002D8 RID: 728
+	// Token: 0x040002D9 RID: 729
 	private float mNextChar;
 
-	// Token: 0x040002D9 RID: 729
+	// Token: 0x040002DA RID: 730
 	private bool mReset = true;
 
-	// Token: 0x040002DA RID: 730
+	// Token: 0x040002DB RID: 731
 	public bool mActive;
 
-	// Token: 0x040002DB RID: 731
+	// Token: 0x040002DC RID: 732
 	public bool delayOnComma;
 
-	// Token: 0x040002DC RID: 732
+	// Token: 0x040002DD RID: 733
 	private BetterList<TypewriterEffect.FadeEntry> mFade = new BetterList<TypewriterEffect.FadeEntry>();
 
 	// Token: 0x020005C1 RID: 1473
 	private struct FadeEntry
 	{
-		// Token: 0x04004CFD RID: 19709
+		// Token: 0x04004D00 RID: 19712
 		public int index;
 
-		// Token: 0x04004CFE RID: 19710
+		// Token: 0x04004D01 RID: 19713
 		public string text;
 
-		// Token: 0x04004CFF RID: 19711
+		// Token: 0x04004D02 RID: 19714
 		public float alpha;
 	}
 }

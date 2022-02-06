@@ -29,9 +29,9 @@ public class UIEquipmentSlot : UIItemSlot
 		return this.equipment.Replace(this.slot, item);
 	}
 
-	// Token: 0x0400025B RID: 603
+	// Token: 0x0400025C RID: 604
 	public InvEquipment equipment;
 
-	// Token: 0x0400025C RID: 604
+	// Token: 0x0400025D RID: 605
 	public InvBaseItem.Slot slot;
 }

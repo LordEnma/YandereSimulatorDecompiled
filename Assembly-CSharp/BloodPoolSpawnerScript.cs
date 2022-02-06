@@ -124,13 +124,17 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		Vector3 a = new Vector3(this.Hips.position.x, this.Height + 0.012f, this.Hips.position.z);
 		for (int i = 0; i < 5; i++)
 		{
+			if (this.Positions.Length == 0)
+			{
+				this.Start();
+			}
 			GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.BloodPool, a + this.Positions[i], Quaternion.identity);
 			gameObject.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
 			gameObject.transform.parent = this.BloodParent;
 		}
 	}
 
-	// Token: 0x06000A41 RID: 2625 RVA: 0x0005B13C File Offset: 0x0005933C
+	// Token: 0x06000A41 RID: 2625 RVA: 0x0005B148 File Offset: 0x00059348
 	private void SpawnRow(Transform Location)
 	{
 		Vector3 position = Location.position;
@@ -146,7 +150,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		gameObject3.transform.parent = this.BloodParent;
 	}
 
-	// Token: 0x06000A42 RID: 2626 RVA: 0x0005B268 File Offset: 0x00059468
+	// Token: 0x06000A42 RID: 2626 RVA: 0x0005B274 File Offset: 0x00059474
 	public void SpawnPool(Transform Location)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.BloodPool, Location.position + Location.forward + new Vector3(0f, 0.0001f, 0f), Quaternion.identity);
@@ -154,7 +158,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		gameObject.transform.parent = this.BloodParent;
 	}
 
-	// Token: 0x06000A43 RID: 2627 RVA: 0x0005B2E8 File Offset: 0x000594E8
+	// Token: 0x06000A43 RID: 2627 RVA: 0x0005B2F4 File Offset: 0x000594F4
 	private void SetHeight()
 	{
 		float y = base.transform.position.y;
@@ -176,69 +180,69 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		this.Height = 12f;
 	}
 
-	// Token: 0x04000B9E RID: 2974
+	// Token: 0x04000B9F RID: 2975
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000B9F RID: 2975
+	// Token: 0x04000BA0 RID: 2976
 	public RagdollScript Ragdoll;
 
-	// Token: 0x04000BA0 RID: 2976
+	// Token: 0x04000BA1 RID: 2977
 	public GameObject LastBloodPool;
 
-	// Token: 0x04000BA1 RID: 2977
+	// Token: 0x04000BA2 RID: 2978
 	public GameObject BloodPool;
 
-	// Token: 0x04000BA2 RID: 2978
+	// Token: 0x04000BA3 RID: 2979
 	public Transform BloodParent;
 
-	// Token: 0x04000BA3 RID: 2979
+	// Token: 0x04000BA4 RID: 2980
 	public Transform Hips;
 
-	// Token: 0x04000BA4 RID: 2980
+	// Token: 0x04000BA5 RID: 2981
 	public Collider MyCollider;
 
-	// Token: 0x04000BA5 RID: 2981
+	// Token: 0x04000BA6 RID: 2982
 	public Collider GardenArea;
 
-	// Token: 0x04000BA6 RID: 2982
+	// Token: 0x04000BA7 RID: 2983
 	public Collider TreeArea;
 
-	// Token: 0x04000BA7 RID: 2983
+	// Token: 0x04000BA8 RID: 2984
 	public Collider NEStairs;
 
-	// Token: 0x04000BA8 RID: 2984
+	// Token: 0x04000BA9 RID: 2985
 	public Collider NWStairs;
 
-	// Token: 0x04000BA9 RID: 2985
+	// Token: 0x04000BAA RID: 2986
 	public Collider SEStairs;
 
-	// Token: 0x04000BAA RID: 2986
+	// Token: 0x04000BAB RID: 2987
 	public Collider SWStairs;
 
-	// Token: 0x04000BAB RID: 2987
+	// Token: 0x04000BAC RID: 2988
 	public Vector3[] Positions;
 
-	// Token: 0x04000BAC RID: 2988
+	// Token: 0x04000BAD RID: 2989
 	public bool CanSpawn;
 
-	// Token: 0x04000BAD RID: 2989
+	// Token: 0x04000BAE RID: 2990
 	public bool Falling;
 
-	// Token: 0x04000BAE RID: 2990
+	// Token: 0x04000BAF RID: 2991
 	public int PoolsSpawned;
 
-	// Token: 0x04000BAF RID: 2991
+	// Token: 0x04000BB0 RID: 2992
 	public int NearbyBlood;
 
-	// Token: 0x04000BB0 RID: 2992
+	// Token: 0x04000BB1 RID: 2993
 	public float FallTimer;
 
-	// Token: 0x04000BB1 RID: 2993
+	// Token: 0x04000BB2 RID: 2994
 	public float Height;
 
-	// Token: 0x04000BB2 RID: 2994
+	// Token: 0x04000BB3 RID: 2995
 	public float Timer;
 
-	// Token: 0x04000BB3 RID: 2995
+	// Token: 0x04000BB4 RID: 2996
 	public LayerMask Mask;
 }

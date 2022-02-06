@@ -7,7 +7,7 @@ namespace MaidDereMinigame
 	// Token: 0x020005A4 RID: 1444
 	public class Menu : MonoBehaviour
 	{
-		// Token: 0x06002478 RID: 9336 RVA: 0x001FA774 File Offset: 0x001F8974
+		// Token: 0x0600247B RID: 9339 RVA: 0x001FA978 File Offset: 0x001F8B78
 		private void Start()
 		{
 			for (int i = 0; i < this.mainMenuButtons.Count; i++)
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			this.SetActiveMenuButton(0);
 		}
 
-		// Token: 0x06002479 RID: 9337 RVA: 0x001FA7F8 File Offset: 0x001F89F8
+		// Token: 0x0600247C RID: 9340 RVA: 0x001FA9FC File Offset: 0x001F8BFC
 		private void Update()
 		{
 			if (this.cancelInputs)
@@ -74,7 +74,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x0600247A RID: 9338 RVA: 0x001FA938 File Offset: 0x001F8B38
+		// Token: 0x0600247D RID: 9341 RVA: 0x001FAB3C File Offset: 0x001F8D3C
 		public void SetActiveMenuButton(int index)
 		{
 			if (this.activeMenuButton != null)
@@ -85,30 +85,30 @@ namespace MaidDereMinigame
 			this.activeMenuButton.spriteRenderer.enabled = true;
 		}
 
-		// Token: 0x0600247B RID: 9339 RVA: 0x001FA987 File Offset: 0x001F8B87
+		// Token: 0x0600247E RID: 9342 RVA: 0x001FAB8B File Offset: 0x001F8D8B
 		public void StopInputs()
 		{
 			this.cancelInputs = true;
 			this.flipBook.StopInputs();
 		}
 
-		// Token: 0x04004C48 RID: 19528
+		// Token: 0x04004C4B RID: 19531
 		public List<MenuButton> mainMenuButtons;
 
-		// Token: 0x04004C49 RID: 19529
+		// Token: 0x04004C4C RID: 19532
 		[HideInInspector]
 		public FlipBook flipBook;
 
-		// Token: 0x04004C4A RID: 19530
+		// Token: 0x04004C4D RID: 19533
 		private MenuButton activeMenuButton;
 
-		// Token: 0x04004C4B RID: 19531
+		// Token: 0x04004C4E RID: 19534
 		private bool prevVertical;
 
-		// Token: 0x04004C4C RID: 19532
+		// Token: 0x04004C4F RID: 19535
 		private bool cancelInputs;
 
-		// Token: 0x04004C4D RID: 19533
+		// Token: 0x04004C50 RID: 19536
 		private float PreviousFrameVertical;
 	}
 }

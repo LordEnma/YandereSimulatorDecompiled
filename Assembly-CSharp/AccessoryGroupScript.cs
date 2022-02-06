@@ -14,6 +14,6 @@ public class AccessoryGroupScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000853 RID: 2131
+	// Token: 0x04000854 RID: 2132
 	public GameObject[] Parts;
 }

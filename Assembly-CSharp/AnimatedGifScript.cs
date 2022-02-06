@@ -35,31 +35,31 @@ public class AnimatedGifScript : MonoBehaviour
 		this.Sprite.spriteName = this.SpriteName + this.Frame.ToString();
 	}
 
-	// Token: 0x04000A0F RID: 2575
+	// Token: 0x04000A10 RID: 2576
 	[SerializeField]
 	private UISprite Sprite;
 
-	// Token: 0x04000A10 RID: 2576
+	// Token: 0x04000A11 RID: 2577
 	[SerializeField]
 	private string SpriteName;
 
-	// Token: 0x04000A11 RID: 2577
+	// Token: 0x04000A12 RID: 2578
 	[SerializeField]
 	private int Start;
 
-	// Token: 0x04000A12 RID: 2578
+	// Token: 0x04000A13 RID: 2579
 	[SerializeField]
 	private int Frame;
 
-	// Token: 0x04000A13 RID: 2579
+	// Token: 0x04000A14 RID: 2580
 	[SerializeField]
 	private int Limit;
 
-	// Token: 0x04000A14 RID: 2580
+	// Token: 0x04000A15 RID: 2581
 	[SerializeField]
 	private float FramesPerSecond;
 
-	// Token: 0x04000A15 RID: 2581
+	// Token: 0x04000A16 RID: 2582
 	[SerializeField]
 	private float CurrentSeconds;
 }

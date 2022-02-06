@@ -69,39 +69,39 @@ public class AbductionScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x0400083E RID: 2110
+	// Token: 0x0400083F RID: 2111
 	public SkinnedMeshRenderer Renderer;
 
-	// Token: 0x0400083F RID: 2111
+	// Token: 0x04000840 RID: 2112
 	public Texture[] RivalStockings;
 
-	// Token: 0x04000840 RID: 2112
+	// Token: 0x04000841 RID: 2113
 	public AudioSource MyAudio;
 
-	// Token: 0x04000841 RID: 2113
+	// Token: 0x04000842 RID: 2114
 	public UISprite Darkness;
 
-	// Token: 0x04000842 RID: 2114
+	// Token: 0x04000843 RID: 2115
 	public Camera MainCamera;
 
-	// Token: 0x04000843 RID: 2115
+	// Token: 0x04000844 RID: 2116
 	public float StartTimer;
 
-	// Token: 0x04000844 RID: 2116
+	// Token: 0x04000845 RID: 2117
 	public float Timer;
 
-	// Token: 0x04000845 RID: 2117
+	// Token: 0x04000846 RID: 2118
 	public bool PlayedAudio;
 
-	// Token: 0x04000846 RID: 2118
+	// Token: 0x04000847 RID: 2119
 	public int Phase;
 
-	// Token: 0x04000847 RID: 2119
+	// Token: 0x04000848 RID: 2120
 	public Animation Anim1;
 
-	// Token: 0x04000848 RID: 2120
+	// Token: 0x04000849 RID: 2121
 	public Animator Anim2;
 
-	// Token: 0x04000849 RID: 2121
+	// Token: 0x0400084A RID: 2122
 	public PostProcessingProfile Profile;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200036B RID: 875
 public class MopHeadScript : MonoBehaviour
 {
-	// Token: 0x060019AB RID: 6571 RVA: 0x0010672C File Offset: 0x0010492C
+	// Token: 0x060019AD RID: 6573 RVA: 0x00106838 File Offset: 0x00104A38
 	private void OnTriggerStay(Collider other)
 	{
 		if (this.Mop.Bloodiness < 100f && other.tag == "Puddle")
@@ -32,9 +32,9 @@ public class MopHeadScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400291D RID: 10525
+	// Token: 0x04002920 RID: 10528
 	public BloodPoolScript BloodPool;
 
-	// Token: 0x0400291E RID: 10526
+	// Token: 0x04002921 RID: 10529
 	public MopScript Mop;
 }

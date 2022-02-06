@@ -27,6 +27,6 @@ public class EquipRandomItem : MonoBehaviour
 		this.equipment.Equip(invGameItem);
 	}
 
-	// Token: 0x04000254 RID: 596
+	// Token: 0x04000255 RID: 597
 	public InvEquipment equipment;
 }

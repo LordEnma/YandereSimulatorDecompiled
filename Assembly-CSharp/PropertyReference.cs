@@ -392,20 +392,20 @@ public class PropertyReference
 		return false;
 	}
 
-	// Token: 0x040004F1 RID: 1265
+	// Token: 0x040004F2 RID: 1266
 	[SerializeField]
 	private Component mTarget;
 
-	// Token: 0x040004F2 RID: 1266
+	// Token: 0x040004F3 RID: 1267
 	[SerializeField]
 	private string mName;
 
-	// Token: 0x040004F3 RID: 1267
+	// Token: 0x040004F4 RID: 1268
 	private FieldInfo mField;
 
-	// Token: 0x040004F4 RID: 1268
+	// Token: 0x040004F5 RID: 1269
 	private PropertyInfo mProperty;
 
-	// Token: 0x040004F5 RID: 1269
+	// Token: 0x040004F6 RID: 1270
 	private static int s_Hash = "PropertyBinding".GetHashCode();
 }

@@ -3,10 +3,10 @@
 // Token: 0x020004C7 RID: 1223
 public enum MovementType
 {
-	// Token: 0x040043CC RID: 17356
+	// Token: 0x040043CF RID: 17359
 	Idle,
-	// Token: 0x040043CD RID: 17357
+	// Token: 0x040043D0 RID: 17360
 	Walking,
-	// Token: 0x040043CE RID: 17358
+	// Token: 0x040043D1 RID: 17361
 	Running
 }

@@ -121,28 +121,28 @@ public class UI2DSpriteAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000616 RID: 1558
+	// Token: 0x04000617 RID: 1559
 	public int frameIndex;
 
-	// Token: 0x04000617 RID: 1559
+	// Token: 0x04000618 RID: 1560
 	[SerializeField]
 	protected int framerate = 20;
 
-	// Token: 0x04000618 RID: 1560
+	// Token: 0x04000619 RID: 1561
 	public bool ignoreTimeScale = true;
 
-	// Token: 0x04000619 RID: 1561
+	// Token: 0x0400061A RID: 1562
 	public bool loop = true;
 
-	// Token: 0x0400061A RID: 1562
+	// Token: 0x0400061B RID: 1563
 	public Sprite[] frames;
 
-	// Token: 0x0400061B RID: 1563
+	// Token: 0x0400061C RID: 1564
 	private SpriteRenderer mUnitySprite;
 
-	// Token: 0x0400061C RID: 1564
+	// Token: 0x0400061D RID: 1565
 	private UI2DSprite mNguiSprite;
 
-	// Token: 0x0400061D RID: 1565
+	// Token: 0x0400061E RID: 1566
 	private float mUpdate;
 }

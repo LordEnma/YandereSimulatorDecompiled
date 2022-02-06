@@ -152,66 +152,66 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x0400023D RID: 573
+	// Token: 0x0400023E RID: 574
 	public StudentScript Student;
 
-	// Token: 0x0400023E RID: 574
+	// Token: 0x0400023F RID: 575
 	public GameObject root;
 
-	// Token: 0x0400023F RID: 575
+	// Token: 0x04000240 RID: 576
 	public GameObject accessory;
 
-	// Token: 0x04000240 RID: 576
+	// Token: 0x04000241 RID: 577
 	public Material[] accessoryMaterials;
 
-	// Token: 0x04000241 RID: 577
+	// Token: 0x04000242 RID: 578
 	public Material[] okaMaterials;
 
-	// Token: 0x04000242 RID: 578
+	// Token: 0x04000243 RID: 579
 	public Material[] cousinMaterials;
 
-	// Token: 0x04000243 RID: 579
+	// Token: 0x04000244 RID: 580
 	public Material[] ribaruMaterials;
 
-	// Token: 0x04000244 RID: 580
+	// Token: 0x04000245 RID: 581
 	public Material[] defaultMaterials;
 
-	// Token: 0x04000245 RID: 581
+	// Token: 0x04000246 RID: 582
 	public Material[] painterMaterials;
 
-	// Token: 0x04000246 RID: 582
+	// Token: 0x04000247 RID: 583
 	public Material[] painterMaterialsFlipped;
 
-	// Token: 0x04000247 RID: 583
+	// Token: 0x04000248 RID: 584
 	public GameObject[] Panties;
 
-	// Token: 0x04000248 RID: 584
+	// Token: 0x04000249 RID: 585
 	public Material[] PantyMaterials;
 
-	// Token: 0x04000249 RID: 585
+	// Token: 0x0400024A RID: 586
 	public SkinnedMeshRenderer newRenderer;
 
-	// Token: 0x0400024A RID: 586
+	// Token: 0x0400024B RID: 587
 	public bool UpdateBounds;
 
-	// Token: 0x0400024B RID: 587
+	// Token: 0x0400024C RID: 588
 	public bool Initialized;
 
-	// Token: 0x0400024C RID: 588
+	// Token: 0x0400024D RID: 589
 	public bool CookingClub;
 
-	// Token: 0x0400024D RID: 589
+	// Token: 0x0400024E RID: 590
 	public bool ScienceClub;
 
-	// Token: 0x0400024E RID: 590
+	// Token: 0x0400024F RID: 591
 	public bool ArtClub;
 
-	// Token: 0x0400024F RID: 591
+	// Token: 0x04000250 RID: 592
 	public bool Gentle;
 
-	// Token: 0x04000250 RID: 592
+	// Token: 0x04000251 RID: 593
 	public int PantyID;
 
-	// Token: 0x04000251 RID: 593
+	// Token: 0x04000252 RID: 594
 	public int ID;
 }

@@ -295,58 +295,58 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040003B9 RID: 953
+	// Token: 0x040003BA RID: 954
 	public static UIPlayTween current;
 
-	// Token: 0x040003BA RID: 954
+	// Token: 0x040003BB RID: 955
 	public GameObject tweenTarget;
 
-	// Token: 0x040003BB RID: 955
+	// Token: 0x040003BC RID: 956
 	public int tweenGroup;
 
-	// Token: 0x040003BC RID: 956
+	// Token: 0x040003BD RID: 957
 	public Trigger trigger;
 
-	// Token: 0x040003BD RID: 957
+	// Token: 0x040003BE RID: 958
 	public AnimationOrTween.Direction playDirection = AnimationOrTween.Direction.Forward;
 
-	// Token: 0x040003BE RID: 958
+	// Token: 0x040003BF RID: 959
 	public bool resetOnPlay;
 
-	// Token: 0x040003BF RID: 959
+	// Token: 0x040003C0 RID: 960
 	public bool resetIfDisabled;
 
-	// Token: 0x040003C0 RID: 960
+	// Token: 0x040003C1 RID: 961
 	public EnableCondition ifDisabledOnPlay;
 
-	// Token: 0x040003C1 RID: 961
+	// Token: 0x040003C2 RID: 962
 	public DisableCondition disableWhenFinished;
 
-	// Token: 0x040003C2 RID: 962
+	// Token: 0x040003C3 RID: 963
 	public bool includeChildren;
 
-	// Token: 0x040003C3 RID: 963
-	public List<EventDelegate> onFinished = new List<EventDelegate>();
-
 	// Token: 0x040003C4 RID: 964
-	[HideInInspector]
-	[SerializeField]
-	private GameObject eventReceiver;
+	public List<EventDelegate> onFinished = new List<EventDelegate>();
 
 	// Token: 0x040003C5 RID: 965
 	[HideInInspector]
 	[SerializeField]
-	private string callWhenFinished;
+	private GameObject eventReceiver;
 
 	// Token: 0x040003C6 RID: 966
-	private UITweener[] mTweens;
+	[HideInInspector]
+	[SerializeField]
+	private string callWhenFinished;
 
 	// Token: 0x040003C7 RID: 967
-	private bool mStarted;
+	private UITweener[] mTweens;
 
 	// Token: 0x040003C8 RID: 968
-	private int mActive;
+	private bool mStarted;
 
 	// Token: 0x040003C9 RID: 969
+	private int mActive;
+
+	// Token: 0x040003CA RID: 970
 	private bool mActivated;
 }

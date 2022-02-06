@@ -306,63 +306,63 @@ public class AmplifyMotionCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040007E3 RID: 2019
+	// Token: 0x040007E4 RID: 2020
 	internal AmplifyMotionEffectBase Instance;
 
-	// Token: 0x040007E4 RID: 2020
+	// Token: 0x040007E5 RID: 2021
 	internal Matrix4x4 PrevViewProjMatrix;
 
-	// Token: 0x040007E5 RID: 2021
+	// Token: 0x040007E6 RID: 2022
 	internal Matrix4x4 ViewProjMatrix;
 
-	// Token: 0x040007E6 RID: 2022
+	// Token: 0x040007E7 RID: 2023
 	internal Matrix4x4 InvViewProjMatrix;
 
-	// Token: 0x040007E7 RID: 2023
+	// Token: 0x040007E8 RID: 2024
 	internal Matrix4x4 PrevViewProjMatrixRT;
 
-	// Token: 0x040007E8 RID: 2024
+	// Token: 0x040007E9 RID: 2025
 	internal Matrix4x4 ViewProjMatrixRT;
 
-	// Token: 0x040007E9 RID: 2025
+	// Token: 0x040007EA RID: 2026
 	internal Transform Transform;
 
-	// Token: 0x040007EA RID: 2026
+	// Token: 0x040007EB RID: 2027
 	private bool m_linked;
 
-	// Token: 0x040007EB RID: 2027
+	// Token: 0x040007EC RID: 2028
 	private bool m_initialized;
 
-	// Token: 0x040007EC RID: 2028
+	// Token: 0x040007ED RID: 2029
 	private bool m_starting = true;
 
-	// Token: 0x040007ED RID: 2029
+	// Token: 0x040007EE RID: 2030
 	private bool m_autoStep = true;
 
-	// Token: 0x040007EE RID: 2030
+	// Token: 0x040007EF RID: 2031
 	private bool m_step;
 
-	// Token: 0x040007EF RID: 2031
+	// Token: 0x040007F0 RID: 2032
 	private bool m_overlay;
 
-	// Token: 0x040007F0 RID: 2032
+	// Token: 0x040007F1 RID: 2033
 	private Camera m_camera;
 
-	// Token: 0x040007F1 RID: 2033
+	// Token: 0x040007F2 RID: 2034
 	private int m_prevFrameCount;
 
-	// Token: 0x040007F2 RID: 2034
+	// Token: 0x040007F3 RID: 2035
 	private HashSet<AmplifyMotionObjectBase> m_affectedObjectsTable = new HashSet<AmplifyMotionObjectBase>();
 
-	// Token: 0x040007F3 RID: 2035
+	// Token: 0x040007F4 RID: 2036
 	private AmplifyMotionObjectBase[] m_affectedObjects;
 
-	// Token: 0x040007F4 RID: 2036
+	// Token: 0x040007F5 RID: 2037
 	private bool m_affectedObjectsChanged = true;
 
-	// Token: 0x040007F5 RID: 2037
+	// Token: 0x040007F6 RID: 2038
 	private const CameraEvent m_renderCBEvent = CameraEvent.BeforeImageEffects;
 
-	// Token: 0x040007F6 RID: 2038
+	// Token: 0x040007F7 RID: 2039
 	private CommandBuffer m_renderCB;
 }

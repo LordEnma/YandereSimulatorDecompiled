@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000345 RID: 837
 public class JsonScript : MonoBehaviour
 {
-	// Token: 0x06001926 RID: 6438 RVA: 0x000FB334 File Offset: 0x000F9534
+	// Token: 0x06001928 RID: 6440 RVA: 0x000FB440 File Offset: 0x000F9640
 	private void Start()
 	{
 		this.students = StudentJson.LoadFromJson(StudentJson.FilePath);
@@ -22,8 +22,8 @@ public class JsonScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000491 RID: 1169
-	// (get) Token: 0x06001927 RID: 6439 RVA: 0x000FB3BC File Offset: 0x000F95BC
+	// Token: 0x17000492 RID: 1170
+	// (get) Token: 0x06001929 RID: 6441 RVA: 0x000FB4C8 File Offset: 0x000F96C8
 	public StudentJson[] Students
 	{
 		get
@@ -32,8 +32,8 @@ public class JsonScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000492 RID: 1170
-	// (get) Token: 0x06001928 RID: 6440 RVA: 0x000FB3C4 File Offset: 0x000F95C4
+	// Token: 0x17000493 RID: 1171
+	// (get) Token: 0x0600192A RID: 6442 RVA: 0x000FB4D0 File Offset: 0x000F96D0
 	public CreditJson[] Credits
 	{
 		get
@@ -42,8 +42,8 @@ public class JsonScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x17000493 RID: 1171
-	// (get) Token: 0x06001929 RID: 6441 RVA: 0x000FB3CC File Offset: 0x000F95CC
+	// Token: 0x17000494 RID: 1172
+	// (get) Token: 0x0600192B RID: 6443 RVA: 0x000FB4D8 File Offset: 0x000F96D8
 	public TopicJson[] Topics
 	{
 		get
@@ -52,7 +52,7 @@ public class JsonScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600192A RID: 6442 RVA: 0x000FB3D4 File Offset: 0x000F95D4
+	// Token: 0x0600192C RID: 6444 RVA: 0x000FB4E0 File Offset: 0x000F96E0
 	private void ReplaceDeadTeachers(string[] firstNames, string[] lastNames)
 	{
 		for (int i = 90; i < 101; i++)
@@ -97,15 +97,15 @@ public class JsonScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002747 RID: 10055
+	// Token: 0x0400274A RID: 10058
 	[SerializeField]
 	private StudentJson[] students;
 
-	// Token: 0x04002748 RID: 10056
+	// Token: 0x0400274B RID: 10059
 	[SerializeField]
 	private CreditJson[] credits;
 
-	// Token: 0x04002749 RID: 10057
+	// Token: 0x0400274C RID: 10060
 	[SerializeField]
 	private TopicJson[] topics;
 }

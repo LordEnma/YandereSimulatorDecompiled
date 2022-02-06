@@ -122,36 +122,36 @@ public class BMSymbol
 		return this.mSprite != null;
 	}
 
-	// Token: 0x0400048F RID: 1167
+	// Token: 0x04000490 RID: 1168
 	public string sequence;
 
-	// Token: 0x04000490 RID: 1168
+	// Token: 0x04000491 RID: 1169
 	public string spriteName;
 
-	// Token: 0x04000491 RID: 1169
+	// Token: 0x04000492 RID: 1170
 	private UISpriteData mSprite;
 
-	// Token: 0x04000492 RID: 1170
+	// Token: 0x04000493 RID: 1171
 	private bool mIsValid;
 
-	// Token: 0x04000493 RID: 1171
+	// Token: 0x04000494 RID: 1172
 	private int mLength;
 
-	// Token: 0x04000494 RID: 1172
+	// Token: 0x04000495 RID: 1173
 	private int mOffsetX;
 
-	// Token: 0x04000495 RID: 1173
+	// Token: 0x04000496 RID: 1174
 	private int mOffsetY;
 
-	// Token: 0x04000496 RID: 1174
+	// Token: 0x04000497 RID: 1175
 	private int mWidth;
 
-	// Token: 0x04000497 RID: 1175
+	// Token: 0x04000498 RID: 1176
 	private int mHeight;
 
-	// Token: 0x04000498 RID: 1176
+	// Token: 0x04000499 RID: 1177
 	private int mAdvance;
 
-	// Token: 0x04000499 RID: 1177
+	// Token: 0x0400049A RID: 1178
 	private Rect mUV;
 }

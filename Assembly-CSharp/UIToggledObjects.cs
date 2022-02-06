@@ -56,18 +56,18 @@ public class UIToggledObjects : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000464 RID: 1124
+	// Token: 0x04000465 RID: 1125
 	public List<GameObject> activate;
 
-	// Token: 0x04000465 RID: 1125
+	// Token: 0x04000466 RID: 1126
 	public List<GameObject> deactivate;
 
-	// Token: 0x04000466 RID: 1126
+	// Token: 0x04000467 RID: 1127
 	[HideInInspector]
 	[SerializeField]
 	private GameObject target;
 
-	// Token: 0x04000467 RID: 1127
+	// Token: 0x04000468 RID: 1128
 	[HideInInspector]
 	[SerializeField]
 	private bool inverse;

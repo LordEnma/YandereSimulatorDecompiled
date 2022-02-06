@@ -227,56 +227,56 @@ public class UITable : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x0400043F RID: 1087
+	// Token: 0x04000440 RID: 1088
 	public int columns;
 
-	// Token: 0x04000440 RID: 1088
+	// Token: 0x04000441 RID: 1089
 	public UITable.Direction direction;
 
-	// Token: 0x04000441 RID: 1089
+	// Token: 0x04000442 RID: 1090
 	public UITable.Sorting sorting;
 
-	// Token: 0x04000442 RID: 1090
+	// Token: 0x04000443 RID: 1091
 	public UIWidget.Pivot pivot;
 
-	// Token: 0x04000443 RID: 1091
+	// Token: 0x04000444 RID: 1092
 	public UIWidget.Pivot cellAlignment;
 
-	// Token: 0x04000444 RID: 1092
+	// Token: 0x04000445 RID: 1093
 	public bool hideInactive = true;
 
-	// Token: 0x04000445 RID: 1093
+	// Token: 0x04000446 RID: 1094
 	public bool keepWithinPanel;
 
-	// Token: 0x04000446 RID: 1094
+	// Token: 0x04000447 RID: 1095
 	public Vector2 padding = Vector2.zero;
 
-	// Token: 0x04000447 RID: 1095
+	// Token: 0x04000448 RID: 1096
 	public UITable.OnReposition onReposition;
 
-	// Token: 0x04000448 RID: 1096
+	// Token: 0x04000449 RID: 1097
 	public Comparison<Transform> onCustomSort;
 
-	// Token: 0x04000449 RID: 1097
+	// Token: 0x0400044A RID: 1098
 	protected UIPanel mPanel;
 
-	// Token: 0x0400044A RID: 1098
+	// Token: 0x0400044B RID: 1099
 	protected bool mInitDone;
 
-	// Token: 0x0400044B RID: 1099
+	// Token: 0x0400044C RID: 1100
 	protected bool mReposition;
 
 	// Token: 0x020005DC RID: 1500
-	// (Invoke) Token: 0x06002515 RID: 9493
+	// (Invoke) Token: 0x06002518 RID: 9496
 	public delegate void OnReposition();
 
 	// Token: 0x020005DD RID: 1501
 	[DoNotObfuscateNGUI]
 	public enum Direction
 	{
-		// Token: 0x04004D65 RID: 19813
+		// Token: 0x04004D68 RID: 19816
 		Down,
-		// Token: 0x04004D66 RID: 19814
+		// Token: 0x04004D69 RID: 19817
 		Up
 	}
 
@@ -284,15 +284,15 @@ public class UITable : UIWidgetContainer
 	[DoNotObfuscateNGUI]
 	public enum Sorting
 	{
-		// Token: 0x04004D68 RID: 19816
-		None,
-		// Token: 0x04004D69 RID: 19817
-		Alphabetic,
-		// Token: 0x04004D6A RID: 19818
-		Horizontal,
 		// Token: 0x04004D6B RID: 19819
-		Vertical,
+		None,
 		// Token: 0x04004D6C RID: 19820
+		Alphabetic,
+		// Token: 0x04004D6D RID: 19821
+		Horizontal,
+		// Token: 0x04004D6E RID: 19822
+		Vertical,
+		// Token: 0x04004D6F RID: 19823
 		Custom
 	}
 }

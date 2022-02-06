@@ -279,55 +279,55 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040003A4 RID: 932
+	// Token: 0x040003A5 RID: 933
 	public static UIPlayAnimation current;
 
-	// Token: 0x040003A5 RID: 933
+	// Token: 0x040003A6 RID: 934
 	public Animation target;
 
-	// Token: 0x040003A6 RID: 934
+	// Token: 0x040003A7 RID: 935
 	public Animator animator;
 
-	// Token: 0x040003A7 RID: 935
+	// Token: 0x040003A8 RID: 936
 	public string clipName;
 
-	// Token: 0x040003A8 RID: 936
+	// Token: 0x040003A9 RID: 937
 	public Trigger trigger;
 
-	// Token: 0x040003A9 RID: 937
+	// Token: 0x040003AA RID: 938
 	public AnimationOrTween.Direction playDirection = AnimationOrTween.Direction.Forward;
 
-	// Token: 0x040003AA RID: 938
+	// Token: 0x040003AB RID: 939
 	public bool resetOnPlay;
 
-	// Token: 0x040003AB RID: 939
+	// Token: 0x040003AC RID: 940
 	public bool clearSelection;
 
-	// Token: 0x040003AC RID: 940
+	// Token: 0x040003AD RID: 941
 	public EnableCondition ifDisabledOnPlay;
 
-	// Token: 0x040003AD RID: 941
+	// Token: 0x040003AE RID: 942
 	public DisableCondition disableWhenFinished;
 
-	// Token: 0x040003AE RID: 942
-	public List<EventDelegate> onFinished = new List<EventDelegate>();
-
 	// Token: 0x040003AF RID: 943
-	[HideInInspector]
-	[SerializeField]
-	private GameObject eventReceiver;
+	public List<EventDelegate> onFinished = new List<EventDelegate>();
 
 	// Token: 0x040003B0 RID: 944
 	[HideInInspector]
 	[SerializeField]
-	private string callWhenFinished;
+	private GameObject eventReceiver;
 
 	// Token: 0x040003B1 RID: 945
-	private bool mStarted;
+	[HideInInspector]
+	[SerializeField]
+	private string callWhenFinished;
 
 	// Token: 0x040003B2 RID: 946
-	private bool mActivated;
+	private bool mStarted;
 
 	// Token: 0x040003B3 RID: 947
+	private bool mActivated;
+
+	// Token: 0x040003B4 RID: 948
 	private bool dragHighlight;
 }

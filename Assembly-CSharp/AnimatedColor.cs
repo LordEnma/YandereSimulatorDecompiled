@@ -19,9 +19,9 @@ public class AnimatedColor : MonoBehaviour
 		this.mWidget.color = this.color;
 	}
 
-	// Token: 0x0400058F RID: 1423
+	// Token: 0x04000590 RID: 1424
 	public Color color = Color.white;
 
-	// Token: 0x04000590 RID: 1424
+	// Token: 0x04000591 RID: 1425
 	private UIWidget mWidget;
 }

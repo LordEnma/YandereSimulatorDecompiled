@@ -162,17 +162,17 @@ public class UIScrollBar : UISlider
 		}
 	}
 
-	// Token: 0x0400040E RID: 1038
+	// Token: 0x0400040F RID: 1039
 	[HideInInspector]
 	[SerializeField]
 	protected float mSize = 1f;
 
-	// Token: 0x0400040F RID: 1039
+	// Token: 0x04000410 RID: 1040
 	[HideInInspector]
 	[SerializeField]
 	private float mScroll;
 
-	// Token: 0x04000410 RID: 1040
+	// Token: 0x04000411 RID: 1041
 	[HideInInspector]
 	[SerializeField]
 	private UIScrollBar.Direction mDir = UIScrollBar.Direction.Upgraded;
@@ -180,11 +180,11 @@ public class UIScrollBar : UISlider
 	// Token: 0x020005D6 RID: 1494
 	private enum Direction
 	{
-		// Token: 0x04004D50 RID: 19792
+		// Token: 0x04004D53 RID: 19795
 		Horizontal,
-		// Token: 0x04004D51 RID: 19793
+		// Token: 0x04004D54 RID: 19796
 		Vertical,
-		// Token: 0x04004D52 RID: 19794
+		// Token: 0x04004D55 RID: 19797
 		Upgraded
 	}
 }

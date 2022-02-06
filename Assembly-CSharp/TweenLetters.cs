@@ -191,49 +191,49 @@ public class TweenLetters : UITweener
 		return a / (float)length;
 	}
 
-	// Token: 0x040005C0 RID: 1472
+	// Token: 0x040005C1 RID: 1473
 	public TweenLetters.AnimationProperties hoverOver;
 
-	// Token: 0x040005C1 RID: 1473
+	// Token: 0x040005C2 RID: 1474
 	public TweenLetters.AnimationProperties hoverOut;
 
-	// Token: 0x040005C2 RID: 1474
+	// Token: 0x040005C3 RID: 1475
 	private UILabel mLabel;
 
-	// Token: 0x040005C3 RID: 1475
+	// Token: 0x040005C4 RID: 1476
 	private int mVertexCount = -1;
 
-	// Token: 0x040005C4 RID: 1476
+	// Token: 0x040005C5 RID: 1477
 	private int[] mLetterOrder;
 
-	// Token: 0x040005C5 RID: 1477
+	// Token: 0x040005C6 RID: 1478
 	private TweenLetters.LetterProperties[] mLetter;
 
-	// Token: 0x040005C6 RID: 1478
+	// Token: 0x040005C7 RID: 1479
 	private TweenLetters.AnimationProperties mCurrent;
 
 	// Token: 0x02000605 RID: 1541
 	[DoNotObfuscateNGUI]
 	public enum AnimationLetterOrder
 	{
-		// Token: 0x04004DCA RID: 19914
+		// Token: 0x04004DCD RID: 19917
 		Forward,
-		// Token: 0x04004DCB RID: 19915
+		// Token: 0x04004DCE RID: 19918
 		Reverse,
-		// Token: 0x04004DCC RID: 19916
+		// Token: 0x04004DCF RID: 19919
 		Random
 	}
 
 	// Token: 0x02000606 RID: 1542
 	private class LetterProperties
 	{
-		// Token: 0x04004DCD RID: 19917
+		// Token: 0x04004DD0 RID: 19920
 		public float start;
 
-		// Token: 0x04004DCE RID: 19918
+		// Token: 0x04004DD1 RID: 19921
 		public float duration;
 
-		// Token: 0x04004DCF RID: 19919
+		// Token: 0x04004DD2 RID: 19922
 		public Vector2 offset;
 	}
 
@@ -241,33 +241,33 @@ public class TweenLetters : UITweener
 	[Serializable]
 	public class AnimationProperties
 	{
-		// Token: 0x04004DD0 RID: 19920
+		// Token: 0x04004DD3 RID: 19923
 		public TweenLetters.AnimationLetterOrder animationOrder = TweenLetters.AnimationLetterOrder.Random;
 
-		// Token: 0x04004DD1 RID: 19921
+		// Token: 0x04004DD4 RID: 19924
 		[Range(0f, 1f)]
 		public float overlap = 0.5f;
 
-		// Token: 0x04004DD2 RID: 19922
+		// Token: 0x04004DD5 RID: 19925
 		public bool randomDurations;
 
-		// Token: 0x04004DD3 RID: 19923
+		// Token: 0x04004DD6 RID: 19926
 		[MinMaxRange(0f, 1f)]
 		public Vector2 randomness = new Vector2(0.25f, 0.75f);
 
-		// Token: 0x04004DD4 RID: 19924
+		// Token: 0x04004DD7 RID: 19927
 		public Vector2 offsetRange = Vector2.zero;
 
-		// Token: 0x04004DD5 RID: 19925
+		// Token: 0x04004DD8 RID: 19928
 		public Vector3 pos = Vector3.zero;
 
-		// Token: 0x04004DD6 RID: 19926
+		// Token: 0x04004DD9 RID: 19929
 		public Vector3 rot = Vector3.zero;
 
-		// Token: 0x04004DD7 RID: 19927
+		// Token: 0x04004DDA RID: 19930
 		public Vector3 scale = Vector3.one;
 
-		// Token: 0x04004DD8 RID: 19928
+		// Token: 0x04004DDB RID: 19931
 		public float alpha = 1f;
 	}
 }

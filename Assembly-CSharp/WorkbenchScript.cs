@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020004C0 RID: 1216
 public class WorkbenchScript : MonoBehaviour
 {
-	// Token: 0x06001FCD RID: 8141 RVA: 0x001C24C3 File Offset: 0x001C06C3
+	// Token: 0x06001FD0 RID: 8144 RVA: 0x001C26C7 File Offset: 0x001C08C7
 	private void Start()
 	{
 		this.RemoveCheckmarks();
 	}
 
-	// Token: 0x06001FCE RID: 8142 RVA: 0x001C24CC File Offset: 0x001C06CC
+	// Token: 0x06001FD1 RID: 8145 RVA: 0x001C26D0 File Offset: 0x001C08D0
 	private void Update()
 	{
 		if (!this.Show)
@@ -214,14 +214,14 @@ public class WorkbenchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FCF RID: 8143 RVA: 0x001C2F28 File Offset: 0x001C1128
+	// Token: 0x06001FD2 RID: 8146 RVA: 0x001C312C File Offset: 0x001C132C
 	private void PlayRandomSound()
 	{
 		this.MyAudio.clip = this.SFX[UnityEngine.Random.Range(1, this.SFX.Length)];
 		this.MyAudio.Play();
 	}
 
-	// Token: 0x06001FD0 RID: 8144 RVA: 0x001C2F58 File Offset: 0x001C1158
+	// Token: 0x06001FD3 RID: 8147 RVA: 0x001C315C File Offset: 0x001C135C
 	private void CheckInventory()
 	{
 		Debug.Log("The game is now checking what items are currently in Yandere-chan's inventory.");
@@ -295,7 +295,7 @@ public class WorkbenchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FD1 RID: 8145 RVA: 0x001C3210 File Offset: 0x001C1410
+	// Token: 0x06001FD4 RID: 8148 RVA: 0x001C3414 File Offset: 0x001C1614
 	private void UpdateHighlight()
 	{
 		if (this.Selection > 11)
@@ -309,7 +309,7 @@ public class WorkbenchScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 440f - 80f * (float)this.Selection, this.Highlight.localPosition.z);
 	}
 
-	// Token: 0x06001FD2 RID: 8146 RVA: 0x001C3284 File Offset: 0x001C1484
+	// Token: 0x06001FD5 RID: 8149 RVA: 0x001C3488 File Offset: 0x001C1688
 	private void CountCheckmarks()
 	{
 		Debug.Log("The game is now counting how many checkmarks are currently displayed.");
@@ -339,7 +339,7 @@ public class WorkbenchScript : MonoBehaviour
 		this.DisableInvalidOptions();
 	}
 
-	// Token: 0x06001FD3 RID: 8147 RVA: 0x001C3360 File Offset: 0x001C1560
+	// Token: 0x06001FD6 RID: 8150 RVA: 0x001C3564 File Offset: 0x001C1764
 	private void RemoveCheckmarks()
 	{
 		for (int i = 1; i < this.Checkmark.Length; i++)
@@ -350,7 +350,7 @@ public class WorkbenchScript : MonoBehaviour
 		this.Checkmarks = 0;
 	}
 
-	// Token: 0x06001FD4 RID: 8148 RVA: 0x001C33A4 File Offset: 0x001C15A4
+	// Token: 0x06001FD7 RID: 8151 RVA: 0x001C35A8 File Offset: 0x001C17A8
 	private void DisableInvalidOptions()
 	{
 		Debug.Log("The player has picked a material, and the game is now disabling the materials that cannot be applied to that material.");
@@ -413,87 +413,87 @@ public class WorkbenchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040042C5 RID: 17093
+	// Token: 0x040042C8 RID: 17096
 	public InputManagerScript InputManager;
 
-	// Token: 0x040042C6 RID: 17094
+	// Token: 0x040042C9 RID: 17097
 	public WeaponScript MakeshiftKnife;
 
-	// Token: 0x040042C7 RID: 17095
+	// Token: 0x040042CA RID: 17098
 	public InventoryScript Inventory;
 
-	// Token: 0x040042C8 RID: 17096
+	// Token: 0x040042CB RID: 17099
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040042C9 RID: 17097
+	// Token: 0x040042CC RID: 17100
 	public PromptScript Prompt;
 
-	// Token: 0x040042CA RID: 17098
+	// Token: 0x040042CD RID: 17101
 	public GameObject ConfirmationWindow;
 
-	// Token: 0x040042CB RID: 17099
+	// Token: 0x040042CE RID: 17102
 	public GameObject OutcomeCamera;
 
-	// Token: 0x040042CC RID: 17100
+	// Token: 0x040042CF RID: 17103
 	public Transform WorkbenchWindow;
 
-	// Token: 0x040042CD RID: 17101
+	// Token: 0x040042D0 RID: 17104
 	public Transform Highlight;
 
-	// Token: 0x040042CE RID: 17102
+	// Token: 0x040042D1 RID: 17105
 	public UILabel ConfirmationLabel;
 
-	// Token: 0x040042CF RID: 17103
+	// Token: 0x040042D2 RID: 17106
 	public AudioSource MyAudio;
 
-	// Token: 0x040042D0 RID: 17104
+	// Token: 0x040042D3 RID: 17107
 	public UISprite Darkness;
 
-	// Token: 0x040042D1 RID: 17105
+	// Token: 0x040042D4 RID: 17108
 	public GameObject[] MaterialModel;
 
-	// Token: 0x040042D2 RID: 17106
+	// Token: 0x040042D5 RID: 17109
 	public GameObject[] OutcomeModel;
 
-	// Token: 0x040042D3 RID: 17107
+	// Token: 0x040042D6 RID: 17110
 	public GameObject[] Checkmark;
 
-	// Token: 0x040042D4 RID: 17108
+	// Token: 0x040042D7 RID: 17111
 	public AudioClip[] SFX;
 
-	// Token: 0x040042D5 RID: 17109
+	// Token: 0x040042D8 RID: 17112
 	public UILabel[] Label;
 
-	// Token: 0x040042D6 RID: 17110
+	// Token: 0x040042D9 RID: 17113
 	public bool[] InStock;
 
-	// Token: 0x040042D7 RID: 17111
+	// Token: 0x040042DA RID: 17114
 	public int[] Material;
 
-	// Token: 0x040042D8 RID: 17112
+	// Token: 0x040042DB RID: 17115
 	public bool CraftingSequence;
 
-	// Token: 0x040042D9 RID: 17113
+	// Token: 0x040042DC RID: 17116
 	public bool Triple;
 
-	// Token: 0x040042DA RID: 17114
+	// Token: 0x040042DD RID: 17117
 	public bool Return;
 
-	// Token: 0x040042DB RID: 17115
+	// Token: 0x040042DE RID: 17118
 	public bool Show;
 
-	// Token: 0x040042DC RID: 17116
+	// Token: 0x040042DF RID: 17119
 	public string Outcome = "";
 
-	// Token: 0x040042DD RID: 17117
+	// Token: 0x040042E0 RID: 17120
 	public int Checkmarks;
 
-	// Token: 0x040042DE RID: 17118
+	// Token: 0x040042E1 RID: 17121
 	public int Selection = 1;
 
-	// Token: 0x040042DF RID: 17119
+	// Token: 0x040042E2 RID: 17122
 	public int OutcomeID = 1;
 
-	// Token: 0x040042E0 RID: 17120
+	// Token: 0x040042E3 RID: 17123
 	public float Rotation;
 }

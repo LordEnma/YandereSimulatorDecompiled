@@ -46,24 +46,24 @@ public class EnvelopContent : MonoBehaviour
 		NGUITools.UpdateWidgetCollider(base.gameObject);
 	}
 
-	// Token: 0x040002C4 RID: 708
+	// Token: 0x040002C5 RID: 709
 	public Transform targetRoot;
 
-	// Token: 0x040002C5 RID: 709
+	// Token: 0x040002C6 RID: 710
 	public int padLeft;
 
-	// Token: 0x040002C6 RID: 710
+	// Token: 0x040002C7 RID: 711
 	public int padRight;
 
-	// Token: 0x040002C7 RID: 711
+	// Token: 0x040002C8 RID: 712
 	public int padBottom;
 
-	// Token: 0x040002C8 RID: 712
+	// Token: 0x040002C9 RID: 713
 	public int padTop;
 
-	// Token: 0x040002C9 RID: 713
+	// Token: 0x040002CA RID: 714
 	public bool ignoreDisabled = true;
 
-	// Token: 0x040002CA RID: 714
+	// Token: 0x040002CB RID: 715
 	private bool mStarted;
 }

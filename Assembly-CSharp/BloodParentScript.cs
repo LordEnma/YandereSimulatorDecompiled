@@ -56,33 +56,33 @@ public class BloodParentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000B8E RID: 2958
+	// Token: 0x04000B8F RID: 2959
 	public YandereScript Yandere;
 
-	// Token: 0x04000B8F RID: 2959
+	// Token: 0x04000B90 RID: 2960
 	public GameObject Bloodpool;
 
-	// Token: 0x04000B90 RID: 2960
+	// Token: 0x04000B91 RID: 2961
 	public GameObject Footprint;
 
-	// Token: 0x04000B91 RID: 2961
+	// Token: 0x04000B92 RID: 2962
 	public Vector3[] FootprintPositions;
 
-	// Token: 0x04000B92 RID: 2962
+	// Token: 0x04000B93 RID: 2963
 	public Vector3[] BloodPositions;
 
-	// Token: 0x04000B93 RID: 2963
+	// Token: 0x04000B94 RID: 2964
 	public Vector3[] FootprintRotations;
 
-	// Token: 0x04000B94 RID: 2964
+	// Token: 0x04000B95 RID: 2965
 	public Vector3[] BloodRotations;
 
-	// Token: 0x04000B95 RID: 2965
+	// Token: 0x04000B96 RID: 2966
 	public float[] BloodSizes;
 
-	// Token: 0x04000B96 RID: 2966
+	// Token: 0x04000B97 RID: 2967
 	public int FootprintID;
 
-	// Token: 0x04000B97 RID: 2967
+	// Token: 0x04000B98 RID: 2968
 	public int PoolID;
 }

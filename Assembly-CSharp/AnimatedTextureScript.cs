@@ -35,30 +35,30 @@ public class AnimatedTextureScript : MonoBehaviour
 		this.MyRenderer.material.mainTexture = this.Image[this.Frame];
 	}
 
-	// Token: 0x04000A16 RID: 2582
+	// Token: 0x04000A17 RID: 2583
 	[SerializeField]
 	private Renderer MyRenderer;
 
-	// Token: 0x04000A17 RID: 2583
+	// Token: 0x04000A18 RID: 2584
 	[SerializeField]
 	private int Start;
 
-	// Token: 0x04000A18 RID: 2584
+	// Token: 0x04000A19 RID: 2585
 	[SerializeField]
 	private int Frame;
 
-	// Token: 0x04000A19 RID: 2585
+	// Token: 0x04000A1A RID: 2586
 	[SerializeField]
 	private int Limit;
 
-	// Token: 0x04000A1A RID: 2586
+	// Token: 0x04000A1B RID: 2587
 	[SerializeField]
 	private float FramesPerSecond;
 
-	// Token: 0x04000A1B RID: 2587
+	// Token: 0x04000A1C RID: 2588
 	[SerializeField]
 	private float CurrentSeconds;
 
-	// Token: 0x04000A1C RID: 2588
+	// Token: 0x04000A1D RID: 2589
 	public Texture[] Image;
 }

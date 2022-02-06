@@ -111,18 +111,18 @@ public class TweenScale : UITweener
 		this.value = this.to;
 	}
 
-	// Token: 0x040005D3 RID: 1491
+	// Token: 0x040005D4 RID: 1492
 	public Vector3 from = Vector3.one;
 
-	// Token: 0x040005D4 RID: 1492
+	// Token: 0x040005D5 RID: 1493
 	public Vector3 to = Vector3.one;
 
-	// Token: 0x040005D5 RID: 1493
+	// Token: 0x040005D6 RID: 1494
 	public bool updateTable;
 
-	// Token: 0x040005D6 RID: 1494
+	// Token: 0x040005D7 RID: 1495
 	private Transform mTrans;
 
-	// Token: 0x040005D7 RID: 1495
+	// Token: 0x040005D8 RID: 1496
 	private UITable mTable;
 }

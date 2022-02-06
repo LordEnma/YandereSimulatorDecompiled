@@ -191,78 +191,78 @@ public class UIEventListener : MonoBehaviour
 		return uieventListener;
 	}
 
-	// Token: 0x0400053B RID: 1339
+	// Token: 0x0400053C RID: 1340
 	public object parameter;
 
-	// Token: 0x0400053C RID: 1340
+	// Token: 0x0400053D RID: 1341
 	public UIEventListener.VoidDelegate onSubmit;
 
-	// Token: 0x0400053D RID: 1341
+	// Token: 0x0400053E RID: 1342
 	public UIEventListener.VoidDelegate onClick;
 
-	// Token: 0x0400053E RID: 1342
+	// Token: 0x0400053F RID: 1343
 	public UIEventListener.VoidDelegate onDoubleClick;
 
-	// Token: 0x0400053F RID: 1343
+	// Token: 0x04000540 RID: 1344
 	public UIEventListener.BoolDelegate onHover;
 
-	// Token: 0x04000540 RID: 1344
+	// Token: 0x04000541 RID: 1345
 	public UIEventListener.BoolDelegate onPress;
 
-	// Token: 0x04000541 RID: 1345
+	// Token: 0x04000542 RID: 1346
 	public UIEventListener.BoolDelegate onSelect;
 
-	// Token: 0x04000542 RID: 1346
+	// Token: 0x04000543 RID: 1347
 	public UIEventListener.FloatDelegate onScroll;
 
-	// Token: 0x04000543 RID: 1347
+	// Token: 0x04000544 RID: 1348
 	public UIEventListener.VoidDelegate onDragStart;
 
-	// Token: 0x04000544 RID: 1348
+	// Token: 0x04000545 RID: 1349
 	public UIEventListener.VectorDelegate onDrag;
 
-	// Token: 0x04000545 RID: 1349
+	// Token: 0x04000546 RID: 1350
 	public UIEventListener.VoidDelegate onDragOver;
 
-	// Token: 0x04000546 RID: 1350
+	// Token: 0x04000547 RID: 1351
 	public UIEventListener.VoidDelegate onDragOut;
 
-	// Token: 0x04000547 RID: 1351
+	// Token: 0x04000548 RID: 1352
 	public UIEventListener.VoidDelegate onDragEnd;
 
-	// Token: 0x04000548 RID: 1352
+	// Token: 0x04000549 RID: 1353
 	public UIEventListener.ObjectDelegate onDrop;
 
-	// Token: 0x04000549 RID: 1353
+	// Token: 0x0400054A RID: 1354
 	public UIEventListener.KeyCodeDelegate onKey;
 
-	// Token: 0x0400054A RID: 1354
+	// Token: 0x0400054B RID: 1355
 	public UIEventListener.BoolDelegate onTooltip;
 
-	// Token: 0x0400054B RID: 1355
+	// Token: 0x0400054C RID: 1356
 	public bool needsActiveCollider = true;
 
 	// Token: 0x020005F6 RID: 1526
-	// (Invoke) Token: 0x0600254E RID: 9550
+	// (Invoke) Token: 0x06002551 RID: 9553
 	public delegate void VoidDelegate(GameObject go);
 
 	// Token: 0x020005F7 RID: 1527
-	// (Invoke) Token: 0x06002552 RID: 9554
+	// (Invoke) Token: 0x06002555 RID: 9557
 	public delegate void BoolDelegate(GameObject go, bool state);
 
 	// Token: 0x020005F8 RID: 1528
-	// (Invoke) Token: 0x06002556 RID: 9558
+	// (Invoke) Token: 0x06002559 RID: 9561
 	public delegate void FloatDelegate(GameObject go, float delta);
 
 	// Token: 0x020005F9 RID: 1529
-	// (Invoke) Token: 0x0600255A RID: 9562
+	// (Invoke) Token: 0x0600255D RID: 9565
 	public delegate void VectorDelegate(GameObject go, Vector2 delta);
 
 	// Token: 0x020005FA RID: 1530
-	// (Invoke) Token: 0x0600255E RID: 9566
+	// (Invoke) Token: 0x06002561 RID: 9569
 	public delegate void ObjectDelegate(GameObject go, GameObject obj);
 
 	// Token: 0x020005FB RID: 1531
-	// (Invoke) Token: 0x06002562 RID: 9570
+	// (Invoke) Token: 0x06002565 RID: 9573
 	public delegate void KeyCodeDelegate(GameObject go, KeyCode key);
 }

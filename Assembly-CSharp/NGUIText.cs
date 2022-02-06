@@ -2527,116 +2527,116 @@ public static class NGUIText
 		}
 	}
 
-	// Token: 0x040004B9 RID: 1209
+	// Token: 0x040004BA RID: 1210
 	public static INGUIFont bitmapFont;
 
-	// Token: 0x040004BA RID: 1210
+	// Token: 0x040004BB RID: 1211
 	public static Font dynamicFont;
 
-	// Token: 0x040004BB RID: 1211
+	// Token: 0x040004BC RID: 1212
 	public static NGUIText.GlyphInfo glyph = new NGUIText.GlyphInfo();
 
-	// Token: 0x040004BC RID: 1212
+	// Token: 0x040004BD RID: 1213
 	public static int fontSize = 16;
 
-	// Token: 0x040004BD RID: 1213
+	// Token: 0x040004BE RID: 1214
 	public static float fontScale = 1f;
 
-	// Token: 0x040004BE RID: 1214
+	// Token: 0x040004BF RID: 1215
 	public static float pixelDensity = 1f;
 
-	// Token: 0x040004BF RID: 1215
+	// Token: 0x040004C0 RID: 1216
 	public static FontStyle fontStyle = FontStyle.Normal;
 
-	// Token: 0x040004C0 RID: 1216
+	// Token: 0x040004C1 RID: 1217
 	public static NGUIText.Alignment alignment = NGUIText.Alignment.Left;
 
-	// Token: 0x040004C1 RID: 1217
+	// Token: 0x040004C2 RID: 1218
 	public static Color tint = Color.white;
 
-	// Token: 0x040004C2 RID: 1218
+	// Token: 0x040004C3 RID: 1219
 	public static int rectWidth = 1000000;
 
-	// Token: 0x040004C3 RID: 1219
+	// Token: 0x040004C4 RID: 1220
 	public static int rectHeight = 1000000;
 
-	// Token: 0x040004C4 RID: 1220
+	// Token: 0x040004C5 RID: 1221
 	public static int regionWidth = 1000000;
 
-	// Token: 0x040004C5 RID: 1221
+	// Token: 0x040004C6 RID: 1222
 	public static int regionHeight = 1000000;
 
-	// Token: 0x040004C6 RID: 1222
+	// Token: 0x040004C7 RID: 1223
 	public static int maxLines = 0;
 
-	// Token: 0x040004C7 RID: 1223
+	// Token: 0x040004C8 RID: 1224
 	public static bool gradient = false;
 
-	// Token: 0x040004C8 RID: 1224
+	// Token: 0x040004C9 RID: 1225
 	public static Color gradientBottom = Color.white;
 
-	// Token: 0x040004C9 RID: 1225
+	// Token: 0x040004CA RID: 1226
 	public static Color gradientTop = Color.white;
 
-	// Token: 0x040004CA RID: 1226
+	// Token: 0x040004CB RID: 1227
 	public static bool encoding = false;
 
-	// Token: 0x040004CB RID: 1227
+	// Token: 0x040004CC RID: 1228
 	public static float spacingX = 0f;
 
-	// Token: 0x040004CC RID: 1228
+	// Token: 0x040004CD RID: 1229
 	public static float spacingY = 0f;
 
-	// Token: 0x040004CD RID: 1229
+	// Token: 0x040004CE RID: 1230
 	public static bool premultiply = false;
 
-	// Token: 0x040004CE RID: 1230
+	// Token: 0x040004CF RID: 1231
 	public static NGUIText.SymbolStyle symbolStyle;
 
-	// Token: 0x040004CF RID: 1231
+	// Token: 0x040004D0 RID: 1232
 	public static int finalSize = 0;
 
-	// Token: 0x040004D0 RID: 1232
+	// Token: 0x040004D1 RID: 1233
 	public static float finalSpacingX = 0f;
 
-	// Token: 0x040004D1 RID: 1233
+	// Token: 0x040004D2 RID: 1234
 	public static float finalLineHeight = 0f;
 
-	// Token: 0x040004D2 RID: 1234
+	// Token: 0x040004D3 RID: 1235
 	public static float baseline = 0f;
 
-	// Token: 0x040004D3 RID: 1235
+	// Token: 0x040004D4 RID: 1236
 	public static bool useSymbols = false;
 
-	// Token: 0x040004D4 RID: 1236
+	// Token: 0x040004D5 RID: 1237
 	private static Color mInvisible = new Color(0f, 0f, 0f, 0f);
 
-	// Token: 0x040004D5 RID: 1237
+	// Token: 0x040004D6 RID: 1238
 	private static BetterList<Color> mColors = new BetterList<Color>();
 
-	// Token: 0x040004D6 RID: 1238
+	// Token: 0x040004D7 RID: 1239
 	private static float mAlpha = 1f;
 
-	// Token: 0x040004D7 RID: 1239
+	// Token: 0x040004D8 RID: 1240
 	private static CharacterInfo mTempChar;
 
-	// Token: 0x040004D8 RID: 1240
+	// Token: 0x040004D9 RID: 1241
 	private static BetterList<float> mSizes = new BetterList<float>();
 
-	// Token: 0x040004D9 RID: 1241
+	// Token: 0x040004DA RID: 1242
 	[NonSerialized]
 	private static StringBuilder mSB;
 
-	// Token: 0x040004DA RID: 1242
+	// Token: 0x040004DB RID: 1243
 	private static Color s_c0;
 
-	// Token: 0x040004DB RID: 1243
+	// Token: 0x040004DC RID: 1244
 	private static Color s_c1;
 
-	// Token: 0x040004DC RID: 1244
+	// Token: 0x040004DD RID: 1245
 	private const float sizeShrinkage = 0.75f;
 
-	// Token: 0x040004DD RID: 1245
+	// Token: 0x040004DE RID: 1246
 	private static float[] mBoldOffset = new float[]
 	{
 		-0.25f,
@@ -2653,15 +2653,15 @@ public static class NGUIText
 	[DoNotObfuscateNGUI]
 	public enum Alignment
 	{
-		// Token: 0x04004D79 RID: 19833
-		Automatic,
-		// Token: 0x04004D7A RID: 19834
-		Left,
-		// Token: 0x04004D7B RID: 19835
-		Center,
 		// Token: 0x04004D7C RID: 19836
-		Right,
+		Automatic,
 		// Token: 0x04004D7D RID: 19837
+		Left,
+		// Token: 0x04004D7E RID: 19838
+		Center,
+		// Token: 0x04004D7F RID: 19839
+		Right,
+		// Token: 0x04004D80 RID: 19840
 		Justified
 	}
 
@@ -2669,41 +2669,41 @@ public static class NGUIText
 	[DoNotObfuscateNGUI]
 	public enum SymbolStyle
 	{
-		// Token: 0x04004D7F RID: 19839
-		None,
-		// Token: 0x04004D80 RID: 19840
-		Normal,
-		// Token: 0x04004D81 RID: 19841
-		Colored,
 		// Token: 0x04004D82 RID: 19842
+		None,
+		// Token: 0x04004D83 RID: 19843
+		Normal,
+		// Token: 0x04004D84 RID: 19844
+		Colored,
+		// Token: 0x04004D85 RID: 19845
 		NoOutline
 	}
 
 	// Token: 0x020005E9 RID: 1513
 	public class GlyphInfo
 	{
-		// Token: 0x04004D83 RID: 19843
+		// Token: 0x04004D86 RID: 19846
 		public Vector2 v0;
 
-		// Token: 0x04004D84 RID: 19844
+		// Token: 0x04004D87 RID: 19847
 		public Vector2 v1;
 
-		// Token: 0x04004D85 RID: 19845
+		// Token: 0x04004D88 RID: 19848
 		public Vector2 u0;
 
-		// Token: 0x04004D86 RID: 19846
+		// Token: 0x04004D89 RID: 19849
 		public Vector2 u1;
 
-		// Token: 0x04004D87 RID: 19847
+		// Token: 0x04004D8A RID: 19850
 		public Vector2 u2;
 
-		// Token: 0x04004D88 RID: 19848
+		// Token: 0x04004D8B RID: 19851
 		public Vector2 u3;
 
-		// Token: 0x04004D89 RID: 19849
+		// Token: 0x04004D8C RID: 19852
 		public float advance;
 
-		// Token: 0x04004D8A RID: 19850
+		// Token: 0x04004D8D RID: 19853
 		public int channel;
 	}
 }

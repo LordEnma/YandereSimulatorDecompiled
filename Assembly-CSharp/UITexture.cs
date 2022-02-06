@@ -341,32 +341,32 @@ public class UITexture : UIBasicSprite
 		}
 	}
 
-	// Token: 0x04000793 RID: 1939
+	// Token: 0x04000794 RID: 1940
 	[HideInInspector]
 	[SerializeField]
 	private Rect mRect = new Rect(0f, 0f, 1f, 1f);
 
-	// Token: 0x04000794 RID: 1940
+	// Token: 0x04000795 RID: 1941
 	[HideInInspector]
 	[SerializeField]
 	private Texture mTexture;
 
-	// Token: 0x04000795 RID: 1941
+	// Token: 0x04000796 RID: 1942
 	[HideInInspector]
 	[SerializeField]
 	private Shader mShader;
 
-	// Token: 0x04000796 RID: 1942
+	// Token: 0x04000797 RID: 1943
 	[HideInInspector]
 	[SerializeField]
 	private Vector4 mBorder = Vector4.zero;
 
-	// Token: 0x04000797 RID: 1943
+	// Token: 0x04000798 RID: 1944
 	[HideInInspector]
 	[SerializeField]
 	private bool mFixedAspect;
 
-	// Token: 0x04000798 RID: 1944
+	// Token: 0x04000799 RID: 1945
 	[NonSerialized]
 	private int mPMA = -1;
 }

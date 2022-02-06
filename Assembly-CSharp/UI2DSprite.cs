@@ -340,35 +340,35 @@ public class UI2DSprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x0400060F RID: 1551
+	// Token: 0x04000610 RID: 1552
 	[HideInInspector]
 	[SerializeField]
 	private Sprite mSprite;
 
-	// Token: 0x04000610 RID: 1552
+	// Token: 0x04000611 RID: 1553
 	[HideInInspector]
 	[SerializeField]
 	private Shader mShader;
 
-	// Token: 0x04000611 RID: 1553
+	// Token: 0x04000612 RID: 1554
 	[HideInInspector]
 	[SerializeField]
 	private Vector4 mBorder = Vector4.zero;
 
-	// Token: 0x04000612 RID: 1554
+	// Token: 0x04000613 RID: 1555
 	[HideInInspector]
 	[SerializeField]
 	private bool mFixedAspect;
 
-	// Token: 0x04000613 RID: 1555
+	// Token: 0x04000614 RID: 1556
 	[HideInInspector]
 	[SerializeField]
 	private float mPixelSize = 1f;
 
-	// Token: 0x04000614 RID: 1556
+	// Token: 0x04000615 RID: 1557
 	public Sprite nextSprite;
 
-	// Token: 0x04000615 RID: 1557
+	// Token: 0x04000616 RID: 1558
 	[NonSerialized]
 	private int mPMA = -1;
 }

@@ -25,15 +25,15 @@ public class LookAtTarget : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040002A0 RID: 672
+	// Token: 0x040002A1 RID: 673
 	public int level;
 
-	// Token: 0x040002A1 RID: 673
+	// Token: 0x040002A2 RID: 674
 	public Transform target;
 
-	// Token: 0x040002A2 RID: 674
+	// Token: 0x040002A3 RID: 675
 	public float speed = 8f;
 
-	// Token: 0x040002A3 RID: 675
+	// Token: 0x040002A4 RID: 676
 	private Transform mTrans;
 }

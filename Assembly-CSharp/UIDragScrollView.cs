@@ -100,27 +100,27 @@ public class UIDragScrollView : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000350 RID: 848
+	// Token: 0x04000351 RID: 849
 	public UIScrollView scrollView;
 
-	// Token: 0x04000351 RID: 849
+	// Token: 0x04000352 RID: 850
 	[HideInInspector]
 	[SerializeField]
 	private UIScrollView draggablePanel;
 
-	// Token: 0x04000352 RID: 850
+	// Token: 0x04000353 RID: 851
 	private Transform mTrans;
 
-	// Token: 0x04000353 RID: 851
+	// Token: 0x04000354 RID: 852
 	private UIScrollView mScroll;
 
-	// Token: 0x04000354 RID: 852
+	// Token: 0x04000355 RID: 853
 	private bool mAutoFind;
 
-	// Token: 0x04000355 RID: 853
+	// Token: 0x04000356 RID: 854
 	private bool mStarted;
 
-	// Token: 0x04000356 RID: 854
+	// Token: 0x04000357 RID: 855
 	[NonSerialized]
 	private bool mPressed;
 }

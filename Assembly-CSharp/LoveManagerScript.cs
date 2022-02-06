@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000356 RID: 854
 public class LoveManagerScript : MonoBehaviour
 {
-	// Token: 0x06001966 RID: 6502 RVA: 0x0010107C File Offset: 0x000FF27C
+	// Token: 0x06001968 RID: 6504 RVA: 0x00101188 File Offset: 0x000FF388
 	private void Start()
 	{
 		int week = DateGlobals.Week;
@@ -42,7 +42,7 @@ public class LoveManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001967 RID: 6503 RVA: 0x00101154 File Offset: 0x000FF354
+	// Token: 0x06001969 RID: 6505 RVA: 0x00101260 File Offset: 0x000FF460
 	private void LateUpdate()
 	{
 		if (this.Yandere.Follower != null && this.Yandere.Follower.StudentID == this.StudentManager.RivalID)
@@ -133,7 +133,7 @@ public class LoveManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001968 RID: 6504 RVA: 0x00101708 File Offset: 0x000FF908
+	// Token: 0x0600196A RID: 6506 RVA: 0x00101814 File Offset: 0x000FFA14
 	public void CoupleCheck()
 	{
 		if (this.SuitorProgress == 2)
@@ -181,7 +181,7 @@ public class LoveManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001969 RID: 6505 RVA: 0x001019FC File Offset: 0x000FFBFC
+	// Token: 0x0600196B RID: 6507 RVA: 0x00101B08 File Offset: 0x000FFD08
 	public void BeginConfession()
 	{
 		Debug.Log("Confession is being told to begin.");
@@ -220,7 +220,7 @@ public class LoveManagerScript : MonoBehaviour
 		this.LeftNote = false;
 	}
 
-	// Token: 0x0600196A RID: 6506 RVA: 0x00101B60 File Offset: 0x000FFD60
+	// Token: 0x0600196C RID: 6508 RVA: 0x00101C6C File Offset: 0x000FFE6C
 	public void SaveSuitorInstructions()
 	{
 		StudentGlobals.CustomSuitorAccessory = this.CustomSuitorAccessory;
@@ -241,99 +241,99 @@ public class LoveManagerScript : MonoBehaviour
 		DatingGlobals.SetSuitorCheck(9, this.AppearanceWindow.Checks[9].enabled);
 	}
 
-	// Token: 0x04002864 RID: 10340
+	// Token: 0x04002867 RID: 10343
 	public ConfessionManagerScript ConfessionManager;
 
-	// Token: 0x04002865 RID: 10341
+	// Token: 0x04002868 RID: 10344
 	public AppearanceWindowScript AppearanceWindow;
 
-	// Token: 0x04002866 RID: 10342
+	// Token: 0x04002869 RID: 10345
 	public ConfessionSceneScript ConfessionScene;
 
-	// Token: 0x04002867 RID: 10343
+	// Token: 0x0400286A RID: 10346
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002868 RID: 10344
+	// Token: 0x0400286B RID: 10347
 	public YandereScript Yandere;
 
-	// Token: 0x04002869 RID: 10345
+	// Token: 0x0400286C RID: 10348
 	public ClockScript Clock;
 
-	// Token: 0x0400286A RID: 10346
+	// Token: 0x0400286D RID: 10349
 	public StudentScript Follower;
 
-	// Token: 0x0400286B RID: 10347
+	// Token: 0x0400286E RID: 10350
 	public StudentScript Suitor;
 
-	// Token: 0x0400286C RID: 10348
+	// Token: 0x0400286F RID: 10351
 	public StudentScript Rival;
 
-	// Token: 0x0400286D RID: 10349
+	// Token: 0x04002870 RID: 10352
 	public Transform FriendWaitSpot;
 
-	// Token: 0x0400286E RID: 10350
+	// Token: 0x04002871 RID: 10353
 	public Transform[] Targets;
 
-	// Token: 0x0400286F RID: 10351
+	// Token: 0x04002872 RID: 10354
 	public Transform MythHill;
 
-	// Token: 0x04002870 RID: 10352
+	// Token: 0x04002873 RID: 10355
 	public int SuitorProgress;
 
-	// Token: 0x04002871 RID: 10353
+	// Token: 0x04002874 RID: 10356
 	public int TotalTargets;
 
-	// Token: 0x04002872 RID: 10354
+	// Token: 0x04002875 RID: 10357
 	public int Phase = 1;
 
-	// Token: 0x04002873 RID: 10355
+	// Token: 0x04002876 RID: 10358
 	public int ID;
 
-	// Token: 0x04002874 RID: 10356
+	// Token: 0x04002877 RID: 10359
 	public int SuitorID = 28;
 
-	// Token: 0x04002875 RID: 10357
+	// Token: 0x04002878 RID: 10360
 	public int RivalID = 30;
 
-	// Token: 0x04002876 RID: 10358
+	// Token: 0x04002879 RID: 10361
 	public float AngleLimit;
 
-	// Token: 0x04002877 RID: 10359
+	// Token: 0x0400287A RID: 10362
 	public bool WaitingToConfess;
 
-	// Token: 0x04002878 RID: 10360
+	// Token: 0x0400287B RID: 10363
 	public bool ConfessToSuitor;
 
-	// Token: 0x04002879 RID: 10361
+	// Token: 0x0400287C RID: 10364
 	public bool HoldingHands;
 
-	// Token: 0x0400287A RID: 10362
+	// Token: 0x0400287D RID: 10365
 	public bool RivalWaiting;
 
-	// Token: 0x0400287B RID: 10363
+	// Token: 0x0400287E RID: 10366
 	public bool LeftNote;
 
-	// Token: 0x0400287C RID: 10364
+	// Token: 0x0400287F RID: 10367
 	public bool Courted;
 
-	// Token: 0x0400287D RID: 10365
+	// Token: 0x04002880 RID: 10368
 	public bool CustomSuitorBlack;
 
-	// Token: 0x0400287E RID: 10366
+	// Token: 0x04002881 RID: 10369
 	public bool CustomSuitorTan;
 
-	// Token: 0x0400287F RID: 10367
+	// Token: 0x04002882 RID: 10370
 	public bool CustomSuitor;
 
-	// Token: 0x04002880 RID: 10368
+	// Token: 0x04002883 RID: 10371
 	public int CustomSuitorAccessory;
 
-	// Token: 0x04002881 RID: 10369
+	// Token: 0x04002884 RID: 10372
 	public int CustomSuitorEyewear;
 
-	// Token: 0x04002882 RID: 10370
+	// Token: 0x04002885 RID: 10373
 	public int CustomSuitorJewelry;
 
-	// Token: 0x04002883 RID: 10371
+	// Token: 0x04002886 RID: 10374
 	public int CustomSuitorHair;
 }

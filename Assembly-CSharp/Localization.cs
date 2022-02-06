@@ -753,41 +753,41 @@ public static class Localization
 		array2[num2 - 1] = text;
 	}
 
-	// Token: 0x040004AA RID: 1194
+	// Token: 0x040004AB RID: 1195
 	public static Localization.LoadFunction loadFunction;
 
-	// Token: 0x040004AB RID: 1195
+	// Token: 0x040004AC RID: 1196
 	public static Localization.OnLocalizeNotification onLocalize;
 
-	// Token: 0x040004AC RID: 1196
+	// Token: 0x040004AD RID: 1197
 	public static bool localizationHasBeenSet = false;
 
-	// Token: 0x040004AD RID: 1197
+	// Token: 0x040004AE RID: 1198
 	private static string[] mLanguages = null;
 
-	// Token: 0x040004AE RID: 1198
+	// Token: 0x040004AF RID: 1199
 	private static Dictionary<string, string> mOldDictionary = new Dictionary<string, string>();
 
-	// Token: 0x040004AF RID: 1199
+	// Token: 0x040004B0 RID: 1200
 	private static Dictionary<string, string[]> mDictionary = new Dictionary<string, string[]>();
 
-	// Token: 0x040004B0 RID: 1200
+	// Token: 0x040004B1 RID: 1201
 	private static Dictionary<string, string> mReplacement = new Dictionary<string, string>();
 
-	// Token: 0x040004B1 RID: 1201
+	// Token: 0x040004B2 RID: 1202
 	private static int mLanguageIndex = -1;
 
-	// Token: 0x040004B2 RID: 1202
+	// Token: 0x040004B3 RID: 1203
 	private static string mLanguage;
 
-	// Token: 0x040004B3 RID: 1203
+	// Token: 0x040004B4 RID: 1204
 	private static bool mMerging = false;
 
 	// Token: 0x020005E5 RID: 1509
-	// (Invoke) Token: 0x06002535 RID: 9525
+	// (Invoke) Token: 0x06002538 RID: 9528
 	public delegate byte[] LoadFunction(string path);
 
 	// Token: 0x020005E6 RID: 1510
-	// (Invoke) Token: 0x06002539 RID: 9529
+	// (Invoke) Token: 0x0600253C RID: 9532
 	public delegate void OnLocalizeNotification();
 }

@@ -26,12 +26,12 @@ public class InspectorButtonAttribute : PropertyAttribute
 		this.MethodName = MethodName;
 	}
 
-	// Token: 0x04000803 RID: 2051
+	// Token: 0x04000804 RID: 2052
 	public static float kDefaultButtonWidth = 150f;
 
-	// Token: 0x04000804 RID: 2052
+	// Token: 0x04000805 RID: 2053
 	public readonly string MethodName;
 
-	// Token: 0x04000805 RID: 2053
+	// Token: 0x04000806 RID: 2054
 	private float _buttonWidth = InspectorButtonAttribute.kDefaultButtonWidth;
 }

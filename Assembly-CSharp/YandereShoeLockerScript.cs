@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004CB RID: 1227
 public class YandereShoeLockerScript : MonoBehaviour
 {
-	// Token: 0x06002060 RID: 8288 RVA: 0x001DBDB0 File Offset: 0x001D9FB0
+	// Token: 0x06002063 RID: 8291 RVA: 0x001DBFB4 File Offset: 0x001DA1B4
 	private void Update()
 	{
 		if (this.Yandere.Schoolwear == 1 && !this.Yandere.ClubAttire && !this.Yandere.Egg)
@@ -34,12 +34,12 @@ public class YandereShoeLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040046E7 RID: 18151
+	// Token: 0x040046EA RID: 18154
 	public YandereScript Yandere;
 
-	// Token: 0x040046E8 RID: 18152
+	// Token: 0x040046EB RID: 18155
 	public PromptScript Prompt;
 
-	// Token: 0x040046E9 RID: 18153
+	// Token: 0x040046EC RID: 18156
 	public int Label = 1;
 }

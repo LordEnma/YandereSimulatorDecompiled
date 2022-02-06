@@ -366,117 +366,117 @@ public class ArmDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A60 RID: 2656
+	// Token: 0x04000A61 RID: 2657
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000A61 RID: 2657
+	// Token: 0x04000A62 RID: 2658
 	public DebugMenuScript DebugMenu;
 
-	// Token: 0x04000A62 RID: 2658
+	// Token: 0x04000A63 RID: 2659
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04000A63 RID: 2659
+	// Token: 0x04000A64 RID: 2660
 	public YandereScript Yandere;
 
-	// Token: 0x04000A64 RID: 2660
+	// Token: 0x04000A65 RID: 2661
 	public PoliceScript Police;
 
-	// Token: 0x04000A65 RID: 2661
+	// Token: 0x04000A66 RID: 2662
 	public SkullScript Skull;
 
-	// Token: 0x04000A66 RID: 2662
+	// Token: 0x04000A67 RID: 2663
 	public UILabel DemonSubtitle;
 
-	// Token: 0x04000A67 RID: 2663
+	// Token: 0x04000A68 RID: 2664
 	public UISprite Darkness;
 
-	// Token: 0x04000A68 RID: 2664
+	// Token: 0x04000A69 RID: 2665
 	public Transform LimbParent;
 
-	// Token: 0x04000A69 RID: 2665
+	// Token: 0x04000A6A RID: 2666
 	public Transform[] SpawnPoints;
 
-	// Token: 0x04000A6A RID: 2666
+	// Token: 0x04000A6B RID: 2667
 	public GameObject[] BodyArray;
 
-	// Token: 0x04000A6B RID: 2667
+	// Token: 0x04000A6C RID: 2668
 	public GameObject[] ArmArray;
 
-	// Token: 0x04000A6C RID: 2668
+	// Token: 0x04000A6D RID: 2669
 	public GameObject RiggedAccessory;
 
-	// Token: 0x04000A6D RID: 2669
+	// Token: 0x04000A6E RID: 2670
 	public GameObject BloodProjector;
 
-	// Token: 0x04000A6E RID: 2670
+	// Token: 0x04000A6F RID: 2671
 	public GameObject SmallDarkAura;
 
-	// Token: 0x04000A6F RID: 2671
+	// Token: 0x04000A70 RID: 2672
 	public GameObject BigDarkAura;
 
-	// Token: 0x04000A70 RID: 2672
+	// Token: 0x04000A71 RID: 2673
 	public GameObject DemonDress;
 
-	// Token: 0x04000A71 RID: 2673
+	// Token: 0x04000A72 RID: 2674
 	public GameObject RightFlame;
 
-	// Token: 0x04000A72 RID: 2674
+	// Token: 0x04000A73 RID: 2675
 	public GameObject LeftFlame;
 
-	// Token: 0x04000A73 RID: 2675
+	// Token: 0x04000A74 RID: 2676
 	public GameObject DemonArm;
 
-	// Token: 0x04000A74 RID: 2676
+	// Token: 0x04000A75 RID: 2677
 	public bool SummonEmptyDemon;
 
-	// Token: 0x04000A75 RID: 2677
+	// Token: 0x04000A76 RID: 2678
 	public bool SummonFlameDemon;
 
-	// Token: 0x04000A76 RID: 2678
+	// Token: 0x04000A77 RID: 2679
 	public bool SummonDemon;
 
-	// Token: 0x04000A77 RID: 2679
+	// Token: 0x04000A78 RID: 2680
 	public Mesh FlameDemonMesh;
 
-	// Token: 0x04000A78 RID: 2680
+	// Token: 0x04000A79 RID: 2681
 	public int CorpsesCounted;
 
-	// Token: 0x04000A79 RID: 2681
+	// Token: 0x04000A7A RID: 2682
 	public int ArmsSpawned;
 
-	// Token: 0x04000A7A RID: 2682
+	// Token: 0x04000A7B RID: 2683
 	public int Sacrifices;
 
-	// Token: 0x04000A7B RID: 2683
+	// Token: 0x04000A7C RID: 2684
 	public int Phase = 1;
 
-	// Token: 0x04000A7C RID: 2684
+	// Token: 0x04000A7D RID: 2685
 	public int Bodies;
 
-	// Token: 0x04000A7D RID: 2685
+	// Token: 0x04000A7E RID: 2686
 	public int Arms;
 
-	// Token: 0x04000A7E RID: 2686
+	// Token: 0x04000A7F RID: 2687
 	public float SacrificeTimer;
 
-	// Token: 0x04000A7F RID: 2687
+	// Token: 0x04000A80 RID: 2688
 	public float Timer;
 
-	// Token: 0x04000A80 RID: 2688
+	// Token: 0x04000A81 RID: 2689
 	public AudioClip FlameDemonLine;
 
-	// Token: 0x04000A81 RID: 2689
+	// Token: 0x04000A82 RID: 2690
 	public AudioClip FlameActivate;
 
-	// Token: 0x04000A82 RID: 2690
+	// Token: 0x04000A83 RID: 2691
 	public AudioClip DemonMusic;
 
-	// Token: 0x04000A83 RID: 2691
+	// Token: 0x04000A84 RID: 2692
 	public AudioClip DemonLine;
 
-	// Token: 0x04000A84 RID: 2692
+	// Token: 0x04000A85 RID: 2693
 	public AudioClip EmptyDemonLine;
 
-	// Token: 0x04000A85 RID: 2693
+	// Token: 0x04000A86 RID: 2694
 	public AudioSource MyAudio;
 }

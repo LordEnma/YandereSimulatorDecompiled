@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000377 RID: 887
 public class NewTitleScreenScript : MonoBehaviour
 {
-	// Token: 0x060019E9 RID: 6633 RVA: 0x0010DF38 File Offset: 0x0010C138
+	// Token: 0x060019EB RID: 6635 RVA: 0x0010E044 File Offset: 0x0010C244
 	private void Start()
 	{
 		MissionModeGlobals.MissionMode = false;
@@ -77,7 +77,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.EightiesLogo.alpha = 0f;
 	}
 
-	// Token: 0x060019EA RID: 6634 RVA: 0x0010E204 File Offset: 0x0010C404
+	// Token: 0x060019EC RID: 6636 RVA: 0x0010E310 File Offset: 0x0010C510
 	private void Update()
 	{
 		if (this.Frame == 1)
@@ -483,6 +483,7 @@ public class NewTitleScreenScript : MonoBehaviour
 						}
 						else if (this.QuickStart)
 						{
+							GameGlobals.CameFromTitleScreen = true;
 							SceneManager.LoadScene("CalendarScene");
 						}
 						else if (this.Eighties)
@@ -502,6 +503,7 @@ public class NewTitleScreenScript : MonoBehaviour
 					{
 						if (DateGlobals.Week < 11)
 						{
+							GameGlobals.CameFromTitleScreen = true;
 							SceneManager.LoadScene("CalendarScene");
 						}
 						else
@@ -531,7 +533,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		base.transform.LookAt(this.LookAtTarget);
 	}
 
-	// Token: 0x060019EB RID: 6635 RVA: 0x0010F714 File Offset: 0x0010D914
+	// Token: 0x060019ED RID: 6637 RVA: 0x0010F82C File Offset: 0x0010DA2C
 	private void UpdateBloom(float Intensity, float Radius)
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -542,7 +544,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		settings.bloom.softKnee = 1f;
 	}
 
-	// Token: 0x060019EC RID: 6636 RVA: 0x0010F780 File Offset: 0x0010D980
+	// Token: 0x060019EE RID: 6638 RVA: 0x0010F898 File Offset: 0x0010DA98
 	private void UpdateDOF(float Focus)
 	{
 		Focus *= ((float)Screen.width / 1280f + (float)Screen.height / 720f) * 0.5f;
@@ -551,7 +553,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x060019ED RID: 6637 RVA: 0x0010F7DC File Offset: 0x0010D9DC
+	// Token: 0x060019EF RID: 6639 RVA: 0x0010F8F4 File Offset: 0x0010DAF4
 	private void ResetVignette()
 	{
 		VignetteModel.Settings settings = this.Profile.vignette.settings;
@@ -562,7 +564,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.Profile.chromaticAberration.settings = settings2;
 	}
 
-	// Token: 0x060019EE RID: 6638 RVA: 0x0010F854 File Offset: 0x0010DA54
+	// Token: 0x060019F0 RID: 6640 RVA: 0x0010F96C File Offset: 0x0010DB6C
 	private void UpdateCursor()
 	{
 		if (this.Selection > this.Options)
@@ -591,7 +593,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.MyAudio.Play();
 	}
 
-	// Token: 0x060019EF RID: 6639 RVA: 0x0010F900 File Offset: 0x0010DB00
+	// Token: 0x060019F1 RID: 6641 RVA: 0x0010FA18 File Offset: 0x0010DC18
 	private void EnableEightiesEffects()
 	{
 		GameObjectUtils.SetLayerRecursively(this.EightiesLogo.transform.parent.gameObject, 5);
@@ -631,7 +633,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.YandereRenderer.sharedMesh = this.ModernUniform;
 	}
 
-	// Token: 0x060019F0 RID: 6640 RVA: 0x0010FAEC File Offset: 0x0010DCEC
+	// Token: 0x060019F2 RID: 6642 RVA: 0x0010FC04 File Offset: 0x0010DE04
 	private void DisableEightiesEffects()
 	{
 		GameObjectUtils.SetLayerRecursively(this.EightiesLogo.transform.parent.gameObject, 0);
@@ -670,7 +672,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.YandereRenderer.sharedMesh = this.EightiesUniform;
 	}
 
-	// Token: 0x060019F1 RID: 6641 RVA: 0x0010FCC0 File Offset: 0x0010DEC0
+	// Token: 0x060019F3 RID: 6643 RVA: 0x0010FDD8 File Offset: 0x0010DFD8
 	private void ChangeTextOutline()
 	{
 		foreach (UILabel uilabel in UnityEngine.Object.FindObjectsOfType<UILabel>())
@@ -687,7 +689,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019F2 RID: 6642 RVA: 0x0010FD30 File Offset: 0x0010DF30
+	// Token: 0x060019F4 RID: 6644 RVA: 0x0010FE48 File Offset: 0x0010E048
 	private void SetEightiesVariables()
 	{
 		GameGlobals.EightiesTutorial = true;
@@ -701,252 +703,252 @@ public class NewTitleScreenScript : MonoBehaviour
 		DateGlobals.Weekday = DayOfWeek.Saturday;
 	}
 
-	// Token: 0x040029AF RID: 10671
+	// Token: 0x040029B2 RID: 10674
 	public CameraFilterPack_TV_Vignetting Vignette;
 
-	// Token: 0x040029B0 RID: 10672
+	// Token: 0x040029B3 RID: 10675
 	public SelectiveGrayscale Grayscale;
 
-	// Token: 0x040029B1 RID: 10673
+	// Token: 0x040029B4 RID: 10676
 	public TitleScreenOsanaScript Osana;
 
-	// Token: 0x040029B2 RID: 10674
+	// Token: 0x040029B5 RID: 10677
 	public TitleDemoChecklistScript TitleDemoChecklist;
 
-	// Token: 0x040029B3 RID: 10675
+	// Token: 0x040029B6 RID: 10678
 	public TitleSaveFilesScript TitleSaveFiles;
 
-	// Token: 0x040029B4 RID: 10676
+	// Token: 0x040029B7 RID: 10679
 	public InputManagerScript InputManager;
 
-	// Token: 0x040029B5 RID: 10677
+	// Token: 0x040029B8 RID: 10680
 	public TitleSponsorScript TitleSponsor;
 
-	// Token: 0x040029B6 RID: 10678
+	// Token: 0x040029B9 RID: 10681
 	public NewSettingsScript NewSettings;
 
-	// Token: 0x040029B7 RID: 10679
+	// Token: 0x040029BA RID: 10682
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x040029B8 RID: 10680
+	// Token: 0x040029BB RID: 10683
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040029B9 RID: 10681
+	// Token: 0x040029BC RID: 10684
 	public PostProcessingProfile Profile;
 
-	// Token: 0x040029BA RID: 10682
+	// Token: 0x040029BD RID: 10685
 	public Animation YandereAnimation;
 
-	// Token: 0x040029BB RID: 10683
+	// Token: 0x040029BE RID: 10686
 	public GameObject CongratulationsWindow;
 
-	// Token: 0x040029BC RID: 10684
+	// Token: 0x040029BF RID: 10687
 	public GameObject BloodProjector;
 
-	// Token: 0x040029BD RID: 10685
+	// Token: 0x040029C0 RID: 10688
 	public GameObject LoveLetter;
 
-	// Token: 0x040029BE RID: 10686
+	// Token: 0x040029C1 RID: 10689
 	public GameObject Knife;
 
-	// Token: 0x040029BF RID: 10687
+	// Token: 0x040029C2 RID: 10690
 	public AudioSource[] FountainSFX;
 
-	// Token: 0x040029C0 RID: 10688
+	// Token: 0x040029C3 RID: 10691
 	public AudioSource Jukebox;
 
-	// Token: 0x040029C1 RID: 10689
+	// Token: 0x040029C4 RID: 10692
 	public AudioSource MyAudio;
 
-	// Token: 0x040029C2 RID: 10690
+	// Token: 0x040029C5 RID: 10693
 	public AudioClip SpookyEightiesMusic;
 
-	// Token: 0x040029C3 RID: 10691
+	// Token: 0x040029C6 RID: 10694
 	public AudioClip SpookyMusic;
 
-	// Token: 0x040029C4 RID: 10692
+	// Token: 0x040029C7 RID: 10695
 	public Transform LookAtTarget;
 
-	// Token: 0x040029C5 RID: 10693
+	// Token: 0x040029C8 RID: 10696
 	public UIPanel TitleScreenPanel;
 
-	// Token: 0x040029C6 RID: 10694
+	// Token: 0x040029C9 RID: 10697
 	public UISprite EightiesWindow;
 
-	// Token: 0x040029C7 RID: 10695
+	// Token: 0x040029CA RID: 10698
 	public UISprite DemoWindow;
 
-	// Token: 0x040029C8 RID: 10696
+	// Token: 0x040029CB RID: 10699
 	public UISprite DemoChecklist;
 
-	// Token: 0x040029C9 RID: 10697
+	// Token: 0x040029CC RID: 10700
 	public UISprite ModeSelection;
 
-	// Token: 0x040029CA RID: 10698
+	// Token: 0x040029CD RID: 10701
 	public UISprite CheatEntry;
 
-	// Token: 0x040029CB RID: 10699
+	// Token: 0x040029CE RID: 10702
 	public UISprite SaveFiles;
 
-	// Token: 0x040029CC RID: 10700
+	// Token: 0x040029CF RID: 10703
 	public UISprite Darkness;
 
-	// Token: 0x040029CD RID: 10701
+	// Token: 0x040029D0 RID: 10704
 	public UISprite Settings;
 
-	// Token: 0x040029CE RID: 10702
+	// Token: 0x040029D1 RID: 10705
 	public UISprite Sponsors;
 
-	// Token: 0x040029CF RID: 10703
+	// Token: 0x040029D2 RID: 10706
 	public UISprite Cursor;
 
-	// Token: 0x040029D0 RID: 10704
+	// Token: 0x040029D3 RID: 10707
 	public UILabel[] Questions;
 
-	// Token: 0x040029D1 RID: 10705
+	// Token: 0x040029D4 RID: 10708
 	public UILabel ExtrasLabel;
 
-	// Token: 0x040029D2 RID: 10706
+	// Token: 0x040029D5 RID: 10709
 	public UILabel CheatLabel;
 
-	// Token: 0x040029D3 RID: 10707
+	// Token: 0x040029D6 RID: 10710
 	public UILabel PressStart;
 
-	// Token: 0x040029D4 RID: 10708
+	// Token: 0x040029D7 RID: 10711
 	public UILabel DebugLog;
 
-	// Token: 0x040029D5 RID: 10709
+	// Token: 0x040029D8 RID: 10712
 	public AudioClip Whoosh;
 
-	// Token: 0x040029D6 RID: 10710
+	// Token: 0x040029D9 RID: 10713
 	public float BloomIntensity = 40f;
 
-	// Token: 0x040029D7 RID: 10711
+	// Token: 0x040029DA RID: 10714
 	public float SpeedUpFactor = 1f;
 
-	// Token: 0x040029D8 RID: 10712
+	// Token: 0x040029DB RID: 10715
 	public float BloomRadius = 7f;
 
-	// Token: 0x040029D9 RID: 10713
+	// Token: 0x040029DC RID: 10716
 	public float DepthFocus = 2f;
 
-	// Token: 0x040029DA RID: 10714
+	// Token: 0x040029DD RID: 10717
 	public float Speed = 1f;
 
-	// Token: 0x040029DB RID: 10715
+	// Token: 0x040029DE RID: 10718
 	public float DebugTimer;
 
-	// Token: 0x040029DC RID: 10716
+	// Token: 0x040029DF RID: 10719
 	public int CurrentQuestion = 1;
 
-	// Token: 0x040029DD RID: 10717
+	// Token: 0x040029E0 RID: 10720
 	public int PositionX;
 
-	// Token: 0x040029DE RID: 10718
+	// Token: 0x040029E1 RID: 10721
 	public int Selection = 1;
 
-	// Token: 0x040029DF RID: 10719
+	// Token: 0x040029E2 RID: 10722
 	public int Options = 7;
 
-	// Token: 0x040029E0 RID: 10720
+	// Token: 0x040029E3 RID: 10723
 	public int Frame;
 
-	// Token: 0x040029E1 RID: 10721
+	// Token: 0x040029E4 RID: 10724
 	public int Phase = 1;
 
-	// Token: 0x040029E2 RID: 10722
+	// Token: 0x040029E5 RID: 10725
 	public int Log;
 
-	// Token: 0x040029E3 RID: 10723
+	// Token: 0x040029E6 RID: 10726
 	public bool FadeQuestion;
 
-	// Token: 0x040029E4 RID: 10724
+	// Token: 0x040029E7 RID: 10727
 	public bool QuickStart;
 
-	// Token: 0x040029E5 RID: 10725
+	// Token: 0x040029E8 RID: 10728
 	public bool WeekSelect;
 
-	// Token: 0x040029E6 RID: 10726
+	// Token: 0x040029E9 RID: 10729
 	public bool Eighties;
 
-	// Token: 0x040029E7 RID: 10727
+	// Token: 0x040029EA RID: 10730
 	public bool ForVideo;
 
-	// Token: 0x040029E8 RID: 10728
+	// Token: 0x040029EB RID: 10731
 	public bool FadeOut;
 
-	// Token: 0x040029E9 RID: 10729
+	// Token: 0x040029EC RID: 10732
 	public AudioClip MakeSelection;
 
-	// Token: 0x040029EA RID: 10730
+	// Token: 0x040029ED RID: 10733
 	public AudioClip MoveCursor;
 
-	// Token: 0x040029EB RID: 10731
+	// Token: 0x040029EE RID: 10734
 	public RetroCameraEffect EightiesEffects;
 
-	// Token: 0x040029EC RID: 10732
+	// Token: 0x040029EF RID: 10735
 	public NormalBufferView VaporwaveVisuals;
 
-	// Token: 0x040029ED RID: 10733
+	// Token: 0x040029F0 RID: 10736
 	public AudioSource EightiesJukebox;
 
-	// Token: 0x040029EE RID: 10734
+	// Token: 0x040029F1 RID: 10737
 	public AudioSource CurrentJukebox;
 
-	// Token: 0x040029EF RID: 10735
+	// Token: 0x040029F2 RID: 10738
 	public Material VaporwaveSkybox;
 
-	// Token: 0x040029F0 RID: 10736
+	// Token: 0x040029F3 RID: 10739
 	public UILabel MissionModeLabel;
 
-	// Token: 0x040029F1 RID: 10737
+	// Token: 0x040029F4 RID: 10740
 	public UITexture EightiesLogo;
 
-	// Token: 0x040029F2 RID: 10738
+	// Token: 0x040029F5 RID: 10741
 	public GameObject HeartPanel;
 
-	// Token: 0x040029F3 RID: 10739
+	// Token: 0x040029F6 RID: 10742
 	public GameObject PalmTrees;
 
-	// Token: 0x040029F4 RID: 10740
+	// Token: 0x040029F7 RID: 10743
 	public GameObject DemoText;
 
-	// Token: 0x040029F5 RID: 10741
+	// Token: 0x040029F8 RID: 10744
 	public GameObject Trees;
 
-	// Token: 0x040029F6 RID: 10742
+	// Token: 0x040029F9 RID: 10745
 	public GameObject AyanoHair;
 
-	// Token: 0x040029F7 RID: 10743
+	// Token: 0x040029FA RID: 10746
 	public GameObject RyobaHair;
 
-	// Token: 0x040029F8 RID: 10744
+	// Token: 0x040029FB RID: 10747
 	public SkinnedMeshRenderer YandereRenderer;
 
-	// Token: 0x040029F9 RID: 10745
+	// Token: 0x040029FC RID: 10748
 	public GameObject EightiesFilter;
 
-	// Token: 0x040029FA RID: 10746
+	// Token: 0x040029FD RID: 10749
 	public GameObject NormalLogo;
 
-	// Token: 0x040029FB RID: 10747
+	// Token: 0x040029FE RID: 10750
 	public Material NormalSkybox;
 
-	// Token: 0x040029FC RID: 10748
+	// Token: 0x040029FF RID: 10751
 	public Mesh EightiesUniform;
 
-	// Token: 0x040029FD RID: 10749
+	// Token: 0x04002A00 RID: 10752
 	public Mesh ModernUniform;
 
-	// Token: 0x040029FE RID: 10750
+	// Token: 0x04002A01 RID: 10753
 	public Font Futura;
 
-	// Token: 0x040029FF RID: 10751
+	// Token: 0x04002A02 RID: 10754
 	public Font VCR;
 
-	// Token: 0x04002A00 RID: 10752
+	// Token: 0x04002A03 RID: 10755
 	public string[] EightiesRivalNames;
 
-	// Token: 0x04002A01 RID: 10753
+	// Token: 0x04002A04 RID: 10756
 	public string[] RivalNames;
 }

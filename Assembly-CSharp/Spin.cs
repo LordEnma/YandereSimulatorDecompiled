@@ -43,15 +43,15 @@ public class Spin : MonoBehaviour
 		this.mRb.MoveRotation(this.mRb.rotation * rhs);
 	}
 
-	// Token: 0x040002B0 RID: 688
+	// Token: 0x040002B1 RID: 689
 	public Vector3 rotationsPerSecond = new Vector3(0f, 0.1f, 0f);
 
-	// Token: 0x040002B1 RID: 689
+	// Token: 0x040002B2 RID: 690
 	public bool ignoreTimeScale;
 
-	// Token: 0x040002B2 RID: 690
+	// Token: 0x040002B3 RID: 691
 	private Rigidbody mRb;
 
-	// Token: 0x040002B3 RID: 691
+	// Token: 0x040002B4 RID: 692
 	private Transform mTrans;
 }

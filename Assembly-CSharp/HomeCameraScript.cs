@@ -5,7 +5,7 @@ using UnityEngine.PostProcessing;
 // Token: 0x02000314 RID: 788
 public class HomeCameraScript : MonoBehaviour
 {
-	// Token: 0x0600184D RID: 6221 RVA: 0x000EA968 File Offset: 0x000E8B68
+	// Token: 0x0600184F RID: 6223 RVA: 0x000EAA54 File Offset: 0x000E8C54
 	public void Start()
 	{
 		this.ResetBloom();
@@ -93,7 +93,7 @@ public class HomeCameraScript : MonoBehaviour
 		this.Triggers[1].transform.parent.gameObject.SetActive(true);
 	}
 
-	// Token: 0x0600184E RID: 6222 RVA: 0x000EACC4 File Offset: 0x000E8EC4
+	// Token: 0x06001850 RID: 6224 RVA: 0x000EADB0 File Offset: 0x000E8FB0
 	private void LateUpdate()
 	{
 		if (this.HomeYandere.transform.position.y > -5f)
@@ -240,7 +240,7 @@ public class HomeCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600184F RID: 6223 RVA: 0x000EB51A File Offset: 0x000E971A
+	// Token: 0x06001851 RID: 6225 RVA: 0x000EB606 File Offset: 0x000E9806
 	public void PlayMusic()
 	{
 		if (!YanvaniaGlobals.DraculaDefeated && !HomeGlobals.MiyukiDefeated)
@@ -256,7 +256,7 @@ public class HomeCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001850 RID: 6224 RVA: 0x000EB55C File Offset: 0x000E975C
+	// Token: 0x06001852 RID: 6226 RVA: 0x000EB648 File Offset: 0x000E9848
 	private void LoveSickColorSwap()
 	{
 		foreach (GameObject gameObject in UnityEngine.Object.FindObjectsOfType<GameObject>())
@@ -283,7 +283,7 @@ public class HomeCameraScript : MonoBehaviour
 		this.PlayMusic();
 	}
 
-	// Token: 0x06001851 RID: 6225 RVA: 0x000EB6C4 File Offset: 0x000E98C4
+	// Token: 0x06001853 RID: 6227 RVA: 0x000EB7B0 File Offset: 0x000E99B0
 	public void UpdateDOF(float Focus)
 	{
 		Focus *= ((float)Screen.width / 1280f + (float)Screen.height / 720f) * 0.5f;
@@ -292,7 +292,7 @@ public class HomeCameraScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x06001852 RID: 6226 RVA: 0x000EB720 File Offset: 0x000E9920
+	// Token: 0x06001854 RID: 6228 RVA: 0x000EB80C File Offset: 0x000E9A0C
 	private void ReduceKnee()
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -300,7 +300,7 @@ public class HomeCameraScript : MonoBehaviour
 		this.Profile.bloom.settings = settings;
 	}
 
-	// Token: 0x06001853 RID: 6227 RVA: 0x000EB760 File Offset: 0x000E9960
+	// Token: 0x06001855 RID: 6229 RVA: 0x000EB84C File Offset: 0x000E9A4C
 	private void ResetBloom()
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -311,7 +311,7 @@ public class HomeCameraScript : MonoBehaviour
 		this.Profile.bloom.settings = settings;
 	}
 
-	// Token: 0x06001854 RID: 6228 RVA: 0x000EB7D4 File Offset: 0x000E99D4
+	// Token: 0x06001856 RID: 6230 RVA: 0x000EB8C0 File Offset: 0x000E9AC0
 	private void BecomeEighties()
 	{
 		this.Eighties = true;
@@ -358,7 +358,7 @@ public class HomeCameraScript : MonoBehaviour
 		this.CeilingLight.GetComponent<Light>().intensity = 3f;
 	}
 
-	// Token: 0x06001855 RID: 6229 RVA: 0x000EB9D4 File Offset: 0x000E9BD4
+	// Token: 0x06001857 RID: 6231 RVA: 0x000EBAC0 File Offset: 0x000E9CC0
 	public void EightiesifyLabel(UILabel Label)
 	{
 		Label.trueTypeFont = this.VCR;
@@ -368,213 +368,213 @@ public class HomeCameraScript : MonoBehaviour
 		Label.effectColor = new Color(0f, 0f, 0f, 1f);
 	}
 
-	// Token: 0x04002403 RID: 9219
+	// Token: 0x04002406 RID: 9222
 	public HomeTriggerScript[] EightiesTriggers;
 
-	// Token: 0x04002404 RID: 9220
+	// Token: 0x04002407 RID: 9223
 	public HomeTriggerScript[] Triggers;
 
-	// Token: 0x04002405 RID: 9221
+	// Token: 0x04002408 RID: 9224
 	public HomeWindowScript[] HomeWindows;
 
-	// Token: 0x04002406 RID: 9222
+	// Token: 0x04002409 RID: 9225
 	public HomePantyChangerScript HomePantyChanger;
 
-	// Token: 0x04002407 RID: 9223
+	// Token: 0x0400240A RID: 9226
 	public HomeSenpaiShrineScript HomeSenpaiShrine;
 
-	// Token: 0x04002408 RID: 9224
+	// Token: 0x0400240B RID: 9227
 	public HomeVideoGamesScript HomeVideoGames;
 
-	// Token: 0x04002409 RID: 9225
+	// Token: 0x0400240C RID: 9228
 	public HomeCorkboardScript HomeCorkboard;
 
-	// Token: 0x0400240A RID: 9226
+	// Token: 0x0400240D RID: 9229
 	public HomeDarknessScript HomeDarkness;
 
-	// Token: 0x0400240B RID: 9227
+	// Token: 0x0400240E RID: 9230
 	public HomeInternetScript HomeInternet;
 
-	// Token: 0x0400240C RID: 9228
+	// Token: 0x0400240F RID: 9231
 	public HomePrisonerScript HomePrisoner;
 
-	// Token: 0x0400240D RID: 9229
+	// Token: 0x04002410 RID: 9232
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x0400240E RID: 9230
+	// Token: 0x04002411 RID: 9233
 	public HomeSleepScript HomeAnime;
 
-	// Token: 0x0400240F RID: 9231
+	// Token: 0x04002412 RID: 9234
 	public HomeMangaScript HomeManga;
 
-	// Token: 0x04002410 RID: 9232
+	// Token: 0x04002413 RID: 9235
 	public HomeSleepScript HomeSleep;
 
-	// Token: 0x04002411 RID: 9233
+	// Token: 0x04002414 RID: 9236
 	public HomeExitScript HomeExit;
 
-	// Token: 0x04002412 RID: 9234
+	// Token: 0x04002415 RID: 9237
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04002413 RID: 9235
+	// Token: 0x04002416 RID: 9238
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002414 RID: 9236
+	// Token: 0x04002417 RID: 9239
 	public Vignetting Vignette;
 
-	// Token: 0x04002415 RID: 9237
+	// Token: 0x04002418 RID: 9240
 	public UILabel PantiesMangaLabel;
 
-	// Token: 0x04002416 RID: 9238
+	// Token: 0x04002419 RID: 9241
 	public UISprite Button;
 
-	// Token: 0x04002417 RID: 9239
+	// Token: 0x0400241A RID: 9242
 	public GameObject CyberstalkWindow;
 
-	// Token: 0x04002418 RID: 9240
+	// Token: 0x0400241B RID: 9243
 	public GameObject ComputerScreen;
 
-	// Token: 0x04002419 RID: 9241
+	// Token: 0x0400241C RID: 9244
 	public GameObject CorkboardLabel;
 
-	// Token: 0x0400241A RID: 9242
+	// Token: 0x0400241D RID: 9245
 	public GameObject LoveSickCamera;
 
-	// Token: 0x0400241B RID: 9243
+	// Token: 0x0400241E RID: 9246
 	public GameObject LoadingScreen;
 
-	// Token: 0x0400241C RID: 9244
+	// Token: 0x0400241F RID: 9247
 	public GameObject CeilingLight;
 
-	// Token: 0x0400241D RID: 9245
+	// Token: 0x04002420 RID: 9248
 	public GameObject SenpaiLight;
 
-	// Token: 0x0400241E RID: 9246
+	// Token: 0x04002421 RID: 9249
 	public GameObject Controller;
 
-	// Token: 0x0400241F RID: 9247
+	// Token: 0x04002422 RID: 9250
 	public GameObject NightLight;
 
-	// Token: 0x04002420 RID: 9248
+	// Token: 0x04002423 RID: 9251
 	public GameObject RopeGroup;
 
-	// Token: 0x04002421 RID: 9249
+	// Token: 0x04002424 RID: 9252
 	public GameObject DayLight;
 
-	// Token: 0x04002422 RID: 9250
+	// Token: 0x04002425 RID: 9253
 	public GameObject Tripod;
 
-	// Token: 0x04002423 RID: 9251
+	// Token: 0x04002426 RID: 9254
 	public GameObject Victim;
 
-	// Token: 0x04002424 RID: 9252
+	// Token: 0x04002427 RID: 9255
 	public Transform Destination;
 
-	// Token: 0x04002425 RID: 9253
+	// Token: 0x04002428 RID: 9256
 	public Transform Butsudan;
 
-	// Token: 0x04002426 RID: 9254
+	// Token: 0x04002429 RID: 9257
 	public Transform Target;
 
-	// Token: 0x04002427 RID: 9255
+	// Token: 0x0400242A RID: 9258
 	public Transform Focus;
 
-	// Token: 0x04002428 RID: 9256
+	// Token: 0x0400242B RID: 9259
 	public Transform[] EightiesDestinations;
 
-	// Token: 0x04002429 RID: 9257
+	// Token: 0x0400242C RID: 9260
 	public Transform[] EightiesTargets;
 
-	// Token: 0x0400242A RID: 9258
+	// Token: 0x0400242D RID: 9261
 	public Transform[] Destinations;
 
-	// Token: 0x0400242B RID: 9259
+	// Token: 0x0400242E RID: 9262
 	public Transform[] Targets;
 
-	// Token: 0x0400242C RID: 9260
+	// Token: 0x0400242F RID: 9263
 	public int Frame;
 
-	// Token: 0x0400242D RID: 9261
+	// Token: 0x04002430 RID: 9264
 	public int ID;
 
-	// Token: 0x0400242E RID: 9262
+	// Token: 0x04002431 RID: 9265
 	public AudioSource BasementJukebox;
 
-	// Token: 0x0400242F RID: 9263
+	// Token: 0x04002432 RID: 9266
 	public AudioSource RoomJukebox;
 
-	// Token: 0x04002430 RID: 9264
+	// Token: 0x04002433 RID: 9267
 	public AudioClip NightBasement;
 
-	// Token: 0x04002431 RID: 9265
+	// Token: 0x04002434 RID: 9268
 	public AudioClip NightRoom;
 
-	// Token: 0x04002432 RID: 9266
+	// Token: 0x04002435 RID: 9269
 	public AudioClip HomeLoveSick;
 
-	// Token: 0x04002433 RID: 9267
+	// Token: 0x04002436 RID: 9270
 	public bool RestoreBloom;
 
-	// Token: 0x04002434 RID: 9268
+	// Token: 0x04002437 RID: 9271
 	public bool RestoreDOF;
 
-	// Token: 0x04002435 RID: 9269
+	// Token: 0x04002438 RID: 9272
 	public bool Torturing;
 
-	// Token: 0x04002436 RID: 9270
+	// Token: 0x04002439 RID: 9273
 	public bool Eighties;
 
-	// Token: 0x04002437 RID: 9271
+	// Token: 0x0400243A RID: 9274
 	public CosmeticScript SenpaiCosmetic;
 
-	// Token: 0x04002438 RID: 9272
+	// Token: 0x0400243B RID: 9275
 	public Renderer HairLock;
 
-	// Token: 0x04002439 RID: 9273
+	// Token: 0x0400243C RID: 9276
 	public AudioClip OpenDrawer;
 
-	// Token: 0x0400243A RID: 9274
+	// Token: 0x0400243D RID: 9277
 	public Transform PromptBarPanel;
 
-	// Token: 0x0400243B RID: 9275
+	// Token: 0x0400243E RID: 9278
 	public Transform PauseScreen;
 
-	// Token: 0x0400243C RID: 9276
+	// Token: 0x0400243F RID: 9279
 	public GameObject CassetteTapes;
 
-	// Token: 0x0400243D RID: 9277
+	// Token: 0x04002440 RID: 9280
 	public UILabel[] HUDLabels;
 
-	// Token: 0x0400243E RID: 9278
+	// Token: 0x04002441 RID: 9281
 	public AudioClip DayRoom80s;
 
-	// Token: 0x0400243F RID: 9279
+	// Token: 0x04002442 RID: 9282
 	public AudioClip DayBasement80s;
 
-	// Token: 0x04002440 RID: 9280
+	// Token: 0x04002443 RID: 9283
 	public AudioClip NightRoom80s;
 
-	// Token: 0x04002441 RID: 9281
+	// Token: 0x04002444 RID: 9284
 	public AudioClip NightBasement80s;
 
-	// Token: 0x04002442 RID: 9282
+	// Token: 0x04002445 RID: 9285
 	public GameObject EightiesController;
 
-	// Token: 0x04002443 RID: 9283
+	// Token: 0x04002446 RID: 9286
 	public GameObject ModernDayRoom;
 
-	// Token: 0x04002444 RID: 9284
+	// Token: 0x04002447 RID: 9287
 	public GameObject EightiesRoom;
 
-	// Token: 0x04002445 RID: 9285
+	// Token: 0x04002448 RID: 9288
 	public GameObject EightiesLabelPanel;
 
-	// Token: 0x04002446 RID: 9286
+	// Token: 0x04002449 RID: 9289
 	public GameObject LabelPanel;
 
-	// Token: 0x04002447 RID: 9287
+	// Token: 0x0400244A RID: 9290
 	public GameObject MonitorLight;
 
-	// Token: 0x04002448 RID: 9288
+	// Token: 0x0400244B RID: 9291
 	public Font VCR;
 }

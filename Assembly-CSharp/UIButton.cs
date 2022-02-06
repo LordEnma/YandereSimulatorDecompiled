@@ -259,49 +259,49 @@ public class UIButton : UIButtonColor
 		}
 	}
 
-	// Token: 0x040002DD RID: 733
+	// Token: 0x040002DE RID: 734
 	public static UIButton current;
 
-	// Token: 0x040002DE RID: 734
+	// Token: 0x040002DF RID: 735
 	public bool dragHighlight;
 
-	// Token: 0x040002DF RID: 735
+	// Token: 0x040002E0 RID: 736
 	public string hoverSprite;
 
-	// Token: 0x040002E0 RID: 736
+	// Token: 0x040002E1 RID: 737
 	public string pressedSprite;
 
-	// Token: 0x040002E1 RID: 737
+	// Token: 0x040002E2 RID: 738
 	public string disabledSprite;
 
-	// Token: 0x040002E2 RID: 738
+	// Token: 0x040002E3 RID: 739
 	public Sprite hoverSprite2D;
 
-	// Token: 0x040002E3 RID: 739
+	// Token: 0x040002E4 RID: 740
 	public Sprite pressedSprite2D;
 
-	// Token: 0x040002E4 RID: 740
+	// Token: 0x040002E5 RID: 741
 	public Sprite disabledSprite2D;
 
-	// Token: 0x040002E5 RID: 741
+	// Token: 0x040002E6 RID: 742
 	public bool pixelSnap;
 
-	// Token: 0x040002E6 RID: 742
-	public List<EventDelegate> onClick = new List<EventDelegate>();
-
 	// Token: 0x040002E7 RID: 743
-	[NonSerialized]
-	private UISprite mSprite;
+	public List<EventDelegate> onClick = new List<EventDelegate>();
 
 	// Token: 0x040002E8 RID: 744
 	[NonSerialized]
-	private UI2DSprite mSprite2D;
+	private UISprite mSprite;
 
 	// Token: 0x040002E9 RID: 745
 	[NonSerialized]
-	private string mNormalSprite;
+	private UI2DSprite mSprite2D;
 
 	// Token: 0x040002EA RID: 746
+	[NonSerialized]
+	private string mNormalSprite;
+
+	// Token: 0x040002EB RID: 747
 	[NonSerialized]
 	private Sprite mNormalSprite2D;
 }

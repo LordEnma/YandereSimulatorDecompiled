@@ -87,21 +87,21 @@ public class UICursor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000255 RID: 597
+	// Token: 0x04000256 RID: 598
 	public static UICursor instance;
 
-	// Token: 0x04000256 RID: 598
+	// Token: 0x04000257 RID: 599
 	public Camera uiCamera;
 
-	// Token: 0x04000257 RID: 599
+	// Token: 0x04000258 RID: 600
 	private Transform mTrans;
 
-	// Token: 0x04000258 RID: 600
+	// Token: 0x04000259 RID: 601
 	private UISprite mSprite;
 
-	// Token: 0x04000259 RID: 601
+	// Token: 0x0400025A RID: 602
 	private INGUIAtlas mAtlas;
 
-	// Token: 0x0400025A RID: 602
+	// Token: 0x0400025B RID: 603
 	private string mSpriteName;
 }

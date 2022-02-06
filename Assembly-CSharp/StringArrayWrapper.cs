@@ -4,12 +4,12 @@
 [Serializable]
 public class StringArrayWrapper : ArrayWrapper<string>
 {
-	// Token: 0x06001F1D RID: 7965 RVA: 0x001B888F File Offset: 0x001B6A8F
+	// Token: 0x06001F20 RID: 7968 RVA: 0x001B8AAF File Offset: 0x001B6CAF
 	public StringArrayWrapper(int size) : base(size)
 	{
 	}
 
-	// Token: 0x06001F1E RID: 7966 RVA: 0x001B8898 File Offset: 0x001B6A98
+	// Token: 0x06001F21 RID: 7969 RVA: 0x001B8AB8 File Offset: 0x001B6CB8
 	public StringArrayWrapper(string[] elements) : base(elements)
 	{
 	}

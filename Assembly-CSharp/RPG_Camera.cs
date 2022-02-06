@@ -307,121 +307,121 @@ public class RPG_Camera : MonoBehaviour
 		this.mouseX += num;
 	}
 
-	// Token: 0x0400080A RID: 2058
+	// Token: 0x0400080B RID: 2059
 	public static RPG_Camera instance;
 
-	// Token: 0x0400080B RID: 2059
+	// Token: 0x0400080C RID: 2060
 	public static Camera MainCamera;
 
-	// Token: 0x0400080C RID: 2060
+	// Token: 0x0400080D RID: 2061
 	public Transform cameraPivot;
 
-	// Token: 0x0400080D RID: 2061
+	// Token: 0x0400080E RID: 2062
 	public float distance = 5f;
 
-	// Token: 0x0400080E RID: 2062
+	// Token: 0x0400080F RID: 2063
 	public float distanceMax = 30f;
 
-	// Token: 0x0400080F RID: 2063
+	// Token: 0x04000810 RID: 2064
 	public float distanceMin = 2f;
 
-	// Token: 0x04000810 RID: 2064
+	// Token: 0x04000811 RID: 2065
 	public float mouseSpeed = 8f;
 
-	// Token: 0x04000811 RID: 2065
+	// Token: 0x04000812 RID: 2066
 	public float mouseScroll = 15f;
 
-	// Token: 0x04000812 RID: 2066
+	// Token: 0x04000813 RID: 2067
 	public float mouseSmoothingFactor = 0.08f;
 
-	// Token: 0x04000813 RID: 2067
+	// Token: 0x04000814 RID: 2068
 	public float camDistanceSpeed = 0.7f;
 
-	// Token: 0x04000814 RID: 2068
+	// Token: 0x04000815 RID: 2069
 	public float camBottomDistance = 1f;
 
-	// Token: 0x04000815 RID: 2069
+	// Token: 0x04000816 RID: 2070
 	public float firstPersonThreshold = 0.8f;
 
-	// Token: 0x04000816 RID: 2070
+	// Token: 0x04000817 RID: 2071
 	public float characterFadeThreshold = 1.8f;
 
-	// Token: 0x04000817 RID: 2071
+	// Token: 0x04000818 RID: 2072
 	public Vector3 desiredPosition;
 
-	// Token: 0x04000818 RID: 2072
+	// Token: 0x04000819 RID: 2073
 	public float desiredDistance;
 
-	// Token: 0x04000819 RID: 2073
+	// Token: 0x0400081A RID: 2074
 	private float lastDistance;
 
-	// Token: 0x0400081A RID: 2074
+	// Token: 0x0400081B RID: 2075
 	public float mouseX;
 
-	// Token: 0x0400081B RID: 2075
+	// Token: 0x0400081C RID: 2076
 	public float mouseXSmooth;
 
-	// Token: 0x0400081C RID: 2076
+	// Token: 0x0400081D RID: 2077
 	private float mouseXVel;
 
-	// Token: 0x0400081D RID: 2077
+	// Token: 0x0400081E RID: 2078
 	public float mouseY;
 
-	// Token: 0x0400081E RID: 2078
+	// Token: 0x0400081F RID: 2079
 	public float mouseYSmooth;
 
-	// Token: 0x0400081F RID: 2079
+	// Token: 0x04000820 RID: 2080
 	private float mouseYVel;
 
-	// Token: 0x04000820 RID: 2080
+	// Token: 0x04000821 RID: 2081
 	private float mouseYMin = -89.5f;
 
-	// Token: 0x04000821 RID: 2081
+	// Token: 0x04000822 RID: 2082
 	private float mouseYMax = 89.5f;
 
-	// Token: 0x04000822 RID: 2082
+	// Token: 0x04000823 RID: 2083
 	private float distanceVel;
 
-	// Token: 0x04000823 RID: 2083
+	// Token: 0x04000824 RID: 2084
 	private bool camBottom;
 
-	// Token: 0x04000824 RID: 2084
+	// Token: 0x04000825 RID: 2085
 	private bool constraint;
 
-	// Token: 0x04000825 RID: 2085
+	// Token: 0x04000826 RID: 2086
 	public bool invertAxisX;
 
-	// Token: 0x04000826 RID: 2086
+	// Token: 0x04000827 RID: 2087
 	public bool invertAxisY;
 
-	// Token: 0x04000827 RID: 2087
+	// Token: 0x04000828 RID: 2088
 	public float sensitivity;
 
-	// Token: 0x04000828 RID: 2088
+	// Token: 0x04000829 RID: 2089
 	private static float halfFieldOfView;
 
-	// Token: 0x04000829 RID: 2089
+	// Token: 0x0400082A RID: 2090
 	private static float planeAspect;
 
-	// Token: 0x0400082A RID: 2090
+	// Token: 0x0400082B RID: 2091
 	private static float halfPlaneHeight;
 
-	// Token: 0x0400082B RID: 2091
+	// Token: 0x0400082C RID: 2092
 	private static float halfPlaneWidth;
 
 	// Token: 0x02000647 RID: 1607
 	public struct ClipPlaneVertexes
 	{
-		// Token: 0x04004E94 RID: 20116
+		// Token: 0x04004E97 RID: 20119
 		public Vector3 UpperLeft;
 
-		// Token: 0x04004E95 RID: 20117
+		// Token: 0x04004E98 RID: 20120
 		public Vector3 UpperRight;
 
-		// Token: 0x04004E96 RID: 20118
+		// Token: 0x04004E99 RID: 20121
 		public Vector3 LowerLeft;
 
-		// Token: 0x04004E97 RID: 20119
+		// Token: 0x04004E9A RID: 20122
 		public Vector3 LowerRight;
 	}
 }

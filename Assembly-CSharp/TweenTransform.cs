@@ -56,24 +56,24 @@ public class TweenTransform : UITweener
 		return tweenTransform;
 	}
 
-	// Token: 0x040005D8 RID: 1496
+	// Token: 0x040005D9 RID: 1497
 	public Transform from;
 
-	// Token: 0x040005D9 RID: 1497
+	// Token: 0x040005DA RID: 1498
 	public Transform to;
 
-	// Token: 0x040005DA RID: 1498
+	// Token: 0x040005DB RID: 1499
 	public bool parentWhenFinished;
 
-	// Token: 0x040005DB RID: 1499
+	// Token: 0x040005DC RID: 1500
 	private Transform mTrans;
 
-	// Token: 0x040005DC RID: 1500
+	// Token: 0x040005DD RID: 1501
 	private Vector3 mPos;
 
-	// Token: 0x040005DD RID: 1501
+	// Token: 0x040005DE RID: 1502
 	private Quaternion mRot;
 
-	// Token: 0x040005DE RID: 1502
+	// Token: 0x040005DF RID: 1503
 	private Vector3 mScale;
 }
