@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace RetroAesthetics.Demos
 {
-	// Token: 0x0200054D RID: 1357
+	// Token: 0x0200054E RID: 1358
 	public class SpeedTilt : MonoBehaviour
 	{
-		// Token: 0x060022A4 RID: 8868 RVA: 0x001EF960 File Offset: 0x001EDB60
+		// Token: 0x060022AD RID: 8877 RVA: 0x001F0540 File Offset: 0x001EE740
 		private void Start()
 		{
 			this._maxPositionY = base.transform.localPosition.y;
@@ -23,7 +23,7 @@ namespace RetroAesthetics.Demos
 			this._minFOV = this._camera.fieldOfView;
 		}
 
-		// Token: 0x060022A5 RID: 8869 RVA: 0x001EFA38 File Offset: 0x001EDC38
+		// Token: 0x060022AE RID: 8878 RVA: 0x001F0618 File Offset: 0x001EE818
 		private void FixedUpdate()
 		{
 			Vector3 vector = this._lastPosition - base.transform.position;
@@ -43,43 +43,43 @@ namespace RetroAesthetics.Demos
 			this._lastPosition = base.transform.position;
 		}
 
-		// Token: 0x04004AB7 RID: 19127
+		// Token: 0x04004AC7 RID: 19143
 		public float minimumLocalPositionY = 1f;
 
-		// Token: 0x04004AB8 RID: 19128
+		// Token: 0x04004AC8 RID: 19144
 		public float minimumLocalRotationX;
 
-		// Token: 0x04004AB9 RID: 19129
+		// Token: 0x04004AC9 RID: 19145
 		public float maximumFOV = 80f;
 
-		// Token: 0x04004ABA RID: 19130
+		// Token: 0x04004ACA RID: 19146
 		public float minSpeed = 0.5f;
 
-		// Token: 0x04004ABB RID: 19131
+		// Token: 0x04004ACB RID: 19147
 		public float maxSpeed = 1f;
 
-		// Token: 0x04004ABC RID: 19132
+		// Token: 0x04004ACC RID: 19148
 		private float _maxPositionY;
 
-		// Token: 0x04004ABD RID: 19133
+		// Token: 0x04004ACD RID: 19149
 		private float _maxRotationX;
 
-		// Token: 0x04004ABE RID: 19134
+		// Token: 0x04004ACE RID: 19150
 		private Vector3 _lastPosition;
 
-		// Token: 0x04004ABF RID: 19135
+		// Token: 0x04004ACF RID: 19151
 		private float _distance;
 
-		// Token: 0x04004AC0 RID: 19136
+		// Token: 0x04004AD0 RID: 19152
 		private Vector3 _localPosition;
 
-		// Token: 0x04004AC1 RID: 19137
+		// Token: 0x04004AD1 RID: 19153
 		private Vector2 _localRotationYZ;
 
-		// Token: 0x04004AC2 RID: 19138
+		// Token: 0x04004AD2 RID: 19154
 		private Camera _camera;
 
-		// Token: 0x04004AC3 RID: 19139
+		// Token: 0x04004AD3 RID: 19155
 		private float _minFOV;
 	}
 }

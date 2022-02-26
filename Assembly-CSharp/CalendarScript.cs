@@ -7,9 +7,10 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000105 RID: 261
 public class CalendarScript : MonoBehaviour
 {
-	// Token: 0x06000AA1 RID: 2721 RVA: 0x000615B0 File Offset: 0x0005F7B0
+	// Token: 0x06000AA1 RID: 2721 RVA: 0x000616A8 File Offset: 0x0005F8A8
 	private void Start()
 	{
+		Debug.Log("We just arrived at the calendar screen. DateGlobals.PassDays is: " + DateGlobals.PassDays.ToString());
 		this.NewTitleScreenProfile.colorGrading.enabled = false;
 		this.SetVignettePink();
 		PlayerGlobals.BringingItem = 0;
@@ -156,7 +157,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA2 RID: 2722 RVA: 0x00061AD4 File Offset: 0x0005FCD4
+	// Token: 0x06000AA2 RID: 2722 RVA: 0x00061BE8 File Offset: 0x0005FDE8
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -484,7 +485,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA3 RID: 2723 RVA: 0x000625E4 File Offset: 0x000607E4
+	// Token: 0x06000AA3 RID: 2723 RVA: 0x000626F8 File Offset: 0x000608F8
 	public void ChangeDayColor()
 	{
 		foreach (UILabel uilabel in this.DayLabel)
@@ -513,7 +514,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA4 RID: 2724 RVA: 0x0006269C File Offset: 0x0006089C
+	// Token: 0x06000AA4 RID: 2724 RVA: 0x000627B0 File Offset: 0x000609B0
 	public void LoveSickCheck()
 	{
 		if (GameGlobals.LoveSick)
@@ -554,7 +555,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA5 RID: 2725 RVA: 0x00062830 File Offset: 0x00060A30
+	// Token: 0x06000AA5 RID: 2725 RVA: 0x00062944 File Offset: 0x00060B44
 	public void SetVignettePink()
 	{
 		VignetteModel.Settings settings = this.NewTitleScreenProfile.vignette.settings;
@@ -562,7 +563,7 @@ public class CalendarScript : MonoBehaviour
 		this.NewTitleScreenProfile.vignette.settings = settings;
 	}
 
-	// Token: 0x06000AA6 RID: 2726 RVA: 0x00062880 File Offset: 0x00060A80
+	// Token: 0x06000AA6 RID: 2726 RVA: 0x00062994 File Offset: 0x00060B94
 	private void ImproveSchoolAtmosphere()
 	{
 		if (SchoolGlobals.SchoolAtmosphere > 1f)
@@ -580,7 +581,7 @@ public class CalendarScript : MonoBehaviour
 		SchoolGlobals.PreviousSchoolAtmosphere = SchoolGlobals.SchoolAtmosphere;
 	}
 
-	// Token: 0x06000AA7 RID: 2727 RVA: 0x000629AC File Offset: 0x00060BAC
+	// Token: 0x06000AA7 RID: 2727 RVA: 0x00062AC0 File Offset: 0x00060CC0
 	private void BecomeEighties()
 	{
 		this.Vignette.enabled = false;
@@ -746,7 +747,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA8 RID: 2728 RVA: 0x0006328C File Offset: 0x0006148C
+	// Token: 0x06000AA8 RID: 2728 RVA: 0x000633A0 File Offset: 0x000615A0
 	public void EightiesifyLabel(UILabel Label)
 	{
 		Label.trueTypeFont = this.VCR;
@@ -756,7 +757,7 @@ public class CalendarScript : MonoBehaviour
 		Label.effectColor = new Color(0f, 0f, 0f, 1f);
 	}
 
-	// Token: 0x06000AA9 RID: 2729 RVA: 0x000632F4 File Offset: 0x000614F4
+	// Token: 0x06000AA9 RID: 2729 RVA: 0x00063408 File Offset: 0x00061608
 	public void ResetSaveFile()
 	{
 		int num = GameGlobals.Profile;

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_TV_BrokenGlass : MonoBehaviour
 {
 	// Token: 0x1700030C RID: 780
-	// (get) Token: 0x06001113 RID: 4371 RVA: 0x0008653F File Offset: 0x0008473F
+	// (get) Token: 0x06001113 RID: 4371 RVA: 0x00086653 File Offset: 0x00084853
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_TV_BrokenGlass : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001114 RID: 4372 RVA: 0x00086573 File Offset: 0x00084773
+	// Token: 0x06001114 RID: 4372 RVA: 0x00086687 File Offset: 0x00084887
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_TV_BrokenGlass1") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_TV_BrokenGlass : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001115 RID: 4373 RVA: 0x000865AC File Offset: 0x000847AC
+	// Token: 0x06001115 RID: 4373 RVA: 0x000866C0 File Offset: 0x000848C0
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -56,12 +56,12 @@ public class CameraFilterPack_TV_BrokenGlass : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06001116 RID: 4374 RVA: 0x000866A3 File Offset: 0x000848A3
+	// Token: 0x06001116 RID: 4374 RVA: 0x000867B7 File Offset: 0x000849B7
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001117 RID: 4375 RVA: 0x000866A5 File Offset: 0x000848A5
+	// Token: 0x06001117 RID: 4375 RVA: 0x000867B9 File Offset: 0x000849B9
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

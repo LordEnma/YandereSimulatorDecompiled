@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x02000333 RID: 819
+// Token: 0x02000334 RID: 820
 public enum InputDeviceType
 {
-	// Token: 0x04002606 RID: 9734
+	// Token: 0x04002615 RID: 9749
 	Gamepad = 1,
-	// Token: 0x04002607 RID: 9735
+	// Token: 0x04002616 RID: 9750
 	MouseAndKeyboard
 }

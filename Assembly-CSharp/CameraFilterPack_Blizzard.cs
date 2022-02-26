@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blizzard : MonoBehaviour
 {
 	// Token: 0x1700024A RID: 586
-	// (get) Token: 0x06000C61 RID: 3169 RVA: 0x0007181B File Offset: 0x0006FA1B
+	// (get) Token: 0x06000C61 RID: 3169 RVA: 0x0007192F File Offset: 0x0006FB2F
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blizzard : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C62 RID: 3170 RVA: 0x0007184F File Offset: 0x0006FA4F
+	// Token: 0x06000C62 RID: 3170 RVA: 0x00071963 File Offset: 0x0006FB63
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_Blizzard1") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_Blizzard : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C63 RID: 3171 RVA: 0x00071888 File Offset: 0x0006FA88
+	// Token: 0x06000C63 RID: 3171 RVA: 0x0007199C File Offset: 0x0006FB9C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Blizzard : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000C64 RID: 3172 RVA: 0x00071953 File Offset: 0x0006FB53
+	// Token: 0x06000C64 RID: 3172 RVA: 0x00071A67 File Offset: 0x0006FC67
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000C65 RID: 3173 RVA: 0x00071955 File Offset: 0x0006FB55
+	// Token: 0x06000C65 RID: 3173 RVA: 0x00071A69 File Offset: 0x0006FC69
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

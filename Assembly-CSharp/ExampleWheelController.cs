@@ -38,10 +38,10 @@ public class ExampleWheelController : MonoBehaviour
 	// Token: 0x04000803 RID: 2051
 	private Rigidbody m_Rigidbody;
 
-	// Token: 0x02000645 RID: 1605
+	// Token: 0x02000646 RID: 1606
 	private static class Uniforms
 	{
-		// Token: 0x04004E8E RID: 20110
+		// Token: 0x04004E9E RID: 20126
 		internal static readonly int _MotionAmount = Shader.PropertyToID("_MotionAmount");
 	}
 }

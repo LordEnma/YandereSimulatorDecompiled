@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003EA RID: 1002
+// Token: 0x020003EB RID: 1003
 public class RooftopCorpseDisposalScript : MonoBehaviour
 {
-	// Token: 0x06001BD0 RID: 7120 RVA: 0x00144D27 File Offset: 0x00142F27
+	// Token: 0x06001BD9 RID: 7129 RVA: 0x0014579F File Offset: 0x0014399F
 	private void Start()
 	{
 		if (SchoolGlobals.RoofFence)
@@ -13,7 +13,7 @@ public class RooftopCorpseDisposalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BD1 RID: 7121 RVA: 0x00144D3C File Offset: 0x00142F3C
+	// Token: 0x06001BDA RID: 7130 RVA: 0x001457B4 File Offset: 0x001439B4
 	private void Update()
 	{
 		if (this.MyCollider.bounds.Contains(this.Yandere.transform.position))
@@ -49,15 +49,15 @@ public class RooftopCorpseDisposalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040030CD RID: 12493
+	// Token: 0x040030DD RID: 12509
 	public YandereScript Yandere;
 
-	// Token: 0x040030CE RID: 12494
+	// Token: 0x040030DE RID: 12510
 	public PromptScript Prompt;
 
-	// Token: 0x040030CF RID: 12495
+	// Token: 0x040030DF RID: 12511
 	public Collider MyCollider;
 
-	// Token: 0x040030D0 RID: 12496
+	// Token: 0x040030E0 RID: 12512
 	public Transform DropSpot;
 }

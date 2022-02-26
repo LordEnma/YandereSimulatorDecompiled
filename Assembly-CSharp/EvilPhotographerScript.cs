@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002BE RID: 702
+// Token: 0x020002BF RID: 703
 public class EvilPhotographerScript : MonoBehaviour
 {
-	// Token: 0x06001472 RID: 5234 RVA: 0x000C6CFB File Offset: 0x000C4EFB
+	// Token: 0x0600147B RID: 5243 RVA: 0x000C75DF File Offset: 0x000C57DF
 	private void Start()
 	{
 		this.Subtitle.transform.localScale = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x06001473 RID: 5235 RVA: 0x000C6D24 File Offset: 0x000C4F24
+	// Token: 0x0600147C RID: 5244 RVA: 0x000C7608 File Offset: 0x000C5808
 	private void Update()
 	{
 		if (!this.GameOver)
@@ -184,7 +184,7 @@ public class EvilPhotographerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001474 RID: 5236 RVA: 0x000C7540 File Offset: 0x000C5740
+	// Token: 0x0600147D RID: 5245 RVA: 0x000C7E24 File Offset: 0x000C6024
 	private bool YandereIsInFOV()
 	{
 		Vector3 to = this.Yandere.transform.position - this.Head.position;
@@ -192,7 +192,7 @@ public class EvilPhotographerScript : MonoBehaviour
 		return Vector3.Angle(this.Head.forward, to) <= num;
 	}
 
-	// Token: 0x06001475 RID: 5237 RVA: 0x000C758C File Offset: 0x000C578C
+	// Token: 0x0600147E RID: 5246 RVA: 0x000C7E70 File Offset: 0x000C6070
 	private bool YandereIsInLOS()
 	{
 		Debug.DrawLine(this.Head.position, new Vector3(this.Yandere.transform.position.x, this.YandereHead.position.y, this.Yandere.transform.position.z), Color.red);
@@ -200,7 +200,7 @@ public class EvilPhotographerScript : MonoBehaviour
 		return Physics.Linecast(this.Head.position, new Vector3(this.Yandere.transform.position.x, this.YandereHead.position.y, this.Yandere.transform.position.z), out raycastHit) && raycastHit.collider.gameObject.layer == 13;
 	}
 
-	// Token: 0x06001476 RID: 5238 RVA: 0x000C7658 File Offset: 0x000C5858
+	// Token: 0x0600147F RID: 5247 RVA: 0x000C7F3C File Offset: 0x000C613C
 	private void TransitionToGameOver()
 	{
 		this.Marker.Tex.transform.localScale = new Vector3(1f, 0f, 1f);
@@ -215,7 +215,7 @@ public class EvilPhotographerScript : MonoBehaviour
 		this.Alpha = 0f;
 	}
 
-	// Token: 0x06001477 RID: 5239 RVA: 0x000C7738 File Offset: 0x000C5938
+	// Token: 0x06001480 RID: 5248 RVA: 0x000C801C File Offset: 0x000C621C
 	private void LookForYandere()
 	{
 		if (!this.Yandere.Invisible)
@@ -251,153 +251,153 @@ public class EvilPhotographerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001F69 RID: 8041
+	// Token: 0x04001F78 RID: 8056
 	public StalkerYandereScript Yandere;
 
-	// Token: 0x04001F6A RID: 8042
+	// Token: 0x04001F79 RID: 8057
 	public DetectionMarkerScript Marker;
 
-	// Token: 0x04001F6B RID: 8043
+	// Token: 0x04001F7A RID: 8058
 	public AudioClip ShockedGameOverLine;
 
-	// Token: 0x04001F6C RID: 8044
+	// Token: 0x04001F7B RID: 8059
 	public AudioClip GameOverSound;
 
-	// Token: 0x04001F6D RID: 8045
+	// Token: 0x04001F7C RID: 8060
 	public AudioClip GameOverLine;
 
-	// Token: 0x04001F6E RID: 8046
+	// Token: 0x04001F7D RID: 8061
 	public AudioClip SpottedSound;
 
-	// Token: 0x04001F6F RID: 8047
+	// Token: 0x04001F7E RID: 8062
 	public GameObject Heartbroken;
 
-	// Token: 0x04001F70 RID: 8048
+	// Token: 0x04001F7F RID: 8063
 	public GameObject Fire;
 
-	// Token: 0x04001F71 RID: 8049
+	// Token: 0x04001F80 RID: 8064
 	public Animation MyAnimation;
 
-	// Token: 0x04001F72 RID: 8050
+	// Token: 0x04001F81 RID: 8065
 	public Transform YandereHead;
 
-	// Token: 0x04001F73 RID: 8051
+	// Token: 0x04001F82 RID: 8066
 	public Transform Head;
 
-	// Token: 0x04001F74 RID: 8052
+	// Token: 0x04001F83 RID: 8067
 	public AudioSource Jukebox;
 
-	// Token: 0x04001F75 RID: 8053
+	// Token: 0x04001F84 RID: 8068
 	public AudioSource MyAudio;
 
-	// Token: 0x04001F76 RID: 8054
+	// Token: 0x04001F85 RID: 8069
 	public Renderer Darkness;
 
-	// Token: 0x04001F77 RID: 8055
+	// Token: 0x04001F86 RID: 8070
 	public UILabel Subtitle;
 
-	// Token: 0x04001F78 RID: 8056
+	// Token: 0x04001F87 RID: 8071
 	public Transform[] PanicNode;
 
-	// Token: 0x04001F79 RID: 8057
+	// Token: 0x04001F88 RID: 8072
 	public Transform[] Node;
 
-	// Token: 0x04001F7A RID: 8058
+	// Token: 0x04001F89 RID: 8073
 	public AudioClip[] SpeechClip;
 
-	// Token: 0x04001F7B RID: 8059
+	// Token: 0x04001F8A RID: 8074
 	public string[] SpeechText;
 
-	// Token: 0x04001F7C RID: 8060
+	// Token: 0x04001F8B RID: 8075
 	public float[] SpeechTime;
 
-	// Token: 0x04001F7D RID: 8061
+	// Token: 0x04001F8C RID: 8076
 	public AudioClip[] ShockClip;
 
-	// Token: 0x04001F7E RID: 8062
+	// Token: 0x04001F8D RID: 8077
 	public string[] ShockText;
 
-	// Token: 0x04001F7F RID: 8063
+	// Token: 0x04001F8E RID: 8078
 	public float[] ShockTime;
 
-	// Token: 0x04001F80 RID: 8064
+	// Token: 0x04001F8F RID: 8079
 	public string ShockedGameOverText;
 
-	// Token: 0x04001F81 RID: 8065
+	// Token: 0x04001F90 RID: 8080
 	public string GameOverText;
 
-	// Token: 0x04001F82 RID: 8066
+	// Token: 0x04001F91 RID: 8081
 	public string WaitAnim;
 
-	// Token: 0x04001F83 RID: 8067
+	// Token: 0x04001F92 RID: 8082
 	public string WalkAnim;
 
-	// Token: 0x04001F84 RID: 8068
+	// Token: 0x04001F93 RID: 8083
 	public string RunAnim;
 
-	// Token: 0x04001F85 RID: 8069
+	// Token: 0x04001F94 RID: 8084
 	public float MinimumDistance;
 
-	// Token: 0x04001F86 RID: 8070
+	// Token: 0x04001F95 RID: 8085
 	public float SpeechTimer;
 
-	// Token: 0x04001F87 RID: 8071
+	// Token: 0x04001F96 RID: 8086
 	public float NoticeSpeed;
 
-	// Token: 0x04001F88 RID: 8072
+	// Token: 0x04001F97 RID: 8087
 	public float ShockTimer;
 
-	// Token: 0x04001F89 RID: 8073
+	// Token: 0x04001F98 RID: 8088
 	public float Awareness;
 
-	// Token: 0x04001F8A RID: 8074
+	// Token: 0x04001F99 RID: 8089
 	public float WaitTimer;
 
-	// Token: 0x04001F8B RID: 8075
+	// Token: 0x04001F9A RID: 8090
 	public float Distance;
 
-	// Token: 0x04001F8C RID: 8076
+	// Token: 0x04001F9B RID: 8091
 	public float Alpha;
 
-	// Token: 0x04001F8D RID: 8077
+	// Token: 0x04001F9C RID: 8092
 	public float Scale;
 
-	// Token: 0x04001F8E RID: 8078
+	// Token: 0x04001F9D RID: 8093
 	public float Timer;
 
-	// Token: 0x04001F8F RID: 8079
+	// Token: 0x04001F9E RID: 8094
 	public float TargetRotation;
 
-	// Token: 0x04001F90 RID: 8080
+	// Token: 0x04001F9F RID: 8095
 	public float Rotation;
 
-	// Token: 0x04001F91 RID: 8081
+	// Token: 0x04001FA0 RID: 8096
 	public int GameOverPhase;
 
-	// Token: 0x04001F92 RID: 8082
+	// Token: 0x04001FA1 RID: 8097
 	public int CurrentNode;
 
-	// Token: 0x04001F93 RID: 8083
+	// Token: 0x04001FA2 RID: 8098
 	public int SpeechPhase;
 
-	// Token: 0x04001F94 RID: 8084
+	// Token: 0x04001FA3 RID: 8099
 	public bool Searching;
 
-	// Token: 0x04001F95 RID: 8085
+	// Token: 0x04001FA4 RID: 8100
 	public bool GameOver;
 
-	// Token: 0x04001F96 RID: 8086
+	// Token: 0x04001FA5 RID: 8101
 	public bool Started;
 
-	// Token: 0x04001F97 RID: 8087
+	// Token: 0x04001FA6 RID: 8102
 	public bool Shocked;
 
-	// Token: 0x04001F98 RID: 8088
+	// Token: 0x04001FA7 RID: 8103
 	public Vector3 DistractionPoint;
 
-	// Token: 0x04001F99 RID: 8089
+	// Token: 0x04001FA8 RID: 8104
 	public float DistractionTimer;
 
-	// Token: 0x04001F9A RID: 8090
+	// Token: 0x04001FA9 RID: 8105
 	public bool Distracted;
 }

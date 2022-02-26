@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000276 RID: 630
 public class DebugEnablerScript : MonoBehaviour
 {
-	// Token: 0x0600135B RID: 4955 RVA: 0x000AE824 File Offset: 0x000ACA24
+	// Token: 0x0600135B RID: 4955 RVA: 0x000AEA30 File Offset: 0x000ACC30
 	private void Start()
 	{
 		if (MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.LoveSick || (!GameGlobals.Eighties && DateGlobals.Week == 2))
@@ -18,7 +18,7 @@ public class DebugEnablerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600135C RID: 4956 RVA: 0x000AE87C File Offset: 0x000ACA7C
+	// Token: 0x0600135C RID: 4956 RVA: 0x000AEA88 File Offset: 0x000ACC88
 	public void EnableDebug()
 	{
 		this.Yandere.NotificationManager.CustomText = "Debug Commands Enabled!";
@@ -44,42 +44,42 @@ public class DebugEnablerScript : MonoBehaviour
 		GameGlobals.Debug = true;
 	}
 
-	// Token: 0x04001C0B RID: 7179
+	// Token: 0x04001C0C RID: 7180
 	public GameObject StandWeapons;
 
-	// Token: 0x04001C0C RID: 7180
+	// Token: 0x04001C0D RID: 7181
 	public GameObject VoidGoddess;
 
-	// Token: 0x04001C0D RID: 7181
+	// Token: 0x04001C0E RID: 7182
 	public GameObject MurderKit;
 
-	// Token: 0x04001C0E RID: 7182
+	// Token: 0x04001C0F RID: 7183
 	public GameObject Memes;
 
-	// Token: 0x04001C0F RID: 7183
+	// Token: 0x04001C10 RID: 7184
 	public GameObject Keys;
 
-	// Token: 0x04001C10 RID: 7184
+	// Token: 0x04001C11 RID: 7185
 	public DebugMenuScript DebugMenu;
 
-	// Token: 0x04001C11 RID: 7185
+	// Token: 0x04001C12 RID: 7186
 	public YandereScript Yandere;
 
-	// Token: 0x04001C12 RID: 7186
+	// Token: 0x04001C13 RID: 7187
 	public SkullScript Skull;
 
-	// Token: 0x04001C13 RID: 7187
+	// Token: 0x04001C14 RID: 7188
 	public PrayScript Turtle;
 
-	// Token: 0x04001C14 RID: 7188
+	// Token: 0x04001C15 RID: 7189
 	public DoorScript MemeClosetDoor;
 
-	// Token: 0x04001C15 RID: 7189
+	// Token: 0x04001C16 RID: 7190
 	public PromptScript Prompt;
 
-	// Token: 0x04001C16 RID: 7190
+	// Token: 0x04001C17 RID: 7191
 	public bool Editor;
 
-	// Token: 0x04001C17 RID: 7191
+	// Token: 0x04001C18 RID: 7192
 	public int Spaces;
 }

@@ -2,11 +2,11 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000559 RID: 1369
+	// Token: 0x0200055A RID: 1370
 	public sealed class EyeAdaptationComponent : PostProcessingComponentRenderTexture<EyeAdaptationModel>
 	{
 		// Token: 0x170004F4 RID: 1268
-		// (get) Token: 0x060022EA RID: 8938 RVA: 0x001F1D16 File Offset: 0x001EFF16
+		// (get) Token: 0x060022F3 RID: 8947 RVA: 0x001F28F6 File Offset: 0x001F0AF6
 		public override bool active
 		{
 			get
@@ -15,19 +15,19 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022EB RID: 8939 RVA: 0x001F1D3C File Offset: 0x001EFF3C
+		// Token: 0x060022F4 RID: 8948 RVA: 0x001F291C File Offset: 0x001F0B1C
 		public void ResetHistory()
 		{
 			this.m_FirstFrame = true;
 		}
 
-		// Token: 0x060022EC RID: 8940 RVA: 0x001F1D45 File Offset: 0x001EFF45
+		// Token: 0x060022F5 RID: 8949 RVA: 0x001F2925 File Offset: 0x001F0B25
 		public override void OnEnable()
 		{
 			this.m_FirstFrame = true;
 		}
 
-		// Token: 0x060022ED RID: 8941 RVA: 0x001F1D50 File Offset: 0x001EFF50
+		// Token: 0x060022F6 RID: 8950 RVA: 0x001F2930 File Offset: 0x001F0B30
 		public override void OnDisable()
 		{
 			RenderTexture[] autoExposurePool = this.m_AutoExposurePool;
@@ -47,7 +47,7 @@ namespace UnityEngine.PostProcessing
 			this.m_DebugHistogram = null;
 		}
 
-		// Token: 0x060022EE RID: 8942 RVA: 0x001F1DB4 File Offset: 0x001EFFB4
+		// Token: 0x060022F7 RID: 8951 RVA: 0x001F2994 File Offset: 0x001F0B94
 		private Vector4 GetHistogramScaleOffsetRes()
 		{
 			EyeAdaptationModel.Settings settings = base.model.settings;
@@ -57,7 +57,7 @@ namespace UnityEngine.PostProcessing
 			return new Vector4(num2, y, Mathf.Floor((float)this.context.width / 2f), Mathf.Floor((float)this.context.height / 2f));
 		}
 
-		// Token: 0x060022EF RID: 8943 RVA: 0x001F1E24 File Offset: 0x001F0024
+		// Token: 0x060022F8 RID: 8952 RVA: 0x001F2A04 File Offset: 0x001F0C04
 		public Texture Prepare(RenderTexture source, Material uberMaterial)
 		{
 			EyeAdaptationModel.Settings settings = base.model.settings;
@@ -136,7 +136,7 @@ namespace UnityEngine.PostProcessing
 			return this.m_CurrentAutoExposure;
 		}
 
-		// Token: 0x060022F0 RID: 8944 RVA: 0x001F21E8 File Offset: 0x001F03E8
+		// Token: 0x060022F9 RID: 8953 RVA: 0x001F2DC8 File Offset: 0x001F0FC8
 		public void OnGUI()
 		{
 			if (this.m_DebugHistogram == null || !this.m_DebugHistogram.IsCreated())
@@ -146,58 +146,58 @@ namespace UnityEngine.PostProcessing
 			GUI.DrawTexture(new Rect(this.context.viewport.x * (float)Screen.width + 8f, 8f, (float)this.m_DebugHistogram.width, (float)this.m_DebugHistogram.height), this.m_DebugHistogram);
 		}
 
-		// Token: 0x04004ADC RID: 19164
+		// Token: 0x04004AEC RID: 19180
 		private ComputeShader m_EyeCompute;
 
-		// Token: 0x04004ADD RID: 19165
+		// Token: 0x04004AED RID: 19181
 		private ComputeBuffer m_HistogramBuffer;
 
-		// Token: 0x04004ADE RID: 19166
+		// Token: 0x04004AEE RID: 19182
 		private readonly RenderTexture[] m_AutoExposurePool = new RenderTexture[2];
 
-		// Token: 0x04004ADF RID: 19167
+		// Token: 0x04004AEF RID: 19183
 		private int m_AutoExposurePingPing;
 
-		// Token: 0x04004AE0 RID: 19168
+		// Token: 0x04004AF0 RID: 19184
 		private RenderTexture m_CurrentAutoExposure;
 
-		// Token: 0x04004AE1 RID: 19169
+		// Token: 0x04004AF1 RID: 19185
 		private RenderTexture m_DebugHistogram;
 
-		// Token: 0x04004AE2 RID: 19170
+		// Token: 0x04004AF2 RID: 19186
 		private static uint[] s_EmptyHistogramBuffer;
 
-		// Token: 0x04004AE3 RID: 19171
+		// Token: 0x04004AF3 RID: 19187
 		private bool m_FirstFrame = true;
 
-		// Token: 0x04004AE4 RID: 19172
+		// Token: 0x04004AF4 RID: 19188
 		private const int k_HistogramBins = 64;
 
-		// Token: 0x04004AE5 RID: 19173
+		// Token: 0x04004AF5 RID: 19189
 		private const int k_HistogramThreadX = 16;
 
-		// Token: 0x04004AE6 RID: 19174
+		// Token: 0x04004AF6 RID: 19190
 		private const int k_HistogramThreadY = 16;
 
-		// Token: 0x02000698 RID: 1688
+		// Token: 0x0200069B RID: 1691
 		private static class Uniforms
 		{
-			// Token: 0x0400504A RID: 20554
+			// Token: 0x0400505F RID: 20575
 			internal static readonly int _Params = Shader.PropertyToID("_Params");
 
-			// Token: 0x0400504B RID: 20555
+			// Token: 0x04005060 RID: 20576
 			internal static readonly int _Speed = Shader.PropertyToID("_Speed");
 
-			// Token: 0x0400504C RID: 20556
+			// Token: 0x04005061 RID: 20577
 			internal static readonly int _ScaleOffsetRes = Shader.PropertyToID("_ScaleOffsetRes");
 
-			// Token: 0x0400504D RID: 20557
+			// Token: 0x04005062 RID: 20578
 			internal static readonly int _ExposureCompensation = Shader.PropertyToID("_ExposureCompensation");
 
-			// Token: 0x0400504E RID: 20558
+			// Token: 0x04005063 RID: 20579
 			internal static readonly int _AutoExposure = Shader.PropertyToID("_AutoExposure");
 
-			// Token: 0x0400504F RID: 20559
+			// Token: 0x04005064 RID: 20580
 			internal static readonly int _DebugWidth = Shader.PropertyToID("_DebugWidth");
 		}
 	}

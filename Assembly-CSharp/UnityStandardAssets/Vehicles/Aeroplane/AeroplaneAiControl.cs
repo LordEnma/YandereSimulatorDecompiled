@@ -3,24 +3,24 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Aeroplane
 {
-	// Token: 0x0200052C RID: 1324
+	// Token: 0x0200052D RID: 1325
 	[RequireComponent(typeof(AeroplaneController))]
 	public class AeroplaneAiControl : MonoBehaviour
 	{
-		// Token: 0x060021B3 RID: 8627 RVA: 0x001EBCCB File Offset: 0x001E9ECB
+		// Token: 0x060021BC RID: 8636 RVA: 0x001EC8AB File Offset: 0x001EAAAB
 		private void Awake()
 		{
 			this.m_AeroplaneController = base.GetComponent<AeroplaneController>();
 			this.m_RandomPerlin = UnityEngine.Random.Range(0f, 100f);
 		}
 
-		// Token: 0x060021B4 RID: 8628 RVA: 0x001EBCEE File Offset: 0x001E9EEE
+		// Token: 0x060021BD RID: 8637 RVA: 0x001EC8CE File Offset: 0x001EAACE
 		public void Reset()
 		{
 			this.m_TakenOff = false;
 		}
 
-		// Token: 0x060021B5 RID: 8629 RVA: 0x001EBCF8 File Offset: 0x001E9EF8
+		// Token: 0x060021BE RID: 8638 RVA: 0x001EC8D8 File Offset: 0x001EAAD8
 		private void FixedUpdate()
 		{
 			if (this.m_Target != null)
@@ -54,55 +54,55 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_AeroplaneController.Move(0f, 0f, 0f, 0f, false);
 		}
 
-		// Token: 0x060021B6 RID: 8630 RVA: 0x001EBE9A File Offset: 0x001EA09A
+		// Token: 0x060021BF RID: 8639 RVA: 0x001ECA7A File Offset: 0x001EAC7A
 		public void SetTarget(Transform target)
 		{
 			this.m_Target = target;
 		}
 
-		// Token: 0x040049C2 RID: 18882
+		// Token: 0x040049D2 RID: 18898
 		[SerializeField]
 		private float m_RollSensitivity = 0.2f;
 
-		// Token: 0x040049C3 RID: 18883
+		// Token: 0x040049D3 RID: 18899
 		[SerializeField]
 		private float m_PitchSensitivity = 0.5f;
 
-		// Token: 0x040049C4 RID: 18884
+		// Token: 0x040049D4 RID: 18900
 		[SerializeField]
 		private float m_LateralWanderDistance = 5f;
 
-		// Token: 0x040049C5 RID: 18885
+		// Token: 0x040049D5 RID: 18901
 		[SerializeField]
 		private float m_LateralWanderSpeed = 0.11f;
 
-		// Token: 0x040049C6 RID: 18886
+		// Token: 0x040049D6 RID: 18902
 		[SerializeField]
 		private float m_MaxClimbAngle = 45f;
 
-		// Token: 0x040049C7 RID: 18887
+		// Token: 0x040049D7 RID: 18903
 		[SerializeField]
 		private float m_MaxRollAngle = 45f;
 
-		// Token: 0x040049C8 RID: 18888
+		// Token: 0x040049D8 RID: 18904
 		[SerializeField]
 		private float m_SpeedEffect = 0.01f;
 
-		// Token: 0x040049C9 RID: 18889
+		// Token: 0x040049D9 RID: 18905
 		[SerializeField]
 		private float m_TakeoffHeight = 20f;
 
-		// Token: 0x040049CA RID: 18890
+		// Token: 0x040049DA RID: 18906
 		[SerializeField]
 		private Transform m_Target;
 
-		// Token: 0x040049CB RID: 18891
+		// Token: 0x040049DB RID: 18907
 		private AeroplaneController m_AeroplaneController;
 
-		// Token: 0x040049CC RID: 18892
+		// Token: 0x040049DC RID: 18908
 		private float m_RandomPerlin;
 
-		// Token: 0x040049CD RID: 18893
+		// Token: 0x040049DD RID: 18909
 		private bool m_TakenOff;
 	}
 }

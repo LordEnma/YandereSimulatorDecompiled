@@ -783,11 +783,11 @@ public static class Localization
 	// Token: 0x040004B4 RID: 1204
 	private static bool mMerging = false;
 
-	// Token: 0x020005E6 RID: 1510
-	// (Invoke) Token: 0x0600253F RID: 9535
+	// Token: 0x020005E7 RID: 1511
+	// (Invoke) Token: 0x06002548 RID: 9544
 	public delegate byte[] LoadFunction(string path);
 
-	// Token: 0x020005E7 RID: 1511
-	// (Invoke) Token: 0x06002543 RID: 9539
+	// Token: 0x020005E8 RID: 1512
+	// (Invoke) Token: 0x0600254C RID: 9548
 	public delegate void OnLocalizeNotification();
 }

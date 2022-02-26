@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blend2Camera_GreenScreen : MonoBehaviour
 {
 	// Token: 0x17000235 RID: 565
-	// (get) Token: 0x06000BB9 RID: 3001 RVA: 0x0006E2C7 File Offset: 0x0006C4C7
+	// (get) Token: 0x06000BB9 RID: 3001 RVA: 0x0006E3DB File Offset: 0x0006C5DB
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blend2Camera_GreenScreen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BBA RID: 3002 RVA: 0x0006E2FC File Offset: 0x0006C4FC
+	// Token: 0x06000BBA RID: 3002 RVA: 0x0006E410 File Offset: 0x0006C610
 	private void Start()
 	{
 		if (this.Camera2 != null)
@@ -37,7 +37,7 @@ public class CameraFilterPack_Blend2Camera_GreenScreen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BBB RID: 3003 RVA: 0x0006E370 File Offset: 0x0006C570
+	// Token: 0x06000BBB RID: 3003 RVA: 0x0006E484 File Offset: 0x0006C684
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -65,7 +65,7 @@ public class CameraFilterPack_Blend2Camera_GreenScreen : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000BBC RID: 3004 RVA: 0x0006E4A1 File Offset: 0x0006C6A1
+	// Token: 0x06000BBC RID: 3004 RVA: 0x0006E5B5 File Offset: 0x0006C7B5
 	private void Update()
 	{
 		this.ScreenSize.x = (float)Screen.width;
@@ -73,14 +73,14 @@ public class CameraFilterPack_Blend2Camera_GreenScreen : MonoBehaviour
 		bool isPlaying = Application.isPlaying;
 	}
 
-	// Token: 0x06000BBD RID: 3005 RVA: 0x0006E4CB File Offset: 0x0006C6CB
+	// Token: 0x06000BBD RID: 3005 RVA: 0x0006E5DF File Offset: 0x0006C7DF
 	private void OnEnable()
 	{
 		this.Start();
 		this.Update();
 	}
 
-	// Token: 0x06000BBE RID: 3006 RVA: 0x0006E4DC File Offset: 0x0006C6DC
+	// Token: 0x06000BBE RID: 3006 RVA: 0x0006E5F0 File Offset: 0x0006C7F0
 	private void OnDisable()
 	{
 		if (this.Camera2 != null && this.Camera2.targetTexture != null)

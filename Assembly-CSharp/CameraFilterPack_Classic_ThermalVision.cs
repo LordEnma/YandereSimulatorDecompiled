@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Classic_ThermalVision : MonoBehaviour
 {
 	// Token: 0x1700025E RID: 606
-	// (get) Token: 0x06000CD9 RID: 3289 RVA: 0x000739C6 File Offset: 0x00071BC6
+	// (get) Token: 0x06000CD9 RID: 3289 RVA: 0x00073ADA File Offset: 0x00071CDA
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Classic_ThermalVision : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CDA RID: 3290 RVA: 0x000739FA File Offset: 0x00071BFA
+	// Token: 0x06000CDA RID: 3290 RVA: 0x00073B0E File Offset: 0x00071D0E
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/CameraFilterPack_Classic_ThermalVision");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Classic_ThermalVision : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CDB RID: 3291 RVA: 0x00073A1C File Offset: 0x00071C1C
+	// Token: 0x06000CDB RID: 3291 RVA: 0x00073B30 File Offset: 0x00071D30
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -57,12 +57,12 @@ public class CameraFilterPack_Classic_ThermalVision : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000CDC RID: 3292 RVA: 0x00073B56 File Offset: 0x00071D56
+	// Token: 0x06000CDC RID: 3292 RVA: 0x00073C6A File Offset: 0x00071E6A
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000CDD RID: 3293 RVA: 0x00073B58 File Offset: 0x00071D58
+	// Token: 0x06000CDD RID: 3293 RVA: 0x00073C6C File Offset: 0x00071E6C
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

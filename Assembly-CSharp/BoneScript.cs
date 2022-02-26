@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F1 RID: 241
 public class BoneScript : MonoBehaviour
 {
-	// Token: 0x06000A51 RID: 2641 RVA: 0x0005BC2C File Offset: 0x00059E2C
+	// Token: 0x06000A51 RID: 2641 RVA: 0x0005BC58 File Offset: 0x00059E58
 	private void Start()
 	{
 		base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, UnityEngine.Random.Range(0f, 360f), base.transform.eulerAngles.z);
@@ -12,7 +12,7 @@ public class BoneScript : MonoBehaviour
 		this.MyAudio.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
 	}
 
-	// Token: 0x06000A52 RID: 2642 RVA: 0x0005BCA8 File Offset: 0x00059EA8
+	// Token: 0x06000A52 RID: 2642 RVA: 0x0005BCD4 File Offset: 0x00059ED4
 	private void Update()
 	{
 		if (this.Drop)
@@ -33,7 +33,7 @@ public class BoneScript : MonoBehaviour
 		this.Drop = true;
 	}
 
-	// Token: 0x06000A53 RID: 2643 RVA: 0x0005BDCC File Offset: 0x00059FCC
+	// Token: 0x06000A53 RID: 2643 RVA: 0x0005BDF8 File Offset: 0x00059FF8
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)

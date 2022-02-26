@@ -3,23 +3,23 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Cameras
 {
-	// Token: 0x02000545 RID: 1349
+	// Token: 0x02000546 RID: 1350
 	public abstract class PivotBasedCameraRig : AbstractTargetFollower
 	{
-		// Token: 0x06002284 RID: 8836 RVA: 0x001EE983 File Offset: 0x001ECB83
+		// Token: 0x0600228D RID: 8845 RVA: 0x001EF563 File Offset: 0x001ED763
 		protected virtual void Awake()
 		{
 			this.m_Cam = base.GetComponentInChildren<Camera>().transform;
 			this.m_Pivot = this.m_Cam.parent;
 		}
 
-		// Token: 0x04004A73 RID: 19059
+		// Token: 0x04004A83 RID: 19075
 		protected Transform m_Cam;
 
-		// Token: 0x04004A74 RID: 19060
+		// Token: 0x04004A84 RID: 19076
 		protected Transform m_Pivot;
 
-		// Token: 0x04004A75 RID: 19061
+		// Token: 0x04004A85 RID: 19077
 		protected Vector3 m_LastTargetPosition;
 	}
 }

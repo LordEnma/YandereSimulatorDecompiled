@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000351 RID: 849
+// Token: 0x02000352 RID: 850
 public class LiquidColliderScript : MonoBehaviour
 {
-	// Token: 0x0600195A RID: 6490 RVA: 0x000FE328 File Offset: 0x000FC528
+	// Token: 0x06001963 RID: 6499 RVA: 0x000FEC58 File Offset: 0x000FCE58
 	private void Start()
 	{
 		if (this.Bucket)
@@ -13,7 +13,7 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600195B RID: 6491 RVA: 0x000FE34C File Offset: 0x000FC54C
+	// Token: 0x06001964 RID: 6500 RVA: 0x000FEC7C File Offset: 0x000FCE7C
 	private void Update()
 	{
 		if (!this.Static)
@@ -40,7 +40,7 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600195C RID: 6492 RVA: 0x000FE4CC File Offset: 0x000FC6CC
+	// Token: 0x06001965 RID: 6501 RVA: 0x000FEDFC File Offset: 0x000FCFFC
 	private void OnTriggerEnter(Collider other)
 	{
 		if (!this.AlreadyDoused && other.gameObject.layer == 9)
@@ -110,36 +110,36 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002812 RID: 10258
+	// Token: 0x04002821 RID: 10273
 	private GameObject NewPool;
 
-	// Token: 0x04002813 RID: 10259
+	// Token: 0x04002822 RID: 10274
 	public AudioClip SplashSound;
 
-	// Token: 0x04002814 RID: 10260
+	// Token: 0x04002823 RID: 10275
 	public GameObject GroundSplash;
 
-	// Token: 0x04002815 RID: 10261
+	// Token: 0x04002824 RID: 10276
 	public GameObject Splash;
 
-	// Token: 0x04002816 RID: 10262
+	// Token: 0x04002825 RID: 10277
 	public GameObject Pool;
 
-	// Token: 0x04002817 RID: 10263
+	// Token: 0x04002826 RID: 10278
 	public bool AlreadyDoused;
 
-	// Token: 0x04002818 RID: 10264
+	// Token: 0x04002827 RID: 10279
 	public bool Static;
 
-	// Token: 0x04002819 RID: 10265
+	// Token: 0x04002828 RID: 10280
 	public bool Bucket;
 
-	// Token: 0x0400281A RID: 10266
+	// Token: 0x04002829 RID: 10281
 	public bool Brown;
 
-	// Token: 0x0400281B RID: 10267
+	// Token: 0x0400282A RID: 10282
 	public bool Blood;
 
-	// Token: 0x0400281C RID: 10268
+	// Token: 0x0400282B RID: 10283
 	public bool Gas;
 }

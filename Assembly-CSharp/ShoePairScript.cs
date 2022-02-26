@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000422 RID: 1058
+// Token: 0x02000423 RID: 1059
 public class ShoePairScript : MonoBehaviour
 {
-	// Token: 0x06001C83 RID: 7299 RVA: 0x0014D677 File Offset: 0x0014B877
+	// Token: 0x06001C8C RID: 7308 RVA: 0x0014E0EF File Offset: 0x0014C2EF
 	private void Start()
 	{
 		this.Police = GameObject.Find("Police").GetComponent<PoliceScript>();
 		this.Note.SetActive(false);
 	}
 
-	// Token: 0x06001C84 RID: 7300 RVA: 0x0014D69C File Offset: 0x0014B89C
+	// Token: 0x06001C8D RID: 7309 RVA: 0x0014E114 File Offset: 0x0014C314
 	private void Update()
 	{
 		if (this.Prompt.Yandere.Class.LanguageGrade + this.Prompt.Yandere.Class.LanguageBonus < 1)
@@ -32,12 +32,12 @@ public class ShoePairScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040032AF RID: 12975
+	// Token: 0x040032BF RID: 12991
 	public PoliceScript Police;
 
-	// Token: 0x040032B0 RID: 12976
+	// Token: 0x040032C0 RID: 12992
 	public PromptScript Prompt;
 
-	// Token: 0x040032B1 RID: 12977
+	// Token: 0x040032C1 RID: 12993
 	public GameObject Note;
 }

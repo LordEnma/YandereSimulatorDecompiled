@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Oculus_NightVision5 : MonoBehaviour
 {
 	// Token: 0x170002F7 RID: 759
-	// (get) Token: 0x06001092 RID: 4242 RVA: 0x000840D1 File Offset: 0x000822D1
+	// (get) Token: 0x06001092 RID: 4242 RVA: 0x000841E5 File Offset: 0x000823E5
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Oculus_NightVision5 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001093 RID: 4243 RVA: 0x00084105 File Offset: 0x00082305
+	// Token: 0x06001093 RID: 4243 RVA: 0x00084219 File Offset: 0x00082419
 	private void ChangeFilters()
 	{
 		this.Matrix9 = new float[]
@@ -41,7 +41,7 @@ public class CameraFilterPack_Oculus_NightVision5 : MonoBehaviour
 		};
 	}
 
-	// Token: 0x06001094 RID: 4244 RVA: 0x0008411F File Offset: 0x0008231F
+	// Token: 0x06001094 RID: 4244 RVA: 0x00084233 File Offset: 0x00082433
 	private void Start()
 	{
 		this.ChangeFilters();
@@ -53,7 +53,7 @@ public class CameraFilterPack_Oculus_NightVision5 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001095 RID: 4245 RVA: 0x00084148 File Offset: 0x00082348
+	// Token: 0x06001095 RID: 4245 RVA: 0x0008425C File Offset: 0x0008245C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -87,18 +87,18 @@ public class CameraFilterPack_Oculus_NightVision5 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06001096 RID: 4246 RVA: 0x000843AB File Offset: 0x000825AB
+	// Token: 0x06001096 RID: 4246 RVA: 0x000844BF File Offset: 0x000826BF
 	private void OnValidate()
 	{
 		this.ChangeFilters();
 	}
 
-	// Token: 0x06001097 RID: 4247 RVA: 0x000843B3 File Offset: 0x000825B3
+	// Token: 0x06001097 RID: 4247 RVA: 0x000844C7 File Offset: 0x000826C7
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001098 RID: 4248 RVA: 0x000843B5 File Offset: 0x000825B5
+	// Token: 0x06001098 RID: 4248 RVA: 0x000844C9 File Offset: 0x000826C9
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

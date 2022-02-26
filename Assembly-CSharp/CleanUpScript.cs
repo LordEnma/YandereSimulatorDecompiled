@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200024A RID: 586
 public class CleanUpScript : MonoBehaviour
 {
-	// Token: 0x06001263 RID: 4707 RVA: 0x0008E338 File Offset: 0x0008C538
+	// Token: 0x06001263 RID: 4707 RVA: 0x0008E44C File Offset: 0x0008C64C
 	private void Update()
 	{
 		if (this.Prompt.Yandere.PickUp != null && this.Prompt.Yandere.PickUp.Mop != null && this.Prompt.Yandere.PickUp.Mop.Bleached)

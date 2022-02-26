@@ -8,7 +8,7 @@ using UnityEngine;
 public class CameraFilterPack_EXTRA_SHOWFPS : MonoBehaviour
 {
 	// Token: 0x170002A3 RID: 675
-	// (get) Token: 0x06000E79 RID: 3705 RVA: 0x0007A559 File Offset: 0x00078759
+	// (get) Token: 0x06000E79 RID: 3705 RVA: 0x0007A66D File Offset: 0x0007886D
 	private Material material
 	{
 		get
@@ -22,7 +22,7 @@ public class CameraFilterPack_EXTRA_SHOWFPS : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E7A RID: 3706 RVA: 0x0007A58D File Offset: 0x0007878D
+	// Token: 0x06000E7A RID: 3706 RVA: 0x0007A6A1 File Offset: 0x000788A1
 	private void Start()
 	{
 		this.FPS = 0;
@@ -35,7 +35,7 @@ public class CameraFilterPack_EXTRA_SHOWFPS : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E7B RID: 3707 RVA: 0x0007A5C4 File Offset: 0x000787C4
+	// Token: 0x06000E7B RID: 3707 RVA: 0x0007A6D8 File Offset: 0x000788D8
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -57,7 +57,7 @@ public class CameraFilterPack_EXTRA_SHOWFPS : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000E7C RID: 3708 RVA: 0x0007A6BD File Offset: 0x000788BD
+	// Token: 0x06000E7C RID: 3708 RVA: 0x0007A7D1 File Offset: 0x000789D1
 	private IEnumerator FPSX()
 	{
 		for (;;)
@@ -71,14 +71,14 @@ public class CameraFilterPack_EXTRA_SHOWFPS : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06000E7D RID: 3709 RVA: 0x0007A6CC File Offset: 0x000788CC
+	// Token: 0x06000E7D RID: 3709 RVA: 0x0007A7E0 File Offset: 0x000789E0
 	private void Update()
 	{
 		this.accum += Time.timeScale / Time.deltaTime;
 		this.frames++;
 	}
 
-	// Token: 0x06000E7E RID: 3710 RVA: 0x0007A6F4 File Offset: 0x000788F4
+	// Token: 0x06000E7E RID: 3710 RVA: 0x0007A808 File Offset: 0x00078A08
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

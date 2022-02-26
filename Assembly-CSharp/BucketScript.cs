@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000FF RID: 255
 public class BucketScript : MonoBehaviour
 {
-	// Token: 0x06000A89 RID: 2697 RVA: 0x0005D214 File Offset: 0x0005B414
+	// Token: 0x06000A89 RID: 2697 RVA: 0x0005D304 File Offset: 0x0005B504
 	private void Start()
 	{
 		this.Water.transform.localPosition = new Vector3(this.Water.transform.localPosition.x, 0f, this.Water.transform.localPosition.z);
@@ -19,7 +19,7 @@ public class BucketScript : MonoBehaviour
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
 	}
 
-	// Token: 0x06000A8A RID: 2698 RVA: 0x0005D490 File Offset: 0x0005B690
+	// Token: 0x06000A8A RID: 2698 RVA: 0x0005D580 File Offset: 0x0005B780
 	private void Update()
 	{
 		bool flag = false;
@@ -373,7 +373,7 @@ public class BucketScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A8B RID: 2699 RVA: 0x0005EA2C File Offset: 0x0005CC2C
+	// Token: 0x06000A8B RID: 2699 RVA: 0x0005EB1C File Offset: 0x0005CD1C
 	public void Empty()
 	{
 		if (SchemeGlobals.GetSchemeStage(1) == 2)
@@ -390,7 +390,7 @@ public class BucketScript : MonoBehaviour
 		this.Full = false;
 	}
 
-	// Token: 0x06000A8C RID: 2700 RVA: 0x0005EAA8 File Offset: 0x0005CCA8
+	// Token: 0x06000A8C RID: 2700 RVA: 0x0005EB98 File Offset: 0x0005CD98
 	public void Fill()
 	{
 		if (SchemeGlobals.GetSchemeStage(1) == 1)
@@ -403,7 +403,7 @@ public class BucketScript : MonoBehaviour
 		this.Full = true;
 	}
 
-	// Token: 0x06000A8D RID: 2701 RVA: 0x0005EB00 File Offset: 0x0005CD00
+	// Token: 0x06000A8D RID: 2701 RVA: 0x0005EBF0 File Offset: 0x0005CDF0
 	private void OnCollisionEnter(Collision other)
 	{
 		if (this.Dropped)

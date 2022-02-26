@@ -1,9 +1,9 @@
 ﻿using System;
 
-// Token: 0x02000494 RID: 1172
+// Token: 0x02000495 RID: 1173
 public static class CardinalDirection
 {
-	// Token: 0x06001F30 RID: 7984 RVA: 0x001B9268 File Offset: 0x001B7468
+	// Token: 0x06001F39 RID: 7993 RVA: 0x001B9DB4 File Offset: 0x001B7FB4
 	public static Direction Reversed(Direction direction)
 	{
 		if (direction == Direction.North)
@@ -21,7 +21,7 @@ public static class CardinalDirection
 		return Direction.East;
 	}
 
-	// Token: 0x06001F31 RID: 7985 RVA: 0x001B927C File Offset: 0x001B747C
+	// Token: 0x06001F3A RID: 7994 RVA: 0x001B9DC8 File Offset: 0x001B7FC8
 	public static Direction LeftPerp(Direction direction)
 	{
 		if (direction == Direction.North)
@@ -39,7 +39,7 @@ public static class CardinalDirection
 		return Direction.South;
 	}
 
-	// Token: 0x06001F32 RID: 7986 RVA: 0x001B9290 File Offset: 0x001B7490
+	// Token: 0x06001F3B RID: 7995 RVA: 0x001B9DDC File Offset: 0x001B7FDC
 	public static Direction RightPerp(Direction direction)
 	{
 		if (direction == Direction.North)

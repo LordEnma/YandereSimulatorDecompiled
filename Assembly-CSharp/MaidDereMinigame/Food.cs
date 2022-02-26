@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x02000595 RID: 1429
+	// Token: 0x02000596 RID: 1430
 	[CreateAssetMenu(fileName = "New Food Item", menuName = "Food")]
 	public class Food : ScriptableObject
 	{
-		// Token: 0x04004C19 RID: 19481
+		// Token: 0x04004C29 RID: 19497
 		public Sprite largeSprite;
 
-		// Token: 0x04004C1A RID: 19482
+		// Token: 0x04004C2A RID: 19498
 		public Sprite smallSprite;
 
-		// Token: 0x04004C1B RID: 19483
+		// Token: 0x04004C2B RID: 19499
 		public float cookTimeMultiplier = 1f;
 	}
 }

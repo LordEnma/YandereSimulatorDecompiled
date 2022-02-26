@@ -2,13 +2,13 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200056B RID: 1387
+	// Token: 0x0200056C RID: 1388
 	[Serializable]
 	public class FogModel : PostProcessingModel
 	{
 		// Token: 0x1700050C RID: 1292
-		// (get) Token: 0x06002350 RID: 9040 RVA: 0x001F3D47 File Offset: 0x001F1F47
-		// (set) Token: 0x06002351 RID: 9041 RVA: 0x001F3D4F File Offset: 0x001F1F4F
+		// (get) Token: 0x06002359 RID: 9049 RVA: 0x001F4927 File Offset: 0x001F2B27
+		// (set) Token: 0x0600235A RID: 9050 RVA: 0x001F492F File Offset: 0x001F2B2F
 		public FogModel.Settings settings
 		{
 			get
@@ -21,22 +21,22 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002352 RID: 9042 RVA: 0x001F3D58 File Offset: 0x001F1F58
+		// Token: 0x0600235B RID: 9051 RVA: 0x001F4938 File Offset: 0x001F2B38
 		public override void Reset()
 		{
 			this.m_Settings = FogModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004B03 RID: 19203
+		// Token: 0x04004B13 RID: 19219
 		[SerializeField]
 		private FogModel.Settings m_Settings = FogModel.Settings.defaultSettings;
 
-		// Token: 0x020006C5 RID: 1733
+		// Token: 0x020006C8 RID: 1736
 		[Serializable]
 		public struct Settings
 		{
-			// Token: 0x170005A0 RID: 1440
-			// (get) Token: 0x0600273F RID: 10047 RVA: 0x002024AC File Offset: 0x002006AC
+			// Token: 0x170005A2 RID: 1442
+			// (get) Token: 0x06002751 RID: 10065 RVA: 0x00203154 File Offset: 0x00201354
 			public static FogModel.Settings defaultSettings
 			{
 				get
@@ -48,7 +48,7 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x0400514F RID: 20815
+			// Token: 0x04005164 RID: 20836
 			[Tooltip("Should the fog affect the skybox?")]
 			public bool excludeSkybox;
 		}

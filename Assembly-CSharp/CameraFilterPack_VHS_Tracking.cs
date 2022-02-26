@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_VHS_Tracking : MonoBehaviour
 {
 	// Token: 0x17000328 RID: 808
-	// (get) Token: 0x060011BB RID: 4539 RVA: 0x00089013 File Offset: 0x00087213
+	// (get) Token: 0x060011BB RID: 4539 RVA: 0x00089127 File Offset: 0x00087327
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_VHS_Tracking : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011BC RID: 4540 RVA: 0x00089047 File Offset: 0x00087247
+	// Token: 0x060011BC RID: 4540 RVA: 0x0008915B File Offset: 0x0008735B
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/VHS_Tracking");
@@ -32,7 +32,7 @@ public class CameraFilterPack_VHS_Tracking : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011BD RID: 4541 RVA: 0x00089068 File Offset: 0x00087268
+	// Token: 0x060011BD RID: 4541 RVA: 0x0008917C File Offset: 0x0008737C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -51,12 +51,12 @@ public class CameraFilterPack_VHS_Tracking : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x060011BE RID: 4542 RVA: 0x0008911E File Offset: 0x0008731E
+	// Token: 0x060011BE RID: 4542 RVA: 0x00089232 File Offset: 0x00087432
 	private void Update()
 	{
 	}
 
-	// Token: 0x060011BF RID: 4543 RVA: 0x00089120 File Offset: 0x00087320
+	// Token: 0x060011BF RID: 4543 RVA: 0x00089234 File Offset: 0x00087434
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005AF RID: 1455
+	// Token: 0x020005B0 RID: 1456
 	public class Timer : Meter
 	{
-		// Token: 0x060024AF RID: 9391 RVA: 0x001FB877 File Offset: 0x001F9A77
+		// Token: 0x060024B8 RID: 9400 RVA: 0x001FC457 File Offset: 0x001FA657
 		private void Awake()
 		{
 			this.gameTime = GameController.Instance.activeDifficultyVariables.gameTime;
@@ -14,25 +14,25 @@ namespace MaidDereMinigame
 			this.isPaused = true;
 		}
 
-		// Token: 0x060024B0 RID: 9392 RVA: 0x001FB8A0 File Offset: 0x001F9AA0
+		// Token: 0x060024B9 RID: 9401 RVA: 0x001FC480 File Offset: 0x001FA680
 		private void OnEnable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(this.SetPause));
 		}
 
-		// Token: 0x060024B1 RID: 9393 RVA: 0x001FB8C2 File Offset: 0x001F9AC2
+		// Token: 0x060024BA RID: 9402 RVA: 0x001FC4A2 File Offset: 0x001FA6A2
 		private void OnDisable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(this.SetPause));
 		}
 
-		// Token: 0x060024B2 RID: 9394 RVA: 0x001FB8E4 File Offset: 0x001F9AE4
+		// Token: 0x060024BB RID: 9403 RVA: 0x001FC4C4 File Offset: 0x001FA6C4
 		public void SetPause(bool toPause)
 		{
 			this.isPaused = toPause;
 		}
 
-		// Token: 0x060024B3 RID: 9395 RVA: 0x001FB8F0 File Offset: 0x001F9AF0
+		// Token: 0x060024BC RID: 9404 RVA: 0x001FC4D0 File Offset: 0x001FA6D0
 		private void Update()
 		{
 			if (this.isPaused)
@@ -44,13 +44,13 @@ namespace MaidDereMinigame
 			this.starter.SetGameTime(this.gameTime);
 		}
 
-		// Token: 0x04004C7D RID: 19581
+		// Token: 0x04004C8D RID: 19597
 		private GameStarter starter;
 
-		// Token: 0x04004C7E RID: 19582
+		// Token: 0x04004C8E RID: 19598
 		private float gameTime;
 
-		// Token: 0x04004C7F RID: 19583
+		// Token: 0x04004C8F RID: 19599
 		private bool isPaused;
 	}
 }

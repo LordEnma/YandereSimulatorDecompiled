@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Token: 0x020004AA RID: 1194
+// Token: 0x020004AB RID: 1195
 [Serializable]
 public class ClubTypeHashSet : SerializableHashSet<ClubType>
 {

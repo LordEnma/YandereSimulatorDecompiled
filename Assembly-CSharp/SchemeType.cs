@@ -1,16 +1,16 @@
 ﻿using System;
 
-// Token: 0x02000410 RID: 1040
+// Token: 0x02000411 RID: 1041
 public enum SchemeType
 {
-	// Token: 0x04003212 RID: 12818
+	// Token: 0x04003222 RID: 12834
 	ExpelMonday = 1,
-	// Token: 0x04003213 RID: 12819
+	// Token: 0x04003223 RID: 12835
 	ExpelTuesday,
-	// Token: 0x04003214 RID: 12820
+	// Token: 0x04003224 RID: 12836
 	ExpelWednesday,
-	// Token: 0x04003215 RID: 12821
+	// Token: 0x04003225 RID: 12837
 	ExpelThursday,
-	// Token: 0x04003216 RID: 12822
+	// Token: 0x04003226 RID: 12838
 	ExpelFriday
 }

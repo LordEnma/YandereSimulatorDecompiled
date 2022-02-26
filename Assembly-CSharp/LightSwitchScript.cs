@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000350 RID: 848
+// Token: 0x02000351 RID: 849
 public class LightSwitchScript : MonoBehaviour
 {
-	// Token: 0x06001957 RID: 6487 RVA: 0x000FE033 File Offset: 0x000FC233
+	// Token: 0x06001960 RID: 6496 RVA: 0x000FE963 File Offset: 0x000FCB63
 	private void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
 	}
 
-	// Token: 0x06001958 RID: 6488 RVA: 0x000FE04C File Offset: 0x000FC24C
+	// Token: 0x06001961 RID: 6497 RVA: 0x000FE97C File Offset: 0x000FCB7C
 	private void Update()
 	{
 		if (this.Flicker)
@@ -77,48 +77,48 @@ public class LightSwitchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002803 RID: 10243
+	// Token: 0x04002812 RID: 10258
 	public ToiletEventScript ToiletEvent;
 
-	// Token: 0x04002804 RID: 10244
+	// Token: 0x04002813 RID: 10259
 	public YandereScript Yandere;
 
-	// Token: 0x04002805 RID: 10245
+	// Token: 0x04002814 RID: 10260
 	public PromptScript Prompt;
 
-	// Token: 0x04002806 RID: 10246
+	// Token: 0x04002815 RID: 10261
 	public Transform ElectrocutionSpot;
 
-	// Token: 0x04002807 RID: 10247
+	// Token: 0x04002816 RID: 10262
 	public GameObject BathroomLight;
 
-	// Token: 0x04002808 RID: 10248
+	// Token: 0x04002817 RID: 10263
 	public GameObject Electricity;
 
-	// Token: 0x04002809 RID: 10249
+	// Token: 0x04002818 RID: 10264
 	public Rigidbody Panel;
 
-	// Token: 0x0400280A RID: 10250
+	// Token: 0x04002819 RID: 10265
 	public Transform Wires;
 
-	// Token: 0x0400280B RID: 10251
+	// Token: 0x0400281A RID: 10266
 	public AudioClip[] ReactionClips;
 
-	// Token: 0x0400280C RID: 10252
+	// Token: 0x0400281B RID: 10267
 	public string[] ReactionTexts;
 
-	// Token: 0x0400280D RID: 10253
+	// Token: 0x0400281C RID: 10268
 	public AudioClip[] Flick;
 
-	// Token: 0x0400280E RID: 10254
+	// Token: 0x0400281D RID: 10269
 	public float SubtitleTimer;
 
-	// Token: 0x0400280F RID: 10255
+	// Token: 0x0400281E RID: 10270
 	public float FlickerTimer;
 
-	// Token: 0x04002810 RID: 10256
+	// Token: 0x0400281F RID: 10271
 	public int ReactionID;
 
-	// Token: 0x04002811 RID: 10257
+	// Token: 0x04002820 RID: 10272
 	public bool Flicker;
 }

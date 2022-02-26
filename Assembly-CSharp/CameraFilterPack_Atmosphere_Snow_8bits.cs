@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Atmosphere_Snow_8bits : MonoBehaviour
 {
 	// Token: 0x17000229 RID: 553
-	// (get) Token: 0x06000B5C RID: 2908 RVA: 0x0006C705 File Offset: 0x0006A905
+	// (get) Token: 0x06000B5C RID: 2908 RVA: 0x0006C819 File Offset: 0x0006AA19
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Atmosphere_Snow_8bits : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B5D RID: 2909 RVA: 0x0006C739 File Offset: 0x0006A939
+	// Token: 0x06000B5D RID: 2909 RVA: 0x0006C84D File Offset: 0x0006AA4D
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Atmosphere_Snow_8bits");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Atmosphere_Snow_8bits : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B5E RID: 2910 RVA: 0x0006C75C File Offset: 0x0006A95C
+	// Token: 0x06000B5E RID: 2910 RVA: 0x0006C870 File Offset: 0x0006AA70
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Atmosphere_Snow_8bits : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B5F RID: 2911 RVA: 0x0006C854 File Offset: 0x0006AA54
+	// Token: 0x06000B5F RID: 2911 RVA: 0x0006C968 File Offset: 0x0006AB68
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B60 RID: 2912 RVA: 0x0006C856 File Offset: 0x0006AA56
+	// Token: 0x06000B60 RID: 2912 RVA: 0x0006C96A File Offset: 0x0006AB6A
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

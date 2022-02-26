@@ -2854,7 +2854,7 @@ public static class NGUITools
 	// Token: 0x040004EB RID: 1259
 	private static ColorSpace mColorSpace;
 
-	// Token: 0x020005EB RID: 1515
-	// (Invoke) Token: 0x06002548 RID: 9544
+	// Token: 0x020005EC RID: 1516
+	// (Invoke) Token: 0x06002551 RID: 9553
 	public delegate void OnInitFunc<T>(T w) where T : UIWidget;
 }

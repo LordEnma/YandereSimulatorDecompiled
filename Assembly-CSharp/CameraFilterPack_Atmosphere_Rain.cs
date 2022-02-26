@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Atmosphere_Rain : MonoBehaviour
 {
 	// Token: 0x17000226 RID: 550
-	// (get) Token: 0x06000B4A RID: 2890 RVA: 0x0006BE87 File Offset: 0x0006A087
+	// (get) Token: 0x06000B4A RID: 2890 RVA: 0x0006BF9B File Offset: 0x0006A19B
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Atmosphere_Rain : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B4B RID: 2891 RVA: 0x0006BEBB File Offset: 0x0006A0BB
+	// Token: 0x06000B4B RID: 2891 RVA: 0x0006BFCF File Offset: 0x0006A1CF
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_Atmosphere_Rain_FX") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_Atmosphere_Rain : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B4C RID: 2892 RVA: 0x0006BEF4 File Offset: 0x0006A0F4
+	// Token: 0x06000B4C RID: 2892 RVA: 0x0006C008 File Offset: 0x0006A208
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -59,12 +59,12 @@ public class CameraFilterPack_Atmosphere_Rain : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B4D RID: 2893 RVA: 0x0006C044 File Offset: 0x0006A244
+	// Token: 0x06000B4D RID: 2893 RVA: 0x0006C158 File Offset: 0x0006A358
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B4E RID: 2894 RVA: 0x0006C046 File Offset: 0x0006A246
+	// Token: 0x06000B4E RID: 2894 RVA: 0x0006C15A File Offset: 0x0006A35A
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

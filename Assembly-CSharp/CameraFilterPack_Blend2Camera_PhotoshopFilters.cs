@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blend2Camera_PhotoshopFilters : MonoBehaviour
 {
 	// Token: 0x17000241 RID: 577
-	// (get) Token: 0x06000C18 RID: 3096 RVA: 0x0006FF1F File Offset: 0x0006E11F
+	// (get) Token: 0x06000C18 RID: 3096 RVA: 0x00070033 File Offset: 0x0006E233
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blend2Camera_PhotoshopFilters : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C19 RID: 3097 RVA: 0x0006FF54 File Offset: 0x0006E154
+	// Token: 0x06000C19 RID: 3097 RVA: 0x00070068 File Offset: 0x0006E268
 	private void ChangeFilters()
 	{
 		if (this.filterchoice == CameraFilterPack_Blend2Camera_PhotoshopFilters.filters.Darken)
@@ -126,7 +126,7 @@ public class CameraFilterPack_Blend2Camera_PhotoshopFilters : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C1A RID: 3098 RVA: 0x00070164 File Offset: 0x0006E364
+	// Token: 0x06000C1A RID: 3098 RVA: 0x00070278 File Offset: 0x0006E478
 	private void Start()
 	{
 		this.filterchoicememo = this.filterchoice;
@@ -144,7 +144,7 @@ public class CameraFilterPack_Blend2Camera_PhotoshopFilters : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C1B RID: 3099 RVA: 0x000701DC File Offset: 0x0006E3DC
+	// Token: 0x06000C1B RID: 3099 RVA: 0x000702F0 File Offset: 0x0006E4F0
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -168,7 +168,7 @@ public class CameraFilterPack_Blend2Camera_PhotoshopFilters : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000C1C RID: 3100 RVA: 0x000702CC File Offset: 0x0006E4CC
+	// Token: 0x06000C1C RID: 3100 RVA: 0x000703E0 File Offset: 0x0006E5E0
 	private void OnValidate()
 	{
 		if (this.filterchoice != this.filterchoicememo)
@@ -190,12 +190,12 @@ public class CameraFilterPack_Blend2Camera_PhotoshopFilters : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C1D RID: 3101 RVA: 0x00070377 File Offset: 0x0006E577
+	// Token: 0x06000C1D RID: 3101 RVA: 0x0007048B File Offset: 0x0006E68B
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000C1E RID: 3102 RVA: 0x00070379 File Offset: 0x0006E579
+	// Token: 0x06000C1E RID: 3102 RVA: 0x0007048D File Offset: 0x0006E68D
 	private void OnEnable()
 	{
 		if (this.Camera2 != null)
@@ -205,7 +205,7 @@ public class CameraFilterPack_Blend2Camera_PhotoshopFilters : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C1F RID: 3103 RVA: 0x000703B1 File Offset: 0x0006E5B1
+	// Token: 0x06000C1F RID: 3103 RVA: 0x000704C5 File Offset: 0x0006E6C5
 	private void OnDisable()
 	{
 		if (this.Camera2 != null)
@@ -250,58 +250,58 @@ public class CameraFilterPack_Blend2Camera_PhotoshopFilters : MonoBehaviour
 	// Token: 0x04001058 RID: 4184
 	private RenderTexture Camera2tex;
 
-	// Token: 0x0200064A RID: 1610
+	// Token: 0x0200064B RID: 1611
 	public enum filters
 	{
-		// Token: 0x04004EA6 RID: 20134
-		Darken,
-		// Token: 0x04004EA7 RID: 20135
-		Multiply,
-		// Token: 0x04004EA8 RID: 20136
-		ColorBurn,
-		// Token: 0x04004EA9 RID: 20137
-		LinearBurn,
-		// Token: 0x04004EAA RID: 20138
-		DarkerColor,
-		// Token: 0x04004EAB RID: 20139
-		Lighten,
-		// Token: 0x04004EAC RID: 20140
-		Screen,
-		// Token: 0x04004EAD RID: 20141
-		ColorDodge,
-		// Token: 0x04004EAE RID: 20142
-		LinearDodge,
-		// Token: 0x04004EAF RID: 20143
-		LighterColor,
-		// Token: 0x04004EB0 RID: 20144
-		Overlay,
-		// Token: 0x04004EB1 RID: 20145
-		SoftLight,
-		// Token: 0x04004EB2 RID: 20146
-		HardLight,
-		// Token: 0x04004EB3 RID: 20147
-		VividLight,
-		// Token: 0x04004EB4 RID: 20148
-		LinearLight,
-		// Token: 0x04004EB5 RID: 20149
-		PinLight,
 		// Token: 0x04004EB6 RID: 20150
-		HardMix,
+		Darken,
 		// Token: 0x04004EB7 RID: 20151
-		Difference,
+		Multiply,
 		// Token: 0x04004EB8 RID: 20152
-		Exclusion,
+		ColorBurn,
 		// Token: 0x04004EB9 RID: 20153
-		Subtract,
+		LinearBurn,
 		// Token: 0x04004EBA RID: 20154
-		Divide,
+		DarkerColor,
 		// Token: 0x04004EBB RID: 20155
-		Hue,
+		Lighten,
 		// Token: 0x04004EBC RID: 20156
-		Saturation,
+		Screen,
 		// Token: 0x04004EBD RID: 20157
-		Color,
+		ColorDodge,
 		// Token: 0x04004EBE RID: 20158
+		LinearDodge,
+		// Token: 0x04004EBF RID: 20159
+		LighterColor,
+		// Token: 0x04004EC0 RID: 20160
+		Overlay,
+		// Token: 0x04004EC1 RID: 20161
+		SoftLight,
+		// Token: 0x04004EC2 RID: 20162
+		HardLight,
+		// Token: 0x04004EC3 RID: 20163
+		VividLight,
+		// Token: 0x04004EC4 RID: 20164
+		LinearLight,
+		// Token: 0x04004EC5 RID: 20165
+		PinLight,
+		// Token: 0x04004EC6 RID: 20166
+		HardMix,
+		// Token: 0x04004EC7 RID: 20167
+		Difference,
+		// Token: 0x04004EC8 RID: 20168
+		Exclusion,
+		// Token: 0x04004EC9 RID: 20169
+		Subtract,
+		// Token: 0x04004ECA RID: 20170
+		Divide,
+		// Token: 0x04004ECB RID: 20171
+		Hue,
+		// Token: 0x04004ECC RID: 20172
+		Saturation,
+		// Token: 0x04004ECD RID: 20173
+		Color,
+		// Token: 0x04004ECE RID: 20174
 		Luminosity
 	}
 }

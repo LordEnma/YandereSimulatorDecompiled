@@ -1,19 +1,19 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003B6 RID: 950
+// Token: 0x020003B7 RID: 951
 [Serializable]
 public struct BoneData
 {
-	// Token: 0x04002D4F RID: 11599
+	// Token: 0x04002D5F RID: 11615
 	public string BoneName;
 
-	// Token: 0x04002D50 RID: 11600
+	// Token: 0x04002D60 RID: 11616
 	public Quaternion LocalRotation;
 
-	// Token: 0x04002D51 RID: 11601
+	// Token: 0x04002D61 RID: 11617
 	public Vector3 LocalPosition;
 
-	// Token: 0x04002D52 RID: 11602
+	// Token: 0x04002D62 RID: 11618
 	public Vector3 LocalScale;
 }

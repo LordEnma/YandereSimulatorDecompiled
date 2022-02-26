@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blend2Camera_LinearBurn : MonoBehaviour
 {
 	// Token: 0x1700023B RID: 571
-	// (get) Token: 0x06000BE8 RID: 3048 RVA: 0x0006F10F File Offset: 0x0006D30F
+	// (get) Token: 0x06000BE8 RID: 3048 RVA: 0x0006F223 File Offset: 0x0006D423
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blend2Camera_LinearBurn : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BE9 RID: 3049 RVA: 0x0006F144 File Offset: 0x0006D344
+	// Token: 0x06000BE9 RID: 3049 RVA: 0x0006F258 File Offset: 0x0006D458
 	private void Start()
 	{
 		if (this.Camera2 != null)
@@ -37,7 +37,7 @@ public class CameraFilterPack_Blend2Camera_LinearBurn : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BEA RID: 3050 RVA: 0x0006F1A8 File Offset: 0x0006D3A8
+	// Token: 0x06000BEA RID: 3050 RVA: 0x0006F2BC File Offset: 0x0006D4BC
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -61,7 +61,7 @@ public class CameraFilterPack_Blend2Camera_LinearBurn : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000BEB RID: 3051 RVA: 0x0006F298 File Offset: 0x0006D498
+	// Token: 0x06000BEB RID: 3051 RVA: 0x0006F3AC File Offset: 0x0006D5AC
 	private void OnValidate()
 	{
 		if (this.Camera2 != null)
@@ -71,12 +71,12 @@ public class CameraFilterPack_Blend2Camera_LinearBurn : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BEC RID: 3052 RVA: 0x0006F2D0 File Offset: 0x0006D4D0
+	// Token: 0x06000BEC RID: 3052 RVA: 0x0006F3E4 File Offset: 0x0006D5E4
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000BED RID: 3053 RVA: 0x0006F2D2 File Offset: 0x0006D4D2
+	// Token: 0x06000BED RID: 3053 RVA: 0x0006F3E6 File Offset: 0x0006D5E6
 	private void OnEnable()
 	{
 		if (this.Camera2 != null)
@@ -86,7 +86,7 @@ public class CameraFilterPack_Blend2Camera_LinearBurn : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BEE RID: 3054 RVA: 0x0006F30A File Offset: 0x0006D50A
+	// Token: 0x06000BEE RID: 3054 RVA: 0x0006F41E File Offset: 0x0006D61E
 	private void OnDisable()
 	{
 		if (this.Camera2 != null)

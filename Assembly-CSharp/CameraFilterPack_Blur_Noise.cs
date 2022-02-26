@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blur_Noise : MonoBehaviour
 {
 	// Token: 0x17000253 RID: 595
-	// (get) Token: 0x06000C97 RID: 3223 RVA: 0x0007261E File Offset: 0x0007081E
+	// (get) Token: 0x06000C97 RID: 3223 RVA: 0x00072732 File Offset: 0x00070932
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blur_Noise : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C98 RID: 3224 RVA: 0x00072652 File Offset: 0x00070852
+	// Token: 0x06000C98 RID: 3224 RVA: 0x00072766 File Offset: 0x00070966
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Blur_Noise");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Blur_Noise : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C99 RID: 3225 RVA: 0x00072674 File Offset: 0x00070874
+	// Token: 0x06000C99 RID: 3225 RVA: 0x00072788 File Offset: 0x00070988
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -52,12 +52,12 @@ public class CameraFilterPack_Blur_Noise : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000C9A RID: 3226 RVA: 0x00072746 File Offset: 0x00070946
+	// Token: 0x06000C9A RID: 3226 RVA: 0x0007285A File Offset: 0x00070A5A
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000C9B RID: 3227 RVA: 0x00072748 File Offset: 0x00070948
+	// Token: 0x06000C9B RID: 3227 RVA: 0x0007285C File Offset: 0x00070A5C
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

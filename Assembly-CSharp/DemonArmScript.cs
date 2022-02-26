@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200027C RID: 636
 public class DemonArmScript : MonoBehaviour
 {
-	// Token: 0x06001375 RID: 4981 RVA: 0x000B28C8 File Offset: 0x000B0AC8
+	// Token: 0x06001375 RID: 4981 RVA: 0x000B2AD4 File Offset: 0x000B0CD4
 	private void Start()
 	{
 		this.MyAnimation = base.GetComponent<Animation>();
@@ -15,7 +15,7 @@ public class DemonArmScript : MonoBehaviour
 		this.MyAnimation[this.AttackAnim].speed = 1f;
 	}
 
-	// Token: 0x06001376 RID: 4982 RVA: 0x000B2928 File Offset: 0x000B0B28
+	// Token: 0x06001376 RID: 4982 RVA: 0x000B2B34 File Offset: 0x000B0D34
 	private void Update()
 	{
 		if (!this.Rising)
@@ -57,7 +57,7 @@ public class DemonArmScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001377 RID: 4983 RVA: 0x000B2A88 File Offset: 0x000B0C88
+	// Token: 0x06001377 RID: 4983 RVA: 0x000B2C94 File Offset: 0x000B0E94
 	private void OnTriggerEnter(Collider other)
 	{
 		StudentScript component = other.gameObject.GetComponent<StudentScript>();
@@ -72,36 +72,36 @@ public class DemonArmScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001C97 RID: 7319
+	// Token: 0x04001C98 RID: 7320
 	public GameObject DismembermentCollider;
 
-	// Token: 0x04001C98 RID: 7320
+	// Token: 0x04001C99 RID: 7321
 	public Animation MyAnimation;
 
-	// Token: 0x04001C99 RID: 7321
+	// Token: 0x04001C9A RID: 7322
 	public Collider ClawCollider;
 
-	// Token: 0x04001C9A RID: 7322
+	// Token: 0x04001C9B RID: 7323
 	public bool Attacking;
 
-	// Token: 0x04001C9B RID: 7323
+	// Token: 0x04001C9C RID: 7324
 	public bool Attacked;
 
-	// Token: 0x04001C9C RID: 7324
+	// Token: 0x04001C9D RID: 7325
 	public bool Rising = true;
 
-	// Token: 0x04001C9D RID: 7325
+	// Token: 0x04001C9E RID: 7326
 	public string IdleAnim = "DemonArmIdle";
 
-	// Token: 0x04001C9E RID: 7326
+	// Token: 0x04001C9F RID: 7327
 	public string AttackAnim = "DemonArmAttack";
 
-	// Token: 0x04001C9F RID: 7327
+	// Token: 0x04001CA0 RID: 7328
 	public AudioClip Whoosh;
 
-	// Token: 0x04001CA0 RID: 7328
+	// Token: 0x04001CA1 RID: 7329
 	public float AnimSpeed = 1f;
 
-	// Token: 0x04001CA1 RID: 7329
+	// Token: 0x04001CA2 RID: 7330
 	public float AnimTime;
 }

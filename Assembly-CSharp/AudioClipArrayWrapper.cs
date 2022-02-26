@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200048F RID: 1167
+// Token: 0x02000490 RID: 1168
 [Serializable]
 public class AudioClipArrayWrapper : ArrayWrapper<AudioClip>
 {
-	// Token: 0x06001F23 RID: 7971 RVA: 0x001B8EDF File Offset: 0x001B70DF
+	// Token: 0x06001F2C RID: 7980 RVA: 0x001B9A2B File Offset: 0x001B7C2B
 	public AudioClipArrayWrapper(int size) : base(size)
 	{
 	}
 
-	// Token: 0x06001F24 RID: 7972 RVA: 0x001B8EE8 File Offset: 0x001B70E8
+	// Token: 0x06001F2D RID: 7981 RVA: 0x001B9A34 File Offset: 0x001B7C34
 	public AudioClipArrayWrapper(AudioClip[] elements) : base(elements)
 	{
 	}

@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Token: 0x0200050A RID: 1290
+// Token: 0x0200050B RID: 1291
 [Serializable]
 public class ValueDict : SerializableDictionary<string, object>
 {

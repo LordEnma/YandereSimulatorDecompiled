@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003EE RID: 1006
+// Token: 0x020003EF RID: 1007
 public class RuntimeAnimRetarget : MonoBehaviour
 {
-	// Token: 0x06001BDB RID: 7131 RVA: 0x00145282 File Offset: 0x00143482
+	// Token: 0x06001BE4 RID: 7140 RVA: 0x00145CFA File Offset: 0x00143EFA
 	private void Start()
 	{
 		Debug.Log(this.Source.name);
@@ -12,7 +12,7 @@ public class RuntimeAnimRetarget : MonoBehaviour
 		this.TargetSkelNodes = this.Target.GetComponentsInChildren<Component>();
 	}
 
-	// Token: 0x06001BDC RID: 7132 RVA: 0x001452B8 File Offset: 0x001434B8
+	// Token: 0x06001BE5 RID: 7141 RVA: 0x00145D30 File Offset: 0x00143F30
 	private void LateUpdate()
 	{
 		this.TargetSkelNodes[1].transform.localPosition = this.SourceSkelNodes[1].transform.localPosition;
@@ -22,15 +22,15 @@ public class RuntimeAnimRetarget : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040030DE RID: 12510
+	// Token: 0x040030EE RID: 12526
 	public GameObject Source;
 
-	// Token: 0x040030DF RID: 12511
+	// Token: 0x040030EF RID: 12527
 	public GameObject Target;
 
-	// Token: 0x040030E0 RID: 12512
+	// Token: 0x040030F0 RID: 12528
 	private Component[] SourceSkelNodes;
 
-	// Token: 0x040030E1 RID: 12513
+	// Token: 0x040030F1 RID: 12529
 	private Component[] TargetSkelNodes;
 }

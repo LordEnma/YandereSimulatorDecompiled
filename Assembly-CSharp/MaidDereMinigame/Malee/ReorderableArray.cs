@@ -5,16 +5,16 @@ using UnityEngine;
 
 namespace MaidDereMinigame.Malee
 {
-	// Token: 0x020005B4 RID: 1460
+	// Token: 0x020005B5 RID: 1461
 	[Serializable]
 	public abstract class ReorderableArray<T> : ICloneable, IList<T>, ICollection<T>, IEnumerable<T>, IEnumerable
 	{
-		// Token: 0x060024C2 RID: 9410 RVA: 0x001FBD3C File Offset: 0x001F9F3C
+		// Token: 0x060024CB RID: 9419 RVA: 0x001FC91C File Offset: 0x001FAB1C
 		public ReorderableArray() : this(0)
 		{
 		}
 
-		// Token: 0x060024C3 RID: 9411 RVA: 0x001FBD45 File Offset: 0x001F9F45
+		// Token: 0x060024CC RID: 9420 RVA: 0x001FC925 File Offset: 0x001FAB25
 		public ReorderableArray(int length)
 		{
 			this.array = new List<T>(length);
@@ -34,7 +34,7 @@ namespace MaidDereMinigame.Malee
 		}
 
 		// Token: 0x1700052F RID: 1327
-		// (get) Token: 0x060024C6 RID: 9414 RVA: 0x001FBD81 File Offset: 0x001F9F81
+		// (get) Token: 0x060024CF RID: 9423 RVA: 0x001FC961 File Offset: 0x001FAB61
 		public int Length
 		{
 			get
@@ -44,7 +44,7 @@ namespace MaidDereMinigame.Malee
 		}
 
 		// Token: 0x17000530 RID: 1328
-		// (get) Token: 0x060024C7 RID: 9415 RVA: 0x001FBD8E File Offset: 0x001F9F8E
+		// (get) Token: 0x060024D0 RID: 9424 RVA: 0x001FC96E File Offset: 0x001FAB6E
 		public bool IsReadOnly
 		{
 			get
@@ -54,7 +54,7 @@ namespace MaidDereMinigame.Malee
 		}
 
 		// Token: 0x17000531 RID: 1329
-		// (get) Token: 0x060024C8 RID: 9416 RVA: 0x001FBD91 File Offset: 0x001F9F91
+		// (get) Token: 0x060024D1 RID: 9425 RVA: 0x001FC971 File Offset: 0x001FAB71
 		public int Count
 		{
 			get
@@ -63,86 +63,86 @@ namespace MaidDereMinigame.Malee
 			}
 		}
 
-		// Token: 0x060024C9 RID: 9417 RVA: 0x001FBD9E File Offset: 0x001F9F9E
+		// Token: 0x060024D2 RID: 9426 RVA: 0x001FC97E File Offset: 0x001FAB7E
 		public object Clone()
 		{
 			return new List<T>(this.array);
 		}
 
-		// Token: 0x060024CA RID: 9418 RVA: 0x001FBDAB File Offset: 0x001F9FAB
+		// Token: 0x060024D3 RID: 9427 RVA: 0x001FC98B File Offset: 0x001FAB8B
 		public void CopyFrom(IEnumerable<T> value)
 		{
 			this.array.Clear();
 			this.array.AddRange(value);
 		}
 
-		// Token: 0x060024CB RID: 9419 RVA: 0x001FBDC4 File Offset: 0x001F9FC4
+		// Token: 0x060024D4 RID: 9428 RVA: 0x001FC9A4 File Offset: 0x001FABA4
 		public bool Contains(T value)
 		{
 			return this.array.Contains(value);
 		}
 
-		// Token: 0x060024CC RID: 9420 RVA: 0x001FBDD2 File Offset: 0x001F9FD2
+		// Token: 0x060024D5 RID: 9429 RVA: 0x001FC9B2 File Offset: 0x001FABB2
 		public int IndexOf(T value)
 		{
 			return this.array.IndexOf(value);
 		}
 
-		// Token: 0x060024CD RID: 9421 RVA: 0x001FBDE0 File Offset: 0x001F9FE0
+		// Token: 0x060024D6 RID: 9430 RVA: 0x001FC9C0 File Offset: 0x001FABC0
 		public void Insert(int index, T item)
 		{
 			this.array.Insert(index, item);
 		}
 
-		// Token: 0x060024CE RID: 9422 RVA: 0x001FBDEF File Offset: 0x001F9FEF
+		// Token: 0x060024D7 RID: 9431 RVA: 0x001FC9CF File Offset: 0x001FABCF
 		public void RemoveAt(int index)
 		{
 			this.array.RemoveAt(index);
 		}
 
-		// Token: 0x060024CF RID: 9423 RVA: 0x001FBDFD File Offset: 0x001F9FFD
+		// Token: 0x060024D8 RID: 9432 RVA: 0x001FC9DD File Offset: 0x001FABDD
 		public void Add(T item)
 		{
 			this.array.Add(item);
 		}
 
-		// Token: 0x060024D0 RID: 9424 RVA: 0x001FBE0B File Offset: 0x001FA00B
+		// Token: 0x060024D9 RID: 9433 RVA: 0x001FC9EB File Offset: 0x001FABEB
 		public void Clear()
 		{
 			this.array.Clear();
 		}
 
-		// Token: 0x060024D1 RID: 9425 RVA: 0x001FBE18 File Offset: 0x001FA018
+		// Token: 0x060024DA RID: 9434 RVA: 0x001FC9F8 File Offset: 0x001FABF8
 		public void CopyTo(T[] array, int arrayIndex)
 		{
 			this.array.CopyTo(array, arrayIndex);
 		}
 
-		// Token: 0x060024D2 RID: 9426 RVA: 0x001FBE27 File Offset: 0x001FA027
+		// Token: 0x060024DB RID: 9435 RVA: 0x001FCA07 File Offset: 0x001FAC07
 		public bool Remove(T item)
 		{
 			return this.array.Remove(item);
 		}
 
-		// Token: 0x060024D3 RID: 9427 RVA: 0x001FBE35 File Offset: 0x001FA035
+		// Token: 0x060024DC RID: 9436 RVA: 0x001FCA15 File Offset: 0x001FAC15
 		public T[] ToArray()
 		{
 			return this.array.ToArray();
 		}
 
-		// Token: 0x060024D4 RID: 9428 RVA: 0x001FBE42 File Offset: 0x001FA042
+		// Token: 0x060024DD RID: 9437 RVA: 0x001FCA22 File Offset: 0x001FAC22
 		public IEnumerator<T> GetEnumerator()
 		{
 			return this.array.GetEnumerator();
 		}
 
-		// Token: 0x060024D5 RID: 9429 RVA: 0x001FBE54 File Offset: 0x001FA054
+		// Token: 0x060024DE RID: 9438 RVA: 0x001FCA34 File Offset: 0x001FAC34
 		IEnumerator IEnumerable.GetEnumerator()
 		{
 			return this.array.GetEnumerator();
 		}
 
-		// Token: 0x04004C90 RID: 19600
+		// Token: 0x04004CA0 RID: 19616
 		[SerializeField]
 		private List<T> array = new List<T>();
 	}

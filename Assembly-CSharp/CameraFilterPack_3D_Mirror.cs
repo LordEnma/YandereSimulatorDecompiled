@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_3D_Mirror : MonoBehaviour
 {
 	// Token: 0x17000216 RID: 534
-	// (get) Token: 0x06000AEA RID: 2794 RVA: 0x00069988 File Offset: 0x00067B88
+	// (get) Token: 0x06000AEA RID: 2794 RVA: 0x00069A9C File Offset: 0x00067C9C
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_3D_Mirror : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AEB RID: 2795 RVA: 0x000699BC File Offset: 0x00067BBC
+	// Token: 0x06000AEB RID: 2795 RVA: 0x00069AD0 File Offset: 0x00067CD0
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/3D_Mirror");
@@ -32,7 +32,7 @@ public class CameraFilterPack_3D_Mirror : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AEC RID: 2796 RVA: 0x000699E0 File Offset: 0x00067BE0
+	// Token: 0x06000AEC RID: 2796 RVA: 0x00069AF4 File Offset: 0x00067CF4
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -75,12 +75,12 @@ public class CameraFilterPack_3D_Mirror : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000AED RID: 2797 RVA: 0x00069BA3 File Offset: 0x00067DA3
+	// Token: 0x06000AED RID: 2797 RVA: 0x00069CB7 File Offset: 0x00067EB7
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000AEE RID: 2798 RVA: 0x00069BA5 File Offset: 0x00067DA5
+	// Token: 0x06000AEE RID: 2798 RVA: 0x00069CB9 File Offset: 0x00067EB9
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

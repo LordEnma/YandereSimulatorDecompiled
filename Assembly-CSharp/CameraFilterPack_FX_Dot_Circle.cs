@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_FX_Dot_Circle : MonoBehaviour
 {
 	// Token: 0x170002B2 RID: 690
-	// (get) Token: 0x06000ED4 RID: 3796 RVA: 0x0007BB6A File Offset: 0x00079D6A
+	// (get) Token: 0x06000ED4 RID: 3796 RVA: 0x0007BC7E File Offset: 0x00079E7E
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_FX_Dot_Circle : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000ED5 RID: 3797 RVA: 0x0007BB9E File Offset: 0x00079D9E
+	// Token: 0x06000ED5 RID: 3797 RVA: 0x0007BCB2 File Offset: 0x00079EB2
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/FX_Dot_Circle");
@@ -32,7 +32,7 @@ public class CameraFilterPack_FX_Dot_Circle : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000ED6 RID: 3798 RVA: 0x0007BBC0 File Offset: 0x00079DC0
+	// Token: 0x06000ED6 RID: 3798 RVA: 0x0007BCD4 File Offset: 0x00079ED4
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -51,12 +51,12 @@ public class CameraFilterPack_FX_Dot_Circle : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000ED7 RID: 3799 RVA: 0x0007BC76 File Offset: 0x00079E76
+	// Token: 0x06000ED7 RID: 3799 RVA: 0x0007BD8A File Offset: 0x00079F8A
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000ED8 RID: 3800 RVA: 0x0007BC78 File Offset: 0x00079E78
+	// Token: 0x06000ED8 RID: 3800 RVA: 0x0007BD8C File Offset: 0x00079F8C
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200038B RID: 907
+// Token: 0x0200038C RID: 908
 public class ActivateOsuScript : MonoBehaviour
 {
-	// Token: 0x06001A38 RID: 6712 RVA: 0x00116354 File Offset: 0x00114554
+	// Token: 0x06001A41 RID: 6721 RVA: 0x00116D68 File Offset: 0x00114F68
 	private void Start()
 	{
 		this.OsuScripts = this.Osu.GetComponents<OsuScript>();
@@ -12,7 +12,7 @@ public class ActivateOsuScript : MonoBehaviour
 		this.OriginalMousePosition = this.Mouse.transform.position;
 	}
 
-	// Token: 0x06001A39 RID: 6713 RVA: 0x00116394 File Offset: 0x00114594
+	// Token: 0x06001A42 RID: 6722 RVA: 0x00116DA8 File Offset: 0x00114FA8
 	private void Update()
 	{
 		if (this.Student == null)
@@ -38,7 +38,7 @@ public class ActivateOsuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A3A RID: 6714 RVA: 0x001164CC File Offset: 0x001146CC
+	// Token: 0x06001A43 RID: 6723 RVA: 0x00116EE0 File Offset: 0x001150E0
 	private void ActivateOsu()
 	{
 		this.Osu.transform.parent.gameObject.SetActive(true);
@@ -48,7 +48,7 @@ public class ActivateOsuScript : MonoBehaviour
 		this.Mouse.transform.localPosition = Vector3.zero;
 	}
 
-	// Token: 0x06001A3B RID: 6715 RVA: 0x0011653C File Offset: 0x0011473C
+	// Token: 0x06001A44 RID: 6724 RVA: 0x00116F50 File Offset: 0x00115150
 	private void DeactivateOsu()
 	{
 		this.Osu.transform.parent.gameObject.SetActive(false);
@@ -62,33 +62,33 @@ public class ActivateOsuScript : MonoBehaviour
 		this.Mouse.transform.position = this.OriginalMousePosition;
 	}
 
-	// Token: 0x04002AD7 RID: 10967
+	// Token: 0x04002AE7 RID: 10983
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002AD8 RID: 10968
+	// Token: 0x04002AE8 RID: 10984
 	public OsuScript[] OsuScripts;
 
-	// Token: 0x04002AD9 RID: 10969
+	// Token: 0x04002AE9 RID: 10985
 	public StudentScript Student;
 
-	// Token: 0x04002ADA RID: 10970
+	// Token: 0x04002AEA RID: 10986
 	public ClockScript Clock;
 
-	// Token: 0x04002ADB RID: 10971
+	// Token: 0x04002AEB RID: 10987
 	public GameObject Music;
 
-	// Token: 0x04002ADC RID: 10972
+	// Token: 0x04002AEC RID: 10988
 	public Transform Mouse;
 
-	// Token: 0x04002ADD RID: 10973
+	// Token: 0x04002AED RID: 10989
 	public GameObject Osu;
 
-	// Token: 0x04002ADE RID: 10974
+	// Token: 0x04002AEE RID: 10990
 	public int PlayerID;
 
-	// Token: 0x04002ADF RID: 10975
+	// Token: 0x04002AEF RID: 10991
 	public Vector3 OriginalMousePosition;
 
-	// Token: 0x04002AE0 RID: 10976
+	// Token: 0x04002AF0 RID: 10992
 	public Vector3 OriginalMouseRotation;
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_3D_Fog_Smoke : MonoBehaviour
 {
 	// Token: 0x17000212 RID: 530
-	// (get) Token: 0x06000AD2 RID: 2770 RVA: 0x00068F0F File Offset: 0x0006710F
+	// (get) Token: 0x06000AD2 RID: 2770 RVA: 0x00069023 File Offset: 0x00067223
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_3D_Fog_Smoke : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AD3 RID: 2771 RVA: 0x00068F43 File Offset: 0x00067143
+	// Token: 0x06000AD3 RID: 2771 RVA: 0x00069057 File Offset: 0x00067257
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_3D_Myst1") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_3D_Fog_Smoke : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AD4 RID: 2772 RVA: 0x00068F7C File Offset: 0x0006717C
+	// Token: 0x06000AD4 RID: 2772 RVA: 0x00069090 File Offset: 0x00067290
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -78,12 +78,12 @@ public class CameraFilterPack_3D_Fog_Smoke : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000AD5 RID: 2773 RVA: 0x0006917D File Offset: 0x0006737D
+	// Token: 0x06000AD5 RID: 2773 RVA: 0x00069291 File Offset: 0x00067491
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000AD6 RID: 2774 RVA: 0x0006917F File Offset: 0x0006737F
+	// Token: 0x06000AD6 RID: 2774 RVA: 0x00069293 File Offset: 0x00067493
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

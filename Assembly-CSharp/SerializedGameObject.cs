@@ -1,30 +1,30 @@
 ﻿using System;
 
-// Token: 0x02000508 RID: 1288
+// Token: 0x02000509 RID: 1289
 [Serializable]
 public struct SerializedGameObject
 {
-	// Token: 0x040048E7 RID: 18663
+	// Token: 0x040048F7 RID: 18679
 	public bool ActiveInHierarchy;
 
-	// Token: 0x040048E8 RID: 18664
+	// Token: 0x040048F8 RID: 18680
 	public bool ActiveSelf;
 
-	// Token: 0x040048E9 RID: 18665
+	// Token: 0x040048F9 RID: 18681
 	public bool IsStatic;
 
-	// Token: 0x040048EA RID: 18666
+	// Token: 0x040048FA RID: 18682
 	public int Layer;
 
-	// Token: 0x040048EB RID: 18667
+	// Token: 0x040048FB RID: 18683
 	public string Tag;
 
-	// Token: 0x040048EC RID: 18668
+	// Token: 0x040048FC RID: 18684
 	public string Name;
 
-	// Token: 0x040048ED RID: 18669
+	// Token: 0x040048FD RID: 18685
 	public string ObjectID;
 
-	// Token: 0x040048EE RID: 18670
+	// Token: 0x040048FE RID: 18686
 	public SerializedComponent[] SerializedComponents;
 }

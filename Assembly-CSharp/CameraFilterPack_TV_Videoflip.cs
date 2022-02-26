@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_TV_Videoflip : MonoBehaviour
 {
 	// Token: 0x17000321 RID: 801
-	// (get) Token: 0x06001191 RID: 4497 RVA: 0x000885DC File Offset: 0x000867DC
+	// (get) Token: 0x06001191 RID: 4497 RVA: 0x000886F0 File Offset: 0x000868F0
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_TV_Videoflip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001192 RID: 4498 RVA: 0x00088610 File Offset: 0x00086810
+	// Token: 0x06001192 RID: 4498 RVA: 0x00088724 File Offset: 0x00086924
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/TV_Videoflip");
@@ -32,7 +32,7 @@ public class CameraFilterPack_TV_Videoflip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001193 RID: 4499 RVA: 0x00088634 File Offset: 0x00086834
+	// Token: 0x06001193 RID: 4499 RVA: 0x00088748 File Offset: 0x00086948
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -50,12 +50,12 @@ public class CameraFilterPack_TV_Videoflip : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06001194 RID: 4500 RVA: 0x000886D1 File Offset: 0x000868D1
+	// Token: 0x06001194 RID: 4500 RVA: 0x000887E5 File Offset: 0x000869E5
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001195 RID: 4501 RVA: 0x000886D3 File Offset: 0x000868D3
+	// Token: 0x06001195 RID: 4501 RVA: 0x000887E7 File Offset: 0x000869E7
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

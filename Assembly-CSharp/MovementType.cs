@@ -1,12 +1,12 @@
 ﻿using System;
 
-// Token: 0x020004C8 RID: 1224
+// Token: 0x020004C9 RID: 1225
 public enum MovementType
 {
-	// Token: 0x040043D8 RID: 17368
+	// Token: 0x040043E8 RID: 17384
 	Idle,
-	// Token: 0x040043D9 RID: 17369
+	// Token: 0x040043E9 RID: 17385
 	Walking,
-	// Token: 0x040043DA RID: 17370
+	// Token: 0x040043EA RID: 17386
 	Running
 }

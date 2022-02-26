@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x020002ED RID: 749
+// Token: 0x020002EE RID: 750
 public static class ConversationGlobals
 {
-	// Token: 0x06001577 RID: 5495 RVA: 0x000D9750 File Offset: 0x000D7950
+	// Token: 0x06001580 RID: 5504 RVA: 0x000DA034 File Offset: 0x000D8234
 	public static bool GetTopicDiscovered(int topicID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_TopicDiscovered_" + topicID.ToString());
 	}
 
-	// Token: 0x06001578 RID: 5496 RVA: 0x000D9788 File Offset: 0x000D7988
+	// Token: 0x06001581 RID: 5505 RVA: 0x000DA06C File Offset: 0x000D826C
 	public static void SetTopicDiscovered(int topicID, bool value)
 	{
 		string text = topicID.ToString();
@@ -18,13 +18,13 @@ public static class ConversationGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_TopicDiscovered_" + text, value);
 	}
 
-	// Token: 0x06001579 RID: 5497 RVA: 0x000D97E4 File Offset: 0x000D79E4
+	// Token: 0x06001582 RID: 5506 RVA: 0x000DA0C8 File Offset: 0x000D82C8
 	public static int[] KeysOfTopicDiscovered()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_TopicDiscovered_");
 	}
 
-	// Token: 0x0600157A RID: 5498 RVA: 0x000D9814 File Offset: 0x000D7A14
+	// Token: 0x06001583 RID: 5507 RVA: 0x000DA0F8 File Offset: 0x000D82F8
 	public static bool GetTopicLearnedByStudent(int topicID, int studentID)
 	{
 		return GlobalsHelper.GetBool(string.Concat(new string[]
@@ -38,7 +38,7 @@ public static class ConversationGlobals
 		}));
 	}
 
-	// Token: 0x0600157B RID: 5499 RVA: 0x000D9870 File Offset: 0x000D7A70
+	// Token: 0x06001584 RID: 5508 RVA: 0x000DA154 File Offset: 0x000D8354
 	public static void SetTopicLearnedByStudent(int topicID, int studentID, bool value)
 	{
 		string text = topicID.ToString();
@@ -55,7 +55,7 @@ public static class ConversationGlobals
 		}), value);
 	}
 
-	// Token: 0x0600157C RID: 5500 RVA: 0x000D98FC File Offset: 0x000D7AFC
+	// Token: 0x06001585 RID: 5509 RVA: 0x000DA1E0 File Offset: 0x000D83E0
 	public static IntAndIntPair[] KeysOfTopicLearnedByStudent()
 	{
 		KeyValuePair<int, int>[] keys = KeysHelper.GetKeys<int, int>("Profile_" + GameGlobals.Profile.ToString() + "_TopicLearnedByStudent_");
@@ -68,7 +68,7 @@ public static class ConversationGlobals
 		return array;
 	}
 
-	// Token: 0x0600157D RID: 5501 RVA: 0x000D9964 File Offset: 0x000D7B64
+	// Token: 0x06001586 RID: 5510 RVA: 0x000DA248 File Offset: 0x000D8448
 	public static void DeleteAll()
 	{
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_TopicDiscovered_", ConversationGlobals.KeysOfTopicDiscovered());
@@ -87,9 +87,9 @@ public static class ConversationGlobals
 		KeysHelper.Delete("Profile_" + GameGlobals.Profile.ToString() + "_TopicLearnedByStudent_");
 	}
 
-	// Token: 0x040021B7 RID: 8631
+	// Token: 0x040021C6 RID: 8646
 	private const string Str_TopicDiscovered = "TopicDiscovered_";
 
-	// Token: 0x040021B8 RID: 8632
+	// Token: 0x040021C7 RID: 8647
 	private const string Str_TopicLearnedByStudent = "TopicLearnedByStudent_";
 }

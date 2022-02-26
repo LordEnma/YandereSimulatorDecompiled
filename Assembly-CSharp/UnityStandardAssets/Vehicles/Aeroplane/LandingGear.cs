@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Aeroplane
 {
-	// Token: 0x02000534 RID: 1332
+	// Token: 0x02000535 RID: 1333
 	public class LandingGear : MonoBehaviour
 	{
-		// Token: 0x060021F4 RID: 8692 RVA: 0x001ED068 File Offset: 0x001EB268
+		// Token: 0x060021FD RID: 8701 RVA: 0x001EDC48 File Offset: 0x001EBE48
 		private void Start()
 		{
 			this.m_Plane = base.GetComponent<AeroplaneController>();
@@ -14,7 +14,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_Rigidbody = base.GetComponent<Rigidbody>();
 		}
 
-		// Token: 0x060021F5 RID: 8693 RVA: 0x001ED090 File Offset: 0x001EB290
+		// Token: 0x060021FE RID: 8702 RVA: 0x001EDC70 File Offset: 0x001EBE70
 		private void Update()
 		{
 			if (this.m_State == LandingGear.GearState.Lowered && this.m_Plane.Altitude > this.raiseAtAltitude && this.m_Rigidbody.velocity.y > 0f)
@@ -28,30 +28,30 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_Animator.SetInteger("GearState", (int)this.m_State);
 		}
 
-		// Token: 0x04004A18 RID: 18968
+		// Token: 0x04004A28 RID: 18984
 		public float raiseAtAltitude = 40f;
 
-		// Token: 0x04004A19 RID: 18969
+		// Token: 0x04004A29 RID: 18985
 		public float lowerAtAltitude = 40f;
 
-		// Token: 0x04004A1A RID: 18970
+		// Token: 0x04004A2A RID: 18986
 		private LandingGear.GearState m_State = LandingGear.GearState.Lowered;
 
-		// Token: 0x04004A1B RID: 18971
+		// Token: 0x04004A2B RID: 18987
 		private Animator m_Animator;
 
-		// Token: 0x04004A1C RID: 18972
+		// Token: 0x04004A2C RID: 18988
 		private Rigidbody m_Rigidbody;
 
-		// Token: 0x04004A1D RID: 18973
+		// Token: 0x04004A2D RID: 18989
 		private AeroplaneController m_Plane;
 
-		// Token: 0x02000682 RID: 1666
+		// Token: 0x02000685 RID: 1669
 		private enum GearState
 		{
-			// Token: 0x04004FD8 RID: 20440
+			// Token: 0x04004FED RID: 20461
 			Raised = -1,
-			// Token: 0x04004FD9 RID: 20441
+			// Token: 0x04004FEE RID: 20462
 			Lowered = 1
 		}
 	}

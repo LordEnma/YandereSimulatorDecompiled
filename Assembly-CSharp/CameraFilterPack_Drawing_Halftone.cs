@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Drawing_Halftone : MonoBehaviour
 {
 	// Token: 0x17000291 RID: 657
-	// (get) Token: 0x06000E0D RID: 3597 RVA: 0x00078999 File Offset: 0x00076B99
+	// (get) Token: 0x06000E0D RID: 3597 RVA: 0x00078AAD File Offset: 0x00076CAD
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Drawing_Halftone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E0E RID: 3598 RVA: 0x000789CD File Offset: 0x00076BCD
+	// Token: 0x06000E0E RID: 3598 RVA: 0x00078AE1 File Offset: 0x00076CE1
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Drawing_Halftone");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Drawing_Halftone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E0F RID: 3599 RVA: 0x000789F0 File Offset: 0x00076BF0
+	// Token: 0x06000E0F RID: 3599 RVA: 0x00078B04 File Offset: 0x00076D04
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -51,12 +51,12 @@ public class CameraFilterPack_Drawing_Halftone : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000E10 RID: 3600 RVA: 0x00078A8C File Offset: 0x00076C8C
+	// Token: 0x06000E10 RID: 3600 RVA: 0x00078BA0 File Offset: 0x00076DA0
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000E11 RID: 3601 RVA: 0x00078A8E File Offset: 0x00076C8E
+	// Token: 0x06000E11 RID: 3601 RVA: 0x00078BA2 File Offset: 0x00076DA2
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

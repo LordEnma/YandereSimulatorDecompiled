@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blur_Radial_Fast : MonoBehaviour
 {
 	// Token: 0x17000255 RID: 597
-	// (get) Token: 0x06000CA3 RID: 3235 RVA: 0x0007293B File Offset: 0x00070B3B
+	// (get) Token: 0x06000CA3 RID: 3235 RVA: 0x00072A4F File Offset: 0x00070C4F
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blur_Radial_Fast : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CA4 RID: 3236 RVA: 0x0007296F File Offset: 0x00070B6F
+	// Token: 0x06000CA4 RID: 3236 RVA: 0x00072A83 File Offset: 0x00070C83
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Blur_Radial_Fast");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Blur_Radial_Fast : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CA5 RID: 3237 RVA: 0x00072990 File Offset: 0x00070B90
+	// Token: 0x06000CA5 RID: 3237 RVA: 0x00072AA4 File Offset: 0x00070CA4
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Blur_Radial_Fast : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000CA6 RID: 3238 RVA: 0x00072A88 File Offset: 0x00070C88
+	// Token: 0x06000CA6 RID: 3238 RVA: 0x00072B9C File Offset: 0x00070D9C
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000CA7 RID: 3239 RVA: 0x00072A8A File Offset: 0x00070C8A
+	// Token: 0x06000CA7 RID: 3239 RVA: 0x00072B9E File Offset: 0x00070D9E
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

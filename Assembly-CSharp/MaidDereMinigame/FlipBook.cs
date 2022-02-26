@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005A3 RID: 1443
+	// Token: 0x020005A4 RID: 1444
 	public class FlipBook : MonoBehaviour
 	{
 		// Token: 0x1700052A RID: 1322
-		// (get) Token: 0x06002475 RID: 9333 RVA: 0x001FACF3 File Offset: 0x001F8EF3
+		// (get) Token: 0x0600247E RID: 9342 RVA: 0x001FB8D3 File Offset: 0x001F9AD3
 		public static FlipBook Instance
 		{
 			get
@@ -22,13 +22,13 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002476 RID: 9334 RVA: 0x001FAD11 File Offset: 0x001F8F11
+		// Token: 0x0600247F RID: 9343 RVA: 0x001FB8F1 File Offset: 0x001F9AF1
 		private void Awake()
 		{
 			base.StartCoroutine(this.OpenBook());
 		}
 
-		// Token: 0x06002477 RID: 9335 RVA: 0x001FAD20 File Offset: 0x001F8F20
+		// Token: 0x06002480 RID: 9344 RVA: 0x001FB900 File Offset: 0x001F9B00
 		private IEnumerator OpenBook()
 		{
 			yield return new WaitForSeconds(1f);
@@ -36,7 +36,7 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x06002478 RID: 9336 RVA: 0x001FAD2F File Offset: 0x001F8F2F
+		// Token: 0x06002481 RID: 9345 RVA: 0x001FB90F File Offset: 0x001F9B0F
 		private void Update()
 		{
 			if (this.stopInputs)
@@ -49,20 +49,20 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002479 RID: 9337 RVA: 0x001FAD5E File Offset: 0x001F8F5E
+		// Token: 0x06002482 RID: 9346 RVA: 0x001FB93E File Offset: 0x001F9B3E
 		public void StopInputs()
 		{
 			this.stopInputs = true;
 		}
 
-		// Token: 0x0600247A RID: 9338 RVA: 0x001FAD67 File Offset: 0x001F8F67
+		// Token: 0x06002483 RID: 9347 RVA: 0x001FB947 File Offset: 0x001F9B47
 		public void FlipToPage(int page)
 		{
 			SFXController.PlaySound(SFXController.Sounds.PageTurn);
 			base.StartCoroutine(this.FlipToPageRoutine(page));
 		}
 
-		// Token: 0x0600247B RID: 9339 RVA: 0x001FAD7D File Offset: 0x001F8F7D
+		// Token: 0x06002484 RID: 9348 RVA: 0x001FB95D File Offset: 0x001F9B5D
 		private IEnumerator FlipToPageRoutine(int page)
 		{
 			bool flag = this.curPage < page;
@@ -96,19 +96,19 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x04004C4C RID: 19532
+		// Token: 0x04004C5C RID: 19548
 		private static FlipBook instance;
 
-		// Token: 0x04004C4D RID: 19533
+		// Token: 0x04004C5D RID: 19549
 		public List<FlipBookPage> flipBookPages;
 
-		// Token: 0x04004C4E RID: 19534
+		// Token: 0x04004C5E RID: 19550
 		private int curPage;
 
-		// Token: 0x04004C4F RID: 19535
+		// Token: 0x04004C5F RID: 19551
 		private bool canGoBack;
 
-		// Token: 0x04004C50 RID: 19536
+		// Token: 0x04004C60 RID: 19552
 		private bool stopInputs;
 	}
 }

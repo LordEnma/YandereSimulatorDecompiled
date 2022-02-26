@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000497 RID: 1175
+// Token: 0x02000498 RID: 1176
 [Serializable]
 public class DateAndTime
 {
-	// Token: 0x06001F47 RID: 8007 RVA: 0x001B9517 File Offset: 0x001B7717
+	// Token: 0x06001F50 RID: 8016 RVA: 0x001BA063 File Offset: 0x001B8263
 	public DateAndTime(int week, DayOfWeek weekday, Clock clock)
 	{
 		this.week = week;
@@ -14,7 +14,7 @@ public class DateAndTime
 	}
 
 	// Token: 0x170004BB RID: 1211
-	// (get) Token: 0x06001F48 RID: 8008 RVA: 0x001B9534 File Offset: 0x001B7734
+	// (get) Token: 0x06001F51 RID: 8017 RVA: 0x001BA080 File Offset: 0x001B8280
 	public int Week
 	{
 		get
@@ -24,7 +24,7 @@ public class DateAndTime
 	}
 
 	// Token: 0x170004BC RID: 1212
-	// (get) Token: 0x06001F49 RID: 8009 RVA: 0x001B953C File Offset: 0x001B773C
+	// (get) Token: 0x06001F52 RID: 8018 RVA: 0x001BA088 File Offset: 0x001B8288
 	public DayOfWeek Weekday
 	{
 		get
@@ -34,7 +34,7 @@ public class DateAndTime
 	}
 
 	// Token: 0x170004BD RID: 1213
-	// (get) Token: 0x06001F4A RID: 8010 RVA: 0x001B9544 File Offset: 0x001B7744
+	// (get) Token: 0x06001F53 RID: 8019 RVA: 0x001BA090 File Offset: 0x001B8290
 	public Clock Clock
 	{
 		get
@@ -44,7 +44,7 @@ public class DateAndTime
 	}
 
 	// Token: 0x170004BE RID: 1214
-	// (get) Token: 0x06001F4B RID: 8011 RVA: 0x001B954C File Offset: 0x001B774C
+	// (get) Token: 0x06001F54 RID: 8020 RVA: 0x001BA098 File Offset: 0x001B8298
 	public int TotalSeconds
 	{
 		get
@@ -56,13 +56,13 @@ public class DateAndTime
 		}
 	}
 
-	// Token: 0x06001F4C RID: 8012 RVA: 0x001B9582 File Offset: 0x001B7782
+	// Token: 0x06001F55 RID: 8021 RVA: 0x001BA0CE File Offset: 0x001B82CE
 	public void IncrementWeek()
 	{
 		this.week++;
 	}
 
-	// Token: 0x06001F4D RID: 8013 RVA: 0x001B9594 File Offset: 0x001B7794
+	// Token: 0x06001F56 RID: 8022 RVA: 0x001BA0E0 File Offset: 0x001B82E0
 	public void IncrementWeekday()
 	{
 		int num = (int)this.weekday;
@@ -75,7 +75,7 @@ public class DateAndTime
 		this.weekday = (DayOfWeek)num;
 	}
 
-	// Token: 0x06001F4E RID: 8014 RVA: 0x001B95C0 File Offset: 0x001B77C0
+	// Token: 0x06001F57 RID: 8023 RVA: 0x001BA10C File Offset: 0x001B830C
 	public void Tick(float dt)
 	{
 		int hours = this.clock.Hours24;
@@ -86,15 +86,15 @@ public class DateAndTime
 		}
 	}
 
-	// Token: 0x04004176 RID: 16758
+	// Token: 0x04004186 RID: 16774
 	[SerializeField]
 	private int week;
 
-	// Token: 0x04004177 RID: 16759
+	// Token: 0x04004187 RID: 16775
 	[SerializeField]
 	private DayOfWeek weekday;
 
-	// Token: 0x04004178 RID: 16760
+	// Token: 0x04004188 RID: 16776
 	[SerializeField]
 	private Clock clock;
 }

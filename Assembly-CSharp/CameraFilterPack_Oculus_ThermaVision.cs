@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Oculus_ThermaVision : MonoBehaviour
 {
 	// Token: 0x170002F8 RID: 760
-	// (get) Token: 0x0600109A RID: 4250 RVA: 0x00084425 File Offset: 0x00082625
+	// (get) Token: 0x0600109A RID: 4250 RVA: 0x00084539 File Offset: 0x00082739
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Oculus_ThermaVision : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600109B RID: 4251 RVA: 0x00084459 File Offset: 0x00082659
+	// Token: 0x0600109B RID: 4251 RVA: 0x0008456D File Offset: 0x0008276D
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Oculus_ThermaVision");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Oculus_ThermaVision : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600109C RID: 4252 RVA: 0x0008447C File Offset: 0x0008267C
+	// Token: 0x0600109C RID: 4252 RVA: 0x00084590 File Offset: 0x00082790
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Oculus_ThermaVision : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x0600109D RID: 4253 RVA: 0x00084574 File Offset: 0x00082774
+	// Token: 0x0600109D RID: 4253 RVA: 0x00084688 File Offset: 0x00082888
 	private void Update()
 	{
 	}
 
-	// Token: 0x0600109E RID: 4254 RVA: 0x00084576 File Offset: 0x00082776
+	// Token: 0x0600109E RID: 4254 RVA: 0x0008468A File Offset: 0x0008288A
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

@@ -1,19 +1,19 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002AA RID: 682
+// Token: 0x020002AB RID: 683
 [Serializable]
 public class Club
 {
-	// Token: 0x0600143E RID: 5182 RVA: 0x000C56B2 File Offset: 0x000C38B2
+	// Token: 0x06001447 RID: 5191 RVA: 0x000C5F96 File Offset: 0x000C4196
 	public Club(ClubType type)
 	{
 		this.type = type;
 	}
 
 	// Token: 0x17000362 RID: 866
-	// (get) Token: 0x0600143F RID: 5183 RVA: 0x000C56C1 File Offset: 0x000C38C1
-	// (set) Token: 0x06001440 RID: 5184 RVA: 0x000C56C9 File Offset: 0x000C38C9
+	// (get) Token: 0x06001448 RID: 5192 RVA: 0x000C5FA5 File Offset: 0x000C41A5
+	// (set) Token: 0x06001449 RID: 5193 RVA: 0x000C5FAD File Offset: 0x000C41AD
 	public ClubType Type
 	{
 		get
@@ -26,11 +26,11 @@ public class Club
 		}
 	}
 
-	// Token: 0x04001EF6 RID: 7926
+	// Token: 0x04001F05 RID: 7941
 	[SerializeField]
 	private ClubType type;
 
-	// Token: 0x04001EF7 RID: 7927
+	// Token: 0x04001F06 RID: 7942
 	public static readonly ClubTypeAndStringDictionary ClubNames = new ClubTypeAndStringDictionary
 	{
 		{
@@ -103,7 +103,7 @@ public class Club
 		}
 	};
 
-	// Token: 0x04001EF8 RID: 7928
+	// Token: 0x04001F07 RID: 7943
 	public static readonly IntAndStringDictionary TeacherClubNames = new IntAndStringDictionary
 	{
 		{

@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
-// Token: 0x0200038A RID: 906
+// Token: 0x0200038B RID: 907
 public class OsanaWarningScript : MonoBehaviour
 {
-	// Token: 0x06001A34 RID: 6708 RVA: 0x0011610C File Offset: 0x0011430C
+	// Token: 0x06001A3D RID: 6717 RVA: 0x00116B20 File Offset: 0x00114D20
 	private void Start()
 	{
 		this.Darkness.color = new Color(0f, 0f, 0f, 1f);
@@ -25,7 +25,7 @@ public class OsanaWarningScript : MonoBehaviour
 		this.Profile.bloom.settings = settings3;
 	}
 
-	// Token: 0x06001A35 RID: 6709 RVA: 0x00116240 File Offset: 0x00114440
+	// Token: 0x06001A3E RID: 6718 RVA: 0x00116C54 File Offset: 0x00114E54
 	private void Update()
 	{
 		if (this.FadeOut)
@@ -51,24 +51,24 @@ public class OsanaWarningScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A36 RID: 6710 RVA: 0x001162EC File Offset: 0x001144EC
+	// Token: 0x06001A3F RID: 6719 RVA: 0x00116D00 File Offset: 0x00114F00
 	private void LateUpdate()
 	{
 		this.RightHand.localEulerAngles += new Vector3(UnityEngine.Random.Range(1f, -1f), UnityEngine.Random.Range(1f, -1f), UnityEngine.Random.Range(1f, -1f));
 	}
 
-	// Token: 0x04002AD2 RID: 10962
+	// Token: 0x04002AE2 RID: 10978
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04002AD3 RID: 10963
+	// Token: 0x04002AE3 RID: 10979
 	public Transform RightHand;
 
-	// Token: 0x04002AD4 RID: 10964
+	// Token: 0x04002AE4 RID: 10980
 	public UISprite Darkness;
 
-	// Token: 0x04002AD5 RID: 10965
+	// Token: 0x04002AE5 RID: 10981
 	public float Alpha = 1f;
 
-	// Token: 0x04002AD6 RID: 10966
+	// Token: 0x04002AE6 RID: 10982
 	public bool FadeOut;
 }

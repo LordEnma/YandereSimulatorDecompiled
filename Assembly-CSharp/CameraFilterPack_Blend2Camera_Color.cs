@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blend2Camera_Color : MonoBehaviour
 {
 	// Token: 0x1700022C RID: 556
-	// (get) Token: 0x06000B72 RID: 2930 RVA: 0x0006CD64 File Offset: 0x0006AF64
+	// (get) Token: 0x06000B72 RID: 2930 RVA: 0x0006CE78 File Offset: 0x0006B078
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blend2Camera_Color : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B73 RID: 2931 RVA: 0x0006CD98 File Offset: 0x0006AF98
+	// Token: 0x06000B73 RID: 2931 RVA: 0x0006CEAC File Offset: 0x0006B0AC
 	private void Start()
 	{
 		if (this.Camera2 != null)
@@ -37,7 +37,7 @@ public class CameraFilterPack_Blend2Camera_Color : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B74 RID: 2932 RVA: 0x0006CDFC File Offset: 0x0006AFFC
+	// Token: 0x06000B74 RID: 2932 RVA: 0x0006CF10 File Offset: 0x0006B110
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -61,7 +61,7 @@ public class CameraFilterPack_Blend2Camera_Color : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B75 RID: 2933 RVA: 0x0006CEEC File Offset: 0x0006B0EC
+	// Token: 0x06000B75 RID: 2933 RVA: 0x0006D000 File Offset: 0x0006B200
 	private void OnValidate()
 	{
 		if (this.Camera2 != null)
@@ -71,12 +71,12 @@ public class CameraFilterPack_Blend2Camera_Color : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B76 RID: 2934 RVA: 0x0006CF24 File Offset: 0x0006B124
+	// Token: 0x06000B76 RID: 2934 RVA: 0x0006D038 File Offset: 0x0006B238
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B77 RID: 2935 RVA: 0x0006CF26 File Offset: 0x0006B126
+	// Token: 0x06000B77 RID: 2935 RVA: 0x0006D03A File Offset: 0x0006B23A
 	private void OnEnable()
 	{
 		if (this.Camera2 != null)
@@ -86,7 +86,7 @@ public class CameraFilterPack_Blend2Camera_Color : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B78 RID: 2936 RVA: 0x0006CF5E File Offset: 0x0006B15E
+	// Token: 0x06000B78 RID: 2936 RVA: 0x0006D072 File Offset: 0x0006B272
 	private void OnDisable()
 	{
 		if (this.Camera2 != null)

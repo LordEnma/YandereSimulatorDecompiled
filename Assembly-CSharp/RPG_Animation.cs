@@ -246,43 +246,43 @@ public class RPG_Animation : MonoBehaviour
 	// Token: 0x04000809 RID: 2057
 	public RPG_Animation.CharacterState currentState;
 
-	// Token: 0x02000646 RID: 1606
+	// Token: 0x02000647 RID: 1607
 	public enum CharacterMoveDirection
 	{
-		// Token: 0x04004E90 RID: 20112
+		// Token: 0x04004EA0 RID: 20128
 		None,
-		// Token: 0x04004E91 RID: 20113
+		// Token: 0x04004EA1 RID: 20129
 		Forward,
-		// Token: 0x04004E92 RID: 20114
+		// Token: 0x04004EA2 RID: 20130
 		Backward,
-		// Token: 0x04004E93 RID: 20115
+		// Token: 0x04004EA3 RID: 20131
 		StrafeLeft,
-		// Token: 0x04004E94 RID: 20116
+		// Token: 0x04004EA4 RID: 20132
 		StrafeRight,
-		// Token: 0x04004E95 RID: 20117
+		// Token: 0x04004EA5 RID: 20133
 		StrafeForwardLeft,
-		// Token: 0x04004E96 RID: 20118
+		// Token: 0x04004EA6 RID: 20134
 		StrafeForwardRight,
-		// Token: 0x04004E97 RID: 20119
+		// Token: 0x04004EA7 RID: 20135
 		StrafeBackLeft,
-		// Token: 0x04004E98 RID: 20120
+		// Token: 0x04004EA8 RID: 20136
 		StrafeBackRight
 	}
 
-	// Token: 0x02000647 RID: 1607
+	// Token: 0x02000648 RID: 1608
 	public enum CharacterState
 	{
-		// Token: 0x04004E9A RID: 20122
+		// Token: 0x04004EAA RID: 20138
 		Idle,
-		// Token: 0x04004E9B RID: 20123
+		// Token: 0x04004EAB RID: 20139
 		Walk,
-		// Token: 0x04004E9C RID: 20124
+		// Token: 0x04004EAC RID: 20140
 		WalkBack,
-		// Token: 0x04004E9D RID: 20125
+		// Token: 0x04004EAD RID: 20141
 		StrafeLeft,
-		// Token: 0x04004E9E RID: 20126
+		// Token: 0x04004EAE RID: 20142
 		StrafeRight,
-		// Token: 0x04004E9F RID: 20127
+		// Token: 0x04004EAF RID: 20143
 		Jump
 	}
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_EyesVision_2 : MonoBehaviour
 {
 	// Token: 0x170002AB RID: 683
-	// (get) Token: 0x06000EAA RID: 3754 RVA: 0x0007B050 File Offset: 0x00079250
+	// (get) Token: 0x06000EAA RID: 3754 RVA: 0x0007B164 File Offset: 0x00079364
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_EyesVision_2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000EAB RID: 3755 RVA: 0x0007B084 File Offset: 0x00079284
+	// Token: 0x06000EAB RID: 3755 RVA: 0x0007B198 File Offset: 0x00079398
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_eyes_vision_2") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_EyesVision_2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000EAC RID: 3756 RVA: 0x0007B0BC File Offset: 0x000792BC
+	// Token: 0x06000EAC RID: 3756 RVA: 0x0007B1D0 File Offset: 0x000793D0
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -55,12 +55,12 @@ public class CameraFilterPack_EyesVision_2 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000EAD RID: 3757 RVA: 0x0007B19D File Offset: 0x0007939D
+	// Token: 0x06000EAD RID: 3757 RVA: 0x0007B2B1 File Offset: 0x000794B1
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000EAE RID: 3758 RVA: 0x0007B19F File Offset: 0x0007939F
+	// Token: 0x06000EAE RID: 3758 RVA: 0x0007B2B3 File Offset: 0x000794B3
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

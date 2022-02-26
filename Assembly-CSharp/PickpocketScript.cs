@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003A7 RID: 935
+// Token: 0x020003A8 RID: 936
 public class PickpocketScript : MonoBehaviour
 {
-	// Token: 0x06001AAD RID: 6829 RVA: 0x00120F6C File Offset: 0x0011F16C
+	// Token: 0x06001AB6 RID: 6838 RVA: 0x00121980 File Offset: 0x0011FB80
 	private void Start()
 	{
 		if (this.Student.StudentID != 71)
@@ -29,7 +29,7 @@ public class PickpocketScript : MonoBehaviour
 		this.NotNurse = true;
 	}
 
-	// Token: 0x06001AAE RID: 6830 RVA: 0x0012103C File Offset: 0x0011F23C
+	// Token: 0x06001AB7 RID: 6839 RVA: 0x00121A50 File Offset: 0x0011FC50
 	private void Update()
 	{
 		if (this.Prompt.transform.parent != null)
@@ -152,7 +152,7 @@ public class PickpocketScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AAF RID: 6831 RVA: 0x001215C0 File Offset: 0x0011F7C0
+	// Token: 0x06001AB8 RID: 6840 RVA: 0x00121FD4 File Offset: 0x001201D4
 	private void Punish()
 	{
 		Debug.Log("Punishing Yandere-chan for pickpocketing.");
@@ -179,7 +179,7 @@ public class PickpocketScript : MonoBehaviour
 		this.Student.PatrolTimer = 0f;
 	}
 
-	// Token: 0x06001AB0 RID: 6832 RVA: 0x00121704 File Offset: 0x0011F904
+	// Token: 0x06001AB9 RID: 6841 RVA: 0x00122118 File Offset: 0x00120318
 	private void Succeed()
 	{
 		if (this.ID == 1)
@@ -199,39 +199,39 @@ public class PickpocketScript : MonoBehaviour
 		this.Student.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 	}
 
-	// Token: 0x04002C6D RID: 11373
+	// Token: 0x04002C7D RID: 11389
 	public PickpocketMinigameScript PickpocketMinigame;
 
-	// Token: 0x04002C6E RID: 11374
+	// Token: 0x04002C7E RID: 11390
 	public StudentScript Student;
 
-	// Token: 0x04002C6F RID: 11375
+	// Token: 0x04002C7F RID: 11391
 	public PromptScript Prompt;
 
-	// Token: 0x04002C70 RID: 11376
+	// Token: 0x04002C80 RID: 11392
 	public UIPanel PickpocketPanel;
 
-	// Token: 0x04002C71 RID: 11377
+	// Token: 0x04002C81 RID: 11393
 	public UISprite TimeBar;
 
-	// Token: 0x04002C72 RID: 11378
+	// Token: 0x04002C82 RID: 11394
 	public Transform PickpocketSpot;
 
-	// Token: 0x04002C73 RID: 11379
+	// Token: 0x04002C83 RID: 11395
 	public GameObject AlarmDisc;
 
-	// Token: 0x04002C74 RID: 11380
+	// Token: 0x04002C84 RID: 11396
 	public GameObject Key;
 
-	// Token: 0x04002C75 RID: 11381
+	// Token: 0x04002C85 RID: 11397
 	public float Timer;
 
-	// Token: 0x04002C76 RID: 11382
+	// Token: 0x04002C86 RID: 11398
 	public int ID = 1;
 
-	// Token: 0x04002C77 RID: 11383
+	// Token: 0x04002C87 RID: 11399
 	public bool NotNurse;
 
-	// Token: 0x04002C78 RID: 11384
+	// Token: 0x04002C88 RID: 11400
 	public bool Test;
 }

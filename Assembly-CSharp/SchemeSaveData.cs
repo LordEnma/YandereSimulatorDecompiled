@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x02000402 RID: 1026
+// Token: 0x02000403 RID: 1027
 [Serializable]
 public class SchemeSaveData
 {
-	// Token: 0x06001C16 RID: 7190 RVA: 0x00146BF0 File Offset: 0x00144DF0
+	// Token: 0x06001C1F RID: 7199 RVA: 0x00147668 File Offset: 0x00145868
 	public static SchemeSaveData ReadFromGlobals()
 	{
 		SchemeSaveData schemeSaveData = new SchemeSaveData();
@@ -43,7 +43,7 @@ public class SchemeSaveData
 		return schemeSaveData;
 	}
 
-	// Token: 0x06001C17 RID: 7191 RVA: 0x00146D04 File Offset: 0x00144F04
+	// Token: 0x06001C20 RID: 7200 RVA: 0x0014777C File Offset: 0x0014597C
 	public static void WriteToGlobals(SchemeSaveData data)
 	{
 		SchemeGlobals.CurrentScheme = data.currentScheme;
@@ -70,24 +70,24 @@ public class SchemeSaveData
 		}
 	}
 
-	// Token: 0x04003150 RID: 12624
+	// Token: 0x04003160 RID: 12640
 	public int currentScheme;
 
-	// Token: 0x04003151 RID: 12625
+	// Token: 0x04003161 RID: 12641
 	public bool darkSecret;
 
-	// Token: 0x04003152 RID: 12626
+	// Token: 0x04003162 RID: 12642
 	public IntAndIntDictionary schemePreviousStage = new IntAndIntDictionary();
 
-	// Token: 0x04003153 RID: 12627
+	// Token: 0x04003163 RID: 12643
 	public IntAndIntDictionary schemeStage = new IntAndIntDictionary();
 
-	// Token: 0x04003154 RID: 12628
+	// Token: 0x04003164 RID: 12644
 	public IntHashSet schemeStatus = new IntHashSet();
 
-	// Token: 0x04003155 RID: 12629
+	// Token: 0x04003165 RID: 12645
 	public IntHashSet schemeUnlocked = new IntHashSet();
 
-	// Token: 0x04003156 RID: 12630
+	// Token: 0x04003166 RID: 12646
 	public IntHashSet servicePurchased = new IntHashSet();
 }

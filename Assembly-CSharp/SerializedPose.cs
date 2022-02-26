@@ -1,11 +1,11 @@
 ﻿using System;
 
-// Token: 0x020003B5 RID: 949
+// Token: 0x020003B6 RID: 950
 public struct SerializedPose
 {
-	// Token: 0x04002D4D RID: 11597
+	// Token: 0x04002D5D RID: 11613
 	public string CosmeticData;
 
-	// Token: 0x04002D4E RID: 11598
+	// Token: 0x04002D5E RID: 11614
 	public BoneData[] BoneData;
 }

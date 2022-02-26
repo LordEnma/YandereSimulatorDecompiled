@@ -3,16 +3,16 @@ using System.Collections.Generic;
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200057B RID: 1403
+	// Token: 0x0200057C RID: 1404
 	public sealed class MaterialFactory : IDisposable
 	{
-		// Token: 0x060023A5 RID: 9125 RVA: 0x001F50F1 File Offset: 0x001F32F1
+		// Token: 0x060023AE RID: 9134 RVA: 0x001F5CD1 File Offset: 0x001F3ED1
 		public MaterialFactory()
 		{
 			this.m_Materials = new Dictionary<string, Material>();
 		}
 
-		// Token: 0x060023A6 RID: 9126 RVA: 0x001F5104 File Offset: 0x001F3304
+		// Token: 0x060023AF RID: 9135 RVA: 0x001F5CE4 File Offset: 0x001F3EE4
 		public Material Get(string shaderName)
 		{
 			Material material;
@@ -33,7 +33,7 @@ namespace UnityEngine.PostProcessing
 			return material;
 		}
 
-		// Token: 0x060023A7 RID: 9127 RVA: 0x001F5180 File Offset: 0x001F3380
+		// Token: 0x060023B0 RID: 9136 RVA: 0x001F5D60 File Offset: 0x001F3F60
 		public void Dispose()
 		{
 			foreach (KeyValuePair<string, Material> keyValuePair in this.m_Materials)
@@ -43,7 +43,7 @@ namespace UnityEngine.PostProcessing
 			this.m_Materials.Clear();
 		}
 
-		// Token: 0x04004B44 RID: 19268
+		// Token: 0x04004B54 RID: 19284
 		private Dictionary<string, Material> m_Materials;
 	}
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Drawing_Crosshatch : MonoBehaviour
 {
 	// Token: 0x1700028E RID: 654
-	// (get) Token: 0x06000DFB RID: 3579 RVA: 0x000784EC File Offset: 0x000766EC
+	// (get) Token: 0x06000DFB RID: 3579 RVA: 0x00078600 File Offset: 0x00076800
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Drawing_Crosshatch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DFC RID: 3580 RVA: 0x00078520 File Offset: 0x00076720
+	// Token: 0x06000DFC RID: 3580 RVA: 0x00078634 File Offset: 0x00076834
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Drawing_Crosshatch");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Drawing_Crosshatch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DFD RID: 3581 RVA: 0x00078544 File Offset: 0x00076744
+	// Token: 0x06000DFD RID: 3581 RVA: 0x00078658 File Offset: 0x00076858
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -51,12 +51,12 @@ public class CameraFilterPack_Drawing_Crosshatch : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000DFE RID: 3582 RVA: 0x000785FA File Offset: 0x000767FA
+	// Token: 0x06000DFE RID: 3582 RVA: 0x0007870E File Offset: 0x0007690E
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000DFF RID: 3583 RVA: 0x000785FC File Offset: 0x000767FC
+	// Token: 0x06000DFF RID: 3583 RVA: 0x00078710 File Offset: 0x00076910
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

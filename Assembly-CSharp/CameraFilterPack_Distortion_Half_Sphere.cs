@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Distortion_Half_Sphere : MonoBehaviour
 {
 	// Token: 0x17000280 RID: 640
-	// (get) Token: 0x06000DA7 RID: 3495 RVA: 0x00076F94 File Offset: 0x00075194
+	// (get) Token: 0x06000DA7 RID: 3495 RVA: 0x000770A8 File Offset: 0x000752A8
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Distortion_Half_Sphere : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DA8 RID: 3496 RVA: 0x00076FC8 File Offset: 0x000751C8
+	// Token: 0x06000DA8 RID: 3496 RVA: 0x000770DC File Offset: 0x000752DC
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Distortion_Half_Sphere");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Distortion_Half_Sphere : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DA9 RID: 3497 RVA: 0x00076FEC File Offset: 0x000751EC
+	// Token: 0x06000DA9 RID: 3497 RVA: 0x00077100 File Offset: 0x00075300
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Distortion_Half_Sphere : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000DAA RID: 3498 RVA: 0x000770DD File Offset: 0x000752DD
+	// Token: 0x06000DAA RID: 3498 RVA: 0x000771F1 File Offset: 0x000753F1
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000DAB RID: 3499 RVA: 0x000770DF File Offset: 0x000752DF
+	// Token: 0x06000DAB RID: 3499 RVA: 0x000771F3 File Offset: 0x000753F3
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

@@ -106,21 +106,21 @@ public class UIButtonMessage : MonoBehaviour
 	// Token: 0x04000301 RID: 769
 	private bool mStarted;
 
-	// Token: 0x020005C4 RID: 1476
+	// Token: 0x020005C5 RID: 1477
 	[DoNotObfuscateNGUI]
 	public enum Trigger
 	{
-		// Token: 0x04004D12 RID: 19730
+		// Token: 0x04004D22 RID: 19746
 		OnClick,
-		// Token: 0x04004D13 RID: 19731
+		// Token: 0x04004D23 RID: 19747
 		OnMouseOver,
-		// Token: 0x04004D14 RID: 19732
+		// Token: 0x04004D24 RID: 19748
 		OnMouseOut,
-		// Token: 0x04004D15 RID: 19733
+		// Token: 0x04004D25 RID: 19749
 		OnPress,
-		// Token: 0x04004D16 RID: 19734
+		// Token: 0x04004D26 RID: 19750
 		OnRelease,
-		// Token: 0x04004D17 RID: 19735
+		// Token: 0x04004D27 RID: 19751
 		OnDoubleClick
 	}
 }

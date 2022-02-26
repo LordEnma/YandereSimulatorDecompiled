@@ -2,10 +2,10 @@
 using UnityEngine;
 using XInputDotNetPure;
 
-// Token: 0x0200030F RID: 783
+// Token: 0x02000310 RID: 784
 public class HeartbrokenScript : MonoBehaviour
 {
-	// Token: 0x06001843 RID: 6211 RVA: 0x000E7C58 File Offset: 0x000E5E58
+	// Token: 0x0600184C RID: 6220 RVA: 0x000E853C File Offset: 0x000E673C
 	private void Start()
 	{
 		this.Week = DateGlobals.Week;
@@ -247,7 +247,7 @@ public class HeartbrokenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001844 RID: 6212 RVA: 0x000E8A94 File Offset: 0x000E6C94
+	// Token: 0x0600184D RID: 6221 RVA: 0x000E9378 File Offset: 0x000E7578
 	private void Update()
 	{
 		if (Input.GetKeyDown("m"))
@@ -367,7 +367,7 @@ public class HeartbrokenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001845 RID: 6213 RVA: 0x000E91B4 File Offset: 0x000E73B4
+	// Token: 0x0600184E RID: 6222 RVA: 0x000E9A98 File Offset: 0x000E7C98
 	private void UpdateSubtitle()
 	{
 		StudentScript component = this.Yandere.Senpai.GetComponent<StudentScript>();
@@ -422,7 +422,7 @@ public class HeartbrokenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001846 RID: 6214 RVA: 0x000E9380 File Offset: 0x000E7580
+	// Token: 0x0600184F RID: 6223 RVA: 0x000E9C64 File Offset: 0x000E7E64
 	public void Darken()
 	{
 		for (int i = 0; i < this.Letters.Length; i++)
@@ -443,120 +443,120 @@ public class HeartbrokenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040023B1 RID: 9137
+	// Token: 0x040023C0 RID: 9152
 	public ShoulderCameraScript ShoulderCamera;
 
-	// Token: 0x040023B2 RID: 9138
+	// Token: 0x040023C1 RID: 9153
 	public HeartbrokenCursorScript Cursor;
 
-	// Token: 0x040023B3 RID: 9139
+	// Token: 0x040023C2 RID: 9154
 	public CounselorScript Counselor;
 
-	// Token: 0x040023B4 RID: 9140
+	// Token: 0x040023C3 RID: 9155
 	public YandereScript Yandere;
 
-	// Token: 0x040023B5 RID: 9141
+	// Token: 0x040023C4 RID: 9156
 	public ClockScript Clock;
 
-	// Token: 0x040023B6 RID: 9142
+	// Token: 0x040023C5 RID: 9157
 	public AudioListener Listener;
 
-	// Token: 0x040023B7 RID: 9143
+	// Token: 0x040023C6 RID: 9158
 	public AudioClip[] NoticedClips;
 
-	// Token: 0x040023B8 RID: 9144
+	// Token: 0x040023C7 RID: 9159
 	public string[] NoticedLines;
 
-	// Token: 0x040023B9 RID: 9145
+	// Token: 0x040023C8 RID: 9160
 	public UILabel[] Letters;
 
-	// Token: 0x040023BA RID: 9146
+	// Token: 0x040023C9 RID: 9161
 	public UILabel[] Options;
 
-	// Token: 0x040023BB RID: 9147
+	// Token: 0x040023CA RID: 9162
 	public Vector3[] Origins;
 
-	// Token: 0x040023BC RID: 9148
+	// Token: 0x040023CB RID: 9163
 	public UISprite Background;
 
-	// Token: 0x040023BD RID: 9149
+	// Token: 0x040023CC RID: 9164
 	public UISprite Ground;
 
-	// Token: 0x040023BE RID: 9150
+	// Token: 0x040023CD RID: 9165
 	public Camera ConfessionUICamera;
 
-	// Token: 0x040023BF RID: 9151
+	// Token: 0x040023CE RID: 9166
 	public Camera MainCamera;
 
-	// Token: 0x040023C0 RID: 9152
+	// Token: 0x040023CF RID: 9167
 	public UILabel Subtitle;
 
-	// Token: 0x040023C1 RID: 9153
+	// Token: 0x040023D0 RID: 9168
 	public GameObject SNAP;
 
-	// Token: 0x040023C2 RID: 9154
+	// Token: 0x040023D1 RID: 9169
 	public AudioClip EightiesGameOver;
 
-	// Token: 0x040023C3 RID: 9155
+	// Token: 0x040023D2 RID: 9170
 	public AudioClip Slam;
 
-	// Token: 0x040023C4 RID: 9156
+	// Token: 0x040023D3 RID: 9171
 	public bool Headmaster;
 
-	// Token: 0x040023C5 RID: 9157
+	// Token: 0x040023D4 RID: 9172
 	public bool Confessed;
 
-	// Token: 0x040023C6 RID: 9158
+	// Token: 0x040023D5 RID: 9173
 	public bool Arrested;
 
-	// Token: 0x040023C7 RID: 9159
+	// Token: 0x040023D6 RID: 9174
 	public bool Exposed;
 
-	// Token: 0x040023C8 RID: 9160
+	// Token: 0x040023D7 RID: 9175
 	public bool Noticed = true;
 
-	// Token: 0x040023C9 RID: 9161
+	// Token: 0x040023D8 RID: 9176
 	public bool Freeze;
 
-	// Token: 0x040023CA RID: 9162
+	// Token: 0x040023D9 RID: 9177
 	public bool NoSnap;
 
-	// Token: 0x040023CB RID: 9163
+	// Token: 0x040023DA RID: 9178
 	public bool Caught;
 
-	// Token: 0x040023CC RID: 9164
+	// Token: 0x040023DB RID: 9179
 	public float VibrationTimer;
 
-	// Token: 0x040023CD RID: 9165
+	// Token: 0x040023DC RID: 9180
 	public float AudioTimer;
 
-	// Token: 0x040023CE RID: 9166
+	// Token: 0x040023DD RID: 9181
 	public float Timer;
 
-	// Token: 0x040023CF RID: 9167
+	// Token: 0x040023DE RID: 9182
 	public int Phase = 1;
 
-	// Token: 0x040023D0 RID: 9168
+	// Token: 0x040023DF RID: 9183
 	public int Week;
 
-	// Token: 0x040023D1 RID: 9169
+	// Token: 0x040023E0 RID: 9184
 	public int LetterID;
 
-	// Token: 0x040023D2 RID: 9170
+	// Token: 0x040023E1 RID: 9185
 	public int ShakeID;
 
-	// Token: 0x040023D3 RID: 9171
+	// Token: 0x040023E2 RID: 9186
 	public int GrowID;
 
-	// Token: 0x040023D4 RID: 9172
+	// Token: 0x040023E3 RID: 9187
 	public int StopID;
 
-	// Token: 0x040023D5 RID: 9173
+	// Token: 0x040023E4 RID: 9188
 	public int ID;
 
-	// Token: 0x040023D6 RID: 9174
+	// Token: 0x040023E5 RID: 9189
 	public float[] TargetAlpha;
 
-	// Token: 0x040023D7 RID: 9175
+	// Token: 0x040023E6 RID: 9190
 	public Font Arial;
 }

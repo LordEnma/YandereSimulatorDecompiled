@@ -303,7 +303,7 @@ public class UIWrapContent : MonoBehaviour
 	// Token: 0x04000474 RID: 1140
 	protected List<Transform> mChildren = new List<Transform>();
 
-	// Token: 0x020005E1 RID: 1505
-	// (Invoke) Token: 0x06002527 RID: 9511
+	// Token: 0x020005E2 RID: 1506
+	// (Invoke) Token: 0x06002530 RID: 9520
 	public delegate void OnInitializeItem(GameObject go, int wrapIndex, int realIndex);
 }

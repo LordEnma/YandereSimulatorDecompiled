@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003A8 RID: 936
+// Token: 0x020003A9 RID: 937
 public class PlaceholderStudentScript : MonoBehaviour
 {
-	// Token: 0x06001AB2 RID: 6834 RVA: 0x00121816 File Offset: 0x0011FA16
+	// Token: 0x06001ABB RID: 6843 RVA: 0x0012222A File Offset: 0x0012042A
 	private void Start()
 	{
 		this.Target = UnityEngine.Object.Instantiate<GameObject>(this.EmptyGameObject).transform;
 		this.ChooseNewDestination();
 	}
 
-	// Token: 0x06001AB3 RID: 6835 RVA: 0x00121834 File Offset: 0x0011FA34
+	// Token: 0x06001ABC RID: 6844 RVA: 0x00122248 File Offset: 0x00120448
 	private void Update()
 	{
 		base.transform.LookAt(this.Target.position);
@@ -58,7 +58,7 @@ public class PlaceholderStudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AB4 RID: 6836 RVA: 0x00121AC8 File Offset: 0x0011FCC8
+	// Token: 0x06001ABD RID: 6845 RVA: 0x001224DC File Offset: 0x001206DC
 	private void ChooseNewDestination()
 	{
 		if (this.NESW == 1)
@@ -82,27 +82,27 @@ public class PlaceholderStudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002C79 RID: 11385
+	// Token: 0x04002C89 RID: 11401
 	public FakeStudentSpawnerScript FakeStudentSpawner;
 
-	// Token: 0x04002C7A RID: 11386
+	// Token: 0x04002C8A RID: 11402
 	public GameObject EmptyGameObject;
 
-	// Token: 0x04002C7B RID: 11387
+	// Token: 0x04002C8B RID: 11403
 	public bool ShootRaycasts;
 
-	// Token: 0x04002C7C RID: 11388
+	// Token: 0x04002C8C RID: 11404
 	public Transform Target;
 
-	// Token: 0x04002C7D RID: 11389
+	// Token: 0x04002C8D RID: 11405
 	public Transform Eyes;
 
-	// Token: 0x04002C7E RID: 11390
+	// Token: 0x04002C8E RID: 11406
 	public int StudentID;
 
-	// Token: 0x04002C7F RID: 11391
+	// Token: 0x04002C8F RID: 11407
 	public int Phase;
 
-	// Token: 0x04002C80 RID: 11392
+	// Token: 0x04002C90 RID: 11408
 	public int NESW;
 }

@@ -484,33 +484,33 @@ public abstract class UITweener : MonoBehaviour
 	// Token: 0x040005FD RID: 1533
 	private List<EventDelegate> mTemp;
 
-	// Token: 0x02000609 RID: 1545
+	// Token: 0x0200060A RID: 1546
 	[DoNotObfuscateNGUI]
 	public enum Method
 	{
-		// Token: 0x04004DE6 RID: 19942
+		// Token: 0x04004DF6 RID: 19958
 		Linear,
-		// Token: 0x04004DE7 RID: 19943
+		// Token: 0x04004DF7 RID: 19959
 		EaseIn,
-		// Token: 0x04004DE8 RID: 19944
+		// Token: 0x04004DF8 RID: 19960
 		EaseOut,
-		// Token: 0x04004DE9 RID: 19945
+		// Token: 0x04004DF9 RID: 19961
 		EaseInOut,
-		// Token: 0x04004DEA RID: 19946
+		// Token: 0x04004DFA RID: 19962
 		BounceIn,
-		// Token: 0x04004DEB RID: 19947
+		// Token: 0x04004DFB RID: 19963
 		BounceOut
 	}
 
-	// Token: 0x0200060A RID: 1546
+	// Token: 0x0200060B RID: 1547
 	[DoNotObfuscateNGUI]
 	public enum Style
 	{
-		// Token: 0x04004DED RID: 19949
+		// Token: 0x04004DFD RID: 19965
 		Once,
-		// Token: 0x04004DEE RID: 19950
+		// Token: 0x04004DFE RID: 19966
 		Loop,
-		// Token: 0x04004DEF RID: 19951
+		// Token: 0x04004DFF RID: 19967
 		PingPong
 	}
 }

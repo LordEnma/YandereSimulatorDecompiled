@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000302 RID: 770
+// Token: 0x02000303 RID: 771
 public static class CorkboardGlobals
 {
-	// Token: 0x06001819 RID: 6169 RVA: 0x000E3EB0 File Offset: 0x000E20B0
+	// Token: 0x06001822 RID: 6178 RVA: 0x000E4794 File Offset: 0x000E2994
 	public static void DeleteAll()
 	{
 		for (int i = 0; i < 100; i++)

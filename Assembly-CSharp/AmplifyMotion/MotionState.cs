@@ -5,12 +5,12 @@ using UnityEngine.Rendering;
 
 namespace AmplifyMotion
 {
-	// Token: 0x0200057F RID: 1407
+	// Token: 0x02000580 RID: 1408
 	[Serializable]
 	internal abstract class MotionState
 	{
 		// Token: 0x1700051F RID: 1311
-		// (get) Token: 0x060023AE RID: 9134 RVA: 0x001F52E3 File Offset: 0x001F34E3
+		// (get) Token: 0x060023B7 RID: 9143 RVA: 0x001F5EC3 File Offset: 0x001F40C3
 		public AmplifyMotionCamera Owner
 		{
 			get
@@ -20,7 +20,7 @@ namespace AmplifyMotion
 		}
 
 		// Token: 0x17000520 RID: 1312
-		// (get) Token: 0x060023AF RID: 9135 RVA: 0x001F52EB File Offset: 0x001F34EB
+		// (get) Token: 0x060023B8 RID: 9144 RVA: 0x001F5ECB File Offset: 0x001F40CB
 		public bool Initialized
 		{
 			get
@@ -30,7 +30,7 @@ namespace AmplifyMotion
 		}
 
 		// Token: 0x17000521 RID: 1313
-		// (get) Token: 0x060023B0 RID: 9136 RVA: 0x001F52F3 File Offset: 0x001F34F3
+		// (get) Token: 0x060023B9 RID: 9145 RVA: 0x001F5ED3 File Offset: 0x001F40D3
 		public bool Error
 		{
 			get
@@ -39,7 +39,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x060023B1 RID: 9137 RVA: 0x001F52FB File Offset: 0x001F34FB
+		// Token: 0x060023BA RID: 9146 RVA: 0x001F5EDB File Offset: 0x001F40DB
 		public MotionState(AmplifyMotionCamera owner, AmplifyMotionObjectBase obj)
 		{
 			this.m_error = false;
@@ -49,36 +49,36 @@ namespace AmplifyMotion
 			this.m_transform = obj.transform;
 		}
 
-		// Token: 0x060023B2 RID: 9138 RVA: 0x001F532B File Offset: 0x001F352B
+		// Token: 0x060023BB RID: 9147 RVA: 0x001F5F0B File Offset: 0x001F410B
 		internal virtual void Initialize()
 		{
 			this.m_initialized = true;
 		}
 
-		// Token: 0x060023B3 RID: 9139 RVA: 0x001F5334 File Offset: 0x001F3534
+		// Token: 0x060023BC RID: 9148 RVA: 0x001F5F14 File Offset: 0x001F4114
 		internal virtual void Shutdown()
 		{
 		}
 
-		// Token: 0x060023B4 RID: 9140 RVA: 0x001F5336 File Offset: 0x001F3536
+		// Token: 0x060023BD RID: 9149 RVA: 0x001F5F16 File Offset: 0x001F4116
 		internal virtual void AsyncUpdate()
 		{
 		}
 
-		// Token: 0x060023B5 RID: 9141
+		// Token: 0x060023BE RID: 9150
 		internal abstract void UpdateTransform(CommandBuffer updateCB, bool starting);
 
-		// Token: 0x060023B6 RID: 9142 RVA: 0x001F5338 File Offset: 0x001F3538
+		// Token: 0x060023BF RID: 9151 RVA: 0x001F5F18 File Offset: 0x001F4118
 		internal virtual void RenderVectors(Camera camera, CommandBuffer renderCB, float scale, Quality quality)
 		{
 		}
 
-		// Token: 0x060023B7 RID: 9143 RVA: 0x001F533A File Offset: 0x001F353A
+		// Token: 0x060023C0 RID: 9152 RVA: 0x001F5F1A File Offset: 0x001F411A
 		internal virtual void RenderDebugHUD()
 		{
 		}
 
-		// Token: 0x060023B8 RID: 9144 RVA: 0x001F533C File Offset: 0x001F353C
+		// Token: 0x060023C1 RID: 9153 RVA: 0x001F5F1C File Offset: 0x001F411C
 		protected MotionState.MaterialDesc[] ProcessSharedMaterials(Material[] mats)
 		{
 			MotionState.MaterialDesc[] array = new MotionState.MaterialDesc[mats.Length];
@@ -105,13 +105,13 @@ namespace AmplifyMotion
 			return array;
 		}
 
-		// Token: 0x060023B9 RID: 9145 RVA: 0x001F5484 File Offset: 0x001F3684
+		// Token: 0x060023C2 RID: 9154 RVA: 0x001F6064 File Offset: 0x001F4264
 		protected static bool MatrixChanged(MotionState.Matrix3x4 a, MotionState.Matrix3x4 b)
 		{
 			return Vector4.SqrMagnitude(new Vector4(a.m00 - b.m00, a.m01 - b.m01, a.m02 - b.m02, a.m03 - b.m03)) > 0f || Vector4.SqrMagnitude(new Vector4(a.m10 - b.m10, a.m11 - b.m11, a.m12 - b.m12, a.m13 - b.m13)) > 0f || Vector4.SqrMagnitude(new Vector4(a.m20 - b.m20, a.m21 - b.m21, a.m22 - b.m22, a.m23 - b.m23)) > 0f;
 		}
 
-		// Token: 0x060023BA RID: 9146 RVA: 0x001F5568 File Offset: 0x001F3768
+		// Token: 0x060023C3 RID: 9155 RVA: 0x001F6148 File Offset: 0x001F4348
 		protected static void MulPoint3x4_XYZ(ref Vector3 result, ref MotionState.Matrix3x4 mat, Vector4 vec)
 		{
 			result.x = mat.m00 * vec.x + mat.m01 * vec.y + mat.m02 * vec.z + mat.m03;
@@ -119,7 +119,7 @@ namespace AmplifyMotion
 			result.z = mat.m20 * vec.x + mat.m21 * vec.y + mat.m22 * vec.z + mat.m23;
 		}
 
-		// Token: 0x060023BB RID: 9147 RVA: 0x001F5618 File Offset: 0x001F3818
+		// Token: 0x060023C4 RID: 9156 RVA: 0x001F61F8 File Offset: 0x001F43F8
 		protected static void MulPoint3x4_XYZW(ref Vector3 result, ref MotionState.Matrix3x4 mat, Vector4 vec)
 		{
 			result.x = mat.m00 * vec.x + mat.m01 * vec.y + mat.m02 * vec.z + mat.m03 * vec.w;
@@ -127,7 +127,7 @@ namespace AmplifyMotion
 			result.z = mat.m20 * vec.x + mat.m21 * vec.y + mat.m22 * vec.z + mat.m23 * vec.w;
 		}
 
-		// Token: 0x060023BC RID: 9148 RVA: 0x001F56DC File Offset: 0x001F38DC
+		// Token: 0x060023C5 RID: 9157 RVA: 0x001F62BC File Offset: 0x001F44BC
 		protected static void MulAddPoint3x4_XYZW(ref Vector3 result, ref MotionState.Matrix3x4 mat, Vector4 vec)
 		{
 			result.x += mat.m00 * vec.x + mat.m01 * vec.y + mat.m02 * vec.z + mat.m03 * vec.w;
@@ -135,47 +135,47 @@ namespace AmplifyMotion
 			result.z += mat.m20 * vec.x + mat.m21 * vec.y + mat.m22 * vec.z + mat.m23 * vec.w;
 		}
 
-		// Token: 0x04004B51 RID: 19281
+		// Token: 0x04004B61 RID: 19297
 		public const int AsyncUpdateTimeout = 100;
 
-		// Token: 0x04004B52 RID: 19282
+		// Token: 0x04004B62 RID: 19298
 		protected bool m_error;
 
-		// Token: 0x04004B53 RID: 19283
+		// Token: 0x04004B63 RID: 19299
 		protected bool m_initialized;
 
-		// Token: 0x04004B54 RID: 19284
+		// Token: 0x04004B64 RID: 19300
 		protected Transform m_transform;
 
-		// Token: 0x04004B55 RID: 19285
+		// Token: 0x04004B65 RID: 19301
 		protected AmplifyMotionCamera m_owner;
 
-		// Token: 0x04004B56 RID: 19286
+		// Token: 0x04004B66 RID: 19302
 		protected AmplifyMotionObjectBase m_obj;
 
-		// Token: 0x04004B57 RID: 19287
+		// Token: 0x04004B67 RID: 19303
 		private static HashSet<Material> m_materialWarnings = new HashSet<Material>();
 
-		// Token: 0x020006D1 RID: 1745
+		// Token: 0x020006D4 RID: 1748
 		protected struct MaterialDesc
 		{
-			// Token: 0x0400517B RID: 20859
+			// Token: 0x04005190 RID: 20880
 			public Material material;
 
-			// Token: 0x0400517C RID: 20860
+			// Token: 0x04005191 RID: 20881
 			public MaterialPropertyBlock propertyBlock;
 
-			// Token: 0x0400517D RID: 20861
+			// Token: 0x04005192 RID: 20882
 			public bool coverage;
 
-			// Token: 0x0400517E RID: 20862
+			// Token: 0x04005193 RID: 20883
 			public bool cutoff;
 		}
 
-		// Token: 0x020006D2 RID: 1746
+		// Token: 0x020006D5 RID: 1749
 		protected struct Matrix3x4
 		{
-			// Token: 0x06002745 RID: 10053 RVA: 0x002026DC File Offset: 0x002008DC
+			// Token: 0x06002757 RID: 10071 RVA: 0x00203384 File Offset: 0x00201584
 			public Vector4 GetRow(int i)
 			{
 				if (i == 0)
@@ -193,7 +193,7 @@ namespace AmplifyMotion
 				return new Vector4(0f, 0f, 0f, 1f);
 			}
 
-			// Token: 0x06002746 RID: 10054 RVA: 0x00202768 File Offset: 0x00200968
+			// Token: 0x06002758 RID: 10072 RVA: 0x00203410 File Offset: 0x00201610
 			public static implicit operator MotionState.Matrix3x4(Matrix4x4 from)
 			{
 				return new MotionState.Matrix3x4
@@ -213,7 +213,7 @@ namespace AmplifyMotion
 				};
 			}
 
-			// Token: 0x06002747 RID: 10055 RVA: 0x0020281C File Offset: 0x00200A1C
+			// Token: 0x06002759 RID: 10073 RVA: 0x002034C4 File Offset: 0x002016C4
 			public static implicit operator Matrix4x4(MotionState.Matrix3x4 from)
 			{
 				Matrix4x4 result = default(Matrix4x4);
@@ -234,7 +234,7 @@ namespace AmplifyMotion
 				return result;
 			}
 
-			// Token: 0x06002748 RID: 10056 RVA: 0x002028FC File Offset: 0x00200AFC
+			// Token: 0x0600275A RID: 10074 RVA: 0x002035A4 File Offset: 0x002017A4
 			public static MotionState.Matrix3x4 operator *(MotionState.Matrix3x4 a, MotionState.Matrix3x4 b)
 			{
 				return new MotionState.Matrix3x4
@@ -254,40 +254,40 @@ namespace AmplifyMotion
 				};
 			}
 
-			// Token: 0x0400517F RID: 20863
+			// Token: 0x04005194 RID: 20884
 			public float m00;
 
-			// Token: 0x04005180 RID: 20864
+			// Token: 0x04005195 RID: 20885
 			public float m01;
 
-			// Token: 0x04005181 RID: 20865
+			// Token: 0x04005196 RID: 20886
 			public float m02;
 
-			// Token: 0x04005182 RID: 20866
+			// Token: 0x04005197 RID: 20887
 			public float m03;
 
-			// Token: 0x04005183 RID: 20867
+			// Token: 0x04005198 RID: 20888
 			public float m10;
 
-			// Token: 0x04005184 RID: 20868
+			// Token: 0x04005199 RID: 20889
 			public float m11;
 
-			// Token: 0x04005185 RID: 20869
+			// Token: 0x0400519A RID: 20890
 			public float m12;
 
-			// Token: 0x04005186 RID: 20870
+			// Token: 0x0400519B RID: 20891
 			public float m13;
 
-			// Token: 0x04005187 RID: 20871
+			// Token: 0x0400519C RID: 20892
 			public float m20;
 
-			// Token: 0x04005188 RID: 20872
+			// Token: 0x0400519D RID: 20893
 			public float m21;
 
-			// Token: 0x04005189 RID: 20873
+			// Token: 0x0400519E RID: 20894
 			public float m22;
 
-			// Token: 0x0400518A RID: 20874
+			// Token: 0x0400519F RID: 20895
 			public float m23;
 		}
 	}

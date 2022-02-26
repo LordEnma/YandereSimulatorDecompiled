@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_TV_PlanetMars : MonoBehaviour
 {
 	// Token: 0x17000319 RID: 793
-	// (get) Token: 0x06001161 RID: 4449 RVA: 0x00087A99 File Offset: 0x00085C99
+	// (get) Token: 0x06001161 RID: 4449 RVA: 0x00087BAD File Offset: 0x00085DAD
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_TV_PlanetMars : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001162 RID: 4450 RVA: 0x00087ACD File Offset: 0x00085CCD
+	// Token: 0x06001162 RID: 4450 RVA: 0x00087BE1 File Offset: 0x00085DE1
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/TV_PlanetMars");
@@ -32,7 +32,7 @@ public class CameraFilterPack_TV_PlanetMars : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001163 RID: 4451 RVA: 0x00087AF0 File Offset: 0x00085CF0
+	// Token: 0x06001163 RID: 4451 RVA: 0x00087C04 File Offset: 0x00085E04
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -52,12 +52,12 @@ public class CameraFilterPack_TV_PlanetMars : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06001164 RID: 4452 RVA: 0x00087BBC File Offset: 0x00085DBC
+	// Token: 0x06001164 RID: 4452 RVA: 0x00087CD0 File Offset: 0x00085ED0
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001165 RID: 4453 RVA: 0x00087BBE File Offset: 0x00085DBE
+	// Token: 0x06001165 RID: 4453 RVA: 0x00087CD2 File Offset: 0x00085ED2
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

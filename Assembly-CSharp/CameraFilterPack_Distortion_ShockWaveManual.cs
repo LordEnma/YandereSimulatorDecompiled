@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Distortion_ShockWaveManual : MonoBehaviour
 {
 	// Token: 0x17000285 RID: 645
-	// (get) Token: 0x06000DC5 RID: 3525 RVA: 0x000776BF File Offset: 0x000758BF
+	// (get) Token: 0x06000DC5 RID: 3525 RVA: 0x000777D3 File Offset: 0x000759D3
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Distortion_ShockWaveManual : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DC6 RID: 3526 RVA: 0x000776F3 File Offset: 0x000758F3
+	// Token: 0x06000DC6 RID: 3526 RVA: 0x00077807 File Offset: 0x00075A07
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Distortion_ShockWaveManual");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Distortion_ShockWaveManual : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DC7 RID: 3527 RVA: 0x00077714 File Offset: 0x00075914
+	// Token: 0x06000DC7 RID: 3527 RVA: 0x00077828 File Offset: 0x00075A28
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Distortion_ShockWaveManual : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000DC8 RID: 3528 RVA: 0x0007780C File Offset: 0x00075A0C
+	// Token: 0x06000DC8 RID: 3528 RVA: 0x00077920 File Offset: 0x00075B20
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000DC9 RID: 3529 RVA: 0x0007780E File Offset: 0x00075A0E
+	// Token: 0x06000DC9 RID: 3529 RVA: 0x00077922 File Offset: 0x00075B22
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

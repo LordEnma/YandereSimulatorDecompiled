@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x020000FE RID: 254
 public class BucketPourScript : MonoBehaviour
 {
-	// Token: 0x06000A86 RID: 2694 RVA: 0x0005CDAA File Offset: 0x0005AFAA
+	// Token: 0x06000A86 RID: 2694 RVA: 0x0005CE9A File Offset: 0x0005B09A
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000A87 RID: 2695 RVA: 0x0005CDAC File Offset: 0x0005AFAC
+	// Token: 0x06000A87 RID: 2695 RVA: 0x0005CE9C File Offset: 0x0005B09C
 	private void Update()
 	{
 		if (this.Yandere.PickUp != null)

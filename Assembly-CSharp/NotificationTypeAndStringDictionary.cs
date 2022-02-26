@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Token: 0x020004A4 RID: 1188
+// Token: 0x020004A5 RID: 1189
 [Serializable]
 public class NotificationTypeAndStringDictionary : SerializableDictionary<NotificationType, string>
 {

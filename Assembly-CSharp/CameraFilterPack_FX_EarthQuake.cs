@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_FX_EarthQuake : MonoBehaviour
 {
 	// Token: 0x170002B5 RID: 693
-	// (get) Token: 0x06000EE6 RID: 3814 RVA: 0x0007C0B7 File Offset: 0x0007A2B7
+	// (get) Token: 0x06000EE6 RID: 3814 RVA: 0x0007C1CB File Offset: 0x0007A3CB
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_FX_EarthQuake : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000EE7 RID: 3815 RVA: 0x0007C0EB File Offset: 0x0007A2EB
+	// Token: 0x06000EE7 RID: 3815 RVA: 0x0007C1FF File Offset: 0x0007A3FF
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/FX_EarthQuake");
@@ -32,7 +32,7 @@ public class CameraFilterPack_FX_EarthQuake : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000EE8 RID: 3816 RVA: 0x0007C10C File Offset: 0x0007A30C
+	// Token: 0x06000EE8 RID: 3816 RVA: 0x0007C220 File Offset: 0x0007A420
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_FX_EarthQuake : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000EE9 RID: 3817 RVA: 0x0007C204 File Offset: 0x0007A404
+	// Token: 0x06000EE9 RID: 3817 RVA: 0x0007C318 File Offset: 0x0007A518
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000EEA RID: 3818 RVA: 0x0007C206 File Offset: 0x0007A406
+	// Token: 0x06000EEA RID: 3818 RVA: 0x0007C31A File Offset: 0x0007A51A
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

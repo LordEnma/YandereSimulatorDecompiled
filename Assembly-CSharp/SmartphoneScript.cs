@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200042D RID: 1069
+// Token: 0x0200042E RID: 1070
 public class SmartphoneScript : MonoBehaviour
 {
-	// Token: 0x06001CB5 RID: 7349 RVA: 0x0015438C File Offset: 0x0015258C
+	// Token: 0x06001CBE RID: 7358 RVA: 0x00154E38 File Offset: 0x00153038
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -24,27 +24,27 @@ public class SmartphoneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003381 RID: 13185
+	// Token: 0x04003391 RID: 13201
 	public Transform PhoneCrushingSpot;
 
-	// Token: 0x04003382 RID: 13186
+	// Token: 0x04003392 RID: 13202
 	public GameObject EmptyGameObject;
 
-	// Token: 0x04003383 RID: 13187
+	// Token: 0x04003393 RID: 13203
 	public Texture SmashedTexture;
 
-	// Token: 0x04003384 RID: 13188
+	// Token: 0x04003394 RID: 13204
 	public GameObject PhoneSmash;
 
-	// Token: 0x04003385 RID: 13189
+	// Token: 0x04003395 RID: 13205
 	public Renderer MyRenderer;
 
-	// Token: 0x04003386 RID: 13190
+	// Token: 0x04003396 RID: 13206
 	public PromptScript Prompt;
 
-	// Token: 0x04003387 RID: 13191
+	// Token: 0x04003397 RID: 13207
 	public MeshFilter MyMesh;
 
-	// Token: 0x04003388 RID: 13192
+	// Token: 0x04003398 RID: 13208
 	public Mesh SmashedMesh;
 }

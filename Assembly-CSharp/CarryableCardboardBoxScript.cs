@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000238 RID: 568
 public class CarryableCardboardBoxScript : MonoBehaviour
 {
-	// Token: 0x0600122E RID: 4654 RVA: 0x0008B438 File Offset: 0x00089638
+	// Token: 0x0600122E RID: 4654 RVA: 0x0008B54C File Offset: 0x0008974C
 	private void Update()
 	{
 		if (!this.Closed)

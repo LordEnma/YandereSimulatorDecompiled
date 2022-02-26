@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000321 RID: 801
+// Token: 0x02000322 RID: 802
 public class HomePantyChangerScript : MonoBehaviour
 {
-	// Token: 0x0600188C RID: 6284 RVA: 0x000EFB2C File Offset: 0x000EDD2C
+	// Token: 0x06001895 RID: 6293 RVA: 0x000F0410 File Offset: 0x000EE610
 	private void Start()
 	{
 		for (int i = 0; i < this.TotalPanties; i++)
@@ -22,7 +22,7 @@ public class HomePantyChangerScript : MonoBehaviour
 		this.PantyParent.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600188D RID: 6285 RVA: 0x000EFCF8 File Offset: 0x000EDEF8
+	// Token: 0x06001896 RID: 6294 RVA: 0x000F05DC File Offset: 0x000EE7DC
 	private void Update()
 	{
 		if (this.HomeWindow.Show)
@@ -89,7 +89,7 @@ public class HomePantyChangerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600188E RID: 6286 RVA: 0x000EFFC8 File Offset: 0x000EE1C8
+	// Token: 0x06001897 RID: 6295 RVA: 0x000F08AC File Offset: 0x000EEAAC
 	private void UpdatePantyLabels()
 	{
 		if (this.Selected == 0 || CollectibleGlobals.GetPantyPurchased(this.Selected))
@@ -119,69 +119,69 @@ public class HomePantyChangerScript : MonoBehaviour
 		this.ButtonLabel.text = "Unavailable";
 	}
 
-	// Token: 0x040024E8 RID: 9448
+	// Token: 0x040024F7 RID: 9463
 	public InputManagerScript InputManager;
 
-	// Token: 0x040024E9 RID: 9449
+	// Token: 0x040024F8 RID: 9464
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x040024EA RID: 9450
+	// Token: 0x040024F9 RID: 9465
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x040024EB RID: 9451
+	// Token: 0x040024FA RID: 9466
 	public HomeWindowScript HomeWindow;
 
-	// Token: 0x040024EC RID: 9452
+	// Token: 0x040024FB RID: 9467
 	private GameObject NewPanties;
 
-	// Token: 0x040024ED RID: 9453
+	// Token: 0x040024FC RID: 9468
 	public UILabel PantyNameLabel;
 
-	// Token: 0x040024EE RID: 9454
+	// Token: 0x040024FD RID: 9469
 	public UILabel PantyDescLabel;
 
-	// Token: 0x040024EF RID: 9455
+	// Token: 0x040024FE RID: 9470
 	public UILabel PantyBuffLabel;
 
-	// Token: 0x040024F0 RID: 9456
+	// Token: 0x040024FF RID: 9471
 	public UILabel ButtonLabel;
 
-	// Token: 0x040024F1 RID: 9457
+	// Token: 0x04002500 RID: 9472
 	public Transform PantyParent;
 
-	// Token: 0x040024F2 RID: 9458
+	// Token: 0x04002501 RID: 9473
 	public bool DestinationReached;
 
-	// Token: 0x040024F3 RID: 9459
+	// Token: 0x04002502 RID: 9474
 	public float TargetRotation;
 
-	// Token: 0x040024F4 RID: 9460
+	// Token: 0x04002503 RID: 9475
 	public float Rotation;
 
-	// Token: 0x040024F5 RID: 9461
+	// Token: 0x04002504 RID: 9476
 	public int TotalPanties;
 
-	// Token: 0x040024F6 RID: 9462
+	// Token: 0x04002505 RID: 9477
 	public int Selected;
 
-	// Token: 0x040024F7 RID: 9463
+	// Token: 0x04002506 RID: 9478
 	public GameObject[] PantyModels;
 
-	// Token: 0x040024F8 RID: 9464
+	// Token: 0x04002507 RID: 9479
 	public string[] PantyNames;
 
-	// Token: 0x040024F9 RID: 9465
+	// Token: 0x04002508 RID: 9480
 	public string[] PantyDescs;
 
-	// Token: 0x040024FA RID: 9466
+	// Token: 0x04002509 RID: 9481
 	public string[] PantyBuffs;
 
-	// Token: 0x040024FB RID: 9467
+	// Token: 0x0400250A RID: 9482
 	public AudioClip ChangeSelection;
 
-	// Token: 0x040024FC RID: 9468
+	// Token: 0x0400250B RID: 9483
 	public AudioClip MakeSelection;
 
-	// Token: 0x040024FD RID: 9469
+	// Token: 0x0400250C RID: 9484
 	public AudioClip CloseDrawer;
 }

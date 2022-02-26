@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_TV_Vignetting : MonoBehaviour
 {
 	// Token: 0x17000322 RID: 802
-	// (get) Token: 0x06001197 RID: 4503 RVA: 0x00088700 File Offset: 0x00086900
+	// (get) Token: 0x06001197 RID: 4503 RVA: 0x00088814 File Offset: 0x00086A14
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_TV_Vignetting : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001198 RID: 4504 RVA: 0x00088734 File Offset: 0x00086934
+	// Token: 0x06001198 RID: 4504 RVA: 0x00088848 File Offset: 0x00086A48
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/TV_Vignetting");
@@ -33,7 +33,7 @@ public class CameraFilterPack_TV_Vignetting : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001199 RID: 4505 RVA: 0x0008876C File Offset: 0x0008696C
+	// Token: 0x06001199 RID: 4505 RVA: 0x00088880 File Offset: 0x00086A80
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -49,12 +49,12 @@ public class CameraFilterPack_TV_Vignetting : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x0600119A RID: 4506 RVA: 0x0008880A File Offset: 0x00086A0A
+	// Token: 0x0600119A RID: 4506 RVA: 0x0008891E File Offset: 0x00086B1E
 	private void Update()
 	{
 	}
 
-	// Token: 0x0600119B RID: 4507 RVA: 0x0008880C File Offset: 0x00086A0C
+	// Token: 0x0600119B RID: 4507 RVA: 0x00088920 File Offset: 0x00086B20
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

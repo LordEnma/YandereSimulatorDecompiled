@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002A0 RID: 672
+// Token: 0x020002A1 RID: 673
 public class ElectrifiedPuddleScript : MonoBehaviour
 {
-	// Token: 0x06001410 RID: 5136 RVA: 0x000BF2E8 File Offset: 0x000BD4E8
+	// Token: 0x06001419 RID: 5145 RVA: 0x000BFC44 File Offset: 0x000BDE44
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -28,6 +28,6 @@ public class ElectrifiedPuddleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001E1F RID: 7711
+	// Token: 0x04001E2E RID: 7726
 	public PowerSwitchScript PowerSwitch;
 }

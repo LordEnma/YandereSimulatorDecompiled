@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000107 RID: 263
 public class ChallengeScript : MonoBehaviour
 {
-	// Token: 0x06000AAE RID: 2734 RVA: 0x000636B4 File Offset: 0x000618B4
+	// Token: 0x06000AAE RID: 2734 RVA: 0x000637C8 File Offset: 0x000619C8
 	private void Update()
 	{
 		if (!this.Viewing)

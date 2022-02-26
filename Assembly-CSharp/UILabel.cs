@@ -2271,61 +2271,61 @@ public class UILabel : UIWidget
 	// Token: 0x04000714 RID: 1812
 	private static List<int> mTempIndices = new List<int>();
 
-	// Token: 0x02000630 RID: 1584
+	// Token: 0x02000631 RID: 1585
 	[DoNotObfuscateNGUI]
 	public enum Effect
 	{
-		// Token: 0x04004E53 RID: 20051
+		// Token: 0x04004E63 RID: 20067
 		None,
-		// Token: 0x04004E54 RID: 20052
+		// Token: 0x04004E64 RID: 20068
 		Shadow,
-		// Token: 0x04004E55 RID: 20053
+		// Token: 0x04004E65 RID: 20069
 		Outline,
-		// Token: 0x04004E56 RID: 20054
+		// Token: 0x04004E66 RID: 20070
 		Outline8
-	}
-
-	// Token: 0x02000631 RID: 1585
-	[DoNotObfuscateNGUI]
-	public enum Overflow
-	{
-		// Token: 0x04004E58 RID: 20056
-		ShrinkContent,
-		// Token: 0x04004E59 RID: 20057
-		ClampContent,
-		// Token: 0x04004E5A RID: 20058
-		ResizeFreely,
-		// Token: 0x04004E5B RID: 20059
-		ResizeHeight
 	}
 
 	// Token: 0x02000632 RID: 1586
 	[DoNotObfuscateNGUI]
-	public enum Crispness
+	public enum Overflow
 	{
-		// Token: 0x04004E5D RID: 20061
-		Never,
-		// Token: 0x04004E5E RID: 20062
-		OnDesktop,
-		// Token: 0x04004E5F RID: 20063
-		Always
+		// Token: 0x04004E68 RID: 20072
+		ShrinkContent,
+		// Token: 0x04004E69 RID: 20073
+		ClampContent,
+		// Token: 0x04004E6A RID: 20074
+		ResizeFreely,
+		// Token: 0x04004E6B RID: 20075
+		ResizeHeight
 	}
 
 	// Token: 0x02000633 RID: 1587
 	[DoNotObfuscateNGUI]
-	public enum Modifier
+	public enum Crispness
 	{
-		// Token: 0x04004E61 RID: 20065
-		None,
-		// Token: 0x04004E62 RID: 20066
-		ToUppercase,
-		// Token: 0x04004E63 RID: 20067
-		ToLowercase,
-		// Token: 0x04004E64 RID: 20068
-		Custom = 255
+		// Token: 0x04004E6D RID: 20077
+		Never,
+		// Token: 0x04004E6E RID: 20078
+		OnDesktop,
+		// Token: 0x04004E6F RID: 20079
+		Always
 	}
 
 	// Token: 0x02000634 RID: 1588
-	// (Invoke) Token: 0x060025F2 RID: 9714
+	[DoNotObfuscateNGUI]
+	public enum Modifier
+	{
+		// Token: 0x04004E71 RID: 20081
+		None,
+		// Token: 0x04004E72 RID: 20082
+		ToUppercase,
+		// Token: 0x04004E73 RID: 20083
+		ToLowercase,
+		// Token: 0x04004E74 RID: 20084
+		Custom = 255
+	}
+
+	// Token: 0x02000635 RID: 1589
+	// (Invoke) Token: 0x060025FB RID: 9723
 	public delegate string ModifierFunc(string s);
 }

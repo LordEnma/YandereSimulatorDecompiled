@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_AAA_SuperHexagon : MonoBehaviour
 {
 	// Token: 0x17000220 RID: 544
-	// (get) Token: 0x06000B26 RID: 2854 RVA: 0x0006B3F8 File Offset: 0x000695F8
+	// (get) Token: 0x06000B26 RID: 2854 RVA: 0x0006B50C File Offset: 0x0006970C
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_AAA_SuperHexagon : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B27 RID: 2855 RVA: 0x0006B42C File Offset: 0x0006962C
+	// Token: 0x06000B27 RID: 2855 RVA: 0x0006B540 File Offset: 0x00069740
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/AAA_Super_Hexagon");
@@ -32,7 +32,7 @@ public class CameraFilterPack_AAA_SuperHexagon : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B28 RID: 2856 RVA: 0x0006B450 File Offset: 0x00069650
+	// Token: 0x06000B28 RID: 2856 RVA: 0x0006B564 File Offset: 0x00069764
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -59,12 +59,12 @@ public class CameraFilterPack_AAA_SuperHexagon : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B29 RID: 2857 RVA: 0x0006B5C0 File Offset: 0x000697C0
+	// Token: 0x06000B29 RID: 2857 RVA: 0x0006B6D4 File Offset: 0x000698D4
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B2A RID: 2858 RVA: 0x0006B5C2 File Offset: 0x000697C2
+	// Token: 0x06000B2A RID: 2858 RVA: 0x0006B6D6 File Offset: 0x000698D6
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

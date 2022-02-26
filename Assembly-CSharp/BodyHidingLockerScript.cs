@@ -51,7 +51,11 @@ public class BodyHidingLockerScript : MonoBehaviour
 					this.Prompt.Hide();
 					this.Prompt.enabled = false;
 					this.Prompt.Yandere.EmptyHands();
-					this.Prompt.Yandere.NearBodies = 0;
+					if (this.Corpse.AddingToCount)
+					{
+						this.Prompt.Yandere.NearBodies--;
+						this.Corpse.AddingToCount = false;
+					}
 					this.Prompt.Yandere.NearestCorpseID = 0;
 					this.Prompt.Yandere.CorpseWarning = false;
 					this.Prompt.Yandere.StudentManager.UpdateStudents(0);
@@ -104,6 +108,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 			this.Corpse.BloodSpawnerCollider.enabled = true;
 			this.Corpse.Prompt.MyCollider.enabled = true;
 			this.Corpse.BloodPoolSpawner.NearbyBlood = 0;
+			this.Corpse.AddingToCount = false;
 			this.Corpse.EnableRigidbodies();
 			if (!this.Corpse.Cauterized && !this.Corpse.Concealed)
 			{
@@ -118,7 +123,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A4D RID: 2637 RVA: 0x0005BA74 File Offset: 0x00059C74
+	// Token: 0x06000A4D RID: 2637 RVA: 0x0005BAA0 File Offset: 0x00059CA0
 	public void UpdateCorpse()
 	{
 		this.Corpse = this.StudentManager.Students[this.StudentID].Ragdoll;

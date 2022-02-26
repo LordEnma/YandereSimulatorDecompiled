@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Distortion_FishEye : MonoBehaviour
 {
 	// Token: 0x1700027D RID: 637
-	// (get) Token: 0x06000D95 RID: 3477 RVA: 0x00076BC5 File Offset: 0x00074DC5
+	// (get) Token: 0x06000D95 RID: 3477 RVA: 0x00076CD9 File Offset: 0x00074ED9
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Distortion_FishEye : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D96 RID: 3478 RVA: 0x00076BF9 File Offset: 0x00074DF9
+	// Token: 0x06000D96 RID: 3478 RVA: 0x00076D0D File Offset: 0x00074F0D
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Distortion_FishEye");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Distortion_FishEye : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D97 RID: 3479 RVA: 0x00076C1C File Offset: 0x00074E1C
+	// Token: 0x06000D97 RID: 3479 RVA: 0x00076D30 File Offset: 0x00074F30
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -51,12 +51,12 @@ public class CameraFilterPack_Distortion_FishEye : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000D98 RID: 3480 RVA: 0x00076CD2 File Offset: 0x00074ED2
+	// Token: 0x06000D98 RID: 3480 RVA: 0x00076DE6 File Offset: 0x00074FE6
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000D99 RID: 3481 RVA: 0x00076CD4 File Offset: 0x00074ED4
+	// Token: 0x06000D99 RID: 3481 RVA: 0x00076DE8 File Offset: 0x00074FE8
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

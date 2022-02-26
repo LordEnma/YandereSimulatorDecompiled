@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_OldFilm_Cutting1 : MonoBehaviour
 {
 	// Token: 0x170002F9 RID: 761
-	// (get) Token: 0x060010A0 RID: 4256 RVA: 0x000845C4 File Offset: 0x000827C4
+	// (get) Token: 0x060010A0 RID: 4256 RVA: 0x000846D8 File Offset: 0x000828D8
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_OldFilm_Cutting1 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010A1 RID: 4257 RVA: 0x000845F8 File Offset: 0x000827F8
+	// Token: 0x060010A1 RID: 4257 RVA: 0x0008470C File Offset: 0x0008290C
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_OldFilm1") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_OldFilm_Cutting1 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010A2 RID: 4258 RVA: 0x00084630 File Offset: 0x00082830
+	// Token: 0x060010A2 RID: 4258 RVA: 0x00084744 File Offset: 0x00082944
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -55,12 +55,12 @@ public class CameraFilterPack_OldFilm_Cutting1 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x060010A3 RID: 4259 RVA: 0x00084717 File Offset: 0x00082917
+	// Token: 0x060010A3 RID: 4259 RVA: 0x0008482B File Offset: 0x00082A2B
 	private void Update()
 	{
 	}
 
-	// Token: 0x060010A4 RID: 4260 RVA: 0x00084719 File Offset: 0x00082919
+	// Token: 0x060010A4 RID: 4260 RVA: 0x0008482D File Offset: 0x00082A2D
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

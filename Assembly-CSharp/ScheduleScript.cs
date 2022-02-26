@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200040E RID: 1038
+// Token: 0x0200040F RID: 1039
 public class ScheduleScript : MonoBehaviour
 {
-	// Token: 0x06001C44 RID: 7236 RVA: 0x00149864 File Offset: 0x00147A64
+	// Token: 0x06001C4D RID: 7245 RVA: 0x0014A2DC File Offset: 0x001484DC
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -29,7 +29,7 @@ public class ScheduleScript : MonoBehaviour
 		this.UpdateIcons();
 	}
 
-	// Token: 0x06001C45 RID: 7237 RVA: 0x001499F0 File Offset: 0x00147BF0
+	// Token: 0x06001C4E RID: 7246 RVA: 0x0014A468 File Offset: 0x00148668
 	private void UpdateIcons()
 	{
 		this.Header.text = this.Weekday.ToString() + " Schedule";
@@ -126,7 +126,7 @@ public class ScheduleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C46 RID: 7238 RVA: 0x00149D80 File Offset: 0x00147F80
+	// Token: 0x06001C4F RID: 7247 RVA: 0x0014A7F8 File Offset: 0x001489F8
 	private void Update()
 	{
 		this.PauseScreen.Sideways = true;
@@ -203,7 +203,7 @@ public class ScheduleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C47 RID: 7239 RVA: 0x0014A0D8 File Offset: 0x001482D8
+	// Token: 0x06001C50 RID: 7248 RVA: 0x0014AB50 File Offset: 0x00148D50
 	private void UpdateHighlightPosition()
 	{
 		if (this.X > this.LimitX)
@@ -234,7 +234,7 @@ public class ScheduleScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3((float)(-440 + 80 * this.X), (float)(266 + -66 * this.Y), 0f);
 	}
 
-	// Token: 0x06001C48 RID: 7240 RVA: 0x0014A1C8 File Offset: 0x001483C8
+	// Token: 0x06001C51 RID: 7249 RVA: 0x0014AC40 File Offset: 0x00148E40
 	public void JumpToEvent(int ID)
 	{
 		this.Y = 1;
@@ -262,51 +262,51 @@ public class ScheduleScript : MonoBehaviour
 		this.UpdateHighlightPosition();
 	}
 
-	// Token: 0x040031FC RID: 12796
+	// Token: 0x0400320C RID: 12812
 	public InputManagerScript InputManager;
 
-	// Token: 0x040031FD RID: 12797
+	// Token: 0x0400320D RID: 12813
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x040031FE RID: 12798
+	// Token: 0x0400320E RID: 12814
 	public VoidGoddessScript VoidGoddess;
 
-	// Token: 0x040031FF RID: 12799
+	// Token: 0x0400320F RID: 12815
 	public GameObject[] EventIcons;
 
-	// Token: 0x04003200 RID: 12800
+	// Token: 0x04003210 RID: 12816
 	public UITexture[] Portraits;
 
-	// Token: 0x04003201 RID: 12801
+	// Token: 0x04003211 RID: 12817
 	public string[] Descriptions;
 
-	// Token: 0x04003202 RID: 12802
+	// Token: 0x04003212 RID: 12818
 	public Transform Highlight;
 
-	// Token: 0x04003203 RID: 12803
+	// Token: 0x04003213 RID: 12819
 	public UILabel Description;
 
-	// Token: 0x04003204 RID: 12804
+	// Token: 0x04003214 RID: 12820
 	public UILabel Header;
 
-	// Token: 0x04003205 RID: 12805
+	// Token: 0x04003215 RID: 12821
 	public DayOfWeek Weekday;
 
-	// Token: 0x04003206 RID: 12806
+	// Token: 0x04003216 RID: 12822
 	public int Index;
 
-	// Token: 0x04003207 RID: 12807
+	// Token: 0x04003217 RID: 12823
 	public int X = 1;
 
-	// Token: 0x04003208 RID: 12808
+	// Token: 0x04003218 RID: 12824
 	public int Y = 1;
 
-	// Token: 0x04003209 RID: 12809
+	// Token: 0x04003219 RID: 12825
 	public int LimitX = 1;
 
-	// Token: 0x0400320A RID: 12810
+	// Token: 0x0400321A RID: 12826
 	public int LimitY = 1;
 
-	// Token: 0x0400320B RID: 12811
+	// Token: 0x0400321B RID: 12827
 	public bool Initialized;
 }

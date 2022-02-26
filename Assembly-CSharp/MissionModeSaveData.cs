@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x020003FD RID: 1021
+// Token: 0x020003FE RID: 1022
 [Serializable]
 public class MissionModeSaveData
 {
-	// Token: 0x06001C07 RID: 7175 RVA: 0x001463B8 File Offset: 0x001445B8
+	// Token: 0x06001C10 RID: 7184 RVA: 0x00146E30 File Offset: 0x00145030
 	public static MissionModeSaveData ReadFromGlobals()
 	{
 		MissionModeSaveData missionModeSaveData = new MissionModeSaveData();
@@ -24,7 +24,7 @@ public class MissionModeSaveData
 		return missionModeSaveData;
 	}
 
-	// Token: 0x06001C08 RID: 7176 RVA: 0x00146450 File Offset: 0x00144650
+	// Token: 0x06001C11 RID: 7185 RVA: 0x00146EC8 File Offset: 0x001450C8
 	public static void WriteToGlobals(MissionModeSaveData data)
 	{
 		foreach (KeyValuePair<int, int> keyValuePair in data.missionCondition)
@@ -41,30 +41,30 @@ public class MissionModeSaveData
 		MissionModeGlobals.NemesisDifficulty = data.nemesisDifficulty;
 	}
 
-	// Token: 0x04003120 RID: 12576
+	// Token: 0x04003130 RID: 12592
 	public IntAndIntDictionary missionCondition = new IntAndIntDictionary();
 
-	// Token: 0x04003121 RID: 12577
+	// Token: 0x04003131 RID: 12593
 	public int missionDifficulty;
 
-	// Token: 0x04003122 RID: 12578
+	// Token: 0x04003132 RID: 12594
 	public bool missionMode;
 
-	// Token: 0x04003123 RID: 12579
+	// Token: 0x04003133 RID: 12595
 	public int missionRequiredClothing;
 
-	// Token: 0x04003124 RID: 12580
+	// Token: 0x04003134 RID: 12596
 	public int missionRequiredDisposal;
 
-	// Token: 0x04003125 RID: 12581
+	// Token: 0x04003135 RID: 12597
 	public int missionRequiredWeapon;
 
-	// Token: 0x04003126 RID: 12582
+	// Token: 0x04003136 RID: 12598
 	public int missionTarget;
 
-	// Token: 0x04003127 RID: 12583
+	// Token: 0x04003137 RID: 12599
 	public string missionTargetName = string.Empty;
 
-	// Token: 0x04003128 RID: 12584
+	// Token: 0x04003138 RID: 12600
 	public int nemesisDifficulty;
 }

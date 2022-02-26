@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace YandereSimulator.Yancord
 {
-	// Token: 0x0200051B RID: 1307
+	// Token: 0x0200051C RID: 1308
 	public class MessageScript : MonoBehaviour
 	{
-		// Token: 0x06002161 RID: 8545 RVA: 0x001E960C File Offset: 0x001E780C
+		// Token: 0x0600216A RID: 8554 RVA: 0x001EA1EC File Offset: 0x001E83EC
 		public void Awake()
 		{
 			if (this.MyProfile != null)
@@ -23,18 +23,18 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x04004922 RID: 18722
+		// Token: 0x04004932 RID: 18738
 		[Header("== Partner Informations ==")]
 		public Profile MyProfile;
 
-		// Token: 0x04004923 RID: 18723
+		// Token: 0x04004933 RID: 18739
 		[Space(20f)]
 		public UILabel NameLabel;
 
-		// Token: 0x04004924 RID: 18724
+		// Token: 0x04004934 RID: 18740
 		public UILabel MessageLabel;
 
-		// Token: 0x04004925 RID: 18725
+		// Token: 0x04004935 RID: 18741
 		public UITexture ProfilPictureTexture;
 	}
 }

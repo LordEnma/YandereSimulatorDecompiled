@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Distortion_BlackHole : MonoBehaviour
 {
 	// Token: 0x17000279 RID: 633
-	// (get) Token: 0x06000D7D RID: 3453 RVA: 0x00076611 File Offset: 0x00074811
+	// (get) Token: 0x06000D7D RID: 3453 RVA: 0x00076725 File Offset: 0x00074925
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Distortion_BlackHole : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D7E RID: 3454 RVA: 0x00076645 File Offset: 0x00074845
+	// Token: 0x06000D7E RID: 3454 RVA: 0x00076759 File Offset: 0x00074959
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Distortion_BlackHole");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Distortion_BlackHole : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D7F RID: 3455 RVA: 0x00076668 File Offset: 0x00074868
+	// Token: 0x06000D7F RID: 3455 RVA: 0x0007677C File Offset: 0x0007497C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Distortion_BlackHole : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000D80 RID: 3456 RVA: 0x00076759 File Offset: 0x00074959
+	// Token: 0x06000D80 RID: 3456 RVA: 0x0007686D File Offset: 0x00074A6D
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000D81 RID: 3457 RVA: 0x0007675B File Offset: 0x0007495B
+	// Token: 0x06000D81 RID: 3457 RVA: 0x0007686F File Offset: 0x00074A6F
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

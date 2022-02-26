@@ -2,16 +2,16 @@
 
 namespace AmplifyMotion
 {
-	// Token: 0x0200057D RID: 1405
+	// Token: 0x0200057E RID: 1406
 	public enum Quality
 	{
-		// Token: 0x04004B47 RID: 19271
+		// Token: 0x04004B57 RID: 19287
 		Mobile,
-		// Token: 0x04004B48 RID: 19272
+		// Token: 0x04004B58 RID: 19288
 		Standard,
-		// Token: 0x04004B49 RID: 19273
+		// Token: 0x04004B59 RID: 19289
 		Standard_SM3,
-		// Token: 0x04004B4A RID: 19274
+		// Token: 0x04004B5A RID: 19290
 		SoftEdge_SM3
 	}
 }

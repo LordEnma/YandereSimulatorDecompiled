@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_AAA_WaterDropPro : MonoBehaviour
 {
 	// Token: 0x17000222 RID: 546
-	// (get) Token: 0x06000B32 RID: 2866 RVA: 0x0006B82C File Offset: 0x00069A2C
+	// (get) Token: 0x06000B32 RID: 2866 RVA: 0x0006B940 File Offset: 0x00069B40
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_AAA_WaterDropPro : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B33 RID: 2867 RVA: 0x0006B860 File Offset: 0x00069A60
+	// Token: 0x06000B33 RID: 2867 RVA: 0x0006B974 File Offset: 0x00069B74
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_WaterDrop") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_AAA_WaterDropPro : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B34 RID: 2868 RVA: 0x0006B898 File Offset: 0x00069A98
+	// Token: 0x06000B34 RID: 2868 RVA: 0x0006B9AC File Offset: 0x00069BAC
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -55,12 +55,12 @@ public class CameraFilterPack_AAA_WaterDropPro : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B35 RID: 2869 RVA: 0x0006B979 File Offset: 0x00069B79
+	// Token: 0x06000B35 RID: 2869 RVA: 0x0006BA8D File Offset: 0x00069C8D
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B36 RID: 2870 RVA: 0x0006B97B File Offset: 0x00069B7B
+	// Token: 0x06000B36 RID: 2870 RVA: 0x0006BA8F File Offset: 0x00069C8F
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

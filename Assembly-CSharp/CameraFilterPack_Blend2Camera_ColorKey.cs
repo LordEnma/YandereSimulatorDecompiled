@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blend2Camera_ColorKey : MonoBehaviour
 {
 	// Token: 0x1700022F RID: 559
-	// (get) Token: 0x06000B8A RID: 2954 RVA: 0x0006D46B File Offset: 0x0006B66B
+	// (get) Token: 0x06000B8A RID: 2954 RVA: 0x0006D57F File Offset: 0x0006B77F
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blend2Camera_ColorKey : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B8B RID: 2955 RVA: 0x0006D4A0 File Offset: 0x0006B6A0
+	// Token: 0x06000B8B RID: 2955 RVA: 0x0006D5B4 File Offset: 0x0006B7B4
 	private void Start()
 	{
 		if (this.Camera2 != null)
@@ -37,7 +37,7 @@ public class CameraFilterPack_Blend2Camera_ColorKey : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B8C RID: 2956 RVA: 0x0006D514 File Offset: 0x0006B714
+	// Token: 0x06000B8C RID: 2956 RVA: 0x0006D628 File Offset: 0x0006B828
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -66,7 +66,7 @@ public class CameraFilterPack_Blend2Camera_ColorKey : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B8D RID: 2957 RVA: 0x0006D65B File Offset: 0x0006B85B
+	// Token: 0x06000B8D RID: 2957 RVA: 0x0006D76F File Offset: 0x0006B96F
 	private void Update()
 	{
 		this.ScreenSize.x = (float)Screen.width;
@@ -74,14 +74,14 @@ public class CameraFilterPack_Blend2Camera_ColorKey : MonoBehaviour
 		bool isPlaying = Application.isPlaying;
 	}
 
-	// Token: 0x06000B8E RID: 2958 RVA: 0x0006D685 File Offset: 0x0006B885
+	// Token: 0x06000B8E RID: 2958 RVA: 0x0006D799 File Offset: 0x0006B999
 	private void OnEnable()
 	{
 		this.Start();
 		this.Update();
 	}
 
-	// Token: 0x06000B8F RID: 2959 RVA: 0x0006D694 File Offset: 0x0006B894
+	// Token: 0x06000B8F RID: 2959 RVA: 0x0006D7A8 File Offset: 0x0006B9A8
 	private void OnDisable()
 	{
 		if (this.Camera2 != null && this.Camera2.targetTexture != null)

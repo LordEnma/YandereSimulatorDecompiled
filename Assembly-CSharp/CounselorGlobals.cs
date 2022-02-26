@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000300 RID: 768
+// Token: 0x02000301 RID: 769
 public static class CounselorGlobals
 {
 	// Token: 0x1700045A RID: 1114
-	// (get) Token: 0x060017D9 RID: 6105 RVA: 0x000E2EF4 File Offset: 0x000E10F4
-	// (set) Token: 0x060017DA RID: 6106 RVA: 0x000E2F24 File Offset: 0x000E1124
+	// (get) Token: 0x060017E2 RID: 6114 RVA: 0x000E37D8 File Offset: 0x000E19D8
+	// (set) Token: 0x060017E3 RID: 6115 RVA: 0x000E3808 File Offset: 0x000E1A08
 	public static int DelinquentPunishments
 	{
 		get
@@ -20,8 +20,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x1700045B RID: 1115
-	// (get) Token: 0x060017DB RID: 6107 RVA: 0x000E2F54 File Offset: 0x000E1154
-	// (set) Token: 0x060017DC RID: 6108 RVA: 0x000E2F84 File Offset: 0x000E1184
+	// (get) Token: 0x060017E4 RID: 6116 RVA: 0x000E3838 File Offset: 0x000E1A38
+	// (set) Token: 0x060017E5 RID: 6117 RVA: 0x000E3868 File Offset: 0x000E1A68
 	public static int CounselorPunishments
 	{
 		get
@@ -35,8 +35,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x1700045C RID: 1116
-	// (get) Token: 0x060017DD RID: 6109 RVA: 0x000E2FB4 File Offset: 0x000E11B4
-	// (set) Token: 0x060017DE RID: 6110 RVA: 0x000E2FE4 File Offset: 0x000E11E4
+	// (get) Token: 0x060017E6 RID: 6118 RVA: 0x000E3898 File Offset: 0x000E1A98
+	// (set) Token: 0x060017E7 RID: 6119 RVA: 0x000E38C8 File Offset: 0x000E1AC8
 	public static int CounselorVisits
 	{
 		get
@@ -50,8 +50,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x1700045D RID: 1117
-	// (get) Token: 0x060017DF RID: 6111 RVA: 0x000E3014 File Offset: 0x000E1214
-	// (set) Token: 0x060017E0 RID: 6112 RVA: 0x000E3044 File Offset: 0x000E1244
+	// (get) Token: 0x060017E8 RID: 6120 RVA: 0x000E38F8 File Offset: 0x000E1AF8
+	// (set) Token: 0x060017E9 RID: 6121 RVA: 0x000E3928 File Offset: 0x000E1B28
 	public static int CounselorTape
 	{
 		get
@@ -65,8 +65,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x1700045E RID: 1118
-	// (get) Token: 0x060017E1 RID: 6113 RVA: 0x000E3074 File Offset: 0x000E1274
-	// (set) Token: 0x060017E2 RID: 6114 RVA: 0x000E30A4 File Offset: 0x000E12A4
+	// (get) Token: 0x060017EA RID: 6122 RVA: 0x000E3958 File Offset: 0x000E1B58
+	// (set) Token: 0x060017EB RID: 6123 RVA: 0x000E3988 File Offset: 0x000E1B88
 	public static int ApologiesUsed
 	{
 		get
@@ -80,8 +80,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x1700045F RID: 1119
-	// (get) Token: 0x060017E3 RID: 6115 RVA: 0x000E30D4 File Offset: 0x000E12D4
-	// (set) Token: 0x060017E4 RID: 6116 RVA: 0x000E3104 File Offset: 0x000E1304
+	// (get) Token: 0x060017EC RID: 6124 RVA: 0x000E39B8 File Offset: 0x000E1BB8
+	// (set) Token: 0x060017ED RID: 6125 RVA: 0x000E39E8 File Offset: 0x000E1BE8
 	public static int WeaponsBanned
 	{
 		get
@@ -95,8 +95,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000460 RID: 1120
-	// (get) Token: 0x060017E5 RID: 6117 RVA: 0x000E3134 File Offset: 0x000E1334
-	// (set) Token: 0x060017E6 RID: 6118 RVA: 0x000E3164 File Offset: 0x000E1364
+	// (get) Token: 0x060017EE RID: 6126 RVA: 0x000E3A18 File Offset: 0x000E1C18
+	// (set) Token: 0x060017EF RID: 6127 RVA: 0x000E3A48 File Offset: 0x000E1C48
 	public static int BloodVisits
 	{
 		get
@@ -110,8 +110,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000461 RID: 1121
-	// (get) Token: 0x060017E7 RID: 6119 RVA: 0x000E3194 File Offset: 0x000E1394
-	// (set) Token: 0x060017E8 RID: 6120 RVA: 0x000E31C4 File Offset: 0x000E13C4
+	// (get) Token: 0x060017F0 RID: 6128 RVA: 0x000E3A78 File Offset: 0x000E1C78
+	// (set) Token: 0x060017F1 RID: 6129 RVA: 0x000E3AA8 File Offset: 0x000E1CA8
 	public static int InsanityVisits
 	{
 		get
@@ -125,8 +125,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000462 RID: 1122
-	// (get) Token: 0x060017E9 RID: 6121 RVA: 0x000E31F4 File Offset: 0x000E13F4
-	// (set) Token: 0x060017EA RID: 6122 RVA: 0x000E3224 File Offset: 0x000E1424
+	// (get) Token: 0x060017F2 RID: 6130 RVA: 0x000E3AD8 File Offset: 0x000E1CD8
+	// (set) Token: 0x060017F3 RID: 6131 RVA: 0x000E3B08 File Offset: 0x000E1D08
 	public static int LewdVisits
 	{
 		get
@@ -140,8 +140,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000463 RID: 1123
-	// (get) Token: 0x060017EB RID: 6123 RVA: 0x000E3254 File Offset: 0x000E1454
-	// (set) Token: 0x060017EC RID: 6124 RVA: 0x000E3284 File Offset: 0x000E1484
+	// (get) Token: 0x060017F4 RID: 6132 RVA: 0x000E3B38 File Offset: 0x000E1D38
+	// (set) Token: 0x060017F5 RID: 6133 RVA: 0x000E3B68 File Offset: 0x000E1D68
 	public static int TheftVisits
 	{
 		get
@@ -155,8 +155,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000464 RID: 1124
-	// (get) Token: 0x060017ED RID: 6125 RVA: 0x000E32B4 File Offset: 0x000E14B4
-	// (set) Token: 0x060017EE RID: 6126 RVA: 0x000E32E4 File Offset: 0x000E14E4
+	// (get) Token: 0x060017F6 RID: 6134 RVA: 0x000E3B98 File Offset: 0x000E1D98
+	// (set) Token: 0x060017F7 RID: 6135 RVA: 0x000E3BC8 File Offset: 0x000E1DC8
 	public static int TrespassVisits
 	{
 		get
@@ -170,8 +170,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000465 RID: 1125
-	// (get) Token: 0x060017EF RID: 6127 RVA: 0x000E3314 File Offset: 0x000E1514
-	// (set) Token: 0x060017F0 RID: 6128 RVA: 0x000E3344 File Offset: 0x000E1544
+	// (get) Token: 0x060017F8 RID: 6136 RVA: 0x000E3BF8 File Offset: 0x000E1DF8
+	// (set) Token: 0x060017F9 RID: 6137 RVA: 0x000E3C28 File Offset: 0x000E1E28
 	public static int WeaponVisits
 	{
 		get
@@ -185,8 +185,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000466 RID: 1126
-	// (get) Token: 0x060017F1 RID: 6129 RVA: 0x000E3374 File Offset: 0x000E1574
-	// (set) Token: 0x060017F2 RID: 6130 RVA: 0x000E33A4 File Offset: 0x000E15A4
+	// (get) Token: 0x060017FA RID: 6138 RVA: 0x000E3C58 File Offset: 0x000E1E58
+	// (set) Token: 0x060017FB RID: 6139 RVA: 0x000E3C88 File Offset: 0x000E1E88
 	public static int BloodExcuseUsed
 	{
 		get
@@ -200,8 +200,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000467 RID: 1127
-	// (get) Token: 0x060017F3 RID: 6131 RVA: 0x000E33D4 File Offset: 0x000E15D4
-	// (set) Token: 0x060017F4 RID: 6132 RVA: 0x000E3404 File Offset: 0x000E1604
+	// (get) Token: 0x060017FC RID: 6140 RVA: 0x000E3CB8 File Offset: 0x000E1EB8
+	// (set) Token: 0x060017FD RID: 6141 RVA: 0x000E3CE8 File Offset: 0x000E1EE8
 	public static int InsanityExcuseUsed
 	{
 		get
@@ -215,8 +215,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000468 RID: 1128
-	// (get) Token: 0x060017F5 RID: 6133 RVA: 0x000E3434 File Offset: 0x000E1634
-	// (set) Token: 0x060017F6 RID: 6134 RVA: 0x000E3464 File Offset: 0x000E1664
+	// (get) Token: 0x060017FE RID: 6142 RVA: 0x000E3D18 File Offset: 0x000E1F18
+	// (set) Token: 0x060017FF RID: 6143 RVA: 0x000E3D48 File Offset: 0x000E1F48
 	public static int LewdExcuseUsed
 	{
 		get
@@ -230,8 +230,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000469 RID: 1129
-	// (get) Token: 0x060017F7 RID: 6135 RVA: 0x000E3494 File Offset: 0x000E1694
-	// (set) Token: 0x060017F8 RID: 6136 RVA: 0x000E34C4 File Offset: 0x000E16C4
+	// (get) Token: 0x06001800 RID: 6144 RVA: 0x000E3D78 File Offset: 0x000E1F78
+	// (set) Token: 0x06001801 RID: 6145 RVA: 0x000E3DA8 File Offset: 0x000E1FA8
 	public static int TheftExcuseUsed
 	{
 		get
@@ -245,8 +245,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x1700046A RID: 1130
-	// (get) Token: 0x060017F9 RID: 6137 RVA: 0x000E34F4 File Offset: 0x000E16F4
-	// (set) Token: 0x060017FA RID: 6138 RVA: 0x000E3524 File Offset: 0x000E1724
+	// (get) Token: 0x06001802 RID: 6146 RVA: 0x000E3DD8 File Offset: 0x000E1FD8
+	// (set) Token: 0x06001803 RID: 6147 RVA: 0x000E3E08 File Offset: 0x000E2008
 	public static int TrespassExcuseUsed
 	{
 		get
@@ -260,8 +260,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x1700046B RID: 1131
-	// (get) Token: 0x060017FB RID: 6139 RVA: 0x000E3554 File Offset: 0x000E1754
-	// (set) Token: 0x060017FC RID: 6140 RVA: 0x000E3584 File Offset: 0x000E1784
+	// (get) Token: 0x06001804 RID: 6148 RVA: 0x000E3E38 File Offset: 0x000E2038
+	// (set) Token: 0x06001805 RID: 6149 RVA: 0x000E3E68 File Offset: 0x000E2068
 	public static int WeaponExcuseUsed
 	{
 		get
@@ -275,8 +275,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x1700046C RID: 1132
-	// (get) Token: 0x060017FD RID: 6141 RVA: 0x000E35B4 File Offset: 0x000E17B4
-	// (set) Token: 0x060017FE RID: 6142 RVA: 0x000E35E4 File Offset: 0x000E17E4
+	// (get) Token: 0x06001806 RID: 6150 RVA: 0x000E3E98 File Offset: 0x000E2098
+	// (set) Token: 0x06001807 RID: 6151 RVA: 0x000E3EC8 File Offset: 0x000E20C8
 	public static int BloodBlameUsed
 	{
 		get
@@ -290,8 +290,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x1700046D RID: 1133
-	// (get) Token: 0x060017FF RID: 6143 RVA: 0x000E3614 File Offset: 0x000E1814
-	// (set) Token: 0x06001800 RID: 6144 RVA: 0x000E3644 File Offset: 0x000E1844
+	// (get) Token: 0x06001808 RID: 6152 RVA: 0x000E3EF8 File Offset: 0x000E20F8
+	// (set) Token: 0x06001809 RID: 6153 RVA: 0x000E3F28 File Offset: 0x000E2128
 	public static int InsanityBlameUsed
 	{
 		get
@@ -305,8 +305,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x1700046E RID: 1134
-	// (get) Token: 0x06001801 RID: 6145 RVA: 0x000E3674 File Offset: 0x000E1874
-	// (set) Token: 0x06001802 RID: 6146 RVA: 0x000E36A4 File Offset: 0x000E18A4
+	// (get) Token: 0x0600180A RID: 6154 RVA: 0x000E3F58 File Offset: 0x000E2158
+	// (set) Token: 0x0600180B RID: 6155 RVA: 0x000E3F88 File Offset: 0x000E2188
 	public static int LewdBlameUsed
 	{
 		get
@@ -320,8 +320,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x1700046F RID: 1135
-	// (get) Token: 0x06001803 RID: 6147 RVA: 0x000E36D4 File Offset: 0x000E18D4
-	// (set) Token: 0x06001804 RID: 6148 RVA: 0x000E3704 File Offset: 0x000E1904
+	// (get) Token: 0x0600180C RID: 6156 RVA: 0x000E3FB8 File Offset: 0x000E21B8
+	// (set) Token: 0x0600180D RID: 6157 RVA: 0x000E3FE8 File Offset: 0x000E21E8
 	public static int TheftBlameUsed
 	{
 		get
@@ -335,8 +335,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000470 RID: 1136
-	// (get) Token: 0x06001805 RID: 6149 RVA: 0x000E3734 File Offset: 0x000E1934
-	// (set) Token: 0x06001806 RID: 6150 RVA: 0x000E3764 File Offset: 0x000E1964
+	// (get) Token: 0x0600180E RID: 6158 RVA: 0x000E4018 File Offset: 0x000E2218
+	// (set) Token: 0x0600180F RID: 6159 RVA: 0x000E4048 File Offset: 0x000E2248
 	public static int TrespassBlameUsed
 	{
 		get
@@ -350,8 +350,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000471 RID: 1137
-	// (get) Token: 0x06001807 RID: 6151 RVA: 0x000E3794 File Offset: 0x000E1994
-	// (set) Token: 0x06001808 RID: 6152 RVA: 0x000E37C4 File Offset: 0x000E19C4
+	// (get) Token: 0x06001810 RID: 6160 RVA: 0x000E4078 File Offset: 0x000E2278
+	// (set) Token: 0x06001811 RID: 6161 RVA: 0x000E40A8 File Offset: 0x000E22A8
 	public static int WeaponBlameUsed
 	{
 		get
@@ -365,8 +365,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000472 RID: 1138
-	// (get) Token: 0x06001809 RID: 6153 RVA: 0x000E37F4 File Offset: 0x000E19F4
-	// (set) Token: 0x0600180A RID: 6154 RVA: 0x000E3824 File Offset: 0x000E1A24
+	// (get) Token: 0x06001812 RID: 6162 RVA: 0x000E40D8 File Offset: 0x000E22D8
+	// (set) Token: 0x06001813 RID: 6163 RVA: 0x000E4108 File Offset: 0x000E2308
 	public static bool ReportedAlcohol
 	{
 		get
@@ -380,8 +380,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000473 RID: 1139
-	// (get) Token: 0x0600180B RID: 6155 RVA: 0x000E3854 File Offset: 0x000E1A54
-	// (set) Token: 0x0600180C RID: 6156 RVA: 0x000E3884 File Offset: 0x000E1A84
+	// (get) Token: 0x06001814 RID: 6164 RVA: 0x000E4138 File Offset: 0x000E2338
+	// (set) Token: 0x06001815 RID: 6165 RVA: 0x000E4168 File Offset: 0x000E2368
 	public static bool ReportedCigarettes
 	{
 		get
@@ -395,8 +395,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000474 RID: 1140
-	// (get) Token: 0x0600180D RID: 6157 RVA: 0x000E38B4 File Offset: 0x000E1AB4
-	// (set) Token: 0x0600180E RID: 6158 RVA: 0x000E38E4 File Offset: 0x000E1AE4
+	// (get) Token: 0x06001816 RID: 6166 RVA: 0x000E4198 File Offset: 0x000E2398
+	// (set) Token: 0x06001817 RID: 6167 RVA: 0x000E41C8 File Offset: 0x000E23C8
 	public static bool ReportedCondoms
 	{
 		get
@@ -410,8 +410,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000475 RID: 1141
-	// (get) Token: 0x0600180F RID: 6159 RVA: 0x000E3914 File Offset: 0x000E1B14
-	// (set) Token: 0x06001810 RID: 6160 RVA: 0x000E3944 File Offset: 0x000E1B44
+	// (get) Token: 0x06001818 RID: 6168 RVA: 0x000E41F8 File Offset: 0x000E23F8
+	// (set) Token: 0x06001819 RID: 6169 RVA: 0x000E4228 File Offset: 0x000E2428
 	public static bool ReportedTheft
 	{
 		get
@@ -425,8 +425,8 @@ public static class CounselorGlobals
 	}
 
 	// Token: 0x17000476 RID: 1142
-	// (get) Token: 0x06001811 RID: 6161 RVA: 0x000E3974 File Offset: 0x000E1B74
-	// (set) Token: 0x06001812 RID: 6162 RVA: 0x000E39A4 File Offset: 0x000E1BA4
+	// (get) Token: 0x0600181A RID: 6170 RVA: 0x000E4258 File Offset: 0x000E2458
+	// (set) Token: 0x0600181B RID: 6171 RVA: 0x000E4288 File Offset: 0x000E2488
 	public static bool ReportedCheating
 	{
 		get
@@ -439,7 +439,7 @@ public static class CounselorGlobals
 		}
 	}
 
-	// Token: 0x06001813 RID: 6163 RVA: 0x000E39D4 File Offset: 0x000E1BD4
+	// Token: 0x0600181C RID: 6172 RVA: 0x000E42B8 File Offset: 0x000E24B8
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_DelinquentPunishments");
@@ -473,90 +473,90 @@ public static class CounselorGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_ReportedCheating");
 	}
 
-	// Token: 0x040022C4 RID: 8900
+	// Token: 0x040022D3 RID: 8915
 	private const string Str_DelinquentPunishments = "DelinquentPunishments";
 
-	// Token: 0x040022C5 RID: 8901
+	// Token: 0x040022D4 RID: 8916
 	private const string Str_CounselorPunishments = "CounselorPunishments";
 
-	// Token: 0x040022C6 RID: 8902
+	// Token: 0x040022D5 RID: 8917
 	private const string Str_CounselorVisits = "CounselorVisits";
 
-	// Token: 0x040022C7 RID: 8903
+	// Token: 0x040022D6 RID: 8918
 	private const string Str_CounselorTape = "CounselorTape";
 
-	// Token: 0x040022C8 RID: 8904
+	// Token: 0x040022D7 RID: 8919
 	private const string Str_ApologiesUsed = "ApologiesUsed";
 
-	// Token: 0x040022C9 RID: 8905
+	// Token: 0x040022D8 RID: 8920
 	private const string Str_WeaponsBanned = "WeaponsBanned";
 
-	// Token: 0x040022CA RID: 8906
+	// Token: 0x040022D9 RID: 8921
 	private const string Str_BloodVisits = "BloodVisits";
 
-	// Token: 0x040022CB RID: 8907
+	// Token: 0x040022DA RID: 8922
 	private const string Str_InsanityVisits = "InsanityVisits";
 
-	// Token: 0x040022CC RID: 8908
+	// Token: 0x040022DB RID: 8923
 	private const string Str_LewdVisits = "LewdVisits";
 
-	// Token: 0x040022CD RID: 8909
+	// Token: 0x040022DC RID: 8924
 	private const string Str_TheftVisits = "TheftVisits";
 
-	// Token: 0x040022CE RID: 8910
+	// Token: 0x040022DD RID: 8925
 	private const string Str_TrespassVisits = "TrespassVisits";
 
-	// Token: 0x040022CF RID: 8911
+	// Token: 0x040022DE RID: 8926
 	private const string Str_WeaponVisits = "WeaponVisits";
 
-	// Token: 0x040022D0 RID: 8912
+	// Token: 0x040022DF RID: 8927
 	private const string Str_BloodExcuseUsed = "BloodExcuseUsed";
 
-	// Token: 0x040022D1 RID: 8913
+	// Token: 0x040022E0 RID: 8928
 	private const string Str_InsanityExcuseUsed = "InsanityExcuseUsed";
 
-	// Token: 0x040022D2 RID: 8914
+	// Token: 0x040022E1 RID: 8929
 	private const string Str_LewdExcuseUsed = "LewdExcuseUsed";
 
-	// Token: 0x040022D3 RID: 8915
+	// Token: 0x040022E2 RID: 8930
 	private const string Str_TheftExcuseUsed = "TheftExcuseUsed";
 
-	// Token: 0x040022D4 RID: 8916
+	// Token: 0x040022E3 RID: 8931
 	private const string Str_TrespassExcuseUsed = "TrespassExcuseUsed";
 
-	// Token: 0x040022D5 RID: 8917
+	// Token: 0x040022E4 RID: 8932
 	private const string Str_WeaponExcuseUsed = "WeaponExcuseUsed";
 
-	// Token: 0x040022D6 RID: 8918
+	// Token: 0x040022E5 RID: 8933
 	private const string Str_BloodBlameUsed = "BloodBlameUsed";
 
-	// Token: 0x040022D7 RID: 8919
+	// Token: 0x040022E6 RID: 8934
 	private const string Str_InsanityBlameUsed = "InsanityBlameUsed";
 
-	// Token: 0x040022D8 RID: 8920
+	// Token: 0x040022E7 RID: 8935
 	private const string Str_LewdBlameUsed = "LewdBlameUsed";
 
-	// Token: 0x040022D9 RID: 8921
+	// Token: 0x040022E8 RID: 8936
 	private const string Str_TheftBlameUsed = "TheftBlameUsed";
 
-	// Token: 0x040022DA RID: 8922
+	// Token: 0x040022E9 RID: 8937
 	private const string Str_TrespassBlameUsed = "TrespassBlameUsed";
 
-	// Token: 0x040022DB RID: 8923
+	// Token: 0x040022EA RID: 8938
 	private const string Str_WeaponBlameUsed = "WeaponBlameUsed";
 
-	// Token: 0x040022DC RID: 8924
+	// Token: 0x040022EB RID: 8939
 	private const string Str_ReportedAlcohol = "ReportedAlcohol";
 
-	// Token: 0x040022DD RID: 8925
+	// Token: 0x040022EC RID: 8940
 	private const string Str_ReportedCigarettes = "ReportedCigarettes";
 
-	// Token: 0x040022DE RID: 8926
+	// Token: 0x040022ED RID: 8941
 	private const string Str_ReportedCondoms = "ReportedCondoms";
 
-	// Token: 0x040022DF RID: 8927
+	// Token: 0x040022EE RID: 8942
 	private const string Str_ReportedTheft = "ReportedTheft";
 
-	// Token: 0x040022E0 RID: 8928
+	// Token: 0x040022EF RID: 8943
 	private const string Str_ReportedCheating = "ReportedCheating";
 }

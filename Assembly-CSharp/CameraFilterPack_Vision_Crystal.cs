@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Vision_Crystal : MonoBehaviour
 {
 	// Token: 0x1700032D RID: 813
-	// (get) Token: 0x060011D9 RID: 4569 RVA: 0x0008987B File Offset: 0x00087A7B
+	// (get) Token: 0x060011D9 RID: 4569 RVA: 0x0008998F File Offset: 0x00087B8F
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Vision_Crystal : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011DA RID: 4570 RVA: 0x000898AF File Offset: 0x00087AAF
+	// Token: 0x060011DA RID: 4570 RVA: 0x000899C3 File Offset: 0x00087BC3
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Vision_Crystal");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Vision_Crystal : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011DB RID: 4571 RVA: 0x000898D0 File Offset: 0x00087AD0
+	// Token: 0x060011DB RID: 4571 RVA: 0x000899E4 File Offset: 0x00087BE4
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Vision_Crystal : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x060011DC RID: 4572 RVA: 0x000899C8 File Offset: 0x00087BC8
+	// Token: 0x060011DC RID: 4572 RVA: 0x00089ADC File Offset: 0x00087CDC
 	private void Update()
 	{
 	}
 
-	// Token: 0x060011DD RID: 4573 RVA: 0x000899CA File Offset: 0x00087BCA
+	// Token: 0x060011DD RID: 4573 RVA: 0x00089ADE File Offset: 0x00087CDE
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002E9 RID: 745
+// Token: 0x020002EA RID: 746
 public static class ApplicationGlobals
 {
 	// Token: 0x1700036F RID: 879
-	// (get) Token: 0x06001521 RID: 5409 RVA: 0x000D7F78 File Offset: 0x000D6178
-	// (set) Token: 0x06001522 RID: 5410 RVA: 0x000D7FA8 File Offset: 0x000D61A8
+	// (get) Token: 0x0600152A RID: 5418 RVA: 0x000D885C File Offset: 0x000D6A5C
+	// (set) Token: 0x0600152B RID: 5419 RVA: 0x000D888C File Offset: 0x000D6A8C
 	public static float VersionNumber
 	{
 		get
@@ -19,12 +19,12 @@ public static class ApplicationGlobals
 		}
 	}
 
-	// Token: 0x06001523 RID: 5411 RVA: 0x000D7FD8 File Offset: 0x000D61D8
+	// Token: 0x0600152C RID: 5420 RVA: 0x000D88BC File Offset: 0x000D6ABC
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_VersionNumber");
 	}
 
-	// Token: 0x04002195 RID: 8597
+	// Token: 0x040021A4 RID: 8612
 	private const string Str_VersionNumber = "VersionNumber";
 }

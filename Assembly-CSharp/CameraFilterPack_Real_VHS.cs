@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Real_VHS : MonoBehaviour
 {
 	// Token: 0x17000302 RID: 770
-	// (get) Token: 0x060010D6 RID: 4310 RVA: 0x000855B5 File Offset: 0x000837B5
+	// (get) Token: 0x060010D6 RID: 4310 RVA: 0x000856C9 File Offset: 0x000838C9
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Real_VHS : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010D7 RID: 4311 RVA: 0x000855EC File Offset: 0x000837EC
+	// Token: 0x060010D7 RID: 4311 RVA: 0x00085700 File Offset: 0x00083900
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Real_VHS");
@@ -34,7 +34,7 @@ public class CameraFilterPack_Real_VHS : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010D8 RID: 4312 RVA: 0x00085642 File Offset: 0x00083842
+	// Token: 0x060010D8 RID: 4312 RVA: 0x00085756 File Offset: 0x00083956
 	public static Texture2D GetRTPixels(Texture2D t, RenderTexture rt, int sx, int sy)
 	{
 		RenderTexture active = RenderTexture.active;
@@ -44,7 +44,7 @@ public class CameraFilterPack_Real_VHS : MonoBehaviour
 		return t;
 	}
 
-	// Token: 0x060010D9 RID: 4313 RVA: 0x0008567C File Offset: 0x0008387C
+	// Token: 0x060010D9 RID: 4313 RVA: 0x00085790 File Offset: 0x00083990
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -69,12 +69,12 @@ public class CameraFilterPack_Real_VHS : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x060010DA RID: 4314 RVA: 0x0008578C File Offset: 0x0008398C
+	// Token: 0x060010DA RID: 4314 RVA: 0x000858A0 File Offset: 0x00083AA0
 	private void Update()
 	{
 	}
 
-	// Token: 0x060010DB RID: 4315 RVA: 0x0008578E File Offset: 0x0008398E
+	// Token: 0x060010DB RID: 4315 RVA: 0x000858A2 File Offset: 0x00083AA2
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

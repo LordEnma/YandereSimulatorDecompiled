@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blend2Camera_BlueScreen : MonoBehaviour
 {
 	// Token: 0x1700022B RID: 555
-	// (get) Token: 0x06000B6A RID: 2922 RVA: 0x0006CAD7 File Offset: 0x0006ACD7
+	// (get) Token: 0x06000B6A RID: 2922 RVA: 0x0006CBEB File Offset: 0x0006ADEB
 	private Material material
 	{
 		get
@@ -21,14 +21,14 @@ public class CameraFilterPack_Blend2Camera_BlueScreen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B6B RID: 2923 RVA: 0x0006CB0B File Offset: 0x0006AD0B
+	// Token: 0x06000B6B RID: 2923 RVA: 0x0006CC1F File Offset: 0x0006AE1F
 	private void OnValidate()
 	{
 		this.ScreenSize.x = (float)Screen.width;
 		this.ScreenSize.y = (float)Screen.height;
 	}
 
-	// Token: 0x06000B6C RID: 2924 RVA: 0x0006CB30 File Offset: 0x0006AD30
+	// Token: 0x06000B6C RID: 2924 RVA: 0x0006CC44 File Offset: 0x0006AE44
 	private void Start()
 	{
 		if (this.Camera2 != null)
@@ -44,7 +44,7 @@ public class CameraFilterPack_Blend2Camera_BlueScreen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B6D RID: 2925 RVA: 0x0006CBA4 File Offset: 0x0006ADA4
+	// Token: 0x06000B6D RID: 2925 RVA: 0x0006CCB8 File Offset: 0x0006AEB8
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -72,7 +72,7 @@ public class CameraFilterPack_Blend2Camera_BlueScreen : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B6E RID: 2926 RVA: 0x0006CCD5 File Offset: 0x0006AED5
+	// Token: 0x06000B6E RID: 2926 RVA: 0x0006CDE9 File Offset: 0x0006AFE9
 	private void Update()
 	{
 		this.ScreenSize.x = (float)Screen.width;
@@ -80,13 +80,13 @@ public class CameraFilterPack_Blend2Camera_BlueScreen : MonoBehaviour
 		bool isPlaying = Application.isPlaying;
 	}
 
-	// Token: 0x06000B6F RID: 2927 RVA: 0x0006CCFF File Offset: 0x0006AEFF
+	// Token: 0x06000B6F RID: 2927 RVA: 0x0006CE13 File Offset: 0x0006B013
 	private void OnEnable()
 	{
 		this.Start();
 	}
 
-	// Token: 0x06000B70 RID: 2928 RVA: 0x0006CD07 File Offset: 0x0006AF07
+	// Token: 0x06000B70 RID: 2928 RVA: 0x0006CE1B File Offset: 0x0006B01B
 	private void OnDisable()
 	{
 		if (this.Camera2 != null)

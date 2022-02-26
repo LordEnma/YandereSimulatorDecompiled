@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Lut_PlayWith : MonoBehaviour
 {
 	// Token: 0x170002E4 RID: 740
-	// (get) Token: 0x0600100C RID: 4108 RVA: 0x00081531 File Offset: 0x0007F731
+	// (get) Token: 0x0600100C RID: 4108 RVA: 0x00081645 File Offset: 0x0007F845
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Lut_PlayWith : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600100D RID: 4109 RVA: 0x00081565 File Offset: 0x0007F765
+	// Token: 0x0600100D RID: 4109 RVA: 0x00081679 File Offset: 0x0007F879
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Lut_PlayWith");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Lut_PlayWith : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600100E RID: 4110 RVA: 0x00081588 File Offset: 0x0007F788
+	// Token: 0x0600100E RID: 4110 RVA: 0x0008169C File Offset: 0x0007F89C
 	public void SetIdentityLut()
 	{
 		int num = 16;
@@ -57,13 +57,13 @@ public class CameraFilterPack_Lut_PlayWith : MonoBehaviour
 		this.converted3DLut.Apply();
 	}
 
-	// Token: 0x0600100F RID: 4111 RVA: 0x00081660 File Offset: 0x0007F860
+	// Token: 0x0600100F RID: 4111 RVA: 0x00081774 File Offset: 0x0007F974
 	public bool ValidDimensions(Texture2D tex2d)
 	{
 		return tex2d && tex2d.height == Mathf.FloorToInt(Mathf.Sqrt((float)tex2d.width));
 	}
 
-	// Token: 0x06001010 RID: 4112 RVA: 0x00081688 File Offset: 0x0007F888
+	// Token: 0x06001010 RID: 4112 RVA: 0x0008179C File Offset: 0x0007F99C
 	public void Convert(Texture2D temp2DTex)
 	{
 		if (!temp2DTex)
@@ -100,7 +100,7 @@ public class CameraFilterPack_Lut_PlayWith : MonoBehaviour
 		this.converted3DLut.Apply();
 	}
 
-	// Token: 0x06001011 RID: 4113 RVA: 0x0008178C File Offset: 0x0007F98C
+	// Token: 0x06001011 RID: 4113 RVA: 0x000818A0 File Offset: 0x0007FAA0
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null || !SystemInfo.supports3DTextures)
@@ -126,17 +126,17 @@ public class CameraFilterPack_Lut_PlayWith : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06001012 RID: 4114 RVA: 0x00081890 File Offset: 0x0007FA90
+	// Token: 0x06001012 RID: 4114 RVA: 0x000819A4 File Offset: 0x0007FBA4
 	private void OnValidate()
 	{
 	}
 
-	// Token: 0x06001013 RID: 4115 RVA: 0x00081892 File Offset: 0x0007FA92
+	// Token: 0x06001013 RID: 4115 RVA: 0x000819A6 File Offset: 0x0007FBA6
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001014 RID: 4116 RVA: 0x00081894 File Offset: 0x0007FA94
+	// Token: 0x06001014 RID: 4116 RVA: 0x000819A8 File Offset: 0x0007FBA8
 	private void OnDisable()
 	{
 		if (this.SCMaterial)

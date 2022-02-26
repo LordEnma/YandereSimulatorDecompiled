@@ -1023,61 +1023,61 @@ public abstract class UIBasicSprite : UIWidget
 	// Token: 0x0400050F RID: 1295
 	protected static Vector2[] mTempUVs = new Vector2[4];
 
-	// Token: 0x020005EF RID: 1519
+	// Token: 0x020005F0 RID: 1520
 	[DoNotObfuscateNGUI]
 	public enum Type
 	{
-		// Token: 0x04004DA1 RID: 19873
+		// Token: 0x04004DB1 RID: 19889
 		Simple,
-		// Token: 0x04004DA2 RID: 19874
+		// Token: 0x04004DB2 RID: 19890
 		Sliced,
-		// Token: 0x04004DA3 RID: 19875
+		// Token: 0x04004DB3 RID: 19891
 		Tiled,
-		// Token: 0x04004DA4 RID: 19876
+		// Token: 0x04004DB4 RID: 19892
 		Filled,
-		// Token: 0x04004DA5 RID: 19877
+		// Token: 0x04004DB5 RID: 19893
 		Advanced
-	}
-
-	// Token: 0x020005F0 RID: 1520
-	[DoNotObfuscateNGUI]
-	public enum FillDirection
-	{
-		// Token: 0x04004DA7 RID: 19879
-		Horizontal,
-		// Token: 0x04004DA8 RID: 19880
-		Vertical,
-		// Token: 0x04004DA9 RID: 19881
-		Radial90,
-		// Token: 0x04004DAA RID: 19882
-		Radial180,
-		// Token: 0x04004DAB RID: 19883
-		Radial360
 	}
 
 	// Token: 0x020005F1 RID: 1521
 	[DoNotObfuscateNGUI]
-	public enum AdvancedType
+	public enum FillDirection
 	{
-		// Token: 0x04004DAD RID: 19885
-		Invisible,
-		// Token: 0x04004DAE RID: 19886
-		Sliced,
-		// Token: 0x04004DAF RID: 19887
-		Tiled
+		// Token: 0x04004DB7 RID: 19895
+		Horizontal,
+		// Token: 0x04004DB8 RID: 19896
+		Vertical,
+		// Token: 0x04004DB9 RID: 19897
+		Radial90,
+		// Token: 0x04004DBA RID: 19898
+		Radial180,
+		// Token: 0x04004DBB RID: 19899
+		Radial360
 	}
 
 	// Token: 0x020005F2 RID: 1522
 	[DoNotObfuscateNGUI]
+	public enum AdvancedType
+	{
+		// Token: 0x04004DBD RID: 19901
+		Invisible,
+		// Token: 0x04004DBE RID: 19902
+		Sliced,
+		// Token: 0x04004DBF RID: 19903
+		Tiled
+	}
+
+	// Token: 0x020005F3 RID: 1523
+	[DoNotObfuscateNGUI]
 	public enum Flip
 	{
-		// Token: 0x04004DB1 RID: 19889
+		// Token: 0x04004DC1 RID: 19905
 		Nothing,
-		// Token: 0x04004DB2 RID: 19890
+		// Token: 0x04004DC2 RID: 19906
 		Horizontally,
-		// Token: 0x04004DB3 RID: 19891
+		// Token: 0x04004DC3 RID: 19907
 		Vertically,
-		// Token: 0x04004DB4 RID: 19892
+		// Token: 0x04004DC4 RID: 19908
 		Both
 	}
 }

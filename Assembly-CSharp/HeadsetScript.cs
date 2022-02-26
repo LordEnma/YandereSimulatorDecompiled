@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200030D RID: 781
+// Token: 0x0200030E RID: 782
 public class HeadsetScript : MonoBehaviour
 {
-	// Token: 0x0600183E RID: 6206 RVA: 0x000E699C File Offset: 0x000E4B9C
+	// Token: 0x06001847 RID: 6215 RVA: 0x000E7280 File Offset: 0x000E5480
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -15,6 +15,6 @@ public class HeadsetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400237C RID: 9084
+	// Token: 0x0400238B RID: 9099
 	public PromptScript Prompt;
 }

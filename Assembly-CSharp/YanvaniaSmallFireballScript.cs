@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004DD RID: 1245
+// Token: 0x020004DE RID: 1246
 public class YanvaniaSmallFireballScript : MonoBehaviour
 {
-	// Token: 0x0600209C RID: 8348 RVA: 0x001DEAFC File Offset: 0x001DCCFC
+	// Token: 0x060020A5 RID: 8357 RVA: 0x001DF6DC File Offset: 0x001DD8DC
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "Heart")
@@ -20,6 +20,6 @@ public class YanvaniaSmallFireballScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004764 RID: 18276
+	// Token: 0x04004774 RID: 18292
 	public GameObject Explosion;
 }

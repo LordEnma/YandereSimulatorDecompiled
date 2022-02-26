@@ -2,11 +2,11 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200055F RID: 1375
+	// Token: 0x02000560 RID: 1376
 	public sealed class TaaComponent : PostProcessingComponentRenderTexture<AntialiasingModel>
 	{
 		// Token: 0x170004FC RID: 1276
-		// (get) Token: 0x06002311 RID: 8977 RVA: 0x001F3134 File Offset: 0x001F1334
+		// (get) Token: 0x0600231A RID: 8986 RVA: 0x001F3D14 File Offset: 0x001F1F14
 		public override bool active
 		{
 			get
@@ -15,24 +15,24 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002312 RID: 8978 RVA: 0x001F3180 File Offset: 0x001F1380
+		// Token: 0x0600231B RID: 8987 RVA: 0x001F3D60 File Offset: 0x001F1F60
 		public override DepthTextureMode GetCameraFlags()
 		{
 			return DepthTextureMode.Depth | DepthTextureMode.MotionVectors;
 		}
 
 		// Token: 0x170004FD RID: 1277
-		// (get) Token: 0x06002313 RID: 8979 RVA: 0x001F3183 File Offset: 0x001F1383
-		// (set) Token: 0x06002314 RID: 8980 RVA: 0x001F318B File Offset: 0x001F138B
+		// (get) Token: 0x0600231C RID: 8988 RVA: 0x001F3D63 File Offset: 0x001F1F63
+		// (set) Token: 0x0600231D RID: 8989 RVA: 0x001F3D6B File Offset: 0x001F1F6B
 		public Vector2 jitterVector { get; private set; }
 
-		// Token: 0x06002315 RID: 8981 RVA: 0x001F3194 File Offset: 0x001F1394
+		// Token: 0x0600231E RID: 8990 RVA: 0x001F3D74 File Offset: 0x001F1F74
 		public void ResetHistory()
 		{
 			this.m_ResetHistory = true;
 		}
 
-		// Token: 0x06002316 RID: 8982 RVA: 0x001F31A0 File Offset: 0x001F13A0
+		// Token: 0x0600231F RID: 8991 RVA: 0x001F3D80 File Offset: 0x001F1F80
 		public void SetProjectionMatrix(Func<Vector2, Matrix4x4> jitteredFunc)
 		{
 			AntialiasingModel.TaaSettings taaSettings = base.model.settings.taaSettings;
@@ -54,7 +54,7 @@ namespace UnityEngine.PostProcessing
 			this.jitterVector = vector;
 		}
 
-		// Token: 0x06002317 RID: 8983 RVA: 0x001F32AC File Offset: 0x001F14AC
+		// Token: 0x06002320 RID: 8992 RVA: 0x001F3E8C File Offset: 0x001F208C
 		public void Render(RenderTexture source, RenderTexture destination)
 		{
 			Material material = this.context.materialFactory.Get("Hidden/Post FX/Temporal Anti-aliasing");
@@ -85,7 +85,7 @@ namespace UnityEngine.PostProcessing
 			this.m_ResetHistory = false;
 		}
 
-		// Token: 0x06002318 RID: 8984 RVA: 0x001F3470 File Offset: 0x001F1670
+		// Token: 0x06002321 RID: 8993 RVA: 0x001F4050 File Offset: 0x001F2250
 		private float GetHaltonValue(int index, int radix)
 		{
 			float num = 0f;
@@ -99,7 +99,7 @@ namespace UnityEngine.PostProcessing
 			return num;
 		}
 
-		// Token: 0x06002319 RID: 8985 RVA: 0x001F34A8 File Offset: 0x001F16A8
+		// Token: 0x06002322 RID: 8994 RVA: 0x001F4088 File Offset: 0x001F2288
 		private Vector2 GenerateRandomOffset()
 		{
 			Vector2 result = new Vector2(this.GetHaltonValue(this.m_SampleIndex & 1023, 2), this.GetHaltonValue(this.m_SampleIndex & 1023, 3));
@@ -112,7 +112,7 @@ namespace UnityEngine.PostProcessing
 			return result;
 		}
 
-		// Token: 0x0600231A RID: 8986 RVA: 0x001F34FC File Offset: 0x001F16FC
+		// Token: 0x06002323 RID: 8995 RVA: 0x001F40DC File Offset: 0x001F22DC
 		private Matrix4x4 GetPerspectiveProjectionMatrix(Vector2 offset)
 		{
 			float num = Mathf.Tan(0.008726646f * this.context.camera.fieldOfView);
@@ -143,7 +143,7 @@ namespace UnityEngine.PostProcessing
 			return result;
 		}
 
-		// Token: 0x0600231B RID: 8987 RVA: 0x001F3784 File Offset: 0x001F1984
+		// Token: 0x06002324 RID: 8996 RVA: 0x001F4364 File Offset: 0x001F2564
 		private Matrix4x4 GetOrthographicProjectionMatrix(Vector2 offset)
 		{
 			float orthographicSize = this.context.camera.orthographicSize;
@@ -157,7 +157,7 @@ namespace UnityEngine.PostProcessing
 			return Matrix4x4.Ortho(left, right, bottom, top, this.context.camera.nearClipPlane, this.context.camera.farClipPlane);
 		}
 
-		// Token: 0x0600231C RID: 8988 RVA: 0x001F3840 File Offset: 0x001F1A40
+		// Token: 0x06002325 RID: 8997 RVA: 0x001F4420 File Offset: 0x001F2620
 		public override void OnDisable()
 		{
 			if (this.m_HistoryTexture != null)
@@ -169,40 +169,40 @@ namespace UnityEngine.PostProcessing
 			this.ResetHistory();
 		}
 
-		// Token: 0x04004AF1 RID: 19185
+		// Token: 0x04004B01 RID: 19201
 		private const string k_ShaderString = "Hidden/Post FX/Temporal Anti-aliasing";
 
-		// Token: 0x04004AF2 RID: 19186
+		// Token: 0x04004B02 RID: 19202
 		private const int k_SampleCount = 8;
 
-		// Token: 0x04004AF3 RID: 19187
+		// Token: 0x04004B03 RID: 19203
 		private readonly RenderBuffer[] m_MRT = new RenderBuffer[2];
 
-		// Token: 0x04004AF4 RID: 19188
+		// Token: 0x04004B04 RID: 19204
 		private int m_SampleIndex;
 
-		// Token: 0x04004AF5 RID: 19189
+		// Token: 0x04004B05 RID: 19205
 		private bool m_ResetHistory = true;
 
-		// Token: 0x04004AF6 RID: 19190
+		// Token: 0x04004B06 RID: 19206
 		private RenderTexture m_HistoryTexture;
 
-		// Token: 0x020006A2 RID: 1698
+		// Token: 0x020006A5 RID: 1701
 		private static class Uniforms
 		{
-			// Token: 0x040050B2 RID: 20658
+			// Token: 0x040050C7 RID: 20679
 			internal static int _Jitter = Shader.PropertyToID("_Jitter");
 
-			// Token: 0x040050B3 RID: 20659
+			// Token: 0x040050C8 RID: 20680
 			internal static int _SharpenParameters = Shader.PropertyToID("_SharpenParameters");
 
-			// Token: 0x040050B4 RID: 20660
+			// Token: 0x040050C9 RID: 20681
 			internal static int _FinalBlendParameters = Shader.PropertyToID("_FinalBlendParameters");
 
-			// Token: 0x040050B5 RID: 20661
+			// Token: 0x040050CA RID: 20682
 			internal static int _HistoryTex = Shader.PropertyToID("_HistoryTex");
 
-			// Token: 0x040050B6 RID: 20662
+			// Token: 0x040050CB RID: 20683
 			internal static int _MainTex = Shader.PropertyToID("_MainTex");
 		}
 	}

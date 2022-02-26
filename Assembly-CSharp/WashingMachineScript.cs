@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004B7 RID: 1207
+// Token: 0x020004B8 RID: 1208
 public class WashingMachineScript : MonoBehaviour
 {
-	// Token: 0x06001F9A RID: 8090 RVA: 0x001BC2B5 File Offset: 0x001BA4B5
+	// Token: 0x06001FA3 RID: 8099 RVA: 0x001BCE01 File Offset: 0x001BB001
 	private void Start()
 	{
 		this.Panel.SetActive(false);
 	}
 
-	// Token: 0x06001F9B RID: 8091 RVA: 0x001BC2C4 File Offset: 0x001BA4C4
+	// Token: 0x06001FA4 RID: 8100 RVA: 0x001BCE10 File Offset: 0x001BB010
 	private void Update()
 	{
 		if (!this.Washing)
@@ -56,6 +56,11 @@ public class WashingMachineScript : MonoBehaviour
 							{
 								this.Prompt.Yandere.GloveAttacher.newRenderer.material.mainTexture = this.Prompt.Yandere.GloveTexture;
 							}
+							OutlineScript component = this.ClothingList[i].GetComponent<OutlineScript>();
+							if (component != null)
+							{
+								component.color = new Color(0f, 1f, 1f, 1f);
+							}
 						}
 						else if (this.ClothingList[i].gameObject.name == "Mask")
 						{
@@ -71,17 +76,17 @@ public class WashingMachineScript : MonoBehaviour
 								this.Prompt.Yandere.Police.RedPaintClothing--;
 								this.ClothingList[i].RedPaint = false;
 							}
-							FoldedUniformScript component = this.ClothingList[i].GetComponent<FoldedUniformScript>();
+							FoldedUniformScript component2 = this.ClothingList[i].GetComponent<FoldedUniformScript>();
 							string str = "FoldedUniform is: ";
-							FoldedUniformScript foldedUniformScript = component;
+							FoldedUniformScript foldedUniformScript = component2;
 							Debug.Log(str + ((foldedUniformScript != null) ? foldedUniformScript.ToString() : null));
-							if ((component != null && component.Type == 2) || (component != null && component.Type == 3))
+							if ((component2 != null && component2.Type == 2) || (component2 != null && component2.Type == 3))
 							{
 								Debug.Log("Yep, that was a gym uniform.");
 								this.ClothingList[i].transform.position = base.transform.position + new Vector3(0f, 0.6f, -0.66666f);
 								this.ClothingList[i].transform.localScale = new Vector3(1f, 1f, 1f);
 								this.ClothingList[i].Evidence = false;
-								component.CleanUp();
+								component2.CleanUp();
 							}
 							else
 							{
@@ -171,63 +176,63 @@ public class WashingMachineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040041F0 RID: 16880
+	// Token: 0x04004200 RID: 16896
 	public GameObject CleanUniform;
 
-	// Token: 0x040041F1 RID: 16881
+	// Token: 0x04004201 RID: 16897
 	public GameObject Colliders;
 
-	// Token: 0x040041F2 RID: 16882
+	// Token: 0x04004202 RID: 16898
 	public GameObject Panel;
 
-	// Token: 0x040041F3 RID: 16883
+	// Token: 0x04004203 RID: 16899
 	public AudioSource MyAudio;
 
-	// Token: 0x040041F4 RID: 16884
+	// Token: 0x04004204 RID: 16900
 	public AudioClip OpenSFX;
 
-	// Token: 0x040041F5 RID: 16885
+	// Token: 0x04004205 RID: 16901
 	public AudioClip ShutSFX;
 
-	// Token: 0x040041F6 RID: 16886
+	// Token: 0x04004206 RID: 16902
 	public AudioClip WashSFX;
 
-	// Token: 0x040041F7 RID: 16887
+	// Token: 0x04004207 RID: 16903
 	public PromptScript Prompt;
 
-	// Token: 0x040041F8 RID: 16888
+	// Token: 0x04004208 RID: 16904
 	public Transform Tumbler;
 
-	// Token: 0x040041F9 RID: 16889
+	// Token: 0x04004209 RID: 16905
 	public Transform Door;
 
-	// Token: 0x040041FA RID: 16890
+	// Token: 0x0400420A RID: 16906
 	public UILabel TimeLabel;
 
-	// Token: 0x040041FB RID: 16891
+	// Token: 0x0400420B RID: 16907
 	public UISprite Circle;
 
-	// Token: 0x040041FC RID: 16892
+	// Token: 0x0400420C RID: 16908
 	public float AnimationTimer;
 
-	// Token: 0x040041FD RID: 16893
+	// Token: 0x0400420D RID: 16909
 	public float WashTimer;
 
-	// Token: 0x040041FE RID: 16894
+	// Token: 0x0400420E RID: 16910
 	public float Rotation;
 
-	// Token: 0x040041FF RID: 16895
+	// Token: 0x0400420F RID: 16911
 	public float Speed;
 
-	// Token: 0x04004200 RID: 16896
+	// Token: 0x04004210 RID: 16912
 	public bool Washing;
 
-	// Token: 0x04004201 RID: 16897
+	// Token: 0x04004211 RID: 16913
 	public bool Open;
 
-	// Token: 0x04004202 RID: 16898
+	// Token: 0x04004212 RID: 16914
 	public PickUpScript[] ClothingList;
 
-	// Token: 0x04004203 RID: 16899
+	// Token: 0x04004213 RID: 16915
 	public int ClothingInMachine;
 }

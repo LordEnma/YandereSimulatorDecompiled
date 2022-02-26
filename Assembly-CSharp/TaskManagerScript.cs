@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000469 RID: 1129
+// Token: 0x0200046A RID: 1130
 public class TaskManagerScript : MonoBehaviour
 {
-	// Token: 0x06001E8F RID: 7823 RVA: 0x001AD244 File Offset: 0x001AB444
+	// Token: 0x06001E98 RID: 7832 RVA: 0x001ADD80 File Offset: 0x001ABF80
 	public void Start()
 	{
 		for (int i = 1; i < 101; i++)
@@ -30,7 +30,7 @@ public class TaskManagerScript : MonoBehaviour
 		this.Initialized = true;
 	}
 
-	// Token: 0x06001E90 RID: 7824 RVA: 0x001AD2D8 File Offset: 0x001AB4D8
+	// Token: 0x06001E99 RID: 7833 RVA: 0x001ADE14 File Offset: 0x001AC014
 	public void CheckTaskPickups()
 	{
 		if (!this.StudentManager.Eighties)
@@ -68,7 +68,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E91 RID: 7825 RVA: 0x001AD49C File Offset: 0x001AB69C
+	// Token: 0x06001E9A RID: 7834 RVA: 0x001ADFD8 File Offset: 0x001AC1D8
 	public void UpdateTaskStatus()
 	{
 		if (!this.StudentManager.Eighties)
@@ -232,7 +232,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E92 RID: 7826 RVA: 0x001ADB14 File Offset: 0x001ABD14
+	// Token: 0x06001E9B RID: 7835 RVA: 0x001AE650 File Offset: 0x001AC850
 	public void SaveTaskStatuses()
 	{
 		for (int i = 1; i < 101; i++)
@@ -245,24 +245,24 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F17 RID: 16151
+	// Token: 0x04003F27 RID: 16167
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003F18 RID: 16152
+	// Token: 0x04003F28 RID: 16168
 	public YandereScript Yandere;
 
-	// Token: 0x04003F19 RID: 16153
+	// Token: 0x04003F29 RID: 16169
 	public GameObject[] TaskObjects;
 
-	// Token: 0x04003F1A RID: 16154
+	// Token: 0x04003F2A RID: 16170
 	public PromptScript[] Prompts;
 
-	// Token: 0x04003F1B RID: 16155
+	// Token: 0x04003F2B RID: 16171
 	public bool[] GirlsQuestioned;
 
-	// Token: 0x04003F1C RID: 16156
+	// Token: 0x04003F2C RID: 16172
 	public int[] TaskStatus;
 
-	// Token: 0x04003F1D RID: 16157
+	// Token: 0x04003F2D RID: 16173
 	public bool Initialized;
 }

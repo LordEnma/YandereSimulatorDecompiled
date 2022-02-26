@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000325 RID: 805
+// Token: 0x02000326 RID: 806
 public class HomeSleepScript : MonoBehaviour
 {
-	// Token: 0x0600189E RID: 6302 RVA: 0x000F1D5C File Offset: 0x000EFF5C
+	// Token: 0x060018A7 RID: 6311 RVA: 0x000F2640 File Offset: 0x000F0840
 	public void Start()
 	{
 		if (!this.Anime)
@@ -29,7 +29,7 @@ public class HomeSleepScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600189F RID: 6303 RVA: 0x000F1DEC File Offset: 0x000EFFEC
+	// Token: 0x060018A8 RID: 6312 RVA: 0x000F26D0 File Offset: 0x000F08D0
 	private void Update()
 	{
 		if (!this.HomeYandere.CanMove && !this.HomeDarkness.FadeOut)
@@ -53,30 +53,30 @@ public class HomeSleepScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002564 RID: 9572
+	// Token: 0x04002573 RID: 9587
 	public HomeDarknessScript HomeDarkness;
 
-	// Token: 0x04002565 RID: 9573
+	// Token: 0x04002574 RID: 9588
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x04002566 RID: 9574
+	// Token: 0x04002575 RID: 9589
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x04002567 RID: 9575
+	// Token: 0x04002576 RID: 9590
 	public HomeWindowScript HomeWindow;
 
-	// Token: 0x04002568 RID: 9576
+	// Token: 0x04002577 RID: 9591
 	public GameObject SkipSchoolWindow;
 
-	// Token: 0x04002569 RID: 9577
+	// Token: 0x04002578 RID: 9592
 	public UILabel EightiesLabel;
 
-	// Token: 0x0400256A RID: 9578
+	// Token: 0x04002579 RID: 9593
 	public UILabel DescLabel;
 
-	// Token: 0x0400256B RID: 9579
+	// Token: 0x0400257A RID: 9594
 	public UILabel Label;
 
-	// Token: 0x0400256C RID: 9580
+	// Token: 0x0400257B RID: 9595
 	public bool Anime;
 }

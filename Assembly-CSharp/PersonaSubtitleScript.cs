@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000398 RID: 920
+// Token: 0x02000399 RID: 921
 public class PersonaSubtitleScript : MonoBehaviour
 {
-	// Token: 0x06001A64 RID: 6756 RVA: 0x0011A27C File Offset: 0x0011847C
+	// Token: 0x06001A6D RID: 6765 RVA: 0x0011AC90 File Offset: 0x00118E90
 	public void UpdateLabel(PersonaType Persona, float Reputation, float Duration)
 	{
 		switch (Persona)
@@ -82,63 +82,63 @@ public class PersonaSubtitleScript : MonoBehaviour
 		this.Subtitle.Timer = Duration;
 	}
 
-	// Token: 0x04002B60 RID: 11104
+	// Token: 0x04002B70 RID: 11120
 	public SubtitleScript Subtitle;
 
-	// Token: 0x04002B61 RID: 11105
+	// Token: 0x04002B71 RID: 11121
 	public string[] LonerReactions;
 
-	// Token: 0x04002B62 RID: 11106
+	// Token: 0x04002B72 RID: 11122
 	public string[] TeachersPetReactions;
 
-	// Token: 0x04002B63 RID: 11107
+	// Token: 0x04002B73 RID: 11123
 	public string[] HeroicReactions;
 
-	// Token: 0x04002B64 RID: 11108
+	// Token: 0x04002B74 RID: 11124
 	public string[] CowardReactions;
 
-	// Token: 0x04002B65 RID: 11109
+	// Token: 0x04002B75 RID: 11125
 	public string[] EvilReactions;
 
-	// Token: 0x04002B66 RID: 11110
+	// Token: 0x04002B76 RID: 11126
 	public string[] SocialButterflyReactions;
 
-	// Token: 0x04002B67 RID: 11111
+	// Token: 0x04002B77 RID: 11127
 	public string[] LovestruckReactions;
 
-	// Token: 0x04002B68 RID: 11112
+	// Token: 0x04002B78 RID: 11128
 	public string[] DangerousReactions;
 
-	// Token: 0x04002B69 RID: 11113
+	// Token: 0x04002B79 RID: 11129
 	public string[] StrictReactions;
 
-	// Token: 0x04002B6A RID: 11114
+	// Token: 0x04002B7A RID: 11130
 	public string[] PhoneAddictReactions;
 
-	// Token: 0x04002B6B RID: 11115
+	// Token: 0x04002B7B RID: 11131
 	public string[] FragileReactions;
 
-	// Token: 0x04002B6C RID: 11116
+	// Token: 0x04002B7C RID: 11132
 	public string[] SpitefulReactions;
 
-	// Token: 0x04002B6D RID: 11117
+	// Token: 0x04002B7D RID: 11133
 	public string[] SleuthReactions;
 
-	// Token: 0x04002B6E RID: 11118
+	// Token: 0x04002B7E RID: 11134
 	public string[] VengefulReactions;
 
-	// Token: 0x04002B6F RID: 11119
+	// Token: 0x04002B7F RID: 11135
 	public string[] ProtectiveReactions;
 
-	// Token: 0x04002B70 RID: 11120
+	// Token: 0x04002B80 RID: 11136
 	public string[] ViolentReactions;
 
-	// Token: 0x04002B71 RID: 11121
+	// Token: 0x04002B81 RID: 11137
 	public string[] NemesisReactions;
 
-	// Token: 0x04002B72 RID: 11122
+	// Token: 0x04002B82 RID: 11138
 	public string[] IndifferentReactions;
 
-	// Token: 0x04002B73 RID: 11123
+	// Token: 0x04002B83 RID: 11139
 	public string[] SubtitleArray;
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blend2Camera_Lighten : MonoBehaviour
 {
 	// Token: 0x17000239 RID: 569
-	// (get) Token: 0x06000BD8 RID: 3032 RVA: 0x0006EC5F File Offset: 0x0006CE5F
+	// (get) Token: 0x06000BD8 RID: 3032 RVA: 0x0006ED73 File Offset: 0x0006CF73
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blend2Camera_Lighten : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BD9 RID: 3033 RVA: 0x0006EC94 File Offset: 0x0006CE94
+	// Token: 0x06000BD9 RID: 3033 RVA: 0x0006EDA8 File Offset: 0x0006CFA8
 	private void Start()
 	{
 		if (this.Camera2 != null)
@@ -37,7 +37,7 @@ public class CameraFilterPack_Blend2Camera_Lighten : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BDA RID: 3034 RVA: 0x0006ECF8 File Offset: 0x0006CEF8
+	// Token: 0x06000BDA RID: 3034 RVA: 0x0006EE0C File Offset: 0x0006D00C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -61,7 +61,7 @@ public class CameraFilterPack_Blend2Camera_Lighten : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000BDB RID: 3035 RVA: 0x0006EDE8 File Offset: 0x0006CFE8
+	// Token: 0x06000BDB RID: 3035 RVA: 0x0006EEFC File Offset: 0x0006D0FC
 	private void OnValidate()
 	{
 		if (this.Camera2 != null)
@@ -71,12 +71,12 @@ public class CameraFilterPack_Blend2Camera_Lighten : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BDC RID: 3036 RVA: 0x0006EE20 File Offset: 0x0006D020
+	// Token: 0x06000BDC RID: 3036 RVA: 0x0006EF34 File Offset: 0x0006D134
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000BDD RID: 3037 RVA: 0x0006EE22 File Offset: 0x0006D022
+	// Token: 0x06000BDD RID: 3037 RVA: 0x0006EF36 File Offset: 0x0006D136
 	private void OnEnable()
 	{
 		if (this.Camera2 != null)
@@ -86,7 +86,7 @@ public class CameraFilterPack_Blend2Camera_Lighten : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000BDE RID: 3038 RVA: 0x0006EE5A File Offset: 0x0006D05A
+	// Token: 0x06000BDE RID: 3038 RVA: 0x0006EF6E File Offset: 0x0006D16E
 	private void OnDisable()
 	{
 		if (this.Camera2 != null)

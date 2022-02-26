@@ -1,18 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200033C RID: 828
+// Token: 0x0200033D RID: 829
 public class InventoryItemScript : MonoBehaviour
 {
-	// Token: 0x040026B0 RID: 9904
+	// Token: 0x040026BF RID: 9919
 	public int Height;
 
-	// Token: 0x040026B1 RID: 9905
+	// Token: 0x040026C0 RID: 9920
 	public int Width;
 
-	// Token: 0x040026B2 RID: 9906
+	// Token: 0x040026C1 RID: 9921
 	public float InventorySize;
 
-	// Token: 0x040026B3 RID: 9907
+	// Token: 0x040026C2 RID: 9922
 	public Vector3 InventoryPosition;
 }
