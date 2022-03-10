@@ -6,7 +6,7 @@ using UnityEngine;
 public class UIPlaySound : MonoBehaviour
 {
 	// Token: 0x1700001D RID: 29
-	// (get) Token: 0x06000214 RID: 532 RVA: 0x00018EB8 File Offset: 0x000170B8
+	// (get) Token: 0x06000214 RID: 532 RVA: 0x00018FB0 File Offset: 0x000171B0
 	private bool canPlay
 	{
 		get
@@ -20,7 +20,7 @@ public class UIPlaySound : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000215 RID: 533 RVA: 0x00018EE7 File Offset: 0x000170E7
+	// Token: 0x06000215 RID: 533 RVA: 0x00018FDF File Offset: 0x000171DF
 	private void OnEnable()
 	{
 		if (this.trigger == UIPlaySound.Trigger.OnEnable)
@@ -29,7 +29,7 @@ public class UIPlaySound : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000216 RID: 534 RVA: 0x00018F0A File Offset: 0x0001710A
+	// Token: 0x06000216 RID: 534 RVA: 0x00019002 File Offset: 0x00017202
 	private void OnDisable()
 	{
 		if (this.trigger == UIPlaySound.Trigger.OnDisable)
@@ -38,7 +38,7 @@ public class UIPlaySound : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000217 RID: 535 RVA: 0x00018F30 File Offset: 0x00017130
+	// Token: 0x06000217 RID: 535 RVA: 0x00019028 File Offset: 0x00017228
 	private void OnHover(bool isOver)
 	{
 		if (this.trigger == UIPlaySound.Trigger.OnMouseOver)
@@ -55,7 +55,7 @@ public class UIPlaySound : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000218 RID: 536 RVA: 0x00018F90 File Offset: 0x00017190
+	// Token: 0x06000218 RID: 536 RVA: 0x00019088 File Offset: 0x00017288
 	private void OnPress(bool isPressed)
 	{
 		if (this.trigger == UIPlaySound.Trigger.OnPress)
@@ -72,7 +72,7 @@ public class UIPlaySound : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000219 RID: 537 RVA: 0x00018FEF File Offset: 0x000171EF
+	// Token: 0x06000219 RID: 537 RVA: 0x000190E7 File Offset: 0x000172E7
 	private void OnClick()
 	{
 		if (this.canPlay && this.trigger == UIPlaySound.Trigger.OnClick)
@@ -81,7 +81,7 @@ public class UIPlaySound : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600021A RID: 538 RVA: 0x00019019 File Offset: 0x00017219
+	// Token: 0x0600021A RID: 538 RVA: 0x00019111 File Offset: 0x00017311
 	private void OnSelect(bool isSelected)
 	{
 		if (this.canPlay && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
@@ -90,48 +90,48 @@ public class UIPlaySound : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600021B RID: 539 RVA: 0x00019035 File Offset: 0x00017235
+	// Token: 0x0600021B RID: 539 RVA: 0x0001912D File Offset: 0x0001732D
 	public void Play()
 	{
 		NGUITools.PlaySound(this.audioClip, this.volume, this.pitch);
 	}
 
-	// Token: 0x040003B5 RID: 949
+	// Token: 0x040003BE RID: 958
 	public AudioClip audioClip;
 
-	// Token: 0x040003B6 RID: 950
+	// Token: 0x040003BF RID: 959
 	public UIPlaySound.Trigger trigger;
 
-	// Token: 0x040003B7 RID: 951
+	// Token: 0x040003C0 RID: 960
 	[Range(0f, 1f)]
 	public float volume = 1f;
 
-	// Token: 0x040003B8 RID: 952
+	// Token: 0x040003C1 RID: 961
 	[Range(0f, 2f)]
 	public float pitch = 1f;
 
-	// Token: 0x040003B9 RID: 953
+	// Token: 0x040003C2 RID: 962
 	private bool mIsOver;
 
-	// Token: 0x020005CF RID: 1487
+	// Token: 0x020005D0 RID: 1488
 	[DoNotObfuscateNGUI]
 	public enum Trigger
 	{
-		// Token: 0x04004D4B RID: 19787
+		// Token: 0x04004D68 RID: 19816
 		OnClick,
-		// Token: 0x04004D4C RID: 19788
+		// Token: 0x04004D69 RID: 19817
 		OnMouseOver,
-		// Token: 0x04004D4D RID: 19789
+		// Token: 0x04004D6A RID: 19818
 		OnMouseOut,
-		// Token: 0x04004D4E RID: 19790
+		// Token: 0x04004D6B RID: 19819
 		OnPress,
-		// Token: 0x04004D4F RID: 19791
+		// Token: 0x04004D6C RID: 19820
 		OnRelease,
-		// Token: 0x04004D50 RID: 19792
+		// Token: 0x04004D6D RID: 19821
 		Custom,
-		// Token: 0x04004D51 RID: 19793
+		// Token: 0x04004D6E RID: 19822
 		OnEnable,
-		// Token: 0x04004D52 RID: 19794
+		// Token: 0x04004D6F RID: 19823
 		OnDisable
 	}
 }

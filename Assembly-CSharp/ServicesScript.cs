@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200041F RID: 1055
 public class ServicesScript : MonoBehaviour
 {
-	// Token: 0x06001C7B RID: 7291 RVA: 0x0014C4E0 File Offset: 0x0014A6E0
+	// Token: 0x06001C7D RID: 7293 RVA: 0x0014CA1C File Offset: 0x0014AC1C
 	private void Start()
 	{
 		for (int i = 1; i < this.ServiceNames.Length; i++)
@@ -14,7 +14,7 @@ public class ServicesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C7C RID: 7292 RVA: 0x0014C524 File Offset: 0x0014A724
+	// Token: 0x06001C7E RID: 7294 RVA: 0x0014CA60 File Offset: 0x0014AC60
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -182,7 +182,7 @@ public class ServicesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C7D RID: 7293 RVA: 0x0014CCB0 File Offset: 0x0014AEB0
+	// Token: 0x06001C7F RID: 7295 RVA: 0x0014D1EC File Offset: 0x0014B3EC
 	public void UpdateList()
 	{
 		this.ID = 1;
@@ -250,7 +250,7 @@ public class ServicesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C7E RID: 7294 RVA: 0x0014CF14 File Offset: 0x0014B114
+	// Token: 0x06001C80 RID: 7296 RVA: 0x0014D450 File Offset: 0x0014B650
 	public void UpdateDesc()
 	{
 		if (this.ServiceAvailable[this.Selected] && !this.ServicePurchased[this.Selected])
@@ -274,13 +274,13 @@ public class ServicesScript : MonoBehaviour
 		this.UpdatePantyCount();
 	}
 
-	// Token: 0x06001C7F RID: 7295 RVA: 0x0014D062 File Offset: 0x0014B262
+	// Token: 0x06001C81 RID: 7297 RVA: 0x0014D59E File Offset: 0x0014B79E
 	public void UpdatePantyCount()
 	{
 		this.PantyCount.text = this.Inventory.PantyShots.ToString();
 	}
 
-	// Token: 0x06001C80 RID: 7296 RVA: 0x0014D080 File Offset: 0x0014B280
+	// Token: 0x06001C82 RID: 7298 RVA: 0x0014D5BC File Offset: 0x0014B7BC
 	public void Purchase()
 	{
 		this.TextMessageManager.SpawnMessage(this.Selected);
@@ -293,7 +293,7 @@ public class ServicesScript : MonoBehaviour
 		this.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001C81 RID: 7297 RVA: 0x0014D118 File Offset: 0x0014B318
+	// Token: 0x06001C83 RID: 7299 RVA: 0x0014D654 File Offset: 0x0014B854
 	public void SaveServicesPurchased()
 	{
 		for (int i = 1; i < this.ServiceNames.Length; i++)
@@ -302,93 +302,93 @@ public class ServicesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400327A RID: 12922
+	// Token: 0x04003290 RID: 12944
 	public TextMessageManagerScript TextMessageManager;
 
-	// Token: 0x0400327B RID: 12923
+	// Token: 0x04003291 RID: 12945
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x0400327C RID: 12924
+	// Token: 0x04003292 RID: 12946
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400327D RID: 12925
+	// Token: 0x04003293 RID: 12947
 	public ReputationScript Reputation;
 
-	// Token: 0x0400327E RID: 12926
+	// Token: 0x04003294 RID: 12948
 	public InventoryScript Inventory;
 
-	// Token: 0x0400327F RID: 12927
+	// Token: 0x04003295 RID: 12949
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003280 RID: 12928
+	// Token: 0x04003296 RID: 12950
 	public SchemesScript Schemes;
 
-	// Token: 0x04003281 RID: 12929
+	// Token: 0x04003297 RID: 12951
 	public YandereScript Yandere;
 
-	// Token: 0x04003282 RID: 12930
+	// Token: 0x04003298 RID: 12952
 	public GameObject FavorMenu;
 
-	// Token: 0x04003283 RID: 12931
+	// Token: 0x04003299 RID: 12953
 	public Transform Highlight;
 
-	// Token: 0x04003284 RID: 12932
+	// Token: 0x0400329A RID: 12954
 	public AudioSource MyAudio;
 
-	// Token: 0x04003285 RID: 12933
+	// Token: 0x0400329B RID: 12955
 	public PoliceScript Police;
 
-	// Token: 0x04003286 RID: 12934
+	// Token: 0x0400329C RID: 12956
 	public UITexture ServiceIcon;
 
-	// Token: 0x04003287 RID: 12935
+	// Token: 0x0400329D RID: 12957
 	public UILabel ServiceLimit;
 
-	// Token: 0x04003288 RID: 12936
+	// Token: 0x0400329E RID: 12958
 	public UILabel ServiceDesc;
 
-	// Token: 0x04003289 RID: 12937
+	// Token: 0x0400329F RID: 12959
 	public UILabel PantyCount;
 
-	// Token: 0x0400328A RID: 12938
+	// Token: 0x040032A0 RID: 12960
 	public UILabel[] CostLabels;
 
-	// Token: 0x0400328B RID: 12939
+	// Token: 0x040032A1 RID: 12961
 	public UILabel[] NameLabels;
 
-	// Token: 0x0400328C RID: 12940
+	// Token: 0x040032A2 RID: 12962
 	public Texture[] ServiceIcons;
 
-	// Token: 0x0400328D RID: 12941
+	// Token: 0x040032A3 RID: 12963
 	public string[] ServiceLimits;
 
-	// Token: 0x0400328E RID: 12942
+	// Token: 0x040032A4 RID: 12964
 	public string[] ServiceDescs;
 
-	// Token: 0x0400328F RID: 12943
+	// Token: 0x040032A5 RID: 12965
 	public string[] ServiceNames;
 
-	// Token: 0x04003290 RID: 12944
+	// Token: 0x040032A6 RID: 12966
 	public bool[] ServiceAvailable;
 
-	// Token: 0x04003291 RID: 12945
+	// Token: 0x040032A7 RID: 12967
 	public bool[] ServicePurchased;
 
-	// Token: 0x04003292 RID: 12946
+	// Token: 0x040032A8 RID: 12968
 	public int[] ServiceCosts;
 
-	// Token: 0x04003293 RID: 12947
+	// Token: 0x040032A9 RID: 12969
 	public int Selected = 1;
 
-	// Token: 0x04003294 RID: 12948
+	// Token: 0x040032AA RID: 12970
 	public int ID = 1;
 
-	// Token: 0x04003295 RID: 12949
+	// Token: 0x040032AB RID: 12971
 	public AudioClip InfoUnavailable;
 
-	// Token: 0x04003296 RID: 12950
+	// Token: 0x040032AC RID: 12972
 	public AudioClip InfoPurchase;
 
-	// Token: 0x04003297 RID: 12951
+	// Token: 0x040032AD RID: 12973
 	public AudioClip InfoAfford;
 }

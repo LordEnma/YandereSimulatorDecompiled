@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Glasses_On_4 : MonoBehaviour
 {
 	// Token: 0x170002CD RID: 717
-	// (get) Token: 0x06000F76 RID: 3958 RVA: 0x0007E68D File Offset: 0x0007C88D
+	// (get) Token: 0x06000F76 RID: 3958 RVA: 0x0007E7D5 File Offset: 0x0007C9D5
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Glasses_On_4 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F77 RID: 3959 RVA: 0x0007E6C1 File Offset: 0x0007C8C1
+	// Token: 0x06000F77 RID: 3959 RVA: 0x0007E809 File Offset: 0x0007CA09
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_Glasses_On5") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_Glasses_On_4 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F78 RID: 3960 RVA: 0x0007E6F8 File Offset: 0x0007C8F8
+	// Token: 0x06000F78 RID: 3960 RVA: 0x0007E840 File Offset: 0x0007CA40
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -61,12 +61,12 @@ public class CameraFilterPack_Glasses_On_4 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000F79 RID: 3961 RVA: 0x0007E85D File Offset: 0x0007CA5D
+	// Token: 0x06000F79 RID: 3961 RVA: 0x0007E9A5 File Offset: 0x0007CBA5
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000F7A RID: 3962 RVA: 0x0007E85F File Offset: 0x0007CA5F
+	// Token: 0x06000F7A RID: 3962 RVA: 0x0007E9A7 File Offset: 0x0007CBA7
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -75,52 +75,52 @@ public class CameraFilterPack_Glasses_On_4 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040013CD RID: 5069
+	// Token: 0x040013D6 RID: 5078
 	public Shader SCShader;
 
-	// Token: 0x040013CE RID: 5070
+	// Token: 0x040013D7 RID: 5079
 	private float TimeX = 1f;
 
-	// Token: 0x040013CF RID: 5071
+	// Token: 0x040013D8 RID: 5080
 	[Range(0f, 1f)]
 	public float Fade = 0.2f;
 
-	// Token: 0x040013D0 RID: 5072
+	// Token: 0x040013D9 RID: 5081
 	[Range(0f, 0.1f)]
 	public float VisionBlur = 0.005f;
 
-	// Token: 0x040013D1 RID: 5073
+	// Token: 0x040013DA RID: 5082
 	public Color GlassesColor = new Color(0f, 0f, 0f, 1f);
 
-	// Token: 0x040013D2 RID: 5074
+	// Token: 0x040013DB RID: 5083
 	public Color GlassesColor2 = new Color(0.25f, 0.25f, 0.25f, 0.25f);
 
-	// Token: 0x040013D3 RID: 5075
+	// Token: 0x040013DC RID: 5084
 	[Range(0f, 1f)]
 	public float GlassDistortion = 0.6f;
 
-	// Token: 0x040013D4 RID: 5076
+	// Token: 0x040013DD RID: 5085
 	[Range(0f, 1f)]
 	public float GlassAberration = 0.3f;
 
-	// Token: 0x040013D5 RID: 5077
+	// Token: 0x040013DE RID: 5086
 	[Range(0f, 1f)]
 	public float UseFinalGlassColor;
 
-	// Token: 0x040013D6 RID: 5078
+	// Token: 0x040013DF RID: 5087
 	[Range(0f, 1f)]
 	public float UseScanLine = 0.4f;
 
-	// Token: 0x040013D7 RID: 5079
+	// Token: 0x040013E0 RID: 5088
 	[Range(1f, 512f)]
 	public float UseScanLineSize = 358f;
 
-	// Token: 0x040013D8 RID: 5080
+	// Token: 0x040013E1 RID: 5089
 	public Color GlassColor = new Color(1f, 0.4f, 0f, 1f);
 
-	// Token: 0x040013D9 RID: 5081
+	// Token: 0x040013E2 RID: 5090
 	private Material SCMaterial;
 
-	// Token: 0x040013DA RID: 5082
+	// Token: 0x040013E3 RID: 5091
 	private Texture2D Texture2;
 }

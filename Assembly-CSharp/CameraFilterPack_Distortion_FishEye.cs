@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Distortion_FishEye : MonoBehaviour
 {
 	// Token: 0x1700027D RID: 637
-	// (get) Token: 0x06000D95 RID: 3477 RVA: 0x00076CD9 File Offset: 0x00074ED9
+	// (get) Token: 0x06000D95 RID: 3477 RVA: 0x00076E21 File Offset: 0x00075021
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Distortion_FishEye : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D96 RID: 3478 RVA: 0x00076D0D File Offset: 0x00074F0D
+	// Token: 0x06000D96 RID: 3478 RVA: 0x00076E55 File Offset: 0x00075055
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Distortion_FishEye");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Distortion_FishEye : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D97 RID: 3479 RVA: 0x00076D30 File Offset: 0x00074F30
+	// Token: 0x06000D97 RID: 3479 RVA: 0x00076E78 File Offset: 0x00075078
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -51,12 +51,12 @@ public class CameraFilterPack_Distortion_FishEye : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000D98 RID: 3480 RVA: 0x00076DE6 File Offset: 0x00074FE6
+	// Token: 0x06000D98 RID: 3480 RVA: 0x00076F2E File Offset: 0x0007512E
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000D99 RID: 3481 RVA: 0x00076DE8 File Offset: 0x00074FE8
+	// Token: 0x06000D99 RID: 3481 RVA: 0x00076F30 File Offset: 0x00075130
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -65,16 +65,16 @@ public class CameraFilterPack_Distortion_FishEye : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040011DD RID: 4573
+	// Token: 0x040011E6 RID: 4582
 	public Shader SCShader;
 
-	// Token: 0x040011DE RID: 4574
+	// Token: 0x040011E7 RID: 4583
 	private float TimeX = 1f;
 
-	// Token: 0x040011DF RID: 4575
+	// Token: 0x040011E8 RID: 4584
 	private Material SCMaterial;
 
-	// Token: 0x040011E0 RID: 4576
+	// Token: 0x040011E9 RID: 4585
 	[Range(0f, 1f)]
 	public float Distortion = 0.35f;
 }

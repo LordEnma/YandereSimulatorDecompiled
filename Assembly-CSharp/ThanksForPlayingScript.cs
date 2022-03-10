@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000471 RID: 1137
 public class ThanksForPlayingScript : MonoBehaviour
 {
-	// Token: 0x06001EB3 RID: 7859 RVA: 0x001AF1B0 File Offset: 0x001AD3B0
+	// Token: 0x06001EB6 RID: 7862 RVA: 0x001AF8D8 File Offset: 0x001ADAD8
 	private void Start()
 	{
 		this.Ryoba["f02_faceCouncilGrace_00"].layer = 1;
@@ -21,7 +21,7 @@ public class ThanksForPlayingScript : MonoBehaviour
 		this.CameraEffects.UpdateBloomRadius(4f);
 	}
 
-	// Token: 0x06001EB4 RID: 7860 RVA: 0x001AF28C File Offset: 0x001AD48C
+	// Token: 0x06001EB7 RID: 7863 RVA: 0x001AF9B4 File Offset: 0x001ADBB4
 	private void Update()
 	{
 		if (!this.FadeOut)
@@ -144,60 +144,60 @@ public class ThanksForPlayingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F61 RID: 16225
+	// Token: 0x04003F78 RID: 16248
 	public CameraEffectsScript CameraEffects;
 
-	// Token: 0x04003F62 RID: 16226
+	// Token: 0x04003F79 RID: 16249
 	public ParticleSystem[] Hearts;
 
-	// Token: 0x04003F63 RID: 16227
+	// Token: 0x04003F7A RID: 16250
 	public UIPanel ThankYouPanel;
 
-	// Token: 0x04003F64 RID: 16228
+	// Token: 0x04003F7B RID: 16251
 	public UIPanel FinalGamePanel;
 
-	// Token: 0x04003F65 RID: 16229
+	// Token: 0x04003F7C RID: 16252
 	public UIPanel RivalPanel;
 
-	// Token: 0x04003F66 RID: 16230
+	// Token: 0x04003F7D RID: 16253
 	public UIPanel QualityPanel;
 
-	// Token: 0x04003F67 RID: 16231
+	// Token: 0x04003F7E RID: 16254
 	public UIPanel WeaponsPanel;
 
-	// Token: 0x04003F68 RID: 16232
+	// Token: 0x04003F7F RID: 16255
 	public UIPanel StoryPanel;
 
-	// Token: 0x04003F69 RID: 16233
+	// Token: 0x04003F80 RID: 16256
 	public UIPanel MorePanel;
 
-	// Token: 0x04003F6A RID: 16234
+	// Token: 0x04003F81 RID: 16257
 	public UIPanel CrowdfundPanel;
 
-	// Token: 0x04003F6B RID: 16235
+	// Token: 0x04003F82 RID: 16258
 	public UIPanel SkipPanel;
 
-	// Token: 0x04003F6C RID: 16236
+	// Token: 0x04003F83 RID: 16259
 	public AudioSource Jukebox;
 
-	// Token: 0x04003F6D RID: 16237
+	// Token: 0x04003F84 RID: 16260
 	public Transform Yandere;
 
-	// Token: 0x04003F6E RID: 16238
+	// Token: 0x04003F85 RID: 16261
 	public UISprite SkipCircle;
 
-	// Token: 0x04003F6F RID: 16239
+	// Token: 0x04003F86 RID: 16262
 	public UISprite Darkness;
 
-	// Token: 0x04003F70 RID: 16240
+	// Token: 0x04003F87 RID: 16263
 	public Animation YandereKun;
 
-	// Token: 0x04003F71 RID: 16241
+	// Token: 0x04003F88 RID: 16264
 	public Animation Ryoba;
 
-	// Token: 0x04003F72 RID: 16242
+	// Token: 0x04003F89 RID: 16265
 	public bool FadeOut;
 
-	// Token: 0x04003F73 RID: 16243
+	// Token: 0x04003F8A RID: 16266
 	public float Alpha;
 }

@@ -2,13 +2,13 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000567 RID: 1383
+	// Token: 0x02000568 RID: 1384
 	[Serializable]
 	public class ChromaticAberrationModel : PostProcessingModel
 	{
 		// Token: 0x17000505 RID: 1285
-		// (get) Token: 0x06002340 RID: 9024 RVA: 0x001F47FB File Offset: 0x001F29FB
-		// (set) Token: 0x06002341 RID: 9025 RVA: 0x001F4803 File Offset: 0x001F2A03
+		// (get) Token: 0x06002346 RID: 9030 RVA: 0x001F51D3 File Offset: 0x001F33D3
+		// (set) Token: 0x06002347 RID: 9031 RVA: 0x001F51DB File Offset: 0x001F33DB
 		public ChromaticAberrationModel.Settings settings
 		{
 			get
@@ -21,22 +21,22 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002342 RID: 9026 RVA: 0x001F480C File Offset: 0x001F2A0C
+		// Token: 0x06002348 RID: 9032 RVA: 0x001F51E4 File Offset: 0x001F33E4
 		public override void Reset()
 		{
 			this.m_Settings = ChromaticAberrationModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004B0C RID: 19212
+		// Token: 0x04004B29 RID: 19241
 		[SerializeField]
 		private ChromaticAberrationModel.Settings m_Settings = ChromaticAberrationModel.Settings.defaultSettings;
 
-		// Token: 0x020006B8 RID: 1720
+		// Token: 0x020006B9 RID: 1721
 		[Serializable]
 		public struct Settings
 		{
 			// Token: 0x17000596 RID: 1430
-			// (get) Token: 0x06002745 RID: 10053 RVA: 0x00202B74 File Offset: 0x00200D74
+			// (get) Token: 0x0600274B RID: 10059 RVA: 0x0020354C File Offset: 0x0020174C
 			public static ChromaticAberrationModel.Settings defaultSettings
 			{
 				get
@@ -49,11 +49,11 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x04005117 RID: 20759
+			// Token: 0x04005134 RID: 20788
 			[Tooltip("Shift the hue of chromatic aberrations.")]
 			public Texture2D spectralTexture;
 
-			// Token: 0x04005118 RID: 20760
+			// Token: 0x04005135 RID: 20789
 			[Range(0f, 1f)]
 			[Tooltip("Amount of tangential distortion.")]
 			public float intensity;

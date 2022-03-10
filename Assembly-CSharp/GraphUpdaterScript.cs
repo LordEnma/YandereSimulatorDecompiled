@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000307 RID: 775
 public class GraphUpdaterScript : MonoBehaviour
 {
-	// Token: 0x0600182B RID: 6187 RVA: 0x000E549A File Offset: 0x000E369A
+	// Token: 0x0600182B RID: 6187 RVA: 0x000E57CA File Offset: 0x000E39CA
 	private void Update()
 	{
 		if (this.Frames > 0)
@@ -15,9 +15,9 @@ public class GraphUpdaterScript : MonoBehaviour
 		this.Frames++;
 	}
 
-	// Token: 0x04002313 RID: 8979
+	// Token: 0x04002327 RID: 8999
 	public AstarPath Graph;
 
-	// Token: 0x04002314 RID: 8980
+	// Token: 0x04002328 RID: 9000
 	public int Frames;
 }

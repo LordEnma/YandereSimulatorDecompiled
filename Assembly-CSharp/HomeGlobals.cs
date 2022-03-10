@@ -4,8 +4,8 @@
 public static class HomeGlobals
 {
 	// Token: 0x170003C1 RID: 961
-	// (get) Token: 0x0600161C RID: 5660 RVA: 0x000DC6A0 File Offset: 0x000DA8A0
-	// (set) Token: 0x0600161D RID: 5661 RVA: 0x000DC6D0 File Offset: 0x000DA8D0
+	// (get) Token: 0x0600161C RID: 5660 RVA: 0x000DC9D0 File Offset: 0x000DABD0
+	// (set) Token: 0x0600161D RID: 5661 RVA: 0x000DCA00 File Offset: 0x000DAC00
 	public static bool LateForSchool
 	{
 		get
@@ -19,8 +19,8 @@ public static class HomeGlobals
 	}
 
 	// Token: 0x170003C2 RID: 962
-	// (get) Token: 0x0600161E RID: 5662 RVA: 0x000DC700 File Offset: 0x000DA900
-	// (set) Token: 0x0600161F RID: 5663 RVA: 0x000DC730 File Offset: 0x000DA930
+	// (get) Token: 0x0600161E RID: 5662 RVA: 0x000DCA30 File Offset: 0x000DAC30
+	// (set) Token: 0x0600161F RID: 5663 RVA: 0x000DCA60 File Offset: 0x000DAC60
 	public static bool Night
 	{
 		get
@@ -34,8 +34,8 @@ public static class HomeGlobals
 	}
 
 	// Token: 0x170003C3 RID: 963
-	// (get) Token: 0x06001620 RID: 5664 RVA: 0x000DC760 File Offset: 0x000DA960
-	// (set) Token: 0x06001621 RID: 5665 RVA: 0x000DC790 File Offset: 0x000DA990
+	// (get) Token: 0x06001620 RID: 5664 RVA: 0x000DCA90 File Offset: 0x000DAC90
+	// (set) Token: 0x06001621 RID: 5665 RVA: 0x000DCAC0 File Offset: 0x000DACC0
 	public static bool StartInBasement
 	{
 		get
@@ -49,8 +49,8 @@ public static class HomeGlobals
 	}
 
 	// Token: 0x170003C4 RID: 964
-	// (get) Token: 0x06001622 RID: 5666 RVA: 0x000DC7C0 File Offset: 0x000DA9C0
-	// (set) Token: 0x06001623 RID: 5667 RVA: 0x000DC7F0 File Offset: 0x000DA9F0
+	// (get) Token: 0x06001622 RID: 5666 RVA: 0x000DCAF0 File Offset: 0x000DACF0
+	// (set) Token: 0x06001623 RID: 5667 RVA: 0x000DCB20 File Offset: 0x000DAD20
 	public static bool MiyukiDefeated
 	{
 		get
@@ -63,7 +63,7 @@ public static class HomeGlobals
 		}
 	}
 
-	// Token: 0x06001624 RID: 5668 RVA: 0x000DC820 File Offset: 0x000DAA20
+	// Token: 0x06001624 RID: 5668 RVA: 0x000DCB50 File Offset: 0x000DAD50
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_LateForSchool");
@@ -72,15 +72,15 @@ public static class HomeGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MiyukiDefeated");
 	}
 
-	// Token: 0x0400220D RID: 8717
+	// Token: 0x04002221 RID: 8737
 	private const string Str_LateForSchool = "LateForSchool";
 
-	// Token: 0x0400220E RID: 8718
+	// Token: 0x04002222 RID: 8738
 	private const string Str_Night = "Night";
 
-	// Token: 0x0400220F RID: 8719
+	// Token: 0x04002223 RID: 8739
 	private const string Str_StartInBasement = "StartInBasement";
 
-	// Token: 0x04002210 RID: 8720
+	// Token: 0x04002224 RID: 8740
 	private const string Str_MiyukiDefeated = "MiyukiDefeated";
 }

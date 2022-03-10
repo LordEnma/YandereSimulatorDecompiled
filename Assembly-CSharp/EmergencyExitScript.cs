@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002A2 RID: 674
 public class EmergencyExitScript : MonoBehaviour
 {
-	// Token: 0x0600141B RID: 5147 RVA: 0x000BFCF8 File Offset: 0x000BDEF8
+	// Token: 0x0600141B RID: 5147 RVA: 0x000BFE44 File Offset: 0x000BE044
 	private void Update()
 	{
 		if (Vector3.Distance(this.Yandere.position, base.transform.position) < 2f)
@@ -25,7 +25,7 @@ public class EmergencyExitScript : MonoBehaviour
 		this.Timer = Mathf.MoveTowards(this.Timer, 0f, Time.deltaTime);
 	}
 
-	// Token: 0x0600141C RID: 5148 RVA: 0x000BFE19 File Offset: 0x000BE019
+	// Token: 0x0600141C RID: 5148 RVA: 0x000BFF65 File Offset: 0x000BE165
 	private void OnTriggerStay(Collider other)
 	{
 		this.Student = other.gameObject.GetComponent<StudentScript>();
@@ -36,18 +36,18 @@ public class EmergencyExitScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001E2F RID: 7727
+	// Token: 0x04001E38 RID: 7736
 	public StudentScript Student;
 
-	// Token: 0x04001E30 RID: 7728
+	// Token: 0x04001E39 RID: 7737
 	public Transform Yandere;
 
-	// Token: 0x04001E31 RID: 7729
+	// Token: 0x04001E3A RID: 7738
 	public Transform Pivot;
 
-	// Token: 0x04001E32 RID: 7730
+	// Token: 0x04001E3B RID: 7739
 	public float Timer;
 
-	// Token: 0x04001E33 RID: 7731
+	// Token: 0x04001E3C RID: 7740
 	public bool Open;
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blur_BlurHole : MonoBehaviour
 {
 	// Token: 0x1700024C RID: 588
-	// (get) Token: 0x06000C6D RID: 3181 RVA: 0x00071C16 File Offset: 0x0006FE16
+	// (get) Token: 0x06000C6D RID: 3181 RVA: 0x00071D5E File Offset: 0x0006FF5E
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blur_BlurHole : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C6E RID: 3182 RVA: 0x00071C4A File Offset: 0x0006FE4A
+	// Token: 0x06000C6E RID: 3182 RVA: 0x00071D92 File Offset: 0x0006FF92
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/BlurHole");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Blur_BlurHole : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C6F RID: 3183 RVA: 0x00071C6C File Offset: 0x0006FE6C
+	// Token: 0x06000C6F RID: 3183 RVA: 0x00071DB4 File Offset: 0x0006FFB4
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -57,12 +57,12 @@ public class CameraFilterPack_Blur_BlurHole : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000C70 RID: 3184 RVA: 0x00071D9F File Offset: 0x0006FF9F
+	// Token: 0x06000C70 RID: 3184 RVA: 0x00071EE7 File Offset: 0x000700E7
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000C71 RID: 3185 RVA: 0x00071DA1 File Offset: 0x0006FFA1
+	// Token: 0x06000C71 RID: 3185 RVA: 0x00071EE9 File Offset: 0x000700E9
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -71,40 +71,40 @@ public class CameraFilterPack_Blur_BlurHole : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040010B4 RID: 4276
+	// Token: 0x040010BD RID: 4285
 	public Shader SCShader;
 
-	// Token: 0x040010B5 RID: 4277
+	// Token: 0x040010BE RID: 4286
 	private float TimeX = 1f;
 
-	// Token: 0x040010B6 RID: 4278
+	// Token: 0x040010BF RID: 4287
 	[Range(1f, 16f)]
 	public float Size = 10f;
 
-	// Token: 0x040010B7 RID: 4279
+	// Token: 0x040010C0 RID: 4288
 	[Range(-1f, 1f)]
 	public float _Radius = 0.25f;
 
-	// Token: 0x040010B8 RID: 4280
+	// Token: 0x040010C1 RID: 4289
 	[Range(-4f, 4f)]
 	public float _SpotSize = 1f;
 
-	// Token: 0x040010B9 RID: 4281
+	// Token: 0x040010C2 RID: 4290
 	[Range(0f, 1f)]
 	public float _CenterX = 0.5f;
 
-	// Token: 0x040010BA RID: 4282
+	// Token: 0x040010C3 RID: 4291
 	[Range(0f, 1f)]
 	public float _CenterY = 0.5f;
 
-	// Token: 0x040010BB RID: 4283
+	// Token: 0x040010C4 RID: 4292
 	[Range(0f, 1f)]
 	public float _AlphaBlur = 1f;
 
-	// Token: 0x040010BC RID: 4284
+	// Token: 0x040010C5 RID: 4293
 	[Range(0f, 1f)]
 	public float _AlphaBlurInside;
 
-	// Token: 0x040010BD RID: 4285
+	// Token: 0x040010C6 RID: 4294
 	private Material SCMaterial;
 }

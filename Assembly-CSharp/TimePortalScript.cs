@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000472 RID: 1138
 public class TimePortalScript : MonoBehaviour
 {
-	// Token: 0x06001EB6 RID: 7862 RVA: 0x001AF8C8 File Offset: 0x001ADAC8
+	// Token: 0x06001EB9 RID: 7865 RVA: 0x001AFFF0 File Offset: 0x001AE1F0
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))
@@ -28,18 +28,18 @@ public class TimePortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F74 RID: 16244
+	// Token: 0x04003F8B RID: 16267
 	public DelinquentScript[] Delinquent;
 
-	// Token: 0x04003F75 RID: 16245
+	// Token: 0x04003F8C RID: 16268
 	public GameObject BlackHole;
 
-	// Token: 0x04003F76 RID: 16246
+	// Token: 0x04003F8D RID: 16269
 	public float Timer;
 
-	// Token: 0x04003F77 RID: 16247
+	// Token: 0x04003F8E RID: 16270
 	public bool Suck;
 
-	// Token: 0x04003F78 RID: 16248
+	// Token: 0x04003F8F RID: 16271
 	public int ID;
 }

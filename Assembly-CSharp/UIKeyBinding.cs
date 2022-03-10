@@ -7,7 +7,7 @@ using UnityEngine;
 public class UIKeyBinding : MonoBehaviour
 {
 	// Token: 0x17000019 RID: 25
-	// (get) Token: 0x060001DC RID: 476 RVA: 0x00017E00 File Offset: 0x00016000
+	// (get) Token: 0x060001DC RID: 476 RVA: 0x00017EF8 File Offset: 0x000160F8
 	public string captionText
 	{
 		get
@@ -21,7 +21,7 @@ public class UIKeyBinding : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001DD RID: 477 RVA: 0x00017E48 File Offset: 0x00016048
+	// Token: 0x060001DD RID: 477 RVA: 0x00017F40 File Offset: 0x00016140
 	public static bool IsBound(KeyCode key)
 	{
 		int i = 0;
@@ -38,7 +38,7 @@ public class UIKeyBinding : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x060001DE RID: 478 RVA: 0x00017E90 File Offset: 0x00016090
+	// Token: 0x060001DE RID: 478 RVA: 0x00017F88 File Offset: 0x00016188
 	public static UIKeyBinding Find(string name)
 	{
 		int i = 0;
@@ -54,19 +54,19 @@ public class UIKeyBinding : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060001DF RID: 479 RVA: 0x00017ED9 File Offset: 0x000160D9
+	// Token: 0x060001DF RID: 479 RVA: 0x00017FD1 File Offset: 0x000161D1
 	protected virtual void OnEnable()
 	{
 		UIKeyBinding.list.Add(this);
 	}
 
-	// Token: 0x060001E0 RID: 480 RVA: 0x00017EE6 File Offset: 0x000160E6
+	// Token: 0x060001E0 RID: 480 RVA: 0x00017FDE File Offset: 0x000161DE
 	protected virtual void OnDisable()
 	{
 		UIKeyBinding.list.Remove(this);
 	}
 
-	// Token: 0x060001E1 RID: 481 RVA: 0x00017EF4 File Offset: 0x000160F4
+	// Token: 0x060001E1 RID: 481 RVA: 0x00017FEC File Offset: 0x000161EC
 	protected virtual void Start()
 	{
 		UIInput component = base.GetComponent<UIInput>();
@@ -77,7 +77,7 @@ public class UIKeyBinding : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001E2 RID: 482 RVA: 0x00017F37 File Offset: 0x00016137
+	// Token: 0x060001E2 RID: 482 RVA: 0x0001802F File Offset: 0x0001622F
 	protected virtual void OnSubmit()
 	{
 		if (UICamera.currentKey == this.keyCode && this.IsModifierActive())
@@ -86,13 +86,13 @@ public class UIKeyBinding : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001E3 RID: 483 RVA: 0x00017F55 File Offset: 0x00016155
+	// Token: 0x060001E3 RID: 483 RVA: 0x0001804D File Offset: 0x0001624D
 	protected virtual bool IsModifierActive()
 	{
 		return UIKeyBinding.IsModifierActive(this.modifier);
 	}
 
-	// Token: 0x060001E4 RID: 484 RVA: 0x00017F64 File Offset: 0x00016164
+	// Token: 0x060001E4 RID: 484 RVA: 0x0001805C File Offset: 0x0001625C
 	public static bool IsModifierActive(UIKeyBinding.Modifier modifier)
 	{
 		if (modifier == UIKeyBinding.Modifier.Any)
@@ -127,7 +127,7 @@ public class UIKeyBinding : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x060001E5 RID: 485 RVA: 0x00018064 File Offset: 0x00016264
+	// Token: 0x060001E5 RID: 485 RVA: 0x0001815C File Offset: 0x0001635C
 	protected virtual void Update()
 	{
 		if (this.keyCode != KeyCode.Numlock && UICamera.inputHasFocus)
@@ -181,25 +181,25 @@ public class UIKeyBinding : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001E6 RID: 486 RVA: 0x00018189 File Offset: 0x00016389
+	// Token: 0x060001E6 RID: 486 RVA: 0x00018281 File Offset: 0x00016481
 	protected virtual void OnBindingPress(bool pressed)
 	{
 		UICamera.Notify(base.gameObject, "OnPress", pressed);
 	}
 
-	// Token: 0x060001E7 RID: 487 RVA: 0x000181A1 File Offset: 0x000163A1
+	// Token: 0x060001E7 RID: 487 RVA: 0x00018299 File Offset: 0x00016499
 	protected virtual void OnBindingClick()
 	{
 		UICamera.Notify(base.gameObject, "OnClick", null);
 	}
 
-	// Token: 0x060001E8 RID: 488 RVA: 0x000181B4 File Offset: 0x000163B4
+	// Token: 0x060001E8 RID: 488 RVA: 0x000182AC File Offset: 0x000164AC
 	public override string ToString()
 	{
 		return UIKeyBinding.GetString(this.keyCode, this.modifier);
 	}
 
-	// Token: 0x060001E9 RID: 489 RVA: 0x000181C7 File Offset: 0x000163C7
+	// Token: 0x060001E9 RID: 489 RVA: 0x000182BF File Offset: 0x000164BF
 	public static string GetString(KeyCode keyCode, UIKeyBinding.Modifier modifier)
 	{
 		if (modifier == UIKeyBinding.Modifier.None)
@@ -209,7 +209,7 @@ public class UIKeyBinding : MonoBehaviour
 		return modifier.ToString() + "+" + NGUITools.KeyToCaption(keyCode);
 	}
 
-	// Token: 0x060001EA RID: 490 RVA: 0x000181F4 File Offset: 0x000163F4
+	// Token: 0x060001EA RID: 490 RVA: 0x000182EC File Offset: 0x000164EC
 	public static bool GetKeyCode(string text, out KeyCode key, out UIKeyBinding.Modifier modifier)
 	{
 		key = KeyCode.None;
@@ -240,7 +240,7 @@ public class UIKeyBinding : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x060001EB RID: 491 RVA: 0x00018294 File Offset: 0x00016494
+	// Token: 0x060001EB RID: 491 RVA: 0x0001838C File Offset: 0x0001658C
 	public static UIKeyBinding.Modifier GetActiveModifier()
 	{
 		UIKeyBinding.Modifier result = UIKeyBinding.Modifier.None;
@@ -259,55 +259,55 @@ public class UIKeyBinding : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x04000393 RID: 915
+	// Token: 0x0400039C RID: 924
 	public static List<UIKeyBinding> list = new List<UIKeyBinding>();
 
-	// Token: 0x04000394 RID: 916
+	// Token: 0x0400039D RID: 925
 	public KeyCode keyCode;
 
-	// Token: 0x04000395 RID: 917
+	// Token: 0x0400039E RID: 926
 	public UIKeyBinding.Modifier modifier;
 
-	// Token: 0x04000396 RID: 918
+	// Token: 0x0400039F RID: 927
 	public UIKeyBinding.Action action;
 
-	// Token: 0x04000397 RID: 919
+	// Token: 0x040003A0 RID: 928
 	[NonSerialized]
 	private bool mIgnoreUp;
 
-	// Token: 0x04000398 RID: 920
+	// Token: 0x040003A1 RID: 929
 	[NonSerialized]
 	private bool mIsInput;
 
-	// Token: 0x04000399 RID: 921
+	// Token: 0x040003A2 RID: 930
 	[NonSerialized]
 	private bool mPress;
 
-	// Token: 0x020005CC RID: 1484
+	// Token: 0x020005CD RID: 1485
 	[DoNotObfuscateNGUI]
 	public enum Action
 	{
-		// Token: 0x04004D3C RID: 19772
+		// Token: 0x04004D59 RID: 19801
 		PressAndClick,
-		// Token: 0x04004D3D RID: 19773
+		// Token: 0x04004D5A RID: 19802
 		Select,
-		// Token: 0x04004D3E RID: 19774
+		// Token: 0x04004D5B RID: 19803
 		All
 	}
 
-	// Token: 0x020005CD RID: 1485
+	// Token: 0x020005CE RID: 1486
 	[DoNotObfuscateNGUI]
 	public enum Modifier
 	{
-		// Token: 0x04004D40 RID: 19776
+		// Token: 0x04004D5D RID: 19805
 		Any,
-		// Token: 0x04004D41 RID: 19777
+		// Token: 0x04004D5E RID: 19806
 		Shift,
-		// Token: 0x04004D42 RID: 19778
+		// Token: 0x04004D5F RID: 19807
 		Ctrl,
-		// Token: 0x04004D43 RID: 19779
+		// Token: 0x04004D60 RID: 19808
 		Alt,
-		// Token: 0x04004D44 RID: 19780
+		// Token: 0x04004D61 RID: 19809
 		None
 	}
 }

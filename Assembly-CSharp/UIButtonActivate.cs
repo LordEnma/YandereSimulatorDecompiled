@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Button Activate")]
 public class UIButtonActivate : MonoBehaviour
 {
-	// Token: 0x0600011E RID: 286 RVA: 0x00013D79 File Offset: 0x00011F79
+	// Token: 0x0600011E RID: 286 RVA: 0x00013E71 File Offset: 0x00012071
 	private void OnClick()
 	{
 		if (this.target != null)
@@ -14,9 +14,9 @@ public class UIButtonActivate : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040002EC RID: 748
+	// Token: 0x040002F5 RID: 757
 	public GameObject target;
 
-	// Token: 0x040002ED RID: 749
+	// Token: 0x040002F6 RID: 758
 	public bool state = true;
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 public class UIEquipmentSlot : UIItemSlot
 {
 	// Token: 0x17000001 RID: 1
-	// (get) Token: 0x0600008C RID: 140 RVA: 0x000111A0 File Offset: 0x0000F3A0
+	// (get) Token: 0x0600008C RID: 140 RVA: 0x00011298 File Offset: 0x0000F498
 	protected override InvGameItem observedItem
 	{
 		get
@@ -19,7 +19,7 @@ public class UIEquipmentSlot : UIItemSlot
 		}
 	}
 
-	// Token: 0x0600008D RID: 141 RVA: 0x000111C3 File Offset: 0x0000F3C3
+	// Token: 0x0600008D RID: 141 RVA: 0x000112BB File Offset: 0x0000F4BB
 	protected override InvGameItem Replace(InvGameItem item)
 	{
 		if (!(this.equipment != null))
@@ -29,9 +29,9 @@ public class UIEquipmentSlot : UIItemSlot
 		return this.equipment.Replace(this.slot, item);
 	}
 
-	// Token: 0x0400025C RID: 604
+	// Token: 0x04000265 RID: 613
 	public InvEquipment equipment;
 
-	// Token: 0x0400025D RID: 605
+	// Token: 0x04000266 RID: 614
 	public InvBaseItem.Slot slot;
 }

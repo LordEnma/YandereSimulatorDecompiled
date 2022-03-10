@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000424 RID: 1060
 public class ShoeRemovalScript : MonoBehaviour
 {
-	// Token: 0x06001C8F RID: 7311 RVA: 0x0014E1C0 File Offset: 0x0014C3C0
+	// Token: 0x06001C91 RID: 7313 RVA: 0x0014E6FC File Offset: 0x0014C8FC
 	public void Start()
 	{
 		if (this.Locker == null)
@@ -35,7 +35,7 @@ public class ShoeRemovalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C90 RID: 7312 RVA: 0x0014E3C4 File Offset: 0x0014C5C4
+	// Token: 0x06001C92 RID: 7314 RVA: 0x0014E900 File Offset: 0x0014CB00
 	public void StartChangingShoes()
 	{
 		if (!this.Student.AoT)
@@ -55,7 +55,7 @@ public class ShoeRemovalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C91 RID: 7313 RVA: 0x0014E478 File Offset: 0x0014C678
+	// Token: 0x06001C93 RID: 7315 RVA: 0x0014E9B4 File Offset: 0x0014CBB4
 	private void Update()
 	{
 		if (!this.Student.DiscCheck && !this.Student.Dying && !this.Student.InEvent && !this.Student.Alarmed && !this.Student.Splashed && !this.Student.TurnOffRadio)
@@ -245,7 +245,7 @@ public class ShoeRemovalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C92 RID: 7314 RVA: 0x0014EEEC File Offset: 0x0014D0EC
+	// Token: 0x06001C94 RID: 7316 RVA: 0x0014F428 File Offset: 0x0014D628
 	private void LateUpdate()
 	{
 		if (this.Phase < 7)
@@ -255,7 +255,7 @@ public class ShoeRemovalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C93 RID: 7315 RVA: 0x0014EF40 File Offset: 0x0014D140
+	// Token: 0x06001C95 RID: 7317 RVA: 0x0014F47C File Offset: 0x0014D67C
 	public void PutOnShoes()
 	{
 		this.CloseLocker();
@@ -311,12 +311,12 @@ public class ShoeRemovalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C94 RID: 7316 RVA: 0x0014F34A File Offset: 0x0014D54A
+	// Token: 0x06001C96 RID: 7318 RVA: 0x0014F886 File Offset: 0x0014DA86
 	public void CloseLocker()
 	{
 	}
 
-	// Token: 0x06001C95 RID: 7317 RVA: 0x0014F34C File Offset: 0x0014D54C
+	// Token: 0x06001C97 RID: 7319 RVA: 0x0014F888 File Offset: 0x0014DA88
 	private void UpdateShoes()
 	{
 		this.Student.Indoors = true;
@@ -332,7 +332,7 @@ public class ShoeRemovalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C96 RID: 7318 RVA: 0x0014F3D4 File Offset: 0x0014D5D4
+	// Token: 0x06001C98 RID: 7320 RVA: 0x0014F910 File Offset: 0x0014DB10
 	public void LeavingSchool()
 	{
 		if (this.Locker == null)
@@ -371,7 +371,7 @@ public class ShoeRemovalScript : MonoBehaviour
 		this.LeftCurrentShoe.localScale = new Vector3(1.111113f, 1f, 1.111113f);
 	}
 
-	// Token: 0x06001C97 RID: 7319 RVA: 0x0014F5B9 File Offset: 0x0014D7B9
+	// Token: 0x06001C99 RID: 7321 RVA: 0x0014FAF5 File Offset: 0x0014DCF5
 	private void GetHeight(int StudentID)
 	{
 		this.Height = 5;
@@ -379,108 +379,108 @@ public class ShoeRemovalScript : MonoBehaviour
 		this.RemoveSchoolAnim += "5_01";
 	}
 
-	// Token: 0x040032C2 RID: 12994
+	// Token: 0x040032D8 RID: 13016
 	public StudentScript Student;
 
-	// Token: 0x040032C3 RID: 12995
+	// Token: 0x040032D9 RID: 13017
 	public Vector3 RightShoePosition;
 
-	// Token: 0x040032C4 RID: 12996
+	// Token: 0x040032DA RID: 13018
 	public Vector3 LeftShoePosition;
 
-	// Token: 0x040032C5 RID: 12997
+	// Token: 0x040032DB RID: 13019
 	public Transform RightCurrentShoe;
 
-	// Token: 0x040032C6 RID: 12998
+	// Token: 0x040032DC RID: 13020
 	public Transform LeftCurrentShoe;
 
-	// Token: 0x040032C7 RID: 12999
+	// Token: 0x040032DD RID: 13021
 	public Transform RightCasualShoe;
 
-	// Token: 0x040032C8 RID: 13000
+	// Token: 0x040032DE RID: 13022
 	public Transform LeftCasualShoe;
 
-	// Token: 0x040032C9 RID: 13001
+	// Token: 0x040032DF RID: 13023
 	public Transform RightSchoolShoe;
 
-	// Token: 0x040032CA RID: 13002
+	// Token: 0x040032E0 RID: 13024
 	public Transform LeftSchoolShoe;
 
-	// Token: 0x040032CB RID: 13003
+	// Token: 0x040032E1 RID: 13025
 	public Transform RightNewShoe;
 
-	// Token: 0x040032CC RID: 13004
+	// Token: 0x040032E2 RID: 13026
 	public Transform LeftNewShoe;
 
-	// Token: 0x040032CD RID: 13005
+	// Token: 0x040032E3 RID: 13027
 	public Transform RightFoot;
 
-	// Token: 0x040032CE RID: 13006
+	// Token: 0x040032E4 RID: 13028
 	public Transform LeftFoot;
 
-	// Token: 0x040032CF RID: 13007
+	// Token: 0x040032E5 RID: 13029
 	public Transform RightHand;
 
-	// Token: 0x040032D0 RID: 13008
+	// Token: 0x040032E6 RID: 13030
 	public Transform LeftHand;
 
-	// Token: 0x040032D1 RID: 13009
+	// Token: 0x040032E7 RID: 13031
 	public Transform ShoeParent;
 
-	// Token: 0x040032D2 RID: 13010
+	// Token: 0x040032E8 RID: 13032
 	public Transform Locker;
 
-	// Token: 0x040032D3 RID: 13011
+	// Token: 0x040032E9 RID: 13033
 	public GameObject NewPairOfShoes;
 
-	// Token: 0x040032D4 RID: 13012
+	// Token: 0x040032EA RID: 13034
 	public GameObject Character;
 
-	// Token: 0x040032D5 RID: 13013
+	// Token: 0x040032EB RID: 13035
 	public string[] LockerAnims;
 
-	// Token: 0x040032D6 RID: 13014
+	// Token: 0x040032EC RID: 13036
 	public Texture OutdoorShoes;
 
-	// Token: 0x040032D7 RID: 13015
+	// Token: 0x040032ED RID: 13037
 	public Texture IndoorShoes;
 
-	// Token: 0x040032D8 RID: 13016
+	// Token: 0x040032EE RID: 13038
 	public Texture TargetShoes;
 
-	// Token: 0x040032D9 RID: 13017
+	// Token: 0x040032EF RID: 13039
 	public Texture Socks;
 
-	// Token: 0x040032DA RID: 13018
+	// Token: 0x040032F0 RID: 13040
 	public Renderer MyRenderer;
 
-	// Token: 0x040032DB RID: 13019
+	// Token: 0x040032F1 RID: 13041
 	public bool RemovingCasual = true;
 
-	// Token: 0x040032DC RID: 13020
+	// Token: 0x040032F2 RID: 13042
 	public bool Male;
 
-	// Token: 0x040032DD RID: 13021
+	// Token: 0x040032F3 RID: 13043
 	public int Height;
 
-	// Token: 0x040032DE RID: 13022
+	// Token: 0x040032F4 RID: 13044
 	public int Phase = 1;
 
-	// Token: 0x040032DF RID: 13023
+	// Token: 0x040032F5 RID: 13045
 	public float X;
 
-	// Token: 0x040032E0 RID: 13024
+	// Token: 0x040032F6 RID: 13046
 	public float Y;
 
-	// Token: 0x040032E1 RID: 13025
+	// Token: 0x040032F7 RID: 13047
 	public float Z;
 
-	// Token: 0x040032E2 RID: 13026
+	// Token: 0x040032F8 RID: 13048
 	public string RemoveCasualAnim = string.Empty;
 
-	// Token: 0x040032E3 RID: 13027
+	// Token: 0x040032F9 RID: 13049
 	public string RemoveSchoolAnim = string.Empty;
 
-	// Token: 0x040032E4 RID: 13028
+	// Token: 0x040032FA RID: 13050
 	public string RemovalAnim = string.Empty;
 }

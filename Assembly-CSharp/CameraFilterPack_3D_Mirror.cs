@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_3D_Mirror : MonoBehaviour
 {
 	// Token: 0x17000216 RID: 534
-	// (get) Token: 0x06000AEA RID: 2794 RVA: 0x00069A9C File Offset: 0x00067C9C
+	// (get) Token: 0x06000AEA RID: 2794 RVA: 0x00069BE4 File Offset: 0x00067DE4
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_3D_Mirror : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AEB RID: 2795 RVA: 0x00069AD0 File Offset: 0x00067CD0
+	// Token: 0x06000AEB RID: 2795 RVA: 0x00069C18 File Offset: 0x00067E18
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/3D_Mirror");
@@ -32,7 +32,7 @@ public class CameraFilterPack_3D_Mirror : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AEC RID: 2796 RVA: 0x00069AF4 File Offset: 0x00067CF4
+	// Token: 0x06000AEC RID: 2796 RVA: 0x00069C3C File Offset: 0x00067E3C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -75,12 +75,12 @@ public class CameraFilterPack_3D_Mirror : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000AED RID: 2797 RVA: 0x00069CB7 File Offset: 0x00067EB7
+	// Token: 0x06000AED RID: 2797 RVA: 0x00069DFF File Offset: 0x00067FFF
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000AEE RID: 2798 RVA: 0x00069CB9 File Offset: 0x00067EB9
+	// Token: 0x06000AEE RID: 2798 RVA: 0x00069E01 File Offset: 0x00068001
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -89,45 +89,45 @@ public class CameraFilterPack_3D_Mirror : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000EA0 RID: 3744
+	// Token: 0x04000EA9 RID: 3753
 	public Shader SCShader;
 
-	// Token: 0x04000EA1 RID: 3745
+	// Token: 0x04000EAA RID: 3754
 	public bool _Visualize;
 
-	// Token: 0x04000EA2 RID: 3746
+	// Token: 0x04000EAB RID: 3755
 	private float TimeX = 1f;
 
-	// Token: 0x04000EA3 RID: 3747
+	// Token: 0x04000EAC RID: 3756
 	private Material SCMaterial;
 
-	// Token: 0x04000EA4 RID: 3748
+	// Token: 0x04000EAD RID: 3757
 	[Range(0f, 100f)]
 	public float _FixDistance = 1.5f;
 
-	// Token: 0x04000EA5 RID: 3749
+	// Token: 0x04000EAE RID: 3758
 	[Range(-0.99f, 0.99f)]
 	public float _Distance = 0.4f;
 
-	// Token: 0x04000EA6 RID: 3750
+	// Token: 0x04000EAF RID: 3759
 	[Range(0f, 0.5f)]
 	public float _Size = 0.5f;
 
-	// Token: 0x04000EA7 RID: 3751
+	// Token: 0x04000EB0 RID: 3760
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 
-	// Token: 0x04000EA8 RID: 3752
+	// Token: 0x04000EB1 RID: 3761
 	[Range(0f, 2f)]
 	public float Lightning = 2f;
 
-	// Token: 0x04000EA9 RID: 3753
+	// Token: 0x04000EB2 RID: 3762
 	public bool AutoAnimatedNear;
 
-	// Token: 0x04000EAA RID: 3754
+	// Token: 0x04000EB3 RID: 3763
 	[Range(-5f, 5f)]
 	public float AutoAnimatedNearSpeed = 0.5f;
 
-	// Token: 0x04000EAB RID: 3755
+	// Token: 0x04000EB4 RID: 3764
 	public static Color ChangeColorRGB;
 }

@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020002D4 RID: 724
 public class FountainScript : MonoBehaviour
 {
-	// Token: 0x060014BC RID: 5308 RVA: 0x000CC213 File Offset: 0x000CA413
+	// Token: 0x060014BC RID: 5308 RVA: 0x000CC38F File Offset: 0x000CA58F
 	private void Start()
 	{
 		this.SpraySFX.volume = 0.1f;
 		this.DropsSFX.volume = 0.1f;
 	}
 
-	// Token: 0x060014BD RID: 5309 RVA: 0x000CC238 File Offset: 0x000CA438
+	// Token: 0x060014BD RID: 5309 RVA: 0x000CC3B4 File Offset: 0x000CA5B4
 	private void Update()
 	{
 		if (this.StartTimer < 1f)
@@ -47,27 +47,27 @@ public class FountainScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002086 RID: 8326
+	// Token: 0x04002090 RID: 8336
 	public ParticleSystem Splashes;
 
-	// Token: 0x04002087 RID: 8327
+	// Token: 0x04002091 RID: 8337
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002088 RID: 8328
+	// Token: 0x04002092 RID: 8338
 	public Collider[] Colliders;
 
-	// Token: 0x04002089 RID: 8329
+	// Token: 0x04002093 RID: 8339
 	public bool Drowning;
 
-	// Token: 0x0400208A RID: 8330
+	// Token: 0x04002094 RID: 8340
 	public AudioSource SpraySFX;
 
-	// Token: 0x0400208B RID: 8331
+	// Token: 0x04002095 RID: 8341
 	public AudioSource DropsSFX;
 
-	// Token: 0x0400208C RID: 8332
+	// Token: 0x04002096 RID: 8342
 	public float StartTimer;
 
-	// Token: 0x0400208D RID: 8333
+	// Token: 0x04002097 RID: 8343
 	public float Timer;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002CB RID: 715
 public class FindStudentLockerScript : MonoBehaviour
 {
-	// Token: 0x060014A5 RID: 5285 RVA: 0x000CB124 File Offset: 0x000C9324
+	// Token: 0x060014A5 RID: 5285 RVA: 0x000CB270 File Offset: 0x000C9470
 	private void Update()
 	{
 		if (this.TargetedStudent == null)
@@ -56,7 +56,7 @@ public class FindStudentLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014A6 RID: 5286 RVA: 0x000CB36B File Offset: 0x000C956B
+	// Token: 0x060014A6 RID: 5286 RVA: 0x000CB4B7 File Offset: 0x000C96B7
 	private void RestorePrompt()
 	{
 		this.Prompt.Label[0].text = "     Find Student Locker";
@@ -65,15 +65,15 @@ public class FindStudentLockerScript : MonoBehaviour
 		this.Phase = 1;
 	}
 
-	// Token: 0x04002041 RID: 8257
+	// Token: 0x0400204A RID: 8266
 	public TutorialWindowScript TutorialWindow;
 
-	// Token: 0x04002042 RID: 8258
+	// Token: 0x0400204B RID: 8267
 	public StudentScript TargetedStudent;
 
-	// Token: 0x04002043 RID: 8259
+	// Token: 0x0400204C RID: 8268
 	public PromptScript Prompt;
 
-	// Token: 0x04002044 RID: 8260
+	// Token: 0x0400204D RID: 8269
 	public int Phase = 1;
 }

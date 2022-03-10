@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Vision_Crystal : MonoBehaviour
 {
 	// Token: 0x1700032D RID: 813
-	// (get) Token: 0x060011D9 RID: 4569 RVA: 0x0008998F File Offset: 0x00087B8F
+	// (get) Token: 0x060011D9 RID: 4569 RVA: 0x00089AD7 File Offset: 0x00087CD7
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Vision_Crystal : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011DA RID: 4570 RVA: 0x000899C3 File Offset: 0x00087BC3
+	// Token: 0x060011DA RID: 4570 RVA: 0x00089B0B File Offset: 0x00087D0B
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Vision_Crystal");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Vision_Crystal : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011DB RID: 4571 RVA: 0x000899E4 File Offset: 0x00087BE4
+	// Token: 0x060011DB RID: 4571 RVA: 0x00089B2C File Offset: 0x00087D2C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Vision_Crystal : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x060011DC RID: 4572 RVA: 0x00089ADC File Offset: 0x00087CDC
+	// Token: 0x060011DC RID: 4572 RVA: 0x00089C24 File Offset: 0x00087E24
 	private void Update()
 	{
 	}
 
-	// Token: 0x060011DD RID: 4573 RVA: 0x00089ADE File Offset: 0x00087CDE
+	// Token: 0x060011DD RID: 4573 RVA: 0x00089C26 File Offset: 0x00087E26
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,28 +68,28 @@ public class CameraFilterPack_Vision_Crystal : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400166B RID: 5739
+	// Token: 0x04001674 RID: 5748
 	public Shader SCShader;
 
-	// Token: 0x0400166C RID: 5740
+	// Token: 0x04001675 RID: 5749
 	private float TimeX = 1f;
 
-	// Token: 0x0400166D RID: 5741
+	// Token: 0x04001676 RID: 5750
 	private Material SCMaterial;
 
-	// Token: 0x0400166E RID: 5742
+	// Token: 0x04001677 RID: 5751
 	[Range(-10f, 10f)]
 	public float Value = 1f;
 
-	// Token: 0x0400166F RID: 5743
+	// Token: 0x04001678 RID: 5752
 	[Range(-1f, 1f)]
 	public float X = 1f;
 
-	// Token: 0x04001670 RID: 5744
+	// Token: 0x04001679 RID: 5753
 	[Range(-1f, 1f)]
 	public float Y = 1f;
 
-	// Token: 0x04001671 RID: 5745
+	// Token: 0x0400167A RID: 5754
 	[Range(-1f, 1f)]
 	private float Value4 = 1f;
 }

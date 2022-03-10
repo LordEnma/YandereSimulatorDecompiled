@@ -7,7 +7,7 @@ using UnityEngine;
 public class UICenterOnChild : MonoBehaviour
 {
 	// Token: 0x17000013 RID: 19
-	// (get) Token: 0x06000156 RID: 342 RVA: 0x00014B72 File Offset: 0x00012D72
+	// (get) Token: 0x06000156 RID: 342 RVA: 0x00014C6A File Offset: 0x00012E6A
 	public GameObject centeredObject
 	{
 		get
@@ -16,13 +16,13 @@ public class UICenterOnChild : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000157 RID: 343 RVA: 0x00014B7A File Offset: 0x00012D7A
+	// Token: 0x06000157 RID: 343 RVA: 0x00014C72 File Offset: 0x00012E72
 	private void Start()
 	{
 		this.Recenter();
 	}
 
-	// Token: 0x06000158 RID: 344 RVA: 0x00014B82 File Offset: 0x00012D82
+	// Token: 0x06000158 RID: 344 RVA: 0x00014C7A File Offset: 0x00012E7A
 	private void OnEnable()
 	{
 		if (this.mScrollView)
@@ -32,7 +32,7 @@ public class UICenterOnChild : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000159 RID: 345 RVA: 0x00014BA3 File Offset: 0x00012DA3
+	// Token: 0x06000159 RID: 345 RVA: 0x00014C9B File Offset: 0x00012E9B
 	private void OnDisable()
 	{
 		if (this.mScrollView)
@@ -41,7 +41,7 @@ public class UICenterOnChild : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600015A RID: 346 RVA: 0x00014BBE File Offset: 0x00012DBE
+	// Token: 0x0600015A RID: 346 RVA: 0x00014CB6 File Offset: 0x00012EB6
 	private void OnDragFinished()
 	{
 		if (base.enabled)
@@ -50,13 +50,13 @@ public class UICenterOnChild : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600015B RID: 347 RVA: 0x00014BCE File Offset: 0x00012DCE
+	// Token: 0x0600015B RID: 347 RVA: 0x00014CC6 File Offset: 0x00012EC6
 	private void OnValidate()
 	{
 		this.nextPageThreshold = Mathf.Abs(this.nextPageThreshold);
 	}
 
-	// Token: 0x0600015C RID: 348 RVA: 0x00014BE4 File Offset: 0x00012DE4
+	// Token: 0x0600015C RID: 348 RVA: 0x00014CDC File Offset: 0x00012EDC
 	[ContextMenu("Execute")]
 	public void Recenter()
 	{
@@ -227,7 +227,7 @@ public class UICenterOnChild : MonoBehaviour
 		this.CenterOn(target, vector);
 	}
 
-	// Token: 0x0600015D RID: 349 RVA: 0x0001509C File Offset: 0x0001329C
+	// Token: 0x0600015D RID: 349 RVA: 0x00015194 File Offset: 0x00013394
 	private void CenterOn(Transform target, Vector3 panelCenter)
 	{
 		if (target != null && this.mScrollView != null && this.mScrollView.panel != null)
@@ -262,7 +262,7 @@ public class UICenterOnChild : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600015E RID: 350 RVA: 0x000151E0 File Offset: 0x000133E0
+	// Token: 0x0600015E RID: 350 RVA: 0x000152D8 File Offset: 0x000134D8
 	public void CenterOn(Transform target)
 	{
 		if (this.mScrollView != null && this.mScrollView.panel != null)
@@ -273,25 +273,25 @@ public class UICenterOnChild : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000315 RID: 789
+	// Token: 0x0400031E RID: 798
 	public float springStrength = 8f;
 
-	// Token: 0x04000316 RID: 790
+	// Token: 0x0400031F RID: 799
 	public float nextPageThreshold;
 
-	// Token: 0x04000317 RID: 791
+	// Token: 0x04000320 RID: 800
 	public SpringPanel.OnFinished onFinished;
 
-	// Token: 0x04000318 RID: 792
+	// Token: 0x04000321 RID: 801
 	public UICenterOnChild.OnCenterCallback onCenter;
 
-	// Token: 0x04000319 RID: 793
+	// Token: 0x04000322 RID: 802
 	private UIScrollView mScrollView;
 
-	// Token: 0x0400031A RID: 794
+	// Token: 0x04000323 RID: 803
 	private GameObject mCenteredObject;
 
-	// Token: 0x020005C6 RID: 1478
-	// (Invoke) Token: 0x06002508 RID: 9480
+	// Token: 0x020005C7 RID: 1479
+	// (Invoke) Token: 0x0600250E RID: 9486
 	public delegate void OnCenterCallback(GameObject centeredObject);
 }

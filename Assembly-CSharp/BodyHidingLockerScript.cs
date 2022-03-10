@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000EE RID: 238
 public class BodyHidingLockerScript : MonoBehaviour
 {
-	// Token: 0x06000A4C RID: 2636 RVA: 0x0005B4C8 File Offset: 0x000596C8
+	// Token: 0x06000A4C RID: 2636 RVA: 0x0005B5F4 File Offset: 0x000597F4
 	private void Update()
 	{
 		if (this.Rotation != 0f)
@@ -123,7 +123,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A4D RID: 2637 RVA: 0x0005BAA0 File Offset: 0x00059CA0
+	// Token: 0x06000A4D RID: 2637 RVA: 0x0005BBCC File Offset: 0x00059DCC
 	public void UpdateCorpse()
 	{
 		this.Corpse = this.StudentManager.Students[this.StudentID].Ragdoll;
@@ -132,33 +132,33 @@ public class BodyHidingLockerScript : MonoBehaviour
 		this.Prompt.enabled = true;
 	}
 
-	// Token: 0x04000BBC RID: 3004
+	// Token: 0x04000BC5 RID: 3013
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000BBD RID: 3005
+	// Token: 0x04000BC6 RID: 3014
 	public RagdollScript Corpse;
 
-	// Token: 0x04000BBE RID: 3006
+	// Token: 0x04000BC7 RID: 3015
 	public PromptScript Prompt;
 
-	// Token: 0x04000BBF RID: 3007
+	// Token: 0x04000BC8 RID: 3016
 	public AudioClip LockerClose;
 
-	// Token: 0x04000BC0 RID: 3008
+	// Token: 0x04000BC9 RID: 3017
 	public AudioClip LockerOpen;
 
-	// Token: 0x04000BC1 RID: 3009
+	// Token: 0x04000BCA RID: 3018
 	public float Rotation;
 
-	// Token: 0x04000BC2 RID: 3010
+	// Token: 0x04000BCB RID: 3019
 	public float Speed;
 
-	// Token: 0x04000BC3 RID: 3011
+	// Token: 0x04000BCC RID: 3020
 	public Transform Door;
 
-	// Token: 0x04000BC4 RID: 3012
+	// Token: 0x04000BCD RID: 3021
 	public int StudentID;
 
-	// Token: 0x04000BC5 RID: 3013
+	// Token: 0x04000BCE RID: 3022
 	public bool ABC;
 }

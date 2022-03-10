@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000353 RID: 851
 public class ListScript : MonoBehaviour
 {
-	// Token: 0x06001967 RID: 6503 RVA: 0x000FF0A4 File Offset: 0x000FD2A4
+	// Token: 0x06001967 RID: 6503 RVA: 0x000FF3E4 File Offset: 0x000FD5E4
 	public void Start()
 	{
 		if (this.AutoFill)
@@ -16,9 +16,9 @@ public class ListScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400282C RID: 10284
+	// Token: 0x04002842 RID: 10306
 	public Transform[] List;
 
-	// Token: 0x0400282D RID: 10285
+	// Token: 0x04002843 RID: 10307
 	public bool AutoFill;
 }

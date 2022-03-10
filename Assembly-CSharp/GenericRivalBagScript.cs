@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002E0 RID: 736
 public class GenericRivalBagScript : MonoBehaviour
 {
-	// Token: 0x060014EA RID: 5354 RVA: 0x000D0B60 File Offset: 0x000CED60
+	// Token: 0x060014EA RID: 5354 RVA: 0x000D0CDC File Offset: 0x000CEEDC
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -100,6 +100,10 @@ public class GenericRivalBagScript : MonoBehaviour
 					this.DesiredTraitText = "She admires men with a lot of physical strength.";
 				}
 			}
+			this.Magazine.gameObject.SetActive(false);
+			this.MagazineButton.SetActive(false);
+			this.Magazine.localPosition = new Vector3(-700f, -1400f, 0f);
+			this.Magazine.localEulerAngles = new Vector3(0f, 0f, 45f);
 			base.gameObject.SetActive(false);
 			this.Window.SetActive(false);
 			this.Prompt.enabled = false;
@@ -108,7 +112,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014EB RID: 5355 RVA: 0x000D0DE4 File Offset: 0x000CEFE4
+	// Token: 0x060014EB RID: 5355 RVA: 0x000D0FBC File Offset: 0x000CF1BC
 	private void Update()
 	{
 		if (!this.Window.activeInHierarchy)
@@ -159,24 +163,20 @@ public class GenericRivalBagScript : MonoBehaviour
 						{
 							this.Menu = 2;
 							this.UpdateMenuLabels();
-							return;
 						}
-						if (this.Selected == 2)
+						else if (this.Selected == 2)
 						{
 							this.Menu = 3;
 							this.UpdateMenuLabels();
-							return;
 						}
-						if (this.Selected == 3)
+						else if (this.Selected == 3)
 						{
 							this.Menu = 4;
 							this.UpdateMenuLabels();
-							return;
 						}
-						if (this.Selected == 4)
+						else if (this.Selected == 4)
 						{
 							this.CloseWindow();
-							return;
 						}
 					}
 				}
@@ -195,9 +195,8 @@ public class GenericRivalBagScript : MonoBehaviour
 							this.Rival.GetDestinations();
 							Debug.Log("The rival's routine should now be adjusted to ''Search'' at lunchtime.");
 							this.UpdateMenuLabels();
-							return;
 						}
-						if (this.Selected == 2)
+						else if (this.Selected == 2)
 						{
 							this.Highlight.gameObject.SetActive(false);
 							this.PromptBar.ClearButtons();
@@ -205,9 +204,8 @@ public class GenericRivalBagScript : MonoBehaviour
 							this.PromptBar.UpdateButtons();
 							this.Menu = 5;
 							this.UpdateMenuLabels();
-							return;
 						}
-						if (this.Selected == 3)
+						else if (this.Selected == 3)
 						{
 							this.Highlight.gameObject.SetActive(false);
 							this.PromptBar.ClearButtons();
@@ -215,13 +213,11 @@ public class GenericRivalBagScript : MonoBehaviour
 							this.PromptBar.UpdateButtons();
 							this.Menu = 6;
 							this.UpdateMenuLabels();
-							return;
 						}
-						if (this.Selected == 4)
+						else if (this.Selected == 4)
 						{
 							this.Menu = 1;
 							this.UpdateMenuLabels();
-							return;
 						}
 					}
 				}
@@ -282,69 +278,88 @@ public class GenericRivalBagScript : MonoBehaviour
 						}
 						this.Menu = 1;
 						this.UpdateMenuLabels();
-						return;
 					}
 				}
-				else if (this.Menu == 4 && this.Label[this.Selected].color.a == 1f)
+				else if (this.Menu == 4)
 				{
-					if (this.Selected == 1)
+					if (this.Label[this.Selected].color.a == 1f)
 					{
-						this.Prompt.Yandere.Inventory.Sake = false;
-						this.Alcohol = true;
+						if (this.Selected == 1)
+						{
+							this.Prompt.Yandere.Inventory.Sake = false;
+							this.Alcohol = true;
+						}
+						else if (this.Selected == 2)
+						{
+							this.Prompt.Yandere.Inventory.Condoms = false;
+							this.Condoms = true;
+						}
+						else if (this.Selected == 3)
+						{
+							this.Prompt.Yandere.Inventory.Cigs = false;
+							this.Cigarettes = true;
+						}
+						else if (this.Selected == 4)
+						{
+							this.Prompt.Yandere.Inventory.Ring = false;
+							this.StolenRing = true;
+						}
+						else if (this.Selected == 5)
+						{
+							this.Prompt.Yandere.Inventory.AnswerSheet = false;
+							this.AnswerSheet = true;
+						}
+						else if (this.Selected == 6)
+						{
+							this.Prompt.Yandere.Inventory.Narcotics = false;
+							this.Narcotics = true;
+						}
+						this.Menu = 1;
+						this.UpdateMenuLabels();
 					}
-					else if (this.Selected == 2)
-					{
-						this.Prompt.Yandere.Inventory.Condoms = false;
-						this.Condoms = true;
-					}
-					else if (this.Selected == 3)
-					{
-						this.Prompt.Yandere.Inventory.Cigs = false;
-						this.Cigarettes = true;
-					}
-					else if (this.Selected == 4)
-					{
-						this.Prompt.Yandere.Inventory.Ring = false;
-						this.StolenRing = true;
-					}
-					else if (this.Selected == 5)
-					{
-						this.Prompt.Yandere.Inventory.AnswerSheet = false;
-						this.AnswerSheet = true;
-					}
-					else if (this.Selected == 6)
-					{
-						this.Prompt.Yandere.Inventory.Narcotics = false;
-						this.Narcotics = true;
-					}
-					this.Menu = 1;
-					this.UpdateMenuLabels();
-					return;
+				}
+				else if (this.Menu == 5)
+				{
 				}
 			}
 			else if (Input.GetButtonDown("B"))
 			{
-				this.Highlight.gameObject.SetActive(true);
-				this.PromptBar.ClearButtons();
-				this.PromptBar.Label[0].text = "Confirm";
-				this.PromptBar.Label[5].text = "Change Selection";
-				this.PromptBar.UpdateButtons();
-				if (this.Menu == 5)
+				if (this.ShowMagazine)
 				{
-					this.Menu = 2;
-					this.UpdateMenuLabels();
-					return;
+					this.MagazineButton.SetActive(true);
+					this.ShowMagazine = false;
 				}
-				if (this.Menu == 6)
+				else
 				{
-					this.Menu = 2;
-					this.UpdateMenuLabels();
+					this.Highlight.gameObject.SetActive(true);
+					this.PromptBar.ClearButtons();
+					this.PromptBar.Label[0].text = "Confirm";
+					this.PromptBar.Label[5].text = "Change Selection";
+					this.PromptBar.UpdateButtons();
+					if (this.Menu == 5)
+					{
+						this.Menu = 2;
+						this.UpdateMenuLabels();
+					}
+					else if (this.Menu == 6)
+					{
+						this.Menu = 2;
+						this.UpdateMenuLabels();
+					}
 				}
 			}
+			if (this.ShowMagazine)
+			{
+				this.Magazine.localPosition = Vector3.Lerp(this.Magazine.localPosition, new Vector3(0f, 50f, 0f), Time.unscaledDeltaTime * 10f);
+				this.Magazine.localEulerAngles = Vector3.Lerp(this.Magazine.localEulerAngles, new Vector3(0f, 0f, 0f), Time.unscaledDeltaTime * 10f);
+				return;
+			}
+			this.Magazine.localPosition = Vector3.Lerp(this.Magazine.localPosition, new Vector3(-700f, -1400f, 0f), Time.unscaledDeltaTime * 10f);
+			this.Magazine.localEulerAngles = Vector3.Lerp(this.Magazine.localEulerAngles, new Vector3(0f, 0f, 45f), Time.unscaledDeltaTime * 10f);
 		}
 	}
 
-	// Token: 0x060014EC RID: 5356 RVA: 0x000D1534 File Offset: 0x000CF734
+	// Token: 0x060014EC RID: 5356 RVA: 0x000D1858 File Offset: 0x000CFA58
 	private void CloseWindow()
 	{
 		this.Selected = 1;
@@ -357,7 +372,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		this.PromptBar.Show = false;
 	}
 
-	// Token: 0x060014ED RID: 5357 RVA: 0x000D15A4 File Offset: 0x000CF7A4
+	// Token: 0x060014ED RID: 5357 RVA: 0x000D18C8 File Offset: 0x000CFAC8
 	private void UpdateHighlight()
 	{
 		if (this.Selected > this.Limit)
@@ -371,7 +386,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(0f, (float)(400 - this.Selected * 100), 0f);
 	}
 
-	// Token: 0x060014EE RID: 5358 RVA: 0x000D1608 File Offset: 0x000CF808
+	// Token: 0x060014EE RID: 5358 RVA: 0x000D192C File Offset: 0x000CFB2C
 	private void UpdateMenuLabels()
 	{
 		this.Selected = 1;
@@ -491,7 +506,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		{
 			this.Label[8].text = string.Concat(new string[]
 			{
-				"You find a magazine in your rival's bookbag. It's a magazine about cute boys. Your rival has drawn circles around the boys she likes the most. It's apparent that...\n\n",
+				"It's apparent that...\n\n",
 				this.DesiredHairstyleText,
 				"\n\n",
 				this.DesiredAccessoryText,
@@ -539,150 +554,180 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400211C RID: 8476
+	// Token: 0x04002126 RID: 8486
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400211D RID: 8477
+	// Token: 0x04002127 RID: 8487
 	public GenericRivalEventScript Event;
 
-	// Token: 0x0400211E RID: 8478
+	// Token: 0x04002128 RID: 8488
 	public PromptBarScript PromptBar;
 
-	// Token: 0x0400211F RID: 8479
+	// Token: 0x04002129 RID: 8489
 	public StudentScript Rival;
 
-	// Token: 0x04002120 RID: 8480
+	// Token: 0x0400212A RID: 8490
 	public PromptScript Prompt;
 
-	// Token: 0x04002121 RID: 8481
+	// Token: 0x0400212B RID: 8491
 	public JsonScript JSON;
 
-	// Token: 0x04002122 RID: 8482
+	// Token: 0x0400212C RID: 8492
 	public Transform Highlight;
 
-	// Token: 0x04002123 RID: 8483
+	// Token: 0x0400212D RID: 8493
 	public GameObject Window;
 
-	// Token: 0x04002124 RID: 8484
+	// Token: 0x0400212E RID: 8494
 	public UILabel[] Label;
 
-	// Token: 0x04002125 RID: 8485
+	// Token: 0x0400212F RID: 8495
 	public bool BorrowedBook;
 
-	// Token: 0x04002126 RID: 8486
+	// Token: 0x04002130 RID: 8496
 	public bool Alcohol;
 
-	// Token: 0x04002127 RID: 8487
+	// Token: 0x04002131 RID: 8497
 	public bool Condoms;
 
-	// Token: 0x04002128 RID: 8488
+	// Token: 0x04002132 RID: 8498
 	public bool Cigarettes;
 
-	// Token: 0x04002129 RID: 8489
+	// Token: 0x04002133 RID: 8499
 	public bool StolenRing;
 
-	// Token: 0x0400212A RID: 8490
+	// Token: 0x04002134 RID: 8500
 	public bool AnswerSheet;
 
-	// Token: 0x0400212B RID: 8491
+	// Token: 0x04002135 RID: 8501
 	public bool Narcotics;
 
-	// Token: 0x0400212C RID: 8492
-	public bool BentoStolen;
-
-	// Token: 0x0400212D RID: 8493
-	public bool NoBento;
-
-	// Token: 0x0400212E RID: 8494
-	public int Selected;
-
-	// Token: 0x0400212F RID: 8495
-	public int Limit;
-
-	// Token: 0x04002130 RID: 8496
-	public int Menu;
-
-	// Token: 0x04002131 RID: 8497
-	public int[] RivalOpinions;
-
-	// Token: 0x04002132 RID: 8498
-	public string[] Subjects;
-
-	// Token: 0x04002133 RID: 8499
-	public string[] RivalDislikes;
-
-	// Token: 0x04002134 RID: 8500
-	public string[] RivalLikes;
-
-	// Token: 0x04002135 RID: 8501
-	public int Dislikes = 1;
-
 	// Token: 0x04002136 RID: 8502
-	public int Likes = 1;
+	public bool ShowMagazine;
 
 	// Token: 0x04002137 RID: 8503
-	public int[] DesiredHairstyles;
+	public bool BentoStolen;
 
 	// Token: 0x04002138 RID: 8504
-	public int[] DesiredAccessories;
+	public bool NoBento;
 
 	// Token: 0x04002139 RID: 8505
-	public int[] DesiredEyewears;
+	public int Selected;
 
 	// Token: 0x0400213A RID: 8506
-	public int[] DesiredSkins;
+	public int Limit;
 
 	// Token: 0x0400213B RID: 8507
-	public string[] DesiredHairColors;
+	public int Menu;
 
 	// Token: 0x0400213C RID: 8508
-	public bool[] DesiredJewelries;
+	public int[] RivalOpinions;
 
 	// Token: 0x0400213D RID: 8509
-	public int[] DesiredTraits;
+	public string[] Subjects;
 
 	// Token: 0x0400213E RID: 8510
-	public int DesiredHairstyle;
+	public string[] RivalDislikes;
 
 	// Token: 0x0400213F RID: 8511
-	public int DesiredAccessory;
+	public string[] RivalLikes;
 
 	// Token: 0x04002140 RID: 8512
-	public int DesiredEyewear;
+	public int Dislikes = 1;
 
 	// Token: 0x04002141 RID: 8513
-	public int DesiredSkin;
+	public int Likes = 1;
 
 	// Token: 0x04002142 RID: 8514
-	public string DesiredHairColor;
+	public int[] DesiredHairstyles;
 
 	// Token: 0x04002143 RID: 8515
-	public bool DesiredJewelry;
+	public int[] DesiredAccessories;
 
 	// Token: 0x04002144 RID: 8516
-	public int DesiredTrait;
+	public int[] DesiredEyewears;
 
 	// Token: 0x04002145 RID: 8517
-	public string DesiredHairstyleText;
+	public int[] DesiredSkins;
 
 	// Token: 0x04002146 RID: 8518
-	public string DesiredAccessoryText;
+	public string[] DesiredHairColors;
 
 	// Token: 0x04002147 RID: 8519
-	public string DesiredEyewearText;
+	public bool[] DesiredJewelries;
 
 	// Token: 0x04002148 RID: 8520
-	public string DesiredSkinText;
+	public int[] DesiredTraits;
 
 	// Token: 0x04002149 RID: 8521
-	public string DesiredHairColorText;
+	public int DesiredHairstyle;
 
 	// Token: 0x0400214A RID: 8522
-	public string DesiredJewelryText;
+	public int DesiredAccessory;
 
 	// Token: 0x0400214B RID: 8523
-	public string DesiredTraitText;
+	public int DesiredEyewear;
 
 	// Token: 0x0400214C RID: 8524
+	public int DesiredSkin;
+
+	// Token: 0x0400214D RID: 8525
+	public string DesiredHairColor;
+
+	// Token: 0x0400214E RID: 8526
+	public bool DesiredJewelry;
+
+	// Token: 0x0400214F RID: 8527
+	public int DesiredTrait;
+
+	// Token: 0x04002150 RID: 8528
+	public string DesiredHairstyleText;
+
+	// Token: 0x04002151 RID: 8529
+	public string DesiredAccessoryText;
+
+	// Token: 0x04002152 RID: 8530
+	public string DesiredEyewearText;
+
+	// Token: 0x04002153 RID: 8531
+	public string DesiredSkinText;
+
+	// Token: 0x04002154 RID: 8532
+	public string DesiredHairColorText;
+
+	// Token: 0x04002155 RID: 8533
+	public string DesiredJewelryText;
+
+	// Token: 0x04002156 RID: 8534
+	public string DesiredTraitText;
+
+	// Token: 0x04002157 RID: 8535
 	public bool Initialized;
+
+	// Token: 0x04002158 RID: 8536
+	public GameObject MagazineButton;
+
+	// Token: 0x04002159 RID: 8537
+	public Transform Magazine;
+
+	// Token: 0x0400215A RID: 8538
+	public GameObject TanHearts;
+
+	// Token: 0x0400215B RID: 8539
+	public GameObject PiercingHearts;
+
+	// Token: 0x0400215C RID: 8540
+	public GameObject DarkHairHearts;
+
+	// Token: 0x0400215D RID: 8541
+	public GameObject GlassesHearts;
+
+	// Token: 0x0400215E RID: 8542
+	public GameObject BandanaHearts;
+
+	// Token: 0x0400215F RID: 8543
+	public GameObject JewleryHearts;
+
+	// Token: 0x04002160 RID: 8544
+	public GameObject SunglassesHearts;
 }

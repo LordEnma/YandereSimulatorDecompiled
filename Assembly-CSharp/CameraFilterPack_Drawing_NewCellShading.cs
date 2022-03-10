@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Drawing_NewCellShading : MonoBehaviour
 {
 	// Token: 0x1700029D RID: 669
-	// (get) Token: 0x06000E55 RID: 3669 RVA: 0x00079AF8 File Offset: 0x00077CF8
+	// (get) Token: 0x06000E55 RID: 3669 RVA: 0x00079C40 File Offset: 0x00077E40
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Drawing_NewCellShading : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E56 RID: 3670 RVA: 0x00079B2C File Offset: 0x00077D2C
+	// Token: 0x06000E56 RID: 3670 RVA: 0x00079C74 File Offset: 0x00077E74
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Drawing_NewCellShading");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Drawing_NewCellShading : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E57 RID: 3671 RVA: 0x00079B50 File Offset: 0x00077D50
+	// Token: 0x06000E57 RID: 3671 RVA: 0x00079C98 File Offset: 0x00077E98
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -51,12 +51,12 @@ public class CameraFilterPack_Drawing_NewCellShading : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000E58 RID: 3672 RVA: 0x00079BFF File Offset: 0x00077DFF
+	// Token: 0x06000E58 RID: 3672 RVA: 0x00079D47 File Offset: 0x00077F47
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000E59 RID: 3673 RVA: 0x00079C01 File Offset: 0x00077E01
+	// Token: 0x06000E59 RID: 3673 RVA: 0x00079D49 File Offset: 0x00077F49
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -65,16 +65,16 @@ public class CameraFilterPack_Drawing_NewCellShading : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001296 RID: 4758
+	// Token: 0x0400129F RID: 4767
 	public Shader SCShader;
 
-	// Token: 0x04001297 RID: 4759
+	// Token: 0x040012A0 RID: 4768
 	private float TimeX = 1f;
 
-	// Token: 0x04001298 RID: 4760
+	// Token: 0x040012A1 RID: 4769
 	private Material SCMaterial;
 
-	// Token: 0x04001299 RID: 4761
+	// Token: 0x040012A2 RID: 4770
 	[Range(0f, 1f)]
 	public float Threshold = 0.2f;
 }

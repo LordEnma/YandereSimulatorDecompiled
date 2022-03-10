@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Item Attachment Point")]
 public class InvAttachmentPoint : MonoBehaviour
 {
-	// Token: 0x060000A0 RID: 160 RVA: 0x00011828 File Offset: 0x0000FA28
+	// Token: 0x060000A0 RID: 160 RVA: 0x00011920 File Offset: 0x0000FB20
 	public GameObject Attach(GameObject prefab)
 	{
 		if (this.mPrefab != prefab)
@@ -29,12 +29,12 @@ public class InvAttachmentPoint : MonoBehaviour
 		return this.mChild;
 	}
 
-	// Token: 0x04000271 RID: 625
+	// Token: 0x0400027A RID: 634
 	public InvBaseItem.Slot slot;
 
-	// Token: 0x04000272 RID: 626
+	// Token: 0x0400027B RID: 635
 	private GameObject mPrefab;
 
-	// Token: 0x04000273 RID: 627
+	// Token: 0x0400027C RID: 636
 	private GameObject mChild;
 }

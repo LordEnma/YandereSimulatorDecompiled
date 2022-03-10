@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000313 RID: 787
 public class HidingSpotScript : MonoBehaviour
 {
-	// Token: 0x06001857 RID: 6231 RVA: 0x000EAD00 File Offset: 0x000E8F00
+	// Token: 0x06001857 RID: 6231 RVA: 0x000EB030 File Offset: 0x000E9230
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -36,21 +36,21 @@ public class HidingSpotScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400240C RID: 9228
+	// Token: 0x04002420 RID: 9248
 	public PromptBarScript PromptBar;
 
-	// Token: 0x0400240D RID: 9229
+	// Token: 0x04002421 RID: 9249
 	public PromptScript Prompt;
 
-	// Token: 0x0400240E RID: 9230
+	// Token: 0x04002422 RID: 9250
 	public Transform Exit;
 
-	// Token: 0x0400240F RID: 9231
+	// Token: 0x04002423 RID: 9251
 	public Transform Spot;
 
-	// Token: 0x04002410 RID: 9232
+	// Token: 0x04002424 RID: 9252
 	public string AnimName;
 
-	// Token: 0x04002411 RID: 9233
+	// Token: 0x04002425 RID: 9253
 	public bool Bench;
 }

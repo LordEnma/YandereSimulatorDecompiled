@@ -8,7 +8,7 @@ using UnityEngine;
 public class UIProgressBar : UIWidgetContainer
 {
 	// Token: 0x1700002A RID: 42
-	// (get) Token: 0x06000262 RID: 610 RVA: 0x0001B06F File Offset: 0x0001926F
+	// (get) Token: 0x06000262 RID: 610 RVA: 0x0001B167 File Offset: 0x00019367
 	public Transform cachedTransform
 	{
 		get
@@ -22,7 +22,7 @@ public class UIProgressBar : UIWidgetContainer
 	}
 
 	// Token: 0x1700002B RID: 43
-	// (get) Token: 0x06000263 RID: 611 RVA: 0x0001B091 File Offset: 0x00019291
+	// (get) Token: 0x06000263 RID: 611 RVA: 0x0001B189 File Offset: 0x00019389
 	public Camera cachedCamera
 	{
 		get
@@ -36,8 +36,8 @@ public class UIProgressBar : UIWidgetContainer
 	}
 
 	// Token: 0x1700002C RID: 44
-	// (get) Token: 0x06000264 RID: 612 RVA: 0x0001B0BD File Offset: 0x000192BD
-	// (set) Token: 0x06000265 RID: 613 RVA: 0x0001B0C5 File Offset: 0x000192C5
+	// (get) Token: 0x06000264 RID: 612 RVA: 0x0001B1B5 File Offset: 0x000193B5
+	// (set) Token: 0x06000265 RID: 613 RVA: 0x0001B1BD File Offset: 0x000193BD
 	public UIWidget foregroundWidget
 	{
 		get
@@ -55,8 +55,8 @@ public class UIProgressBar : UIWidgetContainer
 	}
 
 	// Token: 0x1700002D RID: 45
-	// (get) Token: 0x06000266 RID: 614 RVA: 0x0001B0E3 File Offset: 0x000192E3
-	// (set) Token: 0x06000267 RID: 615 RVA: 0x0001B0EB File Offset: 0x000192EB
+	// (get) Token: 0x06000266 RID: 614 RVA: 0x0001B1DB File Offset: 0x000193DB
+	// (set) Token: 0x06000267 RID: 615 RVA: 0x0001B1E3 File Offset: 0x000193E3
 	public UIWidget backgroundWidget
 	{
 		get
@@ -74,8 +74,8 @@ public class UIProgressBar : UIWidgetContainer
 	}
 
 	// Token: 0x1700002E RID: 46
-	// (get) Token: 0x06000268 RID: 616 RVA: 0x0001B109 File Offset: 0x00019309
-	// (set) Token: 0x06000269 RID: 617 RVA: 0x0001B111 File Offset: 0x00019311
+	// (get) Token: 0x06000268 RID: 616 RVA: 0x0001B201 File Offset: 0x00019401
+	// (set) Token: 0x06000269 RID: 617 RVA: 0x0001B209 File Offset: 0x00019409
 	public UIProgressBar.FillDirection fillDirection
 	{
 		get
@@ -96,8 +96,8 @@ public class UIProgressBar : UIWidgetContainer
 	}
 
 	// Token: 0x1700002F RID: 47
-	// (get) Token: 0x0600026A RID: 618 RVA: 0x0001B131 File Offset: 0x00019331
-	// (set) Token: 0x0600026B RID: 619 RVA: 0x0001B162 File Offset: 0x00019362
+	// (get) Token: 0x0600026A RID: 618 RVA: 0x0001B229 File Offset: 0x00019429
+	// (set) Token: 0x0600026B RID: 619 RVA: 0x0001B25A File Offset: 0x0001945A
 	public float value
 	{
 		get
@@ -115,8 +115,8 @@ public class UIProgressBar : UIWidgetContainer
 	}
 
 	// Token: 0x17000030 RID: 48
-	// (get) Token: 0x0600026C RID: 620 RVA: 0x0001B16C File Offset: 0x0001936C
-	// (set) Token: 0x0600026D RID: 621 RVA: 0x0001B1A8 File Offset: 0x000193A8
+	// (get) Token: 0x0600026C RID: 620 RVA: 0x0001B264 File Offset: 0x00019464
+	// (set) Token: 0x0600026D RID: 621 RVA: 0x0001B2A0 File Offset: 0x000194A0
 	public float alpha
 	{
 		get
@@ -178,7 +178,7 @@ public class UIProgressBar : UIWidgetContainer
 	}
 
 	// Token: 0x17000031 RID: 49
-	// (get) Token: 0x0600026E RID: 622 RVA: 0x0001B338 File Offset: 0x00019538
+	// (get) Token: 0x0600026E RID: 622 RVA: 0x0001B430 File Offset: 0x00019630
 	protected bool isHorizontal
 	{
 		get
@@ -188,7 +188,7 @@ public class UIProgressBar : UIWidgetContainer
 	}
 
 	// Token: 0x17000032 RID: 50
-	// (get) Token: 0x0600026F RID: 623 RVA: 0x0001B34D File Offset: 0x0001954D
+	// (get) Token: 0x0600026F RID: 623 RVA: 0x0001B445 File Offset: 0x00019645
 	protected bool isInverted
 	{
 		get
@@ -197,7 +197,7 @@ public class UIProgressBar : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000270 RID: 624 RVA: 0x0001B364 File Offset: 0x00019564
+	// Token: 0x06000270 RID: 624 RVA: 0x0001B45C File Offset: 0x0001965C
 	public void Set(float val, bool notify = true)
 	{
 		val = Mathf.Clamp01(val);
@@ -218,7 +218,7 @@ public class UIProgressBar : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000271 RID: 625 RVA: 0x0001B3D8 File Offset: 0x000195D8
+	// Token: 0x06000271 RID: 625 RVA: 0x0001B4D0 File Offset: 0x000196D0
 	public void Start()
 	{
 		if (this.mStarted)
@@ -244,17 +244,17 @@ public class UIProgressBar : UIWidgetContainer
 		this.ForceUpdate();
 	}
 
-	// Token: 0x06000272 RID: 626 RVA: 0x0001B454 File Offset: 0x00019654
+	// Token: 0x06000272 RID: 626 RVA: 0x0001B54C File Offset: 0x0001974C
 	protected virtual void Upgrade()
 	{
 	}
 
-	// Token: 0x06000273 RID: 627 RVA: 0x0001B456 File Offset: 0x00019656
+	// Token: 0x06000273 RID: 627 RVA: 0x0001B54E File Offset: 0x0001974E
 	protected virtual void OnStart()
 	{
 	}
 
-	// Token: 0x06000274 RID: 628 RVA: 0x0001B458 File Offset: 0x00019658
+	// Token: 0x06000274 RID: 628 RVA: 0x0001B550 File Offset: 0x00019750
 	protected void Update()
 	{
 		if (this.mIsDirty)
@@ -263,7 +263,7 @@ public class UIProgressBar : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000275 RID: 629 RVA: 0x0001B468 File Offset: 0x00019668
+	// Token: 0x06000275 RID: 629 RVA: 0x0001B560 File Offset: 0x00019760
 	protected void OnValidate()
 	{
 		if (NGUITools.GetActive(this))
@@ -302,7 +302,7 @@ public class UIProgressBar : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000276 RID: 630 RVA: 0x0001B510 File Offset: 0x00019710
+	// Token: 0x06000276 RID: 630 RVA: 0x0001B608 File Offset: 0x00019808
 	protected float ScreenToValue(Vector2 screenPos)
 	{
 		Transform cachedTransform = this.cachedTransform;
@@ -316,7 +316,7 @@ public class UIProgressBar : UIWidgetContainer
 		return this.LocalToValue(cachedTransform.InverseTransformPoint(ray.GetPoint(distance)));
 	}
 
-	// Token: 0x06000277 RID: 631 RVA: 0x0001B580 File Offset: 0x00019780
+	// Token: 0x06000277 RID: 631 RVA: 0x0001B678 File Offset: 0x00019878
 	protected virtual float LocalToValue(Vector2 localPos)
 	{
 		if (!(this.mFG != null))
@@ -345,7 +345,7 @@ public class UIProgressBar : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000278 RID: 632 RVA: 0x0001B628 File Offset: 0x00019828
+	// Token: 0x06000278 RID: 632 RVA: 0x0001B720 File Offset: 0x00019920
 	public virtual void ForceUpdate()
 	{
 		this.mIsDirty = false;
@@ -439,7 +439,7 @@ public class UIProgressBar : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000279 RID: 633 RVA: 0x0001BA1C File Offset: 0x00019C1C
+	// Token: 0x06000279 RID: 633 RVA: 0x0001BB14 File Offset: 0x00019D14
 	protected void SetThumbPosition(Vector3 worldPos)
 	{
 		Transform parent = this.thumb.parent;
@@ -461,7 +461,7 @@ public class UIProgressBar : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x0600027A RID: 634 RVA: 0x0001BAC0 File Offset: 0x00019CC0
+	// Token: 0x0600027A RID: 634 RVA: 0x0001BBB8 File Offset: 0x00019DB8
 	public virtual void OnPan(Vector2 delta)
 	{
 		if (base.enabled)
@@ -502,76 +502,76 @@ public class UIProgressBar : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x040003FD RID: 1021
+	// Token: 0x04000406 RID: 1030
 	public static UIProgressBar current;
 
-	// Token: 0x040003FE RID: 1022
+	// Token: 0x04000407 RID: 1031
 	public UIProgressBar.OnDragFinished onDragFinished;
 
-	// Token: 0x040003FF RID: 1023
+	// Token: 0x04000408 RID: 1032
 	public Transform thumb;
 
-	// Token: 0x04000400 RID: 1024
+	// Token: 0x04000409 RID: 1033
 	[HideInInspector]
 	[SerializeField]
 	protected UIWidget mBG;
 
-	// Token: 0x04000401 RID: 1025
+	// Token: 0x0400040A RID: 1034
 	[HideInInspector]
 	[SerializeField]
 	protected UIWidget mFG;
 
-	// Token: 0x04000402 RID: 1026
+	// Token: 0x0400040B RID: 1035
 	[HideInInspector]
 	[SerializeField]
 	protected float mValue = 1f;
 
-	// Token: 0x04000403 RID: 1027
+	// Token: 0x0400040C RID: 1036
 	[HideInInspector]
 	[SerializeField]
 	protected UIProgressBar.FillDirection mFill;
 
-	// Token: 0x04000404 RID: 1028
+	// Token: 0x0400040D RID: 1037
 	[NonSerialized]
 	protected bool mStarted;
 
-	// Token: 0x04000405 RID: 1029
+	// Token: 0x0400040E RID: 1038
 	[NonSerialized]
 	protected Transform mTrans;
 
-	// Token: 0x04000406 RID: 1030
+	// Token: 0x0400040F RID: 1039
 	[NonSerialized]
 	protected bool mIsDirty;
 
-	// Token: 0x04000407 RID: 1031
+	// Token: 0x04000410 RID: 1040
 	[NonSerialized]
 	protected Camera mCam;
 
-	// Token: 0x04000408 RID: 1032
+	// Token: 0x04000411 RID: 1041
 	[NonSerialized]
 	protected float mOffset;
 
-	// Token: 0x04000409 RID: 1033
+	// Token: 0x04000412 RID: 1042
 	public int numberOfSteps;
 
-	// Token: 0x0400040A RID: 1034
+	// Token: 0x04000413 RID: 1043
 	public List<EventDelegate> onChange = new List<EventDelegate>();
 
-	// Token: 0x020005D6 RID: 1494
+	// Token: 0x020005D7 RID: 1495
 	[DoNotObfuscateNGUI]
 	public enum FillDirection
 	{
-		// Token: 0x04004D67 RID: 19815
+		// Token: 0x04004D84 RID: 19844
 		LeftToRight,
-		// Token: 0x04004D68 RID: 19816
+		// Token: 0x04004D85 RID: 19845
 		RightToLeft,
-		// Token: 0x04004D69 RID: 19817
+		// Token: 0x04004D86 RID: 19846
 		BottomToTop,
-		// Token: 0x04004D6A RID: 19818
+		// Token: 0x04004D87 RID: 19847
 		TopToBottom
 	}
 
-	// Token: 0x020005D7 RID: 1495
-	// (Invoke) Token: 0x06002520 RID: 9504
+	// Token: 0x020005D8 RID: 1496
+	// (Invoke) Token: 0x06002526 RID: 9510
 	public delegate void OnDragFinished();
 }

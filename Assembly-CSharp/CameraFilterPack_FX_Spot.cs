@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_FX_Spot : MonoBehaviour
 {
 	// Token: 0x170002C4 RID: 708
-	// (get) Token: 0x06000F40 RID: 3904 RVA: 0x0007D5D7 File Offset: 0x0007B7D7
+	// (get) Token: 0x06000F40 RID: 3904 RVA: 0x0007D71F File Offset: 0x0007B91F
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_FX_Spot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F41 RID: 3905 RVA: 0x0007D60B File Offset: 0x0007B80B
+	// Token: 0x06000F41 RID: 3905 RVA: 0x0007D753 File Offset: 0x0007B953
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/FX_Spot");
@@ -32,7 +32,7 @@ public class CameraFilterPack_FX_Spot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F42 RID: 3906 RVA: 0x0007D62C File Offset: 0x0007B82C
+	// Token: 0x06000F42 RID: 3906 RVA: 0x0007D774 File Offset: 0x0007B974
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -53,12 +53,12 @@ public class CameraFilterPack_FX_Spot : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000F43 RID: 3907 RVA: 0x0007D718 File Offset: 0x0007B918
+	// Token: 0x06000F43 RID: 3907 RVA: 0x0007D860 File Offset: 0x0007BA60
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000F44 RID: 3908 RVA: 0x0007D71A File Offset: 0x0007B91A
+	// Token: 0x06000F44 RID: 3908 RVA: 0x0007D862 File Offset: 0x0007BA62
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -67,18 +67,18 @@ public class CameraFilterPack_FX_Spot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001384 RID: 4996
+	// Token: 0x0400138D RID: 5005
 	public Shader SCShader;
 
-	// Token: 0x04001385 RID: 4997
+	// Token: 0x0400138E RID: 5006
 	private float TimeX = 1f;
 
-	// Token: 0x04001386 RID: 4998
+	// Token: 0x0400138F RID: 5007
 	private Material SCMaterial;
 
-	// Token: 0x04001387 RID: 4999
+	// Token: 0x04001390 RID: 5008
 	public Vector2 center = new Vector2(0.5f, 0.5f);
 
-	// Token: 0x04001388 RID: 5000
+	// Token: 0x04001391 RID: 5009
 	public float Radius = 0.2f;
 }

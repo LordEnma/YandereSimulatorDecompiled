@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_3D_Snow : MonoBehaviour
 {
 	// Token: 0x1700021A RID: 538
-	// (get) Token: 0x06000B02 RID: 2818 RVA: 0x0006A5F8 File Offset: 0x000687F8
+	// (get) Token: 0x06000B02 RID: 2818 RVA: 0x0006A740 File Offset: 0x00068940
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_3D_Snow : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B03 RID: 2819 RVA: 0x0006A62C File Offset: 0x0006882C
+	// Token: 0x06000B03 RID: 2819 RVA: 0x0006A774 File Offset: 0x00068974
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_Blizzard1") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_3D_Snow : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B04 RID: 2820 RVA: 0x0006A664 File Offset: 0x00068864
+	// Token: 0x06000B04 RID: 2820 RVA: 0x0006A7AC File Offset: 0x000689AC
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -62,12 +62,12 @@ public class CameraFilterPack_3D_Snow : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B05 RID: 2821 RVA: 0x0006A7F9 File Offset: 0x000689F9
+	// Token: 0x06000B05 RID: 2821 RVA: 0x0006A941 File Offset: 0x00068B41
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B06 RID: 2822 RVA: 0x0006A7FB File Offset: 0x000689FB
+	// Token: 0x06000B06 RID: 2822 RVA: 0x0006A943 File Offset: 0x00068B43
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -76,50 +76,50 @@ public class CameraFilterPack_3D_Snow : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000ED7 RID: 3799
+	// Token: 0x04000EE0 RID: 3808
 	public Shader SCShader;
 
-	// Token: 0x04000ED8 RID: 3800
+	// Token: 0x04000EE1 RID: 3809
 	public bool _Visualize;
 
-	// Token: 0x04000ED9 RID: 3801
+	// Token: 0x04000EE2 RID: 3810
 	private float TimeX = 1f;
 
-	// Token: 0x04000EDA RID: 3802
+	// Token: 0x04000EE3 RID: 3811
 	private Material SCMaterial;
 
-	// Token: 0x04000EDB RID: 3803
+	// Token: 0x04000EE4 RID: 3812
 	[Range(0f, 100f)]
 	public float _FixDistance = 5f;
 
-	// Token: 0x04000EDC RID: 3804
+	// Token: 0x04000EE5 RID: 3813
 	[Range(-0.5f, 0.99f)]
 	public float Snow_Near = 0.08f;
 
-	// Token: 0x04000EDD RID: 3805
+	// Token: 0x04000EE6 RID: 3814
 	[Range(0f, 1f)]
 	public float Snow_Far = 0.55f;
 
-	// Token: 0x04000EDE RID: 3806
+	// Token: 0x04000EE7 RID: 3815
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 
-	// Token: 0x04000EDF RID: 3807
+	// Token: 0x04000EE8 RID: 3816
 	[Range(0f, 2f)]
 	public float Intensity = 1f;
 
-	// Token: 0x04000EE0 RID: 3808
+	// Token: 0x04000EE9 RID: 3817
 	[Range(0.4f, 2f)]
 	public float Size = 1f;
 
-	// Token: 0x04000EE1 RID: 3809
+	// Token: 0x04000EEA RID: 3818
 	[Range(0f, 0.5f)]
 	public float Speed = 0.275f;
 
-	// Token: 0x04000EE2 RID: 3810
+	// Token: 0x04000EEB RID: 3819
 	[Range(0f, 1f)]
 	public float SnowWithoutObject = 1f;
 
-	// Token: 0x04000EE3 RID: 3811
+	// Token: 0x04000EEC RID: 3820
 	private Texture2D Texture2;
 }

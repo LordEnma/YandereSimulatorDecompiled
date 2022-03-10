@@ -4,7 +4,7 @@
 [Serializable]
 public class HomeSaveData
 {
-	// Token: 0x06001C0D RID: 7181 RVA: 0x00146DDD File Offset: 0x00144FDD
+	// Token: 0x06001C0F RID: 7183 RVA: 0x00147319 File Offset: 0x00145519
 	public static HomeSaveData ReadFromGlobals()
 	{
 		return new HomeSaveData
@@ -15,7 +15,7 @@ public class HomeSaveData
 		};
 	}
 
-	// Token: 0x06001C0E RID: 7182 RVA: 0x00146E05 File Offset: 0x00145005
+	// Token: 0x06001C10 RID: 7184 RVA: 0x00147341 File Offset: 0x00145541
 	public static void WriteToGlobals(HomeSaveData data)
 	{
 		HomeGlobals.LateForSchool = data.lateForSchool;
@@ -23,12 +23,12 @@ public class HomeSaveData
 		HomeGlobals.StartInBasement = data.startInBasement;
 	}
 
-	// Token: 0x0400312D RID: 12589
+	// Token: 0x04003143 RID: 12611
 	public bool lateForSchool;
 
-	// Token: 0x0400312E RID: 12590
+	// Token: 0x04003144 RID: 12612
 	public bool night;
 
-	// Token: 0x0400312F RID: 12591
+	// Token: 0x04003145 RID: 12613
 	public bool startInBasement;
 }

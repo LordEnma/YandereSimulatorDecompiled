@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Atmosphere_Rain_Pro_3D : MonoBehaviour
 {
 	// Token: 0x17000228 RID: 552
-	// (get) Token: 0x06000B56 RID: 2902 RVA: 0x0006C446 File Offset: 0x0006A646
+	// (get) Token: 0x06000B56 RID: 2902 RVA: 0x0006C58E File Offset: 0x0006A78E
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Atmosphere_Rain_Pro_3D : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B57 RID: 2903 RVA: 0x0006C47A File Offset: 0x0006A67A
+	// Token: 0x06000B57 RID: 2903 RVA: 0x0006C5C2 File Offset: 0x0006A7C2
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_Atmosphere_Rain_FX") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_Atmosphere_Rain_Pro_3D : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B58 RID: 2904 RVA: 0x0006C4B0 File Offset: 0x0006A6B0
+	// Token: 0x06000B58 RID: 2904 RVA: 0x0006C5F8 File Offset: 0x0006A7F8
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -84,12 +84,12 @@ public class CameraFilterPack_Atmosphere_Rain_Pro_3D : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B59 RID: 2905 RVA: 0x0006C739 File Offset: 0x0006A939
+	// Token: 0x06000B59 RID: 2905 RVA: 0x0006C881 File Offset: 0x0006AA81
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B5A RID: 2906 RVA: 0x0006C73B File Offset: 0x0006A93B
+	// Token: 0x06000B5A RID: 2906 RVA: 0x0006C883 File Offset: 0x0006AA83
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -98,80 +98,80 @@ public class CameraFilterPack_Atmosphere_Rain_Pro_3D : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000F69 RID: 3945
+	// Token: 0x04000F72 RID: 3954
 	public Shader SCShader;
 
-	// Token: 0x04000F6A RID: 3946
+	// Token: 0x04000F73 RID: 3955
 	public bool _Visualize;
 
-	// Token: 0x04000F6B RID: 3947
+	// Token: 0x04000F74 RID: 3956
 	private float TimeX = 1f;
 
-	// Token: 0x04000F6C RID: 3948
+	// Token: 0x04000F75 RID: 3957
 	private Material SCMaterial;
 
-	// Token: 0x04000F6D RID: 3949
+	// Token: 0x04000F76 RID: 3958
 	[Range(0f, 100f)]
 	public float _FixDistance = 3f;
 
-	// Token: 0x04000F6E RID: 3950
+	// Token: 0x04000F77 RID: 3959
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 
-	// Token: 0x04000F6F RID: 3951
+	// Token: 0x04000F78 RID: 3960
 	[Range(0f, 2f)]
 	public float Intensity = 0.5f;
 
-	// Token: 0x04000F70 RID: 3952
+	// Token: 0x04000F79 RID: 3961
 	public bool DirectionFollowCameraZ;
 
-	// Token: 0x04000F71 RID: 3953
+	// Token: 0x04000F7A RID: 3962
 	[Range(-0.45f, 0.45f)]
 	public float DirectionX = 0.12f;
 
-	// Token: 0x04000F72 RID: 3954
+	// Token: 0x04000F7B RID: 3963
 	[Range(0.4f, 2f)]
 	public float Size = 1.5f;
 
-	// Token: 0x04000F73 RID: 3955
+	// Token: 0x04000F7C RID: 3964
 	[Range(0f, 0.5f)]
 	public float Speed = 0.275f;
 
-	// Token: 0x04000F74 RID: 3956
+	// Token: 0x04000F7D RID: 3965
 	[Range(0f, 0.5f)]
 	public float Distortion = 0.025f;
 
-	// Token: 0x04000F75 RID: 3957
+	// Token: 0x04000F7E RID: 3966
 	[Range(0f, 1f)]
 	public float StormFlashOnOff = 1f;
 
-	// Token: 0x04000F76 RID: 3958
+	// Token: 0x04000F7F RID: 3967
 	[Range(0f, 1f)]
 	public float DropOnOff = 1f;
 
-	// Token: 0x04000F77 RID: 3959
+	// Token: 0x04000F80 RID: 3968
 	[Range(-0.5f, 0.99f)]
 	public float Drop_Near;
 
-	// Token: 0x04000F78 RID: 3960
+	// Token: 0x04000F81 RID: 3969
 	[Range(0f, 1f)]
 	public float Drop_Far = 0.5f;
 
-	// Token: 0x04000F79 RID: 3961
+	// Token: 0x04000F82 RID: 3970
 	[Range(0f, 1f)]
 	public float Drop_With_Obj = 0.2f;
 
-	// Token: 0x04000F7A RID: 3962
+	// Token: 0x04000F83 RID: 3971
 	[Range(0f, 1f)]
 	public float Myst = 0.1f;
 
-	// Token: 0x04000F7B RID: 3963
+	// Token: 0x04000F84 RID: 3972
 	[Range(0f, 1f)]
 	public float Drop_Floor_Fluid;
 
-	// Token: 0x04000F7C RID: 3964
+	// Token: 0x04000F85 RID: 3973
 	public Color Myst_Color = new Color(0.5f, 0.5f, 0.5f, 1f);
 
-	// Token: 0x04000F7D RID: 3965
+	// Token: 0x04000F86 RID: 3974
 	private Texture2D Texture2;
 }

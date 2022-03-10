@@ -5,14 +5,14 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Spin")]
 public class Spin : MonoBehaviour
 {
-	// Token: 0x060000EA RID: 234 RVA: 0x00012BED File Offset: 0x00010DED
+	// Token: 0x060000EA RID: 234 RVA: 0x00012CE5 File Offset: 0x00010EE5
 	private void Start()
 	{
 		this.mTrans = base.transform;
 		this.mRb = base.GetComponent<Rigidbody>();
 	}
 
-	// Token: 0x060000EB RID: 235 RVA: 0x00012C07 File Offset: 0x00010E07
+	// Token: 0x060000EB RID: 235 RVA: 0x00012CFF File Offset: 0x00010EFF
 	private void Update()
 	{
 		if (this.mRb == null)
@@ -21,7 +21,7 @@ public class Spin : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060000EC RID: 236 RVA: 0x00012C31 File Offset: 0x00010E31
+	// Token: 0x060000EC RID: 236 RVA: 0x00012D29 File Offset: 0x00010F29
 	private void FixedUpdate()
 	{
 		if (this.mRb != null)
@@ -30,7 +30,7 @@ public class Spin : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060000ED RID: 237 RVA: 0x00012C4C File Offset: 0x00010E4C
+	// Token: 0x060000ED RID: 237 RVA: 0x00012D44 File Offset: 0x00010F44
 	public void ApplyDelta(float delta)
 	{
 		delta *= 360f;
@@ -43,15 +43,15 @@ public class Spin : MonoBehaviour
 		this.mRb.MoveRotation(this.mRb.rotation * rhs);
 	}
 
-	// Token: 0x040002B1 RID: 689
+	// Token: 0x040002BA RID: 698
 	public Vector3 rotationsPerSecond = new Vector3(0f, 0.1f, 0f);
 
-	// Token: 0x040002B2 RID: 690
+	// Token: 0x040002BB RID: 699
 	public bool ignoreTimeScale;
 
-	// Token: 0x040002B3 RID: 691
+	// Token: 0x040002BC RID: 700
 	private Rigidbody mRb;
 
-	// Token: 0x040002B4 RID: 692
+	// Token: 0x040002BD RID: 701
 	private Transform mTrans;
 }

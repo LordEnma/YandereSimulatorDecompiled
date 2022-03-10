@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Color_Adjust_Levels : MonoBehaviour
 {
 	// Token: 0x1700025F RID: 607
-	// (get) Token: 0x06000CDF RID: 3295 RVA: 0x00073CF3 File Offset: 0x00071EF3
+	// (get) Token: 0x06000CDF RID: 3295 RVA: 0x00073E3B File Offset: 0x0007203B
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Color_Adjust_Levels : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CE0 RID: 3296 RVA: 0x00073D27 File Offset: 0x00071F27
+	// Token: 0x06000CE0 RID: 3296 RVA: 0x00073E6F File Offset: 0x0007206F
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Color_Levels");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Color_Adjust_Levels : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CE1 RID: 3297 RVA: 0x00073D48 File Offset: 0x00071F48
+	// Token: 0x06000CE1 RID: 3297 RVA: 0x00073E90 File Offset: 0x00072090
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Color_Adjust_Levels : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000CE2 RID: 3298 RVA: 0x00073E40 File Offset: 0x00072040
+	// Token: 0x06000CE2 RID: 3298 RVA: 0x00073F88 File Offset: 0x00072188
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000CE3 RID: 3299 RVA: 0x00073E42 File Offset: 0x00072042
+	// Token: 0x06000CE3 RID: 3299 RVA: 0x00073F8A File Offset: 0x0007218A
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,32 +68,32 @@ public class CameraFilterPack_Color_Adjust_Levels : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001132 RID: 4402
+	// Token: 0x0400113B RID: 4411
 	public Shader SCShader;
 
-	// Token: 0x04001133 RID: 4403
+	// Token: 0x0400113C RID: 4412
 	private float TimeX = 1f;
 
-	// Token: 0x04001134 RID: 4404
+	// Token: 0x0400113D RID: 4413
 	private Material SCMaterial;
 
-	// Token: 0x04001135 RID: 4405
+	// Token: 0x0400113E RID: 4414
 	[Range(0f, 1f)]
 	public float levelMinimum;
 
-	// Token: 0x04001136 RID: 4406
+	// Token: 0x0400113F RID: 4415
 	[Range(0f, 1f)]
 	public float levelMiddle = 0.5f;
 
-	// Token: 0x04001137 RID: 4407
+	// Token: 0x04001140 RID: 4416
 	[Range(0f, 1f)]
 	public float levelMaximum = 1f;
 
-	// Token: 0x04001138 RID: 4408
+	// Token: 0x04001141 RID: 4417
 	[Range(0f, 1f)]
 	public float minOutput;
 
-	// Token: 0x04001139 RID: 4409
+	// Token: 0x04001142 RID: 4418
 	[Range(0f, 1f)]
 	public float maxOutput = 1f;
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blur_Steam : MonoBehaviour
 {
 	// Token: 0x17000257 RID: 599
-	// (get) Token: 0x06000CAF RID: 3247 RVA: 0x00072D69 File Offset: 0x00070F69
+	// (get) Token: 0x06000CAF RID: 3247 RVA: 0x00072EB1 File Offset: 0x000710B1
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blur_Steam : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CB0 RID: 3248 RVA: 0x00072D9D File Offset: 0x00070F9D
+	// Token: 0x06000CB0 RID: 3248 RVA: 0x00072EE5 File Offset: 0x000710E5
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Blur_Steam");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Blur_Steam : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CB1 RID: 3249 RVA: 0x00072DC0 File Offset: 0x00070FC0
+	// Token: 0x06000CB1 RID: 3249 RVA: 0x00072F08 File Offset: 0x00071108
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -52,12 +52,12 @@ public class CameraFilterPack_Blur_Steam : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000CB2 RID: 3250 RVA: 0x00072E85 File Offset: 0x00071085
+	// Token: 0x06000CB2 RID: 3250 RVA: 0x00072FCD File Offset: 0x000711CD
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000CB3 RID: 3251 RVA: 0x00072E87 File Offset: 0x00071087
+	// Token: 0x06000CB3 RID: 3251 RVA: 0x00072FCF File Offset: 0x000711CF
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -66,20 +66,20 @@ public class CameraFilterPack_Blur_Steam : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040010F6 RID: 4342
+	// Token: 0x040010FF RID: 4351
 	public Shader SCShader;
 
-	// Token: 0x040010F7 RID: 4343
+	// Token: 0x04001100 RID: 4352
 	private float TimeX = 1f;
 
-	// Token: 0x040010F8 RID: 4344
+	// Token: 0x04001101 RID: 4353
 	private Material SCMaterial;
 
-	// Token: 0x040010F9 RID: 4345
+	// Token: 0x04001102 RID: 4354
 	[Range(0f, 1f)]
 	public float Radius = 0.1f;
 
-	// Token: 0x040010FA RID: 4346
+	// Token: 0x04001103 RID: 4355
 	[Range(0f, 1f)]
 	public float Quality = 0.75f;
 }

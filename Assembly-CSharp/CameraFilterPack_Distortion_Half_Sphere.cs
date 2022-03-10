@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Distortion_Half_Sphere : MonoBehaviour
 {
 	// Token: 0x17000280 RID: 640
-	// (get) Token: 0x06000DA7 RID: 3495 RVA: 0x000770A8 File Offset: 0x000752A8
+	// (get) Token: 0x06000DA7 RID: 3495 RVA: 0x000771F0 File Offset: 0x000753F0
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Distortion_Half_Sphere : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DA8 RID: 3496 RVA: 0x000770DC File Offset: 0x000752DC
+	// Token: 0x06000DA8 RID: 3496 RVA: 0x00077224 File Offset: 0x00075424
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Distortion_Half_Sphere");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Distortion_Half_Sphere : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DA9 RID: 3497 RVA: 0x00077100 File Offset: 0x00075300
+	// Token: 0x06000DA9 RID: 3497 RVA: 0x00077248 File Offset: 0x00075448
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Distortion_Half_Sphere : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000DAA RID: 3498 RVA: 0x000771F1 File Offset: 0x000753F1
+	// Token: 0x06000DAA RID: 3498 RVA: 0x00077339 File Offset: 0x00075539
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000DAB RID: 3499 RVA: 0x000771F3 File Offset: 0x000753F3
+	// Token: 0x06000DAB RID: 3499 RVA: 0x0007733B File Offset: 0x0007553B
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,28 +68,28 @@ public class CameraFilterPack_Distortion_Half_Sphere : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040011EA RID: 4586
+	// Token: 0x040011F3 RID: 4595
 	public Shader SCShader;
 
-	// Token: 0x040011EB RID: 4587
+	// Token: 0x040011F4 RID: 4596
 	private float TimeX = 1f;
 
-	// Token: 0x040011EC RID: 4588
+	// Token: 0x040011F5 RID: 4597
 	[Range(1f, 6f)]
 	private Material SCMaterial;
 
-	// Token: 0x040011ED RID: 4589
+	// Token: 0x040011F6 RID: 4598
 	public float SphereSize = 2.5f;
 
-	// Token: 0x040011EE RID: 4590
+	// Token: 0x040011F7 RID: 4599
 	[Range(-1f, 1f)]
 	public float SpherePositionX;
 
-	// Token: 0x040011EF RID: 4591
+	// Token: 0x040011F8 RID: 4600
 	[Range(-1f, 1f)]
 	public float SpherePositionY;
 
-	// Token: 0x040011F0 RID: 4592
+	// Token: 0x040011F9 RID: 4601
 	[Range(1f, 10f)]
 	public float Strength = 5f;
 }

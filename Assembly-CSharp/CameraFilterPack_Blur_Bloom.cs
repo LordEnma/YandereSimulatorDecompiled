@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blur_Bloom : MonoBehaviour
 {
 	// Token: 0x1700024B RID: 587
-	// (get) Token: 0x06000C67 RID: 3175 RVA: 0x00071AB7 File Offset: 0x0006FCB7
+	// (get) Token: 0x06000C67 RID: 3175 RVA: 0x00071BFF File Offset: 0x0006FDFF
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blur_Bloom : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C68 RID: 3176 RVA: 0x00071AEB File Offset: 0x0006FCEB
+	// Token: 0x06000C68 RID: 3176 RVA: 0x00071C33 File Offset: 0x0006FE33
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Blur_Bloom");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Blur_Bloom : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C69 RID: 3177 RVA: 0x00071B0C File Offset: 0x0006FD0C
+	// Token: 0x06000C69 RID: 3177 RVA: 0x00071C54 File Offset: 0x0006FE54
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -52,12 +52,12 @@ public class CameraFilterPack_Blur_Bloom : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000C6A RID: 3178 RVA: 0x00071BD1 File Offset: 0x0006FDD1
+	// Token: 0x06000C6A RID: 3178 RVA: 0x00071D19 File Offset: 0x0006FF19
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000C6B RID: 3179 RVA: 0x00071BD3 File Offset: 0x0006FDD3
+	// Token: 0x06000C6B RID: 3179 RVA: 0x00071D1B File Offset: 0x0006FF1B
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -66,20 +66,20 @@ public class CameraFilterPack_Blur_Bloom : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040010AF RID: 4271
+	// Token: 0x040010B8 RID: 4280
 	public Shader SCShader;
 
-	// Token: 0x040010B0 RID: 4272
+	// Token: 0x040010B9 RID: 4281
 	private float TimeX = 1f;
 
-	// Token: 0x040010B1 RID: 4273
+	// Token: 0x040010BA RID: 4282
 	private Material SCMaterial;
 
-	// Token: 0x040010B2 RID: 4274
+	// Token: 0x040010BB RID: 4283
 	[Range(0f, 10f)]
 	public float Amount = 4.5f;
 
-	// Token: 0x040010B3 RID: 4275
+	// Token: 0x040010BC RID: 4284
 	[Range(0f, 1f)]
 	public float Glow = 0.5f;
 }

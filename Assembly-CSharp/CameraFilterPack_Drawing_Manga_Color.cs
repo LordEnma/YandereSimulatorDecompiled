@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Drawing_Manga_Color : MonoBehaviour
 {
 	// Token: 0x17000299 RID: 665
-	// (get) Token: 0x06000E3D RID: 3645 RVA: 0x0007942C File Offset: 0x0007762C
+	// (get) Token: 0x06000E3D RID: 3645 RVA: 0x00079574 File Offset: 0x00077774
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Drawing_Manga_Color : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E3E RID: 3646 RVA: 0x00079460 File Offset: 0x00077660
+	// Token: 0x06000E3E RID: 3646 RVA: 0x000795A8 File Offset: 0x000777A8
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Drawing_Manga_Color");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Drawing_Manga_Color : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E3F RID: 3647 RVA: 0x00079484 File Offset: 0x00077684
+	// Token: 0x06000E3F RID: 3647 RVA: 0x000795CC File Offset: 0x000777CC
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -50,12 +50,12 @@ public class CameraFilterPack_Drawing_Manga_Color : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000E40 RID: 3648 RVA: 0x0007950A File Offset: 0x0007770A
+	// Token: 0x06000E40 RID: 3648 RVA: 0x00079652 File Offset: 0x00077852
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000E41 RID: 3649 RVA: 0x0007950C File Offset: 0x0007770C
+	// Token: 0x06000E41 RID: 3649 RVA: 0x00079654 File Offset: 0x00077854
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -64,19 +64,19 @@ public class CameraFilterPack_Drawing_Manga_Color : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001278 RID: 4728
+	// Token: 0x04001281 RID: 4737
 	public Shader SCShader;
 
-	// Token: 0x04001279 RID: 4729
+	// Token: 0x04001282 RID: 4738
 	private float TimeX = 1f;
 
-	// Token: 0x0400127A RID: 4730
+	// Token: 0x04001283 RID: 4739
 	private Material SCMaterial;
 
-	// Token: 0x0400127B RID: 4731
+	// Token: 0x04001284 RID: 4740
 	[Range(1f, 8f)]
 	public float DotSize = 1.6f;
 
-	// Token: 0x0400127C RID: 4732
+	// Token: 0x04001285 RID: 4741
 	public static float ChangeDotSize;
 }

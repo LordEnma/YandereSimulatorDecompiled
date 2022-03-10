@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002CE RID: 718
 public class FoldedUniformScript : MonoBehaviour
 {
-	// Token: 0x060014AC RID: 5292 RVA: 0x000CB538 File Offset: 0x000C9738
+	// Token: 0x060014AC RID: 5292 RVA: 0x000CB684 File Offset: 0x000C9884
 	private void Start()
 	{
 		for (int i = 1; i < this.Uniforms.Length; i++)
@@ -41,6 +41,10 @@ public class FoldedUniformScript : MonoBehaviour
 			this.Yandere.StudentManager.Uniforms[this.Yandere.StudentManager.NewUniforms] = base.transform;
 			Debug.Log("A new uniform has been spawned. The number of ''New Uniforms'' at school is now " + this.Yandere.StudentManager.NewUniforms.ToString() + ".");
 		}
+		if (this.Type == 1)
+		{
+			base.gameObject.name = "School Uniform";
+		}
 		if (this.Type == 2)
 		{
 			base.gameObject.name = "Swimsuit";
@@ -51,7 +55,7 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 		else
 		{
-			base.gameObject.name = "School Uniform";
+			base.gameObject.name = "Folded Club Uniform";
 		}
 		if (GameGlobals.Eighties && this.BloodyEightiesTexture != null)
 		{
@@ -62,7 +66,7 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014AD RID: 5293 RVA: 0x000CB72C File Offset: 0x000C992C
+	// Token: 0x060014AD RID: 5293 RVA: 0x000CB890 File Offset: 0x000C9A90
 	private void Update()
 	{
 		if (this.Clean)
@@ -76,7 +80,7 @@ public class FoldedUniformScript : MonoBehaviour
 			{
 				this.Prompt.HideButton[0] = false;
 			}
-			if (this.Prompt.Circle[0].fillAmount == 0f)
+			if (this.Prompt.Circle[0] != null && this.Prompt.Circle[0].fillAmount == 0f)
 			{
 				UnityEngine.Object.Instantiate<GameObject>(this.SteamCloud, this.Yandere.transform.position + Vector3.up * 0.81f, Quaternion.identity);
 				this.Yandere.CharacterAnimation.CrossFade("f02_stripping_00");
@@ -98,10 +102,10 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014AE RID: 5294 RVA: 0x000CB8BC File Offset: 0x000C9ABC
+	// Token: 0x060014AE RID: 5294 RVA: 0x000CBA38 File Offset: 0x000C9C38
 	public void CleanUp()
 	{
-		Debug.Log("Firing the ''CleanUp()'' function.");
+		Debug.Log("A folded uniform is firing the ''CleanUp()'' function.");
 		if (GameGlobals.Eighties && this.EightiesTexture != null)
 		{
 			this.CleanTexture = this.EightiesTexture;
@@ -113,42 +117,45 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400204C RID: 8268
+	// Token: 0x04002055 RID: 8277
 	public YandereScript Yandere;
 
-	// Token: 0x0400204D RID: 8269
+	// Token: 0x04002056 RID: 8278
 	public PromptScript Prompt;
 
-	// Token: 0x0400204E RID: 8270
+	// Token: 0x04002057 RID: 8279
 	public GameObject SteamCloud;
 
-	// Token: 0x0400204F RID: 8271
+	// Token: 0x04002058 RID: 8280
+	public bool ClubAttire;
+
+	// Token: 0x04002059 RID: 8281
 	public bool InPosition = true;
 
-	// Token: 0x04002050 RID: 8272
+	// Token: 0x0400205A RID: 8282
 	public bool Clean;
 
-	// Token: 0x04002051 RID: 8273
+	// Token: 0x0400205B RID: 8283
 	public bool Spare;
 
-	// Token: 0x04002052 RID: 8274
+	// Token: 0x0400205C RID: 8284
 	public float Timer;
 
-	// Token: 0x04002053 RID: 8275
+	// Token: 0x0400205D RID: 8285
 	public int Type;
 
-	// Token: 0x04002054 RID: 8276
+	// Token: 0x0400205E RID: 8286
 	public GameObject[] Uniforms;
 
-	// Token: 0x04002055 RID: 8277
+	// Token: 0x0400205F RID: 8287
 	public Renderer[] MyRenderer;
 
-	// Token: 0x04002056 RID: 8278
+	// Token: 0x04002060 RID: 8288
 	public Texture CleanTexture;
 
-	// Token: 0x04002057 RID: 8279
+	// Token: 0x04002061 RID: 8289
 	public Texture EightiesTexture;
 
-	// Token: 0x04002058 RID: 8280
+	// Token: 0x04002062 RID: 8290
 	public Texture BloodyEightiesTexture;
 }

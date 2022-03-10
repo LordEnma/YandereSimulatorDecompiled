@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200001C RID: 28
 public class MissionModeMenuScript : MonoBehaviour
 {
-	// Token: 0x0600005C RID: 92 RVA: 0x00009874 File Offset: 0x00007A74
+	// Token: 0x0600005C RID: 92 RVA: 0x0000996C File Offset: 0x00007B6C
 	private void Start()
 	{
 		base.transform.position = new Vector3(0f, 0.95f, -4.266667f);
@@ -65,7 +65,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.ChangeFont();
 	}
 
-	// Token: 0x0600005D RID: 93 RVA: 0x00009CD4 File Offset: 0x00007ED4
+	// Token: 0x0600005D RID: 93 RVA: 0x00009DCC File Offset: 0x00007FCC
 	private void Update()
 	{
 		if (this.Phase == 1)
@@ -840,7 +840,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600005E RID: 94 RVA: 0x0000CAE4 File Offset: 0x0000ACE4
+	// Token: 0x0600005E RID: 94 RVA: 0x0000CBDC File Offset: 0x0000ADDC
 	private void GetNumbers()
 	{
 		this.TargetNumber = (int)char.GetNumericValue(this.MissionIDString[0]) * 10 + (int)char.GetNumericValue(this.MissionIDString[1]);
@@ -862,7 +862,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.PopulationNumber = (int)char.GetNumericValue(this.MissionIDString[18]);
 	}
 
-	// Token: 0x0600005F RID: 95 RVA: 0x0000CCC0 File Offset: 0x0000AEC0
+	// Token: 0x0600005F RID: 95 RVA: 0x0000CDB8 File Offset: 0x0000AFB8
 	private void LateUpdate()
 	{
 		if (this.Speed > 3f)
@@ -872,7 +872,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.Neck.transform.localEulerAngles = new Vector3(this.Neck.transform.localEulerAngles.x + this.Rotation, this.Neck.transform.localEulerAngles.y, this.Neck.transform.localEulerAngles.z);
 	}
 
-	// Token: 0x06000060 RID: 96 RVA: 0x0000CD5D File Offset: 0x0000AF5D
+	// Token: 0x06000060 RID: 96 RVA: 0x0000CE55 File Offset: 0x0000B055
 	private void UpdateHighlight()
 	{
 		if (this.Selected == 0)
@@ -886,7 +886,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000061 RID: 97 RVA: 0x0000CD80 File Offset: 0x0000AF80
+	// Token: 0x06000061 RID: 97 RVA: 0x0000CE78 File Offset: 0x0000B078
 	private void ChooseTarget()
 	{
 		Debug.Log("Calling the ChooseTarget() function.");
@@ -958,7 +958,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000062 RID: 98 RVA: 0x0000CFF6 File Offset: 0x0000B1F6
+	// Token: 0x06000062 RID: 98 RVA: 0x0000D0EE File Offset: 0x0000B2EE
 	private void UpdateDifficulty()
 	{
 		if (this.Difficulty < 1)
@@ -977,7 +977,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.ErasePreviousCondition();
 	}
 
-	// Token: 0x06000063 RID: 99 RVA: 0x0000D038 File Offset: 0x0000B238
+	// Token: 0x06000063 RID: 99 RVA: 0x0000D130 File Offset: 0x0000B330
 	private void UpdateDifficultyLabel()
 	{
 		this.CustomDifficultyLabel.text = "Difficulty Level - " + this.Difficulty.ToString();
@@ -1022,7 +1022,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06000064 RID: 100 RVA: 0x0000D164 File Offset: 0x0000B364
+	// Token: 0x06000064 RID: 100 RVA: 0x0000D25C File Offset: 0x0000B45C
 	private void UpdateNemesisDifficulty()
 	{
 		if (this.NemesisDifficulty < 0)
@@ -1044,7 +1044,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.NemesisPortrait.mainTexture = ((this.NemesisDifficulty > 2) ? this.BlankPortrait : this.NemesisGraphic);
 	}
 
-	// Token: 0x06000065 RID: 101 RVA: 0x0000D200 File Offset: 0x0000B400
+	// Token: 0x06000065 RID: 101 RVA: 0x0000D2F8 File Offset: 0x0000B4F8
 	private void PickNewCondition()
 	{
 		int num = UnityEngine.Random.Range(1, this.ConditionDescs.Length);
@@ -1089,7 +1089,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.UpdateDifficultyLabel();
 	}
 
-	// Token: 0x06000066 RID: 102 RVA: 0x0000D3AC File Offset: 0x0000B5AC
+	// Token: 0x06000066 RID: 102 RVA: 0x0000D4A4 File Offset: 0x0000B6A4
 	private void ErasePreviousCondition()
 	{
 		if (this.Conditions[this.Difficulty + 1] == 1)
@@ -1108,7 +1108,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.UpdateDifficultyLabel();
 	}
 
-	// Token: 0x06000067 RID: 103 RVA: 0x0000D420 File Offset: 0x0000B620
+	// Token: 0x06000067 RID: 103 RVA: 0x0000D518 File Offset: 0x0000B718
 	public void UpdateGraphics()
 	{
 		Debug.Log("Populating the Mission Mode criteria list!");
@@ -1171,7 +1171,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000068 RID: 104 RVA: 0x0000D6C2 File Offset: 0x0000B8C2
+	// Token: 0x06000068 RID: 104 RVA: 0x0000D7BA File Offset: 0x0000B9BA
 	private void UpdatePopulation()
 	{
 		this.CustomPopulationLabel.text = "";
@@ -1179,7 +1179,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		OptionGlobals.HighPopulation = false;
 	}
 
-	// Token: 0x06000069 RID: 105 RVA: 0x0000D6EC File Offset: 0x0000B8EC
+	// Token: 0x06000069 RID: 105 RVA: 0x0000D7E4 File Offset: 0x0000B9E4
 	private void UpdateObjectiveHighlight()
 	{
 		if (this.Row < 1)
@@ -1239,7 +1239,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x0600006A RID: 106 RVA: 0x0000D8EC File Offset: 0x0000BAEC
+	// Token: 0x0600006A RID: 106 RVA: 0x0000D9E4 File Offset: 0x0000BBE4
 	private void CalculateMissionID()
 	{
 		this.TargetString = ((this.TargetID < 10) ? "0" : "") + this.TargetID.ToString();
@@ -1285,7 +1285,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.MissionIDLabel.text = this.MissionID;
 	}
 
-	// Token: 0x0600006B RID: 107 RVA: 0x0000DB14 File Offset: 0x0000BD14
+	// Token: 0x0600006B RID: 107 RVA: 0x0000DC0C File Offset: 0x0000BE0C
 	private void StartMission()
 	{
 		this.MyAudio.PlayOneShot(this.InfoLines[6]);
@@ -1327,7 +1327,7 @@ public class MissionModeMenuScript : MonoBehaviour
 		this.Phase = 4;
 	}
 
-	// Token: 0x0600006C RID: 108 RVA: 0x0000DC3C File Offset: 0x0000BE3C
+	// Token: 0x0600006C RID: 108 RVA: 0x0000DD34 File Offset: 0x0000BF34
 	private void ChangeFont()
 	{
 		foreach (UILabel uilabel in UnityEngine.Object.FindObjectsOfType<UILabel>())
@@ -1341,288 +1341,288 @@ public class MissionModeMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600006D RID: 109 RVA: 0x0000DC91 File Offset: 0x0000BE91
+	// Token: 0x0600006D RID: 109 RVA: 0x0000DD89 File Offset: 0x0000BF89
 	private void ChangeLabel(UILabel Text)
 	{
 		Text.trueTypeFont = this.Arial;
 	}
 
-	// Token: 0x04000166 RID: 358
+	// Token: 0x0400016F RID: 367
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04000167 RID: 359
+	// Token: 0x04000170 RID: 368
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000168 RID: 360
+	// Token: 0x04000171 RID: 369
 	public NewMissionWindowScript MultiMission;
 
-	// Token: 0x04000169 RID: 361
+	// Token: 0x04000172 RID: 370
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400016A RID: 362
+	// Token: 0x04000173 RID: 371
 	public PromptBarScript PromptBar;
 
-	// Token: 0x0400016B RID: 363
+	// Token: 0x04000174 RID: 372
 	public JsonScript JSON;
 
-	// Token: 0x0400016C RID: 364
+	// Token: 0x04000175 RID: 373
 	public UITexture CustomTargetPortrait;
 
-	// Token: 0x0400016D RID: 365
+	// Token: 0x04000176 RID: 374
 	public UILabel CustomDifficultyLabel;
 
-	// Token: 0x0400016E RID: 366
+	// Token: 0x04000177 RID: 375
 	public UILabel CustomPopulationLabel;
 
-	// Token: 0x0400016F RID: 367
+	// Token: 0x04000178 RID: 376
 	public UILabel CustomNemesisLabel;
 
-	// Token: 0x04000170 RID: 368
+	// Token: 0x04000179 RID: 377
 	public UITexture NemesisPortrait;
 
-	// Token: 0x04000171 RID: 369
+	// Token: 0x0400017A RID: 378
 	public UITexture TargetPortrait;
 
-	// Token: 0x04000172 RID: 370
+	// Token: 0x0400017B RID: 379
 	public UILabel LoadMissionLabel;
 
-	// Token: 0x04000173 RID: 371
+	// Token: 0x0400017C RID: 380
 	public UILabel DescriptionLabel;
 
-	// Token: 0x04000174 RID: 372
+	// Token: 0x0400017D RID: 381
 	public UILabel DifficultyLabel;
 
-	// Token: 0x04000175 RID: 373
+	// Token: 0x0400017E RID: 382
 	public UILabel PopulationLabel;
 
-	// Token: 0x04000176 RID: 374
+	// Token: 0x0400017F RID: 383
 	public UILabel NemesisLabel;
 
-	// Token: 0x04000177 RID: 375
+	// Token: 0x04000180 RID: 384
 	public UILabel ErrorLabel;
 
-	// Token: 0x04000178 RID: 376
+	// Token: 0x04000181 RID: 385
 	public UILabel Header;
 
-	// Token: 0x04000179 RID: 377
+	// Token: 0x04000182 RID: 386
 	public UISprite Highlight;
 
-	// Token: 0x0400017A RID: 378
+	// Token: 0x04000183 RID: 387
 	public UISprite Darkness;
 
-	// Token: 0x0400017B RID: 379
+	// Token: 0x04000184 RID: 388
 	public Transform CustomMissionWindow;
 
-	// Token: 0x0400017C RID: 380
+	// Token: 0x04000185 RID: 389
 	public Transform MultiMissionWindow;
 
-	// Token: 0x0400017D RID: 381
+	// Token: 0x04000186 RID: 390
 	public Transform ObjectiveHighlight;
 
-	// Token: 0x0400017E RID: 382
+	// Token: 0x04000187 RID: 391
 	public Transform LoadMissionWindow;
 
-	// Token: 0x0400017F RID: 383
+	// Token: 0x04000188 RID: 392
 	public Transform MissionWindow;
 
-	// Token: 0x04000180 RID: 384
+	// Token: 0x04000189 RID: 393
 	public Transform InfoChan;
 
-	// Token: 0x04000181 RID: 385
+	// Token: 0x0400018A RID: 394
 	public Transform Options;
 
-	// Token: 0x04000182 RID: 386
+	// Token: 0x0400018B RID: 395
 	public Transform Neck;
 
-	// Token: 0x04000183 RID: 387
+	// Token: 0x0400018C RID: 396
 	public GameObject NowLoading;
 
-	// Token: 0x04000184 RID: 388
+	// Token: 0x0400018D RID: 397
 	public string[] ConditionDescs;
 
-	// Token: 0x04000185 RID: 389
+	// Token: 0x0400018E RID: 398
 	public int[] Conditions;
 
-	// Token: 0x04000186 RID: 390
+	// Token: 0x0400018F RID: 399
 	public string[] ClothingNames;
 
-	// Token: 0x04000187 RID: 391
+	// Token: 0x04000190 RID: 400
 	public string[] DisposalNames;
 
-	// Token: 0x04000188 RID: 392
+	// Token: 0x04000191 RID: 401
 	public string[] WeaponNames;
 
-	// Token: 0x04000189 RID: 393
+	// Token: 0x04000192 RID: 402
 	public int RequiredClothingID;
 
-	// Token: 0x0400018A RID: 394
+	// Token: 0x04000193 RID: 403
 	public int RequiredDisposalID;
 
-	// Token: 0x0400018B RID: 395
+	// Token: 0x04000194 RID: 404
 	public int RequiredWeaponID;
 
-	// Token: 0x0400018C RID: 396
+	// Token: 0x04000195 RID: 405
 	public Transform[] CustomNemesisObjectives;
 
-	// Token: 0x0400018D RID: 397
+	// Token: 0x04000196 RID: 406
 	public Transform[] NemesisObjectives;
 
-	// Token: 0x0400018E RID: 398
+	// Token: 0x04000197 RID: 407
 	public UIPanel[] CustomObjectives;
 
-	// Token: 0x0400018F RID: 399
+	// Token: 0x04000198 RID: 408
 	public Texture[] ConditionIcons;
 
-	// Token: 0x04000190 RID: 400
+	// Token: 0x04000199 RID: 409
 	public Transform[] Objectives;
 
-	// Token: 0x04000191 RID: 401
+	// Token: 0x0400019A RID: 410
 	public Transform[] Option;
 
-	// Token: 0x04000192 RID: 402
+	// Token: 0x0400019B RID: 411
 	public UITexture[] Icons;
 
-	// Token: 0x04000193 RID: 403
+	// Token: 0x0400019C RID: 412
 	public UILabel[] CustomDescs;
 
-	// Token: 0x04000194 RID: 404
+	// Token: 0x0400019D RID: 413
 	public UILabel[] Descs;
 
-	// Token: 0x04000195 RID: 405
+	// Token: 0x0400019E RID: 414
 	public Texture NemesisGraphic;
 
-	// Token: 0x04000196 RID: 406
+	// Token: 0x0400019F RID: 415
 	public Texture BlankPortrait;
 
-	// Token: 0x04000197 RID: 407
+	// Token: 0x040001A0 RID: 416
 	public string MissionIDString = string.Empty;
 
-	// Token: 0x04000198 RID: 408
+	// Token: 0x040001A1 RID: 417
 	public string TargetName = string.Empty;
 
-	// Token: 0x04000199 RID: 409
+	// Token: 0x040001A2 RID: 418
 	public int NemesisDifficulty;
 
-	// Token: 0x0400019A RID: 410
+	// Token: 0x040001A3 RID: 419
 	public int CustomSelected = 1;
 
-	// Token: 0x0400019B RID: 411
+	// Token: 0x040001A4 RID: 420
 	public int Difficulty = 1;
 
-	// Token: 0x0400019C RID: 412
+	// Token: 0x040001A5 RID: 421
 	public int Selected = 1;
 
-	// Token: 0x0400019D RID: 413
+	// Token: 0x040001A6 RID: 422
 	public int TargetID;
 
-	// Token: 0x0400019E RID: 414
+	// Token: 0x040001A7 RID: 423
 	public int Phase;
 
-	// Token: 0x0400019F RID: 415
+	// Token: 0x040001A8 RID: 424
 	public int Column = 1;
 
-	// Token: 0x040001A0 RID: 416
+	// Token: 0x040001A9 RID: 425
 	public int Row = 1;
 
-	// Token: 0x040001A1 RID: 417
+	// Token: 0x040001AA RID: 426
 	public float Rotation;
 
-	// Token: 0x040001A2 RID: 418
+	// Token: 0x040001AB RID: 427
 	public float Speed;
 
-	// Token: 0x040001A3 RID: 419
+	// Token: 0x040001AC RID: 428
 	public float Timer;
 
-	// Token: 0x040001A4 RID: 420
+	// Token: 0x040001AD RID: 429
 	public AudioSource Jukebox;
 
-	// Token: 0x040001A5 RID: 421
+	// Token: 0x040001AE RID: 430
 	public AudioSource MyAudio;
 
-	// Token: 0x040001A6 RID: 422
+	// Token: 0x040001AF RID: 431
 	public AudioClip[] InfoLines;
 
-	// Token: 0x040001A7 RID: 423
+	// Token: 0x040001B0 RID: 432
 	public bool[] InfoSpoke;
 
-	// Token: 0x040001A8 RID: 424
+	// Token: 0x040001B1 RID: 433
 	public bool Toggling;
 
-	// Token: 0x040001A9 RID: 425
+	// Token: 0x040001B2 RID: 434
 	public bool Valid;
 
-	// Token: 0x040001AA RID: 426
+	// Token: 0x040001B3 RID: 435
 	public int TargetNumber;
 
-	// Token: 0x040001AB RID: 427
+	// Token: 0x040001B4 RID: 436
 	public int WeaponNumber;
 
-	// Token: 0x040001AC RID: 428
+	// Token: 0x040001B5 RID: 437
 	public int ClothingNumber;
 
-	// Token: 0x040001AD RID: 429
+	// Token: 0x040001B6 RID: 438
 	public int DisposalNumber;
 
-	// Token: 0x040001AE RID: 430
+	// Token: 0x040001B7 RID: 439
 	public int NemesisNumber;
 
-	// Token: 0x040001AF RID: 431
+	// Token: 0x040001B8 RID: 440
 	public int PopulationNumber;
 
-	// Token: 0x040001B0 RID: 432
+	// Token: 0x040001B9 RID: 441
 	public int Condition5Number;
 
-	// Token: 0x040001B1 RID: 433
+	// Token: 0x040001BA RID: 442
 	public int Condition6Number;
 
-	// Token: 0x040001B2 RID: 434
+	// Token: 0x040001BB RID: 443
 	public int Condition7Number;
 
-	// Token: 0x040001B3 RID: 435
+	// Token: 0x040001BC RID: 444
 	public int Condition8Number;
 
-	// Token: 0x040001B4 RID: 436
+	// Token: 0x040001BD RID: 445
 	public int Condition9Number;
 
-	// Token: 0x040001B5 RID: 437
+	// Token: 0x040001BE RID: 446
 	public int Condition10Number;
 
-	// Token: 0x040001B6 RID: 438
+	// Token: 0x040001BF RID: 447
 	public int Condition11Number;
 
-	// Token: 0x040001B7 RID: 439
+	// Token: 0x040001C0 RID: 448
 	public int Condition12Number;
 
-	// Token: 0x040001B8 RID: 440
+	// Token: 0x040001C1 RID: 449
 	public int Condition13Number;
 
-	// Token: 0x040001B9 RID: 441
+	// Token: 0x040001C2 RID: 450
 	public int Condition14Number;
 
-	// Token: 0x040001BA RID: 442
+	// Token: 0x040001C3 RID: 451
 	public int Condition15Number;
 
-	// Token: 0x040001BB RID: 443
+	// Token: 0x040001C4 RID: 452
 	public string TargetString = string.Empty;
 
-	// Token: 0x040001BC RID: 444
+	// Token: 0x040001C5 RID: 453
 	public string WeaponString = string.Empty;
 
-	// Token: 0x040001BD RID: 445
+	// Token: 0x040001C6 RID: 454
 	public string ClothingString = string.Empty;
 
-	// Token: 0x040001BE RID: 446
+	// Token: 0x040001C7 RID: 455
 	public string DisposalString = string.Empty;
 
-	// Token: 0x040001BF RID: 447
+	// Token: 0x040001C8 RID: 456
 	public string MissionID = string.Empty;
 
-	// Token: 0x040001C0 RID: 448
+	// Token: 0x040001C9 RID: 457
 	public string[] ConditionString;
 
-	// Token: 0x040001C1 RID: 449
+	// Token: 0x040001CA RID: 458
 	public UILabel MissionIDLabel;
 
-	// Token: 0x040001C2 RID: 450
+	// Token: 0x040001CB RID: 459
 	public Font Arial;
 }

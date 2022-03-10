@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000452 RID: 1106
 public class StudentCrusherScript : MonoBehaviour
 {
-	// Token: 0x06001D46 RID: 7494 RVA: 0x0015F274 File Offset: 0x0015D474
+	// Token: 0x06001D48 RID: 7496 RVA: 0x0015F8A8 File Offset: 0x0015DAA8
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.transform.root.gameObject.layer == 9)
@@ -25,6 +25,6 @@ public class StudentCrusherScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040035A9 RID: 13737
+	// Token: 0x040035C0 RID: 13760
 	public MechaScript Mecha;
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blend2Camera_ColorKey : MonoBehaviour
 {
 	// Token: 0x1700022F RID: 559
-	// (get) Token: 0x06000B8A RID: 2954 RVA: 0x0006D57F File Offset: 0x0006B77F
+	// (get) Token: 0x06000B8A RID: 2954 RVA: 0x0006D6C7 File Offset: 0x0006B8C7
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blend2Camera_ColorKey : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B8B RID: 2955 RVA: 0x0006D5B4 File Offset: 0x0006B7B4
+	// Token: 0x06000B8B RID: 2955 RVA: 0x0006D6FC File Offset: 0x0006B8FC
 	private void Start()
 	{
 		if (this.Camera2 != null)
@@ -37,7 +37,7 @@ public class CameraFilterPack_Blend2Camera_ColorKey : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B8C RID: 2956 RVA: 0x0006D628 File Offset: 0x0006B828
+	// Token: 0x06000B8C RID: 2956 RVA: 0x0006D770 File Offset: 0x0006B970
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -66,7 +66,7 @@ public class CameraFilterPack_Blend2Camera_ColorKey : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B8D RID: 2957 RVA: 0x0006D76F File Offset: 0x0006B96F
+	// Token: 0x06000B8D RID: 2957 RVA: 0x0006D8B7 File Offset: 0x0006BAB7
 	private void Update()
 	{
 		this.ScreenSize.x = (float)Screen.width;
@@ -74,14 +74,14 @@ public class CameraFilterPack_Blend2Camera_ColorKey : MonoBehaviour
 		bool isPlaying = Application.isPlaying;
 	}
 
-	// Token: 0x06000B8E RID: 2958 RVA: 0x0006D799 File Offset: 0x0006B999
+	// Token: 0x06000B8E RID: 2958 RVA: 0x0006D8E1 File Offset: 0x0006BAE1
 	private void OnEnable()
 	{
 		this.Start();
 		this.Update();
 	}
 
-	// Token: 0x06000B8F RID: 2959 RVA: 0x0006D7A8 File Offset: 0x0006B9A8
+	// Token: 0x06000B8F RID: 2959 RVA: 0x0006D8F0 File Offset: 0x0006BAF0
 	private void OnDisable()
 	{
 		if (this.Camera2 != null && this.Camera2.targetTexture != null)
@@ -94,55 +94,55 @@ public class CameraFilterPack_Blend2Camera_ColorKey : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000FB2 RID: 4018
+	// Token: 0x04000FBB RID: 4027
 	private string ShaderName = "CameraFilterPack/Blend2Camera_ColorKey";
 
-	// Token: 0x04000FB3 RID: 4019
+	// Token: 0x04000FBC RID: 4028
 	public Shader SCShader;
 
-	// Token: 0x04000FB4 RID: 4020
+	// Token: 0x04000FBD RID: 4029
 	public Camera Camera2;
 
-	// Token: 0x04000FB5 RID: 4021
+	// Token: 0x04000FBE RID: 4030
 	private float TimeX = 1f;
 
-	// Token: 0x04000FB6 RID: 4022
+	// Token: 0x04000FBF RID: 4031
 	private Material SCMaterial;
 
-	// Token: 0x04000FB7 RID: 4023
+	// Token: 0x04000FC0 RID: 4032
 	[Range(0f, 1f)]
 	public float BlendFX = 1f;
 
-	// Token: 0x04000FB8 RID: 4024
+	// Token: 0x04000FC1 RID: 4033
 	public Color ColorKey;
 
-	// Token: 0x04000FB9 RID: 4025
+	// Token: 0x04000FC2 RID: 4034
 	[Range(-0.2f, 0.2f)]
 	public float Adjust;
 
-	// Token: 0x04000FBA RID: 4026
+	// Token: 0x04000FC3 RID: 4035
 	[Range(-0.2f, 0.2f)]
 	public float Precision;
 
-	// Token: 0x04000FBB RID: 4027
+	// Token: 0x04000FC4 RID: 4036
 	[Range(-0.2f, 0.2f)]
 	public float Luminosity;
 
-	// Token: 0x04000FBC RID: 4028
+	// Token: 0x04000FC5 RID: 4037
 	[Range(-0.3f, 0.3f)]
 	public float Change_Red;
 
-	// Token: 0x04000FBD RID: 4029
+	// Token: 0x04000FC6 RID: 4038
 	[Range(-0.3f, 0.3f)]
 	public float Change_Green;
 
-	// Token: 0x04000FBE RID: 4030
+	// Token: 0x04000FC7 RID: 4039
 	[Range(-0.3f, 0.3f)]
 	public float Change_Blue;
 
-	// Token: 0x04000FBF RID: 4031
+	// Token: 0x04000FC8 RID: 4040
 	private RenderTexture Camera2tex;
 
-	// Token: 0x04000FC0 RID: 4032
+	// Token: 0x04000FC9 RID: 4041
 	private Vector2 ScreenSize;
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Colors_Adjust_PreFilters : MonoBehaviour
 {
 	// Token: 0x1700026D RID: 621
-	// (get) Token: 0x06000D33 RID: 3379 RVA: 0x0007516A File Offset: 0x0007336A
+	// (get) Token: 0x06000D33 RID: 3379 RVA: 0x000752B2 File Offset: 0x000734B2
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Colors_Adjust_PreFilters : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D34 RID: 3380 RVA: 0x000751A0 File Offset: 0x000733A0
+	// Token: 0x06000D34 RID: 3380 RVA: 0x000752E8 File Offset: 0x000734E8
 	private void ChangeFilters()
 	{
 		if (this.filterchoice == CameraFilterPack_Colors_Adjust_PreFilters.filters.Normal)
@@ -602,7 +602,7 @@ public class CameraFilterPack_Colors_Adjust_PreFilters : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D35 RID: 3381 RVA: 0x000755E3 File Offset: 0x000737E3
+	// Token: 0x06000D35 RID: 3381 RVA: 0x0007572B File Offset: 0x0007392B
 	private void Start()
 	{
 		this.ChangeFilters();
@@ -614,7 +614,7 @@ public class CameraFilterPack_Colors_Adjust_PreFilters : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D36 RID: 3382 RVA: 0x0007560C File Offset: 0x0007380C
+	// Token: 0x06000D36 RID: 3382 RVA: 0x00075754 File Offset: 0x00073954
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -645,18 +645,18 @@ public class CameraFilterPack_Colors_Adjust_PreFilters : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000D37 RID: 3383 RVA: 0x0007582D File Offset: 0x00073A2D
+	// Token: 0x06000D37 RID: 3383 RVA: 0x00075975 File Offset: 0x00073B75
 	private void OnValidate()
 	{
 		this.ChangeFilters();
 	}
 
-	// Token: 0x06000D38 RID: 3384 RVA: 0x00075835 File Offset: 0x00073A35
+	// Token: 0x06000D38 RID: 3384 RVA: 0x0007597D File Offset: 0x00073B7D
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000D39 RID: 3385 RVA: 0x00075837 File Offset: 0x00073A37
+	// Token: 0x06000D39 RID: 3385 RVA: 0x0007597F File Offset: 0x00073B7F
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -665,94 +665,94 @@ public class CameraFilterPack_Colors_Adjust_PreFilters : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001182 RID: 4482
+	// Token: 0x0400118B RID: 4491
 	private string ShaderName = "CameraFilterPack/Colors_Adjust_PreFilters";
 
-	// Token: 0x04001183 RID: 4483
+	// Token: 0x0400118C RID: 4492
 	public Shader SCShader;
 
-	// Token: 0x04001184 RID: 4484
+	// Token: 0x0400118D RID: 4493
 	public CameraFilterPack_Colors_Adjust_PreFilters.filters filterchoice;
 
-	// Token: 0x04001185 RID: 4485
+	// Token: 0x0400118E RID: 4494
 	[Range(0f, 1f)]
 	public float FadeFX = 1f;
 
-	// Token: 0x04001186 RID: 4486
+	// Token: 0x0400118F RID: 4495
 	private float TimeX = 1f;
 
-	// Token: 0x04001187 RID: 4487
+	// Token: 0x04001190 RID: 4496
 	private Material SCMaterial;
 
-	// Token: 0x04001188 RID: 4488
+	// Token: 0x04001191 RID: 4497
 	private float[] Matrix9;
 
-	// Token: 0x0200064C RID: 1612
+	// Token: 0x0200064D RID: 1613
 	public enum filters
 	{
-		// Token: 0x04004ED0 RID: 20176
-		Normal,
-		// Token: 0x04004ED1 RID: 20177
-		BlueLagoon,
-		// Token: 0x04004ED2 RID: 20178
-		BlueMoon,
-		// Token: 0x04004ED3 RID: 20179
-		RedWhite,
-		// Token: 0x04004ED4 RID: 20180
-		NashVille,
-		// Token: 0x04004ED5 RID: 20181
-		VintageYellow,
-		// Token: 0x04004ED6 RID: 20182
-		GoldenPink,
-		// Token: 0x04004ED7 RID: 20183
-		DarkPink,
-		// Token: 0x04004ED8 RID: 20184
-		PopRocket,
-		// Token: 0x04004ED9 RID: 20185
-		RedSoftLight,
-		// Token: 0x04004EDA RID: 20186
-		YellowSunSet,
-		// Token: 0x04004EDB RID: 20187
-		Walden,
-		// Token: 0x04004EDC RID: 20188
-		WhiteShine,
-		// Token: 0x04004EDD RID: 20189
-		Fluo,
-		// Token: 0x04004EDE RID: 20190
-		MarsSunRise,
-		// Token: 0x04004EDF RID: 20191
-		Amelie,
-		// Token: 0x04004EE0 RID: 20192
-		BlueJeans,
-		// Token: 0x04004EE1 RID: 20193
-		NightVision,
-		// Token: 0x04004EE2 RID: 20194
-		BlueParadise,
-		// Token: 0x04004EE3 RID: 20195
-		Blindness_Deuteranomaly,
-		// Token: 0x04004EE4 RID: 20196
-		Blindness_Protanopia,
-		// Token: 0x04004EE5 RID: 20197
-		Blindness_Protanomaly,
-		// Token: 0x04004EE6 RID: 20198
-		Blindness_Deuteranopia,
-		// Token: 0x04004EE7 RID: 20199
-		Blindness_Tritanomaly,
-		// Token: 0x04004EE8 RID: 20200
-		Blindness_Achromatopsia,
-		// Token: 0x04004EE9 RID: 20201
-		Blindness_Achromatomaly,
-		// Token: 0x04004EEA RID: 20202
-		Blindness_Tritanopia,
-		// Token: 0x04004EEB RID: 20203
-		BlackAndWhite_Blue,
-		// Token: 0x04004EEC RID: 20204
-		BlackAndWhite_Green,
 		// Token: 0x04004EED RID: 20205
-		BlackAndWhite_Orange,
+		Normal,
 		// Token: 0x04004EEE RID: 20206
-		BlackAndWhite_Red,
+		BlueLagoon,
 		// Token: 0x04004EEF RID: 20207
+		BlueMoon,
+		// Token: 0x04004EF0 RID: 20208
+		RedWhite,
+		// Token: 0x04004EF1 RID: 20209
+		NashVille,
+		// Token: 0x04004EF2 RID: 20210
+		VintageYellow,
+		// Token: 0x04004EF3 RID: 20211
+		GoldenPink,
+		// Token: 0x04004EF4 RID: 20212
+		DarkPink,
+		// Token: 0x04004EF5 RID: 20213
+		PopRocket,
+		// Token: 0x04004EF6 RID: 20214
+		RedSoftLight,
+		// Token: 0x04004EF7 RID: 20215
+		YellowSunSet,
+		// Token: 0x04004EF8 RID: 20216
+		Walden,
+		// Token: 0x04004EF9 RID: 20217
+		WhiteShine,
+		// Token: 0x04004EFA RID: 20218
+		Fluo,
+		// Token: 0x04004EFB RID: 20219
+		MarsSunRise,
+		// Token: 0x04004EFC RID: 20220
+		Amelie,
+		// Token: 0x04004EFD RID: 20221
+		BlueJeans,
+		// Token: 0x04004EFE RID: 20222
+		NightVision,
+		// Token: 0x04004EFF RID: 20223
+		BlueParadise,
+		// Token: 0x04004F00 RID: 20224
+		Blindness_Deuteranomaly,
+		// Token: 0x04004F01 RID: 20225
+		Blindness_Protanopia,
+		// Token: 0x04004F02 RID: 20226
+		Blindness_Protanomaly,
+		// Token: 0x04004F03 RID: 20227
+		Blindness_Deuteranopia,
+		// Token: 0x04004F04 RID: 20228
+		Blindness_Tritanomaly,
+		// Token: 0x04004F05 RID: 20229
+		Blindness_Achromatopsia,
+		// Token: 0x04004F06 RID: 20230
+		Blindness_Achromatomaly,
+		// Token: 0x04004F07 RID: 20231
+		Blindness_Tritanopia,
+		// Token: 0x04004F08 RID: 20232
+		BlackAndWhite_Blue,
+		// Token: 0x04004F09 RID: 20233
+		BlackAndWhite_Green,
+		// Token: 0x04004F0A RID: 20234
+		BlackAndWhite_Orange,
+		// Token: 0x04004F0B RID: 20235
+		BlackAndWhite_Red,
+		// Token: 0x04004F0C RID: 20236
 		BlackAndWhite_Yellow
 	}
 }

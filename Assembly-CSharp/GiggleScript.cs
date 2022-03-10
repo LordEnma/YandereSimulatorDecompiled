@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020002E5 RID: 741
 public class GiggleScript : MonoBehaviour
 {
-	// Token: 0x060014FF RID: 5375 RVA: 0x000D76B4 File Offset: 0x000D58B4
+	// Token: 0x060014FF RID: 5375 RVA: 0x000D79D8 File Offset: 0x000D5BD8
 	private void Start()
 	{
 		float num = 500f * (2f - SchoolGlobals.SchoolAtmosphere);
 		base.transform.localScale = new Vector3(num, base.transform.localScale.y, num);
 	}
 
-	// Token: 0x06001500 RID: 5376 RVA: 0x000D76F5 File Offset: 0x000D58F5
+	// Token: 0x06001500 RID: 5376 RVA: 0x000D7A19 File Offset: 0x000D5C19
 	private void Update()
 	{
 		if (this.Frame > 0)
@@ -21,7 +21,7 @@ public class GiggleScript : MonoBehaviour
 		this.Frame++;
 	}
 
-	// Token: 0x06001501 RID: 5377 RVA: 0x000D771C File Offset: 0x000D591C
+	// Token: 0x06001501 RID: 5377 RVA: 0x000D7A40 File Offset: 0x000D5C40
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9 && !this.Distracted)
@@ -116,7 +116,7 @@ public class GiggleScript : MonoBehaviour
 							this.Student.SunbathePhase = 2;
 							flag2 = true;
 						}
-						if ((this.Student.Persona == PersonaType.PhoneAddict && !this.Student.Phoneless && !flag2) || this.Student.Persona == PersonaType.Sleuth || this.Student.StudentID == 20)
+						if (((this.Student.Persona == PersonaType.PhoneAddict && !this.Student.Phoneless && !flag2) || this.Student.Persona == PersonaType.Sleuth || this.Student.StudentID == 20) && !this.Student.Phoneless)
 						{
 							this.Student.SmartPhone.SetActive(true);
 						}
@@ -169,24 +169,24 @@ public class GiggleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002198 RID: 8600
+	// Token: 0x040021AC RID: 8620
 	public GameObject EmptyGameObject;
 
-	// Token: 0x04002199 RID: 8601
+	// Token: 0x040021AD RID: 8621
 	public GameObject Giggle;
 
-	// Token: 0x0400219A RID: 8602
+	// Token: 0x040021AE RID: 8622
 	public StudentScript Student;
 
-	// Token: 0x0400219B RID: 8603
+	// Token: 0x040021AF RID: 8623
 	public bool StudentIsBusy;
 
-	// Token: 0x0400219C RID: 8604
+	// Token: 0x040021B0 RID: 8624
 	public bool Distracted;
 
-	// Token: 0x0400219D RID: 8605
+	// Token: 0x040021B1 RID: 8625
 	public bool BangSnap;
 
-	// Token: 0x0400219E RID: 8606
+	// Token: 0x040021B2 RID: 8626
 	public int Frame;
 }

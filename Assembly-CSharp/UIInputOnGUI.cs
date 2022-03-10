@@ -5,13 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(UIInput))]
 public class UIInputOnGUI : MonoBehaviour
 {
-	// Token: 0x06000768 RID: 1896 RVA: 0x0003FED1 File Offset: 0x0003E0D1
+	// Token: 0x06000768 RID: 1896 RVA: 0x0003FFC9 File Offset: 0x0003E1C9
 	private void Awake()
 	{
 		this.mInput = base.GetComponent<UIInput>();
 	}
 
-	// Token: 0x06000769 RID: 1897 RVA: 0x0003FEDF File Offset: 0x0003E0DF
+	// Token: 0x06000769 RID: 1897 RVA: 0x0003FFD7 File Offset: 0x0003E1D7
 	private void OnGUI()
 	{
 		if (Event.current.rawType == EventType.KeyDown)
@@ -20,7 +20,7 @@ public class UIInputOnGUI : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040006E4 RID: 1764
+	// Token: 0x040006ED RID: 1773
 	[NonSerialized]
 	private UIInput mInput;
 }

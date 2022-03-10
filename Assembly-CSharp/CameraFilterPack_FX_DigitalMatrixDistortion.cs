@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_FX_DigitalMatrixDistortion : MonoBehaviour
 {
 	// Token: 0x170002B1 RID: 689
-	// (get) Token: 0x06000ECE RID: 3790 RVA: 0x0007BAF5 File Offset: 0x00079CF5
+	// (get) Token: 0x06000ECE RID: 3790 RVA: 0x0007BC3D File Offset: 0x00079E3D
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_FX_DigitalMatrixDistortion : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000ECF RID: 3791 RVA: 0x0007BB29 File Offset: 0x00079D29
+	// Token: 0x06000ECF RID: 3791 RVA: 0x0007BC71 File Offset: 0x00079E71
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/FX_DigitalMatrixDistortion");
@@ -32,7 +32,7 @@ public class CameraFilterPack_FX_DigitalMatrixDistortion : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000ED0 RID: 3792 RVA: 0x0007BB4C File Offset: 0x00079D4C
+	// Token: 0x06000ED0 RID: 3792 RVA: 0x0007BC94 File Offset: 0x00079E94
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -53,12 +53,12 @@ public class CameraFilterPack_FX_DigitalMatrixDistortion : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000ED1 RID: 3793 RVA: 0x0007BC2E File Offset: 0x00079E2E
+	// Token: 0x06000ED1 RID: 3793 RVA: 0x0007BD76 File Offset: 0x00079F76
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000ED2 RID: 3794 RVA: 0x0007BC30 File Offset: 0x00079E30
+	// Token: 0x06000ED2 RID: 3794 RVA: 0x0007BD78 File Offset: 0x00079F78
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -67,24 +67,24 @@ public class CameraFilterPack_FX_DigitalMatrixDistortion : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400131E RID: 4894
+	// Token: 0x04001327 RID: 4903
 	public Shader SCShader;
 
-	// Token: 0x0400131F RID: 4895
+	// Token: 0x04001328 RID: 4904
 	private float TimeX = 1f;
 
-	// Token: 0x04001320 RID: 4896
+	// Token: 0x04001329 RID: 4905
 	private Material SCMaterial;
 
-	// Token: 0x04001321 RID: 4897
+	// Token: 0x0400132A RID: 4906
 	[Range(0.4f, 5f)]
 	public float Size = 1.4f;
 
-	// Token: 0x04001322 RID: 4898
+	// Token: 0x0400132B RID: 4907
 	[Range(-2f, 2f)]
 	public float Speed = 0.5f;
 
-	// Token: 0x04001323 RID: 4899
+	// Token: 0x0400132C RID: 4908
 	[Range(-5f, 5f)]
 	public float Distortion = 2.3f;
 }

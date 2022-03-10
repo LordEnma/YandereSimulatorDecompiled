@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Drawing_Manga_Flash_Color : MonoBehaviour
 {
 	// Token: 0x1700029C RID: 668
-	// (get) Token: 0x06000E4F RID: 3663 RVA: 0x000798ED File Offset: 0x00077AED
+	// (get) Token: 0x06000E4F RID: 3663 RVA: 0x00079A35 File Offset: 0x00077C35
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Drawing_Manga_Flash_Color : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E50 RID: 3664 RVA: 0x00079921 File Offset: 0x00077B21
+	// Token: 0x06000E50 RID: 3664 RVA: 0x00079A69 File Offset: 0x00077C69
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Drawing_Manga_Flash_Color");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Drawing_Manga_Flash_Color : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E51 RID: 3665 RVA: 0x00079944 File Offset: 0x00077B44
+	// Token: 0x06000E51 RID: 3665 RVA: 0x00079A8C File Offset: 0x00077C8C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -56,12 +56,12 @@ public class CameraFilterPack_Drawing_Manga_Flash_Color : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000E52 RID: 3666 RVA: 0x00079A69 File Offset: 0x00077C69
+	// Token: 0x06000E52 RID: 3666 RVA: 0x00079BB1 File Offset: 0x00077DB1
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000E53 RID: 3667 RVA: 0x00079A6B File Offset: 0x00077C6B
+	// Token: 0x06000E53 RID: 3667 RVA: 0x00079BB3 File Offset: 0x00077DB3
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -70,35 +70,35 @@ public class CameraFilterPack_Drawing_Manga_Flash_Color : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400128D RID: 4749
+	// Token: 0x04001296 RID: 4758
 	public Shader SCShader;
 
-	// Token: 0x0400128E RID: 4750
+	// Token: 0x04001297 RID: 4759
 	private float TimeX = 1f;
 
-	// Token: 0x0400128F RID: 4751
+	// Token: 0x04001298 RID: 4760
 	private Material SCMaterial;
 
-	// Token: 0x04001290 RID: 4752
+	// Token: 0x04001299 RID: 4761
 	[Range(1f, 10f)]
 	public float Size = 1f;
 
-	// Token: 0x04001291 RID: 4753
+	// Token: 0x0400129A RID: 4762
 	public Color Color = new Color(0f, 0.7f, 1f, 1f);
 
-	// Token: 0x04001292 RID: 4754
+	// Token: 0x0400129B RID: 4763
 	[Range(0f, 30f)]
 	public int Speed = 5;
 
-	// Token: 0x04001293 RID: 4755
+	// Token: 0x0400129C RID: 4764
 	[Range(0f, 1f)]
 	public float PosX = 0.5f;
 
-	// Token: 0x04001294 RID: 4756
+	// Token: 0x0400129D RID: 4765
 	[Range(0f, 1f)]
 	public float PosY = 0.5f;
 
-	// Token: 0x04001295 RID: 4757
+	// Token: 0x0400129E RID: 4766
 	[Range(0f, 1f)]
 	public float Intensity = 1f;
 }

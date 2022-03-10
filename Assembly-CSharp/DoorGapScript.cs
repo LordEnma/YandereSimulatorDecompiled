@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200028C RID: 652
 public class DoorGapScript : MonoBehaviour
 {
-	// Token: 0x060013AA RID: 5034 RVA: 0x000B87AF File Offset: 0x000B69AF
+	// Token: 0x060013AA RID: 5034 RVA: 0x000B8917 File Offset: 0x000B6B17
 	private void Start()
 	{
 		this.Papers[1].gameObject.SetActive(false);
 	}
 
-	// Token: 0x060013AB RID: 5035 RVA: 0x000B87C4 File Offset: 0x000B69C4
+	// Token: 0x060013AB RID: 5035 RVA: 0x000B892C File Offset: 0x000B6B2C
 	private void Update()
 	{
 		if (!this.StolenPhoneDropoff)
@@ -123,7 +123,7 @@ public class DoorGapScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013AC RID: 5036 RVA: 0x000B8D2C File Offset: 0x000B6F2C
+	// Token: 0x060013AC RID: 5036 RVA: 0x000B8E94 File Offset: 0x000B7094
 	public void SetPhonesHacked()
 	{
 		for (int i = 1; i < 101; i++)
@@ -135,27 +135,27 @@ public class DoorGapScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D23 RID: 7459
+	// Token: 0x04001D2C RID: 7468
 	public RummageSpotScript RummageSpot;
 
-	// Token: 0x04001D24 RID: 7460
+	// Token: 0x04001D2D RID: 7469
 	public SchemesScript Schemes;
 
-	// Token: 0x04001D25 RID: 7461
+	// Token: 0x04001D2E RID: 7470
 	public PromptScript Prompt;
 
-	// Token: 0x04001D26 RID: 7462
+	// Token: 0x04001D2F RID: 7471
 	public Transform[] Papers;
 
-	// Token: 0x04001D27 RID: 7463
+	// Token: 0x04001D30 RID: 7472
 	public bool[] PhoneHacked;
 
-	// Token: 0x04001D28 RID: 7464
+	// Token: 0x04001D31 RID: 7473
 	public bool StolenPhoneDropoff;
 
-	// Token: 0x04001D29 RID: 7465
+	// Token: 0x04001D32 RID: 7474
 	public float Timer;
 
-	// Token: 0x04001D2A RID: 7466
+	// Token: 0x04001D33 RID: 7475
 	public int Phase = 1;
 }

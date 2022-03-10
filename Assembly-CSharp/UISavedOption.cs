@@ -6,7 +6,7 @@ using UnityEngine;
 public class UISavedOption : MonoBehaviour
 {
 	// Token: 0x17000033 RID: 51
-	// (get) Token: 0x0600027C RID: 636 RVA: 0x0001BB9E File Offset: 0x00019D9E
+	// (get) Token: 0x0600027C RID: 636 RVA: 0x0001BC96 File Offset: 0x00019E96
 	private string key
 	{
 		get
@@ -19,7 +19,7 @@ public class UISavedOption : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600027D RID: 637 RVA: 0x0001BBC4 File Offset: 0x00019DC4
+	// Token: 0x0600027D RID: 637 RVA: 0x0001BCBC File Offset: 0x00019EBC
 	private void Awake()
 	{
 		this.mList = base.GetComponent<UIPopupList>();
@@ -27,7 +27,7 @@ public class UISavedOption : MonoBehaviour
 		this.mSlider = base.GetComponent<UIProgressBar>();
 	}
 
-	// Token: 0x0600027E RID: 638 RVA: 0x0001BBEC File Offset: 0x00019DEC
+	// Token: 0x0600027E RID: 638 RVA: 0x0001BCE4 File Offset: 0x00019EE4
 	private void OnEnable()
 	{
 		if (this.mList != null)
@@ -67,7 +67,7 @@ public class UISavedOption : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600027F RID: 639 RVA: 0x0001BD28 File Offset: 0x00019F28
+	// Token: 0x0600027F RID: 639 RVA: 0x0001BE20 File Offset: 0x0001A020
 	private void OnDisable()
 	{
 		if (this.mCheck != null)
@@ -100,33 +100,33 @@ public class UISavedOption : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000280 RID: 640 RVA: 0x0001BDEF File Offset: 0x00019FEF
+	// Token: 0x06000280 RID: 640 RVA: 0x0001BEE7 File Offset: 0x0001A0E7
 	public void SaveSelection()
 	{
 		PlayerPrefs.SetString(this.key, UIPopupList.current.value);
 	}
 
-	// Token: 0x06000281 RID: 641 RVA: 0x0001BE06 File Offset: 0x0001A006
+	// Token: 0x06000281 RID: 641 RVA: 0x0001BEFE File Offset: 0x0001A0FE
 	public void SaveState()
 	{
 		PlayerPrefs.SetInt(this.key, UIToggle.current.value ? 1 : 0);
 	}
 
-	// Token: 0x06000282 RID: 642 RVA: 0x0001BE23 File Offset: 0x0001A023
+	// Token: 0x06000282 RID: 642 RVA: 0x0001BF1B File Offset: 0x0001A11B
 	public void SaveProgress()
 	{
 		PlayerPrefs.SetFloat(this.key, UIProgressBar.current.value);
 	}
 
-	// Token: 0x0400040B RID: 1035
+	// Token: 0x04000414 RID: 1044
 	public string keyName;
 
-	// Token: 0x0400040C RID: 1036
+	// Token: 0x04000415 RID: 1045
 	private UIPopupList mList;
 
-	// Token: 0x0400040D RID: 1037
+	// Token: 0x04000416 RID: 1046
 	private UIToggle mCheck;
 
-	// Token: 0x0400040E RID: 1038
+	// Token: 0x04000417 RID: 1047
 	private UIProgressBar mSlider;
 }

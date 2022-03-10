@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Distortion_Twist : MonoBehaviour
 {
 	// Token: 0x17000286 RID: 646
-	// (get) Token: 0x06000DCB RID: 3531 RVA: 0x0007797B File Offset: 0x00075B7B
+	// (get) Token: 0x06000DCB RID: 3531 RVA: 0x00077AC3 File Offset: 0x00075CC3
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Distortion_Twist : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DCC RID: 3532 RVA: 0x000779AF File Offset: 0x00075BAF
+	// Token: 0x06000DCC RID: 3532 RVA: 0x00077AF7 File Offset: 0x00075CF7
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Distortion_Twist");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Distortion_Twist : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DCD RID: 3533 RVA: 0x000779D0 File Offset: 0x00075BD0
+	// Token: 0x06000DCD RID: 3533 RVA: 0x00077B18 File Offset: 0x00075D18
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Distortion_Twist : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000DCE RID: 3534 RVA: 0x00077AC1 File Offset: 0x00075CC1
+	// Token: 0x06000DCE RID: 3534 RVA: 0x00077C09 File Offset: 0x00075E09
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000DCF RID: 3535 RVA: 0x00077AC3 File Offset: 0x00075CC3
+	// Token: 0x06000DCF RID: 3535 RVA: 0x00077C0B File Offset: 0x00075E0B
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,28 +68,28 @@ public class CameraFilterPack_Distortion_Twist : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400120D RID: 4621
+	// Token: 0x04001216 RID: 4630
 	public Shader SCShader;
 
-	// Token: 0x0400120E RID: 4622
+	// Token: 0x04001217 RID: 4631
 	private float TimeX = 1f;
 
-	// Token: 0x0400120F RID: 4623
+	// Token: 0x04001218 RID: 4632
 	private Material SCMaterial;
 
-	// Token: 0x04001210 RID: 4624
+	// Token: 0x04001219 RID: 4633
 	[Range(-2f, 2f)]
 	public float CenterX = 0.5f;
 
-	// Token: 0x04001211 RID: 4625
+	// Token: 0x0400121A RID: 4634
 	[Range(-2f, 2f)]
 	public float CenterY = 0.5f;
 
-	// Token: 0x04001212 RID: 4626
+	// Token: 0x0400121B RID: 4635
 	[Range(-3.14f, 3.14f)]
 	public float Distortion = 1f;
 
-	// Token: 0x04001213 RID: 4627
+	// Token: 0x0400121C RID: 4636
 	[Range(-2f, 2f)]
 	public float Size = 1f;
 }

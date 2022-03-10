@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Colors_DarkColor : MonoBehaviour
 {
 	// Token: 0x17000270 RID: 624
-	// (get) Token: 0x06000D47 RID: 3399 RVA: 0x00075A7F File Offset: 0x00073C7F
+	// (get) Token: 0x06000D47 RID: 3399 RVA: 0x00075BC7 File Offset: 0x00073DC7
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Colors_DarkColor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D48 RID: 3400 RVA: 0x00075AB3 File Offset: 0x00073CB3
+	// Token: 0x06000D48 RID: 3400 RVA: 0x00075BFB File Offset: 0x00073DFB
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Colors_DarkColor");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Colors_DarkColor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D49 RID: 3401 RVA: 0x00075AD4 File Offset: 0x00073CD4
+	// Token: 0x06000D49 RID: 3401 RVA: 0x00075C1C File Offset: 0x00073E1C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Colors_DarkColor : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000D4A RID: 3402 RVA: 0x00075BCC File Offset: 0x00073DCC
+	// Token: 0x06000D4A RID: 3402 RVA: 0x00075D14 File Offset: 0x00073F14
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000D4B RID: 3403 RVA: 0x00075BCE File Offset: 0x00073DCE
+	// Token: 0x06000D4B RID: 3403 RVA: 0x00075D16 File Offset: 0x00073F16
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,28 +68,28 @@ public class CameraFilterPack_Colors_DarkColor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001190 RID: 4496
+	// Token: 0x04001199 RID: 4505
 	public Shader SCShader;
 
-	// Token: 0x04001191 RID: 4497
+	// Token: 0x0400119A RID: 4506
 	private float TimeX = 1f;
 
-	// Token: 0x04001192 RID: 4498
+	// Token: 0x0400119B RID: 4507
 	private Material SCMaterial;
 
-	// Token: 0x04001193 RID: 4499
+	// Token: 0x0400119C RID: 4508
 	[Range(-5f, 5f)]
 	public float Alpha = 1f;
 
-	// Token: 0x04001194 RID: 4500
+	// Token: 0x0400119D RID: 4509
 	[Range(0f, 16f)]
 	private float Colors = 11f;
 
-	// Token: 0x04001195 RID: 4501
+	// Token: 0x0400119E RID: 4510
 	[Range(-1f, 1f)]
 	private float Green_Mod = 1f;
 
-	// Token: 0x04001196 RID: 4502
+	// Token: 0x0400119F RID: 4511
 	[Range(0f, 10f)]
 	private float Value4 = 1f;
 }

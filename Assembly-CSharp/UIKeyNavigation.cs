@@ -6,7 +6,7 @@ using UnityEngine;
 public class UIKeyNavigation : MonoBehaviour
 {
 	// Token: 0x1700001A RID: 26
-	// (get) Token: 0x060001EE RID: 494 RVA: 0x00018328 File Offset: 0x00016528
+	// (get) Token: 0x060001EE RID: 494 RVA: 0x00018420 File Offset: 0x00016620
 	public static UIKeyNavigation current
 	{
 		get
@@ -21,7 +21,7 @@ public class UIKeyNavigation : MonoBehaviour
 	}
 
 	// Token: 0x1700001B RID: 27
-	// (get) Token: 0x060001EF RID: 495 RVA: 0x0001834C File Offset: 0x0001654C
+	// (get) Token: 0x060001EF RID: 495 RVA: 0x00018444 File Offset: 0x00016644
 	public bool isColliderEnabled
 	{
 		get
@@ -40,7 +40,7 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001F0 RID: 496 RVA: 0x0001839F File Offset: 0x0001659F
+	// Token: 0x060001F0 RID: 496 RVA: 0x00018497 File Offset: 0x00016697
 	protected virtual void OnEnable()
 	{
 		UIKeyNavigation.list.Add(this);
@@ -50,7 +50,7 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001F1 RID: 497 RVA: 0x000183C4 File Offset: 0x000165C4
+	// Token: 0x060001F1 RID: 497 RVA: 0x000184BC File Offset: 0x000166BC
 	private void Start()
 	{
 		this.mStarted = true;
@@ -60,13 +60,13 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001F2 RID: 498 RVA: 0x000183E8 File Offset: 0x000165E8
+	// Token: 0x060001F2 RID: 498 RVA: 0x000184E0 File Offset: 0x000166E0
 	protected virtual void OnDisable()
 	{
 		UIKeyNavigation.list.Remove(this);
 	}
 
-	// Token: 0x060001F3 RID: 499 RVA: 0x000183F8 File Offset: 0x000165F8
+	// Token: 0x060001F3 RID: 499 RVA: 0x000184F0 File Offset: 0x000166F0
 	private static bool IsActive(GameObject go)
 	{
 		if (!go || !go.activeInHierarchy)
@@ -82,7 +82,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return component2 != null && component2.enabled;
 	}
 
-	// Token: 0x060001F4 RID: 500 RVA: 0x00018446 File Offset: 0x00016646
+	// Token: 0x060001F4 RID: 500 RVA: 0x0001853E File Offset: 0x0001673E
 	public GameObject GetLeft()
 	{
 		if (UIKeyNavigation.IsActive(this.onLeft))
@@ -96,7 +96,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return this.Get(Vector3.left, 1f, 2f);
 	}
 
-	// Token: 0x060001F5 RID: 501 RVA: 0x00018485 File Offset: 0x00016685
+	// Token: 0x060001F5 RID: 501 RVA: 0x0001857D File Offset: 0x0001677D
 	public GameObject GetRight()
 	{
 		if (UIKeyNavigation.IsActive(this.onRight))
@@ -110,7 +110,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return this.Get(Vector3.right, 1f, 2f);
 	}
 
-	// Token: 0x060001F6 RID: 502 RVA: 0x000184C4 File Offset: 0x000166C4
+	// Token: 0x060001F6 RID: 502 RVA: 0x000185BC File Offset: 0x000167BC
 	public GameObject GetUp()
 	{
 		if (UIKeyNavigation.IsActive(this.onUp))
@@ -124,7 +124,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return this.Get(Vector3.up, 2f, 1f);
 	}
 
-	// Token: 0x060001F7 RID: 503 RVA: 0x00018503 File Offset: 0x00016703
+	// Token: 0x060001F7 RID: 503 RVA: 0x000185FB File Offset: 0x000167FB
 	public GameObject GetDown()
 	{
 		if (UIKeyNavigation.IsActive(this.onDown))
@@ -138,7 +138,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return this.Get(Vector3.down, 2f, 1f);
 	}
 
-	// Token: 0x060001F8 RID: 504 RVA: 0x00018544 File Offset: 0x00016744
+	// Token: 0x060001F8 RID: 504 RVA: 0x0001863C File Offset: 0x0001683C
 	public GameObject Get(Vector3 myDir, float x = 1f, float y = 1f)
 	{
 		Transform transform = base.transform;
@@ -173,7 +173,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060001F9 RID: 505 RVA: 0x00018650 File Offset: 0x00016850
+	// Token: 0x060001F9 RID: 505 RVA: 0x00018748 File Offset: 0x00016948
 	protected static Vector3 GetCenter(GameObject go)
 	{
 		UIWidget component = go.GetComponent<UIWidget>();
@@ -198,7 +198,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return go.transform.position;
 	}
 
-	// Token: 0x060001FA RID: 506 RVA: 0x0001870C File Offset: 0x0001690C
+	// Token: 0x060001FA RID: 506 RVA: 0x00018804 File Offset: 0x00016A04
 	public virtual void OnNavigate(KeyCode key)
 	{
 		if (UIPopupList.isOpen)
@@ -232,7 +232,7 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001FB RID: 507 RVA: 0x0001878C File Offset: 0x0001698C
+	// Token: 0x060001FB RID: 507 RVA: 0x00018884 File Offset: 0x00016A84
 	public virtual void OnKey(KeyCode key)
 	{
 		if (UIPopupList.isOpen)
@@ -295,7 +295,7 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001FC RID: 508 RVA: 0x00018891 File Offset: 0x00016A91
+	// Token: 0x060001FC RID: 508 RVA: 0x00018989 File Offset: 0x00016B89
 	protected virtual void OnClick()
 	{
 		if (NGUITools.GetActive(this.onClick))
@@ -304,51 +304,51 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400039A RID: 922
+	// Token: 0x040003A3 RID: 931
 	public static BetterList<UIKeyNavigation> list = new BetterList<UIKeyNavigation>();
 
-	// Token: 0x0400039B RID: 923
+	// Token: 0x040003A4 RID: 932
 	public UIKeyNavigation.Constraint constraint;
 
-	// Token: 0x0400039C RID: 924
+	// Token: 0x040003A5 RID: 933
 	public GameObject onUp;
 
-	// Token: 0x0400039D RID: 925
+	// Token: 0x040003A6 RID: 934
 	public GameObject onDown;
 
-	// Token: 0x0400039E RID: 926
+	// Token: 0x040003A7 RID: 935
 	public GameObject onLeft;
 
-	// Token: 0x0400039F RID: 927
+	// Token: 0x040003A8 RID: 936
 	public GameObject onRight;
 
-	// Token: 0x040003A0 RID: 928
+	// Token: 0x040003A9 RID: 937
 	public GameObject onClick;
 
-	// Token: 0x040003A1 RID: 929
+	// Token: 0x040003AA RID: 938
 	public GameObject onTab;
 
-	// Token: 0x040003A2 RID: 930
+	// Token: 0x040003AB RID: 939
 	public bool startsSelected;
 
-	// Token: 0x040003A3 RID: 931
+	// Token: 0x040003AC RID: 940
 	[NonSerialized]
 	private bool mStarted;
 
-	// Token: 0x040003A4 RID: 932
+	// Token: 0x040003AD RID: 941
 	public static int mLastFrame = 0;
 
-	// Token: 0x020005CE RID: 1486
+	// Token: 0x020005CF RID: 1487
 	[DoNotObfuscateNGUI]
 	public enum Constraint
 	{
-		// Token: 0x04004D46 RID: 19782
+		// Token: 0x04004D63 RID: 19811
 		None,
-		// Token: 0x04004D47 RID: 19783
+		// Token: 0x04004D64 RID: 19812
 		Vertical,
-		// Token: 0x04004D48 RID: 19784
+		// Token: 0x04004D65 RID: 19813
 		Horizontal,
-		// Token: 0x04004D49 RID: 19785
+		// Token: 0x04004D66 RID: 19814
 		Explicit
 	}
 }

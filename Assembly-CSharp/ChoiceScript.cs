@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000245 RID: 581
 public class ChoiceScript : MonoBehaviour
 {
-	// Token: 0x0600124D RID: 4685 RVA: 0x0008C988 File Offset: 0x0008AB88
+	// Token: 0x0600124D RID: 4685 RVA: 0x0008CAD0 File Offset: 0x0008ACD0
 	private void Start()
 	{
 		this.Darkness.color = new Color(1f, 1f, 1f, 1f);
 	}
 
-	// Token: 0x0600124E RID: 4686 RVA: 0x0008C9B0 File Offset: 0x0008ABB0
+	// Token: 0x0600124E RID: 4686 RVA: 0x0008CAF8 File Offset: 0x0008ACF8
 	private void Update()
 	{
 		this.Highlight.transform.localPosition = Vector3.Lerp(this.Highlight.transform.localPosition, new Vector3((float)(-360 + 720 * this.Selected), this.Highlight.transform.localPosition.y, this.Highlight.transform.localPosition.z), Time.deltaTime * 10f);
@@ -53,21 +53,21 @@ public class ChoiceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001718 RID: 5912
+	// Token: 0x04001721 RID: 5921
 	public InputManagerScript InputManager;
 
-	// Token: 0x04001719 RID: 5913
+	// Token: 0x04001722 RID: 5922
 	public PromptBarScript PromptBar;
 
-	// Token: 0x0400171A RID: 5914
+	// Token: 0x04001723 RID: 5923
 	public Transform Highlight;
 
-	// Token: 0x0400171B RID: 5915
+	// Token: 0x04001724 RID: 5924
 	public UISprite Darkness;
 
-	// Token: 0x0400171C RID: 5916
+	// Token: 0x04001725 RID: 5925
 	public int Selected;
 
-	// Token: 0x0400171D RID: 5917
+	// Token: 0x04001726 RID: 5926
 	public int Phase;
 }

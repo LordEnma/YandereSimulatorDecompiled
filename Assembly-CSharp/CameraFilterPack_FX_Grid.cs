@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_FX_Grid : MonoBehaviour
 {
 	// Token: 0x170002BA RID: 698
-	// (get) Token: 0x06000F04 RID: 3844 RVA: 0x0007C88D File Offset: 0x0007AA8D
+	// (get) Token: 0x06000F04 RID: 3844 RVA: 0x0007C9D5 File Offset: 0x0007ABD5
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_FX_Grid : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F05 RID: 3845 RVA: 0x0007C8C1 File Offset: 0x0007AAC1
+	// Token: 0x06000F05 RID: 3845 RVA: 0x0007CA09 File Offset: 0x0007AC09
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/FX_Grid");
@@ -32,7 +32,7 @@ public class CameraFilterPack_FX_Grid : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000F06 RID: 3846 RVA: 0x0007C8E4 File Offset: 0x0007AAE4
+	// Token: 0x06000F06 RID: 3846 RVA: 0x0007CA2C File Offset: 0x0007AC2C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -50,12 +50,12 @@ public class CameraFilterPack_FX_Grid : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000F07 RID: 3847 RVA: 0x0007C96A File Offset: 0x0007AB6A
+	// Token: 0x06000F07 RID: 3847 RVA: 0x0007CAB2 File Offset: 0x0007ACB2
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000F08 RID: 3848 RVA: 0x0007C96C File Offset: 0x0007AB6C
+	// Token: 0x06000F08 RID: 3848 RVA: 0x0007CAB4 File Offset: 0x0007ACB4
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -64,19 +64,19 @@ public class CameraFilterPack_FX_Grid : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001354 RID: 4948
+	// Token: 0x0400135D RID: 4957
 	public Shader SCShader;
 
-	// Token: 0x04001355 RID: 4949
+	// Token: 0x0400135E RID: 4958
 	private float TimeX = 1f;
 
-	// Token: 0x04001356 RID: 4950
+	// Token: 0x0400135F RID: 4959
 	private Material SCMaterial;
 
-	// Token: 0x04001357 RID: 4951
+	// Token: 0x04001360 RID: 4960
 	[Range(0f, 5f)]
 	public float Distortion = 1f;
 
-	// Token: 0x04001358 RID: 4952
+	// Token: 0x04001361 RID: 4961
 	public static float ChangeDistortion;
 }

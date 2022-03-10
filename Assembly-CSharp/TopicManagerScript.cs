@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x0200047F RID: 1151
 public class TopicManagerScript : MonoBehaviour
 {
-	// Token: 0x06001EEA RID: 7914 RVA: 0x001B33B8 File Offset: 0x001B15B8
+	// Token: 0x06001EED RID: 7917 RVA: 0x001B3AE0 File Offset: 0x001B1CE0
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001EEB RID: 7915 RVA: 0x001B33BA File Offset: 0x001B15BA
+	// Token: 0x06001EEE RID: 7918 RVA: 0x001B3AE2 File Offset: 0x001B1CE2
 	private void Update()
 	{
 	}

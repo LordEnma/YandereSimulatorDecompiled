@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020000F4 RID: 244
 public class BounceScript : MonoBehaviour
 {
-	// Token: 0x06000A5D RID: 2653 RVA: 0x0005C2FC File Offset: 0x0005A4FC
+	// Token: 0x06000A5D RID: 2653 RVA: 0x0005C444 File Offset: 0x0005A644
 	private void Start()
 	{
 		this.StartingMotion += UnityEngine.Random.Range(-0.001f, 0.001f);
 		this.DecliningSpeed += UnityEngine.Random.Range(-0.001f, 0.001f);
 	}
 
-	// Token: 0x06000A5E RID: 2654 RVA: 0x0005C338 File Offset: 0x0005A538
+	// Token: 0x06000A5E RID: 2654 RVA: 0x0005C480 File Offset: 0x0005A680
 	private void Update()
 	{
 		base.transform.position += new Vector3(0f, this.Motion, 0f);
@@ -28,24 +28,24 @@ public class BounceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C00 RID: 3072
+	// Token: 0x04000C09 RID: 3081
 	public float StartingMotion;
 
-	// Token: 0x04000C01 RID: 3073
+	// Token: 0x04000C0A RID: 3082
 	public float DecliningSpeed;
 
-	// Token: 0x04000C02 RID: 3074
+	// Token: 0x04000C0B RID: 3083
 	public float Motion;
 
-	// Token: 0x04000C03 RID: 3075
+	// Token: 0x04000C0C RID: 3084
 	public float PositionX;
 
-	// Token: 0x04000C04 RID: 3076
+	// Token: 0x04000C0D RID: 3085
 	public float Speed;
 
-	// Token: 0x04000C05 RID: 3077
+	// Token: 0x04000C0E RID: 3086
 	public Transform MyCamera;
 
-	// Token: 0x04000C06 RID: 3078
+	// Token: 0x04000C0F RID: 3087
 	public bool Go;
 }

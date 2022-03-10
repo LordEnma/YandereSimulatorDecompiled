@@ -4,20 +4,20 @@ using UnityEngine;
 // Token: 0x020000BA RID: 186
 public class RPG_Animation : MonoBehaviour
 {
-	// Token: 0x0600096A RID: 2410 RVA: 0x0004B3EE File Offset: 0x000495EE
+	// Token: 0x0600096A RID: 2410 RVA: 0x0004B4E6 File Offset: 0x000496E6
 	private void Awake()
 	{
 		RPG_Animation.instance = this;
 	}
 
-	// Token: 0x0600096B RID: 2411 RVA: 0x0004B3F6 File Offset: 0x000495F6
+	// Token: 0x0600096B RID: 2411 RVA: 0x0004B4EE File Offset: 0x000496EE
 	private void Update()
 	{
 		this.SetCurrentState();
 		this.StartAnimation();
 	}
 
-	// Token: 0x0600096C RID: 2412 RVA: 0x0004B404 File Offset: 0x00049604
+	// Token: 0x0600096C RID: 2412 RVA: 0x0004B4FC File Offset: 0x000496FC
 	public void SetCurrentMoveDir(Vector3 playerDir)
 	{
 		bool flag = false;
@@ -87,7 +87,7 @@ public class RPG_Animation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600096D RID: 2413 RVA: 0x0004B4B4 File Offset: 0x000496B4
+	// Token: 0x0600096D RID: 2413 RVA: 0x0004B5AC File Offset: 0x000497AC
 	public void SetCurrentState()
 	{
 		if (RPG_Controller.instance.characterController.isGrounded)
@@ -127,7 +127,7 @@ public class RPG_Animation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600096E RID: 2414 RVA: 0x0004B54C File Offset: 0x0004974C
+	// Token: 0x0600096E RID: 2414 RVA: 0x0004B644 File Offset: 0x00049844
 	public void StartAnimation()
 	{
 		switch (this.currentState)
@@ -172,61 +172,61 @@ public class RPG_Animation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600096F RID: 2415 RVA: 0x0004B5DD File Offset: 0x000497DD
+	// Token: 0x0600096F RID: 2415 RVA: 0x0004B6D5 File Offset: 0x000498D5
 	private void Idle()
 	{
 		base.GetComponent<Animation>().CrossFade("idle");
 	}
 
-	// Token: 0x06000970 RID: 2416 RVA: 0x0004B5EF File Offset: 0x000497EF
+	// Token: 0x06000970 RID: 2416 RVA: 0x0004B6E7 File Offset: 0x000498E7
 	private void Walk()
 	{
 		base.GetComponent<Animation>().CrossFade("walk");
 	}
 
-	// Token: 0x06000971 RID: 2417 RVA: 0x0004B601 File Offset: 0x00049801
+	// Token: 0x06000971 RID: 2417 RVA: 0x0004B6F9 File Offset: 0x000498F9
 	private void StrafeForwardLeft()
 	{
 		base.GetComponent<Animation>().CrossFade("strafeforwardleft");
 	}
 
-	// Token: 0x06000972 RID: 2418 RVA: 0x0004B613 File Offset: 0x00049813
+	// Token: 0x06000972 RID: 2418 RVA: 0x0004B70B File Offset: 0x0004990B
 	private void StrafeForwardRight()
 	{
 		base.GetComponent<Animation>().CrossFade("strafeforwardright");
 	}
 
-	// Token: 0x06000973 RID: 2419 RVA: 0x0004B625 File Offset: 0x00049825
+	// Token: 0x06000973 RID: 2419 RVA: 0x0004B71D File Offset: 0x0004991D
 	private void WalkBack()
 	{
 		base.GetComponent<Animation>().CrossFade("walkback");
 	}
 
-	// Token: 0x06000974 RID: 2420 RVA: 0x0004B637 File Offset: 0x00049837
+	// Token: 0x06000974 RID: 2420 RVA: 0x0004B72F File Offset: 0x0004992F
 	private void StrafeBackLeft()
 	{
 		base.GetComponent<Animation>().CrossFade("strafebackleft");
 	}
 
-	// Token: 0x06000975 RID: 2421 RVA: 0x0004B649 File Offset: 0x00049849
+	// Token: 0x06000975 RID: 2421 RVA: 0x0004B741 File Offset: 0x00049941
 	private void StrafeBackRight()
 	{
 		base.GetComponent<Animation>().CrossFade("strafebackright");
 	}
 
-	// Token: 0x06000976 RID: 2422 RVA: 0x0004B65B File Offset: 0x0004985B
+	// Token: 0x06000976 RID: 2422 RVA: 0x0004B753 File Offset: 0x00049953
 	private void StrafeLeft()
 	{
 		base.GetComponent<Animation>().CrossFade("strafeleft");
 	}
 
-	// Token: 0x06000977 RID: 2423 RVA: 0x0004B66D File Offset: 0x0004986D
+	// Token: 0x06000977 RID: 2423 RVA: 0x0004B765 File Offset: 0x00049965
 	private void StrafeRight()
 	{
 		base.GetComponent<Animation>().CrossFade("straferight");
 	}
 
-	// Token: 0x06000978 RID: 2424 RVA: 0x0004B67F File Offset: 0x0004987F
+	// Token: 0x06000978 RID: 2424 RVA: 0x0004B777 File Offset: 0x00049977
 	public void Jump()
 	{
 		this.currentState = RPG_Animation.CharacterState.Jump;
@@ -237,52 +237,52 @@ public class RPG_Animation : MonoBehaviour
 		base.GetComponent<Animation>().CrossFade("jump");
 	}
 
-	// Token: 0x04000807 RID: 2055
+	// Token: 0x04000810 RID: 2064
 	public static RPG_Animation instance;
 
-	// Token: 0x04000808 RID: 2056
+	// Token: 0x04000811 RID: 2065
 	public RPG_Animation.CharacterMoveDirection currentMoveDir;
 
-	// Token: 0x04000809 RID: 2057
+	// Token: 0x04000812 RID: 2066
 	public RPG_Animation.CharacterState currentState;
 
-	// Token: 0x02000647 RID: 1607
+	// Token: 0x02000648 RID: 1608
 	public enum CharacterMoveDirection
 	{
-		// Token: 0x04004EA0 RID: 20128
+		// Token: 0x04004EBD RID: 20157
 		None,
-		// Token: 0x04004EA1 RID: 20129
+		// Token: 0x04004EBE RID: 20158
 		Forward,
-		// Token: 0x04004EA2 RID: 20130
+		// Token: 0x04004EBF RID: 20159
 		Backward,
-		// Token: 0x04004EA3 RID: 20131
+		// Token: 0x04004EC0 RID: 20160
 		StrafeLeft,
-		// Token: 0x04004EA4 RID: 20132
+		// Token: 0x04004EC1 RID: 20161
 		StrafeRight,
-		// Token: 0x04004EA5 RID: 20133
+		// Token: 0x04004EC2 RID: 20162
 		StrafeForwardLeft,
-		// Token: 0x04004EA6 RID: 20134
+		// Token: 0x04004EC3 RID: 20163
 		StrafeForwardRight,
-		// Token: 0x04004EA7 RID: 20135
+		// Token: 0x04004EC4 RID: 20164
 		StrafeBackLeft,
-		// Token: 0x04004EA8 RID: 20136
+		// Token: 0x04004EC5 RID: 20165
 		StrafeBackRight
 	}
 
-	// Token: 0x02000648 RID: 1608
+	// Token: 0x02000649 RID: 1609
 	public enum CharacterState
 	{
-		// Token: 0x04004EAA RID: 20138
+		// Token: 0x04004EC7 RID: 20167
 		Idle,
-		// Token: 0x04004EAB RID: 20139
+		// Token: 0x04004EC8 RID: 20168
 		Walk,
-		// Token: 0x04004EAC RID: 20140
+		// Token: 0x04004EC9 RID: 20169
 		WalkBack,
-		// Token: 0x04004EAD RID: 20141
+		// Token: 0x04004ECA RID: 20170
 		StrafeLeft,
-		// Token: 0x04004EAE RID: 20142
+		// Token: 0x04004ECB RID: 20171
 		StrafeRight,
-		// Token: 0x04004EAF RID: 20143
+		// Token: 0x04004ECC RID: 20172
 		Jump
 	}
 }

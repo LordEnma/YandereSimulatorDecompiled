@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Drag-Resize Widget")]
 public class UIDragResize : MonoBehaviour
 {
-	// Token: 0x06000193 RID: 403 RVA: 0x000167AC File Offset: 0x000149AC
+	// Token: 0x06000193 RID: 403 RVA: 0x000168A4 File Offset: 0x00014AA4
 	private void OnDragStart()
 	{
 		if (this.target != null)
@@ -25,7 +25,7 @@ public class UIDragResize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000194 RID: 404 RVA: 0x0001685C File Offset: 0x00014A5C
+	// Token: 0x06000194 RID: 404 RVA: 0x00016954 File Offset: 0x00014B54
 	private void OnDrag(Vector2 delta)
 	{
 		if (this.mDragging && this.target != null)
@@ -51,48 +51,48 @@ public class UIDragResize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000195 RID: 405 RVA: 0x0001697C File Offset: 0x00014B7C
+	// Token: 0x06000195 RID: 405 RVA: 0x00016A74 File Offset: 0x00014C74
 	private void OnDragEnd()
 	{
 		this.mDragging = false;
 	}
 
-	// Token: 0x04000344 RID: 836
+	// Token: 0x0400034D RID: 845
 	public UIWidget target;
 
-	// Token: 0x04000345 RID: 837
+	// Token: 0x0400034E RID: 846
 	public UIWidget.Pivot pivot = UIWidget.Pivot.BottomRight;
 
-	// Token: 0x04000346 RID: 838
+	// Token: 0x0400034F RID: 847
 	public int minWidth = 100;
 
-	// Token: 0x04000347 RID: 839
+	// Token: 0x04000350 RID: 848
 	public int minHeight = 100;
 
-	// Token: 0x04000348 RID: 840
+	// Token: 0x04000351 RID: 849
 	public int maxWidth = 100000;
 
-	// Token: 0x04000349 RID: 841
+	// Token: 0x04000352 RID: 850
 	public int maxHeight = 100000;
 
-	// Token: 0x0400034A RID: 842
+	// Token: 0x04000353 RID: 851
 	public bool updateAnchors;
 
-	// Token: 0x0400034B RID: 843
+	// Token: 0x04000354 RID: 852
 	private Plane mPlane;
 
-	// Token: 0x0400034C RID: 844
+	// Token: 0x04000355 RID: 853
 	private Vector3 mRayPos;
 
-	// Token: 0x0400034D RID: 845
+	// Token: 0x04000356 RID: 854
 	private Vector3 mLocalPos;
 
-	// Token: 0x0400034E RID: 846
+	// Token: 0x04000357 RID: 855
 	private int mWidth;
 
-	// Token: 0x0400034F RID: 847
+	// Token: 0x04000358 RID: 856
 	private int mHeight;
 
-	// Token: 0x04000350 RID: 848
+	// Token: 0x04000359 RID: 857
 	private bool mDragging;
 }

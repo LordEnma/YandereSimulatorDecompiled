@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Distortion_Dissipation : MonoBehaviour
 {
 	// Token: 0x1700027A RID: 634
-	// (get) Token: 0x06000D83 RID: 3459 RVA: 0x000768B2 File Offset: 0x00074AB2
+	// (get) Token: 0x06000D83 RID: 3459 RVA: 0x000769FA File Offset: 0x00074BFA
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Distortion_Dissipation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D84 RID: 3460 RVA: 0x000768E6 File Offset: 0x00074AE6
+	// Token: 0x06000D84 RID: 3460 RVA: 0x00076A2E File Offset: 0x00074C2E
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Distortion_Dissipation");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Distortion_Dissipation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D85 RID: 3461 RVA: 0x00076908 File Offset: 0x00074B08
+	// Token: 0x06000D85 RID: 3461 RVA: 0x00076A50 File Offset: 0x00074C50
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Distortion_Dissipation : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000D86 RID: 3462 RVA: 0x00076A00 File Offset: 0x00074C00
+	// Token: 0x06000D86 RID: 3462 RVA: 0x00076B48 File Offset: 0x00074D48
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000D87 RID: 3463 RVA: 0x00076A02 File Offset: 0x00074C02
+	// Token: 0x06000D87 RID: 3463 RVA: 0x00076B4A File Offset: 0x00074D4A
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,28 +68,28 @@ public class CameraFilterPack_Distortion_Dissipation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040011CD RID: 4557
+	// Token: 0x040011D6 RID: 4566
 	public Shader SCShader;
 
-	// Token: 0x040011CE RID: 4558
+	// Token: 0x040011D7 RID: 4567
 	private float TimeX = 1f;
 
-	// Token: 0x040011CF RID: 4559
+	// Token: 0x040011D8 RID: 4568
 	private Material SCMaterial;
 
-	// Token: 0x040011D0 RID: 4560
+	// Token: 0x040011D9 RID: 4569
 	[Range(0f, 2.99f)]
 	public float Dissipation = 1f;
 
-	// Token: 0x040011D1 RID: 4561
+	// Token: 0x040011DA RID: 4570
 	[Range(0f, 16f)]
 	private float Colors = 11f;
 
-	// Token: 0x040011D2 RID: 4562
+	// Token: 0x040011DB RID: 4571
 	[Range(-1f, 1f)]
 	private float Green_Mod = 1f;
 
-	// Token: 0x040011D3 RID: 4563
+	// Token: 0x040011DC RID: 4572
 	[Range(0f, 10f)]
 	private float Value4 = 1f;
 }

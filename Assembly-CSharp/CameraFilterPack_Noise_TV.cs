@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Noise_TV : MonoBehaviour
 {
 	// Token: 0x170002F1 RID: 753
-	// (get) Token: 0x0600106C RID: 4204 RVA: 0x000836EA File Offset: 0x000818EA
+	// (get) Token: 0x0600106C RID: 4204 RVA: 0x00083832 File Offset: 0x00081A32
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Noise_TV : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600106D RID: 4205 RVA: 0x0008371E File Offset: 0x0008191E
+	// Token: 0x0600106D RID: 4205 RVA: 0x00083866 File Offset: 0x00081A66
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_TV_Noise") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_Noise_TV : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600106E RID: 4206 RVA: 0x00083754 File Offset: 0x00081954
+	// Token: 0x0600106E RID: 4206 RVA: 0x0008389C File Offset: 0x00081A9C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -56,12 +56,12 @@ public class CameraFilterPack_Noise_TV : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x0600106F RID: 4207 RVA: 0x00083862 File Offset: 0x00081A62
+	// Token: 0x0600106F RID: 4207 RVA: 0x000839AA File Offset: 0x00081BAA
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001070 RID: 4208 RVA: 0x00083864 File Offset: 0x00081A64
+	// Token: 0x06001070 RID: 4208 RVA: 0x000839AC File Offset: 0x00081BAC
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -70,31 +70,31 @@ public class CameraFilterPack_Noise_TV : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040014ED RID: 5357
+	// Token: 0x040014F6 RID: 5366
 	public Shader SCShader;
 
-	// Token: 0x040014EE RID: 5358
+	// Token: 0x040014F7 RID: 5367
 	private float TimeX = 1f;
 
-	// Token: 0x040014EF RID: 5359
+	// Token: 0x040014F8 RID: 5368
 	private Material SCMaterial;
 
-	// Token: 0x040014F0 RID: 5360
+	// Token: 0x040014F9 RID: 5369
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 
-	// Token: 0x040014F1 RID: 5361
+	// Token: 0x040014FA RID: 5370
 	[Range(0f, 10f)]
 	private float Value2 = 1f;
 
-	// Token: 0x040014F2 RID: 5362
+	// Token: 0x040014FB RID: 5371
 	[Range(0f, 10f)]
 	private float Value3 = 1f;
 
-	// Token: 0x040014F3 RID: 5363
+	// Token: 0x040014FC RID: 5372
 	[Range(0f, 10f)]
 	private float Value4 = 1f;
 
-	// Token: 0x040014F4 RID: 5364
+	// Token: 0x040014FD RID: 5373
 	private Texture2D Texture2;
 }

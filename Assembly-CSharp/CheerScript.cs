@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000241 RID: 577
 public class CheerScript : MonoBehaviour
 {
-	// Token: 0x06001245 RID: 4677 RVA: 0x0008C594 File Offset: 0x0008A794
+	// Token: 0x06001245 RID: 4677 RVA: 0x0008C6DC File Offset: 0x0008A8DC
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -16,12 +16,12 @@ public class CheerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001707 RID: 5895
+	// Token: 0x04001710 RID: 5904
 	public AudioSource MyAudio;
 
-	// Token: 0x04001708 RID: 5896
+	// Token: 0x04001711 RID: 5905
 	public AudioClip[] Cheers;
 
-	// Token: 0x04001709 RID: 5897
+	// Token: 0x04001712 RID: 5906
 	public float Timer;
 }

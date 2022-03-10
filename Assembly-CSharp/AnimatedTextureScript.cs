@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020000CA RID: 202
 public class AnimatedTextureScript : MonoBehaviour
 {
-	// Token: 0x060009BE RID: 2494 RVA: 0x000511C7 File Offset: 0x0004F3C7
+	// Token: 0x060009BE RID: 2494 RVA: 0x000512BF File Offset: 0x0004F4BF
 	private void Awake()
 	{
 	}
 
 	// Token: 0x170001F5 RID: 501
-	// (get) Token: 0x060009BF RID: 2495 RVA: 0x000511C9 File Offset: 0x0004F3C9
+	// (get) Token: 0x060009BF RID: 2495 RVA: 0x000512C1 File Offset: 0x0004F4C1
 	private float SecondsPerFrame
 	{
 		get
@@ -19,7 +19,7 @@ public class AnimatedTextureScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009C0 RID: 2496 RVA: 0x000511D8 File Offset: 0x0004F3D8
+	// Token: 0x060009C0 RID: 2496 RVA: 0x000512D0 File Offset: 0x0004F4D0
 	private void Update()
 	{
 		this.CurrentSeconds += Time.unscaledDeltaTime;
@@ -35,30 +35,30 @@ public class AnimatedTextureScript : MonoBehaviour
 		this.MyRenderer.material.mainTexture = this.Image[this.Frame];
 	}
 
-	// Token: 0x04000A17 RID: 2583
+	// Token: 0x04000A20 RID: 2592
 	[SerializeField]
 	private Renderer MyRenderer;
 
-	// Token: 0x04000A18 RID: 2584
+	// Token: 0x04000A21 RID: 2593
 	[SerializeField]
 	private int Start;
 
-	// Token: 0x04000A19 RID: 2585
+	// Token: 0x04000A22 RID: 2594
 	[SerializeField]
 	private int Frame;
 
-	// Token: 0x04000A1A RID: 2586
+	// Token: 0x04000A23 RID: 2595
 	[SerializeField]
 	private int Limit;
 
-	// Token: 0x04000A1B RID: 2587
+	// Token: 0x04000A24 RID: 2596
 	[SerializeField]
 	private float FramesPerSecond;
 
-	// Token: 0x04000A1C RID: 2588
+	// Token: 0x04000A25 RID: 2597
 	[SerializeField]
 	private float CurrentSeconds;
 
-	// Token: 0x04000A1D RID: 2589
+	// Token: 0x04000A26 RID: 2598
 	public Texture[] Image;
 }

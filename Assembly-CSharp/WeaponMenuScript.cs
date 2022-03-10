@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004BA RID: 1210
+// Token: 0x020004BB RID: 1211
 public class WeaponMenuScript : MonoBehaviour
 {
-	// Token: 0x06001FB7 RID: 8119 RVA: 0x001BE0CC File Offset: 0x001BC2CC
+	// Token: 0x06001FBD RID: 8125 RVA: 0x001BE9C8 File Offset: 0x001BCBC8
 	private void Start()
 	{
 		this.KeyboardMenu.localScale = Vector3.zero;
@@ -13,7 +13,7 @@ public class WeaponMenuScript : MonoBehaviour
 		this.UpdateSprites();
 	}
 
-	// Token: 0x06001FB8 RID: 8120 RVA: 0x001BE108 File Offset: 0x001BC308
+	// Token: 0x06001FBE RID: 8126 RVA: 0x001BEA04 File Offset: 0x001BCC04
 	private void Update()
 	{
 		if (!this.PauseScreen.Show && !this.Yandere.DebugMenu.activeInHierarchy)
@@ -260,7 +260,7 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FB9 RID: 8121 RVA: 0x001BEA5C File Offset: 0x001BCC5C
+	// Token: 0x06001FBF RID: 8127 RVA: 0x001BF358 File Offset: 0x001BD558
 	public void Equip()
 	{
 		if (this.Yandere.Weapon[this.Selected] != null)
@@ -312,7 +312,7 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FBA RID: 8122 RVA: 0x001BEC58 File Offset: 0x001BCE58
+	// Token: 0x06001FC0 RID: 8128 RVA: 0x001BF554 File Offset: 0x001BD754
 	public void UpdateSprites()
 	{
 		this.EquipCaseWeaponButton.enabled = false;
@@ -474,7 +474,7 @@ public class WeaponMenuScript : MonoBehaviour
 		this.Yandere.UpdateConcealedWeaponStatus();
 	}
 
-	// Token: 0x06001FBB RID: 8123 RVA: 0x001BFA88 File Offset: 0x001BDC88
+	// Token: 0x06001FC1 RID: 8129 RVA: 0x001C0384 File Offset: 0x001BE584
 	private void DropMask()
 	{
 		if (this.Yandere.Mask != null)
@@ -492,7 +492,7 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FBC RID: 8124 RVA: 0x001BFB24 File Offset: 0x001BDD24
+	// Token: 0x06001FC2 RID: 8130 RVA: 0x001C0420 File Offset: 0x001BE620
 	private void DropBookbag()
 	{
 		if (this.Yandere.Bookbag != null)
@@ -503,79 +503,79 @@ public class WeaponMenuScript : MonoBehaviour
 		this.UpdateSprites();
 	}
 
-	// Token: 0x06001FBD RID: 8125 RVA: 0x001BFB5A File Offset: 0x001BDD5A
+	// Token: 0x06001FC3 RID: 8131 RVA: 0x001C0456 File Offset: 0x001BE656
 	public void InstantHide()
 	{
 		this.KeyboardMenu.localScale = Vector3.zero;
 		base.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x0400422A RID: 16938
+	// Token: 0x04004246 RID: 16966
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x0400422B RID: 16939
+	// Token: 0x04004247 RID: 16967
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x0400422C RID: 16940
+	// Token: 0x04004248 RID: 16968
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x0400422D RID: 16941
+	// Token: 0x04004249 RID: 16969
 	public YandereScript Yandere;
 
-	// Token: 0x0400422E RID: 16942
+	// Token: 0x0400424A RID: 16970
 	public InputManagerScript IM;
 
-	// Token: 0x0400422F RID: 16943
+	// Token: 0x0400424B RID: 16971
 	public UIPanel KeyboardPanel;
 
-	// Token: 0x04004230 RID: 16944
+	// Token: 0x0400424C RID: 16972
 	public UIPanel Panel;
 
-	// Token: 0x04004231 RID: 16945
+	// Token: 0x0400424D RID: 16973
 	public Transform KeyboardMenu;
 
-	// Token: 0x04004232 RID: 16946
+	// Token: 0x0400424E RID: 16974
 	public bool KeyboardShow;
 
-	// Token: 0x04004233 RID: 16947
+	// Token: 0x0400424F RID: 16975
 	public bool Released = true;
 
-	// Token: 0x04004234 RID: 16948
+	// Token: 0x04004250 RID: 16976
 	public bool Show;
 
-	// Token: 0x04004235 RID: 16949
+	// Token: 0x04004251 RID: 16977
 	public UISprite[] BG;
 
-	// Token: 0x04004236 RID: 16950
+	// Token: 0x04004252 RID: 16978
 	public UISprite[] Outline;
 
-	// Token: 0x04004237 RID: 16951
+	// Token: 0x04004253 RID: 16979
 	public UISprite[] Item;
 
-	// Token: 0x04004238 RID: 16952
+	// Token: 0x04004254 RID: 16980
 	public UISprite[] KeyboardBG;
 
-	// Token: 0x04004239 RID: 16953
+	// Token: 0x04004255 RID: 16981
 	public UISprite[] KeyboardOutline;
 
-	// Token: 0x0400423A RID: 16954
+	// Token: 0x04004256 RID: 16982
 	public UISprite[] KeyboardItem;
 
-	// Token: 0x0400423B RID: 16955
+	// Token: 0x04004257 RID: 16983
 	public UISprite EquipCaseWeaponButton;
 
-	// Token: 0x0400423C RID: 16956
+	// Token: 0x04004258 RID: 16984
 	public UILabel EquipCaseWeaponKey;
 
-	// Token: 0x0400423D RID: 16957
+	// Token: 0x04004259 RID: 16985
 	public int Selected = 1;
 
-	// Token: 0x0400423E RID: 16958
+	// Token: 0x0400425A RID: 16986
 	public Color OriginalColor;
 
-	// Token: 0x0400423F RID: 16959
+	// Token: 0x0400425B RID: 16987
 	public Transform Button;
 
-	// Token: 0x04004240 RID: 16960
+	// Token: 0x0400425C RID: 16988
 	public float Timer;
 }

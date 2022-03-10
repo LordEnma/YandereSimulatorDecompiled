@@ -8,7 +8,7 @@ using UnityEngine;
 public class TopicJson : JsonData
 {
 	// Token: 0x17000491 RID: 1169
-	// (get) Token: 0x06001934 RID: 6452 RVA: 0x000FBE51 File Offset: 0x000FA051
+	// (get) Token: 0x06001934 RID: 6452 RVA: 0x000FC191 File Offset: 0x000FA391
 	public static string FilePath
 	{
 		get
@@ -21,7 +21,7 @@ public class TopicJson : JsonData
 		}
 	}
 
-	// Token: 0x06001935 RID: 6453 RVA: 0x000FBE7C File Offset: 0x000FA07C
+	// Token: 0x06001935 RID: 6453 RVA: 0x000FC1BC File Offset: 0x000FA3BC
 	public static TopicJson[] LoadFromJson(string path)
 	{
 		TopicJson[] array = new TopicJson[101];
@@ -44,7 +44,7 @@ public class TopicJson : JsonData
 	}
 
 	// Token: 0x17000492 RID: 1170
-	// (get) Token: 0x06001936 RID: 6454 RVA: 0x000FBF01 File Offset: 0x000FA101
+	// (get) Token: 0x06001936 RID: 6454 RVA: 0x000FC241 File Offset: 0x000FA441
 	public int[] Topics
 	{
 		get
@@ -53,7 +53,7 @@ public class TopicJson : JsonData
 		}
 	}
 
-	// Token: 0x0400275E RID: 10078
+	// Token: 0x04002774 RID: 10100
 	[SerializeField]
 	private int[] topics;
 }

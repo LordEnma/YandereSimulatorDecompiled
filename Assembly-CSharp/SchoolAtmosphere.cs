@@ -4,7 +4,7 @@
 public static class SchoolAtmosphere
 {
 	// Token: 0x170004A2 RID: 1186
-	// (get) Token: 0x06001C5D RID: 7261 RVA: 0x0014BAC0 File Offset: 0x00149CC0
+	// (get) Token: 0x06001C5F RID: 7263 RVA: 0x0014BFFC File Offset: 0x0014A1FC
 	public static SchoolAtmosphereType Type
 	{
 		get

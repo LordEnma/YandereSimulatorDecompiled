@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Drawing_BluePrint : MonoBehaviour
 {
 	// Token: 0x1700028A RID: 650
-	// (get) Token: 0x06000DE3 RID: 3555 RVA: 0x00077F89 File Offset: 0x00076189
+	// (get) Token: 0x06000DE3 RID: 3555 RVA: 0x000780D1 File Offset: 0x000762D1
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Drawing_BluePrint : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DE4 RID: 3556 RVA: 0x00077FBD File Offset: 0x000761BD
+	// Token: 0x06000DE4 RID: 3556 RVA: 0x00078105 File Offset: 0x00076305
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_Paper2") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_Drawing_BluePrint : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DE5 RID: 3557 RVA: 0x00077FF4 File Offset: 0x000761F4
+	// Token: 0x06000DE5 RID: 3557 RVA: 0x0007813C File Offset: 0x0007633C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -60,12 +60,12 @@ public class CameraFilterPack_Drawing_BluePrint : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000DE6 RID: 3558 RVA: 0x00078143 File Offset: 0x00076343
+	// Token: 0x06000DE6 RID: 3558 RVA: 0x0007828B File Offset: 0x0007648B
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000DE7 RID: 3559 RVA: 0x00078145 File Offset: 0x00076345
+	// Token: 0x06000DE7 RID: 3559 RVA: 0x0007828D File Offset: 0x0007648D
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -74,49 +74,49 @@ public class CameraFilterPack_Drawing_BluePrint : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001226 RID: 4646
+	// Token: 0x0400122F RID: 4655
 	public Shader SCShader;
 
-	// Token: 0x04001227 RID: 4647
+	// Token: 0x04001230 RID: 4656
 	private float TimeX = 1f;
 
-	// Token: 0x04001228 RID: 4648
+	// Token: 0x04001231 RID: 4657
 	public Color Pencil_Color = new Color(1f, 1f, 1f, 1f);
 
-	// Token: 0x04001229 RID: 4649
+	// Token: 0x04001232 RID: 4658
 	[Range(0.0001f, 0.0022f)]
 	public float Pencil_Size = 0.0008f;
 
-	// Token: 0x0400122A RID: 4650
+	// Token: 0x04001233 RID: 4659
 	[Range(0f, 2f)]
 	public float Pencil_Correction = 0.76f;
 
-	// Token: 0x0400122B RID: 4651
+	// Token: 0x04001234 RID: 4660
 	[Range(0f, 1f)]
 	public float Intensity = 1f;
 
-	// Token: 0x0400122C RID: 4652
+	// Token: 0x04001235 RID: 4661
 	[Range(0f, 2f)]
 	public float Speed_Animation = 1f;
 
-	// Token: 0x0400122D RID: 4653
+	// Token: 0x04001236 RID: 4662
 	[Range(0f, 1f)]
 	public float Corner_Lose = 0.5f;
 
-	// Token: 0x0400122E RID: 4654
+	// Token: 0x04001237 RID: 4663
 	[Range(0f, 1f)]
 	public float Fade_Paper_to_BackColor = 0.2f;
 
-	// Token: 0x0400122F RID: 4655
+	// Token: 0x04001238 RID: 4664
 	[Range(0f, 1f)]
 	public float Fade_With_Original = 1f;
 
-	// Token: 0x04001230 RID: 4656
+	// Token: 0x04001239 RID: 4665
 	public Color Back_Color = new Color(0.175f, 0.402f, 0.687f, 1f);
 
-	// Token: 0x04001231 RID: 4657
+	// Token: 0x0400123A RID: 4666
 	private Material SCMaterial;
 
-	// Token: 0x04001232 RID: 4658
+	// Token: 0x0400123B RID: 4667
 	private Texture2D Texture2;
 }

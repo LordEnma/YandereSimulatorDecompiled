@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_AAA_Blood_Hit : MonoBehaviour
 {
 	// Token: 0x1700021D RID: 541
-	// (get) Token: 0x06000B14 RID: 2836 RVA: 0x0006AC74 File Offset: 0x00068E74
+	// (get) Token: 0x06000B14 RID: 2836 RVA: 0x0006ADBC File Offset: 0x00068FBC
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_AAA_Blood_Hit : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B15 RID: 2837 RVA: 0x0006ACA8 File Offset: 0x00068EA8
+	// Token: 0x06000B15 RID: 2837 RVA: 0x0006ADF0 File Offset: 0x00068FF0
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_AAA_Blood_Hit1") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_AAA_Blood_Hit : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B16 RID: 2838 RVA: 0x0006ACE0 File Offset: 0x00068EE0
+	// Token: 0x06000B16 RID: 2838 RVA: 0x0006AE28 File Offset: 0x00069028
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -64,12 +64,12 @@ public class CameraFilterPack_AAA_Blood_Hit : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B17 RID: 2839 RVA: 0x0006AF3B File Offset: 0x0006913B
+	// Token: 0x06000B17 RID: 2839 RVA: 0x0006B083 File Offset: 0x00069283
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B18 RID: 2840 RVA: 0x0006AF3D File Offset: 0x0006913D
+	// Token: 0x06000B18 RID: 2840 RVA: 0x0006B085 File Offset: 0x00069285
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -78,67 +78,67 @@ public class CameraFilterPack_AAA_Blood_Hit : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000EF7 RID: 3831
+	// Token: 0x04000F00 RID: 3840
 	public Shader SCShader;
 
-	// Token: 0x04000EF8 RID: 3832
-	private float TimeX = 1f;
-
-	// Token: 0x04000EF9 RID: 3833
-	[Range(0f, 1f)]
-	public float Hit_Left = 1f;
-
-	// Token: 0x04000EFA RID: 3834
-	[Range(0f, 1f)]
-	public float Hit_Up;
-
-	// Token: 0x04000EFB RID: 3835
-	[Range(0f, 1f)]
-	public float Hit_Right;
-
-	// Token: 0x04000EFC RID: 3836
-	[Range(0f, 1f)]
-	public float Hit_Down;
-
-	// Token: 0x04000EFD RID: 3837
-	[Range(0f, 1f)]
-	public float Blood_Hit_Left;
-
-	// Token: 0x04000EFE RID: 3838
-	[Range(0f, 1f)]
-	public float Blood_Hit_Up;
-
-	// Token: 0x04000EFF RID: 3839
-	[Range(0f, 1f)]
-	public float Blood_Hit_Right;
-
-	// Token: 0x04000F00 RID: 3840
-	[Range(0f, 1f)]
-	public float Blood_Hit_Down;
-
 	// Token: 0x04000F01 RID: 3841
-	[Range(0f, 1f)]
-	public float Hit_Full;
+	private float TimeX = 1f;
 
 	// Token: 0x04000F02 RID: 3842
 	[Range(0f, 1f)]
-	public float Blood_Hit_Full_1;
+	public float Hit_Left = 1f;
 
 	// Token: 0x04000F03 RID: 3843
 	[Range(0f, 1f)]
-	public float Blood_Hit_Full_2;
+	public float Hit_Up;
 
 	// Token: 0x04000F04 RID: 3844
 	[Range(0f, 1f)]
-	public float Blood_Hit_Full_3;
+	public float Hit_Right;
 
 	// Token: 0x04000F05 RID: 3845
 	[Range(0f, 1f)]
-	public float LightReflect = 0.5f;
+	public float Hit_Down;
 
 	// Token: 0x04000F06 RID: 3846
-	private Material SCMaterial;
+	[Range(0f, 1f)]
+	public float Blood_Hit_Left;
 
 	// Token: 0x04000F07 RID: 3847
+	[Range(0f, 1f)]
+	public float Blood_Hit_Up;
+
+	// Token: 0x04000F08 RID: 3848
+	[Range(0f, 1f)]
+	public float Blood_Hit_Right;
+
+	// Token: 0x04000F09 RID: 3849
+	[Range(0f, 1f)]
+	public float Blood_Hit_Down;
+
+	// Token: 0x04000F0A RID: 3850
+	[Range(0f, 1f)]
+	public float Hit_Full;
+
+	// Token: 0x04000F0B RID: 3851
+	[Range(0f, 1f)]
+	public float Blood_Hit_Full_1;
+
+	// Token: 0x04000F0C RID: 3852
+	[Range(0f, 1f)]
+	public float Blood_Hit_Full_2;
+
+	// Token: 0x04000F0D RID: 3853
+	[Range(0f, 1f)]
+	public float Blood_Hit_Full_3;
+
+	// Token: 0x04000F0E RID: 3854
+	[Range(0f, 1f)]
+	public float LightReflect = 0.5f;
+
+	// Token: 0x04000F0F RID: 3855
+	private Material SCMaterial;
+
+	// Token: 0x04000F10 RID: 3856
 	private Texture2D Texture2;
 }

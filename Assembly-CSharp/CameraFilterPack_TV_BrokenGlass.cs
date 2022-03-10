@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_TV_BrokenGlass : MonoBehaviour
 {
 	// Token: 0x1700030C RID: 780
-	// (get) Token: 0x06001113 RID: 4371 RVA: 0x00086653 File Offset: 0x00084853
+	// (get) Token: 0x06001113 RID: 4371 RVA: 0x0008679B File Offset: 0x0008499B
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_TV_BrokenGlass : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001114 RID: 4372 RVA: 0x00086687 File Offset: 0x00084887
+	// Token: 0x06001114 RID: 4372 RVA: 0x000867CF File Offset: 0x000849CF
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_TV_BrokenGlass1") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_TV_BrokenGlass : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001115 RID: 4373 RVA: 0x000866C0 File Offset: 0x000848C0
+	// Token: 0x06001115 RID: 4373 RVA: 0x00086808 File Offset: 0x00084A08
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -56,12 +56,12 @@ public class CameraFilterPack_TV_BrokenGlass : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06001116 RID: 4374 RVA: 0x000867B7 File Offset: 0x000849B7
+	// Token: 0x06001116 RID: 4374 RVA: 0x000868FF File Offset: 0x00084AFF
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001117 RID: 4375 RVA: 0x000867B9 File Offset: 0x000849B9
+	// Token: 0x06001117 RID: 4375 RVA: 0x00086901 File Offset: 0x00084B01
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -70,35 +70,35 @@ public class CameraFilterPack_TV_BrokenGlass : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040015A1 RID: 5537
+	// Token: 0x040015AA RID: 5546
 	public Shader SCShader;
 
-	// Token: 0x040015A2 RID: 5538
+	// Token: 0x040015AB RID: 5547
 	private float TimeX = 1f;
 
-	// Token: 0x040015A3 RID: 5539
+	// Token: 0x040015AC RID: 5548
 	[Range(0f, 128f)]
 	public float Broken_Small;
 
-	// Token: 0x040015A4 RID: 5540
+	// Token: 0x040015AD RID: 5549
 	[Range(0f, 128f)]
 	public float Broken_Medium;
 
-	// Token: 0x040015A5 RID: 5541
+	// Token: 0x040015AE RID: 5550
 	[Range(0f, 128f)]
 	public float Broken_High;
 
-	// Token: 0x040015A6 RID: 5542
+	// Token: 0x040015AF RID: 5551
 	[Range(0f, 128f)]
 	public float Broken_Big = 1f;
 
-	// Token: 0x040015A7 RID: 5543
+	// Token: 0x040015B0 RID: 5552
 	[Range(0f, 0.004f)]
 	public float LightReflect = 0.002f;
 
-	// Token: 0x040015A8 RID: 5544
+	// Token: 0x040015B1 RID: 5553
 	private Material SCMaterial;
 
-	// Token: 0x040015A9 RID: 5545
+	// Token: 0x040015B2 RID: 5554
 	private Texture2D Texture2;
 }

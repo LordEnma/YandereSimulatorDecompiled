@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
 	// Token: 0x1700034A RID: 842
-	// (get) Token: 0x060013B2 RID: 5042 RVA: 0x000B8E87 File Offset: 0x000B7087
+	// (get) Token: 0x060013B2 RID: 5042 RVA: 0x000B8FEF File Offset: 0x000B71EF
 	private bool Double
 	{
 		get
@@ -14,7 +14,7 @@ public class DoorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013B3 RID: 5043 RVA: 0x000B8E94 File Offset: 0x000B7094
+	// Token: 0x060013B3 RID: 5043 RVA: 0x000B8FFC File Offset: 0x000B71FC
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -89,7 +89,7 @@ public class DoorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013B4 RID: 5044 RVA: 0x000B91BC File Offset: 0x000B73BC
+	// Token: 0x060013B4 RID: 5044 RVA: 0x000B9324 File Offset: 0x000B7524
 	private void Update()
 	{
 		if (this.Prompt.DistanceSqr <= 1f)
@@ -298,7 +298,7 @@ public class DoorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013B5 RID: 5045 RVA: 0x000B9BDC File Offset: 0x000B7DDC
+	// Token: 0x060013B5 RID: 5045 RVA: 0x000B9D44 File Offset: 0x000B7F44
 	public void OpenDoor()
 	{
 		if (this.Portal != null)
@@ -335,7 +335,7 @@ public class DoorScript : MonoBehaviour
 		AudioSource.PlayClipAtPoint(this.StudentManager.SlidingDoorOpen, base.transform.position);
 	}
 
-	// Token: 0x060013B6 RID: 5046 RVA: 0x000B9D1B File Offset: 0x000B7F1B
+	// Token: 0x060013B6 RID: 5046 RVA: 0x000B9E83 File Offset: 0x000B8083
 	private void LockDoor()
 	{
 		this.Open = false;
@@ -343,7 +343,7 @@ public class DoorScript : MonoBehaviour
 		this.Prompt.enabled = false;
 	}
 
-	// Token: 0x060013B7 RID: 5047 RVA: 0x000B9D3C File Offset: 0x000B7F3C
+	// Token: 0x060013B7 RID: 5047 RVA: 0x000B9EA4 File Offset: 0x000B80A4
 	private void CheckDirection()
 	{
 		this.North = false;
@@ -376,7 +376,7 @@ public class DoorScript : MonoBehaviour
 		this.Student = null;
 	}
 
-	// Token: 0x060013B8 RID: 5048 RVA: 0x000B9E80 File Offset: 0x000B8080
+	// Token: 0x060013B8 RID: 5048 RVA: 0x000B9FE8 File Offset: 0x000B81E8
 	public void CloseDoor()
 	{
 		this.Open = false;
@@ -403,7 +403,7 @@ public class DoorScript : MonoBehaviour
 		AudioSource.PlayClipAtPoint(this.StudentManager.SlidingDoorShut, base.transform.position);
 	}
 
-	// Token: 0x060013B9 RID: 5049 RVA: 0x000B9F6E File Offset: 0x000B816E
+	// Token: 0x060013B9 RID: 5049 RVA: 0x000BA0D6 File Offset: 0x000B82D6
 	private void UpdateLabel()
 	{
 		if (this.Open)
@@ -414,7 +414,7 @@ public class DoorScript : MonoBehaviour
 		this.Prompt.Label[0].text = "     Open";
 	}
 
-	// Token: 0x060013BA RID: 5050 RVA: 0x000B9FA8 File Offset: 0x000B81A8
+	// Token: 0x060013BA RID: 5050 RVA: 0x000BA110 File Offset: 0x000B8310
 	private void UpdatePlate()
 	{
 		switch (this.RoomID)
@@ -570,7 +570,7 @@ public class DoorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013BB RID: 5051 RVA: 0x000BA80C File Offset: 0x000B8A0C
+	// Token: 0x060013BB RID: 5051 RVA: 0x000BA974 File Offset: 0x000B8B74
 	private void TopicCheck()
 	{
 		if (this.RoomID > 25 && this.RoomID < 37)
@@ -763,153 +763,153 @@ public class DoorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D2D RID: 7469
+	// Token: 0x04001D36 RID: 7478
 	[SerializeField]
 	private Transform RelativeCharacter;
 
-	// Token: 0x04001D2E RID: 7470
+	// Token: 0x04001D37 RID: 7479
 	[SerializeField]
 	private YanSaveIdentifier Identifier;
 
-	// Token: 0x04001D2F RID: 7471
+	// Token: 0x04001D38 RID: 7480
 	[SerializeField]
 	private HideColliderScript HideCollider;
 
-	// Token: 0x04001D30 RID: 7472
-	public StudentScript Student;
-
-	// Token: 0x04001D31 RID: 7473
-	[SerializeField]
-	private YandereScript Yandere;
-
-	// Token: 0x04001D32 RID: 7474
-	[SerializeField]
-	private BucketScript Bucket;
-
-	// Token: 0x04001D33 RID: 7475
-	public PromptScript Prompt;
-
-	// Token: 0x04001D34 RID: 7476
-	[SerializeField]
-	private Collider[] DoorColliders;
-
-	// Token: 0x04001D35 RID: 7477
-	[SerializeField]
-	private float[] ClosedPositions;
-
-	// Token: 0x04001D36 RID: 7478
-	[SerializeField]
-	private float[] OpenPositions;
-
-	// Token: 0x04001D37 RID: 7479
-	[SerializeField]
-	private Transform[] Doors;
-
-	// Token: 0x04001D38 RID: 7480
-	[SerializeField]
-	private Texture[] Plates;
-
 	// Token: 0x04001D39 RID: 7481
-	[SerializeField]
-	private UILabel[] Labels;
+	public StudentScript Student;
 
 	// Token: 0x04001D3A RID: 7482
 	[SerializeField]
-	private float[] OriginX;
+	private YandereScript Yandere;
 
 	// Token: 0x04001D3B RID: 7483
 	[SerializeField]
-	private bool CanSetBucket;
+	private BucketScript Bucket;
 
 	// Token: 0x04001D3C RID: 7484
-	[SerializeField]
-	private bool HidingSpot;
+	public PromptScript Prompt;
 
 	// Token: 0x04001D3D RID: 7485
 	[SerializeField]
-	private bool BucketSet;
+	private Collider[] DoorColliders;
 
 	// Token: 0x04001D3E RID: 7486
 	[SerializeField]
-	private bool Swinging;
+	private float[] ClosedPositions;
 
 	// Token: 0x04001D3F RID: 7487
-	public bool Locked;
+	[SerializeField]
+	private float[] OpenPositions;
 
 	// Token: 0x04001D40 RID: 7488
 	[SerializeField]
-	private bool NoTrap;
+	private Transform[] Doors;
 
 	// Token: 0x04001D41 RID: 7489
 	[SerializeField]
-	private bool North;
+	private Texture[] Plates;
 
 	// Token: 0x04001D42 RID: 7490
-	public bool Open;
+	[SerializeField]
+	private UILabel[] Labels;
 
 	// Token: 0x04001D43 RID: 7491
 	[SerializeField]
-	private bool Near;
+	private float[] OriginX;
 
 	// Token: 0x04001D44 RID: 7492
 	[SerializeField]
-	private float ShiftNorth = -0.1f;
+	private bool CanSetBucket;
 
 	// Token: 0x04001D45 RID: 7493
 	[SerializeField]
-	private float ShiftSouth = 0.1f;
+	private bool HidingSpot;
 
 	// Token: 0x04001D46 RID: 7494
 	[SerializeField]
-	private float Rotation;
+	private bool BucketSet;
 
 	// Token: 0x04001D47 RID: 7495
-	public float TimeLimit = 2f;
+	[SerializeField]
+	private bool Swinging;
 
 	// Token: 0x04001D48 RID: 7496
-	public float Timer;
+	public bool Locked;
 
 	// Token: 0x04001D49 RID: 7497
 	[SerializeField]
-	private float TrapSwing = 12.15f;
+	private bool NoTrap;
 
 	// Token: 0x04001D4A RID: 7498
 	[SerializeField]
-	private float Swing = 150f;
+	private bool North;
 
 	// Token: 0x04001D4B RID: 7499
-	[SerializeField]
-	private Renderer Sign;
+	public bool Open;
 
 	// Token: 0x04001D4C RID: 7500
 	[SerializeField]
-	private string RoomName = string.Empty;
+	private bool Near;
 
 	// Token: 0x04001D4D RID: 7501
 	[SerializeField]
-	private string Facing = string.Empty;
+	private float ShiftNorth = -0.1f;
 
 	// Token: 0x04001D4E RID: 7502
 	[SerializeField]
-	private int RoomID;
+	private float ShiftSouth = 0.1f;
 
 	// Token: 0x04001D4F RID: 7503
 	[SerializeField]
-	private ClubType Club;
+	private float Rotation;
 
 	// Token: 0x04001D50 RID: 7504
+	public float TimeLimit = 2f;
+
+	// Token: 0x04001D51 RID: 7505
+	public float Timer;
+
+	// Token: 0x04001D52 RID: 7506
+	[SerializeField]
+	private float TrapSwing = 12.15f;
+
+	// Token: 0x04001D53 RID: 7507
+	[SerializeField]
+	private float Swing = 150f;
+
+	// Token: 0x04001D54 RID: 7508
+	[SerializeField]
+	private Renderer Sign;
+
+	// Token: 0x04001D55 RID: 7509
+	[SerializeField]
+	private string RoomName = string.Empty;
+
+	// Token: 0x04001D56 RID: 7510
+	[SerializeField]
+	private string Facing = string.Empty;
+
+	// Token: 0x04001D57 RID: 7511
+	[SerializeField]
+	private int RoomID;
+
+	// Token: 0x04001D58 RID: 7512
+	[SerializeField]
+	private ClubType Club;
+
+	// Token: 0x04001D59 RID: 7513
 	[SerializeField]
 	private bool DisableSelf;
 
-	// Token: 0x04001D51 RID: 7505
+	// Token: 0x04001D5A RID: 7514
 	private StudentManagerScript StudentManager;
 
-	// Token: 0x04001D52 RID: 7506
+	// Token: 0x04001D5B RID: 7515
 	public OcclusionPortal Portal;
 
-	// Token: 0x04001D53 RID: 7507
+	// Token: 0x04001D5C RID: 7516
 	public int DoorID;
 
-	// Token: 0x04001D54 RID: 7508
+	// Token: 0x04001D5D RID: 7517
 	public bool Initialized;
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Rain_RainFX : MonoBehaviour
 {
 	// Token: 0x17000301 RID: 769
-	// (get) Token: 0x060010D0 RID: 4304 RVA: 0x00085367 File Offset: 0x00083567
+	// (get) Token: 0x060010D0 RID: 4304 RVA: 0x000854AF File Offset: 0x000836AF
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Rain_RainFX : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010D1 RID: 4305 RVA: 0x0008539C File Offset: 0x0008359C
+	// Token: 0x060010D1 RID: 4305 RVA: 0x000854E4 File Offset: 0x000836E4
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_RainFX_Anm2") as Texture2D);
@@ -34,7 +34,7 @@ public class CameraFilterPack_Rain_RainFX : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010D2 RID: 4306 RVA: 0x000853F4 File Offset: 0x000835F4
+	// Token: 0x060010D2 RID: 4306 RVA: 0x0008553C File Offset: 0x0008373C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -79,12 +79,12 @@ public class CameraFilterPack_Rain_RainFX : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x060010D3 RID: 4307 RVA: 0x00085678 File Offset: 0x00083878
+	// Token: 0x060010D3 RID: 4307 RVA: 0x000857C0 File Offset: 0x000839C0
 	private void Update()
 	{
 	}
 
-	// Token: 0x060010D4 RID: 4308 RVA: 0x0008567A File Offset: 0x0008387A
+	// Token: 0x060010D4 RID: 4308 RVA: 0x000857C2 File Offset: 0x000839C2
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -93,36 +93,36 @@ public class CameraFilterPack_Rain_RainFX : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400155B RID: 5467
+	// Token: 0x04001564 RID: 5476
 	public Shader SCShader;
 
-	// Token: 0x0400155C RID: 5468
+	// Token: 0x04001565 RID: 5477
 	private float TimeX = 1f;
 
-	// Token: 0x0400155D RID: 5469
+	// Token: 0x04001566 RID: 5478
 	private Material SCMaterial;
 
-	// Token: 0x0400155E RID: 5470
+	// Token: 0x04001567 RID: 5479
 	[Range(-8f, 8f)]
 	public float Speed = 1f;
 
-	// Token: 0x0400155F RID: 5471
+	// Token: 0x04001568 RID: 5480
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 
-	// Token: 0x04001560 RID: 5472
+	// Token: 0x04001569 RID: 5481
 	[HideInInspector]
 	public int Count;
 
-	// Token: 0x04001561 RID: 5473
+	// Token: 0x0400156A RID: 5482
 	private Vector4[] Coord = new Vector4[4];
 
-	// Token: 0x04001562 RID: 5474
+	// Token: 0x0400156B RID: 5483
 	public static Color ChangeColorRGB;
 
-	// Token: 0x04001563 RID: 5475
+	// Token: 0x0400156C RID: 5484
 	private Texture2D Texture2;
 
-	// Token: 0x04001564 RID: 5476
+	// Token: 0x0400156D RID: 5485
 	private Texture2D Texture3;
 }

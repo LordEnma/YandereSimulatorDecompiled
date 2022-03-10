@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Drag and Drop Item")]
 public class UIDragDropItem : MonoBehaviour
 {
-	// Token: 0x06000169 RID: 361 RVA: 0x00015430 File Offset: 0x00013630
+	// Token: 0x06000169 RID: 361 RVA: 0x00015528 File Offset: 0x00013728
 	public static bool IsDragged(GameObject go)
 	{
 		using (List<UIDragDropItem>.Enumerator enumerator = UIDragDropItem.draggedItems.GetEnumerator())
@@ -22,7 +22,7 @@ public class UIDragDropItem : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x0600016A RID: 362 RVA: 0x00015490 File Offset: 0x00013690
+	// Token: 0x0600016A RID: 362 RVA: 0x00015588 File Offset: 0x00013788
 	protected virtual void Awake()
 	{
 		this.mTrans = base.transform;
@@ -30,12 +30,12 @@ public class UIDragDropItem : MonoBehaviour
 		this.mCollider2D = base.gameObject.GetComponent<Collider2D>();
 	}
 
-	// Token: 0x0600016B RID: 363 RVA: 0x000154C0 File Offset: 0x000136C0
+	// Token: 0x0600016B RID: 363 RVA: 0x000155B8 File Offset: 0x000137B8
 	protected virtual void OnEnable()
 	{
 	}
 
-	// Token: 0x0600016C RID: 364 RVA: 0x000154C4 File Offset: 0x000136C4
+	// Token: 0x0600016C RID: 364 RVA: 0x000155BC File Offset: 0x000137BC
 	protected virtual void OnDisable()
 	{
 		if (this.mDragging)
@@ -47,14 +47,14 @@ public class UIDragDropItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600016D RID: 365 RVA: 0x00015541 File Offset: 0x00013741
+	// Token: 0x0600016D RID: 365 RVA: 0x00015639 File Offset: 0x00013839
 	protected virtual void Start()
 	{
 		this.mButton = base.GetComponent<UIButton>();
 		this.mDragScrollView = base.GetComponent<UIDragScrollView>();
 	}
 
-	// Token: 0x0600016E RID: 366 RVA: 0x0001555C File Offset: 0x0001375C
+	// Token: 0x0600016E RID: 366 RVA: 0x00015654 File Offset: 0x00013854
 	protected virtual void OnPress(bool isPressed)
 	{
 		if (!this.interactable || UICamera.currentTouchID == -2 || UICamera.currentTouchID == -3)
@@ -81,7 +81,7 @@ public class UIDragDropItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600016F RID: 367 RVA: 0x000155E8 File Offset: 0x000137E8
+	// Token: 0x0600016F RID: 367 RVA: 0x000156E0 File Offset: 0x000138E0
 	protected virtual void OnClick()
 	{
 		if (UIDragDropItem.mIgnoreClick == Time.frameCount)
@@ -101,7 +101,7 @@ public class UIDragDropItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000170 RID: 368 RVA: 0x000156B8 File Offset: 0x000138B8
+	// Token: 0x06000170 RID: 368 RVA: 0x000157B0 File Offset: 0x000139B0
 	protected void OnGlobalPress(GameObject go, bool state)
 	{
 		if (state && UICamera.currentTouchID != -1)
@@ -114,7 +114,7 @@ public class UIDragDropItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000171 RID: 369 RVA: 0x00015744 File Offset: 0x00013944
+	// Token: 0x06000171 RID: 369 RVA: 0x0001583C File Offset: 0x00013A3C
 	protected void OnGlobalClick(GameObject go)
 	{
 		UIDragDropItem.mIgnoreClick = Time.frameCount;
@@ -131,7 +131,7 @@ public class UIDragDropItem : MonoBehaviour
 		UICamera.onMouseMove = (UICamera.MoveDelegate)Delegate.Remove(UICamera.onMouseMove, new UICamera.MoveDelegate(this.OnDrag));
 	}
 
-	// Token: 0x06000172 RID: 370 RVA: 0x000157D4 File Offset: 0x000139D4
+	// Token: 0x06000172 RID: 370 RVA: 0x000158CC File Offset: 0x00013ACC
 	protected virtual void Update()
 	{
 		if (this.restriction == UIDragDropItem.Restriction.PressAndHold && this.mPressed && !this.mDragging && this.mDragStartTime < RealTime.time)
@@ -140,7 +140,7 @@ public class UIDragDropItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000173 RID: 371 RVA: 0x00015804 File Offset: 0x00013A04
+	// Token: 0x06000173 RID: 371 RVA: 0x000158FC File Offset: 0x00013AFC
 	protected virtual void OnDragStart()
 	{
 		if (!this.interactable)
@@ -177,7 +177,7 @@ public class UIDragDropItem : MonoBehaviour
 		this.StartDragging();
 	}
 
-	// Token: 0x06000174 RID: 372 RVA: 0x000158A8 File Offset: 0x00013AA8
+	// Token: 0x06000174 RID: 372 RVA: 0x000159A0 File Offset: 0x00013BA0
 	public virtual UIDragDropItem StartDragging()
 	{
 		if (!this.interactable || !base.transform || !base.transform.parent)
@@ -228,12 +228,12 @@ public class UIDragDropItem : MonoBehaviour
 		return this;
 	}
 
-	// Token: 0x06000175 RID: 373 RVA: 0x00015A58 File Offset: 0x00013C58
+	// Token: 0x06000175 RID: 373 RVA: 0x00015B50 File Offset: 0x00013D50
 	protected virtual void OnClone(GameObject original)
 	{
 	}
 
-	// Token: 0x06000176 RID: 374 RVA: 0x00015A5C File Offset: 0x00013C5C
+	// Token: 0x06000176 RID: 374 RVA: 0x00015B54 File Offset: 0x00013D54
 	protected virtual void OnDrag(Vector2 delta)
 	{
 		if (!this.interactable)
@@ -252,7 +252,7 @@ public class UIDragDropItem : MonoBehaviour
 		this.OnDragDropMove(delta);
 	}
 
-	// Token: 0x06000177 RID: 375 RVA: 0x00015AC0 File Offset: 0x00013CC0
+	// Token: 0x06000177 RID: 375 RVA: 0x00015BB8 File Offset: 0x00013DB8
 	protected virtual void OnDragEnd()
 	{
 		if (!this.interactable)
@@ -266,7 +266,7 @@ public class UIDragDropItem : MonoBehaviour
 		this.StopDragging((UICamera.lastHit.collider != null) ? UICamera.lastHit.collider.gameObject : null);
 	}
 
-	// Token: 0x06000178 RID: 376 RVA: 0x00015B16 File Offset: 0x00013D16
+	// Token: 0x06000178 RID: 376 RVA: 0x00015C0E File Offset: 0x00013E0E
 	public void StopDragging(GameObject go = null)
 	{
 		if (this.mDragging)
@@ -276,7 +276,7 @@ public class UIDragDropItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000179 RID: 377 RVA: 0x00015B30 File Offset: 0x00013D30
+	// Token: 0x06000179 RID: 377 RVA: 0x00015C28 File Offset: 0x00013E28
 	protected virtual void OnDragDropStart()
 	{
 		if (!UIDragDropItem.draggedItems.Contains(this))
@@ -331,7 +331,7 @@ public class UIDragDropItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600017A RID: 378 RVA: 0x00015CB3 File Offset: 0x00013EB3
+	// Token: 0x0600017A RID: 378 RVA: 0x00015DAB File Offset: 0x00013FAB
 	protected virtual void OnDragDropMove(Vector2 delta)
 	{
 		if (this.mParent != null)
@@ -340,7 +340,7 @@ public class UIDragDropItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600017B RID: 379 RVA: 0x00015CEC File Offset: 0x00013EEC
+	// Token: 0x0600017B RID: 379 RVA: 0x00015DE4 File Offset: 0x00013FE4
 	protected virtual void OnDragDropRelease(GameObject surface)
 	{
 		if (!this.cloneOnDrag)
@@ -398,20 +398,20 @@ public class UIDragDropItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600017C RID: 380 RVA: 0x00015E92 File Offset: 0x00014092
+	// Token: 0x0600017C RID: 380 RVA: 0x00015F8A File Offset: 0x0001418A
 	protected virtual void DestroySelf()
 	{
 		NGUITools.Destroy(base.gameObject);
 	}
 
-	// Token: 0x0600017D RID: 381 RVA: 0x00015E9F File Offset: 0x0001409F
+	// Token: 0x0600017D RID: 381 RVA: 0x00015F97 File Offset: 0x00014197
 	protected virtual void OnDragDropEnd(GameObject surface)
 	{
 		UIDragDropItem.draggedItems.Remove(this);
 		this.mParent = null;
 	}
 
-	// Token: 0x0600017E RID: 382 RVA: 0x00015EB4 File Offset: 0x000140B4
+	// Token: 0x0600017E RID: 382 RVA: 0x00015FAC File Offset: 0x000141AC
 	protected void EnableDragScrollView()
 	{
 		if (this.mDragScrollView != null)
@@ -420,7 +420,7 @@ public class UIDragDropItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600017F RID: 383 RVA: 0x00015ED0 File Offset: 0x000140D0
+	// Token: 0x0600017F RID: 383 RVA: 0x00015FC8 File Offset: 0x000141C8
 	protected void OnApplicationFocus(bool focus)
 	{
 		if (!focus)
@@ -429,98 +429,98 @@ public class UIDragDropItem : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400031D RID: 797
+	// Token: 0x04000326 RID: 806
 	[Tooltip("What kind of restriction is applied to the drag & drop logic before dragging is made possible.")]
 	public UIDragDropItem.Restriction restriction;
 
-	// Token: 0x0400031E RID: 798
+	// Token: 0x04000327 RID: 807
 	[Tooltip("By default, dragging only happens while holding the mouse button / touch. If desired, you can opt to use a click-based approach instead. Note that this only works with a mouse.")]
 	public bool clickToDrag;
 
-	// Token: 0x0400031F RID: 799
+	// Token: 0x04000328 RID: 808
 	[Tooltip("Whether a copy of the item will be dragged instead of the item itself.")]
 	public bool cloneOnDrag;
 
-	// Token: 0x04000320 RID: 800
+	// Token: 0x04000329 RID: 809
 	[Tooltip("Whether this drag and drop item can be interacted with. If not, only tooltips will work.")]
 	public bool interactable = true;
 
-	// Token: 0x04000321 RID: 801
+	// Token: 0x0400032A RID: 810
 	[Tooltip("How long the user has to press on an item before the drag action activates.")]
 	[HideInInspector]
 	public float pressAndHoldDelay = 1f;
 
-	// Token: 0x04000322 RID: 802
+	// Token: 0x0400032B RID: 811
 	[NonSerialized]
 	protected Transform mTrans;
 
-	// Token: 0x04000323 RID: 803
+	// Token: 0x0400032C RID: 812
 	[NonSerialized]
 	protected Transform mParent;
 
-	// Token: 0x04000324 RID: 804
+	// Token: 0x0400032D RID: 813
 	[NonSerialized]
 	protected Collider mCollider;
 
-	// Token: 0x04000325 RID: 805
+	// Token: 0x0400032E RID: 814
 	[NonSerialized]
 	protected Collider2D mCollider2D;
 
-	// Token: 0x04000326 RID: 806
+	// Token: 0x0400032F RID: 815
 	[NonSerialized]
 	protected UIButton mButton;
 
-	// Token: 0x04000327 RID: 807
+	// Token: 0x04000330 RID: 816
 	[NonSerialized]
 	protected UIRoot mRoot;
 
-	// Token: 0x04000328 RID: 808
+	// Token: 0x04000331 RID: 817
 	[NonSerialized]
 	protected UIGrid mGrid;
 
-	// Token: 0x04000329 RID: 809
+	// Token: 0x04000332 RID: 818
 	[NonSerialized]
 	protected UITable mTable;
 
-	// Token: 0x0400032A RID: 810
+	// Token: 0x04000333 RID: 819
 	[NonSerialized]
 	protected float mDragStartTime;
 
-	// Token: 0x0400032B RID: 811
+	// Token: 0x04000334 RID: 820
 	[NonSerialized]
 	protected UIDragScrollView mDragScrollView;
 
-	// Token: 0x0400032C RID: 812
+	// Token: 0x04000335 RID: 821
 	[NonSerialized]
 	protected bool mPressed;
 
-	// Token: 0x0400032D RID: 813
+	// Token: 0x04000336 RID: 822
 	[NonSerialized]
 	protected bool mDragging;
 
-	// Token: 0x0400032E RID: 814
+	// Token: 0x04000337 RID: 823
 	[NonSerialized]
 	protected UICamera.MouseOrTouch mTouch;
 
-	// Token: 0x0400032F RID: 815
+	// Token: 0x04000338 RID: 824
 	[NonSerialized]
 	public static List<UIDragDropItem> draggedItems = new List<UIDragDropItem>();
 
-	// Token: 0x04000330 RID: 816
+	// Token: 0x04000339 RID: 825
 	[NonSerialized]
 	private static int mIgnoreClick = 0;
 
-	// Token: 0x020005C7 RID: 1479
+	// Token: 0x020005C8 RID: 1480
 	[DoNotObfuscateNGUI]
 	public enum Restriction
 	{
-		// Token: 0x04004D29 RID: 19753
+		// Token: 0x04004D46 RID: 19782
 		None,
-		// Token: 0x04004D2A RID: 19754
+		// Token: 0x04004D47 RID: 19783
 		Horizontal,
-		// Token: 0x04004D2B RID: 19755
+		// Token: 0x04004D48 RID: 19784
 		Vertical,
-		// Token: 0x04004D2C RID: 19756
+		// Token: 0x04004D49 RID: 19785
 		PressAndHold
 	}
 }

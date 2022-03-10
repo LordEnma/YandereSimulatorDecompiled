@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Color_BrightContrastSaturation : MonoBehaviour
 {
 	// Token: 0x17000260 RID: 608
-	// (get) Token: 0x06000CE5 RID: 3301 RVA: 0x00073E90 File Offset: 0x00072090
+	// (get) Token: 0x06000CE5 RID: 3301 RVA: 0x00073FD8 File Offset: 0x000721D8
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Color_BrightContrastSaturation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CE6 RID: 3302 RVA: 0x00073EC4 File Offset: 0x000720C4
+	// Token: 0x06000CE6 RID: 3302 RVA: 0x0007400C File Offset: 0x0007220C
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Color_BrightContrastSaturation");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Color_BrightContrastSaturation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CE7 RID: 3303 RVA: 0x00073EE8 File Offset: 0x000720E8
+	// Token: 0x06000CE7 RID: 3303 RVA: 0x00074030 File Offset: 0x00072230
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -53,12 +53,12 @@ public class CameraFilterPack_Color_BrightContrastSaturation : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000CE8 RID: 3304 RVA: 0x00073FCA File Offset: 0x000721CA
+	// Token: 0x06000CE8 RID: 3304 RVA: 0x00074112 File Offset: 0x00072312
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000CE9 RID: 3305 RVA: 0x00073FCC File Offset: 0x000721CC
+	// Token: 0x06000CE9 RID: 3305 RVA: 0x00074114 File Offset: 0x00072314
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -67,24 +67,24 @@ public class CameraFilterPack_Color_BrightContrastSaturation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400113A RID: 4410
+	// Token: 0x04001143 RID: 4419
 	public Shader SCShader;
 
-	// Token: 0x0400113B RID: 4411
+	// Token: 0x04001144 RID: 4420
 	private float TimeX = 1f;
 
-	// Token: 0x0400113C RID: 4412
+	// Token: 0x04001145 RID: 4421
 	private Material SCMaterial;
 
-	// Token: 0x0400113D RID: 4413
+	// Token: 0x04001146 RID: 4422
 	[Range(0f, 10f)]
 	public float Brightness = 2f;
 
-	// Token: 0x0400113E RID: 4414
+	// Token: 0x04001147 RID: 4423
 	[Range(0f, 10f)]
 	public float Saturation = 1.5f;
 
-	// Token: 0x0400113F RID: 4415
+	// Token: 0x04001148 RID: 4424
 	[Range(0f, 10f)]
 	public float Contrast = 1.5f;
 }

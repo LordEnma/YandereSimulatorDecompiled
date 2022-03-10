@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_AAA_WaterDropPro : MonoBehaviour
 {
 	// Token: 0x17000222 RID: 546
-	// (get) Token: 0x06000B32 RID: 2866 RVA: 0x0006B940 File Offset: 0x00069B40
+	// (get) Token: 0x06000B32 RID: 2866 RVA: 0x0006BA88 File Offset: 0x00069C88
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_AAA_WaterDropPro : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B33 RID: 2867 RVA: 0x0006B974 File Offset: 0x00069B74
+	// Token: 0x06000B33 RID: 2867 RVA: 0x0006BABC File Offset: 0x00069CBC
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_WaterDrop") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_AAA_WaterDropPro : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B34 RID: 2868 RVA: 0x0006B9AC File Offset: 0x00069BAC
+	// Token: 0x06000B34 RID: 2868 RVA: 0x0006BAF4 File Offset: 0x00069CF4
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -55,12 +55,12 @@ public class CameraFilterPack_AAA_WaterDropPro : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B35 RID: 2869 RVA: 0x0006BA8D File Offset: 0x00069C8D
+	// Token: 0x06000B35 RID: 2869 RVA: 0x0006BBD5 File Offset: 0x00069DD5
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B36 RID: 2870 RVA: 0x0006BA8F File Offset: 0x00069C8F
+	// Token: 0x06000B36 RID: 2870 RVA: 0x0006BBD7 File Offset: 0x00069DD7
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -69,31 +69,31 @@ public class CameraFilterPack_AAA_WaterDropPro : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000F37 RID: 3895
+	// Token: 0x04000F40 RID: 3904
 	public Shader SCShader;
 
-	// Token: 0x04000F38 RID: 3896
+	// Token: 0x04000F41 RID: 3905
 	private float TimeX = 1f;
 
-	// Token: 0x04000F39 RID: 3897
+	// Token: 0x04000F42 RID: 3906
 	[Range(8f, 64f)]
 	public float Distortion = 8f;
 
-	// Token: 0x04000F3A RID: 3898
+	// Token: 0x04000F43 RID: 3907
 	[Range(0f, 7f)]
 	public float SizeX = 1f;
 
-	// Token: 0x04000F3B RID: 3899
+	// Token: 0x04000F44 RID: 3908
 	[Range(0f, 7f)]
 	public float SizeY = 0.5f;
 
-	// Token: 0x04000F3C RID: 3900
+	// Token: 0x04000F45 RID: 3909
 	[Range(0f, 10f)]
 	public float Speed = 1f;
 
-	// Token: 0x04000F3D RID: 3901
+	// Token: 0x04000F46 RID: 3910
 	private Material SCMaterial;
 
-	// Token: 0x04000F3E RID: 3902
+	// Token: 0x04000F47 RID: 3911
 	private Texture2D Texture2;
 }

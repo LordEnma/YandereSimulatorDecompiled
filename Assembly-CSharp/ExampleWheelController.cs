@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020000B8 RID: 184
 public class ExampleWheelController : MonoBehaviour
 {
-	// Token: 0x06000963 RID: 2403 RVA: 0x0004B2CF File Offset: 0x000494CF
+	// Token: 0x06000963 RID: 2403 RVA: 0x0004B3C7 File Offset: 0x000495C7
 	private void Start()
 	{
 		this.m_Rigidbody = base.GetComponent<Rigidbody>();
 		this.m_Rigidbody.maxAngularVelocity = 100f;
 	}
 
-	// Token: 0x06000964 RID: 2404 RVA: 0x0004B2F0 File Offset: 0x000494F0
+	// Token: 0x06000964 RID: 2404 RVA: 0x0004B3E8 File Offset: 0x000495E8
 	private void Update()
 	{
 		if (Input.GetKey(KeyCode.UpArrow))
@@ -29,19 +29,19 @@ public class ExampleWheelController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000801 RID: 2049
+	// Token: 0x0400080A RID: 2058
 	public float acceleration;
 
-	// Token: 0x04000802 RID: 2050
+	// Token: 0x0400080B RID: 2059
 	public Renderer motionVectorRenderer;
 
-	// Token: 0x04000803 RID: 2051
+	// Token: 0x0400080C RID: 2060
 	private Rigidbody m_Rigidbody;
 
-	// Token: 0x02000646 RID: 1606
+	// Token: 0x02000647 RID: 1607
 	private static class Uniforms
 	{
-		// Token: 0x04004E9E RID: 20126
+		// Token: 0x04004EBB RID: 20155
 		internal static readonly int _MotionAmount = Shader.PropertyToID("_MotionAmount");
 	}
 }

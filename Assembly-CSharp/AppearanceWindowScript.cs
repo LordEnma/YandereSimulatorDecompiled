@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000CD RID: 205
 public class AppearanceWindowScript : MonoBehaviour
 {
-	// Token: 0x060009C9 RID: 2505 RVA: 0x00051428 File Offset: 0x0004F628
+	// Token: 0x060009C9 RID: 2505 RVA: 0x00051520 File Offset: 0x0004F720
 	private void Start()
 	{
 		this.Window.localScale = Vector3.zero;
@@ -14,7 +14,7 @@ public class AppearanceWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009CA RID: 2506 RVA: 0x00051468 File Offset: 0x0004F668
+	// Token: 0x060009CA RID: 2506 RVA: 0x00051560 File Offset: 0x0004F760
 	private void Update()
 	{
 		if (!this.Show)
@@ -199,7 +199,7 @@ public class AppearanceWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009CB RID: 2507 RVA: 0x000519E4 File Offset: 0x0004FBE4
+	// Token: 0x060009CB RID: 2507 RVA: 0x00051ADC File Offset: 0x0004FCDC
 	private void UpdateHighlight()
 	{
 		if (this.Selected < 1)
@@ -213,7 +213,7 @@ public class AppearanceWindowScript : MonoBehaviour
 		this.Highlight.transform.localPosition = new Vector3(this.Highlight.transform.localPosition.x, 300f - 50f * (float)this.Selected, this.Highlight.transform.localPosition.z);
 	}
 
-	// Token: 0x060009CC RID: 2508 RVA: 0x00051A67 File Offset: 0x0004FC67
+	// Token: 0x060009CC RID: 2508 RVA: 0x00051B5F File Offset: 0x0004FD5F
 	private void Exit()
 	{
 		this.Selected = 1;
@@ -223,33 +223,33 @@ public class AppearanceWindowScript : MonoBehaviour
 		this.Show = false;
 	}
 
-	// Token: 0x04000A28 RID: 2600
+	// Token: 0x04000A31 RID: 2609
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000A29 RID: 2601
+	// Token: 0x04000A32 RID: 2610
 	public InputManagerScript InputManager;
 
-	// Token: 0x04000A2A RID: 2602
+	// Token: 0x04000A33 RID: 2611
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04000A2B RID: 2603
+	// Token: 0x04000A34 RID: 2612
 	public YandereScript Yandere;
 
-	// Token: 0x04000A2C RID: 2604
+	// Token: 0x04000A35 RID: 2613
 	public Transform Highlight;
 
-	// Token: 0x04000A2D RID: 2605
+	// Token: 0x04000A36 RID: 2614
 	public Transform Window;
 
-	// Token: 0x04000A2E RID: 2606
+	// Token: 0x04000A37 RID: 2615
 	public UISprite[] Checks;
 
-	// Token: 0x04000A2F RID: 2607
+	// Token: 0x04000A38 RID: 2616
 	public int Selected;
 
-	// Token: 0x04000A30 RID: 2608
+	// Token: 0x04000A39 RID: 2617
 	public bool Ready;
 
-	// Token: 0x04000A31 RID: 2609
+	// Token: 0x04000A3A RID: 2618
 	public bool Show;
 }

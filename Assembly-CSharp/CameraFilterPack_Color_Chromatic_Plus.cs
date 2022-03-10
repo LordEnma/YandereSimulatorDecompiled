@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Color_Chromatic_Plus : MonoBehaviour
 {
 	// Token: 0x17000262 RID: 610
-	// (get) Token: 0x06000CF1 RID: 3313 RVA: 0x00074160 File Offset: 0x00072360
+	// (get) Token: 0x06000CF1 RID: 3313 RVA: 0x000742A8 File Offset: 0x000724A8
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Color_Chromatic_Plus : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CF2 RID: 3314 RVA: 0x00074194 File Offset: 0x00072394
+	// Token: 0x06000CF2 RID: 3314 RVA: 0x000742DC File Offset: 0x000724DC
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Color_Chromatic_Plus");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Color_Chromatic_Plus : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CF3 RID: 3315 RVA: 0x000741B8 File Offset: 0x000723B8
+	// Token: 0x06000CF3 RID: 3315 RVA: 0x00074300 File Offset: 0x00072500
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -53,12 +53,12 @@ public class CameraFilterPack_Color_Chromatic_Plus : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000CF4 RID: 3316 RVA: 0x0007429A File Offset: 0x0007249A
+	// Token: 0x06000CF4 RID: 3316 RVA: 0x000743E2 File Offset: 0x000725E2
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000CF5 RID: 3317 RVA: 0x0007429C File Offset: 0x0007249C
+	// Token: 0x06000CF5 RID: 3317 RVA: 0x000743E4 File Offset: 0x000725E4
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -67,24 +67,24 @@ public class CameraFilterPack_Color_Chromatic_Plus : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001144 RID: 4420
+	// Token: 0x0400114D RID: 4429
 	public Shader SCShader;
 
-	// Token: 0x04001145 RID: 4421
+	// Token: 0x0400114E RID: 4430
 	private float TimeX = 1f;
 
-	// Token: 0x04001146 RID: 4422
+	// Token: 0x0400114F RID: 4431
 	private Material SCMaterial;
 
-	// Token: 0x04001147 RID: 4423
+	// Token: 0x04001150 RID: 4432
 	[Range(0f, 0.8f)]
 	public float Size = 0.55f;
 
-	// Token: 0x04001148 RID: 4424
+	// Token: 0x04001151 RID: 4433
 	[Range(0.01f, 0.4f)]
 	public float Smooth = 0.26f;
 
-	// Token: 0x04001149 RID: 4425
+	// Token: 0x04001152 RID: 4434
 	[Range(-0.02f, 0.02f)]
 	public float Offset = 0.005f;
 }

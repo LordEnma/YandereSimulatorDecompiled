@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blur_Movie : MonoBehaviour
 {
 	// Token: 0x17000252 RID: 594
-	// (get) Token: 0x06000C91 RID: 3217 RVA: 0x0007257D File Offset: 0x0007077D
+	// (get) Token: 0x06000C91 RID: 3217 RVA: 0x000726C5 File Offset: 0x000708C5
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blur_Movie : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C92 RID: 3218 RVA: 0x000725B1 File Offset: 0x000707B1
+	// Token: 0x06000C92 RID: 3218 RVA: 0x000726F9 File Offset: 0x000708F9
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Blur_Movie");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Blur_Movie : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C93 RID: 3219 RVA: 0x000725D4 File Offset: 0x000707D4
+	// Token: 0x06000C93 RID: 3219 RVA: 0x0007271C File Offset: 0x0007091C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (!(this.SCShader != null))
@@ -63,12 +63,12 @@ public class CameraFilterPack_Blur_Movie : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture, this.material);
 	}
 
-	// Token: 0x06000C94 RID: 3220 RVA: 0x000726E6 File Offset: 0x000708E6
+	// Token: 0x06000C94 RID: 3220 RVA: 0x0007282E File Offset: 0x00070A2E
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000C95 RID: 3221 RVA: 0x000726E8 File Offset: 0x000708E8
+	// Token: 0x06000C95 RID: 3221 RVA: 0x00072830 File Offset: 0x00070A30
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -77,24 +77,24 @@ public class CameraFilterPack_Blur_Movie : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040010D8 RID: 4312
+	// Token: 0x040010E1 RID: 4321
 	public Shader SCShader;
 
-	// Token: 0x040010D9 RID: 4313
+	// Token: 0x040010E2 RID: 4322
 	private float TimeX = 1f;
 
-	// Token: 0x040010DA RID: 4314
+	// Token: 0x040010E3 RID: 4323
 	private Material SCMaterial;
 
-	// Token: 0x040010DB RID: 4315
+	// Token: 0x040010E4 RID: 4324
 	[Range(0f, 1000f)]
 	public float Radius = 150f;
 
-	// Token: 0x040010DC RID: 4316
+	// Token: 0x040010E5 RID: 4325
 	[Range(0f, 1000f)]
 	public float Factor = 200f;
 
-	// Token: 0x040010DD RID: 4317
+	// Token: 0x040010E6 RID: 4326
 	[Range(1f, 8f)]
 	public int FastFilter = 2;
 }

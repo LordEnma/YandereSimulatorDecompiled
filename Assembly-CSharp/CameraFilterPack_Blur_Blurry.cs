@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blur_Blurry : MonoBehaviour
 {
 	// Token: 0x1700024D RID: 589
-	// (get) Token: 0x06000C73 RID: 3187 RVA: 0x00071E1C File Offset: 0x0007001C
+	// (get) Token: 0x06000C73 RID: 3187 RVA: 0x00071F64 File Offset: 0x00070164
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blur_Blurry : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C74 RID: 3188 RVA: 0x00071E50 File Offset: 0x00070050
+	// Token: 0x06000C74 RID: 3188 RVA: 0x00071F98 File Offset: 0x00070198
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Blur_Blurry");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Blur_Blurry : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C75 RID: 3189 RVA: 0x00071E74 File Offset: 0x00070074
+	// Token: 0x06000C75 RID: 3189 RVA: 0x00071FBC File Offset: 0x000701BC
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (!(this.SCShader != null))
@@ -63,12 +63,12 @@ public class CameraFilterPack_Blur_Blurry : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture, this.material);
 	}
 
-	// Token: 0x06000C76 RID: 3190 RVA: 0x00071F74 File Offset: 0x00070174
+	// Token: 0x06000C76 RID: 3190 RVA: 0x000720BC File Offset: 0x000702BC
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000C77 RID: 3191 RVA: 0x00071F76 File Offset: 0x00070176
+	// Token: 0x06000C77 RID: 3191 RVA: 0x000720BE File Offset: 0x000702BE
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -77,20 +77,20 @@ public class CameraFilterPack_Blur_Blurry : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040010BE RID: 4286
+	// Token: 0x040010C7 RID: 4295
 	public Shader SCShader;
 
-	// Token: 0x040010BF RID: 4287
+	// Token: 0x040010C8 RID: 4296
 	private float TimeX = 1f;
 
-	// Token: 0x040010C0 RID: 4288
+	// Token: 0x040010C9 RID: 4297
 	private Material SCMaterial;
 
-	// Token: 0x040010C1 RID: 4289
+	// Token: 0x040010CA RID: 4298
 	[Range(0f, 20f)]
 	public float Amount = 2f;
 
-	// Token: 0x040010C2 RID: 4290
+	// Token: 0x040010CB RID: 4299
 	[Range(1f, 8f)]
 	public int FastFilter = 2;
 }

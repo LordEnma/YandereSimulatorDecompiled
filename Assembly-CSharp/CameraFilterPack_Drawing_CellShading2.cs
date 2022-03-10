@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Drawing_CellShading2 : MonoBehaviour
 {
 	// Token: 0x1700028C RID: 652
-	// (get) Token: 0x06000DEF RID: 3567 RVA: 0x0007836A File Offset: 0x0007656A
+	// (get) Token: 0x06000DEF RID: 3567 RVA: 0x000784B2 File Offset: 0x000766B2
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Drawing_CellShading2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DF0 RID: 3568 RVA: 0x0007839E File Offset: 0x0007659E
+	// Token: 0x06000DF0 RID: 3568 RVA: 0x000784E6 File Offset: 0x000766E6
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Drawing_CellShading2");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Drawing_CellShading2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DF1 RID: 3569 RVA: 0x000783C0 File Offset: 0x000765C0
+	// Token: 0x06000DF1 RID: 3569 RVA: 0x00078508 File Offset: 0x00076708
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -53,12 +53,12 @@ public class CameraFilterPack_Drawing_CellShading2 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000DF2 RID: 3570 RVA: 0x0007849B File Offset: 0x0007669B
+	// Token: 0x06000DF2 RID: 3570 RVA: 0x000785E3 File Offset: 0x000767E3
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000DF3 RID: 3571 RVA: 0x0007849D File Offset: 0x0007669D
+	// Token: 0x06000DF3 RID: 3571 RVA: 0x000785E5 File Offset: 0x000767E5
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -67,24 +67,24 @@ public class CameraFilterPack_Drawing_CellShading2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001238 RID: 4664
+	// Token: 0x04001241 RID: 4673
 	public Shader SCShader;
 
-	// Token: 0x04001239 RID: 4665
+	// Token: 0x04001242 RID: 4674
 	private float TimeX = 1f;
 
-	// Token: 0x0400123A RID: 4666
+	// Token: 0x04001243 RID: 4675
 	private Material SCMaterial;
 
-	// Token: 0x0400123B RID: 4667
+	// Token: 0x04001244 RID: 4676
 	[Range(0f, 1f)]
 	public float EdgeSize = 0.1f;
 
-	// Token: 0x0400123C RID: 4668
+	// Token: 0x04001245 RID: 4677
 	[Range(0f, 10f)]
 	public float ColorLevel = 4f;
 
-	// Token: 0x0400123D RID: 4669
+	// Token: 0x04001246 RID: 4678
 	[Range(0f, 1f)]
 	public float Blur = 1f;
 }

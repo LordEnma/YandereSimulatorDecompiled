@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Drawing_Halftone : MonoBehaviour
 {
 	// Token: 0x17000291 RID: 657
-	// (get) Token: 0x06000E0D RID: 3597 RVA: 0x00078AAD File Offset: 0x00076CAD
+	// (get) Token: 0x06000E0D RID: 3597 RVA: 0x00078BF5 File Offset: 0x00076DF5
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Drawing_Halftone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E0E RID: 3598 RVA: 0x00078AE1 File Offset: 0x00076CE1
+	// Token: 0x06000E0E RID: 3598 RVA: 0x00078C29 File Offset: 0x00076E29
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Drawing_Halftone");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Drawing_Halftone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E0F RID: 3599 RVA: 0x00078B04 File Offset: 0x00076D04
+	// Token: 0x06000E0F RID: 3599 RVA: 0x00078C4C File Offset: 0x00076E4C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -51,12 +51,12 @@ public class CameraFilterPack_Drawing_Halftone : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000E10 RID: 3600 RVA: 0x00078BA0 File Offset: 0x00076DA0
+	// Token: 0x06000E10 RID: 3600 RVA: 0x00078CE8 File Offset: 0x00076EE8
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000E11 RID: 3601 RVA: 0x00078BA2 File Offset: 0x00076DA2
+	// Token: 0x06000E11 RID: 3601 RVA: 0x00078CEA File Offset: 0x00076EEA
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -65,20 +65,20 @@ public class CameraFilterPack_Drawing_Halftone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001255 RID: 4693
+	// Token: 0x0400125E RID: 4702
 	public Shader SCShader;
 
-	// Token: 0x04001256 RID: 4694
+	// Token: 0x0400125F RID: 4703
 	private float TimeX = 1f;
 
-	// Token: 0x04001257 RID: 4695
+	// Token: 0x04001260 RID: 4704
 	private Material SCMaterial;
 
-	// Token: 0x04001258 RID: 4696
+	// Token: 0x04001261 RID: 4705
 	[Range(0f, 1f)]
 	public float Threshold = 0.6f;
 
-	// Token: 0x04001259 RID: 4697
+	// Token: 0x04001262 RID: 4706
 	[Range(1f, 16f)]
 	public float DotSize = 4f;
 }

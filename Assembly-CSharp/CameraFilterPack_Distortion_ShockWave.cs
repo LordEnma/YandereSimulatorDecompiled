@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Distortion_ShockWave : MonoBehaviour
 {
 	// Token: 0x17000284 RID: 644
-	// (get) Token: 0x06000DBF RID: 3519 RVA: 0x00077629 File Offset: 0x00075829
+	// (get) Token: 0x06000DBF RID: 3519 RVA: 0x00077771 File Offset: 0x00075971
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Distortion_ShockWave : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DC0 RID: 3520 RVA: 0x0007765D File Offset: 0x0007585D
+	// Token: 0x06000DC0 RID: 3520 RVA: 0x000777A5 File Offset: 0x000759A5
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Distortion_ShockWave");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Distortion_ShockWave : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DC1 RID: 3521 RVA: 0x00077680 File Offset: 0x00075880
+	// Token: 0x06000DC1 RID: 3521 RVA: 0x000777C8 File Offset: 0x000759C8
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Distortion_ShockWave : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000DC2 RID: 3522 RVA: 0x00077778 File Offset: 0x00075978
+	// Token: 0x06000DC2 RID: 3522 RVA: 0x000778C0 File Offset: 0x00075AC0
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000DC3 RID: 3523 RVA: 0x0007777A File Offset: 0x0007597A
+	// Token: 0x06000DC3 RID: 3523 RVA: 0x000778C2 File Offset: 0x00075AC2
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,28 +68,28 @@ public class CameraFilterPack_Distortion_ShockWave : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040011FF RID: 4607
+	// Token: 0x04001208 RID: 4616
 	public Shader SCShader;
 
-	// Token: 0x04001200 RID: 4608
+	// Token: 0x04001209 RID: 4617
 	private float TimeX = 1f;
 
-	// Token: 0x04001201 RID: 4609
+	// Token: 0x0400120A RID: 4618
 	private Material SCMaterial;
 
-	// Token: 0x04001202 RID: 4610
+	// Token: 0x0400120B RID: 4619
 	[Range(-1.5f, 1.5f)]
 	public float PosX = 0.5f;
 
-	// Token: 0x04001203 RID: 4611
+	// Token: 0x0400120C RID: 4620
 	[Range(-1.5f, 1.5f)]
 	public float PosY = 0.5f;
 
-	// Token: 0x04001204 RID: 4612
+	// Token: 0x0400120D RID: 4621
 	[Range(0f, 10f)]
 	public float Speed = 1f;
 
-	// Token: 0x04001205 RID: 4613
+	// Token: 0x0400120E RID: 4622
 	[Range(0f, 10f)]
 	private float Size = 1f;
 }

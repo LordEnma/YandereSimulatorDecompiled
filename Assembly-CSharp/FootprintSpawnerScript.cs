@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002D2 RID: 722
 public class FootprintSpawnerScript : MonoBehaviour
 {
-	// Token: 0x060014B6 RID: 5302 RVA: 0x000CBB64 File Offset: 0x000C9D64
+	// Token: 0x060014B6 RID: 5302 RVA: 0x000CBCE0 File Offset: 0x000C9EE0
 	private void Start()
 	{
 		if (this.MyAudio == null)
@@ -20,7 +20,7 @@ public class FootprintSpawnerScript : MonoBehaviour
 		this.SWStairs = this.Yandere.StudentManager.SWStairs;
 	}
 
-	// Token: 0x060014B7 RID: 5303 RVA: 0x000CBC28 File Offset: 0x000C9E28
+	// Token: 0x060014B7 RID: 5303 RVA: 0x000CBDA4 File Offset: 0x000C9FA4
 	private void Update()
 	{
 		if (!this.FootUp)
@@ -92,75 +92,75 @@ public class FootprintSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002067 RID: 8295
+	// Token: 0x04002071 RID: 8305
 	public YandereScript Yandere;
 
-	// Token: 0x04002068 RID: 8296
+	// Token: 0x04002072 RID: 8306
 	public GameObject BloodyFootprint;
 
-	// Token: 0x04002069 RID: 8297
+	// Token: 0x04002073 RID: 8307
 	public AudioClip[] WalkFootsteps;
 
-	// Token: 0x0400206A RID: 8298
+	// Token: 0x04002074 RID: 8308
 	public AudioClip[] RunFootsteps;
 
-	// Token: 0x0400206B RID: 8299
+	// Token: 0x04002075 RID: 8309
 	public AudioClip[] WalkBareFootsteps;
 
-	// Token: 0x0400206C RID: 8300
+	// Token: 0x04002076 RID: 8310
 	public AudioClip[] RunBareFootsteps;
 
-	// Token: 0x0400206D RID: 8301
+	// Token: 0x04002077 RID: 8311
 	public AudioSource MyAudio;
 
-	// Token: 0x0400206E RID: 8302
+	// Token: 0x04002078 RID: 8312
 	public Transform BloodParent;
 
-	// Token: 0x0400206F RID: 8303
+	// Token: 0x04002079 RID: 8313
 	public Collider MyCollider;
 
-	// Token: 0x04002070 RID: 8304
+	// Token: 0x0400207A RID: 8314
 	public Collider GardenArea;
 
-	// Token: 0x04002071 RID: 8305
+	// Token: 0x0400207B RID: 8315
 	public Collider PoolStairs;
 
-	// Token: 0x04002072 RID: 8306
+	// Token: 0x0400207C RID: 8316
 	public Collider TreeArea;
 
-	// Token: 0x04002073 RID: 8307
+	// Token: 0x0400207D RID: 8317
 	public Collider NEStairs;
 
-	// Token: 0x04002074 RID: 8308
+	// Token: 0x0400207E RID: 8318
 	public Collider NWStairs;
 
-	// Token: 0x04002075 RID: 8309
+	// Token: 0x0400207F RID: 8319
 	public Collider SEStairs;
 
-	// Token: 0x04002076 RID: 8310
+	// Token: 0x04002080 RID: 8320
 	public Collider SWStairs;
 
-	// Token: 0x04002077 RID: 8311
+	// Token: 0x04002081 RID: 8321
 	public bool Debugging;
 
-	// Token: 0x04002078 RID: 8312
+	// Token: 0x04002082 RID: 8322
 	public bool CanSpawn;
 
-	// Token: 0x04002079 RID: 8313
+	// Token: 0x04002083 RID: 8323
 	public bool FootUp;
 
-	// Token: 0x0400207A RID: 8314
+	// Token: 0x04002084 RID: 8324
 	public float DownThreshold;
 
-	// Token: 0x0400207B RID: 8315
+	// Token: 0x04002085 RID: 8325
 	public float UpThreshold;
 
-	// Token: 0x0400207C RID: 8316
+	// Token: 0x04002086 RID: 8326
 	public float Height;
 
-	// Token: 0x0400207D RID: 8317
+	// Token: 0x04002087 RID: 8327
 	public int Bloodiness;
 
-	// Token: 0x0400207E RID: 8318
+	// Token: 0x04002088 RID: 8328
 	public int Collisions;
 }

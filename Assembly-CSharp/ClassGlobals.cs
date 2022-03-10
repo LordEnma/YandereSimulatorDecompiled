@@ -5,8 +5,8 @@ using UnityEngine;
 public static class ClassGlobals
 {
 	// Token: 0x17000370 RID: 880
-	// (get) Token: 0x0600152D RID: 5421 RVA: 0x000D88EC File Offset: 0x000D6AEC
-	// (set) Token: 0x0600152E RID: 5422 RVA: 0x000D891C File Offset: 0x000D6B1C
+	// (get) Token: 0x0600152D RID: 5421 RVA: 0x000D8C1C File Offset: 0x000D6E1C
+	// (set) Token: 0x0600152E RID: 5422 RVA: 0x000D8C4C File Offset: 0x000D6E4C
 	public static int Biology
 	{
 		get
@@ -20,8 +20,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x17000371 RID: 881
-	// (get) Token: 0x0600152F RID: 5423 RVA: 0x000D894C File Offset: 0x000D6B4C
-	// (set) Token: 0x06001530 RID: 5424 RVA: 0x000D897C File Offset: 0x000D6B7C
+	// (get) Token: 0x0600152F RID: 5423 RVA: 0x000D8C7C File Offset: 0x000D6E7C
+	// (set) Token: 0x06001530 RID: 5424 RVA: 0x000D8CAC File Offset: 0x000D6EAC
 	public static int BiologyBonus
 	{
 		get
@@ -35,8 +35,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x17000372 RID: 882
-	// (get) Token: 0x06001531 RID: 5425 RVA: 0x000D89AC File Offset: 0x000D6BAC
-	// (set) Token: 0x06001532 RID: 5426 RVA: 0x000D89DC File Offset: 0x000D6BDC
+	// (get) Token: 0x06001531 RID: 5425 RVA: 0x000D8CDC File Offset: 0x000D6EDC
+	// (set) Token: 0x06001532 RID: 5426 RVA: 0x000D8D0C File Offset: 0x000D6F0C
 	public static int BiologyGrade
 	{
 		get
@@ -50,8 +50,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x17000373 RID: 883
-	// (get) Token: 0x06001533 RID: 5427 RVA: 0x000D8A0C File Offset: 0x000D6C0C
-	// (set) Token: 0x06001534 RID: 5428 RVA: 0x000D8A3C File Offset: 0x000D6C3C
+	// (get) Token: 0x06001533 RID: 5427 RVA: 0x000D8D3C File Offset: 0x000D6F3C
+	// (set) Token: 0x06001534 RID: 5428 RVA: 0x000D8D6C File Offset: 0x000D6F6C
 	public static int Chemistry
 	{
 		get
@@ -65,8 +65,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x17000374 RID: 884
-	// (get) Token: 0x06001535 RID: 5429 RVA: 0x000D8A6C File Offset: 0x000D6C6C
-	// (set) Token: 0x06001536 RID: 5430 RVA: 0x000D8A9C File Offset: 0x000D6C9C
+	// (get) Token: 0x06001535 RID: 5429 RVA: 0x000D8D9C File Offset: 0x000D6F9C
+	// (set) Token: 0x06001536 RID: 5430 RVA: 0x000D8DCC File Offset: 0x000D6FCC
 	public static int ChemistryBonus
 	{
 		get
@@ -80,8 +80,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x17000375 RID: 885
-	// (get) Token: 0x06001537 RID: 5431 RVA: 0x000D8ACC File Offset: 0x000D6CCC
-	// (set) Token: 0x06001538 RID: 5432 RVA: 0x000D8AFC File Offset: 0x000D6CFC
+	// (get) Token: 0x06001537 RID: 5431 RVA: 0x000D8DFC File Offset: 0x000D6FFC
+	// (set) Token: 0x06001538 RID: 5432 RVA: 0x000D8E2C File Offset: 0x000D702C
 	public static int ChemistryGrade
 	{
 		get
@@ -95,8 +95,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x17000376 RID: 886
-	// (get) Token: 0x06001539 RID: 5433 RVA: 0x000D8B2C File Offset: 0x000D6D2C
-	// (set) Token: 0x0600153A RID: 5434 RVA: 0x000D8B5C File Offset: 0x000D6D5C
+	// (get) Token: 0x06001539 RID: 5433 RVA: 0x000D8E5C File Offset: 0x000D705C
+	// (set) Token: 0x0600153A RID: 5434 RVA: 0x000D8E8C File Offset: 0x000D708C
 	public static int Language
 	{
 		get
@@ -110,8 +110,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x17000377 RID: 887
-	// (get) Token: 0x0600153B RID: 5435 RVA: 0x000D8B8C File Offset: 0x000D6D8C
-	// (set) Token: 0x0600153C RID: 5436 RVA: 0x000D8BBC File Offset: 0x000D6DBC
+	// (get) Token: 0x0600153B RID: 5435 RVA: 0x000D8EBC File Offset: 0x000D70BC
+	// (set) Token: 0x0600153C RID: 5436 RVA: 0x000D8EEC File Offset: 0x000D70EC
 	public static int LanguageBonus
 	{
 		get
@@ -125,8 +125,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x17000378 RID: 888
-	// (get) Token: 0x0600153D RID: 5437 RVA: 0x000D8BEC File Offset: 0x000D6DEC
-	// (set) Token: 0x0600153E RID: 5438 RVA: 0x000D8C1C File Offset: 0x000D6E1C
+	// (get) Token: 0x0600153D RID: 5437 RVA: 0x000D8F1C File Offset: 0x000D711C
+	// (set) Token: 0x0600153E RID: 5438 RVA: 0x000D8F4C File Offset: 0x000D714C
 	public static int LanguageGrade
 	{
 		get
@@ -140,8 +140,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x17000379 RID: 889
-	// (get) Token: 0x0600153F RID: 5439 RVA: 0x000D8C4C File Offset: 0x000D6E4C
-	// (set) Token: 0x06001540 RID: 5440 RVA: 0x000D8C7C File Offset: 0x000D6E7C
+	// (get) Token: 0x0600153F RID: 5439 RVA: 0x000D8F7C File Offset: 0x000D717C
+	// (set) Token: 0x06001540 RID: 5440 RVA: 0x000D8FAC File Offset: 0x000D71AC
 	public static int Physical
 	{
 		get
@@ -155,8 +155,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x1700037A RID: 890
-	// (get) Token: 0x06001541 RID: 5441 RVA: 0x000D8CAC File Offset: 0x000D6EAC
-	// (set) Token: 0x06001542 RID: 5442 RVA: 0x000D8CDC File Offset: 0x000D6EDC
+	// (get) Token: 0x06001541 RID: 5441 RVA: 0x000D8FDC File Offset: 0x000D71DC
+	// (set) Token: 0x06001542 RID: 5442 RVA: 0x000D900C File Offset: 0x000D720C
 	public static int PhysicalBonus
 	{
 		get
@@ -170,8 +170,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x1700037B RID: 891
-	// (get) Token: 0x06001543 RID: 5443 RVA: 0x000D8D0C File Offset: 0x000D6F0C
-	// (set) Token: 0x06001544 RID: 5444 RVA: 0x000D8D3C File Offset: 0x000D6F3C
+	// (get) Token: 0x06001543 RID: 5443 RVA: 0x000D903C File Offset: 0x000D723C
+	// (set) Token: 0x06001544 RID: 5444 RVA: 0x000D906C File Offset: 0x000D726C
 	public static int PhysicalGrade
 	{
 		get
@@ -185,8 +185,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x1700037C RID: 892
-	// (get) Token: 0x06001545 RID: 5445 RVA: 0x000D8D6C File Offset: 0x000D6F6C
-	// (set) Token: 0x06001546 RID: 5446 RVA: 0x000D8D9C File Offset: 0x000D6F9C
+	// (get) Token: 0x06001545 RID: 5445 RVA: 0x000D909C File Offset: 0x000D729C
+	// (set) Token: 0x06001546 RID: 5446 RVA: 0x000D90CC File Offset: 0x000D72CC
 	public static int Psychology
 	{
 		get
@@ -200,8 +200,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x1700037D RID: 893
-	// (get) Token: 0x06001547 RID: 5447 RVA: 0x000D8DCC File Offset: 0x000D6FCC
-	// (set) Token: 0x06001548 RID: 5448 RVA: 0x000D8DFC File Offset: 0x000D6FFC
+	// (get) Token: 0x06001547 RID: 5447 RVA: 0x000D90FC File Offset: 0x000D72FC
+	// (set) Token: 0x06001548 RID: 5448 RVA: 0x000D912C File Offset: 0x000D732C
 	public static int PsychologyBonus
 	{
 		get
@@ -215,8 +215,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x1700037E RID: 894
-	// (get) Token: 0x06001549 RID: 5449 RVA: 0x000D8E2C File Offset: 0x000D702C
-	// (set) Token: 0x0600154A RID: 5450 RVA: 0x000D8E5C File Offset: 0x000D705C
+	// (get) Token: 0x06001549 RID: 5449 RVA: 0x000D915C File Offset: 0x000D735C
+	// (set) Token: 0x0600154A RID: 5450 RVA: 0x000D918C File Offset: 0x000D738C
 	public static int PsychologyGrade
 	{
 		get
@@ -230,8 +230,8 @@ public static class ClassGlobals
 	}
 
 	// Token: 0x1700037F RID: 895
-	// (get) Token: 0x0600154B RID: 5451 RVA: 0x000D8E8C File Offset: 0x000D708C
-	// (set) Token: 0x0600154C RID: 5452 RVA: 0x000D8EBC File Offset: 0x000D70BC
+	// (get) Token: 0x0600154B RID: 5451 RVA: 0x000D91BC File Offset: 0x000D73BC
+	// (set) Token: 0x0600154C RID: 5452 RVA: 0x000D91EC File Offset: 0x000D73EC
 	public static int BonusStudyPoints
 	{
 		get
@@ -244,7 +244,7 @@ public static class ClassGlobals
 		}
 	}
 
-	// Token: 0x0600154D RID: 5453 RVA: 0x000D8EEC File Offset: 0x000D70EC
+	// Token: 0x0600154D RID: 5453 RVA: 0x000D921C File Offset: 0x000D741C
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Biology");
@@ -265,51 +265,51 @@ public static class ClassGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_BonusStudyPoints");
 	}
 
-	// Token: 0x040021A5 RID: 8613
+	// Token: 0x040021B9 RID: 8633
 	private const string Str_Biology = "Biology";
 
-	// Token: 0x040021A6 RID: 8614
+	// Token: 0x040021BA RID: 8634
 	private const string Str_BiologyBonus = "BiologyBonus";
 
-	// Token: 0x040021A7 RID: 8615
+	// Token: 0x040021BB RID: 8635
 	private const string Str_BiologyGrade = "BiologyGrade";
 
-	// Token: 0x040021A8 RID: 8616
+	// Token: 0x040021BC RID: 8636
 	private const string Str_Chemistry = "Chemistry";
 
-	// Token: 0x040021A9 RID: 8617
+	// Token: 0x040021BD RID: 8637
 	private const string Str_ChemistryBonus = "ChemistryBonus";
 
-	// Token: 0x040021AA RID: 8618
+	// Token: 0x040021BE RID: 8638
 	private const string Str_ChemistryGrade = "ChemistryGrade";
 
-	// Token: 0x040021AB RID: 8619
+	// Token: 0x040021BF RID: 8639
 	private const string Str_Language = "Language";
 
-	// Token: 0x040021AC RID: 8620
+	// Token: 0x040021C0 RID: 8640
 	private const string Str_LanguageBonus = "LanguageBonus";
 
-	// Token: 0x040021AD RID: 8621
+	// Token: 0x040021C1 RID: 8641
 	private const string Str_LanguageGrade = "LanguageGrade";
 
-	// Token: 0x040021AE RID: 8622
+	// Token: 0x040021C2 RID: 8642
 	private const string Str_Physical = "Physical";
 
-	// Token: 0x040021AF RID: 8623
+	// Token: 0x040021C3 RID: 8643
 	private const string Str_PhysicalBonus = "PhysicalBonus";
 
-	// Token: 0x040021B0 RID: 8624
+	// Token: 0x040021C4 RID: 8644
 	private const string Str_PhysicalGrade = "PhysicalGrade";
 
-	// Token: 0x040021B1 RID: 8625
+	// Token: 0x040021C5 RID: 8645
 	private const string Str_Psychology = "Psychology";
 
-	// Token: 0x040021B2 RID: 8626
+	// Token: 0x040021C6 RID: 8646
 	private const string Str_PsychologyBonus = "PsychologyBonus";
 
-	// Token: 0x040021B3 RID: 8627
+	// Token: 0x040021C7 RID: 8647
 	private const string Str_PsychologyGrade = "PsychologyGrade";
 
-	// Token: 0x040021B4 RID: 8628
+	// Token: 0x040021C8 RID: 8648
 	private const string Str_BonusStudyPoints = "BonusStudyPoints";
 }

@@ -3,11 +3,11 @@ using UnityEngine.Rendering;
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000553 RID: 1363
+	// Token: 0x02000554 RID: 1364
 	public sealed class AmbientOcclusionComponent : PostProcessingComponentCommandBuffer<AmbientOcclusionModel>
 	{
 		// Token: 0x170004EB RID: 1259
-		// (get) Token: 0x060022B4 RID: 8884 RVA: 0x001F07B8 File Offset: 0x001EE9B8
+		// (get) Token: 0x060022BA RID: 8890 RVA: 0x001F1190 File Offset: 0x001EF390
 		private AmbientOcclusionComponent.OcclusionSource occlusionSource
 		{
 			get
@@ -25,7 +25,7 @@ namespace UnityEngine.PostProcessing
 		}
 
 		// Token: 0x170004EC RID: 1260
-		// (get) Token: 0x060022B5 RID: 8885 RVA: 0x001F081C File Offset: 0x001EEA1C
+		// (get) Token: 0x060022BB RID: 8891 RVA: 0x001F11F4 File Offset: 0x001EF3F4
 		private bool ambientOnlySupported
 		{
 			get
@@ -35,7 +35,7 @@ namespace UnityEngine.PostProcessing
 		}
 
 		// Token: 0x170004ED RID: 1261
-		// (get) Token: 0x060022B6 RID: 8886 RVA: 0x001F086A File Offset: 0x001EEA6A
+		// (get) Token: 0x060022BC RID: 8892 RVA: 0x001F1242 File Offset: 0x001EF442
 		public override bool active
 		{
 			get
@@ -44,7 +44,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022B7 RID: 8887 RVA: 0x001F08A0 File Offset: 0x001EEAA0
+		// Token: 0x060022BD RID: 8893 RVA: 0x001F1278 File Offset: 0x001EF478
 		public override DepthTextureMode GetCameraFlags()
 		{
 			DepthTextureMode depthTextureMode = DepthTextureMode.None;
@@ -59,13 +59,13 @@ namespace UnityEngine.PostProcessing
 			return depthTextureMode;
 		}
 
-		// Token: 0x060022B8 RID: 8888 RVA: 0x001F08C9 File Offset: 0x001EEAC9
+		// Token: 0x060022BE RID: 8894 RVA: 0x001F12A1 File Offset: 0x001EF4A1
 		public override string GetName()
 		{
 			return "Ambient Occlusion";
 		}
 
-		// Token: 0x060022B9 RID: 8889 RVA: 0x001F08D0 File Offset: 0x001EEAD0
+		// Token: 0x060022BF RID: 8895 RVA: 0x001F12A8 File Offset: 0x001EF4A8
 		public override CameraEvent GetCameraEvent()
 		{
 			if (!this.ambientOnlySupported || this.context.profile.debugViews.IsModeActive(BuiltinDebugViewsModel.Mode.AmbientOcclusion))
@@ -75,7 +75,7 @@ namespace UnityEngine.PostProcessing
 			return CameraEvent.BeforeReflections;
 		}
 
-		// Token: 0x060022BA RID: 8890 RVA: 0x001F08F8 File Offset: 0x001EEAF8
+		// Token: 0x060022C0 RID: 8896 RVA: 0x001F12D0 File Offset: 0x001EF4D0
 		public override void PopulateCommandBuffer(CommandBuffer cb)
 		{
 			AmbientOcclusionModel.Settings settings = base.model.settings;
@@ -146,61 +146,61 @@ namespace UnityEngine.PostProcessing
 			cb.ReleaseTemporaryRT(nameID);
 		}
 
-		// Token: 0x04004AD8 RID: 19160
+		// Token: 0x04004AF5 RID: 19189
 		private const string k_BlitShaderString = "Hidden/Post FX/Blit";
 
-		// Token: 0x04004AD9 RID: 19161
+		// Token: 0x04004AF6 RID: 19190
 		private const string k_ShaderString = "Hidden/Post FX/Ambient Occlusion";
 
-		// Token: 0x04004ADA RID: 19162
+		// Token: 0x04004AF7 RID: 19191
 		private readonly RenderTargetIdentifier[] m_MRT = new RenderTargetIdentifier[]
 		{
 			BuiltinRenderTextureType.GBuffer0,
 			BuiltinRenderTextureType.CameraTarget
 		};
 
-		// Token: 0x02000691 RID: 1681
+		// Token: 0x02000692 RID: 1682
 		private static class Uniforms
 		{
-			// Token: 0x04005014 RID: 20500
+			// Token: 0x04005031 RID: 20529
 			internal static readonly int _Intensity = Shader.PropertyToID("_Intensity");
 
-			// Token: 0x04005015 RID: 20501
+			// Token: 0x04005032 RID: 20530
 			internal static readonly int _Radius = Shader.PropertyToID("_Radius");
 
-			// Token: 0x04005016 RID: 20502
+			// Token: 0x04005033 RID: 20531
 			internal static readonly int _FogParams = Shader.PropertyToID("_FogParams");
 
-			// Token: 0x04005017 RID: 20503
+			// Token: 0x04005034 RID: 20532
 			internal static readonly int _Downsample = Shader.PropertyToID("_Downsample");
 
-			// Token: 0x04005018 RID: 20504
+			// Token: 0x04005035 RID: 20533
 			internal static readonly int _SampleCount = Shader.PropertyToID("_SampleCount");
 
-			// Token: 0x04005019 RID: 20505
+			// Token: 0x04005036 RID: 20534
 			internal static readonly int _OcclusionTexture1 = Shader.PropertyToID("_OcclusionTexture1");
 
-			// Token: 0x0400501A RID: 20506
+			// Token: 0x04005037 RID: 20535
 			internal static readonly int _OcclusionTexture2 = Shader.PropertyToID("_OcclusionTexture2");
 
-			// Token: 0x0400501B RID: 20507
+			// Token: 0x04005038 RID: 20536
 			internal static readonly int _OcclusionTexture = Shader.PropertyToID("_OcclusionTexture");
 
-			// Token: 0x0400501C RID: 20508
+			// Token: 0x04005039 RID: 20537
 			internal static readonly int _MainTex = Shader.PropertyToID("_MainTex");
 
-			// Token: 0x0400501D RID: 20509
+			// Token: 0x0400503A RID: 20538
 			internal static readonly int _TempRT = Shader.PropertyToID("_TempRT");
 		}
 
-		// Token: 0x02000692 RID: 1682
+		// Token: 0x02000693 RID: 1683
 		private enum OcclusionSource
 		{
-			// Token: 0x0400501F RID: 20511
+			// Token: 0x0400503C RID: 20540
 			DepthTexture,
-			// Token: 0x04005020 RID: 20512
+			// Token: 0x0400503D RID: 20541
 			DepthNormalsTexture,
-			// Token: 0x04005021 RID: 20513
+			// Token: 0x0400503E RID: 20542
 			GBuffer
 		}
 	}

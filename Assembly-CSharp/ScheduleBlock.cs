@@ -4,7 +4,7 @@
 [Serializable]
 public class ScheduleBlock
 {
-	// Token: 0x06001462 RID: 5218 RVA: 0x000C7285 File Offset: 0x000C5485
+	// Token: 0x06001462 RID: 5218 RVA: 0x000C73D1 File Offset: 0x000C55D1
 	public ScheduleBlock(float time, string destination, string action)
 	{
 		this.time = time;
@@ -12,12 +12,12 @@ public class ScheduleBlock
 		this.action = action;
 	}
 
-	// Token: 0x04001F66 RID: 8038
+	// Token: 0x04001F6F RID: 8047
 	public float time;
 
-	// Token: 0x04001F67 RID: 8039
+	// Token: 0x04001F70 RID: 8048
 	public string destination;
 
-	// Token: 0x04001F68 RID: 8040
+	// Token: 0x04001F71 RID: 8049
 	public string action;
 }

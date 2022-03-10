@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Gradients_Therma : MonoBehaviour
 {
 	// Token: 0x170002DC RID: 732
-	// (get) Token: 0x06000FD0 RID: 4048 RVA: 0x0008029C File Offset: 0x0007E49C
+	// (get) Token: 0x06000FD0 RID: 4048 RVA: 0x000803E4 File Offset: 0x0007E5E4
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Gradients_Therma : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000FD1 RID: 4049 RVA: 0x000802D0 File Offset: 0x0007E4D0
+	// Token: 0x06000FD1 RID: 4049 RVA: 0x00080418 File Offset: 0x0007E618
 	private void Start()
 	{
 		this.SCShader = Shader.Find(this.ShaderName);
@@ -32,7 +32,7 @@ public class CameraFilterPack_Gradients_Therma : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000FD2 RID: 4050 RVA: 0x000802F4 File Offset: 0x0007E4F4
+	// Token: 0x06000FD2 RID: 4050 RVA: 0x0008043C File Offset: 0x0007E63C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -52,12 +52,12 @@ public class CameraFilterPack_Gradients_Therma : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000FD3 RID: 4051 RVA: 0x000803C0 File Offset: 0x0007E5C0
+	// Token: 0x06000FD3 RID: 4051 RVA: 0x00080508 File Offset: 0x0007E708
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000FD4 RID: 4052 RVA: 0x000803C2 File Offset: 0x0007E5C2
+	// Token: 0x06000FD4 RID: 4052 RVA: 0x0008050A File Offset: 0x0007E70A
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -66,23 +66,23 @@ public class CameraFilterPack_Gradients_Therma : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001445 RID: 5189
+	// Token: 0x0400144E RID: 5198
 	public Shader SCShader;
 
-	// Token: 0x04001446 RID: 5190
+	// Token: 0x0400144F RID: 5199
 	private string ShaderName = "CameraFilterPack/Gradients_Therma";
 
-	// Token: 0x04001447 RID: 5191
+	// Token: 0x04001450 RID: 5200
 	private float TimeX = 1f;
 
-	// Token: 0x04001448 RID: 5192
+	// Token: 0x04001451 RID: 5201
 	private Material SCMaterial;
 
-	// Token: 0x04001449 RID: 5193
+	// Token: 0x04001452 RID: 5202
 	[Range(0f, 1f)]
 	public float Switch = 1f;
 
-	// Token: 0x0400144A RID: 5194
+	// Token: 0x04001453 RID: 5203
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F0 RID: 240
 public class BodyPartScript : MonoBehaviour
 {
-	// Token: 0x06000A4F RID: 2639 RVA: 0x0005BB0C File Offset: 0x00059D0C
+	// Token: 0x06000A4F RID: 2639 RVA: 0x0005BC38 File Offset: 0x00059E38
 	private void Update()
 	{
 		if (this.Prompt != null)
@@ -31,21 +31,21 @@ public class BodyPartScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000BCD RID: 3021
+	// Token: 0x04000BD6 RID: 3030
 	public bool Sacrifice;
 
-	// Token: 0x04000BCE RID: 3022
+	// Token: 0x04000BD7 RID: 3031
 	public int StudentID;
 
-	// Token: 0x04000BCF RID: 3023
+	// Token: 0x04000BD8 RID: 3032
 	public int Type;
 
-	// Token: 0x04000BD0 RID: 3024
+	// Token: 0x04000BD9 RID: 3033
 	public GameObject GarbageBag;
 
-	// Token: 0x04000BD1 RID: 3025
+	// Token: 0x04000BDA RID: 3034
 	public PromptScript Prompt;
 
-	// Token: 0x04000BD2 RID: 3026
+	// Token: 0x04000BDB RID: 3035
 	public AudioClip WrapSFX;
 }

@@ -6,22 +6,22 @@ using UnityEngine;
 [RequireComponent(typeof(UIWidget))]
 public class AnimatedColor : MonoBehaviour
 {
-	// Token: 0x0600054F RID: 1359 RVA: 0x00033A92 File Offset: 0x00031C92
+	// Token: 0x0600054F RID: 1359 RVA: 0x00033B8A File Offset: 0x00031D8A
 	private void OnEnable()
 	{
 		this.mWidget = base.GetComponent<UIWidget>();
 		this.LateUpdate();
 	}
 
-	// Token: 0x06000550 RID: 1360 RVA: 0x00033AA6 File Offset: 0x00031CA6
+	// Token: 0x06000550 RID: 1360 RVA: 0x00033B9E File Offset: 0x00031D9E
 	private void LateUpdate()
 	{
 		this.mWidget.color = this.color;
 	}
 
-	// Token: 0x04000590 RID: 1424
+	// Token: 0x04000599 RID: 1433
 	public Color color = Color.white;
 
-	// Token: 0x04000591 RID: 1425
+	// Token: 0x0400059A RID: 1434
 	private UIWidget mWidget;
 }

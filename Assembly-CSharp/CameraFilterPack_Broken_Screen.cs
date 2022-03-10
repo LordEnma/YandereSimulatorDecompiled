@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Broken_Screen : MonoBehaviour
 {
 	// Token: 0x1700025B RID: 603
-	// (get) Token: 0x06000CC7 RID: 3271 RVA: 0x00073615 File Offset: 0x00071815
+	// (get) Token: 0x06000CC7 RID: 3271 RVA: 0x0007375D File Offset: 0x0007195D
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Broken_Screen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CC8 RID: 3272 RVA: 0x00073649 File Offset: 0x00071849
+	// Token: 0x06000CC8 RID: 3272 RVA: 0x00073791 File Offset: 0x00071991
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_Broken_Screen1") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_Broken_Screen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CC9 RID: 3273 RVA: 0x00073680 File Offset: 0x00071880
+	// Token: 0x06000CC9 RID: 3273 RVA: 0x000737C8 File Offset: 0x000719C8
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -53,12 +53,12 @@ public class CameraFilterPack_Broken_Screen : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000CCA RID: 3274 RVA: 0x00073735 File Offset: 0x00071935
+	// Token: 0x06000CCA RID: 3274 RVA: 0x0007387D File Offset: 0x00071A7D
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000CCB RID: 3275 RVA: 0x00073737 File Offset: 0x00071937
+	// Token: 0x06000CCB RID: 3275 RVA: 0x0007387F File Offset: 0x00071A7F
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -67,23 +67,23 @@ public class CameraFilterPack_Broken_Screen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001114 RID: 4372
+	// Token: 0x0400111D RID: 4381
 	public Shader SCShader;
 
-	// Token: 0x04001115 RID: 4373
+	// Token: 0x0400111E RID: 4382
 	private float TimeX = 1f;
 
-	// Token: 0x04001116 RID: 4374
+	// Token: 0x0400111F RID: 4383
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 
-	// Token: 0x04001117 RID: 4375
+	// Token: 0x04001120 RID: 4384
 	[Range(-1f, 1f)]
 	public float Shadow = 1f;
 
-	// Token: 0x04001118 RID: 4376
+	// Token: 0x04001121 RID: 4385
 	private Material SCMaterial;
 
-	// Token: 0x04001119 RID: 4377
+	// Token: 0x04001122 RID: 4386
 	private Texture2D Texture2;
 }

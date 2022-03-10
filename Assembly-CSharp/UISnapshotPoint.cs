@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Internal/Snapshot Point")]
 public class UISnapshotPoint : MonoBehaviour
 {
-	// Token: 0x060004FF RID: 1279 RVA: 0x00031B78 File Offset: 0x0002FD78
+	// Token: 0x060004FF RID: 1279 RVA: 0x00031C70 File Offset: 0x0002FE70
 	private void Start()
 	{
 		if (base.tag != "EditorOnly")
@@ -15,22 +15,22 @@ public class UISnapshotPoint : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000568 RID: 1384
+	// Token: 0x04000571 RID: 1393
 	public bool isOrthographic = true;
 
-	// Token: 0x04000569 RID: 1385
+	// Token: 0x04000572 RID: 1394
 	public float nearClip = -100f;
 
-	// Token: 0x0400056A RID: 1386
+	// Token: 0x04000573 RID: 1395
 	public float farClip = 100f;
 
-	// Token: 0x0400056B RID: 1387
+	// Token: 0x04000574 RID: 1396
 	[Range(10f, 80f)]
 	public int fieldOfView = 35;
 
-	// Token: 0x0400056C RID: 1388
+	// Token: 0x04000575 RID: 1397
 	public float orthoSize = 30f;
 
-	// Token: 0x0400056D RID: 1389
+	// Token: 0x04000576 RID: 1398
 	public Texture2D thumbnail;
 }

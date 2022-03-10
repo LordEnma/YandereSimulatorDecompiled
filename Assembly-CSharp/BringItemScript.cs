@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F7 RID: 247
 public class BringItemScript : MonoBehaviour
 {
-	// Token: 0x06000A66 RID: 2662 RVA: 0x0005C6C8 File Offset: 0x0005A8C8
+	// Token: 0x06000A66 RID: 2662 RVA: 0x0005C810 File Offset: 0x0005AA10
 	private void Initialize()
 	{
 		for (int i = 1; i < 8; i++)
@@ -47,7 +47,7 @@ public class BringItemScript : MonoBehaviour
 		this.DescLabel.text = this.Descriptions[this.ID];
 	}
 
-	// Token: 0x06000A67 RID: 2663 RVA: 0x0005C854 File Offset: 0x0005AA54
+	// Token: 0x06000A67 RID: 2663 RVA: 0x0005C99C File Offset: 0x0005AB9C
 	private void Update()
 	{
 		if (!this.Initialized)
@@ -105,36 +105,36 @@ public class BringItemScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C11 RID: 3089
+	// Token: 0x04000C1A RID: 3098
 	public InputManagerScript InputManager;
 
-	// Token: 0x04000C12 RID: 3090
+	// Token: 0x04000C1B RID: 3099
 	public HomeWindowScript HomeWindow;
 
-	// Token: 0x04000C13 RID: 3091
+	// Token: 0x04000C1C RID: 3100
 	public HomeExitScript HomeExit;
 
-	// Token: 0x04000C14 RID: 3092
+	// Token: 0x04000C1D RID: 3101
 	public string[] Descriptions;
 
-	// Token: 0x04000C15 RID: 3093
+	// Token: 0x04000C1E RID: 3102
 	public GameObject Checkmark;
 
-	// Token: 0x04000C16 RID: 3094
+	// Token: 0x04000C1F RID: 3103
 	public Transform Highlight;
 
-	// Token: 0x04000C17 RID: 3095
+	// Token: 0x04000C20 RID: 3104
 	public UILabel DescLabel;
 
-	// Token: 0x04000C18 RID: 3096
+	// Token: 0x04000C21 RID: 3105
 	public UILabel[] Labels;
 
-	// Token: 0x04000C19 RID: 3097
+	// Token: 0x04000C22 RID: 3106
 	public int Limit = 12;
 
-	// Token: 0x04000C1A RID: 3098
+	// Token: 0x04000C23 RID: 3107
 	public int ID = 1;
 
-	// Token: 0x04000C1B RID: 3099
+	// Token: 0x04000C24 RID: 3108
 	public bool Initialized;
 }

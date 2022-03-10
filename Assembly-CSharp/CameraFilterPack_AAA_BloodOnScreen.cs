@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_AAA_BloodOnScreen : MonoBehaviour
 {
 	// Token: 0x1700021C RID: 540
-	// (get) Token: 0x06000B0E RID: 2830 RVA: 0x0006AA34 File Offset: 0x00068C34
+	// (get) Token: 0x06000B0E RID: 2830 RVA: 0x0006AB7C File Offset: 0x00068D7C
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_AAA_BloodOnScreen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B0F RID: 2831 RVA: 0x0006AA68 File Offset: 0x00068C68
+	// Token: 0x06000B0F RID: 2831 RVA: 0x0006ABB0 File Offset: 0x00068DB0
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_AAA_BloodOnScreen1") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_AAA_BloodOnScreen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B10 RID: 2832 RVA: 0x0006AAA0 File Offset: 0x00068CA0
+	// Token: 0x06000B10 RID: 2832 RVA: 0x0006ABE8 File Offset: 0x00068DE8
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -57,12 +57,12 @@ public class CameraFilterPack_AAA_BloodOnScreen : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B11 RID: 2833 RVA: 0x0006ABF8 File Offset: 0x00068DF8
+	// Token: 0x06000B11 RID: 2833 RVA: 0x0006AD40 File Offset: 0x00068F40
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B12 RID: 2834 RVA: 0x0006ABFA File Offset: 0x00068DFA
+	// Token: 0x06000B12 RID: 2834 RVA: 0x0006AD42 File Offset: 0x00068F42
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -71,38 +71,38 @@ public class CameraFilterPack_AAA_BloodOnScreen : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000EED RID: 3821
+	// Token: 0x04000EF6 RID: 3830
 	public Shader SCShader;
 
-	// Token: 0x04000EEE RID: 3822
+	// Token: 0x04000EF7 RID: 3831
 	private float TimeX = 1f;
 
-	// Token: 0x04000EEF RID: 3823
+	// Token: 0x04000EF8 RID: 3832
 	[Range(0.02f, 1.6f)]
 	public float Blood_On_Screen = 1f;
 
-	// Token: 0x04000EF0 RID: 3824
+	// Token: 0x04000EF9 RID: 3833
 	public Color Blood_Color = Color.red;
 
-	// Token: 0x04000EF1 RID: 3825
+	// Token: 0x04000EFA RID: 3834
 	[Range(0f, 2f)]
 	public float Blood_Intensify = 0.7f;
 
-	// Token: 0x04000EF2 RID: 3826
+	// Token: 0x04000EFB RID: 3835
 	[Range(0f, 2f)]
 	public float Blood_Darkness = 0.5f;
 
-	// Token: 0x04000EF3 RID: 3827
+	// Token: 0x04000EFC RID: 3836
 	[Range(0f, 1f)]
 	public float Blood_Distortion_Speed = 0.25f;
 
-	// Token: 0x04000EF4 RID: 3828
+	// Token: 0x04000EFD RID: 3837
 	[Range(0f, 1f)]
 	public float Blood_Fade = 1f;
 
-	// Token: 0x04000EF5 RID: 3829
+	// Token: 0x04000EFE RID: 3838
 	private Material SCMaterial;
 
-	// Token: 0x04000EF6 RID: 3830
+	// Token: 0x04000EFF RID: 3839
 	private Texture2D Texture2;
 }

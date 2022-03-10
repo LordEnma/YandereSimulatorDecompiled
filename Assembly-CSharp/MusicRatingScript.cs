@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200001A RID: 26
 public class MusicRatingScript : MonoBehaviour
 {
-	// Token: 0x06000057 RID: 87 RVA: 0x000096C9 File Offset: 0x000078C9
+	// Token: 0x06000057 RID: 87 RVA: 0x000097C1 File Offset: 0x000079C1
 	private void Start()
 	{
 		if (this.SFX != null)
@@ -13,7 +13,7 @@ public class MusicRatingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000058 RID: 88 RVA: 0x000096F4 File Offset: 0x000078F4
+	// Token: 0x06000058 RID: 88 RVA: 0x000097EC File Offset: 0x000079EC
 	private void Update()
 	{
 		base.transform.localPosition += new Vector3(0f, this.Speed * Time.deltaTime, 0f);
@@ -29,15 +29,15 @@ public class MusicRatingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400015D RID: 349
+	// Token: 0x04000166 RID: 358
 	public Renderer MyRenderer;
 
-	// Token: 0x0400015E RID: 350
+	// Token: 0x04000167 RID: 359
 	public AudioSource SFX;
 
-	// Token: 0x0400015F RID: 351
+	// Token: 0x04000168 RID: 360
 	public float Speed;
 
-	// Token: 0x04000160 RID: 352
+	// Token: 0x04000169 RID: 361
 	public float Timer;
 }

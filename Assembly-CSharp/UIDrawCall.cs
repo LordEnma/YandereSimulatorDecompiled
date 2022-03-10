@@ -10,7 +10,7 @@ using UnityEngine.SceneManagement;
 public class UIDrawCall : MonoBehaviour
 {
 	// Token: 0x1700007B RID: 123
-	// (get) Token: 0x0600048E RID: 1166 RVA: 0x0002F285 File Offset: 0x0002D485
+	// (get) Token: 0x0600048E RID: 1166 RVA: 0x0002F37D File Offset: 0x0002D57D
 	[Obsolete("Use UIDrawCall.activeList")]
 	public static BetterList<UIDrawCall> list
 	{
@@ -21,7 +21,7 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x1700007C RID: 124
-	// (get) Token: 0x0600048F RID: 1167 RVA: 0x0002F28C File Offset: 0x0002D48C
+	// (get) Token: 0x0600048F RID: 1167 RVA: 0x0002F384 File Offset: 0x0002D584
 	public static BetterList<UIDrawCall> activeList
 	{
 		get
@@ -31,7 +31,7 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x1700007D RID: 125
-	// (get) Token: 0x06000490 RID: 1168 RVA: 0x0002F293 File Offset: 0x0002D493
+	// (get) Token: 0x06000490 RID: 1168 RVA: 0x0002F38B File Offset: 0x0002D58B
 	public static BetterList<UIDrawCall> inactiveList
 	{
 		get
@@ -41,8 +41,8 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x1700007E RID: 126
-	// (get) Token: 0x06000491 RID: 1169 RVA: 0x0002F29A File Offset: 0x0002D49A
-	// (set) Token: 0x06000492 RID: 1170 RVA: 0x0002F2A2 File Offset: 0x0002D4A2
+	// (get) Token: 0x06000491 RID: 1169 RVA: 0x0002F392 File Offset: 0x0002D592
+	// (set) Token: 0x06000492 RID: 1170 RVA: 0x0002F39A File Offset: 0x0002D59A
 	public int renderQueue
 	{
 		get
@@ -63,8 +63,8 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x1700007F RID: 127
-	// (get) Token: 0x06000493 RID: 1171 RVA: 0x0002F2CE File Offset: 0x0002D4CE
-	// (set) Token: 0x06000494 RID: 1172 RVA: 0x0002F2D6 File Offset: 0x0002D4D6
+	// (get) Token: 0x06000493 RID: 1171 RVA: 0x0002F3C6 File Offset: 0x0002D5C6
+	// (set) Token: 0x06000494 RID: 1172 RVA: 0x0002F3CE File Offset: 0x0002D5CE
 	public int sortingOrder
 	{
 		get
@@ -85,8 +85,8 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x17000080 RID: 128
-	// (get) Token: 0x06000495 RID: 1173 RVA: 0x0002F302 File Offset: 0x0002D502
-	// (set) Token: 0x06000496 RID: 1174 RVA: 0x0002F33F File Offset: 0x0002D53F
+	// (get) Token: 0x06000495 RID: 1173 RVA: 0x0002F3FA File Offset: 0x0002D5FA
+	// (set) Token: 0x06000496 RID: 1174 RVA: 0x0002F437 File Offset: 0x0002D637
 	public string sortingLayerName
 	{
 		get
@@ -113,7 +113,7 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x17000081 RID: 129
-	// (get) Token: 0x06000497 RID: 1175 RVA: 0x0002F370 File Offset: 0x0002D570
+	// (get) Token: 0x06000497 RID: 1175 RVA: 0x0002F468 File Offset: 0x0002D668
 	public int finalRenderQueue
 	{
 		get
@@ -127,7 +127,7 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x17000082 RID: 130
-	// (get) Token: 0x06000498 RID: 1176 RVA: 0x0002F392 File Offset: 0x0002D592
+	// (get) Token: 0x06000498 RID: 1176 RVA: 0x0002F48A File Offset: 0x0002D68A
 	public Transform cachedTransform
 	{
 		get
@@ -141,8 +141,8 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x17000083 RID: 131
-	// (get) Token: 0x06000499 RID: 1177 RVA: 0x0002F3B4 File Offset: 0x0002D5B4
-	// (set) Token: 0x0600049A RID: 1178 RVA: 0x0002F3BC File Offset: 0x0002D5BC
+	// (get) Token: 0x06000499 RID: 1177 RVA: 0x0002F4AC File Offset: 0x0002D6AC
+	// (set) Token: 0x0600049A RID: 1178 RVA: 0x0002F4B4 File Offset: 0x0002D6B4
 	public Material baseMaterial
 	{
 		get
@@ -160,7 +160,7 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x17000084 RID: 132
-	// (get) Token: 0x0600049B RID: 1179 RVA: 0x0002F3DA File Offset: 0x0002D5DA
+	// (get) Token: 0x0600049B RID: 1179 RVA: 0x0002F4D2 File Offset: 0x0002D6D2
 	public Material dynamicMaterial
 	{
 		get
@@ -170,8 +170,8 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x17000085 RID: 133
-	// (get) Token: 0x0600049C RID: 1180 RVA: 0x0002F3E2 File Offset: 0x0002D5E2
-	// (set) Token: 0x0600049D RID: 1181 RVA: 0x0002F3EA File Offset: 0x0002D5EA
+	// (get) Token: 0x0600049C RID: 1180 RVA: 0x0002F4DA File Offset: 0x0002D6DA
+	// (set) Token: 0x0600049D RID: 1181 RVA: 0x0002F4E2 File Offset: 0x0002D6E2
 	public Texture mainTexture
 	{
 		get
@@ -190,8 +190,8 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x17000086 RID: 134
-	// (get) Token: 0x0600049E RID: 1182 RVA: 0x0002F427 File Offset: 0x0002D627
-	// (set) Token: 0x0600049F RID: 1183 RVA: 0x0002F42F File Offset: 0x0002D62F
+	// (get) Token: 0x0600049E RID: 1182 RVA: 0x0002F51F File Offset: 0x0002D71F
+	// (set) Token: 0x0600049F RID: 1183 RVA: 0x0002F527 File Offset: 0x0002D727
 	public Shader shader
 	{
 		get
@@ -209,8 +209,8 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x17000087 RID: 135
-	// (get) Token: 0x060004A0 RID: 1184 RVA: 0x0002F44D File Offset: 0x0002D64D
-	// (set) Token: 0x060004A1 RID: 1185 RVA: 0x0002F458 File Offset: 0x0002D658
+	// (get) Token: 0x060004A0 RID: 1184 RVA: 0x0002F545 File Offset: 0x0002D745
+	// (set) Token: 0x060004A1 RID: 1185 RVA: 0x0002F550 File Offset: 0x0002D750
 	public UIDrawCall.ShadowMode shadowMode
 	{
 		get
@@ -244,7 +244,7 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x17000088 RID: 136
-	// (get) Token: 0x060004A2 RID: 1186 RVA: 0x0002F4DE File Offset: 0x0002D6DE
+	// (get) Token: 0x060004A2 RID: 1186 RVA: 0x0002F5D6 File Offset: 0x0002D7D6
 	public int triangles
 	{
 		get
@@ -258,7 +258,7 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x17000089 RID: 137
-	// (get) Token: 0x060004A3 RID: 1187 RVA: 0x0002F4F6 File Offset: 0x0002D6F6
+	// (get) Token: 0x060004A3 RID: 1187 RVA: 0x0002F5EE File Offset: 0x0002D7EE
 	public bool isClipped
 	{
 		get
@@ -267,7 +267,7 @@ public class UIDrawCall : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004A4 RID: 1188 RVA: 0x0002F504 File Offset: 0x0002D704
+	// Token: 0x060004A4 RID: 1188 RVA: 0x0002F5FC File Offset: 0x0002D7FC
 	private void CreateMaterial()
 	{
 		this.mTextureClip = false;
@@ -345,7 +345,7 @@ public class UIDrawCall : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004A5 RID: 1189 RVA: 0x0002F810 File Offset: 0x0002DA10
+	// Token: 0x060004A5 RID: 1189 RVA: 0x0002F908 File Offset: 0x0002DB08
 	private Material RebuildMaterial()
 	{
 		NGUITools.DestroyImmediate(this.mDynamicMat);
@@ -363,7 +363,7 @@ public class UIDrawCall : MonoBehaviour
 		return this.mDynamicMat;
 	}
 
-	// Token: 0x060004A6 RID: 1190 RVA: 0x0002F890 File Offset: 0x0002DA90
+	// Token: 0x060004A6 RID: 1190 RVA: 0x0002F988 File Offset: 0x0002DB88
 	private void UpdateMaterials()
 	{
 		if (this.panel == null)
@@ -377,7 +377,7 @@ public class UIDrawCall : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004A7 RID: 1191 RVA: 0x0002F8FC File Offset: 0x0002DAFC
+	// Token: 0x060004A7 RID: 1191 RVA: 0x0002F9F4 File Offset: 0x0002DBF4
 	public void UpdateGeometry(int widgetCount, bool needsBounds)
 	{
 		this.widgetCount = widgetCount;
@@ -513,7 +513,7 @@ public class UIDrawCall : MonoBehaviour
 		this.tans.Clear();
 	}
 
-	// Token: 0x060004A8 RID: 1192 RVA: 0x0002FDF4 File Offset: 0x0002DFF4
+	// Token: 0x060004A8 RID: 1192 RVA: 0x0002FEEC File Offset: 0x0002E0EC
 	private int[] GenerateCachedIndexBuffer(int vertexCount, int indexCount)
 	{
 		int i = 0;
@@ -546,7 +546,7 @@ public class UIDrawCall : MonoBehaviour
 		return array2;
 	}
 
-	// Token: 0x060004A9 RID: 1193 RVA: 0x0002FEB0 File Offset: 0x0002E0B0
+	// Token: 0x060004A9 RID: 1193 RVA: 0x0002FFA8 File Offset: 0x0002E1A8
 	private void OnWillRenderObject()
 	{
 		this.UpdateMaterials();
@@ -629,7 +629,7 @@ public class UIDrawCall : MonoBehaviour
 		this.mDynamicMat.SetVector("_ClipSharpness", v);
 	}
 
-	// Token: 0x060004AA RID: 1194 RVA: 0x00030248 File Offset: 0x0002E448
+	// Token: 0x060004AA RID: 1194 RVA: 0x00030340 File Offset: 0x0002E540
 	private void SetClipping(int index, Vector4 cr, Vector2 soft, float angle)
 	{
 		angle *= -0.017453292f;
@@ -649,7 +649,7 @@ public class UIDrawCall : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004AB RID: 1195 RVA: 0x00030338 File Offset: 0x0002E538
+	// Token: 0x060004AB RID: 1195 RVA: 0x00030430 File Offset: 0x0002E630
 	private void Awake()
 	{
 		if (UIDrawCall.dx9BugWorkaround == -1)
@@ -678,13 +678,13 @@ public class UIDrawCall : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004AC RID: 1196 RVA: 0x00030404 File Offset: 0x0002E604
+	// Token: 0x060004AC RID: 1196 RVA: 0x000304FC File Offset: 0x0002E6FC
 	private void OnEnable()
 	{
 		this.mRebuildMat = true;
 	}
 
-	// Token: 0x060004AD RID: 1197 RVA: 0x00030410 File Offset: 0x0002E610
+	// Token: 0x060004AD RID: 1197 RVA: 0x00030508 File Offset: 0x0002E708
 	private void OnDisable()
 	{
 		this.depthStart = int.MaxValue;
@@ -702,20 +702,20 @@ public class UIDrawCall : MonoBehaviour
 		this.mDynamicMat = null;
 	}
 
-	// Token: 0x060004AE RID: 1198 RVA: 0x00030487 File Offset: 0x0002E687
+	// Token: 0x060004AE RID: 1198 RVA: 0x0003057F File Offset: 0x0002E77F
 	private void OnDestroy()
 	{
 		NGUITools.DestroyImmediate(this.mMesh);
 		this.mMesh = null;
 	}
 
-	// Token: 0x060004AF RID: 1199 RVA: 0x0003049B File Offset: 0x0002E69B
+	// Token: 0x060004AF RID: 1199 RVA: 0x00030593 File Offset: 0x0002E793
 	public static UIDrawCall Create(UIPanel panel, Material mat, Texture tex, Shader shader)
 	{
 		return UIDrawCall.Create(null, panel, mat, tex, shader);
 	}
 
-	// Token: 0x060004B0 RID: 1200 RVA: 0x000304A8 File Offset: 0x0002E6A8
+	// Token: 0x060004B0 RID: 1200 RVA: 0x000305A0 File Offset: 0x0002E7A0
 	private static UIDrawCall Create(string name, UIPanel pan, Material mat, Texture tex, Shader shader)
 	{
 		UIDrawCall uidrawCall = UIDrawCall.Create(name);
@@ -729,7 +729,7 @@ public class UIDrawCall : MonoBehaviour
 		return uidrawCall;
 	}
 
-	// Token: 0x060004B1 RID: 1201 RVA: 0x00030508 File Offset: 0x0002E708
+	// Token: 0x060004B1 RID: 1201 RVA: 0x00030600 File Offset: 0x0002E800
 	private static UIDrawCall Create(string name)
 	{
 		while (UIDrawCall.mInactiveList.size > 0)
@@ -753,7 +753,7 @@ public class UIDrawCall : MonoBehaviour
 		return uidrawCall2;
 	}
 
-	// Token: 0x060004B2 RID: 1202 RVA: 0x0003057C File Offset: 0x0002E77C
+	// Token: 0x060004B2 RID: 1202 RVA: 0x00030674 File Offset: 0x0002E874
 	public static void ClearAll()
 	{
 		bool isPlaying = Application.isPlaying;
@@ -776,14 +776,14 @@ public class UIDrawCall : MonoBehaviour
 		UIDrawCall.mActiveList.Clear();
 	}
 
-	// Token: 0x060004B3 RID: 1203 RVA: 0x000305DF File Offset: 0x0002E7DF
+	// Token: 0x060004B3 RID: 1203 RVA: 0x000306D7 File Offset: 0x0002E8D7
 	public static void ReleaseAll()
 	{
 		UIDrawCall.ClearAll();
 		UIDrawCall.ReleaseInactive();
 	}
 
-	// Token: 0x060004B4 RID: 1204 RVA: 0x000305EC File Offset: 0x0002E7EC
+	// Token: 0x060004B4 RID: 1204 RVA: 0x000306E4 File Offset: 0x0002E8E4
 	public static void ReleaseInactive()
 	{
 		int i = UIDrawCall.mInactiveList.size;
@@ -798,7 +798,7 @@ public class UIDrawCall : MonoBehaviour
 		UIDrawCall.mInactiveList.Clear();
 	}
 
-	// Token: 0x060004B5 RID: 1205 RVA: 0x00030638 File Offset: 0x0002E838
+	// Token: 0x060004B5 RID: 1205 RVA: 0x00030730 File Offset: 0x0002E930
 	public static int Count(UIPanel panel)
 	{
 		int num = 0;
@@ -812,7 +812,7 @@ public class UIDrawCall : MonoBehaviour
 		return num;
 	}
 
-	// Token: 0x060004B6 RID: 1206 RVA: 0x0003067C File Offset: 0x0002E87C
+	// Token: 0x060004B6 RID: 1206 RVA: 0x00030774 File Offset: 0x0002E974
 	public static void Destroy(UIDrawCall dc)
 	{
 		if (dc)
@@ -841,7 +841,7 @@ public class UIDrawCall : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060004B7 RID: 1207 RVA: 0x000306F8 File Offset: 0x0002E8F8
+	// Token: 0x060004B7 RID: 1207 RVA: 0x000307F0 File Offset: 0x0002E9F0
 	public static void MoveToScene(Scene scene)
 	{
 		foreach (UIDrawCall uidrawCall in UIDrawCall.activeList)
@@ -854,215 +854,215 @@ public class UIDrawCall : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000510 RID: 1296
+	// Token: 0x04000519 RID: 1305
 	private static BetterList<UIDrawCall> mActiveList = new BetterList<UIDrawCall>();
 
-	// Token: 0x04000511 RID: 1297
-	private static BetterList<UIDrawCall> mInactiveList = new BetterList<UIDrawCall>();
-
-	// Token: 0x04000512 RID: 1298
-	[HideInInspector]
-	[NonSerialized]
-	public int widgetCount;
-
-	// Token: 0x04000513 RID: 1299
-	[HideInInspector]
-	[NonSerialized]
-	public int depthStart = int.MaxValue;
-
-	// Token: 0x04000514 RID: 1300
-	[HideInInspector]
-	[NonSerialized]
-	public int depthEnd = int.MinValue;
-
-	// Token: 0x04000515 RID: 1301
-	[HideInInspector]
-	[NonSerialized]
-	public UIPanel manager;
-
-	// Token: 0x04000516 RID: 1302
-	[HideInInspector]
-	[NonSerialized]
-	public UIPanel panel;
-
-	// Token: 0x04000517 RID: 1303
-	[HideInInspector]
-	[NonSerialized]
-	public Texture2D clipTexture;
-
-	// Token: 0x04000518 RID: 1304
-	[HideInInspector]
-	[NonSerialized]
-	public bool alwaysOnScreen;
-
-	// Token: 0x04000519 RID: 1305
-	[HideInInspector]
-	[NonSerialized]
-	public List<Vector3> verts = new List<Vector3>();
-
 	// Token: 0x0400051A RID: 1306
-	[HideInInspector]
-	[NonSerialized]
-	public List<Vector3> norms = new List<Vector3>();
+	private static BetterList<UIDrawCall> mInactiveList = new BetterList<UIDrawCall>();
 
 	// Token: 0x0400051B RID: 1307
 	[HideInInspector]
 	[NonSerialized]
-	public List<Vector4> tans = new List<Vector4>();
+	public int widgetCount;
 
 	// Token: 0x0400051C RID: 1308
 	[HideInInspector]
 	[NonSerialized]
-	public List<Vector2> uvs = new List<Vector2>();
+	public int depthStart = int.MaxValue;
 
 	// Token: 0x0400051D RID: 1309
 	[HideInInspector]
 	[NonSerialized]
-	public List<Vector4> uv2 = new List<Vector4>();
+	public int depthEnd = int.MinValue;
 
 	// Token: 0x0400051E RID: 1310
 	[HideInInspector]
 	[NonSerialized]
-	public List<Color> cols = new List<Color>();
+	public UIPanel manager;
 
 	// Token: 0x0400051F RID: 1311
+	[HideInInspector]
 	[NonSerialized]
-	private Material mMaterial;
+	public UIPanel panel;
 
 	// Token: 0x04000520 RID: 1312
+	[HideInInspector]
 	[NonSerialized]
-	private Texture mTexture;
+	public Texture2D clipTexture;
 
 	// Token: 0x04000521 RID: 1313
+	[HideInInspector]
 	[NonSerialized]
-	private Shader mShader;
+	public bool alwaysOnScreen;
 
 	// Token: 0x04000522 RID: 1314
+	[HideInInspector]
 	[NonSerialized]
-	private int mClipCount;
+	public List<Vector3> verts = new List<Vector3>();
 
 	// Token: 0x04000523 RID: 1315
+	[HideInInspector]
 	[NonSerialized]
-	private Transform mTrans;
+	public List<Vector3> norms = new List<Vector3>();
 
 	// Token: 0x04000524 RID: 1316
+	[HideInInspector]
 	[NonSerialized]
-	private Mesh mMesh;
+	public List<Vector4> tans = new List<Vector4>();
 
 	// Token: 0x04000525 RID: 1317
+	[HideInInspector]
 	[NonSerialized]
-	private MeshFilter mFilter;
+	public List<Vector2> uvs = new List<Vector2>();
 
 	// Token: 0x04000526 RID: 1318
+	[HideInInspector]
 	[NonSerialized]
-	private MeshRenderer mRenderer;
+	public List<Vector4> uv2 = new List<Vector4>();
 
 	// Token: 0x04000527 RID: 1319
+	[HideInInspector]
 	[NonSerialized]
-	private Material mDynamicMat;
+	public List<Color> cols = new List<Color>();
 
 	// Token: 0x04000528 RID: 1320
 	[NonSerialized]
-	private int[] mIndices;
+	private Material mMaterial;
 
 	// Token: 0x04000529 RID: 1321
 	[NonSerialized]
-	private UIDrawCall.ShadowMode mShadowMode;
+	private Texture mTexture;
 
 	// Token: 0x0400052A RID: 1322
 	[NonSerialized]
-	private bool mRebuildMat = true;
+	private Shader mShader;
 
 	// Token: 0x0400052B RID: 1323
 	[NonSerialized]
-	private bool mLegacyShader;
+	private int mClipCount;
 
 	// Token: 0x0400052C RID: 1324
 	[NonSerialized]
-	private int mRenderQueue = 3000;
+	private Transform mTrans;
 
 	// Token: 0x0400052D RID: 1325
 	[NonSerialized]
-	private int mTriangles;
+	private Mesh mMesh;
 
 	// Token: 0x0400052E RID: 1326
 	[NonSerialized]
-	public bool isDirty;
+	private MeshFilter mFilter;
 
 	// Token: 0x0400052F RID: 1327
 	[NonSerialized]
-	private bool mTextureClip;
+	private MeshRenderer mRenderer;
 
 	// Token: 0x04000530 RID: 1328
 	[NonSerialized]
-	private bool mIsNew = true;
+	private Material mDynamicMat;
 
 	// Token: 0x04000531 RID: 1329
-	public UIDrawCall.OnRenderCallback onRender;
+	[NonSerialized]
+	private int[] mIndices;
 
 	// Token: 0x04000532 RID: 1330
-	public UIDrawCall.OnCreateDrawCall onCreateDrawCall;
+	[NonSerialized]
+	private UIDrawCall.ShadowMode mShadowMode;
 
 	// Token: 0x04000533 RID: 1331
 	[NonSerialized]
-	private string mSortingLayerName;
+	private bool mRebuildMat = true;
 
 	// Token: 0x04000534 RID: 1332
 	[NonSerialized]
-	private int mSortingOrder;
+	private bool mLegacyShader;
 
 	// Token: 0x04000535 RID: 1333
-	private static ColorSpace mColorSpace = ColorSpace.Uninitialized;
+	[NonSerialized]
+	private int mRenderQueue = 3000;
 
 	// Token: 0x04000536 RID: 1334
-	private const int maxIndexBufferCache = 10;
+	[NonSerialized]
+	private int mTriangles;
 
 	// Token: 0x04000537 RID: 1335
-	private static List<int[]> mCache = new List<int[]>(10);
+	[NonSerialized]
+	public bool isDirty;
 
 	// Token: 0x04000538 RID: 1336
-	protected MaterialPropertyBlock mBlock;
+	[NonSerialized]
+	private bool mTextureClip;
 
 	// Token: 0x04000539 RID: 1337
-	private static int[] ClipRange = null;
+	[NonSerialized]
+	private bool mIsNew = true;
 
 	// Token: 0x0400053A RID: 1338
-	private static int[] ClipArgs = null;
+	public UIDrawCall.OnRenderCallback onRender;
 
 	// Token: 0x0400053B RID: 1339
+	public UIDrawCall.OnCreateDrawCall onCreateDrawCall;
+
+	// Token: 0x0400053C RID: 1340
+	[NonSerialized]
+	private string mSortingLayerName;
+
+	// Token: 0x0400053D RID: 1341
+	[NonSerialized]
+	private int mSortingOrder;
+
+	// Token: 0x0400053E RID: 1342
+	private static ColorSpace mColorSpace = ColorSpace.Uninitialized;
+
+	// Token: 0x0400053F RID: 1343
+	private const int maxIndexBufferCache = 10;
+
+	// Token: 0x04000540 RID: 1344
+	private static List<int[]> mCache = new List<int[]>(10);
+
+	// Token: 0x04000541 RID: 1345
+	protected MaterialPropertyBlock mBlock;
+
+	// Token: 0x04000542 RID: 1346
+	private static int[] ClipRange = null;
+
+	// Token: 0x04000543 RID: 1347
+	private static int[] ClipArgs = null;
+
+	// Token: 0x04000544 RID: 1348
 	private static int dx9BugWorkaround = -1;
 
-	// Token: 0x020005F4 RID: 1524
+	// Token: 0x020005F5 RID: 1525
 	[DoNotObfuscateNGUI]
 	public enum Clipping
 	{
-		// Token: 0x04004DC6 RID: 19910
+		// Token: 0x04004DE3 RID: 19939
 		None,
-		// Token: 0x04004DC7 RID: 19911
+		// Token: 0x04004DE4 RID: 19940
 		TextureMask,
-		// Token: 0x04004DC8 RID: 19912
+		// Token: 0x04004DE5 RID: 19941
 		SoftClip = 3,
-		// Token: 0x04004DC9 RID: 19913
+		// Token: 0x04004DE6 RID: 19942
 		ConstrainButDontClip
 	}
 
-	// Token: 0x020005F5 RID: 1525
-	// (Invoke) Token: 0x06002559 RID: 9561
+	// Token: 0x020005F6 RID: 1526
+	// (Invoke) Token: 0x0600255F RID: 9567
 	public delegate void OnRenderCallback(Material mat);
 
-	// Token: 0x020005F6 RID: 1526
-	// (Invoke) Token: 0x0600255D RID: 9565
+	// Token: 0x020005F7 RID: 1527
+	// (Invoke) Token: 0x06002563 RID: 9571
 	public delegate void OnCreateDrawCall(UIDrawCall dc, MeshFilter filter, MeshRenderer ren);
 
-	// Token: 0x020005F7 RID: 1527
+	// Token: 0x020005F8 RID: 1528
 	[DoNotObfuscateNGUI]
 	public enum ShadowMode
 	{
-		// Token: 0x04004DCB RID: 19915
+		// Token: 0x04004DE8 RID: 19944
 		None,
-		// Token: 0x04004DCC RID: 19916
+		// Token: 0x04004DE9 RID: 19945
 		Receive,
-		// Token: 0x04004DCD RID: 19917
+		// Token: 0x04004DEA RID: 19946
 		CastAndReceive
 	}
 }

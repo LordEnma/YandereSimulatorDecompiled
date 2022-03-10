@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004FC RID: 1276
+// Token: 0x020004FD RID: 1277
 public class BarScript : MonoBehaviour
 {
-	// Token: 0x06002120 RID: 8480 RVA: 0x001E69D5 File Offset: 0x001E4BD5
+	// Token: 0x06002126 RID: 8486 RVA: 0x001E73AD File Offset: 0x001E55AD
 	private void Start()
 	{
 		base.transform.localScale = new Vector3(0f, 1f, 1f);
 	}
 
-	// Token: 0x06002121 RID: 8481 RVA: 0x001E69F8 File Offset: 0x001E4BF8
+	// Token: 0x06002127 RID: 8487 RVA: 0x001E73D0 File Offset: 0x001E55D0
 	private void Update()
 	{
 		if (this.Goal == 0f)
@@ -29,9 +29,9 @@ public class BarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040048C9 RID: 18633
+	// Token: 0x040048E6 RID: 18662
 	public float Speed;
 
-	// Token: 0x040048CA RID: 18634
+	// Token: 0x040048E7 RID: 18663
 	public float Goal;
 }

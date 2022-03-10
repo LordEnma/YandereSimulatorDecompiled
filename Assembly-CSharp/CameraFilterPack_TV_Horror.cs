@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_TV_Horror : MonoBehaviour
 {
 	// Token: 0x17000312 RID: 786
-	// (get) Token: 0x06001137 RID: 4407 RVA: 0x00087221 File Offset: 0x00085421
+	// (get) Token: 0x06001137 RID: 4407 RVA: 0x00087369 File Offset: 0x00085569
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_TV_Horror : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001138 RID: 4408 RVA: 0x00087255 File Offset: 0x00085455
+	// Token: 0x06001138 RID: 4408 RVA: 0x0008739D File Offset: 0x0008559D
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_TV_HorrorFX") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_TV_Horror : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001139 RID: 4409 RVA: 0x0008728C File Offset: 0x0008548C
+	// Token: 0x06001139 RID: 4409 RVA: 0x000873D4 File Offset: 0x000855D4
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_TV_Horror : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x0600113A RID: 4410 RVA: 0x0008736E File Offset: 0x0008556E
+	// Token: 0x0600113A RID: 4410 RVA: 0x000874B6 File Offset: 0x000856B6
 	private void Update()
 	{
 	}
 
-	// Token: 0x0600113B RID: 4411 RVA: 0x00087370 File Offset: 0x00085570
+	// Token: 0x0600113B RID: 4411 RVA: 0x000874B8 File Offset: 0x000856B8
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,23 +68,23 @@ public class CameraFilterPack_TV_Horror : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040015D0 RID: 5584
+	// Token: 0x040015D9 RID: 5593
 	public Shader SCShader;
 
-	// Token: 0x040015D1 RID: 5585
+	// Token: 0x040015DA RID: 5594
 	private float TimeX = 1f;
 
-	// Token: 0x040015D2 RID: 5586
+	// Token: 0x040015DB RID: 5595
 	private Material SCMaterial;
 
-	// Token: 0x040015D3 RID: 5587
+	// Token: 0x040015DC RID: 5596
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 
-	// Token: 0x040015D4 RID: 5588
+	// Token: 0x040015DD RID: 5597
 	[Range(0f, 1f)]
 	public float Distortion = 1f;
 
-	// Token: 0x040015D5 RID: 5589
+	// Token: 0x040015DE RID: 5598
 	private Texture2D Texture2;
 }

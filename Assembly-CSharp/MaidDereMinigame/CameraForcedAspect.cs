@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x02000599 RID: 1433
+	// Token: 0x0200059A RID: 1434
 	[RequireComponent(typeof(Camera))]
 	public class CameraForcedAspect : MonoBehaviour
 	{
-		// Token: 0x06002457 RID: 9303 RVA: 0x001FB244 File Offset: 0x001F9444
+		// Token: 0x0600245D RID: 9309 RVA: 0x001FBC1C File Offset: 0x001F9E1C
 		private void Awake()
 		{
 			this.cam = base.GetComponent<Camera>();
 		}
 
-		// Token: 0x06002458 RID: 9304 RVA: 0x001FB254 File Offset: 0x001F9454
+		// Token: 0x0600245E RID: 9310 RVA: 0x001FBC2C File Offset: 0x001F9E2C
 		private void Start()
 		{
 			float num = this.targetAspect.x / this.targetAspect.y;
@@ -37,10 +37,10 @@ namespace MaidDereMinigame
 			this.cam.rect = rect2;
 		}
 
-		// Token: 0x04004C31 RID: 19505
+		// Token: 0x04004C4E RID: 19534
 		public Vector2 targetAspect = new Vector2(16f, 9f);
 
-		// Token: 0x04004C32 RID: 19506
+		// Token: 0x04004C4F RID: 19535
 		private Camera cam;
 	}
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_AAA_SuperHexagon : MonoBehaviour
 {
 	// Token: 0x17000220 RID: 544
-	// (get) Token: 0x06000B26 RID: 2854 RVA: 0x0006B50C File Offset: 0x0006970C
+	// (get) Token: 0x06000B26 RID: 2854 RVA: 0x0006B654 File Offset: 0x00069854
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_AAA_SuperHexagon : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B27 RID: 2855 RVA: 0x0006B540 File Offset: 0x00069740
+	// Token: 0x06000B27 RID: 2855 RVA: 0x0006B688 File Offset: 0x00069888
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/AAA_Super_Hexagon");
@@ -32,7 +32,7 @@ public class CameraFilterPack_AAA_SuperHexagon : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B28 RID: 2856 RVA: 0x0006B564 File Offset: 0x00069764
+	// Token: 0x06000B28 RID: 2856 RVA: 0x0006B6AC File Offset: 0x000698AC
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -59,12 +59,12 @@ public class CameraFilterPack_AAA_SuperHexagon : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B29 RID: 2857 RVA: 0x0006B6D4 File Offset: 0x000698D4
+	// Token: 0x06000B29 RID: 2857 RVA: 0x0006B81C File Offset: 0x00069A1C
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B2A RID: 2858 RVA: 0x0006B6D6 File Offset: 0x000698D6
+	// Token: 0x06000B2A RID: 2858 RVA: 0x0006B81E File Offset: 0x00069A1E
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -73,38 +73,38 @@ public class CameraFilterPack_AAA_SuperHexagon : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000F24 RID: 3876
+	// Token: 0x04000F2D RID: 3885
 	public Shader SCShader;
 
-	// Token: 0x04000F25 RID: 3877
+	// Token: 0x04000F2E RID: 3886
 	[Range(0f, 1f)]
 	public float _AlphaHexa = 1f;
 
-	// Token: 0x04000F26 RID: 3878
+	// Token: 0x04000F2F RID: 3887
 	private float TimeX = 1f;
 
-	// Token: 0x04000F27 RID: 3879
+	// Token: 0x04000F30 RID: 3888
 	private Material SCMaterial;
 
-	// Token: 0x04000F28 RID: 3880
+	// Token: 0x04000F31 RID: 3889
 	[Range(0.2f, 10f)]
 	public float HexaSize = 2.5f;
 
-	// Token: 0x04000F29 RID: 3881
+	// Token: 0x04000F32 RID: 3890
 	public float _BorderSize = 1f;
 
-	// Token: 0x04000F2A RID: 3882
+	// Token: 0x04000F33 RID: 3891
 	public Color _BorderColor = new Color(0.75f, 0.75f, 1f, 1f);
 
-	// Token: 0x04000F2B RID: 3883
+	// Token: 0x04000F34 RID: 3892
 	public Color _HexaColor = new Color(0f, 0.5f, 1f, 1f);
 
-	// Token: 0x04000F2C RID: 3884
+	// Token: 0x04000F35 RID: 3893
 	public float _SpotSize = 2.5f;
 
-	// Token: 0x04000F2D RID: 3885
+	// Token: 0x04000F36 RID: 3894
 	public Vector2 center = new Vector2(0.5f, 0.5f);
 
-	// Token: 0x04000F2E RID: 3886
+	// Token: 0x04000F37 RID: 3895
 	public float Radius = 0.25f;
 }

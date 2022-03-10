@@ -6,7 +6,7 @@ using UnityEngine;
 public class TweenPosition : UITweener
 {
 	// Token: 0x170000C4 RID: 196
-	// (get) Token: 0x060005A6 RID: 1446 RVA: 0x00034E2F File Offset: 0x0003302F
+	// (get) Token: 0x060005A6 RID: 1446 RVA: 0x00034F27 File Offset: 0x00033127
 	public Transform cachedTransform
 	{
 		get
@@ -20,8 +20,8 @@ public class TweenPosition : UITweener
 	}
 
 	// Token: 0x170000C5 RID: 197
-	// (get) Token: 0x060005A7 RID: 1447 RVA: 0x00034E51 File Offset: 0x00033051
-	// (set) Token: 0x060005A8 RID: 1448 RVA: 0x00034E59 File Offset: 0x00033059
+	// (get) Token: 0x060005A7 RID: 1447 RVA: 0x00034F49 File Offset: 0x00033149
+	// (set) Token: 0x060005A8 RID: 1448 RVA: 0x00034F51 File Offset: 0x00033151
 	[Obsolete("Use 'value' instead")]
 	public Vector3 position
 	{
@@ -36,8 +36,8 @@ public class TweenPosition : UITweener
 	}
 
 	// Token: 0x170000C6 RID: 198
-	// (get) Token: 0x060005A9 RID: 1449 RVA: 0x00034E62 File Offset: 0x00033062
-	// (set) Token: 0x060005AA RID: 1450 RVA: 0x00034E84 File Offset: 0x00033084
+	// (get) Token: 0x060005A9 RID: 1449 RVA: 0x00034F5A File Offset: 0x0003315A
+	// (set) Token: 0x060005AA RID: 1450 RVA: 0x00034F7C File Offset: 0x0003317C
 	public Vector3 value
 	{
 		get
@@ -65,19 +65,19 @@ public class TweenPosition : UITweener
 		}
 	}
 
-	// Token: 0x060005AB RID: 1451 RVA: 0x00034F00 File Offset: 0x00033100
+	// Token: 0x060005AB RID: 1451 RVA: 0x00034FF8 File Offset: 0x000331F8
 	private void Awake()
 	{
 		this.mRect = base.GetComponent<UIRect>();
 	}
 
-	// Token: 0x060005AC RID: 1452 RVA: 0x00034F0E File Offset: 0x0003310E
+	// Token: 0x060005AC RID: 1452 RVA: 0x00035006 File Offset: 0x00033206
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		this.value = this.from * (1f - factor) + this.to * factor;
 	}
 
-	// Token: 0x060005AD RID: 1453 RVA: 0x00034F3C File Offset: 0x0003313C
+	// Token: 0x060005AD RID: 1453 RVA: 0x00035034 File Offset: 0x00033234
 	public static TweenPosition Begin(GameObject go, float duration, Vector3 pos)
 	{
 		TweenPosition tweenPosition = UITweener.Begin<TweenPosition>(go, duration, 0f);
@@ -91,7 +91,7 @@ public class TweenPosition : UITweener
 		return tweenPosition;
 	}
 
-	// Token: 0x060005AE RID: 1454 RVA: 0x00034F88 File Offset: 0x00033188
+	// Token: 0x060005AE RID: 1454 RVA: 0x00035080 File Offset: 0x00033280
 	public static TweenPosition Begin(GameObject go, float duration, Vector3 pos, bool worldSpace)
 	{
 		TweenPosition tweenPosition = UITweener.Begin<TweenPosition>(go, duration, 0f);
@@ -106,47 +106,47 @@ public class TweenPosition : UITweener
 		return tweenPosition;
 	}
 
-	// Token: 0x060005AF RID: 1455 RVA: 0x00034FD8 File Offset: 0x000331D8
+	// Token: 0x060005AF RID: 1455 RVA: 0x000350D0 File Offset: 0x000332D0
 	[ContextMenu("Set 'From' to current value")]
 	public override void SetStartToCurrentValue()
 	{
 		this.from = this.value;
 	}
 
-	// Token: 0x060005B0 RID: 1456 RVA: 0x00034FE6 File Offset: 0x000331E6
+	// Token: 0x060005B0 RID: 1456 RVA: 0x000350DE File Offset: 0x000332DE
 	[ContextMenu("Set 'To' to current value")]
 	public override void SetEndToCurrentValue()
 	{
 		this.to = this.value;
 	}
 
-	// Token: 0x060005B1 RID: 1457 RVA: 0x00034FF4 File Offset: 0x000331F4
+	// Token: 0x060005B1 RID: 1457 RVA: 0x000350EC File Offset: 0x000332EC
 	[ContextMenu("Assume value of 'From'")]
 	private void SetCurrentValueToStart()
 	{
 		this.value = this.from;
 	}
 
-	// Token: 0x060005B2 RID: 1458 RVA: 0x00035002 File Offset: 0x00033202
+	// Token: 0x060005B2 RID: 1458 RVA: 0x000350FA File Offset: 0x000332FA
 	[ContextMenu("Assume value of 'To'")]
 	private void SetCurrentValueToEnd()
 	{
 		this.value = this.to;
 	}
 
-	// Token: 0x040005CB RID: 1483
+	// Token: 0x040005D4 RID: 1492
 	public Vector3 from;
 
-	// Token: 0x040005CC RID: 1484
+	// Token: 0x040005D5 RID: 1493
 	public Vector3 to;
 
-	// Token: 0x040005CD RID: 1485
+	// Token: 0x040005D6 RID: 1494
 	[HideInInspector]
 	public bool worldSpace;
 
-	// Token: 0x040005CE RID: 1486
+	// Token: 0x040005D7 RID: 1495
 	private Transform mTrans;
 
-	// Token: 0x040005CF RID: 1487
+	// Token: 0x040005D8 RID: 1496
 	private UIRect mRect;
 }

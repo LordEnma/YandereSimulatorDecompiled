@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_3D_Anomaly : MonoBehaviour
 {
 	// Token: 0x1700020D RID: 525
-	// (get) Token: 0x06000AB4 RID: 2740 RVA: 0x0006834C File Offset: 0x0006654C
+	// (get) Token: 0x06000AB4 RID: 2740 RVA: 0x00068494 File Offset: 0x00066694
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_3D_Anomaly : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AB5 RID: 2741 RVA: 0x00068380 File Offset: 0x00066580
+	// Token: 0x06000AB5 RID: 2741 RVA: 0x000684C8 File Offset: 0x000666C8
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/3D_Anomaly");
@@ -32,7 +32,7 @@ public class CameraFilterPack_3D_Anomaly : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AB6 RID: 2742 RVA: 0x000683A4 File Offset: 0x000665A4
+	// Token: 0x06000AB6 RID: 2742 RVA: 0x000684EC File Offset: 0x000666EC
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -60,12 +60,12 @@ public class CameraFilterPack_3D_Anomaly : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000AB7 RID: 2743 RVA: 0x0006851D File Offset: 0x0006671D
+	// Token: 0x06000AB7 RID: 2743 RVA: 0x00068665 File Offset: 0x00066865
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000AB8 RID: 2744 RVA: 0x0006851F File Offset: 0x0006671F
+	// Token: 0x06000AB8 RID: 2744 RVA: 0x00068667 File Offset: 0x00066867
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -74,47 +74,47 @@ public class CameraFilterPack_3D_Anomaly : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000E2F RID: 3631
+	// Token: 0x04000E38 RID: 3640
 	public Shader SCShader;
 
-	// Token: 0x04000E30 RID: 3632
+	// Token: 0x04000E39 RID: 3641
 	public bool _Visualize;
 
-	// Token: 0x04000E31 RID: 3633
+	// Token: 0x04000E3A RID: 3642
 	private float TimeX = 1f;
 
-	// Token: 0x04000E32 RID: 3634
+	// Token: 0x04000E3B RID: 3643
 	private Material SCMaterial;
 
-	// Token: 0x04000E33 RID: 3635
+	// Token: 0x04000E3C RID: 3644
 	[Range(0f, 100f)]
 	public float _FixDistance = 23f;
 
-	// Token: 0x04000E34 RID: 3636
+	// Token: 0x04000E3D RID: 3645
 	[Range(-0.5f, 0.99f)]
 	public float Anomaly_Near = 0.045f;
 
-	// Token: 0x04000E35 RID: 3637
+	// Token: 0x04000E3E RID: 3646
 	[Range(0f, 1f)]
 	public float Anomaly_Far = 0.11f;
 
-	// Token: 0x04000E36 RID: 3638
+	// Token: 0x04000E3F RID: 3647
 	[Range(0f, 2f)]
 	public float Intensity = 1f;
 
-	// Token: 0x04000E37 RID: 3639
+	// Token: 0x04000E40 RID: 3648
 	[Range(0f, 1f)]
 	public float AnomalyWithoutObject = 1f;
 
-	// Token: 0x04000E38 RID: 3640
+	// Token: 0x04000E41 RID: 3649
 	[Range(0.1f, 1f)]
 	public float Anomaly_Distortion = 0.25f;
 
-	// Token: 0x04000E39 RID: 3641
+	// Token: 0x04000E42 RID: 3650
 	[Range(4f, 64f)]
 	public float Anomaly_Distortion_Size = 12f;
 
-	// Token: 0x04000E3A RID: 3642
+	// Token: 0x04000E43 RID: 3651
 	[Range(-4f, 8f)]
 	public float Anomaly_Intensity = 2f;
 }

@@ -3,7 +3,7 @@ using MaidDereMinigame.Malee;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x02000593 RID: 1427
+	// Token: 0x02000594 RID: 1428
 	[Serializable]
 	public class Chairs : ReorderableArray<Chair>
 	{

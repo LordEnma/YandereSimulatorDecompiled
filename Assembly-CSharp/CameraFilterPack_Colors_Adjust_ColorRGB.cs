@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Colors_Adjust_ColorRGB : MonoBehaviour
 {
 	// Token: 0x1700026B RID: 619
-	// (get) Token: 0x06000D27 RID: 3367 RVA: 0x00074D51 File Offset: 0x00072F51
+	// (get) Token: 0x06000D27 RID: 3367 RVA: 0x00074E99 File Offset: 0x00073099
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Colors_Adjust_ColorRGB : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D28 RID: 3368 RVA: 0x00074D85 File Offset: 0x00072F85
+	// Token: 0x06000D28 RID: 3368 RVA: 0x00074ECD File Offset: 0x000730CD
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Colors_Adjust_ColorRGB");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Colors_Adjust_ColorRGB : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D29 RID: 3369 RVA: 0x00074DA8 File Offset: 0x00072FA8
+	// Token: 0x06000D29 RID: 3369 RVA: 0x00074EF0 File Offset: 0x000730F0
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Colors_Adjust_ColorRGB : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000D2A RID: 3370 RVA: 0x00074EA0 File Offset: 0x000730A0
+	// Token: 0x06000D2A RID: 3370 RVA: 0x00074FE8 File Offset: 0x000731E8
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000D2B RID: 3371 RVA: 0x00074EA2 File Offset: 0x000730A2
+	// Token: 0x06000D2B RID: 3371 RVA: 0x00074FEA File Offset: 0x000731EA
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,28 +68,28 @@ public class CameraFilterPack_Colors_Adjust_ColorRGB : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400116C RID: 4460
+	// Token: 0x04001175 RID: 4469
 	public Shader SCShader;
 
-	// Token: 0x0400116D RID: 4461
+	// Token: 0x04001176 RID: 4470
 	private float TimeX = 1f;
 
-	// Token: 0x0400116E RID: 4462
+	// Token: 0x04001177 RID: 4471
 	private Material SCMaterial;
 
-	// Token: 0x0400116F RID: 4463
+	// Token: 0x04001178 RID: 4472
 	[Range(-2f, 2f)]
 	public float Red;
 
-	// Token: 0x04001170 RID: 4464
+	// Token: 0x04001179 RID: 4473
 	[Range(-2f, 2f)]
 	public float Green;
 
-	// Token: 0x04001171 RID: 4465
+	// Token: 0x0400117A RID: 4474
 	[Range(-2f, 2f)]
 	public float Blue;
 
-	// Token: 0x04001172 RID: 4466
+	// Token: 0x0400117B RID: 4475
 	[Range(-1f, 1f)]
 	public float Brightness;
 }

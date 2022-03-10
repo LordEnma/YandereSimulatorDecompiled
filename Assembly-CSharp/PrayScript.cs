@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003BC RID: 956
 public class PrayScript : MonoBehaviour
 {
-	// Token: 0x06001B03 RID: 6915 RVA: 0x0012BF3C File Offset: 0x0012A13C
+	// Token: 0x06001B04 RID: 6916 RVA: 0x0012C314 File Offset: 0x0012A514
 	private void Start()
 	{
 		if (StudentGlobals.GetStudentDead(39))
@@ -16,7 +16,7 @@ public class PrayScript : MonoBehaviour
 		this.Prompt.enabled = true;
 	}
 
-	// Token: 0x06001B04 RID: 6916 RVA: 0x0012BFC4 File Offset: 0x0012A1C4
+	// Token: 0x06001B05 RID: 6917 RVA: 0x0012C39C File Offset: 0x0012A59C
 	private void Update()
 	{
 		if (!this.FemaleVictimChecked)
@@ -227,7 +227,7 @@ public class PrayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B05 RID: 6917 RVA: 0x0012C738 File Offset: 0x0012A938
+	// Token: 0x06001B06 RID: 6918 RVA: 0x0012CB10 File Offset: 0x0012AD10
 	private void UpdateHighlight()
 	{
 		if (this.Selected < 1)
@@ -241,7 +241,7 @@ public class PrayScript : MonoBehaviour
 		this.Highlight.transform.localPosition = new Vector3(this.Highlight.transform.localPosition.x, 225f - 50f * (float)this.Selected, this.Highlight.transform.localPosition.z);
 	}
 
-	// Token: 0x06001B06 RID: 6918 RVA: 0x0012C7BC File Offset: 0x0012A9BC
+	// Token: 0x06001B07 RID: 6919 RVA: 0x0012CB94 File Offset: 0x0012AD94
 	private void Exit()
 	{
 		this.Yandere.CameraEffects.UpdateDOF(2f);
@@ -260,7 +260,7 @@ public class PrayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B07 RID: 6919 RVA: 0x0012C858 File Offset: 0x0012AA58
+	// Token: 0x06001B08 RID: 6920 RVA: 0x0012CC30 File Offset: 0x0012AE30
 	public void SpawnWeapons()
 	{
 		for (int i = 1; i < 6; i++)
@@ -272,90 +272,90 @@ public class PrayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002DA1 RID: 11681
+	// Token: 0x04002DB7 RID: 11703
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002DA2 RID: 11682
+	// Token: 0x04002DB8 RID: 11704
 	public WeaponManagerScript WeaponManager;
 
-	// Token: 0x04002DA3 RID: 11683
+	// Token: 0x04002DB9 RID: 11705
 	public DebugEnablerScript DebugEnabler;
 
-	// Token: 0x04002DA4 RID: 11684
+	// Token: 0x04002DBA RID: 11706
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002DA5 RID: 11685
+	// Token: 0x04002DBB RID: 11707
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002DA6 RID: 11686
+	// Token: 0x04002DBC RID: 11708
 	public StudentScript Student;
 
-	// Token: 0x04002DA7 RID: 11687
+	// Token: 0x04002DBD RID: 11709
 	public YandereScript Yandere;
 
-	// Token: 0x04002DA8 RID: 11688
+	// Token: 0x04002DBE RID: 11710
 	public PoliceScript Police;
 
-	// Token: 0x04002DA9 RID: 11689
+	// Token: 0x04002DBF RID: 11711
 	public UILabel SanityLabel;
 
-	// Token: 0x04002DAA RID: 11690
+	// Token: 0x04002DC0 RID: 11712
 	public UILabel VictimLabel;
 
-	// Token: 0x04002DAB RID: 11691
+	// Token: 0x04002DC1 RID: 11713
 	public PromptScript GenderPrompt;
 
-	// Token: 0x04002DAC RID: 11692
+	// Token: 0x04002DC2 RID: 11714
 	public PromptScript Prompt;
 
-	// Token: 0x04002DAD RID: 11693
+	// Token: 0x04002DC3 RID: 11715
 	public Transform PrayWindow;
 
-	// Token: 0x04002DAE RID: 11694
+	// Token: 0x04002DC4 RID: 11716
 	public Transform SummonSpot;
 
-	// Token: 0x04002DAF RID: 11695
+	// Token: 0x04002DC5 RID: 11717
 	public Transform Highlight;
 
-	// Token: 0x04002DB0 RID: 11696
+	// Token: 0x04002DC6 RID: 11718
 	public Transform[] WeaponSpot;
 
-	// Token: 0x04002DB1 RID: 11697
+	// Token: 0x04002DC7 RID: 11719
 	public GameObject[] Weapon;
 
-	// Token: 0x04002DB2 RID: 11698
+	// Token: 0x04002DC8 RID: 11720
 	public GameObject FemaleTurtle;
 
-	// Token: 0x04002DB3 RID: 11699
+	// Token: 0x04002DC9 RID: 11721
 	public int StudentNumber;
 
-	// Token: 0x04002DB4 RID: 11700
+	// Token: 0x04002DCA RID: 11722
 	public int StudentID;
 
-	// Token: 0x04002DB5 RID: 11701
+	// Token: 0x04002DCB RID: 11723
 	public int Selected;
 
-	// Token: 0x04002DB6 RID: 11702
+	// Token: 0x04002DCC RID: 11724
 	public int Victims;
 
-	// Token: 0x04002DB7 RID: 11703
+	// Token: 0x04002DCD RID: 11725
 	public int Uses;
 
-	// Token: 0x04002DB8 RID: 11704
+	// Token: 0x04002DCE RID: 11726
 	public bool FemaleVictimChecked;
 
-	// Token: 0x04002DB9 RID: 11705
+	// Token: 0x04002DCF RID: 11727
 	public bool MaleVictimChecked;
 
-	// Token: 0x04002DBA RID: 11706
+	// Token: 0x04002DD0 RID: 11728
 	public bool JustSummoned;
 
-	// Token: 0x04002DBB RID: 11707
+	// Token: 0x04002DD1 RID: 11729
 	public bool SpawnOsana;
 
-	// Token: 0x04002DBC RID: 11708
+	// Token: 0x04002DD2 RID: 11730
 	public bool SpawnMale;
 
-	// Token: 0x04002DBD RID: 11709
+	// Token: 0x04002DD3 RID: 11731
 	public bool Show;
 }

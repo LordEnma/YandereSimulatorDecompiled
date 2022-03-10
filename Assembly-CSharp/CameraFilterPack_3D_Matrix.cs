@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_3D_Matrix : MonoBehaviour
 {
 	// Token: 0x17000215 RID: 533
-	// (get) Token: 0x06000AE4 RID: 2788 RVA: 0x00069815 File Offset: 0x00067A15
+	// (get) Token: 0x06000AE4 RID: 2788 RVA: 0x0006995D File Offset: 0x00067B5D
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_3D_Matrix : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AE5 RID: 2789 RVA: 0x00069849 File Offset: 0x00067A49
+	// Token: 0x06000AE5 RID: 2789 RVA: 0x00069991 File Offset: 0x00067B91
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_3D_Matrix1") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_3D_Matrix : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AE6 RID: 2790 RVA: 0x00069880 File Offset: 0x00067A80
+	// Token: 0x06000AE6 RID: 2790 RVA: 0x000699C8 File Offset: 0x00067BC8
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -62,12 +62,12 @@ public class CameraFilterPack_3D_Matrix : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000AE7 RID: 2791 RVA: 0x00069A0C File Offset: 0x00067C0C
+	// Token: 0x06000AE7 RID: 2791 RVA: 0x00069B54 File Offset: 0x00067D54
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000AE8 RID: 2792 RVA: 0x00069A0E File Offset: 0x00067C0E
+	// Token: 0x06000AE8 RID: 2792 RVA: 0x00069B56 File Offset: 0x00067D56
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -76,44 +76,44 @@ public class CameraFilterPack_3D_Matrix : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000E94 RID: 3732
+	// Token: 0x04000E9D RID: 3741
 	public Shader SCShader;
 
-	// Token: 0x04000E95 RID: 3733
+	// Token: 0x04000E9E RID: 3742
 	private float TimeX = 1f;
 
-	// Token: 0x04000E96 RID: 3734
+	// Token: 0x04000E9F RID: 3743
 	private Material SCMaterial;
 
-	// Token: 0x04000E97 RID: 3735
+	// Token: 0x04000EA0 RID: 3744
 	public bool _Visualize;
 
-	// Token: 0x04000E98 RID: 3736
+	// Token: 0x04000EA1 RID: 3745
 	[Range(0f, 100f)]
 	public float _FixDistance = 1f;
 
-	// Token: 0x04000E99 RID: 3737
+	// Token: 0x04000EA2 RID: 3746
 	[Range(-5f, 5f)]
 	public float LightIntensity = 1f;
 
-	// Token: 0x04000E9A RID: 3738
+	// Token: 0x04000EA3 RID: 3747
 	[Range(0f, 6f)]
 	public float MatrixSize = 1f;
 
-	// Token: 0x04000E9B RID: 3739
+	// Token: 0x04000EA4 RID: 3748
 	[Range(-4f, 4f)]
 	public float MatrixSpeed = 1f;
 
-	// Token: 0x04000E9C RID: 3740
+	// Token: 0x04000EA5 RID: 3749
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 
-	// Token: 0x04000E9D RID: 3741
+	// Token: 0x04000EA6 RID: 3750
 	public Color _MatrixColor = new Color(0f, 1f, 0f, 1f);
 
-	// Token: 0x04000E9E RID: 3742
+	// Token: 0x04000EA7 RID: 3751
 	public static Color ChangeColorRGB;
 
-	// Token: 0x04000E9F RID: 3743
+	// Token: 0x04000EA8 RID: 3752
 	private Texture2D Texture2;
 }

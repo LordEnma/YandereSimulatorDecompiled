@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blur_Tilt_Shift_V : MonoBehaviour
 {
 	// Token: 0x1700025A RID: 602
-	// (get) Token: 0x06000CC1 RID: 3265 RVA: 0x000733C0 File Offset: 0x000715C0
+	// (get) Token: 0x06000CC1 RID: 3265 RVA: 0x00073508 File Offset: 0x00071708
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blur_Tilt_Shift_V : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CC2 RID: 3266 RVA: 0x000733F4 File Offset: 0x000715F4
+	// Token: 0x06000CC2 RID: 3266 RVA: 0x0007353C File Offset: 0x0007173C
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/BlurTiltShift_V");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Blur_Tilt_Shift_V : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CC3 RID: 3267 RVA: 0x00073418 File Offset: 0x00071618
+	// Token: 0x06000CC3 RID: 3267 RVA: 0x00073560 File Offset: 0x00071760
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (!(this.SCShader != null))
@@ -72,12 +72,12 @@ public class CameraFilterPack_Blur_Tilt_Shift_V : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture, this.material, 0);
 	}
 
-	// Token: 0x06000CC4 RID: 3268 RVA: 0x000735A8 File Offset: 0x000717A8
+	// Token: 0x06000CC4 RID: 3268 RVA: 0x000736F0 File Offset: 0x000718F0
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000CC5 RID: 3269 RVA: 0x000735AA File Offset: 0x000717AA
+	// Token: 0x06000CC5 RID: 3269 RVA: 0x000736F2 File Offset: 0x000718F2
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -86,32 +86,32 @@ public class CameraFilterPack_Blur_Tilt_Shift_V : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400110C RID: 4364
+	// Token: 0x04001115 RID: 4373
 	public Shader SCShader;
 
-	// Token: 0x0400110D RID: 4365
+	// Token: 0x04001116 RID: 4374
 	private float TimeX = 1f;
 
-	// Token: 0x0400110E RID: 4366
+	// Token: 0x04001117 RID: 4375
 	private Material SCMaterial;
 
-	// Token: 0x0400110F RID: 4367
+	// Token: 0x04001118 RID: 4376
 	[Range(0f, 20f)]
 	public float Amount = 3f;
 
-	// Token: 0x04001110 RID: 4368
+	// Token: 0x04001119 RID: 4377
 	[Range(2f, 16f)]
 	public int FastFilter = 8;
 
-	// Token: 0x04001111 RID: 4369
+	// Token: 0x0400111A RID: 4378
 	[Range(0f, 1f)]
 	public float Smooth = 0.5f;
 
-	// Token: 0x04001112 RID: 4370
+	// Token: 0x0400111B RID: 4379
 	[Range(0f, 1f)]
 	public float Size = 0.5f;
 
-	// Token: 0x04001113 RID: 4371
+	// Token: 0x0400111C RID: 4380
 	[Range(-1f, 1f)]
 	public float Position = 0.5f;
 }

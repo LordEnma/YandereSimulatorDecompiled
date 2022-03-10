@@ -5,6 +5,6 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Drag and Drop Surface (Example)")]
 public class ExampleDragDropSurface : MonoBehaviour
 {
-	// Token: 0x04000294 RID: 660
+	// Token: 0x0400029D RID: 669
 	public bool rotatePlacedObject;
 }

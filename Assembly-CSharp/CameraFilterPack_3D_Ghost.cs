@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_3D_Ghost : MonoBehaviour
 {
 	// Token: 0x17000213 RID: 531
-	// (get) Token: 0x06000AD8 RID: 2776 RVA: 0x0006931B File Offset: 0x0006751B
+	// (get) Token: 0x06000AD8 RID: 2776 RVA: 0x00069463 File Offset: 0x00067663
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_3D_Ghost : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AD9 RID: 2777 RVA: 0x0006934F File Offset: 0x0006754F
+	// Token: 0x06000AD9 RID: 2777 RVA: 0x00069497 File Offset: 0x00067697
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/3D_Ghost");
@@ -32,7 +32,7 @@ public class CameraFilterPack_3D_Ghost : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000ADA RID: 2778 RVA: 0x00069370 File Offset: 0x00067570
+	// Token: 0x06000ADA RID: 2778 RVA: 0x000694B8 File Offset: 0x000676B8
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -62,12 +62,12 @@ public class CameraFilterPack_3D_Ghost : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000ADB RID: 2779 RVA: 0x00069515 File Offset: 0x00067715
+	// Token: 0x06000ADB RID: 2779 RVA: 0x0006965D File Offset: 0x0006785D
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000ADC RID: 2780 RVA: 0x00069517 File Offset: 0x00067717
+	// Token: 0x06000ADC RID: 2780 RVA: 0x0006965F File Offset: 0x0006785F
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -76,55 +76,55 @@ public class CameraFilterPack_3D_Ghost : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000E7B RID: 3707
+	// Token: 0x04000E84 RID: 3716
 	public Shader SCShader;
 
-	// Token: 0x04000E7C RID: 3708
+	// Token: 0x04000E85 RID: 3717
 	private float TimeX = 1f;
 
-	// Token: 0x04000E7D RID: 3709
+	// Token: 0x04000E86 RID: 3718
 	public bool _Visualize;
 
-	// Token: 0x04000E7E RID: 3710
+	// Token: 0x04000E87 RID: 3719
 	private Material SCMaterial;
 
-	// Token: 0x04000E7F RID: 3711
+	// Token: 0x04000E88 RID: 3720
 	[Range(0f, 100f)]
 	public float _FixDistance = 5f;
 
-	// Token: 0x04000E80 RID: 3712
+	// Token: 0x04000E89 RID: 3721
 	[Range(-0.5f, 0.99f)]
 	public float Ghost_Near = 0.08f;
 
-	// Token: 0x04000E81 RID: 3713
+	// Token: 0x04000E8A RID: 3722
 	[Range(0f, 1f)]
 	public float Ghost_Far = 0.55f;
 
-	// Token: 0x04000E82 RID: 3714
+	// Token: 0x04000E8B RID: 3723
 	[Range(0f, 2f)]
 	public float Intensity = 1f;
 
-	// Token: 0x04000E83 RID: 3715
+	// Token: 0x04000E8C RID: 3724
 	[Range(0f, 1f)]
 	public float GhostWithoutObject = 1f;
 
-	// Token: 0x04000E84 RID: 3716
+	// Token: 0x04000E8D RID: 3725
 	[Range(-1f, 1f)]
 	public float GhostPosX;
 
-	// Token: 0x04000E85 RID: 3717
+	// Token: 0x04000E8E RID: 3726
 	[Range(-1f, 1f)]
 	public float GhostPosY;
 
-	// Token: 0x04000E86 RID: 3718
+	// Token: 0x04000E8F RID: 3727
 	[Range(0.1f, 8f)]
 	public float GhostFade2 = 2f;
 
-	// Token: 0x04000E87 RID: 3719
+	// Token: 0x04000E90 RID: 3728
 	[Range(-1f, 1f)]
 	public float GhostFade;
 
-	// Token: 0x04000E88 RID: 3720
+	// Token: 0x04000E91 RID: 3729
 	[Range(0.5f, 1.5f)]
 	public float GhostSize = 0.9f;
 }

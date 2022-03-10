@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x0200058E RID: 1422
+	// Token: 0x0200058F RID: 1423
 	[RequireComponent(typeof(Animator))]
 	[RequireComponent(typeof(SpriteRenderer))]
 	[RequireComponent(typeof(Collider2D))]
 	public class AIController : AIMover
 	{
-		// Token: 0x06002419 RID: 9241 RVA: 0x001F9900 File Offset: 0x001F7B00
+		// Token: 0x0600241F RID: 9247 RVA: 0x001FA2D8 File Offset: 0x001F84D8
 		public void Init()
 		{
 			this.animator = base.GetComponent<Animator>();
@@ -26,7 +26,7 @@ namespace MaidDereMinigame
 			this.speechBubble.gameObject.SetActive(false);
 		}
 
-		// Token: 0x0600241A RID: 9242 RVA: 0x001F9990 File Offset: 0x001F7B90
+		// Token: 0x06002420 RID: 9248 RVA: 0x001FA368 File Offset: 0x001F8568
 		private void Start()
 		{
 			this.leaveTarget.GetComponent<CustomerSpawner>().OpenDoor();
@@ -38,26 +38,26 @@ namespace MaidDereMinigame
 			SFXController.PlaySound(SFXController.Sounds.DoorBell);
 		}
 
-		// Token: 0x0600241B RID: 9243 RVA: 0x001F9A1C File Offset: 0x001F7C1C
+		// Token: 0x06002421 RID: 9249 RVA: 0x001FA3F4 File Offset: 0x001F85F4
 		private void OnEnable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(this.Pause));
 		}
 
-		// Token: 0x0600241C RID: 9244 RVA: 0x001F9A3E File Offset: 0x001F7C3E
+		// Token: 0x06002422 RID: 9250 RVA: 0x001FA416 File Offset: 0x001F8616
 		private void OnDisable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(this.Pause));
 		}
 
-		// Token: 0x0600241D RID: 9245 RVA: 0x001F9A60 File Offset: 0x001F7C60
+		// Token: 0x06002423 RID: 9251 RVA: 0x001FA438 File Offset: 0x001F8638
 		public void Pause(bool toPause)
 		{
 			this.isPaused = toPause;
 			base.GetComponent<Animator>().speed = (float)(this.isPaused ? 0 : 1);
 		}
 
-		// Token: 0x0600241E RID: 9246 RVA: 0x001F9A84 File Offset: 0x001F7C84
+		// Token: 0x06002424 RID: 9252 RVA: 0x001FA45C File Offset: 0x001F865C
 		private void Update()
 		{
 			if (this.isPaused)
@@ -127,7 +127,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x0600241F RID: 9247 RVA: 0x001F9C38 File Offset: 0x001F7E38
+		// Token: 0x06002425 RID: 9253 RVA: 0x001FA610 File Offset: 0x001F8810
 		public override ControlInput GetInput()
 		{
 			ControlInput result = default(ControlInput);
@@ -165,7 +165,7 @@ namespace MaidDereMinigame
 			return result;
 		}
 
-		// Token: 0x06002420 RID: 9248 RVA: 0x001F9D08 File Offset: 0x001F7F08
+		// Token: 0x06002426 RID: 9254 RVA: 0x001FA6E0 File Offset: 0x001F88E0
 		public void TakeOrder()
 		{
 			this.state = AIController.AIState.Ordering;
@@ -185,7 +185,7 @@ namespace MaidDereMinigame
 			SFXController.PlaySound(SFXController.Sounds.FemaleCustomerGreet);
 		}
 
-		// Token: 0x06002421 RID: 9249 RVA: 0x001F9DBC File Offset: 0x001F7FBC
+		// Token: 0x06002427 RID: 9255 RVA: 0x001FA794 File Offset: 0x001F8994
 		public void DeliverFood(Food deliveredFood)
 		{
 			if (deliveredFood.name == this.desiredFood.name)
@@ -227,7 +227,7 @@ namespace MaidDereMinigame
 			this.happinessMeter.gameObject.SetActive(false);
 		}
 
-		// Token: 0x06002422 RID: 9250 RVA: 0x001F9EC8 File Offset: 0x001F80C8
+		// Token: 0x06002428 RID: 9256 RVA: 0x001FA8A0 File Offset: 0x001F8AA0
 		private void SitDown()
 		{
 			base.transform.position = new Vector3(this.targetChair.transform.position.x, base.transform.position.y, base.transform.position.z);
@@ -238,7 +238,7 @@ namespace MaidDereMinigame
 			this.happinessMeter.gameObject.SetActive(true);
 		}
 
-		// Token: 0x06002423 RID: 9251 RVA: 0x001F9F74 File Offset: 0x001F8174
+		// Token: 0x06002429 RID: 9257 RVA: 0x001FA94C File Offset: 0x001F8B4C
 		private void StandUp()
 		{
 			this.animator.SetTrigger("StandUp");
@@ -248,7 +248,7 @@ namespace MaidDereMinigame
 			this.happinessMeter.gameObject.SetActive(false);
 		}
 
-		// Token: 0x06002424 RID: 9252 RVA: 0x001F9FC4 File Offset: 0x001F81C4
+		// Token: 0x0600242A RID: 9258 RVA: 0x001FA99C File Offset: 0x001F8B9C
 		private void ReduceHappiness()
 		{
 			this.happiness -= Time.deltaTime * this.patienceDegradation;
@@ -256,14 +256,14 @@ namespace MaidDereMinigame
 			this.happinessMeter.SetFill(this.happiness / 100f);
 		}
 
-		// Token: 0x06002425 RID: 9253 RVA: 0x001FA017 File Offset: 0x001F8217
+		// Token: 0x0600242B RID: 9259 RVA: 0x001FA9EF File Offset: 0x001F8BEF
 		private void SetFlip(bool flip)
 		{
 			this.spriteRenderer.flipX = flip;
 			base.GetComponentInChildren<CharacterHairPlacer>().hairInstance.flipX = flip;
 		}
 
-		// Token: 0x06002426 RID: 9254 RVA: 0x001FA038 File Offset: 0x001F8238
+		// Token: 0x0600242C RID: 9260 RVA: 0x001FAA10 File Offset: 0x001F8C10
 		public void SetSortingLayer(bool back)
 		{
 			this.spriteRenderer.sortingLayerName = (back ? "CustomerSitting" : "Default");
@@ -271,82 +271,82 @@ namespace MaidDereMinigame
 			this.throbObject.GetComponent<SpriteRenderer>().sortingLayerName = (back ? "CustomerSitting" : "Default");
 		}
 
-		// Token: 0x04004BED RID: 19437
+		// Token: 0x04004C0A RID: 19466
 		public GameObject throbObject;
 
-		// Token: 0x04004BEE RID: 19438
+		// Token: 0x04004C0B RID: 19467
 		public Meter happinessMeter;
 
-		// Token: 0x04004BEF RID: 19439
+		// Token: 0x04004C0C RID: 19468
 		public Bubble speechBubble;
 
-		// Token: 0x04004BF0 RID: 19440
+		// Token: 0x04004C0D RID: 19469
 		public float distanceThreshold = 0.5f;
 
-		// Token: 0x04004BF1 RID: 19441
+		// Token: 0x04004C0E RID: 19470
 		private Food desiredFood;
 
-		// Token: 0x04004BF2 RID: 19442
+		// Token: 0x04004C0F RID: 19471
 		private Collider2D collider2d;
 
-		// Token: 0x04004BF3 RID: 19443
+		// Token: 0x04004C10 RID: 19472
 		private Chair targetChair;
 
-		// Token: 0x04004BF4 RID: 19444
+		// Token: 0x04004C11 RID: 19473
 		[HideInInspector]
 		public Transform leaveTarget;
 
-		// Token: 0x04004BF5 RID: 19445
+		// Token: 0x04004C12 RID: 19474
 		[HideInInspector]
 		public AIController.AIState state;
 
-		// Token: 0x04004BF6 RID: 19446
+		// Token: 0x04004C13 RID: 19475
 		private Animator animator;
 
-		// Token: 0x04004BF7 RID: 19447
+		// Token: 0x04004C14 RID: 19476
 		private SpriteRenderer spriteRenderer;
 
-		// Token: 0x04004BF8 RID: 19448
+		// Token: 0x04004C15 RID: 19477
 		private float patienceDegradation = 2f;
 
-		// Token: 0x04004BF9 RID: 19449
+		// Token: 0x04004C16 RID: 19478
 		private float timeToOrder = 0.5f;
 
-		// Token: 0x04004BFA RID: 19450
+		// Token: 0x04004C17 RID: 19479
 		private float timeToEat;
 
-		// Token: 0x04004BFB RID: 19451
+		// Token: 0x04004C18 RID: 19480
 		private float happiness = 50f;
 
-		// Token: 0x04004BFC RID: 19452
+		// Token: 0x04004C19 RID: 19481
 		private float orderTime;
 
-		// Token: 0x04004BFD RID: 19453
+		// Token: 0x04004C1A RID: 19482
 		private float eatTime;
 
-		// Token: 0x04004BFE RID: 19454
+		// Token: 0x04004C1B RID: 19483
 		private int normalSortingLayer;
 
-		// Token: 0x04004BFF RID: 19455
+		// Token: 0x04004C1C RID: 19484
 		private bool isPaused;
 
-		// Token: 0x04004C00 RID: 19456
+		// Token: 0x04004C1D RID: 19485
 		public bool Male;
 
-		// Token: 0x020006D8 RID: 1752
+		// Token: 0x020006D9 RID: 1753
 		public enum AIState
 		{
-			// Token: 0x040051A8 RID: 20904
+			// Token: 0x040051C5 RID: 20933
 			Entering,
-			// Token: 0x040051A9 RID: 20905
+			// Token: 0x040051C6 RID: 20934
 			Menu,
-			// Token: 0x040051AA RID: 20906
+			// Token: 0x040051C7 RID: 20935
 			Ordering,
-			// Token: 0x040051AB RID: 20907
+			// Token: 0x040051C8 RID: 20936
 			Waiting,
-			// Token: 0x040051AC RID: 20908
+			// Token: 0x040051C9 RID: 20937
 			Eating,
-			// Token: 0x040051AD RID: 20909
+			// Token: 0x040051CA RID: 20938
 			Leaving
 		}
 	}

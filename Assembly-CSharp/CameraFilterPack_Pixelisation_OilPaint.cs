@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Pixelisation_OilPaint : MonoBehaviour
 {
 	// Token: 0x170002FE RID: 766
-	// (get) Token: 0x060010BE RID: 4286 RVA: 0x00084F53 File Offset: 0x00083153
+	// (get) Token: 0x060010BE RID: 4286 RVA: 0x0008509B File Offset: 0x0008329B
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Pixelisation_OilPaint : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010BF RID: 4287 RVA: 0x00084F87 File Offset: 0x00083187
+	// Token: 0x060010BF RID: 4287 RVA: 0x000850CF File Offset: 0x000832CF
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Pixelisation_OilPaint");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Pixelisation_OilPaint : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010C0 RID: 4288 RVA: 0x00084FA8 File Offset: 0x000831A8
+	// Token: 0x060010C0 RID: 4288 RVA: 0x000850F0 File Offset: 0x000832F0
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -51,12 +51,12 @@ public class CameraFilterPack_Pixelisation_OilPaint : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x060010C1 RID: 4289 RVA: 0x0008505E File Offset: 0x0008325E
+	// Token: 0x060010C1 RID: 4289 RVA: 0x000851A6 File Offset: 0x000833A6
 	private void Update()
 	{
 	}
 
-	// Token: 0x060010C2 RID: 4290 RVA: 0x00085060 File Offset: 0x00083260
+	// Token: 0x060010C2 RID: 4290 RVA: 0x000851A8 File Offset: 0x000833A8
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -65,16 +65,16 @@ public class CameraFilterPack_Pixelisation_OilPaint : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400154C RID: 5452
+	// Token: 0x04001555 RID: 5461
 	public Shader SCShader;
 
-	// Token: 0x0400154D RID: 5453
+	// Token: 0x04001556 RID: 5462
 	private float TimeX = 1f;
 
-	// Token: 0x0400154E RID: 5454
+	// Token: 0x04001557 RID: 5463
 	private Material SCMaterial;
 
-	// Token: 0x0400154F RID: 5455
+	// Token: 0x04001558 RID: 5464
 	[Range(0f, 5f)]
 	public float Value = 1f;
 }

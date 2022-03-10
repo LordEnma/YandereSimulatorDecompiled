@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E6 RID: 998
 public class RivalAfterClassEventManagerScript : MonoBehaviour
 {
-	// Token: 0x06001BC5 RID: 7109 RVA: 0x0014280C File Offset: 0x00140A0C
+	// Token: 0x06001BC7 RID: 7111 RVA: 0x00142D48 File Offset: 0x00140F48
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -16,7 +16,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BC6 RID: 7110 RVA: 0x00142874 File Offset: 0x00140A74
+	// Token: 0x06001BC8 RID: 7112 RVA: 0x00142DB0 File Offset: 0x00140FB0
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -324,7 +324,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BC7 RID: 7111 RVA: 0x001439DC File Offset: 0x00141BDC
+	// Token: 0x06001BC9 RID: 7113 RVA: 0x00143F18 File Offset: 0x00142118
 	private void EndEvent()
 	{
 		if (this.VoiceClip != null)
@@ -398,7 +398,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 		this.Jukebox.Dip = 1f;
 	}
 
-	// Token: 0x06001BC8 RID: 7112 RVA: 0x00143D30 File Offset: 0x00141F30
+	// Token: 0x06001BCA RID: 7114 RVA: 0x0014426C File Offset: 0x0014246C
 	private void EndSenpai()
 	{
 		if (!this.Senpai.Alarmed)
@@ -417,156 +417,156 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 		this.OsanaThursdayRooftopEvent.enabled = false;
 	}
 
-	// Token: 0x0400306A RID: 12394
+	// Token: 0x04003080 RID: 12416
 	public OsanaThursdayAfterClassEventScript OsanaThursdayRooftopEvent;
 
-	// Token: 0x0400306B RID: 12395
+	// Token: 0x04003081 RID: 12417
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x0400306C RID: 12396
+	// Token: 0x04003082 RID: 12418
 	public JukeboxScript Jukebox;
 
-	// Token: 0x0400306D RID: 12397
+	// Token: 0x04003083 RID: 12419
 	public UILabel EventSubtitle;
 
-	// Token: 0x0400306E RID: 12398
+	// Token: 0x04003084 RID: 12420
 	public YandereScript Yandere;
 
-	// Token: 0x0400306F RID: 12399
+	// Token: 0x04003085 RID: 12421
 	public ClockScript Clock;
 
-	// Token: 0x04003070 RID: 12400
+	// Token: 0x04003086 RID: 12422
 	public SpyScript Spy;
 
-	// Token: 0x04003071 RID: 12401
+	// Token: 0x04003087 RID: 12423
 	public StudentScript Friend;
 
-	// Token: 0x04003072 RID: 12402
+	// Token: 0x04003088 RID: 12424
 	public StudentScript Senpai;
 
-	// Token: 0x04003073 RID: 12403
+	// Token: 0x04003089 RID: 12425
 	public StudentScript Rival;
 
-	// Token: 0x04003074 RID: 12404
+	// Token: 0x0400308A RID: 12426
 	public Transform[] Location;
 
-	// Token: 0x04003075 RID: 12405
+	// Token: 0x0400308B RID: 12427
 	public Transform Epicenter;
 
-	// Token: 0x04003076 RID: 12406
+	// Token: 0x0400308C RID: 12428
 	public AudioClip CancelledSpeechClip;
 
-	// Token: 0x04003077 RID: 12407
+	// Token: 0x0400308D RID: 12429
 	public string[] CancelledSpeechText;
 
-	// Token: 0x04003078 RID: 12408
+	// Token: 0x0400308E RID: 12430
 	public float[] CancelledSpeechTime;
 
-	// Token: 0x04003079 RID: 12409
+	// Token: 0x0400308F RID: 12431
 	public AudioClip SabotagedSpeechClip;
 
-	// Token: 0x0400307A RID: 12410
+	// Token: 0x04003090 RID: 12432
 	public string[] SabotagedSpeechText;
 
-	// Token: 0x0400307B RID: 12411
+	// Token: 0x04003091 RID: 12433
 	public float[] SabotagedSpeechTime;
 
-	// Token: 0x0400307C RID: 12412
+	// Token: 0x04003092 RID: 12434
 	public AudioClip SpeechClip;
 
-	// Token: 0x0400307D RID: 12413
+	// Token: 0x04003093 RID: 12435
 	public string[] SpeechText;
 
-	// Token: 0x0400307E RID: 12414
+	// Token: 0x04003094 RID: 12436
 	public float[] SpeechTime;
 
-	// Token: 0x0400307F RID: 12415
+	// Token: 0x04003095 RID: 12437
 	public AudioClip ImpatientSpeechClip;
 
-	// Token: 0x04003080 RID: 12416
+	// Token: 0x04003096 RID: 12438
 	public string ImpatientSpeechText;
 
-	// Token: 0x04003081 RID: 12417
+	// Token: 0x04003097 RID: 12439
 	public GameObject AlarmDisc;
 
-	// Token: 0x04003082 RID: 12418
+	// Token: 0x04003098 RID: 12440
 	public GameObject VoiceClip;
 
-	// Token: 0x04003083 RID: 12419
+	// Token: 0x04003099 RID: 12441
 	public bool LookAtSenpai;
 
-	// Token: 0x04003084 RID: 12420
+	// Token: 0x0400309A RID: 12442
 	public bool EventActive;
 
-	// Token: 0x04003085 RID: 12421
+	// Token: 0x0400309B RID: 12443
 	public bool NaturalEnd;
 
-	// Token: 0x04003086 RID: 12422
+	// Token: 0x0400309C RID: 12444
 	public bool Cancelled;
 
-	// Token: 0x04003087 RID: 12423
+	// Token: 0x0400309D RID: 12445
 	public bool HintGiven;
 
-	// Token: 0x04003088 RID: 12424
+	// Token: 0x0400309E RID: 12446
 	public bool Impatient;
 
-	// Token: 0x04003089 RID: 12425
+	// Token: 0x0400309F RID: 12447
 	public bool Sabotaged;
 
-	// Token: 0x0400308A RID: 12426
+	// Token: 0x040030A0 RID: 12448
 	public bool Transfer;
 
-	// Token: 0x0400308B RID: 12427
+	// Token: 0x040030A1 RID: 12449
 	public bool TakeOut;
 
-	// Token: 0x0400308C RID: 12428
+	// Token: 0x040030A2 RID: 12450
 	public bool PutAway;
 
-	// Token: 0x0400308D RID: 12429
+	// Token: 0x040030A3 RID: 12451
 	public bool Return;
 
-	// Token: 0x0400308E RID: 12430
+	// Token: 0x040030A4 RID: 12452
 	public float TransferTime;
 
-	// Token: 0x0400308F RID: 12431
+	// Token: 0x040030A5 RID: 12453
 	public float ReturnTime;
 
-	// Token: 0x04003090 RID: 12432
+	// Token: 0x040030A6 RID: 12454
 	public float TakeOutTime;
 
-	// Token: 0x04003091 RID: 12433
+	// Token: 0x040030A7 RID: 12455
 	public float PutAwayTime;
 
-	// Token: 0x04003092 RID: 12434
+	// Token: 0x040030A8 RID: 12456
 	public float Distance;
 
-	// Token: 0x04003093 RID: 12435
+	// Token: 0x040030A9 RID: 12457
 	public float Scale;
 
-	// Token: 0x04003094 RID: 12436
+	// Token: 0x040030AA RID: 12458
 	public float Timer;
 
-	// Token: 0x04003095 RID: 12437
+	// Token: 0x040030AB RID: 12459
 	public DayOfWeek EventDay;
 
-	// Token: 0x04003096 RID: 12438
+	// Token: 0x040030AC RID: 12460
 	public int SpeechPhase = 1;
 
-	// Token: 0x04003097 RID: 12439
+	// Token: 0x040030AD RID: 12461
 	public int FriendID = 10;
 
-	// Token: 0x04003098 RID: 12440
+	// Token: 0x040030AE RID: 12462
 	public int RivalID = 11;
 
-	// Token: 0x04003099 RID: 12441
+	// Token: 0x040030AF RID: 12463
 	public int Phase;
 
-	// Token: 0x0400309A RID: 12442
+	// Token: 0x040030B0 RID: 12464
 	public int Frame;
 
-	// Token: 0x0400309B RID: 12443
+	// Token: 0x040030B1 RID: 12465
 	public string Weekday = string.Empty;
 
-	// Token: 0x0400309C RID: 12444
+	// Token: 0x040030B2 RID: 12466
 	public string Suffix = string.Empty;
 }

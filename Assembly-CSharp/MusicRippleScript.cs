@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200001B RID: 27
 public class MusicRippleScript : MonoBehaviour
 {
-	// Token: 0x0600005A RID: 90 RVA: 0x000097EC File Offset: 0x000079EC
+	// Token: 0x0600005A RID: 90 RVA: 0x000098E4 File Offset: 0x00007AE4
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -21,18 +21,18 @@ public class MusicRippleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000161 RID: 353
+	// Token: 0x0400016A RID: 362
 	public Renderer MyRenderer;
 
-	// Token: 0x04000162 RID: 354
+	// Token: 0x0400016B RID: 363
 	public Texture[] Sprite;
 
-	// Token: 0x04000163 RID: 355
+	// Token: 0x0400016C RID: 364
 	public float Timer;
 
-	// Token: 0x04000164 RID: 356
+	// Token: 0x0400016D RID: 365
 	public float FPS;
 
-	// Token: 0x04000165 RID: 357
+	// Token: 0x0400016E RID: 366
 	public int Frame;
 }

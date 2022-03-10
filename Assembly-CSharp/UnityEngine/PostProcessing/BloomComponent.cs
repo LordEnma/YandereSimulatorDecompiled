@@ -2,11 +2,11 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000554 RID: 1364
+	// Token: 0x02000555 RID: 1365
 	public sealed class BloomComponent : PostProcessingComponentRenderTexture<BloomModel>
 	{
 		// Token: 0x170004EE RID: 1262
-		// (get) Token: 0x060022BC RID: 8892 RVA: 0x001F0C47 File Offset: 0x001EEE47
+		// (get) Token: 0x060022C2 RID: 8898 RVA: 0x001F161F File Offset: 0x001EF81F
 		public override bool active
 		{
 			get
@@ -15,7 +15,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022BD RID: 8893 RVA: 0x001F0C84 File Offset: 0x001EEE84
+		// Token: 0x060022C3 RID: 8899 RVA: 0x001F165C File Offset: 0x001EF85C
 		public void Prepare(RenderTexture source, Material uberMaterial, Texture autoExposure)
 		{
 			BloomModel.BloomSettings bloom = base.model.settings.bloom;
@@ -86,46 +86,46 @@ namespace UnityEngine.PostProcessing
 			uberMaterial.EnableKeyword("BLOOM");
 		}
 
-		// Token: 0x04004ADB RID: 19163
+		// Token: 0x04004AF8 RID: 19192
 		private const int k_MaxPyramidBlurLevel = 16;
 
-		// Token: 0x04004ADC RID: 19164
+		// Token: 0x04004AF9 RID: 19193
 		private readonly RenderTexture[] m_BlurBuffer1 = new RenderTexture[16];
 
-		// Token: 0x04004ADD RID: 19165
+		// Token: 0x04004AFA RID: 19194
 		private readonly RenderTexture[] m_BlurBuffer2 = new RenderTexture[16];
 
-		// Token: 0x02000693 RID: 1683
+		// Token: 0x02000694 RID: 1684
 		private static class Uniforms
 		{
-			// Token: 0x04005022 RID: 20514
+			// Token: 0x0400503F RID: 20543
 			internal static readonly int _AutoExposure = Shader.PropertyToID("_AutoExposure");
 
-			// Token: 0x04005023 RID: 20515
+			// Token: 0x04005040 RID: 20544
 			internal static readonly int _Threshold = Shader.PropertyToID("_Threshold");
 
-			// Token: 0x04005024 RID: 20516
+			// Token: 0x04005041 RID: 20545
 			internal static readonly int _Curve = Shader.PropertyToID("_Curve");
 
-			// Token: 0x04005025 RID: 20517
+			// Token: 0x04005042 RID: 20546
 			internal static readonly int _PrefilterOffs = Shader.PropertyToID("_PrefilterOffs");
 
-			// Token: 0x04005026 RID: 20518
+			// Token: 0x04005043 RID: 20547
 			internal static readonly int _SampleScale = Shader.PropertyToID("_SampleScale");
 
-			// Token: 0x04005027 RID: 20519
+			// Token: 0x04005044 RID: 20548
 			internal static readonly int _BaseTex = Shader.PropertyToID("_BaseTex");
 
-			// Token: 0x04005028 RID: 20520
+			// Token: 0x04005045 RID: 20549
 			internal static readonly int _BloomTex = Shader.PropertyToID("_BloomTex");
 
-			// Token: 0x04005029 RID: 20521
+			// Token: 0x04005046 RID: 20550
 			internal static readonly int _Bloom_Settings = Shader.PropertyToID("_Bloom_Settings");
 
-			// Token: 0x0400502A RID: 20522
+			// Token: 0x04005047 RID: 20551
 			internal static readonly int _Bloom_DirtTex = Shader.PropertyToID("_Bloom_DirtTex");
 
-			// Token: 0x0400502B RID: 20523
+			// Token: 0x04005048 RID: 20552
 			internal static readonly int _Bloom_DirtIntensity = Shader.PropertyToID("_Bloom_DirtIntensity");
 		}
 	}

@@ -6,10 +6,10 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005B1 RID: 1457
+	// Token: 0x020005B2 RID: 1458
 	public class TipCard : MonoBehaviour
 	{
-		// Token: 0x060024BE RID: 9406 RVA: 0x001FC530 File Offset: 0x001FA730
+		// Token: 0x060024C4 RID: 9412 RVA: 0x001FCF08 File Offset: 0x001FB108
 		public void SetTip(float tip)
 		{
 			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
@@ -52,11 +52,11 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x04004C90 RID: 19600
+		// Token: 0x04004CAD RID: 19629
 		[Reorderable]
 		public SpriteRenderers digits;
 
-		// Token: 0x04004C91 RID: 19601
+		// Token: 0x04004CAE RID: 19630
 		public SpriteRenderer dollarSign;
 	}
 }

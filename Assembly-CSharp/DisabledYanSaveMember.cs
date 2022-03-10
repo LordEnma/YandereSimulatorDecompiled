@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000510 RID: 1296
+// Token: 0x02000511 RID: 1297
 [Serializable]
 public struct DisabledYanSaveMember
 {
-	// Token: 0x0400490D RID: 18701
+	// Token: 0x0400492A RID: 18730
 	public Component Component;
 
-	// Token: 0x0400490E RID: 18702
+	// Token: 0x0400492B RID: 18731
 	public string Name;
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_NewGlitch4 : MonoBehaviour
 {
 	// Token: 0x170002EB RID: 747
-	// (get) Token: 0x06001046 RID: 4166 RVA: 0x00082879 File Offset: 0x00080A79
+	// (get) Token: 0x06001046 RID: 4166 RVA: 0x000829C1 File Offset: 0x00080BC1
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_NewGlitch4 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001047 RID: 4167 RVA: 0x000828AD File Offset: 0x00080AAD
+	// Token: 0x06001047 RID: 4167 RVA: 0x000829F5 File Offset: 0x00080BF5
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/CameraFilterPack_NewGlitch4");
@@ -32,7 +32,7 @@ public class CameraFilterPack_NewGlitch4 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001048 RID: 4168 RVA: 0x000828D0 File Offset: 0x00080AD0
+	// Token: 0x06001048 RID: 4168 RVA: 0x00082A18 File Offset: 0x00080C18
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -52,12 +52,12 @@ public class CameraFilterPack_NewGlitch4 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06001049 RID: 4169 RVA: 0x0008299C File Offset: 0x00080B9C
+	// Token: 0x06001049 RID: 4169 RVA: 0x00082AE4 File Offset: 0x00080CE4
 	private void Update()
 	{
 	}
 
-	// Token: 0x0600104A RID: 4170 RVA: 0x0008299E File Offset: 0x00080B9E
+	// Token: 0x0600104A RID: 4170 RVA: 0x00082AE6 File Offset: 0x00080CE6
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -66,20 +66,20 @@ public class CameraFilterPack_NewGlitch4 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040014B7 RID: 5303
+	// Token: 0x040014C0 RID: 5312
 	public Shader SCShader;
 
-	// Token: 0x040014B8 RID: 5304
+	// Token: 0x040014C1 RID: 5313
 	private float TimeX = 1f;
 
-	// Token: 0x040014B9 RID: 5305
+	// Token: 0x040014C2 RID: 5314
 	private Material SCMaterial;
 
-	// Token: 0x040014BA RID: 5306
+	// Token: 0x040014C3 RID: 5315
 	[Range(0f, 1f)]
 	public float __Speed = 1f;
 
-	// Token: 0x040014BB RID: 5307
+	// Token: 0x040014C4 RID: 5316
 	[Range(0f, 1f)]
 	public float _Fade = 1f;
 }

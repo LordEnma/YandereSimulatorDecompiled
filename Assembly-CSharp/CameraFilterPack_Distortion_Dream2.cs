@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Distortion_Dream2 : MonoBehaviour
 {
 	// Token: 0x1700027C RID: 636
-	// (get) Token: 0x06000D8F RID: 3471 RVA: 0x00076B70 File Offset: 0x00074D70
+	// (get) Token: 0x06000D8F RID: 3471 RVA: 0x00076CB8 File Offset: 0x00074EB8
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Distortion_Dream2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D90 RID: 3472 RVA: 0x00076BA4 File Offset: 0x00074DA4
+	// Token: 0x06000D90 RID: 3472 RVA: 0x00076CEC File Offset: 0x00074EEC
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Distortion_Dream2");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Distortion_Dream2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D91 RID: 3473 RVA: 0x00076BC8 File Offset: 0x00074DC8
+	// Token: 0x06000D91 RID: 3473 RVA: 0x00076D10 File Offset: 0x00074F10
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -52,12 +52,12 @@ public class CameraFilterPack_Distortion_Dream2 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000D92 RID: 3474 RVA: 0x00076C94 File Offset: 0x00074E94
+	// Token: 0x06000D92 RID: 3474 RVA: 0x00076DDC File Offset: 0x00074FDC
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000D93 RID: 3475 RVA: 0x00076C96 File Offset: 0x00074E96
+	// Token: 0x06000D93 RID: 3475 RVA: 0x00076DDE File Offset: 0x00074FDE
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -66,20 +66,20 @@ public class CameraFilterPack_Distortion_Dream2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040011D8 RID: 4568
+	// Token: 0x040011E1 RID: 4577
 	public Shader SCShader;
 
-	// Token: 0x040011D9 RID: 4569
+	// Token: 0x040011E2 RID: 4578
 	private float TimeX = 1f;
 
-	// Token: 0x040011DA RID: 4570
+	// Token: 0x040011E3 RID: 4579
 	private Material SCMaterial;
 
-	// Token: 0x040011DB RID: 4571
+	// Token: 0x040011E4 RID: 4580
 	[Range(0f, 100f)]
 	public float Distortion = 6f;
 
-	// Token: 0x040011DC RID: 4572
+	// Token: 0x040011E5 RID: 4581
 	[Range(0f, 32f)]
 	public float Speed = 5f;
 }

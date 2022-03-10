@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F3 RID: 243
 public class BookbagScript : MonoBehaviour
 {
-	// Token: 0x06000A58 RID: 2648 RVA: 0x0005BF2C File Offset: 0x0005A12C
+	// Token: 0x06000A58 RID: 2648 RVA: 0x0005C058 File Offset: 0x0005A258
 	private void Start()
 	{
 		this.MyRigidbody.useGravity = false;
@@ -16,7 +16,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A59 RID: 2649 RVA: 0x0005BF80 File Offset: 0x0005A180
+	// Token: 0x06000A59 RID: 2649 RVA: 0x0005C0AC File Offset: 0x0005A2AC
 	private void Update()
 	{
 		if (this.Prompt.Yandere.PickUp != null || this.ConcealedPickup != null)
@@ -27,7 +27,7 @@ public class BookbagScript : MonoBehaviour
 				this.Prompt.Circle[0].fillAmount = 1f;
 				if (this.ConcealedPickup == null)
 				{
-					if (this.Prompt.Yandere.PickUp.TrashCan == null)
+					if (this.Prompt.Yandere.PickUp.TrashCan == null && !this.Prompt.Yandere.PickUp.JerryCan)
 					{
 						this.ConcealedPickup = this.Prompt.Yandere.PickUp;
 						this.ConcealedPickup.Drop();
@@ -67,7 +67,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A5A RID: 2650 RVA: 0x0005C1A0 File Offset: 0x0005A3A0
+	// Token: 0x06000A5A RID: 2650 RVA: 0x0005C2E8 File Offset: 0x0005A4E8
 	public void Drop()
 	{
 		this.Worn = false;
@@ -80,7 +80,7 @@ public class BookbagScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C210 File Offset: 0x0005A410
+	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C358 File Offset: 0x0005A558
 	public void Wear()
 	{
 		this.Worn = true;
@@ -97,27 +97,27 @@ public class BookbagScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x04000BF8 RID: 3064
+	// Token: 0x04000C01 RID: 3073
 	public PickUpScript ConcealedPickup;
 
-	// Token: 0x04000BF9 RID: 3065
+	// Token: 0x04000C02 RID: 3074
 	public Rigidbody MyRigidbody;
 
-	// Token: 0x04000BFA RID: 3066
+	// Token: 0x04000C03 RID: 3075
 	public PromptScript Prompt;
 
-	// Token: 0x04000BFB RID: 3067
+	// Token: 0x04000C04 RID: 3076
 	public Texture EightiesBookBagTexture;
 
-	// Token: 0x04000BFC RID: 3068
+	// Token: 0x04000C05 RID: 3077
 	public Mesh EightiesBookBag;
 
-	// Token: 0x04000BFD RID: 3069
+	// Token: 0x04000C06 RID: 3078
 	public Renderer MyRenderer;
 
-	// Token: 0x04000BFE RID: 3070
+	// Token: 0x04000C07 RID: 3079
 	public MeshFilter MyMesh;
 
-	// Token: 0x04000BFF RID: 3071
+	// Token: 0x04000C08 RID: 3080
 	public bool Worn;
 }

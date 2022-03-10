@@ -5,19 +5,19 @@ using UnityEngine;
 // Token: 0x02000274 RID: 628
 public class DebugConsole : MonoBehaviour
 {
-	// Token: 0x06001355 RID: 4949 RVA: 0x000AE816 File Offset: 0x000ACA16
+	// Token: 0x06001355 RID: 4949 RVA: 0x000AE9A6 File Offset: 0x000ACBA6
 	private void OnEnable()
 	{
 		Application.logMessageReceived += this.captureLog;
 	}
 
-	// Token: 0x06001356 RID: 4950 RVA: 0x000AE829 File Offset: 0x000ACA29
+	// Token: 0x06001356 RID: 4950 RVA: 0x000AE9B9 File Offset: 0x000ACBB9
 	private void OnDisable()
 	{
 		Application.logMessageReceived += this.captureLog;
 	}
 
-	// Token: 0x06001357 RID: 4951 RVA: 0x000AE83C File Offset: 0x000ACA3C
+	// Token: 0x06001357 RID: 4951 RVA: 0x000AE9CC File Offset: 0x000ACBCC
 	private void Start()
 	{
 		this.BackgroundTex = Texture2D.blackTexture;
@@ -35,7 +35,7 @@ public class DebugConsole : MonoBehaviour
 		this.BackgroundTex = backgroundTex;
 	}
 
-	// Token: 0x06001358 RID: 4952 RVA: 0x000AE8A8 File Offset: 0x000ACAA8
+	// Token: 0x06001358 RID: 4952 RVA: 0x000AEA38 File Offset: 0x000ACC38
 	private void captureLog(string condition, string stackTrace, LogType type)
 	{
 		this.logs.Add(new DebugMessage
@@ -49,7 +49,7 @@ public class DebugConsole : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001359 RID: 4953 RVA: 0x000AE8F4 File Offset: 0x000ACAF4
+	// Token: 0x06001359 RID: 4953 RVA: 0x000AEA84 File Offset: 0x000ACC84
 	private void OnGUI()
 	{
 		GUIStyle guistyle = new GUIStyle();
@@ -86,9 +86,9 @@ public class DebugConsole : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001C08 RID: 7176
+	// Token: 0x04001C11 RID: 7185
 	private List<DebugMessage> logs = new List<DebugMessage>();
 
-	// Token: 0x04001C09 RID: 7177
+	// Token: 0x04001C12 RID: 7186
 	private Texture2D BackgroundTex;
 }

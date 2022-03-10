@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000DD RID: 221
 public class BatheEventScript : MonoBehaviour
 {
-	// Token: 0x06000A0F RID: 2575 RVA: 0x00056C77 File Offset: 0x00054E77
+	// Token: 0x06000A0F RID: 2575 RVA: 0x00056DA3 File Offset: 0x00054FA3
 	private void Start()
 	{
 		this.RivalPhone.SetActive(false);
@@ -14,7 +14,7 @@ public class BatheEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A10 RID: 2576 RVA: 0x00056C9C File Offset: 0x00054E9C
+	// Token: 0x06000A10 RID: 2576 RVA: 0x00056DC8 File Offset: 0x00054FC8
 	private void Update()
 	{
 		if (!this.Clock.StopTime && !this.EventActive && this.Clock.HourTime > this.EventTime)
@@ -118,7 +118,7 @@ public class BatheEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A11 RID: 2577 RVA: 0x0005711C File Offset: 0x0005531C
+	// Token: 0x06000A11 RID: 2577 RVA: 0x00057248 File Offset: 0x00055448
 	private void EndEvent()
 	{
 		if (!this.EventOver)
@@ -147,57 +147,57 @@ public class BatheEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x04000ACE RID: 2766
+	// Token: 0x04000AD7 RID: 2775
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000ACF RID: 2767
+	// Token: 0x04000AD8 RID: 2776
 	public YandereScript Yandere;
 
-	// Token: 0x04000AD0 RID: 2768
+	// Token: 0x04000AD9 RID: 2777
 	public ClockScript Clock;
 
-	// Token: 0x04000AD1 RID: 2769
+	// Token: 0x04000ADA RID: 2778
 	public StudentScript EventStudent;
 
-	// Token: 0x04000AD2 RID: 2770
+	// Token: 0x04000ADB RID: 2779
 	public UILabel EventSubtitle;
 
-	// Token: 0x04000AD3 RID: 2771
+	// Token: 0x04000ADC RID: 2780
 	public AudioClip[] EventClip;
 
-	// Token: 0x04000AD4 RID: 2772
+	// Token: 0x04000ADD RID: 2781
 	public string[] EventSpeech;
 
-	// Token: 0x04000AD5 RID: 2773
+	// Token: 0x04000ADE RID: 2782
 	public string[] EventAnim;
 
-	// Token: 0x04000AD6 RID: 2774
+	// Token: 0x04000ADF RID: 2783
 	public GameObject RivalPhone;
 
-	// Token: 0x04000AD7 RID: 2775
+	// Token: 0x04000AE0 RID: 2784
 	public GameObject VoiceClip;
 
-	// Token: 0x04000AD8 RID: 2776
+	// Token: 0x04000AE1 RID: 2785
 	public bool EventActive;
 
-	// Token: 0x04000AD9 RID: 2777
+	// Token: 0x04000AE2 RID: 2786
 	public bool EventOver;
 
-	// Token: 0x04000ADA RID: 2778
+	// Token: 0x04000AE3 RID: 2787
 	public float EventTime = 15.1f;
 
-	// Token: 0x04000ADB RID: 2779
+	// Token: 0x04000AE4 RID: 2788
 	public int EventPhase = 1;
 
-	// Token: 0x04000ADC RID: 2780
+	// Token: 0x04000AE5 RID: 2789
 	public DayOfWeek EventDay = DayOfWeek.Thursday;
 
-	// Token: 0x04000ADD RID: 2781
+	// Token: 0x04000AE6 RID: 2790
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04000ADE RID: 2782
+	// Token: 0x04000AE7 RID: 2791
 	public float CurrentClipLength;
 
-	// Token: 0x04000ADF RID: 2783
+	// Token: 0x04000AE8 RID: 2792
 	public float Timer;
 }

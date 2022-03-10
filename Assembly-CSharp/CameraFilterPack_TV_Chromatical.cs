@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_TV_Chromatical : MonoBehaviour
 {
 	// Token: 0x1700030E RID: 782
-	// (get) Token: 0x0600111F RID: 4383 RVA: 0x00086C73 File Offset: 0x00084E73
+	// (get) Token: 0x0600111F RID: 4383 RVA: 0x00086DBB File Offset: 0x00084FBB
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_TV_Chromatical : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001120 RID: 4384 RVA: 0x00086CA7 File Offset: 0x00084EA7
+	// Token: 0x06001120 RID: 4384 RVA: 0x00086DEF File Offset: 0x00084FEF
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/TV_Chromatical");
@@ -32,7 +32,7 @@ public class CameraFilterPack_TV_Chromatical : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001121 RID: 4385 RVA: 0x00086CC8 File Offset: 0x00084EC8
+	// Token: 0x06001121 RID: 4385 RVA: 0x00086E10 File Offset: 0x00085010
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -53,12 +53,12 @@ public class CameraFilterPack_TV_Chromatical : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06001122 RID: 4386 RVA: 0x00086DA9 File Offset: 0x00084FA9
+	// Token: 0x06001122 RID: 4386 RVA: 0x00086EF1 File Offset: 0x000850F1
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001123 RID: 4387 RVA: 0x00086DAB File Offset: 0x00084FAB
+	// Token: 0x06001123 RID: 4387 RVA: 0x00086EF3 File Offset: 0x000850F3
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -67,24 +67,24 @@ public class CameraFilterPack_TV_Chromatical : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040015BA RID: 5562
+	// Token: 0x040015C3 RID: 5571
 	public Shader SCShader;
 
-	// Token: 0x040015BB RID: 5563
+	// Token: 0x040015C4 RID: 5572
 	private float TimeX = 1f;
 
-	// Token: 0x040015BC RID: 5564
+	// Token: 0x040015C5 RID: 5573
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 
-	// Token: 0x040015BD RID: 5565
+	// Token: 0x040015C6 RID: 5574
 	[Range(0f, 1f)]
 	public float Intensity = 1f;
 
-	// Token: 0x040015BE RID: 5566
+	// Token: 0x040015C7 RID: 5575
 	[Range(0f, 3f)]
 	public float Speed = 1f;
 
-	// Token: 0x040015BF RID: 5567
+	// Token: 0x040015C8 RID: 5576
 	private Material SCMaterial;
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Vision_Psycho : MonoBehaviour
 {
 	// Token: 0x17000331 RID: 817
-	// (get) Token: 0x060011F1 RID: 4593 RVA: 0x0008A0C7 File Offset: 0x000882C7
+	// (get) Token: 0x060011F1 RID: 4593 RVA: 0x0008A20F File Offset: 0x0008840F
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Vision_Psycho : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011F2 RID: 4594 RVA: 0x0008A0FB File Offset: 0x000882FB
+	// Token: 0x060011F2 RID: 4594 RVA: 0x0008A243 File Offset: 0x00088443
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Vision_Psycho");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Vision_Psycho : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011F3 RID: 4595 RVA: 0x0008A11C File Offset: 0x0008831C
+	// Token: 0x060011F3 RID: 4595 RVA: 0x0008A264 File Offset: 0x00088464
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Vision_Psycho : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x060011F4 RID: 4596 RVA: 0x0008A214 File Offset: 0x00088414
+	// Token: 0x060011F4 RID: 4596 RVA: 0x0008A35C File Offset: 0x0008855C
 	private void Update()
 	{
 	}
 
-	// Token: 0x060011F5 RID: 4597 RVA: 0x0008A216 File Offset: 0x00088416
+	// Token: 0x060011F5 RID: 4597 RVA: 0x0008A35E File Offset: 0x0008855E
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,28 +68,28 @@ public class CameraFilterPack_Vision_Psycho : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400168B RID: 5771
+	// Token: 0x04001694 RID: 5780
 	public Shader SCShader;
 
-	// Token: 0x0400168C RID: 5772
+	// Token: 0x04001695 RID: 5781
 	private float TimeX = 1f;
 
-	// Token: 0x0400168D RID: 5773
+	// Token: 0x04001696 RID: 5782
 	private Material SCMaterial;
 
-	// Token: 0x0400168E RID: 5774
+	// Token: 0x04001697 RID: 5783
 	[Range(0.01f, 1f)]
 	public float HoleSize = 0.6f;
 
-	// Token: 0x0400168F RID: 5775
+	// Token: 0x04001698 RID: 5784
 	[Range(-1f, 1f)]
 	public float HoleSmooth = 0.3f;
 
-	// Token: 0x04001690 RID: 5776
+	// Token: 0x04001699 RID: 5785
 	[Range(-2f, 2f)]
 	public float Color1 = 0.2f;
 
-	// Token: 0x04001691 RID: 5777
+	// Token: 0x0400169A RID: 5786
 	[Range(-2f, 2f)]
 	public float Color2 = 0.9f;
 }

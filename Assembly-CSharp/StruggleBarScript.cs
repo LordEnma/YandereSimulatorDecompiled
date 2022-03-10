@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000450 RID: 1104
 public class StruggleBarScript : MonoBehaviour
 {
-	// Token: 0x06001D41 RID: 7489 RVA: 0x0015EC71 File Offset: 0x0015CE71
+	// Token: 0x06001D43 RID: 7491 RVA: 0x0015F2B1 File Offset: 0x0015D4B1
 	private void Start()
 	{
 		base.transform.localScale = Vector3.zero;
 		this.ChooseButton();
 	}
 
-	// Token: 0x06001D42 RID: 7490 RVA: 0x0015EC8C File Offset: 0x0015CE8C
+	// Token: 0x06001D44 RID: 7492 RVA: 0x0015F2CC File Offset: 0x0015D4CC
 	private void Update()
 	{
 		if (this.Struggling)
@@ -19,7 +19,7 @@ public class StruggleBarScript : MonoBehaviour
 			this.Intensity = Mathf.MoveTowards(this.Intensity, 1f, Time.deltaTime);
 			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
 			this.Spikes.localEulerAngles = new Vector3(this.Spikes.localEulerAngles.x, this.Spikes.localEulerAngles.y, this.Spikes.localEulerAngles.z - Time.deltaTime * 360f);
-			this.Victory -= Time.deltaTime * 10f * this.Strength * this.Intensity;
+			this.Victory -= Time.deltaTime * 5f * this.Strength;
 			if (this.Yandere.Club == ClubType.MartialArts)
 			{
 				this.Victory = 100f;
@@ -30,7 +30,7 @@ public class StruggleBarScript : MonoBehaviour
 				{
 					this.Victory += 100f;
 				}
-				this.Victory += Time.deltaTime * (500f + (float)(this.Yandere.Class.PhysicalGrade + this.Yandere.Class.PhysicalBonus) * 150f) * this.Intensity;
+				this.Victory += Time.deltaTime * (500f + (float)(this.Yandere.Class.PhysicalGrade + this.Yandere.Class.PhysicalBonus) * 150f);
 			}
 			if (this.Victory >= 100f)
 			{
@@ -63,7 +63,7 @@ public class StruggleBarScript : MonoBehaviour
 			else
 			{
 				this.ButtonTimer += Time.deltaTime;
-				if (this.ButtonTimer >= 1f)
+				if (this.ButtonTimer >= 2f)
 				{
 					this.ChooseButton();
 					this.ButtonTimer = 0f;
@@ -107,7 +107,7 @@ public class StruggleBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D43 RID: 7491 RVA: 0x0015F0FC File Offset: 0x0015D2FC
+	// Token: 0x06001D45 RID: 7493 RVA: 0x0015F730 File Offset: 0x0015D930
 	public void HeroWins()
 	{
 		if (this.Yandere.enabled && this.Yandere.Armed)
@@ -124,7 +124,7 @@ public class StruggleBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D44 RID: 7492 RVA: 0x0015F180 File Offset: 0x0015D380
+	// Token: 0x06001D46 RID: 7494 RVA: 0x0015F7B4 File Offset: 0x0015D9B4
 	private void ChooseButton()
 	{
 		int buttonID = this.ButtonID;
@@ -156,51 +156,51 @@ public class StruggleBarScript : MonoBehaviour
 		this.ButtonPrompts[this.ButtonID].enabled = true;
 	}
 
-	// Token: 0x0400358D RID: 13709
+	// Token: 0x040035A4 RID: 13732
 	public ShoulderCameraScript ShoulderCamera;
 
-	// Token: 0x0400358E RID: 13710
+	// Token: 0x040035A5 RID: 13733
 	public PromptSwapScript ButtonPrompt;
 
-	// Token: 0x0400358F RID: 13711
+	// Token: 0x040035A6 RID: 13734
 	public UISprite[] ButtonPrompts;
 
-	// Token: 0x04003590 RID: 13712
+	// Token: 0x040035A7 RID: 13735
 	public YandereScript Yandere;
 
-	// Token: 0x04003591 RID: 13713
+	// Token: 0x040035A8 RID: 13736
 	public StudentScript Student;
 
-	// Token: 0x04003592 RID: 13714
+	// Token: 0x040035A9 RID: 13737
 	public Transform Spikes;
 
-	// Token: 0x04003593 RID: 13715
+	// Token: 0x040035AA RID: 13738
 	public string CurrentButton = string.Empty;
 
-	// Token: 0x04003594 RID: 13716
+	// Token: 0x040035AB RID: 13739
 	public bool Struggling;
 
-	// Token: 0x04003595 RID: 13717
+	// Token: 0x040035AC RID: 13740
 	public bool Invincible;
 
-	// Token: 0x04003596 RID: 13718
+	// Token: 0x040035AD RID: 13741
 	public float AttackTimer;
 
-	// Token: 0x04003597 RID: 13719
+	// Token: 0x040035AE RID: 13742
 	public float ButtonTimer;
 
-	// Token: 0x04003598 RID: 13720
+	// Token: 0x040035AF RID: 13743
 	public float Intensity;
 
-	// Token: 0x04003599 RID: 13721
+	// Token: 0x040035B0 RID: 13744
 	public float Strength = 1f;
 
-	// Token: 0x0400359A RID: 13722
+	// Token: 0x040035B1 RID: 13745
 	public float Struggle;
 
-	// Token: 0x0400359B RID: 13723
+	// Token: 0x040035B2 RID: 13746
 	public float Victory;
 
-	// Token: 0x0400359C RID: 13724
+	// Token: 0x040035B3 RID: 13747
 	public int ButtonID;
 }

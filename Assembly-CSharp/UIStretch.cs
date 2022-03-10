@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/UI/Stretch")]
 public class UIStretch : MonoBehaviour
 {
-	// Token: 0x060008AC RID: 2220 RVA: 0x00046EDC File Offset: 0x000450DC
+	// Token: 0x060008AC RID: 2220 RVA: 0x00046FD4 File Offset: 0x000451D4
 	private void Awake()
 	{
 		this.mAnim = base.GetComponent<Animation>();
@@ -18,13 +18,13 @@ public class UIStretch : MonoBehaviour
 		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Combine(UICamera.onScreenResize, new UICamera.OnScreenResize(this.ScreenSizeChanged));
 	}
 
-	// Token: 0x060008AD RID: 2221 RVA: 0x00046F51 File Offset: 0x00045151
+	// Token: 0x060008AD RID: 2221 RVA: 0x00047049 File Offset: 0x00045249
 	private void OnDestroy()
 	{
 		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Remove(UICamera.onScreenResize, new UICamera.OnScreenResize(this.ScreenSizeChanged));
 	}
 
-	// Token: 0x060008AE RID: 2222 RVA: 0x00046F73 File Offset: 0x00045173
+	// Token: 0x060008AE RID: 2222 RVA: 0x0004706B File Offset: 0x0004526B
 	private void ScreenSizeChanged()
 	{
 		if (this.mStarted && this.runOnlyOnce)
@@ -33,7 +33,7 @@ public class UIStretch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008AF RID: 2223 RVA: 0x00046F8C File Offset: 0x0004518C
+	// Token: 0x060008AF RID: 2223 RVA: 0x00047084 File Offset: 0x00045284
 	private void Start()
 	{
 		if (this.container == null && this.widgetContainer != null)
@@ -50,7 +50,7 @@ public class UIStretch : MonoBehaviour
 		this.mStarted = true;
 	}
 
-	// Token: 0x060008B0 RID: 2224 RVA: 0x00047010 File Offset: 0x00045210
+	// Token: 0x060008B0 RID: 2224 RVA: 0x00047108 File Offset: 0x00045308
 	private void Update()
 	{
 		if (this.mAnim != null && this.mAnim.isPlaying)
@@ -230,73 +230,73 @@ public class UIStretch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000779 RID: 1913
+	// Token: 0x04000782 RID: 1922
 	public Camera uiCamera;
 
-	// Token: 0x0400077A RID: 1914
+	// Token: 0x04000783 RID: 1923
 	public GameObject container;
 
-	// Token: 0x0400077B RID: 1915
+	// Token: 0x04000784 RID: 1924
 	public UIStretch.Style style;
 
-	// Token: 0x0400077C RID: 1916
+	// Token: 0x04000785 RID: 1925
 	public bool runOnlyOnce = true;
 
-	// Token: 0x0400077D RID: 1917
+	// Token: 0x04000786 RID: 1926
 	public Vector2 relativeSize = Vector2.one;
 
-	// Token: 0x0400077E RID: 1918
+	// Token: 0x04000787 RID: 1927
 	public Vector2 initialSize = Vector2.one;
 
-	// Token: 0x0400077F RID: 1919
+	// Token: 0x04000788 RID: 1928
 	public Vector2 borderPadding = Vector2.zero;
 
-	// Token: 0x04000780 RID: 1920
+	// Token: 0x04000789 RID: 1929
 	[HideInInspector]
 	[SerializeField]
 	private UIWidget widgetContainer;
 
-	// Token: 0x04000781 RID: 1921
+	// Token: 0x0400078A RID: 1930
 	private Transform mTrans;
 
-	// Token: 0x04000782 RID: 1922
+	// Token: 0x0400078B RID: 1931
 	private UIWidget mWidget;
 
-	// Token: 0x04000783 RID: 1923
+	// Token: 0x0400078C RID: 1932
 	private UISprite mSprite;
 
-	// Token: 0x04000784 RID: 1924
+	// Token: 0x0400078D RID: 1933
 	private UIPanel mPanel;
 
-	// Token: 0x04000785 RID: 1925
+	// Token: 0x0400078E RID: 1934
 	private UIRoot mRoot;
 
-	// Token: 0x04000786 RID: 1926
+	// Token: 0x0400078F RID: 1935
 	private Animation mAnim;
 
-	// Token: 0x04000787 RID: 1927
+	// Token: 0x04000790 RID: 1936
 	private Rect mRect;
 
-	// Token: 0x04000788 RID: 1928
+	// Token: 0x04000791 RID: 1937
 	private bool mStarted;
 
-	// Token: 0x02000642 RID: 1602
+	// Token: 0x02000643 RID: 1603
 	[DoNotObfuscateNGUI]
 	public enum Style
 	{
-		// Token: 0x04004E8D RID: 20109
+		// Token: 0x04004EAA RID: 20138
 		None,
-		// Token: 0x04004E8E RID: 20110
+		// Token: 0x04004EAB RID: 20139
 		Horizontal,
-		// Token: 0x04004E8F RID: 20111
+		// Token: 0x04004EAC RID: 20140
 		Vertical,
-		// Token: 0x04004E90 RID: 20112
+		// Token: 0x04004EAD RID: 20141
 		Both,
-		// Token: 0x04004E91 RID: 20113
+		// Token: 0x04004EAE RID: 20142
 		BasedOnHeight,
-		// Token: 0x04004E92 RID: 20114
+		// Token: 0x04004EAF RID: 20143
 		FillKeepingRatio,
-		// Token: 0x04004E93 RID: 20115
+		// Token: 0x04004EB0 RID: 20144
 		FitInternalKeepingRatio
 	}
 }

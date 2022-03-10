@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200037C RID: 892
 public class NoteLockerScript : MonoBehaviour
 {
-	// Token: 0x06001A0B RID: 6667 RVA: 0x00110C48 File Offset: 0x0010EE48
+	// Token: 0x06001A0C RID: 6668 RVA: 0x00110FF4 File Offset: 0x0010F1F4
 	private void Update()
 	{
 		if (this.Student != null)
@@ -68,15 +68,19 @@ public class NoteLockerScript : MonoBehaviour
 						this.CheckingNote = true;
 					}
 				}
-				else if (!this.Informed && this.Student.Rival && Vector3.Distance(base.transform.position, this.Student.transform.position) < 1.5f)
+				else if (!this.Student.CheckingNote && this.Student.InEvent && !this.Informed)
 				{
-					this.Prompt.Yandere.NotificationManager.CustomText = "Tell her about the note when she's not busy.";
-					this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-					this.Prompt.Yandere.NotificationManager.CustomText = "Something else is on her mind right now.";
-					this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-					this.Prompt.Yandere.NotificationManager.CustomText = "She didn't notice the note in her locker.";
-					this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-					this.Informed = true;
+					Debug.Log("The locker owner's ''InEvent'' boolean is true...");
+					if (this.Student.Rival && Vector3.Distance(base.transform.position, this.Student.transform.position) < 1.5f)
+					{
+						this.Prompt.Yandere.NotificationManager.CustomText = "Tell her about the note when she's not busy.";
+						this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						this.Prompt.Yandere.NotificationManager.CustomText = "Something else is on her mind right now.";
+						this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						this.Prompt.Yandere.NotificationManager.CustomText = "She didn't notice the note in her locker.";
+						this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+						this.Informed = true;
+					}
 				}
 			}
 			if (this.CheckingNote)
@@ -207,7 +211,7 @@ public class NoteLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A0C RID: 6668 RVA: 0x00111600 File Offset: 0x0010F800
+	// Token: 0x06001A0D RID: 6669 RVA: 0x001119D8 File Offset: 0x0010FBD8
 	private void Finish()
 	{
 		if (this.Success)
@@ -255,91 +259,91 @@ public class NoteLockerScript : MonoBehaviour
 		this.Student.Follower != null;
 	}
 
-	// Token: 0x06001A0D RID: 6669 RVA: 0x00111864 File Offset: 0x0010FA64
+	// Token: 0x06001A0E RID: 6670 RVA: 0x00111C3C File Offset: 0x0010FE3C
 	private void DetermineSchedule()
 	{
 		this.Student.MeetSpot = this.MeetSpots.List[this.MeetID];
 		this.Student.MeetTime = this.MeetTime;
 	}
 
-	// Token: 0x04002A24 RID: 10788
+	// Token: 0x04002A3A RID: 10810
 	public FindStudentLockerScript FindStudentLocker;
 
-	// Token: 0x04002A25 RID: 10789
+	// Token: 0x04002A3B RID: 10811
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002A26 RID: 10790
+	// Token: 0x04002A3C RID: 10812
 	public NoteWindowScript NoteWindow;
 
-	// Token: 0x04002A27 RID: 10791
+	// Token: 0x04002A3D RID: 10813
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002A28 RID: 10792
+	// Token: 0x04002A3E RID: 10814
 	public StudentScript Student;
 
-	// Token: 0x04002A29 RID: 10793
+	// Token: 0x04002A3F RID: 10815
 	public YandereScript Yandere;
 
-	// Token: 0x04002A2A RID: 10794
+	// Token: 0x04002A40 RID: 10816
 	public ListScript MeetSpots;
 
-	// Token: 0x04002A2B RID: 10795
+	// Token: 0x04002A41 RID: 10817
 	public PromptScript Prompt;
 
-	// Token: 0x04002A2C RID: 10796
+	// Token: 0x04002A42 RID: 10818
 	public GameObject NewBall;
 
-	// Token: 0x04002A2D RID: 10797
+	// Token: 0x04002A43 RID: 10819
 	public GameObject NewNote;
 
-	// Token: 0x04002A2E RID: 10798
+	// Token: 0x04002A44 RID: 10820
 	public GameObject Locker;
 
-	// Token: 0x04002A2F RID: 10799
+	// Token: 0x04002A45 RID: 10821
 	public GameObject Ball;
 
-	// Token: 0x04002A30 RID: 10800
+	// Token: 0x04002A46 RID: 10822
 	public GameObject Note;
 
-	// Token: 0x04002A31 RID: 10801
+	// Token: 0x04002A47 RID: 10823
 	public AudioClip NoteSuccess;
 
-	// Token: 0x04002A32 RID: 10802
+	// Token: 0x04002A48 RID: 10824
 	public AudioClip NoteFail;
 
-	// Token: 0x04002A33 RID: 10803
+	// Token: 0x04002A49 RID: 10825
 	public AudioClip NoteFind;
 
-	// Token: 0x04002A34 RID: 10804
+	// Token: 0x04002A4A RID: 10826
 	public bool CheckingNote;
 
-	// Token: 0x04002A35 RID: 10805
+	// Token: 0x04002A4B RID: 10827
 	public bool CanLeaveNote = true;
 
-	// Token: 0x04002A36 RID: 10806
+	// Token: 0x04002A4C RID: 10828
 	public bool SpawnedNote;
 
-	// Token: 0x04002A37 RID: 10807
+	// Token: 0x04002A4D RID: 10829
 	public bool Informed;
 
-	// Token: 0x04002A38 RID: 10808
+	// Token: 0x04002A4E RID: 10830
 	public bool NoteLeft;
 
-	// Token: 0x04002A39 RID: 10809
+	// Token: 0x04002A4F RID: 10831
 	public bool Success;
 
-	// Token: 0x04002A3A RID: 10810
+	// Token: 0x04002A50 RID: 10832
 	public float MeetTime;
 
-	// Token: 0x04002A3B RID: 10811
+	// Token: 0x04002A51 RID: 10833
 	public float Timer;
 
-	// Token: 0x04002A3C RID: 10812
+	// Token: 0x04002A52 RID: 10834
 	public int LockerOwner;
 
-	// Token: 0x04002A3D RID: 10813
+	// Token: 0x04002A53 RID: 10835
 	public int MeetID;
 
-	// Token: 0x04002A3E RID: 10814
+	// Token: 0x04002A54 RID: 10836
 	public int Phase = 1;
 }

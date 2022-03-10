@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020004B8 RID: 1208
 public class WashingMachineScript : MonoBehaviour
 {
-	// Token: 0x06001FA3 RID: 8099 RVA: 0x001BCE01 File Offset: 0x001BB001
+	// Token: 0x06001FA6 RID: 8102 RVA: 0x001BD5A1 File Offset: 0x001BB7A1
 	private void Start()
 	{
 		this.Panel.SetActive(false);
 	}
 
-	// Token: 0x06001FA4 RID: 8100 RVA: 0x001BCE10 File Offset: 0x001BB010
+	// Token: 0x06001FA7 RID: 8103 RVA: 0x001BD5B0 File Offset: 0x001BB7B0
 	private void Update()
 	{
 		if (!this.Washing)
@@ -80,9 +80,9 @@ public class WashingMachineScript : MonoBehaviour
 							string str = "FoldedUniform is: ";
 							FoldedUniformScript foldedUniformScript = component2;
 							Debug.Log(str + ((foldedUniformScript != null) ? foldedUniformScript.ToString() : null));
-							if ((component2 != null && component2.Type == 2) || (component2 != null && component2.Type == 3))
+							if ((component2 != null && component2.Type == 2) || (component2 != null && component2.Type == 3) || (component2 != null && component2.ClubAttire))
 							{
-								Debug.Log("Yep, that was a gym uniform.");
+								Debug.Log("The player put something into the washing machine that was not a regular school uniform.");
 								this.ClothingList[i].transform.position = base.transform.position + new Vector3(0f, 0.6f, -0.66666f);
 								this.ClothingList[i].transform.localScale = new Vector3(1f, 1f, 1f);
 								this.ClothingList[i].Evidence = false;
@@ -176,63 +176,63 @@ public class WashingMachineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004200 RID: 16896
+	// Token: 0x04004217 RID: 16919
 	public GameObject CleanUniform;
 
-	// Token: 0x04004201 RID: 16897
+	// Token: 0x04004218 RID: 16920
 	public GameObject Colliders;
 
-	// Token: 0x04004202 RID: 16898
+	// Token: 0x04004219 RID: 16921
 	public GameObject Panel;
 
-	// Token: 0x04004203 RID: 16899
+	// Token: 0x0400421A RID: 16922
 	public AudioSource MyAudio;
 
-	// Token: 0x04004204 RID: 16900
+	// Token: 0x0400421B RID: 16923
 	public AudioClip OpenSFX;
 
-	// Token: 0x04004205 RID: 16901
+	// Token: 0x0400421C RID: 16924
 	public AudioClip ShutSFX;
 
-	// Token: 0x04004206 RID: 16902
+	// Token: 0x0400421D RID: 16925
 	public AudioClip WashSFX;
 
-	// Token: 0x04004207 RID: 16903
+	// Token: 0x0400421E RID: 16926
 	public PromptScript Prompt;
 
-	// Token: 0x04004208 RID: 16904
+	// Token: 0x0400421F RID: 16927
 	public Transform Tumbler;
 
-	// Token: 0x04004209 RID: 16905
+	// Token: 0x04004220 RID: 16928
 	public Transform Door;
 
-	// Token: 0x0400420A RID: 16906
+	// Token: 0x04004221 RID: 16929
 	public UILabel TimeLabel;
 
-	// Token: 0x0400420B RID: 16907
+	// Token: 0x04004222 RID: 16930
 	public UISprite Circle;
 
-	// Token: 0x0400420C RID: 16908
+	// Token: 0x04004223 RID: 16931
 	public float AnimationTimer;
 
-	// Token: 0x0400420D RID: 16909
+	// Token: 0x04004224 RID: 16932
 	public float WashTimer;
 
-	// Token: 0x0400420E RID: 16910
+	// Token: 0x04004225 RID: 16933
 	public float Rotation;
 
-	// Token: 0x0400420F RID: 16911
+	// Token: 0x04004226 RID: 16934
 	public float Speed;
 
-	// Token: 0x04004210 RID: 16912
+	// Token: 0x04004227 RID: 16935
 	public bool Washing;
 
-	// Token: 0x04004211 RID: 16913
+	// Token: 0x04004228 RID: 16936
 	public bool Open;
 
-	// Token: 0x04004212 RID: 16914
+	// Token: 0x04004229 RID: 16937
 	public PickUpScript[] ClothingList;
 
-	// Token: 0x04004213 RID: 16915
+	// Token: 0x0400422A RID: 16938
 	public int ClothingInMachine;
 }

@@ -5,14 +5,14 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Window Drag Tilt")]
 public class WindowDragTilt : MonoBehaviour
 {
-	// Token: 0x060000FB RID: 251 RVA: 0x00012FFC File Offset: 0x000111FC
+	// Token: 0x060000FB RID: 251 RVA: 0x000130F4 File Offset: 0x000112F4
 	private void OnEnable()
 	{
 		this.mTrans = base.transform;
 		this.mLastPos = this.mTrans.position;
 	}
 
-	// Token: 0x060000FC RID: 252 RVA: 0x0001301C File Offset: 0x0001121C
+	// Token: 0x060000FC RID: 252 RVA: 0x00013114 File Offset: 0x00011314
 	private void Update()
 	{
 		Vector3 vector = this.mTrans.position - this.mLastPos;
@@ -22,18 +22,18 @@ public class WindowDragTilt : MonoBehaviour
 		this.mTrans.localRotation = Quaternion.Euler(0f, 0f, -this.mAngle);
 	}
 
-	// Token: 0x040002C0 RID: 704
+	// Token: 0x040002C9 RID: 713
 	public int updateOrder;
 
-	// Token: 0x040002C1 RID: 705
+	// Token: 0x040002CA RID: 714
 	public float degrees = 30f;
 
-	// Token: 0x040002C2 RID: 706
+	// Token: 0x040002CB RID: 715
 	private Vector3 mLastPos;
 
-	// Token: 0x040002C3 RID: 707
+	// Token: 0x040002CC RID: 716
 	private Transform mTrans;
 
-	// Token: 0x040002C4 RID: 708
+	// Token: 0x040002CD RID: 717
 	private float mAngle;
 }

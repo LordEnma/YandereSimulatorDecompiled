@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Distortion_Wave_Horizontal : MonoBehaviour
 {
 	// Token: 0x17000289 RID: 649
-	// (get) Token: 0x06000DDD RID: 3549 RVA: 0x00077E4A File Offset: 0x0007604A
+	// (get) Token: 0x06000DDD RID: 3549 RVA: 0x00077F92 File Offset: 0x00076192
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Distortion_Wave_Horizontal : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DDE RID: 3550 RVA: 0x00077E7E File Offset: 0x0007607E
+	// Token: 0x06000DDE RID: 3550 RVA: 0x00077FC6 File Offset: 0x000761C6
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Distortion_Wave_Horizontal");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Distortion_Wave_Horizontal : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000DDF RID: 3551 RVA: 0x00077EA0 File Offset: 0x000760A0
+	// Token: 0x06000DDF RID: 3551 RVA: 0x00077FE8 File Offset: 0x000761E8
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -51,12 +51,12 @@ public class CameraFilterPack_Distortion_Wave_Horizontal : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000DE0 RID: 3552 RVA: 0x00077F4F File Offset: 0x0007614F
+	// Token: 0x06000DE0 RID: 3552 RVA: 0x00078097 File Offset: 0x00076297
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000DE1 RID: 3553 RVA: 0x00077F51 File Offset: 0x00076151
+	// Token: 0x06000DE1 RID: 3553 RVA: 0x00078099 File Offset: 0x00076299
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -65,16 +65,16 @@ public class CameraFilterPack_Distortion_Wave_Horizontal : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001222 RID: 4642
+	// Token: 0x0400122B RID: 4651
 	public Shader SCShader;
 
-	// Token: 0x04001223 RID: 4643
+	// Token: 0x0400122C RID: 4652
 	private float TimeX = 1f;
 
-	// Token: 0x04001224 RID: 4644
+	// Token: 0x0400122D RID: 4653
 	private Material SCMaterial;
 
-	// Token: 0x04001225 RID: 4645
+	// Token: 0x0400122E RID: 4654
 	[Range(1f, 100f)]
 	public float WaveIntensity = 32f;
 }

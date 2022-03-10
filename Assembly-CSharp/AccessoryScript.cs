@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000C2 RID: 194
 public class AccessoryScript : MonoBehaviour
 {
-	// Token: 0x0600099D RID: 2461 RVA: 0x0004CF08 File Offset: 0x0004B108
+	// Token: 0x0600099D RID: 2461 RVA: 0x0004D000 File Offset: 0x0004B200
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -19,18 +19,18 @@ public class AccessoryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000855 RID: 2133
+	// Token: 0x0400085E RID: 2142
 	public PromptScript Prompt;
 
-	// Token: 0x04000856 RID: 2134
+	// Token: 0x0400085F RID: 2143
 	public Transform Target;
 
-	// Token: 0x04000857 RID: 2135
+	// Token: 0x04000860 RID: 2144
 	public float X;
 
-	// Token: 0x04000858 RID: 2136
+	// Token: 0x04000861 RID: 2145
 	public float Y;
 
-	// Token: 0x04000859 RID: 2137
+	// Token: 0x04000862 RID: 2146
 	public float Z;
 }

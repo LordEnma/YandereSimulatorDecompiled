@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000368 RID: 872
 public class MirrorScript : MonoBehaviour
 {
-	// Token: 0x060019B0 RID: 6576 RVA: 0x00106BF0 File Offset: 0x00104DF0
+	// Token: 0x060019B0 RID: 6576 RVA: 0x00106F58 File Offset: 0x00105158
 	private void Start()
 	{
 		this.Started = true;
@@ -24,7 +24,7 @@ public class MirrorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019B1 RID: 6577 RVA: 0x00106C78 File Offset: 0x00104E78
+	// Token: 0x060019B1 RID: 6577 RVA: 0x00106FE0 File Offset: 0x001051E0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -53,7 +53,7 @@ public class MirrorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019B2 RID: 6578 RVA: 0x00106DA0 File Offset: 0x00104FA0
+	// Token: 0x060019B2 RID: 6578 RVA: 0x00107108 File Offset: 0x00105308
 	public void UpdatePersona()
 	{
 		if (!this.Started)
@@ -74,21 +74,21 @@ public class MirrorScript : MonoBehaviour
 		this.Prompt.Yandere.StudentManager.UpdatePerception();
 	}
 
-	// Token: 0x0400291E RID: 10526
+	// Token: 0x04002934 RID: 10548
 	public PromptScript Prompt;
 
-	// Token: 0x0400291F RID: 10527
+	// Token: 0x04002935 RID: 10549
 	public string[] Personas;
 
-	// Token: 0x04002920 RID: 10528
+	// Token: 0x04002936 RID: 10550
 	public string[] Idles;
 
-	// Token: 0x04002921 RID: 10529
+	// Token: 0x04002937 RID: 10551
 	public string[] Walks;
 
-	// Token: 0x04002922 RID: 10530
+	// Token: 0x04002938 RID: 10552
 	public bool Started;
 
-	// Token: 0x04002923 RID: 10531
+	// Token: 0x04002939 RID: 10553
 	public int Limit;
 }

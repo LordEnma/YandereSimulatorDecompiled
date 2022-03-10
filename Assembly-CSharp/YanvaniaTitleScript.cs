@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020004E1 RID: 1249
+// Token: 0x020004E2 RID: 1250
 public class YanvaniaTitleScript : MonoBehaviour
 {
-	// Token: 0x060020AE RID: 8366 RVA: 0x001E04C8 File Offset: 0x001DE6C8
+	// Token: 0x060020B4 RID: 8372 RVA: 0x001E0EA0 File Offset: 0x001DF0A0
 	private void Start()
 	{
 		this.Midori.transform.localPosition = new Vector3(1540f, 0f, 0f);
@@ -28,7 +28,7 @@ public class YanvaniaTitleScript : MonoBehaviour
 		this.Logo.color = new Color(this.Logo.color.r, this.Logo.color.g, this.Logo.color.b, 0f);
 	}
 
-	// Token: 0x060020AF RID: 8367 RVA: 0x001E063C File Offset: 0x001DE83C
+	// Token: 0x060020B5 RID: 8373 RVA: 0x001E1014 File Offset: 0x001DF214
 	private void Update()
 	{
 		if (!this.Logo.gameObject.activeInHierarchy && Input.GetKeyDown(KeyCode.M))
@@ -245,7 +245,7 @@ public class YanvaniaTitleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020B0 RID: 8368 RVA: 0x001E0F18 File Offset: 0x001DF118
+	// Token: 0x060020B6 RID: 8374 RVA: 0x001E18F0 File Offset: 0x001DFAF0
 	private void Skip()
 	{
 		this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, 0f);
@@ -256,69 +256,69 @@ public class YanvaniaTitleScript : MonoBehaviour
 		component.Play();
 	}
 
-	// Token: 0x04004796 RID: 18326
+	// Token: 0x040047B3 RID: 18355
 	public InputManagerScript InputManager;
 
-	// Token: 0x04004797 RID: 18327
+	// Token: 0x040047B4 RID: 18356
 	public GameObject ButtonEffect;
 
-	// Token: 0x04004798 RID: 18328
+	// Token: 0x040047B5 RID: 18357
 	public GameObject ErrorWindow;
 
-	// Token: 0x04004799 RID: 18329
+	// Token: 0x040047B6 RID: 18358
 	public GameObject SkipButton;
 
-	// Token: 0x0400479A RID: 18330
+	// Token: 0x040047B7 RID: 18359
 	public Transform Highlight;
 
-	// Token: 0x0400479B RID: 18331
+	// Token: 0x040047B8 RID: 18360
 	public Transform Prologue;
 
-	// Token: 0x0400479C RID: 18332
+	// Token: 0x040047B9 RID: 18361
 	public UIPanel Controls;
 
-	// Token: 0x0400479D RID: 18333
+	// Token: 0x040047BA RID: 18362
 	public UIPanel Credits;
 
-	// Token: 0x0400479E RID: 18334
+	// Token: 0x040047BB RID: 18363
 	public UIPanel Buttons;
 
-	// Token: 0x0400479F RID: 18335
+	// Token: 0x040047BC RID: 18364
 	public UISprite Darkness;
 
-	// Token: 0x040047A0 RID: 18336
+	// Token: 0x040047BD RID: 18365
 	public UITexture Midori;
 
-	// Token: 0x040047A1 RID: 18337
+	// Token: 0x040047BE RID: 18366
 	public UITexture Logo;
 
-	// Token: 0x040047A2 RID: 18338
+	// Token: 0x040047BF RID: 18367
 	public AudioClip SelectSound;
 
-	// Token: 0x040047A3 RID: 18339
+	// Token: 0x040047C0 RID: 18368
 	public AudioClip ExitSound;
 
-	// Token: 0x040047A4 RID: 18340
+	// Token: 0x040047C1 RID: 18369
 	public AudioClip BGM;
 
-	// Token: 0x040047A5 RID: 18341
+	// Token: 0x040047C2 RID: 18370
 	public Transform[] BackButtons;
 
-	// Token: 0x040047A6 RID: 18342
+	// Token: 0x040047C3 RID: 18371
 	public Texture SadMidori;
 
-	// Token: 0x040047A7 RID: 18343
+	// Token: 0x040047C4 RID: 18372
 	public bool FadeButtons;
 
-	// Token: 0x040047A8 RID: 18344
+	// Token: 0x040047C5 RID: 18373
 	public bool ErrorLeave;
 
-	// Token: 0x040047A9 RID: 18345
+	// Token: 0x040047C6 RID: 18374
 	public bool FadeOut;
 
-	// Token: 0x040047AA RID: 18346
+	// Token: 0x040047C7 RID: 18375
 	public float ScrollSpeed;
 
-	// Token: 0x040047AB RID: 18347
+	// Token: 0x040047C8 RID: 18376
 	public int Selected = 1;
 }

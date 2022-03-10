@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_TV_WideScreenHorizontal : MonoBehaviour
 {
 	// Token: 0x17000326 RID: 806
-	// (get) Token: 0x060011AF RID: 4527 RVA: 0x00088DD7 File Offset: 0x00086FD7
+	// (get) Token: 0x060011AF RID: 4527 RVA: 0x00088F1F File Offset: 0x0008711F
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_TV_WideScreenHorizontal : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011B0 RID: 4528 RVA: 0x00088E0B File Offset: 0x0008700B
+	// Token: 0x060011B0 RID: 4528 RVA: 0x00088F53 File Offset: 0x00087153
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/TV_WideScreenHorizontal");
@@ -32,7 +32,7 @@ public class CameraFilterPack_TV_WideScreenHorizontal : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060011B1 RID: 4529 RVA: 0x00088E2C File Offset: 0x0008702C
+	// Token: 0x060011B1 RID: 4529 RVA: 0x00088F74 File Offset: 0x00087174
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_TV_WideScreenHorizontal : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x060011B2 RID: 4530 RVA: 0x00088F24 File Offset: 0x00087124
+	// Token: 0x060011B2 RID: 4530 RVA: 0x0008906C File Offset: 0x0008726C
 	private void Update()
 	{
 	}
 
-	// Token: 0x060011B3 RID: 4531 RVA: 0x00088F26 File Offset: 0x00087126
+	// Token: 0x060011B3 RID: 4531 RVA: 0x0008906E File Offset: 0x0008726E
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,28 +68,28 @@ public class CameraFilterPack_TV_WideScreenHorizontal : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400163B RID: 5691
+	// Token: 0x04001644 RID: 5700
 	public Shader SCShader;
 
-	// Token: 0x0400163C RID: 5692
+	// Token: 0x04001645 RID: 5701
 	private float TimeX = 1f;
 
-	// Token: 0x0400163D RID: 5693
+	// Token: 0x04001646 RID: 5702
 	private Material SCMaterial;
 
-	// Token: 0x0400163E RID: 5694
+	// Token: 0x04001647 RID: 5703
 	[Range(0f, 0.8f)]
 	public float Size = 0.55f;
 
-	// Token: 0x0400163F RID: 5695
+	// Token: 0x04001648 RID: 5704
 	[Range(0.001f, 0.4f)]
 	public float Smooth = 0.01f;
 
-	// Token: 0x04001640 RID: 5696
+	// Token: 0x04001649 RID: 5705
 	[Range(0f, 10f)]
 	private float StretchX = 1f;
 
-	// Token: 0x04001641 RID: 5697
+	// Token: 0x0400164A RID: 5706
 	[Range(0f, 10f)]
 	private float StretchY = 1f;
 }

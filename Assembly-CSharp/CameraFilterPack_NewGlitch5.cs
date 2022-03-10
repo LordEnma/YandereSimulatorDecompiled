@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_NewGlitch5 : MonoBehaviour
 {
 	// Token: 0x170002EC RID: 748
-	// (get) Token: 0x0600104C RID: 4172 RVA: 0x000829E1 File Offset: 0x00080BE1
+	// (get) Token: 0x0600104C RID: 4172 RVA: 0x00082B29 File Offset: 0x00080D29
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_NewGlitch5 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600104D RID: 4173 RVA: 0x00082A15 File Offset: 0x00080C15
+	// Token: 0x0600104D RID: 4173 RVA: 0x00082B5D File Offset: 0x00080D5D
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/CameraFilterPack_NewGlitch5");
@@ -32,7 +32,7 @@ public class CameraFilterPack_NewGlitch5 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600104E RID: 4174 RVA: 0x00082A38 File Offset: 0x00080C38
+	// Token: 0x0600104E RID: 4174 RVA: 0x00082B80 File Offset: 0x00080D80
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -57,12 +57,12 @@ public class CameraFilterPack_NewGlitch5 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x0600104F RID: 4175 RVA: 0x00082B72 File Offset: 0x00080D72
+	// Token: 0x0600104F RID: 4175 RVA: 0x00082CBA File Offset: 0x00080EBA
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001050 RID: 4176 RVA: 0x00082B74 File Offset: 0x00080D74
+	// Token: 0x06001050 RID: 4176 RVA: 0x00082CBC File Offset: 0x00080EBC
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -71,40 +71,40 @@ public class CameraFilterPack_NewGlitch5 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040014BC RID: 5308
+	// Token: 0x040014C5 RID: 5317
 	public Shader SCShader;
 
-	// Token: 0x040014BD RID: 5309
+	// Token: 0x040014C6 RID: 5318
 	private float TimeX = 1f;
 
-	// Token: 0x040014BE RID: 5310
+	// Token: 0x040014C7 RID: 5319
 	private Material SCMaterial;
 
-	// Token: 0x040014BF RID: 5311
+	// Token: 0x040014C8 RID: 5320
 	[Range(0f, 1f)]
 	public float __Speed = 1f;
 
-	// Token: 0x040014C0 RID: 5312
+	// Token: 0x040014C9 RID: 5321
 	[Range(0f, 1f)]
 	public float _Fade = 1f;
 
-	// Token: 0x040014C1 RID: 5313
+	// Token: 0x040014CA RID: 5322
 	[Range(0f, 1f)]
 	public float _Parasite = 1f;
 
-	// Token: 0x040014C2 RID: 5314
+	// Token: 0x040014CB RID: 5323
 	[Range(0f, 0f)]
 	public float _ZoomX = 1f;
 
-	// Token: 0x040014C3 RID: 5315
+	// Token: 0x040014CC RID: 5324
 	[Range(0f, 0f)]
 	public float _ZoomY = 1f;
 
-	// Token: 0x040014C4 RID: 5316
+	// Token: 0x040014CD RID: 5325
 	[Range(0f, 0f)]
 	public float _PosX = 1f;
 
-	// Token: 0x040014C5 RID: 5317
+	// Token: 0x040014CE RID: 5326
 	[Range(0f, 0f)]
 	public float _PosY = 1f;
 }

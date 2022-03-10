@@ -9,7 +9,7 @@ using UnityEngine;
 public class UISpriteAnimation : MonoBehaviour
 {
 	// Token: 0x170001BC RID: 444
-	// (get) Token: 0x06000874 RID: 2164 RVA: 0x00045D7C File Offset: 0x00043F7C
+	// (get) Token: 0x06000874 RID: 2164 RVA: 0x00045E74 File Offset: 0x00044074
 	public int frames
 	{
 		get
@@ -19,8 +19,8 @@ public class UISpriteAnimation : MonoBehaviour
 	}
 
 	// Token: 0x170001BD RID: 445
-	// (get) Token: 0x06000875 RID: 2165 RVA: 0x00045D89 File Offset: 0x00043F89
-	// (set) Token: 0x06000876 RID: 2166 RVA: 0x00045D91 File Offset: 0x00043F91
+	// (get) Token: 0x06000875 RID: 2165 RVA: 0x00045E81 File Offset: 0x00044081
+	// (set) Token: 0x06000876 RID: 2166 RVA: 0x00045E89 File Offset: 0x00044089
 	public int framesPerSecond
 	{
 		get
@@ -34,8 +34,8 @@ public class UISpriteAnimation : MonoBehaviour
 	}
 
 	// Token: 0x170001BE RID: 446
-	// (get) Token: 0x06000877 RID: 2167 RVA: 0x00045D9A File Offset: 0x00043F9A
-	// (set) Token: 0x06000878 RID: 2168 RVA: 0x00045DA2 File Offset: 0x00043FA2
+	// (get) Token: 0x06000877 RID: 2167 RVA: 0x00045E92 File Offset: 0x00044092
+	// (set) Token: 0x06000878 RID: 2168 RVA: 0x00045E9A File Offset: 0x0004409A
 	public string namePrefix
 	{
 		get
@@ -53,8 +53,8 @@ public class UISpriteAnimation : MonoBehaviour
 	}
 
 	// Token: 0x170001BF RID: 447
-	// (get) Token: 0x06000879 RID: 2169 RVA: 0x00045DBF File Offset: 0x00043FBF
-	// (set) Token: 0x0600087A RID: 2170 RVA: 0x00045DC7 File Offset: 0x00043FC7
+	// (get) Token: 0x06000879 RID: 2169 RVA: 0x00045EB7 File Offset: 0x000440B7
+	// (set) Token: 0x0600087A RID: 2170 RVA: 0x00045EBF File Offset: 0x000440BF
 	public bool loop
 	{
 		get
@@ -68,7 +68,7 @@ public class UISpriteAnimation : MonoBehaviour
 	}
 
 	// Token: 0x170001C0 RID: 448
-	// (get) Token: 0x0600087B RID: 2171 RVA: 0x00045DD0 File Offset: 0x00043FD0
+	// (get) Token: 0x0600087B RID: 2171 RVA: 0x00045EC8 File Offset: 0x000440C8
 	public bool isPlaying
 	{
 		get
@@ -77,13 +77,13 @@ public class UISpriteAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600087C RID: 2172 RVA: 0x00045DD8 File Offset: 0x00043FD8
+	// Token: 0x0600087C RID: 2172 RVA: 0x00045ED0 File Offset: 0x000440D0
 	protected virtual void Start()
 	{
 		this.RebuildSpriteList();
 	}
 
-	// Token: 0x0600087D RID: 2173 RVA: 0x00045DE0 File Offset: 0x00043FE0
+	// Token: 0x0600087D RID: 2173 RVA: 0x00045ED8 File Offset: 0x000440D8
 	protected virtual void Update()
 	{
 		if (this.mActive && this.mSpriteNames.Count > 1 && Application.isPlaying && this.mFPS > 0)
@@ -112,7 +112,7 @@ public class UISpriteAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600087E RID: 2174 RVA: 0x00045EE0 File Offset: 0x000440E0
+	// Token: 0x0600087E RID: 2174 RVA: 0x00045FD8 File Offset: 0x000441D8
 	public void RebuildSpriteList()
 	{
 		if (this.mSprite == null)
@@ -142,19 +142,19 @@ public class UISpriteAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600087F RID: 2175 RVA: 0x00045F90 File Offset: 0x00044190
+	// Token: 0x0600087F RID: 2175 RVA: 0x00046088 File Offset: 0x00044288
 	public void Play()
 	{
 		this.mActive = true;
 	}
 
-	// Token: 0x06000880 RID: 2176 RVA: 0x00045F99 File Offset: 0x00044199
+	// Token: 0x06000880 RID: 2176 RVA: 0x00046091 File Offset: 0x00044291
 	public void Pause()
 	{
 		this.mActive = false;
 	}
 
-	// Token: 0x06000881 RID: 2177 RVA: 0x00045FA4 File Offset: 0x000441A4
+	// Token: 0x06000881 RID: 2177 RVA: 0x0004609C File Offset: 0x0004429C
 	public void ResetToBeginning()
 	{
 		this.mActive = true;
@@ -169,38 +169,38 @@ public class UISpriteAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000758 RID: 1880
+	// Token: 0x04000761 RID: 1889
 	public int frameIndex;
 
-	// Token: 0x04000759 RID: 1881
+	// Token: 0x04000762 RID: 1890
 	[HideInInspector]
 	[SerializeField]
 	protected int mFPS = 30;
 
-	// Token: 0x0400075A RID: 1882
+	// Token: 0x04000763 RID: 1891
 	[HideInInspector]
 	[SerializeField]
 	protected string mPrefix = "";
 
-	// Token: 0x0400075B RID: 1883
+	// Token: 0x04000764 RID: 1892
 	[HideInInspector]
 	[SerializeField]
 	protected bool mLoop = true;
 
-	// Token: 0x0400075C RID: 1884
+	// Token: 0x04000765 RID: 1893
 	[HideInInspector]
 	[SerializeField]
 	protected bool mSnap = true;
 
-	// Token: 0x0400075D RID: 1885
+	// Token: 0x04000766 RID: 1894
 	protected UISprite mSprite;
 
-	// Token: 0x0400075E RID: 1886
+	// Token: 0x04000767 RID: 1895
 	protected float mDelta;
 
-	// Token: 0x0400075F RID: 1887
+	// Token: 0x04000768 RID: 1896
 	protected bool mActive = true;
 
-	// Token: 0x04000760 RID: 1888
+	// Token: 0x04000769 RID: 1897
 	protected List<string> mSpriteNames = new List<string>();
 }

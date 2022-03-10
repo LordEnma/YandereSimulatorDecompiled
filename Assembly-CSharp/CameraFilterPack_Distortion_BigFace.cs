@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Distortion_BigFace : MonoBehaviour
 {
 	// Token: 0x17000278 RID: 632
-	// (get) Token: 0x06000D77 RID: 3447 RVA: 0x000765BD File Offset: 0x000747BD
+	// (get) Token: 0x06000D77 RID: 3447 RVA: 0x00076705 File Offset: 0x00074905
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Distortion_BigFace : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D78 RID: 3448 RVA: 0x000765F1 File Offset: 0x000747F1
+	// Token: 0x06000D78 RID: 3448 RVA: 0x00076739 File Offset: 0x00074939
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Distortion_BigFace");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Distortion_BigFace : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D79 RID: 3449 RVA: 0x00076614 File Offset: 0x00074814
+	// Token: 0x06000D79 RID: 3449 RVA: 0x0007675C File Offset: 0x0007495C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -52,12 +52,12 @@ public class CameraFilterPack_Distortion_BigFace : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000D7A RID: 3450 RVA: 0x000766E0 File Offset: 0x000748E0
+	// Token: 0x06000D7A RID: 3450 RVA: 0x00076828 File Offset: 0x00074A28
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000D7B RID: 3451 RVA: 0x000766E2 File Offset: 0x000748E2
+	// Token: 0x06000D7B RID: 3451 RVA: 0x0007682A File Offset: 0x00074A2A
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -66,19 +66,19 @@ public class CameraFilterPack_Distortion_BigFace : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040011C1 RID: 4545
+	// Token: 0x040011CA RID: 4554
 	public Shader SCShader;
 
-	// Token: 0x040011C2 RID: 4546
+	// Token: 0x040011CB RID: 4555
 	private float TimeX = 6.5f;
 
-	// Token: 0x040011C3 RID: 4547
+	// Token: 0x040011CC RID: 4556
 	private Material SCMaterial;
 
-	// Token: 0x040011C4 RID: 4548
+	// Token: 0x040011CD RID: 4557
 	public float _Size = 5f;
 
-	// Token: 0x040011C5 RID: 4549
+	// Token: 0x040011CE RID: 4558
 	[Range(2f, 10f)]
 	public float Distortion = 2.5f;
 }

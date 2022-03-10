@@ -4,7 +4,7 @@
 [Serializable]
 public class DateSaveData
 {
-	// Token: 0x06001C01 RID: 7169 RVA: 0x001469E2 File Offset: 0x00144BE2
+	// Token: 0x06001C03 RID: 7171 RVA: 0x00146F1E File Offset: 0x0014511E
 	public static DateSaveData ReadFromGlobals()
 	{
 		return new DateSaveData
@@ -14,16 +14,16 @@ public class DateSaveData
 		};
 	}
 
-	// Token: 0x06001C02 RID: 7170 RVA: 0x001469FF File Offset: 0x00144BFF
+	// Token: 0x06001C04 RID: 7172 RVA: 0x00146F3B File Offset: 0x0014513B
 	public static void WriteToGlobals(DateSaveData data)
 	{
 		DateGlobals.Week = data.week;
 		DateGlobals.Weekday = data.weekday;
 	}
 
-	// Token: 0x0400311B RID: 12571
+	// Token: 0x04003131 RID: 12593
 	public int week;
 
-	// Token: 0x0400311C RID: 12572
+	// Token: 0x04003132 RID: 12594
 	public DayOfWeek weekday;
 }

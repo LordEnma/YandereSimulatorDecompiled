@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200024B RID: 587
 public class CleaningManagerScript : MonoBehaviour
 {
-	// Token: 0x06001265 RID: 4709 RVA: 0x0008E5D0 File Offset: 0x0008C7D0
+	// Token: 0x06001265 RID: 4709 RVA: 0x0008E718 File Offset: 0x0008C918
 	private void Start()
 	{
 		if (SchoolGlobals.RoofFence)
@@ -17,7 +17,7 @@ public class CleaningManagerScript : MonoBehaviour
 		this.Eighties = GameGlobals.Eighties;
 	}
 
-	// Token: 0x06001266 RID: 4710 RVA: 0x0008E664 File Offset: 0x0008C864
+	// Token: 0x06001266 RID: 4710 RVA: 0x0008E7AC File Offset: 0x0008C9AC
 	public void GetRole(int StudentID)
 	{
 		switch (StudentID)
@@ -337,33 +337,33 @@ public class CleaningManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400176B RID: 5995
+	// Token: 0x04001774 RID: 6004
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x0400176C RID: 5996
+	// Token: 0x04001775 RID: 6005
 	public Transform[] Windows;
 
-	// Token: 0x0400176D RID: 5997
+	// Token: 0x04001776 RID: 6006
 	public Transform[] Desks;
 
-	// Token: 0x0400176E RID: 5998
+	// Token: 0x04001777 RID: 6007
 	public Transform[] Floors;
 
-	// Token: 0x0400176F RID: 5999
+	// Token: 0x04001778 RID: 6008
 	public Transform[] Toilets;
 
-	// Token: 0x04001770 RID: 6000
+	// Token: 0x04001779 RID: 6009
 	public Transform[] Rooftops;
 
-	// Token: 0x04001771 RID: 6001
+	// Token: 0x0400177A RID: 6010
 	public Transform[] ClappingSpots;
 
-	// Token: 0x04001772 RID: 6002
+	// Token: 0x0400177B RID: 6011
 	public Transform Spot;
 
-	// Token: 0x04001773 RID: 6003
+	// Token: 0x0400177C RID: 6012
 	public bool Eighties;
 
-	// Token: 0x04001774 RID: 6004
+	// Token: 0x0400177D RID: 6013
 	public int Role;
 }

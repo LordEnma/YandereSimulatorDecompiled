@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blur_DitherOffset : MonoBehaviour
 {
 	// Token: 0x1700024E RID: 590
-	// (get) Token: 0x06000C79 RID: 3193 RVA: 0x00071FB5 File Offset: 0x000701B5
+	// (get) Token: 0x06000C79 RID: 3193 RVA: 0x000720FD File Offset: 0x000702FD
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blur_DitherOffset : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C7A RID: 3194 RVA: 0x00071FE9 File Offset: 0x000701E9
+	// Token: 0x06000C7A RID: 3194 RVA: 0x00072131 File Offset: 0x00070331
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Blur_DitherOffset");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Blur_DitherOffset : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C7B RID: 3195 RVA: 0x0007200C File Offset: 0x0007020C
+	// Token: 0x06000C7B RID: 3195 RVA: 0x00072154 File Offset: 0x00070354
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -52,12 +52,12 @@ public class CameraFilterPack_Blur_DitherOffset : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000C7C RID: 3196 RVA: 0x000720DE File Offset: 0x000702DE
+	// Token: 0x06000C7C RID: 3196 RVA: 0x00072226 File Offset: 0x00070426
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000C7D RID: 3197 RVA: 0x000720E0 File Offset: 0x000702E0
+	// Token: 0x06000C7D RID: 3197 RVA: 0x00072228 File Offset: 0x00070428
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -66,19 +66,19 @@ public class CameraFilterPack_Blur_DitherOffset : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040010C3 RID: 4291
+	// Token: 0x040010CC RID: 4300
 	public Shader SCShader;
 
-	// Token: 0x040010C4 RID: 4292
+	// Token: 0x040010CD RID: 4301
 	private float TimeX = 1f;
 
-	// Token: 0x040010C5 RID: 4293
+	// Token: 0x040010CE RID: 4302
 	private Material SCMaterial;
 
-	// Token: 0x040010C6 RID: 4294
+	// Token: 0x040010CF RID: 4303
 	[Range(1f, 16f)]
 	public int Level = 4;
 
-	// Token: 0x040010C7 RID: 4295
+	// Token: 0x040010D0 RID: 4304
 	public Vector2 Distance = new Vector2(30f, 0f);
 }

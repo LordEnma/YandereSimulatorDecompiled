@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000CB RID: 203
 public class AnswerSheetScript : MonoBehaviour
 {
-	// Token: 0x060009C2 RID: 2498 RVA: 0x00051267 File Offset: 0x0004F467
+	// Token: 0x060009C2 RID: 2498 RVA: 0x0005135F File Offset: 0x0004F55F
 	private void Start()
 	{
 		this.OriginalMesh = this.MyMesh.mesh;
@@ -15,7 +15,7 @@ public class AnswerSheetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009C3 RID: 2499 RVA: 0x0005129C File Offset: 0x0004F49C
+	// Token: 0x060009C3 RID: 2499 RVA: 0x00051394 File Offset: 0x0004F594
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -42,24 +42,24 @@ public class AnswerSheetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A1E RID: 2590
+	// Token: 0x04000A27 RID: 2599
 	public SchemesScript Schemes;
 
-	// Token: 0x04000A1F RID: 2591
+	// Token: 0x04000A28 RID: 2600
 	public DoorGapScript DoorGap;
 
-	// Token: 0x04000A20 RID: 2592
+	// Token: 0x04000A29 RID: 2601
 	public PromptScript Prompt;
 
-	// Token: 0x04000A21 RID: 2593
+	// Token: 0x04000A2A RID: 2602
 	public ClockScript Clock;
 
-	// Token: 0x04000A22 RID: 2594
+	// Token: 0x04000A2B RID: 2603
 	public Mesh OriginalMesh;
 
-	// Token: 0x04000A23 RID: 2595
+	// Token: 0x04000A2C RID: 2604
 	public MeshFilter MyMesh;
 
-	// Token: 0x04000A24 RID: 2596
+	// Token: 0x04000A2D RID: 2605
 	public int Phase = 1;
 }

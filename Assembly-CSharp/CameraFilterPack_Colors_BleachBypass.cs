@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Colors_BleachBypass : MonoBehaviour
 {
 	// Token: 0x1700026E RID: 622
-	// (get) Token: 0x06000D3B RID: 3387 RVA: 0x0007587A File Offset: 0x00073A7A
+	// (get) Token: 0x06000D3B RID: 3387 RVA: 0x000759C2 File Offset: 0x00073BC2
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Colors_BleachBypass : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D3C RID: 3388 RVA: 0x000758AE File Offset: 0x00073AAE
+	// Token: 0x06000D3C RID: 3388 RVA: 0x000759F6 File Offset: 0x00073BF6
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Colors_BleachBypass");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Colors_BleachBypass : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000D3D RID: 3389 RVA: 0x000758D0 File Offset: 0x00073AD0
+	// Token: 0x06000D3D RID: 3389 RVA: 0x00075A18 File Offset: 0x00073C18
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -51,12 +51,12 @@ public class CameraFilterPack_Colors_BleachBypass : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000D3E RID: 3390 RVA: 0x00075986 File Offset: 0x00073B86
+	// Token: 0x06000D3E RID: 3390 RVA: 0x00075ACE File Offset: 0x00073CCE
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000D3F RID: 3391 RVA: 0x00075988 File Offset: 0x00073B88
+	// Token: 0x06000D3F RID: 3391 RVA: 0x00075AD0 File Offset: 0x00073CD0
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -65,16 +65,16 @@ public class CameraFilterPack_Colors_BleachBypass : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001189 RID: 4489
+	// Token: 0x04001192 RID: 4498
 	public Shader SCShader;
 
-	// Token: 0x0400118A RID: 4490
+	// Token: 0x04001193 RID: 4499
 	private float TimeX = 1f;
 
-	// Token: 0x0400118B RID: 4491
+	// Token: 0x04001194 RID: 4500
 	private Material SCMaterial;
 
-	// Token: 0x0400118C RID: 4492
+	// Token: 0x04001195 RID: 4501
 	[Range(-1f, 2f)]
 	public float Value = 1f;
 }

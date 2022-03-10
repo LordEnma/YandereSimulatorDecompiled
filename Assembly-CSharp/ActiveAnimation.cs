@@ -9,7 +9,7 @@ using UnityEngine;
 public class ActiveAnimation : MonoBehaviour
 {
 	// Token: 0x17000046 RID: 70
-	// (get) Token: 0x060002ED RID: 749 RVA: 0x0001F670 File Offset: 0x0001D870
+	// (get) Token: 0x060002ED RID: 749 RVA: 0x0001F768 File Offset: 0x0001D968
 	private float playbackTime
 	{
 		get
@@ -19,7 +19,7 @@ public class ActiveAnimation : MonoBehaviour
 	}
 
 	// Token: 0x17000047 RID: 71
-	// (get) Token: 0x060002EE RID: 750 RVA: 0x0001F698 File Offset: 0x0001D898
+	// (get) Token: 0x060002EE RID: 750 RVA: 0x0001F790 File Offset: 0x0001D990
 	public bool isPlaying
 	{
 		get
@@ -72,7 +72,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002EF RID: 751 RVA: 0x0001F780 File Offset: 0x0001D980
+	// Token: 0x060002EF RID: 751 RVA: 0x0001F878 File Offset: 0x0001DA78
 	public void Finish()
 	{
 		if (this.mAnim != null)
@@ -98,7 +98,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002F0 RID: 752 RVA: 0x0001F84C File Offset: 0x0001DA4C
+	// Token: 0x060002F0 RID: 752 RVA: 0x0001F944 File Offset: 0x0001DB44
 	public void Reset()
 	{
 		if (this.mAnim != null)
@@ -127,7 +127,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002F1 RID: 753 RVA: 0x0001F90C File Offset: 0x0001DB0C
+	// Token: 0x060002F1 RID: 753 RVA: 0x0001FA04 File Offset: 0x0001DC04
 	private void Start()
 	{
 		if (this.eventReceiver != null && EventDelegate.IsValid(this.onFinished))
@@ -137,7 +137,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002F2 RID: 754 RVA: 0x0001F938 File Offset: 0x0001DB38
+	// Token: 0x060002F2 RID: 754 RVA: 0x0001FA30 File Offset: 0x0001DC30
 	private void Update()
 	{
 		float deltaTime = RealTime.deltaTime;
@@ -218,7 +218,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002F3 RID: 755 RVA: 0x0001FB10 File Offset: 0x0001DD10
+	// Token: 0x060002F3 RID: 755 RVA: 0x0001FC08 File Offset: 0x0001DE08
 	private void Play(string clipName, AnimationOrTween.Direction playDirection)
 	{
 		if (playDirection == AnimationOrTween.Direction.Toggle)
@@ -277,7 +277,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002F4 RID: 756 RVA: 0x0001FCCC File Offset: 0x0001DECC
+	// Token: 0x060002F4 RID: 756 RVA: 0x0001FDC4 File Offset: 0x0001DFC4
 	public static ActiveAnimation Play(Animation anim, string clipName, AnimationOrTween.Direction playDirection, EnableCondition enableBeforePlay, DisableCondition disableCondition)
 	{
 		if (!NGUITools.GetActive(anim.gameObject))
@@ -316,19 +316,19 @@ public class ActiveAnimation : MonoBehaviour
 		return activeAnimation;
 	}
 
-	// Token: 0x060002F5 RID: 757 RVA: 0x0001FD94 File Offset: 0x0001DF94
+	// Token: 0x060002F5 RID: 757 RVA: 0x0001FE8C File Offset: 0x0001E08C
 	public static ActiveAnimation Play(Animation anim, string clipName, AnimationOrTween.Direction playDirection)
 	{
 		return ActiveAnimation.Play(anim, clipName, playDirection, EnableCondition.DoNothing, DisableCondition.DoNotDisable);
 	}
 
-	// Token: 0x060002F6 RID: 758 RVA: 0x0001FDA0 File Offset: 0x0001DFA0
+	// Token: 0x060002F6 RID: 758 RVA: 0x0001FE98 File Offset: 0x0001E098
 	public static ActiveAnimation Play(Animation anim, AnimationOrTween.Direction playDirection)
 	{
 		return ActiveAnimation.Play(anim, null, playDirection, EnableCondition.DoNothing, DisableCondition.DoNotDisable);
 	}
 
-	// Token: 0x060002F7 RID: 759 RVA: 0x0001FDAC File Offset: 0x0001DFAC
+	// Token: 0x060002F7 RID: 759 RVA: 0x0001FEA4 File Offset: 0x0001E0A4
 	public static ActiveAnimation Play(Animator anim, string clipName, AnimationOrTween.Direction playDirection, EnableCondition enableBeforePlay, DisableCondition disableCondition)
 	{
 		if (enableBeforePlay != EnableCondition.IgnoreDisabledState && !NGUITools.GetActive(anim.gameObject))
@@ -367,35 +367,35 @@ public class ActiveAnimation : MonoBehaviour
 		return activeAnimation;
 	}
 
-	// Token: 0x04000475 RID: 1141
+	// Token: 0x0400047E RID: 1150
 	public static ActiveAnimation current;
 
-	// Token: 0x04000476 RID: 1142
+	// Token: 0x0400047F RID: 1151
 	public List<EventDelegate> onFinished = new List<EventDelegate>();
 
-	// Token: 0x04000477 RID: 1143
+	// Token: 0x04000480 RID: 1152
 	[HideInInspector]
 	public GameObject eventReceiver;
 
-	// Token: 0x04000478 RID: 1144
+	// Token: 0x04000481 RID: 1153
 	[HideInInspector]
 	public string callWhenFinished;
 
-	// Token: 0x04000479 RID: 1145
+	// Token: 0x04000482 RID: 1154
 	private Animation mAnim;
 
-	// Token: 0x0400047A RID: 1146
+	// Token: 0x04000483 RID: 1155
 	private AnimationOrTween.Direction mLastDirection;
 
-	// Token: 0x0400047B RID: 1147
+	// Token: 0x04000484 RID: 1156
 	private AnimationOrTween.Direction mDisableDirection;
 
-	// Token: 0x0400047C RID: 1148
+	// Token: 0x04000485 RID: 1157
 	private bool mNotify;
 
-	// Token: 0x0400047D RID: 1149
+	// Token: 0x04000486 RID: 1158
 	private Animator mAnimator;
 
-	// Token: 0x0400047E RID: 1150
+	// Token: 0x04000487 RID: 1159
 	private string mClip = "";
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Atmosphere_Fog : MonoBehaviour
 {
 	// Token: 0x17000225 RID: 549
-	// (get) Token: 0x06000B44 RID: 2884 RVA: 0x0006BDA5 File Offset: 0x00069FA5
+	// (get) Token: 0x06000B44 RID: 2884 RVA: 0x0006BEED File Offset: 0x0006A0ED
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Atmosphere_Fog : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B45 RID: 2885 RVA: 0x0006BDD9 File Offset: 0x00069FD9
+	// Token: 0x06000B45 RID: 2885 RVA: 0x0006BF21 File Offset: 0x0006A121
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_Atmosphere_Rain_FX") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_Atmosphere_Fog : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B46 RID: 2886 RVA: 0x0006BE10 File Offset: 0x0006A010
+	// Token: 0x06000B46 RID: 2886 RVA: 0x0006BF58 File Offset: 0x0006A158
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -57,12 +57,12 @@ public class CameraFilterPack_Atmosphere_Fog : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B47 RID: 2887 RVA: 0x0006BF2A File Offset: 0x0006A12A
+	// Token: 0x06000B47 RID: 2887 RVA: 0x0006C072 File Offset: 0x0006A272
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B48 RID: 2888 RVA: 0x0006BF2C File Offset: 0x0006A12C
+	// Token: 0x06000B48 RID: 2888 RVA: 0x0006C074 File Offset: 0x0006A274
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -71,33 +71,33 @@ public class CameraFilterPack_Atmosphere_Fog : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000F49 RID: 3913
+	// Token: 0x04000F52 RID: 3922
 	public Shader SCShader;
 
-	// Token: 0x04000F4A RID: 3914
+	// Token: 0x04000F53 RID: 3923
 	private float TimeX = 1f;
 
-	// Token: 0x04000F4B RID: 3915
+	// Token: 0x04000F54 RID: 3924
 	private Material SCMaterial;
 
-	// Token: 0x04000F4C RID: 3916
+	// Token: 0x04000F55 RID: 3925
 	[Range(0f, 1f)]
 	public float _Near;
 
-	// Token: 0x04000F4D RID: 3917
+	// Token: 0x04000F56 RID: 3926
 	[Range(0f, 1f)]
 	public float _Far = 0.05f;
 
-	// Token: 0x04000F4E RID: 3918
+	// Token: 0x04000F57 RID: 3927
 	public Color FogColor = new Color(0.4f, 0.4f, 0.4f, 1f);
 
-	// Token: 0x04000F4F RID: 3919
+	// Token: 0x04000F58 RID: 3928
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 
-	// Token: 0x04000F50 RID: 3920
+	// Token: 0x04000F59 RID: 3929
 	public static Color ChangeColorRGB;
 
-	// Token: 0x04000F51 RID: 3921
+	// Token: 0x04000F5A RID: 3930
 	private Texture2D Texture2;
 }

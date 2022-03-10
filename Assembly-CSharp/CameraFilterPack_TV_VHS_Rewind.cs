@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_TV_VHS_Rewind : MonoBehaviour
 {
 	// Token: 0x1700031E RID: 798
-	// (get) Token: 0x0600117F RID: 4479 RVA: 0x0008830C File Offset: 0x0008650C
+	// (get) Token: 0x0600117F RID: 4479 RVA: 0x00088454 File Offset: 0x00086654
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_TV_VHS_Rewind : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001180 RID: 4480 RVA: 0x00088340 File Offset: 0x00086540
+	// Token: 0x06001180 RID: 4480 RVA: 0x00088488 File Offset: 0x00086688
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/TV_VHS_Rewind");
@@ -32,7 +32,7 @@ public class CameraFilterPack_TV_VHS_Rewind : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001181 RID: 4481 RVA: 0x00088364 File Offset: 0x00086564
+	// Token: 0x06001181 RID: 4481 RVA: 0x000884AC File Offset: 0x000866AC
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_TV_VHS_Rewind : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06001182 RID: 4482 RVA: 0x0008845C File Offset: 0x0008665C
+	// Token: 0x06001182 RID: 4482 RVA: 0x000885A4 File Offset: 0x000867A4
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001183 RID: 4483 RVA: 0x0008845E File Offset: 0x0008665E
+	// Token: 0x06001183 RID: 4483 RVA: 0x000885A6 File Offset: 0x000867A6
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,28 +68,28 @@ public class CameraFilterPack_TV_VHS_Rewind : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001611 RID: 5649
+	// Token: 0x0400161A RID: 5658
 	public Shader SCShader;
 
-	// Token: 0x04001612 RID: 5650
+	// Token: 0x0400161B RID: 5659
 	private float TimeX = 1f;
 
-	// Token: 0x04001613 RID: 5651
+	// Token: 0x0400161C RID: 5660
 	private Material SCMaterial;
 
-	// Token: 0x04001614 RID: 5652
+	// Token: 0x0400161D RID: 5661
 	[Range(0f, 1f)]
 	public float Cryptage = 1f;
 
-	// Token: 0x04001615 RID: 5653
+	// Token: 0x0400161E RID: 5662
 	[Range(-20f, 20f)]
 	public float Parasite = 9f;
 
-	// Token: 0x04001616 RID: 5654
+	// Token: 0x0400161F RID: 5663
 	[Range(-20f, 20f)]
 	public float Parasite2 = 12f;
 
-	// Token: 0x04001617 RID: 5655
+	// Token: 0x04001620 RID: 5664
 	[Range(0f, 1f)]
 	private float WhiteParasite = 1f;
 }

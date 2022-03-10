@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_TV_BrokenGlass2 : MonoBehaviour
 {
 	// Token: 0x1700030D RID: 781
-	// (get) Token: 0x06001119 RID: 4377 RVA: 0x000867FC File Offset: 0x000849FC
+	// (get) Token: 0x06001119 RID: 4377 RVA: 0x00086944 File Offset: 0x00084B44
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_TV_BrokenGlass2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600111A RID: 4378 RVA: 0x00086830 File Offset: 0x00084A30
+	// Token: 0x0600111A RID: 4378 RVA: 0x00086978 File Offset: 0x00084B78
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_TV_BrokenGlass_2") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_TV_BrokenGlass2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600111B RID: 4379 RVA: 0x00086868 File Offset: 0x00084A68
+	// Token: 0x0600111B RID: 4379 RVA: 0x000869B0 File Offset: 0x00084BB0
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -159,12 +159,12 @@ public class CameraFilterPack_TV_BrokenGlass2 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x0600111C RID: 4380 RVA: 0x00086C39 File Offset: 0x00084E39
+	// Token: 0x0600111C RID: 4380 RVA: 0x00086D81 File Offset: 0x00084F81
 	private void Update()
 	{
 	}
 
-	// Token: 0x0600111D RID: 4381 RVA: 0x00086C3B File Offset: 0x00084E3B
+	// Token: 0x0600111D RID: 4381 RVA: 0x00086D83 File Offset: 0x00084F83
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -173,63 +173,63 @@ public class CameraFilterPack_TV_BrokenGlass2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040015AA RID: 5546
+	// Token: 0x040015B3 RID: 5555
 	public Shader SCShader;
 
-	// Token: 0x040015AB RID: 5547
-	private float TimeX = 1f;
-
-	// Token: 0x040015AC RID: 5548
-	[Range(0f, 1f)]
-	public float Bullet_1;
-
-	// Token: 0x040015AD RID: 5549
-	[Range(0f, 1f)]
-	public float Bullet_2;
-
-	// Token: 0x040015AE RID: 5550
-	[Range(0f, 1f)]
-	public float Bullet_3;
-
-	// Token: 0x040015AF RID: 5551
-	[Range(0f, 1f)]
-	public float Bullet_4 = 1f;
-
-	// Token: 0x040015B0 RID: 5552
-	[Range(0f, 1f)]
-	public float Bullet_5;
-
-	// Token: 0x040015B1 RID: 5553
-	[Range(0f, 1f)]
-	public float Bullet_6;
-
-	// Token: 0x040015B2 RID: 5554
-	[Range(0f, 1f)]
-	public float Bullet_7;
-
-	// Token: 0x040015B3 RID: 5555
-	[Range(0f, 1f)]
-	public float Bullet_8;
-
 	// Token: 0x040015B4 RID: 5556
-	[Range(0f, 1f)]
-	public float Bullet_9;
+	private float TimeX = 1f;
 
 	// Token: 0x040015B5 RID: 5557
 	[Range(0f, 1f)]
-	public float Bullet_10;
+	public float Bullet_1;
 
 	// Token: 0x040015B6 RID: 5558
 	[Range(0f, 1f)]
-	public float Bullet_11;
+	public float Bullet_2;
 
 	// Token: 0x040015B7 RID: 5559
 	[Range(0f, 1f)]
-	public float Bullet_12;
+	public float Bullet_3;
 
 	// Token: 0x040015B8 RID: 5560
-	private Material SCMaterial;
+	[Range(0f, 1f)]
+	public float Bullet_4 = 1f;
 
 	// Token: 0x040015B9 RID: 5561
+	[Range(0f, 1f)]
+	public float Bullet_5;
+
+	// Token: 0x040015BA RID: 5562
+	[Range(0f, 1f)]
+	public float Bullet_6;
+
+	// Token: 0x040015BB RID: 5563
+	[Range(0f, 1f)]
+	public float Bullet_7;
+
+	// Token: 0x040015BC RID: 5564
+	[Range(0f, 1f)]
+	public float Bullet_8;
+
+	// Token: 0x040015BD RID: 5565
+	[Range(0f, 1f)]
+	public float Bullet_9;
+
+	// Token: 0x040015BE RID: 5566
+	[Range(0f, 1f)]
+	public float Bullet_10;
+
+	// Token: 0x040015BF RID: 5567
+	[Range(0f, 1f)]
+	public float Bullet_11;
+
+	// Token: 0x040015C0 RID: 5568
+	[Range(0f, 1f)]
+	public float Bullet_12;
+
+	// Token: 0x040015C1 RID: 5569
+	private Material SCMaterial;
+
+	// Token: 0x040015C2 RID: 5570
 	private Texture2D Texture2;
 }

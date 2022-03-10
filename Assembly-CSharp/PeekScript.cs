@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000398 RID: 920
 public class PeekScript : MonoBehaviour
 {
-	// Token: 0x06001A6A RID: 6762 RVA: 0x0011AA4B File Offset: 0x00118C4B
+	// Token: 0x06001A6B RID: 6763 RVA: 0x0011AE23 File Offset: 0x00119023
 	private void Start()
 	{
 		this.Prompt.Door = true;
 	}
 
-	// Token: 0x06001A6B RID: 6763 RVA: 0x0011AA5C File Offset: 0x00118C5C
+	// Token: 0x06001A6C RID: 6764 RVA: 0x0011AE34 File Offset: 0x00119034
 	private void Update()
 	{
 		if (Vector3.Distance(base.transform.position, this.Prompt.Yandere.transform.position) < 2f)
@@ -59,30 +59,30 @@ public class PeekScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B67 RID: 11111
+	// Token: 0x04002B7D RID: 11133
 	public InfoChanWindowScript InfoChanWindow;
 
-	// Token: 0x04002B68 RID: 11112
+	// Token: 0x04002B7E RID: 11134
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002B69 RID: 11113
+	// Token: 0x04002B7F RID: 11135
 	public SubtitleScript Subtitle;
 
-	// Token: 0x04002B6A RID: 11114
+	// Token: 0x04002B80 RID: 11136
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002B6B RID: 11115
+	// Token: 0x04002B81 RID: 11137
 	public PromptScript Prompt;
 
-	// Token: 0x04002B6C RID: 11116
+	// Token: 0x04002B82 RID: 11138
 	public GameObject BlueLight;
 
-	// Token: 0x04002B6D RID: 11117
+	// Token: 0x04002B83 RID: 11139
 	public GameObject PeekCamera;
 
-	// Token: 0x04002B6E RID: 11118
+	// Token: 0x04002B84 RID: 11140
 	public bool Spoke;
 
-	// Token: 0x04002B6F RID: 11119
+	// Token: 0x04002B85 RID: 11141
 	public float Timer;
 }

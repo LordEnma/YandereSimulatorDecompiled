@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000463 RID: 1123
 public class TagScript : MonoBehaviour
 {
-	// Token: 0x06001E7A RID: 7802 RVA: 0x001A4BAA File Offset: 0x001A2DAA
+	// Token: 0x06001E7D RID: 7805 RVA: 0x001A526E File Offset: 0x001A346E
 	private void Start()
 	{
 		this.Sprite.color = new Color(1f, 0f, 0f, 0f);
 		this.MainCameraCamera = this.MainCamera.GetComponent<Camera>();
 	}
 
-	// Token: 0x06001E7B RID: 7803 RVA: 0x001A4BE4 File Offset: 0x001A2DE4
+	// Token: 0x06001E7E RID: 7806 RVA: 0x001A52A8 File Offset: 0x001A34A8
 	private void Update()
 	{
 		if (this.Target != null && Vector3.Angle(this.MainCamera.forward, this.MainCamera.position - this.Target.position) > 90f)
@@ -21,18 +21,18 @@ public class TagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003E87 RID: 16007
+	// Token: 0x04003E9E RID: 16030
 	public UISprite Sprite;
 
-	// Token: 0x04003E88 RID: 16008
+	// Token: 0x04003E9F RID: 16031
 	public Camera UICamera;
 
-	// Token: 0x04003E89 RID: 16009
+	// Token: 0x04003EA0 RID: 16032
 	public Camera MainCameraCamera;
 
-	// Token: 0x04003E8A RID: 16010
+	// Token: 0x04003EA1 RID: 16033
 	public Transform MainCamera;
 
-	// Token: 0x04003E8B RID: 16011
+	// Token: 0x04003EA2 RID: 16034
 	public Transform Target;
 }

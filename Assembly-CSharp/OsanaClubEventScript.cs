@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003DB RID: 987
 public class OsanaClubEventScript : MonoBehaviour
 {
-	// Token: 0x06001B8C RID: 7052 RVA: 0x00138147 File Offset: 0x00136347
+	// Token: 0x06001B8E RID: 7054 RVA: 0x0013866B File Offset: 0x0013686B
 	private void Start()
 	{
 		if (DateGlobals.Weekday != this.EventDay || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || GameGlobals.Eighties)
@@ -13,7 +13,7 @@ public class OsanaClubEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B8D RID: 7053 RVA: 0x00138174 File Offset: 0x00136374
+	// Token: 0x06001B8F RID: 7055 RVA: 0x00138698 File Offset: 0x00136898
 	private void Update()
 	{
 		if (this.VoiceClip != null)
@@ -229,13 +229,13 @@ public class OsanaClubEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B8E RID: 7054 RVA: 0x00138C79 File Offset: 0x00136E79
+	// Token: 0x06001B90 RID: 7056 RVA: 0x0013919D File Offset: 0x0013739D
 	private void SettleFriend()
 	{
 		this.EventStudent[2].MoveTowardsTarget(this.EventStudent[2].Pathfinding.target.position);
 	}
 
-	// Token: 0x06001B8F RID: 7055 RVA: 0x00138CA0 File Offset: 0x00136EA0
+	// Token: 0x06001B91 RID: 7057 RVA: 0x001391C4 File Offset: 0x001373C4
 	public void EndEvent()
 	{
 		Debug.Log("Ending Osana's club event.");
@@ -265,7 +265,7 @@ public class OsanaClubEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001B90 RID: 7056 RVA: 0x00138DBC File Offset: 0x00136FBC
+	// Token: 0x06001B92 RID: 7058 RVA: 0x001392E0 File Offset: 0x001374E0
 	public void CheckForRooftopConvo()
 	{
 		if (this.StudentManager.Students[10] != null && this.StudentManager.Students[10].CurrentAction == StudentActionType.Follow)
@@ -275,72 +275,72 @@ public class OsanaClubEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002F1F RID: 12063
+	// Token: 0x04002F35 RID: 12085
 	public EventManagerScript RooftopConversation;
 
-	// Token: 0x04002F20 RID: 12064
+	// Token: 0x04002F36 RID: 12086
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002F21 RID: 12065
+	// Token: 0x04002F37 RID: 12087
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002F22 RID: 12066
+	// Token: 0x04002F38 RID: 12088
 	public YandereScript Yandere;
 
-	// Token: 0x04002F23 RID: 12067
+	// Token: 0x04002F39 RID: 12089
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002F24 RID: 12068
+	// Token: 0x04002F3A RID: 12090
 	public ClockScript Clock;
 
-	// Token: 0x04002F25 RID: 12069
+	// Token: 0x04002F3B RID: 12091
 	public StudentScript[] EventStudent;
 
-	// Token: 0x04002F26 RID: 12070
+	// Token: 0x04002F3C RID: 12092
 	public Transform[] EventLocation;
 
-	// Token: 0x04002F27 RID: 12071
+	// Token: 0x04002F3D RID: 12093
 	public AudioClip[] EventClip;
 
-	// Token: 0x04002F28 RID: 12072
+	// Token: 0x04002F3E RID: 12094
 	public string[] EventSpeech;
 
-	// Token: 0x04002F29 RID: 12073
+	// Token: 0x04002F3F RID: 12095
 	public string[] EventAnim;
 
-	// Token: 0x04002F2A RID: 12074
+	// Token: 0x04002F40 RID: 12096
 	public int[] EventSpeaker;
 
-	// Token: 0x04002F2B RID: 12075
+	// Token: 0x04002F41 RID: 12097
 	public int[] ClubIDs;
 
-	// Token: 0x04002F2C RID: 12076
+	// Token: 0x04002F42 RID: 12098
 	public GameObject VoiceClip;
 
-	// Token: 0x04002F2D RID: 12077
+	// Token: 0x04002F43 RID: 12099
 	public AudioSource VoiceClipSource;
 
-	// Token: 0x04002F2E RID: 12078
+	// Token: 0x04002F44 RID: 12100
 	public bool ReachedTheEnd;
 
-	// Token: 0x04002F2F RID: 12079
+	// Token: 0x04002F45 RID: 12101
 	public bool EventOn;
 
-	// Token: 0x04002F30 RID: 12080
+	// Token: 0x04002F46 RID: 12102
 	public bool Spoken;
 
-	// Token: 0x04002F31 RID: 12081
+	// Token: 0x04002F47 RID: 12103
 	public int EventPhase;
 
-	// Token: 0x04002F32 RID: 12082
+	// Token: 0x04002F48 RID: 12104
 	public float Timer;
 
-	// Token: 0x04002F33 RID: 12083
+	// Token: 0x04002F49 RID: 12105
 	public float Scale;
 
-	// Token: 0x04002F34 RID: 12084
+	// Token: 0x04002F4A RID: 12106
 	public int[] StudentID;
 
-	// Token: 0x04002F35 RID: 12085
+	// Token: 0x04002F4B RID: 12107
 	public DayOfWeek EventDay;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Reflection;
 
-// Token: 0x0200050E RID: 1294
+// Token: 0x0200050F RID: 1295
 public static class YanSaveHelpers
 {
-	// Token: 0x0600214B RID: 8523 RVA: 0x001E9940 File Offset: 0x001E7B40
+	// Token: 0x06002151 RID: 8529 RVA: 0x001EA318 File Offset: 0x001E8518
 	public static Type GrabType(string type)
 	{
 		if (string.IsNullOrEmpty(type))

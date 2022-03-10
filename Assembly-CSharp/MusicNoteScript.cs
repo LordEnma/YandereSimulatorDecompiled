@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000019 RID: 25
 public class MusicNoteScript : MonoBehaviour
 {
-	// Token: 0x06000055 RID: 85 RVA: 0x00009174 File Offset: 0x00007374
+	// Token: 0x06000055 RID: 85 RVA: 0x0000926C File Offset: 0x0000746C
 	private void Update()
 	{
 		base.transform.localPosition += new Vector3(this.Speed * Time.deltaTime * -1f, 0f, 0f);
@@ -101,51 +101,51 @@ public class MusicNoteScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400014D RID: 333
+	// Token: 0x04000156 RID: 342
 	public MusicMinigameScript MusicMinigame;
 
-	// Token: 0x0400014E RID: 334
+	// Token: 0x04000157 RID: 343
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400014F RID: 335
+	// Token: 0x04000158 RID: 344
 	public GameObject Ripple;
 
-	// Token: 0x04000150 RID: 336
+	// Token: 0x04000159 RID: 345
 	public GameObject Perfect;
 
-	// Token: 0x04000151 RID: 337
+	// Token: 0x0400015A RID: 346
 	public GameObject Wrong;
 
-	// Token: 0x04000152 RID: 338
+	// Token: 0x0400015B RID: 347
 	public GameObject Early;
 
-	// Token: 0x04000153 RID: 339
+	// Token: 0x0400015C RID: 348
 	public GameObject Late;
 
-	// Token: 0x04000154 RID: 340
+	// Token: 0x0400015D RID: 349
 	public GameObject Miss;
 
-	// Token: 0x04000155 RID: 341
+	// Token: 0x0400015E RID: 350
 	public GameObject Rating;
 
-	// Token: 0x04000156 RID: 342
+	// Token: 0x0400015F RID: 351
 	public string XboxDirection;
 
-	// Token: 0x04000157 RID: 343
+	// Token: 0x04000160 RID: 352
 	public string Direction;
 
-	// Token: 0x04000158 RID: 344
+	// Token: 0x04000161 RID: 353
 	public string Tapped;
 
-	// Token: 0x04000159 RID: 345
+	// Token: 0x04000162 RID: 354
 	public bool GaveInput;
 
-	// Token: 0x0400015A RID: 346
+	// Token: 0x04000163 RID: 355
 	public bool Proceed;
 
-	// Token: 0x0400015B RID: 347
+	// Token: 0x04000164 RID: 356
 	public float Speed;
 
-	// Token: 0x0400015C RID: 348
+	// Token: 0x04000165 RID: 357
 	public int ID;
 }

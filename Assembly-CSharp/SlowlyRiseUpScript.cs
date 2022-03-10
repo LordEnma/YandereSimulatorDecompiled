@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200042D RID: 1069
 public class SlowlyRiseUpScript : MonoBehaviour
 {
-	// Token: 0x06001CBC RID: 7356 RVA: 0x00154DC4 File Offset: 0x00152FC4
+	// Token: 0x06001CBE RID: 7358 RVA: 0x00155348 File Offset: 0x00153548
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))
@@ -18,12 +18,12 @@ public class SlowlyRiseUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400338E RID: 13198
+	// Token: 0x040033A4 RID: 13220
 	public Transform Target;
 
-	// Token: 0x0400338F RID: 13199
+	// Token: 0x040033A5 RID: 13221
 	public float Speed;
 
-	// Token: 0x04003390 RID: 13200
+	// Token: 0x040033A6 RID: 13222
 	public bool Begin;
 }

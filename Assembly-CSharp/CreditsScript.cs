@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class CreditsScript : MonoBehaviour
 {
 	// Token: 0x17000338 RID: 824
-	// (get) Token: 0x060012FC RID: 4860 RVA: 0x000A7D8D File Offset: 0x000A5F8D
+	// (get) Token: 0x060012FC RID: 4860 RVA: 0x000A7F05 File Offset: 0x000A6105
 	private bool ShouldStopCredits
 	{
 		get
@@ -15,13 +15,13 @@ public class CreditsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012FD RID: 4861 RVA: 0x000A7DA4 File Offset: 0x000A5FA4
+	// Token: 0x060012FD RID: 4861 RVA: 0x000A7F1C File Offset: 0x000A611C
 	private GameObject SpawnLabel(int size)
 	{
 		return UnityEngine.Object.Instantiate<GameObject>((size == 1) ? this.SmallCreditsLabel : this.BigCreditsLabel, this.SpawnPoint.position, Quaternion.identity);
 	}
 
-	// Token: 0x060012FE RID: 4862 RVA: 0x000A7DD0 File Offset: 0x000A5FD0
+	// Token: 0x060012FE RID: 4862 RVA: 0x000A7F48 File Offset: 0x000A6148
 	private void Start()
 	{
 		if (GameGlobals.TransitionToPostCredits || GameGlobals.DarkEnding)
@@ -41,7 +41,7 @@ public class CreditsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012FF RID: 4863 RVA: 0x000A7EBC File Offset: 0x000A60BC
+	// Token: 0x060012FF RID: 4863 RVA: 0x000A8034 File Offset: 0x000A6234
 	private void Update()
 	{
 		this.MusicTimer += Time.deltaTime;
@@ -108,7 +108,7 @@ public class CreditsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001300 RID: 4864 RVA: 0x000A80B0 File Offset: 0x000A62B0
+	// Token: 0x06001300 RID: 4864 RVA: 0x000A8228 File Offset: 0x000A6428
 	public void SpawnCredit()
 	{
 		CreditJson creditJson = this.JSON.Credits[this.ID];
@@ -128,83 +128,83 @@ public class CreditsScript : MonoBehaviour
 		this.ID++;
 	}
 
-	// Token: 0x04001AF5 RID: 6901
+	// Token: 0x04001AFE RID: 6910
 	[SerializeField]
 	private JsonScript JSON;
 
-	// Token: 0x04001AF6 RID: 6902
+	// Token: 0x04001AFF RID: 6911
 	[SerializeField]
 	private Transform SpawnPoint;
 
-	// Token: 0x04001AF7 RID: 6903
+	// Token: 0x04001B00 RID: 6912
 	[SerializeField]
 	private Transform Panel;
 
-	// Token: 0x04001AF8 RID: 6904
+	// Token: 0x04001B01 RID: 6913
 	[SerializeField]
 	private GameObject SmallCreditsLabel;
 
-	// Token: 0x04001AF9 RID: 6905
+	// Token: 0x04001B02 RID: 6914
 	[SerializeField]
 	private GameObject BigCreditsLabel;
 
-	// Token: 0x04001AFA RID: 6906
+	// Token: 0x04001B03 RID: 6915
 	[SerializeField]
 	private UILabel SkipLabel;
 
-	// Token: 0x04001AFB RID: 6907
+	// Token: 0x04001B04 RID: 6916
 	[SerializeField]
 	private UISprite Darkness;
 
-	// Token: 0x04001AFC RID: 6908
+	// Token: 0x04001B05 RID: 6917
 	[SerializeField]
 	private int ID;
 
-	// Token: 0x04001AFD RID: 6909
+	// Token: 0x04001B06 RID: 6918
 	public float SpeedUpFactor;
 
-	// Token: 0x04001AFE RID: 6910
+	// Token: 0x04001B07 RID: 6919
 	public float MusicTimer;
 
-	// Token: 0x04001AFF RID: 6911
+	// Token: 0x04001B08 RID: 6920
 	public float TimerLimit;
 
-	// Token: 0x04001B00 RID: 6912
+	// Token: 0x04001B09 RID: 6921
 	public float FadeTimer;
 
-	// Token: 0x04001B01 RID: 6913
+	// Token: 0x04001B0A RID: 6922
 	public float Speed = 1f;
 
-	// Token: 0x04001B02 RID: 6914
+	// Token: 0x04001B0B RID: 6923
 	public float Timer;
 
-	// Token: 0x04001B03 RID: 6915
+	// Token: 0x04001B0C RID: 6924
 	public bool Eighties;
 
-	// Token: 0x04001B04 RID: 6916
+	// Token: 0x04001B0D RID: 6925
 	public bool FadeOut;
 
-	// Token: 0x04001B05 RID: 6917
+	// Token: 0x04001B0E RID: 6926
 	public bool Begin;
 
-	// Token: 0x04001B06 RID: 6918
+	// Token: 0x04001B0F RID: 6927
 	public bool Dark;
 
-	// Token: 0x04001B07 RID: 6919
+	// Token: 0x04001B10 RID: 6928
 	private const int SmallTextSize = 1;
 
-	// Token: 0x04001B08 RID: 6920
+	// Token: 0x04001B11 RID: 6929
 	private const int BigTextSize = 2;
 
-	// Token: 0x04001B09 RID: 6921
+	// Token: 0x04001B12 RID: 6930
 	public AudioClip EightiesCreditsMusic;
 
-	// Token: 0x04001B0A RID: 6922
+	// Token: 0x04001B13 RID: 6931
 	public AudioClip DarkCreditsMusic;
 
-	// Token: 0x04001B0B RID: 6923
+	// Token: 0x04001B14 RID: 6932
 	public AudioSource Jukebox;
 
-	// Token: 0x04001B0C RID: 6924
+	// Token: 0x04001B15 RID: 6933
 	public ParticleSystem Blossoms;
 }

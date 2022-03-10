@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Oculus_NightVision1 : MonoBehaviour
 {
 	// Token: 0x170002F4 RID: 756
-	// (get) Token: 0x0600107E RID: 4222 RVA: 0x00083C3B File Offset: 0x00081E3B
+	// (get) Token: 0x0600107E RID: 4222 RVA: 0x00083D83 File Offset: 0x00081F83
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Oculus_NightVision1 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600107F RID: 4223 RVA: 0x00083C6F File Offset: 0x00081E6F
+	// Token: 0x0600107F RID: 4223 RVA: 0x00083DB7 File Offset: 0x00081FB7
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Oculus_NightVision1");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Oculus_NightVision1 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001080 RID: 4224 RVA: 0x00083C90 File Offset: 0x00081E90
+	// Token: 0x06001080 RID: 4224 RVA: 0x00083DD8 File Offset: 0x00081FD8
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -53,12 +53,12 @@ public class CameraFilterPack_Oculus_NightVision1 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06001081 RID: 4225 RVA: 0x00083D72 File Offset: 0x00081F72
+	// Token: 0x06001081 RID: 4225 RVA: 0x00083EBA File Offset: 0x000820BA
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001082 RID: 4226 RVA: 0x00083D74 File Offset: 0x00081F74
+	// Token: 0x06001082 RID: 4226 RVA: 0x00083EBC File Offset: 0x000820BC
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -67,23 +67,23 @@ public class CameraFilterPack_Oculus_NightVision1 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001505 RID: 5381
+	// Token: 0x0400150E RID: 5390
 	public Shader SCShader;
 
-	// Token: 0x04001506 RID: 5382
+	// Token: 0x0400150F RID: 5391
 	private float TimeX = 1f;
 
-	// Token: 0x04001507 RID: 5383
+	// Token: 0x04001510 RID: 5392
 	private float Distortion = 1f;
 
-	// Token: 0x04001508 RID: 5384
+	// Token: 0x04001511 RID: 5393
 	private Material SCMaterial;
 
-	// Token: 0x04001509 RID: 5385
+	// Token: 0x04001512 RID: 5394
 	[Range(0f, 100f)]
 	public float Vignette = 1.3f;
 
-	// Token: 0x0400150A RID: 5386
+	// Token: 0x04001513 RID: 5395
 	[Range(1f, 150f)]
 	public float Linecount = 90f;
 }

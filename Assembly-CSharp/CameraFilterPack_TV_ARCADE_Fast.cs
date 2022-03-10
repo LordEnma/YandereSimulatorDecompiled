@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_TV_ARCADE_Fast : MonoBehaviour
 {
 	// Token: 0x1700030A RID: 778
-	// (get) Token: 0x06001107 RID: 4359 RVA: 0x000862D3 File Offset: 0x000844D3
+	// (get) Token: 0x06001107 RID: 4359 RVA: 0x0008641B File Offset: 0x0008461B
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_TV_ARCADE_Fast : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001108 RID: 4360 RVA: 0x00086307 File Offset: 0x00084507
+	// Token: 0x06001108 RID: 4360 RVA: 0x0008644F File Offset: 0x0008464F
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_TV_Arcade1") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_TV_ARCADE_Fast : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001109 RID: 4361 RVA: 0x00086340 File Offset: 0x00084540
+	// Token: 0x06001109 RID: 4361 RVA: 0x00086488 File Offset: 0x00084688
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -56,12 +56,12 @@ public class CameraFilterPack_TV_ARCADE_Fast : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x0600110A RID: 4362 RVA: 0x0008644E File Offset: 0x0008464E
+	// Token: 0x0600110A RID: 4362 RVA: 0x00086596 File Offset: 0x00084796
 	private void Update()
 	{
 	}
 
-	// Token: 0x0600110B RID: 4363 RVA: 0x00086450 File Offset: 0x00084650
+	// Token: 0x0600110B RID: 4363 RVA: 0x00086598 File Offset: 0x00084798
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -70,31 +70,31 @@ public class CameraFilterPack_TV_ARCADE_Fast : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001592 RID: 5522
+	// Token: 0x0400159B RID: 5531
 	public Shader SCShader;
 
-	// Token: 0x04001593 RID: 5523
+	// Token: 0x0400159C RID: 5532
 	private float TimeX = 1f;
 
-	// Token: 0x04001594 RID: 5524
+	// Token: 0x0400159D RID: 5533
 	private Material SCMaterial;
 
-	// Token: 0x04001595 RID: 5525
+	// Token: 0x0400159E RID: 5534
 	[Range(0f, 0.05f)]
 	public float Interferance_Size = 0.02f;
 
-	// Token: 0x04001596 RID: 5526
+	// Token: 0x0400159F RID: 5535
 	[Range(0f, 4f)]
 	public float Interferance_Speed = 0.5f;
 
-	// Token: 0x04001597 RID: 5527
+	// Token: 0x040015A0 RID: 5536
 	[Range(0f, 10f)]
 	public float Contrast = 1f;
 
-	// Token: 0x04001598 RID: 5528
+	// Token: 0x040015A1 RID: 5537
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 
-	// Token: 0x04001599 RID: 5529
+	// Token: 0x040015A2 RID: 5538
 	private Texture2D Texture2;
 }

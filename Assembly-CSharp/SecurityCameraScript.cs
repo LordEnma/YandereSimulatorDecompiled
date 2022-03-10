@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200041B RID: 1051
 public class SecurityCameraScript : MonoBehaviour
 {
-	// Token: 0x06001C70 RID: 7280 RVA: 0x0014BF6C File Offset: 0x0014A16C
+	// Token: 0x06001C72 RID: 7282 RVA: 0x0014C4A8 File Offset: 0x0014A6A8
 	private void Update()
 	{
 		this.Rotation += (float)this.Direction * 36f * Time.deltaTime;
@@ -23,7 +23,7 @@ public class SecurityCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C71 RID: 7281 RVA: 0x0014C010 File Offset: 0x0014A210
+	// Token: 0x06001C73 RID: 7283 RVA: 0x0014C54C File Offset: 0x0014A74C
 	private void OnTriggerStay(Collider other)
 	{
 		if (this.MissionMode.GameOverID == 0)
@@ -69,18 +69,18 @@ public class SecurityCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400326B RID: 12907
+	// Token: 0x04003281 RID: 12929
 	public SecuritySystemScript SecuritySystem;
 
-	// Token: 0x0400326C RID: 12908
+	// Token: 0x04003282 RID: 12930
 	public MissionModeScript MissionMode;
 
-	// Token: 0x0400326D RID: 12909
+	// Token: 0x04003283 RID: 12931
 	public YandereScript Yandere;
 
-	// Token: 0x0400326E RID: 12910
+	// Token: 0x04003284 RID: 12932
 	public float Rotation;
 
-	// Token: 0x0400326F RID: 12911
+	// Token: 0x04003285 RID: 12933
 	public int Direction = 1;
 }

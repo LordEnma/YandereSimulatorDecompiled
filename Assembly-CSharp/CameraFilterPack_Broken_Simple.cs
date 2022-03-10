@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Broken_Simple : MonoBehaviour
 {
 	// Token: 0x1700025C RID: 604
-	// (get) Token: 0x06000CCD RID: 3277 RVA: 0x0007377A File Offset: 0x0007197A
+	// (get) Token: 0x06000CCD RID: 3277 RVA: 0x000738C2 File Offset: 0x00071AC2
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Broken_Simple : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CCE RID: 3278 RVA: 0x000737AE File Offset: 0x000719AE
+	// Token: 0x06000CCE RID: 3278 RVA: 0x000738F6 File Offset: 0x00071AF6
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/CameraFilterPack_Broken_Simple");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Broken_Simple : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CCF RID: 3279 RVA: 0x000737D0 File Offset: 0x000719D0
+	// Token: 0x06000CCF RID: 3279 RVA: 0x00073918 File Offset: 0x00071B18
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -55,12 +55,12 @@ public class CameraFilterPack_Broken_Simple : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000CD0 RID: 3280 RVA: 0x000738DE File Offset: 0x00071ADE
+	// Token: 0x06000CD0 RID: 3280 RVA: 0x00073A26 File Offset: 0x00071C26
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000CD1 RID: 3281 RVA: 0x000738E0 File Offset: 0x00071AE0
+	// Token: 0x06000CD1 RID: 3281 RVA: 0x00073A28 File Offset: 0x00071C28
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -69,32 +69,32 @@ public class CameraFilterPack_Broken_Simple : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400111A RID: 4378
+	// Token: 0x04001123 RID: 4387
 	public Shader SCShader;
 
-	// Token: 0x0400111B RID: 4379
+	// Token: 0x04001124 RID: 4388
 	private float TimeX = 1f;
 
-	// Token: 0x0400111C RID: 4380
+	// Token: 0x04001125 RID: 4389
 	private Material SCMaterial;
 
-	// Token: 0x0400111D RID: 4381
+	// Token: 0x04001126 RID: 4390
 	[Range(0f, 1f)]
 	public float __Speed = 1f;
 
-	// Token: 0x0400111E RID: 4382
+	// Token: 0x04001127 RID: 4391
 	[Range(0f, 1f)]
 	public float _Broke1 = 1f;
 
-	// Token: 0x0400111F RID: 4383
+	// Token: 0x04001128 RID: 4392
 	[Range(0f, 1f)]
 	public float _Broke2 = 1f;
 
-	// Token: 0x04001120 RID: 4384
+	// Token: 0x04001129 RID: 4393
 	[Range(0f, 1f)]
 	public float _PosX = 0.5f;
 
-	// Token: 0x04001121 RID: 4385
+	// Token: 0x0400112A RID: 4394
 	[Range(0f, 1f)]
 	public float _PosY = 0.5f;
 }

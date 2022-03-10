@@ -5,13 +5,13 @@ using UnityEngine.PostProcessing;
 // Token: 0x02000378 RID: 888
 public class NewSettingsScript : MonoBehaviour
 {
-	// Token: 0x060019EF RID: 6639 RVA: 0x0010C626 File Offset: 0x0010A826
+	// Token: 0x060019EF RID: 6639 RVA: 0x0010C98E File Offset: 0x0010AB8E
 	private void Start()
 	{
 		this.UpdateLabels();
 	}
 
-	// Token: 0x060019F0 RID: 6640 RVA: 0x0010C630 File Offset: 0x0010A830
+	// Token: 0x060019F0 RID: 6640 RVA: 0x0010C998 File Offset: 0x0010AB98
 	private void Update()
 	{
 		this.Cursor.transform.parent.Rotate(new Vector3(Time.unscaledDeltaTime * 100f, 0f, 0f), Space.Self);
@@ -776,7 +776,7 @@ public class NewSettingsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019F1 RID: 6641 RVA: 0x0010DFFC File Offset: 0x0010C1FC
+	// Token: 0x060019F1 RID: 6641 RVA: 0x0010E364 File Offset: 0x0010C564
 	private void UpdateCursor()
 	{
 		if (this.Selection > this.Limit[this.Menu])
@@ -790,7 +790,7 @@ public class NewSettingsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019F2 RID: 6642 RVA: 0x0010E038 File Offset: 0x0010C238
+	// Token: 0x060019F2 RID: 6642 RVA: 0x0010E3A0 File Offset: 0x0010C5A0
 	private void UpdatePanels()
 	{
 		for (int i = 0; i < this.Panel.Length; i++)
@@ -806,7 +806,7 @@ public class NewSettingsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019F3 RID: 6643 RVA: 0x0010E0C8 File Offset: 0x0010C2C8
+	// Token: 0x060019F3 RID: 6643 RVA: 0x0010E430 File Offset: 0x0010C630
 	public void UpdateLabels()
 	{
 		this.Labels[1].text = (this.Profile.antialiasing.enabled ? "On" : "Off");
@@ -883,7 +883,7 @@ public class NewSettingsScript : MonoBehaviour
 		OptionGlobals.DisableBloom = !this.Profile.bloom.enabled;
 	}
 
-	// Token: 0x060019F4 RID: 6644 RVA: 0x0010E734 File Offset: 0x0010C934
+	// Token: 0x060019F4 RID: 6644 RVA: 0x0010EA9C File Offset: 0x0010CC9C
 	public void SetWindowsOpaque()
 	{
 		if (!OptionGlobals.OpaqueWindows)
@@ -896,7 +896,7 @@ public class NewSettingsScript : MonoBehaviour
 		this.Window.sharedMaterial.shader = Shader.Find("Diffuse");
 	}
 
-	// Token: 0x060019F5 RID: 6645 RVA: 0x0010E7D0 File Offset: 0x0010C9D0
+	// Token: 0x060019F5 RID: 6645 RVA: 0x0010EB38 File Offset: 0x0010CD38
 	public void UpdateShaders()
 	{
 		if (OptionGlobals.RimLight)
@@ -941,7 +941,7 @@ public class NewSettingsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019F6 RID: 6646 RVA: 0x0010EA07 File Offset: 0x0010CC07
+	// Token: 0x060019F6 RID: 6646 RVA: 0x0010ED6F File Offset: 0x0010CF6F
 	public void AdjustRimLight(Material mat)
 	{
 		mat.SetFloat("_RimLightIntencity", 5f);
@@ -949,7 +949,7 @@ public class NewSettingsScript : MonoBehaviour
 		mat.SetFloat("_RimAdditive", 0.5f);
 	}
 
-	// Token: 0x060019F7 RID: 6647 RVA: 0x0010EA3C File Offset: 0x0010CC3C
+	// Token: 0x060019F7 RID: 6647 RVA: 0x0010EDA4 File Offset: 0x0010CFA4
 	public void UpdateGraphics()
 	{
 		this.SetWindowsOpaque();
@@ -997,7 +997,7 @@ public class NewSettingsScript : MonoBehaviour
 		this.QualityManager.UpdateEightiesEffects();
 	}
 
-	// Token: 0x060019F8 RID: 6648 RVA: 0x0010EB84 File Offset: 0x0010CD84
+	// Token: 0x060019F8 RID: 6648 RVA: 0x0010EEEC File Offset: 0x0010D0EC
 	public void QualityManagerUpdateGraphics()
 	{
 		this.QualityManager.UpdateOpaqueWindows();
@@ -1013,7 +1013,7 @@ public class NewSettingsScript : MonoBehaviour
 		this.QualityManager.UpdateEightiesEffects();
 	}
 
-	// Token: 0x060019F9 RID: 6649 RVA: 0x0010EC0C File Offset: 0x0010CE0C
+	// Token: 0x060019F9 RID: 6649 RVA: 0x0010EF74 File Offset: 0x0010D174
 	public void EightiesifyLabel(UILabel Label)
 	{
 		Label.applyGradient = false;
@@ -1023,96 +1023,96 @@ public class NewSettingsScript : MonoBehaviour
 		Label.effectDistance = new Vector2(5f, 5f);
 	}
 
-	// Token: 0x040029A8 RID: 10664
+	// Token: 0x040029BE RID: 10686
 	public CameraFilterPack_Colors_Adjust_PreFilters ColorGrading;
 
-	// Token: 0x040029A9 RID: 10665
+	// Token: 0x040029BF RID: 10687
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040029AA RID: 10666
+	// Token: 0x040029C0 RID: 10688
 	public NewTitleScreenScript NewTitleScreen;
 
-	// Token: 0x040029AB RID: 10667
+	// Token: 0x040029C1 RID: 10689
 	public QualityManagerScript QualityManager;
 
-	// Token: 0x040029AC RID: 10668
+	// Token: 0x040029C2 RID: 10690
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x040029AD RID: 10669
+	// Token: 0x040029C3 RID: 10691
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040029AE RID: 10670
+	// Token: 0x040029C4 RID: 10692
 	public PostProcessingProfile Profile;
 
-	// Token: 0x040029AF RID: 10671
+	// Token: 0x040029C5 RID: 10693
 	public ParticleSystem PlazaBlossoms;
 
-	// Token: 0x040029B0 RID: 10672
+	// Token: 0x040029C6 RID: 10694
 	public Camera MainCamera;
 
-	// Token: 0x040029B1 RID: 10673
+	// Token: 0x040029C7 RID: 10695
 	public Light Sun;
 
-	// Token: 0x040029B2 RID: 10674
+	// Token: 0x040029C8 RID: 10696
 	public GameObject OptionList;
 
-	// Token: 0x040029B3 RID: 10675
+	// Token: 0x040029C9 RID: 10697
 	public GameObject PostProcessing;
 
-	// Token: 0x040029B4 RID: 10676
+	// Token: 0x040029CA RID: 10698
 	public GameObject Details;
 
-	// Token: 0x040029B5 RID: 10677
+	// Token: 0x040029CB RID: 10699
 	public GameObject Gameplay;
 
-	// Token: 0x040029B6 RID: 10678
+	// Token: 0x040029CC RID: 10700
 	public GameObject Grass;
 
-	// Token: 0x040029B7 RID: 10679
+	// Token: 0x040029CD RID: 10701
 	public UIPanel[] Panel;
 
-	// Token: 0x040029B8 RID: 10680
+	// Token: 0x040029CE RID: 10702
 	public UISprite Cursor;
 
-	// Token: 0x040029B9 RID: 10681
+	// Token: 0x040029CF RID: 10703
 	public UILabel[] Labels;
 
-	// Token: 0x040029BA RID: 10682
+	// Token: 0x040029D0 RID: 10704
 	public int[] Limit;
 
-	// Token: 0x040029BB RID: 10683
+	// Token: 0x040029D1 RID: 10705
 	public int Selection = 1;
 
-	// Token: 0x040029BC RID: 10684
+	// Token: 0x040029D2 RID: 10706
 	public int Speed = 1;
 
-	// Token: 0x040029BD RID: 10685
+	// Token: 0x040029D3 RID: 10707
 	public int Menu = 1;
 
-	// Token: 0x040029BE RID: 10686
+	// Token: 0x040029D4 RID: 10708
 	public bool SchoolScene;
 
-	// Token: 0x040029BF RID: 10687
+	// Token: 0x040029D5 RID: 10709
 	public bool Transition;
 
-	// Token: 0x040029C0 RID: 10688
+	// Token: 0x040029D6 RID: 10710
 	public Renderer Window;
 
-	// Token: 0x040029C1 RID: 10689
+	// Token: 0x040029D7 RID: 10711
 	public Renderer YandereRenderer;
 
-	// Token: 0x040029C2 RID: 10690
+	// Token: 0x040029D8 RID: 10712
 	public Renderer YandereHairRenderer;
 
-	// Token: 0x040029C3 RID: 10691
+	// Token: 0x040029D9 RID: 10713
 	public Shader ToonOutlineRimLight;
 
-	// Token: 0x040029C4 RID: 10692
+	// Token: 0x040029DA RID: 10714
 	public Shader ToonRimLight;
 
-	// Token: 0x040029C5 RID: 10693
+	// Token: 0x040029DB RID: 10715
 	public Shader ToonOutline;
 
-	// Token: 0x040029C6 RID: 10694
+	// Token: 0x040029DC RID: 10716
 	public Shader Toon;
 }

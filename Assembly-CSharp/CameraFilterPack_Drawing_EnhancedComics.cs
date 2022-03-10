@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Drawing_EnhancedComics : MonoBehaviour
 {
 	// Token: 0x17000290 RID: 656
-	// (get) Token: 0x06000E07 RID: 3591 RVA: 0x00078890 File Offset: 0x00076A90
+	// (get) Token: 0x06000E07 RID: 3591 RVA: 0x000789D8 File Offset: 0x00076BD8
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Drawing_EnhancedComics : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E08 RID: 3592 RVA: 0x000788C4 File Offset: 0x00076AC4
+	// Token: 0x06000E08 RID: 3592 RVA: 0x00078A0C File Offset: 0x00076C0C
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Drawing_EnhancedComics");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Drawing_EnhancedComics : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E09 RID: 3593 RVA: 0x000788E8 File Offset: 0x00076AE8
+	// Token: 0x06000E09 RID: 3593 RVA: 0x00078A30 File Offset: 0x00076C30
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -57,12 +57,12 @@ public class CameraFilterPack_Drawing_EnhancedComics : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000E0A RID: 3594 RVA: 0x00078A0B File Offset: 0x00076C0B
+	// Token: 0x06000E0A RID: 3594 RVA: 0x00078B53 File Offset: 0x00076D53
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000E0B RID: 3595 RVA: 0x00078A0D File Offset: 0x00076C0D
+	// Token: 0x06000E0B RID: 3595 RVA: 0x00078B55 File Offset: 0x00076D55
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -71,43 +71,43 @@ public class CameraFilterPack_Drawing_EnhancedComics : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400124A RID: 4682
+	// Token: 0x04001253 RID: 4691
 	public Shader SCShader;
 
-	// Token: 0x0400124B RID: 4683
+	// Token: 0x04001254 RID: 4692
 	private float TimeX = 1f;
 
-	// Token: 0x0400124C RID: 4684
+	// Token: 0x04001255 RID: 4693
 	private Material SCMaterial;
 
-	// Token: 0x0400124D RID: 4685
+	// Token: 0x04001256 RID: 4694
 	[Range(0f, 1f)]
 	public float DotSize = 0.15f;
 
-	// Token: 0x0400124E RID: 4686
+	// Token: 0x04001257 RID: 4695
 	[Range(0f, 1f)]
 	public float _ColorR = 0.9f;
 
-	// Token: 0x0400124F RID: 4687
+	// Token: 0x04001258 RID: 4696
 	[Range(0f, 1f)]
 	public float _ColorG = 0.4f;
 
-	// Token: 0x04001250 RID: 4688
+	// Token: 0x04001259 RID: 4697
 	[Range(0f, 1f)]
 	public float _ColorB = 0.4f;
 
-	// Token: 0x04001251 RID: 4689
+	// Token: 0x0400125A RID: 4698
 	[Range(0f, 1f)]
 	public float _Blood = 0.5f;
 
-	// Token: 0x04001252 RID: 4690
+	// Token: 0x0400125B RID: 4699
 	[Range(0f, 1f)]
 	public float _SmoothStart = 0.02f;
 
-	// Token: 0x04001253 RID: 4691
+	// Token: 0x0400125C RID: 4700
 	[Range(0f, 1f)]
 	public float _SmoothEnd = 0.1f;
 
-	// Token: 0x04001254 RID: 4692
+	// Token: 0x0400125D RID: 4701
 	public Color ColorRGB = new Color(1f, 0f, 0f);
 }

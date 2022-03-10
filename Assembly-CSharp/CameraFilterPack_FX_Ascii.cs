@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_FX_Ascii : MonoBehaviour
 {
 	// Token: 0x170002AE RID: 686
-	// (get) Token: 0x06000EBC RID: 3772 RVA: 0x0007B5BD File Offset: 0x000797BD
+	// (get) Token: 0x06000EBC RID: 3772 RVA: 0x0007B705 File Offset: 0x00079905
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_FX_Ascii : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000EBD RID: 3773 RVA: 0x0007B5F1 File Offset: 0x000797F1
+	// Token: 0x06000EBD RID: 3773 RVA: 0x0007B739 File Offset: 0x00079939
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/FX_Ascii");
@@ -32,7 +32,7 @@ public class CameraFilterPack_FX_Ascii : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000EBE RID: 3774 RVA: 0x0007B614 File Offset: 0x00079814
+	// Token: 0x06000EBE RID: 3774 RVA: 0x0007B75C File Offset: 0x0007995C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -52,12 +52,12 @@ public class CameraFilterPack_FX_Ascii : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000EBF RID: 3775 RVA: 0x0007B6E0 File Offset: 0x000798E0
+	// Token: 0x06000EBF RID: 3775 RVA: 0x0007B828 File Offset: 0x00079A28
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000EC0 RID: 3776 RVA: 0x0007B6E2 File Offset: 0x000798E2
+	// Token: 0x06000EC0 RID: 3776 RVA: 0x0007B82A File Offset: 0x00079A2A
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -66,20 +66,20 @@ public class CameraFilterPack_FX_Ascii : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001308 RID: 4872
+	// Token: 0x04001311 RID: 4881
 	public Shader SCShader;
 
-	// Token: 0x04001309 RID: 4873
+	// Token: 0x04001312 RID: 4882
 	[Range(0f, 2f)]
 	public float Value = 1f;
 
-	// Token: 0x0400130A RID: 4874
+	// Token: 0x04001313 RID: 4883
 	[Range(0.01f, 1f)]
 	public float Fade = 1f;
 
-	// Token: 0x0400130B RID: 4875
+	// Token: 0x04001314 RID: 4884
 	private float TimeX = 1f;
 
-	// Token: 0x0400130C RID: 4876
+	// Token: 0x04001315 RID: 4885
 	private Material SCMaterial;
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Oculus_ThermaVision : MonoBehaviour
 {
 	// Token: 0x170002F8 RID: 760
-	// (get) Token: 0x0600109A RID: 4250 RVA: 0x00084539 File Offset: 0x00082739
+	// (get) Token: 0x0600109A RID: 4250 RVA: 0x00084681 File Offset: 0x00082881
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Oculus_ThermaVision : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600109B RID: 4251 RVA: 0x0008456D File Offset: 0x0008276D
+	// Token: 0x0600109B RID: 4251 RVA: 0x000846B5 File Offset: 0x000828B5
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Oculus_ThermaVision");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Oculus_ThermaVision : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600109C RID: 4252 RVA: 0x00084590 File Offset: 0x00082790
+	// Token: 0x0600109C RID: 4252 RVA: 0x000846D8 File Offset: 0x000828D8
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Oculus_ThermaVision : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x0600109D RID: 4253 RVA: 0x00084688 File Offset: 0x00082888
+	// Token: 0x0600109D RID: 4253 RVA: 0x000847D0 File Offset: 0x000829D0
 	private void Update()
 	{
 	}
 
-	// Token: 0x0600109E RID: 4254 RVA: 0x0008468A File Offset: 0x0008288A
+	// Token: 0x0600109E RID: 4254 RVA: 0x000847D2 File Offset: 0x000829D2
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,28 +68,28 @@ public class CameraFilterPack_Oculus_ThermaVision : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400151E RID: 5406
+	// Token: 0x04001527 RID: 5415
 	public Shader SCShader;
 
-	// Token: 0x0400151F RID: 5407
+	// Token: 0x04001528 RID: 5416
 	private float TimeX = 1f;
 
-	// Token: 0x04001520 RID: 5408
+	// Token: 0x04001529 RID: 5417
 	private Material SCMaterial;
 
-	// Token: 0x04001521 RID: 5409
+	// Token: 0x0400152A RID: 5418
 	[Range(0f, 1f)]
 	public float Therma_Variation = 0.5f;
 
-	// Token: 0x04001522 RID: 5410
+	// Token: 0x0400152B RID: 5419
 	[Range(0f, 8f)]
 	private float Contrast = 3f;
 
-	// Token: 0x04001523 RID: 5411
+	// Token: 0x0400152C RID: 5420
 	[Range(0f, 4f)]
 	private float Burn;
 
-	// Token: 0x04001524 RID: 5412
+	// Token: 0x0400152D RID: 5421
 	[Range(0f, 16f)]
 	private float SceneCut = 1f;
 }

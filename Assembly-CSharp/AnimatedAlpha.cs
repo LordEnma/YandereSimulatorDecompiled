@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class AnimatedAlpha : MonoBehaviour
 {
-	// Token: 0x0600054C RID: 1356 RVA: 0x00033A1F File Offset: 0x00031C1F
+	// Token: 0x0600054C RID: 1356 RVA: 0x00033B17 File Offset: 0x00031D17
 	private void OnEnable()
 	{
 		this.mWidget = base.GetComponent<UIWidget>();
@@ -13,7 +13,7 @@ public class AnimatedAlpha : MonoBehaviour
 		this.LateUpdate();
 	}
 
-	// Token: 0x0600054D RID: 1357 RVA: 0x00033A3F File Offset: 0x00031C3F
+	// Token: 0x0600054D RID: 1357 RVA: 0x00033B37 File Offset: 0x00031D37
 	private void LateUpdate()
 	{
 		if (this.mWidget != null)
@@ -26,13 +26,13 @@ public class AnimatedAlpha : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400058D RID: 1421
+	// Token: 0x04000596 RID: 1430
 	[Range(0f, 1f)]
 	public float alpha = 1f;
 
-	// Token: 0x0400058E RID: 1422
+	// Token: 0x04000597 RID: 1431
 	private UIWidget mWidget;
 
-	// Token: 0x0400058F RID: 1423
+	// Token: 0x04000598 RID: 1432
 	private UIPanel mPanel;
 }

@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Internal/Spring Panel")]
 public class SpringPanel : MonoBehaviour
 {
-	// Token: 0x0600046A RID: 1130 RVA: 0x0002C7E5 File Offset: 0x0002A9E5
+	// Token: 0x0600046A RID: 1130 RVA: 0x0002C8DD File Offset: 0x0002AADD
 	private void Start()
 	{
 		this.mPanel = base.GetComponent<UIPanel>();
@@ -14,13 +14,13 @@ public class SpringPanel : MonoBehaviour
 		this.mTrans = base.transform;
 	}
 
-	// Token: 0x0600046B RID: 1131 RVA: 0x0002C80B File Offset: 0x0002AA0B
+	// Token: 0x0600046B RID: 1131 RVA: 0x0002C903 File Offset: 0x0002AB03
 	private void Update()
 	{
 		this.AdvanceTowardsPosition();
 	}
 
-	// Token: 0x0600046C RID: 1132 RVA: 0x0002C814 File Offset: 0x0002AA14
+	// Token: 0x0600046C RID: 1132 RVA: 0x0002C90C File Offset: 0x0002AB0C
 	protected virtual void AdvanceTowardsPosition()
 	{
 		this.mDelta += RealTime.deltaTime;
@@ -63,7 +63,7 @@ public class SpringPanel : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600046D RID: 1133 RVA: 0x0002C978 File Offset: 0x0002AB78
+	// Token: 0x0600046D RID: 1133 RVA: 0x0002CA70 File Offset: 0x0002AC70
 	public static SpringPanel Begin(GameObject go, Vector3 pos, float strength)
 	{
 		SpringPanel springPanel = go.GetComponent<SpringPanel>();
@@ -78,7 +78,7 @@ public class SpringPanel : MonoBehaviour
 		return springPanel;
 	}
 
-	// Token: 0x0600046E RID: 1134 RVA: 0x0002C9BC File Offset: 0x0002ABBC
+	// Token: 0x0600046E RID: 1134 RVA: 0x0002CAB4 File Offset: 0x0002ACB4
 	public static SpringPanel Stop(GameObject go)
 	{
 		SpringPanel component = go.GetComponent<SpringPanel>();
@@ -93,35 +93,35 @@ public class SpringPanel : MonoBehaviour
 		return component;
 	}
 
-	// Token: 0x040004F7 RID: 1271
+	// Token: 0x04000500 RID: 1280
 	public static SpringPanel current;
 
-	// Token: 0x040004F8 RID: 1272
+	// Token: 0x04000501 RID: 1281
 	public Vector3 target = Vector3.zero;
 
-	// Token: 0x040004F9 RID: 1273
+	// Token: 0x04000502 RID: 1282
 	public float strength = 10f;
 
-	// Token: 0x040004FA RID: 1274
+	// Token: 0x04000503 RID: 1283
 	public SpringPanel.OnFinished onFinished;
 
-	// Token: 0x040004FB RID: 1275
+	// Token: 0x04000504 RID: 1284
 	[NonSerialized]
 	private UIPanel mPanel;
 
-	// Token: 0x040004FC RID: 1276
+	// Token: 0x04000505 RID: 1285
 	[NonSerialized]
 	private Transform mTrans;
 
-	// Token: 0x040004FD RID: 1277
+	// Token: 0x04000506 RID: 1286
 	[NonSerialized]
 	private UIScrollView mDrag;
 
-	// Token: 0x040004FE RID: 1278
+	// Token: 0x04000507 RID: 1287
 	[NonSerialized]
 	private float mDelta;
 
-	// Token: 0x020005EF RID: 1519
-	// (Invoke) Token: 0x06002555 RID: 9557
+	// Token: 0x020005F0 RID: 1520
+	// (Invoke) Token: 0x0600255B RID: 9563
 	public delegate void OnFinished();
 }

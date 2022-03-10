@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000515 RID: 1301
+// Token: 0x02000516 RID: 1302
 public class CameraMoveScript : MonoBehaviour
 {
-	// Token: 0x06002155 RID: 8533 RVA: 0x001E9BFD File Offset: 0x001E7DFD
+	// Token: 0x0600215B RID: 8539 RVA: 0x001EA5D5 File Offset: 0x001E87D5
 	private void Start()
 	{
 		base.transform.position = this.StartPos.position;
 		base.transform.rotation = this.StartPos.rotation;
 	}
 
-	// Token: 0x06002156 RID: 8534 RVA: 0x001E9C2C File Offset: 0x001E7E2C
+	// Token: 0x0600215C RID: 8540 RVA: 0x001EA604 File Offset: 0x001E8804
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
@@ -35,7 +35,7 @@ public class CameraMoveScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002157 RID: 8535 RVA: 0x001E9DBF File Offset: 0x001E7FBF
+	// Token: 0x0600215D RID: 8541 RVA: 0x001EA797 File Offset: 0x001E8997
 	private void LateUpdate()
 	{
 		if (this.Target != null)
@@ -44,30 +44,30 @@ public class CameraMoveScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400491A RID: 18714
+	// Token: 0x04004937 RID: 18743
 	public Transform StartPos;
 
-	// Token: 0x0400491B RID: 18715
+	// Token: 0x04004938 RID: 18744
 	public Transform EndPos;
 
-	// Token: 0x0400491C RID: 18716
+	// Token: 0x04004939 RID: 18745
 	public Transform RightDoor;
 
-	// Token: 0x0400491D RID: 18717
+	// Token: 0x0400493A RID: 18746
 	public Transform LeftDoor;
 
-	// Token: 0x0400491E RID: 18718
+	// Token: 0x0400493B RID: 18747
 	public Transform Target;
 
-	// Token: 0x0400491F RID: 18719
+	// Token: 0x0400493C RID: 18748
 	public bool OpenDoors;
 
-	// Token: 0x04004920 RID: 18720
+	// Token: 0x0400493D RID: 18749
 	public bool Begin;
 
-	// Token: 0x04004921 RID: 18721
+	// Token: 0x0400493E RID: 18750
 	public float Speed;
 
-	// Token: 0x04004922 RID: 18722
+	// Token: 0x0400493F RID: 18751
 	public float Timer;
 }

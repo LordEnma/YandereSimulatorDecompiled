@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200023E RID: 574
 public class CharacterScript : MonoBehaviour
 {
-	// Token: 0x0600123D RID: 4669 RVA: 0x0008C1B0 File Offset: 0x0008A3B0
+	// Token: 0x0600123D RID: 4669 RVA: 0x0008C2F8 File Offset: 0x0008A4F8
 	private void SetAnimations()
 	{
 		Animation component = base.GetComponent<Animation>();
@@ -38,39 +38,39 @@ public class CharacterScript : MonoBehaviour
 		component["f02_shy_00"].weight = 0f;
 	}
 
-	// Token: 0x040016F6 RID: 5878
+	// Token: 0x040016FF RID: 5887
 	public Transform RightBreast;
 
-	// Token: 0x040016F7 RID: 5879
+	// Token: 0x04001700 RID: 5888
 	public Transform LeftBreast;
 
-	// Token: 0x040016F8 RID: 5880
+	// Token: 0x04001701 RID: 5889
 	public Transform ItemParent;
 
-	// Token: 0x040016F9 RID: 5881
+	// Token: 0x04001702 RID: 5890
 	public Transform PelvisRoot;
 
-	// Token: 0x040016FA RID: 5882
+	// Token: 0x04001703 RID: 5891
 	public Transform RightEye;
 
-	// Token: 0x040016FB RID: 5883
+	// Token: 0x04001704 RID: 5892
 	public Transform LeftEye;
 
-	// Token: 0x040016FC RID: 5884
+	// Token: 0x04001705 RID: 5893
 	public Transform Head;
 
-	// Token: 0x040016FD RID: 5885
+	// Token: 0x04001706 RID: 5894
 	public Transform[] Spine;
 
-	// Token: 0x040016FE RID: 5886
+	// Token: 0x04001707 RID: 5895
 	public Transform[] Arm;
 
-	// Token: 0x040016FF RID: 5887
+	// Token: 0x04001708 RID: 5896
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x04001700 RID: 5888
+	// Token: 0x04001709 RID: 5897
 	public Renderer RightYandereEye;
 
-	// Token: 0x04001701 RID: 5889
+	// Token: 0x0400170A RID: 5898
 	public Renderer LeftYandereEye;
 }

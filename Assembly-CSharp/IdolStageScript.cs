@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000330 RID: 816
 public class IdolStageScript : MonoBehaviour
 {
-	// Token: 0x060018CE RID: 6350 RVA: 0x000F4338 File Offset: 0x000F2538
+	// Token: 0x060018CE RID: 6350 RVA: 0x000F4670 File Offset: 0x000F2870
 	private void Update()
 	{
 		for (int i = 1; i < 5; i++)
@@ -13,7 +13,6 @@ public class IdolStageScript : MonoBehaviour
 			{
 				if (Vector3.Distance(this.StudentManager.Students[51 + i].transform.position, this.Spot[i].position) < 1f && this.StudentManager.Students[51 + i].Routine && !this.StudentManager.Students[51 + i].Alarmed)
 				{
-					Debug.Log("LMC Member #" + i.ToString() + " is at their spot on the stage.");
 					this.Music[i].volume = Mathf.MoveTowards(this.Music[i].volume, 1f, Time.deltaTime);
 				}
 				else
@@ -49,21 +48,21 @@ public class IdolStageScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040025D9 RID: 9689
+	// Token: 0x040025ED RID: 9709
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040025DA RID: 9690
+	// Token: 0x040025EE RID: 9710
 	public JukeboxScript Jukebox;
 
-	// Token: 0x040025DB RID: 9691
+	// Token: 0x040025EF RID: 9711
 	public AudioSource[] Music;
 
-	// Token: 0x040025DC RID: 9692
+	// Token: 0x040025F0 RID: 9712
 	public Transform[] Spot;
 
-	// Token: 0x040025DD RID: 9693
+	// Token: 0x040025F1 RID: 9713
 	public Transform Yandere;
 
-	// Token: 0x040025DE RID: 9694
+	// Token: 0x040025F2 RID: 9714
 	public bool RestoreVolume;
 }

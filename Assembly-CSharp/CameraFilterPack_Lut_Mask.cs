@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Lut_Mask : MonoBehaviour
 {
 	// Token: 0x170002E3 RID: 739
-	// (get) Token: 0x06001002 RID: 4098 RVA: 0x000812B4 File Offset: 0x0007F4B4
+	// (get) Token: 0x06001002 RID: 4098 RVA: 0x000813FC File Offset: 0x0007F5FC
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Lut_Mask : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001003 RID: 4099 RVA: 0x000812E8 File Offset: 0x0007F4E8
+	// Token: 0x06001003 RID: 4099 RVA: 0x00081430 File Offset: 0x0007F630
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Lut_Mask");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Lut_Mask : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001004 RID: 4100 RVA: 0x0008130C File Offset: 0x0007F50C
+	// Token: 0x06001004 RID: 4100 RVA: 0x00081454 File Offset: 0x0007F654
 	public void SetIdentityLut()
 	{
 		int num = 16;
@@ -57,13 +57,13 @@ public class CameraFilterPack_Lut_Mask : MonoBehaviour
 		this.converted3DLut.Apply();
 	}
 
-	// Token: 0x06001005 RID: 4101 RVA: 0x000813E4 File Offset: 0x0007F5E4
+	// Token: 0x06001005 RID: 4101 RVA: 0x0008152C File Offset: 0x0007F72C
 	public bool ValidDimensions(Texture2D tex2d)
 	{
 		return tex2d && tex2d.height == Mathf.FloorToInt(Mathf.Sqrt((float)tex2d.width));
 	}
 
-	// Token: 0x06001006 RID: 4102 RVA: 0x0008140C File Offset: 0x0007F60C
+	// Token: 0x06001006 RID: 4102 RVA: 0x00081554 File Offset: 0x0007F754
 	public void Convert(Texture2D temp2DTex)
 	{
 		if (!temp2DTex)
@@ -100,7 +100,7 @@ public class CameraFilterPack_Lut_Mask : MonoBehaviour
 		this.converted3DLut.Apply();
 	}
 
-	// Token: 0x06001007 RID: 4103 RVA: 0x00081510 File Offset: 0x0007F710
+	// Token: 0x06001007 RID: 4103 RVA: 0x00081658 File Offset: 0x0007F858
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null || !SystemInfo.supports3DTextures)
@@ -125,17 +125,17 @@ public class CameraFilterPack_Lut_Mask : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06001008 RID: 4104 RVA: 0x000815FE File Offset: 0x0007F7FE
+	// Token: 0x06001008 RID: 4104 RVA: 0x00081746 File Offset: 0x0007F946
 	private void OnValidate()
 	{
 	}
 
-	// Token: 0x06001009 RID: 4105 RVA: 0x00081600 File Offset: 0x0007F800
+	// Token: 0x06001009 RID: 4105 RVA: 0x00081748 File Offset: 0x0007F948
 	private void Update()
 	{
 	}
 
-	// Token: 0x0600100A RID: 4106 RVA: 0x00081602 File Offset: 0x0007F802
+	// Token: 0x0600100A RID: 4106 RVA: 0x0008174A File Offset: 0x0007F94A
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -144,35 +144,35 @@ public class CameraFilterPack_Lut_Mask : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400147B RID: 5243
+	// Token: 0x04001484 RID: 5252
 	public Shader SCShader;
 
-	// Token: 0x0400147C RID: 5244
+	// Token: 0x04001485 RID: 5253
 	private float TimeX = 1f;
 
-	// Token: 0x0400147D RID: 5245
+	// Token: 0x04001486 RID: 5254
 	private Vector4 ScreenResolution;
 
-	// Token: 0x0400147E RID: 5246
+	// Token: 0x04001487 RID: 5255
 	private Material SCMaterial;
 
-	// Token: 0x0400147F RID: 5247
+	// Token: 0x04001488 RID: 5256
 	public Texture2D LutTexture;
 
-	// Token: 0x04001480 RID: 5248
+	// Token: 0x04001489 RID: 5257
 	private Texture3D converted3DLut;
 
-	// Token: 0x04001481 RID: 5249
+	// Token: 0x0400148A RID: 5258
 	[Range(0f, 1f)]
 	public float Blend = 1f;
 
-	// Token: 0x04001482 RID: 5250
+	// Token: 0x0400148B RID: 5259
 	public Texture2D Mask;
 
-	// Token: 0x04001483 RID: 5251
+	// Token: 0x0400148C RID: 5260
 	[Range(0f, 1f)]
 	public float Inverse = 1f;
 
-	// Token: 0x04001484 RID: 5252
+	// Token: 0x0400148D RID: 5261
 	private string MemoPath;
 }

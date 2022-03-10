@@ -8,6 +8,23 @@ public class MusicMinigameScript : MonoBehaviour
 	// Token: 0x0600004F RID: 79 RVA: 0x00007638 File Offset: 0x00005838
 	private void Start()
 	{
+		if (GameGlobals.Eighties)
+		{
+			this.ChibiCelebrate = this.EightiesChibiCelebrate;
+			this.ChibiPerform = this.EightiesChibiPerform;
+			this.ChibiPerformB = this.EightiesChibiPerformB;
+			this.ChibiCringe = this.EightiesChibiCringe;
+			this.ChibiIdle = this.EightiesChibiIdle;
+			this.ChibiRenderer[1].material.mainTexture = this.ChibiIdle[1];
+			this.ChibiRenderer[2].material.mainTexture = this.ChibiIdle[2];
+			this.ChibiRenderer[3].material.mainTexture = this.ChibiIdle[3];
+			this.ChibiRenderer[4].material.mainTexture = this.ChibiIdle[4];
+			this.ChibiRenderer[5].material.mainTexture = this.ChibiIdle[5];
+			this.ChibiRenderer[6].material.mainTexture = this.ChibiIdle[6];
+			this.SadMiyuji.GetComponent<Renderer>().material.mainTexture = this.SadLeader;
+			this.SadAyano.GetComponent<Renderer>().material.mainTexture = this.SadRyoba;
+			this.Background.material.mainTexture = this.EightiesBG;
+		}
 		this.StartRep = PlayerPrefs.GetFloat("TempReputation");
 		Application.targetFrameRate = 60;
 		Time.timeScale = 1f;
@@ -42,7 +59,7 @@ public class MusicMinigameScript : MonoBehaviour
 		this.Black.material.color = new Color(0f, 0f, 0f, 1f);
 	}
 
-	// Token: 0x06000050 RID: 80 RVA: 0x00007858 File Offset: 0x00005A58
+	// Token: 0x06000050 RID: 80 RVA: 0x00007988 File Offset: 0x00005B88
 	private void Update()
 	{
 		this.ID = 0;
@@ -54,15 +71,6 @@ public class MusicMinigameScript : MonoBehaviour
 				this.Scales[this.ID].localPosition += new Vector3(4f, 0f, 0f);
 			}
 			this.ID++;
-		}
-		if (Input.GetKeyDown("escape"))
-		{
-			this.GameOver = true;
-			this.Timer = 9f;
-		}
-		if (Input.GetKeyDown("l"))
-		{
-			this.LockHealth = !this.LockHealth;
 		}
 		if (this.GameOver)
 		{
@@ -540,7 +548,7 @@ public class MusicMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000051 RID: 81 RVA: 0x00008E24 File Offset: 0x00007024
+	// Token: 0x06000051 RID: 81 RVA: 0x00008F1C File Offset: 0x0000711C
 	public void UpdateHealthBar()
 	{
 		if (this.Health > 200f)
@@ -599,7 +607,7 @@ public class MusicMinigameScript : MonoBehaviour
 		this.Stars[5].material.mainTexture = this.EmptyStar;
 	}
 
-	// Token: 0x06000052 RID: 82 RVA: 0x00009024 File Offset: 0x00007224
+	// Token: 0x06000052 RID: 82 RVA: 0x0000911C File Offset: 0x0000731C
 	public void Cringe()
 	{
 		this.ID = 1;
@@ -614,7 +622,7 @@ public class MusicMinigameScript : MonoBehaviour
 		this.CringeTimer = 1f;
 	}
 
-	// Token: 0x06000053 RID: 83 RVA: 0x000090BC File Offset: 0x000072BC
+	// Token: 0x06000053 RID: 83 RVA: 0x000091B4 File Offset: 0x000073B4
 	public void Quit()
 	{
 		Debug.Log("Starting reputation was: " + this.StartRep.ToString());
@@ -774,35 +782,62 @@ public class MusicMinigameScript : MonoBehaviour
 	public Texture[] ChibiIdle;
 
 	// Token: 0x04000142 RID: 322
-	public ParticleSystem[] MusicNotes;
+	public Texture[] EightiesChibiCelebrate;
 
 	// Token: 0x04000143 RID: 323
-	public AudioClip[] Celebrations;
+	public Texture[] EightiesChibiPerform;
 
 	// Token: 0x04000144 RID: 324
-	public Renderer[] ChibiRenderer;
+	public Texture[] EightiesChibiPerformB;
 
 	// Token: 0x04000145 RID: 325
-	public Transform[] Instruments;
+	public Texture[] EightiesChibiCringe;
 
 	// Token: 0x04000146 RID: 326
-	public float[] AnimTimer;
+	public Texture[] EightiesChibiIdle;
 
 	// Token: 0x04000147 RID: 327
-	public float[] PingPong;
+	public ParticleSystem[] MusicNotes;
 
 	// Token: 0x04000148 RID: 328
-	public float[] Rotation;
+	public AudioClip[] Celebrations;
 
 	// Token: 0x04000149 RID: 329
-	public float[] Jump;
+	public Renderer[] ChibiRenderer;
 
 	// Token: 0x0400014A RID: 330
-	public bool[] ChibiSway;
+	public Transform[] Instruments;
 
 	// Token: 0x0400014B RID: 331
-	public bool[] FrameB;
+	public float[] AnimTimer;
 
 	// Token: 0x0400014C RID: 332
+	public float[] PingPong;
+
+	// Token: 0x0400014D RID: 333
+	public float[] Rotation;
+
+	// Token: 0x0400014E RID: 334
+	public float[] Jump;
+
+	// Token: 0x0400014F RID: 335
+	public bool[] ChibiSway;
+
+	// Token: 0x04000150 RID: 336
+	public bool[] FrameB;
+
+	// Token: 0x04000151 RID: 337
 	public bool[] Ping;
+
+	// Token: 0x04000152 RID: 338
+	public Renderer Background;
+
+	// Token: 0x04000153 RID: 339
+	public Texture EightiesBG;
+
+	// Token: 0x04000154 RID: 340
+	public Texture SadLeader;
+
+	// Token: 0x04000155 RID: 341
+	public Texture SadRyoba;
 }

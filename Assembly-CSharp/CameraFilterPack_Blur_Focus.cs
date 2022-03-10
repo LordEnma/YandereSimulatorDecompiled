@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blur_Focus : MonoBehaviour
 {
 	// Token: 0x17000250 RID: 592
-	// (get) Token: 0x06000C85 RID: 3205 RVA: 0x0007229D File Offset: 0x0007049D
+	// (get) Token: 0x06000C85 RID: 3205 RVA: 0x000723E5 File Offset: 0x000705E5
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blur_Focus : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C86 RID: 3206 RVA: 0x000722D1 File Offset: 0x000704D1
+	// Token: 0x06000C86 RID: 3206 RVA: 0x00072419 File Offset: 0x00070619
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Blur_Focus");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Blur_Focus : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C87 RID: 3207 RVA: 0x000722F4 File Offset: 0x000704F4
+	// Token: 0x06000C87 RID: 3207 RVA: 0x0007243C File Offset: 0x0007063C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -55,12 +55,12 @@ public class CameraFilterPack_Blur_Focus : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000C88 RID: 3208 RVA: 0x000723F8 File Offset: 0x000705F8
+	// Token: 0x06000C88 RID: 3208 RVA: 0x00072540 File Offset: 0x00070740
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000C89 RID: 3209 RVA: 0x000723FA File Offset: 0x000705FA
+	// Token: 0x06000C89 RID: 3209 RVA: 0x00072542 File Offset: 0x00070742
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -69,28 +69,28 @@ public class CameraFilterPack_Blur_Focus : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040010CD RID: 4301
+	// Token: 0x040010D6 RID: 4310
 	public Shader SCShader;
 
-	// Token: 0x040010CE RID: 4302
+	// Token: 0x040010D7 RID: 4311
 	private float TimeX = 1f;
 
-	// Token: 0x040010CF RID: 4303
+	// Token: 0x040010D8 RID: 4312
 	private Material SCMaterial;
 
-	// Token: 0x040010D0 RID: 4304
+	// Token: 0x040010D9 RID: 4313
 	[Range(-1f, 1f)]
 	public float CenterX;
 
-	// Token: 0x040010D1 RID: 4305
+	// Token: 0x040010DA RID: 4314
 	[Range(-1f, 1f)]
 	public float CenterY;
 
-	// Token: 0x040010D2 RID: 4306
+	// Token: 0x040010DB RID: 4315
 	[Range(0f, 10f)]
 	public float _Size = 5f;
 
-	// Token: 0x040010D3 RID: 4307
+	// Token: 0x040010DC RID: 4316
 	[Range(0.12f, 64f)]
 	public float _Eyes = 2f;
 }

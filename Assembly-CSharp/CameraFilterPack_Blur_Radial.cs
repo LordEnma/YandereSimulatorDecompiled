@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blur_Radial : MonoBehaviour
 {
 	// Token: 0x17000254 RID: 596
-	// (get) Token: 0x06000C9D RID: 3229 RVA: 0x000728A5 File Offset: 0x00070AA5
+	// (get) Token: 0x06000C9D RID: 3229 RVA: 0x000729ED File Offset: 0x00070BED
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blur_Radial : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C9E RID: 3230 RVA: 0x000728D9 File Offset: 0x00070AD9
+	// Token: 0x06000C9E RID: 3230 RVA: 0x00072A21 File Offset: 0x00070C21
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/Blur_Radial");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Blur_Radial : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000C9F RID: 3231 RVA: 0x000728FC File Offset: 0x00070AFC
+	// Token: 0x06000C9F RID: 3231 RVA: 0x00072A44 File Offset: 0x00070C44
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -54,12 +54,12 @@ public class CameraFilterPack_Blur_Radial : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000CA0 RID: 3232 RVA: 0x000729F4 File Offset: 0x00070BF4
+	// Token: 0x06000CA0 RID: 3232 RVA: 0x00072B3C File Offset: 0x00070D3C
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000CA1 RID: 3233 RVA: 0x000729F6 File Offset: 0x00070BF6
+	// Token: 0x06000CA1 RID: 3233 RVA: 0x00072B3E File Offset: 0x00070D3E
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -68,28 +68,28 @@ public class CameraFilterPack_Blur_Radial : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040010E3 RID: 4323
+	// Token: 0x040010EC RID: 4332
 	public Shader SCShader;
 
-	// Token: 0x040010E4 RID: 4324
+	// Token: 0x040010ED RID: 4333
 	private float TimeX = 1f;
 
-	// Token: 0x040010E5 RID: 4325
+	// Token: 0x040010EE RID: 4334
 	private Material SCMaterial;
 
-	// Token: 0x040010E6 RID: 4326
+	// Token: 0x040010EF RID: 4335
 	[Range(-0.5f, 0.5f)]
 	public float Intensity = 0.125f;
 
-	// Token: 0x040010E7 RID: 4327
+	// Token: 0x040010F0 RID: 4336
 	[Range(-2f, 2f)]
 	public float MovX = 0.5f;
 
-	// Token: 0x040010E8 RID: 4328
+	// Token: 0x040010F1 RID: 4337
 	[Range(-2f, 2f)]
 	public float MovY = 0.5f;
 
-	// Token: 0x040010E9 RID: 4329
+	// Token: 0x040010F2 RID: 4338
 	[Range(0f, 10f)]
 	private float blurWidth = 1f;
 }

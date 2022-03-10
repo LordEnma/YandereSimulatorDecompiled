@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003BA RID: 954
 public class PowerSwitchScript : MonoBehaviour
 {
-	// Token: 0x06001AF9 RID: 6905 RVA: 0x0012AAFA File Offset: 0x00128CFA
+	// Token: 0x06001AFA RID: 6906 RVA: 0x0012AED2 File Offset: 0x001290D2
 	private void Start()
 	{
 		if (this.BathroomLight != null)
@@ -17,7 +17,7 @@ public class PowerSwitchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AFA RID: 6906 RVA: 0x0012AB38 File Offset: 0x00128D38
+	// Token: 0x06001AFB RID: 6907 RVA: 0x0012AF10 File Offset: 0x00129110
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -56,7 +56,7 @@ public class PowerSwitchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AFB RID: 6907 RVA: 0x0012AC80 File Offset: 0x00128E80
+	// Token: 0x06001AFC RID: 6908 RVA: 0x0012B058 File Offset: 0x00129258
 	public void CheckPuddle()
 	{
 		if (this.On)
@@ -73,30 +73,30 @@ public class PowerSwitchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002D7E RID: 11646
+	// Token: 0x04002D94 RID: 11668
 	public DrinkingFountainScript DrinkingFountain;
 
-	// Token: 0x04002D7F RID: 11647
+	// Token: 0x04002D95 RID: 11669
 	public PowerOutletScript PowerOutlet;
 
-	// Token: 0x04002D80 RID: 11648
+	// Token: 0x04002D96 RID: 11670
 	public GameObject Electricity;
 
-	// Token: 0x04002D81 RID: 11649
+	// Token: 0x04002D97 RID: 11671
 	public Light BathroomLight;
 
-	// Token: 0x04002D82 RID: 11650
+	// Token: 0x04002D98 RID: 11672
 	public PromptScript Prompt;
 
-	// Token: 0x04002D83 RID: 11651
+	// Token: 0x04002D99 RID: 11673
 	public AudioSource MyAudio;
 
-	// Token: 0x04002D84 RID: 11652
+	// Token: 0x04002D9A RID: 11674
 	public AudioClip[] Flick;
 
-	// Token: 0x04002D85 RID: 11653
+	// Token: 0x04002D9B RID: 11675
 	public bool Haunted;
 
-	// Token: 0x04002D86 RID: 11654
+	// Token: 0x04002D9C RID: 11676
 	public bool On;
 }

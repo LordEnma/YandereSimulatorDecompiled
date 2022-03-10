@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Blend2Camera_ColorDodge : MonoBehaviour
 {
 	// Token: 0x1700022E RID: 558
-	// (get) Token: 0x06000B82 RID: 2946 RVA: 0x0006D327 File Offset: 0x0006B527
+	// (get) Token: 0x06000B82 RID: 2946 RVA: 0x0006D46F File Offset: 0x0006B66F
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Blend2Camera_ColorDodge : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B83 RID: 2947 RVA: 0x0006D35C File Offset: 0x0006B55C
+	// Token: 0x06000B83 RID: 2947 RVA: 0x0006D4A4 File Offset: 0x0006B6A4
 	private void Start()
 	{
 		if (this.Camera2 != null)
@@ -37,7 +37,7 @@ public class CameraFilterPack_Blend2Camera_ColorDodge : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B84 RID: 2948 RVA: 0x0006D3C0 File Offset: 0x0006B5C0
+	// Token: 0x06000B84 RID: 2948 RVA: 0x0006D508 File Offset: 0x0006B708
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -61,7 +61,7 @@ public class CameraFilterPack_Blend2Camera_ColorDodge : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000B85 RID: 2949 RVA: 0x0006D4B0 File Offset: 0x0006B6B0
+	// Token: 0x06000B85 RID: 2949 RVA: 0x0006D5F8 File Offset: 0x0006B7F8
 	private void OnValidate()
 	{
 		if (this.Camera2 != null)
@@ -71,12 +71,12 @@ public class CameraFilterPack_Blend2Camera_ColorDodge : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B86 RID: 2950 RVA: 0x0006D4E8 File Offset: 0x0006B6E8
+	// Token: 0x06000B86 RID: 2950 RVA: 0x0006D630 File Offset: 0x0006B830
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000B87 RID: 2951 RVA: 0x0006D4EA File Offset: 0x0006B6EA
+	// Token: 0x06000B87 RID: 2951 RVA: 0x0006D632 File Offset: 0x0006B832
 	private void OnEnable()
 	{
 		if (this.Camera2 != null)
@@ -86,7 +86,7 @@ public class CameraFilterPack_Blend2Camera_ColorDodge : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000B88 RID: 2952 RVA: 0x0006D522 File Offset: 0x0006B722
+	// Token: 0x06000B88 RID: 2952 RVA: 0x0006D66A File Offset: 0x0006B86A
 	private void OnDisable()
 	{
 		if (this.Camera2 != null)
@@ -99,29 +99,29 @@ public class CameraFilterPack_Blend2Camera_ColorDodge : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000FAA RID: 4010
+	// Token: 0x04000FB3 RID: 4019
 	private string ShaderName = "CameraFilterPack/Blend2Camera_ColorDodge";
 
-	// Token: 0x04000FAB RID: 4011
+	// Token: 0x04000FB4 RID: 4020
 	public Shader SCShader;
 
-	// Token: 0x04000FAC RID: 4012
+	// Token: 0x04000FB5 RID: 4021
 	public Camera Camera2;
 
-	// Token: 0x04000FAD RID: 4013
+	// Token: 0x04000FB6 RID: 4022
 	private float TimeX = 1f;
 
-	// Token: 0x04000FAE RID: 4014
+	// Token: 0x04000FB7 RID: 4023
 	private Material SCMaterial;
 
-	// Token: 0x04000FAF RID: 4015
+	// Token: 0x04000FB8 RID: 4024
 	[Range(0f, 1f)]
 	public float SwitchCameraToCamera2;
 
-	// Token: 0x04000FB0 RID: 4016
+	// Token: 0x04000FB9 RID: 4025
 	[Range(0f, 1f)]
 	public float BlendFX = 0.5f;
 
-	// Token: 0x04000FB1 RID: 4017
+	// Token: 0x04000FBA RID: 4026
 	private RenderTexture Camera2tex;
 }

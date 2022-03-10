@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000464 RID: 1124
 public class TalkingScript : MonoBehaviour
 {
-	// Token: 0x06001E7D RID: 7805 RVA: 0x001A4C84 File Offset: 0x001A2E84
+	// Token: 0x06001E80 RID: 7808 RVA: 0x001A5348 File Offset: 0x001A3548
 	private void Update()
 	{
 		if (this.S.Talking)
@@ -504,12 +504,18 @@ public class TalkingScript : MonoBehaviour
 									this.S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 3, 13f);
 									this.S.TalkTimer = 13f;
 								}
+								else if (SchoolGlobals.SchoolAtmosphere <= 0.5f)
+								{
+									this.S.Subtitle.CustomText = "I wouldn't be comfortable with that...the school doesn't feel safe right now.";
+									this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+									this.S.TalkTimer = 5f;
+								}
 							}
 							else if (SchoolGlobals.SchoolAtmosphere <= 0.5f)
 							{
-								this.S.Subtitle.CustomText = "I'm sorry, I wouldn't be comfortable with that...I'm not even sure if we're safe right now.";
+								this.S.Subtitle.CustomText = "I wouldn't be comfortable with that...the school doesn't feel safe right now.";
 								this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
-								this.S.TalkTimer = 7.5f;
+								this.S.TalkTimer = 5f;
 							}
 							else
 							{
@@ -1728,7 +1734,7 @@ public class TalkingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E7E RID: 7806 RVA: 0x001AA8E0 File Offset: 0x001A8AE0
+	// Token: 0x06001E81 RID: 7809 RVA: 0x001AAFF4 File Offset: 0x001A91F4
 	private void CalculateRepBonus()
 	{
 		this.S.RepBonus = 0;
@@ -1752,48 +1758,48 @@ public class TalkingScript : MonoBehaviour
 		this.S.RepBonus += this.S.Yandere.Class.PsychologyGrade + this.S.Yandere.Class.PsychologyBonus;
 	}
 
-	// Token: 0x04003E8C RID: 16012
+	// Token: 0x04003EA3 RID: 16035
 	private const float LongestTime = 100f;
 
-	// Token: 0x04003E8D RID: 16013
+	// Token: 0x04003EA4 RID: 16036
 	private const float LongTime = 5f;
 
-	// Token: 0x04003E8E RID: 16014
+	// Token: 0x04003EA5 RID: 16037
 	private const float MediumTime = 3f;
 
-	// Token: 0x04003E8F RID: 16015
+	// Token: 0x04003EA6 RID: 16038
 	private const float ShortTime = 2f;
 
-	// Token: 0x04003E90 RID: 16016
+	// Token: 0x04003EA7 RID: 16039
 	public StudentScript S;
 
-	// Token: 0x04003E91 RID: 16017
+	// Token: 0x04003EA8 RID: 16040
 	public WeaponScript StuckBoxCutter;
 
-	// Token: 0x04003E92 RID: 16018
+	// Token: 0x04003EA9 RID: 16041
 	public bool NegativeResponse;
 
-	// Token: 0x04003E93 RID: 16019
+	// Token: 0x04003EAA RID: 16042
 	public bool FadeIn;
 
-	// Token: 0x04003E94 RID: 16020
+	// Token: 0x04003EAB RID: 16043
 	public bool Follow;
 
-	// Token: 0x04003E95 RID: 16021
+	// Token: 0x04003EAC RID: 16044
 	public bool Grudge;
 
-	// Token: 0x04003E96 RID: 16022
+	// Token: 0x04003EAD RID: 16045
 	public bool Refuse;
 
-	// Token: 0x04003E97 RID: 16023
+	// Token: 0x04003EAE RID: 16046
 	public bool Fake;
 
-	// Token: 0x04003E98 RID: 16024
+	// Token: 0x04003EAF RID: 16047
 	public string IdleAnim = "";
 
-	// Token: 0x04003E99 RID: 16025
+	// Token: 0x04003EB0 RID: 16048
 	public float Timer;
 
-	// Token: 0x04003E9A RID: 16026
+	// Token: 0x04003EB1 RID: 16049
 	public int ClubBonus;
 }

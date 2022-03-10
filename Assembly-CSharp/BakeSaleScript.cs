@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020000DC RID: 220
 public class BakeSaleScript : MonoBehaviour
 {
-	// Token: 0x06000A0C RID: 2572 RVA: 0x00056AAC File Offset: 0x00054CAC
+	// Token: 0x06000A0C RID: 2572 RVA: 0x00056BD8 File Offset: 0x00054DD8
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -41,7 +41,7 @@ public class BakeSaleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A0D RID: 2573 RVA: 0x00056C45 File Offset: 0x00054E45
+	// Token: 0x06000A0D RID: 2573 RVA: 0x00056D71 File Offset: 0x00054F71
 	private void IncreaseID()
 	{
 		this.ID++;
@@ -51,21 +51,21 @@ public class BakeSaleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000AC8 RID: 2760
+	// Token: 0x04000AD1 RID: 2769
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000AC9 RID: 2761
+	// Token: 0x04000AD2 RID: 2770
 	public GameObject AmaiSuccess;
 
-	// Token: 0x04000ACA RID: 2762
+	// Token: 0x04000AD3 RID: 2771
 	public GameObject AmaiFail;
 
-	// Token: 0x04000ACB RID: 2763
+	// Token: 0x04000AD4 RID: 2772
 	public Transform MeetSpot;
 
-	// Token: 0x04000ACC RID: 2764
+	// Token: 0x04000AD5 RID: 2773
 	public float Timer;
 
-	// Token: 0x04000ACD RID: 2765
+	// Token: 0x04000AD6 RID: 2774
 	public int ID = 46;
 }

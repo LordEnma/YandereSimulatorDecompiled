@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 // Token: 0x020000CC RID: 204
 public class AntiCheatScript : MonoBehaviour
 {
-	// Token: 0x060009C5 RID: 2501 RVA: 0x000513A6 File Offset: 0x0004F5A6
+	// Token: 0x060009C5 RID: 2501 RVA: 0x0005149E File Offset: 0x0004F69E
 	private void Start()
 	{
 		this.MyAudio = base.GetComponent<AudioSource>();
 	}
 
-	// Token: 0x060009C6 RID: 2502 RVA: 0x000513B4 File Offset: 0x0004F5B4
+	// Token: 0x060009C6 RID: 2502 RVA: 0x000514AC File Offset: 0x0004F6AC
 	private void Update()
 	{
 		if (this.Check && !this.MyAudio.isPlaying)
@@ -20,7 +20,7 @@ public class AntiCheatScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009C7 RID: 2503 RVA: 0x000513E8 File Offset: 0x0004F5E8
+	// Token: 0x060009C7 RID: 2503 RVA: 0x000514E0 File Offset: 0x0004F6E0
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "YandereChan")
@@ -31,12 +31,12 @@ public class AntiCheatScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A25 RID: 2597
+	// Token: 0x04000A2E RID: 2606
 	public AudioSource MyAudio;
 
-	// Token: 0x04000A26 RID: 2598
+	// Token: 0x04000A2F RID: 2607
 	public GameObject Jukebox;
 
-	// Token: 0x04000A27 RID: 2599
+	// Token: 0x04000A30 RID: 2608
 	public bool Check;
 }

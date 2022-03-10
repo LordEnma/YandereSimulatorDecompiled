@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_OldFilm_Cutting2 : MonoBehaviour
 {
 	// Token: 0x170002FA RID: 762
-	// (get) Token: 0x060010A6 RID: 4262 RVA: 0x0008487B File Offset: 0x00082A7B
+	// (get) Token: 0x060010A6 RID: 4262 RVA: 0x000849C3 File Offset: 0x00082BC3
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_OldFilm_Cutting2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010A7 RID: 4263 RVA: 0x000848AF File Offset: 0x00082AAF
+	// Token: 0x060010A7 RID: 4263 RVA: 0x000849F7 File Offset: 0x00082BF7
 	private void Start()
 	{
 		this.Texture2 = (Resources.Load("CameraFilterPack_OldFilm2") as Texture2D);
@@ -33,7 +33,7 @@ public class CameraFilterPack_OldFilm_Cutting2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060010A8 RID: 4264 RVA: 0x000848E8 File Offset: 0x00082AE8
+	// Token: 0x060010A8 RID: 4264 RVA: 0x00084A30 File Offset: 0x00082C30
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -55,12 +55,12 @@ public class CameraFilterPack_OldFilm_Cutting2 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x060010A9 RID: 4265 RVA: 0x000849D5 File Offset: 0x00082BD5
+	// Token: 0x060010A9 RID: 4265 RVA: 0x00084B1D File Offset: 0x00082D1D
 	private void Update()
 	{
 	}
 
-	// Token: 0x060010AA RID: 4266 RVA: 0x000849D7 File Offset: 0x00082BD7
+	// Token: 0x060010AA RID: 4266 RVA: 0x00084B1F File Offset: 0x00082D1F
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -69,31 +69,31 @@ public class CameraFilterPack_OldFilm_Cutting2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400152D RID: 5421
+	// Token: 0x04001536 RID: 5430
 	public Shader SCShader;
 
-	// Token: 0x0400152E RID: 5422
+	// Token: 0x04001537 RID: 5431
 	private float TimeX = 1f;
 
-	// Token: 0x0400152F RID: 5423
+	// Token: 0x04001538 RID: 5432
 	[Range(0f, 10f)]
 	public float Speed = 5f;
 
-	// Token: 0x04001530 RID: 5424
+	// Token: 0x04001539 RID: 5433
 	[Range(0f, 2f)]
 	public float Luminosity = 1f;
 
-	// Token: 0x04001531 RID: 5425
+	// Token: 0x0400153A RID: 5434
 	[Range(0f, 1f)]
 	public float Vignette = 1f;
 
-	// Token: 0x04001532 RID: 5426
+	// Token: 0x0400153B RID: 5435
 	[Range(0f, 1f)]
 	public float Negative;
 
-	// Token: 0x04001533 RID: 5427
+	// Token: 0x0400153C RID: 5436
 	private Material SCMaterial;
 
-	// Token: 0x04001534 RID: 5428
+	// Token: 0x0400153D RID: 5437
 	private Texture2D Texture2;
 }

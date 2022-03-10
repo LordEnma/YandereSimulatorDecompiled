@@ -8,14 +8,14 @@ using UnityEngine;
 // Token: 0x0200049B RID: 1179
 public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCallbackReceiver, IXmlSerializable
 {
-	// Token: 0x06001F62 RID: 8034 RVA: 0x001BA297 File Offset: 0x001B8497
+	// Token: 0x06001F65 RID: 8037 RVA: 0x001BAA37 File Offset: 0x001B8C37
 	public SerializableDictionary()
 	{
 		this.keys = new List<K>();
 		this.values = new List<V>();
 	}
 
-	// Token: 0x06001F63 RID: 8035 RVA: 0x001BA2B8 File Offset: 0x001B84B8
+	// Token: 0x06001F66 RID: 8038 RVA: 0x001BAA58 File Offset: 0x001B8C58
 	public void OnBeforeSerialize()
 	{
 		this.keys.Clear();
@@ -27,7 +27,7 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 		}
 	}
 
-	// Token: 0x06001F64 RID: 8036 RVA: 0x001BA33C File Offset: 0x001B853C
+	// Token: 0x06001F67 RID: 8039 RVA: 0x001BAADC File Offset: 0x001B8CDC
 	public void OnAfterDeserialize()
 	{
 		base.Clear();
@@ -37,13 +37,13 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 		}
 	}
 
-	// Token: 0x06001F65 RID: 8037 RVA: 0x001BA383 File Offset: 0x001B8583
+	// Token: 0x06001F68 RID: 8040 RVA: 0x001BAB23 File Offset: 0x001B8D23
 	public XmlSchema GetSchema()
 	{
 		return null;
 	}
 
-	// Token: 0x06001F66 RID: 8038 RVA: 0x001BA388 File Offset: 0x001B8588
+	// Token: 0x06001F69 RID: 8041 RVA: 0x001BAB28 File Offset: 0x001B8D28
 	public void ReadXml(XmlReader reader)
 	{
 		XmlSerializer xmlSerializer = new XmlSerializer(typeof(K));
@@ -70,7 +70,7 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 		reader.ReadEndElement();
 	}
 
-	// Token: 0x06001F67 RID: 8039 RVA: 0x001BA434 File Offset: 0x001B8634
+	// Token: 0x06001F6A RID: 8042 RVA: 0x001BABD4 File Offset: 0x001B8DD4
 	public void WriteXml(XmlWriter writer)
 	{
 		XmlSerializer xmlSerializer = new XmlSerializer(typeof(K));
@@ -88,20 +88,20 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 		}
 	}
 
-	// Token: 0x0400418C RID: 16780
+	// Token: 0x040041A3 RID: 16803
 	[SerializeField]
 	private List<K> keys;
 
-	// Token: 0x0400418D RID: 16781
+	// Token: 0x040041A4 RID: 16804
 	[SerializeField]
 	private List<V> values;
 
-	// Token: 0x0400418E RID: 16782
+	// Token: 0x040041A5 RID: 16805
 	private const string XML_Item = "Item";
 
-	// Token: 0x0400418F RID: 16783
+	// Token: 0x040041A6 RID: 16806
 	private const string XML_Key = "Key";
 
-	// Token: 0x04004190 RID: 16784
+	// Token: 0x040041A7 RID: 16807
 	private const string XML_Value = "Value";
 }

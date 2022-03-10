@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Classic_ThermalVision : MonoBehaviour
 {
 	// Token: 0x1700025E RID: 606
-	// (get) Token: 0x06000CD9 RID: 3289 RVA: 0x00073ADA File Offset: 0x00071CDA
+	// (get) Token: 0x06000CD9 RID: 3289 RVA: 0x00073C22 File Offset: 0x00071E22
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Classic_ThermalVision : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CDA RID: 3290 RVA: 0x00073B0E File Offset: 0x00071D0E
+	// Token: 0x06000CDA RID: 3290 RVA: 0x00073C56 File Offset: 0x00071E56
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/CameraFilterPack_Classic_ThermalVision");
@@ -32,7 +32,7 @@ public class CameraFilterPack_Classic_ThermalVision : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000CDB RID: 3291 RVA: 0x00073B30 File Offset: 0x00071D30
+	// Token: 0x06000CDB RID: 3291 RVA: 0x00073C78 File Offset: 0x00071E78
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -57,12 +57,12 @@ public class CameraFilterPack_Classic_ThermalVision : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000CDC RID: 3292 RVA: 0x00073C6A File Offset: 0x00071E6A
+	// Token: 0x06000CDC RID: 3292 RVA: 0x00073DB2 File Offset: 0x00071FB2
 	private void Update()
 	{
 	}
 
-	// Token: 0x06000CDD RID: 3293 RVA: 0x00073C6C File Offset: 0x00071E6C
+	// Token: 0x06000CDD RID: 3293 RVA: 0x00073DB4 File Offset: 0x00071FB4
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -71,40 +71,40 @@ public class CameraFilterPack_Classic_ThermalVision : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001128 RID: 4392
+	// Token: 0x04001131 RID: 4401
 	public Shader SCShader;
 
-	// Token: 0x04001129 RID: 4393
+	// Token: 0x04001132 RID: 4402
 	private float TimeX = 1f;
 
-	// Token: 0x0400112A RID: 4394
+	// Token: 0x04001133 RID: 4403
 	private Material SCMaterial;
 
-	// Token: 0x0400112B RID: 4395
+	// Token: 0x04001134 RID: 4404
 	[Range(0f, 1f)]
 	public float __Speed = 1f;
 
-	// Token: 0x0400112C RID: 4396
+	// Token: 0x04001135 RID: 4405
 	[Range(0f, 1f)]
 	public float _Fade = 1f;
 
-	// Token: 0x0400112D RID: 4397
+	// Token: 0x04001136 RID: 4406
 	[Range(0f, 1f)]
 	public float _Crt = 1f;
 
-	// Token: 0x0400112E RID: 4398
+	// Token: 0x04001137 RID: 4407
 	[Range(0f, 1f)]
 	public float _Curve = 1f;
 
-	// Token: 0x0400112F RID: 4399
+	// Token: 0x04001138 RID: 4408
 	[Range(0f, 1f)]
 	public float _Color1 = 1f;
 
-	// Token: 0x04001130 RID: 4400
+	// Token: 0x04001139 RID: 4409
 	[Range(0f, 1f)]
 	public float _Color2 = 1f;
 
-	// Token: 0x04001131 RID: 4401
+	// Token: 0x0400113A RID: 4410
 	[Range(0f, 1f)]
 	public float _Color3 = 1f;
 }

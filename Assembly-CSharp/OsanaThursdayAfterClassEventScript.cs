@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E2 RID: 994
 public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 {
-	// Token: 0x06001BB3 RID: 7091 RVA: 0x0013EFA8 File Offset: 0x0013D1A8
+	// Token: 0x06001BB5 RID: 7093 RVA: 0x0013F4CC File Offset: 0x0013D6CC
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -14,7 +14,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BB4 RID: 7092 RVA: 0x0013EFDC File Offset: 0x0013D1DC
+	// Token: 0x06001BB6 RID: 7094 RVA: 0x0013F500 File Offset: 0x0013D700
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -226,7 +226,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BB5 RID: 7093 RVA: 0x0013FB14 File Offset: 0x0013DD14
+	// Token: 0x06001BB7 RID: 7095 RVA: 0x00140038 File Offset: 0x0013E238
 	public void EndEvent()
 	{
 		Debug.Log("Osana's Thursday after class event has ended.");
@@ -275,14 +275,14 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001BB6 RID: 7094 RVA: 0x0013FD6C File Offset: 0x0013DF6C
+	// Token: 0x06001BB8 RID: 7096 RVA: 0x00140290 File Offset: 0x0013E490
 	public void ReturnFromSave()
 	{
 		this.ReturningFromSave = false;
 		this.BeginEvent();
 	}
 
-	// Token: 0x06001BB7 RID: 7095 RVA: 0x0013FD7C File Offset: 0x0013DF7C
+	// Token: 0x06001BB9 RID: 7097 RVA: 0x001402A0 File Offset: 0x0013E4A0
 	public void BeginEvent()
 	{
 		Debug.Log("Osana's Thursday after class event has begun.");
@@ -303,93 +303,93 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 		this.Phase = 1;
 	}
 
-	// Token: 0x04003003 RID: 12291
+	// Token: 0x04003019 RID: 12313
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003004 RID: 12292
+	// Token: 0x0400301A RID: 12314
 	public PhoneMinigameScript PhoneMinigame;
 
-	// Token: 0x04003005 RID: 12293
+	// Token: 0x0400301B RID: 12315
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04003006 RID: 12294
+	// Token: 0x0400301C RID: 12316
 	public UILabel EventSubtitle;
 
-	// Token: 0x04003007 RID: 12295
+	// Token: 0x0400301D RID: 12317
 	public YandereScript Yandere;
 
-	// Token: 0x04003008 RID: 12296
+	// Token: 0x0400301E RID: 12318
 	public ClockScript Clock;
 
-	// Token: 0x04003009 RID: 12297
+	// Token: 0x0400301F RID: 12319
 	public StudentScript Friend;
 
-	// Token: 0x0400300A RID: 12298
+	// Token: 0x04003020 RID: 12320
 	public StudentScript Rival;
 
-	// Token: 0x0400300B RID: 12299
+	// Token: 0x04003021 RID: 12321
 	public Transform FriendLocation;
 
-	// Token: 0x0400300C RID: 12300
+	// Token: 0x04003022 RID: 12322
 	public Transform Location;
 
-	// Token: 0x0400300D RID: 12301
+	// Token: 0x04003023 RID: 12323
 	public AudioClip[] SpeechClip;
 
-	// Token: 0x0400300E RID: 12302
+	// Token: 0x04003024 RID: 12324
 	public string[] SpeechText;
 
-	// Token: 0x0400300F RID: 12303
+	// Token: 0x04003025 RID: 12325
 	public string[] EventAnim;
 
-	// Token: 0x04003010 RID: 12304
+	// Token: 0x04003026 RID: 12326
 	public GameObject AlarmDisc;
 
-	// Token: 0x04003011 RID: 12305
+	// Token: 0x04003027 RID: 12327
 	public GameObject VoiceClip;
 
-	// Token: 0x04003012 RID: 12306
+	// Token: 0x04003028 RID: 12328
 	public float FriendWarningTimer;
 
-	// Token: 0x04003013 RID: 12307
+	// Token: 0x04003029 RID: 12329
 	public float ReturnTimer;
 
-	// Token: 0x04003014 RID: 12308
+	// Token: 0x0400302A RID: 12330
 	public float Distance;
 
-	// Token: 0x04003015 RID: 12309
+	// Token: 0x0400302B RID: 12331
 	public float Scale;
 
-	// Token: 0x04003016 RID: 12310
+	// Token: 0x0400302C RID: 12332
 	public float Timer;
 
-	// Token: 0x04003017 RID: 12311
+	// Token: 0x0400302D RID: 12333
 	public DayOfWeek EventDay;
 
-	// Token: 0x04003018 RID: 12312
+	// Token: 0x0400302E RID: 12334
 	public int FriendID = 10;
 
-	// Token: 0x04003019 RID: 12313
+	// Token: 0x0400302F RID: 12335
 	public int RivalID = 11;
 
-	// Token: 0x0400301A RID: 12314
+	// Token: 0x04003030 RID: 12336
 	public int Phase;
 
-	// Token: 0x0400301B RID: 12315
+	// Token: 0x04003031 RID: 12337
 	public int Frame;
 
-	// Token: 0x0400301C RID: 12316
+	// Token: 0x04003032 RID: 12338
 	public bool ReturningFromSave;
 
-	// Token: 0x0400301D RID: 12317
+	// Token: 0x04003033 RID: 12339
 	public bool FriendWarned;
 
-	// Token: 0x0400301E RID: 12318
+	// Token: 0x04003034 RID: 12340
 	public bool Sabotaged;
 
-	// Token: 0x0400301F RID: 12319
+	// Token: 0x04003035 RID: 12341
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04003020 RID: 12320
+	// Token: 0x04003036 RID: 12342
 	public Vector3 OriginalRotation;
 }

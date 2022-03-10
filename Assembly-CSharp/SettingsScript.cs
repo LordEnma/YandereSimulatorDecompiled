@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000420 RID: 1056
 public class SettingsScript : MonoBehaviour
 {
-	// Token: 0x06001C83 RID: 7299 RVA: 0x0014D15C File Offset: 0x0014B35C
+	// Token: 0x06001C85 RID: 7301 RVA: 0x0014D698 File Offset: 0x0014B898
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -287,7 +287,7 @@ public class SettingsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C84 RID: 7300 RVA: 0x0014D998 File Offset: 0x0014BB98
+	// Token: 0x06001C86 RID: 7302 RVA: 0x0014DED4 File Offset: 0x0014C0D4
 	public void UpdateText()
 	{
 		if (OptionGlobals.ParticleCount == 3)
@@ -320,7 +320,7 @@ public class SettingsScript : MonoBehaviour
 		this.ShadowsLabel.text = (OptionGlobals.EnableShadows ? "Yes" : "No");
 	}
 
-	// Token: 0x06001C85 RID: 7301 RVA: 0x0014DC00 File Offset: 0x0014BE00
+	// Token: 0x06001C87 RID: 7303 RVA: 0x0014E13C File Offset: 0x0014C33C
 	private void UpdateHighlight()
 	{
 		if (this.Selected == 0)
@@ -334,87 +334,87 @@ public class SettingsScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 430f - 50f * (float)this.Selected, this.Highlight.localPosition.z);
 	}
 
-	// Token: 0x04003298 RID: 12952
+	// Token: 0x040032AE RID: 12974
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003299 RID: 12953
+	// Token: 0x040032AF RID: 12975
 	public QualityManagerScript QualityManager;
 
-	// Token: 0x0400329A RID: 12954
+	// Token: 0x040032B0 RID: 12976
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400329B RID: 12955
+	// Token: 0x040032B1 RID: 12977
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x0400329C RID: 12956
+	// Token: 0x040032B2 RID: 12978
 	public PromptBarScript PromptBar;
 
-	// Token: 0x0400329D RID: 12957
+	// Token: 0x040032B3 RID: 12979
 	public UILabel DrawDistanceLabel;
 
-	// Token: 0x0400329E RID: 12958
+	// Token: 0x040032B4 RID: 12980
 	public UILabel PostAliasingLabel;
 
-	// Token: 0x0400329F RID: 12959
+	// Token: 0x040032B5 RID: 12981
 	public UILabel LowDetailLabel;
 
-	// Token: 0x040032A0 RID: 12960
+	// Token: 0x040032B6 RID: 12982
 	public UILabel AliasingLabel;
 
-	// Token: 0x040032A1 RID: 12961
+	// Token: 0x040032B7 RID: 12983
 	public UILabel OutlinesLabel;
 
-	// Token: 0x040032A2 RID: 12962
+	// Token: 0x040032B8 RID: 12984
 	public UILabel ParticleLabel;
 
-	// Token: 0x040032A3 RID: 12963
+	// Token: 0x040032B9 RID: 12985
 	public UILabel BloomLabel;
 
-	// Token: 0x040032A4 RID: 12964
+	// Token: 0x040032BA RID: 12986
 	public UILabel FogLabel;
 
-	// Token: 0x040032A5 RID: 12965
+	// Token: 0x040032BB RID: 12987
 	public UILabel ToggleRunLabel;
 
-	// Token: 0x040032A6 RID: 12966
+	// Token: 0x040032BC RID: 12988
 	public UILabel FarAnimsLabel;
 
-	// Token: 0x040032A7 RID: 12967
+	// Token: 0x040032BD RID: 12989
 	public UILabel FPSCapLabel;
 
-	// Token: 0x040032A8 RID: 12968
+	// Token: 0x040032BE RID: 12990
 	public UILabel SensitivityLabel;
 
-	// Token: 0x040032A9 RID: 12969
+	// Token: 0x040032BF RID: 12991
 	public UILabel InvertAxisLabel;
 
-	// Token: 0x040032AA RID: 12970
+	// Token: 0x040032C0 RID: 12992
 	public UILabel DisableTutorialsLabel;
 
-	// Token: 0x040032AB RID: 12971
+	// Token: 0x040032C1 RID: 12993
 	public UILabel WindowedMode;
 
-	// Token: 0x040032AC RID: 12972
+	// Token: 0x040032C2 RID: 12994
 	public UILabel AmbientObscurance;
 
-	// Token: 0x040032AD RID: 12973
+	// Token: 0x040032C3 RID: 12995
 	public UILabel ShadowsLabel;
 
-	// Token: 0x040032AE RID: 12974
+	// Token: 0x040032C4 RID: 12996
 	public int SelectionLimit = 2;
 
-	// Token: 0x040032AF RID: 12975
+	// Token: 0x040032C5 RID: 12997
 	public int Selected = 1;
 
-	// Token: 0x040032B0 RID: 12976
+	// Token: 0x040032C6 RID: 12998
 	public Transform CloudSystem;
 
-	// Token: 0x040032B1 RID: 12977
+	// Token: 0x040032C7 RID: 12999
 	public Transform Highlight;
 
-	// Token: 0x040032B2 RID: 12978
+	// Token: 0x040032C8 RID: 13000
 	public GameObject Background;
 
-	// Token: 0x040032B3 RID: 12979
+	// Token: 0x040032C9 RID: 13001
 	public GameObject WarningMessage;
 }

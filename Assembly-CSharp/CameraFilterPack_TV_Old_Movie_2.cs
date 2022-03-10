@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_TV_Old_Movie_2 : MonoBehaviour
 {
 	// Token: 0x17000318 RID: 792
-	// (get) Token: 0x0600115B RID: 4443 RVA: 0x000879EC File Offset: 0x00085BEC
+	// (get) Token: 0x0600115B RID: 4443 RVA: 0x00087B34 File Offset: 0x00085D34
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_TV_Old_Movie_2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600115C RID: 4444 RVA: 0x00087A20 File Offset: 0x00085C20
+	// Token: 0x0600115C RID: 4444 RVA: 0x00087B68 File Offset: 0x00085D68
 	private void Start()
 	{
 		this.SCShader = Shader.Find("CameraFilterPack/TV_Old_Movie_2");
@@ -32,7 +32,7 @@ public class CameraFilterPack_TV_Old_Movie_2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600115D RID: 4445 RVA: 0x00087A44 File Offset: 0x00085C44
+	// Token: 0x0600115D RID: 4445 RVA: 0x00087B8C File Offset: 0x00085D8C
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -55,12 +55,12 @@ public class CameraFilterPack_TV_Old_Movie_2 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x0600115E RID: 4446 RVA: 0x00087B52 File Offset: 0x00085D52
+	// Token: 0x0600115E RID: 4446 RVA: 0x00087C9A File Offset: 0x00085E9A
 	private void Update()
 	{
 	}
 
-	// Token: 0x0600115F RID: 4447 RVA: 0x00087B54 File Offset: 0x00085D54
+	// Token: 0x0600115F RID: 4447 RVA: 0x00087C9C File Offset: 0x00085E9C
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -69,32 +69,32 @@ public class CameraFilterPack_TV_Old_Movie_2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040015EC RID: 5612
+	// Token: 0x040015F5 RID: 5621
 	public Shader SCShader;
 
-	// Token: 0x040015ED RID: 5613
+	// Token: 0x040015F6 RID: 5622
 	private float TimeX = 1f;
 
-	// Token: 0x040015EE RID: 5614
+	// Token: 0x040015F7 RID: 5623
 	private Material SCMaterial;
 
-	// Token: 0x040015EF RID: 5615
+	// Token: 0x040015F8 RID: 5624
 	[Range(1f, 60f)]
 	public float FramePerSecond = 15f;
 
-	// Token: 0x040015F0 RID: 5616
+	// Token: 0x040015F9 RID: 5625
 	[Range(0f, 5f)]
 	public float Contrast = 1f;
 
-	// Token: 0x040015F1 RID: 5617
+	// Token: 0x040015FA RID: 5626
 	[Range(0f, 4f)]
 	public float Burn;
 
-	// Token: 0x040015F2 RID: 5618
+	// Token: 0x040015FB RID: 5627
 	[Range(0f, 16f)]
 	public float SceneCut = 1f;
 
-	// Token: 0x040015F3 RID: 5619
+	// Token: 0x040015FC RID: 5628
 	[Range(0f, 1f)]
 	public float Fade = 1f;
 }

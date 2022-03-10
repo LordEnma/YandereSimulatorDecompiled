@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000C4 RID: 196
 public class AlarmDiscScript : MonoBehaviour
 {
-	// Token: 0x060009A7 RID: 2471 RVA: 0x0004E3F8 File Offset: 0x0004C5F8
+	// Token: 0x060009A7 RID: 2471 RVA: 0x0004E4F0 File Offset: 0x0004C6F0
 	private void Start()
 	{
 		Vector3 localScale = base.transform.localScale;
@@ -13,7 +13,7 @@ public class AlarmDiscScript : MonoBehaviour
 		base.transform.localScale = localScale;
 	}
 
-	// Token: 0x060009A8 RID: 2472 RVA: 0x0004E440 File Offset: 0x0004C640
+	// Token: 0x060009A8 RID: 2472 RVA: 0x0004E538 File Offset: 0x0004C738
 	private void Update()
 	{
 		if (this.Frame > 0)
@@ -53,7 +53,7 @@ public class AlarmDiscScript : MonoBehaviour
 		this.Frame++;
 	}
 
-	// Token: 0x060009A9 RID: 2473 RVA: 0x0004E58C File Offset: 0x0004C78C
+	// Token: 0x060009A9 RID: 2473 RVA: 0x0004E684 File Offset: 0x0004C884
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -253,7 +253,7 @@ public class AlarmDiscScript : MonoBehaviour
 		this.Student = null;
 	}
 
-	// Token: 0x060009AA RID: 2474 RVA: 0x0004F3D8 File Offset: 0x0004D5D8
+	// Token: 0x060009AA RID: 2474 RVA: 0x0004F4D0 File Offset: 0x0004D6D0
 	private void PlayClip(AudioClip clip, Vector3 pos)
 	{
 		GameObject gameObject = new GameObject("TempAudio");
@@ -273,7 +273,7 @@ public class AlarmDiscScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009AB RID: 2475 RVA: 0x0004F468 File Offset: 0x0004D668
+	// Token: 0x060009AB RID: 2475 RVA: 0x0004F560 File Offset: 0x0004D760
 	private void InvestigateScream()
 	{
 		Debug.Log(this.Student.Name + " just heard a scream.");
@@ -313,57 +313,57 @@ public class AlarmDiscScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400088E RID: 2190
+	// Token: 0x04000897 RID: 2199
 	public AudioClip[] LongFemaleScreams;
 
-	// Token: 0x0400088F RID: 2191
+	// Token: 0x04000898 RID: 2200
 	public AudioClip[] LongMaleScreams;
 
-	// Token: 0x04000890 RID: 2192
+	// Token: 0x04000899 RID: 2201
 	public AudioClip[] FemaleScreams;
 
-	// Token: 0x04000891 RID: 2193
+	// Token: 0x0400089A RID: 2202
 	public AudioClip[] MaleScreams;
 
-	// Token: 0x04000892 RID: 2194
+	// Token: 0x0400089B RID: 2203
 	public AudioClip[] DelinquentScreams;
 
-	// Token: 0x04000893 RID: 2195
+	// Token: 0x0400089C RID: 2204
 	public StudentScript Originator;
 
-	// Token: 0x04000894 RID: 2196
+	// Token: 0x0400089D RID: 2205
 	public RadioScript SourceRadio;
 
-	// Token: 0x04000895 RID: 2197
+	// Token: 0x0400089E RID: 2206
 	public StudentScript Student;
 
-	// Token: 0x04000896 RID: 2198
+	// Token: 0x0400089F RID: 2207
 	public bool FocusOnYandere;
 
-	// Token: 0x04000897 RID: 2199
+	// Token: 0x040008A0 RID: 2208
 	public bool StudentIsBusy;
 
-	// Token: 0x04000898 RID: 2200
+	// Token: 0x040008A1 RID: 2209
 	public bool Delinquent;
 
-	// Token: 0x04000899 RID: 2201
+	// Token: 0x040008A2 RID: 2210
 	public bool NoScream;
 
-	// Token: 0x0400089A RID: 2202
+	// Token: 0x040008A3 RID: 2211
 	public bool Shocking;
 
-	// Token: 0x0400089B RID: 2203
+	// Token: 0x040008A4 RID: 2212
 	public bool Radio;
 
-	// Token: 0x0400089C RID: 2204
+	// Token: 0x040008A5 RID: 2213
 	public bool Male;
 
-	// Token: 0x0400089D RID: 2205
+	// Token: 0x040008A6 RID: 2214
 	public bool Long;
 
-	// Token: 0x0400089E RID: 2206
+	// Token: 0x040008A7 RID: 2215
 	public float Hesitation = 1f;
 
-	// Token: 0x0400089F RID: 2207
+	// Token: 0x040008A8 RID: 2216
 	public int Frame;
 }

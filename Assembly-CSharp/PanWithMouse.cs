@@ -5,14 +5,14 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Pan With Mouse")]
 public class PanWithMouse : MonoBehaviour
 {
-	// Token: 0x060000E0 RID: 224 RVA: 0x000127B7 File Offset: 0x000109B7
+	// Token: 0x060000E0 RID: 224 RVA: 0x000128AF File Offset: 0x00010AAF
 	private void Start()
 	{
 		this.mTrans = base.transform;
 		this.mStart = this.mTrans.localRotation;
 	}
 
-	// Token: 0x060000E1 RID: 225 RVA: 0x000127D8 File Offset: 0x000109D8
+	// Token: 0x060000E1 RID: 225 RVA: 0x000128D0 File Offset: 0x00010AD0
 	private void Update()
 	{
 		float deltaTime = RealTime.deltaTime;
@@ -29,18 +29,18 @@ public class PanWithMouse : MonoBehaviour
 		this.mTrans.localRotation = this.mStart * Quaternion.Euler(-this.mRot.y * this.degrees.y, this.mRot.x * this.degrees.x, 0f);
 	}
 
-	// Token: 0x040002A5 RID: 677
+	// Token: 0x040002AE RID: 686
 	public Vector2 degrees = new Vector2(5f, 3f);
 
-	// Token: 0x040002A6 RID: 678
+	// Token: 0x040002AF RID: 687
 	public float range = 1f;
 
-	// Token: 0x040002A7 RID: 679
+	// Token: 0x040002B0 RID: 688
 	private Transform mTrans;
 
-	// Token: 0x040002A8 RID: 680
+	// Token: 0x040002B1 RID: 689
 	private Quaternion mStart;
 
-	// Token: 0x040002A9 RID: 681
+	// Token: 0x040002B2 RID: 690
 	private Vector2 mRot = Vector2.zero;
 }

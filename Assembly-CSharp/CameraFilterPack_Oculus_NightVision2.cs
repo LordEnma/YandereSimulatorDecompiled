@@ -7,7 +7,7 @@ using UnityEngine;
 public class CameraFilterPack_Oculus_NightVision2 : MonoBehaviour
 {
 	// Token: 0x170002F5 RID: 757
-	// (get) Token: 0x06001084 RID: 4228 RVA: 0x00083DC2 File Offset: 0x00081FC2
+	// (get) Token: 0x06001084 RID: 4228 RVA: 0x00083F0A File Offset: 0x0008210A
 	private Material material
 	{
 		get
@@ -21,7 +21,7 @@ public class CameraFilterPack_Oculus_NightVision2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001085 RID: 4229 RVA: 0x00083DF6 File Offset: 0x00081FF6
+	// Token: 0x06001085 RID: 4229 RVA: 0x00083F3E File Offset: 0x0008213E
 	private void ChangeFilters()
 	{
 		this.Matrix9 = new float[]
@@ -41,7 +41,7 @@ public class CameraFilterPack_Oculus_NightVision2 : MonoBehaviour
 		};
 	}
 
-	// Token: 0x06001086 RID: 4230 RVA: 0x00083E10 File Offset: 0x00082010
+	// Token: 0x06001086 RID: 4230 RVA: 0x00083F58 File Offset: 0x00082158
 	private void Start()
 	{
 		this.ChangeFilters();
@@ -53,7 +53,7 @@ public class CameraFilterPack_Oculus_NightVision2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001087 RID: 4231 RVA: 0x00083E38 File Offset: 0x00082038
+	// Token: 0x06001087 RID: 4231 RVA: 0x00083F80 File Offset: 0x00082180
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -84,18 +84,18 @@ public class CameraFilterPack_Oculus_NightVision2 : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06001088 RID: 4232 RVA: 0x00084059 File Offset: 0x00082259
+	// Token: 0x06001088 RID: 4232 RVA: 0x000841A1 File Offset: 0x000823A1
 	private void OnValidate()
 	{
 		this.ChangeFilters();
 	}
 
-	// Token: 0x06001089 RID: 4233 RVA: 0x00084061 File Offset: 0x00082261
+	// Token: 0x06001089 RID: 4233 RVA: 0x000841A9 File Offset: 0x000823A9
 	private void Update()
 	{
 	}
 
-	// Token: 0x0600108A RID: 4234 RVA: 0x00084063 File Offset: 0x00082263
+	// Token: 0x0600108A RID: 4234 RVA: 0x000841AB File Offset: 0x000823AB
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -104,22 +104,22 @@ public class CameraFilterPack_Oculus_NightVision2 : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400150B RID: 5387
+	// Token: 0x04001514 RID: 5396
 	private string ShaderName = "CameraFilterPack/Oculus_NightVision2";
 
-	// Token: 0x0400150C RID: 5388
+	// Token: 0x04001515 RID: 5397
 	public Shader SCShader;
 
-	// Token: 0x0400150D RID: 5389
+	// Token: 0x04001516 RID: 5398
 	[Range(0f, 1f)]
 	public float FadeFX = 1f;
 
-	// Token: 0x0400150E RID: 5390
+	// Token: 0x04001517 RID: 5399
 	private float TimeX = 1f;
 
-	// Token: 0x0400150F RID: 5391
+	// Token: 0x04001518 RID: 5400
 	private Material SCMaterial;
 
-	// Token: 0x04001510 RID: 5392
+	// Token: 0x04001519 RID: 5401
 	private float[] Matrix9;
 }

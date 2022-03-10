@@ -8,7 +8,7 @@ using UnityEngine;
 public class CameraFilterPack_EXTRA_SHOWFPS : MonoBehaviour
 {
 	// Token: 0x170002A3 RID: 675
-	// (get) Token: 0x06000E79 RID: 3705 RVA: 0x0007A66D File Offset: 0x0007886D
+	// (get) Token: 0x06000E79 RID: 3705 RVA: 0x0007A7B5 File Offset: 0x000789B5
 	private Material material
 	{
 		get
@@ -22,7 +22,7 @@ public class CameraFilterPack_EXTRA_SHOWFPS : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E7A RID: 3706 RVA: 0x0007A6A1 File Offset: 0x000788A1
+	// Token: 0x06000E7A RID: 3706 RVA: 0x0007A7E9 File Offset: 0x000789E9
 	private void Start()
 	{
 		this.FPS = 0;
@@ -35,7 +35,7 @@ public class CameraFilterPack_EXTRA_SHOWFPS : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000E7B RID: 3707 RVA: 0x0007A6D8 File Offset: 0x000788D8
+	// Token: 0x06000E7B RID: 3707 RVA: 0x0007A820 File Offset: 0x00078A20
 	private void OnRenderImage(RenderTexture sourceTexture, RenderTexture destTexture)
 	{
 		if (this.SCShader != null)
@@ -57,7 +57,7 @@ public class CameraFilterPack_EXTRA_SHOWFPS : MonoBehaviour
 		Graphics.Blit(sourceTexture, destTexture);
 	}
 
-	// Token: 0x06000E7C RID: 3708 RVA: 0x0007A7D1 File Offset: 0x000789D1
+	// Token: 0x06000E7C RID: 3708 RVA: 0x0007A919 File Offset: 0x00078B19
 	private IEnumerator FPSX()
 	{
 		for (;;)
@@ -71,14 +71,14 @@ public class CameraFilterPack_EXTRA_SHOWFPS : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06000E7D RID: 3709 RVA: 0x0007A7E0 File Offset: 0x000789E0
+	// Token: 0x06000E7D RID: 3709 RVA: 0x0007A928 File Offset: 0x00078B28
 	private void Update()
 	{
 		this.accum += Time.timeScale / Time.deltaTime;
 		this.frames++;
 	}
 
-	// Token: 0x06000E7E RID: 3710 RVA: 0x0007A808 File Offset: 0x00078A08
+	// Token: 0x06000E7E RID: 3710 RVA: 0x0007A950 File Offset: 0x00078B50
 	private void OnDisable()
 	{
 		if (this.SCMaterial)
@@ -87,37 +87,37 @@ public class CameraFilterPack_EXTRA_SHOWFPS : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040012CD RID: 4813
+	// Token: 0x040012D6 RID: 4822
 	public Shader SCShader;
 
-	// Token: 0x040012CE RID: 4814
+	// Token: 0x040012D7 RID: 4823
 	private float TimeX = 1f;
 
-	// Token: 0x040012CF RID: 4815
+	// Token: 0x040012D8 RID: 4824
 	private Material SCMaterial;
 
-	// Token: 0x040012D0 RID: 4816
+	// Token: 0x040012D9 RID: 4825
 	[Range(8f, 42f)]
 	public float Size = 12f;
 
-	// Token: 0x040012D1 RID: 4817
+	// Token: 0x040012DA RID: 4826
 	[Range(0f, 100f)]
 	private int FPS = 1;
 
-	// Token: 0x040012D2 RID: 4818
+	// Token: 0x040012DB RID: 4827
 	[Range(0f, 10f)]
 	private float Value3 = 1f;
 
-	// Token: 0x040012D3 RID: 4819
+	// Token: 0x040012DC RID: 4828
 	[Range(0f, 10f)]
 	private float Value4 = 1f;
 
-	// Token: 0x040012D4 RID: 4820
+	// Token: 0x040012DD RID: 4829
 	private float accum;
 
-	// Token: 0x040012D5 RID: 4821
+	// Token: 0x040012DE RID: 4830
 	private int frames;
 
-	// Token: 0x040012D6 RID: 4822
+	// Token: 0x040012DF RID: 4831
 	public float frequency = 0.5f;
 }

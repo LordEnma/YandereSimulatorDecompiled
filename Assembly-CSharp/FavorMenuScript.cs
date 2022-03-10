@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002CA RID: 714
 public class FavorMenuScript : MonoBehaviour
 {
-	// Token: 0x060014A2 RID: 5282 RVA: 0x000CACB8 File Offset: 0x000C8EB8
+	// Token: 0x060014A2 RID: 5282 RVA: 0x000CAE04 File Offset: 0x000C9004
 	private void Update()
 	{
 		if (!this.BountyMenu.activeInHierarchy)
@@ -106,7 +106,7 @@ public class FavorMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014A3 RID: 5283 RVA: 0x000CB094 File Offset: 0x000C9294
+	// Token: 0x060014A3 RID: 5283 RVA: 0x000CB1E0 File Offset: 0x000C93E0
 	private void UpdateHighlight()
 	{
 		if (this.ID > 4)
@@ -120,39 +120,39 @@ public class FavorMenuScript : MonoBehaviour
 		this.Highlight.transform.localPosition = new Vector3(-500f + 200f * (float)this.ID, this.Highlight.transform.localPosition.y, this.Highlight.transform.localPosition.z);
 	}
 
-	// Token: 0x04002035 RID: 8245
+	// Token: 0x0400203E RID: 8254
 	public TutorialWindowScript TutorialWindow;
 
-	// Token: 0x04002036 RID: 8246
+	// Token: 0x0400203F RID: 8255
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002037 RID: 8247
+	// Token: 0x04002040 RID: 8256
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04002038 RID: 8248
+	// Token: 0x04002041 RID: 8257
 	public ServicesScript ServicesMenu;
 
-	// Token: 0x04002039 RID: 8249
+	// Token: 0x04002042 RID: 8258
 	public SchemesScript SchemesMenu;
 
-	// Token: 0x0400203A RID: 8250
+	// Token: 0x04002043 RID: 8259
 	public DropsScript DropsMenu;
 
-	// Token: 0x0400203B RID: 8251
+	// Token: 0x04002044 RID: 8260
 	public PromptBarScript PromptBar;
 
-	// Token: 0x0400203C RID: 8252
+	// Token: 0x04002045 RID: 8261
 	public GameObject BountyMenu;
 
-	// Token: 0x0400203D RID: 8253
+	// Token: 0x04002046 RID: 8262
 	public GameObject Panel;
 
-	// Token: 0x0400203E RID: 8254
+	// Token: 0x04002047 RID: 8263
 	public Transform Highlight;
 
-	// Token: 0x0400203F RID: 8255
+	// Token: 0x04002048 RID: 8264
 	public UITexture Portrait;
 
-	// Token: 0x04002040 RID: 8256
+	// Token: 0x04002049 RID: 8265
 	public int ID = 1;
 }

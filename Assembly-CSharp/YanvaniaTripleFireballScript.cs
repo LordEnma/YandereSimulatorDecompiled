@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004E2 RID: 1250
+// Token: 0x020004E3 RID: 1251
 public class YanvaniaTripleFireballScript : MonoBehaviour
 {
-	// Token: 0x060020B2 RID: 8370 RVA: 0x001E0FDC File Offset: 0x001DF1DC
+	// Token: 0x060020B8 RID: 8376 RVA: 0x001E19B4 File Offset: 0x001DFBB4
 	private void Start()
 	{
 		this.Direction = ((this.Dracula.position.x > base.transform.position.x) ? -1 : 1);
 	}
 
-	// Token: 0x060020B3 RID: 8371 RVA: 0x001E100C File Offset: 0x001DF20C
+	// Token: 0x060020B9 RID: 8377 RVA: 0x001E19E4 File Offset: 0x001DFBE4
 	private void Update()
 	{
 		Transform transform = this.Fireballs[1];
@@ -43,18 +43,18 @@ public class YanvaniaTripleFireballScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040047AC RID: 18348
+	// Token: 0x040047C9 RID: 18377
 	public Transform[] Fireballs;
 
-	// Token: 0x040047AD RID: 18349
+	// Token: 0x040047CA RID: 18378
 	public Transform Dracula;
 
-	// Token: 0x040047AE RID: 18350
+	// Token: 0x040047CB RID: 18379
 	public int Direction;
 
-	// Token: 0x040047AF RID: 18351
+	// Token: 0x040047CC RID: 18380
 	public float Speed;
 
-	// Token: 0x040047B0 RID: 18352
+	// Token: 0x040047CD RID: 18381
 	public float Timer;
 }

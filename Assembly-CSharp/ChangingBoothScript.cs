@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200023D RID: 573
 public class ChangingBoothScript : MonoBehaviour
 {
-	// Token: 0x06001239 RID: 4665 RVA: 0x0008BC3A File Offset: 0x00089E3A
+	// Token: 0x06001239 RID: 4665 RVA: 0x0008BD82 File Offset: 0x00089F82
 	private void Start()
 	{
 		this.CheckYandereClub();
 	}
 
-	// Token: 0x0600123A RID: 4666 RVA: 0x0008BC44 File Offset: 0x00089E44
+	// Token: 0x0600123A RID: 4666 RVA: 0x0008BD8C File Offset: 0x00089F8C
 	private void Update()
 	{
 		if (!this.Occupied && this.Prompt.Circle[0].fillAmount == 0f)
@@ -116,7 +116,7 @@ public class ChangingBoothScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600123B RID: 4667 RVA: 0x0008C104 File Offset: 0x0008A304
+	// Token: 0x0600123B RID: 4667 RVA: 0x0008C24C File Offset: 0x0008A44C
 	public void CheckYandereClub()
 	{
 		if (this.Yandere.Club != this.ClubID)
@@ -140,51 +140,51 @@ public class ChangingBoothScript : MonoBehaviour
 		this.Prompt.enabled = false;
 	}
 
-	// Token: 0x040016E6 RID: 5862
+	// Token: 0x040016EF RID: 5871
 	public YandereScript Yandere;
 
-	// Token: 0x040016E7 RID: 5863
+	// Token: 0x040016F0 RID: 5872
 	public StudentScript Student;
 
-	// Token: 0x040016E8 RID: 5864
+	// Token: 0x040016F1 RID: 5873
 	public PromptScript Prompt;
 
-	// Token: 0x040016E9 RID: 5865
+	// Token: 0x040016F2 RID: 5874
 	public SkinnedMeshRenderer Curtains;
 
-	// Token: 0x040016EA RID: 5866
+	// Token: 0x040016F3 RID: 5875
 	public Transform ExitSpot;
 
-	// Token: 0x040016EB RID: 5867
+	// Token: 0x040016F4 RID: 5876
 	public Transform[] WaitSpots;
 
-	// Token: 0x040016EC RID: 5868
+	// Token: 0x040016F5 RID: 5877
 	public bool YandereChanging;
 
-	// Token: 0x040016ED RID: 5869
+	// Token: 0x040016F6 RID: 5878
 	public bool CannotChange;
 
-	// Token: 0x040016EE RID: 5870
+	// Token: 0x040016F7 RID: 5879
 	public bool Occupied;
 
-	// Token: 0x040016EF RID: 5871
+	// Token: 0x040016F8 RID: 5880
 	public AudioSource MyAudioSource;
 
-	// Token: 0x040016F0 RID: 5872
+	// Token: 0x040016F9 RID: 5881
 	public AudioClip CurtainSound;
 
-	// Token: 0x040016F1 RID: 5873
+	// Token: 0x040016FA RID: 5882
 	public AudioClip ClothSound;
 
-	// Token: 0x040016F2 RID: 5874
+	// Token: 0x040016FB RID: 5883
 	public float OccupyTimer;
 
-	// Token: 0x040016F3 RID: 5875
+	// Token: 0x040016FC RID: 5884
 	public float Weight;
 
-	// Token: 0x040016F4 RID: 5876
+	// Token: 0x040016FD RID: 5885
 	public ClubType ClubID;
 
-	// Token: 0x040016F5 RID: 5877
+	// Token: 0x040016FE RID: 5886
 	public int Phase;
 }
