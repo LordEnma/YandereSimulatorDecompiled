@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000277 RID: 631
 public class DebugMenuScript : MonoBehaviour
 {
-	// Token: 0x0600135E RID: 4958 RVA: 0x000AED3C File Offset: 0x000ACF3C
+	// Token: 0x06001361 RID: 4961 RVA: 0x000AF298 File Offset: 0x000AD498
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(base.transform.localPosition.x, 0f, base.transform.localPosition.z);
@@ -15,7 +15,7 @@ public class DebugMenuScript : MonoBehaviour
 		this.NoDebug = true;
 	}
 
-	// Token: 0x0600135F RID: 4959 RVA: 0x000AEDA4 File Offset: 0x000ACFA4
+	// Token: 0x06001362 RID: 4962 RVA: 0x000AF300 File Offset: 0x000AD500
 	private void Update()
 	{
 		if (!this.MissionMode && !this.NoDebug)
@@ -138,6 +138,7 @@ public class DebugMenuScript : MonoBehaviour
 					}
 					else if (Input.GetKeyDown(KeyCode.Alpha6))
 					{
+						this.Yandere.DebugTimer = 1f;
 						this.Yandere.transform.position = this.TeleportSpot[1].position;
 						if (this.Yandere.Followers > 0)
 						{
@@ -547,122 +548,104 @@ public class DebugMenuScript : MonoBehaviour
 						this.Clock.PresentTime += 10f;
 						this.Window.SetActive(false);
 					}
-					else if (Input.GetKeyDown(KeyCode.Return))
+					else if (!Input.GetKeyDown(KeyCode.Return))
 					{
-						this.Yandere.transform.eulerAngles = this.TeleportSpot[10].eulerAngles;
-						this.Yandere.transform.position = this.TeleportSpot[10].position;
-						if (this.Yandere.Follower != null)
+						if (Input.GetKeyDown(KeyCode.B))
 						{
-							this.Yandere.Follower.transform.position = this.Yandere.transform.position;
+							this.Yandere.Inventory.Headset = true;
+							this.StudentManager.LoveManager.SuitorProgress = 1;
+							DatingGlobals.SuitorProgress = 1;
+							PlayerGlobals.SetStudentFriend(6, true);
+							PlayerGlobals.SetStudentFriend(11, true);
+							this.StudentManager.Students[6].Friend = true;
+							this.StudentManager.Students[11].Friend = true;
+							for (int k = 0; k < 11; k++)
+							{
+								DatingGlobals.SetComplimentGiven(k, false);
+							}
+							this.ID = 1;
+							while (this.ID < 26)
+							{
+								ConversationGlobals.SetTopicLearnedByStudent(this.ID, 11, true);
+								ConversationGlobals.SetTopicDiscovered(this.ID, true);
+								this.ID++;
+							}
+							StudentScript studentScript6 = this.StudentManager.Students[11];
+							if (studentScript6 != null)
+							{
+								studentScript6.ShoeRemoval.Start();
+								studentScript6.ShoeRemoval.PutOnShoes();
+								studentScript6.CanTalk = true;
+								studentScript6.Phase = 2;
+								studentScript6.Pestered = 0;
+								studentScript6.Patience = 999;
+								studentScript6.Ignoring = false;
+								studentScript6.CurrentDestination = studentScript6.Destinations[2];
+								studentScript6.Pathfinding.target = studentScript6.Destinations[2];
+								studentScript6.transform.position = studentScript6.Destinations[2].position;
+							}
+							StudentScript studentScript7 = this.StudentManager.Students[6];
+							if (studentScript7 != null)
+							{
+								studentScript7.ShoeRemoval.Start();
+								studentScript7.ShoeRemoval.PutOnShoes();
+								studentScript7.Phase = 2;
+								studentScript7.Pestered = 0;
+								studentScript7.Patience = 999;
+								studentScript7.Ignoring = false;
+								studentScript7.CurrentDestination = studentScript7.Destinations[2];
+								studentScript7.Pathfinding.target = studentScript7.Destinations[2];
+								studentScript7.transform.position = studentScript7.Destinations[2].position;
+							}
+							StudentScript studentScript8 = this.StudentManager.Students[10];
+							if (studentScript7 != null)
+							{
+								studentScript7.transform.position = studentScript6.transform.position;
+							}
+							CollectibleGlobals.SetGiftPurchased(6, true);
+							CollectibleGlobals.SetGiftPurchased(7, true);
+							CollectibleGlobals.SetGiftPurchased(8, true);
+							CollectibleGlobals.SetGiftPurchased(9, true);
+							Physics.SyncTransforms();
+							this.Window.SetActive(false);
 						}
-						this.StudentManager.Students[1].ShoeRemoval.Start();
-						this.StudentManager.Students[1].ShoeRemoval.PutOnShoes();
-						this.StudentManager.Students[1].transform.position = new Vector3(0f, 12.1f, -25f);
-						this.StudentManager.Students[1].Alarmed = true;
-						this.StudentManager.Students[11].Lethal = true;
-						this.StudentManager.Students[11].ShoeRemoval.Start();
-						this.StudentManager.Students[11].ShoeRemoval.PutOnShoes();
-						this.StudentManager.Students[11].transform.position = new Vector3(0f, 12.1f, -25f);
-						this.Clock.PresentTime = 780f;
-						this.Clock.HourTime = this.Clock.PresentTime / 60f;
-						Physics.SyncTransforms();
-						this.Window.SetActive(false);
-					}
-					else if (Input.GetKeyDown(KeyCode.B))
-					{
-						this.Yandere.Inventory.Headset = true;
-						this.StudentManager.LoveManager.SuitorProgress = 1;
-						DatingGlobals.SuitorProgress = 1;
-						PlayerGlobals.SetStudentFriend(6, true);
-						PlayerGlobals.SetStudentFriend(11, true);
-						this.StudentManager.Students[6].Friend = true;
-						this.StudentManager.Students[11].Friend = true;
-						for (int k = 0; k < 11; k++)
+						else if (Input.GetKeyDown(KeyCode.Pause))
 						{
-							DatingGlobals.SetComplimentGiven(k, false);
+							this.Clock.StopTime = !this.Clock.StopTime;
+							this.Window.SetActive(false);
 						}
-						this.ID = 1;
-						while (this.ID < 26)
+						else if (Input.GetKeyDown(KeyCode.W))
 						{
-							ConversationGlobals.SetTopicLearnedByStudent(this.ID, 11, true);
-							ConversationGlobals.SetTopicDiscovered(this.ID, true);
-							this.ID++;
+							DateGlobals.Week++;
+							SceneManager.LoadScene("LoadingScene");
 						}
-						StudentScript studentScript6 = this.StudentManager.Students[11];
-						if (studentScript6 != null)
+						else if (Input.GetKeyDown(KeyCode.H))
 						{
-							studentScript6.ShoeRemoval.Start();
-							studentScript6.ShoeRemoval.PutOnShoes();
-							studentScript6.CanTalk = true;
-							studentScript6.Phase = 2;
-							studentScript6.Pestered = 0;
-							studentScript6.Patience = 999;
-							studentScript6.Ignoring = false;
-							studentScript6.CurrentDestination = studentScript6.Destinations[2];
-							studentScript6.Pathfinding.target = studentScript6.Destinations[2];
-							studentScript6.transform.position = studentScript6.Destinations[2].position;
+							StudentGlobals.FragileSlave = 5;
+							StudentGlobals.FragileTarget = 10;
+							SchoolGlobals.KidnapVictim = this.KidnappedVictim;
+							StudentGlobals.StudentSlave = this.KidnappedVictim;
+							SceneManager.LoadScene("LoadingScene");
 						}
-						StudentScript studentScript7 = this.StudentManager.Students[6];
-						if (studentScript7 != null)
+						else if (Input.GetKeyDown(KeyCode.I))
 						{
-							studentScript7.ShoeRemoval.Start();
-							studentScript7.ShoeRemoval.PutOnShoes();
-							studentScript7.Phase = 2;
-							studentScript7.Pestered = 0;
-							studentScript7.Patience = 999;
-							studentScript7.Ignoring = false;
-							studentScript7.CurrentDestination = studentScript7.Destinations[2];
-							studentScript7.Pathfinding.target = studentScript7.Destinations[2];
-							studentScript7.transform.position = studentScript7.Destinations[2].position;
+							this.StudentManager.Students[3].BecomeRagdoll();
+							this.WeaponManager.Weapons[1].Blood.enabled = true;
+							this.WeaponManager.Weapons[1].FingerprintID = 2;
+							this.WeaponManager.Weapons[1].Victims[3] = true;
+							this.StudentManager.Students[5].BecomeRagdoll();
+							this.WeaponManager.Weapons[2].Blood.enabled = true;
+							this.WeaponManager.Weapons[2].FingerprintID = 4;
+							this.WeaponManager.Weapons[2].Victims[5] = true;
 						}
-						StudentScript studentScript8 = this.StudentManager.Students[10];
-						if (studentScript7 != null)
+						else if (!Input.GetKeyDown(KeyCode.J) && !Input.GetKeyDown(KeyCode.V) && Input.GetKeyDown(KeyCode.N))
 						{
-							studentScript7.transform.position = studentScript6.transform.position;
+							this.ElectrocutionKit[0].transform.position = this.Yandere.transform.position;
+							this.ElectrocutionKit[1].transform.position = this.Yandere.transform.position;
+							this.ElectrocutionKit[2].transform.position = this.Yandere.transform.position;
+							this.ElectrocutionKit[3].transform.position = this.Yandere.transform.position;
+							this.ElectrocutionKit[3].SetActive(true);
 						}
-						CollectibleGlobals.SetGiftPurchased(6, true);
-						CollectibleGlobals.SetGiftPurchased(7, true);
-						CollectibleGlobals.SetGiftPurchased(8, true);
-						CollectibleGlobals.SetGiftPurchased(9, true);
-						Physics.SyncTransforms();
-						this.Window.SetActive(false);
-					}
-					else if (Input.GetKeyDown(KeyCode.Pause))
-					{
-						this.Clock.StopTime = !this.Clock.StopTime;
-						this.Window.SetActive(false);
-					}
-					else if (Input.GetKeyDown(KeyCode.W))
-					{
-						DateGlobals.Week++;
-						SceneManager.LoadScene("LoadingScene");
-					}
-					else if (Input.GetKeyDown(KeyCode.H))
-					{
-						StudentGlobals.FragileSlave = 5;
-						StudentGlobals.FragileTarget = 10;
-						SchoolGlobals.KidnapVictim = this.KidnappedVictim;
-						StudentGlobals.StudentSlave = this.KidnappedVictim;
-						SceneManager.LoadScene("LoadingScene");
-					}
-					else if (Input.GetKeyDown(KeyCode.I))
-					{
-						this.StudentManager.Students[3].BecomeRagdoll();
-						this.WeaponManager.Weapons[1].Blood.enabled = true;
-						this.WeaponManager.Weapons[1].FingerprintID = 2;
-						this.WeaponManager.Weapons[1].Victims[3] = true;
-						this.StudentManager.Students[5].BecomeRagdoll();
-						this.WeaponManager.Weapons[2].Blood.enabled = true;
-						this.WeaponManager.Weapons[2].FingerprintID = 4;
-						this.WeaponManager.Weapons[2].Victims[5] = true;
-					}
-					else if (!Input.GetKeyDown(KeyCode.J) && !Input.GetKeyDown(KeyCode.V) && Input.GetKeyDown(KeyCode.N))
-					{
-						this.ElectrocutionKit[0].transform.position = this.Yandere.transform.position;
-						this.ElectrocutionKit[1].transform.position = this.Yandere.transform.position;
-						this.ElectrocutionKit[2].transform.position = this.Yandere.transform.position;
-						this.ElectrocutionKit[3].transform.position = this.Yandere.transform.position;
-						this.ElectrocutionKit[3].SetActive(true);
 					}
 				}
 				if (Input.GetKeyDown(KeyCode.Tab))
@@ -777,7 +760,7 @@ public class DebugMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001360 RID: 4960 RVA: 0x000B0A00 File Offset: 0x000AEC00
+	// Token: 0x06001363 RID: 4963 RVA: 0x000B0DDC File Offset: 0x000AEFDC
 	public void Censor()
 	{
 		if (GameGlobals.CensorPanties)
@@ -857,7 +840,7 @@ public class DebugMenuScript : MonoBehaviour
 		this.StudentManager.CensorStudents();
 	}
 
-	// Token: 0x06001361 RID: 4961 RVA: 0x000B0F30 File Offset: 0x000AF130
+	// Token: 0x06001364 RID: 4964 RVA: 0x000B130C File Offset: 0x000AF50C
 	public void EasterEggCheck()
 	{
 		Debug.Log("Checking for easter eggs.");
@@ -909,14 +892,14 @@ public class DebugMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001362 RID: 4962 RVA: 0x000B1370 File Offset: 0x000AF570
+	// Token: 0x06001365 RID: 4965 RVA: 0x000B174C File Offset: 0x000AF94C
 	public void UpdateCensor()
 	{
 		this.Censor();
 		this.Censor();
 	}
 
-	// Token: 0x06001363 RID: 4963 RVA: 0x000B1380 File Offset: 0x000AF580
+	// Token: 0x06001366 RID: 4966 RVA: 0x000B175C File Offset: 0x000AF95C
 	public void DebugTest()
 	{
 		if (this.DebugInt == 0)
@@ -947,129 +930,129 @@ public class DebugMenuScript : MonoBehaviour
 		this.DebugInt++;
 	}
 
-	// Token: 0x04001C22 RID: 7202
+	// Token: 0x04001C30 RID: 7216
 	public FakeStudentSpawnerScript FakeStudentSpawner;
 
-	// Token: 0x04001C23 RID: 7203
+	// Token: 0x04001C31 RID: 7217
 	public DelinquentManagerScript DelinquentManager;
 
-	// Token: 0x04001C24 RID: 7204
+	// Token: 0x04001C32 RID: 7218
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001C25 RID: 7205
+	// Token: 0x04001C33 RID: 7219
 	public CameraEffectsScript CameraEffects;
 
-	// Token: 0x04001C26 RID: 7206
+	// Token: 0x04001C34 RID: 7220
 	public WeaponManagerScript WeaponManager;
 
-	// Token: 0x04001C27 RID: 7207
+	// Token: 0x04001C35 RID: 7221
 	public ReputationScript Reputation;
 
-	// Token: 0x04001C28 RID: 7208
+	// Token: 0x04001C36 RID: 7222
 	public CounselorScript Counselor;
 
-	// Token: 0x04001C29 RID: 7209
+	// Token: 0x04001C37 RID: 7223
 	public DebugConsole DebugConsole;
 
-	// Token: 0x04001C2A RID: 7210
+	// Token: 0x04001C38 RID: 7224
 	public YandereScript Yandere;
 
-	// Token: 0x04001C2B RID: 7211
+	// Token: 0x04001C39 RID: 7225
 	public BentoScript Bento;
 
-	// Token: 0x04001C2C RID: 7212
+	// Token: 0x04001C3A RID: 7226
 	public ClockScript Clock;
 
-	// Token: 0x04001C2D RID: 7213
+	// Token: 0x04001C3B RID: 7227
 	public PrayScript Turtle;
 
-	// Token: 0x04001C2E RID: 7214
+	// Token: 0x04001C3C RID: 7228
 	public ZoomScript Zoom;
 
-	// Token: 0x04001C2F RID: 7215
+	// Token: 0x04001C3D RID: 7229
 	public AstarPath Astar;
 
-	// Token: 0x04001C30 RID: 7216
+	// Token: 0x04001C3E RID: 7230
 	public OsanaFridayBeforeClassEvent1Script OsanaEvent1;
 
-	// Token: 0x04001C31 RID: 7217
+	// Token: 0x04001C3F RID: 7231
 	public OsanaFridayBeforeClassEvent2Script OsanaEvent2;
 
-	// Token: 0x04001C32 RID: 7218
+	// Token: 0x04001C40 RID: 7232
 	public OsanaFridayLunchEventScript OsanaEvent3;
 
-	// Token: 0x04001C33 RID: 7219
+	// Token: 0x04001C41 RID: 7233
 	public GameObject EasterEggWindow;
 
-	// Token: 0x04001C34 RID: 7220
+	// Token: 0x04001C42 RID: 7234
 	public GameObject SacrificialArm;
 
-	// Token: 0x04001C35 RID: 7221
+	// Token: 0x04001C43 RID: 7235
 	public GameObject DebugPoisons;
 
-	// Token: 0x04001C36 RID: 7222
+	// Token: 0x04001C44 RID: 7236
 	public GameObject CircularSaw;
 
-	// Token: 0x04001C37 RID: 7223
+	// Token: 0x04001C45 RID: 7237
 	public GameObject GreenScreen;
 
-	// Token: 0x04001C38 RID: 7224
+	// Token: 0x04001C46 RID: 7238
 	public GameObject Knife;
 
-	// Token: 0x04001C39 RID: 7225
+	// Token: 0x04001C47 RID: 7239
 	public Transform[] TeleportSpot;
 
-	// Token: 0x04001C3A RID: 7226
+	// Token: 0x04001C48 RID: 7240
 	public Transform RooftopSpot;
 
-	// Token: 0x04001C3B RID: 7227
+	// Token: 0x04001C49 RID: 7241
 	public Transform MidoriSpot;
 
-	// Token: 0x04001C3C RID: 7228
+	// Token: 0x04001C4A RID: 7242
 	public Transform Lockers;
 
-	// Token: 0x04001C3D RID: 7229
+	// Token: 0x04001C4B RID: 7243
 	public GameObject MissionModeWindow;
 
-	// Token: 0x04001C3E RID: 7230
+	// Token: 0x04001C4C RID: 7244
 	public GameObject Window;
 
-	// Token: 0x04001C3F RID: 7231
+	// Token: 0x04001C4D RID: 7245
 	public GameObject[] ElectrocutionKit;
 
-	// Token: 0x04001C40 RID: 7232
+	// Token: 0x04001C4E RID: 7246
 	public bool WaitingForNumber;
 
-	// Token: 0x04001C41 RID: 7233
+	// Token: 0x04001C4F RID: 7247
 	public bool TryNextFrame;
 
-	// Token: 0x04001C42 RID: 7234
+	// Token: 0x04001C50 RID: 7248
 	public bool MissionMode;
 
-	// Token: 0x04001C43 RID: 7235
+	// Token: 0x04001C51 RID: 7249
 	public bool NoDebug;
 
-	// Token: 0x04001C44 RID: 7236
+	// Token: 0x04001C52 RID: 7250
 	public int KidnappedVictim = 11;
 
-	// Token: 0x04001C45 RID: 7237
+	// Token: 0x04001C53 RID: 7251
 	public int RooftopStudent = 7;
 
-	// Token: 0x04001C46 RID: 7238
+	// Token: 0x04001C54 RID: 7252
 	public int DebugInputs;
 
-	// Token: 0x04001C47 RID: 7239
+	// Token: 0x04001C55 RID: 7253
 	public float Timer;
 
-	// Token: 0x04001C48 RID: 7240
+	// Token: 0x04001C56 RID: 7254
 	public int ID;
 
-	// Token: 0x04001C49 RID: 7241
+	// Token: 0x04001C57 RID: 7255
 	public Texture PantyCensorTexture;
 
-	// Token: 0x04001C4A RID: 7242
+	// Token: 0x04001C58 RID: 7256
 	private int DebugInt;
 
-	// Token: 0x04001C4B RID: 7243
+	// Token: 0x04001C59 RID: 7257
 	public GameObject Mop;
 }

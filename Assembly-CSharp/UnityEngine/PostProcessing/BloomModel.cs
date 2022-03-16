@@ -2,13 +2,13 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000566 RID: 1382
+	// Token: 0x0200056A RID: 1386
 	[Serializable]
 	public class BloomModel : PostProcessingModel
 	{
-		// Token: 0x17000502 RID: 1282
-		// (get) Token: 0x0600233C RID: 9020 RVA: 0x001F512E File Offset: 0x001F332E
-		// (set) Token: 0x0600233D RID: 9021 RVA: 0x001F5136 File Offset: 0x001F3336
+		// Token: 0x17000503 RID: 1283
+		// (get) Token: 0x06002354 RID: 9044 RVA: 0x001F7096 File Offset: 0x001F5296
+		// (set) Token: 0x06002355 RID: 9045 RVA: 0x001F709E File Offset: 0x001F529E
 		public BloomModel.Settings settings
 		{
 			get
@@ -21,23 +21,23 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600233E RID: 9022 RVA: 0x001F513F File Offset: 0x001F333F
+		// Token: 0x06002356 RID: 9046 RVA: 0x001F70A7 File Offset: 0x001F52A7
 		public override void Reset()
 		{
 			this.m_Settings = BloomModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004B27 RID: 19239
+		// Token: 0x04004B86 RID: 19334
 		[SerializeField]
 		private BloomModel.Settings m_Settings = BloomModel.Settings.defaultSettings;
 
-		// Token: 0x020006B2 RID: 1714
+		// Token: 0x020006B6 RID: 1718
 		[Serializable]
 		public struct BloomSettings
 		{
-			// Token: 0x1700058F RID: 1423
-			// (get) Token: 0x06002744 RID: 10052 RVA: 0x002033D8 File Offset: 0x002015D8
-			// (set) Token: 0x06002743 RID: 10051 RVA: 0x002033CA File Offset: 0x002015CA
+			// Token: 0x17000590 RID: 1424
+			// (get) Token: 0x0600275C RID: 10076 RVA: 0x00205340 File Offset: 0x00203540
+			// (set) Token: 0x0600275B RID: 10075 RVA: 0x00205332 File Offset: 0x00203532
 			public float thresholdLinear
 			{
 				get
@@ -50,8 +50,8 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x17000590 RID: 1424
-			// (get) Token: 0x06002745 RID: 10053 RVA: 0x002033E8 File Offset: 0x002015E8
+			// Token: 0x17000591 RID: 1425
+			// (get) Token: 0x0600275D RID: 10077 RVA: 0x00205350 File Offset: 0x00203550
 			public static BloomModel.BloomSettings defaultSettings
 			{
 				get
@@ -67,37 +67,37 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x04005116 RID: 20758
+			// Token: 0x04005175 RID: 20853
 			[Min(0f)]
 			[Tooltip("Strength of the bloom filter.")]
 			public float intensity;
 
-			// Token: 0x04005117 RID: 20759
+			// Token: 0x04005176 RID: 20854
 			[Min(0f)]
 			[Tooltip("Filters out pixels under this level of brightness.")]
 			public float threshold;
 
-			// Token: 0x04005118 RID: 20760
+			// Token: 0x04005177 RID: 20855
 			[Range(0f, 1f)]
 			[Tooltip("Makes transition between under/over-threshold gradual (0 = hard threshold, 1 = soft threshold).")]
 			public float softKnee;
 
-			// Token: 0x04005119 RID: 20761
+			// Token: 0x04005178 RID: 20856
 			[Range(1f, 7f)]
 			[Tooltip("Changes extent of veiling effects in a screen resolution-independent fashion.")]
 			public float radius;
 
-			// Token: 0x0400511A RID: 20762
+			// Token: 0x04005179 RID: 20857
 			[Tooltip("Reduces flashing noise with an additional filter.")]
 			public bool antiFlicker;
 		}
 
-		// Token: 0x020006B3 RID: 1715
+		// Token: 0x020006B7 RID: 1719
 		[Serializable]
 		public struct LensDirtSettings
 		{
-			// Token: 0x17000591 RID: 1425
-			// (get) Token: 0x06002746 RID: 10054 RVA: 0x00203438 File Offset: 0x00201638
+			// Token: 0x17000592 RID: 1426
+			// (get) Token: 0x0600275E RID: 10078 RVA: 0x002053A0 File Offset: 0x002035A0
 			public static BloomModel.LensDirtSettings defaultSettings
 			{
 				get
@@ -110,22 +110,22 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x0400511B RID: 20763
+			// Token: 0x0400517A RID: 20858
 			[Tooltip("Dirtiness texture to add smudges or dust to the lens.")]
 			public Texture texture;
 
-			// Token: 0x0400511C RID: 20764
+			// Token: 0x0400517B RID: 20859
 			[Min(0f)]
 			[Tooltip("Amount of lens dirtiness.")]
 			public float intensity;
 		}
 
-		// Token: 0x020006B4 RID: 1716
+		// Token: 0x020006B8 RID: 1720
 		[Serializable]
 		public struct Settings
 		{
-			// Token: 0x17000592 RID: 1426
-			// (get) Token: 0x06002747 RID: 10055 RVA: 0x00203464 File Offset: 0x00201664
+			// Token: 0x17000593 RID: 1427
+			// (get) Token: 0x0600275F RID: 10079 RVA: 0x002053CC File Offset: 0x002035CC
 			public static BloomModel.Settings defaultSettings
 			{
 				get
@@ -138,10 +138,10 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x0400511D RID: 20765
+			// Token: 0x0400517C RID: 20860
 			public BloomModel.BloomSettings bloom;
 
-			// Token: 0x0400511E RID: 20766
+			// Token: 0x0400517D RID: 20861
 			public BloomModel.LensDirtSettings lensDirt;
 		}
 	}

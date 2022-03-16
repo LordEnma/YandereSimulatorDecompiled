@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000283 RID: 643
 public class DialogueWheelScript : MonoBehaviour
 {
-	// Token: 0x0600138B RID: 5003 RVA: 0x000B3C38 File Offset: 0x000B1E38
+	// Token: 0x0600138E RID: 5006 RVA: 0x000B4014 File Offset: 0x000B2214
 	private void Start()
 	{
 		this.Interaction.localScale = new Vector3(1f, 1f, 1f);
@@ -19,7 +19,7 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600138C RID: 5004 RVA: 0x000B3CD4 File Offset: 0x000B1ED4
+	// Token: 0x0600138F RID: 5007 RVA: 0x000B40B0 File Offset: 0x000B22B0
 	private void Update()
 	{
 		if (!this.Show)
@@ -536,7 +536,7 @@ public class DialogueWheelScript : MonoBehaviour
 		this.PreviousPosition = Input.mousePosition;
 	}
 
-	// Token: 0x0600138D RID: 5005 RVA: 0x000B5794 File Offset: 0x000B3994
+	// Token: 0x06001390 RID: 5008 RVA: 0x000B5B70 File Offset: 0x000B3D70
 	public void HideShadows()
 	{
 		this.Jukebox.Dip = 0.5f;
@@ -861,7 +861,7 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600138E RID: 5006 RVA: 0x000B6FF0 File Offset: 0x000B51F0
+	// Token: 0x06001391 RID: 5009 RVA: 0x000B73CC File Offset: 0x000B55CC
 	private void CheckTaskCompletion()
 	{
 		bool flag = false;
@@ -960,7 +960,7 @@ public class DialogueWheelScript : MonoBehaviour
 		this.Text[6] = "Ask Favor";
 	}
 
-	// Token: 0x0600138F RID: 5007 RVA: 0x000B7604 File Offset: 0x000B5804
+	// Token: 0x06001392 RID: 5010 RVA: 0x000B79E0 File Offset: 0x000B5BE0
 	public void End()
 	{
 		if (this.Yandere.TargetStudent != null)
@@ -1054,156 +1054,156 @@ public class DialogueWheelScript : MonoBehaviour
 		this.Show = false;
 	}
 
-	// Token: 0x04001CD8 RID: 7384
+	// Token: 0x04001CE6 RID: 7398
 	public AppearanceWindowScript AppearanceWindow;
 
-	// Token: 0x04001CD9 RID: 7385
+	// Token: 0x04001CE7 RID: 7399
 	public PracticeWindowScript PracticeWindow;
 
-	// Token: 0x04001CDA RID: 7386
+	// Token: 0x04001CE8 RID: 7400
 	public TopicInterfaceScript TopicInterface;
 
-	// Token: 0x04001CDB RID: 7387
+	// Token: 0x04001CE9 RID: 7401
 	public AdviceWindowScript AdviceWindow;
 
-	// Token: 0x04001CDC RID: 7388
+	// Token: 0x04001CEA RID: 7402
 	public ClubManagerScript ClubManager;
 
-	// Token: 0x04001CDD RID: 7389
+	// Token: 0x04001CEB RID: 7403
 	public LoveManagerScript LoveManager;
 
-	// Token: 0x04001CDE RID: 7390
+	// Token: 0x04001CEC RID: 7404
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04001CDF RID: 7391
+	// Token: 0x04001CED RID: 7405
 	public TaskManagerScript TaskManager;
 
-	// Token: 0x04001CE0 RID: 7392
+	// Token: 0x04001CEE RID: 7406
 	public ClubWindowScript ClubWindow;
 
-	// Token: 0x04001CE1 RID: 7393
+	// Token: 0x04001CEF RID: 7407
 	public NoteLockerScript NoteLocker;
 
-	// Token: 0x04001CE2 RID: 7394
+	// Token: 0x04001CF0 RID: 7408
 	public ReputationScript Reputation;
 
-	// Token: 0x04001CE3 RID: 7395
+	// Token: 0x04001CF1 RID: 7409
 	public TaskWindowScript TaskWindow;
 
-	// Token: 0x04001CE4 RID: 7396
+	// Token: 0x04001CF2 RID: 7410
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04001CE5 RID: 7397
+	// Token: 0x04001CF3 RID: 7411
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04001CE6 RID: 7398
+	// Token: 0x04001CF4 RID: 7412
 	public YandereScript Yandere;
 
-	// Token: 0x04001CE7 RID: 7399
+	// Token: 0x04001CF5 RID: 7413
 	public ClockScript Clock;
 
-	// Token: 0x04001CE8 RID: 7400
+	// Token: 0x04001CF6 RID: 7414
 	public UIPanel Panel;
 
-	// Token: 0x04001CE9 RID: 7401
+	// Token: 0x04001CF7 RID: 7415
 	public GameObject SwitchTopicsWindow;
 
-	// Token: 0x04001CEA RID: 7402
+	// Token: 0x04001CF8 RID: 7416
 	public GameObject TaskDialogueWindow;
 
-	// Token: 0x04001CEB RID: 7403
+	// Token: 0x04001CF9 RID: 7417
 	public GameObject ClubLeaderWindow;
 
-	// Token: 0x04001CEC RID: 7404
+	// Token: 0x04001CFA RID: 7418
 	public GameObject DatingMinigame;
 
-	// Token: 0x04001CED RID: 7405
+	// Token: 0x04001CFB RID: 7419
 	public GameObject LockerWindow;
 
-	// Token: 0x04001CEE RID: 7406
+	// Token: 0x04001CFC RID: 7420
 	public Transform Interaction;
 
-	// Token: 0x04001CEF RID: 7407
+	// Token: 0x04001CFD RID: 7421
 	public Transform Favors;
 
-	// Token: 0x04001CF0 RID: 7408
+	// Token: 0x04001CFE RID: 7422
 	public Transform Club;
 
-	// Token: 0x04001CF1 RID: 7409
+	// Token: 0x04001CFF RID: 7423
 	public Transform Love;
 
-	// Token: 0x04001CF2 RID: 7410
+	// Token: 0x04001D00 RID: 7424
 	public UISprite TaskIcon;
 
-	// Token: 0x04001CF3 RID: 7411
+	// Token: 0x04001D01 RID: 7425
 	public UISprite Impatience;
 
-	// Token: 0x04001CF4 RID: 7412
+	// Token: 0x04001D02 RID: 7426
 	public UILabel CenterLabel;
 
-	// Token: 0x04001CF5 RID: 7413
+	// Token: 0x04001D03 RID: 7427
 	public UISprite[] Segment;
 
-	// Token: 0x04001CF6 RID: 7414
+	// Token: 0x04001D04 RID: 7428
 	public UISprite[] Shadow;
 
-	// Token: 0x04001CF7 RID: 7415
+	// Token: 0x04001D05 RID: 7429
 	public string[] Text;
 
-	// Token: 0x04001CF8 RID: 7416
+	// Token: 0x04001D06 RID: 7430
 	public UISprite[] FavorSegment;
 
-	// Token: 0x04001CF9 RID: 7417
+	// Token: 0x04001D07 RID: 7431
 	public UISprite[] FavorShadow;
 
-	// Token: 0x04001CFA RID: 7418
+	// Token: 0x04001D08 RID: 7432
 	public UISprite[] ClubSegment;
 
-	// Token: 0x04001CFB RID: 7419
+	// Token: 0x04001D09 RID: 7433
 	public UISprite[] ClubShadow;
 
-	// Token: 0x04001CFC RID: 7420
+	// Token: 0x04001D0A RID: 7434
 	public UISprite[] LoveSegment;
 
-	// Token: 0x04001CFD RID: 7421
+	// Token: 0x04001D0B RID: 7435
 	public UISprite[] LoveShadow;
 
-	// Token: 0x04001CFE RID: 7422
+	// Token: 0x04001D0C RID: 7436
 	public string[] FavorText;
 
-	// Token: 0x04001CFF RID: 7423
+	// Token: 0x04001D0D RID: 7437
 	public string[] ClubText;
 
-	// Token: 0x04001D00 RID: 7424
+	// Token: 0x04001D0E RID: 7438
 	public string[] LoveText;
 
-	// Token: 0x04001D01 RID: 7425
+	// Token: 0x04001D0F RID: 7439
 	public int Selected;
 
-	// Token: 0x04001D02 RID: 7426
+	// Token: 0x04001D10 RID: 7440
 	public int Victim;
 
-	// Token: 0x04001D03 RID: 7427
+	// Token: 0x04001D11 RID: 7441
 	public bool AskingFavor;
 
-	// Token: 0x04001D04 RID: 7428
+	// Token: 0x04001D12 RID: 7442
 	public bool Matchmaking;
 
-	// Token: 0x04001D05 RID: 7429
+	// Token: 0x04001D13 RID: 7443
 	public bool ClubLeader;
 
-	// Token: 0x04001D06 RID: 7430
+	// Token: 0x04001D14 RID: 7444
 	public bool Pestered;
 
-	// Token: 0x04001D07 RID: 7431
+	// Token: 0x04001D15 RID: 7445
 	public bool Show;
 
-	// Token: 0x04001D08 RID: 7432
+	// Token: 0x04001D16 RID: 7446
 	public Vector3 PreviousPosition;
 
-	// Token: 0x04001D09 RID: 7433
+	// Token: 0x04001D17 RID: 7447
 	public Vector2 MouseDelta;
 
-	// Token: 0x04001D0A RID: 7434
+	// Token: 0x04001D18 RID: 7448
 	public Color OriginalColor;
 }

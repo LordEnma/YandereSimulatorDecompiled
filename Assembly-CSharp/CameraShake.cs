@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000235 RID: 565
 public class CameraShake : MonoBehaviour
 {
-	// Token: 0x06001226 RID: 4646 RVA: 0x0008B3F6 File Offset: 0x000895F6
+	// Token: 0x06001228 RID: 4648 RVA: 0x0008B7BE File Offset: 0x000899BE
 	private void Awake()
 	{
 		if (this.camTransform == null)
@@ -13,13 +13,13 @@ public class CameraShake : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001227 RID: 4647 RVA: 0x0008B412 File Offset: 0x00089612
+	// Token: 0x06001229 RID: 4649 RVA: 0x0008B7DA File Offset: 0x000899DA
 	private void OnEnable()
 	{
 		this.originalPos = this.camTransform.localPosition;
 	}
 
-	// Token: 0x06001228 RID: 4648 RVA: 0x0008B428 File Offset: 0x00089628
+	// Token: 0x0600122A RID: 4650 RVA: 0x0008B7F0 File Offset: 0x000899F0
 	private void Update()
 	{
 		if (this.shake > 0f)
@@ -32,18 +32,18 @@ public class CameraShake : MonoBehaviour
 		this.camTransform.localPosition = this.originalPos;
 	}
 
-	// Token: 0x040016D6 RID: 5846
+	// Token: 0x040016DC RID: 5852
 	public Transform camTransform;
 
-	// Token: 0x040016D7 RID: 5847
+	// Token: 0x040016DD RID: 5853
 	public float shake;
 
-	// Token: 0x040016D8 RID: 5848
+	// Token: 0x040016DE RID: 5854
 	public float shakeAmount = 0.7f;
 
-	// Token: 0x040016D9 RID: 5849
+	// Token: 0x040016DF RID: 5855
 	public float decreaseFactor = 1f;
 
-	// Token: 0x040016DA RID: 5850
+	// Token: 0x040016E0 RID: 5856
 	private Vector3 originalPos;
 }

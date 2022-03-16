@@ -4,11 +4,11 @@ using UnityEngine.Rendering;
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000556 RID: 1366
+	// Token: 0x0200055A RID: 1370
 	public sealed class BuiltinDebugViewsComponent : PostProcessingComponentCommandBuffer<BuiltinDebugViewsModel>
 	{
-		// Token: 0x170004EF RID: 1263
-		// (get) Token: 0x060022C5 RID: 8901 RVA: 0x001F1A0C File Offset: 0x001EFC0C
+		// Token: 0x170004F0 RID: 1264
+		// (get) Token: 0x060022DD RID: 8925 RVA: 0x001F3974 File Offset: 0x001F1B74
 		public override bool active
 		{
 			get
@@ -17,7 +17,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022C6 RID: 8902 RVA: 0x001F1A38 File Offset: 0x001EFC38
+		// Token: 0x060022DE RID: 8926 RVA: 0x001F39A0 File Offset: 0x001F1BA0
 		public override DepthTextureMode GetCameraFlags()
 		{
 			BuiltinDebugViewsModel.Mode mode = base.model.settings.mode;
@@ -37,7 +37,7 @@ namespace UnityEngine.PostProcessing
 			return depthTextureMode;
 		}
 
-		// Token: 0x060022C7 RID: 8903 RVA: 0x001F1A7F File Offset: 0x001EFC7F
+		// Token: 0x060022DF RID: 8927 RVA: 0x001F39E7 File Offset: 0x001F1BE7
 		public override CameraEvent GetCameraEvent()
 		{
 			if (base.model.settings.mode != BuiltinDebugViewsModel.Mode.MotionVectors)
@@ -47,13 +47,13 @@ namespace UnityEngine.PostProcessing
 			return CameraEvent.BeforeImageEffects;
 		}
 
-		// Token: 0x060022C8 RID: 8904 RVA: 0x001F1A99 File Offset: 0x001EFC99
+		// Token: 0x060022E0 RID: 8928 RVA: 0x001F3A01 File Offset: 0x001F1C01
 		public override string GetName()
 		{
 			return "Builtin Debug Views";
 		}
 
-		// Token: 0x060022C9 RID: 8905 RVA: 0x001F1AA0 File Offset: 0x001EFCA0
+		// Token: 0x060022E1 RID: 8929 RVA: 0x001F3A08 File Offset: 0x001F1C08
 		public override void PopulateCommandBuffer(CommandBuffer cb)
 		{
 			ref BuiltinDebugViewsModel.Settings settings = base.model.settings;
@@ -78,7 +78,7 @@ namespace UnityEngine.PostProcessing
 			this.context.Interrupt();
 		}
 
-		// Token: 0x060022CA RID: 8906 RVA: 0x001F1B30 File Offset: 0x001EFD30
+		// Token: 0x060022E2 RID: 8930 RVA: 0x001F3A98 File Offset: 0x001F1C98
 		private void DepthPass(CommandBuffer cb)
 		{
 			Material mat = this.context.materialFactory.Get("Hidden/Post FX/Builtin Debug Views");
@@ -87,14 +87,14 @@ namespace UnityEngine.PostProcessing
 			cb.Blit(null, BuiltinRenderTextureType.CameraTarget, mat, 0);
 		}
 
-		// Token: 0x060022CB RID: 8907 RVA: 0x001F1B8C File Offset: 0x001EFD8C
+		// Token: 0x060022E3 RID: 8931 RVA: 0x001F3AF4 File Offset: 0x001F1CF4
 		private void DepthNormalsPass(CommandBuffer cb)
 		{
 			Material mat = this.context.materialFactory.Get("Hidden/Post FX/Builtin Debug Views");
 			cb.Blit(null, BuiltinRenderTextureType.CameraTarget, mat, 1);
 		}
 
-		// Token: 0x060022CC RID: 8908 RVA: 0x001F1BC0 File Offset: 0x001EFDC0
+		// Token: 0x060022E4 RID: 8932 RVA: 0x001F3B28 File Offset: 0x001F1D28
 		private void MotionVectorsPass(CommandBuffer cb)
 		{
 			Material material = this.context.materialFactory.Get("Hidden/Post FX/Builtin Debug Views");
@@ -130,7 +130,7 @@ namespace UnityEngine.PostProcessing
 			cb.ReleaseTemporaryRT(nameID);
 		}
 
-		// Token: 0x060022CD RID: 8909 RVA: 0x001F1DB4 File Offset: 0x001EFFB4
+		// Token: 0x060022E5 RID: 8933 RVA: 0x001F3D1C File Offset: 0x001F1F1C
 		private void PrepareArrows()
 		{
 			int motionVectorsResolution = base.model.settings.motionVectors.motionVectorsResolution;
@@ -146,7 +146,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022CE RID: 8910 RVA: 0x001F1E2C File Offset: 0x001F002C
+		// Token: 0x060022E6 RID: 8934 RVA: 0x001F3D94 File Offset: 0x001F1F94
 		public override void OnDisable()
 		{
 			if (this.m_Arrows != null)
@@ -156,71 +156,71 @@ namespace UnityEngine.PostProcessing
 			this.m_Arrows = null;
 		}
 
-		// Token: 0x04004AFB RID: 19195
+		// Token: 0x04004B5A RID: 19290
 		private const string k_ShaderString = "Hidden/Post FX/Builtin Debug Views";
 
-		// Token: 0x04004AFC RID: 19196
+		// Token: 0x04004B5B RID: 19291
 		private BuiltinDebugViewsComponent.ArrowArray m_Arrows;
 
-		// Token: 0x02000695 RID: 1685
+		// Token: 0x02000699 RID: 1689
 		private static class Uniforms
 		{
-			// Token: 0x04005049 RID: 20553
+			// Token: 0x040050A8 RID: 20648
 			internal static readonly int _DepthScale = Shader.PropertyToID("_DepthScale");
 
-			// Token: 0x0400504A RID: 20554
+			// Token: 0x040050A9 RID: 20649
 			internal static readonly int _TempRT = Shader.PropertyToID("_TempRT");
 
-			// Token: 0x0400504B RID: 20555
+			// Token: 0x040050AA RID: 20650
 			internal static readonly int _Opacity = Shader.PropertyToID("_Opacity");
 
-			// Token: 0x0400504C RID: 20556
+			// Token: 0x040050AB RID: 20651
 			internal static readonly int _MainTex = Shader.PropertyToID("_MainTex");
 
-			// Token: 0x0400504D RID: 20557
+			// Token: 0x040050AC RID: 20652
 			internal static readonly int _TempRT2 = Shader.PropertyToID("_TempRT2");
 
-			// Token: 0x0400504E RID: 20558
+			// Token: 0x040050AD RID: 20653
 			internal static readonly int _Amplitude = Shader.PropertyToID("_Amplitude");
 
-			// Token: 0x0400504F RID: 20559
+			// Token: 0x040050AE RID: 20654
 			internal static readonly int _Scale = Shader.PropertyToID("_Scale");
 		}
 
-		// Token: 0x02000696 RID: 1686
+		// Token: 0x0200069A RID: 1690
 		private enum Pass
 		{
-			// Token: 0x04005051 RID: 20561
+			// Token: 0x040050B0 RID: 20656
 			Depth,
-			// Token: 0x04005052 RID: 20562
+			// Token: 0x040050B1 RID: 20657
 			Normals,
-			// Token: 0x04005053 RID: 20563
+			// Token: 0x040050B2 RID: 20658
 			MovecOpacity,
-			// Token: 0x04005054 RID: 20564
+			// Token: 0x040050B3 RID: 20659
 			MovecImaging,
-			// Token: 0x04005055 RID: 20565
+			// Token: 0x040050B4 RID: 20660
 			MovecArrows
 		}
 
-		// Token: 0x02000697 RID: 1687
+		// Token: 0x0200069B RID: 1691
 		private class ArrowArray
 		{
-			// Token: 0x17000588 RID: 1416
-			// (get) Token: 0x0600271C RID: 10012 RVA: 0x002020CA File Offset: 0x002002CA
-			// (set) Token: 0x0600271D RID: 10013 RVA: 0x002020D2 File Offset: 0x002002D2
+			// Token: 0x17000589 RID: 1417
+			// (get) Token: 0x06002734 RID: 10036 RVA: 0x00204032 File Offset: 0x00202232
+			// (set) Token: 0x06002735 RID: 10037 RVA: 0x0020403A File Offset: 0x0020223A
 			public Mesh mesh { get; private set; }
 
-			// Token: 0x17000589 RID: 1417
-			// (get) Token: 0x0600271E RID: 10014 RVA: 0x002020DB File Offset: 0x002002DB
-			// (set) Token: 0x0600271F RID: 10015 RVA: 0x002020E3 File Offset: 0x002002E3
+			// Token: 0x1700058A RID: 1418
+			// (get) Token: 0x06002736 RID: 10038 RVA: 0x00204043 File Offset: 0x00202243
+			// (set) Token: 0x06002737 RID: 10039 RVA: 0x0020404B File Offset: 0x0020224B
 			public int columnCount { get; private set; }
 
-			// Token: 0x1700058A RID: 1418
-			// (get) Token: 0x06002720 RID: 10016 RVA: 0x002020EC File Offset: 0x002002EC
-			// (set) Token: 0x06002721 RID: 10017 RVA: 0x002020F4 File Offset: 0x002002F4
+			// Token: 0x1700058B RID: 1419
+			// (get) Token: 0x06002738 RID: 10040 RVA: 0x00204054 File Offset: 0x00202254
+			// (set) Token: 0x06002739 RID: 10041 RVA: 0x0020405C File Offset: 0x0020225C
 			public int rowCount { get; private set; }
 
-			// Token: 0x06002722 RID: 10018 RVA: 0x00202100 File Offset: 0x00200300
+			// Token: 0x0600273A RID: 10042 RVA: 0x00204068 File Offset: 0x00202268
 			public void BuildMesh(int columns, int rows)
 			{
 				Vector3[] array = new Vector3[]
@@ -264,7 +264,7 @@ namespace UnityEngine.PostProcessing
 				this.rowCount = rows;
 			}
 
-			// Token: 0x06002723 RID: 10019 RVA: 0x002022A3 File Offset: 0x002004A3
+			// Token: 0x0600273B RID: 10043 RVA: 0x0020420B File Offset: 0x0020240B
 			public void Release()
 			{
 				GraphicsUtils.Destroy(this.mesh);

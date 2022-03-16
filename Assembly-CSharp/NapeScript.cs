@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000375 RID: 885
 public class NapeScript : MonoBehaviour
 {
-	// Token: 0x060019D8 RID: 6616 RVA: 0x001094F2 File Offset: 0x001076F2
+	// Token: 0x060019E0 RID: 6624 RVA: 0x00109E96 File Offset: 0x00108096
 	private void Start()
 	{
 		this.Nape.enabled = true;
@@ -13,7 +13,7 @@ public class NapeScript : MonoBehaviour
 		rigidbody.isKinematic = true;
 	}
 
-	// Token: 0x060019D9 RID: 6617 RVA: 0x00109518 File Offset: 0x00107718
+	// Token: 0x060019E1 RID: 6625 RVA: 0x00109EBC File Offset: 0x001080BC
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "0")
@@ -31,15 +31,15 @@ public class NapeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002989 RID: 10633
+	// Token: 0x040029AB RID: 10667
 	public StudentScript MyStudent;
 
-	// Token: 0x0400298A RID: 10634
+	// Token: 0x040029AC RID: 10668
 	public GameObject BloodEffect;
 
-	// Token: 0x0400298B RID: 10635
+	// Token: 0x040029AD RID: 10669
 	public string Prefix;
 
-	// Token: 0x0400298C RID: 10636
+	// Token: 0x040029AE RID: 10670
 	public Collider Nape;
 }

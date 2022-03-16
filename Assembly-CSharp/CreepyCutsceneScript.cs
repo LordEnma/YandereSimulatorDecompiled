@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000269 RID: 617
 public class CreepyCutsceneScript : MonoBehaviour
 {
-	// Token: 0x06001304 RID: 4868 RVA: 0x000A838C File Offset: 0x000A658C
+	// Token: 0x06001307 RID: 4871 RVA: 0x000A8848 File Offset: 0x000A6A48
 	private void Update()
 	{
 		if (Input.GetButtonDown("A"))
@@ -39,21 +39,21 @@ public class CreepyCutsceneScript : MonoBehaviour
 		this.Label.alpha = 1f;
 	}
 
-	// Token: 0x04001B16 RID: 6934
+	// Token: 0x04001B21 RID: 6945
 	public StreetShopInterfaceScript ShopInterface;
 
-	// Token: 0x04001B17 RID: 6935
+	// Token: 0x04001B22 RID: 6946
 	public TypewriterEffect Typewriter;
 
-	// Token: 0x04001B18 RID: 6936
+	// Token: 0x04001B23 RID: 6947
 	public GameObject Jukebox;
 
-	// Token: 0x04001B19 RID: 6937
+	// Token: 0x04001B24 RID: 6948
 	public UILabel Label;
 
-	// Token: 0x04001B1A RID: 6938
+	// Token: 0x04001B25 RID: 6949
 	public string[] Lines;
 
-	// Token: 0x04001B1B RID: 6939
+	// Token: 0x04001B26 RID: 6950
 	public int ID;
 }

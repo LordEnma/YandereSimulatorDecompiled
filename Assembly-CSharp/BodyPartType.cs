@@ -3,16 +3,16 @@
 // Token: 0x020000EF RID: 239
 public enum BodyPartType
 {
-	// Token: 0x04000BD0 RID: 3024
+	// Token: 0x04000BD6 RID: 3030
 	Head,
-	// Token: 0x04000BD1 RID: 3025
+	// Token: 0x04000BD7 RID: 3031
 	Torso,
-	// Token: 0x04000BD2 RID: 3026
+	// Token: 0x04000BD8 RID: 3032
 	LeftArm,
-	// Token: 0x04000BD3 RID: 3027
+	// Token: 0x04000BD9 RID: 3033
 	RightArm,
-	// Token: 0x04000BD4 RID: 3028
+	// Token: 0x04000BDA RID: 3034
 	LeftLeg,
-	// Token: 0x04000BD5 RID: 3029
+	// Token: 0x04000BDB RID: 3035
 	RightLeg
 }

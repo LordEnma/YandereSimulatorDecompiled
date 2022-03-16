@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000488 RID: 1160
+// Token: 0x0200048B RID: 1163
 public class TrueEndingScript : MonoBehaviour
 {
-	// Token: 0x06001F0A RID: 7946 RVA: 0x001B51A3 File Offset: 0x001B33A3
+	// Token: 0x06001F1C RID: 7964 RVA: 0x001B6923 File Offset: 0x001B4B23
 	private void Start()
 	{
 		this.Darkness.alpha = 1f;
 		this.Subtitle.text = "";
 	}
 
-	// Token: 0x06001F0B RID: 7947 RVA: 0x001B51C8 File Offset: 0x001B33C8
+	// Token: 0x06001F1D RID: 7965 RVA: 0x001B6948 File Offset: 0x001B4B48
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -84,60 +84,60 @@ public class TrueEndingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400409F RID: 16543
+	// Token: 0x040040EA RID: 16618
 	public GameObject TrueEndingPanel;
 
-	// Token: 0x040040A0 RID: 16544
+	// Token: 0x040040EB RID: 16619
 	public GameObject TimelinePanel;
 
-	// Token: 0x040040A1 RID: 16545
+	// Token: 0x040040EC RID: 16620
 	public AudioSource Ambience;
 
-	// Token: 0x040040A2 RID: 16546
+	// Token: 0x040040ED RID: 16621
 	public AudioSource MyAudio;
 
-	// Token: 0x040040A3 RID: 16547
+	// Token: 0x040040EE RID: 16622
 	public AudioSource BuildUp;
 
-	// Token: 0x040040A4 RID: 16548
+	// Token: 0x040040EF RID: 16623
 	public UISprite Darkness;
 
-	// Token: 0x040040A5 RID: 16549
+	// Token: 0x040040F0 RID: 16624
 	public Texture DarkLogo;
 
-	// Token: 0x040040A6 RID: 16550
+	// Token: 0x040040F1 RID: 16625
 	public AudioClip[] Clip;
 
-	// Token: 0x040040A7 RID: 16551
+	// Token: 0x040040F2 RID: 16626
 	public UILabel Subtitle;
 
-	// Token: 0x040040A8 RID: 16552
+	// Token: 0x040040F3 RID: 16627
 	public UITexture Logo;
 
-	// Token: 0x040040A9 RID: 16553
+	// Token: 0x040040F4 RID: 16628
 	public string[] Text;
 
-	// Token: 0x040040AA RID: 16554
+	// Token: 0x040040F5 RID: 16629
 	public float SpeechTimer;
 
-	// Token: 0x040040AB RID: 16555
+	// Token: 0x040040F6 RID: 16630
 	public float FadeTimer;
 
-	// Token: 0x040040AC RID: 16556
+	// Token: 0x040040F7 RID: 16631
 	public float WaitTimer;
 
-	// Token: 0x040040AD RID: 16557
+	// Token: 0x040040F8 RID: 16632
 	public float Timer;
 
-	// Token: 0x040040AE RID: 16558
+	// Token: 0x040040F9 RID: 16633
 	public float Intensity;
 
-	// Token: 0x040040AF RID: 16559
+	// Token: 0x040040FA RID: 16634
 	public bool FadeOut;
 
-	// Token: 0x040040B0 RID: 16560
+	// Token: 0x040040FB RID: 16635
 	public bool Shake;
 
-	// Token: 0x040040B1 RID: 16561
+	// Token: 0x040040FC RID: 16636
 	public int Phase;
 }

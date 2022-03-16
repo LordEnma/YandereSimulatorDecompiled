@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002DF RID: 735
 public class GenericPromptScript : MonoBehaviour
 {
-	// Token: 0x060014E7 RID: 5351 RVA: 0x000CF7BC File Offset: 0x000CD9BC
+	// Token: 0x060014EA RID: 5354 RVA: 0x000CFC2C File Offset: 0x000CDE2C
 	private void Update()
 	{
 		if (this.ID == 1)
@@ -443,7 +443,7 @@ public class GenericPromptScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014E8 RID: 5352 RVA: 0x000D0C9D File Offset: 0x000CEE9D
+	// Token: 0x060014EB RID: 5355 RVA: 0x000D110D File Offset: 0x000CF30D
 	public void SabotageAndDisable()
 	{
 		this.Event.Sabotage();
@@ -452,54 +452,54 @@ public class GenericPromptScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x04002115 RID: 8469
+	// Token: 0x04002125 RID: 8485
 	public GenericPromptScript NextPrompt;
 
-	// Token: 0x04002116 RID: 8470
+	// Token: 0x04002126 RID: 8486
 	public StudentScript CrushedStudent;
 
-	// Token: 0x04002117 RID: 8471
+	// Token: 0x04002127 RID: 8487
 	public GenericRivalEventScript Event;
 
-	// Token: 0x04002118 RID: 8472
+	// Token: 0x04002128 RID: 8488
 	public GameObject CrushCollider;
 
-	// Token: 0x04002119 RID: 8473
+	// Token: 0x04002129 RID: 8489
 	public GameObject Effect;
 
-	// Token: 0x0400211A RID: 8474
+	// Token: 0x0400212A RID: 8490
 	public GameObject[] Object;
 
-	// Token: 0x0400211B RID: 8475
+	// Token: 0x0400212B RID: 8491
 	public Transform ObjectToRotate;
 
-	// Token: 0x0400211C RID: 8476
+	// Token: 0x0400212C RID: 8492
 	public Transform PlayerSpot;
 
-	// Token: 0x0400211D RID: 8477
+	// Token: 0x0400212D RID: 8493
 	public PromptScript Prompt;
 
-	// Token: 0x0400211E RID: 8478
+	// Token: 0x0400212E RID: 8494
 	public AudioSource MyAudio;
 
-	// Token: 0x0400211F RID: 8479
+	// Token: 0x0400212F RID: 8495
 	public Mesh NewMesh;
 
-	// Token: 0x04002120 RID: 8480
+	// Token: 0x04002130 RID: 8496
 	public bool PerformingAction;
 
-	// Token: 0x04002121 RID: 8481
+	// Token: 0x04002131 RID: 8497
 	public bool SpawnedEffect;
 
-	// Token: 0x04002122 RID: 8482
+	// Token: 0x04002132 RID: 8498
 	public float TargetRotation = 90f;
 
-	// Token: 0x04002123 RID: 8483
+	// Token: 0x04002133 RID: 8499
 	public float Rotation;
 
-	// Token: 0x04002124 RID: 8484
+	// Token: 0x04002134 RID: 8500
 	public float Speed;
 
-	// Token: 0x04002125 RID: 8485
+	// Token: 0x04002135 RID: 8501
 	public int ID;
 }

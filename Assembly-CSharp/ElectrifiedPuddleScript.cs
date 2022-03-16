@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002A1 RID: 673
 public class ElectrifiedPuddleScript : MonoBehaviour
 {
-	// Token: 0x06001419 RID: 5145 RVA: 0x000BFD90 File Offset: 0x000BDF90
+	// Token: 0x0600141C RID: 5148 RVA: 0x000C01A8 File Offset: 0x000BE3A8
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -14,7 +14,10 @@ public class ElectrifiedPuddleScript : MonoBehaviour
 			{
 				component.Yandere.GazerEyes.ElectrocuteStudent(component);
 				base.gameObject.SetActive(false);
-				this.PowerSwitch.On = false;
+				if (this.PowerSwitch != null)
+				{
+					this.PowerSwitch.On = false;
+				}
 			}
 		}
 		if (other.gameObject.layer == 13)
@@ -28,6 +31,6 @@ public class ElectrifiedPuddleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001E37 RID: 7735
+	// Token: 0x04001E46 RID: 7750
 	public PowerSwitchScript PowerSwitch;
 }

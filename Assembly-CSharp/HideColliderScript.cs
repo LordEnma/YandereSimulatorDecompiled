@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000312 RID: 786
 public class HideColliderScript : MonoBehaviour
 {
-	// Token: 0x06001855 RID: 6229 RVA: 0x000EAF8C File Offset: 0x000E918C
+	// Token: 0x0600185A RID: 6234 RVA: 0x000EB44C File Offset: 0x000E964C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 11)
@@ -23,9 +23,9 @@ public class HideColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400241E RID: 9246
+	// Token: 0x0400242F RID: 9263
 	public RagdollScript Corpse;
 
-	// Token: 0x0400241F RID: 9247
+	// Token: 0x04002430 RID: 9264
 	public Collider MyCollider;
 }

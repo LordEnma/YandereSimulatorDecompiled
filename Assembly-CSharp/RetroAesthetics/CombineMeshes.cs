@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace RetroAesthetics
 {
-	// Token: 0x0200054A RID: 1354
+	// Token: 0x0200054E RID: 1358
 	[ExecuteInEditMode]
 	public class CombineMeshes : MonoBehaviour
 	{
-		// Token: 0x0600229F RID: 8863 RVA: 0x001F044A File Offset: 0x001EE64A
+		// Token: 0x060022B7 RID: 8887 RVA: 0x001F23B2 File Offset: 0x001F05B2
 		private void CombineButtonHandler()
 		{
 			this.CombineChildMeshes();
 		}
 
-		// Token: 0x060022A0 RID: 8864 RVA: 0x001F0454 File Offset: 0x001EE654
+		// Token: 0x060022B8 RID: 8888 RVA: 0x001F23BC File Offset: 0x001F05BC
 		public virtual void CombineChildMeshes()
 		{
 			Vector3 position = base.transform.position;
@@ -49,7 +49,7 @@ namespace RetroAesthetics
 			base.transform.position = position;
 		}
 
-		// Token: 0x04004AB9 RID: 19129
+		// Token: 0x04004B18 RID: 19224
 		[InspectorButton("CombineButtonHandler")]
 		public bool combineChildMeshes;
 	}

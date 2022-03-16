@@ -5,14 +5,14 @@ using UnityEngine;
 [AddComponentMenu("Dynamic Bone/Dynamic Bone Collider")]
 public class DynamicBoneCollider : MonoBehaviour
 {
-	// Token: 0x060013ED RID: 5101 RVA: 0x000BD659 File Offset: 0x000BB859
+	// Token: 0x060013F0 RID: 5104 RVA: 0x000BDA71 File Offset: 0x000BBC71
 	private void OnValidate()
 	{
 		this.m_Radius = Mathf.Max(this.m_Radius, 0f);
 		this.m_Height = Mathf.Max(this.m_Height, 0f);
 	}
 
-	// Token: 0x060013EE RID: 5102 RVA: 0x000BD688 File Offset: 0x000BB888
+	// Token: 0x060013F1 RID: 5105 RVA: 0x000BDAA0 File Offset: 0x000BBCA0
 	public void Collide(ref Vector3 particlePosition, float particleRadius)
 	{
 		float num = this.m_Radius * Mathf.Abs(base.transform.lossyScale.x);
@@ -56,7 +56,7 @@ public class DynamicBoneCollider : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013EF RID: 5103 RVA: 0x000BD7CC File Offset: 0x000BB9CC
+	// Token: 0x060013F2 RID: 5106 RVA: 0x000BDBE4 File Offset: 0x000BBDE4
 	private static void OutsideSphere(ref Vector3 particlePosition, float particleRadius, Vector3 sphereCenter, float sphereRadius)
 	{
 		float num = sphereRadius + particleRadius;
@@ -70,7 +70,7 @@ public class DynamicBoneCollider : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013F0 RID: 5104 RVA: 0x000BD820 File Offset: 0x000BBA20
+	// Token: 0x060013F3 RID: 5107 RVA: 0x000BDC38 File Offset: 0x000BBE38
 	private static void InsideSphere(ref Vector3 particlePosition, float particleRadius, Vector3 sphereCenter, float sphereRadius)
 	{
 		float num = sphereRadius - particleRadius;
@@ -84,7 +84,7 @@ public class DynamicBoneCollider : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013F1 RID: 5105 RVA: 0x000BD86C File Offset: 0x000BBA6C
+	// Token: 0x060013F4 RID: 5108 RVA: 0x000BDC84 File Offset: 0x000BBE84
 	private static void OutsideCapsule(ref Vector3 particlePosition, float particleRadius, Vector3 capsuleP0, Vector3 capsuleP1, float capsuleRadius)
 	{
 		float num = capsuleRadius + particleRadius;
@@ -130,7 +130,7 @@ public class DynamicBoneCollider : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013F2 RID: 5106 RVA: 0x000BD99C File Offset: 0x000BBB9C
+	// Token: 0x060013F5 RID: 5109 RVA: 0x000BDDB4 File Offset: 0x000BBFB4
 	private static void InsideCapsule(ref Vector3 particlePosition, float particleRadius, Vector3 capsuleP0, Vector3 capsuleP1, float capsuleRadius)
 	{
 		float num = capsuleRadius - particleRadius;
@@ -176,7 +176,7 @@ public class DynamicBoneCollider : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013F3 RID: 5107 RVA: 0x000BDAA8 File Offset: 0x000BBCA8
+	// Token: 0x060013F6 RID: 5110 RVA: 0x000BDEC0 File Offset: 0x000BC0C0
 	private void OnDrawGizmosSelected()
 	{
 		if (!base.enabled)
@@ -219,38 +219,38 @@ public class DynamicBoneCollider : MonoBehaviour
 		Gizmos.DrawWireSphere(base.transform.TransformPoint(center2), radius);
 	}
 
-	// Token: 0x04001DC1 RID: 7617
+	// Token: 0x04001DD0 RID: 7632
 	public Vector3 m_Center = Vector3.zero;
 
-	// Token: 0x04001DC2 RID: 7618
+	// Token: 0x04001DD1 RID: 7633
 	public float m_Radius = 0.5f;
 
-	// Token: 0x04001DC3 RID: 7619
+	// Token: 0x04001DD2 RID: 7634
 	public float m_Height;
 
-	// Token: 0x04001DC4 RID: 7620
+	// Token: 0x04001DD3 RID: 7635
 	public DynamicBoneCollider.Direction m_Direction;
 
-	// Token: 0x04001DC5 RID: 7621
+	// Token: 0x04001DD4 RID: 7636
 	public DynamicBoneCollider.Bound m_Bound;
 
-	// Token: 0x02000658 RID: 1624
+	// Token: 0x0200065C RID: 1628
 	public enum Direction
 	{
-		// Token: 0x04004F49 RID: 20297
+		// Token: 0x04004FA8 RID: 20392
 		X,
-		// Token: 0x04004F4A RID: 20298
+		// Token: 0x04004FA9 RID: 20393
 		Y,
-		// Token: 0x04004F4B RID: 20299
+		// Token: 0x04004FAA RID: 20394
 		Z
 	}
 
-	// Token: 0x02000659 RID: 1625
+	// Token: 0x0200065D RID: 1629
 	public enum Bound
 	{
-		// Token: 0x04004F4D RID: 20301
+		// Token: 0x04004FAC RID: 20396
 		Outside,
-		// Token: 0x04004F4E RID: 20302
+		// Token: 0x04004FAD RID: 20397
 		Inside
 	}
 }

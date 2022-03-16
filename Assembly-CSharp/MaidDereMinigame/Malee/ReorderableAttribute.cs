@@ -3,35 +3,35 @@ using UnityEngine;
 
 namespace MaidDereMinigame.Malee
 {
-	// Token: 0x020005B5 RID: 1461
+	// Token: 0x020005B9 RID: 1465
 	public class ReorderableAttribute : PropertyAttribute
 	{
-		// Token: 0x060024CB RID: 9419 RVA: 0x001FD275 File Offset: 0x001FB475
+		// Token: 0x060024E3 RID: 9443 RVA: 0x001FF1DD File Offset: 0x001FD3DD
 		public ReorderableAttribute() : this(null)
 		{
 		}
 
-		// Token: 0x060024CC RID: 9420 RVA: 0x001FD27E File Offset: 0x001FB47E
+		// Token: 0x060024E4 RID: 9444 RVA: 0x001FF1E6 File Offset: 0x001FD3E6
 		public ReorderableAttribute(string elementNameProperty) : this(true, true, true, elementNameProperty, null, null)
 		{
 		}
 
-		// Token: 0x060024CD RID: 9421 RVA: 0x001FD28C File Offset: 0x001FB48C
+		// Token: 0x060024E5 RID: 9445 RVA: 0x001FF1F4 File Offset: 0x001FD3F4
 		public ReorderableAttribute(string elementNameProperty, string elementIconPath) : this(true, true, true, elementNameProperty, null, elementIconPath)
 		{
 		}
 
-		// Token: 0x060024CE RID: 9422 RVA: 0x001FD29A File Offset: 0x001FB49A
+		// Token: 0x060024E6 RID: 9446 RVA: 0x001FF202 File Offset: 0x001FD402
 		public ReorderableAttribute(string elementNameProperty, string elementNameOverride, string elementIconPath) : this(true, true, true, elementNameProperty, elementNameOverride, elementIconPath)
 		{
 		}
 
-		// Token: 0x060024CF RID: 9423 RVA: 0x001FD2A8 File Offset: 0x001FB4A8
+		// Token: 0x060024E7 RID: 9447 RVA: 0x001FF210 File Offset: 0x001FD410
 		public ReorderableAttribute(bool add, bool remove, bool draggable, string elementNameProperty = null, string elementIconPath = null) : this(add, remove, draggable, elementNameProperty, null, elementIconPath)
 		{
 		}
 
-		// Token: 0x060024D0 RID: 9424 RVA: 0x001FD2B8 File Offset: 0x001FB4B8
+		// Token: 0x060024E8 RID: 9448 RVA: 0x001FF220 File Offset: 0x001FD420
 		public ReorderableAttribute(bool add, bool remove, bool draggable, string elementNameProperty = null, string elementNameOverride = null, string elementIconPath = null)
 		{
 			this.add = add;
@@ -43,34 +43,34 @@ namespace MaidDereMinigame.Malee
 			this.elementIconPath = elementIconPath;
 		}
 
-		// Token: 0x04004CB3 RID: 19635
+		// Token: 0x04004D12 RID: 19730
 		public bool add;
 
-		// Token: 0x04004CB4 RID: 19636
+		// Token: 0x04004D13 RID: 19731
 		public bool remove;
 
-		// Token: 0x04004CB5 RID: 19637
+		// Token: 0x04004D14 RID: 19732
 		public bool draggable;
 
-		// Token: 0x04004CB6 RID: 19638
+		// Token: 0x04004D15 RID: 19733
 		public bool singleLine;
 
-		// Token: 0x04004CB7 RID: 19639
+		// Token: 0x04004D16 RID: 19734
 		public bool paginate;
 
-		// Token: 0x04004CB8 RID: 19640
+		// Token: 0x04004D17 RID: 19735
 		public bool sortable;
 
-		// Token: 0x04004CB9 RID: 19641
+		// Token: 0x04004D18 RID: 19736
 		public int pageSize;
 
-		// Token: 0x04004CBA RID: 19642
+		// Token: 0x04004D19 RID: 19737
 		public string elementNameProperty;
 
-		// Token: 0x04004CBB RID: 19643
+		// Token: 0x04004D1A RID: 19738
 		public string elementNameOverride;
 
-		// Token: 0x04004CBC RID: 19644
+		// Token: 0x04004D1B RID: 19739
 		public string elementIconPath;
 	}
 }

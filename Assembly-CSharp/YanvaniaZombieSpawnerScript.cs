@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004E9 RID: 1257
+// Token: 0x020004ED RID: 1261
 public class YanvaniaZombieSpawnerScript : MonoBehaviour
 {
-	// Token: 0x060020D6 RID: 8406 RVA: 0x001E49C4 File Offset: 0x001E2BC4
+	// Token: 0x060020EE RID: 8430 RVA: 0x001E692C File Offset: 0x001E4B2C
 	private void Update()
 	{
 		if (this.Yanmont.transform.position.y > 0f)
@@ -66,36 +66,36 @@ public class YanvaniaZombieSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004866 RID: 18534
+	// Token: 0x040048C5 RID: 18629
 	public YanvaniaZombieScript NewZombieScript;
 
-	// Token: 0x04004867 RID: 18535
+	// Token: 0x040048C6 RID: 18630
 	public GameObject Zombie;
 
-	// Token: 0x04004868 RID: 18536
+	// Token: 0x040048C7 RID: 18631
 	public YanvaniaYanmontScript Yanmont;
 
-	// Token: 0x04004869 RID: 18537
+	// Token: 0x040048C8 RID: 18632
 	public float SpawnTimer;
 
-	// Token: 0x0400486A RID: 18538
+	// Token: 0x040048C9 RID: 18633
 	public float RelativePoint;
 
-	// Token: 0x0400486B RID: 18539
+	// Token: 0x040048CA RID: 18634
 	public float RightBoundary;
 
-	// Token: 0x0400486C RID: 18540
+	// Token: 0x040048CB RID: 18635
 	public float LeftBoundary;
 
-	// Token: 0x0400486D RID: 18541
+	// Token: 0x040048CC RID: 18636
 	public int SpawnSide;
 
-	// Token: 0x0400486E RID: 18542
+	// Token: 0x040048CD RID: 18637
 	public int ID;
 
-	// Token: 0x0400486F RID: 18543
+	// Token: 0x040048CE RID: 18638
 	public GameObject[] Zombies;
 
-	// Token: 0x04004870 RID: 18544
+	// Token: 0x040048CF RID: 18639
 	public Vector3[] SpawnPoints;
 }

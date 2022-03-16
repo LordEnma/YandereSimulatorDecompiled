@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000433 RID: 1075
+// Token: 0x02000434 RID: 1076
 public class SnappedYandereScript : MonoBehaviour
 {
-	// Token: 0x06001CCF RID: 7375 RVA: 0x00155F78 File Offset: 0x00154178
+	// Token: 0x06001CDC RID: 7388 RVA: 0x00156E84 File Offset: 0x00155084
 	private void Start()
 	{
 		this.MyAnim[this.AttackAnims[1]].speed = 1.5f;
@@ -15,7 +15,7 @@ public class SnappedYandereScript : MonoBehaviour
 		this.MyAnim[this.AttackAnims[5]].speed = 1.5f;
 	}
 
-	// Token: 0x06001CD0 RID: 7376 RVA: 0x00156018 File Offset: 0x00154218
+	// Token: 0x06001CDD RID: 7389 RVA: 0x00156F24 File Offset: 0x00155124
 	private void Update()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
@@ -418,7 +418,7 @@ public class SnappedYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CD1 RID: 7377 RVA: 0x00157760 File Offset: 0x00155960
+	// Token: 0x06001CDE RID: 7390 RVA: 0x0015866C File Offset: 0x0015686C
 	private void UpdateMovement()
 	{
 		this.MyController.Move(Physics.gravity * Time.deltaTime);
@@ -456,20 +456,20 @@ public class SnappedYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CD2 RID: 7378 RVA: 0x00157948 File Offset: 0x00155B48
+	// Token: 0x06001CDF RID: 7391 RVA: 0x00158854 File Offset: 0x00156A54
 	private void MoveTowardsTarget(Vector3 target)
 	{
 		Vector3 a = target - base.transform.position;
 		this.MyController.Move(a * (Time.deltaTime * 10f));
 	}
 
-	// Token: 0x06001CD3 RID: 7379 RVA: 0x00157984 File Offset: 0x00155B84
+	// Token: 0x06001CE0 RID: 7392 RVA: 0x00158890 File Offset: 0x00156A90
 	private void RotateTowardsTarget(Quaternion target)
 	{
 		base.transform.rotation = Quaternion.Slerp(base.transform.rotation, target, Time.deltaTime * 10f);
 	}
 
-	// Token: 0x06001CD4 RID: 7380 RVA: 0x001579B0 File Offset: 0x00155BB0
+	// Token: 0x06001CE1 RID: 7393 RVA: 0x001588BC File Offset: 0x00156ABC
 	private void SetGlitches(bool State)
 	{
 		this.GlitchTimer = 0f;
@@ -490,7 +490,7 @@ public class SnappedYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CD5 RID: 7381 RVA: 0x00157A74 File Offset: 0x00155C74
+	// Token: 0x06001CE2 RID: 7394 RVA: 0x00158980 File Offset: 0x00156B80
 	public void ChooseAttack()
 	{
 		this.BloodSpawned = 0;
@@ -535,7 +535,7 @@ public class SnappedYandereScript : MonoBehaviour
 		this.TargetStudent.MyAnim[this.TargetStudent.AttackAnims[this.AttackID]].time = 0f;
 	}
 
-	// Token: 0x06001CD6 RID: 7382 RVA: 0x00157D40 File Offset: 0x00155F40
+	// Token: 0x06001CE3 RID: 7395 RVA: 0x00158C4C File Offset: 0x00156E4C
 	public void Teleport()
 	{
 		if (!this.Armed)
@@ -574,243 +574,243 @@ public class SnappedYandereScript : MonoBehaviour
 		Physics.SyncTransforms();
 	}
 
-	// Token: 0x040033C7 RID: 13255
+	// Token: 0x040033FC RID: 13308
 	public CharacterController MyController;
 
-	// Token: 0x040033C8 RID: 13256
+	// Token: 0x040033FD RID: 13309
 	public CameraFilterPack_FX_Glitch1 Glitch1;
 
-	// Token: 0x040033C9 RID: 13257
+	// Token: 0x040033FE RID: 13310
 	public CameraFilterPack_FX_Glitch2 Glitch2;
 
-	// Token: 0x040033CA RID: 13258
+	// Token: 0x040033FF RID: 13311
 	public CameraFilterPack_FX_Glitch3 Glitch3;
 
-	// Token: 0x040033CB RID: 13259
+	// Token: 0x04003400 RID: 13312
 	public CameraFilterPack_Glitch_Mozaic Glitch4;
 
-	// Token: 0x040033CC RID: 13260
+	// Token: 0x04003401 RID: 13313
 	public CameraFilterPack_NewGlitch1 Glitch5;
 
-	// Token: 0x040033CD RID: 13261
+	// Token: 0x04003402 RID: 13314
 	public CameraFilterPack_NewGlitch2 Glitch6;
 
-	// Token: 0x040033CE RID: 13262
+	// Token: 0x04003403 RID: 13315
 	public CameraFilterPack_NewGlitch3 Glitch7;
 
-	// Token: 0x040033CF RID: 13263
+	// Token: 0x04003404 RID: 13316
 	public CameraFilterPack_NewGlitch4 Glitch8;
 
-	// Token: 0x040033D0 RID: 13264
+	// Token: 0x04003405 RID: 13317
 	public CameraFilterPack_NewGlitch5 Glitch9;
 
-	// Token: 0x040033D1 RID: 13265
+	// Token: 0x04003406 RID: 13318
 	public CameraFilterPack_NewGlitch6 Glitch10;
 
-	// Token: 0x040033D2 RID: 13266
+	// Token: 0x04003407 RID: 13319
 	public CameraFilterPack_NewGlitch7 Glitch11;
 
-	// Token: 0x040033D3 RID: 13267
+	// Token: 0x04003408 RID: 13320
 	public CameraFilterPack_TV_CompressionFX CompressionFX;
 
-	// Token: 0x040033D4 RID: 13268
+	// Token: 0x04003409 RID: 13321
 	public CameraFilterPack_TV_Distorted Distorted;
 
-	// Token: 0x040033D5 RID: 13269
+	// Token: 0x0400340A RID: 13322
 	public CameraFilterPack_Blur_Tilt_Shift TiltShift;
 
-	// Token: 0x040033D6 RID: 13270
+	// Token: 0x0400340B RID: 13323
 	public CameraFilterPack_Blur_Tilt_Shift_V TiltShiftV;
 
-	// Token: 0x040033D7 RID: 13271
+	// Token: 0x0400340C RID: 13324
 	public CameraFilterPack_Noise_TV Static;
 
-	// Token: 0x040033D8 RID: 13272
+	// Token: 0x0400340D RID: 13325
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040033D9 RID: 13273
+	// Token: 0x0400340E RID: 13326
 	public SnapStudentScript TargetStudent;
 
-	// Token: 0x040033DA RID: 13274
+	// Token: 0x0400340F RID: 13327
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x040033DB RID: 13275
+	// Token: 0x04003410 RID: 13328
 	public GameObject StabBloodEffect;
 
-	// Token: 0x040033DC RID: 13276
+	// Token: 0x04003411 RID: 13329
 	public GameObject BloodEffect;
 
-	// Token: 0x040033DD RID: 13277
+	// Token: 0x04003412 RID: 13330
 	public GameObject NewDoIt;
 
-	// Token: 0x040033DE RID: 13278
+	// Token: 0x04003413 RID: 13331
 	public WeaponScript Knife;
 
-	// Token: 0x040033DF RID: 13279
+	// Token: 0x04003414 RID: 13332
 	public AudioListener MyListener;
 
-	// Token: 0x040033E0 RID: 13280
+	// Token: 0x04003415 RID: 13333
 	public Transform SnapAttackPivot;
 
-	// Token: 0x040033E1 RID: 13281
+	// Token: 0x04003416 RID: 13334
 	public Transform FinalSnapPOV;
 
-	// Token: 0x040033E2 RID: 13282
+	// Token: 0x04003417 RID: 13335
 	public Transform SuicidePOV;
 
-	// Token: 0x040033E3 RID: 13283
+	// Token: 0x04003418 RID: 13336
 	public Transform RightFoot;
 
-	// Token: 0x040033E4 RID: 13284
+	// Token: 0x04003419 RID: 13337
 	public Transform RightHand;
 
-	// Token: 0x040033E5 RID: 13285
+	// Token: 0x0400341A RID: 13338
 	public Transform LeftHand;
 
-	// Token: 0x040033E6 RID: 13286
+	// Token: 0x0400341B RID: 13339
 	public Transform Spine;
 
-	// Token: 0x040033E7 RID: 13287
+	// Token: 0x0400341C RID: 13340
 	public AudioSource StaticNoise;
 
-	// Token: 0x040033E8 RID: 13288
+	// Token: 0x0400341D RID: 13341
 	public AudioSource AttackAudio;
 
-	// Token: 0x040033E9 RID: 13289
+	// Token: 0x0400341E RID: 13342
 	public AudioSource SnapStatic;
 
-	// Token: 0x040033EA RID: 13290
+	// Token: 0x0400341F RID: 13343
 	public AudioSource SnapVoice;
 
-	// Token: 0x040033EB RID: 13291
+	// Token: 0x04003420 RID: 13344
 	public AudioSource Jukebox;
 
-	// Token: 0x040033EC RID: 13292
+	// Token: 0x04003421 RID: 13345
 	public AudioSource MyAudio;
 
-	// Token: 0x040033ED RID: 13293
+	// Token: 0x04003422 RID: 13346
 	public AudioSource Rumble;
 
-	// Token: 0x040033EE RID: 13294
+	// Token: 0x04003423 RID: 13347
 	public AudioClip EndSNAP;
 
-	// Token: 0x040033EF RID: 13295
+	// Token: 0x04003424 RID: 13348
 	public UILabel SNAPLabel;
 
-	// Token: 0x040033F0 RID: 13296
+	// Token: 0x04003425 RID: 13349
 	public Camera MainCamera;
 
-	// Token: 0x040033F1 RID: 13297
+	// Token: 0x04003426 RID: 13350
 	public Animation MyAnim;
 
-	// Token: 0x040033F2 RID: 13298
+	// Token: 0x04003427 RID: 13351
 	public AudioClip Buzz;
 
-	// Token: 0x040033F3 RID: 13299
+	// Token: 0x04003428 RID: 13352
 	public AudioClip[] Whispers;
 
-	// Token: 0x040033F4 RID: 13300
+	// Token: 0x04003429 RID: 13353
 	public AudioClip[] FemaleDeathScreams;
 
-	// Token: 0x040033F5 RID: 13301
+	// Token: 0x0400342A RID: 13354
 	public AudioClip[] MaleDeathScreams;
 
-	// Token: 0x040033F6 RID: 13302
+	// Token: 0x0400342B RID: 13355
 	public AudioClip[] AttackSFX;
 
-	// Token: 0x040033F7 RID: 13303
+	// Token: 0x0400342C RID: 13356
 	public GameObject DoIt;
 
-	// Token: 0x040033F8 RID: 13304
+	// Token: 0x0400342D RID: 13357
 	public UISprite SuicideSprite;
 
-	// Token: 0x040033F9 RID: 13305
+	// Token: 0x0400342E RID: 13358
 	public UILabel SuicidePrompt;
 
-	// Token: 0x040033FA RID: 13306
+	// Token: 0x0400342F RID: 13359
 	public bool KillingSenpai;
 
-	// Token: 0x040033FB RID: 13307
+	// Token: 0x04003430 RID: 13360
 	public bool Attacking;
 
-	// Token: 0x040033FC RID: 13308
+	// Token: 0x04003431 RID: 13361
 	public bool CanMove;
 
-	// Token: 0x040033FD RID: 13309
+	// Token: 0x04003432 RID: 13362
 	public bool SpeedUp;
 
-	// Token: 0x040033FE RID: 13310
+	// Token: 0x04003433 RID: 13363
 	public bool Whisper;
 
-	// Token: 0x040033FF RID: 13311
+	// Token: 0x04003434 RID: 13364
 	public bool Armed;
 
-	// Token: 0x04003400 RID: 13312
+	// Token: 0x04003435 RID: 13365
 	public string IdleAnim;
 
-	// Token: 0x04003401 RID: 13313
+	// Token: 0x04003436 RID: 13366
 	public string WalkAnim;
 
-	// Token: 0x04003402 RID: 13314
+	// Token: 0x04003437 RID: 13367
 	public float ImpatienceLimit;
 
-	// Token: 0x04003403 RID: 13315
+	// Token: 0x04003438 RID: 13368
 	public float GlitchTimeLimit;
 
-	// Token: 0x04003404 RID: 13316
+	// Token: 0x04003439 RID: 13369
 	public float WhisperTimer;
 
-	// Token: 0x04003405 RID: 13317
+	// Token: 0x0400343A RID: 13370
 	public float AttackTimer;
 
-	// Token: 0x04003406 RID: 13318
+	// Token: 0x0400343B RID: 13371
 	public float GlitchTimer;
 
-	// Token: 0x04003407 RID: 13319
+	// Token: 0x0400343C RID: 13372
 	public float ImpatienceTimer;
 
-	// Token: 0x04003408 RID: 13320
+	// Token: 0x0400343D RID: 13373
 	public float ListenTimer;
 
-	// Token: 0x04003409 RID: 13321
+	// Token: 0x0400343E RID: 13374
 	public float HurryTimer;
 
-	// Token: 0x0400340A RID: 13322
+	// Token: 0x0400343F RID: 13375
 	public float AnimSpeed;
 
-	// Token: 0x0400340B RID: 13323
+	// Token: 0x04003440 RID: 13376
 	public float Target;
 
-	// Token: 0x0400340C RID: 13324
+	// Token: 0x04003441 RID: 13377
 	public float Speed;
 
-	// Token: 0x0400340D RID: 13325
+	// Token: 0x04003442 RID: 13378
 	public int BloodSpawned;
 
-	// Token: 0x0400340E RID: 13326
+	// Token: 0x04003443 RID: 13379
 	public int AttackPhase;
 
-	// Token: 0x0400340F RID: 13327
+	// Token: 0x04003444 RID: 13380
 	public int Teleports;
 
-	// Token: 0x04003410 RID: 13328
+	// Token: 0x04003445 RID: 13381
 	public int AttackID;
 
-	// Token: 0x04003411 RID: 13329
+	// Token: 0x04003446 RID: 13382
 	public int VoiceID;
 
-	// Token: 0x04003412 RID: 13330
+	// Token: 0x04003447 RID: 13383
 	public int Attacks;
 
-	// Token: 0x04003413 RID: 13331
+	// Token: 0x04003448 RID: 13384
 	public int Taps;
 
-	// Token: 0x04003414 RID: 13332
+	// Token: 0x04003449 RID: 13385
 	public string[] AttackAnims;
 
-	// Token: 0x04003415 RID: 13333
+	// Token: 0x0400344A RID: 13386
 	public WeaponScript[] Weapons;
 
-	// Token: 0x04003416 RID: 13334
+	// Token: 0x0400344B RID: 13387
 	public bool[] AttacksUsed;
 }

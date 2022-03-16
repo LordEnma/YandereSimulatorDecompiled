@@ -51,6 +51,7 @@ public class AsylumIntroScript : MonoBehaviour
 				this.Timer += Time.deltaTime;
 				if (this.Timer > 1f)
 				{
+					this.Yandere.VtuberCheck();
 					this.Timer = 0f;
 					this.Phase++;
 					return;
@@ -109,7 +110,7 @@ public class AsylumIntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009F1 RID: 2545 RVA: 0x00054030 File Offset: 0x00052230
+	// Token: 0x060009F1 RID: 2545 RVA: 0x0005403C File Offset: 0x0005223C
 	private void UpdateDOF(float Value)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -118,7 +119,7 @@ public class AsylumIntroScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x060009F2 RID: 2546 RVA: 0x00054074 File Offset: 0x00052274
+	// Token: 0x060009F2 RID: 2546 RVA: 0x00054080 File Offset: 0x00052280
 	public void SetVignetteBlack()
 	{
 		VignetteModel.Settings settings = this.Profile.vignette.settings;
@@ -129,7 +130,7 @@ public class AsylumIntroScript : MonoBehaviour
 		this.Profile.vignette.settings = settings;
 	}
 
-	// Token: 0x060009F3 RID: 2547 RVA: 0x000540E8 File Offset: 0x000522E8
+	// Token: 0x060009F3 RID: 2547 RVA: 0x000540F4 File Offset: 0x000522F4
 	private void UpdateSkipPanel()
 	{
 		this.SkipTimer += Time.deltaTime;

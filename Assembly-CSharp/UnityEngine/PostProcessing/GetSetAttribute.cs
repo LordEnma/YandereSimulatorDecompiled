@@ -2,19 +2,19 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000550 RID: 1360
+	// Token: 0x02000554 RID: 1364
 	public sealed class GetSetAttribute : PropertyAttribute
 	{
-		// Token: 0x060022B6 RID: 8886 RVA: 0x001F1159 File Offset: 0x001EF359
+		// Token: 0x060022CE RID: 8910 RVA: 0x001F30C1 File Offset: 0x001F12C1
 		public GetSetAttribute(string name)
 		{
 			this.name = name;
 		}
 
-		// Token: 0x04004AF1 RID: 19185
+		// Token: 0x04004B50 RID: 19280
 		public readonly string name;
 
-		// Token: 0x04004AF2 RID: 19186
+		// Token: 0x04004B51 RID: 19281
 		public bool dirty;
 	}
 }

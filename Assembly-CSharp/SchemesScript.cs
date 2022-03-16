@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000412 RID: 1042
+// Token: 0x02000413 RID: 1043
 public class SchemesScript : MonoBehaviour
 {
-	// Token: 0x06001C57 RID: 7255 RVA: 0x0014B388 File Offset: 0x00149588
+	// Token: 0x06001C64 RID: 7268 RVA: 0x0014C22C File Offset: 0x0014A42C
 	private void Start()
 	{
 		for (int i = 1; i < this.SchemeNameLabels.Length; i++)
@@ -65,7 +65,7 @@ public class SchemesScript : MonoBehaviour
 		this.UpdateSchemeInfo();
 	}
 
-	// Token: 0x06001C58 RID: 7256 RVA: 0x0014B504 File Offset: 0x00149704
+	// Token: 0x06001C65 RID: 7269 RVA: 0x0014C3A8 File Offset: 0x0014A5A8
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -170,7 +170,7 @@ public class SchemesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C59 RID: 7257 RVA: 0x0014B858 File Offset: 0x00149A58
+	// Token: 0x06001C66 RID: 7270 RVA: 0x0014C6FC File Offset: 0x0014A8FC
 	public void UpdateSchemeList()
 	{
 		for (int i = 1; i < this.SchemeNameLabels.Length; i++)
@@ -199,7 +199,7 @@ public class SchemesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C5A RID: 7258 RVA: 0x0014B934 File Offset: 0x00149B34
+	// Token: 0x06001C67 RID: 7271 RVA: 0x0014C7D8 File Offset: 0x0014A9D8
 	public void UpdateSchemeInfo()
 	{
 		if (SchemeGlobals.GetSchemeStage(this.ID + this.ListPosition) != 100)
@@ -271,7 +271,7 @@ public class SchemesScript : MonoBehaviour
 		this.UpdatePantyCount();
 	}
 
-	// Token: 0x06001C5B RID: 7259 RVA: 0x0014BCEF File Offset: 0x00149EEF
+	// Token: 0x06001C68 RID: 7272 RVA: 0x0014CB93 File Offset: 0x0014AD93
 	public void UpdatePantyCount()
 	{
 		if (this.Inventory != null)
@@ -280,7 +280,7 @@ public class SchemesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C5C RID: 7260 RVA: 0x0014BD1C File Offset: 0x00149F1C
+	// Token: 0x06001C69 RID: 7273 RVA: 0x0014CBC0 File Offset: 0x0014ADC0
 	public void UpdateInstructions()
 	{
 		this.Steps = this.SchemeSteps[SchemeGlobals.CurrentScheme].Split(new char[]
@@ -323,7 +323,7 @@ public class SchemesScript : MonoBehaviour
 		this.NextStepInput.SetActive(true);
 	}
 
-	// Token: 0x06001C5D RID: 7261 RVA: 0x0014BE54 File Offset: 0x0014A054
+	// Token: 0x06001C6A RID: 7274 RVA: 0x0014CCF8 File Offset: 0x0014AEF8
 	public void UpdateSchemeDestinations()
 	{
 		if (this.StudentManager.Students[this.StudentManager.RivalID] != null)
@@ -367,122 +367,122 @@ public class SchemesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400323D RID: 12861
+	// Token: 0x04003271 RID: 12913
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x0400323E RID: 12862
+	// Token: 0x04003272 RID: 12914
 	public SchemeManagerScript SchemeManager;
 
-	// Token: 0x0400323F RID: 12863
+	// Token: 0x04003273 RID: 12915
 	public InputManagerScript InputManager;
 
-	// Token: 0x04003240 RID: 12864
+	// Token: 0x04003274 RID: 12916
 	public InventoryScript Inventory;
 
-	// Token: 0x04003241 RID: 12865
+	// Token: 0x04003275 RID: 12917
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003242 RID: 12866
+	// Token: 0x04003276 RID: 12918
 	public GameObject NextStepInput;
 
-	// Token: 0x04003243 RID: 12867
+	// Token: 0x04003277 RID: 12919
 	public GameObject FavorMenu;
 
-	// Token: 0x04003244 RID: 12868
+	// Token: 0x04003278 RID: 12920
 	public Transform Highlight;
 
-	// Token: 0x04003245 RID: 12869
+	// Token: 0x04003279 RID: 12921
 	public Transform Arrow;
 
-	// Token: 0x04003246 RID: 12870
+	// Token: 0x0400327A RID: 12922
 	public UILabel SchemeInstructions;
 
-	// Token: 0x04003247 RID: 12871
+	// Token: 0x0400327B RID: 12923
 	public UITexture SchemeIcon;
 
-	// Token: 0x04003248 RID: 12872
+	// Token: 0x0400327C RID: 12924
 	public UILabel PantyCount;
 
-	// Token: 0x04003249 RID: 12873
+	// Token: 0x0400327D RID: 12925
 	public UILabel SchemeDesc;
 
-	// Token: 0x0400324A RID: 12874
+	// Token: 0x0400327E RID: 12926
 	public UILabel[] SchemeDeadlineLabels;
 
-	// Token: 0x0400324B RID: 12875
+	// Token: 0x0400327F RID: 12927
 	public UILabel[] SchemeCostLabels;
 
-	// Token: 0x0400324C RID: 12876
+	// Token: 0x04003280 RID: 12928
 	public UILabel[] SchemeNameLabels;
 
-	// Token: 0x0400324D RID: 12877
+	// Token: 0x04003281 RID: 12929
 	public UISprite[] Exclamations;
 
-	// Token: 0x0400324E RID: 12878
+	// Token: 0x04003282 RID: 12930
 	public Texture[] SchemeIcons;
 
-	// Token: 0x0400324F RID: 12879
+	// Token: 0x04003283 RID: 12931
 	public int[] SchemeCosts;
 
-	// Token: 0x04003250 RID: 12880
+	// Token: 0x04003284 RID: 12932
 	public Transform[] SchemeDestinations;
 
-	// Token: 0x04003251 RID: 12881
+	// Token: 0x04003285 RID: 12933
 	public string[] SchemeDeadlines;
 
-	// Token: 0x04003252 RID: 12882
+	// Token: 0x04003286 RID: 12934
 	public string[] SchemeSkills;
 
-	// Token: 0x04003253 RID: 12883
+	// Token: 0x04003287 RID: 12935
 	public string[] SchemeDescs;
 
-	// Token: 0x04003254 RID: 12884
+	// Token: 0x04003288 RID: 12936
 	public string[] SchemeNames;
 
-	// Token: 0x04003255 RID: 12885
+	// Token: 0x04003289 RID: 12937
 	[Multiline]
 	[SerializeField]
 	public string[] SchemeSteps;
 
-	// Token: 0x04003256 RID: 12886
+	// Token: 0x0400328A RID: 12938
 	public int ListPosition = 1;
 
-	// Token: 0x04003257 RID: 12887
+	// Token: 0x0400328B RID: 12939
 	public int Limit = 20;
 
-	// Token: 0x04003258 RID: 12888
+	// Token: 0x0400328C RID: 12940
 	public int ID = 1;
 
-	// Token: 0x04003259 RID: 12889
+	// Token: 0x0400328D RID: 12941
 	public string[] Steps;
 
-	// Token: 0x0400325A RID: 12890
+	// Token: 0x0400328E RID: 12942
 	public AudioClip InfoPurchase;
 
-	// Token: 0x0400325B RID: 12891
+	// Token: 0x0400328F RID: 12943
 	public AudioClip InfoAfford;
 
-	// Token: 0x0400325C RID: 12892
+	// Token: 0x04003290 RID: 12944
 	public Transform[] Scheme1Destinations;
 
-	// Token: 0x0400325D RID: 12893
+	// Token: 0x04003291 RID: 12945
 	public Transform[] Scheme2Destinations;
 
-	// Token: 0x0400325E RID: 12894
+	// Token: 0x04003292 RID: 12946
 	public Transform[] Scheme3Destinations;
 
-	// Token: 0x0400325F RID: 12895
+	// Token: 0x04003293 RID: 12947
 	public Transform[] Scheme4Destinations;
 
-	// Token: 0x04003260 RID: 12896
+	// Token: 0x04003294 RID: 12948
 	public Transform[] Scheme5Destinations;
 
-	// Token: 0x04003261 RID: 12897
+	// Token: 0x04003295 RID: 12949
 	public bool[] DisableScheme;
 
-	// Token: 0x04003262 RID: 12898
+	// Token: 0x04003296 RID: 12950
 	public GameObject HUDIcon;
 
-	// Token: 0x04003263 RID: 12899
+	// Token: 0x04003297 RID: 12951
 	public UILabel HUDInstructions;
 }

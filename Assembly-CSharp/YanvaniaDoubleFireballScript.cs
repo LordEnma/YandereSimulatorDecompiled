@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004D9 RID: 1241
+// Token: 0x020004DD RID: 1245
 public class YanvaniaDoubleFireballScript : MonoBehaviour
 {
-	// Token: 0x06002095 RID: 8341 RVA: 0x001DE664 File Offset: 0x001DC864
+	// Token: 0x060020AD RID: 8365 RVA: 0x001E05CC File Offset: 0x001DE7CC
 	private void Start()
 	{
 		UnityEngine.Object.Instantiate<GameObject>(this.LightningEffect, new Vector3(base.transform.position.x, 8f, 0f), Quaternion.identity);
 		this.Direction = ((this.Dracula.position.x > base.transform.position.x) ? -1 : 1);
 	}
 
-	// Token: 0x06002096 RID: 8342 RVA: 0x001DE6D0 File Offset: 0x001DC8D0
+	// Token: 0x060020AE RID: 8366 RVA: 0x001E0638 File Offset: 0x001DE838
 	private void Update()
 	{
 		if (this.Timer > 1f && !this.SpawnedFirst)
@@ -63,39 +63,39 @@ public class YanvaniaDoubleFireballScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400474A RID: 18250
+	// Token: 0x040047A9 RID: 18345
 	public GameObject Lavaball;
 
-	// Token: 0x0400474B RID: 18251
+	// Token: 0x040047AA RID: 18346
 	public GameObject FirstLavaball;
 
-	// Token: 0x0400474C RID: 18252
+	// Token: 0x040047AB RID: 18347
 	public GameObject SecondLavaball;
 
-	// Token: 0x0400474D RID: 18253
+	// Token: 0x040047AC RID: 18348
 	public GameObject LightningEffect;
 
-	// Token: 0x0400474E RID: 18254
+	// Token: 0x040047AD RID: 18349
 	public Transform Dracula;
 
-	// Token: 0x0400474F RID: 18255
+	// Token: 0x040047AE RID: 18350
 	public bool SpawnedFirst;
 
-	// Token: 0x04004750 RID: 18256
+	// Token: 0x040047AF RID: 18351
 	public bool SpawnedSecond;
 
-	// Token: 0x04004751 RID: 18257
+	// Token: 0x040047B0 RID: 18352
 	public float FirstPosition;
 
-	// Token: 0x04004752 RID: 18258
+	// Token: 0x040047B1 RID: 18353
 	public float SecondPosition;
 
-	// Token: 0x04004753 RID: 18259
+	// Token: 0x040047B2 RID: 18354
 	public int Direction;
 
-	// Token: 0x04004754 RID: 18260
+	// Token: 0x040047B3 RID: 18355
 	public float Timer;
 
-	// Token: 0x04004755 RID: 18261
+	// Token: 0x040047B4 RID: 18356
 	public float Speed;
 }

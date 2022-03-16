@@ -3,10 +3,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020004DA RID: 1242
+// Token: 0x020004DE RID: 1246
 public class YanvaniaDraculaScript : MonoBehaviour
 {
-	// Token: 0x06002098 RID: 8344 RVA: 0x001DEAF0 File Offset: 0x001DCCF0
+	// Token: 0x060020B0 RID: 8368 RVA: 0x001E0A58 File Offset: 0x001DEC58
 	private void Awake()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -15,7 +15,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
 		component["succubus_a_charm_03"].speed = 4.66666f;
 	}
 
-	// Token: 0x06002099 RID: 8345 RVA: 0x001DEB48 File Offset: 0x001DCD48
+	// Token: 0x060020B1 RID: 8369 RVA: 0x001E0AB0 File Offset: 0x001DECB0
 	private void Update()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -236,7 +236,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600209A RID: 8346 RVA: 0x001DF628 File Offset: 0x001DD828
+	// Token: 0x060020B2 RID: 8370 RVA: 0x001E1590 File Offset: 0x001DF790
 	public void SpawnTeleportEffect()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -262,13 +262,13 @@ public class YanvaniaDraculaScript : MonoBehaviour
 		this.AttackID = 0;
 	}
 
-	// Token: 0x0600209B RID: 8347 RVA: 0x001DF7A4 File Offset: 0x001DD9A4
+	// Token: 0x060020B3 RID: 8371 RVA: 0x001E170C File Offset: 0x001DF90C
 	private void Teleport()
 	{
 		base.transform.position = new Vector3(base.transform.position.x, (base.transform.position.y > 0f) ? -10f : 6.5f, 0f);
 	}
 
-	// Token: 0x0600209C RID: 8348 RVA: 0x001DF7FC File Offset: 0x001DD9FC
+	// Token: 0x060020B4 RID: 8372 RVA: 0x001E1764 File Offset: 0x001DF964
 	public void TakeDamage()
 	{
 		this.Health -= 5f + ((float)this.Yanmont.Level * 5f - 5f);
@@ -285,7 +285,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
 		component.Play();
 	}
 
-	// Token: 0x0600209D RID: 8349 RVA: 0x001DF891 File Offset: 0x001DDA91
+	// Token: 0x060020B5 RID: 8373 RVA: 0x001E17F9 File Offset: 0x001DF9F9
 	private IEnumerator ApplyScreenshot()
 	{
 		this.PhotoTaken = true;
@@ -299,114 +299,114 @@ public class YanvaniaDraculaScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04004756 RID: 18262
+	// Token: 0x040047B5 RID: 18357
 	public YanvaniaCameraScript YanvaniaCamera;
 
-	// Token: 0x04004757 RID: 18263
+	// Token: 0x040047B6 RID: 18358
 	public YanvaniaYanmontScript Yanmont;
 
-	// Token: 0x04004758 RID: 18264
+	// Token: 0x040047B7 RID: 18359
 	public UITexture HealthBarParent;
 
-	// Token: 0x04004759 RID: 18265
+	// Token: 0x040047B8 RID: 18360
 	public UITexture Photograph;
 
-	// Token: 0x0400475A RID: 18266
+	// Token: 0x040047B9 RID: 18361
 	public AudioClip DeathScream;
 
-	// Token: 0x0400475B RID: 18267
+	// Token: 0x040047BA RID: 18362
 	public AudioClip FinalLine;
 
-	// Token: 0x0400475C RID: 18268
+	// Token: 0x040047BB RID: 18363
 	public GameObject NewTeleportEffect;
 
-	// Token: 0x0400475D RID: 18269
+	// Token: 0x040047BC RID: 18364
 	public GameObject NewAttack;
 
-	// Token: 0x0400475E RID: 18270
+	// Token: 0x040047BD RID: 18365
 	public GameObject DoubleFireball;
 
-	// Token: 0x0400475F RID: 18271
+	// Token: 0x040047BE RID: 18366
 	public GameObject TripleFireball;
 
-	// Token: 0x04004760 RID: 18272
+	// Token: 0x040047BF RID: 18367
 	public GameObject MainCamera;
 
-	// Token: 0x04004761 RID: 18273
+	// Token: 0x040047C0 RID: 18368
 	public GameObject EndCamera;
 
-	// Token: 0x04004762 RID: 18274
+	// Token: 0x040047C1 RID: 18369
 	public GameObject TeleportEffect;
 
-	// Token: 0x04004763 RID: 18275
+	// Token: 0x040047C2 RID: 18370
 	public GameObject Explosion;
 
-	// Token: 0x04004764 RID: 18276
+	// Token: 0x040047C3 RID: 18371
 	public GameObject Character;
 
-	// Token: 0x04004765 RID: 18277
+	// Token: 0x040047C4 RID: 18372
 	public Transform HealthBar;
 
-	// Token: 0x04004766 RID: 18278
+	// Token: 0x040047C5 RID: 18373
 	public Transform RightHand;
 
-	// Token: 0x04004767 RID: 18279
+	// Token: 0x040047C6 RID: 18374
 	public Renderer MyRenderer;
 
-	// Token: 0x04004768 RID: 18280
+	// Token: 0x040047C7 RID: 18375
 	public AudioClip[] Injuries;
 
-	// Token: 0x04004769 RID: 18281
+	// Token: 0x040047C8 RID: 18376
 	public float ExplosionTimer;
 
-	// Token: 0x0400476A RID: 18282
+	// Token: 0x040047C9 RID: 18377
 	public float TeleportTimer = 10f;
 
-	// Token: 0x0400476B RID: 18283
+	// Token: 0x040047CA RID: 18378
 	public float FinalTimer;
 
-	// Token: 0x0400476C RID: 18284
+	// Token: 0x040047CB RID: 18379
 	public float DeathTimer;
 
-	// Token: 0x0400476D RID: 18285
+	// Token: 0x040047CC RID: 18380
 	public float FlashTimer;
 
-	// Token: 0x0400476E RID: 18286
+	// Token: 0x040047CD RID: 18381
 	public float Distance;
 
-	// Token: 0x0400476F RID: 18287
+	// Token: 0x040047CE RID: 18382
 	public float MaxHealth = 100f;
 
-	// Token: 0x04004770 RID: 18288
+	// Token: 0x040047CF RID: 18383
 	public float Health = 100f;
 
-	// Token: 0x04004771 RID: 18289
+	// Token: 0x040047D0 RID: 18384
 	public bool FinalLineSpoken;
 
-	// Token: 0x04004772 RID: 18290
+	// Token: 0x040047D1 RID: 18385
 	public bool PhotoTaken;
 
-	// Token: 0x04004773 RID: 18291
+	// Token: 0x040047D2 RID: 18386
 	public bool Screamed;
 
-	// Token: 0x04004774 RID: 18292
+	// Token: 0x040047D3 RID: 18387
 	public bool Injured;
 
-	// Token: 0x04004775 RID: 18293
+	// Token: 0x040047D4 RID: 18388
 	public bool Shrink;
 
-	// Token: 0x04004776 RID: 18294
+	// Token: 0x040047D5 RID: 18389
 	public bool Grow;
 
-	// Token: 0x04004777 RID: 18295
+	// Token: 0x040047D6 RID: 18390
 	public bool Red;
 
-	// Token: 0x04004778 RID: 18296
+	// Token: 0x040047D7 RID: 18391
 	public int AttackID;
 
-	// Token: 0x04004779 RID: 18297
+	// Token: 0x040047D8 RID: 18392
 	public int Frames;
 
-	// Token: 0x0400477A RID: 18298
+	// Token: 0x040047D9 RID: 18393
 	public int Frame;
 }

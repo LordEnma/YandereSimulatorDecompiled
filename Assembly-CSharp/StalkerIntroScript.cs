@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
-// Token: 0x0200043E RID: 1086
+// Token: 0x0200043F RID: 1087
 public class StalkerIntroScript : MonoBehaviour
 {
-	// Token: 0x06001CF3 RID: 7411 RVA: 0x00158918 File Offset: 0x00156B18
+	// Token: 0x06001D00 RID: 7424 RVA: 0x00159824 File Offset: 0x00157A24
 	private void Start()
 	{
 		this.Profile.colorGrading.enabled = true;
@@ -25,7 +25,7 @@ public class StalkerIntroScript : MonoBehaviour
 		this.SkipPanel.alpha = 0f;
 	}
 
-	// Token: 0x06001CF4 RID: 7412 RVA: 0x001589FC File Offset: 0x00156BFC
+	// Token: 0x06001D01 RID: 7425 RVA: 0x00159908 File Offset: 0x00157B08
 	private void Update()
 	{
 		if (this.SkipPanel.enabled)
@@ -42,6 +42,7 @@ public class StalkerIntroScript : MonoBehaviour
 				this.Timer += Time.deltaTime;
 				if (this.Timer > 2f)
 				{
+					this.Yandere.VtuberCheck();
 					this.Phase++;
 					return;
 				}
@@ -94,7 +95,7 @@ public class StalkerIntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CF5 RID: 7413 RVA: 0x00158DC0 File Offset: 0x00156FC0
+	// Token: 0x06001D02 RID: 7426 RVA: 0x00159CD8 File Offset: 0x00157ED8
 	private void UpdateDOF(float Value)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -103,7 +104,7 @@ public class StalkerIntroScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x06001CF6 RID: 7414 RVA: 0x00158E04 File Offset: 0x00157004
+	// Token: 0x06001D03 RID: 7427 RVA: 0x00159D1C File Offset: 0x00157F1C
 	public void SetVignetteBlack()
 	{
 		VignetteModel.Settings settings = this.Profile.vignette.settings;
@@ -114,7 +115,7 @@ public class StalkerIntroScript : MonoBehaviour
 		this.Profile.vignette.settings = settings;
 	}
 
-	// Token: 0x06001CF7 RID: 7415 RVA: 0x00158E78 File Offset: 0x00157078
+	// Token: 0x06001D04 RID: 7428 RVA: 0x00159D90 File Offset: 0x00157F90
 	private void UpdateSkipPanel()
 	{
 		this.SkipTimer += Time.deltaTime;
@@ -141,48 +142,48 @@ public class StalkerIntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003446 RID: 13382
+	// Token: 0x0400347B RID: 13435
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04003447 RID: 13383
+	// Token: 0x0400347C RID: 13436
 	public StalkerYandereScript Yandere;
 
-	// Token: 0x04003448 RID: 13384
+	// Token: 0x0400347D RID: 13437
 	public RPG_Camera RPGCamera;
 
-	// Token: 0x04003449 RID: 13385
+	// Token: 0x0400347E RID: 13438
 	public Transform CameraFocus;
 
-	// Token: 0x0400344A RID: 13386
+	// Token: 0x0400347F RID: 13439
 	public Transform Moon;
 
-	// Token: 0x0400344B RID: 13387
+	// Token: 0x04003480 RID: 13440
 	public Renderer Darkness;
 
-	// Token: 0x0400344C RID: 13388
+	// Token: 0x04003481 RID: 13441
 	public float Alpha;
 
-	// Token: 0x0400344D RID: 13389
+	// Token: 0x04003482 RID: 13442
 	public float Speed;
 
-	// Token: 0x0400344E RID: 13390
+	// Token: 0x04003483 RID: 13443
 	public float Timer;
 
-	// Token: 0x0400344F RID: 13391
+	// Token: 0x04003484 RID: 13444
 	public float DOF;
 
-	// Token: 0x04003450 RID: 13392
+	// Token: 0x04003485 RID: 13445
 	public int Phase;
 
-	// Token: 0x04003451 RID: 13393
+	// Token: 0x04003486 RID: 13446
 	public GameObject[] Neighborhood;
 
-	// Token: 0x04003452 RID: 13394
+	// Token: 0x04003487 RID: 13447
 	public UIPanel SkipPanel;
 
-	// Token: 0x04003453 RID: 13395
+	// Token: 0x04003488 RID: 13448
 	public UISprite SkipCircle;
 
-	// Token: 0x04003454 RID: 13396
+	// Token: 0x04003489 RID: 13449
 	private float SkipTimer;
 }

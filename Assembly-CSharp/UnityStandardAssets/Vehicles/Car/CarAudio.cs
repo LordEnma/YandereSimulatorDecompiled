@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x02000524 RID: 1316
+	// Token: 0x02000528 RID: 1320
 	[RequireComponent(typeof(CarController))]
 	public class CarAudio : MonoBehaviour
 	{
-		// Token: 0x06002186 RID: 8582 RVA: 0x001EC190 File Offset: 0x001EA390
+		// Token: 0x0600219E RID: 8606 RVA: 0x001EE0F8 File Offset: 0x001EC2F8
 		private void StartSound()
 		{
 			this.m_CarController = base.GetComponent<CarController>();
@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.m_StartedSound = true;
 		}
 
-		// Token: 0x06002187 RID: 8583 RVA: 0x001EC204 File Offset: 0x001EA404
+		// Token: 0x0600219F RID: 8607 RVA: 0x001EE16C File Offset: 0x001EC36C
 		private void StopSound()
 		{
 			AudioSource[] components = base.GetComponents<AudioSource>();
@@ -32,7 +32,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.m_StartedSound = false;
 		}
 
-		// Token: 0x06002188 RID: 8584 RVA: 0x001EC238 File Offset: 0x001EA438
+		// Token: 0x060021A0 RID: 8608 RVA: 0x001EE1A0 File Offset: 0x001EC3A0
 		private void Update()
 		{
 			float sqrMagnitude = (Camera.main.transform.position - base.transform.position).sqrMagnitude;
@@ -78,7 +78,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x06002189 RID: 8585 RVA: 0x001EC4EC File Offset: 0x001EA6EC
+		// Token: 0x060021A1 RID: 8609 RVA: 0x001EE454 File Offset: 0x001EC654
 		private AudioSource SetUpEngineAudioSource(AudioClip clip)
 		{
 			AudioSource audioSource = base.gameObject.AddComponent<AudioSource>();
@@ -93,72 +93,72 @@ namespace UnityStandardAssets.Vehicles.Car
 			return audioSource;
 		}
 
-		// Token: 0x0600218A RID: 8586 RVA: 0x001EC55B File Offset: 0x001EA75B
+		// Token: 0x060021A2 RID: 8610 RVA: 0x001EE4C3 File Offset: 0x001EC6C3
 		private static float ULerp(float from, float to, float value)
 		{
 			return (1f - value) * from + value * to;
 		}
 
-		// Token: 0x040049A3 RID: 18851
+		// Token: 0x04004A02 RID: 18946
 		public CarAudio.EngineAudioOptions engineSoundStyle = CarAudio.EngineAudioOptions.FourChannel;
 
-		// Token: 0x040049A4 RID: 18852
+		// Token: 0x04004A03 RID: 18947
 		public AudioClip lowAccelClip;
 
-		// Token: 0x040049A5 RID: 18853
+		// Token: 0x04004A04 RID: 18948
 		public AudioClip lowDecelClip;
 
-		// Token: 0x040049A6 RID: 18854
+		// Token: 0x04004A05 RID: 18949
 		public AudioClip highAccelClip;
 
-		// Token: 0x040049A7 RID: 18855
+		// Token: 0x04004A06 RID: 18950
 		public AudioClip highDecelClip;
 
-		// Token: 0x040049A8 RID: 18856
+		// Token: 0x04004A07 RID: 18951
 		public float pitchMultiplier = 1f;
 
-		// Token: 0x040049A9 RID: 18857
+		// Token: 0x04004A08 RID: 18952
 		public float lowPitchMin = 1f;
 
-		// Token: 0x040049AA RID: 18858
+		// Token: 0x04004A09 RID: 18953
 		public float lowPitchMax = 6f;
 
-		// Token: 0x040049AB RID: 18859
+		// Token: 0x04004A0A RID: 18954
 		public float highPitchMultiplier = 0.25f;
 
-		// Token: 0x040049AC RID: 18860
+		// Token: 0x04004A0B RID: 18955
 		public float maxRolloffDistance = 500f;
 
-		// Token: 0x040049AD RID: 18861
+		// Token: 0x04004A0C RID: 18956
 		public float dopplerLevel = 1f;
 
-		// Token: 0x040049AE RID: 18862
+		// Token: 0x04004A0D RID: 18957
 		public bool useDoppler = true;
 
-		// Token: 0x040049AF RID: 18863
+		// Token: 0x04004A0E RID: 18958
 		private AudioSource m_LowAccel;
 
-		// Token: 0x040049B0 RID: 18864
+		// Token: 0x04004A0F RID: 18959
 		private AudioSource m_LowDecel;
 
-		// Token: 0x040049B1 RID: 18865
+		// Token: 0x04004A10 RID: 18960
 		private AudioSource m_HighAccel;
 
-		// Token: 0x040049B2 RID: 18866
+		// Token: 0x04004A11 RID: 18961
 		private AudioSource m_HighDecel;
 
-		// Token: 0x040049B3 RID: 18867
+		// Token: 0x04004A12 RID: 18962
 		private bool m_StartedSound;
 
-		// Token: 0x040049B4 RID: 18868
+		// Token: 0x04004A13 RID: 18963
 		private CarController m_CarController;
 
-		// Token: 0x02000681 RID: 1665
+		// Token: 0x02000685 RID: 1669
 		public enum EngineAudioOptions
 		{
-			// Token: 0x04004FF5 RID: 20469
+			// Token: 0x04005054 RID: 20564
 			Simple,
-			// Token: 0x04004FF6 RID: 20470
+			// Token: 0x04005055 RID: 20565
 			FourChannel
 		}
 	}

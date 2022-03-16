@@ -3,42 +3,42 @@
 // Token: 0x0200037E RID: 894
 public enum NotificationType
 {
-	// Token: 0x04002A78 RID: 10872
+	// Token: 0x04002AA1 RID: 10913
 	Bloody,
-	// Token: 0x04002A79 RID: 10873
+	// Token: 0x04002AA2 RID: 10914
 	Body,
-	// Token: 0x04002A7A RID: 10874
+	// Token: 0x04002AA3 RID: 10915
 	Insane,
-	// Token: 0x04002A7B RID: 10875
+	// Token: 0x04002AA4 RID: 10916
 	Armed,
-	// Token: 0x04002A7C RID: 10876
+	// Token: 0x04002AA5 RID: 10917
 	Lewd,
-	// Token: 0x04002A7D RID: 10877
+	// Token: 0x04002AA6 RID: 10918
 	Intrude,
-	// Token: 0x04002A7E RID: 10878
+	// Token: 0x04002AA7 RID: 10919
 	Late,
-	// Token: 0x04002A7F RID: 10879
+	// Token: 0x04002AA8 RID: 10920
 	Info,
-	// Token: 0x04002A80 RID: 10880
+	// Token: 0x04002AA9 RID: 10921
 	Topic,
-	// Token: 0x04002A81 RID: 10881
+	// Token: 0x04002AAA RID: 10922
 	Opinion,
-	// Token: 0x04002A82 RID: 10882
+	// Token: 0x04002AAB RID: 10923
 	Complete,
-	// Token: 0x04002A83 RID: 10883
+	// Token: 0x04002AAC RID: 10924
 	Exfiltrate,
-	// Token: 0x04002A84 RID: 10884
+	// Token: 0x04002AAD RID: 10925
 	Evidence,
-	// Token: 0x04002A85 RID: 10885
+	// Token: 0x04002AAE RID: 10926
 	ClassSoon,
-	// Token: 0x04002A86 RID: 10886
+	// Token: 0x04002AAF RID: 10927
 	ClassNow,
-	// Token: 0x04002A87 RID: 10887
+	// Token: 0x04002AB0 RID: 10928
 	Eavesdropping,
-	// Token: 0x04002A88 RID: 10888
+	// Token: 0x04002AB1 RID: 10929
 	Persona,
-	// Token: 0x04002A89 RID: 10889
+	// Token: 0x04002AB2 RID: 10930
 	Clothing,
-	// Token: 0x04002A8A RID: 10890
+	// Token: 0x04002AB3 RID: 10931
 	Custom
 }

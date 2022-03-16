@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005AD RID: 1453
+	// Token: 0x020005B1 RID: 1457
 	public class FailGame : MonoBehaviour
 	{
-		// Token: 0x1700052B RID: 1323
-		// (get) Token: 0x060024A5 RID: 9381 RVA: 0x001FC900 File Offset: 0x001FAB00
+		// Token: 0x1700052C RID: 1324
+		// (get) Token: 0x060024BD RID: 9405 RVA: 0x001FE868 File Offset: 0x001FCA68
 		public static FailGame Instance
 		{
 			get
@@ -21,7 +21,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024A6 RID: 9382 RVA: 0x001FC920 File Offset: 0x001FAB20
+		// Token: 0x060024BE RID: 9406 RVA: 0x001FE888 File Offset: 0x001FCA88
 		private void Awake()
 		{
 			this.spriteRenderer = base.GetComponent<SpriteRenderer>();
@@ -29,7 +29,7 @@ namespace MaidDereMinigame
 			this.targetTransitionTime = GameController.Instance.activeDifficultyVariables.transitionTime * this.fadeMultiplier;
 		}
 
-		// Token: 0x060024A7 RID: 9383 RVA: 0x001FC96C File Offset: 0x001FAB6C
+		// Token: 0x060024BF RID: 9407 RVA: 0x001FE8D4 File Offset: 0x001FCAD4
 		public static void GameFailed()
 		{
 			FailGame.Instance.StartCoroutine(FailGame.Instance.GameFailedRoutine());
@@ -37,7 +37,7 @@ namespace MaidDereMinigame
 			SFXController.PlaySound(SFXController.Sounds.GameFail);
 		}
 
-		// Token: 0x060024A8 RID: 9384 RVA: 0x001FC99E File Offset: 0x001FAB9E
+		// Token: 0x060024C0 RID: 9408 RVA: 0x001FE906 File Offset: 0x001FCB06
 		private IEnumerator GameFailedRoutine()
 		{
 			UnityEngine.Object.FindObjectOfType<InteractionMenu>().gameObject.SetActive(false);
@@ -64,7 +64,7 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x060024A9 RID: 9385 RVA: 0x001FC9AD File Offset: 0x001FABAD
+		// Token: 0x060024C1 RID: 9409 RVA: 0x001FE915 File Offset: 0x001FCB15
 		private IEnumerator SlowPitch()
 		{
 			GameStarter starter = UnityEngine.Object.FindObjectOfType<GameStarter>();
@@ -79,22 +79,22 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x04004C8E RID: 19598
+		// Token: 0x04004CED RID: 19693
 		private static FailGame instance;
 
-		// Token: 0x04004C8F RID: 19599
+		// Token: 0x04004CEE RID: 19694
 		public float fadeMultiplier = 2f;
 
-		// Token: 0x04004C90 RID: 19600
+		// Token: 0x04004CEF RID: 19695
 		private SpriteRenderer spriteRenderer;
 
-		// Token: 0x04004C91 RID: 19601
+		// Token: 0x04004CF0 RID: 19696
 		private SpriteRenderer textRenderer;
 
-		// Token: 0x04004C92 RID: 19602
+		// Token: 0x04004CF1 RID: 19697
 		private float targetTransitionTime;
 
-		// Token: 0x04004C93 RID: 19603
+		// Token: 0x04004CF2 RID: 19698
 		private float transitionTime;
 	}
 }

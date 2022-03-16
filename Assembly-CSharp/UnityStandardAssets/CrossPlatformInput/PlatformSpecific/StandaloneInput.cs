@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 {
-	// Token: 0x02000541 RID: 1345
+	// Token: 0x02000545 RID: 1349
 	public class StandaloneInput : VirtualInput
 	{
-		// Token: 0x06002271 RID: 8817 RVA: 0x001EF53B File Offset: 0x001ED73B
+		// Token: 0x06002289 RID: 8841 RVA: 0x001F14A3 File Offset: 0x001EF6A3
 		public override float GetAxis(string name, bool raw)
 		{
 			if (!raw)
@@ -16,61 +16,61 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 			return Input.GetAxisRaw(name);
 		}
 
-		// Token: 0x06002272 RID: 8818 RVA: 0x001EF54D File Offset: 0x001ED74D
+		// Token: 0x0600228A RID: 8842 RVA: 0x001F14B5 File Offset: 0x001EF6B5
 		public override bool GetButton(string name)
 		{
 			return Input.GetButton(name);
 		}
 
-		// Token: 0x06002273 RID: 8819 RVA: 0x001EF555 File Offset: 0x001ED755
+		// Token: 0x0600228B RID: 8843 RVA: 0x001F14BD File Offset: 0x001EF6BD
 		public override bool GetButtonDown(string name)
 		{
 			return Input.GetButtonDown(name);
 		}
 
-		// Token: 0x06002274 RID: 8820 RVA: 0x001EF55D File Offset: 0x001ED75D
+		// Token: 0x0600228C RID: 8844 RVA: 0x001F14C5 File Offset: 0x001EF6C5
 		public override bool GetButtonUp(string name)
 		{
 			return Input.GetButtonUp(name);
 		}
 
-		// Token: 0x06002275 RID: 8821 RVA: 0x001EF565 File Offset: 0x001ED765
+		// Token: 0x0600228D RID: 8845 RVA: 0x001F14CD File Offset: 0x001EF6CD
 		public override void SetButtonDown(string name)
 		{
 			throw new Exception(" This is not possible to be called for standalone input. Please check your platform and code where this is called");
 		}
 
-		// Token: 0x06002276 RID: 8822 RVA: 0x001EF571 File Offset: 0x001ED771
+		// Token: 0x0600228E RID: 8846 RVA: 0x001F14D9 File Offset: 0x001EF6D9
 		public override void SetButtonUp(string name)
 		{
 			throw new Exception(" This is not possible to be called for standalone input. Please check your platform and code where this is called");
 		}
 
-		// Token: 0x06002277 RID: 8823 RVA: 0x001EF57D File Offset: 0x001ED77D
+		// Token: 0x0600228F RID: 8847 RVA: 0x001F14E5 File Offset: 0x001EF6E5
 		public override void SetAxisPositive(string name)
 		{
 			throw new Exception(" This is not possible to be called for standalone input. Please check your platform and code where this is called");
 		}
 
-		// Token: 0x06002278 RID: 8824 RVA: 0x001EF589 File Offset: 0x001ED789
+		// Token: 0x06002290 RID: 8848 RVA: 0x001F14F1 File Offset: 0x001EF6F1
 		public override void SetAxisNegative(string name)
 		{
 			throw new Exception(" This is not possible to be called for standalone input. Please check your platform and code where this is called");
 		}
 
-		// Token: 0x06002279 RID: 8825 RVA: 0x001EF595 File Offset: 0x001ED795
+		// Token: 0x06002291 RID: 8849 RVA: 0x001F14FD File Offset: 0x001EF6FD
 		public override void SetAxisZero(string name)
 		{
 			throw new Exception(" This is not possible to be called for standalone input. Please check your platform and code where this is called");
 		}
 
-		// Token: 0x0600227A RID: 8826 RVA: 0x001EF5A1 File Offset: 0x001ED7A1
+		// Token: 0x06002292 RID: 8850 RVA: 0x001F1509 File Offset: 0x001EF709
 		public override void SetAxis(string name, float value)
 		{
 			throw new Exception(" This is not possible to be called for standalone input. Please check your platform and code where this is called");
 		}
 
-		// Token: 0x0600227B RID: 8827 RVA: 0x001EF5AD File Offset: 0x001ED7AD
+		// Token: 0x06002293 RID: 8851 RVA: 0x001F1515 File Offset: 0x001EF715
 		public override Vector3 MousePosition()
 		{
 			return Input.mousePosition;

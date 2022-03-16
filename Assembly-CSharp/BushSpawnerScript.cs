@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000103 RID: 259
 public class BushSpawnerScript : MonoBehaviour
 {
-	// Token: 0x06000A9B RID: 2715 RVA: 0x000613E0 File Offset: 0x0005F5E0
+	// Token: 0x06000A9D RID: 2717 RVA: 0x000617A8 File Offset: 0x0005F9A8
 	private void Update()
 	{
 		if (Input.GetKeyDown("z"))
@@ -17,9 +17,9 @@ public class BushSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000CB8 RID: 3256
+	// Token: 0x04000CBE RID: 3262
 	public GameObject Bush;
 
-	// Token: 0x04000CB9 RID: 3257
+	// Token: 0x04000CBF RID: 3263
 	public bool Begin;
 }

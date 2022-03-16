@@ -2,15 +2,15 @@
 
 namespace AnimationOrTween
 {
-	// Token: 0x0200058A RID: 1418
+	// Token: 0x0200058E RID: 1422
 	[DoNotObfuscateNGUI]
 	public enum EnableCondition
 	{
-		// Token: 0x04004BF1 RID: 19441
+		// Token: 0x04004C50 RID: 19536
 		DoNothing,
-		// Token: 0x04004BF2 RID: 19442
+		// Token: 0x04004C51 RID: 19537
 		EnableThenPlay,
-		// Token: 0x04004BF3 RID: 19443
+		// Token: 0x04004C52 RID: 19538
 		IgnoreDisabledState
 	}
 }

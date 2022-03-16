@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002CE RID: 718
 public class FoldedUniformScript : MonoBehaviour
 {
-	// Token: 0x060014AC RID: 5292 RVA: 0x000CB684 File Offset: 0x000C9884
+	// Token: 0x060014AF RID: 5295 RVA: 0x000CBAF4 File Offset: 0x000C9CF4
 	private void Start()
 	{
 		for (int i = 1; i < this.Uniforms.Length; i++)
@@ -66,7 +66,7 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014AD RID: 5293 RVA: 0x000CB890 File Offset: 0x000C9A90
+	// Token: 0x060014B0 RID: 5296 RVA: 0x000CBD00 File Offset: 0x000C9F00
 	private void Update()
 	{
 		if (this.Clean)
@@ -102,7 +102,7 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014AE RID: 5294 RVA: 0x000CBA38 File Offset: 0x000C9C38
+	// Token: 0x060014B1 RID: 5297 RVA: 0x000CBEA8 File Offset: 0x000CA0A8
 	public void CleanUp()
 	{
 		Debug.Log("A folded uniform is firing the ''CleanUp()'' function.");
@@ -117,45 +117,45 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002055 RID: 8277
+	// Token: 0x04002065 RID: 8293
 	public YandereScript Yandere;
 
-	// Token: 0x04002056 RID: 8278
+	// Token: 0x04002066 RID: 8294
 	public PromptScript Prompt;
 
-	// Token: 0x04002057 RID: 8279
+	// Token: 0x04002067 RID: 8295
 	public GameObject SteamCloud;
 
-	// Token: 0x04002058 RID: 8280
+	// Token: 0x04002068 RID: 8296
 	public bool ClubAttire;
 
-	// Token: 0x04002059 RID: 8281
+	// Token: 0x04002069 RID: 8297
 	public bool InPosition = true;
 
-	// Token: 0x0400205A RID: 8282
+	// Token: 0x0400206A RID: 8298
 	public bool Clean;
 
-	// Token: 0x0400205B RID: 8283
+	// Token: 0x0400206B RID: 8299
 	public bool Spare;
 
-	// Token: 0x0400205C RID: 8284
+	// Token: 0x0400206C RID: 8300
 	public float Timer;
 
-	// Token: 0x0400205D RID: 8285
+	// Token: 0x0400206D RID: 8301
 	public int Type;
 
-	// Token: 0x0400205E RID: 8286
+	// Token: 0x0400206E RID: 8302
 	public GameObject[] Uniforms;
 
-	// Token: 0x0400205F RID: 8287
+	// Token: 0x0400206F RID: 8303
 	public Renderer[] MyRenderer;
 
-	// Token: 0x04002060 RID: 8288
+	// Token: 0x04002070 RID: 8304
 	public Texture CleanTexture;
 
-	// Token: 0x04002061 RID: 8289
+	// Token: 0x04002071 RID: 8305
 	public Texture EightiesTexture;
 
-	// Token: 0x04002062 RID: 8290
+	// Token: 0x04002072 RID: 8306
 	public Texture BloodyEightiesTexture;
 }

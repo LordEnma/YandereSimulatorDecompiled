@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace YandereSimulator.Yancord
 {
-	// Token: 0x0200051F RID: 1311
+	// Token: 0x02000523 RID: 1315
 	[CreateAssetMenu(fileName = "ChatProfile", menuName = "Yancord/Profile", order = 1)]
 	public class Profile : ScriptableObject
 	{
-		// Token: 0x06002173 RID: 8563 RVA: 0x001EAC6C File Offset: 0x001E8E6C
+		// Token: 0x0600218B RID: 8587 RVA: 0x001ECBD4 File Offset: 0x001EADD4
 		public string GetTag(bool WithHashtag)
 		{
 			string text = this.Tag;
@@ -18,22 +18,22 @@ namespace YandereSimulator.Yancord
 			return WithHashtag ? ("#" + text) : text;
 		}
 
-		// Token: 0x0400495D RID: 18781
+		// Token: 0x040049BC RID: 18876
 		[Header("Personal Information")]
 		public string FirstName;
 
-		// Token: 0x0400495E RID: 18782
+		// Token: 0x040049BD RID: 18877
 		public string LastName;
 
-		// Token: 0x0400495F RID: 18783
+		// Token: 0x040049BE RID: 18878
 		[Space(20f)]
 		[Header("Profile Information")]
 		public Texture2D ProfilePicture;
 
-		// Token: 0x04004960 RID: 18784
+		// Token: 0x040049BF RID: 18879
 		public string Tag = "XXXX";
 
-		// Token: 0x04004961 RID: 18785
+		// Token: 0x040049C0 RID: 18880
 		[Space(20f)]
 		[Header("Profile Settings")]
 		public Status CurrentStatus;

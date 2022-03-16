@@ -1769,27 +1769,27 @@ public class UIPanel : UIRect
 	// Token: 0x0400074F RID: 1871
 	private bool mForced;
 
-	// Token: 0x02000637 RID: 1591
+	// Token: 0x0200063B RID: 1595
 	[DoNotObfuscateNGUI]
 	public enum RenderQueue
 	{
-		// Token: 0x04004E93 RID: 20115
+		// Token: 0x04004EF2 RID: 20210
 		Automatic,
-		// Token: 0x04004E94 RID: 20116
+		// Token: 0x04004EF3 RID: 20211
 		StartAt,
-		// Token: 0x04004E95 RID: 20117
+		// Token: 0x04004EF4 RID: 20212
 		Explicit
 	}
 
-	// Token: 0x02000638 RID: 1592
-	// (Invoke) Token: 0x06002605 RID: 9733
+	// Token: 0x0200063C RID: 1596
+	// (Invoke) Token: 0x0600261D RID: 9757
 	public delegate void OnGeometryUpdated();
 
-	// Token: 0x02000639 RID: 1593
-	// (Invoke) Token: 0x06002609 RID: 9737
+	// Token: 0x0200063D RID: 1597
+	// (Invoke) Token: 0x06002621 RID: 9761
 	public delegate void OnClippingMoved(UIPanel panel);
 
-	// Token: 0x0200063A RID: 1594
-	// (Invoke) Token: 0x0600260D RID: 9741
+	// Token: 0x0200063E RID: 1598
+	// (Invoke) Token: 0x06002625 RID: 9765
 	public delegate Material OnCreateMaterial(UIWidget widget, Material mat);
 }

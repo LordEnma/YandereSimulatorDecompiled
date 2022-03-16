@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020000DB RID: 219
 public class AudioSoftwareScript : MonoBehaviour
 {
-	// Token: 0x06000A09 RID: 2569 RVA: 0x00056915 File Offset: 0x00054B15
+	// Token: 0x06000A09 RID: 2569 RVA: 0x00056921 File Offset: 0x00054B21
 	private void Start()
 	{
 		this.Screen.SetActive(false);
 	}
 
-	// Token: 0x06000A0A RID: 2570 RVA: 0x00056924 File Offset: 0x00054B24
+	// Token: 0x06000A0A RID: 2570 RVA: 0x00056930 File Offset: 0x00054B30
 	private void Update()
 	{
 		if (this.ConversationRecorded && this.Yandere.Inventory.RivalPhone)

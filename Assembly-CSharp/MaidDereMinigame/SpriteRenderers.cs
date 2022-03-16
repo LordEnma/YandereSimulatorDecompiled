@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005B3 RID: 1459
+	// Token: 0x020005B7 RID: 1463
 	[Serializable]
 	public class SpriteRenderers : ReorderableArray<SpriteRenderer>
 	{

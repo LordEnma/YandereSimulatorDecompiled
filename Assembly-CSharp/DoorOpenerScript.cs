@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200028D RID: 653
 public class DoorOpenerScript : MonoBehaviour
 {
-	// Token: 0x060013AE RID: 5038 RVA: 0x000B8ECE File Offset: 0x000B70CE
+	// Token: 0x060013B1 RID: 5041 RVA: 0x000B92AA File Offset: 0x000B74AA
 	private void Start()
 	{
 		base.gameObject.layer = 1;
 	}
 
-	// Token: 0x060013AF RID: 5039 RVA: 0x000B8EDC File Offset: 0x000B70DC
+	// Token: 0x060013B2 RID: 5042 RVA: 0x000B92B8 File Offset: 0x000B74B8
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -24,7 +24,7 @@ public class DoorOpenerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013B0 RID: 5040 RVA: 0x000B8F5C File Offset: 0x000B715C
+	// Token: 0x060013B3 RID: 5043 RVA: 0x000B9338 File Offset: 0x000B7538
 	private void OnTriggerStay(Collider other)
 	{
 		if (!this.Door.Open && other.gameObject.layer == 9)
@@ -38,9 +38,9 @@ public class DoorOpenerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D34 RID: 7476
+	// Token: 0x04001D42 RID: 7490
 	public StudentScript Student;
 
-	// Token: 0x04001D35 RID: 7477
+	// Token: 0x04001D43 RID: 7491
 	public DoorScript Door;
 }

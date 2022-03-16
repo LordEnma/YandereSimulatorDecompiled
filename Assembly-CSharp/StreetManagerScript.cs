@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x0200044B RID: 1099
+// Token: 0x0200044C RID: 1100
 public class StreetManagerScript : MonoBehaviour
 {
-	// Token: 0x06001D2B RID: 7467 RVA: 0x0015CC2C File Offset: 0x0015AE2C
+	// Token: 0x06001D39 RID: 7481 RVA: 0x0015DDDC File Offset: 0x0015BFDC
 	private void Start()
 	{
 		this.MaidAnimation["f02_faceCouncilGrace_00"].layer = 1;
@@ -57,7 +57,7 @@ public class StreetManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D2C RID: 7468 RVA: 0x0015CE68 File Offset: 0x0015B068
+	// Token: 0x06001D3A RID: 7482 RVA: 0x0015E018 File Offset: 0x0015C218
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -179,13 +179,13 @@ public class StreetManagerScript : MonoBehaviour
 		this.Stars.material.SetColor("_TintColor", new Color(1f, 1f, 1f, this.StarAlpha));
 	}
 
-	// Token: 0x06001D2D RID: 7469 RVA: 0x0015D3C6 File Offset: 0x0015B5C6
+	// Token: 0x06001D3B RID: 7483 RVA: 0x0015E576 File Offset: 0x0015C776
 	private void LateUpdate()
 	{
 		this.Hips.LookAt(this.BinocularCamera.position);
 	}
 
-	// Token: 0x06001D2E RID: 7470 RVA: 0x0015D3E0 File Offset: 0x0015B5E0
+	// Token: 0x06001D3C RID: 7484 RVA: 0x0015E590 File Offset: 0x0015C790
 	private void BecomeEighties()
 	{
 		for (int i = 1; i < this.HUDLabels.Length; i++)
@@ -201,7 +201,7 @@ public class StreetManagerScript : MonoBehaviour
 		this.Konbini.material.mainTexture = this.EightiesKonbini;
 	}
 
-	// Token: 0x06001D2F RID: 7471 RVA: 0x0015D4A0 File Offset: 0x0015B6A0
+	// Token: 0x06001D3D RID: 7485 RVA: 0x0015E650 File Offset: 0x0015C850
 	public void EightiesifyLabel(UILabel Label)
 	{
 		Label.trueTypeFont = this.VCR;
@@ -211,120 +211,120 @@ public class StreetManagerScript : MonoBehaviour
 		Label.effectColor = new Color(0f, 0f, 0f, 1f);
 	}
 
-	// Token: 0x04003514 RID: 13588
+	// Token: 0x0400354F RID: 13647
 	public StreetShopInterfaceScript StreetShopInterface;
 
-	// Token: 0x04003515 RID: 13589
+	// Token: 0x04003550 RID: 13648
 	public AudioSource CurrentlyActiveJukebox;
 
-	// Token: 0x04003516 RID: 13590
+	// Token: 0x04003551 RID: 13649
 	public AudioSource JukeboxNight;
 
-	// Token: 0x04003517 RID: 13591
+	// Token: 0x04003552 RID: 13650
 	public AudioSource JukeboxDay;
 
-	// Token: 0x04003518 RID: 13592
+	// Token: 0x04003553 RID: 13651
 	public AudioSource Yakuza;
 
-	// Token: 0x04003519 RID: 13593
+	// Token: 0x04003554 RID: 13652
 	public Transform BinocularCamera;
 
-	// Token: 0x0400351A RID: 13594
+	// Token: 0x04003555 RID: 13653
 	public Transform Yandere;
 
-	// Token: 0x0400351B RID: 13595
+	// Token: 0x04003556 RID: 13654
 	public Transform Hips;
 
-	// Token: 0x0400351C RID: 13596
+	// Token: 0x04003557 RID: 13655
 	public Transform Sun;
 
-	// Token: 0x0400351D RID: 13597
+	// Token: 0x04003558 RID: 13656
 	public Animation MaidAnimation;
 
-	// Token: 0x0400351E RID: 13598
+	// Token: 0x04003559 RID: 13657
 	public Animation Gossip1;
 
-	// Token: 0x0400351F RID: 13599
+	// Token: 0x0400355A RID: 13658
 	public Animation Gossip2;
 
-	// Token: 0x04003520 RID: 13600
+	// Token: 0x0400355B RID: 13659
 	public GameObject MaidPrompt;
 
-	// Token: 0x04003521 RID: 13601
+	// Token: 0x0400355C RID: 13660
 	public GameObject MaidLabel;
 
-	// Token: 0x04003522 RID: 13602
+	// Token: 0x0400355D RID: 13661
 	public HomeClockScript Clock;
 
-	// Token: 0x04003523 RID: 13603
+	// Token: 0x0400355E RID: 13662
 	public Animation[] Civilian;
 
-	// Token: 0x04003524 RID: 13604
+	// Token: 0x0400355F RID: 13663
 	public GameObject Couple;
 
-	// Token: 0x04003525 RID: 13605
+	// Token: 0x04003560 RID: 13664
 	public UISprite Darkness;
 
-	// Token: 0x04003526 RID: 13606
+	// Token: 0x04003561 RID: 13665
 	public Renderer Stars;
 
-	// Token: 0x04003527 RID: 13607
+	// Token: 0x04003562 RID: 13666
 	public Light Sunlight;
 
-	// Token: 0x04003528 RID: 13608
+	// Token: 0x04003563 RID: 13667
 	public bool Threatened;
 
-	// Token: 0x04003529 RID: 13609
+	// Token: 0x04003564 RID: 13668
 	public bool GoToCafe;
 
-	// Token: 0x0400352A RID: 13610
+	// Token: 0x04003565 RID: 13669
 	public bool FadeOut;
 
-	// Token: 0x0400352B RID: 13611
+	// Token: 0x04003566 RID: 13670
 	public bool Mute;
 
-	// Token: 0x0400352C RID: 13612
+	// Token: 0x04003567 RID: 13671
 	public bool Day;
 
-	// Token: 0x0400352D RID: 13613
+	// Token: 0x04003568 RID: 13672
 	public float Rotation;
 
-	// Token: 0x0400352E RID: 13614
+	// Token: 0x04003569 RID: 13673
 	public float Timer;
 
-	// Token: 0x0400352F RID: 13615
+	// Token: 0x0400356A RID: 13674
 	public float DesiredValue;
 
-	// Token: 0x04003530 RID: 13616
+	// Token: 0x0400356B RID: 13675
 	public float StarAlpha;
 
-	// Token: 0x04003531 RID: 13617
+	// Token: 0x0400356C RID: 13676
 	public float Alpha;
 
-	// Token: 0x04003532 RID: 13618
+	// Token: 0x0400356D RID: 13677
 	public UILabel[] HUDLabels;
 
-	// Token: 0x04003533 RID: 13619
+	// Token: 0x0400356E RID: 13678
 	public AudioClip DayStreet80s;
 
-	// Token: 0x04003534 RID: 13620
+	// Token: 0x0400356F RID: 13679
 	public AudioClip NightStreet80s;
 
-	// Token: 0x04003535 RID: 13621
+	// Token: 0x04003570 RID: 13680
 	public GameObject EightiesCivilians;
 
-	// Token: 0x04003536 RID: 13622
+	// Token: 0x04003571 RID: 13681
 	public GameObject ModernCivilians;
 
-	// Token: 0x04003537 RID: 13623
+	// Token: 0x04003572 RID: 13682
 	public GameObject KenchoShip;
 
-	// Token: 0x04003538 RID: 13624
+	// Token: 0x04003573 RID: 13683
 	public Renderer Konbini;
 
-	// Token: 0x04003539 RID: 13625
+	// Token: 0x04003574 RID: 13684
 	public Texture EightiesKonbini;
 
-	// Token: 0x0400353A RID: 13626
+	// Token: 0x04003575 RID: 13685
 	public Font VCR;
 }

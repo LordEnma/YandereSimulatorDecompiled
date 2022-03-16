@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003E1 RID: 993
+// Token: 0x020003E2 RID: 994
 public class OsanaMorningFriendEventScript : MonoBehaviour
 {
-	// Token: 0x06001BAE RID: 7086 RVA: 0x0013E52C File Offset: 0x0013C72C
+	// Token: 0x06001BBB RID: 7099 RVA: 0x0013F3D0 File Offset: 0x0013D5D0
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -22,7 +22,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BAF RID: 7087 RVA: 0x0013E620 File Offset: 0x0013C820
+	// Token: 0x06001BBC RID: 7100 RVA: 0x0013F4C4 File Offset: 0x0013D6C4
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -205,7 +205,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BB0 RID: 7088 RVA: 0x0013EFA0 File Offset: 0x0013D1A0
+	// Token: 0x06001BBD RID: 7101 RVA: 0x0013FE44 File Offset: 0x0013E044
 	public void EndEvent()
 	{
 		Debug.Log("Osana's ''talk with friend before going to the lockers'' event has ended.");
@@ -287,7 +287,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BB1 RID: 7089 RVA: 0x0013F340 File Offset: 0x0013D540
+	// Token: 0x06001BBE RID: 7102 RVA: 0x001401E4 File Offset: 0x0013E3E4
 	private void SettleRival()
 	{
 		this.Rival.MoveTowardsTarget(this.Location[2].position);
@@ -297,14 +297,14 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BB2 RID: 7090 RVA: 0x0013F3CB File Offset: 0x0013D5CB
+	// Token: 0x06001BBF RID: 7103 RVA: 0x0014026F File Offset: 0x0013E46F
 	private void SettleFriend()
 	{
 		this.Friend.MoveTowardsTarget(this.Location[1].position);
 		this.Friend.transform.LookAt(this.Rival.transform.position);
 	}
 
-	// Token: 0x06001BB3 RID: 7091 RVA: 0x0013F408 File Offset: 0x0013D608
+	// Token: 0x06001BC0 RID: 7104 RVA: 0x001402AC File Offset: 0x0013E4AC
 	private void PlayRelevantAnim()
 	{
 		if (this.Speaker[this.SpeechPhase] == 1)
@@ -319,132 +319,132 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		this.CurrentSpeaker = this.Friend;
 	}
 
-	// Token: 0x04002FEE RID: 12270
+	// Token: 0x04003022 RID: 12322
 	public RivalMorningEventManagerScript OtherEvent;
 
-	// Token: 0x04002FEF RID: 12271
+	// Token: 0x04003023 RID: 12323
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002FF0 RID: 12272
+	// Token: 0x04003024 RID: 12324
 	public EndOfDayScript EndOfDay;
 
-	// Token: 0x04002FF1 RID: 12273
+	// Token: 0x04003025 RID: 12325
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002FF2 RID: 12274
+	// Token: 0x04003026 RID: 12326
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002FF3 RID: 12275
+	// Token: 0x04003027 RID: 12327
 	public YandereScript Yandere;
 
-	// Token: 0x04002FF4 RID: 12276
+	// Token: 0x04003028 RID: 12328
 	public ClockScript Clock;
 
-	// Token: 0x04002FF5 RID: 12277
+	// Token: 0x04003029 RID: 12329
 	public SpyScript Spy;
 
-	// Token: 0x04002FF6 RID: 12278
+	// Token: 0x0400302A RID: 12330
 	public StudentScript CurrentSpeaker;
 
-	// Token: 0x04002FF7 RID: 12279
+	// Token: 0x0400302B RID: 12331
 	public StudentScript Friend;
 
-	// Token: 0x04002FF8 RID: 12280
+	// Token: 0x0400302C RID: 12332
 	public StudentScript Rival;
 
-	// Token: 0x04002FF9 RID: 12281
+	// Token: 0x0400302D RID: 12333
 	public Transform Epicenter;
 
-	// Token: 0x04002FFA RID: 12282
+	// Token: 0x0400302E RID: 12334
 	public Transform[] Location;
 
-	// Token: 0x04002FFB RID: 12283
+	// Token: 0x0400302F RID: 12335
 	public AudioClip SpeechClip;
 
-	// Token: 0x04002FFC RID: 12284
+	// Token: 0x04003030 RID: 12336
 	public string[] SpeechText;
 
-	// Token: 0x04002FFD RID: 12285
+	// Token: 0x04003031 RID: 12337
 	public float[] SpeechTime;
 
-	// Token: 0x04002FFE RID: 12286
+	// Token: 0x04003032 RID: 12338
 	public string[] EventAnim;
 
-	// Token: 0x04002FFF RID: 12287
+	// Token: 0x04003033 RID: 12339
 	public int[] Speaker;
 
-	// Token: 0x04003000 RID: 12288
+	// Token: 0x04003034 RID: 12340
 	public AudioClip InterruptedClip;
 
-	// Token: 0x04003001 RID: 12289
+	// Token: 0x04003035 RID: 12341
 	public string[] InterruptedSpeech;
 
-	// Token: 0x04003002 RID: 12290
+	// Token: 0x04003036 RID: 12342
 	public float[] InterruptedTime;
 
-	// Token: 0x04003003 RID: 12291
+	// Token: 0x04003037 RID: 12343
 	public string[] InterruptedAnim;
 
-	// Token: 0x04003004 RID: 12292
+	// Token: 0x04003038 RID: 12344
 	public int[] InterruptedSpeaker;
 
-	// Token: 0x04003005 RID: 12293
+	// Token: 0x04003039 RID: 12345
 	public AudioClip AltSpeechClip;
 
-	// Token: 0x04003006 RID: 12294
+	// Token: 0x0400303A RID: 12346
 	public string[] AltSpeechText;
 
-	// Token: 0x04003007 RID: 12295
+	// Token: 0x0400303B RID: 12347
 	public float[] AltSpeechTime;
 
-	// Token: 0x04003008 RID: 12296
+	// Token: 0x0400303C RID: 12348
 	public string[] AltEventAnim;
 
-	// Token: 0x04003009 RID: 12297
+	// Token: 0x0400303D RID: 12349
 	public int[] AltSpeaker;
 
-	// Token: 0x0400300A RID: 12298
+	// Token: 0x0400303E RID: 12350
 	public GameObject AlarmDisc;
 
-	// Token: 0x0400300B RID: 12299
+	// Token: 0x0400303F RID: 12351
 	public GameObject VoiceClip;
 
-	// Token: 0x0400300C RID: 12300
+	// Token: 0x04003040 RID: 12352
 	public Quaternion targetRotation;
 
-	// Token: 0x0400300D RID: 12301
+	// Token: 0x04003041 RID: 12353
 	public float Distance;
 
-	// Token: 0x0400300E RID: 12302
+	// Token: 0x04003042 RID: 12354
 	public float Scale;
 
-	// Token: 0x0400300F RID: 12303
+	// Token: 0x04003043 RID: 12355
 	public float Timer;
 
-	// Token: 0x04003010 RID: 12304
+	// Token: 0x04003044 RID: 12356
 	public DayOfWeek EventDay;
 
-	// Token: 0x04003011 RID: 12305
+	// Token: 0x04003045 RID: 12357
 	public int SpeechPhase = 1;
 
-	// Token: 0x04003012 RID: 12306
+	// Token: 0x04003046 RID: 12358
 	public int FriendID = 6;
 
-	// Token: 0x04003013 RID: 12307
+	// Token: 0x04003047 RID: 12359
 	public int RivalID = 11;
 
-	// Token: 0x04003014 RID: 12308
+	// Token: 0x04003048 RID: 12360
 	public int Phase;
 
-	// Token: 0x04003015 RID: 12309
+	// Token: 0x04003049 RID: 12361
 	public int Frame;
 
-	// Token: 0x04003016 RID: 12310
+	// Token: 0x0400304A RID: 12362
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04003017 RID: 12311
+	// Token: 0x0400304B RID: 12363
 	public Vector3 OriginalRotation;
 
-	// Token: 0x04003018 RID: 12312
+	// Token: 0x0400304C RID: 12364
 	public bool LosingFriend;
 }

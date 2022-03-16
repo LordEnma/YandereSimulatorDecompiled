@@ -4,7 +4,13 @@ using UnityEngine;
 // Token: 0x020000EE RID: 238
 public class BodyHidingLockerScript : MonoBehaviour
 {
-	// Token: 0x06000A4C RID: 2636 RVA: 0x0005B5F4 File Offset: 0x000597F4
+	// Token: 0x06000A4C RID: 2636 RVA: 0x0005B6DD File Offset: 0x000598DD
+	private void Start()
+	{
+		this.Outline = base.GetComponentInChildren<OutlineScript>();
+	}
+
+	// Token: 0x06000A4D RID: 2637 RVA: 0x0005B6EC File Offset: 0x000598EC
 	private void Update()
 	{
 		if (this.Rotation != 0f)
@@ -83,6 +89,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 					this.Corpse.Student.CharacterAnimation.enabled = true;
 					this.Corpse.Student.CharacterAnimation.Play("f02_lockerPose_00");
 					this.Rotation = -180f;
+					this.Outline.color = new Color(1f, 0.5f, 0f, 1f);
 					return;
 				}
 			}
@@ -120,10 +127,11 @@ public class BodyHidingLockerScript : MonoBehaviour
 			}
 			this.Corpse = null;
 			this.Rotation = -180f;
+			this.Outline.color = new Color(0f, 1f, 1f, 1f);
 		}
 	}
 
-	// Token: 0x06000A4D RID: 2637 RVA: 0x0005BBCC File Offset: 0x00059DCC
+	// Token: 0x06000A4E RID: 2638 RVA: 0x0005BD0C File Offset: 0x00059F0C
 	public void UpdateCorpse()
 	{
 		this.Corpse = this.StudentManager.Students[this.StudentID].Ragdoll;
@@ -132,33 +140,36 @@ public class BodyHidingLockerScript : MonoBehaviour
 		this.Prompt.enabled = true;
 	}
 
-	// Token: 0x04000BC5 RID: 3013
+	// Token: 0x04000BCA RID: 3018
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000BC6 RID: 3014
-	public RagdollScript Corpse;
-
-	// Token: 0x04000BC7 RID: 3015
-	public PromptScript Prompt;
-
-	// Token: 0x04000BC8 RID: 3016
-	public AudioClip LockerClose;
-
-	// Token: 0x04000BC9 RID: 3017
-	public AudioClip LockerOpen;
-
-	// Token: 0x04000BCA RID: 3018
-	public float Rotation;
-
 	// Token: 0x04000BCB RID: 3019
-	public float Speed;
+	public OutlineScript Outline;
 
 	// Token: 0x04000BCC RID: 3020
-	public Transform Door;
+	public RagdollScript Corpse;
 
 	// Token: 0x04000BCD RID: 3021
-	public int StudentID;
+	public PromptScript Prompt;
 
 	// Token: 0x04000BCE RID: 3022
+	public AudioClip LockerClose;
+
+	// Token: 0x04000BCF RID: 3023
+	public AudioClip LockerOpen;
+
+	// Token: 0x04000BD0 RID: 3024
+	public float Rotation;
+
+	// Token: 0x04000BD1 RID: 3025
+	public float Speed;
+
+	// Token: 0x04000BD2 RID: 3026
+	public Transform Door;
+
+	// Token: 0x04000BD3 RID: 3027
+	public int StudentID;
+
+	// Token: 0x04000BD4 RID: 3028
 	public bool ABC;
 }

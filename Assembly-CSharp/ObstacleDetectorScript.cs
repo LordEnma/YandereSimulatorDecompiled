@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000384 RID: 900
 public class ObstacleDetectorScript : MonoBehaviour
 {
-	// Token: 0x06001A29 RID: 6697 RVA: 0x00113BA4 File Offset: 0x00111DA4
+	// Token: 0x06001A33 RID: 6707 RVA: 0x001146B4 File Offset: 0x001128B4
 	private void Update()
 	{
 		this.Frame++;
@@ -34,7 +34,7 @@ public class ObstacleDetectorScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001A2A RID: 6698 RVA: 0x00113C84 File Offset: 0x00111E84
+	// Token: 0x06001A34 RID: 6708 RVA: 0x00114794 File Offset: 0x00112994
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Yandere.Container.CelloCase && other.gameObject.layer != 1 && other.gameObject.layer != 2 && other.gameObject.layer != 8 && other.gameObject.layer != 13 && other.gameObject.layer != 14)
@@ -44,15 +44,15 @@ public class ObstacleDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002AAC RID: 10924
+	// Token: 0x04002AD5 RID: 10965
 	public YandereScript Yandere;
 
-	// Token: 0x04002AAD RID: 10925
+	// Token: 0x04002AD6 RID: 10966
 	public int Obstacles;
 
-	// Token: 0x04002AAE RID: 10926
+	// Token: 0x04002AD7 RID: 10967
 	public int Frame;
 
-	// Token: 0x04002AAF RID: 10927
+	// Token: 0x04002AD8 RID: 10968
 	public int ID;
 }

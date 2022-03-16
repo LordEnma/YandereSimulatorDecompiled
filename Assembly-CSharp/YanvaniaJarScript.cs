@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004DC RID: 1244
+// Token: 0x020004E0 RID: 1248
 public class YanvaniaJarScript : MonoBehaviour
 {
-	// Token: 0x060020A3 RID: 8355 RVA: 0x001DFE6C File Offset: 0x001DE06C
+	// Token: 0x060020BB RID: 8379 RVA: 0x001E1DD4 File Offset: 0x001DFFD4
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 19 && !this.Destroyed)
@@ -20,15 +20,15 @@ public class YanvaniaJarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004786 RID: 18310
+	// Token: 0x040047E5 RID: 18405
 	public GameObject Explosion;
 
-	// Token: 0x04004787 RID: 18311
+	// Token: 0x040047E6 RID: 18406
 	public bool Destroyed;
 
-	// Token: 0x04004788 RID: 18312
+	// Token: 0x040047E7 RID: 18407
 	public AudioClip Break;
 
-	// Token: 0x04004789 RID: 18313
+	// Token: 0x040047E8 RID: 18408
 	public GameObject Shard;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200046A RID: 1130
+// Token: 0x0200046C RID: 1132
 public class TaskManagerScript : MonoBehaviour
 {
-	// Token: 0x06001E9B RID: 7835 RVA: 0x001AE4A8 File Offset: 0x001AC6A8
+	// Token: 0x06001EAB RID: 7851 RVA: 0x001AFBB4 File Offset: 0x001ADDB4
 	public void Start()
 	{
 		for (int i = 1; i < 101; i++)
@@ -30,7 +30,7 @@ public class TaskManagerScript : MonoBehaviour
 		this.Initialized = true;
 	}
 
-	// Token: 0x06001E9C RID: 7836 RVA: 0x001AE53C File Offset: 0x001AC73C
+	// Token: 0x06001EAC RID: 7852 RVA: 0x001AFC48 File Offset: 0x001ADE48
 	public void CheckTaskPickups()
 	{
 		if (!this.StudentManager.Eighties)
@@ -68,7 +68,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E9D RID: 7837 RVA: 0x001AE700 File Offset: 0x001AC900
+	// Token: 0x06001EAD RID: 7853 RVA: 0x001AFE0C File Offset: 0x001AE00C
 	public void UpdateTaskStatus()
 	{
 		if (!this.StudentManager.Eighties)
@@ -232,7 +232,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E9E RID: 7838 RVA: 0x001AED78 File Offset: 0x001ACF78
+	// Token: 0x06001EAE RID: 7854 RVA: 0x001B0484 File Offset: 0x001AE684
 	public void SaveTaskStatuses()
 	{
 		for (int i = 1; i < 101; i++)
@@ -245,24 +245,24 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F3E RID: 16190
+	// Token: 0x04003F88 RID: 16264
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003F3F RID: 16191
+	// Token: 0x04003F89 RID: 16265
 	public YandereScript Yandere;
 
-	// Token: 0x04003F40 RID: 16192
+	// Token: 0x04003F8A RID: 16266
 	public GameObject[] TaskObjects;
 
-	// Token: 0x04003F41 RID: 16193
+	// Token: 0x04003F8B RID: 16267
 	public PromptScript[] Prompts;
 
-	// Token: 0x04003F42 RID: 16194
+	// Token: 0x04003F8C RID: 16268
 	public bool[] GirlsQuestioned;
 
-	// Token: 0x04003F43 RID: 16195
+	// Token: 0x04003F8D RID: 16269
 	public int[] TaskStatus;
 
-	// Token: 0x04003F44 RID: 16196
+	// Token: 0x04003F8E RID: 16270
 	public bool Initialized;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200033C RID: 828
 public class IntroYandereScript : MonoBehaviour
 {
-	// Token: 0x060018F4 RID: 6388 RVA: 0x000F9D20 File Offset: 0x000F7F20
+	// Token: 0x060018FB RID: 6395 RVA: 0x000FA4DC File Offset: 0x000F86DC
 	private void LateUpdate()
 	{
 		this.Hips.localEulerAngles = new Vector3(this.Hips.localEulerAngles.x + this.X, this.Hips.localEulerAngles.y, this.Hips.localEulerAngles.z);
@@ -22,45 +22,45 @@ public class IntroYandereScript : MonoBehaviour
 		this.LeftFoot.localEulerAngles = new Vector3(this.LeftFoot.localEulerAngles.x - this.X, this.LeftFoot.localEulerAngles.y, this.LeftFoot.localEulerAngles.z);
 	}
 
-	// Token: 0x040026C6 RID: 9926
+	// Token: 0x040026E3 RID: 9955
 	public Transform Hips;
 
-	// Token: 0x040026C7 RID: 9927
+	// Token: 0x040026E4 RID: 9956
 	public Transform Spine;
 
-	// Token: 0x040026C8 RID: 9928
+	// Token: 0x040026E5 RID: 9957
 	public Transform Spine1;
 
-	// Token: 0x040026C9 RID: 9929
+	// Token: 0x040026E6 RID: 9958
 	public Transform Spine2;
 
-	// Token: 0x040026CA RID: 9930
+	// Token: 0x040026E7 RID: 9959
 	public Transform Spine3;
 
-	// Token: 0x040026CB RID: 9931
+	// Token: 0x040026E8 RID: 9960
 	public Transform Neck;
 
-	// Token: 0x040026CC RID: 9932
+	// Token: 0x040026E9 RID: 9961
 	public Transform Head;
 
-	// Token: 0x040026CD RID: 9933
+	// Token: 0x040026EA RID: 9962
 	public Transform RightUpLeg;
 
-	// Token: 0x040026CE RID: 9934
+	// Token: 0x040026EB RID: 9963
 	public Transform RightLeg;
 
-	// Token: 0x040026CF RID: 9935
+	// Token: 0x040026EC RID: 9964
 	public Transform RightFoot;
 
-	// Token: 0x040026D0 RID: 9936
+	// Token: 0x040026ED RID: 9965
 	public Transform LeftUpLeg;
 
-	// Token: 0x040026D1 RID: 9937
+	// Token: 0x040026EE RID: 9966
 	public Transform LeftLeg;
 
-	// Token: 0x040026D2 RID: 9938
+	// Token: 0x040026EF RID: 9967
 	public Transform LeftFoot;
 
-	// Token: 0x040026D3 RID: 9939
+	// Token: 0x040026F0 RID: 9968
 	public float X;
 }

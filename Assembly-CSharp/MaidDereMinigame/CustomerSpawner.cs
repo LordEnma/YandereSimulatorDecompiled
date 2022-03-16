@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x0200058E RID: 1422
+	// Token: 0x02000592 RID: 1426
 	public class CustomerSpawner : MonoBehaviour
 	{
-		// Token: 0x06002417 RID: 9239 RVA: 0x001FA16C File Offset: 0x001F836C
+		// Token: 0x0600242F RID: 9263 RVA: 0x001FC0D4 File Offset: 0x001FA2D4
 		private void Start()
 		{
 			this.spawnRate = GameController.Instance.activeDifficultyVariables.customerSpawnRate;
@@ -14,25 +14,25 @@ namespace MaidDereMinigame
 			this.isPaused = true;
 		}
 
-		// Token: 0x06002418 RID: 9240 RVA: 0x001FA19F File Offset: 0x001F839F
+		// Token: 0x06002430 RID: 9264 RVA: 0x001FC107 File Offset: 0x001FA307
 		private void OnEnable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(this.Pause));
 		}
 
-		// Token: 0x06002419 RID: 9241 RVA: 0x001FA1C1 File Offset: 0x001F83C1
+		// Token: 0x06002431 RID: 9265 RVA: 0x001FC129 File Offset: 0x001FA329
 		private void OnDisable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(this.Pause));
 		}
 
-		// Token: 0x0600241A RID: 9242 RVA: 0x001FA1E3 File Offset: 0x001F83E3
+		// Token: 0x06002432 RID: 9266 RVA: 0x001FC14B File Offset: 0x001FA34B
 		public void Pause(bool toPause)
 		{
 			this.isPaused = toPause;
 		}
 
-		// Token: 0x0600241B RID: 9243 RVA: 0x001FA1EC File Offset: 0x001F83EC
+		// Token: 0x06002433 RID: 9267 RVA: 0x001FC154 File Offset: 0x001FA354
 		private void Update()
 		{
 			if (this.isPaused)
@@ -48,7 +48,7 @@ namespace MaidDereMinigame
 			this.timeTillSpawn -= Time.deltaTime;
 		}
 
-		// Token: 0x0600241C RID: 9244 RVA: 0x001FA248 File Offset: 0x001F8448
+		// Token: 0x06002434 RID: 9268 RVA: 0x001FC1B0 File Offset: 0x001FA3B0
 		private void SpawnCustomer()
 		{
 			GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.customerPrefabs[UnityEngine.Random.Range(0, this.customerPrefabs.Length)]);
@@ -58,28 +58,28 @@ namespace MaidDereMinigame
 			component.leaveTarget = base.transform;
 		}
 
-		// Token: 0x0600241D RID: 9245 RVA: 0x001FA29B File Offset: 0x001F849B
+		// Token: 0x06002435 RID: 9269 RVA: 0x001FC203 File Offset: 0x001FA403
 		public void OpenDoor()
 		{
 			base.transform.parent.GetComponent<Animator>().SetTrigger("DoorOpen");
 		}
 
-		// Token: 0x04004C04 RID: 19460
+		// Token: 0x04004C63 RID: 19555
 		public GameObject[] customerPrefabs;
 
-		// Token: 0x04004C05 RID: 19461
+		// Token: 0x04004C64 RID: 19556
 		private float spawnRate = 10f;
 
-		// Token: 0x04004C06 RID: 19462
+		// Token: 0x04004C65 RID: 19557
 		private float spawnVariance = 5f;
 
-		// Token: 0x04004C07 RID: 19463
+		// Token: 0x04004C66 RID: 19558
 		private float timeTillSpawn;
 
-		// Token: 0x04004C08 RID: 19464
+		// Token: 0x04004C67 RID: 19559
 		private int spawnedCustomers;
 
-		// Token: 0x04004C09 RID: 19465
+		// Token: 0x04004C68 RID: 19560
 		private bool isPaused;
 	}
 }

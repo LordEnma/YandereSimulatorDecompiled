@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200046C RID: 1132
+// Token: 0x0200046E RID: 1134
 public class TaskWindowScript : MonoBehaviour
 {
-	// Token: 0x06001EA2 RID: 7842 RVA: 0x001AEE44 File Offset: 0x001AD044
+	// Token: 0x06001EB2 RID: 7858 RVA: 0x001B0550 File Offset: 0x001AE750
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -21,7 +21,7 @@ public class TaskWindowScript : MonoBehaviour
 		this.Window.SetActive(false);
 	}
 
-	// Token: 0x06001EA3 RID: 7843 RVA: 0x001AEEA8 File Offset: 0x001AD0A8
+	// Token: 0x06001EB3 RID: 7859 RVA: 0x001B05B4 File Offset: 0x001AE7B4
 	public void UpdateWindow(int ID)
 	{
 		this.PromptBar.ClearButtons();
@@ -44,7 +44,7 @@ public class TaskWindowScript : MonoBehaviour
 		Time.timeScale = 0.0001f;
 	}
 
-	// Token: 0x06001EA4 RID: 7844 RVA: 0x001AEF84 File Offset: 0x001AD184
+	// Token: 0x06001EB4 RID: 7860 RVA: 0x001B0690 File Offset: 0x001AE890
 	private void Update()
 	{
 		if (this.Window.activeInHierarchy)
@@ -107,7 +107,7 @@ public class TaskWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EA5 RID: 7845 RVA: 0x001AF1DC File Offset: 0x001AD3DC
+	// Token: 0x06001EB5 RID: 7861 RVA: 0x001B08E8 File Offset: 0x001AEAE8
 	private void TaskCheck()
 	{
 		this.GenericCheck();
@@ -132,7 +132,7 @@ public class TaskWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EA6 RID: 7846 RVA: 0x001AF284 File Offset: 0x001AD484
+	// Token: 0x06001EB6 RID: 7862 RVA: 0x001B0990 File Offset: 0x001AEB90
 	private void GetPortrait(int ID)
 	{
 		string text = "";
@@ -153,7 +153,7 @@ public class TaskWindowScript : MonoBehaviour
 		this.Portrait.mainTexture = www.texture;
 	}
 
-	// Token: 0x06001EA7 RID: 7847 RVA: 0x001AF2FC File Offset: 0x001AD4FC
+	// Token: 0x06001EB7 RID: 7863 RVA: 0x001B0A08 File Offset: 0x001AEC08
 	private void UpdateTaskObjects(int StudentID)
 	{
 		if (!this.Yandere.StudentManager.Eighties && this.StudentID == 30)
@@ -162,7 +162,7 @@ public class TaskWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EA8 RID: 7848 RVA: 0x001AF328 File Offset: 0x001AD528
+	// Token: 0x06001EB8 RID: 7864 RVA: 0x001B0A34 File Offset: 0x001AEC34
 	public void GenericCheck()
 	{
 		this.Generic = false;
@@ -180,7 +180,7 @@ public class TaskWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EA9 RID: 7849 RVA: 0x001AF4E4 File Offset: 0x001AD6E4
+	// Token: 0x06001EB9 RID: 7865 RVA: 0x001B0BF0 File Offset: 0x001AEDF0
 	public void AltGenericCheck(int TempID)
 	{
 		this.Generic = false;
@@ -198,75 +198,75 @@ public class TaskWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F47 RID: 16199
+	// Token: 0x04003F91 RID: 16273
 	public CheckOutBookScript HomeworkAssignment;
 
-	// Token: 0x04003F48 RID: 16200
+	// Token: 0x04003F92 RID: 16274
 	public DialogueWheelScript DialogueWheel;
 
-	// Token: 0x04003F49 RID: 16201
+	// Token: 0x04003F93 RID: 16275
 	public SewingMachineScript SewingMachine;
 
-	// Token: 0x04003F4A RID: 16202
+	// Token: 0x04003F94 RID: 16276
 	public CheckOutBookScript CheckOutBook;
 
-	// Token: 0x04003F4B RID: 16203
+	// Token: 0x04003F95 RID: 16277
 	public TaskManagerScript TaskManager;
 
-	// Token: 0x04003F4C RID: 16204
+	// Token: 0x04003F96 RID: 16278
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003F4D RID: 16205
+	// Token: 0x04003F97 RID: 16279
 	public UILabel TaskDescLabel;
 
-	// Token: 0x04003F4E RID: 16206
+	// Token: 0x04003F98 RID: 16280
 	public YandereScript Yandere;
 
-	// Token: 0x04003F4F RID: 16207
+	// Token: 0x04003F99 RID: 16281
 	public UITexture Portrait;
 
-	// Token: 0x04003F50 RID: 16208
+	// Token: 0x04003F9A RID: 16282
 	public UITexture Icon;
 
-	// Token: 0x04003F51 RID: 16209
+	// Token: 0x04003F9B RID: 16283
 	public GameObject[] TaskCompleteLetters;
 
-	// Token: 0x04003F52 RID: 16210
+	// Token: 0x04003F9C RID: 16284
 	public string[] Descriptions;
 
-	// Token: 0x04003F53 RID: 16211
+	// Token: 0x04003F9D RID: 16285
 	public Texture[] Portraits;
 
-	// Token: 0x04003F54 RID: 16212
+	// Token: 0x04003F9E RID: 16286
 	public Texture[] Icons;
 
-	// Token: 0x04003F55 RID: 16213
+	// Token: 0x04003F9F RID: 16287
 	public bool TaskComplete;
 
-	// Token: 0x04003F56 RID: 16214
+	// Token: 0x04003FA0 RID: 16288
 	public bool Generic;
 
-	// Token: 0x04003F57 RID: 16215
+	// Token: 0x04003FA1 RID: 16289
 	public GameObject Window;
 
-	// Token: 0x04003F58 RID: 16216
+	// Token: 0x04003FA2 RID: 16290
 	public int StudentID;
 
-	// Token: 0x04003F59 RID: 16217
+	// Token: 0x04003FA3 RID: 16291
 	public int ID;
 
-	// Token: 0x04003F5A RID: 16218
+	// Token: 0x04003FA4 RID: 16292
 	public float TrueTimer;
 
-	// Token: 0x04003F5B RID: 16219
+	// Token: 0x04003FA5 RID: 16293
 	public float Timer;
 
-	// Token: 0x04003F5C RID: 16220
+	// Token: 0x04003FA6 RID: 16294
 	public string[] EightiesDescriptions;
 
-	// Token: 0x04003F5D RID: 16221
+	// Token: 0x04003FA7 RID: 16295
 	public Texture[] EightiesIcons;
 
-	// Token: 0x04003F5E RID: 16222
+	// Token: 0x04003FA8 RID: 16296
 	public AudioClip EightiesJingle;
 }

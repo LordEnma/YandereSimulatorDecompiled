@@ -242,27 +242,27 @@ public class UIEventListener : MonoBehaviour
 	// Token: 0x04000555 RID: 1365
 	public bool needsActiveCollider = true;
 
-	// Token: 0x020005F9 RID: 1529
-	// (Invoke) Token: 0x06002567 RID: 9575
+	// Token: 0x020005FD RID: 1533
+	// (Invoke) Token: 0x0600257F RID: 9599
 	public delegate void VoidDelegate(GameObject go);
 
-	// Token: 0x020005FA RID: 1530
-	// (Invoke) Token: 0x0600256B RID: 9579
+	// Token: 0x020005FE RID: 1534
+	// (Invoke) Token: 0x06002583 RID: 9603
 	public delegate void BoolDelegate(GameObject go, bool state);
 
-	// Token: 0x020005FB RID: 1531
-	// (Invoke) Token: 0x0600256F RID: 9583
+	// Token: 0x020005FF RID: 1535
+	// (Invoke) Token: 0x06002587 RID: 9607
 	public delegate void FloatDelegate(GameObject go, float delta);
 
-	// Token: 0x020005FC RID: 1532
-	// (Invoke) Token: 0x06002573 RID: 9587
+	// Token: 0x02000600 RID: 1536
+	// (Invoke) Token: 0x0600258B RID: 9611
 	public delegate void VectorDelegate(GameObject go, Vector2 delta);
 
-	// Token: 0x020005FD RID: 1533
-	// (Invoke) Token: 0x06002577 RID: 9591
+	// Token: 0x02000601 RID: 1537
+	// (Invoke) Token: 0x0600258F RID: 9615
 	public delegate void ObjectDelegate(GameObject go, GameObject obj);
 
-	// Token: 0x020005FE RID: 1534
-	// (Invoke) Token: 0x0600257B RID: 9595
+	// Token: 0x02000602 RID: 1538
+	// (Invoke) Token: 0x06002593 RID: 9619
 	public delegate void KeyCodeDelegate(GameObject go, KeyCode key);
 }

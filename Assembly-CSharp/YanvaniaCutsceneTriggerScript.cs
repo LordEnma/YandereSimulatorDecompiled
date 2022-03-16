@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004D8 RID: 1240
+// Token: 0x020004DC RID: 1244
 public class YanvaniaCutsceneTriggerScript : MonoBehaviour
 {
-	// Token: 0x06002093 RID: 8339 RVA: 0x001DE620 File Offset: 0x001DC820
+	// Token: 0x060020AB RID: 8363 RVA: 0x001E0588 File Offset: 0x001DE788
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "YanmontChan")
@@ -15,9 +15,9 @@ public class YanvaniaCutsceneTriggerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004748 RID: 18248
+	// Token: 0x040047A7 RID: 18343
 	public YanvaniaYanmontScript Yanmont;
 
-	// Token: 0x04004749 RID: 18249
+	// Token: 0x040047A8 RID: 18344
 	public GameObject BossBattleWall;
 }

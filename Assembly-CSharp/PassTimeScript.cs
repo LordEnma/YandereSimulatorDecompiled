@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000395 RID: 917
 public class PassTimeScript : MonoBehaviour
 {
-	// Token: 0x06001A59 RID: 6745 RVA: 0x00117FEC File Offset: 0x001161EC
+	// Token: 0x06001A63 RID: 6755 RVA: 0x00118AFC File Offset: 0x00116CFC
 	private void Update()
 	{
 		if (this.InputManager.TappedLeft || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
@@ -35,7 +35,7 @@ public class PassTimeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A5A RID: 6746 RVA: 0x001180D8 File Offset: 0x001162D8
+	// Token: 0x06001A64 RID: 6756 RVA: 0x00118BE8 File Offset: 0x00116DE8
 	private void UpdateHighlightPosition()
 	{
 		if (this.Selected == 1)
@@ -54,7 +54,7 @@ public class PassTimeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A5B RID: 6747 RVA: 0x001181A4 File Offset: 0x001163A4
+	// Token: 0x06001A65 RID: 6757 RVA: 0x00118CB4 File Offset: 0x00116EB4
 	public void GetCurrentTime()
 	{
 		this.Digits[1] = this.Clock.Hour;
@@ -75,7 +75,7 @@ public class PassTimeScript : MonoBehaviour
 		this.UpdateTime(0);
 	}
 
-	// Token: 0x06001A5C RID: 6748 RVA: 0x00118280 File Offset: 0x00116480
+	// Token: 0x06001A66 RID: 6758 RVA: 0x00118D90 File Offset: 0x00116F90
 	private void UpdateTime(int Increment)
 	{
 		this.Digits[this.Selected] += (float)Increment;
@@ -195,30 +195,30 @@ public class PassTimeScript : MonoBehaviour
 		this.TargetTime = (int)(this.Digits[1] * 60f + this.Digits[2] * 10f + this.Digits[3]);
 	}
 
-	// Token: 0x04002B2A RID: 11050
+	// Token: 0x04002B53 RID: 11091
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002B2B RID: 11051
+	// Token: 0x04002B54 RID: 11092
 	public ClockScript Clock;
 
-	// Token: 0x04002B2C RID: 11052
+	// Token: 0x04002B55 RID: 11093
 	public UILabel TimeDisplay;
 
-	// Token: 0x04002B2D RID: 11053
+	// Token: 0x04002B56 RID: 11094
 	public Transform Highlight;
 
-	// Token: 0x04002B2E RID: 11054
+	// Token: 0x04002B57 RID: 11095
 	public float[] MinimumDigits;
 
-	// Token: 0x04002B2F RID: 11055
+	// Token: 0x04002B58 RID: 11096
 	public float[] Digits;
 
-	// Token: 0x04002B30 RID: 11056
+	// Token: 0x04002B59 RID: 11097
 	public int TargetTime;
 
-	// Token: 0x04002B31 RID: 11057
+	// Token: 0x04002B5A RID: 11098
 	public int Selected = 1;
 
-	// Token: 0x04002B32 RID: 11058
+	// Token: 0x04002B5B RID: 11099
 	public string AMPM = "AM";
 }

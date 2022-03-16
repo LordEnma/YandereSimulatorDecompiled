@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000E3 RID: 227
 public class BentoScript : MonoBehaviour
 {
-	// Token: 0x06000A27 RID: 2599 RVA: 0x00059F84 File Offset: 0x00058184
+	// Token: 0x06000A27 RID: 2599 RVA: 0x00059F90 File Offset: 0x00058190
 	private void Start()
 	{
 		if (this.Prompt.Yandere != null)
@@ -13,7 +13,7 @@ public class BentoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A28 RID: 2600 RVA: 0x00059FAC File Offset: 0x000581AC
+	// Token: 0x06000A28 RID: 2600 RVA: 0x00059FB8 File Offset: 0x000581B8
 	private void Update()
 	{
 		if (this.Yandere == null)

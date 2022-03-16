@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000354 RID: 852
 public class LivingRoomCutsceneScript : MonoBehaviour
 {
-	// Token: 0x06001969 RID: 6505 RVA: 0x000FF42C File Offset: 0x000FD62C
+	// Token: 0x06001970 RID: 6512 RVA: 0x000FFC10 File Offset: 0x000FDE10
 	private void Start()
 	{
+		this.VtuberCheck();
 		this.SkipPanel.alpha = 0f;
 		if (this.BlondePony != null && GameGlobals.BlondeHair)
 		{
@@ -113,6 +114,11 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		this.Subtitle.text = string.Empty;
 		this.RightEyeRenderer.material.color = new Color(0.33f, 0.33f, 0.33f, 1f);
 		this.LeftEyeRenderer.material.color = new Color(0.33f, 0.33f, 0.33f, 1f);
+		if (GameGlobals.VtuberID > 0)
+		{
+			this.RightEyeRenderer.material.color = Color.white;
+			this.LeftEyeRenderer.material.color = Color.white;
+		}
 		this.RightEyeOrigin = this.RightEye.localPosition;
 		this.LeftEyeOrigin = this.LeftEye.localPosition;
 		this.EliminationPanel.alpha = 0f;
@@ -151,7 +157,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600196A RID: 6506 RVA: 0x000FF9EC File Offset: 0x000FDBEC
+	// Token: 0x06001971 RID: 6513 RVA: 0x00100208 File Offset: 0x000FE408
 	private void Update()
 	{
 		if (this.Phase > 3 && !this.WaitingForInput && this.Timer < 172f && !this.NoSkip)
@@ -688,7 +694,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600196B RID: 6507 RVA: 0x0010142C File Offset: 0x000FF62C
+	// Token: 0x06001972 RID: 6514 RVA: 0x00101C48 File Offset: 0x000FFE48
 	private void LateUpdate()
 	{
 		if (this.Phase > 2)
@@ -723,7 +729,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600196C RID: 6508 RVA: 0x00101724 File Offset: 0x000FF924
+	// Token: 0x06001973 RID: 6515 RVA: 0x00101F40 File Offset: 0x00100140
 	private void IncreaseYandereEffects()
 	{
 		if (!this.Jukebox.isPlaying)
@@ -767,7 +773,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600196D RID: 6509 RVA: 0x001019E8 File Offset: 0x000FFBE8
+	// Token: 0x06001974 RID: 6516 RVA: 0x00102204 File Offset: 0x00100404
 	private void DecreaseYandereEffects()
 	{
 		this.Jukebox.volume = Mathf.MoveTowards(this.Jukebox.volume, 0f, Time.deltaTime / 5f);
@@ -783,7 +789,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		this.EyeShrink = Mathf.MoveTowards(this.EyeShrink, 0f, Time.deltaTime);
 	}
 
-	// Token: 0x0600196E RID: 6510 RVA: 0x00101BA4 File Offset: 0x000FFDA4
+	// Token: 0x06001975 RID: 6517 RVA: 0x001023C0 File Offset: 0x001005C0
 	private void BetrayRival()
 	{
 		StudentGlobals.SetStudentKidnapped(10 + DateGlobals.Week, true);
@@ -800,7 +806,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600196F RID: 6511 RVA: 0x00101C13 File Offset: 0x000FFE13
+	// Token: 0x06001976 RID: 6518 RVA: 0x0010242F File Offset: 0x0010062F
 	private void BefriendRival()
 	{
 		SceneManager.LoadScene("CalendarScene");
@@ -813,225 +819,268 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002844 RID: 10308
-	public ColorCorrectionCurves ColorCorrection;
-
-	// Token: 0x04002845 RID: 10309
-	public CosmeticScript YandereCosmetic;
-
-	// Token: 0x04002846 RID: 10310
-	public AmbientObscurance Obscurance;
-
-	// Token: 0x04002847 RID: 10311
-	public RivalDataScript RivalData;
-
-	// Token: 0x04002848 RID: 10312
-	public Vignetting Vignette;
-
-	// Token: 0x04002849 RID: 10313
-	public NoiseAndGrain Noise;
-
-	// Token: 0x0400284A RID: 10314
-	public UISprite SkipCircle;
-
-	// Token: 0x0400284B RID: 10315
-	public UIPanel SkipPanel;
-
-	// Token: 0x0400284C RID: 10316
-	public SkinnedMeshRenderer YandereRenderer;
-
-	// Token: 0x0400284D RID: 10317
-	public Renderer RightEyeRenderer;
-
-	// Token: 0x0400284E RID: 10318
-	public Renderer LeftEyeRenderer;
-
-	// Token: 0x0400284F RID: 10319
-	public Transform KettleCameraDestination;
-
-	// Token: 0x04002850 RID: 10320
-	public Transform KettleCameraOrigin;
-
-	// Token: 0x04002851 RID: 10321
-	public Transform FriendshipCamera;
-
-	// Token: 0x04002852 RID: 10322
-	public Transform LivingRoomCamera;
-
-	// Token: 0x04002853 RID: 10323
-	public Transform CutsceneCamera;
-
-	// Token: 0x04002854 RID: 10324
-	public Transform AyanoHead;
-
-	// Token: 0x04002855 RID: 10325
-	public Transform TeaCamera;
-
-	// Token: 0x04002856 RID: 10326
-	public Transform AyanoEyes;
-
-	// Token: 0x04002857 RID: 10327
-	public Transform OsanaEyes;
-
-	// Token: 0x04002858 RID: 10328
-	public UIPanel EliminationPanel;
-
-	// Token: 0x04002859 RID: 10329
-	public UIPanel Panel;
-
-	// Token: 0x0400285A RID: 10330
-	public UISprite SubDarknessBG;
-
-	// Token: 0x0400285B RID: 10331
-	public UISprite SubDarkness;
-
-	// Token: 0x0400285C RID: 10332
-	public UISprite Darkness;
-
-	// Token: 0x0400285D RID: 10333
-	public UILabel EightiesLabel;
-
-	// Token: 0x0400285E RID: 10334
-	public UILabel PrologueLabel;
-
-	// Token: 0x0400285F RID: 10335
-	public UILabel Subtitle;
-
-	// Token: 0x04002860 RID: 10336
-	public Vector3 RightEyeOrigin;
+	// Token: 0x06001977 RID: 6519 RVA: 0x00102460 File Offset: 0x00100660
+	private void VtuberCheck()
+	{
+		if (GameGlobals.VtuberID > 0)
+		{
+			this.OriginalHair.transform.position = new Vector3(0f, 100f, 0f);
+			this.YandereCosmetic.FaceTexture = this.VtuberFaces[GameGlobals.VtuberID];
+			this.YandereCosmetic.DefaultFaceTexture = this.VtuberFaces[GameGlobals.VtuberID];
+			this.YandereCosmetic.FemaleHairRenderers[1].material.mainTexture = this.VtuberFaces[GameGlobals.VtuberID];
+			this.RightEyeRenderer.material.mainTexture = this.VtuberFaces[GameGlobals.VtuberID];
+			this.LeftEyeRenderer.material.mainTexture = this.VtuberFaces[GameGlobals.VtuberID];
+			this.RightEyeRenderer.material.color = Color.white;
+			this.LeftEyeRenderer.material.color = Color.white;
+			this.ID = 0;
+			while (this.ID < 13)
+			{
+				this.YandereRenderer.SetBlendShapeWeight(this.ID, 0f);
+				this.ID++;
+			}
+			this.YandereRenderer.SetBlendShapeWeight(9, 100f);
+			return;
+		}
+		for (int i = 1; i < this.VtuberHairs.Length; i++)
+		{
+			this.VtuberHairs[i].SetActive(false);
+		}
+	}
 
 	// Token: 0x04002861 RID: 10337
-	public Vector3 LeftEyeOrigin;
+	public ColorCorrectionCurves ColorCorrection;
 
 	// Token: 0x04002862 RID: 10338
-	public AudioClip DramaticBoom;
+	public CosmeticScript YandereCosmetic;
 
 	// Token: 0x04002863 RID: 10339
-	public AudioClip RivalProtest;
+	public AmbientObscurance Obscurance;
 
 	// Token: 0x04002864 RID: 10340
-	public AudioSource Jukebox;
+	public RivalDataScript RivalData;
 
 	// Token: 0x04002865 RID: 10341
-	public AudioSource MyAudio;
+	public Vignetting Vignette;
 
 	// Token: 0x04002866 RID: 10342
-	public AudioSource BGM;
+	public NoiseAndGrain Noise;
 
 	// Token: 0x04002867 RID: 10343
-	public GameObject WarningLabel;
+	public UISprite SkipCircle;
 
 	// Token: 0x04002868 RID: 10344
-	public GameObject TeaSteam;
+	public UIPanel SkipPanel;
 
 	// Token: 0x04002869 RID: 10345
-	public GameObject CatStuff;
+	public SkinnedMeshRenderer YandereRenderer;
 
 	// Token: 0x0400286A RID: 10346
-	public GameObject OfferTea;
+	public Renderer RightEyeRenderer;
 
 	// Token: 0x0400286B RID: 10347
-	public GameObject Prologue;
+	public Renderer LeftEyeRenderer;
 
 	// Token: 0x0400286C RID: 10348
-	public GameObject Yandere;
+	public Transform KettleCameraDestination;
 
 	// Token: 0x0400286D RID: 10349
-	public GameObject TeaSet;
+	public Transform KettleCameraOrigin;
 
 	// Token: 0x0400286E RID: 10350
-	public GameObject Rival;
+	public Transform FriendshipCamera;
 
 	// Token: 0x0400286F RID: 10351
-	public Transform RightEye;
+	public Transform LivingRoomCamera;
 
 	// Token: 0x04002870 RID: 10352
-	public Transform LeftEye;
+	public Transform CutsceneCamera;
 
 	// Token: 0x04002871 RID: 10353
-	public float CutsceneLimit = 167f;
+	public Transform AyanoHead;
 
 	// Token: 0x04002872 RID: 10354
-	public float ShakeStrength;
+	public Transform TeaCamera;
 
 	// Token: 0x04002873 RID: 10355
-	public float AnimOffset;
+	public Transform AyanoEyes;
 
 	// Token: 0x04002874 RID: 10356
-	public float ExitTimer;
+	public Transform OsanaEyes;
 
 	// Token: 0x04002875 RID: 10357
-	public float EyeShrink;
+	public UIPanel EliminationPanel;
 
 	// Token: 0x04002876 RID: 10358
-	public float xOffset;
+	public UIPanel Panel;
 
 	// Token: 0x04002877 RID: 10359
-	public float zOffset;
+	public UISprite SubDarknessBG;
 
 	// Token: 0x04002878 RID: 10360
-	public float Timer;
+	public UISprite SubDarkness;
 
 	// Token: 0x04002879 RID: 10361
-	public float Speed;
+	public UISprite Darkness;
 
 	// Token: 0x0400287A RID: 10362
-	public bool WaitingForInput;
+	public UILabel EightiesLabel;
 
 	// Token: 0x0400287B RID: 10363
-	public bool OsanaCutscene;
+	public UILabel PrologueLabel;
 
 	// Token: 0x0400287C RID: 10364
-	public bool DecisionMade;
+	public UILabel Subtitle;
 
 	// Token: 0x0400287D RID: 10365
-	public bool FollowCamera;
+	public Vector3 RightEyeOrigin;
 
 	// Token: 0x0400287E RID: 10366
-	public bool BlurVision;
+	public Vector3 LeftEyeOrigin;
 
 	// Token: 0x0400287F RID: 10367
-	public bool DruggedTea;
+	public AudioClip DramaticBoom;
 
 	// Token: 0x04002880 RID: 10368
-	public bool Eighties;
+	public AudioClip RivalProtest;
 
 	// Token: 0x04002881 RID: 10369
-	public bool NoSkip;
+	public AudioSource Jukebox;
 
 	// Token: 0x04002882 RID: 10370
-	public bool Fall;
+	public AudioSource MyAudio;
 
 	// Token: 0x04002883 RID: 10371
-	public float[] CameraIDs;
+	public AudioSource BGM;
 
 	// Token: 0x04002884 RID: 10372
-	public string[] Lines;
+	public GameObject WarningLabel;
 
 	// Token: 0x04002885 RID: 10373
-	public float[] Times;
+	public GameObject TeaSteam;
 
 	// Token: 0x04002886 RID: 10374
-	public float BlurSpeed = 1f;
+	public GameObject CatStuff;
 
 	// Token: 0x04002887 RID: 10375
-	public int Branch = 1;
+	public GameObject OfferTea;
 
 	// Token: 0x04002888 RID: 10376
-	public int Phase = 1;
+	public GameObject Prologue;
 
 	// Token: 0x04002889 RID: 10377
-	public int ID = 1;
+	public GameObject Yandere;
 
 	// Token: 0x0400288A RID: 10378
-	public Texture ZTR;
+	public GameObject TeaSet;
 
 	// Token: 0x0400288B RID: 10379
-	public int ZTRID;
+	public GameObject Rival;
 
 	// Token: 0x0400288C RID: 10380
-	public Renderer PonytailRenderer;
+	public Transform RightEye;
 
 	// Token: 0x0400288D RID: 10381
+	public Transform LeftEye;
+
+	// Token: 0x0400288E RID: 10382
+	public float CutsceneLimit = 167f;
+
+	// Token: 0x0400288F RID: 10383
+	public float ShakeStrength;
+
+	// Token: 0x04002890 RID: 10384
+	public float AnimOffset;
+
+	// Token: 0x04002891 RID: 10385
+	public float ExitTimer;
+
+	// Token: 0x04002892 RID: 10386
+	public float EyeShrink;
+
+	// Token: 0x04002893 RID: 10387
+	public float xOffset;
+
+	// Token: 0x04002894 RID: 10388
+	public float zOffset;
+
+	// Token: 0x04002895 RID: 10389
+	public float Timer;
+
+	// Token: 0x04002896 RID: 10390
+	public float Speed;
+
+	// Token: 0x04002897 RID: 10391
+	public bool WaitingForInput;
+
+	// Token: 0x04002898 RID: 10392
+	public bool OsanaCutscene;
+
+	// Token: 0x04002899 RID: 10393
+	public bool DecisionMade;
+
+	// Token: 0x0400289A RID: 10394
+	public bool FollowCamera;
+
+	// Token: 0x0400289B RID: 10395
+	public bool BlurVision;
+
+	// Token: 0x0400289C RID: 10396
+	public bool DruggedTea;
+
+	// Token: 0x0400289D RID: 10397
+	public bool Eighties;
+
+	// Token: 0x0400289E RID: 10398
+	public bool NoSkip;
+
+	// Token: 0x0400289F RID: 10399
+	public bool Fall;
+
+	// Token: 0x040028A0 RID: 10400
+	public float[] CameraIDs;
+
+	// Token: 0x040028A1 RID: 10401
+	public string[] Lines;
+
+	// Token: 0x040028A2 RID: 10402
+	public float[] Times;
+
+	// Token: 0x040028A3 RID: 10403
+	public float BlurSpeed = 1f;
+
+	// Token: 0x040028A4 RID: 10404
+	public int Branch = 1;
+
+	// Token: 0x040028A5 RID: 10405
+	public int Phase = 1;
+
+	// Token: 0x040028A6 RID: 10406
+	public int ID = 1;
+
+	// Token: 0x040028A7 RID: 10407
+	public Texture ZTR;
+
+	// Token: 0x040028A8 RID: 10408
+	public int ZTRID;
+
+	// Token: 0x040028A9 RID: 10409
+	public Renderer PonytailRenderer;
+
+	// Token: 0x040028AA RID: 10410
 	public Texture BlondePony;
+
+	// Token: 0x040028AB RID: 10411
+	public GameObject OriginalHair;
+
+	// Token: 0x040028AC RID: 10412
+	public GameObject[] VtuberHairs;
+
+	// Token: 0x040028AD RID: 10413
+	public Texture[] VtuberFaces;
+
+	// Token: 0x040028AE RID: 10414
+	public Texture[] VtuberEyes;
+
+	// Token: 0x040028AF RID: 10415
+	public Renderer[] Eye;
 }

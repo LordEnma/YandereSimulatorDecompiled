@@ -4,33 +4,33 @@ using UnityEngine;
 // Token: 0x0200038D RID: 909
 public class OsuScript : MonoBehaviour
 {
-	// Token: 0x04002B07 RID: 11015
+	// Token: 0x04002B30 RID: 11056
 	public GameObject Button;
 
-	// Token: 0x04002B08 RID: 11016
+	// Token: 0x04002B31 RID: 11057
 	public GameObject Circle;
 
-	// Token: 0x04002B09 RID: 11017
+	// Token: 0x04002B32 RID: 11058
 	public GameObject New300;
 
-	// Token: 0x04002B0A RID: 11018
+	// Token: 0x04002B33 RID: 11059
 	public GameObject OsuButton;
 
-	// Token: 0x04002B0B RID: 11019
+	// Token: 0x04002B34 RID: 11060
 	public GameObject OsuCircle;
 
-	// Token: 0x04002B0C RID: 11020
+	// Token: 0x04002B35 RID: 11061
 	public GameObject Osu300;
 
-	// Token: 0x04002B0D RID: 11021
+	// Token: 0x04002B36 RID: 11062
 	public Texture ButtonTexture;
 
-	// Token: 0x04002B0E RID: 11022
+	// Token: 0x04002B37 RID: 11063
 	public Texture CircleTexture;
 
-	// Token: 0x04002B0F RID: 11023
+	// Token: 0x04002B38 RID: 11064
 	public float StartTime;
 
-	// Token: 0x04002B10 RID: 11024
+	// Token: 0x04002B39 RID: 11065
 	public float Timer;
 }

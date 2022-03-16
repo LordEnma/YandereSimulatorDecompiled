@@ -5,15 +5,15 @@ using UnityEngine;
 [Serializable]
 public class Club
 {
-	// Token: 0x06001447 RID: 5191 RVA: 0x000C60E2 File Offset: 0x000C42E2
+	// Token: 0x0600144A RID: 5194 RVA: 0x000C6552 File Offset: 0x000C4752
 	public Club(ClubType type)
 	{
 		this.type = type;
 	}
 
 	// Token: 0x17000362 RID: 866
-	// (get) Token: 0x06001448 RID: 5192 RVA: 0x000C60F1 File Offset: 0x000C42F1
-	// (set) Token: 0x06001449 RID: 5193 RVA: 0x000C60F9 File Offset: 0x000C42F9
+	// (get) Token: 0x0600144B RID: 5195 RVA: 0x000C6561 File Offset: 0x000C4761
+	// (set) Token: 0x0600144C RID: 5196 RVA: 0x000C6569 File Offset: 0x000C4769
 	public ClubType Type
 	{
 		get
@@ -26,11 +26,11 @@ public class Club
 		}
 	}
 
-	// Token: 0x04001F0E RID: 7950
+	// Token: 0x04001F1E RID: 7966
 	[SerializeField]
 	private ClubType type;
 
-	// Token: 0x04001F0F RID: 7951
+	// Token: 0x04001F1F RID: 7967
 	public static readonly ClubTypeAndStringDictionary ClubNames = new ClubTypeAndStringDictionary
 	{
 		{
@@ -103,7 +103,7 @@ public class Club
 		}
 	};
 
-	// Token: 0x04001F10 RID: 7952
+	// Token: 0x04001F20 RID: 7968
 	public static readonly IntAndStringDictionary TeacherClubNames = new IntAndStringDictionary
 	{
 		{

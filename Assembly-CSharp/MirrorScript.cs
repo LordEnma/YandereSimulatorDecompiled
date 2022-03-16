@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000368 RID: 872
 public class MirrorScript : MonoBehaviour
 {
-	// Token: 0x060019B0 RID: 6576 RVA: 0x00106F58 File Offset: 0x00105158
+	// Token: 0x060019B8 RID: 6584 RVA: 0x001078D0 File Offset: 0x00105AD0
 	private void Start()
 	{
 		this.Started = true;
@@ -24,7 +24,7 @@ public class MirrorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019B1 RID: 6577 RVA: 0x00106FE0 File Offset: 0x001051E0
+	// Token: 0x060019B9 RID: 6585 RVA: 0x00107958 File Offset: 0x00105B58
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -53,7 +53,7 @@ public class MirrorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019B2 RID: 6578 RVA: 0x00107108 File Offset: 0x00105308
+	// Token: 0x060019BA RID: 6586 RVA: 0x00107A80 File Offset: 0x00105C80
 	public void UpdatePersona()
 	{
 		if (!this.Started)
@@ -63,8 +63,11 @@ public class MirrorScript : MonoBehaviour
 		int personaID = this.Prompt.Yandere.PersonaID;
 		if (!this.Prompt.Yandere.Carrying)
 		{
-			this.Prompt.Yandere.NotificationManager.PersonaName = this.Personas[personaID];
-			this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Persona);
+			if (!this.Prompt.Yandere.Resting)
+			{
+				this.Prompt.Yandere.NotificationManager.PersonaName = this.Personas[personaID];
+				this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Persona);
+			}
 			this.Prompt.Yandere.IdleAnim = this.Idles[personaID];
 			this.Prompt.Yandere.WalkAnim = this.Walks[personaID];
 			this.Prompt.Yandere.UpdatePersona(personaID);
@@ -74,21 +77,21 @@ public class MirrorScript : MonoBehaviour
 		this.Prompt.Yandere.StudentManager.UpdatePerception();
 	}
 
-	// Token: 0x04002934 RID: 10548
+	// Token: 0x04002956 RID: 10582
 	public PromptScript Prompt;
 
-	// Token: 0x04002935 RID: 10549
+	// Token: 0x04002957 RID: 10583
 	public string[] Personas;
 
-	// Token: 0x04002936 RID: 10550
+	// Token: 0x04002958 RID: 10584
 	public string[] Idles;
 
-	// Token: 0x04002937 RID: 10551
+	// Token: 0x04002959 RID: 10585
 	public string[] Walks;
 
-	// Token: 0x04002938 RID: 10552
+	// Token: 0x0400295A RID: 10586
 	public bool Started;
 
-	// Token: 0x04002939 RID: 10553
+	// Token: 0x0400295B RID: 10587
 	public int Limit;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000E9 RID: 233
 public class BloodPoolScript : MonoBehaviour
 {
-	// Token: 0x06000A38 RID: 2616 RVA: 0x0005AAC0 File Offset: 0x00058CC0
+	// Token: 0x06000A38 RID: 2616 RVA: 0x0005AACC File Offset: 0x00058CCC
 	private void Start()
 	{
 		if (PlayerGlobals.PantiesEquipped == 11 && this.Blood)
@@ -35,7 +35,7 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A39 RID: 2617 RVA: 0x0005ABE4 File Offset: 0x00058DE4
+	// Token: 0x06000A39 RID: 2617 RVA: 0x0005ABF0 File Offset: 0x00058DF0
 	private void Update()
 	{
 		if (this.Grow)
@@ -46,14 +46,25 @@ public class BloodPoolScript : MonoBehaviour
 				this.Grow = false;
 			}
 		}
+		if (this.Water && this.ElectroTimer > 0f)
+		{
+			this.ElectroTimer = Mathf.MoveTowards(this.ElectroTimer, 0f, Time.deltaTime);
+		}
 	}
 
-	// Token: 0x06000A3A RID: 2618 RVA: 0x0005AC55 File Offset: 0x00058E55
+	// Token: 0x06000A3A RID: 2618 RVA: 0x0005AC94 File Offset: 0x00058E94
 	private void OnTriggerEnter(Collider other)
 	{
-		if (other.gameObject.name == "BloodSpawner")
+		if (this.Water && this.ElectroTimer == 0f && other.gameObject.tag == "E")
 		{
-			this.Grow = true;
+			UnityEngine.Object.Instantiate<GameObject>(this.Electricity, base.transform.position, Quaternion.identity);
+			this.ElectroTimer = 1f;
+			if (other.gameObject.name == "CarBattery")
+			{
+				UnityEngine.Object.Instantiate<GameObject>(other.gameObject.GetComponent<PickUpScript>().PuddleSparks, base.transform.position, Quaternion.identity);
+				other.gameObject.GetComponent<PickUpScript>().Smoke.Play();
+				other.gameObject.tag = "Untagged";
+			}
 		}
 	}
 
@@ -61,17 +72,32 @@ public class BloodPoolScript : MonoBehaviour
 	public float TargetSize;
 
 	// Token: 0x04000BA3 RID: 2979
-	public bool Blood = true;
+	public bool Gasoline;
 
 	// Token: 0x04000BA4 RID: 2980
-	public bool Grow;
+	public bool Brown;
 
 	// Token: 0x04000BA5 RID: 2981
-	public Renderer MyRenderer;
+	public bool Water;
 
 	// Token: 0x04000BA6 RID: 2982
-	public Material BloodPool;
+	public bool Blood = true;
 
 	// Token: 0x04000BA7 RID: 2983
+	public bool Grow;
+
+	// Token: 0x04000BA8 RID: 2984
+	public GameObject Electricity;
+
+	// Token: 0x04000BA9 RID: 2985
+	public Renderer MyRenderer;
+
+	// Token: 0x04000BAA RID: 2986
+	public Material BloodPool;
+
+	// Token: 0x04000BAB RID: 2987
 	public Material Flower;
+
+	// Token: 0x04000BAC RID: 2988
+	public float ElectroTimer;
 }

@@ -2,10 +2,10 @@
 using System.Globalization;
 using UnityEngine;
 
-// Token: 0x0200044E RID: 1102
+// Token: 0x0200044F RID: 1103
 public class StreetShopScript : MonoBehaviour
 {
-	// Token: 0x06001D3B RID: 7483 RVA: 0x0015E5CC File Offset: 0x0015C7CC
+	// Token: 0x06001D49 RID: 7497 RVA: 0x0015F77C File Offset: 0x0015D97C
 	private void Start()
 	{
 		this.MyLabel.color = new Color(1f, 1f, 1f, 0f);
@@ -89,7 +89,7 @@ public class StreetShopScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D3C RID: 7484 RVA: 0x0015E8A8 File Offset: 0x0015CAA8
+	// Token: 0x06001D4A RID: 7498 RVA: 0x0015FA58 File Offset: 0x0015DC58
 	private void Update()
 	{
 		if (Vector3.Distance(this.Yandere.transform.position, base.transform.position) < 1f)
@@ -211,7 +211,7 @@ public class StreetShopScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D3D RID: 7485 RVA: 0x0015EE60 File Offset: 0x0015D060
+	// Token: 0x06001D4B RID: 7499 RVA: 0x00160010 File Offset: 0x0015E210
 	private void UpdateShopInterface()
 	{
 		if (this.Descs[1] != "")
@@ -270,7 +270,7 @@ public class StreetShopScript : MonoBehaviour
 		this.StreetShopInterface.UpdateFakeID();
 	}
 
-	// Token: 0x06001D3E RID: 7486 RVA: 0x0015F138 File Offset: 0x0015D338
+	// Token: 0x06001D4C RID: 7500 RVA: 0x001602E8 File Offset: 0x0015E4E8
 	public void EightiesBarber()
 	{
 		this.Products[1] = "The Benefits of Manga";
@@ -289,135 +289,135 @@ public class StreetShopScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003574 RID: 13684
+	// Token: 0x040035AF RID: 13743
 	public StreetShopInterfaceScript StreetShopInterface;
 
-	// Token: 0x04003575 RID: 13685
+	// Token: 0x040035B0 RID: 13744
 	public StreetManagerScript StreetManager;
 
-	// Token: 0x04003576 RID: 13686
+	// Token: 0x040035B1 RID: 13745
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x04003577 RID: 13687
+	// Token: 0x040035B2 RID: 13746
 	public StalkerYandereScript Yandere;
 
-	// Token: 0x04003578 RID: 13688
+	// Token: 0x040035B3 RID: 13747
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003579 RID: 13689
+	// Token: 0x040035B4 RID: 13748
 	public HomeClockScript HomeClock;
 
-	// Token: 0x0400357A RID: 13690
+	// Token: 0x040035B5 RID: 13749
 	public GameObject BinocularOverlay;
 
-	// Token: 0x0400357B RID: 13691
+	// Token: 0x040035B6 RID: 13750
 	public Renderer BinocularRenderer;
 
-	// Token: 0x0400357C RID: 13692
+	// Token: 0x040035B7 RID: 13751
 	public Camera BinocularCamera;
 
-	// Token: 0x0400357D RID: 13693
+	// Token: 0x040035B8 RID: 13752
 	public AudioSource MyAudio;
 
-	// Token: 0x0400357E RID: 13694
+	// Token: 0x040035B9 RID: 13753
 	public AudioClip EightiesTheme;
 
-	// Token: 0x0400357F RID: 13695
+	// Token: 0x040035BA RID: 13754
 	public AudioClip StoreTheme;
 
-	// Token: 0x04003580 RID: 13696
+	// Token: 0x040035BB RID: 13755
 	public AudioClip InsertCoin;
 
-	// Token: 0x04003581 RID: 13697
+	// Token: 0x040035BC RID: 13756
 	public AudioClip Fail;
 
-	// Token: 0x04003582 RID: 13698
+	// Token: 0x040035BD RID: 13757
 	public UILabel MyLabel;
 
-	// Token: 0x04003583 RID: 13699
+	// Token: 0x040035BE RID: 13758
 	public Texture[] ShopkeeperPortraits;
 
-	// Token: 0x04003584 RID: 13700
+	// Token: 0x040035BF RID: 13759
 	public Texture[] EightiesPortraits;
 
-	// Token: 0x04003585 RID: 13701
+	// Token: 0x040035C0 RID: 13760
 	public Texture WelcomePortrait;
 
-	// Token: 0x04003586 RID: 13702
+	// Token: 0x040035C1 RID: 13761
 	public Texture[] IdlePortrait;
 
-	// Token: 0x04003587 RID: 13703
+	// Token: 0x040035C2 RID: 13762
 	public Texture ThanksPortrait;
 
-	// Token: 0x04003588 RID: 13704
+	// Token: 0x040035C3 RID: 13763
 	public Texture EightiesWelcomePortrait;
 
-	// Token: 0x04003589 RID: 13705
+	// Token: 0x040035C4 RID: 13764
 	public Texture[] EightiesIdlePortrait;
 
-	// Token: 0x0400358A RID: 13706
+	// Token: 0x040035C5 RID: 13765
 	public Texture EightiesThanksPortrait;
 
-	// Token: 0x0400358B RID: 13707
+	// Token: 0x040035C6 RID: 13766
 	public Texture EightiesWelcomePortraitAlt;
 
-	// Token: 0x0400358C RID: 13708
+	// Token: 0x040035C7 RID: 13767
 	public Texture[] EightiesIdlePortraitAlt;
 
-	// Token: 0x0400358D RID: 13709
+	// Token: 0x040035C8 RID: 13768
 	public Texture EightiesThanksPortraitAlt;
 
-	// Token: 0x0400358E RID: 13710
+	// Token: 0x040035C9 RID: 13769
 	public string[] ShopkeeperSpeeches;
 
-	// Token: 0x0400358F RID: 13711
+	// Token: 0x040035CA RID: 13770
 	public string[] EightiesSpeeches;
 
-	// Token: 0x04003590 RID: 13712
+	// Token: 0x040035CB RID: 13771
 	public bool[] AdultProducts;
 
-	// Token: 0x04003591 RID: 13713
+	// Token: 0x040035CC RID: 13772
 	public string[] Descs;
 
-	// Token: 0x04003592 RID: 13714
+	// Token: 0x040035CD RID: 13773
 	public string[] Products;
 
-	// Token: 0x04003593 RID: 13715
+	// Token: 0x040035CE RID: 13774
 	public float[] Costs;
 
-	// Token: 0x04003594 RID: 13716
+	// Token: 0x040035CF RID: 13775
 	public float RotationX;
 
-	// Token: 0x04003595 RID: 13717
+	// Token: 0x040035D0 RID: 13776
 	public float RotationY;
 
-	// Token: 0x04003596 RID: 13718
+	// Token: 0x040035D1 RID: 13777
 	public float Alpha;
 
-	// Token: 0x04003597 RID: 13719
+	// Token: 0x040035D2 RID: 13778
 	public float Timer;
 
-	// Token: 0x04003598 RID: 13720
+	// Token: 0x040035D3 RID: 13779
 	public float Zoom;
 
-	// Token: 0x04003599 RID: 13721
+	// Token: 0x040035D4 RID: 13780
 	public int ShopkeeperPosition = 500;
 
-	// Token: 0x0400359A RID: 13722
+	// Token: 0x040035D5 RID: 13781
 	public int Limit;
 
-	// Token: 0x0400359B RID: 13723
+	// Token: 0x040035D6 RID: 13782
 	public bool Binoculars;
 
-	// Token: 0x0400359C RID: 13724
+	// Token: 0x040035D7 RID: 13783
 	public bool MaidCafe;
 
-	// Token: 0x0400359D RID: 13725
+	// Token: 0x040035D8 RID: 13784
 	public bool Exit;
 
-	// Token: 0x0400359E RID: 13726
+	// Token: 0x040035D9 RID: 13785
 	public string StoreName;
 
-	// Token: 0x0400359F RID: 13727
+	// Token: 0x040035DA RID: 13786
 	public ShopType StoreType;
 }

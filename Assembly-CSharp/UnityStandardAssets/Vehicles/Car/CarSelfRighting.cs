@@ -3,16 +3,16 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x02000528 RID: 1320
+	// Token: 0x0200052C RID: 1324
 	public class CarSelfRighting : MonoBehaviour
 	{
-		// Token: 0x060021A8 RID: 8616 RVA: 0x001ECF0B File Offset: 0x001EB10B
+		// Token: 0x060021C0 RID: 8640 RVA: 0x001EEE73 File Offset: 0x001ED073
 		private void Start()
 		{
 			this.m_Rigidbody = base.GetComponent<Rigidbody>();
 		}
 
-		// Token: 0x060021A9 RID: 8617 RVA: 0x001ECF1C File Offset: 0x001EB11C
+		// Token: 0x060021C1 RID: 8641 RVA: 0x001EEE84 File Offset: 0x001ED084
 		private void Update()
 		{
 			if (base.transform.up.y > 0f || this.m_Rigidbody.velocity.magnitude > this.m_VelocityThreshold)
@@ -25,25 +25,25 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021AA RID: 8618 RVA: 0x001ECF80 File Offset: 0x001EB180
+		// Token: 0x060021C2 RID: 8642 RVA: 0x001EEEE8 File Offset: 0x001ED0E8
 		private void RightCar()
 		{
 			base.transform.position += Vector3.up;
 			base.transform.rotation = Quaternion.LookRotation(base.transform.forward);
 		}
 
-		// Token: 0x040049DC RID: 18908
+		// Token: 0x04004A3B RID: 19003
 		[SerializeField]
 		private float m_WaitTime = 3f;
 
-		// Token: 0x040049DD RID: 18909
+		// Token: 0x04004A3C RID: 19004
 		[SerializeField]
 		private float m_VelocityThreshold = 1f;
 
-		// Token: 0x040049DE RID: 18910
+		// Token: 0x04004A3D RID: 19005
 		private float m_LastOkTime;
 
-		// Token: 0x040049DF RID: 18911
+		// Token: 0x04004A3E RID: 19006
 		private Rigidbody m_Rigidbody;
 	}
 }

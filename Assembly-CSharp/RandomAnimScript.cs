@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003CA RID: 970
+// Token: 0x020003CB RID: 971
 public class RandomAnimScript : MonoBehaviour
 {
-	// Token: 0x06001B58 RID: 7000 RVA: 0x001339C6 File Offset: 0x00131BC6
+	// Token: 0x06001B65 RID: 7013 RVA: 0x00134866 File Offset: 0x00132A66
 	private void Start()
 	{
 		this.PickRandomAnim();
 		base.GetComponent<Animation>().CrossFade(this.CurrentAnim);
 	}
 
-	// Token: 0x06001B59 RID: 7001 RVA: 0x001339E0 File Offset: 0x00131BE0
+	// Token: 0x06001B66 RID: 7014 RVA: 0x00134880 File Offset: 0x00132A80
 	private void Update()
 	{
 		AnimationState animationState = base.GetComponent<Animation>()[this.CurrentAnim];
@@ -21,16 +21,16 @@ public class RandomAnimScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B5A RID: 7002 RVA: 0x00133A13 File Offset: 0x00131C13
+	// Token: 0x06001B67 RID: 7015 RVA: 0x001348B3 File Offset: 0x00132AB3
 	private void PickRandomAnim()
 	{
 		this.CurrentAnim = this.AnimationNames[UnityEngine.Random.Range(0, this.AnimationNames.Length)];
 		base.GetComponent<Animation>().CrossFade(this.CurrentAnim);
 	}
 
-	// Token: 0x04002EC6 RID: 11974
+	// Token: 0x04002EFA RID: 12026
 	public string[] AnimationNames;
 
-	// Token: 0x04002EC7 RID: 11975
+	// Token: 0x04002EFB RID: 12027
 	public string CurrentAnim = string.Empty;
 }

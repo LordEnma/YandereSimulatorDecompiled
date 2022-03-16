@@ -1,34 +1,34 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004F3 RID: 1267
+// Token: 0x020004F7 RID: 1271
 [ExecuteAlways]
 public class WaterBob : MonoBehaviour
 {
-	// Token: 0x060020F6 RID: 8438 RVA: 0x001E6BF4 File Offset: 0x001E4DF4
+	// Token: 0x0600210E RID: 8462 RVA: 0x001E8B5C File Offset: 0x001E6D5C
 	private void Awake()
 	{
 		this.initialPosition = base.transform.position;
 		this.offset = 1f - UnityEngine.Random.value * 2f;
 	}
 
-	// Token: 0x060020F7 RID: 8439 RVA: 0x001E6C20 File Offset: 0x001E4E20
+	// Token: 0x0600210F RID: 8463 RVA: 0x001E8B88 File Offset: 0x001E6D88
 	private void Update()
 	{
 		base.transform.position = this.initialPosition - Vector3.up * Mathf.Sin((Time.time + this.offset) * this.period) * this.height;
 	}
 
-	// Token: 0x040048BE RID: 18622
+	// Token: 0x0400491D RID: 18717
 	[SerializeField]
 	private float height = 0.1f;
 
-	// Token: 0x040048BF RID: 18623
+	// Token: 0x0400491E RID: 18718
 	[SerializeField]
 	private float period = 1f;
 
-	// Token: 0x040048C0 RID: 18624
+	// Token: 0x0400491F RID: 18719
 	private Vector3 initialPosition;
 
-	// Token: 0x040048C1 RID: 18625
+	// Token: 0x04004920 RID: 18720
 	private float offset;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003C5 RID: 965
+// Token: 0x020003C6 RID: 966
 public class RadioScript : MonoBehaviour
 {
-	// Token: 0x06001B3E RID: 6974 RVA: 0x00130822 File Offset: 0x0012EA22
+	// Token: 0x06001B4B RID: 6987 RVA: 0x001316C2 File Offset: 0x0012F8C2
 	private void Start()
 	{
 		if (this.Delinquent && StudentGlobals.GetStudentExpelled(76))
@@ -17,7 +17,7 @@ public class RadioScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B3F RID: 6975 RVA: 0x00130858 File Offset: 0x0012EA58
+	// Token: 0x06001B4C RID: 6988 RVA: 0x001316F8 File Offset: 0x0012F8F8
 	private void Update()
 	{
 		if (base.transform.parent == null)
@@ -111,7 +111,7 @@ public class RadioScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B40 RID: 6976 RVA: 0x00130BB8 File Offset: 0x0012EDB8
+	// Token: 0x06001B4D RID: 6989 RVA: 0x00131A58 File Offset: 0x0012FC58
 	public void TurnOn()
 	{
 		this.Prompt.Label[0].text = "     Turn Off";
@@ -121,7 +121,7 @@ public class RadioScript : MonoBehaviour
 		this.On = true;
 	}
 
-	// Token: 0x06001B41 RID: 6977 RVA: 0x00130C10 File Offset: 0x0012EE10
+	// Token: 0x06001B4E RID: 6990 RVA: 0x00131AB0 File Offset: 0x0012FCB0
 	public void TurnOff()
 	{
 		this.Prompt.Label[0].text = "     Turn On";
@@ -135,51 +135,51 @@ public class RadioScript : MonoBehaviour
 		this.On = false;
 	}
 
-	// Token: 0x04002E50 RID: 11856
+	// Token: 0x04002E84 RID: 11908
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002E51 RID: 11857
+	// Token: 0x04002E85 RID: 11909
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002E52 RID: 11858
+	// Token: 0x04002E86 RID: 11910
 	public GameObject RadioNotes;
 
-	// Token: 0x04002E53 RID: 11859
+	// Token: 0x04002E87 RID: 11911
 	public GameObject AlarmDisc;
 
-	// Token: 0x04002E54 RID: 11860
+	// Token: 0x04002E88 RID: 11912
 	public AudioSource MyAudio;
 
-	// Token: 0x04002E55 RID: 11861
+	// Token: 0x04002E89 RID: 11913
 	public Renderer MyRenderer;
 
-	// Token: 0x04002E56 RID: 11862
+	// Token: 0x04002E8A RID: 11914
 	public Texture OffTexture;
 
-	// Token: 0x04002E57 RID: 11863
+	// Token: 0x04002E8B RID: 11915
 	public Texture OnTexture;
 
-	// Token: 0x04002E58 RID: 11864
+	// Token: 0x04002E8C RID: 11916
 	public StudentScript Victim;
 
-	// Token: 0x04002E59 RID: 11865
+	// Token: 0x04002E8D RID: 11917
 	public PromptScript Prompt;
 
-	// Token: 0x04002E5A RID: 11866
+	// Token: 0x04002E8E RID: 11918
 	public float CooldownTimer;
 
-	// Token: 0x04002E5B RID: 11867
+	// Token: 0x04002E8F RID: 11919
 	public bool Delinquent;
 
-	// Token: 0x04002E5C RID: 11868
+	// Token: 0x04002E90 RID: 11920
 	public bool On;
 
-	// Token: 0x04002E5D RID: 11869
+	// Token: 0x04002E91 RID: 11921
 	public int Proximity;
 
-	// Token: 0x04002E5E RID: 11870
+	// Token: 0x04002E92 RID: 11922
 	public int ID;
 
-	// Token: 0x04002E5F RID: 11871
+	// Token: 0x04002E93 RID: 11923
 	public AudioClip EightiesMusic;
 }

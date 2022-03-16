@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x0200025B RID: 603
 public class ControlScreenScript : MonoBehaviour
 {
-	// Token: 0x060012B9 RID: 4793 RVA: 0x00099CC4 File Offset: 0x00097EC4
+	// Token: 0x060012BB RID: 4795 RVA: 0x0009A0A8 File Offset: 0x000982A8
 	private void Start()
 	{
 	}
 
-	// Token: 0x060012BA RID: 4794 RVA: 0x00099CC6 File Offset: 0x00097EC6
+	// Token: 0x060012BC RID: 4796 RVA: 0x0009A0AA File Offset: 0x000982AA
 	private void Update()
 	{
 	}

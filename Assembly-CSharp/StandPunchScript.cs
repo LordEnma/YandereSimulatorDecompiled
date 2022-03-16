@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000443 RID: 1091
+// Token: 0x02000444 RID: 1092
 public class StandPunchScript : MonoBehaviour
 {
-	// Token: 0x06001D10 RID: 7440 RVA: 0x0015B34C File Offset: 0x0015954C
+	// Token: 0x06001D1E RID: 7454 RVA: 0x0015C4FC File Offset: 0x0015A6FC
 	private void OnTriggerEnter(Collider other)
 	{
 		StudentScript component = other.gameObject.GetComponent<StudentScript>();
@@ -14,6 +14,6 @@ public class StandPunchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040034E2 RID: 13538
+	// Token: 0x0400351D RID: 13597
 	public Collider MyCollider;
 }

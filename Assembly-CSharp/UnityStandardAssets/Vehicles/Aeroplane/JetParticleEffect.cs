@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Aeroplane
 {
-	// Token: 0x02000535 RID: 1333
+	// Token: 0x02000539 RID: 1337
 	[RequireComponent(typeof(ParticleSystem))]
 	public class JetParticleEffect : MonoBehaviour
 	{
-		// Token: 0x060021FF RID: 8703 RVA: 0x001EE4B4 File Offset: 0x001EC6B4
+		// Token: 0x06002217 RID: 8727 RVA: 0x001F041C File Offset: 0x001EE61C
 		private void Start()
 		{
 			this.m_Jet = this.FindAeroplaneParent();
@@ -17,7 +17,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_OriginalStartColor = this.m_System.main.startColor.color;
 		}
 
-		// Token: 0x06002200 RID: 8704 RVA: 0x001EE53C File Offset: 0x001EC73C
+		// Token: 0x06002218 RID: 8728 RVA: 0x001F04A4 File Offset: 0x001EE6A4
 		private void Update()
 		{
 			ParticleSystem.MainModule main = this.m_System.main;
@@ -26,7 +26,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			main.startColor = Color.Lerp(this.minColour, this.m_OriginalStartColor, this.m_Jet.Throttle);
 		}
 
-		// Token: 0x06002201 RID: 8705 RVA: 0x001EE5D4 File Offset: 0x001EC7D4
+		// Token: 0x06002219 RID: 8729 RVA: 0x001F053C File Offset: 0x001EE73C
 		private AeroplaneController FindAeroplaneParent()
 		{
 			Transform transform = base.transform;
@@ -42,22 +42,22 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			throw new Exception(" AeroplaneContoller not found in object hierarchy");
 		}
 
-		// Token: 0x04004A3F RID: 19007
+		// Token: 0x04004A9E RID: 19102
 		public Color minColour;
 
-		// Token: 0x04004A40 RID: 19008
+		// Token: 0x04004A9F RID: 19103
 		private AeroplaneController m_Jet;
 
-		// Token: 0x04004A41 RID: 19009
+		// Token: 0x04004AA0 RID: 19104
 		private ParticleSystem m_System;
 
-		// Token: 0x04004A42 RID: 19010
+		// Token: 0x04004AA1 RID: 19105
 		private float m_OriginalStartSize;
 
-		// Token: 0x04004A43 RID: 19011
+		// Token: 0x04004AA2 RID: 19106
 		private float m_OriginalLifetime;
 
-		// Token: 0x04004A44 RID: 19012
+		// Token: 0x04004AA3 RID: 19107
 		private Color m_OriginalStartColor;
 	}
 }

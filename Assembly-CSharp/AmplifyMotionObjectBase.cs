@@ -274,16 +274,16 @@ public class AmplifyMotionObjectBase : MonoBehaviour
 	// Token: 0x04000808 RID: 2056
 	private int m_resetAtFrame = -1;
 
-	// Token: 0x02000646 RID: 1606
+	// Token: 0x0200064A RID: 1610
 	public enum MinMaxCurveState
 	{
-		// Token: 0x04004EB7 RID: 20151
+		// Token: 0x04004F16 RID: 20246
 		Scalar,
-		// Token: 0x04004EB8 RID: 20152
+		// Token: 0x04004F17 RID: 20247
 		Curve,
-		// Token: 0x04004EB9 RID: 20153
+		// Token: 0x04004F18 RID: 20248
 		TwoCurves,
-		// Token: 0x04004EBA RID: 20154
+		// Token: 0x04004F19 RID: 20249
 		TwoScalars
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200037F RID: 895
 public class NotificationManagerScript : MonoBehaviour
 {
-	// Token: 0x06001A19 RID: 6681 RVA: 0x001132AC File Offset: 0x001114AC
+	// Token: 0x06001A23 RID: 6691 RVA: 0x00113DBC File Offset: 0x00111FBC
 	private void Awake()
 	{
 		this.NotificationMessages = new NotificationTypeAndStringDictionary
@@ -88,7 +88,7 @@ public class NotificationManagerScript : MonoBehaviour
 		};
 	}
 
-	// Token: 0x06001A1A RID: 6682 RVA: 0x001133B4 File Offset: 0x001115B4
+	// Token: 0x06001A24 RID: 6692 RVA: 0x00113EC4 File Offset: 0x001120C4
 	private void Update()
 	{
 		if (this.NotificationParent.localPosition.y > 0.001f + -0.049f * (float)this.NotificationsSpawned)
@@ -142,7 +142,7 @@ public class NotificationManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A1B RID: 6683 RVA: 0x0011355C File Offset: 0x0011175C
+	// Token: 0x06001A25 RID: 6693 RVA: 0x0011406C File Offset: 0x0011226C
 	public void DisplayNotification(NotificationType Type)
 	{
 		if (!this.Yandere.Egg)
@@ -178,42 +178,42 @@ public class NotificationManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002A8B RID: 10891
+	// Token: 0x04002AB4 RID: 10932
 	public YandereScript Yandere;
 
-	// Token: 0x04002A8C RID: 10892
+	// Token: 0x04002AB5 RID: 10933
 	public Transform NotificationSpawnPoint;
 
-	// Token: 0x04002A8D RID: 10893
+	// Token: 0x04002AB6 RID: 10934
 	public Transform NotificationParent;
 
-	// Token: 0x04002A8E RID: 10894
+	// Token: 0x04002AB7 RID: 10935
 	public GameObject Notification;
 
-	// Token: 0x04002A8F RID: 10895
+	// Token: 0x04002AB8 RID: 10936
 	public int NotificationsSpawned;
 
-	// Token: 0x04002A90 RID: 10896
+	// Token: 0x04002AB9 RID: 10937
 	public int Phase = 1;
 
-	// Token: 0x04002A91 RID: 10897
+	// Token: 0x04002ABA RID: 10938
 	public ClockScript Clock;
 
-	// Token: 0x04002A92 RID: 10898
+	// Token: 0x04002ABB RID: 10939
 	public string PersonaName;
 
-	// Token: 0x04002A93 RID: 10899
+	// Token: 0x04002ABC RID: 10940
 	public string PreviousText;
 
-	// Token: 0x04002A94 RID: 10900
+	// Token: 0x04002ABD RID: 10941
 	public string CustomText;
 
-	// Token: 0x04002A95 RID: 10901
+	// Token: 0x04002ABE RID: 10942
 	public string TopicName;
 
-	// Token: 0x04002A96 RID: 10902
+	// Token: 0x04002ABF RID: 10943
 	public string[] ClubNames;
 
-	// Token: 0x04002A97 RID: 10903
+	// Token: 0x04002AC0 RID: 10944
 	private NotificationTypeAndStringDictionary NotificationMessages;
 }

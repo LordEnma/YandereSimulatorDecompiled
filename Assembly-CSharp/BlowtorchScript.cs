@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020000ED RID: 237
 public class BlowtorchScript : MonoBehaviour
 {
-	// Token: 0x06000A49 RID: 2633 RVA: 0x0005B533 File Offset: 0x00059733
+	// Token: 0x06000A49 RID: 2633 RVA: 0x0005B61F File Offset: 0x0005981F
 	private void Start()
 	{
 		this.Flame.localScale = Vector3.zero;
 		base.enabled = false;
 	}
 
-	// Token: 0x06000A4A RID: 2634 RVA: 0x0005B54C File Offset: 0x0005974C
+	// Token: 0x06000A4A RID: 2634 RVA: 0x0005B638 File Offset: 0x00059838
 	private void Update()
 	{
 		this.Timer = Mathf.MoveTowards(this.Timer, 5f, Time.deltaTime);
@@ -28,21 +28,21 @@ public class BlowtorchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000BBF RID: 3007
+	// Token: 0x04000BC4 RID: 3012
 	public YandereScript Yandere;
 
-	// Token: 0x04000BC0 RID: 3008
+	// Token: 0x04000BC5 RID: 3013
 	public RagdollScript Corpse;
 
-	// Token: 0x04000BC1 RID: 3009
+	// Token: 0x04000BC6 RID: 3014
 	public PickUpScript PickUp;
 
-	// Token: 0x04000BC2 RID: 3010
+	// Token: 0x04000BC7 RID: 3015
 	public PromptScript Prompt;
 
-	// Token: 0x04000BC3 RID: 3011
+	// Token: 0x04000BC8 RID: 3016
 	public Transform Flame;
 
-	// Token: 0x04000BC4 RID: 3012
+	// Token: 0x04000BC9 RID: 3017
 	public float Timer;
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x0200030B RID: 779
 public class HairBladeScript : MonoBehaviour
 {
-	// Token: 0x06001837 RID: 6199 RVA: 0x000E5C51 File Offset: 0x000E3E51
+	// Token: 0x0600183C RID: 6204 RVA: 0x000E60FD File Offset: 0x000E42FD
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001838 RID: 6200 RVA: 0x000E5C54 File Offset: 0x000E3E54
+	// Token: 0x0600183D RID: 6205 RVA: 0x000E6100 File Offset: 0x000E4300
 	private void OnTriggerEnter(Collider other)
 	{
 		GameObject gameObject = other.gameObject.transform.root.gameObject;
@@ -27,21 +27,21 @@ public class HairBladeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400233D RID: 9021
+	// Token: 0x0400234E RID: 9038
 	public GameObject FemaleBloodyScream;
 
-	// Token: 0x0400233E RID: 9022
+	// Token: 0x0400234F RID: 9039
 	public GameObject MaleBloodyScream;
 
-	// Token: 0x0400233F RID: 9023
+	// Token: 0x04002350 RID: 9040
 	public Vector3 PreviousPosition;
 
-	// Token: 0x04002340 RID: 9024
+	// Token: 0x04002351 RID: 9041
 	public Collider MyCollider;
 
-	// Token: 0x04002341 RID: 9025
+	// Token: 0x04002352 RID: 9042
 	public float Timer;
 
-	// Token: 0x04002342 RID: 9026
+	// Token: 0x04002353 RID: 9043
 	public StudentScript Student;
 }

@@ -3,10 +3,10 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000453 RID: 1107
+// Token: 0x02000455 RID: 1109
 public class StudentInfoMenuScript : MonoBehaviour
 {
-	// Token: 0x06001D4A RID: 7498 RVA: 0x0015F95C File Offset: 0x0015DB5C
+	// Token: 0x06001D5A RID: 7514 RVA: 0x00160EAC File Offset: 0x0015F0AC
 	private void Start()
 	{
 		StudentGlobals.GetStudentPhotographed(11);
@@ -36,7 +36,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		this.Row = 0;
 	}
 
-	// Token: 0x06001D4B RID: 7499 RVA: 0x0015FAB4 File Offset: 0x0015DCB4
+	// Token: 0x06001D5B RID: 7515 RVA: 0x00161004 File Offset: 0x0015F204
 	private void Update()
 	{
 		if (!this.GrabbedPortraits)
@@ -291,7 +291,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D4C RID: 7500 RVA: 0x001604C4 File Offset: 0x0015E6C4
+	// Token: 0x06001D5C RID: 7516 RVA: 0x00161A14 File Offset: 0x0015FC14
 	public void UpdateHighlight()
 	{
 		this.Highlight.localPosition = new Vector3(-300f + (float)this.Column * 150f, 80f - (float)this.Row * 160f, this.Highlight.localPosition.z);
@@ -439,7 +439,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		this.UpdateNameLabel();
 	}
 
-	// Token: 0x06001D4D RID: 7501 RVA: 0x00160E80 File Offset: 0x0015F080
+	// Token: 0x06001D5D RID: 7517 RVA: 0x001623D0 File Offset: 0x001605D0
 	private void UpdateNameLabel()
 	{
 		if (this.StudentID > 97 || StudentGlobals.GetStudentPhotographed(this.StudentID) || this.GettingInfo)
@@ -450,7 +450,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		this.NameLabel.text = "Unknown";
 	}
 
-	// Token: 0x06001D4E RID: 7502 RVA: 0x00160EDF File Offset: 0x0015F0DF
+	// Token: 0x06001D5E RID: 7518 RVA: 0x0016242F File Offset: 0x0016062F
 	public IEnumerator UpdatePortraits()
 	{
 		if (this.Debugging)
@@ -564,162 +564,162 @@ public class StudentInfoMenuScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x040035C1 RID: 13761
+	// Token: 0x04003608 RID: 13832
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040035C2 RID: 13762
+	// Token: 0x04003609 RID: 13833
 	public InputManagerScript InputManager;
 
-	// Token: 0x040035C3 RID: 13763
+	// Token: 0x0400360A RID: 13834
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x040035C4 RID: 13764
+	// Token: 0x0400360B RID: 13835
 	public StudentInfoScript StudentInfo;
 
-	// Token: 0x040035C5 RID: 13765
+	// Token: 0x0400360C RID: 13836
 	public NoteWindowScript NoteWindow;
 
-	// Token: 0x040035C6 RID: 13766
+	// Token: 0x0400360D RID: 13837
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040035C7 RID: 13767
+	// Token: 0x0400360E RID: 13838
 	public JsonScript JSON;
 
-	// Token: 0x040035C8 RID: 13768
+	// Token: 0x0400360F RID: 13839
 	public GameObject StudentPortrait;
 
-	// Token: 0x040035C9 RID: 13769
+	// Token: 0x04003610 RID: 13840
 	public Texture UnknownPortrait;
 
-	// Token: 0x040035CA RID: 13770
+	// Token: 0x04003611 RID: 13841
 	public Texture BlankPortrait;
 
-	// Token: 0x040035CB RID: 13771
+	// Token: 0x04003612 RID: 13842
 	public Texture Headmaster;
 
-	// Token: 0x040035CC RID: 13772
+	// Token: 0x04003613 RID: 13843
 	public Texture Counselor;
 
-	// Token: 0x040035CD RID: 13773
+	// Token: 0x04003614 RID: 13844
 	public Texture InfoChan;
 
-	// Token: 0x040035CE RID: 13774
+	// Token: 0x04003615 RID: 13845
 	public Texture EightiesHeadmaster;
 
-	// Token: 0x040035CF RID: 13775
+	// Token: 0x04003616 RID: 13846
 	public Texture EightiesCounselor;
 
-	// Token: 0x040035D0 RID: 13776
+	// Token: 0x04003617 RID: 13847
 	public Texture Journalist;
 
-	// Token: 0x040035D1 RID: 13777
+	// Token: 0x04003618 RID: 13848
 	public Transform PortraitGrid;
 
-	// Token: 0x040035D2 RID: 13778
+	// Token: 0x04003619 RID: 13849
 	public Transform BusyBlocker;
 
-	// Token: 0x040035D3 RID: 13779
+	// Token: 0x0400361A RID: 13850
 	public Transform Highlight;
 
-	// Token: 0x040035D4 RID: 13780
+	// Token: 0x0400361B RID: 13851
 	public Transform Scrollbar;
 
-	// Token: 0x040035D5 RID: 13781
+	// Token: 0x0400361C RID: 13852
 	public StudentPortraitScript[] StudentPortraits;
 
-	// Token: 0x040035D6 RID: 13782
+	// Token: 0x0400361D RID: 13853
 	public Texture[] RivalPortraits;
 
-	// Token: 0x040035D7 RID: 13783
+	// Token: 0x0400361E RID: 13854
 	public bool[] PortraitLoaded;
 
-	// Token: 0x040035D8 RID: 13784
+	// Token: 0x0400361F RID: 13855
 	public UISprite[] DeathShadows;
 
-	// Token: 0x040035D9 RID: 13785
+	// Token: 0x04003620 RID: 13856
 	public UISprite[] Friends;
 
-	// Token: 0x040035DA RID: 13786
+	// Token: 0x04003621 RID: 13857
 	public UISprite[] Panties;
 
-	// Token: 0x040035DB RID: 13787
+	// Token: 0x04003622 RID: 13858
 	public UITexture[] PrisonBars;
 
-	// Token: 0x040035DC RID: 13788
+	// Token: 0x04003623 RID: 13859
 	public UITexture[] Portraits;
 
-	// Token: 0x040035DD RID: 13789
+	// Token: 0x04003624 RID: 13860
 	public UILabel NameLabel;
 
-	// Token: 0x040035DE RID: 13790
+	// Token: 0x04003625 RID: 13861
 	public bool FiringCouncilMember;
 
-	// Token: 0x040035DF RID: 13791
+	// Token: 0x04003626 RID: 13862
 	public bool GettingOpinions;
 
-	// Token: 0x040035E0 RID: 13792
+	// Token: 0x04003627 RID: 13863
 	public bool CyberBullying;
 
-	// Token: 0x040035E1 RID: 13793
+	// Token: 0x04003628 RID: 13864
 	public bool CyberStalking;
 
-	// Token: 0x040035E2 RID: 13794
+	// Token: 0x04003629 RID: 13865
 	public bool FindingLocker;
 
-	// Token: 0x040035E3 RID: 13795
+	// Token: 0x0400362A RID: 13866
 	public bool UsingLifeNote;
 
-	// Token: 0x040035E4 RID: 13796
+	// Token: 0x0400362B RID: 13867
 	public bool GettingInfo;
 
-	// Token: 0x040035E5 RID: 13797
+	// Token: 0x0400362C RID: 13868
 	public bool MatchMaking;
 
-	// Token: 0x040035E6 RID: 13798
+	// Token: 0x0400362D RID: 13869
 	public bool Distracting;
 
-	// Token: 0x040035E7 RID: 13799
+	// Token: 0x0400362E RID: 13870
 	public bool SendingHome;
 
-	// Token: 0x040035E8 RID: 13800
+	// Token: 0x0400362F RID: 13871
 	public bool Gossiping;
 
-	// Token: 0x040035E9 RID: 13801
+	// Token: 0x04003630 RID: 13872
 	public bool Targeting;
 
-	// Token: 0x040035EA RID: 13802
+	// Token: 0x04003631 RID: 13873
 	public bool Dead;
 
-	// Token: 0x040035EB RID: 13803
+	// Token: 0x04003632 RID: 13874
 	public int[] SetSizes;
 
-	// Token: 0x040035EC RID: 13804
+	// Token: 0x04003633 RID: 13875
 	public int StudentID;
 
-	// Token: 0x040035ED RID: 13805
+	// Token: 0x04003634 RID: 13876
 	public int Column;
 
-	// Token: 0x040035EE RID: 13806
+	// Token: 0x04003635 RID: 13877
 	public int Row;
 
-	// Token: 0x040035EF RID: 13807
+	// Token: 0x04003636 RID: 13878
 	public int Set;
 
-	// Token: 0x040035F0 RID: 13808
+	// Token: 0x04003637 RID: 13879
 	public int Columns;
 
-	// Token: 0x040035F1 RID: 13809
+	// Token: 0x04003638 RID: 13880
 	public int Rows;
 
-	// Token: 0x040035F2 RID: 13810
+	// Token: 0x04003639 RID: 13881
 	public bool GrabPortraitsNextFrame;
 
-	// Token: 0x040035F3 RID: 13811
+	// Token: 0x0400363A RID: 13882
 	public int Frame;
 
-	// Token: 0x040035F4 RID: 13812
+	// Token: 0x0400363B RID: 13883
 	public bool GrabbedPortraits;
 
-	// Token: 0x040035F5 RID: 13813
+	// Token: 0x0400363C RID: 13884
 	public bool Debugging;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000352 RID: 850
 public class LiquidColliderScript : MonoBehaviour
 {
-	// Token: 0x06001963 RID: 6499 RVA: 0x000FEF98 File Offset: 0x000FD198
+	// Token: 0x0600196A RID: 6506 RVA: 0x000FF754 File Offset: 0x000FD954
 	private void Start()
 	{
 		if (this.Bucket)
@@ -13,7 +13,7 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001964 RID: 6500 RVA: 0x000FEFBC File Offset: 0x000FD1BC
+	// Token: 0x0600196B RID: 6507 RVA: 0x000FF778 File Offset: 0x000FD978
 	private void Update()
 	{
 		if (!this.Static)
@@ -40,7 +40,7 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001965 RID: 6501 RVA: 0x000FF13C File Offset: 0x000FD33C
+	// Token: 0x0600196C RID: 6508 RVA: 0x000FF8F8 File Offset: 0x000FDAF8
 	private void OnTriggerEnter(Collider other)
 	{
 		if (!this.AlreadyDoused && other.gameObject.layer == 9)
@@ -71,7 +71,7 @@ public class LiquidColliderScript : MonoBehaviour
 				}
 				if (!component.Wet && !component.Fleeing)
 				{
-					Debug.Log(component.Name + " just dodged a bucket of liquid.");
+					Debug.Log(component.Name + " just dodged some liquid.");
 					if (component.Investigating)
 					{
 						component.StopInvestigating();
@@ -105,41 +105,43 @@ public class LiquidColliderScript : MonoBehaviour
 						component.Pathfinding.target = component.Destinations[component.Phase];
 						component.Pathfinding.speed = 1f;
 					}
+					component.Yandere.NotificationManager.CustomText = "Anticipated the trap!";
+					component.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 				}
 			}
 		}
 	}
 
-	// Token: 0x04002837 RID: 10295
+	// Token: 0x04002854 RID: 10324
 	private GameObject NewPool;
 
-	// Token: 0x04002838 RID: 10296
+	// Token: 0x04002855 RID: 10325
 	public AudioClip SplashSound;
 
-	// Token: 0x04002839 RID: 10297
+	// Token: 0x04002856 RID: 10326
 	public GameObject GroundSplash;
 
-	// Token: 0x0400283A RID: 10298
+	// Token: 0x04002857 RID: 10327
 	public GameObject Splash;
 
-	// Token: 0x0400283B RID: 10299
+	// Token: 0x04002858 RID: 10328
 	public GameObject Pool;
 
-	// Token: 0x0400283C RID: 10300
+	// Token: 0x04002859 RID: 10329
 	public bool AlreadyDoused;
 
-	// Token: 0x0400283D RID: 10301
+	// Token: 0x0400285A RID: 10330
 	public bool Static;
 
-	// Token: 0x0400283E RID: 10302
+	// Token: 0x0400285B RID: 10331
 	public bool Bucket;
 
-	// Token: 0x0400283F RID: 10303
+	// Token: 0x0400285C RID: 10332
 	public bool Brown;
 
-	// Token: 0x04002840 RID: 10304
+	// Token: 0x0400285D RID: 10333
 	public bool Blood;
 
-	// Token: 0x04002841 RID: 10305
+	// Token: 0x0400285E RID: 10334
 	public bool Gas;
 }

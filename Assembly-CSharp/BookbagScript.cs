@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F3 RID: 243
 public class BookbagScript : MonoBehaviour
 {
-	// Token: 0x06000A58 RID: 2648 RVA: 0x0005C058 File Offset: 0x0005A258
+	// Token: 0x06000A59 RID: 2649 RVA: 0x0005C198 File Offset: 0x0005A398
 	private void Start()
 	{
 		this.MyRigidbody.useGravity = false;
@@ -16,7 +16,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A59 RID: 2649 RVA: 0x0005C0AC File Offset: 0x0005A2AC
+	// Token: 0x06000A5A RID: 2650 RVA: 0x0005C1EC File Offset: 0x0005A3EC
 	private void Update()
 	{
 		if (this.Prompt.Yandere.PickUp != null || this.ConcealedPickup != null)
@@ -67,7 +67,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A5A RID: 2650 RVA: 0x0005C2E8 File Offset: 0x0005A4E8
+	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C428 File Offset: 0x0005A628
 	public void Drop()
 	{
 		this.Worn = false;
@@ -80,7 +80,7 @@ public class BookbagScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C358 File Offset: 0x0005A558
+	// Token: 0x06000A5C RID: 2652 RVA: 0x0005C498 File Offset: 0x0005A698
 	public void Wear()
 	{
 		this.Worn = true;
@@ -97,27 +97,27 @@ public class BookbagScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x04000C01 RID: 3073
+	// Token: 0x04000C07 RID: 3079
 	public PickUpScript ConcealedPickup;
 
-	// Token: 0x04000C02 RID: 3074
+	// Token: 0x04000C08 RID: 3080
 	public Rigidbody MyRigidbody;
 
-	// Token: 0x04000C03 RID: 3075
+	// Token: 0x04000C09 RID: 3081
 	public PromptScript Prompt;
 
-	// Token: 0x04000C04 RID: 3076
+	// Token: 0x04000C0A RID: 3082
 	public Texture EightiesBookBagTexture;
 
-	// Token: 0x04000C05 RID: 3077
+	// Token: 0x04000C0B RID: 3083
 	public Mesh EightiesBookBag;
 
-	// Token: 0x04000C06 RID: 3078
+	// Token: 0x04000C0C RID: 3084
 	public Renderer MyRenderer;
 
-	// Token: 0x04000C07 RID: 3079
+	// Token: 0x04000C0D RID: 3085
 	public MeshFilter MyMesh;
 
-	// Token: 0x04000C08 RID: 3080
+	// Token: 0x04000C0E RID: 3086
 	public bool Worn;
 }

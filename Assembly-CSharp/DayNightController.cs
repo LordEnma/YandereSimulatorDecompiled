@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000272 RID: 626
 public class DayNightController : MonoBehaviour
 {
-	// Token: 0x06001347 RID: 4935 RVA: 0x000AE318 File Offset: 0x000AC518
+	// Token: 0x0600134A RID: 4938 RVA: 0x000AE864 File Offset: 0x000ACA64
 	private void Initialize()
 	{
 		this.quarterDay = this.dayCycleLength * 0.25f;
@@ -19,7 +19,7 @@ public class DayNightController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001348 RID: 4936 RVA: 0x000AE398 File Offset: 0x000AC598
+	// Token: 0x0600134B RID: 4939 RVA: 0x000AE8E4 File Offset: 0x000ACAE4
 	private void Reset()
 	{
 		this.dayCycleLength = 120f;
@@ -47,13 +47,13 @@ public class DayNightController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001349 RID: 4937 RVA: 0x000AE4BE File Offset: 0x000AC6BE
+	// Token: 0x0600134C RID: 4940 RVA: 0x000AEA0A File Offset: 0x000ACC0A
 	private void Start()
 	{
 		this.Initialize();
 	}
 
-	// Token: 0x0600134A RID: 4938 RVA: 0x000AE4C8 File Offset: 0x000AC6C8
+	// Token: 0x0600134D RID: 4941 RVA: 0x000AEA14 File Offset: 0x000ACC14
 	private void Update()
 	{
 		if (this.currentCycleTime > this.nightTime && this.currentPhase == DayNightController.DayPhase.Dusk)
@@ -79,7 +79,7 @@ public class DayNightController : MonoBehaviour
 		this.currentCycleTime %= this.dayCycleLength;
 	}
 
-	// Token: 0x0600134B RID: 4939 RVA: 0x000AE594 File Offset: 0x000AC794
+	// Token: 0x0600134E RID: 4942 RVA: 0x000AEAE0 File Offset: 0x000ACCE0
 	public void SetDawn()
 	{
 		RenderSettings.skybox = this.dawnDuskSkybox;
@@ -91,7 +91,7 @@ public class DayNightController : MonoBehaviour
 		this.currentPhase = DayNightController.DayPhase.Dawn;
 	}
 
-	// Token: 0x0600134C RID: 4940 RVA: 0x000AE5CC File Offset: 0x000AC7CC
+	// Token: 0x0600134F RID: 4943 RVA: 0x000AEB18 File Offset: 0x000ACD18
 	public void SetDay()
 	{
 		RenderSettings.skybox = this.daySkybox;
@@ -104,14 +104,14 @@ public class DayNightController : MonoBehaviour
 		this.currentPhase = DayNightController.DayPhase.Day;
 	}
 
-	// Token: 0x0600134D RID: 4941 RVA: 0x000AE612 File Offset: 0x000AC812
+	// Token: 0x06001350 RID: 4944 RVA: 0x000AEB5E File Offset: 0x000ACD5E
 	public void SetDusk()
 	{
 		RenderSettings.skybox = this.dawnDuskSkybox;
 		this.currentPhase = DayNightController.DayPhase.Dusk;
 	}
 
-	// Token: 0x0600134E RID: 4942 RVA: 0x000AE628 File Offset: 0x000AC828
+	// Token: 0x06001351 RID: 4945 RVA: 0x000AEB74 File Offset: 0x000ACD74
 	public void SetNight()
 	{
 		RenderSettings.skybox = this.nightSkybox;
@@ -124,7 +124,7 @@ public class DayNightController : MonoBehaviour
 		this.currentPhase = DayNightController.DayPhase.Night;
 	}
 
-	// Token: 0x0600134F RID: 4943 RVA: 0x000AE66C File Offset: 0x000AC86C
+	// Token: 0x06001352 RID: 4946 RVA: 0x000AEBB8 File Offset: 0x000ACDB8
 	private void UpdateDaylight()
 	{
 		if (this.currentPhase == DayNightController.DayPhase.Dawn)
@@ -150,7 +150,7 @@ public class DayNightController : MonoBehaviour
 		base.transform.Rotate(Vector3.up * (Time.deltaTime / this.dayCycleLength * 360f), Space.Self);
 	}
 
-	// Token: 0x06001350 RID: 4944 RVA: 0x000AE760 File Offset: 0x000AC960
+	// Token: 0x06001353 RID: 4947 RVA: 0x000AECAC File Offset: 0x000ACEAC
 	private void UpdateFog()
 	{
 		if (this.currentPhase == DayNightController.DayPhase.Dawn)
@@ -178,82 +178,82 @@ public class DayNightController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001351 RID: 4945 RVA: 0x000AE843 File Offset: 0x000ACA43
+	// Token: 0x06001354 RID: 4948 RVA: 0x000AED8F File Offset: 0x000ACF8F
 	private void UpdateWorldTime()
 	{
 		this.worldTimeHour = (int)((Mathf.Ceil(this.currentCycleTime / this.dayCycleLength * this.hoursPerDay) + this.dawnTimeOffset) % this.hoursPerDay) + 1;
 	}
 
-	// Token: 0x04001BFA RID: 7162
+	// Token: 0x04001C08 RID: 7176
 	public float dayCycleLength;
 
-	// Token: 0x04001BFB RID: 7163
+	// Token: 0x04001C09 RID: 7177
 	public float currentCycleTime;
 
-	// Token: 0x04001BFC RID: 7164
+	// Token: 0x04001C0A RID: 7178
 	public DayNightController.DayPhase currentPhase;
 
-	// Token: 0x04001BFD RID: 7165
+	// Token: 0x04001C0B RID: 7179
 	public float hoursPerDay;
 
-	// Token: 0x04001BFE RID: 7166
+	// Token: 0x04001C0C RID: 7180
 	public float dawnTimeOffset;
 
-	// Token: 0x04001BFF RID: 7167
+	// Token: 0x04001C0D RID: 7181
 	public int worldTimeHour;
 
-	// Token: 0x04001C00 RID: 7168
+	// Token: 0x04001C0E RID: 7182
 	public Color fullLight;
 
-	// Token: 0x04001C01 RID: 7169
+	// Token: 0x04001C0F RID: 7183
 	public Color fullDark;
 
-	// Token: 0x04001C02 RID: 7170
+	// Token: 0x04001C10 RID: 7184
 	public Material dawnDuskSkybox;
 
-	// Token: 0x04001C03 RID: 7171
+	// Token: 0x04001C11 RID: 7185
 	public Color dawnDuskFog;
 
-	// Token: 0x04001C04 RID: 7172
+	// Token: 0x04001C12 RID: 7186
 	public Material daySkybox;
 
-	// Token: 0x04001C05 RID: 7173
+	// Token: 0x04001C13 RID: 7187
 	public Color dayFog;
 
-	// Token: 0x04001C06 RID: 7174
+	// Token: 0x04001C14 RID: 7188
 	public Material nightSkybox;
 
-	// Token: 0x04001C07 RID: 7175
+	// Token: 0x04001C15 RID: 7189
 	public Color nightFog;
 
-	// Token: 0x04001C08 RID: 7176
+	// Token: 0x04001C16 RID: 7190
 	private float dawnTime;
 
-	// Token: 0x04001C09 RID: 7177
+	// Token: 0x04001C17 RID: 7191
 	private float dayTime;
 
-	// Token: 0x04001C0A RID: 7178
+	// Token: 0x04001C18 RID: 7192
 	private float duskTime;
 
-	// Token: 0x04001C0B RID: 7179
+	// Token: 0x04001C19 RID: 7193
 	private float nightTime;
 
-	// Token: 0x04001C0C RID: 7180
+	// Token: 0x04001C1A RID: 7194
 	private float quarterDay;
 
-	// Token: 0x04001C0D RID: 7181
+	// Token: 0x04001C1B RID: 7195
 	private float lightIntensity;
 
-	// Token: 0x02000652 RID: 1618
+	// Token: 0x02000656 RID: 1622
 	public enum DayPhase
 	{
-		// Token: 0x04004F29 RID: 20265
+		// Token: 0x04004F88 RID: 20360
 		Night,
-		// Token: 0x04004F2A RID: 20266
+		// Token: 0x04004F89 RID: 20361
 		Dawn,
-		// Token: 0x04004F2B RID: 20267
+		// Token: 0x04004F8A RID: 20362
 		Day,
-		// Token: 0x04004F2C RID: 20268
+		// Token: 0x04004F8B RID: 20363
 		Dusk
 	}
 }

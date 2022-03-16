@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000289 RID: 649
 public class DoItScript : MonoBehaviour
 {
-	// Token: 0x060013A3 RID: 5027 RVA: 0x000B84E8 File Offset: 0x000B66E8
+	// Token: 0x060013A6 RID: 5030 RVA: 0x000B88C4 File Offset: 0x000B6AC4
 	private void Start()
 	{
 		this.MyLabel.fontSize = UnityEngine.Random.Range(50, 100);
 	}
 
-	// Token: 0x060013A4 RID: 5028 RVA: 0x000B8500 File Offset: 0x000B6700
+	// Token: 0x060013A7 RID: 5031 RVA: 0x000B88DC File Offset: 0x000B6ADC
 	private void Update()
 	{
 		base.transform.localScale += new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
@@ -33,9 +33,9 @@ public class DoItScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D1E RID: 7454
+	// Token: 0x04001D2C RID: 7468
 	public UILabel MyLabel;
 
-	// Token: 0x04001D1F RID: 7455
+	// Token: 0x04001D2D RID: 7469
 	public bool Fade;
 }

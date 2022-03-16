@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x02000414 RID: 1044
+// Token: 0x02000415 RID: 1045
 public static class SchoolAtmosphere
 {
-	// Token: 0x170004A2 RID: 1186
-	// (get) Token: 0x06001C5F RID: 7263 RVA: 0x0014BFFC File Offset: 0x0014A1FC
+	// Token: 0x170004A3 RID: 1187
+	// (get) Token: 0x06001C6C RID: 7276 RVA: 0x0014CEA0 File Offset: 0x0014B0A0
 	public static SchoolAtmosphereType Type
 	{
 		get

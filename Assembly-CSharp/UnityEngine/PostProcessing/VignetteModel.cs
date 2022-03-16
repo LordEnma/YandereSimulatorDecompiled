@@ -2,13 +2,13 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000572 RID: 1394
+	// Token: 0x02000576 RID: 1398
 	[Serializable]
 	public class VignetteModel : PostProcessingModel
 	{
-		// Token: 0x17000511 RID: 1297
-		// (get) Token: 0x06002373 RID: 9075 RVA: 0x001F53F4 File Offset: 0x001F35F4
-		// (set) Token: 0x06002374 RID: 9076 RVA: 0x001F53FC File Offset: 0x001F35FC
+		// Token: 0x17000512 RID: 1298
+		// (get) Token: 0x0600238B RID: 9099 RVA: 0x001F735C File Offset: 0x001F555C
+		// (set) Token: 0x0600238C RID: 9100 RVA: 0x001F7364 File Offset: 0x001F5564
 		public VignetteModel.Settings settings
 		{
 			get
@@ -21,31 +21,31 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002375 RID: 9077 RVA: 0x001F5405 File Offset: 0x001F3605
+		// Token: 0x0600238D RID: 9101 RVA: 0x001F736D File Offset: 0x001F556D
 		public override void Reset()
 		{
 			this.m_Settings = VignetteModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004B35 RID: 19253
+		// Token: 0x04004B94 RID: 19348
 		[SerializeField]
 		private VignetteModel.Settings m_Settings = VignetteModel.Settings.defaultSettings;
 
-		// Token: 0x020006D3 RID: 1747
+		// Token: 0x020006D7 RID: 1751
 		public enum Mode
 		{
-			// Token: 0x040051A2 RID: 20898
+			// Token: 0x04005201 RID: 20993
 			Classic,
-			// Token: 0x040051A3 RID: 20899
+			// Token: 0x04005202 RID: 20994
 			Masked
 		}
 
-		// Token: 0x020006D4 RID: 1748
+		// Token: 0x020006D8 RID: 1752
 		[Serializable]
 		public struct Settings
 		{
-			// Token: 0x170005A7 RID: 1447
-			// (get) Token: 0x0600275C RID: 10076 RVA: 0x00203CC8 File Offset: 0x00201EC8
+			// Token: 0x170005A8 RID: 1448
+			// (get) Token: 0x06002774 RID: 10100 RVA: 0x00205C30 File Offset: 0x00203E30
 			public static VignetteModel.Settings defaultSettings
 			{
 				get
@@ -65,44 +65,44 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x040051A4 RID: 20900
+			// Token: 0x04005203 RID: 20995
 			[Tooltip("Use the \"Classic\" mode for parametric controls. Use the \"Masked\" mode to use your own texture mask.")]
 			public VignetteModel.Mode mode;
 
-			// Token: 0x040051A5 RID: 20901
+			// Token: 0x04005204 RID: 20996
 			[ColorUsage(false)]
 			[Tooltip("Vignette color. Use the alpha channel for transparency.")]
 			public Color color;
 
-			// Token: 0x040051A6 RID: 20902
+			// Token: 0x04005205 RID: 20997
 			[Tooltip("Sets the vignette center point (screen center is [0.5,0.5]).")]
 			public Vector2 center;
 
-			// Token: 0x040051A7 RID: 20903
+			// Token: 0x04005206 RID: 20998
 			[Range(0f, 1f)]
 			[Tooltip("Amount of vignetting on screen.")]
 			public float intensity;
 
-			// Token: 0x040051A8 RID: 20904
+			// Token: 0x04005207 RID: 20999
 			[Range(0.01f, 1f)]
 			[Tooltip("Smoothness of the vignette borders.")]
 			public float smoothness;
 
-			// Token: 0x040051A9 RID: 20905
+			// Token: 0x04005208 RID: 21000
 			[Range(0f, 1f)]
 			[Tooltip("Lower values will make a square-ish vignette.")]
 			public float roundness;
 
-			// Token: 0x040051AA RID: 20906
+			// Token: 0x04005209 RID: 21001
 			[Tooltip("A black and white mask to use as a vignette.")]
 			public Texture mask;
 
-			// Token: 0x040051AB RID: 20907
+			// Token: 0x0400520A RID: 21002
 			[Range(0f, 1f)]
 			[Tooltip("Mask opacity.")]
 			public float opacity;
 
-			// Token: 0x040051AC RID: 20908
+			// Token: 0x0400520B RID: 21003
 			[Tooltip("Should the vignette be perfectly round or be dependent on the current aspect ratio?")]
 			public bool rounded;
 		}

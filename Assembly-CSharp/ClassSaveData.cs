@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x020003F5 RID: 1013
+// Token: 0x020003F6 RID: 1014
 [Serializable]
 public class ClassSaveData
 {
-	// Token: 0x06001BF7 RID: 7159 RVA: 0x00146820 File Offset: 0x00144A20
+	// Token: 0x06001C04 RID: 7172 RVA: 0x001476C4 File Offset: 0x001458C4
 	public static ClassSaveData ReadFromGlobals()
 	{
 		return new ClassSaveData
@@ -27,7 +27,7 @@ public class ClassSaveData
 		};
 	}
 
-	// Token: 0x06001BF8 RID: 7160 RVA: 0x001468D8 File Offset: 0x00144AD8
+	// Token: 0x06001C05 RID: 7173 RVA: 0x0014777C File Offset: 0x0014597C
 	public static void WriteToGlobals(ClassSaveData data)
 	{
 		ClassGlobals.Biology = data.biology;
@@ -47,48 +47,48 @@ public class ClassSaveData
 		ClassGlobals.PsychologyGrade = data.psychologyGrade;
 	}
 
-	// Token: 0x04003117 RID: 12567
+	// Token: 0x0400314B RID: 12619
 	public int biology;
 
-	// Token: 0x04003118 RID: 12568
+	// Token: 0x0400314C RID: 12620
 	public int biologyBonus;
 
-	// Token: 0x04003119 RID: 12569
+	// Token: 0x0400314D RID: 12621
 	public int biologyGrade;
 
-	// Token: 0x0400311A RID: 12570
+	// Token: 0x0400314E RID: 12622
 	public int chemistry;
 
-	// Token: 0x0400311B RID: 12571
+	// Token: 0x0400314F RID: 12623
 	public int chemistryBonus;
 
-	// Token: 0x0400311C RID: 12572
+	// Token: 0x04003150 RID: 12624
 	public int chemistryGrade;
 
-	// Token: 0x0400311D RID: 12573
+	// Token: 0x04003151 RID: 12625
 	public int language;
 
-	// Token: 0x0400311E RID: 12574
+	// Token: 0x04003152 RID: 12626
 	public int languageBonus;
 
-	// Token: 0x0400311F RID: 12575
+	// Token: 0x04003153 RID: 12627
 	public int languageGrade;
 
-	// Token: 0x04003120 RID: 12576
+	// Token: 0x04003154 RID: 12628
 	public int physical;
 
-	// Token: 0x04003121 RID: 12577
+	// Token: 0x04003155 RID: 12629
 	public int physicalBonus;
 
-	// Token: 0x04003122 RID: 12578
+	// Token: 0x04003156 RID: 12630
 	public int physicalGrade;
 
-	// Token: 0x04003123 RID: 12579
+	// Token: 0x04003157 RID: 12631
 	public int psychology;
 
-	// Token: 0x04003124 RID: 12580
+	// Token: 0x04003158 RID: 12632
 	public int psychologyBonus;
 
-	// Token: 0x04003125 RID: 12581
+	// Token: 0x04003159 RID: 12633
 	public int psychologyGrade;
 }

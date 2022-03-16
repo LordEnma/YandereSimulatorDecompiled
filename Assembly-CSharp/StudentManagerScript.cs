@@ -4,10 +4,10 @@ using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-// Token: 0x02000455 RID: 1109
+// Token: 0x02000457 RID: 1111
 public class StudentManagerScript : MonoBehaviour
 {
-	// Token: 0x06001D58 RID: 7512 RVA: 0x00162BB8 File Offset: 0x00160DB8
+	// Token: 0x06001D68 RID: 7528 RVA: 0x00164108 File Offset: 0x00162308
 	private void Awake()
 	{
 		if (!this.TakingPortraits && !GameGlobals.Eighties && DateGlobals.Week > this.WeekLimit)
@@ -18,7 +18,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D59 RID: 7513 RVA: 0x00162C14 File Offset: 0x00160E14
+	// Token: 0x06001D69 RID: 7529 RVA: 0x00164164 File Offset: 0x00162364
 	private void Start()
 	{
 		this.EightiesTutorial = GameGlobals.EightiesTutorial;
@@ -378,7 +378,7 @@ public class StudentManagerScript : MonoBehaviour
 		}));
 	}
 
-	// Token: 0x06001D5A RID: 7514 RVA: 0x00163A1C File Offset: 0x00161C1C
+	// Token: 0x06001D6A RID: 7530 RVA: 0x00164F6C File Offset: 0x0016316C
 	public void SetAtmosphere()
 	{
 		if (GameGlobals.LoveSick)
@@ -424,7 +424,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D5B RID: 7515 RVA: 0x00163B3C File Offset: 0x00161D3C
+	// Token: 0x06001D6B RID: 7531 RVA: 0x0016508C File Offset: 0x0016328C
 	private void Update()
 	{
 		if (!this.TakingPortraits)
@@ -1003,7 +1003,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.YandereVisible = false;
 	}
 
-	// Token: 0x06001D5C RID: 7516 RVA: 0x0016507C File Offset: 0x0016327C
+	// Token: 0x06001D6C RID: 7532 RVA: 0x001665CC File Offset: 0x001647CC
 	public void SpawnStudent(int spawnID)
 	{
 		bool flag = false;
@@ -1129,7 +1129,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.ForceSpawn = false;
 	}
 
-	// Token: 0x06001D5D RID: 7517 RVA: 0x001655B0 File Offset: 0x001637B0
+	// Token: 0x06001D6D RID: 7533 RVA: 0x00166B00 File Offset: 0x00164D00
 	public void UpdateStudents(int SpecificStudent = 0)
 	{
 		this.ID = 2;
@@ -1330,7 +1330,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D5E RID: 7518 RVA: 0x00165CF4 File Offset: 0x00163EF4
+	// Token: 0x06001D6E RID: 7534 RVA: 0x00167244 File Offset: 0x00165444
 	public void UpdateMe(int ID)
 	{
 		if (ID > 1)
@@ -1414,7 +1414,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D5F RID: 7519 RVA: 0x00166014 File Offset: 0x00164214
+	// Token: 0x06001D6F RID: 7535 RVA: 0x00167564 File Offset: 0x00165764
 	public void AttendClass()
 	{
 		this.ConvoManager.Confirmed = false;
@@ -1592,7 +1592,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.Gift.SetActive(false);
 	}
 
-	// Token: 0x06001D60 RID: 7520 RVA: 0x0016668C File Offset: 0x0016488C
+	// Token: 0x06001D70 RID: 7536 RVA: 0x00167BDC File Offset: 0x00165DDC
 	public void SkipTo8()
 	{
 		while (this.NPCsSpawned < this.NPCsTotal)
@@ -1688,7 +1688,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D61 RID: 7521 RVA: 0x0016694C File Offset: 0x00164B4C
+	// Token: 0x06001D71 RID: 7537 RVA: 0x00167E9C File Offset: 0x0016609C
 	public void SkipTo730()
 	{
 		while (this.NPCsSpawned < this.NPCsTotal)
@@ -1746,7 +1746,7 @@ public class StudentManagerScript : MonoBehaviour
 		Physics.SyncTransforms();
 	}
 
-	// Token: 0x06001D62 RID: 7522 RVA: 0x00166B00 File Offset: 0x00164D00
+	// Token: 0x06001D72 RID: 7538 RVA: 0x00168050 File Offset: 0x00166250
 	public void ResumeMovement()
 	{
 		this.ID = 1;
@@ -1767,7 +1767,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D63 RID: 7523 RVA: 0x00166B8C File Offset: 0x00164D8C
+	// Token: 0x06001D73 RID: 7539 RVA: 0x001680DC File Offset: 0x001662DC
 	public void UpdateAllSleuthClothing()
 	{
 		this.ID = 1;
@@ -1789,7 +1789,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D64 RID: 7524 RVA: 0x00166C04 File Offset: 0x00164E04
+	// Token: 0x06001D74 RID: 7540 RVA: 0x00168154 File Offset: 0x00166354
 	public void StopMoving()
 	{
 		this.CombatMinigame.enabled = false;
@@ -1855,7 +1855,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D65 RID: 7525 RVA: 0x00166E20 File Offset: 0x00165020
+	// Token: 0x06001D75 RID: 7541 RVA: 0x00168370 File Offset: 0x00166570
 	public void TimeFreeze()
 	{
 		this.ID = 1;
@@ -1875,7 +1875,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D66 RID: 7526 RVA: 0x00166EB4 File Offset: 0x001650B4
+	// Token: 0x06001D76 RID: 7542 RVA: 0x00168404 File Offset: 0x00166604
 	public void TimeUnfreeze()
 	{
 		this.ID = 1;
@@ -1893,7 +1893,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D67 RID: 7527 RVA: 0x00166F34 File Offset: 0x00165134
+	// Token: 0x06001D77 RID: 7543 RVA: 0x00168484 File Offset: 0x00166684
 	public void ComeBack()
 	{
 		this.Stop = false;
@@ -1945,7 +1945,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.Yandere.SetAnimationLayers();
 	}
 
-	// Token: 0x06001D68 RID: 7528 RVA: 0x00167124 File Offset: 0x00165324
+	// Token: 0x06001D78 RID: 7544 RVA: 0x00168674 File Offset: 0x00166874
 	public void StopFleeing()
 	{
 		this.ID = 1;
@@ -1968,7 +1968,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D69 RID: 7529 RVA: 0x001671D8 File Offset: 0x001653D8
+	// Token: 0x06001D79 RID: 7545 RVA: 0x00168728 File Offset: 0x00166928
 	public void EnablePrompts()
 	{
 		this.ID = 2;
@@ -1983,7 +1983,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D6A RID: 7530 RVA: 0x00167230 File Offset: 0x00165430
+	// Token: 0x06001D7A RID: 7546 RVA: 0x00168780 File Offset: 0x00166980
 	public void DisablePrompts()
 	{
 		this.ID = 2;
@@ -1999,7 +1999,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D6B RID: 7531 RVA: 0x00167294 File Offset: 0x00165494
+	// Token: 0x06001D7B RID: 7547 RVA: 0x001687E4 File Offset: 0x001669E4
 	public void WipePendingRep()
 	{
 		this.ID = 2;
@@ -2014,7 +2014,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D6C RID: 7532 RVA: 0x001672EC File Offset: 0x001654EC
+	// Token: 0x06001D7C RID: 7548 RVA: 0x0016883C File Offset: 0x00166A3C
 	public void AttackOnTitan()
 	{
 		this.RandomizeRoutines();
@@ -2032,7 +2032,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D6D RID: 7533 RVA: 0x00167358 File Offset: 0x00165558
+	// Token: 0x06001D7D RID: 7549 RVA: 0x001688A8 File Offset: 0x00166AA8
 	public void Kong()
 	{
 		this.DK = true;
@@ -2048,7 +2048,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D6E RID: 7534 RVA: 0x001673B4 File Offset: 0x001655B4
+	// Token: 0x06001D7E RID: 7550 RVA: 0x00168904 File Offset: 0x00166B04
 	public void Spook()
 	{
 		this.Spooky = true;
@@ -2064,7 +2064,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D6F RID: 7535 RVA: 0x00167414 File Offset: 0x00165614
+	// Token: 0x06001D7F RID: 7551 RVA: 0x00168964 File Offset: 0x00166B64
 	public void BadTime()
 	{
 		this.Sans = true;
@@ -2081,7 +2081,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D70 RID: 7536 RVA: 0x0016747C File Offset: 0x0016567C
+	// Token: 0x06001D80 RID: 7552 RVA: 0x001689CC File Offset: 0x00166BCC
 	public void UpdateBooths()
 	{
 		this.ID = 0;
@@ -2096,7 +2096,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D71 RID: 7537 RVA: 0x001674D0 File Offset: 0x001656D0
+	// Token: 0x06001D81 RID: 7553 RVA: 0x00168A20 File Offset: 0x00166C20
 	public void UpdatePerception()
 	{
 		this.ID = 0;
@@ -2111,7 +2111,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D72 RID: 7538 RVA: 0x00167524 File Offset: 0x00165724
+	// Token: 0x06001D82 RID: 7554 RVA: 0x00168A74 File Offset: 0x00166C74
 	public void StopHesitating()
 	{
 		this.ID = 0;
@@ -2130,7 +2130,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D73 RID: 7539 RVA: 0x00167594 File Offset: 0x00165794
+	// Token: 0x06001D83 RID: 7555 RVA: 0x00168AE4 File Offset: 0x00166CE4
 	public void Unstop()
 	{
 		this.ID = 0;
@@ -2145,7 +2145,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D74 RID: 7540 RVA: 0x001675E8 File Offset: 0x001657E8
+	// Token: 0x06001D84 RID: 7556 RVA: 0x00168B38 File Offset: 0x00166D38
 	public void LowerCorpsePosition()
 	{
 		int num;
@@ -2180,7 +2180,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.CorpseLocation.position = new Vector3(this.CorpseLocation.position.x, (float)num, this.CorpseLocation.position.z);
 	}
 
-	// Token: 0x06001D75 RID: 7541 RVA: 0x001676D4 File Offset: 0x001658D4
+	// Token: 0x06001D85 RID: 7557 RVA: 0x00168C24 File Offset: 0x00166E24
 	public void LowerBloodPosition()
 	{
 		int num;
@@ -2215,7 +2215,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.BloodLocation.position = new Vector3(this.BloodLocation.position.x, (float)num, this.BloodLocation.position.z);
 	}
 
-	// Token: 0x06001D76 RID: 7542 RVA: 0x001677C0 File Offset: 0x001659C0
+	// Token: 0x06001D86 RID: 7558 RVA: 0x00168D10 File Offset: 0x00166F10
 	public void CensorStudents()
 	{
 		this.ID = 0;
@@ -2237,7 +2237,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D77 RID: 7543 RVA: 0x00167850 File Offset: 0x00165A50
+	// Token: 0x06001D87 RID: 7559 RVA: 0x00168DA0 File Offset: 0x00166FA0
 	private void OccupySeat()
 	{
 		int @class = this.JSON.Students[this.SpawnID].Class;
@@ -2273,7 +2273,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D78 RID: 7544 RVA: 0x001678E8 File Offset: 0x00165AE8
+	// Token: 0x06001D88 RID: 7560 RVA: 0x00168E38 File Offset: 0x00167038
 	private void FindUnoccupiedSeat()
 	{
 		this.SeatOccupied = false;
@@ -2417,7 +2417,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D79 RID: 7545 RVA: 0x00167D50 File Offset: 0x00165F50
+	// Token: 0x06001D89 RID: 7561 RVA: 0x001692A0 File Offset: 0x001674A0
 	public void PinDownCheck()
 	{
 		if (!this.PinningDown && this.Witnesses > 3)
@@ -2444,7 +2444,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D7A RID: 7546 RVA: 0x00167E24 File Offset: 0x00166024
+	// Token: 0x06001D8A RID: 7562 RVA: 0x00169374 File Offset: 0x00167574
 	private void Shuffle(int Start)
 	{
 		for (int i = Start; i < this.WitnessList.Length - 1; i++)
@@ -2453,7 +2453,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D7B RID: 7547 RVA: 0x00167E58 File Offset: 0x00166058
+	// Token: 0x06001D8B RID: 7563 RVA: 0x001693A8 File Offset: 0x001675A8
 	public void RemovePapersFromDesks()
 	{
 		this.ID = 1;
@@ -2468,7 +2468,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D7C RID: 7548 RVA: 0x00167EC0 File Offset: 0x001660C0
+	// Token: 0x06001D8C RID: 7564 RVA: 0x00169410 File Offset: 0x00167610
 	public void SetStudentsActive(bool active)
 	{
 		this.ID = 1;
@@ -2483,7 +2483,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D7D RID: 7549 RVA: 0x00167F18 File Offset: 0x00166118
+	// Token: 0x06001D8D RID: 7565 RVA: 0x00169468 File Offset: 0x00167668
 	public void AssignTeachers()
 	{
 		this.ID = 1;
@@ -2498,7 +2498,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D7E RID: 7550 RVA: 0x00167F88 File Offset: 0x00166188
+	// Token: 0x06001D8E RID: 7566 RVA: 0x001694D8 File Offset: 0x001676D8
 	public void ToggleBookBags()
 	{
 		this.ID = 1;
@@ -2513,7 +2513,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D7F RID: 7551 RVA: 0x00167FEC File Offset: 0x001661EC
+	// Token: 0x06001D8F RID: 7567 RVA: 0x0016953C File Offset: 0x0016773C
 	public void DetermineVictim()
 	{
 		this.Bully = false;
@@ -2585,7 +2585,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D80 RID: 7552 RVA: 0x00168304 File Offset: 0x00166504
+	// Token: 0x06001D90 RID: 7568 RVA: 0x00169854 File Offset: 0x00167A54
 	public void SecurityCameras()
 	{
 		this.Egg = true;
@@ -2602,7 +2602,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D81 RID: 7553 RVA: 0x00168384 File Offset: 0x00166584
+	// Token: 0x06001D91 RID: 7569 RVA: 0x001698D4 File Offset: 0x00167AD4
 	public void DisableEveryone()
 	{
 		this.ID = 1;
@@ -2617,7 +2617,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D82 RID: 7554 RVA: 0x001683E8 File Offset: 0x001665E8
+	// Token: 0x06001D92 RID: 7570 RVA: 0x00169938 File Offset: 0x00167B38
 	public void DisableStudent(int DisableID)
 	{
 		StudentScript studentScript = this.Students[DisableID];
@@ -2634,14 +2634,14 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D83 RID: 7555 RVA: 0x00168442 File Offset: 0x00166642
+	// Token: 0x06001D93 RID: 7571 RVA: 0x00169992 File Offset: 0x00167B92
 	public void UpdateOneAnimLayer(int DisableID)
 	{
 		this.Students[DisableID].UpdateAnimLayers();
 		this.Students[DisableID].ReadPhase = 0;
 	}
 
-	// Token: 0x06001D84 RID: 7556 RVA: 0x00168460 File Offset: 0x00166660
+	// Token: 0x06001D94 RID: 7572 RVA: 0x001699B0 File Offset: 0x00167BB0
 	public void UpdateAllAnimLayers()
 	{
 		this.ID = 1;
@@ -2657,7 +2657,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D85 RID: 7557 RVA: 0x001684B8 File Offset: 0x001666B8
+	// Token: 0x06001D95 RID: 7573 RVA: 0x00169A08 File Offset: 0x00167C08
 	public void UpdateGraffiti()
 	{
 		this.ID = 1;
@@ -2671,7 +2671,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D86 RID: 7558 RVA: 0x00168508 File Offset: 0x00166708
+	// Token: 0x06001D96 RID: 7574 RVA: 0x00169A58 File Offset: 0x00167C58
 	public void UpdateAllBentos()
 	{
 		this.ID = 1;
@@ -2687,7 +2687,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D87 RID: 7559 RVA: 0x00168584 File Offset: 0x00166784
+	// Token: 0x06001D97 RID: 7575 RVA: 0x00169AD4 File Offset: 0x00167CD4
 	public void UpdateSleuths()
 	{
 		this.SleuthPhase++;
@@ -2719,7 +2719,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D88 RID: 7560 RVA: 0x00168780 File Offset: 0x00166980
+	// Token: 0x06001D98 RID: 7576 RVA: 0x00169CD0 File Offset: 0x00167ED0
 	public void UpdateDrama()
 	{
 		if (!this.MemorialScene.gameObject.activeInHierarchy)
@@ -2780,7 +2780,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D89 RID: 7561 RVA: 0x00168A9C File Offset: 0x00166C9C
+	// Token: 0x06001D99 RID: 7577 RVA: 0x00169FEC File Offset: 0x001681EC
 	public void UpdateMartialArts()
 	{
 		this.ConvoManager.Confirmed = false;
@@ -2826,7 +2826,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D8A RID: 7562 RVA: 0x00168D80 File Offset: 0x00166F80
+	// Token: 0x06001D9A RID: 7578 RVA: 0x0016A2D0 File Offset: 0x001684D0
 	public void UpdateMeeting()
 	{
 		this.MeetingTimer += Time.deltaTime;
@@ -2849,7 +2849,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D8B RID: 7563 RVA: 0x00168E00 File Offset: 0x00167000
+	// Token: 0x06001D9B RID: 7579 RVA: 0x0016A350 File Offset: 0x00168550
 	public void CheckMusic()
 	{
 		int num = 0;
@@ -2880,7 +2880,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D8C RID: 7564 RVA: 0x00168ED8 File Offset: 0x001670D8
+	// Token: 0x06001D9C RID: 7580 RVA: 0x0016A428 File Offset: 0x00168628
 	public void UpdateAprons()
 	{
 		this.ID = 21;
@@ -2905,7 +2905,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D8D RID: 7565 RVA: 0x00169080 File Offset: 0x00167280
+	// Token: 0x06001D9D RID: 7581 RVA: 0x0016A5D0 File Offset: 0x001687D0
 	public void PreventAlarm()
 	{
 		this.ID = 1;
@@ -2919,7 +2919,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D8E RID: 7566 RVA: 0x001690DC File Offset: 0x001672DC
+	// Token: 0x06001D9E RID: 7582 RVA: 0x0016A62C File Offset: 0x0016882C
 	public void VolumeDown()
 	{
 		this.ID = 51;
@@ -2933,7 +2933,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D8F RID: 7567 RVA: 0x00169188 File Offset: 0x00167388
+	// Token: 0x06001D9F RID: 7583 RVA: 0x0016A6D8 File Offset: 0x001688D8
 	public void VolumeUp()
 	{
 		this.ID = 51;
@@ -2947,7 +2947,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D90 RID: 7568 RVA: 0x00169234 File Offset: 0x00167434
+	// Token: 0x06001DA0 RID: 7584 RVA: 0x0016A784 File Offset: 0x00168984
 	public void GetMaleVomitSpot(StudentScript VomitStudent)
 	{
 		this.MaleVomitSpot = this.MaleVomitSpots[1];
@@ -2964,7 +2964,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D91 RID: 7569 RVA: 0x001692E4 File Offset: 0x001674E4
+	// Token: 0x06001DA1 RID: 7585 RVA: 0x0016A834 File Offset: 0x00168A34
 	public void GetFemaleVomitSpot(StudentScript VomitStudent)
 	{
 		this.FemaleVomitSpot = this.FemaleVomitSpots[1];
@@ -2981,7 +2981,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D92 RID: 7570 RVA: 0x00169394 File Offset: 0x00167594
+	// Token: 0x06001DA2 RID: 7586 RVA: 0x0016A8E4 File Offset: 0x00168AE4
 	public void GetMaleWashSpot(StudentScript VomitStudent)
 	{
 		Transform transform = this.MaleWashSpots[1];
@@ -2997,7 +2997,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.MaleWashSpot = transform;
 	}
 
-	// Token: 0x06001D93 RID: 7571 RVA: 0x0016941C File Offset: 0x0016761C
+	// Token: 0x06001DA3 RID: 7587 RVA: 0x0016A96C File Offset: 0x00168B6C
 	public void GetFemaleWashSpot(StudentScript VomitStudent)
 	{
 		Transform transform = this.FemaleWashSpots[1];
@@ -3013,7 +3013,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.FemaleWashSpot = transform;
 	}
 
-	// Token: 0x06001D94 RID: 7572 RVA: 0x001694A4 File Offset: 0x001676A4
+	// Token: 0x06001DA4 RID: 7588 RVA: 0x0016A9F4 File Offset: 0x00168BF4
 	public void GetNearestFountain(StudentScript Student)
 	{
 		DrinkingFountainScript drinkingFountainScript = this.DrinkingFountains[1];
@@ -3053,13 +3053,14 @@ public class StudentManagerScript : MonoBehaviour
 		Student.DrinkingFountain.Occupied = true;
 	}
 
-	// Token: 0x06001D95 RID: 7573 RVA: 0x00169600 File Offset: 0x00167800
+	// Token: 0x06001DA5 RID: 7589 RVA: 0x0016AB50 File Offset: 0x00168D50
 	public void Save()
 	{
 		this.SaveAllStudentPositions();
 		int profile = GameGlobals.Profile;
 		int @int = PlayerPrefs.GetInt("SaveSlot");
 		this.BloodParent.RecordAllBlood();
+		this.PuddleParent.RecordAllPuddles();
 		YanSave.SaveData("Profile_" + profile.ToString() + "_Slot_" + @int.ToString());
 		PlayerPrefs.SetInt(string.Concat(new string[]
 		{
@@ -3071,7 +3072,7 @@ public class StudentManagerScript : MonoBehaviour
 		}), StudentGlobals.MemorialStudents);
 	}
 
-	// Token: 0x06001D96 RID: 7574 RVA: 0x00169694 File Offset: 0x00167894
+	// Token: 0x06001DA6 RID: 7590 RVA: 0x0016ABF0 File Offset: 0x00168DF0
 	public void Load()
 	{
 		Debug.Log("Now loading save data.");
@@ -3241,6 +3242,7 @@ public class StudentManagerScript : MonoBehaviour
 			}
 		}
 		this.BloodParent.RestoreAllBlood();
+		this.PuddleParent.RestoreAllPuddles();
 		if (this.OsanaThursdayAfterClassEvent.Phase > 0)
 		{
 			this.OsanaThursdayAfterClassEvent.ReturningFromSave = true;
@@ -3265,10 +3267,16 @@ public class StudentManagerScript : MonoBehaviour
 		{
 			this.Students[this.Police.EndOfDay.TranqCase.VictimID].gameObject.SetActive(false);
 		}
+		if (this.WaterCooler.TrapSet)
+		{
+			this.WaterCooler.UpdateCylinderColor();
+			this.WaterCooler.SetTrap();
+			this.WaterCooler.Timer = 1f;
+		}
 		this.LoadedSave = true;
 	}
 
-	// Token: 0x06001D97 RID: 7575 RVA: 0x0016A2A0 File Offset: 0x001684A0
+	// Token: 0x06001DA7 RID: 7591 RVA: 0x0016B83C File Offset: 0x00169A3C
 	public void UpdateBlood()
 	{
 		if (this.Police.BloodParent.childCount > 0)
@@ -3299,7 +3307,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D98 RID: 7576 RVA: 0x0016A3E4 File Offset: 0x001685E4
+	// Token: 0x06001DA8 RID: 7592 RVA: 0x0016B980 File Offset: 0x00169B80
 	public void CanAnyoneSeeYandere()
 	{
 		this.YandereVisible = false;
@@ -3313,7 +3321,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D99 RID: 7577 RVA: 0x0016A450 File Offset: 0x00168650
+	// Token: 0x06001DA9 RID: 7593 RVA: 0x0016B9EC File Offset: 0x00169BEC
 	public void CheckBentos()
 	{
 		foreach (StudentScript studentScript in this.Students)
@@ -3327,7 +3335,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D9A RID: 7578 RVA: 0x0016A4B4 File Offset: 0x001686B4
+	// Token: 0x06001DAA RID: 7594 RVA: 0x0016BA50 File Offset: 0x00169C50
 	public void SetFaces(float alpha)
 	{
 		foreach (StudentScript studentScript in this.Students)
@@ -3353,7 +3361,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D9B RID: 7579 RVA: 0x0016A65C File Offset: 0x0016885C
+	// Token: 0x06001DAB RID: 7595 RVA: 0x0016BBF8 File Offset: 0x00169DF8
 	public void DisableChaseCameras()
 	{
 		foreach (StudentScript studentScript in this.Students)
@@ -3365,7 +3373,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D9C RID: 7580 RVA: 0x0016A698 File Offset: 0x00168898
+	// Token: 0x06001DAC RID: 7596 RVA: 0x0016BC34 File Offset: 0x00169E34
 	public void UpdateDynamicBones(bool Status)
 	{
 		foreach (DynamicBone dynamicBone in this.AllDynamicBones)
@@ -3377,7 +3385,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D9D RID: 7581 RVA: 0x0016A6D0 File Offset: 0x001688D0
+	// Token: 0x06001DAD RID: 7597 RVA: 0x0016BC6C File Offset: 0x00169E6C
 	public void UpdateFPSDisplay(bool Status)
 	{
 		if (!this.RecordingVideo)
@@ -3393,7 +3401,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D9E RID: 7582 RVA: 0x0016A724 File Offset: 0x00168924
+	// Token: 0x06001DAE RID: 7598 RVA: 0x0016BCC0 File Offset: 0x00169EC0
 	public void InitializeReputations()
 	{
 		this.ReputationSetter.InitializeReputations();
@@ -3410,7 +3418,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D9F RID: 7583 RVA: 0x0016A7E8 File Offset: 0x001689E8
+	// Token: 0x06001DAF RID: 7599 RVA: 0x0016BD84 File Offset: 0x00169F84
 	public void GracePeriod(float Length)
 	{
 		this.ID = 1;
@@ -3425,7 +3433,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DA0 RID: 7584 RVA: 0x0016A83C File Offset: 0x00168A3C
+	// Token: 0x06001DB0 RID: 7600 RVA: 0x0016BDD8 File Offset: 0x00169FD8
 	public void OpenSomeDoors()
 	{
 		int openedDoors = this.OpenedDoors;
@@ -3440,7 +3448,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DA1 RID: 7585 RVA: 0x0016A8CC File Offset: 0x00168ACC
+	// Token: 0x06001DB1 RID: 7601 RVA: 0x0016BE68 File Offset: 0x0016A068
 	public void SnapSomeStudents()
 	{
 		int snappedStudents = this.SnappedStudents;
@@ -3472,7 +3480,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DA2 RID: 7586 RVA: 0x0016A9D8 File Offset: 0x00168BD8
+	// Token: 0x06001DB2 RID: 7602 RVA: 0x0016BF74 File Offset: 0x0016A174
 	public void DarkenAllStudents()
 	{
 		foreach (StudentScript studentScript in this.Students)
@@ -3495,7 +3503,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DA3 RID: 7587 RVA: 0x0016ABC0 File Offset: 0x00168DC0
+	// Token: 0x06001DB3 RID: 7603 RVA: 0x0016C15C File Offset: 0x0016A35C
 	public void LockDownOccultClub()
 	{
 		for (int i = 31; i < 36; i++)
@@ -3515,7 +3523,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DA4 RID: 7588 RVA: 0x0016AD7C File Offset: 0x00168F7C
+	// Token: 0x06001DB4 RID: 7604 RVA: 0x0016C318 File Offset: 0x0016A518
 	public void SetWindowsTransparent()
 	{
 		this.Window.sharedMaterial.color = new Color(0.85f, 0.85f, 0.85f, 0.5f);
@@ -3523,7 +3531,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.TransWindows = true;
 	}
 
-	// Token: 0x06001DA5 RID: 7589 RVA: 0x0016ADD4 File Offset: 0x00168FD4
+	// Token: 0x06001DB5 RID: 7605 RVA: 0x0016C370 File Offset: 0x0016A570
 	public void SetWindowsOpaque()
 	{
 		this.Window.sharedMaterial.color = new Color(0.85f, 0.85f, 0.85f, 1f);
@@ -3531,7 +3539,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.TransWindows = false;
 	}
 
-	// Token: 0x06001DA6 RID: 7590 RVA: 0x0016AE2C File Offset: 0x0016902C
+	// Token: 0x06001DB6 RID: 7606 RVA: 0x0016C3C8 File Offset: 0x0016A5C8
 	public void LateUpdate()
 	{
 		if (this.WindowOccluder != null && !this.TransparentWindows)
@@ -3545,7 +3553,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DA7 RID: 7591 RVA: 0x0016AEA0 File Offset: 0x001690A0
+	// Token: 0x06001DB7 RID: 7607 RVA: 0x0016C43C File Offset: 0x0016A63C
 	public void UpdateSkirts(bool Status)
 	{
 		foreach (StudentScript studentScript in this.Students)
@@ -3562,7 +3570,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DA8 RID: 7592 RVA: 0x0016AF14 File Offset: 0x00169114
+	// Token: 0x06001DB8 RID: 7608 RVA: 0x0016C4B0 File Offset: 0x0016A6B0
 	public void UpdatePanties(bool Status)
 	{
 		foreach (StudentScript studentScript in this.Students)
@@ -3579,7 +3587,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DA9 RID: 7593 RVA: 0x0016AF88 File Offset: 0x00169188
+	// Token: 0x06001DB9 RID: 7609 RVA: 0x0016C524 File Offset: 0x0016A724
 	public void LoadPantyshots()
 	{
 		this.ID = 1;
@@ -3593,7 +3601,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DAA RID: 7594 RVA: 0x0016AFEC File Offset: 0x001691EC
+	// Token: 0x06001DBA RID: 7610 RVA: 0x0016C588 File Offset: 0x0016A788
 	public void SavePantyshots()
 	{
 		this.ID = 0;
@@ -3604,7 +3612,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DAB RID: 7595 RVA: 0x0016B034 File Offset: 0x00169234
+	// Token: 0x06001DBB RID: 7611 RVA: 0x0016C5D0 File Offset: 0x0016A7D0
 	public void LoadReps()
 	{
 		this.ID = 1;
@@ -3618,7 +3626,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DAC RID: 7596 RVA: 0x0016B098 File Offset: 0x00169298
+	// Token: 0x06001DBC RID: 7612 RVA: 0x0016C634 File Offset: 0x0016A834
 	public void SaveReps()
 	{
 		this.ID = 1;
@@ -3632,7 +3640,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DAD RID: 7597 RVA: 0x0016B0FC File Offset: 0x001692FC
+	// Token: 0x06001DBD RID: 7613 RVA: 0x0016C698 File Offset: 0x0016A898
 	public void Week1RoutineAdjustments()
 	{
 		Debug.Log("Making week 1 routine adjustments.");
@@ -3665,7 +3673,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DAE RID: 7598 RVA: 0x0016B1DC File Offset: 0x001693DC
+	// Token: 0x06001DBE RID: 7614 RVA: 0x0016C778 File Offset: 0x0016A978
 	public void UpdateWeek1Hangout(int StudentID)
 	{
 		if (this.Students[StudentID] != null && !this.Students[StudentID].Sleuthing)
@@ -3691,7 +3699,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DAF RID: 7599 RVA: 0x0016B304 File Offset: 0x00169504
+	// Token: 0x06001DBF RID: 7615 RVA: 0x0016C8A0 File Offset: 0x0016AAA0
 	public void UpdateExteriorStudents()
 	{
 		Debug.Log("Osana finished changing her shoes, so exterior students are moving back inside.");
@@ -3703,7 +3711,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.UpdateExteriorHangout(35);
 	}
 
-	// Token: 0x06001DB0 RID: 7600 RVA: 0x0016B340 File Offset: 0x00169540
+	// Token: 0x06001DC0 RID: 7616 RVA: 0x0016C8DC File Offset: 0x0016AADC
 	public void UpdateLunchtimeStudents()
 	{
 		Debug.Log("Osana is about to eat lunch, so certain students are having their routines adjusted.");
@@ -3728,7 +3736,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DB1 RID: 7601 RVA: 0x0016B3E0 File Offset: 0x001695E0
+	// Token: 0x06001DC1 RID: 7617 RVA: 0x0016C97C File Offset: 0x0016AB7C
 	public void UpdateExteriorHangout(int StudentID)
 	{
 		if (this.Students[StudentID] != null)
@@ -3748,7 +3756,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DB2 RID: 7602 RVA: 0x0016B504 File Offset: 0x00169704
+	// Token: 0x06001DC2 RID: 7618 RVA: 0x0016CAA0 File Offset: 0x0016ACA0
 	public void UpdateLunchtimeHangout(int StudentID)
 	{
 		if (this.Students[StudentID] != null)
@@ -3762,7 +3770,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DB3 RID: 7603 RVA: 0x0016B5BC File Offset: 0x001697BC
+	// Token: 0x06001DC3 RID: 7619 RVA: 0x0016CB58 File Offset: 0x0016AD58
 	public void Week2RoutineAdjustments()
 	{
 		if (this.Students[11] != null)
@@ -3834,7 +3842,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.UpdateWeek2Hangout(85);
 	}
 
-	// Token: 0x06001DB4 RID: 7604 RVA: 0x0016B8CC File Offset: 0x00169ACC
+	// Token: 0x06001DC4 RID: 7620 RVA: 0x0016CE68 File Offset: 0x0016B068
 	public void UpdateWeek2Hangout(int StudentID)
 	{
 		if (this.Students[StudentID] != null)
@@ -3855,7 +3863,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DB5 RID: 7605 RVA: 0x0016B9D0 File Offset: 0x00169BD0
+	// Token: 0x06001DC5 RID: 7621 RVA: 0x0016CF6C File Offset: 0x0016B16C
 	public void EightiesWeek3RoutineAdjustments()
 	{
 		for (int i = 2; i < 6; i++)
@@ -3873,7 +3881,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DB6 RID: 7606 RVA: 0x0016BA78 File Offset: 0x00169C78
+	// Token: 0x06001DC6 RID: 7622 RVA: 0x0016D014 File Offset: 0x0016B214
 	public void EightiesWeek4RoutineAdjustments()
 	{
 		for (int i = 6; i < 11; i++)
@@ -3888,7 +3896,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DB7 RID: 7607 RVA: 0x0016BAE4 File Offset: 0x00169CE4
+	// Token: 0x06001DC7 RID: 7623 RVA: 0x0016D080 File Offset: 0x0016B280
 	public void EightiesWeek5RoutineAdjustments()
 	{
 		this.SunbatheAllDay(25);
@@ -3900,7 +3908,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.SunbatheAllDay(55);
 	}
 
-	// Token: 0x06001DB8 RID: 7608 RVA: 0x0016BB20 File Offset: 0x00169D20
+	// Token: 0x06001DC8 RID: 7624 RVA: 0x0016D0BC File Offset: 0x0016B2BC
 	public void EightiesWeek6RoutineAdjustments()
 	{
 		int i = 26;
@@ -3940,7 +3948,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DB9 RID: 7609 RVA: 0x0016BCDC File Offset: 0x00169EDC
+	// Token: 0x06001DC9 RID: 7625 RVA: 0x0016D278 File Offset: 0x0016B478
 	public void EightiesWeek8RoutineAdjustments()
 	{
 		for (int i = 2; i < 11; i++)
@@ -3950,7 +3958,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DBA RID: 7610 RVA: 0x0016BD38 File Offset: 0x00169F38
+	// Token: 0x06001DCA RID: 7626 RVA: 0x0016D2D4 File Offset: 0x0016B4D4
 	public void EightiesWeek9RoutineAdjustments()
 	{
 		if (this.Students[19] != null)
@@ -3987,7 +3995,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DBB RID: 7611 RVA: 0x0016BE68 File Offset: 0x0016A068
+	// Token: 0x06001DCB RID: 7627 RVA: 0x0016D404 File Offset: 0x0016B604
 	public void EightiesWeek10RoutineAdjustments()
 	{
 		for (int i = 2; i < 11; i++)
@@ -4008,7 +4016,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DBC RID: 7612 RVA: 0x0016BF18 File Offset: 0x0016A118
+	// Token: 0x06001DCC RID: 7628 RVA: 0x0016D4B4 File Offset: 0x0016B6B4
 	public void BecomeSleuth(int ID)
 	{
 		if (this.Students[ID] != null)
@@ -4019,7 +4027,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DBD RID: 7613 RVA: 0x0016BF54 File Offset: 0x0016A154
+	// Token: 0x06001DCD RID: 7629 RVA: 0x0016D4F0 File Offset: 0x0016B6F0
 	public void BecomeGuard(int ID)
 	{
 		if (this.Students[ID] != null)
@@ -4042,7 +4050,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DBE RID: 7614 RVA: 0x0016C030 File Offset: 0x0016A230
+	// Token: 0x06001DCE RID: 7630 RVA: 0x0016D5CC File Offset: 0x0016B7CC
 	public void FollowGravureIdol(int ID)
 	{
 		if (this.Students[ID] != null)
@@ -4068,7 +4076,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DBF RID: 7615 RVA: 0x0016C160 File Offset: 0x0016A360
+	// Token: 0x06001DCF RID: 7631 RVA: 0x0016D6FC File Offset: 0x0016B8FC
 	public void SunbatheAllDay(int ID)
 	{
 		if (this.Students[ID] != null)
@@ -4088,29 +4096,36 @@ public class StudentManagerScript : MonoBehaviour
 		ID++;
 	}
 
-	// Token: 0x06001DC0 RID: 7616 RVA: 0x0016C240 File Offset: 0x0016A440
+	// Token: 0x06001DD0 RID: 7632 RVA: 0x0016D7DC File Offset: 0x0016B9DC
 	public void ForgetAboutSunbathing(int ID)
 	{
-		if (this.Students[ID] != null && this.Students[ID].Actions[2] == StudentActionType.Sunbathe)
+		if (this.Students[ID] != null)
 		{
-			this.Students[ID].DressCode = false;
-			this.scheduleBlock = this.Students[ID].ScheduleBlocks[2];
-			this.scheduleBlock.destination = "Hangout";
-			this.scheduleBlock.action = "Socialize";
-			this.scheduleBlock = this.Students[ID].ScheduleBlocks[6];
-			this.scheduleBlock.destination = "Hangout";
-			this.scheduleBlock.action = "Socialize";
-			this.scheduleBlock = this.Students[ID].ScheduleBlocks[7];
-			this.scheduleBlock.destination = "Hangout";
-			this.scheduleBlock.action = "Socialize";
-			this.Students[ID].GetDestinations();
-			this.Students[ID].CurrentDestination = this.Students[ID].Destinations[this.Students[ID].Phase];
-			this.Students[ID].Pathfinding.target = this.Students[ID].Destinations[this.Students[ID].Phase];
+			if (this.Students[ID].Actions[2] == StudentActionType.Sunbathe)
+			{
+				this.Students[ID].DressCode = false;
+				this.scheduleBlock = this.Students[ID].ScheduleBlocks[2];
+				this.scheduleBlock.destination = "Hangout";
+				this.scheduleBlock.action = "Socialize";
+				this.scheduleBlock = this.Students[ID].ScheduleBlocks[6];
+				this.scheduleBlock.destination = "Hangout";
+				this.scheduleBlock.action = "Socialize";
+				this.scheduleBlock = this.Students[ID].ScheduleBlocks[7];
+				this.scheduleBlock.destination = "Hangout";
+				this.scheduleBlock.action = "Socialize";
+				this.Students[ID].GetDestinations();
+				this.Students[ID].CurrentDestination = this.Students[ID].Destinations[this.Students[ID].Phase];
+				this.Students[ID].Pathfinding.target = this.Students[ID].Destinations[this.Students[ID].Phase];
+			}
+			if (this.Students[ID].Schoolwear == 2)
+			{
+				Debug.Log("Student #" + ID.ToString() + " was wearing a swimsuit at the moment she learned the pool was off-limits.");
+				this.Students[ID].Phase++;
+			}
 		}
-		ID++;
 	}
 
-	// Token: 0x06001DC1 RID: 7617 RVA: 0x0016C38C File Offset: 0x0016A58C
+	// Token: 0x06001DD1 RID: 7633 RVA: 0x0016D964 File Offset: 0x0016BB64
 	public void TakeOutTheTrash()
 	{
 		int num = 2;
@@ -4138,7 +4153,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DC2 RID: 7618 RVA: 0x0016C478 File Offset: 0x0016A678
+	// Token: 0x06001DD2 RID: 7634 RVA: 0x0016DA50 File Offset: 0x0016BC50
 	public void Medibang()
 	{
 		this.Students[35].IdleAnim = "f02_idleElegant_00";
@@ -4151,7 +4166,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.Students[35].Cosmetic.Start();
 	}
 
-	// Token: 0x06001DC3 RID: 7619 RVA: 0x0016C528 File Offset: 0x0016A728
+	// Token: 0x06001DD3 RID: 7635 RVA: 0x0016DB00 File Offset: 0x0016BD00
 	public void RemovePoolFromRoutines()
 	{
 		Debug.Log("Firing RemovePoolFromRoutines()");
@@ -4178,13 +4193,13 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DC4 RID: 7620 RVA: 0x0016C5EC File Offset: 0x0016A7EC
+	// Token: 0x06001DD4 RID: 7636 RVA: 0x0016DBC4 File Offset: 0x0016BDC4
 	public void LoadCollectibles()
 	{
 		int i = 1;
 		if (this.HeadmasterTapesCollected.Length != 0)
 		{
-			while (i < 11)
+			while (i < 12)
 			{
 				this.HeadmasterTapesCollected[i] = CollectibleGlobals.GetHeadmasterTapeCollected(i);
 				this.PantiesCollected[i] = CollectibleGlobals.GetPantyPurchased(i);
@@ -4201,7 +4216,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DC5 RID: 7621 RVA: 0x0016C660 File Offset: 0x0016A860
+	// Token: 0x06001DD5 RID: 7637 RVA: 0x0016DC38 File Offset: 0x0016BE38
 	public void SaveCollectibles()
 	{
 		for (int i = 1; i < 12; i++)
@@ -4209,6 +4224,10 @@ public class StudentManagerScript : MonoBehaviour
 			CollectibleGlobals.SetHeadmasterTapeCollected(i, this.HeadmasterTapesCollected[i]);
 			CollectibleGlobals.SetPantyPurchased(i, this.PantiesCollected[i]);
 			CollectibleGlobals.SetTapeCollected(i, this.TapesCollected[i]);
+			if (i == 11 && this.PantiesCollected[i])
+			{
+				Debug.Log("Saving the fact that Ryoba picked up the fundoshi.");
+			}
 		}
 		for (int i = 1; i < 16; i++)
 		{
@@ -4216,7 +4235,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DC6 RID: 7622 RVA: 0x0016C6C0 File Offset: 0x0016A8C0
+	// Token: 0x06001DD6 RID: 7638 RVA: 0x0016DCB0 File Offset: 0x0016BEB0
 	public void UpdateTeachers()
 	{
 		Debug.Log("All teachers were just commanded to fire the UpdateMe() function.");
@@ -4230,7 +4249,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.UpdateMe(97);
 	}
 
-	// Token: 0x06001DC7 RID: 7623 RVA: 0x0016C718 File Offset: 0x0016A918
+	// Token: 0x06001DD7 RID: 7639 RVA: 0x0016DD08 File Offset: 0x0016BF08
 	public void UpdateAppearances()
 	{
 		foreach (StudentScript studentScript in this.Students)
@@ -4242,7 +4261,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DC8 RID: 7624 RVA: 0x0016C754 File Offset: 0x0016A954
+	// Token: 0x06001DD8 RID: 7640 RVA: 0x0016DD44 File Offset: 0x0016BF44
 	public void RandomizeRoutines()
 	{
 		this.ID = 1;
@@ -4296,7 +4315,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DC9 RID: 7625 RVA: 0x0016C970 File Offset: 0x0016AB70
+	// Token: 0x06001DD9 RID: 7641 RVA: 0x0016DF60 File Offset: 0x0016C160
 	public void DepowerStudentCouncil()
 	{
 		for (int i = 86; i < 90; i++)
@@ -4323,7 +4342,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DCA RID: 7626 RVA: 0x0016CA48 File Offset: 0x0016AC48
+	// Token: 0x06001DDA RID: 7642 RVA: 0x0016E038 File Offset: 0x0016C238
 	public void Become1989()
 	{
 		this.Eighties = true;
@@ -4390,7 +4409,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.LyricsSpot.parent.eulerAngles = this.EightiesLyricDesk.eulerAngles;
 	}
 
-	// Token: 0x06001DCB RID: 7627 RVA: 0x0016CE3A File Offset: 0x0016B03A
+	// Token: 0x06001DDB RID: 7643 RVA: 0x0016E42A File Offset: 0x0016C62A
 	public void YellowifyLabel(UILabel Label)
 	{
 		Label.trueTypeFont = this.Arial;
@@ -4399,7 +4418,7 @@ public class StudentManagerScript : MonoBehaviour
 		Label.fontStyle = FontStyle.Bold;
 	}
 
-	// Token: 0x06001DCC RID: 7628 RVA: 0x0016CE78 File Offset: 0x0016B078
+	// Token: 0x06001DDC RID: 7644 RVA: 0x0016E468 File Offset: 0x0016C668
 	public void EightiesifyLabel(UILabel Label)
 	{
 		Label.trueTypeFont = this.VCR;
@@ -4409,7 +4428,7 @@ public class StudentManagerScript : MonoBehaviour
 		Label.effectColor = new Color(0f, 0f, 0f, 1f);
 	}
 
-	// Token: 0x06001DCD RID: 7629 RVA: 0x0016CEE0 File Offset: 0x0016B0E0
+	// Token: 0x06001DDD RID: 7645 RVA: 0x0016E4D0 File Offset: 0x0016C6D0
 	public void StayInOneSpot(int StudentID)
 	{
 		this.Hangouts.List[StudentID].transform.position = this.Students[StudentID].transform.position;
@@ -4426,7 +4445,7 @@ public class StudentManagerScript : MonoBehaviour
 		this.Students[StudentID].CurrentDestination = this.Tutorial.Destination[this.Tutorial.Phase + 1];
 	}
 
-	// Token: 0x06001DCE RID: 7630 RVA: 0x0016CFDC File Offset: 0x0016B1DC
+	// Token: 0x06001DDE RID: 7646 RVA: 0x0016E5CC File Offset: 0x0016C7CC
 	public void ChangeSuitorRoutine(int StudentID)
 	{
 		StudentScript studentScript = this.Students[StudentID];
@@ -4450,13 +4469,13 @@ public class StudentManagerScript : MonoBehaviour
 		this.SuitorLocker = this.LockerPositions[StudentID];
 	}
 
-	// Token: 0x06001DCF RID: 7631 RVA: 0x0016D12C File Offset: 0x0016B32C
+	// Token: 0x06001DDF RID: 7647 RVA: 0x0016E71C File Offset: 0x0016C91C
 	public void UpdateRivalEliminationDetails(int StudentID)
 	{
 		this.RivalKilledSelf[StudentID - 10] = true;
 	}
 
-	// Token: 0x06001DD0 RID: 7632 RVA: 0x0016D13C File Offset: 0x0016B33C
+	// Token: 0x06001DE0 RID: 7648 RVA: 0x0016E72C File Offset: 0x0016C92C
 	public void SaveAllStudentPositions()
 	{
 		for (int i = 1; i < 101; i++)
@@ -4470,7 +4489,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DD1 RID: 7633 RVA: 0x0016D1D8 File Offset: 0x0016B3D8
+	// Token: 0x06001DE1 RID: 7649 RVA: 0x0016E7C8 File Offset: 0x0016C9C8
 	public void LoadAllStudentPositions()
 	{
 		for (int i = 1; i < 101; i++)
@@ -4482,7 +4501,7 @@ public class StudentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001DD2 RID: 7634 RVA: 0x0016D240 File Offset: 0x0016B440
+	// Token: 0x06001DE2 RID: 7650 RVA: 0x0016E830 File Offset: 0x0016CA30
 	private void CheckSelfReportStatus(StudentScript student)
 	{
 		if (this.Yandere.Bloodiness == 0f && (double)this.Yandere.Sanity > 66.66666 && !this.Yandere.StudentManager.WitnessCamera.Show && this.Yandere.StudentManager.ChaseCamera == null && !this.MurderTakingPlace)
@@ -4509,1357 +4528,1363 @@ public class StudentManagerScript : MonoBehaviour
 		student.Prompt.HideButton[0] = true;
 	}
 
-	// Token: 0x0400361E RID: 13854
+	// Token: 0x04003665 RID: 13925
 	private PortraitChanScript NewPortraitChan;
 
-	// Token: 0x0400361F RID: 13855
+	// Token: 0x04003666 RID: 13926
 	private GameObject NewStudent;
 
-	// Token: 0x04003620 RID: 13856
+	// Token: 0x04003667 RID: 13927
 	public StudentScript[] Students;
 
-	// Token: 0x04003621 RID: 13857
+	// Token: 0x04003668 RID: 13928
 	public OsanaThursdayAfterClassEventScript OsanaThursdayAfterClassEvent;
 
-	// Token: 0x04003622 RID: 13858
+	// Token: 0x04003669 RID: 13929
 	public SelectiveGrayscale SmartphoneSelectiveGreyscale;
 
-	// Token: 0x04003623 RID: 13859
+	// Token: 0x0400366A RID: 13930
 	public PickpocketMinigameScript PickpocketMinigame;
 
-	// Token: 0x04003624 RID: 13860
+	// Token: 0x0400366B RID: 13931
 	public FindStudentLockerScript FindStudentLocker;
 
-	// Token: 0x04003625 RID: 13861
+	// Token: 0x0400366C RID: 13932
 	public PopulationManagerScript PopulationManager;
 
-	// Token: 0x04003626 RID: 13862
+	// Token: 0x0400366D RID: 13933
 	public SelectiveGrayscale HandSelectiveGreyscale;
 
-	// Token: 0x04003627 RID: 13863
+	// Token: 0x0400366E RID: 13934
 	public ReputationSetterScript ReputationSetter;
 
-	// Token: 0x04003628 RID: 13864
+	// Token: 0x0400366F RID: 13935
 	public SkinnedMeshRenderer FemaleShowerCurtain;
 
-	// Token: 0x04003629 RID: 13865
+	// Token: 0x04003670 RID: 13936
 	public CleaningManagerScript CleaningManager;
 
-	// Token: 0x0400362A RID: 13866
+	// Token: 0x04003671 RID: 13937
 	public StolenPhoneSpotScript StolenPhoneSpot;
 
-	// Token: 0x0400362B RID: 13867
+	// Token: 0x04003672 RID: 13938
 	public SelectiveGrayscale SelectiveGreyscale;
 
-	// Token: 0x0400362C RID: 13868
+	// Token: 0x04003673 RID: 13939
 	public InterestManagerScript InterestManager;
 
-	// Token: 0x0400362D RID: 13869
+	// Token: 0x04003674 RID: 13940
 	public CombatMinigameScript CombatMinigame;
 
-	// Token: 0x0400362E RID: 13870
+	// Token: 0x04003675 RID: 13941
 	public DatingMinigameScript DatingMinigame;
 
-	// Token: 0x0400362F RID: 13871
+	// Token: 0x04003676 RID: 13942
 	public SnappedYandereScript SnappedYandere;
 
-	// Token: 0x04003630 RID: 13872
+	// Token: 0x04003677 RID: 13943
 	public TextureManagerScript TextureManager;
 
-	// Token: 0x04003631 RID: 13873
+	// Token: 0x04003678 RID: 13944
 	public TutorialWindowScript TutorialWindow;
 
-	// Token: 0x04003632 RID: 13874
+	// Token: 0x04003679 RID: 13945
 	public QualityManagerScript QualityManager;
 
-	// Token: 0x04003633 RID: 13875
+	// Token: 0x0400367A RID: 13946
 	public GenericRivalBagScript RivalBookBag;
 
-	// Token: 0x04003634 RID: 13876
+	// Token: 0x0400367B RID: 13947
 	public ComputerGamesScript ComputerGames;
 
-	// Token: 0x04003635 RID: 13877
+	// Token: 0x0400367C RID: 13948
 	public DialogueWheelScript DialogueWheel;
 
-	// Token: 0x04003636 RID: 13878
+	// Token: 0x0400367D RID: 13949
 	public EmergencyExitScript EmergencyExit;
 
-	// Token: 0x04003637 RID: 13879
+	// Token: 0x0400367E RID: 13950
 	public MemorialSceneScript MemorialScene;
 
-	// Token: 0x04003638 RID: 13880
+	// Token: 0x0400367F RID: 13951
 	public TranqDetectorScript TranqDetector;
 
-	// Token: 0x04003639 RID: 13881
+	// Token: 0x04003680 RID: 13952
 	public WitnessCameraScript WitnessCamera;
 
-	// Token: 0x0400363A RID: 13882
+	// Token: 0x04003681 RID: 13953
 	public ConvoManagerScript ConvoManager;
 
-	// Token: 0x0400363B RID: 13883
+	// Token: 0x04003682 RID: 13954
 	public TallLockerScript CommunalLocker;
 
-	// Token: 0x0400363C RID: 13884
-	public BloodParentScript BloodParent;
-
-	// Token: 0x0400363D RID: 13885
-	public CabinetDoorScript CabinetDoor;
-
-	// Token: 0x0400363E RID: 13886
-	public ClubManagerScript ClubManager;
-
-	// Token: 0x0400363F RID: 13887
-	public LightSwitchScript LightSwitch;
-
-	// Token: 0x04003640 RID: 13888
-	public LoveManagerScript LoveManager;
-
-	// Token: 0x04003641 RID: 13889
-	public MiyukiEnemyScript MiyukiEnemy;
-
-	// Token: 0x04003642 RID: 13890
-	public TaskManagerScript TaskManager;
-
-	// Token: 0x04003643 RID: 13891
-	public Collider MaleLockerRoomArea;
-
-	// Token: 0x04003644 RID: 13892
-	public StudentScript BloodReporter;
-
-	// Token: 0x04003645 RID: 13893
-	public HeadmasterScript Headmaster;
-
-	// Token: 0x04003646 RID: 13894
-	public NoteWindowScript NoteWindow;
-
-	// Token: 0x04003647 RID: 13895
-	public ReputationScript Reputation;
-
-	// Token: 0x04003648 RID: 13896
-	public WeaponScript FragileWeapon;
-
-	// Token: 0x04003649 RID: 13897
-	public AudioSource PracticeVocals;
-
-	// Token: 0x0400364A RID: 13898
-	public AudioSource PracticeMusic;
-
-	// Token: 0x0400364B RID: 13899
-	public ContainerScript Container;
-
-	// Token: 0x0400364C RID: 13900
-	public RedStringScript RedString;
-
-	// Token: 0x0400364D RID: 13901
-	public RingEventScript RingEvent;
-
-	// Token: 0x0400364E RID: 13902
-	public RivalPoseScript RivalPose;
-
-	// Token: 0x0400364F RID: 13903
-	public GazerEyesScript Shinigami;
-
-	// Token: 0x04003650 RID: 13904
-	public ParticleSystem PyroFlames;
-
-	// Token: 0x04003651 RID: 13905
-	public HologramScript Holograms;
-
-	// Token: 0x04003652 RID: 13906
-	public RobotArmScript RobotArms;
-
-	// Token: 0x04003653 RID: 13907
-	public AlphabetScript Alphabet;
-
-	// Token: 0x04003654 RID: 13908
-	public FanCoverScript FanCover;
-
-	// Token: 0x04003655 RID: 13909
-	public PickUpScript Flashlight;
-
-	// Token: 0x04003656 RID: 13910
-	public FountainScript Fountain;
-
-	// Token: 0x04003657 RID: 13911
-	public PoseModeScript PoseMode;
-
-	// Token: 0x04003658 RID: 13912
-	public TutorialScript Tutorial;
-
-	// Token: 0x04003659 RID: 13913
-	public Collider LockerRoomArea;
-
-	// Token: 0x0400365A RID: 13914
-	public StudentScript Reporter;
-
-	// Token: 0x0400365B RID: 13915
-	public BookbagScript BookBag;
-
-	// Token: 0x0400365C RID: 13916
-	public DoorScript GamingDoor;
-
-	// Token: 0x0400365D RID: 13917
-	public GhostScript GhostChan;
-
-	// Token: 0x0400365E RID: 13918
-	public SchemesScript Schemes;
-
-	// Token: 0x0400365F RID: 13919
-	public TributeScript Tribute;
-
-	// Token: 0x04003660 RID: 13920
-	public YandereScript Yandere;
-
-	// Token: 0x04003661 RID: 13921
-	public ListScript MeetSpots;
-
-	// Token: 0x04003662 RID: 13922
-	public MirrorScript Mirror;
-
-	// Token: 0x04003663 RID: 13923
-	public PoliceScript Police;
-
-	// Token: 0x04003664 RID: 13924
-	public DoorScript ShedDoor;
-
-	// Token: 0x04003665 RID: 13925
-	public UILabel ErrorLabel;
-
-	// Token: 0x04003666 RID: 13926
-	public RestScript Rest;
-
-	// Token: 0x04003667 RID: 13927
-	public TagScript Tag;
-
-	// Token: 0x04003668 RID: 13928
-	public UISprite HUD;
-
-	// Token: 0x04003669 RID: 13929
-	public Collider EastBathroomArea;
-
-	// Token: 0x0400366A RID: 13930
-	public Collider WestBathroomArea;
-
-	// Token: 0x0400366B RID: 13931
-	public Collider IncineratorArea;
-
-	// Token: 0x0400366C RID: 13932
-	public Collider HeadmasterArea;
-
-	// Token: 0x0400366D RID: 13933
-	public Collider GardenArea;
-
-	// Token: 0x0400366E RID: 13934
-	public Collider PoolStairs;
-
-	// Token: 0x0400366F RID: 13935
-	public Collider TreeArea;
-
-	// Token: 0x04003670 RID: 13936
-	public Collider NEStairs;
-
-	// Token: 0x04003671 RID: 13937
-	public Collider NWStairs;
-
-	// Token: 0x04003672 RID: 13938
-	public Collider SEStairs;
-
-	// Token: 0x04003673 RID: 13939
-	public Collider SWStairs;
-
-	// Token: 0x04003674 RID: 13940
-	public DoorScript AltFemaleVomitDoor;
-
-	// Token: 0x04003675 RID: 13941
-	public DoorScript FemaleVomitDoor;
-
-	// Token: 0x04003676 RID: 13942
-	public CounselorDoorScript[] CounselorDoor;
-
-	// Token: 0x04003677 RID: 13943
-	public ParticleSystem AltFemaleDrownSplashes;
-
-	// Token: 0x04003678 RID: 13944
-	public ParticleSystem FemaleDrownSplashes;
-
-	// Token: 0x04003679 RID: 13945
-	public OfferHelpScript EightiesOfferHelp;
-
-	// Token: 0x0400367A RID: 13946
-	public OfferHelpScript FragileOfferHelp;
-
-	// Token: 0x0400367B RID: 13947
-	public OfferHelpScript OsanaOfferHelp;
-
-	// Token: 0x0400367C RID: 13948
-	public OfferHelpScript OfferHelp;
-
-	// Token: 0x0400367D RID: 13949
-	public Transform MaleLockerRoomChangingSpot;
-
-	// Token: 0x0400367E RID: 13950
-	public Transform AltFemaleVomitSpot;
-
-	// Token: 0x0400367F RID: 13951
-	public Transform RaibaruMentorSpot;
-
-	// Token: 0x04003680 RID: 13952
-	public Transform SleepSpot;
-
-	// Token: 0x04003681 RID: 13953
-	public Transform PyroSpot;
-
-	// Token: 0x04003682 RID: 13954
-	public ListScript EightiesSpots;
-
 	// Token: 0x04003683 RID: 13955
-	public ListScript SearchPatrols;
+	public PuddleParentScript PuddleParent;
 
 	// Token: 0x04003684 RID: 13956
-	public ListScript CleaningSpots;
+	public BloodParentScript BloodParent;
 
 	// Token: 0x04003685 RID: 13957
-	public ListScript Patrols;
+	public CabinetDoorScript CabinetDoor;
 
 	// Token: 0x04003686 RID: 13958
-	public ClockScript Clock;
+	public ClubManagerScript ClubManager;
 
 	// Token: 0x04003687 RID: 13959
-	public JsonScript JSON;
+	public LightSwitchScript LightSwitch;
 
 	// Token: 0x04003688 RID: 13960
-	public GateScript Gate;
+	public LoveManagerScript LoveManager;
 
 	// Token: 0x04003689 RID: 13961
-	public ListScript LunchWitnessPositions;
+	public MiyukiEnemyScript MiyukiEnemy;
 
 	// Token: 0x0400368A RID: 13962
-	public ListScript EntranceVectors;
+	public TaskManagerScript TaskManager;
 
 	// Token: 0x0400368B RID: 13963
-	public ListScript ShowerLockers;
+	public WaterCoolerScript WaterCooler;
 
 	// Token: 0x0400368C RID: 13964
-	public ListScript Week1Hangouts;
+	public Collider MaleLockerRoomArea;
 
 	// Token: 0x0400368D RID: 13965
-	public ListScript Week2Hangouts;
+	public StudentScript BloodReporter;
 
 	// Token: 0x0400368E RID: 13966
-	public ListScript GoAwaySpots;
+	public HeadmasterScript Headmaster;
 
 	// Token: 0x0400368F RID: 13967
-	public ListScript HidingSpots;
+	public NoteWindowScript NoteWindow;
 
 	// Token: 0x04003690 RID: 13968
-	public ListScript LunchSpots;
+	public ReputationScript Reputation;
 
 	// Token: 0x04003691 RID: 13969
-	public ListScript Stairways;
+	public WeaponScript FragileWeapon;
 
 	// Token: 0x04003692 RID: 13970
-	public ListScript Hangouts;
+	public AudioSource PracticeVocals;
 
 	// Token: 0x04003693 RID: 13971
-	public ListScript Lockers;
+	public AudioSource PracticeMusic;
 
 	// Token: 0x04003694 RID: 13972
-	public ListScript Podiums;
+	public ContainerScript Container;
 
 	// Token: 0x04003695 RID: 13973
-	public ListScript Clubs;
+	public RedStringScript RedString;
 
 	// Token: 0x04003696 RID: 13974
-	public ListScript EightiesLunchSpots;
+	public RingEventScript RingEvent;
 
 	// Token: 0x04003697 RID: 13975
-	public ListScript EightiesHangouts;
+	public RivalPoseScript RivalPose;
 
 	// Token: 0x04003698 RID: 13976
-	public ListScript EightiesPatrols;
+	public GazerEyesScript Shinigami;
 
 	// Token: 0x04003699 RID: 13977
-	public ListScript EightiesClubs;
+	public ParticleSystem PyroFlames;
 
 	// Token: 0x0400369A RID: 13978
-	public BodyHidingLockerScript[] BodyHidingLockers;
+	public HologramScript Holograms;
 
 	// Token: 0x0400369B RID: 13979
-	public ChangingBoothScript[] ChangingBooths;
+	public RobotArmScript RobotArms;
 
 	// Token: 0x0400369C RID: 13980
-	public SelectiveGrayscale[] SpyGrayscales;
+	public AlphabetScript Alphabet;
 
 	// Token: 0x0400369D RID: 13981
-	public GradingPaperScript[] FacultyDesks;
+	public FanCoverScript FanCover;
 
 	// Token: 0x0400369E RID: 13982
-	public DynamicBone[] AllDynamicBones;
+	public PickUpScript Flashlight;
 
 	// Token: 0x0400369F RID: 13983
-	public AudioSource[] PyroFlameSounds;
+	public FountainScript Fountain;
 
 	// Token: 0x040036A0 RID: 13984
-	public StudentScript[] WitnessList;
+	public PoseModeScript PoseMode;
 
 	// Token: 0x040036A1 RID: 13985
-	public TrashCanScript[] TrashCans;
+	public TutorialScript Tutorial;
 
 	// Token: 0x040036A2 RID: 13986
-	public StudentScript[] Teachers;
+	public Collider LockerRoomArea;
 
 	// Token: 0x040036A3 RID: 13987
-	public GloveScript[] GloveList;
+	public StudentScript Reporter;
 
 	// Token: 0x040036A4 RID: 13988
-	public ListScript[] Seats;
+	public BookbagScript BookBag;
 
 	// Token: 0x040036A5 RID: 13989
-	public BugScript[] Bugs;
+	public DoorScript GamingDoor;
 
 	// Token: 0x040036A6 RID: 13990
-	public Collider[] Blood;
+	public GhostScript GhostChan;
 
 	// Token: 0x040036A7 RID: 13991
-	public Collider[] Limbs;
+	public SchemesScript Schemes;
 
 	// Token: 0x040036A8 RID: 13992
-	public Transform[] TeacherGuardLocation;
+	public TributeScript Tribute;
 
 	// Token: 0x040036A9 RID: 13993
-	public Transform[] CorpseGuardLocation;
+	public YandereScript Yandere;
 
 	// Token: 0x040036AA RID: 13994
-	public Transform[] PossibleRandomSpots;
+	public ListScript MeetSpots;
 
 	// Token: 0x040036AB RID: 13995
-	public Transform[] BloodGuardLocation;
+	public MirrorScript Mirror;
 
 	// Token: 0x040036AC RID: 13996
-	public Transform[] SleuthDestinations;
+	public PoliceScript Police;
 
 	// Token: 0x040036AD RID: 13997
-	public Transform[] StrippingPositions;
+	public DoorScript ShedDoor;
 
 	// Token: 0x040036AE RID: 13998
-	public Transform[] GardeningPatrols;
+	public UILabel ErrorLabel;
 
 	// Token: 0x040036AF RID: 13999
-	public Transform[] MartialArtsSpots;
+	public RestScript Rest;
 
 	// Token: 0x040036B0 RID: 14000
-	public Transform[] PopularGirlSpots;
+	public TagScript Tag;
 
 	// Token: 0x040036B1 RID: 14001
-	public Transform[] LockerPositions;
+	public UISprite HUD;
 
 	// Token: 0x040036B2 RID: 14002
-	public Transform[] PhotoShootSpots;
+	public Collider EastBathroomArea;
 
 	// Token: 0x040036B3 RID: 14003
-	public Transform[] RivalGuardSpots;
+	public Collider WestBathroomArea;
 
 	// Token: 0x040036B4 RID: 14004
-	public Transform[] BackstageSpots;
+	public Collider IncineratorArea;
 
 	// Token: 0x040036B5 RID: 14005
-	public Transform[] SpawnPositions;
+	public Collider HeadmasterArea;
 
 	// Token: 0x040036B6 RID: 14006
-	public Transform[] GraffitiSpots;
+	public Collider GardenArea;
 
 	// Token: 0x040036B7 RID: 14007
-	public Transform[] PracticeSpots;
+	public Collider PoolStairs;
 
 	// Token: 0x040036B8 RID: 14008
-	public Transform[] SunbatheSpots;
+	public Collider TreeArea;
 
 	// Token: 0x040036B9 RID: 14009
-	public Transform[] MeetingSpots;
+	public Collider NEStairs;
 
 	// Token: 0x040036BA RID: 14010
-	public Transform[] PerformSpots;
+	public Collider NWStairs;
 
 	// Token: 0x040036BB RID: 14011
-	public Transform[] PinDownSpots;
+	public Collider SEStairs;
 
 	// Token: 0x040036BC RID: 14012
-	public Transform[] ShockedSpots;
+	public Collider SWStairs;
 
 	// Token: 0x040036BD RID: 14013
-	public Transform[] FridaySpots;
+	public DoorScript AltFemaleVomitDoor;
 
 	// Token: 0x040036BE RID: 14014
-	public Transform[] MiyukiSpots;
+	public DoorScript FemaleVomitDoor;
 
 	// Token: 0x040036BF RID: 14015
-	public Transform[] RandomSpots;
+	public CounselorDoorScript[] CounselorDoor;
 
 	// Token: 0x040036C0 RID: 14016
-	public Transform[] SocialSeats;
+	public ParticleSystem AltFemaleDrownSplashes;
 
 	// Token: 0x040036C1 RID: 14017
-	public Transform[] SocialSpots;
+	public ParticleSystem FemaleDrownSplashes;
 
 	// Token: 0x040036C2 RID: 14018
-	public Transform[] SupplySpots;
+	public OfferHelpScript EightiesOfferHelp;
 
 	// Token: 0x040036C3 RID: 14019
-	public Transform[] BullySpots;
+	public OfferHelpScript FragileOfferHelp;
 
 	// Token: 0x040036C4 RID: 14020
-	public Transform[] DramaSpots;
+	public OfferHelpScript OsanaOfferHelp;
 
 	// Token: 0x040036C5 RID: 14021
-	public Transform[] MournSpots;
+	public OfferHelpScript OfferHelp;
 
 	// Token: 0x040036C6 RID: 14022
-	public Transform[] ClubZones;
+	public Transform MaleLockerRoomChangingSpot;
 
 	// Token: 0x040036C7 RID: 14023
-	public Transform[] FleeSpots;
+	public Transform AltFemaleVomitSpot;
 
 	// Token: 0x040036C8 RID: 14024
-	public Transform[] FoodTrays;
+	public Transform RaibaruMentorSpot;
 
 	// Token: 0x040036C9 RID: 14025
-	public Transform[] SulkSpots;
+	public Transform SleepSpot;
 
 	// Token: 0x040036CA RID: 14026
-	public Transform[] WaitSpots;
+	public Transform PyroSpot;
 
 	// Token: 0x040036CB RID: 14027
-	public Transform[] Uniforms;
+	public ListScript EightiesSpots;
 
 	// Token: 0x040036CC RID: 14028
-	public Transform[] Plates;
+	public ListScript SearchPatrols;
 
 	// Token: 0x040036CD RID: 14029
-	public Transform[] FemaleVomitSpots;
+	public ListScript CleaningSpots;
 
 	// Token: 0x040036CE RID: 14030
-	public Transform[] MaleVomitSpots;
+	public ListScript Patrols;
 
 	// Token: 0x040036CF RID: 14031
-	public Transform[] FemaleWashSpots;
+	public ClockScript Clock;
 
 	// Token: 0x040036D0 RID: 14032
-	public Transform[] MaleWashSpots;
+	public JsonScript JSON;
 
 	// Token: 0x040036D1 RID: 14033
-	public GameObject[] ShrineCollectibles;
+	public GateScript Gate;
 
 	// Token: 0x040036D2 RID: 14034
-	public GameObject[] GarbageBagList;
+	public ListScript LunchWitnessPositions;
 
 	// Token: 0x040036D3 RID: 14035
-	public GameObject[] Graffiti;
+	public ListScript EntranceVectors;
 
 	// Token: 0x040036D4 RID: 14036
-	public GameObject[] Canvas;
+	public ListScript ShowerLockers;
 
 	// Token: 0x040036D5 RID: 14037
-	public DoorScript[] FemaleToiletDoors;
+	public ListScript Week1Hangouts;
 
 	// Token: 0x040036D6 RID: 14038
-	public DoorScript[] MaleToiletDoors;
+	public ListScript Week2Hangouts;
 
 	// Token: 0x040036D7 RID: 14039
-	public DrinkingFountainScript[] DrinkingFountains;
+	public ListScript GoAwaySpots;
 
 	// Token: 0x040036D8 RID: 14040
-	public Renderer[] FridayPaintings;
+	public ListScript HidingSpots;
 
 	// Token: 0x040036D9 RID: 14041
-	public bool[] PantyShotTaken;
+	public ListScript LunchSpots;
 
 	// Token: 0x040036DA RID: 14042
-	public bool[] SeatsTaken11;
+	public ListScript Stairways;
 
 	// Token: 0x040036DB RID: 14043
-	public bool[] SeatsTaken12;
+	public ListScript Hangouts;
 
 	// Token: 0x040036DC RID: 14044
-	public bool[] SeatsTaken21;
+	public ListScript Lockers;
 
 	// Token: 0x040036DD RID: 14045
-	public bool[] SeatsTaken22;
+	public ListScript Podiums;
 
 	// Token: 0x040036DE RID: 14046
-	public bool[] SeatsTaken31;
+	public ListScript Clubs;
 
 	// Token: 0x040036DF RID: 14047
-	public bool[] SeatsTaken32;
+	public ListScript EightiesLunchSpots;
 
 	// Token: 0x040036E0 RID: 14048
-	public bool[] NoBully;
+	public ListScript EightiesHangouts;
 
 	// Token: 0x040036E1 RID: 14049
-	public Quaternion[] OriginalClubRotations;
+	public ListScript EightiesPatrols;
 
 	// Token: 0x040036E2 RID: 14050
-	public Vector3[] OriginalClubPositions;
+	public ListScript EightiesClubs;
 
 	// Token: 0x040036E3 RID: 14051
-	public Collider RivalDeskCollider;
+	public BodyHidingLockerScript[] BodyHidingLockers;
 
 	// Token: 0x040036E4 RID: 14052
-	public Transform FollowerLookAtTarget;
+	public ChangingBoothScript[] ChangingBooths;
 
 	// Token: 0x040036E5 RID: 14053
-	public Transform SuitorConfessionSpot;
+	public SelectiveGrayscale[] SpyGrayscales;
 
 	// Token: 0x040036E6 RID: 14054
-	public Transform RivalConfessionSpot;
+	public GradingPaperScript[] FacultyDesks;
 
 	// Token: 0x040036E7 RID: 14055
-	public Transform OriginalLyricsSpot;
+	public DynamicBone[] AllDynamicBones;
 
 	// Token: 0x040036E8 RID: 14056
-	public Transform EightiesLyricDesk;
+	public AudioSource[] PyroFlameSounds;
 
 	// Token: 0x040036E9 RID: 14057
-	public Transform FragileSlaveSpot;
+	public StudentScript[] WitnessList;
 
 	// Token: 0x040036EA RID: 14058
-	public Transform FemaleCoupleSpot;
+	public TrashCanScript[] TrashCans;
 
 	// Token: 0x040036EB RID: 14059
-	public Transform YandereStripSpot;
+	public StudentScript[] Teachers;
 
 	// Token: 0x040036EC RID: 14060
-	public Transform FemaleBatheSpot;
+	public GloveScript[] GloveList;
 
 	// Token: 0x040036ED RID: 14061
-	public Transform FemaleStalkSpot;
+	public ListScript[] Seats;
 
 	// Token: 0x040036EE RID: 14062
-	public Transform FemaleStripSpot;
+	public BugScript[] Bugs;
 
 	// Token: 0x040036EF RID: 14063
-	public Transform FemaleVomitSpot;
+	public Collider[] Blood;
 
 	// Token: 0x040036F0 RID: 14064
-	public Transform MedicineCabinet;
+	public Collider[] Limbs;
 
 	// Token: 0x040036F1 RID: 14065
-	public Transform PyroWateringCan;
+	public Transform[] TeacherGuardLocation;
 
 	// Token: 0x040036F2 RID: 14066
-	public Transform ConfessionSpot;
+	public Transform[] CorpseGuardLocation;
 
 	// Token: 0x040036F3 RID: 14067
-	public Transform CorpseLocation;
+	public Transform[] PossibleRandomSpots;
 
 	// Token: 0x040036F4 RID: 14068
-	public Transform FemaleWashSpot;
+	public Transform[] BloodGuardLocation;
 
 	// Token: 0x040036F5 RID: 14069
-	public Transform MaleCoupleSpot;
+	public Transform[] SleuthDestinations;
 
 	// Token: 0x040036F6 RID: 14070
-	public Transform LastKnownOsana;
+	public Transform[] StrippingPositions;
 
 	// Token: 0x040036F7 RID: 14071
-	public Transform AirGuitarSpot;
+	public Transform[] GardeningPatrols;
 
 	// Token: 0x040036F8 RID: 14072
-	public Transform BloodLocation;
+	public Transform[] MartialArtsSpots;
 
 	// Token: 0x040036F9 RID: 14073
-	public Transform FastBatheSpot;
+	public Transform[] PopularGirlSpots;
 
 	// Token: 0x040036FA RID: 14074
-	public Transform InfirmarySeat;
+	public Transform[] LockerPositions;
 
 	// Token: 0x040036FB RID: 14075
-	public Transform MaleBatheSpot;
+	public Transform[] PhotoShootSpots;
 
 	// Token: 0x040036FC RID: 14076
-	public Transform MaleStalkSpot;
+	public Transform[] RivalGuardSpots;
 
 	// Token: 0x040036FD RID: 14077
-	public Transform MaleStripSpot;
+	public Transform[] BackstageSpots;
 
 	// Token: 0x040036FE RID: 14078
-	public Transform MaleVomitSpot;
+	public Transform[] SpawnPositions;
 
 	// Token: 0x040036FF RID: 14079
-	public Transform SacrificeSpot;
+	public Transform[] GraffitiSpots;
 
 	// Token: 0x04003700 RID: 14080
-	public Transform WeaponBoxSpot;
+	public Transform[] PracticeSpots;
 
 	// Token: 0x04003701 RID: 14081
-	public Transform FountainSpot;
+	public Transform[] SunbatheSpots;
 
 	// Token: 0x04003702 RID: 14082
-	public Transform MaleWashSpot;
+	public Transform[] MeetingSpots;
 
 	// Token: 0x04003703 RID: 14083
-	public Transform SenpaiLocker;
+	public Transform[] PerformSpots;
 
 	// Token: 0x04003704 RID: 14084
-	public Transform SuitorLocker;
+	public Transform[] PinDownSpots;
 
 	// Token: 0x04003705 RID: 14085
-	public Transform RomanceSpot;
+	public Transform[] ShockedSpots;
 
 	// Token: 0x04003706 RID: 14086
-	public Transform BrokenSpot;
+	public Transform[] FridaySpots;
 
 	// Token: 0x04003707 RID: 14087
-	public Transform BullyGroup;
+	public Transform[] MiyukiSpots;
 
 	// Token: 0x04003708 RID: 14088
-	public Transform EdgeOfGrid;
+	public Transform[] RandomSpots;
 
 	// Token: 0x04003709 RID: 14089
-	public Transform GoAwaySpot;
+	public Transform[] SocialSeats;
 
 	// Token: 0x0400370A RID: 14090
-	public Transform LyricsSpot;
+	public Transform[] SocialSpots;
 
 	// Token: 0x0400370B RID: 14091
-	public Transform MainCamera;
+	public Transform[] SupplySpots;
 
 	// Token: 0x0400370C RID: 14092
-	public Transform SuitorSpot;
+	public Transform[] BullySpots;
 
 	// Token: 0x0400370D RID: 14093
-	public Transform ToolTarget;
+	public Transform[] DramaSpots;
 
 	// Token: 0x0400370E RID: 14094
-	public Transform MiyukiCat;
+	public Transform[] MournSpots;
 
 	// Token: 0x0400370F RID: 14095
-	public Transform ShameSpot;
+	public Transform[] ClubZones;
 
 	// Token: 0x04003710 RID: 14096
-	public Transform SlaveSpot;
+	public Transform[] FleeSpots;
 
 	// Token: 0x04003711 RID: 14097
-	public Transform Papers;
+	public Transform[] FoodTrays;
 
 	// Token: 0x04003712 RID: 14098
-	public Transform Exit;
+	public Transform[] SulkSpots;
 
 	// Token: 0x04003713 RID: 14099
-	public Transform[] FemaleRestSpots;
+	public Transform[] WaitSpots;
 
 	// Token: 0x04003714 RID: 14100
-	public Transform[] MaleRestSpots;
+	public Transform[] Uniforms;
 
 	// Token: 0x04003715 RID: 14101
-	public GameObject ModernRivalBookBag;
+	public Transform[] Plates;
 
 	// Token: 0x04003716 RID: 14102
-	public GameObject LovestruckCamera;
+	public Transform[] FemaleVomitSpots;
 
 	// Token: 0x04003717 RID: 14103
-	public GameObject WednesdayGiftBox;
+	public Transform[] MaleVomitSpots;
 
 	// Token: 0x04003718 RID: 14104
-	public GameObject DelinquentRadio;
+	public Transform[] FemaleWashSpots;
 
 	// Token: 0x04003719 RID: 14105
-	public GameObject FridayTestNotes;
+	public Transform[] MaleWashSpots;
 
 	// Token: 0x0400371A RID: 14106
-	public GameObject EndingCutscene;
+	public GameObject[] ShrineCollectibles;
 
 	// Token: 0x0400371B RID: 14107
-	public GameObject GardenBlockade;
+	public GameObject[] GarbageBagList;
 
 	// Token: 0x0400371C RID: 14108
-	public GameObject FPSDisplayBG;
+	public GameObject[] Graffiti;
 
 	// Token: 0x0400371D RID: 14109
-	public GameObject PortraitChan;
+	public GameObject[] Canvas;
 
 	// Token: 0x0400371E RID: 14110
-	public GameObject RandomPatrol;
+	public DoorScript[] FemaleToiletDoors;
 
 	// Token: 0x0400371F RID: 14111
-	public GameObject ChaseCamera;
+	public DoorScript[] MaleToiletDoors;
 
 	// Token: 0x04003720 RID: 14112
-	public GameObject EmptyObject;
+	public DrinkingFountainScript[] DrinkingFountains;
 
 	// Token: 0x04003721 RID: 14113
-	public GameObject MondayBento;
+	public Renderer[] FridayPaintings;
 
 	// Token: 0x04003722 RID: 14114
-	public GameObject PortraitKun;
+	public bool[] PantyShotTaken;
 
 	// Token: 0x04003723 RID: 14115
-	public GameObject StudentChan;
+	public bool[] SeatsTaken11;
 
 	// Token: 0x04003724 RID: 14116
-	public GameObject FPSDisplay;
+	public bool[] SeatsTaken12;
 
 	// Token: 0x04003725 RID: 14117
-	public GameObject StudentKun;
+	public bool[] SeatsTaken21;
 
 	// Token: 0x04003726 RID: 14118
-	public GameObject RivalChan;
+	public bool[] SeatsTaken22;
 
 	// Token: 0x04003727 RID: 14119
-	public GameObject BakeSale;
+	public bool[] SeatsTaken31;
 
 	// Token: 0x04003728 RID: 14120
-	public GameObject Canvases;
+	public bool[] SeatsTaken32;
 
 	// Token: 0x04003729 RID: 14121
-	public GameObject Medicine;
+	public bool[] NoBully;
 
 	// Token: 0x0400372A RID: 14122
-	public GameObject DrumSet;
+	public Quaternion[] OriginalClubRotations;
 
 	// Token: 0x0400372B RID: 14123
-	public GameObject Flowers;
+	public Vector3[] OriginalClubPositions;
 
 	// Token: 0x0400372C RID: 14124
-	public GameObject Portal;
+	public Collider RivalDeskCollider;
 
 	// Token: 0x0400372D RID: 14125
-	public GameObject Gift;
+	public Transform FollowerLookAtTarget;
 
 	// Token: 0x0400372E RID: 14126
-	public GameObject Note;
+	public Transform SuitorConfessionSpot;
 
 	// Token: 0x0400372F RID: 14127
-	public float[] SpawnTimes;
+	public Transform RivalConfessionSpot;
 
 	// Token: 0x04003730 RID: 14128
-	public int InitialSabotageProgress;
+	public Transform OriginalLyricsSpot;
 
 	// Token: 0x04003731 RID: 14129
-	public int LowDetailThreshold;
+	public Transform EightiesLyricDesk;
 
 	// Token: 0x04003732 RID: 14130
-	public int FarAnimThreshold;
+	public Transform FragileSlaveSpot;
 
 	// Token: 0x04003733 RID: 14131
-	public int MartialArtsPhase;
+	public Transform FemaleCoupleSpot;
 
 	// Token: 0x04003734 RID: 14132
-	public int OriginalUniforms = 2;
+	public Transform YandereStripSpot;
 
 	// Token: 0x04003735 RID: 14133
-	public int SabotageProgress;
+	public Transform FemaleBatheSpot;
 
 	// Token: 0x04003736 RID: 14134
-	public int StudentsSpawned;
+	public Transform FemaleStalkSpot;
 
 	// Token: 0x04003737 RID: 14135
-	public int SedatedStudents;
+	public Transform FemaleStripSpot;
 
 	// Token: 0x04003738 RID: 14136
-	public int StudentsTotal = 13;
+	public Transform FemaleVomitSpot;
 
 	// Token: 0x04003739 RID: 14137
-	public int TeachersTotal = 6;
+	public Transform MedicineCabinet;
 
 	// Token: 0x0400373A RID: 14138
-	public int GirlsSpawned;
+	public Transform PyroWateringCan;
 
 	// Token: 0x0400373B RID: 14139
-	public int TagStudentID;
+	public Transform ConfessionSpot;
 
 	// Token: 0x0400373C RID: 14140
-	public int GarbageBags;
+	public Transform CorpseLocation;
 
 	// Token: 0x0400373D RID: 14141
-	public int NewUniforms;
+	public Transform FemaleWashSpot;
 
 	// Token: 0x0400373E RID: 14142
-	public int NPCsSpawned;
+	public Transform MaleCoupleSpot;
 
 	// Token: 0x0400373F RID: 14143
-	public int SleuthPhase = 1;
+	public Transform LastKnownOsana;
 
 	// Token: 0x04003740 RID: 14144
-	public int DramaPhase = 1;
+	public Transform AirGuitarSpot;
 
 	// Token: 0x04003741 RID: 14145
-	public int NPCsTotal;
+	public Transform BloodLocation;
 
 	// Token: 0x04003742 RID: 14146
-	public int WeekLimit = 2;
+	public Transform FastBatheSpot;
 
 	// Token: 0x04003743 RID: 14147
-	public int Witnesses;
+	public Transform InfirmarySeat;
 
 	// Token: 0x04003744 RID: 14148
-	public int PinPhase;
+	public Transform MaleBatheSpot;
 
 	// Token: 0x04003745 RID: 14149
-	public int Bullies;
+	public Transform MaleStalkSpot;
 
 	// Token: 0x04003746 RID: 14150
-	public int Speaker = 21;
+	public Transform MaleStripSpot;
 
 	// Token: 0x04003747 RID: 14151
-	public int Frame;
+	public Transform MaleVomitSpot;
 
 	// Token: 0x04003748 RID: 14152
-	public int Bones;
+	public Transform SacrificeSpot;
 
 	// Token: 0x04003749 RID: 14153
-	public int Week;
+	public Transform WeaponBoxSpot;
 
 	// Token: 0x0400374A RID: 14154
-	public int GymTeacherID = 100;
+	public Transform FountainSpot;
 
 	// Token: 0x0400374B RID: 14155
-	public int ObstacleID = 6;
+	public Transform MaleWashSpot;
 
 	// Token: 0x0400374C RID: 14156
-	public int CurrentID;
+	public Transform SenpaiLocker;
 
 	// Token: 0x0400374D RID: 14157
-	public int SuitorID = 13;
+	public Transform SuitorLocker;
 
 	// Token: 0x0400374E RID: 14158
-	public int VictimID;
+	public Transform RomanceSpot;
 
 	// Token: 0x0400374F RID: 14159
-	public int NurseID = 93;
+	public Transform BrokenSpot;
 
 	// Token: 0x04003750 RID: 14160
-	public int RivalID = 7;
+	public Transform BullyGroup;
 
 	// Token: 0x04003751 RID: 14161
-	public int SpawnID;
+	public Transform EdgeOfGrid;
 
 	// Token: 0x04003752 RID: 14162
-	public int GloveID;
+	public Transform GoAwaySpot;
 
 	// Token: 0x04003753 RID: 14163
-	public int ID;
+	public Transform LyricsSpot;
 
 	// Token: 0x04003754 RID: 14164
-	public bool ReactedToGameLeader;
+	public Transform MainCamera;
 
 	// Token: 0x04003755 RID: 14165
-	public bool EmbarassingSecret;
+	public Transform SuitorSpot;
 
 	// Token: 0x04003756 RID: 14166
-	public bool MurderTakingPlace;
+	public Transform ToolTarget;
 
 	// Token: 0x04003757 RID: 14167
-	public bool ControllerShrink;
+	public Transform MiyukiCat;
 
 	// Token: 0x04003758 RID: 14168
-	public bool EightiesTutorial;
+	public Transform ShameSpot;
 
 	// Token: 0x04003759 RID: 14169
-	public bool GasInWateringCan;
+	public Transform SlaveSpot;
 
 	// Token: 0x0400375A RID: 14170
-	public bool ReturnedFromSave;
+	public Transform Papers;
 
 	// Token: 0x0400375B RID: 14171
-	public bool DisableFarAnims;
+	public Transform Exit;
 
 	// Token: 0x0400375C RID: 14172
-	public bool GameOverIminent;
+	public Transform[] FemaleRestSpots;
 
 	// Token: 0x0400375D RID: 14173
-	public bool RivalEliminated;
+	public Transform[] MaleRestSpots;
 
 	// Token: 0x0400375E RID: 14174
-	public bool TakingPortraits;
+	public GameObject ModernRivalBookBag;
 
 	// Token: 0x0400375F RID: 14175
-	public bool TeachersSpawned;
+	public GameObject LovestruckCamera;
 
 	// Token: 0x04003760 RID: 14176
-	public bool MetalDetectors;
+	public GameObject WednesdayGiftBox;
 
 	// Token: 0x04003761 RID: 14177
-	public bool RecordingVideo;
+	public GameObject DelinquentRadio;
 
 	// Token: 0x04003762 RID: 14178
-	public bool TutorialActive;
+	public GameObject FridayTestNotes;
 
 	// Token: 0x04003763 RID: 14179
-	public bool YandereVisible;
+	public GameObject EndingCutscene;
 
 	// Token: 0x04003764 RID: 14180
-	public bool CanSelfReport;
+	public GameObject GardenBlockade;
 
 	// Token: 0x04003765 RID: 14181
-	public bool NoClubMeeting;
+	public GameObject FPSDisplayBG;
 
 	// Token: 0x04003766 RID: 14182
-	public bool UpdatedBlood;
+	public GameObject PortraitChan;
 
 	// Token: 0x04003767 RID: 14183
-	public bool YandereDying;
+	public GameObject RandomPatrol;
 
 	// Token: 0x04003768 RID: 14184
-	public bool FirstUpdate;
+	public GameObject ChaseCamera;
 
 	// Token: 0x04003769 RID: 14185
-	public bool MissionMode;
+	public GameObject EmptyObject;
 
 	// Token: 0x0400376A RID: 14186
-	public bool OpenCurtain;
+	public GameObject MondayBento;
 
 	// Token: 0x0400376B RID: 14187
-	public bool PinningDown;
+	public GameObject PortraitKun;
 
 	// Token: 0x0400376C RID: 14188
-	public bool RoofFenceUp;
+	public GameObject StudentChan;
 
 	// Token: 0x0400376D RID: 14189
-	public bool SpawnNobody;
+	public GameObject FPSDisplay;
 
 	// Token: 0x0400376E RID: 14190
-	public bool YandereLate;
+	public GameObject StudentKun;
 
 	// Token: 0x0400376F RID: 14191
-	public bool EmptyDemon;
+	public GameObject RivalChan;
 
 	// Token: 0x04003770 RID: 14192
-	public bool ForceSpawn;
+	public GameObject BakeSale;
 
 	// Token: 0x04003771 RID: 14193
-	public bool LoadedSave;
+	public GameObject Canvases;
 
 	// Token: 0x04003772 RID: 14194
-	public bool PoolClosed;
+	public GameObject Medicine;
 
 	// Token: 0x04003773 RID: 14195
-	public bool NoGravity;
+	public GameObject DrumSet;
 
 	// Token: 0x04003774 RID: 14196
-	public bool Randomize;
+	public GameObject Flowers;
 
 	// Token: 0x04003775 RID: 14197
-	public bool Eighties;
+	public GameObject Portal;
 
 	// Token: 0x04003776 RID: 14198
-	public bool LoveSick;
+	public GameObject Gift;
 
 	// Token: 0x04003777 RID: 14199
-	public bool NoSpeech;
+	public GameObject Note;
 
 	// Token: 0x04003778 RID: 14200
-	public bool Meeting;
+	public float[] SpawnTimes;
 
 	// Token: 0x04003779 RID: 14201
-	public bool Jammed;
+	public int InitialSabotageProgress;
 
 	// Token: 0x0400377A RID: 14202
-	public bool Spooky;
+	public int LowDetailThreshold;
 
 	// Token: 0x0400377B RID: 14203
-	public bool Bully;
+	public int FarAnimThreshold;
 
 	// Token: 0x0400377C RID: 14204
-	public bool Ebola;
+	public int MartialArtsPhase;
 
 	// Token: 0x0400377D RID: 14205
-	public bool Gaze;
+	public int OriginalUniforms = 2;
 
 	// Token: 0x0400377E RID: 14206
-	public bool Pose;
+	public int SabotageProgress;
 
 	// Token: 0x0400377F RID: 14207
-	public bool Sans;
+	public int StudentsSpawned;
 
 	// Token: 0x04003780 RID: 14208
-	public bool Stop;
+	public int SedatedStudents;
 
 	// Token: 0x04003781 RID: 14209
-	public bool Egg;
+	public int StudentsTotal = 13;
 
 	// Token: 0x04003782 RID: 14210
-	public bool Six;
+	public int TeachersTotal = 6;
 
 	// Token: 0x04003783 RID: 14211
-	public bool AoT;
+	public int GirlsSpawned;
 
 	// Token: 0x04003784 RID: 14212
-	public bool DK;
+	public int TagStudentID;
 
 	// Token: 0x04003785 RID: 14213
-	public float Atmosphere;
+	public int GarbageBags;
 
 	// Token: 0x04003786 RID: 14214
-	public float OpenValue = 100f;
+	public int NewUniforms;
 
 	// Token: 0x04003787 RID: 14215
-	public float YandereHeight = 999f;
+	public int NPCsSpawned;
 
 	// Token: 0x04003788 RID: 14216
-	public float MeetingTimer;
+	public int SleuthPhase = 1;
 
 	// Token: 0x04003789 RID: 14217
-	public float PinDownTimer;
+	public int DramaPhase = 1;
 
 	// Token: 0x0400378A RID: 14218
-	public float ChangeTimer;
+	public int NPCsTotal;
 
 	// Token: 0x0400378B RID: 14219
-	public float SleuthTimer;
+	public int WeekLimit = 2;
 
 	// Token: 0x0400378C RID: 14220
-	public float DramaTimer;
+	public int Witnesses;
 
 	// Token: 0x0400378D RID: 14221
-	public float GrowTimer;
+	public int PinPhase;
 
 	// Token: 0x0400378E RID: 14222
-	public float LowestRep;
+	public int Bullies;
 
 	// Token: 0x0400378F RID: 14223
-	public float PinTimer;
+	public int Speaker = 21;
 
 	// Token: 0x04003790 RID: 14224
-	public float Timer;
+	public int Frame;
 
 	// Token: 0x04003791 RID: 14225
-	public float[] StudentReps;
+	public int Bones;
 
 	// Token: 0x04003792 RID: 14226
-	public string[] ColorNames;
+	public int Week;
 
 	// Token: 0x04003793 RID: 14227
-	public string[] MaleNames;
+	public int GymTeacherID = 100;
 
 	// Token: 0x04003794 RID: 14228
-	public string[] FirstNames;
+	public int ObstacleID = 6;
 
 	// Token: 0x04003795 RID: 14229
-	public string[] LastNames;
+	public int CurrentID;
 
 	// Token: 0x04003796 RID: 14230
-	public float[] TargetSize;
+	public int SuitorID = 13;
 
 	// Token: 0x04003797 RID: 14231
-	public int[] SuitorIDs;
+	public int VictimID;
 
 	// Token: 0x04003798 RID: 14232
-	public AudioSource[] FountainAudio;
+	public int NurseID = 93;
 
 	// Token: 0x04003799 RID: 14233
-	public AudioClip YanderePinDown;
+	public int RivalID = 7;
 
 	// Token: 0x0400379A RID: 14234
-	public AudioClip PinDownSFX;
+	public int SpawnID;
 
 	// Token: 0x0400379B RID: 14235
+	public int GloveID;
+
+	// Token: 0x0400379C RID: 14236
+	public int ID;
+
+	// Token: 0x0400379D RID: 14237
+	public bool ReactedToGameLeader;
+
+	// Token: 0x0400379E RID: 14238
+	public bool EmbarassingSecret;
+
+	// Token: 0x0400379F RID: 14239
+	public bool MurderTakingPlace;
+
+	// Token: 0x040037A0 RID: 14240
+	public bool ControllerShrink;
+
+	// Token: 0x040037A1 RID: 14241
+	public bool EightiesTutorial;
+
+	// Token: 0x040037A2 RID: 14242
+	public bool GasInWateringCan;
+
+	// Token: 0x040037A3 RID: 14243
+	public bool ReturnedFromSave;
+
+	// Token: 0x040037A4 RID: 14244
+	public bool DisableFarAnims;
+
+	// Token: 0x040037A5 RID: 14245
+	public bool GameOverIminent;
+
+	// Token: 0x040037A6 RID: 14246
+	public bool RivalEliminated;
+
+	// Token: 0x040037A7 RID: 14247
+	public bool TakingPortraits;
+
+	// Token: 0x040037A8 RID: 14248
+	public bool TeachersSpawned;
+
+	// Token: 0x040037A9 RID: 14249
+	public bool MetalDetectors;
+
+	// Token: 0x040037AA RID: 14250
+	public bool RecordingVideo;
+
+	// Token: 0x040037AB RID: 14251
+	public bool TutorialActive;
+
+	// Token: 0x040037AC RID: 14252
+	public bool YandereVisible;
+
+	// Token: 0x040037AD RID: 14253
+	public bool CanSelfReport;
+
+	// Token: 0x040037AE RID: 14254
+	public bool NoClubMeeting;
+
+	// Token: 0x040037AF RID: 14255
+	public bool UpdatedBlood;
+
+	// Token: 0x040037B0 RID: 14256
+	public bool YandereDying;
+
+	// Token: 0x040037B1 RID: 14257
+	public bool FirstUpdate;
+
+	// Token: 0x040037B2 RID: 14258
+	public bool MissionMode;
+
+	// Token: 0x040037B3 RID: 14259
+	public bool OpenCurtain;
+
+	// Token: 0x040037B4 RID: 14260
+	public bool PinningDown;
+
+	// Token: 0x040037B5 RID: 14261
+	public bool RoofFenceUp;
+
+	// Token: 0x040037B6 RID: 14262
+	public bool SpawnNobody;
+
+	// Token: 0x040037B7 RID: 14263
+	public bool YandereLate;
+
+	// Token: 0x040037B8 RID: 14264
+	public bool EmptyDemon;
+
+	// Token: 0x040037B9 RID: 14265
+	public bool ForceSpawn;
+
+	// Token: 0x040037BA RID: 14266
+	public bool LoadedSave;
+
+	// Token: 0x040037BB RID: 14267
+	public bool PoolClosed;
+
+	// Token: 0x040037BC RID: 14268
+	public bool NoGravity;
+
+	// Token: 0x040037BD RID: 14269
+	public bool Randomize;
+
+	// Token: 0x040037BE RID: 14270
+	public bool Eighties;
+
+	// Token: 0x040037BF RID: 14271
+	public bool LoveSick;
+
+	// Token: 0x040037C0 RID: 14272
+	public bool NoSpeech;
+
+	// Token: 0x040037C1 RID: 14273
+	public bool Meeting;
+
+	// Token: 0x040037C2 RID: 14274
+	public bool Jammed;
+
+	// Token: 0x040037C3 RID: 14275
+	public bool Spooky;
+
+	// Token: 0x040037C4 RID: 14276
+	public bool Bully;
+
+	// Token: 0x040037C5 RID: 14277
+	public bool Ebola;
+
+	// Token: 0x040037C6 RID: 14278
+	public bool Gaze;
+
+	// Token: 0x040037C7 RID: 14279
+	public bool Pose;
+
+	// Token: 0x040037C8 RID: 14280
+	public bool Sans;
+
+	// Token: 0x040037C9 RID: 14281
+	public bool Stop;
+
+	// Token: 0x040037CA RID: 14282
+	public bool Egg;
+
+	// Token: 0x040037CB RID: 14283
+	public bool Six;
+
+	// Token: 0x040037CC RID: 14284
+	public bool AoT;
+
+	// Token: 0x040037CD RID: 14285
+	public bool DK;
+
+	// Token: 0x040037CE RID: 14286
+	public float Atmosphere;
+
+	// Token: 0x040037CF RID: 14287
+	public float OpenValue = 100f;
+
+	// Token: 0x040037D0 RID: 14288
+	public float YandereHeight = 999f;
+
+	// Token: 0x040037D1 RID: 14289
+	public float MeetingTimer;
+
+	// Token: 0x040037D2 RID: 14290
+	public float PinDownTimer;
+
+	// Token: 0x040037D3 RID: 14291
+	public float ChangeTimer;
+
+	// Token: 0x040037D4 RID: 14292
+	public float SleuthTimer;
+
+	// Token: 0x040037D5 RID: 14293
+	public float DramaTimer;
+
+	// Token: 0x040037D6 RID: 14294
+	public float GrowTimer;
+
+	// Token: 0x040037D7 RID: 14295
+	public float LowestRep;
+
+	// Token: 0x040037D8 RID: 14296
+	public float PinTimer;
+
+	// Token: 0x040037D9 RID: 14297
+	public float Timer;
+
+	// Token: 0x040037DA RID: 14298
+	public float[] StudentReps;
+
+	// Token: 0x040037DB RID: 14299
+	public string[] ColorNames;
+
+	// Token: 0x040037DC RID: 14300
+	public string[] MaleNames;
+
+	// Token: 0x040037DD RID: 14301
+	public string[] FirstNames;
+
+	// Token: 0x040037DE RID: 14302
+	public string[] LastNames;
+
+	// Token: 0x040037DF RID: 14303
+	public float[] TargetSize;
+
+	// Token: 0x040037E0 RID: 14304
+	public int[] SuitorIDs;
+
+	// Token: 0x040037E1 RID: 14305
+	public AudioSource[] FountainAudio;
+
+	// Token: 0x040037E2 RID: 14306
+	public AudioClip YanderePinDown;
+
+	// Token: 0x040037E3 RID: 14307
+	public AudioClip PinDownSFX;
+
+	// Token: 0x040037E4 RID: 14308
 	[SerializeField]
 	private int ProblemID = -1;
 
-	// Token: 0x0400379C RID: 14236
+	// Token: 0x040037E5 RID: 14309
 	public GameObject Cardigan;
 
-	// Token: 0x0400379D RID: 14237
+	// Token: 0x040037E6 RID: 14310
 	public SkinnedMeshRenderer CardiganRenderer;
 
-	// Token: 0x0400379E RID: 14238
+	// Token: 0x040037E7 RID: 14311
 	public Mesh OpenChipBag;
 
-	// Token: 0x0400379F RID: 14239
+	// Token: 0x040037E8 RID: 14312
 	public Vignetting[] Vignettes;
 
-	// Token: 0x040037A0 RID: 14240
+	// Token: 0x040037E9 RID: 14313
 	public Renderer[] Trees;
 
-	// Token: 0x040037A1 RID: 14241
+	// Token: 0x040037EA RID: 14314
 	public DoorScript[] AllDoors;
 
-	// Token: 0x040037A2 RID: 14242
+	// Token: 0x040037EB RID: 14315
 	public OcclusionPortal PlazaOccluder;
 
-	// Token: 0x040037A3 RID: 14243
+	// Token: 0x040037EC RID: 14316
 	public AudioClip SlidingDoorOpen;
 
-	// Token: 0x040037A4 RID: 14244
+	// Token: 0x040037ED RID: 14317
 	public AudioClip SlidingDoorShut;
 
-	// Token: 0x040037A5 RID: 14245
+	// Token: 0x040037EE RID: 14318
 	public AudioClip SwingingDoorOpen;
 
-	// Token: 0x040037A6 RID: 14246
+	// Token: 0x040037EF RID: 14319
 	public AudioClip SwingingDoorShut;
 
-	// Token: 0x040037A7 RID: 14247
+	// Token: 0x040037F0 RID: 14320
 	public bool SeatOccupied;
 
-	// Token: 0x040037A8 RID: 14248
+	// Token: 0x040037F1 RID: 14321
 	public int Class = 1;
 
-	// Token: 0x040037A9 RID: 14249
+	// Token: 0x040037F2 RID: 14322
 	public int Thins;
 
-	// Token: 0x040037AA RID: 14250
+	// Token: 0x040037F3 RID: 14323
 	public int Seriouses;
 
-	// Token: 0x040037AB RID: 14251
+	// Token: 0x040037F4 RID: 14324
 	public int Rounds;
 
-	// Token: 0x040037AC RID: 14252
+	// Token: 0x040037F5 RID: 14325
 	public int Sads;
 
-	// Token: 0x040037AD RID: 14253
+	// Token: 0x040037F6 RID: 14326
 	public int Means;
 
-	// Token: 0x040037AE RID: 14254
+	// Token: 0x040037F7 RID: 14327
 	public int Smugs;
 
-	// Token: 0x040037AF RID: 14255
+	// Token: 0x040037F8 RID: 14328
 	public int Gentles;
 
-	// Token: 0x040037B0 RID: 14256
+	// Token: 0x040037F9 RID: 14329
 	public int Rival1s;
 
-	// Token: 0x040037B1 RID: 14257
+	// Token: 0x040037FA RID: 14330
 	public DoorScript[] Doors;
 
-	// Token: 0x040037B2 RID: 14258
+	// Token: 0x040037FB RID: 14331
 	public int DoorID;
 
-	// Token: 0x040037B3 RID: 14259
+	// Token: 0x040037FC RID: 14332
 	private int OpenedDoors;
 
-	// Token: 0x040037B4 RID: 14260
+	// Token: 0x040037FD RID: 14333
 	private int SnappedStudents = 1;
 
-	// Token: 0x040037B5 RID: 14261
+	// Token: 0x040037FE RID: 14334
 	public Texture PureWhite;
 
-	// Token: 0x040037B6 RID: 14262
+	// Token: 0x040037FF RID: 14335
 	public Transform[] BullySnapPosition;
 
-	// Token: 0x040037B7 RID: 14263
+	// Token: 0x04003800 RID: 14336
 	public OcclusionPortal WindowOccluder;
 
-	// Token: 0x040037B8 RID: 14264
+	// Token: 0x04003801 RID: 14337
 	public bool TransparentWindows;
 
-	// Token: 0x040037B9 RID: 14265
+	// Token: 0x04003802 RID: 14338
 	public bool TransWindows;
 
-	// Token: 0x040037BA RID: 14266
+	// Token: 0x04003803 RID: 14339
 	public Renderer Window;
 
-	// Token: 0x040037BB RID: 14267
+	// Token: 0x04003804 RID: 14340
 	private ScheduleBlock scheduleBlock;
 
-	// Token: 0x040037BC RID: 14268
+	// Token: 0x04003805 RID: 14341
 	public OsanaPoolEventScript OsanaPoolEvent;
 
-	// Token: 0x040037BD RID: 14269
+	// Token: 0x04003806 RID: 14342
 	public bool[] HeadmasterTapesCollected;
 
-	// Token: 0x040037BE RID: 14270
+	// Token: 0x04003807 RID: 14343
 	public bool[] PantiesCollected;
 
-	// Token: 0x040037BF RID: 14271
+	// Token: 0x04003808 RID: 14344
 	public bool[] MangaCollected;
 
-	// Token: 0x040037C0 RID: 14272
+	// Token: 0x04003809 RID: 14345
 	public bool[] TapesCollected;
 
-	// Token: 0x040037C1 RID: 14273
+	// Token: 0x0400380A RID: 14346
 	public SkinnedMeshRenderer LandLinePhone;
 
-	// Token: 0x040037C2 RID: 14274
+	// Token: 0x0400380B RID: 14347
 	public PostProcessingBehaviour Profile;
 
-	// Token: 0x040037C3 RID: 14275
+	// Token: 0x0400380C RID: 14348
 	public Light HauntedBathroomLight;
 
-	// Token: 0x040037C4 RID: 14276
+	// Token: 0x0400380D RID: 14349
 	public GameObject OutOfOrderSign;
 
-	// Token: 0x040037C5 RID: 14277
+	// Token: 0x0400380E RID: 14350
 	public Transform LandLineSpot;
 
-	// Token: 0x040037C6 RID: 14278
+	// Token: 0x0400380F RID: 14351
 	public UILabel EventSubtitle;
 
-	// Token: 0x040037C7 RID: 14279
+	// Token: 0x04003810 RID: 14352
 	public string EightiesPrefix;
 
-	// Token: 0x040037C8 RID: 14280
+	// Token: 0x04003811 RID: 14353
 	public Texture EightiesBG;
 
-	// Token: 0x040037C9 RID: 14281
+	// Token: 0x04003812 RID: 14354
 	public UITexture PhotoBG;
 
-	// Token: 0x040037CA RID: 14282
+	// Token: 0x04003813 RID: 14355
 	public Font Arial;
 
-	// Token: 0x040037CB RID: 14283
+	// Token: 0x04003814 RID: 14356
 	public Font VCR;
 
-	// Token: 0x040037CC RID: 14284
+	// Token: 0x04003815 RID: 14357
 	public RectTransform FPS;
 
-	// Token: 0x040037CD RID: 14285
+	// Token: 0x04003816 RID: 14358
 	public RectTransform FPSValue;
 
-	// Token: 0x040037CE RID: 14286
+	// Token: 0x04003817 RID: 14359
 	public GameObject ModernDayPropsLMC;
 
-	// Token: 0x040037CF RID: 14287
+	// Token: 0x04003818 RID: 14360
 	public GameObject ModernDayRoomLMC;
 
-	// Token: 0x040037D0 RID: 14288
+	// Token: 0x04003819 RID: 14361
 	public GameObject EightiesPropsLMC;
 
-	// Token: 0x040037D1 RID: 14289
+	// Token: 0x0400381A RID: 14362
 	public GameObject EightiesRoomLMC;
 
-	// Token: 0x040037D2 RID: 14290
+	// Token: 0x0400381B RID: 14363
 	public GameObject NewspaperClubProps;
 
-	// Token: 0x040037D3 RID: 14291
+	// Token: 0x0400381C RID: 14364
 	public GameObject NewspaperClubRoom;
 
-	// Token: 0x040037D4 RID: 14292
+	// Token: 0x0400381D RID: 14365
 	public GameObject InfoClubProps;
 
-	// Token: 0x040037D5 RID: 14293
+	// Token: 0x0400381E RID: 14366
 	public GameObject InfoClubRoom;
 
-	// Token: 0x040037D6 RID: 14294
+	// Token: 0x0400381F RID: 14367
 	public GameObject ModernDayScienceClub;
 
-	// Token: 0x040037D7 RID: 14295
+	// Token: 0x04003820 RID: 14368
 	public GameObject ModernDayScienceProps;
 
-	// Token: 0x040037D8 RID: 14296
+	// Token: 0x04003821 RID: 14369
 	public GameObject EightiesScienceClub;
 
-	// Token: 0x040037D9 RID: 14297
+	// Token: 0x04003822 RID: 14370
 	public GameObject EightiesScienceProps;
 
-	// Token: 0x040037DA RID: 14298
+	// Token: 0x04003823 RID: 14371
 	public GameObject[] ModernDayProps;
 
-	// Token: 0x040037DB RID: 14299
+	// Token: 0x04003824 RID: 14372
 	public GameObject[] EightiesProps;
 
-	// Token: 0x040037DC RID: 14300
+	// Token: 0x04003825 RID: 14373
 	public GameObject IdolStage;
 
-	// Token: 0x040037DD RID: 14301
+	// Token: 0x04003826 RID: 14374
 	public GameObject PoolPhotoShootCameras;
 
-	// Token: 0x040037DE RID: 14302
+	// Token: 0x04003827 RID: 14375
 	public GameObject Journalist;
 
-	// Token: 0x040037DF RID: 14303
+	// Token: 0x04003828 RID: 14376
 	public UIPanel FreeFloatingPanel;
 
-	// Token: 0x040037E0 RID: 14304
+	// Token: 0x04003829 RID: 14377
 	public bool[] RivalKilledSelf;
 }

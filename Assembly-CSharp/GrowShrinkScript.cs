@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x0200030A RID: 778
 public class GrowShrinkScript : MonoBehaviour
 {
-	// Token: 0x06001833 RID: 6195 RVA: 0x000E599C File Offset: 0x000E3B9C
+	// Token: 0x06001838 RID: 6200 RVA: 0x000E5E48 File Offset: 0x000E4048
 	private void Start()
 	{
 		this.OriginalPosition = base.transform.localPosition;
 		base.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x06001834 RID: 6196 RVA: 0x000E59C0 File Offset: 0x000E3BC0
+	// Token: 0x06001839 RID: 6201 RVA: 0x000E5E6C File Offset: 0x000E406C
 	private void Update()
 	{
 		this.Timer += Time.deltaTime * 2f;
@@ -51,7 +51,7 @@ public class GrowShrinkScript : MonoBehaviour
 		base.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
 	}
 
-	// Token: 0x06001835 RID: 6197 RVA: 0x000E5B80 File Offset: 0x000E3D80
+	// Token: 0x0600183A RID: 6202 RVA: 0x000E602C File Offset: 0x000E422C
 	public void Return()
 	{
 		base.transform.localPosition = this.OriginalPosition;
@@ -67,33 +67,33 @@ public class GrowShrinkScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04002333 RID: 9011
+	// Token: 0x04002344 RID: 9028
 	public float FallSpeed;
 
-	// Token: 0x04002334 RID: 9012
+	// Token: 0x04002345 RID: 9029
 	public float Threshold = 1f;
 
-	// Token: 0x04002335 RID: 9013
+	// Token: 0x04002346 RID: 9030
 	public float Slowdown = 0.5f;
 
-	// Token: 0x04002336 RID: 9014
+	// Token: 0x04002347 RID: 9031
 	public float Strength = 1f;
 
-	// Token: 0x04002337 RID: 9015
+	// Token: 0x04002348 RID: 9032
 	public float Target = 1f;
 
-	// Token: 0x04002338 RID: 9016
+	// Token: 0x04002349 RID: 9033
 	public float Scale;
 
-	// Token: 0x04002339 RID: 9017
+	// Token: 0x0400234A RID: 9034
 	public float Speed = 5f;
 
-	// Token: 0x0400233A RID: 9018
+	// Token: 0x0400234B RID: 9035
 	public float Timer;
 
-	// Token: 0x0400233B RID: 9019
+	// Token: 0x0400234C RID: 9036
 	public bool Shrink;
 
-	// Token: 0x0400233C RID: 9020
+	// Token: 0x0400234D RID: 9037
 	public Vector3 OriginalPosition;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003DF RID: 991
+// Token: 0x020003E0 RID: 992
 public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 {
-	// Token: 0x06001BA3 RID: 7075 RVA: 0x0013BEEC File Offset: 0x0013A0EC
+	// Token: 0x06001BB0 RID: 7088 RVA: 0x0013CD90 File Offset: 0x0013AF90
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -16,7 +16,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BA4 RID: 7076 RVA: 0x0013BF64 File Offset: 0x0013A164
+	// Token: 0x06001BB1 RID: 7089 RVA: 0x0013CE08 File Offset: 0x0013B008
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -194,7 +194,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BA5 RID: 7077 RVA: 0x0013C770 File Offset: 0x0013A970
+	// Token: 0x06001BB2 RID: 7090 RVA: 0x0013D614 File Offset: 0x0013B814
 	public void EndEvent()
 	{
 		Debug.Log("Osana's before class event ended.");
@@ -243,72 +243,72 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x04002FB5 RID: 12213
+	// Token: 0x04002FE9 RID: 12265
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002FB6 RID: 12214
+	// Token: 0x04002FEA RID: 12266
 	public EventManagerScript NextEvent;
 
-	// Token: 0x04002FB7 RID: 12215
+	// Token: 0x04002FEB RID: 12267
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002FB8 RID: 12216
+	// Token: 0x04002FEC RID: 12268
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002FB9 RID: 12217
+	// Token: 0x04002FED RID: 12269
 	public YandereScript Yandere;
 
-	// Token: 0x04002FBA RID: 12218
+	// Token: 0x04002FEE RID: 12270
 	public ClockScript Clock;
 
-	// Token: 0x04002FBB RID: 12219
+	// Token: 0x04002FEF RID: 12271
 	public StudentScript Rival;
 
-	// Token: 0x04002FBC RID: 12220
+	// Token: 0x04002FF0 RID: 12272
 	public Transform Destination;
 
-	// Token: 0x04002FBD RID: 12221
+	// Token: 0x04002FF1 RID: 12273
 	public AudioClip SpeechClip;
 
-	// Token: 0x04002FBE RID: 12222
+	// Token: 0x04002FF2 RID: 12274
 	public string[] SpeechText;
 
-	// Token: 0x04002FBF RID: 12223
+	// Token: 0x04002FF3 RID: 12275
 	public float[] SpeechTime;
 
-	// Token: 0x04002FC0 RID: 12224
+	// Token: 0x04002FF4 RID: 12276
 	public GameObject AlarmDisc;
 
-	// Token: 0x04002FC1 RID: 12225
+	// Token: 0x04002FF5 RID: 12277
 	public GameObject VoiceClip;
 
-	// Token: 0x04002FC2 RID: 12226
+	// Token: 0x04002FF6 RID: 12278
 	public GameObject[] Bentos;
 
-	// Token: 0x04002FC3 RID: 12227
+	// Token: 0x04002FF7 RID: 12279
 	public bool EventActive;
 
-	// Token: 0x04002FC4 RID: 12228
+	// Token: 0x04002FF8 RID: 12280
 	public bool HintGiven;
 
-	// Token: 0x04002FC5 RID: 12229
+	// Token: 0x04002FF9 RID: 12281
 	public float Distance;
 
-	// Token: 0x04002FC6 RID: 12230
+	// Token: 0x04002FFA RID: 12282
 	public float Scale;
 
-	// Token: 0x04002FC7 RID: 12231
+	// Token: 0x04002FFB RID: 12283
 	public float Timer;
 
-	// Token: 0x04002FC8 RID: 12232
+	// Token: 0x04002FFC RID: 12284
 	public int SpeechPhase = 1;
 
-	// Token: 0x04002FC9 RID: 12233
+	// Token: 0x04002FFD RID: 12285
 	public int RivalID = 11;
 
-	// Token: 0x04002FCA RID: 12234
+	// Token: 0x04002FFE RID: 12286
 	public int Phase;
 
-	// Token: 0x04002FCB RID: 12235
+	// Token: 0x04002FFF RID: 12287
 	public int Frame;
 }

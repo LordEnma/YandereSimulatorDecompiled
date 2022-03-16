@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000278 RID: 632
 public class DelinquentManagerScript : MonoBehaviour
 {
-	// Token: 0x06001365 RID: 4965 RVA: 0x000B150B File Offset: 0x000AF70B
+	// Token: 0x06001368 RID: 4968 RVA: 0x000B18E7 File Offset: 0x000AFAE7
 	private void Start()
 	{
 		this.Delinquents.SetActive(false);
@@ -13,7 +13,7 @@ public class DelinquentManagerScript : MonoBehaviour
 		this.Phase++;
 	}
 
-	// Token: 0x06001366 RID: 4966 RVA: 0x000B1540 File Offset: 0x000AF740
+	// Token: 0x06001369 RID: 4969 RVA: 0x000B191C File Offset: 0x000AFB1C
 	private void Update()
 	{
 		this.SpeechTimer = Mathf.MoveTowards(this.SpeechTimer, 0f, Time.deltaTime);
@@ -69,7 +69,7 @@ public class DelinquentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001367 RID: 4967 RVA: 0x000B17B8 File Offset: 0x000AF9B8
+	// Token: 0x0600136A RID: 4970 RVA: 0x000B1B94 File Offset: 0x000AFD94
 	public void CheckTime()
 	{
 		if (this.Clock.HourTime < 13f)
@@ -89,52 +89,52 @@ public class DelinquentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001368 RID: 4968 RVA: 0x000B183C File Offset: 0x000AFA3C
+	// Token: 0x0600136B RID: 4971 RVA: 0x000B1C18 File Offset: 0x000AFE18
 	public void EasterEgg()
 	{
 		this.RapBeat.SetActive(true);
 		this.Mirror.Limit++;
 	}
 
-	// Token: 0x04001C4C RID: 7244
+	// Token: 0x04001C5A RID: 7258
 	public GameObject Delinquents;
 
-	// Token: 0x04001C4D RID: 7245
+	// Token: 0x04001C5B RID: 7259
 	public GameObject RapBeat;
 
-	// Token: 0x04001C4E RID: 7246
+	// Token: 0x04001C5C RID: 7260
 	public GameObject Panel;
 
-	// Token: 0x04001C4F RID: 7247
+	// Token: 0x04001C5D RID: 7261
 	public float[] NextTime;
 
-	// Token: 0x04001C50 RID: 7248
+	// Token: 0x04001C5E RID: 7262
 	public DelinquentScript Attacker;
 
-	// Token: 0x04001C51 RID: 7249
+	// Token: 0x04001C5F RID: 7263
 	public MirrorScript Mirror;
 
-	// Token: 0x04001C52 RID: 7250
+	// Token: 0x04001C60 RID: 7264
 	public UILabel TimeLabel;
 
-	// Token: 0x04001C53 RID: 7251
+	// Token: 0x04001C61 RID: 7265
 	public ClockScript Clock;
 
-	// Token: 0x04001C54 RID: 7252
+	// Token: 0x04001C62 RID: 7266
 	public UISprite Circle;
 
-	// Token: 0x04001C55 RID: 7253
+	// Token: 0x04001C63 RID: 7267
 	public float SpeechTimer;
 
-	// Token: 0x04001C56 RID: 7254
+	// Token: 0x04001C64 RID: 7268
 	public float TimerMax;
 
-	// Token: 0x04001C57 RID: 7255
+	// Token: 0x04001C65 RID: 7269
 	public float Timer;
 
-	// Token: 0x04001C58 RID: 7256
+	// Token: 0x04001C66 RID: 7270
 	public bool Aggro;
 
-	// Token: 0x04001C59 RID: 7257
+	// Token: 0x04001C67 RID: 7271
 	public int Phase = 1;
 }

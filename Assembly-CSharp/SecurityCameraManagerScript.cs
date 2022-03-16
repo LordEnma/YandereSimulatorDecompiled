@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200041A RID: 1050
+// Token: 0x0200041B RID: 1051
 public class SecurityCameraManagerScript : MonoBehaviour
 {
-	// Token: 0x06001C6F RID: 7279 RVA: 0x0014C418 File Offset: 0x0014A618
+	// Token: 0x06001C7C RID: 7292 RVA: 0x0014D2BC File Offset: 0x0014B4BC
 	private void Start()
 	{
 		int i;
@@ -26,7 +26,7 @@ public class SecurityCameraManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C70 RID: 7280 RVA: 0x0014C464 File Offset: 0x0014A664
+	// Token: 0x06001C7D RID: 7293 RVA: 0x0014D308 File Offset: 0x0014B508
 	public void ActivateAllCameras()
 	{
 		for (int i = this.Cameras.Length; i > 0; i--)
@@ -38,6 +38,6 @@ public class SecurityCameraManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003280 RID: 12928
+	// Token: 0x040032B4 RID: 12980
 	public GameObject[] Cameras;
 }

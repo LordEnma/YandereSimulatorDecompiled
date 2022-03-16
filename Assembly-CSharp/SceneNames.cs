@@ -1,152 +1,152 @@
 ﻿using System;
 
-// Token: 0x0200040E RID: 1038
+// Token: 0x0200040F RID: 1039
 public static class SceneNames
 {
-	// Token: 0x040031F1 RID: 12785
+	// Token: 0x04003225 RID: 12837
 	public const string ResolutionScene = "ResolutionScene";
 
-	// Token: 0x040031F2 RID: 12786
+	// Token: 0x04003226 RID: 12838
 	public const string WelcomeScene = "WelcomeScene";
 
-	// Token: 0x040031F3 RID: 12787
+	// Token: 0x04003227 RID: 12839
 	public const string CalendarScene = "CalendarScene";
 
-	// Token: 0x040031F4 RID: 12788
+	// Token: 0x04003228 RID: 12840
 	public const string CreditsScene = "CreditsScene";
 
-	// Token: 0x040031F5 RID: 12789
+	// Token: 0x04003229 RID: 12841
 	public const string FunScene = "FunScene";
 
-	// Token: 0x040031F6 RID: 12790
+	// Token: 0x0400322A RID: 12842
 	public const string MoreFunScene = "MoreFunScene";
 
-	// Token: 0x040031F7 RID: 12791
+	// Token: 0x0400322B RID: 12843
 	public const string HomeScene = "HomeScene";
 
-	// Token: 0x040031F8 RID: 12792
+	// Token: 0x0400322C RID: 12844
 	public const string IntroScene = "IntroScene";
 
-	// Token: 0x040031F9 RID: 12793
+	// Token: 0x0400322D RID: 12845
 	public const string NewIntroScene = "NewIntroScene";
 
-	// Token: 0x040031FA RID: 12794
+	// Token: 0x0400322E RID: 12846
 	public const string LivingRoomScene = "LivingRoomScene";
 
-	// Token: 0x040031FB RID: 12795
+	// Token: 0x0400322F RID: 12847
 	public const string LoadingScene = "LoadingScene";
 
-	// Token: 0x040031FC RID: 12796
+	// Token: 0x04003230 RID: 12848
 	public const string MissionModeScene = "MissionModeScene";
 
-	// Token: 0x040031FD RID: 12797
+	// Token: 0x04003231 RID: 12849
 	public const string OsanaWarningScene = "OsanaWarningScene";
 
-	// Token: 0x040031FE RID: 12798
+	// Token: 0x04003232 RID: 12850
 	public const string PhoneScene = "PhoneScene";
 
-	// Token: 0x040031FF RID: 12799
+	// Token: 0x04003233 RID: 12851
 	public const string PortraitScene = "PortraitScene";
 
-	// Token: 0x04003200 RID: 12800
+	// Token: 0x04003234 RID: 12852
 	public const string SchoolScene = "SchoolScene";
 
-	// Token: 0x04003201 RID: 12801
+	// Token: 0x04003235 RID: 12853
 	public const string SenpaiScene = "SenpaiScene";
 
-	// Token: 0x04003202 RID: 12802
+	// Token: 0x04003236 RID: 12854
 	public const string SponsorScene = "SponsorScene";
 
-	// Token: 0x04003203 RID: 12803
+	// Token: 0x04003237 RID: 12855
 	public const string TitleScene = "TitleScene";
 
-	// Token: 0x04003204 RID: 12804
+	// Token: 0x04003238 RID: 12856
 	public const string YanvaniaScene = "YanvaniaScene";
 
-	// Token: 0x04003205 RID: 12805
+	// Token: 0x04003239 RID: 12857
 	public const string YanvaniaTitleScene = "YanvaniaTitleScene";
 
-	// Token: 0x04003206 RID: 12806
+	// Token: 0x0400323A RID: 12858
 	public const string ChoiceScene = "ChoiceScene";
 
-	// Token: 0x04003207 RID: 12807
+	// Token: 0x0400323B RID: 12859
 	public const string VeryFunScene = "VeryFunScene";
 
-	// Token: 0x04003208 RID: 12808
+	// Token: 0x0400323C RID: 12860
 	public const string LifeNoteScene = "LifeNoteScene";
 
-	// Token: 0x04003209 RID: 12809
+	// Token: 0x0400323D RID: 12861
 	public const string YancordScene = "YancordScene";
 
-	// Token: 0x0400320A RID: 12810
+	// Token: 0x0400323E RID: 12862
 	public const string MiyukiTitleScene = "MiyukiTitleScene";
 
-	// Token: 0x0400320B RID: 12811
+	// Token: 0x0400323F RID: 12863
 	public const string MiyukiGameplayScene = "MiyukiGameplayScene";
 
-	// Token: 0x0400320C RID: 12812
+	// Token: 0x04003240 RID: 12864
 	public const string MiyukiThanksScene = "MiyukiThanksScene";
 
-	// Token: 0x0400320D RID: 12813
+	// Token: 0x04003241 RID: 12865
 	public const string StreetScene = "StreetScene";
 
-	// Token: 0x0400320E RID: 12814
+	// Token: 0x04003242 RID: 12866
 	public const string MaidMenuScene = "MaidMenuScene";
 
-	// Token: 0x0400320F RID: 12815
+	// Token: 0x04003243 RID: 12867
 	public const string MaidGameScene = "MaidGameScene";
 
-	// Token: 0x04003210 RID: 12816
+	// Token: 0x04003244 RID: 12868
 	public const string WalkToSchoolScene = "WalkToSchoolScene";
 
-	// Token: 0x04003211 RID: 12817
+	// Token: 0x04003245 RID: 12869
 	public const string SuicideScene = "SuicideScene";
 
-	// Token: 0x04003212 RID: 12818
+	// Token: 0x04003246 RID: 12870
 	public const string NoAnimationWarningScene = "NoAnimationWarningScene";
 
-	// Token: 0x04003213 RID: 12819
+	// Token: 0x04003247 RID: 12871
 	public const string BusStopScene = "BusStopScene";
 
-	// Token: 0x04003214 RID: 12820
+	// Token: 0x04003248 RID: 12872
 	public const string PostCreditsScene = "PostCreditsScene";
 
-	// Token: 0x04003215 RID: 12821
+	// Token: 0x04003249 RID: 12873
 	public const string ThanksForPlayingScene = "ThanksForPlayingScene";
 
-	// Token: 0x04003216 RID: 12822
+	// Token: 0x0400324A RID: 12874
 	public const string DiscordScene = "DiscordScene";
 
-	// Token: 0x04003217 RID: 12823
+	// Token: 0x0400324B RID: 12875
 	public const string OsanaJokeScene = "OsanaJokeScene";
 
-	// Token: 0x04003218 RID: 12824
+	// Token: 0x0400324C RID: 12876
 	public const string StalkerHouseScene = "StalkerHouseScene";
 
-	// Token: 0x04003219 RID: 12825
+	// Token: 0x0400324D RID: 12877
 	public const string GenocideScene = "GenocideScene";
 
-	// Token: 0x0400321A RID: 12826
+	// Token: 0x0400324E RID: 12878
 	public const string NewTitleScene = "NewTitleScene";
 
-	// Token: 0x0400321B RID: 12827
+	// Token: 0x0400324F RID: 12879
 	public const string RivalRejectionProgressScene = "RivalRejectionProgressScene";
 
-	// Token: 0x0400321C RID: 12828
+	// Token: 0x04003250 RID: 12880
 	public const string EightiesCutsceneScene = "EightiesCutsceneScene";
 
-	// Token: 0x0400321D RID: 12829
+	// Token: 0x04003251 RID: 12881
 	public const string CourtroomScene = "CourtroomScene";
 
-	// Token: 0x0400321E RID: 12830
+	// Token: 0x04003252 RID: 12882
 	public const string TrueEndingScene = "TrueEndingScene";
 
-	// Token: 0x0400321F RID: 12831
+	// Token: 0x04003253 RID: 12883
 	public const string AsylumScene = "AsylumScene";
 
-	// Token: 0x04003220 RID: 12832
+	// Token: 0x04003254 RID: 12884
 	public const string AbductionScene = "AbductionScene";
 
-	// Token: 0x04003221 RID: 12833
+	// Token: 0x04003255 RID: 12885
 	public const string WeekSelectScene = "WeekSelectScene";
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200037D RID: 893
 public class NoteWindowScript : MonoBehaviour
 {
-	// Token: 0x06001A10 RID: 6672 RVA: 0x00111C84 File Offset: 0x0010FE84
+	// Token: 0x06001A1A RID: 6682 RVA: 0x00112794 File Offset: 0x00110994
 	private void Start()
 	{
 		this.SubMenu.transform.localScale = Vector3.zero;
@@ -22,7 +22,7 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A11 RID: 6673 RVA: 0x00111D54 File Offset: 0x0010FF54
+	// Token: 0x06001A1B RID: 6683 RVA: 0x00112864 File Offset: 0x00110A64
 	public void BecomeLifeNote()
 	{
 		this.Stationery.mainTexture = this.LifeNoteTexture;
@@ -52,7 +52,7 @@ public class NoteWindowScript : MonoBehaviour
 		this.LifeNote = true;
 	}
 
-	// Token: 0x06001A12 RID: 6674 RVA: 0x00111F28 File Offset: 0x00110128
+	// Token: 0x06001A1C RID: 6684 RVA: 0x00112A38 File Offset: 0x00110C38
 	private void Update()
 	{
 		float t = Time.unscaledDeltaTime * 10f;
@@ -315,7 +315,7 @@ public class NoteWindowScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001A13 RID: 6675 RVA: 0x00112B30 File Offset: 0x00110D30
+	// Token: 0x06001A1D RID: 6685 RVA: 0x00113640 File Offset: 0x00111840
 	private void UpdateHighlights()
 	{
 		for (int i = 1; i < this.SlotHighlights.Length; i++)
@@ -325,7 +325,7 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A14 RID: 6676 RVA: 0x00112B8C File Offset: 0x00110D8C
+	// Token: 0x06001A1E RID: 6686 RVA: 0x0011369C File Offset: 0x0011189C
 	private void UpdateSubLabels()
 	{
 		if (this.Slot == 1)
@@ -392,7 +392,7 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A15 RID: 6677 RVA: 0x00112DE0 File Offset: 0x00110FE0
+	// Token: 0x06001A1F RID: 6687 RVA: 0x001138F0 File Offset: 0x00111AF0
 	public void CheckForCompletion()
 	{
 		if (this.SlotsFilled[1] && this.SlotsFilled[2] && this.SlotsFilled[3])
@@ -402,7 +402,7 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A16 RID: 6678 RVA: 0x00112E30 File Offset: 0x00111030
+	// Token: 0x06001A20 RID: 6688 RVA: 0x00113940 File Offset: 0x00111B40
 	private void Exit()
 	{
 		this.UpdateHighlights();
@@ -430,7 +430,7 @@ public class NoteWindowScript : MonoBehaviour
 		this.SlotsFilled[3] = false;
 	}
 
-	// Token: 0x06001A17 RID: 6679 RVA: 0x00112F78 File Offset: 0x00111178
+	// Token: 0x06001A21 RID: 6689 RVA: 0x00113A88 File Offset: 0x00111C88
 	private void DisableOptions()
 	{
 		if (this.Clock.HourTime >= 7.25f)
@@ -485,132 +485,132 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002A55 RID: 10837
+	// Token: 0x04002A7E RID: 10878
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002A56 RID: 10838
+	// Token: 0x04002A7F RID: 10879
 	public NoteLockerScript NoteLocker;
 
-	// Token: 0x04002A57 RID: 10839
+	// Token: 0x04002A80 RID: 10880
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002A58 RID: 10840
+	// Token: 0x04002A81 RID: 10881
 	public YandereScript Yandere;
 
-	// Token: 0x04002A59 RID: 10841
+	// Token: 0x04002A82 RID: 10882
 	public ClockScript Clock;
 
-	// Token: 0x04002A5A RID: 10842
+	// Token: 0x04002A83 RID: 10883
 	public Transform SubHighlight;
 
-	// Token: 0x04002A5B RID: 10843
+	// Token: 0x04002A84 RID: 10884
 	public Transform SubMenu;
 
-	// Token: 0x04002A5C RID: 10844
+	// Token: 0x04002A85 RID: 10885
 	public UISprite[] SlotHighlights;
 
-	// Token: 0x04002A5D RID: 10845
+	// Token: 0x04002A86 RID: 10886
 	public UILabel[] SlotLabels;
 
-	// Token: 0x04002A5E RID: 10846
+	// Token: 0x04002A87 RID: 10887
 	public UILabel[] SubLabels;
 
-	// Token: 0x04002A5F RID: 10847
+	// Token: 0x04002A88 RID: 10888
 	public string[] OriginalText;
 
-	// Token: 0x04002A60 RID: 10848
+	// Token: 0x04002A89 RID: 10889
 	public string[] Subjects;
 
-	// Token: 0x04002A61 RID: 10849
+	// Token: 0x04002A8A RID: 10890
 	public string[] Locations;
 
-	// Token: 0x04002A62 RID: 10850
+	// Token: 0x04002A8B RID: 10891
 	public string[] Times;
 
-	// Token: 0x04002A63 RID: 10851
+	// Token: 0x04002A8C RID: 10892
 	public float[] Hours;
 
-	// Token: 0x04002A64 RID: 10852
+	// Token: 0x04002A8D RID: 10893
 	public bool[] SlotsFilled;
 
-	// Token: 0x04002A65 RID: 10853
+	// Token: 0x04002A8E RID: 10894
 	public int SubSlot;
 
-	// Token: 0x04002A66 RID: 10854
+	// Token: 0x04002A8F RID: 10895
 	public int MeetID;
 
-	// Token: 0x04002A67 RID: 10855
+	// Token: 0x04002A90 RID: 10896
 	public int Slot = 1;
 
-	// Token: 0x04002A68 RID: 10856
+	// Token: 0x04002A91 RID: 10897
 	public float Rotation;
 
-	// Token: 0x04002A69 RID: 10857
+	// Token: 0x04002A92 RID: 10898
 	public float TimeID;
 
-	// Token: 0x04002A6A RID: 10858
+	// Token: 0x04002A93 RID: 10899
 	public int ID;
 
-	// Token: 0x04002A6B RID: 10859
+	// Token: 0x04002A94 RID: 10900
 	public bool Selecting;
 
-	// Token: 0x04002A6C RID: 10860
+	// Token: 0x04002A95 RID: 10901
 	public bool Fade;
 
-	// Token: 0x04002A6D RID: 10861
+	// Token: 0x04002A96 RID: 10902
 	public bool Show;
 
-	// Token: 0x04002A6E RID: 10862
+	// Token: 0x04002A97 RID: 10903
 	public NoteWindowScript.NoteSubjectType NoteSubject;
 
-	// Token: 0x04002A6F RID: 10863
+	// Token: 0x04002A98 RID: 10904
 	public UITexture Stationery;
 
-	// Token: 0x04002A70 RID: 10864
+	// Token: 0x04002A99 RID: 10905
 	public UISprite Background1;
 
-	// Token: 0x04002A71 RID: 10865
+	// Token: 0x04002A9A RID: 10906
 	public UISprite Background2;
 
-	// Token: 0x04002A72 RID: 10866
+	// Token: 0x04002A9B RID: 10907
 	public Texture LifeNoteTexture;
 
-	// Token: 0x04002A73 RID: 10867
+	// Token: 0x04002A9C RID: 10908
 	public UILabel[] Labels;
 
-	// Token: 0x04002A74 RID: 10868
+	// Token: 0x04002A9D RID: 10909
 	public bool LifeNote;
 
-	// Token: 0x04002A75 RID: 10869
+	// Token: 0x04002A9E RID: 10910
 	public int TargetStudent;
 
-	// Token: 0x04002A76 RID: 10870
+	// Token: 0x04002A9F RID: 10911
 	public string[] MurderMethods;
 
-	// Token: 0x02000665 RID: 1637
+	// Token: 0x02000669 RID: 1641
 	public enum NoteSubjectType
 	{
-		// Token: 0x04004F78 RID: 20344
+		// Token: 0x04004FD7 RID: 20439
 		Empty,
-		// Token: 0x04004F79 RID: 20345
+		// Token: 0x04004FD8 RID: 20440
 		MakingFriends,
-		// Token: 0x04004F7A RID: 20346
+		// Token: 0x04004FD9 RID: 20441
 		LowGrades,
-		// Token: 0x04004F7B RID: 20347
+		// Token: 0x04004FDA RID: 20442
 		FightingEvil,
-		// Token: 0x04004F7C RID: 20348
+		// Token: 0x04004FDB RID: 20443
 		SuspiciousActivity,
-		// Token: 0x04004F7D RID: 20349
+		// Token: 0x04004FDC RID: 20444
 		YourFriends,
-		// Token: 0x04004F7E RID: 20350
+		// Token: 0x04004FDD RID: 20445
 		SocialMedia,
-		// Token: 0x04004F7F RID: 20351
+		// Token: 0x04004FDE RID: 20446
 		Bullying,
-		// Token: 0x04004F80 RID: 20352
+		// Token: 0x04004FDF RID: 20447
 		TheSupernatural,
-		// Token: 0x04004F81 RID: 20353
+		// Token: 0x04004FE0 RID: 20448
 		CompensatedDating,
-		// Token: 0x04004F82 RID: 20354
+		// Token: 0x04004FE1 RID: 20449
 		DomesticAbuse
 	}
 }

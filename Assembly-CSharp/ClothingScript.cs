@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200024E RID: 590
 public class ClothingScript : MonoBehaviour
 {
-	// Token: 0x06001275 RID: 4725 RVA: 0x0009076A File Offset: 0x0008E96A
+	// Token: 0x06001277 RID: 4727 RVA: 0x00090B32 File Offset: 0x0008ED32
 	private void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
 	}
 
-	// Token: 0x06001276 RID: 4726 RVA: 0x00090784 File Offset: 0x0008E984
+	// Token: 0x06001278 RID: 4728 RVA: 0x00090B4C File Offset: 0x0008ED4C
 	private void Update()
 	{
 		if (this.CanPickUp)
@@ -35,15 +35,15 @@ public class ClothingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040017C0 RID: 6080
+	// Token: 0x040017C6 RID: 6086
 	public YandereScript Yandere;
 
-	// Token: 0x040017C1 RID: 6081
+	// Token: 0x040017C7 RID: 6087
 	public PromptScript Prompt;
 
-	// Token: 0x040017C2 RID: 6082
+	// Token: 0x040017C8 RID: 6088
 	public GameObject FoldedUniform;
 
-	// Token: 0x040017C3 RID: 6083
+	// Token: 0x040017C9 RID: 6089
 	public bool CanPickUp;
 }

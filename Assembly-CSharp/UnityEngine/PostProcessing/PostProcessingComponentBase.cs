@@ -2,33 +2,33 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000574 RID: 1396
+	// Token: 0x02000578 RID: 1400
 	public abstract class PostProcessingComponentBase
 	{
-		// Token: 0x06002388 RID: 9096 RVA: 0x001F6042 File Offset: 0x001F4242
+		// Token: 0x060023A0 RID: 9120 RVA: 0x001F7FAA File Offset: 0x001F61AA
 		public virtual DepthTextureMode GetCameraFlags()
 		{
 			return DepthTextureMode.None;
 		}
 
-		// Token: 0x17000512 RID: 1298
-		// (get) Token: 0x06002389 RID: 9097
+		// Token: 0x17000513 RID: 1299
+		// (get) Token: 0x060023A1 RID: 9121
 		public abstract bool active { get; }
 
-		// Token: 0x0600238A RID: 9098 RVA: 0x001F6045 File Offset: 0x001F4245
+		// Token: 0x060023A2 RID: 9122 RVA: 0x001F7FAD File Offset: 0x001F61AD
 		public virtual void OnEnable()
 		{
 		}
 
-		// Token: 0x0600238B RID: 9099 RVA: 0x001F6047 File Offset: 0x001F4247
+		// Token: 0x060023A3 RID: 9123 RVA: 0x001F7FAF File Offset: 0x001F61AF
 		public virtual void OnDisable()
 		{
 		}
 
-		// Token: 0x0600238C RID: 9100
+		// Token: 0x060023A4 RID: 9124
 		public abstract PostProcessingModel GetModel();
 
-		// Token: 0x04004B53 RID: 19283
+		// Token: 0x04004BB2 RID: 19378
 		public PostProcessingContext context;
 	}
 }

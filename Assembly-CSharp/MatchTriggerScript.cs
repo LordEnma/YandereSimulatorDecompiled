@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000360 RID: 864
 public class MatchTriggerScript : MonoBehaviour
 {
-	// Token: 0x06001994 RID: 6548 RVA: 0x00104F58 File Offset: 0x00103158
+	// Token: 0x0600199C RID: 6556 RVA: 0x001058D0 File Offset: 0x00103AD0
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -21,12 +21,12 @@ public class MatchTriggerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040028F4 RID: 10484
+	// Token: 0x04002916 RID: 10518
 	public StudentScript Student;
 
-	// Token: 0x040028F5 RID: 10485
+	// Token: 0x04002917 RID: 10519
 	public bool Fireball;
 
-	// Token: 0x040028F6 RID: 10486
+	// Token: 0x04002918 RID: 10520
 	public bool Candle;
 }

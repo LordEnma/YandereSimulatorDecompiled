@@ -1,71 +1,71 @@
 ﻿using System;
 using System.Xml.Serialization;
 
-// Token: 0x02000409 RID: 1033
+// Token: 0x0200040A RID: 1034
 [XmlRoot]
 [Serializable]
 public class SaveFileData
 {
-	// Token: 0x040031B0 RID: 12720
+	// Token: 0x040031E4 RID: 12772
 	public ApplicationSaveData applicationData = new ApplicationSaveData();
 
-	// Token: 0x040031B1 RID: 12721
+	// Token: 0x040031E5 RID: 12773
 	public ClassSaveData classData = new ClassSaveData();
 
-	// Token: 0x040031B2 RID: 12722
+	// Token: 0x040031E6 RID: 12774
 	public ClubSaveData clubData = new ClubSaveData();
 
-	// Token: 0x040031B3 RID: 12723
+	// Token: 0x040031E7 RID: 12775
 	public CollectibleSaveData collectibleData = new CollectibleSaveData();
 
-	// Token: 0x040031B4 RID: 12724
+	// Token: 0x040031E8 RID: 12776
 	public ConversationSaveData conversationData = new ConversationSaveData();
 
-	// Token: 0x040031B5 RID: 12725
+	// Token: 0x040031E9 RID: 12777
 	public DateSaveData dateData = new DateSaveData();
 
-	// Token: 0x040031B6 RID: 12726
+	// Token: 0x040031EA RID: 12778
 	public DatingSaveData datingData = new DatingSaveData();
 
-	// Token: 0x040031B7 RID: 12727
+	// Token: 0x040031EB RID: 12779
 	public EventSaveData eventData = new EventSaveData();
 
-	// Token: 0x040031B8 RID: 12728
+	// Token: 0x040031EC RID: 12780
 	public GameSaveData gameData = new GameSaveData();
 
-	// Token: 0x040031B9 RID: 12729
+	// Token: 0x040031ED RID: 12781
 	public HomeSaveData homeData = new HomeSaveData();
 
-	// Token: 0x040031BA RID: 12730
+	// Token: 0x040031EE RID: 12782
 	public MissionModeSaveData missionModeData = new MissionModeSaveData();
 
-	// Token: 0x040031BB RID: 12731
+	// Token: 0x040031EF RID: 12783
 	public OptionSaveData optionData = new OptionSaveData();
 
-	// Token: 0x040031BC RID: 12732
+	// Token: 0x040031F0 RID: 12784
 	public PlayerSaveData playerData = new PlayerSaveData();
 
-	// Token: 0x040031BD RID: 12733
+	// Token: 0x040031F1 RID: 12785
 	public PoseModeSaveData poseModeData = new PoseModeSaveData();
 
-	// Token: 0x040031BE RID: 12734
+	// Token: 0x040031F2 RID: 12786
 	public SaveFileSaveData saveFileData = new SaveFileSaveData();
 
-	// Token: 0x040031BF RID: 12735
+	// Token: 0x040031F3 RID: 12787
 	public SchemeSaveData schemeData = new SchemeSaveData();
 
-	// Token: 0x040031C0 RID: 12736
+	// Token: 0x040031F4 RID: 12788
 	public SchoolSaveData schoolData = new SchoolSaveData();
 
-	// Token: 0x040031C1 RID: 12737
+	// Token: 0x040031F5 RID: 12789
 	public SenpaiSaveData senpaiData = new SenpaiSaveData();
 
-	// Token: 0x040031C2 RID: 12738
+	// Token: 0x040031F6 RID: 12790
 	public StudentSaveData studentData = new StudentSaveData();
 
-	// Token: 0x040031C3 RID: 12739
+	// Token: 0x040031F7 RID: 12791
 	public TaskSaveData taskData = new TaskSaveData();
 
-	// Token: 0x040031C4 RID: 12740
+	// Token: 0x040031F8 RID: 12792
 	public YanvaniaSaveData yanvaniaData = new YanvaniaSaveData();
 }

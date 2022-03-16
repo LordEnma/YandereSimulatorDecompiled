@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004E8 RID: 1256
+// Token: 0x020004EC RID: 1260
 public class YanvaniaZombieScript : MonoBehaviour
 {
-	// Token: 0x060020D1 RID: 8401 RVA: 0x001E4270 File Offset: 0x001E2470
+	// Token: 0x060020E9 RID: 8425 RVA: 0x001E61D8 File Offset: 0x001E43D8
 	private void Start()
 	{
 		base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, (this.Yanmont.transform.position.x > base.transform.position.x) ? 90f : -90f, base.transform.eulerAngles.z);
@@ -18,7 +18,7 @@ public class YanvaniaZombieScript : MonoBehaviour
 		this.MyCollider.enabled = false;
 	}
 
-	// Token: 0x060020D2 RID: 8402 RVA: 0x001E4398 File Offset: 0x001E2598
+	// Token: 0x060020EA RID: 8426 RVA: 0x001E6300 File Offset: 0x001E4500
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -118,7 +118,7 @@ public class YanvaniaZombieScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020D3 RID: 8403 RVA: 0x001E4868 File Offset: 0x001E2A68
+	// Token: 0x060020EB RID: 8427 RVA: 0x001E67D0 File Offset: 0x001E49D0
 	private void SinkNow()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -131,7 +131,7 @@ public class YanvaniaZombieScript : MonoBehaviour
 		this.Sink = true;
 	}
 
-	// Token: 0x060020D4 RID: 8404 RVA: 0x001E4904 File Offset: 0x001E2B04
+	// Token: 0x060020EC RID: 8428 RVA: 0x001E686C File Offset: 0x001E4A6C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (!this.Dying)
@@ -150,90 +150,90 @@ public class YanvaniaZombieScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004849 RID: 18505
+	// Token: 0x040048A8 RID: 18600
 	public GameObject ZombieEffect;
 
-	// Token: 0x0400484A RID: 18506
+	// Token: 0x040048A9 RID: 18601
 	public GameObject BloodEffect;
 
-	// Token: 0x0400484B RID: 18507
+	// Token: 0x040048AA RID: 18602
 	public GameObject DeathEffect;
 
-	// Token: 0x0400484C RID: 18508
+	// Token: 0x040048AB RID: 18603
 	public GameObject HitEffect;
 
-	// Token: 0x0400484D RID: 18509
+	// Token: 0x040048AC RID: 18604
 	public GameObject Character;
 
-	// Token: 0x0400484E RID: 18510
+	// Token: 0x040048AD RID: 18605
 	public YanvaniaYanmontScript Yanmont;
 
-	// Token: 0x0400484F RID: 18511
+	// Token: 0x040048AE RID: 18606
 	public int HP;
 
-	// Token: 0x04004850 RID: 18512
+	// Token: 0x040048AF RID: 18607
 	public float WalkSpeed1;
 
-	// Token: 0x04004851 RID: 18513
+	// Token: 0x040048B0 RID: 18608
 	public float WalkSpeed2;
 
-	// Token: 0x04004852 RID: 18514
+	// Token: 0x040048B1 RID: 18609
 	public float Damage;
 
-	// Token: 0x04004853 RID: 18515
+	// Token: 0x040048B2 RID: 18610
 	public float HitReactTimer;
 
-	// Token: 0x04004854 RID: 18516
+	// Token: 0x040048B3 RID: 18611
 	public float DeathTimer;
 
-	// Token: 0x04004855 RID: 18517
+	// Token: 0x040048B4 RID: 18612
 	public float WalkTimer;
 
-	// Token: 0x04004856 RID: 18518
+	// Token: 0x040048B5 RID: 18613
 	public float Timer;
 
-	// Token: 0x04004857 RID: 18519
+	// Token: 0x040048B6 RID: 18614
 	public int HitReactState;
 
-	// Token: 0x04004858 RID: 18520
+	// Token: 0x040048B7 RID: 18615
 	public int WalkType;
 
-	// Token: 0x04004859 RID: 18521
+	// Token: 0x040048B8 RID: 18616
 	public float LeftBoundary;
 
-	// Token: 0x0400485A RID: 18522
+	// Token: 0x040048B9 RID: 18617
 	public float RightBoundary;
 
-	// Token: 0x0400485B RID: 18523
+	// Token: 0x040048BA RID: 18618
 	public bool EffectSpawned;
 
-	// Token: 0x0400485C RID: 18524
+	// Token: 0x040048BB RID: 18619
 	public bool Dying;
 
-	// Token: 0x0400485D RID: 18525
+	// Token: 0x040048BC RID: 18620
 	public bool Sink;
 
-	// Token: 0x0400485E RID: 18526
+	// Token: 0x040048BD RID: 18621
 	public bool Walk;
 
-	// Token: 0x0400485F RID: 18527
+	// Token: 0x040048BE RID: 18622
 	public Texture[] Textures;
 
-	// Token: 0x04004860 RID: 18528
+	// Token: 0x040048BF RID: 18623
 	public Renderer MyRenderer;
 
-	// Token: 0x04004861 RID: 18529
+	// Token: 0x040048C0 RID: 18624
 	public Collider MyCollider;
 
-	// Token: 0x04004862 RID: 18530
+	// Token: 0x040048C1 RID: 18625
 	public AudioClip DeathSound;
 
-	// Token: 0x04004863 RID: 18531
+	// Token: 0x040048C2 RID: 18626
 	public AudioClip HitSound;
 
-	// Token: 0x04004864 RID: 18532
+	// Token: 0x040048C3 RID: 18627
 	public AudioClip RisingSound;
 
-	// Token: 0x04004865 RID: 18533
+	// Token: 0x040048C4 RID: 18628
 	public AudioClip SinkingSound;
 }

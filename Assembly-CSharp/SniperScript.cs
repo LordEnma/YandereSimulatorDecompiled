@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000434 RID: 1076
+// Token: 0x02000435 RID: 1077
 public class SniperScript : MonoBehaviour
 {
 }

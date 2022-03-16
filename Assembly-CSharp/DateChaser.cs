@@ -4,20 +4,20 @@ using UnityEngine;
 // Token: 0x0200026F RID: 623
 public class DateChaser : MonoBehaviour
 {
-	// Token: 0x0600132F RID: 4911 RVA: 0x000AB224 File Offset: 0x000A9424
+	// Token: 0x06001332 RID: 4914 RVA: 0x000AB770 File Offset: 0x000A9970
 	private static DateTime fromUnix(long unix)
 	{
 		return DateChaser.epoch.AddSeconds((double)unix);
 	}
 
-	// Token: 0x06001330 RID: 4912 RVA: 0x000AB240 File Offset: 0x000A9440
+	// Token: 0x06001333 RID: 4915 RVA: 0x000AB78C File Offset: 0x000A998C
 	private void Start()
 	{
 		Application.targetFrameRate = 60;
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x06001331 RID: 4913 RVA: 0x000AB254 File Offset: 0x000A9454
+	// Token: 0x06001334 RID: 4916 RVA: 0x000AB7A0 File Offset: 0x000A99A0
 	private void Update()
 	{
 		if (this.Animate)
@@ -45,44 +45,44 @@ public class DateChaser : MonoBehaviour
 		this.CurrentDate = this.startDate;
 	}
 
-	// Token: 0x06001332 RID: 4914 RVA: 0x000AB395 File Offset: 0x000A9595
+	// Token: 0x06001335 RID: 4917 RVA: 0x000AB8E1 File Offset: 0x000A9AE1
 	private void onDayTick(int day)
 	{
 		this.Label.text = this.CurrentTimeString;
 	}
 
-	// Token: 0x04001B78 RID: 7032
+	// Token: 0x04001B86 RID: 7046
 	public int CurrentDate;
 
-	// Token: 0x04001B79 RID: 7033
+	// Token: 0x04001B87 RID: 7047
 	public string CurrentTimeString;
 
-	// Token: 0x04001B7A RID: 7034
+	// Token: 0x04001B88 RID: 7048
 	[Header("Epoch timestamps")]
 	[SerializeField]
 	private int startDate = 1581724799;
 
-	// Token: 0x04001B7B RID: 7035
+	// Token: 0x04001B89 RID: 7049
 	[SerializeField]
 	private int endDate = 1421366399;
 
-	// Token: 0x04001B7C RID: 7036
+	// Token: 0x04001B8A RID: 7050
 	[Space(5f)]
 	[Header("Settings")]
 	[SerializeField]
 	private float generalDuration = 10f;
 
-	// Token: 0x04001B7D RID: 7037
+	// Token: 0x04001B8B RID: 7051
 	[SerializeField]
 	private AnimationCurve curve;
 
-	// Token: 0x04001B7E RID: 7038
+	// Token: 0x04001B8C RID: 7052
 	public bool Animate;
 
-	// Token: 0x04001B7F RID: 7039
+	// Token: 0x04001B8D RID: 7053
 	private float startTime;
 
-	// Token: 0x04001B80 RID: 7040
+	// Token: 0x04001B8E RID: 7054
 	private string[] monthNames = new string[]
 	{
 		"January",
@@ -99,18 +99,18 @@ public class DateChaser : MonoBehaviour
 		"December"
 	};
 
-	// Token: 0x04001B81 RID: 7041
+	// Token: 0x04001B8F RID: 7055
 	private int lastFrameDay;
 
-	// Token: 0x04001B82 RID: 7042
+	// Token: 0x04001B90 RID: 7056
 	private static readonly DateTime epoch = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
-	// Token: 0x04001B83 RID: 7043
+	// Token: 0x04001B91 RID: 7057
 	public UILabel Label;
 
-	// Token: 0x04001B84 RID: 7044
+	// Token: 0x04001B92 RID: 7058
 	public float Timer;
 
-	// Token: 0x04001B85 RID: 7045
+	// Token: 0x04001B93 RID: 7059
 	public int Stage;
 }

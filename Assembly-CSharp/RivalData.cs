@@ -5,14 +5,14 @@ using UnityEngine;
 [Serializable]
 public class RivalData
 {
-	// Token: 0x06001453 RID: 5203 RVA: 0x000C63D1 File Offset: 0x000C45D1
+	// Token: 0x06001456 RID: 5206 RVA: 0x000C6841 File Offset: 0x000C4A41
 	public RivalData(int week)
 	{
 		this.week = week;
 	}
 
 	// Token: 0x17000367 RID: 871
-	// (get) Token: 0x06001454 RID: 5204 RVA: 0x000C63E0 File Offset: 0x000C45E0
+	// (get) Token: 0x06001457 RID: 5207 RVA: 0x000C6850 File Offset: 0x000C4A50
 	public int Week
 	{
 		get
@@ -21,7 +21,7 @@ public class RivalData
 		}
 	}
 
-	// Token: 0x04001F3D RID: 7997
+	// Token: 0x04001F4D RID: 8013
 	[SerializeField]
 	private int week;
 }

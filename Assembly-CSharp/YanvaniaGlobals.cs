@@ -3,9 +3,9 @@
 // Token: 0x020002FE RID: 766
 public static class YanvaniaGlobals
 {
-	// Token: 0x17000447 RID: 1095
-	// (get) Token: 0x060017B6 RID: 6070 RVA: 0x000E3060 File Offset: 0x000E1260
-	// (set) Token: 0x060017B7 RID: 6071 RVA: 0x000E3090 File Offset: 0x000E1290
+	// Token: 0x17000448 RID: 1096
+	// (get) Token: 0x060017BB RID: 6075 RVA: 0x000E350C File Offset: 0x000E170C
+	// (set) Token: 0x060017BC RID: 6076 RVA: 0x000E353C File Offset: 0x000E173C
 	public static bool DraculaDefeated
 	{
 		get
@@ -18,9 +18,9 @@ public static class YanvaniaGlobals
 		}
 	}
 
-	// Token: 0x17000448 RID: 1096
-	// (get) Token: 0x060017B8 RID: 6072 RVA: 0x000E30C0 File Offset: 0x000E12C0
-	// (set) Token: 0x060017B9 RID: 6073 RVA: 0x000E30F0 File Offset: 0x000E12F0
+	// Token: 0x17000449 RID: 1097
+	// (get) Token: 0x060017BD RID: 6077 RVA: 0x000E356C File Offset: 0x000E176C
+	// (set) Token: 0x060017BE RID: 6078 RVA: 0x000E359C File Offset: 0x000E179C
 	public static bool MidoriEasterEgg
 	{
 		get
@@ -33,16 +33,16 @@ public static class YanvaniaGlobals
 		}
 	}
 
-	// Token: 0x060017BA RID: 6074 RVA: 0x000E3120 File Offset: 0x000E1320
+	// Token: 0x060017BF RID: 6079 RVA: 0x000E35CC File Offset: 0x000E17CC
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_DraculaDefeated");
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MidoriEasterEgg");
 	}
 
-	// Token: 0x040022D3 RID: 8915
+	// Token: 0x040022E4 RID: 8932
 	private const string Str_DraculaDefeated = "DraculaDefeated";
 
-	// Token: 0x040022D4 RID: 8916
+	// Token: 0x040022E5 RID: 8933
 	private const string Str_MidoriEasterEgg = "MidoriEasterEgg";
 }

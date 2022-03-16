@@ -4,16 +4,16 @@ using UnityStandardAssets.CrossPlatformInput.PlatformSpecific;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
-	// Token: 0x02000539 RID: 1337
+	// Token: 0x0200053D RID: 1341
 	public static class CrossPlatformInputManager
 	{
-		// Token: 0x06002214 RID: 8724 RVA: 0x001EE8BD File Offset: 0x001ECABD
+		// Token: 0x0600222C RID: 8748 RVA: 0x001F0825 File Offset: 0x001EEA25
 		static CrossPlatformInputManager()
 		{
 			CrossPlatformInputManager.activeInput = CrossPlatformInputManager.s_HardwareInput;
 		}
 
-		// Token: 0x06002215 RID: 8725 RVA: 0x001EE8DD File Offset: 0x001ECADD
+		// Token: 0x0600222D RID: 8749 RVA: 0x001F0845 File Offset: 0x001EEA45
 		public static void SwitchActiveInputMethod(CrossPlatformInputManager.ActiveInputMethod activeInputMethod)
 		{
 			if (activeInputMethod == CrossPlatformInputManager.ActiveInputMethod.Hardware)
@@ -28,31 +28,31 @@ namespace UnityStandardAssets.CrossPlatformInput
 			CrossPlatformInputManager.activeInput = CrossPlatformInputManager.s_TouchInput;
 		}
 
-		// Token: 0x06002216 RID: 8726 RVA: 0x001EE8FC File Offset: 0x001ECAFC
+		// Token: 0x0600222E RID: 8750 RVA: 0x001F0864 File Offset: 0x001EEA64
 		public static bool AxisExists(string name)
 		{
 			return CrossPlatformInputManager.activeInput.AxisExists(name);
 		}
 
-		// Token: 0x06002217 RID: 8727 RVA: 0x001EE909 File Offset: 0x001ECB09
+		// Token: 0x0600222F RID: 8751 RVA: 0x001F0871 File Offset: 0x001EEA71
 		public static bool ButtonExists(string name)
 		{
 			return CrossPlatformInputManager.activeInput.ButtonExists(name);
 		}
 
-		// Token: 0x06002218 RID: 8728 RVA: 0x001EE916 File Offset: 0x001ECB16
+		// Token: 0x06002230 RID: 8752 RVA: 0x001F087E File Offset: 0x001EEA7E
 		public static void RegisterVirtualAxis(CrossPlatformInputManager.VirtualAxis axis)
 		{
 			CrossPlatformInputManager.activeInput.RegisterVirtualAxis(axis);
 		}
 
-		// Token: 0x06002219 RID: 8729 RVA: 0x001EE923 File Offset: 0x001ECB23
+		// Token: 0x06002231 RID: 8753 RVA: 0x001F088B File Offset: 0x001EEA8B
 		public static void RegisterVirtualButton(CrossPlatformInputManager.VirtualButton button)
 		{
 			CrossPlatformInputManager.activeInput.RegisterVirtualButton(button);
 		}
 
-		// Token: 0x0600221A RID: 8730 RVA: 0x001EE930 File Offset: 0x001ECB30
+		// Token: 0x06002232 RID: 8754 RVA: 0x001F0898 File Offset: 0x001EEA98
 		public static void UnRegisterVirtualAxis(string name)
 		{
 			if (name == null)
@@ -62,92 +62,92 @@ namespace UnityStandardAssets.CrossPlatformInput
 			CrossPlatformInputManager.activeInput.UnRegisterVirtualAxis(name);
 		}
 
-		// Token: 0x0600221B RID: 8731 RVA: 0x001EE94B File Offset: 0x001ECB4B
+		// Token: 0x06002233 RID: 8755 RVA: 0x001F08B3 File Offset: 0x001EEAB3
 		public static void UnRegisterVirtualButton(string name)
 		{
 			CrossPlatformInputManager.activeInput.UnRegisterVirtualButton(name);
 		}
 
-		// Token: 0x0600221C RID: 8732 RVA: 0x001EE958 File Offset: 0x001ECB58
+		// Token: 0x06002234 RID: 8756 RVA: 0x001F08C0 File Offset: 0x001EEAC0
 		public static CrossPlatformInputManager.VirtualAxis VirtualAxisReference(string name)
 		{
 			return CrossPlatformInputManager.activeInput.VirtualAxisReference(name);
 		}
 
-		// Token: 0x0600221D RID: 8733 RVA: 0x001EE965 File Offset: 0x001ECB65
+		// Token: 0x06002235 RID: 8757 RVA: 0x001F08CD File Offset: 0x001EEACD
 		public static float GetAxis(string name)
 		{
 			return CrossPlatformInputManager.GetAxis(name, false);
 		}
 
-		// Token: 0x0600221E RID: 8734 RVA: 0x001EE96E File Offset: 0x001ECB6E
+		// Token: 0x06002236 RID: 8758 RVA: 0x001F08D6 File Offset: 0x001EEAD6
 		public static float GetAxisRaw(string name)
 		{
 			return CrossPlatformInputManager.GetAxis(name, true);
 		}
 
-		// Token: 0x0600221F RID: 8735 RVA: 0x001EE977 File Offset: 0x001ECB77
+		// Token: 0x06002237 RID: 8759 RVA: 0x001F08DF File Offset: 0x001EEADF
 		private static float GetAxis(string name, bool raw)
 		{
 			return CrossPlatformInputManager.activeInput.GetAxis(name, raw);
 		}
 
-		// Token: 0x06002220 RID: 8736 RVA: 0x001EE985 File Offset: 0x001ECB85
+		// Token: 0x06002238 RID: 8760 RVA: 0x001F08ED File Offset: 0x001EEAED
 		public static bool GetButton(string name)
 		{
 			return CrossPlatformInputManager.activeInput.GetButton(name);
 		}
 
-		// Token: 0x06002221 RID: 8737 RVA: 0x001EE992 File Offset: 0x001ECB92
+		// Token: 0x06002239 RID: 8761 RVA: 0x001F08FA File Offset: 0x001EEAFA
 		public static bool GetButtonDown(string name)
 		{
 			return CrossPlatformInputManager.activeInput.GetButtonDown(name);
 		}
 
-		// Token: 0x06002222 RID: 8738 RVA: 0x001EE99F File Offset: 0x001ECB9F
+		// Token: 0x0600223A RID: 8762 RVA: 0x001F0907 File Offset: 0x001EEB07
 		public static bool GetButtonUp(string name)
 		{
 			return CrossPlatformInputManager.activeInput.GetButtonUp(name);
 		}
 
-		// Token: 0x06002223 RID: 8739 RVA: 0x001EE9AC File Offset: 0x001ECBAC
+		// Token: 0x0600223B RID: 8763 RVA: 0x001F0914 File Offset: 0x001EEB14
 		public static void SetButtonDown(string name)
 		{
 			CrossPlatformInputManager.activeInput.SetButtonDown(name);
 		}
 
-		// Token: 0x06002224 RID: 8740 RVA: 0x001EE9B9 File Offset: 0x001ECBB9
+		// Token: 0x0600223C RID: 8764 RVA: 0x001F0921 File Offset: 0x001EEB21
 		public static void SetButtonUp(string name)
 		{
 			CrossPlatformInputManager.activeInput.SetButtonUp(name);
 		}
 
-		// Token: 0x06002225 RID: 8741 RVA: 0x001EE9C6 File Offset: 0x001ECBC6
+		// Token: 0x0600223D RID: 8765 RVA: 0x001F092E File Offset: 0x001EEB2E
 		public static void SetAxisPositive(string name)
 		{
 			CrossPlatformInputManager.activeInput.SetAxisPositive(name);
 		}
 
-		// Token: 0x06002226 RID: 8742 RVA: 0x001EE9D3 File Offset: 0x001ECBD3
+		// Token: 0x0600223E RID: 8766 RVA: 0x001F093B File Offset: 0x001EEB3B
 		public static void SetAxisNegative(string name)
 		{
 			CrossPlatformInputManager.activeInput.SetAxisNegative(name);
 		}
 
-		// Token: 0x06002227 RID: 8743 RVA: 0x001EE9E0 File Offset: 0x001ECBE0
+		// Token: 0x0600223F RID: 8767 RVA: 0x001F0948 File Offset: 0x001EEB48
 		public static void SetAxisZero(string name)
 		{
 			CrossPlatformInputManager.activeInput.SetAxisZero(name);
 		}
 
-		// Token: 0x06002228 RID: 8744 RVA: 0x001EE9ED File Offset: 0x001ECBED
+		// Token: 0x06002240 RID: 8768 RVA: 0x001F0955 File Offset: 0x001EEB55
 		public static void SetAxis(string name, float value)
 		{
 			CrossPlatformInputManager.activeInput.SetAxis(name, value);
 		}
 
-		// Token: 0x170004E6 RID: 1254
-		// (get) Token: 0x06002229 RID: 8745 RVA: 0x001EE9FB File Offset: 0x001ECBFB
+		// Token: 0x170004E7 RID: 1255
+		// (get) Token: 0x06002241 RID: 8769 RVA: 0x001F0963 File Offset: 0x001EEB63
 		public static Vector3 mousePosition
 		{
 			get
@@ -156,81 +156,81 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x0600222A RID: 8746 RVA: 0x001EEA07 File Offset: 0x001ECC07
+		// Token: 0x06002242 RID: 8770 RVA: 0x001F096F File Offset: 0x001EEB6F
 		public static void SetVirtualMousePositionX(float f)
 		{
 			CrossPlatformInputManager.activeInput.SetVirtualMousePositionX(f);
 		}
 
-		// Token: 0x0600222B RID: 8747 RVA: 0x001EEA14 File Offset: 0x001ECC14
+		// Token: 0x06002243 RID: 8771 RVA: 0x001F097C File Offset: 0x001EEB7C
 		public static void SetVirtualMousePositionY(float f)
 		{
 			CrossPlatformInputManager.activeInput.SetVirtualMousePositionY(f);
 		}
 
-		// Token: 0x0600222C RID: 8748 RVA: 0x001EEA21 File Offset: 0x001ECC21
+		// Token: 0x06002244 RID: 8772 RVA: 0x001F0989 File Offset: 0x001EEB89
 		public static void SetVirtualMousePositionZ(float f)
 		{
 			CrossPlatformInputManager.activeInput.SetVirtualMousePositionZ(f);
 		}
 
-		// Token: 0x04004A52 RID: 19026
+		// Token: 0x04004AB1 RID: 19121
 		private static VirtualInput activeInput;
 
-		// Token: 0x04004A53 RID: 19027
+		// Token: 0x04004AB2 RID: 19122
 		private static VirtualInput s_TouchInput = new MobileInput();
 
-		// Token: 0x04004A54 RID: 19028
+		// Token: 0x04004AB3 RID: 19123
 		private static VirtualInput s_HardwareInput = new StandaloneInput();
 
-		// Token: 0x02000687 RID: 1671
+		// Token: 0x0200068B RID: 1675
 		public enum ActiveInputMethod
 		{
-			// Token: 0x0400500D RID: 20493
+			// Token: 0x0400506C RID: 20588
 			Hardware,
-			// Token: 0x0400500E RID: 20494
+			// Token: 0x0400506D RID: 20589
 			Touch
 		}
 
-		// Token: 0x02000688 RID: 1672
+		// Token: 0x0200068C RID: 1676
 		public class VirtualAxis
 		{
-			// Token: 0x1700057F RID: 1407
-			// (get) Token: 0x06002700 RID: 9984 RVA: 0x00201DA3 File Offset: 0x001FFFA3
-			// (set) Token: 0x06002701 RID: 9985 RVA: 0x00201DAB File Offset: 0x001FFFAB
+			// Token: 0x17000580 RID: 1408
+			// (get) Token: 0x06002718 RID: 10008 RVA: 0x00203D0B File Offset: 0x00201F0B
+			// (set) Token: 0x06002719 RID: 10009 RVA: 0x00203D13 File Offset: 0x00201F13
 			public string name { get; private set; }
 
-			// Token: 0x17000580 RID: 1408
-			// (get) Token: 0x06002702 RID: 9986 RVA: 0x00201DB4 File Offset: 0x001FFFB4
-			// (set) Token: 0x06002703 RID: 9987 RVA: 0x00201DBC File Offset: 0x001FFFBC
+			// Token: 0x17000581 RID: 1409
+			// (get) Token: 0x0600271A RID: 10010 RVA: 0x00203D1C File Offset: 0x00201F1C
+			// (set) Token: 0x0600271B RID: 10011 RVA: 0x00203D24 File Offset: 0x00201F24
 			public bool matchWithInputManager { get; private set; }
 
-			// Token: 0x06002704 RID: 9988 RVA: 0x00201DC5 File Offset: 0x001FFFC5
+			// Token: 0x0600271C RID: 10012 RVA: 0x00203D2D File Offset: 0x00201F2D
 			public VirtualAxis(string name) : this(name, true)
 			{
 			}
 
-			// Token: 0x06002705 RID: 9989 RVA: 0x00201DCF File Offset: 0x001FFFCF
+			// Token: 0x0600271D RID: 10013 RVA: 0x00203D37 File Offset: 0x00201F37
 			public VirtualAxis(string name, bool matchToInputSettings)
 			{
 				this.name = name;
 				this.matchWithInputManager = matchToInputSettings;
 			}
 
-			// Token: 0x06002706 RID: 9990 RVA: 0x00201DE5 File Offset: 0x001FFFE5
+			// Token: 0x0600271E RID: 10014 RVA: 0x00203D4D File Offset: 0x00201F4D
 			public void Remove()
 			{
 				CrossPlatformInputManager.UnRegisterVirtualAxis(this.name);
 			}
 
-			// Token: 0x06002707 RID: 9991 RVA: 0x00201DF2 File Offset: 0x001FFFF2
+			// Token: 0x0600271F RID: 10015 RVA: 0x00203D5A File Offset: 0x00201F5A
 			public void Update(float value)
 			{
 				this.m_Value = value;
 			}
 
-			// Token: 0x17000581 RID: 1409
-			// (get) Token: 0x06002708 RID: 9992 RVA: 0x00201DFB File Offset: 0x001FFFFB
+			// Token: 0x17000582 RID: 1410
+			// (get) Token: 0x06002720 RID: 10016 RVA: 0x00203D63 File Offset: 0x00201F63
 			public float GetValue
 			{
 				get
@@ -239,8 +239,8 @@ namespace UnityStandardAssets.CrossPlatformInput
 				}
 			}
 
-			// Token: 0x17000582 RID: 1410
-			// (get) Token: 0x06002709 RID: 9993 RVA: 0x00201E03 File Offset: 0x00200003
+			// Token: 0x17000583 RID: 1411
+			// (get) Token: 0x06002721 RID: 10017 RVA: 0x00203D6B File Offset: 0x00201F6B
 			public float GetValueRaw
 			{
 				get
@@ -249,36 +249,36 @@ namespace UnityStandardAssets.CrossPlatformInput
 				}
 			}
 
-			// Token: 0x04005010 RID: 20496
+			// Token: 0x0400506F RID: 20591
 			private float m_Value;
 		}
 
-		// Token: 0x02000689 RID: 1673
+		// Token: 0x0200068D RID: 1677
 		public class VirtualButton
 		{
-			// Token: 0x17000583 RID: 1411
-			// (get) Token: 0x0600270A RID: 9994 RVA: 0x00201E0B File Offset: 0x0020000B
-			// (set) Token: 0x0600270B RID: 9995 RVA: 0x00201E13 File Offset: 0x00200013
+			// Token: 0x17000584 RID: 1412
+			// (get) Token: 0x06002722 RID: 10018 RVA: 0x00203D73 File Offset: 0x00201F73
+			// (set) Token: 0x06002723 RID: 10019 RVA: 0x00203D7B File Offset: 0x00201F7B
 			public string name { get; private set; }
 
-			// Token: 0x17000584 RID: 1412
-			// (get) Token: 0x0600270C RID: 9996 RVA: 0x00201E1C File Offset: 0x0020001C
-			// (set) Token: 0x0600270D RID: 9997 RVA: 0x00201E24 File Offset: 0x00200024
+			// Token: 0x17000585 RID: 1413
+			// (get) Token: 0x06002724 RID: 10020 RVA: 0x00203D84 File Offset: 0x00201F84
+			// (set) Token: 0x06002725 RID: 10021 RVA: 0x00203D8C File Offset: 0x00201F8C
 			public bool matchWithInputManager { get; private set; }
 
-			// Token: 0x0600270E RID: 9998 RVA: 0x00201E2D File Offset: 0x0020002D
+			// Token: 0x06002726 RID: 10022 RVA: 0x00203D95 File Offset: 0x00201F95
 			public VirtualButton(string name) : this(name, true)
 			{
 			}
 
-			// Token: 0x0600270F RID: 9999 RVA: 0x00201E37 File Offset: 0x00200037
+			// Token: 0x06002727 RID: 10023 RVA: 0x00203D9F File Offset: 0x00201F9F
 			public VirtualButton(string name, bool matchToInputSettings)
 			{
 				this.name = name;
 				this.matchWithInputManager = matchToInputSettings;
 			}
 
-			// Token: 0x06002710 RID: 10000 RVA: 0x00201E5D File Offset: 0x0020005D
+			// Token: 0x06002728 RID: 10024 RVA: 0x00203DC5 File Offset: 0x00201FC5
 			public void Pressed()
 			{
 				if (this.m_Pressed)
@@ -289,21 +289,21 @@ namespace UnityStandardAssets.CrossPlatformInput
 				this.m_LastPressedFrame = Time.frameCount;
 			}
 
-			// Token: 0x06002711 RID: 10001 RVA: 0x00201E7A File Offset: 0x0020007A
+			// Token: 0x06002729 RID: 10025 RVA: 0x00203DE2 File Offset: 0x00201FE2
 			public void Released()
 			{
 				this.m_Pressed = false;
 				this.m_ReleasedFrame = Time.frameCount;
 			}
 
-			// Token: 0x06002712 RID: 10002 RVA: 0x00201E8E File Offset: 0x0020008E
+			// Token: 0x0600272A RID: 10026 RVA: 0x00203DF6 File Offset: 0x00201FF6
 			public void Remove()
 			{
 				CrossPlatformInputManager.UnRegisterVirtualButton(this.name);
 			}
 
-			// Token: 0x17000585 RID: 1413
-			// (get) Token: 0x06002713 RID: 10003 RVA: 0x00201E9B File Offset: 0x0020009B
+			// Token: 0x17000586 RID: 1414
+			// (get) Token: 0x0600272B RID: 10027 RVA: 0x00203E03 File Offset: 0x00202003
 			public bool GetButton
 			{
 				get
@@ -312,8 +312,8 @@ namespace UnityStandardAssets.CrossPlatformInput
 				}
 			}
 
-			// Token: 0x17000586 RID: 1414
-			// (get) Token: 0x06002714 RID: 10004 RVA: 0x00201EA3 File Offset: 0x002000A3
+			// Token: 0x17000587 RID: 1415
+			// (get) Token: 0x0600272C RID: 10028 RVA: 0x00203E0B File Offset: 0x0020200B
 			public bool GetButtonDown
 			{
 				get
@@ -322,8 +322,8 @@ namespace UnityStandardAssets.CrossPlatformInput
 				}
 			}
 
-			// Token: 0x17000587 RID: 1415
-			// (get) Token: 0x06002715 RID: 10005 RVA: 0x00201EB4 File Offset: 0x002000B4
+			// Token: 0x17000588 RID: 1416
+			// (get) Token: 0x0600272D RID: 10029 RVA: 0x00203E1C File Offset: 0x0020201C
 			public bool GetButtonUp
 			{
 				get
@@ -332,13 +332,13 @@ namespace UnityStandardAssets.CrossPlatformInput
 				}
 			}
 
-			// Token: 0x04005014 RID: 20500
+			// Token: 0x04005073 RID: 20595
 			private int m_LastPressedFrame = -5;
 
-			// Token: 0x04005015 RID: 20501
+			// Token: 0x04005074 RID: 20596
 			private int m_ReleasedFrame = -5;
 
-			// Token: 0x04005016 RID: 20502
+			// Token: 0x04005075 RID: 20597
 			private bool m_Pressed;
 		}
 	}

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000425 RID: 1061
+// Token: 0x02000426 RID: 1062
 public class ShoulderCameraScript : MonoBehaviour
 {
-	// Token: 0x06001C9B RID: 7323 RVA: 0x0014FB64 File Offset: 0x0014DD64
+	// Token: 0x06001CA8 RID: 7336 RVA: 0x00150A08 File Offset: 0x0014EC08
 	private void LateUpdate()
 	{
 		if (!this.PauseScreen.Show)
@@ -328,204 +328,210 @@ public class ShoulderCameraScript : MonoBehaviour
 				this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(0.75f, 0.3f, -0.966666f), Time.deltaTime);
 				return;
 			}
-			else if (this.ObstacleCounter)
-			{
-				this.StruggleFocus.position += new Vector3(this.Shake * UnityEngine.Random.Range(-1f, 1f), this.Shake * UnityEngine.Random.Range(-0.5f, 0.5f), this.Shake * UnityEngine.Random.Range(-1f, 1f));
-				this.Shake = Mathf.Lerp(this.Shake, 0f, Time.deltaTime * 5f);
-				if (this.Yandere.Armed)
-				{
-					this.Yandere.EquippedWeapon.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
-				}
-				if (this.Timer == 0f)
-				{
-					this.StruggleFocus.position = base.transform.position + base.transform.forward;
-					this.StrugglePOV.position = base.transform.position;
-				}
-				base.transform.position = Vector3.Lerp(base.transform.position, this.StrugglePOV.position, Time.deltaTime * 10f);
-				base.transform.LookAt(this.StruggleFocus);
-				this.Timer += Time.deltaTime;
-				if (this.Timer > 0.5f && this.Phase < 2)
-				{
-					this.Yandere.CameraEffects.MurderWitnessed();
-					this.Yandere.Jukebox.GameOver();
-					this.Phase++;
-				}
-				if (this.Timer > 7.6f && this.Phase < 3)
-				{
-					if (this.Yandere.Armed)
-					{
-						this.Yandere.EquippedWeapon.Drop();
-					}
-					this.Shake += 0.2f;
-					this.Phase++;
-				}
-				if (this.Timer > 10f && this.Phase < 4)
-				{
-					this.Shake += 0.2f;
-					this.Phase++;
-				}
-				if (this.Timer > 12f && this.Phase < 5)
-				{
-					this.HeartbrokenCamera.GetComponent<Camera>().cullingMask |= 512;
-					this.HeartbrokenCamera.SetActive(true);
-					this.Phase++;
-				}
-				if (this.Timer < 6f)
-				{
-					this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.166666f, 1.2f, 0.82f), Time.deltaTime);
-					this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(0.66666f, 1.2f, 0.82f), Time.deltaTime);
-					return;
-				}
-				if (this.Timer < 8.5f)
-				{
-					this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.166666f, 1.2f, 0.82f), Time.deltaTime);
-					this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(2f, 1.2f, 0.82f), Time.deltaTime);
-					return;
-				}
-				if (this.Timer < 12f)
-				{
-					this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.85f, 0.5f, 1.75f), Time.deltaTime * 2f);
-					this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(-0.85f, 0.5f, 3f), Time.deltaTime * 2f);
-					return;
-				}
-				this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.85f, 1.1f, 1.75f), Time.deltaTime * 2f);
-				this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(-0.85f, 1f, 4f), Time.deltaTime * 2f);
-				return;
-			}
-			else if (this.Struggle)
-			{
-				base.transform.position = Vector3.Lerp(base.transform.position, this.StrugglePOV.position, Time.deltaTime * 10f);
-				base.transform.LookAt(this.StruggleFocus);
-				if (this.Yandere.Lost)
-				{
-					this.StruggleFocus.localPosition = Vector3.MoveTowards(this.StruggleFocus.localPosition, this.LossFocus, Time.deltaTime);
-					this.StrugglePOV.localPosition = Vector3.MoveTowards(this.StrugglePOV.localPosition, this.LossPOV, Time.deltaTime);
-					if (this.Timer == 0f)
-					{
-						AudioSource component2 = base.GetComponent<AudioSource>();
-						component2.clip = this.StruggleLose;
-						component2.Play();
-					}
-					this.Timer += Time.deltaTime;
-					if (this.Timer < 3f)
-					{
-						base.transform.Translate(Vector3.back * (Time.deltaTime * 10f * this.Timer * (3f - this.Timer)));
-						return;
-					}
-					if (!this.HeartbrokenCamera.activeInHierarchy)
-					{
-						this.HeartbrokenCamera.SetActive(true);
-						this.Yandere.Jukebox.GameOver();
-						base.enabled = false;
-						return;
-					}
-				}
-			}
 			else
 			{
-				if (this.Yandere.Attacked)
+				if (this.ObstacleCounter)
 				{
-					this.Focus.transform.parent = null;
-					this.Focus.transform.position = Vector3.Lerp(this.Focus.transform.position, this.Yandere.Hips.position, Time.deltaTime);
-					base.transform.LookAt(this.Focus);
+					this.StruggleFocus.position += new Vector3(this.Shake * UnityEngine.Random.Range(-1f, 1f), this.Shake * UnityEngine.Random.Range(-0.5f, 0.5f), this.Shake * UnityEngine.Random.Range(-1f, 1f));
+					this.Shake = Mathf.Lerp(this.Shake, 0f, Time.deltaTime * 5f);
+					if (this.Yandere.Armed)
+					{
+						this.Yandere.EquippedWeapon.transform.localEulerAngles = new Vector3(0f, 180f, 0f);
+					}
+					if (this.Timer == 0f)
+					{
+						this.StruggleFocus.position = base.transform.position + base.transform.forward;
+						this.StrugglePOV.position = base.transform.position;
+					}
+					base.transform.position = Vector3.Lerp(base.transform.position, this.StrugglePOV.position, Time.deltaTime * 10f);
+					base.transform.LookAt(this.StruggleFocus);
+					this.Timer += Time.deltaTime;
+					if (this.Timer > 0.5f && this.Phase < 2)
+					{
+						this.Yandere.CameraEffects.MurderWitnessed();
+						this.Yandere.Jukebox.GameOver();
+						this.Phase++;
+					}
+					if (this.Timer > 7.6f && this.Phase < 3)
+					{
+						if (this.Yandere.Armed)
+						{
+							this.Yandere.EquippedWeapon.Drop();
+						}
+						this.Shake += 0.2f;
+						this.Phase++;
+					}
+					if (this.Timer > 10f && this.Phase < 4)
+					{
+						this.Shake += 0.2f;
+						this.Phase++;
+					}
+					if (this.Timer > 12f && this.Phase < 5)
+					{
+						this.HeartbrokenCamera.GetComponent<Camera>().cullingMask |= 512;
+						this.HeartbrokenCamera.SetActive(true);
+						this.Phase++;
+					}
+					if (this.Timer < 6f)
+					{
+						this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.166666f, 1.2f, 0.82f), Time.deltaTime);
+						this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(0.66666f, 1.2f, 0.82f), Time.deltaTime);
+						this.StruggleDOF = Mathf.MoveTowards(this.StruggleDOF, 0.66666f, Time.deltaTime);
+					}
+					else if (this.Timer < 8.5f)
+					{
+						this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.166666f, 1.2f, 0.82f), Time.deltaTime);
+						this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(2f, 1.2f, 0.82f), Time.deltaTime);
+						this.StruggleDOF = Mathf.MoveTowards(this.StruggleDOF, 1f, Time.deltaTime);
+					}
+					else if (this.Timer < 12f)
+					{
+						this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.85f, 0.5f, 1.75f), Time.deltaTime * 2f);
+						this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(-0.85f, 0.5f, 3f), Time.deltaTime * 2f);
+					}
+					else
+					{
+						this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.85f, 1.1f, 1.75f), Time.deltaTime * 2f);
+						this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(-0.85f, 1f, 4f), Time.deltaTime * 2f);
+					}
+					this.Yandere.CameraEffects.UpdateDOF(this.StruggleDOF);
 					return;
 				}
-				if (this.LookDown)
+				if (this.Struggle)
 				{
-					this.Timer += Time.deltaTime;
-					if (this.Timer < 5f)
+					base.transform.position = Vector3.Lerp(base.transform.position, this.StrugglePOV.position, Time.deltaTime * 10f);
+					base.transform.LookAt(this.StruggleFocus);
+					if (this.Yandere.Lost)
 					{
-						base.transform.position = Vector3.Lerp(base.transform.position, this.Yandere.Hips.position + Vector3.up * 3f + Vector3.right * 0.1f, Time.deltaTime * this.Timer);
-						this.Focus.transform.parent = null;
-						this.Focus.transform.position = Vector3.Lerp(this.Focus.transform.position, this.Yandere.Hips.position, Time.deltaTime * this.Timer);
-						base.transform.LookAt(this.Focus);
-						return;
-					}
-					if (!this.HeartbrokenCamera.activeInHierarchy)
-					{
-						this.HeartbrokenCamera.SetActive(true);
-						this.Yandere.Jukebox.GameOver();
-						base.enabled = false;
-						return;
+						this.StruggleFocus.localPosition = Vector3.MoveTowards(this.StruggleFocus.localPosition, this.LossFocus, Time.deltaTime);
+						this.StrugglePOV.localPosition = Vector3.MoveTowards(this.StrugglePOV.localPosition, this.LossPOV, Time.deltaTime);
+						if (this.Timer == 0f)
+						{
+							AudioSource component2 = base.GetComponent<AudioSource>();
+							component2.clip = this.StruggleLose;
+							component2.Play();
+						}
+						this.Timer += Time.deltaTime;
+						if (this.Timer < 3f)
+						{
+							base.transform.Translate(Vector3.back * (Time.deltaTime * 10f * this.Timer * (3f - this.Timer)));
+							return;
+						}
+						if (!this.HeartbrokenCamera.activeInHierarchy)
+						{
+							this.HeartbrokenCamera.SetActive(true);
+							this.Yandere.Jukebox.GameOver();
+							base.enabled = false;
+							return;
+						}
 					}
 				}
 				else
 				{
-					if (this.Summoning)
+					if (this.Yandere.Attacked)
 					{
-						if (this.Phase == 1)
-						{
-							this.NoticedPOV.position = this.Yandere.transform.position + this.Yandere.transform.forward * 1.7f + this.Yandere.transform.right * 0.15f + Vector3.up * 1.375f;
-							this.NoticedFocus.position = base.transform.position + base.transform.forward;
-							this.NoticedSpeed = 10f;
-							this.Phase++;
-						}
-						else if (this.Phase == 2)
-						{
-							this.NoticedPOV.Translate(this.NoticedPOV.forward * (Time.deltaTime * -0.1f));
-							this.NoticedFocus.position = Vector3.Lerp(this.NoticedFocus.position, this.Yandere.transform.position + this.Yandere.transform.right * 0.15f + Vector3.up * 1.375f, Time.deltaTime * 10f);
-							this.Timer += Time.deltaTime;
-							if (this.Timer > 2f)
-							{
-								this.Yandere.Stand.Spawn();
-								this.NoticedPOV.position = this.Yandere.transform.position + this.Yandere.transform.forward * 2f + Vector3.up * 2.4f;
-								this.Timer = 0f;
-								this.Phase++;
-							}
-						}
-						else if (this.Phase == 3)
-						{
-							this.NoticedPOV.Translate(this.NoticedPOV.forward * (Time.deltaTime * -0.1f));
-							this.NoticedFocus.position = this.Yandere.transform.position + Vector3.up * 2.4f;
-							this.Yandere.Stand.Stand.SetActive(true);
-							this.Timer += Time.deltaTime;
-							if (this.Timer > 5f)
-							{
-								this.Phase++;
-							}
-						}
-						else if (this.Phase == 4)
-						{
-							this.Yandere.Stand.transform.localPosition = new Vector3(this.Yandere.Stand.transform.localPosition.x, 0f, this.Yandere.Stand.transform.localPosition.z);
-							this.Yandere.Jukebox.PlayJojo();
-							this.Yandere.Talking = true;
-							this.Summoning = false;
-							this.Timer = 0f;
-							this.Phase = 1;
-						}
-						base.transform.position = Vector3.Lerp(base.transform.position, this.NoticedPOV.position, Time.deltaTime * this.NoticedSpeed);
-						base.transform.LookAt(this.NoticedFocus);
+						this.Focus.transform.parent = null;
+						this.Focus.transform.position = Vector3.Lerp(this.Focus.transform.position, this.Yandere.Hips.position, Time.deltaTime);
+						base.transform.LookAt(this.Focus);
 						return;
 					}
-					if ((this.Yandere.Talking || this.Yandere.Won) && !this.RPGCamera.enabled)
+					if (this.LookDown)
 					{
 						this.Timer += Time.deltaTime;
-						if (this.Timer < 0.5f)
+						if (this.Timer < 5f)
 						{
-							base.transform.position = Vector3.Lerp(base.transform.position, this.LastPosition, Time.deltaTime * this.ReturnSpeed);
-							if (this.Yandere.Talking)
-							{
-								this.ShoulderFocus.position = Vector3.Lerp(this.ShoulderFocus.position, this.RPGCamera.cameraPivot.position, Time.deltaTime * this.ReturnSpeed);
-								base.transform.LookAt(this.ShoulderFocus);
-								return;
-							}
-							this.StruggleFocus.position = Vector3.Lerp(this.StruggleFocus.position, this.RPGCamera.cameraPivot.position, Time.deltaTime * this.ReturnSpeed);
-							base.transform.LookAt(this.StruggleFocus);
+							base.transform.position = Vector3.Lerp(base.transform.position, this.Yandere.Hips.position + Vector3.up * 3f + Vector3.right * 0.1f, Time.deltaTime * this.Timer);
+							this.Focus.transform.parent = null;
+							this.Focus.transform.position = Vector3.Lerp(this.Focus.transform.position, this.Yandere.Hips.position, Time.deltaTime * this.Timer);
+							base.transform.LookAt(this.Focus);
 							return;
 						}
-						else
+						if (!this.HeartbrokenCamera.activeInHierarchy)
 						{
-							this.RPGCamera.enabled = true;
-							this.Yandere.MyController.enabled = true;
-							this.Yandere.Talking = false;
-							if (!this.Yandere.Sprayed)
+							this.HeartbrokenCamera.SetActive(true);
+							this.Yandere.Jukebox.GameOver();
+							base.enabled = false;
+							return;
+						}
+					}
+					else
+					{
+						if (this.Summoning)
+						{
+							if (this.Phase == 1)
 							{
-								this.Yandere.CanMove = true;
+								this.NoticedPOV.position = this.Yandere.transform.position + this.Yandere.transform.forward * 1.7f + this.Yandere.transform.right * 0.15f + Vector3.up * 1.375f;
+								this.NoticedFocus.position = base.transform.position + base.transform.forward;
+								this.NoticedSpeed = 10f;
+								this.Phase++;
 							}
-							this.Yandere.Pursuer = null;
-							this.Yandere.Chased = false;
-							this.Yandere.Won = false;
-							this.Timer = 0f;
+							else if (this.Phase == 2)
+							{
+								this.NoticedPOV.Translate(this.NoticedPOV.forward * (Time.deltaTime * -0.1f));
+								this.NoticedFocus.position = Vector3.Lerp(this.NoticedFocus.position, this.Yandere.transform.position + this.Yandere.transform.right * 0.15f + Vector3.up * 1.375f, Time.deltaTime * 10f);
+								this.Timer += Time.deltaTime;
+								if (this.Timer > 2f)
+								{
+									this.Yandere.Stand.Spawn();
+									this.NoticedPOV.position = this.Yandere.transform.position + this.Yandere.transform.forward * 2f + Vector3.up * 2.4f;
+									this.Timer = 0f;
+									this.Phase++;
+								}
+							}
+							else if (this.Phase == 3)
+							{
+								this.NoticedPOV.Translate(this.NoticedPOV.forward * (Time.deltaTime * -0.1f));
+								this.NoticedFocus.position = this.Yandere.transform.position + Vector3.up * 2.4f;
+								this.Yandere.Stand.Stand.SetActive(true);
+								this.Timer += Time.deltaTime;
+								if (this.Timer > 5f)
+								{
+									this.Phase++;
+								}
+							}
+							else if (this.Phase == 4)
+							{
+								this.Yandere.Stand.transform.localPosition = new Vector3(this.Yandere.Stand.transform.localPosition.x, 0f, this.Yandere.Stand.transform.localPosition.z);
+								this.Yandere.Jukebox.PlayJojo();
+								this.Yandere.Talking = true;
+								this.Summoning = false;
+								this.Timer = 0f;
+								this.Phase = 1;
+							}
+							base.transform.position = Vector3.Lerp(base.transform.position, this.NoticedPOV.position, Time.deltaTime * this.NoticedSpeed);
+							base.transform.LookAt(this.NoticedFocus);
+							return;
+						}
+						if ((this.Yandere.Talking || this.Yandere.Won) && !this.RPGCamera.enabled)
+						{
+							this.Timer += Time.deltaTime;
+							if (this.Timer < 0.5f)
+							{
+								base.transform.position = Vector3.Lerp(base.transform.position, this.LastPosition, Time.deltaTime * this.ReturnSpeed);
+								if (this.Yandere.Talking)
+								{
+									this.ShoulderFocus.position = Vector3.Lerp(this.ShoulderFocus.position, this.RPGCamera.cameraPivot.position, Time.deltaTime * this.ReturnSpeed);
+									base.transform.LookAt(this.ShoulderFocus);
+									return;
+								}
+								this.StruggleFocus.position = Vector3.Lerp(this.StruggleFocus.position, this.RPGCamera.cameraPivot.position, Time.deltaTime * this.ReturnSpeed);
+								base.transform.LookAt(this.StruggleFocus);
+								return;
+							}
+							else
+							{
+								this.RPGCamera.enabled = true;
+								this.Yandere.MyController.enabled = true;
+								this.Yandere.Talking = false;
+								if (!this.Yandere.Sprayed)
+								{
+									this.Yandere.CanMove = true;
+								}
+								this.Yandere.Pursuer = null;
+								this.Yandere.Chased = false;
+								this.Yandere.Won = false;
+								this.Timer = 0f;
+							}
 						}
 					}
 				}
@@ -533,7 +539,7 @@ public class ShoulderCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C9C RID: 7324 RVA: 0x00151AAB File Offset: 0x0014FCAB
+	// Token: 0x06001CA9 RID: 7337 RVA: 0x001529AA File Offset: 0x00150BAA
 	public void YandereNo()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -541,7 +547,7 @@ public class ShoulderCameraScript : MonoBehaviour
 		component.Play();
 	}
 
-	// Token: 0x06001C9D RID: 7325 RVA: 0x00151AC4 File Offset: 0x0014FCC4
+	// Token: 0x06001CAA RID: 7338 RVA: 0x001529C4 File Offset: 0x00150BC4
 	public void GameOver()
 	{
 		this.NoticedPOV.parent = this.Yandere.transform;
@@ -560,153 +566,156 @@ public class ShoulderCameraScript : MonoBehaviour
 		this.Yandere.StudentManager.Students[1].Fleeing = false;
 	}
 
-	// Token: 0x040032FB RID: 13051
+	// Token: 0x0400332F RID: 13103
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x040032FC RID: 13052
+	// Token: 0x04003330 RID: 13104
 	public CounselorScript Counselor;
 
-	// Token: 0x040032FD RID: 13053
+	// Token: 0x04003331 RID: 13105
 	public YandereScript Yandere;
 
-	// Token: 0x040032FE RID: 13054
+	// Token: 0x04003332 RID: 13106
 	public RPG_Camera RPGCamera;
 
-	// Token: 0x040032FF RID: 13055
+	// Token: 0x04003333 RID: 13107
 	public PortalScript Portal;
 
-	// Token: 0x04003300 RID: 13056
+	// Token: 0x04003334 RID: 13108
 	public GameObject HeartbrokenCamera;
 
-	// Token: 0x04003301 RID: 13057
+	// Token: 0x04003335 RID: 13109
 	public GameObject HUD;
 
-	// Token: 0x04003302 RID: 13058
+	// Token: 0x04003336 RID: 13110
 	public Transform Smartphone;
 
-	// Token: 0x04003303 RID: 13059
+	// Token: 0x04003337 RID: 13111
 	public Transform Teacher;
 
-	// Token: 0x04003304 RID: 13060
+	// Token: 0x04003338 RID: 13112
 	public Transform ShoulderFocus;
 
-	// Token: 0x04003305 RID: 13061
+	// Token: 0x04003339 RID: 13113
 	public Transform ShoulderPOV;
 
-	// Token: 0x04003306 RID: 13062
+	// Token: 0x0400333A RID: 13114
 	public Transform EightiesSpineFollower;
 
-	// Token: 0x04003307 RID: 13063
+	// Token: 0x0400333B RID: 13115
 	public Transform EightiesCameraFocus;
 
-	// Token: 0x04003308 RID: 13064
+	// Token: 0x0400333C RID: 13116
 	public Transform EightiesCameraPOV;
 
-	// Token: 0x04003309 RID: 13065
+	// Token: 0x0400333D RID: 13117
 	public Transform CameraFocus;
 
-	// Token: 0x0400330A RID: 13066
+	// Token: 0x0400333E RID: 13118
 	public Transform CameraPOV;
 
-	// Token: 0x0400330B RID: 13067
+	// Token: 0x0400333F RID: 13119
 	public Transform NoticedFocus;
 
-	// Token: 0x0400330C RID: 13068
+	// Token: 0x04003340 RID: 13120
 	public Transform NoticedPOV;
 
-	// Token: 0x0400330D RID: 13069
+	// Token: 0x04003341 RID: 13121
 	public Transform StruggleFocus;
 
-	// Token: 0x0400330E RID: 13070
+	// Token: 0x04003342 RID: 13122
 	public Transform StrugglePOV;
 
-	// Token: 0x0400330F RID: 13071
+	// Token: 0x04003343 RID: 13123
 	public Transform Focus;
 
-	// Token: 0x04003310 RID: 13072
+	// Token: 0x04003344 RID: 13124
 	public Vector3 LastPosition;
 
-	// Token: 0x04003311 RID: 13073
+	// Token: 0x04003345 RID: 13125
 	public Vector3 TeacherLossFocus;
 
-	// Token: 0x04003312 RID: 13074
+	// Token: 0x04003346 RID: 13126
 	public Vector3 TeacherLossPOV;
 
-	// Token: 0x04003313 RID: 13075
+	// Token: 0x04003347 RID: 13127
 	public Vector3 LossFocus;
 
-	// Token: 0x04003314 RID: 13076
+	// Token: 0x04003348 RID: 13128
 	public Vector3 LossPOV;
 
-	// Token: 0x04003315 RID: 13077
+	// Token: 0x04003349 RID: 13129
 	public bool GoingToCounselor;
 
-	// Token: 0x04003316 RID: 13078
+	// Token: 0x0400334A RID: 13130
 	public bool ObstacleCounter;
 
-	// Token: 0x04003317 RID: 13079
+	// Token: 0x0400334B RID: 13131
 	public bool AimingCamera;
 
-	// Token: 0x04003318 RID: 13080
+	// Token: 0x0400334C RID: 13132
 	public bool OverShoulder;
 
-	// Token: 0x04003319 RID: 13081
+	// Token: 0x0400334D RID: 13133
 	public bool Summoning;
 
-	// Token: 0x0400331A RID: 13082
+	// Token: 0x0400334E RID: 13134
 	public bool LookDown;
 
-	// Token: 0x0400331B RID: 13083
+	// Token: 0x0400334F RID: 13135
 	public bool Scolding;
 
-	// Token: 0x0400331C RID: 13084
+	// Token: 0x04003350 RID: 13136
 	public bool Struggle;
 
-	// Token: 0x0400331D RID: 13085
+	// Token: 0x04003351 RID: 13137
 	public bool Counter;
 
-	// Token: 0x0400331E RID: 13086
+	// Token: 0x04003352 RID: 13138
 	public bool Noticed;
 
-	// Token: 0x0400331F RID: 13087
+	// Token: 0x04003353 RID: 13139
 	public bool Spoken;
 
-	// Token: 0x04003320 RID: 13088
+	// Token: 0x04003354 RID: 13140
 	public bool Skip;
 
-	// Token: 0x04003321 RID: 13089
+	// Token: 0x04003355 RID: 13141
 	public AudioClip StruggleLose;
 
-	// Token: 0x04003322 RID: 13090
+	// Token: 0x04003356 RID: 13142
 	public AudioClip Slam;
 
-	// Token: 0x04003323 RID: 13091
+	// Token: 0x04003357 RID: 13143
 	public float NoticedHeight;
 
-	// Token: 0x04003324 RID: 13092
+	// Token: 0x04003358 RID: 13144
 	public float NoticedTimer;
 
-	// Token: 0x04003325 RID: 13093
+	// Token: 0x04003359 RID: 13145
 	public float NoticedSpeed;
 
-	// Token: 0x04003326 RID: 13094
+	// Token: 0x0400335A RID: 13146
 	public float ReturnSpeed = 10f;
 
-	// Token: 0x04003327 RID: 13095
+	// Token: 0x0400335B RID: 13147
+	public float StruggleDOF = 2f;
+
+	// Token: 0x0400335C RID: 13148
 	public float Height;
 
-	// Token: 0x04003328 RID: 13096
+	// Token: 0x0400335D RID: 13149
 	public float Shake;
 
-	// Token: 0x04003329 RID: 13097
+	// Token: 0x0400335E RID: 13150
 	public float PullBackTimer;
 
-	// Token: 0x0400332A RID: 13098
+	// Token: 0x0400335F RID: 13151
 	public float Timer;
 
-	// Token: 0x0400332B RID: 13099
+	// Token: 0x04003360 RID: 13152
 	public int NoticedLimit;
 
-	// Token: 0x0400332C RID: 13100
+	// Token: 0x04003361 RID: 13153
 	public int Phase;
 }

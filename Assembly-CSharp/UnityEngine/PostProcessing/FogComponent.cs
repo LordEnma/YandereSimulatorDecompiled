@@ -3,11 +3,11 @@ using UnityEngine.Rendering;
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200055C RID: 1372
+	// Token: 0x02000560 RID: 1376
 	public sealed class FogComponent : PostProcessingComponentCommandBuffer<FogModel>
 	{
-		// Token: 0x170004F5 RID: 1269
-		// (get) Token: 0x06002301 RID: 8961 RVA: 0x001F3831 File Offset: 0x001F1A31
+		// Token: 0x170004F6 RID: 1270
+		// (get) Token: 0x06002319 RID: 8985 RVA: 0x001F5799 File Offset: 0x001F3999
 		public override bool active
 		{
 			get
@@ -16,25 +16,25 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002302 RID: 8962 RVA: 0x001F3864 File Offset: 0x001F1A64
+		// Token: 0x0600231A RID: 8986 RVA: 0x001F57CC File Offset: 0x001F39CC
 		public override string GetName()
 		{
 			return "Fog";
 		}
 
-		// Token: 0x06002303 RID: 8963 RVA: 0x001F386B File Offset: 0x001F1A6B
+		// Token: 0x0600231B RID: 8987 RVA: 0x001F57D3 File Offset: 0x001F39D3
 		public override DepthTextureMode GetCameraFlags()
 		{
 			return DepthTextureMode.Depth;
 		}
 
-		// Token: 0x06002304 RID: 8964 RVA: 0x001F386E File Offset: 0x001F1A6E
+		// Token: 0x0600231C RID: 8988 RVA: 0x001F57D6 File Offset: 0x001F39D6
 		public override CameraEvent GetCameraEvent()
 		{
 			return CameraEvent.AfterImageEffectsOpaque;
 		}
 
-		// Token: 0x06002305 RID: 8965 RVA: 0x001F3874 File Offset: 0x001F1A74
+		// Token: 0x0600231D RID: 8989 RVA: 0x001F57DC File Offset: 0x001F39DC
 		public override void PopulateCommandBuffer(CommandBuffer cb)
 		{
 			FogModel.Settings settings = base.model.settings;
@@ -64,25 +64,25 @@ namespace UnityEngine.PostProcessing
 			cb.ReleaseTemporaryRT(FogComponent.Uniforms._TempRT);
 		}
 
-		// Token: 0x04004B14 RID: 19220
+		// Token: 0x04004B73 RID: 19315
 		private const string k_ShaderString = "Hidden/Post FX/Fog";
 
-		// Token: 0x0200069D RID: 1693
+		// Token: 0x020006A1 RID: 1697
 		private static class Uniforms
 		{
-			// Token: 0x04005082 RID: 20610
+			// Token: 0x040050E1 RID: 20705
 			internal static readonly int _FogColor = Shader.PropertyToID("_FogColor");
 
-			// Token: 0x04005083 RID: 20611
+			// Token: 0x040050E2 RID: 20706
 			internal static readonly int _Density = Shader.PropertyToID("_Density");
 
-			// Token: 0x04005084 RID: 20612
+			// Token: 0x040050E3 RID: 20707
 			internal static readonly int _Start = Shader.PropertyToID("_Start");
 
-			// Token: 0x04005085 RID: 20613
+			// Token: 0x040050E4 RID: 20708
 			internal static readonly int _End = Shader.PropertyToID("_End");
 
-			// Token: 0x04005086 RID: 20614
+			// Token: 0x040050E5 RID: 20709
 			internal static readonly int _TempRT = Shader.PropertyToID("_TempRT");
 		}
 	}

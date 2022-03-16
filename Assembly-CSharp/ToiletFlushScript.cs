@@ -1,19 +1,19 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200047D RID: 1149
+// Token: 0x02000480 RID: 1152
 internal class ToiletFlushScript : MonoBehaviour
 {
-	// Token: 0x0400403F RID: 16447
+	// Token: 0x0400408A RID: 16522
 	[Header("=== Toilet Related ===")]
 	public GameObject Toilet;
 
-	// Token: 0x04004040 RID: 16448
+	// Token: 0x0400408B RID: 16523
 	private GameObject toilet;
 
-	// Token: 0x04004041 RID: 16449
+	// Token: 0x0400408C RID: 16524
 	private static System.Random random = new System.Random();
 
-	// Token: 0x04004042 RID: 16450
+	// Token: 0x0400408D RID: 16525
 	private StudentManagerScript StudentManager;
 }

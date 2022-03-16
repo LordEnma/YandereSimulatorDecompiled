@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200026D RID: 621
 public class CutsceneManagerScript : MonoBehaviour
 {
-	// Token: 0x0600132B RID: 4907 RVA: 0x000AAD88 File Offset: 0x000A8F88
+	// Token: 0x0600132E RID: 4910 RVA: 0x000AB2D4 File Offset: 0x000A94D4
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -90,39 +90,39 @@ public class CutsceneManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001B65 RID: 7013
+	// Token: 0x04001B73 RID: 7027
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001B66 RID: 7014
+	// Token: 0x04001B74 RID: 7028
 	public CounselorScript Counselor;
 
-	// Token: 0x04001B67 RID: 7015
+	// Token: 0x04001B75 RID: 7029
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04001B68 RID: 7016
+	// Token: 0x04001B76 RID: 7030
 	public EndOfDayScript EndOfDay;
 
-	// Token: 0x04001B69 RID: 7017
+	// Token: 0x04001B77 RID: 7031
 	public PortalScript Portal;
 
-	// Token: 0x04001B6A RID: 7018
+	// Token: 0x04001B78 RID: 7032
 	public UISprite Darkness;
 
-	// Token: 0x04001B6B RID: 7019
+	// Token: 0x04001B79 RID: 7033
 	public UILabel Subtitle;
 
-	// Token: 0x04001B6C RID: 7020
+	// Token: 0x04001B7A RID: 7034
 	public AudioClip[] Voice;
 
-	// Token: 0x04001B6D RID: 7021
+	// Token: 0x04001B7B RID: 7035
 	public string[] Text;
 
-	// Token: 0x04001B6E RID: 7022
+	// Token: 0x04001B7C RID: 7036
 	public int Scheme;
 
-	// Token: 0x04001B6F RID: 7023
+	// Token: 0x04001B7D RID: 7037
 	public int Phase = 1;
 
-	// Token: 0x04001B70 RID: 7024
+	// Token: 0x04001B7E RID: 7038
 	public int Line = 1;
 }

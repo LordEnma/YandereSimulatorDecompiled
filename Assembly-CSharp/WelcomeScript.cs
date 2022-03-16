@@ -3,10 +3,10 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020004C0 RID: 1216
+// Token: 0x020004C4 RID: 1220
 public class WelcomeScript : MonoBehaviour
 {
-	// Token: 0x06001FDC RID: 8156 RVA: 0x001C2EA0 File Offset: 0x001C10A0
+	// Token: 0x06001FF2 RID: 8178 RVA: 0x001C4BEC File Offset: 0x001C2DEC
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -36,7 +36,7 @@ public class WelcomeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FDD RID: 8157 RVA: 0x001C30A8 File Offset: 0x001C12A8
+	// Token: 0x06001FF3 RID: 8179 RVA: 0x001C4DF4 File Offset: 0x001C2FF4
 	private void Update()
 	{
 		Input.GetKeyDown(KeyCode.S);
@@ -78,48 +78,48 @@ public class WelcomeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040042D3 RID: 17107
+	// Token: 0x0400432E RID: 17198
 	public JsonScript JSON;
 
-	// Token: 0x040042D4 RID: 17108
+	// Token: 0x0400432F RID: 17199
 	public GameObject WelcomePanel;
 
-	// Token: 0x040042D5 RID: 17109
+	// Token: 0x04004330 RID: 17200
 	public UILabel[] FlashingLabels;
 
-	// Token: 0x040042D6 RID: 17110
+	// Token: 0x04004331 RID: 17201
 	public UILabel AltBeginLabel;
 
-	// Token: 0x040042D7 RID: 17111
+	// Token: 0x04004332 RID: 17202
 	public UILabel BeginLabel;
 
-	// Token: 0x040042D8 RID: 17112
+	// Token: 0x04004333 RID: 17203
 	public UILabel[] Labels;
 
-	// Token: 0x040042D9 RID: 17113
+	// Token: 0x04004334 RID: 17204
 	public UISprite Darkness;
 
-	// Token: 0x040042DA RID: 17114
+	// Token: 0x04004335 RID: 17205
 	public bool Continue;
 
-	// Token: 0x040042DB RID: 17115
+	// Token: 0x04004336 RID: 17206
 	public bool FlashRed;
 
-	// Token: 0x040042DC RID: 17116
+	// Token: 0x04004337 RID: 17207
 	public float VersionNumber;
 
-	// Token: 0x040042DD RID: 17117
+	// Token: 0x04004338 RID: 17208
 	public float Timer;
 
-	// Token: 0x040042DE RID: 17118
+	// Token: 0x04004339 RID: 17209
 	public float Speed = 1f;
 
-	// Token: 0x040042DF RID: 17119
+	// Token: 0x0400433A RID: 17210
 	public string Text;
 
-	// Token: 0x040042E0 RID: 17120
+	// Token: 0x0400433B RID: 17211
 	public int CurrentLabel = 1;
 
-	// Token: 0x040042E1 RID: 17121
+	// Token: 0x0400433C RID: 17212
 	public int ID;
 }
