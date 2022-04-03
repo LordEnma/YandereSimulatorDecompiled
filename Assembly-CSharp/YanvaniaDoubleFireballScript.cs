@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004DD RID: 1245
+// Token: 0x020004E1 RID: 1249
 public class YanvaniaDoubleFireballScript : MonoBehaviour
 {
-	// Token: 0x060020AD RID: 8365 RVA: 0x001E05CC File Offset: 0x001DE7CC
+	// Token: 0x060020BB RID: 8379 RVA: 0x001E1E08 File Offset: 0x001E0008
 	private void Start()
 	{
 		UnityEngine.Object.Instantiate<GameObject>(this.LightningEffect, new Vector3(base.transform.position.x, 8f, 0f), Quaternion.identity);
 		this.Direction = ((this.Dracula.position.x > base.transform.position.x) ? -1 : 1);
 	}
 
-	// Token: 0x060020AE RID: 8366 RVA: 0x001E0638 File Offset: 0x001DE838
+	// Token: 0x060020BC RID: 8380 RVA: 0x001E1E74 File Offset: 0x001E0074
 	private void Update()
 	{
 		if (this.Timer > 1f && !this.SpawnedFirst)
@@ -63,39 +63,39 @@ public class YanvaniaDoubleFireballScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040047A9 RID: 18345
+	// Token: 0x040047DA RID: 18394
 	public GameObject Lavaball;
 
-	// Token: 0x040047AA RID: 18346
+	// Token: 0x040047DB RID: 18395
 	public GameObject FirstLavaball;
 
-	// Token: 0x040047AB RID: 18347
+	// Token: 0x040047DC RID: 18396
 	public GameObject SecondLavaball;
 
-	// Token: 0x040047AC RID: 18348
+	// Token: 0x040047DD RID: 18397
 	public GameObject LightningEffect;
 
-	// Token: 0x040047AD RID: 18349
+	// Token: 0x040047DE RID: 18398
 	public Transform Dracula;
 
-	// Token: 0x040047AE RID: 18350
+	// Token: 0x040047DF RID: 18399
 	public bool SpawnedFirst;
 
-	// Token: 0x040047AF RID: 18351
+	// Token: 0x040047E0 RID: 18400
 	public bool SpawnedSecond;
 
-	// Token: 0x040047B0 RID: 18352
+	// Token: 0x040047E1 RID: 18401
 	public float FirstPosition;
 
-	// Token: 0x040047B1 RID: 18353
+	// Token: 0x040047E2 RID: 18402
 	public float SecondPosition;
 
-	// Token: 0x040047B2 RID: 18354
+	// Token: 0x040047E3 RID: 18403
 	public int Direction;
 
-	// Token: 0x040047B3 RID: 18355
+	// Token: 0x040047E4 RID: 18404
 	public float Timer;
 
-	// Token: 0x040047B4 RID: 18356
+	// Token: 0x040047E5 RID: 18405
 	public float Speed;
 }

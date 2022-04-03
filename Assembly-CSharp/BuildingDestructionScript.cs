@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000101 RID: 257
 public class BuildingDestructionScript : MonoBehaviour
 {
-	// Token: 0x06000A95 RID: 2709 RVA: 0x0005F3C4 File Offset: 0x0005D5C4
+	// Token: 0x06000A95 RID: 2709 RVA: 0x0005F460 File Offset: 0x0005D660
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
@@ -29,12 +29,12 @@ public class BuildingDestructionScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C7A RID: 3194
+	// Token: 0x04000C7B RID: 3195
 	public Transform NewSchool;
 
-	// Token: 0x04000C7B RID: 3195
+	// Token: 0x04000C7C RID: 3196
 	public bool Sink;
 
-	// Token: 0x04000C7C RID: 3196
+	// Token: 0x04000C7D RID: 3197
 	public int Phase;
 }

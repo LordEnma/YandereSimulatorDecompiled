@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003BF RID: 959
+// Token: 0x020003C2 RID: 962
 public class PromptManagerScript : MonoBehaviour
 {
-	// Token: 0x06001B1E RID: 6942 RVA: 0x0012E11C File Offset: 0x0012C31C
+	// Token: 0x06001B27 RID: 6951 RVA: 0x0012E8AC File Offset: 0x0012CAAC
 	private void Update()
 	{
 		if (this.Yandere.transform.position.z < -38f)
@@ -35,15 +35,15 @@ public class PromptManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002E11 RID: 11793
+	// Token: 0x04002E2A RID: 11818
 	public PromptScript[] Prompts;
 
-	// Token: 0x04002E12 RID: 11794
+	// Token: 0x04002E2B RID: 11819
 	public int ID;
 
-	// Token: 0x04002E13 RID: 11795
+	// Token: 0x04002E2C RID: 11820
 	public Transform Yandere;
 
-	// Token: 0x04002E14 RID: 11796
+	// Token: 0x04002E2D RID: 11821
 	public bool Outside;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002DF RID: 735
+// Token: 0x020002E0 RID: 736
 public class GenericPromptScript : MonoBehaviour
 {
-	// Token: 0x060014EA RID: 5354 RVA: 0x000CFC2C File Offset: 0x000CDE2C
+	// Token: 0x060014ED RID: 5357 RVA: 0x000CFE5C File Offset: 0x000CE05C
 	private void Update()
 	{
 		if (this.ID == 1)
@@ -413,7 +413,7 @@ public class GenericPromptScript : MonoBehaviour
 			{
 				this.Rotation = Mathf.MoveTowards(this.Rotation, this.TargetRotation, Time.deltaTime * 360f);
 				base.transform.parent.localEulerAngles = new Vector3(0f, 0f, this.Rotation);
-				base.transform.parent.localPosition = Vector3.MoveTowards(base.transform.parent.localPosition, new Vector3(6f, 3.75f, 2f), Time.deltaTime);
+				base.transform.parent.localPosition = Vector3.MoveTowards(base.transform.parent.localPosition, new Vector3(6f, 3.75f, 3f), Time.deltaTime);
 				if (this.Rotation == this.TargetRotation)
 				{
 					if (!this.SpawnedEffect)
@@ -443,7 +443,7 @@ public class GenericPromptScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014EB RID: 5355 RVA: 0x000D110D File Offset: 0x000CF30D
+	// Token: 0x060014EE RID: 5358 RVA: 0x000D133D File Offset: 0x000CF53D
 	public void SabotageAndDisable()
 	{
 		this.Event.Sabotage();
@@ -452,54 +452,54 @@ public class GenericPromptScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x04002125 RID: 8485
+	// Token: 0x0400212A RID: 8490
 	public GenericPromptScript NextPrompt;
 
-	// Token: 0x04002126 RID: 8486
+	// Token: 0x0400212B RID: 8491
 	public StudentScript CrushedStudent;
 
-	// Token: 0x04002127 RID: 8487
+	// Token: 0x0400212C RID: 8492
 	public GenericRivalEventScript Event;
 
-	// Token: 0x04002128 RID: 8488
+	// Token: 0x0400212D RID: 8493
 	public GameObject CrushCollider;
 
-	// Token: 0x04002129 RID: 8489
+	// Token: 0x0400212E RID: 8494
 	public GameObject Effect;
 
-	// Token: 0x0400212A RID: 8490
+	// Token: 0x0400212F RID: 8495
 	public GameObject[] Object;
 
-	// Token: 0x0400212B RID: 8491
+	// Token: 0x04002130 RID: 8496
 	public Transform ObjectToRotate;
 
-	// Token: 0x0400212C RID: 8492
+	// Token: 0x04002131 RID: 8497
 	public Transform PlayerSpot;
 
-	// Token: 0x0400212D RID: 8493
+	// Token: 0x04002132 RID: 8498
 	public PromptScript Prompt;
 
-	// Token: 0x0400212E RID: 8494
+	// Token: 0x04002133 RID: 8499
 	public AudioSource MyAudio;
 
-	// Token: 0x0400212F RID: 8495
+	// Token: 0x04002134 RID: 8500
 	public Mesh NewMesh;
 
-	// Token: 0x04002130 RID: 8496
+	// Token: 0x04002135 RID: 8501
 	public bool PerformingAction;
 
-	// Token: 0x04002131 RID: 8497
+	// Token: 0x04002136 RID: 8502
 	public bool SpawnedEffect;
 
-	// Token: 0x04002132 RID: 8498
+	// Token: 0x04002137 RID: 8503
 	public float TargetRotation = 90f;
 
-	// Token: 0x04002133 RID: 8499
+	// Token: 0x04002138 RID: 8504
 	public float Rotation;
 
-	// Token: 0x04002134 RID: 8500
+	// Token: 0x04002139 RID: 8505
 	public float Speed;
 
-	// Token: 0x04002135 RID: 8501
+	// Token: 0x0400213A RID: 8506
 	public int ID;
 }

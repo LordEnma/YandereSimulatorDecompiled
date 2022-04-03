@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x0200039C RID: 924
+// Token: 0x0200039E RID: 926
 public class PhoneScript : MonoBehaviour
 {
-	// Token: 0x06001A7C RID: 6780 RVA: 0x0011BD78 File Offset: 0x00119F78
+	// Token: 0x06001A83 RID: 6787 RVA: 0x0011C3D8 File Offset: 0x0011A5D8
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -66,7 +66,7 @@ public class PhoneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A7D RID: 6781 RVA: 0x0011C008 File Offset: 0x0011A208
+	// Token: 0x06001A84 RID: 6788 RVA: 0x0011C668 File Offset: 0x0011A868
 	private void Update()
 	{
 		if (!this.FadeOut)
@@ -215,7 +215,7 @@ public class PhoneScript : MonoBehaviour
 		this.Timer += Time.deltaTime;
 	}
 
-	// Token: 0x06001A7E RID: 6782 RVA: 0x0011C680 File Offset: 0x0011A880
+	// Token: 0x06001A85 RID: 6789 RVA: 0x0011CCE0 File Offset: 0x0011AEE0
 	private void SpawnMessage()
 	{
 		if (this.NewMessage != null)
@@ -255,7 +255,7 @@ public class PhoneScript : MonoBehaviour
 		this.NewMessage.GetComponent<TextMessageScript>().Label.text = this.Text[this.ID];
 	}
 
-	// Token: 0x06001A7F RID: 6783 RVA: 0x0011C8D8 File Offset: 0x0011AAD8
+	// Token: 0x06001A86 RID: 6790 RVA: 0x0011CF38 File Offset: 0x0011B138
 	private void LoveSickColorSwap()
 	{
 		foreach (GameObject gameObject in UnityEngine.Object.FindObjectsOfType<GameObject>())
@@ -274,132 +274,132 @@ public class PhoneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002BCC RID: 11212
+	// Token: 0x04002BE1 RID: 11233
 	public OsanaTextMessageScript OsanaMessages;
 
-	// Token: 0x04002BCD RID: 11213
+	// Token: 0x04002BE2 RID: 11234
 	public GameObject[] RightMessage;
 
-	// Token: 0x04002BCE RID: 11214
+	// Token: 0x04002BE3 RID: 11235
 	public GameObject[] LeftMessage;
 
-	// Token: 0x04002BCF RID: 11215
+	// Token: 0x04002BE4 RID: 11236
 	public AudioClip[] VoiceClips;
 
-	// Token: 0x04002BD0 RID: 11216
+	// Token: 0x04002BE5 RID: 11237
 	public AudioClip SubtleWhoosh;
 
-	// Token: 0x04002BD1 RID: 11217
+	// Token: 0x04002BE6 RID: 11238
 	public AudioClip AppInstall;
 
-	// Token: 0x04002BD2 RID: 11218
+	// Token: 0x04002BE7 RID: 11239
 	public GameObject NewMessage;
 
-	// Token: 0x04002BD3 RID: 11219
+	// Token: 0x04002BE8 RID: 11240
 	public AudioSource Jukebox;
 
-	// Token: 0x04002BD4 RID: 11220
+	// Token: 0x04002BE9 RID: 11241
 	public Transform OldMessages;
 
-	// Token: 0x04002BD5 RID: 11221
+	// Token: 0x04002BEA RID: 11242
 	public Transform PauseMenu;
 
-	// Token: 0x04002BD6 RID: 11222
+	// Token: 0x04002BEB RID: 11243
 	public Transform InfoIcon;
 
-	// Token: 0x04002BD7 RID: 11223
+	// Token: 0x04002BEC RID: 11244
 	public Transform Buttons;
 
-	// Token: 0x04002BD8 RID: 11224
+	// Token: 0x04002BED RID: 11245
 	public Transform Panel;
 
-	// Token: 0x04002BD9 RID: 11225
+	// Token: 0x04002BEE RID: 11246
 	public Vignetting Vignette;
 
-	// Token: 0x04002BDA RID: 11226
+	// Token: 0x04002BEF RID: 11247
 	public UITexture OsanaCover;
 
-	// Token: 0x04002BDB RID: 11227
+	// Token: 0x04002BF0 RID: 11248
 	public UISprite Darkness;
 
-	// Token: 0x04002BDC RID: 11228
+	// Token: 0x04002BF1 RID: 11249
 	public UISprite Sprite;
 
-	// Token: 0x04002BDD RID: 11229
+	// Token: 0x04002BF2 RID: 11250
 	public int[] Speaker;
 
-	// Token: 0x04002BDE RID: 11230
+	// Token: 0x04002BF3 RID: 11251
 	public string[] Text;
 
-	// Token: 0x04002BDF RID: 11231
+	// Token: 0x04002BF4 RID: 11252
 	public int[] Height;
 
-	// Token: 0x04002BE0 RID: 11232
+	// Token: 0x04002BF5 RID: 11253
 	public AudioClip[] KidnapClip;
 
-	// Token: 0x04002BE1 RID: 11233
+	// Token: 0x04002BF6 RID: 11254
 	public int[] KidnapSpeaker;
 
-	// Token: 0x04002BE2 RID: 11234
+	// Token: 0x04002BF7 RID: 11255
 	public string[] KidnapText;
 
-	// Token: 0x04002BE3 RID: 11235
+	// Token: 0x04002BF8 RID: 11256
 	public int[] KidnapHeight;
 
-	// Token: 0x04002BE4 RID: 11236
+	// Token: 0x04002BF9 RID: 11257
 	public AudioClip[] BefriendClip;
 
-	// Token: 0x04002BE5 RID: 11237
+	// Token: 0x04002BFA RID: 11258
 	public int[] BefriendSpeaker;
 
-	// Token: 0x04002BE6 RID: 11238
+	// Token: 0x04002BFB RID: 11259
 	public string[] BefriendText;
 
-	// Token: 0x04002BE7 RID: 11239
+	// Token: 0x04002BFC RID: 11260
 	public int[] BefriendHeight;
 
-	// Token: 0x04002BE8 RID: 11240
+	// Token: 0x04002BFD RID: 11261
 	public AudioClip[] NonlethalClip;
 
-	// Token: 0x04002BE9 RID: 11241
+	// Token: 0x04002BFE RID: 11262
 	public string[] NonlethalText;
 
-	// Token: 0x04002BEA RID: 11242
+	// Token: 0x04002BFF RID: 11263
 	public int[] NonlethalHeight;
 
-	// Token: 0x04002BEB RID: 11243
+	// Token: 0x04002C00 RID: 11264
 	public bool ManuallyAdvance;
 
-	// Token: 0x04002BEC RID: 11244
+	// Token: 0x04002C01 RID: 11265
 	public bool MeetingInfoChan;
 
-	// Token: 0x04002BED RID: 11245
+	// Token: 0x04002C02 RID: 11266
 	public bool PostElimination;
 
-	// Token: 0x04002BEE RID: 11246
+	// Token: 0x04002C03 RID: 11267
 	public bool ShowPauseMenu;
 
-	// Token: 0x04002BEF RID: 11247
+	// Token: 0x04002C04 RID: 11268
 	public bool FadeOut;
 
-	// Token: 0x04002BF0 RID: 11248
+	// Token: 0x04002C05 RID: 11269
 	public bool Auto;
 
-	// Token: 0x04002BF1 RID: 11249
+	// Token: 0x04002C06 RID: 11270
 	public float PauseMenuTimer;
 
-	// Token: 0x04002BF2 RID: 11250
+	// Token: 0x04002C07 RID: 11271
 	public float AutoLimit;
 
-	// Token: 0x04002BF3 RID: 11251
+	// Token: 0x04002C08 RID: 11272
 	public float AutoTimer;
 
-	// Token: 0x04002BF4 RID: 11252
+	// Token: 0x04002C09 RID: 11273
 	public float Timer;
 
-	// Token: 0x04002BF5 RID: 11253
+	// Token: 0x04002C0A RID: 11274
 	public int PauseMenuPhase;
 
-	// Token: 0x04002BF6 RID: 11254
+	// Token: 0x04002C0B RID: 11275
 	public int ID;
 }

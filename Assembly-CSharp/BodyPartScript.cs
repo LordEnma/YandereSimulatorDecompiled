@@ -31,21 +31,21 @@ public class BodyPartScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000BDC RID: 3036
+	// Token: 0x04000BDD RID: 3037
 	public bool Sacrifice;
 
-	// Token: 0x04000BDD RID: 3037
+	// Token: 0x04000BDE RID: 3038
 	public int StudentID;
 
-	// Token: 0x04000BDE RID: 3038
+	// Token: 0x04000BDF RID: 3039
 	public int Type;
 
-	// Token: 0x04000BDF RID: 3039
+	// Token: 0x04000BE0 RID: 3040
 	public GameObject GarbageBag;
 
-	// Token: 0x04000BE0 RID: 3040
+	// Token: 0x04000BE1 RID: 3041
 	public PromptScript Prompt;
 
-	// Token: 0x04000BE1 RID: 3041
+	// Token: 0x04000BE2 RID: 3042
 	public AudioClip WrapSFX;
 }

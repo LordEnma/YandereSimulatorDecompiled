@@ -13,12 +13,12 @@ public class BlendshapeScript : MonoBehaviour
 		this.MyMesh.SetBlendShapeWeight(8, 100f);
 	}
 
-	// Token: 0x04000B8D RID: 2957
+	// Token: 0x04000B8E RID: 2958
 	public SkinnedMeshRenderer MyMesh;
 
-	// Token: 0x04000B8E RID: 2958
+	// Token: 0x04000B8F RID: 2959
 	public float Happiness;
 
-	// Token: 0x04000B8F RID: 2959
+	// Token: 0x04000B90 RID: 2960
 	public float Blink;
 }

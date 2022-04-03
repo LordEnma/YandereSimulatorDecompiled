@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200051C RID: 1308
+// Token: 0x02000521 RID: 1313
 public class LookAtCamera : MonoBehaviour
 {
-	// Token: 0x06002179 RID: 8569 RVA: 0x001EC789 File Offset: 0x001EA989
+	// Token: 0x06002189 RID: 8585 RVA: 0x001EDFF9 File Offset: 0x001EC1F9
 	private void Start()
 	{
 		if (this.cameraToLookAt == null)
@@ -13,13 +13,13 @@ public class LookAtCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600217A RID: 8570 RVA: 0x001EC7A4 File Offset: 0x001EA9A4
+	// Token: 0x0600218A RID: 8586 RVA: 0x001EE014 File Offset: 0x001EC214
 	private void Update()
 	{
 		Vector3 b = new Vector3(0f, this.cameraToLookAt.transform.position.y - base.transform.position.y, 0f);
 		base.transform.LookAt(this.cameraToLookAt.transform.position - b);
 	}
 
-	// Token: 0x040049A0 RID: 18848
+	// Token: 0x040049D2 RID: 18898
 	public Camera cameraToLookAt;
 }

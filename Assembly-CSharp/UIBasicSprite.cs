@@ -1023,61 +1023,61 @@ public abstract class UIBasicSprite : UIWidget
 	// Token: 0x04000518 RID: 1304
 	protected static Vector2[] mTempUVs = new Vector2[4];
 
-	// Token: 0x020005F5 RID: 1525
+	// Token: 0x020005FA RID: 1530
 	[DoNotObfuscateNGUI]
 	public enum Type
 	{
-		// Token: 0x04004E2D RID: 20013
+		// Token: 0x04004E5F RID: 20063
 		Simple,
-		// Token: 0x04004E2E RID: 20014
+		// Token: 0x04004E60 RID: 20064
 		Sliced,
-		// Token: 0x04004E2F RID: 20015
+		// Token: 0x04004E61 RID: 20065
 		Tiled,
-		// Token: 0x04004E30 RID: 20016
+		// Token: 0x04004E62 RID: 20066
 		Filled,
-		// Token: 0x04004E31 RID: 20017
+		// Token: 0x04004E63 RID: 20067
 		Advanced
 	}
 
-	// Token: 0x020005F6 RID: 1526
+	// Token: 0x020005FB RID: 1531
 	[DoNotObfuscateNGUI]
 	public enum FillDirection
 	{
-		// Token: 0x04004E33 RID: 20019
+		// Token: 0x04004E65 RID: 20069
 		Horizontal,
-		// Token: 0x04004E34 RID: 20020
+		// Token: 0x04004E66 RID: 20070
 		Vertical,
-		// Token: 0x04004E35 RID: 20021
+		// Token: 0x04004E67 RID: 20071
 		Radial90,
-		// Token: 0x04004E36 RID: 20022
+		// Token: 0x04004E68 RID: 20072
 		Radial180,
-		// Token: 0x04004E37 RID: 20023
+		// Token: 0x04004E69 RID: 20073
 		Radial360
 	}
 
-	// Token: 0x020005F7 RID: 1527
+	// Token: 0x020005FC RID: 1532
 	[DoNotObfuscateNGUI]
 	public enum AdvancedType
 	{
-		// Token: 0x04004E39 RID: 20025
+		// Token: 0x04004E6B RID: 20075
 		Invisible,
-		// Token: 0x04004E3A RID: 20026
+		// Token: 0x04004E6C RID: 20076
 		Sliced,
-		// Token: 0x04004E3B RID: 20027
+		// Token: 0x04004E6D RID: 20077
 		Tiled
 	}
 
-	// Token: 0x020005F8 RID: 1528
+	// Token: 0x020005FD RID: 1533
 	[DoNotObfuscateNGUI]
 	public enum Flip
 	{
-		// Token: 0x04004E3D RID: 20029
+		// Token: 0x04004E6F RID: 20079
 		Nothing,
-		// Token: 0x04004E3E RID: 20030
+		// Token: 0x04004E70 RID: 20080
 		Horizontally,
-		// Token: 0x04004E3F RID: 20031
+		// Token: 0x04004E71 RID: 20081
 		Vertically,
-		// Token: 0x04004E40 RID: 20032
+		// Token: 0x04004E72 RID: 20082
 		Both
 	}
 }

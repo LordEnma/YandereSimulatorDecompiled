@@ -1,15 +1,32 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000451 RID: 1105
+// Token: 0x02000454 RID: 1108
 public class StringTrapScript : MonoBehaviour
 {
-	// Token: 0x06001D51 RID: 7505 RVA: 0x00160464 File Offset: 0x0015E664
+	// Token: 0x06001D5B RID: 7515 RVA: 0x001610AC File Offset: 0x0015F2AC
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
 		{
 			Debug.Log("A character just came into contact with a tripwire trap!");
+			StudentScript component = other.gameObject.GetComponent<StudentScript>();
+			if ((component != null && component.Club == ClubType.Council) || (component != null && component.Teacher))
+			{
+				this.WaterCooler.Yandere.NotificationManager.CustomText = "Tripwire Trap Dismantled!";
+				this.WaterCooler.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				this.WaterCooler.Yandere.Subtitle.CustomText = "Someone tried to pull a prank? How childish...";
+				this.WaterCooler.Yandere.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+				base.transform.parent.gameObject.SetActive(false);
+				this.WaterCooler.Prompt.HideButton[3] = false;
+				this.WaterCooler.PickUp.enabled = true;
+				this.WaterCooler.Prompt.enabled = true;
+				this.WaterCooler.TrapSet = false;
+				this.WaterCooler.Prompt.Label[1].text = "     Create Tripwire Trap";
+				this.WaterCooler.Prompt.Label[1].applyGradient = false;
+				this.WaterCooler.Prompt.Label[1].color = Color.red;
+				return;
+			}
 			if (this.WaterCooler.BrownPaint)
 			{
 				UnityEngine.Object.Instantiate<GameObject>(this.BrownPaint, this.Spawn.position, this.WaterCooler.transform.rotation);
@@ -57,45 +74,47 @@ public class StringTrapScript : MonoBehaviour
 			this.WaterCooler.Empty = true;
 			this.WaterCooler.Timer = 1f;
 			this.WaterCooler.Prompt.Label[1].text = "     Create Tripwire Trap";
+			this.WaterCooler.Prompt.Label[1].applyGradient = false;
+			this.WaterCooler.Prompt.Label[1].color = Color.red;
 			base.transform.parent.gameObject.SetActive(false);
 			this.WaterCooler.Prompt.HideButton[3] = false;
 			this.WaterCooler.PickUp.enabled = true;
 		}
 	}
 
-	// Token: 0x040035DF RID: 13791
+	// Token: 0x040035FC RID: 13820
 	public WaterCoolerScript WaterCooler;
 
-	// Token: 0x040035E0 RID: 13792
+	// Token: 0x040035FD RID: 13821
 	public GameObject BrownPaintPuddle;
 
-	// Token: 0x040035E1 RID: 13793
+	// Token: 0x040035FE RID: 13822
 	public GameObject GasolinePuddle;
 
-	// Token: 0x040035E2 RID: 13794
+	// Token: 0x040035FF RID: 13823
 	public GameObject BloodPuddle;
 
-	// Token: 0x040035E3 RID: 13795
+	// Token: 0x04003600 RID: 13824
 	public GameObject WaterPuddle;
 
-	// Token: 0x040035E4 RID: 13796
+	// Token: 0x04003601 RID: 13825
 	public GameObject BrownPaint;
 
-	// Token: 0x040035E5 RID: 13797
+	// Token: 0x04003602 RID: 13826
 	public GameObject Gasoline;
 
-	// Token: 0x040035E6 RID: 13798
+	// Token: 0x04003603 RID: 13827
 	public GameObject Blood;
 
-	// Token: 0x040035E7 RID: 13799
+	// Token: 0x04003604 RID: 13828
 	public GameObject Water;
 
-	// Token: 0x040035E8 RID: 13800
+	// Token: 0x04003605 RID: 13829
 	public GameObject Puddle;
 
-	// Token: 0x040035E9 RID: 13801
+	// Token: 0x04003606 RID: 13830
 	public Transform[] PuddleSpawn;
 
-	// Token: 0x040035EA RID: 13802
+	// Token: 0x04003607 RID: 13831
 	public Transform Spawn;
 }

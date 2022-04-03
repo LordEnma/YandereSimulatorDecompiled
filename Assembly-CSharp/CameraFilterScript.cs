@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000108 RID: 264
 public class CameraFilterScript : MonoBehaviour
 {
-	// Token: 0x06000AB2 RID: 2738 RVA: 0x00064274 File Offset: 0x00062474
+	// Token: 0x06000AB2 RID: 2738 RVA: 0x00064310 File Offset: 0x00062510
 	private void Start()
 	{
 		this.Anomaly = base.gameObject.AddComponent<CameraFilterPack_3D_Anomaly>();
@@ -608,7 +608,7 @@ public class CameraFilterScript : MonoBehaviour
 		this.Watermark.text = "Use the 'z' and 'x' keys to change the current camera filter!";
 	}
 
-	// Token: 0x06000AB3 RID: 2739 RVA: 0x00066468 File Offset: 0x00064668
+	// Token: 0x06000AB3 RID: 2739 RVA: 0x00066504 File Offset: 0x00064704
 	private void Update()
 	{
 		if (Input.GetKey(KeyCode.LeftShift))
@@ -647,7 +647,7 @@ public class CameraFilterScript : MonoBehaviour
 		this.NameLabel.transform.localPosition = Vector3.MoveTowards(this.NameLabel.transform.localPosition, Vector3.zero, this.Speed);
 	}
 
-	// Token: 0x06000AB4 RID: 2740 RVA: 0x000665B4 File Offset: 0x000647B4
+	// Token: 0x06000AB4 RID: 2740 RVA: 0x00066650 File Offset: 0x00064850
 	private void UpdateFilter()
 	{
 		this.NameLabel.transform.localPosition = Vector3.zero;
@@ -1872,921 +1872,921 @@ public class CameraFilterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000D0C RID: 3340
+	// Token: 0x04000D0D RID: 3341
 	public UILabel Watermark;
 
-	// Token: 0x04000D0D RID: 3341
+	// Token: 0x04000D0E RID: 3342
 	private CameraFilterPack_3D_Anomaly Anomaly;
 
-	// Token: 0x04000D0E RID: 3342
+	// Token: 0x04000D0F RID: 3343
 	private CameraFilterPack_3D_Binary Binary;
 
-	// Token: 0x04000D0F RID: 3343
+	// Token: 0x04000D10 RID: 3344
 	private CameraFilterPack_3D_BlackHole BlackHole3D;
 
-	// Token: 0x04000D10 RID: 3344
+	// Token: 0x04000D11 RID: 3345
 	private CameraFilterPack_3D_Computer Computer;
 
-	// Token: 0x04000D11 RID: 3345
+	// Token: 0x04000D12 RID: 3346
 	private CameraFilterPack_3D_Distortion Distortion;
 
-	// Token: 0x04000D12 RID: 3346
+	// Token: 0x04000D13 RID: 3347
 	private CameraFilterPack_3D_Fog_Smoke FogSmoke;
 
-	// Token: 0x04000D13 RID: 3347
+	// Token: 0x04000D14 RID: 3348
 	private CameraFilterPack_3D_Ghost Ghost;
 
-	// Token: 0x04000D14 RID: 3348
+	// Token: 0x04000D15 RID: 3349
 	private CameraFilterPack_3D_Inverse Inverse;
 
-	// Token: 0x04000D15 RID: 3349
+	// Token: 0x04000D16 RID: 3350
 	private CameraFilterPack_3D_Matrix Matrix;
 
-	// Token: 0x04000D16 RID: 3350
+	// Token: 0x04000D17 RID: 3351
 	private CameraFilterPack_3D_Mirror Mirror3D;
 
-	// Token: 0x04000D17 RID: 3351
+	// Token: 0x04000D18 RID: 3352
 	private CameraFilterPack_3D_Myst Myst;
 
-	// Token: 0x04000D18 RID: 3352
+	// Token: 0x04000D19 RID: 3353
 	private CameraFilterPack_3D_Scan_Scene ScanScene;
 
-	// Token: 0x04000D19 RID: 3353
+	// Token: 0x04000D1A RID: 3354
 	private CameraFilterPack_3D_Shield Shield;
 
-	// Token: 0x04000D1A RID: 3354
+	// Token: 0x04000D1B RID: 3355
 	private CameraFilterPack_3D_Snow Snow;
 
-	// Token: 0x04000D1B RID: 3355
+	// Token: 0x04000D1C RID: 3356
 	private CameraFilterPack_AAA_Blood AAABlood;
 
-	// Token: 0x04000D1C RID: 3356
+	// Token: 0x04000D1D RID: 3357
 	private CameraFilterPack_AAA_BloodOnScreen AAABloodOnScreen;
 
-	// Token: 0x04000D1D RID: 3357
+	// Token: 0x04000D1E RID: 3358
 	private CameraFilterPack_AAA_Blood_Hit AAABloodHit;
 
-	// Token: 0x04000D1E RID: 3358
+	// Token: 0x04000D1F RID: 3359
 	private CameraFilterPack_AAA_Blood_Plus AAABloodPlus;
 
-	// Token: 0x04000D1F RID: 3359
+	// Token: 0x04000D20 RID: 3360
 	private CameraFilterPack_AAA_SuperComputer SuperComputer;
 
-	// Token: 0x04000D20 RID: 3360
+	// Token: 0x04000D21 RID: 3361
 	private CameraFilterPack_AAA_SuperHexagon SuperHexagon;
 
-	// Token: 0x04000D21 RID: 3361
+	// Token: 0x04000D22 RID: 3362
 	private CameraFilterPack_AAA_WaterDrop WaterDrop;
 
-	// Token: 0x04000D22 RID: 3362
+	// Token: 0x04000D23 RID: 3363
 	private CameraFilterPack_AAA_WaterDropPro WaterDropPro;
 
-	// Token: 0x04000D23 RID: 3363
+	// Token: 0x04000D24 RID: 3364
 	private CameraFilterPack_Alien_Vision AlienVision;
 
-	// Token: 0x04000D24 RID: 3364
+	// Token: 0x04000D25 RID: 3365
 	private CameraFilterPack_Antialiasing_FXAA FXAA;
 
-	// Token: 0x04000D25 RID: 3365
+	// Token: 0x04000D26 RID: 3366
 	private CameraFilterPack_Atmosphere_Fog Fog;
 
-	// Token: 0x04000D26 RID: 3366
+	// Token: 0x04000D27 RID: 3367
 	private CameraFilterPack_Atmosphere_Rain Rain;
 
-	// Token: 0x04000D27 RID: 3367
+	// Token: 0x04000D28 RID: 3368
 	private CameraFilterPack_Atmosphere_Rain_Pro RainPro;
 
-	// Token: 0x04000D28 RID: 3368
+	// Token: 0x04000D29 RID: 3369
 	private CameraFilterPack_Atmosphere_Rain_Pro_3D RainPro3D;
 
-	// Token: 0x04000D29 RID: 3369
+	// Token: 0x04000D2A RID: 3370
 	private CameraFilterPack_Atmosphere_Snow_8bits Snow8bits;
 
-	// Token: 0x04000D2A RID: 3370
+	// Token: 0x04000D2B RID: 3371
 	private CameraFilterPack_Blend2Camera_Blend Blend;
 
-	// Token: 0x04000D2B RID: 3371
+	// Token: 0x04000D2C RID: 3372
 	private CameraFilterPack_Blend2Camera_BlueScreen BlueScreen;
 
-	// Token: 0x04000D2C RID: 3372
+	// Token: 0x04000D2D RID: 3373
 	private CameraFilterPack_Blend2Camera_Color Color;
 
-	// Token: 0x04000D2D RID: 3373
+	// Token: 0x04000D2E RID: 3374
 	private CameraFilterPack_Blend2Camera_ColorBurn ColorBurn;
 
-	// Token: 0x04000D2E RID: 3374
+	// Token: 0x04000D2F RID: 3375
 	private CameraFilterPack_Blend2Camera_ColorDodge ColorDodge;
 
-	// Token: 0x04000D2F RID: 3375
+	// Token: 0x04000D30 RID: 3376
 	private CameraFilterPack_Blend2Camera_ColorKey ColorKey;
 
-	// Token: 0x04000D30 RID: 3376
+	// Token: 0x04000D31 RID: 3377
 	private CameraFilterPack_Blend2Camera_Darken Darken;
 
-	// Token: 0x04000D31 RID: 3377
+	// Token: 0x04000D32 RID: 3378
 	private CameraFilterPack_Blend2Camera_DarkerColor DarkerColor;
 
-	// Token: 0x04000D32 RID: 3378
+	// Token: 0x04000D33 RID: 3379
 	private CameraFilterPack_Blend2Camera_Difference Difference;
 
-	// Token: 0x04000D33 RID: 3379
+	// Token: 0x04000D34 RID: 3380
 	private CameraFilterPack_Blend2Camera_Divide Divide;
 
-	// Token: 0x04000D34 RID: 3380
+	// Token: 0x04000D35 RID: 3381
 	private CameraFilterPack_Blend2Camera_Exclusion Exclusion;
 
-	// Token: 0x04000D35 RID: 3381
+	// Token: 0x04000D36 RID: 3382
 	private CameraFilterPack_Blend2Camera_GreenScreen GreenScreen;
 
-	// Token: 0x04000D36 RID: 3382
+	// Token: 0x04000D37 RID: 3383
 	private CameraFilterPack_Blend2Camera_HardLight HardLight;
 
-	// Token: 0x04000D37 RID: 3383
+	// Token: 0x04000D38 RID: 3384
 	private CameraFilterPack_Blend2Camera_HardMix HardMix;
 
-	// Token: 0x04000D38 RID: 3384
+	// Token: 0x04000D39 RID: 3385
 	private CameraFilterPack_Blend2Camera_Hue Blend2CameraHue;
 
-	// Token: 0x04000D39 RID: 3385
+	// Token: 0x04000D3A RID: 3386
 	private CameraFilterPack_Blend2Camera_Lighten Lighten;
 
-	// Token: 0x04000D3A RID: 3386
+	// Token: 0x04000D3B RID: 3387
 	private CameraFilterPack_Blend2Camera_LighterColor LighterColor;
 
-	// Token: 0x04000D3B RID: 3387
+	// Token: 0x04000D3C RID: 3388
 	private CameraFilterPack_Blend2Camera_LinearBurn LinearBurn;
 
-	// Token: 0x04000D3C RID: 3388
+	// Token: 0x04000D3D RID: 3389
 	private CameraFilterPack_Blend2Camera_LinearDodge LinearDodge;
 
-	// Token: 0x04000D3D RID: 3389
+	// Token: 0x04000D3E RID: 3390
 	private CameraFilterPack_Blend2Camera_LinearLight LinearLight;
 
-	// Token: 0x04000D3E RID: 3390
+	// Token: 0x04000D3F RID: 3391
 	private CameraFilterPack_Blend2Camera_Luminosity Luminosity;
 
-	// Token: 0x04000D3F RID: 3391
+	// Token: 0x04000D40 RID: 3392
 	private CameraFilterPack_Blend2Camera_Multiply Multiply;
 
-	// Token: 0x04000D40 RID: 3392
+	// Token: 0x04000D41 RID: 3393
 	private CameraFilterPack_Blend2Camera_Overlay Overlay;
 
-	// Token: 0x04000D41 RID: 3393
+	// Token: 0x04000D42 RID: 3394
 	private CameraFilterPack_Blend2Camera_PhotoshopFilters PhotoshopFilters;
 
-	// Token: 0x04000D42 RID: 3394
+	// Token: 0x04000D43 RID: 3395
 	private CameraFilterPack_Blend2Camera_PinLight PinLight;
 
-	// Token: 0x04000D43 RID: 3395
+	// Token: 0x04000D44 RID: 3396
 	private CameraFilterPack_Blend2Camera_Saturation Saturation;
 
-	// Token: 0x04000D44 RID: 3396
+	// Token: 0x04000D45 RID: 3397
 	private CameraFilterPack_Blend2Camera_Screen Screen;
 
-	// Token: 0x04000D45 RID: 3397
+	// Token: 0x04000D46 RID: 3398
 	private CameraFilterPack_Blend2Camera_SoftLight SoftLight;
 
-	// Token: 0x04000D46 RID: 3398
+	// Token: 0x04000D47 RID: 3399
 	private CameraFilterPack_Blend2Camera_SplitScreen SplitScreen;
 
-	// Token: 0x04000D47 RID: 3399
+	// Token: 0x04000D48 RID: 3400
 	private CameraFilterPack_Blend2Camera_SplitScreen3D SplitScreen3D;
 
-	// Token: 0x04000D48 RID: 3400
+	// Token: 0x04000D49 RID: 3401
 	private CameraFilterPack_Blend2Camera_Subtract Subtract;
 
-	// Token: 0x04000D49 RID: 3401
+	// Token: 0x04000D4A RID: 3402
 	private CameraFilterPack_Blend2Camera_VividLight VividLight;
 
-	// Token: 0x04000D4A RID: 3402
+	// Token: 0x04000D4B RID: 3403
 	private CameraFilterPack_Blizzard Blizzard;
 
-	// Token: 0x04000D4B RID: 3403
+	// Token: 0x04000D4C RID: 3404
 	private CameraFilterPack_Blur_Bloom Bloom;
 
-	// Token: 0x04000D4C RID: 3404
+	// Token: 0x04000D4D RID: 3405
 	private CameraFilterPack_Blur_BlurHole BlurHole;
 
-	// Token: 0x04000D4D RID: 3405
+	// Token: 0x04000D4E RID: 3406
 	private CameraFilterPack_Blur_Blurry Blurry;
 
-	// Token: 0x04000D4E RID: 3406
+	// Token: 0x04000D4F RID: 3407
 	private CameraFilterPack_Blur_Dithering2x2 Dithering2x2;
 
-	// Token: 0x04000D4F RID: 3407
+	// Token: 0x04000D50 RID: 3408
 	private CameraFilterPack_Blur_DitherOffset DitherOffset;
 
-	// Token: 0x04000D50 RID: 3408
+	// Token: 0x04000D51 RID: 3409
 	private CameraFilterPack_Blur_Focus Focus;
 
-	// Token: 0x04000D51 RID: 3409
+	// Token: 0x04000D52 RID: 3410
 	private CameraFilterPack_Blur_GaussianBlur GaussianBlur;
 
-	// Token: 0x04000D52 RID: 3410
+	// Token: 0x04000D53 RID: 3411
 	private CameraFilterPack_Blur_Movie Movie;
 
-	// Token: 0x04000D53 RID: 3411
+	// Token: 0x04000D54 RID: 3412
 	private CameraFilterPack_Blur_Noise BlurNoise;
 
-	// Token: 0x04000D54 RID: 3412
+	// Token: 0x04000D55 RID: 3413
 	private CameraFilterPack_Blur_Radial Radial;
 
-	// Token: 0x04000D55 RID: 3413
+	// Token: 0x04000D56 RID: 3414
 	private CameraFilterPack_Blur_Radial_Fast RadialFast;
 
-	// Token: 0x04000D56 RID: 3414
+	// Token: 0x04000D57 RID: 3415
 	private CameraFilterPack_Blur_Regular Regular;
 
-	// Token: 0x04000D57 RID: 3415
+	// Token: 0x04000D58 RID: 3416
 	private CameraFilterPack_Blur_Steam Steam;
 
-	// Token: 0x04000D58 RID: 3416
+	// Token: 0x04000D59 RID: 3417
 	private CameraFilterPack_Blur_Tilt_Shift TiltShift;
 
-	// Token: 0x04000D59 RID: 3417
+	// Token: 0x04000D5A RID: 3418
 	private CameraFilterPack_Blur_Tilt_Shift_Hole TiltShiftHole;
 
-	// Token: 0x04000D5A RID: 3418
+	// Token: 0x04000D5B RID: 3419
 	private CameraFilterPack_Blur_Tilt_Shift_V TiltShiftV;
 
-	// Token: 0x04000D5B RID: 3419
+	// Token: 0x04000D5C RID: 3420
 	private CameraFilterPack_Broken_Screen BrokenScreen;
 
-	// Token: 0x04000D5C RID: 3420
+	// Token: 0x04000D5D RID: 3421
 	private CameraFilterPack_Broken_Simple BrokenSimple;
 
-	// Token: 0x04000D5D RID: 3421
+	// Token: 0x04000D5E RID: 3422
 	private CameraFilterPack_Broken_Spliter Spliter;
 
-	// Token: 0x04000D5E RID: 3422
+	// Token: 0x04000D5F RID: 3423
 	private CameraFilterPack_Classic_ThermalVision ThermalVision;
 
-	// Token: 0x04000D5F RID: 3423
+	// Token: 0x04000D60 RID: 3424
 	private CameraFilterPack_Colors_Adjust_ColorRGB AdjustColorRGB;
 
-	// Token: 0x04000D60 RID: 3424
+	// Token: 0x04000D61 RID: 3425
 	private CameraFilterPack_Colors_Adjust_FullColors AdjustFullColors;
 
-	// Token: 0x04000D61 RID: 3425
+	// Token: 0x04000D62 RID: 3426
 	private CameraFilterPack_Colors_Adjust_PreFilters AdjustPreFilters;
 
-	// Token: 0x04000D62 RID: 3426
+	// Token: 0x04000D63 RID: 3427
 	private CameraFilterPack_Colors_BleachBypass BleachBypass;
 
-	// Token: 0x04000D63 RID: 3427
+	// Token: 0x04000D64 RID: 3428
 	private CameraFilterPack_Colors_Brightness Brightness;
 
-	// Token: 0x04000D64 RID: 3428
+	// Token: 0x04000D65 RID: 3429
 	private CameraFilterPack_Colors_DarkColor DarkColor;
 
-	// Token: 0x04000D65 RID: 3429
+	// Token: 0x04000D66 RID: 3430
 	private CameraFilterPack_Colors_HSV HSV;
 
-	// Token: 0x04000D66 RID: 3430
+	// Token: 0x04000D67 RID: 3431
 	private CameraFilterPack_Colors_HUE_Rotate HUERotate;
 
-	// Token: 0x04000D67 RID: 3431
+	// Token: 0x04000D68 RID: 3432
 	private CameraFilterPack_Colors_NewPosterize NewPosterize;
 
-	// Token: 0x04000D68 RID: 3432
+	// Token: 0x04000D69 RID: 3433
 	private CameraFilterPack_Colors_RgbClamp RgbClamp;
 
-	// Token: 0x04000D69 RID: 3433
+	// Token: 0x04000D6A RID: 3434
 	private CameraFilterPack_Colors_Threshold Threshold;
 
-	// Token: 0x04000D6A RID: 3434
+	// Token: 0x04000D6B RID: 3435
 	private CameraFilterPack_Color_Adjust_Levels AdjustLevels;
 
-	// Token: 0x04000D6B RID: 3435
+	// Token: 0x04000D6C RID: 3436
 	private CameraFilterPack_Color_BrightContrastSaturation BrightContrastSaturation;
 
-	// Token: 0x04000D6C RID: 3436
+	// Token: 0x04000D6D RID: 3437
 	private CameraFilterPack_Color_Chromatic_Aberration ChromaticAberration;
 
-	// Token: 0x04000D6D RID: 3437
+	// Token: 0x04000D6E RID: 3438
 	private CameraFilterPack_Color_Chromatic_Plus ChromaticPlus;
 
-	// Token: 0x04000D6E RID: 3438
+	// Token: 0x04000D6F RID: 3439
 	private CameraFilterPack_Color_Contrast Contrast;
 
-	// Token: 0x04000D6F RID: 3439
+	// Token: 0x04000D70 RID: 3440
 	private CameraFilterPack_Color_GrayScale GrayScale;
 
-	// Token: 0x04000D70 RID: 3440
+	// Token: 0x04000D71 RID: 3441
 	private CameraFilterPack_Color_Invert Invert;
 
-	// Token: 0x04000D71 RID: 3441
+	// Token: 0x04000D72 RID: 3442
 	private CameraFilterPack_Color_Noise ColorNoise;
 
-	// Token: 0x04000D72 RID: 3442
+	// Token: 0x04000D73 RID: 3443
 	private CameraFilterPack_Color_RGB ColorRGB;
 
-	// Token: 0x04000D73 RID: 3443
+	// Token: 0x04000D74 RID: 3444
 	private CameraFilterPack_Color_Sepia Sepia;
 
-	// Token: 0x04000D74 RID: 3444
+	// Token: 0x04000D75 RID: 3445
 	private CameraFilterPack_Color_Switching Switching;
 
-	// Token: 0x04000D75 RID: 3445
+	// Token: 0x04000D76 RID: 3446
 	private CameraFilterPack_Color_YUV YUV;
 
-	// Token: 0x04000D76 RID: 3446
+	// Token: 0x04000D77 RID: 3447
 	private CameraFilterPack_Convert_Normal Normal;
 
-	// Token: 0x04000D77 RID: 3447
+	// Token: 0x04000D78 RID: 3448
 	private CameraFilterPack_Distortion_Aspiration Aspiration;
 
-	// Token: 0x04000D78 RID: 3448
+	// Token: 0x04000D79 RID: 3449
 	private CameraFilterPack_Distortion_BigFace BigFace;
 
-	// Token: 0x04000D79 RID: 3449
+	// Token: 0x04000D7A RID: 3450
 	private CameraFilterPack_Distortion_BlackHole BlackHole;
 
-	// Token: 0x04000D7A RID: 3450
+	// Token: 0x04000D7B RID: 3451
 	private CameraFilterPack_Distortion_Dissipation Dissipation;
 
-	// Token: 0x04000D7B RID: 3451
+	// Token: 0x04000D7C RID: 3452
 	private CameraFilterPack_Distortion_Dream Dream;
 
-	// Token: 0x04000D7C RID: 3452
+	// Token: 0x04000D7D RID: 3453
 	private CameraFilterPack_Distortion_Dream2 Dream2;
 
-	// Token: 0x04000D7D RID: 3453
+	// Token: 0x04000D7E RID: 3454
 	private CameraFilterPack_Distortion_FishEye FishEye;
 
-	// Token: 0x04000D7E RID: 3454
+	// Token: 0x04000D7F RID: 3455
 	private CameraFilterPack_Distortion_Flag Flag;
 
-	// Token: 0x04000D7F RID: 3455
+	// Token: 0x04000D80 RID: 3456
 	private CameraFilterPack_Distortion_Flush Flush;
 
-	// Token: 0x04000D80 RID: 3456
+	// Token: 0x04000D81 RID: 3457
 	private CameraFilterPack_Distortion_Half_Sphere HalfSphere;
 
-	// Token: 0x04000D81 RID: 3457
+	// Token: 0x04000D82 RID: 3458
 	private CameraFilterPack_Distortion_Heat Heat;
 
-	// Token: 0x04000D82 RID: 3458
+	// Token: 0x04000D83 RID: 3459
 	private CameraFilterPack_Distortion_Lens Lens;
 
-	// Token: 0x04000D83 RID: 3459
+	// Token: 0x04000D84 RID: 3460
 	private CameraFilterPack_Distortion_Noise DistortionNoise;
 
-	// Token: 0x04000D84 RID: 3460
+	// Token: 0x04000D85 RID: 3461
 	private CameraFilterPack_Distortion_ShockWave ShockWave;
 
-	// Token: 0x04000D85 RID: 3461
+	// Token: 0x04000D86 RID: 3462
 	private CameraFilterPack_Distortion_ShockWaveManual ShockWaveManual;
 
-	// Token: 0x04000D86 RID: 3462
+	// Token: 0x04000D87 RID: 3463
 	private CameraFilterPack_Distortion_Twist Twist;
 
-	// Token: 0x04000D87 RID: 3463
+	// Token: 0x04000D88 RID: 3464
 	private CameraFilterPack_Distortion_Twist_Square TwistSquare;
 
-	// Token: 0x04000D88 RID: 3464
+	// Token: 0x04000D89 RID: 3465
 	private CameraFilterPack_Distortion_Water_Drop DistortionWaterDrop;
 
-	// Token: 0x04000D89 RID: 3465
+	// Token: 0x04000D8A RID: 3466
 	private CameraFilterPack_Distortion_Wave_Horizontal WaveHorizontal;
 
-	// Token: 0x04000D8A RID: 3466
+	// Token: 0x04000D8B RID: 3467
 	private CameraFilterPack_Drawing_BluePrint BluePrint;
 
-	// Token: 0x04000D8B RID: 3467
+	// Token: 0x04000D8C RID: 3468
 	private CameraFilterPack_Drawing_CellShading CellShading;
 
-	// Token: 0x04000D8C RID: 3468
+	// Token: 0x04000D8D RID: 3469
 	private CameraFilterPack_Drawing_CellShading2 CellShading2;
 
-	// Token: 0x04000D8D RID: 3469
+	// Token: 0x04000D8E RID: 3470
 	private CameraFilterPack_Drawing_Comics Comics;
 
-	// Token: 0x04000D8E RID: 3470
+	// Token: 0x04000D8F RID: 3471
 	private CameraFilterPack_Drawing_Crosshatch Crosshatch;
 
-	// Token: 0x04000D8F RID: 3471
+	// Token: 0x04000D90 RID: 3472
 	private CameraFilterPack_Drawing_Curve Curve;
 
-	// Token: 0x04000D90 RID: 3472
+	// Token: 0x04000D91 RID: 3473
 	private CameraFilterPack_Drawing_EnhancedComics EnhancedComics;
 
-	// Token: 0x04000D91 RID: 3473
+	// Token: 0x04000D92 RID: 3474
 	private CameraFilterPack_Drawing_Halftone Halftone;
 
-	// Token: 0x04000D92 RID: 3474
+	// Token: 0x04000D93 RID: 3475
 	private CameraFilterPack_Drawing_Laplacian Laplacian;
 
-	// Token: 0x04000D93 RID: 3475
+	// Token: 0x04000D94 RID: 3476
 	private CameraFilterPack_Drawing_Lines Lines;
 
-	// Token: 0x04000D94 RID: 3476
+	// Token: 0x04000D95 RID: 3477
 	private CameraFilterPack_Drawing_Manga Manga;
 
-	// Token: 0x04000D95 RID: 3477
+	// Token: 0x04000D96 RID: 3478
 	private CameraFilterPack_Drawing_Manga2 Manga2;
 
-	// Token: 0x04000D96 RID: 3478
+	// Token: 0x04000D97 RID: 3479
 	private CameraFilterPack_Drawing_Manga3 Manga3;
 
-	// Token: 0x04000D97 RID: 3479
+	// Token: 0x04000D98 RID: 3480
 	private CameraFilterPack_Drawing_Manga4 Manga4;
 
-	// Token: 0x04000D98 RID: 3480
+	// Token: 0x04000D99 RID: 3481
 	private CameraFilterPack_Drawing_Manga5 Manga5;
 
-	// Token: 0x04000D99 RID: 3481
+	// Token: 0x04000D9A RID: 3482
 	private CameraFilterPack_Drawing_Manga_Color MangaColor;
 
-	// Token: 0x04000D9A RID: 3482
+	// Token: 0x04000D9B RID: 3483
 	private CameraFilterPack_Drawing_Manga_Flash MangaFlash;
 
-	// Token: 0x04000D9B RID: 3483
+	// Token: 0x04000D9C RID: 3484
 	private CameraFilterPack_Drawing_Manga_FlashWhite MangaFlashWhite;
 
-	// Token: 0x04000D9C RID: 3484
+	// Token: 0x04000D9D RID: 3485
 	private CameraFilterPack_Drawing_Manga_Flash_Color MangaFlashColor;
 
-	// Token: 0x04000D9D RID: 3485
+	// Token: 0x04000D9E RID: 3486
 	private CameraFilterPack_Drawing_NewCellShading NewCellShading;
 
-	// Token: 0x04000D9E RID: 3486
+	// Token: 0x04000D9F RID: 3487
 	private CameraFilterPack_Drawing_Paper Paper;
 
-	// Token: 0x04000D9F RID: 3487
+	// Token: 0x04000DA0 RID: 3488
 	private CameraFilterPack_Drawing_Paper2 Paper2;
 
-	// Token: 0x04000DA0 RID: 3488
+	// Token: 0x04000DA1 RID: 3489
 	private CameraFilterPack_Drawing_Paper3 Paper3;
 
-	// Token: 0x04000DA1 RID: 3489
+	// Token: 0x04000DA2 RID: 3490
 	private CameraFilterPack_Drawing_Toon Toon;
 
-	// Token: 0x04000DA2 RID: 3490
+	// Token: 0x04000DA3 RID: 3491
 	private CameraFilterPack_Edge_BlackLine BlackLine;
 
-	// Token: 0x04000DA3 RID: 3491
+	// Token: 0x04000DA4 RID: 3492
 	private CameraFilterPack_Edge_Edge_filter Edgefilter;
 
-	// Token: 0x04000DA4 RID: 3492
+	// Token: 0x04000DA5 RID: 3493
 	private CameraFilterPack_Edge_Golden Golden;
 
-	// Token: 0x04000DA5 RID: 3493
+	// Token: 0x04000DA6 RID: 3494
 	private CameraFilterPack_Edge_Neon Neon;
 
-	// Token: 0x04000DA6 RID: 3494
+	// Token: 0x04000DA7 RID: 3495
 	private CameraFilterPack_Edge_Sigmoid Sigmoid;
 
-	// Token: 0x04000DA7 RID: 3495
+	// Token: 0x04000DA8 RID: 3496
 	private CameraFilterPack_Edge_Sobel Sobel;
 
-	// Token: 0x04000DA8 RID: 3496
+	// Token: 0x04000DA9 RID: 3497
 	private CameraFilterPack_EXTRA_Rotation Rotation;
 
-	// Token: 0x04000DA9 RID: 3497
+	// Token: 0x04000DAA RID: 3498
 	private CameraFilterPack_EXTRA_SHOWFPS SHOWFPS;
 
-	// Token: 0x04000DAA RID: 3498
+	// Token: 0x04000DAB RID: 3499
 	private CameraFilterPack_EyesVision_1 EyesVision1;
 
-	// Token: 0x04000DAB RID: 3499
+	// Token: 0x04000DAC RID: 3500
 	private CameraFilterPack_EyesVision_2 EyesVision2;
 
-	// Token: 0x04000DAC RID: 3500
+	// Token: 0x04000DAD RID: 3501
 	private CameraFilterPack_Film_ColorPerfection ColorPerfection;
 
-	// Token: 0x04000DAD RID: 3501
+	// Token: 0x04000DAE RID: 3502
 	private CameraFilterPack_Film_Grain Grain;
 
-	// Token: 0x04000DAE RID: 3502
+	// Token: 0x04000DAF RID: 3503
 	private CameraFilterPack_Fly_Vision FlyVision;
 
-	// Token: 0x04000DAF RID: 3503
+	// Token: 0x04000DB0 RID: 3504
 	private CameraFilterPack_FX_8bits FX8bits;
 
-	// Token: 0x04000DB0 RID: 3504
+	// Token: 0x04000DB1 RID: 3505
 	private CameraFilterPack_FX_8bits_gb FX8bitsgb;
 
-	// Token: 0x04000DB1 RID: 3505
+	// Token: 0x04000DB2 RID: 3506
 	private CameraFilterPack_FX_Ascii Ascii;
 
-	// Token: 0x04000DB2 RID: 3506
+	// Token: 0x04000DB3 RID: 3507
 	private CameraFilterPack_FX_DarkMatter DarkMatter;
 
-	// Token: 0x04000DB3 RID: 3507
+	// Token: 0x04000DB4 RID: 3508
 	private CameraFilterPack_FX_DigitalMatrix DigitalMatrix;
 
-	// Token: 0x04000DB4 RID: 3508
+	// Token: 0x04000DB5 RID: 3509
 	private CameraFilterPack_FX_DigitalMatrixDistortion DigitalMatrixDistortion;
 
-	// Token: 0x04000DB5 RID: 3509
+	// Token: 0x04000DB6 RID: 3510
 	private CameraFilterPack_FX_Dot_Circle DotCircle;
 
-	// Token: 0x04000DB6 RID: 3510
+	// Token: 0x04000DB7 RID: 3511
 	private CameraFilterPack_FX_Drunk Drunk;
 
-	// Token: 0x04000DB7 RID: 3511
+	// Token: 0x04000DB8 RID: 3512
 	private CameraFilterPack_FX_Drunk2 Drunk2;
 
-	// Token: 0x04000DB8 RID: 3512
+	// Token: 0x04000DB9 RID: 3513
 	private CameraFilterPack_FX_EarthQuake EarthQuake;
 
-	// Token: 0x04000DB9 RID: 3513
+	// Token: 0x04000DBA RID: 3514
 	private CameraFilterPack_FX_Funk Funk;
 
-	// Token: 0x04000DBA RID: 3514
+	// Token: 0x04000DBB RID: 3515
 	private CameraFilterPack_FX_Glitch1 Glitch1;
 
-	// Token: 0x04000DBB RID: 3515
+	// Token: 0x04000DBC RID: 3516
 	private CameraFilterPack_FX_Glitch2 Glitch2;
 
-	// Token: 0x04000DBC RID: 3516
+	// Token: 0x04000DBD RID: 3517
 	private CameraFilterPack_FX_Glitch3 Glitch3;
 
-	// Token: 0x04000DBD RID: 3517
+	// Token: 0x04000DBE RID: 3518
 	private CameraFilterPack_FX_Grid Grid;
 
-	// Token: 0x04000DBE RID: 3518
+	// Token: 0x04000DBF RID: 3519
 	private CameraFilterPack_FX_Hexagon Hexagon;
 
-	// Token: 0x04000DBF RID: 3519
+	// Token: 0x04000DC0 RID: 3520
 	private CameraFilterPack_FX_Hexagon_Black HexagonBlack;
 
-	// Token: 0x04000DC0 RID: 3520
+	// Token: 0x04000DC1 RID: 3521
 	private CameraFilterPack_FX_Hypno Hypno;
 
-	// Token: 0x04000DC1 RID: 3521
+	// Token: 0x04000DC2 RID: 3522
 	private CameraFilterPack_FX_InverChromiLum InverChromiLum;
 
-	// Token: 0x04000DC2 RID: 3522
+	// Token: 0x04000DC3 RID: 3523
 	private CameraFilterPack_FX_Mirror FXMirror;
 
-	// Token: 0x04000DC3 RID: 3523
+	// Token: 0x04000DC4 RID: 3524
 	private CameraFilterPack_FX_Plasma FXPlasma;
 
-	// Token: 0x04000DC4 RID: 3524
+	// Token: 0x04000DC5 RID: 3525
 	private CameraFilterPack_FX_Psycho FXPsycho;
 
-	// Token: 0x04000DC5 RID: 3525
+	// Token: 0x04000DC6 RID: 3526
 	private CameraFilterPack_FX_Scan Scan;
 
-	// Token: 0x04000DC6 RID: 3526
+	// Token: 0x04000DC7 RID: 3527
 	private CameraFilterPack_FX_Screens Screens;
 
-	// Token: 0x04000DC7 RID: 3527
+	// Token: 0x04000DC8 RID: 3528
 	private CameraFilterPack_FX_Spot Spot;
 
-	// Token: 0x04000DC8 RID: 3528
+	// Token: 0x04000DC9 RID: 3529
 	private CameraFilterPack_FX_superDot superDot;
 
-	// Token: 0x04000DC9 RID: 3529
+	// Token: 0x04000DCA RID: 3530
 	private CameraFilterPack_FX_ZebraColor ZebraColor;
 
-	// Token: 0x04000DCA RID: 3530
+	// Token: 0x04000DCB RID: 3531
 	private CameraFilterPack_Glasses_On GlassesOn;
 
-	// Token: 0x04000DCB RID: 3531
+	// Token: 0x04000DCC RID: 3532
 	private CameraFilterPack_Glasses_On_2 GlassesOn2;
 
-	// Token: 0x04000DCC RID: 3532
+	// Token: 0x04000DCD RID: 3533
 	private CameraFilterPack_Glasses_On_3 GlassesOn3;
 
-	// Token: 0x04000DCD RID: 3533
+	// Token: 0x04000DCE RID: 3534
 	private CameraFilterPack_Glasses_On_4 GlassesOn4;
 
-	// Token: 0x04000DCE RID: 3534
+	// Token: 0x04000DCF RID: 3535
 	private CameraFilterPack_Glasses_On_5 GlassesOn5;
 
-	// Token: 0x04000DCF RID: 3535
+	// Token: 0x04000DD0 RID: 3536
 	private CameraFilterPack_Glasses_On_6 GlassesOn6;
 
-	// Token: 0x04000DD0 RID: 3536
+	// Token: 0x04000DD1 RID: 3537
 	private CameraFilterPack_Glitch_Mozaic Mozaic;
 
-	// Token: 0x04000DD1 RID: 3537
+	// Token: 0x04000DD2 RID: 3538
 	private CameraFilterPack_Glow_Glow Glow;
 
-	// Token: 0x04000DD2 RID: 3538
+	// Token: 0x04000DD3 RID: 3539
 	private CameraFilterPack_Glow_Glow_Color GlowColor;
 
-	// Token: 0x04000DD3 RID: 3539
+	// Token: 0x04000DD4 RID: 3540
 	private CameraFilterPack_Gradients_Ansi Ansi;
 
-	// Token: 0x04000DD4 RID: 3540
+	// Token: 0x04000DD5 RID: 3541
 	private CameraFilterPack_Gradients_Desert Desert;
 
-	// Token: 0x04000DD5 RID: 3541
+	// Token: 0x04000DD6 RID: 3542
 	private CameraFilterPack_Gradients_ElectricGradient ElectricGradient;
 
-	// Token: 0x04000DD6 RID: 3542
+	// Token: 0x04000DD7 RID: 3543
 	private CameraFilterPack_Gradients_FireGradient FireGradient;
 
-	// Token: 0x04000DD7 RID: 3543
+	// Token: 0x04000DD8 RID: 3544
 	private CameraFilterPack_Gradients_Hue GradientsHue;
 
-	// Token: 0x04000DD8 RID: 3544
+	// Token: 0x04000DD9 RID: 3545
 	private CameraFilterPack_Gradients_NeonGradient NeonGradient;
 
-	// Token: 0x04000DD9 RID: 3545
+	// Token: 0x04000DDA RID: 3546
 	private CameraFilterPack_Gradients_Rainbow GradientsRainbow;
 
-	// Token: 0x04000DDA RID: 3546
+	// Token: 0x04000DDB RID: 3547
 	private CameraFilterPack_Gradients_Stripe Stripe;
 
-	// Token: 0x04000DDB RID: 3547
+	// Token: 0x04000DDC RID: 3548
 	private CameraFilterPack_Gradients_Tech Tech;
 
-	// Token: 0x04000DDC RID: 3548
+	// Token: 0x04000DDD RID: 3549
 	private CameraFilterPack_Gradients_Therma Therma;
 
-	// Token: 0x04000DDD RID: 3549
+	// Token: 0x04000DDE RID: 3550
 	private CameraFilterPack_Light_Rainbow LightRainbow;
 
-	// Token: 0x04000DDE RID: 3550
+	// Token: 0x04000DDF RID: 3551
 	private CameraFilterPack_Light_Rainbow2 LightRainbow2;
 
-	// Token: 0x04000DDF RID: 3551
+	// Token: 0x04000DE0 RID: 3552
 	private CameraFilterPack_Light_Water Water;
 
-	// Token: 0x04000DE0 RID: 3552
+	// Token: 0x04000DE1 RID: 3553
 	private CameraFilterPack_Light_Water2 Water2;
 
-	// Token: 0x04000DE1 RID: 3553
+	// Token: 0x04000DE2 RID: 3554
 	private CameraFilterPack_Lut_2_Lut Lut;
 
-	// Token: 0x04000DE2 RID: 3554
+	// Token: 0x04000DE3 RID: 3555
 	private CameraFilterPack_Lut_2_Lut_Extra LutExtra;
 
-	// Token: 0x04000DE3 RID: 3555
+	// Token: 0x04000DE4 RID: 3556
 	private CameraFilterPack_Lut_Mask Mask;
 
-	// Token: 0x04000DE4 RID: 3556
+	// Token: 0x04000DE5 RID: 3557
 	private CameraFilterPack_Lut_PlayWith PlayWith;
 
-	// Token: 0x04000DE5 RID: 3557
+	// Token: 0x04000DE6 RID: 3558
 	private CameraFilterPack_Lut_Plus Plus;
 
-	// Token: 0x04000DE6 RID: 3558
+	// Token: 0x04000DE7 RID: 3559
 	private CameraFilterPack_Lut_Simple LutSimple;
 
-	// Token: 0x04000DE7 RID: 3559
+	// Token: 0x04000DE8 RID: 3560
 	private CameraFilterPack_Lut_TestMode TestMode;
 
-	// Token: 0x04000DE8 RID: 3560
+	// Token: 0x04000DE9 RID: 3561
 	private CameraFilterPack_NewGlitch1 NewGlitch1;
 
-	// Token: 0x04000DE9 RID: 3561
+	// Token: 0x04000DEA RID: 3562
 	private CameraFilterPack_NewGlitch2 NewGlitch2;
 
-	// Token: 0x04000DEA RID: 3562
+	// Token: 0x04000DEB RID: 3563
 	private CameraFilterPack_NewGlitch3 NewGlitch3;
 
-	// Token: 0x04000DEB RID: 3563
+	// Token: 0x04000DEC RID: 3564
 	private CameraFilterPack_NewGlitch4 NewGlitch4;
 
-	// Token: 0x04000DEC RID: 3564
+	// Token: 0x04000DED RID: 3565
 	private CameraFilterPack_NewGlitch5 NewGlitch5;
 
-	// Token: 0x04000DED RID: 3565
+	// Token: 0x04000DEE RID: 3566
 	private CameraFilterPack_NewGlitch6 NewGlitch6;
 
-	// Token: 0x04000DEE RID: 3566
+	// Token: 0x04000DEF RID: 3567
 	private CameraFilterPack_NewGlitch7 NewGlitch7;
 
-	// Token: 0x04000DEF RID: 3567
+	// Token: 0x04000DF0 RID: 3568
 	private CameraFilterPack_NightVisionFX NightVisionFX;
 
-	// Token: 0x04000DF0 RID: 3568
+	// Token: 0x04000DF1 RID: 3569
 	private CameraFilterPack_NightVision_4 NightVision4;
 
-	// Token: 0x04000DF1 RID: 3569
+	// Token: 0x04000DF2 RID: 3570
 	private CameraFilterPack_Noise_TV TV;
 
-	// Token: 0x04000DF2 RID: 3570
+	// Token: 0x04000DF3 RID: 3571
 	private CameraFilterPack_Noise_TV_2 TV2;
 
-	// Token: 0x04000DF3 RID: 3571
+	// Token: 0x04000DF4 RID: 3572
 	private CameraFilterPack_Noise_TV_3 TV3;
 
-	// Token: 0x04000DF4 RID: 3572
+	// Token: 0x04000DF5 RID: 3573
 	private CameraFilterPack_Oculus_NightVision1 NightVision1;
 
-	// Token: 0x04000DF5 RID: 3573
+	// Token: 0x04000DF6 RID: 3574
 	private CameraFilterPack_Oculus_NightVision2 NightVision2;
 
-	// Token: 0x04000DF6 RID: 3574
+	// Token: 0x04000DF7 RID: 3575
 	private CameraFilterPack_Oculus_NightVision3 NightVision3;
 
-	// Token: 0x04000DF7 RID: 3575
+	// Token: 0x04000DF8 RID: 3576
 	private CameraFilterPack_Oculus_NightVision5 NightVision5;
 
-	// Token: 0x04000DF8 RID: 3576
+	// Token: 0x04000DF9 RID: 3577
 	private CameraFilterPack_Oculus_ThermaVision ThermaVision;
 
-	// Token: 0x04000DF9 RID: 3577
+	// Token: 0x04000DFA RID: 3578
 	private CameraFilterPack_OldFilm_Cutting1 Cutting1;
 
-	// Token: 0x04000DFA RID: 3578
+	// Token: 0x04000DFB RID: 3579
 	private CameraFilterPack_OldFilm_Cutting2 Cutting2;
 
-	// Token: 0x04000DFB RID: 3579
+	// Token: 0x04000DFC RID: 3580
 	private CameraFilterPack_Pixelisation_DeepOilPaintHQ DeepOilPaintHQ;
 
-	// Token: 0x04000DFC RID: 3580
+	// Token: 0x04000DFD RID: 3581
 	private CameraFilterPack_Pixelisation_Dot Dot;
 
-	// Token: 0x04000DFD RID: 3581
+	// Token: 0x04000DFE RID: 3582
 	private CameraFilterPack_Pixelisation_OilPaint OilPaint;
 
-	// Token: 0x04000DFE RID: 3582
+	// Token: 0x04000DFF RID: 3583
 	private CameraFilterPack_Pixelisation_OilPaintHQ OilPaintHQ;
 
-	// Token: 0x04000DFF RID: 3583
+	// Token: 0x04000E00 RID: 3584
 	private CameraFilterPack_Pixelisation_Sweater Sweater;
 
-	// Token: 0x04000E00 RID: 3584
+	// Token: 0x04000E01 RID: 3585
 	private CameraFilterPack_Pixel_Pixelisation Pixelisation;
 
-	// Token: 0x04000E01 RID: 3585
+	// Token: 0x04000E02 RID: 3586
 	private CameraFilterPack_Rain_RainFX RainFX;
 
-	// Token: 0x04000E02 RID: 3586
+	// Token: 0x04000E03 RID: 3587
 	private CameraFilterPack_Real_VHS RealVHS;
 
-	// Token: 0x04000E03 RID: 3587
+	// Token: 0x04000E04 RID: 3588
 	private CameraFilterPack_Retro_Loading Loading;
 
-	// Token: 0x04000E04 RID: 3588
+	// Token: 0x04000E05 RID: 3589
 	private CameraFilterPack_Sharpen_Sharpen Sharpen;
 
-	// Token: 0x04000E05 RID: 3589
+	// Token: 0x04000E06 RID: 3590
 	private CameraFilterPack_Special_Bubble Bubble;
 
-	// Token: 0x04000E06 RID: 3590
+	// Token: 0x04000E07 RID: 3591
 	private CameraFilterPack_TV_50 TV50;
 
-	// Token: 0x04000E07 RID: 3591
+	// Token: 0x04000E08 RID: 3592
 	private CameraFilterPack_TV_80 TV80;
 
-	// Token: 0x04000E08 RID: 3592
+	// Token: 0x04000E09 RID: 3593
 	private CameraFilterPack_TV_ARCADE ARCADE;
 
-	// Token: 0x04000E09 RID: 3593
+	// Token: 0x04000E0A RID: 3594
 	private CameraFilterPack_TV_ARCADE_2 ARCADE2;
 
-	// Token: 0x04000E0A RID: 3594
+	// Token: 0x04000E0B RID: 3595
 	private CameraFilterPack_TV_ARCADE_Fast ARCADEFast;
 
-	// Token: 0x04000E0B RID: 3595
+	// Token: 0x04000E0C RID: 3596
 	private CameraFilterPack_TV_Artefact Artefact;
 
-	// Token: 0x04000E0C RID: 3596
+	// Token: 0x04000E0D RID: 3597
 	private CameraFilterPack_TV_BrokenGlass BrokenGlass;
 
-	// Token: 0x04000E0D RID: 3597
+	// Token: 0x04000E0E RID: 3598
 	private CameraFilterPack_TV_BrokenGlass2 BrokenGlass2;
 
-	// Token: 0x04000E0E RID: 3598
+	// Token: 0x04000E0F RID: 3599
 	private CameraFilterPack_TV_Chromatical Chromatical;
 
-	// Token: 0x04000E0F RID: 3599
+	// Token: 0x04000E10 RID: 3600
 	private CameraFilterPack_TV_Chromatical2 Chromatical2;
 
-	// Token: 0x04000E10 RID: 3600
+	// Token: 0x04000E11 RID: 3601
 	private CameraFilterPack_TV_CompressionFX CompressionFX;
 
-	// Token: 0x04000E11 RID: 3601
+	// Token: 0x04000E12 RID: 3602
 	private CameraFilterPack_TV_Distorted Distorted;
 
-	// Token: 0x04000E12 RID: 3602
+	// Token: 0x04000E13 RID: 3603
 	private CameraFilterPack_TV_Horror Horror;
 
-	// Token: 0x04000E13 RID: 3603
+	// Token: 0x04000E14 RID: 3604
 	private CameraFilterPack_TV_LED LED;
 
-	// Token: 0x04000E14 RID: 3604
+	// Token: 0x04000E15 RID: 3605
 	private CameraFilterPack_TV_MovieNoise MovieNoise;
 
-	// Token: 0x04000E15 RID: 3605
+	// Token: 0x04000E16 RID: 3606
 	private CameraFilterPack_TV_Noise TVNoise;
 
-	// Token: 0x04000E16 RID: 3606
+	// Token: 0x04000E17 RID: 3607
 	private CameraFilterPack_TV_Old Old;
 
-	// Token: 0x04000E17 RID: 3607
+	// Token: 0x04000E18 RID: 3608
 	private CameraFilterPack_TV_Old_Movie OldMovie;
 
-	// Token: 0x04000E18 RID: 3608
+	// Token: 0x04000E19 RID: 3609
 	private CameraFilterPack_TV_Old_Movie_2 OldMovie2;
 
-	// Token: 0x04000E19 RID: 3609
+	// Token: 0x04000E1A RID: 3610
 	private CameraFilterPack_TV_PlanetMars PlanetMars;
 
-	// Token: 0x04000E1A RID: 3610
+	// Token: 0x04000E1B RID: 3611
 	private CameraFilterPack_TV_Posterize Posterize;
 
-	// Token: 0x04000E1B RID: 3611
+	// Token: 0x04000E1C RID: 3612
 	private CameraFilterPack_TV_Rgb TVRgb;
 
-	// Token: 0x04000E1C RID: 3612
+	// Token: 0x04000E1D RID: 3613
 	private CameraFilterPack_TV_Tiles Tiles;
 
-	// Token: 0x04000E1D RID: 3613
+	// Token: 0x04000E1E RID: 3614
 	private CameraFilterPack_TV_Vcr Vcr;
 
-	// Token: 0x04000E1E RID: 3614
+	// Token: 0x04000E1F RID: 3615
 	private CameraFilterPack_TV_VHS TVVHS;
 
-	// Token: 0x04000E1F RID: 3615
+	// Token: 0x04000E20 RID: 3616
 	private CameraFilterPack_TV_VHS_Rewind VHSRewind;
 
-	// Token: 0x04000E20 RID: 3616
+	// Token: 0x04000E21 RID: 3617
 	private CameraFilterPack_TV_Video3D Video3D;
 
-	// Token: 0x04000E21 RID: 3617
+	// Token: 0x04000E22 RID: 3618
 	private CameraFilterPack_TV_Videoflip Videoflip;
 
-	// Token: 0x04000E22 RID: 3618
+	// Token: 0x04000E23 RID: 3619
 	private CameraFilterPack_TV_Vignetting Vignetting;
 
-	// Token: 0x04000E23 RID: 3619
+	// Token: 0x04000E24 RID: 3620
 	private CameraFilterPack_TV_Vintage Vintage;
 
-	// Token: 0x04000E24 RID: 3620
+	// Token: 0x04000E25 RID: 3621
 	private CameraFilterPack_TV_WideScreenCircle WideScreenCircle;
 
-	// Token: 0x04000E25 RID: 3621
+	// Token: 0x04000E26 RID: 3622
 	private CameraFilterPack_TV_WideScreenHorizontal WideScreenHorizontal;
 
-	// Token: 0x04000E26 RID: 3622
+	// Token: 0x04000E27 RID: 3623
 	private CameraFilterPack_TV_WideScreenHV WideScreenHV;
 
-	// Token: 0x04000E27 RID: 3623
+	// Token: 0x04000E28 RID: 3624
 	private CameraFilterPack_TV_WideScreenVertical WideScreenVertical;
 
-	// Token: 0x04000E28 RID: 3624
+	// Token: 0x04000E29 RID: 3625
 	private CameraFilterPack_VHS_Tracking Tracking;
 
-	// Token: 0x04000E29 RID: 3625
+	// Token: 0x04000E2A RID: 3626
 	private CameraFilterPack_Vision_Aura Aura;
 
-	// Token: 0x04000E2A RID: 3626
+	// Token: 0x04000E2B RID: 3627
 	private CameraFilterPack_Vision_AuraDistortion AuraDistortion;
 
-	// Token: 0x04000E2B RID: 3627
+	// Token: 0x04000E2C RID: 3628
 	private CameraFilterPack_Vision_Blood VisionBlood;
 
-	// Token: 0x04000E2C RID: 3628
+	// Token: 0x04000E2D RID: 3629
 	private CameraFilterPack_Vision_Blood_Fast VisionBloodFast;
 
-	// Token: 0x04000E2D RID: 3629
+	// Token: 0x04000E2E RID: 3630
 	private CameraFilterPack_Vision_Crystal Crystal;
 
-	// Token: 0x04000E2E RID: 3630
+	// Token: 0x04000E2F RID: 3631
 	private CameraFilterPack_Vision_Drost Drost;
 
-	// Token: 0x04000E2F RID: 3631
+	// Token: 0x04000E30 RID: 3632
 	private CameraFilterPack_Vision_Hell_Blood VisionHellBlood;
 
-	// Token: 0x04000E30 RID: 3632
+	// Token: 0x04000E31 RID: 3633
 	private CameraFilterPack_Vision_Plasma VisionPlasma;
 
-	// Token: 0x04000E31 RID: 3633
+	// Token: 0x04000E32 RID: 3634
 	private CameraFilterPack_Vision_Psycho VisionPsycho;
 
-	// Token: 0x04000E32 RID: 3634
+	// Token: 0x04000E33 RID: 3635
 	private CameraFilterPack_Vision_Rainbow VisionRainbow;
 
-	// Token: 0x04000E33 RID: 3635
+	// Token: 0x04000E34 RID: 3636
 	private CameraFilterPack_Vision_SniperScore SniperScore;
 
-	// Token: 0x04000E34 RID: 3636
+	// Token: 0x04000E35 RID: 3637
 	private CameraFilterPack_Vision_Tunnel Tunnel;
 
-	// Token: 0x04000E35 RID: 3637
+	// Token: 0x04000E36 RID: 3638
 	private CameraFilterPack_Vision_Warp Warp;
 
-	// Token: 0x04000E36 RID: 3638
+	// Token: 0x04000E37 RID: 3639
 	private CameraFilterPack_Vision_Warp2 Warp2;
 
-	// Token: 0x04000E37 RID: 3639
+	// Token: 0x04000E38 RID: 3640
 	public UILabel NameLabel;
 
-	// Token: 0x04000E38 RID: 3640
+	// Token: 0x04000E39 RID: 3641
 	public float DisplayTimer;
 
-	// Token: 0x04000E39 RID: 3641
+	// Token: 0x04000E3A RID: 3642
 	public float Speed;
 
-	// Token: 0x04000E3A RID: 3642
+	// Token: 0x04000E3B RID: 3643
 	public int FilterMax;
 
-	// Token: 0x04000E3B RID: 3643
+	// Token: 0x04000E3C RID: 3644
 	private int FilterID;
 
-	// Token: 0x04000E3C RID: 3644
+	// Token: 0x04000E3D RID: 3645
 	public string[] FilterNames;
 
-	// Token: 0x04000E3D RID: 3645
+	// Token: 0x04000E3E RID: 3646
 	public bool[] FilterSkips;
 }

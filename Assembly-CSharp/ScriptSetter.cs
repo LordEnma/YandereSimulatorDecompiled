@@ -2,10 +2,10 @@
 using System.Reflection;
 using UnityEngine;
 
-// Token: 0x02000509 RID: 1289
+// Token: 0x0200050E RID: 1294
 public class ScriptSetter : MonoBehaviour
 {
-	// Token: 0x06002156 RID: 8534 RVA: 0x001E9904 File Offset: 0x001E7B04
+	// Token: 0x06002166 RID: 8550 RVA: 0x001EB174 File Offset: 0x001E9374
 	private void Start()
 	{
 		foreach (Component component in base.GetComponents(typeof(Component)))
@@ -33,9 +33,9 @@ public class ScriptSetter : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004958 RID: 18776
+	// Token: 0x0400498A RID: 18826
 	public StudentScript OldStudent;
 
-	// Token: 0x04004959 RID: 18777
+	// Token: 0x0400498B RID: 18827
 	public StudentScript NewStudent;
 }

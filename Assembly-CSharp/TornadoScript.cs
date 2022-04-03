@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000483 RID: 1155
+// Token: 0x02000486 RID: 1158
 public class TornadoScript : MonoBehaviour
 {
-	// Token: 0x06001F02 RID: 7938 RVA: 0x001B523C File Offset: 0x001B343C
+	// Token: 0x06001F0C RID: 7948 RVA: 0x001B67B0 File Offset: 0x001B49B0
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -15,7 +15,7 @@ public class TornadoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F03 RID: 7939 RVA: 0x001B52BC File Offset: 0x001B34BC
+	// Token: 0x06001F0D RID: 7949 RVA: 0x001B6830 File Offset: 0x001B4A30
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -35,21 +35,21 @@ public class TornadoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040040A8 RID: 16552
+	// Token: 0x040040D5 RID: 16597
 	public GameObject FemaleBloodyScream;
 
-	// Token: 0x040040A9 RID: 16553
+	// Token: 0x040040D6 RID: 16598
 	public GameObject MaleBloodyScream;
 
-	// Token: 0x040040AA RID: 16554
+	// Token: 0x040040D7 RID: 16599
 	public GameObject Scream;
 
-	// Token: 0x040040AB RID: 16555
+	// Token: 0x040040D8 RID: 16600
 	public Collider MyCollider;
 
-	// Token: 0x040040AC RID: 16556
+	// Token: 0x040040D9 RID: 16601
 	public float Strength = 10000f;
 
-	// Token: 0x040040AD RID: 16557
+	// Token: 0x040040DA RID: 16602
 	public float Timer;
 }

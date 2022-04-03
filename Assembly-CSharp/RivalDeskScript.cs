@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003DB RID: 987
+// Token: 0x020003DE RID: 990
 public class RivalDeskScript : MonoBehaviour
 {
-	// Token: 0x06001B98 RID: 7064 RVA: 0x001393E5 File Offset: 0x001375E5
+	// Token: 0x06001BA2 RID: 7074 RVA: 0x00139E59 File Offset: 0x00138059
 	private void Start()
 	{
 		if (DateGlobals.Weekday != DayOfWeek.Friday)
@@ -13,7 +13,7 @@ public class RivalDeskScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B99 RID: 7065 RVA: 0x001393F8 File Offset: 0x001375F8
+	// Token: 0x06001BA3 RID: 7075 RVA: 0x00139E6C File Offset: 0x0013806C
 	private void Update()
 	{
 		if (!this.Prompt.Yandere.Inventory.AnswerSheet && this.Prompt.Yandere.Inventory.DuplicateSheet)
@@ -45,15 +45,15 @@ public class RivalDeskScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002F65 RID: 12133
+	// Token: 0x04002F7E RID: 12158
 	public SchemesScript Schemes;
 
-	// Token: 0x04002F66 RID: 12134
+	// Token: 0x04002F7F RID: 12159
 	public ClockScript Clock;
 
-	// Token: 0x04002F67 RID: 12135
+	// Token: 0x04002F80 RID: 12160
 	public PromptScript Prompt;
 
-	// Token: 0x04002F68 RID: 12136
+	// Token: 0x04002F81 RID: 12161
 	public bool Cheating;
 }

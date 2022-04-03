@@ -112,39 +112,39 @@ public class AudioMenuScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 440f - 60f * (float)this.Selected, this.Highlight.localPosition.z);
 	}
 
-	// Token: 0x04000ABA RID: 2746
+	// Token: 0x04000ABB RID: 2747
 	public InputManagerScript InputManager;
 
-	// Token: 0x04000ABB RID: 2747
+	// Token: 0x04000ABC RID: 2748
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04000ABC RID: 2748
+	// Token: 0x04000ABD RID: 2749
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04000ABD RID: 2749
+	// Token: 0x04000ABE RID: 2750
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04000ABE RID: 2750
+	// Token: 0x04000ABF RID: 2751
 	public UILabel CurrentTrackLabel;
 
-	// Token: 0x04000ABF RID: 2751
+	// Token: 0x04000AC0 RID: 2752
 	public UILabel MusicVolumeLabel;
 
-	// Token: 0x04000AC0 RID: 2752
+	// Token: 0x04000AC1 RID: 2753
 	public UILabel SubtitlesOnOffLabel;
 
-	// Token: 0x04000AC1 RID: 2753
+	// Token: 0x04000AC2 RID: 2754
 	public UIPanel SubtitlePanel;
 
-	// Token: 0x04000AC2 RID: 2754
+	// Token: 0x04000AC3 RID: 2755
 	public int SelectionLimit = 5;
 
-	// Token: 0x04000AC3 RID: 2755
+	// Token: 0x04000AC4 RID: 2756
 	public int Selected = 1;
 
-	// Token: 0x04000AC4 RID: 2756
+	// Token: 0x04000AC5 RID: 2757
 	public Transform Highlight;
 
-	// Token: 0x04000AC5 RID: 2757
+	// Token: 0x04000AC6 RID: 2758
 	public GameObject CustomMusicMenu;
 }

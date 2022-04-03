@@ -4,15 +4,15 @@
 public interface IScheduledEventTime
 {
 	// Token: 0x1700036A RID: 874
-	// (get) Token: 0x06001466 RID: 5222
+	// (get) Token: 0x06001467 RID: 5223
 	ScheduledEventTimeType ScheduleType { get; }
 
-	// Token: 0x06001467 RID: 5223
+	// Token: 0x06001468 RID: 5224
 	bool OccurringNow(DateAndTime currentTime);
 
-	// Token: 0x06001468 RID: 5224
+	// Token: 0x06001469 RID: 5225
 	bool OccursInTheFuture(DateAndTime currentTime);
 
-	// Token: 0x06001469 RID: 5225
+	// Token: 0x0600146A RID: 5226
 	bool OccurredInThePast(DateAndTime currentTime);
 }

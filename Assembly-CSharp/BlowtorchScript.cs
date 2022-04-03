@@ -28,21 +28,21 @@ public class BlowtorchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000BC4 RID: 3012
+	// Token: 0x04000BC5 RID: 3013
 	public YandereScript Yandere;
 
-	// Token: 0x04000BC5 RID: 3013
+	// Token: 0x04000BC6 RID: 3014
 	public RagdollScript Corpse;
 
-	// Token: 0x04000BC6 RID: 3014
+	// Token: 0x04000BC7 RID: 3015
 	public PickUpScript PickUp;
 
-	// Token: 0x04000BC7 RID: 3015
+	// Token: 0x04000BC8 RID: 3016
 	public PromptScript Prompt;
 
-	// Token: 0x04000BC8 RID: 3016
+	// Token: 0x04000BC9 RID: 3017
 	public Transform Flame;
 
-	// Token: 0x04000BC9 RID: 3017
+	// Token: 0x04000BCA RID: 3018
 	public float Timer;
 }

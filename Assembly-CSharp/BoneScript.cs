@@ -50,15 +50,15 @@ public class BoneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000BE2 RID: 3042
+	// Token: 0x04000BE3 RID: 3043
 	public AudioSource MyAudio;
 
-	// Token: 0x04000BE3 RID: 3043
+	// Token: 0x04000BE4 RID: 3044
 	public float Height;
 
-	// Token: 0x04000BE4 RID: 3044
+	// Token: 0x04000BE5 RID: 3045
 	public float Origin;
 
-	// Token: 0x04000BE5 RID: 3045
+	// Token: 0x04000BE6 RID: 3046
 	public bool Drop;
 }

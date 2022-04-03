@@ -2,11 +2,11 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200057F RID: 1407
+	// Token: 0x02000584 RID: 1412
 	[Serializable]
 	public sealed class ColorGradingCurve
 	{
-		// Token: 0x060023C1 RID: 9153 RVA: 0x001F816C File Offset: 0x001F636C
+		// Token: 0x060023D1 RID: 9169 RVA: 0x001F99DC File Offset: 0x001F7BDC
 		public ColorGradingCurve(AnimationCurve curve, float zeroValue, bool loop, Vector2 bounds)
 		{
 			this.curve = curve;
@@ -15,7 +15,7 @@ namespace UnityEngine.PostProcessing
 			this.m_Range = bounds.magnitude;
 		}
 
-		// Token: 0x060023C2 RID: 9154 RVA: 0x001F8198 File Offset: 0x001F6398
+		// Token: 0x060023D2 RID: 9170 RVA: 0x001F9A08 File Offset: 0x001F7C08
 		public void Cache()
 		{
 			if (!this.m_Loop)
@@ -40,7 +40,7 @@ namespace UnityEngine.PostProcessing
 			this.m_InternalLoopingCurve.AddKey(key2);
 		}
 
-		// Token: 0x060023C3 RID: 9155 RVA: 0x001F8248 File Offset: 0x001F6448
+		// Token: 0x060023D3 RID: 9171 RVA: 0x001F9AB8 File Offset: 0x001F7CB8
 		public float Evaluate(float t)
 		{
 			if (this.curve.length == 0)
@@ -54,22 +54,22 @@ namespace UnityEngine.PostProcessing
 			return this.m_InternalLoopingCurve.Evaluate(t);
 		}
 
-		// Token: 0x04004BC9 RID: 19401
+		// Token: 0x04004BFB RID: 19451
 		public AnimationCurve curve;
 
-		// Token: 0x04004BCA RID: 19402
+		// Token: 0x04004BFC RID: 19452
 		[SerializeField]
 		private bool m_Loop;
 
-		// Token: 0x04004BCB RID: 19403
+		// Token: 0x04004BFD RID: 19453
 		[SerializeField]
 		private float m_ZeroValue;
 
-		// Token: 0x04004BCC RID: 19404
+		// Token: 0x04004BFE RID: 19454
 		[SerializeField]
 		private float m_Range;
 
-		// Token: 0x04004BCD RID: 19405
+		// Token: 0x04004BFF RID: 19455
 		private AnimationCurve m_InternalLoopingCurve;
 	}
 }

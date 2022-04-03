@@ -126,7 +126,7 @@ public class SpringPosition : MonoBehaviour
 	// Token: 0x040005A9 RID: 1449
 	private UIScrollView mSv;
 
-	// Token: 0x0200060B RID: 1547
-	// (Invoke) Token: 0x060025B0 RID: 9648
+	// Token: 0x02000610 RID: 1552
+	// (Invoke) Token: 0x060025C0 RID: 9664
 	public delegate void OnFinished();
 }

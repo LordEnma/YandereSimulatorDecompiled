@@ -1,15 +1,15 @@
 ﻿using System;
 
-// Token: 0x02000494 RID: 1172
+// Token: 0x02000497 RID: 1175
 [Serializable]
 public class ScheduleBlockArrayWrapper : ArrayWrapper<ScheduleBlock>
 {
-	// Token: 0x06001F43 RID: 8003 RVA: 0x001BB95D File Offset: 0x001B9B5D
+	// Token: 0x06001F4D RID: 8013 RVA: 0x001BCEE9 File Offset: 0x001BB0E9
 	public ScheduleBlockArrayWrapper(int size) : base(size)
 	{
 	}
 
-	// Token: 0x06001F44 RID: 8004 RVA: 0x001BB966 File Offset: 0x001B9B66
+	// Token: 0x06001F4E RID: 8014 RVA: 0x001BCEF2 File Offset: 0x001BB0F2
 	public ScheduleBlockArrayWrapper(ScheduleBlock[] elements) : base(elements)
 	{
 	}

@@ -4,27 +4,27 @@ using UnityEngine;
 
 namespace UnityStandardAssets.CrossPlatformInput
 {
-	// Token: 0x02000543 RID: 1347
+	// Token: 0x02000548 RID: 1352
 	public abstract class VirtualInput
 	{
 		// Token: 0x170004E8 RID: 1256
-		// (get) Token: 0x06002263 RID: 8803 RVA: 0x001F10B9 File Offset: 0x001EF2B9
-		// (set) Token: 0x06002264 RID: 8804 RVA: 0x001F10C1 File Offset: 0x001EF2C1
+		// (get) Token: 0x06002273 RID: 8819 RVA: 0x001F2929 File Offset: 0x001F0B29
+		// (set) Token: 0x06002274 RID: 8820 RVA: 0x001F2931 File Offset: 0x001F0B31
 		public Vector3 virtualMousePosition { get; private set; }
 
-		// Token: 0x06002265 RID: 8805 RVA: 0x001F10CA File Offset: 0x001EF2CA
+		// Token: 0x06002275 RID: 8821 RVA: 0x001F293A File Offset: 0x001F0B3A
 		public bool AxisExists(string name)
 		{
 			return this.m_VirtualAxes.ContainsKey(name);
 		}
 
-		// Token: 0x06002266 RID: 8806 RVA: 0x001F10D8 File Offset: 0x001EF2D8
+		// Token: 0x06002276 RID: 8822 RVA: 0x001F2948 File Offset: 0x001F0B48
 		public bool ButtonExists(string name)
 		{
 			return this.m_VirtualButtons.ContainsKey(name);
 		}
 
-		// Token: 0x06002267 RID: 8807 RVA: 0x001F10E8 File Offset: 0x001EF2E8
+		// Token: 0x06002277 RID: 8823 RVA: 0x001F2958 File Offset: 0x001F0B58
 		public void RegisterVirtualAxis(CrossPlatformInputManager.VirtualAxis axis)
 		{
 			if (this.m_VirtualAxes.ContainsKey(axis.name))
@@ -39,7 +39,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002268 RID: 8808 RVA: 0x001F1150 File Offset: 0x001EF350
+		// Token: 0x06002278 RID: 8824 RVA: 0x001F29C0 File Offset: 0x001F0BC0
 		public void RegisterVirtualButton(CrossPlatformInputManager.VirtualButton button)
 		{
 			if (this.m_VirtualButtons.ContainsKey(button.name))
@@ -54,7 +54,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002269 RID: 8809 RVA: 0x001F11B6 File Offset: 0x001EF3B6
+		// Token: 0x06002279 RID: 8825 RVA: 0x001F2A26 File Offset: 0x001F0C26
 		public void UnRegisterVirtualAxis(string name)
 		{
 			if (this.m_VirtualAxes.ContainsKey(name))
@@ -63,7 +63,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x0600226A RID: 8810 RVA: 0x001F11D3 File Offset: 0x001EF3D3
+		// Token: 0x0600227A RID: 8826 RVA: 0x001F2A43 File Offset: 0x001F0C43
 		public void UnRegisterVirtualButton(string name)
 		{
 			if (this.m_VirtualButtons.ContainsKey(name))
@@ -72,7 +72,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x0600226B RID: 8811 RVA: 0x001F11F0 File Offset: 0x001EF3F0
+		// Token: 0x0600227B RID: 8827 RVA: 0x001F2A60 File Offset: 0x001F0C60
 		public CrossPlatformInputManager.VirtualAxis VirtualAxisReference(string name)
 		{
 			if (!this.m_VirtualAxes.ContainsKey(name))
@@ -82,64 +82,64 @@ namespace UnityStandardAssets.CrossPlatformInput
 			return this.m_VirtualAxes[name];
 		}
 
-		// Token: 0x0600226C RID: 8812 RVA: 0x001F120E File Offset: 0x001EF40E
+		// Token: 0x0600227C RID: 8828 RVA: 0x001F2A7E File Offset: 0x001F0C7E
 		public void SetVirtualMousePositionX(float f)
 		{
 			this.virtualMousePosition = new Vector3(f, this.virtualMousePosition.y, this.virtualMousePosition.z);
 		}
 
-		// Token: 0x0600226D RID: 8813 RVA: 0x001F1232 File Offset: 0x001EF432
+		// Token: 0x0600227D RID: 8829 RVA: 0x001F2AA2 File Offset: 0x001F0CA2
 		public void SetVirtualMousePositionY(float f)
 		{
 			this.virtualMousePosition = new Vector3(this.virtualMousePosition.x, f, this.virtualMousePosition.z);
 		}
 
-		// Token: 0x0600226E RID: 8814 RVA: 0x001F1256 File Offset: 0x001EF456
+		// Token: 0x0600227E RID: 8830 RVA: 0x001F2AC6 File Offset: 0x001F0CC6
 		public void SetVirtualMousePositionZ(float f)
 		{
 			this.virtualMousePosition = new Vector3(this.virtualMousePosition.x, this.virtualMousePosition.y, f);
 		}
 
-		// Token: 0x0600226F RID: 8815
+		// Token: 0x0600227F RID: 8831
 		public abstract float GetAxis(string name, bool raw);
 
-		// Token: 0x06002270 RID: 8816
+		// Token: 0x06002280 RID: 8832
 		public abstract bool GetButton(string name);
 
-		// Token: 0x06002271 RID: 8817
+		// Token: 0x06002281 RID: 8833
 		public abstract bool GetButtonDown(string name);
 
-		// Token: 0x06002272 RID: 8818
+		// Token: 0x06002282 RID: 8834
 		public abstract bool GetButtonUp(string name);
 
-		// Token: 0x06002273 RID: 8819
+		// Token: 0x06002283 RID: 8835
 		public abstract void SetButtonDown(string name);
 
-		// Token: 0x06002274 RID: 8820
+		// Token: 0x06002284 RID: 8836
 		public abstract void SetButtonUp(string name);
 
-		// Token: 0x06002275 RID: 8821
+		// Token: 0x06002285 RID: 8837
 		public abstract void SetAxisPositive(string name);
 
-		// Token: 0x06002276 RID: 8822
+		// Token: 0x06002286 RID: 8838
 		public abstract void SetAxisNegative(string name);
 
-		// Token: 0x06002277 RID: 8823
+		// Token: 0x06002287 RID: 8839
 		public abstract void SetAxisZero(string name);
 
-		// Token: 0x06002278 RID: 8824
+		// Token: 0x06002288 RID: 8840
 		public abstract void SetAxis(string name, float value);
 
-		// Token: 0x06002279 RID: 8825
+		// Token: 0x06002289 RID: 8841
 		public abstract Vector3 MousePosition();
 
-		// Token: 0x04004AD6 RID: 19158
+		// Token: 0x04004B08 RID: 19208
 		protected Dictionary<string, CrossPlatformInputManager.VirtualAxis> m_VirtualAxes = new Dictionary<string, CrossPlatformInputManager.VirtualAxis>();
 
-		// Token: 0x04004AD7 RID: 19159
+		// Token: 0x04004B09 RID: 19209
 		protected Dictionary<string, CrossPlatformInputManager.VirtualButton> m_VirtualButtons = new Dictionary<string, CrossPlatformInputManager.VirtualButton>();
 
-		// Token: 0x04004AD8 RID: 19160
+		// Token: 0x04004B0A RID: 19210
 		protected List<string> m_AlwaysUseVirtual = new List<string>();
 	}
 }

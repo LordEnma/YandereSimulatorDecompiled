@@ -283,31 +283,31 @@ public class UIKeyBinding : MonoBehaviour
 	[NonSerialized]
 	private bool mPress;
 
-	// Token: 0x020005D1 RID: 1489
+	// Token: 0x020005D6 RID: 1494
 	[DoNotObfuscateNGUI]
 	public enum Action
 	{
-		// Token: 0x04004DB8 RID: 19896
+		// Token: 0x04004DEA RID: 19946
 		PressAndClick,
-		// Token: 0x04004DB9 RID: 19897
+		// Token: 0x04004DEB RID: 19947
 		Select,
-		// Token: 0x04004DBA RID: 19898
+		// Token: 0x04004DEC RID: 19948
 		All
 	}
 
-	// Token: 0x020005D2 RID: 1490
+	// Token: 0x020005D7 RID: 1495
 	[DoNotObfuscateNGUI]
 	public enum Modifier
 	{
-		// Token: 0x04004DBC RID: 19900
+		// Token: 0x04004DEE RID: 19950
 		Any,
-		// Token: 0x04004DBD RID: 19901
+		// Token: 0x04004DEF RID: 19951
 		Shift,
-		// Token: 0x04004DBE RID: 19902
+		// Token: 0x04004DF0 RID: 19952
 		Ctrl,
-		// Token: 0x04004DBF RID: 19903
+		// Token: 0x04004DF1 RID: 19953
 		Alt,
-		// Token: 0x04004DC0 RID: 19904
+		// Token: 0x04004DF2 RID: 19954
 		None
 	}
 }

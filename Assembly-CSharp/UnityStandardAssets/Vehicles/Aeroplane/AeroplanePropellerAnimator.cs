@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Aeroplane
 {
-	// Token: 0x02000536 RID: 1334
+	// Token: 0x0200053B RID: 1339
 	public class AeroplanePropellerAnimator : MonoBehaviour
 	{
-		// Token: 0x0600220C RID: 8716 RVA: 0x001F009C File Offset: 0x001EE29C
+		// Token: 0x0600221C RID: 8732 RVA: 0x001F190C File Offset: 0x001EFB0C
 		private void Awake()
 		{
 			this.m_Plane = base.GetComponent<AeroplaneController>();
@@ -15,7 +15,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_PropellorBlur.parent = this.m_PropellorModel;
 		}
 
-		// Token: 0x0600220D RID: 8717 RVA: 0x001F00E8 File Offset: 0x001EE2E8
+		// Token: 0x0600221D RID: 8733 RVA: 0x001F1958 File Offset: 0x001EFB58
 		private void Update()
 		{
 			this.m_PropellorModel.Rotate(0f, this.m_MaxRpm * this.m_Plane.Throttle * Time.deltaTime * 60f, 0f);
@@ -39,45 +39,45 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			}
 		}
 
-		// Token: 0x04004A8A RID: 19082
+		// Token: 0x04004ABC RID: 19132
 		[SerializeField]
 		private Transform m_PropellorModel;
 
-		// Token: 0x04004A8B RID: 19083
+		// Token: 0x04004ABD RID: 19133
 		[SerializeField]
 		private Transform m_PropellorBlur;
 
-		// Token: 0x04004A8C RID: 19084
+		// Token: 0x04004ABE RID: 19134
 		[SerializeField]
 		private Texture2D[] m_PropellorBlurTextures;
 
-		// Token: 0x04004A8D RID: 19085
+		// Token: 0x04004ABF RID: 19135
 		[SerializeField]
 		[Range(0f, 1f)]
 		private float m_ThrottleBlurStart = 0.25f;
 
-		// Token: 0x04004A8E RID: 19086
+		// Token: 0x04004AC0 RID: 19136
 		[SerializeField]
 		[Range(0f, 1f)]
 		private float m_ThrottleBlurEnd = 0.5f;
 
-		// Token: 0x04004A8F RID: 19087
+		// Token: 0x04004AC1 RID: 19137
 		[SerializeField]
 		private float m_MaxRpm = 2000f;
 
-		// Token: 0x04004A90 RID: 19088
+		// Token: 0x04004AC2 RID: 19138
 		private AeroplaneController m_Plane;
 
-		// Token: 0x04004A91 RID: 19089
+		// Token: 0x04004AC3 RID: 19139
 		private int m_PropellorBlurState = -1;
 
-		// Token: 0x04004A92 RID: 19090
+		// Token: 0x04004AC4 RID: 19140
 		private const float k_RpmToDps = 60f;
 
-		// Token: 0x04004A93 RID: 19091
+		// Token: 0x04004AC5 RID: 19141
 		private Renderer m_PropellorModelRenderer;
 
-		// Token: 0x04004A94 RID: 19092
+		// Token: 0x04004AC6 RID: 19142
 		private Renderer m_PropellorBlurRenderer;
 	}
 }

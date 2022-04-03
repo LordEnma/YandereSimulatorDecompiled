@@ -157,45 +157,45 @@ public class AsylumIntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A95 RID: 2709
+	// Token: 0x04000A96 RID: 2710
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04000A96 RID: 2710
+	// Token: 0x04000A97 RID: 2711
 	public StalkerYandereScript Yandere;
 
-	// Token: 0x04000A97 RID: 2711
+	// Token: 0x04000A98 RID: 2712
 	public RPG_Camera RPGCamera;
 
-	// Token: 0x04000A98 RID: 2712
+	// Token: 0x04000A99 RID: 2713
 	public Renderer Darkness;
 
-	// Token: 0x04000A99 RID: 2713
+	// Token: 0x04000A9A RID: 2714
 	public Vector3 Rotation;
 
-	// Token: 0x04000A9A RID: 2714
+	// Token: 0x04000A9B RID: 2715
 	public float Alpha;
 
-	// Token: 0x04000A9B RID: 2715
+	// Token: 0x04000A9C RID: 2716
 	public float Speed;
 
-	// Token: 0x04000A9C RID: 2716
+	// Token: 0x04000A9D RID: 2717
 	public float Timer;
 
-	// Token: 0x04000A9D RID: 2717
+	// Token: 0x04000A9E RID: 2718
 	public float DOF;
 
-	// Token: 0x04000A9E RID: 2718
+	// Token: 0x04000A9F RID: 2719
 	public int Phase;
 
-	// Token: 0x04000A9F RID: 2719
+	// Token: 0x04000AA0 RID: 2720
 	public GameObject[] Bags;
 
-	// Token: 0x04000AA0 RID: 2720
+	// Token: 0x04000AA1 RID: 2721
 	public UIPanel SkipPanel;
 
-	// Token: 0x04000AA1 RID: 2721
+	// Token: 0x04000AA2 RID: 2722
 	public UISprite SkipCircle;
 
-	// Token: 0x04000AA2 RID: 2722
+	// Token: 0x04000AA3 RID: 2723
 	private float SkipTimer;
 }

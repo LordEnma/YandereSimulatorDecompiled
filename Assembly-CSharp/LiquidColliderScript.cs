@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000352 RID: 850
+// Token: 0x02000353 RID: 851
 public class LiquidColliderScript : MonoBehaviour
 {
-	// Token: 0x0600196A RID: 6506 RVA: 0x000FF754 File Offset: 0x000FD954
+	// Token: 0x06001970 RID: 6512 RVA: 0x000FFDE0 File Offset: 0x000FDFE0
 	private void Start()
 	{
 		if (this.Bucket)
@@ -13,7 +13,7 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600196B RID: 6507 RVA: 0x000FF778 File Offset: 0x000FD978
+	// Token: 0x06001971 RID: 6513 RVA: 0x000FFE04 File Offset: 0x000FE004
 	private void Update()
 	{
 		if (!this.Static)
@@ -40,7 +40,7 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600196C RID: 6508 RVA: 0x000FF8F8 File Offset: 0x000FDAF8
+	// Token: 0x06001972 RID: 6514 RVA: 0x000FFF84 File Offset: 0x000FE184
 	private void OnTriggerEnter(Collider other)
 	{
 		if (!this.AlreadyDoused && other.gameObject.layer == 9)
@@ -48,7 +48,13 @@ public class LiquidColliderScript : MonoBehaviour
 			StudentScript component = other.gameObject.GetComponent<StudentScript>();
 			if (component != null)
 			{
-				if (!component.BeenSplashed && component.StudentID > 1 && component.StudentID != 10 && !component.Teacher && component.Club != ClubType.Council && !component.Fleeing && component.CurrentAction != StudentActionType.Sunbathe && !component.GasWarned)
+				if (component.Wet || component.Fleeing || component.SenpaiWitnessingRivalDie)
+				{
+					component.Yandere.NotificationManager.CustomText = "Didn't care.";
+					component.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					return;
+				}
+				if (!component.BeenSplashed && component.StudentID > 1 && component.StudentID != 10 && !component.Teacher && component.Club != ClubType.Council && !component.GasWarned && component.CurrentAction != StudentActionType.Sunbathe)
 				{
 					AudioSource.PlayClipAtPoint(this.SplashSound, base.transform.position);
 					UnityEngine.Object.Instantiate<GameObject>(this.Splash, new Vector3(base.transform.position.x, 1.5f, base.transform.position.z), Quaternion.identity);
@@ -69,79 +75,76 @@ public class LiquidColliderScript : MonoBehaviour
 					UnityEngine.Object.Destroy(base.gameObject);
 					return;
 				}
-				if (!component.Wet && !component.Fleeing)
+				Debug.Log(component.Name + " just dodged some liquid.");
+				if (component.Investigating)
 				{
-					Debug.Log(component.Name + " just dodged some liquid.");
-					if (component.Investigating)
-					{
-						component.StopInvestigating();
-					}
-					if (component.ReturningMisplacedWeapon)
-					{
-						component.DropMisplacedWeapon();
-					}
-					if (component.EatingSnack)
-					{
-						Debug.Log("This student was eating a snack at the point in time when they dodged the liquid, so they are forgetting about getting a drink.");
-						component.StopDrinking();
-						component.CurrentDestination = component.Destinations[component.Phase];
-						component.Pathfinding.target = component.Destinations[component.Phase];
-					}
-					component.CharacterAnimation.CrossFade(component.DodgeAnim);
-					component.Pathfinding.canSearch = false;
-					component.Pathfinding.canMove = false;
-					component.SentToLocker = false;
-					component.Routine = false;
-					component.DodgeSpeed = 2f;
-					component.Dodging = true;
-					if (component.Following)
-					{
-						component.Hearts.emission.enabled = false;
-						component.FollowCountdown.gameObject.SetActive(false);
-						component.Yandere.Follower = null;
-						component.Yandere.Followers--;
-						component.Following = false;
-						component.CurrentDestination = component.Destinations[component.Phase];
-						component.Pathfinding.target = component.Destinations[component.Phase];
-						component.Pathfinding.speed = 1f;
-					}
-					component.Yandere.NotificationManager.CustomText = "Anticipated the trap!";
-					component.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					component.StopInvestigating();
 				}
+				if (component.ReturningMisplacedWeapon)
+				{
+					component.DropMisplacedWeapon();
+				}
+				if (component.EatingSnack)
+				{
+					Debug.Log("This student was eating a snack at the point in time when they dodged the liquid, so they are forgetting about getting a drink.");
+					component.StopDrinking();
+					component.CurrentDestination = component.Destinations[component.Phase];
+					component.Pathfinding.target = component.Destinations[component.Phase];
+				}
+				component.CharacterAnimation.CrossFade(component.DodgeAnim);
+				component.Pathfinding.canSearch = false;
+				component.Pathfinding.canMove = false;
+				component.SentToLocker = false;
+				component.Routine = false;
+				component.DodgeSpeed = 2f;
+				component.Dodging = true;
+				if (component.Following)
+				{
+					component.Hearts.emission.enabled = false;
+					component.FollowCountdown.gameObject.SetActive(false);
+					component.Yandere.Follower = null;
+					component.Yandere.Followers--;
+					component.Following = false;
+					component.CurrentDestination = component.Destinations[component.Phase];
+					component.Pathfinding.target = component.Destinations[component.Phase];
+					component.Pathfinding.speed = 1f;
+				}
+				component.Yandere.NotificationManager.CustomText = "Anticipated the trap!";
+				component.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 			}
 		}
 	}
 
-	// Token: 0x04002854 RID: 10324
+	// Token: 0x04002867 RID: 10343
 	private GameObject NewPool;
 
-	// Token: 0x04002855 RID: 10325
+	// Token: 0x04002868 RID: 10344
 	public AudioClip SplashSound;
 
-	// Token: 0x04002856 RID: 10326
+	// Token: 0x04002869 RID: 10345
 	public GameObject GroundSplash;
 
-	// Token: 0x04002857 RID: 10327
+	// Token: 0x0400286A RID: 10346
 	public GameObject Splash;
 
-	// Token: 0x04002858 RID: 10328
+	// Token: 0x0400286B RID: 10347
 	public GameObject Pool;
 
-	// Token: 0x04002859 RID: 10329
+	// Token: 0x0400286C RID: 10348
 	public bool AlreadyDoused;
 
-	// Token: 0x0400285A RID: 10330
+	// Token: 0x0400286D RID: 10349
 	public bool Static;
 
-	// Token: 0x0400285B RID: 10331
+	// Token: 0x0400286E RID: 10350
 	public bool Bucket;
 
-	// Token: 0x0400285C RID: 10332
+	// Token: 0x0400286F RID: 10351
 	public bool Brown;
 
-	// Token: 0x0400285D RID: 10333
+	// Token: 0x04002870 RID: 10352
 	public bool Blood;
 
-	// Token: 0x0400285E RID: 10334
+	// Token: 0x04002871 RID: 10353
 	public bool Gas;
 }

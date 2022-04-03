@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000393 RID: 915
+// Token: 0x02000395 RID: 917
 public class ParticleDeathScript : MonoBehaviour
 {
-	// Token: 0x06001A5E RID: 6750 RVA: 0x001184D8 File Offset: 0x001166D8
+	// Token: 0x06001A65 RID: 6757 RVA: 0x00118B38 File Offset: 0x00116D38
 	private void LateUpdate()
 	{
 		if (this.Particles.isPlaying && this.Particles.particleCount == 0)
@@ -13,6 +13,6 @@ public class ParticleDeathScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B4D RID: 11085
+	// Token: 0x04002B62 RID: 11106
 	public ParticleSystem Particles;
 }

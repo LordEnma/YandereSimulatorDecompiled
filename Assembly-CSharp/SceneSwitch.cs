@@ -2,15 +2,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020004F9 RID: 1273
+// Token: 0x020004FE RID: 1278
 public class SceneSwitch : MonoBehaviour
 {
-	// Token: 0x06002114 RID: 8468 RVA: 0x001E8C23 File Offset: 0x001E6E23
+	// Token: 0x06002124 RID: 8484 RVA: 0x001EA495 File Offset: 0x001E8695
 	private void Start()
 	{
 	}
 
-	// Token: 0x06002115 RID: 8469 RVA: 0x001E8C28 File Offset: 0x001E6E28
+	// Token: 0x06002125 RID: 8485 RVA: 0x001EA498 File Offset: 0x001E8698
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1))

@@ -12,6 +12,6 @@ public class BloodyScreamScript : MonoBehaviour
 		component.Play();
 	}
 
-	// Token: 0x04000BC3 RID: 3011
+	// Token: 0x04000BC4 RID: 3012
 	public AudioClip[] Screams;
 }

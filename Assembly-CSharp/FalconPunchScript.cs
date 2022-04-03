@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002C5 RID: 709
 public class FalconPunchScript : MonoBehaviour
 {
-	// Token: 0x06001492 RID: 5266 RVA: 0x000C9583 File Offset: 0x000C7783
+	// Token: 0x06001493 RID: 5267 RVA: 0x000C96B7 File Offset: 0x000C78B7
 	private void Start()
 	{
 		if (this.Mecha)
@@ -13,7 +13,7 @@ public class FalconPunchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001493 RID: 5267 RVA: 0x000C95B8 File Offset: 0x000C77B8
+	// Token: 0x06001494 RID: 5268 RVA: 0x000C96EC File Offset: 0x000C78EC
 	private void Update()
 	{
 		if (!this.IgnoreTime)
@@ -30,7 +30,7 @@ public class FalconPunchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001494 RID: 5268 RVA: 0x000C9624 File Offset: 0x000C7824
+	// Token: 0x06001495 RID: 5269 RVA: 0x000C9758 File Offset: 0x000C7958
 	private void OnTriggerEnter(Collider other)
 	{
 		Debug.Log("A punch collided with something.");
@@ -89,42 +89,42 @@ public class FalconPunchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001FFB RID: 8187
+	// Token: 0x04001FFE RID: 8190
 	public GameObject FalconExplosion;
 
-	// Token: 0x04001FFC RID: 8188
+	// Token: 0x04001FFF RID: 8191
 	public Rigidbody MyRigidbody;
 
-	// Token: 0x04001FFD RID: 8189
+	// Token: 0x04002000 RID: 8192
 	public Collider MyCollider;
 
-	// Token: 0x04001FFE RID: 8190
+	// Token: 0x04002001 RID: 8193
 	public float Strength = 100f;
 
-	// Token: 0x04001FFF RID: 8191
+	// Token: 0x04002002 RID: 8194
 	public float Speed = 100f;
 
-	// Token: 0x04002000 RID: 8192
+	// Token: 0x04002003 RID: 8195
 	public bool Destructive;
 
-	// Token: 0x04002001 RID: 8193
+	// Token: 0x04002004 RID: 8196
 	public bool IgnoreTime;
 
-	// Token: 0x04002002 RID: 8194
+	// Token: 0x04002005 RID: 8197
 	public bool Shipgirl;
 
-	// Token: 0x04002003 RID: 8195
+	// Token: 0x04002006 RID: 8198
 	public bool Bancho;
 
-	// Token: 0x04002004 RID: 8196
+	// Token: 0x04002007 RID: 8199
 	public bool Falcon;
 
-	// Token: 0x04002005 RID: 8197
+	// Token: 0x04002008 RID: 8200
 	public bool Mecha;
 
-	// Token: 0x04002006 RID: 8198
+	// Token: 0x04002009 RID: 8201
 	public float TimeLimit = 0.5f;
 
-	// Token: 0x04002007 RID: 8199
+	// Token: 0x0400200A RID: 8202
 	public float Timer;
 }

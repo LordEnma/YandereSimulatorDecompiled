@@ -113,25 +113,25 @@ public class UIPlaySound : MonoBehaviour
 	// Token: 0x040003C2 RID: 962
 	private bool mIsOver;
 
-	// Token: 0x020005D4 RID: 1492
+	// Token: 0x020005D9 RID: 1497
 	[DoNotObfuscateNGUI]
 	public enum Trigger
 	{
-		// Token: 0x04004DC7 RID: 19911
+		// Token: 0x04004DF9 RID: 19961
 		OnClick,
-		// Token: 0x04004DC8 RID: 19912
+		// Token: 0x04004DFA RID: 19962
 		OnMouseOver,
-		// Token: 0x04004DC9 RID: 19913
+		// Token: 0x04004DFB RID: 19963
 		OnMouseOut,
-		// Token: 0x04004DCA RID: 19914
+		// Token: 0x04004DFC RID: 19964
 		OnPress,
-		// Token: 0x04004DCB RID: 19915
+		// Token: 0x04004DFD RID: 19965
 		OnRelease,
-		// Token: 0x04004DCC RID: 19916
+		// Token: 0x04004DFE RID: 19966
 		Custom,
-		// Token: 0x04004DCD RID: 19917
+		// Token: 0x04004DFF RID: 19967
 		OnEnable,
-		// Token: 0x04004DCE RID: 19918
+		// Token: 0x04004E00 RID: 19968
 		OnDisable
 	}
 }

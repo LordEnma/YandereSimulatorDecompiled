@@ -338,17 +338,17 @@ public class UIButtonColor : UIWidgetContainer
 	[NonSerialized]
 	protected UIButtonColor.State mState;
 
-	// Token: 0x020005C9 RID: 1481
+	// Token: 0x020005CE RID: 1486
 	[DoNotObfuscateNGUI]
 	public enum State
 	{
-		// Token: 0x04004D99 RID: 19865
+		// Token: 0x04004DCB RID: 19915
 		Normal,
-		// Token: 0x04004D9A RID: 19866
+		// Token: 0x04004DCC RID: 19916
 		Hover,
-		// Token: 0x04004D9B RID: 19867
+		// Token: 0x04004DCD RID: 19917
 		Pressed,
-		// Token: 0x04004D9C RID: 19868
+		// Token: 0x04004DCE RID: 19918
 		Disabled
 	}
 }

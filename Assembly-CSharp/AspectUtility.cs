@@ -133,15 +133,15 @@ public class AspectUtility : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A91 RID: 2705
+	// Token: 0x04000A92 RID: 2706
 	public float _wantedAspectRatio = 1.777778f;
 
-	// Token: 0x04000A92 RID: 2706
+	// Token: 0x04000A93 RID: 2707
 	private static float wantedAspectRatio;
 
-	// Token: 0x04000A93 RID: 2707
+	// Token: 0x04000A94 RID: 2708
 	private static Camera cam;
 
-	// Token: 0x04000A94 RID: 2708
+	// Token: 0x04000A95 RID: 2709
 	private static Camera backgroundCam;
 }

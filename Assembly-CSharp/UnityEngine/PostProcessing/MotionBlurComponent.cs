@@ -4,11 +4,11 @@ using UnityEngine.Rendering;
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000563 RID: 1379
+	// Token: 0x02000568 RID: 1384
 	public sealed class MotionBlurComponent : PostProcessingComponentCommandBuffer<MotionBlurModel>
 	{
 		// Token: 0x170004F9 RID: 1273
-		// (get) Token: 0x06002326 RID: 8998 RVA: 0x001F5BE1 File Offset: 0x001F3DE1
+		// (get) Token: 0x06002336 RID: 9014 RVA: 0x001F7451 File Offset: 0x001F5651
 		public MotionBlurComponent.ReconstructionFilter reconstructionFilter
 		{
 			get
@@ -22,7 +22,7 @@ namespace UnityEngine.PostProcessing
 		}
 
 		// Token: 0x170004FA RID: 1274
-		// (get) Token: 0x06002327 RID: 8999 RVA: 0x001F5BFC File Offset: 0x001F3DFC
+		// (get) Token: 0x06002337 RID: 9015 RVA: 0x001F746C File Offset: 0x001F566C
 		public MotionBlurComponent.FrameBlendingFilter frameBlendingFilter
 		{
 			get
@@ -36,7 +36,7 @@ namespace UnityEngine.PostProcessing
 		}
 
 		// Token: 0x170004FB RID: 1275
-		// (get) Token: 0x06002328 RID: 9000 RVA: 0x001F5C18 File Offset: 0x001F3E18
+		// (get) Token: 0x06002338 RID: 9016 RVA: 0x001F7488 File Offset: 0x001F5688
 		public override bool active
 		{
 			get
@@ -46,13 +46,13 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002329 RID: 9001 RVA: 0x001F5C7D File Offset: 0x001F3E7D
+		// Token: 0x06002339 RID: 9017 RVA: 0x001F74ED File Offset: 0x001F56ED
 		public override string GetName()
 		{
 			return "Motion Blur";
 		}
 
-		// Token: 0x0600232A RID: 9002 RVA: 0x001F5C84 File Offset: 0x001F3E84
+		// Token: 0x0600233A RID: 9018 RVA: 0x001F74F4 File Offset: 0x001F56F4
 		public void ResetHistory()
 		{
 			if (this.m_FrameBlendingFilter != null)
@@ -62,25 +62,25 @@ namespace UnityEngine.PostProcessing
 			this.m_FrameBlendingFilter = null;
 		}
 
-		// Token: 0x0600232B RID: 9003 RVA: 0x001F5CA0 File Offset: 0x001F3EA0
+		// Token: 0x0600233B RID: 9019 RVA: 0x001F7510 File Offset: 0x001F5710
 		public override DepthTextureMode GetCameraFlags()
 		{
 			return DepthTextureMode.Depth | DepthTextureMode.MotionVectors;
 		}
 
-		// Token: 0x0600232C RID: 9004 RVA: 0x001F5CA3 File Offset: 0x001F3EA3
+		// Token: 0x0600233C RID: 9020 RVA: 0x001F7513 File Offset: 0x001F5713
 		public override CameraEvent GetCameraEvent()
 		{
 			return CameraEvent.BeforeImageEffects;
 		}
 
-		// Token: 0x0600232D RID: 9005 RVA: 0x001F5CA7 File Offset: 0x001F3EA7
+		// Token: 0x0600233D RID: 9021 RVA: 0x001F7517 File Offset: 0x001F5717
 		public override void OnEnable()
 		{
 			this.m_FirstFrame = true;
 		}
 
-		// Token: 0x0600232E RID: 9006 RVA: 0x001F5CB0 File Offset: 0x001F3EB0
+		// Token: 0x0600233E RID: 9022 RVA: 0x001F7520 File Offset: 0x001F5720
 		public override void PopulateCommandBuffer(CommandBuffer cb)
 		{
 			if (this.m_FirstFrame)
@@ -116,7 +116,7 @@ namespace UnityEngine.PostProcessing
 			cb.ReleaseTemporaryRT(tempRT);
 		}
 
-		// Token: 0x0600232F RID: 9007 RVA: 0x001F5EA7 File Offset: 0x001F40A7
+		// Token: 0x0600233F RID: 9023 RVA: 0x001F7717 File Offset: 0x001F5917
 		public override void OnDisable()
 		{
 			if (this.m_FrameBlendingFilter != null)
@@ -125,130 +125,130 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x04004B75 RID: 19317
+		// Token: 0x04004BA7 RID: 19367
 		private MotionBlurComponent.ReconstructionFilter m_ReconstructionFilter;
 
-		// Token: 0x04004B76 RID: 19318
+		// Token: 0x04004BA8 RID: 19368
 		private MotionBlurComponent.FrameBlendingFilter m_FrameBlendingFilter;
 
-		// Token: 0x04004B77 RID: 19319
+		// Token: 0x04004BA9 RID: 19369
 		private bool m_FirstFrame = true;
 
-		// Token: 0x020006A4 RID: 1700
+		// Token: 0x020006A9 RID: 1705
 		private static class Uniforms
 		{
-			// Token: 0x040050EC RID: 20716
+			// Token: 0x0400511E RID: 20766
 			internal static readonly int _VelocityScale = Shader.PropertyToID("_VelocityScale");
 
-			// Token: 0x040050ED RID: 20717
+			// Token: 0x0400511F RID: 20767
 			internal static readonly int _MaxBlurRadius = Shader.PropertyToID("_MaxBlurRadius");
 
-			// Token: 0x040050EE RID: 20718
+			// Token: 0x04005120 RID: 20768
 			internal static readonly int _RcpMaxBlurRadius = Shader.PropertyToID("_RcpMaxBlurRadius");
 
-			// Token: 0x040050EF RID: 20719
+			// Token: 0x04005121 RID: 20769
 			internal static readonly int _VelocityTex = Shader.PropertyToID("_VelocityTex");
 
-			// Token: 0x040050F0 RID: 20720
+			// Token: 0x04005122 RID: 20770
 			internal static readonly int _MainTex = Shader.PropertyToID("_MainTex");
 
-			// Token: 0x040050F1 RID: 20721
+			// Token: 0x04005123 RID: 20771
 			internal static readonly int _Tile2RT = Shader.PropertyToID("_Tile2RT");
 
-			// Token: 0x040050F2 RID: 20722
+			// Token: 0x04005124 RID: 20772
 			internal static readonly int _Tile4RT = Shader.PropertyToID("_Tile4RT");
 
-			// Token: 0x040050F3 RID: 20723
+			// Token: 0x04005125 RID: 20773
 			internal static readonly int _Tile8RT = Shader.PropertyToID("_Tile8RT");
 
-			// Token: 0x040050F4 RID: 20724
+			// Token: 0x04005126 RID: 20774
 			internal static readonly int _TileMaxOffs = Shader.PropertyToID("_TileMaxOffs");
 
-			// Token: 0x040050F5 RID: 20725
+			// Token: 0x04005127 RID: 20775
 			internal static readonly int _TileMaxLoop = Shader.PropertyToID("_TileMaxLoop");
 
-			// Token: 0x040050F6 RID: 20726
+			// Token: 0x04005128 RID: 20776
 			internal static readonly int _TileVRT = Shader.PropertyToID("_TileVRT");
 
-			// Token: 0x040050F7 RID: 20727
+			// Token: 0x04005129 RID: 20777
 			internal static readonly int _NeighborMaxTex = Shader.PropertyToID("_NeighborMaxTex");
 
-			// Token: 0x040050F8 RID: 20728
+			// Token: 0x0400512A RID: 20778
 			internal static readonly int _LoopCount = Shader.PropertyToID("_LoopCount");
 
-			// Token: 0x040050F9 RID: 20729
+			// Token: 0x0400512B RID: 20779
 			internal static readonly int _TempRT = Shader.PropertyToID("_TempRT");
 
-			// Token: 0x040050FA RID: 20730
+			// Token: 0x0400512C RID: 20780
 			internal static readonly int _History1LumaTex = Shader.PropertyToID("_History1LumaTex");
 
-			// Token: 0x040050FB RID: 20731
+			// Token: 0x0400512D RID: 20781
 			internal static readonly int _History2LumaTex = Shader.PropertyToID("_History2LumaTex");
 
-			// Token: 0x040050FC RID: 20732
+			// Token: 0x0400512E RID: 20782
 			internal static readonly int _History3LumaTex = Shader.PropertyToID("_History3LumaTex");
 
-			// Token: 0x040050FD RID: 20733
+			// Token: 0x0400512F RID: 20783
 			internal static readonly int _History4LumaTex = Shader.PropertyToID("_History4LumaTex");
 
-			// Token: 0x040050FE RID: 20734
+			// Token: 0x04005130 RID: 20784
 			internal static readonly int _History1ChromaTex = Shader.PropertyToID("_History1ChromaTex");
 
-			// Token: 0x040050FF RID: 20735
+			// Token: 0x04005131 RID: 20785
 			internal static readonly int _History2ChromaTex = Shader.PropertyToID("_History2ChromaTex");
 
-			// Token: 0x04005100 RID: 20736
+			// Token: 0x04005132 RID: 20786
 			internal static readonly int _History3ChromaTex = Shader.PropertyToID("_History3ChromaTex");
 
-			// Token: 0x04005101 RID: 20737
+			// Token: 0x04005133 RID: 20787
 			internal static readonly int _History4ChromaTex = Shader.PropertyToID("_History4ChromaTex");
 
-			// Token: 0x04005102 RID: 20738
+			// Token: 0x04005134 RID: 20788
 			internal static readonly int _History1Weight = Shader.PropertyToID("_History1Weight");
 
-			// Token: 0x04005103 RID: 20739
+			// Token: 0x04005135 RID: 20789
 			internal static readonly int _History2Weight = Shader.PropertyToID("_History2Weight");
 
-			// Token: 0x04005104 RID: 20740
+			// Token: 0x04005136 RID: 20790
 			internal static readonly int _History3Weight = Shader.PropertyToID("_History3Weight");
 
-			// Token: 0x04005105 RID: 20741
+			// Token: 0x04005137 RID: 20791
 			internal static readonly int _History4Weight = Shader.PropertyToID("_History4Weight");
 		}
 
-		// Token: 0x020006A5 RID: 1701
+		// Token: 0x020006AA RID: 1706
 		private enum Pass
 		{
-			// Token: 0x04005107 RID: 20743
+			// Token: 0x04005139 RID: 20793
 			VelocitySetup,
-			// Token: 0x04005108 RID: 20744
+			// Token: 0x0400513A RID: 20794
 			TileMax1,
-			// Token: 0x04005109 RID: 20745
+			// Token: 0x0400513B RID: 20795
 			TileMax2,
-			// Token: 0x0400510A RID: 20746
+			// Token: 0x0400513C RID: 20796
 			TileMaxV,
-			// Token: 0x0400510B RID: 20747
+			// Token: 0x0400513D RID: 20797
 			NeighborMax,
-			// Token: 0x0400510C RID: 20748
+			// Token: 0x0400513E RID: 20798
 			Reconstruction,
-			// Token: 0x0400510D RID: 20749
+			// Token: 0x0400513F RID: 20799
 			FrameCompression,
-			// Token: 0x0400510E RID: 20750
+			// Token: 0x04005140 RID: 20800
 			FrameBlendingChroma,
-			// Token: 0x0400510F RID: 20751
+			// Token: 0x04005141 RID: 20801
 			FrameBlendingRaw
 		}
 
-		// Token: 0x020006A6 RID: 1702
+		// Token: 0x020006AB RID: 1707
 		public class ReconstructionFilter
 		{
-			// Token: 0x06002746 RID: 10054 RVA: 0x0020470B File Offset: 0x0020290B
+			// Token: 0x06002756 RID: 10070 RVA: 0x002060CB File Offset: 0x002042CB
 			public ReconstructionFilter()
 			{
 				this.CheckTextureFormatSupport();
 			}
 
-			// Token: 0x06002747 RID: 10055 RVA: 0x00204728 File Offset: 0x00202928
+			// Token: 0x06002757 RID: 10071 RVA: 0x002060E8 File Offset: 0x002042E8
 			private void CheckTextureFormatSupport()
 			{
 				if (!SystemInfo.SupportsRenderTextureFormat(this.m_PackedRTFormat))
@@ -257,13 +257,13 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x06002748 RID: 10056 RVA: 0x0020473E File Offset: 0x0020293E
+			// Token: 0x06002758 RID: 10072 RVA: 0x002060FE File Offset: 0x002042FE
 			public bool IsSupported()
 			{
 				return SystemInfo.supportsMotionVectors;
 			}
 
-			// Token: 0x06002749 RID: 10057 RVA: 0x00204748 File Offset: 0x00202948
+			// Token: 0x06002759 RID: 10073 RVA: 0x00206108 File Offset: 0x00204308
 			public void ProcessImage(PostProcessingContext context, CommandBuffer cb, ref MotionBlurModel.Settings settings, RenderTargetIdentifier source, RenderTargetIdentifier destination, Material material)
 			{
 				int num = (int)(5f * (float)context.height / 100f);
@@ -311,17 +311,17 @@ namespace UnityEngine.PostProcessing
 				cb.ReleaseTemporaryRT(neighborMaxTex);
 			}
 
-			// Token: 0x04005110 RID: 20752
+			// Token: 0x04005142 RID: 20802
 			private RenderTextureFormat m_VectorRTFormat = RenderTextureFormat.RGHalf;
 
-			// Token: 0x04005111 RID: 20753
+			// Token: 0x04005143 RID: 20803
 			private RenderTextureFormat m_PackedRTFormat = RenderTextureFormat.ARGB2101010;
 		}
 
-		// Token: 0x020006A7 RID: 1703
+		// Token: 0x020006AC RID: 1708
 		public class FrameBlendingFilter
 		{
-			// Token: 0x0600274A RID: 10058 RVA: 0x00204A2A File Offset: 0x00202C2A
+			// Token: 0x0600275A RID: 10074 RVA: 0x002063EA File Offset: 0x002045EA
 			public FrameBlendingFilter()
 			{
 				this.m_UseCompression = MotionBlurComponent.FrameBlendingFilter.CheckSupportCompression();
@@ -329,7 +329,7 @@ namespace UnityEngine.PostProcessing
 				this.m_FrameList = new MotionBlurComponent.FrameBlendingFilter.Frame[4];
 			}
 
-			// Token: 0x0600274B RID: 10059 RVA: 0x00204A54 File Offset: 0x00202C54
+			// Token: 0x0600275B RID: 10075 RVA: 0x00206414 File Offset: 0x00204614
 			public void Dispose()
 			{
 				foreach (MotionBlurComponent.FrameBlendingFilter.Frame frame in this.m_FrameList)
@@ -338,7 +338,7 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x0600274C RID: 10060 RVA: 0x00204A88 File Offset: 0x00202C88
+			// Token: 0x0600275C RID: 10076 RVA: 0x00206448 File Offset: 0x00204648
 			public void PushFrame(CommandBuffer cb, RenderTargetIdentifier source, int width, int height, Material material)
 			{
 				int frameCount = Time.frameCount;
@@ -358,7 +358,7 @@ namespace UnityEngine.PostProcessing
 				this.m_LastFrameCount = frameCount;
 			}
 
-			// Token: 0x0600274D RID: 10061 RVA: 0x00204AF8 File Offset: 0x00202CF8
+			// Token: 0x0600275D RID: 10077 RVA: 0x002064B8 File Offset: 0x002046B8
 			public void BlendFrames(CommandBuffer cb, float strength, RenderTargetIdentifier source, RenderTargetIdentifier destination, Material material)
 			{
 				float time = Time.time;
@@ -382,13 +382,13 @@ namespace UnityEngine.PostProcessing
 				cb.Blit(source, destination, material, this.m_UseCompression ? 7 : 8);
 			}
 
-			// Token: 0x0600274E RID: 10062 RVA: 0x00204C54 File Offset: 0x00202E54
+			// Token: 0x0600275E RID: 10078 RVA: 0x00206614 File Offset: 0x00204814
 			private static bool CheckSupportCompression()
 			{
 				return SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.R8) && SystemInfo.supportedRenderTargetCount > 1;
 			}
 
-			// Token: 0x0600274F RID: 10063 RVA: 0x00204C6C File Offset: 0x00202E6C
+			// Token: 0x0600275F RID: 10079 RVA: 0x0020662C File Offset: 0x0020482C
 			private static RenderTextureFormat GetPreferredRenderTextureFormat()
 			{
 				RenderTextureFormat[] array = new RenderTextureFormat[3];
@@ -403,29 +403,29 @@ namespace UnityEngine.PostProcessing
 				return RenderTextureFormat.Default;
 			}
 
-			// Token: 0x06002750 RID: 10064 RVA: 0x00204CA8 File Offset: 0x00202EA8
+			// Token: 0x06002760 RID: 10080 RVA: 0x00206668 File Offset: 0x00204868
 			private MotionBlurComponent.FrameBlendingFilter.Frame GetFrameRelative(int offset)
 			{
 				int num = (Time.frameCount + this.m_FrameList.Length + offset) % this.m_FrameList.Length;
 				return this.m_FrameList[num];
 			}
 
-			// Token: 0x04005112 RID: 20754
+			// Token: 0x04005144 RID: 20804
 			private bool m_UseCompression;
 
-			// Token: 0x04005113 RID: 20755
+			// Token: 0x04005145 RID: 20805
 			private RenderTextureFormat m_RawTextureFormat;
 
-			// Token: 0x04005114 RID: 20756
+			// Token: 0x04005146 RID: 20806
 			private MotionBlurComponent.FrameBlendingFilter.Frame[] m_FrameList;
 
-			// Token: 0x04005115 RID: 20757
+			// Token: 0x04005147 RID: 20807
 			private int m_LastFrameCount;
 
-			// Token: 0x020006F3 RID: 1779
+			// Token: 0x020006F8 RID: 1784
 			private struct Frame
 			{
-				// Token: 0x060027A8 RID: 10152 RVA: 0x00206A20 File Offset: 0x00204C20
+				// Token: 0x060027B8 RID: 10168 RVA: 0x002083E0 File Offset: 0x002065E0
 				public float CalculateWeight(float strength, float currentTime)
 				{
 					if (Mathf.Approximately(this.m_Time, 0f))
@@ -436,7 +436,7 @@ namespace UnityEngine.PostProcessing
 					return Mathf.Exp((this.m_Time - currentTime) * num);
 				}
 
-				// Token: 0x060027A9 RID: 10153 RVA: 0x00206A68 File Offset: 0x00204C68
+				// Token: 0x060027B9 RID: 10169 RVA: 0x00208428 File Offset: 0x00206628
 				public void Release()
 				{
 					if (this.lumaTexture != null)
@@ -451,7 +451,7 @@ namespace UnityEngine.PostProcessing
 					this.chromaTexture = null;
 				}
 
-				// Token: 0x060027AA RID: 10154 RVA: 0x00206AB8 File Offset: 0x00204CB8
+				// Token: 0x060027BA RID: 10170 RVA: 0x00208478 File Offset: 0x00206678
 				public void MakeRecord(CommandBuffer cb, RenderTargetIdentifier source, int width, int height, Material material)
 				{
 					this.Release();
@@ -471,7 +471,7 @@ namespace UnityEngine.PostProcessing
 					this.m_Time = Time.time;
 				}
 
-				// Token: 0x060027AB RID: 10155 RVA: 0x00206B8C File Offset: 0x00204D8C
+				// Token: 0x060027BB RID: 10171 RVA: 0x0020854C File Offset: 0x0020674C
 				public void MakeRecordRaw(CommandBuffer cb, RenderTargetIdentifier source, int width, int height, RenderTextureFormat format)
 				{
 					this.Release();
@@ -482,16 +482,16 @@ namespace UnityEngine.PostProcessing
 					this.m_Time = Time.time;
 				}
 
-				// Token: 0x0400527C RID: 21116
+				// Token: 0x040052AE RID: 21166
 				public RenderTexture lumaTexture;
 
-				// Token: 0x0400527D RID: 21117
+				// Token: 0x040052AF RID: 21167
 				public RenderTexture chromaTexture;
 
-				// Token: 0x0400527E RID: 21118
+				// Token: 0x040052B0 RID: 21168
 				private float m_Time;
 
-				// Token: 0x0400527F RID: 21119
+				// Token: 0x040052B1 RID: 21169
 				private RenderTargetIdentifier[] m_MRT;
 			}
 		}

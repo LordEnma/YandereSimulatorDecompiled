@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004C9 RID: 1225
+// Token: 0x020004CD RID: 1229
 public class YakuzaMenuScript : MonoBehaviour
 {
-	// Token: 0x06002008 RID: 8200 RVA: 0x001C714C File Offset: 0x001C534C
+	// Token: 0x06002015 RID: 8213 RVA: 0x001C88D4 File Offset: 0x001C6AD4
 	private void Start()
 	{
 		this.UpdateMoneyLabel();
@@ -94,7 +94,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.ItemPrice[5] = DateGlobals.Week * 1000;
 	}
 
-	// Token: 0x06002009 RID: 8201 RVA: 0x001C762C File Offset: 0x001C582C
+	// Token: 0x06002016 RID: 8214 RVA: 0x001C8DB4 File Offset: 0x001C6FB4
 	private void Update()
 	{
 		if (this.Show)
@@ -703,7 +703,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600200A RID: 8202 RVA: 0x001C9000 File Offset: 0x001C7200
+	// Token: 0x06002017 RID: 8215 RVA: 0x001CA788 File Offset: 0x001C8988
 	private void UpdateBullet()
 	{
 		if (this.Selected > this.Limit)
@@ -727,7 +727,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600200B RID: 8203 RVA: 0x001C9110 File Offset: 0x001C7310
+	// Token: 0x06002018 RID: 8216 RVA: 0x001CA898 File Offset: 0x001C8A98
 	private void UpdateCrosshair()
 	{
 		if (this.Row > 2)
@@ -750,7 +750,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.TargetSelected = this.Column + (this.Row - 1) * 5;
 	}
 
-	// Token: 0x0600200C RID: 8204 RVA: 0x001C91B0 File Offset: 0x001C73B0
+	// Token: 0x06002019 RID: 8217 RVA: 0x001CA938 File Offset: 0x001C8B38
 	private void UpdateItem()
 	{
 		if (this.ItemSelected > this.ItemLimit)
@@ -829,7 +829,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600200D RID: 8205 RVA: 0x001C95A0 File Offset: 0x001C77A0
+	// Token: 0x0600201A RID: 8218 RVA: 0x001CAD28 File Offset: 0x001C8F28
 	private void UpdateRansomPortraits()
 	{
 		for (int i = 1; i < this.RansomIDs.Length; i++)
@@ -841,7 +841,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600200E RID: 8206 RVA: 0x001C95FC File Offset: 0x001C77FC
+	// Token: 0x0600201B RID: 8219 RVA: 0x001CAD84 File Offset: 0x001C8F84
 	private void Quit()
 	{
 		this.Yandere.RPGCamera.enabled = true;
@@ -856,7 +856,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.HomeClock.UpdateMoneyLabel();
 	}
 
-	// Token: 0x0600200F RID: 8207 RVA: 0x001C9680 File Offset: 0x001C7880
+	// Token: 0x0600201C RID: 8220 RVA: 0x001CAE08 File Offset: 0x001C9008
 	private void StartCutscene()
 	{
 		this.Yandere.MyAnimation.CrossFade(this.Yandere.IdleAnim);
@@ -877,7 +877,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.PromptBar.Show = false;
 	}
 
-	// Token: 0x06002010 RID: 8208 RVA: 0x001C97E4 File Offset: 0x001C79E4
+	// Token: 0x0600201D RID: 8221 RVA: 0x001CAF6C File Offset: 0x001C916C
 	private void SummonContrabandMenu()
 	{
 		this.PromptBar.ClearButtons();
@@ -897,7 +897,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.Menu = 3;
 	}
 
-	// Token: 0x06002011 RID: 8209 RVA: 0x001C98D4 File Offset: 0x001C7AD4
+	// Token: 0x0600201E RID: 8222 RVA: 0x001CB05C File Offset: 0x001C925C
 	private void SummonAssassinationMenu()
 	{
 		this.PromptBar.ClearButtons();
@@ -918,7 +918,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.Menu = 2;
 	}
 
-	// Token: 0x06002012 RID: 8210 RVA: 0x001C99DC File Offset: 0x001C7BDC
+	// Token: 0x0600201F RID: 8223 RVA: 0x001CB164 File Offset: 0x001C9364
 	private void SummonServicesMenu()
 	{
 		this.PromptBar.ClearButtons();
@@ -938,7 +938,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.Menu = 1;
 	}
 
-	// Token: 0x06002013 RID: 8211 RVA: 0x001C9ACC File Offset: 0x001C7CCC
+	// Token: 0x06002020 RID: 8224 RVA: 0x001CB254 File Offset: 0x001C9454
 	private void SummonKidnappingMenu()
 	{
 		this.PromptBar.ClearButtons();
@@ -960,231 +960,231 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.Menu = 4;
 	}
 
-	// Token: 0x06002014 RID: 8212 RVA: 0x001C9BAC File Offset: 0x001C7DAC
+	// Token: 0x06002021 RID: 8225 RVA: 0x001CB334 File Offset: 0x001C9534
 	private void UpdateMoneyLabel()
 	{
 		this.MoneyLabel.text = "$" + PlayerGlobals.Money.ToString("F2");
 	}
 
-	// Token: 0x0400437C RID: 17276
+	// Token: 0x040043AD RID: 17325
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400437D RID: 17277
+	// Token: 0x040043AE RID: 17326
 	public StalkerYandereScript Yandere;
 
-	// Token: 0x0400437E RID: 17278
+	// Token: 0x040043AF RID: 17327
 	public HomeClockScript HomeClock;
 
-	// Token: 0x0400437F RID: 17279
+	// Token: 0x040043B0 RID: 17328
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04004380 RID: 17280
+	// Token: 0x040043B1 RID: 17329
 	public UISprite AssassinationMenu;
 
-	// Token: 0x04004381 RID: 17281
+	// Token: 0x040043B2 RID: 17330
 	public UISprite ContrabandMenu;
 
-	// Token: 0x04004382 RID: 17282
+	// Token: 0x040043B3 RID: 17331
 	public UISprite KidnappingMenu;
 
-	// Token: 0x04004383 RID: 17283
+	// Token: 0x040043B4 RID: 17332
 	public UISprite ServicesMenu;
 
-	// Token: 0x04004384 RID: 17284
+	// Token: 0x040043B5 RID: 17333
 	public AudioClip[] DialogueClip;
 
-	// Token: 0x04004385 RID: 17285
+	// Token: 0x040043B6 RID: 17334
 	public string[] DialogueText;
 
-	// Token: 0x04004386 RID: 17286
+	// Token: 0x040043B7 RID: 17335
 	public AudioSource Dialogue;
 
-	// Token: 0x04004387 RID: 17287
+	// Token: 0x040043B8 RID: 17336
 	public AudioSource Jukebox;
 
-	// Token: 0x04004388 RID: 17288
+	// Token: 0x040043B9 RID: 17337
 	public UIPanel TimeDayPanel;
 
-	// Token: 0x04004389 RID: 17289
+	// Token: 0x040043BA RID: 17338
 	public UIPanel Panel;
 
-	// Token: 0x0400438A RID: 17290
+	// Token: 0x040043BB RID: 17339
 	public UILabel ButtonPrompt;
 
-	// Token: 0x0400438B RID: 17291
+	// Token: 0x040043BC RID: 17340
 	public UILabel MoneyLabel;
 
-	// Token: 0x0400438C RID: 17292
+	// Token: 0x040043BD RID: 17341
 	public Renderer Background;
 
-	// Token: 0x0400438D RID: 17293
+	// Token: 0x040043BE RID: 17342
 	public Renderer[] Scales;
 
-	// Token: 0x0400438E RID: 17294
+	// Token: 0x040043BF RID: 17343
 	public Transform Yakuza;
 
-	// Token: 0x0400438F RID: 17295
+	// Token: 0x040043C0 RID: 17344
 	public UILabel Subtitle;
 
-	// Token: 0x04004390 RID: 17296
+	// Token: 0x040043C1 RID: 17345
 	public int RivalsToDisable;
 
-	// Token: 0x04004391 RID: 17297
+	// Token: 0x040043C2 RID: 17346
 	public int CutscenePhase = 1;
 
-	// Token: 0x04004392 RID: 17298
+	// Token: 0x040043C3 RID: 17347
 	public int Menu = 1;
 
-	// Token: 0x04004393 RID: 17299
+	// Token: 0x040043C4 RID: 17348
 	public float Alpha;
 
-	// Token: 0x04004394 RID: 17300
+	// Token: 0x040043C5 RID: 17349
 	public float Speed;
 
-	// Token: 0x04004395 RID: 17301
+	// Token: 0x040043C6 RID: 17350
 	public bool Cutscene;
 
-	// Token: 0x04004396 RID: 17302
+	// Token: 0x040043C7 RID: 17351
 	public bool Fail;
 
-	// Token: 0x04004397 RID: 17303
+	// Token: 0x040043C8 RID: 17352
 	public bool Show;
 
-	// Token: 0x04004398 RID: 17304
+	// Token: 0x040043C9 RID: 17353
 	public UILabel[] BulletLabel;
 
-	// Token: 0x04004399 RID: 17305
+	// Token: 0x040043CA RID: 17354
 	public UITexture[] Bullet;
 
-	// Token: 0x0400439A RID: 17306
+	// Token: 0x040043CB RID: 17355
 	public AudioClip BulletSFX;
 
-	// Token: 0x0400439B RID: 17307
+	// Token: 0x040043CC RID: 17356
 	public int Selected = 1;
 
-	// Token: 0x0400439C RID: 17308
+	// Token: 0x040043CD RID: 17357
 	public int Limit = 4;
 
-	// Token: 0x0400439D RID: 17309
+	// Token: 0x040043CE RID: 17358
 	public GameObject ConfirmationWindow;
 
-	// Token: 0x0400439E RID: 17310
+	// Token: 0x040043CF RID: 17359
 	public GameObject ResultWindow;
 
-	// Token: 0x0400439F RID: 17311
+	// Token: 0x040043D0 RID: 17360
 	public Transform CrosshairGraphic;
 
-	// Token: 0x040043A0 RID: 17312
+	// Token: 0x040043D1 RID: 17361
 	public Transform Crosshair;
 
-	// Token: 0x040043A1 RID: 17313
+	// Token: 0x040043D2 RID: 17362
 	public UITexture[] RivalPortraits;
 
-	// Token: 0x040043A2 RID: 17314
+	// Token: 0x040043D3 RID: 17363
 	public UILabel[] RivalNameLabels;
 
-	// Token: 0x040043A3 RID: 17315
+	// Token: 0x040043D4 RID: 17364
 	public UILabel ConfirmationLabel;
 
-	// Token: 0x040043A4 RID: 17316
+	// Token: 0x040043D5 RID: 17365
 	public UILabel ResultLabel;
 
-	// Token: 0x040043A5 RID: 17317
+	// Token: 0x040043D6 RID: 17366
 	public Vector3 TargetPosition;
 
-	// Token: 0x040043A6 RID: 17318
+	// Token: 0x040043D7 RID: 17367
 	public Vector3 WobblePosition;
 
-	// Token: 0x040043A7 RID: 17319
+	// Token: 0x040043D8 RID: 17368
 	public Texture BlankPortrait;
 
-	// Token: 0x040043A8 RID: 17320
+	// Token: 0x040043D9 RID: 17369
 	public string[] RivalNames;
 
-	// Token: 0x040043A9 RID: 17321
+	// Token: 0x040043DA RID: 17370
 	public int TargetSelected = 1;
 
-	// Token: 0x040043AA RID: 17322
+	// Token: 0x040043DB RID: 17371
 	public int Column = 1;
 
-	// Token: 0x040043AB RID: 17323
+	// Token: 0x040043DC RID: 17372
 	public int Row = 1;
 
-	// Token: 0x040043AC RID: 17324
+	// Token: 0x040043DD RID: 17373
 	public int[] Costs;
 
-	// Token: 0x040043AD RID: 17325
+	// Token: 0x040043DE RID: 17374
 	public GameObject ItemConfirmationWindow;
 
-	// Token: 0x040043AE RID: 17326
+	// Token: 0x040043DF RID: 17375
 	public UILabel ItemConfirmationLabel;
 
-	// Token: 0x040043AF RID: 17327
+	// Token: 0x040043E0 RID: 17376
 	public int ItemSelected = 1;
 
-	// Token: 0x040043B0 RID: 17328
+	// Token: 0x040043E1 RID: 17377
 	public int ItemLimit = 5;
 
-	// Token: 0x040043B1 RID: 17329
+	// Token: 0x040043E2 RID: 17378
 	public UILabel[] PriceLabel;
 
-	// Token: 0x040043B2 RID: 17330
+	// Token: 0x040043E3 RID: 17379
 	public UISprite[] PriceBG;
 
-	// Token: 0x040043B3 RID: 17331
+	// Token: 0x040043E4 RID: 17380
 	public UILabel[] ItemLabel;
 
-	// Token: 0x040043B4 RID: 17332
+	// Token: 0x040043E5 RID: 17381
 	public UISprite[] ItemBG;
 
-	// Token: 0x040043B5 RID: 17333
+	// Token: 0x040043E6 RID: 17382
 	public string[] ItemName;
 
-	// Token: 0x040043B6 RID: 17334
+	// Token: 0x040043E7 RID: 17383
 	public int[] OriginalItemPrice;
 
-	// Token: 0x040043B7 RID: 17335
+	// Token: 0x040043E8 RID: 17384
 	public int[] ItemPrice;
 
-	// Token: 0x040043B8 RID: 17336
+	// Token: 0x040043E9 RID: 17385
 	public GameObject RansomConfirmationWindow;
 
-	// Token: 0x040043B9 RID: 17337
+	// Token: 0x040043EA RID: 17386
 	public UILabel RansomConfirmationLabel;
 
-	// Token: 0x040043BA RID: 17338
+	// Token: 0x040043EB RID: 17387
 	public UITexture[] RansomPortrait;
 
-	// Token: 0x040043BB RID: 17339
+	// Token: 0x040043EC RID: 17388
 	public UILabel PrisonerLabel;
 
-	// Token: 0x040043BC RID: 17340
+	// Token: 0x040043ED RID: 17389
 	public int[] Ransom;
 
-	// Token: 0x040043BD RID: 17341
+	// Token: 0x040043EE RID: 17390
 	public AudioClip[] Greeting;
 
-	// Token: 0x040043BE RID: 17342
+	// Token: 0x040043EF RID: 17391
 	public AudioClip AssassinationPurchase;
 
-	// Token: 0x040043BF RID: 17343
+	// Token: 0x040043F0 RID: 17392
 	public AudioClip OpenAssassinationMenu;
 
-	// Token: 0x040043C0 RID: 17344
+	// Token: 0x040043F1 RID: 17393
 	public AudioClip ContrabandPurchase;
 
-	// Token: 0x040043C1 RID: 17345
+	// Token: 0x040043F2 RID: 17394
 	public AudioClip OpenContrabandMenu;
 
-	// Token: 0x040043C2 RID: 17346
+	// Token: 0x040043F3 RID: 17395
 	public AudioClip Confirmation;
 
-	// Token: 0x040043C3 RID: 17347
+	// Token: 0x040043F4 RID: 17396
 	public AudioClip BackOut;
 
-	// Token: 0x040043C4 RID: 17348
+	// Token: 0x040043F5 RID: 17397
 	public AudioClip Exit;
 
-	// Token: 0x040043C5 RID: 17349
+	// Token: 0x040043F6 RID: 17398
 	public int[] RansomIDs;
 }

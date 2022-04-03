@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace YandereSimulator.Yancord
 {
-	// Token: 0x0200051F RID: 1311
+	// Token: 0x02000524 RID: 1316
 	public class ChatPartnerScript : MonoBehaviour
 	{
-		// Token: 0x06002183 RID: 8579 RVA: 0x001EC9A0 File Offset: 0x001EABA0
+		// Token: 0x06002193 RID: 8595 RVA: 0x001EE210 File Offset: 0x001EC410
 		private void Awake()
 		{
 			if (this.MyProfile != null)
@@ -35,7 +35,7 @@ namespace YandereSimulator.Yancord
 			UnityEngine.Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x06002184 RID: 8580 RVA: 0x001ECAA0 File Offset: 0x001EACA0
+		// Token: 0x06002194 RID: 8596 RVA: 0x001EE310 File Offset: 0x001EC510
 		private Texture2D GetStatusTexture(Status currentStatus)
 		{
 			switch (currentStatus)
@@ -53,24 +53,24 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x040049A8 RID: 18856
+		// Token: 0x040049DA RID: 18906
 		[Header("== Partner Informations ==")]
 		public Profile MyProfile;
 
-		// Token: 0x040049A9 RID: 18857
+		// Token: 0x040049DB RID: 18907
 		[Space(20f)]
 		public UILabel NameLabel;
 
-		// Token: 0x040049AA RID: 18858
+		// Token: 0x040049DC RID: 18908
 		public UILabel TagLabel;
 
-		// Token: 0x040049AB RID: 18859
+		// Token: 0x040049DD RID: 18909
 		public UITexture ProfilPictureTexture;
 
-		// Token: 0x040049AC RID: 18860
+		// Token: 0x040049DE RID: 18910
 		public UITexture StatusTexture;
 
-		// Token: 0x040049AD RID: 18861
+		// Token: 0x040049DF RID: 18911
 		[Space(20f)]
 		public List<Texture2D> StatusTextures = new List<Texture2D>();
 	}

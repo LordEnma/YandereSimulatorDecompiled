@@ -3,22 +3,22 @@ using UnityEngine;
 
 namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 {
-	// Token: 0x02000544 RID: 1348
+	// Token: 0x02000549 RID: 1353
 	public class MobileInput : VirtualInput
 	{
-		// Token: 0x0600227B RID: 8827 RVA: 0x001F12A3 File Offset: 0x001EF4A3
+		// Token: 0x0600228B RID: 8843 RVA: 0x001F2B13 File Offset: 0x001F0D13
 		private void AddButton(string name)
 		{
 			CrossPlatformInputManager.RegisterVirtualButton(new CrossPlatformInputManager.VirtualButton(name));
 		}
 
-		// Token: 0x0600227C RID: 8828 RVA: 0x001F12B0 File Offset: 0x001EF4B0
+		// Token: 0x0600228C RID: 8844 RVA: 0x001F2B20 File Offset: 0x001F0D20
 		private void AddAxes(string name)
 		{
 			CrossPlatformInputManager.RegisterVirtualAxis(new CrossPlatformInputManager.VirtualAxis(name));
 		}
 
-		// Token: 0x0600227D RID: 8829 RVA: 0x001F12BD File Offset: 0x001EF4BD
+		// Token: 0x0600228D RID: 8845 RVA: 0x001F2B2D File Offset: 0x001F0D2D
 		public override float GetAxis(string name, bool raw)
 		{
 			if (!this.m_VirtualAxes.ContainsKey(name))
@@ -28,7 +28,7 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 			return this.m_VirtualAxes[name].GetValue;
 		}
 
-		// Token: 0x0600227E RID: 8830 RVA: 0x001F12E5 File Offset: 0x001EF4E5
+		// Token: 0x0600228E RID: 8846 RVA: 0x001F2B55 File Offset: 0x001F0D55
 		public override void SetButtonDown(string name)
 		{
 			if (!this.m_VirtualButtons.ContainsKey(name))
@@ -38,7 +38,7 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 			this.m_VirtualButtons[name].Pressed();
 		}
 
-		// Token: 0x0600227F RID: 8831 RVA: 0x001F130D File Offset: 0x001EF50D
+		// Token: 0x0600228F RID: 8847 RVA: 0x001F2B7D File Offset: 0x001F0D7D
 		public override void SetButtonUp(string name)
 		{
 			if (!this.m_VirtualButtons.ContainsKey(name))
@@ -48,7 +48,7 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 			this.m_VirtualButtons[name].Released();
 		}
 
-		// Token: 0x06002280 RID: 8832 RVA: 0x001F1335 File Offset: 0x001EF535
+		// Token: 0x06002290 RID: 8848 RVA: 0x001F2BA5 File Offset: 0x001F0DA5
 		public override void SetAxisPositive(string name)
 		{
 			if (!this.m_VirtualAxes.ContainsKey(name))
@@ -58,7 +58,7 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 			this.m_VirtualAxes[name].Update(1f);
 		}
 
-		// Token: 0x06002281 RID: 8833 RVA: 0x001F1362 File Offset: 0x001EF562
+		// Token: 0x06002291 RID: 8849 RVA: 0x001F2BD2 File Offset: 0x001F0DD2
 		public override void SetAxisNegative(string name)
 		{
 			if (!this.m_VirtualAxes.ContainsKey(name))
@@ -68,7 +68,7 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 			this.m_VirtualAxes[name].Update(-1f);
 		}
 
-		// Token: 0x06002282 RID: 8834 RVA: 0x001F138F File Offset: 0x001EF58F
+		// Token: 0x06002292 RID: 8850 RVA: 0x001F2BFF File Offset: 0x001F0DFF
 		public override void SetAxisZero(string name)
 		{
 			if (!this.m_VirtualAxes.ContainsKey(name))
@@ -78,7 +78,7 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 			this.m_VirtualAxes[name].Update(0f);
 		}
 
-		// Token: 0x06002283 RID: 8835 RVA: 0x001F13BC File Offset: 0x001EF5BC
+		// Token: 0x06002293 RID: 8851 RVA: 0x001F2C2C File Offset: 0x001F0E2C
 		public override void SetAxis(string name, float value)
 		{
 			if (!this.m_VirtualAxes.ContainsKey(name))
@@ -88,7 +88,7 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 			this.m_VirtualAxes[name].Update(value);
 		}
 
-		// Token: 0x06002284 RID: 8836 RVA: 0x001F13E5 File Offset: 0x001EF5E5
+		// Token: 0x06002294 RID: 8852 RVA: 0x001F2C55 File Offset: 0x001F0E55
 		public override bool GetButtonDown(string name)
 		{
 			if (this.m_VirtualButtons.ContainsKey(name))
@@ -99,7 +99,7 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 			return this.m_VirtualButtons[name].GetButtonDown;
 		}
 
-		// Token: 0x06002285 RID: 8837 RVA: 0x001F141F File Offset: 0x001EF61F
+		// Token: 0x06002295 RID: 8853 RVA: 0x001F2C8F File Offset: 0x001F0E8F
 		public override bool GetButtonUp(string name)
 		{
 			if (this.m_VirtualButtons.ContainsKey(name))
@@ -110,7 +110,7 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 			return this.m_VirtualButtons[name].GetButtonUp;
 		}
 
-		// Token: 0x06002286 RID: 8838 RVA: 0x001F1459 File Offset: 0x001EF659
+		// Token: 0x06002296 RID: 8854 RVA: 0x001F2CC9 File Offset: 0x001F0EC9
 		public override bool GetButton(string name)
 		{
 			if (this.m_VirtualButtons.ContainsKey(name))
@@ -121,7 +121,7 @@ namespace UnityStandardAssets.CrossPlatformInput.PlatformSpecific
 			return this.m_VirtualButtons[name].GetButton;
 		}
 
-		// Token: 0x06002287 RID: 8839 RVA: 0x001F1493 File Offset: 0x001EF693
+		// Token: 0x06002297 RID: 8855 RVA: 0x001F2D03 File Offset: 0x001F0F03
 		public override Vector3 MousePosition()
 		{
 			return base.virtualMousePosition;

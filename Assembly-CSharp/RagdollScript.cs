@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003C8 RID: 968
+// Token: 0x020003CB RID: 971
 public class RagdollScript : MonoBehaviour
 {
-	// Token: 0x06001B50 RID: 6992 RVA: 0x00131B3C File Offset: 0x0012FD3C
+	// Token: 0x06001B5A RID: 7002 RVA: 0x00132444 File Offset: 0x00130644
 	private void Start()
 	{
 		this.ElectrocutionAnimation = false;
@@ -56,7 +56,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B51 RID: 6993 RVA: 0x00131CE8 File Offset: 0x0012FEE8
+	// Token: 0x06001B5B RID: 7003 RVA: 0x001325F0 File Offset: 0x001307F0
 	private void Update()
 	{
 		if (this.UpdateNextFrame)
@@ -461,7 +461,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B52 RID: 6994 RVA: 0x00133060 File Offset: 0x00131260
+	// Token: 0x06001B5C RID: 7004 RVA: 0x00133968 File Offset: 0x00131B68
 	private void LateUpdate()
 	{
 		if (!this.Male)
@@ -529,7 +529,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B53 RID: 6995 RVA: 0x00133480 File Offset: 0x00131680
+	// Token: 0x06001B5D RID: 7005 RVA: 0x00133D88 File Offset: 0x00131F88
 	public void StopDragging()
 	{
 		Rigidbody[] allRigidbodies = this.Student.Ragdoll.AllRigidbodies;
@@ -554,12 +554,12 @@ public class RagdollScript : MonoBehaviour
 		this.Dragged = false;
 	}
 
-	// Token: 0x06001B54 RID: 6996 RVA: 0x00133570 File Offset: 0x00131770
+	// Token: 0x06001B5E RID: 7006 RVA: 0x00133E78 File Offset: 0x00132078
 	private void PickNearestLimb()
 	{
 		if (this.Concealed)
 		{
-			this.LimbID = 2;
+			this.LimbID = 3;
 			return;
 		}
 		this.NearestLimb = this.Limb[0];
@@ -575,7 +575,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B55 RID: 6997 RVA: 0x00133604 File Offset: 0x00131804
+	// Token: 0x06001B5F RID: 7007 RVA: 0x00133F0C File Offset: 0x0013210C
 	public void Dump()
 	{
 		if (this.DumpType == RagdollDumpType.Incinerator)
@@ -603,7 +603,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B56 RID: 6998 RVA: 0x001336E4 File Offset: 0x001318E4
+	// Token: 0x06001B60 RID: 7008 RVA: 0x00133FEC File Offset: 0x001321EC
 	public void Fall()
 	{
 		base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.0001f, base.transform.position.z);
@@ -636,7 +636,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B57 RID: 6999 RVA: 0x0013383C File Offset: 0x00131A3C
+	// Token: 0x06001B61 RID: 7009 RVA: 0x00134144 File Offset: 0x00132344
 	public void QuickDismember()
 	{
 		Debug.Log("QuickDismember() was called.");
@@ -659,7 +659,7 @@ public class RagdollScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001B58 RID: 7000 RVA: 0x001339B4 File Offset: 0x00131BB4
+	// Token: 0x06001B62 RID: 7010 RVA: 0x001342BC File Offset: 0x001324BC
 	public void Dismember()
 	{
 		Debug.Log("Dismembering a character.");
@@ -770,6 +770,30 @@ public class RagdollScript : MonoBehaviour
 				for (int j = 0; j < 6; j++)
 				{
 					GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(this.TarpBag, this.Student.Hips.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
+					if (j == 0)
+					{
+						gameObject2.transform.position = this.Student.Hips.position + new Vector3(0f, 0.5f, 0f);
+					}
+					else if (j == 1)
+					{
+						gameObject2.transform.position = this.Student.Hips.position + new Vector3(0.5f, 0.5f, 0f);
+					}
+					else if (j == 2)
+					{
+						gameObject2.transform.position = this.Student.Hips.position + new Vector3(-0.5f, 0.5f, 0f);
+					}
+					else if (j == 3)
+					{
+						gameObject2.transform.position = this.Student.Hips.position + new Vector3(0f, 0.5f, 0.5f);
+					}
+					else if (j == 4)
+					{
+						gameObject2.transform.position = this.Student.Hips.position + new Vector3(0f, 0.5f, -0.5f);
+					}
+					else if (j == 5)
+					{
+						gameObject2.transform.position = this.Student.Hips.position + new Vector3(0.5f, 0.5f, 0.5f);
+					}
 					gameObject2.GetComponent<BodyPartScript>().StudentID = this.StudentID;
 					gameObject2.transform.parent = this.Prompt.Yandere.Police.GarbageParent;
 					this.Student.StudentManager.GarbageBagList[this.Student.StudentManager.GarbageBags] = gameObject2;
@@ -789,7 +813,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B59 RID: 7001 RVA: 0x001341EC File Offset: 0x001323EC
+	// Token: 0x06001B63 RID: 7011 RVA: 0x00134C60 File Offset: 0x00132E60
 	public void Remove()
 	{
 		this.Student.Removed = true;
@@ -805,7 +829,7 @@ public class RagdollScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001B5A RID: 7002 RVA: 0x0013424C File Offset: 0x0013244C
+	// Token: 0x06001B64 RID: 7012 RVA: 0x00134CC0 File Offset: 0x00132EC0
 	public void DestroyRigidbodies()
 	{
 		this.BloodPoolSpawner.gameObject.SetActive(false);
@@ -823,7 +847,7 @@ public class RagdollScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001B5B RID: 7003 RVA: 0x001342E8 File Offset: 0x001324E8
+	// Token: 0x06001B65 RID: 7013 RVA: 0x00134D5C File Offset: 0x00132F5C
 	public void DisableRigidbodies()
 	{
 		for (int i = 0; i < this.AllRigidbodies.Length; i++)
@@ -835,7 +859,7 @@ public class RagdollScript : MonoBehaviour
 		this.StopAnimation = true;
 	}
 
-	// Token: 0x06001B5C RID: 7004 RVA: 0x00134334 File Offset: 0x00132534
+	// Token: 0x06001B66 RID: 7014 RVA: 0x00134DA8 File Offset: 0x00132FA8
 	public void EnableRigidbodies()
 	{
 		for (int i = 0; i < this.AllRigidbodies.Length; i++)
@@ -848,7 +872,7 @@ public class RagdollScript : MonoBehaviour
 		this.StopAnimation = false;
 	}
 
-	// Token: 0x06001B5D RID: 7005 RVA: 0x001343A0 File Offset: 0x001325A0
+	// Token: 0x06001B67 RID: 7015 RVA: 0x00134E14 File Offset: 0x00133014
 	public void HideAccessories()
 	{
 		this.Student.Cosmetic.RightStockings[0].SetActive(false);
@@ -859,7 +883,7 @@ public class RagdollScript : MonoBehaviour
 		this.Student.Cosmetic.Hoodie.SetActive(false);
 	}
 
-	// Token: 0x06001B5E RID: 7006 RVA: 0x00134438 File Offset: 0x00132638
+	// Token: 0x06001B68 RID: 7016 RVA: 0x00134EAC File Offset: 0x001330AC
 	public void ConcealInTrashBag()
 	{
 		this.Prompt.Label[0].text = "     Dismember";
@@ -923,282 +947,282 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002E99 RID: 11929
+	// Token: 0x04002EB2 RID: 11954
 	public BloodPoolSpawnerScript BloodPoolSpawner;
 
-	// Token: 0x04002E9A RID: 11930
+	// Token: 0x04002EB3 RID: 11955
 	public DetectionMarkerScript DetectionMarker;
 
-	// Token: 0x04002E9B RID: 11931
+	// Token: 0x04002EB4 RID: 11956
 	public IncineratorScript Incinerator;
 
-	// Token: 0x04002E9C RID: 11932
+	// Token: 0x04002EB5 RID: 11957
 	public WoodChipperScript WoodChipper;
 
-	// Token: 0x04002E9D RID: 11933
+	// Token: 0x04002EB6 RID: 11958
 	public TranqCaseScript TranqCase;
 
-	// Token: 0x04002E9E RID: 11934
+	// Token: 0x04002EB7 RID: 11959
 	public StudentScript Student;
 
-	// Token: 0x04002E9F RID: 11935
+	// Token: 0x04002EB8 RID: 11960
 	public YandereScript Yandere;
 
-	// Token: 0x04002EA0 RID: 11936
+	// Token: 0x04002EB9 RID: 11961
 	public PoliceScript Police;
 
-	// Token: 0x04002EA1 RID: 11937
+	// Token: 0x04002EBA RID: 11962
 	public PromptScript Prompt;
 
-	// Token: 0x04002EA2 RID: 11938
+	// Token: 0x04002EBB RID: 11963
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x04002EA3 RID: 11939
+	// Token: 0x04002EBC RID: 11964
 	public Collider BloodSpawnerCollider;
 
-	// Token: 0x04002EA4 RID: 11940
+	// Token: 0x04002EBD RID: 11965
 	public Animation CharacterAnimation;
 
-	// Token: 0x04002EA5 RID: 11941
+	// Token: 0x04002EBE RID: 11966
 	public Collider HideCollider;
 
-	// Token: 0x04002EA6 RID: 11942
+	// Token: 0x04002EBF RID: 11967
 	public Rigidbody[] AllRigidbodies;
 
-	// Token: 0x04002EA7 RID: 11943
+	// Token: 0x04002EC0 RID: 11968
 	public Collider[] AllColliders;
 
-	// Token: 0x04002EA8 RID: 11944
+	// Token: 0x04002EC1 RID: 11969
 	public Rigidbody[] Rigidbodies;
 
-	// Token: 0x04002EA9 RID: 11945
+	// Token: 0x04002EC2 RID: 11970
 	public Transform[] SpawnPoints;
 
-	// Token: 0x04002EAA RID: 11946
+	// Token: 0x04002EC3 RID: 11971
 	public GameObject[] BodyParts;
 
-	// Token: 0x04002EAB RID: 11947
+	// Token: 0x04002EC4 RID: 11972
 	public Transform NearestLimb;
 
-	// Token: 0x04002EAC RID: 11948
+	// Token: 0x04002EC5 RID: 11973
 	public Transform RightBreast;
 
-	// Token: 0x04002EAD RID: 11949
+	// Token: 0x04002EC6 RID: 11974
 	public Transform LeftBreast;
 
-	// Token: 0x04002EAE RID: 11950
+	// Token: 0x04002EC7 RID: 11975
 	public Transform PelvisRoot;
 
-	// Token: 0x04002EAF RID: 11951
+	// Token: 0x04002EC8 RID: 11976
 	public Transform Ponytail;
 
-	// Token: 0x04002EB0 RID: 11952
+	// Token: 0x04002EC9 RID: 11977
 	public Transform RightEye;
 
-	// Token: 0x04002EB1 RID: 11953
+	// Token: 0x04002ECA RID: 11978
 	public Transform LeftEye;
 
-	// Token: 0x04002EB2 RID: 11954
+	// Token: 0x04002ECB RID: 11979
 	public Transform HairR;
 
-	// Token: 0x04002EB3 RID: 11955
+	// Token: 0x04002ECC RID: 11980
 	public Transform HairL;
 
-	// Token: 0x04002EB4 RID: 11956
+	// Token: 0x04002ECD RID: 11981
 	public Transform[] Limb;
 
-	// Token: 0x04002EB5 RID: 11957
+	// Token: 0x04002ECE RID: 11982
 	public Transform Head;
 
-	// Token: 0x04002EB6 RID: 11958
+	// Token: 0x04002ECF RID: 11983
 	public Vector3 RightEyeOrigin;
 
-	// Token: 0x04002EB7 RID: 11959
+	// Token: 0x04002ED0 RID: 11984
 	public Vector3 LeftEyeOrigin;
 
-	// Token: 0x04002EB8 RID: 11960
+	// Token: 0x04002ED1 RID: 11985
 	public Vector3[] LimbAnchor;
 
-	// Token: 0x04002EB9 RID: 11961
+	// Token: 0x04002ED2 RID: 11986
 	public GameObject Character;
 
-	// Token: 0x04002EBA RID: 11962
+	// Token: 0x04002ED3 RID: 11987
 	public GameObject TarpBag;
 
-	// Token: 0x04002EBB RID: 11963
+	// Token: 0x04002ED4 RID: 11988
 	public GameObject MyTarp;
 
-	// Token: 0x04002EBC RID: 11964
+	// Token: 0x04002ED5 RID: 11989
 	public GameObject Zs;
 
-	// Token: 0x04002EBD RID: 11965
+	// Token: 0x04002ED6 RID: 11990
 	public bool ElectrocutionAnimation;
 
-	// Token: 0x04002EBE RID: 11966
+	// Token: 0x04002ED7 RID: 11991
 	public bool MurderSuicideAnimation;
 
-	// Token: 0x04002EBF RID: 11967
+	// Token: 0x04002ED8 RID: 11992
 	public bool BurningAnimation;
 
-	// Token: 0x04002EC0 RID: 11968
+	// Token: 0x04002ED9 RID: 11993
 	public bool ChokingAnimation;
 
-	// Token: 0x04002EC1 RID: 11969
+	// Token: 0x04002EDA RID: 11994
 	public bool RigidbodiesManuallyDisabled;
 
-	// Token: 0x04002EC2 RID: 11970
+	// Token: 0x04002EDB RID: 11995
 	public bool TeleportNextFrame;
 
-	// Token: 0x04002EC3 RID: 11971
+	// Token: 0x04002EDC RID: 11996
 	public bool ColoredOutline;
 
-	// Token: 0x04002EC4 RID: 11972
+	// Token: 0x04002EDD RID: 11997
 	public bool AddingToCount;
 
-	// Token: 0x04002EC5 RID: 11973
+	// Token: 0x04002EDE RID: 11998
 	public bool MurderSuicide;
 
-	// Token: 0x04002EC6 RID: 11974
+	// Token: 0x04002EDF RID: 11999
 	public bool AddedOutline;
 
-	// Token: 0x04002EC7 RID: 11975
+	// Token: 0x04002EE0 RID: 12000
 	public bool Cauterizable;
 
-	// Token: 0x04002EC8 RID: 11976
+	// Token: 0x04002EE1 RID: 12001
 	public bool Electrocuted;
 
-	// Token: 0x04002EC9 RID: 11977
+	// Token: 0x04002EE2 RID: 12002
 	public bool StopAnimation = true;
 
-	// Token: 0x04002ECA RID: 11978
+	// Token: 0x04002EE3 RID: 12003
 	public bool Decapitated;
 
-	// Token: 0x04002ECB RID: 11979
+	// Token: 0x04002EE4 RID: 12004
 	public bool Dismembered;
 
-	// Token: 0x04002ECC RID: 11980
+	// Token: 0x04002EE5 RID: 12005
 	public bool NeckSnapped;
 
-	// Token: 0x04002ECD RID: 11981
+	// Token: 0x04002EE6 RID: 12006
 	public bool Cauterized;
 
-	// Token: 0x04002ECE RID: 11982
+	// Token: 0x04002EE7 RID: 12007
 	public bool Disturbing;
 
-	// Token: 0x04002ECF RID: 11983
+	// Token: 0x04002EE8 RID: 12008
 	public bool Concealed;
 
-	// Token: 0x04002ED0 RID: 11984
+	// Token: 0x04002EE9 RID: 12009
 	public bool Sacrifice;
 
-	// Token: 0x04002ED1 RID: 11985
+	// Token: 0x04002EEA RID: 12010
 	public bool Wrappable;
 
-	// Token: 0x04002ED2 RID: 11986
+	// Token: 0x04002EEB RID: 12011
 	public bool Disposed;
 
-	// Token: 0x04002ED3 RID: 11987
+	// Token: 0x04002EEC RID: 12012
 	public bool Poisoned;
 
-	// Token: 0x04002ED4 RID: 11988
+	// Token: 0x04002EED RID: 12013
 	public bool Tranquil;
 
-	// Token: 0x04002ED5 RID: 11989
+	// Token: 0x04002EEE RID: 12014
 	public bool Burning;
 
-	// Token: 0x04002ED6 RID: 11990
+	// Token: 0x04002EEF RID: 12015
 	public bool Carried;
 
-	// Token: 0x04002ED7 RID: 11991
+	// Token: 0x04002EF0 RID: 12016
 	public bool Choking;
 
-	// Token: 0x04002ED8 RID: 11992
+	// Token: 0x04002EF1 RID: 12017
 	public bool Dragged;
 
-	// Token: 0x04002ED9 RID: 11993
+	// Token: 0x04002EF2 RID: 12018
 	public bool Drowned;
 
-	// Token: 0x04002EDA RID: 11994
+	// Token: 0x04002EF3 RID: 12019
 	public bool Falling;
 
-	// Token: 0x04002EDB RID: 11995
+	// Token: 0x04002EF4 RID: 12020
 	public bool Nemesis;
 
-	// Token: 0x04002EDC RID: 11996
+	// Token: 0x04002EF5 RID: 12021
 	public bool Settled;
 
-	// Token: 0x04002EDD RID: 11997
+	// Token: 0x04002EF6 RID: 12022
 	public bool Suicide;
 
-	// Token: 0x04002EDE RID: 11998
+	// Token: 0x04002EF7 RID: 12023
 	public bool Burned;
 
-	// Token: 0x04002EDF RID: 11999
+	// Token: 0x04002EF8 RID: 12024
 	public bool Dumped;
 
-	// Token: 0x04002EE0 RID: 12000
+	// Token: 0x04002EF9 RID: 12025
 	public bool Hidden;
 
-	// Token: 0x04002EE1 RID: 12001
+	// Token: 0x04002EFA RID: 12026
 	public bool Pushed;
 
-	// Token: 0x04002EE2 RID: 12002
+	// Token: 0x04002EFB RID: 12027
 	public bool Male;
 
-	// Token: 0x04002EE3 RID: 12003
+	// Token: 0x04002EFC RID: 12028
 	public float AnimStartTime;
 
-	// Token: 0x04002EE4 RID: 12004
+	// Token: 0x04002EFD RID: 12029
 	public float SettleTimer;
 
-	// Token: 0x04002EE5 RID: 12005
+	// Token: 0x04002EFE RID: 12030
 	public float BreastSize;
 
-	// Token: 0x04002EE6 RID: 12006
+	// Token: 0x04002EFF RID: 12031
 	public float DumpTimer;
 
-	// Token: 0x04002EE7 RID: 12007
+	// Token: 0x04002F00 RID: 12032
 	public float EyeShrink;
 
-	// Token: 0x04002EE8 RID: 12008
+	// Token: 0x04002F01 RID: 12033
 	public float FallTimer;
 
-	// Token: 0x04002EE9 RID: 12009
+	// Token: 0x04002F02 RID: 12034
 	public int StudentID;
 
-	// Token: 0x04002EEA RID: 12010
+	// Token: 0x04002F03 RID: 12035
 	public RagdollDumpType DumpType;
 
-	// Token: 0x04002EEB RID: 12011
+	// Token: 0x04002F04 RID: 12036
 	public int LimbID;
 
-	// Token: 0x04002EEC RID: 12012
+	// Token: 0x04002F05 RID: 12037
 	public int Frame;
 
-	// Token: 0x04002EED RID: 12013
+	// Token: 0x04002F06 RID: 12038
 	public string DumpedAnim = string.Empty;
 
-	// Token: 0x04002EEE RID: 12014
+	// Token: 0x04002F07 RID: 12039
 	public string LiftAnim = string.Empty;
 
-	// Token: 0x04002EEF RID: 12015
+	// Token: 0x04002F08 RID: 12040
 	public string IdleAnim = string.Empty;
 
-	// Token: 0x04002EF0 RID: 12016
+	// Token: 0x04002F09 RID: 12041
 	public string WalkAnim = string.Empty;
 
-	// Token: 0x04002EF1 RID: 12017
+	// Token: 0x04002F0A RID: 12042
 	public string RunAnim = string.Empty;
 
-	// Token: 0x04002EF2 RID: 12018
+	// Token: 0x04002F0B RID: 12043
 	public bool UpdateNextFrame;
 
-	// Token: 0x04002EF3 RID: 12019
+	// Token: 0x04002F0C RID: 12044
 	public Vector3 NextPosition;
 
-	// Token: 0x04002EF4 RID: 12020
+	// Token: 0x04002F0D RID: 12045
 	public Quaternion NextRotation;
 
-	// Token: 0x04002EF5 RID: 12021
+	// Token: 0x04002F0E RID: 12046
 	public int Frames;
 }

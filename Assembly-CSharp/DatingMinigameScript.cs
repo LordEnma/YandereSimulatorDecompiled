@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000271 RID: 625
 public class DatingMinigameScript : MonoBehaviour
 {
-	// Token: 0x0600133C RID: 4924 RVA: 0x000ABCD0 File Offset: 0x000A9ED0
+	// Token: 0x0600133D RID: 4925 RVA: 0x000ABD80 File Offset: 0x000A9F80
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -58,7 +58,7 @@ public class DatingMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600133D RID: 4925 RVA: 0x000ABF24 File Offset: 0x000AA124
+	// Token: 0x0600133E RID: 4926 RVA: 0x000ABFD4 File Offset: 0x000AA1D4
 	private void CalculateAffection()
 	{
 		if (this.Affection > 100f)
@@ -93,7 +93,7 @@ public class DatingMinigameScript : MonoBehaviour
 		this.AffectionLevel = 5;
 	}
 
-	// Token: 0x0600133E RID: 4926 RVA: 0x000ABFBC File Offset: 0x000AA1BC
+	// Token: 0x0600133F RID: 4927 RVA: 0x000AC06C File Offset: 0x000AA26C
 	private void Update()
 	{
 		if (this.Testing)
@@ -731,13 +731,13 @@ public class DatingMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600133F RID: 4927 RVA: 0x000AE10D File Offset: 0x000AC30D
+	// Token: 0x06001340 RID: 4928 RVA: 0x000AE1BD File Offset: 0x000AC3BD
 	private void LateUpdate()
 	{
 		int phase = this.Phase;
 	}
 
-	// Token: 0x06001340 RID: 4928 RVA: 0x000AE118 File Offset: 0x000AC318
+	// Token: 0x06001341 RID: 4929 RVA: 0x000AE1C8 File Offset: 0x000AC3C8
 	private void CalculateMultiplier()
 	{
 		this.Multiplier = 5;
@@ -784,7 +784,7 @@ public class DatingMinigameScript : MonoBehaviour
 		this.MultiplierLabel.text = "Multiplier: " + this.Multiplier.ToString() + "x";
 	}
 
-	// Token: 0x06001341 RID: 4929 RVA: 0x000AE333 File Offset: 0x000AC533
+	// Token: 0x06001342 RID: 4930 RVA: 0x000AE3E3 File Offset: 0x000AC5E3
 	private void UpdateHighlight()
 	{
 		if (this.Selected < 1)
@@ -798,7 +798,7 @@ public class DatingMinigameScript : MonoBehaviour
 		this.HighlightTarget = 450f - 100f * (float)this.Selected;
 	}
 
-	// Token: 0x06001342 RID: 4930 RVA: 0x000AE370 File Offset: 0x000AC570
+	// Token: 0x06001343 RID: 4931 RVA: 0x000AE420 File Offset: 0x000AC620
 	private void UpdateTopicHighlight()
 	{
 		if (this.Row < 1)
@@ -822,14 +822,14 @@ public class DatingMinigameScript : MonoBehaviour
 		this.TopicNameLabel.text = (ConversationGlobals.GetTopicDiscovered(this.TopicSelected) ? this.TopicNames[this.TopicSelected] : "??????????");
 	}
 
-	// Token: 0x06001343 RID: 4931 RVA: 0x000AE444 File Offset: 0x000AC644
+	// Token: 0x06001344 RID: 4932 RVA: 0x000AE4F4 File Offset: 0x000AC6F4
 	private void DetermineOpinion()
 	{
 		int[] topics = this.JSON.Topics[this.LoveManager.RivalID].Topics;
 		this.Opinion = topics[this.TopicSelected];
 	}
 
-	// Token: 0x06001344 RID: 4932 RVA: 0x000AE47C File Offset: 0x000AC67C
+	// Token: 0x06001345 RID: 4933 RVA: 0x000AE52C File Offset: 0x000AC72C
 	private void UpdateTopics()
 	{
 		for (int i = 1; i < this.TopicIcons.Length; i++)
@@ -860,7 +860,7 @@ public class DatingMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001345 RID: 4933 RVA: 0x000AE564 File Offset: 0x000AC764
+	// Token: 0x06001346 RID: 4934 RVA: 0x000AE614 File Offset: 0x000AC814
 	private void UpdateComplimentHighlight()
 	{
 		for (int i = 1; i < this.TopicIcons.Length; i++)
@@ -887,7 +887,7 @@ public class DatingMinigameScript : MonoBehaviour
 		this.ComplimentBGs[this.ComplimentSelected].color = Color.white;
 	}
 
-	// Token: 0x06001346 RID: 4934 RVA: 0x000AE610 File Offset: 0x000AC810
+	// Token: 0x06001347 RID: 4935 RVA: 0x000AE6C0 File Offset: 0x000AC8C0
 	private void UpdateTraitHighlight()
 	{
 		if (this.TraitSelected < 1)
@@ -905,7 +905,7 @@ public class DatingMinigameScript : MonoBehaviour
 		this.TraitBGs[this.TraitSelected].color = Color.white;
 	}
 
-	// Token: 0x06001347 RID: 4935 RVA: 0x000AE67C File Offset: 0x000AC87C
+	// Token: 0x06001348 RID: 4936 RVA: 0x000AE72C File Offset: 0x000AC92C
 	private void UpdateGiftHighlight()
 	{
 		for (int i = 1; i < this.GiftBGs.Length; i++)
@@ -932,7 +932,7 @@ public class DatingMinigameScript : MonoBehaviour
 		this.GiftBGs[this.GiftSelected].color = Color.white;
 	}
 
-	// Token: 0x06001348 RID: 4936 RVA: 0x000AE724 File Offset: 0x000AC924
+	// Token: 0x06001349 RID: 4937 RVA: 0x000AE7D4 File Offset: 0x000AC9D4
 	public void SaveTopicsAndCompliments()
 	{
 		for (int i = 1; i < 26; i++)
@@ -958,294 +958,294 @@ public class DatingMinigameScript : MonoBehaviour
 		Debug.Log("Saving Dating Minigame data.");
 	}
 
-	// Token: 0x04001BA7 RID: 7079
+	// Token: 0x04001BAA RID: 7082
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04001BA8 RID: 7080
+	// Token: 0x04001BAB RID: 7083
 	public InputManagerScript InputManager;
 
-	// Token: 0x04001BA9 RID: 7081
+	// Token: 0x04001BAC RID: 7084
 	public LoveManagerScript LoveManager;
 
-	// Token: 0x04001BAA RID: 7082
+	// Token: 0x04001BAD RID: 7085
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04001BAB RID: 7083
+	// Token: 0x04001BAE RID: 7086
 	public YandereScript Yandere;
 
-	// Token: 0x04001BAC RID: 7084
+	// Token: 0x04001BAF RID: 7087
 	public StudentScript Suitor;
 
-	// Token: 0x04001BAD RID: 7085
+	// Token: 0x04001BB0 RID: 7088
 	public StudentScript Rival;
 
-	// Token: 0x04001BAE RID: 7086
+	// Token: 0x04001BB1 RID: 7089
 	public PromptScript Prompt;
 
-	// Token: 0x04001BAF RID: 7087
+	// Token: 0x04001BB2 RID: 7090
 	public JsonScript JSON;
 
-	// Token: 0x04001BB0 RID: 7088
+	// Token: 0x04001BB3 RID: 7091
 	public Transform AffectionSet;
 
-	// Token: 0x04001BB1 RID: 7089
+	// Token: 0x04001BB4 RID: 7092
 	public Transform OptionSet;
 
-	// Token: 0x04001BB2 RID: 7090
+	// Token: 0x04001BB5 RID: 7093
 	public GameObject HeartbeatCamera;
 
-	// Token: 0x04001BB3 RID: 7091
+	// Token: 0x04001BB6 RID: 7094
 	public GameObject SeductionIcon;
 
-	// Token: 0x04001BB4 RID: 7092
+	// Token: 0x04001BB7 RID: 7095
 	public GameObject PantyIcon;
 
-	// Token: 0x04001BB5 RID: 7093
+	// Token: 0x04001BB8 RID: 7096
 	public Transform TopicHighlight;
 
-	// Token: 0x04001BB6 RID: 7094
+	// Token: 0x04001BB9 RID: 7097
 	public Transform ComplimentSet;
 
-	// Token: 0x04001BB7 RID: 7095
+	// Token: 0x04001BBA RID: 7098
 	public Transform AffectionBar;
 
-	// Token: 0x04001BB8 RID: 7096
+	// Token: 0x04001BBB RID: 7099
 	public Transform Highlight;
 
-	// Token: 0x04001BB9 RID: 7097
+	// Token: 0x04001BBC RID: 7100
 	public Transform GiveGift;
 
-	// Token: 0x04001BBA RID: 7098
+	// Token: 0x04001BBD RID: 7101
 	public Transform PeekSpot;
 
-	// Token: 0x04001BBB RID: 7099
+	// Token: 0x04001BBE RID: 7102
 	public Transform[] Options;
 
-	// Token: 0x04001BBC RID: 7100
+	// Token: 0x04001BBF RID: 7103
 	public Transform ShowOff;
 
-	// Token: 0x04001BBD RID: 7101
+	// Token: 0x04001BC0 RID: 7104
 	public Transform Topics;
 
-	// Token: 0x04001BBE RID: 7102
+	// Token: 0x04001BC1 RID: 7105
 	public Texture X;
 
-	// Token: 0x04001BBF RID: 7103
+	// Token: 0x04001BC2 RID: 7106
 	public UISprite[] OpinionIcons;
 
-	// Token: 0x04001BC0 RID: 7104
+	// Token: 0x04001BC3 RID: 7107
 	public UISprite[] TopicIcons;
 
-	// Token: 0x04001BC1 RID: 7105
+	// Token: 0x04001BC4 RID: 7108
 	public UITexture[] MultiplierIcons;
 
-	// Token: 0x04001BC2 RID: 7106
+	// Token: 0x04001BC5 RID: 7109
 	public UILabel[] ComplimentLabels;
 
-	// Token: 0x04001BC3 RID: 7107
+	// Token: 0x04001BC6 RID: 7110
 	public UISprite[] ComplimentBGs;
 
-	// Token: 0x04001BC4 RID: 7108
+	// Token: 0x04001BC7 RID: 7111
 	public UILabel MultiplierLabel;
 
-	// Token: 0x04001BC5 RID: 7109
+	// Token: 0x04001BC8 RID: 7112
 	public UILabel SeductionLabel;
 
-	// Token: 0x04001BC6 RID: 7110
+	// Token: 0x04001BC9 RID: 7113
 	public UILabel TopicNameLabel;
 
-	// Token: 0x04001BC7 RID: 7111
+	// Token: 0x04001BCA RID: 7114
 	public UILabel DialogueLabel;
 
-	// Token: 0x04001BC8 RID: 7112
+	// Token: 0x04001BCB RID: 7115
 	public UIPanel DatingSimHUD;
 
-	// Token: 0x04001BC9 RID: 7113
+	// Token: 0x04001BCC RID: 7116
 	public UILabel WisdomLabel;
 
-	// Token: 0x04001BCA RID: 7114
+	// Token: 0x04001BCD RID: 7117
 	public UIPanel Panel;
 
-	// Token: 0x04001BCB RID: 7115
+	// Token: 0x04001BCE RID: 7118
 	public UITexture[] GiftIcons;
 
-	// Token: 0x04001BCC RID: 7116
+	// Token: 0x04001BCF RID: 7119
 	public UISprite[] TraitBGs;
 
-	// Token: 0x04001BCD RID: 7117
+	// Token: 0x04001BD0 RID: 7120
 	public UISprite[] GiftBGs;
 
-	// Token: 0x04001BCE RID: 7118
+	// Token: 0x04001BD1 RID: 7121
 	public UILabel[] Labels;
 
-	// Token: 0x04001BCF RID: 7119
+	// Token: 0x04001BD2 RID: 7122
 	public string[] OpinionSpriteNames;
 
-	// Token: 0x04001BD0 RID: 7120
+	// Token: 0x04001BD3 RID: 7123
 	public string[] Compliments;
 
-	// Token: 0x04001BD1 RID: 7121
+	// Token: 0x04001BD4 RID: 7124
 	public string[] TopicNames;
 
-	// Token: 0x04001BD2 RID: 7122
+	// Token: 0x04001BD5 RID: 7125
 	public string[] GiveGifts;
 
-	// Token: 0x04001BD3 RID: 7123
+	// Token: 0x04001BD6 RID: 7126
 	public string[] Greetings;
 
-	// Token: 0x04001BD4 RID: 7124
+	// Token: 0x04001BD7 RID: 7127
 	public string[] Farewells;
 
-	// Token: 0x04001BD5 RID: 7125
+	// Token: 0x04001BD8 RID: 7128
 	public string[] Negatives;
 
-	// Token: 0x04001BD6 RID: 7126
+	// Token: 0x04001BD9 RID: 7129
 	public string[] Positives;
 
-	// Token: 0x04001BD7 RID: 7127
+	// Token: 0x04001BDA RID: 7130
 	public string[] ShowOffs;
 
-	// Token: 0x04001BD8 RID: 7128
+	// Token: 0x04001BDB RID: 7131
 	public bool[] ComplimentsGiven;
 
-	// Token: 0x04001BD9 RID: 7129
+	// Token: 0x04001BDC RID: 7132
 	public bool[] TopicsDiscussed;
 
-	// Token: 0x04001BDA RID: 7130
+	// Token: 0x04001BDD RID: 7133
 	public bool[] GiftsPurchased;
 
-	// Token: 0x04001BDB RID: 7131
+	// Token: 0x04001BDE RID: 7134
 	public bool[] GiftsGiven;
 
-	// Token: 0x04001BDC RID: 7132
+	// Token: 0x04001BDF RID: 7135
 	public bool SuitorAndRivalTalking;
 
-	// Token: 0x04001BDD RID: 7133
+	// Token: 0x04001BE0 RID: 7136
 	public bool DataNeedsSaving;
 
-	// Token: 0x04001BDE RID: 7134
+	// Token: 0x04001BE1 RID: 7137
 	public bool SelectingTopic;
 
-	// Token: 0x04001BDF RID: 7135
+	// Token: 0x04001BE2 RID: 7138
 	public bool AffectionGrow;
 
-	// Token: 0x04001BE0 RID: 7136
+	// Token: 0x04001BE3 RID: 7139
 	public bool Complimenting;
 
-	// Token: 0x04001BE1 RID: 7137
+	// Token: 0x04001BE4 RID: 7140
 	public bool Initialized;
 
-	// Token: 0x04001BE2 RID: 7138
+	// Token: 0x04001BE5 RID: 7141
 	public bool Matchmaking;
 
-	// Token: 0x04001BE3 RID: 7139
+	// Token: 0x04001BE6 RID: 7142
 	public bool GivingGift;
 
-	// Token: 0x04001BE4 RID: 7140
+	// Token: 0x04001BE7 RID: 7143
 	public bool ShowingOff;
 
-	// Token: 0x04001BE5 RID: 7141
+	// Token: 0x04001BE8 RID: 7144
 	public bool Eighties;
 
-	// Token: 0x04001BE6 RID: 7142
+	// Token: 0x04001BE9 RID: 7145
 	public bool Negative;
 
-	// Token: 0x04001BE7 RID: 7143
+	// Token: 0x04001BEA RID: 7146
 	public bool SlideOut;
 
-	// Token: 0x04001BE8 RID: 7144
+	// Token: 0x04001BEB RID: 7147
 	public bool Testing;
 
-	// Token: 0x04001BE9 RID: 7145
+	// Token: 0x04001BEC RID: 7148
 	public float HighlightTarget;
 
-	// Token: 0x04001BEA RID: 7146
+	// Token: 0x04001BED RID: 7149
 	public float Affection;
 
-	// Token: 0x04001BEB RID: 7147
+	// Token: 0x04001BEE RID: 7150
 	public float Rotation;
 
-	// Token: 0x04001BEC RID: 7148
+	// Token: 0x04001BEF RID: 7151
 	public float Speed;
 
-	// Token: 0x04001BED RID: 7149
+	// Token: 0x04001BF0 RID: 7152
 	public float Timer;
 
-	// Token: 0x04001BEE RID: 7150
+	// Token: 0x04001BF1 RID: 7153
 	public int ComplimentSelected = 1;
 
-	// Token: 0x04001BEF RID: 7151
+	// Token: 0x04001BF2 RID: 7154
 	public int TraitSelected = 1;
 
-	// Token: 0x04001BF0 RID: 7152
+	// Token: 0x04001BF3 RID: 7155
 	public int TopicSelected = 1;
 
-	// Token: 0x04001BF1 RID: 7153
+	// Token: 0x04001BF4 RID: 7156
 	public int GiftSelected = 1;
 
-	// Token: 0x04001BF2 RID: 7154
+	// Token: 0x04001BF5 RID: 7157
 	public int Selected = 1;
 
-	// Token: 0x04001BF3 RID: 7155
+	// Token: 0x04001BF6 RID: 7158
 	public int AffectionLevel;
 
-	// Token: 0x04001BF4 RID: 7156
+	// Token: 0x04001BF7 RID: 7159
 	public int Multiplier;
 
-	// Token: 0x04001BF5 RID: 7157
+	// Token: 0x04001BF8 RID: 7160
 	public int Opinion;
 
-	// Token: 0x04001BF6 RID: 7158
+	// Token: 0x04001BF9 RID: 7161
 	public int Phase = 1;
 
-	// Token: 0x04001BF7 RID: 7159
+	// Token: 0x04001BFA RID: 7162
 	public int WisdomTraitDemonstrated;
 
-	// Token: 0x04001BF8 RID: 7160
+	// Token: 0x04001BFB RID: 7163
 	public int WisdomTrait;
 
-	// Token: 0x04001BF9 RID: 7161
+	// Token: 0x04001BFC RID: 7164
 	public int CourageTraitDemonstrated;
 
-	// Token: 0x04001BFA RID: 7162
+	// Token: 0x04001BFD RID: 7165
 	public int CourageTrait;
 
-	// Token: 0x04001BFB RID: 7163
+	// Token: 0x04001BFE RID: 7166
 	public int StrengthTraitDemonstrated;
 
-	// Token: 0x04001BFC RID: 7164
+	// Token: 0x04001BFF RID: 7167
 	public int StrengthTrait;
 
-	// Token: 0x04001BFD RID: 7165
+	// Token: 0x04001C00 RID: 7168
 	public int[] TraitDemonstrated;
 
-	// Token: 0x04001BFE RID: 7166
+	// Token: 0x04001C01 RID: 7169
 	public int[] Trait;
 
-	// Token: 0x04001BFF RID: 7167
+	// Token: 0x04001C02 RID: 7170
 	public int GiftColumn = 1;
 
-	// Token: 0x04001C00 RID: 7168
+	// Token: 0x04001C03 RID: 7171
 	public int GiftRow = 1;
 
-	// Token: 0x04001C01 RID: 7169
+	// Token: 0x04001C04 RID: 7172
 	public int Column = 1;
 
-	// Token: 0x04001C02 RID: 7170
+	// Token: 0x04001C05 RID: 7173
 	public int Row = 1;
 
-	// Token: 0x04001C03 RID: 7171
+	// Token: 0x04001C06 RID: 7174
 	public int Side = 1;
 
-	// Token: 0x04001C04 RID: 7172
+	// Token: 0x04001C07 RID: 7175
 	public int Line = 1;
 
-	// Token: 0x04001C05 RID: 7173
+	// Token: 0x04001C08 RID: 7176
 	public string CurrentAnim = string.Empty;
 
-	// Token: 0x04001C06 RID: 7174
+	// Token: 0x04001C09 RID: 7177
 	public Color OriginalColor;
 
-	// Token: 0x04001C07 RID: 7175
+	// Token: 0x04001C0A RID: 7178
 	public Camera MainCamera;
 }

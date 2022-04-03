@@ -5,17 +5,17 @@ using System.Xml.Schema;
 using System.Xml.Serialization;
 using UnityEngine;
 
-// Token: 0x0200049E RID: 1182
+// Token: 0x020004A1 RID: 1185
 public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCallbackReceiver, IXmlSerializable
 {
-	// Token: 0x06001F77 RID: 8055 RVA: 0x001BC1B7 File Offset: 0x001BA3B7
+	// Token: 0x06001F81 RID: 8065 RVA: 0x001BD743 File Offset: 0x001BB943
 	public SerializableDictionary()
 	{
 		this.keys = new List<K>();
 		this.values = new List<V>();
 	}
 
-	// Token: 0x06001F78 RID: 8056 RVA: 0x001BC1D8 File Offset: 0x001BA3D8
+	// Token: 0x06001F82 RID: 8066 RVA: 0x001BD764 File Offset: 0x001BB964
 	public void OnBeforeSerialize()
 	{
 		this.keys.Clear();
@@ -27,7 +27,7 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 		}
 	}
 
-	// Token: 0x06001F79 RID: 8057 RVA: 0x001BC25C File Offset: 0x001BA45C
+	// Token: 0x06001F83 RID: 8067 RVA: 0x001BD7E8 File Offset: 0x001BB9E8
 	public void OnAfterDeserialize()
 	{
 		base.Clear();
@@ -37,13 +37,13 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 		}
 	}
 
-	// Token: 0x06001F7A RID: 8058 RVA: 0x001BC2A3 File Offset: 0x001BA4A3
+	// Token: 0x06001F84 RID: 8068 RVA: 0x001BD82F File Offset: 0x001BBA2F
 	public XmlSchema GetSchema()
 	{
 		return null;
 	}
 
-	// Token: 0x06001F7B RID: 8059 RVA: 0x001BC2A8 File Offset: 0x001BA4A8
+	// Token: 0x06001F85 RID: 8069 RVA: 0x001BD834 File Offset: 0x001BBA34
 	public void ReadXml(XmlReader reader)
 	{
 		XmlSerializer xmlSerializer = new XmlSerializer(typeof(K));
@@ -70,7 +70,7 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 		reader.ReadEndElement();
 	}
 
-	// Token: 0x06001F7C RID: 8060 RVA: 0x001BC354 File Offset: 0x001BA554
+	// Token: 0x06001F86 RID: 8070 RVA: 0x001BD8E0 File Offset: 0x001BBAE0
 	public void WriteXml(XmlWriter writer)
 	{
 		XmlSerializer xmlSerializer = new XmlSerializer(typeof(K));
@@ -88,20 +88,20 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 		}
 	}
 
-	// Token: 0x040041EE RID: 16878
+	// Token: 0x0400421B RID: 16923
 	[SerializeField]
 	private List<K> keys;
 
-	// Token: 0x040041EF RID: 16879
+	// Token: 0x0400421C RID: 16924
 	[SerializeField]
 	private List<V> values;
 
-	// Token: 0x040041F0 RID: 16880
+	// Token: 0x0400421D RID: 16925
 	private const string XML_Item = "Item";
 
-	// Token: 0x040041F1 RID: 16881
+	// Token: 0x0400421E RID: 16926
 	private const string XML_Key = "Key";
 
-	// Token: 0x040041F2 RID: 16882
+	// Token: 0x0400421F RID: 16927
 	private const string XML_Value = "Value";
 }

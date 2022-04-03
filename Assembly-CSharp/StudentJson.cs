@@ -4,12 +4,12 @@ using System.Globalization;
 using System.IO;
 using UnityEngine;
 
-// Token: 0x02000344 RID: 836
+// Token: 0x02000345 RID: 837
 [Serializable]
 public class StudentJson : JsonData
 {
 	// Token: 0x1700047B RID: 1147
-	// (get) Token: 0x06001915 RID: 6421 RVA: 0x000FC4C3 File Offset: 0x000FA6C3
+	// (get) Token: 0x0600191B RID: 6427 RVA: 0x000FCB4F File Offset: 0x000FAD4F
 	public static string FilePath
 	{
 		get
@@ -22,7 +22,7 @@ public class StudentJson : JsonData
 		}
 	}
 
-	// Token: 0x06001916 RID: 6422 RVA: 0x000FC4EC File Offset: 0x000FA6EC
+	// Token: 0x0600191C RID: 6428 RVA: 0x000FCB78 File Offset: 0x000FAD78
 	public static StudentJson[] LoadFromJson(string path)
 	{
 		StudentJson[] array = new StudentJson[101];
@@ -78,8 +78,8 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x1700047C RID: 1148
-	// (get) Token: 0x06001917 RID: 6423 RVA: 0x000FC764 File Offset: 0x000FA964
-	// (set) Token: 0x06001918 RID: 6424 RVA: 0x000FC76C File Offset: 0x000FA96C
+	// (get) Token: 0x0600191D RID: 6429 RVA: 0x000FCDF0 File Offset: 0x000FAFF0
+	// (set) Token: 0x0600191E RID: 6430 RVA: 0x000FCDF8 File Offset: 0x000FAFF8
 	public string Name
 	{
 		get
@@ -93,8 +93,8 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x1700047D RID: 1149
-	// (get) Token: 0x06001919 RID: 6425 RVA: 0x000FC775 File Offset: 0x000FA975
-	// (set) Token: 0x0600191A RID: 6426 RVA: 0x000FC77D File Offset: 0x000FA97D
+	// (get) Token: 0x0600191F RID: 6431 RVA: 0x000FCE01 File Offset: 0x000FB001
+	// (set) Token: 0x06001920 RID: 6432 RVA: 0x000FCE09 File Offset: 0x000FB009
 	public string RealName
 	{
 		get
@@ -108,7 +108,7 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x1700047E RID: 1150
-	// (get) Token: 0x0600191B RID: 6427 RVA: 0x000FC786 File Offset: 0x000FA986
+	// (get) Token: 0x06001921 RID: 6433 RVA: 0x000FCE12 File Offset: 0x000FB012
 	public int Gender
 	{
 		get
@@ -118,8 +118,8 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x1700047F RID: 1151
-	// (get) Token: 0x0600191C RID: 6428 RVA: 0x000FC78E File Offset: 0x000FA98E
-	// (set) Token: 0x0600191D RID: 6429 RVA: 0x000FC796 File Offset: 0x000FA996
+	// (get) Token: 0x06001922 RID: 6434 RVA: 0x000FCE1A File Offset: 0x000FB01A
+	// (set) Token: 0x06001923 RID: 6435 RVA: 0x000FCE22 File Offset: 0x000FB022
 	public int Class
 	{
 		get
@@ -133,8 +133,8 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x17000480 RID: 1152
-	// (get) Token: 0x0600191E RID: 6430 RVA: 0x000FC79F File Offset: 0x000FA99F
-	// (set) Token: 0x0600191F RID: 6431 RVA: 0x000FC7A7 File Offset: 0x000FA9A7
+	// (get) Token: 0x06001924 RID: 6436 RVA: 0x000FCE2B File Offset: 0x000FB02B
+	// (set) Token: 0x06001925 RID: 6437 RVA: 0x000FCE33 File Offset: 0x000FB033
 	public int Seat
 	{
 		get
@@ -148,7 +148,7 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x17000481 RID: 1153
-	// (get) Token: 0x06001920 RID: 6432 RVA: 0x000FC7B0 File Offset: 0x000FA9B0
+	// (get) Token: 0x06001926 RID: 6438 RVA: 0x000FCE3C File Offset: 0x000FB03C
 	public ClubType Club
 	{
 		get
@@ -158,8 +158,8 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x17000482 RID: 1154
-	// (get) Token: 0x06001921 RID: 6433 RVA: 0x000FC7B8 File Offset: 0x000FA9B8
-	// (set) Token: 0x06001922 RID: 6434 RVA: 0x000FC7C0 File Offset: 0x000FA9C0
+	// (get) Token: 0x06001927 RID: 6439 RVA: 0x000FCE44 File Offset: 0x000FB044
+	// (set) Token: 0x06001928 RID: 6440 RVA: 0x000FCE4C File Offset: 0x000FB04C
 	public PersonaType Persona
 	{
 		get
@@ -173,7 +173,7 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x17000483 RID: 1155
-	// (get) Token: 0x06001923 RID: 6435 RVA: 0x000FC7C9 File Offset: 0x000FA9C9
+	// (get) Token: 0x06001929 RID: 6441 RVA: 0x000FCE55 File Offset: 0x000FB055
 	public int Crush
 	{
 		get
@@ -183,8 +183,8 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x17000484 RID: 1156
-	// (get) Token: 0x06001924 RID: 6436 RVA: 0x000FC7D1 File Offset: 0x000FA9D1
-	// (set) Token: 0x06001925 RID: 6437 RVA: 0x000FC7D9 File Offset: 0x000FA9D9
+	// (get) Token: 0x0600192A RID: 6442 RVA: 0x000FCE5D File Offset: 0x000FB05D
+	// (set) Token: 0x0600192B RID: 6443 RVA: 0x000FCE65 File Offset: 0x000FB065
 	public float BreastSize
 	{
 		get
@@ -198,8 +198,8 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x17000485 RID: 1157
-	// (get) Token: 0x06001926 RID: 6438 RVA: 0x000FC7E2 File Offset: 0x000FA9E2
-	// (set) Token: 0x06001927 RID: 6439 RVA: 0x000FC7EA File Offset: 0x000FA9EA
+	// (get) Token: 0x0600192C RID: 6444 RVA: 0x000FCE6E File Offset: 0x000FB06E
+	// (set) Token: 0x0600192D RID: 6445 RVA: 0x000FCE76 File Offset: 0x000FB076
 	public int Strength
 	{
 		get
@@ -213,8 +213,8 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x17000486 RID: 1158
-	// (get) Token: 0x06001928 RID: 6440 RVA: 0x000FC7F3 File Offset: 0x000FA9F3
-	// (set) Token: 0x06001929 RID: 6441 RVA: 0x000FC7FB File Offset: 0x000FA9FB
+	// (get) Token: 0x0600192E RID: 6446 RVA: 0x000FCE7F File Offset: 0x000FB07F
+	// (set) Token: 0x0600192F RID: 6447 RVA: 0x000FCE87 File Offset: 0x000FB087
 	public string Hairstyle
 	{
 		get
@@ -228,7 +228,7 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x17000487 RID: 1159
-	// (get) Token: 0x0600192A RID: 6442 RVA: 0x000FC804 File Offset: 0x000FAA04
+	// (get) Token: 0x06001930 RID: 6448 RVA: 0x000FCE90 File Offset: 0x000FB090
 	public string Color
 	{
 		get
@@ -238,7 +238,7 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x17000488 RID: 1160
-	// (get) Token: 0x0600192B RID: 6443 RVA: 0x000FC80C File Offset: 0x000FAA0C
+	// (get) Token: 0x06001931 RID: 6449 RVA: 0x000FCE98 File Offset: 0x000FB098
 	public string Eyes
 	{
 		get
@@ -248,7 +248,7 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x17000489 RID: 1161
-	// (get) Token: 0x0600192C RID: 6444 RVA: 0x000FC814 File Offset: 0x000FAA14
+	// (get) Token: 0x06001932 RID: 6450 RVA: 0x000FCEA0 File Offset: 0x000FB0A0
 	public string EyeType
 	{
 		get
@@ -258,7 +258,7 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x1700048A RID: 1162
-	// (get) Token: 0x0600192D RID: 6445 RVA: 0x000FC81C File Offset: 0x000FAA1C
+	// (get) Token: 0x06001933 RID: 6451 RVA: 0x000FCEA8 File Offset: 0x000FB0A8
 	public string Stockings
 	{
 		get
@@ -268,8 +268,8 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x1700048B RID: 1163
-	// (get) Token: 0x0600192E RID: 6446 RVA: 0x000FC824 File Offset: 0x000FAA24
-	// (set) Token: 0x0600192F RID: 6447 RVA: 0x000FC82C File Offset: 0x000FAA2C
+	// (get) Token: 0x06001934 RID: 6452 RVA: 0x000FCEB0 File Offset: 0x000FB0B0
+	// (set) Token: 0x06001935 RID: 6453 RVA: 0x000FCEB8 File Offset: 0x000FB0B8
 	public string Accessory
 	{
 		get
@@ -283,7 +283,7 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x1700048C RID: 1164
-	// (get) Token: 0x06001930 RID: 6448 RVA: 0x000FC835 File Offset: 0x000FAA35
+	// (get) Token: 0x06001936 RID: 6454 RVA: 0x000FCEC1 File Offset: 0x000FB0C1
 	public string Info
 	{
 		get
@@ -293,7 +293,7 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x1700048D RID: 1165
-	// (get) Token: 0x06001931 RID: 6449 RVA: 0x000FC83D File Offset: 0x000FAA3D
+	// (get) Token: 0x06001937 RID: 6455 RVA: 0x000FCEC9 File Offset: 0x000FB0C9
 	public ScheduleBlock[] ScheduleBlocks
 	{
 		get
@@ -303,7 +303,7 @@ public class StudentJson : JsonData
 	}
 
 	// Token: 0x1700048E RID: 1166
-	// (get) Token: 0x06001932 RID: 6450 RVA: 0x000FC845 File Offset: 0x000FAA45
+	// (get) Token: 0x06001938 RID: 6456 RVA: 0x000FCED1 File Offset: 0x000FB0D1
 	public bool Success
 	{
 		get
@@ -312,7 +312,7 @@ public class StudentJson : JsonData
 		}
 	}
 
-	// Token: 0x06001933 RID: 6451 RVA: 0x000FC850 File Offset: 0x000FAA50
+	// Token: 0x06001939 RID: 6457 RVA: 0x000FCEDC File Offset: 0x000FB0DC
 	private static float[] ConstructTempFloatArray(string str)
 	{
 		string[] array = str.Split(new char[]
@@ -331,7 +331,7 @@ public class StudentJson : JsonData
 		return array2;
 	}
 
-	// Token: 0x06001934 RID: 6452 RVA: 0x000FC8A1 File Offset: 0x000FAAA1
+	// Token: 0x0600193A RID: 6458 RVA: 0x000FCF2D File Offset: 0x000FB12D
 	private static string[] ConstructTempStringArray(string str)
 	{
 		return str.Split(new char[]
@@ -340,79 +340,79 @@ public class StudentJson : JsonData
 		});
 	}
 
-	// Token: 0x0400277C RID: 10108
+	// Token: 0x0400278F RID: 10127
 	[SerializeField]
 	private string name;
 
-	// Token: 0x0400277D RID: 10109
+	// Token: 0x04002790 RID: 10128
 	[SerializeField]
 	private string realname;
 
-	// Token: 0x0400277E RID: 10110
+	// Token: 0x04002791 RID: 10129
 	[SerializeField]
 	private int gender;
 
-	// Token: 0x0400277F RID: 10111
+	// Token: 0x04002792 RID: 10130
 	[SerializeField]
 	private int classID;
 
-	// Token: 0x04002780 RID: 10112
+	// Token: 0x04002793 RID: 10131
 	[SerializeField]
 	private int seat;
 
-	// Token: 0x04002781 RID: 10113
+	// Token: 0x04002794 RID: 10132
 	[SerializeField]
 	private ClubType club;
 
-	// Token: 0x04002782 RID: 10114
+	// Token: 0x04002795 RID: 10133
 	[SerializeField]
 	private PersonaType persona;
 
-	// Token: 0x04002783 RID: 10115
+	// Token: 0x04002796 RID: 10134
 	[SerializeField]
 	private int crush;
 
-	// Token: 0x04002784 RID: 10116
+	// Token: 0x04002797 RID: 10135
 	[SerializeField]
 	private float breastSize;
 
-	// Token: 0x04002785 RID: 10117
+	// Token: 0x04002798 RID: 10136
 	[SerializeField]
 	private int strength;
 
-	// Token: 0x04002786 RID: 10118
+	// Token: 0x04002799 RID: 10137
 	[SerializeField]
 	private string hairstyle;
 
-	// Token: 0x04002787 RID: 10119
+	// Token: 0x0400279A RID: 10138
 	[SerializeField]
 	private string color;
 
-	// Token: 0x04002788 RID: 10120
+	// Token: 0x0400279B RID: 10139
 	[SerializeField]
 	private string eyes;
 
-	// Token: 0x04002789 RID: 10121
+	// Token: 0x0400279C RID: 10140
 	[SerializeField]
 	private string eyeType;
 
-	// Token: 0x0400278A RID: 10122
+	// Token: 0x0400279D RID: 10141
 	[SerializeField]
 	private string stockings;
 
-	// Token: 0x0400278B RID: 10123
+	// Token: 0x0400279E RID: 10142
 	[SerializeField]
 	private string accessory;
 
-	// Token: 0x0400278C RID: 10124
+	// Token: 0x0400279F RID: 10143
 	[SerializeField]
 	private string info;
 
-	// Token: 0x0400278D RID: 10125
+	// Token: 0x040027A0 RID: 10144
 	[SerializeField]
 	private ScheduleBlock[] scheduleBlocks;
 
-	// Token: 0x0400278E RID: 10126
+	// Token: 0x040027A1 RID: 10145
 	[SerializeField]
 	private bool success;
 }

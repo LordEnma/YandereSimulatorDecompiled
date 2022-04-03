@@ -42,24 +42,24 @@ public class AnswerSheetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A27 RID: 2599
+	// Token: 0x04000A28 RID: 2600
 	public SchemesScript Schemes;
 
-	// Token: 0x04000A28 RID: 2600
+	// Token: 0x04000A29 RID: 2601
 	public DoorGapScript DoorGap;
 
-	// Token: 0x04000A29 RID: 2601
+	// Token: 0x04000A2A RID: 2602
 	public PromptScript Prompt;
 
-	// Token: 0x04000A2A RID: 2602
+	// Token: 0x04000A2B RID: 2603
 	public ClockScript Clock;
 
-	// Token: 0x04000A2B RID: 2603
+	// Token: 0x04000A2C RID: 2604
 	public Mesh OriginalMesh;
 
-	// Token: 0x04000A2C RID: 2604
+	// Token: 0x04000A2D RID: 2605
 	public MeshFilter MyMesh;
 
-	// Token: 0x04000A2D RID: 2605
+	// Token: 0x04000A2E RID: 2606
 	public int Phase = 1;
 }

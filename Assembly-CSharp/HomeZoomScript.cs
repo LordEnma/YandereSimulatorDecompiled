@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200032D RID: 813
+// Token: 0x0200032E RID: 814
 public class HomeZoomScript : MonoBehaviour
 {
-	// Token: 0x060018CC RID: 6348 RVA: 0x000F46AC File Offset: 0x000F28AC
+	// Token: 0x060018D2 RID: 6354 RVA: 0x000F4CF4 File Offset: 0x000F2EF4
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -32,9 +32,9 @@ public class HomeZoomScript : MonoBehaviour
 		component.volume = 0f;
 	}
 
-	// Token: 0x040025F3 RID: 9715
+	// Token: 0x04002606 RID: 9734
 	public Transform YandereDestination;
 
-	// Token: 0x040025F4 RID: 9716
+	// Token: 0x04002607 RID: 9735
 	public bool Zoom;
 }

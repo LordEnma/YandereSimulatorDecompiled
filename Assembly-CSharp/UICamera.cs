@@ -2571,35 +2571,35 @@ public class UICamera : MonoBehaviour
 	// Token: 0x040006A5 RID: 1701
 	public static UICamera.GetTouchCallback GetInputTouch;
 
-	// Token: 0x02000617 RID: 1559
+	// Token: 0x0200061C RID: 1564
 	[DoNotObfuscateNGUI]
 	public enum ControlScheme
 	{
-		// Token: 0x04004E99 RID: 20121
+		// Token: 0x04004ECB RID: 20171
 		Mouse,
-		// Token: 0x04004E9A RID: 20122
+		// Token: 0x04004ECC RID: 20172
 		Touch,
-		// Token: 0x04004E9B RID: 20123
+		// Token: 0x04004ECD RID: 20173
 		Controller
 	}
 
-	// Token: 0x02000618 RID: 1560
+	// Token: 0x0200061D RID: 1565
 	[DoNotObfuscateNGUI]
 	public enum ClickNotification
 	{
-		// Token: 0x04004E9D RID: 20125
+		// Token: 0x04004ECF RID: 20175
 		None,
-		// Token: 0x04004E9E RID: 20126
+		// Token: 0x04004ED0 RID: 20176
 		Always,
-		// Token: 0x04004E9F RID: 20127
+		// Token: 0x04004ED1 RID: 20177
 		BasedOnDelta
 	}
 
-	// Token: 0x02000619 RID: 1561
+	// Token: 0x0200061E RID: 1566
 	public class MouseOrTouch
 	{
 		// Token: 0x17000546 RID: 1350
-		// (get) Token: 0x060025BD RID: 9661 RVA: 0x00200377 File Offset: 0x001FE577
+		// (get) Token: 0x060025CD RID: 9677 RVA: 0x00201BE7 File Offset: 0x001FFDE7
 		public float deltaTime
 		{
 			get
@@ -2609,7 +2609,7 @@ public class UICamera : MonoBehaviour
 		}
 
 		// Token: 0x17000547 RID: 1351
-		// (get) Token: 0x060025BE RID: 9662 RVA: 0x00200385 File Offset: 0x001FE585
+		// (get) Token: 0x060025CE RID: 9678 RVA: 0x00201BF5 File Offset: 0x001FFDF5
 		public bool isOverUI
 		{
 			get
@@ -2618,186 +2618,186 @@ public class UICamera : MonoBehaviour
 			}
 		}
 
-		// Token: 0x04004EA0 RID: 20128
+		// Token: 0x04004ED2 RID: 20178
 		public KeyCode key;
 
-		// Token: 0x04004EA1 RID: 20129
+		// Token: 0x04004ED3 RID: 20179
 		public Vector2 pos;
 
-		// Token: 0x04004EA2 RID: 20130
+		// Token: 0x04004ED4 RID: 20180
 		public Vector2 lastPos;
 
-		// Token: 0x04004EA3 RID: 20131
+		// Token: 0x04004ED5 RID: 20181
 		public Vector2 delta;
 
-		// Token: 0x04004EA4 RID: 20132
+		// Token: 0x04004ED6 RID: 20182
 		public Vector2 totalDelta;
 
-		// Token: 0x04004EA5 RID: 20133
+		// Token: 0x04004ED7 RID: 20183
 		public Camera pressedCam;
 
-		// Token: 0x04004EA6 RID: 20134
+		// Token: 0x04004ED8 RID: 20184
 		public GameObject last;
 
-		// Token: 0x04004EA7 RID: 20135
+		// Token: 0x04004ED9 RID: 20185
 		public GameObject current;
 
-		// Token: 0x04004EA8 RID: 20136
+		// Token: 0x04004EDA RID: 20186
 		public GameObject pressed;
 
-		// Token: 0x04004EA9 RID: 20137
+		// Token: 0x04004EDB RID: 20187
 		public GameObject dragged;
 
-		// Token: 0x04004EAA RID: 20138
+		// Token: 0x04004EDC RID: 20188
 		public GameObject lastClickGO;
 
-		// Token: 0x04004EAB RID: 20139
+		// Token: 0x04004EDD RID: 20189
 		public float pressTime;
 
-		// Token: 0x04004EAC RID: 20140
+		// Token: 0x04004EDE RID: 20190
 		public float clickTime;
 
-		// Token: 0x04004EAD RID: 20141
+		// Token: 0x04004EDF RID: 20191
 		public UICamera.ClickNotification clickNotification = UICamera.ClickNotification.Always;
 
-		// Token: 0x04004EAE RID: 20142
+		// Token: 0x04004EE0 RID: 20192
 		public bool touchBegan = true;
 
-		// Token: 0x04004EAF RID: 20143
+		// Token: 0x04004EE1 RID: 20193
 		public bool pressStarted;
 
-		// Token: 0x04004EB0 RID: 20144
+		// Token: 0x04004EE2 RID: 20194
 		public bool dragStarted;
 
-		// Token: 0x04004EB1 RID: 20145
+		// Token: 0x04004EE3 RID: 20195
 		public int ignoreDelta;
 	}
 
-	// Token: 0x0200061A RID: 1562
+	// Token: 0x0200061F RID: 1567
 	[DoNotObfuscateNGUI]
 	public enum EventType
 	{
-		// Token: 0x04004EB3 RID: 20147
+		// Token: 0x04004EE5 RID: 20197
 		World_3D,
-		// Token: 0x04004EB4 RID: 20148
+		// Token: 0x04004EE6 RID: 20198
 		UI_3D,
-		// Token: 0x04004EB5 RID: 20149
+		// Token: 0x04004EE7 RID: 20199
 		World_2D,
-		// Token: 0x04004EB6 RID: 20150
+		// Token: 0x04004EE8 RID: 20200
 		UI_2D
 	}
 
-	// Token: 0x0200061B RID: 1563
-	// (Invoke) Token: 0x060025C1 RID: 9665
+	// Token: 0x02000620 RID: 1568
+	// (Invoke) Token: 0x060025D1 RID: 9681
 	public delegate bool GetKeyStateFunc(KeyCode key);
 
-	// Token: 0x0200061C RID: 1564
-	// (Invoke) Token: 0x060025C5 RID: 9669
+	// Token: 0x02000621 RID: 1569
+	// (Invoke) Token: 0x060025D5 RID: 9685
 	public delegate float GetAxisFunc(string name);
 
-	// Token: 0x0200061D RID: 1565
-	// (Invoke) Token: 0x060025C9 RID: 9673
-	public delegate bool GetAnyKeyFunc();
-
-	// Token: 0x0200061E RID: 1566
-	// (Invoke) Token: 0x060025CD RID: 9677
-	public delegate UICamera.MouseOrTouch GetMouseDelegate(int button);
-
-	// Token: 0x0200061F RID: 1567
-	// (Invoke) Token: 0x060025D1 RID: 9681
-	public delegate UICamera.MouseOrTouch GetTouchDelegate(int id, bool createIfMissing);
-
-	// Token: 0x02000620 RID: 1568
-	// (Invoke) Token: 0x060025D5 RID: 9685
-	public delegate void RemoveTouchDelegate(int id);
-
-	// Token: 0x02000621 RID: 1569
-	// (Invoke) Token: 0x060025D9 RID: 9689
-	public delegate void OnScreenResize();
-
 	// Token: 0x02000622 RID: 1570
-	[DoNotObfuscateNGUI]
-	public enum ProcessEventsIn
-	{
-		// Token: 0x04004EB8 RID: 20152
-		Update,
-		// Token: 0x04004EB9 RID: 20153
-		LateUpdate
-	}
+	// (Invoke) Token: 0x060025D9 RID: 9689
+	public delegate bool GetAnyKeyFunc();
 
 	// Token: 0x02000623 RID: 1571
 	// (Invoke) Token: 0x060025DD RID: 9693
-	public delegate void OnCustomInput();
+	public delegate UICamera.MouseOrTouch GetMouseDelegate(int button);
 
 	// Token: 0x02000624 RID: 1572
 	// (Invoke) Token: 0x060025E1 RID: 9697
-	public delegate void OnSchemeChange();
+	public delegate UICamera.MouseOrTouch GetTouchDelegate(int id, bool createIfMissing);
 
 	// Token: 0x02000625 RID: 1573
 	// (Invoke) Token: 0x060025E5 RID: 9701
-	public delegate void MoveDelegate(Vector2 delta);
+	public delegate void RemoveTouchDelegate(int id);
 
 	// Token: 0x02000626 RID: 1574
 	// (Invoke) Token: 0x060025E9 RID: 9705
-	public delegate void VoidDelegate(GameObject go);
+	public delegate void OnScreenResize();
 
 	// Token: 0x02000627 RID: 1575
-	// (Invoke) Token: 0x060025ED RID: 9709
-	public delegate void BoolDelegate(GameObject go, bool state);
+	[DoNotObfuscateNGUI]
+	public enum ProcessEventsIn
+	{
+		// Token: 0x04004EEA RID: 20202
+		Update,
+		// Token: 0x04004EEB RID: 20203
+		LateUpdate
+	}
 
 	// Token: 0x02000628 RID: 1576
-	// (Invoke) Token: 0x060025F1 RID: 9713
-	public delegate void FloatDelegate(GameObject go, float delta);
+	// (Invoke) Token: 0x060025ED RID: 9709
+	public delegate void OnCustomInput();
 
 	// Token: 0x02000629 RID: 1577
-	// (Invoke) Token: 0x060025F5 RID: 9717
-	public delegate void VectorDelegate(GameObject go, Vector2 delta);
+	// (Invoke) Token: 0x060025F1 RID: 9713
+	public delegate void OnSchemeChange();
 
 	// Token: 0x0200062A RID: 1578
-	// (Invoke) Token: 0x060025F9 RID: 9721
-	public delegate void ObjectDelegate(GameObject go, GameObject obj);
+	// (Invoke) Token: 0x060025F5 RID: 9717
+	public delegate void MoveDelegate(Vector2 delta);
 
 	// Token: 0x0200062B RID: 1579
-	// (Invoke) Token: 0x060025FD RID: 9725
-	public delegate void KeyCodeDelegate(GameObject go, KeyCode key);
+	// (Invoke) Token: 0x060025F9 RID: 9721
+	public delegate void VoidDelegate(GameObject go);
 
 	// Token: 0x0200062C RID: 1580
+	// (Invoke) Token: 0x060025FD RID: 9725
+	public delegate void BoolDelegate(GameObject go, bool state);
+
+	// Token: 0x0200062D RID: 1581
+	// (Invoke) Token: 0x06002601 RID: 9729
+	public delegate void FloatDelegate(GameObject go, float delta);
+
+	// Token: 0x0200062E RID: 1582
+	// (Invoke) Token: 0x06002605 RID: 9733
+	public delegate void VectorDelegate(GameObject go, Vector2 delta);
+
+	// Token: 0x0200062F RID: 1583
+	// (Invoke) Token: 0x06002609 RID: 9737
+	public delegate void ObjectDelegate(GameObject go, GameObject obj);
+
+	// Token: 0x02000630 RID: 1584
+	// (Invoke) Token: 0x0600260D RID: 9741
+	public delegate void KeyCodeDelegate(GameObject go, KeyCode key);
+
+	// Token: 0x02000631 RID: 1585
 	private struct DepthEntry
 	{
-		// Token: 0x04004EBA RID: 20154
+		// Token: 0x04004EEC RID: 20204
 		public int depth;
 
-		// Token: 0x04004EBB RID: 20155
+		// Token: 0x04004EED RID: 20205
 		public RaycastHit hit;
 
-		// Token: 0x04004EBC RID: 20156
+		// Token: 0x04004EEE RID: 20206
 		public Vector3 point;
 
-		// Token: 0x04004EBD RID: 20157
+		// Token: 0x04004EEF RID: 20207
 		public GameObject go;
 	}
 
-	// Token: 0x0200062D RID: 1581
+	// Token: 0x02000632 RID: 1586
 	public class Touch
 	{
-		// Token: 0x04004EBE RID: 20158
+		// Token: 0x04004EF0 RID: 20208
 		public int fingerId;
 
-		// Token: 0x04004EBF RID: 20159
+		// Token: 0x04004EF1 RID: 20209
 		public TouchPhase phase;
 
-		// Token: 0x04004EC0 RID: 20160
+		// Token: 0x04004EF2 RID: 20210
 		public Vector2 position;
 
-		// Token: 0x04004EC1 RID: 20161
+		// Token: 0x04004EF3 RID: 20211
 		public int tapCount;
 	}
 
-	// Token: 0x0200062E RID: 1582
-	// (Invoke) Token: 0x06002602 RID: 9730
+	// Token: 0x02000633 RID: 1587
+	// (Invoke) Token: 0x06002612 RID: 9746
 	public delegate int GetTouchCountCallback();
 
-	// Token: 0x0200062F RID: 1583
-	// (Invoke) Token: 0x06002606 RID: 9734
+	// Token: 0x02000634 RID: 1588
+	// (Invoke) Token: 0x06002616 RID: 9750
 	public delegate UICamera.Touch GetTouchCallback(int index);
 }

@@ -133,7 +133,7 @@ public class UIGeometry
 	// Token: 0x0400055C RID: 1372
 	private Vector4 mRtpTan;
 
-	// Token: 0x02000603 RID: 1539
-	// (Invoke) Token: 0x06002597 RID: 9623
+	// Token: 0x02000608 RID: 1544
+	// (Invoke) Token: 0x060025A7 RID: 9639
 	public delegate void OnCustomWrite(List<Vector3> v, List<Vector2> u, List<Color> c, List<Vector3> n, List<Vector4> t, List<Vector4> u2);
 }

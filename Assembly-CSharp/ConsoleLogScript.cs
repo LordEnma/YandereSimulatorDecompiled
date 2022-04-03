@@ -4,19 +4,19 @@ using UnityEngine;
 // Token: 0x02000258 RID: 600
 public class ConsoleLogScript : MonoBehaviour
 {
-	// Token: 0x060012AE RID: 4782 RVA: 0x000995EB File Offset: 0x000977EB
+	// Token: 0x060012AF RID: 4783 RVA: 0x000996AB File Offset: 0x000978AB
 	private void OnEnable()
 	{
 		Application.logMessageReceived += this.Log;
 	}
 
-	// Token: 0x060012AF RID: 4783 RVA: 0x000995FE File Offset: 0x000977FE
+	// Token: 0x060012B0 RID: 4784 RVA: 0x000996BE File Offset: 0x000978BE
 	private void OnDisable()
 	{
 		Application.logMessageReceived -= this.Log;
 	}
 
-	// Token: 0x060012B0 RID: 4784 RVA: 0x00099614 File Offset: 0x00097814
+	// Token: 0x060012B1 RID: 4785 RVA: 0x000996D4 File Offset: 0x000978D4
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.KeypadEnter))
@@ -37,7 +37,7 @@ public class ConsoleLogScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012B1 RID: 4785 RVA: 0x000996A4 File Offset: 0x000978A4
+	// Token: 0x060012B2 RID: 4786 RVA: 0x00099764 File Offset: 0x00097964
 	public void Log(string logString, string stackTrace, LogType type)
 	{
 		this.myLog = this.myLog + "\n" + logString;
@@ -47,7 +47,7 @@ public class ConsoleLogScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012B2 RID: 4786 RVA: 0x00099700 File Offset: 0x00097900
+	// Token: 0x060012B3 RID: 4787 RVA: 0x000997C0 File Offset: 0x000979C0
 	private void OnGUI()
 	{
 		if (!this.doShow)
@@ -58,24 +58,24 @@ public class ConsoleLogScript : MonoBehaviour
 		GUI.TextArea(new Rect(0f, 479.9952f, 426.6624f, 239.9976f), this.myLog);
 	}
 
-	// Token: 0x040018D0 RID: 6352
+	// Token: 0x040018D1 RID: 6353
 	public DebugEnablerScript debug;
 
-	// Token: 0x040018D1 RID: 6353
+	// Token: 0x040018D2 RID: 6354
 	private string myLog = "Debug Console Output:";
 
-	// Token: 0x040018D2 RID: 6354
+	// Token: 0x040018D3 RID: 6355
 	private bool doShow;
 
-	// Token: 0x040018D3 RID: 6355
+	// Token: 0x040018D4 RID: 6356
 	private int kChars = 700;
 
-	// Token: 0x040018D4 RID: 6356
+	// Token: 0x040018D5 RID: 6357
 	private int enters;
 
-	// Token: 0x040018D5 RID: 6357
+	// Token: 0x040018D6 RID: 6358
 	private int id;
 
-	// Token: 0x040018D6 RID: 6358
+	// Token: 0x040018D7 RID: 6359
 	public string[] code;
 }

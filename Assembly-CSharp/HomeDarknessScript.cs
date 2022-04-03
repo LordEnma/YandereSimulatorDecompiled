@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x0200031C RID: 796
+// Token: 0x0200031D RID: 797
 public class HomeDarknessScript : MonoBehaviour
 {
-	// Token: 0x0600187E RID: 6270 RVA: 0x000ED4B0 File Offset: 0x000EB6B0
+	// Token: 0x06001884 RID: 6276 RVA: 0x000EDA68 File Offset: 0x000EBC68
 	private void Start()
 	{
 		if (GameGlobals.LoveSick)
@@ -15,7 +15,7 @@ public class HomeDarknessScript : MonoBehaviour
 		this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, 1f);
 	}
 
-	// Token: 0x0600187F RID: 6271 RVA: 0x000ED530 File Offset: 0x000EB730
+	// Token: 0x06001885 RID: 6277 RVA: 0x000EDAE8 File Offset: 0x000EBCE8
 	private void Update()
 	{
 		if (this.FadeOut)
@@ -153,6 +153,7 @@ public class HomeDarknessScript : MonoBehaviour
 							DateGlobals.PassDays = 1;
 						}
 						SceneManager.LoadScene("CalendarScene");
+						Debug.Log("Went to sleep.");
 						return;
 					}
 					if (DateGlobals.Weekday != DayOfWeek.Sunday)
@@ -175,7 +176,7 @@ public class HomeDarknessScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001880 RID: 6272 RVA: 0x000EDB20 File Offset: 0x000EBD20
+	// Token: 0x06001886 RID: 6278 RVA: 0x000EE0E0 File Offset: 0x000EC2E0
 	private void CheckForOsanaThursday()
 	{
 		if (this.InputDevice.Type == InputDeviceType.Gamepad)
@@ -207,33 +208,33 @@ public class HomeDarknessScript : MonoBehaviour
 		SceneManager.LoadScene("LoadingScene");
 	}
 
-	// Token: 0x0400249D RID: 9373
+	// Token: 0x040024B0 RID: 9392
 	public HomeVideoGamesScript HomeVideoGames;
 
-	// Token: 0x0400249E RID: 9374
+	// Token: 0x040024B1 RID: 9393
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x0400249F RID: 9375
+	// Token: 0x040024B2 RID: 9394
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x040024A0 RID: 9376
+	// Token: 0x040024B3 RID: 9395
 	public HomeExitScript HomeExit;
 
-	// Token: 0x040024A1 RID: 9377
+	// Token: 0x040024B4 RID: 9396
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x040024A2 RID: 9378
+	// Token: 0x040024B5 RID: 9397
 	public UILabel BasementLabel;
 
-	// Token: 0x040024A3 RID: 9379
+	// Token: 0x040024B6 RID: 9398
 	public UISprite Sprite;
 
-	// Token: 0x040024A4 RID: 9380
+	// Token: 0x040024B7 RID: 9399
 	public bool Cyberstalking;
 
-	// Token: 0x040024A5 RID: 9381
+	// Token: 0x040024B8 RID: 9400
 	public bool FadeSlow;
 
-	// Token: 0x040024A6 RID: 9382
+	// Token: 0x040024B9 RID: 9401
 	public bool FadeOut;
 }

@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000372 RID: 882
+// Token: 0x02000373 RID: 883
 public class MusicMenuScript : MonoBehaviour
 {
-	// Token: 0x060019D6 RID: 6614 RVA: 0x00109A2C File Offset: 0x00107C2C
+	// Token: 0x060019DC RID: 6620 RVA: 0x0010A0E8 File Offset: 0x001082E8
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.C))
@@ -41,7 +41,7 @@ public class MusicMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019D7 RID: 6615 RVA: 0x00109B56 File Offset: 0x00107D56
+	// Token: 0x060019DD RID: 6621 RVA: 0x0010A212 File Offset: 0x00108412
 	private IEnumerator DownloadCoroutine()
 	{
 		WWW CurrentDownload = new WWW(string.Concat(new string[]
@@ -59,7 +59,7 @@ public class MusicMenuScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060019D8 RID: 6616 RVA: 0x00109B68 File Offset: 0x00107D68
+	// Token: 0x060019DE RID: 6622 RVA: 0x0010A224 File Offset: 0x00108424
 	private void UpdateHighlight()
 	{
 		if (this.Selected < 0)
@@ -73,33 +73,33 @@ public class MusicMenuScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 365f - 80f * (float)this.Selected, this.Highlight.localPosition.z);
 	}
 
-	// Token: 0x04002998 RID: 10648
+	// Token: 0x040029AB RID: 10667
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002999 RID: 10649
+	// Token: 0x040029AC RID: 10668
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x0400299A RID: 10650
+	// Token: 0x040029AD RID: 10669
 	public PromptBarScript PromptBar;
 
-	// Token: 0x0400299B RID: 10651
+	// Token: 0x040029AE RID: 10670
 	public GameObject AudioMenu;
 
-	// Token: 0x0400299C RID: 10652
+	// Token: 0x040029AF RID: 10671
 	public JukeboxScript Jukebox;
 
-	// Token: 0x0400299D RID: 10653
+	// Token: 0x040029B0 RID: 10672
 	public int SelectionLimit = 9;
 
-	// Token: 0x0400299E RID: 10654
+	// Token: 0x040029B1 RID: 10673
 	public int Selected;
 
-	// Token: 0x0400299F RID: 10655
+	// Token: 0x040029B2 RID: 10674
 	public Transform Highlight;
 
-	// Token: 0x040029A0 RID: 10656
+	// Token: 0x040029B3 RID: 10675
 	public string path = string.Empty;
 
-	// Token: 0x040029A1 RID: 10657
+	// Token: 0x040029B4 RID: 10676
 	public AudioClip CustomMusic;
 }

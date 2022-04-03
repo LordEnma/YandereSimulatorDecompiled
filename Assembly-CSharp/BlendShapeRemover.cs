@@ -13,6 +13,6 @@ public class BlendShapeRemover : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000B8C RID: 2956
+	// Token: 0x04000B8D RID: 2957
 	public SkinnedMeshRenderer SelectedMesh;
 }

@@ -58,27 +58,27 @@ public class RivalPoseScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A59 RID: 2649
+	// Token: 0x04000A5A RID: 2650
 	public GameObject Character;
 
-	// Token: 0x04000A5A RID: 2650
+	// Token: 0x04000A5B RID: 2651
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x04000A5B RID: 2651
+	// Token: 0x04000A5C RID: 2652
 	public Texture[] FemaleUniformTextures;
 
-	// Token: 0x04000A5C RID: 2652
+	// Token: 0x04000A5D RID: 2653
 	public Mesh[] FemaleUniforms;
 
-	// Token: 0x04000A5D RID: 2653
+	// Token: 0x04000A5E RID: 2654
 	public Texture[] TestTextures;
 
-	// Token: 0x04000A5E RID: 2654
+	// Token: 0x04000A5F RID: 2655
 	public Texture HairTexture;
 
-	// Token: 0x04000A5F RID: 2655
+	// Token: 0x04000A60 RID: 2656
 	public string[] AnimNames;
 
-	// Token: 0x04000A60 RID: 2656
+	// Token: 0x04000A61 RID: 2657
 	public int ID = -1;
 }

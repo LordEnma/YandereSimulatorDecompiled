@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000422 RID: 1058
+// Token: 0x02000425 RID: 1061
 public class SewingMachineScript : MonoBehaviour
 {
-	// Token: 0x06001C96 RID: 7318 RVA: 0x0014F071 File Offset: 0x0014D271
+	// Token: 0x06001CA0 RID: 7328 RVA: 0x0014FB95 File Offset: 0x0014DD95
 	private void Start()
 	{
 		if (this.StudentManager.TaskManager.TaskStatus[30] == 1)
@@ -18,7 +18,7 @@ public class SewingMachineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C97 RID: 7319 RVA: 0x0014F0B0 File Offset: 0x0014D2B0
+	// Token: 0x06001CA1 RID: 7329 RVA: 0x0014FBD4 File Offset: 0x0014DDD4
 	private void Update()
 	{
 		if (this.Check)
@@ -91,33 +91,33 @@ public class SewingMachineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040032FE RID: 13054
+	// Token: 0x0400331A RID: 13082
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040032FF RID: 13055
+	// Token: 0x0400331B RID: 13083
 	public YandereScript Yandere;
 
-	// Token: 0x04003300 RID: 13056
+	// Token: 0x0400331C RID: 13084
 	public PromptScript Prompt;
 
-	// Token: 0x04003301 RID: 13057
+	// Token: 0x0400331D RID: 13085
 	public Quaternion targetRotation;
 
-	// Token: 0x04003302 RID: 13058
+	// Token: 0x0400331E RID: 13086
 	public PickUpScript Uniform;
 
-	// Token: 0x04003303 RID: 13059
+	// Token: 0x0400331F RID: 13087
 	public Collider Chair;
 
-	// Token: 0x04003304 RID: 13060
+	// Token: 0x04003320 RID: 13088
 	public bool MoveAway;
 
-	// Token: 0x04003305 RID: 13061
+	// Token: 0x04003321 RID: 13089
 	public bool Sewing;
 
-	// Token: 0x04003306 RID: 13062
+	// Token: 0x04003322 RID: 13090
 	public bool Check;
 
-	// Token: 0x04003307 RID: 13063
+	// Token: 0x04003323 RID: 13091
 	public float Timer;
 }

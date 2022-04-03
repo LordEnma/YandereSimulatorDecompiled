@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200030A RID: 778
+// Token: 0x0200030B RID: 779
 public class GrowShrinkScript : MonoBehaviour
 {
-	// Token: 0x06001838 RID: 6200 RVA: 0x000E5E48 File Offset: 0x000E4048
+	// Token: 0x0600183E RID: 6206 RVA: 0x000E6348 File Offset: 0x000E4548
 	private void Start()
 	{
 		this.OriginalPosition = base.transform.localPosition;
 		base.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x06001839 RID: 6201 RVA: 0x000E5E6C File Offset: 0x000E406C
+	// Token: 0x0600183F RID: 6207 RVA: 0x000E636C File Offset: 0x000E456C
 	private void Update()
 	{
 		this.Timer += Time.deltaTime * 2f;
@@ -51,7 +51,7 @@ public class GrowShrinkScript : MonoBehaviour
 		base.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
 	}
 
-	// Token: 0x0600183A RID: 6202 RVA: 0x000E602C File Offset: 0x000E422C
+	// Token: 0x06001840 RID: 6208 RVA: 0x000E652C File Offset: 0x000E472C
 	public void Return()
 	{
 		base.transform.localPosition = this.OriginalPosition;
@@ -67,33 +67,33 @@ public class GrowShrinkScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04002344 RID: 9028
+	// Token: 0x04002352 RID: 9042
 	public float FallSpeed;
 
-	// Token: 0x04002345 RID: 9029
+	// Token: 0x04002353 RID: 9043
 	public float Threshold = 1f;
 
-	// Token: 0x04002346 RID: 9030
+	// Token: 0x04002354 RID: 9044
 	public float Slowdown = 0.5f;
 
-	// Token: 0x04002347 RID: 9031
+	// Token: 0x04002355 RID: 9045
 	public float Strength = 1f;
 
-	// Token: 0x04002348 RID: 9032
+	// Token: 0x04002356 RID: 9046
 	public float Target = 1f;
 
-	// Token: 0x04002349 RID: 9033
+	// Token: 0x04002357 RID: 9047
 	public float Scale;
 
-	// Token: 0x0400234A RID: 9034
+	// Token: 0x04002358 RID: 9048
 	public float Speed = 5f;
 
-	// Token: 0x0400234B RID: 9035
+	// Token: 0x04002359 RID: 9049
 	public float Timer;
 
-	// Token: 0x0400234C RID: 9036
+	// Token: 0x0400235A RID: 9050
 	public bool Shrink;
 
-	// Token: 0x0400234D RID: 9037
+	// Token: 0x0400235B RID: 9051
 	public Vector3 OriginalPosition;
 }

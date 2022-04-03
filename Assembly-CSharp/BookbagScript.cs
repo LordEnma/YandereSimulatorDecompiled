@@ -27,7 +27,7 @@ public class BookbagScript : MonoBehaviour
 				this.Prompt.Circle[0].fillAmount = 1f;
 				if (this.ConcealedPickup == null)
 				{
-					if (this.Prompt.Yandere.PickUp.TrashCan == null && !this.Prompt.Yandere.PickUp.JerryCan)
+					if (this.Prompt.Yandere.PickUp.TrashCan == null && !this.Prompt.Yandere.PickUp.JerryCan && !this.Prompt.Yandere.PickUp.Mop && !this.Prompt.Yandere.PickUp.Bucket && !this.Prompt.Yandere.PickUp.TooBig)
 					{
 						this.ConcealedPickup = this.Prompt.Yandere.PickUp;
 						this.ConcealedPickup.Drop();
@@ -67,7 +67,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C428 File Offset: 0x0005A628
+	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C480 File Offset: 0x0005A680
 	public void Drop()
 	{
 		this.Worn = false;
@@ -80,7 +80,7 @@ public class BookbagScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x06000A5C RID: 2652 RVA: 0x0005C498 File Offset: 0x0005A698
+	// Token: 0x06000A5C RID: 2652 RVA: 0x0005C4F0 File Offset: 0x0005A6F0
 	public void Wear()
 	{
 		this.Worn = true;
@@ -97,27 +97,27 @@ public class BookbagScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x04000C07 RID: 3079
+	// Token: 0x04000C08 RID: 3080
 	public PickUpScript ConcealedPickup;
 
-	// Token: 0x04000C08 RID: 3080
+	// Token: 0x04000C09 RID: 3081
 	public Rigidbody MyRigidbody;
 
-	// Token: 0x04000C09 RID: 3081
+	// Token: 0x04000C0A RID: 3082
 	public PromptScript Prompt;
 
-	// Token: 0x04000C0A RID: 3082
+	// Token: 0x04000C0B RID: 3083
 	public Texture EightiesBookBagTexture;
 
-	// Token: 0x04000C0B RID: 3083
+	// Token: 0x04000C0C RID: 3084
 	public Mesh EightiesBookBag;
 
-	// Token: 0x04000C0C RID: 3084
+	// Token: 0x04000C0D RID: 3085
 	public Renderer MyRenderer;
 
-	// Token: 0x04000C0D RID: 3085
+	// Token: 0x04000C0E RID: 3086
 	public MeshFilter MyMesh;
 
-	// Token: 0x04000C0E RID: 3086
+	// Token: 0x04000C0F RID: 3087
 	public bool Worn;
 }

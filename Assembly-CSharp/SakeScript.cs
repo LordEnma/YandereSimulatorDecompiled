@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003F3 RID: 1011
+// Token: 0x020003F6 RID: 1014
 public class SakeScript : MonoBehaviour
 {
-	// Token: 0x06001BFC RID: 7164 RVA: 0x00147566 File Offset: 0x00145766
+	// Token: 0x06001C06 RID: 7174 RVA: 0x00148022 File Offset: 0x00146222
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -14,7 +14,7 @@ public class SakeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BFD RID: 7165 RVA: 0x001475A0 File Offset: 0x001457A0
+	// Token: 0x06001C07 RID: 7175 RVA: 0x0014805C File Offset: 0x0014625C
 	public void UpdatePrompt()
 	{
 		if (this.Prompt.Yandere.Inventory.Sake)
@@ -28,6 +28,6 @@ public class SakeScript : MonoBehaviour
 		this.Prompt.Hide();
 	}
 
-	// Token: 0x04003148 RID: 12616
+	// Token: 0x04003161 RID: 12641
 	public PromptScript Prompt;
 }

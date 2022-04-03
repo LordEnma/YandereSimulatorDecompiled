@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000292 RID: 658
 public class DropsScript : MonoBehaviour
 {
-	// Token: 0x060013C6 RID: 5062 RVA: 0x000BB620 File Offset: 0x000B9820
+	// Token: 0x060013C7 RID: 5063 RVA: 0x000BB72C File Offset: 0x000B992C
 	private void Start()
 	{
 		this.ID = 1;
@@ -21,7 +21,7 @@ public class DropsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013C7 RID: 5063 RVA: 0x000BB6A0 File Offset: 0x000B98A0
+	// Token: 0x060013C8 RID: 5064 RVA: 0x000BB7AC File Offset: 0x000B99AC
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -99,7 +99,7 @@ public class DropsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013C8 RID: 5064 RVA: 0x000BB920 File Offset: 0x000B9B20
+	// Token: 0x060013C9 RID: 5065 RVA: 0x000BBA2C File Offset: 0x000B9C2C
 	public void UpdateList()
 	{
 		this.ID = 1;
@@ -120,7 +120,7 @@ public class DropsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013C9 RID: 5065 RVA: 0x000BBA1C File Offset: 0x000B9C1C
+	// Token: 0x060013CA RID: 5066 RVA: 0x000BBB28 File Offset: 0x000B9D28
 	public void UpdateDesc()
 	{
 		if (!this.Purchased[this.Selected])
@@ -147,78 +147,78 @@ public class DropsScript : MonoBehaviour
 		this.UpdatePantyCount();
 	}
 
-	// Token: 0x060013CA RID: 5066 RVA: 0x000BBB35 File Offset: 0x000B9D35
+	// Token: 0x060013CB RID: 5067 RVA: 0x000BBC41 File Offset: 0x000B9E41
 	public void UpdatePantyCount()
 	{
 		this.PantyCount.text = this.Inventory.PantyShots.ToString();
 	}
 
-	// Token: 0x04001D7C RID: 7548
+	// Token: 0x04001D7F RID: 7551
 	public InfoChanWindowScript InfoChanWindow;
 
-	// Token: 0x04001D7D RID: 7549
+	// Token: 0x04001D80 RID: 7552
 	public InputManagerScript InputManager;
 
-	// Token: 0x04001D7E RID: 7550
+	// Token: 0x04001D81 RID: 7553
 	public InventoryScript Inventory;
 
-	// Token: 0x04001D7F RID: 7551
+	// Token: 0x04001D82 RID: 7554
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04001D80 RID: 7552
+	// Token: 0x04001D83 RID: 7555
 	public SchemesScript Schemes;
 
-	// Token: 0x04001D81 RID: 7553
+	// Token: 0x04001D84 RID: 7556
 	public GameObject FavorMenu;
 
-	// Token: 0x04001D82 RID: 7554
+	// Token: 0x04001D85 RID: 7557
 	public Transform Highlight;
 
-	// Token: 0x04001D83 RID: 7555
+	// Token: 0x04001D86 RID: 7558
 	public UILabel PantyCount;
 
-	// Token: 0x04001D84 RID: 7556
+	// Token: 0x04001D87 RID: 7559
 	public UITexture DropIcon;
 
-	// Token: 0x04001D85 RID: 7557
+	// Token: 0x04001D88 RID: 7560
 	public UILabel DropDesc;
 
-	// Token: 0x04001D86 RID: 7558
+	// Token: 0x04001D89 RID: 7561
 	public UILabel[] CostLabels;
 
-	// Token: 0x04001D87 RID: 7559
+	// Token: 0x04001D8A RID: 7562
 	public UILabel[] NameLabels;
 
-	// Token: 0x04001D88 RID: 7560
+	// Token: 0x04001D8B RID: 7563
 	public bool[] InfiniteSupply;
 
-	// Token: 0x04001D89 RID: 7561
+	// Token: 0x04001D8C RID: 7564
 	public bool[] Purchased;
 
-	// Token: 0x04001D8A RID: 7562
+	// Token: 0x04001D8D RID: 7565
 	public Texture[] DropIcons;
 
-	// Token: 0x04001D8B RID: 7563
+	// Token: 0x04001D8E RID: 7566
 	public int[] DropCosts;
 
-	// Token: 0x04001D8C RID: 7564
+	// Token: 0x04001D8F RID: 7567
 	public string[] DropDescs;
 
-	// Token: 0x04001D8D RID: 7565
+	// Token: 0x04001D90 RID: 7568
 	public string[] DropNames;
 
-	// Token: 0x04001D8E RID: 7566
+	// Token: 0x04001D91 RID: 7569
 	public int Selected = 1;
 
-	// Token: 0x04001D8F RID: 7567
+	// Token: 0x04001D92 RID: 7570
 	public int ID = 1;
 
-	// Token: 0x04001D90 RID: 7568
+	// Token: 0x04001D93 RID: 7571
 	public AudioClip InfoUnavailable;
 
-	// Token: 0x04001D91 RID: 7569
+	// Token: 0x04001D94 RID: 7572
 	public AudioClip InfoPurchase;
 
-	// Token: 0x04001D92 RID: 7570
+	// Token: 0x04001D95 RID: 7573
 	public AudioClip InfoAfford;
 }

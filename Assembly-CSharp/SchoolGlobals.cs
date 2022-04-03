@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002FA RID: 762
+// Token: 0x020002FB RID: 763
 public static class SchoolGlobals
 {
-	// Token: 0x06001714 RID: 5908 RVA: 0x000E075C File Offset: 0x000DE95C
+	// Token: 0x0600171A RID: 5914 RVA: 0x000E0C5C File Offset: 0x000DEE5C
 	public static bool GetDemonActive(int demonID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_" + demonID.ToString());
 	}
 
-	// Token: 0x06001715 RID: 5909 RVA: 0x000E0794 File Offset: 0x000DE994
+	// Token: 0x0600171B RID: 5915 RVA: 0x000E0C94 File Offset: 0x000DEE94
 	public static void SetDemonActive(int demonID, bool value)
 	{
 		string text = demonID.ToString();
@@ -18,19 +18,19 @@ public static class SchoolGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_" + text, value);
 	}
 
-	// Token: 0x06001716 RID: 5910 RVA: 0x000E07F0 File Offset: 0x000DE9F0
+	// Token: 0x0600171C RID: 5916 RVA: 0x000E0CF0 File Offset: 0x000DEEF0
 	public static int[] KeysOfDemonActive()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_");
 	}
 
-	// Token: 0x06001717 RID: 5911 RVA: 0x000E0820 File Offset: 0x000DEA20
+	// Token: 0x0600171D RID: 5917 RVA: 0x000E0D20 File Offset: 0x000DEF20
 	public static bool GetGardenGraveOccupied(int graveID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_GardenGraveOccupied_" + graveID.ToString());
 	}
 
-	// Token: 0x06001718 RID: 5912 RVA: 0x000E0858 File Offset: 0x000DEA58
+	// Token: 0x0600171E RID: 5918 RVA: 0x000E0D58 File Offset: 0x000DEF58
 	public static void SetGardenGraveOccupied(int graveID, bool value)
 	{
 		string text = graveID.ToString();
@@ -38,15 +38,15 @@ public static class SchoolGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_GardenGraveOccupied_" + text, value);
 	}
 
-	// Token: 0x06001719 RID: 5913 RVA: 0x000E08B4 File Offset: 0x000DEAB4
+	// Token: 0x0600171F RID: 5919 RVA: 0x000E0DB4 File Offset: 0x000DEFB4
 	public static int[] KeysOfGardenGraveOccupied()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_GardenGraveOccupied_");
 	}
 
 	// Token: 0x17000420 RID: 1056
-	// (get) Token: 0x0600171A RID: 5914 RVA: 0x000E08E4 File Offset: 0x000DEAE4
-	// (set) Token: 0x0600171B RID: 5915 RVA: 0x000E0914 File Offset: 0x000DEB14
+	// (get) Token: 0x06001720 RID: 5920 RVA: 0x000E0DE4 File Offset: 0x000DEFE4
+	// (set) Token: 0x06001721 RID: 5921 RVA: 0x000E0E14 File Offset: 0x000DF014
 	public static int KidnapVictim
 	{
 		get
@@ -60,8 +60,8 @@ public static class SchoolGlobals
 	}
 
 	// Token: 0x17000421 RID: 1057
-	// (get) Token: 0x0600171C RID: 5916 RVA: 0x000E0944 File Offset: 0x000DEB44
-	// (set) Token: 0x0600171D RID: 5917 RVA: 0x000E0974 File Offset: 0x000DEB74
+	// (get) Token: 0x06001722 RID: 5922 RVA: 0x000E0E44 File Offset: 0x000DF044
+	// (set) Token: 0x06001723 RID: 5923 RVA: 0x000E0E74 File Offset: 0x000DF074
 	public static int Population
 	{
 		get
@@ -75,8 +75,8 @@ public static class SchoolGlobals
 	}
 
 	// Token: 0x17000422 RID: 1058
-	// (get) Token: 0x0600171E RID: 5918 RVA: 0x000E09A4 File Offset: 0x000DEBA4
-	// (set) Token: 0x0600171F RID: 5919 RVA: 0x000E09D4 File Offset: 0x000DEBD4
+	// (get) Token: 0x06001724 RID: 5924 RVA: 0x000E0EA4 File Offset: 0x000DF0A4
+	// (set) Token: 0x06001725 RID: 5925 RVA: 0x000E0ED4 File Offset: 0x000DF0D4
 	public static bool RoofFence
 	{
 		get
@@ -90,8 +90,8 @@ public static class SchoolGlobals
 	}
 
 	// Token: 0x17000423 RID: 1059
-	// (get) Token: 0x06001720 RID: 5920 RVA: 0x000E0A04 File Offset: 0x000DEC04
-	// (set) Token: 0x06001721 RID: 5921 RVA: 0x000E0A34 File Offset: 0x000DEC34
+	// (get) Token: 0x06001726 RID: 5926 RVA: 0x000E0F04 File Offset: 0x000DF104
+	// (set) Token: 0x06001727 RID: 5927 RVA: 0x000E0F34 File Offset: 0x000DF134
 	public static float PreviousSchoolAtmosphere
 	{
 		get
@@ -105,8 +105,8 @@ public static class SchoolGlobals
 	}
 
 	// Token: 0x17000424 RID: 1060
-	// (get) Token: 0x06001722 RID: 5922 RVA: 0x000E0A64 File Offset: 0x000DEC64
-	// (set) Token: 0x06001723 RID: 5923 RVA: 0x000E0A94 File Offset: 0x000DEC94
+	// (get) Token: 0x06001728 RID: 5928 RVA: 0x000E0F64 File Offset: 0x000DF164
+	// (set) Token: 0x06001729 RID: 5929 RVA: 0x000E0F94 File Offset: 0x000DF194
 	public static float SchoolAtmosphere
 	{
 		get
@@ -120,8 +120,8 @@ public static class SchoolGlobals
 	}
 
 	// Token: 0x17000425 RID: 1061
-	// (get) Token: 0x06001724 RID: 5924 RVA: 0x000E0AC4 File Offset: 0x000DECC4
-	// (set) Token: 0x06001725 RID: 5925 RVA: 0x000E0AF4 File Offset: 0x000DECF4
+	// (get) Token: 0x0600172A RID: 5930 RVA: 0x000E0FC4 File Offset: 0x000DF1C4
+	// (set) Token: 0x0600172B RID: 5931 RVA: 0x000E0FF4 File Offset: 0x000DF1F4
 	public static bool SchoolAtmosphereSet
 	{
 		get
@@ -135,8 +135,8 @@ public static class SchoolGlobals
 	}
 
 	// Token: 0x17000426 RID: 1062
-	// (get) Token: 0x06001726 RID: 5926 RVA: 0x000E0B24 File Offset: 0x000DED24
-	// (set) Token: 0x06001727 RID: 5927 RVA: 0x000E0B54 File Offset: 0x000DED54
+	// (get) Token: 0x0600172C RID: 5932 RVA: 0x000E1024 File Offset: 0x000DF224
+	// (set) Token: 0x0600172D RID: 5933 RVA: 0x000E1054 File Offset: 0x000DF254
 	public static bool ReactedToGameLeader
 	{
 		get
@@ -150,8 +150,8 @@ public static class SchoolGlobals
 	}
 
 	// Token: 0x17000427 RID: 1063
-	// (get) Token: 0x06001728 RID: 5928 RVA: 0x000E0B84 File Offset: 0x000DED84
-	// (set) Token: 0x06001729 RID: 5929 RVA: 0x000E0BB4 File Offset: 0x000DEDB4
+	// (get) Token: 0x0600172E RID: 5934 RVA: 0x000E1084 File Offset: 0x000DF284
+	// (set) Token: 0x0600172F RID: 5935 RVA: 0x000E10B4 File Offset: 0x000DF2B4
 	public static bool HighSecurity
 	{
 		get
@@ -165,8 +165,8 @@ public static class SchoolGlobals
 	}
 
 	// Token: 0x17000428 RID: 1064
-	// (get) Token: 0x0600172A RID: 5930 RVA: 0x000E0BE4 File Offset: 0x000DEDE4
-	// (set) Token: 0x0600172B RID: 5931 RVA: 0x000E0C14 File Offset: 0x000DEE14
+	// (get) Token: 0x06001730 RID: 5936 RVA: 0x000E10E4 File Offset: 0x000DF2E4
+	// (set) Token: 0x06001731 RID: 5937 RVA: 0x000E1114 File Offset: 0x000DF314
 	public static bool SCP
 	{
 		get
@@ -179,7 +179,7 @@ public static class SchoolGlobals
 		}
 	}
 
-	// Token: 0x0600172C RID: 5932 RVA: 0x000E0C44 File Offset: 0x000DEE44
+	// Token: 0x06001732 RID: 5938 RVA: 0x000E1144 File Offset: 0x000DF344
 	public static void DeleteAll()
 	{
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_", SchoolGlobals.KeysOfDemonActive());
@@ -195,36 +195,36 @@ public static class SchoolGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SCP");
 	}
 
-	// Token: 0x040022A0 RID: 8864
+	// Token: 0x040022AE RID: 8878
 	private const string Str_DemonActive = "DemonActive_";
 
-	// Token: 0x040022A1 RID: 8865
+	// Token: 0x040022AF RID: 8879
 	private const string Str_GardenGraveOccupied = "GardenGraveOccupied_";
 
-	// Token: 0x040022A2 RID: 8866
+	// Token: 0x040022B0 RID: 8880
 	private const string Str_KidnapVictim = "KidnapVictim";
 
-	// Token: 0x040022A3 RID: 8867
+	// Token: 0x040022B1 RID: 8881
 	private const string Str_Population = "Population";
 
-	// Token: 0x040022A4 RID: 8868
+	// Token: 0x040022B2 RID: 8882
 	private const string Str_RoofFence = "RoofFence";
 
-	// Token: 0x040022A5 RID: 8869
+	// Token: 0x040022B3 RID: 8883
 	private const string Str_SchoolAtmosphere = "SchoolAtmosphere";
 
-	// Token: 0x040022A6 RID: 8870
+	// Token: 0x040022B4 RID: 8884
 	private const string Str_SchoolAtmosphereSet = "SchoolAtmosphereSet";
 
-	// Token: 0x040022A7 RID: 8871
+	// Token: 0x040022B5 RID: 8885
 	private const string Str_PreviousSchoolAtmosphere = "PreviousSchoolAtmosphere";
 
-	// Token: 0x040022A8 RID: 8872
+	// Token: 0x040022B6 RID: 8886
 	private const string Str_ReactedToGameLeader = "ReactedToGameLeader";
 
-	// Token: 0x040022A9 RID: 8873
+	// Token: 0x040022B7 RID: 8887
 	private const string Str_SCP = "SCP";
 
-	// Token: 0x040022AA RID: 8874
+	// Token: 0x040022B8 RID: 8888
 	private const string Str_HighSecurity = "HighSecurity";
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Token: 0x020004A9 RID: 1193
+// Token: 0x020004AC RID: 1196
 [Serializable]
 public class PersonaTypeAndStringDictionary : SerializableDictionary<PersonaType, string>
 {

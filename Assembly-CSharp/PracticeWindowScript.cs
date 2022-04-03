@@ -2,16 +2,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020003BB RID: 955
+// Token: 0x020003BE RID: 958
 public class PracticeWindowScript : MonoBehaviour
 {
-	// Token: 0x06001B08 RID: 6920 RVA: 0x0012BD7A File Offset: 0x00129F7A
+	// Token: 0x06001B11 RID: 6929 RVA: 0x0012C472 File Offset: 0x0012A672
 	private void Start()
 	{
 		this.Window.SetActive(false);
 	}
 
-	// Token: 0x06001B09 RID: 6921 RVA: 0x0012BD88 File Offset: 0x00129F88
+	// Token: 0x06001B12 RID: 6930 RVA: 0x0012C480 File Offset: 0x0012A680
 	private void Update()
 	{
 		if (this.Window.activeInHierarchy)
@@ -110,7 +110,7 @@ public class PracticeWindowScript : MonoBehaviour
 						this.StudentManager.Students[46].Hearts.Stop();
 						for (int k = 1; k < 5; k++)
 						{
-							if (this.StudentManager.Students[46 + k] != null && this.StudentManager.Students[46 + k].Alive && this.StudentManager.Students[46 + k].Routine)
+							if (this.StudentManager.Students[46 + k] != null && this.StudentManager.Students[46 + k].Alive && this.StudentManager.Students[46 + k].Routine && this.StudentManager.Students[46 + k].Alive && this.StudentManager.Students[46 + k].ClubAttire)
 							{
 								this.StudentManager.Students[46 + k].transform.position = this.KneelSpot[k].position;
 								this.StudentManager.Students[46 + k].transform.eulerAngles = this.KneelSpot[k].eulerAngles;
@@ -232,9 +232,14 @@ public class PracticeWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B0A RID: 6922 RVA: 0x0012C820 File Offset: 0x0012AA20
+	// Token: 0x06001B13 RID: 6931 RVA: 0x0012CF50 File Offset: 0x0012B150
 	public void Finish()
 	{
+		if (this.Selected == 4)
+		{
+			this.DefeatedSho = true;
+			this.StudentManager.TaskManager.UpdateTaskStatus();
+		}
 		for (int i = 1; i < 6; i++)
 		{
 			if (this.StudentManager.Students[45 + i] != null)
@@ -248,7 +253,7 @@ public class PracticeWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B0B RID: 6923 RVA: 0x0012C8D0 File Offset: 0x0012AAD0
+	// Token: 0x06001B14 RID: 6932 RVA: 0x0012D020 File Offset: 0x0012B220
 	public void UpdateWindow()
 	{
 		this.PromptBar.ClearButtons();
@@ -303,9 +308,9 @@ public class PracticeWindowScript : MonoBehaviour
 				this.Label[this.ID].text = this.StudentManager.JSON.Students[this.ClubID - this.ID].Name + "\n" + this.Difficulties[this.ID];
 				if (this.StudentManager.Students[this.ClubID - this.ID] != null)
 				{
-					if (!this.StudentManager.Students[this.ClubID - this.ID].Routine)
+					if (!this.StudentManager.Students[this.ClubID - this.ID].Routine || !this.StudentManager.Students[this.ClubID - this.ID].ClubAttire)
 					{
-						Debug.Log("A student is not doing their routine.");
+						Debug.Log("Student #" + (this.ClubID - this.ID).ToString() + " is not doing their routine or not in their club attire.");
 						this.Texture[this.ID].color = new Color(0.5f, 0.5f, 0.5f, 1f);
 						this.Label[this.ID].color = new Color(0f, 0f, 0f, 0.5f);
 					}
@@ -342,7 +347,7 @@ public class PracticeWindowScript : MonoBehaviour
 		this.UpdateHighlight();
 	}
 
-	// Token: 0x06001B0C RID: 6924 RVA: 0x0012CF58 File Offset: 0x0012B158
+	// Token: 0x06001B15 RID: 6933 RVA: 0x0012D6E8 File Offset: 0x0012B8E8
 	public void UpdateHighlight()
 	{
 		if (this.Selected < 1)
@@ -356,81 +361,84 @@ public class PracticeWindowScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(0f, (float)(660 - 220 * this.Selected), 0f);
 	}
 
-	// Token: 0x04002DCA RID: 11722
+	// Token: 0x04002DE2 RID: 11746
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002DCB RID: 11723
+	// Token: 0x04002DE3 RID: 11747
 	public DialogueWheelScript DialogueWheel;
 
-	// Token: 0x04002DCC RID: 11724
+	// Token: 0x04002DE4 RID: 11748
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002DCD RID: 11725
+	// Token: 0x04002DE5 RID: 11749
 	public StudentScript SparringPartner;
 
-	// Token: 0x04002DCE RID: 11726
+	// Token: 0x04002DE6 RID: 11750
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002DCF RID: 11727
+	// Token: 0x04002DE7 RID: 11751
 	public YandereScript Yandere;
 
-	// Token: 0x04002DD0 RID: 11728
+	// Token: 0x04002DE8 RID: 11752
 	public WeaponScript Baton;
 
-	// Token: 0x04002DD1 RID: 11729
+	// Token: 0x04002DE9 RID: 11753
 	public Texture[] DelinquentDificultyIcons;
 
-	// Token: 0x04002DD2 RID: 11730
+	// Token: 0x04002DEA RID: 11754
 	public Texture[] AlbumCovers;
 
-	// Token: 0x04002DD3 RID: 11731
+	// Token: 0x04002DEB RID: 11755
 	public Transform[] KneelSpot;
 
-	// Token: 0x04002DD4 RID: 11732
+	// Token: 0x04002DEC RID: 11756
 	public Transform[] SparSpot;
 
-	// Token: 0x04002DD5 RID: 11733
+	// Token: 0x04002DED RID: 11757
 	public string[] Difficulties;
 
-	// Token: 0x04002DD6 RID: 11734
+	// Token: 0x04002DEE RID: 11758
 	public UITexture[] Texture;
 
-	// Token: 0x04002DD7 RID: 11735
+	// Token: 0x04002DEF RID: 11759
 	public UILabel[] Label;
 
-	// Token: 0x04002DD8 RID: 11736
+	// Token: 0x04002DF0 RID: 11760
 	public Transform Highlight;
 
-	// Token: 0x04002DD9 RID: 11737
+	// Token: 0x04002DF1 RID: 11761
 	public GameObject Window;
 
-	// Token: 0x04002DDA RID: 11738
+	// Token: 0x04002DF2 RID: 11762
 	public UISprite Darkness;
 
-	// Token: 0x04002DDB RID: 11739
+	// Token: 0x04002DF3 RID: 11763
 	public int Selected;
 
-	// Token: 0x04002DDC RID: 11740
+	// Token: 0x04002DF4 RID: 11764
 	public int ClubID;
 
-	// Token: 0x04002DDD RID: 11741
+	// Token: 0x04002DF5 RID: 11765
 	public int ID = 1;
 
-	// Token: 0x04002DDE RID: 11742
+	// Token: 0x04002DF6 RID: 11766
 	public ClubType Club;
 
-	// Token: 0x04002DDF RID: 11743
+	// Token: 0x04002DF7 RID: 11767
 	public bool PlayedRhythmMinigame;
 
-	// Token: 0x04002DE0 RID: 11744
+	// Token: 0x04002DF8 RID: 11768
+	public bool DefeatedSho;
+
+	// Token: 0x04002DF9 RID: 11769
 	public bool ButtonUp;
 
-	// Token: 0x04002DE1 RID: 11745
+	// Token: 0x04002DFA RID: 11770
 	public bool FadeOut;
 
-	// Token: 0x04002DE2 RID: 11746
+	// Token: 0x04002DFB RID: 11771
 	public bool FadeIn;
 
-	// Token: 0x04002DE3 RID: 11747
+	// Token: 0x04002DFC RID: 11772
 	public float Timer;
 }

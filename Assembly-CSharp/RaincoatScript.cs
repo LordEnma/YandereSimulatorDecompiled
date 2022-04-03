@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003CA RID: 970
+// Token: 0x020003CD RID: 973
 public class RaincoatScript : MonoBehaviour
 {
-	// Token: 0x06001B63 RID: 7011 RVA: 0x001347F4 File Offset: 0x001329F4
+	// Token: 0x06001B6D RID: 7021 RVA: 0x00135268 File Offset: 0x00133468
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -18,6 +18,6 @@ public class RaincoatScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002EF9 RID: 12025
+	// Token: 0x04002F12 RID: 12050
 	public PromptScript Prompt;
 }

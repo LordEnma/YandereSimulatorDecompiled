@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200034B RID: 843
+// Token: 0x0200034C RID: 844
 public class KnifeArrayScript : MonoBehaviour
 {
-	// Token: 0x06001954 RID: 6484 RVA: 0x000FE2DC File Offset: 0x000FC4DC
+	// Token: 0x0600195A RID: 6490 RVA: 0x000FE968 File Offset: 0x000FCB68
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -29,21 +29,21 @@ public class KnifeArrayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400280C RID: 10252
+	// Token: 0x0400281F RID: 10271
 	public GlobalKnifeArrayScript GlobalKnifeArray;
 
-	// Token: 0x0400280D RID: 10253
+	// Token: 0x04002820 RID: 10272
 	public Transform KnifeTarget;
 
-	// Token: 0x0400280E RID: 10254
+	// Token: 0x04002821 RID: 10273
 	public float[] SpawnTimes;
 
-	// Token: 0x0400280F RID: 10255
+	// Token: 0x04002822 RID: 10274
 	public GameObject Knife;
 
-	// Token: 0x04002810 RID: 10256
+	// Token: 0x04002823 RID: 10275
 	public float Timer;
 
-	// Token: 0x04002811 RID: 10257
+	// Token: 0x04002824 RID: 10276
 	public int ID;
 }

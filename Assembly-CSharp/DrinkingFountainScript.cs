@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000291 RID: 657
 public class DrinkingFountainScript : MonoBehaviour
 {
-	// Token: 0x060013C4 RID: 5060 RVA: 0x000BB3DC File Offset: 0x000B95DC
+	// Token: 0x060013C5 RID: 5061 RVA: 0x000BB4E8 File Offset: 0x000B96E8
 	private void Update()
 	{
 		if (this.Prompt.Yandere.EquippedWeapon != null)
@@ -71,39 +71,39 @@ public class DrinkingFountainScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D70 RID: 7536
+	// Token: 0x04001D73 RID: 7539
 	public PowerSwitchScript PowerSwitch;
 
-	// Token: 0x04001D71 RID: 7537
+	// Token: 0x04001D74 RID: 7540
 	public ParticleSystem WaterStream;
 
-	// Token: 0x04001D72 RID: 7538
+	// Token: 0x04001D75 RID: 7541
 	public ParticleSystem WaterBlast;
 
-	// Token: 0x04001D73 RID: 7539
+	// Token: 0x04001D76 RID: 7542
 	public Transform DrinkPosition;
 
-	// Token: 0x04001D74 RID: 7540
+	// Token: 0x04001D77 RID: 7543
 	public GameObject WaterCollider;
 
-	// Token: 0x04001D75 RID: 7541
+	// Token: 0x04001D78 RID: 7544
 	public GameObject Puddle;
 
-	// Token: 0x04001D76 RID: 7542
+	// Token: 0x04001D79 RID: 7545
 	public GameObject Leak;
 
-	// Token: 0x04001D77 RID: 7543
+	// Token: 0x04001D7A RID: 7546
 	public PromptScript Prompt;
 
-	// Token: 0x04001D78 RID: 7544
+	// Token: 0x04001D7B RID: 7547
 	public AudioSource MyAudio;
 
-	// Token: 0x04001D79 RID: 7545
+	// Token: 0x04001D7C RID: 7548
 	public bool Sabotagable;
 
-	// Token: 0x04001D7A RID: 7546
+	// Token: 0x04001D7D RID: 7549
 	public bool Sabotaged;
 
-	// Token: 0x04001D7B RID: 7547
+	// Token: 0x04001D7E RID: 7550
 	public bool Occupied;
 }

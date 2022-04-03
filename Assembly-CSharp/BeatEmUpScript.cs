@@ -596,279 +596,279 @@ public class BeatEmUpScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x04000B24 RID: 2852
+	// Token: 0x04000B25 RID: 2853
 	public CharacterController MyController;
 
-	// Token: 0x04000B25 RID: 2853
+	// Token: 0x04000B26 RID: 2854
 	public BeatEmUpEnemyScript[] AllEnemies;
 
-	// Token: 0x04000B26 RID: 2854
+	// Token: 0x04000B27 RID: 2855
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04000B27 RID: 2855
+	// Token: 0x04000B28 RID: 2856
 	public BeatEmUpEnemyScript Enemy;
 
-	// Token: 0x04000B28 RID: 2856
+	// Token: 0x04000B29 RID: 2857
 	public RPG_Camera RPGCamera;
 
-	// Token: 0x04000B29 RID: 2857
+	// Token: 0x04000B2A RID: 2858
 	public AudioClip[] AttackVoices;
 
-	// Token: 0x04000B2A RID: 2858
+	// Token: 0x04000B2B RID: 2859
 	public AudioClip[] PainVoices;
 
-	// Token: 0x04000B2B RID: 2859
+	// Token: 0x04000B2C RID: 2860
 	public Transform EnemyHealthBar;
 
-	// Token: 0x04000B2C RID: 2860
+	// Token: 0x04000B2D RID: 2861
 	public Transform HealthBar;
 
-	// Token: 0x04000B2D RID: 2861
+	// Token: 0x04000B2E RID: 2862
 	public Transform SuperBar;
 
-	// Token: 0x04000B2E RID: 2862
+	// Token: 0x04000B2F RID: 2863
 	public AudioSource MySecondAudio;
 
-	// Token: 0x04000B2F RID: 2863
+	// Token: 0x04000B30 RID: 2864
 	public AudioSource MyAudio;
 
-	// Token: 0x04000B30 RID: 2864
+	// Token: 0x04000B31 RID: 2865
 	public AudioSource Music;
 
-	// Token: 0x04000B31 RID: 2865
+	// Token: 0x04000B32 RID: 2866
 	public AudioClip EightiesTrack;
 
-	// Token: 0x04000B32 RID: 2866
+	// Token: 0x04000B33 RID: 2867
 	public UILabel EnemyNameLabel;
 
-	// Token: 0x04000B33 RID: 2867
+	// Token: 0x04000B34 RID: 2868
 	public UILabel GrowingLabel;
 
-	// Token: 0x04000B34 RID: 2868
+	// Token: 0x04000B35 RID: 2869
 	public UILabel VictoryLabel;
 
-	// Token: 0x04000B35 RID: 2869
+	// Token: 0x04000B36 RID: 2870
 	public UILabel HealthLabel;
 
-	// Token: 0x04000B36 RID: 2870
+	// Token: 0x04000B37 RID: 2871
 	public UILabel SuperLabel;
 
-	// Token: 0x04000B37 RID: 2871
+	// Token: 0x04000B38 RID: 2872
 	public Animation MyAnimation;
 
-	// Token: 0x04000B38 RID: 2872
+	// Token: 0x04000B39 RID: 2873
 	public UIPanel GameplayPanel;
 
-	// Token: 0x04000B39 RID: 2873
+	// Token: 0x04000B3A RID: 2874
 	public UISprite SuperButton;
 
-	// Token: 0x04000B3A RID: 2874
+	// Token: 0x04000B3B RID: 2875
 	public GameObject PauseLabel;
 
-	// Token: 0x04000B3B RID: 2875
+	// Token: 0x04000B3C RID: 2876
 	public GameObject HitEffect;
 
-	// Token: 0x04000B3C RID: 2876
+	// Token: 0x04000B3D RID: 2877
 	public GameObject Hitbox;
 
-	// Token: 0x04000B3D RID: 2877
+	// Token: 0x04000B3E RID: 2878
 	public Transform MainCamera;
 
-	// Token: 0x04000B3E RID: 2878
+	// Token: 0x04000B3F RID: 2879
 	public Transform Ring;
 
-	// Token: 0x04000B3F RID: 2879
+	// Token: 0x04000B40 RID: 2880
 	public Transform RightBreast;
 
-	// Token: 0x04000B40 RID: 2880
+	// Token: 0x04000B41 RID: 2881
 	public Transform LeftBreast;
 
-	// Token: 0x04000B41 RID: 2881
+	// Token: 0x04000B42 RID: 2882
 	public Transform RightFoot;
 
-	// Token: 0x04000B42 RID: 2882
+	// Token: 0x04000B43 RID: 2883
 	public Transform RightHand;
 
-	// Token: 0x04000B43 RID: 2883
+	// Token: 0x04000B44 RID: 2884
 	public Transform LeftHand;
 
-	// Token: 0x04000B44 RID: 2884
+	// Token: 0x04000B45 RID: 2885
 	public AudioClip MusicLoop;
 
-	// Token: 0x04000B45 RID: 2885
+	// Token: 0x04000B46 RID: 2886
 	public AudioClip HitSFX;
 
-	// Token: 0x04000B46 RID: 2886
+	// Token: 0x04000B47 RID: 2887
 	public AudioClip Whoosh;
 
-	// Token: 0x04000B47 RID: 2887
+	// Token: 0x04000B48 RID: 2888
 	public UISprite Darkness;
 
-	// Token: 0x04000B48 RID: 2888
+	// Token: 0x04000B49 RID: 2889
 	public UISprite White;
 
-	// Token: 0x04000B49 RID: 2889
+	// Token: 0x04000B4A RID: 2890
 	public int RollDirection = 1;
 
-	// Token: 0x04000B4A RID: 2890
+	// Token: 0x04000B4B RID: 2891
 	public int AttackLimit;
 
-	// Token: 0x04000B4B RID: 2891
+	// Token: 0x04000B4C RID: 2892
 	public int Difficulty = 1;
 
-	// Token: 0x04000B4C RID: 2892
+	// Token: 0x04000B4D RID: 2893
 	public int AttackID = 1;
 
-	// Token: 0x04000B4D RID: 2893
+	// Token: 0x04000B4E RID: 2894
 	public int Enemies = 2;
 
-	// Token: 0x04000B4E RID: 2894
+	// Token: 0x04000B4F RID: 2895
 	public int TextID = 1;
 
-	// Token: 0x04000B4F RID: 2895
+	// Token: 0x04000B50 RID: 2896
 	public bool HitboxSpawned;
 
-	// Token: 0x04000B50 RID: 2896
+	// Token: 0x04000B51 RID: 2897
 	public bool HitReacting;
 
-	// Token: 0x04000B51 RID: 2897
+	// Token: 0x04000B52 RID: 2898
 	public bool Attacking;
 
-	// Token: 0x04000B52 RID: 2898
+	// Token: 0x04000B53 RID: 2899
 	public bool Defeated;
 
-	// Token: 0x04000B53 RID: 2899
+	// Token: 0x04000B54 RID: 2900
 	public bool Eighties;
 
-	// Token: 0x04000B54 RID: 2900
+	// Token: 0x04000B55 RID: 2901
 	public bool CanMove;
 
-	// Token: 0x04000B55 RID: 2901
+	// Token: 0x04000B56 RID: 2902
 	public bool Rolling;
 
-	// Token: 0x04000B56 RID: 2902
+	// Token: 0x04000B57 RID: 2903
 	public bool Victory;
 
-	// Token: 0x04000B57 RID: 2903
+	// Token: 0x04000B58 RID: 2904
 	public bool Super;
 
-	// Token: 0x04000B58 RID: 2904
+	// Token: 0x04000B59 RID: 2905
 	public bool Combo;
 
-	// Token: 0x04000B59 RID: 2905
+	// Token: 0x04000B5A RID: 2906
 	public bool Heavy;
 
-	// Token: 0x04000B5A RID: 2906
+	// Token: 0x04000B5B RID: 2907
 	public bool Intro;
 
-	// Token: 0x04000B5B RID: 2907
+	// Token: 0x04000B5C RID: 2908
 	public string[] GrowingText;
 
-	// Token: 0x04000B5C RID: 2908
+	// Token: 0x04000B5D RID: 2909
 	public string[] AttackAnim;
 
-	// Token: 0x04000B5D RID: 2909
+	// Token: 0x04000B5E RID: 2910
 	public float[] Damages;
 
-	// Token: 0x04000B5E RID: 2910
+	// Token: 0x04000B5F RID: 2911
 	public float CameraVibrate;
 
-	// Token: 0x04000B5F RID: 2911
+	// Token: 0x04000B60 RID: 2912
 	public float MaxRollSpeed;
 
-	// Token: 0x04000B60 RID: 2912
+	// Token: 0x04000B61 RID: 2913
 	public float CameraSpeed;
 
-	// Token: 0x04000B61 RID: 2913
+	// Token: 0x04000B62 RID: 2914
 	public float IntroTimer;
 
-	// Token: 0x04000B62 RID: 2914
+	// Token: 0x04000B63 RID: 2915
 	public float SuperTimer;
 
-	// Token: 0x04000B63 RID: 2915
+	// Token: 0x04000B64 RID: 2916
 	public float RollSpeed;
 
-	// Token: 0x04000B64 RID: 2916
+	// Token: 0x04000B65 RID: 2917
 	public float RollTimer;
 
-	// Token: 0x04000B65 RID: 2917
+	// Token: 0x04000B66 RID: 2918
 	public float RunSpeed;
 
-	// Token: 0x04000B66 RID: 2918
+	// Token: 0x04000B67 RID: 2919
 	public float MaxHealth;
 
-	// Token: 0x04000B67 RID: 2919
+	// Token: 0x04000B68 RID: 2920
 	public float Health;
 
-	// Token: 0x04000B68 RID: 2920
+	// Token: 0x04000B69 RID: 2921
 	public float SuperMeter;
 
-	// Token: 0x04000B69 RID: 2921
+	// Token: 0x04000B6A RID: 2922
 	public float MaxSuper;
 
-	// Token: 0x04000B6A RID: 2922
+	// Token: 0x04000B6B RID: 2923
 	public string HitReactAnim;
 
-	// Token: 0x04000B6B RID: 2923
+	// Token: 0x04000B6C RID: 2924
 	public string DefeatAnim;
 
-	// Token: 0x04000B6C RID: 2924
+	// Token: 0x04000B6D RID: 2925
 	public string SuperAnim;
 
-	// Token: 0x04000B6D RID: 2925
+	// Token: 0x04000B6E RID: 2926
 	public string IdleAnim;
 
-	// Token: 0x04000B6E RID: 2926
+	// Token: 0x04000B6F RID: 2927
 	public string RollAnim;
 
-	// Token: 0x04000B6F RID: 2927
+	// Token: 0x04000B70 RID: 2928
 	public string RunAnim;
 
-	// Token: 0x04000B70 RID: 2928
+	// Token: 0x04000B71 RID: 2929
 	public Renderer PonytailRenderer;
 
-	// Token: 0x04000B71 RID: 2929
+	// Token: 0x04000B72 RID: 2930
 	public Texture EightiesUniformTexture;
 
-	// Token: 0x04000B72 RID: 2930
+	// Token: 0x04000B73 RID: 2931
 	public Texture BlondeTexture;
 
-	// Token: 0x04000B73 RID: 2931
+	// Token: 0x04000B74 RID: 2932
 	public AudioClip[] DialogueClips;
 
-	// Token: 0x04000B74 RID: 2932
+	// Token: 0x04000B75 RID: 2933
 	public string[] DialogueText;
 
-	// Token: 0x04000B75 RID: 2933
+	// Token: 0x04000B76 RID: 2934
 	public AudioSource Dialogue;
 
-	// Token: 0x04000B76 RID: 2934
+	// Token: 0x04000B77 RID: 2935
 	public UILabel Subtitle;
 
-	// Token: 0x04000B77 RID: 2935
+	// Token: 0x04000B78 RID: 2936
 	public int CutsceneID;
 
-	// Token: 0x04000B78 RID: 2936
+	// Token: 0x04000B79 RID: 2937
 	public bool Cutscene;
 
-	// Token: 0x04000B79 RID: 2937
+	// Token: 0x04000B7A RID: 2938
 	public GameObject IncineratorScene;
 
-	// Token: 0x04000B7A RID: 2938
+	// Token: 0x04000B7B RID: 2939
 	public GameObject StreetScene;
 
-	// Token: 0x04000B7B RID: 2939
+	// Token: 0x04000B7C RID: 2940
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x04000B7C RID: 2940
+	// Token: 0x04000B7D RID: 2941
 	public Texture[] UniformTextures;
 
-	// Token: 0x04000B7D RID: 2941
+	// Token: 0x04000B7E RID: 2942
 	public Texture FaceTexture;
 
-	// Token: 0x04000B7E RID: 2942
+	// Token: 0x04000B7F RID: 2943
 	public Mesh[] Uniforms;
 
-	// Token: 0x04000B7F RID: 2943
+	// Token: 0x04000B80 RID: 2944
 	public GameObject RyobaHair;
 }

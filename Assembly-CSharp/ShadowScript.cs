@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000423 RID: 1059
+// Token: 0x02000426 RID: 1062
 public class ShadowScript : MonoBehaviour
 {
-	// Token: 0x06001C99 RID: 7321 RVA: 0x0014F47C File Offset: 0x0014D67C
+	// Token: 0x06001CA3 RID: 7331 RVA: 0x0014FFA0 File Offset: 0x0014E1A0
 	private void Update()
 	{
 		Vector3 position = base.transform.position;
@@ -14,6 +14,6 @@ public class ShadowScript : MonoBehaviour
 		base.transform.position = position;
 	}
 
-	// Token: 0x04003308 RID: 13064
+	// Token: 0x04003324 RID: 13092
 	public Transform Foot;
 }

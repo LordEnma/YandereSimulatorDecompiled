@@ -68,36 +68,36 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000BA2 RID: 2978
+	// Token: 0x04000BA3 RID: 2979
 	public float TargetSize;
 
-	// Token: 0x04000BA3 RID: 2979
+	// Token: 0x04000BA4 RID: 2980
 	public bool Gasoline;
 
-	// Token: 0x04000BA4 RID: 2980
+	// Token: 0x04000BA5 RID: 2981
 	public bool Brown;
 
-	// Token: 0x04000BA5 RID: 2981
+	// Token: 0x04000BA6 RID: 2982
 	public bool Water;
 
-	// Token: 0x04000BA6 RID: 2982
+	// Token: 0x04000BA7 RID: 2983
 	public bool Blood = true;
 
-	// Token: 0x04000BA7 RID: 2983
+	// Token: 0x04000BA8 RID: 2984
 	public bool Grow;
 
-	// Token: 0x04000BA8 RID: 2984
+	// Token: 0x04000BA9 RID: 2985
 	public GameObject Electricity;
 
-	// Token: 0x04000BA9 RID: 2985
+	// Token: 0x04000BAA RID: 2986
 	public Renderer MyRenderer;
 
-	// Token: 0x04000BAA RID: 2986
+	// Token: 0x04000BAB RID: 2987
 	public Material BloodPool;
 
-	// Token: 0x04000BAB RID: 2987
+	// Token: 0x04000BAC RID: 2988
 	public Material Flower;
 
-	// Token: 0x04000BAC RID: 2988
+	// Token: 0x04000BAD RID: 2989
 	public float ElectroTimer;
 }

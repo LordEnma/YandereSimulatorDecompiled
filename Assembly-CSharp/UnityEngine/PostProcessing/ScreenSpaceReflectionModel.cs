@@ -2,13 +2,13 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000574 RID: 1396
+	// Token: 0x02000579 RID: 1401
 	[Serializable]
 	public class ScreenSpaceReflectionModel : PostProcessingModel
 	{
 		// Token: 0x17000510 RID: 1296
-		// (get) Token: 0x06002383 RID: 9091 RVA: 0x001F72FA File Offset: 0x001F54FA
-		// (set) Token: 0x06002384 RID: 9092 RVA: 0x001F7302 File Offset: 0x001F5502
+		// (get) Token: 0x06002393 RID: 9107 RVA: 0x001F8B6A File Offset: 0x001F6D6A
+		// (set) Token: 0x06002394 RID: 9108 RVA: 0x001F8B72 File Offset: 0x001F6D72
 		public ScreenSpaceReflectionModel.Settings settings
 		{
 			get
@@ -21,117 +21,117 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002385 RID: 9093 RVA: 0x001F730B File Offset: 0x001F550B
+		// Token: 0x06002395 RID: 9109 RVA: 0x001F8B7B File Offset: 0x001F6D7B
 		public override void Reset()
 		{
 			this.m_Settings = ScreenSpaceReflectionModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004B92 RID: 19346
+		// Token: 0x04004BC4 RID: 19396
 		[SerializeField]
 		private ScreenSpaceReflectionModel.Settings m_Settings = ScreenSpaceReflectionModel.Settings.defaultSettings;
 
-		// Token: 0x020006D0 RID: 1744
+		// Token: 0x020006D5 RID: 1749
 		public enum SSRResolution
 		{
-			// Token: 0x040051E9 RID: 20969
+			// Token: 0x0400521B RID: 21019
 			High,
-			// Token: 0x040051EA RID: 20970
+			// Token: 0x0400521C RID: 21020
 			Low = 2
 		}
 
-		// Token: 0x020006D1 RID: 1745
+		// Token: 0x020006D6 RID: 1750
 		public enum SSRReflectionBlendType
 		{
-			// Token: 0x040051EC RID: 20972
+			// Token: 0x0400521E RID: 21022
 			PhysicallyBased,
-			// Token: 0x040051ED RID: 20973
+			// Token: 0x0400521F RID: 21023
 			Additive
 		}
 
-		// Token: 0x020006D2 RID: 1746
+		// Token: 0x020006D7 RID: 1751
 		[Serializable]
 		public struct IntensitySettings
 		{
-			// Token: 0x040051EE RID: 20974
+			// Token: 0x04005220 RID: 21024
 			[Tooltip("Nonphysical multiplier for the SSR reflections. 1.0 is physically based.")]
 			[Range(0f, 2f)]
 			public float reflectionMultiplier;
 
-			// Token: 0x040051EF RID: 20975
+			// Token: 0x04005221 RID: 21025
 			[Tooltip("How far away from the maxDistance to begin fading SSR.")]
 			[Range(0f, 1000f)]
 			public float fadeDistance;
 
-			// Token: 0x040051F0 RID: 20976
+			// Token: 0x04005222 RID: 21026
 			[Tooltip("Amplify Fresnel fade out. Increase if floor reflections look good close to the surface and bad farther 'under' the floor.")]
 			[Range(0f, 1f)]
 			public float fresnelFade;
 
-			// Token: 0x040051F1 RID: 20977
+			// Token: 0x04005223 RID: 21027
 			[Tooltip("Higher values correspond to a faster Fresnel fade as the reflection changes from the grazing angle.")]
 			[Range(0.1f, 10f)]
 			public float fresnelFadePower;
 		}
 
-		// Token: 0x020006D3 RID: 1747
+		// Token: 0x020006D8 RID: 1752
 		[Serializable]
 		public struct ReflectionSettings
 		{
-			// Token: 0x040051F2 RID: 20978
+			// Token: 0x04005224 RID: 21028
 			[Tooltip("How the reflections are blended into the render.")]
 			public ScreenSpaceReflectionModel.SSRReflectionBlendType blendType;
 
-			// Token: 0x040051F3 RID: 20979
+			// Token: 0x04005225 RID: 21029
 			[Tooltip("Half resolution SSRR is much faster, but less accurate.")]
 			public ScreenSpaceReflectionModel.SSRResolution reflectionQuality;
 
-			// Token: 0x040051F4 RID: 20980
+			// Token: 0x04005226 RID: 21030
 			[Tooltip("Maximum reflection distance in world units.")]
 			[Range(0.1f, 300f)]
 			public float maxDistance;
 
-			// Token: 0x040051F5 RID: 20981
+			// Token: 0x04005227 RID: 21031
 			[Tooltip("Max raytracing length.")]
 			[Range(16f, 1024f)]
 			public int iterationCount;
 
-			// Token: 0x040051F6 RID: 20982
+			// Token: 0x04005228 RID: 21032
 			[Tooltip("Log base 2 of ray tracing coarse step size. Higher traces farther, lower gives better quality silhouettes.")]
 			[Range(1f, 16f)]
 			public int stepSize;
 
-			// Token: 0x040051F7 RID: 20983
+			// Token: 0x04005229 RID: 21033
 			[Tooltip("Typical thickness of columns, walls, furniture, and other objects that reflection rays might pass behind.")]
 			[Range(0.01f, 10f)]
 			public float widthModifier;
 
-			// Token: 0x040051F8 RID: 20984
+			// Token: 0x0400522A RID: 21034
 			[Tooltip("Blurriness of reflections.")]
 			[Range(0.1f, 8f)]
 			public float reflectionBlur;
 
-			// Token: 0x040051F9 RID: 20985
+			// Token: 0x0400522B RID: 21035
 			[Tooltip("Disable for a performance gain in scenes where most glossy objects are horizontal, like floors, water, and tables. Leave on for scenes with glossy vertical objects.")]
 			public bool reflectBackfaces;
 		}
 
-		// Token: 0x020006D4 RID: 1748
+		// Token: 0x020006D9 RID: 1753
 		[Serializable]
 		public struct ScreenEdgeMask
 		{
-			// Token: 0x040051FA RID: 20986
+			// Token: 0x0400522C RID: 21036
 			[Tooltip("Higher = fade out SSRR near the edge of the screen so that reflections don't pop under camera motion.")]
 			[Range(0f, 1f)]
 			public float intensity;
 		}
 
-		// Token: 0x020006D5 RID: 1749
+		// Token: 0x020006DA RID: 1754
 		[Serializable]
 		public struct Settings
 		{
 			// Token: 0x170005A6 RID: 1446
-			// (get) Token: 0x06002772 RID: 10098 RVA: 0x00205B30 File Offset: 0x00203D30
+			// (get) Token: 0x06002782 RID: 10114 RVA: 0x002074F0 File Offset: 0x002056F0
 			public static ScreenSpaceReflectionModel.Settings defaultSettings
 			{
 				get
@@ -164,13 +164,13 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x040051FB RID: 20987
+			// Token: 0x0400522D RID: 21037
 			public ScreenSpaceReflectionModel.ReflectionSettings reflection;
 
-			// Token: 0x040051FC RID: 20988
+			// Token: 0x0400522E RID: 21038
 			public ScreenSpaceReflectionModel.IntensitySettings intensity;
 
-			// Token: 0x040051FD RID: 20989
+			// Token: 0x0400522F RID: 21039
 			public ScreenSpaceReflectionModel.ScreenEdgeMask screenEdgeMask;
 		}
 	}

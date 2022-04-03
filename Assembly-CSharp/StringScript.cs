@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000450 RID: 1104
+// Token: 0x02000453 RID: 1107
 public class StringScript : MonoBehaviour
 {
-	// Token: 0x06001D4E RID: 7502 RVA: 0x001603B3 File Offset: 0x0015E5B3
+	// Token: 0x06001D58 RID: 7512 RVA: 0x00160FFB File Offset: 0x0015F1FB
 	private void Start()
 	{
 		if (this.ArrayID == 0)
@@ -13,7 +13,7 @@ public class StringScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D4F RID: 7503 RVA: 0x001603D4 File Offset: 0x0015E5D4
+	// Token: 0x06001D59 RID: 7513 RVA: 0x0016101C File Offset: 0x0015F21C
 	private void Update()
 	{
 		this.String.position = this.Origin.position;
@@ -21,15 +21,15 @@ public class StringScript : MonoBehaviour
 		this.String.localScale = new Vector3(this.String.localScale.x, this.String.localScale.y, Vector3.Distance(this.Origin.position, this.Target.position) * 0.5f);
 	}
 
-	// Token: 0x040035DB RID: 13787
+	// Token: 0x040035F8 RID: 13816
 	public Transform Origin;
 
-	// Token: 0x040035DC RID: 13788
+	// Token: 0x040035F9 RID: 13817
 	public Transform Target;
 
-	// Token: 0x040035DD RID: 13789
+	// Token: 0x040035FA RID: 13818
 	public Transform String;
 
-	// Token: 0x040035DE RID: 13790
+	// Token: 0x040035FB RID: 13819
 	public int ArrayID;
 }

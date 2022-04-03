@@ -1,45 +1,42 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004D2 RID: 1234
+// Token: 0x020004D6 RID: 1238
 public class YandereShoeLockerScript : MonoBehaviour
 {
-	// Token: 0x06002091 RID: 8337 RVA: 0x001DF92C File Offset: 0x001DDB2C
+	// Token: 0x0600209E RID: 8350 RVA: 0x001E10E4 File Offset: 0x001DF2E4
 	private void Update()
 	{
-		if (this.Yandere.Schoolwear == 1 && !this.Yandere.ClubAttire && !this.Yandere.Egg)
+		if (this.Yandere.CanMove && this.Yandere.Schoolwear == 1 && !this.Yandere.ClubAttire && !this.Yandere.Egg)
 		{
-			if (this.Label == 2)
+			if (this.Outdoors)
 			{
-				this.Prompt.Label[0].text = "     Change Shoes";
-				this.Label = 1;
+				if (this.Yandere.transform.position.x > -30f && this.Yandere.transform.position.x < 30f && this.Yandere.transform.position.z > -34f && this.Yandere.transform.position.z < 30f)
+				{
+					this.Outdoors = false;
+					this.UpdateShoes();
+					return;
+				}
 			}
-			if (this.Prompt.Circle[0].fillAmount == 0f)
+			else if (this.Yandere.transform.position.z > 30f || (this.Yandere.transform.position.z < -34f && this.Yandere.transform.position.x > -6f && this.Yandere.transform.position.x < 6f))
 			{
-				this.Prompt.Circle[0].fillAmount = 1f;
-				this.Yandere.Casual = !this.Yandere.Casual;
-				this.Yandere.ChangeSchoolwear();
-				this.Yandere.CanMove = true;
-				return;
-			}
-		}
-		else
-		{
-			this.Prompt.Circle[0].fillAmount = 1f;
-			if (this.Label == 1)
-			{
-				this.Prompt.Label[0].text = "     Not Available";
-				this.Label = 2;
+				this.Outdoors = true;
+				this.UpdateShoes();
 			}
 		}
 	}
 
-	// Token: 0x0400477F RID: 18303
+	// Token: 0x0600209F RID: 8351 RVA: 0x001E1244 File Offset: 0x001DF444
+	private void UpdateShoes()
+	{
+		this.Yandere.Casual = this.Outdoors;
+		this.Yandere.ChangeSchoolwear();
+		this.Yandere.CanMove = true;
+	}
+
+	// Token: 0x040047B1 RID: 18353
 	public YandereScript Yandere;
 
-	// Token: 0x04004780 RID: 18304
-	public PromptScript Prompt;
-
-	// Token: 0x04004781 RID: 18305
-	public int Label = 1;
+	// Token: 0x040047B2 RID: 18354
+	public bool Outdoors = true;
 }

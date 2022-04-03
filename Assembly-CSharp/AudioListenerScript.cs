@@ -17,9 +17,9 @@ public class AudioListenerScript : MonoBehaviour
 		base.transform.eulerAngles = this.mainCamera.transform.eulerAngles;
 	}
 
-	// Token: 0x04000AB8 RID: 2744
+	// Token: 0x04000AB9 RID: 2745
 	public Transform Target;
 
-	// Token: 0x04000AB9 RID: 2745
+	// Token: 0x04000ABA RID: 2746
 	public Camera mainCamera;
 }

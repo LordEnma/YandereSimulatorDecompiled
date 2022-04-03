@@ -4,11 +4,11 @@ using System.IO;
 using JsonFx.Json;
 using UnityEngine;
 
-// Token: 0x02000343 RID: 835
+// Token: 0x02000344 RID: 836
 public abstract class JsonData
 {
 	// Token: 0x1700047A RID: 1146
-	// (get) Token: 0x06001912 RID: 6418 RVA: 0x000FC49D File Offset: 0x000FA69D
+	// (get) Token: 0x06001918 RID: 6424 RVA: 0x000FCB29 File Offset: 0x000FAD29
 	protected static string FolderPath
 	{
 		get
@@ -17,7 +17,7 @@ public abstract class JsonData
 		}
 	}
 
-	// Token: 0x06001913 RID: 6419 RVA: 0x000FC4AE File Offset: 0x000FA6AE
+	// Token: 0x06001919 RID: 6425 RVA: 0x000FCB3A File Offset: 0x000FAD3A
 	protected static Dictionary<string, object>[] Deserialize(string filename)
 	{
 		return JsonReader.Deserialize<Dictionary<string, object>[]>(File.ReadAllText(filename));

@@ -1,20 +1,20 @@
 ﻿using System;
 
-// Token: 0x0200039A RID: 922
+// Token: 0x0200039C RID: 924
 public enum PhaseOfDay
 {
-	// Token: 0x04002BC4 RID: 11204
+	// Token: 0x04002BD9 RID: 11225
 	None,
-	// Token: 0x04002BC5 RID: 11205
+	// Token: 0x04002BDA RID: 11226
 	BeforeClass,
-	// Token: 0x04002BC6 RID: 11206
+	// Token: 0x04002BDB RID: 11227
 	FirstPeriod,
-	// Token: 0x04002BC7 RID: 11207
+	// Token: 0x04002BDC RID: 11228
 	Lunchtime,
-	// Token: 0x04002BC8 RID: 11208
+	// Token: 0x04002BDD RID: 11229
 	SecondPeriod,
-	// Token: 0x04002BC9 RID: 11209
+	// Token: 0x04002BDE RID: 11230
 	CleaningTime,
-	// Token: 0x04002BCA RID: 11210
+	// Token: 0x04002BDF RID: 11231
 	AfterClass
 }

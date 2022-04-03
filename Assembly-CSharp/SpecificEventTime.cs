@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class SpecificEventTime : IScheduledEventTime
 {
-	// Token: 0x0600146A RID: 5226 RVA: 0x000C785E File Offset: 0x000C5A5E
+	// Token: 0x0600146B RID: 5227 RVA: 0x000C7992 File Offset: 0x000C5B92
 	public SpecificEventTime(int week, DayOfWeek weekday, Clock startClock, Clock endClock)
 	{
 		this.week = week;
@@ -15,7 +15,7 @@ public class SpecificEventTime : IScheduledEventTime
 	}
 
 	// Token: 0x1700036B RID: 875
-	// (get) Token: 0x0600146B RID: 5227 RVA: 0x000C7883 File Offset: 0x000C5A83
+	// (get) Token: 0x0600146C RID: 5228 RVA: 0x000C79B7 File Offset: 0x000C5BB7
 	public ScheduledEventTimeType ScheduleType
 	{
 		get
@@ -24,7 +24,7 @@ public class SpecificEventTime : IScheduledEventTime
 		}
 	}
 
-	// Token: 0x0600146C RID: 5228 RVA: 0x000C7888 File Offset: 0x000C5A88
+	// Token: 0x0600146D RID: 5229 RVA: 0x000C79BC File Offset: 0x000C5BBC
 	public bool OccurringNow(DateAndTime currentTime)
 	{
 		bool flag = currentTime.Week == this.week;
@@ -34,7 +34,7 @@ public class SpecificEventTime : IScheduledEventTime
 		return flag && flag2 && flag3;
 	}
 
-	// Token: 0x0600146D RID: 5229 RVA: 0x000C78E8 File Offset: 0x000C5AE8
+	// Token: 0x0600146E RID: 5230 RVA: 0x000C7A1C File Offset: 0x000C5C1C
 	public bool OccursInTheFuture(DateAndTime currentTime)
 	{
 		if (currentTime.Week != this.week)
@@ -48,7 +48,7 @@ public class SpecificEventTime : IScheduledEventTime
 		return currentTime.Weekday < this.weekday;
 	}
 
-	// Token: 0x0600146E RID: 5230 RVA: 0x000C7948 File Offset: 0x000C5B48
+	// Token: 0x0600146F RID: 5231 RVA: 0x000C7A7C File Offset: 0x000C5C7C
 	public bool OccurredInThePast(DateAndTime currentTime)
 	{
 		if (currentTime.Week != this.week)
@@ -62,19 +62,19 @@ public class SpecificEventTime : IScheduledEventTime
 		return currentTime.Weekday > this.weekday;
 	}
 
-	// Token: 0x04001F87 RID: 8071
+	// Token: 0x04001F8A RID: 8074
 	[SerializeField]
 	private int week;
 
-	// Token: 0x04001F88 RID: 8072
+	// Token: 0x04001F8B RID: 8075
 	[SerializeField]
 	private DayOfWeek weekday;
 
-	// Token: 0x04001F89 RID: 8073
+	// Token: 0x04001F8C RID: 8076
 	[SerializeField]
 	private Clock startClock;
 
-	// Token: 0x04001F8A RID: 8074
+	// Token: 0x04001F8D RID: 8077
 	[SerializeField]
 	private Clock endClock;
 }

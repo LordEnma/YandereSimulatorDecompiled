@@ -1,14 +1,14 @@
 ﻿using System;
 
-// Token: 0x02000497 RID: 1175
+// Token: 0x0200049A RID: 1178
 public enum Direction
 {
-	// Token: 0x040041D6 RID: 16854
+	// Token: 0x04004203 RID: 16899
 	North,
-	// Token: 0x040041D7 RID: 16855
+	// Token: 0x04004204 RID: 16900
 	East,
-	// Token: 0x040041D8 RID: 16856
+	// Token: 0x04004205 RID: 16901
 	South,
-	// Token: 0x040041D9 RID: 16857
+	// Token: 0x04004206 RID: 16902
 	West
 }

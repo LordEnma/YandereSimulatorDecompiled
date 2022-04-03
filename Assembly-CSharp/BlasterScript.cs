@@ -34,15 +34,15 @@ public class BlasterScript : MonoBehaviour
 		this.Skull.localScale = new Vector3(this.Size, this.Size, this.Size);
 	}
 
-	// Token: 0x04000B88 RID: 2952
+	// Token: 0x04000B89 RID: 2953
 	public Transform Skull;
 
-	// Token: 0x04000B89 RID: 2953
+	// Token: 0x04000B8A RID: 2954
 	public Renderer Eyes;
 
-	// Token: 0x04000B8A RID: 2954
+	// Token: 0x04000B8B RID: 2955
 	public Transform Beam;
 
-	// Token: 0x04000B8B RID: 2955
+	// Token: 0x04000B8C RID: 2956
 	public float Size;
 }

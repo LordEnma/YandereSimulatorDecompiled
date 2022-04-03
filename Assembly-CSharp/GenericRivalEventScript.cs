@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002E1 RID: 737
+// Token: 0x020002E2 RID: 738
 public class GenericRivalEventScript : MonoBehaviour
 {
-	// Token: 0x060014F3 RID: 5363 RVA: 0x000D2570 File Offset: 0x000D0770
+	// Token: 0x060014F9 RID: 5369 RVA: 0x000D2A54 File Offset: 0x000D0C54
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -1534,7 +1534,7 @@ public class GenericRivalEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014F4 RID: 5364 RVA: 0x000D6704 File Offset: 0x000D4904
+	// Token: 0x060014FA RID: 5370 RVA: 0x000D6BE8 File Offset: 0x000D4DE8
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -1552,110 +1552,114 @@ public class GenericRivalEventScript : MonoBehaviour
 			}
 			else if (this.Clock.HourTime > this.StartTime)
 			{
-				if (!this.Senpai.gameObject.activeInHierarchy || !(this.Rival != null) || !this.Rival.enabled)
+				this.Frame++;
+				if (this.Frame > 4)
 				{
-					base.enabled = false;
-					return;
-				}
-				bool flag = false;
-				if (this.Teleport || this.LunchTime || this.Senpai.Leaving || this.Senpai.CurrentDestination == this.StudentManager.Exit)
-				{
-					flag = true;
-				}
-				if (flag && !this.Senpai.InEvent)
-				{
-					this.Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-					this.Senpai.CharacterAnimation.CrossFade(this.Senpai.WalkAnim);
-					this.Senpai.Pathfinding.target = this.Location[1];
-					this.Senpai.CurrentDestination = this.Location[1];
-					this.Senpai.Pathfinding.canSearch = true;
-					this.Senpai.Pathfinding.canMove = true;
-					this.Senpai.InEvent = true;
-					this.Senpai.DistanceToDestination = 100f;
-					this.Spy.gameObject.SetActive(true);
-					this.Spy.Prompt.enabled = true;
-					if (this.Teleport)
+					if (!this.Senpai.gameObject.activeInHierarchy || !(this.Rival != null) || !this.Rival.enabled)
 					{
-						this.Senpai.transform.eulerAngles = this.Location[1].eulerAngles;
-						this.Senpai.transform.position = this.Location[1].position;
-						this.Senpai.CharacterAnimation.Play(this.Senpai.IdleAnim);
-						this.Senpai.Pathfinding.canSearch = false;
-						this.Senpai.Pathfinding.canMove = false;
-						this.Senpai.Routine = false;
-						this.Senpai.Spawned = true;
+						base.enabled = false;
+						return;
 					}
-					this.Speaker[1] = this.Senpai;
-				}
-				bool flag2 = false;
-				if ((this.Teleport || this.LunchTime || this.Rival.Leaving || this.Rival.CurrentDestination == this.StudentManager.Exit) && !this.Rival.Ragdoll.Zs.activeInHierarchy)
-				{
-					flag2 = true;
-				}
-				if (flag2 && !this.Rival.InEvent)
-				{
-					this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-					this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
-					this.Rival.Pathfinding.target = this.Location[2];
-					this.Rival.CurrentDestination = this.Location[2];
-					this.Rival.Pathfinding.canSearch = true;
-					this.Rival.Pathfinding.canMove = true;
-					this.Rival.InEvent = true;
-					this.Rival.DistanceToDestination = 100f;
-					this.Spy.gameObject.SetActive(true);
-					this.Spy.Prompt.enabled = true;
-					if (this.Teleport)
+					bool flag = false;
+					if (this.Teleport || this.LunchTime || this.Senpai.Leaving || this.Senpai.CurrentDestination == this.StudentManager.Exit)
 					{
-						this.Rival.transform.eulerAngles = this.Location[2].eulerAngles;
-						this.Rival.transform.position = this.Location[2].position;
-						this.Rival.CharacterAnimation.Play(this.Rival.IdleAnim);
+						flag = true;
+					}
+					if (flag && !this.Senpai.InEvent)
+					{
+						this.Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+						this.Senpai.CharacterAnimation.CrossFade(this.Senpai.WalkAnim);
+						this.Senpai.Pathfinding.target = this.Location[1];
+						this.Senpai.CurrentDestination = this.Location[1];
+						this.Senpai.Pathfinding.canSearch = true;
+						this.Senpai.Pathfinding.canMove = true;
+						this.Senpai.InEvent = true;
+						this.Senpai.DistanceToDestination = 100f;
+						this.Spy.gameObject.SetActive(true);
+						this.Spy.Prompt.enabled = true;
+						if (this.Teleport)
+						{
+							this.Senpai.transform.eulerAngles = this.Location[1].eulerAngles;
+							this.Senpai.transform.position = this.Location[1].position;
+							this.Senpai.CharacterAnimation.Play(this.Senpai.IdleAnim);
+							this.Senpai.Pathfinding.canSearch = false;
+							this.Senpai.Pathfinding.canMove = false;
+							this.Senpai.Routine = false;
+							this.Senpai.Spawned = true;
+						}
+						this.Speaker[1] = this.Senpai;
+					}
+					bool flag2 = false;
+					if ((this.Teleport || this.LunchTime || this.Rival.Leaving || this.Rival.CurrentDestination == this.StudentManager.Exit) && !this.Rival.Ragdoll.Zs.activeInHierarchy)
+					{
+						flag2 = true;
+					}
+					if (flag2 && !this.Rival.InEvent)
+					{
+						this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+						this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
+						this.Rival.Pathfinding.target = this.Location[2];
+						this.Rival.CurrentDestination = this.Location[2];
+						this.Rival.Pathfinding.canSearch = true;
+						this.Rival.Pathfinding.canMove = true;
+						this.Rival.InEvent = true;
+						this.Rival.DistanceToDestination = 100f;
+						this.Spy.gameObject.SetActive(true);
+						this.Spy.Prompt.enabled = true;
+						if (this.Teleport)
+						{
+							this.Rival.transform.eulerAngles = this.Location[2].eulerAngles;
+							this.Rival.transform.position = this.Location[2].position;
+							this.Rival.CharacterAnimation.Play(this.Rival.IdleAnim);
+							this.Rival.Pathfinding.canSearch = false;
+							this.Rival.Pathfinding.canMove = false;
+							this.Rival.Routine = false;
+							this.Rival.Spawned = true;
+							this.Rival.Private = true;
+							this.Rival.Prompt.Hide();
+							this.Rival.Prompt.enabled = false;
+							if (this.Rival.Investigating)
+							{
+								this.Rival.StopInvestigating();
+							}
+						}
+						this.Speaker[2] = this.Rival;
+					}
+					if (this.Senpai.CurrentDestination == this.Location[1] && this.Senpai.DistanceToDestination < 0.5f)
+					{
+						if (!this.Impatient)
+						{
+							this.Senpai.CharacterAnimation.CrossFade("waiting_00");
+							this.Senpai.Pathfinding.canSearch = false;
+							this.Senpai.Pathfinding.canMove = false;
+							if (this.Clock.HourTime > 17.916666f)
+							{
+								this.Senpai.CharacterAnimation.CrossFade("impatience_00");
+								this.EventSubtitle.text = "I understand being a few minutes late, but this is just too much...";
+								this.Impatient = true;
+							}
+						}
+						else if (this.Senpai.CharacterAnimation["impatience_00"].time >= this.Senpai.CharacterAnimation["impatience_00"].length)
+						{
+							this.StudentManager.SabotageProgress++;
+							Debug.Log("Sabotage Progress: " + this.StudentManager.SabotageProgress.ToString() + "/5");
+							this.Phase++;
+							this.EndEvent();
+						}
+					}
+					if (this.Rival.CurrentDestination == this.Location[2] && this.Rival.DistanceToDestination < 0.5f)
+					{
+						this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
 						this.Rival.Pathfinding.canSearch = false;
 						this.Rival.Pathfinding.canMove = false;
-						this.Rival.Routine = false;
-						this.Rival.Spawned = true;
-						this.Rival.Private = true;
-						this.Rival.Prompt.Hide();
-						this.Rival.Prompt.enabled = false;
-						if (this.Rival.Investigating)
-						{
-							this.Rival.StopInvestigating();
-						}
 					}
-					this.Speaker[2] = this.Rival;
-				}
-				if (this.Senpai.CurrentDestination == this.Location[1] && this.Senpai.DistanceToDestination < 0.5f)
-				{
-					if (!this.Impatient)
+					if (this.Senpai.CurrentDestination == this.Location[1] && this.Rival.CurrentDestination == this.Location[2] && this.Senpai.DistanceToDestination < 0.5f && this.Rival.DistanceToDestination < 0.5f && !this.Impatient)
 					{
-						this.Senpai.CharacterAnimation.CrossFade("waiting_00");
-						this.Senpai.Pathfinding.canSearch = false;
-						this.Senpai.Pathfinding.canMove = false;
-						if (this.Clock.HourTime > 17.916666f)
-						{
-							this.Senpai.CharacterAnimation.CrossFade("impatience_00");
-							this.EventSubtitle.text = "I understand being a few minutes late, but this is just too much...";
-							this.Impatient = true;
-						}
-					}
-					else if (this.Senpai.CharacterAnimation["impatience_00"].time >= this.Senpai.CharacterAnimation["impatience_00"].length)
-					{
-						this.StudentManager.SabotageProgress++;
-						Debug.Log("Sabotage Progress: " + this.StudentManager.SabotageProgress.ToString() + "/5");
+						Debug.Log(base.gameObject.name + " has begun.");
+						this.StartPeriod = this.Clock.Period;
 						this.Phase++;
-						this.EndEvent();
+						return;
 					}
-				}
-				if (this.Rival.CurrentDestination == this.Location[2] && this.Rival.DistanceToDestination < 0.5f)
-				{
-					this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
-					this.Rival.Pathfinding.canSearch = false;
-					this.Rival.Pathfinding.canMove = false;
-				}
-				if (this.Senpai.CurrentDestination == this.Location[1] && this.Rival.CurrentDestination == this.Location[2] && this.Senpai.DistanceToDestination < 0.5f && this.Rival.DistanceToDestination < 0.5f && !this.Impatient)
-				{
-					Debug.Log(base.gameObject.name + " has begun.");
-					this.StartPeriod = this.Clock.Period;
-					this.Phase++;
-					return;
 				}
 			}
 		}
@@ -1741,7 +1745,7 @@ public class GenericRivalEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014F5 RID: 5365 RVA: 0x000D7168 File Offset: 0x000D5368
+	// Token: 0x060014FB RID: 5371 RVA: 0x000D7668 File Offset: 0x000D5868
 	public void EndEvent()
 	{
 		Debug.Log(base.gameObject.name + " has ended.");
@@ -1847,7 +1851,7 @@ public class GenericRivalEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014F6 RID: 5366 RVA: 0x000D75D0 File Offset: 0x000D57D0
+	// Token: 0x060014FC RID: 5372 RVA: 0x000D7AD0 File Offset: 0x000D5CD0
 	public void Sabotage()
 	{
 		Debug.Log("A Senpai-Rival interaction event has just been sabotaged.");
@@ -1862,114 +1866,114 @@ public class GenericRivalEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002171 RID: 8561
+	// Token: 0x0400217F RID: 8575
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002172 RID: 8562
+	// Token: 0x04002180 RID: 8576
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002173 RID: 8563
+	// Token: 0x04002181 RID: 8577
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002174 RID: 8564
+	// Token: 0x04002182 RID: 8578
 	public YandereScript Yandere;
 
-	// Token: 0x04002175 RID: 8565
+	// Token: 0x04002183 RID: 8579
 	public ClockScript Clock;
 
-	// Token: 0x04002176 RID: 8566
+	// Token: 0x04002184 RID: 8580
 	public SpyScript Spy;
 
-	// Token: 0x04002177 RID: 8567
+	// Token: 0x04002185 RID: 8581
 	public StudentScript[] Speaker;
 
-	// Token: 0x04002178 RID: 8568
+	// Token: 0x04002186 RID: 8582
 	public StudentScript Senpai;
 
-	// Token: 0x04002179 RID: 8569
+	// Token: 0x04002187 RID: 8583
 	public StudentScript Rival;
 
-	// Token: 0x0400217A RID: 8570
+	// Token: 0x04002188 RID: 8584
 	public DayOfWeek EventDay;
 
-	// Token: 0x0400217B RID: 8571
+	// Token: 0x04002189 RID: 8585
 	public Transform[] Location;
 
-	// Token: 0x0400217C RID: 8572
+	// Token: 0x0400218A RID: 8586
 	public Transform Epicenter;
 
-	// Token: 0x0400217D RID: 8573
+	// Token: 0x0400218B RID: 8587
 	public GameObject AlarmDisc;
 
-	// Token: 0x0400217E RID: 8574
+	// Token: 0x0400218C RID: 8588
 	public string[] SabobtagedSpeechText;
 
-	// Token: 0x0400217F RID: 8575
+	// Token: 0x0400218D RID: 8589
 	public float[] SabobtagedSpeechTime;
 
-	// Token: 0x04002180 RID: 8576
+	// Token: 0x0400218E RID: 8590
 	public int[] SabotagedSpeakerID;
 
-	// Token: 0x04002181 RID: 8577
+	// Token: 0x0400218F RID: 8591
 	public string[] SpeechText;
 
-	// Token: 0x04002182 RID: 8578
+	// Token: 0x04002190 RID: 8592
 	public float[] SpeechTime;
 
-	// Token: 0x04002183 RID: 8579
+	// Token: 0x04002191 RID: 8593
 	public int[] SpeakerID;
 
-	// Token: 0x04002184 RID: 8580
+	// Token: 0x04002192 RID: 8594
 	public bool ForcedEnding;
 
-	// Token: 0x04002185 RID: 8581
+	// Token: 0x04002193 RID: 8595
 	public bool NaturalEnd;
 
-	// Token: 0x04002186 RID: 8582
+	// Token: 0x04002194 RID: 8596
 	public bool LunchTime;
 
-	// Token: 0x04002187 RID: 8583
+	// Token: 0x04002195 RID: 8597
 	public bool Impatient;
 
-	// Token: 0x04002188 RID: 8584
+	// Token: 0x04002196 RID: 8598
 	public bool Sabotaged;
 
-	// Token: 0x04002189 RID: 8585
+	// Token: 0x04002197 RID: 8599
 	public bool Teleport;
 
-	// Token: 0x0400218A RID: 8586
+	// Token: 0x04002198 RID: 8600
 	public bool Transfer;
 
-	// Token: 0x0400218B RID: 8587
+	// Token: 0x04002199 RID: 8601
 	public bool End;
 
-	// Token: 0x0400218C RID: 8588
+	// Token: 0x0400219A RID: 8602
 	public int SpeechPhase = 1;
 
-	// Token: 0x0400218D RID: 8589
+	// Token: 0x0400219B RID: 8603
 	public int StartPeriod;
 
-	// Token: 0x0400218E RID: 8590
+	// Token: 0x0400219C RID: 8604
 	public int EndPhase;
 
-	// Token: 0x0400218F RID: 8591
+	// Token: 0x0400219D RID: 8605
 	public int Frame;
 
-	// Token: 0x04002190 RID: 8592
+	// Token: 0x0400219E RID: 8606
 	public int Phase;
 
-	// Token: 0x04002191 RID: 8593
+	// Token: 0x0400219F RID: 8607
 	public float TransferTime;
 
-	// Token: 0x04002192 RID: 8594
+	// Token: 0x040021A0 RID: 8608
 	public float StartTime;
 
-	// Token: 0x04002193 RID: 8595
+	// Token: 0x040021A1 RID: 8609
 	public float Distance;
 
-	// Token: 0x04002194 RID: 8596
+	// Token: 0x040021A2 RID: 8610
 	public float Scale;
 
-	// Token: 0x04002195 RID: 8597
+	// Token: 0x040021A3 RID: 8611
 	public float Timer;
 }

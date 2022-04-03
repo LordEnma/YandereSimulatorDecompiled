@@ -13,9 +13,9 @@ public class ArcTrailScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A64 RID: 2660
+	// Token: 0x04000A65 RID: 2661
 	private static readonly Color TRAIL_TINT_COLOR = new Color(1f, 0f, 0f, 1f);
 
-	// Token: 0x04000A65 RID: 2661
+	// Token: 0x04000A66 RID: 2662
 	public TrailRenderer Trail;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200023C RID: 572
 public class ChangeTextureScript : MonoBehaviour
 {
-	// Token: 0x06001239 RID: 4665 RVA: 0x0008C0E0 File Offset: 0x0008A2E0
+	// Token: 0x06001239 RID: 4665 RVA: 0x0008C17C File Offset: 0x0008A37C
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.LeftAlt))
@@ -18,12 +18,12 @@ public class ChangeTextureScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040016F2 RID: 5874
+	// Token: 0x040016F3 RID: 5875
 	public Renderer MyRenderer;
 
-	// Token: 0x040016F3 RID: 5875
+	// Token: 0x040016F4 RID: 5876
 	public Texture[] Textures;
 
-	// Token: 0x040016F4 RID: 5876
+	// Token: 0x040016F5 RID: 5877
 	public int ID = 1;
 }

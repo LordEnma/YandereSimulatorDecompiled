@@ -323,165 +323,165 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000AE9 RID: 2793
+	// Token: 0x04000AEA RID: 2794
 	public CharacterController MyController;
 
-	// Token: 0x04000AEA RID: 2794
+	// Token: 0x04000AEB RID: 2795
 	public BeatEmUpScript Player;
 
-	// Token: 0x04000AEB RID: 2795
+	// Token: 0x04000AEC RID: 2796
 	public GameObject StraightSpecialWarning;
 
-	// Token: 0x04000AEC RID: 2796
+	// Token: 0x04000AED RID: 2797
 	public GameObject StraightSpecialHitbox;
 
-	// Token: 0x04000AED RID: 2797
+	// Token: 0x04000AEE RID: 2798
 	public GameObject ArcSpecialWarning;
 
-	// Token: 0x04000AEE RID: 2798
+	// Token: 0x04000AEF RID: 2799
 	public GameObject ArcSpecialHitbox;
 
-	// Token: 0x04000AEF RID: 2799
+	// Token: 0x04000AF0 RID: 2800
 	public GameObject EyeTwinkle;
 
-	// Token: 0x04000AF0 RID: 2800
+	// Token: 0x04000AF1 RID: 2801
 	public GameObject MyRenderer;
 
-	// Token: 0x04000AF1 RID: 2801
+	// Token: 0x04000AF2 RID: 2802
 	public GameObject HitEffect;
 
-	// Token: 0x04000AF2 RID: 2802
+	// Token: 0x04000AF3 RID: 2803
 	public GameObject BeltCoat;
 
-	// Token: 0x04000AF3 RID: 2803
+	// Token: 0x04000AF4 RID: 2804
 	public GameObject Warning;
 
-	// Token: 0x04000AF4 RID: 2804
+	// Token: 0x04000AF5 RID: 2805
 	public GameObject Hitbox;
 
-	// Token: 0x04000AF5 RID: 2805
+	// Token: 0x04000AF6 RID: 2806
 	public Renderer WeaponBagRenderer;
 
-	// Token: 0x04000AF6 RID: 2806
+	// Token: 0x04000AF7 RID: 2807
 	public Renderer HairRenderer;
 
-	// Token: 0x04000AF7 RID: 2807
+	// Token: 0x04000AF8 RID: 2808
 	public Transform WeaponParent;
 
-	// Token: 0x04000AF8 RID: 2808
+	// Token: 0x04000AF9 RID: 2809
 	public Transform RightHand;
 
-	// Token: 0x04000AF9 RID: 2809
+	// Token: 0x04000AFA RID: 2810
 	public Animation MyAnimation;
 
-	// Token: 0x04000AFA RID: 2810
+	// Token: 0x04000AFB RID: 2811
 	public GameObject[] Weapons;
 
-	// Token: 0x04000AFB RID: 2811
+	// Token: 0x04000AFC RID: 2812
 	public AudioSource MyAudio;
 
-	// Token: 0x04000AFC RID: 2812
+	// Token: 0x04000AFD RID: 2813
 	public AudioClip HitSFX;
 
-	// Token: 0x04000AFD RID: 2813
+	// Token: 0x04000AFE RID: 2814
 	public AudioClip Whoosh;
 
-	// Token: 0x04000AFE RID: 2814
+	// Token: 0x04000AFF RID: 2815
 	public AudioClip[] HitReact;
 
-	// Token: 0x04000AFF RID: 2815
+	// Token: 0x04000B00 RID: 2816
 	public AudioClip[] Defeat;
 
-	// Token: 0x04000B00 RID: 2816
+	// Token: 0x04000B01 RID: 2817
 	public float MaxKnockBackSpeed;
 
-	// Token: 0x04000B01 RID: 2817
+	// Token: 0x04000B02 RID: 2818
 	public float KnockBackSpeed;
 
-	// Token: 0x04000B02 RID: 2818
+	// Token: 0x04000B03 RID: 2819
 	public float MaxSpeed;
 
-	// Token: 0x04000B03 RID: 2819
+	// Token: 0x04000B04 RID: 2820
 	public float Speed;
 
-	// Token: 0x04000B04 RID: 2820
+	// Token: 0x04000B05 RID: 2821
 	public string KnockedDownAnim;
 
-	// Token: 0x04000B05 RID: 2821
+	// Token: 0x04000B06 RID: 2822
 	public string KnockedDownLoop;
 
-	// Token: 0x04000B06 RID: 2822
+	// Token: 0x04000B07 RID: 2823
 	public string DefeatAnim;
 
-	// Token: 0x04000B07 RID: 2823
+	// Token: 0x04000B08 RID: 2824
 	public string DefeatLoop;
 
-	// Token: 0x04000B08 RID: 2824
+	// Token: 0x04000B09 RID: 2825
 	public string StraightSpecialAnim;
 
-	// Token: 0x04000B09 RID: 2825
+	// Token: 0x04000B0A RID: 2826
 	public string ArcSpecialAnimA;
 
-	// Token: 0x04000B0A RID: 2826
+	// Token: 0x04000B0B RID: 2827
 	public string ArcSpecialAnimB;
 
-	// Token: 0x04000B0B RID: 2827
+	// Token: 0x04000B0C RID: 2828
 	public string HitReactAnim;
 
-	// Token: 0x04000B0C RID: 2828
+	// Token: 0x04000B0D RID: 2829
 	public string AttackAnim;
 
-	// Token: 0x04000B0D RID: 2829
+	// Token: 0x04000B0E RID: 2830
 	public string IdleAnim;
 
-	// Token: 0x04000B0E RID: 2830
+	// Token: 0x04000B0F RID: 2831
 	public string WalkAnim;
 
-	// Token: 0x04000B0F RID: 2831
+	// Token: 0x04000B10 RID: 2832
 	public string Name;
 
-	// Token: 0x04000B10 RID: 2832
+	// Token: 0x04000B11 RID: 2833
 	public bool StraightSpecial;
 
-	// Token: 0x04000B11 RID: 2833
+	// Token: 0x04000B12 RID: 2834
 	public bool HitboxSpawned;
 
-	// Token: 0x04000B12 RID: 2834
+	// Token: 0x04000B13 RID: 2835
 	public bool HitReacting;
 
-	// Token: 0x04000B13 RID: 2835
+	// Token: 0x04000B14 RID: 2836
 	public bool KnockedDown;
 
-	// Token: 0x04000B14 RID: 2836
+	// Token: 0x04000B15 RID: 2837
 	public bool ArcSpecial;
 
-	// Token: 0x04000B15 RID: 2837
+	// Token: 0x04000B16 RID: 2838
 	public bool Attacking;
 
-	// Token: 0x04000B16 RID: 2838
+	// Token: 0x04000B17 RID: 2839
 	public bool Defeated;
 
-	// Token: 0x04000B17 RID: 2839
+	// Token: 0x04000B18 RID: 2840
 	public float SpecialTimer;
 
-	// Token: 0x04000B18 RID: 2840
+	// Token: 0x04000B19 RID: 2841
 	public float AttackTimer;
 
-	// Token: 0x04000B19 RID: 2841
+	// Token: 0x04000B1A RID: 2842
 	public float AnimSpeed;
 
-	// Token: 0x04000B1A RID: 2842
+	// Token: 0x04000B1B RID: 2843
 	public float MaxHealth;
 
-	// Token: 0x04000B1B RID: 2843
+	// Token: 0x04000B1C RID: 2844
 	public float Health;
 
-	// Token: 0x04000B1C RID: 2844
+	// Token: 0x04000B1D RID: 2845
 	public int Difficulty = 1;
 
-	// Token: 0x04000B1D RID: 2845
+	// Token: 0x04000B1E RID: 2846
 	public int MyWeapon = 1;
 
-	// Token: 0x04000B1E RID: 2846
+	// Token: 0x04000B1F RID: 2847
 	public int EnemyID = 1;
 }

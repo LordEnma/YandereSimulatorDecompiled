@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000347 RID: 839
+// Token: 0x02000348 RID: 840
 public class JsonScript : MonoBehaviour
 {
-	// Token: 0x0600193F RID: 6463 RVA: 0x000FCA10 File Offset: 0x000FAC10
+	// Token: 0x06001945 RID: 6469 RVA: 0x000FD09C File Offset: 0x000FB29C
 	private void Start()
 	{
 		this.students = StudentJson.LoadFromJson(StudentJson.FilePath);
@@ -23,7 +23,7 @@ public class JsonScript : MonoBehaviour
 	}
 
 	// Token: 0x17000494 RID: 1172
-	// (get) Token: 0x06001940 RID: 6464 RVA: 0x000FCA98 File Offset: 0x000FAC98
+	// (get) Token: 0x06001946 RID: 6470 RVA: 0x000FD124 File Offset: 0x000FB324
 	public StudentJson[] Students
 	{
 		get
@@ -33,7 +33,7 @@ public class JsonScript : MonoBehaviour
 	}
 
 	// Token: 0x17000495 RID: 1173
-	// (get) Token: 0x06001941 RID: 6465 RVA: 0x000FCAA0 File Offset: 0x000FACA0
+	// (get) Token: 0x06001947 RID: 6471 RVA: 0x000FD12C File Offset: 0x000FB32C
 	public CreditJson[] Credits
 	{
 		get
@@ -43,7 +43,7 @@ public class JsonScript : MonoBehaviour
 	}
 
 	// Token: 0x17000496 RID: 1174
-	// (get) Token: 0x06001942 RID: 6466 RVA: 0x000FCAA8 File Offset: 0x000FACA8
+	// (get) Token: 0x06001948 RID: 6472 RVA: 0x000FD134 File Offset: 0x000FB334
 	public TopicJson[] Topics
 	{
 		get
@@ -52,7 +52,7 @@ public class JsonScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001943 RID: 6467 RVA: 0x000FCAB0 File Offset: 0x000FACB0
+	// Token: 0x06001949 RID: 6473 RVA: 0x000FD13C File Offset: 0x000FB33C
 	private void ReplaceDeadTeachers(string[] firstNames, string[] lastNames)
 	{
 		for (int i = 90; i < 101; i++)
@@ -97,15 +97,15 @@ public class JsonScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002792 RID: 10130
+	// Token: 0x040027A5 RID: 10149
 	[SerializeField]
 	private StudentJson[] students;
 
-	// Token: 0x04002793 RID: 10131
+	// Token: 0x040027A6 RID: 10150
 	[SerializeField]
 	private CreditJson[] credits;
 
-	// Token: 0x04002794 RID: 10132
+	// Token: 0x040027A7 RID: 10151
 	[SerializeField]
 	private TopicJson[] topics;
 }

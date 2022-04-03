@@ -2,13 +2,13 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000570 RID: 1392
+	// Token: 0x02000575 RID: 1397
 	[Serializable]
 	public class EyeAdaptationModel : PostProcessingModel
 	{
 		// Token: 0x1700050C RID: 1292
-		// (get) Token: 0x06002373 RID: 9075 RVA: 0x001F7236 File Offset: 0x001F5436
-		// (set) Token: 0x06002374 RID: 9076 RVA: 0x001F723E File Offset: 0x001F543E
+		// (get) Token: 0x06002383 RID: 9091 RVA: 0x001F8AA6 File Offset: 0x001F6CA6
+		// (set) Token: 0x06002384 RID: 9092 RVA: 0x001F8AAE File Offset: 0x001F6CAE
 		public EyeAdaptationModel.Settings settings
 		{
 			get
@@ -21,31 +21,31 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002375 RID: 9077 RVA: 0x001F7247 File Offset: 0x001F5447
+		// Token: 0x06002385 RID: 9093 RVA: 0x001F8AB7 File Offset: 0x001F6CB7
 		public override void Reset()
 		{
 			this.m_Settings = EyeAdaptationModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004B8E RID: 19342
+		// Token: 0x04004BC0 RID: 19392
 		[SerializeField]
 		private EyeAdaptationModel.Settings m_Settings = EyeAdaptationModel.Settings.defaultSettings;
 
-		// Token: 0x020006CB RID: 1739
+		// Token: 0x020006D0 RID: 1744
 		public enum EyeAdaptationType
 		{
-			// Token: 0x040051D3 RID: 20947
+			// Token: 0x04005205 RID: 20997
 			Progressive,
-			// Token: 0x040051D4 RID: 20948
+			// Token: 0x04005206 RID: 20998
 			Fixed
 		}
 
-		// Token: 0x020006CC RID: 1740
+		// Token: 0x020006D1 RID: 1745
 		[Serializable]
 		public struct Settings
 		{
 			// Token: 0x170005A2 RID: 1442
-			// (get) Token: 0x0600276E RID: 10094 RVA: 0x00205A08 File Offset: 0x00203C08
+			// (get) Token: 0x0600277E RID: 10110 RVA: 0x002073C8 File Offset: 0x002055C8
 			public static EyeAdaptationModel.Settings defaultSettings
 			{
 				get
@@ -67,53 +67,53 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x040051D5 RID: 20949
+			// Token: 0x04005207 RID: 20999
 			[Range(1f, 99f)]
 			[Tooltip("Filters the dark part of the histogram when computing the average luminance to avoid very dark pixels from contributing to the auto exposure. Unit is in percent.")]
 			public float lowPercent;
 
-			// Token: 0x040051D6 RID: 20950
+			// Token: 0x04005208 RID: 21000
 			[Range(1f, 99f)]
 			[Tooltip("Filters the bright part of the histogram when computing the average luminance to avoid very dark pixels from contributing to the auto exposure. Unit is in percent.")]
 			public float highPercent;
 
-			// Token: 0x040051D7 RID: 20951
+			// Token: 0x04005209 RID: 21001
 			[Tooltip("Minimum average luminance to consider for auto exposure (in EV).")]
 			public float minLuminance;
 
-			// Token: 0x040051D8 RID: 20952
+			// Token: 0x0400520A RID: 21002
 			[Tooltip("Maximum average luminance to consider for auto exposure (in EV).")]
 			public float maxLuminance;
 
-			// Token: 0x040051D9 RID: 20953
+			// Token: 0x0400520B RID: 21003
 			[Min(0f)]
 			[Tooltip("Exposure bias. Use this to offset the global exposure of the scene.")]
 			public float keyValue;
 
-			// Token: 0x040051DA RID: 20954
+			// Token: 0x0400520C RID: 21004
 			[Tooltip("Set this to true to let Unity handle the key value automatically based on average luminance.")]
 			public bool dynamicKeyValue;
 
-			// Token: 0x040051DB RID: 20955
+			// Token: 0x0400520D RID: 21005
 			[Tooltip("Use \"Progressive\" if you want the auto exposure to be animated. Use \"Fixed\" otherwise.")]
 			public EyeAdaptationModel.EyeAdaptationType adaptationType;
 
-			// Token: 0x040051DC RID: 20956
+			// Token: 0x0400520E RID: 21006
 			[Min(0f)]
 			[Tooltip("Adaptation speed from a dark to a light environment.")]
 			public float speedUp;
 
-			// Token: 0x040051DD RID: 20957
+			// Token: 0x0400520F RID: 21007
 			[Min(0f)]
 			[Tooltip("Adaptation speed from a light to a dark environment.")]
 			public float speedDown;
 
-			// Token: 0x040051DE RID: 20958
+			// Token: 0x04005210 RID: 21008
 			[Range(-16f, -1f)]
 			[Tooltip("Lower bound for the brightness range of the generated histogram (in EV). The bigger the spread between min & max, the lower the precision will be.")]
 			public int logMin;
 
-			// Token: 0x040051DF RID: 20959
+			// Token: 0x04005211 RID: 21009
 			[Range(1f, 16f)]
 			[Tooltip("Upper bound for the brightness range of the generated histogram (in EV). The bigger the spread between min & max, the lower the precision will be.")]
 			public int logMax;

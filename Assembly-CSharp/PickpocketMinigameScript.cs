@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003A7 RID: 935
+// Token: 0x020003AA RID: 938
 public class PickpocketMinigameScript : MonoBehaviour
 {
-	// Token: 0x06001ABC RID: 6844 RVA: 0x001223B8 File Offset: 0x001205B8
+	// Token: 0x06001AC5 RID: 6853 RVA: 0x00122A98 File Offset: 0x00120C98
 	private void Start()
 	{
 		base.transform.localScale = Vector3.zero;
@@ -20,7 +20,7 @@ public class PickpocketMinigameScript : MonoBehaviour
 		this.BG.enabled = false;
 	}
 
-	// Token: 0x06001ABD RID: 6845 RVA: 0x00122470 File Offset: 0x00120670
+	// Token: 0x06001AC6 RID: 6854 RVA: 0x00122B50 File Offset: 0x00120D50
 	private void Update()
 	{
 		if (this.Show)
@@ -95,7 +95,7 @@ public class PickpocketMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ABE RID: 6846 RVA: 0x001227B8 File Offset: 0x001209B8
+	// Token: 0x06001AC7 RID: 6855 RVA: 0x00122E98 File Offset: 0x00121098
 	private void ChooseButton()
 	{
 		this.ButtonPrompts[1].enabled = false;
@@ -133,7 +133,7 @@ public class PickpocketMinigameScript : MonoBehaviour
 		this.BG.enabled = true;
 	}
 
-	// Token: 0x06001ABF RID: 6847 RVA: 0x001228FC File Offset: 0x00120AFC
+	// Token: 0x06001AC8 RID: 6856 RVA: 0x00122FDC File Offset: 0x001211DC
 	public void End()
 	{
 		Debug.Log("Ending minigame.");
@@ -154,51 +154,51 @@ public class PickpocketMinigameScript : MonoBehaviour
 		this.Timer = 0f;
 	}
 
-	// Token: 0x04002CAF RID: 11439
+	// Token: 0x04002CC7 RID: 11463
 	public Transform PickpocketSpot;
 
-	// Token: 0x04002CB0 RID: 11440
+	// Token: 0x04002CC8 RID: 11464
 	public UISprite[] ButtonPrompts;
 
-	// Token: 0x04002CB1 RID: 11441
+	// Token: 0x04002CC9 RID: 11465
 	public UISprite Circle;
 
-	// Token: 0x04002CB2 RID: 11442
+	// Token: 0x04002CCA RID: 11466
 	public UISprite BG;
 
-	// Token: 0x04002CB3 RID: 11443
+	// Token: 0x04002CCB RID: 11467
 	public YandereScript Yandere;
 
-	// Token: 0x04002CB4 RID: 11444
+	// Token: 0x04002CCC RID: 11468
 	public string CurrentButton = string.Empty;
 
-	// Token: 0x04002CB5 RID: 11445
+	// Token: 0x04002CCD RID: 11469
 	public bool NotNurse;
 
-	// Token: 0x04002CB6 RID: 11446
+	// Token: 0x04002CCE RID: 11470
 	public bool Sabotage;
 
-	// Token: 0x04002CB7 RID: 11447
+	// Token: 0x04002CCF RID: 11471
 	public bool Failure;
 
-	// Token: 0x04002CB8 RID: 11448
+	// Token: 0x04002CD0 RID: 11472
 	public bool Success;
 
-	// Token: 0x04002CB9 RID: 11449
+	// Token: 0x04002CD1 RID: 11473
 	public bool Show;
 
-	// Token: 0x04002CBA RID: 11450
+	// Token: 0x04002CD2 RID: 11474
 	public int StartingAlerts;
 
-	// Token: 0x04002CBB RID: 11451
+	// Token: 0x04002CD3 RID: 11475
 	public int ButtonID;
 
-	// Token: 0x04002CBC RID: 11452
+	// Token: 0x04002CD4 RID: 11476
 	public int Progress;
 
-	// Token: 0x04002CBD RID: 11453
+	// Token: 0x04002CD5 RID: 11477
 	public int ID;
 
-	// Token: 0x04002CBE RID: 11454
+	// Token: 0x04002CD6 RID: 11478
 	public float Timer;
 }

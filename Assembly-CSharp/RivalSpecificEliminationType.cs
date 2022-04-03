@@ -3,46 +3,46 @@
 // Token: 0x020002A6 RID: 678
 public enum RivalSpecificEliminationType
 {
-	// Token: 0x04001E70 RID: 7792
-	None,
-	// Token: 0x04001E71 RID: 7793
-	Attacked,
-	// Token: 0x04001E72 RID: 7794
-	Befriended,
 	// Token: 0x04001E73 RID: 7795
-	Betrayed,
+	None,
 	// Token: 0x04001E74 RID: 7796
-	Bullied,
+	Attacked,
 	// Token: 0x04001E75 RID: 7797
-	Burned,
+	Befriended,
 	// Token: 0x04001E76 RID: 7798
-	Crushed,
+	Betrayed,
 	// Token: 0x04001E77 RID: 7799
-	Drowned,
+	Bullied,
 	// Token: 0x04001E78 RID: 7800
-	Electrocuted,
+	Burned,
 	// Token: 0x04001E79 RID: 7801
-	Expelled,
+	Crushed,
 	// Token: 0x04001E7A RID: 7802
-	Fan,
+	Drowned,
 	// Token: 0x04001E7B RID: 7803
-	Framed,
+	Electrocuted,
 	// Token: 0x04001E7C RID: 7804
-	Kidnapped,
+	Expelled,
 	// Token: 0x04001E7D RID: 7805
-	Matchmade,
+	Fan,
 	// Token: 0x04001E7E RID: 7806
-	MurderSuicide,
+	Framed,
 	// Token: 0x04001E7F RID: 7807
-	Poisoned,
+	Kidnapped,
 	// Token: 0x04001E80 RID: 7808
-	Pool,
+	Matchmade,
 	// Token: 0x04001E81 RID: 7809
-	Pushed,
+	MurderSuicide,
 	// Token: 0x04001E82 RID: 7810
-	Rejected,
+	Poisoned,
 	// Token: 0x04001E83 RID: 7811
-	Suicide,
+	Pool,
 	// Token: 0x04001E84 RID: 7812
+	Pushed,
+	// Token: 0x04001E85 RID: 7813
+	Rejected,
+	// Token: 0x04001E86 RID: 7814
+	Suicide,
+	// Token: 0x04001E87 RID: 7815
 	Exploded
 }

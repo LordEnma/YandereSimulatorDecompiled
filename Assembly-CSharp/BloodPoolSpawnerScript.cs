@@ -180,69 +180,69 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		this.Height = 12f;
 	}
 
-	// Token: 0x04000BAD RID: 2989
+	// Token: 0x04000BAE RID: 2990
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000BAE RID: 2990
+	// Token: 0x04000BAF RID: 2991
 	public RagdollScript Ragdoll;
 
-	// Token: 0x04000BAF RID: 2991
+	// Token: 0x04000BB0 RID: 2992
 	public GameObject LastBloodPool;
 
-	// Token: 0x04000BB0 RID: 2992
+	// Token: 0x04000BB1 RID: 2993
 	public GameObject BloodPool;
 
-	// Token: 0x04000BB1 RID: 2993
+	// Token: 0x04000BB2 RID: 2994
 	public Transform BloodParent;
 
-	// Token: 0x04000BB2 RID: 2994
+	// Token: 0x04000BB3 RID: 2995
 	public Transform Hips;
 
-	// Token: 0x04000BB3 RID: 2995
+	// Token: 0x04000BB4 RID: 2996
 	public Collider MyCollider;
 
-	// Token: 0x04000BB4 RID: 2996
+	// Token: 0x04000BB5 RID: 2997
 	public Collider GardenArea;
 
-	// Token: 0x04000BB5 RID: 2997
+	// Token: 0x04000BB6 RID: 2998
 	public Collider TreeArea;
 
-	// Token: 0x04000BB6 RID: 2998
+	// Token: 0x04000BB7 RID: 2999
 	public Collider NEStairs;
 
-	// Token: 0x04000BB7 RID: 2999
+	// Token: 0x04000BB8 RID: 3000
 	public Collider NWStairs;
 
-	// Token: 0x04000BB8 RID: 3000
+	// Token: 0x04000BB9 RID: 3001
 	public Collider SEStairs;
 
-	// Token: 0x04000BB9 RID: 3001
+	// Token: 0x04000BBA RID: 3002
 	public Collider SWStairs;
 
-	// Token: 0x04000BBA RID: 3002
+	// Token: 0x04000BBB RID: 3003
 	public Vector3[] Positions;
 
-	// Token: 0x04000BBB RID: 3003
+	// Token: 0x04000BBC RID: 3004
 	public bool CanSpawn;
 
-	// Token: 0x04000BBC RID: 3004
+	// Token: 0x04000BBD RID: 3005
 	public bool Falling;
 
-	// Token: 0x04000BBD RID: 3005
+	// Token: 0x04000BBE RID: 3006
 	public int PoolsSpawned;
 
-	// Token: 0x04000BBE RID: 3006
+	// Token: 0x04000BBF RID: 3007
 	public int NearbyBlood;
 
-	// Token: 0x04000BBF RID: 3007
+	// Token: 0x04000BC0 RID: 3008
 	public float FallTimer;
 
-	// Token: 0x04000BC0 RID: 3008
+	// Token: 0x04000BC1 RID: 3009
 	public float Height;
 
-	// Token: 0x04000BC1 RID: 3009
+	// Token: 0x04000BC2 RID: 3010
 	public float Timer;
 
-	// Token: 0x04000BC2 RID: 3010
+	// Token: 0x04000BC3 RID: 3011
 	public LayerMask Mask;
 }

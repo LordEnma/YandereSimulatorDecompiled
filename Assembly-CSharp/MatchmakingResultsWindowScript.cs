@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000362 RID: 866
+// Token: 0x02000363 RID: 867
 public class MatchmakingResultsWindowScript : MonoBehaviour
 {
-	// Token: 0x060019A0 RID: 6560 RVA: 0x00105B78 File Offset: 0x00103D78
+	// Token: 0x060019A6 RID: 6566 RVA: 0x00106224 File Offset: 0x00104424
 	private void Update()
 	{
 		if (Input.GetButtonDown("B"))
@@ -17,6 +17,6 @@ public class MatchmakingResultsWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400291F RID: 10527
+	// Token: 0x04002932 RID: 10546
 	public AdviceWindowScript AdviceWindow;
 }

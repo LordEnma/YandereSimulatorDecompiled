@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Token: 0x02000511 RID: 1297
+// Token: 0x02000516 RID: 1302
 [Serializable]
 public class ReferenceDict : SerializableDictionary<string, string>
 {

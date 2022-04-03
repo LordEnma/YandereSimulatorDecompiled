@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200027E RID: 638
 public class DemonScript : MonoBehaviour
 {
-	// Token: 0x0600137E RID: 4990 RVA: 0x000B35B4 File Offset: 0x000B17B4
+	// Token: 0x0600137F RID: 4991 RVA: 0x000B3664 File Offset: 0x000B1864
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -114,57 +114,57 @@ public class DemonScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001CC5 RID: 7365
+	// Token: 0x04001CC8 RID: 7368
 	public SkinnedMeshRenderer Face;
 
-	// Token: 0x04001CC6 RID: 7366
+	// Token: 0x04001CC9 RID: 7369
 	public YandereScript Yandere;
 
-	// Token: 0x04001CC7 RID: 7367
+	// Token: 0x04001CCA RID: 7370
 	public PromptScript Prompt;
 
-	// Token: 0x04001CC8 RID: 7368
+	// Token: 0x04001CCB RID: 7371
 	public UILabel DemonSubtitle;
 
-	// Token: 0x04001CC9 RID: 7369
+	// Token: 0x04001CCC RID: 7372
 	public UISprite Darkness;
 
-	// Token: 0x04001CCA RID: 7370
+	// Token: 0x04001CCD RID: 7373
 	public UISprite Button;
 
-	// Token: 0x04001CCB RID: 7371
+	// Token: 0x04001CCE RID: 7374
 	public AudioClip MouthOpen;
 
-	// Token: 0x04001CCC RID: 7372
+	// Token: 0x04001CCF RID: 7375
 	public AudioClip MouthClose;
 
-	// Token: 0x04001CCD RID: 7373
+	// Token: 0x04001CD0 RID: 7376
 	public AudioClip[] Clips;
 
-	// Token: 0x04001CCE RID: 7374
+	// Token: 0x04001CD1 RID: 7377
 	public string[] Lines;
 
-	// Token: 0x04001CCF RID: 7375
+	// Token: 0x04001CD2 RID: 7378
 	public bool Communing;
 
-	// Token: 0x04001CD0 RID: 7376
+	// Token: 0x04001CD3 RID: 7379
 	public bool Open;
 
-	// Token: 0x04001CD1 RID: 7377
+	// Token: 0x04001CD4 RID: 7380
 	public float Intensity = 1f;
 
-	// Token: 0x04001CD2 RID: 7378
+	// Token: 0x04001CD5 RID: 7381
 	public float Value;
 
-	// Token: 0x04001CD3 RID: 7379
+	// Token: 0x04001CD6 RID: 7382
 	public Color MyColor;
 
-	// Token: 0x04001CD4 RID: 7380
+	// Token: 0x04001CD7 RID: 7383
 	public int DemonID;
 
-	// Token: 0x04001CD5 RID: 7381
+	// Token: 0x04001CD8 RID: 7384
 	public int Phase = 1;
 
-	// Token: 0x04001CD6 RID: 7382
+	// Token: 0x04001CD9 RID: 7385
 	public int ID;
 }

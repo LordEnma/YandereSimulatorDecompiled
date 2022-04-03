@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
 
-// Token: 0x020004F4 RID: 1268
+// Token: 0x020004F8 RID: 1272
 public class GrassPlaneGenerator : MonoBehaviour
 {
-	// Token: 0x06002105 RID: 8453 RVA: 0x001E83D4 File Offset: 0x001E65D4
+	// Token: 0x06002113 RID: 8467 RVA: 0x001E9C10 File Offset: 0x001E7E10
 	private void OnDrawGizmosSelected()
 	{
 		this.quadSize = Mathf.Clamp(this.quadSize, 0.1f, 10f);
@@ -30,7 +30,7 @@ public class GrassPlaneGenerator : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002106 RID: 8454 RVA: 0x001E8544 File Offset: 0x001E6744
+	// Token: 0x06002114 RID: 8468 RVA: 0x001E9D80 File Offset: 0x001E7F80
 	public void Bake()
 	{
 		List<Vector3> list = new List<Vector3>();
@@ -138,25 +138,25 @@ public class GrassPlaneGenerator : MonoBehaviour
 		}.AddComponent<MeshRenderer>().gameObject.AddComponent<MeshFilter>().mesh = mesh;
 	}
 
-	// Token: 0x04004912 RID: 18706
+	// Token: 0x04004943 RID: 18755
 	public float Width = 10f;
 
-	// Token: 0x04004913 RID: 18707
+	// Token: 0x04004944 RID: 18756
 	public float Height = 10f;
 
-	// Token: 0x04004914 RID: 18708
+	// Token: 0x04004945 RID: 18757
 	public bool Intersect;
 
-	// Token: 0x04004915 RID: 18709
+	// Token: 0x04004946 RID: 18758
 	public float IntersectHeight = 1f;
 
-	// Token: 0x04004916 RID: 18710
+	// Token: 0x04004947 RID: 18759
 	public bool OffsetCorrection;
 
-	// Token: 0x04004917 RID: 18711
+	// Token: 0x04004948 RID: 18760
 	public LayerMask IntersectLayers;
 
-	// Token: 0x04004918 RID: 18712
+	// Token: 0x04004949 RID: 18761
 	[Range(0.1f, 10f)]
 	public float quadSize = 0.1f;
 }

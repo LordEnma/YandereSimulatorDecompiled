@@ -140,36 +140,36 @@ public class BodyHidingLockerScript : MonoBehaviour
 		this.Prompt.enabled = true;
 	}
 
-	// Token: 0x04000BCA RID: 3018
+	// Token: 0x04000BCB RID: 3019
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000BCB RID: 3019
+	// Token: 0x04000BCC RID: 3020
 	public OutlineScript Outline;
 
-	// Token: 0x04000BCC RID: 3020
+	// Token: 0x04000BCD RID: 3021
 	public RagdollScript Corpse;
 
-	// Token: 0x04000BCD RID: 3021
+	// Token: 0x04000BCE RID: 3022
 	public PromptScript Prompt;
 
-	// Token: 0x04000BCE RID: 3022
+	// Token: 0x04000BCF RID: 3023
 	public AudioClip LockerClose;
 
-	// Token: 0x04000BCF RID: 3023
+	// Token: 0x04000BD0 RID: 3024
 	public AudioClip LockerOpen;
 
-	// Token: 0x04000BD0 RID: 3024
+	// Token: 0x04000BD1 RID: 3025
 	public float Rotation;
 
-	// Token: 0x04000BD1 RID: 3025
+	// Token: 0x04000BD2 RID: 3026
 	public float Speed;
 
-	// Token: 0x04000BD2 RID: 3026
+	// Token: 0x04000BD3 RID: 3027
 	public Transform Door;
 
-	// Token: 0x04000BD3 RID: 3027
+	// Token: 0x04000BD4 RID: 3028
 	public int StudentID;
 
-	// Token: 0x04000BD4 RID: 3028
+	// Token: 0x04000BD5 RID: 3029
 	public bool ABC;
 }

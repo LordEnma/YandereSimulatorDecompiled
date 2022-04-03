@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000331 RID: 817
+// Token: 0x02000332 RID: 818
 public class IfElseScript : MonoBehaviour
 {
-	// Token: 0x060018D6 RID: 6358 RVA: 0x000F4F50 File Offset: 0x000F3150
+	// Token: 0x060018DC RID: 6364 RVA: 0x000F5598 File Offset: 0x000F3798
 	private void Start()
 	{
 		this.SwitchCase();
 	}
 
-	// Token: 0x060018D7 RID: 6359 RVA: 0x000F4F58 File Offset: 0x000F3158
+	// Token: 0x060018DD RID: 6365 RVA: 0x000F55A0 File Offset: 0x000F37A0
 	private void IfElse()
 	{
 		if (this.ID == 1)
@@ -49,7 +49,7 @@ public class IfElseScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018D8 RID: 6360 RVA: 0x000F4FF8 File Offset: 0x000F31F8
+	// Token: 0x060018DE RID: 6366 RVA: 0x000F5640 File Offset: 0x000F3840
 	private void SwitchCase()
 	{
 		switch (this.ID)
@@ -80,9 +80,9 @@ public class IfElseScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002609 RID: 9737
+	// Token: 0x0400261C RID: 9756
 	public int ID;
 
-	// Token: 0x0400260A RID: 9738
+	// Token: 0x0400261D RID: 9757
 	public string Day;
 }

@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000402 RID: 1026
+// Token: 0x02000405 RID: 1029
 [Serializable]
 public class PoseModeSaveData
 {
-	// Token: 0x06001C28 RID: 7208 RVA: 0x001489CC File Offset: 0x00146BCC
+	// Token: 0x06001C32 RID: 7218 RVA: 0x00149488 File Offset: 0x00147688
 	public static PoseModeSaveData ReadFromGlobals()
 	{
 		return new PoseModeSaveData
@@ -16,7 +16,7 @@ public class PoseModeSaveData
 		};
 	}
 
-	// Token: 0x06001C29 RID: 7209 RVA: 0x001489F4 File Offset: 0x00146BF4
+	// Token: 0x06001C33 RID: 7219 RVA: 0x001494B0 File Offset: 0x001476B0
 	public static void WriteToGlobals(PoseModeSaveData data)
 	{
 		PoseModeGlobals.PosePosition = data.posePosition;
@@ -24,12 +24,12 @@ public class PoseModeSaveData
 		PoseModeGlobals.PoseScale = data.poseScale;
 	}
 
-	// Token: 0x040031A6 RID: 12710
+	// Token: 0x040031BF RID: 12735
 	public Vector3 posePosition;
 
-	// Token: 0x040031A7 RID: 12711
+	// Token: 0x040031C0 RID: 12736
 	public Vector3 poseRotation;
 
-	// Token: 0x040031A8 RID: 12712
+	// Token: 0x040031C1 RID: 12737
 	public Vector3 poseScale;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200046C RID: 1132
+// Token: 0x0200046F RID: 1135
 public class TaskManagerScript : MonoBehaviour
 {
-	// Token: 0x06001EAB RID: 7851 RVA: 0x001AFBB4 File Offset: 0x001ADDB4
+	// Token: 0x06001EB5 RID: 7861 RVA: 0x001B0ED0 File Offset: 0x001AF0D0
 	public void Start()
 	{
 		for (int i = 1; i < 101; i++)
@@ -30,7 +30,7 @@ public class TaskManagerScript : MonoBehaviour
 		this.Initialized = true;
 	}
 
-	// Token: 0x06001EAC RID: 7852 RVA: 0x001AFC48 File Offset: 0x001ADE48
+	// Token: 0x06001EB6 RID: 7862 RVA: 0x001B0F64 File Offset: 0x001AF164
 	public void CheckTaskPickups()
 	{
 		if (!this.StudentManager.Eighties)
@@ -68,7 +68,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EAD RID: 7853 RVA: 0x001AFE0C File Offset: 0x001AE00C
+	// Token: 0x06001EB7 RID: 7863 RVA: 0x001B1128 File Offset: 0x001AF328
 	public void UpdateTaskStatus()
 	{
 		if (!this.StudentManager.Eighties)
@@ -183,6 +183,55 @@ public class TaskManagerScript : MonoBehaviour
 					this.StudentManager.Students[46].TaskPhase = 5;
 				}
 			}
+			if (this.TaskStatus[47] == 1 && this.StudentManager.Students[47] != null)
+			{
+				if (this.StudentManager.Students[47].TaskPhase == 0)
+				{
+					this.StudentManager.Students[47].TaskPhase = 4;
+				}
+				if (this.StudentManager.CombatMinigame.PracticeWindow.DefeatedSho)
+				{
+					Debug.Log("Sho's task should be ready to turn in!");
+					this.StudentManager.Students[47].TaskPhase = 5;
+				}
+			}
+			if (this.TaskStatus[48] == 1 && this.StudentManager.Students[48] != null)
+			{
+				if (this.StudentManager.Students[48].TaskPhase == 0)
+				{
+					this.StudentManager.Students[48].TaskPhase = 4;
+				}
+				this.Yandere.WeaponManager.DumbbellCheck(48);
+				if (this.Yandere.WeaponManager.DumbbellNear)
+				{
+					Debug.Log("Juku's task should be ready to turn in!");
+					this.StudentManager.Students[48].TaskPhase = 5;
+				}
+			}
+			if (this.TaskStatus[49] == 1 && this.StudentManager.Students[49] != null)
+			{
+				if (this.StudentManager.Students[49].TaskPhase == 0)
+				{
+					this.StudentManager.Students[49].TaskPhase = 4;
+				}
+				if (this.MuddyFootprintParent.childCount == 0)
+				{
+					Debug.Log("Mina's task should be ready to turn in!");
+					this.StudentManager.Students[49].TaskPhase = 5;
+				}
+			}
+			if (this.TaskStatus[50] == 1 && this.StudentManager.Students[50] != null)
+			{
+				if (this.StudentManager.Students[50].TaskPhase == 0)
+				{
+					this.StudentManager.Students[50].TaskPhase = 4;
+				}
+				if (this.FixedDummy.activeInHierarchy)
+				{
+					Debug.Log("Shima's task should be ready to turn in!");
+					this.StudentManager.Students[50].TaskPhase = 5;
+				}
+			}
 			if (ClubGlobals.GetClubClosed(ClubType.LightMusic) || this.StudentManager.Students[51] == null)
 			{
 				if (this.StudentManager.Students[52] != null)
@@ -232,7 +281,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EAE RID: 7854 RVA: 0x001B0484 File Offset: 0x001AE684
+	// Token: 0x06001EB8 RID: 7864 RVA: 0x001B199C File Offset: 0x001AFB9C
 	public void SaveTaskStatuses()
 	{
 		for (int i = 1; i < 101; i++)
@@ -245,24 +294,30 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F88 RID: 16264
+	// Token: 0x04003FB3 RID: 16307
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003F89 RID: 16265
+	// Token: 0x04003FB4 RID: 16308
 	public YandereScript Yandere;
 
-	// Token: 0x04003F8A RID: 16266
+	// Token: 0x04003FB5 RID: 16309
+	public Transform MuddyFootprintParent;
+
+	// Token: 0x04003FB6 RID: 16310
 	public GameObject[] TaskObjects;
 
-	// Token: 0x04003F8B RID: 16267
+	// Token: 0x04003FB7 RID: 16311
 	public PromptScript[] Prompts;
 
-	// Token: 0x04003F8C RID: 16268
+	// Token: 0x04003FB8 RID: 16312
 	public bool[] GirlsQuestioned;
 
-	// Token: 0x04003F8D RID: 16269
+	// Token: 0x04003FB9 RID: 16313
+	public GameObject FixedDummy;
+
+	// Token: 0x04003FBA RID: 16314
 	public int[] TaskStatus;
 
-	// Token: 0x04003F8E RID: 16270
+	// Token: 0x04003FBB RID: 16315
 	public bool Initialized;
 }

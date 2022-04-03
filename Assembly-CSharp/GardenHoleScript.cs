@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002D8 RID: 728
+// Token: 0x020002D9 RID: 729
 public class GardenHoleScript : MonoBehaviour
 {
-	// Token: 0x060014CC RID: 5324 RVA: 0x000CD210 File Offset: 0x000CB410
+	// Token: 0x060014CF RID: 5327 RVA: 0x000CD44C File Offset: 0x000CB64C
 	private void Start()
 	{
 		if (SchoolGlobals.GetGardenGraveOccupied(this.ID))
@@ -15,7 +15,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014CD RID: 5325 RVA: 0x000CD240 File Offset: 0x000CB440
+	// Token: 0x060014D0 RID: 5328 RVA: 0x000CD47C File Offset: 0x000CB67C
 	private void Update()
 	{
 		if (this.Yandere.transform.position.z < base.transform.position.z - 0.5f)
@@ -115,7 +115,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014CE RID: 5326 RVA: 0x000CD774 File Offset: 0x000CB974
+	// Token: 0x060014D1 RID: 5329 RVA: 0x000CD9B0 File Offset: 0x000CBBB0
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Dug && other.gameObject.layer == 11)
@@ -126,7 +126,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014CF RID: 5327 RVA: 0x000CD7D1 File Offset: 0x000CB9D1
+	// Token: 0x060014D2 RID: 5330 RVA: 0x000CDA0D File Offset: 0x000CBC0D
 	private void OnTriggerExit(Collider other)
 	{
 		if (this.Dug && other.gameObject.layer == 11)
@@ -137,7 +137,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014D0 RID: 5328 RVA: 0x000CD80F File Offset: 0x000CBA0F
+	// Token: 0x060014D3 RID: 5331 RVA: 0x000CDA4B File Offset: 0x000CBC4B
 	public void EndOfDayCheck()
 	{
 		if (this.VictimID > 0)
@@ -147,42 +147,42 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040020C4 RID: 8388
+	// Token: 0x040020C9 RID: 8393
 	public YandereScript Yandere;
 
-	// Token: 0x040020C5 RID: 8389
+	// Token: 0x040020CA RID: 8394
 	public RagdollScript Corpse;
 
-	// Token: 0x040020C6 RID: 8390
+	// Token: 0x040020CB RID: 8395
 	public PromptScript Prompt;
 
-	// Token: 0x040020C7 RID: 8391
+	// Token: 0x040020CC RID: 8396
 	public Collider MyCollider;
 
-	// Token: 0x040020C8 RID: 8392
+	// Token: 0x040020CD RID: 8397
 	public MeshFilter MyMesh;
 
-	// Token: 0x040020C9 RID: 8393
+	// Token: 0x040020CE RID: 8398
 	public GameObject Carrots;
 
-	// Token: 0x040020CA RID: 8394
+	// Token: 0x040020CF RID: 8399
 	public GameObject Pile;
 
-	// Token: 0x040020CB RID: 8395
+	// Token: 0x040020D0 RID: 8400
 	public Mesh MoundMesh;
 
-	// Token: 0x040020CC RID: 8396
+	// Token: 0x040020D1 RID: 8401
 	public Mesh HoleMesh;
 
-	// Token: 0x040020CD RID: 8397
+	// Token: 0x040020D2 RID: 8402
 	public bool Bury;
 
-	// Token: 0x040020CE RID: 8398
+	// Token: 0x040020D3 RID: 8403
 	public bool Dug;
 
-	// Token: 0x040020CF RID: 8399
+	// Token: 0x040020D4 RID: 8404
 	public int VictimID;
 
-	// Token: 0x040020D0 RID: 8400
+	// Token: 0x040020D5 RID: 8405
 	public int ID;
 }

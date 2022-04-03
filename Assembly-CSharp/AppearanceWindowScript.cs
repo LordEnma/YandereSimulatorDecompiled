@@ -223,33 +223,33 @@ public class AppearanceWindowScript : MonoBehaviour
 		this.Show = false;
 	}
 
-	// Token: 0x04000A31 RID: 2609
+	// Token: 0x04000A32 RID: 2610
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000A32 RID: 2610
+	// Token: 0x04000A33 RID: 2611
 	public InputManagerScript InputManager;
 
-	// Token: 0x04000A33 RID: 2611
+	// Token: 0x04000A34 RID: 2612
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04000A34 RID: 2612
+	// Token: 0x04000A35 RID: 2613
 	public YandereScript Yandere;
 
-	// Token: 0x04000A35 RID: 2613
+	// Token: 0x04000A36 RID: 2614
 	public Transform Highlight;
 
-	// Token: 0x04000A36 RID: 2614
+	// Token: 0x04000A37 RID: 2615
 	public Transform Window;
 
-	// Token: 0x04000A37 RID: 2615
+	// Token: 0x04000A38 RID: 2616
 	public UISprite[] Checks;
 
-	// Token: 0x04000A38 RID: 2616
+	// Token: 0x04000A39 RID: 2617
 	public int Selected;
 
-	// Token: 0x04000A39 RID: 2617
+	// Token: 0x04000A3A RID: 2618
 	public bool Ready;
 
-	// Token: 0x04000A3A RID: 2618
+	// Token: 0x04000A3B RID: 2619
 	public bool Show;
 }

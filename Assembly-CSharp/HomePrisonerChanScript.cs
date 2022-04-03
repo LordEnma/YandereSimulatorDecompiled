@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000323 RID: 803
+// Token: 0x02000324 RID: 804
 public class HomePrisonerChanScript : MonoBehaviour
 {
-	// Token: 0x0600189E RID: 6302 RVA: 0x000F11B0 File Offset: 0x000EF3B0
+	// Token: 0x060018A4 RID: 6308 RVA: 0x000F1770 File Offset: 0x000EF970
 	private void Start()
 	{
 		if (SchoolGlobals.KidnapVictim > 0)
@@ -65,7 +65,7 @@ public class HomePrisonerChanScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600189F RID: 6303 RVA: 0x000F1428 File Offset: 0x000EF628
+	// Token: 0x060018A5 RID: 6309 RVA: 0x000F19E8 File Offset: 0x000EFBE8
 	private void LateUpdate()
 	{
 		this.Skirt.transform.localPosition = new Vector3(0f, -0.135f, 0.01f);
@@ -138,7 +138,7 @@ public class HomePrisonerChanScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018A0 RID: 6304 RVA: 0x000F19D8 File Offset: 0x000EFBD8
+	// Token: 0x060018A6 RID: 6310 RVA: 0x000F1F98 File Offset: 0x000F0198
 	public void UpdateSanity()
 	{
 		this.Sanity = StudentGlobals.GetStudentSanity(this.StudentID);
@@ -147,132 +147,132 @@ public class HomePrisonerChanScript : MonoBehaviour
 		this.LeftMindbrokenEye.SetActive(active);
 	}
 
-	// Token: 0x04002532 RID: 9522
+	// Token: 0x04002545 RID: 9541
 	public HomeYandereDetectorScript YandereDetector;
 
-	// Token: 0x04002533 RID: 9523
+	// Token: 0x04002546 RID: 9542
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x04002534 RID: 9524
+	// Token: 0x04002547 RID: 9543
 	public CosmeticScript Cosmetic;
 
-	// Token: 0x04002535 RID: 9525
+	// Token: 0x04002548 RID: 9544
 	public JsonScript JSON;
 
-	// Token: 0x04002536 RID: 9526
+	// Token: 0x04002549 RID: 9545
 	public Vector3 RightEyeRotOrigin;
 
-	// Token: 0x04002537 RID: 9527
+	// Token: 0x0400254A RID: 9546
 	public Vector3 LeftEyeRotOrigin;
 
-	// Token: 0x04002538 RID: 9528
+	// Token: 0x0400254B RID: 9547
 	public Vector3 PermanentAngleR;
 
-	// Token: 0x04002539 RID: 9529
+	// Token: 0x0400254C RID: 9548
 	public Vector3 PermanentAngleL;
 
-	// Token: 0x0400253A RID: 9530
+	// Token: 0x0400254D RID: 9549
 	public Vector3 RightEyeOrigin;
 
-	// Token: 0x0400253B RID: 9531
+	// Token: 0x0400254E RID: 9550
 	public Vector3 LeftEyeOrigin;
 
-	// Token: 0x0400253C RID: 9532
+	// Token: 0x0400254F RID: 9551
 	public Vector3 Twitch;
 
-	// Token: 0x0400253D RID: 9533
+	// Token: 0x04002550 RID: 9552
 	public Quaternion LastRotation;
 
-	// Token: 0x0400253E RID: 9534
+	// Token: 0x04002551 RID: 9553
 	public Transform HomeYandere;
 
-	// Token: 0x0400253F RID: 9535
+	// Token: 0x04002552 RID: 9554
 	public Transform RightBreast;
 
-	// Token: 0x04002540 RID: 9536
+	// Token: 0x04002553 RID: 9555
 	public Transform LeftBreast;
 
-	// Token: 0x04002541 RID: 9537
+	// Token: 0x04002554 RID: 9556
 	public Transform TwintailR;
 
-	// Token: 0x04002542 RID: 9538
+	// Token: 0x04002555 RID: 9557
 	public Transform TwintailL;
 
-	// Token: 0x04002543 RID: 9539
+	// Token: 0x04002556 RID: 9558
 	public Transform RightEye;
 
-	// Token: 0x04002544 RID: 9540
+	// Token: 0x04002557 RID: 9559
 	public Transform LeftEye;
 
-	// Token: 0x04002545 RID: 9541
+	// Token: 0x04002558 RID: 9560
 	public Transform Skirt;
 
-	// Token: 0x04002546 RID: 9542
+	// Token: 0x04002559 RID: 9561
 	public Transform Neck;
 
-	// Token: 0x04002547 RID: 9543
+	// Token: 0x0400255A RID: 9562
 	public GameObject RightMindbrokenEye;
 
-	// Token: 0x04002548 RID: 9544
+	// Token: 0x0400255B RID: 9563
 	public GameObject LeftMindbrokenEye;
 
-	// Token: 0x04002549 RID: 9545
+	// Token: 0x0400255C RID: 9564
 	public GameObject AnkleRopes;
 
-	// Token: 0x0400254A RID: 9546
+	// Token: 0x0400255D RID: 9565
 	public GameObject Blindfold;
 
-	// Token: 0x0400254B RID: 9547
+	// Token: 0x0400255E RID: 9566
 	public GameObject Character;
 
-	// Token: 0x0400254C RID: 9548
+	// Token: 0x0400255F RID: 9567
 	public GameObject Tripod;
 
-	// Token: 0x0400254D RID: 9549
+	// Token: 0x04002560 RID: 9568
 	public float HairRotation;
 
-	// Token: 0x0400254E RID: 9550
+	// Token: 0x04002561 RID: 9569
 	public float TwitchTimer;
 
-	// Token: 0x0400254F RID: 9551
+	// Token: 0x04002562 RID: 9570
 	public float NextTwitch;
 
-	// Token: 0x04002550 RID: 9552
+	// Token: 0x04002563 RID: 9571
 	public float BreastSize;
 
-	// Token: 0x04002551 RID: 9553
+	// Token: 0x04002564 RID: 9572
 	public float EyeShrink;
 
-	// Token: 0x04002552 RID: 9554
+	// Token: 0x04002565 RID: 9573
 	public float Sanity;
 
-	// Token: 0x04002553 RID: 9555
+	// Token: 0x04002566 RID: 9574
 	public float HairRot1;
 
-	// Token: 0x04002554 RID: 9556
+	// Token: 0x04002567 RID: 9575
 	public float HairRot2;
 
-	// Token: 0x04002555 RID: 9557
+	// Token: 0x04002568 RID: 9576
 	public float HairRot3;
 
-	// Token: 0x04002556 RID: 9558
+	// Token: 0x04002569 RID: 9577
 	public float HairRot4;
 
-	// Token: 0x04002557 RID: 9559
+	// Token: 0x0400256A RID: 9578
 	public float HairRot5;
 
-	// Token: 0x04002558 RID: 9560
+	// Token: 0x0400256B RID: 9579
 	public bool LookAhead;
 
-	// Token: 0x04002559 RID: 9561
+	// Token: 0x0400256C RID: 9580
 	public bool Tortured;
 
-	// Token: 0x0400255A RID: 9562
+	// Token: 0x0400256D RID: 9581
 	public bool Eighties;
 
-	// Token: 0x0400255B RID: 9563
+	// Token: 0x0400256E RID: 9582
 	public bool Male;
 
-	// Token: 0x0400255C RID: 9564
+	// Token: 0x0400256F RID: 9583
 	public int StudentID;
 }

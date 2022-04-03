@@ -8,14 +8,14 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000299 RID: 665
 public class EditorManagerScript : MonoBehaviour
 {
-	// Token: 0x060013F8 RID: 5112 RVA: 0x000BDFFE File Offset: 0x000BC1FE
+	// Token: 0x060013F9 RID: 5113 RVA: 0x000BE10A File Offset: 0x000BC30A
 	private void Awake()
 	{
 		this.buttonIndex = 0;
 		this.inputManager = UnityEngine.Object.FindObjectOfType<InputManagerScript>();
 	}
 
-	// Token: 0x060013F9 RID: 5113 RVA: 0x000BE014 File Offset: 0x000BC214
+	// Token: 0x060013FA RID: 5114 RVA: 0x000BE120 File Offset: 0x000BC320
 	private void Start()
 	{
 		this.promptBar.Label[0].text = "Select";
@@ -24,7 +24,7 @@ public class EditorManagerScript : MonoBehaviour
 		this.promptBar.UpdateButtons();
 	}
 
-	// Token: 0x060013FA RID: 5114 RVA: 0x000BE074 File Offset: 0x000BC274
+	// Token: 0x060013FB RID: 5115 RVA: 0x000BE180 File Offset: 0x000BC380
 	private void OnEnable()
 	{
 		this.promptBar.Label[0].text = "Select";
@@ -33,13 +33,13 @@ public class EditorManagerScript : MonoBehaviour
 		this.promptBar.UpdateButtons();
 	}
 
-	// Token: 0x060013FB RID: 5115 RVA: 0x000BE0D1 File Offset: 0x000BC2D1
+	// Token: 0x060013FC RID: 5116 RVA: 0x000BE1DD File Offset: 0x000BC3DD
 	public static Dictionary<string, object>[] DeserializeJson(string filename)
 	{
 		return JsonReader.Deserialize<Dictionary<string, object>[]>(File.ReadAllText(Path.Combine(Application.streamingAssetsPath, Path.Combine("JSON", filename))));
 	}
 
-	// Token: 0x060013FC RID: 5116 RVA: 0x000BE0F4 File Offset: 0x000BC2F4
+	// Token: 0x060013FD RID: 5117 RVA: 0x000BE200 File Offset: 0x000BC400
 	private void HandleInput()
 	{
 		if (Input.GetButtonDown("B"))
@@ -68,34 +68,34 @@ public class EditorManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013FD RID: 5117 RVA: 0x000BE1E3 File Offset: 0x000BC3E3
+	// Token: 0x060013FE RID: 5118 RVA: 0x000BE2EF File Offset: 0x000BC4EF
 	private void Update()
 	{
 		this.HandleInput();
 	}
 
-	// Token: 0x04001DD5 RID: 7637
+	// Token: 0x04001DD8 RID: 7640
 	[SerializeField]
 	private UIPanel mainPanel;
 
-	// Token: 0x04001DD6 RID: 7638
+	// Token: 0x04001DD9 RID: 7641
 	[SerializeField]
 	private UIPanel[] editorPanels;
 
-	// Token: 0x04001DD7 RID: 7639
+	// Token: 0x04001DDA RID: 7642
 	[SerializeField]
 	private UILabel cursorLabel;
 
-	// Token: 0x04001DD8 RID: 7640
+	// Token: 0x04001DDB RID: 7643
 	[SerializeField]
 	private PromptBarScript promptBar;
 
-	// Token: 0x04001DD9 RID: 7641
+	// Token: 0x04001DDC RID: 7644
 	private int buttonIndex;
 
-	// Token: 0x04001DDA RID: 7642
+	// Token: 0x04001DDD RID: 7645
 	private const int ButtonCount = 3;
 
-	// Token: 0x04001DDB RID: 7643
+	// Token: 0x04001DDE RID: 7646
 	private InputManagerScript inputManager;
 }

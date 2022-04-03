@@ -48,12 +48,12 @@ public class AnimTestScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A16 RID: 2582
+	// Token: 0x04000A17 RID: 2583
 	public Animation CharacterA;
 
-	// Token: 0x04000A17 RID: 2583
+	// Token: 0x04000A18 RID: 2584
 	public Animation CharacterB;
 
-	// Token: 0x04000A18 RID: 2584
+	// Token: 0x04000A19 RID: 2585
 	public int ID;
 }

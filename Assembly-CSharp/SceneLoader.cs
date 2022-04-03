@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
-// Token: 0x0200040E RID: 1038
+// Token: 0x02000411 RID: 1041
 public class SceneLoader : MonoBehaviour
 {
-	// Token: 0x06001C58 RID: 7256 RVA: 0x0014B3E8 File Offset: 0x001495E8
+	// Token: 0x06001C62 RID: 7266 RVA: 0x0014BEA4 File Offset: 0x0014A0A4
 	private void Start()
 	{
 		if (OptionGlobals.DrawDistanceLimit == 0)
@@ -34,6 +34,11 @@ public class SceneLoader : MonoBehaviour
 			PlayerGlobals.SetCannotBringItem(7, true);
 			PlayerGlobals.Money = 10f;
 		}
+		if (GameGlobals.Eighties)
+		{
+			this.LightAnimation.SetActive(false);
+			this.LightAnimation1989.SetActive(true);
+		}
 		if (SchoolGlobals.SchoolAtmosphere < 0.5f || GameGlobals.LoveSick)
 		{
 			Camera.main.backgroundColor = new Color(0f, 0f, 0f, 1f);
@@ -42,8 +47,16 @@ public class SceneLoader : MonoBehaviour
 			this.crashText.color = new Color(1f, 0f, 0f, 1f);
 			this.KeyboardGraphic.color = new Color(1f, 0f, 0f, 1f);
 			this.ControllerLines.color = new Color(1f, 0f, 0f, 1f);
-			this.LightAnimation.SetActive(false);
-			this.DarkAnimation.SetActive(true);
+			if (GameGlobals.Eighties)
+			{
+				this.LightAnimation1989.SetActive(false);
+				this.DarkAnimation1989.SetActive(true);
+			}
+			else
+			{
+				this.LightAnimation.SetActive(false);
+				this.DarkAnimation.SetActive(true);
+			}
 			for (int i = 1; i < this.ControllerText.Length; i++)
 			{
 				this.ControllerText[i].color = new Color(1f, 0f, 0f, 1f);
@@ -63,27 +76,32 @@ public class SceneLoader : MonoBehaviour
 			this.Keyboard.SetActive(true);
 			this.Gamepad.SetActive(false);
 		}
-		if (!this.Debugging)
+		this.Debugging = false;
+	}
+
+	// Token: 0x06001C63 RID: 7267 RVA: 0x0014C15C File Offset: 0x0014A35C
+	private void Update()
+	{
+		if (this.Timer == 1f)
 		{
 			base.StartCoroutine(this.LoadNewScene());
 		}
-	}
-
-	// Token: 0x06001C59 RID: 7257 RVA: 0x0014B66D File Offset: 0x0014986D
-	private void Update()
-	{
-		if (this.Debugging)
+		this.Timer += 1f;
+		if (Input.GetKeyDown("a"))
 		{
-			this.Timer += Time.deltaTime;
-			if (this.Timer > 10f)
+			if (SchoolGlobals.SchoolAtmosphere > 0f)
 			{
-				this.Debugging = false;
-				base.StartCoroutine(this.LoadNewScene());
+				SchoolGlobals.SchoolAtmosphere = 0f;
 			}
+			else
+			{
+				SchoolGlobals.SchoolAtmosphere = 1f;
+			}
+			SceneManager.LoadScene("LoadingScene");
 		}
 	}
 
-	// Token: 0x06001C5A RID: 7258 RVA: 0x0014B6AA File Offset: 0x001498AA
+	// Token: 0x06001C64 RID: 7268 RVA: 0x0014C1CD File Offset: 0x0014A3CD
 	private IEnumerator LoadNewScene()
 	{
 		AsyncOperation async = SceneManager.LoadSceneAsync("SchoolScene");
@@ -94,51 +112,57 @@ public class SceneLoader : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04003216 RID: 12822
+	// Token: 0x0400322F RID: 12847
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04003217 RID: 12823
+	// Token: 0x04003230 RID: 12848
 	[SerializeField]
 	private UILabel patienceText;
 
-	// Token: 0x04003218 RID: 12824
+	// Token: 0x04003231 RID: 12849
 	[SerializeField]
 	private UILabel loadingText;
 
-	// Token: 0x04003219 RID: 12825
+	// Token: 0x04003232 RID: 12850
 	[SerializeField]
 	private UILabel crashText;
 
-	// Token: 0x0400321A RID: 12826
+	// Token: 0x04003233 RID: 12851
 	private float timer;
 
-	// Token: 0x0400321B RID: 12827
+	// Token: 0x04003234 RID: 12852
 	public UILabel[] ControllerText;
 
-	// Token: 0x0400321C RID: 12828
+	// Token: 0x04003235 RID: 12853
 	public UILabel[] KeyboardText;
 
-	// Token: 0x0400321D RID: 12829
+	// Token: 0x04003236 RID: 12854
 	public GameObject LightAnimation;
 
-	// Token: 0x0400321E RID: 12830
+	// Token: 0x04003237 RID: 12855
 	public GameObject DarkAnimation;
 
-	// Token: 0x0400321F RID: 12831
+	// Token: 0x04003238 RID: 12856
+	public GameObject LightAnimation1989;
+
+	// Token: 0x04003239 RID: 12857
+	public GameObject DarkAnimation1989;
+
+	// Token: 0x0400323A RID: 12858
 	public GameObject Keyboard;
 
-	// Token: 0x04003220 RID: 12832
+	// Token: 0x0400323B RID: 12859
 	public GameObject Gamepad;
 
-	// Token: 0x04003221 RID: 12833
+	// Token: 0x0400323C RID: 12860
 	public UITexture ControllerLines;
 
-	// Token: 0x04003222 RID: 12834
+	// Token: 0x0400323D RID: 12861
 	public UITexture KeyboardGraphic;
 
-	// Token: 0x04003223 RID: 12835
+	// Token: 0x0400323E RID: 12862
 	public bool Debugging;
 
-	// Token: 0x04003224 RID: 12836
+	// Token: 0x0400323F RID: 12863
 	public float Timer;
 }

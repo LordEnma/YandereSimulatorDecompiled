@@ -1,15 +1,15 @@
 ﻿using System;
 
-// Token: 0x020004B3 RID: 1203
+// Token: 0x020004B6 RID: 1206
 [Serializable]
 public class IntAndIntPair : SerializablePair<int, int>
 {
-	// Token: 0x06001F97 RID: 8087 RVA: 0x001BC671 File Offset: 0x001BA871
+	// Token: 0x06001FA1 RID: 8097 RVA: 0x001BDBFD File Offset: 0x001BBDFD
 	public IntAndIntPair(int first, int second) : base(first, second)
 	{
 	}
 
-	// Token: 0x06001F98 RID: 8088 RVA: 0x001BC67B File Offset: 0x001BA87B
+	// Token: 0x06001FA2 RID: 8098 RVA: 0x001BDC07 File Offset: 0x001BBE07
 	public IntAndIntPair() : base(0, 0)
 	{
 	}

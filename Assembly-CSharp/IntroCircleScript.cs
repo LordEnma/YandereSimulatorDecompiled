@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200033A RID: 826
+// Token: 0x0200033B RID: 827
 public class IntroCircleScript : MonoBehaviour
 {
-	// Token: 0x060018EF RID: 6383 RVA: 0x000F6BF8 File Offset: 0x000F4DF8
+	// Token: 0x060018F5 RID: 6389 RVA: 0x000F7260 File Offset: 0x000F5460
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -34,30 +34,30 @@ public class IntroCircleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002671 RID: 9841
+	// Token: 0x04002684 RID: 9860
 	public UISprite Sprite;
 
-	// Token: 0x04002672 RID: 9842
+	// Token: 0x04002685 RID: 9861
 	public UILabel Label;
 
-	// Token: 0x04002673 RID: 9843
+	// Token: 0x04002686 RID: 9862
 	public float[] StartTime;
 
-	// Token: 0x04002674 RID: 9844
+	// Token: 0x04002687 RID: 9863
 	public float[] Duration;
 
-	// Token: 0x04002675 RID: 9845
+	// Token: 0x04002688 RID: 9864
 	public string[] Text;
 
-	// Token: 0x04002676 RID: 9846
+	// Token: 0x04002689 RID: 9865
 	public float CurrentTime;
 
-	// Token: 0x04002677 RID: 9847
+	// Token: 0x0400268A RID: 9866
 	public float LastTime;
 
-	// Token: 0x04002678 RID: 9848
+	// Token: 0x0400268B RID: 9867
 	public float Timer;
 
-	// Token: 0x04002679 RID: 9849
+	// Token: 0x0400268C RID: 9868
 	public int ID;
 }

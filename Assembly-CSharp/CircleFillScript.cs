@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000247 RID: 583
 public class CircleFillScript : MonoBehaviour
 {
-	// Token: 0x06001254 RID: 4692 RVA: 0x0008D1B8 File Offset: 0x0008B3B8
+	// Token: 0x06001254 RID: 4692 RVA: 0x0008D254 File Offset: 0x0008B454
 	private void Update()
 	{
 		this.Speed += Time.deltaTime;
@@ -20,18 +20,18 @@ public class CircleFillScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400172E RID: 5934
+	// Token: 0x0400172F RID: 5935
 	public UISprite OsanaFill;
 
-	// Token: 0x0400172F RID: 5935
+	// Token: 0x04001730 RID: 5936
 	public UITexture OtherFill;
 
-	// Token: 0x04001730 RID: 5936
+	// Token: 0x04001731 RID: 5937
 	public UITexture Fill;
 
-	// Token: 0x04001731 RID: 5937
+	// Token: 0x04001732 RID: 5938
 	public float Speed;
 
-	// Token: 0x04001732 RID: 5938
+	// Token: 0x04001733 RID: 5939
 	public int Phase;
 }

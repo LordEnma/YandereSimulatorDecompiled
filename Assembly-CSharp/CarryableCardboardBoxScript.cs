@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000238 RID: 568
 public class CarryableCardboardBoxScript : MonoBehaviour
 {
-	// Token: 0x06001230 RID: 4656 RVA: 0x0008BA5C File Offset: 0x00089C5C
+	// Token: 0x06001230 RID: 4656 RVA: 0x0008BAF8 File Offset: 0x00089CF8
 	private void Update()
 	{
 		if (!this.Closed)
@@ -61,21 +61,21 @@ public class CarryableCardboardBoxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040016E3 RID: 5859
+	// Token: 0x040016E4 RID: 5860
 	public WeaponScript MyCutter;
 
-	// Token: 0x040016E4 RID: 5860
+	// Token: 0x040016E5 RID: 5861
 	public PickUpScript PickUp;
 
-	// Token: 0x040016E5 RID: 5861
+	// Token: 0x040016E6 RID: 5862
 	public PromptScript Prompt;
 
-	// Token: 0x040016E6 RID: 5862
+	// Token: 0x040016E7 RID: 5863
 	public MeshFilter MyRenderer;
 
-	// Token: 0x040016E7 RID: 5863
+	// Token: 0x040016E8 RID: 5864
 	public Mesh ClosedMesh;
 
-	// Token: 0x040016E8 RID: 5864
+	// Token: 0x040016E9 RID: 5865
 	public bool Closed;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200036C RID: 876
+// Token: 0x0200036D RID: 877
 public class MoneyWadScript : MonoBehaviour
 {
-	// Token: 0x060019C3 RID: 6595 RVA: 0x001080E4 File Offset: 0x001062E4
+	// Token: 0x060019C9 RID: 6601 RVA: 0x001087A0 File Offset: 0x001069A0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -19,6 +19,6 @@ public class MoneyWadScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400296C RID: 10604
+	// Token: 0x0400297F RID: 10623
 	public PromptScript Prompt;
 }

@@ -3,28 +3,28 @@
 // Token: 0x020002AE RID: 686
 public enum DeathType
 {
-	// Token: 0x04001F29 RID: 7977
-	None,
-	// Token: 0x04001F2A RID: 7978
-	Burning,
-	// Token: 0x04001F2B RID: 7979
-	Disposed,
 	// Token: 0x04001F2C RID: 7980
-	Drowning,
+	None,
 	// Token: 0x04001F2D RID: 7981
-	EasterEgg,
+	Burning,
 	// Token: 0x04001F2E RID: 7982
-	Electrocution,
+	Disposed,
 	// Token: 0x04001F2F RID: 7983
-	Falling,
+	Drowning,
 	// Token: 0x04001F30 RID: 7984
-	Poison,
+	EasterEgg,
 	// Token: 0x04001F31 RID: 7985
-	Weapon,
+	Electrocution,
 	// Token: 0x04001F32 RID: 7986
-	Mystery,
+	Falling,
 	// Token: 0x04001F33 RID: 7987
-	Weight,
+	Poison,
 	// Token: 0x04001F34 RID: 7988
+	Weapon,
+	// Token: 0x04001F35 RID: 7989
+	Mystery,
+	// Token: 0x04001F36 RID: 7990
+	Weight,
+	// Token: 0x04001F37 RID: 7991
 	Explosion
 }

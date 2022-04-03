@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200030C RID: 780
+// Token: 0x0200030D RID: 781
 public class HallucinationScript : MonoBehaviour
 {
-	// Token: 0x0600183F RID: 6207 RVA: 0x000E61D8 File Offset: 0x000E43D8
+	// Token: 0x06001845 RID: 6213 RVA: 0x000E66D8 File Offset: 0x000E48D8
 	private void Start()
 	{
 		this.YandereHairRenderer.material = this.Black;
@@ -48,7 +48,7 @@ public class HallucinationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001840 RID: 6208 RVA: 0x000E63A4 File Offset: 0x000E45A4
+	// Token: 0x06001846 RID: 6214 RVA: 0x000E68A4 File Offset: 0x000E4AA4
 	private void Update()
 	{
 		if (this.Yandere.Sanity < 33.33333f)
@@ -124,7 +124,7 @@ public class HallucinationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001841 RID: 6209 RVA: 0x000E680C File Offset: 0x000E4A0C
+	// Token: 0x06001847 RID: 6215 RVA: 0x000E6D0C File Offset: 0x000E4F0C
 	private void MakeTransparent()
 	{
 		this.Alpha = 0f;
@@ -146,63 +146,63 @@ public class HallucinationScript : MonoBehaviour
 		this.SawRenderer.material.SetFloat("_Alpha", this.Alpha);
 	}
 
-	// Token: 0x04002354 RID: 9044
+	// Token: 0x04002362 RID: 9058
 	public SkinnedMeshRenderer YandereHairRenderer;
 
-	// Token: 0x04002355 RID: 9045
+	// Token: 0x04002363 RID: 9059
 	public SkinnedMeshRenderer YandereRenderer;
 
-	// Token: 0x04002356 RID: 9046
+	// Token: 0x04002364 RID: 9060
 	public SkinnedMeshRenderer RivalHairRenderer;
 
-	// Token: 0x04002357 RID: 9047
+	// Token: 0x04002365 RID: 9061
 	public SkinnedMeshRenderer RivalRenderer;
 
-	// Token: 0x04002358 RID: 9048
+	// Token: 0x04002366 RID: 9062
 	public Animation YandereAnimation;
 
-	// Token: 0x04002359 RID: 9049
+	// Token: 0x04002367 RID: 9063
 	public Animation RivalAnimation;
 
-	// Token: 0x0400235A RID: 9050
+	// Token: 0x04002368 RID: 9064
 	public YandereScript Yandere;
 
-	// Token: 0x0400235B RID: 9051
+	// Token: 0x04002369 RID: 9065
 	public Material Black;
 
-	// Token: 0x0400235C RID: 9052
+	// Token: 0x0400236A RID: 9066
 	public bool Hallucinate;
 
-	// Token: 0x0400235D RID: 9053
+	// Token: 0x0400236B RID: 9067
 	public float Alpha;
 
-	// Token: 0x0400235E RID: 9054
+	// Token: 0x0400236C RID: 9068
 	public float Timer;
 
-	// Token: 0x0400235F RID: 9055
+	// Token: 0x0400236D RID: 9069
 	public int Weapon;
 
-	// Token: 0x04002360 RID: 9056
+	// Token: 0x0400236E RID: 9070
 	public Renderer[] WeaponRenderers;
 
-	// Token: 0x04002361 RID: 9057
+	// Token: 0x0400236F RID: 9071
 	public Renderer SawRenderer;
 
-	// Token: 0x04002362 RID: 9058
+	// Token: 0x04002370 RID: 9072
 	public GameObject[] Weapons;
 
-	// Token: 0x04002363 RID: 9059
+	// Token: 0x04002371 RID: 9073
 	public string[] WeaponName;
 
-	// Token: 0x04002364 RID: 9060
+	// Token: 0x04002372 RID: 9074
 	public GameObject[] EightiesRivalHair;
 
-	// Token: 0x04002365 RID: 9061
+	// Token: 0x04002373 RID: 9075
 	public GameObject[] RivalHair;
 
-	// Token: 0x04002366 RID: 9062
+	// Token: 0x04002374 RID: 9076
 	public GameObject RyobaHair;
 
-	// Token: 0x04002367 RID: 9063
+	// Token: 0x04002375 RID: 9077
 	public Mesh LongSleeveUniform;
 }

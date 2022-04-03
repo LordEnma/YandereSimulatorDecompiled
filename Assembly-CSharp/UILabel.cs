@@ -2271,61 +2271,61 @@ public class UILabel : UIWidget
 	// Token: 0x0400071D RID: 1821
 	private static List<int> mTempIndices = new List<int>();
 
-	// Token: 0x02000636 RID: 1590
+	// Token: 0x0200063B RID: 1595
 	[DoNotObfuscateNGUI]
 	public enum Effect
 	{
-		// Token: 0x04004EDF RID: 20191
+		// Token: 0x04004F11 RID: 20241
 		None,
-		// Token: 0x04004EE0 RID: 20192
+		// Token: 0x04004F12 RID: 20242
 		Shadow,
-		// Token: 0x04004EE1 RID: 20193
+		// Token: 0x04004F13 RID: 20243
 		Outline,
-		// Token: 0x04004EE2 RID: 20194
+		// Token: 0x04004F14 RID: 20244
 		Outline8
 	}
 
-	// Token: 0x02000637 RID: 1591
+	// Token: 0x0200063C RID: 1596
 	[DoNotObfuscateNGUI]
 	public enum Overflow
 	{
-		// Token: 0x04004EE4 RID: 20196
+		// Token: 0x04004F16 RID: 20246
 		ShrinkContent,
-		// Token: 0x04004EE5 RID: 20197
+		// Token: 0x04004F17 RID: 20247
 		ClampContent,
-		// Token: 0x04004EE6 RID: 20198
+		// Token: 0x04004F18 RID: 20248
 		ResizeFreely,
-		// Token: 0x04004EE7 RID: 20199
+		// Token: 0x04004F19 RID: 20249
 		ResizeHeight
 	}
 
-	// Token: 0x02000638 RID: 1592
+	// Token: 0x0200063D RID: 1597
 	[DoNotObfuscateNGUI]
 	public enum Crispness
 	{
-		// Token: 0x04004EE9 RID: 20201
+		// Token: 0x04004F1B RID: 20251
 		Never,
-		// Token: 0x04004EEA RID: 20202
+		// Token: 0x04004F1C RID: 20252
 		OnDesktop,
-		// Token: 0x04004EEB RID: 20203
+		// Token: 0x04004F1D RID: 20253
 		Always
 	}
 
-	// Token: 0x02000639 RID: 1593
+	// Token: 0x0200063E RID: 1598
 	[DoNotObfuscateNGUI]
 	public enum Modifier
 	{
-		// Token: 0x04004EED RID: 20205
+		// Token: 0x04004F1F RID: 20255
 		None,
-		// Token: 0x04004EEE RID: 20206
+		// Token: 0x04004F20 RID: 20256
 		ToUppercase,
-		// Token: 0x04004EEF RID: 20207
+		// Token: 0x04004F21 RID: 20257
 		ToLowercase,
-		// Token: 0x04004EF0 RID: 20208
+		// Token: 0x04004F22 RID: 20258
 		Custom = 255
 	}
 
-	// Token: 0x0200063A RID: 1594
-	// (Invoke) Token: 0x06002619 RID: 9753
+	// Token: 0x0200063F RID: 1599
+	// (Invoke) Token: 0x06002629 RID: 9769
 	public delegate string ModifierFunc(string s);
 }
