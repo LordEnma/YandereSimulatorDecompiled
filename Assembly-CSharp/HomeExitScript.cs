@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200031E RID: 798
+// Token: 0x0200031F RID: 799
 public class HomeExitScript : MonoBehaviour
 {
-	// Token: 0x06001888 RID: 6280 RVA: 0x000EE1A0 File Offset: 0x000EC3A0
+	// Token: 0x0600188E RID: 6286 RVA: 0x000EE2A0 File Offset: 0x000EC4A0
 	private void Start()
 	{
 		UILabel uilabel = this.Labels[1];
@@ -30,7 +30,7 @@ public class HomeExitScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001889 RID: 6281 RVA: 0x000EE2C8 File Offset: 0x000EC4C8
+	// Token: 0x0600188F RID: 6287 RVA: 0x000EE3C8 File Offset: 0x000EC5C8
 	private void Update()
 	{
 		if (!this.HomeYandere.CanMove && !this.HomeDarkness.FadeOut && this.HomeWindow.Sprite.color.a > 0.9f)
@@ -90,7 +90,7 @@ public class HomeExitScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600188A RID: 6282 RVA: 0x000EE560 File Offset: 0x000EC760
+	// Token: 0x06001890 RID: 6288 RVA: 0x000EE660 File Offset: 0x000EC860
 	public void GoToSchool()
 	{
 		if (SchoolGlobals.SchoolAtmosphere < 0.5f || GameGlobals.LoveSick)
@@ -106,33 +106,33 @@ public class HomeExitScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x040024BA RID: 9402
+	// Token: 0x040024BD RID: 9405
 	public InputManagerScript InputManager;
 
-	// Token: 0x040024BB RID: 9403
+	// Token: 0x040024BE RID: 9406
 	public HomeDarknessScript HomeDarkness;
 
-	// Token: 0x040024BC RID: 9404
+	// Token: 0x040024BF RID: 9407
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x040024BD RID: 9405
+	// Token: 0x040024C0 RID: 9408
 	public BringItemScript HomeBringItem;
 
-	// Token: 0x040024BE RID: 9406
+	// Token: 0x040024C1 RID: 9409
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x040024BF RID: 9407
+	// Token: 0x040024C2 RID: 9410
 	public HomeWindowScript HomeWindow;
 
-	// Token: 0x040024C0 RID: 9408
+	// Token: 0x040024C3 RID: 9411
 	public GameObject BringItemPrompt;
 
-	// Token: 0x040024C1 RID: 9409
+	// Token: 0x040024C4 RID: 9412
 	public Transform Highlight;
 
-	// Token: 0x040024C2 RID: 9410
+	// Token: 0x040024C5 RID: 9413
 	public UILabel[] Labels;
 
-	// Token: 0x040024C3 RID: 9411
+	// Token: 0x040024C6 RID: 9414
 	public int ID = 1;
 }

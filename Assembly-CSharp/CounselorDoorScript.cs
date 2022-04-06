@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x0200025F RID: 607
 public class CounselorDoorScript : MonoBehaviour
 {
-	// Token: 0x060012DA RID: 4826 RVA: 0x000A1C25 File Offset: 0x0009FE25
+	// Token: 0x060012DA RID: 4826 RVA: 0x000A1C3D File Offset: 0x0009FE3D
 	private void Start()
 	{
 	}
 
-	// Token: 0x060012DB RID: 4827 RVA: 0x000A1C28 File Offset: 0x0009FE28
+	// Token: 0x060012DB RID: 4827 RVA: 0x000A1C40 File Offset: 0x0009FE40
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000245 RID: 581
 public class ChoiceScript : MonoBehaviour
 {
-	// Token: 0x0600124F RID: 4687 RVA: 0x0008CF34 File Offset: 0x0008B134
+	// Token: 0x0600124F RID: 4687 RVA: 0x0008CF4C File Offset: 0x0008B14C
 	private void Start()
 	{
 		this.Darkness.color = new Color(1f, 1f, 1f, 1f);
 	}
 
-	// Token: 0x06001250 RID: 4688 RVA: 0x0008CF5C File Offset: 0x0008B15C
+	// Token: 0x06001250 RID: 4688 RVA: 0x0008CF74 File Offset: 0x0008B174
 	private void Update()
 	{
 		this.Highlight.transform.localPosition = Vector3.Lerp(this.Highlight.transform.localPosition, new Vector3((float)(-360 + 720 * this.Selected), this.Highlight.transform.localPosition.y, this.Highlight.transform.localPosition.z), Time.deltaTime * 10f);

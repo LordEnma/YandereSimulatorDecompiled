@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200047F RID: 1151
+// Token: 0x02000480 RID: 1152
 public class TitleSaveFilesScript : MonoBehaviour
 {
-	// Token: 0x06001EF0 RID: 7920 RVA: 0x001B4F70 File Offset: 0x001B3170
+	// Token: 0x06001EF8 RID: 7928 RVA: 0x001B5478 File Offset: 0x001B3678
 	private void Update()
 	{
 		if (this.NewTitleScreen.Speed > 3f && !this.NewTitleScreen.FadeOut)
@@ -135,7 +135,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EF1 RID: 7921 RVA: 0x001B5380 File Offset: 0x001B3580
+	// Token: 0x06001EF9 RID: 7929 RVA: 0x001B5888 File Offset: 0x001B3A88
 	private void UpdateHighlight()
 	{
 		this.Highlight.localPosition = new Vector3(0f, 700f - 350f * (float)this.ID, 0f);
@@ -160,7 +160,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 		this.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001EF2 RID: 7922 RVA: 0x001B5484 File Offset: 0x001B3684
+	// Token: 0x06001EFA RID: 7930 RVA: 0x001B598C File Offset: 0x001B3B8C
 	public void UpdateOutlines()
 	{
 		UILabel[] componentsInChildren = base.GetComponentsInChildren<UILabel>();
@@ -170,45 +170,45 @@ public class TitleSaveFilesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400407D RID: 16509
+	// Token: 0x04004080 RID: 16512
 	public NewTitleScreenScript NewTitleScreen;
 
-	// Token: 0x0400407E RID: 16510
+	// Token: 0x04004081 RID: 16513
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400407F RID: 16511
+	// Token: 0x04004082 RID: 16514
 	public TitleSaveDataScript[] SaveDatas;
 
-	// Token: 0x04004080 RID: 16512
+	// Token: 0x04004083 RID: 16515
 	public UILabel CorruptSaveLabel;
 
-	// Token: 0x04004081 RID: 16513
+	// Token: 0x04004084 RID: 16516
 	public UILabel NewSaveLabel;
 
-	// Token: 0x04004082 RID: 16514
+	// Token: 0x04004085 RID: 16517
 	public GameObject ConfirmationWindow;
 
-	// Token: 0x04004083 RID: 16515
+	// Token: 0x04004086 RID: 16518
 	public GameObject ErrorWindow;
 
-	// Token: 0x04004084 RID: 16516
+	// Token: 0x04004087 RID: 16519
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04004085 RID: 16517
+	// Token: 0x04004088 RID: 16520
 	public TitleMenuScript Menu;
 
-	// Token: 0x04004086 RID: 16518
+	// Token: 0x04004089 RID: 16521
 	public Transform Highlight;
 
-	// Token: 0x04004087 RID: 16519
+	// Token: 0x0400408A RID: 16522
 	public bool Started;
 
-	// Token: 0x04004088 RID: 16520
+	// Token: 0x0400408B RID: 16523
 	public bool Show;
 
-	// Token: 0x04004089 RID: 16521
+	// Token: 0x0400408C RID: 16524
 	public int EightiesPrefix;
 
-	// Token: 0x0400408A RID: 16522
+	// Token: 0x0400408D RID: 16525
 	public int ID = 1;
 }

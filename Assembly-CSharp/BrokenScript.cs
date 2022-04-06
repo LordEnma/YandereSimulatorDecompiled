@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F8 RID: 248
 public class BrokenScript : MonoBehaviour
 {
-	// Token: 0x06000A6A RID: 2666 RVA: 0x0005CD94 File Offset: 0x0005AF94
+	// Token: 0x06000A6A RID: 2666 RVA: 0x0005CDAC File Offset: 0x0005AFAC
 	private void Start()
 	{
 		this.HairPhysics[0].enabled = false;
@@ -15,7 +15,7 @@ public class BrokenScript : MonoBehaviour
 		this.Yandere = GameObject.Find("YandereChan");
 	}
 
-	// Token: 0x06000A6B RID: 2667 RVA: 0x0005CE04 File Offset: 0x0005B004
+	// Token: 0x06000A6B RID: 2667 RVA: 0x0005CE1C File Offset: 0x0005B01C
 	private void Update()
 	{
 		if (!this.Done)

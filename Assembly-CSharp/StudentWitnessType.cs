@@ -1,64 +1,64 @@
 ﻿using System;
 
-// Token: 0x0200045E RID: 1118
+// Token: 0x0200045F RID: 1119
 public enum StudentWitnessType
 {
-	// Token: 0x040038A0 RID: 14496
-	None,
-	// Token: 0x040038A1 RID: 14497
-	Accident,
-	// Token: 0x040038A2 RID: 14498
-	Blood,
 	// Token: 0x040038A3 RID: 14499
-	BloodAndInsanity,
+	None,
 	// Token: 0x040038A4 RID: 14500
-	Corpse,
+	Accident,
 	// Token: 0x040038A5 RID: 14501
-	Eavesdropping,
+	Blood,
 	// Token: 0x040038A6 RID: 14502
-	Insanity,
+	BloodAndInsanity,
 	// Token: 0x040038A7 RID: 14503
-	Interruption,
+	Corpse,
 	// Token: 0x040038A8 RID: 14504
-	Lewd,
+	Eavesdropping,
 	// Token: 0x040038A9 RID: 14505
-	Murder,
+	Insanity,
 	// Token: 0x040038AA RID: 14506
-	Pickpocketing,
+	Interruption,
 	// Token: 0x040038AB RID: 14507
-	CleaningItem,
+	Lewd,
 	// Token: 0x040038AC RID: 14508
-	Suspicious,
+	Murder,
 	// Token: 0x040038AD RID: 14509
-	Stalking,
+	Pickpocketing,
 	// Token: 0x040038AE RID: 14510
-	Theft,
+	CleaningItem,
 	// Token: 0x040038AF RID: 14511
-	Trespassing,
+	Suspicious,
 	// Token: 0x040038B0 RID: 14512
-	Violence,
+	Stalking,
 	// Token: 0x040038B1 RID: 14513
-	Poisoning,
+	Theft,
 	// Token: 0x040038B2 RID: 14514
-	Weapon,
+	Trespassing,
 	// Token: 0x040038B3 RID: 14515
-	WeaponAndBlood,
+	Violence,
 	// Token: 0x040038B4 RID: 14516
-	WeaponAndBloodAndInsanity,
+	Poisoning,
 	// Token: 0x040038B5 RID: 14517
-	WeaponAndInsanity,
+	Weapon,
 	// Token: 0x040038B6 RID: 14518
-	BloodPool,
+	WeaponAndBlood,
 	// Token: 0x040038B7 RID: 14519
-	SeveredLimb,
+	WeaponAndBloodAndInsanity,
 	// Token: 0x040038B8 RID: 14520
-	BloodyWeapon,
+	WeaponAndInsanity,
 	// Token: 0x040038B9 RID: 14521
-	DroppedWeapon,
+	BloodPool,
 	// Token: 0x040038BA RID: 14522
-	CoverUp,
+	SeveredLimb,
 	// Token: 0x040038BB RID: 14523
-	HoldingBloodyClothing,
+	BloodyWeapon,
 	// Token: 0x040038BC RID: 14524
+	DroppedWeapon,
+	// Token: 0x040038BD RID: 14525
+	CoverUp,
+	// Token: 0x040038BE RID: 14526
+	HoldingBloodyClothing,
+	// Token: 0x040038BF RID: 14527
 	Tutorial
 }

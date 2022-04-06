@@ -2,10 +2,10 @@
 using Pathfinding;
 using UnityEngine;
 
-// Token: 0x02000343 RID: 835
+// Token: 0x02000344 RID: 836
 public class JournalistScript : MonoBehaviour
 {
-	// Token: 0x06001912 RID: 6418 RVA: 0x000FC0C4 File Offset: 0x000FA2C4
+	// Token: 0x06001918 RID: 6424 RVA: 0x000FC1C4 File Offset: 0x000FA3C4
 	private void Start()
 	{
 		if (!GameGlobals.Eighties || GameGlobals.EightiesTutorial || DateGlobals.Week > 10)
@@ -19,7 +19,7 @@ public class JournalistScript : MonoBehaviour
 		this.PepperSpray.SetActive(false);
 	}
 
-	// Token: 0x06001913 RID: 6419 RVA: 0x000FC118 File Offset: 0x000FA318
+	// Token: 0x06001919 RID: 6425 RVA: 0x000FC218 File Offset: 0x000FA418
 	private void Update()
 	{
 		if (base.transform.position.z > -95f)
@@ -168,7 +168,7 @@ public class JournalistScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001914 RID: 6420 RVA: 0x000FC874 File Offset: 0x000FAA74
+	// Token: 0x0600191A RID: 6426 RVA: 0x000FC974 File Offset: 0x000FAB74
 	private void CheckBehavior()
 	{
 		if (this.Yandere.CanMove && !this.Yandere.Egg && (this.Yandere.Chased || this.Yandere.Chasers > 0 || (this.Yandere.Armed && this.Yandere.EquippedWeapon.Bloody) || (this.Yandere.Carrying && !this.Yandere.CurrentRagdoll.Concealed) || (this.Yandere.Dragging && !this.Yandere.CurrentRagdoll.Concealed) || (this.Yandere.Bloodiness + (float)this.Yandere.GloveBlood > 0f && !this.Yandere.Paint) || (this.Yandere.PickUp != null && this.Yandere.PickUp.BodyPart && !this.Yandere.PickUp.Garbage)))
@@ -177,7 +177,7 @@ public class JournalistScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001915 RID: 6421 RVA: 0x000FC994 File Offset: 0x000FAB94
+	// Token: 0x0600191B RID: 6427 RVA: 0x000FCA94 File Offset: 0x000FAC94
 	public bool CanSeeYandere()
 	{
 		if (!this.Yandere.Egg)
@@ -193,7 +193,7 @@ public class JournalistScript : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06001916 RID: 6422 RVA: 0x000FCA38 File Offset: 0x000FAC38
+	// Token: 0x0600191C RID: 6428 RVA: 0x000FCB38 File Offset: 0x000FAD38
 	private void Chase()
 	{
 		this.Face.name = "RENAMED";
@@ -214,84 +214,84 @@ public class JournalistScript : MonoBehaviour
 		this.Chasing = true;
 	}
 
-	// Token: 0x04002774 RID: 10100
+	// Token: 0x04002777 RID: 10103
 	public ParticleSystem PepperSprayEffect;
 
-	// Token: 0x04002775 RID: 10101
+	// Token: 0x04002778 RID: 10104
 	public float DistanceToDestination;
 
-	// Token: 0x04002776 RID: 10102
+	// Token: 0x04002779 RID: 10105
 	public float DistanceToPlayer;
 
-	// Token: 0x04002777 RID: 10103
+	// Token: 0x0400277A RID: 10106
 	public float SpeechTimer;
 
-	// Token: 0x04002778 RID: 10104
+	// Token: 0x0400277B RID: 10107
 	public float ThreatTimer;
 
-	// Token: 0x04002779 RID: 10105
+	// Token: 0x0400277C RID: 10108
 	public float ChaseTimer;
 
-	// Token: 0x0400277A RID: 10106
+	// Token: 0x0400277D RID: 10109
 	public float Timer;
 
-	// Token: 0x0400277B RID: 10107
+	// Token: 0x0400277E RID: 10110
 	public Quaternion targetRotation;
 
-	// Token: 0x0400277C RID: 10108
+	// Token: 0x0400277F RID: 10111
 	public AudioClip PepperSpraySFX;
 
-	// Token: 0x0400277D RID: 10109
+	// Token: 0x04002780 RID: 10112
 	public AudioClip ChaseVoice;
 
-	// Token: 0x0400277E RID: 10110
+	// Token: 0x04002781 RID: 10113
 	public Transform[] Destinations;
 
-	// Token: 0x0400277F RID: 10111
+	// Token: 0x04002782 RID: 10114
 	public AudioClip[] SpeechClips;
 
-	// Token: 0x04002780 RID: 10112
+	// Token: 0x04002783 RID: 10115
 	public AudioClip[] ThreatClips;
 
-	// Token: 0x04002781 RID: 10113
+	// Token: 0x04002784 RID: 10116
 	public string[] SpeechLines;
 
-	// Token: 0x04002782 RID: 10114
+	// Token: 0x04002785 RID: 10117
 	public string[] ThreatLines;
 
-	// Token: 0x04002783 RID: 10115
+	// Token: 0x04002786 RID: 10118
 	public SubtitleScript Subtitle;
 
-	// Token: 0x04002784 RID: 10116
+	// Token: 0x04002787 RID: 10119
 	public YandereScript Yandere;
 
-	// Token: 0x04002785 RID: 10117
+	// Token: 0x04002788 RID: 10120
 	public GameObject PepperSpray;
 
-	// Token: 0x04002786 RID: 10118
+	// Token: 0x04002789 RID: 10121
 	public GameObject Face;
 
-	// Token: 0x04002787 RID: 10119
+	// Token: 0x0400278A RID: 10122
 	public Animation MyAnimation;
 
-	// Token: 0x04002788 RID: 10120
+	// Token: 0x0400278B RID: 10123
 	public Transform LookTarget;
 
-	// Token: 0x04002789 RID: 10121
+	// Token: 0x0400278C RID: 10124
 	public AIPath Pathfinding;
 
-	// Token: 0x0400278A RID: 10122
+	// Token: 0x0400278D RID: 10125
 	public bool Chasing;
 
-	// Token: 0x0400278B RID: 10123
+	// Token: 0x0400278E RID: 10126
 	public int SpeechID;
 
-	// Token: 0x0400278C RID: 10124
+	// Token: 0x0400278F RID: 10127
 	public int ThreatID;
 
-	// Token: 0x0400278D RID: 10125
+	// Token: 0x04002790 RID: 10128
 	public Transform Head;
 
-	// Token: 0x0400278E RID: 10126
+	// Token: 0x04002791 RID: 10129
 	public LayerMask Mask;
 }

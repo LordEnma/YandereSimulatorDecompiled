@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200044C RID: 1100
+// Token: 0x0200044D RID: 1101
 public class StolenPhoneSpotScript : MonoBehaviour
 {
-	// Token: 0x06001D3A RID: 7482 RVA: 0x0015E538 File Offset: 0x0015C738
+	// Token: 0x06001D41 RID: 7489 RVA: 0x0015E858 File Offset: 0x0015CA58
 	private void Update()
 	{
 		if (this.Prompt.Yandere.Inventory.RivalPhone)
@@ -13,7 +13,7 @@ public class StolenPhoneSpotScript : MonoBehaviour
 			if (this.Prompt.Circle[0].fillAmount == 0f)
 			{
 				this.Prompt.Circle[0].fillAmount = 1f;
-				if (this.Prompt.Yandere.StudentManager.Students[this.Prompt.Yandere.StudentManager.RivalID] != null && this.Prompt.Yandere.StudentManager.Students[this.Prompt.Yandere.StudentManager.RivalID].Phoneless)
+				if (this.Prompt.Yandere.StudentManager.Students[this.RivalPhone.StudentID] != null && this.Prompt.Yandere.StudentManager.Students[this.RivalPhone.StudentID].Phoneless)
 				{
 					if (this.RivalPhone.StudentID == this.Prompt.Yandere.StudentManager.RivalID && SchemeGlobals.GetSchemeStage(1) == 6)
 					{
@@ -51,12 +51,12 @@ public class StolenPhoneSpotScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003560 RID: 13664
+	// Token: 0x04003563 RID: 13667
 	public RivalPhoneScript RivalPhone;
 
-	// Token: 0x04003561 RID: 13665
+	// Token: 0x04003564 RID: 13668
 	public PromptScript Prompt;
 
-	// Token: 0x04003562 RID: 13666
+	// Token: 0x04003565 RID: 13669
 	public Transform PhoneSpot;
 }

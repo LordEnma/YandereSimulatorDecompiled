@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200025D RID: 605
 public class CookingEventScript : MonoBehaviour
 {
-	// Token: 0x060012C4 RID: 4804 RVA: 0x0009B768 File Offset: 0x00099968
+	// Token: 0x060012C4 RID: 4804 RVA: 0x0009B780 File Offset: 0x00099980
 	private void Start()
 	{
 		this.Octodog.SetActive(false);
@@ -23,7 +23,7 @@ public class CookingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C5 RID: 4805 RVA: 0x0009B7E8 File Offset: 0x000999E8
+	// Token: 0x060012C5 RID: 4805 RVA: 0x0009B800 File Offset: 0x00099A00
 	private void Update()
 	{
 		Input.GetKeyDown(KeyCode.Space);
@@ -303,7 +303,7 @@ public class CookingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C6 RID: 4806 RVA: 0x0009C858 File Offset: 0x0009AA58
+	// Token: 0x060012C6 RID: 4806 RVA: 0x0009C870 File Offset: 0x0009AA70
 	private void EndEvent()
 	{
 		if (!this.EventOver)

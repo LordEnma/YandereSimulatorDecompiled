@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200024B RID: 587
 public class CleaningManagerScript : MonoBehaviour
 {
-	// Token: 0x06001267 RID: 4711 RVA: 0x0008EB7C File Offset: 0x0008CD7C
+	// Token: 0x06001267 RID: 4711 RVA: 0x0008EB94 File Offset: 0x0008CD94
 	private void Start()
 	{
 		if (SchoolGlobals.RoofFence)
@@ -17,7 +17,7 @@ public class CleaningManagerScript : MonoBehaviour
 		this.Eighties = GameGlobals.Eighties;
 	}
 
-	// Token: 0x06001268 RID: 4712 RVA: 0x0008EC10 File Offset: 0x0008CE10
+	// Token: 0x06001268 RID: 4712 RVA: 0x0008EC28 File Offset: 0x0008CE28
 	public void GetRole(int StudentID)
 	{
 		switch (StudentID)

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004E6 RID: 1254
+// Token: 0x020004E7 RID: 1255
 public class YanvaniaJukeboxScript : MonoBehaviour
 {
-	// Token: 0x060020CE RID: 8398 RVA: 0x001E37C8 File Offset: 0x001E19C8
+	// Token: 0x060020D6 RID: 8406 RVA: 0x001E3CF8 File Offset: 0x001E1EF8
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -16,7 +16,7 @@ public class YanvaniaJukeboxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020CF RID: 8399 RVA: 0x001E381E File Offset: 0x001E1A1E
+	// Token: 0x060020D7 RID: 8407 RVA: 0x001E3D4E File Offset: 0x001E1F4E
 	public void BossBattle()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -27,18 +27,18 @@ public class YanvaniaJukeboxScript : MonoBehaviour
 		this.Boss = true;
 	}
 
-	// Token: 0x0400481C RID: 18460
+	// Token: 0x04004820 RID: 18464
 	public AudioClip BossIntro;
 
-	// Token: 0x0400481D RID: 18461
+	// Token: 0x04004821 RID: 18465
 	public AudioClip BossMain;
 
-	// Token: 0x0400481E RID: 18462
+	// Token: 0x04004822 RID: 18466
 	public AudioClip ApproachIntro;
 
-	// Token: 0x0400481F RID: 18463
+	// Token: 0x04004823 RID: 18467
 	public AudioClip ApproachMain;
 
-	// Token: 0x04004820 RID: 18464
+	// Token: 0x04004824 RID: 18468
 	public bool Boss;
 }

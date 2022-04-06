@@ -46,17 +46,17 @@ public class GrassGenerator : MonoBehaviour
 	[HideInInspector]
 	public GrassGenerator.GrassPlane EditedPlane;
 
-	// Token: 0x020005C6 RID: 1478
+	// Token: 0x020005C7 RID: 1479
 	[Serializable]
 	public class GrassPlane
 	{
-		// Token: 0x04004D98 RID: 19864
+		// Token: 0x04004D9C RID: 19868
 		public Vector3 LocalCenter;
 
-		// Token: 0x04004D99 RID: 19865
+		// Token: 0x04004D9D RID: 19869
 		public Vector2 Size;
 
-		// Token: 0x04004D9A RID: 19866
+		// Token: 0x04004D9E RID: 19870
 		public bool Intersect;
 	}
 }

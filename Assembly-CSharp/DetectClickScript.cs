@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000280 RID: 640
 public class DetectClickScript : MonoBehaviour
 {
-	// Token: 0x06001385 RID: 4997 RVA: 0x000B3DF3 File Offset: 0x000B1FF3
+	// Token: 0x06001385 RID: 4997 RVA: 0x000B3E0B File Offset: 0x000B200B
 	private void Start()
 	{
 		this.OriginalPosition = base.transform.localPosition;
 		this.OriginalColor = this.Sprite.color;
 	}
 
-	// Token: 0x06001386 RID: 4998 RVA: 0x000B3E18 File Offset: 0x000B2018
+	// Token: 0x06001386 RID: 4998 RVA: 0x000B3E30 File Offset: 0x000B2030
 	private void Update()
 	{
 		RaycastHit raycastHit;
@@ -22,7 +22,7 @@ public class DetectClickScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001387 RID: 4999 RVA: 0x000B3EA1 File Offset: 0x000B20A1
+	// Token: 0x06001387 RID: 4999 RVA: 0x000B3EB9 File Offset: 0x000B20B9
 	private void OnTriggerEnter()
 	{
 		if (this.Label.color.a == 1f)
@@ -31,7 +31,7 @@ public class DetectClickScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001388 RID: 5000 RVA: 0x000B3ECA File Offset: 0x000B20CA
+	// Token: 0x06001388 RID: 5000 RVA: 0x000B3EE2 File Offset: 0x000B20E2
 	private void OnTriggerExit()
 	{
 		this.Sprite.color = this.OriginalColor;

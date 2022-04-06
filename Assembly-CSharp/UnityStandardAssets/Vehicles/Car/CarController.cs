@@ -3,21 +3,21 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x02000530 RID: 1328
+	// Token: 0x02000531 RID: 1329
 	public class CarController : MonoBehaviour
 	{
 		// Token: 0x170004D2 RID: 1234
-		// (get) Token: 0x060021B4 RID: 8628 RVA: 0x001EFDA7 File Offset: 0x001EDFA7
-		// (set) Token: 0x060021B5 RID: 8629 RVA: 0x001EFDAF File Offset: 0x001EDFAF
+		// (get) Token: 0x060021BC RID: 8636 RVA: 0x001F02D7 File Offset: 0x001EE4D7
+		// (set) Token: 0x060021BD RID: 8637 RVA: 0x001F02DF File Offset: 0x001EE4DF
 		public bool Skidding { get; private set; }
 
 		// Token: 0x170004D3 RID: 1235
-		// (get) Token: 0x060021B6 RID: 8630 RVA: 0x001EFDB8 File Offset: 0x001EDFB8
-		// (set) Token: 0x060021B7 RID: 8631 RVA: 0x001EFDC0 File Offset: 0x001EDFC0
+		// (get) Token: 0x060021BE RID: 8638 RVA: 0x001F02E8 File Offset: 0x001EE4E8
+		// (set) Token: 0x060021BF RID: 8639 RVA: 0x001F02F0 File Offset: 0x001EE4F0
 		public float BrakeInput { get; private set; }
 
 		// Token: 0x170004D4 RID: 1236
-		// (get) Token: 0x060021B8 RID: 8632 RVA: 0x001EFDC9 File Offset: 0x001EDFC9
+		// (get) Token: 0x060021C0 RID: 8640 RVA: 0x001F02F9 File Offset: 0x001EE4F9
 		public float CurrentSteerAngle
 		{
 			get
@@ -27,7 +27,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		}
 
 		// Token: 0x170004D5 RID: 1237
-		// (get) Token: 0x060021B9 RID: 8633 RVA: 0x001EFDD4 File Offset: 0x001EDFD4
+		// (get) Token: 0x060021C1 RID: 8641 RVA: 0x001F0304 File Offset: 0x001EE504
 		public float CurrentSpeed
 		{
 			get
@@ -37,7 +37,7 @@ namespace UnityStandardAssets.Vehicles.Car
 		}
 
 		// Token: 0x170004D6 RID: 1238
-		// (get) Token: 0x060021BA RID: 8634 RVA: 0x001EFDFA File Offset: 0x001EDFFA
+		// (get) Token: 0x060021C2 RID: 8642 RVA: 0x001F032A File Offset: 0x001EE52A
 		public float MaxSpeed
 		{
 			get
@@ -47,16 +47,16 @@ namespace UnityStandardAssets.Vehicles.Car
 		}
 
 		// Token: 0x170004D7 RID: 1239
-		// (get) Token: 0x060021BB RID: 8635 RVA: 0x001EFE02 File Offset: 0x001EE002
-		// (set) Token: 0x060021BC RID: 8636 RVA: 0x001EFE0A File Offset: 0x001EE00A
+		// (get) Token: 0x060021C3 RID: 8643 RVA: 0x001F0332 File Offset: 0x001EE532
+		// (set) Token: 0x060021C4 RID: 8644 RVA: 0x001F033A File Offset: 0x001EE53A
 		public float Revs { get; private set; }
 
 		// Token: 0x170004D8 RID: 1240
-		// (get) Token: 0x060021BD RID: 8637 RVA: 0x001EFE13 File Offset: 0x001EE013
-		// (set) Token: 0x060021BE RID: 8638 RVA: 0x001EFE1B File Offset: 0x001EE01B
+		// (get) Token: 0x060021C5 RID: 8645 RVA: 0x001F0343 File Offset: 0x001EE543
+		// (set) Token: 0x060021C6 RID: 8646 RVA: 0x001F034B File Offset: 0x001EE54B
 		public float AccelInput { get; private set; }
 
-		// Token: 0x060021BF RID: 8639 RVA: 0x001EFE24 File Offset: 0x001EE024
+		// Token: 0x060021C7 RID: 8647 RVA: 0x001F0354 File Offset: 0x001EE554
 		private void Start()
 		{
 			this.m_WheelMeshLocalRotations = new Quaternion[4];
@@ -70,7 +70,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.m_CurrentTorque = this.m_FullTorqueOverAllWheels - this.m_TractionControl * this.m_FullTorqueOverAllWheels;
 		}
 
-		// Token: 0x060021C0 RID: 8640 RVA: 0x001EFEB0 File Offset: 0x001EE0B0
+		// Token: 0x060021C8 RID: 8648 RVA: 0x001F03E0 File Offset: 0x001EE5E0
 		private void GearChanging()
 		{
 			float num = Mathf.Abs(this.CurrentSpeed / this.MaxSpeed);
@@ -86,19 +86,19 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021C1 RID: 8641 RVA: 0x001EFF38 File Offset: 0x001EE138
+		// Token: 0x060021C9 RID: 8649 RVA: 0x001F0468 File Offset: 0x001EE668
 		private static float CurveFactor(float factor)
 		{
 			return 1f - (1f - factor) * (1f - factor);
 		}
 
-		// Token: 0x060021C2 RID: 8642 RVA: 0x001EFF4F File Offset: 0x001EE14F
+		// Token: 0x060021CA RID: 8650 RVA: 0x001F047F File Offset: 0x001EE67F
 		private static float ULerp(float from, float to, float value)
 		{
 			return (1f - value) * from + value * to;
 		}
 
-		// Token: 0x060021C3 RID: 8643 RVA: 0x001EFF60 File Offset: 0x001EE160
+		// Token: 0x060021CB RID: 8651 RVA: 0x001F0490 File Offset: 0x001EE690
 		private void CalculateGearFactor()
 		{
 			float num = 1f / (float)CarController.NoOfGears;
@@ -106,7 +106,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.m_GearFactor = Mathf.Lerp(this.m_GearFactor, b, Time.deltaTime * 5f);
 		}
 
-		// Token: 0x060021C4 RID: 8644 RVA: 0x001EFFC4 File Offset: 0x001EE1C4
+		// Token: 0x060021CC RID: 8652 RVA: 0x001F04F4 File Offset: 0x001EE6F4
 		private void CalculateRevs()
 		{
 			this.CalculateGearFactor();
@@ -116,7 +116,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.Revs = CarController.ULerp(from, to, this.m_GearFactor);
 		}
 
-		// Token: 0x060021C5 RID: 8645 RVA: 0x001F0024 File Offset: 0x001EE224
+		// Token: 0x060021CD RID: 8653 RVA: 0x001F0554 File Offset: 0x001EE754
 		public void Move(float steering, float accel, float footbrake, float handbrake)
 		{
 			for (int i = 0; i < 4; i++)
@@ -150,7 +150,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.TractionControl();
 		}
 
-		// Token: 0x060021C6 RID: 8646 RVA: 0x001F0168 File Offset: 0x001EE368
+		// Token: 0x060021CE RID: 8654 RVA: 0x001F0698 File Offset: 0x001EE898
 		private void CapSpeed()
 		{
 			float num = this.m_Rigidbody.velocity.magnitude;
@@ -178,7 +178,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021C7 RID: 8647 RVA: 0x001F021C File Offset: 0x001EE41C
+		// Token: 0x060021CF RID: 8655 RVA: 0x001F074C File Offset: 0x001EE94C
 		private void ApplyDrive(float accel, float footbrake)
 		{
 			switch (this.m_CarDriveType)
@@ -219,7 +219,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021C8 RID: 8648 RVA: 0x001F035C File Offset: 0x001EE55C
+		// Token: 0x060021D0 RID: 8656 RVA: 0x001F088C File Offset: 0x001EEA8C
 		private void SteerHelper()
 		{
 			for (int i = 0; i < 4; i++)
@@ -239,13 +239,13 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.m_OldRotation = base.transform.eulerAngles.y;
 		}
 
-		// Token: 0x060021C9 RID: 8649 RVA: 0x001F0418 File Offset: 0x001EE618
+		// Token: 0x060021D1 RID: 8657 RVA: 0x001F0948 File Offset: 0x001EEB48
 		private void AddDownForce()
 		{
 			this.m_WheelColliders[0].attachedRigidbody.AddForce(-base.transform.up * this.m_Downforce * this.m_WheelColliders[0].attachedRigidbody.velocity.magnitude);
 		}
 
-		// Token: 0x060021CA RID: 8650 RVA: 0x001F0474 File Offset: 0x001EE674
+		// Token: 0x060021D2 RID: 8658 RVA: 0x001F09A4 File Offset: 0x001EEBA4
 		private void CheckForWheelSpin()
 		{
 			for (int i = 0; i < 4; i++)
@@ -271,7 +271,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021CB RID: 8651 RVA: 0x001F0518 File Offset: 0x001EE718
+		// Token: 0x060021D3 RID: 8659 RVA: 0x001F0A48 File Offset: 0x001EEC48
 		private void TractionControl()
 		{
 			switch (this.m_CarDriveType)
@@ -307,7 +307,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021CC RID: 8652 RVA: 0x001F05E0 File Offset: 0x001EE7E0
+		// Token: 0x060021D4 RID: 8660 RVA: 0x001F0B10 File Offset: 0x001EED10
 		private void AdjustTorque(float forwardSlip)
 		{
 			if (forwardSlip >= this.m_SlipLimit && this.m_CurrentTorque >= 0f)
@@ -322,7 +322,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021CD RID: 8653 RVA: 0x001F0650 File Offset: 0x001EE850
+		// Token: 0x060021D5 RID: 8661 RVA: 0x001F0B80 File Offset: 0x001EED80
 		private bool AnySkidSoundPlaying()
 		{
 			for (int i = 0; i < 4; i++)
@@ -335,108 +335,108 @@ namespace UnityStandardAssets.Vehicles.Car
 			return false;
 		}
 
-		// Token: 0x04004A4D RID: 19021
+		// Token: 0x04004A51 RID: 19025
 		[SerializeField]
 		private CarDriveType m_CarDriveType = CarDriveType.FourWheelDrive;
 
-		// Token: 0x04004A4E RID: 19022
+		// Token: 0x04004A52 RID: 19026
 		[SerializeField]
 		private WheelCollider[] m_WheelColliders = new WheelCollider[4];
 
-		// Token: 0x04004A4F RID: 19023
+		// Token: 0x04004A53 RID: 19027
 		[SerializeField]
 		private GameObject[] m_WheelMeshes = new GameObject[4];
 
-		// Token: 0x04004A50 RID: 19024
+		// Token: 0x04004A54 RID: 19028
 		[SerializeField]
 		private WheelEffects[] m_WheelEffects = new WheelEffects[4];
 
-		// Token: 0x04004A51 RID: 19025
+		// Token: 0x04004A55 RID: 19029
 		[SerializeField]
 		private Vector3 m_CentreOfMassOffset;
 
-		// Token: 0x04004A52 RID: 19026
+		// Token: 0x04004A56 RID: 19030
 		[SerializeField]
 		private float m_MaximumSteerAngle;
 
-		// Token: 0x04004A53 RID: 19027
+		// Token: 0x04004A57 RID: 19031
 		[Range(0f, 1f)]
 		[SerializeField]
 		private float m_SteerHelper;
 
-		// Token: 0x04004A54 RID: 19028
+		// Token: 0x04004A58 RID: 19032
 		[Range(0f, 1f)]
 		[SerializeField]
 		private float m_TractionControl;
 
-		// Token: 0x04004A55 RID: 19029
+		// Token: 0x04004A59 RID: 19033
 		[SerializeField]
 		private float m_FullTorqueOverAllWheels;
 
-		// Token: 0x04004A56 RID: 19030
+		// Token: 0x04004A5A RID: 19034
 		[SerializeField]
 		private float m_ReverseTorque;
 
-		// Token: 0x04004A57 RID: 19031
+		// Token: 0x04004A5B RID: 19035
 		[SerializeField]
 		private float m_MaxHandbrakeTorque;
 
-		// Token: 0x04004A58 RID: 19032
+		// Token: 0x04004A5C RID: 19036
 		[SerializeField]
 		private float m_Downforce = 100f;
 
-		// Token: 0x04004A59 RID: 19033
+		// Token: 0x04004A5D RID: 19037
 		[SerializeField]
 		private SpeedType m_SpeedType;
 
-		// Token: 0x04004A5A RID: 19034
+		// Token: 0x04004A5E RID: 19038
 		[SerializeField]
 		private float m_Topspeed = 200f;
 
-		// Token: 0x04004A5B RID: 19035
+		// Token: 0x04004A5F RID: 19039
 		[SerializeField]
 		private static int NoOfGears = 5;
 
-		// Token: 0x04004A5C RID: 19036
+		// Token: 0x04004A60 RID: 19040
 		[SerializeField]
 		private float m_RevRangeBoundary = 1f;
 
-		// Token: 0x04004A5D RID: 19037
+		// Token: 0x04004A61 RID: 19041
 		[SerializeField]
 		private float m_SlipLimit;
 
-		// Token: 0x04004A5E RID: 19038
+		// Token: 0x04004A62 RID: 19042
 		[SerializeField]
 		private float m_BrakeTorque;
 
-		// Token: 0x04004A5F RID: 19039
+		// Token: 0x04004A63 RID: 19043
 		private Quaternion[] m_WheelMeshLocalRotations;
 
-		// Token: 0x04004A60 RID: 19040
+		// Token: 0x04004A64 RID: 19044
 		private Vector3 m_Prevpos;
 
-		// Token: 0x04004A61 RID: 19041
+		// Token: 0x04004A65 RID: 19045
 		private Vector3 m_Pos;
 
-		// Token: 0x04004A62 RID: 19042
+		// Token: 0x04004A66 RID: 19046
 		private float m_SteerAngle;
 
-		// Token: 0x04004A63 RID: 19043
+		// Token: 0x04004A67 RID: 19047
 		private int m_GearNum;
 
-		// Token: 0x04004A64 RID: 19044
+		// Token: 0x04004A68 RID: 19048
 		private float m_GearFactor;
 
-		// Token: 0x04004A65 RID: 19045
+		// Token: 0x04004A69 RID: 19049
 		private float m_OldRotation;
 
-		// Token: 0x04004A66 RID: 19046
+		// Token: 0x04004A6A RID: 19050
 		private float m_CurrentTorque;
 
-		// Token: 0x04004A67 RID: 19047
+		// Token: 0x04004A6B RID: 19051
 		private Rigidbody m_Rigidbody;
 
-		// Token: 0x04004A68 RID: 19048
+		// Token: 0x04004A6C RID: 19052
 		private const float k_ReversingThreshold = 0.01f;
 	}
 }

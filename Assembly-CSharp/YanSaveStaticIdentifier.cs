@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200051C RID: 1308
+// Token: 0x0200051D RID: 1309
 public class YanSaveStaticIdentifier : MonoBehaviour
 {
-	// Token: 0x040049BD RID: 18877
+	// Token: 0x040049C1 RID: 18881
 	[SerializeField]
 	public List<string> StaticTypeNames = new List<string>();
 
-	// Token: 0x040049BE RID: 18878
+	// Token: 0x040049C2 RID: 18882
 	[SerializeField]
 	public List<KeyValuePair<Type, string>> DisabledMembers = new List<KeyValuePair<Type, string>>();
 
-	// Token: 0x040049BF RID: 18879
+	// Token: 0x040049C3 RID: 18883
 	[SerializeField]
 	public List<YanSavePlayerPrefTracker> PrefTrackers = new List<YanSavePlayerPrefTracker>();
 }

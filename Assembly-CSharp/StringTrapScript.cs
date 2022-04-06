@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000454 RID: 1108
+// Token: 0x02000455 RID: 1109
 public class StringTrapScript : MonoBehaviour
 {
-	// Token: 0x06001D5B RID: 7515 RVA: 0x001610AC File Offset: 0x0015F2AC
+	// Token: 0x06001D62 RID: 7522 RVA: 0x001613B8 File Offset: 0x0015F5B8
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -79,42 +79,43 @@ public class StringTrapScript : MonoBehaviour
 			base.transform.parent.gameObject.SetActive(false);
 			this.WaterCooler.Prompt.HideButton[3] = false;
 			this.WaterCooler.PickUp.enabled = true;
+			this.WaterCooler.MyRigidbody.isKinematic = false;
 		}
 	}
 
-	// Token: 0x040035FC RID: 13820
+	// Token: 0x040035FF RID: 13823
 	public WaterCoolerScript WaterCooler;
 
-	// Token: 0x040035FD RID: 13821
+	// Token: 0x04003600 RID: 13824
 	public GameObject BrownPaintPuddle;
 
-	// Token: 0x040035FE RID: 13822
+	// Token: 0x04003601 RID: 13825
 	public GameObject GasolinePuddle;
 
-	// Token: 0x040035FF RID: 13823
+	// Token: 0x04003602 RID: 13826
 	public GameObject BloodPuddle;
 
-	// Token: 0x04003600 RID: 13824
+	// Token: 0x04003603 RID: 13827
 	public GameObject WaterPuddle;
 
-	// Token: 0x04003601 RID: 13825
+	// Token: 0x04003604 RID: 13828
 	public GameObject BrownPaint;
 
-	// Token: 0x04003602 RID: 13826
+	// Token: 0x04003605 RID: 13829
 	public GameObject Gasoline;
 
-	// Token: 0x04003603 RID: 13827
+	// Token: 0x04003606 RID: 13830
 	public GameObject Blood;
 
-	// Token: 0x04003604 RID: 13828
+	// Token: 0x04003607 RID: 13831
 	public GameObject Water;
 
-	// Token: 0x04003605 RID: 13829
+	// Token: 0x04003608 RID: 13832
 	public GameObject Puddle;
 
-	// Token: 0x04003606 RID: 13830
+	// Token: 0x04003609 RID: 13833
 	public Transform[] PuddleSpawn;
 
-	// Token: 0x04003607 RID: 13831
+	// Token: 0x0400360A RID: 13834
 	public Transform Spawn;
 }

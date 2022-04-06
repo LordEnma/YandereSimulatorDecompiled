@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000444 RID: 1092
+// Token: 0x02000445 RID: 1093
 public class StalkerScript : MonoBehaviour
 {
-	// Token: 0x06001D15 RID: 7445 RVA: 0x0015B600 File Offset: 0x00159800
+	// Token: 0x06001D1C RID: 7452 RVA: 0x0015B920 File Offset: 0x00159B20
 	private void Update()
 	{
 		if (!this.Chase)
@@ -153,7 +153,7 @@ public class StalkerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D16 RID: 7446 RVA: 0x0015BC0C File Offset: 0x00159E0C
+	// Token: 0x06001D1D RID: 7453 RVA: 0x0015BF2C File Offset: 0x0015A12C
 	private void ChaseNow()
 	{
 		this.SpeechClip = this.AlarmedClip;
@@ -170,7 +170,7 @@ public class StalkerScript : MonoBehaviour
 		this.Chase = true;
 	}
 
-	// Token: 0x06001D17 RID: 7447 RVA: 0x0015BCC8 File Offset: 0x00159EC8
+	// Token: 0x06001D1E RID: 7454 RVA: 0x0015BFE8 File Offset: 0x0015A1E8
 	private void TriggerAlarm()
 	{
 		this.MyAnimation.CrossFade("readyToFight_00");
@@ -185,102 +185,102 @@ public class StalkerScript : MonoBehaviour
 		this.MyAudio.Stop();
 	}
 
-	// Token: 0x040034CD RID: 13517
+	// Token: 0x040034D0 RID: 13520
 	public StruggleBarScript StruggleBar;
 
-	// Token: 0x040034CE RID: 13518
+	// Token: 0x040034D1 RID: 13521
 	public StalkerYandereScript Yandere;
 
-	// Token: 0x040034CF RID: 13519
+	// Token: 0x040034D2 RID: 13522
 	public StalkerPromptScript CatPrompt;
 
-	// Token: 0x040034D0 RID: 13520
+	// Token: 0x040034D3 RID: 13523
 	public GameObject KnockoutStars;
 
-	// Token: 0x040034D1 RID: 13521
+	// Token: 0x040034D4 RID: 13524
 	public GameObject Heartbroken;
 
-	// Token: 0x040034D2 RID: 13522
+	// Token: 0x040034D5 RID: 13525
 	public GameObject[] BonkEffect;
 
-	// Token: 0x040034D3 RID: 13523
+	// Token: 0x040034D6 RID: 13526
 	public Transform StalkerDoor;
 
-	// Token: 0x040034D4 RID: 13524
+	// Token: 0x040034D7 RID: 13527
 	public AudioClip CrunchSound;
 
-	// Token: 0x040034D5 RID: 13525
+	// Token: 0x040034D8 RID: 13528
 	public Animation MyAnimation;
 
-	// Token: 0x040034D6 RID: 13526
+	// Token: 0x040034D9 RID: 13529
 	public AudioSource Jukebox;
 
-	// Token: 0x040034D7 RID: 13527
+	// Token: 0x040034DA RID: 13530
 	public AudioSource MyAudio;
 
-	// Token: 0x040034D8 RID: 13528
+	// Token: 0x040034DB RID: 13531
 	public AudioClip StalkerKnockout;
 
-	// Token: 0x040034D9 RID: 13529
+	// Token: 0x040034DC RID: 13532
 	public AudioClip StalkerWon;
 
-	// Token: 0x040034DA RID: 13530
+	// Token: 0x040034DD RID: 13533
 	public AudioClip Crunch;
 
-	// Token: 0x040034DB RID: 13531
+	// Token: 0x040034DE RID: 13534
 	public UILabel Subtitle;
 
-	// Token: 0x040034DC RID: 13532
+	// Token: 0x040034DF RID: 13535
 	public AudioClip[] AlarmedClip;
 
-	// Token: 0x040034DD RID: 13533
+	// Token: 0x040034E0 RID: 13536
 	public string[] AlarmedText;
 
-	// Token: 0x040034DE RID: 13534
+	// Token: 0x040034E1 RID: 13537
 	public float[] AlarmedTime;
 
-	// Token: 0x040034DF RID: 13535
+	// Token: 0x040034E2 RID: 13538
 	public AudioClip[] SpeechClip;
 
-	// Token: 0x040034E0 RID: 13536
+	// Token: 0x040034E3 RID: 13539
 	public string[] SpeechText;
 
-	// Token: 0x040034E1 RID: 13537
+	// Token: 0x040034E4 RID: 13540
 	public float[] SpeechTime;
 
-	// Token: 0x040034E2 RID: 13538
+	// Token: 0x040034E5 RID: 13541
 	public Collider[] Boundary;
 
-	// Token: 0x040034E3 RID: 13539
+	// Token: 0x040034E6 RID: 13542
 	public float MinimumDistance;
 
-	// Token: 0x040034E4 RID: 13540
+	// Token: 0x040034E7 RID: 13543
 	public float Distance;
 
-	// Token: 0x040034E5 RID: 13541
+	// Token: 0x040034E8 RID: 13544
 	public float Scale;
 
-	// Token: 0x040034E6 RID: 13542
+	// Token: 0x040034E9 RID: 13545
 	public float Timer;
 
-	// Token: 0x040034E7 RID: 13543
+	// Token: 0x040034EA RID: 13546
 	public bool PlayedAudio;
 
-	// Token: 0x040034E8 RID: 13544
+	// Token: 0x040034EB RID: 13547
 	public bool Struggling;
 
-	// Token: 0x040034E9 RID: 13545
+	// Token: 0x040034EC RID: 13548
 	public bool Alarmed;
 
-	// Token: 0x040034EA RID: 13546
+	// Token: 0x040034ED RID: 13549
 	public bool Started;
 
-	// Token: 0x040034EB RID: 13547
+	// Token: 0x040034EE RID: 13550
 	public bool Chase;
 
-	// Token: 0x040034EC RID: 13548
+	// Token: 0x040034EF RID: 13551
 	public int SpeechPhase;
 
-	// Token: 0x040034ED RID: 13549
+	// Token: 0x040034F0 RID: 13552
 	public int Limit;
 }

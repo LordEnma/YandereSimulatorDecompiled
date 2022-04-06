@@ -5,7 +5,7 @@
 public class BucketGas : BucketContents
 {
 	// Token: 0x17000206 RID: 518
-	// (get) Token: 0x06000A7B RID: 2683 RVA: 0x0005D137 File Offset: 0x0005B337
+	// (get) Token: 0x06000A7B RID: 2683 RVA: 0x0005D14F File Offset: 0x0005B34F
 	public override BucketContentsType Type
 	{
 		get
@@ -15,7 +15,7 @@ public class BucketGas : BucketContents
 	}
 
 	// Token: 0x17000207 RID: 519
-	// (get) Token: 0x06000A7C RID: 2684 RVA: 0x0005D13A File Offset: 0x0005B33A
+	// (get) Token: 0x06000A7C RID: 2684 RVA: 0x0005D152 File Offset: 0x0005B352
 	public override bool IsCleaningAgent
 	{
 		get
@@ -25,7 +25,7 @@ public class BucketGas : BucketContents
 	}
 
 	// Token: 0x17000208 RID: 520
-	// (get) Token: 0x06000A7D RID: 2685 RVA: 0x0005D13D File Offset: 0x0005B33D
+	// (get) Token: 0x06000A7D RID: 2685 RVA: 0x0005D155 File Offset: 0x0005B355
 	public override bool IsFlammable
 	{
 		get
@@ -34,7 +34,7 @@ public class BucketGas : BucketContents
 		}
 	}
 
-	// Token: 0x06000A7E RID: 2686 RVA: 0x0005D140 File Offset: 0x0005B340
+	// Token: 0x06000A7E RID: 2686 RVA: 0x0005D158 File Offset: 0x0005B358
 	public override bool CanBeLifted(int strength)
 	{
 		return true;

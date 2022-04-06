@@ -1,12 +1,12 @@
 ﻿using System;
 
-// Token: 0x0200051E RID: 1310
+// Token: 0x0200051F RID: 1311
 public enum YanSavePlayerPrefsType
 {
-	// Token: 0x040049C5 RID: 18885
+	// Token: 0x040049C9 RID: 18889
 	Float,
-	// Token: 0x040049C6 RID: 18886
+	// Token: 0x040049CA RID: 18890
 	Int,
-	// Token: 0x040049C7 RID: 18887
+	// Token: 0x040049CB RID: 18891
 	String
 }

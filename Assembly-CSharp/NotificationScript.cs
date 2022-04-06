@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000381 RID: 897
+// Token: 0x02000382 RID: 898
 public class NotificationScript : MonoBehaviour
 {
-	// Token: 0x06001A2D RID: 6701 RVA: 0x001147F4 File Offset: 0x001129F4
+	// Token: 0x06001A33 RID: 6707 RVA: 0x00114960 File Offset: 0x00112B60
 	private void Start()
 	{
 		if (MissionModeGlobals.MissionMode)
@@ -16,7 +16,7 @@ public class NotificationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A2E RID: 6702 RVA: 0x00114884 File Offset: 0x00112A84
+	// Token: 0x06001A34 RID: 6708 RVA: 0x001149F0 File Offset: 0x00112BF0
 	private void Update()
 	{
 		if (!this.Display)
@@ -42,24 +42,24 @@ public class NotificationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002AD4 RID: 10964
+	// Token: 0x04002AD7 RID: 10967
 	public NotificationManagerScript NotificationManager;
 
-	// Token: 0x04002AD5 RID: 10965
+	// Token: 0x04002AD8 RID: 10968
 	public UISprite[] Icon;
 
-	// Token: 0x04002AD6 RID: 10966
+	// Token: 0x04002AD9 RID: 10969
 	public UIPanel Panel;
 
-	// Token: 0x04002AD7 RID: 10967
+	// Token: 0x04002ADA RID: 10970
 	public UILabel Label;
 
-	// Token: 0x04002AD8 RID: 10968
+	// Token: 0x04002ADB RID: 10971
 	public bool Display;
 
-	// Token: 0x04002AD9 RID: 10969
+	// Token: 0x04002ADC RID: 10972
 	public float Timer;
 
-	// Token: 0x04002ADA RID: 10970
+	// Token: 0x04002ADD RID: 10973
 	public int ID;
 }

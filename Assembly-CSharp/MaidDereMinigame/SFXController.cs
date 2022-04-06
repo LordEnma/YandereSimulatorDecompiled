@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005A9 RID: 1449
+	// Token: 0x020005AA RID: 1450
 	public class SFXController : MonoBehaviour
 	{
 		// Token: 0x1700052A RID: 1322
-		// (get) Token: 0x060024A1 RID: 9377 RVA: 0x001FF8E8 File Offset: 0x001FDAE8
+		// (get) Token: 0x060024A9 RID: 9385 RVA: 0x001FFE18 File Offset: 0x001FE018
 		public static SFXController Instance
 		{
 			get
@@ -21,7 +21,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024A2 RID: 9378 RVA: 0x001FF906 File Offset: 0x001FDB06
+		// Token: 0x060024AA RID: 9386 RVA: 0x001FFE36 File Offset: 0x001FE036
 		private void Awake()
 		{
 			if (SFXController.Instance != this)
@@ -32,7 +32,7 @@ namespace MaidDereMinigame
 			UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
 		}
 
-		// Token: 0x060024A3 RID: 9379 RVA: 0x001FF92C File Offset: 0x001FDB2C
+		// Token: 0x060024AB RID: 9387 RVA: 0x001FFE5C File Offset: 0x001FE05C
 		public static void PlaySound(SFXController.Sounds sound)
 		{
 			SoundEmitter emitter = SFXController.Instance.GetEmitter(sound);
@@ -44,7 +44,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024A4 RID: 9380 RVA: 0x001FF974 File Offset: 0x001FDB74
+		// Token: 0x060024AC RID: 9388 RVA: 0x001FFEA4 File Offset: 0x001FE0A4
 		private SoundEmitter GetEmitter(SFXController.Sounds sound)
 		{
 			foreach (SoundEmitter soundEmitter in this.emitters)
@@ -58,56 +58,56 @@ namespace MaidDereMinigame
 			return null;
 		}
 
-		// Token: 0x060024A5 RID: 9381 RVA: 0x001FF9E0 File Offset: 0x001FDBE0
+		// Token: 0x060024AD RID: 9389 RVA: 0x001FFF10 File Offset: 0x001FE110
 		private AudioClip GetRandomClip(SoundEmitter emitter)
 		{
 			int index = UnityEngine.Random.Range(0, emitter.clips.Count);
 			return emitter.clips[index];
 		}
 
-		// Token: 0x04004D04 RID: 19716
+		// Token: 0x04004D08 RID: 19720
 		private static SFXController instance;
 
-		// Token: 0x04004D05 RID: 19717
+		// Token: 0x04004D09 RID: 19721
 		[Reorderable]
 		public SoundEmitters emitters;
 
-		// Token: 0x020006E8 RID: 1768
+		// Token: 0x020006E9 RID: 1769
 		public enum Sounds
 		{
-			// Token: 0x04005273 RID: 21107
-			Countdown,
-			// Token: 0x04005274 RID: 21108
-			MenuBack,
-			// Token: 0x04005275 RID: 21109
-			MenuConfirm,
-			// Token: 0x04005276 RID: 21110
-			ClockTick,
 			// Token: 0x04005277 RID: 21111
-			DoorBell,
+			Countdown,
 			// Token: 0x04005278 RID: 21112
-			GameFail,
+			MenuBack,
 			// Token: 0x04005279 RID: 21113
-			GameSuccess,
+			MenuConfirm,
 			// Token: 0x0400527A RID: 21114
-			Plate,
+			ClockTick,
 			// Token: 0x0400527B RID: 21115
-			PageTurn,
+			DoorBell,
 			// Token: 0x0400527C RID: 21116
-			MenuSelect,
+			GameFail,
 			// Token: 0x0400527D RID: 21117
-			MaleCustomerGreet,
+			GameSuccess,
 			// Token: 0x0400527E RID: 21118
-			MaleCustomerThank,
+			Plate,
 			// Token: 0x0400527F RID: 21119
-			MaleCustomerLeave,
+			PageTurn,
 			// Token: 0x04005280 RID: 21120
-			FemaleCustomerGreet,
+			MenuSelect,
 			// Token: 0x04005281 RID: 21121
-			FemaleCustomerThank,
+			MaleCustomerGreet,
 			// Token: 0x04005282 RID: 21122
-			FemaleCustomerLeave,
+			MaleCustomerThank,
 			// Token: 0x04005283 RID: 21123
+			MaleCustomerLeave,
+			// Token: 0x04005284 RID: 21124
+			FemaleCustomerGreet,
+			// Token: 0x04005285 RID: 21125
+			FemaleCustomerThank,
+			// Token: 0x04005286 RID: 21126
+			FemaleCustomerLeave,
+			// Token: 0x04005287 RID: 21127
 			MenuOpen
 		}
 	}

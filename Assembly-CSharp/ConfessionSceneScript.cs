@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000257 RID: 599
 public class ConfessionSceneScript : MonoBehaviour
 {
-	// Token: 0x060012AC RID: 4780 RVA: 0x00098A4C File Offset: 0x00096C4C
+	// Token: 0x060012AC RID: 4780 RVA: 0x00098A64 File Offset: 0x00096C64
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -14,7 +14,7 @@ public class ConfessionSceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012AD RID: 4781 RVA: 0x00098A78 File Offset: 0x00096C78
+	// Token: 0x060012AD RID: 4781 RVA: 0x00098A90 File Offset: 0x00096C90
 	private void Update()
 	{
 		if (this.Phase == 1)

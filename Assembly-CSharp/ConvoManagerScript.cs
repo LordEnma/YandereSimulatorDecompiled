@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200025C RID: 604
 public class ConvoManagerScript : MonoBehaviour
 {
-	// Token: 0x060012BF RID: 4799 RVA: 0x0009A174 File Offset: 0x00098374
+	// Token: 0x060012BF RID: 4799 RVA: 0x0009A18C File Offset: 0x0009838C
 	public void Start()
 	{
 		if (!MissionModeGlobals.MissionMode && DateGlobals.Week == 1)
@@ -14,7 +14,7 @@ public class ConvoManagerScript : MonoBehaviour
 		this.Eighties = GameGlobals.Eighties;
 	}
 
-	// Token: 0x060012C0 RID: 4800 RVA: 0x0009A198 File Offset: 0x00098398
+	// Token: 0x060012C0 RID: 4800 RVA: 0x0009A1B0 File Offset: 0x000983B0
 	public void CheckMe(int StudentID)
 	{
 		if (!this.Eighties)
@@ -451,7 +451,7 @@ public class ConvoManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C1 RID: 4801 RVA: 0x0009B3F0 File Offset: 0x000995F0
+	// Token: 0x060012C1 RID: 4801 RVA: 0x0009B408 File Offset: 0x00099608
 	public void MartialArtsCheck()
 	{
 		this.CheckTimer += Time.deltaTime;
@@ -476,7 +476,7 @@ public class ConvoManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C2 RID: 4802 RVA: 0x0009B57C File Offset: 0x0009977C
+	// Token: 0x060012C2 RID: 4802 RVA: 0x0009B594 File Offset: 0x00099794
 	public void LateUpdate()
 	{
 		this.CheckTimer = Mathf.MoveTowards(this.CheckTimer, 0f, Time.deltaTime);

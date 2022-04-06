@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000328 RID: 808
+// Token: 0x02000329 RID: 809
 public class HomeTriggerScript : MonoBehaviour
 {
-	// Token: 0x060018B5 RID: 6325 RVA: 0x000F3614 File Offset: 0x000F1814
+	// Token: 0x060018BB RID: 6331 RVA: 0x000F3714 File Offset: 0x000F1914
 	private void Start()
 	{
 		this.Label.color = new Color(this.Label.color.r, this.Label.color.g, this.Label.color.b, 0f);
 	}
 
-	// Token: 0x060018B6 RID: 6326 RVA: 0x000F3666 File Offset: 0x000F1866
+	// Token: 0x060018BC RID: 6332 RVA: 0x000F3766 File Offset: 0x000F1966
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.tag == "Player")
@@ -20,7 +20,7 @@ public class HomeTriggerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018B7 RID: 6327 RVA: 0x000F3692 File Offset: 0x000F1892
+	// Token: 0x060018BD RID: 6333 RVA: 0x000F3792 File Offset: 0x000F1992
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.tag == "Player")
@@ -30,28 +30,28 @@ public class HomeTriggerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018B8 RID: 6328 RVA: 0x000F36BC File Offset: 0x000F18BC
+	// Token: 0x060018BE RID: 6334 RVA: 0x000F37BC File Offset: 0x000F19BC
 	private void Update()
 	{
 		this.Label.color = new Color(this.Label.color.r, this.Label.color.g, this.Label.color.b, Mathf.MoveTowards(this.Label.color.a, this.FadeIn ? 1f : 0f, Time.deltaTime * 10f));
 	}
 
-	// Token: 0x060018B9 RID: 6329 RVA: 0x000F3740 File Offset: 0x000F1940
+	// Token: 0x060018BF RID: 6335 RVA: 0x000F3840 File Offset: 0x000F1A40
 	public void Disable()
 	{
 		this.Label.color = new Color(this.Label.color.r, this.Label.color.g, this.Label.color.b, 0f);
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x040025B4 RID: 9652
+	// Token: 0x040025B7 RID: 9655
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x040025B5 RID: 9653
+	// Token: 0x040025B8 RID: 9656
 	public UILabel Label;
 
-	// Token: 0x040025B6 RID: 9654
+	// Token: 0x040025B9 RID: 9657
 	public bool FadeIn;
 
-	// Token: 0x040025B7 RID: 9655
+	// Token: 0x040025BA RID: 9658
 	public int ID;
 }

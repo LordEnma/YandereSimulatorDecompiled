@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200024F RID: 591
 public class ClubAmbienceScript : MonoBehaviour
 {
-	// Token: 0x0600127B RID: 4731 RVA: 0x00090CE0 File Offset: 0x0008EEE0
+	// Token: 0x0600127B RID: 4731 RVA: 0x00090CF8 File Offset: 0x0008EEF8
 	private void Update()
 	{
 		if (this.Yandere.position.y > base.transform.position.y - 0.1f && this.Yandere.position.y < base.transform.position.y + 0.1f)

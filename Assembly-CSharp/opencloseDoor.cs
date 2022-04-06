@@ -2,16 +2,16 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020004FF RID: 1279
+// Token: 0x02000500 RID: 1280
 public class opencloseDoor : MonoBehaviour
 {
-	// Token: 0x06002127 RID: 8487 RVA: 0x001EA507 File Offset: 0x001E8707
+	// Token: 0x0600212F RID: 8495 RVA: 0x001EAA37 File Offset: 0x001E8C37
 	private void Start()
 	{
 		this.open = false;
 	}
 
-	// Token: 0x06002128 RID: 8488 RVA: 0x001EA510 File Offset: 0x001E8710
+	// Token: 0x06002130 RID: 8496 RVA: 0x001EAA40 File Offset: 0x001E8C40
 	private void OnMouseOver()
 	{
 		if (this.Player && Vector3.Distance(this.Player.position, base.transform.position) < 15f)
@@ -31,7 +31,7 @@ public class opencloseDoor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002129 RID: 8489 RVA: 0x001EA587 File Offset: 0x001E8787
+	// Token: 0x06002131 RID: 8497 RVA: 0x001EAAB7 File Offset: 0x001E8CB7
 	private IEnumerator opening()
 	{
 		MonoBehaviour.print("you are opening the door");
@@ -41,7 +41,7 @@ public class opencloseDoor : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x0600212A RID: 8490 RVA: 0x001EA596 File Offset: 0x001E8796
+	// Token: 0x06002132 RID: 8498 RVA: 0x001EAAC6 File Offset: 0x001E8CC6
 	private IEnumerator closing()
 	{
 		MonoBehaviour.print("you are closing the door");
@@ -51,12 +51,12 @@ public class opencloseDoor : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04004955 RID: 18773
+	// Token: 0x04004959 RID: 18777
 	public Animator openandclose;
 
-	// Token: 0x04004956 RID: 18774
+	// Token: 0x0400495A RID: 18778
 	public bool open;
 
-	// Token: 0x04004957 RID: 18775
+	// Token: 0x0400495B RID: 18779
 	public Transform Player;
 }

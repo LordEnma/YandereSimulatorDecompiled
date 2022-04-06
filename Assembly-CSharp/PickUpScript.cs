@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003A9 RID: 937
+// Token: 0x020003AA RID: 938
 public class PickUpScript : MonoBehaviour
 {
-	// Token: 0x06001ABF RID: 6847 RVA: 0x00121734 File Offset: 0x0011F934
+	// Token: 0x06001AC5 RID: 6853 RVA: 0x001218E0 File Offset: 0x0011FAE0
 	private void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
@@ -46,7 +46,7 @@ public class PickUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AC0 RID: 6848 RVA: 0x0012187C File Offset: 0x0011FA7C
+	// Token: 0x06001AC6 RID: 6854 RVA: 0x00121A28 File Offset: 0x0011FC28
 	private void LateUpdate()
 	{
 		if (this.CleaningProduct)
@@ -253,7 +253,7 @@ public class PickUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AC1 RID: 6849 RVA: 0x001221A8 File Offset: 0x001203A8
+	// Token: 0x06001AC7 RID: 6855 RVA: 0x00122354 File Offset: 0x00120554
 	public void BePickedUp()
 	{
 		if (this.Radio && SchemeGlobals.GetSchemeStage(5) == 2)
@@ -364,7 +364,7 @@ public class PickUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AC2 RID: 6850 RVA: 0x00122540 File Offset: 0x00120740
+	// Token: 0x06001AC8 RID: 6856 RVA: 0x001226EC File Offset: 0x001208EC
 	public void Drop()
 	{
 		if (this.Salty && SchemeGlobals.GetSchemeStage(4) == 5)
@@ -502,7 +502,7 @@ public class PickUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AC3 RID: 6851 RVA: 0x00122A38 File Offset: 0x00120C38
+	// Token: 0x06001AC9 RID: 6857 RVA: 0x00122BE4 File Offset: 0x00120DE4
 	public void DisableGarbageBag()
 	{
 		this.Prompt.Hide();
@@ -513,243 +513,243 @@ public class PickUpScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x04002C77 RID: 11383
+	// Token: 0x04002C7A RID: 11386
 	public RigidbodyConstraints OriginalConstraints;
 
-	// Token: 0x04002C78 RID: 11384
+	// Token: 0x04002C7B RID: 11387
 	public BloodCleanerScript BloodCleaner;
 
-	// Token: 0x04002C79 RID: 11385
+	// Token: 0x04002C7C RID: 11388
 	public IncineratorScript Incinerator;
 
-	// Token: 0x04002C7A RID: 11386
+	// Token: 0x04002C7D RID: 11389
 	public Collider PoolClosureCollider;
 
-	// Token: 0x04002C7B RID: 11387
+	// Token: 0x04002C7E RID: 11390
 	public WeaponScript StuckBoxCutter;
 
-	// Token: 0x04002C7C RID: 11388
+	// Token: 0x04002C7F RID: 11391
 	public Transform ExplosiveDevice;
 
-	// Token: 0x04002C7D RID: 11389
+	// Token: 0x04002C80 RID: 11392
 	public BodyPartScript BodyPart;
 
-	// Token: 0x04002C7E RID: 11390
+	// Token: 0x04002C81 RID: 11393
 	public TrashCanScript TrashCan;
 
-	// Token: 0x04002C7F RID: 11391
+	// Token: 0x04002C82 RID: 11394
 	public OutlineScript[] Outline;
 
-	// Token: 0x04002C80 RID: 11392
+	// Token: 0x04002C83 RID: 11395
 	public Texture EightiesTexture;
 
-	// Token: 0x04002C81 RID: 11393
+	// Token: 0x04002C84 RID: 11396
 	public YandereScript Yandere;
 
-	// Token: 0x04002C82 RID: 11394
+	// Token: 0x04002C85 RID: 11397
 	public MeshFilter MyRenderer;
 
-	// Token: 0x04002C83 RID: 11395
+	// Token: 0x04002C86 RID: 11398
 	public Animation MyAnimation;
 
-	// Token: 0x04002C84 RID: 11396
+	// Token: 0x04002C87 RID: 11399
 	public AudioClip PickUpSound;
 
-	// Token: 0x04002C85 RID: 11397
+	// Token: 0x04002C88 RID: 11400
 	public Rigidbody MyRigidbody;
 
-	// Token: 0x04002C86 RID: 11398
+	// Token: 0x04002C89 RID: 11401
 	public ParticleSystem Smoke;
 
-	// Token: 0x04002C87 RID: 11399
+	// Token: 0x04002C8A RID: 11402
 	public Collider MyCollider;
 
-	// Token: 0x04002C88 RID: 11400
+	// Token: 0x04002C8B RID: 11403
 	public BucketScript Bucket;
 
-	// Token: 0x04002C89 RID: 11401
+	// Token: 0x04002C8C RID: 11404
 	public AudioSource MyAudio;
 
-	// Token: 0x04002C8A RID: 11402
+	// Token: 0x04002C8D RID: 11405
 	public RadioScript MyRadio;
 
-	// Token: 0x04002C8B RID: 11403
+	// Token: 0x04002C8E RID: 11406
 	public PromptScript Prompt;
 
-	// Token: 0x04002C8C RID: 11404
+	// Token: 0x04002C8F RID: 11407
 	public GloveScript Gloves;
 
-	// Token: 0x04002C8D RID: 11405
+	// Token: 0x04002C90 RID: 11408
 	public ClockScript Clock;
 
-	// Token: 0x04002C8E RID: 11406
+	// Token: 0x04002C91 RID: 11409
 	public MopScript Mop;
 
-	// Token: 0x04002C8F RID: 11407
+	// Token: 0x04002C92 RID: 11410
 	public GameObject PuddleSparks;
 
-	// Token: 0x04002C90 RID: 11408
+	// Token: 0x04002C93 RID: 11411
 	public GameObject TarpObject;
 
-	// Token: 0x04002C91 RID: 11409
+	// Token: 0x04002C94 RID: 11412
 	public GameObject Explosion;
 
-	// Token: 0x04002C92 RID: 11410
+	// Token: 0x04002C95 RID: 11413
 	public GameObject[] FoodPieces;
 
-	// Token: 0x04002C93 RID: 11411
+	// Token: 0x04002C96 RID: 11414
 	public Mesh EightiesMesh;
 
-	// Token: 0x04002C94 RID: 11412
+	// Token: 0x04002C97 RID: 11415
 	public Mesh ClosedBook;
 
-	// Token: 0x04002C95 RID: 11413
+	// Token: 0x04002C98 RID: 11416
 	public Mesh OpenBook;
 
-	// Token: 0x04002C96 RID: 11414
+	// Token: 0x04002C99 RID: 11417
 	public Vector3 TrashPosition;
 
-	// Token: 0x04002C97 RID: 11415
+	// Token: 0x04002C9A RID: 11418
 	public Vector3 TrashRotation;
 
-	// Token: 0x04002C98 RID: 11416
+	// Token: 0x04002C9B RID: 11419
 	public Vector3 OriginalScale;
 
-	// Token: 0x04002C99 RID: 11417
+	// Token: 0x04002C9C RID: 11420
 	public Vector3 HoldPosition;
 
-	// Token: 0x04002C9A RID: 11418
+	// Token: 0x04002C9D RID: 11421
 	public Vector3 HoldRotation;
 
-	// Token: 0x04002C9B RID: 11419
+	// Token: 0x04002C9E RID: 11422
 	public Color EvidenceColor;
 
-	// Token: 0x04002C9C RID: 11420
+	// Token: 0x04002C9F RID: 11423
 	public Color OriginalColor;
 
-	// Token: 0x04002C9D RID: 11421
+	// Token: 0x04002CA0 RID: 11424
 	public bool ConcealedBodyPart;
 
-	// Token: 0x04002C9E RID: 11422
+	// Token: 0x04002CA1 RID: 11425
 	public bool CleaningProduct;
 
-	// Token: 0x04002C9F RID: 11423
+	// Token: 0x04002CA2 RID: 11426
 	public bool DisableAtStart;
 
-	// Token: 0x04002CA0 RID: 11424
+	// Token: 0x04002CA3 RID: 11427
 	public bool PreventTipping;
 
-	// Token: 0x04002CA1 RID: 11425
+	// Token: 0x04002CA4 RID: 11428
 	public bool GarbageBagBox;
 
-	// Token: 0x04002CA2 RID: 11426
+	// Token: 0x04002CA5 RID: 11429
 	public bool LockRotation;
 
-	// Token: 0x04002CA3 RID: 11427
+	// Token: 0x04002CA6 RID: 11430
 	public bool BeingLifted;
 
-	// Token: 0x04002CA4 RID: 11428
+	// Token: 0x04002CA7 RID: 11431
 	public bool KeepGravity;
 
-	// Token: 0x04002CA5 RID: 11429
+	// Token: 0x04002CA8 RID: 11432
 	public bool BrownPaint;
 
-	// Token: 0x04002CA6 RID: 11430
+	// Token: 0x04002CA9 RID: 11433
 	public bool CanCollide;
 
-	// Token: 0x04002CA7 RID: 11431
+	// Token: 0x04002CAA RID: 11434
 	public bool Electronic;
 
-	// Token: 0x04002CA8 RID: 11432
+	// Token: 0x04002CAB RID: 11435
 	public bool Flashlight;
 
-	// Token: 0x04002CA9 RID: 11433
+	// Token: 0x04002CAC RID: 11436
 	public bool PuzzleCube;
 
-	// Token: 0x04002CAA RID: 11434
+	// Token: 0x04002CAD RID: 11437
 	public bool StinkBombs;
 
-	// Token: 0x04002CAB RID: 11435
+	// Token: 0x04002CAE RID: 11438
 	public bool SuperRobot;
 
-	// Token: 0x04002CAC RID: 11436
+	// Token: 0x04002CAF RID: 11439
 	public bool Suspicious;
 
-	// Token: 0x04002CAD RID: 11437
+	// Token: 0x04002CB0 RID: 11440
 	public bool BangSnaps;
 
-	// Token: 0x04002CAE RID: 11438
+	// Token: 0x04002CB1 RID: 11441
 	public bool Blowtorch;
 
-	// Token: 0x04002CAF RID: 11439
+	// Token: 0x04002CB2 RID: 11442
 	public bool Clothing;
 
-	// Token: 0x04002CB0 RID: 11440
+	// Token: 0x04002CB3 RID: 11443
 	public bool Evidence;
 
-	// Token: 0x04002CB1 RID: 11441
+	// Token: 0x04002CB4 RID: 11444
 	public bool JerryCan;
 
-	// Token: 0x04002CB2 RID: 11442
+	// Token: 0x04002CB5 RID: 11445
 	public bool LeftHand;
 
-	// Token: 0x04002CB3 RID: 11443
+	// Token: 0x04002CB6 RID: 11446
 	public bool RedPaint;
 
-	// Token: 0x04002CB4 RID: 11444
+	// Token: 0x04002CB7 RID: 11447
 	public bool Cheated;
 
-	// Token: 0x04002CB5 RID: 11445
+	// Token: 0x04002CB8 RID: 11448
 	public bool Garbage;
 
-	// Token: 0x04002CB6 RID: 11446
+	// Token: 0x04002CB9 RID: 11449
 	public bool Bleach;
 
-	// Token: 0x04002CB7 RID: 11447
+	// Token: 0x04002CBA RID: 11450
 	public bool Dumped;
 
-	// Token: 0x04002CB8 RID: 11448
+	// Token: 0x04002CBB RID: 11451
 	public bool Remote;
 
-	// Token: 0x04002CB9 RID: 11449
+	// Token: 0x04002CBC RID: 11452
 	public bool Usable;
 
-	// Token: 0x04002CBA RID: 11450
+	// Token: 0x04002CBD RID: 11453
 	public bool Weight;
 
-	// Token: 0x04002CBB RID: 11451
+	// Token: 0x04002CBE RID: 11454
 	public bool TooBig;
 
-	// Token: 0x04002CBC RID: 11452
+	// Token: 0x04002CBF RID: 11455
 	public bool Empty = true;
 
-	// Token: 0x04002CBD RID: 11453
+	// Token: 0x04002CC0 RID: 11456
 	public bool Radio;
 
-	// Token: 0x04002CBE RID: 11454
+	// Token: 0x04002CC1 RID: 11457
 	public bool Salty;
 
-	// Token: 0x04002CBF RID: 11455
+	// Token: 0x04002CC2 RID: 11458
 	public bool Sign;
 
-	// Token: 0x04002CC0 RID: 11456
+	// Token: 0x04002CC3 RID: 11459
 	public bool Tarp;
 
-	// Token: 0x04002CC1 RID: 11457
+	// Token: 0x04002CC4 RID: 11460
 	public int CarryAnimID;
 
-	// Token: 0x04002CC2 RID: 11458
+	// Token: 0x04002CC5 RID: 11461
 	public int Strength;
 
-	// Token: 0x04002CC3 RID: 11459
+	// Token: 0x04002CC6 RID: 11462
 	public int Period;
 
-	// Token: 0x04002CC4 RID: 11460
+	// Token: 0x04002CC7 RID: 11463
 	public int Food;
 
-	// Token: 0x04002CC5 RID: 11461
+	// Token: 0x04002CC8 RID: 11464
 	public float KinematicTimer;
 
-	// Token: 0x04002CC6 RID: 11462
+	// Token: 0x04002CC9 RID: 11465
 	public float DumpTimer;
 }

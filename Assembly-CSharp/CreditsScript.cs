@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class CreditsScript : MonoBehaviour
 {
 	// Token: 0x17000338 RID: 824
-	// (get) Token: 0x06001300 RID: 4864 RVA: 0x000A8471 File Offset: 0x000A6671
+	// (get) Token: 0x06001300 RID: 4864 RVA: 0x000A8489 File Offset: 0x000A6689
 	private bool ShouldStopCredits
 	{
 		get
@@ -15,13 +15,13 @@ public class CreditsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001301 RID: 4865 RVA: 0x000A8488 File Offset: 0x000A6688
+	// Token: 0x06001301 RID: 4865 RVA: 0x000A84A0 File Offset: 0x000A66A0
 	private GameObject SpawnLabel(int size)
 	{
 		return UnityEngine.Object.Instantiate<GameObject>((size == 1) ? this.SmallCreditsLabel : this.BigCreditsLabel, this.SpawnPoint.position, Quaternion.identity);
 	}
 
-	// Token: 0x06001302 RID: 4866 RVA: 0x000A84B4 File Offset: 0x000A66B4
+	// Token: 0x06001302 RID: 4866 RVA: 0x000A84CC File Offset: 0x000A66CC
 	private void Start()
 	{
 		if (GameGlobals.TransitionToPostCredits || GameGlobals.DarkEnding)
@@ -41,7 +41,7 @@ public class CreditsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001303 RID: 4867 RVA: 0x000A85A0 File Offset: 0x000A67A0
+	// Token: 0x06001303 RID: 4867 RVA: 0x000A85B8 File Offset: 0x000A67B8
 	private void Update()
 	{
 		this.MusicTimer += Time.deltaTime;
@@ -108,7 +108,7 @@ public class CreditsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001304 RID: 4868 RVA: 0x000A8794 File Offset: 0x000A6994
+	// Token: 0x06001304 RID: 4868 RVA: 0x000A87AC File Offset: 0x000A69AC
 	public void SpawnCredit()
 	{
 		CreditJson creditJson = this.JSON.Credits[this.ID];

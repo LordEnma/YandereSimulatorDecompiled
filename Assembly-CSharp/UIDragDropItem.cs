@@ -510,17 +510,17 @@ public class UIDragDropItem : MonoBehaviour
 	[NonSerialized]
 	private static int mIgnoreClick = 0;
 
-	// Token: 0x020005D1 RID: 1489
+	// Token: 0x020005D2 RID: 1490
 	[DoNotObfuscateNGUI]
 	public enum Restriction
 	{
-		// Token: 0x04004DD7 RID: 19927
+		// Token: 0x04004DDB RID: 19931
 		None,
-		// Token: 0x04004DD8 RID: 19928
+		// Token: 0x04004DDC RID: 19932
 		Horizontal,
-		// Token: 0x04004DD9 RID: 19929
+		// Token: 0x04004DDD RID: 19933
 		Vertical,
-		// Token: 0x04004DDA RID: 19930
+		// Token: 0x04004DDE RID: 19934
 		PressAndHold
 	}
 }

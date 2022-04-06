@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200046D RID: 1133
+// Token: 0x0200046E RID: 1134
 public class TarpScript : MonoBehaviour
 {
-	// Token: 0x06001EAD RID: 7853 RVA: 0x001B09C2 File Offset: 0x001AEBC2
+	// Token: 0x06001EB5 RID: 7861 RVA: 0x001B0EB6 File Offset: 0x001AF0B6
 	private void Start()
 	{
 		base.transform.localScale = new Vector3(1f, 1f, 1f);
 	}
 
-	// Token: 0x06001EAE RID: 7854 RVA: 0x001B09E4 File Offset: 0x001AEBE4
+	// Token: 0x06001EB6 RID: 7862 RVA: 0x001B0ED8 File Offset: 0x001AF0D8
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -38,21 +38,21 @@ public class TarpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003F98 RID: 16280
+	// Token: 0x04003F9B RID: 16283
 	public PromptScript Prompt;
 
-	// Token: 0x04003F99 RID: 16281
+	// Token: 0x04003F9C RID: 16284
 	public MechaScript Mecha;
 
-	// Token: 0x04003F9A RID: 16282
+	// Token: 0x04003F9D RID: 16285
 	public AudioClip Tarp;
 
-	// Token: 0x04003F9B RID: 16283
+	// Token: 0x04003F9E RID: 16286
 	public float PreviousSpeed;
 
-	// Token: 0x04003F9C RID: 16284
+	// Token: 0x04003F9F RID: 16287
 	public float Speed;
 
-	// Token: 0x04003F9D RID: 16285
+	// Token: 0x04003FA0 RID: 16288
 	public bool Unwrap;
 }

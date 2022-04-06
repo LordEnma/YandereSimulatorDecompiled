@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004C0 RID: 1216
+// Token: 0x020004C1 RID: 1217
 public class WaterCoolerScript : MonoBehaviour
 {
-	// Token: 0x06001FC7 RID: 8135 RVA: 0x001C0C20 File Offset: 0x001BEE20
+	// Token: 0x06001FCF RID: 8143 RVA: 0x001C1128 File Offset: 0x001BF328
 	private void Start()
 	{
 		this.Cylinder.localScale = new Vector3(1f, 0f, 1f);
@@ -14,7 +14,7 @@ public class WaterCoolerScript : MonoBehaviour
 		this.OriginalColor[1] = this.Prompt.Label[1].gradientBottom;
 	}
 
-	// Token: 0x06001FC8 RID: 8136 RVA: 0x001C0CA4 File Offset: 0x001BEEA4
+	// Token: 0x06001FD0 RID: 8144 RVA: 0x001C11AC File Offset: 0x001BF3AC
 	private void Update()
 	{
 		if (this.Empty)
@@ -101,6 +101,7 @@ public class WaterCoolerScript : MonoBehaviour
 			this.TrapSet = false;
 			this.Prompt.HideButton[3] = false;
 			this.PickUp.enabled = true;
+			this.MyRigidbody.isKinematic = false;
 		}
 		if (this.Timer > 0f)
 		{
@@ -132,7 +133,7 @@ public class WaterCoolerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FC9 RID: 8137 RVA: 0x001C1298 File Offset: 0x001BF498
+	// Token: 0x06001FD1 RID: 8145 RVA: 0x001C17AC File Offset: 0x001BF9AC
 	public void UpdateCylinderColor()
 	{
 		if (this.BrownPaint)
@@ -153,7 +154,7 @@ public class WaterCoolerScript : MonoBehaviour
 		this.CylinderRenderer.material.color = new Color(0f, 1f, 1f, 1f);
 	}
 
-	// Token: 0x06001FCA RID: 8138 RVA: 0x001C1364 File Offset: 0x001BF564
+	// Token: 0x06001FD2 RID: 8146 RVA: 0x001C1878 File Offset: 0x001BFA78
 	public void SetTrap()
 	{
 		this.Prompt.Label[1].text = "     Remove Trap";
@@ -166,65 +167,69 @@ public class WaterCoolerScript : MonoBehaviour
 		this.Prompt.HideButton[1] = false;
 		this.Prompt.HideButton[3] = true;
 		this.PickUp.enabled = false;
+		this.MyRigidbody.isKinematic = true;
 	}
 
-	// Token: 0x040042A5 RID: 17061
+	// Token: 0x040042A8 RID: 17064
 	public StringTrapScript Tripwire;
 
-	// Token: 0x040042A6 RID: 17062
+	// Token: 0x040042A9 RID: 17065
 	public YandereScript Yandere;
 
-	// Token: 0x040042A7 RID: 17063
+	// Token: 0x040042AA RID: 17066
 	public PickUpScript PickUp;
 
-	// Token: 0x040042A8 RID: 17064
+	// Token: 0x040042AB RID: 17067
 	public PromptScript Prompt;
 
-	// Token: 0x040042A9 RID: 17065
+	// Token: 0x040042AC RID: 17068
 	public UIPanel WaterCoolerChecklist;
 
-	// Token: 0x040042AA RID: 17066
+	// Token: 0x040042AD RID: 17069
 	public UISprite LiquidCheckmark;
 
-	// Token: 0x040042AB RID: 17067
+	// Token: 0x040042AE RID: 17070
 	public UISprite WeaponCheckmark;
 
-	// Token: 0x040042AC RID: 17068
+	// Token: 0x040042AF RID: 17071
 	public UISprite ThreadCheckmark;
 
-	// Token: 0x040042AD RID: 17069
+	// Token: 0x040042B0 RID: 17072
 	public UISprite TapeCheckmark;
 
-	// Token: 0x040042AE RID: 17070
+	// Token: 0x040042B1 RID: 17073
 	public Renderer CylinderRenderer;
 
-	// Token: 0x040042AF RID: 17071
+	// Token: 0x040042B2 RID: 17074
 	public GameObject TripwireTrap;
 
-	// Token: 0x040042B0 RID: 17072
-	public Transform Cylinder;
-
-	// Token: 0x040042B1 RID: 17073
-	public bool BrownPaint;
-
-	// Token: 0x040042B2 RID: 17074
-	public bool Gasoline;
-
 	// Token: 0x040042B3 RID: 17075
-	public bool Water;
+	public Rigidbody MyRigidbody;
 
 	// Token: 0x040042B4 RID: 17076
-	public bool Blood;
+	public Transform Cylinder;
 
 	// Token: 0x040042B5 RID: 17077
-	public bool TrapSet;
+	public bool BrownPaint;
 
 	// Token: 0x040042B6 RID: 17078
-	public bool Empty;
+	public bool Gasoline;
 
 	// Token: 0x040042B7 RID: 17079
-	public float Timer;
+	public bool Water;
 
 	// Token: 0x040042B8 RID: 17080
+	public bool Blood;
+
+	// Token: 0x040042B9 RID: 17081
+	public bool TrapSet;
+
+	// Token: 0x040042BA RID: 17082
+	public bool Empty;
+
+	// Token: 0x040042BB RID: 17083
+	public float Timer;
+
+	// Token: 0x040042BC RID: 17084
 	public Color[] OriginalColor;
 }

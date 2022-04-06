@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000256 RID: 598
 public class ConfessionManagerScript : MonoBehaviour
 {
-	// Token: 0x060012A8 RID: 4776 RVA: 0x00097424 File Offset: 0x00095624
+	// Token: 0x060012A8 RID: 4776 RVA: 0x0009743C File Offset: 0x0009563C
 	private void Start()
 	{
 		this.StudentManager.Yandere.Class.Portal.EndEvents();
@@ -25,7 +25,7 @@ public class ConfessionManagerScript : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x060012A9 RID: 4777 RVA: 0x00097558 File Offset: 0x00095758
+	// Token: 0x060012A9 RID: 4777 RVA: 0x00097570 File Offset: 0x00095770
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -425,7 +425,7 @@ public class ConfessionManagerScript : MonoBehaviour
 		this.Darkness.color = new Color(0f, 0f, 0f, Mathf.MoveTowards(this.Darkness.color.a, 0f, Time.deltaTime * 0.5f));
 	}
 
-	// Token: 0x060012AA RID: 4778 RVA: 0x000989E0 File Offset: 0x00096BE0
+	// Token: 0x060012AA RID: 4778 RVA: 0x000989F8 File Offset: 0x00096BF8
 	private void LateUpdate()
 	{
 		if (this.Phase > 4 && this.Reject)

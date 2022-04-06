@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200025E RID: 606
 public class CosmeticScript : MonoBehaviour
 {
-	// Token: 0x060012C8 RID: 4808 RVA: 0x0009CA98 File Offset: 0x0009AC98
+	// Token: 0x060012C8 RID: 4808 RVA: 0x0009CAB0 File Offset: 0x0009ACB0
 	public void Start()
 	{
 		if (this.StudentManager != null)
@@ -1320,7 +1320,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C9 RID: 4809 RVA: 0x000A0078 File Offset: 0x0009E278
+	// Token: 0x060012C9 RID: 4809 RVA: 0x000A0090 File Offset: 0x0009E290
 	public void SetMaleUniform()
 	{
 		if (this.StudentID == 1)
@@ -1463,7 +1463,7 @@ public class CosmeticScript : MonoBehaviour
 		this.MyRenderer.materials[this.UniformID].mainTexture = this.UniformTexture;
 	}
 
-	// Token: 0x060012CA RID: 4810 RVA: 0x000A057C File Offset: 0x0009E77C
+	// Token: 0x060012CA RID: 4810 RVA: 0x000A0594 File Offset: 0x0009E794
 	public void SetFemaleUniform()
 	{
 		if (this.Club != ClubType.Council)
@@ -1567,7 +1567,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012CB RID: 4811 RVA: 0x000A0950 File Offset: 0x0009EB50
+	// Token: 0x060012CB RID: 4811 RVA: 0x000A0968 File Offset: 0x0009EB68
 	public void CensorPanties()
 	{
 		if (!this.Student.ClubAttire && this.Student.Schoolwear == 1)
@@ -1579,14 +1579,14 @@ public class CosmeticScript : MonoBehaviour
 		this.RemoveCensor();
 	}
 
-	// Token: 0x060012CC RID: 4812 RVA: 0x000A09B7 File Offset: 0x0009EBB7
+	// Token: 0x060012CC RID: 4812 RVA: 0x000A09CF File Offset: 0x0009EBCF
 	public void RemoveCensor()
 	{
 		this.MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
 		this.MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
 	}
 
-	// Token: 0x060012CD RID: 4813 RVA: 0x000A09F4 File Offset: 0x0009EBF4
+	// Token: 0x060012CD RID: 4813 RVA: 0x000A0A0C File Offset: 0x0009EC0C
 	private void TaskCheck()
 	{
 		if (this.StudentID == 37)
@@ -1613,7 +1613,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012CE RID: 4814 RVA: 0x000A0A78 File Offset: 0x0009EC78
+	// Token: 0x060012CE RID: 4814 RVA: 0x000A0A90 File Offset: 0x0009EC90
 	private void TurnOnCheck()
 	{
 		if (!this.TurnedOn && !this.TakingPortrait && this.Male)
@@ -1647,7 +1647,7 @@ public class CosmeticScript : MonoBehaviour
 		this.TurnedOn = true;
 	}
 
-	// Token: 0x060012CF RID: 4815 RVA: 0x000A0C2C File Offset: 0x0009EE2C
+	// Token: 0x060012CF RID: 4815 RVA: 0x000A0C44 File Offset: 0x0009EE44
 	private void DestroyUnneccessaryObjects()
 	{
 		foreach (GameObject gameObject in this.FemaleAccessories)
@@ -1729,7 +1729,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012D0 RID: 4816 RVA: 0x000A0E6D File Offset: 0x0009F06D
+	// Token: 0x060012D0 RID: 4816 RVA: 0x000A0E85 File Offset: 0x0009F085
 	public IEnumerator PutOnStockings()
 	{
 		this.RightStockings[0].SetActive(false);
@@ -2041,7 +2041,7 @@ public class CosmeticScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060012D1 RID: 4817 RVA: 0x000A0E7C File Offset: 0x0009F07C
+	// Token: 0x060012D1 RID: 4817 RVA: 0x000A0E94 File Offset: 0x0009F094
 	public void WearIndoorShoes()
 	{
 		if (!this.Male)
@@ -2053,7 +2053,7 @@ public class CosmeticScript : MonoBehaviour
 		this.MyRenderer.materials[this.UniformID].mainTexture = this.CasualTexture;
 	}
 
-	// Token: 0x060012D2 RID: 4818 RVA: 0x000A0EE0 File Offset: 0x0009F0E0
+	// Token: 0x060012D2 RID: 4818 RVA: 0x000A0EF8 File Offset: 0x0009F0F8
 	public void WearOutdoorShoes()
 	{
 		if (!this.Male)
@@ -2065,7 +2065,7 @@ public class CosmeticScript : MonoBehaviour
 		this.MyRenderer.materials[this.UniformID].mainTexture = this.UniformTexture;
 	}
 
-	// Token: 0x060012D3 RID: 4819 RVA: 0x000A0F44 File Offset: 0x0009F144
+	// Token: 0x060012D3 RID: 4819 RVA: 0x000A0F5C File Offset: 0x0009F15C
 	public void EyeTypeCheck()
 	{
 		int num = 0;
@@ -2151,7 +2151,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012D4 RID: 4820 RVA: 0x000A144C File Offset: 0x0009F64C
+	// Token: 0x060012D4 RID: 4820 RVA: 0x000A1464 File Offset: 0x0009F664
 	public void DeactivateBullyAccessories()
 	{
 		if (this.FemaleUniformID < 2 || this.FemaleUniformID == 3)
@@ -2163,7 +2163,7 @@ public class CosmeticScript : MonoBehaviour
 		this.Hoodie.SetActive(false);
 	}
 
-	// Token: 0x060012D5 RID: 4821 RVA: 0x000A149C File Offset: 0x0009F69C
+	// Token: 0x060012D5 RID: 4821 RVA: 0x000A14B4 File Offset: 0x0009F6B4
 	public void ActivateBullyAccessories()
 	{
 		if (this.FemaleUniformID < 2 || this.FemaleUniformID == 3)
@@ -2175,7 +2175,7 @@ public class CosmeticScript : MonoBehaviour
 		this.Hoodie.SetActive(true);
 	}
 
-	// Token: 0x060012D6 RID: 4822 RVA: 0x000A14EC File Offset: 0x0009F6EC
+	// Token: 0x060012D6 RID: 4822 RVA: 0x000A1504 File Offset: 0x0009F704
 	public void LoadCosmeticSheet(StudentCosmeticSheet mySheet)
 	{
 		if (this.Male != mySheet.Male)
@@ -2219,7 +2219,7 @@ public class CosmeticScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012D7 RID: 4823 RVA: 0x000A16C8 File Offset: 0x0009F8C8
+	// Token: 0x060012D7 RID: 4823 RVA: 0x000A16E0 File Offset: 0x0009F8E0
 	public StudentCosmeticSheet CosmeticSheet()
 	{
 		StudentCosmeticSheet studentCosmeticSheet = default(StudentCosmeticSheet);
@@ -2245,7 +2245,7 @@ public class CosmeticScript : MonoBehaviour
 		return studentCosmeticSheet;
 	}
 
-	// Token: 0x060012D8 RID: 4824 RVA: 0x000A1800 File Offset: 0x0009FA00
+	// Token: 0x060012D8 RID: 4824 RVA: 0x000A1818 File Offset: 0x0009FA18
 	public void DisableAccessories()
 	{
 		foreach (GameObject gameObject in this.FemaleAccessories)

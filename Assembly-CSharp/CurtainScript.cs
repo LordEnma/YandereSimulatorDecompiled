@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200026B RID: 619
 public class CurtainScript : MonoBehaviour
 {
-	// Token: 0x0600130C RID: 4876 RVA: 0x000A8D40 File Offset: 0x000A6F40
+	// Token: 0x0600130C RID: 4876 RVA: 0x000A8D58 File Offset: 0x000A6F58
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount < 1f && this.Prompt.Circle[0].fillAmount > 0f)
@@ -39,7 +39,7 @@ public class CurtainScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600130D RID: 4877 RVA: 0x000A8E74 File Offset: 0x000A7074
+	// Token: 0x0600130D RID: 4877 RVA: 0x000A8E8C File Offset: 0x000A708C
 	private void OnTriggerEnter(Collider other)
 	{
 		if ((other.gameObject.layer == 13 || other.gameObject.layer == 9) && !this.Open)

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200046B RID: 1131
+// Token: 0x0200046C RID: 1132
 public class TapePlayerMenuScript : MonoBehaviour
 {
-	// Token: 0x06001EA5 RID: 7845 RVA: 0x001AEC88 File Offset: 0x001ACE88
+	// Token: 0x06001EAD RID: 7853 RVA: 0x001AF17C File Offset: 0x001AD37C
 	private void Start()
 	{
 		this.List.transform.localPosition = new Vector3(-955f, this.List.transform.localPosition.y, this.List.transform.localPosition.z);
@@ -13,7 +13,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 		this.TapePlayerCamera.position = new Vector3(-26.15f, this.TapePlayerCamera.position.y, 5.35f);
 	}
 
-	// Token: 0x06001EA6 RID: 7846 RVA: 0x001AED48 File Offset: 0x001ACF48
+	// Token: 0x06001EAE RID: 7854 RVA: 0x001AF23C File Offset: 0x001AD43C
 	private void Update()
 	{
 		float t = Time.unscaledDeltaTime * 10f;
@@ -577,7 +577,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 		this.List.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001EA7 RID: 7847 RVA: 0x001B03A0 File Offset: 0x001AE5A0
+	// Token: 0x06001EAF RID: 7855 RVA: 0x001B0894 File Offset: 0x001AEA94
 	public void UpdateLabels()
 	{
 		int i = 0;
@@ -629,7 +629,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EA8 RID: 7848 RVA: 0x001B053C File Offset: 0x001AE73C
+	// Token: 0x06001EB0 RID: 7856 RVA: 0x001B0A30 File Offset: 0x001AEC30
 	public void CheckSelection()
 	{
 		if (this.Category == 1)
@@ -648,231 +648,231 @@ public class TapePlayerMenuScript : MonoBehaviour
 		this.TapePlayer.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x04003F3E RID: 16190
+	// Token: 0x04003F41 RID: 16193
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003F3F RID: 16191
+	// Token: 0x04003F42 RID: 16194
 	public InputManagerScript InputManager;
 
-	// Token: 0x04003F40 RID: 16192
+	// Token: 0x04003F43 RID: 16195
 	public TapePlayerScript TapePlayer;
 
-	// Token: 0x04003F41 RID: 16193
+	// Token: 0x04003F44 RID: 16196
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003F42 RID: 16194
+	// Token: 0x04003F45 RID: 16197
 	public Animation TapePlayerAnim;
 
-	// Token: 0x04003F43 RID: 16195
+	// Token: 0x04003F46 RID: 16198
 	public AudioSource MyAudio;
 
-	// Token: 0x04003F44 RID: 16196
+	// Token: 0x04003F47 RID: 16199
 	public GameObject Jukebox;
 
-	// Token: 0x04003F45 RID: 16197
+	// Token: 0x04003F48 RID: 16200
 	public Transform TapePlayerCamera;
 
-	// Token: 0x04003F46 RID: 16198
+	// Token: 0x04003F49 RID: 16201
 	public Transform Highlight;
 
-	// Token: 0x04003F47 RID: 16199
+	// Token: 0x04003F4A RID: 16202
 	public Transform TimeBar;
 
-	// Token: 0x04003F48 RID: 16200
+	// Token: 0x04003F4B RID: 16203
 	public Transform List;
 
-	// Token: 0x04003F49 RID: 16201
+	// Token: 0x04003F4C RID: 16204
 	public AudioClip[] Recordings;
 
-	// Token: 0x04003F4A RID: 16202
+	// Token: 0x04003F4D RID: 16205
 	public AudioClip[] BasementRecordings;
 
-	// Token: 0x04003F4B RID: 16203
+	// Token: 0x04003F4E RID: 16206
 	public AudioClip[] HeadmasterRecordings;
 
-	// Token: 0x04003F4C RID: 16204
+	// Token: 0x04003F4F RID: 16207
 	public UILabel[] TapeLabels;
 
-	// Token: 0x04003F4D RID: 16205
+	// Token: 0x04003F50 RID: 16208
 	public GameObject[] NewIcons;
 
-	// Token: 0x04003F4E RID: 16206
+	// Token: 0x04003F51 RID: 16209
 	public AudioClip TapeStop;
 
-	// Token: 0x04003F4F RID: 16207
+	// Token: 0x04003F52 RID: 16210
 	public string CurrentTime;
 
-	// Token: 0x04003F50 RID: 16208
+	// Token: 0x04003F53 RID: 16211
 	public string ClipLength;
 
-	// Token: 0x04003F51 RID: 16209
+	// Token: 0x04003F54 RID: 16212
 	public bool Listening;
 
-	// Token: 0x04003F52 RID: 16210
+	// Token: 0x04003F55 RID: 16213
 	public bool Show;
 
-	// Token: 0x04003F53 RID: 16211
+	// Token: 0x04003F56 RID: 16214
 	public UILabel HeaderLabel;
 
-	// Token: 0x04003F54 RID: 16212
+	// Token: 0x04003F57 RID: 16215
 	public UILabel Subtitle;
 
-	// Token: 0x04003F55 RID: 16213
+	// Token: 0x04003F58 RID: 16216
 	public UILabel Label;
 
-	// Token: 0x04003F56 RID: 16214
+	// Token: 0x04003F59 RID: 16217
 	public UISprite Bar;
 
-	// Token: 0x04003F57 RID: 16215
+	// Token: 0x04003F5A RID: 16218
 	public int TotalTapes = 10;
 
-	// Token: 0x04003F58 RID: 16216
+	// Token: 0x04003F5B RID: 16219
 	public int Category = 1;
 
-	// Token: 0x04003F59 RID: 16217
+	// Token: 0x04003F5C RID: 16220
 	public int Selected = 1;
 
-	// Token: 0x04003F5A RID: 16218
+	// Token: 0x04003F5D RID: 16221
 	public int Phase = 1;
 
-	// Token: 0x04003F5B RID: 16219
+	// Token: 0x04003F5E RID: 16222
 	public float RoundedTime;
 
-	// Token: 0x04003F5C RID: 16220
+	// Token: 0x04003F5F RID: 16223
 	public float ResumeTime;
 
-	// Token: 0x04003F5D RID: 16221
+	// Token: 0x04003F60 RID: 16224
 	public float Timer;
 
-	// Token: 0x04003F5E RID: 16222
+	// Token: 0x04003F61 RID: 16225
 	public float[] Cues1;
 
-	// Token: 0x04003F5F RID: 16223
+	// Token: 0x04003F62 RID: 16226
 	public float[] Cues2;
 
-	// Token: 0x04003F60 RID: 16224
+	// Token: 0x04003F63 RID: 16227
 	public float[] Cues3;
 
-	// Token: 0x04003F61 RID: 16225
+	// Token: 0x04003F64 RID: 16228
 	public float[] Cues4;
 
-	// Token: 0x04003F62 RID: 16226
+	// Token: 0x04003F65 RID: 16229
 	public float[] Cues5;
 
-	// Token: 0x04003F63 RID: 16227
+	// Token: 0x04003F66 RID: 16230
 	public float[] Cues6;
 
-	// Token: 0x04003F64 RID: 16228
+	// Token: 0x04003F67 RID: 16231
 	public float[] Cues7;
 
-	// Token: 0x04003F65 RID: 16229
+	// Token: 0x04003F68 RID: 16232
 	public float[] Cues8;
 
-	// Token: 0x04003F66 RID: 16230
+	// Token: 0x04003F69 RID: 16233
 	public float[] Cues9;
 
-	// Token: 0x04003F67 RID: 16231
+	// Token: 0x04003F6A RID: 16234
 	public float[] Cues10;
 
-	// Token: 0x04003F68 RID: 16232
+	// Token: 0x04003F6B RID: 16235
 	public string[] Subs1;
 
-	// Token: 0x04003F69 RID: 16233
+	// Token: 0x04003F6C RID: 16236
 	public string[] Subs2;
 
-	// Token: 0x04003F6A RID: 16234
+	// Token: 0x04003F6D RID: 16237
 	public string[] Subs3;
 
-	// Token: 0x04003F6B RID: 16235
+	// Token: 0x04003F6E RID: 16238
 	public string[] Subs4;
 
-	// Token: 0x04003F6C RID: 16236
+	// Token: 0x04003F6F RID: 16239
 	public string[] Subs5;
 
-	// Token: 0x04003F6D RID: 16237
+	// Token: 0x04003F70 RID: 16240
 	public string[] Subs6;
 
-	// Token: 0x04003F6E RID: 16238
+	// Token: 0x04003F71 RID: 16241
 	public string[] Subs7;
 
-	// Token: 0x04003F6F RID: 16239
+	// Token: 0x04003F72 RID: 16242
 	public string[] Subs8;
 
-	// Token: 0x04003F70 RID: 16240
+	// Token: 0x04003F73 RID: 16243
 	public string[] Subs9;
 
-	// Token: 0x04003F71 RID: 16241
+	// Token: 0x04003F74 RID: 16244
 	public string[] Subs10;
 
-	// Token: 0x04003F72 RID: 16242
+	// Token: 0x04003F75 RID: 16245
 	public float[] BasementCues1;
 
-	// Token: 0x04003F73 RID: 16243
+	// Token: 0x04003F76 RID: 16246
 	public float[] BasementCues10;
 
-	// Token: 0x04003F74 RID: 16244
+	// Token: 0x04003F77 RID: 16247
 	public string[] BasementSubs1;
 
-	// Token: 0x04003F75 RID: 16245
+	// Token: 0x04003F78 RID: 16248
 	public string[] BasementSubs10;
 
-	// Token: 0x04003F76 RID: 16246
+	// Token: 0x04003F79 RID: 16249
 	public float[] HeadmasterCues1;
 
-	// Token: 0x04003F77 RID: 16247
+	// Token: 0x04003F7A RID: 16250
 	public float[] HeadmasterCues2;
 
-	// Token: 0x04003F78 RID: 16248
+	// Token: 0x04003F7B RID: 16251
 	public float[] HeadmasterCues3;
 
-	// Token: 0x04003F79 RID: 16249
+	// Token: 0x04003F7C RID: 16252
 	public float[] HeadmasterCues4;
 
-	// Token: 0x04003F7A RID: 16250
+	// Token: 0x04003F7D RID: 16253
 	public float[] HeadmasterCues5;
 
-	// Token: 0x04003F7B RID: 16251
+	// Token: 0x04003F7E RID: 16254
 	public float[] HeadmasterCues6;
 
-	// Token: 0x04003F7C RID: 16252
+	// Token: 0x04003F7F RID: 16255
 	public float[] HeadmasterCues7;
 
-	// Token: 0x04003F7D RID: 16253
+	// Token: 0x04003F80 RID: 16256
 	public float[] HeadmasterCues8;
 
-	// Token: 0x04003F7E RID: 16254
+	// Token: 0x04003F81 RID: 16257
 	public float[] HeadmasterCues9;
 
-	// Token: 0x04003F7F RID: 16255
+	// Token: 0x04003F82 RID: 16258
 	public float[] HeadmasterCues10;
 
-	// Token: 0x04003F80 RID: 16256
+	// Token: 0x04003F83 RID: 16259
 	public string[] HeadmasterSubs1;
 
-	// Token: 0x04003F81 RID: 16257
+	// Token: 0x04003F84 RID: 16260
 	public string[] HeadmasterSubs2;
 
-	// Token: 0x04003F82 RID: 16258
+	// Token: 0x04003F85 RID: 16261
 	public string[] HeadmasterSubs3;
 
-	// Token: 0x04003F83 RID: 16259
+	// Token: 0x04003F86 RID: 16262
 	public string[] HeadmasterSubs4;
 
-	// Token: 0x04003F84 RID: 16260
+	// Token: 0x04003F87 RID: 16263
 	public string[] HeadmasterSubs5;
 
-	// Token: 0x04003F85 RID: 16261
+	// Token: 0x04003F88 RID: 16264
 	public string[] HeadmasterSubs6;
 
-	// Token: 0x04003F86 RID: 16262
+	// Token: 0x04003F89 RID: 16265
 	public string[] HeadmasterSubs7;
 
-	// Token: 0x04003F87 RID: 16263
+	// Token: 0x04003F8A RID: 16266
 	public string[] HeadmasterSubs8;
 
-	// Token: 0x04003F88 RID: 16264
+	// Token: 0x04003F8B RID: 16267
 	public string[] HeadmasterSubs9;
 
-	// Token: 0x04003F89 RID: 16265
+	// Token: 0x04003F8C RID: 16268
 	public string[] HeadmasterSubs10;
 }

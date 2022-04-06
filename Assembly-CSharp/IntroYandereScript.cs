@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200033D RID: 829
+// Token: 0x0200033E RID: 830
 public class IntroYandereScript : MonoBehaviour
 {
-	// Token: 0x06001901 RID: 6401 RVA: 0x000FAB68 File Offset: 0x000F8D68
+	// Token: 0x06001907 RID: 6407 RVA: 0x000FAC68 File Offset: 0x000F8E68
 	private void LateUpdate()
 	{
 		this.Hips.localEulerAngles = new Vector3(this.Hips.localEulerAngles.x + this.X, this.Hips.localEulerAngles.y, this.Hips.localEulerAngles.z);
@@ -22,45 +22,45 @@ public class IntroYandereScript : MonoBehaviour
 		this.LeftFoot.localEulerAngles = new Vector3(this.LeftFoot.localEulerAngles.x - this.X, this.LeftFoot.localEulerAngles.y, this.LeftFoot.localEulerAngles.z);
 	}
 
-	// Token: 0x040026F6 RID: 9974
+	// Token: 0x040026F9 RID: 9977
 	public Transform Hips;
 
-	// Token: 0x040026F7 RID: 9975
+	// Token: 0x040026FA RID: 9978
 	public Transform Spine;
 
-	// Token: 0x040026F8 RID: 9976
+	// Token: 0x040026FB RID: 9979
 	public Transform Spine1;
 
-	// Token: 0x040026F9 RID: 9977
+	// Token: 0x040026FC RID: 9980
 	public Transform Spine2;
 
-	// Token: 0x040026FA RID: 9978
+	// Token: 0x040026FD RID: 9981
 	public Transform Spine3;
 
-	// Token: 0x040026FB RID: 9979
+	// Token: 0x040026FE RID: 9982
 	public Transform Neck;
 
-	// Token: 0x040026FC RID: 9980
+	// Token: 0x040026FF RID: 9983
 	public Transform Head;
 
-	// Token: 0x040026FD RID: 9981
+	// Token: 0x04002700 RID: 9984
 	public Transform RightUpLeg;
 
-	// Token: 0x040026FE RID: 9982
+	// Token: 0x04002701 RID: 9985
 	public Transform RightLeg;
 
-	// Token: 0x040026FF RID: 9983
+	// Token: 0x04002702 RID: 9986
 	public Transform RightFoot;
 
-	// Token: 0x04002700 RID: 9984
+	// Token: 0x04002703 RID: 9987
 	public Transform LeftUpLeg;
 
-	// Token: 0x04002701 RID: 9985
+	// Token: 0x04002704 RID: 9988
 	public Transform LeftLeg;
 
-	// Token: 0x04002702 RID: 9986
+	// Token: 0x04002705 RID: 9989
 	public Transform LeftFoot;
 
-	// Token: 0x04002703 RID: 9987
+	// Token: 0x04002706 RID: 9990
 	public float X;
 }

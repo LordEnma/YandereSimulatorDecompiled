@@ -2,10 +2,10 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x020003A5 RID: 933
+// Token: 0x020003A6 RID: 934
 public class PhotoGalleryScript : MonoBehaviour
 {
-	// Token: 0x06001A9B RID: 6811 RVA: 0x0011E9AA File Offset: 0x0011CBAA
+	// Token: 0x06001AA1 RID: 6817 RVA: 0x0011EB56 File Offset: 0x0011CD56
 	private void Start()
 	{
 		if (this.HomeCursor != null)
@@ -20,7 +20,7 @@ public class PhotoGalleryScript : MonoBehaviour
 	}
 
 	// Token: 0x17000498 RID: 1176
-	// (get) Token: 0x06001A9C RID: 6812 RVA: 0x0011E9E7 File Offset: 0x0011CBE7
+	// (get) Token: 0x06001AA2 RID: 6818 RVA: 0x0011EB93 File Offset: 0x0011CD93
 	private int CurrentIndex
 	{
 		get
@@ -30,7 +30,7 @@ public class PhotoGalleryScript : MonoBehaviour
 	}
 
 	// Token: 0x17000499 RID: 1177
-	// (get) Token: 0x06001A9D RID: 6813 RVA: 0x0011E9FA File Offset: 0x0011CBFA
+	// (get) Token: 0x06001AA3 RID: 6819 RVA: 0x0011EBA6 File Offset: 0x0011CDA6
 	private float LerpSpeed
 	{
 		get
@@ -40,7 +40,7 @@ public class PhotoGalleryScript : MonoBehaviour
 	}
 
 	// Token: 0x1700049A RID: 1178
-	// (get) Token: 0x06001A9E RID: 6814 RVA: 0x0011EA07 File Offset: 0x0011CC07
+	// (get) Token: 0x06001AA4 RID: 6820 RVA: 0x0011EBB3 File Offset: 0x0011CDB3
 	private float HighlightX
 	{
 		get
@@ -50,7 +50,7 @@ public class PhotoGalleryScript : MonoBehaviour
 	}
 
 	// Token: 0x1700049B RID: 1179
-	// (get) Token: 0x06001A9F RID: 6815 RVA: 0x0011EA1C File Offset: 0x0011CC1C
+	// (get) Token: 0x06001AA5 RID: 6821 RVA: 0x0011EBC8 File Offset: 0x0011CDC8
 	private float HighlightY
 	{
 		get
@@ -60,8 +60,8 @@ public class PhotoGalleryScript : MonoBehaviour
 	}
 
 	// Token: 0x1700049C RID: 1180
-	// (get) Token: 0x06001AA0 RID: 6816 RVA: 0x0011EA34 File Offset: 0x0011CC34
-	// (set) Token: 0x06001AA1 RID: 6817 RVA: 0x0011EA6C File Offset: 0x0011CC6C
+	// (get) Token: 0x06001AA6 RID: 6822 RVA: 0x0011EBE0 File Offset: 0x0011CDE0
+	// (set) Token: 0x06001AA7 RID: 6823 RVA: 0x0011EC18 File Offset: 0x0011CE18
 	private float MovingPhotoXPercent
 	{
 		get
@@ -77,8 +77,8 @@ public class PhotoGalleryScript : MonoBehaviour
 	}
 
 	// Token: 0x1700049D RID: 1181
-	// (get) Token: 0x06001AA2 RID: 6818 RVA: 0x0011EAD4 File Offset: 0x0011CCD4
-	// (set) Token: 0x06001AA3 RID: 6819 RVA: 0x0011EB0C File Offset: 0x0011CD0C
+	// (get) Token: 0x06001AA8 RID: 6824 RVA: 0x0011EC80 File Offset: 0x0011CE80
+	// (set) Token: 0x06001AA9 RID: 6825 RVA: 0x0011ECB8 File Offset: 0x0011CEB8
 	private float MovingPhotoYPercent
 	{
 		get
@@ -94,8 +94,8 @@ public class PhotoGalleryScript : MonoBehaviour
 	}
 
 	// Token: 0x1700049E RID: 1182
-	// (get) Token: 0x06001AA4 RID: 6820 RVA: 0x0011EB73 File Offset: 0x0011CD73
-	// (set) Token: 0x06001AA5 RID: 6821 RVA: 0x0011EB8C File Offset: 0x0011CD8C
+	// (get) Token: 0x06001AAA RID: 6826 RVA: 0x0011ED1F File Offset: 0x0011CF1F
+	// (set) Token: 0x06001AAB RID: 6827 RVA: 0x0011ED38 File Offset: 0x0011CF38
 	private float MovingPhotoRotation
 	{
 		get
@@ -109,8 +109,8 @@ public class PhotoGalleryScript : MonoBehaviour
 	}
 
 	// Token: 0x1700049F RID: 1183
-	// (get) Token: 0x06001AA6 RID: 6822 RVA: 0x0011EBDC File Offset: 0x0011CDDC
-	// (set) Token: 0x06001AA7 RID: 6823 RVA: 0x0011EC10 File Offset: 0x0011CE10
+	// (get) Token: 0x06001AAC RID: 6828 RVA: 0x0011ED88 File Offset: 0x0011CF88
+	// (set) Token: 0x06001AAD RID: 6829 RVA: 0x0011EDBC File Offset: 0x0011CFBC
 	private float CursorXPercent
 	{
 		get
@@ -126,8 +126,8 @@ public class PhotoGalleryScript : MonoBehaviour
 	}
 
 	// Token: 0x170004A0 RID: 1184
-	// (get) Token: 0x06001AA8 RID: 6824 RVA: 0x0011EC74 File Offset: 0x0011CE74
-	// (set) Token: 0x06001AA9 RID: 6825 RVA: 0x0011ECA8 File Offset: 0x0011CEA8
+	// (get) Token: 0x06001AAE RID: 6830 RVA: 0x0011EE20 File Offset: 0x0011D020
+	// (set) Token: 0x06001AAF RID: 6831 RVA: 0x0011EE54 File Offset: 0x0011D054
 	private float CursorYPercent
 	{
 		get
@@ -142,7 +142,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AAA RID: 6826 RVA: 0x0011ED0C File Offset: 0x0011CF0C
+	// Token: 0x06001AB0 RID: 6832 RVA: 0x0011EEB8 File Offset: 0x0011D0B8
 	private void UpdatePhotoSelection()
 	{
 		if (Input.GetButtonDown("A"))
@@ -264,7 +264,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AAB RID: 6827 RVA: 0x0011F2FC File Offset: 0x0011D4FC
+	// Token: 0x06001AB1 RID: 6833 RVA: 0x0011F4A8 File Offset: 0x0011D6A8
 	private void UpdatePhotoViewing()
 	{
 		this.ViewPhoto.transform.localScale = Vector3.Lerp(this.ViewPhoto.transform.localScale, this.Corkboard ? new Vector3(5.8f, 5.8f, 5.8f) : new Vector3(6.5f, 6.5f, 6.5f), this.LerpSpeed);
@@ -311,7 +311,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AAC RID: 6828 RVA: 0x0011F564 File Offset: 0x0011D764
+	// Token: 0x06001AB2 RID: 6834 RVA: 0x0011F710 File Offset: 0x0011D910
 	private void UpdateCorkboardPhoto()
 	{
 		Cursor.lockState = CursorLockMode.None;
@@ -360,7 +360,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AAD RID: 6829 RVA: 0x0011F868 File Offset: 0x0011DA68
+	// Token: 0x06001AB3 RID: 6835 RVA: 0x0011FA14 File Offset: 0x0011DC14
 	private void UpdateString()
 	{
 		this.MouseDelta.x = this.MouseDelta.x + Input.GetAxis("Horizontal") * 8.66666f * this.SpeedLimit;
@@ -410,7 +410,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AAE RID: 6830 RVA: 0x0011FAA8 File Offset: 0x0011DCA8
+	// Token: 0x06001AB4 RID: 6836 RVA: 0x0011FC54 File Offset: 0x0011DE54
 	private void UpdateCorkboardCursor()
 	{
 		Vector2 vector = new Vector2(this.HomeCursor.transform.localPosition.x, this.HomeCursor.transform.localPosition.y);
@@ -474,7 +474,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AAF RID: 6831 RVA: 0x0011FF94 File Offset: 0x0011E194
+	// Token: 0x06001AB5 RID: 6837 RVA: 0x00120140 File Offset: 0x0011E340
 	private void Update()
 	{
 		if (this.GotPhotos && this.Corkboard && !this.SpawnedPhotos)
@@ -534,7 +534,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		this.PreviousPosition = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 	}
 
-	// Token: 0x06001AB0 RID: 6832 RVA: 0x001201BB File Offset: 0x0011E3BB
+	// Token: 0x06001AB6 RID: 6838 RVA: 0x00120367 File Offset: 0x0011E567
 	public IEnumerator GetPhotos()
 	{
 		if (!this.Corkboard)
@@ -595,7 +595,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06001AB1 RID: 6833 RVA: 0x001201CC File Offset: 0x0011E3CC
+	// Token: 0x06001AB7 RID: 6839 RVA: 0x00120378 File Offset: 0x0011E578
 	public void UpdateButtonPrompts()
 	{
 		if (this.NamingBully)
@@ -702,7 +702,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		this.PromptBar.Show = true;
 	}
 
-	// Token: 0x06001AB2 RID: 6834 RVA: 0x001206B8 File Offset: 0x0011E8B8
+	// Token: 0x06001AB8 RID: 6840 RVA: 0x00120864 File Offset: 0x0011EA64
 	private void Shuffle(int Start)
 	{
 		for (int i = Start; i < this.CorkboardPhotographs.Length - 1; i++)
@@ -715,7 +715,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AB3 RID: 6835 RVA: 0x00120714 File Offset: 0x0011E914
+	// Token: 0x06001AB9 RID: 6841 RVA: 0x001208C0 File Offset: 0x0011EAC0
 	private void ShuffleStrings(int Start)
 	{
 		for (int i = Start; i < this.CorkboardPhotographs.Length - 1; i++)
@@ -728,7 +728,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AB4 RID: 6836 RVA: 0x00120770 File Offset: 0x0011E970
+	// Token: 0x06001ABA RID: 6842 RVA: 0x0012091C File Offset: 0x0011EB1C
 	public void SaveAllPhotographs()
 	{
 		for (int i = 0; i < 100; i++)
@@ -838,7 +838,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AB5 RID: 6837 RVA: 0x00120B9C File Offset: 0x0011ED9C
+	// Token: 0x06001ABB RID: 6843 RVA: 0x00120D48 File Offset: 0x0011EF48
 	public void SpawnPhotographs()
 	{
 		for (int i = 0; i < 100; i++)
@@ -944,7 +944,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		this.SpawnedPhotos = true;
 	}
 
-	// Token: 0x06001AB6 RID: 6838 RVA: 0x00120FA0 File Offset: 0x0011F1A0
+	// Token: 0x06001ABC RID: 6844 RVA: 0x0012114C File Offset: 0x0011F34C
 	public void SaveAllStrings()
 	{
 		Debug.Log("Saved strings.");
@@ -1023,7 +1023,7 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AB7 RID: 6839 RVA: 0x0012127C File Offset: 0x0011F47C
+	// Token: 0x06001ABD RID: 6845 RVA: 0x00121428 File Offset: 0x0011F628
 	public void SpawnStrings()
 	{
 		for (int i = 0; i < 100; i++)
@@ -1104,150 +1104,150 @@ public class PhotoGalleryScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002C3C RID: 11324
+	// Token: 0x04002C3F RID: 11327
 	public HomeCorkboardPhotoScript[] CorkboardPhotographs;
 
-	// Token: 0x04002C3D RID: 11325
+	// Token: 0x04002C40 RID: 11328
 	public StringScript[] CorkboardStrings;
 
-	// Token: 0x04002C3E RID: 11326
+	// Token: 0x04002C41 RID: 11329
 	public int PhotoID;
 
-	// Token: 0x04002C3F RID: 11327
+	// Token: 0x04002C42 RID: 11330
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002C40 RID: 11328
+	// Token: 0x04002C43 RID: 11331
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04002C41 RID: 11329
+	// Token: 0x04002C44 RID: 11332
 	public TaskManagerScript TaskManager;
 
-	// Token: 0x04002C42 RID: 11330
+	// Token: 0x04002C45 RID: 11333
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x04002C43 RID: 11331
+	// Token: 0x04002C46 RID: 11334
 	public HomeCursorScript HomeCursor;
 
-	// Token: 0x04002C44 RID: 11332
+	// Token: 0x04002C47 RID: 11335
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002C45 RID: 11333
+	// Token: 0x04002C48 RID: 11336
 	public YandereScript Yandere;
 
-	// Token: 0x04002C46 RID: 11334
+	// Token: 0x04002C49 RID: 11337
 	public StringScript String;
 
-	// Token: 0x04002C47 RID: 11335
+	// Token: 0x04002C4A RID: 11338
 	public GameObject MovingPhotograph;
 
-	// Token: 0x04002C48 RID: 11336
+	// Token: 0x04002C4B RID: 11339
 	public GameObject LoadingScreen;
 
-	// Token: 0x04002C49 RID: 11337
+	// Token: 0x04002C4C RID: 11340
 	public GameObject Photograph;
 
-	// Token: 0x04002C4A RID: 11338
+	// Token: 0x04002C4D RID: 11341
 	public GameObject StringSet;
 
-	// Token: 0x04002C4B RID: 11339
+	// Token: 0x04002C4E RID: 11342
 	public Transform CorkboardPanel;
 
-	// Token: 0x04002C4C RID: 11340
+	// Token: 0x04002C4F RID: 11343
 	public Transform Destination;
 
-	// Token: 0x04002C4D RID: 11341
+	// Token: 0x04002C50 RID: 11344
 	public Transform Highlight;
 
-	// Token: 0x04002C4E RID: 11342
+	// Token: 0x04002C51 RID: 11345
 	public Transform Gallery;
 
-	// Token: 0x04002C4F RID: 11343
+	// Token: 0x04002C52 RID: 11346
 	public Transform StringParent;
 
-	// Token: 0x04002C50 RID: 11344
+	// Token: 0x04002C53 RID: 11347
 	public UITexture[] Photographs;
 
-	// Token: 0x04002C51 RID: 11345
+	// Token: 0x04002C54 RID: 11348
 	public UISprite[] Hearts;
 
-	// Token: 0x04002C52 RID: 11346
+	// Token: 0x04002C55 RID: 11349
 	public AudioClip[] Sighs;
 
-	// Token: 0x04002C53 RID: 11347
+	// Token: 0x04002C56 RID: 11350
 	public UITexture ViewPhoto;
 
-	// Token: 0x04002C54 RID: 11348
+	// Token: 0x04002C57 RID: 11351
 	public Texture NoPhoto;
 
-	// Token: 0x04002C55 RID: 11349
+	// Token: 0x04002C58 RID: 11352
 	public Vector2 PreviousPosition;
 
-	// Token: 0x04002C56 RID: 11350
+	// Token: 0x04002C59 RID: 11353
 	public Vector2 MouseDelta;
 
-	// Token: 0x04002C57 RID: 11351
+	// Token: 0x04002C5A RID: 11354
 	public bool DoNotRaisePromptBar;
 
-	// Token: 0x04002C58 RID: 11352
+	// Token: 0x04002C5B RID: 11355
 	public bool SpawnedPhotos;
 
-	// Token: 0x04002C59 RID: 11353
+	// Token: 0x04002C5C RID: 11356
 	public bool MovingString;
 
-	// Token: 0x04002C5A RID: 11354
+	// Token: 0x04002C5D RID: 11357
 	public bool NamingBully;
 
-	// Token: 0x04002C5B RID: 11355
+	// Token: 0x04002C5E RID: 11358
 	public bool Adjusting;
 
-	// Token: 0x04002C5C RID: 11356
+	// Token: 0x04002C5F RID: 11359
 	public bool CanAdjust;
 
-	// Token: 0x04002C5D RID: 11357
+	// Token: 0x04002C60 RID: 11360
 	public bool Corkboard;
 
-	// Token: 0x04002C5E RID: 11358
+	// Token: 0x04002C61 RID: 11361
 	public bool GotPhotos;
 
-	// Token: 0x04002C5F RID: 11359
+	// Token: 0x04002C62 RID: 11362
 	public bool Viewing;
 
-	// Token: 0x04002C60 RID: 11360
+	// Token: 0x04002C63 RID: 11363
 	public bool Moving;
 
-	// Token: 0x04002C61 RID: 11361
+	// Token: 0x04002C64 RID: 11364
 	public bool Reset;
 
-	// Token: 0x04002C62 RID: 11362
+	// Token: 0x04002C65 RID: 11365
 	public int StringPhase;
 
-	// Token: 0x04002C63 RID: 11363
+	// Token: 0x04002C66 RID: 11366
 	public int Strings;
 
-	// Token: 0x04002C64 RID: 11364
+	// Token: 0x04002C67 RID: 11367
 	public int Photos;
 
-	// Token: 0x04002C65 RID: 11365
+	// Token: 0x04002C68 RID: 11368
 	public int Column;
 
-	// Token: 0x04002C66 RID: 11366
+	// Token: 0x04002C69 RID: 11369
 	public int Row;
 
-	// Token: 0x04002C67 RID: 11367
+	// Token: 0x04002C6A RID: 11370
 	public float MaxPhotoX = 4150f;
 
-	// Token: 0x04002C68 RID: 11368
+	// Token: 0x04002C6B RID: 11371
 	public float MaxPhotoY = 2500f;
 
-	// Token: 0x04002C69 RID: 11369
+	// Token: 0x04002C6C RID: 11372
 	private const float MaxCursorX = 4788f;
 
-	// Token: 0x04002C6A RID: 11370
+	// Token: 0x04002C6D RID: 11373
 	private const float MaxCursorY = 3122f;
 
-	// Token: 0x04002C6B RID: 11371
+	// Token: 0x04002C6E RID: 11374
 	private const float CorkboardAspectRatio = 1.5336323f;
 
-	// Token: 0x04002C6C RID: 11372
+	// Token: 0x04002C6F RID: 11375
 	public float SpeedLimit;
 }

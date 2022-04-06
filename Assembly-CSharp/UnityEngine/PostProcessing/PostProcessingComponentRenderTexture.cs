@@ -2,10 +2,10 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000580 RID: 1408
+	// Token: 0x02000581 RID: 1409
 	public abstract class PostProcessingComponentRenderTexture<T> : PostProcessingComponent<T> where T : PostProcessingModel
 	{
-		// Token: 0x060023BF RID: 9151 RVA: 0x001F9867 File Offset: 0x001F7A67
+		// Token: 0x060023C7 RID: 9159 RVA: 0x001F9D97 File Offset: 0x001F7F97
 		public virtual void Prepare(Material material)
 		{
 		}

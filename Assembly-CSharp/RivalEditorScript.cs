@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200029B RID: 667
+// Token: 0x0200029C RID: 668
 public class RivalEditorScript : MonoBehaviour
 {
-	// Token: 0x06001405 RID: 5125 RVA: 0x000BE3A9 File Offset: 0x000BC5A9
+	// Token: 0x0600140B RID: 5131 RVA: 0x000BE4B1 File Offset: 0x000BC6B1
 	private void Awake()
 	{
 		this.inputManager = UnityEngine.Object.FindObjectOfType<InputManagerScript>();
 	}
 
-	// Token: 0x06001406 RID: 5126 RVA: 0x000BE3B8 File Offset: 0x000BC5B8
+	// Token: 0x0600140C RID: 5132 RVA: 0x000BE4C0 File Offset: 0x000BC6C0
 	private void OnEnable()
 	{
 		this.promptBar.Label[0].text = string.Empty;
@@ -19,7 +19,7 @@ public class RivalEditorScript : MonoBehaviour
 		this.promptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001407 RID: 5127 RVA: 0x000BE415 File Offset: 0x000BC615
+	// Token: 0x0600140D RID: 5133 RVA: 0x000BE51D File Offset: 0x000BC71D
 	private void HandleInput()
 	{
 		if (Input.GetButtonDown("B"))
@@ -29,28 +29,28 @@ public class RivalEditorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001408 RID: 5128 RVA: 0x000BE445 File Offset: 0x000BC645
+	// Token: 0x0600140E RID: 5134 RVA: 0x000BE54D File Offset: 0x000BC74D
 	private void Update()
 	{
 		this.HandleInput();
 	}
 
-	// Token: 0x04001DE4 RID: 7652
+	// Token: 0x04001DE6 RID: 7654
 	[SerializeField]
 	private UIPanel mainPanel;
 
-	// Token: 0x04001DE5 RID: 7653
+	// Token: 0x04001DE7 RID: 7655
 	[SerializeField]
 	private UIPanel rivalPanel;
 
-	// Token: 0x04001DE6 RID: 7654
+	// Token: 0x04001DE8 RID: 7656
 	[SerializeField]
 	private UILabel titleLabel;
 
-	// Token: 0x04001DE7 RID: 7655
+	// Token: 0x04001DE9 RID: 7657
 	[SerializeField]
 	private PromptBarScript promptBar;
 
-	// Token: 0x04001DE8 RID: 7656
+	// Token: 0x04001DEA RID: 7658
 	private InputManagerScript inputManager;
 }

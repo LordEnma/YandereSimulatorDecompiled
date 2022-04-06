@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000523 RID: 1315
+// Token: 0x02000524 RID: 1316
 public class RoseSpawnerScript : MonoBehaviour
 {
-	// Token: 0x0600218F RID: 8591 RVA: 0x001EE0D2 File Offset: 0x001EC2D2
+	// Token: 0x06002197 RID: 8599 RVA: 0x001EE602 File Offset: 0x001EC802
 	private void Start()
 	{
 		this.SpawnRose();
 	}
 
-	// Token: 0x06002190 RID: 8592 RVA: 0x001EE0DA File Offset: 0x001EC2DA
+	// Token: 0x06002198 RID: 8600 RVA: 0x001EE60A File Offset: 0x001EC80A
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -20,7 +20,7 @@ public class RoseSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002191 RID: 8593 RVA: 0x001EE104 File Offset: 0x001EC304
+	// Token: 0x06002199 RID: 8601 RVA: 0x001EE634 File Offset: 0x001EC834
 	private void SpawnRose()
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Rose, base.transform.position, Quaternion.identity);
@@ -32,21 +32,21 @@ public class RoseSpawnerScript : MonoBehaviour
 		this.Timer = 0f;
 	}
 
-	// Token: 0x040049D4 RID: 18900
+	// Token: 0x040049D8 RID: 18904
 	public Transform DramaGirl;
 
-	// Token: 0x040049D5 RID: 18901
+	// Token: 0x040049D9 RID: 18905
 	public Transform Target;
 
-	// Token: 0x040049D6 RID: 18902
+	// Token: 0x040049DA RID: 18906
 	public GameObject Rose;
 
-	// Token: 0x040049D7 RID: 18903
+	// Token: 0x040049DB RID: 18907
 	public float Timer;
 
-	// Token: 0x040049D8 RID: 18904
+	// Token: 0x040049DC RID: 18908
 	public float ForwardForce;
 
-	// Token: 0x040049D9 RID: 18905
+	// Token: 0x040049DD RID: 18909
 	public float UpwardForce;
 }

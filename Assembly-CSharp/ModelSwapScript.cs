@@ -2,22 +2,22 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x0200050A RID: 1290
+// Token: 0x0200050B RID: 1291
 public class ModelSwapScript : MonoBehaviour
 {
-	// Token: 0x06002159 RID: 8537 RVA: 0x001EAE15 File Offset: 0x001E9015
+	// Token: 0x06002161 RID: 8545 RVA: 0x001EB345 File Offset: 0x001E9545
 	public void Update()
 	{
 		Input.GetKeyDown("z");
 	}
 
-	// Token: 0x0600215A RID: 8538 RVA: 0x001EAE22 File Offset: 0x001E9022
+	// Token: 0x06002162 RID: 8546 RVA: 0x001EB352 File Offset: 0x001E9552
 	public void Attach(GameObject Attachment, bool Inactives)
 	{
 		base.StartCoroutine(this.Attach_Threat(this.PelvisRoot, Attachment, Inactives));
 	}
 
-	// Token: 0x0600215B RID: 8539 RVA: 0x001EAE39 File Offset: 0x001E9039
+	// Token: 0x06002163 RID: 8547 RVA: 0x001EB369 File Offset: 0x001E9569
 	public IEnumerator Attach_Threat(Transform PelvisRoot, GameObject Attachment, bool Inactives)
 	{
 		Attachment.transform.SetParent(PelvisRoot);
@@ -40,9 +40,9 @@ public class ModelSwapScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04004980 RID: 18816
+	// Token: 0x04004984 RID: 18820
 	public Transform PelvisRoot;
 
-	// Token: 0x04004981 RID: 18817
+	// Token: 0x04004985 RID: 18821
 	public GameObject Attachment;
 }

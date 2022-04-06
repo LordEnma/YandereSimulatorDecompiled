@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000366 RID: 870
+// Token: 0x02000367 RID: 871
 public class MemorialSceneScript : MonoBehaviour
 {
-	// Token: 0x060019AD RID: 6573 RVA: 0x00106B44 File Offset: 0x00104D44
+	// Token: 0x060019B3 RID: 6579 RVA: 0x00106C44 File Offset: 0x00104E44
 	private void Start()
 	{
 		if (PlayerPrefs.GetInt("LoadingSave") == 1)
@@ -106,7 +106,7 @@ public class MemorialSceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019AE RID: 6574 RVA: 0x00106E3C File Offset: 0x0010503C
+	// Token: 0x060019B4 RID: 6580 RVA: 0x00106F3C File Offset: 0x0010513C
 	private void Update()
 	{
 		this.Speed += Time.deltaTime;
@@ -167,7 +167,7 @@ public class MemorialSceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019AF RID: 6575 RVA: 0x001071D4 File Offset: 0x001053D4
+	// Token: 0x060019B5 RID: 6581 RVA: 0x001072D4 File Offset: 0x001054D4
 	private void TurnYoung()
 	{
 		this.YoungHeadmaster.SetActive(true);
@@ -186,60 +186,60 @@ public class MemorialSceneScript : MonoBehaviour
 		this.CounselorMesh[7].SetActive(true);
 	}
 
-	// Token: 0x04002943 RID: 10563
+	// Token: 0x04002946 RID: 10566
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002944 RID: 10564
+	// Token: 0x04002947 RID: 10567
 	public CameraEffectsScript CameraEffects;
 
-	// Token: 0x04002945 RID: 10565
+	// Token: 0x04002948 RID: 10568
 	public GameObject[] Canvases;
 
-	// Token: 0x04002946 RID: 10566
+	// Token: 0x04002949 RID: 10569
 	public UITexture[] Portraits;
 
-	// Token: 0x04002947 RID: 10567
+	// Token: 0x0400294A RID: 10570
 	public GameObject CanvasGroup;
 
-	// Token: 0x04002948 RID: 10568
+	// Token: 0x0400294B RID: 10571
 	public GameObject FlowerVase;
 
-	// Token: 0x04002949 RID: 10569
+	// Token: 0x0400294C RID: 10572
 	public GameObject Headmaster;
 
-	// Token: 0x0400294A RID: 10570
+	// Token: 0x0400294D RID: 10573
 	public GameObject Counselor;
 
-	// Token: 0x0400294B RID: 10571
+	// Token: 0x0400294E RID: 10574
 	public int MemorialStudents;
 
-	// Token: 0x0400294C RID: 10572
+	// Token: 0x0400294F RID: 10575
 	public float BloomIntensity = 1f;
 
-	// Token: 0x0400294D RID: 10573
+	// Token: 0x04002950 RID: 10576
 	public float BloomRadius = 4f;
 
-	// Token: 0x0400294E RID: 10574
+	// Token: 0x04002951 RID: 10577
 	public float Speed;
 
-	// Token: 0x0400294F RID: 10575
+	// Token: 0x04002952 RID: 10578
 	public bool Eulogized;
 
-	// Token: 0x04002950 RID: 10576
+	// Token: 0x04002953 RID: 10579
 	public bool FadeOut;
 
-	// Token: 0x04002951 RID: 10577
+	// Token: 0x04002954 RID: 10580
 	public GameObject YoungHeadmaster;
 
-	// Token: 0x04002952 RID: 10578
+	// Token: 0x04002955 RID: 10581
 	public Material Transparency;
 
-	// Token: 0x04002953 RID: 10579
+	// Token: 0x04002956 RID: 10582
 	public GameObject[] HeadmasterMesh;
 
-	// Token: 0x04002954 RID: 10580
+	// Token: 0x04002957 RID: 10583
 	public GameObject CounselorMother;
 
-	// Token: 0x04002955 RID: 10581
+	// Token: 0x04002958 RID: 10584
 	public GameObject[] CounselorMesh;
 }

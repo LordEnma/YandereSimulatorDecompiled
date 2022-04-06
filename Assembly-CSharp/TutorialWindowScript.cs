@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000490 RID: 1168
+// Token: 0x02000491 RID: 1169
 public class TutorialWindowScript : MonoBehaviour
 {
-	// Token: 0x06001F2F RID: 7983 RVA: 0x001BB2A0 File Offset: 0x001B94A0
+	// Token: 0x06001F37 RID: 7991 RVA: 0x001BB7A8 File Offset: 0x001B99A8
 	private void Start()
 	{
 		base.transform.localScale = new Vector3(0f, 0f, 0f);
@@ -32,7 +32,7 @@ public class TutorialWindowScript : MonoBehaviour
 		this.IgnoreRep = TutorialGlobals.IgnoreRep;
 	}
 
-	// Token: 0x06001F30 RID: 7984 RVA: 0x001BB398 File Offset: 0x001B9598
+	// Token: 0x06001F38 RID: 7992 RVA: 0x001BB8A0 File Offset: 0x001B9AA0
 	private void Update()
 	{
 		if (this.Show)
@@ -360,7 +360,7 @@ public class TutorialWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F31 RID: 7985 RVA: 0x001BC21C File Offset: 0x001BA41C
+	// Token: 0x06001F39 RID: 7993 RVA: 0x001BC724 File Offset: 0x001BA924
 	public void DisplayHint()
 	{
 		if (!this.Yandere.PauseScreen.Show)
@@ -371,7 +371,7 @@ public class TutorialWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F32 RID: 7986 RVA: 0x001BC274 File Offset: 0x001BA474
+	// Token: 0x06001F3A RID: 7994 RVA: 0x001BC77C File Offset: 0x001BA97C
 	public void SummonWindow()
 	{
 		Debug.Log("SummonWindow() has been called.");
@@ -393,7 +393,7 @@ public class TutorialWindowScript : MonoBehaviour
 		this.ShortLabel.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001F33 RID: 7987 RVA: 0x001BC350 File Offset: 0x001BA550
+	// Token: 0x06001F3B RID: 7995 RVA: 0x001BC858 File Offset: 0x001BAA58
 	public void ShowTutorial()
 	{
 		Debug.Log("ShowTutorial() has been called, and ForceID is: " + this.ForceID.ToString());
@@ -581,318 +581,318 @@ public class TutorialWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004175 RID: 16757
+	// Token: 0x04004178 RID: 16760
 	public YandereScript Yandere;
 
-	// Token: 0x04004176 RID: 16758
+	// Token: 0x04004179 RID: 16761
 	public bool ShowClothingMessage;
 
-	// Token: 0x04004177 RID: 16759
+	// Token: 0x0400417A RID: 16762
 	public bool ShowCouncilMessage;
 
-	// Token: 0x04004178 RID: 16760
+	// Token: 0x0400417B RID: 16763
 	public bool ShowTeacherMessage;
 
-	// Token: 0x04004179 RID: 16761
+	// Token: 0x0400417C RID: 16764
 	public bool ShowLockerMessage;
 
-	// Token: 0x0400417A RID: 16762
+	// Token: 0x0400417D RID: 16765
 	public bool ShowPoliceMessage;
 
-	// Token: 0x0400417B RID: 16763
+	// Token: 0x0400417E RID: 16766
 	public bool ShowSanityMessage;
 
-	// Token: 0x0400417C RID: 16764
+	// Token: 0x0400417F RID: 16767
 	public bool ShowSenpaiMessage;
 
-	// Token: 0x0400417D RID: 16765
+	// Token: 0x04004180 RID: 16768
 	public bool ShowVisionMessage;
 
-	// Token: 0x0400417E RID: 16766
+	// Token: 0x04004181 RID: 16769
 	public bool ShowWeaponMessage;
 
-	// Token: 0x0400417F RID: 16767
+	// Token: 0x04004182 RID: 16770
 	public bool ShowBloodMessage;
 
-	// Token: 0x04004180 RID: 16768
+	// Token: 0x04004183 RID: 16771
 	public bool ShowClassMessage;
 
-	// Token: 0x04004181 RID: 16769
+	// Token: 0x04004184 RID: 16772
 	public bool ShowMoneyMessage;
 
-	// Token: 0x04004182 RID: 16770
+	// Token: 0x04004185 RID: 16773
 	public bool ShowPhotoMessage;
 
-	// Token: 0x04004183 RID: 16771
+	// Token: 0x04004186 RID: 16774
 	public bool ShowClubMessage;
 
-	// Token: 0x04004184 RID: 16772
+	// Token: 0x04004187 RID: 16775
 	public bool ShowInfoMessage;
 
-	// Token: 0x04004185 RID: 16773
+	// Token: 0x04004188 RID: 16776
 	public bool ShowPoolMessage;
 
-	// Token: 0x04004186 RID: 16774
+	// Token: 0x04004189 RID: 16777
 	public bool ShowRepMessage;
 
-	// Token: 0x04004187 RID: 16775
+	// Token: 0x0400418A RID: 16778
 	public bool IgnoreClothing;
 
-	// Token: 0x04004188 RID: 16776
+	// Token: 0x0400418B RID: 16779
 	public bool IgnoreCouncil;
 
-	// Token: 0x04004189 RID: 16777
+	// Token: 0x0400418C RID: 16780
 	public bool IgnoreTeacher;
 
-	// Token: 0x0400418A RID: 16778
+	// Token: 0x0400418D RID: 16781
 	public bool IgnoreLocker;
 
-	// Token: 0x0400418B RID: 16779
+	// Token: 0x0400418E RID: 16782
 	public bool IgnorePolice;
 
-	// Token: 0x0400418C RID: 16780
+	// Token: 0x0400418F RID: 16783
 	public bool IgnoreSanity;
 
-	// Token: 0x0400418D RID: 16781
+	// Token: 0x04004190 RID: 16784
 	public bool IgnoreSenpai;
 
-	// Token: 0x0400418E RID: 16782
+	// Token: 0x04004191 RID: 16785
 	public bool IgnoreVision;
 
-	// Token: 0x0400418F RID: 16783
+	// Token: 0x04004192 RID: 16786
 	public bool IgnoreWeapon;
 
-	// Token: 0x04004190 RID: 16784
+	// Token: 0x04004193 RID: 16787
 	public bool IgnoreBlood;
 
-	// Token: 0x04004191 RID: 16785
+	// Token: 0x04004194 RID: 16788
 	public bool IgnoreClass;
 
-	// Token: 0x04004192 RID: 16786
+	// Token: 0x04004195 RID: 16789
 	public bool IgnoreMoney;
 
-	// Token: 0x04004193 RID: 16787
+	// Token: 0x04004196 RID: 16790
 	public bool IgnorePhoto;
 
-	// Token: 0x04004194 RID: 16788
+	// Token: 0x04004197 RID: 16791
 	public bool IgnoreClub;
 
-	// Token: 0x04004195 RID: 16789
+	// Token: 0x04004198 RID: 16792
 	public bool IgnoreInfo;
 
-	// Token: 0x04004196 RID: 16790
+	// Token: 0x04004199 RID: 16793
 	public bool IgnorePool;
 
-	// Token: 0x04004197 RID: 16791
+	// Token: 0x0400419A RID: 16794
 	public bool IgnoreRep;
 
-	// Token: 0x04004198 RID: 16792
+	// Token: 0x0400419B RID: 16795
 	public bool Hide;
 
-	// Token: 0x04004199 RID: 16793
+	// Token: 0x0400419C RID: 16796
 	public bool Show;
 
-	// Token: 0x0400419A RID: 16794
+	// Token: 0x0400419D RID: 16797
 	public UILabel TutorialLabel;
 
-	// Token: 0x0400419B RID: 16795
+	// Token: 0x0400419E RID: 16798
 	public UILabel ShadowLabel;
 
-	// Token: 0x0400419C RID: 16796
+	// Token: 0x0400419F RID: 16799
 	public UILabel TitleLabel;
 
-	// Token: 0x0400419D RID: 16797
+	// Token: 0x040041A0 RID: 16800
 	public UITexture TutorialImage;
 
-	// Token: 0x0400419E RID: 16798
+	// Token: 0x040041A1 RID: 16801
 	public string DisabledShortString;
 
-	// Token: 0x0400419F RID: 16799
+	// Token: 0x040041A2 RID: 16802
 	public string DisabledString;
 
-	// Token: 0x040041A0 RID: 16800
+	// Token: 0x040041A3 RID: 16803
 	public Texture DisabledTexture;
 
-	// Token: 0x040041A1 RID: 16801
+	// Token: 0x040041A4 RID: 16804
 	public string ClothingShortString;
 
-	// Token: 0x040041A2 RID: 16802
+	// Token: 0x040041A5 RID: 16805
 	public string ClothingString;
 
-	// Token: 0x040041A3 RID: 16803
+	// Token: 0x040041A6 RID: 16806
 	public Texture ClothingTexture;
 
-	// Token: 0x040041A4 RID: 16804
+	// Token: 0x040041A7 RID: 16807
 	public string CouncilShortString;
 
-	// Token: 0x040041A5 RID: 16805
+	// Token: 0x040041A8 RID: 16808
 	public string CouncilString;
 
-	// Token: 0x040041A6 RID: 16806
+	// Token: 0x040041A9 RID: 16809
 	public Texture CouncilTexture;
 
-	// Token: 0x040041A7 RID: 16807
+	// Token: 0x040041AA RID: 16810
 	public string TeacherShortString;
 
-	// Token: 0x040041A8 RID: 16808
+	// Token: 0x040041AB RID: 16811
 	public string TeacherString;
 
-	// Token: 0x040041A9 RID: 16809
+	// Token: 0x040041AC RID: 16812
 	public Texture TeacherTexture;
 
-	// Token: 0x040041AA RID: 16810
+	// Token: 0x040041AD RID: 16813
 	public string LockerShortString;
 
-	// Token: 0x040041AB RID: 16811
+	// Token: 0x040041AE RID: 16814
 	public string LockerString;
 
-	// Token: 0x040041AC RID: 16812
+	// Token: 0x040041AF RID: 16815
 	public Texture LockerTexture;
 
-	// Token: 0x040041AD RID: 16813
+	// Token: 0x040041B0 RID: 16816
 	public string PoliceShortString;
 
-	// Token: 0x040041AE RID: 16814
+	// Token: 0x040041B1 RID: 16817
 	public string PoliceString;
 
-	// Token: 0x040041AF RID: 16815
+	// Token: 0x040041B2 RID: 16818
 	public Texture PoliceTexture;
 
-	// Token: 0x040041B0 RID: 16816
+	// Token: 0x040041B3 RID: 16819
 	public string SanityShortString;
 
-	// Token: 0x040041B1 RID: 16817
+	// Token: 0x040041B4 RID: 16820
 	public string SanityString;
 
-	// Token: 0x040041B2 RID: 16818
+	// Token: 0x040041B5 RID: 16821
 	public Texture SanityTexture;
 
-	// Token: 0x040041B3 RID: 16819
+	// Token: 0x040041B6 RID: 16822
 	public string SenpaiShortString;
 
-	// Token: 0x040041B4 RID: 16820
+	// Token: 0x040041B7 RID: 16823
 	public string SenpaiString;
 
-	// Token: 0x040041B5 RID: 16821
+	// Token: 0x040041B8 RID: 16824
 	public Texture SenpaiTexture;
 
-	// Token: 0x040041B6 RID: 16822
+	// Token: 0x040041B9 RID: 16825
 	public string VisionShortString;
 
-	// Token: 0x040041B7 RID: 16823
+	// Token: 0x040041BA RID: 16826
 	public string VisionString;
 
-	// Token: 0x040041B8 RID: 16824
+	// Token: 0x040041BB RID: 16827
 	public Texture VisionTexture;
 
-	// Token: 0x040041B9 RID: 16825
+	// Token: 0x040041BC RID: 16828
 	public string WeaponShortString;
 
-	// Token: 0x040041BA RID: 16826
+	// Token: 0x040041BD RID: 16829
 	public string WeaponString;
 
-	// Token: 0x040041BB RID: 16827
+	// Token: 0x040041BE RID: 16830
 	public Texture WeaponTexture;
 
-	// Token: 0x040041BC RID: 16828
+	// Token: 0x040041BF RID: 16831
 	public string BloodShortString;
 
-	// Token: 0x040041BD RID: 16829
+	// Token: 0x040041C0 RID: 16832
 	public string BloodString;
 
-	// Token: 0x040041BE RID: 16830
+	// Token: 0x040041C1 RID: 16833
 	public Texture BloodTexture;
 
-	// Token: 0x040041BF RID: 16831
+	// Token: 0x040041C2 RID: 16834
 	public string ClassShortString;
 
-	// Token: 0x040041C0 RID: 16832
+	// Token: 0x040041C3 RID: 16835
 	public string ClassString;
 
-	// Token: 0x040041C1 RID: 16833
+	// Token: 0x040041C4 RID: 16836
 	public Texture ClassTexture;
 
-	// Token: 0x040041C2 RID: 16834
+	// Token: 0x040041C5 RID: 16837
 	public string MoneyShortString;
 
-	// Token: 0x040041C3 RID: 16835
+	// Token: 0x040041C6 RID: 16838
 	public string MoneyString;
 
-	// Token: 0x040041C4 RID: 16836
+	// Token: 0x040041C7 RID: 16839
 	public Texture MoneyTexture;
 
-	// Token: 0x040041C5 RID: 16837
+	// Token: 0x040041C8 RID: 16840
 	public string PhotoShortString;
 
-	// Token: 0x040041C6 RID: 16838
+	// Token: 0x040041C9 RID: 16841
 	public string PhotoString;
 
-	// Token: 0x040041C7 RID: 16839
+	// Token: 0x040041CA RID: 16842
 	public Texture PhotoTexture;
 
-	// Token: 0x040041C8 RID: 16840
+	// Token: 0x040041CB RID: 16843
 	public string ClubShortString;
 
-	// Token: 0x040041C9 RID: 16841
+	// Token: 0x040041CC RID: 16844
 	public string ClubString;
 
-	// Token: 0x040041CA RID: 16842
+	// Token: 0x040041CD RID: 16845
 	public Texture ClubTexture;
 
-	// Token: 0x040041CB RID: 16843
+	// Token: 0x040041CE RID: 16846
 	public string InfoShortString;
 
-	// Token: 0x040041CC RID: 16844
+	// Token: 0x040041CF RID: 16847
 	public string InfoString;
 
-	// Token: 0x040041CD RID: 16845
+	// Token: 0x040041D0 RID: 16848
 	public Texture InfoTexture;
 
-	// Token: 0x040041CE RID: 16846
+	// Token: 0x040041D1 RID: 16849
 	public string PoolShortString;
 
-	// Token: 0x040041CF RID: 16847
+	// Token: 0x040041D2 RID: 16850
 	public string PoolString;
 
-	// Token: 0x040041D0 RID: 16848
+	// Token: 0x040041D3 RID: 16851
 	public Texture PoolTexture;
 
-	// Token: 0x040041D1 RID: 16849
+	// Token: 0x040041D4 RID: 16852
 	public string RepShortString;
 
-	// Token: 0x040041D2 RID: 16850
+	// Token: 0x040041D5 RID: 16853
 	public string RepString;
 
-	// Token: 0x040041D3 RID: 16851
+	// Token: 0x040041D6 RID: 16854
 	public Texture RepTexture;
 
-	// Token: 0x040041D4 RID: 16852
+	// Token: 0x040041D7 RID: 16855
 	public string PointsShortString;
 
-	// Token: 0x040041D5 RID: 16853
+	// Token: 0x040041D8 RID: 16856
 	public string PointsString;
 
-	// Token: 0x040041D6 RID: 16854
+	// Token: 0x040041D9 RID: 16857
 	public float HintTimer;
 
-	// Token: 0x040041D7 RID: 16855
+	// Token: 0x040041DA RID: 16858
 	public float Timer;
 
-	// Token: 0x040041D8 RID: 16856
+	// Token: 0x040041DB RID: 16859
 	public bool ForcingTutorial;
 
-	// Token: 0x040041D9 RID: 16857
+	// Token: 0x040041DC RID: 16860
 	public int ForceID;
 
-	// Token: 0x040041DA RID: 16858
+	// Token: 0x040041DD RID: 16861
 	public GameObject DisableButton;
 
-	// Token: 0x040041DB RID: 16859
+	// Token: 0x040041DE RID: 16862
 	public UILabel ContinueLabel;
 
-	// Token: 0x040041DC RID: 16860
+	// Token: 0x040041DF RID: 16863
 	public UILabel ShortLabel;
 
-	// Token: 0x040041DD RID: 16861
+	// Token: 0x040041E0 RID: 16864
 	public UILabel ShortShadow;
 }

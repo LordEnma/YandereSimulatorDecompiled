@@ -2,11 +2,11 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000563 RID: 1379
+	// Token: 0x02000564 RID: 1380
 	public sealed class DitheringComponent : PostProcessingComponentRenderTexture<DitheringModel>
 	{
 		// Token: 0x170004F4 RID: 1268
-		// (get) Token: 0x0600231C RID: 8988 RVA: 0x001F698A File Offset: 0x001F4B8A
+		// (get) Token: 0x06002324 RID: 8996 RVA: 0x001F6EBA File Offset: 0x001F50BA
 		public override bool active
 		{
 			get
@@ -15,13 +15,13 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600231D RID: 8989 RVA: 0x001F69A9 File Offset: 0x001F4BA9
+		// Token: 0x06002325 RID: 8997 RVA: 0x001F6ED9 File Offset: 0x001F50D9
 		public override void OnDisable()
 		{
 			this.noiseTextures = null;
 		}
 
-		// Token: 0x0600231E RID: 8990 RVA: 0x001F69B4 File Offset: 0x001F4BB4
+		// Token: 0x06002326 RID: 8998 RVA: 0x001F6EE4 File Offset: 0x001F50E4
 		private void LoadNoiseTextures()
 		{
 			this.noiseTextures = new Texture2D[64];
@@ -31,7 +31,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600231F RID: 8991 RVA: 0x001F69FC File Offset: 0x001F4BFC
+		// Token: 0x06002327 RID: 8999 RVA: 0x001F6F2C File Offset: 0x001F512C
 		public override void Prepare(Material uberMaterial)
 		{
 			int num = this.textureIndex + 1;
@@ -52,22 +52,22 @@ namespace UnityEngine.PostProcessing
 			uberMaterial.SetVector(DitheringComponent.Uniforms._DitheringCoords, new Vector4((float)this.context.width / (float)texture2D.width, (float)this.context.height / (float)texture2D.height, value, value2));
 		}
 
-		// Token: 0x04004B97 RID: 19351
+		// Token: 0x04004B9B RID: 19355
 		private Texture2D[] noiseTextures;
 
-		// Token: 0x04004B98 RID: 19352
+		// Token: 0x04004B9C RID: 19356
 		private int textureIndex;
 
-		// Token: 0x04004B99 RID: 19353
+		// Token: 0x04004B9D RID: 19357
 		private const int k_TextureCount = 64;
 
-		// Token: 0x020006A4 RID: 1700
+		// Token: 0x020006A5 RID: 1701
 		private static class Uniforms
 		{
-			// Token: 0x0400510B RID: 20747
+			// Token: 0x0400510F RID: 20751
 			internal static readonly int _DitheringTex = Shader.PropertyToID("_DitheringTex");
 
-			// Token: 0x0400510C RID: 20748
+			// Token: 0x04005110 RID: 20752
 			internal static readonly int _DitheringCoords = Shader.PropertyToID("_DitheringCoords");
 		}
 	}

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200035A RID: 858
+// Token: 0x0200035B RID: 859
 public class LowPolyStudentScript : MonoBehaviour
 {
-	// Token: 0x0600198C RID: 6540 RVA: 0x00103BF7 File Offset: 0x00101DF7
+	// Token: 0x06001992 RID: 6546 RVA: 0x00103CF7 File Offset: 0x00101EF7
 	private void Start()
 	{
 		if (this.Student.StudentManager == null)
@@ -13,7 +13,7 @@ public class LowPolyStudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600198D RID: 6541 RVA: 0x00103C14 File Offset: 0x00101E14
+	// Token: 0x06001993 RID: 6547 RVA: 0x00103D14 File Offset: 0x00101F14
 	private void Update()
 	{
 		if ((float)this.Student.StudentManager.LowDetailThreshold > 0f)
@@ -44,12 +44,12 @@ public class LowPolyStudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040028E7 RID: 10471
+	// Token: 0x040028EA RID: 10474
 	public StudentScript Student;
 
-	// Token: 0x040028E8 RID: 10472
+	// Token: 0x040028EB RID: 10475
 	public Renderer TeacherMesh;
 
-	// Token: 0x040028E9 RID: 10473
+	// Token: 0x040028EC RID: 10476
 	public Renderer MyMesh;
 }

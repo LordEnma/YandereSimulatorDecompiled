@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000263 RID: 611
 public class CourtroomScript : MonoBehaviour
 {
-	// Token: 0x060012F1 RID: 4849 RVA: 0x000A6774 File Offset: 0x000A4974
+	// Token: 0x060012F1 RID: 4849 RVA: 0x000A678C File Offset: 0x000A498C
 	private void Start()
 	{
 		this.Subtitle.text = "";
@@ -22,7 +22,7 @@ public class CourtroomScript : MonoBehaviour
 		this.VtuberCheck();
 	}
 
-	// Token: 0x060012F2 RID: 4850 RVA: 0x000A6840 File Offset: 0x000A4A40
+	// Token: 0x060012F2 RID: 4850 RVA: 0x000A6858 File Offset: 0x000A4A58
 	public void UpdateFactLabels()
 	{
 		this.Fact[1] = this.RivalNames[1] + " " + this.Eliminations[this.Stats.EliminationIDs[1]];
@@ -94,7 +94,7 @@ public class CourtroomScript : MonoBehaviour
 		this.GuiltyPoints[28] = this.Stats.Grudges * 20;
 	}
 
-	// Token: 0x060012F3 RID: 4851 RVA: 0x000A6F98 File Offset: 0x000A5198
+	// Token: 0x060012F3 RID: 4851 RVA: 0x000A6FB0 File Offset: 0x000A51B0
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -406,7 +406,7 @@ public class CourtroomScript : MonoBehaviour
 		this.UpdateDOF(3f);
 	}
 
-	// Token: 0x060012F4 RID: 4852 RVA: 0x000A7E20 File Offset: 0x000A6020
+	// Token: 0x060012F4 RID: 4852 RVA: 0x000A7E38 File Offset: 0x000A6038
 	public void PopulateRankPanel()
 	{
 		this.RankIcon.transform.localScale = new Vector3(0f, 0f, 0f);
@@ -450,7 +450,7 @@ public class CourtroomScript : MonoBehaviour
 		this.RankIcon.mainTexture = this.RankIcons[this.Rank];
 	}
 
-	// Token: 0x060012F5 RID: 4853 RVA: 0x000A8030 File Offset: 0x000A6230
+	// Token: 0x060012F5 RID: 4853 RVA: 0x000A8048 File Offset: 0x000A6248
 	private void UpdateDOF(float Value)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -459,7 +459,7 @@ public class CourtroomScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x060012F6 RID: 4854 RVA: 0x000A8074 File Offset: 0x000A6274
+	// Token: 0x060012F6 RID: 4854 RVA: 0x000A808C File Offset: 0x000A628C
 	private void ResetBloom()
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -470,7 +470,7 @@ public class CourtroomScript : MonoBehaviour
 		this.Profile.bloom.settings = settings;
 	}
 
-	// Token: 0x060012F7 RID: 4855 RVA: 0x000A80E8 File Offset: 0x000A62E8
+	// Token: 0x060012F7 RID: 4855 RVA: 0x000A8100 File Offset: 0x000A6300
 	public void VtuberCheck()
 	{
 		if (GameGlobals.VtuberID > 0)

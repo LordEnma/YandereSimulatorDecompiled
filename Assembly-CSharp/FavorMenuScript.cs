@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002CA RID: 714
+// Token: 0x020002CB RID: 715
 public class FavorMenuScript : MonoBehaviour
 {
-	// Token: 0x060014A6 RID: 5286 RVA: 0x000CB3A8 File Offset: 0x000C95A8
+	// Token: 0x060014AC RID: 5292 RVA: 0x000CB4B0 File Offset: 0x000C96B0
 	private void Update()
 	{
 		if (!this.BountyMenu.activeInHierarchy)
@@ -106,7 +106,7 @@ public class FavorMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014A7 RID: 5287 RVA: 0x000CB784 File Offset: 0x000C9984
+	// Token: 0x060014AD RID: 5293 RVA: 0x000CB88C File Offset: 0x000C9A8C
 	private void UpdateHighlight()
 	{
 		if (this.ID > 4)
@@ -120,39 +120,39 @@ public class FavorMenuScript : MonoBehaviour
 		this.Highlight.transform.localPosition = new Vector3(-500f + 200f * (float)this.ID, this.Highlight.transform.localPosition.y, this.Highlight.transform.localPosition.z);
 	}
 
-	// Token: 0x04002051 RID: 8273
+	// Token: 0x04002053 RID: 8275
 	public TutorialWindowScript TutorialWindow;
 
-	// Token: 0x04002052 RID: 8274
+	// Token: 0x04002054 RID: 8276
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002053 RID: 8275
+	// Token: 0x04002055 RID: 8277
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04002054 RID: 8276
+	// Token: 0x04002056 RID: 8278
 	public ServicesScript ServicesMenu;
 
-	// Token: 0x04002055 RID: 8277
+	// Token: 0x04002057 RID: 8279
 	public SchemesScript SchemesMenu;
 
-	// Token: 0x04002056 RID: 8278
+	// Token: 0x04002058 RID: 8280
 	public DropsScript DropsMenu;
 
-	// Token: 0x04002057 RID: 8279
+	// Token: 0x04002059 RID: 8281
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002058 RID: 8280
+	// Token: 0x0400205A RID: 8282
 	public GameObject BountyMenu;
 
-	// Token: 0x04002059 RID: 8281
+	// Token: 0x0400205B RID: 8283
 	public GameObject Panel;
 
-	// Token: 0x0400205A RID: 8282
+	// Token: 0x0400205C RID: 8284
 	public Transform Highlight;
 
-	// Token: 0x0400205B RID: 8283
+	// Token: 0x0400205D RID: 8285
 	public UITexture Portrait;
 
-	// Token: 0x0400205C RID: 8284
+	// Token: 0x0400205E RID: 8286
 	public int ID = 1;
 }

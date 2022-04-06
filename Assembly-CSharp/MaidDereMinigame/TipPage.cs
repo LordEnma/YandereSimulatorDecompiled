@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005BD RID: 1469
+	// Token: 0x020005BE RID: 1470
 	public class TipPage : MonoBehaviour
 	{
-		// Token: 0x060024EF RID: 9455 RVA: 0x002008AC File Offset: 0x001FEAAC
+		// Token: 0x060024F7 RID: 9463 RVA: 0x00200DDC File Offset: 0x001FEFDC
 		public void Init()
 		{
 			this.cards = new List<TipCard>();
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			base.gameObject.SetActive(false);
 		}
 
-		// Token: 0x060024F0 RID: 9456 RVA: 0x00200968 File Offset: 0x001FEB68
+		// Token: 0x060024F8 RID: 9464 RVA: 0x00200E98 File Offset: 0x001FF098
 		public void DisplayTips(List<float> tips)
 		{
 			if (tips == null)
@@ -49,7 +49,7 @@ namespace MaidDereMinigame
 			this.totalCard.SetTip(num + basePay);
 		}
 
-		// Token: 0x060024F1 RID: 9457 RVA: 0x00200A21 File Offset: 0x001FEC21
+		// Token: 0x060024F9 RID: 9465 RVA: 0x00200F51 File Offset: 0x001FF151
 		private void Update()
 		{
 			if (this.stopInteraction)
@@ -63,16 +63,16 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x04004D40 RID: 19776
+		// Token: 0x04004D44 RID: 19780
 		public TipCard wageCard;
 
-		// Token: 0x04004D41 RID: 19777
+		// Token: 0x04004D45 RID: 19781
 		public TipCard totalCard;
 
-		// Token: 0x04004D42 RID: 19778
+		// Token: 0x04004D46 RID: 19782
 		private List<TipCard> cards;
 
-		// Token: 0x04004D43 RID: 19779
+		// Token: 0x04004D47 RID: 19783
 		private bool stopInteraction;
 	}
 }

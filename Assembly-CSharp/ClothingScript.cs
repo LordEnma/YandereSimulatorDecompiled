@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200024E RID: 590
 public class ClothingScript : MonoBehaviour
 {
-	// Token: 0x06001278 RID: 4728 RVA: 0x00090BF2 File Offset: 0x0008EDF2
+	// Token: 0x06001278 RID: 4728 RVA: 0x00090C0A File Offset: 0x0008EE0A
 	private void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
 	}
 
-	// Token: 0x06001279 RID: 4729 RVA: 0x00090C0C File Offset: 0x0008EE0C
+	// Token: 0x06001279 RID: 4729 RVA: 0x00090C24 File Offset: 0x0008EE24
 	private void Update()
 	{
 		if (this.CanPickUp)

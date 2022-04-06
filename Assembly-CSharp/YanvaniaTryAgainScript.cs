@@ -2,16 +2,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020004EC RID: 1260
+// Token: 0x020004ED RID: 1261
 public class YanvaniaTryAgainScript : MonoBehaviour
 {
-	// Token: 0x060020E1 RID: 8417 RVA: 0x001E5328 File Offset: 0x001E3528
+	// Token: 0x060020E9 RID: 8425 RVA: 0x001E5858 File Offset: 0x001E3A58
 	private void Start()
 	{
 		base.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x060020E2 RID: 8418 RVA: 0x001E533C File Offset: 0x001E353C
+	// Token: 0x060020EA RID: 8426 RVA: 0x001E586C File Offset: 0x001E3A6C
 	private void Update()
 	{
 		if (!this.FadeOut)
@@ -61,21 +61,21 @@ public class YanvaniaTryAgainScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400485E RID: 18526
+	// Token: 0x04004862 RID: 18530
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400485F RID: 18527
+	// Token: 0x04004863 RID: 18531
 	public GameObject ButtonEffect;
 
-	// Token: 0x04004860 RID: 18528
+	// Token: 0x04004864 RID: 18532
 	public Transform Highlight;
 
-	// Token: 0x04004861 RID: 18529
+	// Token: 0x04004865 RID: 18533
 	public UISprite Darkness;
 
-	// Token: 0x04004862 RID: 18530
+	// Token: 0x04004866 RID: 18534
 	public bool FadeOut;
 
-	// Token: 0x04004863 RID: 18531
+	// Token: 0x04004867 RID: 18535
 	public int Selected = 1;
 }

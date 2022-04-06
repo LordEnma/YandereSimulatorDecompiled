@@ -1361,51 +1361,51 @@ public class UIWidget : UIRect
 	// Token: 0x04000595 RID: 1429
 	private Vector3 mOldV1;
 
-	// Token: 0x0200060B RID: 1547
+	// Token: 0x0200060C RID: 1548
 	[DoNotObfuscateNGUI]
 	public enum Pivot
 	{
-		// Token: 0x04004E86 RID: 20102
-		TopLeft,
-		// Token: 0x04004E87 RID: 20103
-		Top,
-		// Token: 0x04004E88 RID: 20104
-		TopRight,
-		// Token: 0x04004E89 RID: 20105
-		Left,
 		// Token: 0x04004E8A RID: 20106
-		Center,
+		TopLeft,
 		// Token: 0x04004E8B RID: 20107
-		Right,
+		Top,
 		// Token: 0x04004E8C RID: 20108
-		BottomLeft,
+		TopRight,
 		// Token: 0x04004E8D RID: 20109
-		Bottom,
+		Left,
 		// Token: 0x04004E8E RID: 20110
+		Center,
+		// Token: 0x04004E8F RID: 20111
+		Right,
+		// Token: 0x04004E90 RID: 20112
+		BottomLeft,
+		// Token: 0x04004E91 RID: 20113
+		Bottom,
+		// Token: 0x04004E92 RID: 20114
 		BottomRight
 	}
 
-	// Token: 0x0200060C RID: 1548
-	// (Invoke) Token: 0x060025B4 RID: 9652
+	// Token: 0x0200060D RID: 1549
+	// (Invoke) Token: 0x060025BC RID: 9660
 	public delegate void OnDimensionsChanged();
 
-	// Token: 0x0200060D RID: 1549
-	// (Invoke) Token: 0x060025B8 RID: 9656
+	// Token: 0x0200060E RID: 1550
+	// (Invoke) Token: 0x060025C0 RID: 9664
 	public delegate void OnPostFillCallback(UIWidget widget, int bufferOffset, List<Vector3> verts, List<Vector2> uvs, List<Color> cols);
 
-	// Token: 0x0200060E RID: 1550
+	// Token: 0x0200060F RID: 1551
 	[DoNotObfuscateNGUI]
 	public enum AspectRatioSource
 	{
-		// Token: 0x04004E90 RID: 20112
+		// Token: 0x04004E94 RID: 20116
 		Free,
-		// Token: 0x04004E91 RID: 20113
+		// Token: 0x04004E95 RID: 20117
 		BasedOnWidth,
-		// Token: 0x04004E92 RID: 20114
+		// Token: 0x04004E96 RID: 20118
 		BasedOnHeight
 	}
 
-	// Token: 0x0200060F RID: 1551
-	// (Invoke) Token: 0x060025BC RID: 9660
+	// Token: 0x02000610 RID: 1552
+	// (Invoke) Token: 0x060025C4 RID: 9668
 	public delegate bool HitCheck(Vector3 worldPos);
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004B8 RID: 1208
+// Token: 0x020004B9 RID: 1209
 public class VendingMachineScript : MonoBehaviour
 {
-	// Token: 0x06001FAB RID: 8107 RVA: 0x001BDC94 File Offset: 0x001BBE94
+	// Token: 0x06001FB3 RID: 8115 RVA: 0x001BE19C File Offset: 0x001BC39C
 	private void Start()
 	{
 		if (this.SnackMachine)
@@ -18,7 +18,7 @@ public class VendingMachineScript : MonoBehaviour
 		this.Prompt.Label[0].text = "     " + this.Prompt.Text[0];
 	}
 
-	// Token: 0x06001FAC RID: 8108 RVA: 0x001BDD24 File Offset: 0x001BBF24
+	// Token: 0x06001FB4 RID: 8116 RVA: 0x001BE22C File Offset: 0x001BC42C
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -45,21 +45,21 @@ public class VendingMachineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004226 RID: 16934
+	// Token: 0x04004229 RID: 16937
 	public PromptScript Prompt;
 
-	// Token: 0x04004227 RID: 16935
+	// Token: 0x0400422A RID: 16938
 	public Transform CanSpawn;
 
-	// Token: 0x04004228 RID: 16936
+	// Token: 0x0400422B RID: 16939
 	public GameObject[] Cans;
 
-	// Token: 0x04004229 RID: 16937
+	// Token: 0x0400422C RID: 16940
 	public bool SnackMachine;
 
-	// Token: 0x0400422A RID: 16938
+	// Token: 0x0400422D RID: 16941
 	public bool Sabotaged;
 
-	// Token: 0x0400422B RID: 16939
+	// Token: 0x0400422E RID: 16942
 	public int Price;
 }

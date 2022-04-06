@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002CC RID: 716
+// Token: 0x020002CD RID: 717
 public class FixDummyScript : MonoBehaviour
 {
-	// Token: 0x060014AC RID: 5292 RVA: 0x000CBAA0 File Offset: 0x000C9CA0
+	// Token: 0x060014B2 RID: 5298 RVA: 0x000CBBA8 File Offset: 0x000C9DA8
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -23,9 +23,9 @@ public class FixDummyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002061 RID: 8289
+	// Token: 0x04002063 RID: 8291
 	public GameObject FixedDummy;
 
-	// Token: 0x04002062 RID: 8290
+	// Token: 0x04002064 RID: 8292
 	public PromptScript Prompt;
 }

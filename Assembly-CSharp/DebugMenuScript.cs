@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000277 RID: 631
 public class DebugMenuScript : MonoBehaviour
 {
-	// Token: 0x06001362 RID: 4962 RVA: 0x000AF348 File Offset: 0x000AD548
+	// Token: 0x06001362 RID: 4962 RVA: 0x000AF360 File Offset: 0x000AD560
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(base.transform.localPosition.x, 0f, base.transform.localPosition.z);
@@ -15,7 +15,7 @@ public class DebugMenuScript : MonoBehaviour
 		this.NoDebug = true;
 	}
 
-	// Token: 0x06001363 RID: 4963 RVA: 0x000AF3B0 File Offset: 0x000AD5B0
+	// Token: 0x06001363 RID: 4963 RVA: 0x000AF3C8 File Offset: 0x000AD5C8
 	private void Update()
 	{
 		if (!this.MissionMode && !this.NoDebug)
@@ -760,7 +760,7 @@ public class DebugMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001364 RID: 4964 RVA: 0x000B0E8C File Offset: 0x000AF08C
+	// Token: 0x06001364 RID: 4964 RVA: 0x000B0EA4 File Offset: 0x000AF0A4
 	public void Censor()
 	{
 		if (GameGlobals.CensorPanties)
@@ -840,7 +840,7 @@ public class DebugMenuScript : MonoBehaviour
 		this.StudentManager.CensorStudents();
 	}
 
-	// Token: 0x06001365 RID: 4965 RVA: 0x000B13BC File Offset: 0x000AF5BC
+	// Token: 0x06001365 RID: 4965 RVA: 0x000B13D4 File Offset: 0x000AF5D4
 	public void EasterEggCheck()
 	{
 		Debug.Log("Checking for easter eggs.");
@@ -892,14 +892,14 @@ public class DebugMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001366 RID: 4966 RVA: 0x000B17FC File Offset: 0x000AF9FC
+	// Token: 0x06001366 RID: 4966 RVA: 0x000B1814 File Offset: 0x000AFA14
 	public void UpdateCensor()
 	{
 		this.Censor();
 		this.Censor();
 	}
 
-	// Token: 0x06001367 RID: 4967 RVA: 0x000B180C File Offset: 0x000AFA0C
+	// Token: 0x06001367 RID: 4967 RVA: 0x000B1824 File Offset: 0x000AFA24
 	public void DebugTest()
 	{
 		if (this.DebugInt == 0)

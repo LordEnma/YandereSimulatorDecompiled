@@ -2271,61 +2271,61 @@ public class UILabel : UIWidget
 	// Token: 0x0400071D RID: 1821
 	private static List<int> mTempIndices = new List<int>();
 
-	// Token: 0x0200063B RID: 1595
+	// Token: 0x0200063C RID: 1596
 	[DoNotObfuscateNGUI]
 	public enum Effect
 	{
-		// Token: 0x04004F11 RID: 20241
+		// Token: 0x04004F15 RID: 20245
 		None,
-		// Token: 0x04004F12 RID: 20242
-		Shadow,
-		// Token: 0x04004F13 RID: 20243
-		Outline,
-		// Token: 0x04004F14 RID: 20244
-		Outline8
-	}
-
-	// Token: 0x0200063C RID: 1596
-	[DoNotObfuscateNGUI]
-	public enum Overflow
-	{
 		// Token: 0x04004F16 RID: 20246
-		ShrinkContent,
+		Shadow,
 		// Token: 0x04004F17 RID: 20247
-		ClampContent,
+		Outline,
 		// Token: 0x04004F18 RID: 20248
-		ResizeFreely,
-		// Token: 0x04004F19 RID: 20249
-		ResizeHeight
+		Outline8
 	}
 
 	// Token: 0x0200063D RID: 1597
 	[DoNotObfuscateNGUI]
-	public enum Crispness
+	public enum Overflow
 	{
+		// Token: 0x04004F1A RID: 20250
+		ShrinkContent,
 		// Token: 0x04004F1B RID: 20251
-		Never,
+		ClampContent,
 		// Token: 0x04004F1C RID: 20252
-		OnDesktop,
+		ResizeFreely,
 		// Token: 0x04004F1D RID: 20253
-		Always
+		ResizeHeight
 	}
 
 	// Token: 0x0200063E RID: 1598
 	[DoNotObfuscateNGUI]
-	public enum Modifier
+	public enum Crispness
 	{
 		// Token: 0x04004F1F RID: 20255
-		None,
+		Never,
 		// Token: 0x04004F20 RID: 20256
-		ToUppercase,
+		OnDesktop,
 		// Token: 0x04004F21 RID: 20257
-		ToLowercase,
-		// Token: 0x04004F22 RID: 20258
-		Custom = 255
+		Always
 	}
 
 	// Token: 0x0200063F RID: 1599
-	// (Invoke) Token: 0x06002629 RID: 9769
+	[DoNotObfuscateNGUI]
+	public enum Modifier
+	{
+		// Token: 0x04004F23 RID: 20259
+		None,
+		// Token: 0x04004F24 RID: 20260
+		ToUppercase,
+		// Token: 0x04004F25 RID: 20261
+		ToLowercase,
+		// Token: 0x04004F26 RID: 20262
+		Custom = 255
+	}
+
+	// Token: 0x02000640 RID: 1600
+	// (Invoke) Token: 0x06002631 RID: 9777
 	public delegate string ModifierFunc(string s);
 }

@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004D6 RID: 1238
+// Token: 0x020004D7 RID: 1239
 public class YandereShoeLockerScript : MonoBehaviour
 {
-	// Token: 0x0600209E RID: 8350 RVA: 0x001E10E4 File Offset: 0x001DF2E4
+	// Token: 0x060020A6 RID: 8358 RVA: 0x001E1604 File Offset: 0x001DF804
 	private void Update()
 	{
-		if (this.Yandere.CanMove && this.Yandere.Schoolwear == 1 && !this.Yandere.ClubAttire && !this.Yandere.Egg)
+		if (this.Yandere.CanMove && this.Yandere.Schoolwear == 1 && !this.Yandere.ClubAttire && !this.Yandere.Egg && !this.Yandere.WearingRaincoat)
 		{
 			if (this.Outdoors)
 			{
@@ -26,7 +26,7 @@ public class YandereShoeLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600209F RID: 8351 RVA: 0x001E1244 File Offset: 0x001DF444
+	// Token: 0x060020A7 RID: 8359 RVA: 0x001E1774 File Offset: 0x001DF974
 	private void UpdateShoes()
 	{
 		this.Yandere.Casual = this.Outdoors;
@@ -34,9 +34,9 @@ public class YandereShoeLockerScript : MonoBehaviour
 		this.Yandere.CanMove = true;
 	}
 
-	// Token: 0x040047B1 RID: 18353
+	// Token: 0x040047B5 RID: 18357
 	public YandereScript Yandere;
 
-	// Token: 0x040047B2 RID: 18354
+	// Token: 0x040047B6 RID: 18358
 	public bool Outdoors = true;
 }

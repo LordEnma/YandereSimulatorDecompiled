@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000480 RID: 1152
+// Token: 0x02000481 RID: 1153
 public class TitleSponsorScript : MonoBehaviour
 {
-	// Token: 0x06001EF4 RID: 7924 RVA: 0x001B54D1 File Offset: 0x001B36D1
+	// Token: 0x06001EFC RID: 7932 RVA: 0x001B59D9 File Offset: 0x001B3BD9
 	private void Start()
 	{
 		this.UpdateHighlight();
@@ -14,19 +14,19 @@ public class TitleSponsorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EF5 RID: 7925 RVA: 0x001B54E6 File Offset: 0x001B36E6
+	// Token: 0x06001EFD RID: 7933 RVA: 0x001B59EE File Offset: 0x001B3BEE
 	public int GetSponsorIndex()
 	{
 		return this.Column + this.Row * this.Columns;
 	}
 
-	// Token: 0x06001EF6 RID: 7926 RVA: 0x001B54FC File Offset: 0x001B36FC
+	// Token: 0x06001EFE RID: 7934 RVA: 0x001B5A04 File Offset: 0x001B3C04
 	public bool SponsorHasWebsite(int index)
 	{
 		return !string.IsNullOrEmpty(this.SponsorURLs[index]);
 	}
 
-	// Token: 0x06001EF7 RID: 7927 RVA: 0x001B5510 File Offset: 0x001B3710
+	// Token: 0x06001EFF RID: 7935 RVA: 0x001B5A18 File Offset: 0x001B3C18
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -79,14 +79,14 @@ public class TitleSponsorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EF8 RID: 7928 RVA: 0x001B5718 File Offset: 0x001B3918
+	// Token: 0x06001F00 RID: 7936 RVA: 0x001B5C20 File Offset: 0x001B3E20
 	private void UpdateHighlight()
 	{
 		this.Highlight.localPosition = new Vector3(-384f + (float)this.Column * 256f, 128f - (float)this.Row * 256f, this.Highlight.localPosition.z);
 		this.SponsorName.text = this.Sponsors[this.GetSponsorIndex()];
 	}
 
-	// Token: 0x06001EF9 RID: 7929 RVA: 0x001B5784 File Offset: 0x001B3984
+	// Token: 0x06001F01 RID: 7937 RVA: 0x001B5C8C File Offset: 0x001B3E8C
 	private void TurnLoveSick()
 	{
 		this.BlackSprite.color = Color.black;
@@ -100,48 +100,48 @@ public class TitleSponsorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400408B RID: 16523
+	// Token: 0x0400408E RID: 16526
 	public NewTitleScreenScript NewTitleScreen;
 
-	// Token: 0x0400408C RID: 16524
+	// Token: 0x0400408F RID: 16527
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400408D RID: 16525
+	// Token: 0x04004090 RID: 16528
 	public PromptBarScript PromptBar;
 
-	// Token: 0x0400408E RID: 16526
+	// Token: 0x04004091 RID: 16529
 	public string[] SponsorURLs;
 
-	// Token: 0x0400408F RID: 16527
+	// Token: 0x04004092 RID: 16530
 	public string[] Sponsors;
 
-	// Token: 0x04004090 RID: 16528
+	// Token: 0x04004093 RID: 16531
 	public UILabel SponsorName;
 
-	// Token: 0x04004091 RID: 16529
+	// Token: 0x04004094 RID: 16532
 	public Transform Highlight;
 
-	// Token: 0x04004092 RID: 16530
+	// Token: 0x04004095 RID: 16533
 	public bool Show;
 
-	// Token: 0x04004093 RID: 16531
+	// Token: 0x04004096 RID: 16534
 	public int Columns;
 
-	// Token: 0x04004094 RID: 16532
+	// Token: 0x04004097 RID: 16535
 	public int Rows;
 
-	// Token: 0x04004095 RID: 16533
+	// Token: 0x04004098 RID: 16536
 	private int Column;
 
-	// Token: 0x04004096 RID: 16534
+	// Token: 0x04004099 RID: 16537
 	private int Row;
 
-	// Token: 0x04004097 RID: 16535
+	// Token: 0x0400409A RID: 16538
 	public UISprite BlackSprite;
 
-	// Token: 0x04004098 RID: 16536
+	// Token: 0x0400409B RID: 16539
 	public UISprite[] RedSprites;
 
-	// Token: 0x04004099 RID: 16537
+	// Token: 0x0400409C RID: 16540
 	public UILabel[] Labels;
 }

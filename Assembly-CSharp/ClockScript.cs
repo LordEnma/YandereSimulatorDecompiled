@@ -5,7 +5,7 @@ using UnityEngine.PostProcessing;
 // Token: 0x0200024D RID: 589
 public class ClockScript : MonoBehaviour
 {
-	// Token: 0x0600126C RID: 4716 RVA: 0x0008F4CC File Offset: 0x0008D6CC
+	// Token: 0x0600126C RID: 4716 RVA: 0x0008F4E4 File Offset: 0x0008D6E4
 	private void Start()
 	{
 		if (!this.MissionMode)
@@ -125,7 +125,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600126D RID: 4717 RVA: 0x0008F8FC File Offset: 0x0008DAFC
+	// Token: 0x0600126D RID: 4717 RVA: 0x0008F914 File Offset: 0x0008DB14
 	public void Update()
 	{
 		if (this.FadeIn && Time.deltaTime < 1f)
@@ -401,7 +401,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600126E RID: 4718 RVA: 0x00090620 File Offset: 0x0008E820
+	// Token: 0x0600126E RID: 4718 RVA: 0x00090638 File Offset: 0x0008E838
 	public void EndTimeSkip()
 	{
 		if (GameGlobals.AlphabetMode)
@@ -425,7 +425,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600126F RID: 4719 RVA: 0x00090724 File Offset: 0x0008E924
+	// Token: 0x0600126F RID: 4719 RVA: 0x0009073C File Offset: 0x0008E93C
 	public string GetWeekdayText(DayOfWeek weekday)
 	{
 		if (weekday == DayOfWeek.Sunday)
@@ -462,7 +462,7 @@ public class ClockScript : MonoBehaviour
 		return "SATURDAY";
 	}
 
-	// Token: 0x06001270 RID: 4720 RVA: 0x000907A4 File Offset: 0x0008E9A4
+	// Token: 0x06001270 RID: 4720 RVA: 0x000907BC File Offset: 0x0008E9BC
 	private void ActivateTrespassZones()
 	{
 		if (!this.SchoolBell.isPlaying || this.SchoolBell.time > 1f)
@@ -476,7 +476,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001271 RID: 4721 RVA: 0x000907FC File Offset: 0x0008E9FC
+	// Token: 0x06001271 RID: 4721 RVA: 0x00090814 File Offset: 0x0008EA14
 	public void DeactivateTrespassZones()
 	{
 		this.Yandere.Trespassing = false;
@@ -493,7 +493,7 @@ public class ClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001272 RID: 4722 RVA: 0x0009087C File Offset: 0x0008EA7C
+	// Token: 0x06001272 RID: 4722 RVA: 0x00090894 File Offset: 0x0008EA94
 	public void ActivateLateStudent()
 	{
 		if (!this.StudentManager.MissionMode && this.StudentManager.Students[7] != null)
@@ -506,7 +506,7 @@ public class ClockScript : MonoBehaviour
 		this.LateStudent = false;
 	}
 
-	// Token: 0x06001273 RID: 4723 RVA: 0x0009090C File Offset: 0x0008EB0C
+	// Token: 0x06001273 RID: 4723 RVA: 0x00090924 File Offset: 0x0008EB24
 	public void NightLighting()
 	{
 		this.MainLight.color = new Color(0.25f, 0.25f, 0.5f);
@@ -515,7 +515,7 @@ public class ClockScript : MonoBehaviour
 		RenderSettings.skybox.SetColor("_Tint", new Color(0.1f, 0.1f, 0.2f));
 	}
 
-	// Token: 0x06001274 RID: 4724 RVA: 0x00090990 File Offset: 0x0008EB90
+	// Token: 0x06001274 RID: 4724 RVA: 0x000909A8 File Offset: 0x0008EBA8
 	public void UpdateClock()
 	{
 		this.LastMinute = this.Minute;
@@ -543,7 +543,7 @@ public class ClockScript : MonoBehaviour
 		this.TimeLabel.text = this.TimeText;
 	}
 
-	// Token: 0x06001275 RID: 4725 RVA: 0x00090AA0 File Offset: 0x0008ECA0
+	// Token: 0x06001275 RID: 4725 RVA: 0x00090AB8 File Offset: 0x0008ECB8
 	public void BecomeEighties()
 	{
 		this.StudentManager.EightiesifyLabel(this.TimeLabel);
@@ -553,7 +553,7 @@ public class ClockScript : MonoBehaviour
 		this.LateStudent = false;
 	}
 
-	// Token: 0x06001276 RID: 4726 RVA: 0x00090B04 File Offset: 0x0008ED04
+	// Token: 0x06001276 RID: 4726 RVA: 0x00090B1C File Offset: 0x0008ED1C
 	public void GivePlayerBroughtWeapon()
 	{
 		int bringingItem = PlayerGlobals.BringingItem;

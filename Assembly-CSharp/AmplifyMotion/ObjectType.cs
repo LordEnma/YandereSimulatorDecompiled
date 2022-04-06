@@ -2,18 +2,18 @@
 
 namespace AmplifyMotion
 {
-	// Token: 0x02000589 RID: 1417
+	// Token: 0x0200058A RID: 1418
 	public enum ObjectType
 	{
-		// Token: 0x04004C0A RID: 19466
-		None,
-		// Token: 0x04004C0B RID: 19467
-		Solid,
-		// Token: 0x04004C0C RID: 19468
-		Skinned,
-		// Token: 0x04004C0D RID: 19469
-		Cloth,
 		// Token: 0x04004C0E RID: 19470
+		None,
+		// Token: 0x04004C0F RID: 19471
+		Solid,
+		// Token: 0x04004C10 RID: 19472
+		Skinned,
+		// Token: 0x04004C11 RID: 19473
+		Cloth,
+		// Token: 0x04004C12 RID: 19474
 		Particle
 	}
 }

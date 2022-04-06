@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000266 RID: 614
 public class CreditsLabelScript : MonoBehaviour
 {
-	// Token: 0x060012FD RID: 4861 RVA: 0x000A8358 File Offset: 0x000A6558
+	// Token: 0x060012FD RID: 4861 RVA: 0x000A8370 File Offset: 0x000A6570
 	private void Start()
 	{
 		this.Rotation = -90f;
 		base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, this.Rotation, base.transform.localEulerAngles.z);
 	}
 
-	// Token: 0x060012FE RID: 4862 RVA: 0x000A83A8 File Offset: 0x000A65A8
+	// Token: 0x060012FE RID: 4862 RVA: 0x000A83C0 File Offset: 0x000A65C0
 	private void Update()
 	{
 		this.Rotation += Time.deltaTime * this.RotationSpeed;

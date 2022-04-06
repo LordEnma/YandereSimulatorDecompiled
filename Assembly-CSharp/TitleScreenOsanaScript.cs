@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000481 RID: 1153
+// Token: 0x02000482 RID: 1154
 public class TitleScreenOsanaScript : MonoBehaviour
 {
-	// Token: 0x06001EFB RID: 7931 RVA: 0x001B5828 File Offset: 0x001B3A28
+	// Token: 0x06001F03 RID: 7939 RVA: 0x001B5D30 File Offset: 0x001B3F30
 	private void Start()
 	{
 		if (GameGlobals.SpecificEliminationID > 0)
@@ -14,15 +14,15 @@ public class TitleScreenOsanaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400409A RID: 16538
+	// Token: 0x0400409D RID: 16541
 	public NewTitleScreenScript NewTitleScreen;
 
-	// Token: 0x0400409B RID: 16539
+	// Token: 0x0400409E RID: 16542
 	public Animation CharacterAnimation;
 
-	// Token: 0x0400409C RID: 16540
+	// Token: 0x0400409F RID: 16543
 	public GameObject BloodPool;
 
-	// Token: 0x0400409D RID: 16541
+	// Token: 0x040040A0 RID: 16544
 	public GameObject[] DeadOsanas;
 }

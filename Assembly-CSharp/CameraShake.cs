@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000235 RID: 565
 public class CameraShake : MonoBehaviour
 {
-	// Token: 0x06001228 RID: 4648 RVA: 0x0008B85A File Offset: 0x00089A5A
+	// Token: 0x06001228 RID: 4648 RVA: 0x0008B872 File Offset: 0x00089A72
 	private void Awake()
 	{
 		if (this.camTransform == null)
@@ -13,13 +13,13 @@ public class CameraShake : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001229 RID: 4649 RVA: 0x0008B876 File Offset: 0x00089A76
+	// Token: 0x06001229 RID: 4649 RVA: 0x0008B88E File Offset: 0x00089A8E
 	private void OnEnable()
 	{
 		this.originalPos = this.camTransform.localPosition;
 	}
 
-	// Token: 0x0600122A RID: 4650 RVA: 0x0008B88C File Offset: 0x00089A8C
+	// Token: 0x0600122A RID: 4650 RVA: 0x0008B8A4 File Offset: 0x00089AA4
 	private void Update()
 	{
 		if (this.shake > 0f)

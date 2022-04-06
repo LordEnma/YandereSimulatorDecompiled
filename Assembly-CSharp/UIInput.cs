@@ -1498,73 +1498,73 @@ public class UIInput : MonoBehaviour
 	[NonSerialized]
 	public Action onDownArrow;
 
-	// Token: 0x02000636 RID: 1590
+	// Token: 0x02000637 RID: 1591
 	[DoNotObfuscateNGUI]
 	public enum InputType
 	{
-		// Token: 0x04004EF8 RID: 20216
-		Standard,
-		// Token: 0x04004EF9 RID: 20217
-		AutoCorrect,
-		// Token: 0x04004EFA RID: 20218
-		Password
-	}
-
-	// Token: 0x02000637 RID: 1591
-	[DoNotObfuscateNGUI]
-	public enum Validation
-	{
 		// Token: 0x04004EFC RID: 20220
-		None,
+		Standard,
 		// Token: 0x04004EFD RID: 20221
-		Integer,
+		AutoCorrect,
 		// Token: 0x04004EFE RID: 20222
-		Float,
-		// Token: 0x04004EFF RID: 20223
-		Alphanumeric,
-		// Token: 0x04004F00 RID: 20224
-		Username,
-		// Token: 0x04004F01 RID: 20225
-		Name,
-		// Token: 0x04004F02 RID: 20226
-		Filename
+		Password
 	}
 
 	// Token: 0x02000638 RID: 1592
 	[DoNotObfuscateNGUI]
-	public enum KeyboardType
+	public enum Validation
 	{
+		// Token: 0x04004F00 RID: 20224
+		None,
+		// Token: 0x04004F01 RID: 20225
+		Integer,
+		// Token: 0x04004F02 RID: 20226
+		Float,
+		// Token: 0x04004F03 RID: 20227
+		Alphanumeric,
 		// Token: 0x04004F04 RID: 20228
-		Default,
+		Username,
 		// Token: 0x04004F05 RID: 20229
-		ASCIICapable,
+		Name,
 		// Token: 0x04004F06 RID: 20230
-		NumbersAndPunctuation,
-		// Token: 0x04004F07 RID: 20231
-		URL,
-		// Token: 0x04004F08 RID: 20232
-		NumberPad,
-		// Token: 0x04004F09 RID: 20233
-		PhonePad,
-		// Token: 0x04004F0A RID: 20234
-		NamePhonePad,
-		// Token: 0x04004F0B RID: 20235
-		EmailAddress
+		Filename
 	}
 
 	// Token: 0x02000639 RID: 1593
 	[DoNotObfuscateNGUI]
-	public enum OnReturnKey
+	public enum KeyboardType
 	{
-		// Token: 0x04004F0D RID: 20237
+		// Token: 0x04004F08 RID: 20232
 		Default,
+		// Token: 0x04004F09 RID: 20233
+		ASCIICapable,
+		// Token: 0x04004F0A RID: 20234
+		NumbersAndPunctuation,
+		// Token: 0x04004F0B RID: 20235
+		URL,
+		// Token: 0x04004F0C RID: 20236
+		NumberPad,
+		// Token: 0x04004F0D RID: 20237
+		PhonePad,
 		// Token: 0x04004F0E RID: 20238
-		Submit,
+		NamePhonePad,
 		// Token: 0x04004F0F RID: 20239
-		NewLine
+		EmailAddress
 	}
 
 	// Token: 0x0200063A RID: 1594
-	// (Invoke) Token: 0x06002625 RID: 9765
+	[DoNotObfuscateNGUI]
+	public enum OnReturnKey
+	{
+		// Token: 0x04004F11 RID: 20241
+		Default,
+		// Token: 0x04004F12 RID: 20242
+		Submit,
+		// Token: 0x04004F13 RID: 20243
+		NewLine
+	}
+
+	// Token: 0x0200063B RID: 1595
+	// (Invoke) Token: 0x0600262D RID: 9773
 	public delegate char OnValidate(string text, int charIndex, char addedChar);
 }

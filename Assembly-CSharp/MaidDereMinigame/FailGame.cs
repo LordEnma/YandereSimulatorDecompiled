@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005B6 RID: 1462
+	// Token: 0x020005B7 RID: 1463
 	public class FailGame : MonoBehaviour
 	{
 		// Token: 0x1700052C RID: 1324
-		// (get) Token: 0x060024CD RID: 9421 RVA: 0x002000D8 File Offset: 0x001FE2D8
+		// (get) Token: 0x060024D5 RID: 9429 RVA: 0x00200608 File Offset: 0x001FE808
 		public static FailGame Instance
 		{
 			get
@@ -21,7 +21,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024CE RID: 9422 RVA: 0x002000F8 File Offset: 0x001FE2F8
+		// Token: 0x060024D6 RID: 9430 RVA: 0x00200628 File Offset: 0x001FE828
 		private void Awake()
 		{
 			this.spriteRenderer = base.GetComponent<SpriteRenderer>();
@@ -29,7 +29,7 @@ namespace MaidDereMinigame
 			this.targetTransitionTime = GameController.Instance.activeDifficultyVariables.transitionTime * this.fadeMultiplier;
 		}
 
-		// Token: 0x060024CF RID: 9423 RVA: 0x00200144 File Offset: 0x001FE344
+		// Token: 0x060024D7 RID: 9431 RVA: 0x00200674 File Offset: 0x001FE874
 		public static void GameFailed()
 		{
 			FailGame.Instance.StartCoroutine(FailGame.Instance.GameFailedRoutine());
@@ -37,7 +37,7 @@ namespace MaidDereMinigame
 			SFXController.PlaySound(SFXController.Sounds.GameFail);
 		}
 
-		// Token: 0x060024D0 RID: 9424 RVA: 0x00200176 File Offset: 0x001FE376
+		// Token: 0x060024D8 RID: 9432 RVA: 0x002006A6 File Offset: 0x001FE8A6
 		private IEnumerator GameFailedRoutine()
 		{
 			UnityEngine.Object.FindObjectOfType<InteractionMenu>().gameObject.SetActive(false);
@@ -64,7 +64,7 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x060024D1 RID: 9425 RVA: 0x00200185 File Offset: 0x001FE385
+		// Token: 0x060024D9 RID: 9433 RVA: 0x002006B5 File Offset: 0x001FE8B5
 		private IEnumerator SlowPitch()
 		{
 			GameStarter starter = UnityEngine.Object.FindObjectOfType<GameStarter>();
@@ -79,22 +79,22 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x04004D1F RID: 19743
+		// Token: 0x04004D23 RID: 19747
 		private static FailGame instance;
 
-		// Token: 0x04004D20 RID: 19744
+		// Token: 0x04004D24 RID: 19748
 		public float fadeMultiplier = 2f;
 
-		// Token: 0x04004D21 RID: 19745
+		// Token: 0x04004D25 RID: 19749
 		private SpriteRenderer spriteRenderer;
 
-		// Token: 0x04004D22 RID: 19746
+		// Token: 0x04004D26 RID: 19750
 		private SpriteRenderer textRenderer;
 
-		// Token: 0x04004D23 RID: 19747
+		// Token: 0x04004D27 RID: 19751
 		private float targetTransitionTime;
 
-		// Token: 0x04004D24 RID: 19748
+		// Token: 0x04004D28 RID: 19752
 		private float transitionTime;
 	}
 }

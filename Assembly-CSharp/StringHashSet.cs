@@ -1,6 +1,6 @@
 ﻿using System;
 
-// Token: 0x020004B4 RID: 1204
+// Token: 0x020004B5 RID: 1205
 [Serializable]
 public class StringHashSet : SerializableHashSet<string>
 {

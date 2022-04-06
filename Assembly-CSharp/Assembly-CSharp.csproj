@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{B6C0C981-2214-44E4-A5AC-264B63A2E736}</ProjectGuid>
+    <ProjectGuid>{A50BFFF3-E702-48B8-B61C-FBD1AD82447A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Assembly-CSharp</RootNamespace>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -645,6 +645,7 @@
     <Compile Include="DetectClickScript.cs" />
     <Compile Include="DetectionCameraScript.cs" />
     <Compile Include="DetectionMarkerScript.cs" />
+    <Compile Include="DetectReloadScript.cs" />
     <Compile Include="DialogueWheelScript.cs" />
     <Compile Include="DipJukeboxScript.cs" />
     <Compile Include="Direction.cs" />

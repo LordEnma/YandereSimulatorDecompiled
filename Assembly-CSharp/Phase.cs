@@ -1,18 +1,18 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200039D RID: 925
+// Token: 0x0200039E RID: 926
 [Serializable]
 public class Phase
 {
-	// Token: 0x06001A81 RID: 6785 RVA: 0x0011C3BE File Offset: 0x0011A5BE
+	// Token: 0x06001A87 RID: 6791 RVA: 0x0011C56A File Offset: 0x0011A76A
 	public Phase(PhaseOfDay type)
 	{
 		this.type = type;
 	}
 
 	// Token: 0x17000497 RID: 1175
-	// (get) Token: 0x06001A82 RID: 6786 RVA: 0x0011C3CD File Offset: 0x0011A5CD
+	// (get) Token: 0x06001A88 RID: 6792 RVA: 0x0011C579 File Offset: 0x0011A779
 	public PhaseOfDay Type
 	{
 		get
@@ -21,7 +21,7 @@ public class Phase
 		}
 	}
 
-	// Token: 0x04002BE0 RID: 11232
+	// Token: 0x04002BE3 RID: 11235
 	[SerializeField]
 	private PhaseOfDay type;
 }

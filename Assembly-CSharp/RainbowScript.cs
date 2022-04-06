@@ -1,32 +1,32 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003CC RID: 972
+// Token: 0x020003CD RID: 973
 public class RainbowScript : MonoBehaviour
 {
-	// Token: 0x06001B6A RID: 7018 RVA: 0x001351E9 File Offset: 0x001333E9
+	// Token: 0x06001B70 RID: 7024 RVA: 0x00135401 File Offset: 0x00133601
 	private void Start()
 	{
 		this.MyRenderer.material.color = Color.red;
 		this.cyclesPerSecond = 0.25f;
 	}
 
-	// Token: 0x06001B6B RID: 7019 RVA: 0x0013520C File Offset: 0x0013340C
+	// Token: 0x06001B71 RID: 7025 RVA: 0x00135424 File Offset: 0x00133624
 	private void Update()
 	{
 		this.percent = (this.percent + Time.deltaTime * this.cyclesPerSecond) % 1f;
 		this.MyRenderer.material.color = Color.HSVToRGB(this.percent, 1f, 1f);
 	}
 
-	// Token: 0x04002F0F RID: 12047
+	// Token: 0x04002F12 RID: 12050
 	[SerializeField]
 	private Renderer MyRenderer;
 
-	// Token: 0x04002F10 RID: 12048
+	// Token: 0x04002F13 RID: 12051
 	[SerializeField]
 	private float cyclesPerSecond;
 
-	// Token: 0x04002F11 RID: 12049
+	// Token: 0x04002F14 RID: 12052
 	[SerializeField]
 	private float percent;
 }

@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004E1 RID: 1249
+// Token: 0x020004E2 RID: 1250
 public class YanvaniaDoubleFireballScript : MonoBehaviour
 {
-	// Token: 0x060020BB RID: 8379 RVA: 0x001E1E08 File Offset: 0x001E0008
+	// Token: 0x060020C3 RID: 8387 RVA: 0x001E2338 File Offset: 0x001E0538
 	private void Start()
 	{
 		UnityEngine.Object.Instantiate<GameObject>(this.LightningEffect, new Vector3(base.transform.position.x, 8f, 0f), Quaternion.identity);
 		this.Direction = ((this.Dracula.position.x > base.transform.position.x) ? -1 : 1);
 	}
 
-	// Token: 0x060020BC RID: 8380 RVA: 0x001E1E74 File Offset: 0x001E0074
+	// Token: 0x060020C4 RID: 8388 RVA: 0x001E23A4 File Offset: 0x001E05A4
 	private void Update()
 	{
 		if (this.Timer > 1f && !this.SpawnedFirst)
@@ -63,39 +63,39 @@ public class YanvaniaDoubleFireballScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040047DA RID: 18394
+	// Token: 0x040047DE RID: 18398
 	public GameObject Lavaball;
 
-	// Token: 0x040047DB RID: 18395
+	// Token: 0x040047DF RID: 18399
 	public GameObject FirstLavaball;
 
-	// Token: 0x040047DC RID: 18396
+	// Token: 0x040047E0 RID: 18400
 	public GameObject SecondLavaball;
 
-	// Token: 0x040047DD RID: 18397
+	// Token: 0x040047E1 RID: 18401
 	public GameObject LightningEffect;
 
-	// Token: 0x040047DE RID: 18398
+	// Token: 0x040047E2 RID: 18402
 	public Transform Dracula;
 
-	// Token: 0x040047DF RID: 18399
+	// Token: 0x040047E3 RID: 18403
 	public bool SpawnedFirst;
 
-	// Token: 0x040047E0 RID: 18400
+	// Token: 0x040047E4 RID: 18404
 	public bool SpawnedSecond;
 
-	// Token: 0x040047E1 RID: 18401
+	// Token: 0x040047E5 RID: 18405
 	public float FirstPosition;
 
-	// Token: 0x040047E2 RID: 18402
+	// Token: 0x040047E6 RID: 18406
 	public float SecondPosition;
 
-	// Token: 0x040047E3 RID: 18403
+	// Token: 0x040047E7 RID: 18407
 	public int Direction;
 
-	// Token: 0x040047E4 RID: 18404
+	// Token: 0x040047E8 RID: 18408
 	public float Timer;
 
-	// Token: 0x040047E5 RID: 18405
+	// Token: 0x040047E9 RID: 18409
 	public float Speed;
 }

@@ -2,16 +2,16 @@
 using UnityEngine;
 using XInputDotNetPure;
 
-// Token: 0x020004BA RID: 1210
+// Token: 0x020004BB RID: 1211
 public class VibrationScript : MonoBehaviour
 {
-	// Token: 0x06001FB1 RID: 8113 RVA: 0x001BDF13 File Offset: 0x001BC113
+	// Token: 0x06001FB9 RID: 8121 RVA: 0x001BE41B File Offset: 0x001BC61B
 	private void Start()
 	{
 		GamePad.SetVibration(PlayerIndex.One, this.Strength1, this.Strength2);
 	}
 
-	// Token: 0x06001FB2 RID: 8114 RVA: 0x001BDF27 File Offset: 0x001BC127
+	// Token: 0x06001FBA RID: 8122 RVA: 0x001BE42F File Offset: 0x001BC62F
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -22,15 +22,15 @@ public class VibrationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400422D RID: 16941
+	// Token: 0x04004230 RID: 16944
 	public float Strength1;
 
-	// Token: 0x0400422E RID: 16942
+	// Token: 0x04004231 RID: 16945
 	public float Strength2;
 
-	// Token: 0x0400422F RID: 16943
+	// Token: 0x04004232 RID: 16946
 	public float TimeLimit;
 
-	// Token: 0x04004230 RID: 16944
+	// Token: 0x04004233 RID: 16947
 	public float Timer;
 }

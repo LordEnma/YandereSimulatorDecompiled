@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004BC RID: 1212
+// Token: 0x020004BD RID: 1213
 public class VtuberHairReplacerScript : MonoBehaviour
 {
-	// Token: 0x06001FB9 RID: 8121 RVA: 0x001BF085 File Offset: 0x001BD285
+	// Token: 0x06001FC1 RID: 8129 RVA: 0x001BF58D File Offset: 0x001BD78D
 	private void Start()
 	{
 		if (GameGlobals.VtuberID > 0)
@@ -16,9 +16,9 @@ public class VtuberHairReplacerScript : MonoBehaviour
 		this.VtuberHair[1].SetActive(false);
 	}
 
-	// Token: 0x0400424B RID: 16971
+	// Token: 0x0400424E RID: 16974
 	public GameObject YandereHair;
 
-	// Token: 0x0400424C RID: 16972
+	// Token: 0x0400424F RID: 16975
 	public GameObject[] VtuberHair;
 }

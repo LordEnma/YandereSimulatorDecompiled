@@ -3,12 +3,12 @@ using UnityEngine;
 
 namespace RetroAesthetics
 {
-	// Token: 0x02000554 RID: 1364
+	// Token: 0x02000555 RID: 1365
 	[Serializable]
 	public class SceneField
 	{
 		// Token: 0x170004EB RID: 1259
-		// (get) Token: 0x060022CA RID: 8906 RVA: 0x001F3D59 File Offset: 0x001F1F59
+		// (get) Token: 0x060022D2 RID: 8914 RVA: 0x001F4289 File Offset: 0x001F2489
 		public string SceneName
 		{
 			get
@@ -17,17 +17,17 @@ namespace RetroAesthetics
 			}
 		}
 
-		// Token: 0x060022CB RID: 8907 RVA: 0x001F3D61 File Offset: 0x001F1F61
+		// Token: 0x060022D3 RID: 8915 RVA: 0x001F4291 File Offset: 0x001F2491
 		public static implicit operator string(SceneField sceneField)
 		{
 			return sceneField.SceneName;
 		}
 
-		// Token: 0x04004B4B RID: 19275
+		// Token: 0x04004B4F RID: 19279
 		[SerializeField]
 		private UnityEngine.Object m_SceneAsset;
 
-		// Token: 0x04004B4C RID: 19276
+		// Token: 0x04004B50 RID: 19280
 		[SerializeField]
 		private string m_SceneName = "";
 	}

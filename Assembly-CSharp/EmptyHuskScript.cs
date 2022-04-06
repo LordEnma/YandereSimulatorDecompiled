@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002A4 RID: 676
+// Token: 0x020002A5 RID: 677
 public class EmptyHuskScript : MonoBehaviour
 {
-	// Token: 0x06001424 RID: 5156 RVA: 0x000C0A54 File Offset: 0x000BEC54
+	// Token: 0x0600142A RID: 5162 RVA: 0x000C0B5C File Offset: 0x000BED5C
 	private void Update()
 	{
 		if (this.EatPhase < this.BloodTimes.Length && this.MyAnimation["f02_sixEat_00"].time > this.BloodTimes[this.EatPhase])
@@ -22,21 +22,21 @@ public class EmptyHuskScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001E5E RID: 7774
+	// Token: 0x04001E60 RID: 7776
 	public StudentScript TargetStudent;
 
-	// Token: 0x04001E5F RID: 7775
+	// Token: 0x04001E61 RID: 7777
 	public Animation MyAnimation;
 
-	// Token: 0x04001E60 RID: 7776
+	// Token: 0x04001E62 RID: 7778
 	public GameObject DarkAura;
 
-	// Token: 0x04001E61 RID: 7777
+	// Token: 0x04001E63 RID: 7779
 	public Transform Mouth;
 
-	// Token: 0x04001E62 RID: 7778
+	// Token: 0x04001E64 RID: 7780
 	public float[] BloodTimes;
 
-	// Token: 0x04001E63 RID: 7779
+	// Token: 0x04001E65 RID: 7781
 	public int EatPhase;
 }

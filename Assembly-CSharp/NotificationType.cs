@@ -1,44 +1,44 @@
 ﻿using System;
 
-// Token: 0x0200037F RID: 895
+// Token: 0x02000380 RID: 896
 public enum NotificationType
 {
-	// Token: 0x04002AB4 RID: 10932
-	Bloody,
-	// Token: 0x04002AB5 RID: 10933
-	Body,
-	// Token: 0x04002AB6 RID: 10934
-	Insane,
 	// Token: 0x04002AB7 RID: 10935
-	Armed,
+	Bloody,
 	// Token: 0x04002AB8 RID: 10936
-	Lewd,
+	Body,
 	// Token: 0x04002AB9 RID: 10937
-	Intrude,
+	Insane,
 	// Token: 0x04002ABA RID: 10938
-	Late,
+	Armed,
 	// Token: 0x04002ABB RID: 10939
-	Info,
+	Lewd,
 	// Token: 0x04002ABC RID: 10940
-	Topic,
+	Intrude,
 	// Token: 0x04002ABD RID: 10941
-	Opinion,
+	Late,
 	// Token: 0x04002ABE RID: 10942
-	Complete,
+	Info,
 	// Token: 0x04002ABF RID: 10943
-	Exfiltrate,
+	Topic,
 	// Token: 0x04002AC0 RID: 10944
-	Evidence,
+	Opinion,
 	// Token: 0x04002AC1 RID: 10945
-	ClassSoon,
+	Complete,
 	// Token: 0x04002AC2 RID: 10946
-	ClassNow,
+	Exfiltrate,
 	// Token: 0x04002AC3 RID: 10947
-	Eavesdropping,
+	Evidence,
 	// Token: 0x04002AC4 RID: 10948
-	Persona,
+	ClassSoon,
 	// Token: 0x04002AC5 RID: 10949
-	Clothing,
+	ClassNow,
 	// Token: 0x04002AC6 RID: 10950
+	Eavesdropping,
+	// Token: 0x04002AC7 RID: 10951
+	Persona,
+	// Token: 0x04002AC8 RID: 10952
+	Clothing,
+	// Token: 0x04002AC9 RID: 10953
 	Custom
 }

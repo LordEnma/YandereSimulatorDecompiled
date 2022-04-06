@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Cameras
 {
-	// Token: 0x0200054E RID: 1358
+	// Token: 0x0200054F RID: 1359
 	public class HandHeldCam : LookatTarget
 	{
-		// Token: 0x060022B6 RID: 8886 RVA: 0x001F343C File Offset: 0x001F163C
+		// Token: 0x060022BE RID: 8894 RVA: 0x001F396C File Offset: 0x001F1B6C
 		protected override void FollowTarget(float deltaTime)
 		{
 			base.FollowTarget(deltaTime);
@@ -21,19 +21,19 @@ namespace UnityStandardAssets.Cameras
 			base.transform.Rotate(num + num3, num2 + num4, 0f);
 		}
 
-		// Token: 0x04004B28 RID: 19240
+		// Token: 0x04004B2C RID: 19244
 		[SerializeField]
 		private float m_SwaySpeed = 0.5f;
 
-		// Token: 0x04004B29 RID: 19241
+		// Token: 0x04004B2D RID: 19245
 		[SerializeField]
 		private float m_BaseSwayAmount = 0.5f;
 
-		// Token: 0x04004B2A RID: 19242
+		// Token: 0x04004B2E RID: 19246
 		[SerializeField]
 		private float m_TrackingSwayAmount = 0.5f;
 
-		// Token: 0x04004B2B RID: 19243
+		// Token: 0x04004B2F RID: 19247
 		[Range(-1f, 1f)]
 		[SerializeField]
 		private float m_TrackingBias;

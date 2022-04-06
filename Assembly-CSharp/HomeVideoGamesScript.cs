@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x0200032A RID: 810
+// Token: 0x0200032B RID: 811
 public class HomeVideoGamesScript : MonoBehaviour
 {
-	// Token: 0x060018BD RID: 6333 RVA: 0x000F394C File Offset: 0x000F1B4C
+	// Token: 0x060018C3 RID: 6339 RVA: 0x000F3A4C File Offset: 0x000F1C4C
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -24,7 +24,7 @@ public class HomeVideoGamesScript : MonoBehaviour
 		this.TitleScreen.mainTexture = this.TitleScreens[1];
 	}
 
-	// Token: 0x060018BE RID: 6334 RVA: 0x000F3A28 File Offset: 0x000F1C28
+	// Token: 0x060018C4 RID: 6340 RVA: 0x000F3B28 File Offset: 0x000F1D28
 	private void Update()
 	{
 		if (this.HomeCamera.Destination == this.HomeCamera.Destinations[5])
@@ -94,7 +94,7 @@ public class HomeVideoGamesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018BF RID: 6335 RVA: 0x000F3DE0 File Offset: 0x000F1FE0
+	// Token: 0x060018C5 RID: 6341 RVA: 0x000F3EE0 File Offset: 0x000F20E0
 	public void Quit()
 	{
 		if (!this.HomeCamera.Eighties)
@@ -116,45 +116,45 @@ public class HomeVideoGamesScript : MonoBehaviour
 		this.PromptBar.Show = false;
 	}
 
-	// Token: 0x040025C2 RID: 9666
+	// Token: 0x040025C5 RID: 9669
 	public InputManagerScript InputManager;
 
-	// Token: 0x040025C3 RID: 9667
+	// Token: 0x040025C6 RID: 9670
 	public HomeDarknessScript HomeDarkness;
 
-	// Token: 0x040025C4 RID: 9668
+	// Token: 0x040025C7 RID: 9671
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x040025C5 RID: 9669
+	// Token: 0x040025C8 RID: 9672
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x040025C6 RID: 9670
+	// Token: 0x040025C9 RID: 9673
 	public HomeWindowScript HomeWindow;
 
-	// Token: 0x040025C7 RID: 9671
+	// Token: 0x040025CA RID: 9674
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040025C8 RID: 9672
+	// Token: 0x040025CB RID: 9675
 	public Texture[] TitleScreens;
 
-	// Token: 0x040025C9 RID: 9673
+	// Token: 0x040025CC RID: 9676
 	public UITexture TitleScreen;
 
-	// Token: 0x040025CA RID: 9674
+	// Token: 0x040025CD RID: 9677
 	public Transform Highlight;
 
-	// Token: 0x040025CB RID: 9675
+	// Token: 0x040025CE RID: 9678
 	public UILabel[] GameTitles;
 
-	// Token: 0x040025CC RID: 9676
+	// Token: 0x040025CF RID: 9679
 	public Transform TV;
 
-	// Token: 0x040025CD RID: 9677
+	// Token: 0x040025D0 RID: 9680
 	public int ID = 1;
 
-	// Token: 0x040025CE RID: 9678
+	// Token: 0x040025D1 RID: 9681
 	public GameObject EightiesController;
 
-	// Token: 0x040025CF RID: 9679
+	// Token: 0x040025D2 RID: 9682
 	public GameObject Controller;
 }

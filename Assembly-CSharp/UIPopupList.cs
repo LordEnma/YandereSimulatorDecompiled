@@ -1195,43 +1195,43 @@ public class UIPopupList : UIWidgetContainer
 	// Token: 0x04000405 RID: 1029
 	public GameObject source;
 
-	// Token: 0x020005DA RID: 1498
+	// Token: 0x020005DB RID: 1499
 	[DoNotObfuscateNGUI]
 	public enum Position
 	{
-		// Token: 0x04004E02 RID: 19970
-		Auto,
-		// Token: 0x04004E03 RID: 19971
-		Above,
-		// Token: 0x04004E04 RID: 19972
-		Below
-	}
-
-	// Token: 0x020005DB RID: 1499
-	[DoNotObfuscateNGUI]
-	public enum Selection
-	{
 		// Token: 0x04004E06 RID: 19974
-		OnPress,
+		Auto,
 		// Token: 0x04004E07 RID: 19975
-		OnClick
+		Above,
+		// Token: 0x04004E08 RID: 19976
+		Below
 	}
 
 	// Token: 0x020005DC RID: 1500
 	[DoNotObfuscateNGUI]
-	public enum OpenOn
+	public enum Selection
 	{
-		// Token: 0x04004E09 RID: 19977
-		ClickOrTap,
 		// Token: 0x04004E0A RID: 19978
-		RightClick,
+		OnPress,
 		// Token: 0x04004E0B RID: 19979
-		DoubleClick,
-		// Token: 0x04004E0C RID: 19980
-		Manual
+		OnClick
 	}
 
 	// Token: 0x020005DD RID: 1501
-	// (Invoke) Token: 0x0600253E RID: 9534
+	[DoNotObfuscateNGUI]
+	public enum OpenOn
+	{
+		// Token: 0x04004E0D RID: 19981
+		ClickOrTap,
+		// Token: 0x04004E0E RID: 19982
+		RightClick,
+		// Token: 0x04004E0F RID: 19983
+		DoubleClick,
+		// Token: 0x04004E10 RID: 19984
+		Manual
+	}
+
+	// Token: 0x020005DE RID: 1502
+	// (Invoke) Token: 0x06002546 RID: 9542
 	public delegate void LegacyEvent(string val);
 }

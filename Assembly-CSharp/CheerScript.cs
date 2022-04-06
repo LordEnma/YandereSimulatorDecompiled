@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000241 RID: 577
 public class CheerScript : MonoBehaviour
 {
-	// Token: 0x06001247 RID: 4679 RVA: 0x0008CB40 File Offset: 0x0008AD40
+	// Token: 0x06001247 RID: 4679 RVA: 0x0008CB58 File Offset: 0x0008AD58
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;

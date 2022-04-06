@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200036B RID: 875
+// Token: 0x0200036C RID: 876
 public class MissingPosterScript : MonoBehaviour
 {
-	// Token: 0x04002972 RID: 10610
+	// Token: 0x04002975 RID: 10613
 	public Renderer MyRenderer;
 }

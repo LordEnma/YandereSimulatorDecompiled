@@ -27,7 +27,7 @@ public class BookbagScript : MonoBehaviour
 				this.Prompt.Circle[0].fillAmount = 1f;
 				if (this.ConcealedPickup == null)
 				{
-					if (this.Prompt.Yandere.PickUp.TrashCan == null && !this.Prompt.Yandere.PickUp.JerryCan && !this.Prompt.Yandere.PickUp.Mop && !this.Prompt.Yandere.PickUp.Bucket && !this.Prompt.Yandere.PickUp.TooBig)
+					if (this.Prompt.Yandere.PickUp.TrashCan == null && !this.Prompt.Yandere.PickUp.JerryCan && !this.Prompt.Yandere.PickUp.Mop && !this.Prompt.Yandere.PickUp.Bucket && !this.Prompt.Yandere.PickUp.Bleach && !this.Prompt.Yandere.PickUp.TooBig)
 					{
 						this.ConcealedPickup = this.Prompt.Yandere.PickUp;
 						this.ConcealedPickup.Drop();
@@ -67,7 +67,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C480 File Offset: 0x0005A680
+	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C498 File Offset: 0x0005A698
 	public void Drop()
 	{
 		this.Worn = false;
@@ -80,7 +80,7 @@ public class BookbagScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x06000A5C RID: 2652 RVA: 0x0005C4F0 File Offset: 0x0005A6F0
+	// Token: 0x06000A5C RID: 2652 RVA: 0x0005C508 File Offset: 0x0005A708
 	public void Wear()
 	{
 		this.Worn = true;

@@ -5,16 +5,16 @@ using UnityEngine.Rendering;
 
 namespace AmplifyMotion
 {
-	// Token: 0x0200058B RID: 1419
+	// Token: 0x0200058C RID: 1420
 	internal class ClothState : MotionState
 	{
-		// Token: 0x060023F5 RID: 9205 RVA: 0x001FA548 File Offset: 0x001F8748
+		// Token: 0x060023FD RID: 9213 RVA: 0x001FAA78 File Offset: 0x001F8C78
 		public ClothState(AmplifyMotionCamera owner, AmplifyMotionObjectBase obj) : base(owner, obj)
 		{
 			this.m_cloth = this.m_obj.GetComponent<Cloth>();
 		}
 
-		// Token: 0x060023F6 RID: 9206 RVA: 0x001FA563 File Offset: 0x001F8763
+		// Token: 0x060023FE RID: 9214 RVA: 0x001FAA93 File Offset: 0x001F8C93
 		private void IssueError(string message)
 		{
 			if (!ClothState.m_uniqueWarnings.Contains(this.m_obj))
@@ -25,7 +25,7 @@ namespace AmplifyMotion
 			this.m_error = true;
 		}
 
-		// Token: 0x060023F7 RID: 9207 RVA: 0x001FA598 File Offset: 0x001F8798
+		// Token: 0x060023FF RID: 9215 RVA: 0x001FAAC8 File Offset: 0x001F8CC8
 		internal override void Initialize()
 		{
 			if (this.m_cloth.vertices == null)
@@ -90,13 +90,13 @@ namespace AmplifyMotion
 			this.m_wasVisible = false;
 		}
 
-		// Token: 0x060023F8 RID: 9208 RVA: 0x001FA79F File Offset: 0x001F899F
+		// Token: 0x06002400 RID: 9216 RVA: 0x001FACCF File Offset: 0x001F8ECF
 		internal override void Shutdown()
 		{
 			UnityEngine.Object.Destroy(this.m_clonedMesh);
 		}
 
-		// Token: 0x060023F9 RID: 9209 RVA: 0x001FA7AC File Offset: 0x001F89AC
+		// Token: 0x06002401 RID: 9217 RVA: 0x001FACDC File Offset: 0x001F8EDC
 		internal override void UpdateTransform(CommandBuffer updateCB, bool starting)
 		{
 			if (!this.m_initialized)
@@ -122,7 +122,7 @@ namespace AmplifyMotion
 			this.m_wasVisible = isVisible;
 		}
 
-		// Token: 0x060023FA RID: 9210 RVA: 0x001FA86C File Offset: 0x001F8A6C
+		// Token: 0x06002402 RID: 9218 RVA: 0x001FAD9C File Offset: 0x001F8F9C
 		internal override void RenderVectors(Camera camera, CommandBuffer renderCB, float scale, Quality quality)
 		{
 			if (this.m_initialized && !this.m_error && this.m_renderer.isVisible)
@@ -174,43 +174,43 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x04004C16 RID: 19478
+		// Token: 0x04004C1A RID: 19482
 		private Cloth m_cloth;
 
-		// Token: 0x04004C17 RID: 19479
+		// Token: 0x04004C1B RID: 19483
 		private Renderer m_renderer;
 
-		// Token: 0x04004C18 RID: 19480
+		// Token: 0x04004C1C RID: 19484
 		private MotionState.Matrix3x4 m_prevLocalToWorld;
 
-		// Token: 0x04004C19 RID: 19481
+		// Token: 0x04004C1D RID: 19485
 		private MotionState.Matrix3x4 m_currLocalToWorld;
 
-		// Token: 0x04004C1A RID: 19482
+		// Token: 0x04004C1E RID: 19486
 		private int m_targetVertexCount;
 
-		// Token: 0x04004C1B RID: 19483
+		// Token: 0x04004C1F RID: 19487
 		private int[] m_targetRemap;
 
-		// Token: 0x04004C1C RID: 19484
+		// Token: 0x04004C20 RID: 19488
 		private Vector3[] m_prevVertices;
 
-		// Token: 0x04004C1D RID: 19485
+		// Token: 0x04004C21 RID: 19489
 		private Vector3[] m_currVertices;
 
-		// Token: 0x04004C1E RID: 19486
+		// Token: 0x04004C22 RID: 19490
 		private Mesh m_clonedMesh;
 
-		// Token: 0x04004C1F RID: 19487
+		// Token: 0x04004C23 RID: 19491
 		private MotionState.MaterialDesc[] m_sharedMaterials;
 
-		// Token: 0x04004C20 RID: 19488
+		// Token: 0x04004C24 RID: 19492
 		private bool m_starting;
 
-		// Token: 0x04004C21 RID: 19489
+		// Token: 0x04004C25 RID: 19493
 		private bool m_wasVisible;
 
-		// Token: 0x04004C22 RID: 19490
+		// Token: 0x04004C26 RID: 19494
 		private static HashSet<AmplifyMotionObjectBase> m_uniqueWarnings = new HashSet<AmplifyMotionObjectBase>();
 	}
 }

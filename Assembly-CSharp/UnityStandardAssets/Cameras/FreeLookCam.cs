@@ -4,10 +4,10 @@ using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Cameras
 {
-	// Token: 0x0200054D RID: 1357
+	// Token: 0x0200054E RID: 1358
 	public class FreeLookCam : PivotBasedCameraRig
 	{
-		// Token: 0x060022B0 RID: 8880 RVA: 0x001F318C File Offset: 0x001F138C
+		// Token: 0x060022B8 RID: 8888 RVA: 0x001F36BC File Offset: 0x001F18BC
 		protected override void Awake()
 		{
 			base.Awake();
@@ -18,7 +18,7 @@ namespace UnityStandardAssets.Cameras
 			this.m_TransformTargetRot = base.transform.localRotation;
 		}
 
-		// Token: 0x060022B1 RID: 8881 RVA: 0x001F31FE File Offset: 0x001F13FE
+		// Token: 0x060022B9 RID: 8889 RVA: 0x001F372E File Offset: 0x001F192E
 		protected void Update()
 		{
 			this.HandleRotationMovement();
@@ -29,14 +29,14 @@ namespace UnityStandardAssets.Cameras
 			}
 		}
 
-		// Token: 0x060022B2 RID: 8882 RVA: 0x001F3235 File Offset: 0x001F1435
+		// Token: 0x060022BA RID: 8890 RVA: 0x001F3765 File Offset: 0x001F1965
 		private void OnDisable()
 		{
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
 		}
 
-		// Token: 0x060022B3 RID: 8883 RVA: 0x001F3243 File Offset: 0x001F1443
+		// Token: 0x060022BB RID: 8891 RVA: 0x001F3773 File Offset: 0x001F1973
 		protected override void FollowTarget(float deltaTime)
 		{
 			if (this.m_Target == null)
@@ -46,7 +46,7 @@ namespace UnityStandardAssets.Cameras
 			base.transform.position = Vector3.Lerp(base.transform.position, this.m_Target.position, deltaTime * this.m_MoveSpeed);
 		}
 
-		// Token: 0x060022B4 RID: 8884 RVA: 0x001F3284 File Offset: 0x001F1484
+		// Token: 0x060022BC RID: 8892 RVA: 0x001F37B4 File Offset: 0x001F19B4
 		private void HandleRotationMovement()
 		{
 			if (Time.timeScale < 1E-45f)
@@ -77,51 +77,51 @@ namespace UnityStandardAssets.Cameras
 			base.transform.localRotation = this.m_TransformTargetRot;
 		}
 
-		// Token: 0x04004B1B RID: 19227
+		// Token: 0x04004B1F RID: 19231
 		[SerializeField]
 		private float m_MoveSpeed = 1f;
 
-		// Token: 0x04004B1C RID: 19228
+		// Token: 0x04004B20 RID: 19232
 		[Range(0f, 10f)]
 		[SerializeField]
 		private float m_TurnSpeed = 1.5f;
 
-		// Token: 0x04004B1D RID: 19229
+		// Token: 0x04004B21 RID: 19233
 		[SerializeField]
 		private float m_TurnSmoothing;
 
-		// Token: 0x04004B1E RID: 19230
+		// Token: 0x04004B22 RID: 19234
 		[SerializeField]
 		private float m_TiltMax = 75f;
 
-		// Token: 0x04004B1F RID: 19231
+		// Token: 0x04004B23 RID: 19235
 		[SerializeField]
 		private float m_TiltMin = 45f;
 
-		// Token: 0x04004B20 RID: 19232
+		// Token: 0x04004B24 RID: 19236
 		[SerializeField]
 		private bool m_LockCursor;
 
-		// Token: 0x04004B21 RID: 19233
+		// Token: 0x04004B25 RID: 19237
 		[SerializeField]
 		private bool m_VerticalAutoReturn;
 
-		// Token: 0x04004B22 RID: 19234
+		// Token: 0x04004B26 RID: 19238
 		private float m_LookAngle;
 
-		// Token: 0x04004B23 RID: 19235
+		// Token: 0x04004B27 RID: 19239
 		private float m_TiltAngle;
 
-		// Token: 0x04004B24 RID: 19236
+		// Token: 0x04004B28 RID: 19240
 		private const float k_LookDistance = 100f;
 
-		// Token: 0x04004B25 RID: 19237
+		// Token: 0x04004B29 RID: 19241
 		private Vector3 m_PivotEulers;
 
-		// Token: 0x04004B26 RID: 19238
+		// Token: 0x04004B2A RID: 19242
 		private Quaternion m_PivotTargetRot;
 
-		// Token: 0x04004B27 RID: 19239
+		// Token: 0x04004B2B RID: 19243
 		private Quaternion m_TransformTargetRot;
 	}
 }

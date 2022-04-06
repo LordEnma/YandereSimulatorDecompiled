@@ -4,15 +4,15 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Cameras
 {
-	// Token: 0x02000551 RID: 1361
+	// Token: 0x02000552 RID: 1362
 	public class ProtectCameraFromWallClip : MonoBehaviour
 	{
 		// Token: 0x170004EA RID: 1258
-		// (get) Token: 0x060022BD RID: 8893 RVA: 0x001F373F File Offset: 0x001F193F
-		// (set) Token: 0x060022BE RID: 8894 RVA: 0x001F3747 File Offset: 0x001F1947
+		// (get) Token: 0x060022C5 RID: 8901 RVA: 0x001F3C6F File Offset: 0x001F1E6F
+		// (set) Token: 0x060022C6 RID: 8902 RVA: 0x001F3C77 File Offset: 0x001F1E77
 		public bool protecting { get; private set; }
 
-		// Token: 0x060022BF RID: 8895 RVA: 0x001F3750 File Offset: 0x001F1950
+		// Token: 0x060022C7 RID: 8903 RVA: 0x001F3C80 File Offset: 0x001F1E80
 		private void Start()
 		{
 			this.m_Cam = base.GetComponentInChildren<Camera>().transform;
@@ -22,7 +22,7 @@ namespace UnityStandardAssets.Cameras
 			this.m_RayHitComparer = new ProtectCameraFromWallClip.RayHitComparer();
 		}
 
-		// Token: 0x060022C0 RID: 8896 RVA: 0x001F37B0 File Offset: 0x001F19B0
+		// Token: 0x060022C8 RID: 8904 RVA: 0x001F3CE0 File Offset: 0x001F1EE0
 		private void LateUpdate()
 		{
 			float num = this.m_OriginalDist;
@@ -69,52 +69,52 @@ namespace UnityStandardAssets.Cameras
 			this.m_Cam.localPosition = -Vector3.forward * this.m_CurrentDist;
 		}
 
-		// Token: 0x04004B34 RID: 19252
+		// Token: 0x04004B38 RID: 19256
 		public float clipMoveTime = 0.05f;
 
-		// Token: 0x04004B35 RID: 19253
+		// Token: 0x04004B39 RID: 19257
 		public float returnTime = 0.4f;
 
-		// Token: 0x04004B36 RID: 19254
+		// Token: 0x04004B3A RID: 19258
 		public float sphereCastRadius = 0.1f;
 
-		// Token: 0x04004B37 RID: 19255
+		// Token: 0x04004B3B RID: 19259
 		public bool visualiseInEditor;
 
-		// Token: 0x04004B38 RID: 19256
+		// Token: 0x04004B3C RID: 19260
 		public float closestDistance = 0.5f;
 
-		// Token: 0x04004B3A RID: 19258
+		// Token: 0x04004B3E RID: 19262
 		public string dontClipTag = "Player";
 
-		// Token: 0x04004B3B RID: 19259
+		// Token: 0x04004B3F RID: 19263
 		private Transform m_Cam;
 
-		// Token: 0x04004B3C RID: 19260
+		// Token: 0x04004B40 RID: 19264
 		private Transform m_Pivot;
 
-		// Token: 0x04004B3D RID: 19261
+		// Token: 0x04004B41 RID: 19265
 		private float m_OriginalDist;
 
-		// Token: 0x04004B3E RID: 19262
+		// Token: 0x04004B42 RID: 19266
 		private float m_MoveVelocity;
 
-		// Token: 0x04004B3F RID: 19263
+		// Token: 0x04004B43 RID: 19267
 		private float m_CurrentDist;
 
-		// Token: 0x04004B40 RID: 19264
+		// Token: 0x04004B44 RID: 19268
 		private Ray m_Ray;
 
-		// Token: 0x04004B41 RID: 19265
+		// Token: 0x04004B45 RID: 19269
 		private RaycastHit[] m_Hits;
 
-		// Token: 0x04004B42 RID: 19266
+		// Token: 0x04004B46 RID: 19270
 		private ProtectCameraFromWallClip.RayHitComparer m_RayHitComparer;
 
-		// Token: 0x02000699 RID: 1689
+		// Token: 0x0200069A RID: 1690
 		public class RayHitComparer : IComparer
 		{
-			// Token: 0x0600273F RID: 10047 RVA: 0x002057F8 File Offset: 0x002039F8
+			// Token: 0x06002747 RID: 10055 RVA: 0x00205D28 File Offset: 0x00203F28
 			public int Compare(object x, object y)
 			{
 				return ((RaycastHit)x).distance.CompareTo(((RaycastHit)y).distance);

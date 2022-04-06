@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200026A RID: 618
 public class CubeFlickerScript : MonoBehaviour
 {
-	// Token: 0x0600130A RID: 4874 RVA: 0x000A8A64 File Offset: 0x000A6C64
+	// Token: 0x0600130A RID: 4874 RVA: 0x000A8A7C File Offset: 0x000A6C7C
 	private void Update()
 	{
 		this.Cube[0].localScale = new Vector3(UnityEngine.Random.Range(0f, 0.1f), UnityEngine.Random.Range(0f, 0.1f), UnityEngine.Random.Range(0f, 0.1f));

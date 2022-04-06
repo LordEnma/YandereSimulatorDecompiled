@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200035C RID: 860
+// Token: 0x0200035D RID: 861
 public class ManholeScript : MonoBehaviour
 {
-	// Token: 0x06001993 RID: 6547 RVA: 0x001049C4 File Offset: 0x00102BC4
+	// Token: 0x06001999 RID: 6553 RVA: 0x00104AC4 File Offset: 0x00102CC4
 	private void Update()
 	{
 		if (!this.Open)
@@ -133,27 +133,27 @@ public class ManholeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040028F9 RID: 10489
+	// Token: 0x040028FC RID: 10492
 	public GameObject BigSewerWaterSplash;
 
-	// Token: 0x040028FA RID: 10490
+	// Token: 0x040028FD RID: 10493
 	public GameObject SewerCamera;
 
-	// Token: 0x040028FB RID: 10491
+	// Token: 0x040028FE RID: 10494
 	public RagdollScript Corpse;
 
-	// Token: 0x040028FC RID: 10492
+	// Token: 0x040028FF RID: 10495
 	public PromptScript Prompt;
 
-	// Token: 0x040028FD RID: 10493
+	// Token: 0x04002900 RID: 10496
 	public AudioClip MoveCover;
 
-	// Token: 0x040028FE RID: 10494
+	// Token: 0x04002901 RID: 10497
 	public float AnimateTimer;
 
-	// Token: 0x040028FF RID: 10495
+	// Token: 0x04002902 RID: 10498
 	public float SewerTimer;
 
-	// Token: 0x04002900 RID: 10496
+	// Token: 0x04002903 RID: 10499
 	public bool Open;
 }

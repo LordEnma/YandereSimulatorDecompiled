@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003A6 RID: 934
+// Token: 0x020003A7 RID: 935
 public class PhotoSwapperScript : MonoBehaviour
 {
-	// Token: 0x06001AB9 RID: 6841 RVA: 0x001215B4 File Offset: 0x0011F7B4
+	// Token: 0x06001ABF RID: 6847 RVA: 0x00121760 File Offset: 0x0011F960
 	private void Start()
 	{
 		for (int i = 1; i < this.PhotoRenderer.Length; i++)
@@ -13,9 +13,9 @@ public class PhotoSwapperScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002C6D RID: 11373
+	// Token: 0x04002C70 RID: 11376
 	public Renderer[] PhotoRenderer;
 
-	// Token: 0x04002C6E RID: 11374
+	// Token: 0x04002C71 RID: 11377
 	public Texture[] EightiesPhoto;
 }
