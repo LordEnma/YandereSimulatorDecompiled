@@ -5,49 +5,49 @@ namespace UnityEngine.PostProcessing
 	// Token: 0x02000584 RID: 1412
 	public class PostProcessingProfile : ScriptableObject
 	{
-		// Token: 0x04004BF0 RID: 19440
+		// Token: 0x04004C02 RID: 19458
 		public BuiltinDebugViewsModel debugViews = new BuiltinDebugViewsModel();
 
-		// Token: 0x04004BF1 RID: 19441
+		// Token: 0x04004C03 RID: 19459
 		public FogModel fog = new FogModel();
 
-		// Token: 0x04004BF2 RID: 19442
+		// Token: 0x04004C04 RID: 19460
 		public AntialiasingModel antialiasing = new AntialiasingModel();
 
-		// Token: 0x04004BF3 RID: 19443
+		// Token: 0x04004C05 RID: 19461
 		public AmbientOcclusionModel ambientOcclusion = new AmbientOcclusionModel();
 
-		// Token: 0x04004BF4 RID: 19444
+		// Token: 0x04004C06 RID: 19462
 		public ScreenSpaceReflectionModel screenSpaceReflection = new ScreenSpaceReflectionModel();
 
-		// Token: 0x04004BF5 RID: 19445
+		// Token: 0x04004C07 RID: 19463
 		public DepthOfFieldModel depthOfField = new DepthOfFieldModel();
 
-		// Token: 0x04004BF6 RID: 19446
+		// Token: 0x04004C08 RID: 19464
 		public MotionBlurModel motionBlur = new MotionBlurModel();
 
-		// Token: 0x04004BF7 RID: 19447
+		// Token: 0x04004C09 RID: 19465
 		public EyeAdaptationModel eyeAdaptation = new EyeAdaptationModel();
 
-		// Token: 0x04004BF8 RID: 19448
+		// Token: 0x04004C0A RID: 19466
 		public BloomModel bloom = new BloomModel();
 
-		// Token: 0x04004BF9 RID: 19449
+		// Token: 0x04004C0B RID: 19467
 		public ColorGradingModel colorGrading = new ColorGradingModel();
 
-		// Token: 0x04004BFA RID: 19450
+		// Token: 0x04004C0C RID: 19468
 		public UserLutModel userLut = new UserLutModel();
 
-		// Token: 0x04004BFB RID: 19451
+		// Token: 0x04004C0D RID: 19469
 		public ChromaticAberrationModel chromaticAberration = new ChromaticAberrationModel();
 
-		// Token: 0x04004BFC RID: 19452
+		// Token: 0x04004C0E RID: 19470
 		public GrainModel grain = new GrainModel();
 
-		// Token: 0x04004BFD RID: 19453
+		// Token: 0x04004C0F RID: 19471
 		public VignetteModel vignette = new VignetteModel();
 
-		// Token: 0x04004BFE RID: 19454
+		// Token: 0x04004C10 RID: 19472
 		public DitheringModel dithering = new DitheringModel();
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004C5 RID: 1221
 public class WeaponScript : MonoBehaviour
 {
-	// Token: 0x06001FEE RID: 8174 RVA: 0x001C3E68 File Offset: 0x001C2068
+	// Token: 0x06001FF4 RID: 8180 RVA: 0x001C4844 File Offset: 0x001C2A44
 	public void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
@@ -43,7 +43,7 @@ public class WeaponScript : MonoBehaviour
 		this.Innocent = !this.Suspicious;
 	}
 
-	// Token: 0x06001FEF RID: 8175 RVA: 0x001C401C File Offset: 0x001C221C
+	// Token: 0x06001FF5 RID: 8181 RVA: 0x001C49F8 File Offset: 0x001C2BF8
 	public string GetTypePrefix()
 	{
 		if (this.Type == WeaponType.Knife)
@@ -78,7 +78,7 @@ public class WeaponScript : MonoBehaviour
 		return string.Empty;
 	}
 
-	// Token: 0x06001FF0 RID: 8176 RVA: 0x001C40BC File Offset: 0x001C22BC
+	// Token: 0x06001FF6 RID: 8182 RVA: 0x001C4A98 File Offset: 0x001C2C98
 	public AudioClip GetClip(float sanity, bool stealth)
 	{
 		AudioClip[] array;
@@ -105,7 +105,7 @@ public class WeaponScript : MonoBehaviour
 		return array[3];
 	}
 
-	// Token: 0x06001FF1 RID: 8177 RVA: 0x001C4118 File Offset: 0x001C2318
+	// Token: 0x06001FF7 RID: 8183 RVA: 0x001C4AF4 File Offset: 0x001C2CF4
 	private void Update()
 	{
 		if (this.WeaponID == 16 && this.Yandere.EquippedWeapon == this && Input.GetButtonDown("RB") && this.ExtraBlade != null)
@@ -204,7 +204,7 @@ public class WeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FF2 RID: 8178 RVA: 0x001C471C File Offset: 0x001C291C
+	// Token: 0x06001FF8 RID: 8184 RVA: 0x001C50F8 File Offset: 0x001C32F8
 	private void LateUpdate()
 	{
 		if (this.Prompt.Circle[3].fillAmount == 0f)
@@ -416,7 +416,7 @@ public class WeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FF3 RID: 8179 RVA: 0x001C4EE0 File Offset: 0x001C30E0
+	// Token: 0x06001FF9 RID: 8185 RVA: 0x001C58BC File Offset: 0x001C3ABC
 	public void Drop()
 	{
 		if (!this.Undroppable)
@@ -511,7 +511,7 @@ public class WeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FF4 RID: 8180 RVA: 0x001C5288 File Offset: 0x001C3488
+	// Token: 0x06001FFA RID: 8186 RVA: 0x001C5C64 File Offset: 0x001C3E64
 	public void UpdateLabel()
 	{
 		if (this != null && base.gameObject.activeInHierarchy)
@@ -536,7 +536,7 @@ public class WeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FF5 RID: 8181 RVA: 0x001C53C8 File Offset: 0x001C35C8
+	// Token: 0x06001FFB RID: 8187 RVA: 0x001C5DA4 File Offset: 0x001C3FA4
 	public void Effect()
 	{
 		if (this.WeaponID == 7)
@@ -564,7 +564,7 @@ public class WeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FF6 RID: 8182 RVA: 0x001C54A7 File Offset: 0x001C36A7
+	// Token: 0x06001FFC RID: 8188 RVA: 0x001C5E83 File Offset: 0x001C4083
 	public void Dismember()
 	{
 		this.Yandere.CameraEffects.UpdateDOF(0.6666667f);
@@ -573,7 +573,7 @@ public class WeaponScript : MonoBehaviour
 		this.Dismembering = true;
 	}
 
-	// Token: 0x06001FF7 RID: 8183 RVA: 0x001C54E4 File Offset: 0x001C36E4
+	// Token: 0x06001FFD RID: 8189 RVA: 0x001C5EC0 File Offset: 0x001C40C0
 	public void SuspicionCheck()
 	{
 		if (this.Innocent)
@@ -604,231 +604,231 @@ public class WeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040042F5 RID: 17141
+	// Token: 0x04004305 RID: 17157
 	public ParticleSystem[] ShortBloodSpray;
 
-	// Token: 0x040042F6 RID: 17142
+	// Token: 0x04004306 RID: 17158
 	public ParticleSystem[] BloodSpray;
 
-	// Token: 0x040042F7 RID: 17143
+	// Token: 0x04004307 RID: 17159
 	public OutlineScript[] Outline;
 
-	// Token: 0x040042F8 RID: 17144
+	// Token: 0x04004308 RID: 17160
 	public float[] SoundTime;
 
-	// Token: 0x040042F9 RID: 17145
+	// Token: 0x04004309 RID: 17161
 	public IncineratorScript Incinerator;
 
-	// Token: 0x040042FA RID: 17146
+	// Token: 0x0400430A RID: 17162
 	public StudentScript Returner;
 
-	// Token: 0x040042FB RID: 17147
+	// Token: 0x0400430B RID: 17163
 	public YandereScript Yandere;
 
-	// Token: 0x040042FC RID: 17148
+	// Token: 0x0400430C RID: 17164
 	public PromptScript Prompt;
 
-	// Token: 0x040042FD RID: 17149
+	// Token: 0x0400430D RID: 17165
 	public Transform Origin;
 
-	// Token: 0x040042FE RID: 17150
+	// Token: 0x0400430E RID: 17166
 	public Transform Parent;
 
-	// Token: 0x040042FF RID: 17151
+	// Token: 0x0400430F RID: 17167
 	public AudioClip[] Clips;
 
-	// Token: 0x04004300 RID: 17152
+	// Token: 0x04004310 RID: 17168
 	public AudioClip[] Clips2;
 
-	// Token: 0x04004301 RID: 17153
+	// Token: 0x04004311 RID: 17169
 	public AudioClip[] Clips3;
 
-	// Token: 0x04004302 RID: 17154
+	// Token: 0x04004312 RID: 17170
 	public AudioClip DismemberClip;
 
-	// Token: 0x04004303 RID: 17155
+	// Token: 0x04004313 RID: 17171
 	public AudioClip EquipClip;
 
-	// Token: 0x04004304 RID: 17156
+	// Token: 0x04004314 RID: 17172
 	public ParticleSystem FireEffect;
 
-	// Token: 0x04004305 RID: 17157
+	// Token: 0x04004315 RID: 17173
 	public GameObject WeaponTrail;
 
-	// Token: 0x04004306 RID: 17158
+	// Token: 0x04004316 RID: 17174
 	public GameObject ExtraBlade;
 
-	// Token: 0x04004307 RID: 17159
+	// Token: 0x04004317 RID: 17175
 	public AudioSource FireAudio;
 
-	// Token: 0x04004308 RID: 17160
+	// Token: 0x04004318 RID: 17176
 	public Rigidbody MyRigidbody;
 
-	// Token: 0x04004309 RID: 17161
+	// Token: 0x04004319 RID: 17177
 	public AudioSource MyAudio;
 
-	// Token: 0x0400430A RID: 17162
+	// Token: 0x0400431A RID: 17178
 	public Collider MyCollider;
 
-	// Token: 0x0400430B RID: 17163
+	// Token: 0x0400431B RID: 17179
 	public Renderer MyRenderer;
 
-	// Token: 0x0400430C RID: 17164
+	// Token: 0x0400431C RID: 17180
 	public GameObject Nails;
 
-	// Token: 0x0400430D RID: 17165
+	// Token: 0x0400431D RID: 17181
 	public Transform Blade;
 
-	// Token: 0x0400430E RID: 17166
+	// Token: 0x0400431E RID: 17182
 	public Projector Blood;
 
-	// Token: 0x0400430F RID: 17167
+	// Token: 0x0400431F RID: 17183
 	public Vector3 StartingPosition;
 
-	// Token: 0x04004310 RID: 17168
+	// Token: 0x04004320 RID: 17184
 	public Vector3 StartingRotation;
 
-	// Token: 0x04004311 RID: 17169
+	// Token: 0x04004321 RID: 17185
 	public bool UnequipImmediately;
 
-	// Token: 0x04004312 RID: 17170
+	// Token: 0x04004322 RID: 17186
 	public bool AlreadyExamined;
 
-	// Token: 0x04004313 RID: 17171
+	// Token: 0x04004323 RID: 17187
 	public bool BroughtFromHome;
 
-	// Token: 0x04004314 RID: 17172
+	// Token: 0x04004324 RID: 17188
 	public bool DelinquentOwned;
 
-	// Token: 0x04004315 RID: 17173
+	// Token: 0x04004325 RID: 17189
 	public bool DisableCollider;
 
-	// Token: 0x04004316 RID: 17174
+	// Token: 0x04004326 RID: 17190
 	public bool DoNotDisable;
 
-	// Token: 0x04004317 RID: 17175
+	// Token: 0x04004327 RID: 17191
 	public bool Dismembering;
 
-	// Token: 0x04004318 RID: 17176
+	// Token: 0x04004328 RID: 17192
 	public bool MurderWeapon;
 
-	// Token: 0x04004319 RID: 17177
+	// Token: 0x04004329 RID: 17193
 	public bool WeaponEffect;
 
-	// Token: 0x0400431A RID: 17178
+	// Token: 0x0400432A RID: 17194
 	public bool Concealable;
 
-	// Token: 0x0400431B RID: 17179
+	// Token: 0x0400432B RID: 17195
 	public bool Undroppable;
 
-	// Token: 0x0400431C RID: 17180
+	// Token: 0x0400432C RID: 17196
 	public bool Suspicious;
 
-	// Token: 0x0400431D RID: 17181
+	// Token: 0x0400432D RID: 17197
 	public bool Dangerous;
 
-	// Token: 0x0400431E RID: 17182
+	// Token: 0x0400432E RID: 17198
 	public bool Misplaced;
 
-	// Token: 0x0400431F RID: 17183
+	// Token: 0x0400432F RID: 17199
 	public bool Evidence;
 
-	// Token: 0x04004320 RID: 17184
+	// Token: 0x04004330 RID: 17200
 	public bool Innocent;
 
-	// Token: 0x04004321 RID: 17185
+	// Token: 0x04004331 RID: 17201
 	public bool StartLow;
 
-	// Token: 0x04004322 RID: 17186
+	// Token: 0x04004332 RID: 17202
 	public bool Flaming;
 
-	// Token: 0x04004323 RID: 17187
+	// Token: 0x04004333 RID: 17203
 	public bool Bloody;
 
-	// Token: 0x04004324 RID: 17188
+	// Token: 0x04004334 RID: 17204
 	public bool Dumped;
 
-	// Token: 0x04004325 RID: 17189
+	// Token: 0x04004335 RID: 17205
 	public bool Heated;
 
-	// Token: 0x04004326 RID: 17190
+	// Token: 0x04004336 RID: 17206
 	public bool Rotate;
 
-	// Token: 0x04004327 RID: 17191
+	// Token: 0x04004337 RID: 17207
 	public bool Blunt;
 
-	// Token: 0x04004328 RID: 17192
+	// Token: 0x04004338 RID: 17208
 	public bool Metal;
 
-	// Token: 0x04004329 RID: 17193
+	// Token: 0x04004339 RID: 17209
 	public bool Flip;
 
-	// Token: 0x0400432A RID: 17194
+	// Token: 0x0400433A RID: 17210
 	public bool Spin;
 
-	// Token: 0x0400432B RID: 17195
+	// Token: 0x0400433B RID: 17211
 	public Color EvidenceColor;
 
-	// Token: 0x0400432C RID: 17196
+	// Token: 0x0400433C RID: 17212
 	public Color OriginalColor;
 
-	// Token: 0x0400432D RID: 17197
+	// Token: 0x0400433D RID: 17213
 	public float OriginalOffset;
 
-	// Token: 0x0400432E RID: 17198
+	// Token: 0x0400433E RID: 17214
 	public float KinematicTimer;
 
-	// Token: 0x0400432F RID: 17199
+	// Token: 0x0400433F RID: 17215
 	public float DumpTimer;
 
-	// Token: 0x04004330 RID: 17200
+	// Token: 0x04004340 RID: 17216
 	public float Rotation;
 
-	// Token: 0x04004331 RID: 17201
+	// Token: 0x04004341 RID: 17217
 	public float Speed;
 
-	// Token: 0x04004332 RID: 17202
+	// Token: 0x04004342 RID: 17218
 	public string SpriteName;
 
-	// Token: 0x04004333 RID: 17203
+	// Token: 0x04004343 RID: 17219
 	public string Name;
 
-	// Token: 0x04004334 RID: 17204
+	// Token: 0x04004344 RID: 17220
 	public int DismemberPhase;
 
-	// Token: 0x04004335 RID: 17205
+	// Token: 0x04004345 RID: 17221
 	public int FingerprintID;
 
-	// Token: 0x04004336 RID: 17206
+	// Token: 0x04004346 RID: 17222
 	public int GlobalID;
 
-	// Token: 0x04004337 RID: 17207
+	// Token: 0x04004347 RID: 17223
 	public int WeaponID;
 
-	// Token: 0x04004338 RID: 17208
+	// Token: 0x04004348 RID: 17224
 	public int AnimID;
 
-	// Token: 0x04004339 RID: 17209
+	// Token: 0x04004349 RID: 17225
 	public WeaponType Type = WeaponType.Knife;
 
-	// Token: 0x0400433A RID: 17210
+	// Token: 0x0400434A RID: 17226
 	public bool[] Victims;
 
-	// Token: 0x0400433B RID: 17211
+	// Token: 0x0400434B RID: 17227
 	private AudioClip OriginalClip;
 
-	// Token: 0x0400433C RID: 17212
+	// Token: 0x0400434C RID: 17228
 	private int ID;
 
-	// Token: 0x0400433D RID: 17213
+	// Token: 0x0400434D RID: 17229
 	public MeshFilter MyMeshFilter;
 
-	// Token: 0x0400433E RID: 17214
+	// Token: 0x0400434E RID: 17230
 	public Mesh EightiesCircularSaw;
 
-	// Token: 0x0400433F RID: 17215
+	// Token: 0x0400434F RID: 17231
 	public Texture EightiesCircularSawTexture;
 
-	// Token: 0x04004340 RID: 17216
+	// Token: 0x04004350 RID: 17232
 	public GameObject HeartBurst;
 }

@@ -7,19 +7,19 @@ namespace UnityStandardAssets.CrossPlatformInput
 	// Token: 0x02000545 RID: 1349
 	public class Joystick : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IPointerUpHandler, IDragHandler
 	{
-		// Token: 0x06002260 RID: 8800 RVA: 0x001F275A File Offset: 0x001F095A
+		// Token: 0x06002267 RID: 8807 RVA: 0x001F31B6 File Offset: 0x001F13B6
 		private void OnEnable()
 		{
 			this.CreateVirtualAxes();
 		}
 
-		// Token: 0x06002261 RID: 8801 RVA: 0x001F2762 File Offset: 0x001F0962
+		// Token: 0x06002268 RID: 8808 RVA: 0x001F31BE File Offset: 0x001F13BE
 		private void Start()
 		{
 			this.m_StartPos = base.transform.position;
 		}
 
-		// Token: 0x06002262 RID: 8802 RVA: 0x001F2778 File Offset: 0x001F0978
+		// Token: 0x06002269 RID: 8809 RVA: 0x001F31D4 File Offset: 0x001F13D4
 		private void UpdateVirtualAxes(Vector3 value)
 		{
 			Vector3 vector = this.m_StartPos - value;
@@ -35,7 +35,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002263 RID: 8803 RVA: 0x001F27E4 File Offset: 0x001F09E4
+		// Token: 0x0600226A RID: 8810 RVA: 0x001F3240 File Offset: 0x001F1440
 		private void CreateVirtualAxes()
 		{
 			this.m_UseX = (this.axesToUse == Joystick.AxisOption.Both || this.axesToUse == Joystick.AxisOption.OnlyHorizontal);
@@ -52,7 +52,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002264 RID: 8804 RVA: 0x001F2870 File Offset: 0x001F0A70
+		// Token: 0x0600226B RID: 8811 RVA: 0x001F32CC File Offset: 0x001F14CC
 		public void OnDrag(PointerEventData data)
 		{
 			Vector3 zero = Vector3.zero;
@@ -72,19 +72,19 @@ namespace UnityStandardAssets.CrossPlatformInput
 			this.UpdateVirtualAxes(base.transform.position);
 		}
 
-		// Token: 0x06002265 RID: 8805 RVA: 0x001F2956 File Offset: 0x001F0B56
+		// Token: 0x0600226C RID: 8812 RVA: 0x001F33B2 File Offset: 0x001F15B2
 		public void OnPointerUp(PointerEventData data)
 		{
 			base.transform.position = this.m_StartPos;
 			this.UpdateVirtualAxes(this.m_StartPos);
 		}
 
-		// Token: 0x06002266 RID: 8806 RVA: 0x001F2975 File Offset: 0x001F0B75
+		// Token: 0x0600226D RID: 8813 RVA: 0x001F33D1 File Offset: 0x001F15D1
 		public void OnPointerDown(PointerEventData data)
 		{
 		}
 
-		// Token: 0x06002267 RID: 8807 RVA: 0x001F2977 File Offset: 0x001F0B77
+		// Token: 0x0600226E RID: 8814 RVA: 0x001F33D3 File Offset: 0x001F15D3
 		private void OnDisable()
 		{
 			if (this.m_UseX)
@@ -97,41 +97,41 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x04004AEB RID: 19179
+		// Token: 0x04004AFD RID: 19197
 		public int MovementRange = 100;
 
-		// Token: 0x04004AEC RID: 19180
+		// Token: 0x04004AFE RID: 19198
 		public Joystick.AxisOption axesToUse;
 
-		// Token: 0x04004AED RID: 19181
+		// Token: 0x04004AFF RID: 19199
 		public string horizontalAxisName = "Horizontal";
 
-		// Token: 0x04004AEE RID: 19182
+		// Token: 0x04004B00 RID: 19200
 		public string verticalAxisName = "Vertical";
 
-		// Token: 0x04004AEF RID: 19183
+		// Token: 0x04004B01 RID: 19201
 		private Vector3 m_StartPos;
 
-		// Token: 0x04004AF0 RID: 19184
+		// Token: 0x04004B02 RID: 19202
 		private bool m_UseX;
 
-		// Token: 0x04004AF1 RID: 19185
+		// Token: 0x04004B03 RID: 19203
 		private bool m_UseY;
 
-		// Token: 0x04004AF2 RID: 19186
+		// Token: 0x04004B04 RID: 19204
 		private CrossPlatformInputManager.VirtualAxis m_HorizontalVirtualAxis;
 
-		// Token: 0x04004AF3 RID: 19187
+		// Token: 0x04004B05 RID: 19205
 		private CrossPlatformInputManager.VirtualAxis m_VerticalVirtualAxis;
 
 		// Token: 0x02000694 RID: 1684
 		public enum AxisOption
 		{
-			// Token: 0x040050AD RID: 20653
+			// Token: 0x040050BF RID: 20671
 			Both,
-			// Token: 0x040050AE RID: 20654
+			// Token: 0x040050C0 RID: 20672
 			OnlyHorizontal,
-			// Token: 0x040050AF RID: 20655
+			// Token: 0x040050C1 RID: 20673
 			OnlyVertical
 		}
 	}

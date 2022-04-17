@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200023E RID: 574
 public class CharacterScript : MonoBehaviour
 {
-	// Token: 0x0600123F RID: 4671 RVA: 0x0008C774 File Offset: 0x0008A974
+	// Token: 0x0600123F RID: 4671 RVA: 0x0008C878 File Offset: 0x0008AA78
 	private void SetAnimations()
 	{
 		Animation component = base.GetComponent<Animation>();

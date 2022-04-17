@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000441 RID: 1089
 public class SponsorScript : MonoBehaviour
 {
-	// Token: 0x06001D0A RID: 7434 RVA: 0x0015A2E0 File Offset: 0x001584E0
+	// Token: 0x06001D0E RID: 7438 RVA: 0x0015A6F0 File Offset: 0x001588F0
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -14,7 +14,7 @@ public class SponsorScript : MonoBehaviour
 		this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, 1f);
 	}
 
-	// Token: 0x06001D0B RID: 7435 RVA: 0x0015A358 File Offset: 0x00158558
+	// Token: 0x06001D0F RID: 7439 RVA: 0x0015A768 File Offset: 0x00158968
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -30,15 +30,15 @@ public class SponsorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400348B RID: 13451
+	// Token: 0x04003496 RID: 13462
 	public GameObject[] Set;
 
-	// Token: 0x0400348C RID: 13452
+	// Token: 0x04003497 RID: 13463
 	public UISprite Darkness;
 
-	// Token: 0x0400348D RID: 13453
+	// Token: 0x04003498 RID: 13464
 	public float Timer;
 
-	// Token: 0x0400348E RID: 13454
+	// Token: 0x04003499 RID: 13465
 	public int ID;
 }

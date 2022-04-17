@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004FB RID: 1275
 public class NormalsReplacementShader : MonoBehaviour
 {
-	// Token: 0x06002122 RID: 8482 RVA: 0x001EA80C File Offset: 0x001E8A0C
+	// Token: 0x06002129 RID: 8489 RVA: 0x001EB268 File Offset: 0x001E9468
 	private void Start()
 	{
 		Camera component = base.GetComponent<Camera>();
@@ -19,13 +19,13 @@ public class NormalsReplacementShader : MonoBehaviour
 		this.camera.depth = component.depth - 1f;
 	}
 
-	// Token: 0x0400494F RID: 18767
+	// Token: 0x04004961 RID: 18785
 	[SerializeField]
 	private Shader normalsShader;
 
-	// Token: 0x04004950 RID: 18768
+	// Token: 0x04004962 RID: 18786
 	private RenderTexture renderTexture;
 
-	// Token: 0x04004951 RID: 18769
+	// Token: 0x04004963 RID: 18787
 	private Camera camera;
 }

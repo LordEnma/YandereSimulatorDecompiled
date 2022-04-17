@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200038B RID: 907
 public class OsanaReleaseDateScript : MonoBehaviour
 {
-	// Token: 0x06001A50 RID: 6736 RVA: 0x00117FFC File Offset: 0x001161FC
+	// Token: 0x06001A54 RID: 6740 RVA: 0x00118304 File Offset: 0x00116504
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -17,7 +17,7 @@ public class OsanaReleaseDateScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A51 RID: 6737 RVA: 0x00118040 File Offset: 0x00116240
+	// Token: 0x06001A55 RID: 6741 RVA: 0x00118348 File Offset: 0x00116548
 	private void Update()
 	{
 		if (Input.GetKeyDown("-"))
@@ -73,15 +73,15 @@ public class OsanaReleaseDateScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B2F RID: 11055
+	// Token: 0x04002B37 RID: 11063
 	public UISprite[] BlackRectangles;
 
-	// Token: 0x04002B30 RID: 11056
+	// Token: 0x04002B38 RID: 11064
 	public bool ChooseRectangle = true;
 
-	// Token: 0x04002B31 RID: 11057
+	// Token: 0x04002B39 RID: 11065
 	public int LettersRevealed;
 
-	// Token: 0x04002B32 RID: 11058
+	// Token: 0x04002B3A RID: 11066
 	public int RandomID;
 }

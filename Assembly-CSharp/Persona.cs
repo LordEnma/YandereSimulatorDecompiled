@@ -5,14 +5,14 @@ using UnityEngine;
 [Serializable]
 public class Persona
 {
-	// Token: 0x0600145A RID: 5210 RVA: 0x000C695E File Offset: 0x000C4B5E
+	// Token: 0x0600145A RID: 5210 RVA: 0x000C6B0A File Offset: 0x000C4D0A
 	public Persona(PersonaType type)
 	{
 		this.type = type;
 	}
 
 	// Token: 0x17000366 RID: 870
-	// (get) Token: 0x0600145B RID: 5211 RVA: 0x000C696D File Offset: 0x000C4B6D
+	// (get) Token: 0x0600145B RID: 5211 RVA: 0x000C6B19 File Offset: 0x000C4D19
 	public PersonaType Type
 	{
 		get
@@ -21,11 +21,11 @@ public class Persona
 		}
 	}
 
-	// Token: 0x04001F50 RID: 8016
+	// Token: 0x04001F52 RID: 8018
 	[SerializeField]
 	private PersonaType type;
 
-	// Token: 0x04001F51 RID: 8017
+	// Token: 0x04001F53 RID: 8019
 	public static readonly PersonaTypeAndStringDictionary PersonaNames = new PersonaTypeAndStringDictionary
 	{
 		{

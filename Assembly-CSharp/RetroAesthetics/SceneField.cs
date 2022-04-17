@@ -7,8 +7,8 @@ namespace RetroAesthetics
 	[Serializable]
 	public class SceneField
 	{
-		// Token: 0x170004EB RID: 1259
-		// (get) Token: 0x060022D2 RID: 8914 RVA: 0x001F4289 File Offset: 0x001F2489
+		// Token: 0x170004EC RID: 1260
+		// (get) Token: 0x060022D9 RID: 8921 RVA: 0x001F4CE5 File Offset: 0x001F2EE5
 		public string SceneName
 		{
 			get
@@ -17,17 +17,17 @@ namespace RetroAesthetics
 			}
 		}
 
-		// Token: 0x060022D3 RID: 8915 RVA: 0x001F4291 File Offset: 0x001F2491
+		// Token: 0x060022DA RID: 8922 RVA: 0x001F4CED File Offset: 0x001F2EED
 		public static implicit operator string(SceneField sceneField)
 		{
 			return sceneField.SceneName;
 		}
 
-		// Token: 0x04004B4F RID: 19279
+		// Token: 0x04004B61 RID: 19297
 		[SerializeField]
 		private UnityEngine.Object m_SceneAsset;
 
-		// Token: 0x04004B50 RID: 19280
+		// Token: 0x04004B62 RID: 19298
 		[SerializeField]
 		private string m_SceneName = "";
 	}

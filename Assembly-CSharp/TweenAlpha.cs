@@ -6,8 +6,8 @@ using UnityEngine;
 public class TweenAlpha : UITweener
 {
 	// Token: 0x170000B6 RID: 182
-	// (get) Token: 0x0600055A RID: 1370 RVA: 0x00033EB7 File Offset: 0x000320B7
-	// (set) Token: 0x0600055B RID: 1371 RVA: 0x00033EBF File Offset: 0x000320BF
+	// (get) Token: 0x0600055A RID: 1370 RVA: 0x00033F6F File Offset: 0x0003216F
+	// (set) Token: 0x0600055B RID: 1371 RVA: 0x00033F77 File Offset: 0x00032177
 	[Obsolete("Use 'value' instead")]
 	public float alpha
 	{
@@ -21,7 +21,7 @@ public class TweenAlpha : UITweener
 		}
 	}
 
-	// Token: 0x0600055C RID: 1372 RVA: 0x00033EC8 File Offset: 0x000320C8
+	// Token: 0x0600055C RID: 1372 RVA: 0x00033F80 File Offset: 0x00032180
 	private void OnDestroy()
 	{
 		if (this.autoCleanup && this.mMat != null && this.mShared != this.mMat)
@@ -31,7 +31,7 @@ public class TweenAlpha : UITweener
 		}
 	}
 
-	// Token: 0x0600055D RID: 1373 RVA: 0x00033F08 File Offset: 0x00032108
+	// Token: 0x0600055D RID: 1373 RVA: 0x00033FC0 File Offset: 0x000321C0
 	private void Cache()
 	{
 		this.mCached = true;
@@ -62,8 +62,8 @@ public class TweenAlpha : UITweener
 	}
 
 	// Token: 0x170000B7 RID: 183
-	// (get) Token: 0x0600055E RID: 1374 RVA: 0x00033FC0 File Offset: 0x000321C0
-	// (set) Token: 0x0600055F RID: 1375 RVA: 0x0003405C File Offset: 0x0003225C
+	// (get) Token: 0x0600055E RID: 1374 RVA: 0x00034078 File Offset: 0x00032278
+	// (set) Token: 0x0600055F RID: 1375 RVA: 0x00034114 File Offset: 0x00032314
 	public float value
 	{
 		get
@@ -129,13 +129,13 @@ public class TweenAlpha : UITweener
 		}
 	}
 
-	// Token: 0x06000560 RID: 1376 RVA: 0x0003414B File Offset: 0x0003234B
+	// Token: 0x06000560 RID: 1376 RVA: 0x00034203 File Offset: 0x00032403
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		this.value = Mathf.Lerp(this.from, this.to, factor);
 	}
 
-	// Token: 0x06000561 RID: 1377 RVA: 0x00034168 File Offset: 0x00032368
+	// Token: 0x06000561 RID: 1377 RVA: 0x00034220 File Offset: 0x00032420
 	public static TweenAlpha Begin(GameObject go, float duration, float alpha, float delay = 0f)
 	{
 		TweenAlpha tweenAlpha = UITweener.Begin<TweenAlpha>(go, duration, delay);
@@ -149,13 +149,13 @@ public class TweenAlpha : UITweener
 		return tweenAlpha;
 	}
 
-	// Token: 0x06000562 RID: 1378 RVA: 0x000341AD File Offset: 0x000323AD
+	// Token: 0x06000562 RID: 1378 RVA: 0x00034265 File Offset: 0x00032465
 	public override void SetStartToCurrentValue()
 	{
 		this.from = this.value;
 	}
 
-	// Token: 0x06000563 RID: 1379 RVA: 0x000341BB File Offset: 0x000323BB
+	// Token: 0x06000563 RID: 1379 RVA: 0x00034273 File Offset: 0x00032473
 	public override void SetEndToCurrentValue()
 	{
 		this.to = this.value;

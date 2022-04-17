@@ -7,7 +7,7 @@ namespace MaidDereMinigame
 	// Token: 0x0200059F RID: 1439
 	public class ServingCounter : MonoBehaviour
 	{
-		// Token: 0x06002474 RID: 9332 RVA: 0x001FEECC File Offset: 0x001FD0CC
+		// Token: 0x0600247B RID: 9339 RVA: 0x001FF928 File Offset: 0x001FDB28
 		private void Awake()
 		{
 			this.plates = new List<FoodInstance>();
@@ -25,19 +25,19 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002475 RID: 9333 RVA: 0x001FEFA2 File Offset: 0x001FD1A2
+		// Token: 0x0600247C RID: 9340 RVA: 0x001FF9FE File Offset: 0x001FDBFE
 		private void OnEnable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(this.SetPause));
 		}
 
-		// Token: 0x06002476 RID: 9334 RVA: 0x001FEFC4 File Offset: 0x001FD1C4
+		// Token: 0x0600247D RID: 9341 RVA: 0x001FFA20 File Offset: 0x001FDC20
 		private void OnDisable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(this.SetPause));
 		}
 
-		// Token: 0x06002477 RID: 9335 RVA: 0x001FEFE8 File Offset: 0x001FD1E8
+		// Token: 0x0600247E RID: 9342 RVA: 0x001FFA44 File Offset: 0x001FDC44
 		private void Update()
 		{
 			switch (this.state)
@@ -213,7 +213,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002478 RID: 9336 RVA: 0x001FF574 File Offset: 0x001FD774
+		// Token: 0x0600247F RID: 9343 RVA: 0x001FFFD0 File Offset: 0x001FE1D0
 		public void SetMask(int position)
 		{
 			this.counterMask.gameObject.SetActive(position == 0);
@@ -222,7 +222,7 @@ namespace MaidDereMinigame
 			this.plateMask.gameObject.SetActive(position == 3);
 		}
 
-		// Token: 0x06002479 RID: 9337 RVA: 0x001FF5D4 File Offset: 0x001FD7D4
+		// Token: 0x06002480 RID: 9344 RVA: 0x00200030 File Offset: 0x001FE230
 		public void AddPlate(Food food)
 		{
 			if (this.plates.Count >= this.maxPlates)
@@ -244,7 +244,7 @@ namespace MaidDereMinigame
 			this.plates.Insert(0, foodInstance2);
 		}
 
-		// Token: 0x0600247A RID: 9338 RVA: 0x001FF6A8 File Offset: 0x001FD8A8
+		// Token: 0x06002481 RID: 9345 RVA: 0x00200104 File Offset: 0x001FE304
 		public void RemovePlate(int index)
 		{
 			Component component = this.plates[index];
@@ -258,13 +258,13 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x0600247B RID: 9339 RVA: 0x001FF71F File Offset: 0x001FD91F
+		// Token: 0x06002482 RID: 9346 RVA: 0x0020017B File Offset: 0x001FE37B
 		public void SetPause(bool toPause)
 		{
 			this.isPaused = toPause;
 		}
 
-		// Token: 0x0600247C RID: 9340 RVA: 0x001FF728 File Offset: 0x001FD928
+		// Token: 0x06002483 RID: 9347 RVA: 0x00200184 File Offset: 0x001FE384
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
 			this.interactionIndicator.gameObject.SetActive(true);
@@ -273,7 +273,7 @@ namespace MaidDereMinigame
 			InteractionMenu.SetAButton(InteractionMenu.AButtonText.KitchenMenu);
 		}
 
-		// Token: 0x0600247D RID: 9341 RVA: 0x001FF75E File Offset: 0x001FD95E
+		// Token: 0x06002484 RID: 9348 RVA: 0x002001BA File Offset: 0x001FE3BA
 		private void OnTriggerExit2D(Collider2D collision)
 		{
 			this.interactionIndicator.gameObject.SetActive(false);
@@ -281,78 +281,78 @@ namespace MaidDereMinigame
 			InteractionMenu.SetAButton(InteractionMenu.AButtonText.None);
 		}
 
-		// Token: 0x04004CC5 RID: 19653
+		// Token: 0x04004CD7 RID: 19671
 		public FoodInstance platePrefab;
 
-		// Token: 0x04004CC6 RID: 19654
+		// Token: 0x04004CD8 RID: 19672
 		public GameObject trash;
 
-		// Token: 0x04004CC7 RID: 19655
+		// Token: 0x04004CD9 RID: 19673
 		public SpriteRenderer interactionIndicator;
 
-		// Token: 0x04004CC8 RID: 19656
+		// Token: 0x04004CDA RID: 19674
 		public SpriteRenderer kitchenModeHide;
 
-		// Token: 0x04004CC9 RID: 19657
+		// Token: 0x04004CDB RID: 19675
 		public SpriteMask chefMask;
 
-		// Token: 0x04004CCA RID: 19658
+		// Token: 0x04004CDC RID: 19676
 		public SpriteMask trashMask;
 
-		// Token: 0x04004CCB RID: 19659
+		// Token: 0x04004CDD RID: 19677
 		public SpriteMask counterMask;
 
-		// Token: 0x04004CCC RID: 19660
+		// Token: 0x04004CDE RID: 19678
 		public SpriteMask plateMask;
 
-		// Token: 0x04004CCD RID: 19661
+		// Token: 0x04004CDF RID: 19679
 		public int maxPlates = 7;
 
-		// Token: 0x04004CCE RID: 19662
+		// Token: 0x04004CE0 RID: 19680
 		public float plateSeparation = 0.214f;
 
-		// Token: 0x04004CCF RID: 19663
+		// Token: 0x04004CE1 RID: 19681
 		public float yPos = -1.328f;
 
-		// Token: 0x04004CD0 RID: 19664
+		// Token: 0x04004CE2 RID: 19682
 		public float xPosStart = 2.812f;
 
-		// Token: 0x04004CD1 RID: 19665
+		// Token: 0x04004CE3 RID: 19683
 		private ServingCounter.KitchenState state;
 
-		// Token: 0x04004CD2 RID: 19666
+		// Token: 0x04004CE4 RID: 19684
 		private List<FoodInstance> plates;
 
-		// Token: 0x04004CD3 RID: 19667
+		// Token: 0x04004CE5 RID: 19685
 		private List<Transform> platePositions;
 
-		// Token: 0x04004CD4 RID: 19668
+		// Token: 0x04004CE6 RID: 19686
 		private Vector3 interactionIndicatorStartingPos;
 
-		// Token: 0x04004CD5 RID: 19669
+		// Token: 0x04004CE7 RID: 19687
 		private int selectedIndex;
 
-		// Token: 0x04004CD6 RID: 19670
+		// Token: 0x04004CE8 RID: 19688
 		private bool interactionRange;
 
-		// Token: 0x04004CD7 RID: 19671
+		// Token: 0x04004CE9 RID: 19689
 		private bool interacting;
 
-		// Token: 0x04004CD8 RID: 19672
+		// Token: 0x04004CEA RID: 19690
 		private bool isPaused;
 
 		// Token: 0x020006E4 RID: 1764
 		public enum KitchenState
 		{
-			// Token: 0x04005261 RID: 21089
+			// Token: 0x04005273 RID: 21107
 			None,
-			// Token: 0x04005262 RID: 21090
+			// Token: 0x04005274 RID: 21108
 			SelectingInteraction,
-			// Token: 0x04005263 RID: 21091
+			// Token: 0x04005275 RID: 21109
 			Plates,
-			// Token: 0x04005264 RID: 21092
+			// Token: 0x04005276 RID: 21110
 			Chef,
-			// Token: 0x04005265 RID: 21093
+			// Token: 0x04005277 RID: 21111
 			Trash
 		}
 	}

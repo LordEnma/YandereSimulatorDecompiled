@@ -8,7 +8,7 @@ namespace MaidDereMinigame
 	[Serializable]
 	public class SceneObject : ScriptableObject
 	{
-		// Token: 0x04004D21 RID: 19745
+		// Token: 0x04004D33 RID: 19763
 		public int sceneBuildNumber = -1;
 	}
 }

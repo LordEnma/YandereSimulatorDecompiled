@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200025A RID: 602
 public class ContainerScript : MonoBehaviour
 {
-	// Token: 0x060012B7 RID: 4791 RVA: 0x000998B4 File Offset: 0x00097AB4
+	// Token: 0x060012B7 RID: 4791 RVA: 0x00099A00 File Offset: 0x00097C00
 	public void Start()
 	{
 		this.GardenArea = GameObject.Find("GardenArea").GetComponent<Collider>();
@@ -14,7 +14,7 @@ public class ContainerScript : MonoBehaviour
 		this.SWStairs = GameObject.Find("SWStairs").GetComponent<Collider>();
 	}
 
-	// Token: 0x060012B8 RID: 4792 RVA: 0x0009992C File Offset: 0x00097B2C
+	// Token: 0x060012B8 RID: 4792 RVA: 0x00099A78 File Offset: 0x00097C78
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -115,7 +115,7 @@ public class ContainerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012B9 RID: 4793 RVA: 0x00099E28 File Offset: 0x00098028
+	// Token: 0x060012B9 RID: 4793 RVA: 0x00099F74 File Offset: 0x00098174
 	public void Drop()
 	{
 		base.transform.parent = null;
@@ -132,7 +132,7 @@ public class ContainerScript : MonoBehaviour
 		component.useGravity = true;
 	}
 
-	// Token: 0x060012BA RID: 4794 RVA: 0x00099EF0 File Offset: 0x000980F0
+	// Token: 0x060012BA RID: 4794 RVA: 0x0009A03C File Offset: 0x0009823C
 	public void UpdatePrompts()
 	{
 		if (this.Weapon != null)
@@ -208,60 +208,60 @@ public class ContainerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040018D8 RID: 6360
+	// Token: 0x040018D9 RID: 6361
 	public TrashCanScript TrashCan;
 
-	// Token: 0x040018D9 RID: 6361
+	// Token: 0x040018DA RID: 6362
 	public WeaponScript Weapon;
 
-	// Token: 0x040018DA RID: 6362
+	// Token: 0x040018DB RID: 6363
 	public PromptScript Prompt;
 
-	// Token: 0x040018DB RID: 6363
+	// Token: 0x040018DC RID: 6364
 	public Transform[] BodyPartPositions;
 
-	// Token: 0x040018DC RID: 6364
+	// Token: 0x040018DD RID: 6365
 	public Transform WeaponSpot;
 
-	// Token: 0x040018DD RID: 6365
+	// Token: 0x040018DE RID: 6366
 	public Transform Lid;
 
-	// Token: 0x040018DE RID: 6366
+	// Token: 0x040018DF RID: 6367
 	public Collider GardenArea;
 
-	// Token: 0x040018DF RID: 6367
+	// Token: 0x040018E0 RID: 6368
 	public Collider NEStairs;
 
-	// Token: 0x040018E0 RID: 6368
+	// Token: 0x040018E1 RID: 6369
 	public Collider NWStairs;
 
-	// Token: 0x040018E1 RID: 6369
+	// Token: 0x040018E2 RID: 6370
 	public Collider SEStairs;
 
-	// Token: 0x040018E2 RID: 6370
+	// Token: 0x040018E3 RID: 6371
 	public Collider SWStairs;
 
-	// Token: 0x040018E3 RID: 6371
+	// Token: 0x040018E4 RID: 6372
 	public PickUpScript[] BodyParts;
 
-	// Token: 0x040018E4 RID: 6372
+	// Token: 0x040018E5 RID: 6373
 	public PickUpScript BodyPart;
 
-	// Token: 0x040018E5 RID: 6373
+	// Token: 0x040018E6 RID: 6374
 	public string SpriteName = string.Empty;
 
-	// Token: 0x040018E6 RID: 6374
+	// Token: 0x040018E7 RID: 6375
 	public bool CelloCase;
 
-	// Token: 0x040018E7 RID: 6375
+	// Token: 0x040018E8 RID: 6376
 	public bool CanDrop;
 
-	// Token: 0x040018E8 RID: 6376
+	// Token: 0x040018E9 RID: 6377
 	public bool Open;
 
-	// Token: 0x040018E9 RID: 6377
+	// Token: 0x040018EA RID: 6378
 	public int Contents;
 
-	// Token: 0x040018EA RID: 6378
+	// Token: 0x040018EB RID: 6379
 	public int ID;
 }

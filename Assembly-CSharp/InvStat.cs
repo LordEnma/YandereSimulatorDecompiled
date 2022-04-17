@@ -4,13 +4,13 @@
 [Serializable]
 public class InvStat
 {
-	// Token: 0x060000BE RID: 190 RVA: 0x00012187 File Offset: 0x00010387
+	// Token: 0x060000BE RID: 190 RVA: 0x0001223F File Offset: 0x0001043F
 	public static string GetName(InvStat.Identifier i)
 	{
 		return i.ToString();
 	}
 
-	// Token: 0x060000BF RID: 191 RVA: 0x00012198 File Offset: 0x00010398
+	// Token: 0x060000BF RID: 191 RVA: 0x00012250 File Offset: 0x00010450
 	public static string GetDescription(InvStat.Identifier i)
 	{
 		switch (i)
@@ -38,7 +38,7 @@ public class InvStat
 		}
 	}
 
-	// Token: 0x060000C0 RID: 192 RVA: 0x00012208 File Offset: 0x00010408
+	// Token: 0x060000C0 RID: 192 RVA: 0x000122C0 File Offset: 0x000104C0
 	public static int CompareArmor(InvStat a, InvStat b)
 	{
 		int num = (int)a.id;
@@ -86,7 +86,7 @@ public class InvStat
 		return 0;
 	}
 
-	// Token: 0x060000C1 RID: 193 RVA: 0x000122B8 File Offset: 0x000104B8
+	// Token: 0x060000C1 RID: 193 RVA: 0x00012370 File Offset: 0x00010570
 	public static int CompareWeapon(InvStat a, InvStat b)
 	{
 		int num = (int)a.id;
@@ -146,34 +146,34 @@ public class InvStat
 	// Token: 0x020005CA RID: 1482
 	public enum Identifier
 	{
-		// Token: 0x04004DB8 RID: 19896
+		// Token: 0x04004DCA RID: 19914
 		Strength,
-		// Token: 0x04004DB9 RID: 19897
+		// Token: 0x04004DCB RID: 19915
 		Constitution,
-		// Token: 0x04004DBA RID: 19898
+		// Token: 0x04004DCC RID: 19916
 		Agility,
-		// Token: 0x04004DBB RID: 19899
+		// Token: 0x04004DCD RID: 19917
 		Intelligence,
-		// Token: 0x04004DBC RID: 19900
+		// Token: 0x04004DCE RID: 19918
 		Damage,
-		// Token: 0x04004DBD RID: 19901
+		// Token: 0x04004DCF RID: 19919
 		Crit,
-		// Token: 0x04004DBE RID: 19902
+		// Token: 0x04004DD0 RID: 19920
 		Armor,
-		// Token: 0x04004DBF RID: 19903
+		// Token: 0x04004DD1 RID: 19921
 		Health,
-		// Token: 0x04004DC0 RID: 19904
+		// Token: 0x04004DD2 RID: 19922
 		Mana,
-		// Token: 0x04004DC1 RID: 19905
+		// Token: 0x04004DD3 RID: 19923
 		Other
 	}
 
 	// Token: 0x020005CB RID: 1483
 	public enum Modifier
 	{
-		// Token: 0x04004DC3 RID: 19907
+		// Token: 0x04004DD5 RID: 19925
 		Added,
-		// Token: 0x04004DC4 RID: 19908
+		// Token: 0x04004DD6 RID: 19926
 		Percent
 	}
 }

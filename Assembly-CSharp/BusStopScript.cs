@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000102 RID: 258
 public class BusStopScript : MonoBehaviour
 {
-	// Token: 0x06000A97 RID: 2711 RVA: 0x0005F5E4 File Offset: 0x0005D7E4
+	// Token: 0x06000A97 RID: 2711 RVA: 0x0005F6E8 File Offset: 0x0005D8E8
 	private void Start()
 	{
 		this.Renderer.material.color = new Color(0f, 0f, 0f, 1f);
@@ -31,7 +31,7 @@ public class BusStopScript : MonoBehaviour
 		Debug.Log("GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID.ToString());
 	}
 
-	// Token: 0x06000A98 RID: 2712 RVA: 0x0005F72C File Offset: 0x0005D92C
+	// Token: 0x06000A98 RID: 2712 RVA: 0x0005F830 File Offset: 0x0005DA30
 	private void Update()
 	{
 		this.SkipTimer += Time.deltaTime;
@@ -607,7 +607,7 @@ public class BusStopScript : MonoBehaviour
 		this.DoomJukebox.pitch = Time.timeScale;
 	}
 
-	// Token: 0x06000A99 RID: 2713 RVA: 0x00061664 File Offset: 0x0005F864
+	// Token: 0x06000A99 RID: 2713 RVA: 0x00061768 File Offset: 0x0005F968
 	private void LateUpdate()
 	{
 		this.SenpaiBrow[0].localPosition = new Vector3(-0.025f, 0.025f, 0f);
@@ -623,7 +623,7 @@ public class BusStopScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A9A RID: 2714 RVA: 0x000617AC File Offset: 0x0005F9AC
+	// Token: 0x06000A9A RID: 2714 RVA: 0x000618B0 File Offset: 0x0005FAB0
 	private void UpdateDOF(float Focus)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -647,7 +647,7 @@ public class BusStopScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x06000A9B RID: 2715 RVA: 0x00061821 File Offset: 0x0005FA21
+	// Token: 0x06000A9B RID: 2715 RVA: 0x00061925 File Offset: 0x0005FB25
 	private void ExitCutscene()
 	{
 		DateGlobals.Week = 2;

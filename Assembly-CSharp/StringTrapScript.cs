@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000455 RID: 1109
 public class StringTrapScript : MonoBehaviour
 {
-	// Token: 0x06001D62 RID: 7522 RVA: 0x001613B8 File Offset: 0x0015F5B8
+	// Token: 0x06001D66 RID: 7526 RVA: 0x00161844 File Offset: 0x0015FA44
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -83,39 +83,39 @@ public class StringTrapScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040035FF RID: 13823
+	// Token: 0x0400360B RID: 13835
 	public WaterCoolerScript WaterCooler;
 
-	// Token: 0x04003600 RID: 13824
+	// Token: 0x0400360C RID: 13836
 	public GameObject BrownPaintPuddle;
 
-	// Token: 0x04003601 RID: 13825
+	// Token: 0x0400360D RID: 13837
 	public GameObject GasolinePuddle;
 
-	// Token: 0x04003602 RID: 13826
+	// Token: 0x0400360E RID: 13838
 	public GameObject BloodPuddle;
 
-	// Token: 0x04003603 RID: 13827
+	// Token: 0x0400360F RID: 13839
 	public GameObject WaterPuddle;
 
-	// Token: 0x04003604 RID: 13828
+	// Token: 0x04003610 RID: 13840
 	public GameObject BrownPaint;
 
-	// Token: 0x04003605 RID: 13829
+	// Token: 0x04003611 RID: 13841
 	public GameObject Gasoline;
 
-	// Token: 0x04003606 RID: 13830
+	// Token: 0x04003612 RID: 13842
 	public GameObject Blood;
 
-	// Token: 0x04003607 RID: 13831
+	// Token: 0x04003613 RID: 13843
 	public GameObject Water;
 
-	// Token: 0x04003608 RID: 13832
+	// Token: 0x04003614 RID: 13844
 	public GameObject Puddle;
 
-	// Token: 0x04003609 RID: 13833
+	// Token: 0x04003615 RID: 13845
 	public Transform[] PuddleSpawn;
 
-	// Token: 0x0400360A RID: 13834
+	// Token: 0x04003616 RID: 13846
 	public Transform Spawn;
 }

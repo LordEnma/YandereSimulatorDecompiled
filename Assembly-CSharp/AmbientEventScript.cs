@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000C6 RID: 198
 public class AmbientEventScript : MonoBehaviour
 {
-	// Token: 0x060009B2 RID: 2482 RVA: 0x00050034 File Offset: 0x0004E234
+	// Token: 0x060009B2 RID: 2482 RVA: 0x000500EC File Offset: 0x0004E2EC
 	private void Start()
 	{
 		if (this.Sitting)
@@ -35,7 +35,7 @@ public class AmbientEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009B3 RID: 2483 RVA: 0x00050104 File Offset: 0x0004E304
+	// Token: 0x060009B3 RID: 2483 RVA: 0x000501BC File Offset: 0x0004E3BC
 	private void Update()
 	{
 		if (!this.EventOn)
@@ -202,7 +202,7 @@ public class AmbientEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009B4 RID: 2484 RVA: 0x00050A78 File Offset: 0x0004EC78
+	// Token: 0x060009B4 RID: 2484 RVA: 0x00050B30 File Offset: 0x0004ED30
 	private void LateUpdate()
 	{
 		if (this.RotateSpine)
@@ -232,7 +232,7 @@ public class AmbientEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009B5 RID: 2485 RVA: 0x00050E24 File Offset: 0x0004F024
+	// Token: 0x060009B5 RID: 2485 RVA: 0x00050EDC File Offset: 0x0004F0DC
 	public void EndEvent()
 	{
 		Debug.Log("An Ambient Event named " + base.gameObject.name + " has ended.");

@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000411 RID: 1041
 public class SaveLoadScript : MonoBehaviour
 {
-	// Token: 0x06001C64 RID: 7268 RVA: 0x0014BB8C File Offset: 0x00149D8C
+	// Token: 0x06001C68 RID: 7272 RVA: 0x0014BF9C File Offset: 0x0014A19C
 	private void DetermineFilePath()
 	{
 		this.SaveProfile = GameGlobals.Profile;
@@ -23,7 +23,7 @@ public class SaveLoadScript : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001C65 RID: 7269 RVA: 0x0014BC1C File Offset: 0x00149E1C
+	// Token: 0x06001C69 RID: 7273 RVA: 0x0014C02C File Offset: 0x0014A22C
 	public void SaveData()
 	{
 		this.DetermineFilePath();
@@ -91,7 +91,7 @@ public class SaveLoadScript : MonoBehaviour
 		}), base.transform.eulerAngles.z);
 	}
 
-	// Token: 0x06001C66 RID: 7270 RVA: 0x0014BEEC File Offset: 0x0014A0EC
+	// Token: 0x06001C6A RID: 7274 RVA: 0x0014C2FC File Offset: 0x0014A4FC
 	public void LoadData()
 	{
 		this.DetermineFilePath();
@@ -157,18 +157,18 @@ public class SaveLoadScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400322D RID: 12845
+	// Token: 0x04003238 RID: 12856
 	public StudentScript Student;
 
-	// Token: 0x0400322E RID: 12846
+	// Token: 0x04003239 RID: 12857
 	public string SerializedData;
 
-	// Token: 0x0400322F RID: 12847
+	// Token: 0x0400323A RID: 12858
 	public string SaveFilePath;
 
-	// Token: 0x04003230 RID: 12848
+	// Token: 0x0400323B RID: 12859
 	public int SaveProfile;
 
-	// Token: 0x04003231 RID: 12849
+	// Token: 0x0400323C RID: 12860
 	public int SaveSlot;
 }

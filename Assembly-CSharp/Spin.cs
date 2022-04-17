@@ -5,14 +5,14 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Spin")]
 public class Spin : MonoBehaviour
 {
-	// Token: 0x060000EA RID: 234 RVA: 0x00012CE5 File Offset: 0x00010EE5
+	// Token: 0x060000EA RID: 234 RVA: 0x00012D9D File Offset: 0x00010F9D
 	private void Start()
 	{
 		this.mTrans = base.transform;
 		this.mRb = base.GetComponent<Rigidbody>();
 	}
 
-	// Token: 0x060000EB RID: 235 RVA: 0x00012CFF File Offset: 0x00010EFF
+	// Token: 0x060000EB RID: 235 RVA: 0x00012DB7 File Offset: 0x00010FB7
 	private void Update()
 	{
 		if (this.mRb == null)
@@ -21,7 +21,7 @@ public class Spin : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060000EC RID: 236 RVA: 0x00012D29 File Offset: 0x00010F29
+	// Token: 0x060000EC RID: 236 RVA: 0x00012DE1 File Offset: 0x00010FE1
 	private void FixedUpdate()
 	{
 		if (this.mRb != null)
@@ -30,7 +30,7 @@ public class Spin : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060000ED RID: 237 RVA: 0x00012D44 File Offset: 0x00010F44
+	// Token: 0x060000ED RID: 237 RVA: 0x00012DFC File Offset: 0x00010FFC
 	public void ApplyDelta(float delta)
 	{
 		delta *= 360f;

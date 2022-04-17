@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Tween/Tween Fill")]
 public class TweenFill : UITweener
 {
-	// Token: 0x0600057D RID: 1405 RVA: 0x0003458F File Offset: 0x0003278F
+	// Token: 0x0600057D RID: 1405 RVA: 0x00034647 File Offset: 0x00032847
 	private void Cache()
 	{
 		this.mCached = true;
@@ -14,8 +14,8 @@ public class TweenFill : UITweener
 	}
 
 	// Token: 0x170000BD RID: 189
-	// (get) Token: 0x0600057E RID: 1406 RVA: 0x000345A4 File Offset: 0x000327A4
-	// (set) Token: 0x0600057F RID: 1407 RVA: 0x000345D3 File Offset: 0x000327D3
+	// (get) Token: 0x0600057E RID: 1406 RVA: 0x0003465C File Offset: 0x0003285C
+	// (set) Token: 0x0600057F RID: 1407 RVA: 0x0003468B File Offset: 0x0003288B
 	public float value
 	{
 		get
@@ -43,13 +43,13 @@ public class TweenFill : UITweener
 		}
 	}
 
-	// Token: 0x06000580 RID: 1408 RVA: 0x000345FD File Offset: 0x000327FD
+	// Token: 0x06000580 RID: 1408 RVA: 0x000346B5 File Offset: 0x000328B5
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		this.value = Mathf.Lerp(this.from, this.to, factor);
 	}
 
-	// Token: 0x06000581 RID: 1409 RVA: 0x00034618 File Offset: 0x00032818
+	// Token: 0x06000581 RID: 1409 RVA: 0x000346D0 File Offset: 0x000328D0
 	public static TweenFill Begin(GameObject go, float duration, float fill)
 	{
 		TweenFill tweenFill = UITweener.Begin<TweenFill>(go, duration, 0f);
@@ -63,13 +63,13 @@ public class TweenFill : UITweener
 		return tweenFill;
 	}
 
-	// Token: 0x06000582 RID: 1410 RVA: 0x00034661 File Offset: 0x00032861
+	// Token: 0x06000582 RID: 1410 RVA: 0x00034719 File Offset: 0x00032919
 	public override void SetStartToCurrentValue()
 	{
 		this.from = this.value;
 	}
 
-	// Token: 0x06000583 RID: 1411 RVA: 0x0003466F File Offset: 0x0003286F
+	// Token: 0x06000583 RID: 1411 RVA: 0x00034727 File Offset: 0x00032927
 	public override void SetEndToCurrentValue()
 	{
 		this.to = this.value;

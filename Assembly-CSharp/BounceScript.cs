@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020000F4 RID: 244
 public class BounceScript : MonoBehaviour
 {
-	// Token: 0x06000A5E RID: 2654 RVA: 0x0005C5F4 File Offset: 0x0005A7F4
+	// Token: 0x06000A5E RID: 2654 RVA: 0x0005C6F8 File Offset: 0x0005A8F8
 	private void Start()
 	{
 		this.StartingMotion += UnityEngine.Random.Range(-0.001f, 0.001f);
 		this.DecliningSpeed += UnityEngine.Random.Range(-0.001f, 0.001f);
 	}
 
-	// Token: 0x06000A5F RID: 2655 RVA: 0x0005C630 File Offset: 0x0005A830
+	// Token: 0x06000A5F RID: 2655 RVA: 0x0005C734 File Offset: 0x0005A934
 	private void Update()
 	{
 		base.transform.position += new Vector3(0f, this.Motion, 0f);

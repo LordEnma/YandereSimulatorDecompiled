@@ -6,8 +6,8 @@ using UnityEngine;
 public class BucketWater : BucketContents
 {
 	// Token: 0x17000201 RID: 513
-	// (get) Token: 0x06000A72 RID: 2674 RVA: 0x0005D10F File Offset: 0x0005B30F
-	// (set) Token: 0x06000A73 RID: 2675 RVA: 0x0005D117 File Offset: 0x0005B317
+	// (get) Token: 0x06000A72 RID: 2674 RVA: 0x0005D213 File Offset: 0x0005B413
+	// (set) Token: 0x06000A73 RID: 2675 RVA: 0x0005D21B File Offset: 0x0005B41B
 	public float Bloodiness
 	{
 		get
@@ -21,8 +21,8 @@ public class BucketWater : BucketContents
 	}
 
 	// Token: 0x17000202 RID: 514
-	// (get) Token: 0x06000A74 RID: 2676 RVA: 0x0005D125 File Offset: 0x0005B325
-	// (set) Token: 0x06000A75 RID: 2677 RVA: 0x0005D12D File Offset: 0x0005B32D
+	// (get) Token: 0x06000A74 RID: 2676 RVA: 0x0005D229 File Offset: 0x0005B429
+	// (set) Token: 0x06000A75 RID: 2677 RVA: 0x0005D231 File Offset: 0x0005B431
 	public bool HasBleach
 	{
 		get
@@ -36,7 +36,7 @@ public class BucketWater : BucketContents
 	}
 
 	// Token: 0x17000203 RID: 515
-	// (get) Token: 0x06000A76 RID: 2678 RVA: 0x0005D136 File Offset: 0x0005B336
+	// (get) Token: 0x06000A76 RID: 2678 RVA: 0x0005D23A File Offset: 0x0005B43A
 	public override BucketContentsType Type
 	{
 		get
@@ -46,7 +46,7 @@ public class BucketWater : BucketContents
 	}
 
 	// Token: 0x17000204 RID: 516
-	// (get) Token: 0x06000A77 RID: 2679 RVA: 0x0005D139 File Offset: 0x0005B339
+	// (get) Token: 0x06000A77 RID: 2679 RVA: 0x0005D23D File Offset: 0x0005B43D
 	public override bool IsCleaningAgent
 	{
 		get
@@ -56,7 +56,7 @@ public class BucketWater : BucketContents
 	}
 
 	// Token: 0x17000205 RID: 517
-	// (get) Token: 0x06000A78 RID: 2680 RVA: 0x0005D141 File Offset: 0x0005B341
+	// (get) Token: 0x06000A78 RID: 2680 RVA: 0x0005D245 File Offset: 0x0005B445
 	public override bool IsFlammable
 	{
 		get
@@ -65,7 +65,7 @@ public class BucketWater : BucketContents
 		}
 	}
 
-	// Token: 0x06000A79 RID: 2681 RVA: 0x0005D144 File Offset: 0x0005B344
+	// Token: 0x06000A79 RID: 2681 RVA: 0x0005D248 File Offset: 0x0005B448
 	public override bool CanBeLifted(int strength)
 	{
 		return true;

@@ -3,30 +3,30 @@
 // Token: 0x020002A6 RID: 678
 public enum RivalEliminationType
 {
-	// Token: 0x04001E67 RID: 7783
-	None,
 	// Token: 0x04001E68 RID: 7784
-	Murdered,
+	None,
 	// Token: 0x04001E69 RID: 7785
-	MurderedWitnessed,
+	Murdered,
 	// Token: 0x04001E6A RID: 7786
-	Arrested,
+	MurderedWitnessed,
 	// Token: 0x04001E6B RID: 7787
-	Befriended,
+	Arrested,
 	// Token: 0x04001E6C RID: 7788
-	Expelled,
+	Befriended,
 	// Token: 0x04001E6D RID: 7789
-	Matchmade,
+	Expelled,
 	// Token: 0x04001E6E RID: 7790
-	Rejected,
+	Matchmade,
 	// Token: 0x04001E6F RID: 7791
-	Ruined,
+	Rejected,
 	// Token: 0x04001E70 RID: 7792
-	SuicideBully,
+	Ruined,
 	// Token: 0x04001E71 RID: 7793
-	SuicideFake,
+	SuicideBully,
 	// Token: 0x04001E72 RID: 7794
-	Vanished,
+	SuicideFake,
 	// Token: 0x04001E73 RID: 7795
+	Vanished,
+	// Token: 0x04001E74 RID: 7796
 	Accident
 }

@@ -8,7 +8,7 @@ using UnityEngine;
 public static class NGUIText
 {
 	// Token: 0x17000063 RID: 99
-	// (get) Token: 0x060003B3 RID: 947 RVA: 0x000247B3 File Offset: 0x000229B3
+	// (get) Token: 0x060003B3 RID: 947 RVA: 0x0002486B File Offset: 0x00022A6B
 	public static bool isDynamic
 	{
 		get
@@ -17,13 +17,13 @@ public static class NGUIText
 		}
 	}
 
-	// Token: 0x060003B4 RID: 948 RVA: 0x000247BD File Offset: 0x000229BD
+	// Token: 0x060003B4 RID: 948 RVA: 0x00024875 File Offset: 0x00022A75
 	public static void Update()
 	{
 		NGUIText.Update(true);
 	}
 
-	// Token: 0x060003B5 RID: 949 RVA: 0x000247C8 File Offset: 0x000229C8
+	// Token: 0x060003B5 RID: 949 RVA: 0x00024880 File Offset: 0x00022A80
 	public static void Update(bool request)
 	{
 		NGUIText.finalSize = Mathf.RoundToInt((float)NGUIText.fontSize / NGUIText.pixelDensity);
@@ -49,7 +49,7 @@ public static class NGUIText
 		}
 	}
 
-	// Token: 0x060003B6 RID: 950 RVA: 0x000248FE File Offset: 0x00022AFE
+	// Token: 0x060003B6 RID: 950 RVA: 0x000249B6 File Offset: 0x00022BB6
 	public static void Prepare(string text)
 	{
 		NGUIText.mColors.Clear();
@@ -59,7 +59,7 @@ public static class NGUIText
 		}
 	}
 
-	// Token: 0x060003B7 RID: 951 RVA: 0x0002492C File Offset: 0x00022B2C
+	// Token: 0x060003B7 RID: 951 RVA: 0x000249E4 File Offset: 0x00022BE4
 	public static BMSymbol GetSymbol(string text, int index, int textLength)
 	{
 		if (NGUIText.bitmapFont != null)
@@ -69,7 +69,7 @@ public static class NGUIText
 		return null;
 	}
 
-	// Token: 0x060003B8 RID: 952 RVA: 0x00024944 File Offset: 0x00022B44
+	// Token: 0x060003B8 RID: 952 RVA: 0x000249FC File Offset: 0x00022BFC
 	public static float GetGlyphWidth(int ch, int prev, float fontScale)
 	{
 		if (NGUIText.bitmapFont != null)
@@ -102,7 +102,7 @@ public static class NGUIText
 		return 0f;
 	}
 
-	// Token: 0x060003B9 RID: 953 RVA: 0x000249F0 File Offset: 0x00022BF0
+	// Token: 0x060003B9 RID: 953 RVA: 0x00024AA8 File Offset: 0x00022CA8
 	public static NGUIText.GlyphInfo GetGlyph(int ch, int prev, float fontScale = 1f)
 	{
 		if (NGUIText.bitmapFont != null)
@@ -177,7 +177,7 @@ public static class NGUIText
 		return null;
 	}
 
-	// Token: 0x060003BA RID: 954 RVA: 0x00024E1B File Offset: 0x0002301B
+	// Token: 0x060003BA RID: 954 RVA: 0x00024ED3 File Offset: 0x000230D3
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static float ParseAlpha(string text, int index)
@@ -185,7 +185,7 @@ public static class NGUIText
 		return Mathf.Clamp01((float)(NGUIMath.HexToDecimal(text[index + 1]) << 4 | NGUIMath.HexToDecimal(text[index + 2])) / 255f);
 	}
 
-	// Token: 0x060003BB RID: 955 RVA: 0x00024E48 File Offset: 0x00023048
+	// Token: 0x060003BB RID: 955 RVA: 0x00024F00 File Offset: 0x00023100
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static Color ParseColor(string text, int offset = 0)
@@ -193,7 +193,7 @@ public static class NGUIText
 		return NGUIText.ParseColor24(text, offset);
 	}
 
-	// Token: 0x060003BC RID: 956 RVA: 0x00024E54 File Offset: 0x00023054
+	// Token: 0x060003BC RID: 956 RVA: 0x00024F0C File Offset: 0x0002310C
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static Color ParseColor24(string text, int offset = 0)
@@ -205,7 +205,7 @@ public static class NGUIText
 		return new Color(num4 * (float)num, num4 * (float)num2, num4 * (float)num3);
 	}
 
-	// Token: 0x060003BD RID: 957 RVA: 0x00024ED8 File Offset: 0x000230D8
+	// Token: 0x060003BD RID: 957 RVA: 0x00024F90 File Offset: 0x00023190
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static Color ParseColor32(string text, int offset)
@@ -218,7 +218,7 @@ public static class NGUIText
 		return new Color(num5 * (float)num, num5 * (float)num2, num5 * (float)num3, num5 * (float)num4);
 	}
 
-	// Token: 0x060003BE RID: 958 RVA: 0x00024F83 File Offset: 0x00023183
+	// Token: 0x060003BE RID: 958 RVA: 0x0002503B File Offset: 0x0002323B
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static string EncodeColor(Color c)
@@ -226,7 +226,7 @@ public static class NGUIText
 		return NGUIText.EncodeColor24(c);
 	}
 
-	// Token: 0x060003BF RID: 959 RVA: 0x00024F8B File Offset: 0x0002318B
+	// Token: 0x060003BF RID: 959 RVA: 0x00025043 File Offset: 0x00023243
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static string EncodeColor(string text, Color c)
@@ -241,7 +241,7 @@ public static class NGUIText
 		});
 	}
 
-	// Token: 0x060003C0 RID: 960 RVA: 0x00024FBD File Offset: 0x000231BD
+	// Token: 0x060003C0 RID: 960 RVA: 0x00025075 File Offset: 0x00023275
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static string EncodeAlpha(float a)
@@ -249,7 +249,7 @@ public static class NGUIText
 		return NGUIMath.DecimalToHex8(Mathf.Clamp(Mathf.RoundToInt(a * 255f), 0, 255));
 	}
 
-	// Token: 0x060003C1 RID: 961 RVA: 0x00024FDB File Offset: 0x000231DB
+	// Token: 0x060003C1 RID: 961 RVA: 0x00025093 File Offset: 0x00023293
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static string EncodeColor24(Color c)
@@ -257,7 +257,7 @@ public static class NGUIText
 		return NGUIMath.DecimalToHex24(16777215 & NGUIMath.ColorToInt(c) >> 8);
 	}
 
-	// Token: 0x060003C2 RID: 962 RVA: 0x00024FF0 File Offset: 0x000231F0
+	// Token: 0x060003C2 RID: 962 RVA: 0x000250A8 File Offset: 0x000232A8
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static string EncodeColor32(Color c)
@@ -265,7 +265,7 @@ public static class NGUIText
 		return NGUIMath.DecimalToHex32(NGUIMath.ColorToInt(c));
 	}
 
-	// Token: 0x060003C3 RID: 963 RVA: 0x00025000 File Offset: 0x00023200
+	// Token: 0x060003C3 RID: 963 RVA: 0x000250B8 File Offset: 0x000232B8
 	public static bool ParseSymbol(string text, ref int index)
 	{
 		int num = 0;
@@ -277,7 +277,7 @@ public static class NGUIText
 		return NGUIText.ParseSymbol(text, ref index, null, false, ref num, ref flag, ref flag2, ref flag3, ref flag4, ref flag5);
 	}
 
-	// Token: 0x060003C4 RID: 964 RVA: 0x00025030 File Offset: 0x00023230
+	// Token: 0x060003C4 RID: 964 RVA: 0x000250E8 File Offset: 0x000232E8
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static bool IsHex(char ch)
@@ -285,7 +285,7 @@ public static class NGUIText
 		return (ch >= '0' && ch <= '9') || (ch >= 'a' && ch <= 'f') || (ch >= 'A' && ch <= 'F');
 	}
 
-	// Token: 0x060003C5 RID: 965 RVA: 0x00025058 File Offset: 0x00023258
+	// Token: 0x060003C5 RID: 965 RVA: 0x00025110 File Offset: 0x00023310
 	public static bool ParseSymbol(string text, ref int index, BetterList<Color> colors, bool premultiply, ref int sub, ref bool bold, ref bool italic, ref bool underline, ref bool strike, ref bool ignoreColor)
 	{
 		int length = text.Length;
@@ -695,7 +695,7 @@ public static class NGUIText
 		}
 	}
 
-	// Token: 0x060003C6 RID: 966 RVA: 0x000256E8 File Offset: 0x000238E8
+	// Token: 0x060003C6 RID: 966 RVA: 0x000257A0 File Offset: 0x000239A0
 	public static string StripSymbols(string text)
 	{
 		if (text != null)
@@ -726,7 +726,7 @@ public static class NGUIText
 		return text;
 	}
 
-	// Token: 0x060003C7 RID: 967 RVA: 0x00025758 File Offset: 0x00023958
+	// Token: 0x060003C7 RID: 967 RVA: 0x00025810 File Offset: 0x00023A10
 	public static void Align(List<Vector3> verts, int indexOffset, float printedWidth, int elements = 4)
 	{
 		switch (NGUIText.alignment)
@@ -848,7 +848,7 @@ public static class NGUIText
 		}
 	}
 
-	// Token: 0x060003C8 RID: 968 RVA: 0x00025A4C File Offset: 0x00023C4C
+	// Token: 0x060003C8 RID: 968 RVA: 0x00025B04 File Offset: 0x00023D04
 	public static int GetExactCharacterIndex(List<Vector3> verts, List<int> indices, Vector2 pos)
 	{
 		int i = 0;
@@ -879,7 +879,7 @@ public static class NGUIText
 		return 0;
 	}
 
-	// Token: 0x060003C9 RID: 969 RVA: 0x00025AE0 File Offset: 0x00023CE0
+	// Token: 0x060003C9 RID: 969 RVA: 0x00025B98 File Offset: 0x00023D98
 	public static int GetApproximateCharacterIndex(List<Vector3> verts, List<int> indices, Vector2 pos)
 	{
 		float num = float.MaxValue;
@@ -910,7 +910,7 @@ public static class NGUIText
 		return indices[index];
 	}
 
-	// Token: 0x060003CA RID: 970 RVA: 0x00025B69 File Offset: 0x00023D69
+	// Token: 0x060003CA RID: 970 RVA: 0x00025C21 File Offset: 0x00023E21
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static bool IsSpace(int ch)
@@ -918,7 +918,7 @@ public static class NGUIText
 		return ch == 32 || ch == 8202 || ch == 8203 || ch == 8201;
 	}
 
-	// Token: 0x060003CB RID: 971 RVA: 0x00025B8C File Offset: 0x00023D8C
+	// Token: 0x060003CB RID: 971 RVA: 0x00025C44 File Offset: 0x00023E44
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static void EndLine(ref StringBuilder s)
@@ -932,7 +932,7 @@ public static class NGUIText
 		s.Append('\n');
 	}
 
-	// Token: 0x060003CC RID: 972 RVA: 0x00025BCC File Offset: 0x00023DCC
+	// Token: 0x060003CC RID: 972 RVA: 0x00025C84 File Offset: 0x00023E84
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	private static void ReplaceSpaceWithNewline(ref StringBuilder s)
@@ -944,7 +944,7 @@ public static class NGUIText
 		}
 	}
 
-	// Token: 0x060003CD RID: 973 RVA: 0x00025C00 File Offset: 0x00023E00
+	// Token: 0x060003CD RID: 973 RVA: 0x00025CB8 File Offset: 0x00023EB8
 	public static Vector2 CalculatePrintedSize(string text)
 	{
 		Vector2 zero = Vector2.zero;
@@ -1081,7 +1081,7 @@ public static class NGUIText
 		return zero;
 	}
 
-	// Token: 0x060003CE RID: 974 RVA: 0x00025EB0 File Offset: 0x000240B0
+	// Token: 0x060003CE RID: 974 RVA: 0x00025F68 File Offset: 0x00024168
 	public static int CalculateOffsetToFit(string text)
 	{
 		if (string.IsNullOrEmpty(text) || NGUIText.regionWidth < 1)
@@ -1146,7 +1146,7 @@ public static class NGUIText
 		return num5;
 	}
 
-	// Token: 0x060003CF RID: 975 RVA: 0x00026058 File Offset: 0x00024258
+	// Token: 0x060003CF RID: 975 RVA: 0x00026110 File Offset: 0x00024310
 	public static string GetEndOfLineThatFits(string text)
 	{
 		int length = text.Length;
@@ -1154,13 +1154,13 @@ public static class NGUIText
 		return text.Substring(num, length - num);
 	}
 
-	// Token: 0x060003D0 RID: 976 RVA: 0x0002607D File Offset: 0x0002427D
+	// Token: 0x060003D0 RID: 976 RVA: 0x00026135 File Offset: 0x00024335
 	public static bool WrapText(string text, out string finalText, bool wrapLineColors = false)
 	{
 		return NGUIText.WrapText(text, out finalText, false, wrapLineColors, false);
 	}
 
-	// Token: 0x060003D1 RID: 977 RVA: 0x0002608C File Offset: 0x0002428C
+	// Token: 0x060003D1 RID: 977 RVA: 0x00026144 File Offset: 0x00024344
 	public static bool WrapText(string text, out string finalText, bool keepCharCount, bool wrapLineColors, bool useEllipsis = false)
 	{
 		if (NGUIText.regionWidth < 1 || NGUIText.regionHeight < 1 || NGUIText.finalLineHeight < 1f)
@@ -1515,7 +1515,7 @@ public static class NGUIText
 		return num6 == num2;
 	}
 
-	// Token: 0x060003D2 RID: 978 RVA: 0x0002697C File Offset: 0x00024B7C
+	// Token: 0x060003D2 RID: 978 RVA: 0x00026A34 File Offset: 0x00024C34
 	public static void Print(string text, List<Vector3> verts, List<Vector2> uvs, List<Color> cols)
 	{
 		if (string.IsNullOrEmpty(text))
@@ -1959,7 +1959,7 @@ public static class NGUIText
 		NGUIText.mColors.Clear();
 	}
 
-	// Token: 0x060003D3 RID: 979 RVA: 0x00027760 File Offset: 0x00025960
+	// Token: 0x060003D3 RID: 979 RVA: 0x00027818 File Offset: 0x00025A18
 	public static void PrintApproximateCharacterPositions(string text, List<Vector3> verts, List<int> indices)
 	{
 		if (string.IsNullOrEmpty(text))
@@ -2071,7 +2071,7 @@ public static class NGUIText
 		}
 	}
 
-	// Token: 0x060003D4 RID: 980 RVA: 0x000279FC File Offset: 0x00025BFC
+	// Token: 0x060003D4 RID: 980 RVA: 0x00027AB4 File Offset: 0x00025CB4
 	public static void PrintExactCharacterPositions(string text, List<Vector3> verts, List<int> indices)
 	{
 		if (string.IsNullOrEmpty(text))
@@ -2187,7 +2187,7 @@ public static class NGUIText
 		}
 	}
 
-	// Token: 0x060003D5 RID: 981 RVA: 0x00027CBC File Offset: 0x00025EBC
+	// Token: 0x060003D5 RID: 981 RVA: 0x00027D74 File Offset: 0x00025F74
 	public static void PrintCaretAndSelection(string text, int start, int end, List<Vector3> caret, List<Vector3> highlight)
 	{
 		if (string.IsNullOrEmpty(text))
@@ -2388,7 +2388,7 @@ public static class NGUIText
 		NGUIText.mColors.Clear();
 	}
 
-	// Token: 0x060003D6 RID: 982 RVA: 0x00028234 File Offset: 0x00026434
+	// Token: 0x060003D6 RID: 982 RVA: 0x000282EC File Offset: 0x000264EC
 	public static bool ReplaceLink(ref string text, ref int index, string type, string prefix = null, string suffix = null)
 	{
 		if (index == -1)
@@ -2470,7 +2470,7 @@ public static class NGUIText
 		return true;
 	}
 
-	// Token: 0x060003D7 RID: 983 RVA: 0x0002841C File Offset: 0x0002661C
+	// Token: 0x060003D7 RID: 983 RVA: 0x000284D4 File Offset: 0x000266D4
 	public static bool InsertHyperlink(ref string text, ref int index, string keyword, string link, string prefix = null, string suffix = null)
 	{
 		int num = text.IndexOf(keyword, index, StringComparison.CurrentCultureIgnoreCase);
@@ -2514,7 +2514,7 @@ public static class NGUIText
 		return true;
 	}
 
-	// Token: 0x060003D8 RID: 984 RVA: 0x00028580 File Offset: 0x00026780
+	// Token: 0x060003D8 RID: 984 RVA: 0x00028638 File Offset: 0x00026838
 	public static void ReplaceLinks(ref string text, string prefix = null, string suffix = null)
 	{
 		int num = 0;
@@ -2653,15 +2653,15 @@ public static class NGUIText
 	[DoNotObfuscateNGUI]
 	public enum Alignment
 	{
-		// Token: 0x04004E47 RID: 20039
+		// Token: 0x04004E59 RID: 20057
 		Automatic,
-		// Token: 0x04004E48 RID: 20040
+		// Token: 0x04004E5A RID: 20058
 		Left,
-		// Token: 0x04004E49 RID: 20041
+		// Token: 0x04004E5B RID: 20059
 		Center,
-		// Token: 0x04004E4A RID: 20042
+		// Token: 0x04004E5C RID: 20060
 		Right,
-		// Token: 0x04004E4B RID: 20043
+		// Token: 0x04004E5D RID: 20061
 		Justified
 	}
 
@@ -2669,41 +2669,41 @@ public static class NGUIText
 	[DoNotObfuscateNGUI]
 	public enum SymbolStyle
 	{
-		// Token: 0x04004E4D RID: 20045
+		// Token: 0x04004E5F RID: 20063
 		None,
-		// Token: 0x04004E4E RID: 20046
+		// Token: 0x04004E60 RID: 20064
 		Normal,
-		// Token: 0x04004E4F RID: 20047
+		// Token: 0x04004E61 RID: 20065
 		Colored,
-		// Token: 0x04004E50 RID: 20048
+		// Token: 0x04004E62 RID: 20066
 		NoOutline
 	}
 
 	// Token: 0x020005F6 RID: 1526
 	public class GlyphInfo
 	{
-		// Token: 0x04004E51 RID: 20049
+		// Token: 0x04004E63 RID: 20067
 		public Vector2 v0;
 
-		// Token: 0x04004E52 RID: 20050
+		// Token: 0x04004E64 RID: 20068
 		public Vector2 v1;
 
-		// Token: 0x04004E53 RID: 20051
+		// Token: 0x04004E65 RID: 20069
 		public Vector2 u0;
 
-		// Token: 0x04004E54 RID: 20052
+		// Token: 0x04004E66 RID: 20070
 		public Vector2 u1;
 
-		// Token: 0x04004E55 RID: 20053
+		// Token: 0x04004E67 RID: 20071
 		public Vector2 u2;
 
-		// Token: 0x04004E56 RID: 20054
+		// Token: 0x04004E68 RID: 20072
 		public Vector2 u3;
 
-		// Token: 0x04004E57 RID: 20055
+		// Token: 0x04004E69 RID: 20073
 		public float advance;
 
-		// Token: 0x04004E58 RID: 20056
+		// Token: 0x04004E6A RID: 20074
 		public int channel;
 	}
 }

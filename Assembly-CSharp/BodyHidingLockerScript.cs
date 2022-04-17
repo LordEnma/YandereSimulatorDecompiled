@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020000EE RID: 238
 public class BodyHidingLockerScript : MonoBehaviour
 {
-	// Token: 0x06000A4C RID: 2636 RVA: 0x0005B6DD File Offset: 0x000598DD
+	// Token: 0x06000A4C RID: 2636 RVA: 0x0005B795 File Offset: 0x00059995
 	private void Start()
 	{
 		this.Outline = base.GetComponentInChildren<OutlineScript>();
 	}
 
-	// Token: 0x06000A4D RID: 2637 RVA: 0x0005B6EC File Offset: 0x000598EC
+	// Token: 0x06000A4D RID: 2637 RVA: 0x0005B7A4 File Offset: 0x000599A4
 	private void Update()
 	{
 		if (this.Rotation != 0f)
@@ -131,7 +131,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A4E RID: 2638 RVA: 0x0005BD0C File Offset: 0x00059F0C
+	// Token: 0x06000A4E RID: 2638 RVA: 0x0005BDC4 File Offset: 0x00059FC4
 	public void UpdateCorpse()
 	{
 		this.Corpse = this.StudentManager.Students[this.StudentID].Ragdoll;

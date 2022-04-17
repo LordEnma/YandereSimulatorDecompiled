@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000C1 RID: 193
 public class AccessoryGroupScript : MonoBehaviour
 {
-	// Token: 0x0600099B RID: 2459 RVA: 0x0004CFCC File Offset: 0x0004B1CC
+	// Token: 0x0600099B RID: 2459 RVA: 0x0004D084 File Offset: 0x0004B284
 	public void SetPartsActive(bool active)
 	{
 		GameObject[] parts = this.Parts;

@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200043D RID: 1085
 public class SpeedrunTimerScript : MonoBehaviour
 {
-	// Token: 0x06001CFE RID: 7422 RVA: 0x00159E83 File Offset: 0x00158083
+	// Token: 0x06001D02 RID: 7426 RVA: 0x0015A293 File Offset: 0x00158493
 	private void Start()
 	{
 		this.Label.enabled = false;
 	}
 
-	// Token: 0x06001CFF RID: 7423 RVA: 0x00159E94 File Offset: 0x00158094
+	// Token: 0x06001D03 RID: 7427 RVA: 0x0015A2A4 File Offset: 0x001584A4
 	private void Update()
 	{
 		if (!this.Police.FadeOut)
@@ -27,7 +27,7 @@ public class SpeedrunTimerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D00 RID: 7424 RVA: 0x00159F10 File Offset: 0x00158110
+	// Token: 0x06001D04 RID: 7428 RVA: 0x0015A320 File Offset: 0x00158520
 	private string FormatTime(float time)
 	{
 		int num = (int)time;
@@ -38,12 +38,12 @@ public class SpeedrunTimerScript : MonoBehaviour
 		return string.Format("{0:00}:{1:00}:{2:000}", num2, num3, num4);
 	}
 
-	// Token: 0x04003478 RID: 13432
+	// Token: 0x04003483 RID: 13443
 	public PoliceScript Police;
 
-	// Token: 0x04003479 RID: 13433
+	// Token: 0x04003484 RID: 13444
 	public UILabel Label;
 
-	// Token: 0x0400347A RID: 13434
+	// Token: 0x04003485 RID: 13445
 	public float Timer;
 }

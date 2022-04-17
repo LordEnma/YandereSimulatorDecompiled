@@ -7,20 +7,20 @@ namespace AmplifyMotion
 	[Serializable]
 	public class VersionInfo
 	{
-		// Token: 0x0600240D RID: 9229 RVA: 0x001FBA31 File Offset: 0x001F9C31
+		// Token: 0x06002414 RID: 9236 RVA: 0x001FC48D File Offset: 0x001FA68D
 		public static string StaticToString()
 		{
 			return string.Format("{0}.{1}.{2}", 1, 8, 3) + VersionInfo.StageSuffix + VersionInfo.TrialSuffix;
 		}
 
-		// Token: 0x0600240E RID: 9230 RVA: 0x001FBA5E File Offset: 0x001F9C5E
+		// Token: 0x06002415 RID: 9237 RVA: 0x001FC4BA File Offset: 0x001FA6BA
 		public override string ToString()
 		{
 			return string.Format("{0}.{1}.{2}", this.m_major, this.m_minor, this.m_release) + VersionInfo.StageSuffix + VersionInfo.TrialSuffix;
 		}
 
-		// Token: 0x17000523 RID: 1315
-		// (get) Token: 0x0600240F RID: 9231 RVA: 0x001FBA9A File Offset: 0x001F9C9A
+		// Token: 0x17000524 RID: 1316
+		// (get) Token: 0x06002416 RID: 9238 RVA: 0x001FC4F6 File Offset: 0x001FA6F6
 		public int Number
 		{
 			get
@@ -29,7 +29,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002410 RID: 9232 RVA: 0x001FBAB6 File Offset: 0x001F9CB6
+		// Token: 0x06002417 RID: 9239 RVA: 0x001FC512 File Offset: 0x001FA712
 		private VersionInfo()
 		{
 			this.m_major = 1;
@@ -37,7 +37,7 @@ namespace AmplifyMotion
 			this.m_release = 3;
 		}
 
-		// Token: 0x06002411 RID: 9233 RVA: 0x001FBAD3 File Offset: 0x001F9CD3
+		// Token: 0x06002418 RID: 9240 RVA: 0x001FC52F File Offset: 0x001FA72F
 		private VersionInfo(byte major, byte minor, byte release)
 		{
 			this.m_major = (int)major;
@@ -45,42 +45,42 @@ namespace AmplifyMotion
 			this.m_release = (int)release;
 		}
 
-		// Token: 0x06002412 RID: 9234 RVA: 0x001FBAF0 File Offset: 0x001F9CF0
+		// Token: 0x06002419 RID: 9241 RVA: 0x001FC54C File Offset: 0x001FA74C
 		public static VersionInfo Current()
 		{
 			return new VersionInfo(1, 8, 3);
 		}
 
-		// Token: 0x06002413 RID: 9235 RVA: 0x001FBAFA File Offset: 0x001F9CFA
+		// Token: 0x0600241A RID: 9242 RVA: 0x001FC556 File Offset: 0x001FA756
 		public static bool Matches(VersionInfo version)
 		{
 			return 1 == version.m_major && 8 == version.m_minor && 3 == version.m_release;
 		}
 
-		// Token: 0x04004C35 RID: 19509
+		// Token: 0x04004C47 RID: 19527
 		public const byte Major = 1;
 
-		// Token: 0x04004C36 RID: 19510
+		// Token: 0x04004C48 RID: 19528
 		public const byte Minor = 8;
 
-		// Token: 0x04004C37 RID: 19511
+		// Token: 0x04004C49 RID: 19529
 		public const byte Release = 3;
 
-		// Token: 0x04004C38 RID: 19512
+		// Token: 0x04004C4A RID: 19530
 		private static string StageSuffix = "_dev001";
 
-		// Token: 0x04004C39 RID: 19513
+		// Token: 0x04004C4B RID: 19531
 		private static string TrialSuffix = "";
 
-		// Token: 0x04004C3A RID: 19514
+		// Token: 0x04004C4C RID: 19532
 		[SerializeField]
 		private int m_major;
 
-		// Token: 0x04004C3B RID: 19515
+		// Token: 0x04004C4D RID: 19533
 		[SerializeField]
 		private int m_minor;
 
-		// Token: 0x04004C3C RID: 19516
+		// Token: 0x04004C4E RID: 19534
 		[SerializeField]
 		private int m_release;
 	}

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004D0 RID: 1232
 public class YandereKunScript : MonoBehaviour
 {
-	// Token: 0x0600202E RID: 8238 RVA: 0x001CB9B4 File Offset: 0x001C9BB4
+	// Token: 0x06002034 RID: 8244 RVA: 0x001CC390 File Offset: 0x001CA590
 	private void Start()
 	{
 		if (!this.Kizuna)
@@ -118,7 +118,7 @@ public class YandereKunScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600202F RID: 8239 RVA: 0x001CBE94 File Offset: 0x001CA094
+	// Token: 0x06002035 RID: 8245 RVA: 0x001CC870 File Offset: 0x001CAA70
 	private void LateUpdate()
 	{
 		if (this.Man)
@@ -251,372 +251,372 @@ public class YandereKunScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040043FE RID: 17406
+	// Token: 0x0400440E RID: 17422
 	public Transform ChanItemParent;
 
-	// Token: 0x040043FF RID: 17407
+	// Token: 0x0400440F RID: 17423
 	public Transform KunItemParent;
 
-	// Token: 0x04004400 RID: 17408
+	// Token: 0x04004410 RID: 17424
 	public Transform ChanHips;
 
-	// Token: 0x04004401 RID: 17409
+	// Token: 0x04004411 RID: 17425
 	public Transform ChanSpine;
 
-	// Token: 0x04004402 RID: 17410
+	// Token: 0x04004412 RID: 17426
 	public Transform ChanSpine1;
 
-	// Token: 0x04004403 RID: 17411
+	// Token: 0x04004413 RID: 17427
 	public Transform ChanSpine2;
 
-	// Token: 0x04004404 RID: 17412
+	// Token: 0x04004414 RID: 17428
 	public Transform ChanSpine3;
 
-	// Token: 0x04004405 RID: 17413
+	// Token: 0x04004415 RID: 17429
 	public Transform ChanNeck;
 
-	// Token: 0x04004406 RID: 17414
+	// Token: 0x04004416 RID: 17430
 	public Transform ChanHead;
 
-	// Token: 0x04004407 RID: 17415
+	// Token: 0x04004417 RID: 17431
 	public Transform ChanRightUpLeg;
 
-	// Token: 0x04004408 RID: 17416
+	// Token: 0x04004418 RID: 17432
 	public Transform ChanRightLeg;
 
-	// Token: 0x04004409 RID: 17417
+	// Token: 0x04004419 RID: 17433
 	public Transform ChanRightFoot;
 
-	// Token: 0x0400440A RID: 17418
+	// Token: 0x0400441A RID: 17434
 	public Transform ChanRightToes;
 
-	// Token: 0x0400440B RID: 17419
+	// Token: 0x0400441B RID: 17435
 	public Transform ChanLeftUpLeg;
 
-	// Token: 0x0400440C RID: 17420
+	// Token: 0x0400441C RID: 17436
 	public Transform ChanLeftLeg;
 
-	// Token: 0x0400440D RID: 17421
+	// Token: 0x0400441D RID: 17437
 	public Transform ChanLeftFoot;
 
-	// Token: 0x0400440E RID: 17422
+	// Token: 0x0400441E RID: 17438
 	public Transform ChanLeftToes;
 
-	// Token: 0x0400440F RID: 17423
+	// Token: 0x0400441F RID: 17439
 	public Transform ChanRightShoulder;
 
-	// Token: 0x04004410 RID: 17424
+	// Token: 0x04004420 RID: 17440
 	public Transform ChanRightArm;
 
-	// Token: 0x04004411 RID: 17425
+	// Token: 0x04004421 RID: 17441
 	public Transform ChanRightArmRoll;
 
-	// Token: 0x04004412 RID: 17426
+	// Token: 0x04004422 RID: 17442
 	public Transform ChanRightForeArm;
 
-	// Token: 0x04004413 RID: 17427
+	// Token: 0x04004423 RID: 17443
 	public Transform ChanRightForeArmRoll;
 
-	// Token: 0x04004414 RID: 17428
+	// Token: 0x04004424 RID: 17444
 	public Transform ChanRightHand;
 
-	// Token: 0x04004415 RID: 17429
+	// Token: 0x04004425 RID: 17445
 	public Transform ChanLeftShoulder;
 
-	// Token: 0x04004416 RID: 17430
+	// Token: 0x04004426 RID: 17446
 	public Transform ChanLeftArm;
 
-	// Token: 0x04004417 RID: 17431
+	// Token: 0x04004427 RID: 17447
 	public Transform ChanLeftArmRoll;
 
-	// Token: 0x04004418 RID: 17432
+	// Token: 0x04004428 RID: 17448
 	public Transform ChanLeftForeArm;
 
-	// Token: 0x04004419 RID: 17433
+	// Token: 0x04004429 RID: 17449
 	public Transform ChanLeftForeArmRoll;
 
-	// Token: 0x0400441A RID: 17434
+	// Token: 0x0400442A RID: 17450
 	public Transform ChanLeftHand;
 
-	// Token: 0x0400441B RID: 17435
+	// Token: 0x0400442B RID: 17451
 	public Transform ChanLeftHandPinky1;
 
-	// Token: 0x0400441C RID: 17436
+	// Token: 0x0400442C RID: 17452
 	public Transform ChanLeftHandPinky2;
 
-	// Token: 0x0400441D RID: 17437
+	// Token: 0x0400442D RID: 17453
 	public Transform ChanLeftHandPinky3;
 
-	// Token: 0x0400441E RID: 17438
+	// Token: 0x0400442E RID: 17454
 	public Transform ChanLeftHandRing1;
 
-	// Token: 0x0400441F RID: 17439
+	// Token: 0x0400442F RID: 17455
 	public Transform ChanLeftHandRing2;
 
-	// Token: 0x04004420 RID: 17440
+	// Token: 0x04004430 RID: 17456
 	public Transform ChanLeftHandRing3;
 
-	// Token: 0x04004421 RID: 17441
+	// Token: 0x04004431 RID: 17457
 	public Transform ChanLeftHandMiddle1;
 
-	// Token: 0x04004422 RID: 17442
+	// Token: 0x04004432 RID: 17458
 	public Transform ChanLeftHandMiddle2;
 
-	// Token: 0x04004423 RID: 17443
+	// Token: 0x04004433 RID: 17459
 	public Transform ChanLeftHandMiddle3;
 
-	// Token: 0x04004424 RID: 17444
+	// Token: 0x04004434 RID: 17460
 	public Transform ChanLeftHandIndex1;
 
-	// Token: 0x04004425 RID: 17445
+	// Token: 0x04004435 RID: 17461
 	public Transform ChanLeftHandIndex2;
 
-	// Token: 0x04004426 RID: 17446
+	// Token: 0x04004436 RID: 17462
 	public Transform ChanLeftHandIndex3;
 
-	// Token: 0x04004427 RID: 17447
+	// Token: 0x04004437 RID: 17463
 	public Transform ChanLeftHandThumb1;
 
-	// Token: 0x04004428 RID: 17448
+	// Token: 0x04004438 RID: 17464
 	public Transform ChanLeftHandThumb2;
 
-	// Token: 0x04004429 RID: 17449
+	// Token: 0x04004439 RID: 17465
 	public Transform ChanLeftHandThumb3;
 
-	// Token: 0x0400442A RID: 17450
+	// Token: 0x0400443A RID: 17466
 	public Transform ChanRightHandPinky1;
 
-	// Token: 0x0400442B RID: 17451
+	// Token: 0x0400443B RID: 17467
 	public Transform ChanRightHandPinky2;
 
-	// Token: 0x0400442C RID: 17452
+	// Token: 0x0400443C RID: 17468
 	public Transform ChanRightHandPinky3;
 
-	// Token: 0x0400442D RID: 17453
+	// Token: 0x0400443D RID: 17469
 	public Transform ChanRightHandRing1;
 
-	// Token: 0x0400442E RID: 17454
+	// Token: 0x0400443E RID: 17470
 	public Transform ChanRightHandRing2;
 
-	// Token: 0x0400442F RID: 17455
+	// Token: 0x0400443F RID: 17471
 	public Transform ChanRightHandRing3;
 
-	// Token: 0x04004430 RID: 17456
+	// Token: 0x04004440 RID: 17472
 	public Transform ChanRightHandMiddle1;
 
-	// Token: 0x04004431 RID: 17457
+	// Token: 0x04004441 RID: 17473
 	public Transform ChanRightHandMiddle2;
 
-	// Token: 0x04004432 RID: 17458
+	// Token: 0x04004442 RID: 17474
 	public Transform ChanRightHandMiddle3;
 
-	// Token: 0x04004433 RID: 17459
+	// Token: 0x04004443 RID: 17475
 	public Transform ChanRightHandIndex1;
 
-	// Token: 0x04004434 RID: 17460
+	// Token: 0x04004444 RID: 17476
 	public Transform ChanRightHandIndex2;
 
-	// Token: 0x04004435 RID: 17461
+	// Token: 0x04004445 RID: 17477
 	public Transform ChanRightHandIndex3;
 
-	// Token: 0x04004436 RID: 17462
+	// Token: 0x04004446 RID: 17478
 	public Transform ChanRightHandThumb1;
 
-	// Token: 0x04004437 RID: 17463
+	// Token: 0x04004447 RID: 17479
 	public Transform ChanRightHandThumb2;
 
-	// Token: 0x04004438 RID: 17464
+	// Token: 0x04004448 RID: 17480
 	public Transform ChanRightHandThumb3;
 
-	// Token: 0x04004439 RID: 17465
+	// Token: 0x04004449 RID: 17481
 	public Transform KunHips;
 
-	// Token: 0x0400443A RID: 17466
+	// Token: 0x0400444A RID: 17482
 	public Transform KunSpine;
 
-	// Token: 0x0400443B RID: 17467
+	// Token: 0x0400444B RID: 17483
 	public Transform KunSpine1;
 
-	// Token: 0x0400443C RID: 17468
+	// Token: 0x0400444C RID: 17484
 	public Transform KunSpine2;
 
-	// Token: 0x0400443D RID: 17469
+	// Token: 0x0400444D RID: 17485
 	public Transform KunSpine3;
 
-	// Token: 0x0400443E RID: 17470
+	// Token: 0x0400444E RID: 17486
 	public Transform KunNeck;
 
-	// Token: 0x0400443F RID: 17471
+	// Token: 0x0400444F RID: 17487
 	public Transform KunHead;
 
-	// Token: 0x04004440 RID: 17472
+	// Token: 0x04004450 RID: 17488
 	public Transform KunRightUpLeg;
 
-	// Token: 0x04004441 RID: 17473
+	// Token: 0x04004451 RID: 17489
 	public Transform KunRightLeg;
 
-	// Token: 0x04004442 RID: 17474
+	// Token: 0x04004452 RID: 17490
 	public Transform KunRightFoot;
 
-	// Token: 0x04004443 RID: 17475
+	// Token: 0x04004453 RID: 17491
 	public Transform KunRightToes;
 
-	// Token: 0x04004444 RID: 17476
+	// Token: 0x04004454 RID: 17492
 	public Transform KunLeftUpLeg;
 
-	// Token: 0x04004445 RID: 17477
+	// Token: 0x04004455 RID: 17493
 	public Transform KunLeftLeg;
 
-	// Token: 0x04004446 RID: 17478
+	// Token: 0x04004456 RID: 17494
 	public Transform KunLeftFoot;
 
-	// Token: 0x04004447 RID: 17479
+	// Token: 0x04004457 RID: 17495
 	public Transform KunLeftToes;
 
-	// Token: 0x04004448 RID: 17480
+	// Token: 0x04004458 RID: 17496
 	public Transform KunRightShoulder;
 
-	// Token: 0x04004449 RID: 17481
+	// Token: 0x04004459 RID: 17497
 	public Transform KunRightArm;
 
-	// Token: 0x0400444A RID: 17482
+	// Token: 0x0400445A RID: 17498
 	public Transform KunRightArmRoll;
 
-	// Token: 0x0400444B RID: 17483
+	// Token: 0x0400445B RID: 17499
 	public Transform KunRightForeArm;
 
-	// Token: 0x0400444C RID: 17484
+	// Token: 0x0400445C RID: 17500
 	public Transform KunRightForeArmRoll;
 
-	// Token: 0x0400444D RID: 17485
+	// Token: 0x0400445D RID: 17501
 	public Transform KunRightHand;
 
-	// Token: 0x0400444E RID: 17486
+	// Token: 0x0400445E RID: 17502
 	public Transform KunLeftShoulder;
 
-	// Token: 0x0400444F RID: 17487
+	// Token: 0x0400445F RID: 17503
 	public Transform KunLeftArm;
 
-	// Token: 0x04004450 RID: 17488
+	// Token: 0x04004460 RID: 17504
 	public Transform KunLeftArmRoll;
 
-	// Token: 0x04004451 RID: 17489
+	// Token: 0x04004461 RID: 17505
 	public Transform KunLeftForeArm;
 
-	// Token: 0x04004452 RID: 17490
+	// Token: 0x04004462 RID: 17506
 	public Transform KunLeftForeArmRoll;
 
-	// Token: 0x04004453 RID: 17491
+	// Token: 0x04004463 RID: 17507
 	public Transform KunLeftHand;
 
-	// Token: 0x04004454 RID: 17492
+	// Token: 0x04004464 RID: 17508
 	public Transform KunLeftHandPinky1;
 
-	// Token: 0x04004455 RID: 17493
+	// Token: 0x04004465 RID: 17509
 	public Transform KunLeftHandPinky2;
 
-	// Token: 0x04004456 RID: 17494
+	// Token: 0x04004466 RID: 17510
 	public Transform KunLeftHandPinky3;
 
-	// Token: 0x04004457 RID: 17495
+	// Token: 0x04004467 RID: 17511
 	public Transform KunLeftHandRing1;
 
-	// Token: 0x04004458 RID: 17496
+	// Token: 0x04004468 RID: 17512
 	public Transform KunLeftHandRing2;
 
-	// Token: 0x04004459 RID: 17497
+	// Token: 0x04004469 RID: 17513
 	public Transform KunLeftHandRing3;
 
-	// Token: 0x0400445A RID: 17498
+	// Token: 0x0400446A RID: 17514
 	public Transform KunLeftHandMiddle1;
 
-	// Token: 0x0400445B RID: 17499
+	// Token: 0x0400446B RID: 17515
 	public Transform KunLeftHandMiddle2;
 
-	// Token: 0x0400445C RID: 17500
+	// Token: 0x0400446C RID: 17516
 	public Transform KunLeftHandMiddle3;
 
-	// Token: 0x0400445D RID: 17501
+	// Token: 0x0400446D RID: 17517
 	public Transform KunLeftHandIndex1;
 
-	// Token: 0x0400445E RID: 17502
+	// Token: 0x0400446E RID: 17518
 	public Transform KunLeftHandIndex2;
 
-	// Token: 0x0400445F RID: 17503
+	// Token: 0x0400446F RID: 17519
 	public Transform KunLeftHandIndex3;
 
-	// Token: 0x04004460 RID: 17504
+	// Token: 0x04004470 RID: 17520
 	public Transform KunLeftHandThumb1;
 
-	// Token: 0x04004461 RID: 17505
+	// Token: 0x04004471 RID: 17521
 	public Transform KunLeftHandThumb2;
 
-	// Token: 0x04004462 RID: 17506
+	// Token: 0x04004472 RID: 17522
 	public Transform KunLeftHandThumb3;
 
-	// Token: 0x04004463 RID: 17507
+	// Token: 0x04004473 RID: 17523
 	public Transform KunRightHandPinky1;
 
-	// Token: 0x04004464 RID: 17508
+	// Token: 0x04004474 RID: 17524
 	public Transform KunRightHandPinky2;
 
-	// Token: 0x04004465 RID: 17509
+	// Token: 0x04004475 RID: 17525
 	public Transform KunRightHandPinky3;
 
-	// Token: 0x04004466 RID: 17510
+	// Token: 0x04004476 RID: 17526
 	public Transform KunRightHandRing1;
 
-	// Token: 0x04004467 RID: 17511
+	// Token: 0x04004477 RID: 17527
 	public Transform KunRightHandRing2;
 
-	// Token: 0x04004468 RID: 17512
+	// Token: 0x04004478 RID: 17528
 	public Transform KunRightHandRing3;
 
-	// Token: 0x04004469 RID: 17513
+	// Token: 0x04004479 RID: 17529
 	public Transform KunRightHandMiddle1;
 
-	// Token: 0x0400446A RID: 17514
+	// Token: 0x0400447A RID: 17530
 	public Transform KunRightHandMiddle2;
 
-	// Token: 0x0400446B RID: 17515
+	// Token: 0x0400447B RID: 17531
 	public Transform KunRightHandMiddle3;
 
-	// Token: 0x0400446C RID: 17516
+	// Token: 0x0400447C RID: 17532
 	public Transform KunRightHandIndex1;
 
-	// Token: 0x0400446D RID: 17517
+	// Token: 0x0400447D RID: 17533
 	public Transform KunRightHandIndex2;
 
-	// Token: 0x0400446E RID: 17518
+	// Token: 0x0400447E RID: 17534
 	public Transform KunRightHandIndex3;
 
-	// Token: 0x0400446F RID: 17519
+	// Token: 0x0400447F RID: 17535
 	public Transform KunRightHandThumb1;
 
-	// Token: 0x04004470 RID: 17520
+	// Token: 0x04004480 RID: 17536
 	public Transform KunRightHandThumb2;
 
-	// Token: 0x04004471 RID: 17521
+	// Token: 0x04004481 RID: 17537
 	public Transform KunRightHandThumb3;
 
-	// Token: 0x04004472 RID: 17522
+	// Token: 0x04004482 RID: 17538
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x04004473 RID: 17523
+	// Token: 0x04004483 RID: 17539
 	public SkinnedMeshRenderer SecondRenderer;
 
-	// Token: 0x04004474 RID: 17524
+	// Token: 0x04004484 RID: 17540
 	public SkinnedMeshRenderer ThirdRenderer;
 
-	// Token: 0x04004475 RID: 17525
+	// Token: 0x04004485 RID: 17541
 	public bool Kizuna;
 
-	// Token: 0x04004476 RID: 17526
+	// Token: 0x04004486 RID: 17542
 	public bool Man;
 
-	// Token: 0x04004477 RID: 17527
+	// Token: 0x04004487 RID: 17543
 	public int ID;
 
-	// Token: 0x04004478 RID: 17528
+	// Token: 0x04004488 RID: 17544
 	private bool Adjusted;
 }

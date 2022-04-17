@@ -6,32 +6,32 @@ namespace MaidDereMinigame.Malee
 	// Token: 0x020005BF RID: 1471
 	public class ReorderableAttribute : PropertyAttribute
 	{
-		// Token: 0x060024FB RID: 9467 RVA: 0x00200F7D File Offset: 0x001FF17D
+		// Token: 0x06002502 RID: 9474 RVA: 0x002019D9 File Offset: 0x001FFBD9
 		public ReorderableAttribute() : this(null)
 		{
 		}
 
-		// Token: 0x060024FC RID: 9468 RVA: 0x00200F86 File Offset: 0x001FF186
+		// Token: 0x06002503 RID: 9475 RVA: 0x002019E2 File Offset: 0x001FFBE2
 		public ReorderableAttribute(string elementNameProperty) : this(true, true, true, elementNameProperty, null, null)
 		{
 		}
 
-		// Token: 0x060024FD RID: 9469 RVA: 0x00200F94 File Offset: 0x001FF194
+		// Token: 0x06002504 RID: 9476 RVA: 0x002019F0 File Offset: 0x001FFBF0
 		public ReorderableAttribute(string elementNameProperty, string elementIconPath) : this(true, true, true, elementNameProperty, null, elementIconPath)
 		{
 		}
 
-		// Token: 0x060024FE RID: 9470 RVA: 0x00200FA2 File Offset: 0x001FF1A2
+		// Token: 0x06002505 RID: 9477 RVA: 0x002019FE File Offset: 0x001FFBFE
 		public ReorderableAttribute(string elementNameProperty, string elementNameOverride, string elementIconPath) : this(true, true, true, elementNameProperty, elementNameOverride, elementIconPath)
 		{
 		}
 
-		// Token: 0x060024FF RID: 9471 RVA: 0x00200FB0 File Offset: 0x001FF1B0
+		// Token: 0x06002506 RID: 9478 RVA: 0x00201A0C File Offset: 0x001FFC0C
 		public ReorderableAttribute(bool add, bool remove, bool draggable, string elementNameProperty = null, string elementIconPath = null) : this(add, remove, draggable, elementNameProperty, null, elementIconPath)
 		{
 		}
 
-		// Token: 0x06002500 RID: 9472 RVA: 0x00200FC0 File Offset: 0x001FF1C0
+		// Token: 0x06002507 RID: 9479 RVA: 0x00201A1C File Offset: 0x001FFC1C
 		public ReorderableAttribute(bool add, bool remove, bool draggable, string elementNameProperty = null, string elementNameOverride = null, string elementIconPath = null)
 		{
 			this.add = add;
@@ -43,34 +43,34 @@ namespace MaidDereMinigame.Malee
 			this.elementIconPath = elementIconPath;
 		}
 
-		// Token: 0x04004D48 RID: 19784
+		// Token: 0x04004D5A RID: 19802
 		public bool add;
 
-		// Token: 0x04004D49 RID: 19785
+		// Token: 0x04004D5B RID: 19803
 		public bool remove;
 
-		// Token: 0x04004D4A RID: 19786
+		// Token: 0x04004D5C RID: 19804
 		public bool draggable;
 
-		// Token: 0x04004D4B RID: 19787
+		// Token: 0x04004D5D RID: 19805
 		public bool singleLine;
 
-		// Token: 0x04004D4C RID: 19788
+		// Token: 0x04004D5E RID: 19806
 		public bool paginate;
 
-		// Token: 0x04004D4D RID: 19789
+		// Token: 0x04004D5F RID: 19807
 		public bool sortable;
 
-		// Token: 0x04004D4E RID: 19790
+		// Token: 0x04004D60 RID: 19808
 		public int pageSize;
 
-		// Token: 0x04004D4F RID: 19791
+		// Token: 0x04004D61 RID: 19809
 		public string elementNameProperty;
 
-		// Token: 0x04004D50 RID: 19792
+		// Token: 0x04004D62 RID: 19810
 		public string elementNameOverride;
 
-		// Token: 0x04004D51 RID: 19793
+		// Token: 0x04004D63 RID: 19811
 		public string elementIconPath;
 	}
 }

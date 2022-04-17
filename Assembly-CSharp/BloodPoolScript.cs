@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000E9 RID: 233
 public class BloodPoolScript : MonoBehaviour
 {
-	// Token: 0x06000A38 RID: 2616 RVA: 0x0005AACC File Offset: 0x00058CCC
+	// Token: 0x06000A38 RID: 2616 RVA: 0x0005AB84 File Offset: 0x00058D84
 	private void Start()
 	{
 		if (PlayerGlobals.PantiesEquipped == 11 && this.Blood)
@@ -35,7 +35,7 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A39 RID: 2617 RVA: 0x0005ABF0 File Offset: 0x00058DF0
+	// Token: 0x06000A39 RID: 2617 RVA: 0x0005ACA8 File Offset: 0x00058EA8
 	private void Update()
 	{
 		if (this.Grow)
@@ -52,7 +52,7 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A3A RID: 2618 RVA: 0x0005AC94 File Offset: 0x00058E94
+	// Token: 0x06000A3A RID: 2618 RVA: 0x0005AD4C File Offset: 0x00058F4C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Water && this.ElectroTimer == 0f && other.gameObject.tag == "E")

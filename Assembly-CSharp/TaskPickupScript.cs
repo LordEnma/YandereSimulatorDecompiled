@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000471 RID: 1137
 public class TaskPickupScript : MonoBehaviour
 {
-	// Token: 0x06001EC2 RID: 7874 RVA: 0x001B1EF0 File Offset: 0x001B00F0
+	// Token: 0x06001EC8 RID: 7880 RVA: 0x001B28C8 File Offset: 0x001B0AC8
 	private void Update()
 	{
 		if (this.Prompt.Circle[this.ButtonID].fillAmount == 0f)
@@ -14,9 +14,9 @@ public class TaskPickupScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003FBF RID: 16319
+	// Token: 0x04003FCF RID: 16335
 	public PromptScript Prompt;
 
-	// Token: 0x04003FC0 RID: 16320
+	// Token: 0x04003FD0 RID: 16336
 	public int ButtonID = 3;
 }

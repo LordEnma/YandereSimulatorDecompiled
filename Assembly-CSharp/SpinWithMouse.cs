@@ -5,13 +5,13 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Spin With Mouse")]
 public class SpinWithMouse : MonoBehaviour
 {
-	// Token: 0x060000EF RID: 239 RVA: 0x00012DD5 File Offset: 0x00010FD5
+	// Token: 0x060000EF RID: 239 RVA: 0x00012E8D File Offset: 0x0001108D
 	private void Start()
 	{
 		this.mTrans = base.transform;
 	}
 
-	// Token: 0x060000F0 RID: 240 RVA: 0x00012DE4 File Offset: 0x00010FE4
+	// Token: 0x060000F0 RID: 240 RVA: 0x00012E9C File Offset: 0x0001109C
 	private void OnDrag(Vector2 delta)
 	{
 		UICamera.currentTouch.clickNotification = UICamera.ClickNotification.None;

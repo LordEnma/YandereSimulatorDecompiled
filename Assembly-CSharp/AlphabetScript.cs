@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020000C5 RID: 197
 public class AlphabetScript : MonoBehaviour
 {
-	// Token: 0x060009AD RID: 2477 RVA: 0x0004F8E8 File Offset: 0x0004DAE8
+	// Token: 0x060009AD RID: 2477 RVA: 0x0004F9A0 File Offset: 0x0004DBA0
 	private void Start()
 	{
 		if (GameGlobals.AlphabetMode)
@@ -35,7 +35,7 @@ public class AlphabetScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x060009AE RID: 2478 RVA: 0x0004F9F4 File Offset: 0x0004DBF4
+	// Token: 0x060009AE RID: 2478 RVA: 0x0004FAAC File Offset: 0x0004DCAC
 	private void Update()
 	{
 		if (!this.Began && this.StudentManager.Yandere.CanMove)
@@ -140,7 +140,7 @@ public class AlphabetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009AF RID: 2479 RVA: 0x0004FEC0 File Offset: 0x0004E0C0
+	// Token: 0x060009AF RID: 2479 RVA: 0x0004FF78 File Offset: 0x0004E178
 	public void UpdateText()
 	{
 		this.TargetLabel.text = string.Concat(new string[]
@@ -172,7 +172,7 @@ public class AlphabetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009B0 RID: 2480 RVA: 0x00050006 File Offset: 0x0004E206
+	// Token: 0x060009B0 RID: 2480 RVA: 0x000500BE File Offset: 0x0004E2BE
 	public void UpdateDifficultyLabel()
 	{
 		this.DifficultyLabel.text = "Difficulty: " + this.DifficultyText[this.Cheats];

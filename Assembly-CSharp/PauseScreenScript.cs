@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000399 RID: 921
 public class PauseScreenScript : MonoBehaviour
 {
-	// Token: 0x06001A75 RID: 6773 RVA: 0x001199AC File Offset: 0x00117BAC
+	// Token: 0x06001A79 RID: 6777 RVA: 0x00119CB4 File Offset: 0x00117EB4
 	private void Start()
 	{
 		if (SceneManager.GetActiveScene().name != "SchoolScene")
@@ -101,7 +101,7 @@ public class PauseScreenScript : MonoBehaviour
 		this.HomeButton.SetActive(false);
 	}
 
-	// Token: 0x06001A76 RID: 6774 RVA: 0x00119F94 File Offset: 0x00118194
+	// Token: 0x06001A7A RID: 6778 RVA: 0x0011A29C File Offset: 0x0011849C
 	private void Update()
 	{
 		this.Speed = Time.unscaledDeltaTime * 10f;
@@ -702,7 +702,7 @@ public class PauseScreenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A77 RID: 6775 RVA: 0x0011BB04 File Offset: 0x00119D04
+	// Token: 0x06001A7B RID: 6779 RVA: 0x0011BE0C File Offset: 0x0011A00C
 	public void ShowScheduleScreen()
 	{
 		this.Schedule.gameObject.SetActive(true);
@@ -720,7 +720,7 @@ public class PauseScreenScript : MonoBehaviour
 		this.PromptBar.Show = true;
 	}
 
-	// Token: 0x06001A78 RID: 6776 RVA: 0x0011BBE8 File Offset: 0x00119DE8
+	// Token: 0x06001A7C RID: 6780 RVA: 0x0011BEF0 File Offset: 0x0011A0F0
 	public void JumpToQuit()
 	{
 		if (!this.Police.FadeOut && !this.Clock.TimeSkip && !this.Yandere.Noticed)
@@ -744,7 +744,7 @@ public class PauseScreenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A79 RID: 6777 RVA: 0x0011BCE4 File Offset: 0x00119EE4
+	// Token: 0x06001A7D RID: 6781 RVA: 0x0011BFEC File Offset: 0x0011A1EC
 	public void ExitPhone()
 	{
 		if (!this.Home)
@@ -773,7 +773,7 @@ public class PauseScreenScript : MonoBehaviour
 		this.Show = false;
 	}
 
-	// Token: 0x06001A7A RID: 6778 RVA: 0x0011BDBC File Offset: 0x00119FBC
+	// Token: 0x06001A7E RID: 6782 RVA: 0x0011C0C4 File Offset: 0x0011A2C4
 	private void UpdateSelection()
 	{
 		if (this.Row < 0)
@@ -800,7 +800,7 @@ public class PauseScreenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A7B RID: 6779 RVA: 0x0011BE78 File Offset: 0x0011A078
+	// Token: 0x06001A7F RID: 6783 RVA: 0x0011C180 File Offset: 0x0011A380
 	private void CheckIfSavePossible()
 	{
 		this.PhoneIcons[9].color = new Color(1f, 1f, 1f, 1f);
@@ -825,7 +825,7 @@ public class PauseScreenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A7C RID: 6780 RVA: 0x0011C038 File Offset: 0x0011A238
+	// Token: 0x06001A80 RID: 6784 RVA: 0x0011C340 File Offset: 0x0011A540
 	public void UpdateSubtitleSize()
 	{
 		if (!OptionGlobals.SubtitleSize)
@@ -838,7 +838,7 @@ public class PauseScreenScript : MonoBehaviour
 		this.SubtitlePanel.localScale = new Vector3(0.00133333f, 0.00133333f, 0.00133333f);
 	}
 
-	// Token: 0x06001A7D RID: 6781 RVA: 0x0011C0CC File Offset: 0x0011A2CC
+	// Token: 0x06001A81 RID: 6785 RVA: 0x0011C3D4 File Offset: 0x0011A5D4
 	public void BlackenAllText()
 	{
 		foreach (UILabel uilabel in base.GetComponentsInChildren<UILabel>())
@@ -848,225 +848,225 @@ public class PauseScreenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B74 RID: 11124
+	// Token: 0x04002B7C RID: 11132
 	public StudentInfoMenuScript StudentInfoMenu;
 
-	// Token: 0x04002B75 RID: 11125
+	// Token: 0x04002B7D RID: 11133
 	public InventoryMenuScript InventoryMenu;
 
-	// Token: 0x04002B76 RID: 11126
+	// Token: 0x04002B7E RID: 11134
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002B77 RID: 11127
+	// Token: 0x04002B7F RID: 11135
 	public PhotoGalleryScript PhotoGallery;
 
-	// Token: 0x04002B78 RID: 11128
+	// Token: 0x04002B80 RID: 11136
 	public SaveLoadMenuScript SaveLoadMenu;
 
-	// Token: 0x04002B79 RID: 11129
+	// Token: 0x04002B81 RID: 11137
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x04002B7A RID: 11130
+	// Token: 0x04002B82 RID: 11138
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x04002B7B RID: 11131
+	// Token: 0x04002B83 RID: 11139
 	public MissionModeScript MissionMode;
 
-	// Token: 0x04002B7C RID: 11132
+	// Token: 0x04002B84 RID: 11140
 	public NewSettingsScript NewSettings;
 
-	// Token: 0x04002B7D RID: 11133
+	// Token: 0x04002B85 RID: 11141
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x04002B7E RID: 11134
+	// Token: 0x04002B86 RID: 11142
 	public ServicesScript ServiceMenu;
 
-	// Token: 0x04002B7F RID: 11135
+	// Token: 0x04002B87 RID: 11143
 	public FavorMenuScript FavorMenu;
 
-	// Token: 0x04002B80 RID: 11136
+	// Token: 0x04002B88 RID: 11144
 	public AudioMenuScript AudioMenu;
 
-	// Token: 0x04002B81 RID: 11137
+	// Token: 0x04002B89 RID: 11145
 	public IdeasMenuScript IdeasMenu;
 
-	// Token: 0x04002B82 RID: 11138
+	// Token: 0x04002B8A RID: 11146
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002B83 RID: 11139
+	// Token: 0x04002B8B RID: 11147
 	public TaskListScript Tutorials;
 
-	// Token: 0x04002B84 RID: 11140
+	// Token: 0x04002B8C RID: 11148
 	public PassTimeScript PassTime;
 
-	// Token: 0x04002B85 RID: 11141
+	// Token: 0x04002B8D RID: 11149
 	public ScheduleScript Schedule;
 
-	// Token: 0x04002B86 RID: 11142
+	// Token: 0x04002B8E RID: 11150
 	public TaskListScript TaskList;
 
-	// Token: 0x04002B87 RID: 11143
+	// Token: 0x04002B8F RID: 11151
 	public SchemesScript Schemes;
 
-	// Token: 0x04002B88 RID: 11144
+	// Token: 0x04002B90 RID: 11152
 	public YandereScript Yandere;
 
-	// Token: 0x04002B89 RID: 11145
+	// Token: 0x04002B91 RID: 11153
 	public RPG_Camera RPGCamera;
 
-	// Token: 0x04002B8A RID: 11146
+	// Token: 0x04002B92 RID: 11154
 	public PoliceScript Police;
 
-	// Token: 0x04002B8B RID: 11147
+	// Token: 0x04002B93 RID: 11155
 	public ClockScript Clock;
 
-	// Token: 0x04002B8C RID: 11148
+	// Token: 0x04002B94 RID: 11156
 	public StatsScript Stats;
 
-	// Token: 0x04002B8D RID: 11149
+	// Token: 0x04002B95 RID: 11157
 	public HintScript Hint;
 
-	// Token: 0x04002B8E RID: 11150
+	// Token: 0x04002B96 RID: 11158
 	public MapScript Map;
 
-	// Token: 0x04002B8F RID: 11151
+	// Token: 0x04002B97 RID: 11159
 	public UILabel SelectionLabel;
 
-	// Token: 0x04002B90 RID: 11152
+	// Token: 0x04002B98 RID: 11160
 	public UILabel QuitLabel;
 
-	// Token: 0x04002B91 RID: 11153
+	// Token: 0x04002B99 RID: 11161
 	public UILabel YesLabel;
 
-	// Token: 0x04002B92 RID: 11154
+	// Token: 0x04002B9A RID: 11162
 	public UIPanel Panel;
 
-	// Token: 0x04002B93 RID: 11155
+	// Token: 0x04002B9B RID: 11163
 	public UISprite Wifi;
 
-	// Token: 0x04002B94 RID: 11156
+	// Token: 0x04002B9C RID: 11164
 	public GameObject NewMissionModeWindow;
 
-	// Token: 0x04002B95 RID: 11157
+	// Token: 0x04002B9D RID: 11165
 	public GameObject MissionModeLabel;
 
-	// Token: 0x04002B96 RID: 11158
+	// Token: 0x04002B9E RID: 11166
 	public GameObject MissionModeIcons;
 
-	// Token: 0x04002B97 RID: 11159
+	// Token: 0x04002B9F RID: 11167
 	public GameObject LoadingScreen;
 
-	// Token: 0x04002B98 RID: 11160
+	// Token: 0x04002BA0 RID: 11168
 	public GameObject ControlMenu;
 
-	// Token: 0x04002B99 RID: 11161
+	// Token: 0x04002BA1 RID: 11169
 	public GameObject SchemesMenu;
 
-	// Token: 0x04002B9A RID: 11162
+	// Token: 0x04002BA2 RID: 11170
 	public GameObject StudentInfo;
 
-	// Token: 0x04002B9B RID: 11163
+	// Token: 0x04002BA3 RID: 11171
 	public GameObject HomeButton;
 
-	// Token: 0x04002B9C RID: 11164
+	// Token: 0x04002BA4 RID: 11172
 	public GameObject DropsMenu;
 
-	// Token: 0x04002B9D RID: 11165
+	// Token: 0x04002BA5 RID: 11173
 	public GameObject MainMenu;
 
-	// Token: 0x04002B9E RID: 11166
+	// Token: 0x04002BA6 RID: 11174
 	public GameObject Keyboard;
 
-	// Token: 0x04002B9F RID: 11167
+	// Token: 0x04002BA7 RID: 11175
 	public GameObject Gamepad;
 
-	// Token: 0x04002BA0 RID: 11168
+	// Token: 0x04002BA8 RID: 11176
 	public GameObject Notepad;
 
-	// Token: 0x04002BA1 RID: 11169
+	// Token: 0x04002BA9 RID: 11177
 	public GameObject Phone;
 
-	// Token: 0x04002BA2 RID: 11170
+	// Token: 0x04002BAA RID: 11178
 	public Transform SubtitlePanel;
 
-	// Token: 0x04002BA3 RID: 11171
+	// Token: 0x04002BAB RID: 11179
 	public Transform PromptParent;
 
-	// Token: 0x04002BA4 RID: 11172
+	// Token: 0x04002BAC RID: 11180
 	public UITexture[] EightiesPhoneIcons;
 
-	// Token: 0x04002BA5 RID: 11173
+	// Token: 0x04002BAD RID: 11181
 	public UISprite[] PhoneIcons;
 
-	// Token: 0x04002BA6 RID: 11174
+	// Token: 0x04002BAE RID: 11182
 	public string[] SelectionNames;
 
-	// Token: 0x04002BA7 RID: 11175
+	// Token: 0x04002BAF RID: 11183
 	public Transform[] Eggs;
 
-	// Token: 0x04002BA8 RID: 11176
+	// Token: 0x04002BB0 RID: 11184
 	public float Speed;
 
-	// Token: 0x04002BA9 RID: 11177
+	// Token: 0x04002BB1 RID: 11185
 	public int Prompts;
 
-	// Token: 0x04002BAA RID: 11178
+	// Token: 0x04002BB2 RID: 11186
 	public int Selected = 1;
 
-	// Token: 0x04002BAB RID: 11179
+	// Token: 0x04002BB3 RID: 11187
 	public bool ShowMissionModeDetails;
 
-	// Token: 0x04002BAC RID: 11180
+	// Token: 0x04002BB4 RID: 11188
 	public bool ViewingControlMenu;
 
-	// Token: 0x04002BAD RID: 11181
+	// Token: 0x04002BB5 RID: 11189
 	public bool CorrectingTime;
 
-	// Token: 0x04002BAE RID: 11182
+	// Token: 0x04002BB6 RID: 11190
 	public bool MultiMission;
 
-	// Token: 0x04002BAF RID: 11183
+	// Token: 0x04002BB7 RID: 11191
 	public bool ResettingDay;
 
-	// Token: 0x04002BB0 RID: 11184
+	// Token: 0x04002BB8 RID: 11192
 	public bool BypassPhone;
 
-	// Token: 0x04002BB1 RID: 11185
+	// Token: 0x04002BB9 RID: 11193
 	public bool EggsChecked;
 
-	// Token: 0x04002BB2 RID: 11186
+	// Token: 0x04002BBA RID: 11194
 	public bool AtSchool;
 
-	// Token: 0x04002BB3 RID: 11187
+	// Token: 0x04002BBB RID: 11195
 	public bool PressedA;
 
-	// Token: 0x04002BB4 RID: 11188
+	// Token: 0x04002BBC RID: 11196
 	public bool PressedB;
 
-	// Token: 0x04002BB5 RID: 11189
+	// Token: 0x04002BBD RID: 11197
 	public bool Quitting;
 
-	// Token: 0x04002BB6 RID: 11190
+	// Token: 0x04002BBE RID: 11198
 	public bool Sideways;
 
-	// Token: 0x04002BB7 RID: 11191
+	// Token: 0x04002BBF RID: 11199
 	public bool InEditor;
 
-	// Token: 0x04002BB8 RID: 11192
+	// Token: 0x04002BC0 RID: 11200
 	public bool Eighties;
 
-	// Token: 0x04002BB9 RID: 11193
+	// Token: 0x04002BC1 RID: 11201
 	public bool Home;
 
-	// Token: 0x04002BBA RID: 11194
+	// Token: 0x04002BC2 RID: 11202
 	public bool Show;
 
-	// Token: 0x04002BBB RID: 11195
+	// Token: 0x04002BC3 RID: 11203
 	public int Row = 1;
 
-	// Token: 0x04002BBC RID: 11196
+	// Token: 0x04002BC4 RID: 11204
 	public int Column = 2;
 
-	// Token: 0x04002BBD RID: 11197
+	// Token: 0x04002BC5 RID: 11205
 	public string Reason;
 }

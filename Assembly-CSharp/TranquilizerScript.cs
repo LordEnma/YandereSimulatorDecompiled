@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200048B RID: 1163
 public class TranquilizerScript : MonoBehaviour
 {
-	// Token: 0x06001F21 RID: 7969 RVA: 0x001B76A0 File Offset: 0x001B58A0
+	// Token: 0x06001F27 RID: 7975 RVA: 0x001B8078 File Offset: 0x001B6278
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -16,6 +16,6 @@ public class TranquilizerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040040F7 RID: 16631
+	// Token: 0x04004107 RID: 16647
 	public PromptScript Prompt;
 }

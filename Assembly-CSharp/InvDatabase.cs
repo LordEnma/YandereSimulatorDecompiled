@@ -8,7 +8,7 @@ using UnityEngine;
 public class InvDatabase : MonoBehaviour
 {
 	// Token: 0x17000005 RID: 5
-	// (get) Token: 0x060000A3 RID: 163 RVA: 0x00011A08 File Offset: 0x0000FC08
+	// (get) Token: 0x060000A3 RID: 163 RVA: 0x00011AC0 File Offset: 0x0000FCC0
 	public static InvDatabase[] list
 	{
 		get
@@ -22,19 +22,19 @@ public class InvDatabase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060000A4 RID: 164 RVA: 0x00011A26 File Offset: 0x0000FC26
+	// Token: 0x060000A4 RID: 164 RVA: 0x00011ADE File Offset: 0x0000FCDE
 	private void OnEnable()
 	{
 		InvDatabase.mIsDirty = true;
 	}
 
-	// Token: 0x060000A5 RID: 165 RVA: 0x00011A2E File Offset: 0x0000FC2E
+	// Token: 0x060000A5 RID: 165 RVA: 0x00011AE6 File Offset: 0x0000FCE6
 	private void OnDisable()
 	{
 		InvDatabase.mIsDirty = true;
 	}
 
-	// Token: 0x060000A6 RID: 166 RVA: 0x00011A38 File Offset: 0x0000FC38
+	// Token: 0x060000A6 RID: 166 RVA: 0x00011AF0 File Offset: 0x0000FCF0
 	private InvBaseItem GetItem(int id16)
 	{
 		int i = 0;
@@ -51,7 +51,7 @@ public class InvDatabase : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060000A7 RID: 167 RVA: 0x00011A78 File Offset: 0x0000FC78
+	// Token: 0x060000A7 RID: 167 RVA: 0x00011B30 File Offset: 0x0000FD30
 	private static InvDatabase GetDatabase(int dbID)
 	{
 		int i = 0;
@@ -68,7 +68,7 @@ public class InvDatabase : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060000A8 RID: 168 RVA: 0x00011AB0 File Offset: 0x0000FCB0
+	// Token: 0x060000A8 RID: 168 RVA: 0x00011B68 File Offset: 0x0000FD68
 	public static InvBaseItem FindByID(int id32)
 	{
 		InvDatabase database = InvDatabase.GetDatabase(id32 >> 16);
@@ -79,7 +79,7 @@ public class InvDatabase : MonoBehaviour
 		return database.GetItem(id32 & 65535);
 	}
 
-	// Token: 0x060000A9 RID: 169 RVA: 0x00011AE0 File Offset: 0x0000FCE0
+	// Token: 0x060000A9 RID: 169 RVA: 0x00011B98 File Offset: 0x0000FD98
 	public static InvBaseItem FindByName(string exact)
 	{
 		int i = 0;
@@ -103,7 +103,7 @@ public class InvDatabase : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060000AA RID: 170 RVA: 0x00011B44 File Offset: 0x0000FD44
+	// Token: 0x060000AA RID: 170 RVA: 0x00011BFC File Offset: 0x0000FDFC
 	public static int FindItemID(InvBaseItem item)
 	{
 		int i = 0;

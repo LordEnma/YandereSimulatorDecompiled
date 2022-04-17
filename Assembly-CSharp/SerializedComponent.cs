@@ -4,33 +4,33 @@
 [Serializable]
 public struct SerializedComponent
 {
-	// Token: 0x0400499F RID: 18847
+	// Token: 0x040049B1 RID: 18865
 	public string OwnerID;
 
-	// Token: 0x040049A0 RID: 18848
+	// Token: 0x040049B2 RID: 18866
 	public string TypePath;
 
-	// Token: 0x040049A1 RID: 18849
+	// Token: 0x040049B3 RID: 18867
 	public ValueDict PropertyValues;
 
-	// Token: 0x040049A2 RID: 18850
+	// Token: 0x040049B4 RID: 18868
 	public ReferenceDict PropertyReferences;
 
-	// Token: 0x040049A3 RID: 18851
+	// Token: 0x040049B5 RID: 18869
 	public ValueDict FieldValues;
 
-	// Token: 0x040049A4 RID: 18852
+	// Token: 0x040049B6 RID: 18870
 	public ReferenceDict FieldReferences;
 
-	// Token: 0x040049A5 RID: 18853
+	// Token: 0x040049B7 RID: 18871
 	public ReferenceArrayDict PropertyReferenceArrays;
 
-	// Token: 0x040049A6 RID: 18854
+	// Token: 0x040049B8 RID: 18872
 	public ReferenceArrayDict FieldReferenceArrays;
 
-	// Token: 0x040049A7 RID: 18855
+	// Token: 0x040049B9 RID: 18873
 	public bool IsEnabled;
 
-	// Token: 0x040049A8 RID: 18856
+	// Token: 0x040049BA RID: 18874
 	public bool IsMonoBehaviour;
 }

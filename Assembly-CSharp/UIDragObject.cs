@@ -7,8 +7,8 @@ using UnityEngine;
 public class UIDragObject : MonoBehaviour
 {
 	// Token: 0x17000014 RID: 20
-	// (get) Token: 0x06000185 RID: 389 RVA: 0x0001602F File Offset: 0x0001422F
-	// (set) Token: 0x06000186 RID: 390 RVA: 0x00016037 File Offset: 0x00014237
+	// (get) Token: 0x06000185 RID: 389 RVA: 0x000160E7 File Offset: 0x000142E7
+	// (set) Token: 0x06000186 RID: 390 RVA: 0x000160EF File Offset: 0x000142EF
 	public Vector3 dragMovement
 	{
 		get
@@ -21,7 +21,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000187 RID: 391 RVA: 0x00016040 File Offset: 0x00014240
+	// Token: 0x06000187 RID: 391 RVA: 0x000160F8 File Offset: 0x000142F8
 	private void OnEnable()
 	{
 		if (this.scrollWheelFactor != 0f)
@@ -40,13 +40,13 @@ public class UIDragObject : MonoBehaviour
 		this.mTargetPos = ((this.target != null) ? this.target.position : Vector3.zero);
 	}
 
-	// Token: 0x06000188 RID: 392 RVA: 0x000160E1 File Offset: 0x000142E1
+	// Token: 0x06000188 RID: 392 RVA: 0x00016199 File Offset: 0x00014399
 	private void OnDisable()
 	{
 		this.mStarted = false;
 	}
 
-	// Token: 0x06000189 RID: 393 RVA: 0x000160EC File Offset: 0x000142EC
+	// Token: 0x06000189 RID: 393 RVA: 0x000161A4 File Offset: 0x000143A4
 	private void FindPanel()
 	{
 		this.panelRegion = ((this.target != null) ? UIPanel.Find(this.target.transform.parent) : null);
@@ -56,7 +56,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600018A RID: 394 RVA: 0x0001613C File Offset: 0x0001433C
+	// Token: 0x0600018A RID: 394 RVA: 0x000161F4 File Offset: 0x000143F4
 	private void UpdateBounds()
 	{
 		if (this.contentRect)
@@ -77,7 +77,7 @@ public class UIDragObject : MonoBehaviour
 		this.mBounds = NGUIMath.CalculateRelativeWidgetBounds(this.panelRegion.cachedTransform, this.target);
 	}
 
-	// Token: 0x0600018B RID: 395 RVA: 0x000161E8 File Offset: 0x000143E8
+	// Token: 0x0600018B RID: 395 RVA: 0x000162A0 File Offset: 0x000144A0
 	private void OnPress(bool pressed)
 	{
 		if (UICamera.currentTouchID == -2 || UICamera.currentTouchID == -3)
@@ -124,7 +124,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600018C RID: 396 RVA: 0x00016344 File Offset: 0x00014544
+	// Token: 0x0600018C RID: 396 RVA: 0x000163FC File Offset: 0x000145FC
 	private void OnDrag(Vector2 delta)
 	{
 		if (this.mPressed && this.mTouchID == UICamera.currentTouchID && base.enabled && NGUITools.GetActive(base.gameObject) && this.target != null)
@@ -166,7 +166,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600018D RID: 397 RVA: 0x000164F8 File Offset: 0x000146F8
+	// Token: 0x0600018D RID: 397 RVA: 0x000165B0 File Offset: 0x000147B0
 	private void Move(Vector3 worldDelta)
 	{
 		if (this.panelRegion != null)
@@ -210,7 +210,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600018E RID: 398 RVA: 0x00016610 File Offset: 0x00014810
+	// Token: 0x0600018E RID: 398 RVA: 0x000166C8 File Offset: 0x000148C8
 	private void LateUpdate()
 	{
 		if (this.target == null)
@@ -256,7 +256,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600018F RID: 399 RVA: 0x00016738 File Offset: 0x00014938
+	// Token: 0x0600018F RID: 399 RVA: 0x000167F0 File Offset: 0x000149F0
 	public void CancelMovement()
 	{
 		if (this.target != null)
@@ -272,7 +272,7 @@ public class UIDragObject : MonoBehaviour
 		this.mScroll = Vector3.zero;
 	}
 
-	// Token: 0x06000190 RID: 400 RVA: 0x000167E0 File Offset: 0x000149E0
+	// Token: 0x06000190 RID: 400 RVA: 0x00016898 File Offset: 0x00014A98
 	public void CancelSpring()
 	{
 		SpringPosition component = this.target.GetComponent<SpringPosition>();
@@ -282,7 +282,7 @@ public class UIDragObject : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000191 RID: 401 RVA: 0x00016809 File Offset: 0x00014A09
+	// Token: 0x06000191 RID: 401 RVA: 0x000168C1 File Offset: 0x00014AC1
 	private void OnScroll(float delta)
 	{
 		if (base.enabled && NGUITools.GetActive(base.gameObject))
@@ -352,11 +352,11 @@ public class UIDragObject : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum DragEffect
 	{
-		// Token: 0x04004DE0 RID: 19936
+		// Token: 0x04004DF2 RID: 19954
 		None,
-		// Token: 0x04004DE1 RID: 19937
+		// Token: 0x04004DF3 RID: 19955
 		Momentum,
-		// Token: 0x04004DE2 RID: 19938
+		// Token: 0x04004DF4 RID: 19956
 		MomentumAndSpring
 	}
 }

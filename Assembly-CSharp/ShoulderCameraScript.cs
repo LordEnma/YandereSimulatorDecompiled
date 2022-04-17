@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200042A RID: 1066
 public class ShoulderCameraScript : MonoBehaviour
 {
-	// Token: 0x06001CB9 RID: 7353 RVA: 0x00151864 File Offset: 0x0014FA64
+	// Token: 0x06001CBD RID: 7357 RVA: 0x00151C74 File Offset: 0x0014FE74
 	private void LateUpdate()
 	{
 		if (!this.PauseScreen.Show)
@@ -539,7 +539,7 @@ public class ShoulderCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CBA RID: 7354 RVA: 0x00153806 File Offset: 0x00151A06
+	// Token: 0x06001CBE RID: 7358 RVA: 0x00153C16 File Offset: 0x00151E16
 	public void YandereNo()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -547,7 +547,7 @@ public class ShoulderCameraScript : MonoBehaviour
 		component.Play();
 	}
 
-	// Token: 0x06001CBB RID: 7355 RVA: 0x00153820 File Offset: 0x00151A20
+	// Token: 0x06001CBF RID: 7359 RVA: 0x00153C30 File Offset: 0x00151E30
 	public void GameOver()
 	{
 		this.NoticedPOV.parent = this.Yandere.transform;
@@ -566,156 +566,156 @@ public class ShoulderCameraScript : MonoBehaviour
 		this.Yandere.StudentManager.Students[1].Fleeing = false;
 	}
 
-	// Token: 0x0400334E RID: 13134
+	// Token: 0x04003359 RID: 13145
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x0400334F RID: 13135
+	// Token: 0x0400335A RID: 13146
 	public CounselorScript Counselor;
 
-	// Token: 0x04003350 RID: 13136
+	// Token: 0x0400335B RID: 13147
 	public YandereScript Yandere;
 
-	// Token: 0x04003351 RID: 13137
+	// Token: 0x0400335C RID: 13148
 	public RPG_Camera RPGCamera;
 
-	// Token: 0x04003352 RID: 13138
+	// Token: 0x0400335D RID: 13149
 	public PortalScript Portal;
 
-	// Token: 0x04003353 RID: 13139
+	// Token: 0x0400335E RID: 13150
 	public GameObject HeartbrokenCamera;
 
-	// Token: 0x04003354 RID: 13140
+	// Token: 0x0400335F RID: 13151
 	public GameObject HUD;
 
-	// Token: 0x04003355 RID: 13141
+	// Token: 0x04003360 RID: 13152
 	public Transform Smartphone;
 
-	// Token: 0x04003356 RID: 13142
+	// Token: 0x04003361 RID: 13153
 	public Transform Teacher;
 
-	// Token: 0x04003357 RID: 13143
+	// Token: 0x04003362 RID: 13154
 	public Transform ShoulderFocus;
 
-	// Token: 0x04003358 RID: 13144
+	// Token: 0x04003363 RID: 13155
 	public Transform ShoulderPOV;
 
-	// Token: 0x04003359 RID: 13145
+	// Token: 0x04003364 RID: 13156
 	public Transform EightiesSpineFollower;
 
-	// Token: 0x0400335A RID: 13146
+	// Token: 0x04003365 RID: 13157
 	public Transform EightiesCameraFocus;
 
-	// Token: 0x0400335B RID: 13147
+	// Token: 0x04003366 RID: 13158
 	public Transform EightiesCameraPOV;
 
-	// Token: 0x0400335C RID: 13148
+	// Token: 0x04003367 RID: 13159
 	public Transform CameraFocus;
 
-	// Token: 0x0400335D RID: 13149
+	// Token: 0x04003368 RID: 13160
 	public Transform CameraPOV;
 
-	// Token: 0x0400335E RID: 13150
+	// Token: 0x04003369 RID: 13161
 	public Transform NoticedFocus;
 
-	// Token: 0x0400335F RID: 13151
+	// Token: 0x0400336A RID: 13162
 	public Transform NoticedPOV;
 
-	// Token: 0x04003360 RID: 13152
+	// Token: 0x0400336B RID: 13163
 	public Transform StruggleFocus;
 
-	// Token: 0x04003361 RID: 13153
+	// Token: 0x0400336C RID: 13164
 	public Transform StrugglePOV;
 
-	// Token: 0x04003362 RID: 13154
+	// Token: 0x0400336D RID: 13165
 	public Transform Focus;
 
-	// Token: 0x04003363 RID: 13155
+	// Token: 0x0400336E RID: 13166
 	public Vector3 LastPosition;
 
-	// Token: 0x04003364 RID: 13156
+	// Token: 0x0400336F RID: 13167
 	public Vector3 TeacherLossFocus;
 
-	// Token: 0x04003365 RID: 13157
+	// Token: 0x04003370 RID: 13168
 	public Vector3 TeacherLossPOV;
 
-	// Token: 0x04003366 RID: 13158
+	// Token: 0x04003371 RID: 13169
 	public Vector3 LossFocus;
 
-	// Token: 0x04003367 RID: 13159
+	// Token: 0x04003372 RID: 13170
 	public Vector3 LossPOV;
 
-	// Token: 0x04003368 RID: 13160
+	// Token: 0x04003373 RID: 13171
 	public bool GoingToCounselor;
 
-	// Token: 0x04003369 RID: 13161
+	// Token: 0x04003374 RID: 13172
 	public bool ObstacleCounter;
 
-	// Token: 0x0400336A RID: 13162
+	// Token: 0x04003375 RID: 13173
 	public bool AimingCamera;
 
-	// Token: 0x0400336B RID: 13163
+	// Token: 0x04003376 RID: 13174
 	public bool OverShoulder;
 
-	// Token: 0x0400336C RID: 13164
+	// Token: 0x04003377 RID: 13175
 	public bool Summoning;
 
-	// Token: 0x0400336D RID: 13165
+	// Token: 0x04003378 RID: 13176
 	public bool LookDown;
 
-	// Token: 0x0400336E RID: 13166
+	// Token: 0x04003379 RID: 13177
 	public bool Scolding;
 
-	// Token: 0x0400336F RID: 13167
+	// Token: 0x0400337A RID: 13178
 	public bool Struggle;
 
-	// Token: 0x04003370 RID: 13168
+	// Token: 0x0400337B RID: 13179
 	public bool Counter;
 
-	// Token: 0x04003371 RID: 13169
+	// Token: 0x0400337C RID: 13180
 	public bool Noticed;
 
-	// Token: 0x04003372 RID: 13170
+	// Token: 0x0400337D RID: 13181
 	public bool Spoken;
 
-	// Token: 0x04003373 RID: 13171
+	// Token: 0x0400337E RID: 13182
 	public bool Skip;
 
-	// Token: 0x04003374 RID: 13172
+	// Token: 0x0400337F RID: 13183
 	public AudioClip StruggleLose;
 
-	// Token: 0x04003375 RID: 13173
+	// Token: 0x04003380 RID: 13184
 	public AudioClip Slam;
 
-	// Token: 0x04003376 RID: 13174
+	// Token: 0x04003381 RID: 13185
 	public float NoticedHeight;
 
-	// Token: 0x04003377 RID: 13175
+	// Token: 0x04003382 RID: 13186
 	public float NoticedTimer;
 
-	// Token: 0x04003378 RID: 13176
+	// Token: 0x04003383 RID: 13187
 	public float NoticedSpeed;
 
-	// Token: 0x04003379 RID: 13177
+	// Token: 0x04003384 RID: 13188
 	public float ReturnSpeed = 10f;
 
-	// Token: 0x0400337A RID: 13178
+	// Token: 0x04003385 RID: 13189
 	public float StruggleDOF = 2f;
 
-	// Token: 0x0400337B RID: 13179
+	// Token: 0x04003386 RID: 13190
 	public float Height;
 
-	// Token: 0x0400337C RID: 13180
+	// Token: 0x04003387 RID: 13191
 	public float Shake;
 
-	// Token: 0x0400337D RID: 13181
+	// Token: 0x04003388 RID: 13192
 	public float PullBackTimer;
 
-	// Token: 0x0400337E RID: 13182
+	// Token: 0x04003389 RID: 13193
 	public float Timer;
 
-	// Token: 0x0400337F RID: 13183
+	// Token: 0x0400338A RID: 13194
 	public int NoticedLimit;
 
-	// Token: 0x04003380 RID: 13184
+	// Token: 0x0400338B RID: 13195
 	public int Phase;
 }

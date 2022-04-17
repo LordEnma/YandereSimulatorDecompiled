@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200050A RID: 1290
 public class LargeTextScript : MonoBehaviour
 {
-	// Token: 0x0600215E RID: 8542 RVA: 0x001EB2EF File Offset: 0x001E94EF
+	// Token: 0x06002165 RID: 8549 RVA: 0x001EBD4B File Offset: 0x001E9F4B
 	private void Start()
 	{
 		this.Label.text = this.String[this.ID];
 	}
 
-	// Token: 0x0600215F RID: 8543 RVA: 0x001EB309 File Offset: 0x001E9509
+	// Token: 0x06002166 RID: 8550 RVA: 0x001EBD65 File Offset: 0x001E9F65
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))
@@ -20,12 +20,12 @@ public class LargeTextScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004981 RID: 18817
+	// Token: 0x04004993 RID: 18835
 	public UILabel Label;
 
-	// Token: 0x04004982 RID: 18818
+	// Token: 0x04004994 RID: 18836
 	public string[] String;
 
-	// Token: 0x04004983 RID: 18819
+	// Token: 0x04004995 RID: 18837
 	public int ID;
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000307 RID: 775
 public class GradingPaperScript : MonoBehaviour
 {
-	// Token: 0x06001837 RID: 6199 RVA: 0x000E5CB0 File Offset: 0x000E3EB0
+	// Token: 0x0600183B RID: 6203 RVA: 0x000E5F18 File Offset: 0x000E4118
 	private void Start()
 	{
 		this.OriginalPosition = this.Chair.position;
 	}
 
-	// Token: 0x06001838 RID: 6200 RVA: 0x000E5CC4 File Offset: 0x000E3EC4
+	// Token: 0x0600183C RID: 6204 RVA: 0x000E5F2C File Offset: 0x000E412C
 	private void Update()
 	{
 		if (!this.Writing)
@@ -85,60 +85,60 @@ public class GradingPaperScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400232D RID: 9005
+	// Token: 0x04002330 RID: 9008
 	public StudentScript Teacher;
 
-	// Token: 0x0400232E RID: 9006
+	// Token: 0x04002331 RID: 9009
 	public GameObject Character;
 
-	// Token: 0x0400232F RID: 9007
+	// Token: 0x04002332 RID: 9010
 	public Transform LeftHand;
 
-	// Token: 0x04002330 RID: 9008
+	// Token: 0x04002333 RID: 9011
 	public Transform Chair;
 
-	// Token: 0x04002331 RID: 9009
+	// Token: 0x04002334 RID: 9012
 	public Transform Paper;
 
-	// Token: 0x04002332 RID: 9010
+	// Token: 0x04002335 RID: 9013
 	public float PickUpTime1;
 
-	// Token: 0x04002333 RID: 9011
+	// Token: 0x04002336 RID: 9014
 	public float SetDownTime1;
 
-	// Token: 0x04002334 RID: 9012
+	// Token: 0x04002337 RID: 9015
 	public float PickUpTime2;
 
-	// Token: 0x04002335 RID: 9013
+	// Token: 0x04002338 RID: 9016
 	public float SetDownTime2;
 
-	// Token: 0x04002336 RID: 9014
+	// Token: 0x04002339 RID: 9017
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04002337 RID: 9015
+	// Token: 0x0400233A RID: 9018
 	public Vector3 PickUpPosition1;
 
-	// Token: 0x04002338 RID: 9016
+	// Token: 0x0400233B RID: 9019
 	public Vector3 SetDownPosition1;
 
-	// Token: 0x04002339 RID: 9017
+	// Token: 0x0400233C RID: 9020
 	public Vector3 PickUpPosition2;
 
-	// Token: 0x0400233A RID: 9018
+	// Token: 0x0400233D RID: 9021
 	public Vector3 PickUpRotation1;
 
-	// Token: 0x0400233B RID: 9019
+	// Token: 0x0400233E RID: 9022
 	public Vector3 SetDownRotation1;
 
-	// Token: 0x0400233C RID: 9020
+	// Token: 0x0400233F RID: 9023
 	public Vector3 PickUpRotation2;
 
-	// Token: 0x0400233D RID: 9021
+	// Token: 0x04002340 RID: 9024
 	public int Phase = 1;
 
-	// Token: 0x0400233E RID: 9022
+	// Token: 0x04002341 RID: 9025
 	public float Speed = 1f;
 
-	// Token: 0x0400233F RID: 9023
+	// Token: 0x04002342 RID: 9026
 	public bool Writing;
 }

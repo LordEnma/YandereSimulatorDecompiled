@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Internal/Snapshot Point")]
 public class UISnapshotPoint : MonoBehaviour
 {
-	// Token: 0x060004FF RID: 1279 RVA: 0x00031C70 File Offset: 0x0002FE70
+	// Token: 0x060004FF RID: 1279 RVA: 0x00031D28 File Offset: 0x0002FF28
 	private void Start()
 	{
 		if (base.tag != "EditorOnly")

@@ -5,18 +5,18 @@ using UnityEngine;
 [Serializable]
 public struct HighlightTarget
 {
-	// Token: 0x0400493D RID: 18749
+	// Token: 0x0400494F RID: 18767
 	public Color TargetColor;
 
-	// Token: 0x0400493E RID: 18750
+	// Token: 0x04004950 RID: 18768
 	[ColorUsage(true, true, 0f, 3f, 0f, 3f)]
 	public Color ReplacementColor;
 
-	// Token: 0x0400493F RID: 18751
+	// Token: 0x04004951 RID: 18769
 	[Range(0f, 1f)]
 	public float Threshold;
 
-	// Token: 0x04004940 RID: 18752
+	// Token: 0x04004952 RID: 18770
 	[Range(0f, 1f)]
 	public float SmoothColorInterpolation;
 }

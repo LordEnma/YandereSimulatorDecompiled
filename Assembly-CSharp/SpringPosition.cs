@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Tween/Spring Position")]
 public class SpringPosition : MonoBehaviour
 {
-	// Token: 0x06000555 RID: 1365 RVA: 0x00033C32 File Offset: 0x00031E32
+	// Token: 0x06000555 RID: 1365 RVA: 0x00033CEA File Offset: 0x00031EEA
 	private void Start()
 	{
 		this.mTrans = base.transform;
@@ -15,7 +15,7 @@ public class SpringPosition : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000556 RID: 1366 RVA: 0x00033C5C File Offset: 0x00031E5C
+	// Token: 0x06000556 RID: 1366 RVA: 0x00033D14 File Offset: 0x00031F14
 	private void Update()
 	{
 		float deltaTime = this.ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime;
@@ -53,7 +53,7 @@ public class SpringPosition : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000557 RID: 1367 RVA: 0x00033DF4 File Offset: 0x00031FF4
+	// Token: 0x06000557 RID: 1367 RVA: 0x00033EAC File Offset: 0x000320AC
 	private void NotifyListeners()
 	{
 		SpringPosition.current = this;
@@ -68,7 +68,7 @@ public class SpringPosition : MonoBehaviour
 		SpringPosition.current = null;
 	}
 
-	// Token: 0x06000558 RID: 1368 RVA: 0x00033E50 File Offset: 0x00032050
+	// Token: 0x06000558 RID: 1368 RVA: 0x00033F08 File Offset: 0x00032108
 	public static SpringPosition Begin(GameObject go, Vector3 pos, float strength)
 	{
 		SpringPosition springPosition = go.GetComponent<SpringPosition>();
@@ -127,6 +127,6 @@ public class SpringPosition : MonoBehaviour
 	private UIScrollView mSv;
 
 	// Token: 0x02000611 RID: 1553
-	// (Invoke) Token: 0x060025C8 RID: 9672
+	// (Invoke) Token: 0x060025CF RID: 9679
 	public delegate void OnFinished();
 }

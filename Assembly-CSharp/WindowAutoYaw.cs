@@ -5,13 +5,13 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Window Auto-Yaw")]
 public class WindowAutoYaw : MonoBehaviour
 {
-	// Token: 0x060000F7 RID: 247 RVA: 0x00013036 File Offset: 0x00011236
+	// Token: 0x060000F7 RID: 247 RVA: 0x000130EE File Offset: 0x000112EE
 	private void OnDisable()
 	{
 		this.mTrans.localRotation = Quaternion.identity;
 	}
 
-	// Token: 0x060000F8 RID: 248 RVA: 0x00013048 File Offset: 0x00011248
+	// Token: 0x060000F8 RID: 248 RVA: 0x00013100 File Offset: 0x00011300
 	private void OnEnable()
 	{
 		if (this.uiCamera == null)
@@ -21,7 +21,7 @@ public class WindowAutoYaw : MonoBehaviour
 		this.mTrans = base.transform;
 	}
 
-	// Token: 0x060000F9 RID: 249 RVA: 0x0001307C File Offset: 0x0001127C
+	// Token: 0x060000F9 RID: 249 RVA: 0x00013134 File Offset: 0x00011334
 	private void Update()
 	{
 		if (this.uiCamera != null)

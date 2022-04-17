@@ -6,7 +6,7 @@ using UnityEngine;
 public class UIGeometry
 {
 	// Token: 0x1700008B RID: 139
-	// (get) Token: 0x060004CD RID: 1229 RVA: 0x00030C30 File Offset: 0x0002EE30
+	// (get) Token: 0x060004CD RID: 1229 RVA: 0x00030CE8 File Offset: 0x0002EEE8
 	public bool hasVertices
 	{
 		get
@@ -16,7 +16,7 @@ public class UIGeometry
 	}
 
 	// Token: 0x1700008C RID: 140
-	// (get) Token: 0x060004CE RID: 1230 RVA: 0x00030C40 File Offset: 0x0002EE40
+	// (get) Token: 0x060004CE RID: 1230 RVA: 0x00030CF8 File Offset: 0x0002EEF8
 	public bool hasTransformed
 	{
 		get
@@ -25,7 +25,7 @@ public class UIGeometry
 		}
 	}
 
-	// Token: 0x060004CF RID: 1231 RVA: 0x00030C72 File Offset: 0x0002EE72
+	// Token: 0x060004CF RID: 1231 RVA: 0x00030D2A File Offset: 0x0002EF2A
 	public void Clear()
 	{
 		this.verts.Clear();
@@ -34,7 +34,7 @@ public class UIGeometry
 		this.mRtpVerts.Clear();
 	}
 
-	// Token: 0x060004D0 RID: 1232 RVA: 0x00030CA0 File Offset: 0x0002EEA0
+	// Token: 0x060004D0 RID: 1232 RVA: 0x00030D58 File Offset: 0x0002EF58
 	public void ApplyTransform(Matrix4x4 widgetToPanel, bool generateNormals = true)
 	{
 		if (this.verts.Count > 0)
@@ -61,7 +61,7 @@ public class UIGeometry
 		}
 	}
 
-	// Token: 0x060004D1 RID: 1233 RVA: 0x00030D60 File Offset: 0x0002EF60
+	// Token: 0x060004D1 RID: 1233 RVA: 0x00030E18 File Offset: 0x0002F018
 	public void WriteToBuffers(List<Vector3> v, List<Vector2> u, List<Color> c, List<Vector3> n, List<Vector4> t, List<Vector4> u2)
 	{
 		if (this.mRtpVerts != null && this.mRtpVerts.Count > 0)
@@ -134,6 +134,6 @@ public class UIGeometry
 	private Vector4 mRtpTan;
 
 	// Token: 0x02000609 RID: 1545
-	// (Invoke) Token: 0x060025AF RID: 9647
+	// (Invoke) Token: 0x060025B6 RID: 9654
 	public delegate void OnCustomWrite(List<Vector3> v, List<Vector2> u, List<Color> c, List<Vector3> n, List<Vector4> t, List<Vector4> u2);
 }

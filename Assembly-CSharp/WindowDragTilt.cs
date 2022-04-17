@@ -5,14 +5,14 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Window Drag Tilt")]
 public class WindowDragTilt : MonoBehaviour
 {
-	// Token: 0x060000FB RID: 251 RVA: 0x000130F4 File Offset: 0x000112F4
+	// Token: 0x060000FB RID: 251 RVA: 0x000131AC File Offset: 0x000113AC
 	private void OnEnable()
 	{
 		this.mTrans = base.transform;
 		this.mLastPos = this.mTrans.position;
 	}
 
-	// Token: 0x060000FC RID: 252 RVA: 0x00013114 File Offset: 0x00011314
+	// Token: 0x060000FC RID: 252 RVA: 0x000131CC File Offset: 0x000113CC
 	private void Update()
 	{
 		Vector3 vector = this.mTrans.position - this.mLastPos;

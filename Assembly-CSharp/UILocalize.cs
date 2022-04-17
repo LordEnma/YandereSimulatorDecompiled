@@ -8,7 +8,7 @@ using UnityEngine;
 public class UILocalize : MonoBehaviour
 {
 	// Token: 0x1700018D RID: 397
-	// (set) Token: 0x060007EA RID: 2026 RVA: 0x00042280 File Offset: 0x00040480
+	// (set) Token: 0x060007EA RID: 2026 RVA: 0x00042338 File Offset: 0x00040538
 	public string value
 	{
 		set
@@ -43,7 +43,7 @@ public class UILocalize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060007EB RID: 2027 RVA: 0x0004232C File Offset: 0x0004052C
+	// Token: 0x060007EB RID: 2027 RVA: 0x000423E4 File Offset: 0x000405E4
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -52,14 +52,14 @@ public class UILocalize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060007EC RID: 2028 RVA: 0x0004233C File Offset: 0x0004053C
+	// Token: 0x060007EC RID: 2028 RVA: 0x000423F4 File Offset: 0x000405F4
 	private void Start()
 	{
 		this.mStarted = true;
 		this.OnLocalize();
 	}
 
-	// Token: 0x060007ED RID: 2029 RVA: 0x0004234C File Offset: 0x0004054C
+	// Token: 0x060007ED RID: 2029 RVA: 0x00042404 File Offset: 0x00040604
 	private void OnLocalize()
 	{
 		if (string.IsNullOrEmpty(this.key))

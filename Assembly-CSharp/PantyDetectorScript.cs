@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000394 RID: 916
 public class PantyDetectorScript : MonoBehaviour
 {
-	// Token: 0x06001A67 RID: 6759 RVA: 0x00118A8E File Offset: 0x00116C8E
+	// Token: 0x06001A6B RID: 6763 RVA: 0x00118D96 File Offset: 0x00116F96
 	private void Update()
 	{
 		if (this.Frame == 1)
@@ -15,7 +15,7 @@ public class PantyDetectorScript : MonoBehaviour
 		this.Frame++;
 	}
 
-	// Token: 0x06001A68 RID: 6760 RVA: 0x00118AC4 File Offset: 0x00116CC4
+	// Token: 0x06001A6C RID: 6764 RVA: 0x00118DCC File Offset: 0x00116FCC
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Student == null && other.gameObject.name == "Panties")
@@ -42,12 +42,12 @@ public class PantyDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B60 RID: 11104
+	// Token: 0x04002B68 RID: 11112
 	public YandereScript Yandere;
 
-	// Token: 0x04002B61 RID: 11105
+	// Token: 0x04002B69 RID: 11113
 	public StudentScript Student;
 
-	// Token: 0x04002B62 RID: 11106
+	// Token: 0x04002B6A RID: 11114
 	public int Frame;
 }

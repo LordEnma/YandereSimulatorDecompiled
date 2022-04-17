@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000313 RID: 787
 public class HenshinScript : MonoBehaviour
 {
-	// Token: 0x06001862 RID: 6242 RVA: 0x000EAC98 File Offset: 0x000E8E98
+	// Token: 0x06001866 RID: 6246 RVA: 0x000EAF38 File Offset: 0x000E9138
 	public void TransformYandere()
 	{
 		this.TransformingYandere = true;
@@ -31,7 +31,7 @@ public class HenshinScript : MonoBehaviour
 		this.Start();
 	}
 
-	// Token: 0x06001863 RID: 6243 RVA: 0x000EAE1C File Offset: 0x000E901C
+	// Token: 0x06001867 RID: 6247 RVA: 0x000EB0BC File Offset: 0x000E92BC
 	private void Start()
 	{
 		if (this.OriginalMesh == null)
@@ -76,7 +76,7 @@ public class HenshinScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001864 RID: 6244 RVA: 0x000EB0D4 File Offset: 0x000E92D4
+	// Token: 0x06001868 RID: 6248 RVA: 0x000EB374 File Offset: 0x000E9574
 	private void Update()
 	{
 		if (this.TransformingYandere && Input.GetKeyDown("="))
@@ -263,108 +263,108 @@ public class HenshinScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002422 RID: 9250
+	// Token: 0x0400242A RID: 9258
 	public RiggedAccessoryAttacher MiyukiCostume;
 
-	// Token: 0x04002423 RID: 9251
+	// Token: 0x0400242B RID: 9259
 	public SkinnedMeshRenderer MiyukiRenderer;
 
-	// Token: 0x04002424 RID: 9252
+	// Token: 0x0400242C RID: 9260
 	public Renderer WhiteMiyukiRenderer;
 
-	// Token: 0x04002425 RID: 9253
+	// Token: 0x0400242D RID: 9261
 	public Renderer MiyukiHairRenderer;
 
-	// Token: 0x04002426 RID: 9254
+	// Token: 0x0400242E RID: 9262
 	public Renderer White;
 
-	// Token: 0x04002427 RID: 9255
+	// Token: 0x0400242F RID: 9263
 	public Animation WhiteMiyukiAnim;
 
-	// Token: 0x04002428 RID: 9256
+	// Token: 0x04002430 RID: 9264
 	public Animation MiyukiAnim;
 
-	// Token: 0x04002429 RID: 9257
+	// Token: 0x04002431 RID: 9265
 	public GameObject HenshinSparkleBlast;
 
-	// Token: 0x0400242A RID: 9258
+	// Token: 0x04002432 RID: 9266
 	public GameObject MiyukiHair;
 
-	// Token: 0x0400242B RID: 9259
+	// Token: 0x04002433 RID: 9267
 	public ParticleSystem HenshinSparkles;
 
-	// Token: 0x0400242C RID: 9260
+	// Token: 0x04002434 RID: 9268
 	public ParticleSystem SpinSparkles;
 
-	// Token: 0x0400242D RID: 9261
+	// Token: 0x04002435 RID: 9269
 	public ParticleSystem Sparkles;
 
-	// Token: 0x0400242E RID: 9262
+	// Token: 0x04002436 RID: 9270
 	public AudioListener Listener;
 
-	// Token: 0x0400242F RID: 9263
+	// Token: 0x04002437 RID: 9271
 	public YandereScript Yandere;
 
-	// Token: 0x04002430 RID: 9264
+	// Token: 0x04002438 RID: 9272
 	public GameObject[] Cameras;
 
-	// Token: 0x04002431 RID: 9265
+	// Token: 0x04002439 RID: 9273
 	public Camera MiyukiCamera;
 
-	// Token: 0x04002432 RID: 9266
+	// Token: 0x0400243A RID: 9274
 	public Transform RightHand;
 
-	// Token: 0x04002433 RID: 9267
+	// Token: 0x0400243B RID: 9275
 	public Transform Miyuki;
 
-	// Token: 0x04002434 RID: 9268
+	// Token: 0x0400243C RID: 9276
 	public Transform Wand;
 
-	// Token: 0x04002435 RID: 9269
+	// Token: 0x0400243D RID: 9277
 	public Transform TV;
 
-	// Token: 0x04002436 RID: 9270
+	// Token: 0x0400243E RID: 9278
 	public float Rotation;
 
-	// Token: 0x04002437 RID: 9271
+	// Token: 0x0400243F RID: 9279
 	public float Timer;
 
-	// Token: 0x04002438 RID: 9272
+	// Token: 0x04002440 RID: 9280
 	public int Phase;
 
-	// Token: 0x04002439 RID: 9273
+	// Token: 0x04002441 RID: 9281
 	public Texture MiyukiFace;
 
-	// Token: 0x0400243A RID: 9274
+	// Token: 0x04002442 RID: 9282
 	public Texture MiyukiSkin;
 
-	// Token: 0x0400243B RID: 9275
+	// Token: 0x04002443 RID: 9283
 	public Mesh NudeMesh;
 
-	// Token: 0x0400243C RID: 9276
+	// Token: 0x04002444 RID: 9284
 	public Texture OriginalBody;
 
-	// Token: 0x0400243D RID: 9277
+	// Token: 0x04002445 RID: 9285
 	public Texture OriginalFace;
 
-	// Token: 0x0400243E RID: 9278
+	// Token: 0x04002446 RID: 9286
 	public Mesh OriginalMesh;
 
-	// Token: 0x0400243F RID: 9279
+	// Token: 0x04002447 RID: 9287
 	public bool TransformingYandere;
 
-	// Token: 0x04002440 RID: 9280
+	// Token: 0x04002448 RID: 9288
 	public bool Debugging;
 
-	// Token: 0x04002441 RID: 9281
+	// Token: 0x04002449 RID: 9289
 	public Quaternion OriginalRotation;
 
-	// Token: 0x04002442 RID: 9282
+	// Token: 0x0400244A RID: 9290
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04002443 RID: 9283
+	// Token: 0x0400244B RID: 9291
 	public AudioSource MyAudio;
 
-	// Token: 0x04002444 RID: 9284
+	// Token: 0x0400244C RID: 9292
 	public AudioClip Catchphrase;
 }

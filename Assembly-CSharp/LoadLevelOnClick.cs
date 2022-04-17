@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 [AddComponentMenu("NGUI/Examples/Load Level On Click")]
 public class LoadLevelOnClick : MonoBehaviour
 {
-	// Token: 0x060000D9 RID: 217 RVA: 0x000127B2 File Offset: 0x000109B2
+	// Token: 0x060000D9 RID: 217 RVA: 0x0001286A File Offset: 0x00010A6A
 	private void OnClick()
 	{
 		if (!string.IsNullOrEmpty(this.levelName))

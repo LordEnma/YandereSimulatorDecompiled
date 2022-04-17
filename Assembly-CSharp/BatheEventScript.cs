@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000DD RID: 221
 public class BatheEventScript : MonoBehaviour
 {
-	// Token: 0x06000A0F RID: 2575 RVA: 0x00056DAF File Offset: 0x00054FAF
+	// Token: 0x06000A0F RID: 2575 RVA: 0x00056E67 File Offset: 0x00055067
 	private void Start()
 	{
 		this.RivalPhone.SetActive(false);
@@ -14,7 +14,7 @@ public class BatheEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A10 RID: 2576 RVA: 0x00056DD4 File Offset: 0x00054FD4
+	// Token: 0x06000A10 RID: 2576 RVA: 0x00056E8C File Offset: 0x0005508C
 	private void Update()
 	{
 		if (!this.Clock.StopTime && !this.EventActive && this.Clock.HourTime > this.EventTime)
@@ -118,7 +118,7 @@ public class BatheEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A11 RID: 2577 RVA: 0x00057254 File Offset: 0x00055454
+	// Token: 0x06000A11 RID: 2577 RVA: 0x0005730C File Offset: 0x0005550C
 	private void EndEvent()
 	{
 		if (!this.EventOver)

@@ -7,19 +7,19 @@ using UnityEngine;
 // Token: 0x02000071 RID: 113
 public class ByteReader
 {
-	// Token: 0x0600032A RID: 810 RVA: 0x0002092D File Offset: 0x0001EB2D
+	// Token: 0x0600032A RID: 810 RVA: 0x000209E5 File Offset: 0x0001EBE5
 	public ByteReader(byte[] bytes)
 	{
 		this.mBuffer = bytes;
 	}
 
-	// Token: 0x0600032B RID: 811 RVA: 0x0002093C File Offset: 0x0001EB3C
+	// Token: 0x0600032B RID: 811 RVA: 0x000209F4 File Offset: 0x0001EBF4
 	public ByteReader(TextAsset asset)
 	{
 		this.mBuffer = asset.bytes;
 	}
 
-	// Token: 0x0600032C RID: 812 RVA: 0x00020950 File Offset: 0x0001EB50
+	// Token: 0x0600032C RID: 812 RVA: 0x00020A08 File Offset: 0x0001EC08
 	public static ByteReader Open(string path)
 	{
 		FileStream fileStream = File.OpenRead(path);
@@ -36,7 +36,7 @@ public class ByteReader
 	}
 
 	// Token: 0x17000058 RID: 88
-	// (get) Token: 0x0600032D RID: 813 RVA: 0x000209A2 File Offset: 0x0001EBA2
+	// (get) Token: 0x0600032D RID: 813 RVA: 0x00020A5A File Offset: 0x0001EC5A
 	public bool canRead
 	{
 		get
@@ -45,19 +45,19 @@ public class ByteReader
 		}
 	}
 
-	// Token: 0x0600032E RID: 814 RVA: 0x000209BE File Offset: 0x0001EBBE
+	// Token: 0x0600032E RID: 814 RVA: 0x00020A76 File Offset: 0x0001EC76
 	private static string ReadLine(byte[] buffer, int start, int count)
 	{
 		return Encoding.UTF8.GetString(buffer, start, count);
 	}
 
-	// Token: 0x0600032F RID: 815 RVA: 0x000209CD File Offset: 0x0001EBCD
+	// Token: 0x0600032F RID: 815 RVA: 0x00020A85 File Offset: 0x0001EC85
 	public string ReadLine()
 	{
 		return this.ReadLine(true);
 	}
 
-	// Token: 0x06000330 RID: 816 RVA: 0x000209D8 File Offset: 0x0001EBD8
+	// Token: 0x06000330 RID: 816 RVA: 0x00020A90 File Offset: 0x0001EC90
 	public string ReadLine(bool skipEmptyLines)
 	{
 		int num = this.mBuffer.Length;
@@ -89,7 +89,7 @@ public class ByteReader
 		return null;
 	}
 
-	// Token: 0x06000331 RID: 817 RVA: 0x00020A74 File Offset: 0x0001EC74
+	// Token: 0x06000331 RID: 817 RVA: 0x00020B2C File Offset: 0x0001ED2C
 	public Dictionary<string, string> ReadDictionary()
 	{
 		Dictionary<string, string> dictionary = new Dictionary<string, string>();
@@ -118,7 +118,7 @@ public class ByteReader
 		return dictionary;
 	}
 
-	// Token: 0x06000332 RID: 818 RVA: 0x00020AF4 File Offset: 0x0001ECF4
+	// Token: 0x06000332 RID: 818 RVA: 0x00020BAC File Offset: 0x0001EDAC
 	public BetterList<string> ReadCSV()
 	{
 		ByteReader.mTemp.Clear();

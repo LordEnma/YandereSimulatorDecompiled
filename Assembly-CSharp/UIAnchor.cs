@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/UI/Anchor")]
 public class UIAnchor : MonoBehaviour
 {
-	// Token: 0x06000699 RID: 1689 RVA: 0x0003831B File Offset: 0x0003651B
+	// Token: 0x06000699 RID: 1689 RVA: 0x000383D3 File Offset: 0x000365D3
 	private void OnEnable()
 	{
 		this.mTrans = base.transform;
@@ -14,13 +14,13 @@ public class UIAnchor : MonoBehaviour
 		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Combine(UICamera.onScreenResize, new UICamera.OnScreenResize(this.ScreenSizeChanged));
 	}
 
-	// Token: 0x0600069A RID: 1690 RVA: 0x00038355 File Offset: 0x00036555
+	// Token: 0x0600069A RID: 1690 RVA: 0x0003840D File Offset: 0x0003660D
 	private void OnDisable()
 	{
 		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Remove(UICamera.onScreenResize, new UICamera.OnScreenResize(this.ScreenSizeChanged));
 	}
 
-	// Token: 0x0600069B RID: 1691 RVA: 0x00038377 File Offset: 0x00036577
+	// Token: 0x0600069B RID: 1691 RVA: 0x0003842F File Offset: 0x0003662F
 	private void ScreenSizeChanged()
 	{
 		if (this.mStarted && this.runOnlyOnce)
@@ -29,7 +29,7 @@ public class UIAnchor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600069C RID: 1692 RVA: 0x00038390 File Offset: 0x00036590
+	// Token: 0x0600069C RID: 1692 RVA: 0x00038448 File Offset: 0x00036648
 	private void Start()
 	{
 		if (this.container == null && this.widgetContainer != null)
@@ -46,7 +46,7 @@ public class UIAnchor : MonoBehaviour
 		this.mStarted = true;
 	}
 
-	// Token: 0x0600069D RID: 1693 RVA: 0x00038414 File Offset: 0x00036614
+	// Token: 0x0600069D RID: 1693 RVA: 0x000384CC File Offset: 0x000366CC
 	private void Update()
 	{
 		if (this.mAnim != null && this.mAnim.enabled && this.mAnim.isPlaying)
@@ -229,23 +229,23 @@ public class UIAnchor : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Side
 	{
-		// Token: 0x04004EB8 RID: 20152
+		// Token: 0x04004ECA RID: 20170
 		BottomLeft,
-		// Token: 0x04004EB9 RID: 20153
+		// Token: 0x04004ECB RID: 20171
 		Left,
-		// Token: 0x04004EBA RID: 20154
+		// Token: 0x04004ECC RID: 20172
 		TopLeft,
-		// Token: 0x04004EBB RID: 20155
+		// Token: 0x04004ECD RID: 20173
 		Top,
-		// Token: 0x04004EBC RID: 20156
+		// Token: 0x04004ECE RID: 20174
 		TopRight,
-		// Token: 0x04004EBD RID: 20157
+		// Token: 0x04004ECF RID: 20175
 		Right,
-		// Token: 0x04004EBE RID: 20158
+		// Token: 0x04004ED0 RID: 20176
 		BottomRight,
-		// Token: 0x04004EBF RID: 20159
+		// Token: 0x04004ED1 RID: 20177
 		Bottom,
-		// Token: 0x04004EC0 RID: 20160
+		// Token: 0x04004ED2 RID: 20178
 		Center
 	}
 }

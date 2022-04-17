@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200036B RID: 875
 public class MissingPosterManagerScript : MonoBehaviour
 {
-	// Token: 0x060019C8 RID: 6600 RVA: 0x00108354 File Offset: 0x00106554
+	// Token: 0x060019CC RID: 6604 RVA: 0x00108618 File Offset: 0x00106818
 	private void Start()
 	{
 		while (this.ID < 101)
@@ -39,12 +39,12 @@ public class MissingPosterManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002972 RID: 10610
+	// Token: 0x0400297A RID: 10618
 	public GameObject MissingPoster;
 
-	// Token: 0x04002973 RID: 10611
+	// Token: 0x0400297B RID: 10619
 	public int RandomID;
 
-	// Token: 0x04002974 RID: 10612
+	// Token: 0x0400297C RID: 10620
 	public int ID;
 }

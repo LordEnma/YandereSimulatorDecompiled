@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020004E2 RID: 1250
 public class YanvaniaDoubleFireballScript : MonoBehaviour
 {
-	// Token: 0x060020C3 RID: 8387 RVA: 0x001E2338 File Offset: 0x001E0538
+	// Token: 0x060020CA RID: 8394 RVA: 0x001E2D94 File Offset: 0x001E0F94
 	private void Start()
 	{
 		UnityEngine.Object.Instantiate<GameObject>(this.LightningEffect, new Vector3(base.transform.position.x, 8f, 0f), Quaternion.identity);
 		this.Direction = ((this.Dracula.position.x > base.transform.position.x) ? -1 : 1);
 	}
 
-	// Token: 0x060020C4 RID: 8388 RVA: 0x001E23A4 File Offset: 0x001E05A4
+	// Token: 0x060020CB RID: 8395 RVA: 0x001E2E00 File Offset: 0x001E1000
 	private void Update()
 	{
 		if (this.Timer > 1f && !this.SpawnedFirst)
@@ -63,39 +63,39 @@ public class YanvaniaDoubleFireballScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040047DE RID: 18398
+	// Token: 0x040047F0 RID: 18416
 	public GameObject Lavaball;
 
-	// Token: 0x040047DF RID: 18399
+	// Token: 0x040047F1 RID: 18417
 	public GameObject FirstLavaball;
 
-	// Token: 0x040047E0 RID: 18400
+	// Token: 0x040047F2 RID: 18418
 	public GameObject SecondLavaball;
 
-	// Token: 0x040047E1 RID: 18401
+	// Token: 0x040047F3 RID: 18419
 	public GameObject LightningEffect;
 
-	// Token: 0x040047E2 RID: 18402
+	// Token: 0x040047F4 RID: 18420
 	public Transform Dracula;
 
-	// Token: 0x040047E3 RID: 18403
+	// Token: 0x040047F5 RID: 18421
 	public bool SpawnedFirst;
 
-	// Token: 0x040047E4 RID: 18404
+	// Token: 0x040047F6 RID: 18422
 	public bool SpawnedSecond;
 
-	// Token: 0x040047E5 RID: 18405
+	// Token: 0x040047F7 RID: 18423
 	public float FirstPosition;
 
-	// Token: 0x040047E6 RID: 18406
+	// Token: 0x040047F8 RID: 18424
 	public float SecondPosition;
 
-	// Token: 0x040047E7 RID: 18407
+	// Token: 0x040047F9 RID: 18425
 	public int Direction;
 
-	// Token: 0x040047E8 RID: 18408
+	// Token: 0x040047FA RID: 18426
 	public float Timer;
 
-	// Token: 0x040047E9 RID: 18409
+	// Token: 0x040047FB RID: 18427
 	public float Speed;
 }

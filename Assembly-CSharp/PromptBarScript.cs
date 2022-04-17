@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003C2 RID: 962
 public class PromptBarScript : MonoBehaviour
 {
-	// Token: 0x06001B27 RID: 6951 RVA: 0x0012E778 File Offset: 0x0012C978
+	// Token: 0x06001B2B RID: 6955 RVA: 0x0012EB88 File Offset: 0x0012CD88
 	private void Awake()
 	{
 		base.transform.localPosition = new Vector3(base.transform.localPosition.x, -627f, base.transform.localPosition.z);
@@ -16,13 +16,13 @@ public class PromptBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B28 RID: 6952 RVA: 0x0012E7F8 File Offset: 0x0012C9F8
+	// Token: 0x06001B2C RID: 6956 RVA: 0x0012EC08 File Offset: 0x0012CE08
 	private void Start()
 	{
 		this.UpdateButtons();
 	}
 
-	// Token: 0x06001B29 RID: 6953 RVA: 0x0012E800 File Offset: 0x0012CA00
+	// Token: 0x06001B2D RID: 6957 RVA: 0x0012EC10 File Offset: 0x0012CE10
 	private void Update()
 	{
 		float t = Time.unscaledDeltaTime * 10f;
@@ -48,7 +48,7 @@ public class PromptBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B2A RID: 6954 RVA: 0x0012E934 File Offset: 0x0012CB34
+	// Token: 0x06001B2E RID: 6958 RVA: 0x0012ED44 File Offset: 0x0012CF44
 	public void UpdateButtons()
 	{
 		if (this.Panel != null)
@@ -64,7 +64,7 @@ public class PromptBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B2B RID: 6955 RVA: 0x0012E9DC File Offset: 0x0012CBDC
+	// Token: 0x06001B2F RID: 6959 RVA: 0x0012EDEC File Offset: 0x0012CFEC
 	public void ClearButtons()
 	{
 		this.ID = 0;
@@ -77,21 +77,21 @@ public class PromptBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002E27 RID: 11815
+	// Token: 0x04002E32 RID: 11826
 	public UISprite[] Button;
 
-	// Token: 0x04002E28 RID: 11816
+	// Token: 0x04002E33 RID: 11827
 	public UILabel[] Label;
 
-	// Token: 0x04002E29 RID: 11817
+	// Token: 0x04002E34 RID: 11828
 	public UILabel[] ButtonLabel;
 
-	// Token: 0x04002E2A RID: 11818
+	// Token: 0x04002E35 RID: 11829
 	public UIPanel Panel;
 
-	// Token: 0x04002E2B RID: 11819
+	// Token: 0x04002E36 RID: 11830
 	public bool Show;
 
-	// Token: 0x04002E2C RID: 11820
+	// Token: 0x04002E37 RID: 11831
 	public int ID;
 }

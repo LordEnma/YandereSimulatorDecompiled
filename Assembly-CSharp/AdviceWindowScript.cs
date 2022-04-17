@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000C3 RID: 195
 public class AdviceWindowScript : MonoBehaviour
 {
-	// Token: 0x0600099F RID: 2463 RVA: 0x0004D0A0 File Offset: 0x0004B2A0
+	// Token: 0x0600099F RID: 2463 RVA: 0x0004D158 File Offset: 0x0004B358
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -79,7 +79,7 @@ public class AdviceWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009A0 RID: 2464 RVA: 0x0004D268 File Offset: 0x0004B468
+	// Token: 0x060009A0 RID: 2464 RVA: 0x0004D320 File Offset: 0x0004B520
 	private void Update()
 	{
 		if (this.InputManager.TappedDown)
@@ -199,7 +199,7 @@ public class AdviceWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009A1 RID: 2465 RVA: 0x0004D560 File Offset: 0x0004B760
+	// Token: 0x060009A1 RID: 2465 RVA: 0x0004D618 File Offset: 0x0004B818
 	private void UpdateHighlight()
 	{
 		if (this.Selected > 5)
@@ -213,7 +213,7 @@ public class AdviceWindowScript : MonoBehaviour
 		this.Highlight.transform.localPosition = new Vector3(0f, (float)(570 - 150 * this.Selected), 0f);
 	}
 
-	// Token: 0x060009A2 RID: 2466 RVA: 0x0004D5C4 File Offset: 0x0004B7C4
+	// Token: 0x060009A2 RID: 2466 RVA: 0x0004D67C File Offset: 0x0004B87C
 	public void UpdateText()
 	{
 		this.PositiveLabel.text = this.Subjects[this.PositiveID];
@@ -331,7 +331,7 @@ public class AdviceWindowScript : MonoBehaviour
 		});
 	}
 
-	// Token: 0x060009A3 RID: 2467 RVA: 0x0004DAE8 File Offset: 0x0004BCE8
+	// Token: 0x060009A3 RID: 2467 RVA: 0x0004DBA0 File Offset: 0x0004BDA0
 	private void CalculateMultiplier()
 	{
 		this.HUDElement[1].SetActive(false);
@@ -463,7 +463,7 @@ public class AdviceWindowScript : MonoBehaviour
 		});
 	}
 
-	// Token: 0x060009A4 RID: 2468 RVA: 0x0004DF14 File Offset: 0x0004C114
+	// Token: 0x060009A4 RID: 2468 RVA: 0x0004DFCC File Offset: 0x0004C1CC
 	public void CalculateLove()
 	{
 		this.Start();
@@ -589,7 +589,7 @@ public class AdviceWindowScript : MonoBehaviour
 		Debug.Log("Affection is now: " + this.Affection.ToString());
 	}
 
-	// Token: 0x060009A5 RID: 2469 RVA: 0x0004E414 File Offset: 0x0004C614
+	// Token: 0x060009A5 RID: 2469 RVA: 0x0004E4CC File Offset: 0x0004C6CC
 	public void SaveTopicsAndCompliments()
 	{
 		for (int i = 1; i < 26; i++)

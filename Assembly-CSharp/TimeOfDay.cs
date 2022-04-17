@@ -3,20 +3,20 @@
 // Token: 0x0200049D RID: 1181
 public enum TimeOfDay
 {
-	// Token: 0x0400420B RID: 16907
+	// Token: 0x0400421B RID: 16923
 	Midnight,
-	// Token: 0x0400420C RID: 16908
+	// Token: 0x0400421C RID: 16924
 	EarlyMorning,
-	// Token: 0x0400420D RID: 16909
+	// Token: 0x0400421D RID: 16925
 	Morning,
-	// Token: 0x0400420E RID: 16910
+	// Token: 0x0400421E RID: 16926
 	LateMorning,
-	// Token: 0x0400420F RID: 16911
+	// Token: 0x0400421F RID: 16927
 	Noon,
-	// Token: 0x04004210 RID: 16912
+	// Token: 0x04004220 RID: 16928
 	Afternoon,
-	// Token: 0x04004211 RID: 16913
+	// Token: 0x04004221 RID: 16929
 	Evening,
-	// Token: 0x04004212 RID: 16914
+	// Token: 0x04004222 RID: 16930
 	Night
 }

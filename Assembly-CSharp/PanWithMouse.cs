@@ -5,14 +5,14 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Pan With Mouse")]
 public class PanWithMouse : MonoBehaviour
 {
-	// Token: 0x060000E0 RID: 224 RVA: 0x000128AF File Offset: 0x00010AAF
+	// Token: 0x060000E0 RID: 224 RVA: 0x00012967 File Offset: 0x00010B67
 	private void Start()
 	{
 		this.mTrans = base.transform;
 		this.mStart = this.mTrans.localRotation;
 	}
 
-	// Token: 0x060000E1 RID: 225 RVA: 0x000128D0 File Offset: 0x00010AD0
+	// Token: 0x060000E1 RID: 225 RVA: 0x00012988 File Offset: 0x00010B88
 	private void Update()
 	{
 		float deltaTime = RealTime.deltaTime;

@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200034E RID: 846
 public class KnifeDetectorScript : MonoBehaviour
 {
-	// Token: 0x06001962 RID: 6498 RVA: 0x000FEB9A File Offset: 0x000FCD9A
+	// Token: 0x06001966 RID: 6502 RVA: 0x000FEE2E File Offset: 0x000FD02E
 	private void Start()
 	{
 		this.Disable();
 	}
 
-	// Token: 0x06001963 RID: 6499 RVA: 0x000FEBA4 File Offset: 0x000FCDA4
+	// Token: 0x06001967 RID: 6503 RVA: 0x000FEE38 File Offset: 0x000FD038
 	private void Update()
 	{
 		if (this.Blowtorches[1].transform.parent != this.Torches || this.Blowtorches[2].transform.parent != this.Torches || this.Blowtorches[3].transform.parent != this.Torches)
@@ -68,7 +68,7 @@ public class KnifeDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001964 RID: 6500 RVA: 0x000FEE74 File Offset: 0x000FD074
+	// Token: 0x06001968 RID: 6504 RVA: 0x000FF108 File Offset: 0x000FD308
 	private void Disable()
 	{
 		this.Prompt.Hide();
@@ -76,21 +76,21 @@ public class KnifeDetectorScript : MonoBehaviour
 		this.Prompt.MyCollider.enabled = false;
 	}
 
-	// Token: 0x04002828 RID: 10280
+	// Token: 0x04002830 RID: 10288
 	public BlowtorchScript[] Blowtorches;
 
-	// Token: 0x04002829 RID: 10281
+	// Token: 0x04002831 RID: 10289
 	public Transform HeatingSpot;
 
-	// Token: 0x0400282A RID: 10282
+	// Token: 0x04002832 RID: 10290
 	public Transform Torches;
 
-	// Token: 0x0400282B RID: 10283
+	// Token: 0x04002833 RID: 10291
 	public YandereScript Yandere;
 
-	// Token: 0x0400282C RID: 10284
+	// Token: 0x04002834 RID: 10292
 	public PromptScript Prompt;
 
-	// Token: 0x0400282D RID: 10285
+	// Token: 0x04002835 RID: 10293
 	public float Timer;
 }

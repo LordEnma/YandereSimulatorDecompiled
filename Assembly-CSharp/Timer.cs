@@ -5,15 +5,15 @@ using UnityEngine;
 [Serializable]
 public class Timer
 {
-	// Token: 0x06001FAB RID: 8107 RVA: 0x001BE119 File Offset: 0x001BC319
+	// Token: 0x06001FB1 RID: 8113 RVA: 0x001BEAF5 File Offset: 0x001BCCF5
 	public Timer(float targetSeconds)
 	{
 		this.currentSeconds = 0f;
 		this.targetSeconds = targetSeconds;
 	}
 
-	// Token: 0x170004C5 RID: 1221
-	// (get) Token: 0x06001FAC RID: 8108 RVA: 0x001BE133 File Offset: 0x001BC333
+	// Token: 0x170004C6 RID: 1222
+	// (get) Token: 0x06001FB2 RID: 8114 RVA: 0x001BEB0F File Offset: 0x001BCD0F
 	public float CurrentSeconds
 	{
 		get
@@ -22,8 +22,8 @@ public class Timer
 		}
 	}
 
-	// Token: 0x170004C6 RID: 1222
-	// (get) Token: 0x06001FAD RID: 8109 RVA: 0x001BE13B File Offset: 0x001BC33B
+	// Token: 0x170004C7 RID: 1223
+	// (get) Token: 0x06001FB3 RID: 8115 RVA: 0x001BEB17 File Offset: 0x001BCD17
 	public float TargetSeconds
 	{
 		get
@@ -32,8 +32,8 @@ public class Timer
 		}
 	}
 
-	// Token: 0x170004C7 RID: 1223
-	// (get) Token: 0x06001FAE RID: 8110 RVA: 0x001BE143 File Offset: 0x001BC343
+	// Token: 0x170004C8 RID: 1224
+	// (get) Token: 0x06001FB4 RID: 8116 RVA: 0x001BEB1F File Offset: 0x001BCD1F
 	public bool IsDone
 	{
 		get
@@ -42,8 +42,8 @@ public class Timer
 		}
 	}
 
-	// Token: 0x170004C8 RID: 1224
-	// (get) Token: 0x06001FAF RID: 8111 RVA: 0x001BE156 File Offset: 0x001BC356
+	// Token: 0x170004C9 RID: 1225
+	// (get) Token: 0x06001FB5 RID: 8117 RVA: 0x001BEB32 File Offset: 0x001BCD32
 	public float Progress
 	{
 		get
@@ -52,29 +52,29 @@ public class Timer
 		}
 	}
 
-	// Token: 0x06001FB0 RID: 8112 RVA: 0x001BE16A File Offset: 0x001BC36A
+	// Token: 0x06001FB6 RID: 8118 RVA: 0x001BEB46 File Offset: 0x001BCD46
 	public void Reset()
 	{
 		this.currentSeconds = 0f;
 	}
 
-	// Token: 0x06001FB1 RID: 8113 RVA: 0x001BE177 File Offset: 0x001BC377
+	// Token: 0x06001FB7 RID: 8119 RVA: 0x001BEB53 File Offset: 0x001BCD53
 	public void SubtractTarget()
 	{
 		this.currentSeconds -= this.targetSeconds;
 	}
 
-	// Token: 0x06001FB2 RID: 8114 RVA: 0x001BE18C File Offset: 0x001BC38C
+	// Token: 0x06001FB8 RID: 8120 RVA: 0x001BEB68 File Offset: 0x001BCD68
 	public void Tick(float dt)
 	{
 		this.currentSeconds += dt;
 	}
 
-	// Token: 0x04004227 RID: 16935
+	// Token: 0x04004237 RID: 16951
 	[SerializeField]
 	private float currentSeconds;
 
-	// Token: 0x04004228 RID: 16936
+	// Token: 0x04004238 RID: 16952
 	[SerializeField]
 	private float targetSeconds;
 }

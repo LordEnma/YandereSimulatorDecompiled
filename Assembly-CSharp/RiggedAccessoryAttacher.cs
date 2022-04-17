@@ -131,9 +131,17 @@ public class RiggedAccessoryAttacher : MonoBehaviour
 		{
 			this.newRenderer.updateWhenOffscreen = true;
 		}
+		if (this.Student != null)
+		{
+			this.newRenderer.gameObject.AddComponent<OutlineScript>();
+			this.Student.RiggedAccessoryOutlines[this.Student.RiggedAccessoryOutlineID] = this.newRenderer.gameObject.GetComponent<OutlineScript>();
+			this.Student.RiggedAccessoryOutlines[this.Student.RiggedAccessoryOutlineID].color = this.Student.Outlines[0].color;
+			this.Student.RiggedAccessoryOutlines[this.Student.RiggedAccessoryOutlineID].enabled = this.Student.Outlines[0].enabled;
+			this.Student.RiggedAccessoryOutlineID++;
+		}
 	}
 
-	// Token: 0x0600007D RID: 125 RVA: 0x00010DEC File Offset: 0x0000EFEC
+	// Token: 0x0600007D RID: 125 RVA: 0x00010EA4 File Offset: 0x0000F0A4
 	private Transform FindChildByName(string thisName, Transform thisGameObj)
 	{
 		if (thisGameObj.name == thisName)

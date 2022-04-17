@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000391 RID: 913
 public class PaintBucketScript : MonoBehaviour
 {
-	// Token: 0x06001A61 RID: 6753 RVA: 0x001186F8 File Offset: 0x001168F8
+	// Token: 0x06001A65 RID: 6757 RVA: 0x00118A00 File Offset: 0x00116C00
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -30,6 +30,6 @@ public class PaintBucketScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B53 RID: 11091
+	// Token: 0x04002B5B RID: 11099
 	public PromptScript Prompt;
 }

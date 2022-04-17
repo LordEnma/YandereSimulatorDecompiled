@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 [RequireComponent(typeof(UITexture))]
 public class DownloadTexture : MonoBehaviour
 {
-	// Token: 0x060000C6 RID: 198 RVA: 0x00012454 File Offset: 0x00010654
+	// Token: 0x060000C6 RID: 198 RVA: 0x0001250C File Offset: 0x0001070C
 	private IEnumerator Start()
 	{
 		UnityWebRequest www = UnityWebRequest.Get(this.url);
@@ -26,7 +26,7 @@ public class DownloadTexture : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060000C7 RID: 199 RVA: 0x00012463 File Offset: 0x00010663
+	// Token: 0x060000C7 RID: 199 RVA: 0x0001251B File Offset: 0x0001071B
 	private void OnDestroy()
 	{
 		if (this.mTex != null)

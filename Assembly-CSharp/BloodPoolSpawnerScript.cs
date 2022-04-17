@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020000EA RID: 234
 public class BloodPoolSpawnerScript : MonoBehaviour
 {
-	// Token: 0x06000A3C RID: 2620 RVA: 0x0005AD70 File Offset: 0x00058F70
+	// Token: 0x06000A3C RID: 2620 RVA: 0x0005AE28 File Offset: 0x00059028
 	public void Start()
 	{
 		if (SceneManager.GetActiveScene().name == "SchoolScene")
@@ -31,7 +31,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		this.Positions[4] = new Vector3(0f, 0.012f, -0.5f);
 	}
 
-	// Token: 0x06000A3D RID: 2621 RVA: 0x0005AEEB File Offset: 0x000590EB
+	// Token: 0x06000A3D RID: 2621 RVA: 0x0005AFA3 File Offset: 0x000591A3
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "BloodPool(Clone)")
@@ -41,7 +41,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A3E RID: 2622 RVA: 0x0005AF1E File Offset: 0x0005911E
+	// Token: 0x06000A3E RID: 2622 RVA: 0x0005AFD6 File Offset: 0x000591D6
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.gameObject.name == "BloodPool(Clone)")
@@ -50,7 +50,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A3F RID: 2623 RVA: 0x0005AF48 File Offset: 0x00059148
+	// Token: 0x06000A3F RID: 2623 RVA: 0x0005B000 File Offset: 0x00059200
 	private void Update()
 	{
 		if (!this.Falling)
@@ -117,7 +117,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A40 RID: 2624 RVA: 0x0005B2C8 File Offset: 0x000594C8
+	// Token: 0x06000A40 RID: 2624 RVA: 0x0005B380 File Offset: 0x00059580
 	public void SpawnBigPool()
 	{
 		this.SetHeight();
@@ -134,7 +134,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A41 RID: 2625 RVA: 0x0005B384 File Offset: 0x00059584
+	// Token: 0x06000A41 RID: 2625 RVA: 0x0005B43C File Offset: 0x0005963C
 	private void SpawnRow(Transform Location)
 	{
 		Vector3 position = Location.position;
@@ -150,7 +150,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		gameObject3.transform.parent = this.BloodParent;
 	}
 
-	// Token: 0x06000A42 RID: 2626 RVA: 0x0005B4B0 File Offset: 0x000596B0
+	// Token: 0x06000A42 RID: 2626 RVA: 0x0005B568 File Offset: 0x00059768
 	public void SpawnPool(Transform Location)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.BloodPool, Location.position + Location.forward + new Vector3(0f, 0.0001f, 0f), Quaternion.identity);
@@ -158,7 +158,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		gameObject.transform.parent = this.BloodParent;
 	}
 
-	// Token: 0x06000A43 RID: 2627 RVA: 0x0005B530 File Offset: 0x00059730
+	// Token: 0x06000A43 RID: 2627 RVA: 0x0005B5E8 File Offset: 0x000597E8
 	private void SetHeight()
 	{
 		float y = base.transform.position.y;

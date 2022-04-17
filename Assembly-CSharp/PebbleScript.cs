@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x0200039A RID: 922
 public class PebbleScript : MonoBehaviour
 {
-	// Token: 0x06001A7F RID: 6783 RVA: 0x0011C133 File Offset: 0x0011A333
+	// Token: 0x06001A83 RID: 6787 RVA: 0x0011C43B File Offset: 0x0011A63B
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001A80 RID: 6784 RVA: 0x0011C135 File Offset: 0x0011A335
+	// Token: 0x06001A84 RID: 6788 RVA: 0x0011C43D File Offset: 0x0011A63D
 	private void Update()
 	{
 	}

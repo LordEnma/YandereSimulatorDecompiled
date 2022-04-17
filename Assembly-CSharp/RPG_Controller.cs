@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000BD RID: 189
 public class RPG_Controller : MonoBehaviour
 {
-	// Token: 0x0600098B RID: 2443 RVA: 0x0004C68F File Offset: 0x0004A88F
+	// Token: 0x0600098B RID: 2443 RVA: 0x0004C747 File Offset: 0x0004A947
 	private void Awake()
 	{
 		RPG_Controller.instance = this;
@@ -13,7 +13,7 @@ public class RPG_Controller : MonoBehaviour
 		this.MainCamera = Camera.main;
 	}
 
-	// Token: 0x0600098C RID: 2444 RVA: 0x0004C6BD File Offset: 0x0004A8BD
+	// Token: 0x0600098C RID: 2444 RVA: 0x0004C775 File Offset: 0x0004A975
 	private void Update()
 	{
 		if (this.MainCamera == null)
@@ -29,7 +29,7 @@ public class RPG_Controller : MonoBehaviour
 		this.StartMotor();
 	}
 
-	// Token: 0x0600098D RID: 2445 RVA: 0x0004C6F4 File Offset: 0x0004A8F4
+	// Token: 0x0600098D RID: 2445 RVA: 0x0004C7AC File Offset: 0x0004A9AC
 	private void GetInput()
 	{
 		float d = 0f;
@@ -72,7 +72,7 @@ public class RPG_Controller : MonoBehaviour
 		this.rotation.y = Input.GetAxis("Horizontal") * this.turnSpeed;
 	}
 
-	// Token: 0x0600098E RID: 2446 RVA: 0x0004C8B8 File Offset: 0x0004AAB8
+	// Token: 0x0600098E RID: 2446 RVA: 0x0004C970 File Offset: 0x0004AB70
 	private void StartMotor()
 	{
 		this.playerDirWorld.y = this.playerDirWorld.y - this.gravity * Time.deltaTime;

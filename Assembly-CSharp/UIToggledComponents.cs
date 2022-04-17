@@ -8,7 +8,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Toggled Components")]
 public class UIToggledComponents : MonoBehaviour
 {
-	// Token: 0x060002DB RID: 731 RVA: 0x0001ED9C File Offset: 0x0001CF9C
+	// Token: 0x060002DB RID: 731 RVA: 0x0001EE54 File Offset: 0x0001D054
 	private void Awake()
 	{
 		if (this.target != null)
@@ -32,7 +32,7 @@ public class UIToggledComponents : MonoBehaviour
 		EventDelegate.Add(base.GetComponent<UIToggle>().onChange, new EventDelegate.Callback(this.Toggle));
 	}
 
-	// Token: 0x060002DC RID: 732 RVA: 0x0001EE24 File Offset: 0x0001D024
+	// Token: 0x060002DC RID: 732 RVA: 0x0001EEDC File Offset: 0x0001D0DC
 	public void Toggle()
 	{
 		if (base.enabled)

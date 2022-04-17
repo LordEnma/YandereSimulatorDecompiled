@@ -7,7 +7,7 @@ using UnityEngine;
 public class UITable : UIWidgetContainer
 {
 	// Token: 0x17000042 RID: 66
-	// (set) Token: 0x060002C4 RID: 708 RVA: 0x0001E0F1 File Offset: 0x0001C2F1
+	// (set) Token: 0x060002C4 RID: 708 RVA: 0x0001E1A9 File Offset: 0x0001C3A9
 	public bool repositionNow
 	{
 		set
@@ -20,7 +20,7 @@ public class UITable : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x060002C5 RID: 709 RVA: 0x0001E104 File Offset: 0x0001C304
+	// Token: 0x060002C5 RID: 709 RVA: 0x0001E1BC File Offset: 0x0001C3BC
 	public List<Transform> GetChildList()
 	{
 		Transform transform = base.transform;
@@ -59,13 +59,13 @@ public class UITable : UIWidgetContainer
 		return list;
 	}
 
-	// Token: 0x060002C6 RID: 710 RVA: 0x0001E1D8 File Offset: 0x0001C3D8
+	// Token: 0x060002C6 RID: 710 RVA: 0x0001E290 File Offset: 0x0001C490
 	protected virtual void Sort(List<Transform> list)
 	{
 		list.Sort(new Comparison<Transform>(UIGrid.SortByName));
 	}
 
-	// Token: 0x060002C7 RID: 711 RVA: 0x0001E1EC File Offset: 0x0001C3EC
+	// Token: 0x060002C7 RID: 711 RVA: 0x0001E2A4 File Offset: 0x0001C4A4
 	protected virtual void Start()
 	{
 		this.Init();
@@ -73,14 +73,14 @@ public class UITable : UIWidgetContainer
 		base.enabled = false;
 	}
 
-	// Token: 0x060002C8 RID: 712 RVA: 0x0001E201 File Offset: 0x0001C401
+	// Token: 0x060002C8 RID: 712 RVA: 0x0001E2B9 File Offset: 0x0001C4B9
 	protected virtual void Init()
 	{
 		this.mInitDone = true;
 		this.mPanel = NGUITools.FindInParents<UIPanel>(base.gameObject);
 	}
 
-	// Token: 0x060002C9 RID: 713 RVA: 0x0001E21B File Offset: 0x0001C41B
+	// Token: 0x060002C9 RID: 713 RVA: 0x0001E2D3 File Offset: 0x0001C4D3
 	protected virtual void LateUpdate()
 	{
 		if (this.mReposition)
@@ -90,7 +90,7 @@ public class UITable : UIWidgetContainer
 		base.enabled = false;
 	}
 
-	// Token: 0x060002CA RID: 714 RVA: 0x0001E232 File Offset: 0x0001C432
+	// Token: 0x060002CA RID: 714 RVA: 0x0001E2EA File Offset: 0x0001C4EA
 	private void OnValidate()
 	{
 		if (!Application.isPlaying && NGUITools.GetActive(this))
@@ -99,7 +99,7 @@ public class UITable : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x060002CB RID: 715 RVA: 0x0001E24C File Offset: 0x0001C44C
+	// Token: 0x060002CB RID: 715 RVA: 0x0001E304 File Offset: 0x0001C504
 	protected void RepositionVariableSize(List<Transform> children)
 	{
 		float num = 0f;
@@ -197,7 +197,7 @@ public class UITable : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x060002CC RID: 716 RVA: 0x0001E6CC File Offset: 0x0001C8CC
+	// Token: 0x060002CC RID: 716 RVA: 0x0001E784 File Offset: 0x0001C984
 	[ContextMenu("Execute")]
 	public virtual void Reposition()
 	{
@@ -267,16 +267,16 @@ public class UITable : UIWidgetContainer
 	protected bool mReposition;
 
 	// Token: 0x020005E9 RID: 1513
-	// (Invoke) Token: 0x0600255E RID: 9566
+	// (Invoke) Token: 0x06002565 RID: 9573
 	public delegate void OnReposition();
 
 	// Token: 0x020005EA RID: 1514
 	[DoNotObfuscateNGUI]
 	public enum Direction
 	{
-		// Token: 0x04004E33 RID: 20019
+		// Token: 0x04004E45 RID: 20037
 		Down,
-		// Token: 0x04004E34 RID: 20020
+		// Token: 0x04004E46 RID: 20038
 		Up
 	}
 
@@ -284,15 +284,15 @@ public class UITable : UIWidgetContainer
 	[DoNotObfuscateNGUI]
 	public enum Sorting
 	{
-		// Token: 0x04004E36 RID: 20022
+		// Token: 0x04004E48 RID: 20040
 		None,
-		// Token: 0x04004E37 RID: 20023
+		// Token: 0x04004E49 RID: 20041
 		Alphabetic,
-		// Token: 0x04004E38 RID: 20024
+		// Token: 0x04004E4A RID: 20042
 		Horizontal,
-		// Token: 0x04004E39 RID: 20025
+		// Token: 0x04004E4B RID: 20043
 		Vertical,
-		// Token: 0x04004E3A RID: 20026
+		// Token: 0x04004E4C RID: 20044
 		Custom
 	}
 }

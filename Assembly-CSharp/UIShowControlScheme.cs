@@ -4,20 +4,20 @@ using UnityEngine;
 // Token: 0x02000063 RID: 99
 public class UIShowControlScheme : MonoBehaviour
 {
-	// Token: 0x060002B0 RID: 688 RVA: 0x0001DCAB File Offset: 0x0001BEAB
+	// Token: 0x060002B0 RID: 688 RVA: 0x0001DD63 File Offset: 0x0001BF63
 	private void OnEnable()
 	{
 		UICamera.onSchemeChange = (UICamera.OnSchemeChange)Delegate.Combine(UICamera.onSchemeChange, new UICamera.OnSchemeChange(this.OnScheme));
 		this.OnScheme();
 	}
 
-	// Token: 0x060002B1 RID: 689 RVA: 0x0001DCD3 File Offset: 0x0001BED3
+	// Token: 0x060002B1 RID: 689 RVA: 0x0001DD8B File Offset: 0x0001BF8B
 	private void OnDisable()
 	{
 		UICamera.onSchemeChange = (UICamera.OnSchemeChange)Delegate.Remove(UICamera.onSchemeChange, new UICamera.OnSchemeChange(this.OnScheme));
 	}
 
-	// Token: 0x060002B2 RID: 690 RVA: 0x0001DCF8 File Offset: 0x0001BEF8
+	// Token: 0x060002B2 RID: 690 RVA: 0x0001DDB0 File Offset: 0x0001BFB0
 	private void OnScheme()
 	{
 		if (this.target != null)

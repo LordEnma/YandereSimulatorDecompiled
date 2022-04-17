@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000372 RID: 882
 public class MovingEventScript : MonoBehaviour
 {
-	// Token: 0x060019DB RID: 6619 RVA: 0x00109042 File Offset: 0x00107242
+	// Token: 0x060019DF RID: 6623 RVA: 0x00109306 File Offset: 0x00107506
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -14,7 +14,7 @@ public class MovingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019DC RID: 6620 RVA: 0x00109070 File Offset: 0x00107270
+	// Token: 0x060019E0 RID: 6624 RVA: 0x00109334 File Offset: 0x00107534
 	private void Update()
 	{
 		if (!this.Clock.StopTime && this.EventCheck && this.Clock.HourTime > 13f)
@@ -290,7 +290,7 @@ public class MovingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019DD RID: 6621 RVA: 0x00109E80 File Offset: 0x00108080
+	// Token: 0x060019E1 RID: 6625 RVA: 0x0010A144 File Offset: 0x00108344
 	private void EndEvent()
 	{
 		if (!this.EventOver)
@@ -318,66 +318,66 @@ public class MovingEventScript : MonoBehaviour
 		this.Prompt.enabled = false;
 	}
 
-	// Token: 0x04002994 RID: 10644
+	// Token: 0x0400299C RID: 10652
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002995 RID: 10645
+	// Token: 0x0400299D RID: 10653
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002996 RID: 10646
+	// Token: 0x0400299E RID: 10654
 	public YandereScript Yandere;
 
-	// Token: 0x04002997 RID: 10647
+	// Token: 0x0400299F RID: 10655
 	public PortalScript Portal;
 
-	// Token: 0x04002998 RID: 10648
+	// Token: 0x040029A0 RID: 10656
 	public PromptScript Prompt;
 
-	// Token: 0x04002999 RID: 10649
+	// Token: 0x040029A1 RID: 10657
 	public ClockScript Clock;
 
-	// Token: 0x0400299A RID: 10650
+	// Token: 0x040029A2 RID: 10658
 	public StudentScript EventStudent;
 
-	// Token: 0x0400299B RID: 10651
+	// Token: 0x040029A3 RID: 10659
 	public Transform[] EventLocation;
 
-	// Token: 0x0400299C RID: 10652
+	// Token: 0x040029A4 RID: 10660
 	public AudioClip[] EventClip;
 
-	// Token: 0x0400299D RID: 10653
+	// Token: 0x040029A5 RID: 10661
 	public string[] EventSpeech;
 
-	// Token: 0x0400299E RID: 10654
+	// Token: 0x040029A6 RID: 10662
 	public string[] EventAnim;
 
-	// Token: 0x0400299F RID: 10655
+	// Token: 0x040029A7 RID: 10663
 	public Collider BenchCollider;
 
-	// Token: 0x040029A0 RID: 10656
+	// Token: 0x040029A8 RID: 10664
 	public GameObject VoiceClip;
 
-	// Token: 0x040029A1 RID: 10657
+	// Token: 0x040029A9 RID: 10665
 	public bool EventActive;
 
-	// Token: 0x040029A2 RID: 10658
+	// Token: 0x040029AA RID: 10666
 	public bool EventCheck;
 
-	// Token: 0x040029A3 RID: 10659
+	// Token: 0x040029AB RID: 10667
 	public bool EventOver;
 
-	// Token: 0x040029A4 RID: 10660
+	// Token: 0x040029AC RID: 10668
 	public bool Poisoned;
 
-	// Token: 0x040029A5 RID: 10661
+	// Token: 0x040029AD RID: 10669
 	public int EventPhase = 1;
 
-	// Token: 0x040029A6 RID: 10662
+	// Token: 0x040029AE RID: 10670
 	public DayOfWeek EventDay = DayOfWeek.Wednesday;
 
-	// Token: 0x040029A7 RID: 10663
+	// Token: 0x040029AF RID: 10671
 	public float Distance;
 
-	// Token: 0x040029A8 RID: 10664
+	// Token: 0x040029B0 RID: 10672
 	public float Timer;
 }

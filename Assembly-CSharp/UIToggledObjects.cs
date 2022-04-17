@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Toggled Objects")]
 public class UIToggledObjects : MonoBehaviour
 {
-	// Token: 0x060002DE RID: 734 RVA: 0x0001EEA8 File Offset: 0x0001D0A8
+	// Token: 0x060002DE RID: 734 RVA: 0x0001EF60 File Offset: 0x0001D160
 	private void Awake()
 	{
 		if (this.target != null)
@@ -30,7 +30,7 @@ public class UIToggledObjects : MonoBehaviour
 		EventDelegate.Add(base.GetComponent<UIToggle>().onChange, new EventDelegate.Callback(this.Toggle));
 	}
 
-	// Token: 0x060002DF RID: 735 RVA: 0x0001EF30 File Offset: 0x0001D130
+	// Token: 0x060002DF RID: 735 RVA: 0x0001EFE8 File Offset: 0x0001D1E8
 	public void Toggle()
 	{
 		bool value = UIToggle.current.value;
@@ -47,7 +47,7 @@ public class UIToggledObjects : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002E0 RID: 736 RVA: 0x0001EFA5 File Offset: 0x0001D1A5
+	// Token: 0x060002E0 RID: 736 RVA: 0x0001F05D File Offset: 0x0001D25D
 	private void Set(GameObject go, bool state)
 	{
 		if (go != null)

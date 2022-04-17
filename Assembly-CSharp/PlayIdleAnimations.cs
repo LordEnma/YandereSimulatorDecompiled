@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Play Idle Animations")]
 public class PlayIdleAnimations : MonoBehaviour
 {
-	// Token: 0x060000E5 RID: 229 RVA: 0x00012A90 File Offset: 0x00010C90
+	// Token: 0x060000E5 RID: 229 RVA: 0x00012B48 File Offset: 0x00010D48
 	private void Start()
 	{
 		this.mAnim = base.GetComponentInChildren<Animation>();
@@ -37,7 +37,7 @@ public class PlayIdleAnimations : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060000E6 RID: 230 RVA: 0x00012BA8 File Offset: 0x00010DA8
+	// Token: 0x060000E6 RID: 230 RVA: 0x00012C60 File Offset: 0x00010E60
 	private void Update()
 	{
 		if (this.mNextBreak < Time.time)

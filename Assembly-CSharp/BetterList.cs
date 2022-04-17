@@ -6,7 +6,7 @@ using UnityEngine;
 // Token: 0x02000070 RID: 112
 public class BetterList<T>
 {
-	// Token: 0x06000319 RID: 793 RVA: 0x0002046C File Offset: 0x0001E66C
+	// Token: 0x06000319 RID: 793 RVA: 0x00020524 File Offset: 0x0001E724
 	public IEnumerator<T> GetEnumerator()
 	{
 		if (this.buffer != null)
@@ -36,7 +36,7 @@ public class BetterList<T>
 		}
 	}
 
-	// Token: 0x0600031C RID: 796 RVA: 0x00020498 File Offset: 0x0001E698
+	// Token: 0x0600031C RID: 796 RVA: 0x00020550 File Offset: 0x0001E750
 	private void AllocateMore()
 	{
 		T[] array = (this.buffer != null) ? new T[Mathf.Max(this.buffer.Length << 1, 32)] : new T[32];
@@ -47,7 +47,7 @@ public class BetterList<T>
 		this.buffer = array;
 	}
 
-	// Token: 0x0600031D RID: 797 RVA: 0x000204F4 File Offset: 0x0001E6F4
+	// Token: 0x0600031D RID: 797 RVA: 0x000205AC File Offset: 0x0001E7AC
 	private void Trim()
 	{
 		if (this.size > 0)
@@ -69,20 +69,20 @@ public class BetterList<T>
 		}
 	}
 
-	// Token: 0x0600031E RID: 798 RVA: 0x00020559 File Offset: 0x0001E759
+	// Token: 0x0600031E RID: 798 RVA: 0x00020611 File Offset: 0x0001E811
 	public void Clear()
 	{
 		this.size = 0;
 	}
 
-	// Token: 0x0600031F RID: 799 RVA: 0x00020562 File Offset: 0x0001E762
+	// Token: 0x0600031F RID: 799 RVA: 0x0002061A File Offset: 0x0001E81A
 	public void Release()
 	{
 		this.size = 0;
 		this.buffer = null;
 	}
 
-	// Token: 0x06000320 RID: 800 RVA: 0x00020574 File Offset: 0x0001E774
+	// Token: 0x06000320 RID: 800 RVA: 0x0002062C File Offset: 0x0001E82C
 	public void Add(T item)
 	{
 		if (this.buffer == null || this.size == this.buffer.Length)
@@ -95,7 +95,7 @@ public class BetterList<T>
 		array[num] = item;
 	}
 
-	// Token: 0x06000321 RID: 801 RVA: 0x000205BC File Offset: 0x0001E7BC
+	// Token: 0x06000321 RID: 801 RVA: 0x00020674 File Offset: 0x0001E874
 	public void Insert(int index, T item)
 	{
 		if (this.buffer == null || this.size == this.buffer.Length)
@@ -115,7 +115,7 @@ public class BetterList<T>
 		this.Add(item);
 	}
 
-	// Token: 0x06000322 RID: 802 RVA: 0x00020644 File Offset: 0x0001E844
+	// Token: 0x06000322 RID: 802 RVA: 0x000206FC File Offset: 0x0001E8FC
 	public bool Contains(T item)
 	{
 		if (this.buffer == null)
@@ -132,7 +132,7 @@ public class BetterList<T>
 		return false;
 	}
 
-	// Token: 0x06000323 RID: 803 RVA: 0x00020690 File Offset: 0x0001E890
+	// Token: 0x06000323 RID: 803 RVA: 0x00020748 File Offset: 0x0001E948
 	public int IndexOf(T item)
 	{
 		if (this.buffer == null)
@@ -149,7 +149,7 @@ public class BetterList<T>
 		return -1;
 	}
 
-	// Token: 0x06000324 RID: 804 RVA: 0x000206DC File Offset: 0x0001E8DC
+	// Token: 0x06000324 RID: 804 RVA: 0x00020794 File Offset: 0x0001E994
 	public bool Remove(T item)
 	{
 		if (this.buffer != null)
@@ -173,7 +173,7 @@ public class BetterList<T>
 		return false;
 	}
 
-	// Token: 0x06000325 RID: 805 RVA: 0x00020794 File Offset: 0x0001E994
+	// Token: 0x06000325 RID: 805 RVA: 0x0002084C File Offset: 0x0001EA4C
 	public void RemoveAt(int index)
 	{
 		if (this.buffer != null && index > -1 && index < this.size)
@@ -188,7 +188,7 @@ public class BetterList<T>
 		}
 	}
 
-	// Token: 0x06000326 RID: 806 RVA: 0x00020820 File Offset: 0x0001EA20
+	// Token: 0x06000326 RID: 806 RVA: 0x000208D8 File Offset: 0x0001EAD8
 	public T Pop()
 	{
 		if (this.buffer != null && this.size != 0)
@@ -203,14 +203,14 @@ public class BetterList<T>
 		return default(T);
 	}
 
-	// Token: 0x06000327 RID: 807 RVA: 0x0002087D File Offset: 0x0001EA7D
+	// Token: 0x06000327 RID: 807 RVA: 0x00020935 File Offset: 0x0001EB35
 	public T[] ToArray()
 	{
 		this.Trim();
 		return this.buffer;
 	}
 
-	// Token: 0x06000328 RID: 808 RVA: 0x0002088C File Offset: 0x0001EA8C
+	// Token: 0x06000328 RID: 808 RVA: 0x00020944 File Offset: 0x0001EB44
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public void Sort(BetterList<T>.CompareFunc comparer)
@@ -245,6 +245,6 @@ public class BetterList<T>
 	public int size;
 
 	// Token: 0x020005EE RID: 1518
-	// (Invoke) Token: 0x0600256A RID: 9578
+	// (Invoke) Token: 0x06002571 RID: 9585
 	public delegate int CompareFunc(T left, T right);
 }

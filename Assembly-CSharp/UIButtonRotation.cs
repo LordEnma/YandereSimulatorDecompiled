@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Button Rotation")]
 public class UIButtonRotation : MonoBehaviour
 {
-	// Token: 0x06000148 RID: 328 RVA: 0x000148B1 File Offset: 0x00012AB1
+	// Token: 0x06000148 RID: 328 RVA: 0x00014969 File Offset: 0x00012B69
 	private void Start()
 	{
 		if (!this.mStarted)
@@ -19,7 +19,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000149 RID: 329 RVA: 0x000148ED File Offset: 0x00012AED
+	// Token: 0x06000149 RID: 329 RVA: 0x000149A5 File Offset: 0x00012BA5
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -28,7 +28,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600014A RID: 330 RVA: 0x00014908 File Offset: 0x00012B08
+	// Token: 0x0600014A RID: 330 RVA: 0x000149C0 File Offset: 0x00012BC0
 	private void OnDisable()
 	{
 		if (this.mStarted && this.tweenTarget != null)
@@ -42,7 +42,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600014B RID: 331 RVA: 0x00014954 File Offset: 0x00012B54
+	// Token: 0x0600014B RID: 331 RVA: 0x00014A0C File Offset: 0x00012C0C
 	private void OnPress(bool isPressed)
 	{
 		if (base.enabled)
@@ -55,7 +55,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600014C RID: 332 RVA: 0x000149DC File Offset: 0x00012BDC
+	// Token: 0x0600014C RID: 332 RVA: 0x00014A94 File Offset: 0x00012C94
 	private void OnHover(bool isOver)
 	{
 		if (base.enabled)
@@ -68,7 +68,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600014D RID: 333 RVA: 0x00014A3C File Offset: 0x00012C3C
+	// Token: 0x0600014D RID: 333 RVA: 0x00014AF4 File Offset: 0x00012CF4
 	private void OnSelect(bool isSelected)
 	{
 		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))

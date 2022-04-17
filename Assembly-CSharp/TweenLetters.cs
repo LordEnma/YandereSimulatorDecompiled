@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x0200008E RID: 142
 public class TweenLetters : UITweener
 {
-	// Token: 0x06000591 RID: 1425 RVA: 0x00034842 File Offset: 0x00032A42
+	// Token: 0x06000591 RID: 1425 RVA: 0x000348FA File Offset: 0x00032AFA
 	private void OnEnable()
 	{
 		this.mVertexCount = -1;
@@ -13,28 +13,28 @@ public class TweenLetters : UITweener
 		uilabel.onPostFill = (UIWidget.OnPostFillCallback)Delegate.Combine(uilabel.onPostFill, new UIWidget.OnPostFillCallback(this.OnPostFill));
 	}
 
-	// Token: 0x06000592 RID: 1426 RVA: 0x00034872 File Offset: 0x00032A72
+	// Token: 0x06000592 RID: 1426 RVA: 0x0003492A File Offset: 0x00032B2A
 	private void OnDisable()
 	{
 		UILabel uilabel = this.mLabel;
 		uilabel.onPostFill = (UIWidget.OnPostFillCallback)Delegate.Remove(uilabel.onPostFill, new UIWidget.OnPostFillCallback(this.OnPostFill));
 	}
 
-	// Token: 0x06000593 RID: 1427 RVA: 0x0003489B File Offset: 0x00032A9B
+	// Token: 0x06000593 RID: 1427 RVA: 0x00034953 File Offset: 0x00032B53
 	private void Awake()
 	{
 		this.mLabel = base.GetComponent<UILabel>();
 		this.mCurrent = this.hoverOver;
 	}
 
-	// Token: 0x06000594 RID: 1428 RVA: 0x000348B5 File Offset: 0x00032AB5
+	// Token: 0x06000594 RID: 1428 RVA: 0x0003496D File Offset: 0x00032B6D
 	public override void Play(bool forward)
 	{
 		this.mCurrent = (forward ? this.hoverOver : this.hoverOut);
 		base.Play(forward);
 	}
 
-	// Token: 0x06000595 RID: 1429 RVA: 0x000348D8 File Offset: 0x00032AD8
+	// Token: 0x06000595 RID: 1429 RVA: 0x00034990 File Offset: 0x00032B90
 	private void OnPostFill(UIWidget widget, int bufferOffset, List<Vector3> verts, List<Vector2> uvs, List<Color> cols)
 	{
 		if (verts == null)
@@ -109,13 +109,13 @@ public class TweenLetters : UITweener
 		}
 	}
 
-	// Token: 0x06000596 RID: 1430 RVA: 0x00034B68 File Offset: 0x00032D68
+	// Token: 0x06000596 RID: 1430 RVA: 0x00034C20 File Offset: 0x00032E20
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		this.mLabel.MarkAsChanged();
 	}
 
-	// Token: 0x06000597 RID: 1431 RVA: 0x00034B78 File Offset: 0x00032D78
+	// Token: 0x06000597 RID: 1431 RVA: 0x00034C30 File Offset: 0x00032E30
 	private void SetLetterOrder(int letterCount)
 	{
 		if (letterCount == 0)
@@ -147,7 +147,7 @@ public class TweenLetters : UITweener
 		}
 	}
 
-	// Token: 0x06000598 RID: 1432 RVA: 0x00034CA4 File Offset: 0x00032EA4
+	// Token: 0x06000598 RID: 1432 RVA: 0x00034D5C File Offset: 0x00032F5C
 	private void GetLetterDuration(int letterCount)
 	{
 		if (this.mCurrent.randomDurations)
@@ -174,13 +174,13 @@ public class TweenLetters : UITweener
 		}
 	}
 
-	// Token: 0x06000599 RID: 1433 RVA: 0x00034DE3 File Offset: 0x00032FE3
+	// Token: 0x06000599 RID: 1433 RVA: 0x00034E9B File Offset: 0x0003309B
 	private float ScaleRange(float value, float baseMax, float limitMax)
 	{
 		return limitMax * value / baseMax;
 	}
 
-	// Token: 0x0600059A RID: 1434 RVA: 0x00034DEC File Offset: 0x00032FEC
+	// Token: 0x0600059A RID: 1434 RVA: 0x00034EA4 File Offset: 0x000330A4
 	private static Vector3 GetCenter(List<Vector3> verts, int firstVert, int length)
 	{
 		Vector3 a = verts[firstVert];
@@ -216,24 +216,24 @@ public class TweenLetters : UITweener
 	[DoNotObfuscateNGUI]
 	public enum AnimationLetterOrder
 	{
-		// Token: 0x04004E98 RID: 20120
+		// Token: 0x04004EAA RID: 20138
 		Forward,
-		// Token: 0x04004E99 RID: 20121
+		// Token: 0x04004EAB RID: 20139
 		Reverse,
-		// Token: 0x04004E9A RID: 20122
+		// Token: 0x04004EAC RID: 20140
 		Random
 	}
 
 	// Token: 0x02000613 RID: 1555
 	private class LetterProperties
 	{
-		// Token: 0x04004E9B RID: 20123
+		// Token: 0x04004EAD RID: 20141
 		public float start;
 
-		// Token: 0x04004E9C RID: 20124
+		// Token: 0x04004EAE RID: 20142
 		public float duration;
 
-		// Token: 0x04004E9D RID: 20125
+		// Token: 0x04004EAF RID: 20143
 		public Vector2 offset;
 	}
 
@@ -241,33 +241,33 @@ public class TweenLetters : UITweener
 	[Serializable]
 	public class AnimationProperties
 	{
-		// Token: 0x04004E9E RID: 20126
+		// Token: 0x04004EB0 RID: 20144
 		public TweenLetters.AnimationLetterOrder animationOrder = TweenLetters.AnimationLetterOrder.Random;
 
-		// Token: 0x04004E9F RID: 20127
+		// Token: 0x04004EB1 RID: 20145
 		[Range(0f, 1f)]
 		public float overlap = 0.5f;
 
-		// Token: 0x04004EA0 RID: 20128
+		// Token: 0x04004EB2 RID: 20146
 		public bool randomDurations;
 
-		// Token: 0x04004EA1 RID: 20129
+		// Token: 0x04004EB3 RID: 20147
 		[MinMaxRange(0f, 1f)]
 		public Vector2 randomness = new Vector2(0.25f, 0.75f);
 
-		// Token: 0x04004EA2 RID: 20130
+		// Token: 0x04004EB4 RID: 20148
 		public Vector2 offsetRange = Vector2.zero;
 
-		// Token: 0x04004EA3 RID: 20131
+		// Token: 0x04004EB5 RID: 20149
 		public Vector3 pos = Vector3.zero;
 
-		// Token: 0x04004EA4 RID: 20132
+		// Token: 0x04004EB6 RID: 20150
 		public Vector3 rot = Vector3.zero;
 
-		// Token: 0x04004EA5 RID: 20133
+		// Token: 0x04004EB7 RID: 20151
 		public Vector3 scale = Vector3.one;
 
-		// Token: 0x04004EA6 RID: 20134
+		// Token: 0x04004EB8 RID: 20152
 		public float alpha = 1f;
 	}
 }

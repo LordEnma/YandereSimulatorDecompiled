@@ -7,8 +7,8 @@ using UnityEngine;
 public class UIDraggableCamera : MonoBehaviour
 {
 	// Token: 0x17000015 RID: 21
-	// (get) Token: 0x060001A0 RID: 416 RVA: 0x00016CE4 File Offset: 0x00014EE4
-	// (set) Token: 0x060001A1 RID: 417 RVA: 0x00016CEC File Offset: 0x00014EEC
+	// (get) Token: 0x060001A0 RID: 416 RVA: 0x00016D9C File Offset: 0x00014F9C
+	// (set) Token: 0x060001A1 RID: 417 RVA: 0x00016DA4 File Offset: 0x00014FA4
 	public Vector2 currentMomentum
 	{
 		get
@@ -21,7 +21,7 @@ public class UIDraggableCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001A2 RID: 418 RVA: 0x00016CF8 File Offset: 0x00014EF8
+	// Token: 0x060001A2 RID: 418 RVA: 0x00016DB0 File Offset: 0x00014FB0
 	private void Start()
 	{
 		this.mCam = base.GetComponent<Camera>();
@@ -34,7 +34,7 @@ public class UIDraggableCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001A3 RID: 419 RVA: 0x00016D60 File Offset: 0x00014F60
+	// Token: 0x060001A3 RID: 419 RVA: 0x00016E18 File Offset: 0x00015018
 	private Vector3 CalculateConstrainOffset()
 	{
 		if (this.rootForBounds == null || this.rootForBounds.childCount == 0)
@@ -50,7 +50,7 @@ public class UIDraggableCamera : MonoBehaviour
 		return NGUIMath.ConstrainRect(minRect, maxRect, vector, vector2);
 	}
 
-	// Token: 0x060001A4 RID: 420 RVA: 0x00016E8C File Offset: 0x0001508C
+	// Token: 0x060001A4 RID: 420 RVA: 0x00016F44 File Offset: 0x00015144
 	public bool ConstrainToBounds(bool immediate)
 	{
 		if (this.mTrans != null && this.rootForBounds != null)
@@ -74,7 +74,7 @@ public class UIDraggableCamera : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x060001A5 RID: 421 RVA: 0x00016F18 File Offset: 0x00015118
+	// Token: 0x060001A5 RID: 421 RVA: 0x00016FD0 File Offset: 0x000151D0
 	public void Press(bool isPressed)
 	{
 		if (isPressed)
@@ -103,7 +103,7 @@ public class UIDraggableCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001A6 RID: 422 RVA: 0x00016F98 File Offset: 0x00015198
+	// Token: 0x060001A6 RID: 422 RVA: 0x00017050 File Offset: 0x00015250
 	public void Drag(Vector2 delta)
 	{
 		if (this.smoothDragStart && !this.mDragStarted)
@@ -126,7 +126,7 @@ public class UIDraggableCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001A7 RID: 423 RVA: 0x00017074 File Offset: 0x00015274
+	// Token: 0x060001A7 RID: 423 RVA: 0x0001712C File Offset: 0x0001532C
 	public void Scroll(float delta)
 	{
 		if (base.enabled && NGUITools.GetActive(base.gameObject))
@@ -139,7 +139,7 @@ public class UIDraggableCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001A8 RID: 424 RVA: 0x000170CC File Offset: 0x000152CC
+	// Token: 0x060001A8 RID: 424 RVA: 0x00017184 File Offset: 0x00015384
 	private void Update()
 	{
 		float deltaTime = RealTime.deltaTime;

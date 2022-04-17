@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Forward Events (Legacy)")]
 public class UIForwardEvents : MonoBehaviour
 {
-	// Token: 0x060001B6 RID: 438 RVA: 0x000174EE File Offset: 0x000156EE
+	// Token: 0x060001B6 RID: 438 RVA: 0x000175A6 File Offset: 0x000157A6
 	private void OnHover(bool isOver)
 	{
 		if (this.onHover && this.target != null)
@@ -14,7 +14,7 @@ public class UIForwardEvents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001B7 RID: 439 RVA: 0x0001751D File Offset: 0x0001571D
+	// Token: 0x060001B7 RID: 439 RVA: 0x000175D5 File Offset: 0x000157D5
 	private void OnPress(bool pressed)
 	{
 		if (this.onPress && this.target != null)
@@ -23,7 +23,7 @@ public class UIForwardEvents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001B8 RID: 440 RVA: 0x0001754C File Offset: 0x0001574C
+	// Token: 0x060001B8 RID: 440 RVA: 0x00017604 File Offset: 0x00015804
 	private void OnClick()
 	{
 		if (this.onClick && this.target != null)
@@ -32,7 +32,7 @@ public class UIForwardEvents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001B9 RID: 441 RVA: 0x00017575 File Offset: 0x00015775
+	// Token: 0x060001B9 RID: 441 RVA: 0x0001762D File Offset: 0x0001582D
 	private void OnDoubleClick()
 	{
 		if (this.onDoubleClick && this.target != null)
@@ -41,7 +41,7 @@ public class UIForwardEvents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001BA RID: 442 RVA: 0x0001759E File Offset: 0x0001579E
+	// Token: 0x060001BA RID: 442 RVA: 0x00017656 File Offset: 0x00015856
 	private void OnSelect(bool selected)
 	{
 		if (this.onSelect && this.target != null)
@@ -50,7 +50,7 @@ public class UIForwardEvents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001BB RID: 443 RVA: 0x000175CD File Offset: 0x000157CD
+	// Token: 0x060001BB RID: 443 RVA: 0x00017685 File Offset: 0x00015885
 	private void OnDrag(Vector2 delta)
 	{
 		if (this.onDrag && this.target != null)
@@ -59,7 +59,7 @@ public class UIForwardEvents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001BC RID: 444 RVA: 0x000175FC File Offset: 0x000157FC
+	// Token: 0x060001BC RID: 444 RVA: 0x000176B4 File Offset: 0x000158B4
 	private void OnDrop(GameObject go)
 	{
 		if (this.onDrop && this.target != null)
@@ -68,7 +68,7 @@ public class UIForwardEvents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001BD RID: 445 RVA: 0x00017626 File Offset: 0x00015826
+	// Token: 0x060001BD RID: 445 RVA: 0x000176DE File Offset: 0x000158DE
 	private void OnSubmit()
 	{
 		if (this.onSubmit && this.target != null)
@@ -77,7 +77,7 @@ public class UIForwardEvents : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001BE RID: 446 RVA: 0x0001764F File Offset: 0x0001584F
+	// Token: 0x060001BE RID: 446 RVA: 0x00017707 File Offset: 0x00015907
 	private void OnScroll(float delta)
 	{
 		if (this.onScroll && this.target != null)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F7 RID: 247
 public class BringItemScript : MonoBehaviour
 {
-	// Token: 0x06000A67 RID: 2663 RVA: 0x0005C9C0 File Offset: 0x0005ABC0
+	// Token: 0x06000A67 RID: 2663 RVA: 0x0005CAC4 File Offset: 0x0005ACC4
 	private void Initialize()
 	{
 		for (int i = 1; i < 8; i++)
@@ -47,7 +47,7 @@ public class BringItemScript : MonoBehaviour
 		this.DescLabel.text = this.Descriptions[this.ID];
 	}
 
-	// Token: 0x06000A68 RID: 2664 RVA: 0x0005CB4C File Offset: 0x0005AD4C
+	// Token: 0x06000A68 RID: 2664 RVA: 0x0005CC50 File Offset: 0x0005AE50
 	private void Update()
 	{
 		if (!this.Initialized)

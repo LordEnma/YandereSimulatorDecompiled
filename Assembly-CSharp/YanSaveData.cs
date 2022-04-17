@@ -4,15 +4,15 @@
 [Serializable]
 public struct YanSaveData
 {
-	// Token: 0x0400499B RID: 18843
+	// Token: 0x040049AD RID: 18861
 	public string LoadedLevelName;
 
-	// Token: 0x0400499C RID: 18844
+	// Token: 0x040049AE RID: 18862
 	public SerializedGameObject[] SerializedGameObjects;
 
-	// Token: 0x0400499D RID: 18845
+	// Token: 0x040049AF RID: 18863
 	public SerializedStaticClass[] SerializedStaticClasses;
 
-	// Token: 0x0400499E RID: 18846
+	// Token: 0x040049B0 RID: 18864
 	public ValueDict SerializedPlayerPrefs;
 }

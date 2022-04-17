@@ -6,7 +6,7 @@ using UnityEngine;
 public class UIKeyNavigation : MonoBehaviour
 {
 	// Token: 0x1700001A RID: 26
-	// (get) Token: 0x060001EE RID: 494 RVA: 0x00018420 File Offset: 0x00016620
+	// (get) Token: 0x060001EE RID: 494 RVA: 0x000184D8 File Offset: 0x000166D8
 	public static UIKeyNavigation current
 	{
 		get
@@ -21,7 +21,7 @@ public class UIKeyNavigation : MonoBehaviour
 	}
 
 	// Token: 0x1700001B RID: 27
-	// (get) Token: 0x060001EF RID: 495 RVA: 0x00018444 File Offset: 0x00016644
+	// (get) Token: 0x060001EF RID: 495 RVA: 0x000184FC File Offset: 0x000166FC
 	public bool isColliderEnabled
 	{
 		get
@@ -40,7 +40,7 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001F0 RID: 496 RVA: 0x00018497 File Offset: 0x00016697
+	// Token: 0x060001F0 RID: 496 RVA: 0x0001854F File Offset: 0x0001674F
 	protected virtual void OnEnable()
 	{
 		UIKeyNavigation.list.Add(this);
@@ -50,7 +50,7 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001F1 RID: 497 RVA: 0x000184BC File Offset: 0x000166BC
+	// Token: 0x060001F1 RID: 497 RVA: 0x00018574 File Offset: 0x00016774
 	private void Start()
 	{
 		this.mStarted = true;
@@ -60,13 +60,13 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001F2 RID: 498 RVA: 0x000184E0 File Offset: 0x000166E0
+	// Token: 0x060001F2 RID: 498 RVA: 0x00018598 File Offset: 0x00016798
 	protected virtual void OnDisable()
 	{
 		UIKeyNavigation.list.Remove(this);
 	}
 
-	// Token: 0x060001F3 RID: 499 RVA: 0x000184F0 File Offset: 0x000166F0
+	// Token: 0x060001F3 RID: 499 RVA: 0x000185A8 File Offset: 0x000167A8
 	private static bool IsActive(GameObject go)
 	{
 		if (!go || !go.activeInHierarchy)
@@ -82,7 +82,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return component2 != null && component2.enabled;
 	}
 
-	// Token: 0x060001F4 RID: 500 RVA: 0x0001853E File Offset: 0x0001673E
+	// Token: 0x060001F4 RID: 500 RVA: 0x000185F6 File Offset: 0x000167F6
 	public GameObject GetLeft()
 	{
 		if (UIKeyNavigation.IsActive(this.onLeft))
@@ -96,7 +96,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return this.Get(Vector3.left, 1f, 2f);
 	}
 
-	// Token: 0x060001F5 RID: 501 RVA: 0x0001857D File Offset: 0x0001677D
+	// Token: 0x060001F5 RID: 501 RVA: 0x00018635 File Offset: 0x00016835
 	public GameObject GetRight()
 	{
 		if (UIKeyNavigation.IsActive(this.onRight))
@@ -110,7 +110,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return this.Get(Vector3.right, 1f, 2f);
 	}
 
-	// Token: 0x060001F6 RID: 502 RVA: 0x000185BC File Offset: 0x000167BC
+	// Token: 0x060001F6 RID: 502 RVA: 0x00018674 File Offset: 0x00016874
 	public GameObject GetUp()
 	{
 		if (UIKeyNavigation.IsActive(this.onUp))
@@ -124,7 +124,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return this.Get(Vector3.up, 2f, 1f);
 	}
 
-	// Token: 0x060001F7 RID: 503 RVA: 0x000185FB File Offset: 0x000167FB
+	// Token: 0x060001F7 RID: 503 RVA: 0x000186B3 File Offset: 0x000168B3
 	public GameObject GetDown()
 	{
 		if (UIKeyNavigation.IsActive(this.onDown))
@@ -138,7 +138,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return this.Get(Vector3.down, 2f, 1f);
 	}
 
-	// Token: 0x060001F8 RID: 504 RVA: 0x0001863C File Offset: 0x0001683C
+	// Token: 0x060001F8 RID: 504 RVA: 0x000186F4 File Offset: 0x000168F4
 	public GameObject Get(Vector3 myDir, float x = 1f, float y = 1f)
 	{
 		Transform transform = base.transform;
@@ -173,7 +173,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060001F9 RID: 505 RVA: 0x00018748 File Offset: 0x00016948
+	// Token: 0x060001F9 RID: 505 RVA: 0x00018800 File Offset: 0x00016A00
 	protected static Vector3 GetCenter(GameObject go)
 	{
 		UIWidget component = go.GetComponent<UIWidget>();
@@ -198,7 +198,7 @@ public class UIKeyNavigation : MonoBehaviour
 		return go.transform.position;
 	}
 
-	// Token: 0x060001FA RID: 506 RVA: 0x00018804 File Offset: 0x00016A04
+	// Token: 0x060001FA RID: 506 RVA: 0x000188BC File Offset: 0x00016ABC
 	public virtual void OnNavigate(KeyCode key)
 	{
 		if (UIPopupList.isOpen)
@@ -232,7 +232,7 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001FB RID: 507 RVA: 0x00018884 File Offset: 0x00016A84
+	// Token: 0x060001FB RID: 507 RVA: 0x0001893C File Offset: 0x00016B3C
 	public virtual void OnKey(KeyCode key)
 	{
 		if (UIPopupList.isOpen)
@@ -295,7 +295,7 @@ public class UIKeyNavigation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001FC RID: 508 RVA: 0x00018989 File Offset: 0x00016B89
+	// Token: 0x060001FC RID: 508 RVA: 0x00018A41 File Offset: 0x00016C41
 	protected virtual void OnClick()
 	{
 		if (NGUITools.GetActive(this.onClick))
@@ -342,13 +342,13 @@ public class UIKeyNavigation : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Constraint
 	{
-		// Token: 0x04004DF8 RID: 19960
+		// Token: 0x04004E0A RID: 19978
 		None,
-		// Token: 0x04004DF9 RID: 19961
+		// Token: 0x04004E0B RID: 19979
 		Vertical,
-		// Token: 0x04004DFA RID: 19962
+		// Token: 0x04004E0C RID: 19980
 		Horizontal,
-		// Token: 0x04004DFB RID: 19963
+		// Token: 0x04004E0D RID: 19981
 		Explicit
 	}
 }

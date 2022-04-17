@@ -4,36 +4,36 @@ using UnityEngine;
 // Token: 0x020003DE RID: 990
 public class RivalDataScript : MonoBehaviour
 {
-	// Token: 0x04002F76 RID: 12150
+	// Token: 0x04002F81 RID: 12161
 	public AudioClip OsanaIntro;
 
-	// Token: 0x04002F77 RID: 12151
+	// Token: 0x04002F82 RID: 12162
 	public AudioClip OsanaBefriend;
 
-	// Token: 0x04002F78 RID: 12152
+	// Token: 0x04002F83 RID: 12163
 	public AudioClip OsanaBetray;
 
-	// Token: 0x04002F79 RID: 12153
+	// Token: 0x04002F84 RID: 12164
 	public string[] OsanaIntroLines;
 
-	// Token: 0x04002F7A RID: 12154
+	// Token: 0x04002F85 RID: 12165
 	public float[] OsanaIntroTimes;
 
-	// Token: 0x04002F7B RID: 12155
+	// Token: 0x04002F86 RID: 12166
 	public string[] OsanaBefriendLines;
 
-	// Token: 0x04002F7C RID: 12156
+	// Token: 0x04002F87 RID: 12167
 	public float[] OsanaBefriendTimes;
 
-	// Token: 0x04002F7D RID: 12157
+	// Token: 0x04002F88 RID: 12168
 	public float[] OsanaBefriendCameraIDs;
 
-	// Token: 0x04002F7E RID: 12158
+	// Token: 0x04002F89 RID: 12169
 	public string[] OsanaBetrayLines;
 
-	// Token: 0x04002F7F RID: 12159
+	// Token: 0x04002F8A RID: 12170
 	public float[] OsanaBetrayTimes;
 
-	// Token: 0x04002F80 RID: 12160
+	// Token: 0x04002F8B RID: 12171
 	public float[] OsanaBetrayCameraIDs;
 }

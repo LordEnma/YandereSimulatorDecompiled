@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Internal/Spring Panel")]
 public class SpringPanel : MonoBehaviour
 {
-	// Token: 0x0600046A RID: 1130 RVA: 0x0002C8DD File Offset: 0x0002AADD
+	// Token: 0x0600046A RID: 1130 RVA: 0x0002C995 File Offset: 0x0002AB95
 	private void Start()
 	{
 		this.mPanel = base.GetComponent<UIPanel>();
@@ -14,13 +14,13 @@ public class SpringPanel : MonoBehaviour
 		this.mTrans = base.transform;
 	}
 
-	// Token: 0x0600046B RID: 1131 RVA: 0x0002C903 File Offset: 0x0002AB03
+	// Token: 0x0600046B RID: 1131 RVA: 0x0002C9BB File Offset: 0x0002ABBB
 	private void Update()
 	{
 		this.AdvanceTowardsPosition();
 	}
 
-	// Token: 0x0600046C RID: 1132 RVA: 0x0002C90C File Offset: 0x0002AB0C
+	// Token: 0x0600046C RID: 1132 RVA: 0x0002C9C4 File Offset: 0x0002ABC4
 	protected virtual void AdvanceTowardsPosition()
 	{
 		this.mDelta += RealTime.deltaTime;
@@ -63,7 +63,7 @@ public class SpringPanel : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600046D RID: 1133 RVA: 0x0002CA70 File Offset: 0x0002AC70
+	// Token: 0x0600046D RID: 1133 RVA: 0x0002CB28 File Offset: 0x0002AD28
 	public static SpringPanel Begin(GameObject go, Vector3 pos, float strength)
 	{
 		SpringPanel springPanel = go.GetComponent<SpringPanel>();
@@ -78,7 +78,7 @@ public class SpringPanel : MonoBehaviour
 		return springPanel;
 	}
 
-	// Token: 0x0600046E RID: 1134 RVA: 0x0002CAB4 File Offset: 0x0002ACB4
+	// Token: 0x0600046E RID: 1134 RVA: 0x0002CB6C File Offset: 0x0002AD6C
 	public static SpringPanel Stop(GameObject go)
 	{
 		SpringPanel component = go.GetComponent<SpringPanel>();
@@ -122,6 +122,6 @@ public class SpringPanel : MonoBehaviour
 	private float mDelta;
 
 	// Token: 0x020005FA RID: 1530
-	// (Invoke) Token: 0x0600258B RID: 9611
+	// (Invoke) Token: 0x06002592 RID: 9618
 	public delegate void OnFinished();
 }

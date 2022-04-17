@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Internal/Property Binding")]
 public class PropertyBinding : MonoBehaviour
 {
-	// Token: 0x06000448 RID: 1096 RVA: 0x0002C02E File Offset: 0x0002A22E
+	// Token: 0x06000448 RID: 1096 RVA: 0x0002C0E6 File Offset: 0x0002A2E6
 	private void Start()
 	{
 		this.UpdateTarget();
@@ -16,7 +16,7 @@ public class PropertyBinding : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000449 RID: 1097 RVA: 0x0002C045 File Offset: 0x0002A245
+	// Token: 0x06000449 RID: 1097 RVA: 0x0002C0FD File Offset: 0x0002A2FD
 	private void Update()
 	{
 		if (this.update == PropertyBinding.UpdateCondition.OnUpdate)
@@ -25,7 +25,7 @@ public class PropertyBinding : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600044A RID: 1098 RVA: 0x0002C056 File Offset: 0x0002A256
+	// Token: 0x0600044A RID: 1098 RVA: 0x0002C10E File Offset: 0x0002A30E
 	private void LateUpdate()
 	{
 		if (this.update == PropertyBinding.UpdateCondition.OnLateUpdate)
@@ -34,7 +34,7 @@ public class PropertyBinding : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600044B RID: 1099 RVA: 0x0002C067 File Offset: 0x0002A267
+	// Token: 0x0600044B RID: 1099 RVA: 0x0002C11F File Offset: 0x0002A31F
 	private void FixedUpdate()
 	{
 		if (this.update == PropertyBinding.UpdateCondition.OnFixedUpdate)
@@ -43,7 +43,7 @@ public class PropertyBinding : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600044C RID: 1100 RVA: 0x0002C078 File Offset: 0x0002A278
+	// Token: 0x0600044C RID: 1100 RVA: 0x0002C130 File Offset: 0x0002A330
 	private void OnValidate()
 	{
 		if (this.source != null)
@@ -56,7 +56,7 @@ public class PropertyBinding : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600044D RID: 1101 RVA: 0x0002C0A0 File Offset: 0x0002A2A0
+	// Token: 0x0600044D RID: 1101 RVA: 0x0002C158 File Offset: 0x0002A358
 	[ContextMenu("Update Now")]
 	public void UpdateTarget()
 	{
@@ -113,13 +113,13 @@ public class PropertyBinding : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum UpdateCondition
 	{
-		// Token: 0x04004E5A RID: 20058
+		// Token: 0x04004E6C RID: 20076
 		OnStart,
-		// Token: 0x04004E5B RID: 20059
+		// Token: 0x04004E6D RID: 20077
 		OnUpdate,
-		// Token: 0x04004E5C RID: 20060
+		// Token: 0x04004E6E RID: 20078
 		OnLateUpdate,
-		// Token: 0x04004E5D RID: 20061
+		// Token: 0x04004E6F RID: 20079
 		OnFixedUpdate
 	}
 
@@ -127,11 +127,11 @@ public class PropertyBinding : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Direction
 	{
-		// Token: 0x04004E5F RID: 20063
+		// Token: 0x04004E71 RID: 20081
 		SourceUpdatesTarget,
-		// Token: 0x04004E60 RID: 20064
+		// Token: 0x04004E72 RID: 20082
 		TargetUpdatesSource,
-		// Token: 0x04004E61 RID: 20065
+		// Token: 0x04004E73 RID: 20083
 		BiDirectional
 	}
 }

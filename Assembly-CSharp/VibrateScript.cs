@@ -4,18 +4,18 @@ using UnityEngine;
 // Token: 0x020004BA RID: 1210
 public class VibrateScript : MonoBehaviour
 {
-	// Token: 0x06001FB6 RID: 8118 RVA: 0x001BE39D File Offset: 0x001BC59D
+	// Token: 0x06001FBC RID: 8124 RVA: 0x001BED79 File Offset: 0x001BCF79
 	private void Start()
 	{
 		this.Origin = base.transform.localPosition;
 	}
 
-	// Token: 0x06001FB7 RID: 8119 RVA: 0x001BE3B0 File Offset: 0x001BC5B0
+	// Token: 0x06001FBD RID: 8125 RVA: 0x001BED8C File Offset: 0x001BCF8C
 	private void Update()
 	{
 		base.transform.localPosition = new Vector3(this.Origin.x + UnityEngine.Random.Range(-5f, 5f), this.Origin.y + UnityEngine.Random.Range(-5f, 5f), base.transform.localPosition.z);
 	}
 
-	// Token: 0x0400422F RID: 16943
+	// Token: 0x0400423F RID: 16959
 	public Vector3 Origin;
 }

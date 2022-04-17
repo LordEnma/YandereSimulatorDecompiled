@@ -9,7 +9,7 @@ using UnityEngine;
 public class ActiveAnimation : MonoBehaviour
 {
 	// Token: 0x17000046 RID: 70
-	// (get) Token: 0x060002ED RID: 749 RVA: 0x0001F768 File Offset: 0x0001D968
+	// (get) Token: 0x060002ED RID: 749 RVA: 0x0001F820 File Offset: 0x0001DA20
 	private float playbackTime
 	{
 		get
@@ -19,7 +19,7 @@ public class ActiveAnimation : MonoBehaviour
 	}
 
 	// Token: 0x17000047 RID: 71
-	// (get) Token: 0x060002EE RID: 750 RVA: 0x0001F790 File Offset: 0x0001D990
+	// (get) Token: 0x060002EE RID: 750 RVA: 0x0001F848 File Offset: 0x0001DA48
 	public bool isPlaying
 	{
 		get
@@ -72,7 +72,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002EF RID: 751 RVA: 0x0001F878 File Offset: 0x0001DA78
+	// Token: 0x060002EF RID: 751 RVA: 0x0001F930 File Offset: 0x0001DB30
 	public void Finish()
 	{
 		if (this.mAnim != null)
@@ -98,7 +98,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002F0 RID: 752 RVA: 0x0001F944 File Offset: 0x0001DB44
+	// Token: 0x060002F0 RID: 752 RVA: 0x0001F9FC File Offset: 0x0001DBFC
 	public void Reset()
 	{
 		if (this.mAnim != null)
@@ -127,7 +127,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002F1 RID: 753 RVA: 0x0001FA04 File Offset: 0x0001DC04
+	// Token: 0x060002F1 RID: 753 RVA: 0x0001FABC File Offset: 0x0001DCBC
 	private void Start()
 	{
 		if (this.eventReceiver != null && EventDelegate.IsValid(this.onFinished))
@@ -137,7 +137,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002F2 RID: 754 RVA: 0x0001FA30 File Offset: 0x0001DC30
+	// Token: 0x060002F2 RID: 754 RVA: 0x0001FAE8 File Offset: 0x0001DCE8
 	private void Update()
 	{
 		float deltaTime = RealTime.deltaTime;
@@ -218,7 +218,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002F3 RID: 755 RVA: 0x0001FC08 File Offset: 0x0001DE08
+	// Token: 0x060002F3 RID: 755 RVA: 0x0001FCC0 File Offset: 0x0001DEC0
 	private void Play(string clipName, AnimationOrTween.Direction playDirection)
 	{
 		if (playDirection == AnimationOrTween.Direction.Toggle)
@@ -277,7 +277,7 @@ public class ActiveAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060002F4 RID: 756 RVA: 0x0001FDC4 File Offset: 0x0001DFC4
+	// Token: 0x060002F4 RID: 756 RVA: 0x0001FE7C File Offset: 0x0001E07C
 	public static ActiveAnimation Play(Animation anim, string clipName, AnimationOrTween.Direction playDirection, EnableCondition enableBeforePlay, DisableCondition disableCondition)
 	{
 		if (!NGUITools.GetActive(anim.gameObject))
@@ -316,19 +316,19 @@ public class ActiveAnimation : MonoBehaviour
 		return activeAnimation;
 	}
 
-	// Token: 0x060002F5 RID: 757 RVA: 0x0001FE8C File Offset: 0x0001E08C
+	// Token: 0x060002F5 RID: 757 RVA: 0x0001FF44 File Offset: 0x0001E144
 	public static ActiveAnimation Play(Animation anim, string clipName, AnimationOrTween.Direction playDirection)
 	{
 		return ActiveAnimation.Play(anim, clipName, playDirection, EnableCondition.DoNothing, DisableCondition.DoNotDisable);
 	}
 
-	// Token: 0x060002F6 RID: 758 RVA: 0x0001FE98 File Offset: 0x0001E098
+	// Token: 0x060002F6 RID: 758 RVA: 0x0001FF50 File Offset: 0x0001E150
 	public static ActiveAnimation Play(Animation anim, AnimationOrTween.Direction playDirection)
 	{
 		return ActiveAnimation.Play(anim, null, playDirection, EnableCondition.DoNothing, DisableCondition.DoNotDisable);
 	}
 
-	// Token: 0x060002F7 RID: 759 RVA: 0x0001FEA4 File Offset: 0x0001E0A4
+	// Token: 0x060002F7 RID: 759 RVA: 0x0001FF5C File Offset: 0x0001E15C
 	public static ActiveAnimation Play(Animator anim, string clipName, AnimationOrTween.Direction playDirection, EnableCondition enableBeforePlay, DisableCondition disableCondition)
 	{
 		if (enableBeforePlay != EnableCondition.IgnoreDisabledState && !NGUITools.GetActive(anim.gameObject))

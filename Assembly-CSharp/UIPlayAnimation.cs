@@ -9,7 +9,7 @@ using UnityEngine;
 public class UIPlayAnimation : MonoBehaviour
 {
 	// Token: 0x1700001C RID: 28
-	// (get) Token: 0x060001FF RID: 511 RVA: 0x000189BD File Offset: 0x00016BBD
+	// (get) Token: 0x060001FF RID: 511 RVA: 0x00018A75 File Offset: 0x00016C75
 	private bool dualState
 	{
 		get
@@ -18,7 +18,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000200 RID: 512 RVA: 0x000189D4 File Offset: 0x00016BD4
+	// Token: 0x06000200 RID: 512 RVA: 0x00018A8C File Offset: 0x00016C8C
 	private void Awake()
 	{
 		UIButton component = base.GetComponent<UIButton>();
@@ -33,7 +33,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000201 RID: 513 RVA: 0x00018A28 File Offset: 0x00016C28
+	// Token: 0x06000201 RID: 513 RVA: 0x00018AE0 File Offset: 0x00016CE0
 	private void Start()
 	{
 		this.mStarted = true;
@@ -59,7 +59,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000202 RID: 514 RVA: 0x00018AD0 File Offset: 0x00016CD0
+	// Token: 0x06000202 RID: 514 RVA: 0x00018B88 File Offset: 0x00016D88
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -84,7 +84,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000203 RID: 515 RVA: 0x00018B80 File Offset: 0x00016D80
+	// Token: 0x06000203 RID: 515 RVA: 0x00018C38 File Offset: 0x00016E38
 	private void OnDisable()
 	{
 		UIToggle component = base.GetComponent<UIToggle>();
@@ -94,7 +94,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000204 RID: 516 RVA: 0x00018BB5 File Offset: 0x00016DB5
+	// Token: 0x06000204 RID: 516 RVA: 0x00018C6D File Offset: 0x00016E6D
 	private void OnHover(bool isOver)
 	{
 		if (!base.enabled)
@@ -107,7 +107,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000205 RID: 517 RVA: 0x00018BF0 File Offset: 0x00016DF0
+	// Token: 0x06000205 RID: 517 RVA: 0x00018CA8 File Offset: 0x00016EA8
 	private void OnPress(bool isPressed)
 	{
 		if (!base.enabled)
@@ -124,7 +124,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000206 RID: 518 RVA: 0x00018C48 File Offset: 0x00016E48
+	// Token: 0x06000206 RID: 518 RVA: 0x00018D00 File Offset: 0x00016F00
 	private void OnClick()
 	{
 		if (UICamera.currentTouchID == -2 || UICamera.currentTouchID == -3)
@@ -137,7 +137,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000207 RID: 519 RVA: 0x00018C75 File Offset: 0x00016E75
+	// Token: 0x06000207 RID: 519 RVA: 0x00018D2D File Offset: 0x00016F2D
 	private void OnDoubleClick()
 	{
 		if (UICamera.currentTouchID == -2 || UICamera.currentTouchID == -3)
@@ -150,7 +150,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000208 RID: 520 RVA: 0x00018CA4 File Offset: 0x00016EA4
+	// Token: 0x06000208 RID: 520 RVA: 0x00018D5C File Offset: 0x00016F5C
 	private void OnSelect(bool isSelected)
 	{
 		if (!base.enabled)
@@ -163,7 +163,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000209 RID: 521 RVA: 0x00018CE4 File Offset: 0x00016EE4
+	// Token: 0x06000209 RID: 521 RVA: 0x00018D9C File Offset: 0x00016F9C
 	private void OnToggle()
 	{
 		if (!base.enabled || UIToggle.current == null)
@@ -176,7 +176,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600020A RID: 522 RVA: 0x00018D54 File Offset: 0x00016F54
+	// Token: 0x0600020A RID: 522 RVA: 0x00018E0C File Offset: 0x0001700C
 	private void OnDragOver()
 	{
 		if (base.enabled && this.dualState)
@@ -193,7 +193,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600020B RID: 523 RVA: 0x00018DAA File Offset: 0x00016FAA
+	// Token: 0x0600020B RID: 523 RVA: 0x00018E62 File Offset: 0x00017062
 	private void OnDragOut()
 	{
 		if (base.enabled && this.dualState && UICamera.hoveredObject != base.gameObject)
@@ -202,7 +202,7 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600020C RID: 524 RVA: 0x00018DD6 File Offset: 0x00016FD6
+	// Token: 0x0600020C RID: 524 RVA: 0x00018E8E File Offset: 0x0001708E
 	private void OnDrop(GameObject go)
 	{
 		if (base.enabled && this.trigger == Trigger.OnPress && UICamera.currentTouch.dragged != base.gameObject)
@@ -211,13 +211,13 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600020D RID: 525 RVA: 0x00018E08 File Offset: 0x00017008
+	// Token: 0x0600020D RID: 525 RVA: 0x00018EC0 File Offset: 0x000170C0
 	public void Play(bool forward)
 	{
 		this.Play(forward, true);
 	}
 
-	// Token: 0x0600020E RID: 526 RVA: 0x00018E14 File Offset: 0x00017014
+	// Token: 0x0600020E RID: 526 RVA: 0x00018ECC File Offset: 0x000170CC
 	public void Play(bool forward, bool onlyIfDifferent)
 	{
 		if (this.target || this.animator)
@@ -251,19 +251,19 @@ public class UIPlayAnimation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600020F RID: 527 RVA: 0x00018F19 File Offset: 0x00017119
+	// Token: 0x0600020F RID: 527 RVA: 0x00018FD1 File Offset: 0x000171D1
 	public void PlayForward()
 	{
 		this.Play(true);
 	}
 
-	// Token: 0x06000210 RID: 528 RVA: 0x00018F22 File Offset: 0x00017122
+	// Token: 0x06000210 RID: 528 RVA: 0x00018FDA File Offset: 0x000171DA
 	public void PlayReverse()
 	{
 		this.Play(false);
 	}
 
-	// Token: 0x06000211 RID: 529 RVA: 0x00018F2C File Offset: 0x0001712C
+	// Token: 0x06000211 RID: 529 RVA: 0x00018FE4 File Offset: 0x000171E4
 	private void OnFinished()
 	{
 		if (UIPlayAnimation.current == null)

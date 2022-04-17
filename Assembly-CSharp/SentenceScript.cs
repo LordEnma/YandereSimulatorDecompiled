@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000423 RID: 1059
 public class SentenceScript : MonoBehaviour
 {
-	// Token: 0x06001C98 RID: 7320 RVA: 0x0014E68A File Offset: 0x0014C88A
+	// Token: 0x06001C9C RID: 7324 RVA: 0x0014EA9A File Offset: 0x0014CC9A
 	private void Update()
 	{
 		if (Input.GetButtonDown("A"))
@@ -14,12 +14,12 @@ public class SentenceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040032E0 RID: 13024
+	// Token: 0x040032EB RID: 13035
 	public UILabel Sentence;
 
-	// Token: 0x040032E1 RID: 13025
+	// Token: 0x040032EC RID: 13036
 	public string[] Words;
 
-	// Token: 0x040032E2 RID: 13026
+	// Token: 0x040032ED RID: 13037
 	public int ID;
 }

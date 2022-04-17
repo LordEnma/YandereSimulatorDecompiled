@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004DF RID: 1247
 public class YanvaniaCandlestickHeadScript : MonoBehaviour
 {
-	// Token: 0x060020BC RID: 8380 RVA: 0x001E2184 File Offset: 0x001E0384
+	// Token: 0x060020C3 RID: 8387 RVA: 0x001E2BE0 File Offset: 0x001E0DE0
 	private void Start()
 	{
 		Rigidbody component = base.GetComponent<Rigidbody>();
@@ -13,7 +13,7 @@ public class YanvaniaCandlestickHeadScript : MonoBehaviour
 		this.Value = UnityEngine.Random.Range(-1f, 1f);
 	}
 
-	// Token: 0x060020BD RID: 8381 RVA: 0x001E21E4 File Offset: 0x001E03E4
+	// Token: 0x060020C4 RID: 8388 RVA: 0x001E2C40 File Offset: 0x001E0E40
 	private void Update()
 	{
 		this.Rotation += new Vector3(this.Value, this.Value, this.Value);
@@ -25,12 +25,12 @@ public class YanvaniaCandlestickHeadScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040047D6 RID: 18390
+	// Token: 0x040047E8 RID: 18408
 	public GameObject Fire;
 
-	// Token: 0x040047D7 RID: 18391
+	// Token: 0x040047E9 RID: 18409
 	public Vector3 Rotation;
 
-	// Token: 0x040047D8 RID: 18392
+	// Token: 0x040047EA RID: 18410
 	public float Value;
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 public class UIImageButton : MonoBehaviour
 {
 	// Token: 0x17000018 RID: 24
-	// (get) Token: 0x060001D3 RID: 467 RVA: 0x00017CE0 File Offset: 0x00015EE0
-	// (set) Token: 0x060001D4 RID: 468 RVA: 0x00017D0C File Offset: 0x00015F0C
+	// (get) Token: 0x060001D3 RID: 467 RVA: 0x00017D98 File Offset: 0x00015F98
+	// (set) Token: 0x060001D4 RID: 468 RVA: 0x00017DC4 File Offset: 0x00015FC4
 	public bool isEnabled
 	{
 		get
@@ -30,7 +30,7 @@ public class UIImageButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001D5 RID: 469 RVA: 0x00017D44 File Offset: 0x00015F44
+	// Token: 0x060001D5 RID: 469 RVA: 0x00017DFC File Offset: 0x00015FFC
 	private void OnEnable()
 	{
 		if (this.target == null)
@@ -40,7 +40,7 @@ public class UIImageButton : MonoBehaviour
 		this.UpdateImage();
 	}
 
-	// Token: 0x060001D6 RID: 470 RVA: 0x00017D68 File Offset: 0x00015F68
+	// Token: 0x060001D6 RID: 470 RVA: 0x00017E20 File Offset: 0x00016020
 	private void OnValidate()
 	{
 		if (this.target != null)
@@ -64,7 +64,7 @@ public class UIImageButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001D7 RID: 471 RVA: 0x00017DFC File Offset: 0x00015FFC
+	// Token: 0x060001D7 RID: 471 RVA: 0x00017EB4 File Offset: 0x000160B4
 	private void UpdateImage()
 	{
 		if (this.target != null)
@@ -78,7 +78,7 @@ public class UIImageButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001D8 RID: 472 RVA: 0x00017E4D File Offset: 0x0001604D
+	// Token: 0x060001D8 RID: 472 RVA: 0x00017F05 File Offset: 0x00016105
 	private void OnHover(bool isOver)
 	{
 		if (this.isEnabled && this.target != null)
@@ -87,7 +87,7 @@ public class UIImageButton : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001D9 RID: 473 RVA: 0x00017E7C File Offset: 0x0001607C
+	// Token: 0x060001D9 RID: 473 RVA: 0x00017F34 File Offset: 0x00016134
 	private void OnPress(bool pressed)
 	{
 		if (pressed)
@@ -98,7 +98,7 @@ public class UIImageButton : MonoBehaviour
 		this.UpdateImage();
 	}
 
-	// Token: 0x060001DA RID: 474 RVA: 0x00017E94 File Offset: 0x00016094
+	// Token: 0x060001DA RID: 474 RVA: 0x00017F4C File Offset: 0x0001614C
 	private void SetSprite(string sprite)
 	{
 		if (string.IsNullOrEmpty(sprite))

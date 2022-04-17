@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [Serializable]
 public class DatingSaveData
 {
-	// Token: 0x06001C23 RID: 7203 RVA: 0x00148BA0 File Offset: 0x00146DA0
+	// Token: 0x06001C27 RID: 7207 RVA: 0x00148FB0 File Offset: 0x001471B0
 	public static DatingSaveData ReadFromGlobals()
 	{
 		DatingSaveData datingSaveData = new DatingSaveData();
@@ -44,7 +44,7 @@ public class DatingSaveData
 		return datingSaveData;
 	}
 
-	// Token: 0x06001C24 RID: 7204 RVA: 0x00148CBC File Offset: 0x00146EBC
+	// Token: 0x06001C28 RID: 7208 RVA: 0x001490CC File Offset: 0x001472CC
 	public static void WriteToGlobals(DatingSaveData data)
 	{
 		DatingGlobals.Affection = data.affection;
@@ -72,27 +72,27 @@ public class DatingSaveData
 		}
 	}
 
-	// Token: 0x04003183 RID: 12675
+	// Token: 0x0400318E RID: 12686
 	public float affection;
 
-	// Token: 0x04003184 RID: 12676
+	// Token: 0x0400318F RID: 12687
 	public float affectionLevel;
 
-	// Token: 0x04003185 RID: 12677
+	// Token: 0x04003190 RID: 12688
 	public IntHashSet complimentGiven = new IntHashSet();
 
-	// Token: 0x04003186 RID: 12678
+	// Token: 0x04003191 RID: 12689
 	public IntHashSet suitorCheck = new IntHashSet();
 
-	// Token: 0x04003187 RID: 12679
+	// Token: 0x04003192 RID: 12690
 	public int suitorProgress;
 
-	// Token: 0x04003188 RID: 12680
+	// Token: 0x04003193 RID: 12691
 	public IntAndIntDictionary suitorTrait = new IntAndIntDictionary();
 
-	// Token: 0x04003189 RID: 12681
+	// Token: 0x04003194 RID: 12692
 	public IntHashSet topicDiscussed = new IntHashSet();
 
-	// Token: 0x0400318A RID: 12682
+	// Token: 0x04003195 RID: 12693
 	public IntAndIntDictionary traitDemonstrated = new IntAndIntDictionary();
 }

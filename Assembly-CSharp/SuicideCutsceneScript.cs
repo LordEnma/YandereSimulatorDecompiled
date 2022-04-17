@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000466 RID: 1126
 public class SuicideCutsceneScript : MonoBehaviour
 {
-	// Token: 0x06001E96 RID: 7830 RVA: 0x001A6C40 File Offset: 0x001A4E40
+	// Token: 0x06001E9C RID: 7836 RVA: 0x001A7618 File Offset: 0x001A5818
 	private void Start()
 	{
 		this.PointLight.color = new Color(0.1f, 0.1f, 0.1f, 1f);
@@ -18,7 +18,7 @@ public class SuicideCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E97 RID: 7831 RVA: 0x001A6CC8 File Offset: 0x001A4EC8
+	// Token: 0x06001E9D RID: 7837 RVA: 0x001A76A0 File Offset: 0x001A58A0
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -63,39 +63,39 @@ public class SuicideCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003EDF RID: 16095
+	// Token: 0x04003EEF RID: 16111
 	public AudioSource MyAudio;
 
-	// Token: 0x04003EE0 RID: 16096
+	// Token: 0x04003EF0 RID: 16112
 	public AudioClip EightiesMother;
 
-	// Token: 0x04003EE1 RID: 16097
+	// Token: 0x04003EF1 RID: 16113
 	public Light DirectionalLight;
 
-	// Token: 0x04003EE2 RID: 16098
+	// Token: 0x04003EF2 RID: 16114
 	public Light PointLight;
 
-	// Token: 0x04003EE3 RID: 16099
+	// Token: 0x04003EF3 RID: 16115
 	public Transform Door;
 
-	// Token: 0x04003EE4 RID: 16100
+	// Token: 0x04003EF4 RID: 16116
 	public Animation Mom;
 
-	// Token: 0x04003EE5 RID: 16101
+	// Token: 0x04003EF5 RID: 16117
 	public float Timer;
 
-	// Token: 0x04003EE6 RID: 16102
+	// Token: 0x04003EF6 RID: 16118
 	public float Rotation;
 
-	// Token: 0x04003EE7 RID: 16103
+	// Token: 0x04003EF7 RID: 16119
 	public float Speed;
 
-	// Token: 0x04003EE8 RID: 16104
+	// Token: 0x04003EF8 RID: 16120
 	public int ID;
 
-	// Token: 0x04003EE9 RID: 16105
+	// Token: 0x04003EF9 RID: 16121
 	public GameObject[] RivalHair;
 
-	// Token: 0x04003EEA RID: 16106
+	// Token: 0x04003EFA RID: 16122
 	public GameObject[] EightiesHair;
 }

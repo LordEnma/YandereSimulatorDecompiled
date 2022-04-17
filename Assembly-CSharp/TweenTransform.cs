@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Tween/Tween Transform")]
 public class TweenTransform : UITweener
 {
-	// Token: 0x060005CC RID: 1484 RVA: 0x00035434 File Offset: 0x00033634
+	// Token: 0x060005CC RID: 1484 RVA: 0x000354EC File Offset: 0x000336EC
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		if (this.to != null)
@@ -36,13 +36,13 @@ public class TweenTransform : UITweener
 		}
 	}
 
-	// Token: 0x060005CD RID: 1485 RVA: 0x000355EF File Offset: 0x000337EF
+	// Token: 0x060005CD RID: 1485 RVA: 0x000356A7 File Offset: 0x000338A7
 	public static TweenTransform Begin(GameObject go, float duration, Transform to)
 	{
 		return TweenTransform.Begin(go, duration, null, to);
 	}
 
-	// Token: 0x060005CE RID: 1486 RVA: 0x000355FC File Offset: 0x000337FC
+	// Token: 0x060005CE RID: 1486 RVA: 0x000356B4 File Offset: 0x000338B4
 	public static TweenTransform Begin(GameObject go, float duration, Transform from, Transform to)
 	{
 		TweenTransform tweenTransform = UITweener.Begin<TweenTransform>(go, duration, 0f);

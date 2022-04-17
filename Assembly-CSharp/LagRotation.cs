@@ -5,13 +5,13 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Lag Rotation")]
 public class LagRotation : MonoBehaviour
 {
-	// Token: 0x060000D4 RID: 212 RVA: 0x000126DB File Offset: 0x000108DB
+	// Token: 0x060000D4 RID: 212 RVA: 0x00012793 File Offset: 0x00010993
 	public void OnRepositionEnd()
 	{
 		this.Interpolate(1000f);
 	}
 
-	// Token: 0x060000D5 RID: 213 RVA: 0x000126E8 File Offset: 0x000108E8
+	// Token: 0x060000D5 RID: 213 RVA: 0x000127A0 File Offset: 0x000109A0
 	private void Interpolate(float delta)
 	{
 		if (this.mTrans != null)
@@ -25,7 +25,7 @@ public class LagRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060000D6 RID: 214 RVA: 0x00012753 File Offset: 0x00010953
+	// Token: 0x060000D6 RID: 214 RVA: 0x0001280B File Offset: 0x00010A0B
 	private void Start()
 	{
 		this.mTrans = base.transform;
@@ -33,7 +33,7 @@ public class LagRotation : MonoBehaviour
 		this.mAbsolute = this.mTrans.rotation;
 	}
 
-	// Token: 0x060000D7 RID: 215 RVA: 0x00012783 File Offset: 0x00010983
+	// Token: 0x060000D7 RID: 215 RVA: 0x0001283B File Offset: 0x00010A3B
 	private void Update()
 	{
 		this.Interpolate(this.ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime);

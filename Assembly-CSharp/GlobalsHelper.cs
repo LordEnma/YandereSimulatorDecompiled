@@ -4,31 +4,31 @@ using UnityEngine;
 // Token: 0x020002E9 RID: 745
 public static class GlobalsHelper
 {
-	// Token: 0x06001514 RID: 5396 RVA: 0x000D8ED9 File Offset: 0x000D70D9
+	// Token: 0x06001516 RID: 5398 RVA: 0x000D90C1 File Offset: 0x000D72C1
 	public static bool GetBool(string key)
 	{
 		return PlayerPrefs.GetInt(key) == 1;
 	}
 
-	// Token: 0x06001515 RID: 5397 RVA: 0x000D8EE4 File Offset: 0x000D70E4
+	// Token: 0x06001517 RID: 5399 RVA: 0x000D90CC File Offset: 0x000D72CC
 	public static void SetBool(string key, bool value)
 	{
 		PlayerPrefs.SetInt(key, value ? 1 : 0);
 	}
 
-	// Token: 0x06001516 RID: 5398 RVA: 0x000D8EF3 File Offset: 0x000D70F3
+	// Token: 0x06001518 RID: 5400 RVA: 0x000D90DB File Offset: 0x000D72DB
 	public static T GetEnum<T>(string key) where T : struct, IConvertible
 	{
 		return (T)((object)PlayerPrefs.GetInt(key));
 	}
 
-	// Token: 0x06001517 RID: 5399 RVA: 0x000D8F05 File Offset: 0x000D7105
+	// Token: 0x06001519 RID: 5401 RVA: 0x000D90ED File Offset: 0x000D72ED
 	public static void SetEnum<T>(string key, T value) where T : struct, IConvertible
 	{
 		PlayerPrefs.SetInt(key, (int)((object)value));
 	}
 
-	// Token: 0x06001518 RID: 5400 RVA: 0x000D8F18 File Offset: 0x000D7118
+	// Token: 0x0600151A RID: 5402 RVA: 0x000D9100 File Offset: 0x000D7300
 	public static Vector2 GetVector2(string key)
 	{
 		float @float = PlayerPrefs.GetFloat(key + "_X");
@@ -36,21 +36,21 @@ public static class GlobalsHelper
 		return new Vector2(@float, float2);
 	}
 
-	// Token: 0x06001519 RID: 5401 RVA: 0x000D8F4C File Offset: 0x000D714C
+	// Token: 0x0600151B RID: 5403 RVA: 0x000D9134 File Offset: 0x000D7334
 	public static void SetVector2(string key, Vector2 value)
 	{
 		PlayerPrefs.SetFloat(key + "_X", value.x);
 		PlayerPrefs.SetFloat(key + "_Y", value.y);
 	}
 
-	// Token: 0x0600151A RID: 5402 RVA: 0x000D8F7A File Offset: 0x000D717A
+	// Token: 0x0600151C RID: 5404 RVA: 0x000D9162 File Offset: 0x000D7362
 	public static void DeleteVector2(string key)
 	{
 		Globals.Delete(key + "_X");
 		Globals.Delete(key + "_Y");
 	}
 
-	// Token: 0x0600151B RID: 5403 RVA: 0x000D8F9C File Offset: 0x000D719C
+	// Token: 0x0600151D RID: 5405 RVA: 0x000D9184 File Offset: 0x000D7384
 	public static void DeleteVector2Collection(string key, int[] usedKeys)
 	{
 		foreach (int num in usedKeys)
@@ -60,7 +60,7 @@ public static class GlobalsHelper
 		KeysHelper.Delete(key);
 	}
 
-	// Token: 0x0600151C RID: 5404 RVA: 0x000D8FD8 File Offset: 0x000D71D8
+	// Token: 0x0600151E RID: 5406 RVA: 0x000D91C0 File Offset: 0x000D73C0
 	public static Vector3 GetVector3(string key)
 	{
 		float @float = PlayerPrefs.GetFloat(key + "_X");
@@ -69,7 +69,7 @@ public static class GlobalsHelper
 		return new Vector3(@float, float2, float3);
 	}
 
-	// Token: 0x0600151D RID: 5405 RVA: 0x000D9020 File Offset: 0x000D7220
+	// Token: 0x0600151F RID: 5407 RVA: 0x000D9208 File Offset: 0x000D7408
 	public static void SetVector3(string key, Vector3 value)
 	{
 		PlayerPrefs.SetFloat(key + "_X", value.x);
@@ -77,7 +77,7 @@ public static class GlobalsHelper
 		PlayerPrefs.SetFloat(key + "_Z", value.z);
 	}
 
-	// Token: 0x0600151E RID: 5406 RVA: 0x000D906F File Offset: 0x000D726F
+	// Token: 0x06001520 RID: 5408 RVA: 0x000D9257 File Offset: 0x000D7457
 	public static void DeleteVector3(string key)
 	{
 		Globals.Delete(key + "_X");
@@ -85,7 +85,7 @@ public static class GlobalsHelper
 		Globals.Delete(key + "_Z");
 	}
 
-	// Token: 0x0600151F RID: 5407 RVA: 0x000D90A4 File Offset: 0x000D72A4
+	// Token: 0x06001521 RID: 5409 RVA: 0x000D928C File Offset: 0x000D748C
 	public static void DeleteVector3Collection(string key, int[] usedKeys)
 	{
 		foreach (int num in usedKeys)
@@ -95,7 +95,7 @@ public static class GlobalsHelper
 		KeysHelper.Delete(key);
 	}
 
-	// Token: 0x06001520 RID: 5408 RVA: 0x000D90E0 File Offset: 0x000D72E0
+	// Token: 0x06001522 RID: 5410 RVA: 0x000D92C8 File Offset: 0x000D74C8
 	public static Vector4 GetVector4(string key)
 	{
 		float @float = PlayerPrefs.GetFloat(key + "_W");
@@ -105,7 +105,7 @@ public static class GlobalsHelper
 		return new Vector4(@float, float2, float3, float4);
 	}
 
-	// Token: 0x06001521 RID: 5409 RVA: 0x000D9138 File Offset: 0x000D7338
+	// Token: 0x06001523 RID: 5411 RVA: 0x000D9320 File Offset: 0x000D7520
 	public static void SetVector4(string key, Vector4 value)
 	{
 		PlayerPrefs.SetFloat(key + "_W", value.w);
@@ -114,7 +114,7 @@ public static class GlobalsHelper
 		PlayerPrefs.SetFloat(key + "_Z", value.z);
 	}
 
-	// Token: 0x06001522 RID: 5410 RVA: 0x000D91A0 File Offset: 0x000D73A0
+	// Token: 0x06001524 RID: 5412 RVA: 0x000D9388 File Offset: 0x000D7588
 	public static void DeleteVector4(string key)
 	{
 		Globals.Delete(key + "_W");
@@ -123,7 +123,7 @@ public static class GlobalsHelper
 		Globals.Delete(key + "_Z");
 	}
 
-	// Token: 0x06001523 RID: 5411 RVA: 0x000D91F0 File Offset: 0x000D73F0
+	// Token: 0x06001525 RID: 5413 RVA: 0x000D93D8 File Offset: 0x000D75D8
 	public static Color GetColor(string key)
 	{
 		float @float = PlayerPrefs.GetFloat(key + "_R");
@@ -133,7 +133,7 @@ public static class GlobalsHelper
 		return new Color(@float, float2, float3, float4);
 	}
 
-	// Token: 0x06001524 RID: 5412 RVA: 0x000D9248 File Offset: 0x000D7448
+	// Token: 0x06001526 RID: 5414 RVA: 0x000D9430 File Offset: 0x000D7630
 	public static void SetColor(string key, Color value)
 	{
 		PlayerPrefs.SetFloat(key + "_R", value.r);
@@ -142,7 +142,7 @@ public static class GlobalsHelper
 		PlayerPrefs.SetFloat(key + "_A", value.a);
 	}
 
-	// Token: 0x06001525 RID: 5413 RVA: 0x000D92B0 File Offset: 0x000D74B0
+	// Token: 0x06001527 RID: 5415 RVA: 0x000D9498 File Offset: 0x000D7698
 	public static void DeleteColor(string key)
 	{
 		Globals.Delete(key + "_R");
@@ -151,7 +151,7 @@ public static class GlobalsHelper
 		Globals.Delete(key + "_A");
 	}
 
-	// Token: 0x06001526 RID: 5414 RVA: 0x000D9300 File Offset: 0x000D7500
+	// Token: 0x06001528 RID: 5416 RVA: 0x000D94E8 File Offset: 0x000D76E8
 	public static void DeleteColorCollection(string key, int[] usedKeys)
 	{
 		foreach (int num in usedKeys)

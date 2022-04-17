@@ -7,7 +7,7 @@ using UnityEngine;
 public class TweenWidth : UITweener
 {
 	// Token: 0x170000D0 RID: 208
-	// (get) Token: 0x060005DA RID: 1498 RVA: 0x000357BE File Offset: 0x000339BE
+	// (get) Token: 0x060005DA RID: 1498 RVA: 0x00035876 File Offset: 0x00033A76
 	public UIWidget cachedWidget
 	{
 		get
@@ -21,8 +21,8 @@ public class TweenWidth : UITweener
 	}
 
 	// Token: 0x170000D1 RID: 209
-	// (get) Token: 0x060005DB RID: 1499 RVA: 0x000357E0 File Offset: 0x000339E0
-	// (set) Token: 0x060005DC RID: 1500 RVA: 0x000357E8 File Offset: 0x000339E8
+	// (get) Token: 0x060005DB RID: 1499 RVA: 0x00035898 File Offset: 0x00033A98
+	// (set) Token: 0x060005DC RID: 1500 RVA: 0x000358A0 File Offset: 0x00033AA0
 	[Obsolete("Use 'value' instead")]
 	public int width
 	{
@@ -37,8 +37,8 @@ public class TweenWidth : UITweener
 	}
 
 	// Token: 0x170000D2 RID: 210
-	// (get) Token: 0x060005DD RID: 1501 RVA: 0x000357F1 File Offset: 0x000339F1
-	// (set) Token: 0x060005DE RID: 1502 RVA: 0x000357FE File Offset: 0x000339FE
+	// (get) Token: 0x060005DD RID: 1501 RVA: 0x000358A9 File Offset: 0x00033AA9
+	// (set) Token: 0x060005DE RID: 1502 RVA: 0x000358B6 File Offset: 0x00033AB6
 	public int value
 	{
 		get
@@ -51,7 +51,7 @@ public class TweenWidth : UITweener
 		}
 	}
 
-	// Token: 0x060005DF RID: 1503 RVA: 0x0003580C File Offset: 0x00033A0C
+	// Token: 0x060005DF RID: 1503 RVA: 0x000358C4 File Offset: 0x00033AC4
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		if (this.fromTarget)
@@ -78,7 +78,7 @@ public class TweenWidth : UITweener
 		}
 	}
 
-	// Token: 0x060005E0 RID: 1504 RVA: 0x000358C4 File Offset: 0x00033AC4
+	// Token: 0x060005E0 RID: 1504 RVA: 0x0003597C File Offset: 0x00033B7C
 	public static TweenWidth Begin(UIWidget widget, float duration, int width)
 	{
 		TweenWidth tweenWidth = UITweener.Begin<TweenWidth>(widget.gameObject, duration, 0f);
@@ -92,28 +92,28 @@ public class TweenWidth : UITweener
 		return tweenWidth;
 	}
 
-	// Token: 0x060005E1 RID: 1505 RVA: 0x00035912 File Offset: 0x00033B12
+	// Token: 0x060005E1 RID: 1505 RVA: 0x000359CA File Offset: 0x00033BCA
 	[ContextMenu("Set 'From' to current value")]
 	public override void SetStartToCurrentValue()
 	{
 		this.from = this.value;
 	}
 
-	// Token: 0x060005E2 RID: 1506 RVA: 0x00035920 File Offset: 0x00033B20
+	// Token: 0x060005E2 RID: 1506 RVA: 0x000359D8 File Offset: 0x00033BD8
 	[ContextMenu("Set 'To' to current value")]
 	public override void SetEndToCurrentValue()
 	{
 		this.to = this.value;
 	}
 
-	// Token: 0x060005E3 RID: 1507 RVA: 0x0003592E File Offset: 0x00033B2E
+	// Token: 0x060005E3 RID: 1507 RVA: 0x000359E6 File Offset: 0x00033BE6
 	[ContextMenu("Assume value of 'From'")]
 	private void SetCurrentValueToStart()
 	{
 		this.value = this.from;
 	}
 
-	// Token: 0x060005E4 RID: 1508 RVA: 0x0003593C File Offset: 0x00033B3C
+	// Token: 0x060005E4 RID: 1508 RVA: 0x000359F4 File Offset: 0x00033BF4
 	[ContextMenu("Assume value of 'To'")]
 	private void SetCurrentValueToEnd()
 	{

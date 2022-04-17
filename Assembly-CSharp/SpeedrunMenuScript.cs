@@ -4,17 +4,17 @@ using UnityEngine;
 // Token: 0x0200043C RID: 1084
 public class SpeedrunMenuScript : MonoBehaviour
 {
-	// Token: 0x06001CFB RID: 7419 RVA: 0x00159E5D File Offset: 0x0015805D
+	// Token: 0x06001CFF RID: 7423 RVA: 0x0015A26D File Offset: 0x0015846D
 	private void Start()
 	{
 		this.YandereAnim["f02_nierRun_00"].speed = 1.5f;
 	}
 
-	// Token: 0x06001CFC RID: 7420 RVA: 0x00159E79 File Offset: 0x00158079
+	// Token: 0x06001D00 RID: 7424 RVA: 0x0015A289 File Offset: 0x00158489
 	private void Update()
 	{
 	}
 
-	// Token: 0x04003477 RID: 13431
+	// Token: 0x04003482 RID: 13442
 	public Animation YandereAnim;
 }

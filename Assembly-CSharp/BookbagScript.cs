@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F3 RID: 243
 public class BookbagScript : MonoBehaviour
 {
-	// Token: 0x06000A59 RID: 2649 RVA: 0x0005C198 File Offset: 0x0005A398
+	// Token: 0x06000A59 RID: 2649 RVA: 0x0005C250 File Offset: 0x0005A450
 	private void Start()
 	{
 		this.MyRigidbody.useGravity = false;
@@ -16,7 +16,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A5A RID: 2650 RVA: 0x0005C1EC File Offset: 0x0005A3EC
+	// Token: 0x06000A5A RID: 2650 RVA: 0x0005C2A4 File Offset: 0x0005A4A4
 	private void Update()
 	{
 		if (this.Prompt.Yandere.PickUp != null || this.ConcealedPickup != null)
@@ -27,7 +27,12 @@ public class BookbagScript : MonoBehaviour
 				this.Prompt.Circle[0].fillAmount = 1f;
 				if (this.ConcealedPickup == null)
 				{
-					if (this.Prompt.Yandere.PickUp.TrashCan == null && !this.Prompt.Yandere.PickUp.JerryCan && !this.Prompt.Yandere.PickUp.Mop && !this.Prompt.Yandere.PickUp.Bucket && !this.Prompt.Yandere.PickUp.Bleach && !this.Prompt.Yandere.PickUp.TooBig)
+					if (this.Prompt.Yandere.PickUp.OpenFlame)
+					{
+						this.Prompt.Yandere.NotificationManager.CustomText = "That's too dangerous!";
+						this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+					}
+					else if (this.Prompt.Yandere.PickUp.TrashCan == null && !this.Prompt.Yandere.PickUp.JerryCan && !this.Prompt.Yandere.PickUp.Mop && !this.Prompt.Yandere.PickUp.Bucket && !this.Prompt.Yandere.PickUp.Bleach && !this.Prompt.Yandere.PickUp.TooBig)
 					{
 						this.ConcealedPickup = this.Prompt.Yandere.PickUp;
 						this.ConcealedPickup.Drop();
@@ -67,7 +72,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C498 File Offset: 0x0005A698
+	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C59C File Offset: 0x0005A79C
 	public void Drop()
 	{
 		this.Worn = false;
@@ -80,7 +85,7 @@ public class BookbagScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x06000A5C RID: 2652 RVA: 0x0005C508 File Offset: 0x0005A708
+	// Token: 0x06000A5C RID: 2652 RVA: 0x0005C60C File Offset: 0x0005A80C
 	public void Wear()
 	{
 		this.Worn = true;

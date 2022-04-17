@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020000BF RID: 191
 public class AbductionScript : MonoBehaviour
 {
-	// Token: 0x06000994 RID: 2452 RVA: 0x0004CA7C File Offset: 0x0004AC7C
+	// Token: 0x06000994 RID: 2452 RVA: 0x0004CB34 File Offset: 0x0004AD34
 	private void Start()
 	{
 		if (SchoolGlobals.SchoolAtmosphere > 0.5f)
@@ -24,7 +24,7 @@ public class AbductionScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000995 RID: 2453 RVA: 0x0004CB18 File Offset: 0x0004AD18
+	// Token: 0x06000995 RID: 2453 RVA: 0x0004CBD0 File Offset: 0x0004ADD0
 	private void Update()
 	{
 		this.StartTimer += Time.deltaTime;
@@ -61,7 +61,7 @@ public class AbductionScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000996 RID: 2454 RVA: 0x0004CC84 File Offset: 0x0004AE84
+	// Token: 0x06000996 RID: 2454 RVA: 0x0004CD3C File Offset: 0x0004AF3C
 	private void UpdateDOF(float Focus)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;

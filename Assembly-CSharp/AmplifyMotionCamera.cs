@@ -10,7 +10,7 @@ using UnityEngine.Rendering;
 public class AmplifyMotionCamera : MonoBehaviour
 {
 	// Token: 0x170001E9 RID: 489
-	// (get) Token: 0x0600092E RID: 2350 RVA: 0x0004A845 File Offset: 0x00048A45
+	// (get) Token: 0x0600092E RID: 2350 RVA: 0x0004A8FD File Offset: 0x00048AFD
 	public bool Initialized
 	{
 		get
@@ -20,7 +20,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 	}
 
 	// Token: 0x170001EA RID: 490
-	// (get) Token: 0x0600092F RID: 2351 RVA: 0x0004A84D File Offset: 0x00048A4D
+	// (get) Token: 0x0600092F RID: 2351 RVA: 0x0004A905 File Offset: 0x00048B05
 	public bool AutoStep
 	{
 		get
@@ -30,7 +30,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 	}
 
 	// Token: 0x170001EB RID: 491
-	// (get) Token: 0x06000930 RID: 2352 RVA: 0x0004A855 File Offset: 0x00048A55
+	// (get) Token: 0x06000930 RID: 2352 RVA: 0x0004A90D File Offset: 0x00048B0D
 	public bool Overlay
 	{
 		get
@@ -40,7 +40,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 	}
 
 	// Token: 0x170001EC RID: 492
-	// (get) Token: 0x06000931 RID: 2353 RVA: 0x0004A85D File Offset: 0x00048A5D
+	// (get) Token: 0x06000931 RID: 2353 RVA: 0x0004A915 File Offset: 0x00048B15
 	public Camera Camera
 	{
 		get
@@ -49,21 +49,21 @@ public class AmplifyMotionCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000932 RID: 2354 RVA: 0x0004A865 File Offset: 0x00048A65
+	// Token: 0x06000932 RID: 2354 RVA: 0x0004A91D File Offset: 0x00048B1D
 	public void RegisterObject(AmplifyMotionObjectBase obj)
 	{
 		this.m_affectedObjectsTable.Add(obj);
 		this.m_affectedObjectsChanged = true;
 	}
 
-	// Token: 0x06000933 RID: 2355 RVA: 0x0004A87B File Offset: 0x00048A7B
+	// Token: 0x06000933 RID: 2355 RVA: 0x0004A933 File Offset: 0x00048B33
 	public void UnregisterObject(AmplifyMotionObjectBase obj)
 	{
 		this.m_affectedObjectsTable.Remove(obj);
 		this.m_affectedObjectsChanged = true;
 	}
 
-	// Token: 0x06000934 RID: 2356 RVA: 0x0004A894 File Offset: 0x00048A94
+	// Token: 0x06000934 RID: 2356 RVA: 0x0004A94C File Offset: 0x00048B4C
 	private void UpdateAffectedObjects()
 	{
 		if (this.m_affectedObjects == null || this.m_affectedObjectsTable.Count != this.m_affectedObjects.Length)
@@ -74,7 +74,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		this.m_affectedObjectsChanged = false;
 	}
 
-	// Token: 0x06000935 RID: 2357 RVA: 0x0004A8EC File Offset: 0x00048AEC
+	// Token: 0x06000935 RID: 2357 RVA: 0x0004A9A4 File Offset: 0x00048BA4
 	public void LinkTo(AmplifyMotionEffectBase instance, bool overlay)
 	{
 		this.Instance = instance;
@@ -85,7 +85,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		this.m_linked = true;
 	}
 
-	// Token: 0x06000936 RID: 2358 RVA: 0x0004A928 File Offset: 0x00048B28
+	// Token: 0x06000936 RID: 2358 RVA: 0x0004A9E0 File Offset: 0x00048BE0
 	public void Initialize()
 	{
 		this.m_step = false;
@@ -93,7 +93,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		this.m_initialized = true;
 	}
 
-	// Token: 0x06000937 RID: 2359 RVA: 0x0004A93E File Offset: 0x00048B3E
+	// Token: 0x06000937 RID: 2359 RVA: 0x0004A9F6 File Offset: 0x00048BF6
 	private void InitializeCommandBuffers()
 	{
 		this.ShutdownCommandBuffers();
@@ -102,7 +102,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		this.m_camera.AddCommandBuffer(CameraEvent.BeforeImageEffects, this.m_renderCB);
 	}
 
-	// Token: 0x06000938 RID: 2360 RVA: 0x0004A974 File Offset: 0x00048B74
+	// Token: 0x06000938 RID: 2360 RVA: 0x0004AA2C File Offset: 0x00048C2C
 	private void ShutdownCommandBuffers()
 	{
 		if (this.m_renderCB != null)
@@ -113,19 +113,19 @@ public class AmplifyMotionCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000939 RID: 2361 RVA: 0x0004A9A3 File Offset: 0x00048BA3
+	// Token: 0x06000939 RID: 2361 RVA: 0x0004AA5B File Offset: 0x00048C5B
 	private void Awake()
 	{
 		this.Transform = base.transform;
 	}
 
-	// Token: 0x0600093A RID: 2362 RVA: 0x0004A9B1 File Offset: 0x00048BB1
+	// Token: 0x0600093A RID: 2362 RVA: 0x0004AA69 File Offset: 0x00048C69
 	private void OnEnable()
 	{
 		AmplifyMotionEffectBase.RegisterCamera(this);
 	}
 
-	// Token: 0x0600093B RID: 2363 RVA: 0x0004A9B9 File Offset: 0x00048BB9
+	// Token: 0x0600093B RID: 2363 RVA: 0x0004AA71 File Offset: 0x00048C71
 	private void OnDisable()
 	{
 		this.m_initialized = false;
@@ -133,7 +133,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		AmplifyMotionEffectBase.UnregisterCamera(this);
 	}
 
-	// Token: 0x0600093C RID: 2364 RVA: 0x0004A9CE File Offset: 0x00048BCE
+	// Token: 0x0600093C RID: 2364 RVA: 0x0004AA86 File Offset: 0x00048C86
 	private void OnDestroy()
 	{
 		if (this.Instance != null)
@@ -142,7 +142,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600093D RID: 2365 RVA: 0x0004A9EF File Offset: 0x00048BEF
+	// Token: 0x0600093D RID: 2365 RVA: 0x0004AAA7 File Offset: 0x00048CA7
 	public void StopAutoStep()
 	{
 		if (this.m_autoStep)
@@ -152,19 +152,19 @@ public class AmplifyMotionCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600093E RID: 2366 RVA: 0x0004AA07 File Offset: 0x00048C07
+	// Token: 0x0600093E RID: 2366 RVA: 0x0004AABF File Offset: 0x00048CBF
 	public void StartAutoStep()
 	{
 		this.m_autoStep = true;
 	}
 
-	// Token: 0x0600093F RID: 2367 RVA: 0x0004AA10 File Offset: 0x00048C10
+	// Token: 0x0600093F RID: 2367 RVA: 0x0004AAC8 File Offset: 0x00048CC8
 	public void Step()
 	{
 		this.m_step = true;
 	}
 
-	// Token: 0x06000940 RID: 2368 RVA: 0x0004AA1C File Offset: 0x00048C1C
+	// Token: 0x06000940 RID: 2368 RVA: 0x0004AAD4 File Offset: 0x00048CD4
 	private void Update()
 	{
 		if (!this.m_linked || !this.Instance.isActiveAndEnabled)
@@ -181,7 +181,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000941 RID: 2369 RVA: 0x0004AA70 File Offset: 0x00048C70
+	// Token: 0x06000941 RID: 2369 RVA: 0x0004AB28 File Offset: 0x00048D28
 	private void UpdateMatrices()
 	{
 		if (!this.m_starting)
@@ -202,7 +202,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000942 RID: 2370 RVA: 0x0004AB18 File Offset: 0x00048D18
+	// Token: 0x06000942 RID: 2370 RVA: 0x0004ABD0 File Offset: 0x00048DD0
 	public void FixedUpdateTransform(AmplifyMotionEffectBase inst, CommandBuffer updateCB)
 	{
 		if (!this.m_initialized)
@@ -222,7 +222,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000943 RID: 2371 RVA: 0x0004AB80 File Offset: 0x00048D80
+	// Token: 0x06000943 RID: 2371 RVA: 0x0004AC38 File Offset: 0x00048E38
 	public void UpdateTransform(AmplifyMotionEffectBase inst, CommandBuffer updateCB)
 	{
 		if (!this.m_initialized)
@@ -249,7 +249,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000944 RID: 2372 RVA: 0x0004AC24 File Offset: 0x00048E24
+	// Token: 0x06000944 RID: 2372 RVA: 0x0004ACDC File Offset: 0x00048EDC
 	public void RenderReprojectionVectors(RenderTexture destination, float scale)
 	{
 		this.m_renderCB.SetGlobalMatrix("_AM_MATRIX_CURR_REPROJ", this.PrevViewProjMatrix * this.InvViewProjMatrix);
@@ -258,7 +258,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		this.m_renderCB.Blit(new RenderTargetIdentifier(tex), destination, this.Instance.ReprojectionMaterial);
 	}
 
-	// Token: 0x06000945 RID: 2373 RVA: 0x0004AC88 File Offset: 0x00048E88
+	// Token: 0x06000945 RID: 2373 RVA: 0x0004AD40 File Offset: 0x00048F40
 	public void PreRenderVectors(RenderTexture motionRT, bool clearColor, float rcpDepthThreshold)
 	{
 		this.m_renderCB.Clear();
@@ -270,7 +270,7 @@ public class AmplifyMotionCamera : MonoBehaviour
 		this.m_renderCB.ClearRenderTarget(true, clearColor, Color.black);
 	}
 
-	// Token: 0x06000946 RID: 2374 RVA: 0x0004AD4C File Offset: 0x00048F4C
+	// Token: 0x06000946 RID: 2374 RVA: 0x0004AE04 File Offset: 0x00049004
 	public void RenderVectors(float scale, float fixedScale, Quality quality)
 	{
 		if (!this.m_initialized)

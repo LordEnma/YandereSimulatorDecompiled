@@ -6,14 +6,14 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Button Keys (Legacy)")]
 public class UIButtonKeys : UIKeyNavigation
 {
-	// Token: 0x06000133 RID: 307 RVA: 0x000143C3 File Offset: 0x000125C3
+	// Token: 0x06000133 RID: 307 RVA: 0x0001447B File Offset: 0x0001267B
 	protected override void OnEnable()
 	{
 		this.Upgrade();
 		base.OnEnable();
 	}
 
-	// Token: 0x06000134 RID: 308 RVA: 0x000143D4 File Offset: 0x000125D4
+	// Token: 0x06000134 RID: 308 RVA: 0x0001448C File Offset: 0x0001268C
 	public void Upgrade()
 	{
 		if (this.onClick == null && this.selectOnClick != null)

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [Serializable]
 public class BMGlyph
 {
-	// Token: 0x0600030B RID: 779 RVA: 0x00020138 File Offset: 0x0001E338
+	// Token: 0x0600030B RID: 779 RVA: 0x000201F0 File Offset: 0x0001E3F0
 	public int GetKerning(int previousChar)
 	{
 		if (this.kerning != null && previousChar != 0)
@@ -24,7 +24,7 @@ public class BMGlyph
 		return 0;
 	}
 
-	// Token: 0x0600030C RID: 780 RVA: 0x00020188 File Offset: 0x0001E388
+	// Token: 0x0600030C RID: 780 RVA: 0x00020240 File Offset: 0x0001E440
 	public void SetKerning(int previousChar, int amount)
 	{
 		if (this.kerning == null)
@@ -43,7 +43,7 @@ public class BMGlyph
 		this.kerning.Add(amount);
 	}
 
-	// Token: 0x0600030D RID: 781 RVA: 0x000201F8 File Offset: 0x0001E3F8
+	// Token: 0x0600030D RID: 781 RVA: 0x000202B0 File Offset: 0x0001E4B0
 	public void Trim(int xMin, int yMin, int xMax, int yMax)
 	{
 		int num = this.x + this.width;

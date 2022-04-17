@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000C0 RID: 192
 public class AboutScript : MonoBehaviour
 {
-	// Token: 0x06000998 RID: 2456 RVA: 0x0004CCC4 File Offset: 0x0004AEC4
+	// Token: 0x06000998 RID: 2456 RVA: 0x0004CD7C File Offset: 0x0004AF7C
 	private void Start()
 	{
 		foreach (Transform transform in this.Labels)
@@ -15,7 +15,7 @@ public class AboutScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000999 RID: 2457 RVA: 0x0004CD04 File Offset: 0x0004AF04
+	// Token: 0x06000999 RID: 2457 RVA: 0x0004CDBC File Offset: 0x0004AFBC
 	private void Update()
 	{
 		if (Input.GetButtonDown("A"))

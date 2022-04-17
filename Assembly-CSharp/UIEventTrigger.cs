@@ -7,7 +7,7 @@ using UnityEngine;
 public class UIEventTrigger : MonoBehaviour
 {
 	// Token: 0x17000016 RID: 22
-	// (get) Token: 0x060001AA RID: 426 RVA: 0x00017220 File Offset: 0x00015420
+	// (get) Token: 0x060001AA RID: 426 RVA: 0x000172D8 File Offset: 0x000154D8
 	public bool isColliderEnabled
 	{
 		get
@@ -22,7 +22,7 @@ public class UIEventTrigger : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060001AB RID: 427 RVA: 0x0001725C File Offset: 0x0001545C
+	// Token: 0x060001AB RID: 427 RVA: 0x00017314 File Offset: 0x00015514
 	private void OnHover(bool isOver)
 	{
 		if (UIEventTrigger.current != null || !this.isColliderEnabled)
@@ -41,7 +41,7 @@ public class UIEventTrigger : MonoBehaviour
 		UIEventTrigger.current = null;
 	}
 
-	// Token: 0x060001AC RID: 428 RVA: 0x0001729B File Offset: 0x0001549B
+	// Token: 0x060001AC RID: 428 RVA: 0x00017353 File Offset: 0x00015553
 	private void OnPress(bool pressed)
 	{
 		if (UIEventTrigger.current != null || !this.isColliderEnabled)
@@ -60,7 +60,7 @@ public class UIEventTrigger : MonoBehaviour
 		UIEventTrigger.current = null;
 	}
 
-	// Token: 0x060001AD RID: 429 RVA: 0x000172DA File Offset: 0x000154DA
+	// Token: 0x060001AD RID: 429 RVA: 0x00017392 File Offset: 0x00015592
 	private void OnSelect(bool selected)
 	{
 		if (UIEventTrigger.current != null || !this.isColliderEnabled)
@@ -79,7 +79,7 @@ public class UIEventTrigger : MonoBehaviour
 		UIEventTrigger.current = null;
 	}
 
-	// Token: 0x060001AE RID: 430 RVA: 0x00017319 File Offset: 0x00015519
+	// Token: 0x060001AE RID: 430 RVA: 0x000173D1 File Offset: 0x000155D1
 	private void OnClick()
 	{
 		if (UIEventTrigger.current != null || !this.isColliderEnabled)
@@ -91,7 +91,7 @@ public class UIEventTrigger : MonoBehaviour
 		UIEventTrigger.current = null;
 	}
 
-	// Token: 0x060001AF RID: 431 RVA: 0x00017348 File Offset: 0x00015548
+	// Token: 0x060001AF RID: 431 RVA: 0x00017400 File Offset: 0x00015600
 	private void OnDoubleClick()
 	{
 		if (UIEventTrigger.current != null || !this.isColliderEnabled)
@@ -103,7 +103,7 @@ public class UIEventTrigger : MonoBehaviour
 		UIEventTrigger.current = null;
 	}
 
-	// Token: 0x060001B0 RID: 432 RVA: 0x00017377 File Offset: 0x00015577
+	// Token: 0x060001B0 RID: 432 RVA: 0x0001742F File Offset: 0x0001562F
 	private void OnDragStart()
 	{
 		if (UIEventTrigger.current != null)
@@ -115,7 +115,7 @@ public class UIEventTrigger : MonoBehaviour
 		UIEventTrigger.current = null;
 	}
 
-	// Token: 0x060001B1 RID: 433 RVA: 0x0001739E File Offset: 0x0001559E
+	// Token: 0x060001B1 RID: 433 RVA: 0x00017456 File Offset: 0x00015656
 	private void OnDragEnd()
 	{
 		if (UIEventTrigger.current != null)
@@ -127,7 +127,7 @@ public class UIEventTrigger : MonoBehaviour
 		UIEventTrigger.current = null;
 	}
 
-	// Token: 0x060001B2 RID: 434 RVA: 0x000173C5 File Offset: 0x000155C5
+	// Token: 0x060001B2 RID: 434 RVA: 0x0001747D File Offset: 0x0001567D
 	private void OnDragOver(GameObject go)
 	{
 		if (UIEventTrigger.current != null || !this.isColliderEnabled)
@@ -139,7 +139,7 @@ public class UIEventTrigger : MonoBehaviour
 		UIEventTrigger.current = null;
 	}
 
-	// Token: 0x060001B3 RID: 435 RVA: 0x000173F4 File Offset: 0x000155F4
+	// Token: 0x060001B3 RID: 435 RVA: 0x000174AC File Offset: 0x000156AC
 	private void OnDragOut(GameObject go)
 	{
 		if (UIEventTrigger.current != null || !this.isColliderEnabled)
@@ -151,7 +151,7 @@ public class UIEventTrigger : MonoBehaviour
 		UIEventTrigger.current = null;
 	}
 
-	// Token: 0x060001B4 RID: 436 RVA: 0x00017423 File Offset: 0x00015623
+	// Token: 0x060001B4 RID: 436 RVA: 0x000174DB File Offset: 0x000156DB
 	private void OnDrag(Vector2 delta)
 	{
 		if (UIEventTrigger.current != null)

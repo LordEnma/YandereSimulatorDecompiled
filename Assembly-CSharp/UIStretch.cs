@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/UI/Stretch")]
 public class UIStretch : MonoBehaviour
 {
-	// Token: 0x060008AC RID: 2220 RVA: 0x00046FD4 File Offset: 0x000451D4
+	// Token: 0x060008AC RID: 2220 RVA: 0x0004708C File Offset: 0x0004528C
 	private void Awake()
 	{
 		this.mAnim = base.GetComponent<Animation>();
@@ -18,13 +18,13 @@ public class UIStretch : MonoBehaviour
 		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Combine(UICamera.onScreenResize, new UICamera.OnScreenResize(this.ScreenSizeChanged));
 	}
 
-	// Token: 0x060008AD RID: 2221 RVA: 0x00047049 File Offset: 0x00045249
+	// Token: 0x060008AD RID: 2221 RVA: 0x00047101 File Offset: 0x00045301
 	private void OnDestroy()
 	{
 		UICamera.onScreenResize = (UICamera.OnScreenResize)Delegate.Remove(UICamera.onScreenResize, new UICamera.OnScreenResize(this.ScreenSizeChanged));
 	}
 
-	// Token: 0x060008AE RID: 2222 RVA: 0x0004706B File Offset: 0x0004526B
+	// Token: 0x060008AE RID: 2222 RVA: 0x00047123 File Offset: 0x00045323
 	private void ScreenSizeChanged()
 	{
 		if (this.mStarted && this.runOnlyOnce)
@@ -33,7 +33,7 @@ public class UIStretch : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008AF RID: 2223 RVA: 0x00047084 File Offset: 0x00045284
+	// Token: 0x060008AF RID: 2223 RVA: 0x0004713C File Offset: 0x0004533C
 	private void Start()
 	{
 		if (this.container == null && this.widgetContainer != null)
@@ -50,7 +50,7 @@ public class UIStretch : MonoBehaviour
 		this.mStarted = true;
 	}
 
-	// Token: 0x060008B0 RID: 2224 RVA: 0x00047108 File Offset: 0x00045308
+	// Token: 0x060008B0 RID: 2224 RVA: 0x000471C0 File Offset: 0x000453C0
 	private void Update()
 	{
 		if (this.mAnim != null && this.mAnim.isPlaying)
@@ -284,19 +284,19 @@ public class UIStretch : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Style
 	{
-		// Token: 0x04004F3F RID: 20287
+		// Token: 0x04004F51 RID: 20305
 		None,
-		// Token: 0x04004F40 RID: 20288
+		// Token: 0x04004F52 RID: 20306
 		Horizontal,
-		// Token: 0x04004F41 RID: 20289
+		// Token: 0x04004F53 RID: 20307
 		Vertical,
-		// Token: 0x04004F42 RID: 20290
+		// Token: 0x04004F54 RID: 20308
 		Both,
-		// Token: 0x04004F43 RID: 20291
+		// Token: 0x04004F55 RID: 20309
 		BasedOnHeight,
-		// Token: 0x04004F44 RID: 20292
+		// Token: 0x04004F56 RID: 20310
 		FillKeepingRatio,
-		// Token: 0x04004F45 RID: 20293
+		// Token: 0x04004F57 RID: 20311
 		FitInternalKeepingRatio
 	}
 }

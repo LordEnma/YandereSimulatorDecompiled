@@ -9,7 +9,7 @@ namespace RetroAesthetics
 	[ImageEffectAllowedInSceneView]
 	public class RetroCameraEffect : MonoBehaviour
 	{
-		// Token: 0x060022D8 RID: 8920 RVA: 0x001F43A4 File Offset: 0x001F25A4
+		// Token: 0x060022DF RID: 8927 RVA: 0x001F4E00 File Offset: 0x001F3000
 		public virtual void Glitch(float amount = 1f)
 		{
 			Vector2 zero = Vector2.zero;
@@ -25,7 +25,7 @@ namespace RetroAesthetics
 			this._material.SetFloat("_ChromaticAberration", UnityEngine.Random.Range(this.chromaticAberration, amount * this.chromaticAberration * 2.5f));
 		}
 
-		// Token: 0x060022D9 RID: 8921 RVA: 0x001F444E File Offset: 0x001F264E
+		// Token: 0x060022E0 RID: 8928 RVA: 0x001F4EAA File Offset: 0x001F30AA
 		public virtual void FadeIn(float speed = 1f, Action callback = null)
 		{
 			this._isFading = true;
@@ -35,7 +35,7 @@ namespace RetroAesthetics
 			this._callback = callback;
 		}
 
-		// Token: 0x060022DA RID: 8922 RVA: 0x001F447B File Offset: 0x001F267B
+		// Token: 0x060022E1 RID: 8929 RVA: 0x001F4ED7 File Offset: 0x001F30D7
 		public virtual void FadeOut(float speed = 1f, Action callback = null)
 		{
 			this._isFading = true;
@@ -44,7 +44,7 @@ namespace RetroAesthetics
 			this._callback = callback;
 		}
 
-		// Token: 0x060022DB RID: 8923 RVA: 0x001F44A4 File Offset: 0x001F26A4
+		// Token: 0x060022E2 RID: 8930 RVA: 0x001F4F00 File Offset: 0x001F3100
 		private void Awake()
 		{
 			this._material = new Material(Shader.Find("Hidden/RetroCameraEffect"));
@@ -55,7 +55,7 @@ namespace RetroAesthetics
 			this._material.SetFloat("_DisplacementSpeed", this.displacementSpeed);
 		}
 
-		// Token: 0x060022DC RID: 8924 RVA: 0x001F453C File Offset: 0x001F273C
+		// Token: 0x060022E3 RID: 8931 RVA: 0x001F4F98 File Offset: 0x001F3198
 		private void Update()
 		{
 			if (this._isFading)
@@ -74,7 +74,7 @@ namespace RetroAesthetics
 			}
 		}
 
-		// Token: 0x060022DD RID: 8925 RVA: 0x001F45D0 File Offset: 0x001F27D0
+		// Token: 0x060022E4 RID: 8932 RVA: 0x001F502C File Offset: 0x001F322C
 		public void OnRenderImage(RenderTexture source, RenderTexture destination)
 		{
 			if (this._material == null)
@@ -199,137 +199,137 @@ namespace RetroAesthetics
 			Graphics.Blit(source, destination, this._material);
 		}
 
-		// Token: 0x04004B55 RID: 19285
+		// Token: 0x04004B67 RID: 19303
 		[Tooltip("If enabled, simulated TV noise is added to the output.")]
 		public bool useStaticNoise = true;
 
-		// Token: 0x04004B56 RID: 19286
+		// Token: 0x04004B68 RID: 19304
 		[Tooltip("Static noise texture. White regions represent noise.")]
 		public Texture noiseTexture;
 
-		// Token: 0x04004B57 RID: 19287
+		// Token: 0x04004B69 RID: 19305
 		[SerializeField]
 		[Range(0f, 2.5f)]
 		[Tooltip("Amount of TV noise to blend into the output.")]
 		public float staticIntensity = 0.5f;
 
-		// Token: 0x04004B58 RID: 19288
+		// Token: 0x04004B6A RID: 19306
 		[Space]
 		public RetroCameraEffect.GlitchDirections randomGlitches = RetroCameraEffect.GlitchDirections.Vertical;
 
-		// Token: 0x04004B59 RID: 19289
+		// Token: 0x04004B6B RID: 19307
 		[SerializeField]
 		[Range(0f, 2.5f)]
 		public float glitchIntensity = 1f;
 
-		// Token: 0x04004B5A RID: 19290
+		// Token: 0x04004B6C RID: 19308
 		[SerializeField]
 		[Range(0f, 100f)]
 		public int glitchFrequency = 10;
 
-		// Token: 0x04004B5B RID: 19291
+		// Token: 0x04004B6D RID: 19309
 		[Space]
 		public bool useDisplacementWaves = true;
 
-		// Token: 0x04004B5C RID: 19292
+		// Token: 0x04004B6E RID: 19310
 		[SerializeField]
 		[Range(0f, 5f)]
 		public float displacementAmplitude = 1f;
 
-		// Token: 0x04004B5D RID: 19293
+		// Token: 0x04004B6F RID: 19311
 		[SerializeField]
 		[Range(10f, 150f)]
 		public float displacementFrequency = 100f;
 
-		// Token: 0x04004B5E RID: 19294
+		// Token: 0x04004B70 RID: 19312
 		[SerializeField]
 		[Range(0f, 5f)]
 		public float displacementSpeed = 1f;
 
-		// Token: 0x04004B5F RID: 19295
+		// Token: 0x04004B71 RID: 19313
 		[Space]
 		public bool useChromaticAberration = true;
 
-		// Token: 0x04004B60 RID: 19296
+		// Token: 0x04004B72 RID: 19314
 		[SerializeField]
 		[Range(0f, 50f)]
 		public float chromaticAberration = 10f;
 
-		// Token: 0x04004B61 RID: 19297
+		// Token: 0x04004B73 RID: 19315
 		[Space]
 		public bool useVignette = true;
 
-		// Token: 0x04004B62 RID: 19298
+		// Token: 0x04004B74 RID: 19316
 		[SerializeField]
 		[Range(0f, 1f)]
 		public float vignette = 0.1f;
 
-		// Token: 0x04004B63 RID: 19299
+		// Token: 0x04004B75 RID: 19317
 		[Space]
 		public bool useBottomNoise = true;
 
-		// Token: 0x04004B64 RID: 19300
+		// Token: 0x04004B76 RID: 19318
 		[Range(0f, 0.5f)]
 		public float bottomHeight = 0.04f;
 
-		// Token: 0x04004B65 RID: 19301
+		// Token: 0x04004B77 RID: 19319
 		[Range(0f, 3f)]
 		public float bottomIntensity = 1f;
 
-		// Token: 0x04004B66 RID: 19302
+		// Token: 0x04004B78 RID: 19320
 		public bool useBottomStretch = true;
 
-		// Token: 0x04004B67 RID: 19303
+		// Token: 0x04004B79 RID: 19321
 		[Space]
 		public bool useRadialDistortion = true;
 
-		// Token: 0x04004B68 RID: 19304
+		// Token: 0x04004B7A RID: 19322
 		public float radialIntensity = 20f;
 
-		// Token: 0x04004B69 RID: 19305
+		// Token: 0x04004B7B RID: 19323
 		public float radialCurvature = 4f;
 
-		// Token: 0x04004B6A RID: 19306
+		// Token: 0x04004B7C RID: 19324
 		[Space]
 		public float gammaScale = 1f;
 
-		// Token: 0x04004B6B RID: 19307
+		// Token: 0x04004B7D RID: 19325
 		[Space]
 		public bool useScanlines = true;
 
-		// Token: 0x04004B6C RID: 19308
+		// Token: 0x04004B7E RID: 19326
 		public float scanlineSize = 512f;
 
-		// Token: 0x04004B6D RID: 19309
+		// Token: 0x04004B7F RID: 19327
 		[Range(0f, 1f)]
 		public float scanlineIntensity = 0.5f;
 
-		// Token: 0x04004B6E RID: 19310
+		// Token: 0x04004B80 RID: 19328
 		[HideInInspector]
 		public Material _material;
 
-		// Token: 0x04004B6F RID: 19311
+		// Token: 0x04004B81 RID: 19329
 		private bool _isFading;
 
-		// Token: 0x04004B70 RID: 19312
+		// Token: 0x04004B82 RID: 19330
 		private float _gammaTarget;
 
-		// Token: 0x04004B71 RID: 19313
+		// Token: 0x04004B83 RID: 19331
 		private float _gammaDelta;
 
-		// Token: 0x04004B72 RID: 19314
+		// Token: 0x04004B84 RID: 19332
 		private Action _callback;
 
 		// Token: 0x0200069B RID: 1691
 		public enum GlitchDirections
 		{
-			// Token: 0x040050C2 RID: 20674
+			// Token: 0x040050D4 RID: 20692
 			None,
-			// Token: 0x040050C3 RID: 20675
+			// Token: 0x040050D5 RID: 20693
 			Vertical,
-			// Token: 0x040050C4 RID: 20676
+			// Token: 0x040050D6 RID: 20694
 			Horizontal,
-			// Token: 0x040050C5 RID: 20677
+			// Token: 0x040050D7 RID: 20695
 			Both
 		}
 	}

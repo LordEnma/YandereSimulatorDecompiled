@@ -5,14 +5,14 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class AnimatedWidget : MonoBehaviour
 {
-	// Token: 0x06000552 RID: 1362 RVA: 0x00033BC4 File Offset: 0x00031DC4
+	// Token: 0x06000552 RID: 1362 RVA: 0x00033C7C File Offset: 0x00031E7C
 	private void OnEnable()
 	{
 		this.mWidget = base.GetComponent<UIWidget>();
 		this.LateUpdate();
 	}
 
-	// Token: 0x06000553 RID: 1363 RVA: 0x00033BD8 File Offset: 0x00031DD8
+	// Token: 0x06000553 RID: 1363 RVA: 0x00033C90 File Offset: 0x00031E90
 	private void LateUpdate()
 	{
 		if (this.mWidget != null)

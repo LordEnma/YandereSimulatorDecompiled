@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D7 RID: 983
 public class ReputationSetterScript : MonoBehaviour
 {
-	// Token: 0x06001B8C RID: 7052 RVA: 0x00136BB4 File Offset: 0x00134DB4
+	// Token: 0x06001B90 RID: 7056 RVA: 0x00136FC4 File Offset: 0x001351C4
 	public void InitializeReputations()
 	{
 		if (!this.StudentManager.Eighties)
@@ -213,6 +213,6 @@ public class ReputationSetterScript : MonoBehaviour
 		StudentGlobals.SetReputationTriangle(100, new Vector3(100f, 100f, 100f));
 	}
 
-	// Token: 0x04002F42 RID: 12098
+	// Token: 0x04002F4D RID: 12109
 	public StudentManagerScript StudentManager;
 }

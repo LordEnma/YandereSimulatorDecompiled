@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Drag-Resize Widget")]
 public class UIDragResize : MonoBehaviour
 {
-	// Token: 0x06000193 RID: 403 RVA: 0x000168A4 File Offset: 0x00014AA4
+	// Token: 0x06000193 RID: 403 RVA: 0x0001695C File Offset: 0x00014B5C
 	private void OnDragStart()
 	{
 		if (this.target != null)
@@ -25,7 +25,7 @@ public class UIDragResize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000194 RID: 404 RVA: 0x00016954 File Offset: 0x00014B54
+	// Token: 0x06000194 RID: 404 RVA: 0x00016A0C File Offset: 0x00014C0C
 	private void OnDrag(Vector2 delta)
 	{
 		if (this.mDragging && this.target != null)
@@ -51,7 +51,7 @@ public class UIDragResize : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000195 RID: 405 RVA: 0x00016A74 File Offset: 0x00014C74
+	// Token: 0x06000195 RID: 405 RVA: 0x00016B2C File Offset: 0x00014D2C
 	private void OnDragEnd()
 	{
 		this.mDragging = false;

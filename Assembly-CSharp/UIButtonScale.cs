@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Button Scale")]
 public class UIButtonScale : MonoBehaviour
 {
-	// Token: 0x0600014F RID: 335 RVA: 0x00014A81 File Offset: 0x00012C81
+	// Token: 0x0600014F RID: 335 RVA: 0x00014B39 File Offset: 0x00012D39
 	private void Start()
 	{
 		if (!this.mStarted)
@@ -19,7 +19,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000150 RID: 336 RVA: 0x00014ABD File Offset: 0x00012CBD
+	// Token: 0x06000150 RID: 336 RVA: 0x00014B75 File Offset: 0x00012D75
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -28,7 +28,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000151 RID: 337 RVA: 0x00014AD8 File Offset: 0x00012CD8
+	// Token: 0x06000151 RID: 337 RVA: 0x00014B90 File Offset: 0x00012D90
 	private void OnDisable()
 	{
 		if (this.mStarted && this.tweenTarget != null)
@@ -42,7 +42,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000152 RID: 338 RVA: 0x00014B24 File Offset: 0x00012D24
+	// Token: 0x06000152 RID: 338 RVA: 0x00014BDC File Offset: 0x00012DDC
 	private void OnPress(bool isPressed)
 	{
 		if (base.enabled)
@@ -55,7 +55,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000153 RID: 339 RVA: 0x00014BA0 File Offset: 0x00012DA0
+	// Token: 0x06000153 RID: 339 RVA: 0x00014C58 File Offset: 0x00012E58
 	private void OnHover(bool isOver)
 	{
 		if (base.enabled)
@@ -68,7 +68,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000154 RID: 340 RVA: 0x00014BFB File Offset: 0x00012DFB
+	// Token: 0x06000154 RID: 340 RVA: 0x00014CB3 File Offset: 0x00012EB3
 	private void OnSelect(bool isSelected)
 	{
 		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))

@@ -42,23 +42,23 @@ public class InvBaseItem
 	// Token: 0x020005C8 RID: 1480
 	public enum Slot
 	{
-		// Token: 0x04004DA0 RID: 19872
+		// Token: 0x04004DB2 RID: 19890
 		None,
-		// Token: 0x04004DA1 RID: 19873
+		// Token: 0x04004DB3 RID: 19891
 		Weapon,
-		// Token: 0x04004DA2 RID: 19874
+		// Token: 0x04004DB4 RID: 19892
 		Shield,
-		// Token: 0x04004DA3 RID: 19875
+		// Token: 0x04004DB5 RID: 19893
 		Body,
-		// Token: 0x04004DA4 RID: 19876
+		// Token: 0x04004DB6 RID: 19894
 		Shoulders,
-		// Token: 0x04004DA5 RID: 19877
+		// Token: 0x04004DB7 RID: 19895
 		Bracers,
-		// Token: 0x04004DA6 RID: 19878
+		// Token: 0x04004DB8 RID: 19896
 		Boots,
-		// Token: 0x04004DA7 RID: 19879
+		// Token: 0x04004DB9 RID: 19897
 		Trinket,
-		// Token: 0x04004DA8 RID: 19880
+		// Token: 0x04004DBA RID: 19898
 		_LastDoNotUse
 	}
 }

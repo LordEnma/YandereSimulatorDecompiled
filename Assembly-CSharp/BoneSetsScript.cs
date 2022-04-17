@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x020000F2 RID: 242
 public class BoneSetsScript : MonoBehaviour
 {
-	// Token: 0x06000A56 RID: 2646 RVA: 0x0005C0CE File Offset: 0x0005A2CE
+	// Token: 0x06000A56 RID: 2646 RVA: 0x0005C186 File Offset: 0x0005A386
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000A57 RID: 2647 RVA: 0x0005C0D0 File Offset: 0x0005A2D0
+	// Token: 0x06000A57 RID: 2647 RVA: 0x0005C188 File Offset: 0x0005A388
 	private void Update()
 	{
 		if (this.Head != null)

@@ -6,7 +6,7 @@ namespace MaidDereMinigame
 	// Token: 0x02000598 RID: 1432
 	public class CustomerSpawner : MonoBehaviour
 	{
-		// Token: 0x06002447 RID: 9287 RVA: 0x001FDE74 File Offset: 0x001FC074
+		// Token: 0x0600244E RID: 9294 RVA: 0x001FE8D0 File Offset: 0x001FCAD0
 		private void Start()
 		{
 			this.spawnRate = GameController.Instance.activeDifficultyVariables.customerSpawnRate;
@@ -14,25 +14,25 @@ namespace MaidDereMinigame
 			this.isPaused = true;
 		}
 
-		// Token: 0x06002448 RID: 9288 RVA: 0x001FDEA7 File Offset: 0x001FC0A7
+		// Token: 0x0600244F RID: 9295 RVA: 0x001FE903 File Offset: 0x001FCB03
 		private void OnEnable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(this.Pause));
 		}
 
-		// Token: 0x06002449 RID: 9289 RVA: 0x001FDEC9 File Offset: 0x001FC0C9
+		// Token: 0x06002450 RID: 9296 RVA: 0x001FE925 File Offset: 0x001FCB25
 		private void OnDisable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(this.Pause));
 		}
 
-		// Token: 0x0600244A RID: 9290 RVA: 0x001FDEEB File Offset: 0x001FC0EB
+		// Token: 0x06002451 RID: 9297 RVA: 0x001FE947 File Offset: 0x001FCB47
 		public void Pause(bool toPause)
 		{
 			this.isPaused = toPause;
 		}
 
-		// Token: 0x0600244B RID: 9291 RVA: 0x001FDEF4 File Offset: 0x001FC0F4
+		// Token: 0x06002452 RID: 9298 RVA: 0x001FE950 File Offset: 0x001FCB50
 		private void Update()
 		{
 			if (this.isPaused)
@@ -48,7 +48,7 @@ namespace MaidDereMinigame
 			this.timeTillSpawn -= Time.deltaTime;
 		}
 
-		// Token: 0x0600244C RID: 9292 RVA: 0x001FDF50 File Offset: 0x001FC150
+		// Token: 0x06002453 RID: 9299 RVA: 0x001FE9AC File Offset: 0x001FCBAC
 		private void SpawnCustomer()
 		{
 			GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.customerPrefabs[UnityEngine.Random.Range(0, this.customerPrefabs.Length)]);
@@ -58,28 +58,28 @@ namespace MaidDereMinigame
 			component.leaveTarget = base.transform;
 		}
 
-		// Token: 0x0600244D RID: 9293 RVA: 0x001FDFA3 File Offset: 0x001FC1A3
+		// Token: 0x06002454 RID: 9300 RVA: 0x001FE9FF File Offset: 0x001FCBFF
 		public void OpenDoor()
 		{
 			base.transform.parent.GetComponent<Animator>().SetTrigger("DoorOpen");
 		}
 
-		// Token: 0x04004C99 RID: 19609
+		// Token: 0x04004CAB RID: 19627
 		public GameObject[] customerPrefabs;
 
-		// Token: 0x04004C9A RID: 19610
+		// Token: 0x04004CAC RID: 19628
 		private float spawnRate = 10f;
 
-		// Token: 0x04004C9B RID: 19611
+		// Token: 0x04004CAD RID: 19629
 		private float spawnVariance = 5f;
 
-		// Token: 0x04004C9C RID: 19612
+		// Token: 0x04004CAE RID: 19630
 		private float timeTillSpawn;
 
-		// Token: 0x04004C9D RID: 19613
+		// Token: 0x04004CAF RID: 19631
 		private int spawnedCustomers;
 
-		// Token: 0x04004C9E RID: 19614
+		// Token: 0x04004CB0 RID: 19632
 		private bool isPaused;
 	}
 }

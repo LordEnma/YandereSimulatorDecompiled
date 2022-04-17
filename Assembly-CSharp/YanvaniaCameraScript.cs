@@ -5,7 +5,7 @@ using UnityEngine.PostProcessing;
 // Token: 0x020004DE RID: 1246
 public class YanvaniaCameraScript : MonoBehaviour
 {
-	// Token: 0x060020B9 RID: 8377 RVA: 0x001E1F14 File Offset: 0x001E0114
+	// Token: 0x060020C0 RID: 8384 RVA: 0x001E2970 File Offset: 0x001E0B70
 	private void Start()
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -14,7 +14,7 @@ public class YanvaniaCameraScript : MonoBehaviour
 		base.transform.position = this.Yanmont.transform.position + new Vector3(0f, 1.5f, -5.85f);
 	}
 
-	// Token: 0x060020BA RID: 8378 RVA: 0x001E1F84 File Offset: 0x001E0184
+	// Token: 0x060020C1 RID: 8385 RVA: 0x001E29E0 File Offset: 0x001E0BE0
 	private void FixedUpdate()
 	{
 		this.TargetZoom += Input.GetAxis("Mouse ScrollWheel") * 10f;
@@ -56,24 +56,24 @@ public class YanvaniaCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040047CF RID: 18383
+	// Token: 0x040047E1 RID: 18401
 	public PostProcessingProfile Profile;
 
-	// Token: 0x040047D0 RID: 18384
+	// Token: 0x040047E2 RID: 18402
 	public YanvaniaYanmontScript Yanmont;
 
-	// Token: 0x040047D1 RID: 18385
+	// Token: 0x040047E3 RID: 18403
 	public GameObject Jukebox;
 
-	// Token: 0x040047D2 RID: 18386
+	// Token: 0x040047E4 RID: 18404
 	public bool Cutscene;
 
-	// Token: 0x040047D3 RID: 18387
+	// Token: 0x040047E5 RID: 18405
 	public bool StopMusic = true;
 
-	// Token: 0x040047D4 RID: 18388
+	// Token: 0x040047E6 RID: 18406
 	public float TargetZoom;
 
-	// Token: 0x040047D5 RID: 18389
+	// Token: 0x040047E7 RID: 18407
 	public float Zoom;
 }

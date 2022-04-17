@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000031 RID: 49
 public class LagPosition : MonoBehaviour
 {
-	// Token: 0x060000CC RID: 204 RVA: 0x00012552 File Offset: 0x00010752
+	// Token: 0x060000CC RID: 204 RVA: 0x0001260A File Offset: 0x0001080A
 	public void OnRepositionEnd()
 	{
 		this.Interpolate(1000f);
 	}
 
-	// Token: 0x060000CD RID: 205 RVA: 0x00012560 File Offset: 0x00010760
+	// Token: 0x060000CD RID: 205 RVA: 0x00012618 File Offset: 0x00010818
 	private void Interpolate(float delta)
 	{
 		Transform parent = this.mTrans.parent;
@@ -24,13 +24,13 @@ public class LagPosition : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060000CE RID: 206 RVA: 0x0001264C File Offset: 0x0001084C
+	// Token: 0x060000CE RID: 206 RVA: 0x00012704 File Offset: 0x00010904
 	private void Awake()
 	{
 		this.mTrans = base.transform;
 	}
 
-	// Token: 0x060000CF RID: 207 RVA: 0x0001265A File Offset: 0x0001085A
+	// Token: 0x060000CF RID: 207 RVA: 0x00012712 File Offset: 0x00010912
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -39,21 +39,21 @@ public class LagPosition : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060000D0 RID: 208 RVA: 0x0001266A File Offset: 0x0001086A
+	// Token: 0x060000D0 RID: 208 RVA: 0x00012722 File Offset: 0x00010922
 	private void Start()
 	{
 		this.mStarted = true;
 		this.ResetPosition();
 	}
 
-	// Token: 0x060000D1 RID: 209 RVA: 0x00012679 File Offset: 0x00010879
+	// Token: 0x060000D1 RID: 209 RVA: 0x00012731 File Offset: 0x00010931
 	public void ResetPosition()
 	{
 		this.mAbsolute = this.mTrans.position;
 		this.mRelative = this.mTrans.localPosition;
 	}
 
-	// Token: 0x060000D2 RID: 210 RVA: 0x0001269D File Offset: 0x0001089D
+	// Token: 0x060000D2 RID: 210 RVA: 0x00012755 File Offset: 0x00010955
 	private void Update()
 	{
 		this.Interpolate(this.ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime);

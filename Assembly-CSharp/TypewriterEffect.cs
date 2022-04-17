@@ -9,7 +9,7 @@ using UnityEngine;
 public class TypewriterEffect : MonoBehaviour
 {
 	// Token: 0x1700000C RID: 12
-	// (get) Token: 0x06000108 RID: 264 RVA: 0x000133A8 File Offset: 0x000115A8
+	// (get) Token: 0x06000108 RID: 264 RVA: 0x00013460 File Offset: 0x00011660
 	public bool isActive
 	{
 		get
@@ -18,7 +18,7 @@ public class TypewriterEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000109 RID: 265 RVA: 0x000133B0 File Offset: 0x000115B0
+	// Token: 0x06000109 RID: 265 RVA: 0x00013468 File Offset: 0x00011668
 	public void ResetToBeginning()
 	{
 		this.Finish();
@@ -29,7 +29,7 @@ public class TypewriterEffect : MonoBehaviour
 		this.Update();
 	}
 
-	// Token: 0x0600010A RID: 266 RVA: 0x000133E0 File Offset: 0x000115E0
+	// Token: 0x0600010A RID: 266 RVA: 0x00013498 File Offset: 0x00011698
 	public void Finish()
 	{
 		if (this.mActive)
@@ -51,20 +51,20 @@ public class TypewriterEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600010B RID: 267 RVA: 0x00013469 File Offset: 0x00011669
+	// Token: 0x0600010B RID: 267 RVA: 0x00013521 File Offset: 0x00011721
 	private void OnEnable()
 	{
 		this.mReset = true;
 		this.mActive = true;
 	}
 
-	// Token: 0x0600010C RID: 268 RVA: 0x00013479 File Offset: 0x00011679
+	// Token: 0x0600010C RID: 268 RVA: 0x00013531 File Offset: 0x00011731
 	private void OnDisable()
 	{
 		this.Finish();
 	}
 
-	// Token: 0x0600010D RID: 269 RVA: 0x00013484 File Offset: 0x00011684
+	// Token: 0x0600010D RID: 269 RVA: 0x0001353C File Offset: 0x0001173C
 	private void Update()
 	{
 		if (!this.mActive)
@@ -265,13 +265,13 @@ public class TypewriterEffect : MonoBehaviour
 	// Token: 0x020005CE RID: 1486
 	private struct FadeEntry
 	{
-		// Token: 0x04004DCB RID: 19915
+		// Token: 0x04004DDD RID: 19933
 		public int index;
 
-		// Token: 0x04004DCC RID: 19916
+		// Token: 0x04004DDE RID: 19934
 		public string text;
 
-		// Token: 0x04004DCD RID: 19917
+		// Token: 0x04004DDF RID: 19935
 		public float alpha;
 	}
 }

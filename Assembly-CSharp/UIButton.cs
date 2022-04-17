@@ -7,8 +7,8 @@ using UnityEngine;
 public class UIButton : UIButtonColor
 {
 	// Token: 0x1700000D RID: 13
-	// (get) Token: 0x0600010F RID: 271 RVA: 0x00013960 File Offset: 0x00011B60
-	// (set) Token: 0x06000110 RID: 272 RVA: 0x000139AC File Offset: 0x00011BAC
+	// (get) Token: 0x0600010F RID: 271 RVA: 0x00013A18 File Offset: 0x00011C18
+	// (set) Token: 0x06000110 RID: 272 RVA: 0x00013A64 File Offset: 0x00011C64
 	public override bool isEnabled
 	{
 		get
@@ -57,8 +57,8 @@ public class UIButton : UIButtonColor
 	}
 
 	// Token: 0x1700000E RID: 14
-	// (get) Token: 0x06000111 RID: 273 RVA: 0x00013A4B File Offset: 0x00011C4B
-	// (set) Token: 0x06000112 RID: 274 RVA: 0x00013A64 File Offset: 0x00011C64
+	// (get) Token: 0x06000111 RID: 273 RVA: 0x00013B03 File Offset: 0x00011D03
+	// (set) Token: 0x06000112 RID: 274 RVA: 0x00013B1C File Offset: 0x00011D1C
 	public string normalSprite
 	{
 		get
@@ -91,8 +91,8 @@ public class UIButton : UIButtonColor
 	}
 
 	// Token: 0x1700000F RID: 15
-	// (get) Token: 0x06000113 RID: 275 RVA: 0x00013AE7 File Offset: 0x00011CE7
-	// (set) Token: 0x06000114 RID: 276 RVA: 0x00013B00 File Offset: 0x00011D00
+	// (get) Token: 0x06000113 RID: 275 RVA: 0x00013B9F File Offset: 0x00011D9F
+	// (set) Token: 0x06000114 RID: 276 RVA: 0x00013BB8 File Offset: 0x00011DB8
 	public Sprite normalSprite2D
 	{
 		get
@@ -124,7 +124,7 @@ public class UIButton : UIButtonColor
 		}
 	}
 
-	// Token: 0x06000115 RID: 277 RVA: 0x00013B78 File Offset: 0x00011D78
+	// Token: 0x06000115 RID: 277 RVA: 0x00013C30 File Offset: 0x00011E30
 	protected override void OnInit()
 	{
 		base.OnInit();
@@ -140,7 +140,7 @@ public class UIButton : UIButtonColor
 		}
 	}
 
-	// Token: 0x06000116 RID: 278 RVA: 0x00013BEB File Offset: 0x00011DEB
+	// Token: 0x06000116 RID: 278 RVA: 0x00013CA3 File Offset: 0x00011EA3
 	protected override void OnEnable()
 	{
 		if (this.isEnabled)
@@ -157,7 +157,7 @@ public class UIButton : UIButtonColor
 		}
 	}
 
-	// Token: 0x06000117 RID: 279 RVA: 0x00013C1C File Offset: 0x00011E1C
+	// Token: 0x06000117 RID: 279 RVA: 0x00013CD4 File Offset: 0x00011ED4
 	protected override void OnDragOver()
 	{
 		if (this.isEnabled && (this.dragHighlight || UICamera.currentTouch.pressed == base.gameObject))
@@ -166,7 +166,7 @@ public class UIButton : UIButtonColor
 		}
 	}
 
-	// Token: 0x06000118 RID: 280 RVA: 0x00013C4B File Offset: 0x00011E4B
+	// Token: 0x06000118 RID: 280 RVA: 0x00013D03 File Offset: 0x00011F03
 	protected override void OnDragOut()
 	{
 		if (this.isEnabled && (this.dragHighlight || UICamera.currentTouch.pressed == base.gameObject))
@@ -175,7 +175,7 @@ public class UIButton : UIButtonColor
 		}
 	}
 
-	// Token: 0x06000119 RID: 281 RVA: 0x00013C7A File Offset: 0x00011E7A
+	// Token: 0x06000119 RID: 281 RVA: 0x00013D32 File Offset: 0x00011F32
 	protected virtual void OnClick()
 	{
 		if (UIButton.current == null && this.isEnabled && UICamera.currentTouchID != -2 && UICamera.currentTouchID != -3)
@@ -186,7 +186,7 @@ public class UIButton : UIButtonColor
 		}
 	}
 
-	// Token: 0x0600011A RID: 282 RVA: 0x00013CBC File Offset: 0x00011EBC
+	// Token: 0x0600011A RID: 282 RVA: 0x00013D74 File Offset: 0x00011F74
 	public override void SetState(UIButtonColor.State state, bool immediate)
 	{
 		base.SetState(state, immediate);
@@ -233,7 +233,7 @@ public class UIButton : UIButtonColor
 		}
 	}
 
-	// Token: 0x0600011B RID: 283 RVA: 0x00013DB0 File Offset: 0x00011FB0
+	// Token: 0x0600011B RID: 283 RVA: 0x00013E68 File Offset: 0x00012068
 	protected void SetSprite(string sp)
 	{
 		if (this.mSprite != null && !string.IsNullOrEmpty(sp) && this.mSprite.spriteName != sp)
@@ -246,7 +246,7 @@ public class UIButton : UIButtonColor
 		}
 	}
 
-	// Token: 0x0600011C RID: 284 RVA: 0x00013E08 File Offset: 0x00012008
+	// Token: 0x0600011C RID: 284 RVA: 0x00013EC0 File Offset: 0x000120C0
 	protected void SetSprite(Sprite sp)
 	{
 		if (sp != null && this.mSprite2D != null && this.mSprite2D.sprite2D != sp)

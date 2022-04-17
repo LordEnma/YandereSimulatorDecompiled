@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003A8 RID: 936
 public class PhotographyClubScript : MonoBehaviour
 {
-	// Token: 0x06001AC1 RID: 6849 RVA: 0x001217A4 File Offset: 0x0011F9A4
+	// Token: 0x06001AC5 RID: 6853 RVA: 0x00121AD0 File Offset: 0x0011FCD0
 	private void Start()
 	{
 		this.InvestigationPhotos.SetActive(false);
@@ -26,18 +26,18 @@ public class PhotographyClubScript : MonoBehaviour
 		this.CrookedTables.SetActive(true);
 	}
 
-	// Token: 0x04002C72 RID: 11378
+	// Token: 0x04002C7A RID: 11386
 	public GameObject CrimeScene;
 
-	// Token: 0x04002C73 RID: 11379
+	// Token: 0x04002C7B RID: 11387
 	public GameObject InvestigationPhotos;
 
-	// Token: 0x04002C74 RID: 11380
+	// Token: 0x04002C7C RID: 11388
 	public GameObject ArtsyPhotos;
 
-	// Token: 0x04002C75 RID: 11381
+	// Token: 0x04002C7D RID: 11389
 	public GameObject StraightTables;
 
-	// Token: 0x04002C76 RID: 11382
+	// Token: 0x04002C7E RID: 11390
 	public GameObject CrookedTables;
 }

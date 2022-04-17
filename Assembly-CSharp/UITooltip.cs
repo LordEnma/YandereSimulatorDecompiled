@@ -6,7 +6,7 @@ using UnityEngine;
 public class UITooltip : MonoBehaviour
 {
 	// Token: 0x170001D8 RID: 472
-	// (get) Token: 0x060008D7 RID: 2263 RVA: 0x00048581 File Offset: 0x00046781
+	// (get) Token: 0x060008D7 RID: 2263 RVA: 0x00048639 File Offset: 0x00046839
 	public static bool isVisible
 	{
 		get
@@ -15,19 +15,19 @@ public class UITooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008D8 RID: 2264 RVA: 0x000485A3 File Offset: 0x000467A3
+	// Token: 0x060008D8 RID: 2264 RVA: 0x0004865B File Offset: 0x0004685B
 	private void Awake()
 	{
 		UITooltip.mInstance = this;
 	}
 
-	// Token: 0x060008D9 RID: 2265 RVA: 0x000485AB File Offset: 0x000467AB
+	// Token: 0x060008D9 RID: 2265 RVA: 0x00048663 File Offset: 0x00046863
 	private void OnDestroy()
 	{
 		UITooltip.mInstance = null;
 	}
 
-	// Token: 0x060008DA RID: 2266 RVA: 0x000485B4 File Offset: 0x000467B4
+	// Token: 0x060008DA RID: 2266 RVA: 0x0004866C File Offset: 0x0004686C
 	protected virtual void Start()
 	{
 		this.mTrans = base.transform;
@@ -40,7 +40,7 @@ public class UITooltip : MonoBehaviour
 		this.SetAlpha(0f);
 	}
 
-	// Token: 0x060008DB RID: 2267 RVA: 0x0004861C File Offset: 0x0004681C
+	// Token: 0x060008DB RID: 2267 RVA: 0x000486D4 File Offset: 0x000468D4
 	protected virtual void Update()
 	{
 		if (this.mTooltip != UICamera.tooltipObject)
@@ -68,7 +68,7 @@ public class UITooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008DC RID: 2268 RVA: 0x00048734 File Offset: 0x00046934
+	// Token: 0x060008DC RID: 2268 RVA: 0x000487EC File Offset: 0x000469EC
 	protected virtual void SetAlpha(float val)
 	{
 		int i = 0;
@@ -83,7 +83,7 @@ public class UITooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008DD RID: 2269 RVA: 0x00048774 File Offset: 0x00046974
+	// Token: 0x060008DD RID: 2269 RVA: 0x0004882C File Offset: 0x00046A2C
 	protected virtual void SetText(string tooltipText)
 	{
 		if (!(this.text != null) || string.IsNullOrEmpty(tooltipText))
@@ -146,7 +146,7 @@ public class UITooltip : MonoBehaviour
 		this.text.BroadcastMessage("UpdateAnchors");
 	}
 
-	// Token: 0x060008DE RID: 2270 RVA: 0x00048B3E File Offset: 0x00046D3E
+	// Token: 0x060008DE RID: 2270 RVA: 0x00048BF6 File Offset: 0x00046DF6
 	[Obsolete("Use UITooltip.Show instead")]
 	public static void ShowText(string text)
 	{
@@ -156,7 +156,7 @@ public class UITooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008DF RID: 2271 RVA: 0x00048B58 File Offset: 0x00046D58
+	// Token: 0x060008DF RID: 2271 RVA: 0x00048C10 File Offset: 0x00046E10
 	public static void Show(string text)
 	{
 		if (UITooltip.mInstance != null)
@@ -165,7 +165,7 @@ public class UITooltip : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008E0 RID: 2272 RVA: 0x00048B72 File Offset: 0x00046D72
+	// Token: 0x060008E0 RID: 2272 RVA: 0x00048C2A File Offset: 0x00046E2A
 	public static void Hide()
 	{
 		if (UITooltip.mInstance != null)

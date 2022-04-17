@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000C4 RID: 196
 public class AlarmDiscScript : MonoBehaviour
 {
-	// Token: 0x060009A7 RID: 2471 RVA: 0x0004E4F0 File Offset: 0x0004C6F0
+	// Token: 0x060009A7 RID: 2471 RVA: 0x0004E5A8 File Offset: 0x0004C7A8
 	private void Start()
 	{
 		Vector3 localScale = base.transform.localScale;
@@ -13,7 +13,7 @@ public class AlarmDiscScript : MonoBehaviour
 		base.transform.localScale = localScale;
 	}
 
-	// Token: 0x060009A8 RID: 2472 RVA: 0x0004E538 File Offset: 0x0004C738
+	// Token: 0x060009A8 RID: 2472 RVA: 0x0004E5F0 File Offset: 0x0004C7F0
 	private void Update()
 	{
 		if (this.Frame > 0)
@@ -53,7 +53,7 @@ public class AlarmDiscScript : MonoBehaviour
 		this.Frame++;
 	}
 
-	// Token: 0x060009A9 RID: 2473 RVA: 0x0004E684 File Offset: 0x0004C884
+	// Token: 0x060009A9 RID: 2473 RVA: 0x0004E73C File Offset: 0x0004C93C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -253,7 +253,7 @@ public class AlarmDiscScript : MonoBehaviour
 		this.Student = null;
 	}
 
-	// Token: 0x060009AA RID: 2474 RVA: 0x0004F4D0 File Offset: 0x0004D6D0
+	// Token: 0x060009AA RID: 2474 RVA: 0x0004F588 File Offset: 0x0004D788
 	private void PlayClip(AudioClip clip, Vector3 pos)
 	{
 		GameObject gameObject = new GameObject("TempAudio");
@@ -273,7 +273,7 @@ public class AlarmDiscScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009AB RID: 2475 RVA: 0x0004F560 File Offset: 0x0004D760
+	// Token: 0x060009AB RID: 2475 RVA: 0x0004F618 File Offset: 0x0004D818
 	private void InvestigateScream()
 	{
 		Debug.Log(this.Student.Name + " just heard a scream.");

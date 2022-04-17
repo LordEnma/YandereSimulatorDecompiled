@@ -5,7 +5,7 @@
 public class UISpriteData
 {
 	// Token: 0x170001C8 RID: 456
-	// (get) Token: 0x060008A4 RID: 2212 RVA: 0x00046E45 File Offset: 0x00045045
+	// (get) Token: 0x060008A4 RID: 2212 RVA: 0x00046EFD File Offset: 0x000450FD
 	public bool hasBorder
 	{
 		get
@@ -15,7 +15,7 @@ public class UISpriteData
 	}
 
 	// Token: 0x170001C9 RID: 457
-	// (get) Token: 0x060008A5 RID: 2213 RVA: 0x00046E65 File Offset: 0x00045065
+	// (get) Token: 0x060008A5 RID: 2213 RVA: 0x00046F1D File Offset: 0x0004511D
 	public bool hasPadding
 	{
 		get
@@ -24,7 +24,7 @@ public class UISpriteData
 		}
 	}
 
-	// Token: 0x060008A6 RID: 2214 RVA: 0x00046E85 File Offset: 0x00045085
+	// Token: 0x060008A6 RID: 2214 RVA: 0x00046F3D File Offset: 0x0004513D
 	public void SetRect(int x, int y, int width, int height)
 	{
 		this.x = x;
@@ -33,7 +33,7 @@ public class UISpriteData
 		this.height = height;
 	}
 
-	// Token: 0x060008A7 RID: 2215 RVA: 0x00046EA4 File Offset: 0x000450A4
+	// Token: 0x060008A7 RID: 2215 RVA: 0x00046F5C File Offset: 0x0004515C
 	public void SetPadding(int left, int bottom, int right, int top)
 	{
 		this.paddingLeft = left;
@@ -42,7 +42,7 @@ public class UISpriteData
 		this.paddingTop = top;
 	}
 
-	// Token: 0x060008A8 RID: 2216 RVA: 0x00046EC3 File Offset: 0x000450C3
+	// Token: 0x060008A8 RID: 2216 RVA: 0x00046F7B File Offset: 0x0004517B
 	public void SetBorder(int left, int bottom, int right, int top)
 	{
 		this.borderLeft = left;
@@ -51,7 +51,7 @@ public class UISpriteData
 		this.borderTop = top;
 	}
 
-	// Token: 0x060008A9 RID: 2217 RVA: 0x00046EE4 File Offset: 0x000450E4
+	// Token: 0x060008A9 RID: 2217 RVA: 0x00046F9C File Offset: 0x0004519C
 	public void CopyFrom(UISpriteData sd)
 	{
 		this.name = sd.name;
@@ -69,7 +69,7 @@ public class UISpriteData
 		this.paddingBottom = sd.paddingBottom;
 	}
 
-	// Token: 0x060008AA RID: 2218 RVA: 0x00046F8D File Offset: 0x0004518D
+	// Token: 0x060008AA RID: 2218 RVA: 0x00047045 File Offset: 0x00045245
 	public void CopyBorderFrom(UISpriteData sd)
 	{
 		this.borderLeft = sd.borderLeft;

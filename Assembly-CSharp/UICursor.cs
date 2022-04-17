@@ -6,19 +6,19 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/UI Cursor")]
 public class UICursor : MonoBehaviour
 {
-	// Token: 0x06000085 RID: 133 RVA: 0x0001102F File Offset: 0x0000F22F
+	// Token: 0x06000085 RID: 133 RVA: 0x000110E7 File Offset: 0x0000F2E7
 	private void Awake()
 	{
 		UICursor.instance = this;
 	}
 
-	// Token: 0x06000086 RID: 134 RVA: 0x00011037 File Offset: 0x0000F237
+	// Token: 0x06000086 RID: 134 RVA: 0x000110EF File Offset: 0x0000F2EF
 	private void OnDestroy()
 	{
 		UICursor.instance = null;
 	}
 
-	// Token: 0x06000087 RID: 135 RVA: 0x00011040 File Offset: 0x0000F240
+	// Token: 0x06000087 RID: 135 RVA: 0x000110F8 File Offset: 0x0000F2F8
 	private void Start()
 	{
 		this.mTrans = base.transform;
@@ -38,7 +38,7 @@ public class UICursor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000088 RID: 136 RVA: 0x000110D8 File Offset: 0x0000F2D8
+	// Token: 0x06000088 RID: 136 RVA: 0x00011190 File Offset: 0x0000F390
 	private void Update()
 	{
 		Vector3 mousePosition = Input.mousePosition;
@@ -66,7 +66,7 @@ public class UICursor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000089 RID: 137 RVA: 0x000111F0 File Offset: 0x0000F3F0
+	// Token: 0x06000089 RID: 137 RVA: 0x000112A8 File Offset: 0x0000F4A8
 	public static void Clear()
 	{
 		if (UICursor.instance != null && UICursor.instance.mSprite != null)
@@ -75,7 +75,7 @@ public class UICursor : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600008A RID: 138 RVA: 0x0001122C File Offset: 0x0000F42C
+	// Token: 0x0600008A RID: 138 RVA: 0x000112E4 File Offset: 0x0000F4E4
 	public static void Set(INGUIAtlas atlas, string sprite)
 	{
 		if (UICursor.instance != null && UICursor.instance.mSprite)

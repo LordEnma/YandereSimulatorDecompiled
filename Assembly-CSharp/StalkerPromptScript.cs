@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000444 RID: 1092
 public class StalkerPromptScript : MonoBehaviour
 {
-	// Token: 0x06001D17 RID: 7447 RVA: 0x0015ACE0 File Offset: 0x00158EE0
+	// Token: 0x06001D1B RID: 7451 RVA: 0x0015B0F0 File Offset: 0x001592F0
 	private void Start()
 	{
 		this.Eighties = GameGlobals.Eighties;
@@ -28,7 +28,7 @@ public class StalkerPromptScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D18 RID: 7448 RVA: 0x0015AD64 File Offset: 0x00158F64
+	// Token: 0x06001D1C RID: 7452 RVA: 0x0015B174 File Offset: 0x00159374
 	private void Update()
 	{
 		base.transform.LookAt(this.Yandere.MainCamera.transform);
@@ -257,7 +257,7 @@ public class StalkerPromptScript : MonoBehaviour
 		this.MySprite.color = new Color(1f, 1f, 1f, this.Alpha);
 	}
 
-	// Token: 0x06001D19 RID: 7449 RVA: 0x0015B7BC File Offset: 0x001599BC
+	// Token: 0x06001D1D RID: 7453 RVA: 0x0015BBCC File Offset: 0x00159DCC
 	public void BeginCarryingCat()
 	{
 		this.Yandere.MyAnimation["f02_grip_00"].layer = 1;
@@ -271,7 +271,7 @@ public class StalkerPromptScript : MonoBehaviour
 		this.CatCage.GetComponent<Collider>().isTrigger = true;
 	}
 
-	// Token: 0x06001D1A RID: 7450 RVA: 0x0015B894 File Offset: 0x00159A94
+	// Token: 0x06001D1E RID: 7454 RVA: 0x0015BCA4 File Offset: 0x00159EA4
 	public void CountBags()
 	{
 		this.BagsToBurn--;
@@ -284,120 +284,120 @@ public class StalkerPromptScript : MonoBehaviour
 		this.BagsToBurnLabel.text = "BAGS TO BURN: " + this.BagsToBurn.ToString();
 	}
 
-	// Token: 0x040034A9 RID: 13481
+	// Token: 0x040034B4 RID: 13492
 	public StalkerPromptScript ExitPrompt;
 
-	// Token: 0x040034AA RID: 13482
+	// Token: 0x040034B5 RID: 13493
 	public FamilyVoiceScript FatherVoice;
 
-	// Token: 0x040034AB RID: 13483
+	// Token: 0x040034B6 RID: 13494
 	public StalkerYandereScript Yandere;
 
-	// Token: 0x040034AC RID: 13484
+	// Token: 0x040034B7 RID: 13495
 	public SmoothLookAtScript Cat;
 
-	// Token: 0x040034AD RID: 13485
+	// Token: 0x040034B8 RID: 13496
 	public StalkerScript Stalker;
 
-	// Token: 0x040034AE RID: 13486
+	// Token: 0x040034B9 RID: 13497
 	public GameObject DomesticDispute;
 
-	// Token: 0x040034AF RID: 13487
+	// Token: 0x040034BA RID: 13498
 	public GameObject StairBlocker;
 
-	// Token: 0x040034B0 RID: 13488
+	// Token: 0x040034BB RID: 13499
 	public GameObject CatPrompt;
 
-	// Token: 0x040034B1 RID: 13489
+	// Token: 0x040034BC RID: 13500
 	public GameObject FrontDoor;
 
-	// Token: 0x040034B2 RID: 13490
+	// Token: 0x040034BD RID: 13501
 	public GameObject Button;
 
-	// Token: 0x040034B3 RID: 13491
+	// Token: 0x040034BE RID: 13502
 	public GameObject Father;
 
-	// Token: 0x040034B4 RID: 13492
+	// Token: 0x040034BF RID: 13503
 	public GameObject Mother;
 
-	// Token: 0x040034B5 RID: 13493
+	// Token: 0x040034C0 RID: 13504
 	public GameObject Lights;
 
-	// Token: 0x040034B6 RID: 13494
+	// Token: 0x040034C1 RID: 13505
 	public GameObject Fire;
 
-	// Token: 0x040034B7 RID: 13495
+	// Token: 0x040034C2 RID: 13506
 	public UILabel BagsToBurnLabel;
 
-	// Token: 0x040034B8 RID: 13496
+	// Token: 0x040034C3 RID: 13507
 	public UILabel Label;
 
-	// Token: 0x040034B9 RID: 13497
+	// Token: 0x040034C4 RID: 13508
 	public Transform KitchenDoor;
 
-	// Token: 0x040034BA RID: 13498
+	// Token: 0x040034C5 RID: 13509
 	public Transform CatCage;
 
-	// Token: 0x040034BB RID: 13499
+	// Token: 0x040034C6 RID: 13510
 	public Transform Door;
 
-	// Token: 0x040034BC RID: 13500
+	// Token: 0x040034C7 RID: 13511
 	public AudioSource FireAudio;
 
-	// Token: 0x040034BD RID: 13501
+	// Token: 0x040034C8 RID: 13512
 	public AudioSource MyAudio;
 
-	// Token: 0x040034BE RID: 13502
+	// Token: 0x040034C9 RID: 13513
 	public AudioClip SwingOpen;
 
-	// Token: 0x040034BF RID: 13503
+	// Token: 0x040034CA RID: 13514
 	public AudioClip PowerDown;
 
-	// Token: 0x040034C0 RID: 13504
+	// Token: 0x040034CB RID: 13515
 	public UISprite MySprite;
 
-	// Token: 0x040034C1 RID: 13505
+	// Token: 0x040034CC RID: 13516
 	public Renderer Darkness;
 
-	// Token: 0x040034C2 RID: 13506
+	// Token: 0x040034CD RID: 13517
 	public bool ServedPurpose;
 
-	// Token: 0x040034C3 RID: 13507
+	// Token: 0x040034CE RID: 13518
 	public bool Eighties;
 
-	// Token: 0x040034C4 RID: 13508
+	// Token: 0x040034CF RID: 13519
 	public bool OpenDoor;
 
-	// Token: 0x040034C5 RID: 13509
+	// Token: 0x040034D0 RID: 13520
 	public bool FadeOut;
 
-	// Token: 0x040034C6 RID: 13510
+	// Token: 0x040034D1 RID: 13521
 	public bool Open;
 
-	// Token: 0x040034C7 RID: 13511
+	// Token: 0x040034D2 RID: 13522
 	public float TargetRotation = 5.5f;
 
-	// Token: 0x040034C8 RID: 13512
+	// Token: 0x040034D3 RID: 13523
 	public float MaximumDistance = 5f;
 
-	// Token: 0x040034C9 RID: 13513
+	// Token: 0x040034D4 RID: 13524
 	public float MinimumDistance = 2f;
 
-	// Token: 0x040034CA RID: 13514
+	// Token: 0x040034D5 RID: 13525
 	public float Rotation;
 
-	// Token: 0x040034CB RID: 13515
+	// Token: 0x040034D6 RID: 13526
 	public float Alpha;
 
-	// Token: 0x040034CC RID: 13516
+	// Token: 0x040034D7 RID: 13527
 	public float Speed;
 
-	// Token: 0x040034CD RID: 13517
+	// Token: 0x040034D8 RID: 13528
 	public int BagsToBurn;
 
-	// Token: 0x040034CE RID: 13518
+	// Token: 0x040034D9 RID: 13529
 	public int BagID;
 
-	// Token: 0x040034CF RID: 13519
+	// Token: 0x040034DA RID: 13530
 	public int ID;
 }

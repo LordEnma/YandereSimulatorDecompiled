@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200031E RID: 798
 public class HomeDarknessScript : MonoBehaviour
 {
-	// Token: 0x0600188A RID: 6282 RVA: 0x000EDB68 File Offset: 0x000EBD68
+	// Token: 0x0600188E RID: 6286 RVA: 0x000EDE08 File Offset: 0x000EC008
 	private void Start()
 	{
 		if (GameGlobals.LoveSick)
@@ -15,7 +15,7 @@ public class HomeDarknessScript : MonoBehaviour
 		this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, 1f);
 	}
 
-	// Token: 0x0600188B RID: 6283 RVA: 0x000EDBE8 File Offset: 0x000EBDE8
+	// Token: 0x0600188F RID: 6287 RVA: 0x000EDE88 File Offset: 0x000EC088
 	private void Update()
 	{
 		if (this.FadeOut)
@@ -176,7 +176,7 @@ public class HomeDarknessScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600188C RID: 6284 RVA: 0x000EE1E0 File Offset: 0x000EC3E0
+	// Token: 0x06001890 RID: 6288 RVA: 0x000EE480 File Offset: 0x000EC680
 	private void CheckForOsanaThursday()
 	{
 		if (this.InputDevice.Type == InputDeviceType.Gamepad)
@@ -208,33 +208,33 @@ public class HomeDarknessScript : MonoBehaviour
 		SceneManager.LoadScene("LoadingScene");
 	}
 
-	// Token: 0x040024B3 RID: 9395
+	// Token: 0x040024BB RID: 9403
 	public HomeVideoGamesScript HomeVideoGames;
 
-	// Token: 0x040024B4 RID: 9396
+	// Token: 0x040024BC RID: 9404
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x040024B5 RID: 9397
+	// Token: 0x040024BD RID: 9405
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x040024B6 RID: 9398
+	// Token: 0x040024BE RID: 9406
 	public HomeExitScript HomeExit;
 
-	// Token: 0x040024B7 RID: 9399
+	// Token: 0x040024BF RID: 9407
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x040024B8 RID: 9400
+	// Token: 0x040024C0 RID: 9408
 	public UILabel BasementLabel;
 
-	// Token: 0x040024B9 RID: 9401
+	// Token: 0x040024C1 RID: 9409
 	public UISprite Sprite;
 
-	// Token: 0x040024BA RID: 9402
+	// Token: 0x040024C2 RID: 9410
 	public bool Cyberstalking;
 
-	// Token: 0x040024BB RID: 9403
+	// Token: 0x040024C3 RID: 9411
 	public bool FadeSlow;
 
-	// Token: 0x040024BC RID: 9404
+	// Token: 0x040024C4 RID: 9412
 	public bool FadeOut;
 }

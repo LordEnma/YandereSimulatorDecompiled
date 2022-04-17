@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200032A RID: 810
 public class HomeVideoCameraScript : MonoBehaviour
 {
-	// Token: 0x060018C1 RID: 6337 RVA: 0x000F38A8 File Offset: 0x000F1AA8
+	// Token: 0x060018C5 RID: 6341 RVA: 0x000F3B3C File Offset: 0x000F1D3C
 	private void Update()
 	{
 		if (!this.TextSet && !HomeGlobals.Night)
@@ -46,33 +46,33 @@ public class HomeVideoCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040025BB RID: 9659
+	// Token: 0x040025C3 RID: 9667
 	public HomePrisonerChanScript HomePrisonerChan;
 
-	// Token: 0x040025BC RID: 9660
+	// Token: 0x040025C4 RID: 9668
 	public HomeDarknessScript HomeDarkness;
 
-	// Token: 0x040025BD RID: 9661
+	// Token: 0x040025C5 RID: 9669
 	public HomePrisonerScript HomePrisoner;
 
-	// Token: 0x040025BE RID: 9662
+	// Token: 0x040025C6 RID: 9670
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x040025BF RID: 9663
+	// Token: 0x040025C7 RID: 9671
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x040025C0 RID: 9664
+	// Token: 0x040025C8 RID: 9672
 	public PromptScript Prompt;
 
-	// Token: 0x040025C1 RID: 9665
+	// Token: 0x040025C9 RID: 9673
 	public UILabel Subtitle;
 
-	// Token: 0x040025C2 RID: 9666
+	// Token: 0x040025CA RID: 9674
 	public bool AudioPlayed;
 
-	// Token: 0x040025C3 RID: 9667
+	// Token: 0x040025CB RID: 9675
 	public bool TextSet;
 
-	// Token: 0x040025C4 RID: 9668
+	// Token: 0x040025CC RID: 9676
 	public float Timer;
 }

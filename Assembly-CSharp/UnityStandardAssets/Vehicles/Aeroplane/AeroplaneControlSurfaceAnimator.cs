@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	// Token: 0x0200053A RID: 1338
 	public class AeroplaneControlSurfaceAnimator : MonoBehaviour
 	{
-		// Token: 0x060021FA RID: 8698 RVA: 0x001F1468 File Offset: 0x001EF668
+		// Token: 0x06002201 RID: 8705 RVA: 0x001F1EC4 File Offset: 0x001F00C4
 		private void Start()
 		{
 			this.m_Plane = base.GetComponent<AeroplaneController>();
@@ -16,7 +16,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			}
 		}
 
-		// Token: 0x060021FB RID: 8699 RVA: 0x001F14AC File Offset: 0x001EF6AC
+		// Token: 0x06002202 RID: 8706 RVA: 0x001F1F08 File Offset: 0x001F0108
 		private void Update()
 		{
 			foreach (AeroplaneControlSurfaceAnimator.ControlSurface controlSurface in this.m_ControlSurfaces)
@@ -59,53 +59,53 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			}
 		}
 
-		// Token: 0x060021FC RID: 8700 RVA: 0x001F160C File Offset: 0x001EF80C
+		// Token: 0x06002203 RID: 8707 RVA: 0x001F2068 File Offset: 0x001F0268
 		private void RotateSurface(AeroplaneControlSurfaceAnimator.ControlSurface surface, Quaternion rotation)
 		{
 			Quaternion b = surface.originalLocalRotation * rotation;
 			surface.transform.localRotation = Quaternion.Slerp(surface.transform.localRotation, b, this.m_Smoothing * Time.deltaTime);
 		}
 
-		// Token: 0x04004A9D RID: 19101
+		// Token: 0x04004AAF RID: 19119
 		[SerializeField]
 		private float m_Smoothing = 5f;
 
-		// Token: 0x04004A9E RID: 19102
+		// Token: 0x04004AB0 RID: 19120
 		[SerializeField]
 		private AeroplaneControlSurfaceAnimator.ControlSurface[] m_ControlSurfaces;
 
-		// Token: 0x04004A9F RID: 19103
+		// Token: 0x04004AB1 RID: 19121
 		private AeroplaneController m_Plane;
 
 		// Token: 0x0200068F RID: 1679
 		[Serializable]
 		public class ControlSurface
 		{
-			// Token: 0x0400509A RID: 20634
+			// Token: 0x040050AC RID: 20652
 			public Transform transform;
 
-			// Token: 0x0400509B RID: 20635
+			// Token: 0x040050AD RID: 20653
 			public float amount;
 
-			// Token: 0x0400509C RID: 20636
+			// Token: 0x040050AE RID: 20654
 			public AeroplaneControlSurfaceAnimator.ControlSurface.Type type;
 
-			// Token: 0x0400509D RID: 20637
+			// Token: 0x040050AF RID: 20655
 			[HideInInspector]
 			public Quaternion originalLocalRotation;
 
 			// Token: 0x020006F7 RID: 1783
 			public enum Type
 			{
-				// Token: 0x040052A8 RID: 21160
+				// Token: 0x040052BA RID: 21178
 				Aileron,
-				// Token: 0x040052A9 RID: 21161
+				// Token: 0x040052BB RID: 21179
 				Elevator,
-				// Token: 0x040052AA RID: 21162
+				// Token: 0x040052BC RID: 21180
 				Rudder,
-				// Token: 0x040052AB RID: 21163
+				// Token: 0x040052BD RID: 21181
 				RuddervatorNegative,
-				// Token: 0x040052AC RID: 21164
+				// Token: 0x040052BE RID: 21182
 				RuddervatorPositive
 			}
 		}

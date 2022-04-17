@@ -9,7 +9,7 @@ namespace MaidDereMinigame
 	// Token: 0x020005BC RID: 1468
 	public class TipCard : MonoBehaviour
 	{
-		// Token: 0x060024F4 RID: 9460 RVA: 0x00200C10 File Offset: 0x001FEE10
+		// Token: 0x060024FB RID: 9467 RVA: 0x0020166C File Offset: 0x001FF86C
 		public void SetTip(float tip)
 		{
 			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
@@ -52,11 +52,11 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x04004D42 RID: 19778
+		// Token: 0x04004D54 RID: 19796
 		[Reorderable]
 		public SpriteRenderers digits;
 
-		// Token: 0x04004D43 RID: 19779
+		// Token: 0x04004D55 RID: 19797
 		public SpriteRenderer dollarSign;
 	}
 }

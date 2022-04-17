@@ -5,13 +5,13 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Button Message (Legacy)")]
 public class UIButtonMessage : MonoBehaviour
 {
-	// Token: 0x06000136 RID: 310 RVA: 0x00014524 File Offset: 0x00012724
+	// Token: 0x06000136 RID: 310 RVA: 0x000145DC File Offset: 0x000127DC
 	private void Start()
 	{
 		this.mStarted = true;
 	}
 
-	// Token: 0x06000137 RID: 311 RVA: 0x0001452D File Offset: 0x0001272D
+	// Token: 0x06000137 RID: 311 RVA: 0x000145E5 File Offset: 0x000127E5
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -20,7 +20,7 @@ public class UIButtonMessage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000138 RID: 312 RVA: 0x00014548 File Offset: 0x00012748
+	// Token: 0x06000138 RID: 312 RVA: 0x00014600 File Offset: 0x00012800
 	private void OnHover(bool isOver)
 	{
 		if (base.enabled && ((isOver && this.trigger == UIButtonMessage.Trigger.OnMouseOver) || (!isOver && this.trigger == UIButtonMessage.Trigger.OnMouseOut)))
@@ -29,7 +29,7 @@ public class UIButtonMessage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000139 RID: 313 RVA: 0x00014570 File Offset: 0x00012770
+	// Token: 0x06000139 RID: 313 RVA: 0x00014628 File Offset: 0x00012828
 	private void OnPress(bool isPressed)
 	{
 		if (base.enabled && ((isPressed && this.trigger == UIButtonMessage.Trigger.OnPress) || (!isPressed && this.trigger == UIButtonMessage.Trigger.OnRelease)))
@@ -38,7 +38,7 @@ public class UIButtonMessage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600013A RID: 314 RVA: 0x00014598 File Offset: 0x00012798
+	// Token: 0x0600013A RID: 314 RVA: 0x00014650 File Offset: 0x00012850
 	private void OnSelect(bool isSelected)
 	{
 		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
@@ -47,7 +47,7 @@ public class UIButtonMessage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600013B RID: 315 RVA: 0x000145B4 File Offset: 0x000127B4
+	// Token: 0x0600013B RID: 315 RVA: 0x0001466C File Offset: 0x0001286C
 	private void OnClick()
 	{
 		if (base.enabled && this.trigger == UIButtonMessage.Trigger.OnClick)
@@ -56,7 +56,7 @@ public class UIButtonMessage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600013C RID: 316 RVA: 0x000145CC File Offset: 0x000127CC
+	// Token: 0x0600013C RID: 316 RVA: 0x00014684 File Offset: 0x00012884
 	private void OnDoubleClick()
 	{
 		if (base.enabled && this.trigger == UIButtonMessage.Trigger.OnDoubleClick)
@@ -65,7 +65,7 @@ public class UIButtonMessage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600013D RID: 317 RVA: 0x000145E8 File Offset: 0x000127E8
+	// Token: 0x0600013D RID: 317 RVA: 0x000146A0 File Offset: 0x000128A0
 	private void Send()
 	{
 		if (string.IsNullOrEmpty(this.functionName))
@@ -110,17 +110,17 @@ public class UIButtonMessage : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Trigger
 	{
-		// Token: 0x04004DD4 RID: 19924
+		// Token: 0x04004DE6 RID: 19942
 		OnClick,
-		// Token: 0x04004DD5 RID: 19925
+		// Token: 0x04004DE7 RID: 19943
 		OnMouseOver,
-		// Token: 0x04004DD6 RID: 19926
+		// Token: 0x04004DE8 RID: 19944
 		OnMouseOut,
-		// Token: 0x04004DD7 RID: 19927
+		// Token: 0x04004DE9 RID: 19945
 		OnPress,
-		// Token: 0x04004DD8 RID: 19928
+		// Token: 0x04004DEA RID: 19946
 		OnRelease,
-		// Token: 0x04004DD9 RID: 19929
+		// Token: 0x04004DEB RID: 19947
 		OnDoubleClick
 	}
 }

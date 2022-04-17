@@ -8,7 +8,7 @@ using UnityEngine;
 public class UITextList : MonoBehaviour
 {
 	// Token: 0x170001CA RID: 458
-	// (get) Token: 0x060008B2 RID: 2226 RVA: 0x0004784C File Offset: 0x00045A4C
+	// (get) Token: 0x060008B2 RID: 2226 RVA: 0x00047904 File Offset: 0x00045B04
 	protected BetterList<UITextList.Paragraph> paragraphs
 	{
 		get
@@ -23,7 +23,7 @@ public class UITextList : MonoBehaviour
 	}
 
 	// Token: 0x170001CB RID: 459
-	// (get) Token: 0x060008B3 RID: 2227 RVA: 0x000478A0 File Offset: 0x00045AA0
+	// (get) Token: 0x060008B3 RID: 2227 RVA: 0x00047958 File Offset: 0x00045B58
 	public int paragraphCount
 	{
 		get
@@ -33,7 +33,7 @@ public class UITextList : MonoBehaviour
 	}
 
 	// Token: 0x170001CC RID: 460
-	// (get) Token: 0x060008B4 RID: 2228 RVA: 0x000478AD File Offset: 0x00045AAD
+	// (get) Token: 0x060008B4 RID: 2228 RVA: 0x00047965 File Offset: 0x00045B65
 	public bool isValid
 	{
 		get
@@ -43,8 +43,8 @@ public class UITextList : MonoBehaviour
 	}
 
 	// Token: 0x170001CD RID: 461
-	// (get) Token: 0x060008B5 RID: 2229 RVA: 0x000478D0 File Offset: 0x00045AD0
-	// (set) Token: 0x060008B6 RID: 2230 RVA: 0x000478D8 File Offset: 0x00045AD8
+	// (get) Token: 0x060008B5 RID: 2229 RVA: 0x00047988 File Offset: 0x00045B88
+	// (set) Token: 0x060008B6 RID: 2230 RVA: 0x00047990 File Offset: 0x00045B90
 	public float scrollValue
 	{
 		get
@@ -68,7 +68,7 @@ public class UITextList : MonoBehaviour
 	}
 
 	// Token: 0x170001CE RID: 462
-	// (get) Token: 0x060008B7 RID: 2231 RVA: 0x00047926 File Offset: 0x00045B26
+	// (get) Token: 0x060008B7 RID: 2231 RVA: 0x000479DE File Offset: 0x00045BDE
 	protected float lineHeight
 	{
 		get
@@ -82,7 +82,7 @@ public class UITextList : MonoBehaviour
 	}
 
 	// Token: 0x170001CF RID: 463
-	// (get) Token: 0x060008B8 RID: 2232 RVA: 0x00047954 File Offset: 0x00045B54
+	// (get) Token: 0x060008B8 RID: 2232 RVA: 0x00047A0C File Offset: 0x00045C0C
 	protected int scrollHeight
 	{
 		get
@@ -96,14 +96,14 @@ public class UITextList : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008B9 RID: 2233 RVA: 0x00047992 File Offset: 0x00045B92
+	// Token: 0x060008B9 RID: 2233 RVA: 0x00047A4A File Offset: 0x00045C4A
 	public void Clear()
 	{
 		this.paragraphs.Clear();
 		this.UpdateVisibleText();
 	}
 
-	// Token: 0x060008BA RID: 2234 RVA: 0x000479A8 File Offset: 0x00045BA8
+	// Token: 0x060008BA RID: 2234 RVA: 0x00047A60 File Offset: 0x00045C60
 	private void Start()
 	{
 		if (this.textLabel == null)
@@ -125,7 +125,7 @@ public class UITextList : MonoBehaviour
 		this.scrollValue = 0f;
 	}
 
-	// Token: 0x060008BB RID: 2235 RVA: 0x00047A3E File Offset: 0x00045C3E
+	// Token: 0x060008BB RID: 2235 RVA: 0x00047AF6 File Offset: 0x00045CF6
 	private void Update()
 	{
 		if (this.isValid && (this.textLabel.width != this.mLastWidth || this.textLabel.height != this.mLastHeight))
@@ -134,7 +134,7 @@ public class UITextList : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008BC RID: 2236 RVA: 0x00047A74 File Offset: 0x00045C74
+	// Token: 0x060008BC RID: 2236 RVA: 0x00047B2C File Offset: 0x00045D2C
 	public void OnScroll(float val)
 	{
 		int scrollHeight = this.scrollHeight;
@@ -145,7 +145,7 @@ public class UITextList : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008BD RID: 2237 RVA: 0x00047AA8 File Offset: 0x00045CA8
+	// Token: 0x060008BD RID: 2237 RVA: 0x00047B60 File Offset: 0x00045D60
 	public void OnDrag(Vector2 delta)
 	{
 		int scrollHeight = this.scrollHeight;
@@ -156,20 +156,20 @@ public class UITextList : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008BE RID: 2238 RVA: 0x00047ADE File Offset: 0x00045CDE
+	// Token: 0x060008BE RID: 2238 RVA: 0x00047B96 File Offset: 0x00045D96
 	private void OnScrollBar()
 	{
 		this.mScroll = UIProgressBar.current.value;
 		this.UpdateVisibleText();
 	}
 
-	// Token: 0x060008BF RID: 2239 RVA: 0x00047AF6 File Offset: 0x00045CF6
+	// Token: 0x060008BF RID: 2239 RVA: 0x00047BAE File Offset: 0x00045DAE
 	public void Add(string text)
 	{
 		this.Add(text, true);
 	}
 
-	// Token: 0x060008C0 RID: 2240 RVA: 0x00047B00 File Offset: 0x00045D00
+	// Token: 0x060008C0 RID: 2240 RVA: 0x00047BB8 File Offset: 0x00045DB8
 	protected void Add(string text, bool updateVisible)
 	{
 		UITextList.Paragraph paragraph;
@@ -187,7 +187,7 @@ public class UITextList : MonoBehaviour
 		this.Rebuild();
 	}
 
-	// Token: 0x060008C1 RID: 2241 RVA: 0x00047B60 File Offset: 0x00045D60
+	// Token: 0x060008C1 RID: 2241 RVA: 0x00047C18 File Offset: 0x00045E18
 	protected void Rebuild()
 	{
 		if (this.isValid)
@@ -229,7 +229,7 @@ public class UITextList : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008C2 RID: 2242 RVA: 0x00047CBC File Offset: 0x00045EBC
+	// Token: 0x060008C2 RID: 2242 RVA: 0x00047D74 File Offset: 0x00045F74
 	protected void UpdateVisibleText()
 	{
 		if (this.isValid)
@@ -318,19 +318,19 @@ public class UITextList : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Style
 	{
-		// Token: 0x04004F47 RID: 20295
+		// Token: 0x04004F59 RID: 20313
 		Text,
-		// Token: 0x04004F48 RID: 20296
+		// Token: 0x04004F5A RID: 20314
 		Chat
 	}
 
 	// Token: 0x0200064F RID: 1615
 	protected class Paragraph
 	{
-		// Token: 0x04004F49 RID: 20297
+		// Token: 0x04004F5B RID: 20315
 		public string text;
 
-		// Token: 0x04004F4A RID: 20298
+		// Token: 0x04004F5C RID: 20316
 		public string[] lines;
 	}
 }

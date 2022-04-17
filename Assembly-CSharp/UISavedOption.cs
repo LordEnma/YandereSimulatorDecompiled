@@ -6,7 +6,7 @@ using UnityEngine;
 public class UISavedOption : MonoBehaviour
 {
 	// Token: 0x17000033 RID: 51
-	// (get) Token: 0x0600027C RID: 636 RVA: 0x0001BC96 File Offset: 0x00019E96
+	// (get) Token: 0x0600027C RID: 636 RVA: 0x0001BD4E File Offset: 0x00019F4E
 	private string key
 	{
 		get
@@ -19,7 +19,7 @@ public class UISavedOption : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600027D RID: 637 RVA: 0x0001BCBC File Offset: 0x00019EBC
+	// Token: 0x0600027D RID: 637 RVA: 0x0001BD74 File Offset: 0x00019F74
 	private void Awake()
 	{
 		this.mList = base.GetComponent<UIPopupList>();
@@ -27,7 +27,7 @@ public class UISavedOption : MonoBehaviour
 		this.mSlider = base.GetComponent<UIProgressBar>();
 	}
 
-	// Token: 0x0600027E RID: 638 RVA: 0x0001BCE4 File Offset: 0x00019EE4
+	// Token: 0x0600027E RID: 638 RVA: 0x0001BD9C File Offset: 0x00019F9C
 	private void OnEnable()
 	{
 		if (this.mList != null)
@@ -67,7 +67,7 @@ public class UISavedOption : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600027F RID: 639 RVA: 0x0001BE20 File Offset: 0x0001A020
+	// Token: 0x0600027F RID: 639 RVA: 0x0001BED8 File Offset: 0x0001A0D8
 	private void OnDisable()
 	{
 		if (this.mCheck != null)
@@ -100,19 +100,19 @@ public class UISavedOption : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000280 RID: 640 RVA: 0x0001BEE7 File Offset: 0x0001A0E7
+	// Token: 0x06000280 RID: 640 RVA: 0x0001BF9F File Offset: 0x0001A19F
 	public void SaveSelection()
 	{
 		PlayerPrefs.SetString(this.key, UIPopupList.current.value);
 	}
 
-	// Token: 0x06000281 RID: 641 RVA: 0x0001BEFE File Offset: 0x0001A0FE
+	// Token: 0x06000281 RID: 641 RVA: 0x0001BFB6 File Offset: 0x0001A1B6
 	public void SaveState()
 	{
 		PlayerPrefs.SetInt(this.key, UIToggle.current.value ? 1 : 0);
 	}
 
-	// Token: 0x06000282 RID: 642 RVA: 0x0001BF1B File Offset: 0x0001A11B
+	// Token: 0x06000282 RID: 642 RVA: 0x0001BFD3 File Offset: 0x0001A1D3
 	public void SaveProgress()
 	{
 		PlayerPrefs.SetFloat(this.key, UIProgressBar.current.value);

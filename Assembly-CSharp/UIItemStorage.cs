@@ -7,7 +7,7 @@ using UnityEngine;
 public class UIItemStorage : MonoBehaviour
 {
 	// Token: 0x17000003 RID: 3
-	// (get) Token: 0x06000098 RID: 152 RVA: 0x000116BF File Offset: 0x0000F8BF
+	// (get) Token: 0x06000098 RID: 152 RVA: 0x00011777 File Offset: 0x0000F977
 	public List<InvGameItem> items
 	{
 		get
@@ -20,7 +20,7 @@ public class UIItemStorage : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000099 RID: 153 RVA: 0x000116E8 File Offset: 0x0000F8E8
+	// Token: 0x06000099 RID: 153 RVA: 0x000117A0 File Offset: 0x0000F9A0
 	public InvGameItem GetItem(int slot)
 	{
 		if (slot >= this.items.Count)
@@ -30,7 +30,7 @@ public class UIItemStorage : MonoBehaviour
 		return this.mItems[slot];
 	}
 
-	// Token: 0x0600009A RID: 154 RVA: 0x00011706 File Offset: 0x0000F906
+	// Token: 0x0600009A RID: 154 RVA: 0x000117BE File Offset: 0x0000F9BE
 	public InvGameItem Replace(int slot, InvGameItem item)
 	{
 		if (slot < this.maxItemCount)
@@ -42,7 +42,7 @@ public class UIItemStorage : MonoBehaviour
 		return item;
 	}
 
-	// Token: 0x0600009B RID: 155 RVA: 0x0001172C File Offset: 0x0000F92C
+	// Token: 0x0600009B RID: 155 RVA: 0x000117E4 File Offset: 0x0000F9E4
 	private void Start()
 	{
 		if (this.template != null)

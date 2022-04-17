@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000DF RID: 223
 public class BeatEmUpEnemyScript : MonoBehaviour
 {
-	// Token: 0x06000A14 RID: 2580 RVA: 0x000573B4 File Offset: 0x000555B4
+	// Token: 0x06000A14 RID: 2580 RVA: 0x0005746C File Offset: 0x0005566C
 	public void DisableWeapon()
 	{
 		for (int i = 1; i < this.Weapons.Length; i++)
@@ -13,7 +13,7 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A15 RID: 2581 RVA: 0x000573E4 File Offset: 0x000555E4
+	// Token: 0x06000A15 RID: 2581 RVA: 0x0005749C File Offset: 0x0005569C
 	public void Start()
 	{
 		Physics.IgnoreLayerCollision(9, 9);
@@ -32,7 +32,7 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A16 RID: 2582 RVA: 0x000574C8 File Offset: 0x000556C8
+	// Token: 0x06000A16 RID: 2582 RVA: 0x00057580 File Offset: 0x00055780
 	private void Update()
 	{
 		if (!this.StraightSpecial && !this.ArcSpecial)
@@ -236,7 +236,7 @@ public class BeatEmUpEnemyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A17 RID: 2583 RVA: 0x00057E4C File Offset: 0x0005604C
+	// Token: 0x06000A17 RID: 2583 RVA: 0x00057F04 File Offset: 0x00056104
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Health > 0f && other.gameObject.layer == 18)

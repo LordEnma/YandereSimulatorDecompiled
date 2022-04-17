@@ -10,8 +10,8 @@ using UnityEngine;
 public static class NGUITools
 {
 	// Token: 0x17000064 RID: 100
-	// (get) Token: 0x060003DB RID: 987 RVA: 0x00028700 File Offset: 0x00026900
-	// (set) Token: 0x060003DC RID: 988 RVA: 0x00028728 File Offset: 0x00026928
+	// (get) Token: 0x060003DB RID: 987 RVA: 0x000287B8 File Offset: 0x000269B8
+	// (set) Token: 0x060003DC RID: 988 RVA: 0x000287E0 File Offset: 0x000269E0
 	public static float soundVolume
 	{
 		get
@@ -35,7 +35,7 @@ public static class NGUITools
 	}
 
 	// Token: 0x17000065 RID: 101
-	// (get) Token: 0x060003DD RID: 989 RVA: 0x00028749 File Offset: 0x00026949
+	// (get) Token: 0x060003DD RID: 989 RVA: 0x00028801 File Offset: 0x00026A01
 	public static bool fileAccess
 	{
 		get
@@ -44,19 +44,19 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x060003DE RID: 990 RVA: 0x00028757 File Offset: 0x00026957
+	// Token: 0x060003DE RID: 990 RVA: 0x0002880F File Offset: 0x00026A0F
 	public static AudioSource PlaySound(AudioClip clip)
 	{
 		return NGUITools.PlaySound(clip, 1f, 1f);
 	}
 
-	// Token: 0x060003DF RID: 991 RVA: 0x00028769 File Offset: 0x00026969
+	// Token: 0x060003DF RID: 991 RVA: 0x00028821 File Offset: 0x00026A21
 	public static AudioSource PlaySound(AudioClip clip, float volume)
 	{
 		return NGUITools.PlaySound(clip, volume, 1f);
 	}
 
-	// Token: 0x060003E0 RID: 992 RVA: 0x00028778 File Offset: 0x00026978
+	// Token: 0x060003E0 RID: 992 RVA: 0x00028830 File Offset: 0x00026A30
 	public static AudioSource PlaySound(AudioClip clip, float volume, float pitch)
 	{
 		float time = RealTime.time;
@@ -115,7 +115,7 @@ public static class NGUITools
 		return null;
 	}
 
-	// Token: 0x060003E1 RID: 993 RVA: 0x00028907 File Offset: 0x00026B07
+	// Token: 0x060003E1 RID: 993 RVA: 0x000289BF File Offset: 0x00026BBF
 	public static int RandomRange(int min, int max)
 	{
 		if (min == max)
@@ -125,7 +125,7 @@ public static class NGUITools
 		return UnityEngine.Random.Range(min, max + 1);
 	}
 
-	// Token: 0x060003E2 RID: 994 RVA: 0x00028918 File Offset: 0x00026B18
+	// Token: 0x060003E2 RID: 994 RVA: 0x000289D0 File Offset: 0x00026BD0
 	public static string GetHierarchy(GameObject obj)
 	{
 		if (obj == null)
@@ -141,13 +141,13 @@ public static class NGUITools
 		return text;
 	}
 
-	// Token: 0x060003E3 RID: 995 RVA: 0x00028975 File Offset: 0x00026B75
+	// Token: 0x060003E3 RID: 995 RVA: 0x00028A2D File Offset: 0x00026C2D
 	public static T[] FindActive<T>() where T : Component
 	{
 		return UnityEngine.Object.FindObjectsOfType(typeof(T)) as T[];
 	}
 
-	// Token: 0x060003E4 RID: 996 RVA: 0x0002898C File Offset: 0x00026B8C
+	// Token: 0x060003E4 RID: 996 RVA: 0x00028A44 File Offset: 0x00026C44
 	public static Camera FindCameraForLayer(int layer)
 	{
 		int num = 1 << layer;
@@ -178,13 +178,13 @@ public static class NGUITools
 		return null;
 	}
 
-	// Token: 0x060003E5 RID: 997 RVA: 0x00028A3E File Offset: 0x00026C3E
+	// Token: 0x060003E5 RID: 997 RVA: 0x00028AF6 File Offset: 0x00026CF6
 	public static void AddWidgetCollider(GameObject go)
 	{
 		NGUITools.AddWidgetCollider(go, false);
 	}
 
-	// Token: 0x060003E6 RID: 998 RVA: 0x00028A48 File Offset: 0x00026C48
+	// Token: 0x060003E6 RID: 998 RVA: 0x00028B00 File Offset: 0x00026D00
 	public static void AddWidgetCollider(GameObject go, bool considerInactive)
 	{
 		if (go != null)
@@ -230,13 +230,13 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x060003E7 RID: 999 RVA: 0x00028B28 File Offset: 0x00026D28
+	// Token: 0x060003E7 RID: 999 RVA: 0x00028BE0 File Offset: 0x00026DE0
 	public static void UpdateWidgetCollider(GameObject go)
 	{
 		NGUITools.UpdateWidgetCollider(go, false);
 	}
 
-	// Token: 0x060003E8 RID: 1000 RVA: 0x00028B34 File Offset: 0x00026D34
+	// Token: 0x060003E8 RID: 1000 RVA: 0x00028BEC File Offset: 0x00026DEC
 	public static void UpdateWidgetCollider(GameObject go, bool considerInactive)
 	{
 		if (go != null)
@@ -255,7 +255,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x060003E9 RID: 1001 RVA: 0x00028B7C File Offset: 0x00026D7C
+	// Token: 0x060003E9 RID: 1001 RVA: 0x00028C34 File Offset: 0x00026E34
 	public static void UpdateWidgetCollider(BoxCollider box, bool considerInactive)
 	{
 		if (box != null)
@@ -286,7 +286,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x060003EA RID: 1002 RVA: 0x00028CD0 File Offset: 0x00026ED0
+	// Token: 0x060003EA RID: 1002 RVA: 0x00028D88 File Offset: 0x00026F88
 	public static void UpdateWidgetCollider(UIWidget w)
 	{
 		if (w == null)
@@ -302,7 +302,7 @@ public static class NGUITools
 		NGUITools.UpdateWidgetCollider(w, w.GetComponent<BoxCollider2D>());
 	}
 
-	// Token: 0x060003EB RID: 1003 RVA: 0x00028D0C File Offset: 0x00026F0C
+	// Token: 0x060003EB RID: 1003 RVA: 0x00028DC4 File Offset: 0x00026FC4
 	public static void UpdateWidgetCollider(UIWidget w, BoxCollider box)
 	{
 		if (box != null && w != null)
@@ -336,7 +336,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x060003EC RID: 1004 RVA: 0x00028E74 File Offset: 0x00027074
+	// Token: 0x060003EC RID: 1004 RVA: 0x00028F2C File Offset: 0x0002712C
 	public static void UpdateWidgetCollider(UIWidget w, BoxCollider2D box)
 	{
 		if (box != null && w != null)
@@ -370,7 +370,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x060003ED RID: 1005 RVA: 0x00028FE8 File Offset: 0x000271E8
+	// Token: 0x060003ED RID: 1005 RVA: 0x000290A0 File Offset: 0x000272A0
 	public static void UpdateWidgetCollider(BoxCollider2D box, bool considerInactive)
 	{
 		if (box != null)
@@ -416,7 +416,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x060003EE RID: 1006 RVA: 0x000291B4 File Offset: 0x000273B4
+	// Token: 0x060003EE RID: 1006 RVA: 0x0002926C File Offset: 0x0002746C
 	public static string GetTypeName<T>()
 	{
 		string text = typeof(T).ToString();
@@ -431,7 +431,7 @@ public static class NGUITools
 		return text;
 	}
 
-	// Token: 0x060003EF RID: 1007 RVA: 0x00029200 File Offset: 0x00027400
+	// Token: 0x060003EF RID: 1007 RVA: 0x000292B8 File Offset: 0x000274B8
 	public static string GetTypeName(UnityEngine.Object obj)
 	{
 		if (obj == null)
@@ -450,40 +450,40 @@ public static class NGUITools
 		return text;
 	}
 
-	// Token: 0x060003F0 RID: 1008 RVA: 0x00029256 File Offset: 0x00027456
+	// Token: 0x060003F0 RID: 1008 RVA: 0x0002930E File Offset: 0x0002750E
 	public static void RegisterUndo(UnityEngine.Object obj, string name)
 	{
 	}
 
-	// Token: 0x060003F1 RID: 1009 RVA: 0x00029258 File Offset: 0x00027458
+	// Token: 0x060003F1 RID: 1009 RVA: 0x00029310 File Offset: 0x00027510
 	public static void SetDirty(UnityEngine.Object obj, string undoName = "last change")
 	{
 	}
 
-	// Token: 0x060003F2 RID: 1010 RVA: 0x0002925A File Offset: 0x0002745A
+	// Token: 0x060003F2 RID: 1010 RVA: 0x00029312 File Offset: 0x00027512
 	public static void CheckForPrefabStage(GameObject gameObject)
 	{
 	}
 
-	// Token: 0x060003F3 RID: 1011 RVA: 0x0002925C File Offset: 0x0002745C
+	// Token: 0x060003F3 RID: 1011 RVA: 0x00029314 File Offset: 0x00027514
 	public static GameObject AddChild(GameObject parent)
 	{
 		return parent.AddChild(true, -1);
 	}
 
-	// Token: 0x060003F4 RID: 1012 RVA: 0x00029266 File Offset: 0x00027466
+	// Token: 0x060003F4 RID: 1012 RVA: 0x0002931E File Offset: 0x0002751E
 	public static GameObject AddChild(this GameObject parent, int layer)
 	{
 		return parent.AddChild(true, layer);
 	}
 
-	// Token: 0x060003F5 RID: 1013 RVA: 0x00029270 File Offset: 0x00027470
+	// Token: 0x060003F5 RID: 1013 RVA: 0x00029328 File Offset: 0x00027528
 	public static GameObject AddChild(this GameObject parent, bool undo)
 	{
 		return parent.AddChild(undo, -1);
 	}
 
-	// Token: 0x060003F6 RID: 1014 RVA: 0x0002927C File Offset: 0x0002747C
+	// Token: 0x060003F6 RID: 1014 RVA: 0x00029334 File Offset: 0x00027534
 	public static GameObject AddChild(this GameObject parent, bool undo, int layer)
 	{
 		GameObject gameObject = new GameObject();
@@ -506,7 +506,7 @@ public static class NGUITools
 		return gameObject;
 	}
 
-	// Token: 0x060003F7 RID: 1015 RVA: 0x000292F0 File Offset: 0x000274F0
+	// Token: 0x060003F7 RID: 1015 RVA: 0x000293A8 File Offset: 0x000275A8
 	public static GameObject AddChild(this Transform parent, GameObject prefab)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(prefab, parent.transform);
@@ -519,13 +519,13 @@ public static class NGUITools
 		return gameObject;
 	}
 
-	// Token: 0x060003F8 RID: 1016 RVA: 0x0002933D File Offset: 0x0002753D
+	// Token: 0x060003F8 RID: 1016 RVA: 0x000293F5 File Offset: 0x000275F5
 	public static GameObject AddChild(this GameObject parent, GameObject prefab)
 	{
 		return parent.AddChild(prefab, -1);
 	}
 
-	// Token: 0x060003F9 RID: 1017 RVA: 0x00029348 File Offset: 0x00027548
+	// Token: 0x060003F9 RID: 1017 RVA: 0x00029400 File Offset: 0x00027600
 	public static GameObject AddChild(this GameObject parent, GameObject prefab, int layer)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(prefab, parent.transform);
@@ -552,7 +552,7 @@ public static class NGUITools
 		return gameObject;
 	}
 
-	// Token: 0x060003FA RID: 1018 RVA: 0x000293D4 File Offset: 0x000275D4
+	// Token: 0x060003FA RID: 1018 RVA: 0x0002948C File Offset: 0x0002768C
 	public static int CalculateRaycastDepth(GameObject go)
 	{
 		UIWidget component = go.GetComponent<UIWidget>();
@@ -579,7 +579,7 @@ public static class NGUITools
 		return num;
 	}
 
-	// Token: 0x060003FB RID: 1019 RVA: 0x00029438 File Offset: 0x00027638
+	// Token: 0x060003FB RID: 1019 RVA: 0x000294F0 File Offset: 0x000276F0
 	public static int CalculateNextDepth(GameObject go)
 	{
 		if (go)
@@ -598,7 +598,7 @@ public static class NGUITools
 		return 0;
 	}
 
-	// Token: 0x060003FC RID: 1020 RVA: 0x0002947C File Offset: 0x0002767C
+	// Token: 0x060003FC RID: 1020 RVA: 0x00029534 File Offset: 0x00027734
 	public static int CalculateNextDepth(GameObject go, bool ignoreChildrenWithColliders)
 	{
 		if (go && ignoreChildrenWithColliders)
@@ -621,7 +621,7 @@ public static class NGUITools
 		return NGUITools.CalculateNextDepth(go);
 	}
 
-	// Token: 0x060003FD RID: 1021 RVA: 0x000294F8 File Offset: 0x000276F8
+	// Token: 0x060003FD RID: 1021 RVA: 0x000295B0 File Offset: 0x000277B0
 	public static int AdjustDepth(GameObject go, int adjustment)
 	{
 		if (!(go != null))
@@ -658,7 +658,7 @@ public static class NGUITools
 		return 2;
 	}
 
-	// Token: 0x060003FE RID: 1022 RVA: 0x000295A4 File Offset: 0x000277A4
+	// Token: 0x060003FE RID: 1022 RVA: 0x0002965C File Offset: 0x0002785C
 	public static void BringForward(GameObject go)
 	{
 		int num = NGUITools.AdjustDepth(go, 1000);
@@ -673,7 +673,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x060003FF RID: 1023 RVA: 0x000295D0 File Offset: 0x000277D0
+	// Token: 0x060003FF RID: 1023 RVA: 0x00029688 File Offset: 0x00027888
 	public static void PushBack(GameObject go)
 	{
 		int num = NGUITools.AdjustDepth(go, -1000);
@@ -688,26 +688,26 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000400 RID: 1024 RVA: 0x000295FC File Offset: 0x000277FC
+	// Token: 0x06000400 RID: 1024 RVA: 0x000296B4 File Offset: 0x000278B4
 	public static void NormalizeDepths()
 	{
 		NGUITools.NormalizeWidgetDepths();
 		NGUITools.NormalizePanelDepths();
 	}
 
-	// Token: 0x06000401 RID: 1025 RVA: 0x00029608 File Offset: 0x00027808
+	// Token: 0x06000401 RID: 1025 RVA: 0x000296C0 File Offset: 0x000278C0
 	public static void NormalizeWidgetDepths()
 	{
 		NGUITools.NormalizeWidgetDepths(NGUITools.FindActive<UIWidget>());
 	}
 
-	// Token: 0x06000402 RID: 1026 RVA: 0x00029614 File Offset: 0x00027814
+	// Token: 0x06000402 RID: 1026 RVA: 0x000296CC File Offset: 0x000278CC
 	public static void NormalizeWidgetDepths(GameObject go)
 	{
 		NGUITools.NormalizeWidgetDepths(go.GetComponentsInChildren<UIWidget>());
 	}
 
-	// Token: 0x06000403 RID: 1027 RVA: 0x00029624 File Offset: 0x00027824
+	// Token: 0x06000403 RID: 1027 RVA: 0x000296DC File Offset: 0x000278DC
 	public static void NormalizeWidgetDepths(UIWidget[] list)
 	{
 		int num = list.Length;
@@ -732,7 +732,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000404 RID: 1028 RVA: 0x00029690 File Offset: 0x00027890
+	// Token: 0x06000404 RID: 1028 RVA: 0x00029748 File Offset: 0x00027948
 	public static void NormalizePanelDepths()
 	{
 		UIPanel[] array = NGUITools.FindActive<UIPanel>();
@@ -758,19 +758,19 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000405 RID: 1029 RVA: 0x00029706 File Offset: 0x00027906
+	// Token: 0x06000405 RID: 1029 RVA: 0x000297BE File Offset: 0x000279BE
 	public static UIPanel CreateUI(bool advanced3D)
 	{
 		return NGUITools.CreateUI(null, advanced3D, -1);
 	}
 
-	// Token: 0x06000406 RID: 1030 RVA: 0x00029710 File Offset: 0x00027910
+	// Token: 0x06000406 RID: 1030 RVA: 0x000297C8 File Offset: 0x000279C8
 	public static UIPanel CreateUI(bool advanced3D, int layer)
 	{
 		return NGUITools.CreateUI(null, advanced3D, layer);
 	}
 
-	// Token: 0x06000407 RID: 1031 RVA: 0x0002971C File Offset: 0x0002791C
+	// Token: 0x06000407 RID: 1031 RVA: 0x000297D4 File Offset: 0x000279D4
 	public static UIPanel CreateUI(Transform trans, bool advanced3D, int layer)
 	{
 		UIRoot uiroot = (trans != null) ? NGUITools.FindInParents<UIRoot>(trans.gameObject) : null;
@@ -899,7 +899,7 @@ public static class NGUITools
 		return uipanel2;
 	}
 
-	// Token: 0x06000408 RID: 1032 RVA: 0x00029A94 File Offset: 0x00027C94
+	// Token: 0x06000408 RID: 1032 RVA: 0x00029B4C File Offset: 0x00027D4C
 	public static void SetChildLayer(this Transform t, int layer)
 	{
 		for (int i = 0; i < t.childCount; i++)
@@ -910,7 +910,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000409 RID: 1033 RVA: 0x00029ACC File Offset: 0x00027CCC
+	// Token: 0x06000409 RID: 1033 RVA: 0x00029B84 File Offset: 0x00027D84
 	public static T AddChild<T>(this GameObject parent) where T : Component
 	{
 		GameObject gameObject = NGUITools.AddChild(parent);
@@ -924,7 +924,7 @@ public static class NGUITools
 		return gameObject.AddComponent<T>();
 	}
 
-	// Token: 0x0600040A RID: 1034 RVA: 0x00029B24 File Offset: 0x00027D24
+	// Token: 0x0600040A RID: 1034 RVA: 0x00029BDC File Offset: 0x00027DDC
 	public static T AddChild<T>(this GameObject parent, bool undo) where T : Component
 	{
 		GameObject gameObject = parent.AddChild(undo);
@@ -938,7 +938,7 @@ public static class NGUITools
 		return gameObject.AddComponent<T>();
 	}
 
-	// Token: 0x0600040B RID: 1035 RVA: 0x00029B7A File Offset: 0x00027D7A
+	// Token: 0x0600040B RID: 1035 RVA: 0x00029C32 File Offset: 0x00027E32
 	public static T AddWidget<T>(this GameObject go, int depth = 2147483647) where T : UIWidget
 	{
 		if (depth == 2147483647)
@@ -952,7 +952,7 @@ public static class NGUITools
 		return t;
 	}
 
-	// Token: 0x0600040C RID: 1036 RVA: 0x00029BB8 File Offset: 0x00027DB8
+	// Token: 0x0600040C RID: 1036 RVA: 0x00029C70 File Offset: 0x00027E70
 	public static UISprite AddSprite(this GameObject go, INGUIAtlas atlas, string spriteName, int depth = 2147483647)
 	{
 		UISpriteData uispriteData = (atlas != null) ? atlas.GetSprite(spriteName) : null;
@@ -963,7 +963,7 @@ public static class NGUITools
 		return uisprite;
 	}
 
-	// Token: 0x0600040D RID: 1037 RVA: 0x00029C00 File Offset: 0x00027E00
+	// Token: 0x0600040D RID: 1037 RVA: 0x00029CB8 File Offset: 0x00027EB8
 	public static GameObject GetRoot(GameObject go)
 	{
 		Transform transform = go.transform;
@@ -979,7 +979,7 @@ public static class NGUITools
 		return transform.gameObject;
 	}
 
-	// Token: 0x0600040E RID: 1038 RVA: 0x00029C30 File Offset: 0x00027E30
+	// Token: 0x0600040E RID: 1038 RVA: 0x00029CE8 File Offset: 0x00027EE8
 	public static T FindInParents<T>(GameObject go) where T : Component
 	{
 		if (go == null)
@@ -989,7 +989,7 @@ public static class NGUITools
 		return go.GetComponentInParent<T>();
 	}
 
-	// Token: 0x0600040F RID: 1039 RVA: 0x00029C58 File Offset: 0x00027E58
+	// Token: 0x0600040F RID: 1039 RVA: 0x00029D10 File Offset: 0x00027F10
 	public static T FindInParents<T>(Transform trans) where T : Component
 	{
 		if (trans == null)
@@ -999,7 +999,7 @@ public static class NGUITools
 		return trans.GetComponentInParent<T>();
 	}
 
-	// Token: 0x06000410 RID: 1040 RVA: 0x00029C80 File Offset: 0x00027E80
+	// Token: 0x06000410 RID: 1040 RVA: 0x00029D38 File Offset: 0x00027F38
 	public static void Destroy(UnityEngine.Object obj)
 	{
 		if (obj)
@@ -1044,7 +1044,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000411 RID: 1041 RVA: 0x00029D20 File Offset: 0x00027F20
+	// Token: 0x06000411 RID: 1041 RVA: 0x00029DD8 File Offset: 0x00027FD8
 	public static void DestroyChildren(this Transform t)
 	{
 		bool isPlaying = Application.isPlaying;
@@ -1063,7 +1063,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000412 RID: 1042 RVA: 0x00029D67 File Offset: 0x00027F67
+	// Token: 0x06000412 RID: 1042 RVA: 0x00029E1F File Offset: 0x0002801F
 	public static void DestroyImmediate(UnityEngine.Object obj)
 	{
 		if (obj != null)
@@ -1077,7 +1077,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000413 RID: 1043 RVA: 0x00029D88 File Offset: 0x00027F88
+	// Token: 0x06000413 RID: 1043 RVA: 0x00029E40 File Offset: 0x00028040
 	public static void Broadcast(string funcName)
 	{
 		GameObject[] array = UnityEngine.Object.FindObjectsOfType(typeof(GameObject)) as GameObject[];
@@ -1090,7 +1090,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000414 RID: 1044 RVA: 0x00029DC4 File Offset: 0x00027FC4
+	// Token: 0x06000414 RID: 1044 RVA: 0x00029E7C File Offset: 0x0002807C
 	public static void Broadcast(string funcName, object param)
 	{
 		GameObject[] array = UnityEngine.Object.FindObjectsOfType(typeof(GameObject)) as GameObject[];
@@ -1103,19 +1103,19 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000415 RID: 1045 RVA: 0x00029E01 File Offset: 0x00028001
+	// Token: 0x06000415 RID: 1045 RVA: 0x00029EB9 File Offset: 0x000280B9
 	public static bool IsChild(Transform parent, Transform child)
 	{
 		return child.IsChildOf(parent);
 	}
 
-	// Token: 0x06000416 RID: 1046 RVA: 0x00029E0A File Offset: 0x0002800A
+	// Token: 0x06000416 RID: 1046 RVA: 0x00029EC2 File Offset: 0x000280C2
 	private static void Activate(Transform t)
 	{
 		NGUITools.Activate(t, false);
 	}
 
-	// Token: 0x06000417 RID: 1047 RVA: 0x00029E14 File Offset: 0x00028014
+	// Token: 0x06000417 RID: 1047 RVA: 0x00029ECC File Offset: 0x000280CC
 	private static void Activate(Transform t, bool compatibilityMode)
 	{
 		NGUITools.SetActiveSelf(t.gameObject, true);
@@ -1141,19 +1141,19 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000418 RID: 1048 RVA: 0x00029E77 File Offset: 0x00028077
+	// Token: 0x06000418 RID: 1048 RVA: 0x00029F2F File Offset: 0x0002812F
 	private static void Deactivate(Transform t)
 	{
 		NGUITools.SetActiveSelf(t.gameObject, false);
 	}
 
-	// Token: 0x06000419 RID: 1049 RVA: 0x00029E85 File Offset: 0x00028085
+	// Token: 0x06000419 RID: 1049 RVA: 0x00029F3D File Offset: 0x0002813D
 	public static void SetActive(GameObject go, bool state)
 	{
 		NGUITools.SetActive(go, state, true);
 	}
 
-	// Token: 0x0600041A RID: 1050 RVA: 0x00029E8F File Offset: 0x0002808F
+	// Token: 0x0600041A RID: 1050 RVA: 0x00029F47 File Offset: 0x00028147
 	public static void SetActive(GameObject go, bool state, bool compatibilityMode)
 	{
 		if (go)
@@ -1168,7 +1168,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x0600041B RID: 1051 RVA: 0x00029EC0 File Offset: 0x000280C0
+	// Token: 0x0600041B RID: 1051 RVA: 0x00029F78 File Offset: 0x00028178
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	private static void CallCreatePanel(Transform t)
@@ -1187,7 +1187,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x0600041C RID: 1052 RVA: 0x00029F04 File Offset: 0x00028104
+	// Token: 0x0600041C RID: 1052 RVA: 0x00029FBC File Offset: 0x000281BC
 	public static void SetActiveChildren(GameObject go, bool state)
 	{
 		Transform transform = go.transform;
@@ -1211,14 +1211,14 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x0600041D RID: 1053 RVA: 0x00029F5C File Offset: 0x0002815C
+	// Token: 0x0600041D RID: 1053 RVA: 0x0002A014 File Offset: 0x00028214
 	[Obsolete("Use NGUITools.GetActive instead")]
 	public static bool IsActive(Behaviour mb)
 	{
 		return mb != null && mb.enabled && mb.gameObject.activeInHierarchy;
 	}
 
-	// Token: 0x0600041E RID: 1054 RVA: 0x00029F7C File Offset: 0x0002817C
+	// Token: 0x0600041E RID: 1054 RVA: 0x0002A034 File Offset: 0x00028234
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static bool GetActive(Behaviour mb)
@@ -1226,7 +1226,7 @@ public static class NGUITools
 		return mb && mb.enabled && mb.gameObject.activeInHierarchy;
 	}
 
-	// Token: 0x0600041F RID: 1055 RVA: 0x00029F9B File Offset: 0x0002819B
+	// Token: 0x0600041F RID: 1055 RVA: 0x0002A053 File Offset: 0x00028253
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static bool GetActive(GameObject go)
@@ -1234,7 +1234,7 @@ public static class NGUITools
 		return go && go.activeInHierarchy;
 	}
 
-	// Token: 0x06000420 RID: 1056 RVA: 0x00029FAD File Offset: 0x000281AD
+	// Token: 0x06000420 RID: 1056 RVA: 0x0002A065 File Offset: 0x00028265
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	public static void SetActiveSelf(GameObject go, bool state)
@@ -1242,7 +1242,7 @@ public static class NGUITools
 		go.SetActive(state);
 	}
 
-	// Token: 0x06000421 RID: 1057 RVA: 0x00029FB8 File Offset: 0x000281B8
+	// Token: 0x06000421 RID: 1057 RVA: 0x0002A070 File Offset: 0x00028270
 	public static void SetLayer(GameObject go, int layer)
 	{
 		go.layer = layer;
@@ -1256,7 +1256,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000422 RID: 1058 RVA: 0x00029FF8 File Offset: 0x000281F8
+	// Token: 0x06000422 RID: 1058 RVA: 0x0002A0B0 File Offset: 0x000282B0
 	public static Vector3 Round(Vector3 v)
 	{
 		v.x = Mathf.Round(v.x);
@@ -1265,7 +1265,7 @@ public static class NGUITools
 		return v;
 	}
 
-	// Token: 0x06000423 RID: 1059 RVA: 0x0002A034 File Offset: 0x00028234
+	// Token: 0x06000423 RID: 1059 RVA: 0x0002A0EC File Offset: 0x000282EC
 	public static void MakePixelPerfect(Transform t)
 	{
 		UIWidget component = t.GetComponent<UIWidget>();
@@ -1287,7 +1287,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000424 RID: 1060 RVA: 0x0002A0B4 File Offset: 0x000282B4
+	// Token: 0x06000424 RID: 1060 RVA: 0x0002A16C File Offset: 0x0002836C
 	public static void FitOnScreen(this Camera cam, Transform t, bool considerInactive = false, bool considerChildren = true)
 	{
 		Bounds bounds = NGUIMath.CalculateRelativeWidgetBounds(t, t, considerInactive, considerChildren);
@@ -1319,20 +1319,20 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000425 RID: 1061 RVA: 0x0002A1AD File Offset: 0x000283AD
+	// Token: 0x06000425 RID: 1061 RVA: 0x0002A265 File Offset: 0x00028465
 	public static void FitOnScreen(this Camera cam, Transform transform, Vector3 pos)
 	{
 		cam.FitOnScreen(transform, transform, pos, false);
 	}
 
-	// Token: 0x06000426 RID: 1062 RVA: 0x0002A1BC File Offset: 0x000283BC
+	// Token: 0x06000426 RID: 1062 RVA: 0x0002A274 File Offset: 0x00028474
 	public static void FitOnScreen(this Camera cam, Transform transform, Transform content, Vector3 pos, bool considerInactive = false)
 	{
 		Bounds bounds;
 		cam.FitOnScreen(transform, content, pos, out bounds, considerInactive);
 	}
 
-	// Token: 0x06000427 RID: 1063 RVA: 0x0002A1D8 File Offset: 0x000283D8
+	// Token: 0x06000427 RID: 1063 RVA: 0x0002A290 File Offset: 0x00028490
 	public static void FitOnScreen(this Camera cam, Transform transform, Transform content, Vector3 pos, out Bounds bounds, bool considerInactive = false)
 	{
 		bounds = NGUIMath.CalculateRelativeWidgetBounds(transform, content, considerInactive, true);
@@ -1371,7 +1371,7 @@ public static class NGUITools
 		transform.localPosition = pos;
 	}
 
-	// Token: 0x06000428 RID: 1064 RVA: 0x0002A3B4 File Offset: 0x000285B4
+	// Token: 0x06000428 RID: 1064 RVA: 0x0002A46C File Offset: 0x0002866C
 	public static bool Save(string fileName, byte[] bytes)
 	{
 		if (!NGUITools.fileAccess)
@@ -1402,7 +1402,7 @@ public static class NGUITools
 		return true;
 	}
 
-	// Token: 0x06000429 RID: 1065 RVA: 0x0002A42C File Offset: 0x0002862C
+	// Token: 0x06000429 RID: 1065 RVA: 0x0002A4E4 File Offset: 0x000286E4
 	public static byte[] Load(string fileName)
 	{
 		if (!NGUITools.fileAccess)
@@ -1417,7 +1417,7 @@ public static class NGUITools
 		return null;
 	}
 
-	// Token: 0x0600042A RID: 1066 RVA: 0x0002A464 File Offset: 0x00028664
+	// Token: 0x0600042A RID: 1066 RVA: 0x0002A51C File Offset: 0x0002871C
 	public static Color ApplyPMA(Color c)
 	{
 		if (c.a != 1f)
@@ -1429,7 +1429,7 @@ public static class NGUITools
 		return c;
 	}
 
-	// Token: 0x0600042B RID: 1067 RVA: 0x0002A4B4 File Offset: 0x000286B4
+	// Token: 0x0600042B RID: 1067 RVA: 0x0002A56C File Offset: 0x0002876C
 	public static void MarkParentAsChanged(GameObject go)
 	{
 		UIRect[] componentsInChildren = go.GetComponentsInChildren<UIRect>();
@@ -1443,8 +1443,8 @@ public static class NGUITools
 	}
 
 	// Token: 0x17000066 RID: 102
-	// (get) Token: 0x0600042C RID: 1068 RVA: 0x0002A4E0 File Offset: 0x000286E0
-	// (set) Token: 0x0600042D RID: 1069 RVA: 0x0002A4F3 File Offset: 0x000286F3
+	// (get) Token: 0x0600042C RID: 1068 RVA: 0x0002A598 File Offset: 0x00028798
+	// (set) Token: 0x0600042D RID: 1069 RVA: 0x0002A5AB File Offset: 0x000287AB
 	public static string clipboard
 	{
 		get
@@ -1462,28 +1462,28 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x0600042E RID: 1070 RVA: 0x0002A50C File Offset: 0x0002870C
+	// Token: 0x0600042E RID: 1070 RVA: 0x0002A5C4 File Offset: 0x000287C4
 	[Obsolete("Use NGUIText.EncodeColor instead")]
 	public static string EncodeColor(Color c)
 	{
 		return NGUIText.EncodeColor24(c);
 	}
 
-	// Token: 0x0600042F RID: 1071 RVA: 0x0002A514 File Offset: 0x00028714
+	// Token: 0x0600042F RID: 1071 RVA: 0x0002A5CC File Offset: 0x000287CC
 	[Obsolete("Use NGUIText.ParseColor instead")]
 	public static Color ParseColor(string text, int offset)
 	{
 		return NGUIText.ParseColor24(text, offset);
 	}
 
-	// Token: 0x06000430 RID: 1072 RVA: 0x0002A51D File Offset: 0x0002871D
+	// Token: 0x06000430 RID: 1072 RVA: 0x0002A5D5 File Offset: 0x000287D5
 	[Obsolete("Use NGUIText.StripSymbols instead")]
 	public static string StripSymbols(string text)
 	{
 		return NGUIText.StripSymbols(text);
 	}
 
-	// Token: 0x06000431 RID: 1073 RVA: 0x0002A528 File Offset: 0x00028728
+	// Token: 0x06000431 RID: 1073 RVA: 0x0002A5E0 File Offset: 0x000287E0
 	public static T AddMissingComponent<T>(this GameObject go) where T : Component
 	{
 		T t = go.GetComponent<T>();
@@ -1494,25 +1494,25 @@ public static class NGUITools
 		return t;
 	}
 
-	// Token: 0x06000432 RID: 1074 RVA: 0x0002A552 File Offset: 0x00028752
+	// Token: 0x06000432 RID: 1074 RVA: 0x0002A60A File Offset: 0x0002880A
 	public static Vector3[] GetSides(this Camera cam)
 	{
 		return cam.GetSides(Mathf.Lerp(cam.nearClipPlane, cam.farClipPlane, 0.5f), null);
 	}
 
-	// Token: 0x06000433 RID: 1075 RVA: 0x0002A571 File Offset: 0x00028771
+	// Token: 0x06000433 RID: 1075 RVA: 0x0002A629 File Offset: 0x00028829
 	public static Vector3[] GetSides(this Camera cam, float depth)
 	{
 		return cam.GetSides(depth, null);
 	}
 
-	// Token: 0x06000434 RID: 1076 RVA: 0x0002A57B File Offset: 0x0002877B
+	// Token: 0x06000434 RID: 1076 RVA: 0x0002A633 File Offset: 0x00028833
 	public static Vector3[] GetSides(this Camera cam, Transform relativeTo)
 	{
 		return cam.GetSides(Mathf.Lerp(cam.nearClipPlane, cam.farClipPlane, 0.5f), relativeTo);
 	}
 
-	// Token: 0x06000435 RID: 1077 RVA: 0x0002A59C File Offset: 0x0002879C
+	// Token: 0x06000435 RID: 1077 RVA: 0x0002A654 File Offset: 0x00028854
 	public static Vector3[] GetSides(this Camera cam, float depth, Transform relativeTo)
 	{
 		if (cam.orthographic)
@@ -1563,26 +1563,26 @@ public static class NGUITools
 		return NGUITools.mSides;
 	}
 
-	// Token: 0x06000436 RID: 1078 RVA: 0x0002A7C8 File Offset: 0x000289C8
+	// Token: 0x06000436 RID: 1078 RVA: 0x0002A880 File Offset: 0x00028A80
 	public static Vector3[] GetWorldCorners(this Camera cam)
 	{
 		float depth = Mathf.Lerp(cam.nearClipPlane, cam.farClipPlane, 0.5f);
 		return cam.GetWorldCorners(depth, null);
 	}
 
-	// Token: 0x06000437 RID: 1079 RVA: 0x0002A7F4 File Offset: 0x000289F4
+	// Token: 0x06000437 RID: 1079 RVA: 0x0002A8AC File Offset: 0x00028AAC
 	public static Vector3[] GetWorldCorners(this Camera cam, float depth)
 	{
 		return cam.GetWorldCorners(depth, null);
 	}
 
-	// Token: 0x06000438 RID: 1080 RVA: 0x0002A7FE File Offset: 0x000289FE
+	// Token: 0x06000438 RID: 1080 RVA: 0x0002A8B6 File Offset: 0x00028AB6
 	public static Vector3[] GetWorldCorners(this Camera cam, Transform relativeTo)
 	{
 		return cam.GetWorldCorners(Mathf.Lerp(cam.nearClipPlane, cam.farClipPlane, 0.5f), relativeTo);
 	}
 
-	// Token: 0x06000439 RID: 1081 RVA: 0x0002A820 File Offset: 0x00028A20
+	// Token: 0x06000439 RID: 1081 RVA: 0x0002A8D8 File Offset: 0x00028AD8
 	public static Vector3[] GetWorldCorners(this Camera cam, float depth, Transform relativeTo)
 	{
 		if (cam.orthographic)
@@ -1623,7 +1623,7 @@ public static class NGUITools
 		return NGUITools.mSides;
 	}
 
-	// Token: 0x0600043A RID: 1082 RVA: 0x0002A9E4 File Offset: 0x00028BE4
+	// Token: 0x0600043A RID: 1082 RVA: 0x0002AA9C File Offset: 0x00028C9C
 	public static string GetFuncName(object obj, string method)
 	{
 		if (obj == null)
@@ -1643,7 +1643,7 @@ public static class NGUITools
 		return text;
 	}
 
-	// Token: 0x0600043B RID: 1083 RVA: 0x0002AA34 File Offset: 0x00028C34
+	// Token: 0x0600043B RID: 1083 RVA: 0x0002AAEC File Offset: 0x00028CEC
 	public static void Execute<T>(GameObject go, string funcName) where T : Component
 	{
 		foreach (T t in go.GetComponents<T>())
@@ -1656,7 +1656,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x0600043C RID: 1084 RVA: 0x0002AA8C File Offset: 0x00028C8C
+	// Token: 0x0600043C RID: 1084 RVA: 0x0002AB44 File Offset: 0x00028D44
 	public static void ExecuteAll<T>(GameObject root, string funcName) where T : Component
 	{
 		NGUITools.Execute<T>(root, funcName);
@@ -1670,7 +1670,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x0600043D RID: 1085 RVA: 0x0002AACC File Offset: 0x00028CCC
+	// Token: 0x0600043D RID: 1085 RVA: 0x0002AB84 File Offset: 0x00028D84
 	public static void ImmediatelyCreateDrawCalls(GameObject root)
 	{
 		NGUITools.ExecuteAll<UIWidget>(root, "Start");
@@ -1681,7 +1681,7 @@ public static class NGUITools
 	}
 
 	// Token: 0x17000067 RID: 103
-	// (get) Token: 0x0600043E RID: 1086 RVA: 0x0002AB05 File Offset: 0x00028D05
+	// (get) Token: 0x0600043E RID: 1086 RVA: 0x0002ABBD File Offset: 0x00028DBD
 	public static Vector2 screenSize
 	{
 		get
@@ -1690,7 +1690,7 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x0600043F RID: 1087 RVA: 0x0002AB18 File Offset: 0x00028D18
+	// Token: 0x0600043F RID: 1087 RVA: 0x0002ABD0 File Offset: 0x00028DD0
 	public static string KeyToCaption(KeyCode key)
 	{
 		switch (key)
@@ -2059,7 +2059,7 @@ public static class NGUITools
 		return null;
 	}
 
-	// Token: 0x06000440 RID: 1088 RVA: 0x0002B230 File Offset: 0x00029430
+	// Token: 0x06000440 RID: 1088 RVA: 0x0002B2E8 File Offset: 0x000294E8
 	public static KeyCode CaptionToKey(string caption)
 	{
 		if (string.IsNullOrEmpty(caption))
@@ -2661,7 +2661,7 @@ public static class NGUITools
 		return KeyCode.None;
 	}
 
-	// Token: 0x06000441 RID: 1089 RVA: 0x0002BC70 File Offset: 0x00029E70
+	// Token: 0x06000441 RID: 1089 RVA: 0x0002BD28 File Offset: 0x00029F28
 	public static T Draw<T>(string id, NGUITools.OnInitFunc<T> onInit = null) where T : UIWidget
 	{
 		UIWidget uiwidget;
@@ -2709,7 +2709,7 @@ public static class NGUITools
 		return (T)((object)uiwidget);
 	}
 
-	// Token: 0x06000442 RID: 1090 RVA: 0x0002BDA8 File Offset: 0x00029FA8
+	// Token: 0x06000442 RID: 1090 RVA: 0x0002BE60 File Offset: 0x0002A060
 	public static Color GammaToLinearSpace(this Color c)
 	{
 		if (NGUITools.mColorSpace == ColorSpace.Uninitialized)
@@ -2723,7 +2723,7 @@ public static class NGUITools
 		return c;
 	}
 
-	// Token: 0x06000443 RID: 1091 RVA: 0x0002BE04 File Offset: 0x0002A004
+	// Token: 0x06000443 RID: 1091 RVA: 0x0002BEBC File Offset: 0x0002A0BC
 	public static Color LinearToGammaSpace(this Color c)
 	{
 		if (NGUITools.mColorSpace == ColorSpace.Uninitialized)
@@ -2737,13 +2737,13 @@ public static class NGUITools
 		return c;
 	}
 
-	// Token: 0x06000444 RID: 1092 RVA: 0x0002BE5E File Offset: 0x0002A05E
+	// Token: 0x06000444 RID: 1092 RVA: 0x0002BF16 File Offset: 0x0002A116
 	public static bool CheckIfRelated(INGUIAtlas a, INGUIAtlas b)
 	{
 		return a != null && b != null && (a == b || a.References(b) || b.References(a));
 	}
 
-	// Token: 0x06000445 RID: 1093 RVA: 0x0002BE80 File Offset: 0x0002A080
+	// Token: 0x06000445 RID: 1093 RVA: 0x0002BF38 File Offset: 0x0002A138
 	public static void Replace(INGUIAtlas before, INGUIAtlas after)
 	{
 		UISprite[] array = NGUITools.FindActive<UISprite>();
@@ -2796,13 +2796,13 @@ public static class NGUITools
 		}
 	}
 
-	// Token: 0x06000446 RID: 1094 RVA: 0x0002BF68 File Offset: 0x0002A168
+	// Token: 0x06000446 RID: 1094 RVA: 0x0002C020 File Offset: 0x0002A220
 	public static bool CheckIfRelated(INGUIFont a, INGUIFont b)
 	{
 		return a != null && b != null && ((a.isDynamic && b.isDynamic && a.dynamicFont.fontNames[0] == b.dynamicFont.fontNames[0]) || a == b || a.References(b) || b.References(a));
 	}
 
-	// Token: 0x06000447 RID: 1095 RVA: 0x0002BFC8 File Offset: 0x0002A1C8
+	// Token: 0x06000447 RID: 1095 RVA: 0x0002C080 File Offset: 0x0002A280
 	// Note: this type is marked as 'beforefieldinit'.
 	static NGUITools()
 	{
@@ -2855,6 +2855,6 @@ public static class NGUITools
 	private static ColorSpace mColorSpace;
 
 	// Token: 0x020005F7 RID: 1527
-	// (Invoke) Token: 0x06002587 RID: 9607
+	// (Invoke) Token: 0x0600258E RID: 9614
 	public delegate void OnInitFunc<T>(T w) where T : UIWidget;
 }

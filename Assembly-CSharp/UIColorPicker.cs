@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(UITexture))]
 public class UIColorPicker : MonoBehaviour
 {
-	// Token: 0x060006FD RID: 1789 RVA: 0x0003CC08 File Offset: 0x0003AE08
+	// Token: 0x060006FD RID: 1789 RVA: 0x0003CCC0 File Offset: 0x0003AEC0
 	private void Start()
 	{
 		this.mTrans = base.transform;
@@ -34,14 +34,14 @@ public class UIColorPicker : MonoBehaviour
 		this.Select(this.value);
 	}
 
-	// Token: 0x060006FE RID: 1790 RVA: 0x0003CD3F File Offset: 0x0003AF3F
+	// Token: 0x060006FE RID: 1790 RVA: 0x0003CDF7 File Offset: 0x0003AFF7
 	private void OnDestroy()
 	{
 		UnityEngine.Object.Destroy(this.mTex);
 		this.mTex = null;
 	}
 
-	// Token: 0x060006FF RID: 1791 RVA: 0x0003CD53 File Offset: 0x0003AF53
+	// Token: 0x060006FF RID: 1791 RVA: 0x0003CE0B File Offset: 0x0003B00B
 	private void OnPress(bool pressed)
 	{
 		if (base.enabled && pressed && UICamera.currentScheme != UICamera.ControlScheme.Controller)
@@ -50,7 +50,7 @@ public class UIColorPicker : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000700 RID: 1792 RVA: 0x0003CD6D File Offset: 0x0003AF6D
+	// Token: 0x06000700 RID: 1792 RVA: 0x0003CE25 File Offset: 0x0003B025
 	private void OnDrag(Vector2 delta)
 	{
 		if (base.enabled)
@@ -59,7 +59,7 @@ public class UIColorPicker : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000701 RID: 1793 RVA: 0x0003CD80 File Offset: 0x0003AF80
+	// Token: 0x06000701 RID: 1793 RVA: 0x0003CE38 File Offset: 0x0003B038
 	private void OnPan(Vector2 delta)
 	{
 		if (base.enabled)
@@ -70,7 +70,7 @@ public class UIColorPicker : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000702 RID: 1794 RVA: 0x0003CDE8 File Offset: 0x0003AFE8
+	// Token: 0x06000702 RID: 1794 RVA: 0x0003CEA0 File Offset: 0x0003B0A0
 	private void Sample()
 	{
 		Vector3 vector = this.mTrans.InverseTransformPoint(UICamera.lastWorldPosition);
@@ -90,7 +90,7 @@ public class UIColorPicker : MonoBehaviour
 		UIColorPicker.current = null;
 	}
 
-	// Token: 0x06000703 RID: 1795 RVA: 0x0003CF5C File Offset: 0x0003B15C
+	// Token: 0x06000703 RID: 1795 RVA: 0x0003D014 File Offset: 0x0003B214
 	public void Select(Vector2 v)
 	{
 		v.x = Mathf.Clamp01(v.x);
@@ -110,7 +110,7 @@ public class UIColorPicker : MonoBehaviour
 		UIColorPicker.current = null;
 	}
 
-	// Token: 0x06000704 RID: 1796 RVA: 0x0003D080 File Offset: 0x0003B280
+	// Token: 0x06000704 RID: 1796 RVA: 0x0003D138 File Offset: 0x0003B338
 	public Vector2 Select(Color c)
 	{
 		if (this.mUITex == null)
@@ -155,7 +155,7 @@ public class UIColorPicker : MonoBehaviour
 		return this.mPos;
 	}
 
-	// Token: 0x06000705 RID: 1797 RVA: 0x0003D26C File Offset: 0x0003B46C
+	// Token: 0x06000705 RID: 1797 RVA: 0x0003D324 File Offset: 0x0003B524
 	public static Color Sample(float x, float y)
 	{
 		if (UIColorPicker.mRed == null)

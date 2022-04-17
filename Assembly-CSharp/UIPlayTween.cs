@@ -8,7 +8,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Play Tween")]
 public class UIPlayTween : MonoBehaviour
 {
-	// Token: 0x0600021D RID: 541 RVA: 0x00019165 File Offset: 0x00017365
+	// Token: 0x0600021D RID: 541 RVA: 0x0001921D File Offset: 0x0001741D
 	private void Awake()
 	{
 		if (this.eventReceiver != null && EventDelegate.IsValid(this.onFinished))
@@ -18,7 +18,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600021E RID: 542 RVA: 0x00019190 File Offset: 0x00017390
+	// Token: 0x0600021E RID: 542 RVA: 0x00019248 File Offset: 0x00017448
 	private void Start()
 	{
 		this.mStarted = true;
@@ -28,7 +28,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600021F RID: 543 RVA: 0x000191B4 File Offset: 0x000173B4
+	// Token: 0x0600021F RID: 543 RVA: 0x0001926C File Offset: 0x0001746C
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -53,7 +53,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000220 RID: 544 RVA: 0x00019264 File Offset: 0x00017464
+	// Token: 0x06000220 RID: 544 RVA: 0x0001931C File Offset: 0x0001751C
 	private void OnDisable()
 	{
 		UIToggle component = base.GetComponent<UIToggle>();
@@ -63,7 +63,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000221 RID: 545 RVA: 0x00019299 File Offset: 0x00017499
+	// Token: 0x06000221 RID: 545 RVA: 0x00019351 File Offset: 0x00017551
 	private void OnDragOver()
 	{
 		if (this.trigger == Trigger.OnHover)
@@ -72,7 +72,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000222 RID: 546 RVA: 0x000192AC File Offset: 0x000174AC
+	// Token: 0x06000222 RID: 546 RVA: 0x00019364 File Offset: 0x00017564
 	private void OnHover(bool isOver)
 	{
 		if (base.enabled && (this.trigger == Trigger.OnHover || (this.trigger == Trigger.OnHoverTrue && isOver) || (this.trigger == Trigger.OnHoverFalse && !isOver)))
@@ -95,7 +95,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000223 RID: 547 RVA: 0x00019360 File Offset: 0x00017560
+	// Token: 0x06000223 RID: 547 RVA: 0x00019418 File Offset: 0x00017618
 	private void CustomHoverListener(GameObject go, bool isOver)
 	{
 		if (!this)
@@ -110,7 +110,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000224 RID: 548 RVA: 0x000193D6 File Offset: 0x000175D6
+	// Token: 0x06000224 RID: 548 RVA: 0x0001948E File Offset: 0x0001768E
 	private void OnDragOut()
 	{
 		if (base.enabled && this.mActivated)
@@ -120,7 +120,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000225 RID: 549 RVA: 0x000193F8 File Offset: 0x000175F8
+	// Token: 0x06000225 RID: 549 RVA: 0x000194B0 File Offset: 0x000176B0
 	private void OnPress(bool isPressed)
 	{
 		if (base.enabled && (this.trigger == Trigger.OnPress || (this.trigger == Trigger.OnPressTrue && isPressed) || (this.trigger == Trigger.OnPressFalse && !isPressed)))
@@ -130,7 +130,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000226 RID: 550 RVA: 0x0001944B File Offset: 0x0001764B
+	// Token: 0x06000226 RID: 550 RVA: 0x00019503 File Offset: 0x00017703
 	private void OnClick()
 	{
 		if (base.enabled && this.trigger == Trigger.OnClick)
@@ -139,7 +139,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000227 RID: 551 RVA: 0x00019464 File Offset: 0x00017664
+	// Token: 0x06000227 RID: 551 RVA: 0x0001951C File Offset: 0x0001771C
 	private void OnDoubleClick()
 	{
 		if (base.enabled && this.trigger == Trigger.OnDoubleClick)
@@ -148,7 +148,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000228 RID: 552 RVA: 0x00019480 File Offset: 0x00017680
+	// Token: 0x06000228 RID: 552 RVA: 0x00019538 File Offset: 0x00017738
 	private void OnSelect(bool isSelected)
 	{
 		if (base.enabled && (this.trigger == Trigger.OnSelect || (this.trigger == Trigger.OnSelectTrue && isSelected) || (this.trigger == Trigger.OnSelectFalse && !isSelected)))
@@ -158,7 +158,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000229 RID: 553 RVA: 0x000194D8 File Offset: 0x000176D8
+	// Token: 0x06000229 RID: 553 RVA: 0x00019590 File Offset: 0x00017790
 	private void OnToggle()
 	{
 		if (!base.enabled || UIToggle.current == null)
@@ -171,7 +171,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600022A RID: 554 RVA: 0x00019540 File Offset: 0x00017740
+	// Token: 0x0600022A RID: 554 RVA: 0x000195F8 File Offset: 0x000177F8
 	private void Update()
 	{
 		if (this.disableWhenFinished != DisableCondition.DoNotDisable && this.mTweens != null)
@@ -208,13 +208,13 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600022B RID: 555 RVA: 0x000195C6 File Offset: 0x000177C6
+	// Token: 0x0600022B RID: 555 RVA: 0x0001967E File Offset: 0x0001787E
 	public void Play()
 	{
 		this.Play(true);
 	}
 
-	// Token: 0x0600022C RID: 556 RVA: 0x000195D0 File Offset: 0x000177D0
+	// Token: 0x0600022C RID: 556 RVA: 0x00019688 File Offset: 0x00017888
 	public void Play(bool forward)
 	{
 		this.mActive = 0;
@@ -277,7 +277,7 @@ public class UIPlayTween : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600022D RID: 557 RVA: 0x00019738 File Offset: 0x00017938
+	// Token: 0x0600022D RID: 557 RVA: 0x000197F0 File Offset: 0x000179F0
 	private void OnFinished()
 	{
 		int num = this.mActive - 1;

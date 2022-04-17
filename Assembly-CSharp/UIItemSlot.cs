@@ -12,7 +12,7 @@ public abstract class UIItemSlot : MonoBehaviour
 	// Token: 0x06000090 RID: 144
 	protected abstract InvGameItem Replace(InvGameItem item);
 
-	// Token: 0x06000091 RID: 145 RVA: 0x000112E8 File Offset: 0x0000F4E8
+	// Token: 0x06000091 RID: 145 RVA: 0x000113A0 File Offset: 0x0000F5A0
 	private void OnTooltip(bool show)
 	{
 		InvGameItem invGameItem = show ? this.mItem : null;
@@ -73,7 +73,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		UITooltip.Hide();
 	}
 
-	// Token: 0x06000092 RID: 146 RVA: 0x00011472 File Offset: 0x0000F672
+	// Token: 0x06000092 RID: 146 RVA: 0x0001152A File Offset: 0x0000F72A
 	private void OnClick()
 	{
 		if (UIItemSlot.mDraggedItem != null)
@@ -92,7 +92,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000093 RID: 147 RVA: 0x000114B0 File Offset: 0x0000F6B0
+	// Token: 0x06000093 RID: 147 RVA: 0x00011568 File Offset: 0x0000F768
 	private void OnDrag(Vector2 delta)
 	{
 		if (UIItemSlot.mDraggedItem == null && this.mItem != null)
@@ -104,7 +104,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000094 RID: 148 RVA: 0x000114EC File Offset: 0x0000F6EC
+	// Token: 0x06000094 RID: 148 RVA: 0x000115A4 File Offset: 0x0000F7A4
 	private void OnDrop(GameObject go)
 	{
 		InvGameItem invGameItem = this.Replace(UIItemSlot.mDraggedItem);
@@ -124,7 +124,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		this.UpdateCursor();
 	}
 
-	// Token: 0x06000095 RID: 149 RVA: 0x00011544 File Offset: 0x0000F744
+	// Token: 0x06000095 RID: 149 RVA: 0x000115FC File Offset: 0x0000F7FC
 	private void UpdateCursor()
 	{
 		if (UIItemSlot.mDraggedItem != null && UIItemSlot.mDraggedItem.baseItem != null)
@@ -135,7 +135,7 @@ public abstract class UIItemSlot : MonoBehaviour
 		UICursor.Clear();
 	}
 
-	// Token: 0x06000096 RID: 150 RVA: 0x00011594 File Offset: 0x0000F794
+	// Token: 0x06000096 RID: 150 RVA: 0x0001164C File Offset: 0x0000F84C
 	private void Update()
 	{
 		InvGameItem observedItem = this.observedItem;

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002A1 RID: 673
 public class EightiesStatsScript : MonoBehaviour
 {
-	// Token: 0x06001421 RID: 5153 RVA: 0x000BFF30 File Offset: 0x000BE130
+	// Token: 0x06001421 RID: 5153 RVA: 0x000C00B4 File Offset: 0x000BE2B4
 	public void Start()
 	{
 		if (!GameGlobals.Eighties)
@@ -128,30 +128,30 @@ public class EightiesStatsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001E42 RID: 7746
+	// Token: 0x04001E43 RID: 7747
 	public CourtroomScript Courtroom;
 
-	// Token: 0x04001E43 RID: 7747
+	// Token: 0x04001E44 RID: 7748
 	public UILabel[] Label;
 
-	// Token: 0x04001E44 RID: 7748
+	// Token: 0x04001E45 RID: 7749
 	public string[] Eliminations;
 
-	// Token: 0x04001E45 RID: 7749
+	// Token: 0x04001E46 RID: 7750
 	public string[] Details;
 
-	// Token: 0x04001E46 RID: 7750
+	// Token: 0x04001E47 RID: 7751
 	public int Disappearances;
 
-	// Token: 0x04001E47 RID: 7751
+	// Token: 0x04001E48 RID: 7752
 	public int Grudges;
 
-	// Token: 0x04001E48 RID: 7752
+	// Token: 0x04001E49 RID: 7753
 	public int Deaths;
 
-	// Token: 0x04001E49 RID: 7753
+	// Token: 0x04001E4A RID: 7754
 	public int[] EliminationIDs;
 
-	// Token: 0x04001E4A RID: 7754
+	// Token: 0x04001E4B RID: 7755
 	public int[] DetailIDs;
 }

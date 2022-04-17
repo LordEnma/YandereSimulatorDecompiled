@@ -6,8 +6,8 @@ using UnityEngine;
 public class UIAtlas : MonoBehaviour, INGUIAtlas
 {
 	// Token: 0x17000117 RID: 279
-	// (get) Token: 0x0600069F RID: 1695 RVA: 0x00038A70 File Offset: 0x00036C70
-	// (set) Token: 0x060006A0 RID: 1696 RVA: 0x00038A94 File Offset: 0x00036C94
+	// (get) Token: 0x0600069F RID: 1695 RVA: 0x00038B28 File Offset: 0x00036D28
+	// (set) Token: 0x060006A0 RID: 1696 RVA: 0x00038B4C File Offset: 0x00036D4C
 	public Material spriteMaterial
 	{
 		get
@@ -41,7 +41,7 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 	}
 
 	// Token: 0x17000118 RID: 280
-	// (get) Token: 0x060006A1 RID: 1697 RVA: 0x00038AEC File Offset: 0x00036CEC
+	// (get) Token: 0x060006A1 RID: 1697 RVA: 0x00038BA4 File Offset: 0x00036DA4
 	public bool premultipliedAlpha
 	{
 		get
@@ -61,8 +61,8 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 	}
 
 	// Token: 0x17000119 RID: 281
-	// (get) Token: 0x060006A2 RID: 1698 RVA: 0x00038B5C File Offset: 0x00036D5C
-	// (set) Token: 0x060006A3 RID: 1699 RVA: 0x00038B94 File Offset: 0x00036D94
+	// (get) Token: 0x060006A2 RID: 1698 RVA: 0x00038C14 File Offset: 0x00036E14
+	// (set) Token: 0x060006A3 RID: 1699 RVA: 0x00038C4C File Offset: 0x00036E4C
 	public List<UISpriteData> spriteList
 	{
 		get
@@ -91,7 +91,7 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 	}
 
 	// Token: 0x1700011A RID: 282
-	// (get) Token: 0x060006A4 RID: 1700 RVA: 0x00038BBC File Offset: 0x00036DBC
+	// (get) Token: 0x060006A4 RID: 1700 RVA: 0x00038C74 File Offset: 0x00036E74
 	public Texture texture
 	{
 		get
@@ -110,8 +110,8 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 	}
 
 	// Token: 0x1700011B RID: 283
-	// (get) Token: 0x060006A5 RID: 1701 RVA: 0x00038BF8 File Offset: 0x00036DF8
-	// (set) Token: 0x060006A6 RID: 1702 RVA: 0x00038C1C File Offset: 0x00036E1C
+	// (get) Token: 0x060006A5 RID: 1701 RVA: 0x00038CB0 File Offset: 0x00036EB0
+	// (set) Token: 0x060006A6 RID: 1702 RVA: 0x00038CD4 File Offset: 0x00036ED4
 	public float pixelSize
 	{
 		get
@@ -141,8 +141,8 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 	}
 
 	// Token: 0x1700011C RID: 284
-	// (get) Token: 0x060006A7 RID: 1703 RVA: 0x00038C62 File Offset: 0x00036E62
-	// (set) Token: 0x060006A8 RID: 1704 RVA: 0x00038C70 File Offset: 0x00036E70
+	// (get) Token: 0x060006A7 RID: 1703 RVA: 0x00038D1A File Offset: 0x00036F1A
+	// (set) Token: 0x060006A8 RID: 1704 RVA: 0x00038D28 File Offset: 0x00036F28
 	public INGUIAtlas replacement
 	{
 		get
@@ -176,7 +176,7 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 		}
 	}
 
-	// Token: 0x060006A9 RID: 1705 RVA: 0x00038CD8 File Offset: 0x00036ED8
+	// Token: 0x060006A9 RID: 1705 RVA: 0x00038D90 File Offset: 0x00036F90
 	public UISpriteData GetSprite(string name)
 	{
 		INGUIAtlas replacement = this.replacement;
@@ -231,7 +231,7 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 		return null;
 	}
 
-	// Token: 0x060006AA RID: 1706 RVA: 0x00038DE4 File Offset: 0x00036FE4
+	// Token: 0x060006AA RID: 1706 RVA: 0x00038E9C File Offset: 0x0003709C
 	public void MarkSpriteListAsChanged()
 	{
 		this.mSpriteIndices.Clear();
@@ -244,13 +244,13 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 		}
 	}
 
-	// Token: 0x060006AB RID: 1707 RVA: 0x00038E31 File Offset: 0x00037031
+	// Token: 0x060006AB RID: 1707 RVA: 0x00038EE9 File Offset: 0x000370E9
 	public void SortAlphabetically()
 	{
 		this.mSprites.Sort((UISpriteData s1, UISpriteData s2) => s1.name.CompareTo(s2.name));
 	}
 
-	// Token: 0x060006AC RID: 1708 RVA: 0x00038E60 File Offset: 0x00037060
+	// Token: 0x060006AC RID: 1708 RVA: 0x00038F18 File Offset: 0x00037118
 	public BetterList<string> GetListOfSprites()
 	{
 		INGUIAtlas replacement = this.replacement;
@@ -277,7 +277,7 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 		return betterList;
 	}
 
-	// Token: 0x060006AD RID: 1709 RVA: 0x00038EE0 File Offset: 0x000370E0
+	// Token: 0x060006AD RID: 1709 RVA: 0x00038F98 File Offset: 0x00037198
 	public BetterList<string> GetListOfSprites(string match)
 	{
 		INGUIAtlas replacement = this.replacement;
@@ -340,7 +340,7 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 		return betterList;
 	}
 
-	// Token: 0x060006AE RID: 1710 RVA: 0x00039040 File Offset: 0x00037240
+	// Token: 0x060006AE RID: 1710 RVA: 0x000390F8 File Offset: 0x000372F8
 	public bool References(INGUIAtlas atlas)
 	{
 		if (atlas == null)
@@ -355,7 +355,7 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 		return replacement != null && replacement.References(atlas);
 	}
 
-	// Token: 0x060006AF RID: 1711 RVA: 0x0003906C File Offset: 0x0003726C
+	// Token: 0x060006AF RID: 1711 RVA: 0x00039124 File Offset: 0x00037324
 	public void MarkAsChanged()
 	{
 		INGUIAtlas replacement = this.replacement;
@@ -422,7 +422,7 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 		}
 	}
 
-	// Token: 0x060006B0 RID: 1712 RVA: 0x000391D4 File Offset: 0x000373D4
+	// Token: 0x060006B0 RID: 1712 RVA: 0x0003928C File Offset: 0x0003748C
 	private bool Upgrade()
 	{
 		INGUIAtlas replacement = this.replacement;
@@ -513,8 +513,8 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 	[Serializable]
 	private class Sprite
 	{
-		// Token: 0x17000545 RID: 1349
-		// (get) Token: 0x060025D0 RID: 9680 RVA: 0x00202058 File Offset: 0x00200258
+		// Token: 0x17000546 RID: 1350
+		// (get) Token: 0x060025D7 RID: 9687 RVA: 0x00202AB4 File Offset: 0x00200CB4
 		public bool hasPadding
 		{
 			get
@@ -523,37 +523,37 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 			}
 		}
 
-		// Token: 0x04004EC1 RID: 20161
+		// Token: 0x04004ED3 RID: 20179
 		public string name = "Unity Bug";
 
-		// Token: 0x04004EC2 RID: 20162
+		// Token: 0x04004ED4 RID: 20180
 		public Rect outer = new Rect(0f, 0f, 1f, 1f);
 
-		// Token: 0x04004EC3 RID: 20163
+		// Token: 0x04004ED5 RID: 20181
 		public Rect inner = new Rect(0f, 0f, 1f, 1f);
 
-		// Token: 0x04004EC4 RID: 20164
+		// Token: 0x04004ED6 RID: 20182
 		public bool rotated;
 
-		// Token: 0x04004EC5 RID: 20165
+		// Token: 0x04004ED7 RID: 20183
 		public float paddingLeft;
 
-		// Token: 0x04004EC6 RID: 20166
+		// Token: 0x04004ED8 RID: 20184
 		public float paddingRight;
 
-		// Token: 0x04004EC7 RID: 20167
+		// Token: 0x04004ED9 RID: 20185
 		public float paddingTop;
 
-		// Token: 0x04004EC8 RID: 20168
+		// Token: 0x04004EDA RID: 20186
 		public float paddingBottom;
 	}
 
 	// Token: 0x0200061B RID: 1563
 	private enum Coordinates
 	{
-		// Token: 0x04004ECA RID: 20170
+		// Token: 0x04004EDC RID: 20188
 		Pixels,
-		// Token: 0x04004ECB RID: 20171
+		// Token: 0x04004EDD RID: 20189
 		TexCoords
 	}
 }

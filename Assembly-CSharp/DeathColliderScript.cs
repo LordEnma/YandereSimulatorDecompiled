@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000273 RID: 627
 public class DeathColliderScript : MonoBehaviour
 {
-	// Token: 0x06001357 RID: 4951 RVA: 0x000AEE94 File Offset: 0x000AD094
+	// Token: 0x06001357 RID: 4951 RVA: 0x000AEFF4 File Offset: 0x000AD1F4
 	private void OnTriggerEnter(Collider other)
 	{
 		StudentScript component = other.gameObject.GetComponent<StudentScript>();
@@ -40,12 +40,12 @@ public class DeathColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001C1F RID: 7199
+	// Token: 0x04001C20 RID: 7200
 	public GenericPromptScript GenericPrompt;
 
-	// Token: 0x04001C20 RID: 7200
+	// Token: 0x04001C21 RID: 7201
 	public AudioSource MyAudio;
 
-	// Token: 0x04001C21 RID: 7201
+	// Token: 0x04001C22 RID: 7202
 	public float Force;
 }

@@ -7,7 +7,7 @@ using UnityEngine;
 public class AmplifyMotionEffect : AmplifyMotionEffectBase
 {
 	// Token: 0x170001ED RID: 493
-	// (get) Token: 0x06000948 RID: 2376 RVA: 0x0004AE98 File Offset: 0x00049098
+	// (get) Token: 0x06000948 RID: 2376 RVA: 0x0004AF50 File Offset: 0x00049150
 	public new static AmplifyMotionEffect FirstInstance
 	{
 		get
@@ -17,7 +17,7 @@ public class AmplifyMotionEffect : AmplifyMotionEffectBase
 	}
 
 	// Token: 0x170001EE RID: 494
-	// (get) Token: 0x06000949 RID: 2377 RVA: 0x0004AEA4 File Offset: 0x000490A4
+	// (get) Token: 0x06000949 RID: 2377 RVA: 0x0004AF5C File Offset: 0x0004915C
 	public new static AmplifyMotionEffect Instance
 	{
 		get

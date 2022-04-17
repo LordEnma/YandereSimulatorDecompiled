@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Button Offset")]
 public class UIButtonOffset : MonoBehaviour
 {
-	// Token: 0x0600013F RID: 319 RVA: 0x0001467C File Offset: 0x0001287C
+	// Token: 0x0600013F RID: 319 RVA: 0x00014734 File Offset: 0x00012934
 	private void Start()
 	{
 		if (!this.mStarted)
@@ -19,7 +19,7 @@ public class UIButtonOffset : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000140 RID: 320 RVA: 0x000146B8 File Offset: 0x000128B8
+	// Token: 0x06000140 RID: 320 RVA: 0x00014770 File Offset: 0x00012970
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -28,7 +28,7 @@ public class UIButtonOffset : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000141 RID: 321 RVA: 0x000146D4 File Offset: 0x000128D4
+	// Token: 0x06000141 RID: 321 RVA: 0x0001478C File Offset: 0x0001298C
 	private void OnDisable()
 	{
 		if (this.mStarted && this.tweenTarget != null)
@@ -42,7 +42,7 @@ public class UIButtonOffset : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000142 RID: 322 RVA: 0x00014720 File Offset: 0x00012920
+	// Token: 0x06000142 RID: 322 RVA: 0x000147D8 File Offset: 0x000129D8
 	private void OnPress(bool isPressed)
 	{
 		this.mPressed = isPressed;
@@ -56,7 +56,7 @@ public class UIButtonOffset : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000143 RID: 323 RVA: 0x000147A4 File Offset: 0x000129A4
+	// Token: 0x06000143 RID: 323 RVA: 0x0001485C File Offset: 0x00012A5C
 	private void OnHover(bool isOver)
 	{
 		if (base.enabled)
@@ -69,7 +69,7 @@ public class UIButtonOffset : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000144 RID: 324 RVA: 0x000147FF File Offset: 0x000129FF
+	// Token: 0x06000144 RID: 324 RVA: 0x000148B7 File Offset: 0x00012AB7
 	private void OnDragOver()
 	{
 		if (this.mPressed)
@@ -78,7 +78,7 @@ public class UIButtonOffset : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000145 RID: 325 RVA: 0x00014836 File Offset: 0x00012A36
+	// Token: 0x06000145 RID: 325 RVA: 0x000148EE File Offset: 0x00012AEE
 	private void OnDragOut()
 	{
 		if (this.mPressed)
@@ -87,7 +87,7 @@ public class UIButtonOffset : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000146 RID: 326 RVA: 0x00014862 File Offset: 0x00012A62
+	// Token: 0x06000146 RID: 326 RVA: 0x0001491A File Offset: 0x00012B1A
 	private void OnSelect(bool isSelected)
 	{
 		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))

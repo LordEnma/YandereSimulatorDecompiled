@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000323 RID: 803
 public class HomePantiesScript : MonoBehaviour
 {
-	// Token: 0x060018A3 RID: 6307 RVA: 0x000F11E8 File Offset: 0x000EF3E8
+	// Token: 0x060018A7 RID: 6311 RVA: 0x000F147C File Offset: 0x000EF67C
 	private void Start()
 	{
 		if (this.ID > 0 && !CollectibleGlobals.GetPantyPurchased(this.ID))
@@ -14,25 +14,25 @@ public class HomePantiesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018A4 RID: 6308 RVA: 0x000F1248 File Offset: 0x000EF448
+	// Token: 0x060018A8 RID: 6312 RVA: 0x000F14DC File Offset: 0x000EF6DC
 	private void Update()
 	{
 		float y = (this.PantyChanger.Selected == this.ID) ? (base.transform.eulerAngles.y + Time.deltaTime * this.RotationSpeed) : 0f;
 		base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, y, base.transform.eulerAngles.z);
 	}
 
-	// Token: 0x0400252D RID: 9517
+	// Token: 0x04002535 RID: 9525
 	public HomePantyChangerScript PantyChanger;
 
-	// Token: 0x0400252E RID: 9518
+	// Token: 0x04002536 RID: 9526
 	public float RotationSpeed;
 
-	// Token: 0x0400252F RID: 9519
+	// Token: 0x04002537 RID: 9527
 	public Material Unselectable;
 
-	// Token: 0x04002530 RID: 9520
+	// Token: 0x04002538 RID: 9528
 	public Renderer MyRenderer;
 
-	// Token: 0x04002531 RID: 9521
+	// Token: 0x04002539 RID: 9529
 	public int ID;
 }

@@ -6,14 +6,14 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Envelop Content")]
 public class EnvelopContent : MonoBehaviour
 {
-	// Token: 0x060000FE RID: 254 RVA: 0x000131B7 File Offset: 0x000113B7
+	// Token: 0x060000FE RID: 254 RVA: 0x0001326F File Offset: 0x0001146F
 	private void Start()
 	{
 		this.mStarted = true;
 		this.Execute();
 	}
 
-	// Token: 0x060000FF RID: 255 RVA: 0x000131C6 File Offset: 0x000113C6
+	// Token: 0x060000FF RID: 255 RVA: 0x0001327E File Offset: 0x0001147E
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -22,7 +22,7 @@ public class EnvelopContent : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000100 RID: 256 RVA: 0x000131D8 File Offset: 0x000113D8
+	// Token: 0x06000100 RID: 256 RVA: 0x00013290 File Offset: 0x00011490
 	[ContextMenu("Execute")]
 	public void Execute()
 	{

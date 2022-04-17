@@ -6,7 +6,7 @@ using UnityEngine;
 public class BMSymbol
 {
 	// Token: 0x17000050 RID: 80
-	// (get) Token: 0x0600030F RID: 783 RVA: 0x000202CB File Offset: 0x0001E4CB
+	// (get) Token: 0x0600030F RID: 783 RVA: 0x00020383 File Offset: 0x0001E583
 	public int length
 	{
 		get
@@ -20,7 +20,7 @@ public class BMSymbol
 	}
 
 	// Token: 0x17000051 RID: 81
-	// (get) Token: 0x06000310 RID: 784 RVA: 0x000202EC File Offset: 0x0001E4EC
+	// (get) Token: 0x06000310 RID: 784 RVA: 0x000203A4 File Offset: 0x0001E5A4
 	public int offsetX
 	{
 		get
@@ -30,7 +30,7 @@ public class BMSymbol
 	}
 
 	// Token: 0x17000052 RID: 82
-	// (get) Token: 0x06000311 RID: 785 RVA: 0x000202F4 File Offset: 0x0001E4F4
+	// (get) Token: 0x06000311 RID: 785 RVA: 0x000203AC File Offset: 0x0001E5AC
 	public int offsetY
 	{
 		get
@@ -40,7 +40,7 @@ public class BMSymbol
 	}
 
 	// Token: 0x17000053 RID: 83
-	// (get) Token: 0x06000312 RID: 786 RVA: 0x000202FC File Offset: 0x0001E4FC
+	// (get) Token: 0x06000312 RID: 786 RVA: 0x000203B4 File Offset: 0x0001E5B4
 	public int width
 	{
 		get
@@ -50,7 +50,7 @@ public class BMSymbol
 	}
 
 	// Token: 0x17000054 RID: 84
-	// (get) Token: 0x06000313 RID: 787 RVA: 0x00020304 File Offset: 0x0001E504
+	// (get) Token: 0x06000313 RID: 787 RVA: 0x000203BC File Offset: 0x0001E5BC
 	public int height
 	{
 		get
@@ -60,7 +60,7 @@ public class BMSymbol
 	}
 
 	// Token: 0x17000055 RID: 85
-	// (get) Token: 0x06000314 RID: 788 RVA: 0x0002030C File Offset: 0x0001E50C
+	// (get) Token: 0x06000314 RID: 788 RVA: 0x000203C4 File Offset: 0x0001E5C4
 	public int advance
 	{
 		get
@@ -70,7 +70,7 @@ public class BMSymbol
 	}
 
 	// Token: 0x17000056 RID: 86
-	// (get) Token: 0x06000315 RID: 789 RVA: 0x00020314 File Offset: 0x0001E514
+	// (get) Token: 0x06000315 RID: 789 RVA: 0x000203CC File Offset: 0x0001E5CC
 	public Rect uvRect
 	{
 		get
@@ -79,13 +79,13 @@ public class BMSymbol
 		}
 	}
 
-	// Token: 0x06000316 RID: 790 RVA: 0x0002031C File Offset: 0x0001E51C
+	// Token: 0x06000316 RID: 790 RVA: 0x000203D4 File Offset: 0x0001E5D4
 	public void MarkAsChanged()
 	{
 		this.mIsValid = false;
 	}
 
-	// Token: 0x06000317 RID: 791 RVA: 0x00020328 File Offset: 0x0001E528
+	// Token: 0x06000317 RID: 791 RVA: 0x000203E0 File Offset: 0x0001E5E0
 	public bool Validate(INGUIAtlas atlas)
 	{
 		if (atlas == null)

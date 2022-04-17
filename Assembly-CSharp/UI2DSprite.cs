@@ -8,8 +8,8 @@ using UnityEngine;
 public class UI2DSprite : UIBasicSprite
 {
 	// Token: 0x1700010C RID: 268
-	// (get) Token: 0x0600067D RID: 1661 RVA: 0x000377DA File Offset: 0x000359DA
-	// (set) Token: 0x0600067E RID: 1662 RVA: 0x000377E2 File Offset: 0x000359E2
+	// (get) Token: 0x0600067D RID: 1661 RVA: 0x00037892 File Offset: 0x00035A92
+	// (set) Token: 0x0600067E RID: 1662 RVA: 0x0003789A File Offset: 0x00035A9A
 	public Sprite sprite2D
 	{
 		get
@@ -29,8 +29,8 @@ public class UI2DSprite : UIBasicSprite
 	}
 
 	// Token: 0x1700010D RID: 269
-	// (get) Token: 0x0600067F RID: 1663 RVA: 0x0003780D File Offset: 0x00035A0D
-	// (set) Token: 0x06000680 RID: 1664 RVA: 0x00037815 File Offset: 0x00035A15
+	// (get) Token: 0x0600067F RID: 1663 RVA: 0x000378C5 File Offset: 0x00035AC5
+	// (set) Token: 0x06000680 RID: 1664 RVA: 0x000378CD File Offset: 0x00035ACD
 	public override Material material
 	{
 		get
@@ -50,8 +50,8 @@ public class UI2DSprite : UIBasicSprite
 	}
 
 	// Token: 0x1700010E RID: 270
-	// (get) Token: 0x06000681 RID: 1665 RVA: 0x0003783F File Offset: 0x00035A3F
-	// (set) Token: 0x06000682 RID: 1666 RVA: 0x0003787F File Offset: 0x00035A7F
+	// (get) Token: 0x06000681 RID: 1665 RVA: 0x000378F7 File Offset: 0x00035AF7
+	// (set) Token: 0x06000682 RID: 1666 RVA: 0x00037937 File Offset: 0x00035B37
 	public override Shader shader
 	{
 		get
@@ -82,7 +82,7 @@ public class UI2DSprite : UIBasicSprite
 	}
 
 	// Token: 0x1700010F RID: 271
-	// (get) Token: 0x06000683 RID: 1667 RVA: 0x000378B7 File Offset: 0x00035AB7
+	// (get) Token: 0x06000683 RID: 1667 RVA: 0x0003796F File Offset: 0x00035B6F
 	public override Texture mainTexture
 	{
 		get
@@ -100,8 +100,8 @@ public class UI2DSprite : UIBasicSprite
 	}
 
 	// Token: 0x17000110 RID: 272
-	// (get) Token: 0x06000684 RID: 1668 RVA: 0x000378EE File Offset: 0x00035AEE
-	// (set) Token: 0x06000685 RID: 1669 RVA: 0x000378F6 File Offset: 0x00035AF6
+	// (get) Token: 0x06000684 RID: 1668 RVA: 0x000379A6 File Offset: 0x00035BA6
+	// (set) Token: 0x06000685 RID: 1669 RVA: 0x000379AE File Offset: 0x00035BAE
 	public bool fixedAspect
 	{
 		get
@@ -120,7 +120,7 @@ public class UI2DSprite : UIBasicSprite
 	}
 
 	// Token: 0x17000111 RID: 273
-	// (get) Token: 0x06000686 RID: 1670 RVA: 0x00037930 File Offset: 0x00035B30
+	// (get) Token: 0x06000686 RID: 1670 RVA: 0x000379E8 File Offset: 0x00035BE8
 	public override bool premultipliedAlpha
 	{
 		get
@@ -135,7 +135,7 @@ public class UI2DSprite : UIBasicSprite
 	}
 
 	// Token: 0x17000112 RID: 274
-	// (get) Token: 0x06000687 RID: 1671 RVA: 0x0003797B File Offset: 0x00035B7B
+	// (get) Token: 0x06000687 RID: 1671 RVA: 0x00037A33 File Offset: 0x00035C33
 	public override float pixelSize
 	{
 		get
@@ -145,7 +145,7 @@ public class UI2DSprite : UIBasicSprite
 	}
 
 	// Token: 0x17000113 RID: 275
-	// (get) Token: 0x06000688 RID: 1672 RVA: 0x00037984 File Offset: 0x00035B84
+	// (get) Token: 0x06000688 RID: 1672 RVA: 0x00037A3C File Offset: 0x00035C3C
 	public override Vector4 drawingDimensions
 	{
 		get
@@ -221,8 +221,8 @@ public class UI2DSprite : UIBasicSprite
 	}
 
 	// Token: 0x17000114 RID: 276
-	// (get) Token: 0x06000689 RID: 1673 RVA: 0x00037C56 File Offset: 0x00035E56
-	// (set) Token: 0x0600068A RID: 1674 RVA: 0x00037C5E File Offset: 0x00035E5E
+	// (get) Token: 0x06000689 RID: 1673 RVA: 0x00037D0E File Offset: 0x00035F0E
+	// (set) Token: 0x0600068A RID: 1674 RVA: 0x00037D16 File Offset: 0x00035F16
 	public override Vector4 border
 	{
 		get
@@ -239,7 +239,7 @@ public class UI2DSprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x0600068B RID: 1675 RVA: 0x00037C7C File Offset: 0x00035E7C
+	// Token: 0x0600068B RID: 1675 RVA: 0x00037D34 File Offset: 0x00035F34
 	protected override void OnUpdate()
 	{
 		if (this.nextSprite != null)
@@ -276,7 +276,7 @@ public class UI2DSprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x0600068C RID: 1676 RVA: 0x00037E54 File Offset: 0x00036054
+	// Token: 0x0600068C RID: 1676 RVA: 0x00037F0C File Offset: 0x0003610C
 	public override void MakePixelPerfect()
 	{
 		base.MakePixelPerfect();
@@ -307,7 +307,7 @@ public class UI2DSprite : UIBasicSprite
 		}
 	}
 
-	// Token: 0x0600068D RID: 1677 RVA: 0x00037EFC File Offset: 0x000360FC
+	// Token: 0x0600068D RID: 1677 RVA: 0x00037FB4 File Offset: 0x000361B4
 	public override void OnFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols)
 	{
 		Texture mainTexture = this.mainTexture;

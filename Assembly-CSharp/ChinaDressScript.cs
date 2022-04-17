@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000244 RID: 580
 public class ChinaDressScript : MonoBehaviour
 {
-	// Token: 0x0600124D RID: 4685 RVA: 0x0008CEF0 File Offset: 0x0008B0F0
+	// Token: 0x0600124D RID: 4685 RVA: 0x0008CFF4 File Offset: 0x0008B1F4
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
