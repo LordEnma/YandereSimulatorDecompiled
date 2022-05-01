@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200028B RID: 651
 public class DokiScript : MonoBehaviour
 {
-	// Token: 0x060013B0 RID: 5040 RVA: 0x000B8D20 File Offset: 0x000B6F20
+	// Token: 0x060013B4 RID: 5044 RVA: 0x000B91B8 File Offset: 0x000B73B8
 	private void Update()
 	{
 		if (!this.Yandere.Egg)
@@ -49,6 +49,7 @@ public class DokiScript : MonoBehaviour
 				this.Yandere.MyRenderer.materials[2].mainTexture = this.DokiHair[this.ID];
 				this.Yandere.Hairstyle = 136 + this.ID;
 				this.Yandere.UpdateHair();
+				this.ShoeLocker.enabled = false;
 				return;
 			}
 		}
@@ -60,33 +61,36 @@ public class DokiScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D34 RID: 7476
-	public MusicCreditScript Credits;
-
-	// Token: 0x04001D35 RID: 7477
-	public YandereScript Yandere;
-
-	// Token: 0x04001D36 RID: 7478
-	public PromptScript OtherPrompt;
-
-	// Token: 0x04001D37 RID: 7479
-	public PromptScript Prompt;
-
-	// Token: 0x04001D38 RID: 7480
-	public GameObject TransformEffect;
-
-	// Token: 0x04001D39 RID: 7481
-	public Texture DokiTexture;
-
-	// Token: 0x04001D3A RID: 7482
-	public Texture[] DokiSocks;
-
-	// Token: 0x04001D3B RID: 7483
-	public Texture[] DokiHair;
-
 	// Token: 0x04001D3C RID: 7484
-	public string[] DokiName;
+	public YandereShoeLockerScript ShoeLocker;
 
 	// Token: 0x04001D3D RID: 7485
+	public MusicCreditScript Credits;
+
+	// Token: 0x04001D3E RID: 7486
+	public YandereScript Yandere;
+
+	// Token: 0x04001D3F RID: 7487
+	public PromptScript OtherPrompt;
+
+	// Token: 0x04001D40 RID: 7488
+	public PromptScript Prompt;
+
+	// Token: 0x04001D41 RID: 7489
+	public GameObject TransformEffect;
+
+	// Token: 0x04001D42 RID: 7490
+	public Texture DokiTexture;
+
+	// Token: 0x04001D43 RID: 7491
+	public Texture[] DokiSocks;
+
+	// Token: 0x04001D44 RID: 7492
+	public Texture[] DokiHair;
+
+	// Token: 0x04001D45 RID: 7493
+	public string[] DokiName;
+
+	// Token: 0x04001D46 RID: 7494
 	public int ID;
 }

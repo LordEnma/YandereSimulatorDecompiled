@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000321 RID: 801
 public class HomeMangaBookScript : MonoBehaviour
 {
-	// Token: 0x0600189E RID: 6302 RVA: 0x000F0850 File Offset: 0x000EEA50
+	// Token: 0x060018A2 RID: 6306 RVA: 0x000F0D54 File Offset: 0x000EEF54
 	private void Start()
 	{
 		base.transform.eulerAngles = new Vector3(90f, base.transform.eulerAngles.y, base.transform.eulerAngles.z);
@@ -16,31 +16,31 @@ public class HomeMangaBookScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600189F RID: 6303 RVA: 0x000F08FC File Offset: 0x000EEAFC
+	// Token: 0x060018A3 RID: 6307 RVA: 0x000F0E00 File Offset: 0x000EF000
 	private void Update()
 	{
 		float y = (this.Manga.Selected == this.ID) ? (base.transform.eulerAngles.y + Time.deltaTime * this.RotationSpeed) : 0f;
 		base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, y, base.transform.eulerAngles.z);
 	}
 
-	// Token: 0x0400250E RID: 9486
+	// Token: 0x04002517 RID: 9495
 	public HomeMangaScript Manga;
 
-	// Token: 0x0400250F RID: 9487
+	// Token: 0x04002518 RID: 9496
 	public float RotationSpeed;
 
-	// Token: 0x04002510 RID: 9488
+	// Token: 0x04002519 RID: 9497
 	public int ID;
 
-	// Token: 0x04002511 RID: 9489
+	// Token: 0x0400251A RID: 9498
 	public Renderer MyRenderer;
 
-	// Token: 0x04002512 RID: 9490
+	// Token: 0x0400251B RID: 9499
 	public Texture EightiesCover;
 
-	// Token: 0x04002513 RID: 9491
+	// Token: 0x0400251C RID: 9500
 	public Texture EightiesBack;
 
-	// Token: 0x04002514 RID: 9492
+	// Token: 0x0400251D RID: 9501
 	public Texture EightiesSpine;
 }

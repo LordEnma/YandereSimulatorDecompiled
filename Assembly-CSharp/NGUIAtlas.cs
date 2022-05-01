@@ -6,8 +6,8 @@ using UnityEngine;
 public class NGUIAtlas : ScriptableObject, INGUIAtlas
 {
 	// Token: 0x170000DC RID: 220
-	// (get) Token: 0x06000613 RID: 1555 RVA: 0x00036324 File Offset: 0x00034524
-	// (set) Token: 0x06000614 RID: 1556 RVA: 0x00036348 File Offset: 0x00034548
+	// (get) Token: 0x06000613 RID: 1555 RVA: 0x00036464 File Offset: 0x00034664
+	// (set) Token: 0x06000614 RID: 1556 RVA: 0x00036488 File Offset: 0x00034688
 	public Material spriteMaterial
 	{
 		get
@@ -41,7 +41,7 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 	}
 
 	// Token: 0x170000DD RID: 221
-	// (get) Token: 0x06000615 RID: 1557 RVA: 0x000363A0 File Offset: 0x000345A0
+	// (get) Token: 0x06000615 RID: 1557 RVA: 0x000364E0 File Offset: 0x000346E0
 	public bool premultipliedAlpha
 	{
 		get
@@ -61,8 +61,8 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 	}
 
 	// Token: 0x170000DE RID: 222
-	// (get) Token: 0x06000616 RID: 1558 RVA: 0x00036410 File Offset: 0x00034610
-	// (set) Token: 0x06000617 RID: 1559 RVA: 0x00036434 File Offset: 0x00034634
+	// (get) Token: 0x06000616 RID: 1558 RVA: 0x00036550 File Offset: 0x00034750
+	// (set) Token: 0x06000617 RID: 1559 RVA: 0x00036574 File Offset: 0x00034774
 	public List<UISpriteData> spriteList
 	{
 		get
@@ -87,7 +87,7 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 	}
 
 	// Token: 0x170000DF RID: 223
-	// (get) Token: 0x06000618 RID: 1560 RVA: 0x0003645C File Offset: 0x0003465C
+	// (get) Token: 0x06000618 RID: 1560 RVA: 0x0003659C File Offset: 0x0003479C
 	public Texture texture
 	{
 		get
@@ -106,8 +106,8 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 	}
 
 	// Token: 0x170000E0 RID: 224
-	// (get) Token: 0x06000619 RID: 1561 RVA: 0x00036498 File Offset: 0x00034698
-	// (set) Token: 0x0600061A RID: 1562 RVA: 0x000364BC File Offset: 0x000346BC
+	// (get) Token: 0x06000619 RID: 1561 RVA: 0x000365D8 File Offset: 0x000347D8
+	// (set) Token: 0x0600061A RID: 1562 RVA: 0x000365FC File Offset: 0x000347FC
 	public float pixelSize
 	{
 		get
@@ -137,8 +137,8 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 	}
 
 	// Token: 0x170000E1 RID: 225
-	// (get) Token: 0x0600061B RID: 1563 RVA: 0x00036502 File Offset: 0x00034702
-	// (set) Token: 0x0600061C RID: 1564 RVA: 0x00036520 File Offset: 0x00034720
+	// (get) Token: 0x0600061B RID: 1563 RVA: 0x00036642 File Offset: 0x00034842
+	// (set) Token: 0x0600061C RID: 1564 RVA: 0x00036660 File Offset: 0x00034860
 	public INGUIAtlas replacement
 	{
 		get
@@ -176,7 +176,7 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 		}
 	}
 
-	// Token: 0x0600061D RID: 1565 RVA: 0x00036588 File Offset: 0x00034788
+	// Token: 0x0600061D RID: 1565 RVA: 0x000366C8 File Offset: 0x000348C8
 	public UISpriteData GetSprite(string name)
 	{
 		INGUIAtlas replacement = this.replacement;
@@ -227,7 +227,7 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 		return null;
 	}
 
-	// Token: 0x0600061E RID: 1566 RVA: 0x00036680 File Offset: 0x00034880
+	// Token: 0x0600061E RID: 1566 RVA: 0x000367C0 File Offset: 0x000349C0
 	public void MarkSpriteListAsChanged()
 	{
 		this.mSpriteIndices.Clear();
@@ -240,13 +240,13 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 		}
 	}
 
-	// Token: 0x0600061F RID: 1567 RVA: 0x000366CD File Offset: 0x000348CD
+	// Token: 0x0600061F RID: 1567 RVA: 0x0003680D File Offset: 0x00034A0D
 	public void SortAlphabetically()
 	{
 		this.mSprites.Sort((UISpriteData s1, UISpriteData s2) => s1.name.CompareTo(s2.name));
 	}
 
-	// Token: 0x06000620 RID: 1568 RVA: 0x000366FC File Offset: 0x000348FC
+	// Token: 0x06000620 RID: 1568 RVA: 0x0003683C File Offset: 0x00034A3C
 	public BetterList<string> GetListOfSprites()
 	{
 		INGUIAtlas replacement = this.replacement;
@@ -269,7 +269,7 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 		return betterList;
 	}
 
-	// Token: 0x06000621 RID: 1569 RVA: 0x00036768 File Offset: 0x00034968
+	// Token: 0x06000621 RID: 1569 RVA: 0x000368A8 File Offset: 0x00034AA8
 	public BetterList<string> GetListOfSprites(string match)
 	{
 		INGUIAtlas replacement = this.replacement;
@@ -328,7 +328,7 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 		return betterList;
 	}
 
-	// Token: 0x06000622 RID: 1570 RVA: 0x000368B4 File Offset: 0x00034AB4
+	// Token: 0x06000622 RID: 1570 RVA: 0x000369F4 File Offset: 0x00034BF4
 	public bool References(INGUIAtlas atlas)
 	{
 		if (atlas == null)
@@ -343,7 +343,7 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 		return replacement != null && replacement.References(atlas);
 	}
 
-	// Token: 0x06000623 RID: 1571 RVA: 0x000368E0 File Offset: 0x00034AE0
+	// Token: 0x06000623 RID: 1571 RVA: 0x00036A20 File Offset: 0x00034C20
 	public void MarkAsChanged()
 	{
 		INGUIAtlas replacement = this.replacement;
@@ -410,40 +410,40 @@ public class NGUIAtlas : ScriptableObject, INGUIAtlas
 		}
 	}
 
-	// Token: 0x04000607 RID: 1543
+	// Token: 0x04000609 RID: 1545
 	[HideInInspector]
 	[SerializeField]
 	private Material material;
 
-	// Token: 0x04000608 RID: 1544
+	// Token: 0x0400060A RID: 1546
 	[HideInInspector]
 	[SerializeField]
 	private List<UISpriteData> mSprites = new List<UISpriteData>();
 
-	// Token: 0x04000609 RID: 1545
+	// Token: 0x0400060B RID: 1547
 	[HideInInspector]
 	[SerializeField]
 	private float mPixelSize = 1f;
 
-	// Token: 0x0400060A RID: 1546
+	// Token: 0x0400060C RID: 1548
 	[HideInInspector]
 	[SerializeField]
 	private UnityEngine.Object mReplacement;
 
-	// Token: 0x0400060B RID: 1547
+	// Token: 0x0400060D RID: 1549
 	[NonSerialized]
 	private int mPMA = -1;
 
-	// Token: 0x0400060C RID: 1548
+	// Token: 0x0400060E RID: 1550
 	[NonSerialized]
 	private Dictionary<string, int> mSpriteIndices = new Dictionary<string, int>();
 
-	// Token: 0x02000617 RID: 1559
+	// Token: 0x02000618 RID: 1560
 	private enum Coordinates
 	{
-		// Token: 0x04004EC5 RID: 20165
+		// Token: 0x04004EE3 RID: 20195
 		Pixels,
-		// Token: 0x04004EC6 RID: 20166
+		// Token: 0x04004EE4 RID: 20196
 		TexCoords
 	}
 }

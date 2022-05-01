@@ -1,20 +1,20 @@
 ﻿using System;
 
-// Token: 0x020004C4 RID: 1220
+// Token: 0x020004C5 RID: 1221
 public enum WeaponType
 {
-	// Token: 0x040042FE RID: 17150
+	// Token: 0x04004314 RID: 17172
 	Knife = 1,
-	// Token: 0x040042FF RID: 17151
+	// Token: 0x04004315 RID: 17173
 	Katana,
-	// Token: 0x04004300 RID: 17152
+	// Token: 0x04004316 RID: 17174
 	Bat,
-	// Token: 0x04004301 RID: 17153
+	// Token: 0x04004317 RID: 17175
 	Saw,
-	// Token: 0x04004302 RID: 17154
+	// Token: 0x04004318 RID: 17176
 	Syringe,
-	// Token: 0x04004303 RID: 17155
+	// Token: 0x04004319 RID: 17177
 	Weight,
-	// Token: 0x04004304 RID: 17156
+	// Token: 0x0400431A RID: 17178
 	Garrote
 }

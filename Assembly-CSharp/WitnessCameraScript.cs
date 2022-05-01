@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004CA RID: 1226
+// Token: 0x020004CB RID: 1227
 public class WitnessCameraScript : MonoBehaviour
 {
-	// Token: 0x06002010 RID: 8208 RVA: 0x001C76BB File Offset: 0x001C58BB
+	// Token: 0x06002019 RID: 8217 RVA: 0x001C8A77 File Offset: 0x001C6C77
 	private void Start()
 	{
 		this.MyCamera.enabled = false;
 		this.MyCamera.rect = new Rect(0f, 0f, 0f, 0f);
 	}
 
-	// Token: 0x06002011 RID: 8209 RVA: 0x001C76F0 File Offset: 0x001C58F0
+	// Token: 0x0600201A RID: 8218 RVA: 0x001C8AAC File Offset: 0x001C6CAC
 	private void Update()
 	{
 		if (this.Show)
@@ -42,18 +42,18 @@ public class WitnessCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04004382 RID: 17282
+	// Token: 0x04004398 RID: 17304
 	public YandereScript Yandere;
 
-	// Token: 0x04004383 RID: 17283
+	// Token: 0x04004399 RID: 17305
 	public Transform WitnessPOV;
 
-	// Token: 0x04004384 RID: 17284
+	// Token: 0x0400439A RID: 17306
 	public float WitnessTimer;
 
-	// Token: 0x04004385 RID: 17285
+	// Token: 0x0400439B RID: 17307
 	public Camera MyCamera;
 
-	// Token: 0x04004386 RID: 17286
+	// Token: 0x0400439C RID: 17308
 	public bool Show;
 }

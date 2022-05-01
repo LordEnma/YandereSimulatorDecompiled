@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002C5 RID: 709
 public class FakeStudentSpawnerScript : MonoBehaviour
 {
-	// Token: 0x06001497 RID: 5271 RVA: 0x000C96B0 File Offset: 0x000C78B0
+	// Token: 0x0600149B RID: 5275 RVA: 0x000C9B78 File Offset: 0x000C7D78
 	public void Spawn()
 	{
 		if (!this.AlreadySpawned)
@@ -61,54 +61,54 @@ public class FakeStudentSpawnerScript : MonoBehaviour
 		this.FakeStudentParent.gameObject.SetActive(!this.FakeStudentParent.gameObject.activeInHierarchy);
 	}
 
-	// Token: 0x04001FF1 RID: 8177
+	// Token: 0x04001FFA RID: 8186
 	public Transform FakeStudentParent;
 
-	// Token: 0x04001FF2 RID: 8178
+	// Token: 0x04001FFB RID: 8187
 	public GameObject NewStudent;
 
-	// Token: 0x04001FF3 RID: 8179
+	// Token: 0x04001FFC RID: 8188
 	public GameObject FakeFemale;
 
-	// Token: 0x04001FF4 RID: 8180
+	// Token: 0x04001FFD RID: 8189
 	public GameObject FakeMale;
 
-	// Token: 0x04001FF5 RID: 8181
+	// Token: 0x04001FFE RID: 8190
 	public GameObject Student;
 
-	// Token: 0x04001FF6 RID: 8182
+	// Token: 0x04001FFF RID: 8191
 	public bool AlreadySpawned;
 
-	// Token: 0x04001FF7 RID: 8183
+	// Token: 0x04002000 RID: 8192
 	public int CurrentFloor;
 
-	// Token: 0x04001FF8 RID: 8184
+	// Token: 0x04002001 RID: 8193
 	public int CurrentRow;
 
-	// Token: 0x04001FF9 RID: 8185
+	// Token: 0x04002002 RID: 8194
 	public int FloorLimit;
 
-	// Token: 0x04001FFA RID: 8186
+	// Token: 0x04002003 RID: 8195
 	public int RowLimit;
 
-	// Token: 0x04001FFB RID: 8187
+	// Token: 0x04002004 RID: 8196
 	public int StudentIDLimit;
 
-	// Token: 0x04001FFC RID: 8188
+	// Token: 0x04002005 RID: 8197
 	public int StudentID;
 
-	// Token: 0x04001FFD RID: 8189
+	// Token: 0x04002006 RID: 8198
 	public int Spawned;
 
-	// Token: 0x04001FFE RID: 8190
+	// Token: 0x04002007 RID: 8199
 	public int Height;
 
-	// Token: 0x04001FFF RID: 8191
+	// Token: 0x04002008 RID: 8200
 	public int NESW;
 
-	// Token: 0x04002000 RID: 8192
+	// Token: 0x04002009 RID: 8201
 	public int ID;
 
-	// Token: 0x04002001 RID: 8193
+	// Token: 0x0400200A RID: 8202
 	public GameObject[] SuspiciousObjects;
 }

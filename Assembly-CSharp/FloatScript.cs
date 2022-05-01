@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002CF RID: 719
 public class FloatScript : MonoBehaviour
 {
-	// Token: 0x060014B8 RID: 5304 RVA: 0x000CBE80 File Offset: 0x000CA080
+	// Token: 0x060014BC RID: 5308 RVA: 0x000CC348 File Offset: 0x000CA548
 	private void Update()
 	{
 		if (!this.Down)
@@ -34,21 +34,21 @@ public class FloatScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002068 RID: 8296
+	// Token: 0x04002071 RID: 8305
 	public bool Down;
 
-	// Token: 0x04002069 RID: 8297
+	// Token: 0x04002072 RID: 8306
 	public float Float;
 
-	// Token: 0x0400206A RID: 8298
+	// Token: 0x04002073 RID: 8307
 	public float Speed;
 
-	// Token: 0x0400206B RID: 8299
+	// Token: 0x04002074 RID: 8308
 	public float Limit;
 
-	// Token: 0x0400206C RID: 8300
+	// Token: 0x04002075 RID: 8309
 	public float DownLimit;
 
-	// Token: 0x0400206D RID: 8301
+	// Token: 0x04002076 RID: 8310
 	public float UpLimit;
 }

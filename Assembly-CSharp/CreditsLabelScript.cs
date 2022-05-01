@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000266 RID: 614
 public class CreditsLabelScript : MonoBehaviour
 {
-	// Token: 0x060012FD RID: 4861 RVA: 0x000A84D0 File Offset: 0x000A66D0
+	// Token: 0x06001301 RID: 4865 RVA: 0x000A8968 File Offset: 0x000A6B68
 	private void Start()
 	{
 		this.Rotation = -90f;
 		base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, this.Rotation, base.transform.localEulerAngles.z);
 	}
 
-	// Token: 0x060012FE RID: 4862 RVA: 0x000A8520 File Offset: 0x000A6720
+	// Token: 0x06001302 RID: 4866 RVA: 0x000A89B8 File Offset: 0x000A6BB8
 	private void Update()
 	{
 		this.Rotation += Time.deltaTime * this.RotationSpeed;
@@ -23,12 +23,12 @@ public class CreditsLabelScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001B0A RID: 6922
+	// Token: 0x04001B12 RID: 6930
 	public float RotationSpeed;
 
-	// Token: 0x04001B0B RID: 6923
+	// Token: 0x04001B13 RID: 6931
 	public float MovementSpeed;
 
-	// Token: 0x04001B0C RID: 6924
+	// Token: 0x04001B14 RID: 6932
 	public float Rotation;
 }

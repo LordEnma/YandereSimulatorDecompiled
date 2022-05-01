@@ -1,22 +1,22 @@
 ﻿using System;
 
-// Token: 0x0200049D RID: 1181
+// Token: 0x0200049E RID: 1182
 public enum TimeOfDay
 {
-	// Token: 0x0400421B RID: 16923
+	// Token: 0x04004231 RID: 16945
 	Midnight,
-	// Token: 0x0400421C RID: 16924
+	// Token: 0x04004232 RID: 16946
 	EarlyMorning,
-	// Token: 0x0400421D RID: 16925
+	// Token: 0x04004233 RID: 16947
 	Morning,
-	// Token: 0x0400421E RID: 16926
+	// Token: 0x04004234 RID: 16948
 	LateMorning,
-	// Token: 0x0400421F RID: 16927
+	// Token: 0x04004235 RID: 16949
 	Noon,
-	// Token: 0x04004220 RID: 16928
+	// Token: 0x04004236 RID: 16950
 	Afternoon,
-	// Token: 0x04004221 RID: 16929
+	// Token: 0x04004237 RID: 16951
 	Evening,
-	// Token: 0x04004222 RID: 16930
+	// Token: 0x04004238 RID: 16952
 	Night
 }

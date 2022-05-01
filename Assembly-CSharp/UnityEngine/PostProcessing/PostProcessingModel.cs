@@ -2,13 +2,13 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000583 RID: 1411
+	// Token: 0x02000584 RID: 1412
 	[Serializable]
 	public abstract class PostProcessingModel
 	{
 		// Token: 0x1700051C RID: 1308
-		// (get) Token: 0x060023DA RID: 9178 RVA: 0x001FA889 File Offset: 0x001F8A89
-		// (set) Token: 0x060023DB RID: 9179 RVA: 0x001FA891 File Offset: 0x001F8A91
+		// (get) Token: 0x060023E3 RID: 9187 RVA: 0x001FBD15 File Offset: 0x001F9F15
+		// (set) Token: 0x060023E4 RID: 9188 RVA: 0x001FBD1D File Offset: 0x001F9F1D
 		public bool enabled
 		{
 			get
@@ -25,15 +25,15 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023DC RID: 9180
+		// Token: 0x060023E5 RID: 9189
 		public abstract void Reset();
 
-		// Token: 0x060023DD RID: 9181 RVA: 0x001FA8A3 File Offset: 0x001F8AA3
+		// Token: 0x060023E6 RID: 9190 RVA: 0x001FBD2F File Offset: 0x001F9F2F
 		public virtual void OnValidate()
 		{
 		}
 
-		// Token: 0x04004C01 RID: 19457
+		// Token: 0x04004C17 RID: 19479
 		[SerializeField]
 		[GetSet("enabled")]
 		private bool m_Enabled;

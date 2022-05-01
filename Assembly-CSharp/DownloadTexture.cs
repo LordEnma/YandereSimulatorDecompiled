@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 [RequireComponent(typeof(UITexture))]
 public class DownloadTexture : MonoBehaviour
 {
-	// Token: 0x060000C6 RID: 198 RVA: 0x0001250C File Offset: 0x0001070C
+	// Token: 0x060000C6 RID: 198 RVA: 0x0001264C File Offset: 0x0001084C
 	private IEnumerator Start()
 	{
 		UnityWebRequest www = UnityWebRequest.Get(this.url);
@@ -26,7 +26,7 @@ public class DownloadTexture : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060000C7 RID: 199 RVA: 0x0001251B File Offset: 0x0001071B
+	// Token: 0x060000C7 RID: 199 RVA: 0x0001265B File Offset: 0x0001085B
 	private void OnDestroy()
 	{
 		if (this.mTex != null)
@@ -35,12 +35,12 @@ public class DownloadTexture : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000299 RID: 665
+	// Token: 0x0400029B RID: 667
 	public string url = "http://www.yourwebsite.com/logo.png";
 
-	// Token: 0x0400029A RID: 666
+	// Token: 0x0400029C RID: 668
 	public bool pixelPerfect = true;
 
-	// Token: 0x0400029B RID: 667
+	// Token: 0x0400029D RID: 669
 	private Texture2D mTex;
 }

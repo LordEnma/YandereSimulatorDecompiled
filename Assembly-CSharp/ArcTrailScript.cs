@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000D2 RID: 210
 public class ArcTrailScript : MonoBehaviour
 {
-	// Token: 0x060009D8 RID: 2520 RVA: 0x000521E6 File Offset: 0x000503E6
+	// Token: 0x060009D8 RID: 2520 RVA: 0x00052326 File Offset: 0x00050526
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -13,9 +13,9 @@ public class ArcTrailScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A65 RID: 2661
+	// Token: 0x04000A67 RID: 2663
 	private static readonly Color TRAIL_TINT_COLOR = new Color(1f, 0f, 0f, 1f);
 
-	// Token: 0x04000A66 RID: 2662
+	// Token: 0x04000A68 RID: 2664
 	public TrailRenderer Trail;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000FF RID: 255
 public class BucketScript : MonoBehaviour
 {
-	// Token: 0x06000A8A RID: 2698 RVA: 0x0005D700 File Offset: 0x0005B900
+	// Token: 0x06000A8A RID: 2698 RVA: 0x0005D854 File Offset: 0x0005BA54
 	private void Start()
 	{
 		this.Water.transform.localPosition = new Vector3(this.Water.transform.localPosition.x, 0f, this.Water.transform.localPosition.z);
@@ -19,7 +19,7 @@ public class BucketScript : MonoBehaviour
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
 	}
 
-	// Token: 0x06000A8B RID: 2699 RVA: 0x0005D97C File Offset: 0x0005BB7C
+	// Token: 0x06000A8B RID: 2699 RVA: 0x0005DAD0 File Offset: 0x0005BCD0
 	private void Update()
 	{
 		bool flag = false;
@@ -399,7 +399,7 @@ public class BucketScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A8C RID: 2700 RVA: 0x0005EFD8 File Offset: 0x0005D1D8
+	// Token: 0x06000A8C RID: 2700 RVA: 0x0005F12C File Offset: 0x0005D32C
 	public void Empty()
 	{
 		if (SchemeGlobals.GetSchemeStage(1) == 2)
@@ -420,7 +420,7 @@ public class BucketScript : MonoBehaviour
 		this.PickUp.Usable = false;
 	}
 
-	// Token: 0x06000A8D RID: 2701 RVA: 0x0005F088 File Offset: 0x0005D288
+	// Token: 0x06000A8D RID: 2701 RVA: 0x0005F1DC File Offset: 0x0005D3DC
 	public void Fill()
 	{
 		if (SchemeGlobals.GetSchemeStage(1) == 1)
@@ -439,7 +439,7 @@ public class BucketScript : MonoBehaviour
 		this.Full = true;
 	}
 
-	// Token: 0x06000A8E RID: 2702 RVA: 0x0005F13C File Offset: 0x0005D33C
+	// Token: 0x06000A8E RID: 2702 RVA: 0x0005F290 File Offset: 0x0005D490
 	private void OnCollisionEnter(Collision other)
 	{
 		if (this.Dropped)
@@ -471,7 +471,7 @@ public class BucketScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A8F RID: 2703 RVA: 0x0005F284 File Offset: 0x0005D484
+	// Token: 0x06000A8F RID: 2703 RVA: 0x0005F3D8 File Offset: 0x0005D5D8
 	public void Spill()
 	{
 		GameObject original;
@@ -505,129 +505,132 @@ public class BucketScript : MonoBehaviour
 		this.Yandere.SuspiciousActionTimer = 1f;
 	}
 
-	// Token: 0x04000C4F RID: 3151
+	// Token: 0x04000C51 RID: 3153
 	public PhoneEventScript PhoneEvent;
 
-	// Token: 0x04000C50 RID: 3152
+	// Token: 0x04000C52 RID: 3154
 	public ParticleSystem PourEffect;
 
-	// Token: 0x04000C51 RID: 3153
+	// Token: 0x04000C53 RID: 3155
 	public ParticleSystem Sparkles;
 
-	// Token: 0x04000C52 RID: 3154
+	// Token: 0x04000C54 RID: 3156
 	public YandereScript Yandere;
 
-	// Token: 0x04000C53 RID: 3155
+	// Token: 0x04000C55 RID: 3157
 	public PickUpScript PickUp;
 
-	// Token: 0x04000C54 RID: 3156
+	// Token: 0x04000C56 RID: 3158
 	public PromptScript Prompt;
 
-	// Token: 0x04000C55 RID: 3157
-	public GameObject WaterCollider;
-
-	// Token: 0x04000C56 RID: 3158
-	public GameObject BloodCollider;
-
 	// Token: 0x04000C57 RID: 3159
-	public GameObject GasCollider;
+	public GameObject BrownPaintCollider;
 
 	// Token: 0x04000C58 RID: 3160
-	[SerializeField]
-	private GameObject BloodSpillEffect;
+	public GameObject WaterCollider;
 
 	// Token: 0x04000C59 RID: 3161
-	[SerializeField]
-	private GameObject BrownSpillEffect;
+	public GameObject BloodCollider;
 
 	// Token: 0x04000C5A RID: 3162
-	[SerializeField]
-	private GameObject GasSpillEffect;
+	public GameObject GasCollider;
 
 	// Token: 0x04000C5B RID: 3163
 	[SerializeField]
-	private GameObject SpillEffect;
+	private GameObject BloodSpillEffect;
 
 	// Token: 0x04000C5C RID: 3164
 	[SerializeField]
-	private GameObject Effect;
+	private GameObject BrownSpillEffect;
 
 	// Token: 0x04000C5D RID: 3165
 	[SerializeField]
-	private GameObject[] Dumbbell;
+	private GameObject GasSpillEffect;
 
 	// Token: 0x04000C5E RID: 3166
 	[SerializeField]
-	private Transform[] Positions;
+	private GameObject SpillEffect;
 
 	// Token: 0x04000C5F RID: 3167
-	public Renderer Water;
+	[SerializeField]
+	private GameObject Effect;
 
 	// Token: 0x04000C60 RID: 3168
-	public Renderer Blood;
+	[SerializeField]
+	private GameObject[] Dumbbell;
 
 	// Token: 0x04000C61 RID: 3169
-	public Renderer Brown;
+	[SerializeField]
+	private Transform[] Positions;
 
 	// Token: 0x04000C62 RID: 3170
-	public Renderer Gas;
+	public Renderer Water;
 
 	// Token: 0x04000C63 RID: 3171
-	public float Bloodiness;
+	public Renderer Blood;
 
 	// Token: 0x04000C64 RID: 3172
-	public float FillSpeed = 1f;
+	public Renderer Brown;
 
 	// Token: 0x04000C65 RID: 3173
-	public float Timer;
+	public Renderer Gas;
 
 	// Token: 0x04000C66 RID: 3174
+	public float Bloodiness;
+
+	// Token: 0x04000C67 RID: 3175
+	public float FillSpeed = 1f;
+
+	// Token: 0x04000C68 RID: 3176
+	public float Timer;
+
+	// Token: 0x04000C69 RID: 3177
 	[SerializeField]
 	private float Distance;
 
-	// Token: 0x04000C67 RID: 3175
+	// Token: 0x04000C6A RID: 3178
 	[SerializeField]
 	private float Rotate;
 
-	// Token: 0x04000C68 RID: 3176
+	// Token: 0x04000C6B RID: 3179
 	public int Dumbbells;
 
-	// Token: 0x04000C69 RID: 3177
+	// Token: 0x04000C6C RID: 3180
 	public bool UpdateAppearance;
 
-	// Token: 0x04000C6A RID: 3178
+	// Token: 0x04000C6D RID: 3181
 	public bool DyedBrown;
 
-	// Token: 0x04000C6B RID: 3179
+	// Token: 0x04000C6E RID: 3182
 	public bool Bleached;
 
-	// Token: 0x04000C6C RID: 3180
+	// Token: 0x04000C6F RID: 3183
 	public bool Dippable;
 
-	// Token: 0x04000C6D RID: 3181
+	// Token: 0x04000C70 RID: 3184
 	public bool Gasoline;
 
-	// Token: 0x04000C6E RID: 3182
+	// Token: 0x04000C71 RID: 3185
 	public bool Dropped;
 
-	// Token: 0x04000C6F RID: 3183
+	// Token: 0x04000C72 RID: 3186
 	public bool Poured;
 
-	// Token: 0x04000C70 RID: 3184
+	// Token: 0x04000C73 RID: 3187
 	public bool Full;
 
-	// Token: 0x04000C71 RID: 3185
+	// Token: 0x04000C74 RID: 3188
 	public bool Trap;
 
-	// Token: 0x04000C72 RID: 3186
+	// Token: 0x04000C75 RID: 3189
 	public bool Fly;
 
-	// Token: 0x04000C73 RID: 3187
+	// Token: 0x04000C76 RID: 3190
 	public AudioClip EmptyBucket;
 
-	// Token: 0x04000C74 RID: 3188
+	// Token: 0x04000C77 RID: 3191
 	public AudioClip FillBucket;
 
-	// Token: 0x04000C75 RID: 3189
+	// Token: 0x04000C78 RID: 3192
 	public AudioClip CrackSkull;
 }

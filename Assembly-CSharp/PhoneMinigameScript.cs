@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003A4 RID: 932
 public class PhoneMinigameScript : MonoBehaviour
 {
-	// Token: 0x06001A9F RID: 6815 RVA: 0x0011E7D4 File Offset: 0x0011C9D4
+	// Token: 0x06001AA3 RID: 6819 RVA: 0x0011ED70 File Offset: 0x0011CF70
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -77,7 +77,7 @@ public class PhoneMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AA0 RID: 6816 RVA: 0x0011EC0C File Offset: 0x0011CE0C
+	// Token: 0x06001AA4 RID: 6820 RVA: 0x0011F1A8 File Offset: 0x0011D3A8
 	private void End()
 	{
 		this.Prompt.Yandere.CameraEffects.UpdateDOF(2f);
@@ -93,33 +93,33 @@ public class PhoneMinigameScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04002C3A RID: 11322
+	// Token: 0x04002C43 RID: 11331
 	public PickpocketMinigameScript PickpocketMinigame;
 
-	// Token: 0x04002C3B RID: 11323
+	// Token: 0x04002C44 RID: 11332
 	public OsanaThursdayAfterClassEventScript Event;
 
-	// Token: 0x04002C3C RID: 11324
+	// Token: 0x04002C45 RID: 11333
 	public Renderer SmartPhoneScreen;
 
-	// Token: 0x04002C3D RID: 11325
+	// Token: 0x04002C46 RID: 11334
 	public Transform Smartphone;
 
-	// Token: 0x04002C3E RID: 11326
+	// Token: 0x04002C47 RID: 11335
 	public PromptScript Prompt;
 
-	// Token: 0x04002C3F RID: 11327
+	// Token: 0x04002C48 RID: 11336
 	public Texture AlarmOff;
 
-	// Token: 0x04002C40 RID: 11328
+	// Token: 0x04002C49 RID: 11337
 	public bool Tampering;
 
-	// Token: 0x04002C41 RID: 11329
+	// Token: 0x04002C4A RID: 11338
 	public float Timer;
 
-	// Token: 0x04002C42 RID: 11330
+	// Token: 0x04002C4B RID: 11339
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04002C43 RID: 11331
+	// Token: 0x04002C4C RID: 11340
 	public Vector3 OriginalRotation;
 }

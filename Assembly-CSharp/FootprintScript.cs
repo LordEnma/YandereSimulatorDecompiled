@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002D3 RID: 723
 public class FootprintScript : MonoBehaviour
 {
-	// Token: 0x060014C2 RID: 5314 RVA: 0x000CC598 File Offset: 0x000CA798
+	// Token: 0x060014C6 RID: 5318 RVA: 0x000CCA60 File Offset: 0x000CAC60
 	private void Start()
 	{
 		if (this.Yandere.Schoolwear == 0 || this.Yandere.Schoolwear == 2 || (this.Yandere.ClubAttire && this.Yandere.Club == ClubType.MartialArts) || this.Yandere.Hungry || this.Yandere.LucyHelmet.activeInHierarchy)
@@ -19,12 +19,12 @@ public class FootprintScript : MonoBehaviour
 		UnityEngine.Object.Destroy(this);
 	}
 
-	// Token: 0x04002087 RID: 8327
+	// Token: 0x04002090 RID: 8336
 	public YandereScript Yandere;
 
-	// Token: 0x04002088 RID: 8328
+	// Token: 0x04002091 RID: 8337
 	public Texture Footprint;
 
-	// Token: 0x04002089 RID: 8329
+	// Token: 0x04002092 RID: 8338
 	public Texture Flower;
 }

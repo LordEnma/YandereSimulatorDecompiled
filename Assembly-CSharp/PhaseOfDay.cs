@@ -3,18 +3,18 @@
 // Token: 0x0200039D RID: 925
 public enum PhaseOfDay
 {
-	// Token: 0x04002BE4 RID: 11236
+	// Token: 0x04002BED RID: 11245
 	None,
-	// Token: 0x04002BE5 RID: 11237
+	// Token: 0x04002BEE RID: 11246
 	BeforeClass,
-	// Token: 0x04002BE6 RID: 11238
+	// Token: 0x04002BEF RID: 11247
 	FirstPeriod,
-	// Token: 0x04002BE7 RID: 11239
+	// Token: 0x04002BF0 RID: 11248
 	Lunchtime,
-	// Token: 0x04002BE8 RID: 11240
+	// Token: 0x04002BF1 RID: 11249
 	SecondPeriod,
-	// Token: 0x04002BE9 RID: 11241
+	// Token: 0x04002BF2 RID: 11250
 	CleaningTime,
-	// Token: 0x04002BEA RID: 11242
+	// Token: 0x04002BF3 RID: 11251
 	AfterClass
 }

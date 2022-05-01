@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D6 RID: 982
 public class ReputationScript : MonoBehaviour
 {
-	// Token: 0x06001B8A RID: 7050 RVA: 0x001369CF File Offset: 0x00134BCF
+	// Token: 0x06001B8E RID: 7054 RVA: 0x00137047 File Offset: 0x00135247
 	private void Start()
 	{
 		this.RepUpdateLabel.enabled = true;
@@ -20,7 +20,7 @@ public class ReputationScript : MonoBehaviour
 		this.Reputation = PlayerGlobals.Reputation;
 	}
 
-	// Token: 0x06001B8B RID: 7051 RVA: 0x00136A10 File Offset: 0x00134C10
+	// Token: 0x06001B8F RID: 7055 RVA: 0x00137088 File Offset: 0x00135288
 	private void Update()
 	{
 		switch (this.Phase)
@@ -96,7 +96,7 @@ public class ReputationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B8C RID: 7052 RVA: 0x00136E34 File Offset: 0x00135034
+	// Token: 0x06001B90 RID: 7056 RVA: 0x001374AC File Offset: 0x001356AC
 	public void UpdateRep()
 	{
 		this.Reputation += this.PendingRep;
@@ -116,7 +116,7 @@ public class ReputationScript : MonoBehaviour
 		this.StudentManager.WipePendingRep();
 	}
 
-	// Token: 0x06001B8D RID: 7053 RVA: 0x00136EBE File Offset: 0x001350BE
+	// Token: 0x06001B91 RID: 7057 RVA: 0x00137536 File Offset: 0x00135736
 	public void BecomeEighties()
 	{
 		this.StudentManager.EightiesifyLabel(this.PendingRepLabel);
@@ -124,7 +124,7 @@ public class ReputationScript : MonoBehaviour
 		this.StudentManager.EightiesifyLabel(this.RepLabel);
 	}
 
-	// Token: 0x06001B8E RID: 7054 RVA: 0x00136EF4 File Offset: 0x001350F4
+	// Token: 0x06001B92 RID: 7058 RVA: 0x0013756C File Offset: 0x0013576C
 	public void UpdatePendingRepLabel()
 	{
 		this.PreviousRep = this.PendingRep;
@@ -148,51 +148,51 @@ public class ReputationScript : MonoBehaviour
 		this.PendingRepLabel.text = string.Empty;
 	}
 
-	// Token: 0x04002F3D RID: 12093
+	// Token: 0x04002F47 RID: 12103
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002F3E RID: 12094
+	// Token: 0x04002F48 RID: 12104
 	public ArmDetectorScript ArmDetector;
 
-	// Token: 0x04002F3F RID: 12095
+	// Token: 0x04002F49 RID: 12105
 	public PortalScript Portal;
 
-	// Token: 0x04002F40 RID: 12096
+	// Token: 0x04002F4A RID: 12106
 	public Transform CurrentRepMarker;
 
-	// Token: 0x04002F41 RID: 12097
+	// Token: 0x04002F4B RID: 12107
 	public Transform PendingRepMarker;
 
-	// Token: 0x04002F42 RID: 12098
+	// Token: 0x04002F4C RID: 12108
 	public UILabel PendingRepLabel;
 
-	// Token: 0x04002F43 RID: 12099
+	// Token: 0x04002F4D RID: 12109
 	public UILabel RepUpdateLabel;
 
-	// Token: 0x04002F44 RID: 12100
+	// Token: 0x04002F4E RID: 12110
 	public UILabel RepLabel;
 
-	// Token: 0x04002F45 RID: 12101
+	// Token: 0x04002F4F RID: 12111
 	public ClockScript Clock;
 
-	// Token: 0x04002F46 RID: 12102
+	// Token: 0x04002F50 RID: 12112
 	public float Reputation;
 
-	// Token: 0x04002F47 RID: 12103
+	// Token: 0x04002F51 RID: 12113
 	public float LerpTimer;
 
-	// Token: 0x04002F48 RID: 12104
+	// Token: 0x04002F52 RID: 12114
 	public float PreviousRep;
 
-	// Token: 0x04002F49 RID: 12105
+	// Token: 0x04002F53 RID: 12115
 	public float PendingRep;
 
-	// Token: 0x04002F4A RID: 12106
+	// Token: 0x04002F54 RID: 12116
 	public int CheckedRep = 1;
 
-	// Token: 0x04002F4B RID: 12107
+	// Token: 0x04002F55 RID: 12117
 	public int Phase;
 
-	// Token: 0x04002F4C RID: 12108
+	// Token: 0x04002F56 RID: 12118
 	public bool MissionMode;
 }

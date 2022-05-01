@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020000C5 RID: 197
 public class AlphabetScript : MonoBehaviour
 {
-	// Token: 0x060009AD RID: 2477 RVA: 0x0004F9A0 File Offset: 0x0004DBA0
+	// Token: 0x060009AD RID: 2477 RVA: 0x0004FAE0 File Offset: 0x0004DCE0
 	private void Start()
 	{
 		if (GameGlobals.AlphabetMode)
@@ -35,7 +35,7 @@ public class AlphabetScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x060009AE RID: 2478 RVA: 0x0004FAAC File Offset: 0x0004DCAC
+	// Token: 0x060009AE RID: 2478 RVA: 0x0004FBEC File Offset: 0x0004DDEC
 	private void Update()
 	{
 		if (!this.Began && this.StudentManager.Yandere.CanMove)
@@ -140,7 +140,7 @@ public class AlphabetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009AF RID: 2479 RVA: 0x0004FF78 File Offset: 0x0004E178
+	// Token: 0x060009AF RID: 2479 RVA: 0x000500B8 File Offset: 0x0004E2B8
 	public void UpdateText()
 	{
 		this.TargetLabel.text = string.Concat(new string[]
@@ -172,105 +172,105 @@ public class AlphabetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009B0 RID: 2480 RVA: 0x000500BE File Offset: 0x0004E2BE
+	// Token: 0x060009B0 RID: 2480 RVA: 0x000501FE File Offset: 0x0004E3FE
 	public void UpdateDifficultyLabel()
 	{
 		this.DifficultyLabel.text = "Difficulty: " + this.DifficultyText[this.Cheats];
 	}
 
-	// Token: 0x040008A9 RID: 2217
+	// Token: 0x040008AB RID: 2219
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040008AA RID: 2218
+	// Token: 0x040008AC RID: 2220
 	public InventoryScript Inventory;
 
-	// Token: 0x040008AB RID: 2219
+	// Token: 0x040008AD RID: 2221
 	public ClassScript Class;
 
-	// Token: 0x040008AC RID: 2220
+	// Token: 0x040008AE RID: 2222
 	public GameObject BodyHidingLockers;
 
-	// Token: 0x040008AD RID: 2221
+	// Token: 0x040008AF RID: 2223
 	public GameObject AlphabetTools;
 
-	// Token: 0x040008AE RID: 2222
+	// Token: 0x040008B0 RID: 2224
 	public GameObject Jukebox;
 
-	// Token: 0x040008AF RID: 2223
+	// Token: 0x040008B1 RID: 2225
 	public GameObject AmnesiaBomb;
 
-	// Token: 0x040008B0 RID: 2224
+	// Token: 0x040008B2 RID: 2226
 	public GameObject SmokeBomb;
 
-	// Token: 0x040008B1 RID: 2225
+	// Token: 0x040008B3 RID: 2227
 	public GameObject StinkBomb;
 
-	// Token: 0x040008B2 RID: 2226
+	// Token: 0x040008B4 RID: 2228
 	public UILabel ChallengeFailed;
 
-	// Token: 0x040008B3 RID: 2227
+	// Token: 0x040008B5 RID: 2229
 	public UILabel DifficultyLabel;
 
-	// Token: 0x040008B4 RID: 2228
+	// Token: 0x040008B6 RID: 2230
 	public UILabel TargetLabel;
 
-	// Token: 0x040008B5 RID: 2229
+	// Token: 0x040008B7 RID: 2231
 	public UILabel BombLabel;
 
-	// Token: 0x040008B6 RID: 2230
+	// Token: 0x040008B8 RID: 2232
 	public AudioSource MusicPlayer;
 
-	// Token: 0x040008B7 RID: 2231
+	// Token: 0x040008B9 RID: 2233
 	public UITexture BombTexture;
 
-	// Token: 0x040008B8 RID: 2232
+	// Token: 0x040008BA RID: 2234
 	public Transform LocalArrow;
 
-	// Token: 0x040008B9 RID: 2233
+	// Token: 0x040008BB RID: 2235
 	public Renderer MyRenderer;
 
-	// Token: 0x040008BA RID: 2234
+	// Token: 0x040008BC RID: 2236
 	public Transform Yandere;
 
-	// Token: 0x040008BB RID: 2235
+	// Token: 0x040008BD RID: 2237
 	public bool AlternateMusic;
 
-	// Token: 0x040008BC RID: 2236
+	// Token: 0x040008BE RID: 2238
 	public bool StopMusic;
 
-	// Token: 0x040008BD RID: 2237
+	// Token: 0x040008BF RID: 2239
 	public bool Began;
 
-	// Token: 0x040008BE RID: 2238
+	// Token: 0x040008C0 RID: 2240
 	public int RemainingBombs;
 
-	// Token: 0x040008BF RID: 2239
+	// Token: 0x040008C1 RID: 2241
 	public int CurrentTarget;
 
-	// Token: 0x040008C0 RID: 2240
+	// Token: 0x040008C2 RID: 2242
 	public int CurrentTrack;
 
-	// Token: 0x040008C1 RID: 2241
+	// Token: 0x040008C3 RID: 2243
 	public int Cheats;
 
-	// Token: 0x040008C2 RID: 2242
+	// Token: 0x040008C4 RID: 2244
 	public int Limit;
 
-	// Token: 0x040008C3 RID: 2243
+	// Token: 0x040008C5 RID: 2245
 	public float LastTime;
 
-	// Token: 0x040008C4 RID: 2244
+	// Token: 0x040008C6 RID: 2246
 	public float Timer;
 
-	// Token: 0x040008C5 RID: 2245
+	// Token: 0x040008C7 RID: 2247
 	public AudioClip[] MusicTracks;
 
-	// Token: 0x040008C6 RID: 2246
+	// Token: 0x040008C8 RID: 2248
 	public string[] DifficultyText;
 
-	// Token: 0x040008C7 RID: 2247
+	// Token: 0x040008C9 RID: 2249
 	public int[] EightiesIDs;
 
-	// Token: 0x040008C8 RID: 2248
+	// Token: 0x040008CA RID: 2250
 	public int[] IDs;
 }

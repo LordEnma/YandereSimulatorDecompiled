@@ -9,8 +9,8 @@ using UnityEngine;
 public class UIPopupList : UIWidgetContainer
 {
 	// Token: 0x1700001E RID: 30
-	// (get) Token: 0x0600022F RID: 559 RVA: 0x00019882 File Offset: 0x00017A82
-	// (set) Token: 0x06000230 RID: 560 RVA: 0x000198BD File Offset: 0x00017ABD
+	// (get) Token: 0x0600022F RID: 559 RVA: 0x000199C2 File Offset: 0x00017BC2
+	// (set) Token: 0x06000230 RID: 560 RVA: 0x000199FD File Offset: 0x00017BFD
 	public INGUIFont font
 	{
 		get
@@ -33,8 +33,8 @@ public class UIPopupList : UIWidgetContainer
 	}
 
 	// Token: 0x1700001F RID: 31
-	// (get) Token: 0x06000231 RID: 561 RVA: 0x000198D4 File Offset: 0x00017AD4
-	// (set) Token: 0x06000232 RID: 562 RVA: 0x0001992C File Offset: 0x00017B2C
+	// (get) Token: 0x06000231 RID: 561 RVA: 0x00019A14 File Offset: 0x00017C14
+	// (set) Token: 0x06000232 RID: 562 RVA: 0x00019A6C File Offset: 0x00017C6C
 	public UnityEngine.Object ambigiousFont
 	{
 		get
@@ -76,8 +76,8 @@ public class UIPopupList : UIWidgetContainer
 	}
 
 	// Token: 0x17000020 RID: 32
-	// (get) Token: 0x06000233 RID: 563 RVA: 0x0001998C File Offset: 0x00017B8C
-	// (set) Token: 0x06000234 RID: 564 RVA: 0x00019994 File Offset: 0x00017B94
+	// (get) Token: 0x06000233 RID: 563 RVA: 0x00019ACC File Offset: 0x00017CCC
+	// (set) Token: 0x06000234 RID: 564 RVA: 0x00019AD4 File Offset: 0x00017CD4
 	[Obsolete("Use EventDelegate.Add(popup.onChange, YourCallback) instead, and UIPopupList.current.value to determine the state")]
 	public UIPopupList.LegacyEvent onSelectionChange
 	{
@@ -92,7 +92,7 @@ public class UIPopupList : UIWidgetContainer
 	}
 
 	// Token: 0x17000021 RID: 33
-	// (get) Token: 0x06000235 RID: 565 RVA: 0x0001999D File Offset: 0x00017B9D
+	// (get) Token: 0x06000235 RID: 565 RVA: 0x00019ADD File Offset: 0x00017CDD
 	public static bool isOpen
 	{
 		get
@@ -102,8 +102,8 @@ public class UIPopupList : UIWidgetContainer
 	}
 
 	// Token: 0x17000022 RID: 34
-	// (get) Token: 0x06000236 RID: 566 RVA: 0x000199C9 File Offset: 0x00017BC9
-	// (set) Token: 0x06000237 RID: 567 RVA: 0x000199D1 File Offset: 0x00017BD1
+	// (get) Token: 0x06000236 RID: 566 RVA: 0x00019B09 File Offset: 0x00017D09
+	// (set) Token: 0x06000237 RID: 567 RVA: 0x00019B11 File Offset: 0x00017D11
 	public virtual string value
 	{
 		get
@@ -117,7 +117,7 @@ public class UIPopupList : UIWidgetContainer
 	}
 
 	// Token: 0x17000023 RID: 35
-	// (get) Token: 0x06000238 RID: 568 RVA: 0x000199DC File Offset: 0x00017BDC
+	// (get) Token: 0x06000238 RID: 568 RVA: 0x00019B1C File Offset: 0x00017D1C
 	public virtual object data
 	{
 		get
@@ -132,7 +132,7 @@ public class UIPopupList : UIWidgetContainer
 	}
 
 	// Token: 0x17000024 RID: 36
-	// (get) Token: 0x06000239 RID: 569 RVA: 0x00019A1C File Offset: 0x00017C1C
+	// (get) Token: 0x06000239 RID: 569 RVA: 0x00019B5C File Offset: 0x00017D5C
 	public Action callback
 	{
 		get
@@ -147,8 +147,8 @@ public class UIPopupList : UIWidgetContainer
 	}
 
 	// Token: 0x17000025 RID: 37
-	// (get) Token: 0x0600023A RID: 570 RVA: 0x00019A5C File Offset: 0x00017C5C
-	// (set) Token: 0x0600023B RID: 571 RVA: 0x00019A98 File Offset: 0x00017C98
+	// (get) Token: 0x0600023A RID: 570 RVA: 0x00019B9C File Offset: 0x00017D9C
+	// (set) Token: 0x0600023B RID: 571 RVA: 0x00019BD8 File Offset: 0x00017DD8
 	public bool isColliderEnabled
 	{
 		get
@@ -179,7 +179,7 @@ public class UIPopupList : UIWidgetContainer
 	}
 
 	// Token: 0x17000026 RID: 38
-	// (get) Token: 0x0600023C RID: 572 RVA: 0x00019AD5 File Offset: 0x00017CD5
+	// (get) Token: 0x0600023C RID: 572 RVA: 0x00019C15 File Offset: 0x00017E15
 	protected bool isValid
 	{
 		get
@@ -189,7 +189,7 @@ public class UIPopupList : UIWidgetContainer
 	}
 
 	// Token: 0x17000027 RID: 39
-	// (get) Token: 0x0600023D RID: 573 RVA: 0x00019AE4 File Offset: 0x00017CE4
+	// (get) Token: 0x0600023D RID: 573 RVA: 0x00019C24 File Offset: 0x00017E24
 	protected int activeFontSize
 	{
 		get
@@ -208,7 +208,7 @@ public class UIPopupList : UIWidgetContainer
 	}
 
 	// Token: 0x17000028 RID: 40
-	// (get) Token: 0x0600023E RID: 574 RVA: 0x00019B20 File Offset: 0x00017D20
+	// (get) Token: 0x0600023E RID: 574 RVA: 0x00019C60 File Offset: 0x00017E60
 	protected float activeFontScale
 	{
 		get
@@ -227,7 +227,7 @@ public class UIPopupList : UIWidgetContainer
 	}
 
 	// Token: 0x17000029 RID: 41
-	// (get) Token: 0x0600023F RID: 575 RVA: 0x00019B64 File Offset: 0x00017D64
+	// (get) Token: 0x0600023F RID: 575 RVA: 0x00019CA4 File Offset: 0x00017EA4
 	protected float fitScale
 	{
 		get
@@ -254,7 +254,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000240 RID: 576 RVA: 0x00019C32 File Offset: 0x00017E32
+	// Token: 0x06000240 RID: 576 RVA: 0x00019D72 File Offset: 0x00017F72
 	public void Set(string value, bool notify = true)
 	{
 		if (this.mSelectedItem != value)
@@ -275,7 +275,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000241 RID: 577 RVA: 0x00019C72 File Offset: 0x00017E72
+	// Token: 0x06000241 RID: 577 RVA: 0x00019DB2 File Offset: 0x00017FB2
 	public virtual void Clear()
 	{
 		this.items.Clear();
@@ -283,7 +283,7 @@ public class UIPopupList : UIWidgetContainer
 		this.itemCallbacks.Clear();
 	}
 
-	// Token: 0x06000242 RID: 578 RVA: 0x00019C95 File Offset: 0x00017E95
+	// Token: 0x06000242 RID: 578 RVA: 0x00019DD5 File Offset: 0x00017FD5
 	public virtual void AddItem(string text)
 	{
 		this.items.Add(text);
@@ -291,14 +291,14 @@ public class UIPopupList : UIWidgetContainer
 		this.itemCallbacks.Add(null);
 	}
 
-	// Token: 0x06000243 RID: 579 RVA: 0x00019CBB File Offset: 0x00017EBB
+	// Token: 0x06000243 RID: 579 RVA: 0x00019DFB File Offset: 0x00017FFB
 	public virtual void AddItem(string text, Action del)
 	{
 		this.items.Add(text);
 		this.itemCallbacks.Add(del);
 	}
 
-	// Token: 0x06000244 RID: 580 RVA: 0x00019CD5 File Offset: 0x00017ED5
+	// Token: 0x06000244 RID: 580 RVA: 0x00019E15 File Offset: 0x00018015
 	public virtual void AddItem(string text, object data, Action del = null)
 	{
 		this.items.Add(text);
@@ -306,7 +306,7 @@ public class UIPopupList : UIWidgetContainer
 		this.itemCallbacks.Add(del);
 	}
 
-	// Token: 0x06000245 RID: 581 RVA: 0x00019CFC File Offset: 0x00017EFC
+	// Token: 0x06000245 RID: 581 RVA: 0x00019E3C File Offset: 0x0001803C
 	public virtual void RemoveItem(string text)
 	{
 		int num = this.items.IndexOf(text);
@@ -321,7 +321,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000246 RID: 582 RVA: 0x00019D4C File Offset: 0x00017F4C
+	// Token: 0x06000246 RID: 582 RVA: 0x00019E8C File Offset: 0x0001808C
 	public virtual void RemoveItemByData(object data)
 	{
 		int num = this.itemData.IndexOf(data);
@@ -336,7 +336,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000247 RID: 583 RVA: 0x00019D9C File Offset: 0x00017F9C
+	// Token: 0x06000247 RID: 583 RVA: 0x00019EDC File Offset: 0x000180DC
 	protected void TriggerCallbacks()
 	{
 		if (!this.mExecuting)
@@ -366,7 +366,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000248 RID: 584 RVA: 0x00019E48 File Offset: 0x00018048
+	// Token: 0x06000248 RID: 584 RVA: 0x00019F88 File Offset: 0x00018188
 	protected virtual void OnEnable()
 	{
 		if (EventDelegate.IsValid(this.onChange))
@@ -387,7 +387,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000249 RID: 585 RVA: 0x00019EE4 File Offset: 0x000180E4
+	// Token: 0x06000249 RID: 585 RVA: 0x0001A024 File Offset: 0x00018224
 	public virtual void Start()
 	{
 		if (this.mStarted)
@@ -412,7 +412,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x0600024A RID: 586 RVA: 0x00019F59 File Offset: 0x00018159
+	// Token: 0x0600024A RID: 586 RVA: 0x0001A099 File Offset: 0x00018299
 	protected virtual void OnLocalize()
 	{
 		if (this.isLocalized)
@@ -421,7 +421,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x0600024B RID: 587 RVA: 0x00019F6C File Offset: 0x0001816C
+	// Token: 0x0600024B RID: 587 RVA: 0x0001A0AC File Offset: 0x000182AC
 	protected virtual void Highlight(UILabel lbl, bool instant)
 	{
 		if (this.mHighlight != null)
@@ -445,7 +445,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x0600024C RID: 588 RVA: 0x00019FEC File Offset: 0x000181EC
+	// Token: 0x0600024C RID: 588 RVA: 0x0001A12C File Offset: 0x0001832C
 	protected virtual Vector3 GetHighlightPosition()
 	{
 		if (this.mHighlightedLabel == null || this.mHighlight == null)
@@ -464,7 +464,7 @@ public class UIPopupList : UIWidgetContainer
 		return this.mHighlightedLabel.cachedTransform.localPosition + new Vector3(-num2, y, 1f);
 	}
 
-	// Token: 0x0600024D RID: 589 RVA: 0x0001A075 File Offset: 0x00018275
+	// Token: 0x0600024D RID: 589 RVA: 0x0001A1B5 File Offset: 0x000183B5
 	protected virtual IEnumerator UpdateTweenPosition()
 	{
 		if (this.mHighlight != null && this.mHighlightedLabel != null)
@@ -481,7 +481,7 @@ public class UIPopupList : UIWidgetContainer
 		yield break;
 	}
 
-	// Token: 0x0600024E RID: 590 RVA: 0x0001A084 File Offset: 0x00018284
+	// Token: 0x0600024E RID: 590 RVA: 0x0001A1C4 File Offset: 0x000183C4
 	protected virtual void OnItemHover(GameObject go, bool isOver)
 	{
 		if (isOver)
@@ -491,7 +491,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x0600024F RID: 591 RVA: 0x0001A0A3 File Offset: 0x000182A3
+	// Token: 0x0600024F RID: 591 RVA: 0x0001A1E3 File Offset: 0x000183E3
 	protected virtual void OnItemPress(GameObject go, bool isPressed)
 	{
 		if (isPressed && this.selection == UIPopupList.Selection.OnPress)
@@ -500,7 +500,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000250 RID: 592 RVA: 0x0001A0B8 File Offset: 0x000182B8
+	// Token: 0x06000250 RID: 592 RVA: 0x0001A1F8 File Offset: 0x000183F8
 	protected virtual void OnItemClick(GameObject go)
 	{
 		this.Select(go.GetComponent<UILabel>(), true);
@@ -521,13 +521,13 @@ public class UIPopupList : UIWidgetContainer
 		this.CloseSelf();
 	}
 
-	// Token: 0x06000251 RID: 593 RVA: 0x0001A12E File Offset: 0x0001832E
+	// Token: 0x06000251 RID: 593 RVA: 0x0001A26E File Offset: 0x0001846E
 	private void Select(UILabel lbl, bool instant)
 	{
 		this.Highlight(lbl, instant);
 	}
 
-	// Token: 0x06000252 RID: 594 RVA: 0x0001A138 File Offset: 0x00018338
+	// Token: 0x06000252 RID: 594 RVA: 0x0001A278 File Offset: 0x00018478
 	protected virtual void OnNavigate(KeyCode key)
 	{
 		if (base.enabled && UIPopupList.current == this)
@@ -552,7 +552,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000253 RID: 595 RVA: 0x0001A1C5 File Offset: 0x000183C5
+	// Token: 0x06000253 RID: 595 RVA: 0x0001A305 File Offset: 0x00018505
 	protected virtual void OnKey(KeyCode key)
 	{
 		if (base.enabled && UIPopupList.current == this && (key == UICamera.current.cancelKey0 || key == UICamera.current.cancelKey1))
@@ -561,13 +561,13 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000254 RID: 596 RVA: 0x0001A1FD File Offset: 0x000183FD
+	// Token: 0x06000254 RID: 596 RVA: 0x0001A33D File Offset: 0x0001853D
 	protected virtual void OnDisable()
 	{
 		this.CloseSelf();
 	}
 
-	// Token: 0x06000255 RID: 597 RVA: 0x0001A208 File Offset: 0x00018408
+	// Token: 0x06000255 RID: 597 RVA: 0x0001A348 File Offset: 0x00018548
 	protected virtual void OnSelect(bool isSelected)
 	{
 		if (!isSelected)
@@ -580,7 +580,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000256 RID: 598 RVA: 0x0001A267 File Offset: 0x00018467
+	// Token: 0x06000256 RID: 598 RVA: 0x0001A3A7 File Offset: 0x000185A7
 	public static void Close()
 	{
 		if (UIPopupList.current != null)
@@ -590,7 +590,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000257 RID: 599 RVA: 0x0001A288 File Offset: 0x00018488
+	// Token: 0x06000257 RID: 599 RVA: 0x0001A3C8 File Offset: 0x000185C8
 	public virtual void CloseSelf()
 	{
 		if (UIPopupList.mChild != null && UIPopupList.current == this)
@@ -634,7 +634,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x06000258 RID: 600 RVA: 0x0001A3B0 File Offset: 0x000185B0
+	// Token: 0x06000258 RID: 600 RVA: 0x0001A4F0 File Offset: 0x000186F0
 	protected virtual void AnimateColor(UIWidget widget)
 	{
 		Color color = widget.color;
@@ -642,7 +642,7 @@ public class UIPopupList : UIWidgetContainer
 		TweenColor.Begin(widget.gameObject, 0.15f, color).method = UITweener.Method.EaseOut;
 	}
 
-	// Token: 0x06000259 RID: 601 RVA: 0x0001A400 File Offset: 0x00018600
+	// Token: 0x06000259 RID: 601 RVA: 0x0001A540 File Offset: 0x00018740
 	protected virtual void AnimatePosition(UIWidget widget, bool placeAbove, float bottom)
 	{
 		Vector3 localPosition = widget.cachedTransform.localPosition;
@@ -651,7 +651,7 @@ public class UIPopupList : UIWidgetContainer
 		TweenPosition.Begin(widget.gameObject, 0.15f, localPosition).method = UITweener.Method.EaseOut;
 	}
 
-	// Token: 0x0600025A RID: 602 RVA: 0x0001A46C File Offset: 0x0001866C
+	// Token: 0x0600025A RID: 602 RVA: 0x0001A5AC File Offset: 0x000187AC
 	protected virtual void AnimateScale(UIWidget widget, bool placeAbove, float bottom)
 	{
 		GameObject gameObject = widget.gameObject;
@@ -668,14 +668,14 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x0600025B RID: 603 RVA: 0x0001A524 File Offset: 0x00018724
+	// Token: 0x0600025B RID: 603 RVA: 0x0001A664 File Offset: 0x00018864
 	protected void Animate(UIWidget widget, bool placeAbove, float bottom)
 	{
 		this.AnimateColor(widget);
 		this.AnimatePosition(widget, placeAbove, bottom);
 	}
 
-	// Token: 0x0600025C RID: 604 RVA: 0x0001A538 File Offset: 0x00018738
+	// Token: 0x0600025C RID: 604 RVA: 0x0001A678 File Offset: 0x00018878
 	protected virtual void OnClick()
 	{
 		if (this.mOpenFrame == Time.frameCount)
@@ -701,7 +701,7 @@ public class UIPopupList : UIWidgetContainer
 		this.Show();
 	}
 
-	// Token: 0x0600025D RID: 605 RVA: 0x0001A5AD File Offset: 0x000187AD
+	// Token: 0x0600025D RID: 605 RVA: 0x0001A6ED File Offset: 0x000188ED
 	protected virtual void OnDoubleClick()
 	{
 		if (this.openOn == UIPopupList.OpenOn.DoubleClick)
@@ -710,7 +710,7 @@ public class UIPopupList : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x0600025E RID: 606 RVA: 0x0001A5BE File Offset: 0x000187BE
+	// Token: 0x0600025E RID: 606 RVA: 0x0001A6FE File Offset: 0x000188FE
 	private IEnumerator CloseIfUnselected()
 	{
 		GameObject selectedObject;
@@ -724,7 +724,7 @@ public class UIPopupList : UIWidgetContainer
 		yield break;
 	}
 
-	// Token: 0x0600025F RID: 607 RVA: 0x0001A5D0 File Offset: 0x000187D0
+	// Token: 0x0600025F RID: 607 RVA: 0x0001A710 File Offset: 0x00018910
 	public virtual void Show()
 	{
 		if (!base.enabled || !NGUITools.GetActive(base.gameObject) || !(UIPopupList.mChild == null) || !this.isValid || this.items.Count <= 0)
@@ -1017,221 +1017,221 @@ public class UIPopupList : UIWidgetContainer
 		transform.parent = parent;
 	}
 
-	// Token: 0x040003D4 RID: 980
+	// Token: 0x040003D6 RID: 982
 	public static UIPopupList current;
 
-	// Token: 0x040003D5 RID: 981
+	// Token: 0x040003D7 RID: 983
 	protected static GameObject mChild;
 
-	// Token: 0x040003D6 RID: 982
+	// Token: 0x040003D8 RID: 984
 	protected static float mFadeOutComplete;
 
-	// Token: 0x040003D7 RID: 983
+	// Token: 0x040003D9 RID: 985
 	private const float animSpeed = 0.15f;
 
-	// Token: 0x040003D8 RID: 984
+	// Token: 0x040003DA RID: 986
 	public UnityEngine.Object atlas;
 
-	// Token: 0x040003D9 RID: 985
+	// Token: 0x040003DB RID: 987
 	public UnityEngine.Object bitmapFont;
 
-	// Token: 0x040003DA RID: 986
+	// Token: 0x040003DC RID: 988
 	public Font trueTypeFont;
 
-	// Token: 0x040003DB RID: 987
+	// Token: 0x040003DD RID: 989
 	public int fontSize = 16;
 
-	// Token: 0x040003DC RID: 988
+	// Token: 0x040003DE RID: 990
 	public FontStyle fontStyle;
 
-	// Token: 0x040003DD RID: 989
+	// Token: 0x040003DF RID: 991
 	public string backgroundSprite;
 
-	// Token: 0x040003DE RID: 990
+	// Token: 0x040003E0 RID: 992
 	public string highlightSprite;
 
-	// Token: 0x040003DF RID: 991
+	// Token: 0x040003E1 RID: 993
 	public Sprite background2DSprite;
 
-	// Token: 0x040003E0 RID: 992
+	// Token: 0x040003E2 RID: 994
 	public Sprite highlight2DSprite;
 
-	// Token: 0x040003E1 RID: 993
+	// Token: 0x040003E3 RID: 995
 	public UIPopupList.Position position;
 
-	// Token: 0x040003E2 RID: 994
+	// Token: 0x040003E4 RID: 996
 	public UIPopupList.Selection selection;
 
-	// Token: 0x040003E3 RID: 995
+	// Token: 0x040003E5 RID: 997
 	public NGUIText.Alignment alignment = NGUIText.Alignment.Left;
 
-	// Token: 0x040003E4 RID: 996
+	// Token: 0x040003E6 RID: 998
 	public List<string> items = new List<string>();
 
-	// Token: 0x040003E5 RID: 997
+	// Token: 0x040003E7 RID: 999
 	public List<object> itemData = new List<object>();
 
-	// Token: 0x040003E6 RID: 998
+	// Token: 0x040003E8 RID: 1000
 	public List<Action> itemCallbacks = new List<Action>();
 
-	// Token: 0x040003E7 RID: 999
+	// Token: 0x040003E9 RID: 1001
 	public Vector2 padding = new Vector3(4f, 4f);
 
-	// Token: 0x040003E8 RID: 1000
+	// Token: 0x040003EA RID: 1002
 	public Color textColor = Color.white;
 
-	// Token: 0x040003E9 RID: 1001
+	// Token: 0x040003EB RID: 1003
 	public Color backgroundColor = Color.white;
 
-	// Token: 0x040003EA RID: 1002
+	// Token: 0x040003EC RID: 1004
 	public Color highlightColor = new Color(0.88235295f, 0.78431374f, 0.5882353f, 1f);
 
-	// Token: 0x040003EB RID: 1003
+	// Token: 0x040003ED RID: 1005
 	public bool isAnimated = true;
 
-	// Token: 0x040003EC RID: 1004
+	// Token: 0x040003EE RID: 1006
 	public bool isLocalized;
 
-	// Token: 0x040003ED RID: 1005
+	// Token: 0x040003EF RID: 1007
 	public UILabel.Modifier textModifier;
 
-	// Token: 0x040003EE RID: 1006
+	// Token: 0x040003F0 RID: 1008
 	public bool separatePanel = true;
 
-	// Token: 0x040003EF RID: 1007
+	// Token: 0x040003F1 RID: 1009
 	public int overlap;
 
-	// Token: 0x040003F0 RID: 1008
+	// Token: 0x040003F2 RID: 1010
 	public UIPopupList.OpenOn openOn;
 
-	// Token: 0x040003F1 RID: 1009
-	public List<EventDelegate> onChange = new List<EventDelegate>();
-
-	// Token: 0x040003F2 RID: 1010
-	[HideInInspector]
-	[SerializeField]
-	protected string mSelectedItem;
-
 	// Token: 0x040003F3 RID: 1011
-	[HideInInspector]
-	[SerializeField]
-	protected UIPanel mPanel;
+	public List<EventDelegate> onChange = new List<EventDelegate>();
 
 	// Token: 0x040003F4 RID: 1012
 	[HideInInspector]
 	[SerializeField]
-	protected UIBasicSprite mBackground;
+	protected string mSelectedItem;
 
 	// Token: 0x040003F5 RID: 1013
 	[HideInInspector]
 	[SerializeField]
-	protected UIBasicSprite mHighlight;
+	protected UIPanel mPanel;
 
 	// Token: 0x040003F6 RID: 1014
 	[HideInInspector]
 	[SerializeField]
-	protected UILabel mHighlightedLabel;
+	protected UIBasicSprite mBackground;
 
 	// Token: 0x040003F7 RID: 1015
 	[HideInInspector]
 	[SerializeField]
-	protected List<UILabel> mLabelList = new List<UILabel>();
+	protected UIBasicSprite mHighlight;
 
 	// Token: 0x040003F8 RID: 1016
 	[HideInInspector]
 	[SerializeField]
-	protected float mBgBorder;
+	protected UILabel mHighlightedLabel;
 
 	// Token: 0x040003F9 RID: 1017
+	[HideInInspector]
+	[SerializeField]
+	protected List<UILabel> mLabelList = new List<UILabel>();
+
+	// Token: 0x040003FA RID: 1018
+	[HideInInspector]
+	[SerializeField]
+	protected float mBgBorder;
+
+	// Token: 0x040003FB RID: 1019
 	[Tooltip("Whether the selection will be persistent even after the popup list is closed. By default the selection is cleared when the popup is closed so that the same selection can be chosen again the next time the popup list is opened. If enabled, the selection will persist, but selecting the same choice in succession will not result in the onChange notification being triggered more than once.")]
 	public bool keepValue;
 
-	// Token: 0x040003FA RID: 1018
+	// Token: 0x040003FC RID: 1020
 	[NonSerialized]
 	protected GameObject mSelection;
 
-	// Token: 0x040003FB RID: 1019
+	// Token: 0x040003FD RID: 1021
 	[NonSerialized]
 	protected int mOpenFrame;
-
-	// Token: 0x040003FC RID: 1020
-	[HideInInspector]
-	[SerializeField]
-	private GameObject eventReceiver;
-
-	// Token: 0x040003FD RID: 1021
-	[HideInInspector]
-	[SerializeField]
-	private string functionName = "OnSelectionChange";
 
 	// Token: 0x040003FE RID: 1022
 	[HideInInspector]
 	[SerializeField]
-	private float textScale;
+	private GameObject eventReceiver;
 
 	// Token: 0x040003FF RID: 1023
 	[HideInInspector]
 	[SerializeField]
-	private UILabel textLabel;
+	private string functionName = "OnSelectionChange";
 
 	// Token: 0x04000400 RID: 1024
-	[NonSerialized]
-	public Vector3 startingPosition;
+	[HideInInspector]
+	[SerializeField]
+	private float textScale;
 
 	// Token: 0x04000401 RID: 1025
-	private UIPopupList.LegacyEvent mLegacyEvent;
+	[HideInInspector]
+	[SerializeField]
+	private UILabel textLabel;
 
 	// Token: 0x04000402 RID: 1026
 	[NonSerialized]
-	protected bool mExecuting;
+	public Vector3 startingPosition;
 
 	// Token: 0x04000403 RID: 1027
+	private UIPopupList.LegacyEvent mLegacyEvent;
+
+	// Token: 0x04000404 RID: 1028
+	[NonSerialized]
+	protected bool mExecuting;
+
+	// Token: 0x04000405 RID: 1029
 	[NonSerialized]
 	protected bool mStarted;
 
-	// Token: 0x04000404 RID: 1028
+	// Token: 0x04000406 RID: 1030
 	protected bool mTweening;
 
-	// Token: 0x04000405 RID: 1029
+	// Token: 0x04000407 RID: 1031
 	public GameObject source;
-
-	// Token: 0x020005DB RID: 1499
-	[DoNotObfuscateNGUI]
-	public enum Position
-	{
-		// Token: 0x04004E18 RID: 19992
-		Auto,
-		// Token: 0x04004E19 RID: 19993
-		Above,
-		// Token: 0x04004E1A RID: 19994
-		Below
-	}
 
 	// Token: 0x020005DC RID: 1500
 	[DoNotObfuscateNGUI]
-	public enum Selection
+	public enum Position
 	{
-		// Token: 0x04004E1C RID: 19996
-		OnPress,
-		// Token: 0x04004E1D RID: 19997
-		OnClick
+		// Token: 0x04004E36 RID: 20022
+		Auto,
+		// Token: 0x04004E37 RID: 20023
+		Above,
+		// Token: 0x04004E38 RID: 20024
+		Below
 	}
 
 	// Token: 0x020005DD RID: 1501
 	[DoNotObfuscateNGUI]
-	public enum OpenOn
+	public enum Selection
 	{
-		// Token: 0x04004E1F RID: 19999
-		ClickOrTap,
-		// Token: 0x04004E20 RID: 20000
-		RightClick,
-		// Token: 0x04004E21 RID: 20001
-		DoubleClick,
-		// Token: 0x04004E22 RID: 20002
-		Manual
+		// Token: 0x04004E3A RID: 20026
+		OnPress,
+		// Token: 0x04004E3B RID: 20027
+		OnClick
 	}
 
 	// Token: 0x020005DE RID: 1502
-	// (Invoke) Token: 0x0600254D RID: 9549
+	[DoNotObfuscateNGUI]
+	public enum OpenOn
+	{
+		// Token: 0x04004E3D RID: 20029
+		ClickOrTap,
+		// Token: 0x04004E3E RID: 20030
+		RightClick,
+		// Token: 0x04004E3F RID: 20031
+		DoubleClick,
+		// Token: 0x04004E40 RID: 20032
+		Manual
+	}
+
+	// Token: 0x020005DF RID: 1503
+	// (Invoke) Token: 0x06002556 RID: 9558
 	public delegate void LegacyEvent(string val);
 }

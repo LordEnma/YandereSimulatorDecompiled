@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003B6 RID: 950
 public class PortraitScript : MonoBehaviour
 {
-	// Token: 0x06001AFE RID: 6910 RVA: 0x00128812 File Offset: 0x00126A12
+	// Token: 0x06001B02 RID: 6914 RVA: 0x00128E26 File Offset: 0x00127026
 	private void Start()
 	{
 		this.StudentObject[1].SetActive(false);
@@ -13,7 +13,7 @@ public class PortraitScript : MonoBehaviour
 		this.UpdateHair();
 	}
 
-	// Token: 0x06001AFF RID: 6911 RVA: 0x00128840 File Offset: 0x00126A40
+	// Token: 0x06001B03 RID: 6915 RVA: 0x00128E54 File Offset: 0x00127054
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -48,7 +48,7 @@ public class PortraitScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B00 RID: 6912 RVA: 0x00128938 File Offset: 0x00126B38
+	// Token: 0x06001B04 RID: 6916 RVA: 0x00128F4C File Offset: 0x0012714C
 	private void UpdateHair()
 	{
 		Texture mainTexture = this.HairSet2[this.CurrentHair];
@@ -60,30 +60,30 @@ public class PortraitScript : MonoBehaviour
 		this.Renderer3.materials[1].mainTexture = mainTexture;
 	}
 
-	// Token: 0x04002D9A RID: 11674
+	// Token: 0x04002DA3 RID: 11683
 	public GameObject[] StudentObject;
 
-	// Token: 0x04002D9B RID: 11675
+	// Token: 0x04002DA4 RID: 11684
 	public Renderer Renderer1;
 
-	// Token: 0x04002D9C RID: 11676
+	// Token: 0x04002DA5 RID: 11685
 	public Renderer Renderer2;
 
-	// Token: 0x04002D9D RID: 11677
+	// Token: 0x04002DA6 RID: 11686
 	public Renderer Renderer3;
 
-	// Token: 0x04002D9E RID: 11678
+	// Token: 0x04002DA7 RID: 11687
 	public Texture[] HairSet1;
 
-	// Token: 0x04002D9F RID: 11679
+	// Token: 0x04002DA8 RID: 11688
 	public Texture[] HairSet2;
 
-	// Token: 0x04002DA0 RID: 11680
+	// Token: 0x04002DA9 RID: 11689
 	public Texture[] HairSet3;
 
-	// Token: 0x04002DA1 RID: 11681
+	// Token: 0x04002DAA RID: 11690
 	public int Selected;
 
-	// Token: 0x04002DA2 RID: 11682
+	// Token: 0x04002DAB RID: 11691
 	public int CurrentHair;
 }

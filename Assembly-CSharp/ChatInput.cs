@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Examples/Chat Input")]
 public class ChatInput : MonoBehaviour
 {
-	// Token: 0x060000C3 RID: 195 RVA: 0x00012428 File Offset: 0x00010628
+	// Token: 0x060000C3 RID: 195 RVA: 0x00012568 File Offset: 0x00010768
 	private void Start()
 	{
 		this.mInput = base.GetComponent<UIInput>();
@@ -20,7 +20,7 @@ public class ChatInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060000C4 RID: 196 RVA: 0x000124A8 File Offset: 0x000106A8
+	// Token: 0x060000C4 RID: 196 RVA: 0x000125E8 File Offset: 0x000107E8
 	public void OnSubmit()
 	{
 		if (this.textList != null)
@@ -35,12 +35,12 @@ public class ChatInput : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000296 RID: 662
+	// Token: 0x04000298 RID: 664
 	public UITextList textList;
 
-	// Token: 0x04000297 RID: 663
+	// Token: 0x04000299 RID: 665
 	public bool fillWithDummyData;
 
-	// Token: 0x04000298 RID: 664
+	// Token: 0x0400029A RID: 666
 	private UIInput mInput;
 }

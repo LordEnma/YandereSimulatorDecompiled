@@ -5,25 +5,25 @@ using UnityEngine.PostProcessing;
 // Token: 0x02000281 RID: 641
 public class DetectReloadScript : MonoBehaviour
 {
-	// Token: 0x0600138A RID: 5002 RVA: 0x000B406D File Offset: 0x000B226D
+	// Token: 0x0600138E RID: 5006 RVA: 0x000B4505 File Offset: 0x000B2705
 	private void Start()
 	{
 		UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
 		this.ResetPostProcessingSettings();
 	}
 
-	// Token: 0x0600138B RID: 5003 RVA: 0x000B4080 File Offset: 0x000B2280
+	// Token: 0x0600138F RID: 5007 RVA: 0x000B4518 File Offset: 0x000B2718
 	private void OnBeforeAssemblyReload()
 	{
 	}
 
-	// Token: 0x0600138C RID: 5004 RVA: 0x000B4082 File Offset: 0x000B2282
+	// Token: 0x06001390 RID: 5008 RVA: 0x000B451A File Offset: 0x000B271A
 	private void OnAfterAssemblyReload()
 	{
 		this.ResetSettings = true;
 	}
 
-	// Token: 0x0600138D RID: 5005 RVA: 0x000B408C File Offset: 0x000B228C
+	// Token: 0x06001391 RID: 5009 RVA: 0x000B4524 File Offset: 0x000B2724
 	private void ResetPostProcessingSettings()
 	{
 		this.Profile.fog.enabled = OptionGlobals.Fog;
@@ -35,7 +35,7 @@ public class DetectReloadScript : MonoBehaviour
 		this.Profile.chromaticAberration.enabled = !OptionGlobals.DisableAbberation;
 	}
 
-	// Token: 0x0600138E RID: 5006 RVA: 0x000B4138 File Offset: 0x000B2338
+	// Token: 0x06001392 RID: 5010 RVA: 0x000B45D0 File Offset: 0x000B27D0
 	private void Update()
 	{
 		if (this.ResetSettings)
@@ -45,9 +45,9 @@ public class DetectReloadScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001CE7 RID: 7399
+	// Token: 0x04001CEF RID: 7407
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04001CE8 RID: 7400
+	// Token: 0x04001CF0 RID: 7408
 	public bool ResetSettings;
 }

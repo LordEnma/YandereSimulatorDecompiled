@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Drag Camera")]
 public class UIDragCamera : MonoBehaviour
 {
-	// Token: 0x06000162 RID: 354 RVA: 0x000154D8 File Offset: 0x000136D8
+	// Token: 0x06000162 RID: 354 RVA: 0x00015618 File Offset: 0x00013818
 	private void Awake()
 	{
 		if (this.draggableCamera == null)
@@ -15,7 +15,7 @@ public class UIDragCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000163 RID: 355 RVA: 0x000154F9 File Offset: 0x000136F9
+	// Token: 0x06000163 RID: 355 RVA: 0x00015639 File Offset: 0x00013839
 	private void OnPress(bool isPressed)
 	{
 		if (base.enabled && NGUITools.GetActive(base.gameObject) && this.draggableCamera != null && this.draggableCamera.enabled)
@@ -24,7 +24,7 @@ public class UIDragCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000164 RID: 356 RVA: 0x00015537 File Offset: 0x00013737
+	// Token: 0x06000164 RID: 356 RVA: 0x00015677 File Offset: 0x00013877
 	private void OnDrag(Vector2 delta)
 	{
 		if (base.enabled && NGUITools.GetActive(base.gameObject) && this.draggableCamera != null && this.draggableCamera.enabled)
@@ -33,7 +33,7 @@ public class UIDragCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000165 RID: 357 RVA: 0x00015575 File Offset: 0x00013775
+	// Token: 0x06000165 RID: 357 RVA: 0x000156B5 File Offset: 0x000138B5
 	private void OnScroll(float delta)
 	{
 		if (base.enabled && NGUITools.GetActive(base.gameObject) && this.draggableCamera != null && this.draggableCamera.enabled)
@@ -42,6 +42,6 @@ public class UIDragCamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000324 RID: 804
+	// Token: 0x04000326 RID: 806
 	public UIDraggableCamera draggableCamera;
 }

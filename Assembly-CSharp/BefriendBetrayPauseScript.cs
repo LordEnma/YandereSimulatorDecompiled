@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020000E2 RID: 226
 public class BefriendBetrayPauseScript : MonoBehaviour
 {
-	// Token: 0x06000A24 RID: 2596 RVA: 0x00059FD2 File Offset: 0x000581D2
+	// Token: 0x06000A24 RID: 2596 RVA: 0x0005A126 File Offset: 0x00058326
 	private void Start()
 	{
 		this.Panel.enabled = false;
 	}
 
-	// Token: 0x06000A25 RID: 2597 RVA: 0x00059FE0 File Offset: 0x000581E0
+	// Token: 0x06000A25 RID: 2597 RVA: 0x0005A134 File Offset: 0x00058334
 	private void Update()
 	{
 		if (this.Yandere.CanMove && Input.GetButtonDown("Start"))
@@ -26,9 +26,9 @@ public class BefriendBetrayPauseScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000B81 RID: 2945
+	// Token: 0x04000B83 RID: 2947
 	public StalkerYandereScript Yandere;
 
-	// Token: 0x04000B82 RID: 2946
+	// Token: 0x04000B84 RID: 2948
 	public UIPanel Panel;
 }

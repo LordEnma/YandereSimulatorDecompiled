@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000354 RID: 852
 public class LiquidColliderScript : MonoBehaviour
 {
-	// Token: 0x0600197A RID: 6522 RVA: 0x00100174 File Offset: 0x000FE374
+	// Token: 0x0600197E RID: 6526 RVA: 0x00100678 File Offset: 0x000FE878
 	private void Start()
 	{
 		if (this.Bucket)
@@ -13,7 +13,7 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600197B RID: 6523 RVA: 0x00100198 File Offset: 0x000FE398
+	// Token: 0x0600197F RID: 6527 RVA: 0x0010069C File Offset: 0x000FE89C
 	private void Update()
 	{
 		if (!this.Static)
@@ -40,7 +40,7 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600197C RID: 6524 RVA: 0x00100318 File Offset: 0x000FE518
+	// Token: 0x06001980 RID: 6528 RVA: 0x0010081C File Offset: 0x000FEA1C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (!this.AlreadyDoused && other.gameObject.layer == 9)
@@ -54,7 +54,7 @@ public class LiquidColliderScript : MonoBehaviour
 					component.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 					return;
 				}
-				if (!component.BeenSplashed && component.StudentID > 1 && component.StudentID != 10 && !component.Teacher && component.Club != ClubType.Council && !component.GasWarned && component.CurrentAction != StudentActionType.Sunbathe)
+				if (!component.BeenSplashed && component.StudentID > 1 && !component.Reflexes && !component.Teacher && component.Club != ClubType.Council && !component.GasWarned && component.CurrentAction != StudentActionType.Sunbathe)
 				{
 					AudioSource.PlayClipAtPoint(this.SplashSound, base.transform.position);
 					UnityEngine.Object.Instantiate<GameObject>(this.Splash, new Vector3(base.transform.position.x, 1.5f, base.transform.position.z), Quaternion.identity);
@@ -115,36 +115,36 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002872 RID: 10354
+	// Token: 0x0400287B RID: 10363
 	private GameObject NewPool;
 
-	// Token: 0x04002873 RID: 10355
+	// Token: 0x0400287C RID: 10364
 	public AudioClip SplashSound;
 
-	// Token: 0x04002874 RID: 10356
+	// Token: 0x0400287D RID: 10365
 	public GameObject GroundSplash;
 
-	// Token: 0x04002875 RID: 10357
+	// Token: 0x0400287E RID: 10366
 	public GameObject Splash;
 
-	// Token: 0x04002876 RID: 10358
+	// Token: 0x0400287F RID: 10367
 	public GameObject Pool;
 
-	// Token: 0x04002877 RID: 10359
+	// Token: 0x04002880 RID: 10368
 	public bool AlreadyDoused;
 
-	// Token: 0x04002878 RID: 10360
+	// Token: 0x04002881 RID: 10369
 	public bool Static;
 
-	// Token: 0x04002879 RID: 10361
+	// Token: 0x04002882 RID: 10370
 	public bool Bucket;
 
-	// Token: 0x0400287A RID: 10362
+	// Token: 0x04002883 RID: 10371
 	public bool Brown;
 
-	// Token: 0x0400287B RID: 10363
+	// Token: 0x04002884 RID: 10372
 	public bool Blood;
 
-	// Token: 0x0400287C RID: 10364
+	// Token: 0x04002885 RID: 10373
 	public bool Gas;
 }

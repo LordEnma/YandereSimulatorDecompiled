@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004E2 RID: 1250
+// Token: 0x020004E3 RID: 1251
 public class YanvaniaDoubleFireballScript : MonoBehaviour
 {
-	// Token: 0x060020CA RID: 8394 RVA: 0x001E2D94 File Offset: 0x001E0F94
+	// Token: 0x060020D3 RID: 8403 RVA: 0x001E4220 File Offset: 0x001E2420
 	private void Start()
 	{
 		UnityEngine.Object.Instantiate<GameObject>(this.LightningEffect, new Vector3(base.transform.position.x, 8f, 0f), Quaternion.identity);
 		this.Direction = ((this.Dracula.position.x > base.transform.position.x) ? -1 : 1);
 	}
 
-	// Token: 0x060020CB RID: 8395 RVA: 0x001E2E00 File Offset: 0x001E1000
+	// Token: 0x060020D4 RID: 8404 RVA: 0x001E428C File Offset: 0x001E248C
 	private void Update()
 	{
 		if (this.Timer > 1f && !this.SpawnedFirst)
@@ -63,39 +63,39 @@ public class YanvaniaDoubleFireballScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040047F0 RID: 18416
+	// Token: 0x04004806 RID: 18438
 	public GameObject Lavaball;
 
-	// Token: 0x040047F1 RID: 18417
+	// Token: 0x04004807 RID: 18439
 	public GameObject FirstLavaball;
 
-	// Token: 0x040047F2 RID: 18418
+	// Token: 0x04004808 RID: 18440
 	public GameObject SecondLavaball;
 
-	// Token: 0x040047F3 RID: 18419
+	// Token: 0x04004809 RID: 18441
 	public GameObject LightningEffect;
 
-	// Token: 0x040047F4 RID: 18420
+	// Token: 0x0400480A RID: 18442
 	public Transform Dracula;
 
-	// Token: 0x040047F5 RID: 18421
+	// Token: 0x0400480B RID: 18443
 	public bool SpawnedFirst;
 
-	// Token: 0x040047F6 RID: 18422
+	// Token: 0x0400480C RID: 18444
 	public bool SpawnedSecond;
 
-	// Token: 0x040047F7 RID: 18423
+	// Token: 0x0400480D RID: 18445
 	public float FirstPosition;
 
-	// Token: 0x040047F8 RID: 18424
+	// Token: 0x0400480E RID: 18446
 	public float SecondPosition;
 
-	// Token: 0x040047F9 RID: 18425
+	// Token: 0x0400480F RID: 18447
 	public int Direction;
 
-	// Token: 0x040047FA RID: 18426
+	// Token: 0x04004810 RID: 18448
 	public float Timer;
 
-	// Token: 0x040047FB RID: 18427
+	// Token: 0x04004811 RID: 18449
 	public float Speed;
 }

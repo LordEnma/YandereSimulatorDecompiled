@@ -3,16 +3,16 @@ using UnityEngine.Rendering;
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000580 RID: 1408
+	// Token: 0x02000581 RID: 1409
 	public abstract class PostProcessingComponentCommandBuffer<T> : PostProcessingComponent<T> where T : PostProcessingModel
 	{
-		// Token: 0x060023CA RID: 9162
+		// Token: 0x060023D3 RID: 9171
 		public abstract CameraEvent GetCameraEvent();
 
-		// Token: 0x060023CB RID: 9163
+		// Token: 0x060023D4 RID: 9172
 		public abstract string GetName();
 
-		// Token: 0x060023CC RID: 9164
+		// Token: 0x060023D5 RID: 9173
 		public abstract void PopulateCommandBuffer(CommandBuffer cb);
 	}
 }

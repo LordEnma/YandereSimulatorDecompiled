@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200026B RID: 619
 public class CurtainScript : MonoBehaviour
 {
-	// Token: 0x0600130C RID: 4876 RVA: 0x000A8EB8 File Offset: 0x000A70B8
+	// Token: 0x06001310 RID: 4880 RVA: 0x000A9350 File Offset: 0x000A7550
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount < 1f && this.Prompt.Circle[0].fillAmount > 0f)
@@ -39,7 +39,7 @@ public class CurtainScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600130D RID: 4877 RVA: 0x000A8FEC File Offset: 0x000A71EC
+	// Token: 0x06001311 RID: 4881 RVA: 0x000A9484 File Offset: 0x000A7684
 	private void OnTriggerEnter(Collider other)
 	{
 		if ((other.gameObject.layer == 13 || other.gameObject.layer == 9) && !this.Open)
@@ -50,21 +50,21 @@ public class CurtainScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001B2C RID: 6956
+	// Token: 0x04001B34 RID: 6964
 	public SkinnedMeshRenderer[] Curtains;
 
-	// Token: 0x04001B2D RID: 6957
+	// Token: 0x04001B35 RID: 6965
 	public PromptScript Prompt;
 
-	// Token: 0x04001B2E RID: 6958
+	// Token: 0x04001B36 RID: 6966
 	public AudioSource MyAudio;
 
-	// Token: 0x04001B2F RID: 6959
+	// Token: 0x04001B37 RID: 6967
 	public bool Animate;
 
-	// Token: 0x04001B30 RID: 6960
+	// Token: 0x04001B38 RID: 6968
 	public bool Open;
 
-	// Token: 0x04001B31 RID: 6961
+	// Token: 0x04001B39 RID: 6969
 	public float Weight;
 }

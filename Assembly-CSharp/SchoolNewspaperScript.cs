@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200041A RID: 1050
+// Token: 0x0200041B RID: 1051
 public class SchoolNewspaperScript : MonoBehaviour
 {
-	// Token: 0x06001C81 RID: 7297 RVA: 0x0014E0E0 File Offset: 0x0014C2E0
+	// Token: 0x06001C88 RID: 7304 RVA: 0x0014E91C File Offset: 0x0014CB1C
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -26,7 +26,7 @@ public class SchoolNewspaperScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C82 RID: 7298 RVA: 0x0014E158 File Offset: 0x0014C358
+	// Token: 0x06001C89 RID: 7305 RVA: 0x0014E994 File Offset: 0x0014CB94
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -56,30 +56,30 @@ public class SchoolNewspaperScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040032C6 RID: 12998
+	// Token: 0x040032D5 RID: 13013
 	public PromptBarScript PromptBar;
 
-	// Token: 0x040032C7 RID: 12999
+	// Token: 0x040032D6 RID: 13014
 	public PromptScript Prompt;
 
-	// Token: 0x040032C8 RID: 13000
+	// Token: 0x040032D7 RID: 13015
 	public UILabel NewspaperLabel;
 
-	// Token: 0x040032C9 RID: 13001
+	// Token: 0x040032D8 RID: 13016
 	public GameObject[] NewspaperPages;
 
-	// Token: 0x040032CA RID: 13002
+	// Token: 0x040032D9 RID: 13017
 	public GameObject ClubPosters;
 
-	// Token: 0x040032CB RID: 13003
+	// Token: 0x040032DA RID: 13018
 	public GameObject Newspaper;
 
-	// Token: 0x040032CC RID: 13004
+	// Token: 0x040032DB RID: 13019
 	public string[] Article;
 
-	// Token: 0x040032CD RID: 13005
+	// Token: 0x040032DC RID: 13020
 	public int GameplayDay;
 
-	// Token: 0x040032CE RID: 13006
+	// Token: 0x040032DD RID: 13021
 	public bool Show;
 }

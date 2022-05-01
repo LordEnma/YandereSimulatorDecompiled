@@ -1,22 +1,22 @@
 ﻿using System;
 
-// Token: 0x02000460 RID: 1120
+// Token: 0x02000461 RID: 1121
 public enum GameOverType
 {
-	// Token: 0x040038CD RID: 14541
+	// Token: 0x040038DF RID: 14559
 	None,
-	// Token: 0x040038CE RID: 14542
+	// Token: 0x040038E0 RID: 14560
 	Blood,
-	// Token: 0x040038CF RID: 14543
+	// Token: 0x040038E1 RID: 14561
 	Insanity,
-	// Token: 0x040038D0 RID: 14544
+	// Token: 0x040038E2 RID: 14562
 	Lewd,
-	// Token: 0x040038D1 RID: 14545
+	// Token: 0x040038E3 RID: 14563
 	Murder,
-	// Token: 0x040038D2 RID: 14546
+	// Token: 0x040038E4 RID: 14564
 	Stalking,
-	// Token: 0x040038D3 RID: 14547
+	// Token: 0x040038E5 RID: 14565
 	Violence,
-	// Token: 0x040038D4 RID: 14548
+	// Token: 0x040038E6 RID: 14566
 	Weapon
 }

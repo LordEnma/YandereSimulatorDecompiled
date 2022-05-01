@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000509 RID: 1289
+// Token: 0x0200050A RID: 1290
 public class EyeTestScript : MonoBehaviour
 {
-	// Token: 0x06002163 RID: 8547 RVA: 0x001EBCE4 File Offset: 0x001E9EE4
+	// Token: 0x0600216C RID: 8556 RVA: 0x001ED170 File Offset: 0x001EB370
 	private void Start()
 	{
 		this.MyAnimation["moodyEyes_00"].layer = 1;
@@ -13,6 +13,6 @@ public class EyeTestScript : MonoBehaviour
 		this.MyAnimation.Play("moodyEyes_00");
 	}
 
-	// Token: 0x04004992 RID: 18834
+	// Token: 0x040049A8 RID: 18856
 	public Animation MyAnimation;
 }

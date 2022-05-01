@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003F1 RID: 1009
+// Token: 0x020003F2 RID: 1010
 public class RooftopScript : MonoBehaviour
 {
-	// Token: 0x06001BFF RID: 7167 RVA: 0x00147F24 File Offset: 0x00146124
+	// Token: 0x06001C06 RID: 7174 RVA: 0x00148760 File Offset: 0x00146960
 	private void Start()
 	{
 		if (SchoolGlobals.RoofFence)
@@ -19,12 +19,12 @@ public class RooftopScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003152 RID: 12626
+	// Token: 0x04003161 RID: 12641
 	public GameObject[] DumpPoints;
 
-	// Token: 0x04003153 RID: 12627
+	// Token: 0x04003162 RID: 12642
 	public GameObject Railing;
 
-	// Token: 0x04003154 RID: 12628
+	// Token: 0x04003163 RID: 12643
 	public GameObject Fence;
 }

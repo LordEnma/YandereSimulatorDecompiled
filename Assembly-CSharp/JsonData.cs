@@ -8,7 +8,7 @@ using UnityEngine;
 public abstract class JsonData
 {
 	// Token: 0x1700047B RID: 1147
-	// (get) Token: 0x06001922 RID: 6434 RVA: 0x000FCEBD File Offset: 0x000FB0BD
+	// (get) Token: 0x06001926 RID: 6438 RVA: 0x000FD3C1 File Offset: 0x000FB5C1
 	protected static string FolderPath
 	{
 		get
@@ -17,7 +17,7 @@ public abstract class JsonData
 		}
 	}
 
-	// Token: 0x06001923 RID: 6435 RVA: 0x000FCECE File Offset: 0x000FB0CE
+	// Token: 0x06001927 RID: 6439 RVA: 0x000FD3D2 File Offset: 0x000FB5D2
 	protected static Dictionary<string, object>[] Deserialize(string filename)
 	{
 		return JsonReader.Deserialize<Dictionary<string, object>[]>(File.ReadAllText(filename));

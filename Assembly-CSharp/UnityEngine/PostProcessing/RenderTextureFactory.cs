@@ -3,22 +3,22 @@ using System.Collections.Generic;
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000588 RID: 1416
+	// Token: 0x02000589 RID: 1417
 	public sealed class RenderTextureFactory : IDisposable
 	{
-		// Token: 0x060023EE RID: 9198 RVA: 0x001FAEDF File Offset: 0x001F90DF
+		// Token: 0x060023F7 RID: 9207 RVA: 0x001FC36B File Offset: 0x001FA56B
 		public RenderTextureFactory()
 		{
 			this.m_TemporaryRTs = new HashSet<RenderTexture>();
 		}
 
-		// Token: 0x060023EF RID: 9199 RVA: 0x001FAEF4 File Offset: 0x001F90F4
+		// Token: 0x060023F8 RID: 9208 RVA: 0x001FC380 File Offset: 0x001FA580
 		public RenderTexture Get(RenderTexture baseRenderTexture)
 		{
 			return this.Get(baseRenderTexture.width, baseRenderTexture.height, baseRenderTexture.depth, baseRenderTexture.format, baseRenderTexture.sRGB ? RenderTextureReadWrite.sRGB : RenderTextureReadWrite.Linear, baseRenderTexture.filterMode, baseRenderTexture.wrapMode, "FactoryTempTexture");
 		}
 
-		// Token: 0x060023F0 RID: 9200 RVA: 0x001FAF3C File Offset: 0x001F913C
+		// Token: 0x060023F9 RID: 9209 RVA: 0x001FC3C8 File Offset: 0x001FA5C8
 		public RenderTexture Get(int width, int height, int depthBuffer = 0, RenderTextureFormat format = RenderTextureFormat.ARGBHalf, RenderTextureReadWrite rw = RenderTextureReadWrite.Default, FilterMode filterMode = FilterMode.Bilinear, TextureWrapMode wrapMode = TextureWrapMode.Clamp, string name = "FactoryTempTexture")
 		{
 			RenderTexture temporary = RenderTexture.GetTemporary(width, height, depthBuffer, format, rw);
@@ -29,7 +29,7 @@ namespace UnityEngine.PostProcessing
 			return temporary;
 		}
 
-		// Token: 0x060023F1 RID: 9201 RVA: 0x001FAF7C File Offset: 0x001F917C
+		// Token: 0x060023FA RID: 9210 RVA: 0x001FC408 File Offset: 0x001FA608
 		public void Release(RenderTexture rt)
 		{
 			if (rt == null)
@@ -44,7 +44,7 @@ namespace UnityEngine.PostProcessing
 			RenderTexture.ReleaseTemporary(rt);
 		}
 
-		// Token: 0x060023F2 RID: 9202 RVA: 0x001FAFBC File Offset: 0x001F91BC
+		// Token: 0x060023FB RID: 9211 RVA: 0x001FC448 File Offset: 0x001FA648
 		public void ReleaseAll()
 		{
 			foreach (RenderTexture temp in this.m_TemporaryRTs)
@@ -54,13 +54,13 @@ namespace UnityEngine.PostProcessing
 			this.m_TemporaryRTs.Clear();
 		}
 
-		// Token: 0x060023F3 RID: 9203 RVA: 0x001FAFF7 File Offset: 0x001F91F7
+		// Token: 0x060023FC RID: 9212 RVA: 0x001FC483 File Offset: 0x001FA683
 		public void Dispose()
 		{
 			this.ReleaseAll();
 		}
 
-		// Token: 0x04004C19 RID: 19481
+		// Token: 0x04004C2F RID: 19503
 		private HashSet<RenderTexture> m_TemporaryRTs;
 	}
 }

@@ -73,6 +73,10 @@ public class MissionModeScript : MonoBehaviour
 				this.PoliceIcon[this.ID].applyGradient = false;
 				this.ID++;
 			}
+			this.PhoneBar.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+			this.PhoneBG.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+			this.PhoneBG.gradientTop = new Color(1f, 1f, 1f, 1f);
+			this.PhoneBG.gradientBottom = new Color(0f, 0f, 0f, 1f);
 		}
 		this.NewFPSLabel.transform.parent.parent.gameObject.SetActive(true);
 		if (MissionModeGlobals.MissionMode)
@@ -297,6 +301,10 @@ public class MissionModeScript : MonoBehaviour
 					this.Method[i] = PlayerPrefs.GetInt("MissionModeMethod" + i.ToString());
 				}
 			}
+			this.PhoneBar.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+			this.PhoneBG.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+			this.PhoneBG.gradientTop = new Color(1f, 1f, 1f, 1f);
+			this.PhoneBG.gradientBottom = new Color(0f, 0f, 0f, 1f);
 			this.Enabled = true;
 			return;
 		}
@@ -305,7 +313,7 @@ public class MissionModeScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06000070 RID: 112 RVA: 0x0000EDB4 File Offset: 0x0000CFB4
+	// Token: 0x06000070 RID: 112 RVA: 0x0000EED4 File Offset: 0x0000D0D4
 	private void Update()
 	{
 		if (this.Phase == 1)
@@ -901,7 +909,7 @@ public class MissionModeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000071 RID: 113 RVA: 0x00010464 File Offset: 0x0000E664
+	// Token: 0x06000071 RID: 113 RVA: 0x00010584 File Offset: 0x0000E784
 	public void GameOver()
 	{
 		if (this.Yandere.Aiming)
@@ -928,7 +936,7 @@ public class MissionModeScript : MonoBehaviour
 		this.Jukebox.MissionMode.Stop();
 	}
 
-	// Token: 0x06000072 RID: 114 RVA: 0x00010564 File Offset: 0x0000E764
+	// Token: 0x06000072 RID: 114 RVA: 0x00010684 File Offset: 0x0000E884
 	private void Success()
 	{
 		while (!this.Valid)
@@ -954,7 +962,7 @@ public class MissionModeScript : MonoBehaviour
 		this.Fire.enabled = true;
 	}
 
-	// Token: 0x06000073 RID: 115 RVA: 0x000106B8 File Offset: 0x0000E8B8
+	// Token: 0x06000073 RID: 115 RVA: 0x000107D8 File Offset: 0x0000E9D8
 	public void ChangeMusic()
 	{
 		this.MusicID++;
@@ -966,7 +974,7 @@ public class MissionModeScript : MonoBehaviour
 		this.Jukebox.MissionMode.Play();
 	}
 
-	// Token: 0x06000074 RID: 116 RVA: 0x00010714 File Offset: 0x0000E914
+	// Token: 0x06000074 RID: 116 RVA: 0x00010834 File Offset: 0x0000EA34
 	private void ResetGlobals()
 	{
 		Debug.Log("Mission Difficulty was: " + MissionModeGlobals.MissionDifficulty.ToString());
@@ -1027,7 +1035,7 @@ public class MissionModeScript : MonoBehaviour
 		Debug.Log("Mission Difficulty is now: " + MissionModeGlobals.MissionDifficulty.ToString());
 	}
 
-	// Token: 0x06000075 RID: 117 RVA: 0x0001092C File Offset: 0x0000EB2C
+	// Token: 0x06000075 RID: 117 RVA: 0x00010A4C File Offset: 0x0000EC4C
 	private void ChangeAllText()
 	{
 		foreach (UILabel uilabel in UnityEngine.Object.FindObjectsOfType<UILabel>())
@@ -1046,7 +1054,7 @@ public class MissionModeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000076 RID: 118 RVA: 0x000109EC File Offset: 0x0000EBEC
+	// Token: 0x06000076 RID: 118 RVA: 0x00010B0C File Offset: 0x0000ED0C
 	private void CheckForCompletion()
 	{
 		if (!this.Checking[1] && !this.Checking[2] && !this.Checking[3] && !this.Checking[4] && !this.Checking[5] && !this.Checking[6] && !this.Checking[7] && !this.Checking[8] && !this.Checking[9] && !this.Checking[10])
@@ -1167,260 +1175,266 @@ public class MissionModeScript : MonoBehaviour
 	public UISprite Darkness;
 
 	// Token: 0x040001F1 RID: 497
-	public UILabel FPS;
+	public UISprite PhoneBar;
 
 	// Token: 0x040001F2 RID: 498
-	public GardenHoleScript[] GardenHoles;
+	public UISprite PhoneBG;
 
 	// Token: 0x040001F3 RID: 499
-	public GameObject[] ReputationIcons;
+	public UILabel FPS;
 
 	// Token: 0x040001F4 RID: 500
-	public string[] GameOverReasons;
+	public GardenHoleScript[] GardenHoles;
 
 	// Token: 0x040001F5 RID: 501
-	public AudioClip[] StealthMusic;
+	public GameObject[] ReputationIcons;
 
 	// Token: 0x040001F6 RID: 502
-	public Transform[] SpawnPoints;
+	public string[] GameOverReasons;
 
 	// Token: 0x040001F7 RID: 503
-	public UISprite[] PoliceIcon;
+	public AudioClip[] StealthMusic;
 
 	// Token: 0x040001F8 RID: 504
-	public UILabel[] PoliceLabel;
+	public Transform[] SpawnPoints;
 
 	// Token: 0x040001F9 RID: 505
-	public int[] Conditions;
+	public UISprite[] PoliceIcon;
 
 	// Token: 0x040001FA RID: 506
-	public GameObject SecurityCameraGroup;
+	public UILabel[] PoliceLabel;
 
 	// Token: 0x040001FB RID: 507
-	public GameObject MetalDetectorGroup;
+	public int[] Conditions;
 
 	// Token: 0x040001FC RID: 508
-	public GameObject HeartbrokenCamera;
+	public GameObject SecurityCameraGroup;
 
 	// Token: 0x040001FD RID: 509
-	public GameObject DetectionCamera;
+	public GameObject MetalDetectorGroup;
 
 	// Token: 0x040001FE RID: 510
-	public GameObject HeartbeatCamera;
+	public GameObject HeartbrokenCamera;
 
 	// Token: 0x040001FF RID: 511
-	public GameObject MissionModeHUD;
+	public GameObject DetectionCamera;
 
 	// Token: 0x04000200 RID: 512
-	public GameObject SpottedWindow;
+	public GameObject HeartbeatCamera;
 
 	// Token: 0x04000201 RID: 513
-	public GameObject TranqDetector;
+	public GameObject MissionModeHUD;
 
 	// Token: 0x04000202 RID: 514
-	public GameObject WitnessCamera;
+	public GameObject SpottedWindow;
 
 	// Token: 0x04000203 RID: 515
-	public GameObject GameOverText;
+	public GameObject TranqDetector;
 
 	// Token: 0x04000204 RID: 516
-	public GameObject VoidGoddess;
+	public GameObject WitnessCamera;
 
 	// Token: 0x04000205 RID: 517
-	public GameObject Headmaster;
+	public GameObject GameOverText;
 
 	// Token: 0x04000206 RID: 518
-	public GameObject ExitPortal;
+	public GameObject VoidGoddess;
 
 	// Token: 0x04000207 RID: 519
-	public GameObject MurderKit;
+	public GameObject Headmaster;
 
 	// Token: 0x04000208 RID: 520
-	public GameObject Subtitle;
+	public GameObject ExitPortal;
 
 	// Token: 0x04000209 RID: 521
-	public GameObject Nemesis;
+	public GameObject MurderKit;
 
 	// Token: 0x0400020A RID: 522
-	public GameObject Safe;
+	public GameObject Subtitle;
 
 	// Token: 0x0400020B RID: 523
-	public Transform LastKnownPosition;
+	public GameObject Nemesis;
 
 	// Token: 0x0400020C RID: 524
-	public int RequiredClothingID;
+	public GameObject Safe;
 
 	// Token: 0x0400020D RID: 525
-	public int RequiredDisposalID;
+	public Transform LastKnownPosition;
 
 	// Token: 0x0400020E RID: 526
-	public int RequiredWeaponID;
+	public int RequiredClothingID;
 
 	// Token: 0x0400020F RID: 527
-	public int NemesisDifficulty;
+	public int RequiredDisposalID;
 
 	// Token: 0x04000210 RID: 528
-	public int DisposalMethod;
+	public int RequiredWeaponID;
 
 	// Token: 0x04000211 RID: 529
-	public int MurderWeaponID;
+	public int NemesisDifficulty;
 
 	// Token: 0x04000212 RID: 530
-	public int GameOverPhase;
+	public int DisposalMethod;
 
 	// Token: 0x04000213 RID: 531
-	public int Destination;
+	public int MurderWeaponID;
 
 	// Token: 0x04000214 RID: 532
-	public int Difficulty;
+	public int GameOverPhase;
 
 	// Token: 0x04000215 RID: 533
-	public int GameOverID;
+	public int Destination;
 
 	// Token: 0x04000216 RID: 534
-	public int TargetID;
+	public int Difficulty;
 
 	// Token: 0x04000217 RID: 535
-	public int MusicID = 1;
+	public int GameOverID;
 
 	// Token: 0x04000218 RID: 536
-	public int Phase = 1;
+	public int TargetID;
 
 	// Token: 0x04000219 RID: 537
-	public int ID;
+	public int MusicID = 1;
 
 	// Token: 0x0400021A RID: 538
-	public int[] Target;
+	public int Phase = 1;
 
 	// Token: 0x0400021B RID: 539
-	public int[] Method;
+	public int ID;
 
 	// Token: 0x0400021C RID: 540
-	public bool SecurityCameras;
+	public int[] Target;
 
 	// Token: 0x0400021D RID: 541
-	public bool MetalDetectors;
+	public int[] Method;
 
 	// Token: 0x0400021E RID: 542
-	public bool StealDocuments;
+	public bool SecurityCameras;
 
 	// Token: 0x0400021F RID: 543
-	public bool NoCollateral;
+	public bool MetalDetectors;
 
 	// Token: 0x04000220 RID: 544
-	public bool NoSuspicion;
+	public bool StealDocuments;
 
 	// Token: 0x04000221 RID: 545
-	public bool NoWitnesses;
+	public bool NoCollateral;
 
 	// Token: 0x04000222 RID: 546
-	public bool NoCorpses;
+	public bool NoSuspicion;
 
 	// Token: 0x04000223 RID: 547
-	public bool NoSpeech;
+	public bool NoWitnesses;
 
 	// Token: 0x04000224 RID: 548
-	public bool NoWeapon;
+	public bool NoCorpses;
 
 	// Token: 0x04000225 RID: 549
-	public bool NoBlood;
+	public bool NoSpeech;
 
 	// Token: 0x04000226 RID: 550
-	public bool TimeLimit;
+	public bool NoWeapon;
 
 	// Token: 0x04000227 RID: 551
-	public bool CorrectClothingConfirmed;
+	public bool NoBlood;
 
 	// Token: 0x04000228 RID: 552
-	public bool DocumentsStolen;
+	public bool TimeLimit;
 
 	// Token: 0x04000229 RID: 553
-	public bool CorpseDisposed;
+	public bool CorrectClothingConfirmed;
 
 	// Token: 0x0400022A RID: 554
-	public bool WeaponDisposed;
+	public bool DocumentsStolen;
 
 	// Token: 0x0400022B RID: 555
-	public bool CheckForBlood;
+	public bool CorpseDisposed;
 
 	// Token: 0x0400022C RID: 556
-	public bool BloodCleaned;
+	public bool WeaponDisposed;
 
 	// Token: 0x0400022D RID: 557
-	public bool MultiMission;
+	public bool CheckForBlood;
 
 	// Token: 0x0400022E RID: 558
-	public bool InfoRemark;
+	public bool BloodCleaned;
 
 	// Token: 0x0400022F RID: 559
-	public bool TargetDead;
+	public bool MultiMission;
 
 	// Token: 0x04000230 RID: 560
-	public bool Chastise;
+	public bool InfoRemark;
 
 	// Token: 0x04000231 RID: 561
-	public bool FadeOut;
+	public bool TargetDead;
 
 	// Token: 0x04000232 RID: 562
-	public bool Enabled;
+	public bool Chastise;
 
 	// Token: 0x04000233 RID: 563
-	public bool[] Checking;
+	public bool FadeOut;
 
 	// Token: 0x04000234 RID: 564
-	public string CauseOfFailure = string.Empty;
+	public bool Enabled;
 
 	// Token: 0x04000235 RID: 565
-	public float TimeRemaining = 300f;
+	public bool[] Checking;
 
 	// Token: 0x04000236 RID: 566
-	public float TargetHeight;
+	public string CauseOfFailure = string.Empty;
 
 	// Token: 0x04000237 RID: 567
-	public float BloodTimer;
+	public float TimeRemaining = 300f;
 
 	// Token: 0x04000238 RID: 568
-	public float Speed;
+	public float TargetHeight;
 
 	// Token: 0x04000239 RID: 569
-	public float Timer;
+	public float BloodTimer;
 
 	// Token: 0x0400023A RID: 570
-	public AudioClip InfoAccomplished;
+	public float Speed;
 
 	// Token: 0x0400023B RID: 571
-	public AudioClip InfoExfiltrate;
+	public float Timer;
 
 	// Token: 0x0400023C RID: 572
-	public AudioClip InfoObjective;
+	public AudioClip InfoAccomplished;
 
 	// Token: 0x0400023D RID: 573
-	public AudioClip InfoFailure;
+	public AudioClip InfoExfiltrate;
 
 	// Token: 0x0400023E RID: 574
-	public AudioClip GameOverSound;
+	public AudioClip InfoObjective;
 
 	// Token: 0x0400023F RID: 575
-	public AudioSource MyAudio;
+	public AudioClip InfoFailure;
 
 	// Token: 0x04000240 RID: 576
-	public Camera MainCamera;
+	public AudioClip GameOverSound;
 
 	// Token: 0x04000241 RID: 577
-	public UILabel Watermark;
+	public AudioSource MyAudio;
 
 	// Token: 0x04000242 RID: 578
-	public Font Arial;
+	public Camera MainCamera;
 
 	// Token: 0x04000243 RID: 579
-	public int Frame;
+	public UILabel Watermark;
 
 	// Token: 0x04000244 RID: 580
-	public UILabel DiscordCodeLabel;
+	public Font Arial;
 
 	// Token: 0x04000245 RID: 581
-	public float RandomNumber;
+	public int Frame;
 
 	// Token: 0x04000246 RID: 582
+	public UILabel DiscordCodeLabel;
+
+	// Token: 0x04000247 RID: 583
+	public float RandomNumber;
+
+	// Token: 0x04000248 RID: 584
 	public bool Valid;
 }

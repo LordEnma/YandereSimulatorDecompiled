@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003A3 RID: 931
 public class PhoneJammerScript : MonoBehaviour
 {
-	// Token: 0x06001A9D RID: 6813 RVA: 0x0011E734 File Offset: 0x0011C934
+	// Token: 0x06001AA1 RID: 6817 RVA: 0x0011ECD0 File Offset: 0x0011CED0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -19,9 +19,9 @@ public class PhoneJammerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002C38 RID: 11320
+	// Token: 0x04002C41 RID: 11329
 	public GameObject JammingLines;
 
-	// Token: 0x04002C39 RID: 11321
+	// Token: 0x04002C42 RID: 11330
 	public PromptScript Prompt;
 }

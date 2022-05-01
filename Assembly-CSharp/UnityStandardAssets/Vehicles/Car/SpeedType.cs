@@ -2,12 +2,12 @@
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x02000530 RID: 1328
+	// Token: 0x02000531 RID: 1329
 	internal enum SpeedType
 	{
-		// Token: 0x04004A61 RID: 19041
+		// Token: 0x04004A77 RID: 19063
 		MPH,
-		// Token: 0x04004A62 RID: 19042
+		// Token: 0x04004A78 RID: 19064
 		KPH
 	}
 }

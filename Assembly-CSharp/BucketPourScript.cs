@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x020000FE RID: 254
 public class BucketPourScript : MonoBehaviour
 {
-	// Token: 0x06000A87 RID: 2695 RVA: 0x0005D296 File Offset: 0x0005B496
+	// Token: 0x06000A87 RID: 2695 RVA: 0x0005D3EA File Offset: 0x0005B5EA
 	private void Start()
 	{
 	}
 
-	// Token: 0x06000A88 RID: 2696 RVA: 0x0005D298 File Offset: 0x0005B498
+	// Token: 0x06000A88 RID: 2696 RVA: 0x0005D3EC File Offset: 0x0005B5EC
 	private void Update()
 	{
 		if (this.Yandere.PickUp != null)
@@ -105,24 +105,24 @@ public class BucketPourScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C48 RID: 3144
+	// Token: 0x04000C4A RID: 3146
 	public SplashCameraScript SplashCamera;
 
-	// Token: 0x04000C49 RID: 3145
+	// Token: 0x04000C4B RID: 3147
 	public YandereScript Yandere;
 
-	// Token: 0x04000C4A RID: 3146
+	// Token: 0x04000C4C RID: 3148
 	public PromptScript Prompt;
 
-	// Token: 0x04000C4B RID: 3147
+	// Token: 0x04000C4D RID: 3149
 	public string PourHeight = string.Empty;
 
-	// Token: 0x04000C4C RID: 3148
+	// Token: 0x04000C4E RID: 3150
 	public float PourDistance;
 
-	// Token: 0x04000C4D RID: 3149
+	// Token: 0x04000C4F RID: 3151
 	public float PourTime;
 
-	// Token: 0x04000C4E RID: 3150
+	// Token: 0x04000C50 RID: 3152
 	public int ID;
 }

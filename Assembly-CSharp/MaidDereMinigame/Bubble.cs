@@ -3,28 +3,28 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005A0 RID: 1440
+	// Token: 0x020005A1 RID: 1441
 	public class Bubble : MonoBehaviour
 	{
-		// Token: 0x06002486 RID: 9350 RVA: 0x0020020A File Offset: 0x001FE40A
+		// Token: 0x0600248F RID: 9359 RVA: 0x002016E6 File Offset: 0x001FF8E6
 		private void Awake()
 		{
 			this.foodRenderer.sprite = null;
 		}
 
-		// Token: 0x06002487 RID: 9351 RVA: 0x00200218 File Offset: 0x001FE418
+		// Token: 0x06002490 RID: 9360 RVA: 0x002016F4 File Offset: 0x001FF8F4
 		private void OnEnable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(this.Pause));
 		}
 
-		// Token: 0x06002488 RID: 9352 RVA: 0x0020023A File Offset: 0x001FE43A
+		// Token: 0x06002491 RID: 9361 RVA: 0x00201716 File Offset: 0x001FF916
 		private void OnDisable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(this.Pause));
 		}
 
-		// Token: 0x06002489 RID: 9353 RVA: 0x0020025C File Offset: 0x001FE45C
+		// Token: 0x06002492 RID: 9362 RVA: 0x00201738 File Offset: 0x001FF938
 		public void Pause(bool toPause)
 		{
 			if (toPause)
@@ -37,30 +37,30 @@ namespace MaidDereMinigame
 			this.foodRenderer.gameObject.SetActive(true);
 		}
 
-		// Token: 0x0600248A RID: 9354 RVA: 0x0020029C File Offset: 0x001FE49C
+		// Token: 0x06002493 RID: 9363 RVA: 0x00201778 File Offset: 0x001FF978
 		public void BubbleReachedMax()
 		{
 			this.foodRenderer.gameObject.SetActive(true);
 			this.foodRenderer.sprite = this.food.largeSprite;
 		}
 
-		// Token: 0x0600248B RID: 9355 RVA: 0x002002C5 File Offset: 0x001FE4C5
+		// Token: 0x06002494 RID: 9364 RVA: 0x002017A1 File Offset: 0x001FF9A1
 		public void BubbleClosing()
 		{
 			this.foodRenderer.gameObject.SetActive(false);
 		}
 
-		// Token: 0x0600248C RID: 9356 RVA: 0x002002D8 File Offset: 0x001FE4D8
+		// Token: 0x06002495 RID: 9365 RVA: 0x002017B4 File Offset: 0x001FF9B4
 		public void KillBubble()
 		{
 			UnityEngine.Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x04004CEB RID: 19691
+		// Token: 0x04004D04 RID: 19716
 		[HideInInspector]
 		public Food food;
 
-		// Token: 0x04004CEC RID: 19692
+		// Token: 0x04004D05 RID: 19717
 		public SpriteRenderer foodRenderer;
 	}
 }

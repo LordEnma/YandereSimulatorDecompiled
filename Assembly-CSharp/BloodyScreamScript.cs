@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000EC RID: 236
 public class BloodyScreamScript : MonoBehaviour
 {
-	// Token: 0x06000A47 RID: 2631 RVA: 0x0005B6A7 File Offset: 0x000598A7
+	// Token: 0x06000A47 RID: 2631 RVA: 0x0005B7FB File Offset: 0x000599FB
 	private void Start()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -12,6 +12,6 @@ public class BloodyScreamScript : MonoBehaviour
 		component.Play();
 	}
 
-	// Token: 0x04000BC4 RID: 3012
+	// Token: 0x04000BC6 RID: 3014
 	public AudioClip[] Screams;
 }

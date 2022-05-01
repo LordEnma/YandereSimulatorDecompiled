@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000432 RID: 1074
+// Token: 0x02000433 RID: 1075
 public class SlowlyRiseUpScript : MonoBehaviour
 {
-	// Token: 0x06001CE0 RID: 7392 RVA: 0x001574E0 File Offset: 0x001556E0
+	// Token: 0x06001CE7 RID: 7399 RVA: 0x00157D1C File Offset: 0x00155F1C
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))
@@ -18,12 +18,12 @@ public class SlowlyRiseUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003403 RID: 13315
+	// Token: 0x04003412 RID: 13330
 	public Transform Target;
 
-	// Token: 0x04003404 RID: 13316
+	// Token: 0x04003413 RID: 13331
 	public float Speed;
 
-	// Token: 0x04003405 RID: 13317
+	// Token: 0x04003414 RID: 13332
 	public bool Begin;
 }

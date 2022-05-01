@@ -2,13 +2,13 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000571 RID: 1393
+	// Token: 0x02000572 RID: 1394
 	[Serializable]
 	public class BuiltinDebugViewsModel : PostProcessingModel
 	{
 		// Token: 0x17000505 RID: 1285
-		// (get) Token: 0x06002377 RID: 9079 RVA: 0x001F98C3 File Offset: 0x001F7AC3
-		// (set) Token: 0x06002378 RID: 9080 RVA: 0x001F98CB File Offset: 0x001F7ACB
+		// (get) Token: 0x06002380 RID: 9088 RVA: 0x001FAD4F File Offset: 0x001F8F4F
+		// (set) Token: 0x06002381 RID: 9089 RVA: 0x001FAD57 File Offset: 0x001F8F57
 		public BuiltinDebugViewsModel.Settings settings
 		{
 			get
@@ -22,7 +22,7 @@ namespace UnityEngine.PostProcessing
 		}
 
 		// Token: 0x17000506 RID: 1286
-		// (get) Token: 0x06002379 RID: 9081 RVA: 0x001F98D4 File Offset: 0x001F7AD4
+		// (get) Token: 0x06002382 RID: 9090 RVA: 0x001FAD60 File Offset: 0x001F8F60
 		public bool willInterrupt
 		{
 			get
@@ -31,28 +31,28 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600237A RID: 9082 RVA: 0x001F9907 File Offset: 0x001F7B07
+		// Token: 0x06002383 RID: 9091 RVA: 0x001FAD93 File Offset: 0x001F8F93
 		public override void Reset()
 		{
 			this.settings = BuiltinDebugViewsModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x0600237B RID: 9083 RVA: 0x001F9914 File Offset: 0x001F7B14
+		// Token: 0x06002384 RID: 9092 RVA: 0x001FADA0 File Offset: 0x001F8FA0
 		public bool IsModeActive(BuiltinDebugViewsModel.Mode mode)
 		{
 			return this.m_Settings.mode == mode;
 		}
 
-		// Token: 0x04004BCF RID: 19407
+		// Token: 0x04004BE5 RID: 19429
 		[SerializeField]
 		private BuiltinDebugViewsModel.Settings m_Settings = BuiltinDebugViewsModel.Settings.defaultSettings;
 
-		// Token: 0x020006BF RID: 1727
+		// Token: 0x020006C0 RID: 1728
 		[Serializable]
 		public struct DepthSettings
 		{
 			// Token: 0x17000595 RID: 1429
-			// (get) Token: 0x0600277F RID: 10111 RVA: 0x00207D48 File Offset: 0x00205F48
+			// (get) Token: 0x06002788 RID: 10120 RVA: 0x002092E8 File Offset: 0x002074E8
 			public static BuiltinDebugViewsModel.DepthSettings defaultSettings
 			{
 				get
@@ -64,18 +64,18 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x040051C6 RID: 20934
+			// Token: 0x040051E4 RID: 20964
 			[Range(0f, 1f)]
 			[Tooltip("Scales the camera far plane before displaying the depth map.")]
 			public float scale;
 		}
 
-		// Token: 0x020006C0 RID: 1728
+		// Token: 0x020006C1 RID: 1729
 		[Serializable]
 		public struct MotionVectorsSettings
 		{
 			// Token: 0x17000596 RID: 1430
-			// (get) Token: 0x06002780 RID: 10112 RVA: 0x00207D6C File Offset: 0x00205F6C
+			// (get) Token: 0x06002789 RID: 10121 RVA: 0x0020930C File Offset: 0x0020750C
 			public static BuiltinDebugViewsModel.MotionVectorsSettings defaultSettings
 			{
 				get
@@ -92,68 +92,68 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x040051C7 RID: 20935
+			// Token: 0x040051E5 RID: 20965
 			[Range(0f, 1f)]
 			[Tooltip("Opacity of the source render.")]
 			public float sourceOpacity;
 
-			// Token: 0x040051C8 RID: 20936
+			// Token: 0x040051E6 RID: 20966
 			[Range(0f, 1f)]
 			[Tooltip("Opacity of the per-pixel motion vector colors.")]
 			public float motionImageOpacity;
 
-			// Token: 0x040051C9 RID: 20937
+			// Token: 0x040051E7 RID: 20967
 			[Min(0f)]
 			[Tooltip("Because motion vectors are mainly very small vectors, you can use this setting to make them more visible.")]
 			public float motionImageAmplitude;
 
-			// Token: 0x040051CA RID: 20938
+			// Token: 0x040051E8 RID: 20968
 			[Range(0f, 1f)]
 			[Tooltip("Opacity for the motion vector arrows.")]
 			public float motionVectorsOpacity;
 
-			// Token: 0x040051CB RID: 20939
+			// Token: 0x040051E9 RID: 20969
 			[Range(8f, 64f)]
 			[Tooltip("The arrow density on screen.")]
 			public int motionVectorsResolution;
 
-			// Token: 0x040051CC RID: 20940
+			// Token: 0x040051EA RID: 20970
 			[Min(0f)]
 			[Tooltip("Tweaks the arrows length.")]
 			public float motionVectorsAmplitude;
 		}
 
-		// Token: 0x020006C1 RID: 1729
+		// Token: 0x020006C2 RID: 1730
 		public enum Mode
 		{
-			// Token: 0x040051CE RID: 20942
+			// Token: 0x040051EC RID: 20972
 			None,
-			// Token: 0x040051CF RID: 20943
+			// Token: 0x040051ED RID: 20973
 			Depth,
-			// Token: 0x040051D0 RID: 20944
+			// Token: 0x040051EE RID: 20974
 			Normals,
-			// Token: 0x040051D1 RID: 20945
+			// Token: 0x040051EF RID: 20975
 			MotionVectors,
-			// Token: 0x040051D2 RID: 20946
+			// Token: 0x040051F0 RID: 20976
 			AmbientOcclusion,
-			// Token: 0x040051D3 RID: 20947
+			// Token: 0x040051F1 RID: 20977
 			EyeAdaptation,
-			// Token: 0x040051D4 RID: 20948
+			// Token: 0x040051F2 RID: 20978
 			FocusPlane,
-			// Token: 0x040051D5 RID: 20949
+			// Token: 0x040051F3 RID: 20979
 			PreGradingLog,
-			// Token: 0x040051D6 RID: 20950
+			// Token: 0x040051F4 RID: 20980
 			LogLut,
-			// Token: 0x040051D7 RID: 20951
+			// Token: 0x040051F5 RID: 20981
 			UserLut
 		}
 
-		// Token: 0x020006C2 RID: 1730
+		// Token: 0x020006C3 RID: 1731
 		[Serializable]
 		public struct Settings
 		{
 			// Token: 0x17000597 RID: 1431
-			// (get) Token: 0x06002781 RID: 10113 RVA: 0x00207DC8 File Offset: 0x00205FC8
+			// (get) Token: 0x0600278A RID: 10122 RVA: 0x00209368 File Offset: 0x00207568
 			public static BuiltinDebugViewsModel.Settings defaultSettings
 			{
 				get
@@ -167,13 +167,13 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x040051D8 RID: 20952
+			// Token: 0x040051F6 RID: 20982
 			public BuiltinDebugViewsModel.Mode mode;
 
-			// Token: 0x040051D9 RID: 20953
+			// Token: 0x040051F7 RID: 20983
 			public BuiltinDebugViewsModel.DepthSettings depth;
 
-			// Token: 0x040051DA RID: 20954
+			// Token: 0x040051F8 RID: 20984
 			public BuiltinDebugViewsModel.MotionVectorsSettings motionVectors;
 		}
 	}

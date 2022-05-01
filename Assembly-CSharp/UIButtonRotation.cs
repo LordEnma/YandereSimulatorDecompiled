@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Button Rotation")]
 public class UIButtonRotation : MonoBehaviour
 {
-	// Token: 0x06000148 RID: 328 RVA: 0x00014969 File Offset: 0x00012B69
+	// Token: 0x06000148 RID: 328 RVA: 0x00014AA9 File Offset: 0x00012CA9
 	private void Start()
 	{
 		if (!this.mStarted)
@@ -19,7 +19,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000149 RID: 329 RVA: 0x000149A5 File Offset: 0x00012BA5
+	// Token: 0x06000149 RID: 329 RVA: 0x00014AE5 File Offset: 0x00012CE5
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -28,7 +28,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600014A RID: 330 RVA: 0x000149C0 File Offset: 0x00012BC0
+	// Token: 0x0600014A RID: 330 RVA: 0x00014B00 File Offset: 0x00012D00
 	private void OnDisable()
 	{
 		if (this.mStarted && this.tweenTarget != null)
@@ -42,7 +42,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600014B RID: 331 RVA: 0x00014A0C File Offset: 0x00012C0C
+	// Token: 0x0600014B RID: 331 RVA: 0x00014B4C File Offset: 0x00012D4C
 	private void OnPress(bool isPressed)
 	{
 		if (base.enabled)
@@ -55,7 +55,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600014C RID: 332 RVA: 0x00014A94 File Offset: 0x00012C94
+	// Token: 0x0600014C RID: 332 RVA: 0x00014BD4 File Offset: 0x00012DD4
 	private void OnHover(bool isOver)
 	{
 		if (base.enabled)
@@ -68,7 +68,7 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600014D RID: 333 RVA: 0x00014AF4 File Offset: 0x00012CF4
+	// Token: 0x0600014D RID: 333 RVA: 0x00014C34 File Offset: 0x00012E34
 	private void OnSelect(bool isSelected)
 	{
 		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
@@ -77,21 +77,21 @@ public class UIButtonRotation : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000312 RID: 786
+	// Token: 0x04000314 RID: 788
 	public Transform tweenTarget;
 
-	// Token: 0x04000313 RID: 787
+	// Token: 0x04000315 RID: 789
 	public Vector3 hover = Vector3.zero;
 
-	// Token: 0x04000314 RID: 788
+	// Token: 0x04000316 RID: 790
 	public Vector3 pressed = Vector3.zero;
 
-	// Token: 0x04000315 RID: 789
+	// Token: 0x04000317 RID: 791
 	public float duration = 0.2f;
 
-	// Token: 0x04000316 RID: 790
+	// Token: 0x04000318 RID: 792
 	private Quaternion mRot;
 
-	// Token: 0x04000317 RID: 791
+	// Token: 0x04000319 RID: 793
 	private bool mStarted;
 }

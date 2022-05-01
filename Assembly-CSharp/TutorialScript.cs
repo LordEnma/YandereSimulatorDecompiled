@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000490 RID: 1168
+// Token: 0x02000491 RID: 1169
 public class TutorialScript : MonoBehaviour
 {
-	// Token: 0x06001F37 RID: 7991 RVA: 0x001B90E4 File Offset: 0x001B72E4
+	// Token: 0x06001F40 RID: 8000 RVA: 0x001BA454 File Offset: 0x001B8654
 	private void Start()
 	{
 		if (!GameGlobals.EightiesTutorial)
@@ -75,7 +75,7 @@ public class TutorialScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F38 RID: 7992 RVA: 0x001B94C4 File Offset: 0x001B76C4
+	// Token: 0x06001F41 RID: 8001 RVA: 0x001BA834 File Offset: 0x001B8A34
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
@@ -503,6 +503,9 @@ public class TutorialScript : MonoBehaviour
 						{
 							if (this.Yandere.PickUp == null)
 							{
+								this.Ragdoll.Tutorial = false;
+								this.Ragdoll.Prompt.HideButton[3] = false;
+								this.Ragdoll.Prompt.HideButton[1] = false;
 								this.FadeInstructions = true;
 							}
 						}
@@ -552,6 +555,7 @@ public class TutorialScript : MonoBehaviour
 						{
 							if (Vector3.Distance(this.Yandere.transform.position, this.Destination[this.Phase].position) < 1f)
 							{
+								this.PromptsToDisable[9].enabled = true;
 								this.FadeInstructions = true;
 							}
 						}
@@ -919,6 +923,7 @@ public class TutorialScript : MonoBehaviour
 						cosmetic.FemaleHair[57].SetActive(true);
 						cosmetic.Hairstyle = 57;
 						this.Ragdoll = this.StudentManager.Students[2].Ragdoll;
+						this.Ragdoll.Tutorial = true;
 					}
 					if (this.MyAudio.time > this.MyAudio.clip.length - 0.2f && !this.Yandere.RPGCamera.enabled)
 					{
@@ -1000,7 +1005,7 @@ public class TutorialScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F39 RID: 7993 RVA: 0x001BBF30 File Offset: 0x001BA130
+	// Token: 0x06001F42 RID: 8002 RVA: 0x001BD2EC File Offset: 0x001BB4EC
 	private void UpdateInstructionText()
 	{
 		this.PreviousInputDevice = this.InputDevice.Type;
@@ -1012,7 +1017,7 @@ public class TutorialScript : MonoBehaviour
 		this.InstructionLabel.text = this.KeyboardInstructions[this.Phase];
 	}
 
-	// Token: 0x06001F3A RID: 7994 RVA: 0x001BBF90 File Offset: 0x001BA190
+	// Token: 0x06001F43 RID: 8003 RVA: 0x001BD34C File Offset: 0x001BB54C
 	private void LateUpdate()
 	{
 		if (this.EyeShrink > 0f)
@@ -1028,7 +1033,7 @@ public class TutorialScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F3B RID: 7995 RVA: 0x001BC0F8 File Offset: 0x001BA2F8
+	// Token: 0x06001F44 RID: 8004 RVA: 0x001BD4B4 File Offset: 0x001BB6B4
 	public void TogglePauseScreen()
 	{
 		this.Pause = !this.Pause;
@@ -1042,228 +1047,228 @@ public class TutorialScript : MonoBehaviour
 		this.ExitWindow.localScale = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x0400413D RID: 16701
+	// Token: 0x04004153 RID: 16723
 	public EightiesEffectEnablerScript EightiesEffectEnabler;
 
-	// Token: 0x0400413E RID: 16702
+	// Token: 0x04004154 RID: 16724
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x0400413F RID: 16703
+	// Token: 0x04004155 RID: 16725
 	public InputDeviceType PreviousInputDevice;
 
-	// Token: 0x04004140 RID: 16704
+	// Token: 0x04004156 RID: 16726
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04004141 RID: 16705
+	// Token: 0x04004157 RID: 16727
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x04004142 RID: 16706
+	// Token: 0x04004158 RID: 16728
 	public WeaponMenuScript WeaponMenu;
 
-	// Token: 0x04004143 RID: 16707
+	// Token: 0x04004159 RID: 16729
 	public PromptScript VictimPrompt;
 
-	// Token: 0x04004144 RID: 16708
+	// Token: 0x0400415A RID: 16730
 	public UILabel InstructionLabel;
 
-	// Token: 0x04004145 RID: 16709
+	// Token: 0x0400415B RID: 16731
 	public TallLockerScript Locker;
 
-	// Token: 0x04004146 RID: 16710
+	// Token: 0x0400415C RID: 16732
 	public PromptScript ExitPortal;
 
-	// Token: 0x04004147 RID: 16711
+	// Token: 0x0400415D RID: 16733
 	public DoorScript BathroomDoor;
 
-	// Token: 0x04004148 RID: 16712
+	// Token: 0x0400415E RID: 16734
 	public RagdollScript Ragdoll;
 
-	// Token: 0x04004149 RID: 16713
+	// Token: 0x0400415F RID: 16735
 	public YandereScript Yandere;
 
-	// Token: 0x0400414A RID: 16714
+	// Token: 0x04004160 RID: 16736
 	public Transform BloodParent;
 
-	// Token: 0x0400414B RID: 16715
+	// Token: 0x04004161 RID: 16737
 	public UILabel SubtitleLabel;
 
-	// Token: 0x0400414C RID: 16716
+	// Token: 0x04004162 RID: 16738
 	public DoorScript FirstDoor;
 
-	// Token: 0x0400414D RID: 16717
+	// Token: 0x04004163 RID: 16739
 	public Transform ExitWindow;
 
-	// Token: 0x0400414E RID: 16718
+	// Token: 0x04004164 RID: 16740
 	public BucketScript Bucket;
 
-	// Token: 0x0400414F RID: 16719
+	// Token: 0x04004165 RID: 16741
 	public AudioSource MyAudio;
 
-	// Token: 0x04004150 RID: 16720
+	// Token: 0x04004166 RID: 16742
 	public WeaponScript Knife;
 
-	// Token: 0x04004151 RID: 16721
+	// Token: 0x04004167 RID: 16743
 	public Camera MainCamera;
 
-	// Token: 0x04004152 RID: 16722
+	// Token: 0x04004168 RID: 16744
 	public ClockScript Clock;
 
-	// Token: 0x04004153 RID: 16723
+	// Token: 0x04004169 RID: 16745
 	public UISprite TutorialFadeOut;
 
-	// Token: 0x04004154 RID: 16724
+	// Token: 0x0400416A RID: 16746
 	public UISprite ReputationHUD;
 
-	// Token: 0x04004155 RID: 16725
+	// Token: 0x0400416B RID: 16747
 	public UISprite SanityHUD;
 
-	// Token: 0x04004156 RID: 16726
+	// Token: 0x0400416C RID: 16748
 	public UISprite ClockHUD;
 
-	// Token: 0x04004157 RID: 16727
+	// Token: 0x0400416D RID: 16749
 	public UISprite Darkness;
 
-	// Token: 0x04004158 RID: 16728
+	// Token: 0x0400416E RID: 16750
 	public UISprite HUD;
 
-	// Token: 0x04004159 RID: 16729
+	// Token: 0x0400416F RID: 16751
 	public string[] KeyboardInstructions;
 
-	// Token: 0x0400415A RID: 16730
+	// Token: 0x04004170 RID: 16752
 	public string[] GamepadInstructions;
 
-	// Token: 0x0400415B RID: 16731
+	// Token: 0x04004171 RID: 16753
 	public string[] Animations;
 
-	// Token: 0x0400415C RID: 16732
+	// Token: 0x04004172 RID: 16754
 	public string[] Text;
 
-	// Token: 0x0400415D RID: 16733
+	// Token: 0x04004173 RID: 16755
 	public WoodChipperScript[] WoodChipper;
 
-	// Token: 0x0400415E RID: 16734
+	// Token: 0x04004174 RID: 16756
 	public PromptScript[] PromptsToDisable;
 
-	// Token: 0x0400415F RID: 16735
+	// Token: 0x04004175 RID: 16757
 	public Transform[] Destination;
 
-	// Token: 0x04004160 RID: 16736
+	// Token: 0x04004176 RID: 16758
 	public Animation[] Animator;
 
-	// Token: 0x04004161 RID: 16737
+	// Token: 0x04004177 RID: 16759
 	public GameObject[] Blocker;
 
-	// Token: 0x04004162 RID: 16738
+	// Token: 0x04004178 RID: 16760
 	public AudioSource[] BGM;
 
-	// Token: 0x04004163 RID: 16739
+	// Token: 0x04004179 RID: 16761
 	public AudioClip[] Voice;
 
-	// Token: 0x04004164 RID: 16740
+	// Token: 0x0400417A RID: 16762
 	public int[] Speaker;
 
-	// Token: 0x04004165 RID: 16741
+	// Token: 0x0400417B RID: 16763
 	public AudioClip DramaticPianoNote;
 
-	// Token: 0x04004166 RID: 16742
+	// Token: 0x0400417C RID: 16764
 	public AudioClip ReversePianoNote;
 
-	// Token: 0x04004167 RID: 16743
+	// Token: 0x0400417D RID: 16765
 	public GameObject PhantomGirlOutline;
 
-	// Token: 0x04004168 RID: 16744
+	// Token: 0x0400417E RID: 16766
 	public GameObject HeartbeatCamera;
 
-	// Token: 0x04004169 RID: 16745
+	// Token: 0x0400417F RID: 16767
 	public GameObject OutOfOrderSign;
 
-	// Token: 0x0400416A RID: 16746
+	// Token: 0x04004180 RID: 16768
 	public GameObject PickUpBlocker;
 
-	// Token: 0x0400416B RID: 16747
+	// Token: 0x04004181 RID: 16769
 	public GameObject PauseScreen;
 
-	// Token: 0x0400416C RID: 16748
+	// Token: 0x04004182 RID: 16770
 	public GameObject VictimGirl;
 
-	// Token: 0x0400416D RID: 16749
+	// Token: 0x04004183 RID: 16771
 	public GameObject Jukebox;
 
-	// Token: 0x0400416E RID: 16750
+	// Token: 0x04004184 RID: 16772
 	public GameObject FPSBG;
 
-	// Token: 0x0400416F RID: 16751
+	// Token: 0x04004185 RID: 16773
 	public GameObject FPS;
 
-	// Token: 0x04004170 RID: 16752
+	// Token: 0x04004186 RID: 16774
 	public bool EightiesEffectsEnabled;
 
-	// Token: 0x04004171 RID: 16753
+	// Token: 0x04004187 RID: 16775
 	public bool TransitionToCutscene;
 
-	// Token: 0x04004172 RID: 16754
+	// Token: 0x04004188 RID: 16776
 	public bool ReturnToTitleScreen;
 
-	// Token: 0x04004173 RID: 16755
+	// Token: 0x04004189 RID: 16777
 	public bool FadeInstructions;
 
-	// Token: 0x04004174 RID: 16756
+	// Token: 0x0400418A RID: 16778
 	public bool MovementProgress;
 
-	// Token: 0x04004175 RID: 16757
+	// Token: 0x0400418B RID: 16779
 	public bool CameraProgress;
 
-	// Token: 0x04004176 RID: 16758
+	// Token: 0x0400418C RID: 16780
 	public bool MusicSynced;
 
-	// Token: 0x04004177 RID: 16759
+	// Token: 0x0400418D RID: 16781
 	public bool CanPickUp;
 
-	// Token: 0x04004178 RID: 16760
+	// Token: 0x0400418E RID: 16782
 	public bool Cutscene;
 
-	// Token: 0x04004179 RID: 16761
+	// Token: 0x0400418F RID: 16783
 	public bool Pause;
 
-	// Token: 0x0400417A RID: 16762
+	// Token: 0x04004190 RID: 16784
 	public bool DOF;
 
-	// Token: 0x0400417B RID: 16763
+	// Token: 0x04004191 RID: 16785
 	public int CutscenePhase;
 
-	// Token: 0x0400417C RID: 16764
+	// Token: 0x04004192 RID: 16786
 	public int Phase;
 
-	// Token: 0x0400417D RID: 16765
+	// Token: 0x04004193 RID: 16787
 	public float MusicTimer;
 
-	// Token: 0x0400417E RID: 16766
+	// Token: 0x04004194 RID: 16788
 	public float SpawnTimer;
 
-	// Token: 0x0400417F RID: 16767
+	// Token: 0x04004195 RID: 16789
 	public float Rotation = 90f;
 
-	// Token: 0x04004180 RID: 16768
+	// Token: 0x04004196 RID: 16790
 	public float Timer;
 
-	// Token: 0x04004181 RID: 16769
+	// Token: 0x04004197 RID: 16791
 	public float RagdollRotation;
 
-	// Token: 0x04004182 RID: 16770
+	// Token: 0x04004198 RID: 16792
 	public Vector3 RightEyeOrigin;
 
-	// Token: 0x04004183 RID: 16771
+	// Token: 0x04004199 RID: 16793
 	public Vector3 LeftEyeOrigin;
 
-	// Token: 0x04004184 RID: 16772
+	// Token: 0x0400419A RID: 16794
 	public Transform RightArm;
 
-	// Token: 0x04004185 RID: 16773
+	// Token: 0x0400419B RID: 16795
 	public Transform RightEye;
 
-	// Token: 0x04004186 RID: 16774
+	// Token: 0x0400419C RID: 16796
 	public Transform LeftEye;
 
-	// Token: 0x04004187 RID: 16775
+	// Token: 0x0400419D RID: 16797
 	public float EyeShrink;
 }

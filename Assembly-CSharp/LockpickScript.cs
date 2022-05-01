@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000359 RID: 857
 public class LockpickScript : MonoBehaviour
 {
-	// Token: 0x0600198E RID: 6542 RVA: 0x0010330D File Offset: 0x0010150D
+	// Token: 0x06001992 RID: 6546 RVA: 0x0010380D File Offset: 0x00101A0D
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -14,6 +14,6 @@ public class LockpickScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040028D1 RID: 10449
+	// Token: 0x040028DA RID: 10458
 	public PromptScript Prompt;
 }

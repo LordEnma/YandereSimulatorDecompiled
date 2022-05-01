@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000483 RID: 1155
+// Token: 0x02000484 RID: 1156
 public class ToiletEventScript : MonoBehaviour
 {
-	// Token: 0x06001F0B RID: 7947 RVA: 0x001B6741 File Offset: 0x001B4941
+	// Token: 0x06001F14 RID: 7956 RVA: 0x001B7AB1 File Offset: 0x001B5CB1
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -14,7 +14,7 @@ public class ToiletEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F0C RID: 7948 RVA: 0x001B676C File Offset: 0x001B496C
+	// Token: 0x06001F15 RID: 7957 RVA: 0x001B7ADC File Offset: 0x001B5CDC
 	private void Update()
 	{
 		if (!this.Clock.StopTime && this.EventCheck && this.Clock.HourTime > this.EventTime)
@@ -194,7 +194,7 @@ public class ToiletEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F0D RID: 7949 RVA: 0x001B6F98 File Offset: 0x001B5198
+	// Token: 0x06001F16 RID: 7958 RVA: 0x001B8308 File Offset: 0x001B6508
 	public void EndEvent()
 	{
 		if (!this.EventOver)
@@ -230,78 +230,78 @@ public class ToiletEventScript : MonoBehaviour
 		this.ToiletCountdown = 1f;
 	}
 
-	// Token: 0x040040B1 RID: 16561
+	// Token: 0x040040C7 RID: 16583
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040040B2 RID: 16562
+	// Token: 0x040040C8 RID: 16584
 	public LightSwitchScript LightSwitch;
 
-	// Token: 0x040040B3 RID: 16563
+	// Token: 0x040040C9 RID: 16585
 	public BucketPourScript BucketPour;
 
-	// Token: 0x040040B4 RID: 16564
+	// Token: 0x040040CA RID: 16586
 	public ParticleSystem Splashes;
 
-	// Token: 0x040040B5 RID: 16565
+	// Token: 0x040040CB RID: 16587
 	public UILabel EventSubtitle;
 
-	// Token: 0x040040B6 RID: 16566
+	// Token: 0x040040CC RID: 16588
 	public YandereScript Yandere;
 
-	// Token: 0x040040B7 RID: 16567
+	// Token: 0x040040CD RID: 16589
 	public DoorScript StallDoor;
 
-	// Token: 0x040040B8 RID: 16568
+	// Token: 0x040040CE RID: 16590
 	public PromptScript Prompt;
 
-	// Token: 0x040040B9 RID: 16569
+	// Token: 0x040040CF RID: 16591
 	public ClockScript Clock;
 
-	// Token: 0x040040BA RID: 16570
+	// Token: 0x040040D0 RID: 16592
 	public Collider Toilet;
 
-	// Token: 0x040040BB RID: 16571
+	// Token: 0x040040D1 RID: 16593
 	public StudentScript EventStudent;
 
-	// Token: 0x040040BC RID: 16572
+	// Token: 0x040040D2 RID: 16594
 	public Transform[] EventLocation;
 
-	// Token: 0x040040BD RID: 16573
+	// Token: 0x040040D3 RID: 16595
 	public AudioClip[] EventClip;
 
-	// Token: 0x040040BE RID: 16574
+	// Token: 0x040040D4 RID: 16596
 	public string[] EventSpeech;
 
-	// Token: 0x040040BF RID: 16575
+	// Token: 0x040040D5 RID: 16597
 	public string[] EventAnim;
 
-	// Token: 0x040040C0 RID: 16576
+	// Token: 0x040040D6 RID: 16598
 	public GameObject VoiceClip;
 
-	// Token: 0x040040C1 RID: 16577
+	// Token: 0x040040D7 RID: 16599
 	public bool EventActive;
 
-	// Token: 0x040040C2 RID: 16578
+	// Token: 0x040040D8 RID: 16600
 	public bool EventCheck;
 
-	// Token: 0x040040C3 RID: 16579
+	// Token: 0x040040D9 RID: 16601
 	public bool EventOver;
 
-	// Token: 0x040040C4 RID: 16580
+	// Token: 0x040040DA RID: 16602
 	public float EventTime = 7f;
 
-	// Token: 0x040040C5 RID: 16581
+	// Token: 0x040040DB RID: 16603
 	public int EventPhase = 1;
 
-	// Token: 0x040040C6 RID: 16582
+	// Token: 0x040040DC RID: 16604
 	public DayOfWeek EventDay = DayOfWeek.Thursday;
 
-	// Token: 0x040040C7 RID: 16583
+	// Token: 0x040040DD RID: 16605
 	public float ToiletCountdown;
 
-	// Token: 0x040040C8 RID: 16584
+	// Token: 0x040040DE RID: 16606
 	public float Distance;
 
-	// Token: 0x040040C9 RID: 16585
+	// Token: 0x040040DF RID: 16607
 	public float Timer;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002CD RID: 717
 public class FixDummyScript : MonoBehaviour
 {
-	// Token: 0x060014B2 RID: 5298 RVA: 0x000CBD51 File Offset: 0x000C9F51
+	// Token: 0x060014B6 RID: 5302 RVA: 0x000CC219 File Offset: 0x000CA419
 	private void Start()
 	{
 		this.FixedDummy.SetActive(false);
@@ -14,7 +14,7 @@ public class FixDummyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014B3 RID: 5299 RVA: 0x000CBD6C File Offset: 0x000C9F6C
+	// Token: 0x060014B7 RID: 5303 RVA: 0x000CC234 File Offset: 0x000CA434
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -30,7 +30,7 @@ public class FixDummyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014B4 RID: 5300 RVA: 0x000CBE0C File Offset: 0x000CA00C
+	// Token: 0x060014B8 RID: 5304 RVA: 0x000CC2D4 File Offset: 0x000CA4D4
 	private void Fix()
 	{
 		base.gameObject.SetActive(false);
@@ -39,9 +39,9 @@ public class FixDummyScript : MonoBehaviour
 		this.Prompt.Hide();
 	}
 
-	// Token: 0x04002065 RID: 8293
+	// Token: 0x0400206E RID: 8302
 	public GameObject FixedDummy;
 
-	// Token: 0x04002066 RID: 8294
+	// Token: 0x0400206F RID: 8303
 	public PromptScript Prompt;
 }

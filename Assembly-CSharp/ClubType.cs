@@ -3,48 +3,48 @@
 // Token: 0x020002AB RID: 683
 public enum ClubType
 {
-	// Token: 0x04001F0F RID: 7951
-	None,
-	// Token: 0x04001F10 RID: 7952
-	Cooking,
-	// Token: 0x04001F11 RID: 7953
-	Drama,
-	// Token: 0x04001F12 RID: 7954
-	Occult,
-	// Token: 0x04001F13 RID: 7955
-	Art,
-	// Token: 0x04001F14 RID: 7956
-	LightMusic,
-	// Token: 0x04001F15 RID: 7957
-	MartialArts,
-	// Token: 0x04001F16 RID: 7958
-	Photography,
-	// Token: 0x04001F17 RID: 7959
-	Science,
 	// Token: 0x04001F18 RID: 7960
-	Sports,
+	None,
 	// Token: 0x04001F19 RID: 7961
-	Gardening,
+	Cooking,
 	// Token: 0x04001F1A RID: 7962
-	Gaming,
+	Drama,
 	// Token: 0x04001F1B RID: 7963
-	Council,
+	Occult,
 	// Token: 0x04001F1C RID: 7964
-	Bully,
+	Art,
 	// Token: 0x04001F1D RID: 7965
-	Delinquent,
+	LightMusic,
 	// Token: 0x04001F1E RID: 7966
-	Newspaper,
+	MartialArts,
 	// Token: 0x04001F1F RID: 7967
-	Nemesis = 99,
+	Photography,
 	// Token: 0x04001F20 RID: 7968
-	Teacher,
+	Science,
 	// Token: 0x04001F21 RID: 7969
-	GymTeacher,
+	Sports,
 	// Token: 0x04001F22 RID: 7970
-	Nurse,
+	Gardening,
 	// Token: 0x04001F23 RID: 7971
-	Counselor,
+	Gaming,
 	// Token: 0x04001F24 RID: 7972
+	Council,
+	// Token: 0x04001F25 RID: 7973
+	Bully,
+	// Token: 0x04001F26 RID: 7974
+	Delinquent,
+	// Token: 0x04001F27 RID: 7975
+	Newspaper,
+	// Token: 0x04001F28 RID: 7976
+	Nemesis = 99,
+	// Token: 0x04001F29 RID: 7977
+	Teacher,
+	// Token: 0x04001F2A RID: 7978
+	GymTeacher,
+	// Token: 0x04001F2B RID: 7979
+	Nurse,
+	// Token: 0x04001F2C RID: 7980
+	Counselor,
+	// Token: 0x04001F2D RID: 7981
 	Headmaster
 }

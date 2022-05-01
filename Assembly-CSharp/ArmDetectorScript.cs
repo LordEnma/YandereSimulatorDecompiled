@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 // Token: 0x020000D4 RID: 212
 public class ArmDetectorScript : MonoBehaviour
 {
-	// Token: 0x060009DE RID: 2526 RVA: 0x000522CC File Offset: 0x000504CC
+	// Token: 0x060009DE RID: 2526 RVA: 0x0005240C File Offset: 0x0005060C
 	private void Start()
 	{
 		this.DemonDress.SetActive(false);
 	}
 
-	// Token: 0x060009DF RID: 2527 RVA: 0x000522DC File Offset: 0x000504DC
+	// Token: 0x060009DF RID: 2527 RVA: 0x0005241C File Offset: 0x0005061C
 	private void Update()
 	{
 		if (!this.SummonDemon && this.Arms > 9)
@@ -298,7 +298,7 @@ public class ArmDetectorScript : MonoBehaviour
 		this.SacrificeTimer -= Time.deltaTime;
 	}
 
-	// Token: 0x060009E0 RID: 2528 RVA: 0x00053530 File Offset: 0x00051730
+	// Token: 0x060009E0 RID: 2528 RVA: 0x00053670 File Offset: 0x00051870
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.transform.parent == this.LimbParent)
@@ -324,6 +324,7 @@ public class ArmDetectorScript : MonoBehaviour
 				if (component2.Ragdoll.Burned)
 				{
 					this.Sacrifices++;
+					this.Police.Corpses--;
 					component2.Ragdoll.Prompt.Hide();
 					UnityEngine.Object.Destroy(component2.gameObject);
 					UnityEngine.Object.Instantiate<GameObject>(this.BigDarkAura, component2.Hips.position, Quaternion.identity);
@@ -333,13 +334,13 @@ public class ArmDetectorScript : MonoBehaviour
 				else if (component2.Armband.activeInHierarchy)
 				{
 					this.Bodies++;
+					this.Police.Corpses--;
 					component2.Ragdoll.Prompt.Hide();
 					UnityEngine.Object.Destroy(component2.gameObject);
 					UnityEngine.Object.Instantiate<GameObject>(this.BigDarkAura, component2.Hips.position, Quaternion.identity);
 					this.SacrificeTimer = 1f;
 					this.MyAudio.Play();
 				}
-				this.Police.Corpses--;
 				Debug.Log("Police.Corpses is now: " + this.Police.Corpses.ToString());
 				if (component2.Ragdoll.Dragged)
 				{
@@ -349,7 +350,7 @@ public class ArmDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009E1 RID: 2529 RVA: 0x00053730 File Offset: 0x00051930
+	// Token: 0x060009E1 RID: 2529 RVA: 0x00053884 File Offset: 0x00051A84
 	private void Shuffle(int Start)
 	{
 		for (int i = Start; i < this.ArmArray.Length - 1; i++)
@@ -358,7 +359,7 @@ public class ArmDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009E2 RID: 2530 RVA: 0x00053764 File Offset: 0x00051964
+	// Token: 0x060009E2 RID: 2530 RVA: 0x000538B8 File Offset: 0x00051AB8
 	private void ShuffleBodies(int Start)
 	{
 		for (int i = Start; i < this.BodyArray.Length - 1; i++)
@@ -367,117 +368,117 @@ public class ArmDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000A6B RID: 2667
+	// Token: 0x04000A6D RID: 2669
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000A6C RID: 2668
+	// Token: 0x04000A6E RID: 2670
 	public DebugMenuScript DebugMenu;
 
-	// Token: 0x04000A6D RID: 2669
+	// Token: 0x04000A6F RID: 2671
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04000A6E RID: 2670
+	// Token: 0x04000A70 RID: 2672
 	public YandereScript Yandere;
 
-	// Token: 0x04000A6F RID: 2671
+	// Token: 0x04000A71 RID: 2673
 	public PoliceScript Police;
 
-	// Token: 0x04000A70 RID: 2672
+	// Token: 0x04000A72 RID: 2674
 	public SkullScript Skull;
 
-	// Token: 0x04000A71 RID: 2673
+	// Token: 0x04000A73 RID: 2675
 	public UILabel DemonSubtitle;
 
-	// Token: 0x04000A72 RID: 2674
+	// Token: 0x04000A74 RID: 2676
 	public UISprite Darkness;
 
-	// Token: 0x04000A73 RID: 2675
+	// Token: 0x04000A75 RID: 2677
 	public Transform LimbParent;
 
-	// Token: 0x04000A74 RID: 2676
+	// Token: 0x04000A76 RID: 2678
 	public Transform[] SpawnPoints;
 
-	// Token: 0x04000A75 RID: 2677
+	// Token: 0x04000A77 RID: 2679
 	public GameObject[] BodyArray;
 
-	// Token: 0x04000A76 RID: 2678
+	// Token: 0x04000A78 RID: 2680
 	public GameObject[] ArmArray;
 
-	// Token: 0x04000A77 RID: 2679
+	// Token: 0x04000A79 RID: 2681
 	public GameObject RiggedAccessory;
 
-	// Token: 0x04000A78 RID: 2680
+	// Token: 0x04000A7A RID: 2682
 	public GameObject BloodProjector;
 
-	// Token: 0x04000A79 RID: 2681
+	// Token: 0x04000A7B RID: 2683
 	public GameObject SmallDarkAura;
 
-	// Token: 0x04000A7A RID: 2682
+	// Token: 0x04000A7C RID: 2684
 	public GameObject BigDarkAura;
 
-	// Token: 0x04000A7B RID: 2683
+	// Token: 0x04000A7D RID: 2685
 	public GameObject DemonDress;
 
-	// Token: 0x04000A7C RID: 2684
+	// Token: 0x04000A7E RID: 2686
 	public GameObject RightFlame;
 
-	// Token: 0x04000A7D RID: 2685
+	// Token: 0x04000A7F RID: 2687
 	public GameObject LeftFlame;
 
-	// Token: 0x04000A7E RID: 2686
+	// Token: 0x04000A80 RID: 2688
 	public GameObject DemonArm;
 
-	// Token: 0x04000A7F RID: 2687
+	// Token: 0x04000A81 RID: 2689
 	public bool SummonEmptyDemon;
 
-	// Token: 0x04000A80 RID: 2688
+	// Token: 0x04000A82 RID: 2690
 	public bool SummonFlameDemon;
 
-	// Token: 0x04000A81 RID: 2689
+	// Token: 0x04000A83 RID: 2691
 	public bool SummonDemon;
 
-	// Token: 0x04000A82 RID: 2690
+	// Token: 0x04000A84 RID: 2692
 	public Mesh FlameDemonMesh;
 
-	// Token: 0x04000A83 RID: 2691
+	// Token: 0x04000A85 RID: 2693
 	public int CorpsesCounted;
 
-	// Token: 0x04000A84 RID: 2692
+	// Token: 0x04000A86 RID: 2694
 	public int ArmsSpawned;
 
-	// Token: 0x04000A85 RID: 2693
+	// Token: 0x04000A87 RID: 2695
 	public int Sacrifices;
 
-	// Token: 0x04000A86 RID: 2694
+	// Token: 0x04000A88 RID: 2696
 	public int Phase = 1;
 
-	// Token: 0x04000A87 RID: 2695
+	// Token: 0x04000A89 RID: 2697
 	public int Bodies;
 
-	// Token: 0x04000A88 RID: 2696
+	// Token: 0x04000A8A RID: 2698
 	public int Arms;
 
-	// Token: 0x04000A89 RID: 2697
+	// Token: 0x04000A8B RID: 2699
 	public float SacrificeTimer;
 
-	// Token: 0x04000A8A RID: 2698
+	// Token: 0x04000A8C RID: 2700
 	public float Timer;
 
-	// Token: 0x04000A8B RID: 2699
+	// Token: 0x04000A8D RID: 2701
 	public AudioClip FlameDemonLine;
 
-	// Token: 0x04000A8C RID: 2700
+	// Token: 0x04000A8E RID: 2702
 	public AudioClip FlameActivate;
 
-	// Token: 0x04000A8D RID: 2701
+	// Token: 0x04000A8F RID: 2703
 	public AudioClip DemonMusic;
 
-	// Token: 0x04000A8E RID: 2702
+	// Token: 0x04000A90 RID: 2704
 	public AudioClip DemonLine;
 
-	// Token: 0x04000A8F RID: 2703
+	// Token: 0x04000A91 RID: 2705
 	public AudioClip EmptyDemonLine;
 
-	// Token: 0x04000A90 RID: 2704
+	// Token: 0x04000A92 RID: 2706
 	public AudioSource MyAudio;
 }

@@ -6,16 +6,16 @@ using UnityEngine.Rendering;
 
 namespace AmplifyMotion
 {
-	// Token: 0x0200058F RID: 1423
+	// Token: 0x02000590 RID: 1424
 	internal class SkinnedState : MotionState
 	{
-		// Token: 0x0600241C RID: 9244 RVA: 0x001FC58B File Offset: 0x001FA78B
+		// Token: 0x06002425 RID: 9253 RVA: 0x001FDA17 File Offset: 0x001FBC17
 		public SkinnedState(AmplifyMotionCamera owner, AmplifyMotionObjectBase obj) : base(owner, obj)
 		{
 			this.m_renderer = this.m_obj.GetComponent<SkinnedMeshRenderer>();
 		}
 
-		// Token: 0x0600241D RID: 9245 RVA: 0x001FC5A6 File Offset: 0x001FA7A6
+		// Token: 0x06002426 RID: 9254 RVA: 0x001FDA32 File Offset: 0x001FBC32
 		private void IssueWarning(string message)
 		{
 			if (!SkinnedState.m_uniqueWarnings.Contains(this.m_obj))
@@ -25,14 +25,14 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x0600241E RID: 9246 RVA: 0x001FC5D1 File Offset: 0x001FA7D1
+		// Token: 0x06002427 RID: 9255 RVA: 0x001FDA5D File Offset: 0x001FBC5D
 		private void IssueError(string message)
 		{
 			this.IssueWarning(message);
 			this.m_error = true;
 		}
 
-		// Token: 0x0600241F RID: 9247 RVA: 0x001FC5E4 File Offset: 0x001FA7E4
+		// Token: 0x06002428 RID: 9256 RVA: 0x001FDA70 File Offset: 0x001FBC70
 		internal override void Initialize()
 		{
 			if (!this.m_renderer.sharedMesh.isReadable)
@@ -117,7 +117,7 @@ namespace AmplifyMotion
 			this.m_wasVisible = false;
 		}
 
-		// Token: 0x06002420 RID: 9248 RVA: 0x001FC8B4 File Offset: 0x001FAAB4
+		// Token: 0x06002429 RID: 9257 RVA: 0x001FDD40 File Offset: 0x001FBF40
 		internal override void Shutdown()
 		{
 			if (!this.m_useFallback && !this.m_useGPU)
@@ -143,7 +143,7 @@ namespace AmplifyMotion
 			this.m_sharedMaterials = null;
 		}
 
-		// Token: 0x06002421 RID: 9249 RVA: 0x001FC940 File Offset: 0x001FAB40
+		// Token: 0x0600242A RID: 9258 RVA: 0x001FDDCC File Offset: 0x001FBFCC
 		private bool InitializeGPUSkinDeform()
 		{
 			bool result = true;
@@ -251,7 +251,7 @@ namespace AmplifyMotion
 			return result;
 		}
 
-		// Token: 0x06002422 RID: 9250 RVA: 0x001FCF84 File Offset: 0x001FB184
+		// Token: 0x0600242B RID: 9259 RVA: 0x001FE410 File Offset: 0x001FC610
 		private void ShutdownGPUSkinDeform()
 		{
 			if (this.m_gpuSkinDeformMat != null)
@@ -294,7 +294,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002423 RID: 9251 RVA: 0x001FD08C File Offset: 0x001FB28C
+		// Token: 0x0600242C RID: 9260 RVA: 0x001FE518 File Offset: 0x001FC718
 		private void UpdateBonesGPU()
 		{
 			for (int i = 0; i < this.m_boneCount; i++)
@@ -308,7 +308,7 @@ namespace AmplifyMotion
 			this.m_gpuBones.Apply();
 		}
 
-		// Token: 0x06002424 RID: 9252 RVA: 0x001FD104 File Offset: 0x001FB304
+		// Token: 0x0600242D RID: 9261 RVA: 0x001FE590 File Offset: 0x001FC790
 		private void UpdateVerticesGPU(CommandBuffer updateCB, bool starting)
 		{
 			if (!starting && this.m_wasVisible)
@@ -327,7 +327,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002425 RID: 9253 RVA: 0x001FD1C4 File Offset: 0x001FB3C4
+		// Token: 0x0600242E RID: 9262 RVA: 0x001FE650 File Offset: 0x001FC850
 		private void UpdateBones()
 		{
 			for (int i = 0; i < this.m_boneCount; i++)
@@ -341,7 +341,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002426 RID: 9254 RVA: 0x001FD23C File Offset: 0x001FB43C
+		// Token: 0x0600242F RID: 9263 RVA: 0x001FE6C8 File Offset: 0x001FC8C8
 		private void UpdateVerticesFallback(bool starting)
 		{
 			if (!starting && this.m_wasVisible)
@@ -361,7 +361,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002427 RID: 9255 RVA: 0x001FD300 File Offset: 0x001FB500
+		// Token: 0x06002430 RID: 9264 RVA: 0x001FE78C File Offset: 0x001FC98C
 		private void AsyncUpdateVertices(bool starting)
 		{
 			if (!starting && this.m_wasVisible)
@@ -390,7 +390,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002428 RID: 9256 RVA: 0x001FD3B0 File Offset: 0x001FB5B0
+		// Token: 0x06002431 RID: 9265 RVA: 0x001FE83C File Offset: 0x001FCA3C
 		private void InitializeBone1(Vector4[] baseVertices, int[] boneIndices)
 		{
 			Vector3[] vertices = this.m_renderer.sharedMesh.vertices;
@@ -405,7 +405,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002429 RID: 9257 RVA: 0x001FD460 File Offset: 0x001FB660
+		// Token: 0x06002432 RID: 9266 RVA: 0x001FE8EC File Offset: 0x001FCAEC
 		private void InitializeBone2(Vector4[] baseVertices, int[] boneIndices, float[] boneWeights)
 		{
 			Vector3[] vertices = this.m_renderer.sharedMesh.vertices;
@@ -430,7 +430,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x0600242A RID: 9258 RVA: 0x001FD5B0 File Offset: 0x001FB7B0
+		// Token: 0x06002433 RID: 9267 RVA: 0x001FEA3C File Offset: 0x001FCC3C
 		private void InitializeBone4(Vector4[] baseVertices, int[] boneIndices, float[] boneWeights)
 		{
 			Vector3[] vertices = this.m_renderer.sharedMesh.vertices;
@@ -462,7 +462,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x0600242B RID: 9259 RVA: 0x001FD7C0 File Offset: 0x001FB9C0
+		// Token: 0x06002434 RID: 9268 RVA: 0x001FEC4C File Offset: 0x001FCE4C
 		private void UpdateVerticesBone1()
 		{
 			for (int i = 0; i < this.m_vertexCount; i++)
@@ -471,7 +471,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x0600242C RID: 9260 RVA: 0x001FD810 File Offset: 0x001FBA10
+		// Token: 0x06002435 RID: 9269 RVA: 0x001FEC9C File Offset: 0x001FCE9C
 		private void UpdateVerticesBone2()
 		{
 			Vector3 zero = Vector3.zero;
@@ -491,7 +491,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x0600242D RID: 9261 RVA: 0x001FD8B0 File Offset: 0x001FBAB0
+		// Token: 0x06002436 RID: 9270 RVA: 0x001FED3C File Offset: 0x001FCF3C
 		private void UpdateVerticesBone4()
 		{
 			Vector3 zero = Vector3.zero;
@@ -525,7 +525,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x0600242E RID: 9262 RVA: 0x001FD9DC File Offset: 0x001FBBDC
+		// Token: 0x06002437 RID: 9271 RVA: 0x001FEE68 File Offset: 0x001FD068
 		internal override void AsyncUpdate()
 		{
 			try
@@ -542,7 +542,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x0600242F RID: 9263 RVA: 0x001FDA3C File Offset: 0x001FBC3C
+		// Token: 0x06002438 RID: 9272 RVA: 0x001FEEC8 File Offset: 0x001FD0C8
 		internal override void UpdateTransform(CommandBuffer updateCB, bool starting)
 		{
 			if (!this.m_initialized)
@@ -592,7 +592,7 @@ namespace AmplifyMotion
 			this.m_wasVisible = isVisible;
 		}
 
-		// Token: 0x06002430 RID: 9264 RVA: 0x001FDB5E File Offset: 0x001FBD5E
+		// Token: 0x06002439 RID: 9273 RVA: 0x001FEFEA File Offset: 0x001FD1EA
 		private void WaitForAsyncUpdate()
 		{
 			if (this.m_asyncUpdateTriggered)
@@ -606,7 +606,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002431 RID: 9265 RVA: 0x001FDB8C File Offset: 0x001FBD8C
+		// Token: 0x0600243A RID: 9274 RVA: 0x001FF018 File Offset: 0x001FD218
 		internal override void RenderVectors(Camera camera, CommandBuffer renderCB, float scale, Quality quality)
 		{
 			if (this.m_initialized && !this.m_error && this.m_renderer.isVisible)
@@ -669,106 +669,106 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x04004C4F RID: 19535
+		// Token: 0x04004C65 RID: 19557
 		private SkinnedMeshRenderer m_renderer;
 
-		// Token: 0x04004C50 RID: 19536
+		// Token: 0x04004C66 RID: 19558
 		private int m_boneCount;
 
-		// Token: 0x04004C51 RID: 19537
+		// Token: 0x04004C67 RID: 19559
 		private Transform[] m_boneTransforms;
 
-		// Token: 0x04004C52 RID: 19538
+		// Token: 0x04004C68 RID: 19560
 		private MotionState.Matrix3x4[] m_bones;
 
-		// Token: 0x04004C53 RID: 19539
+		// Token: 0x04004C69 RID: 19561
 		private int m_weightCount;
 
-		// Token: 0x04004C54 RID: 19540
+		// Token: 0x04004C6A RID: 19562
 		private int[] m_boneIndices;
 
-		// Token: 0x04004C55 RID: 19541
+		// Token: 0x04004C6B RID: 19563
 		private float[] m_boneWeights;
 
-		// Token: 0x04004C56 RID: 19542
+		// Token: 0x04004C6C RID: 19564
 		private int m_vertexCount;
 
-		// Token: 0x04004C57 RID: 19543
+		// Token: 0x04004C6D RID: 19565
 		private Vector4[] m_baseVertices;
 
-		// Token: 0x04004C58 RID: 19544
+		// Token: 0x04004C6E RID: 19566
 		private Vector3[] m_prevVertices;
 
-		// Token: 0x04004C59 RID: 19545
+		// Token: 0x04004C6F RID: 19567
 		private Vector3[] m_currVertices;
 
-		// Token: 0x04004C5A RID: 19546
+		// Token: 0x04004C70 RID: 19568
 		private int m_gpuBoneTexWidth;
 
-		// Token: 0x04004C5B RID: 19547
+		// Token: 0x04004C71 RID: 19569
 		private int m_gpuBoneTexHeight;
 
-		// Token: 0x04004C5C RID: 19548
+		// Token: 0x04004C72 RID: 19570
 		private int m_gpuVertexTexWidth;
 
-		// Token: 0x04004C5D RID: 19549
+		// Token: 0x04004C73 RID: 19571
 		private int m_gpuVertexTexHeight;
 
-		// Token: 0x04004C5E RID: 19550
+		// Token: 0x04004C74 RID: 19572
 		private Material m_gpuSkinDeformMat;
 
-		// Token: 0x04004C5F RID: 19551
+		// Token: 0x04004C75 RID: 19573
 		private Color[] m_gpuBoneData;
 
-		// Token: 0x04004C60 RID: 19552
+		// Token: 0x04004C76 RID: 19574
 		private Texture2D m_gpuBones;
 
-		// Token: 0x04004C61 RID: 19553
+		// Token: 0x04004C77 RID: 19575
 		private Texture2D m_gpuBoneIndices;
 
-		// Token: 0x04004C62 RID: 19554
+		// Token: 0x04004C78 RID: 19576
 		private Texture2D[] m_gpuBaseVertices;
 
-		// Token: 0x04004C63 RID: 19555
+		// Token: 0x04004C79 RID: 19577
 		private RenderTexture m_gpuPrevVertices;
 
-		// Token: 0x04004C64 RID: 19556
+		// Token: 0x04004C7A RID: 19578
 		private RenderTexture m_gpuCurrVertices;
 
-		// Token: 0x04004C65 RID: 19557
+		// Token: 0x04004C7B RID: 19579
 		private Mesh m_clonedMesh;
 
-		// Token: 0x04004C66 RID: 19558
+		// Token: 0x04004C7C RID: 19580
 		private MotionState.Matrix3x4 m_worldToLocalMatrix;
 
-		// Token: 0x04004C67 RID: 19559
+		// Token: 0x04004C7D RID: 19581
 		private MotionState.Matrix3x4 m_prevLocalToWorld;
 
-		// Token: 0x04004C68 RID: 19560
+		// Token: 0x04004C7E RID: 19582
 		private MotionState.Matrix3x4 m_currLocalToWorld;
 
-		// Token: 0x04004C69 RID: 19561
+		// Token: 0x04004C7F RID: 19583
 		private MotionState.MaterialDesc[] m_sharedMaterials;
 
-		// Token: 0x04004C6A RID: 19562
+		// Token: 0x04004C80 RID: 19584
 		private ManualResetEvent m_asyncUpdateSignal;
 
-		// Token: 0x04004C6B RID: 19563
+		// Token: 0x04004C81 RID: 19585
 		private bool m_asyncUpdateTriggered;
 
-		// Token: 0x04004C6C RID: 19564
+		// Token: 0x04004C82 RID: 19586
 		private bool m_starting;
 
-		// Token: 0x04004C6D RID: 19565
+		// Token: 0x04004C83 RID: 19587
 		private bool m_wasVisible;
 
-		// Token: 0x04004C6E RID: 19566
+		// Token: 0x04004C84 RID: 19588
 		private bool m_useFallback;
 
-		// Token: 0x04004C6F RID: 19567
+		// Token: 0x04004C85 RID: 19589
 		private bool m_useGPU;
 
-		// Token: 0x04004C70 RID: 19568
+		// Token: 0x04004C86 RID: 19590
 		private static HashSet<AmplifyMotionObjectBase> m_uniqueWarnings = new HashSet<AmplifyMotionObjectBase>();
 	}
 }

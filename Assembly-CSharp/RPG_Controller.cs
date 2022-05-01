@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000BD RID: 189
 public class RPG_Controller : MonoBehaviour
 {
-	// Token: 0x0600098B RID: 2443 RVA: 0x0004C747 File Offset: 0x0004A947
+	// Token: 0x0600098B RID: 2443 RVA: 0x0004C887 File Offset: 0x0004AA87
 	private void Awake()
 	{
 		RPG_Controller.instance = this;
@@ -13,7 +13,7 @@ public class RPG_Controller : MonoBehaviour
 		this.MainCamera = Camera.main;
 	}
 
-	// Token: 0x0600098C RID: 2444 RVA: 0x0004C775 File Offset: 0x0004A975
+	// Token: 0x0600098C RID: 2444 RVA: 0x0004C8B5 File Offset: 0x0004AAB5
 	private void Update()
 	{
 		if (this.MainCamera == null)
@@ -29,7 +29,7 @@ public class RPG_Controller : MonoBehaviour
 		this.StartMotor();
 	}
 
-	// Token: 0x0600098D RID: 2445 RVA: 0x0004C7AC File Offset: 0x0004A9AC
+	// Token: 0x0600098D RID: 2445 RVA: 0x0004C8EC File Offset: 0x0004AAEC
 	private void GetInput()
 	{
 		float d = 0f;
@@ -72,7 +72,7 @@ public class RPG_Controller : MonoBehaviour
 		this.rotation.y = Input.GetAxis("Horizontal") * this.turnSpeed;
 	}
 
-	// Token: 0x0600098E RID: 2446 RVA: 0x0004C970 File Offset: 0x0004AB70
+	// Token: 0x0600098E RID: 2446 RVA: 0x0004CAB0 File Offset: 0x0004ACB0
 	private void StartMotor()
 	{
 		this.playerDirWorld.y = this.playerDirWorld.y - this.gravity * Time.deltaTime;
@@ -84,36 +84,36 @@ public class RPG_Controller : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000836 RID: 2102
+	// Token: 0x04000838 RID: 2104
 	public static RPG_Controller instance;
 
-	// Token: 0x04000837 RID: 2103
+	// Token: 0x04000839 RID: 2105
 	public CharacterController characterController;
 
-	// Token: 0x04000838 RID: 2104
+	// Token: 0x0400083A RID: 2106
 	public float walkSpeed = 10f;
 
-	// Token: 0x04000839 RID: 2105
+	// Token: 0x0400083B RID: 2107
 	public float turnSpeed = 2.5f;
 
-	// Token: 0x0400083A RID: 2106
+	// Token: 0x0400083C RID: 2108
 	public float jumpHeight = 10f;
 
-	// Token: 0x0400083B RID: 2107
+	// Token: 0x0400083D RID: 2109
 	public float gravity = 20f;
 
-	// Token: 0x0400083C RID: 2108
+	// Token: 0x0400083E RID: 2110
 	public float fallingThreshold = -6f;
 
-	// Token: 0x0400083D RID: 2109
+	// Token: 0x0400083F RID: 2111
 	private Vector3 playerDir;
 
-	// Token: 0x0400083E RID: 2110
+	// Token: 0x04000840 RID: 2112
 	private Vector3 playerDirWorld;
 
-	// Token: 0x0400083F RID: 2111
+	// Token: 0x04000841 RID: 2113
 	private Vector3 rotation = Vector3.zero;
 
-	// Token: 0x04000840 RID: 2112
+	// Token: 0x04000842 RID: 2114
 	private Camera MainCamera;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000E9 RID: 233
 public class BloodPoolScript : MonoBehaviour
 {
-	// Token: 0x06000A38 RID: 2616 RVA: 0x0005AB84 File Offset: 0x00058D84
+	// Token: 0x06000A38 RID: 2616 RVA: 0x0005ACD8 File Offset: 0x00058ED8
 	private void Start()
 	{
 		if (PlayerGlobals.PantiesEquipped == 11 && this.Blood)
@@ -35,7 +35,7 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A39 RID: 2617 RVA: 0x0005ACA8 File Offset: 0x00058EA8
+	// Token: 0x06000A39 RID: 2617 RVA: 0x0005ADFC File Offset: 0x00058FFC
 	private void Update()
 	{
 		if (this.Grow)
@@ -52,7 +52,7 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A3A RID: 2618 RVA: 0x0005AD4C File Offset: 0x00058F4C
+	// Token: 0x06000A3A RID: 2618 RVA: 0x0005AEA0 File Offset: 0x000590A0
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Water && this.ElectroTimer == 0f && other.gameObject.tag == "E")
@@ -68,36 +68,36 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000BA3 RID: 2979
+	// Token: 0x04000BA5 RID: 2981
 	public float TargetSize;
 
-	// Token: 0x04000BA4 RID: 2980
+	// Token: 0x04000BA6 RID: 2982
 	public bool Gasoline;
 
-	// Token: 0x04000BA5 RID: 2981
+	// Token: 0x04000BA7 RID: 2983
 	public bool Brown;
 
-	// Token: 0x04000BA6 RID: 2982
+	// Token: 0x04000BA8 RID: 2984
 	public bool Water;
 
-	// Token: 0x04000BA7 RID: 2983
+	// Token: 0x04000BA9 RID: 2985
 	public bool Blood = true;
 
-	// Token: 0x04000BA8 RID: 2984
+	// Token: 0x04000BAA RID: 2986
 	public bool Grow;
 
-	// Token: 0x04000BA9 RID: 2985
+	// Token: 0x04000BAB RID: 2987
 	public GameObject Electricity;
 
-	// Token: 0x04000BAA RID: 2986
+	// Token: 0x04000BAC RID: 2988
 	public Renderer MyRenderer;
 
-	// Token: 0x04000BAB RID: 2987
+	// Token: 0x04000BAD RID: 2989
 	public Material BloodPool;
 
-	// Token: 0x04000BAC RID: 2988
+	// Token: 0x04000BAE RID: 2990
 	public Material Flower;
 
-	// Token: 0x04000BAD RID: 2989
+	// Token: 0x04000BAF RID: 2991
 	public float ElectroTimer;
 }

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020000BF RID: 191
 public class AbductionScript : MonoBehaviour
 {
-	// Token: 0x06000994 RID: 2452 RVA: 0x0004CB34 File Offset: 0x0004AD34
+	// Token: 0x06000994 RID: 2452 RVA: 0x0004CC74 File Offset: 0x0004AE74
 	private void Start()
 	{
 		if (SchoolGlobals.SchoolAtmosphere > 0.5f)
@@ -24,7 +24,7 @@ public class AbductionScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000995 RID: 2453 RVA: 0x0004CBD0 File Offset: 0x0004ADD0
+	// Token: 0x06000995 RID: 2453 RVA: 0x0004CD10 File Offset: 0x0004AF10
 	private void Update()
 	{
 		this.StartTimer += Time.deltaTime;
@@ -61,7 +61,7 @@ public class AbductionScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000996 RID: 2454 RVA: 0x0004CD3C File Offset: 0x0004AF3C
+	// Token: 0x06000996 RID: 2454 RVA: 0x0004CE7C File Offset: 0x0004B07C
 	private void UpdateDOF(float Focus)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -69,39 +69,39 @@ public class AbductionScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x04000848 RID: 2120
+	// Token: 0x0400084A RID: 2122
 	public SkinnedMeshRenderer Renderer;
 
-	// Token: 0x04000849 RID: 2121
+	// Token: 0x0400084B RID: 2123
 	public Texture[] RivalStockings;
 
-	// Token: 0x0400084A RID: 2122
+	// Token: 0x0400084C RID: 2124
 	public AudioSource MyAudio;
 
-	// Token: 0x0400084B RID: 2123
+	// Token: 0x0400084D RID: 2125
 	public UISprite Darkness;
 
-	// Token: 0x0400084C RID: 2124
+	// Token: 0x0400084E RID: 2126
 	public Camera MainCamera;
 
-	// Token: 0x0400084D RID: 2125
+	// Token: 0x0400084F RID: 2127
 	public float StartTimer;
 
-	// Token: 0x0400084E RID: 2126
+	// Token: 0x04000850 RID: 2128
 	public float Timer;
 
-	// Token: 0x0400084F RID: 2127
+	// Token: 0x04000851 RID: 2129
 	public bool PlayedAudio;
 
-	// Token: 0x04000850 RID: 2128
+	// Token: 0x04000852 RID: 2130
 	public int Phase;
 
-	// Token: 0x04000851 RID: 2129
+	// Token: 0x04000853 RID: 2131
 	public Animation Anim1;
 
-	// Token: 0x04000852 RID: 2130
+	// Token: 0x04000854 RID: 2132
 	public Animator Anim2;
 
-	// Token: 0x04000853 RID: 2131
+	// Token: 0x04000855 RID: 2133
 	public PostProcessingProfile Profile;
 }

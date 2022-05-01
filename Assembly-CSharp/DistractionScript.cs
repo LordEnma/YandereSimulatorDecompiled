@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000289 RID: 649
 public class DistractionScript : MonoBehaviour
 {
-	// Token: 0x060013AA RID: 5034 RVA: 0x000B8BDA File Offset: 0x000B6DDA
+	// Token: 0x060013AE RID: 5038 RVA: 0x000B9072 File Offset: 0x000B7272
 	private void Update()
 	{
 		if (this.Frame > 5)
@@ -14,7 +14,7 @@ public class DistractionScript : MonoBehaviour
 		this.Frame++;
 	}
 
-	// Token: 0x060013AB RID: 5035 RVA: 0x000B8C00 File Offset: 0x000B6E00
+	// Token: 0x060013AF RID: 5039 RVA: 0x000B9098 File Offset: 0x000B7298
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -29,6 +29,6 @@ public class DistractionScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D31 RID: 7473
+	// Token: 0x04001D39 RID: 7481
 	private int Frame;
 }

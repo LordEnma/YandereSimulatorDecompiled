@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003B5 RID: 949
 public class PortalScript : MonoBehaviour
 {
-	// Token: 0x06001AF4 RID: 6900 RVA: 0x00127008 File Offset: 0x00125208
+	// Token: 0x06001AF8 RID: 6904 RVA: 0x0012761C File Offset: 0x0012581C
 	private void Start()
 	{
 		this.EvidenceWarning.SetActive(false);
@@ -15,7 +15,7 @@ public class PortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AF5 RID: 6901 RVA: 0x00127038 File Offset: 0x00125238
+	// Token: 0x06001AF9 RID: 6905 RVA: 0x0012764C File Offset: 0x0012584C
 	private void Update()
 	{
 		if (this.Clock.HourTime > 8.52f && this.Clock.HourTime < 8.53f && !this.Yandere.InClass && !this.LateReport1)
@@ -365,7 +365,7 @@ public class PortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AF6 RID: 6902 RVA: 0x00128060 File Offset: 0x00126260
+	// Token: 0x06001AFA RID: 6906 RVA: 0x00128674 File Offset: 0x00126874
 	public void CheckForProblems()
 	{
 		if (this.Yandere.Armed || this.Yandere.Bloodiness > 0f || this.Yandere.Sanity < 33.333f || this.Yandere.Attacking || this.Yandere.Dragging || this.Yandere.Carrying || this.Yandere.PickUp != null || this.Yandere.Chased || this.Yandere.Chasers > 0 || (this.StudentManager.Reporter != null && !this.Police.Show) || this.StudentManager.MurderTakingPlace)
@@ -374,7 +374,7 @@ public class PortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AF7 RID: 6903 RVA: 0x00128130 File Offset: 0x00126330
+	// Token: 0x06001AFB RID: 6907 RVA: 0x00128744 File Offset: 0x00126944
 	public void EndDay()
 	{
 		this.StudentManager.StopMoving();
@@ -391,7 +391,7 @@ public class PortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AF8 RID: 6904 RVA: 0x001281BC File Offset: 0x001263BC
+	// Token: 0x06001AFC RID: 6908 RVA: 0x001287D0 File Offset: 0x001269D0
 	private void CheckForLateness()
 	{
 		this.Late = 0;
@@ -442,7 +442,7 @@ public class PortalScript : MonoBehaviour
 		int late = this.Late;
 	}
 
-	// Token: 0x06001AF9 RID: 6905 RVA: 0x00128328 File Offset: 0x00126528
+	// Token: 0x06001AFD RID: 6909 RVA: 0x0012893C File Offset: 0x00126B3C
 	public void EndEvents()
 	{
 		for (int i = 0; i < this.MorningEvents.Length; i++)
@@ -490,7 +490,7 @@ public class PortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AFA RID: 6906 RVA: 0x0012846C File Offset: 0x0012666C
+	// Token: 0x06001AFE RID: 6910 RVA: 0x00128A80 File Offset: 0x00126C80
 	public void EndLaterEvents()
 	{
 		if (this.OsanaMondayLunchEvent.enabled && this.OsanaMondayLunchEvent.Phase > 0 && this.OsanaMondayLunchEvent.Bento[1].Poison > 0)
@@ -526,7 +526,7 @@ public class PortalScript : MonoBehaviour
 		Debug.Log("Sabotage Progress is currently: " + this.StudentManager.SabotageProgress.ToString());
 	}
 
-	// Token: 0x06001AFB RID: 6907 RVA: 0x001285D4 File Offset: 0x001267D4
+	// Token: 0x06001AFF RID: 6911 RVA: 0x00128BE8 File Offset: 0x00126DE8
 	public void EndFinalEvents()
 	{
 		this.EndedFinalEvents = true;
@@ -560,7 +560,7 @@ public class PortalScript : MonoBehaviour
 		Debug.Log("It is the end of the day, and Sabotage Progress is currently " + this.StudentManager.SabotageProgress.ToString() + " out of 5.");
 	}
 
-	// Token: 0x06001AFC RID: 6908 RVA: 0x00128754 File Offset: 0x00126954
+	// Token: 0x06001B00 RID: 6912 RVA: 0x00128D68 File Offset: 0x00126F68
 	public void CheckForPoison()
 	{
 		for (int i = 0; i < this.StudentManager.Students.Length; i++)
@@ -575,159 +575,159 @@ public class PortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002D66 RID: 11622
+	// Token: 0x04002D6F RID: 11631
 	public RivalMorningEventManagerScript[] MorningEvents;
 
-	// Token: 0x04002D67 RID: 11623
+	// Token: 0x04002D70 RID: 11632
 	public OsanaMorningFriendEventScript[] FriendEvents;
 
-	// Token: 0x04002D68 RID: 11624
+	// Token: 0x04002D71 RID: 11633
 	public OsanaMondayBeforeClassEventScript OsanaEvent;
 
-	// Token: 0x04002D69 RID: 11625
+	// Token: 0x04002D72 RID: 11634
 	public RivalAfterClassEventManagerScript OsanaWednesdayAfterClassEvent;
 
-	// Token: 0x04002D6A RID: 11626
+	// Token: 0x04002D73 RID: 11635
 	public RivalAfterClassEventManagerScript OsanaTuesdayAfterClassEvent;
 
-	// Token: 0x04002D6B RID: 11627
+	// Token: 0x04002D74 RID: 11636
 	public OsanaThursdayAfterClassEventScript OsanaThursdayEvent;
 
-	// Token: 0x04002D6C RID: 11628
+	// Token: 0x04002D75 RID: 11637
 	public OsanaFridayBeforeClassEvent1Script OsanaFridayEvent1;
 
-	// Token: 0x04002D6D RID: 11629
+	// Token: 0x04002D76 RID: 11638
 	public OsanaFridayBeforeClassEvent2Script OsanaFridayEvent2;
 
-	// Token: 0x04002D6E RID: 11630
+	// Token: 0x04002D77 RID: 11639
 	public OsanaTuesdayLunchEventScript OsanaTuesdayLunchEvent;
 
-	// Token: 0x04002D6F RID: 11631
+	// Token: 0x04002D78 RID: 11640
 	public OsanaMondayLunchEventScript OsanaMondayLunchEvent;
 
-	// Token: 0x04002D70 RID: 11632
+	// Token: 0x04002D79 RID: 11641
 	public OsanaFridayLunchEventScript OsanaFridayLunchEvent;
 
-	// Token: 0x04002D71 RID: 11633
+	// Token: 0x04002D7A RID: 11642
 	public OsanaClubEventScript OsanaClubEvent;
 
-	// Token: 0x04002D72 RID: 11634
+	// Token: 0x04002D7B RID: 11643
 	public OsanaPoolEventScript OsanaPoolEvent;
 
-	// Token: 0x04002D73 RID: 11635
+	// Token: 0x04002D7C RID: 11644
 	public WashingMachineScript WashingMachine;
 
-	// Token: 0x04002D74 RID: 11636
+	// Token: 0x04002D7D RID: 11645
 	public DelinquentManagerScript DelinquentManager;
 
-	// Token: 0x04002D75 RID: 11637
+	// Token: 0x04002D7E RID: 11646
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002D76 RID: 11638
+	// Token: 0x04002D7F RID: 11647
 	public WeaponManagerScript WeaponManager;
 
-	// Token: 0x04002D77 RID: 11639
+	// Token: 0x04002D80 RID: 11648
 	public LoveManagerScript LoveManager;
 
-	// Token: 0x04002D78 RID: 11640
+	// Token: 0x04002D81 RID: 11649
 	public ReputationScript Reputation;
 
-	// Token: 0x04002D79 RID: 11641
+	// Token: 0x04002D82 RID: 11650
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002D7A RID: 11642
+	// Token: 0x04002D83 RID: 11651
 	public YandereScript Yandere;
 
-	// Token: 0x04002D7B RID: 11643
+	// Token: 0x04002D84 RID: 11652
 	public PoliceScript Police;
 
-	// Token: 0x04002D7C RID: 11644
+	// Token: 0x04002D85 RID: 11653
 	public PromptScript Prompt;
 
-	// Token: 0x04002D7D RID: 11645
+	// Token: 0x04002D86 RID: 11654
 	public ClassScript Class;
 
-	// Token: 0x04002D7E RID: 11646
+	// Token: 0x04002D87 RID: 11655
 	public ClockScript Clock;
 
-	// Token: 0x04002D7F RID: 11647
+	// Token: 0x04002D88 RID: 11656
 	public GameObject EvidenceWarning;
 
-	// Token: 0x04002D80 RID: 11648
+	// Token: 0x04002D89 RID: 11657
 	public GameObject HeartbeatCamera;
 
-	// Token: 0x04002D81 RID: 11649
+	// Token: 0x04002D8A RID: 11658
 	public GameObject Headmaster;
 
-	// Token: 0x04002D82 RID: 11650
+	// Token: 0x04002D8B RID: 11659
 	public UISprite ClassDarkness;
 
-	// Token: 0x04002D83 RID: 11651
+	// Token: 0x04002D8C RID: 11660
 	public Texture HomeMapMarker;
 
-	// Token: 0x04002D84 RID: 11652
+	// Token: 0x04002D8D RID: 11661
 	public Renderer MapMarker;
 
-	// Token: 0x04002D85 RID: 11653
+	// Token: 0x04002D8E RID: 11662
 	public Transform Teacher;
 
-	// Token: 0x04002D86 RID: 11654
+	// Token: 0x04002D8F RID: 11663
 	public bool CanAttendClass;
 
-	// Token: 0x04002D87 RID: 11655
+	// Token: 0x04002D90 RID: 11664
 	public bool BypassWarning;
 
-	// Token: 0x04002D88 RID: 11656
+	// Token: 0x04002D91 RID: 11665
 	public bool LateReport1;
 
-	// Token: 0x04002D89 RID: 11657
+	// Token: 0x04002D92 RID: 11666
 	public bool LateReport2;
 
-	// Token: 0x04002D8A RID: 11658
+	// Token: 0x04002D93 RID: 11667
 	public bool Transition;
 
-	// Token: 0x04002D8B RID: 11659
+	// Token: 0x04002D94 RID: 11668
 	public bool FadeOut;
 
-	// Token: 0x04002D8C RID: 11660
+	// Token: 0x04002D95 RID: 11669
 	public bool Proceed;
 
-	// Token: 0x04002D8D RID: 11661
+	// Token: 0x04002D96 RID: 11670
 	public float Timer;
 
-	// Token: 0x04002D8E RID: 11662
+	// Token: 0x04002D97 RID: 11671
 	public int Late;
 
-	// Token: 0x04002D8F RID: 11663
+	// Token: 0x04002D98 RID: 11672
 	public UILabel BottomLabel;
 
-	// Token: 0x04002D90 RID: 11664
+	// Token: 0x04002D99 RID: 11673
 	public UILabel AttendClassLabel;
 
-	// Token: 0x04002D91 RID: 11665
+	// Token: 0x04002D9A RID: 11674
 	public UILabel CorpsesLabel;
 
-	// Token: 0x04002D92 RID: 11666
+	// Token: 0x04002D9B RID: 11675
 	public UILabel BodyPartsLabel;
 
-	// Token: 0x04002D93 RID: 11667
+	// Token: 0x04002D9C RID: 11676
 	public UILabel BloodStainsLabel;
 
-	// Token: 0x04002D94 RID: 11668
+	// Token: 0x04002D9D RID: 11677
 	public UILabel BloodyClothingLabel;
 
-	// Token: 0x04002D95 RID: 11669
+	// Token: 0x04002D9E RID: 11678
 	public UILabel BloodyWeaponsLabel;
 
-	// Token: 0x04002D96 RID: 11670
+	// Token: 0x04002D9F RID: 11679
 	public GenericRivalEventScript[] MorningGenericEvents;
 
-	// Token: 0x04002D97 RID: 11671
+	// Token: 0x04002DA0 RID: 11680
 	public GenericRivalEventScript[] LunchGenericEvents;
 
-	// Token: 0x04002D98 RID: 11672
+	// Token: 0x04002DA1 RID: 11681
 	public GenericRivalEventScript[] FinalGenericEvents;
 
-	// Token: 0x04002D99 RID: 11673
+	// Token: 0x04002DA2 RID: 11682
 	public bool EndedFinalEvents;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002E0 RID: 736
 public class GenericBentoScript : MonoBehaviour
 {
-	// Token: 0x060014F1 RID: 5361 RVA: 0x000CFB40 File Offset: 0x000CDD40
+	// Token: 0x060014F5 RID: 5365 RVA: 0x000CFFEC File Offset: 0x000CE1EC
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f || this.Prompt.Circle[1].fillAmount == 0f || this.Prompt.Circle[2].fillAmount == 0f || this.Prompt.Circle[3].fillAmount == 0f)
@@ -82,7 +82,7 @@ public class GenericBentoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014F2 RID: 5362 RVA: 0x000CFE98 File Offset: 0x000CE098
+	// Token: 0x060014F6 RID: 5366 RVA: 0x000D0344 File Offset: 0x000CE544
 	private void ShutOff()
 	{
 		Debug.Log("Shutting off a bento. This bento should be inaccessible from now on...");
@@ -103,7 +103,7 @@ public class GenericBentoScript : MonoBehaviour
 		this.Prompt.Hide();
 	}
 
-	// Token: 0x060014F3 RID: 5363 RVA: 0x000D0008 File Offset: 0x000CE208
+	// Token: 0x060014F7 RID: 5367 RVA: 0x000D04B4 File Offset: 0x000CE6B4
 	public void UpdatePrompts()
 	{
 		if (!this.Tampered)
@@ -132,33 +132,33 @@ public class GenericBentoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002124 RID: 8484
+	// Token: 0x0400212D RID: 8493
 	public GameObject EmptyGameObject;
 
-	// Token: 0x04002125 RID: 8485
+	// Token: 0x0400212E RID: 8494
 	public GameObject Lid;
 
-	// Token: 0x04002126 RID: 8486
+	// Token: 0x0400212F RID: 8495
 	public Transform PoisonSpot;
 
-	// Token: 0x04002127 RID: 8487
+	// Token: 0x04002130 RID: 8496
 	public PromptScript Prompt;
 
-	// Token: 0x04002128 RID: 8488
+	// Token: 0x04002131 RID: 8497
 	public bool Emetic;
 
-	// Token: 0x04002129 RID: 8489
+	// Token: 0x04002132 RID: 8498
 	public bool Tranquil;
 
-	// Token: 0x0400212A RID: 8490
+	// Token: 0x04002133 RID: 8499
 	public bool Headache;
 
-	// Token: 0x0400212B RID: 8491
+	// Token: 0x04002134 RID: 8500
 	public bool Lethal;
 
-	// Token: 0x0400212C RID: 8492
+	// Token: 0x04002135 RID: 8501
 	public bool Tampered;
 
-	// Token: 0x0400212D RID: 8493
+	// Token: 0x04002136 RID: 8502
 	public int StudentID;
 }

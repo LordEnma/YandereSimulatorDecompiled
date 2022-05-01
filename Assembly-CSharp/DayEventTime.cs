@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class DayEventTime : IScheduledEventTime
 {
-	// Token: 0x0600147B RID: 5243 RVA: 0x000C7EAE File Offset: 0x000C60AE
+	// Token: 0x0600147F RID: 5247 RVA: 0x000C8376 File Offset: 0x000C6576
 	public DayEventTime(int week, DayOfWeek weekday)
 	{
 		this.week = week;
@@ -13,7 +13,7 @@ public class DayEventTime : IScheduledEventTime
 	}
 
 	// Token: 0x1700036D RID: 877
-	// (get) Token: 0x0600147C RID: 5244 RVA: 0x000C7EC4 File Offset: 0x000C60C4
+	// (get) Token: 0x06001480 RID: 5248 RVA: 0x000C838C File Offset: 0x000C658C
 	public ScheduledEventTimeType ScheduleType
 	{
 		get
@@ -22,13 +22,13 @@ public class DayEventTime : IScheduledEventTime
 		}
 	}
 
-	// Token: 0x0600147D RID: 5245 RVA: 0x000C7EC7 File Offset: 0x000C60C7
+	// Token: 0x06001481 RID: 5249 RVA: 0x000C838F File Offset: 0x000C658F
 	public bool OccurringNow(DateAndTime currentTime)
 	{
 		return currentTime.Week == this.week && currentTime.Weekday == this.weekday;
 	}
 
-	// Token: 0x0600147E RID: 5246 RVA: 0x000C7EE7 File Offset: 0x000C60E7
+	// Token: 0x06001482 RID: 5250 RVA: 0x000C83AF File Offset: 0x000C65AF
 	public bool OccursInTheFuture(DateAndTime currentTime)
 	{
 		if (currentTime.Week == this.week)
@@ -38,7 +38,7 @@ public class DayEventTime : IScheduledEventTime
 		return currentTime.Week < this.week;
 	}
 
-	// Token: 0x0600147F RID: 5247 RVA: 0x000C7F14 File Offset: 0x000C6114
+	// Token: 0x06001483 RID: 5251 RVA: 0x000C83DC File Offset: 0x000C65DC
 	public bool OccurredInThePast(DateAndTime currentTime)
 	{
 		if (currentTime.Week == this.week)
@@ -48,11 +48,11 @@ public class DayEventTime : IScheduledEventTime
 		return currentTime.Week > this.week;
 	}
 
-	// Token: 0x04001F95 RID: 8085
+	// Token: 0x04001F9E RID: 8094
 	[SerializeField]
 	private int week;
 
-	// Token: 0x04001F96 RID: 8086
+	// Token: 0x04001F9F RID: 8095
 	[SerializeField]
 	private DayOfWeek weekday;
 }

@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020002EB RID: 747
 public static class Globals
 {
-	// Token: 0x06001535 RID: 5429 RVA: 0x000D96DA File Offset: 0x000D78DA
+	// Token: 0x06001539 RID: 5433 RVA: 0x000D9BAA File Offset: 0x000D7DAA
 	public static bool KeyExists(string key)
 	{
 		return PlayerPrefs.HasKey(key);
 	}
 
-	// Token: 0x06001536 RID: 5430 RVA: 0x000D96E4 File Offset: 0x000D78E4
+	// Token: 0x0600153A RID: 5434 RVA: 0x000D9BB4 File Offset: 0x000D7DB4
 	public static void DeleteAll()
 	{
 		int profile = GameGlobals.Profile;
@@ -41,13 +41,13 @@ public static class Globals
 		DateGlobals.Week = 1;
 	}
 
-	// Token: 0x06001537 RID: 5431 RVA: 0x000D9774 File Offset: 0x000D7974
+	// Token: 0x0600153B RID: 5435 RVA: 0x000D9C44 File Offset: 0x000D7E44
 	public static void Delete(string key)
 	{
 		PlayerPrefs.DeleteKey(key);
 	}
 
-	// Token: 0x06001538 RID: 5432 RVA: 0x000D977C File Offset: 0x000D797C
+	// Token: 0x0600153C RID: 5436 RVA: 0x000D9C4C File Offset: 0x000D7E4C
 	public static void DeleteCollection(string key, int[] usedKeys)
 	{
 		foreach (int num in usedKeys)
@@ -57,7 +57,7 @@ public static class Globals
 		KeysHelper.Delete(key);
 	}
 
-	// Token: 0x06001539 RID: 5433 RVA: 0x000D97B8 File Offset: 0x000D79B8
+	// Token: 0x0600153D RID: 5437 RVA: 0x000D9C88 File Offset: 0x000D7E88
 	public static void DeleteCollection(string key, string[] usedKeys)
 	{
 		foreach (string str in usedKeys)
@@ -67,7 +67,7 @@ public static class Globals
 		KeysHelper.Delete(key);
 	}
 
-	// Token: 0x0600153A RID: 5434 RVA: 0x000D97EB File Offset: 0x000D79EB
+	// Token: 0x0600153E RID: 5438 RVA: 0x000D9CBB File Offset: 0x000D7EBB
 	public static void Save()
 	{
 		PlayerPrefs.Save();

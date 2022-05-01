@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 namespace YandereSimulator.Yancord
 {
-	// Token: 0x0200052B RID: 1323
+	// Token: 0x0200052C RID: 1324
 	public class YancordManager : MonoBehaviour
 	{
-		// Token: 0x060021AC RID: 8620 RVA: 0x001EF41C File Offset: 0x001ED61C
+		// Token: 0x060021B5 RID: 8629 RVA: 0x001F08A8 File Offset: 0x001EEAA8
 		public void Start()
 		{
 			if (YancordGlobals.CurrentConversation > 5)
@@ -50,7 +50,7 @@ namespace YandereSimulator.Yancord
 			this.FadeIn = true;
 		}
 
-		// Token: 0x060021AD RID: 8621 RVA: 0x001EF594 File Offset: 0x001ED794
+		// Token: 0x060021B6 RID: 8630 RVA: 0x001F0A20 File Offset: 0x001EEC20
 		public void Update()
 		{
 			if (this.FadeIn)
@@ -262,7 +262,7 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x060021AE RID: 8622 RVA: 0x001EFCF4 File Offset: 0x001EDEF4
+		// Token: 0x060021B7 RID: 8631 RVA: 0x001F1180 File Offset: 0x001EF380
 		private string GetReaction(int phase)
 		{
 			switch (this.Choice[phase])
@@ -278,7 +278,7 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x060021AF RID: 8623 RVA: 0x001EFD58 File Offset: 0x001EDF58
+		// Token: 0x060021B8 RID: 8632 RVA: 0x001F11E4 File Offset: 0x001EF3E4
 		private string GetAnswer(int phase)
 		{
 			switch (this.Choice[phase])
@@ -294,7 +294,7 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x060021B0 RID: 8624 RVA: 0x001EFDBC File Offset: 0x001EDFBC
+		// Token: 0x060021B9 RID: 8633 RVA: 0x001F1248 File Offset: 0x001EF448
 		private void SpawnAll()
 		{
 			for (int i = 1; i < this.Dialogue.Count; i++)
@@ -323,7 +323,7 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x060021B1 RID: 8625 RVA: 0x001EFF48 File Offset: 0x001EE148
+		// Token: 0x060021BA RID: 8634 RVA: 0x001F13D4 File Offset: 0x001EF5D4
 		private void SpawnChatMessage()
 		{
 			if (this.Messages[this.currentPhase].transform.position.y < -400f || this.Messages[this.currentPhase].transform.localPosition.y - (float)this.Messages[this.currentPhase].MessageLabel.height < -400f)
@@ -357,7 +357,7 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x060021B2 RID: 8626 RVA: 0x001F02AC File Offset: 0x001EE4AC
+		// Token: 0x060021BB RID: 8635 RVA: 0x001F1738 File Offset: 0x001EF938
 		private void JoinServer()
 		{
 			this.NewServer.SetActive(true);
@@ -370,129 +370,129 @@ namespace YandereSimulator.Yancord
 			this.FirstTimeUI.gameObject.SetActive(false);
 		}
 
-		// Token: 0x060021B3 RID: 8627 RVA: 0x001F0385 File Offset: 0x001EE585
+		// Token: 0x060021BC RID: 8636 RVA: 0x001F1811 File Offset: 0x001EFA11
 		private void CalculateMessageDelay()
 		{
 			this.messageDelay = 3f;
 		}
 
-		// Token: 0x04004A0E RID: 18958
+		// Token: 0x04004A24 RID: 18980
 		[Header("== Conversation related ==")]
 		[Range(1f, 50f)]
 		public int ConversationID = 1;
 
-		// Token: 0x04004A0F RID: 18959
+		// Token: 0x04004A25 RID: 18981
 		[Header("== Chatpartner related ==")]
 		public Profile CurrentPartner;
 
-		// Token: 0x04004A10 RID: 18960
+		// Token: 0x04004A26 RID: 18982
 		public Profile MyProfile;
 
-		// Token: 0x04004A11 RID: 18961
+		// Token: 0x04004A27 RID: 18983
 		public Profile SystemProfile;
 
-		// Token: 0x04004A12 RID: 18962
+		// Token: 0x04004A28 RID: 18984
 		[Space(20f)]
 		[Header("== Chat related ==")]
 		public MessageScript MessagePrefab;
 
-		// Token: 0x04004A13 RID: 18963
+		// Token: 0x04004A29 RID: 18985
 		public List<MessageScript> Messages = new List<MessageScript>();
 
-		// Token: 0x04004A14 RID: 18964
+		// Token: 0x04004A2A RID: 18986
 		public List<NewTextMessage> Dialogue = new List<NewTextMessage>();
 
-		// Token: 0x04004A15 RID: 18965
+		// Token: 0x04004A2B RID: 18987
 		public Transform ConversationParent;
 
-		// Token: 0x04004A16 RID: 18966
+		// Token: 0x04004A2C RID: 18988
 		private int[] Choice;
 
-		// Token: 0x04004A17 RID: 18967
+		// Token: 0x04004A2D RID: 18989
 		public int currentPhase = 1;
 
-		// Token: 0x04004A18 RID: 18968
+		// Token: 0x04004A2E RID: 18990
 		public float Distance;
 
-		// Token: 0x04004A19 RID: 18969
+		// Token: 0x04004A2F RID: 18991
 		[Space(20f)]
 		public UILabel ChatLabel;
 
-		// Token: 0x04004A1A RID: 18970
+		// Token: 0x04004A30 RID: 18992
 		[Header("== Dialogue Menu related ==")]
 		public UILabel[] DialogueChooseLabel;
 
-		// Token: 0x04004A1B RID: 18971
+		// Token: 0x04004A31 RID: 18993
 		public GameObject DialogueChooseMenu;
 
-		// Token: 0x04004A1C RID: 18972
+		// Token: 0x04004A32 RID: 18994
 		public MessageScript DialogueQuestion;
 
-		// Token: 0x04004A1D RID: 18973
+		// Token: 0x04004A33 RID: 18995
 		[Header("== Server related ==")]
 		public GameObject NewServer;
 
-		// Token: 0x04004A1E RID: 18974
+		// Token: 0x04004A34 RID: 18996
 		public Transform SelectedServer;
 
-		// Token: 0x04004A1F RID: 18975
+		// Token: 0x04004A35 RID: 18997
 		public Transform CreateNewServer;
 
-		// Token: 0x04004A20 RID: 18976
+		// Token: 0x04004A36 RID: 18998
 		public GameObject ServerRelated;
 
-		// Token: 0x04004A21 RID: 18977
+		// Token: 0x04004A37 RID: 18999
 		public GameObject PartnerOffline;
 
-		// Token: 0x04004A22 RID: 18978
+		// Token: 0x04004A38 RID: 19000
 		public GameObject PartnerOnline;
 
-		// Token: 0x04004A23 RID: 18979
+		// Token: 0x04004A39 RID: 19001
 		[Space(20f)]
 		public UITexture BlueDiscordIcon;
 
-		// Token: 0x04004A24 RID: 18980
+		// Token: 0x04004A3A RID: 19002
 		public GameObject DirectMessages;
 
-		// Token: 0x04004A25 RID: 18981
+		// Token: 0x04004A3B RID: 19003
 		public GameObject FindLabel;
 
-		// Token: 0x04004A26 RID: 18982
+		// Token: 0x04004A3C RID: 19004
 		public Transform FirstTimeUI;
 
-		// Token: 0x04004A27 RID: 18983
+		// Token: 0x04004A3D RID: 19005
 		[SerializeField]
 		private bool IsDebug;
 
-		// Token: 0x04004A28 RID: 18984
+		// Token: 0x04004A3E RID: 19006
 		[Header("== Delay related ==")]
 		public float SystemMessageDelay = 3f;
 
-		// Token: 0x04004A29 RID: 18985
+		// Token: 0x04004A3F RID: 19007
 		public float LetterPerSecond = 0.05f;
 
-		// Token: 0x04004A2A RID: 18986
+		// Token: 0x04004A40 RID: 19008
 		public float messageDelay;
 
-		// Token: 0x04004A2B RID: 18987
+		// Token: 0x04004A41 RID: 19009
 		private bool Chatting;
 
-		// Token: 0x04004A2C RID: 18988
+		// Token: 0x04004A42 RID: 19010
 		private bool ShowingDialogueOption;
 
-		// Token: 0x04004A2D RID: 18989
+		// Token: 0x04004A43 RID: 19011
 		private bool FadeOut;
 
-		// Token: 0x04004A2E RID: 18990
+		// Token: 0x04004A44 RID: 19012
 		private bool FadeIn;
 
-		// Token: 0x04004A2F RID: 18991
+		// Token: 0x04004A45 RID: 19013
 		public UITexture Darkness;
 
-		// Token: 0x04004A30 RID: 18992
+		// Token: 0x04004A46 RID: 19014
 		public float timer;
 
-		// Token: 0x04004A31 RID: 18993
+		// Token: 0x04004A47 RID: 19015
 		private bool shouldScroll;
 	}
 }

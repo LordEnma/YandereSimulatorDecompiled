@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000422 RID: 1058
+// Token: 0x02000423 RID: 1059
 public class SenpaiShrineCollectibleScript : MonoBehaviour
 {
-	// Token: 0x06001C99 RID: 7321 RVA: 0x0014E9ED File Offset: 0x0014CBED
+	// Token: 0x06001CA0 RID: 7328 RVA: 0x0014F229 File Offset: 0x0014D429
 	private void Start()
 	{
 		if (PlayerGlobals.GetShrineCollectible(this.ID))
@@ -13,7 +13,7 @@ public class SenpaiShrineCollectibleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C9A RID: 7322 RVA: 0x0014EA08 File Offset: 0x0014CC08
+	// Token: 0x06001CA1 RID: 7329 RVA: 0x0014F244 File Offset: 0x0014D444
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -26,9 +26,9 @@ public class SenpaiShrineCollectibleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040032E9 RID: 13033
+	// Token: 0x040032F8 RID: 13048
 	public PromptScript Prompt;
 
-	// Token: 0x040032EA RID: 13034
+	// Token: 0x040032F9 RID: 13049
 	public int ID;
 }

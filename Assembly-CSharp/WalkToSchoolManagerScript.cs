@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020004BE RID: 1214
+// Token: 0x020004BF RID: 1215
 public class WalkToSchoolManagerScript : MonoBehaviour
 {
-	// Token: 0x06001FC9 RID: 8137 RVA: 0x001BFFA8 File Offset: 0x001BE1A8
+	// Token: 0x06001FD2 RID: 8146 RVA: 0x001C1364 File Offset: 0x001BF564
 	private void Start()
 	{
 		Application.targetFrameRate = 60;
@@ -28,7 +28,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FCA RID: 8138 RVA: 0x001C00C0 File Offset: 0x001BE2C0
+	// Token: 0x06001FD3 RID: 8147 RVA: 0x001C147C File Offset: 0x001BF67C
 	private void Update()
 	{
 		for (int i = 1; i < 3; i++)
@@ -175,7 +175,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FCB RID: 8139 RVA: 0x001C076C File Offset: 0x001BE96C
+	// Token: 0x06001FD4 RID: 8148 RVA: 0x001C1B28 File Offset: 0x001BFD28
 	private void LateUpdate()
 	{
 		if (this.Talk)
@@ -238,7 +238,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FCC RID: 8140 RVA: 0x001C0EEC File Offset: 0x001BF0EC
+	// Token: 0x06001FD5 RID: 8149 RVA: 0x001C22A8 File Offset: 0x001C04A8
 	public void UpdateNameLabel()
 	{
 		if (this.Speakers[this.ID])
@@ -249,7 +249,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		this.NameLabel.text = "Senpai-kun";
 	}
 
-	// Token: 0x06001FCD RID: 8141 RVA: 0x001C0F1E File Offset: 0x001BF11E
+	// Token: 0x06001FD6 RID: 8150 RVA: 0x001C22DA File Offset: 0x001C04DA
 	public void End()
 	{
 		this.PromptBar.Show = false;
@@ -258,183 +258,183 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		this.Timer = 0f;
 	}
 
-	// Token: 0x04004260 RID: 16992
+	// Token: 0x04004276 RID: 17014
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04004261 RID: 16993
+	// Token: 0x04004277 RID: 17015
 	public CosmeticScript Yandere;
 
-	// Token: 0x04004262 RID: 16994
+	// Token: 0x04004278 RID: 17016
 	public CosmeticScript Senpai;
 
-	// Token: 0x04004263 RID: 16995
+	// Token: 0x04004279 RID: 17017
 	public CosmeticScript Rival;
 
-	// Token: 0x04004264 RID: 16996
+	// Token: 0x0400427A RID: 17018
 	public UISprite Darkness;
 
-	// Token: 0x04004265 RID: 16997
+	// Token: 0x0400427B RID: 17019
 	public Transform[] Neighborhood;
 
-	// Token: 0x04004266 RID: 16998
+	// Token: 0x0400427C RID: 17020
 	public Transform Window;
 
-	// Token: 0x04004267 RID: 16999
+	// Token: 0x0400427D RID: 17021
 	public Transform RivalNeck;
 
-	// Token: 0x04004268 RID: 17000
+	// Token: 0x0400427E RID: 17022
 	public Transform RivalHead;
 
-	// Token: 0x04004269 RID: 17001
+	// Token: 0x0400427F RID: 17023
 	public Transform RivalEyeR;
 
-	// Token: 0x0400426A RID: 17002
+	// Token: 0x04004280 RID: 17024
 	public Transform RivalEyeL;
 
-	// Token: 0x0400426B RID: 17003
+	// Token: 0x04004281 RID: 17025
 	public Transform RivalJaw;
 
-	// Token: 0x0400426C RID: 17004
+	// Token: 0x04004282 RID: 17026
 	public Transform RivalLipL;
 
-	// Token: 0x0400426D RID: 17005
+	// Token: 0x04004283 RID: 17027
 	public Transform RivalLipR;
 
-	// Token: 0x0400426E RID: 17006
+	// Token: 0x04004284 RID: 17028
 	public Transform SenpaiNeck;
 
-	// Token: 0x0400426F RID: 17007
+	// Token: 0x04004285 RID: 17029
 	public Transform SenpaiHead;
 
-	// Token: 0x04004270 RID: 17008
+	// Token: 0x04004286 RID: 17030
 	public Transform SenpaiEyeR;
 
-	// Token: 0x04004271 RID: 17009
+	// Token: 0x04004287 RID: 17031
 	public Transform SenpaiEyeL;
 
-	// Token: 0x04004272 RID: 17010
+	// Token: 0x04004288 RID: 17032
 	public Transform SenpaiJaw;
 
-	// Token: 0x04004273 RID: 17011
+	// Token: 0x04004289 RID: 17033
 	public Transform SenpaiLipL;
 
-	// Token: 0x04004274 RID: 17012
+	// Token: 0x0400428A RID: 17034
 	public Transform SenpaiLipR;
 
-	// Token: 0x04004275 RID: 17013
+	// Token: 0x0400428B RID: 17035
 	public Transform YandereNeck;
 
-	// Token: 0x04004276 RID: 17014
+	// Token: 0x0400428C RID: 17036
 	public Transform YandereHead;
 
-	// Token: 0x04004277 RID: 17015
+	// Token: 0x0400428D RID: 17037
 	public Transform YandereEyeR;
 
-	// Token: 0x04004278 RID: 17016
+	// Token: 0x0400428E RID: 17038
 	public Transform YandereEyeL;
 
-	// Token: 0x04004279 RID: 17017
+	// Token: 0x0400428F RID: 17039
 	public AudioSource MyAudio;
 
-	// Token: 0x0400427A RID: 17018
+	// Token: 0x04004290 RID: 17040
 	public float ScrollSpeed = 1f;
 
-	// Token: 0x0400427B RID: 17019
+	// Token: 0x04004291 RID: 17041
 	public float LipStrength = 0.0001f;
 
-	// Token: 0x0400427C RID: 17020
+	// Token: 0x04004292 RID: 17042
 	public float TimerLimit = 0.1f;
 
-	// Token: 0x0400427D RID: 17021
+	// Token: 0x04004293 RID: 17043
 	public float TalkSpeed = 10f;
 
-	// Token: 0x0400427E RID: 17022
+	// Token: 0x04004294 RID: 17044
 	public float AutoTimer;
 
-	// Token: 0x0400427F RID: 17023
+	// Token: 0x04004295 RID: 17045
 	public float Timer;
 
-	// Token: 0x04004280 RID: 17024
+	// Token: 0x04004296 RID: 17046
 	public float MouthExtent = 5f;
 
-	// Token: 0x04004281 RID: 17025
+	// Token: 0x04004297 RID: 17047
 	public float MouthTarget;
 
-	// Token: 0x04004282 RID: 17026
+	// Token: 0x04004298 RID: 17048
 	public float MouthTimer;
 
-	// Token: 0x04004283 RID: 17027
+	// Token: 0x04004299 RID: 17049
 	public float RivalNeckTarget;
 
-	// Token: 0x04004284 RID: 17028
+	// Token: 0x0400429A RID: 17050
 	public float RivalHeadTarget;
 
-	// Token: 0x04004285 RID: 17029
+	// Token: 0x0400429B RID: 17051
 	public float RivalEyeRTarget;
 
-	// Token: 0x04004286 RID: 17030
+	// Token: 0x0400429C RID: 17052
 	public float RivalEyeLTarget;
 
-	// Token: 0x04004287 RID: 17031
+	// Token: 0x0400429D RID: 17053
 	public float SenpaiNeckTarget;
 
-	// Token: 0x04004288 RID: 17032
+	// Token: 0x0400429E RID: 17054
 	public float SenpaiHeadTarget;
 
-	// Token: 0x04004289 RID: 17033
+	// Token: 0x0400429F RID: 17055
 	public float SenpaiEyeRTarget;
 
-	// Token: 0x0400428A RID: 17034
+	// Token: 0x040042A0 RID: 17056
 	public float SenpaiEyeLTarget;
 
-	// Token: 0x0400428B RID: 17035
+	// Token: 0x040042A1 RID: 17057
 	public float YandereNeckTarget;
 
-	// Token: 0x0400428C RID: 17036
+	// Token: 0x040042A2 RID: 17058
 	public float YandereHeadTarget;
 
-	// Token: 0x0400428D RID: 17037
+	// Token: 0x040042A3 RID: 17059
 	public bool ShowWindow;
 
-	// Token: 0x0400428E RID: 17038
+	// Token: 0x040042A4 RID: 17060
 	public bool Debugging;
 
-	// Token: 0x0400428F RID: 17039
+	// Token: 0x040042A5 RID: 17061
 	public bool FadeOut;
 
-	// Token: 0x04004290 RID: 17040
+	// Token: 0x040042A6 RID: 17062
 	public bool Ending;
 
-	// Token: 0x04004291 RID: 17041
+	// Token: 0x040042A7 RID: 17063
 	public bool Auto;
 
-	// Token: 0x04004292 RID: 17042
+	// Token: 0x040042A8 RID: 17064
 	public bool Talk;
 
-	// Token: 0x04004293 RID: 17043
+	// Token: 0x040042A9 RID: 17065
 	public TypewriterEffect Typewriter;
 
-	// Token: 0x04004294 RID: 17044
+	// Token: 0x040042AA RID: 17066
 	public UILabel NameLabel;
 
-	// Token: 0x04004295 RID: 17045
+	// Token: 0x040042AB RID: 17067
 	public AudioClip[] Speech;
 
-	// Token: 0x04004296 RID: 17046
+	// Token: 0x040042AC RID: 17068
 	public string[] Lines;
 
-	// Token: 0x04004297 RID: 17047
+	// Token: 0x040042AD RID: 17069
 	public bool[] Speakers;
 
-	// Token: 0x04004298 RID: 17048
+	// Token: 0x040042AE RID: 17070
 	public int Frame;
 
-	// Token: 0x04004299 RID: 17049
+	// Token: 0x040042AF RID: 17071
 	public int ID;
 
-	// Token: 0x0400429A RID: 17050
+	// Token: 0x040042B0 RID: 17072
 	public Renderer PonytailRenderer;
 
-	// Token: 0x0400429B RID: 17051
+	// Token: 0x040042B1 RID: 17073
 	public Texture BlondePony;
 }

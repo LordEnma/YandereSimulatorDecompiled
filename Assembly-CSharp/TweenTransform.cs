@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Tween/Tween Transform")]
 public class TweenTransform : UITweener
 {
-	// Token: 0x060005CC RID: 1484 RVA: 0x000354EC File Offset: 0x000336EC
+	// Token: 0x060005CC RID: 1484 RVA: 0x0003562C File Offset: 0x0003382C
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		if (this.to != null)
@@ -36,13 +36,13 @@ public class TweenTransform : UITweener
 		}
 	}
 
-	// Token: 0x060005CD RID: 1485 RVA: 0x000356A7 File Offset: 0x000338A7
+	// Token: 0x060005CD RID: 1485 RVA: 0x000357E7 File Offset: 0x000339E7
 	public static TweenTransform Begin(GameObject go, float duration, Transform to)
 	{
 		return TweenTransform.Begin(go, duration, null, to);
 	}
 
-	// Token: 0x060005CE RID: 1486 RVA: 0x000356B4 File Offset: 0x000338B4
+	// Token: 0x060005CE RID: 1486 RVA: 0x000357F4 File Offset: 0x000339F4
 	public static TweenTransform Begin(GameObject go, float duration, Transform from, Transform to)
 	{
 		TweenTransform tweenTransform = UITweener.Begin<TweenTransform>(go, duration, 0f);
@@ -56,24 +56,24 @@ public class TweenTransform : UITweener
 		return tweenTransform;
 	}
 
-	// Token: 0x040005E2 RID: 1506
+	// Token: 0x040005E4 RID: 1508
 	public Transform from;
 
-	// Token: 0x040005E3 RID: 1507
+	// Token: 0x040005E5 RID: 1509
 	public Transform to;
 
-	// Token: 0x040005E4 RID: 1508
+	// Token: 0x040005E6 RID: 1510
 	public bool parentWhenFinished;
 
-	// Token: 0x040005E5 RID: 1509
+	// Token: 0x040005E7 RID: 1511
 	private Transform mTrans;
 
-	// Token: 0x040005E6 RID: 1510
+	// Token: 0x040005E8 RID: 1512
 	private Vector3 mPos;
 
-	// Token: 0x040005E7 RID: 1511
+	// Token: 0x040005E9 RID: 1513
 	private Quaternion mRot;
 
-	// Token: 0x040005E8 RID: 1512
+	// Token: 0x040005EA RID: 1514
 	private Vector3 mScale;
 }

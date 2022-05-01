@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000E8 RID: 232
 public class BloodParentScript : MonoBehaviour
 {
-	// Token: 0x06000A35 RID: 2613 RVA: 0x0005A950 File Offset: 0x00058B50
+	// Token: 0x06000A35 RID: 2613 RVA: 0x0005AAA4 File Offset: 0x00058CA4
 	public void RecordAllBlood()
 	{
 		this.PoolID = 0;
@@ -35,7 +35,7 @@ public class BloodParentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A36 RID: 2614 RVA: 0x0005AA6C File Offset: 0x00058C6C
+	// Token: 0x06000A36 RID: 2614 RVA: 0x0005ABC0 File Offset: 0x00058DC0
 	public void RestoreAllBlood()
 	{
 		while (this.PoolID > 0)
@@ -56,33 +56,33 @@ public class BloodParentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000B99 RID: 2969
+	// Token: 0x04000B9B RID: 2971
 	public YandereScript Yandere;
 
-	// Token: 0x04000B9A RID: 2970
+	// Token: 0x04000B9C RID: 2972
 	public GameObject Bloodpool;
 
-	// Token: 0x04000B9B RID: 2971
+	// Token: 0x04000B9D RID: 2973
 	public GameObject Footprint;
 
-	// Token: 0x04000B9C RID: 2972
+	// Token: 0x04000B9E RID: 2974
 	public Vector3[] FootprintPositions;
 
-	// Token: 0x04000B9D RID: 2973
+	// Token: 0x04000B9F RID: 2975
 	public Vector3[] BloodPositions;
 
-	// Token: 0x04000B9E RID: 2974
+	// Token: 0x04000BA0 RID: 2976
 	public Vector3[] FootprintRotations;
 
-	// Token: 0x04000B9F RID: 2975
+	// Token: 0x04000BA1 RID: 2977
 	public Vector3[] BloodRotations;
 
-	// Token: 0x04000BA0 RID: 2976
+	// Token: 0x04000BA2 RID: 2978
 	public float[] BloodSizes;
 
-	// Token: 0x04000BA1 RID: 2977
+	// Token: 0x04000BA3 RID: 2979
 	public int FootprintID;
 
-	// Token: 0x04000BA2 RID: 2978
+	// Token: 0x04000BA4 RID: 2980
 	public int PoolID;
 }

@@ -12,8 +12,8 @@ using UnityEngine.Serialization;
 public class AmplifyMotionEffectBase : MonoBehaviour
 {
 	// Token: 0x170001D9 RID: 473
-	// (get) Token: 0x060008E5 RID: 2277 RVA: 0x00048DCF File Offset: 0x00046FCF
-	// (set) Token: 0x060008E6 RID: 2278 RVA: 0x00048DD7 File Offset: 0x00046FD7
+	// (get) Token: 0x060008E5 RID: 2277 RVA: 0x00048F0F File Offset: 0x0004710F
+	// (set) Token: 0x060008E6 RID: 2278 RVA: 0x00048F17 File Offset: 0x00047117
 	[Obsolete("workerThreads is deprecated, please use WorkerThreads instead.")]
 	public int workerThreads
 	{
@@ -28,7 +28,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001DA RID: 474
-	// (get) Token: 0x060008E7 RID: 2279 RVA: 0x00048DE0 File Offset: 0x00046FE0
+	// (get) Token: 0x060008E7 RID: 2279 RVA: 0x00048F20 File Offset: 0x00047120
 	internal Material ReprojectionMaterial
 	{
 		get
@@ -38,7 +38,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001DB RID: 475
-	// (get) Token: 0x060008E8 RID: 2280 RVA: 0x00048DE8 File Offset: 0x00046FE8
+	// (get) Token: 0x060008E8 RID: 2280 RVA: 0x00048F28 File Offset: 0x00047128
 	internal Material SolidVectorsMaterial
 	{
 		get
@@ -48,7 +48,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001DC RID: 476
-	// (get) Token: 0x060008E9 RID: 2281 RVA: 0x00048DF0 File Offset: 0x00046FF0
+	// (get) Token: 0x060008E9 RID: 2281 RVA: 0x00048F30 File Offset: 0x00047130
 	internal Material SkinnedVectorsMaterial
 	{
 		get
@@ -58,7 +58,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001DD RID: 477
-	// (get) Token: 0x060008EA RID: 2282 RVA: 0x00048DF8 File Offset: 0x00046FF8
+	// (get) Token: 0x060008EA RID: 2282 RVA: 0x00048F38 File Offset: 0x00047138
 	internal Material ClothVectorsMaterial
 	{
 		get
@@ -68,7 +68,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001DE RID: 478
-	// (get) Token: 0x060008EB RID: 2283 RVA: 0x00048E00 File Offset: 0x00047000
+	// (get) Token: 0x060008EB RID: 2283 RVA: 0x00048F40 File Offset: 0x00047140
 	internal RenderTexture MotionRenderTexture
 	{
 		get
@@ -78,7 +78,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001DF RID: 479
-	// (get) Token: 0x060008EC RID: 2284 RVA: 0x00048E08 File Offset: 0x00047008
+	// (get) Token: 0x060008EC RID: 2284 RVA: 0x00048F48 File Offset: 0x00047148
 	public Dictionary<Camera, AmplifyMotionCamera> LinkedCameras
 	{
 		get
@@ -88,7 +88,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001E0 RID: 480
-	// (get) Token: 0x060008ED RID: 2285 RVA: 0x00048E10 File Offset: 0x00047010
+	// (get) Token: 0x060008ED RID: 2285 RVA: 0x00048F50 File Offset: 0x00047150
 	internal float MotionScaleNorm
 	{
 		get
@@ -98,7 +98,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001E1 RID: 481
-	// (get) Token: 0x060008EE RID: 2286 RVA: 0x00048E18 File Offset: 0x00047018
+	// (get) Token: 0x060008EE RID: 2286 RVA: 0x00048F58 File Offset: 0x00047158
 	internal float FixedMotionScaleNorm
 	{
 		get
@@ -108,7 +108,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001E2 RID: 482
-	// (get) Token: 0x060008EF RID: 2287 RVA: 0x00048E20 File Offset: 0x00047020
+	// (get) Token: 0x060008EF RID: 2287 RVA: 0x00048F60 File Offset: 0x00047160
 	public AmplifyMotionCamera BaseCamera
 	{
 		get
@@ -118,7 +118,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001E3 RID: 483
-	// (get) Token: 0x060008F0 RID: 2288 RVA: 0x00048E28 File Offset: 0x00047028
+	// (get) Token: 0x060008F0 RID: 2288 RVA: 0x00048F68 File Offset: 0x00047168
 	internal WorkerThreadPool WorkerPool
 	{
 		get
@@ -128,7 +128,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001E4 RID: 484
-	// (get) Token: 0x060008F1 RID: 2289 RVA: 0x00048E30 File Offset: 0x00047030
+	// (get) Token: 0x060008F1 RID: 2289 RVA: 0x00048F70 File Offset: 0x00047170
 	public static bool IsD3D
 	{
 		get
@@ -138,7 +138,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001E5 RID: 485
-	// (get) Token: 0x060008F2 RID: 2290 RVA: 0x00048E37 File Offset: 0x00047037
+	// (get) Token: 0x060008F2 RID: 2290 RVA: 0x00048F77 File Offset: 0x00047177
 	public bool CanUseGPU
 	{
 		get
@@ -148,7 +148,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001E6 RID: 486
-	// (get) Token: 0x060008F3 RID: 2291 RVA: 0x00048E3F File Offset: 0x0004703F
+	// (get) Token: 0x060008F3 RID: 2291 RVA: 0x00048F7F File Offset: 0x0004717F
 	public static bool IgnoreMotionScaleWarning
 	{
 		get
@@ -158,7 +158,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001E7 RID: 487
-	// (get) Token: 0x060008F4 RID: 2292 RVA: 0x00048E46 File Offset: 0x00047046
+	// (get) Token: 0x060008F4 RID: 2292 RVA: 0x00048F86 File Offset: 0x00047186
 	public static AmplifyMotionEffectBase FirstInstance
 	{
 		get
@@ -168,7 +168,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 	}
 
 	// Token: 0x170001E8 RID: 488
-	// (get) Token: 0x060008F5 RID: 2293 RVA: 0x00048E4D File Offset: 0x0004704D
+	// (get) Token: 0x060008F5 RID: 2293 RVA: 0x00048F8D File Offset: 0x0004718D
 	public static AmplifyMotionEffectBase Instance
 	{
 		get
@@ -177,7 +177,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008F6 RID: 2294 RVA: 0x00048E54 File Offset: 0x00047054
+	// Token: 0x060008F6 RID: 2294 RVA: 0x00048F94 File Offset: 0x00047194
 	private void Awake()
 	{
 		if (AmplifyMotionEffectBase.m_firstInstance == null)
@@ -200,13 +200,13 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		this.m_canUseGPU = (flag && flag2 && flag3 && flag4 && flag5);
 	}
 
-	// Token: 0x060008F7 RID: 2295 RVA: 0x00048EEF File Offset: 0x000470EF
+	// Token: 0x060008F7 RID: 2295 RVA: 0x0004902F File Offset: 0x0004722F
 	internal void ResetObjectId()
 	{
 		this.m_globalObjectId = 1;
 	}
 
-	// Token: 0x060008F8 RID: 2296 RVA: 0x00048EF8 File Offset: 0x000470F8
+	// Token: 0x060008F8 RID: 2296 RVA: 0x00049038 File Offset: 0x00047238
 	internal int GenerateObjectId(GameObject obj)
 	{
 		if (obj.isStatic)
@@ -221,7 +221,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		return this.m_globalObjectId;
 	}
 
-	// Token: 0x060008F9 RID: 2297 RVA: 0x00048F2C File Offset: 0x0004712C
+	// Token: 0x060008F9 RID: 2297 RVA: 0x0004906C File Offset: 0x0004726C
 	private void SafeDestroyMaterial(ref Material mat)
 	{
 		if (mat != null)
@@ -231,7 +231,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008FA RID: 2298 RVA: 0x00048F44 File Offset: 0x00047144
+	// Token: 0x060008FA RID: 2298 RVA: 0x00049084 File Offset: 0x00047284
 	private bool CheckMaterialAndShader(Material material, string name)
 	{
 		bool result = true;
@@ -248,7 +248,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		return result;
 	}
 
-	// Token: 0x060008FB RID: 2299 RVA: 0x00048FA8 File Offset: 0x000471A8
+	// Token: 0x060008FB RID: 2299 RVA: 0x000490E8 File Offset: 0x000472E8
 	private void DestroyMaterials()
 	{
 		this.SafeDestroyMaterial(ref this.m_blurMaterial);
@@ -262,7 +262,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		this.SafeDestroyMaterial(ref this.m_debugMaterial);
 	}
 
-	// Token: 0x060008FC RID: 2300 RVA: 0x00049024 File Offset: 0x00047224
+	// Token: 0x060008FC RID: 2300 RVA: 0x00049164 File Offset: 0x00047364
 	private bool CreateMaterials()
 	{
 		this.DestroyMaterials();
@@ -320,7 +320,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		return this.CheckMaterialAndShader(this.m_blurMaterial, name) && this.CheckMaterialAndShader(this.m_solidVectorsMaterial, name2) && this.CheckMaterialAndShader(this.m_skinnedVectorsMaterial, name3) && this.CheckMaterialAndShader(this.m_clothVectorsMaterial, name4) && this.CheckMaterialAndShader(this.m_reprojectionMaterial, name5) && this.CheckMaterialAndShader(this.m_combineMaterial, name6) && this.CheckMaterialAndShader(this.m_dilationMaterial, name7) && this.CheckMaterialAndShader(this.m_depthMaterial, name8) && this.CheckMaterialAndShader(this.m_debugMaterial, name9);
 	}
 
-	// Token: 0x060008FD RID: 2301 RVA: 0x0004922C File Offset: 0x0004742C
+	// Token: 0x060008FD RID: 2301 RVA: 0x0004936C File Offset: 0x0004756C
 	private RenderTexture CreateRenderTexture(string name, int depth, RenderTextureFormat fmt, RenderTextureReadWrite rw, FilterMode fm)
 	{
 		RenderTexture renderTexture = new RenderTexture(this.m_width, this.m_height, depth, fmt, rw);
@@ -332,7 +332,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		return renderTexture;
 	}
 
-	// Token: 0x060008FE RID: 2302 RVA: 0x00049268 File Offset: 0x00047468
+	// Token: 0x060008FE RID: 2302 RVA: 0x000493A8 File Offset: 0x000475A8
 	private void SafeDestroyRenderTexture(ref RenderTexture rt)
 	{
 		if (rt != null)
@@ -344,7 +344,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060008FF RID: 2303 RVA: 0x0004928B File Offset: 0x0004748B
+	// Token: 0x060008FF RID: 2303 RVA: 0x000493CB File Offset: 0x000475CB
 	private void SafeDestroyTexture(ref Texture tex)
 	{
 		if (tex != null)
@@ -354,14 +354,14 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000900 RID: 2304 RVA: 0x000492A1 File Offset: 0x000474A1
+	// Token: 0x06000900 RID: 2304 RVA: 0x000493E1 File Offset: 0x000475E1
 	private void DestroyRenderTextures()
 	{
 		RenderTexture.active = null;
 		this.SafeDestroyRenderTexture(ref this.m_motionRT);
 	}
 
-	// Token: 0x06000901 RID: 2305 RVA: 0x000492B8 File Offset: 0x000474B8
+	// Token: 0x06000901 RID: 2305 RVA: 0x000493F8 File Offset: 0x000475F8
 	private void UpdateRenderTextures(bool qualityChanged)
 	{
 		int num = Mathf.Max(Mathf.FloorToInt((float)this.m_camera.pixelWidth + 0.5f), 1);
@@ -383,7 +383,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000902 RID: 2306 RVA: 0x0004935B File Offset: 0x0004755B
+	// Token: 0x06000902 RID: 2306 RVA: 0x0004949B File Offset: 0x0004769B
 	public bool CheckSupport()
 	{
 		if (!SystemInfo.supportsImageEffects)
@@ -394,7 +394,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x06000903 RID: 2307 RVA: 0x00049371 File Offset: 0x00047571
+	// Token: 0x06000903 RID: 2307 RVA: 0x000494B1 File Offset: 0x000476B1
 	private void InitializeThreadPool()
 	{
 		if (this.WorkerThreads <= 0)
@@ -405,7 +405,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		this.m_workerThreadPool.InitializeAsyncUpdateThreads(this.WorkerThreads, this.SystemThreadPool);
 	}
 
-	// Token: 0x06000904 RID: 2308 RVA: 0x000493B1 File Offset: 0x000475B1
+	// Token: 0x06000904 RID: 2308 RVA: 0x000494F1 File Offset: 0x000476F1
 	private void ShutdownThreadPool()
 	{
 		if (this.m_workerThreadPool != null)
@@ -415,7 +415,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000905 RID: 2309 RVA: 0x000493D0 File Offset: 0x000475D0
+	// Token: 0x06000905 RID: 2309 RVA: 0x00049510 File Offset: 0x00047710
 	private void InitializeCommandBuffers()
 	{
 		this.ShutdownCommandBuffers();
@@ -427,7 +427,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		this.m_camera.AddCommandBuffer(CameraEvent.BeforeImageEffectsOpaque, this.m_fixedUpdateCB);
 	}
 
-	// Token: 0x06000906 RID: 2310 RVA: 0x00049440 File Offset: 0x00047640
+	// Token: 0x06000906 RID: 2310 RVA: 0x00049580 File Offset: 0x00047780
 	private void ShutdownCommandBuffers()
 	{
 		if (this.m_updateCB != null)
@@ -444,7 +444,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000907 RID: 2311 RVA: 0x000494A8 File Offset: 0x000476A8
+	// Token: 0x06000907 RID: 2311 RVA: 0x000495E8 File Offset: 0x000477E8
 	private void OnEnable()
 	{
 		this.m_camera = base.GetComponent<Camera>();
@@ -482,7 +482,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		this.m_qualityLevel = this.QualityLevel;
 	}
 
-	// Token: 0x06000908 RID: 2312 RVA: 0x00049577 File Offset: 0x00047777
+	// Token: 0x06000908 RID: 2312 RVA: 0x000496B7 File Offset: 0x000478B7
 	private void OnDisable()
 	{
 		if (this.m_currentPostProcess != null)
@@ -493,19 +493,19 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		this.ShutdownThreadPool();
 	}
 
-	// Token: 0x06000909 RID: 2313 RVA: 0x0004959F File Offset: 0x0004779F
+	// Token: 0x06000909 RID: 2313 RVA: 0x000496DF File Offset: 0x000478DF
 	private void Start()
 	{
 		this.UpdatePostProcess();
 	}
 
-	// Token: 0x0600090A RID: 2314 RVA: 0x000495A7 File Offset: 0x000477A7
+	// Token: 0x0600090A RID: 2314 RVA: 0x000496E7 File Offset: 0x000478E7
 	internal void RemoveCamera(Camera reference)
 	{
 		this.m_linkedCameras.Remove(reference);
 	}
 
-	// Token: 0x0600090B RID: 2315 RVA: 0x000495B8 File Offset: 0x000477B8
+	// Token: 0x0600090B RID: 2315 RVA: 0x000496F8 File Offset: 0x000478F8
 	private void OnDestroy()
 	{
 		foreach (AmplifyMotionCamera amplifyMotionCamera in this.m_linkedCameras.Values.ToArray<AmplifyMotionCamera>())
@@ -524,7 +524,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		this.DestroyMaterials();
 	}
 
-	// Token: 0x0600090C RID: 2316 RVA: 0x00049630 File Offset: 0x00047830
+	// Token: 0x0600090C RID: 2316 RVA: 0x00049770 File Offset: 0x00047970
 	private GameObject RecursiveFindCamera(GameObject obj, string auxCameraName)
 	{
 		GameObject gameObject = null;
@@ -547,7 +547,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		return gameObject;
 	}
 
-	// Token: 0x0600090D RID: 2317 RVA: 0x000496B0 File Offset: 0x000478B0
+	// Token: 0x0600090D RID: 2317 RVA: 0x000497F0 File Offset: 0x000479F0
 	private void InitializeCameras()
 	{
 		List<Camera> list = new List<Camera>(this.OverlayCameras.Length);
@@ -587,13 +587,13 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600090E RID: 2318 RVA: 0x000497BD File Offset: 0x000479BD
+	// Token: 0x0600090E RID: 2318 RVA: 0x000498FD File Offset: 0x00047AFD
 	public void UpdateActiveCameras()
 	{
 		this.InitializeCameras();
 	}
 
-	// Token: 0x0600090F RID: 2319 RVA: 0x000497C8 File Offset: 0x000479C8
+	// Token: 0x0600090F RID: 2319 RVA: 0x00049908 File Offset: 0x00047B08
 	internal static void RegisterCamera(AmplifyMotionCamera cam)
 	{
 		if (!AmplifyMotionEffectBase.m_activeCameras.ContainsValue(cam))
@@ -606,7 +606,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000910 RID: 2320 RVA: 0x0004983C File Offset: 0x00047A3C
+	// Token: 0x06000910 RID: 2320 RVA: 0x0004997C File Offset: 0x00047B7C
 	internal static void UnregisterCamera(AmplifyMotionCamera cam)
 	{
 		foreach (AmplifyMotionObjectBase amplifyMotionObjectBase in AmplifyMotionEffectBase.m_activeObjects.Values)
@@ -616,7 +616,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		AmplifyMotionEffectBase.m_activeCameras.Remove(cam.GetComponent<Camera>());
 	}
 
-	// Token: 0x06000911 RID: 2321 RVA: 0x000498A4 File Offset: 0x00047AA4
+	// Token: 0x06000911 RID: 2321 RVA: 0x000499E4 File Offset: 0x00047BE4
 	public void UpdateActiveObjects()
 	{
 		GameObject[] array = UnityEngine.Object.FindObjectsOfType(typeof(GameObject)) as GameObject[];
@@ -629,7 +629,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000912 RID: 2322 RVA: 0x000498EC File Offset: 0x00047AEC
+	// Token: 0x06000912 RID: 2322 RVA: 0x00049A2C File Offset: 0x00047C2C
 	internal static void RegisterObject(AmplifyMotionObjectBase obj)
 	{
 		AmplifyMotionEffectBase.m_activeObjects.Add(obj.gameObject, obj);
@@ -639,7 +639,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000913 RID: 2323 RVA: 0x00049954 File Offset: 0x00047B54
+	// Token: 0x06000913 RID: 2323 RVA: 0x00049A94 File Offset: 0x00047C94
 	internal static void UnregisterObject(AmplifyMotionObjectBase obj)
 	{
 		foreach (AmplifyMotionCamera camera in AmplifyMotionEffectBase.m_activeCameras.Values)
@@ -649,7 +649,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		AmplifyMotionEffectBase.m_activeObjects.Remove(obj.gameObject);
 	}
 
-	// Token: 0x06000914 RID: 2324 RVA: 0x000499BC File Offset: 0x00047BBC
+	// Token: 0x06000914 RID: 2324 RVA: 0x00049AFC File Offset: 0x00047CFC
 	internal static bool FindValidTag(Material[] materials)
 	{
 		foreach (Material material in materials)
@@ -666,7 +666,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06000915 RID: 2325 RVA: 0x00049A2C File Offset: 0x00047C2C
+	// Token: 0x06000915 RID: 2325 RVA: 0x00049B6C File Offset: 0x00047D6C
 	internal static bool CanRegister(GameObject gameObj, bool autoReg)
 	{
 		if (gameObj.isStatic)
@@ -707,7 +707,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06000916 RID: 2326 RVA: 0x00049AFC File Offset: 0x00047CFC
+	// Token: 0x06000916 RID: 2326 RVA: 0x00049C3C File Offset: 0x00047E3C
 	internal static void TryRegister(GameObject gameObj, bool autoReg)
 	{
 		if (AmplifyMotionEffectBase.CanRegister(gameObj, autoReg) && gameObj.GetComponent<AmplifyMotionObjectBase>() == null)
@@ -718,7 +718,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000917 RID: 2327 RVA: 0x00049B28 File Offset: 0x00047D28
+	// Token: 0x06000917 RID: 2327 RVA: 0x00049C68 File Offset: 0x00047E68
 	internal static void TryUnregister(GameObject gameObj)
 	{
 		AmplifyMotionObjectBase component = gameObj.GetComponent<AmplifyMotionObjectBase>();
@@ -728,7 +728,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000918 RID: 2328 RVA: 0x00049B4B File Offset: 0x00047D4B
+	// Token: 0x06000918 RID: 2328 RVA: 0x00049C8B File Offset: 0x00047E8B
 	public void Register(GameObject gameObj)
 	{
 		if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
@@ -737,7 +737,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000919 RID: 2329 RVA: 0x00049B61 File Offset: 0x00047D61
+	// Token: 0x06000919 RID: 2329 RVA: 0x00049CA1 File Offset: 0x00047EA1
 	public static void RegisterS(GameObject gameObj)
 	{
 		if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
@@ -746,7 +746,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600091A RID: 2330 RVA: 0x00049B78 File Offset: 0x00047D78
+	// Token: 0x0600091A RID: 2330 RVA: 0x00049CB8 File Offset: 0x00047EB8
 	public void RegisterRecursively(GameObject gameObj)
 	{
 		if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
@@ -760,7 +760,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600091B RID: 2331 RVA: 0x00049BEC File Offset: 0x00047DEC
+	// Token: 0x0600091B RID: 2331 RVA: 0x00049D2C File Offset: 0x00047F2C
 	public static void RegisterRecursivelyS(GameObject gameObj)
 	{
 		if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
@@ -773,7 +773,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600091C RID: 2332 RVA: 0x00049C5C File Offset: 0x00047E5C
+	// Token: 0x0600091C RID: 2332 RVA: 0x00049D9C File Offset: 0x00047F9C
 	public void Unregister(GameObject gameObj)
 	{
 		if (AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
@@ -782,7 +782,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600091D RID: 2333 RVA: 0x00049C71 File Offset: 0x00047E71
+	// Token: 0x0600091D RID: 2333 RVA: 0x00049DB1 File Offset: 0x00047FB1
 	public static void UnregisterS(GameObject gameObj)
 	{
 		if (AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
@@ -791,7 +791,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600091E RID: 2334 RVA: 0x00049C88 File Offset: 0x00047E88
+	// Token: 0x0600091E RID: 2334 RVA: 0x00049DC8 File Offset: 0x00047FC8
 	public void UnregisterRecursively(GameObject gameObj)
 	{
 		if (AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
@@ -805,7 +805,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600091F RID: 2335 RVA: 0x00049CFC File Offset: 0x00047EFC
+	// Token: 0x0600091F RID: 2335 RVA: 0x00049E3C File Offset: 0x0004803C
 	public static void UnregisterRecursivelyS(GameObject gameObj)
 	{
 		if (AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
@@ -818,7 +818,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000920 RID: 2336 RVA: 0x00049D6C File Offset: 0x00047F6C
+	// Token: 0x06000920 RID: 2336 RVA: 0x00049EAC File Offset: 0x000480AC
 	private void UpdatePostProcess()
 	{
 		Camera camera = null;
@@ -855,7 +855,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000921 RID: 2337 RVA: 0x00049E90 File Offset: 0x00048090
+	// Token: 0x06000921 RID: 2337 RVA: 0x00049FD0 File Offset: 0x000481D0
 	private void LateUpdate()
 	{
 		if (this.m_baseCamera.AutoStep)
@@ -875,7 +875,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		this.UpdatePostProcess();
 	}
 
-	// Token: 0x06000922 RID: 2338 RVA: 0x00049F8C File Offset: 0x0004818C
+	// Token: 0x06000922 RID: 2338 RVA: 0x0004A0CC File Offset: 0x000482CC
 	public void StopAutoStep()
 	{
 		foreach (AmplifyMotionCamera amplifyMotionCamera in this.m_linkedCameras.Values)
@@ -884,7 +884,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000923 RID: 2339 RVA: 0x00049FE4 File Offset: 0x000481E4
+	// Token: 0x06000923 RID: 2339 RVA: 0x0004A124 File Offset: 0x00048324
 	public void StartAutoStep()
 	{
 		foreach (AmplifyMotionCamera amplifyMotionCamera in this.m_linkedCameras.Values)
@@ -893,7 +893,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000924 RID: 2340 RVA: 0x0004A03C File Offset: 0x0004823C
+	// Token: 0x06000924 RID: 2340 RVA: 0x0004A17C File Offset: 0x0004837C
 	public void Step(float delta)
 	{
 		this.m_deltaTime = delta;
@@ -904,7 +904,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000925 RID: 2341 RVA: 0x0004A0A0 File Offset: 0x000482A0
+	// Token: 0x06000925 RID: 2341 RVA: 0x0004A1E0 File Offset: 0x000483E0
 	private void UpdateLinkedCameras()
 	{
 		Dictionary<Camera, AmplifyMotionCamera>.KeyCollection keys = this.m_linkedCameras.Keys;
@@ -922,7 +922,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		this.m_linkedCamerasChanged = false;
 	}
 
-	// Token: 0x06000926 RID: 2342 RVA: 0x0004A138 File Offset: 0x00048338
+	// Token: 0x06000926 RID: 2342 RVA: 0x0004A278 File Offset: 0x00048478
 	private void FixedUpdate()
 	{
 		if (this.m_camera.enabled)
@@ -942,7 +942,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000927 RID: 2343 RVA: 0x0004A1B4 File Offset: 0x000483B4
+	// Token: 0x06000927 RID: 2343 RVA: 0x0004A2F4 File Offset: 0x000484F4
 	private void OnPreRender()
 	{
 		if (this.m_camera.enabled && (Time.frameCount == 1 || Mathf.Abs(Time.unscaledDeltaTime) > 1E-45f))
@@ -962,7 +962,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000928 RID: 2344 RVA: 0x0004A248 File Offset: 0x00048448
+	// Token: 0x06000928 RID: 2344 RVA: 0x0004A388 File Offset: 0x00048588
 	private void OnPostRender()
 	{
 		bool qualityChanged = this.QualityLevel != this.m_qualityLevel;
@@ -1010,7 +1010,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		this.m_starting = false;
 	}
 
-	// Token: 0x06000929 RID: 2345 RVA: 0x0004A4E8 File Offset: 0x000486E8
+	// Token: 0x06000929 RID: 2345 RVA: 0x0004A628 File Offset: 0x00048828
 	private void ApplyMotionBlur(RenderTexture source, RenderTexture destination, Vector4 blurStep)
 	{
 		bool flag = this.QualityLevel == Quality.Mobile;
@@ -1086,7 +1086,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600092A RID: 2346 RVA: 0x0004A70D File Offset: 0x0004890D
+	// Token: 0x0600092A RID: 2346 RVA: 0x0004A84D File Offset: 0x00048A4D
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		if (this.m_currentPostProcess == null)
@@ -1097,7 +1097,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		Graphics.Blit(source, destination);
 	}
 
-	// Token: 0x0600092B RID: 2347 RVA: 0x0004A730 File Offset: 0x00048930
+	// Token: 0x0600092B RID: 2347 RVA: 0x0004A870 File Offset: 0x00048A70
 	public void PostProcess(RenderTexture source, RenderTexture destination)
 	{
 		Vector4 zero = Vector4.zero;
@@ -1129,174 +1129,174 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040007B6 RID: 1974
+	// Token: 0x040007B8 RID: 1976
 	[Header("Motion Blur")]
 	public Quality QualityLevel = Quality.Standard;
 
-	// Token: 0x040007B7 RID: 1975
+	// Token: 0x040007B9 RID: 1977
 	public int QualitySteps = 1;
 
-	// Token: 0x040007B8 RID: 1976
+	// Token: 0x040007BA RID: 1978
 	public float MotionScale = 3f;
 
-	// Token: 0x040007B9 RID: 1977
+	// Token: 0x040007BB RID: 1979
 	public float CameraMotionMult = 1f;
 
-	// Token: 0x040007BA RID: 1978
+	// Token: 0x040007BC RID: 1980
 	public float MinVelocity = 1f;
 
-	// Token: 0x040007BB RID: 1979
+	// Token: 0x040007BD RID: 1981
 	public float MaxVelocity = 10f;
 
-	// Token: 0x040007BC RID: 1980
+	// Token: 0x040007BE RID: 1982
 	public float DepthThreshold = 0.01f;
 
-	// Token: 0x040007BD RID: 1981
+	// Token: 0x040007BF RID: 1983
 	public bool Noise;
 
-	// Token: 0x040007BE RID: 1982
+	// Token: 0x040007C0 RID: 1984
 	[Header("Camera")]
 	public Camera[] OverlayCameras = new Camera[0];
 
-	// Token: 0x040007BF RID: 1983
+	// Token: 0x040007C1 RID: 1985
 	public LayerMask CullingMask = -1;
 
-	// Token: 0x040007C0 RID: 1984
+	// Token: 0x040007C2 RID: 1986
 	[Header("Objects")]
 	public bool AutoRegisterObjs = true;
 
-	// Token: 0x040007C1 RID: 1985
+	// Token: 0x040007C3 RID: 1987
 	public float MinResetDeltaDist = 1000f;
 
-	// Token: 0x040007C2 RID: 1986
+	// Token: 0x040007C4 RID: 1988
 	[NonSerialized]
 	public float MinResetDeltaDistSqr;
 
-	// Token: 0x040007C3 RID: 1987
+	// Token: 0x040007C5 RID: 1989
 	public int ResetFrameDelay = 1;
 
-	// Token: 0x040007C4 RID: 1988
+	// Token: 0x040007C6 RID: 1990
 	[Header("Low-Level")]
 	[FormerlySerializedAs("workerThreads")]
 	public int WorkerThreads;
 
-	// Token: 0x040007C5 RID: 1989
+	// Token: 0x040007C7 RID: 1991
 	public bool SystemThreadPool;
 
-	// Token: 0x040007C6 RID: 1990
+	// Token: 0x040007C8 RID: 1992
 	public bool ForceCPUOnly;
 
-	// Token: 0x040007C7 RID: 1991
+	// Token: 0x040007C9 RID: 1993
 	public bool DebugMode;
 
-	// Token: 0x040007C8 RID: 1992
+	// Token: 0x040007CA RID: 1994
 	private Camera m_camera;
 
-	// Token: 0x040007C9 RID: 1993
+	// Token: 0x040007CB RID: 1995
 	private bool m_starting = true;
 
-	// Token: 0x040007CA RID: 1994
+	// Token: 0x040007CC RID: 1996
 	private int m_width;
 
-	// Token: 0x040007CB RID: 1995
+	// Token: 0x040007CD RID: 1997
 	private int m_height;
 
-	// Token: 0x040007CC RID: 1996
+	// Token: 0x040007CE RID: 1998
 	private RenderTexture m_motionRT;
 
-	// Token: 0x040007CD RID: 1997
+	// Token: 0x040007CF RID: 1999
 	private Material m_blurMaterial;
 
-	// Token: 0x040007CE RID: 1998
+	// Token: 0x040007D0 RID: 2000
 	private Material m_solidVectorsMaterial;
 
-	// Token: 0x040007CF RID: 1999
+	// Token: 0x040007D1 RID: 2001
 	private Material m_skinnedVectorsMaterial;
 
-	// Token: 0x040007D0 RID: 2000
+	// Token: 0x040007D2 RID: 2002
 	private Material m_clothVectorsMaterial;
 
-	// Token: 0x040007D1 RID: 2001
+	// Token: 0x040007D3 RID: 2003
 	private Material m_reprojectionMaterial;
 
-	// Token: 0x040007D2 RID: 2002
+	// Token: 0x040007D4 RID: 2004
 	private Material m_combineMaterial;
 
-	// Token: 0x040007D3 RID: 2003
+	// Token: 0x040007D5 RID: 2005
 	private Material m_dilationMaterial;
 
-	// Token: 0x040007D4 RID: 2004
+	// Token: 0x040007D6 RID: 2006
 	private Material m_depthMaterial;
 
-	// Token: 0x040007D5 RID: 2005
+	// Token: 0x040007D7 RID: 2007
 	private Material m_debugMaterial;
 
-	// Token: 0x040007D6 RID: 2006
+	// Token: 0x040007D8 RID: 2008
 	private Dictionary<Camera, AmplifyMotionCamera> m_linkedCameras = new Dictionary<Camera, AmplifyMotionCamera>();
 
-	// Token: 0x040007D7 RID: 2007
+	// Token: 0x040007D9 RID: 2009
 	internal Camera[] m_linkedCameraKeys;
 
-	// Token: 0x040007D8 RID: 2008
+	// Token: 0x040007DA RID: 2010
 	internal AmplifyMotionCamera[] m_linkedCameraValues;
 
-	// Token: 0x040007D9 RID: 2009
+	// Token: 0x040007DB RID: 2011
 	internal bool m_linkedCamerasChanged = true;
 
-	// Token: 0x040007DA RID: 2010
+	// Token: 0x040007DC RID: 2012
 	private AmplifyMotionPostProcess m_currentPostProcess;
 
-	// Token: 0x040007DB RID: 2011
+	// Token: 0x040007DD RID: 2013
 	private int m_globalObjectId = 1;
 
-	// Token: 0x040007DC RID: 2012
+	// Token: 0x040007DE RID: 2014
 	private float m_deltaTime;
 
-	// Token: 0x040007DD RID: 2013
+	// Token: 0x040007DF RID: 2015
 	private float m_fixedDeltaTime;
 
-	// Token: 0x040007DE RID: 2014
+	// Token: 0x040007E0 RID: 2016
 	private float m_motionScaleNorm;
 
-	// Token: 0x040007DF RID: 2015
+	// Token: 0x040007E1 RID: 2017
 	private float m_fixedMotionScaleNorm;
 
-	// Token: 0x040007E0 RID: 2016
+	// Token: 0x040007E2 RID: 2018
 	private Quality m_qualityLevel;
 
-	// Token: 0x040007E1 RID: 2017
+	// Token: 0x040007E3 RID: 2019
 	private AmplifyMotionCamera m_baseCamera;
 
-	// Token: 0x040007E2 RID: 2018
+	// Token: 0x040007E4 RID: 2020
 	private WorkerThreadPool m_workerThreadPool;
 
-	// Token: 0x040007E3 RID: 2019
+	// Token: 0x040007E5 RID: 2021
 	public static Dictionary<GameObject, AmplifyMotionObjectBase> m_activeObjects = new Dictionary<GameObject, AmplifyMotionObjectBase>();
 
-	// Token: 0x040007E4 RID: 2020
+	// Token: 0x040007E6 RID: 2022
 	public static Dictionary<Camera, AmplifyMotionCamera> m_activeCameras = new Dictionary<Camera, AmplifyMotionCamera>();
 
-	// Token: 0x040007E5 RID: 2021
+	// Token: 0x040007E7 RID: 2023
 	private static bool m_isD3D = false;
 
-	// Token: 0x040007E6 RID: 2022
+	// Token: 0x040007E8 RID: 2024
 	private bool m_canUseGPU;
 
-	// Token: 0x040007E7 RID: 2023
+	// Token: 0x040007E9 RID: 2025
 	private const CameraEvent m_updateCBEvent = CameraEvent.BeforeImageEffectsOpaque;
 
-	// Token: 0x040007E8 RID: 2024
+	// Token: 0x040007EA RID: 2026
 	private CommandBuffer m_updateCB;
 
-	// Token: 0x040007E9 RID: 2025
+	// Token: 0x040007EB RID: 2027
 	private const CameraEvent m_fixedUpdateCBEvent = CameraEvent.BeforeImageEffectsOpaque;
 
-	// Token: 0x040007EA RID: 2026
+	// Token: 0x040007EC RID: 2028
 	private CommandBuffer m_fixedUpdateCB;
 
-	// Token: 0x040007EB RID: 2027
+	// Token: 0x040007ED RID: 2029
 	private static bool m_ignoreMotionScaleWarning = false;
 
-	// Token: 0x040007EC RID: 2028
+	// Token: 0x040007EE RID: 2030
 	private static AmplifyMotionEffectBase m_firstInstance = null;
 }

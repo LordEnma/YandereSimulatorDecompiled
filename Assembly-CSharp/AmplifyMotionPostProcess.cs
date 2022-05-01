@@ -7,8 +7,8 @@ using UnityEngine;
 public sealed class AmplifyMotionPostProcess : MonoBehaviour
 {
 	// Token: 0x170001F2 RID: 498
-	// (get) Token: 0x0600095F RID: 2399 RVA: 0x0004B449 File Offset: 0x00049649
-	// (set) Token: 0x06000960 RID: 2400 RVA: 0x0004B451 File Offset: 0x00049651
+	// (get) Token: 0x0600095F RID: 2399 RVA: 0x0004B589 File Offset: 0x00049789
+	// (set) Token: 0x06000960 RID: 2400 RVA: 0x0004B591 File Offset: 0x00049791
 	public AmplifyMotionEffectBase Instance
 	{
 		get
@@ -21,7 +21,7 @@ public sealed class AmplifyMotionPostProcess : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000961 RID: 2401 RVA: 0x0004B45A File Offset: 0x0004965A
+	// Token: 0x06000961 RID: 2401 RVA: 0x0004B59A File Offset: 0x0004979A
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		if (this.m_instance != null)
@@ -30,6 +30,6 @@ public sealed class AmplifyMotionPostProcess : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000809 RID: 2057
+	// Token: 0x0400080B RID: 2059
 	private AmplifyMotionEffectBase m_instance;
 }

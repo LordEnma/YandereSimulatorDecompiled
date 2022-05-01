@@ -7,8 +7,8 @@ using UnityEngine;
 public abstract class UIBasicSprite : UIWidget
 {
 	// Token: 0x1700006E RID: 110
-	// (get) Token: 0x06000470 RID: 1136 RVA: 0x0002CBCA File Offset: 0x0002ADCA
-	// (set) Token: 0x06000471 RID: 1137 RVA: 0x0002CBD2 File Offset: 0x0002ADD2
+	// (get) Token: 0x06000470 RID: 1136 RVA: 0x0002CD0A File Offset: 0x0002AF0A
+	// (set) Token: 0x06000471 RID: 1137 RVA: 0x0002CD12 File Offset: 0x0002AF12
 	public virtual UIBasicSprite.Type type
 	{
 		get
@@ -26,8 +26,8 @@ public abstract class UIBasicSprite : UIWidget
 	}
 
 	// Token: 0x1700006F RID: 111
-	// (get) Token: 0x06000472 RID: 1138 RVA: 0x0002CBEA File Offset: 0x0002ADEA
-	// (set) Token: 0x06000473 RID: 1139 RVA: 0x0002CBF2 File Offset: 0x0002ADF2
+	// (get) Token: 0x06000472 RID: 1138 RVA: 0x0002CD2A File Offset: 0x0002AF2A
+	// (set) Token: 0x06000473 RID: 1139 RVA: 0x0002CD32 File Offset: 0x0002AF32
 	public UIBasicSprite.Flip flip
 	{
 		get
@@ -45,8 +45,8 @@ public abstract class UIBasicSprite : UIWidget
 	}
 
 	// Token: 0x17000070 RID: 112
-	// (get) Token: 0x06000474 RID: 1140 RVA: 0x0002CC0A File Offset: 0x0002AE0A
-	// (set) Token: 0x06000475 RID: 1141 RVA: 0x0002CC12 File Offset: 0x0002AE12
+	// (get) Token: 0x06000474 RID: 1140 RVA: 0x0002CD4A File Offset: 0x0002AF4A
+	// (set) Token: 0x06000475 RID: 1141 RVA: 0x0002CD52 File Offset: 0x0002AF52
 	public UIBasicSprite.FillDirection fillDirection
 	{
 		get
@@ -64,8 +64,8 @@ public abstract class UIBasicSprite : UIWidget
 	}
 
 	// Token: 0x17000071 RID: 113
-	// (get) Token: 0x06000476 RID: 1142 RVA: 0x0002CC2B File Offset: 0x0002AE2B
-	// (set) Token: 0x06000477 RID: 1143 RVA: 0x0002CC34 File Offset: 0x0002AE34
+	// (get) Token: 0x06000476 RID: 1142 RVA: 0x0002CD6B File Offset: 0x0002AF6B
+	// (set) Token: 0x06000477 RID: 1143 RVA: 0x0002CD74 File Offset: 0x0002AF74
 	public float fillAmount
 	{
 		get
@@ -84,7 +84,7 @@ public abstract class UIBasicSprite : UIWidget
 	}
 
 	// Token: 0x17000072 RID: 114
-	// (get) Token: 0x06000478 RID: 1144 RVA: 0x0002CC60 File Offset: 0x0002AE60
+	// (get) Token: 0x06000478 RID: 1144 RVA: 0x0002CDA0 File Offset: 0x0002AFA0
 	public override int minWidth
 	{
 		get
@@ -100,7 +100,7 @@ public abstract class UIBasicSprite : UIWidget
 	}
 
 	// Token: 0x17000073 RID: 115
-	// (get) Token: 0x06000479 RID: 1145 RVA: 0x0002CCC4 File Offset: 0x0002AEC4
+	// (get) Token: 0x06000479 RID: 1145 RVA: 0x0002CE04 File Offset: 0x0002B004
 	public override int minHeight
 	{
 		get
@@ -116,8 +116,8 @@ public abstract class UIBasicSprite : UIWidget
 	}
 
 	// Token: 0x17000074 RID: 116
-	// (get) Token: 0x0600047A RID: 1146 RVA: 0x0002CD26 File Offset: 0x0002AF26
-	// (set) Token: 0x0600047B RID: 1147 RVA: 0x0002CD2E File Offset: 0x0002AF2E
+	// (get) Token: 0x0600047A RID: 1146 RVA: 0x0002CE66 File Offset: 0x0002B066
+	// (set) Token: 0x0600047B RID: 1147 RVA: 0x0002CE6E File Offset: 0x0002B06E
 	public bool invert
 	{
 		get
@@ -135,7 +135,7 @@ public abstract class UIBasicSprite : UIWidget
 	}
 
 	// Token: 0x17000075 RID: 117
-	// (get) Token: 0x0600047C RID: 1148 RVA: 0x0002CD48 File Offset: 0x0002AF48
+	// (get) Token: 0x0600047C RID: 1148 RVA: 0x0002CE88 File Offset: 0x0002B088
 	public bool hasBorder
 	{
 		get
@@ -146,7 +146,7 @@ public abstract class UIBasicSprite : UIWidget
 	}
 
 	// Token: 0x17000076 RID: 118
-	// (get) Token: 0x0600047D RID: 1149 RVA: 0x0002CD95 File Offset: 0x0002AF95
+	// (get) Token: 0x0600047D RID: 1149 RVA: 0x0002CED5 File Offset: 0x0002B0D5
 	public virtual bool premultipliedAlpha
 	{
 		get
@@ -156,7 +156,7 @@ public abstract class UIBasicSprite : UIWidget
 	}
 
 	// Token: 0x17000077 RID: 119
-	// (get) Token: 0x0600047E RID: 1150 RVA: 0x0002CD98 File Offset: 0x0002AF98
+	// (get) Token: 0x0600047E RID: 1150 RVA: 0x0002CED8 File Offset: 0x0002B0D8
 	public virtual float pixelSize
 	{
 		get
@@ -166,7 +166,7 @@ public abstract class UIBasicSprite : UIWidget
 	}
 
 	// Token: 0x17000078 RID: 120
-	// (get) Token: 0x0600047F RID: 1151 RVA: 0x0002CD9F File Offset: 0x0002AF9F
+	// (get) Token: 0x0600047F RID: 1151 RVA: 0x0002CEDF File Offset: 0x0002B0DF
 	protected virtual Vector4 padding
 	{
 		get
@@ -176,7 +176,7 @@ public abstract class UIBasicSprite : UIWidget
 	}
 
 	// Token: 0x17000079 RID: 121
-	// (get) Token: 0x06000480 RID: 1152 RVA: 0x0002CDBC File Offset: 0x0002AFBC
+	// (get) Token: 0x06000480 RID: 1152 RVA: 0x0002CEFC File Offset: 0x0002B0FC
 	protected Vector4 drawingUVs
 	{
 		get
@@ -196,7 +196,7 @@ public abstract class UIBasicSprite : UIWidget
 	}
 
 	// Token: 0x1700007A RID: 122
-	// (get) Token: 0x06000481 RID: 1153 RVA: 0x0002CEB0 File Offset: 0x0002B0B0
+	// (get) Token: 0x06000481 RID: 1153 RVA: 0x0002CFF0 File Offset: 0x0002B1F0
 	protected Color drawingColor
 	{
 		get
@@ -211,7 +211,7 @@ public abstract class UIBasicSprite : UIWidget
 		}
 	}
 
-	// Token: 0x06000482 RID: 1154 RVA: 0x0002CEE4 File Offset: 0x0002B0E4
+	// Token: 0x06000482 RID: 1154 RVA: 0x0002D024 File Offset: 0x0002B224
 	protected void Fill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, Rect outer, Rect inner)
 	{
 		this.mOuterUV = outer;
@@ -241,7 +241,7 @@ public abstract class UIBasicSprite : UIWidget
 		}
 	}
 
-	// Token: 0x06000483 RID: 1155 RVA: 0x0002CF88 File Offset: 0x0002B188
+	// Token: 0x06000483 RID: 1155 RVA: 0x0002D0C8 File Offset: 0x0002B2C8
 	protected void SimpleFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, ref Vector4 v, ref Vector4 u, ref Color c)
 	{
 		verts.Add(new Vector3(v.x, v.y));
@@ -266,7 +266,7 @@ public abstract class UIBasicSprite : UIWidget
 		this.AddVertexColours(cols, ref c, 2, 1);
 	}
 
-	// Token: 0x06000484 RID: 1156 RVA: 0x0002D0C8 File Offset: 0x0002B2C8
+	// Token: 0x06000484 RID: 1156 RVA: 0x0002D208 File Offset: 0x0002B408
 	protected void SlicedFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, ref Vector4 v, ref Vector4 u, ref Color gc)
 	{
 		Vector4 vector = this.border * this.pixelSize;
@@ -350,7 +350,7 @@ public abstract class UIBasicSprite : UIWidget
 		}
 	}
 
-	// Token: 0x06000485 RID: 1157 RVA: 0x0002D6AC File Offset: 0x0002B8AC
+	// Token: 0x06000485 RID: 1157 RVA: 0x0002D7EC File Offset: 0x0002B9EC
 	[DebuggerHidden]
 	[DebuggerStepThrough]
 	private void AddVertexColours(List<Color> cols, ref Color color, int x, int y)
@@ -392,7 +392,7 @@ public abstract class UIBasicSprite : UIWidget
 		}
 	}
 
-	// Token: 0x06000486 RID: 1158 RVA: 0x0002D7F4 File Offset: 0x0002B9F4
+	// Token: 0x06000486 RID: 1158 RVA: 0x0002D934 File Offset: 0x0002BB34
 	protected void TiledFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, ref Vector4 v, ref Color c)
 	{
 		Texture mainTexture = this.mainTexture;
@@ -480,7 +480,7 @@ public abstract class UIBasicSprite : UIWidget
 		}
 	}
 
-	// Token: 0x06000487 RID: 1159 RVA: 0x0002DBA0 File Offset: 0x0002BDA0
+	// Token: 0x06000487 RID: 1159 RVA: 0x0002DCE0 File Offset: 0x0002BEE0
 	protected void FilledFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, ref Vector4 v, ref Vector4 u, ref Color c)
 	{
 		if (this.mFillAmount < 0.001f)
@@ -654,7 +654,7 @@ public abstract class UIBasicSprite : UIWidget
 		}
 	}
 
-	// Token: 0x06000488 RID: 1160 RVA: 0x0002E508 File Offset: 0x0002C708
+	// Token: 0x06000488 RID: 1160 RVA: 0x0002E648 File Offset: 0x0002C848
 	protected void AdvancedFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, ref Vector4 v, ref Vector4 u, ref Color c)
 	{
 		Texture mainTexture = this.mainTexture;
@@ -830,7 +830,7 @@ public abstract class UIBasicSprite : UIWidget
 		}
 	}
 
-	// Token: 0x06000489 RID: 1161 RVA: 0x0002F030 File Offset: 0x0002D230
+	// Token: 0x06000489 RID: 1161 RVA: 0x0002F170 File Offset: 0x0002D370
 	private static bool RadialCut(Vector2[] xy, Vector2[] uv, float fill, bool invert, int corner)
 	{
 		if (fill < 0.001f)
@@ -858,7 +858,7 @@ public abstract class UIBasicSprite : UIWidget
 		return true;
 	}
 
-	// Token: 0x0600048A RID: 1162 RVA: 0x0002F0A0 File Offset: 0x0002D2A0
+	// Token: 0x0600048A RID: 1162 RVA: 0x0002F1E0 File Offset: 0x0002D3E0
 	private static void RadialCut(Vector2[] xy, float cos, float sin, bool invert, int corner)
 	{
 		int num = NGUIMath.RepeatIndex(corner + 1, 4);
@@ -936,7 +936,7 @@ public abstract class UIBasicSprite : UIWidget
 		}
 	}
 
-	// Token: 0x0600048B RID: 1163 RVA: 0x0002F30C File Offset: 0x0002D50C
+	// Token: 0x0600048B RID: 1163 RVA: 0x0002F44C File Offset: 0x0002D64C
 	private static void Fill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, float v0x, float v1x, float v0y, float v1y, float u0x, float u1x, float u0y, float u1y, Color col)
 	{
 		verts.Add(new Vector3(v0x, v0y));
@@ -953,131 +953,131 @@ public abstract class UIBasicSprite : UIWidget
 		cols.Add(col);
 	}
 
-	// Token: 0x04000508 RID: 1288
+	// Token: 0x0400050A RID: 1290
 	[HideInInspector]
 	[SerializeField]
 	protected UIBasicSprite.Type mType;
 
-	// Token: 0x04000509 RID: 1289
+	// Token: 0x0400050B RID: 1291
 	[HideInInspector]
 	[SerializeField]
 	protected UIBasicSprite.FillDirection mFillDirection = UIBasicSprite.FillDirection.Radial360;
 
-	// Token: 0x0400050A RID: 1290
+	// Token: 0x0400050C RID: 1292
 	[Range(0f, 1f)]
 	[HideInInspector]
 	[SerializeField]
 	protected float mFillAmount = 1f;
 
-	// Token: 0x0400050B RID: 1291
+	// Token: 0x0400050D RID: 1293
 	[HideInInspector]
 	[SerializeField]
 	protected bool mInvert;
 
-	// Token: 0x0400050C RID: 1292
+	// Token: 0x0400050E RID: 1294
 	[HideInInspector]
 	[SerializeField]
 	protected UIBasicSprite.Flip mFlip;
 
-	// Token: 0x0400050D RID: 1293
+	// Token: 0x0400050F RID: 1295
 	[HideInInspector]
 	[SerializeField]
 	protected bool mApplyGradient;
 
-	// Token: 0x0400050E RID: 1294
+	// Token: 0x04000510 RID: 1296
 	[HideInInspector]
 	[SerializeField]
 	protected Color mGradientTop = Color.white;
 
-	// Token: 0x0400050F RID: 1295
+	// Token: 0x04000511 RID: 1297
 	[HideInInspector]
 	[SerializeField]
 	protected Color mGradientBottom = new Color(0.7f, 0.7f, 0.7f);
 
-	// Token: 0x04000510 RID: 1296
+	// Token: 0x04000512 RID: 1298
 	[NonSerialized]
 	protected Rect mInnerUV;
 
-	// Token: 0x04000511 RID: 1297
+	// Token: 0x04000513 RID: 1299
 	[NonSerialized]
 	protected Rect mOuterUV;
 
-	// Token: 0x04000512 RID: 1298
+	// Token: 0x04000514 RID: 1300
 	public UIBasicSprite.AdvancedType centerType = UIBasicSprite.AdvancedType.Sliced;
 
-	// Token: 0x04000513 RID: 1299
+	// Token: 0x04000515 RID: 1301
 	public UIBasicSprite.AdvancedType leftType = UIBasicSprite.AdvancedType.Sliced;
 
-	// Token: 0x04000514 RID: 1300
+	// Token: 0x04000516 RID: 1302
 	public UIBasicSprite.AdvancedType rightType = UIBasicSprite.AdvancedType.Sliced;
 
-	// Token: 0x04000515 RID: 1301
+	// Token: 0x04000517 RID: 1303
 	public UIBasicSprite.AdvancedType bottomType = UIBasicSprite.AdvancedType.Sliced;
 
-	// Token: 0x04000516 RID: 1302
+	// Token: 0x04000518 RID: 1304
 	public UIBasicSprite.AdvancedType topType = UIBasicSprite.AdvancedType.Sliced;
 
-	// Token: 0x04000517 RID: 1303
+	// Token: 0x04000519 RID: 1305
 	protected static Vector2[] mTempPos = new Vector2[4];
 
-	// Token: 0x04000518 RID: 1304
+	// Token: 0x0400051A RID: 1306
 	protected static Vector2[] mTempUVs = new Vector2[4];
-
-	// Token: 0x020005FB RID: 1531
-	[DoNotObfuscateNGUI]
-	public enum Type
-	{
-		// Token: 0x04004E75 RID: 20085
-		Simple,
-		// Token: 0x04004E76 RID: 20086
-		Sliced,
-		// Token: 0x04004E77 RID: 20087
-		Tiled,
-		// Token: 0x04004E78 RID: 20088
-		Filled,
-		// Token: 0x04004E79 RID: 20089
-		Advanced
-	}
 
 	// Token: 0x020005FC RID: 1532
 	[DoNotObfuscateNGUI]
-	public enum FillDirection
+	public enum Type
 	{
-		// Token: 0x04004E7B RID: 20091
-		Horizontal,
-		// Token: 0x04004E7C RID: 20092
-		Vertical,
-		// Token: 0x04004E7D RID: 20093
-		Radial90,
-		// Token: 0x04004E7E RID: 20094
-		Radial180,
-		// Token: 0x04004E7F RID: 20095
-		Radial360
+		// Token: 0x04004E93 RID: 20115
+		Simple,
+		// Token: 0x04004E94 RID: 20116
+		Sliced,
+		// Token: 0x04004E95 RID: 20117
+		Tiled,
+		// Token: 0x04004E96 RID: 20118
+		Filled,
+		// Token: 0x04004E97 RID: 20119
+		Advanced
 	}
 
 	// Token: 0x020005FD RID: 1533
 	[DoNotObfuscateNGUI]
-	public enum AdvancedType
+	public enum FillDirection
 	{
-		// Token: 0x04004E81 RID: 20097
-		Invisible,
-		// Token: 0x04004E82 RID: 20098
-		Sliced,
-		// Token: 0x04004E83 RID: 20099
-		Tiled
+		// Token: 0x04004E99 RID: 20121
+		Horizontal,
+		// Token: 0x04004E9A RID: 20122
+		Vertical,
+		// Token: 0x04004E9B RID: 20123
+		Radial90,
+		// Token: 0x04004E9C RID: 20124
+		Radial180,
+		// Token: 0x04004E9D RID: 20125
+		Radial360
 	}
 
 	// Token: 0x020005FE RID: 1534
 	[DoNotObfuscateNGUI]
+	public enum AdvancedType
+	{
+		// Token: 0x04004E9F RID: 20127
+		Invisible,
+		// Token: 0x04004EA0 RID: 20128
+		Sliced,
+		// Token: 0x04004EA1 RID: 20129
+		Tiled
+	}
+
+	// Token: 0x020005FF RID: 1535
+	[DoNotObfuscateNGUI]
 	public enum Flip
 	{
-		// Token: 0x04004E85 RID: 20101
+		// Token: 0x04004EA3 RID: 20131
 		Nothing,
-		// Token: 0x04004E86 RID: 20102
+		// Token: 0x04004EA4 RID: 20132
 		Horizontally,
-		// Token: 0x04004E87 RID: 20103
+		// Token: 0x04004EA5 RID: 20133
 		Vertically,
-		// Token: 0x04004E88 RID: 20104
+		// Token: 0x04004EA6 RID: 20134
 		Both
 	}
 }

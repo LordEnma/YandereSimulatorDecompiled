@@ -2,16 +2,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000425 RID: 1061
+// Token: 0x02000426 RID: 1062
 public class SettingsScript : MonoBehaviour
 {
-	// Token: 0x06001CA6 RID: 7334 RVA: 0x0014F764 File Offset: 0x0014D964
+	// Token: 0x06001CAD RID: 7341 RVA: 0x0014FFA0 File Offset: 0x0014E1A0
 	private void Start()
 	{
 		Debug.Log("Does this run? Anywhere? Ever?");
 	}
 
-	// Token: 0x06001CA7 RID: 7335 RVA: 0x0014F770 File Offset: 0x0014D970
+	// Token: 0x06001CAE RID: 7342 RVA: 0x0014FFAC File Offset: 0x0014E1AC
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -293,7 +293,7 @@ public class SettingsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CA8 RID: 7336 RVA: 0x0014FFAC File Offset: 0x0014E1AC
+	// Token: 0x06001CAF RID: 7343 RVA: 0x001507E8 File Offset: 0x0014E9E8
 	public void UpdateText()
 	{
 		if (OptionGlobals.ParticleCount == 3)
@@ -326,7 +326,7 @@ public class SettingsScript : MonoBehaviour
 		this.ShadowsLabel.text = (OptionGlobals.EnableShadows ? "Yes" : "No");
 	}
 
-	// Token: 0x06001CA9 RID: 7337 RVA: 0x00150214 File Offset: 0x0014E414
+	// Token: 0x06001CB0 RID: 7344 RVA: 0x00150A50 File Offset: 0x0014EC50
 	private void UpdateHighlight()
 	{
 		if (this.Selected == 0)
@@ -340,87 +340,87 @@ public class SettingsScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 430f - 50f * (float)this.Selected, this.Highlight.localPosition.z);
 	}
 
-	// Token: 0x0400330C RID: 13068
+	// Token: 0x0400331B RID: 13083
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x0400330D RID: 13069
+	// Token: 0x0400331C RID: 13084
 	public QualityManagerScript QualityManager;
 
-	// Token: 0x0400330E RID: 13070
+	// Token: 0x0400331D RID: 13085
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400330F RID: 13071
+	// Token: 0x0400331E RID: 13086
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04003310 RID: 13072
+	// Token: 0x0400331F RID: 13087
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04003311 RID: 13073
+	// Token: 0x04003320 RID: 13088
 	public UILabel DrawDistanceLabel;
 
-	// Token: 0x04003312 RID: 13074
+	// Token: 0x04003321 RID: 13089
 	public UILabel PostAliasingLabel;
 
-	// Token: 0x04003313 RID: 13075
+	// Token: 0x04003322 RID: 13090
 	public UILabel LowDetailLabel;
 
-	// Token: 0x04003314 RID: 13076
+	// Token: 0x04003323 RID: 13091
 	public UILabel AliasingLabel;
 
-	// Token: 0x04003315 RID: 13077
+	// Token: 0x04003324 RID: 13092
 	public UILabel OutlinesLabel;
 
-	// Token: 0x04003316 RID: 13078
+	// Token: 0x04003325 RID: 13093
 	public UILabel ParticleLabel;
 
-	// Token: 0x04003317 RID: 13079
+	// Token: 0x04003326 RID: 13094
 	public UILabel BloomLabel;
 
-	// Token: 0x04003318 RID: 13080
+	// Token: 0x04003327 RID: 13095
 	public UILabel FogLabel;
 
-	// Token: 0x04003319 RID: 13081
+	// Token: 0x04003328 RID: 13096
 	public UILabel ToggleRunLabel;
 
-	// Token: 0x0400331A RID: 13082
+	// Token: 0x04003329 RID: 13097
 	public UILabel FarAnimsLabel;
 
-	// Token: 0x0400331B RID: 13083
+	// Token: 0x0400332A RID: 13098
 	public UILabel FPSCapLabel;
 
-	// Token: 0x0400331C RID: 13084
+	// Token: 0x0400332B RID: 13099
 	public UILabel SensitivityLabel;
 
-	// Token: 0x0400331D RID: 13085
+	// Token: 0x0400332C RID: 13100
 	public UILabel InvertAxisLabel;
 
-	// Token: 0x0400331E RID: 13086
+	// Token: 0x0400332D RID: 13101
 	public UILabel DisableTutorialsLabel;
 
-	// Token: 0x0400331F RID: 13087
+	// Token: 0x0400332E RID: 13102
 	public UILabel WindowedMode;
 
-	// Token: 0x04003320 RID: 13088
+	// Token: 0x0400332F RID: 13103
 	public UILabel AmbientObscurance;
 
-	// Token: 0x04003321 RID: 13089
+	// Token: 0x04003330 RID: 13104
 	public UILabel ShadowsLabel;
 
-	// Token: 0x04003322 RID: 13090
+	// Token: 0x04003331 RID: 13105
 	public int SelectionLimit = 2;
 
-	// Token: 0x04003323 RID: 13091
+	// Token: 0x04003332 RID: 13106
 	public int Selected = 1;
 
-	// Token: 0x04003324 RID: 13092
+	// Token: 0x04003333 RID: 13107
 	public Transform CloudSystem;
 
-	// Token: 0x04003325 RID: 13093
+	// Token: 0x04003334 RID: 13108
 	public Transform Highlight;
 
-	// Token: 0x04003326 RID: 13094
+	// Token: 0x04003335 RID: 13109
 	public GameObject Background;
 
-	// Token: 0x04003327 RID: 13095
+	// Token: 0x04003336 RID: 13110
 	public GameObject WarningMessage;
 }

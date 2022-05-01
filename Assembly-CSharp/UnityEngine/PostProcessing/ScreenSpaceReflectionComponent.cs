@@ -3,17 +3,17 @@ using UnityEngine.Rendering;
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200056A RID: 1386
+	// Token: 0x0200056B RID: 1387
 	public sealed class ScreenSpaceReflectionComponent : PostProcessingComponentCommandBuffer<ScreenSpaceReflectionModel>
 	{
-		// Token: 0x06002350 RID: 9040 RVA: 0x001F86C7 File Offset: 0x001F68C7
+		// Token: 0x06002359 RID: 9049 RVA: 0x001F9B53 File Offset: 0x001F7D53
 		public override DepthTextureMode GetCameraFlags()
 		{
 			return DepthTextureMode.Depth;
 		}
 
 		// Token: 0x170004FD RID: 1277
-		// (get) Token: 0x06002351 RID: 9041 RVA: 0x001F86CA File Offset: 0x001F68CA
+		// (get) Token: 0x0600235A RID: 9050 RVA: 0x001F9B56 File Offset: 0x001F7D56
 		public override bool active
 		{
 			get
@@ -22,7 +22,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002352 RID: 9042 RVA: 0x001F86F8 File Offset: 0x001F68F8
+		// Token: 0x0600235B RID: 9051 RVA: 0x001F9B84 File Offset: 0x001F7D84
 		public override void OnEnable()
 		{
 			this.m_ReflectionTextures[0] = Shader.PropertyToID("_ReflectionTexture0");
@@ -32,19 +32,19 @@ namespace UnityEngine.PostProcessing
 			this.m_ReflectionTextures[4] = Shader.PropertyToID("_ReflectionTexture4");
 		}
 
-		// Token: 0x06002353 RID: 9043 RVA: 0x001F875F File Offset: 0x001F695F
+		// Token: 0x0600235C RID: 9052 RVA: 0x001F9BEB File Offset: 0x001F7DEB
 		public override string GetName()
 		{
 			return "Screen Space Reflection";
 		}
 
-		// Token: 0x06002354 RID: 9044 RVA: 0x001F8766 File Offset: 0x001F6966
+		// Token: 0x0600235D RID: 9053 RVA: 0x001F9BF2 File Offset: 0x001F7DF2
 		public override CameraEvent GetCameraEvent()
 		{
 			return CameraEvent.AfterFinalPass;
 		}
 
-		// Token: 0x06002355 RID: 9045 RVA: 0x001F876C File Offset: 0x001F696C
+		// Token: 0x0600235E RID: 9054 RVA: 0x001F9BF8 File Offset: 0x001F7DF8
 		public override void PopulateCommandBuffer(CommandBuffer cb)
 		{
 			ScreenSpaceReflectionModel.Settings settings = base.model.settings;
@@ -133,150 +133,150 @@ namespace UnityEngine.PostProcessing
 			cb.ReleaseTemporaryRT(tempTexture);
 		}
 
-		// Token: 0x04004BC0 RID: 19392
+		// Token: 0x04004BD6 RID: 19414
 		private bool k_HighlightSuppression;
 
-		// Token: 0x04004BC1 RID: 19393
+		// Token: 0x04004BD7 RID: 19415
 		private bool k_TraceBehindObjects = true;
 
-		// Token: 0x04004BC2 RID: 19394
+		// Token: 0x04004BD8 RID: 19416
 		private bool k_TreatBackfaceHitAsMiss;
 
-		// Token: 0x04004BC3 RID: 19395
+		// Token: 0x04004BD9 RID: 19417
 		private bool k_BilateralUpsample = true;
 
-		// Token: 0x04004BC4 RID: 19396
+		// Token: 0x04004BDA RID: 19418
 		private readonly int[] m_ReflectionTextures = new int[5];
 
-		// Token: 0x020006AE RID: 1710
+		// Token: 0x020006AF RID: 1711
 		private static class Uniforms
 		{
-			// Token: 0x0400515E RID: 20830
+			// Token: 0x0400517C RID: 20860
 			internal static readonly int _RayStepSize = Shader.PropertyToID("_RayStepSize");
 
-			// Token: 0x0400515F RID: 20831
+			// Token: 0x0400517D RID: 20861
 			internal static readonly int _AdditiveReflection = Shader.PropertyToID("_AdditiveReflection");
 
-			// Token: 0x04005160 RID: 20832
+			// Token: 0x0400517E RID: 20862
 			internal static readonly int _BilateralUpsampling = Shader.PropertyToID("_BilateralUpsampling");
 
-			// Token: 0x04005161 RID: 20833
+			// Token: 0x0400517F RID: 20863
 			internal static readonly int _TreatBackfaceHitAsMiss = Shader.PropertyToID("_TreatBackfaceHitAsMiss");
 
-			// Token: 0x04005162 RID: 20834
+			// Token: 0x04005180 RID: 20864
 			internal static readonly int _AllowBackwardsRays = Shader.PropertyToID("_AllowBackwardsRays");
 
-			// Token: 0x04005163 RID: 20835
+			// Token: 0x04005181 RID: 20865
 			internal static readonly int _TraceBehindObjects = Shader.PropertyToID("_TraceBehindObjects");
 
-			// Token: 0x04005164 RID: 20836
+			// Token: 0x04005182 RID: 20866
 			internal static readonly int _MaxSteps = Shader.PropertyToID("_MaxSteps");
 
-			// Token: 0x04005165 RID: 20837
+			// Token: 0x04005183 RID: 20867
 			internal static readonly int _FullResolutionFiltering = Shader.PropertyToID("_FullResolutionFiltering");
 
-			// Token: 0x04005166 RID: 20838
+			// Token: 0x04005184 RID: 20868
 			internal static readonly int _HalfResolution = Shader.PropertyToID("_HalfResolution");
 
-			// Token: 0x04005167 RID: 20839
+			// Token: 0x04005185 RID: 20869
 			internal static readonly int _HighlightSuppression = Shader.PropertyToID("_HighlightSuppression");
 
-			// Token: 0x04005168 RID: 20840
+			// Token: 0x04005186 RID: 20870
 			internal static readonly int _PixelsPerMeterAtOneMeter = Shader.PropertyToID("_PixelsPerMeterAtOneMeter");
 
-			// Token: 0x04005169 RID: 20841
+			// Token: 0x04005187 RID: 20871
 			internal static readonly int _ScreenEdgeFading = Shader.PropertyToID("_ScreenEdgeFading");
 
-			// Token: 0x0400516A RID: 20842
+			// Token: 0x04005188 RID: 20872
 			internal static readonly int _ReflectionBlur = Shader.PropertyToID("_ReflectionBlur");
 
-			// Token: 0x0400516B RID: 20843
+			// Token: 0x04005189 RID: 20873
 			internal static readonly int _MaxRayTraceDistance = Shader.PropertyToID("_MaxRayTraceDistance");
 
-			// Token: 0x0400516C RID: 20844
+			// Token: 0x0400518A RID: 20874
 			internal static readonly int _FadeDistance = Shader.PropertyToID("_FadeDistance");
 
-			// Token: 0x0400516D RID: 20845
+			// Token: 0x0400518B RID: 20875
 			internal static readonly int _LayerThickness = Shader.PropertyToID("_LayerThickness");
 
-			// Token: 0x0400516E RID: 20846
+			// Token: 0x0400518C RID: 20876
 			internal static readonly int _SSRMultiplier = Shader.PropertyToID("_SSRMultiplier");
 
-			// Token: 0x0400516F RID: 20847
+			// Token: 0x0400518D RID: 20877
 			internal static readonly int _FresnelFade = Shader.PropertyToID("_FresnelFade");
 
-			// Token: 0x04005170 RID: 20848
+			// Token: 0x0400518E RID: 20878
 			internal static readonly int _FresnelFadePower = Shader.PropertyToID("_FresnelFadePower");
 
-			// Token: 0x04005171 RID: 20849
+			// Token: 0x0400518F RID: 20879
 			internal static readonly int _ReflectionBufferSize = Shader.PropertyToID("_ReflectionBufferSize");
 
-			// Token: 0x04005172 RID: 20850
+			// Token: 0x04005190 RID: 20880
 			internal static readonly int _ScreenSize = Shader.PropertyToID("_ScreenSize");
 
-			// Token: 0x04005173 RID: 20851
+			// Token: 0x04005191 RID: 20881
 			internal static readonly int _InvScreenSize = Shader.PropertyToID("_InvScreenSize");
 
-			// Token: 0x04005174 RID: 20852
+			// Token: 0x04005192 RID: 20882
 			internal static readonly int _ProjInfo = Shader.PropertyToID("_ProjInfo");
 
-			// Token: 0x04005175 RID: 20853
+			// Token: 0x04005193 RID: 20883
 			internal static readonly int _CameraClipInfo = Shader.PropertyToID("_CameraClipInfo");
 
-			// Token: 0x04005176 RID: 20854
+			// Token: 0x04005194 RID: 20884
 			internal static readonly int _ProjectToPixelMatrix = Shader.PropertyToID("_ProjectToPixelMatrix");
 
-			// Token: 0x04005177 RID: 20855
+			// Token: 0x04005195 RID: 20885
 			internal static readonly int _WorldToCameraMatrix = Shader.PropertyToID("_WorldToCameraMatrix");
 
-			// Token: 0x04005178 RID: 20856
+			// Token: 0x04005196 RID: 20886
 			internal static readonly int _CameraToWorldMatrix = Shader.PropertyToID("_CameraToWorldMatrix");
 
-			// Token: 0x04005179 RID: 20857
+			// Token: 0x04005197 RID: 20887
 			internal static readonly int _Axis = Shader.PropertyToID("_Axis");
 
-			// Token: 0x0400517A RID: 20858
+			// Token: 0x04005198 RID: 20888
 			internal static readonly int _CurrentMipLevel = Shader.PropertyToID("_CurrentMipLevel");
 
-			// Token: 0x0400517B RID: 20859
+			// Token: 0x04005199 RID: 20889
 			internal static readonly int _NormalAndRoughnessTexture = Shader.PropertyToID("_NormalAndRoughnessTexture");
 
-			// Token: 0x0400517C RID: 20860
+			// Token: 0x0400519A RID: 20890
 			internal static readonly int _HitPointTexture = Shader.PropertyToID("_HitPointTexture");
 
-			// Token: 0x0400517D RID: 20861
+			// Token: 0x0400519B RID: 20891
 			internal static readonly int _BlurTexture = Shader.PropertyToID("_BlurTexture");
 
-			// Token: 0x0400517E RID: 20862
+			// Token: 0x0400519C RID: 20892
 			internal static readonly int _FilteredReflections = Shader.PropertyToID("_FilteredReflections");
 
-			// Token: 0x0400517F RID: 20863
+			// Token: 0x0400519D RID: 20893
 			internal static readonly int _FinalReflectionTexture = Shader.PropertyToID("_FinalReflectionTexture");
 
-			// Token: 0x04005180 RID: 20864
+			// Token: 0x0400519E RID: 20894
 			internal static readonly int _TempTexture = Shader.PropertyToID("_TempTexture");
 		}
 
-		// Token: 0x020006AF RID: 1711
+		// Token: 0x020006B0 RID: 1712
 		private enum PassIndex
 		{
-			// Token: 0x04005182 RID: 20866
+			// Token: 0x040051A0 RID: 20896
 			RayTraceStep,
-			// Token: 0x04005183 RID: 20867
+			// Token: 0x040051A1 RID: 20897
 			CompositeFinal,
-			// Token: 0x04005184 RID: 20868
+			// Token: 0x040051A2 RID: 20898
 			Blur,
-			// Token: 0x04005185 RID: 20869
+			// Token: 0x040051A3 RID: 20899
 			CompositeSSR,
-			// Token: 0x04005186 RID: 20870
+			// Token: 0x040051A4 RID: 20900
 			MinMipGeneration,
-			// Token: 0x04005187 RID: 20871
+			// Token: 0x040051A5 RID: 20901
 			HitPointToReflections,
-			// Token: 0x04005188 RID: 20872
+			// Token: 0x040051A6 RID: 20902
 			BilateralKeyPack,
-			// Token: 0x04005189 RID: 20873
+			// Token: 0x040051A7 RID: 20903
 			BlitDepthAsCSZ,
-			// Token: 0x0400518A RID: 20874
+			// Token: 0x040051A8 RID: 20904
 			PoissonBlur
 		}
 	}

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000290 RID: 656
 public class DramaticPanUpScript : MonoBehaviour
 {
-	// Token: 0x060013C7 RID: 5063 RVA: 0x000BB6BC File Offset: 0x000B98BC
+	// Token: 0x060013CB RID: 5067 RVA: 0x000BBB60 File Offset: 0x000B9D60
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))
@@ -19,12 +19,12 @@ public class DramaticPanUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D73 RID: 7539
+	// Token: 0x04001D7C RID: 7548
 	public bool Pan;
 
-	// Token: 0x04001D74 RID: 7540
+	// Token: 0x04001D7D RID: 7549
 	public float Height;
 
-	// Token: 0x04001D75 RID: 7541
+	// Token: 0x04001D7E RID: 7550
 	public float Power;
 }

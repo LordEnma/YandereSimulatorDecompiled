@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000031 RID: 49
 public class LagPosition : MonoBehaviour
 {
-	// Token: 0x060000CC RID: 204 RVA: 0x0001260A File Offset: 0x0001080A
+	// Token: 0x060000CC RID: 204 RVA: 0x0001274A File Offset: 0x0001094A
 	public void OnRepositionEnd()
 	{
 		this.Interpolate(1000f);
 	}
 
-	// Token: 0x060000CD RID: 205 RVA: 0x00012618 File Offset: 0x00010818
+	// Token: 0x060000CD RID: 205 RVA: 0x00012758 File Offset: 0x00010958
 	private void Interpolate(float delta)
 	{
 		Transform parent = this.mTrans.parent;
@@ -24,13 +24,13 @@ public class LagPosition : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060000CE RID: 206 RVA: 0x00012704 File Offset: 0x00010904
+	// Token: 0x060000CE RID: 206 RVA: 0x00012844 File Offset: 0x00010A44
 	private void Awake()
 	{
 		this.mTrans = base.transform;
 	}
 
-	// Token: 0x060000CF RID: 207 RVA: 0x00012712 File Offset: 0x00010912
+	// Token: 0x060000CF RID: 207 RVA: 0x00012852 File Offset: 0x00010A52
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -39,41 +39,41 @@ public class LagPosition : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060000D0 RID: 208 RVA: 0x00012722 File Offset: 0x00010922
+	// Token: 0x060000D0 RID: 208 RVA: 0x00012862 File Offset: 0x00010A62
 	private void Start()
 	{
 		this.mStarted = true;
 		this.ResetPosition();
 	}
 
-	// Token: 0x060000D1 RID: 209 RVA: 0x00012731 File Offset: 0x00010931
+	// Token: 0x060000D1 RID: 209 RVA: 0x00012871 File Offset: 0x00010A71
 	public void ResetPosition()
 	{
 		this.mAbsolute = this.mTrans.position;
 		this.mRelative = this.mTrans.localPosition;
 	}
 
-	// Token: 0x060000D2 RID: 210 RVA: 0x00012755 File Offset: 0x00010955
+	// Token: 0x060000D2 RID: 210 RVA: 0x00012895 File Offset: 0x00010A95
 	private void Update()
 	{
 		this.Interpolate(this.ignoreTimeScale ? RealTime.deltaTime : Time.deltaTime);
 	}
 
-	// Token: 0x0400029E RID: 670
+	// Token: 0x040002A0 RID: 672
 	public Vector3 speed = new Vector3(10f, 10f, 10f);
 
-	// Token: 0x0400029F RID: 671
+	// Token: 0x040002A1 RID: 673
 	public bool ignoreTimeScale;
 
-	// Token: 0x040002A0 RID: 672
+	// Token: 0x040002A2 RID: 674
 	private Transform mTrans;
 
-	// Token: 0x040002A1 RID: 673
+	// Token: 0x040002A3 RID: 675
 	private Vector3 mRelative;
 
-	// Token: 0x040002A2 RID: 674
+	// Token: 0x040002A4 RID: 676
 	private Vector3 mAbsolute;
 
-	// Token: 0x040002A3 RID: 675
+	// Token: 0x040002A5 RID: 677
 	private bool mStarted;
 }

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x0200040C RID: 1036
+// Token: 0x0200040D RID: 1037
 [Serializable]
 public class TaskSaveData
 {
-	// Token: 0x06001C4E RID: 7246 RVA: 0x0014ABF4 File Offset: 0x00148DF4
+	// Token: 0x06001C55 RID: 7253 RVA: 0x0014B430 File Offset: 0x00149630
 	public static TaskSaveData ReadFromGlobals()
 	{
 		TaskSaveData taskSaveData = new TaskSaveData();
@@ -37,7 +37,7 @@ public class TaskSaveData
 		return taskSaveData;
 	}
 
-	// Token: 0x06001C4F RID: 7247 RVA: 0x0014ACC4 File Offset: 0x00148EC4
+	// Token: 0x06001C56 RID: 7254 RVA: 0x0014B500 File Offset: 0x00149700
 	public static void WriteToGlobals(TaskSaveData data)
 	{
 		foreach (int photoID in data.kittenPhoto)
@@ -54,15 +54,15 @@ public class TaskSaveData
 		}
 	}
 
-	// Token: 0x04003205 RID: 12805
+	// Token: 0x04003214 RID: 12820
 	public IntHashSet guitarPhoto = new IntHashSet();
 
-	// Token: 0x04003206 RID: 12806
+	// Token: 0x04003215 RID: 12821
 	public IntHashSet kittenPhoto = new IntHashSet();
 
-	// Token: 0x04003207 RID: 12807
+	// Token: 0x04003216 RID: 12822
 	public IntHashSet horudaPhoto = new IntHashSet();
 
-	// Token: 0x04003208 RID: 12808
+	// Token: 0x04003217 RID: 12823
 	public IntAndIntDictionary taskStatus = new IntAndIntDictionary();
 }

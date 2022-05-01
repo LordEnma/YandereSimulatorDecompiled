@@ -6,7 +6,7 @@ using UnityEngine;
 public class UIGeometry
 {
 	// Token: 0x1700008B RID: 139
-	// (get) Token: 0x060004CD RID: 1229 RVA: 0x00030CE8 File Offset: 0x0002EEE8
+	// (get) Token: 0x060004CD RID: 1229 RVA: 0x00030E28 File Offset: 0x0002F028
 	public bool hasVertices
 	{
 		get
@@ -16,7 +16,7 @@ public class UIGeometry
 	}
 
 	// Token: 0x1700008C RID: 140
-	// (get) Token: 0x060004CE RID: 1230 RVA: 0x00030CF8 File Offset: 0x0002EEF8
+	// (get) Token: 0x060004CE RID: 1230 RVA: 0x00030E38 File Offset: 0x0002F038
 	public bool hasTransformed
 	{
 		get
@@ -25,7 +25,7 @@ public class UIGeometry
 		}
 	}
 
-	// Token: 0x060004CF RID: 1231 RVA: 0x00030D2A File Offset: 0x0002EF2A
+	// Token: 0x060004CF RID: 1231 RVA: 0x00030E6A File Offset: 0x0002F06A
 	public void Clear()
 	{
 		this.verts.Clear();
@@ -34,7 +34,7 @@ public class UIGeometry
 		this.mRtpVerts.Clear();
 	}
 
-	// Token: 0x060004D0 RID: 1232 RVA: 0x00030D58 File Offset: 0x0002EF58
+	// Token: 0x060004D0 RID: 1232 RVA: 0x00030E98 File Offset: 0x0002F098
 	public void ApplyTransform(Matrix4x4 widgetToPanel, bool generateNormals = true)
 	{
 		if (this.verts.Count > 0)
@@ -61,7 +61,7 @@ public class UIGeometry
 		}
 	}
 
-	// Token: 0x060004D1 RID: 1233 RVA: 0x00030E18 File Offset: 0x0002F018
+	// Token: 0x060004D1 RID: 1233 RVA: 0x00030F58 File Offset: 0x0002F158
 	public void WriteToBuffers(List<Vector3> v, List<Vector2> u, List<Color> c, List<Vector3> n, List<Vector4> t, List<Vector4> u2)
 	{
 		if (this.mRtpVerts != null && this.mRtpVerts.Count > 0)
@@ -112,28 +112,28 @@ public class UIGeometry
 		}
 	}
 
-	// Token: 0x04000556 RID: 1366
+	// Token: 0x04000558 RID: 1368
 	public List<Vector3> verts = new List<Vector3>();
 
-	// Token: 0x04000557 RID: 1367
+	// Token: 0x04000559 RID: 1369
 	public List<Vector2> uvs = new List<Vector2>();
 
-	// Token: 0x04000558 RID: 1368
+	// Token: 0x0400055A RID: 1370
 	public List<Color> cols = new List<Color>();
 
-	// Token: 0x04000559 RID: 1369
+	// Token: 0x0400055B RID: 1371
 	public UIGeometry.OnCustomWrite onCustomWrite;
 
-	// Token: 0x0400055A RID: 1370
+	// Token: 0x0400055C RID: 1372
 	private List<Vector3> mRtpVerts = new List<Vector3>();
 
-	// Token: 0x0400055B RID: 1371
+	// Token: 0x0400055D RID: 1373
 	private Vector3 mRtpNormal;
 
-	// Token: 0x0400055C RID: 1372
+	// Token: 0x0400055E RID: 1374
 	private Vector4 mRtpTan;
 
-	// Token: 0x02000609 RID: 1545
-	// (Invoke) Token: 0x060025B6 RID: 9654
+	// Token: 0x0200060A RID: 1546
+	// (Invoke) Token: 0x060025BF RID: 9663
 	public delegate void OnCustomWrite(List<Vector3> v, List<Vector2> u, List<Color> c, List<Vector3> n, List<Vector4> t, List<Vector4> u2);
 }

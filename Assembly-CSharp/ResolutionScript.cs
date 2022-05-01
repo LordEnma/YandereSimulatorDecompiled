@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020003D8 RID: 984
 public class ResolutionScript : MonoBehaviour
 {
-	// Token: 0x06001B92 RID: 7058 RVA: 0x001384F4 File Offset: 0x001366F4
+	// Token: 0x06001B96 RID: 7062 RVA: 0x00138B6C File Offset: 0x00136D6C
 	private void Start()
 	{
 		if (Screen.width < 1280 || Screen.height < 720)
@@ -35,7 +35,7 @@ public class ResolutionScript : MonoBehaviour
 		Debug.Log("ResolutionScene. DepthOfField settings are: " + OptionGlobals.DepthOfField.ToString());
 	}
 
-	// Token: 0x06001B93 RID: 7059 RVA: 0x00138648 File Offset: 0x00136848
+	// Token: 0x06001B97 RID: 7063 RVA: 0x00138CC0 File Offset: 0x00136EC0
 	private void Update()
 	{
 		if (Screen.width < 1280 || Screen.height < 720)
@@ -147,14 +147,14 @@ public class ResolutionScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B94 RID: 7060 RVA: 0x001389DC File Offset: 0x00136BDC
+	// Token: 0x06001B98 RID: 7064 RVA: 0x00139054 File Offset: 0x00137254
 	private void UpdateRes()
 	{
 		Screen.SetResolution(this.Widths[this.ResID], this.Heights[this.ResID], Screen.fullScreen);
 		this.ResolutionLabel.text = this.Widths[this.ResID].ToString() + " x " + this.Heights[this.ResID].ToString();
 	}
 
-	// Token: 0x06001B95 RID: 7061 RVA: 0x00138A50 File Offset: 0x00136C50
+	// Token: 0x06001B99 RID: 7065 RVA: 0x001390C8 File Offset: 0x001372C8
 	private void UpdateQuality()
 	{
 		QualitySettings.SetQualityLevel(this.QualityID, true);
@@ -162,7 +162,7 @@ public class ResolutionScript : MonoBehaviour
 		Debug.Log("The quality level is set to: " + QualitySettings.GetQualityLevel().ToString());
 	}
 
-	// Token: 0x06001B96 RID: 7062 RVA: 0x00138AA6 File Offset: 0x00136CA6
+	// Token: 0x06001B9A RID: 7066 RVA: 0x0013911E File Offset: 0x0013731E
 	private void UpdateHighlight()
 	{
 		if (this.ID < 1)
@@ -176,7 +176,7 @@ public class ResolutionScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B97 RID: 7063 RVA: 0x00138ACC File Offset: 0x00136CCC
+	// Token: 0x06001B9B RID: 7067 RVA: 0x00139144 File Offset: 0x00137344
 	private void ResetGraphicsToDefault()
 	{
 		OptionGlobals.DrawDistance = 350;
@@ -194,51 +194,51 @@ public class ResolutionScript : MonoBehaviour
 		GameGlobals.VtuberID = 0;
 	}
 
-	// Token: 0x04002F4E RID: 12110
+	// Token: 0x04002F58 RID: 12120
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002F4F RID: 12111
+	// Token: 0x04002F59 RID: 12121
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04002F50 RID: 12112
+	// Token: 0x04002F5A RID: 12122
 	public UILabel ResolutionLabel;
 
-	// Token: 0x04002F51 RID: 12113
+	// Token: 0x04002F5B RID: 12123
 	public UILabel FullScreenLabel;
 
-	// Token: 0x04002F52 RID: 12114
+	// Token: 0x04002F5C RID: 12124
 	public UILabel QualityLabel;
 
-	// Token: 0x04002F53 RID: 12115
+	// Token: 0x04002F5D RID: 12125
 	public Transform Highlight;
 
-	// Token: 0x04002F54 RID: 12116
+	// Token: 0x04002F5E RID: 12126
 	public UISprite Darkness;
 
-	// Token: 0x04002F55 RID: 12117
+	// Token: 0x04002F5F RID: 12127
 	public float Alpha = 1f;
 
-	// Token: 0x04002F56 RID: 12118
+	// Token: 0x04002F60 RID: 12128
 	public bool FullScreen;
 
-	// Token: 0x04002F57 RID: 12119
+	// Token: 0x04002F61 RID: 12129
 	public bool FadeOut;
 
-	// Token: 0x04002F58 RID: 12120
+	// Token: 0x04002F62 RID: 12130
 	public string[] Qualities;
 
-	// Token: 0x04002F59 RID: 12121
+	// Token: 0x04002F63 RID: 12131
 	public int[] Widths;
 
-	// Token: 0x04002F5A RID: 12122
+	// Token: 0x04002F64 RID: 12132
 	public int[] Heights;
 
-	// Token: 0x04002F5B RID: 12123
+	// Token: 0x04002F65 RID: 12133
 	public int QualityID;
 
-	// Token: 0x04002F5C RID: 12124
+	// Token: 0x04002F66 RID: 12134
 	public int ResID = 1;
 
-	// Token: 0x04002F5D RID: 12125
+	// Token: 0x04002F67 RID: 12135
 	public int ID = 1;
 }

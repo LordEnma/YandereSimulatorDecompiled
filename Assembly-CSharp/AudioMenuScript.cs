@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020000DA RID: 218
 public class AudioMenuScript : MonoBehaviour
 {
-	// Token: 0x06000A04 RID: 2564 RVA: 0x00056667 File Offset: 0x00054867
+	// Token: 0x06000A04 RID: 2564 RVA: 0x000567BB File Offset: 0x000549BB
 	private void Start()
 	{
 		this.UpdateText();
 	}
 
-	// Token: 0x06000A05 RID: 2565 RVA: 0x00056670 File Offset: 0x00054870
+	// Token: 0x06000A05 RID: 2565 RVA: 0x000567C4 File Offset: 0x000549C4
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.C))
@@ -82,7 +82,7 @@ public class AudioMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A06 RID: 2566 RVA: 0x000568A0 File Offset: 0x00054AA0
+	// Token: 0x06000A06 RID: 2566 RVA: 0x000569F4 File Offset: 0x00054BF4
 	public void UpdateText()
 	{
 		if (this.Jukebox != null)
@@ -98,7 +98,7 @@ public class AudioMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A07 RID: 2567 RVA: 0x00056948 File Offset: 0x00054B48
+	// Token: 0x06000A07 RID: 2567 RVA: 0x00056A9C File Offset: 0x00054C9C
 	private void UpdateHighlight()
 	{
 		if (this.Selected == 0)
@@ -112,39 +112,39 @@ public class AudioMenuScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 440f - 60f * (float)this.Selected, this.Highlight.localPosition.z);
 	}
 
-	// Token: 0x04000ABB RID: 2747
+	// Token: 0x04000ABD RID: 2749
 	public InputManagerScript InputManager;
 
-	// Token: 0x04000ABC RID: 2748
+	// Token: 0x04000ABE RID: 2750
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04000ABD RID: 2749
+	// Token: 0x04000ABF RID: 2751
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04000ABE RID: 2750
+	// Token: 0x04000AC0 RID: 2752
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04000ABF RID: 2751
+	// Token: 0x04000AC1 RID: 2753
 	public UILabel CurrentTrackLabel;
 
-	// Token: 0x04000AC0 RID: 2752
+	// Token: 0x04000AC2 RID: 2754
 	public UILabel MusicVolumeLabel;
 
-	// Token: 0x04000AC1 RID: 2753
+	// Token: 0x04000AC3 RID: 2755
 	public UILabel SubtitlesOnOffLabel;
 
-	// Token: 0x04000AC2 RID: 2754
+	// Token: 0x04000AC4 RID: 2756
 	public UIPanel SubtitlePanel;
 
-	// Token: 0x04000AC3 RID: 2755
+	// Token: 0x04000AC5 RID: 2757
 	public int SelectionLimit = 5;
 
-	// Token: 0x04000AC4 RID: 2756
+	// Token: 0x04000AC6 RID: 2758
 	public int Selected = 1;
 
-	// Token: 0x04000AC5 RID: 2757
+	// Token: 0x04000AC7 RID: 2759
 	public Transform Highlight;
 
-	// Token: 0x04000AC6 RID: 2758
+	// Token: 0x04000AC8 RID: 2760
 	public GameObject CustomMusicMenu;
 }

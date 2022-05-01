@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005B6 RID: 1462
+	// Token: 0x020005B7 RID: 1463
 	public class ExitMaidMinigame : MonoBehaviour
 	{
-		// Token: 0x060024DA RID: 9434 RVA: 0x0020104C File Offset: 0x001FF24C
+		// Token: 0x060024E3 RID: 9443 RVA: 0x002025EC File Offset: 0x002007EC
 		private void OnMouseOver()
 		{
 			if (Input.GetMouseButtonDown(0))

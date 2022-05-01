@@ -3,17 +3,17 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Cameras
 {
-	// Token: 0x02000550 RID: 1360
+	// Token: 0x02000551 RID: 1361
 	public class LookatTarget : AbstractTargetFollower
 	{
-		// Token: 0x060022C7 RID: 8903 RVA: 0x001F44E6 File Offset: 0x001F26E6
+		// Token: 0x060022D0 RID: 8912 RVA: 0x001F5972 File Offset: 0x001F3B72
 		protected override void Start()
 		{
 			base.Start();
 			this.m_OriginalRotation = base.transform.localRotation;
 		}
 
-		// Token: 0x060022C8 RID: 8904 RVA: 0x001F4500 File Offset: 0x001F2700
+		// Token: 0x060022D1 RID: 8913 RVA: 0x001F598C File Offset: 0x001F3B8C
 		protected override void FollowTarget(float deltaTime)
 		{
 			base.transform.localRotation = this.m_OriginalRotation;
@@ -29,21 +29,21 @@ namespace UnityStandardAssets.Cameras
 			base.transform.localRotation = this.m_OriginalRotation * Quaternion.Euler(-this.m_FollowAngles.x, this.m_FollowAngles.y, 0f);
 		}
 
-		// Token: 0x04004B42 RID: 19266
+		// Token: 0x04004B58 RID: 19288
 		[SerializeField]
 		private Vector2 m_RotationRange;
 
-		// Token: 0x04004B43 RID: 19267
+		// Token: 0x04004B59 RID: 19289
 		[SerializeField]
 		private float m_FollowSpeed = 1f;
 
-		// Token: 0x04004B44 RID: 19268
+		// Token: 0x04004B5A RID: 19290
 		private Vector3 m_FollowAngles;
 
-		// Token: 0x04004B45 RID: 19269
+		// Token: 0x04004B5B RID: 19291
 		private Quaternion m_OriginalRotation;
 
-		// Token: 0x04004B46 RID: 19270
+		// Token: 0x04004B5C RID: 19292
 		protected Vector3 m_FollowVelocity;
 	}
 }

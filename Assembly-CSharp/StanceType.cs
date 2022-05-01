@@ -3,10 +3,10 @@
 // Token: 0x020002B4 RID: 692
 public enum StanceType
 {
-	// Token: 0x04001F56 RID: 8022
+	// Token: 0x04001F5F RID: 8031
 	Standing,
-	// Token: 0x04001F57 RID: 8023
+	// Token: 0x04001F60 RID: 8032
 	Crouching,
-	// Token: 0x04001F58 RID: 8024
+	// Token: 0x04001F61 RID: 8033
 	Crawling
 }

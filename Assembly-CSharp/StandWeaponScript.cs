@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200044A RID: 1098
+// Token: 0x0200044B RID: 1099
 public class StandWeaponScript : MonoBehaviour
 {
-	// Token: 0x06001D3A RID: 7482 RVA: 0x0015DE88 File Offset: 0x0015C088
+	// Token: 0x06001D41 RID: 7489 RVA: 0x0015E718 File Offset: 0x0015C918
 	private void Update()
 	{
 		if (this.Prompt.enabled)
@@ -23,7 +23,7 @@ public class StandWeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D3B RID: 7483 RVA: 0x0015DF28 File Offset: 0x0015C128
+	// Token: 0x06001D42 RID: 7490 RVA: 0x0015E7B8 File Offset: 0x0015C9B8
 	private void MoveToStand()
 	{
 		this.Prompt.Hide();
@@ -34,12 +34,12 @@ public class StandWeaponScript : MonoBehaviour
 		base.transform.localPosition = new Vector3(-0.277f, 0f, 0f);
 	}
 
-	// Token: 0x0400355A RID: 13658
+	// Token: 0x04003569 RID: 13673
 	public PromptScript Prompt;
 
-	// Token: 0x0400355B RID: 13659
+	// Token: 0x0400356A RID: 13674
 	public StandScript Stand;
 
-	// Token: 0x0400355C RID: 13660
+	// Token: 0x0400356B RID: 13675
 	public float RotationSpeed;
 }

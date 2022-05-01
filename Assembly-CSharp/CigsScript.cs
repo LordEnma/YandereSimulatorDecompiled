@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000246 RID: 582
 public class CigsScript : MonoBehaviour
 {
-	// Token: 0x06001252 RID: 4690 RVA: 0x0008D2B0 File Offset: 0x0008B4B0
+	// Token: 0x06001252 RID: 4690 RVA: 0x0008D404 File Offset: 0x0008B604
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -20,6 +20,6 @@ public class CigsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400172E RID: 5934
+	// Token: 0x04001731 RID: 5937
 	public PromptScript Prompt;
 }

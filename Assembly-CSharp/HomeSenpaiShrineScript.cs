@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000327 RID: 807
 public class HomeSenpaiShrineScript : MonoBehaviour
 {
-	// Token: 0x060018B6 RID: 6326 RVA: 0x000F3354 File Offset: 0x000F1554
+	// Token: 0x060018BA RID: 6330 RVA: 0x000F3858 File Offset: 0x000F1A58
 	public void Start()
 	{
 		this.UpdateText(this.GetCurrentIndex());
@@ -17,13 +17,13 @@ public class HomeSenpaiShrineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018B7 RID: 6327 RVA: 0x000F3390 File Offset: 0x000F1590
+	// Token: 0x060018BB RID: 6331 RVA: 0x000F3894 File Offset: 0x000F1A94
 	private bool InUpperHalf()
 	{
 		return this.Y < 2;
 	}
 
-	// Token: 0x060018B8 RID: 6328 RVA: 0x000F339B File Offset: 0x000F159B
+	// Token: 0x060018BC RID: 6332 RVA: 0x000F389F File Offset: 0x000F1A9F
 	private int GetCurrentIndex()
 	{
 		if (this.InUpperHalf())
@@ -33,7 +33,7 @@ public class HomeSenpaiShrineScript : MonoBehaviour
 		return 2 + (this.X + (this.Y - 2) * this.Columns);
 	}
 
-	// Token: 0x060018B9 RID: 6329 RVA: 0x000F33C4 File Offset: 0x000F15C4
+	// Token: 0x060018BD RID: 6333 RVA: 0x000F38C8 File Offset: 0x000F1AC8
 	private void Update()
 	{
 		if (!this.HomeYandere.CanMove && !this.PauseScreen.Show)
@@ -94,7 +94,7 @@ public class HomeSenpaiShrineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018BA RID: 6330 RVA: 0x000F3774 File Offset: 0x000F1974
+	// Token: 0x060018BE RID: 6334 RVA: 0x000F3C78 File Offset: 0x000F1E78
 	private void UpdateText(int newIndex)
 	{
 		if (newIndex == -1)
@@ -117,63 +117,63 @@ public class HomeSenpaiShrineScript : MonoBehaviour
 		this.DescLabel.text = "I'd like to find something that Senpai touched and keep it here...";
 	}
 
-	// Token: 0x040025A2 RID: 9634
+	// Token: 0x040025AB RID: 9643
 	public InputManagerScript InputManager;
 
-	// Token: 0x040025A3 RID: 9635
+	// Token: 0x040025AC RID: 9644
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x040025A4 RID: 9636
+	// Token: 0x040025AD RID: 9645
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x040025A5 RID: 9637
+	// Token: 0x040025AE RID: 9646
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x040025A6 RID: 9638
+	// Token: 0x040025AF RID: 9647
 	public HomeWindowScript HomeWindow;
 
-	// Token: 0x040025A7 RID: 9639
+	// Token: 0x040025B0 RID: 9648
 	public GameObject[] Collectibles;
 
-	// Token: 0x040025A8 RID: 9640
+	// Token: 0x040025B1 RID: 9649
 	public Transform[] Destinations;
 
-	// Token: 0x040025A9 RID: 9641
+	// Token: 0x040025B2 RID: 9650
 	public Transform[] Targets;
 
-	// Token: 0x040025AA RID: 9642
+	// Token: 0x040025B3 RID: 9651
 	public Transform RightDoor;
 
-	// Token: 0x040025AB RID: 9643
+	// Token: 0x040025B4 RID: 9652
 	public Transform LeftDoor;
 
-	// Token: 0x040025AC RID: 9644
+	// Token: 0x040025B5 RID: 9653
 	public UILabel NameLabel;
 
-	// Token: 0x040025AD RID: 9645
+	// Token: 0x040025B6 RID: 9654
 	public UILabel DescLabel;
 
-	// Token: 0x040025AE RID: 9646
+	// Token: 0x040025B7 RID: 9655
 	public string[] Names;
 
-	// Token: 0x040025AF RID: 9647
+	// Token: 0x040025B8 RID: 9656
 	public string[] Descs;
 
-	// Token: 0x040025B0 RID: 9648
+	// Token: 0x040025B9 RID: 9657
 	public float Rotation;
 
-	// Token: 0x040025B1 RID: 9649
+	// Token: 0x040025BA RID: 9658
 	private int Rows = 5;
 
-	// Token: 0x040025B2 RID: 9650
+	// Token: 0x040025BB RID: 9659
 	private int Columns = 3;
 
-	// Token: 0x040025B3 RID: 9651
+	// Token: 0x040025BC RID: 9660
 	private int X = 1;
 
-	// Token: 0x040025B4 RID: 9652
+	// Token: 0x040025BD RID: 9661
 	private int Y = 3;
 
-	// Token: 0x040025B5 RID: 9653
+	// Token: 0x040025BE RID: 9662
 	public bool Open;
 }

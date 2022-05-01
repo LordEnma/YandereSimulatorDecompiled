@@ -6,7 +6,7 @@ using UnityEngine;
 public class BMSymbol
 {
 	// Token: 0x17000050 RID: 80
-	// (get) Token: 0x0600030F RID: 783 RVA: 0x00020383 File Offset: 0x0001E583
+	// (get) Token: 0x0600030F RID: 783 RVA: 0x000204C3 File Offset: 0x0001E6C3
 	public int length
 	{
 		get
@@ -20,7 +20,7 @@ public class BMSymbol
 	}
 
 	// Token: 0x17000051 RID: 81
-	// (get) Token: 0x06000310 RID: 784 RVA: 0x000203A4 File Offset: 0x0001E5A4
+	// (get) Token: 0x06000310 RID: 784 RVA: 0x000204E4 File Offset: 0x0001E6E4
 	public int offsetX
 	{
 		get
@@ -30,7 +30,7 @@ public class BMSymbol
 	}
 
 	// Token: 0x17000052 RID: 82
-	// (get) Token: 0x06000311 RID: 785 RVA: 0x000203AC File Offset: 0x0001E5AC
+	// (get) Token: 0x06000311 RID: 785 RVA: 0x000204EC File Offset: 0x0001E6EC
 	public int offsetY
 	{
 		get
@@ -40,7 +40,7 @@ public class BMSymbol
 	}
 
 	// Token: 0x17000053 RID: 83
-	// (get) Token: 0x06000312 RID: 786 RVA: 0x000203B4 File Offset: 0x0001E5B4
+	// (get) Token: 0x06000312 RID: 786 RVA: 0x000204F4 File Offset: 0x0001E6F4
 	public int width
 	{
 		get
@@ -50,7 +50,7 @@ public class BMSymbol
 	}
 
 	// Token: 0x17000054 RID: 84
-	// (get) Token: 0x06000313 RID: 787 RVA: 0x000203BC File Offset: 0x0001E5BC
+	// (get) Token: 0x06000313 RID: 787 RVA: 0x000204FC File Offset: 0x0001E6FC
 	public int height
 	{
 		get
@@ -60,7 +60,7 @@ public class BMSymbol
 	}
 
 	// Token: 0x17000055 RID: 85
-	// (get) Token: 0x06000314 RID: 788 RVA: 0x000203C4 File Offset: 0x0001E5C4
+	// (get) Token: 0x06000314 RID: 788 RVA: 0x00020504 File Offset: 0x0001E704
 	public int advance
 	{
 		get
@@ -70,7 +70,7 @@ public class BMSymbol
 	}
 
 	// Token: 0x17000056 RID: 86
-	// (get) Token: 0x06000315 RID: 789 RVA: 0x000203CC File Offset: 0x0001E5CC
+	// (get) Token: 0x06000315 RID: 789 RVA: 0x0002050C File Offset: 0x0001E70C
 	public Rect uvRect
 	{
 		get
@@ -79,13 +79,13 @@ public class BMSymbol
 		}
 	}
 
-	// Token: 0x06000316 RID: 790 RVA: 0x000203D4 File Offset: 0x0001E5D4
+	// Token: 0x06000316 RID: 790 RVA: 0x00020514 File Offset: 0x0001E714
 	public void MarkAsChanged()
 	{
 		this.mIsValid = false;
 	}
 
-	// Token: 0x06000317 RID: 791 RVA: 0x000203E0 File Offset: 0x0001E5E0
+	// Token: 0x06000317 RID: 791 RVA: 0x00020520 File Offset: 0x0001E720
 	public bool Validate(INGUIAtlas atlas)
 	{
 		if (atlas == null)
@@ -122,36 +122,36 @@ public class BMSymbol
 		return this.mSprite != null;
 	}
 
-	// Token: 0x04000499 RID: 1177
+	// Token: 0x0400049B RID: 1179
 	public string sequence;
 
-	// Token: 0x0400049A RID: 1178
+	// Token: 0x0400049C RID: 1180
 	public string spriteName;
 
-	// Token: 0x0400049B RID: 1179
+	// Token: 0x0400049D RID: 1181
 	private UISpriteData mSprite;
 
-	// Token: 0x0400049C RID: 1180
+	// Token: 0x0400049E RID: 1182
 	private bool mIsValid;
 
-	// Token: 0x0400049D RID: 1181
+	// Token: 0x0400049F RID: 1183
 	private int mLength;
 
-	// Token: 0x0400049E RID: 1182
+	// Token: 0x040004A0 RID: 1184
 	private int mOffsetX;
 
-	// Token: 0x0400049F RID: 1183
+	// Token: 0x040004A1 RID: 1185
 	private int mOffsetY;
 
-	// Token: 0x040004A0 RID: 1184
+	// Token: 0x040004A2 RID: 1186
 	private int mWidth;
 
-	// Token: 0x040004A1 RID: 1185
+	// Token: 0x040004A3 RID: 1187
 	private int mHeight;
 
-	// Token: 0x040004A2 RID: 1186
+	// Token: 0x040004A4 RID: 1188
 	private int mAdvance;
 
-	// Token: 0x040004A3 RID: 1187
+	// Token: 0x040004A5 RID: 1189
 	private Rect mUV;
 }

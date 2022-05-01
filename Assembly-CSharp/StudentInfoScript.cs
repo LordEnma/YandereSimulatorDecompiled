@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200045A RID: 1114
+// Token: 0x0200045B RID: 1115
 public class StudentInfoScript : MonoBehaviour
 {
-	// Token: 0x06001D75 RID: 7541 RVA: 0x00163980 File Offset: 0x00161B80
+	// Token: 0x06001D7C RID: 7548 RVA: 0x00164210 File Offset: 0x00162410
 	private void Start()
 	{
 		StudentGlobals.SetStudentPhotographed(98, true);
@@ -22,9 +22,10 @@ public class StudentInfoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D76 RID: 7542 RVA: 0x00163A0C File Offset: 0x00161C0C
+	// Token: 0x06001D7D RID: 7549 RVA: 0x0016429C File Offset: 0x0016249C
 	public void UpdateInfo(int ID)
 	{
+		this.CurrentStudent = ID;
 		if (!this.UpdatedOnce)
 		{
 			this.Eighties = GameGlobals.Eighties;
@@ -79,22 +80,48 @@ public class StudentInfoScript : MonoBehaviour
 		{
 			this.ReputationBar.localPosition = new Vector3(-96f, this.ReputationBar.localPosition.y, this.ReputationBar.localPosition.z);
 		}
-		this.PersonaLabel.text = Persona.PersonaNames[studentJson.Persona];
+		if (this.StudentManager.Students[this.CurrentStudent] != null)
+		{
+			this.PersonaLabel.text = Persona.PersonaNames[this.StudentManager.Students[this.CurrentStudent].Persona];
+		}
+		else
+		{
+			this.PersonaLabel.text = "?????";
+		}
 		if (studentJson.Persona == PersonaType.Strict && studentJson.Club == ClubType.GymTeacher && !StudentGlobals.GetStudentReplaced(ID))
 		{
 			this.PersonaLabel.text = "Friendly but Strict";
 		}
-		if (studentJson.Crush == 0)
+		this.MatchmadeCheck();
+		if (this.Matchmade)
 		{
-			this.CrushLabel.text = "None";
-		}
-		else if (studentJson.Crush == 99)
-		{
-			this.CrushLabel.text = "?????";
+			this.LeftCrushLabel.text = "Relationship:";
+			this.CrushLabel.text = this.JSON.Students[studentJson.Crush].Name;
+			this.CrushLabel.text = this.PartnerName;
 		}
 		else
 		{
-			this.CrushLabel.text = this.JSON.Students[studentJson.Crush].Name;
+			this.LeftCrushLabel.text = "Crush:";
+			if (studentJson.Crush == 0)
+			{
+				this.CrushLabel.text = "Unknown";
+			}
+			else if (studentJson.Crush == 99)
+			{
+				this.CrushLabel.text = "?????";
+			}
+			else if (this.CurrentStudent == this.StudentManager.RivalID || (this.CurrentStudent == this.StudentManager.SuitorID && this.StudentManager.LoveManager.SuitorProgress > 0))
+			{
+				this.CrushLabel.text = this.JSON.Students[studentJson.Crush].Name;
+			}
+			else if (this.CurrentStudent > 10 && this.CurrentStudent < 21)
+			{
+				this.CrushLabel.text = "None Anymore";
+			}
+			else
+			{
+				this.CrushLabel.text = "Unknown";
+			}
 		}
 		if (studentJson.Club < ClubType.Teacher)
 		{
@@ -178,11 +205,10 @@ public class StudentInfoScript : MonoBehaviour
 			}
 		}
 		this.UpdateAdditionalInfo(ID);
-		this.CurrentStudent = ID;
 		this.UpdateRepChart();
 	}
 
-	// Token: 0x06001D77 RID: 7543 RVA: 0x00163FA0 File Offset: 0x001621A0
+	// Token: 0x06001D7E RID: 7550 RVA: 0x0016494C File Offset: 0x00162B4C
 	private void Update()
 	{
 		if (this.CurrentStudent == 100)
@@ -522,7 +548,7 @@ public class StudentInfoScript : MonoBehaviour
 		this.ReputationChart.transform.localScale = Vector3.Lerp(this.ReputationChart.transform.localScale, new Vector3(0f, 0f, 0f), Time.unscaledDeltaTime * 10f);
 	}
 
-	// Token: 0x06001D78 RID: 7544 RVA: 0x00165240 File Offset: 0x00163440
+	// Token: 0x06001D7F RID: 7551 RVA: 0x00165BEC File Offset: 0x00163DEC
 	private void UpdateAdditionalInfo(int ID)
 	{
 		if (!this.Eighties)
@@ -585,7 +611,7 @@ public class StudentInfoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D79 RID: 7545 RVA: 0x00165410 File Offset: 0x00163610
+	// Token: 0x06001D80 RID: 7552 RVA: 0x00165DBC File Offset: 0x00163FBC
 	private void UpdateTopics()
 	{
 		int num = 0;
@@ -617,7 +643,7 @@ public class StudentInfoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D7A RID: 7546 RVA: 0x001654D4 File Offset: 0x001636D4
+	// Token: 0x06001D81 RID: 7553 RVA: 0x00165E80 File Offset: 0x00164080
 	private void UpdateRepChart()
 	{
 		Vector3 vector = Vector3.zero;
@@ -638,124 +664,251 @@ public class StudentInfoScript : MonoBehaviour
 		this.ReputationChart.fields[2].Value = vector.z;
 	}
 
-	// Token: 0x0400366A RID: 13930
-	public StudentInfoMenuScript StudentInfoMenu;
-
-	// Token: 0x0400366B RID: 13931
-	public StudentManagerScript StudentManager;
-
-	// Token: 0x0400366C RID: 13932
-	public DialogueWheelScript DialogueWheel;
-
-	// Token: 0x0400366D RID: 13933
-	public HomeInternetScript HomeInternet;
-
-	// Token: 0x0400366E RID: 13934
-	public TopicManagerScript TopicManager;
-
-	// Token: 0x0400366F RID: 13935
-	public NoteLockerScript NoteLocker;
-
-	// Token: 0x04003670 RID: 13936
-	public RadarChart ReputationChart;
-
-	// Token: 0x04003671 RID: 13937
-	public PromptBarScript PromptBar;
-
-	// Token: 0x04003672 RID: 13938
-	public ShutterScript Shutter;
-
-	// Token: 0x04003673 RID: 13939
-	public YandereScript Yandere;
-
-	// Token: 0x04003674 RID: 13940
-	public JsonScript JSON;
-
-	// Token: 0x04003675 RID: 13941
-	public Texture GuidanceCounselor;
-
-	// Token: 0x04003676 RID: 13942
-	public Texture DefaultPortrait;
-
-	// Token: 0x04003677 RID: 13943
-	public Texture BlankPortrait;
-
-	// Token: 0x04003678 RID: 13944
-	public Texture Headmaster;
+	// Token: 0x06001D82 RID: 7554 RVA: 0x00165F44 File Offset: 0x00164144
+	private void MatchmadeCheck()
+	{
+		Debug.Log("Performing Matchmaking Check.");
+		this.Matchmade = false;
+		if (this.Eighties)
+		{
+			if ((this.CurrentStudent > 10 && this.CurrentStudent < 21 && GameGlobals.GetRivalEliminations(this.CurrentStudent - 10) == 6) || (this.CurrentStudent == 22 && GameGlobals.GetRivalEliminations(1) == 6) || (this.CurrentStudent == 27 && GameGlobals.GetRivalEliminations(2) == 6) || (this.CurrentStudent == 32 && GameGlobals.GetRivalEliminations(3) == 6) || (this.CurrentStudent == 37 && GameGlobals.GetRivalEliminations(4) == 6) || (this.CurrentStudent == 42 && GameGlobals.GetRivalEliminations(5) == 6) || (this.CurrentStudent == 47 && GameGlobals.GetRivalEliminations(6) == 6) || (this.CurrentStudent == 57 && GameGlobals.GetRivalEliminations(7) == 6) || (this.CurrentStudent == 62 && GameGlobals.GetRivalEliminations(8) == 6) || (this.CurrentStudent == 67 && GameGlobals.GetRivalEliminations(9) == 6) || (this.CurrentStudent == 72 && GameGlobals.GetRivalEliminations(10) == 6))
+			{
+				this.Matchmade = true;
+				if (this.CurrentStudent == 11)
+				{
+					this.PartnerName = this.JSON.Students[22].Name;
+					return;
+				}
+				if (this.CurrentStudent == 12)
+				{
+					this.PartnerName = this.JSON.Students[27].Name;
+					return;
+				}
+				if (this.CurrentStudent == 13)
+				{
+					this.PartnerName = this.JSON.Students[28].Name;
+					return;
+				}
+				if (this.CurrentStudent == 14)
+				{
+					this.PartnerName = this.JSON.Students[32].Name;
+					return;
+				}
+				if (this.CurrentStudent == 15)
+				{
+					this.PartnerName = this.JSON.Students[42].Name;
+					return;
+				}
+				if (this.CurrentStudent == 16)
+				{
+					this.PartnerName = this.JSON.Students[47].Name;
+					return;
+				}
+				if (this.CurrentStudent == 17)
+				{
+					this.PartnerName = this.JSON.Students[57].Name;
+					return;
+				}
+				if (this.CurrentStudent == 18)
+				{
+					this.PartnerName = this.JSON.Students[62].Name;
+					return;
+				}
+				if (this.CurrentStudent == 19)
+				{
+					this.PartnerName = this.JSON.Students[67].Name;
+					return;
+				}
+				if (this.CurrentStudent == 20)
+				{
+					this.PartnerName = this.JSON.Students[72].Name;
+					return;
+				}
+				if (this.CurrentStudent == 22)
+				{
+					this.PartnerName = this.JSON.Students[11].Name;
+					return;
+				}
+				if (this.CurrentStudent == 27)
+				{
+					this.PartnerName = this.JSON.Students[12].Name;
+					return;
+				}
+				if (this.CurrentStudent == 32)
+				{
+					this.PartnerName = this.JSON.Students[13].Name;
+					return;
+				}
+				if (this.CurrentStudent == 37)
+				{
+					this.PartnerName = this.JSON.Students[14].Name;
+					return;
+				}
+				if (this.CurrentStudent == 42)
+				{
+					this.PartnerName = this.JSON.Students[15].Name;
+					return;
+				}
+				if (this.CurrentStudent == 47)
+				{
+					this.PartnerName = this.JSON.Students[16].Name;
+					return;
+				}
+				if (this.CurrentStudent == 57)
+				{
+					this.PartnerName = this.JSON.Students[17].Name;
+					return;
+				}
+				if (this.CurrentStudent == 62)
+				{
+					this.PartnerName = this.JSON.Students[18].Name;
+					return;
+				}
+				if (this.CurrentStudent == 67)
+				{
+					this.PartnerName = this.JSON.Students[19].Name;
+					return;
+				}
+				if (this.CurrentStudent == 72)
+				{
+					this.PartnerName = this.JSON.Students[20].Name;
+					return;
+				}
+			}
+		}
+		else if ((this.CurrentStudent > 10 && this.CurrentStudent < 21 && GameGlobals.GetRivalEliminations(this.CurrentStudent - 10) == 6) || (this.CurrentStudent == 6 && GameGlobals.GetRivalEliminations(1) == 6))
+		{
+			this.Matchmade = true;
+			if (this.CurrentStudent == 11)
+			{
+				this.PartnerName = this.JSON.Students[6].Name;
+				return;
+			}
+			if (this.CurrentStudent == 6)
+			{
+				this.PartnerName = this.JSON.Students[11].Name;
+			}
+		}
+	}
 
 	// Token: 0x04003679 RID: 13945
-	public Texture InfoChan;
+	public StudentInfoMenuScript StudentInfoMenu;
 
 	// Token: 0x0400367A RID: 13946
-	public Transform ReputationBar;
+	public StudentManagerScript StudentManager;
 
 	// Token: 0x0400367B RID: 13947
-	public GameObject Static;
+	public DialogueWheelScript DialogueWheel;
 
 	// Token: 0x0400367C RID: 13948
-	public GameObject Topics;
+	public HomeInternetScript HomeInternet;
 
 	// Token: 0x0400367D RID: 13949
-	public UILabel OccupationLabel;
+	public TopicManagerScript TopicManager;
 
 	// Token: 0x0400367E RID: 13950
-	public UILabel ReputationLabel;
+	public NoteLockerScript NoteLocker;
 
 	// Token: 0x0400367F RID: 13951
-	public UILabel RealNameLabel;
+	public RadarChart ReputationChart;
 
 	// Token: 0x04003680 RID: 13952
-	public UILabel StrengthLabel;
+	public PromptBarScript PromptBar;
 
 	// Token: 0x04003681 RID: 13953
-	public UILabel PersonaLabel;
+	public ShutterScript Shutter;
 
 	// Token: 0x04003682 RID: 13954
-	public UILabel ClassLabel;
+	public YandereScript Yandere;
 
 	// Token: 0x04003683 RID: 13955
-	public UILabel CrushLabel;
+	public JsonScript JSON;
 
 	// Token: 0x04003684 RID: 13956
-	public UILabel ClubLabel;
+	public Texture GuidanceCounselor;
 
 	// Token: 0x04003685 RID: 13957
-	public UILabel InfoLabel;
+	public Texture DefaultPortrait;
 
 	// Token: 0x04003686 RID: 13958
-	public UILabel NameLabel;
+	public Texture BlankPortrait;
 
 	// Token: 0x04003687 RID: 13959
-	public UITexture Portrait;
+	public Texture Headmaster;
 
 	// Token: 0x04003688 RID: 13960
-	public string[] OpinionSpriteNames;
+	public Texture InfoChan;
 
 	// Token: 0x04003689 RID: 13961
-	public string[] Strings;
+	public Transform ReputationBar;
 
 	// Token: 0x0400368A RID: 13962
-	public int CurrentStudent;
+	public GameObject Static;
 
 	// Token: 0x0400368B RID: 13963
-	public bool UpdatedOnce;
+	public GameObject Topics;
 
 	// Token: 0x0400368C RID: 13964
-	public bool Eighties;
+	public UILabel OccupationLabel;
 
 	// Token: 0x0400368D RID: 13965
-	public bool ShowRep;
+	public UILabel ReputationLabel;
 
 	// Token: 0x0400368E RID: 13966
-	public bool Back;
+	public UILabel RealNameLabel;
 
 	// Token: 0x0400368F RID: 13967
-	public UISprite[] TopicIcons;
+	public UILabel StrengthLabel;
 
 	// Token: 0x04003690 RID: 13968
-	public UISprite[] TopicOpinionIcons;
+	public UILabel PersonaLabel;
 
 	// Token: 0x04003691 RID: 13969
+	public UILabel ClassLabel;
+
+	// Token: 0x04003692 RID: 13970
+	public UILabel CrushLabel;
+
+	// Token: 0x04003693 RID: 13971
+	public UILabel ClubLabel;
+
+	// Token: 0x04003694 RID: 13972
+	public UILabel InfoLabel;
+
+	// Token: 0x04003695 RID: 13973
+	public UILabel NameLabel;
+
+	// Token: 0x04003696 RID: 13974
+	public UITexture Portrait;
+
+	// Token: 0x04003697 RID: 13975
+	public string[] OpinionSpriteNames;
+
+	// Token: 0x04003698 RID: 13976
+	public string[] Strings;
+
+	// Token: 0x04003699 RID: 13977
+	public int CurrentStudent;
+
+	// Token: 0x0400369A RID: 13978
+	public bool UpdatedOnce;
+
+	// Token: 0x0400369B RID: 13979
+	public bool Eighties;
+
+	// Token: 0x0400369C RID: 13980
+	public bool ShowRep;
+
+	// Token: 0x0400369D RID: 13981
+	public bool Back;
+
+	// Token: 0x0400369E RID: 13982
+	public UISprite[] TopicIcons;
+
+	// Token: 0x0400369F RID: 13983
+	public UISprite[] TopicOpinionIcons;
+
+	// Token: 0x040036A0 RID: 13984
 	private static readonly IntAndStringDictionary StrengthStrings = new IntAndStringDictionary
 	{
 		{
@@ -803,4 +956,13 @@ public class StudentInfoScript : MonoBehaviour
 			"?????"
 		}
 	};
+
+	// Token: 0x040036A1 RID: 13985
+	public UILabel LeftCrushLabel;
+
+	// Token: 0x040036A2 RID: 13986
+	public string PartnerName;
+
+	// Token: 0x040036A3 RID: 13987
+	public bool Matchmade;
 }

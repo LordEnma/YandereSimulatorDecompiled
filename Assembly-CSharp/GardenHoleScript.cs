@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002DA RID: 730
 public class GardenHoleScript : MonoBehaviour
 {
-	// Token: 0x060014D7 RID: 5335 RVA: 0x000CD73C File Offset: 0x000CB93C
+	// Token: 0x060014DB RID: 5339 RVA: 0x000CDC04 File Offset: 0x000CBE04
 	private void Start()
 	{
 		if (SchoolGlobals.GetGardenGraveOccupied(this.ID))
@@ -15,10 +15,10 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014D8 RID: 5336 RVA: 0x000CD76C File Offset: 0x000CB96C
+	// Token: 0x060014DC RID: 5340 RVA: 0x000CDC34 File Offset: 0x000CBE34
 	private void Update()
 	{
-		if (this.Yandere.transform.position.z < base.transform.position.z - 0.5f)
+		if (this.Prompt.DistanceSqr < 10f)
 		{
 			if (this.Yandere.Equipped > 0)
 			{
@@ -115,7 +115,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014D9 RID: 5337 RVA: 0x000CDCA0 File Offset: 0x000CBEA0
+	// Token: 0x060014DD RID: 5341 RVA: 0x000CE14C File Offset: 0x000CC34C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Dug && other.gameObject.layer == 11)
@@ -126,7 +126,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014DA RID: 5338 RVA: 0x000CDCFD File Offset: 0x000CBEFD
+	// Token: 0x060014DE RID: 5342 RVA: 0x000CE1A9 File Offset: 0x000CC3A9
 	private void OnTriggerExit(Collider other)
 	{
 		if (this.Dug && other.gameObject.layer == 11)
@@ -137,7 +137,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014DB RID: 5339 RVA: 0x000CDD3B File Offset: 0x000CBF3B
+	// Token: 0x060014DF RID: 5343 RVA: 0x000CE1E7 File Offset: 0x000CC3E7
 	public void EndOfDayCheck()
 	{
 		if (this.VictimID > 0)
@@ -147,42 +147,42 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040020CD RID: 8397
+	// Token: 0x040020D6 RID: 8406
 	public YandereScript Yandere;
 
-	// Token: 0x040020CE RID: 8398
+	// Token: 0x040020D7 RID: 8407
 	public RagdollScript Corpse;
 
-	// Token: 0x040020CF RID: 8399
+	// Token: 0x040020D8 RID: 8408
 	public PromptScript Prompt;
 
-	// Token: 0x040020D0 RID: 8400
+	// Token: 0x040020D9 RID: 8409
 	public Collider MyCollider;
 
-	// Token: 0x040020D1 RID: 8401
+	// Token: 0x040020DA RID: 8410
 	public MeshFilter MyMesh;
 
-	// Token: 0x040020D2 RID: 8402
+	// Token: 0x040020DB RID: 8411
 	public GameObject Carrots;
 
-	// Token: 0x040020D3 RID: 8403
+	// Token: 0x040020DC RID: 8412
 	public GameObject Pile;
 
-	// Token: 0x040020D4 RID: 8404
+	// Token: 0x040020DD RID: 8413
 	public Mesh MoundMesh;
 
-	// Token: 0x040020D5 RID: 8405
+	// Token: 0x040020DE RID: 8414
 	public Mesh HoleMesh;
 
-	// Token: 0x040020D6 RID: 8406
+	// Token: 0x040020DF RID: 8415
 	public bool Bury;
 
-	// Token: 0x040020D7 RID: 8407
+	// Token: 0x040020E0 RID: 8416
 	public bool Dug;
 
-	// Token: 0x040020D8 RID: 8408
+	// Token: 0x040020E1 RID: 8417
 	public int VictimID;
 
-	// Token: 0x040020D9 RID: 8409
+	// Token: 0x040020E2 RID: 8418
 	public int ID;
 }

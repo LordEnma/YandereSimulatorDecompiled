@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class Letterboxing : MonoBehaviour
 {
-	// Token: 0x06001972 RID: 6514 RVA: 0x000FF768 File Offset: 0x000FD968
+	// Token: 0x06001976 RID: 6518 RVA: 0x000FFC6C File Offset: 0x000FDE6C
 	private void Start()
 	{
 		float num = (float)Screen.width / (float)Screen.height;
@@ -13,6 +13,6 @@ public class Letterboxing : MonoBehaviour
 		base.GetComponent<Camera>().rect = new Rect(0f, num2 / 2f, 1f, 1f - num2);
 	}
 
-	// Token: 0x0400284B RID: 10315
+	// Token: 0x04002854 RID: 10324
 	private const float KEEP_ASPECT = 1.7777778f;
 }

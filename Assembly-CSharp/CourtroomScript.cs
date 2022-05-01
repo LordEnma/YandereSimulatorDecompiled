@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000263 RID: 611
 public class CourtroomScript : MonoBehaviour
 {
-	// Token: 0x060012F1 RID: 4849 RVA: 0x000A68EC File Offset: 0x000A4AEC
+	// Token: 0x060012F5 RID: 4853 RVA: 0x000A6D84 File Offset: 0x000A4F84
 	private void Start()
 	{
 		this.Subtitle.text = "";
@@ -22,7 +22,7 @@ public class CourtroomScript : MonoBehaviour
 		this.VtuberCheck();
 	}
 
-	// Token: 0x060012F2 RID: 4850 RVA: 0x000A69B8 File Offset: 0x000A4BB8
+	// Token: 0x060012F6 RID: 4854 RVA: 0x000A6E50 File Offset: 0x000A5050
 	public void UpdateFactLabels()
 	{
 		this.Fact[1] = this.RivalNames[1] + " " + this.Eliminations[this.Stats.EliminationIDs[1]];
@@ -94,7 +94,7 @@ public class CourtroomScript : MonoBehaviour
 		this.GuiltyPoints[28] = this.Stats.Grudges * 20;
 	}
 
-	// Token: 0x060012F3 RID: 4851 RVA: 0x000A7110 File Offset: 0x000A5310
+	// Token: 0x060012F7 RID: 4855 RVA: 0x000A75A8 File Offset: 0x000A57A8
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -406,7 +406,7 @@ public class CourtroomScript : MonoBehaviour
 		this.UpdateDOF(3f);
 	}
 
-	// Token: 0x060012F4 RID: 4852 RVA: 0x000A7F98 File Offset: 0x000A6198
+	// Token: 0x060012F8 RID: 4856 RVA: 0x000A8430 File Offset: 0x000A6630
 	public void PopulateRankPanel()
 	{
 		this.RankIcon.transform.localScale = new Vector3(0f, 0f, 0f);
@@ -450,7 +450,7 @@ public class CourtroomScript : MonoBehaviour
 		this.RankIcon.mainTexture = this.RankIcons[this.Rank];
 	}
 
-	// Token: 0x060012F5 RID: 4853 RVA: 0x000A81A8 File Offset: 0x000A63A8
+	// Token: 0x060012F9 RID: 4857 RVA: 0x000A8640 File Offset: 0x000A6840
 	private void UpdateDOF(float Value)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -459,7 +459,7 @@ public class CourtroomScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x060012F6 RID: 4854 RVA: 0x000A81EC File Offset: 0x000A63EC
+	// Token: 0x060012FA RID: 4858 RVA: 0x000A8684 File Offset: 0x000A6884
 	private void ResetBloom()
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -470,7 +470,7 @@ public class CourtroomScript : MonoBehaviour
 		this.Profile.bloom.settings = settings;
 	}
 
-	// Token: 0x060012F7 RID: 4855 RVA: 0x000A8260 File Offset: 0x000A6460
+	// Token: 0x060012FB RID: 4859 RVA: 0x000A86F8 File Offset: 0x000A68F8
 	public void VtuberCheck()
 	{
 		if (GameGlobals.VtuberID > 0)
@@ -490,168 +490,168 @@ public class CourtroomScript : MonoBehaviour
 		this.VtuberHairs[1].SetActive(false);
 	}
 
-	// Token: 0x04001AD0 RID: 6864
+	// Token: 0x04001AD8 RID: 6872
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04001AD1 RID: 6865
+	// Token: 0x04001AD9 RID: 6873
 	public EightiesStatsScript Stats;
 
-	// Token: 0x04001AD2 RID: 6866
+	// Token: 0x04001ADA RID: 6874
 	public ParticleSystem[] SpeechLines;
 
-	// Token: 0x04001AD3 RID: 6867
+	// Token: 0x04001ADB RID: 6875
 	public Transform[] CameraPosition;
 
-	// Token: 0x04001AD4 RID: 6868
+	// Token: 0x04001ADC RID: 6876
 	public AudioClip[] ScoreJingles;
 
-	// Token: 0x04001AD5 RID: 6869
+	// Token: 0x04001ADD RID: 6877
 	public AudioClip[] Voice;
 
-	// Token: 0x04001AD6 RID: 6870
+	// Token: 0x04001ADE RID: 6878
 	public GameObject SkipButton;
 
-	// Token: 0x04001AD7 RID: 6871
+	// Token: 0x04001ADF RID: 6879
 	public Transform BalanceBar;
 
-	// Token: 0x04001AD8 RID: 6872
+	// Token: 0x04001AE0 RID: 6880
 	public Transform RightScale;
 
-	// Token: 0x04001AD9 RID: 6873
+	// Token: 0x04001AE1 RID: 6881
 	public Transform LeftScale;
 
-	// Token: 0x04001ADA RID: 6874
+	// Token: 0x04001AE2 RID: 6882
 	public Transform Scale;
 
-	// Token: 0x04001ADB RID: 6875
+	// Token: 0x04001AE3 RID: 6883
 	public AudioSource Jukebox;
 
-	// Token: 0x04001ADC RID: 6876
+	// Token: 0x04001AE4 RID: 6884
 	public AudioSource MyAudio;
 
-	// Token: 0x04001ADD RID: 6877
+	// Token: 0x04001AE5 RID: 6885
 	public AudioSource Walla;
 
-	// Token: 0x04001ADE RID: 6878
+	// Token: 0x04001AE6 RID: 6886
 	public Texture[] RankIcons;
 
-	// Token: 0x04001ADF RID: 6879
+	// Token: 0x04001AE7 RID: 6887
 	public UITexture Polaroid;
 
-	// Token: 0x04001AE0 RID: 6880
+	// Token: 0x04001AE8 RID: 6888
 	public UITexture RankIcon;
 
-	// Token: 0x04001AE1 RID: 6881
+	// Token: 0x04001AE9 RID: 6889
 	public Animation Yandere;
 
-	// Token: 0x04001AE2 RID: 6882
+	// Token: 0x04001AEA RID: 6890
 	public UISprite Darkness;
 
-	// Token: 0x04001AE3 RID: 6883
+	// Token: 0x04001AEB RID: 6891
 	public UIPanel RankPanel;
 
-	// Token: 0x04001AE4 RID: 6884
+	// Token: 0x04001AEC RID: 6892
 	public UILabel FactLabel;
 
-	// Token: 0x04001AE5 RID: 6885
+	// Token: 0x04001AED RID: 6893
 	public UILabel RankDesc;
 
-	// Token: 0x04001AE6 RID: 6886
+	// Token: 0x04001AEE RID: 6894
 	public UILabel Subtitle;
 
-	// Token: 0x04001AE7 RID: 6887
+	// Token: 0x04001AEF RID: 6895
 	public int[] EliminationSuspicion;
 
-	// Token: 0x04001AE8 RID: 6888
+	// Token: 0x04001AF0 RID: 6896
 	public int[] DetailSuspicion;
 
-	// Token: 0x04001AE9 RID: 6889
+	// Token: 0x04001AF1 RID: 6897
 	public int[] GuiltyPoints;
 
-	// Token: 0x04001AEA RID: 6890
+	// Token: 0x04001AF2 RID: 6898
 	public string[] OpeningStatement;
 
-	// Token: 0x04001AEB RID: 6891
+	// Token: 0x04001AF3 RID: 6899
 	public string[] Eliminations;
 
-	// Token: 0x04001AEC RID: 6892
+	// Token: 0x04001AF4 RID: 6900
 	public string[] RivalNames;
 
-	// Token: 0x04001AED RID: 6893
+	// Token: 0x04001AF5 RID: 6901
 	public string[] Details;
 
-	// Token: 0x04001AEE RID: 6894
+	// Token: 0x04001AF6 RID: 6902
 	public string[] Fact;
 
-	// Token: 0x04001AEF RID: 6895
+	// Token: 0x04001AF7 RID: 6903
 	public float TargetRotation;
 
-	// Token: 0x04001AF0 RID: 6896
+	// Token: 0x04001AF8 RID: 6904
 	public float MusicTimer;
 
-	// Token: 0x04001AF1 RID: 6897
+	// Token: 0x04001AF9 RID: 6905
 	public float Rotation;
 
-	// Token: 0x04001AF2 RID: 6898
+	// Token: 0x04001AFA RID: 6906
 	public float Speed;
 
-	// Token: 0x04001AF3 RID: 6899
+	// Token: 0x04001AFB RID: 6907
 	public float Timer;
 
-	// Token: 0x04001AF4 RID: 6900
+	// Token: 0x04001AFC RID: 6908
 	public bool Innocent;
 
-	// Token: 0x04001AF5 RID: 6901
+	// Token: 0x04001AFD RID: 6909
 	public int Innocence;
 
-	// Token: 0x04001AF6 RID: 6902
+	// Token: 0x04001AFE RID: 6910
 	public int FactID;
 
-	// Token: 0x04001AF7 RID: 6903
+	// Token: 0x04001AFF RID: 6911
 	public int Guilt;
 
-	// Token: 0x04001AF8 RID: 6904
+	// Token: 0x04001B00 RID: 6912
 	public int Phase;
 
-	// Token: 0x04001AF9 RID: 6905
+	// Token: 0x04001B01 RID: 6913
 	public int Score;
 
-	// Token: 0x04001AFA RID: 6906
+	// Token: 0x04001B02 RID: 6914
 	public int Rank;
 
-	// Token: 0x04001AFB RID: 6907
+	// Token: 0x04001B03 RID: 6915
 	public AudioClip Deaths;
 
-	// Token: 0x04001AFC RID: 6908
+	// Token: 0x04001B04 RID: 6916
 	public AudioClip Disappearances;
 
-	// Token: 0x04001AFD RID: 6909
+	// Token: 0x04001B05 RID: 6917
 	public AudioClip DeathsAndDisappearances;
 
-	// Token: 0x04001AFE RID: 6910
+	// Token: 0x04001B06 RID: 6918
 	public AudioClip SomeDeaths;
 
-	// Token: 0x04001AFF RID: 6911
+	// Token: 0x04001B07 RID: 6919
 	public AudioClip SomeDisappearances;
 
-	// Token: 0x04001B00 RID: 6912
+	// Token: 0x04001B08 RID: 6920
 	public AudioClip GuiltyClip;
 
-	// Token: 0x04001B01 RID: 6913
+	// Token: 0x04001B09 RID: 6921
 	public AudioClip InnocentClip;
 
-	// Token: 0x04001B02 RID: 6914
+	// Token: 0x04001B0A RID: 6922
 	public GameObject OriginalHair;
 
-	// Token: 0x04001B03 RID: 6915
+	// Token: 0x04001B0B RID: 6923
 	public GameObject[] VtuberHairs;
 
-	// Token: 0x04001B04 RID: 6916
+	// Token: 0x04001B0C RID: 6924
 	public Texture[] VtuberFaces;
 
-	// Token: 0x04001B05 RID: 6917
+	// Token: 0x04001B0D RID: 6925
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x04001B06 RID: 6918
+	// Token: 0x04001B0E RID: 6926
 	public bool Vtuber;
 }

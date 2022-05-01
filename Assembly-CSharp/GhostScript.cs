@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002E6 RID: 742
 public class GhostScript : MonoBehaviour
 {
-	// Token: 0x0600150D RID: 5389 RVA: 0x000D85D0 File Offset: 0x000D67D0
+	// Token: 0x06001511 RID: 5393 RVA: 0x000D8AA0 File Offset: 0x000D6CA0
 	private void Update()
 	{
 		if (Time.timeScale > 0.0001f)
@@ -19,27 +19,27 @@ public class GhostScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600150E RID: 5390 RVA: 0x000D861F File Offset: 0x000D681F
+	// Token: 0x06001512 RID: 5394 RVA: 0x000D8AEF File Offset: 0x000D6CEF
 	public void Look()
 	{
 		this.Neck.LookAt(this.SmartphoneCamera.position);
 	}
 
-	// Token: 0x040021C8 RID: 8648
+	// Token: 0x040021D1 RID: 8657
 	public Transform SmartphoneCamera;
 
-	// Token: 0x040021C9 RID: 8649
+	// Token: 0x040021D2 RID: 8658
 	public Transform Neck;
 
-	// Token: 0x040021CA RID: 8650
+	// Token: 0x040021D3 RID: 8659
 	public Transform GhostEyeLocation;
 
-	// Token: 0x040021CB RID: 8651
+	// Token: 0x040021D4 RID: 8660
 	public Transform GhostEye;
 
-	// Token: 0x040021CC RID: 8652
+	// Token: 0x040021D5 RID: 8661
 	public int Frame;
 
-	// Token: 0x040021CD RID: 8653
+	// Token: 0x040021D6 RID: 8662
 	public bool Move;
 }

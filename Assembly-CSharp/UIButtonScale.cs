@@ -5,7 +5,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Interaction/Button Scale")]
 public class UIButtonScale : MonoBehaviour
 {
-	// Token: 0x0600014F RID: 335 RVA: 0x00014B39 File Offset: 0x00012D39
+	// Token: 0x0600014F RID: 335 RVA: 0x00014C79 File Offset: 0x00012E79
 	private void Start()
 	{
 		if (!this.mStarted)
@@ -19,7 +19,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000150 RID: 336 RVA: 0x00014B75 File Offset: 0x00012D75
+	// Token: 0x06000150 RID: 336 RVA: 0x00014CB5 File Offset: 0x00012EB5
 	private void OnEnable()
 	{
 		if (this.mStarted)
@@ -28,7 +28,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000151 RID: 337 RVA: 0x00014B90 File Offset: 0x00012D90
+	// Token: 0x06000151 RID: 337 RVA: 0x00014CD0 File Offset: 0x00012ED0
 	private void OnDisable()
 	{
 		if (this.mStarted && this.tweenTarget != null)
@@ -42,7 +42,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000152 RID: 338 RVA: 0x00014BDC File Offset: 0x00012DDC
+	// Token: 0x06000152 RID: 338 RVA: 0x00014D1C File Offset: 0x00012F1C
 	private void OnPress(bool isPressed)
 	{
 		if (base.enabled)
@@ -55,7 +55,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000153 RID: 339 RVA: 0x00014C58 File Offset: 0x00012E58
+	// Token: 0x06000153 RID: 339 RVA: 0x00014D98 File Offset: 0x00012F98
 	private void OnHover(bool isOver)
 	{
 		if (base.enabled)
@@ -68,7 +68,7 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000154 RID: 340 RVA: 0x00014CB3 File Offset: 0x00012EB3
+	// Token: 0x06000154 RID: 340 RVA: 0x00014DF3 File Offset: 0x00012FF3
 	private void OnSelect(bool isSelected)
 	{
 		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
@@ -77,21 +77,21 @@ public class UIButtonScale : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000318 RID: 792
+	// Token: 0x0400031A RID: 794
 	public Transform tweenTarget;
 
-	// Token: 0x04000319 RID: 793
+	// Token: 0x0400031B RID: 795
 	public Vector3 hover = new Vector3(1.1f, 1.1f, 1.1f);
 
-	// Token: 0x0400031A RID: 794
+	// Token: 0x0400031C RID: 796
 	public Vector3 pressed = new Vector3(1.05f, 1.05f, 1.05f);
 
-	// Token: 0x0400031B RID: 795
+	// Token: 0x0400031D RID: 797
 	public float duration = 0.2f;
 
-	// Token: 0x0400031C RID: 796
+	// Token: 0x0400031E RID: 798
 	private Vector3 mScale;
 
-	// Token: 0x0400031D RID: 797
+	// Token: 0x0400031F RID: 799
 	private bool mStarted;
 }

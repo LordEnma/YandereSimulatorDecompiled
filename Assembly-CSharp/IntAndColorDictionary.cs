@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004A6 RID: 1190
+// Token: 0x020004A7 RID: 1191
 [Serializable]
 public class IntAndColorDictionary : SerializableDictionary<int, Color>
 {

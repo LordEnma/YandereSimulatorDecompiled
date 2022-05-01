@@ -5,8 +5,8 @@ using UnityEngine;
 public static class DatingGlobals
 {
 	// Token: 0x17000389 RID: 905
-	// (get) Token: 0x060015A5 RID: 5541 RVA: 0x000DB5B4 File Offset: 0x000D97B4
-	// (set) Token: 0x060015A6 RID: 5542 RVA: 0x000DB5E4 File Offset: 0x000D97E4
+	// (get) Token: 0x060015A9 RID: 5545 RVA: 0x000DBA84 File Offset: 0x000D9C84
+	// (set) Token: 0x060015AA RID: 5546 RVA: 0x000DBAB4 File Offset: 0x000D9CB4
 	public static float Affection
 	{
 		get
@@ -20,8 +20,8 @@ public static class DatingGlobals
 	}
 
 	// Token: 0x1700038A RID: 906
-	// (get) Token: 0x060015A7 RID: 5543 RVA: 0x000DB614 File Offset: 0x000D9814
-	// (set) Token: 0x060015A8 RID: 5544 RVA: 0x000DB644 File Offset: 0x000D9844
+	// (get) Token: 0x060015AB RID: 5547 RVA: 0x000DBAE4 File Offset: 0x000D9CE4
+	// (set) Token: 0x060015AC RID: 5548 RVA: 0x000DBB14 File Offset: 0x000D9D14
 	public static float AffectionLevel
 	{
 		get
@@ -34,13 +34,13 @@ public static class DatingGlobals
 		}
 	}
 
-	// Token: 0x060015A9 RID: 5545 RVA: 0x000DB674 File Offset: 0x000D9874
+	// Token: 0x060015AD RID: 5549 RVA: 0x000DBB44 File Offset: 0x000D9D44
 	public static bool GetComplimentGiven(int complimentID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_ComplimentGiven_" + complimentID.ToString());
 	}
 
-	// Token: 0x060015AA RID: 5546 RVA: 0x000DB6AC File Offset: 0x000D98AC
+	// Token: 0x060015AE RID: 5550 RVA: 0x000DBB7C File Offset: 0x000D9D7C
 	public static void SetComplimentGiven(int complimentID, bool value)
 	{
 		string text = complimentID.ToString();
@@ -48,19 +48,19 @@ public static class DatingGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ComplimentGiven_" + text, value);
 	}
 
-	// Token: 0x060015AB RID: 5547 RVA: 0x000DB708 File Offset: 0x000D9908
+	// Token: 0x060015AF RID: 5551 RVA: 0x000DBBD8 File Offset: 0x000D9DD8
 	public static int[] KeysOfComplimentGiven()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_ComplimentGiven_");
 	}
 
-	// Token: 0x060015AC RID: 5548 RVA: 0x000DB738 File Offset: 0x000D9938
+	// Token: 0x060015B0 RID: 5552 RVA: 0x000DBC08 File Offset: 0x000D9E08
 	public static bool GetSuitorCheck(int checkID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_SuitorCheck_" + checkID.ToString());
 	}
 
-	// Token: 0x060015AD RID: 5549 RVA: 0x000DB770 File Offset: 0x000D9970
+	// Token: 0x060015B1 RID: 5553 RVA: 0x000DBC40 File Offset: 0x000D9E40
 	public static void SetSuitorCheck(int checkID, bool value)
 	{
 		string text = checkID.ToString();
@@ -68,15 +68,15 @@ public static class DatingGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_SuitorCheck_" + text, value);
 	}
 
-	// Token: 0x060015AE RID: 5550 RVA: 0x000DB7CC File Offset: 0x000D99CC
+	// Token: 0x060015B2 RID: 5554 RVA: 0x000DBC9C File Offset: 0x000D9E9C
 	public static int[] KeysOfSuitorCheck()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_SuitorCheck_");
 	}
 
 	// Token: 0x1700038B RID: 907
-	// (get) Token: 0x060015AF RID: 5551 RVA: 0x000DB7FC File Offset: 0x000D99FC
-	// (set) Token: 0x060015B0 RID: 5552 RVA: 0x000DB82C File Offset: 0x000D9A2C
+	// (get) Token: 0x060015B3 RID: 5555 RVA: 0x000DBCCC File Offset: 0x000D9ECC
+	// (set) Token: 0x060015B4 RID: 5556 RVA: 0x000DBCFC File Offset: 0x000D9EFC
 	public static int SuitorProgress
 	{
 		get
@@ -89,13 +89,13 @@ public static class DatingGlobals
 		}
 	}
 
-	// Token: 0x060015B1 RID: 5553 RVA: 0x000DB85C File Offset: 0x000D9A5C
+	// Token: 0x060015B5 RID: 5557 RVA: 0x000DBD2C File Offset: 0x000D9F2C
 	public static int GetSuitorTrait(int traitID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_SuitorTrait_" + traitID.ToString());
 	}
 
-	// Token: 0x060015B2 RID: 5554 RVA: 0x000DB894 File Offset: 0x000D9A94
+	// Token: 0x060015B6 RID: 5558 RVA: 0x000DBD64 File Offset: 0x000D9F64
 	public static void SetSuitorTrait(int traitID, int value)
 	{
 		string text = traitID.ToString();
@@ -103,19 +103,19 @@ public static class DatingGlobals
 		PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_SuitorTrait_" + text, value);
 	}
 
-	// Token: 0x060015B3 RID: 5555 RVA: 0x000DB8F0 File Offset: 0x000D9AF0
+	// Token: 0x060015B7 RID: 5559 RVA: 0x000DBDC0 File Offset: 0x000D9FC0
 	public static int[] KeysOfSuitorTrait()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_SuitorTrait_");
 	}
 
-	// Token: 0x060015B4 RID: 5556 RVA: 0x000DB920 File Offset: 0x000D9B20
+	// Token: 0x060015B8 RID: 5560 RVA: 0x000DBDF0 File Offset: 0x000D9FF0
 	public static bool GetTopicDiscussed(int topicID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_TopicDiscussed_" + topicID.ToString());
 	}
 
-	// Token: 0x060015B5 RID: 5557 RVA: 0x000DB958 File Offset: 0x000D9B58
+	// Token: 0x060015B9 RID: 5561 RVA: 0x000DBE28 File Offset: 0x000DA028
 	public static void SetTopicDiscussed(int topicID, bool value)
 	{
 		string text = topicID.ToString();
@@ -123,19 +123,19 @@ public static class DatingGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_TopicDiscussed_" + text, value);
 	}
 
-	// Token: 0x060015B6 RID: 5558 RVA: 0x000DB9B4 File Offset: 0x000D9BB4
+	// Token: 0x060015BA RID: 5562 RVA: 0x000DBE84 File Offset: 0x000DA084
 	public static int[] KeysOfTopicDiscussed()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_TopicDiscussed_");
 	}
 
-	// Token: 0x060015B7 RID: 5559 RVA: 0x000DB9E4 File Offset: 0x000D9BE4
+	// Token: 0x060015BB RID: 5563 RVA: 0x000DBEB4 File Offset: 0x000DA0B4
 	public static int GetTraitDemonstrated(int traitID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_TraitDemonstrated_" + traitID.ToString());
 	}
 
-	// Token: 0x060015B8 RID: 5560 RVA: 0x000DBA1C File Offset: 0x000D9C1C
+	// Token: 0x060015BC RID: 5564 RVA: 0x000DBEEC File Offset: 0x000DA0EC
 	public static void SetTraitDemonstrated(int traitID, int value)
 	{
 		string text = traitID.ToString();
@@ -143,15 +143,15 @@ public static class DatingGlobals
 		PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_TraitDemonstrated_" + text, value);
 	}
 
-	// Token: 0x060015B9 RID: 5561 RVA: 0x000DBA78 File Offset: 0x000D9C78
+	// Token: 0x060015BD RID: 5565 RVA: 0x000DBF48 File Offset: 0x000DA148
 	public static int[] KeysOfTraitDemonstrated()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_TraitDemonstrated_");
 	}
 
 	// Token: 0x1700038C RID: 908
-	// (get) Token: 0x060015BA RID: 5562 RVA: 0x000DBAA8 File Offset: 0x000D9CA8
-	// (set) Token: 0x060015BB RID: 5563 RVA: 0x000DBAD8 File Offset: 0x000D9CD8
+	// (get) Token: 0x060015BE RID: 5566 RVA: 0x000DBF78 File Offset: 0x000DA178
+	// (set) Token: 0x060015BF RID: 5567 RVA: 0x000DBFA8 File Offset: 0x000DA1A8
 	public static int RivalSabotaged
 	{
 		get
@@ -164,7 +164,7 @@ public static class DatingGlobals
 		}
 	}
 
-	// Token: 0x060015BC RID: 5564 RVA: 0x000DBB08 File Offset: 0x000D9D08
+	// Token: 0x060015C0 RID: 5568 RVA: 0x000DBFD8 File Offset: 0x000DA1D8
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Affection");
@@ -178,30 +178,30 @@ public static class DatingGlobals
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_TraitDemonstrated_", DatingGlobals.KeysOfTraitDemonstrated());
 	}
 
-	// Token: 0x04002204 RID: 8708
+	// Token: 0x0400220D RID: 8717
 	private const string Str_Affection = "Affection";
 
-	// Token: 0x04002205 RID: 8709
+	// Token: 0x0400220E RID: 8718
 	private const string Str_AffectionLevel = "AffectionLevel";
 
-	// Token: 0x04002206 RID: 8710
+	// Token: 0x0400220F RID: 8719
 	private const string Str_ComplimentGiven = "ComplimentGiven_";
 
-	// Token: 0x04002207 RID: 8711
+	// Token: 0x04002210 RID: 8720
 	private const string Str_SuitorCheck = "SuitorCheck_";
 
-	// Token: 0x04002208 RID: 8712
+	// Token: 0x04002211 RID: 8721
 	private const string Str_SuitorProgress = "SuitorProgress";
 
-	// Token: 0x04002209 RID: 8713
+	// Token: 0x04002212 RID: 8722
 	private const string Str_SuitorTrait = "SuitorTrait_";
 
-	// Token: 0x0400220A RID: 8714
+	// Token: 0x04002213 RID: 8723
 	private const string Str_TopicDiscussed = "TopicDiscussed_";
 
-	// Token: 0x0400220B RID: 8715
+	// Token: 0x04002214 RID: 8724
 	private const string Str_TraitDemonstrated = "TraitDemonstrated_";
 
-	// Token: 0x0400220C RID: 8716
+	// Token: 0x04002215 RID: 8725
 	private const string Str_RivalSabotaged = "RivalSabotaged";
 }

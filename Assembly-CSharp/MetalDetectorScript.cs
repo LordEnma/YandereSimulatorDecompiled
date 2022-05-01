@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000368 RID: 872
 public class MetalDetectorScript : MonoBehaviour
 {
-	// Token: 0x060019BB RID: 6587 RVA: 0x00107683 File Offset: 0x00105883
+	// Token: 0x060019BF RID: 6591 RVA: 0x00107B83 File Offset: 0x00105D83
 	private void Start()
 	{
 		this.MyAudio = base.GetComponent<AudioSource>();
 	}
 
-	// Token: 0x060019BC RID: 6588 RVA: 0x00107694 File Offset: 0x00105894
+	// Token: 0x060019C0 RID: 6592 RVA: 0x00107B94 File Offset: 0x00105D94
 	private void Update()
 	{
 		if (this.Yandere.Armed)
@@ -55,7 +55,7 @@ public class MetalDetectorScript : MonoBehaviour
 		this.MyAudio.volume -= Time.deltaTime * 0.01f;
 	}
 
-	// Token: 0x060019BD RID: 6589 RVA: 0x001077F0 File Offset: 0x001059F0
+	// Token: 0x060019C1 RID: 6593 RVA: 0x00107CF0 File Offset: 0x00105EF0
 	private void OnTriggerStay(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -141,36 +141,36 @@ public class MetalDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002961 RID: 10593
+	// Token: 0x0400296A RID: 10602
 	public MissionModeScript MissionMode;
 
-	// Token: 0x04002962 RID: 10594
+	// Token: 0x0400296B RID: 10603
 	public YandereScript Yandere;
 
-	// Token: 0x04002963 RID: 10595
+	// Token: 0x0400296C RID: 10604
 	public PromptScript Prompt;
 
-	// Token: 0x04002964 RID: 10596
+	// Token: 0x0400296D RID: 10605
 	public ParticleSystem PepperSprayEffect;
 
-	// Token: 0x04002965 RID: 10597
+	// Token: 0x0400296E RID: 10606
 	public AudioSource MyAudio;
 
-	// Token: 0x04002966 RID: 10598
+	// Token: 0x0400296F RID: 10607
 	public AudioClip PepperSprayNoVoice;
 
-	// Token: 0x04002967 RID: 10599
+	// Token: 0x04002970 RID: 10608
 	public AudioClip PepperSpraySFX;
 
-	// Token: 0x04002968 RID: 10600
+	// Token: 0x04002971 RID: 10609
 	public AudioClip Alarm;
 
-	// Token: 0x04002969 RID: 10601
+	// Token: 0x04002972 RID: 10610
 	public Collider MyCollider;
 
-	// Token: 0x0400296A RID: 10602
+	// Token: 0x04002973 RID: 10611
 	public float SprayTimer;
 
-	// Token: 0x0400296B RID: 10603
+	// Token: 0x04002974 RID: 10612
 	public bool Spraying;
 }

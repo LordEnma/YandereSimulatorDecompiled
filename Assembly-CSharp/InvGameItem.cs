@@ -7,7 +7,7 @@ using UnityEngine;
 public class InvGameItem
 {
 	// Token: 0x17000007 RID: 7
-	// (get) Token: 0x060000B6 RID: 182 RVA: 0x00011E9D File Offset: 0x0001009D
+	// (get) Token: 0x060000B6 RID: 182 RVA: 0x00011FDD File Offset: 0x000101DD
 	public int baseItemID
 	{
 		get
@@ -17,7 +17,7 @@ public class InvGameItem
 	}
 
 	// Token: 0x17000008 RID: 8
-	// (get) Token: 0x060000B7 RID: 183 RVA: 0x00011EA5 File Offset: 0x000100A5
+	// (get) Token: 0x060000B7 RID: 183 RVA: 0x00011FE5 File Offset: 0x000101E5
 	public InvBaseItem baseItem
 	{
 		get
@@ -31,7 +31,7 @@ public class InvGameItem
 	}
 
 	// Token: 0x17000009 RID: 9
-	// (get) Token: 0x060000B8 RID: 184 RVA: 0x00011EC6 File Offset: 0x000100C6
+	// (get) Token: 0x060000B8 RID: 184 RVA: 0x00012006 File Offset: 0x00010206
 	public string name
 	{
 		get
@@ -45,7 +45,7 @@ public class InvGameItem
 	}
 
 	// Token: 0x1700000A RID: 10
-	// (get) Token: 0x060000B9 RID: 185 RVA: 0x00011EF8 File Offset: 0x000100F8
+	// (get) Token: 0x060000B9 RID: 185 RVA: 0x00012038 File Offset: 0x00010238
 	public float statMultiplier
 	{
 		get
@@ -96,7 +96,7 @@ public class InvGameItem
 	}
 
 	// Token: 0x1700000B RID: 11
-	// (get) Token: 0x060000BA RID: 186 RVA: 0x00011FC8 File Offset: 0x000101C8
+	// (get) Token: 0x060000BA RID: 186 RVA: 0x00012108 File Offset: 0x00010308
 	public Color color
 	{
 		get
@@ -145,20 +145,20 @@ public class InvGameItem
 		}
 	}
 
-	// Token: 0x060000BB RID: 187 RVA: 0x000120E8 File Offset: 0x000102E8
+	// Token: 0x060000BB RID: 187 RVA: 0x00012228 File Offset: 0x00010428
 	public InvGameItem(int id)
 	{
 		this.mBaseItemID = id;
 	}
 
-	// Token: 0x060000BC RID: 188 RVA: 0x00012105 File Offset: 0x00010305
+	// Token: 0x060000BC RID: 188 RVA: 0x00012245 File Offset: 0x00010445
 	public InvGameItem(int id, InvBaseItem bi)
 	{
 		this.mBaseItemID = id;
 		this.mBaseItem = bi;
 	}
 
-	// Token: 0x060000BD RID: 189 RVA: 0x0001212C File Offset: 0x0001032C
+	// Token: 0x060000BD RID: 189 RVA: 0x0001226C File Offset: 0x0001046C
 	public List<InvStat> CalculateStats()
 	{
 		List<InvStat> list = new List<InvStat>();
@@ -205,47 +205,47 @@ public class InvGameItem
 		return list;
 	}
 
-	// Token: 0x0400028F RID: 655
+	// Token: 0x04000291 RID: 657
 	[SerializeField]
 	private int mBaseItemID;
 
-	// Token: 0x04000290 RID: 656
+	// Token: 0x04000292 RID: 658
 	public InvGameItem.Quality quality = InvGameItem.Quality.Sturdy;
 
-	// Token: 0x04000291 RID: 657
+	// Token: 0x04000293 RID: 659
 	public int itemLevel = 1;
 
-	// Token: 0x04000292 RID: 658
+	// Token: 0x04000294 RID: 660
 	private InvBaseItem mBaseItem;
 
-	// Token: 0x020005C9 RID: 1481
+	// Token: 0x020005CA RID: 1482
 	public enum Quality
 	{
-		// Token: 0x04004DBC RID: 19900
+		// Token: 0x04004DDA RID: 19930
 		Broken,
-		// Token: 0x04004DBD RID: 19901
+		// Token: 0x04004DDB RID: 19931
 		Cursed,
-		// Token: 0x04004DBE RID: 19902
+		// Token: 0x04004DDC RID: 19932
 		Damaged,
-		// Token: 0x04004DBF RID: 19903
+		// Token: 0x04004DDD RID: 19933
 		Worn,
-		// Token: 0x04004DC0 RID: 19904
+		// Token: 0x04004DDE RID: 19934
 		Sturdy,
-		// Token: 0x04004DC1 RID: 19905
+		// Token: 0x04004DDF RID: 19935
 		Polished,
-		// Token: 0x04004DC2 RID: 19906
+		// Token: 0x04004DE0 RID: 19936
 		Improved,
-		// Token: 0x04004DC3 RID: 19907
+		// Token: 0x04004DE1 RID: 19937
 		Crafted,
-		// Token: 0x04004DC4 RID: 19908
+		// Token: 0x04004DE2 RID: 19938
 		Superior,
-		// Token: 0x04004DC5 RID: 19909
+		// Token: 0x04004DE3 RID: 19939
 		Enchanted,
-		// Token: 0x04004DC6 RID: 19910
+		// Token: 0x04004DE4 RID: 19940
 		Epic,
-		// Token: 0x04004DC7 RID: 19911
+		// Token: 0x04004DE5 RID: 19941
 		Legendary,
-		// Token: 0x04004DC8 RID: 19912
+		// Token: 0x04004DE6 RID: 19942
 		_LastDoNotUse
 	}
 }

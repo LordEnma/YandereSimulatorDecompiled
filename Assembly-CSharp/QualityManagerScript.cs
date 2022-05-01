@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020003C9 RID: 969
 public class QualityManagerScript : MonoBehaviour
 {
-	// Token: 0x06001B44 RID: 6980 RVA: 0x001309D0 File Offset: 0x0012EBD0
+	// Token: 0x06001B48 RID: 6984 RVA: 0x00130FE4 File Offset: 0x0012F1E4
 	public void Start()
 	{
 		Debug.Log("QualityManager is firing the Start() function right now.");
@@ -92,7 +92,7 @@ public class QualityManagerScript : MonoBehaviour
 		Debug.Log("QualityManager Start(). DepthOfField settings are: " + OptionGlobals.DepthOfField.ToString());
 	}
 
-	// Token: 0x06001B45 RID: 6981 RVA: 0x00130BF8 File Offset: 0x0012EDF8
+	// Token: 0x06001B49 RID: 6985 RVA: 0x0013120C File Offset: 0x0012F40C
 	public void UpdateParticles()
 	{
 		if (OptionGlobals.ParticleCount > 3)
@@ -164,7 +164,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B46 RID: 6982 RVA: 0x00130E8C File Offset: 0x0012F08C
+	// Token: 0x06001B4A RID: 6986 RVA: 0x001314A0 File Offset: 0x0012F6A0
 	public void UpdateStockings()
 	{
 		if (!this.DoNothing)
@@ -193,7 +193,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B47 RID: 6983 RVA: 0x00130FD8 File Offset: 0x0012F1D8
+	// Token: 0x06001B4B RID: 6987 RVA: 0x001315EC File Offset: 0x0012F7EC
 	public void UpdateOutlines()
 	{
 		if (!this.DoNothing)
@@ -339,7 +339,7 @@ public class QualityManagerScript : MonoBehaviour
 		this.UpdateStockings();
 	}
 
-	// Token: 0x06001B48 RID: 6984 RVA: 0x0013172F File Offset: 0x0012F92F
+	// Token: 0x06001B4C RID: 6988 RVA: 0x00131D43 File Offset: 0x0012FF43
 	public void UpdatePostAliasing()
 	{
 		if (!this.DoNothing)
@@ -348,7 +348,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B49 RID: 6985 RVA: 0x0013174C File Offset: 0x0012F94C
+	// Token: 0x06001B4D RID: 6989 RVA: 0x00131D60 File Offset: 0x0012FF60
 	public void UpdateBloom()
 	{
 		Debug.Log("Just ran UpdateBloom()");
@@ -358,7 +358,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B4A RID: 6986 RVA: 0x00131774 File Offset: 0x0012F974
+	// Token: 0x06001B4E RID: 6990 RVA: 0x00131D88 File Offset: 0x0012FF88
 	public void UpdateOpaqueWindows()
 	{
 		if (!this.DoNothing)
@@ -378,7 +378,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B4B RID: 6987 RVA: 0x001317DC File Offset: 0x0012F9DC
+	// Token: 0x06001B4F RID: 6991 RVA: 0x00131DF0 File Offset: 0x0012FFF0
 	public void UpdateColorGrading()
 	{
 		if (!this.DoNothing)
@@ -387,7 +387,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B4C RID: 6988 RVA: 0x001317F6 File Offset: 0x0012F9F6
+	// Token: 0x06001B50 RID: 6992 RVA: 0x00131E0A File Offset: 0x0013000A
 	public void UpdateGrass()
 	{
 		if (!this.DoNothing)
@@ -396,7 +396,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B4D RID: 6989 RVA: 0x00131810 File Offset: 0x0012FA10
+	// Token: 0x06001B51 RID: 6993 RVA: 0x00131E24 File Offset: 0x00130024
 	public void UpdateHair()
 	{
 		if (!this.DoNothing)
@@ -405,7 +405,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B4E RID: 6990 RVA: 0x0013182D File Offset: 0x0012FA2D
+	// Token: 0x06001B52 RID: 6994 RVA: 0x00131E41 File Offset: 0x00130041
 	public void DisplayFPS()
 	{
 		if (!this.DoNothing)
@@ -414,7 +414,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B4F RID: 6991 RVA: 0x00131848 File Offset: 0x0012FA48
+	// Token: 0x06001B53 RID: 6995 RVA: 0x00131E5C File Offset: 0x0013005C
 	public void UpdateLowDetailStudents()
 	{
 		if (OptionGlobals.LowDetailStudents > 10)
@@ -444,7 +444,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B50 RID: 6992 RVA: 0x00131944 File Offset: 0x0012FB44
+	// Token: 0x06001B54 RID: 6996 RVA: 0x00131F58 File Offset: 0x00130158
 	public void UpdateAnims()
 	{
 		if (OptionGlobals.DisableFarAnimations > 20)
@@ -467,7 +467,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B51 RID: 6993 RVA: 0x001319B8 File Offset: 0x0012FBB8
+	// Token: 0x06001B55 RID: 6997 RVA: 0x00131FCC File Offset: 0x001301CC
 	public void UpdateDrawDistance()
 	{
 		if (OptionGlobals.DrawDistance > OptionGlobals.DrawDistanceLimit)
@@ -486,7 +486,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B52 RID: 6994 RVA: 0x00131A25 File Offset: 0x0012FC25
+	// Token: 0x06001B56 RID: 6998 RVA: 0x00132039 File Offset: 0x00130239
 	public void UpdateVsync()
 	{
 		if (!OptionGlobals.Vsync)
@@ -497,7 +497,7 @@ public class QualityManagerScript : MonoBehaviour
 		QualitySettings.vSyncCount = 1;
 	}
 
-	// Token: 0x06001B53 RID: 6995 RVA: 0x00131A3C File Offset: 0x0012FC3C
+	// Token: 0x06001B57 RID: 6999 RVA: 0x00132050 File Offset: 0x00130250
 	public void UpdateFog()
 	{
 		if (!this.DoNothing)
@@ -525,7 +525,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B54 RID: 6996 RVA: 0x00131AEA File Offset: 0x0012FCEA
+	// Token: 0x06001B58 RID: 7000 RVA: 0x001320FE File Offset: 0x001302FE
 	public void UpdateShadows()
 	{
 		if (!this.DoNothing)
@@ -534,7 +534,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B55 RID: 6997 RVA: 0x00131B0A File Offset: 0x0012FD0A
+	// Token: 0x06001B59 RID: 7001 RVA: 0x0013211E File Offset: 0x0013031E
 	public void ToggleRun()
 	{
 		if (!this.DoNothing)
@@ -543,7 +543,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B56 RID: 6998 RVA: 0x00131B24 File Offset: 0x0012FD24
+	// Token: 0x06001B5A RID: 7002 RVA: 0x00132138 File Offset: 0x00130338
 	public void UpdateFPSIndex()
 	{
 		if (OptionGlobals.FPSIndex < 0)
@@ -557,7 +557,7 @@ public class QualityManagerScript : MonoBehaviour
 		Application.targetFrameRate = QualityManagerScript.FPSValues[OptionGlobals.FPSIndex];
 	}
 
-	// Token: 0x06001B57 RID: 6999 RVA: 0x00131B64 File Offset: 0x0012FD64
+	// Token: 0x06001B5B RID: 7003 RVA: 0x00132178 File Offset: 0x00130378
 	public void ToggleExperiment()
 	{
 		if (!this.DoNothing)
@@ -577,7 +577,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B58 RID: 7000 RVA: 0x00131BE8 File Offset: 0x0012FDE8
+	// Token: 0x06001B5C RID: 7004 RVA: 0x001321FC File Offset: 0x001303FC
 	public void UpdateOutlinesAndRimlight()
 	{
 		if (OptionGlobals.DisableOutlines)
@@ -648,6 +648,8 @@ public class QualityManagerScript : MonoBehaviour
 						{
 							studentScript.Cosmetic.TeacherHairRenderers[studentScript.Cosmetic.Hairstyle].material.shader = this.NewBodyShader;
 							this.AdjustRimLight(studentScript.Cosmetic.TeacherHairRenderers[studentScript.Cosmetic.Hairstyle].material);
+							studentScript.MyRenderer.materials[0].SetFloat("_BlendAmount1", 0f);
+							studentScript.MyRenderer.materials[1].SetFloat("_BlendAmount1", 0f);
 						}
 					}
 					else
@@ -718,7 +720,7 @@ public class QualityManagerScript : MonoBehaviour
 		this.UpdateStockings();
 	}
 
-	// Token: 0x06001B59 RID: 7001 RVA: 0x001323BB File Offset: 0x001305BB
+	// Token: 0x06001B5D RID: 7005 RVA: 0x00132A07 File Offset: 0x00130C07
 	public void UpdateObscurance()
 	{
 		if (!this.DoNothing)
@@ -727,7 +729,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B5A RID: 7002 RVA: 0x001323D8 File Offset: 0x001305D8
+	// Token: 0x06001B5E RID: 7006 RVA: 0x00132A24 File Offset: 0x00130C24
 	public void AdjustRimLight(Material mat)
 	{
 		if (!this.DoNothing)
@@ -740,7 +742,7 @@ public class QualityManagerScript : MonoBehaviour
 		this.UpdateStockings();
 	}
 
-	// Token: 0x06001B5B RID: 7003 RVA: 0x00132434 File Offset: 0x00130634
+	// Token: 0x06001B5F RID: 7007 RVA: 0x00132A80 File Offset: 0x00130C80
 	public void UpdateEightiesEffects()
 	{
 		this.EightiesEffects.useStaticNoise = !OptionGlobals.DisableStatic;
@@ -757,7 +759,7 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B5C RID: 7004 RVA: 0x001324FC File Offset: 0x001306FC
+	// Token: 0x06001B60 RID: 7008 RVA: 0x00132B48 File Offset: 0x00130D48
 	public void UpdateCameraPosition()
 	{
 		if (this.SchoolScene)
@@ -778,109 +780,109 @@ public class QualityManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002E84 RID: 11908
+	// Token: 0x04002E8D RID: 11917
 	public CameraFilterPack_Colors_Adjust_PreFilters ColorGrading;
 
-	// Token: 0x04002E85 RID: 11909
+	// Token: 0x04002E8E RID: 11918
 	public CameraFilterPack_Colors_Adjust_PreFilters Tint;
 
-	// Token: 0x04002E86 RID: 11910
+	// Token: 0x04002E8F RID: 11919
 	public AntialiasingAsPostEffect PostAliasing;
 
-	// Token: 0x04002E87 RID: 11911
+	// Token: 0x04002E90 RID: 11920
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002E88 RID: 11912
+	// Token: 0x04002E91 RID: 11921
 	public PostProcessingBehaviour Obscurance;
 
-	// Token: 0x04002E89 RID: 11913
+	// Token: 0x04002E92 RID: 11922
 	public SettingsScript Settings;
 
-	// Token: 0x04002E8A RID: 11914
+	// Token: 0x04002E93 RID: 11923
 	public NemesisScript Nemesis;
 
-	// Token: 0x04002E8B RID: 11915
+	// Token: 0x04002E94 RID: 11924
 	public YandereScript Yandere;
 
-	// Token: 0x04002E8C RID: 11916
+	// Token: 0x04002E95 RID: 11925
 	public Bloom BloomEffect;
 
-	// Token: 0x04002E8D RID: 11917
+	// Token: 0x04002E96 RID: 11926
 	public GameObject Grass;
 
-	// Token: 0x04002E8E RID: 11918
+	// Token: 0x04002E97 RID: 11927
 	public Light Sun;
 
-	// Token: 0x04002E8F RID: 11919
+	// Token: 0x04002E98 RID: 11928
 	public ParticleSystem EastRomanceBlossoms;
 
-	// Token: 0x04002E90 RID: 11920
+	// Token: 0x04002E99 RID: 11929
 	public ParticleSystem WestRomanceBlossoms;
 
-	// Token: 0x04002E91 RID: 11921
+	// Token: 0x04002E9A RID: 11930
 	public ParticleSystem CorridorBlossoms;
 
-	// Token: 0x04002E92 RID: 11922
+	// Token: 0x04002E9B RID: 11931
 	public ParticleSystem PlazaBlossoms;
 
-	// Token: 0x04002E93 RID: 11923
+	// Token: 0x04002E9C RID: 11932
 	public ParticleSystem MythBlossoms;
 
-	// Token: 0x04002E94 RID: 11924
+	// Token: 0x04002E9D RID: 11933
 	public ParticleSystem[] Fountains;
 
-	// Token: 0x04002E95 RID: 11925
+	// Token: 0x04002E9E RID: 11934
 	public ParticleSystem[] Steam;
 
-	// Token: 0x04002E96 RID: 11926
+	// Token: 0x04002E9F RID: 11935
 	public Renderer YandereHairRenderer;
 
-	// Token: 0x04002E97 RID: 11927
+	// Token: 0x04002EA0 RID: 11936
 	public Shader NewBodyShader;
 
-	// Token: 0x04002E98 RID: 11928
+	// Token: 0x04002EA1 RID: 11937
 	public Shader NewHairShader;
 
-	// Token: 0x04002E99 RID: 11929
+	// Token: 0x04002EA2 RID: 11938
 	public Shader Toon;
 
-	// Token: 0x04002E9A RID: 11930
+	// Token: 0x04002EA3 RID: 11939
 	public Shader ToonOverlay;
 
-	// Token: 0x04002E9B RID: 11931
+	// Token: 0x04002EA4 RID: 11940
 	public Shader ToonOutline;
 
-	// Token: 0x04002E9C RID: 11932
+	// Token: 0x04002EA5 RID: 11941
 	public Shader ToonOutlineOverlay;
 
-	// Token: 0x04002E9D RID: 11933
+	// Token: 0x04002EA6 RID: 11942
 	public Shader ToonRimLight;
 
-	// Token: 0x04002E9E RID: 11934
+	// Token: 0x04002EA7 RID: 11943
 	public Shader ToonRimLightOverlay;
 
-	// Token: 0x04002E9F RID: 11935
+	// Token: 0x04002EA8 RID: 11944
 	public Shader ToonOutlineRimLight;
 
-	// Token: 0x04002EA0 RID: 11936
+	// Token: 0x04002EA9 RID: 11945
 	public Shader ToonOutlineRimLightOverlay;
 
-	// Token: 0x04002EA1 RID: 11937
+	// Token: 0x04002EAA RID: 11946
 	public BloomAndLensFlares ExperimentalBloomAndLensFlares;
 
-	// Token: 0x04002EA2 RID: 11938
+	// Token: 0x04002EAB RID: 11947
 	public DepthOfField34 ExperimentalDepthOfField34;
 
-	// Token: 0x04002EA3 RID: 11939
+	// Token: 0x04002EAC RID: 11948
 	public SSAOEffect ExperimentalSSAOEffect;
 
-	// Token: 0x04002EA4 RID: 11940
+	// Token: 0x04002EAD RID: 11949
 	public bool DoNothing;
 
-	// Token: 0x04002EA5 RID: 11941
+	// Token: 0x04002EAE RID: 11950
 	public bool SchoolScene;
 
-	// Token: 0x04002EA6 RID: 11942
+	// Token: 0x04002EAF RID: 11951
 	private static readonly int[] FPSValues = new int[]
 	{
 		int.MaxValue,
@@ -889,7 +891,7 @@ public class QualityManagerScript : MonoBehaviour
 		120
 	};
 
-	// Token: 0x04002EA7 RID: 11943
+	// Token: 0x04002EB0 RID: 11952
 	public static readonly string[] FPSStrings = new string[]
 	{
 		"Unlimited",
@@ -898,12 +900,12 @@ public class QualityManagerScript : MonoBehaviour
 		"120"
 	};
 
-	// Token: 0x04002EA8 RID: 11944
+	// Token: 0x04002EB1 RID: 11953
 	public RetroCameraEffect EightiesEffects;
 
-	// Token: 0x04002EA9 RID: 11945
+	// Token: 0x04002EB2 RID: 11954
 	public bool DisableOutlinesLater;
 
-	// Token: 0x04002EAA RID: 11946
+	// Token: 0x04002EB3 RID: 11955
 	public bool DisableRimLightLater;
 }

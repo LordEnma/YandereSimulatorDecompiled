@@ -6,7 +6,7 @@ using UnityEngine;
 [AddComponentMenu("NGUI/Tween/Tween Fill")]
 public class TweenFill : UITweener
 {
-	// Token: 0x0600057D RID: 1405 RVA: 0x00034647 File Offset: 0x00032847
+	// Token: 0x0600057D RID: 1405 RVA: 0x00034787 File Offset: 0x00032987
 	private void Cache()
 	{
 		this.mCached = true;
@@ -14,8 +14,8 @@ public class TweenFill : UITweener
 	}
 
 	// Token: 0x170000BD RID: 189
-	// (get) Token: 0x0600057E RID: 1406 RVA: 0x0003465C File Offset: 0x0003285C
-	// (set) Token: 0x0600057F RID: 1407 RVA: 0x0003468B File Offset: 0x0003288B
+	// (get) Token: 0x0600057E RID: 1406 RVA: 0x0003479C File Offset: 0x0003299C
+	// (set) Token: 0x0600057F RID: 1407 RVA: 0x000347CB File Offset: 0x000329CB
 	public float value
 	{
 		get
@@ -43,13 +43,13 @@ public class TweenFill : UITweener
 		}
 	}
 
-	// Token: 0x06000580 RID: 1408 RVA: 0x000346B5 File Offset: 0x000328B5
+	// Token: 0x06000580 RID: 1408 RVA: 0x000347F5 File Offset: 0x000329F5
 	protected override void OnUpdate(float factor, bool isFinished)
 	{
 		this.value = Mathf.Lerp(this.from, this.to, factor);
 	}
 
-	// Token: 0x06000581 RID: 1409 RVA: 0x000346D0 File Offset: 0x000328D0
+	// Token: 0x06000581 RID: 1409 RVA: 0x00034810 File Offset: 0x00032A10
 	public static TweenFill Begin(GameObject go, float duration, float fill)
 	{
 		TweenFill tweenFill = UITweener.Begin<TweenFill>(go, duration, 0f);
@@ -63,29 +63,29 @@ public class TweenFill : UITweener
 		return tweenFill;
 	}
 
-	// Token: 0x06000582 RID: 1410 RVA: 0x00034719 File Offset: 0x00032919
+	// Token: 0x06000582 RID: 1410 RVA: 0x00034859 File Offset: 0x00032A59
 	public override void SetStartToCurrentValue()
 	{
 		this.from = this.value;
 	}
 
-	// Token: 0x06000583 RID: 1411 RVA: 0x00034727 File Offset: 0x00032927
+	// Token: 0x06000583 RID: 1411 RVA: 0x00034867 File Offset: 0x00032A67
 	public override void SetEndToCurrentValue()
 	{
 		this.to = this.value;
 	}
 
-	// Token: 0x040005BF RID: 1471
+	// Token: 0x040005C1 RID: 1473
 	[Range(0f, 1f)]
 	public float from = 1f;
 
-	// Token: 0x040005C0 RID: 1472
+	// Token: 0x040005C2 RID: 1474
 	[Range(0f, 1f)]
 	public float to = 1f;
 
-	// Token: 0x040005C1 RID: 1473
+	// Token: 0x040005C3 RID: 1475
 	private bool mCached;
 
-	// Token: 0x040005C2 RID: 1474
+	// Token: 0x040005C4 RID: 1476
 	private UIBasicSprite mSprite;
 }

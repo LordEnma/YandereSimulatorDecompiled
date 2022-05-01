@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020000EE RID: 238
 public class BodyHidingLockerScript : MonoBehaviour
 {
-	// Token: 0x06000A4C RID: 2636 RVA: 0x0005B795 File Offset: 0x00059995
+	// Token: 0x06000A4C RID: 2636 RVA: 0x0005B8E9 File Offset: 0x00059AE9
 	private void Start()
 	{
 		this.Outline = base.GetComponentInChildren<OutlineScript>();
 	}
 
-	// Token: 0x06000A4D RID: 2637 RVA: 0x0005B7A4 File Offset: 0x000599A4
+	// Token: 0x06000A4D RID: 2637 RVA: 0x0005B8F8 File Offset: 0x00059AF8
 	private void Update()
 	{
 		if (this.Rotation != 0f)
@@ -131,7 +131,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A4E RID: 2638 RVA: 0x0005BDC4 File Offset: 0x00059FC4
+	// Token: 0x06000A4E RID: 2638 RVA: 0x0005BF18 File Offset: 0x0005A118
 	public void UpdateCorpse()
 	{
 		this.Corpse = this.StudentManager.Students[this.StudentID].Ragdoll;
@@ -140,36 +140,36 @@ public class BodyHidingLockerScript : MonoBehaviour
 		this.Prompt.enabled = true;
 	}
 
-	// Token: 0x04000BCB RID: 3019
+	// Token: 0x04000BCD RID: 3021
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000BCC RID: 3020
+	// Token: 0x04000BCE RID: 3022
 	public OutlineScript Outline;
 
-	// Token: 0x04000BCD RID: 3021
+	// Token: 0x04000BCF RID: 3023
 	public RagdollScript Corpse;
 
-	// Token: 0x04000BCE RID: 3022
+	// Token: 0x04000BD0 RID: 3024
 	public PromptScript Prompt;
 
-	// Token: 0x04000BCF RID: 3023
+	// Token: 0x04000BD1 RID: 3025
 	public AudioClip LockerClose;
 
-	// Token: 0x04000BD0 RID: 3024
+	// Token: 0x04000BD2 RID: 3026
 	public AudioClip LockerOpen;
 
-	// Token: 0x04000BD1 RID: 3025
+	// Token: 0x04000BD3 RID: 3027
 	public float Rotation;
 
-	// Token: 0x04000BD2 RID: 3026
+	// Token: 0x04000BD4 RID: 3028
 	public float Speed;
 
-	// Token: 0x04000BD3 RID: 3027
+	// Token: 0x04000BD5 RID: 3029
 	public Transform Door;
 
-	// Token: 0x04000BD4 RID: 3028
+	// Token: 0x04000BD6 RID: 3030
 	public int StudentID;
 
-	// Token: 0x04000BD5 RID: 3029
+	// Token: 0x04000BD7 RID: 3031
 	public bool ABC;
 }

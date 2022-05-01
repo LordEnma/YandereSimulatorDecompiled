@@ -4,8 +4,8 @@
 public static class ClubGlobals
 {
 	// Token: 0x17000380 RID: 896
-	// (get) Token: 0x0600155F RID: 5471 RVA: 0x000DA0A4 File Offset: 0x000D82A4
-	// (set) Token: 0x06001560 RID: 5472 RVA: 0x000DA0D4 File Offset: 0x000D82D4
+	// (get) Token: 0x06001563 RID: 5475 RVA: 0x000DA574 File Offset: 0x000D8774
+	// (set) Token: 0x06001564 RID: 5476 RVA: 0x000DA5A4 File Offset: 0x000D87A4
 	public static ClubType Club
 	{
 		get
@@ -18,7 +18,7 @@ public static class ClubGlobals
 		}
 	}
 
-	// Token: 0x06001561 RID: 5473 RVA: 0x000DA104 File Offset: 0x000D8304
+	// Token: 0x06001565 RID: 5477 RVA: 0x000DA5D4 File Offset: 0x000D87D4
 	public static bool GetClubClosed(ClubType clubID)
 	{
 		string str = "Profile_";
@@ -28,7 +28,7 @@ public static class ClubGlobals
 		return GlobalsHelper.GetBool(str + str2 + str3 + num.ToString());
 	}
 
-	// Token: 0x06001562 RID: 5474 RVA: 0x000DA13C File Offset: 0x000D833C
+	// Token: 0x06001566 RID: 5478 RVA: 0x000DA60C File Offset: 0x000D880C
 	public static void SetClubClosed(ClubType clubID, bool value)
 	{
 		int num = (int)clubID;
@@ -37,13 +37,13 @@ public static class ClubGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ClubClosed_" + text, value);
 	}
 
-	// Token: 0x06001563 RID: 5475 RVA: 0x000DA198 File Offset: 0x000D8398
+	// Token: 0x06001567 RID: 5479 RVA: 0x000DA668 File Offset: 0x000D8868
 	public static ClubType[] KeysOfClubClosed()
 	{
 		return KeysHelper.GetEnumKeys<ClubType>("Profile_" + GameGlobals.Profile.ToString() + "_ClubClosed_");
 	}
 
-	// Token: 0x06001564 RID: 5476 RVA: 0x000DA1C8 File Offset: 0x000D83C8
+	// Token: 0x06001568 RID: 5480 RVA: 0x000DA698 File Offset: 0x000D8898
 	public static bool GetClubKicked(ClubType clubID)
 	{
 		string str = "Profile_";
@@ -53,7 +53,7 @@ public static class ClubGlobals
 		return GlobalsHelper.GetBool(str + str2 + str3 + num.ToString());
 	}
 
-	// Token: 0x06001565 RID: 5477 RVA: 0x000DA200 File Offset: 0x000D8400
+	// Token: 0x06001569 RID: 5481 RVA: 0x000DA6D0 File Offset: 0x000D88D0
 	public static void SetClubKicked(ClubType clubID, bool value)
 	{
 		int num = (int)clubID;
@@ -62,13 +62,13 @@ public static class ClubGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_ClubKicked_" + text, value);
 	}
 
-	// Token: 0x06001566 RID: 5478 RVA: 0x000DA25C File Offset: 0x000D845C
+	// Token: 0x0600156A RID: 5482 RVA: 0x000DA72C File Offset: 0x000D892C
 	public static ClubType[] KeysOfClubKicked()
 	{
 		return KeysHelper.GetEnumKeys<ClubType>("Profile_" + GameGlobals.Profile.ToString() + "_ClubKicked_");
 	}
 
-	// Token: 0x06001567 RID: 5479 RVA: 0x000DA28C File Offset: 0x000D848C
+	// Token: 0x0600156B RID: 5483 RVA: 0x000DA75C File Offset: 0x000D895C
 	public static bool GetQuitClub(ClubType clubID)
 	{
 		string str = "Profile_";
@@ -78,7 +78,7 @@ public static class ClubGlobals
 		return GlobalsHelper.GetBool(str + str2 + str3 + num.ToString());
 	}
 
-	// Token: 0x06001568 RID: 5480 RVA: 0x000DA2C4 File Offset: 0x000D84C4
+	// Token: 0x0600156C RID: 5484 RVA: 0x000DA794 File Offset: 0x000D8994
 	public static void SetQuitClub(ClubType clubID, bool value)
 	{
 		int num = (int)clubID;
@@ -87,13 +87,13 @@ public static class ClubGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_QuitClub_" + text, value);
 	}
 
-	// Token: 0x06001569 RID: 5481 RVA: 0x000DA320 File Offset: 0x000D8520
+	// Token: 0x0600156D RID: 5485 RVA: 0x000DA7F0 File Offset: 0x000D89F0
 	public static ClubType[] KeysOfQuitClub()
 	{
 		return KeysHelper.GetEnumKeys<ClubType>("Profile_" + GameGlobals.Profile.ToString() + "_QuitClub_");
 	}
 
-	// Token: 0x0600156A RID: 5482 RVA: 0x000DA350 File Offset: 0x000D8550
+	// Token: 0x0600156E RID: 5486 RVA: 0x000DA820 File Offset: 0x000D8A20
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Club");
@@ -126,15 +126,15 @@ public static class ClubGlobals
 		KeysHelper.Delete("Profile_" + GameGlobals.Profile.ToString() + "_QuitClub_");
 	}
 
-	// Token: 0x040021EB RID: 8683
+	// Token: 0x040021F4 RID: 8692
 	private const string Str_Club = "Club";
 
-	// Token: 0x040021EC RID: 8684
+	// Token: 0x040021F5 RID: 8693
 	private const string Str_ClubClosed = "ClubClosed_";
 
-	// Token: 0x040021ED RID: 8685
+	// Token: 0x040021F6 RID: 8694
 	private const string Str_ClubKicked = "ClubKicked_";
 
-	// Token: 0x040021EE RID: 8686
+	// Token: 0x040021F7 RID: 8695
 	private const string Str_QuitClub = "QuitClub_";
 }

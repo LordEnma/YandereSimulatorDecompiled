@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020004BF RID: 1215
+// Token: 0x020004C0 RID: 1216
 public class WarningScript : MonoBehaviour
 {
-	// Token: 0x06001FCF RID: 8143 RVA: 0x001C0F84 File Offset: 0x001BF184
+	// Token: 0x06001FD8 RID: 8152 RVA: 0x001C2340 File Offset: 0x001C0540
 	private void Start()
 	{
 		this.WarningLabel.gameObject.SetActive(false);
@@ -13,7 +13,7 @@ public class WarningScript : MonoBehaviour
 		this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, 1f);
 	}
 
-	// Token: 0x06001FD0 RID: 8144 RVA: 0x001C0FF8 File Offset: 0x001BF1F8
+	// Token: 0x06001FD9 RID: 8153 RVA: 0x001C23B4 File Offset: 0x001C05B4
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -50,27 +50,27 @@ public class WarningScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400429C RID: 17052
+	// Token: 0x040042B2 RID: 17074
 	public float[] Triggers;
 
-	// Token: 0x0400429D RID: 17053
+	// Token: 0x040042B3 RID: 17075
 	public string[] Text;
 
-	// Token: 0x0400429E RID: 17054
+	// Token: 0x040042B4 RID: 17076
 	public UILabel WarningLabel;
 
-	// Token: 0x0400429F RID: 17055
+	// Token: 0x040042B5 RID: 17077
 	public UISprite Darkness;
 
-	// Token: 0x040042A0 RID: 17056
+	// Token: 0x040042B6 RID: 17078
 	public UILabel Label;
 
-	// Token: 0x040042A1 RID: 17057
+	// Token: 0x040042B7 RID: 17079
 	public bool FadeOut;
 
-	// Token: 0x040042A2 RID: 17058
+	// Token: 0x040042B8 RID: 17080
 	public float Timer;
 
-	// Token: 0x040042A3 RID: 17059
+	// Token: 0x040042B9 RID: 17081
 	public int ID;
 }

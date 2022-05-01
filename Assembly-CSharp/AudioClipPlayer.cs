@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200049A RID: 1178
+// Token: 0x0200049B RID: 1179
 public static class AudioClipPlayer
 {
-	// Token: 0x06001F5F RID: 8031 RVA: 0x001BDDF4 File Offset: 0x001BBFF4
+	// Token: 0x06001F68 RID: 8040 RVA: 0x001BF1B0 File Offset: 0x001BD3B0
 	public static void Play(AudioClip clip, Vector3 position, float minDistance, float maxDistance, out GameObject clipOwner, float playerY)
 	{
 		GameObject gameObject = new GameObject("AudioClip_" + clip.name);
@@ -22,7 +22,7 @@ public static class AudioClipPlayer
 		audioSource.volume = ((playerY < y - 2f) ? 0f : 1f);
 	}
 
-	// Token: 0x06001F60 RID: 8032 RVA: 0x001BDE94 File Offset: 0x001BC094
+	// Token: 0x06001F69 RID: 8041 RVA: 0x001BF250 File Offset: 0x001BD450
 	public static void PlayAttached(AudioClip clip, Vector3 position, Transform attachment, float minDistance, float maxDistance, out GameObject clipOwner, float playerY)
 	{
 		GameObject gameObject = new GameObject("AudioClip_" + clip.name);
@@ -41,7 +41,7 @@ public static class AudioClipPlayer
 		audioSource.volume = ((playerY < y - 2f) ? 0f : 1f);
 	}
 
-	// Token: 0x06001F61 RID: 8033 RVA: 0x001BDF40 File Offset: 0x001BC140
+	// Token: 0x06001F6A RID: 8042 RVA: 0x001BF2FC File Offset: 0x001BD4FC
 	public static void PlayAttached(AudioClip clip, Transform attachment, float minDistance, float maxDistance)
 	{
 		GameObject gameObject = new GameObject("AudioClip_" + clip.name);
@@ -57,7 +57,7 @@ public static class AudioClipPlayer
 		audioSource.spatialBlend = 1f;
 	}
 
-	// Token: 0x06001F62 RID: 8034 RVA: 0x001BDFC0 File Offset: 0x001BC1C0
+	// Token: 0x06001F6B RID: 8043 RVA: 0x001BF37C File Offset: 0x001BD57C
 	public static void Play(AudioClip clip, Vector3 position, float minDistance, float maxDistance, out GameObject clipOwner, out float clipLength)
 	{
 		GameObject gameObject = new GameObject("AudioClip_" + clip.name);
@@ -74,7 +74,7 @@ public static class AudioClipPlayer
 		clipOwner = gameObject;
 	}
 
-	// Token: 0x06001F63 RID: 8035 RVA: 0x001BE03C File Offset: 0x001BC23C
+	// Token: 0x06001F6C RID: 8044 RVA: 0x001BF3F8 File Offset: 0x001BD5F8
 	public static void Play(AudioClip clip, Vector3 position, float minDistance, float maxDistance, out GameObject clipOwner)
 	{
 		GameObject gameObject = new GameObject("AudioClip_" + clip.name);
@@ -90,7 +90,7 @@ public static class AudioClipPlayer
 		clipOwner = gameObject;
 	}
 
-	// Token: 0x06001F64 RID: 8036 RVA: 0x001BE0AD File Offset: 0x001BC2AD
+	// Token: 0x06001F6D RID: 8045 RVA: 0x001BF469 File Offset: 0x001BD669
 	public static void Play2D(AudioClip clip, Vector3 position)
 	{
 		GameObject gameObject = new GameObject("AudioClip_" + clip.name);
@@ -101,7 +101,7 @@ public static class AudioClipPlayer
 		UnityEngine.Object.Destroy(gameObject, clip.length);
 	}
 
-	// Token: 0x06001F65 RID: 8037 RVA: 0x001BE0F0 File Offset: 0x001BC2F0
+	// Token: 0x06001F6E RID: 8046 RVA: 0x001BF4AC File Offset: 0x001BD6AC
 	public static void Play2D(AudioClip clip, Vector3 position, float pitch)
 	{
 		GameObject gameObject = new GameObject("AudioClip_" + clip.name);

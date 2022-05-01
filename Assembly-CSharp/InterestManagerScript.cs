@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200033B RID: 827
 public class InterestManagerScript : MonoBehaviour
 {
-	// Token: 0x060018FB RID: 6395 RVA: 0x000F7022 File Offset: 0x000F5222
+	// Token: 0x060018FF RID: 6399 RVA: 0x000F7526 File Offset: 0x000F5726
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -13,7 +13,7 @@ public class InterestManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018FC RID: 6396 RVA: 0x000F703C File Offset: 0x000F523C
+	// Token: 0x06001900 RID: 6400 RVA: 0x000F7540 File Offset: 0x000F5740
 	private void Update()
 	{
 		if (this.Yandere.Follower != null)
@@ -110,7 +110,7 @@ public class InterestManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018FD RID: 6397 RVA: 0x000F7598 File Offset: 0x000F5798
+	// Token: 0x06001901 RID: 6401 RVA: 0x000F7A9C File Offset: 0x000F5C9C
 	public void UpdateIgnore()
 	{
 		for (int i = 1; i < 26; i++)
@@ -127,30 +127,30 @@ public class InterestManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002686 RID: 9862
+	// Token: 0x0400268F RID: 9871
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002687 RID: 9863
+	// Token: 0x04002690 RID: 9872
 	public YandereScript Yandere;
 
-	// Token: 0x04002688 RID: 9864
+	// Token: 0x04002691 RID: 9873
 	public Transform[] Clubs;
 
-	// Token: 0x04002689 RID: 9865
+	// Token: 0x04002692 RID: 9874
 	public Transform DelinquentZone;
 
-	// Token: 0x0400268A RID: 9866
+	// Token: 0x04002693 RID: 9875
 	public Transform Library;
 
-	// Token: 0x0400268B RID: 9867
+	// Token: 0x04002694 RID: 9876
 	public Transform Kitten;
 
-	// Token: 0x0400268C RID: 9868
+	// Token: 0x04002695 RID: 9877
 	public string[] TopicNames;
 
-	// Token: 0x0400268D RID: 9869
+	// Token: 0x04002696 RID: 9878
 	public bool[] Ignore;
 
-	// Token: 0x0400268E RID: 9870
+	// Token: 0x04002697 RID: 9879
 	public int FollowerID;
 }

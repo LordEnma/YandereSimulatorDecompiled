@@ -5,13 +5,13 @@ using UnityEngine;
 // Token: 0x02000385 RID: 901
 public class NyanDroidScript : MonoBehaviour
 {
-	// Token: 0x06001A40 RID: 6720 RVA: 0x00114EAC File Offset: 0x001130AC
+	// Token: 0x06001A44 RID: 6724 RVA: 0x001153D0 File Offset: 0x001135D0
 	private void Start()
 	{
 		this.OriginalPosition = base.transform.position;
 	}
 
-	// Token: 0x06001A41 RID: 6721 RVA: 0x00114EC0 File Offset: 0x001130C0
+	// Token: 0x06001A45 RID: 6725 RVA: 0x001153E4 File Offset: 0x001135E4
 	private void Update()
 	{
 		if (!this.Pathfinding.canSearch)
@@ -68,21 +68,21 @@ public class NyanDroidScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002AED RID: 10989
+	// Token: 0x04002AF6 RID: 10998
 	public Animation Character;
 
-	// Token: 0x04002AEE RID: 10990
+	// Token: 0x04002AF7 RID: 10999
 	public PromptScript Prompt;
 
-	// Token: 0x04002AEF RID: 10991
+	// Token: 0x04002AF8 RID: 11000
 	public AIPath Pathfinding;
 
-	// Token: 0x04002AF0 RID: 10992
+	// Token: 0x04002AF9 RID: 11001
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04002AF1 RID: 10993
+	// Token: 0x04002AFA RID: 11002
 	public string Prefix;
 
-	// Token: 0x04002AF2 RID: 10994
+	// Token: 0x04002AFB RID: 11003
 	public float Timer;
 }

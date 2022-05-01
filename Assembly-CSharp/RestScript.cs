@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D9 RID: 985
 public class RestScript : MonoBehaviour
 {
-	// Token: 0x06001B99 RID: 7065 RVA: 0x00138B50 File Offset: 0x00136D50
+	// Token: 0x06001B9D RID: 7069 RVA: 0x001391C8 File Offset: 0x001373C8
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -49,9 +49,9 @@ public class RestScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002F5E RID: 12126
+	// Token: 0x04002F68 RID: 12136
 	public PortalScript Portal;
 
-	// Token: 0x04002F5F RID: 12127
+	// Token: 0x04002F69 RID: 12137
 	public PromptScript Prompt;
 }

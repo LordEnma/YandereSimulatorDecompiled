@@ -9,8 +9,8 @@ using UnityEngine;
 public class UIToggle : UIWidgetContainer
 {
 	// Token: 0x17000043 RID: 67
-	// (get) Token: 0x060002CE RID: 718 RVA: 0x0001E840 File Offset: 0x0001CA40
-	// (set) Token: 0x060002CF RID: 719 RVA: 0x0001E857 File Offset: 0x0001CA57
+	// (get) Token: 0x060002CE RID: 718 RVA: 0x0001E980 File Offset: 0x0001CB80
+	// (set) Token: 0x060002CF RID: 719 RVA: 0x0001E997 File Offset: 0x0001CB97
 	public bool value
 	{
 		get
@@ -36,7 +36,7 @@ public class UIToggle : UIWidgetContainer
 	}
 
 	// Token: 0x17000044 RID: 68
-	// (get) Token: 0x060002D0 RID: 720 RVA: 0x0001E890 File Offset: 0x0001CA90
+	// (get) Token: 0x060002D0 RID: 720 RVA: 0x0001E9D0 File Offset: 0x0001CBD0
 	public bool isColliderEnabled
 	{
 		get
@@ -52,8 +52,8 @@ public class UIToggle : UIWidgetContainer
 	}
 
 	// Token: 0x17000045 RID: 69
-	// (get) Token: 0x060002D1 RID: 721 RVA: 0x0001E8CC File Offset: 0x0001CACC
-	// (set) Token: 0x060002D2 RID: 722 RVA: 0x0001E8D4 File Offset: 0x0001CAD4
+	// (get) Token: 0x060002D1 RID: 721 RVA: 0x0001EA0C File Offset: 0x0001CC0C
+	// (set) Token: 0x060002D2 RID: 722 RVA: 0x0001EA14 File Offset: 0x0001CC14
 	[Obsolete("Use 'value' instead")]
 	public bool isChecked
 	{
@@ -67,7 +67,7 @@ public class UIToggle : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x060002D3 RID: 723 RVA: 0x0001E8E0 File Offset: 0x0001CAE0
+	// Token: 0x060002D3 RID: 723 RVA: 0x0001EA20 File Offset: 0x0001CC20
 	public static UIToggle GetActiveToggle(int group)
 	{
 		for (int i = 0; i < UIToggle.list.size; i++)
@@ -81,19 +81,19 @@ public class UIToggle : UIWidgetContainer
 		return null;
 	}
 
-	// Token: 0x060002D4 RID: 724 RVA: 0x0001E92C File Offset: 0x0001CB2C
+	// Token: 0x060002D4 RID: 724 RVA: 0x0001EA6C File Offset: 0x0001CC6C
 	private void OnEnable()
 	{
 		UIToggle.list.Add(this);
 	}
 
-	// Token: 0x060002D5 RID: 725 RVA: 0x0001E939 File Offset: 0x0001CB39
+	// Token: 0x060002D5 RID: 725 RVA: 0x0001EA79 File Offset: 0x0001CC79
 	private void OnDisable()
 	{
 		UIToggle.list.Remove(this);
 	}
 
-	// Token: 0x060002D6 RID: 726 RVA: 0x0001E948 File Offset: 0x0001CB48
+	// Token: 0x060002D6 RID: 726 RVA: 0x0001EA88 File Offset: 0x0001CC88
 	public void Start()
 	{
 		if (this.mStarted)
@@ -139,7 +139,7 @@ public class UIToggle : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x060002D7 RID: 727 RVA: 0x0001EA82 File Offset: 0x0001CC82
+	// Token: 0x060002D7 RID: 727 RVA: 0x0001EBC2 File Offset: 0x0001CDC2
 	private void OnClick()
 	{
 		if (base.enabled && this.isColliderEnabled && UICamera.currentTouchID != -2)
@@ -148,7 +148,7 @@ public class UIToggle : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x060002D8 RID: 728 RVA: 0x0001EAAC File Offset: 0x0001CCAC
+	// Token: 0x060002D8 RID: 728 RVA: 0x0001EBEC File Offset: 0x0001CDEC
 	public void Set(bool state, bool notify = true)
 	{
 		if (this.validator != null && !this.validator(state))
@@ -265,77 +265,77 @@ public class UIToggle : UIWidgetContainer
 		}
 	}
 
-	// Token: 0x04000456 RID: 1110
+	// Token: 0x04000458 RID: 1112
 	public static BetterList<UIToggle> list = new BetterList<UIToggle>();
 
-	// Token: 0x04000457 RID: 1111
+	// Token: 0x04000459 RID: 1113
 	public static UIToggle current;
 
-	// Token: 0x04000458 RID: 1112
+	// Token: 0x0400045A RID: 1114
 	public int group;
 
-	// Token: 0x04000459 RID: 1113
+	// Token: 0x0400045B RID: 1115
 	public UIWidget activeSprite;
 
-	// Token: 0x0400045A RID: 1114
+	// Token: 0x0400045C RID: 1116
 	public bool invertSpriteState;
 
-	// Token: 0x0400045B RID: 1115
+	// Token: 0x0400045D RID: 1117
 	public Animation activeAnimation;
 
-	// Token: 0x0400045C RID: 1116
+	// Token: 0x0400045E RID: 1118
 	public Animator animator;
 
-	// Token: 0x0400045D RID: 1117
+	// Token: 0x0400045F RID: 1119
 	public UITweener tween;
 
-	// Token: 0x0400045E RID: 1118
+	// Token: 0x04000460 RID: 1120
 	public bool startsActive;
 
-	// Token: 0x0400045F RID: 1119
+	// Token: 0x04000461 RID: 1121
 	public bool instantTween;
 
-	// Token: 0x04000460 RID: 1120
+	// Token: 0x04000462 RID: 1122
 	public bool optionCanBeNone;
 
-	// Token: 0x04000461 RID: 1121
+	// Token: 0x04000463 RID: 1123
 	public List<EventDelegate> onChange = new List<EventDelegate>();
 
-	// Token: 0x04000462 RID: 1122
-	public UIToggle.Validate validator;
-
-	// Token: 0x04000463 RID: 1123
-	[HideInInspector]
-	[SerializeField]
-	private UISprite checkSprite;
-
 	// Token: 0x04000464 RID: 1124
-	[HideInInspector]
-	[SerializeField]
-	private Animation checkAnimation;
+	public UIToggle.Validate validator;
 
 	// Token: 0x04000465 RID: 1125
 	[HideInInspector]
 	[SerializeField]
-	private GameObject eventReceiver;
+	private UISprite checkSprite;
 
 	// Token: 0x04000466 RID: 1126
 	[HideInInspector]
 	[SerializeField]
-	private string functionName = "OnActivate";
+	private Animation checkAnimation;
 
 	// Token: 0x04000467 RID: 1127
 	[HideInInspector]
 	[SerializeField]
-	private bool startsChecked;
+	private GameObject eventReceiver;
 
 	// Token: 0x04000468 RID: 1128
-	private bool mIsActive = true;
+	[HideInInspector]
+	[SerializeField]
+	private string functionName = "OnActivate";
 
 	// Token: 0x04000469 RID: 1129
+	[HideInInspector]
+	[SerializeField]
+	private bool startsChecked;
+
+	// Token: 0x0400046A RID: 1130
+	private bool mIsActive = true;
+
+	// Token: 0x0400046B RID: 1131
 	private bool mStarted;
 
-	// Token: 0x020005EC RID: 1516
-	// (Invoke) Token: 0x06002569 RID: 9577
+	// Token: 0x020005ED RID: 1517
+	// (Invoke) Token: 0x06002572 RID: 9586
 	public delegate bool Validate(bool choice);
 }

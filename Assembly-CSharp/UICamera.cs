@@ -9,7 +9,7 @@ using UnityEngine;
 public class UICamera : MonoBehaviour
 {
 	// Token: 0x1700011D RID: 285
-	// (get) Token: 0x060006B2 RID: 1714 RVA: 0x00039517 File Offset: 0x00037717
+	// (get) Token: 0x060006B2 RID: 1714 RVA: 0x00039657 File Offset: 0x00037857
 	[Obsolete("Use new OnDragStart / OnDragOver / OnDragOut / OnDragEnd events instead")]
 	public bool stickyPress
 	{
@@ -20,8 +20,8 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x1700011E RID: 286
-	// (get) Token: 0x060006B3 RID: 1715 RVA: 0x0003951A File Offset: 0x0003771A
-	// (set) Token: 0x060006B4 RID: 1716 RVA: 0x0003952D File Offset: 0x0003772D
+	// (get) Token: 0x060006B3 RID: 1715 RVA: 0x0003965A File Offset: 0x0003785A
+	// (set) Token: 0x060006B4 RID: 1716 RVA: 0x0003966D File Offset: 0x0003786D
 	public static bool disableController
 	{
 		get
@@ -35,8 +35,8 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x1700011F RID: 287
-	// (get) Token: 0x060006B5 RID: 1717 RVA: 0x00039535 File Offset: 0x00037735
-	// (set) Token: 0x060006B6 RID: 1718 RVA: 0x0003953C File Offset: 0x0003773C
+	// (get) Token: 0x060006B5 RID: 1717 RVA: 0x00039675 File Offset: 0x00037875
+	// (set) Token: 0x060006B6 RID: 1718 RVA: 0x0003967C File Offset: 0x0003787C
 	[Obsolete("Use lastEventPosition instead. It handles controller input properly.")]
 	public static Vector2 lastTouchPosition
 	{
@@ -51,8 +51,8 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000120 RID: 288
-	// (get) Token: 0x060006B7 RID: 1719 RVA: 0x00039544 File Offset: 0x00037744
-	// (set) Token: 0x060006B8 RID: 1720 RVA: 0x00039596 File Offset: 0x00037796
+	// (get) Token: 0x060006B7 RID: 1719 RVA: 0x00039684 File Offset: 0x00037884
+	// (set) Token: 0x060006B8 RID: 1720 RVA: 0x000396D6 File Offset: 0x000378D6
 	public static Vector2 lastEventPosition
 	{
 		get
@@ -75,7 +75,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000121 RID: 289
-	// (get) Token: 0x060006B9 RID: 1721 RVA: 0x0003959E File Offset: 0x0003779E
+	// (get) Token: 0x060006B9 RID: 1721 RVA: 0x000396DE File Offset: 0x000378DE
 	public static UICamera first
 	{
 		get
@@ -89,8 +89,8 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000122 RID: 290
-	// (get) Token: 0x060006BA RID: 1722 RVA: 0x000395C4 File Offset: 0x000377C4
-	// (set) Token: 0x060006BB RID: 1723 RVA: 0x00039640 File Offset: 0x00037840
+	// (get) Token: 0x060006BA RID: 1722 RVA: 0x00039704 File Offset: 0x00037904
+	// (set) Token: 0x060006BB RID: 1723 RVA: 0x00039780 File Offset: 0x00037980
 	public static UICamera.ControlScheme currentScheme
 	{
 		get
@@ -147,8 +147,8 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000123 RID: 291
-	// (get) Token: 0x060006BC RID: 1724 RVA: 0x0003968D File Offset: 0x0003788D
-	// (set) Token: 0x060006BD RID: 1725 RVA: 0x00039694 File Offset: 0x00037894
+	// (get) Token: 0x060006BC RID: 1724 RVA: 0x000397CD File Offset: 0x000379CD
+	// (set) Token: 0x060006BD RID: 1725 RVA: 0x000397D4 File Offset: 0x000379D4
 	public static KeyCode currentKey
 	{
 		get
@@ -186,7 +186,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000124 RID: 292
-	// (get) Token: 0x060006BE RID: 1726 RVA: 0x00039724 File Offset: 0x00037924
+	// (get) Token: 0x060006BE RID: 1726 RVA: 0x00039864 File Offset: 0x00037A64
 	public static Ray currentRay
 	{
 		get
@@ -200,7 +200,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000125 RID: 293
-	// (get) Token: 0x060006BF RID: 1727 RVA: 0x00039768 File Offset: 0x00037968
+	// (get) Token: 0x060006BF RID: 1727 RVA: 0x000398A8 File Offset: 0x00037AA8
 	public static bool inputHasFocus
 	{
 		get
@@ -210,8 +210,8 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000126 RID: 294
-	// (get) Token: 0x060006C0 RID: 1728 RVA: 0x0003978C File Offset: 0x0003798C
-	// (set) Token: 0x060006C1 RID: 1729 RVA: 0x00039793 File Offset: 0x00037993
+	// (get) Token: 0x060006C0 RID: 1728 RVA: 0x000398CC File Offset: 0x00037ACC
+	// (set) Token: 0x060006C1 RID: 1729 RVA: 0x000398D3 File Offset: 0x00037AD3
 	[Obsolete("Use delegates instead such as UICamera.onClick, UICamera.onHover, etc.")]
 	public static GameObject genericEventHandler
 	{
@@ -226,7 +226,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000127 RID: 295
-	// (get) Token: 0x060006C2 RID: 1730 RVA: 0x0003979B File Offset: 0x0003799B
+	// (get) Token: 0x060006C2 RID: 1730 RVA: 0x000398DB File Offset: 0x00037ADB
 	public static UICamera.MouseOrTouch mouse0
 	{
 		get
@@ -236,7 +236,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000128 RID: 296
-	// (get) Token: 0x060006C3 RID: 1731 RVA: 0x000397A4 File Offset: 0x000379A4
+	// (get) Token: 0x060006C3 RID: 1731 RVA: 0x000398E4 File Offset: 0x00037AE4
 	public static UICamera.MouseOrTouch mouse1
 	{
 		get
@@ -246,7 +246,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000129 RID: 297
-	// (get) Token: 0x060006C4 RID: 1732 RVA: 0x000397AD File Offset: 0x000379AD
+	// (get) Token: 0x060006C4 RID: 1732 RVA: 0x000398ED File Offset: 0x00037AED
 	public static UICamera.MouseOrTouch mouse2
 	{
 		get
@@ -256,7 +256,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x1700012A RID: 298
-	// (get) Token: 0x060006C5 RID: 1733 RVA: 0x000397B6 File Offset: 0x000379B6
+	// (get) Token: 0x060006C5 RID: 1733 RVA: 0x000398F6 File Offset: 0x00037AF6
 	private bool handlesEvents
 	{
 		get
@@ -266,7 +266,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x1700012B RID: 299
-	// (get) Token: 0x060006C6 RID: 1734 RVA: 0x000397C3 File Offset: 0x000379C3
+	// (get) Token: 0x060006C6 RID: 1734 RVA: 0x00039903 File Offset: 0x00037B03
 	public Camera cachedCamera
 	{
 		get
@@ -280,8 +280,8 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x1700012C RID: 300
-	// (get) Token: 0x060006C7 RID: 1735 RVA: 0x000397E5 File Offset: 0x000379E5
-	// (set) Token: 0x060006C8 RID: 1736 RVA: 0x000397EC File Offset: 0x000379EC
+	// (get) Token: 0x060006C7 RID: 1735 RVA: 0x00039925 File Offset: 0x00037B25
+	// (set) Token: 0x060006C8 RID: 1736 RVA: 0x0003992C File Offset: 0x00037B2C
 	public static GameObject tooltipObject
 	{
 		get
@@ -294,14 +294,14 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006C9 RID: 1737 RVA: 0x000397F5 File Offset: 0x000379F5
+	// Token: 0x060006C9 RID: 1737 RVA: 0x00039935 File Offset: 0x00037B35
 	public static bool IsPartOfUI(GameObject go)
 	{
 		return !(go == null) && !(go == UICamera.fallThrough) && NGUITools.FindInParents<UIRoot>(go) != null;
 	}
 
 	// Token: 0x1700012D RID: 301
-	// (get) Token: 0x060006CA RID: 1738 RVA: 0x0003981C File Offset: 0x00037A1C
+	// (get) Token: 0x060006CA RID: 1738 RVA: 0x0003995C File Offset: 0x00037B5C
 	public static bool isOverUI
 	{
 		get
@@ -350,7 +350,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x1700012E RID: 302
-	// (get) Token: 0x060006CB RID: 1739 RVA: 0x00039930 File Offset: 0x00037B30
+	// (get) Token: 0x060006CB RID: 1739 RVA: 0x00039A70 File Offset: 0x00037C70
 	public static bool uiHasFocus
 	{
 		get
@@ -402,7 +402,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x1700012F RID: 303
-	// (get) Token: 0x060006CC RID: 1740 RVA: 0x00039A38 File Offset: 0x00037C38
+	// (get) Token: 0x060006CC RID: 1740 RVA: 0x00039B78 File Offset: 0x00037D78
 	public static bool interactingWithUI
 	{
 		get
@@ -442,8 +442,8 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000130 RID: 304
-	// (get) Token: 0x060006CD RID: 1741 RVA: 0x00039AF0 File Offset: 0x00037CF0
-	// (set) Token: 0x060006CE RID: 1742 RVA: 0x00039B48 File Offset: 0x00037D48
+	// (get) Token: 0x060006CD RID: 1741 RVA: 0x00039C30 File Offset: 0x00037E30
+	// (set) Token: 0x060006CE RID: 1742 RVA: 0x00039C88 File Offset: 0x00037E88
 	public static GameObject hoveredObject
 	{
 		get
@@ -525,8 +525,8 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000131 RID: 305
-	// (get) Token: 0x060006CF RID: 1743 RVA: 0x00039D04 File Offset: 0x00037F04
-	// (set) Token: 0x060006D0 RID: 1744 RVA: 0x00039E4C File Offset: 0x0003804C
+	// (get) Token: 0x060006CF RID: 1743 RVA: 0x00039E44 File Offset: 0x00038044
+	// (set) Token: 0x060006D0 RID: 1744 RVA: 0x00039F8C File Offset: 0x0003818C
 	public static GameObject controllerNavigationObject
 	{
 		get
@@ -580,8 +580,8 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000132 RID: 306
-	// (get) Token: 0x060006D1 RID: 1745 RVA: 0x00039EC3 File Offset: 0x000380C3
-	// (set) Token: 0x060006D2 RID: 1746 RVA: 0x00039EEC File Offset: 0x000380EC
+	// (get) Token: 0x060006D1 RID: 1745 RVA: 0x0003A003 File Offset: 0x00038203
+	// (set) Token: 0x060006D2 RID: 1746 RVA: 0x0003A02C File Offset: 0x0003822C
 	public static GameObject selectedObject
 	{
 		get
@@ -653,7 +653,7 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006D3 RID: 1747 RVA: 0x0003A090 File Offset: 0x00038290
+	// Token: 0x060006D3 RID: 1747 RVA: 0x0003A1D0 File Offset: 0x000383D0
 	public static bool IsPressed(GameObject go)
 	{
 		for (int i = 0; i < 3; i++)
@@ -677,7 +677,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000133 RID: 307
-	// (get) Token: 0x060006D4 RID: 1748 RVA: 0x0003A105 File Offset: 0x00038305
+	// (get) Token: 0x060006D4 RID: 1748 RVA: 0x0003A245 File Offset: 0x00038445
 	[Obsolete("Use either 'CountInputSources()' or 'activeTouches.Count'")]
 	public static int touchCount
 	{
@@ -687,7 +687,7 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006D5 RID: 1749 RVA: 0x0003A10C File Offset: 0x0003830C
+	// Token: 0x060006D5 RID: 1749 RVA: 0x0003A24C File Offset: 0x0003844C
 	public static int CountInputSources()
 	{
 		int num = 0;
@@ -716,7 +716,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000134 RID: 308
-	// (get) Token: 0x060006D6 RID: 1750 RVA: 0x0003A190 File Offset: 0x00038390
+	// (get) Token: 0x060006D6 RID: 1750 RVA: 0x0003A2D0 File Offset: 0x000384D0
 	public static int dragCount
 	{
 		get
@@ -748,7 +748,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000135 RID: 309
-	// (get) Token: 0x060006D7 RID: 1751 RVA: 0x0003A214 File Offset: 0x00038414
+	// (get) Token: 0x060006D7 RID: 1751 RVA: 0x0003A354 File Offset: 0x00038554
 	public static Camera mainCamera
 	{
 		get
@@ -763,7 +763,7 @@ public class UICamera : MonoBehaviour
 	}
 
 	// Token: 0x17000136 RID: 310
-	// (get) Token: 0x060006D8 RID: 1752 RVA: 0x0003A238 File Offset: 0x00038438
+	// (get) Token: 0x060006D8 RID: 1752 RVA: 0x0003A378 File Offset: 0x00038578
 	public static UICamera eventHandler
 	{
 		get
@@ -780,7 +780,7 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006D9 RID: 1753 RVA: 0x0003A288 File Offset: 0x00038488
+	// Token: 0x060006D9 RID: 1753 RVA: 0x0003A3C8 File Offset: 0x000385C8
 	private static int CompareFunc(UICamera a, UICamera b)
 	{
 		if (a.cachedCamera.depth < b.cachedCamera.depth)
@@ -794,7 +794,7 @@ public class UICamera : MonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x060006DA RID: 1754 RVA: 0x0003A2C0 File Offset: 0x000384C0
+	// Token: 0x060006DA RID: 1754 RVA: 0x0003A400 File Offset: 0x00038600
 	private static Rigidbody FindRootRigidbody(Transform trans)
 	{
 		while (trans != null && !(trans.GetComponent<UIPanel>() != null))
@@ -809,7 +809,7 @@ public class UICamera : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060006DB RID: 1755 RVA: 0x0003A304 File Offset: 0x00038504
+	// Token: 0x060006DB RID: 1755 RVA: 0x0003A444 File Offset: 0x00038644
 	private static Rigidbody2D FindRootRigidbody2D(Transform trans)
 	{
 		while (trans != null && !(trans.GetComponent<UIPanel>() != null))
@@ -824,7 +824,7 @@ public class UICamera : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060006DC RID: 1756 RVA: 0x0003A348 File Offset: 0x00038548
+	// Token: 0x060006DC RID: 1756 RVA: 0x0003A488 File Offset: 0x00038688
 	public static void Raycast(UICamera.MouseOrTouch touch)
 	{
 		if (!UICamera.Raycast(touch.pos))
@@ -840,7 +840,7 @@ public class UICamera : MonoBehaviour
 		UICamera.mLastPos = touch.pos;
 	}
 
-	// Token: 0x060006DD RID: 1757 RVA: 0x0003A3AC File Offset: 0x000385AC
+	// Token: 0x060006DD RID: 1757 RVA: 0x0003A4EC File Offset: 0x000386EC
 	public static bool Raycast(Vector3 inPos)
 	{
 		for (int i = 0; i < UICamera.list.size; i++)
@@ -1089,7 +1089,7 @@ public class UICamera : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x060006DE RID: 1758 RVA: 0x0003AB64 File Offset: 0x00038D64
+	// Token: 0x060006DE RID: 1758 RVA: 0x0003ACA4 File Offset: 0x00038EA4
 	private static bool IsVisible(Vector3 worldPoint, GameObject go)
 	{
 		UIPanel uipanel = NGUITools.FindInParents<UIPanel>(go);
@@ -1104,7 +1104,7 @@ public class UICamera : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x060006DF RID: 1759 RVA: 0x0003AB98 File Offset: 0x00038D98
+	// Token: 0x060006DF RID: 1759 RVA: 0x0003ACD8 File Offset: 0x00038ED8
 	private static bool IsVisible(ref UICamera.DepthEntry de)
 	{
 		UIPanel uipanel = NGUITools.FindInParents<UIPanel>(de.go);
@@ -1119,13 +1119,13 @@ public class UICamera : MonoBehaviour
 		return true;
 	}
 
-	// Token: 0x060006E0 RID: 1760 RVA: 0x0003ABD4 File Offset: 0x00038DD4
+	// Token: 0x060006E0 RID: 1760 RVA: 0x0003AD14 File Offset: 0x00038F14
 	public static bool IsHighlighted(GameObject go)
 	{
 		return UICamera.hoveredObject == go;
 	}
 
-	// Token: 0x060006E1 RID: 1761 RVA: 0x0003ABE4 File Offset: 0x00038DE4
+	// Token: 0x060006E1 RID: 1761 RVA: 0x0003AD24 File Offset: 0x00038F24
 	public static UICamera FindCameraForLayer(int layer)
 	{
 		int num = 1 << layer;
@@ -1141,7 +1141,7 @@ public class UICamera : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x060006E2 RID: 1762 RVA: 0x0003AC37 File Offset: 0x00038E37
+	// Token: 0x060006E2 RID: 1762 RVA: 0x0003AD77 File Offset: 0x00038F77
 	private static int GetDirection(KeyCode up, KeyCode down)
 	{
 		if (UICamera.GetKeyDown(up))
@@ -1157,7 +1157,7 @@ public class UICamera : MonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x060006E3 RID: 1763 RVA: 0x0003AC64 File Offset: 0x00038E64
+	// Token: 0x060006E3 RID: 1763 RVA: 0x0003ADA4 File Offset: 0x00038FA4
 	private static int GetDirection(KeyCode up0, KeyCode up1, KeyCode down0, KeyCode down1)
 	{
 		if (UICamera.GetKeyDown(up0))
@@ -1183,7 +1183,7 @@ public class UICamera : MonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x060006E4 RID: 1764 RVA: 0x0003ACC8 File Offset: 0x00038EC8
+	// Token: 0x060006E4 RID: 1764 RVA: 0x0003AE08 File Offset: 0x00039008
 	private static int GetDirection(string axis)
 	{
 		float time = RealTime.time;
@@ -1206,7 +1206,7 @@ public class UICamera : MonoBehaviour
 		return 0;
 	}
 
-	// Token: 0x060006E5 RID: 1765 RVA: 0x0003AD38 File Offset: 0x00038F38
+	// Token: 0x060006E5 RID: 1765 RVA: 0x0003AE78 File Offset: 0x00039078
 	public static void Notify(GameObject go, string funcName, object obj)
 	{
 		if (UICamera.mNotifying > 10)
@@ -1229,7 +1229,7 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006E6 RID: 1766 RVA: 0x0003ADDC File Offset: 0x00038FDC
+	// Token: 0x060006E6 RID: 1766 RVA: 0x0003AF1C File Offset: 0x0003911C
 	private void Awake()
 	{
 		UICamera.mWidth = Screen.width;
@@ -1288,20 +1288,20 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006E7 RID: 1767 RVA: 0x0003AF5C File Offset: 0x0003915C
+	// Token: 0x060006E7 RID: 1767 RVA: 0x0003B09C File Offset: 0x0003929C
 	private void OnEnable()
 	{
 		UICamera.list.Add(this);
 		UICamera.list.Sort(new BetterList<UICamera>.CompareFunc(UICamera.CompareFunc));
 	}
 
-	// Token: 0x060006E8 RID: 1768 RVA: 0x0003AF7F File Offset: 0x0003917F
+	// Token: 0x060006E8 RID: 1768 RVA: 0x0003B0BF File Offset: 0x000392BF
 	private void OnDisable()
 	{
 		UICamera.list.Remove(this);
 	}
 
-	// Token: 0x060006E9 RID: 1769 RVA: 0x0003AF90 File Offset: 0x00039190
+	// Token: 0x060006E9 RID: 1769 RVA: 0x0003B0D0 File Offset: 0x000392D0
 	private void Start()
 	{
 		UICamera.list.Sort(new BetterList<UICamera>.CompareFunc(UICamera.CompareFunc));
@@ -1343,21 +1343,21 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006EA RID: 1770 RVA: 0x0003B10F File Offset: 0x0003930F
+	// Token: 0x060006EA RID: 1770 RVA: 0x0003B24F File Offset: 0x0003944F
 	[ContextMenu("Start ignoring events")]
 	private void StartIgnoring()
 	{
 		UICamera.ignoreAllEvents = true;
 	}
 
-	// Token: 0x060006EB RID: 1771 RVA: 0x0003B117 File Offset: 0x00039317
+	// Token: 0x060006EB RID: 1771 RVA: 0x0003B257 File Offset: 0x00039457
 	[ContextMenu("Stop ignoring events")]
 	private void StopIgnoring()
 	{
 		UICamera.ignoreAllEvents = false;
 	}
 
-	// Token: 0x060006EC RID: 1772 RVA: 0x0003B11F File Offset: 0x0003931F
+	// Token: 0x060006EC RID: 1772 RVA: 0x0003B25F File Offset: 0x0003945F
 	private void Update()
 	{
 		if (UICamera.ignoreAllEvents)
@@ -1374,7 +1374,7 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006ED RID: 1773 RVA: 0x0003B140 File Offset: 0x00039340
+	// Token: 0x060006ED RID: 1773 RVA: 0x0003B280 File Offset: 0x00039480
 	private void LateUpdate()
 	{
 		if (!this.handlesEvents)
@@ -1399,7 +1399,7 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006EE RID: 1774 RVA: 0x0003B1A8 File Offset: 0x000393A8
+	// Token: 0x060006EE RID: 1774 RVA: 0x0003B2E8 File Offset: 0x000394E8
 	private void ProcessEvents()
 	{
 		UICamera.current = this;
@@ -1446,7 +1446,7 @@ public class UICamera : MonoBehaviour
 		UICamera.currentTouchID = -100;
 	}
 
-	// Token: 0x060006EF RID: 1775 RVA: 0x0003B33C File Offset: 0x0003953C
+	// Token: 0x060006EF RID: 1775 RVA: 0x0003B47C File Offset: 0x0003967C
 	public void ProcessMouse()
 	{
 		bool flag = false;
@@ -1594,7 +1594,7 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006F0 RID: 1776 RVA: 0x0003B774 File Offset: 0x00039974
+	// Token: 0x060006F0 RID: 1776 RVA: 0x0003B8B4 File Offset: 0x00039AB4
 	public void ProcessTouches()
 	{
 		int num = (UICamera.GetInputTouchCount == null) ? Input.touchCount : UICamera.GetInputTouchCount();
@@ -1672,7 +1672,7 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006F1 RID: 1777 RVA: 0x0003B934 File Offset: 0x00039B34
+	// Token: 0x060006F1 RID: 1777 RVA: 0x0003BA74 File Offset: 0x00039C74
 	private void ProcessFakeTouches()
 	{
 		bool mouseButtonDown = Input.GetMouseButtonDown(0);
@@ -1711,7 +1711,7 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006F2 RID: 1778 RVA: 0x0003BA40 File Offset: 0x00039C40
+	// Token: 0x060006F2 RID: 1778 RVA: 0x0003BB80 File Offset: 0x00039D80
 	public void ProcessOthers()
 	{
 		UICamera.currentTouchID = -100;
@@ -1844,7 +1844,7 @@ public class UICamera : MonoBehaviour
 		UICamera.currentTouch = null;
 	}
 
-	// Token: 0x060006F3 RID: 1779 RVA: 0x0003BEFC File Offset: 0x0003A0FC
+	// Token: 0x060006F3 RID: 1779 RVA: 0x0003C03C File Offset: 0x0003A23C
 	private void ProcessPress(bool pressed, float click, float drag)
 	{
 		if (pressed)
@@ -1985,7 +1985,7 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006F4 RID: 1780 RVA: 0x0003C4B8 File Offset: 0x0003A6B8
+	// Token: 0x060006F4 RID: 1780 RVA: 0x0003C5F8 File Offset: 0x0003A7F8
 	private void ProcessRelease(bool isMouse, float drag)
 	{
 		if (UICamera.currentTouch == null)
@@ -2065,7 +2065,7 @@ public class UICamera : MonoBehaviour
 		UICamera.currentTouch.dragged = null;
 	}
 
-	// Token: 0x060006F5 RID: 1781 RVA: 0x0003C7B8 File Offset: 0x0003A9B8
+	// Token: 0x060006F5 RID: 1781 RVA: 0x0003C8F8 File Offset: 0x0003AAF8
 	private bool HasCollider(GameObject go)
 	{
 		if (go == null)
@@ -2081,7 +2081,7 @@ public class UICamera : MonoBehaviour
 		return component2 != null && component2.enabled;
 	}
 
-	// Token: 0x060006F6 RID: 1782 RVA: 0x0003C800 File Offset: 0x0003AA00
+	// Token: 0x060006F6 RID: 1782 RVA: 0x0003C940 File Offset: 0x0003AB40
 	public void ProcessTouch(bool pressed, bool released)
 	{
 		if (released)
@@ -2122,13 +2122,13 @@ public class UICamera : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060006F7 RID: 1783 RVA: 0x0003C92E File Offset: 0x0003AB2E
+	// Token: 0x060006F7 RID: 1783 RVA: 0x0003CA6E File Offset: 0x0003AC6E
 	public static void CancelNextTooltip()
 	{
 		UICamera.mTooltipTime = 0f;
 	}
 
-	// Token: 0x060006F8 RID: 1784 RVA: 0x0003C93C File Offset: 0x0003AB3C
+	// Token: 0x060006F8 RID: 1784 RVA: 0x0003CA7C File Offset: 0x0003AC7C
 	public static bool ShowTooltip(GameObject go)
 	{
 		if (UICamera.mTooltip != go)
@@ -2156,32 +2156,32 @@ public class UICamera : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x060006F9 RID: 1785 RVA: 0x0003C9DE File Offset: 0x0003ABDE
+	// Token: 0x060006F9 RID: 1785 RVA: 0x0003CB1E File Offset: 0x0003AD1E
 	public static bool HideTooltip()
 	{
 		return UICamera.ShowTooltip(null);
 	}
 
-	// Token: 0x060006FA RID: 1786 RVA: 0x0003C9E6 File Offset: 0x0003ABE6
+	// Token: 0x060006FA RID: 1786 RVA: 0x0003CB26 File Offset: 0x0003AD26
 	public static void ResetTooltip(float delay = 0.5f)
 	{
 		UICamera.ShowTooltip(null);
 		UICamera.mTooltipTime = Time.unscaledTime + delay;
 	}
 
-	// Token: 0x0400063C RID: 1596
+	// Token: 0x0400063E RID: 1598
 	public static BetterList<UICamera> list = new BetterList<UICamera>();
 
-	// Token: 0x0400063D RID: 1597
+	// Token: 0x0400063F RID: 1599
 	public static UICamera.GetKeyStateFunc GetKeyDown = (KeyCode key) => (key < KeyCode.JoystickButton0 || !UICamera.ignoreControllerInput) && Input.GetKeyDown(key);
 
-	// Token: 0x0400063E RID: 1598
+	// Token: 0x04000640 RID: 1600
 	public static UICamera.GetKeyStateFunc GetKeyUp = (KeyCode key) => (key < KeyCode.JoystickButton0 || !UICamera.ignoreControllerInput) && Input.GetKeyUp(key);
 
-	// Token: 0x0400063F RID: 1599
+	// Token: 0x04000641 RID: 1601
 	public static UICamera.GetKeyStateFunc GetKey = (KeyCode key) => (key < KeyCode.JoystickButton0 || !UICamera.ignoreControllerInput) && Input.GetKey(key);
 
-	// Token: 0x04000640 RID: 1600
+	// Token: 0x04000642 RID: 1602
 	public static UICamera.GetAxisFunc GetAxis = delegate(string axis)
 	{
 		if (UICamera.ignoreControllerInput)
@@ -2191,13 +2191,13 @@ public class UICamera : MonoBehaviour
 		return Input.GetAxis(axis);
 	};
 
-	// Token: 0x04000641 RID: 1601
+	// Token: 0x04000643 RID: 1603
 	public static UICamera.GetAnyKeyFunc GetAnyKeyDown;
 
-	// Token: 0x04000642 RID: 1602
+	// Token: 0x04000644 RID: 1604
 	public static UICamera.GetMouseDelegate GetMouse = (int button) => UICamera.mMouse[button];
 
-	// Token: 0x04000643 RID: 1603
+	// Token: 0x04000645 RID: 1605
 	public static UICamera.GetTouchDelegate GetTouch = delegate(int id, bool createIfMissing)
 	{
 		if (id < 0)
@@ -2226,7 +2226,7 @@ public class UICamera : MonoBehaviour
 		return null;
 	};
 
-	// Token: 0x04000644 RID: 1604
+	// Token: 0x04000646 RID: 1606
 	public static UICamera.RemoveTouchDelegate RemoveTouch = delegate(int id)
 	{
 		int i = 0;
@@ -2243,227 +2243,227 @@ public class UICamera : MonoBehaviour
 		}
 	};
 
-	// Token: 0x04000645 RID: 1605
+	// Token: 0x04000647 RID: 1607
 	public static UICamera.OnScreenResize onScreenResize;
 
-	// Token: 0x04000646 RID: 1606
+	// Token: 0x04000648 RID: 1608
 	public UICamera.EventType eventType = UICamera.EventType.UI_3D;
 
-	// Token: 0x04000647 RID: 1607
+	// Token: 0x04000649 RID: 1609
 	public bool eventsGoToColliders;
 
-	// Token: 0x04000648 RID: 1608
+	// Token: 0x0400064A RID: 1610
 	public LayerMask eventReceiverMask = -1;
 
-	// Token: 0x04000649 RID: 1609
+	// Token: 0x0400064B RID: 1611
 	public UICamera.ProcessEventsIn processEventsIn;
 
-	// Token: 0x0400064A RID: 1610
+	// Token: 0x0400064C RID: 1612
 	public bool debug;
 
-	// Token: 0x0400064B RID: 1611
+	// Token: 0x0400064D RID: 1613
 	public bool useMouse = true;
 
-	// Token: 0x0400064C RID: 1612
+	// Token: 0x0400064E RID: 1614
 	public bool useTouch = true;
 
-	// Token: 0x0400064D RID: 1613
+	// Token: 0x0400064F RID: 1615
 	public bool allowMultiTouch = true;
 
-	// Token: 0x0400064E RID: 1614
+	// Token: 0x04000650 RID: 1616
 	public bool useKeyboard = true;
 
-	// Token: 0x0400064F RID: 1615
+	// Token: 0x04000651 RID: 1617
 	public bool useController = true;
 
-	// Token: 0x04000650 RID: 1616
+	// Token: 0x04000652 RID: 1618
 	public bool stickyTooltip = true;
 
-	// Token: 0x04000651 RID: 1617
+	// Token: 0x04000653 RID: 1619
 	public float tooltipDelay = 1f;
 
-	// Token: 0x04000652 RID: 1618
+	// Token: 0x04000654 RID: 1620
 	public bool longPressTooltip;
 
-	// Token: 0x04000653 RID: 1619
+	// Token: 0x04000655 RID: 1621
 	public float mouseDragThreshold = 4f;
 
-	// Token: 0x04000654 RID: 1620
+	// Token: 0x04000656 RID: 1622
 	public float mouseClickThreshold = 10f;
 
-	// Token: 0x04000655 RID: 1621
+	// Token: 0x04000657 RID: 1623
 	public float touchDragThreshold = 40f;
 
-	// Token: 0x04000656 RID: 1622
+	// Token: 0x04000658 RID: 1624
 	public float touchClickThreshold = 40f;
 
-	// Token: 0x04000657 RID: 1623
+	// Token: 0x04000659 RID: 1625
 	public float rangeDistance = -1f;
 
-	// Token: 0x04000658 RID: 1624
+	// Token: 0x0400065A RID: 1626
 	public string horizontalAxisName = "Horizontal";
 
-	// Token: 0x04000659 RID: 1625
+	// Token: 0x0400065B RID: 1627
 	public string verticalAxisName = "Vertical";
 
-	// Token: 0x0400065A RID: 1626
+	// Token: 0x0400065C RID: 1628
 	public string horizontalPanAxisName;
 
-	// Token: 0x0400065B RID: 1627
+	// Token: 0x0400065D RID: 1629
 	public string verticalPanAxisName;
 
-	// Token: 0x0400065C RID: 1628
+	// Token: 0x0400065E RID: 1630
 	public string scrollAxisName = "Mouse ScrollWheel";
 
-	// Token: 0x0400065D RID: 1629
+	// Token: 0x0400065F RID: 1631
 	[Tooltip("If enabled, command-click will result in a right-click event on OSX")]
 	public bool commandClick = true;
 
-	// Token: 0x0400065E RID: 1630
+	// Token: 0x04000660 RID: 1632
 	public KeyCode submitKey0 = KeyCode.Return;
 
-	// Token: 0x0400065F RID: 1631
+	// Token: 0x04000661 RID: 1633
 	public KeyCode submitKey1 = KeyCode.JoystickButton0;
 
-	// Token: 0x04000660 RID: 1632
+	// Token: 0x04000662 RID: 1634
 	public KeyCode cancelKey0 = KeyCode.Escape;
 
-	// Token: 0x04000661 RID: 1633
+	// Token: 0x04000663 RID: 1635
 	public KeyCode cancelKey1 = KeyCode.JoystickButton1;
 
-	// Token: 0x04000662 RID: 1634
+	// Token: 0x04000664 RID: 1636
 	public bool autoHideCursor = true;
 
-	// Token: 0x04000663 RID: 1635
+	// Token: 0x04000665 RID: 1637
 	public static UICamera.OnCustomInput onCustomInput;
 
-	// Token: 0x04000664 RID: 1636
+	// Token: 0x04000666 RID: 1638
 	public static bool showTooltips = true;
 
-	// Token: 0x04000665 RID: 1637
+	// Token: 0x04000667 RID: 1639
 	public static bool ignoreAllEvents = false;
 
-	// Token: 0x04000666 RID: 1638
+	// Token: 0x04000668 RID: 1640
 	public static bool ignoreControllerInput = false;
 
-	// Token: 0x04000667 RID: 1639
+	// Token: 0x04000669 RID: 1641
 	private static bool mDisableController = false;
 
-	// Token: 0x04000668 RID: 1640
+	// Token: 0x0400066A RID: 1642
 	private static Vector2 mLastPos = Vector2.zero;
 
-	// Token: 0x04000669 RID: 1641
+	// Token: 0x0400066B RID: 1643
 	public static Vector3 lastWorldPosition = Vector3.zero;
 
-	// Token: 0x0400066A RID: 1642
+	// Token: 0x0400066C RID: 1644
 	public static Ray lastWorldRay = default(Ray);
 
-	// Token: 0x0400066B RID: 1643
+	// Token: 0x0400066D RID: 1645
 	public static RaycastHit lastHit;
 
-	// Token: 0x0400066C RID: 1644
+	// Token: 0x0400066E RID: 1646
 	public static UICamera current = null;
 
-	// Token: 0x0400066D RID: 1645
+	// Token: 0x0400066F RID: 1647
 	public static Camera currentCamera = null;
 
-	// Token: 0x0400066E RID: 1646
+	// Token: 0x04000670 RID: 1648
 	public static UICamera.OnSchemeChange onSchemeChange;
 
-	// Token: 0x0400066F RID: 1647
+	// Token: 0x04000671 RID: 1649
 	private static UICamera.ControlScheme mLastScheme = UICamera.ControlScheme.Mouse;
 
-	// Token: 0x04000670 RID: 1648
+	// Token: 0x04000672 RID: 1650
 	public static int currentTouchID = -100;
 
-	// Token: 0x04000671 RID: 1649
-	private static KeyCode mCurrentKey = KeyCode.Alpha0;
-
-	// Token: 0x04000672 RID: 1650
-	[NonSerialized]
-	public static UICamera.MouseOrTouch currentTouch = null;
-
 	// Token: 0x04000673 RID: 1651
-	[NonSerialized]
-	private static bool mInputFocus = false;
+	private static KeyCode mCurrentKey = KeyCode.Alpha0;
 
 	// Token: 0x04000674 RID: 1652
 	[NonSerialized]
-	private static GameObject mGenericHandler;
+	public static UICamera.MouseOrTouch currentTouch = null;
 
 	// Token: 0x04000675 RID: 1653
 	[NonSerialized]
-	public static GameObject fallThrough;
+	private static bool mInputFocus = false;
 
 	// Token: 0x04000676 RID: 1654
 	[NonSerialized]
-	public static UICamera.VoidDelegate onClick;
+	private static GameObject mGenericHandler;
 
 	// Token: 0x04000677 RID: 1655
 	[NonSerialized]
-	public static UICamera.VoidDelegate onDoubleClick;
+	public static GameObject fallThrough;
 
 	// Token: 0x04000678 RID: 1656
 	[NonSerialized]
-	public static UICamera.BoolDelegate onHover;
+	public static UICamera.VoidDelegate onClick;
 
 	// Token: 0x04000679 RID: 1657
 	[NonSerialized]
-	public static UICamera.BoolDelegate onPress;
+	public static UICamera.VoidDelegate onDoubleClick;
 
 	// Token: 0x0400067A RID: 1658
 	[NonSerialized]
-	public static UICamera.BoolDelegate onSelect;
+	public static UICamera.BoolDelegate onHover;
 
 	// Token: 0x0400067B RID: 1659
 	[NonSerialized]
-	public static UICamera.FloatDelegate onScroll;
+	public static UICamera.BoolDelegate onPress;
 
 	// Token: 0x0400067C RID: 1660
 	[NonSerialized]
-	public static UICamera.VectorDelegate onDrag;
+	public static UICamera.BoolDelegate onSelect;
 
 	// Token: 0x0400067D RID: 1661
 	[NonSerialized]
-	public static UICamera.VoidDelegate onDragStart;
+	public static UICamera.FloatDelegate onScroll;
 
 	// Token: 0x0400067E RID: 1662
 	[NonSerialized]
-	public static UICamera.ObjectDelegate onDragOver;
+	public static UICamera.VectorDelegate onDrag;
 
 	// Token: 0x0400067F RID: 1663
 	[NonSerialized]
-	public static UICamera.ObjectDelegate onDragOut;
+	public static UICamera.VoidDelegate onDragStart;
 
 	// Token: 0x04000680 RID: 1664
 	[NonSerialized]
-	public static UICamera.VoidDelegate onDragEnd;
+	public static UICamera.ObjectDelegate onDragOver;
 
 	// Token: 0x04000681 RID: 1665
 	[NonSerialized]
-	public static UICamera.ObjectDelegate onDrop;
+	public static UICamera.ObjectDelegate onDragOut;
 
 	// Token: 0x04000682 RID: 1666
 	[NonSerialized]
-	public static UICamera.KeyCodeDelegate onKey;
+	public static UICamera.VoidDelegate onDragEnd;
 
 	// Token: 0x04000683 RID: 1667
 	[NonSerialized]
-	public static UICamera.KeyCodeDelegate onNavigate;
+	public static UICamera.ObjectDelegate onDrop;
 
 	// Token: 0x04000684 RID: 1668
 	[NonSerialized]
-	public static UICamera.VectorDelegate onPan;
+	public static UICamera.KeyCodeDelegate onKey;
 
 	// Token: 0x04000685 RID: 1669
 	[NonSerialized]
-	public static UICamera.BoolDelegate onTooltip;
+	public static UICamera.KeyCodeDelegate onNavigate;
 
 	// Token: 0x04000686 RID: 1670
 	[NonSerialized]
-	public static UICamera.MoveDelegate onMouseMove;
+	public static UICamera.VectorDelegate onPan;
 
 	// Token: 0x04000687 RID: 1671
+	[NonSerialized]
+	public static UICamera.BoolDelegate onTooltip;
+
+	// Token: 0x04000688 RID: 1672
+	[NonSerialized]
+	public static UICamera.MoveDelegate onMouseMove;
+
+	// Token: 0x04000689 RID: 1673
 	private static UICamera.MouseOrTouch[] mMouse = new UICamera.MouseOrTouch[]
 	{
 		new UICamera.MouseOrTouch(),
@@ -2471,135 +2471,135 @@ public class UICamera : MonoBehaviour
 		new UICamera.MouseOrTouch()
 	};
 
-	// Token: 0x04000688 RID: 1672
+	// Token: 0x0400068A RID: 1674
 	[NonSerialized]
 	public static UICamera.MouseOrTouch controller = new UICamera.MouseOrTouch();
 
-	// Token: 0x04000689 RID: 1673
+	// Token: 0x0400068B RID: 1675
 	[NonSerialized]
 	public static List<UICamera.MouseOrTouch> activeTouches = new List<UICamera.MouseOrTouch>();
 
-	// Token: 0x0400068A RID: 1674
+	// Token: 0x0400068C RID: 1676
 	[NonSerialized]
 	private static List<int> mTouchIDs = new List<int>();
 
-	// Token: 0x0400068B RID: 1675
+	// Token: 0x0400068D RID: 1677
 	[NonSerialized]
 	private static int mWidth = 0;
 
-	// Token: 0x0400068C RID: 1676
+	// Token: 0x0400068E RID: 1678
 	[NonSerialized]
 	private static int mHeight = 0;
 
-	// Token: 0x0400068D RID: 1677
+	// Token: 0x0400068F RID: 1679
 	[NonSerialized]
 	private static GameObject mTooltip = null;
 
-	// Token: 0x0400068E RID: 1678
+	// Token: 0x04000690 RID: 1680
 	[NonSerialized]
 	private Camera mCam;
 
-	// Token: 0x0400068F RID: 1679
+	// Token: 0x04000691 RID: 1681
 	[NonSerialized]
 	private static float mTooltipTime = 0f;
 
-	// Token: 0x04000690 RID: 1680
+	// Token: 0x04000692 RID: 1682
 	[NonSerialized]
 	private float mNextRaycast;
 
-	// Token: 0x04000691 RID: 1681
+	// Token: 0x04000693 RID: 1683
 	[NonSerialized]
 	public static bool isDragging = false;
 
-	// Token: 0x04000692 RID: 1682
+	// Token: 0x04000694 RID: 1684
 	private static int mLastInteractionCheck = -1;
 
-	// Token: 0x04000693 RID: 1683
+	// Token: 0x04000695 RID: 1685
 	private static bool mLastInteractionResult = false;
 
-	// Token: 0x04000694 RID: 1684
+	// Token: 0x04000696 RID: 1686
 	private static int mLastFocusCheck = -1;
 
-	// Token: 0x04000695 RID: 1685
+	// Token: 0x04000697 RID: 1687
 	private static bool mLastFocusResult = false;
 
-	// Token: 0x04000696 RID: 1686
+	// Token: 0x04000698 RID: 1688
 	private static int mLastOverCheck = -1;
 
-	// Token: 0x04000697 RID: 1687
+	// Token: 0x04000699 RID: 1689
 	private static bool mLastOverResult = false;
 
-	// Token: 0x04000698 RID: 1688
+	// Token: 0x0400069A RID: 1690
 	private static GameObject mRayHitObject;
 
-	// Token: 0x04000699 RID: 1689
+	// Token: 0x0400069B RID: 1691
 	private static GameObject mHover;
 
-	// Token: 0x0400069A RID: 1690
+	// Token: 0x0400069C RID: 1692
 	private static GameObject mSelected;
 
-	// Token: 0x0400069B RID: 1691
+	// Token: 0x0400069D RID: 1693
 	private static UICamera.DepthEntry mHit = default(UICamera.DepthEntry);
 
-	// Token: 0x0400069C RID: 1692
+	// Token: 0x0400069E RID: 1694
 	private static BetterList<UICamera.DepthEntry> mHits = new BetterList<UICamera.DepthEntry>();
 
-	// Token: 0x0400069D RID: 1693
+	// Token: 0x0400069F RID: 1695
 	private static RaycastHit[] mRayHits;
 
-	// Token: 0x0400069E RID: 1694
+	// Token: 0x040006A0 RID: 1696
 	private static Collider2D[] mOverlap;
 
-	// Token: 0x0400069F RID: 1695
+	// Token: 0x040006A1 RID: 1697
 	private static Plane m2DPlane = new Plane(Vector3.back, 0f);
 
-	// Token: 0x040006A0 RID: 1696
+	// Token: 0x040006A2 RID: 1698
 	private static float mNextEvent = 0f;
 
-	// Token: 0x040006A1 RID: 1697
+	// Token: 0x040006A3 RID: 1699
 	private static int mNotifying = 0;
 
-	// Token: 0x040006A2 RID: 1698
+	// Token: 0x040006A4 RID: 1700
 	private static bool disableControllerCheck = true;
 
-	// Token: 0x040006A3 RID: 1699
+	// Token: 0x040006A5 RID: 1701
 	private static bool mUsingTouchEvents = true;
 
-	// Token: 0x040006A4 RID: 1700
+	// Token: 0x040006A6 RID: 1702
 	public static UICamera.GetTouchCountCallback GetInputTouchCount;
 
-	// Token: 0x040006A5 RID: 1701
+	// Token: 0x040006A7 RID: 1703
 	public static UICamera.GetTouchCallback GetInputTouch;
-
-	// Token: 0x0200061D RID: 1565
-	[DoNotObfuscateNGUI]
-	public enum ControlScheme
-	{
-		// Token: 0x04004EE1 RID: 20193
-		Mouse,
-		// Token: 0x04004EE2 RID: 20194
-		Touch,
-		// Token: 0x04004EE3 RID: 20195
-		Controller
-	}
 
 	// Token: 0x0200061E RID: 1566
 	[DoNotObfuscateNGUI]
-	public enum ClickNotification
+	public enum ControlScheme
 	{
-		// Token: 0x04004EE5 RID: 20197
-		None,
-		// Token: 0x04004EE6 RID: 20198
-		Always,
-		// Token: 0x04004EE7 RID: 20199
-		BasedOnDelta
+		// Token: 0x04004EFF RID: 20223
+		Mouse,
+		// Token: 0x04004F00 RID: 20224
+		Touch,
+		// Token: 0x04004F01 RID: 20225
+		Controller
 	}
 
 	// Token: 0x0200061F RID: 1567
+	[DoNotObfuscateNGUI]
+	public enum ClickNotification
+	{
+		// Token: 0x04004F03 RID: 20227
+		None,
+		// Token: 0x04004F04 RID: 20228
+		Always,
+		// Token: 0x04004F05 RID: 20229
+		BasedOnDelta
+	}
+
+	// Token: 0x02000620 RID: 1568
 	public class MouseOrTouch
 	{
 		// Token: 0x17000547 RID: 1351
-		// (get) Token: 0x060025DC RID: 9692 RVA: 0x00202B73 File Offset: 0x00200D73
+		// (get) Token: 0x060025E5 RID: 9701 RVA: 0x00204113 File Offset: 0x00202313
 		public float deltaTime
 		{
 			get
@@ -2609,7 +2609,7 @@ public class UICamera : MonoBehaviour
 		}
 
 		// Token: 0x17000548 RID: 1352
-		// (get) Token: 0x060025DD RID: 9693 RVA: 0x00202B81 File Offset: 0x00200D81
+		// (get) Token: 0x060025E6 RID: 9702 RVA: 0x00204121 File Offset: 0x00202321
 		public bool isOverUI
 		{
 			get
@@ -2618,186 +2618,186 @@ public class UICamera : MonoBehaviour
 			}
 		}
 
-		// Token: 0x04004EE8 RID: 20200
+		// Token: 0x04004F06 RID: 20230
 		public KeyCode key;
 
-		// Token: 0x04004EE9 RID: 20201
+		// Token: 0x04004F07 RID: 20231
 		public Vector2 pos;
 
-		// Token: 0x04004EEA RID: 20202
+		// Token: 0x04004F08 RID: 20232
 		public Vector2 lastPos;
 
-		// Token: 0x04004EEB RID: 20203
+		// Token: 0x04004F09 RID: 20233
 		public Vector2 delta;
 
-		// Token: 0x04004EEC RID: 20204
+		// Token: 0x04004F0A RID: 20234
 		public Vector2 totalDelta;
 
-		// Token: 0x04004EED RID: 20205
+		// Token: 0x04004F0B RID: 20235
 		public Camera pressedCam;
 
-		// Token: 0x04004EEE RID: 20206
+		// Token: 0x04004F0C RID: 20236
 		public GameObject last;
 
-		// Token: 0x04004EEF RID: 20207
+		// Token: 0x04004F0D RID: 20237
 		public GameObject current;
 
-		// Token: 0x04004EF0 RID: 20208
+		// Token: 0x04004F0E RID: 20238
 		public GameObject pressed;
 
-		// Token: 0x04004EF1 RID: 20209
+		// Token: 0x04004F0F RID: 20239
 		public GameObject dragged;
 
-		// Token: 0x04004EF2 RID: 20210
+		// Token: 0x04004F10 RID: 20240
 		public GameObject lastClickGO;
 
-		// Token: 0x04004EF3 RID: 20211
+		// Token: 0x04004F11 RID: 20241
 		public float pressTime;
 
-		// Token: 0x04004EF4 RID: 20212
+		// Token: 0x04004F12 RID: 20242
 		public float clickTime;
 
-		// Token: 0x04004EF5 RID: 20213
+		// Token: 0x04004F13 RID: 20243
 		public UICamera.ClickNotification clickNotification = UICamera.ClickNotification.Always;
 
-		// Token: 0x04004EF6 RID: 20214
+		// Token: 0x04004F14 RID: 20244
 		public bool touchBegan = true;
 
-		// Token: 0x04004EF7 RID: 20215
+		// Token: 0x04004F15 RID: 20245
 		public bool pressStarted;
 
-		// Token: 0x04004EF8 RID: 20216
+		// Token: 0x04004F16 RID: 20246
 		public bool dragStarted;
 
-		// Token: 0x04004EF9 RID: 20217
+		// Token: 0x04004F17 RID: 20247
 		public int ignoreDelta;
 	}
 
-	// Token: 0x02000620 RID: 1568
+	// Token: 0x02000621 RID: 1569
 	[DoNotObfuscateNGUI]
 	public enum EventType
 	{
-		// Token: 0x04004EFB RID: 20219
+		// Token: 0x04004F19 RID: 20249
 		World_3D,
-		// Token: 0x04004EFC RID: 20220
+		// Token: 0x04004F1A RID: 20250
 		UI_3D,
-		// Token: 0x04004EFD RID: 20221
+		// Token: 0x04004F1B RID: 20251
 		World_2D,
-		// Token: 0x04004EFE RID: 20222
+		// Token: 0x04004F1C RID: 20252
 		UI_2D
 	}
 
-	// Token: 0x02000621 RID: 1569
-	// (Invoke) Token: 0x060025E0 RID: 9696
+	// Token: 0x02000622 RID: 1570
+	// (Invoke) Token: 0x060025E9 RID: 9705
 	public delegate bool GetKeyStateFunc(KeyCode key);
 
-	// Token: 0x02000622 RID: 1570
-	// (Invoke) Token: 0x060025E4 RID: 9700
+	// Token: 0x02000623 RID: 1571
+	// (Invoke) Token: 0x060025ED RID: 9709
 	public delegate float GetAxisFunc(string name);
 
-	// Token: 0x02000623 RID: 1571
-	// (Invoke) Token: 0x060025E8 RID: 9704
+	// Token: 0x02000624 RID: 1572
+	// (Invoke) Token: 0x060025F1 RID: 9713
 	public delegate bool GetAnyKeyFunc();
 
-	// Token: 0x02000624 RID: 1572
-	// (Invoke) Token: 0x060025EC RID: 9708
+	// Token: 0x02000625 RID: 1573
+	// (Invoke) Token: 0x060025F5 RID: 9717
 	public delegate UICamera.MouseOrTouch GetMouseDelegate(int button);
 
-	// Token: 0x02000625 RID: 1573
-	// (Invoke) Token: 0x060025F0 RID: 9712
+	// Token: 0x02000626 RID: 1574
+	// (Invoke) Token: 0x060025F9 RID: 9721
 	public delegate UICamera.MouseOrTouch GetTouchDelegate(int id, bool createIfMissing);
 
-	// Token: 0x02000626 RID: 1574
-	// (Invoke) Token: 0x060025F4 RID: 9716
+	// Token: 0x02000627 RID: 1575
+	// (Invoke) Token: 0x060025FD RID: 9725
 	public delegate void RemoveTouchDelegate(int id);
 
-	// Token: 0x02000627 RID: 1575
-	// (Invoke) Token: 0x060025F8 RID: 9720
+	// Token: 0x02000628 RID: 1576
+	// (Invoke) Token: 0x06002601 RID: 9729
 	public delegate void OnScreenResize();
 
-	// Token: 0x02000628 RID: 1576
+	// Token: 0x02000629 RID: 1577
 	[DoNotObfuscateNGUI]
 	public enum ProcessEventsIn
 	{
-		// Token: 0x04004F00 RID: 20224
+		// Token: 0x04004F1E RID: 20254
 		Update,
-		// Token: 0x04004F01 RID: 20225
+		// Token: 0x04004F1F RID: 20255
 		LateUpdate
 	}
 
-	// Token: 0x02000629 RID: 1577
-	// (Invoke) Token: 0x060025FC RID: 9724
+	// Token: 0x0200062A RID: 1578
+	// (Invoke) Token: 0x06002605 RID: 9733
 	public delegate void OnCustomInput();
 
-	// Token: 0x0200062A RID: 1578
-	// (Invoke) Token: 0x06002600 RID: 9728
+	// Token: 0x0200062B RID: 1579
+	// (Invoke) Token: 0x06002609 RID: 9737
 	public delegate void OnSchemeChange();
 
-	// Token: 0x0200062B RID: 1579
-	// (Invoke) Token: 0x06002604 RID: 9732
+	// Token: 0x0200062C RID: 1580
+	// (Invoke) Token: 0x0600260D RID: 9741
 	public delegate void MoveDelegate(Vector2 delta);
 
-	// Token: 0x0200062C RID: 1580
-	// (Invoke) Token: 0x06002608 RID: 9736
+	// Token: 0x0200062D RID: 1581
+	// (Invoke) Token: 0x06002611 RID: 9745
 	public delegate void VoidDelegate(GameObject go);
 
-	// Token: 0x0200062D RID: 1581
-	// (Invoke) Token: 0x0600260C RID: 9740
+	// Token: 0x0200062E RID: 1582
+	// (Invoke) Token: 0x06002615 RID: 9749
 	public delegate void BoolDelegate(GameObject go, bool state);
 
-	// Token: 0x0200062E RID: 1582
-	// (Invoke) Token: 0x06002610 RID: 9744
+	// Token: 0x0200062F RID: 1583
+	// (Invoke) Token: 0x06002619 RID: 9753
 	public delegate void FloatDelegate(GameObject go, float delta);
 
-	// Token: 0x0200062F RID: 1583
-	// (Invoke) Token: 0x06002614 RID: 9748
+	// Token: 0x02000630 RID: 1584
+	// (Invoke) Token: 0x0600261D RID: 9757
 	public delegate void VectorDelegate(GameObject go, Vector2 delta);
 
-	// Token: 0x02000630 RID: 1584
-	// (Invoke) Token: 0x06002618 RID: 9752
+	// Token: 0x02000631 RID: 1585
+	// (Invoke) Token: 0x06002621 RID: 9761
 	public delegate void ObjectDelegate(GameObject go, GameObject obj);
 
-	// Token: 0x02000631 RID: 1585
-	// (Invoke) Token: 0x0600261C RID: 9756
+	// Token: 0x02000632 RID: 1586
+	// (Invoke) Token: 0x06002625 RID: 9765
 	public delegate void KeyCodeDelegate(GameObject go, KeyCode key);
 
-	// Token: 0x02000632 RID: 1586
+	// Token: 0x02000633 RID: 1587
 	private struct DepthEntry
 	{
-		// Token: 0x04004F02 RID: 20226
+		// Token: 0x04004F20 RID: 20256
 		public int depth;
 
-		// Token: 0x04004F03 RID: 20227
+		// Token: 0x04004F21 RID: 20257
 		public RaycastHit hit;
 
-		// Token: 0x04004F04 RID: 20228
+		// Token: 0x04004F22 RID: 20258
 		public Vector3 point;
 
-		// Token: 0x04004F05 RID: 20229
+		// Token: 0x04004F23 RID: 20259
 		public GameObject go;
 	}
 
-	// Token: 0x02000633 RID: 1587
+	// Token: 0x02000634 RID: 1588
 	public class Touch
 	{
-		// Token: 0x04004F06 RID: 20230
+		// Token: 0x04004F24 RID: 20260
 		public int fingerId;
 
-		// Token: 0x04004F07 RID: 20231
+		// Token: 0x04004F25 RID: 20261
 		public TouchPhase phase;
 
-		// Token: 0x04004F08 RID: 20232
+		// Token: 0x04004F26 RID: 20262
 		public Vector2 position;
 
-		// Token: 0x04004F09 RID: 20233
+		// Token: 0x04004F27 RID: 20263
 		public int tapCount;
 	}
 
-	// Token: 0x02000634 RID: 1588
-	// (Invoke) Token: 0x06002621 RID: 9761
+	// Token: 0x02000635 RID: 1589
+	// (Invoke) Token: 0x0600262A RID: 9770
 	public delegate int GetTouchCountCallback();
 
-	// Token: 0x02000635 RID: 1589
-	// (Invoke) Token: 0x06002625 RID: 9765
+	// Token: 0x02000636 RID: 1590
+	// (Invoke) Token: 0x0600262E RID: 9774
 	public delegate UICamera.Touch GetTouchCallback(int index);
 }

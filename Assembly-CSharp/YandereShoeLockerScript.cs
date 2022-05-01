@@ -1,13 +1,13 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004D7 RID: 1239
+// Token: 0x020004D8 RID: 1240
 public class YandereShoeLockerScript : MonoBehaviour
 {
-	// Token: 0x060020AD RID: 8365 RVA: 0x001E200C File Offset: 0x001E020C
+	// Token: 0x060020B6 RID: 8374 RVA: 0x001E3470 File Offset: 0x001E1670
 	private void Update()
 	{
-		if (this.Yandere.CanMove && this.Yandere.Schoolwear == 1 && !this.Yandere.ClubAttire && !this.Yandere.Egg && !this.Yandere.WearingRaincoat)
+		if (this.Yandere.transform.position.y < 1f && this.Yandere.CanMove && this.Yandere.Schoolwear == 1 && !this.Yandere.ClubAttire && !this.Yandere.Egg && !this.Yandere.WearingRaincoat && !this.Yandere.CanCloak)
 		{
 			if (this.Outdoors)
 			{
@@ -26,11 +26,11 @@ public class YandereShoeLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020AE RID: 8366 RVA: 0x001E217C File Offset: 0x001E037C
+	// Token: 0x060020B7 RID: 8375 RVA: 0x001E3610 File Offset: 0x001E1810
 	private void UpdateShoes()
 	{
-		int bloodiness = this.Yandere.RightFootprintSpawner.Bloodiness = 0;
-		int bloodiness2 = this.Yandere.LeftFootprintSpawner.Bloodiness = 0;
+		int bloodiness = this.Yandere.RightFootprintSpawner.Bloodiness;
+		int bloodiness2 = this.Yandere.LeftFootprintSpawner.Bloodiness;
 		this.Yandere.Casual = this.Outdoors;
 		this.Yandere.ChangeSchoolwear();
 		this.Yandere.CanMove = true;
@@ -38,12 +38,12 @@ public class YandereShoeLockerScript : MonoBehaviour
 		this.Yandere.LeftFootprintSpawner.Bloodiness = bloodiness2;
 	}
 
-	// Token: 0x040047C6 RID: 18374
+	// Token: 0x040047DC RID: 18396
 	public PromptScript Prompt;
 
-	// Token: 0x040047C7 RID: 18375
+	// Token: 0x040047DD RID: 18397
 	public YandereScript Yandere;
 
-	// Token: 0x040047C8 RID: 18376
+	// Token: 0x040047DE RID: 18398
 	public bool Outdoors = true;
 }

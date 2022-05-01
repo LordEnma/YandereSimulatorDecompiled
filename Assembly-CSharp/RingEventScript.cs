@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003DB RID: 987
 public class RingEventScript : MonoBehaviour
 {
-	// Token: 0x06001BA1 RID: 7073 RVA: 0x001392FC File Offset: 0x001374FC
+	// Token: 0x06001BA5 RID: 7077 RVA: 0x00139974 File Offset: 0x00137B74
 	private void Start()
 	{
 		this.HoldingPosition = new Vector3(0.0075f, -0.0355f, 0.0175f);
@@ -20,7 +20,7 @@ public class RingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BA2 RID: 7074 RVA: 0x00139368 File Offset: 0x00137568
+	// Token: 0x06001BA6 RID: 7078 RVA: 0x001399E0 File Offset: 0x00137BE0
 	private void Update()
 	{
 		if (!this.Clock.StopTime && !this.EventActive && this.Clock.HourTime > this.EventTime)
@@ -258,7 +258,7 @@ public class RingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BA3 RID: 7075 RVA: 0x0013A028 File Offset: 0x00138228
+	// Token: 0x06001BA7 RID: 7079 RVA: 0x0013A6A0 File Offset: 0x001388A0
 	private void EndEvent()
 	{
 		if (!this.EventOver)
@@ -285,7 +285,7 @@ public class RingEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001BA4 RID: 7076 RVA: 0x0013A13C File Offset: 0x0013833C
+	// Token: 0x06001BA8 RID: 7080 RVA: 0x0013A7B4 File Offset: 0x001389B4
 	public void ReturnRing()
 	{
 		if (this.EventStudent.Cosmetic.FemaleAccessories[this.AccessoryID] != null)
@@ -299,72 +299,72 @@ public class RingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002F65 RID: 12133
+	// Token: 0x04002F6F RID: 12143
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002F66 RID: 12134
+	// Token: 0x04002F70 RID: 12144
 	public YandereScript Yandere;
 
-	// Token: 0x04002F67 RID: 12135
+	// Token: 0x04002F71 RID: 12145
 	public ClockScript Clock;
 
-	// Token: 0x04002F68 RID: 12136
+	// Token: 0x04002F72 RID: 12146
 	public StudentScript EventStudent;
 
-	// Token: 0x04002F69 RID: 12137
+	// Token: 0x04002F73 RID: 12147
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002F6A RID: 12138
+	// Token: 0x04002F74 RID: 12148
 	public AudioClip[] EventClip;
 
-	// Token: 0x04002F6B RID: 12139
+	// Token: 0x04002F75 RID: 12149
 	public string[] EventSpeech;
 
-	// Token: 0x04002F6C RID: 12140
+	// Token: 0x04002F76 RID: 12150
 	public string[] EventAnim;
 
-	// Token: 0x04002F6D RID: 12141
+	// Token: 0x04002F77 RID: 12151
 	public GameObject VoiceClip;
 
-	// Token: 0x04002F6E RID: 12142
+	// Token: 0x04002F78 RID: 12152
 	public bool EventActive;
 
-	// Token: 0x04002F6F RID: 12143
+	// Token: 0x04002F79 RID: 12153
 	public bool RingStolen;
 
-	// Token: 0x04002F70 RID: 12144
+	// Token: 0x04002F7A RID: 12154
 	public bool EventOver;
 
-	// Token: 0x04002F71 RID: 12145
+	// Token: 0x04002F7B RID: 12155
 	public float EventTime = 13.1f;
 
-	// Token: 0x04002F72 RID: 12146
+	// Token: 0x04002F7C RID: 12156
 	public int EventStudentID = 2;
 
-	// Token: 0x04002F73 RID: 12147
+	// Token: 0x04002F7D RID: 12157
 	public int AccessoryID = 3;
 
-	// Token: 0x04002F74 RID: 12148
+	// Token: 0x04002F7E RID: 12158
 	public int EventPhase = 1;
 
-	// Token: 0x04002F75 RID: 12149
+	// Token: 0x04002F7F RID: 12159
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04002F76 RID: 12150
+	// Token: 0x04002F80 RID: 12160
 	public Vector3 HoldingPosition;
 
-	// Token: 0x04002F77 RID: 12151
+	// Token: 0x04002F81 RID: 12161
 	public Vector3 HoldingRotation;
 
-	// Token: 0x04002F78 RID: 12152
+	// Token: 0x04002F82 RID: 12162
 	public float CurrentClipLength;
 
-	// Token: 0x04002F79 RID: 12153
+	// Token: 0x04002F83 RID: 12163
 	public float Timer;
 
-	// Token: 0x04002F7A RID: 12154
+	// Token: 0x04002F84 RID: 12164
 	public PromptScript RingPrompt;
 
-	// Token: 0x04002F7B RID: 12155
+	// Token: 0x04002F85 RID: 12165
 	public Collider RingCollider;
 }

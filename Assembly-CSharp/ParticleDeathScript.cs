@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000396 RID: 918
 public class ParticleDeathScript : MonoBehaviour
 {
-	// Token: 0x06001A6F RID: 6767 RVA: 0x00118FAC File Offset: 0x001171AC
+	// Token: 0x06001A73 RID: 6771 RVA: 0x00119548 File Offset: 0x00117748
 	private void LateUpdate()
 	{
 		if (this.Particles.isPlaying && this.Particles.particleCount == 0)
@@ -13,6 +13,6 @@ public class ParticleDeathScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B6D RID: 11117
+	// Token: 0x04002B76 RID: 11126
 	public ParticleSystem Particles;
 }

@@ -1,28 +1,28 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200041E RID: 1054
+// Token: 0x0200041F RID: 1055
 public class ScrollingTexture : MonoBehaviour
 {
-	// Token: 0x06001C8D RID: 7309 RVA: 0x0014E46F File Offset: 0x0014C66F
+	// Token: 0x06001C94 RID: 7316 RVA: 0x0014ECAB File Offset: 0x0014CEAB
 	private void Start()
 	{
 		this.MyRenderer = base.GetComponent<Renderer>();
 	}
 
-	// Token: 0x06001C8E RID: 7310 RVA: 0x0014E480 File Offset: 0x0014C680
+	// Token: 0x06001C95 RID: 7317 RVA: 0x0014ECBC File Offset: 0x0014CEBC
 	private void Update()
 	{
 		this.Offset += Time.deltaTime * this.Speed;
 		this.MyRenderer.material.SetTextureOffset("_MainTex", new Vector2(this.Offset, this.Offset));
 	}
 
-	// Token: 0x040032DB RID: 13019
+	// Token: 0x040032EA RID: 13034
 	public Renderer MyRenderer;
 
-	// Token: 0x040032DC RID: 13020
+	// Token: 0x040032EB RID: 13035
 	public float Offset;
 
-	// Token: 0x040032DD RID: 13021
+	// Token: 0x040032EC RID: 13036
 	public float Speed;
 }

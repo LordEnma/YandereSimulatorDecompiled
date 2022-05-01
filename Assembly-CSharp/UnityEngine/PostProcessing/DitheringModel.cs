@@ -2,13 +2,13 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000575 RID: 1397
+	// Token: 0x02000576 RID: 1398
 	[Serializable]
 	public class DitheringModel : PostProcessingModel
 	{
 		// Token: 0x1700050C RID: 1292
-		// (get) Token: 0x0600238E RID: 9102 RVA: 0x001F9A01 File Offset: 0x001F7C01
-		// (set) Token: 0x0600238F RID: 9103 RVA: 0x001F9A09 File Offset: 0x001F7C09
+		// (get) Token: 0x06002397 RID: 9111 RVA: 0x001FAE8D File Offset: 0x001F908D
+		// (set) Token: 0x06002398 RID: 9112 RVA: 0x001FAE95 File Offset: 0x001F9095
 		public DitheringModel.Settings settings
 		{
 			get
@@ -21,22 +21,22 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002390 RID: 9104 RVA: 0x001F9A12 File Offset: 0x001F7C12
+		// Token: 0x06002399 RID: 9113 RVA: 0x001FAE9E File Offset: 0x001F909E
 		public override void Reset()
 		{
 			this.m_Settings = DitheringModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004BD5 RID: 19413
+		// Token: 0x04004BEB RID: 19435
 		[SerializeField]
 		private DitheringModel.Settings m_Settings = DitheringModel.Settings.defaultSettings;
 
-		// Token: 0x020006D0 RID: 1744
+		// Token: 0x020006D1 RID: 1745
 		[Serializable]
 		public struct Settings
 		{
 			// Token: 0x170005A2 RID: 1442
-			// (get) Token: 0x0600278C RID: 10124 RVA: 0x0020833C File Offset: 0x0020653C
+			// (get) Token: 0x06002795 RID: 10133 RVA: 0x002098DC File Offset: 0x00207ADC
 			public static DitheringModel.Settings defaultSettings
 			{
 				get

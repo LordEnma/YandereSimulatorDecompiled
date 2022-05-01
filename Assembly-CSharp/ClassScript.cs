@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000249 RID: 585
 public class ClassScript : MonoBehaviour
 {
-	// Token: 0x06001259 RID: 4697 RVA: 0x0008D4D4 File Offset: 0x0008B6D4
+	// Token: 0x06001259 RID: 4697 RVA: 0x0008D628 File Offset: 0x0008B828
 	private void Start()
 	{
 		if (this.Portal == null || !this.Portal.StudentManager.ReturnedFromSave)
@@ -35,7 +35,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600125A RID: 4698 RVA: 0x0008D600 File Offset: 0x0008B800
+	// Token: 0x0600125A RID: 4698 RVA: 0x0008D754 File Offset: 0x0008B954
 	public void GetStats()
 	{
 		if (!this.Initialized)
@@ -102,7 +102,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600125B RID: 4699 RVA: 0x0008D790 File Offset: 0x0008B990
+	// Token: 0x0600125B RID: 4699 RVA: 0x0008D8E4 File Offset: 0x0008BAE4
 	private void Update()
 	{
 		if (this.Show)
@@ -290,7 +290,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600125C RID: 4700 RVA: 0x0008DF98 File Offset: 0x0008C198
+	// Token: 0x0600125C RID: 4700 RVA: 0x0008E0EC File Offset: 0x0008C2EC
 	private void UpdateSubjectLabels()
 	{
 		for (int i = 1; i < 6; i++)
@@ -300,7 +300,7 @@ public class ClassScript : MonoBehaviour
 		this.SubjectLabels[this.Selected].color = new Color(1f, 1f, 1f, 1f);
 	}
 
-	// Token: 0x0600125D RID: 4701 RVA: 0x0008E004 File Offset: 0x0008C204
+	// Token: 0x0600125D RID: 4701 RVA: 0x0008E158 File Offset: 0x0008C358
 	public void UpdateLabel()
 	{
 		this.StudyPointsLabel.text = "STUDY POINTS: " + this.StudyPoints.ToString();
@@ -308,7 +308,7 @@ public class ClassScript : MonoBehaviour
 		this.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x0600125E RID: 4702 RVA: 0x0008E054 File Offset: 0x0008C254
+	// Token: 0x0600125E RID: 4702 RVA: 0x0008E1A8 File Offset: 0x0008C3A8
 	private void UpdateBars()
 	{
 		for (int i = 1; i < 6; i++)
@@ -393,7 +393,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600125F RID: 4703 RVA: 0x0008E4CC File Offset: 0x0008C6CC
+	// Token: 0x0600125F RID: 4703 RVA: 0x0008E620 File Offset: 0x0008C820
 	private void CheckForGradeUp()
 	{
 		if (this.Biology >= 20 && this.BiologyGrade < 1)
@@ -402,202 +402,179 @@ public class ClassScript : MonoBehaviour
 			this.GradeUpSubject = 1;
 			this.GradeUp = true;
 			this.Grade = 1;
-			return;
 		}
-		if (this.Biology >= 40 && this.BiologyGrade < 2)
+		else if (this.Biology >= 40 && this.BiologyGrade < 2)
 		{
 			this.BiologyGrade = 2;
 			this.GradeUpSubject = 1;
 			this.GradeUp = true;
 			this.Grade = 2;
-			return;
 		}
-		if (this.Biology >= 60 && this.BiologyGrade < 3)
+		else if (this.Biology >= 60 && this.BiologyGrade < 3)
 		{
 			this.BiologyGrade = 3;
 			this.GradeUpSubject = 1;
 			this.GradeUp = true;
 			this.Grade = 3;
-			return;
 		}
-		if (this.Biology >= 80 && this.BiologyGrade < 4)
+		else if (this.Biology >= 80 && this.BiologyGrade < 4)
 		{
 			this.BiologyGrade = 4;
 			this.GradeUpSubject = 1;
 			this.GradeUp = true;
 			this.Grade = 4;
-			return;
 		}
-		if (this.Biology >= 100 && this.BiologyGrade < 5)
+		else if (this.Biology >= 100 && this.BiologyGrade < 5)
 		{
 			this.BiologyGrade = 5;
 			this.GradeUpSubject = 1;
 			this.GradeUp = true;
 			this.Grade = 5;
-			return;
 		}
-		if (this.Chemistry >= 20 && this.ChemistryGrade < 1)
+		else if (this.Chemistry >= 20 && this.ChemistryGrade < 1)
 		{
 			this.ChemistryGrade = 1;
 			this.GradeUpSubject = 2;
 			this.GradeUp = true;
 			this.Grade = 1;
-			return;
 		}
-		if (this.Chemistry >= 40 && this.ChemistryGrade < 2)
+		else if (this.Chemistry >= 40 && this.ChemistryGrade < 2)
 		{
 			this.ChemistryGrade = 2;
 			this.GradeUpSubject = 2;
 			this.GradeUp = true;
 			this.Grade = 2;
-			return;
 		}
-		if (this.Chemistry >= 60 && this.ChemistryGrade < 3)
+		else if (this.Chemistry >= 60 && this.ChemistryGrade < 3)
 		{
 			this.ChemistryGrade = 3;
 			this.GradeUpSubject = 2;
 			this.GradeUp = true;
 			this.Grade = 3;
-			return;
 		}
-		if (this.Chemistry >= 80 && this.ChemistryGrade < 4)
+		else if (this.Chemistry >= 80 && this.ChemistryGrade < 4)
 		{
 			this.ChemistryGrade = 4;
 			this.GradeUpSubject = 2;
 			this.GradeUp = true;
 			this.Grade = 4;
-			return;
 		}
-		if (this.Chemistry >= 100 && this.ChemistryGrade < 5)
+		else if (this.Chemistry >= 100 && this.ChemistryGrade < 5)
 		{
 			this.ChemistryGrade = 5;
 			this.GradeUpSubject = 2;
 			this.GradeUp = true;
 			this.Grade = 5;
-			return;
 		}
-		if (this.Language >= 20 && this.LanguageGrade < 1)
+		else if (this.Language >= 20 && this.LanguageGrade < 1)
 		{
 			this.LanguageGrade = 1;
 			this.GradeUpSubject = 3;
 			this.GradeUp = true;
 			this.Grade = 1;
-			return;
 		}
-		if (this.Language >= 40 && this.LanguageGrade < 2)
+		else if (this.Language >= 40 && this.LanguageGrade < 2)
 		{
 			this.LanguageGrade = 2;
 			this.GradeUpSubject = 3;
 			this.GradeUp = true;
 			this.Grade = 2;
-			return;
 		}
-		if (this.Language >= 60 && this.LanguageGrade < 3)
+		else if (this.Language >= 60 && this.LanguageGrade < 3)
 		{
 			this.LanguageGrade = 3;
 			this.GradeUpSubject = 3;
 			this.GradeUp = true;
 			this.Grade = 3;
-			return;
 		}
-		if (this.Language >= 80 && this.LanguageGrade < 4)
+		else if (this.Language >= 80 && this.LanguageGrade < 4)
 		{
 			this.LanguageGrade = 4;
 			this.GradeUpSubject = 3;
 			this.GradeUp = true;
 			this.Grade = 4;
-			return;
 		}
-		if (this.Language >= 100 && this.LanguageGrade < 5)
+		else if (this.Language >= 100 && this.LanguageGrade < 5)
 		{
 			this.LanguageGrade = 5;
 			this.GradeUpSubject = 3;
 			this.GradeUp = true;
 			this.Grade = 5;
-			return;
 		}
-		if (this.Physical >= 20 && this.PhysicalGrade < 1)
+		else if (this.Physical >= 20 && this.PhysicalGrade < 1)
 		{
 			this.PhysicalGrade = 1;
 			this.GradeUpSubject = 4;
 			this.GradeUp = true;
 			this.Grade = 1;
-			return;
 		}
-		if (this.Physical >= 40 && this.PhysicalGrade < 2)
+		else if (this.Physical >= 40 && this.PhysicalGrade < 2)
 		{
 			this.PhysicalGrade = 2;
 			this.GradeUpSubject = 4;
 			this.GradeUp = true;
 			this.Grade = 2;
-			return;
 		}
-		if (this.Physical >= 60 && this.PhysicalGrade < 3)
+		else if (this.Physical >= 60 && this.PhysicalGrade < 3)
 		{
 			this.PhysicalGrade = 3;
 			this.GradeUpSubject = 4;
 			this.GradeUp = true;
 			this.Grade = 3;
-			return;
 		}
-		if (this.Physical >= 80 && this.PhysicalGrade < 4)
+		else if (this.Physical >= 80 && this.PhysicalGrade < 4)
 		{
 			this.PhysicalGrade = 4;
 			this.GradeUpSubject = 4;
 			this.GradeUp = true;
 			this.Grade = 4;
-			return;
 		}
-		if (this.Physical == 100 && this.PhysicalGrade < 5)
+		else if (this.Physical == 100 && this.PhysicalGrade < 5)
 		{
 			this.PhysicalGrade = 5;
 			this.GradeUpSubject = 4;
 			this.GradeUp = true;
 			this.Grade = 5;
-			return;
 		}
-		if (this.Psychology >= 20 && this.PsychologyGrade < 1)
+		else if (this.Psychology >= 20 && this.PsychologyGrade < 1)
 		{
 			this.PsychologyGrade = 1;
 			this.GradeUpSubject = 5;
 			this.GradeUp = true;
 			this.Grade = 1;
-			return;
 		}
-		if (this.Psychology >= 40 && this.PsychologyGrade < 2)
+		else if (this.Psychology >= 40 && this.PsychologyGrade < 2)
 		{
 			this.PsychologyGrade = 2;
 			this.GradeUpSubject = 5;
 			this.GradeUp = true;
 			this.Grade = 2;
-			return;
 		}
-		if (this.Psychology >= 60 && this.PsychologyGrade < 3)
+		else if (this.Psychology >= 60 && this.PsychologyGrade < 3)
 		{
 			this.PsychologyGrade = 3;
 			this.GradeUpSubject = 5;
 			this.GradeUp = true;
 			this.Grade = 3;
-			return;
 		}
-		if (this.Psychology >= 80 && this.PsychologyGrade < 4)
+		else if (this.Psychology >= 80 && this.PsychologyGrade < 4)
 		{
 			this.PsychologyGrade = 4;
 			this.GradeUpSubject = 5;
 			this.GradeUp = true;
 			this.Grade = 4;
-			return;
 		}
-		if (this.Psychology >= 100 && this.PsychologyGrade < 5)
+		else if (this.Psychology >= 100 && this.PsychologyGrade < 5)
 		{
 			this.PsychologyGrade = 5;
 			this.GradeUpSubject = 5;
 			this.GradeUp = true;
 			this.Grade = 5;
 		}
+		this.Portal.Yandere.UpdateNumbness();
 	}
 
-	// Token: 0x06001260 RID: 4704 RVA: 0x0008E988 File Offset: 0x0008CB88
+	// Token: 0x06001260 RID: 4704 RVA: 0x0008EB48 File Offset: 0x0008CD48
 	private void GivePoints()
 	{
 		this.BiologyGrade = 0;
@@ -618,7 +595,7 @@ public class ClassScript : MonoBehaviour
 		this.UpdateBars();
 	}
 
-	// Token: 0x06001261 RID: 4705 RVA: 0x0008EA2C File Offset: 0x0008CC2C
+	// Token: 0x06001261 RID: 4705 RVA: 0x0008EBEC File Offset: 0x0008CDEC
 	private void MaxPhysical()
 	{
 		this.PhysicalGrade = 0;
@@ -627,7 +604,7 @@ public class ClassScript : MonoBehaviour
 		this.UpdateBars();
 	}
 
-	// Token: 0x06001262 RID: 4706 RVA: 0x0008EA54 File Offset: 0x0008CC54
+	// Token: 0x06001262 RID: 4706 RVA: 0x0008EC14 File Offset: 0x0008CE14
 	private void AddStudyPoints()
 	{
 		if (this.StudyPoints > 0 && this.Subject[this.Selected] + this.SubjectTemp[this.Selected] < 100)
@@ -639,7 +616,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001263 RID: 4707 RVA: 0x0008EABC File Offset: 0x0008CCBC
+	// Token: 0x06001263 RID: 4707 RVA: 0x0008EC7C File Offset: 0x0008CE7C
 	private void SubtractStudyPoints()
 	{
 		if (this.SubjectTemp[this.Selected] > 0)
@@ -651,198 +628,198 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001735 RID: 5941
+	// Token: 0x04001738 RID: 5944
 	public CutsceneManagerScript CutsceneManager;
 
-	// Token: 0x04001736 RID: 5942
+	// Token: 0x04001739 RID: 5945
 	public InputManagerScript InputManager;
 
-	// Token: 0x04001737 RID: 5943
+	// Token: 0x0400173A RID: 5946
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04001738 RID: 5944
+	// Token: 0x0400173B RID: 5947
 	public SchemesScript Schemes;
 
-	// Token: 0x04001739 RID: 5945
+	// Token: 0x0400173C RID: 5948
 	public PortalScript Portal;
 
-	// Token: 0x0400173A RID: 5946
+	// Token: 0x0400173D RID: 5949
 	public GameObject Poison;
 
-	// Token: 0x0400173B RID: 5947
+	// Token: 0x0400173E RID: 5950
 	public UILabel StudyPointsLabel;
 
-	// Token: 0x0400173C RID: 5948
+	// Token: 0x0400173F RID: 5951
 	public UILabel[] SubjectLabels;
 
-	// Token: 0x0400173D RID: 5949
+	// Token: 0x04001740 RID: 5952
 	public UILabel GradeUpDesc;
 
-	// Token: 0x0400173E RID: 5950
+	// Token: 0x04001741 RID: 5953
 	public UILabel GradeUpName;
 
-	// Token: 0x0400173F RID: 5951
+	// Token: 0x04001742 RID: 5954
 	public UILabel DescLabel;
 
-	// Token: 0x04001740 RID: 5952
+	// Token: 0x04001743 RID: 5955
 	public UISprite Darkness;
 
-	// Token: 0x04001741 RID: 5953
+	// Token: 0x04001744 RID: 5956
 	public Transform[] Subject1Bars;
 
-	// Token: 0x04001742 RID: 5954
+	// Token: 0x04001745 RID: 5957
 	public Transform[] Subject2Bars;
 
-	// Token: 0x04001743 RID: 5955
+	// Token: 0x04001746 RID: 5958
 	public Transform[] Subject3Bars;
 
-	// Token: 0x04001744 RID: 5956
+	// Token: 0x04001747 RID: 5959
 	public Transform[] Subject4Bars;
 
-	// Token: 0x04001745 RID: 5957
+	// Token: 0x04001748 RID: 5960
 	public Transform[] Subject5Bars;
 
-	// Token: 0x04001746 RID: 5958
+	// Token: 0x04001749 RID: 5961
 	public string[] Subject1GradeText;
 
-	// Token: 0x04001747 RID: 5959
+	// Token: 0x0400174A RID: 5962
 	public string[] Subject2GradeText;
 
-	// Token: 0x04001748 RID: 5960
+	// Token: 0x0400174B RID: 5963
 	public string[] Subject3GradeText;
 
-	// Token: 0x04001749 RID: 5961
+	// Token: 0x0400174C RID: 5964
 	public string[] Subject3GradeTextEighties;
 
-	// Token: 0x0400174A RID: 5962
+	// Token: 0x0400174D RID: 5965
 	public string[] Subject4GradeText;
 
-	// Token: 0x0400174B RID: 5963
+	// Token: 0x0400174E RID: 5966
 	public string[] Subject5GradeText;
 
-	// Token: 0x0400174C RID: 5964
+	// Token: 0x0400174F RID: 5967
 	public Transform GradeUpWindow;
 
-	// Token: 0x0400174D RID: 5965
+	// Token: 0x04001750 RID: 5968
 	public Transform Highlight;
 
-	// Token: 0x0400174E RID: 5966
+	// Token: 0x04001751 RID: 5969
 	public int[] SubjectTemp;
 
-	// Token: 0x0400174F RID: 5967
+	// Token: 0x04001752 RID: 5970
 	public int[] Subject;
 
-	// Token: 0x04001750 RID: 5968
+	// Token: 0x04001753 RID: 5971
 	public string[] Desc;
 
-	// Token: 0x04001751 RID: 5969
+	// Token: 0x04001754 RID: 5972
 	public int GradeUpSubject;
 
-	// Token: 0x04001752 RID: 5970
+	// Token: 0x04001755 RID: 5973
 	public int BonusPoints;
 
-	// Token: 0x04001753 RID: 5971
+	// Token: 0x04001756 RID: 5974
 	public int StudyPoints;
 
-	// Token: 0x04001754 RID: 5972
+	// Token: 0x04001757 RID: 5975
 	public int Selected;
 
-	// Token: 0x04001755 RID: 5973
+	// Token: 0x04001758 RID: 5976
 	public int Grade;
 
-	// Token: 0x04001756 RID: 5974
+	// Token: 0x04001759 RID: 5977
 	public bool GradeUp;
 
-	// Token: 0x04001757 RID: 5975
+	// Token: 0x0400175A RID: 5978
 	public bool Show;
 
-	// Token: 0x04001758 RID: 5976
+	// Token: 0x0400175B RID: 5979
 	public int Biology;
 
-	// Token: 0x04001759 RID: 5977
+	// Token: 0x0400175C RID: 5980
 	public int Chemistry;
 
-	// Token: 0x0400175A RID: 5978
+	// Token: 0x0400175D RID: 5981
 	public int Language;
 
-	// Token: 0x0400175B RID: 5979
+	// Token: 0x0400175E RID: 5982
 	public int Physical;
 
-	// Token: 0x0400175C RID: 5980
+	// Token: 0x0400175F RID: 5983
 	public int Psychology;
 
-	// Token: 0x0400175D RID: 5981
+	// Token: 0x04001760 RID: 5984
 	public int BiologyGrade;
 
-	// Token: 0x0400175E RID: 5982
+	// Token: 0x04001761 RID: 5985
 	public int ChemistryGrade;
 
-	// Token: 0x0400175F RID: 5983
+	// Token: 0x04001762 RID: 5986
 	public int LanguageGrade;
 
-	// Token: 0x04001760 RID: 5984
+	// Token: 0x04001763 RID: 5987
 	public int PhysicalGrade;
 
-	// Token: 0x04001761 RID: 5985
+	// Token: 0x04001764 RID: 5988
 	public int PsychologyGrade;
 
-	// Token: 0x04001762 RID: 5986
+	// Token: 0x04001765 RID: 5989
 	public int BiologyBonus;
 
-	// Token: 0x04001763 RID: 5987
+	// Token: 0x04001766 RID: 5990
 	public int ChemistryBonus;
 
-	// Token: 0x04001764 RID: 5988
+	// Token: 0x04001767 RID: 5991
 	public int LanguageBonus;
 
-	// Token: 0x04001765 RID: 5989
+	// Token: 0x04001768 RID: 5992
 	public int PhysicalBonus;
 
-	// Token: 0x04001766 RID: 5990
+	// Token: 0x04001769 RID: 5993
 	public int PsychologyBonus;
 
-	// Token: 0x04001767 RID: 5991
+	// Token: 0x0400176A RID: 5994
 	public int Seduction;
 
-	// Token: 0x04001768 RID: 5992
+	// Token: 0x0400176B RID: 5995
 	public int Numbness;
 
-	// Token: 0x04001769 RID: 5993
+	// Token: 0x0400176C RID: 5996
 	public int Social;
 
-	// Token: 0x0400176A RID: 5994
+	// Token: 0x0400176D RID: 5997
 	public int Stealth;
 
-	// Token: 0x0400176B RID: 5995
+	// Token: 0x0400176E RID: 5998
 	public int Speed;
 
-	// Token: 0x0400176C RID: 5996
+	// Token: 0x0400176F RID: 5999
 	public int Enlightenment;
 
-	// Token: 0x0400176D RID: 5997
+	// Token: 0x04001770 RID: 6000
 	public int SpeedBonus;
 
-	// Token: 0x0400176E RID: 5998
+	// Token: 0x04001771 RID: 6001
 	public int SocialBonus;
 
-	// Token: 0x0400176F RID: 5999
+	// Token: 0x04001772 RID: 6002
 	public int StealthBonus;
 
-	// Token: 0x04001770 RID: 6000
+	// Token: 0x04001773 RID: 6003
 	public int SeductionBonus;
 
-	// Token: 0x04001771 RID: 6001
+	// Token: 0x04001774 RID: 6004
 	public int NumbnessBonus;
 
-	// Token: 0x04001772 RID: 6002
+	// Token: 0x04001775 RID: 6005
 	public int EnlightenmentBonus;
 
-	// Token: 0x04001773 RID: 6003
+	// Token: 0x04001776 RID: 6006
 	public float HoldRightTimer;
 
-	// Token: 0x04001774 RID: 6004
+	// Token: 0x04001777 RID: 6007
 	public float HoldLeftTimer;
 
-	// Token: 0x04001775 RID: 6005
+	// Token: 0x04001778 RID: 6008
 	public bool Initialized;
 }
