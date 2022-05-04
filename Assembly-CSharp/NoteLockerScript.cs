@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200037E RID: 894
 public class NoteLockerScript : MonoBehaviour
 {
-	// Token: 0x06001A2A RID: 6698 RVA: 0x00112A8C File Offset: 0x00110C8C
+	// Token: 0x06001A2A RID: 6698 RVA: 0x00112A58 File Offset: 0x00110C58
 	private void Update()
 	{
 		if (this.Student != null)
@@ -211,7 +211,7 @@ public class NoteLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A2B RID: 6699 RVA: 0x00113470 File Offset: 0x00111670
+	// Token: 0x06001A2B RID: 6699 RVA: 0x0011343C File Offset: 0x0011163C
 	public void Finish()
 	{
 		if (this.NewNote != null)
@@ -267,7 +267,7 @@ public class NoteLockerScript : MonoBehaviour
 		this.Student.Follower != null;
 	}
 
-	// Token: 0x06001A2C RID: 6700 RVA: 0x00113705 File Offset: 0x00111905
+	// Token: 0x06001A2C RID: 6700 RVA: 0x001136D1 File Offset: 0x001118D1
 	private void DetermineSchedule()
 	{
 		this.Student.MeetSpot = this.MeetSpots.List[this.MeetID];

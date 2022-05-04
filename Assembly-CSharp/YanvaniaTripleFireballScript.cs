@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020004ED RID: 1261
 public class YanvaniaTripleFireballScript : MonoBehaviour
 {
-	// Token: 0x060020F6 RID: 8438 RVA: 0x001E7570 File Offset: 0x001E5770
+	// Token: 0x060020F7 RID: 8439 RVA: 0x001E766C File Offset: 0x001E586C
 	private void Start()
 	{
 		this.Direction = ((this.Dracula.position.x > base.transform.position.x) ? -1 : 1);
 	}
 
-	// Token: 0x060020F7 RID: 8439 RVA: 0x001E75A0 File Offset: 0x001E57A0
+	// Token: 0x060020F8 RID: 8440 RVA: 0x001E769C File Offset: 0x001E589C
 	private void Update()
 	{
 		Transform transform = this.Fireballs[1];

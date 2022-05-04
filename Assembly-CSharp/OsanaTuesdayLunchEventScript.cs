@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E9 RID: 1001
 public class OsanaTuesdayLunchEventScript : MonoBehaviour
 {
-	// Token: 0x06001BE3 RID: 7139 RVA: 0x00142C2C File Offset: 0x00140E2C
+	// Token: 0x06001BE3 RID: 7139 RVA: 0x00142BF8 File Offset: 0x00140DF8
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -15,7 +15,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BE4 RID: 7140 RVA: 0x00142C84 File Offset: 0x00140E84
+	// Token: 0x06001BE4 RID: 7140 RVA: 0x00142C50 File Offset: 0x00140E50
 	private void Update()
 	{
 		if (this.VoiceClip != null)
@@ -336,7 +336,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BE5 RID: 7141 RVA: 0x00144080 File Offset: 0x00142280
+	// Token: 0x06001BE5 RID: 7141 RVA: 0x0014404C File Offset: 0x0014224C
 	private void EndEvent()
 	{
 		Debug.Log("Osana's Tuesday lunchtime event ended.");

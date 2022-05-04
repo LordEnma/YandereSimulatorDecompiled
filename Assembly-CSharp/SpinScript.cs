@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200043F RID: 1087
 public class SpinScript : MonoBehaviour
 {
-	// Token: 0x06001D0D RID: 7437 RVA: 0x0015ABA8 File Offset: 0x00158DA8
+	// Token: 0x06001D0D RID: 7437 RVA: 0x0015AB74 File Offset: 0x00158D74
 	private void Update()
 	{
 		this.RotationX += this.X * Time.deltaTime;

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003BE RID: 958
 public class PowerSwitchScript : MonoBehaviour
 {
-	// Token: 0x06001B1B RID: 6939 RVA: 0x0012CE4A File Offset: 0x0012B04A
+	// Token: 0x06001B1B RID: 6939 RVA: 0x0012CE16 File Offset: 0x0012B016
 	private void Start()
 	{
 		if (this.BathroomLight != null)
@@ -17,7 +17,7 @@ public class PowerSwitchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B1C RID: 6940 RVA: 0x0012CE88 File Offset: 0x0012B088
+	// Token: 0x06001B1C RID: 6940 RVA: 0x0012CE54 File Offset: 0x0012B054
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -56,7 +56,7 @@ public class PowerSwitchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B1D RID: 6941 RVA: 0x0012CFD0 File Offset: 0x0012B1D0
+	// Token: 0x06001B1D RID: 6941 RVA: 0x0012CF9C File Offset: 0x0012B19C
 	public void CheckPuddle()
 	{
 		if (this.On)

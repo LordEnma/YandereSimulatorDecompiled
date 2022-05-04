@@ -8,7 +8,7 @@ namespace AmplifyMotion
 	// Token: 0x0200058E RID: 1422
 	internal class ParticleState : MotionState
 	{
-		// Token: 0x06002414 RID: 9236 RVA: 0x001FCEF4 File Offset: 0x001FB0F4
+		// Token: 0x06002415 RID: 9237 RVA: 0x001FCFF0 File Offset: 0x001FB1F0
 		public ParticleState(AmplifyMotionCamera owner, AmplifyMotionObjectBase obj) : base(owner, obj)
 		{
 			this.m_particleSystem = this.m_obj.GetComponent<ParticleSystem>();
@@ -17,7 +17,7 @@ namespace AmplifyMotion
 			this.rotationBySpeed = this.m_particleSystem.rotationBySpeed;
 		}
 
-		// Token: 0x06002415 RID: 9237 RVA: 0x001FCF4D File Offset: 0x001FB14D
+		// Token: 0x06002416 RID: 9238 RVA: 0x001FD049 File Offset: 0x001FB249
 		private void IssueError(string message)
 		{
 			if (!ParticleState.m_uniqueWarnings.Contains(this.m_obj))
@@ -28,7 +28,7 @@ namespace AmplifyMotion
 			this.m_error = true;
 		}
 
-		// Token: 0x06002416 RID: 9238 RVA: 0x001FCF80 File Offset: 0x001FB180
+		// Token: 0x06002417 RID: 9239 RVA: 0x001FD07C File Offset: 0x001FB27C
 		private Mesh CreateBillboardMesh()
 		{
 			int[] triangles = new int[]
@@ -62,7 +62,7 @@ namespace AmplifyMotion
 			};
 		}
 
-		// Token: 0x06002417 RID: 9239 RVA: 0x001FD08C File Offset: 0x001FB28C
+		// Token: 0x06002418 RID: 9240 RVA: 0x001FD188 File Offset: 0x001FB388
 		private Mesh CreateStretchedBillboardMesh()
 		{
 			int[] triangles = new int[]
@@ -96,7 +96,7 @@ namespace AmplifyMotion
 			};
 		}
 
-		// Token: 0x06002418 RID: 9240 RVA: 0x001FD198 File Offset: 0x001FB398
+		// Token: 0x06002419 RID: 9241 RVA: 0x001FD294 File Offset: 0x001FB494
 		internal override void Initialize()
 		{
 			if (this.m_renderer == null)
@@ -130,7 +130,7 @@ namespace AmplifyMotion
 			this.m_wasVisible = false;
 		}
 
-		// Token: 0x06002419 RID: 9241 RVA: 0x001FD2C0 File Offset: 0x001FB4C0
+		// Token: 0x0600241A RID: 9242 RVA: 0x001FD3BC File Offset: 0x001FB5BC
 		private void RemoveDeadParticles()
 		{
 			this.m_listToRemove.Clear();
@@ -155,7 +155,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x0600241A RID: 9242 RVA: 0x001FD37C File Offset: 0x001FB57C
+		// Token: 0x0600241B RID: 9243 RVA: 0x001FD478 File Offset: 0x001FB678
 		internal override void UpdateTransform(CommandBuffer updateCB, bool starting)
 		{
 			int maxParticles = this.m_particleSystem.main.maxParticles;
@@ -253,7 +253,7 @@ namespace AmplifyMotion
 			this.m_wasVisible = this.m_renderer.isVisible;
 		}
 
-		// Token: 0x0600241B RID: 9243 RVA: 0x001FD720 File Offset: 0x001FB920
+		// Token: 0x0600241C RID: 9244 RVA: 0x001FD81C File Offset: 0x001FBA1C
 		internal override void RenderVectors(Camera camera, CommandBuffer renderCB, float scale, Quality quality)
 		{
 			if (this.m_initialized && !this.m_error && this.m_renderer.isVisible)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004DD RID: 1245
 public class YanvaniaBlackHoleScript : MonoBehaviour
 {
-	// Token: 0x060020C4 RID: 8388 RVA: 0x001E3CD4 File Offset: 0x001E1ED4
+	// Token: 0x060020C5 RID: 8389 RVA: 0x001E3DD0 File Offset: 0x001E1FD0
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;

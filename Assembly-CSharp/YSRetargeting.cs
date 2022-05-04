@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000511 RID: 1297
 public class YSRetargeting : MonoBehaviour
 {
-	// Token: 0x06002180 RID: 8576 RVA: 0x001ED67C File Offset: 0x001EB87C
+	// Token: 0x06002181 RID: 8577 RVA: 0x001ED778 File Offset: 0x001EB978
 	private void Start()
 	{
 		this.SourceBones = new Component[160];
@@ -190,12 +190,12 @@ public class YSRetargeting : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002181 RID: 8577 RVA: 0x001EDCFE File Offset: 0x001EBEFE
+	// Token: 0x06002182 RID: 8578 RVA: 0x001EDDFA File Offset: 0x001EBFFA
 	private void Update()
 	{
 	}
 
-	// Token: 0x06002182 RID: 8578 RVA: 0x001EDD00 File Offset: 0x001EBF00
+	// Token: 0x06002183 RID: 8579 RVA: 0x001EDDFC File Offset: 0x001EBFFC
 	private void LateUpdate()
 	{
 		for (int i = 0; i < this.TargetBones.Length; i++)

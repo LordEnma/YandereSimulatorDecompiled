@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020003F7 RID: 1015
 public class SafeScript : MonoBehaviour
 {
-	// Token: 0x06001C14 RID: 7188 RVA: 0x00148CD5 File Offset: 0x00146ED5
+	// Token: 0x06001C14 RID: 7188 RVA: 0x00148CA1 File Offset: 0x00146EA1
 	private void Start()
 	{
 		this.ContentsPrompt.MyCollider.enabled = false;
 		this.SafePrompt.enabled = false;
 	}
 
-	// Token: 0x06001C15 RID: 7189 RVA: 0x00148CF4 File Offset: 0x00146EF4
+	// Token: 0x06001C15 RID: 7189 RVA: 0x00148CC0 File Offset: 0x00146EC0
 	private void Update()
 	{
 		if (this.Key.activeInHierarchy && this.KeyPrompt.Circle[0].fillAmount == 0f)

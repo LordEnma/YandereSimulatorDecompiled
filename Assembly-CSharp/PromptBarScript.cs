@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003C2 RID: 962
 public class PromptBarScript : MonoBehaviour
 {
-	// Token: 0x06001B2F RID: 6959 RVA: 0x0012F19C File Offset: 0x0012D39C
+	// Token: 0x06001B2F RID: 6959 RVA: 0x0012F168 File Offset: 0x0012D368
 	private void Awake()
 	{
 		base.transform.localPosition = new Vector3(base.transform.localPosition.x, -627f, base.transform.localPosition.z);
@@ -16,13 +16,13 @@ public class PromptBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B30 RID: 6960 RVA: 0x0012F21C File Offset: 0x0012D41C
+	// Token: 0x06001B30 RID: 6960 RVA: 0x0012F1E8 File Offset: 0x0012D3E8
 	private void Start()
 	{
 		this.UpdateButtons();
 	}
 
-	// Token: 0x06001B31 RID: 6961 RVA: 0x0012F224 File Offset: 0x0012D424
+	// Token: 0x06001B31 RID: 6961 RVA: 0x0012F1F0 File Offset: 0x0012D3F0
 	private void Update()
 	{
 		float t = Time.unscaledDeltaTime * 10f;
@@ -48,7 +48,7 @@ public class PromptBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B32 RID: 6962 RVA: 0x0012F358 File Offset: 0x0012D558
+	// Token: 0x06001B32 RID: 6962 RVA: 0x0012F324 File Offset: 0x0012D524
 	public void UpdateButtons()
 	{
 		if (this.Panel != null)
@@ -64,7 +64,7 @@ public class PromptBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B33 RID: 6963 RVA: 0x0012F400 File Offset: 0x0012D600
+	// Token: 0x06001B33 RID: 6963 RVA: 0x0012F3CC File Offset: 0x0012D5CC
 	public void ClearButtons()
 	{
 		this.ID = 0;

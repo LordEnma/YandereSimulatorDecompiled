@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x0200029F RID: 671
 public class EightiesEffectEnablerScript : MonoBehaviour
 {
-	// Token: 0x0600141F RID: 5151 RVA: 0x000BFB80 File Offset: 0x000BDD80
+	// Token: 0x0600141F RID: 5151 RVA: 0x000BFB4C File Offset: 0x000BDD4C
 	public void Start()
 	{
 		if (this.EightiesEffects != null)
@@ -19,7 +19,7 @@ public class EightiesEffectEnablerScript : MonoBehaviour
 		this.UpdateEightiesEffects();
 	}
 
-	// Token: 0x06001420 RID: 5152 RVA: 0x000BFBD0 File Offset: 0x000BDDD0
+	// Token: 0x06001420 RID: 5152 RVA: 0x000BFB9C File Offset: 0x000BDD9C
 	public void UpdateEightiesEffects()
 	{
 		if (this.EightiesEffects != null)

@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class Timer
 {
-	// Token: 0x06001FBA RID: 8122 RVA: 0x001BFEB1 File Offset: 0x001BE0B1
+	// Token: 0x06001FBB RID: 8123 RVA: 0x001BFFAD File Offset: 0x001BE1AD
 	public Timer(float targetSeconds)
 	{
 		this.currentSeconds = 0f;
@@ -13,7 +13,7 @@ public class Timer
 	}
 
 	// Token: 0x170004C6 RID: 1222
-	// (get) Token: 0x06001FBB RID: 8123 RVA: 0x001BFECB File Offset: 0x001BE0CB
+	// (get) Token: 0x06001FBC RID: 8124 RVA: 0x001BFFC7 File Offset: 0x001BE1C7
 	public float CurrentSeconds
 	{
 		get
@@ -23,7 +23,7 @@ public class Timer
 	}
 
 	// Token: 0x170004C7 RID: 1223
-	// (get) Token: 0x06001FBC RID: 8124 RVA: 0x001BFED3 File Offset: 0x001BE0D3
+	// (get) Token: 0x06001FBD RID: 8125 RVA: 0x001BFFCF File Offset: 0x001BE1CF
 	public float TargetSeconds
 	{
 		get
@@ -33,7 +33,7 @@ public class Timer
 	}
 
 	// Token: 0x170004C8 RID: 1224
-	// (get) Token: 0x06001FBD RID: 8125 RVA: 0x001BFEDB File Offset: 0x001BE0DB
+	// (get) Token: 0x06001FBE RID: 8126 RVA: 0x001BFFD7 File Offset: 0x001BE1D7
 	public bool IsDone
 	{
 		get
@@ -43,7 +43,7 @@ public class Timer
 	}
 
 	// Token: 0x170004C9 RID: 1225
-	// (get) Token: 0x06001FBE RID: 8126 RVA: 0x001BFEEE File Offset: 0x001BE0EE
+	// (get) Token: 0x06001FBF RID: 8127 RVA: 0x001BFFEA File Offset: 0x001BE1EA
 	public float Progress
 	{
 		get
@@ -52,19 +52,19 @@ public class Timer
 		}
 	}
 
-	// Token: 0x06001FBF RID: 8127 RVA: 0x001BFF02 File Offset: 0x001BE102
+	// Token: 0x06001FC0 RID: 8128 RVA: 0x001BFFFE File Offset: 0x001BE1FE
 	public void Reset()
 	{
 		this.currentSeconds = 0f;
 	}
 
-	// Token: 0x06001FC0 RID: 8128 RVA: 0x001BFF0F File Offset: 0x001BE10F
+	// Token: 0x06001FC1 RID: 8129 RVA: 0x001C000B File Offset: 0x001BE20B
 	public void SubtractTarget()
 	{
 		this.currentSeconds -= this.targetSeconds;
 	}
 
-	// Token: 0x06001FC1 RID: 8129 RVA: 0x001BFF24 File Offset: 0x001BE124
+	// Token: 0x06001FC2 RID: 8130 RVA: 0x001C0020 File Offset: 0x001BE220
 	public void Tick(float dt)
 	{
 		this.currentSeconds += dt;

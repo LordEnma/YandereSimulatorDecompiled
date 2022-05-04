@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200039C RID: 924
 public class PersonaSubtitleScript : MonoBehaviour
 {
-	// Token: 0x06001A8D RID: 6797 RVA: 0x0011CC28 File Offset: 0x0011AE28
+	// Token: 0x06001A8D RID: 6797 RVA: 0x0011CBF4 File Offset: 0x0011ADF4
 	public void UpdateLabel(PersonaType Persona, float Reputation, float Duration)
 	{
 		switch (Persona)

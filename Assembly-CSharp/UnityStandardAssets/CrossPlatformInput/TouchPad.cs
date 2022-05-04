@@ -9,20 +9,20 @@ namespace UnityStandardAssets.CrossPlatformInput
 	[RequireComponent(typeof(Image))]
 	public class TouchPad : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IPointerUpHandler
 	{
-		// Token: 0x06002282 RID: 8834 RVA: 0x001F4A97 File Offset: 0x001F2C97
+		// Token: 0x06002283 RID: 8835 RVA: 0x001F4B93 File Offset: 0x001F2D93
 		private void OnEnable()
 		{
 			this.CreateVirtualAxes();
 		}
 
-		// Token: 0x06002283 RID: 8835 RVA: 0x001F4A9F File Offset: 0x001F2C9F
+		// Token: 0x06002284 RID: 8836 RVA: 0x001F4B9B File Offset: 0x001F2D9B
 		private void Start()
 		{
 			this.m_Image = base.GetComponent<Image>();
 			this.m_Center = this.m_Image.transform.position;
 		}
 
-		// Token: 0x06002284 RID: 8836 RVA: 0x001F4AC4 File Offset: 0x001F2CC4
+		// Token: 0x06002285 RID: 8837 RVA: 0x001F4BC0 File Offset: 0x001F2DC0
 		private void CreateVirtualAxes()
 		{
 			this.m_UseX = (this.axesToUse == TouchPad.AxisOption.Both || this.axesToUse == TouchPad.AxisOption.OnlyHorizontal);
@@ -39,7 +39,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002285 RID: 8837 RVA: 0x001F4B4D File Offset: 0x001F2D4D
+		// Token: 0x06002286 RID: 8838 RVA: 0x001F4C49 File Offset: 0x001F2E49
 		private void UpdateVirtualAxes(Vector3 value)
 		{
 			value = value.normalized;
@@ -53,7 +53,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002286 RID: 8838 RVA: 0x001F4B8A File Offset: 0x001F2D8A
+		// Token: 0x06002287 RID: 8839 RVA: 0x001F4C86 File Offset: 0x001F2E86
 		public void OnPointerDown(PointerEventData data)
 		{
 			this.m_Dragging = true;
@@ -64,7 +64,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002287 RID: 8839 RVA: 0x001F4BB8 File Offset: 0x001F2DB8
+		// Token: 0x06002288 RID: 8840 RVA: 0x001F4CB4 File Offset: 0x001F2EB4
 		private void Update()
 		{
 			if (!this.m_Dragging)
@@ -85,7 +85,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002288 RID: 8840 RVA: 0x001F4CB9 File Offset: 0x001F2EB9
+		// Token: 0x06002289 RID: 8841 RVA: 0x001F4DB5 File Offset: 0x001F2FB5
 		public void OnPointerUp(PointerEventData data)
 		{
 			this.m_Dragging = false;
@@ -93,7 +93,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			this.UpdateVirtualAxes(Vector3.zero);
 		}
 
-		// Token: 0x06002289 RID: 8841 RVA: 0x001F4CD4 File Offset: 0x001F2ED4
+		// Token: 0x0600228A RID: 8842 RVA: 0x001F4DD0 File Offset: 0x001F2FD0
 		private void OnDisable()
 		{
 			if (CrossPlatformInputManager.AxisExists(this.horizontalAxisName))

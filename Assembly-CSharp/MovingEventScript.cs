@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000372 RID: 882
 public class MovingEventScript : MonoBehaviour
 {
-	// Token: 0x060019E3 RID: 6627 RVA: 0x00109806 File Offset: 0x00107A06
+	// Token: 0x060019E3 RID: 6627 RVA: 0x001097D2 File Offset: 0x001079D2
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -14,7 +14,7 @@ public class MovingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019E4 RID: 6628 RVA: 0x00109834 File Offset: 0x00107A34
+	// Token: 0x060019E4 RID: 6628 RVA: 0x00109800 File Offset: 0x00107A00
 	private void Update()
 	{
 		if (!this.Clock.StopTime && this.EventCheck && this.Clock.HourTime > 13f)
@@ -290,7 +290,7 @@ public class MovingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019E5 RID: 6629 RVA: 0x0010A644 File Offset: 0x00108844
+	// Token: 0x060019E5 RID: 6629 RVA: 0x0010A610 File Offset: 0x00108810
 	private void EndEvent()
 	{
 		if (!this.EventOver)

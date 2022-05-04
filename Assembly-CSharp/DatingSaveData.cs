@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [Serializable]
 public class DatingSaveData
 {
-	// Token: 0x06001C2E RID: 7214 RVA: 0x001497EC File Offset: 0x001479EC
+	// Token: 0x06001C2E RID: 7214 RVA: 0x001497B8 File Offset: 0x001479B8
 	public static DatingSaveData ReadFromGlobals()
 	{
 		DatingSaveData datingSaveData = new DatingSaveData();
@@ -44,7 +44,7 @@ public class DatingSaveData
 		return datingSaveData;
 	}
 
-	// Token: 0x06001C2F RID: 7215 RVA: 0x00149908 File Offset: 0x00147B08
+	// Token: 0x06001C2F RID: 7215 RVA: 0x001498D4 File Offset: 0x00147AD4
 	public static void WriteToGlobals(DatingSaveData data)
 	{
 		DatingGlobals.Affection = data.affection;

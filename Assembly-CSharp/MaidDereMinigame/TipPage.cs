@@ -7,7 +7,7 @@ namespace MaidDereMinigame
 	// Token: 0x020005BF RID: 1471
 	public class TipPage : MonoBehaviour
 	{
-		// Token: 0x06002507 RID: 9479 RVA: 0x00202DD8 File Offset: 0x00200FD8
+		// Token: 0x06002508 RID: 9480 RVA: 0x00202ED4 File Offset: 0x002010D4
 		public void Init()
 		{
 			this.cards = new List<TipCard>();
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			base.gameObject.SetActive(false);
 		}
 
-		// Token: 0x06002508 RID: 9480 RVA: 0x00202E94 File Offset: 0x00201094
+		// Token: 0x06002509 RID: 9481 RVA: 0x00202F90 File Offset: 0x00201190
 		public void DisplayTips(List<float> tips)
 		{
 			if (tips == null)
@@ -49,7 +49,7 @@ namespace MaidDereMinigame
 			this.totalCard.SetTip(num + basePay);
 		}
 
-		// Token: 0x06002509 RID: 9481 RVA: 0x00202F4D File Offset: 0x0020114D
+		// Token: 0x0600250A RID: 9482 RVA: 0x00203049 File Offset: 0x00201249
 		private void Update()
 		{
 			if (this.stopInteraction)

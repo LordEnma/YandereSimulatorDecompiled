@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200037B RID: 891
 public class NewTitleScreenScript : MonoBehaviour
 {
-	// Token: 0x06001A17 RID: 6679 RVA: 0x0011092C File Offset: 0x0010EB2C
+	// Token: 0x06001A17 RID: 6679 RVA: 0x001108F8 File Offset: 0x0010EAF8
 	private void Start()
 	{
 		Debug.Log("Upon entering the title screen, DepthOfField settings are: " + OptionGlobals.DepthOfField.ToString());
@@ -77,7 +77,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.VtuberHairs[1].SetActive(false);
 	}
 
-	// Token: 0x06001A18 RID: 6680 RVA: 0x00110C10 File Offset: 0x0010EE10
+	// Token: 0x06001A18 RID: 6680 RVA: 0x00110BDC File Offset: 0x0010EDDC
 	private void Update()
 	{
 		if (this.Frame == 1)
@@ -533,7 +533,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		base.transform.LookAt(this.LookAtTarget);
 	}
 
-	// Token: 0x06001A19 RID: 6681 RVA: 0x0011212C File Offset: 0x0011032C
+	// Token: 0x06001A19 RID: 6681 RVA: 0x001120F8 File Offset: 0x001102F8
 	private void UpdateBloom(float Intensity, float Radius)
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -544,7 +544,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		settings.bloom.softKnee = 1f;
 	}
 
-	// Token: 0x06001A1A RID: 6682 RVA: 0x00112198 File Offset: 0x00110398
+	// Token: 0x06001A1A RID: 6682 RVA: 0x00112164 File Offset: 0x00110364
 	private void UpdateDOF(float Focus)
 	{
 		Focus *= ((float)Screen.width / 1280f + (float)Screen.height / 720f) * 0.5f;
@@ -553,7 +553,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x06001A1B RID: 6683 RVA: 0x001121F4 File Offset: 0x001103F4
+	// Token: 0x06001A1B RID: 6683 RVA: 0x001121C0 File Offset: 0x001103C0
 	private void ResetVignette()
 	{
 		VignetteModel.Settings settings = this.Profile.vignette.settings;
@@ -564,7 +564,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.Profile.chromaticAberration.settings = settings2;
 	}
 
-	// Token: 0x06001A1C RID: 6684 RVA: 0x0011226C File Offset: 0x0011046C
+	// Token: 0x06001A1C RID: 6684 RVA: 0x00112238 File Offset: 0x00110438
 	private void UpdateCursor()
 	{
 		if (this.Selection > this.Options)
@@ -593,7 +593,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.MyAudio.Play();
 	}
 
-	// Token: 0x06001A1D RID: 6685 RVA: 0x00112318 File Offset: 0x00110518
+	// Token: 0x06001A1D RID: 6685 RVA: 0x001122E4 File Offset: 0x001104E4
 	private void EnableEightiesEffects()
 	{
 		GameObjectUtils.SetLayerRecursively(this.EightiesLogo.transform.parent.gameObject, 5);
@@ -630,7 +630,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.UpdateBloodyStatus();
 	}
 
-	// Token: 0x06001A1E RID: 6686 RVA: 0x001124EC File Offset: 0x001106EC
+	// Token: 0x06001A1E RID: 6686 RVA: 0x001124B8 File Offset: 0x001106B8
 	private void DisableEightiesEffects()
 	{
 		GameObjectUtils.SetLayerRecursively(this.EightiesLogo.transform.parent.gameObject, 0);
@@ -666,7 +666,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.UpdateBloodyStatus();
 	}
 
-	// Token: 0x06001A1F RID: 6687 RVA: 0x001126A8 File Offset: 0x001108A8
+	// Token: 0x06001A1F RID: 6687 RVA: 0x00112674 File Offset: 0x00110874
 	private void ChangeTextOutline()
 	{
 		foreach (UILabel uilabel in UnityEngine.Object.FindObjectsOfType<UILabel>())
@@ -683,7 +683,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A20 RID: 6688 RVA: 0x00112718 File Offset: 0x00110918
+	// Token: 0x06001A20 RID: 6688 RVA: 0x001126E4 File Offset: 0x001108E4
 	private void SetEightiesVariables()
 	{
 		GameGlobals.EightiesTutorial = true;
@@ -697,7 +697,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		DateGlobals.Weekday = DayOfWeek.Saturday;
 	}
 
-	// Token: 0x06001A21 RID: 6689 RVA: 0x00112758 File Offset: 0x00110958
+	// Token: 0x06001A21 RID: 6689 RVA: 0x00112724 File Offset: 0x00110924
 	private void UpdateBloodyStatus()
 	{
 		if (PlayerGlobals.Kills > 0 || (GameGlobals.RivalEliminationID > 0 && !GameGlobals.NonlethalElimination))
@@ -712,7 +712,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		this.Knife.SetActive(false);
 	}
 
-	// Token: 0x06001A22 RID: 6690 RVA: 0x001127C8 File Offset: 0x001109C8
+	// Token: 0x06001A22 RID: 6690 RVA: 0x00112794 File Offset: 0x00110994
 	private void LateUpdate()
 	{
 		if (this.ID < this.Letter.Length && Input.GetKeyDown(this.Letter[this.ID]))
@@ -737,7 +737,7 @@ public class NewTitleScreenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A23 RID: 6691 RVA: 0x00112868 File Offset: 0x00110A68
+	// Token: 0x06001A23 RID: 6691 RVA: 0x00112834 File Offset: 0x00110A34
 	private void UpdateModeDescLabels()
 	{
 		this.ModeDescLabel[1].text = "Play as " + this.VtuberNames[GameGlobals.VtuberID] + " in the year 2023.\n\nThis mode is still in development, and currently only features one rival girl.";

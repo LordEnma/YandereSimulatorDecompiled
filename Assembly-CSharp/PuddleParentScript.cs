@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003C8 RID: 968
 public class PuddleParentScript : MonoBehaviour
 {
-	// Token: 0x06001B45 RID: 6981 RVA: 0x00130DF4 File Offset: 0x0012EFF4
+	// Token: 0x06001B45 RID: 6981 RVA: 0x00130DC0 File Offset: 0x0012EFC0
 	public void RecordAllPuddles()
 	{
 		this.PoolID = 0;
@@ -32,7 +32,7 @@ public class PuddleParentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B46 RID: 6982 RVA: 0x00130ED8 File Offset: 0x0012F0D8
+	// Token: 0x06001B46 RID: 6982 RVA: 0x00130EA4 File Offset: 0x0012F0A4
 	public void RestoreAllPuddles()
 	{
 		while (this.PoolID > 0)

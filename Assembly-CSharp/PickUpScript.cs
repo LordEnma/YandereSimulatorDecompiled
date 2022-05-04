@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003AA RID: 938
 public class PickUpScript : MonoBehaviour
 {
-	// Token: 0x06001ACD RID: 6861 RVA: 0x001221A8 File Offset: 0x001203A8
+	// Token: 0x06001ACD RID: 6861 RVA: 0x00122174 File Offset: 0x00120374
 	private void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
@@ -46,7 +46,7 @@ public class PickUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ACE RID: 6862 RVA: 0x001222F0 File Offset: 0x001204F0
+	// Token: 0x06001ACE RID: 6862 RVA: 0x001222BC File Offset: 0x001204BC
 	private void LateUpdate()
 	{
 		if (this.CleaningProduct)
@@ -270,7 +270,7 @@ public class PickUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ACF RID: 6863 RVA: 0x00122D74 File Offset: 0x00120F74
+	// Token: 0x06001ACF RID: 6863 RVA: 0x00122D40 File Offset: 0x00120F40
 	public void BePickedUp()
 	{
 		if (this.Radio && SchemeGlobals.GetSchemeStage(5) == 2)
@@ -381,7 +381,7 @@ public class PickUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AD0 RID: 6864 RVA: 0x0012310C File Offset: 0x0012130C
+	// Token: 0x06001AD0 RID: 6864 RVA: 0x001230D8 File Offset: 0x001212D8
 	public void Drop()
 	{
 		if (this.Salty && SchemeGlobals.GetSchemeStage(4) == 5)
@@ -519,7 +519,7 @@ public class PickUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AD1 RID: 6865 RVA: 0x00123604 File Offset: 0x00121804
+	// Token: 0x06001AD1 RID: 6865 RVA: 0x001235D0 File Offset: 0x001217D0
 	public void DisableGarbageBag()
 	{
 		this.Prompt.Hide();

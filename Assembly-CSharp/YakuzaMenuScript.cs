@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004CF RID: 1231
 public class YakuzaMenuScript : MonoBehaviour
 {
-	// Token: 0x0600202C RID: 8236 RVA: 0x001CAB8C File Offset: 0x001C8D8C
+	// Token: 0x0600202D RID: 8237 RVA: 0x001CAC88 File Offset: 0x001C8E88
 	private void Start()
 	{
 		this.UpdateMoneyLabel();
@@ -94,7 +94,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.ItemPrice[5] = DateGlobals.Week * 1000;
 	}
 
-	// Token: 0x0600202D RID: 8237 RVA: 0x001CB06C File Offset: 0x001C926C
+	// Token: 0x0600202E RID: 8238 RVA: 0x001CB168 File Offset: 0x001C9368
 	private void Update()
 	{
 		if (this.Show)
@@ -703,7 +703,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600202E RID: 8238 RVA: 0x001CCA40 File Offset: 0x001CAC40
+	// Token: 0x0600202F RID: 8239 RVA: 0x001CCB3C File Offset: 0x001CAD3C
 	private void UpdateBullet()
 	{
 		if (this.Selected > this.Limit)
@@ -727,7 +727,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600202F RID: 8239 RVA: 0x001CCB50 File Offset: 0x001CAD50
+	// Token: 0x06002030 RID: 8240 RVA: 0x001CCC4C File Offset: 0x001CAE4C
 	private void UpdateCrosshair()
 	{
 		if (this.Row > 2)
@@ -750,7 +750,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.TargetSelected = this.Column + (this.Row - 1) * 5;
 	}
 
-	// Token: 0x06002030 RID: 8240 RVA: 0x001CCBF0 File Offset: 0x001CADF0
+	// Token: 0x06002031 RID: 8241 RVA: 0x001CCCEC File Offset: 0x001CAEEC
 	private void UpdateItem()
 	{
 		if (this.ItemSelected > this.ItemLimit)
@@ -829,7 +829,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002031 RID: 8241 RVA: 0x001CCFE0 File Offset: 0x001CB1E0
+	// Token: 0x06002032 RID: 8242 RVA: 0x001CD0DC File Offset: 0x001CB2DC
 	private void UpdateRansomPortraits()
 	{
 		for (int i = 1; i < this.RansomIDs.Length; i++)
@@ -841,7 +841,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002032 RID: 8242 RVA: 0x001CD03C File Offset: 0x001CB23C
+	// Token: 0x06002033 RID: 8243 RVA: 0x001CD138 File Offset: 0x001CB338
 	private void Quit()
 	{
 		this.Yandere.RPGCamera.enabled = true;
@@ -856,7 +856,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.HomeClock.UpdateMoneyLabel();
 	}
 
-	// Token: 0x06002033 RID: 8243 RVA: 0x001CD0C0 File Offset: 0x001CB2C0
+	// Token: 0x06002034 RID: 8244 RVA: 0x001CD1BC File Offset: 0x001CB3BC
 	private void StartCutscene()
 	{
 		this.Yandere.MyAnimation.CrossFade(this.Yandere.IdleAnim);
@@ -877,7 +877,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.PromptBar.Show = false;
 	}
 
-	// Token: 0x06002034 RID: 8244 RVA: 0x001CD224 File Offset: 0x001CB424
+	// Token: 0x06002035 RID: 8245 RVA: 0x001CD320 File Offset: 0x001CB520
 	private void SummonContrabandMenu()
 	{
 		this.PromptBar.ClearButtons();
@@ -897,7 +897,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.Menu = 3;
 	}
 
-	// Token: 0x06002035 RID: 8245 RVA: 0x001CD314 File Offset: 0x001CB514
+	// Token: 0x06002036 RID: 8246 RVA: 0x001CD410 File Offset: 0x001CB610
 	private void SummonAssassinationMenu()
 	{
 		this.PromptBar.ClearButtons();
@@ -918,7 +918,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.Menu = 2;
 	}
 
-	// Token: 0x06002036 RID: 8246 RVA: 0x001CD41C File Offset: 0x001CB61C
+	// Token: 0x06002037 RID: 8247 RVA: 0x001CD518 File Offset: 0x001CB718
 	private void SummonServicesMenu()
 	{
 		this.PromptBar.ClearButtons();
@@ -938,7 +938,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.Menu = 1;
 	}
 
-	// Token: 0x06002037 RID: 8247 RVA: 0x001CD50C File Offset: 0x001CB70C
+	// Token: 0x06002038 RID: 8248 RVA: 0x001CD608 File Offset: 0x001CB808
 	private void SummonKidnappingMenu()
 	{
 		this.PromptBar.ClearButtons();
@@ -960,7 +960,7 @@ public class YakuzaMenuScript : MonoBehaviour
 		this.Menu = 4;
 	}
 
-	// Token: 0x06002038 RID: 8248 RVA: 0x001CD5EC File Offset: 0x001CB7EC
+	// Token: 0x06002039 RID: 8249 RVA: 0x001CD6E8 File Offset: 0x001CB8E8
 	private void UpdateMoneyLabel()
 	{
 		this.MoneyLabel.text = "$" + PlayerGlobals.Money.ToString("F2");

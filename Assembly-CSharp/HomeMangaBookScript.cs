@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000321 RID: 801
 public class HomeMangaBookScript : MonoBehaviour
 {
-	// Token: 0x060018A2 RID: 6306 RVA: 0x000F0D54 File Offset: 0x000EEF54
+	// Token: 0x060018A2 RID: 6306 RVA: 0x000F0D20 File Offset: 0x000EEF20
 	private void Start()
 	{
 		base.transform.eulerAngles = new Vector3(90f, base.transform.eulerAngles.y, base.transform.eulerAngles.z);
@@ -16,7 +16,7 @@ public class HomeMangaBookScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018A3 RID: 6307 RVA: 0x000F0E00 File Offset: 0x000EF000
+	// Token: 0x060018A3 RID: 6307 RVA: 0x000F0DCC File Offset: 0x000EEFCC
 	private void Update()
 	{
 		float y = (this.Manga.Selected == this.ID) ? (base.transform.eulerAngles.y + Time.deltaTime * this.RotationSpeed) : 0f;

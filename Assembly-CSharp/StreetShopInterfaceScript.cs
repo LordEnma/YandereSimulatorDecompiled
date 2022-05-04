@@ -6,7 +6,7 @@ using UnityEngine.PostProcessing;
 // Token: 0x02000453 RID: 1107
 public class StreetShopInterfaceScript : MonoBehaviour
 {
-	// Token: 0x06001D5B RID: 7515 RVA: 0x00160330 File Offset: 0x0015E530
+	// Token: 0x06001D5B RID: 7515 RVA: 0x001602FC File Offset: 0x0015E4FC
 	private void Start()
 	{
 		this.Shopkeeper.transform.localPosition = new Vector3(1485f, 0f, 0f);
@@ -15,7 +15,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 		this.UpdateFakeID();
 	}
 
-	// Token: 0x06001D5C RID: 7516 RVA: 0x001603A8 File Offset: 0x0015E5A8
+	// Token: 0x06001D5C RID: 7516 RVA: 0x00160374 File Offset: 0x0015E574
 	private void Update()
 	{
 		if (this.Show)
@@ -144,7 +144,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 		this.AdjustBlur();
 	}
 
-	// Token: 0x06001D5D RID: 7517 RVA: 0x001609F0 File Offset: 0x0015EBF0
+	// Token: 0x06001D5D RID: 7517 RVA: 0x001609BC File Offset: 0x0015EBBC
 	private void AdjustBlur()
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -152,7 +152,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x06001D5E RID: 7518 RVA: 0x00160A2C File Offset: 0x0015EC2C
+	// Token: 0x06001D5E RID: 7518 RVA: 0x001609F8 File Offset: 0x0015EBF8
 	public void UpdateHighlight()
 	{
 		this.Highlight.localPosition = new Vector3(-50f, (float)(50 - 50 * this.Selected), 0f);
@@ -162,7 +162,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D5F RID: 7519 RVA: 0x00160A94 File Offset: 0x0015EC94
+	// Token: 0x06001D5F RID: 7519 RVA: 0x00160A60 File Offset: 0x0015EC60
 	public void CheckStore()
 	{
 		if (this.AdultProducts[this.Selected] && !PlayerGlobals.FakeID)
@@ -314,7 +314,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D60 RID: 7520 RVA: 0x00160E18 File Offset: 0x0015F018
+	// Token: 0x06001D60 RID: 7520 RVA: 0x00160DE4 File Offset: 0x0015EFE4
 	public void PurchaseEffect()
 	{
 		this.Patronized = true;
@@ -329,13 +329,13 @@ public class StreetShopInterfaceScript : MonoBehaviour
 		this.MyAudio.Play();
 	}
 
-	// Token: 0x06001D61 RID: 7521 RVA: 0x00160EE0 File Offset: 0x0015F0E0
+	// Token: 0x06001D61 RID: 7521 RVA: 0x00160EAC File Offset: 0x0015F0AC
 	public void UpdateFakeID()
 	{
 		this.FakeIDBox.SetActive(PlayerGlobals.FakeID);
 	}
 
-	// Token: 0x06001D62 RID: 7522 RVA: 0x00160EF4 File Offset: 0x0015F0F4
+	// Token: 0x06001D62 RID: 7522 RVA: 0x00160EC0 File Offset: 0x0015F0C0
 	public void UpdateIcons()
 	{
 		for (int i = 1; i < 11; i++)
@@ -480,7 +480,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D63 RID: 7523 RVA: 0x001613A4 File Offset: 0x0015F5A4
+	// Token: 0x06001D63 RID: 7523 RVA: 0x00161370 File Offset: 0x0015F570
 	private void CountPanties()
 	{
 		int num = 1;

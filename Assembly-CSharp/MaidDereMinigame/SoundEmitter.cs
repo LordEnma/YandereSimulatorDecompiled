@@ -8,7 +8,7 @@ namespace MaidDereMinigame
 	[Serializable]
 	public class SoundEmitter
 	{
-		// Token: 0x060024C0 RID: 9408 RVA: 0x00201E84 File Offset: 0x00200084
+		// Token: 0x060024C1 RID: 9409 RVA: 0x00201F80 File Offset: 0x00200180
 		public AudioSource GetSource()
 		{
 			for (int i = 0; i < this.sources.Count; i++)

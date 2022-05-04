@@ -4,7 +4,7 @@
 [Serializable]
 public class YanvaniaSaveData
 {
-	// Token: 0x06001C58 RID: 7256 RVA: 0x0014B614 File Offset: 0x00149814
+	// Token: 0x06001C58 RID: 7256 RVA: 0x0014B5E0 File Offset: 0x001497E0
 	public static YanvaniaSaveData ReadFromGlobals()
 	{
 		return new YanvaniaSaveData
@@ -14,7 +14,7 @@ public class YanvaniaSaveData
 		};
 	}
 
-	// Token: 0x06001C59 RID: 7257 RVA: 0x0014B631 File Offset: 0x00149831
+	// Token: 0x06001C59 RID: 7257 RVA: 0x0014B5FD File Offset: 0x001497FD
 	public static void WriteToGlobals(YanvaniaSaveData data)
 	{
 		YanvaniaGlobals.DraculaDefeated = data.draculaDefeated;

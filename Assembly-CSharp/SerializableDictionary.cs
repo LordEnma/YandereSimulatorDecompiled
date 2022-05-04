@@ -8,14 +8,14 @@ using UnityEngine;
 // Token: 0x020004A3 RID: 1187
 public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCallbackReceiver, IXmlSerializable
 {
-	// Token: 0x06001F98 RID: 8088 RVA: 0x001BF9E3 File Offset: 0x001BDBE3
+	// Token: 0x06001F99 RID: 8089 RVA: 0x001BFADF File Offset: 0x001BDCDF
 	public SerializableDictionary()
 	{
 		this.keys = new List<K>();
 		this.values = new List<V>();
 	}
 
-	// Token: 0x06001F99 RID: 8089 RVA: 0x001BFA04 File Offset: 0x001BDC04
+	// Token: 0x06001F9A RID: 8090 RVA: 0x001BFB00 File Offset: 0x001BDD00
 	public void OnBeforeSerialize()
 	{
 		this.keys.Clear();
@@ -27,7 +27,7 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 		}
 	}
 
-	// Token: 0x06001F9A RID: 8090 RVA: 0x001BFA88 File Offset: 0x001BDC88
+	// Token: 0x06001F9B RID: 8091 RVA: 0x001BFB84 File Offset: 0x001BDD84
 	public void OnAfterDeserialize()
 	{
 		base.Clear();
@@ -37,13 +37,13 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 		}
 	}
 
-	// Token: 0x06001F9B RID: 8091 RVA: 0x001BFACF File Offset: 0x001BDCCF
+	// Token: 0x06001F9C RID: 8092 RVA: 0x001BFBCB File Offset: 0x001BDDCB
 	public XmlSchema GetSchema()
 	{
 		return null;
 	}
 
-	// Token: 0x06001F9C RID: 8092 RVA: 0x001BFAD4 File Offset: 0x001BDCD4
+	// Token: 0x06001F9D RID: 8093 RVA: 0x001BFBD0 File Offset: 0x001BDDD0
 	public void ReadXml(XmlReader reader)
 	{
 		XmlSerializer xmlSerializer = new XmlSerializer(typeof(K));
@@ -70,7 +70,7 @@ public class SerializableDictionary<K, V> : Dictionary<K, V>, ISerializationCall
 		reader.ReadEndElement();
 	}
 
-	// Token: 0x06001F9D RID: 8093 RVA: 0x001BFB80 File Offset: 0x001BDD80
+	// Token: 0x06001F9E RID: 8094 RVA: 0x001BFC7C File Offset: 0x001BDE7C
 	public void WriteXml(XmlWriter writer)
 	{
 		XmlSerializer xmlSerializer = new XmlSerializer(typeof(K));

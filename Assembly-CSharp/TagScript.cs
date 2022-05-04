@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x0200046A RID: 1130
 public class TagScript : MonoBehaviour
 {
-	// Token: 0x06001EAE RID: 7854 RVA: 0x001A9E06 File Offset: 0x001A8006
+	// Token: 0x06001EAF RID: 7855 RVA: 0x001A9F0E File Offset: 0x001A810E
 	private void Start()
 	{
 		this.Sprite.color = new Color(1f, 0f, 0f, 0f);
 		this.MainCameraCamera = this.MainCamera.GetComponent<Camera>();
 	}
 
-	// Token: 0x06001EAF RID: 7855 RVA: 0x001A9E40 File Offset: 0x001A8040
+	// Token: 0x06001EB0 RID: 7856 RVA: 0x001A9F48 File Offset: 0x001A8148
 	private void Update()
 	{
 		if (this.Target != null && Vector3.Angle(this.MainCamera.forward, this.MainCamera.position - this.Target.position) > 90f)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000342 RID: 834
 public class InventoryTestScript : MonoBehaviour
 {
-	// Token: 0x06001918 RID: 6424 RVA: 0x000FBD64 File Offset: 0x000F9F64
+	// Token: 0x06001918 RID: 6424 RVA: 0x000FBD30 File Offset: 0x000F9F30
 	private void Start()
 	{
 		this.RightGrid.localScale = new Vector3(0f, 0f, 0f);
@@ -12,7 +12,7 @@ public class InventoryTestScript : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x06001919 RID: 6425 RVA: 0x000FBDBC File Offset: 0x000F9FBC
+	// Token: 0x06001919 RID: 6425 RVA: 0x000FBD88 File Offset: 0x000F9F88
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))
@@ -117,7 +117,7 @@ public class InventoryTestScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600191A RID: 6426 RVA: 0x000FC3F8 File Offset: 0x000FA5F8
+	// Token: 0x0600191A RID: 6426 RVA: 0x000FC3C4 File Offset: 0x000FA5C4
 	private void CheckOpenSpace()
 	{
 		this.UseColumn = 0;
@@ -146,7 +146,7 @@ public class InventoryTestScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600191B RID: 6427 RVA: 0x000FC484 File Offset: 0x000FA684
+	// Token: 0x0600191B RID: 6427 RVA: 0x000FC450 File Offset: 0x000FA650
 	private void UpdateHighlight()
 	{
 		if (this.Column == 5)

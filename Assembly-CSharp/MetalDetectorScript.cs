@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000368 RID: 872
 public class MetalDetectorScript : MonoBehaviour
 {
-	// Token: 0x060019BF RID: 6591 RVA: 0x00107B83 File Offset: 0x00105D83
+	// Token: 0x060019BF RID: 6591 RVA: 0x00107B4F File Offset: 0x00105D4F
 	private void Start()
 	{
 		this.MyAudio = base.GetComponent<AudioSource>();
 	}
 
-	// Token: 0x060019C0 RID: 6592 RVA: 0x00107B94 File Offset: 0x00105D94
+	// Token: 0x060019C0 RID: 6592 RVA: 0x00107B60 File Offset: 0x00105D60
 	private void Update()
 	{
 		if (this.Yandere.Armed)
@@ -55,7 +55,7 @@ public class MetalDetectorScript : MonoBehaviour
 		this.MyAudio.volume -= Time.deltaTime * 0.01f;
 	}
 
-	// Token: 0x060019C1 RID: 6593 RVA: 0x00107CF0 File Offset: 0x00105EF0
+	// Token: 0x060019C1 RID: 6593 RVA: 0x00107CBC File Offset: 0x00105EBC
 	private void OnTriggerStay(Collider other)
 	{
 		if (other.gameObject.layer == 9)

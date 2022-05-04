@@ -7,7 +7,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class AmbientOcclusionComponent : PostProcessingComponentCommandBuffer<AmbientOcclusionModel>
 	{
 		// Token: 0x170004ED RID: 1261
-		// (get) Token: 0x060022FA RID: 8954 RVA: 0x001F6D80 File Offset: 0x001F4F80
+		// (get) Token: 0x060022FB RID: 8955 RVA: 0x001F6E7C File Offset: 0x001F507C
 		private AmbientOcclusionComponent.OcclusionSource occlusionSource
 		{
 			get
@@ -25,7 +25,7 @@ namespace UnityEngine.PostProcessing
 		}
 
 		// Token: 0x170004EE RID: 1262
-		// (get) Token: 0x060022FB RID: 8955 RVA: 0x001F6DE4 File Offset: 0x001F4FE4
+		// (get) Token: 0x060022FC RID: 8956 RVA: 0x001F6EE0 File Offset: 0x001F50E0
 		private bool ambientOnlySupported
 		{
 			get
@@ -35,7 +35,7 @@ namespace UnityEngine.PostProcessing
 		}
 
 		// Token: 0x170004EF RID: 1263
-		// (get) Token: 0x060022FC RID: 8956 RVA: 0x001F6E32 File Offset: 0x001F5032
+		// (get) Token: 0x060022FD RID: 8957 RVA: 0x001F6F2E File Offset: 0x001F512E
 		public override bool active
 		{
 			get
@@ -44,7 +44,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060022FD RID: 8957 RVA: 0x001F6E68 File Offset: 0x001F5068
+		// Token: 0x060022FE RID: 8958 RVA: 0x001F6F64 File Offset: 0x001F5164
 		public override DepthTextureMode GetCameraFlags()
 		{
 			DepthTextureMode depthTextureMode = DepthTextureMode.None;
@@ -59,13 +59,13 @@ namespace UnityEngine.PostProcessing
 			return depthTextureMode;
 		}
 
-		// Token: 0x060022FE RID: 8958 RVA: 0x001F6E91 File Offset: 0x001F5091
+		// Token: 0x060022FF RID: 8959 RVA: 0x001F6F8D File Offset: 0x001F518D
 		public override string GetName()
 		{
 			return "Ambient Occlusion";
 		}
 
-		// Token: 0x060022FF RID: 8959 RVA: 0x001F6E98 File Offset: 0x001F5098
+		// Token: 0x06002300 RID: 8960 RVA: 0x001F6F94 File Offset: 0x001F5194
 		public override CameraEvent GetCameraEvent()
 		{
 			if (!this.ambientOnlySupported || this.context.profile.debugViews.IsModeActive(BuiltinDebugViewsModel.Mode.AmbientOcclusion))
@@ -75,7 +75,7 @@ namespace UnityEngine.PostProcessing
 			return CameraEvent.BeforeReflections;
 		}
 
-		// Token: 0x06002300 RID: 8960 RVA: 0x001F6EC0 File Offset: 0x001F50C0
+		// Token: 0x06002301 RID: 8961 RVA: 0x001F6FBC File Offset: 0x001F51BC
 		public override void PopulateCommandBuffer(CommandBuffer cb)
 		{
 			AmbientOcclusionModel.Settings settings = base.model.settings;

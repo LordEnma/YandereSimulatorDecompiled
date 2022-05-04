@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000363 RID: 867
 public class MatchboxScript : MonoBehaviour
 {
-	// Token: 0x060019B2 RID: 6578 RVA: 0x001068A4 File Offset: 0x00104AA4
+	// Token: 0x060019B2 RID: 6578 RVA: 0x00106870 File Offset: 0x00104A70
 	private void Update()
 	{
 		if (!this.Prompt.PauseScreen.Show)

@@ -5,19 +5,19 @@ using UnityEngine;
 // Token: 0x02000506 RID: 1286
 public class PlayerMove : MonoBehaviour
 {
-	// Token: 0x06002159 RID: 8537 RVA: 0x001ECCF9 File Offset: 0x001EAEF9
+	// Token: 0x0600215A RID: 8538 RVA: 0x001ECDF5 File Offset: 0x001EAFF5
 	private void Awake()
 	{
 		this.charController = base.GetComponent<CharacterController>();
 	}
 
-	// Token: 0x0600215A RID: 8538 RVA: 0x001ECD07 File Offset: 0x001EAF07
+	// Token: 0x0600215B RID: 8539 RVA: 0x001ECE03 File Offset: 0x001EB003
 	private void Update()
 	{
 		this.PlayerMovement();
 	}
 
-	// Token: 0x0600215B RID: 8539 RVA: 0x001ECD10 File Offset: 0x001EAF10
+	// Token: 0x0600215C RID: 8540 RVA: 0x001ECE0C File Offset: 0x001EB00C
 	private void PlayerMovement()
 	{
 		float axis = Input.GetAxis(this.horizontalInputName);
@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour
 		this.JumpInput();
 	}
 
-	// Token: 0x0600215C RID: 8540 RVA: 0x001ECDE8 File Offset: 0x001EAFE8
+	// Token: 0x0600215D RID: 8541 RVA: 0x001ECEE4 File Offset: 0x001EB0E4
 	private void SetMovementSpeed()
 	{
 		if (Input.GetKey(this.runKey))
@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour
 		this.movementSpeed = Mathf.Lerp(this.movementSpeed, this.walkSpeed, Time.deltaTime * this.runBuildUpSpeed);
 	}
 
-	// Token: 0x0600215D RID: 8541 RVA: 0x001ECE4C File Offset: 0x001EB04C
+	// Token: 0x0600215E RID: 8542 RVA: 0x001ECF48 File Offset: 0x001EB148
 	private bool OnSlope()
 	{
 		if (this.isJumping)
@@ -60,7 +60,7 @@ public class PlayerMove : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x0600215E RID: 8542 RVA: 0x001ECEB4 File Offset: 0x001EB0B4
+	// Token: 0x0600215F RID: 8543 RVA: 0x001ECFB0 File Offset: 0x001EB1B0
 	private void JumpInput()
 	{
 		if (Input.GetKeyDown(this.jumpKey) && !this.isJumping)
@@ -70,7 +70,7 @@ public class PlayerMove : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600215F RID: 8543 RVA: 0x001ECEDF File Offset: 0x001EB0DF
+	// Token: 0x06002160 RID: 8544 RVA: 0x001ECFDB File Offset: 0x001EB1DB
 	private IEnumerator JumpEvent()
 	{
 		this.charController.slopeLimit = 90f;

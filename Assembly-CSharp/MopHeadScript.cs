@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200036F RID: 879
 public class MopHeadScript : MonoBehaviour
 {
-	// Token: 0x060019D9 RID: 6617 RVA: 0x00109104 File Offset: 0x00107304
+	// Token: 0x060019D9 RID: 6617 RVA: 0x001090D0 File Offset: 0x001072D0
 	private void OnTriggerStay(Collider other)
 	{
 		if (this.Mop.Bloodiness < 100f && other.tag == "Puddle")

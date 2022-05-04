@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000422 RID: 1058
 public class SecuritySystemScript : MonoBehaviour
 {
-	// Token: 0x06001C9D RID: 7325 RVA: 0x0014F0B2 File Offset: 0x0014D2B2
+	// Token: 0x06001C9D RID: 7325 RVA: 0x0014F07E File Offset: 0x0014D27E
 	private void Start()
 	{
 		if (PlayerGlobals.Kills == 0 && !SchoolGlobals.HighSecurity)
@@ -15,7 +15,7 @@ public class SecuritySystemScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C9E RID: 7326 RVA: 0x0014F0E0 File Offset: 0x0014D2E0
+	// Token: 0x06001C9E RID: 7326 RVA: 0x0014F0AC File Offset: 0x0014D2AC
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

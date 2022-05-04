@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000343 RID: 835
 public class JiggleBone : MonoBehaviour
 {
-	// Token: 0x0600191D RID: 6429 RVA: 0x000FC58C File Offset: 0x000FA78C
+	// Token: 0x0600191D RID: 6429 RVA: 0x000FC558 File Offset: 0x000FA758
 	private void Awake()
 	{
 		Vector3 vector = base.transform.position + base.transform.TransformDirection(this.boneAxis * this.targetDistance);
 		this.dynamicPos = vector;
 	}
 
-	// Token: 0x0600191E RID: 6430 RVA: 0x000FC5D0 File Offset: 0x000FA7D0
+	// Token: 0x0600191E RID: 6430 RVA: 0x000FC59C File Offset: 0x000FA79C
 	private void LateUpdate()
 	{
 		base.transform.rotation = default(Quaternion);

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003A2 RID: 930
 public class PhoneEventScript : MonoBehaviour
 {
-	// Token: 0x06001A9B RID: 6811 RVA: 0x0011DB70 File Offset: 0x0011BD70
+	// Token: 0x06001A9B RID: 6811 RVA: 0x0011DB3C File Offset: 0x0011BD3C
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -18,12 +18,12 @@ public class PhoneEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A9C RID: 6812 RVA: 0x0011DBCF File Offset: 0x0011BDCF
+	// Token: 0x06001A9C RID: 6812 RVA: 0x0011DB9B File Offset: 0x0011BD9B
 	private void OnAwake()
 	{
 	}
 
-	// Token: 0x06001A9D RID: 6813 RVA: 0x0011DBD4 File Offset: 0x0011BDD4
+	// Token: 0x06001A9D RID: 6813 RVA: 0x0011DBA0 File Offset: 0x0011BDA0
 	private void Update()
 	{
 		if (!this.Clock.StopTime && this.EventCheck)
@@ -291,7 +291,7 @@ public class PhoneEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A9E RID: 6814 RVA: 0x0011E980 File Offset: 0x0011CB80
+	// Token: 0x06001A9E RID: 6814 RVA: 0x0011E94C File Offset: 0x0011CB4C
 	private void SettleFriend()
 	{
 		this.EventFriend.MoveTowardsTarget(this.SpyLocation.position);
@@ -301,7 +301,7 @@ public class PhoneEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A9F RID: 6815 RVA: 0x0011EA08 File Offset: 0x0011CC08
+	// Token: 0x06001A9F RID: 6815 RVA: 0x0011E9D4 File Offset: 0x0011CBD4
 	private void EndEvent()
 	{
 		Debug.Log("A phone event ended.");

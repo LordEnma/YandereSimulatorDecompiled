@@ -8,7 +8,7 @@ namespace MaidDereMinigame
 	public class FailGame : MonoBehaviour
 	{
 		// Token: 0x1700052D RID: 1325
-		// (get) Token: 0x060024E5 RID: 9445 RVA: 0x00202604 File Offset: 0x00200804
+		// (get) Token: 0x060024E6 RID: 9446 RVA: 0x00202700 File Offset: 0x00200900
 		public static FailGame Instance
 		{
 			get
@@ -21,7 +21,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024E6 RID: 9446 RVA: 0x00202624 File Offset: 0x00200824
+		// Token: 0x060024E7 RID: 9447 RVA: 0x00202720 File Offset: 0x00200920
 		private void Awake()
 		{
 			this.spriteRenderer = base.GetComponent<SpriteRenderer>();
@@ -29,7 +29,7 @@ namespace MaidDereMinigame
 			this.targetTransitionTime = GameController.Instance.activeDifficultyVariables.transitionTime * this.fadeMultiplier;
 		}
 
-		// Token: 0x060024E7 RID: 9447 RVA: 0x00202670 File Offset: 0x00200870
+		// Token: 0x060024E8 RID: 9448 RVA: 0x0020276C File Offset: 0x0020096C
 		public static void GameFailed()
 		{
 			FailGame.Instance.StartCoroutine(FailGame.Instance.GameFailedRoutine());
@@ -37,7 +37,7 @@ namespace MaidDereMinigame
 			SFXController.PlaySound(SFXController.Sounds.GameFail);
 		}
 
-		// Token: 0x060024E8 RID: 9448 RVA: 0x002026A2 File Offset: 0x002008A2
+		// Token: 0x060024E9 RID: 9449 RVA: 0x0020279E File Offset: 0x0020099E
 		private IEnumerator GameFailedRoutine()
 		{
 			UnityEngine.Object.FindObjectOfType<InteractionMenu>().gameObject.SetActive(false);
@@ -64,7 +64,7 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x060024E9 RID: 9449 RVA: 0x002026B1 File Offset: 0x002008B1
+		// Token: 0x060024EA RID: 9450 RVA: 0x002027AD File Offset: 0x002009AD
 		private IEnumerator SlowPitch()
 		{
 			GameStarter starter = UnityEngine.Object.FindObjectOfType<GameStarter>();

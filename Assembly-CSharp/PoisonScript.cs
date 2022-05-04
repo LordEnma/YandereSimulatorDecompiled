@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003B0 RID: 944
 public class PoisonScript : MonoBehaviour
 {
-	// Token: 0x06001AE6 RID: 6886 RVA: 0x00124C1C File Offset: 0x00122E1C
+	// Token: 0x06001AE6 RID: 6886 RVA: 0x00124BE8 File Offset: 0x00122DE8
 	public void Start()
 	{
 		if (this.Yandere.Class.ChemistryGrade + this.Yandere.Class.ChemistryBonus < 1 && ClassGlobals.ChemistryGrade + ClassGlobals.ChemistryGrade < 1)
@@ -15,7 +15,7 @@ public class PoisonScript : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001AE7 RID: 6887 RVA: 0x00124C74 File Offset: 0x00122E74
+	// Token: 0x06001AE7 RID: 6887 RVA: 0x00124C40 File Offset: 0x00122E40
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

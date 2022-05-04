@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	// Token: 0x0200053A RID: 1338
 	public class AeroplaneAudio : MonoBehaviour
 	{
-		// Token: 0x06002207 RID: 8711 RVA: 0x001F30B8 File Offset: 0x001F12B8
+		// Token: 0x06002208 RID: 8712 RVA: 0x001F31B4 File Offset: 0x001F13B4
 		private void Awake()
 		{
 			this.m_Plane = base.GetComponent<AeroplaneController>();
@@ -30,7 +30,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_WindSoundSource.Play();
 		}
 
-		// Token: 0x06002208 RID: 8712 RVA: 0x001F31F4 File Offset: 0x001F13F4
+		// Token: 0x06002209 RID: 8713 RVA: 0x001F32F0 File Offset: 0x001F14F0
 		private void Update()
 		{
 			float t = Mathf.InverseLerp(0f, this.m_Plane.MaxEnginePower, this.m_Plane.EnginePower);

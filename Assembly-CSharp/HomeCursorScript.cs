@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200031C RID: 796
 public class HomeCursorScript : MonoBehaviour
 {
-	// Token: 0x0600188C RID: 6284 RVA: 0x000EE058 File Offset: 0x000EC258
+	// Token: 0x0600188C RID: 6284 RVA: 0x000EE024 File Offset: 0x000EC224
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.gameObject == this.Photograph)
@@ -19,7 +19,7 @@ public class HomeCursorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600188D RID: 6285 RVA: 0x000EE0D8 File Offset: 0x000EC2D8
+	// Token: 0x0600188D RID: 6285 RVA: 0x000EE0A4 File Offset: 0x000EC2A4
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 16)
@@ -43,7 +43,7 @@ public class HomeCursorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600188E RID: 6286 RVA: 0x000EE1F0 File Offset: 0x000EC3F0
+	// Token: 0x0600188E RID: 6286 RVA: 0x000EE1BC File Offset: 0x000EC3BC
 	private void PhotographNull()
 	{
 		this.Highlight.position = new Vector3(this.Highlight.position.x, 100f, this.Highlight.position.z);

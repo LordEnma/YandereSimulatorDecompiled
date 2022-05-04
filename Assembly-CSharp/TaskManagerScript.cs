@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000471 RID: 1137
 public class TaskManagerScript : MonoBehaviour
 {
-	// Token: 0x06001ECC RID: 7884 RVA: 0x001B310C File Offset: 0x001B130C
+	// Token: 0x06001ECD RID: 7885 RVA: 0x001B3208 File Offset: 0x001B1408
 	public void Start()
 	{
 		for (int i = 1; i < 101; i++)
@@ -30,7 +30,7 @@ public class TaskManagerScript : MonoBehaviour
 		this.Initialized = true;
 	}
 
-	// Token: 0x06001ECD RID: 7885 RVA: 0x001B31A0 File Offset: 0x001B13A0
+	// Token: 0x06001ECE RID: 7886 RVA: 0x001B329C File Offset: 0x001B149C
 	public void CheckTaskPickups()
 	{
 		if (!this.StudentManager.Eighties)
@@ -68,7 +68,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ECE RID: 7886 RVA: 0x001B3364 File Offset: 0x001B1564
+	// Token: 0x06001ECF RID: 7887 RVA: 0x001B3460 File Offset: 0x001B1660
 	public void UpdateTaskStatus()
 	{
 		if (!this.StudentManager.Eighties)
@@ -281,7 +281,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ECF RID: 7887 RVA: 0x001B3BD8 File Offset: 0x001B1DD8
+	// Token: 0x06001ED0 RID: 7888 RVA: 0x001B3CD4 File Offset: 0x001B1ED4
 	public void SaveTaskStatuses()
 	{
 		for (int i = 1; i < 101; i++)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200030B RID: 779
 public class GridScript : MonoBehaviour
 {
-	// Token: 0x0600184A RID: 6218 RVA: 0x000E6AC8 File Offset: 0x000E4CC8
+	// Token: 0x0600184A RID: 6218 RVA: 0x000E6A94 File Offset: 0x000E4C94
 	private void Start()
 	{
 		while (this.ID < this.Rows * this.Columns)

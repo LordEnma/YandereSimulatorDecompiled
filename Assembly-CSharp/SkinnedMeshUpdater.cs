@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000430 RID: 1072
 public class SkinnedMeshUpdater : MonoBehaviour
 {
-	// Token: 0x06001CDC RID: 7388 RVA: 0x00156FF5 File Offset: 0x001551F5
+	// Token: 0x06001CDC RID: 7388 RVA: 0x00156FC1 File Offset: 0x001551C1
 	public void Start()
 	{
 		this.GlassesCheck();
 	}
 
-	// Token: 0x06001CDD RID: 7389 RVA: 0x00157000 File Offset: 0x00155200
+	// Token: 0x06001CDD RID: 7389 RVA: 0x00156FCC File Offset: 0x001551CC
 	public void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -42,7 +42,7 @@ public class SkinnedMeshUpdater : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CDE RID: 7390 RVA: 0x00157164 File Offset: 0x00155364
+	// Token: 0x06001CDE RID: 7390 RVA: 0x00157130 File Offset: 0x00155330
 	public void UpdateSkin()
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Characters[this.ID], Vector3.zero, Quaternion.identity);
@@ -54,7 +54,7 @@ public class SkinnedMeshUpdater : MonoBehaviour
 		this.MyRenderer.materials[2].mainTexture = this.Faces[this.ID];
 	}
 
-	// Token: 0x06001CDF RID: 7391 RVA: 0x0015720C File Offset: 0x0015540C
+	// Token: 0x06001CDF RID: 7391 RVA: 0x001571D8 File Offset: 0x001553D8
 	private void UpdateMeshRenderer(SkinnedMeshRenderer newMeshRenderer)
 	{
 		SkinnedMeshRenderer myRenderer = this.Prompt.Yandere.MyRenderer;
@@ -80,7 +80,7 @@ public class SkinnedMeshUpdater : MonoBehaviour
 		myRenderer.bones = array;
 	}
 
-	// Token: 0x06001CE0 RID: 7392 RVA: 0x001572D8 File Offset: 0x001554D8
+	// Token: 0x06001CE0 RID: 7392 RVA: 0x001572A4 File Offset: 0x001554A4
 	private void GlassesCheck()
 	{
 		this.FumiGlasses.SetActive(false);

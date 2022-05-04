@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000434 RID: 1076
 public class SmartphoneScript : MonoBehaviour
 {
-	// Token: 0x06001CE9 RID: 7401 RVA: 0x00157D90 File Offset: 0x00155F90
+	// Token: 0x06001CE9 RID: 7401 RVA: 0x00157D5C File Offset: 0x00155F5C
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

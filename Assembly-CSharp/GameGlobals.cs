@@ -5,8 +5,8 @@ using UnityEngine;
 public static class GameGlobals
 {
 	// Token: 0x17000397 RID: 919
-	// (get) Token: 0x060015D6 RID: 5590 RVA: 0x000DC63F File Offset: 0x000DA83F
-	// (set) Token: 0x060015D7 RID: 5591 RVA: 0x000DC64B File Offset: 0x000DA84B
+	// (get) Token: 0x060015D6 RID: 5590 RVA: 0x000DC60B File Offset: 0x000DA80B
+	// (set) Token: 0x060015D7 RID: 5591 RVA: 0x000DC617 File Offset: 0x000DA817
 	public static int Profile
 	{
 		get
@@ -20,8 +20,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x17000398 RID: 920
-	// (get) Token: 0x060015D8 RID: 5592 RVA: 0x000DC658 File Offset: 0x000DA858
-	// (set) Token: 0x060015D9 RID: 5593 RVA: 0x000DC664 File Offset: 0x000DA864
+	// (get) Token: 0x060015D8 RID: 5592 RVA: 0x000DC624 File Offset: 0x000DA824
+	// (set) Token: 0x060015D9 RID: 5593 RVA: 0x000DC630 File Offset: 0x000DA830
 	public static int MostRecentSlot
 	{
 		get
@@ -35,8 +35,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x17000399 RID: 921
-	// (get) Token: 0x060015DA RID: 5594 RVA: 0x000DC674 File Offset: 0x000DA874
-	// (set) Token: 0x060015DB RID: 5595 RVA: 0x000DC6A4 File Offset: 0x000DA8A4
+	// (get) Token: 0x060015DA RID: 5594 RVA: 0x000DC640 File Offset: 0x000DA840
+	// (set) Token: 0x060015DB RID: 5595 RVA: 0x000DC670 File Offset: 0x000DA870
 	public static bool LoveSick
 	{
 		get
@@ -50,8 +50,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x1700039A RID: 922
-	// (get) Token: 0x060015DC RID: 5596 RVA: 0x000DC6D4 File Offset: 0x000DA8D4
-	// (set) Token: 0x060015DD RID: 5597 RVA: 0x000DC704 File Offset: 0x000DA904
+	// (get) Token: 0x060015DC RID: 5596 RVA: 0x000DC6A0 File Offset: 0x000DA8A0
+	// (set) Token: 0x060015DD RID: 5597 RVA: 0x000DC6D0 File Offset: 0x000DA8D0
 	public static bool MasksBanned
 	{
 		get
@@ -65,8 +65,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x1700039B RID: 923
-	// (get) Token: 0x060015DE RID: 5598 RVA: 0x000DC734 File Offset: 0x000DA934
-	// (set) Token: 0x060015DF RID: 5599 RVA: 0x000DC764 File Offset: 0x000DA964
+	// (get) Token: 0x060015DE RID: 5598 RVA: 0x000DC700 File Offset: 0x000DA900
+	// (set) Token: 0x060015DF RID: 5599 RVA: 0x000DC730 File Offset: 0x000DA930
 	public static bool Paranormal
 	{
 		get
@@ -80,8 +80,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x1700039C RID: 924
-	// (get) Token: 0x060015E0 RID: 5600 RVA: 0x000DC794 File Offset: 0x000DA994
-	// (set) Token: 0x060015E1 RID: 5601 RVA: 0x000DC7C4 File Offset: 0x000DA9C4
+	// (get) Token: 0x060015E0 RID: 5600 RVA: 0x000DC760 File Offset: 0x000DA960
+	// (set) Token: 0x060015E1 RID: 5601 RVA: 0x000DC790 File Offset: 0x000DA990
 	public static bool EasyMode
 	{
 		get
@@ -95,8 +95,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x1700039D RID: 925
-	// (get) Token: 0x060015E2 RID: 5602 RVA: 0x000DC7F4 File Offset: 0x000DA9F4
-	// (set) Token: 0x060015E3 RID: 5603 RVA: 0x000DC824 File Offset: 0x000DAA24
+	// (get) Token: 0x060015E2 RID: 5602 RVA: 0x000DC7C0 File Offset: 0x000DA9C0
+	// (set) Token: 0x060015E3 RID: 5603 RVA: 0x000DC7F0 File Offset: 0x000DA9F0
 	public static bool HardMode
 	{
 		get
@@ -110,8 +110,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x1700039E RID: 926
-	// (get) Token: 0x060015E4 RID: 5604 RVA: 0x000DC854 File Offset: 0x000DAA54
-	// (set) Token: 0x060015E5 RID: 5605 RVA: 0x000DC884 File Offset: 0x000DAA84
+	// (get) Token: 0x060015E4 RID: 5604 RVA: 0x000DC820 File Offset: 0x000DAA20
+	// (set) Token: 0x060015E5 RID: 5605 RVA: 0x000DC850 File Offset: 0x000DAA50
 	public static bool EmptyDemon
 	{
 		get
@@ -125,8 +125,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x1700039F RID: 927
-	// (get) Token: 0x060015E6 RID: 5606 RVA: 0x000DC8B3 File Offset: 0x000DAAB3
-	// (set) Token: 0x060015E7 RID: 5607 RVA: 0x000DC8BF File Offset: 0x000DAABF
+	// (get) Token: 0x060015E6 RID: 5606 RVA: 0x000DC87F File Offset: 0x000DAA7F
+	// (set) Token: 0x060015E7 RID: 5607 RVA: 0x000DC88B File Offset: 0x000DAA8B
 	public static bool CensorBlood
 	{
 		get
@@ -140,8 +140,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003A0 RID: 928
-	// (get) Token: 0x060015E8 RID: 5608 RVA: 0x000DC8CC File Offset: 0x000DAACC
-	// (set) Token: 0x060015E9 RID: 5609 RVA: 0x000DC8D8 File Offset: 0x000DAAD8
+	// (get) Token: 0x060015E8 RID: 5608 RVA: 0x000DC898 File Offset: 0x000DAA98
+	// (set) Token: 0x060015E9 RID: 5609 RVA: 0x000DC8A4 File Offset: 0x000DAAA4
 	public static bool CensorPanties
 	{
 		get
@@ -155,8 +155,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003A1 RID: 929
-	// (get) Token: 0x060015EA RID: 5610 RVA: 0x000DC8E5 File Offset: 0x000DAAE5
-	// (set) Token: 0x060015EB RID: 5611 RVA: 0x000DC8F1 File Offset: 0x000DAAF1
+	// (get) Token: 0x060015EA RID: 5610 RVA: 0x000DC8B1 File Offset: 0x000DAAB1
+	// (set) Token: 0x060015EB RID: 5611 RVA: 0x000DC8BD File Offset: 0x000DAABD
 	public static bool CensorKillingAnims
 	{
 		get
@@ -170,8 +170,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003A2 RID: 930
-	// (get) Token: 0x060015EC RID: 5612 RVA: 0x000DC900 File Offset: 0x000DAB00
-	// (set) Token: 0x060015ED RID: 5613 RVA: 0x000DC930 File Offset: 0x000DAB30
+	// (get) Token: 0x060015EC RID: 5612 RVA: 0x000DC8CC File Offset: 0x000DAACC
+	// (set) Token: 0x060015ED RID: 5613 RVA: 0x000DC8FC File Offset: 0x000DAAFC
 	public static bool SpareUniform
 	{
 		get
@@ -185,8 +185,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003A3 RID: 931
-	// (get) Token: 0x060015EE RID: 5614 RVA: 0x000DC960 File Offset: 0x000DAB60
-	// (set) Token: 0x060015EF RID: 5615 RVA: 0x000DC990 File Offset: 0x000DAB90
+	// (get) Token: 0x060015EE RID: 5614 RVA: 0x000DC92C File Offset: 0x000DAB2C
+	// (set) Token: 0x060015EF RID: 5615 RVA: 0x000DC95C File Offset: 0x000DAB5C
 	public static bool BlondeHair
 	{
 		get
@@ -200,8 +200,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003A4 RID: 932
-	// (get) Token: 0x060015F0 RID: 5616 RVA: 0x000DC9C0 File Offset: 0x000DABC0
-	// (set) Token: 0x060015F1 RID: 5617 RVA: 0x000DC9F0 File Offset: 0x000DABF0
+	// (get) Token: 0x060015F0 RID: 5616 RVA: 0x000DC98C File Offset: 0x000DAB8C
+	// (set) Token: 0x060015F1 RID: 5617 RVA: 0x000DC9BC File Offset: 0x000DABBC
 	public static bool SenpaiMourning
 	{
 		get
@@ -215,8 +215,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003A5 RID: 933
-	// (get) Token: 0x060015F2 RID: 5618 RVA: 0x000DCA20 File Offset: 0x000DAC20
-	// (set) Token: 0x060015F3 RID: 5619 RVA: 0x000DCA50 File Offset: 0x000DAC50
+	// (get) Token: 0x060015F2 RID: 5618 RVA: 0x000DC9EC File Offset: 0x000DABEC
+	// (set) Token: 0x060015F3 RID: 5619 RVA: 0x000DCA1C File Offset: 0x000DAC1C
 	public static int RivalEliminationID
 	{
 		get
@@ -230,8 +230,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003A6 RID: 934
-	// (get) Token: 0x060015F4 RID: 5620 RVA: 0x000DCA80 File Offset: 0x000DAC80
-	// (set) Token: 0x060015F5 RID: 5621 RVA: 0x000DCAB0 File Offset: 0x000DACB0
+	// (get) Token: 0x060015F4 RID: 5620 RVA: 0x000DCA4C File Offset: 0x000DAC4C
+	// (set) Token: 0x060015F5 RID: 5621 RVA: 0x000DCA7C File Offset: 0x000DAC7C
 	public static int SpecificEliminationID
 	{
 		get
@@ -245,8 +245,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003A7 RID: 935
-	// (get) Token: 0x060015F6 RID: 5622 RVA: 0x000DCADF File Offset: 0x000DACDF
-	// (set) Token: 0x060015F7 RID: 5623 RVA: 0x000DCAEB File Offset: 0x000DACEB
+	// (get) Token: 0x060015F6 RID: 5622 RVA: 0x000DCAAB File Offset: 0x000DACAB
+	// (set) Token: 0x060015F7 RID: 5623 RVA: 0x000DCAB7 File Offset: 0x000DACB7
 	public static bool NonlethalElimination
 	{
 		get
@@ -260,8 +260,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003A8 RID: 936
-	// (get) Token: 0x060015F8 RID: 5624 RVA: 0x000DCAF8 File Offset: 0x000DACF8
-	// (set) Token: 0x060015F9 RID: 5625 RVA: 0x000DCB28 File Offset: 0x000DAD28
+	// (get) Token: 0x060015F8 RID: 5624 RVA: 0x000DCAC4 File Offset: 0x000DACC4
+	// (set) Token: 0x060015F9 RID: 5625 RVA: 0x000DCAF4 File Offset: 0x000DACF4
 	public static bool ReputationsInitialized
 	{
 		get
@@ -275,8 +275,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003A9 RID: 937
-	// (get) Token: 0x060015FA RID: 5626 RVA: 0x000DCB58 File Offset: 0x000DAD58
-	// (set) Token: 0x060015FB RID: 5627 RVA: 0x000DCB88 File Offset: 0x000DAD88
+	// (get) Token: 0x060015FA RID: 5626 RVA: 0x000DCB24 File Offset: 0x000DAD24
+	// (set) Token: 0x060015FB RID: 5627 RVA: 0x000DCB54 File Offset: 0x000DAD54
 	public static bool AnswerSheetUnavailable
 	{
 		get
@@ -290,8 +290,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003AA RID: 938
-	// (get) Token: 0x060015FC RID: 5628 RVA: 0x000DCBB8 File Offset: 0x000DADB8
-	// (set) Token: 0x060015FD RID: 5629 RVA: 0x000DCBE8 File Offset: 0x000DADE8
+	// (get) Token: 0x060015FC RID: 5628 RVA: 0x000DCB84 File Offset: 0x000DAD84
+	// (set) Token: 0x060015FD RID: 5629 RVA: 0x000DCBB4 File Offset: 0x000DADB4
 	public static bool AlphabetMode
 	{
 		get
@@ -305,8 +305,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003AB RID: 939
-	// (get) Token: 0x060015FE RID: 5630 RVA: 0x000DCC18 File Offset: 0x000DAE18
-	// (set) Token: 0x060015FF RID: 5631 RVA: 0x000DCC48 File Offset: 0x000DAE48
+	// (get) Token: 0x060015FE RID: 5630 RVA: 0x000DCBE4 File Offset: 0x000DADE4
+	// (set) Token: 0x060015FF RID: 5631 RVA: 0x000DCC14 File Offset: 0x000DAE14
 	public static bool PoliceYesterday
 	{
 		get
@@ -320,8 +320,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003AC RID: 940
-	// (get) Token: 0x06001600 RID: 5632 RVA: 0x000DCC78 File Offset: 0x000DAE78
-	// (set) Token: 0x06001601 RID: 5633 RVA: 0x000DCCA8 File Offset: 0x000DAEA8
+	// (get) Token: 0x06001600 RID: 5632 RVA: 0x000DCC44 File Offset: 0x000DAE44
+	// (set) Token: 0x06001601 RID: 5633 RVA: 0x000DCC74 File Offset: 0x000DAE74
 	public static bool DarkEnding
 	{
 		get
@@ -335,8 +335,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003AD RID: 941
-	// (get) Token: 0x06001602 RID: 5634 RVA: 0x000DCCD8 File Offset: 0x000DAED8
-	// (set) Token: 0x06001603 RID: 5635 RVA: 0x000DCD08 File Offset: 0x000DAF08
+	// (get) Token: 0x06001602 RID: 5634 RVA: 0x000DCCA4 File Offset: 0x000DAEA4
+	// (set) Token: 0x06001603 RID: 5635 RVA: 0x000DCCD4 File Offset: 0x000DAED4
 	public static bool SenpaiSawOsanaCorpse
 	{
 		get
@@ -350,8 +350,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003AE RID: 942
-	// (get) Token: 0x06001604 RID: 5636 RVA: 0x000DCD38 File Offset: 0x000DAF38
-	// (set) Token: 0x06001605 RID: 5637 RVA: 0x000DCD68 File Offset: 0x000DAF68
+	// (get) Token: 0x06001604 RID: 5636 RVA: 0x000DCD04 File Offset: 0x000DAF04
+	// (set) Token: 0x06001605 RID: 5637 RVA: 0x000DCD34 File Offset: 0x000DAF34
 	public static bool TransitionToPostCredits
 	{
 		get
@@ -365,8 +365,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003AF RID: 943
-	// (get) Token: 0x06001606 RID: 5638 RVA: 0x000DCD98 File Offset: 0x000DAF98
-	// (set) Token: 0x06001607 RID: 5639 RVA: 0x000DCDC8 File Offset: 0x000DAFC8
+	// (get) Token: 0x06001606 RID: 5638 RVA: 0x000DCD64 File Offset: 0x000DAF64
+	// (set) Token: 0x06001607 RID: 5639 RVA: 0x000DCD94 File Offset: 0x000DAF94
 	public static bool PlayerHasBeatenDemo
 	{
 		get
@@ -380,8 +380,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003B0 RID: 944
-	// (get) Token: 0x06001608 RID: 5640 RVA: 0x000DCDF8 File Offset: 0x000DAFF8
-	// (set) Token: 0x06001609 RID: 5641 RVA: 0x000DCE28 File Offset: 0x000DB028
+	// (get) Token: 0x06001608 RID: 5640 RVA: 0x000DCDC4 File Offset: 0x000DAFC4
+	// (set) Token: 0x06001609 RID: 5641 RVA: 0x000DCDF4 File Offset: 0x000DAFF4
 	public static bool InformedAboutSkipping
 	{
 		get
@@ -395,8 +395,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003B1 RID: 945
-	// (get) Token: 0x0600160A RID: 5642 RVA: 0x000DCE58 File Offset: 0x000DB058
-	// (set) Token: 0x0600160B RID: 5643 RVA: 0x000DCE88 File Offset: 0x000DB088
+	// (get) Token: 0x0600160A RID: 5642 RVA: 0x000DCE24 File Offset: 0x000DB024
+	// (set) Token: 0x0600160B RID: 5643 RVA: 0x000DCE54 File Offset: 0x000DB054
 	public static bool RingStolen
 	{
 		get
@@ -410,8 +410,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003B2 RID: 946
-	// (get) Token: 0x0600160C RID: 5644 RVA: 0x000DCEB8 File Offset: 0x000DB0B8
-	// (set) Token: 0x0600160D RID: 5645 RVA: 0x000DCEE8 File Offset: 0x000DB0E8
+	// (get) Token: 0x0600160C RID: 5644 RVA: 0x000DCE84 File Offset: 0x000DB084
+	// (set) Token: 0x0600160D RID: 5645 RVA: 0x000DCEB4 File Offset: 0x000DB0B4
 	public static int BeatEmUpDifficulty
 	{
 		get
@@ -425,8 +425,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003B3 RID: 947
-	// (get) Token: 0x0600160E RID: 5646 RVA: 0x000DCF18 File Offset: 0x000DB118
-	// (set) Token: 0x0600160F RID: 5647 RVA: 0x000DCF48 File Offset: 0x000DB148
+	// (get) Token: 0x0600160E RID: 5646 RVA: 0x000DCEE4 File Offset: 0x000DB0E4
+	// (set) Token: 0x0600160F RID: 5647 RVA: 0x000DCF14 File Offset: 0x000DB114
 	public static bool BeatEmUpSuccess
 	{
 		get
@@ -440,8 +440,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003B4 RID: 948
-	// (get) Token: 0x06001610 RID: 5648 RVA: 0x000DCF78 File Offset: 0x000DB178
-	// (set) Token: 0x06001611 RID: 5649 RVA: 0x000DCFA8 File Offset: 0x000DB1A8
+	// (get) Token: 0x06001610 RID: 5648 RVA: 0x000DCF44 File Offset: 0x000DB144
+	// (set) Token: 0x06001611 RID: 5649 RVA: 0x000DCF74 File Offset: 0x000DB174
 	public static int EightiesCutsceneID
 	{
 		get
@@ -455,8 +455,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003B5 RID: 949
-	// (get) Token: 0x06001612 RID: 5650 RVA: 0x000DCFD8 File Offset: 0x000DB1D8
-	// (set) Token: 0x06001613 RID: 5651 RVA: 0x000DD008 File Offset: 0x000DB208
+	// (get) Token: 0x06001612 RID: 5650 RVA: 0x000DCFA4 File Offset: 0x000DB1A4
+	// (set) Token: 0x06001613 RID: 5651 RVA: 0x000DCFD4 File Offset: 0x000DB1D4
 	public static bool EightiesTutorial
 	{
 		get
@@ -470,8 +470,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003B6 RID: 950
-	// (get) Token: 0x06001614 RID: 5652 RVA: 0x000DD037 File Offset: 0x000DB237
-	// (set) Token: 0x06001615 RID: 5653 RVA: 0x000DD043 File Offset: 0x000DB243
+	// (get) Token: 0x06001614 RID: 5652 RVA: 0x000DD003 File Offset: 0x000DB203
+	// (set) Token: 0x06001615 RID: 5653 RVA: 0x000DD00F File Offset: 0x000DB20F
 	public static bool Eighties
 	{
 		get
@@ -485,8 +485,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003B7 RID: 951
-	// (get) Token: 0x06001616 RID: 5654 RVA: 0x000DD050 File Offset: 0x000DB250
-	// (set) Token: 0x06001617 RID: 5655 RVA: 0x000DD080 File Offset: 0x000DB280
+	// (get) Token: 0x06001616 RID: 5654 RVA: 0x000DD01C File Offset: 0x000DB21C
+	// (set) Token: 0x06001617 RID: 5655 RVA: 0x000DD04C File Offset: 0x000DB24C
 	public static int YakuzaPhase
 	{
 		get
@@ -500,8 +500,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003B8 RID: 952
-	// (get) Token: 0x06001618 RID: 5656 RVA: 0x000DD0B0 File Offset: 0x000DB2B0
-	// (set) Token: 0x06001619 RID: 5657 RVA: 0x000DD0E0 File Offset: 0x000DB2E0
+	// (get) Token: 0x06001618 RID: 5656 RVA: 0x000DD07C File Offset: 0x000DB27C
+	// (set) Token: 0x06001619 RID: 5657 RVA: 0x000DD0AC File Offset: 0x000DB2AC
 	public static bool MetBarber
 	{
 		get
@@ -515,8 +515,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003B9 RID: 953
-	// (get) Token: 0x0600161A RID: 5658 RVA: 0x000DD110 File Offset: 0x000DB310
-	// (set) Token: 0x0600161B RID: 5659 RVA: 0x000DD140 File Offset: 0x000DB340
+	// (get) Token: 0x0600161A RID: 5658 RVA: 0x000DD0DC File Offset: 0x000DB2DC
+	// (set) Token: 0x0600161B RID: 5659 RVA: 0x000DD10C File Offset: 0x000DB30C
 	public static bool IntroducedAbduction
 	{
 		get
@@ -530,8 +530,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003BA RID: 954
-	// (get) Token: 0x0600161C RID: 5660 RVA: 0x000DD170 File Offset: 0x000DB370
-	// (set) Token: 0x0600161D RID: 5661 RVA: 0x000DD1A0 File Offset: 0x000DB3A0
+	// (get) Token: 0x0600161C RID: 5660 RVA: 0x000DD13C File Offset: 0x000DB33C
+	// (set) Token: 0x0600161D RID: 5661 RVA: 0x000DD16C File Offset: 0x000DB36C
 	public static bool IntroducedRansom
 	{
 		get
@@ -545,8 +545,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003BB RID: 955
-	// (get) Token: 0x0600161E RID: 5662 RVA: 0x000DD1D0 File Offset: 0x000DB3D0
-	// (set) Token: 0x0600161F RID: 5663 RVA: 0x000DD200 File Offset: 0x000DB400
+	// (get) Token: 0x0600161E RID: 5662 RVA: 0x000DD19C File Offset: 0x000DB39C
+	// (set) Token: 0x0600161F RID: 5663 RVA: 0x000DD1CC File Offset: 0x000DB3CC
 	public static bool Debug
 	{
 		get
@@ -559,13 +559,13 @@ public static class GameGlobals
 		}
 	}
 
-	// Token: 0x06001620 RID: 5664 RVA: 0x000DD230 File Offset: 0x000DB430
+	// Token: 0x06001620 RID: 5664 RVA: 0x000DD1FC File Offset: 0x000DB3FC
 	public static int GetRivalEliminations(int elimID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminations" + elimID.ToString());
 	}
 
-	// Token: 0x06001621 RID: 5665 RVA: 0x000DD268 File Offset: 0x000DB468
+	// Token: 0x06001621 RID: 5665 RVA: 0x000DD234 File Offset: 0x000DB434
 	public static void SetRivalEliminations(int elimID, int value)
 	{
 		string text = elimID.ToString();
@@ -573,19 +573,19 @@ public static class GameGlobals
 		PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminations" + text, value);
 	}
 
-	// Token: 0x06001622 RID: 5666 RVA: 0x000DD2C4 File Offset: 0x000DB4C4
+	// Token: 0x06001622 RID: 5666 RVA: 0x000DD290 File Offset: 0x000DB490
 	public static int[] KeysOfRivalEliminations()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminations");
 	}
 
-	// Token: 0x06001623 RID: 5667 RVA: 0x000DD2F4 File Offset: 0x000DB4F4
+	// Token: 0x06001623 RID: 5667 RVA: 0x000DD2C0 File Offset: 0x000DB4C0
 	public static int GetSpecificEliminations(int elimID)
 	{
 		return PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_SpecificEliminations" + elimID.ToString());
 	}
 
-	// Token: 0x06001624 RID: 5668 RVA: 0x000DD32C File Offset: 0x000DB52C
+	// Token: 0x06001624 RID: 5668 RVA: 0x000DD2F8 File Offset: 0x000DB4F8
 	public static void SetSpecificEliminations(int elimID, int value)
 	{
 		string text = elimID.ToString();
@@ -593,15 +593,15 @@ public static class GameGlobals
 		PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_SpecificEliminations" + text, value);
 	}
 
-	// Token: 0x06001625 RID: 5669 RVA: 0x000DD388 File Offset: 0x000DB588
+	// Token: 0x06001625 RID: 5669 RVA: 0x000DD354 File Offset: 0x000DB554
 	public static int[] KeysOfSpecificEliminations()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_SpecificEliminations");
 	}
 
 	// Token: 0x170003BC RID: 956
-	// (get) Token: 0x06001626 RID: 5670 RVA: 0x000DD3B8 File Offset: 0x000DB5B8
-	// (set) Token: 0x06001627 RID: 5671 RVA: 0x000DD3E8 File Offset: 0x000DB5E8
+	// (get) Token: 0x06001626 RID: 5670 RVA: 0x000DD384 File Offset: 0x000DB584
+	// (set) Token: 0x06001627 RID: 5671 RVA: 0x000DD3B4 File Offset: 0x000DB5B4
 	public static bool TrueEnding
 	{
 		get
@@ -615,8 +615,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003BD RID: 957
-	// (get) Token: 0x06001628 RID: 5672 RVA: 0x000DD418 File Offset: 0x000DB618
-	// (set) Token: 0x06001629 RID: 5673 RVA: 0x000DD448 File Offset: 0x000DB648
+	// (get) Token: 0x06001628 RID: 5672 RVA: 0x000DD3E4 File Offset: 0x000DB5E4
+	// (set) Token: 0x06001629 RID: 5673 RVA: 0x000DD414 File Offset: 0x000DB614
 	public static bool JustKidnapped
 	{
 		get
@@ -630,8 +630,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003BE RID: 958
-	// (get) Token: 0x0600162A RID: 5674 RVA: 0x000DD478 File Offset: 0x000DB678
-	// (set) Token: 0x0600162B RID: 5675 RVA: 0x000DD4A8 File Offset: 0x000DB6A8
+	// (get) Token: 0x0600162A RID: 5674 RVA: 0x000DD444 File Offset: 0x000DB644
+	// (set) Token: 0x0600162B RID: 5675 RVA: 0x000DD474 File Offset: 0x000DB674
 	public static bool ShowAbduction
 	{
 		get
@@ -645,8 +645,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003BF RID: 959
-	// (get) Token: 0x0600162C RID: 5676 RVA: 0x000DD4D8 File Offset: 0x000DB6D8
-	// (set) Token: 0x0600162D RID: 5677 RVA: 0x000DD508 File Offset: 0x000DB708
+	// (get) Token: 0x0600162C RID: 5676 RVA: 0x000DD4A4 File Offset: 0x000DB6A4
+	// (set) Token: 0x0600162D RID: 5677 RVA: 0x000DD4D4 File Offset: 0x000DB6D4
 	public static int AbductionTarget
 	{
 		get
@@ -660,8 +660,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003C0 RID: 960
-	// (get) Token: 0x0600162E RID: 5678 RVA: 0x000DD537 File Offset: 0x000DB737
-	// (set) Token: 0x0600162F RID: 5679 RVA: 0x000DD543 File Offset: 0x000DB743
+	// (get) Token: 0x0600162E RID: 5678 RVA: 0x000DD503 File Offset: 0x000DB703
+	// (set) Token: 0x0600162F RID: 5679 RVA: 0x000DD50F File Offset: 0x000DB70F
 	public static bool CameFromTitleScreen
 	{
 		get
@@ -675,8 +675,8 @@ public static class GameGlobals
 	}
 
 	// Token: 0x170003C1 RID: 961
-	// (get) Token: 0x06001630 RID: 5680 RVA: 0x000DD550 File Offset: 0x000DB750
-	// (set) Token: 0x06001631 RID: 5681 RVA: 0x000DD55C File Offset: 0x000DB75C
+	// (get) Token: 0x06001630 RID: 5680 RVA: 0x000DD51C File Offset: 0x000DB71C
+	// (set) Token: 0x06001631 RID: 5681 RVA: 0x000DD528 File Offset: 0x000DB728
 	public static int VtuberID
 	{
 		get
@@ -689,7 +689,7 @@ public static class GameGlobals
 		}
 	}
 
-	// Token: 0x06001632 RID: 5682 RVA: 0x000DD56C File Offset: 0x000DB76C
+	// Token: 0x06001632 RID: 5682 RVA: 0x000DD538 File Offset: 0x000DB738
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_LoveSick");

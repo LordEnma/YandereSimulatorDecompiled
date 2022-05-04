@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200035A RID: 858
 public class LoveManagerScript : MonoBehaviour
 {
-	// Token: 0x06001994 RID: 6548 RVA: 0x00103854 File Offset: 0x00101A54
+	// Token: 0x06001994 RID: 6548 RVA: 0x00103820 File Offset: 0x00101A20
 	private void Start()
 	{
 		int week = DateGlobals.Week;
@@ -42,7 +42,7 @@ public class LoveManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001995 RID: 6549 RVA: 0x0010392C File Offset: 0x00101B2C
+	// Token: 0x06001995 RID: 6549 RVA: 0x001038F8 File Offset: 0x00101AF8
 	private void LateUpdate()
 	{
 		if (this.Yandere.Follower != null && this.Yandere.Follower.StudentID == this.StudentManager.RivalID)
@@ -133,7 +133,7 @@ public class LoveManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001996 RID: 6550 RVA: 0x00103EE0 File Offset: 0x001020E0
+	// Token: 0x06001996 RID: 6550 RVA: 0x00103EAC File Offset: 0x001020AC
 	public void CoupleCheck()
 	{
 		if (this.SuitorProgress == 2)
@@ -181,7 +181,7 @@ public class LoveManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001997 RID: 6551 RVA: 0x001041D4 File Offset: 0x001023D4
+	// Token: 0x06001997 RID: 6551 RVA: 0x001041A0 File Offset: 0x001023A0
 	public void BeginConfession()
 	{
 		Debug.Log("Confession is being told to begin.");
@@ -220,7 +220,7 @@ public class LoveManagerScript : MonoBehaviour
 		this.LeftNote = false;
 	}
 
-	// Token: 0x06001998 RID: 6552 RVA: 0x00104338 File Offset: 0x00102538
+	// Token: 0x06001998 RID: 6552 RVA: 0x00104304 File Offset: 0x00102504
 	public void SaveSuitorInstructions()
 	{
 		StudentGlobals.CustomSuitorAccessory = this.CustomSuitorAccessory;

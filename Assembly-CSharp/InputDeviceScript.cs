@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000337 RID: 823
 public class InputDeviceScript : MonoBehaviour
 {
-	// Token: 0x060018F6 RID: 6390 RVA: 0x000F6F2C File Offset: 0x000F512C
+	// Token: 0x060018F6 RID: 6390 RVA: 0x000F6EF8 File Offset: 0x000F50F8
 	private void Start()
 	{
 		this.joystickNames = new string[20];
@@ -14,7 +14,7 @@ public class InputDeviceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018F7 RID: 6391 RVA: 0x000F6F6C File Offset: 0x000F516C
+	// Token: 0x060018F7 RID: 6391 RVA: 0x000F6F38 File Offset: 0x000F5138
 	private void Update()
 	{
 		this.MouseDelta = Input.mousePosition - this.MousePrevious;

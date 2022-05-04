@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000416 RID: 1046
 public class SchemeManagerScript : MonoBehaviour
 {
-	// Token: 0x06001C7D RID: 7293 RVA: 0x0014DB14 File Offset: 0x0014BD14
+	// Token: 0x06001C7D RID: 7293 RVA: 0x0014DAE0 File Offset: 0x0014BCE0
 	private void Update()
 	{
 		if (this.CurrentScheme < 6)

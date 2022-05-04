@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class EyeAdaptationModel : PostProcessingModel
 	{
 		// Token: 0x1700050D RID: 1293
-		// (get) Token: 0x0600239B RID: 9115 RVA: 0x001FAEBE File Offset: 0x001F90BE
-		// (set) Token: 0x0600239C RID: 9116 RVA: 0x001FAEC6 File Offset: 0x001F90C6
+		// (get) Token: 0x0600239C RID: 9116 RVA: 0x001FAFBA File Offset: 0x001F91BA
+		// (set) Token: 0x0600239D RID: 9117 RVA: 0x001FAFC2 File Offset: 0x001F91C2
 		public EyeAdaptationModel.Settings settings
 		{
 			get
@@ -21,7 +21,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600239D RID: 9117 RVA: 0x001FAECF File Offset: 0x001F90CF
+		// Token: 0x0600239E RID: 9118 RVA: 0x001FAFCB File Offset: 0x001F91CB
 		public override void Reset()
 		{
 			this.m_Settings = EyeAdaptationModel.Settings.defaultSettings;
@@ -45,7 +45,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x170005A3 RID: 1443
-			// (get) Token: 0x06002796 RID: 10134 RVA: 0x002098F4 File Offset: 0x00207AF4
+			// (get) Token: 0x06002797 RID: 10135 RVA: 0x002099F0 File Offset: 0x00207BF0
 			public static EyeAdaptationModel.Settings defaultSettings
 			{
 				get

@@ -514,7 +514,7 @@ public class UIAtlas : MonoBehaviour, INGUIAtlas
 	private class Sprite
 	{
 		// Token: 0x17000546 RID: 1350
-		// (get) Token: 0x060025E0 RID: 9696 RVA: 0x00204054 File Offset: 0x00202254
+		// (get) Token: 0x060025E1 RID: 9697 RVA: 0x00204150 File Offset: 0x00202350
 		public bool hasPadding
 		{
 			get

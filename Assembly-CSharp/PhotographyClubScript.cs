@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003A8 RID: 936
 public class PhotographyClubScript : MonoBehaviour
 {
-	// Token: 0x06001AC9 RID: 6857 RVA: 0x0012206C File Offset: 0x0012026C
+	// Token: 0x06001AC9 RID: 6857 RVA: 0x00122038 File Offset: 0x00120238
 	private void Start()
 	{
 		this.InvestigationPhotos.SetActive(false);

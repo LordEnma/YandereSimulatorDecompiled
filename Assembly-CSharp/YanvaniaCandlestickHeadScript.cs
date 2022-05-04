@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004E0 RID: 1248
 public class YanvaniaCandlestickHeadScript : MonoBehaviour
 {
-	// Token: 0x060020CC RID: 8396 RVA: 0x001E406C File Offset: 0x001E226C
+	// Token: 0x060020CD RID: 8397 RVA: 0x001E4168 File Offset: 0x001E2368
 	private void Start()
 	{
 		Rigidbody component = base.GetComponent<Rigidbody>();
@@ -13,7 +13,7 @@ public class YanvaniaCandlestickHeadScript : MonoBehaviour
 		this.Value = UnityEngine.Random.Range(-1f, 1f);
 	}
 
-	// Token: 0x060020CD RID: 8397 RVA: 0x001E40CC File Offset: 0x001E22CC
+	// Token: 0x060020CE RID: 8398 RVA: 0x001E41C8 File Offset: 0x001E23C8
 	private void Update()
 	{
 		this.Rotation += new Vector3(this.Value, this.Value, this.Value);

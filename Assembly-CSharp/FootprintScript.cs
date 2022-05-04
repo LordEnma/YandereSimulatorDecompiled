@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002D3 RID: 723
 public class FootprintScript : MonoBehaviour
 {
-	// Token: 0x060014C6 RID: 5318 RVA: 0x000CCA60 File Offset: 0x000CAC60
+	// Token: 0x060014C6 RID: 5318 RVA: 0x000CCA2C File Offset: 0x000CAC2C
 	private void Start()
 	{
 		if (this.Yandere.Schoolwear == 0 || this.Yandere.Schoolwear == 2 || (this.Yandere.ClubAttire && this.Yandere.Club == ClubType.MartialArts) || this.Yandere.Hungry || this.Yandere.LucyHelmet.activeInHierarchy)

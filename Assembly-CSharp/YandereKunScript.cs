@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004D1 RID: 1233
 public class YandereKunScript : MonoBehaviour
 {
-	// Token: 0x0600203D RID: 8253 RVA: 0x001CD74C File Offset: 0x001CB94C
+	// Token: 0x0600203E RID: 8254 RVA: 0x001CD848 File Offset: 0x001CBA48
 	private void Start()
 	{
 		if (!this.Kizuna)
@@ -118,7 +118,7 @@ public class YandereKunScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600203E RID: 8254 RVA: 0x001CDC2C File Offset: 0x001CBE2C
+	// Token: 0x0600203F RID: 8255 RVA: 0x001CDD28 File Offset: 0x001CBF28
 	private void LateUpdate()
 	{
 		if (this.Man)

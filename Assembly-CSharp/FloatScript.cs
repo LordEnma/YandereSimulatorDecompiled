@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002CF RID: 719
 public class FloatScript : MonoBehaviour
 {
-	// Token: 0x060014BC RID: 5308 RVA: 0x000CC348 File Offset: 0x000CA548
+	// Token: 0x060014BC RID: 5308 RVA: 0x000CC314 File Offset: 0x000CA514
 	private void Update()
 	{
 		if (!this.Down)

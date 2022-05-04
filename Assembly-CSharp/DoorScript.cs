@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorScript : MonoBehaviour
 {
 	// Token: 0x1700034A RID: 842
-	// (get) Token: 0x060013C0 RID: 5056 RVA: 0x000B9C07 File Offset: 0x000B7E07
+	// (get) Token: 0x060013C0 RID: 5056 RVA: 0x000B9BD3 File Offset: 0x000B7DD3
 	private bool Double
 	{
 		get
@@ -14,7 +14,7 @@ public class DoorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013C1 RID: 5057 RVA: 0x000B9C14 File Offset: 0x000B7E14
+	// Token: 0x060013C1 RID: 5057 RVA: 0x000B9BE0 File Offset: 0x000B7DE0
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -89,7 +89,7 @@ public class DoorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013C2 RID: 5058 RVA: 0x000B9F3C File Offset: 0x000B813C
+	// Token: 0x060013C2 RID: 5058 RVA: 0x000B9F08 File Offset: 0x000B8108
 	private void Update()
 	{
 		if (this.Prompt.DistanceSqr <= 1f)
@@ -297,7 +297,7 @@ public class DoorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013C3 RID: 5059 RVA: 0x000BA960 File Offset: 0x000B8B60
+	// Token: 0x060013C3 RID: 5059 RVA: 0x000BA92C File Offset: 0x000B8B2C
 	public void OpenDoor()
 	{
 		this.DoorColliders[0].isTrigger = true;
@@ -339,7 +339,7 @@ public class DoorScript : MonoBehaviour
 		AudioSource.PlayClipAtPoint(this.StudentManager.SlidingDoorOpen, base.transform.position);
 	}
 
-	// Token: 0x060013C4 RID: 5060 RVA: 0x000BAACB File Offset: 0x000B8CCB
+	// Token: 0x060013C4 RID: 5060 RVA: 0x000BAA97 File Offset: 0x000B8C97
 	private void LockDoor()
 	{
 		this.Open = false;
@@ -347,7 +347,7 @@ public class DoorScript : MonoBehaviour
 		this.Prompt.enabled = false;
 	}
 
-	// Token: 0x060013C5 RID: 5061 RVA: 0x000BAAEC File Offset: 0x000B8CEC
+	// Token: 0x060013C5 RID: 5061 RVA: 0x000BAAB8 File Offset: 0x000B8CB8
 	private void CheckDirection()
 	{
 		this.North = false;
@@ -383,7 +383,7 @@ public class DoorScript : MonoBehaviour
 		this.Student = null;
 	}
 
-	// Token: 0x060013C6 RID: 5062 RVA: 0x000BAC3C File Offset: 0x000B8E3C
+	// Token: 0x060013C6 RID: 5062 RVA: 0x000BAC08 File Offset: 0x000B8E08
 	public void CloseDoor()
 	{
 		this.Open = false;
@@ -410,7 +410,7 @@ public class DoorScript : MonoBehaviour
 		AudioSource.PlayClipAtPoint(this.StudentManager.SlidingDoorShut, base.transform.position);
 	}
 
-	// Token: 0x060013C7 RID: 5063 RVA: 0x000BAD2A File Offset: 0x000B8F2A
+	// Token: 0x060013C7 RID: 5063 RVA: 0x000BACF6 File Offset: 0x000B8EF6
 	private void UpdateLabel()
 	{
 		if (this.Open)
@@ -421,7 +421,7 @@ public class DoorScript : MonoBehaviour
 		this.Prompt.Label[0].text = "     Open";
 	}
 
-	// Token: 0x060013C8 RID: 5064 RVA: 0x000BAD64 File Offset: 0x000B8F64
+	// Token: 0x060013C8 RID: 5064 RVA: 0x000BAD30 File Offset: 0x000B8F30
 	private void UpdatePlate()
 	{
 		switch (this.RoomID)
@@ -577,7 +577,7 @@ public class DoorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013C9 RID: 5065 RVA: 0x000BB5C8 File Offset: 0x000B97C8
+	// Token: 0x060013C9 RID: 5065 RVA: 0x000BB594 File Offset: 0x000B9794
 	private void TopicCheck()
 	{
 		if (this.RoomID > 25 && this.RoomID < 37)

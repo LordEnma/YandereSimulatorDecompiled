@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class SpecificEventTime : IScheduledEventTime
 {
-	// Token: 0x06001475 RID: 5237 RVA: 0x000C810E File Offset: 0x000C630E
+	// Token: 0x06001475 RID: 5237 RVA: 0x000C80DA File Offset: 0x000C62DA
 	public SpecificEventTime(int week, DayOfWeek weekday, Clock startClock, Clock endClock)
 	{
 		this.week = week;
@@ -15,7 +15,7 @@ public class SpecificEventTime : IScheduledEventTime
 	}
 
 	// Token: 0x1700036B RID: 875
-	// (get) Token: 0x06001476 RID: 5238 RVA: 0x000C8133 File Offset: 0x000C6333
+	// (get) Token: 0x06001476 RID: 5238 RVA: 0x000C80FF File Offset: 0x000C62FF
 	public ScheduledEventTimeType ScheduleType
 	{
 		get
@@ -24,7 +24,7 @@ public class SpecificEventTime : IScheduledEventTime
 		}
 	}
 
-	// Token: 0x06001477 RID: 5239 RVA: 0x000C8138 File Offset: 0x000C6338
+	// Token: 0x06001477 RID: 5239 RVA: 0x000C8104 File Offset: 0x000C6304
 	public bool OccurringNow(DateAndTime currentTime)
 	{
 		bool flag = currentTime.Week == this.week;
@@ -34,7 +34,7 @@ public class SpecificEventTime : IScheduledEventTime
 		return flag && flag2 && flag3;
 	}
 
-	// Token: 0x06001478 RID: 5240 RVA: 0x000C8198 File Offset: 0x000C6398
+	// Token: 0x06001478 RID: 5240 RVA: 0x000C8164 File Offset: 0x000C6364
 	public bool OccursInTheFuture(DateAndTime currentTime)
 	{
 		if (currentTime.Week != this.week)
@@ -48,7 +48,7 @@ public class SpecificEventTime : IScheduledEventTime
 		return currentTime.Weekday < this.weekday;
 	}
 
-	// Token: 0x06001479 RID: 5241 RVA: 0x000C81F8 File Offset: 0x000C63F8
+	// Token: 0x06001479 RID: 5241 RVA: 0x000C81C4 File Offset: 0x000C63C4
 	public bool OccurredInThePast(DateAndTime currentTime)
 	{
 		if (currentTime.Week != this.week)

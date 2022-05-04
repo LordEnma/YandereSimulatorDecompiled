@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000415 RID: 1045
 public class ScheduleScript : MonoBehaviour
 {
-	// Token: 0x06001C77 RID: 7287 RVA: 0x0014D110 File Offset: 0x0014B310
+	// Token: 0x06001C77 RID: 7287 RVA: 0x0014D0DC File Offset: 0x0014B2DC
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -29,7 +29,7 @@ public class ScheduleScript : MonoBehaviour
 		this.UpdateIcons();
 	}
 
-	// Token: 0x06001C78 RID: 7288 RVA: 0x0014D29C File Offset: 0x0014B49C
+	// Token: 0x06001C78 RID: 7288 RVA: 0x0014D268 File Offset: 0x0014B468
 	private void UpdateIcons()
 	{
 		this.Header.text = this.Weekday.ToString() + " Schedule";
@@ -126,7 +126,7 @@ public class ScheduleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C79 RID: 7289 RVA: 0x0014D62C File Offset: 0x0014B82C
+	// Token: 0x06001C79 RID: 7289 RVA: 0x0014D5F8 File Offset: 0x0014B7F8
 	private void Update()
 	{
 		this.PauseScreen.Sideways = true;
@@ -203,7 +203,7 @@ public class ScheduleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C7A RID: 7290 RVA: 0x0014D984 File Offset: 0x0014BB84
+	// Token: 0x06001C7A RID: 7290 RVA: 0x0014D950 File Offset: 0x0014BB50
 	private void UpdateHighlightPosition()
 	{
 		if (this.X > this.LimitX)
@@ -234,7 +234,7 @@ public class ScheduleScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3((float)(-440 + 80 * this.X), (float)(266 + -66 * this.Y), 0f);
 	}
 
-	// Token: 0x06001C7B RID: 7291 RVA: 0x0014DA74 File Offset: 0x0014BC74
+	// Token: 0x06001C7B RID: 7291 RVA: 0x0014DA40 File Offset: 0x0014BC40
 	public void JumpToEvent(int ID)
 	{
 		this.Y = 1;

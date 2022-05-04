@@ -7,7 +7,7 @@ using XInputDotNetPure;
 // Token: 0x0200033D RID: 829
 public class IntroScript : MonoBehaviour
 {
-	// Token: 0x06001905 RID: 6405 RVA: 0x000F7C24 File Offset: 0x000F5E24
+	// Token: 0x06001905 RID: 6405 RVA: 0x000F7BF0 File Offset: 0x000F5DF0
 	private void Start()
 	{
 		Application.targetFrameRate = 60;
@@ -79,7 +79,7 @@ public class IntroScript : MonoBehaviour
 		this.VtuberCheck();
 	}
 
-	// Token: 0x06001906 RID: 6406 RVA: 0x000F7FC4 File Offset: 0x000F61C4
+	// Token: 0x06001906 RID: 6406 RVA: 0x000F7F90 File Offset: 0x000F6190
 	private void Update()
 	{
 		if (this.VibrationCheck)
@@ -747,7 +747,7 @@ public class IntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001907 RID: 6407 RVA: 0x000FA7C0 File Offset: 0x000F89C0
+	// Token: 0x06001907 RID: 6407 RVA: 0x000FA78C File Offset: 0x000F898C
 	private void LateUpdate()
 	{
 		if (this.New)
@@ -804,7 +804,7 @@ public class IntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001908 RID: 6408 RVA: 0x000FABF8 File Offset: 0x000F8DF8
+	// Token: 0x06001908 RID: 6408 RVA: 0x000FABC4 File Offset: 0x000F8DC4
 	private void LoveSickCheck()
 	{
 		if (GameGlobals.LoveSick)
@@ -836,7 +836,7 @@ public class IntroScript : MonoBehaviour
 		this.LoveSickLogo.enabled = false;
 	}
 
-	// Token: 0x06001909 RID: 6409 RVA: 0x000FAD50 File Offset: 0x000F8F50
+	// Token: 0x06001909 RID: 6409 RVA: 0x000FAD1C File Offset: 0x000F8F1C
 	private void BrightenEnvironment()
 	{
 		this.TreeRenderer[0].materials[0].color = new Color(this.Brightness, this.Brightness, this.Brightness, 1f);
@@ -855,7 +855,7 @@ public class IntroScript : MonoBehaviour
 		this.YoungFatherHairRenderer.material.color = new Color(this.Brightness, this.Brightness, this.Brightness, 1f);
 	}
 
-	// Token: 0x0600190A RID: 6410 RVA: 0x000FAFEC File Offset: 0x000F91EC
+	// Token: 0x0600190A RID: 6410 RVA: 0x000FAFB8 File Offset: 0x000F91B8
 	private void TurnNeutral()
 	{
 		ColorGradingModel.Settings settings = this.Profile.colorGrading.settings;
@@ -865,7 +865,7 @@ public class IntroScript : MonoBehaviour
 		this.Profile.colorGrading.settings = settings;
 	}
 
-	// Token: 0x0600190B RID: 6411 RVA: 0x000FB0CC File Offset: 0x000F92CC
+	// Token: 0x0600190B RID: 6411 RVA: 0x000FB098 File Offset: 0x000F9298
 	private void TurnRed()
 	{
 		ColorGradingModel.Settings settings = this.Profile.colorGrading.settings;
@@ -876,7 +876,7 @@ public class IntroScript : MonoBehaviour
 		this.Profile.colorGrading.settings = settings;
 	}
 
-	// Token: 0x0600190C RID: 6412 RVA: 0x000FB1D8 File Offset: 0x000F93D8
+	// Token: 0x0600190C RID: 6412 RVA: 0x000FB1A4 File Offset: 0x000F93A4
 	private void SetToDefault()
 	{
 		ColorGradingModel.Settings settings = this.Profile.colorGrading.settings;
@@ -894,7 +894,7 @@ public class IntroScript : MonoBehaviour
 		this.Profile.bloom.settings = settings3;
 	}
 
-	// Token: 0x0600190D RID: 6413 RVA: 0x000FB2E8 File Offset: 0x000F94E8
+	// Token: 0x0600190D RID: 6413 RVA: 0x000FB2B4 File Offset: 0x000F94B4
 	private void VtuberCheck()
 	{
 		if (GameGlobals.VtuberID > 0)

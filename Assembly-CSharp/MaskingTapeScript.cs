@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000360 RID: 864
 public class MaskingTapeScript : MonoBehaviour
 {
-	// Token: 0x060019AB RID: 6571 RVA: 0x00106658 File Offset: 0x00104858
+	// Token: 0x060019AB RID: 6571 RVA: 0x00106624 File Offset: 0x00104824
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

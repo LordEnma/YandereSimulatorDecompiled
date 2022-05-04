@@ -5,8 +5,8 @@ using UnityEngine;
 public static class OptionGlobals
 {
 	// Token: 0x170003D0 RID: 976
-	// (get) Token: 0x06001654 RID: 5716 RVA: 0x000DDF28 File Offset: 0x000DC128
-	// (set) Token: 0x06001655 RID: 5717 RVA: 0x000DDF54 File Offset: 0x000DC154
+	// (get) Token: 0x06001654 RID: 5716 RVA: 0x000DDEF4 File Offset: 0x000DC0F4
+	// (set) Token: 0x06001655 RID: 5717 RVA: 0x000DDF20 File Offset: 0x000DC120
 	public static bool DisableBloom
 	{
 		get
@@ -20,8 +20,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003D1 RID: 977
-	// (get) Token: 0x06001656 RID: 5718 RVA: 0x000DDF80 File Offset: 0x000DC180
-	// (set) Token: 0x06001657 RID: 5719 RVA: 0x000DDFAC File Offset: 0x000DC1AC
+	// (get) Token: 0x06001656 RID: 5718 RVA: 0x000DDF4C File Offset: 0x000DC14C
+	// (set) Token: 0x06001657 RID: 5719 RVA: 0x000DDF78 File Offset: 0x000DC178
 	public static int DisableFarAnimations
 	{
 		get
@@ -35,8 +35,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003D2 RID: 978
-	// (get) Token: 0x06001658 RID: 5720 RVA: 0x000DDFD8 File Offset: 0x000DC1D8
-	// (set) Token: 0x06001659 RID: 5721 RVA: 0x000DE004 File Offset: 0x000DC204
+	// (get) Token: 0x06001658 RID: 5720 RVA: 0x000DDFA4 File Offset: 0x000DC1A4
+	// (set) Token: 0x06001659 RID: 5721 RVA: 0x000DDFD0 File Offset: 0x000DC1D0
 	public static bool DisableOutlines
 	{
 		get
@@ -50,8 +50,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003D3 RID: 979
-	// (get) Token: 0x0600165A RID: 5722 RVA: 0x000DE030 File Offset: 0x000DC230
-	// (set) Token: 0x0600165B RID: 5723 RVA: 0x000DE05C File Offset: 0x000DC25C
+	// (get) Token: 0x0600165A RID: 5722 RVA: 0x000DDFFC File Offset: 0x000DC1FC
+	// (set) Token: 0x0600165B RID: 5723 RVA: 0x000DE028 File Offset: 0x000DC228
 	public static bool DisablePostAliasing
 	{
 		get
@@ -65,8 +65,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003D4 RID: 980
-	// (get) Token: 0x0600165C RID: 5724 RVA: 0x000DE088 File Offset: 0x000DC288
-	// (set) Token: 0x0600165D RID: 5725 RVA: 0x000DE0B4 File Offset: 0x000DC2B4
+	// (get) Token: 0x0600165C RID: 5724 RVA: 0x000DE054 File Offset: 0x000DC254
+	// (set) Token: 0x0600165D RID: 5725 RVA: 0x000DE080 File Offset: 0x000DC280
 	public static bool EnableShadows
 	{
 		get
@@ -80,8 +80,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003D5 RID: 981
-	// (get) Token: 0x0600165E RID: 5726 RVA: 0x000DE0E0 File Offset: 0x000DC2E0
-	// (set) Token: 0x0600165F RID: 5727 RVA: 0x000DE10C File Offset: 0x000DC30C
+	// (get) Token: 0x0600165E RID: 5726 RVA: 0x000DE0AC File Offset: 0x000DC2AC
+	// (set) Token: 0x0600165F RID: 5727 RVA: 0x000DE0D8 File Offset: 0x000DC2D8
 	public static bool DisableObscurance
 	{
 		get
@@ -95,8 +95,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003D6 RID: 982
-	// (get) Token: 0x06001660 RID: 5728 RVA: 0x000DE138 File Offset: 0x000DC338
-	// (set) Token: 0x06001661 RID: 5729 RVA: 0x000DE164 File Offset: 0x000DC364
+	// (get) Token: 0x06001660 RID: 5728 RVA: 0x000DE104 File Offset: 0x000DC304
+	// (set) Token: 0x06001661 RID: 5729 RVA: 0x000DE130 File Offset: 0x000DC330
 	public static int DrawDistance
 	{
 		get
@@ -110,8 +110,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003D7 RID: 983
-	// (get) Token: 0x06001662 RID: 5730 RVA: 0x000DE190 File Offset: 0x000DC390
-	// (set) Token: 0x06001663 RID: 5731 RVA: 0x000DE1BC File Offset: 0x000DC3BC
+	// (get) Token: 0x06001662 RID: 5730 RVA: 0x000DE15C File Offset: 0x000DC35C
+	// (set) Token: 0x06001663 RID: 5731 RVA: 0x000DE188 File Offset: 0x000DC388
 	public static int DrawDistanceLimit
 	{
 		get
@@ -125,8 +125,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003D8 RID: 984
-	// (get) Token: 0x06001664 RID: 5732 RVA: 0x000DE1E8 File Offset: 0x000DC3E8
-	// (set) Token: 0x06001665 RID: 5733 RVA: 0x000DE214 File Offset: 0x000DC414
+	// (get) Token: 0x06001664 RID: 5732 RVA: 0x000DE1B4 File Offset: 0x000DC3B4
+	// (set) Token: 0x06001665 RID: 5733 RVA: 0x000DE1E0 File Offset: 0x000DC3E0
 	public static bool Vsync
 	{
 		get
@@ -140,8 +140,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003D9 RID: 985
-	// (get) Token: 0x06001666 RID: 5734 RVA: 0x000DE240 File Offset: 0x000DC440
-	// (set) Token: 0x06001667 RID: 5735 RVA: 0x000DE26C File Offset: 0x000DC46C
+	// (get) Token: 0x06001666 RID: 5734 RVA: 0x000DE20C File Offset: 0x000DC40C
+	// (set) Token: 0x06001667 RID: 5735 RVA: 0x000DE238 File Offset: 0x000DC438
 	public static bool Fog
 	{
 		get
@@ -155,8 +155,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003DA RID: 986
-	// (get) Token: 0x06001668 RID: 5736 RVA: 0x000DE298 File Offset: 0x000DC498
-	// (set) Token: 0x06001669 RID: 5737 RVA: 0x000DE2C4 File Offset: 0x000DC4C4
+	// (get) Token: 0x06001668 RID: 5736 RVA: 0x000DE264 File Offset: 0x000DC464
+	// (set) Token: 0x06001669 RID: 5737 RVA: 0x000DE290 File Offset: 0x000DC490
 	public static int FPSIndex
 	{
 		get
@@ -170,8 +170,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003DB RID: 987
-	// (get) Token: 0x0600166A RID: 5738 RVA: 0x000DE2F0 File Offset: 0x000DC4F0
-	// (set) Token: 0x0600166B RID: 5739 RVA: 0x000DE31C File Offset: 0x000DC51C
+	// (get) Token: 0x0600166A RID: 5738 RVA: 0x000DE2BC File Offset: 0x000DC4BC
+	// (set) Token: 0x0600166B RID: 5739 RVA: 0x000DE2E8 File Offset: 0x000DC4E8
 	public static bool HighPopulation
 	{
 		get
@@ -185,8 +185,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003DC RID: 988
-	// (get) Token: 0x0600166C RID: 5740 RVA: 0x000DE348 File Offset: 0x000DC548
-	// (set) Token: 0x0600166D RID: 5741 RVA: 0x000DE374 File Offset: 0x000DC574
+	// (get) Token: 0x0600166C RID: 5740 RVA: 0x000DE314 File Offset: 0x000DC514
+	// (set) Token: 0x0600166D RID: 5741 RVA: 0x000DE340 File Offset: 0x000DC540
 	public static int LowDetailStudents
 	{
 		get
@@ -200,8 +200,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003DD RID: 989
-	// (get) Token: 0x0600166E RID: 5742 RVA: 0x000DE3A0 File Offset: 0x000DC5A0
-	// (set) Token: 0x0600166F RID: 5743 RVA: 0x000DE3CC File Offset: 0x000DC5CC
+	// (get) Token: 0x0600166E RID: 5742 RVA: 0x000DE36C File Offset: 0x000DC56C
+	// (set) Token: 0x0600166F RID: 5743 RVA: 0x000DE398 File Offset: 0x000DC598
 	public static int ParticleCount
 	{
 		get
@@ -215,8 +215,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003DE RID: 990
-	// (get) Token: 0x06001670 RID: 5744 RVA: 0x000DE3F8 File Offset: 0x000DC5F8
-	// (set) Token: 0x06001671 RID: 5745 RVA: 0x000DE424 File Offset: 0x000DC624
+	// (get) Token: 0x06001670 RID: 5744 RVA: 0x000DE3C4 File Offset: 0x000DC5C4
+	// (set) Token: 0x06001671 RID: 5745 RVA: 0x000DE3F0 File Offset: 0x000DC5F0
 	public static bool RimLight
 	{
 		get
@@ -230,8 +230,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003DF RID: 991
-	// (get) Token: 0x06001672 RID: 5746 RVA: 0x000DE450 File Offset: 0x000DC650
-	// (set) Token: 0x06001673 RID: 5747 RVA: 0x000DE47C File Offset: 0x000DC67C
+	// (get) Token: 0x06001672 RID: 5746 RVA: 0x000DE41C File Offset: 0x000DC61C
+	// (set) Token: 0x06001673 RID: 5747 RVA: 0x000DE448 File Offset: 0x000DC648
 	public static bool DepthOfField
 	{
 		get
@@ -245,8 +245,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003E0 RID: 992
-	// (get) Token: 0x06001674 RID: 5748 RVA: 0x000DE4A8 File Offset: 0x000DC6A8
-	// (set) Token: 0x06001675 RID: 5749 RVA: 0x000DE4D4 File Offset: 0x000DC6D4
+	// (get) Token: 0x06001674 RID: 5748 RVA: 0x000DE474 File Offset: 0x000DC674
+	// (set) Token: 0x06001675 RID: 5749 RVA: 0x000DE4A0 File Offset: 0x000DC6A0
 	public static bool MotionBlur
 	{
 		get
@@ -260,8 +260,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003E1 RID: 993
-	// (get) Token: 0x06001676 RID: 5750 RVA: 0x000DE500 File Offset: 0x000DC700
-	// (set) Token: 0x06001677 RID: 5751 RVA: 0x000DE52C File Offset: 0x000DC72C
+	// (get) Token: 0x06001676 RID: 5750 RVA: 0x000DE4CC File Offset: 0x000DC6CC
+	// (set) Token: 0x06001677 RID: 5751 RVA: 0x000DE4F8 File Offset: 0x000DC6F8
 	public static int Sensitivity
 	{
 		get
@@ -275,8 +275,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003E2 RID: 994
-	// (get) Token: 0x06001678 RID: 5752 RVA: 0x000DE558 File Offset: 0x000DC758
-	// (set) Token: 0x06001679 RID: 5753 RVA: 0x000DE584 File Offset: 0x000DC784
+	// (get) Token: 0x06001678 RID: 5752 RVA: 0x000DE524 File Offset: 0x000DC724
+	// (set) Token: 0x06001679 RID: 5753 RVA: 0x000DE550 File Offset: 0x000DC750
 	public static bool InvertAxisX
 	{
 		get
@@ -290,8 +290,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003E3 RID: 995
-	// (get) Token: 0x0600167A RID: 5754 RVA: 0x000DE5B0 File Offset: 0x000DC7B0
-	// (set) Token: 0x0600167B RID: 5755 RVA: 0x000DE5DC File Offset: 0x000DC7DC
+	// (get) Token: 0x0600167A RID: 5754 RVA: 0x000DE57C File Offset: 0x000DC77C
+	// (set) Token: 0x0600167B RID: 5755 RVA: 0x000DE5A8 File Offset: 0x000DC7A8
 	public static bool InvertAxisY
 	{
 		get
@@ -305,8 +305,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003E4 RID: 996
-	// (get) Token: 0x0600167C RID: 5756 RVA: 0x000DE608 File Offset: 0x000DC808
-	// (set) Token: 0x0600167D RID: 5757 RVA: 0x000DE634 File Offset: 0x000DC834
+	// (get) Token: 0x0600167C RID: 5756 RVA: 0x000DE5D4 File Offset: 0x000DC7D4
+	// (set) Token: 0x0600167D RID: 5757 RVA: 0x000DE600 File Offset: 0x000DC800
 	public static bool SubtitleSize
 	{
 		get
@@ -320,8 +320,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003E5 RID: 997
-	// (get) Token: 0x0600167E RID: 5758 RVA: 0x000DE660 File Offset: 0x000DC860
-	// (set) Token: 0x0600167F RID: 5759 RVA: 0x000DE68C File Offset: 0x000DC88C
+	// (get) Token: 0x0600167E RID: 5758 RVA: 0x000DE62C File Offset: 0x000DC82C
+	// (set) Token: 0x0600167F RID: 5759 RVA: 0x000DE658 File Offset: 0x000DC858
 	public static bool TutorialsOff
 	{
 		get
@@ -335,8 +335,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003E6 RID: 998
-	// (get) Token: 0x06001680 RID: 5760 RVA: 0x000DE6B8 File Offset: 0x000DC8B8
-	// (set) Token: 0x06001681 RID: 5761 RVA: 0x000DE6E4 File Offset: 0x000DC8E4
+	// (get) Token: 0x06001680 RID: 5760 RVA: 0x000DE684 File Offset: 0x000DC884
+	// (set) Token: 0x06001681 RID: 5761 RVA: 0x000DE6B0 File Offset: 0x000DC8B0
 	public static bool HintsOff
 	{
 		get
@@ -350,8 +350,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003E7 RID: 999
-	// (get) Token: 0x06001682 RID: 5762 RVA: 0x000DE710 File Offset: 0x000DC910
-	// (set) Token: 0x06001683 RID: 5763 RVA: 0x000DE73C File Offset: 0x000DC93C
+	// (get) Token: 0x06001682 RID: 5762 RVA: 0x000DE6DC File Offset: 0x000DC8DC
+	// (set) Token: 0x06001683 RID: 5763 RVA: 0x000DE708 File Offset: 0x000DC908
 	public static int CameraPosition
 	{
 		get
@@ -365,8 +365,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003E8 RID: 1000
-	// (get) Token: 0x06001684 RID: 5764 RVA: 0x000DE768 File Offset: 0x000DC968
-	// (set) Token: 0x06001685 RID: 5765 RVA: 0x000DE794 File Offset: 0x000DC994
+	// (get) Token: 0x06001684 RID: 5764 RVA: 0x000DE734 File Offset: 0x000DC934
+	// (set) Token: 0x06001685 RID: 5765 RVA: 0x000DE760 File Offset: 0x000DC960
 	public static bool ToggleRun
 	{
 		get
@@ -380,8 +380,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003E9 RID: 1001
-	// (get) Token: 0x06001686 RID: 5766 RVA: 0x000DE7C0 File Offset: 0x000DC9C0
-	// (set) Token: 0x06001687 RID: 5767 RVA: 0x000DE7EC File Offset: 0x000DC9EC
+	// (get) Token: 0x06001686 RID: 5766 RVA: 0x000DE78C File Offset: 0x000DC98C
+	// (set) Token: 0x06001687 RID: 5767 RVA: 0x000DE7B8 File Offset: 0x000DC9B8
 	public static bool OpaqueWindows
 	{
 		get
@@ -395,8 +395,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003EA RID: 1002
-	// (get) Token: 0x06001688 RID: 5768 RVA: 0x000DE818 File Offset: 0x000DCA18
-	// (set) Token: 0x06001689 RID: 5769 RVA: 0x000DE844 File Offset: 0x000DCA44
+	// (get) Token: 0x06001688 RID: 5768 RVA: 0x000DE7E4 File Offset: 0x000DC9E4
+	// (set) Token: 0x06001689 RID: 5769 RVA: 0x000DE810 File Offset: 0x000DCA10
 	public static bool ColorGrading
 	{
 		get
@@ -410,8 +410,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003EB RID: 1003
-	// (get) Token: 0x0600168A RID: 5770 RVA: 0x000DE870 File Offset: 0x000DCA70
-	// (set) Token: 0x0600168B RID: 5771 RVA: 0x000DE89C File Offset: 0x000DCA9C
+	// (get) Token: 0x0600168A RID: 5770 RVA: 0x000DE83C File Offset: 0x000DCA3C
+	// (set) Token: 0x0600168B RID: 5771 RVA: 0x000DE868 File Offset: 0x000DCA68
 	public static bool ToggleGrass
 	{
 		get
@@ -425,8 +425,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003EC RID: 1004
-	// (get) Token: 0x0600168C RID: 5772 RVA: 0x000DE8C8 File Offset: 0x000DCAC8
-	// (set) Token: 0x0600168D RID: 5773 RVA: 0x000DE8F4 File Offset: 0x000DCAF4
+	// (get) Token: 0x0600168C RID: 5772 RVA: 0x000DE894 File Offset: 0x000DCA94
+	// (set) Token: 0x0600168D RID: 5773 RVA: 0x000DE8C0 File Offset: 0x000DCAC0
 	public static bool HairPhysics
 	{
 		get
@@ -440,8 +440,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003ED RID: 1005
-	// (get) Token: 0x0600168E RID: 5774 RVA: 0x000DE920 File Offset: 0x000DCB20
-	// (set) Token: 0x0600168F RID: 5775 RVA: 0x000DE94C File Offset: 0x000DCB4C
+	// (get) Token: 0x0600168E RID: 5774 RVA: 0x000DE8EC File Offset: 0x000DCAEC
+	// (set) Token: 0x0600168F RID: 5775 RVA: 0x000DE918 File Offset: 0x000DCB18
 	public static bool DisplayFPS
 	{
 		get
@@ -455,8 +455,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003EE RID: 1006
-	// (get) Token: 0x06001690 RID: 5776 RVA: 0x000DE978 File Offset: 0x000DCB78
-	// (set) Token: 0x06001691 RID: 5777 RVA: 0x000DE9A4 File Offset: 0x000DCBA4
+	// (get) Token: 0x06001690 RID: 5776 RVA: 0x000DE944 File Offset: 0x000DCB44
+	// (set) Token: 0x06001691 RID: 5777 RVA: 0x000DE970 File Offset: 0x000DCB70
 	public static bool DisableStatic
 	{
 		get
@@ -470,8 +470,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003EF RID: 1007
-	// (get) Token: 0x06001692 RID: 5778 RVA: 0x000DE9D0 File Offset: 0x000DCBD0
-	// (set) Token: 0x06001693 RID: 5779 RVA: 0x000DE9FC File Offset: 0x000DCBFC
+	// (get) Token: 0x06001692 RID: 5778 RVA: 0x000DE99C File Offset: 0x000DCB9C
+	// (set) Token: 0x06001693 RID: 5779 RVA: 0x000DE9C8 File Offset: 0x000DCBC8
 	public static bool DisableDisplacement
 	{
 		get
@@ -485,8 +485,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003F0 RID: 1008
-	// (get) Token: 0x06001694 RID: 5780 RVA: 0x000DEA28 File Offset: 0x000DCC28
-	// (set) Token: 0x06001695 RID: 5781 RVA: 0x000DEA54 File Offset: 0x000DCC54
+	// (get) Token: 0x06001694 RID: 5780 RVA: 0x000DE9F4 File Offset: 0x000DCBF4
+	// (set) Token: 0x06001695 RID: 5781 RVA: 0x000DEA20 File Offset: 0x000DCC20
 	public static bool DisableAbberation
 	{
 		get
@@ -500,8 +500,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003F1 RID: 1009
-	// (get) Token: 0x06001696 RID: 5782 RVA: 0x000DEA80 File Offset: 0x000DCC80
-	// (set) Token: 0x06001697 RID: 5783 RVA: 0x000DEAAC File Offset: 0x000DCCAC
+	// (get) Token: 0x06001696 RID: 5782 RVA: 0x000DEA4C File Offset: 0x000DCC4C
+	// (set) Token: 0x06001697 RID: 5783 RVA: 0x000DEA78 File Offset: 0x000DCC78
 	public static bool DisableVignette
 	{
 		get
@@ -515,8 +515,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003F2 RID: 1010
-	// (get) Token: 0x06001698 RID: 5784 RVA: 0x000DEAD8 File Offset: 0x000DCCD8
-	// (set) Token: 0x06001699 RID: 5785 RVA: 0x000DEB04 File Offset: 0x000DCD04
+	// (get) Token: 0x06001698 RID: 5784 RVA: 0x000DEAA4 File Offset: 0x000DCCA4
+	// (set) Token: 0x06001699 RID: 5785 RVA: 0x000DEAD0 File Offset: 0x000DCCD0
 	public static bool DisableDistortion
 	{
 		get
@@ -530,8 +530,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003F3 RID: 1011
-	// (get) Token: 0x0600169A RID: 5786 RVA: 0x000DEB30 File Offset: 0x000DCD30
-	// (set) Token: 0x0600169B RID: 5787 RVA: 0x000DEB5C File Offset: 0x000DCD5C
+	// (get) Token: 0x0600169A RID: 5786 RVA: 0x000DEAFC File Offset: 0x000DCCFC
+	// (set) Token: 0x0600169B RID: 5787 RVA: 0x000DEB28 File Offset: 0x000DCD28
 	public static bool DisableScanlines
 	{
 		get
@@ -545,8 +545,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003F4 RID: 1012
-	// (get) Token: 0x0600169C RID: 5788 RVA: 0x000DEB88 File Offset: 0x000DCD88
-	// (set) Token: 0x0600169D RID: 5789 RVA: 0x000DEBB4 File Offset: 0x000DCDB4
+	// (get) Token: 0x0600169C RID: 5788 RVA: 0x000DEB54 File Offset: 0x000DCD54
+	// (set) Token: 0x0600169D RID: 5789 RVA: 0x000DEB80 File Offset: 0x000DCD80
 	public static bool DisableNoise
 	{
 		get
@@ -560,8 +560,8 @@ public static class OptionGlobals
 	}
 
 	// Token: 0x170003F5 RID: 1013
-	// (get) Token: 0x0600169E RID: 5790 RVA: 0x000DEBE0 File Offset: 0x000DCDE0
-	// (set) Token: 0x0600169F RID: 5791 RVA: 0x000DEC0C File Offset: 0x000DCE0C
+	// (get) Token: 0x0600169E RID: 5790 RVA: 0x000DEBAC File Offset: 0x000DCDAC
+	// (set) Token: 0x0600169F RID: 5791 RVA: 0x000DEBD8 File Offset: 0x000DCDD8
 	public static bool DisableTint
 	{
 		get
@@ -574,7 +574,7 @@ public static class OptionGlobals
 		}
 	}
 
-	// Token: 0x060016A0 RID: 5792 RVA: 0x000DEC38 File Offset: 0x000DCE38
+	// Token: 0x060016A0 RID: 5792 RVA: 0x000DEC04 File Offset: 0x000DCE04
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_DisableBloom");

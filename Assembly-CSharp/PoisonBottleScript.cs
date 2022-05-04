@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003AF RID: 943
 public class PoisonBottleScript : MonoBehaviour
 {
-	// Token: 0x06001AE4 RID: 6884 RVA: 0x00124A60 File Offset: 0x00122C60
+	// Token: 0x06001AE4 RID: 6884 RVA: 0x00124A2C File Offset: 0x00122C2C
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

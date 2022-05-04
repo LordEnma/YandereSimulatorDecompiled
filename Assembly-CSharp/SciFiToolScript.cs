@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200041E RID: 1054
 public class SciFiToolScript : MonoBehaviour
 {
-	// Token: 0x06001C91 RID: 7313 RVA: 0x0014EC4B File Offset: 0x0014CE4B
+	// Token: 0x06001C91 RID: 7313 RVA: 0x0014EC17 File Offset: 0x0014CE17
 	private void Start()
 	{
 		this.Target = this.Student.StudentManager.ToolTarget;
 	}
 
-	// Token: 0x06001C92 RID: 7314 RVA: 0x0014EC63 File Offset: 0x0014CE63
+	// Token: 0x06001C92 RID: 7314 RVA: 0x0014EC2F File Offset: 0x0014CE2F
 	private void Update()
 	{
 		if ((double)Vector3.Distance(this.Tip.position, this.Target.position) < 0.1)

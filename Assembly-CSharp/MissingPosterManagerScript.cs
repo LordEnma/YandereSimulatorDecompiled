@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200036B RID: 875
 public class MissingPosterManagerScript : MonoBehaviour
 {
-	// Token: 0x060019D0 RID: 6608 RVA: 0x00108B18 File Offset: 0x00106D18
+	// Token: 0x060019D0 RID: 6608 RVA: 0x00108AE4 File Offset: 0x00106CE4
 	private void Start()
 	{
 		while (this.ID < 101)

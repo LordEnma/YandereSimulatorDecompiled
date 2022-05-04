@@ -4,8 +4,8 @@
 public static class EventGlobals
 {
 	// Token: 0x1700038D RID: 909
-	// (get) Token: 0x060015C1 RID: 5569 RVA: 0x000DC128 File Offset: 0x000DA328
-	// (set) Token: 0x060015C2 RID: 5570 RVA: 0x000DC158 File Offset: 0x000DA358
+	// (get) Token: 0x060015C1 RID: 5569 RVA: 0x000DC0F4 File Offset: 0x000DA2F4
+	// (set) Token: 0x060015C2 RID: 5570 RVA: 0x000DC124 File Offset: 0x000DA324
 	public static bool BefriendConversation
 	{
 		get
@@ -19,8 +19,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x1700038E RID: 910
-	// (get) Token: 0x060015C3 RID: 5571 RVA: 0x000DC188 File Offset: 0x000DA388
-	// (set) Token: 0x060015C4 RID: 5572 RVA: 0x000DC1B8 File Offset: 0x000DA3B8
+	// (get) Token: 0x060015C3 RID: 5571 RVA: 0x000DC154 File Offset: 0x000DA354
+	// (set) Token: 0x060015C4 RID: 5572 RVA: 0x000DC184 File Offset: 0x000DA384
 	public static bool StalkerConversation
 	{
 		get
@@ -34,8 +34,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x1700038F RID: 911
-	// (get) Token: 0x060015C5 RID: 5573 RVA: 0x000DC1E8 File Offset: 0x000DA3E8
-	// (set) Token: 0x060015C6 RID: 5574 RVA: 0x000DC218 File Offset: 0x000DA418
+	// (get) Token: 0x060015C5 RID: 5573 RVA: 0x000DC1B4 File Offset: 0x000DA3B4
+	// (set) Token: 0x060015C6 RID: 5574 RVA: 0x000DC1E4 File Offset: 0x000DA3E4
 	public static bool KidnapConversation
 	{
 		get
@@ -49,8 +49,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000390 RID: 912
-	// (get) Token: 0x060015C7 RID: 5575 RVA: 0x000DC248 File Offset: 0x000DA448
-	// (set) Token: 0x060015C8 RID: 5576 RVA: 0x000DC278 File Offset: 0x000DA478
+	// (get) Token: 0x060015C7 RID: 5575 RVA: 0x000DC214 File Offset: 0x000DA414
+	// (set) Token: 0x060015C8 RID: 5576 RVA: 0x000DC244 File Offset: 0x000DA444
 	public static bool OsanaConversation
 	{
 		get
@@ -64,8 +64,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000391 RID: 913
-	// (get) Token: 0x060015C9 RID: 5577 RVA: 0x000DC2A8 File Offset: 0x000DA4A8
-	// (set) Token: 0x060015CA RID: 5578 RVA: 0x000DC2D8 File Offset: 0x000DA4D8
+	// (get) Token: 0x060015C9 RID: 5577 RVA: 0x000DC274 File Offset: 0x000DA474
+	// (set) Token: 0x060015CA RID: 5578 RVA: 0x000DC2A4 File Offset: 0x000DA4A4
 	public static bool OsanaEvent1
 	{
 		get
@@ -79,8 +79,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000392 RID: 914
-	// (get) Token: 0x060015CB RID: 5579 RVA: 0x000DC308 File Offset: 0x000DA508
-	// (set) Token: 0x060015CC RID: 5580 RVA: 0x000DC338 File Offset: 0x000DA538
+	// (get) Token: 0x060015CB RID: 5579 RVA: 0x000DC2D4 File Offset: 0x000DA4D4
+	// (set) Token: 0x060015CC RID: 5580 RVA: 0x000DC304 File Offset: 0x000DA504
 	public static bool OsanaEvent2
 	{
 		get
@@ -94,8 +94,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000393 RID: 915
-	// (get) Token: 0x060015CD RID: 5581 RVA: 0x000DC368 File Offset: 0x000DA568
-	// (set) Token: 0x060015CE RID: 5582 RVA: 0x000DC398 File Offset: 0x000DA598
+	// (get) Token: 0x060015CD RID: 5581 RVA: 0x000DC334 File Offset: 0x000DA534
+	// (set) Token: 0x060015CE RID: 5582 RVA: 0x000DC364 File Offset: 0x000DA564
 	public static bool Event1
 	{
 		get
@@ -109,8 +109,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000394 RID: 916
-	// (get) Token: 0x060015CF RID: 5583 RVA: 0x000DC3C8 File Offset: 0x000DA5C8
-	// (set) Token: 0x060015D0 RID: 5584 RVA: 0x000DC3F8 File Offset: 0x000DA5F8
+	// (get) Token: 0x060015CF RID: 5583 RVA: 0x000DC394 File Offset: 0x000DA594
+	// (set) Token: 0x060015D0 RID: 5584 RVA: 0x000DC3C4 File Offset: 0x000DA5C4
 	public static bool Event2
 	{
 		get
@@ -124,8 +124,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000395 RID: 917
-	// (get) Token: 0x060015D1 RID: 5585 RVA: 0x000DC428 File Offset: 0x000DA628
-	// (set) Token: 0x060015D2 RID: 5586 RVA: 0x000DC458 File Offset: 0x000DA658
+	// (get) Token: 0x060015D1 RID: 5585 RVA: 0x000DC3F4 File Offset: 0x000DA5F4
+	// (set) Token: 0x060015D2 RID: 5586 RVA: 0x000DC424 File Offset: 0x000DA624
 	public static bool LivingRoom
 	{
 		get
@@ -139,8 +139,8 @@ public static class EventGlobals
 	}
 
 	// Token: 0x17000396 RID: 918
-	// (get) Token: 0x060015D3 RID: 5587 RVA: 0x000DC488 File Offset: 0x000DA688
-	// (set) Token: 0x060015D4 RID: 5588 RVA: 0x000DC4B8 File Offset: 0x000DA6B8
+	// (get) Token: 0x060015D3 RID: 5587 RVA: 0x000DC454 File Offset: 0x000DA654
+	// (set) Token: 0x060015D4 RID: 5588 RVA: 0x000DC484 File Offset: 0x000DA684
 	public static bool LearnedAboutPhotographer
 	{
 		get
@@ -153,7 +153,7 @@ public static class EventGlobals
 		}
 	}
 
-	// Token: 0x060015D5 RID: 5589 RVA: 0x000DC4E8 File Offset: 0x000DA6E8
+	// Token: 0x060015D5 RID: 5589 RVA: 0x000DC4B4 File Offset: 0x000DA6B4
 	public static void DeleteAll()
 	{
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_BefriendConversation");

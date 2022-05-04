@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	// Token: 0x02000541 RID: 1345
 	public class LandingGear : MonoBehaviour
 	{
-		// Token: 0x06002243 RID: 8771 RVA: 0x001F4210 File Offset: 0x001F2410
+		// Token: 0x06002244 RID: 8772 RVA: 0x001F430C File Offset: 0x001F250C
 		private void Start()
 		{
 			this.m_Plane = base.GetComponent<AeroplaneController>();
@@ -14,7 +14,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_Rigidbody = base.GetComponent<Rigidbody>();
 		}
 
-		// Token: 0x06002244 RID: 8772 RVA: 0x001F4238 File Offset: 0x001F2438
+		// Token: 0x06002245 RID: 8773 RVA: 0x001F4334 File Offset: 0x001F2534
 		private void Update()
 		{
 			if (this.m_State == LandingGear.GearState.Lowered && this.m_Plane.Altitude > this.raiseAtAltitude && this.m_Rigidbody.velocity.y > 0f)

@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x020002DB RID: 731
 public class GardeningClubMemberScript : MonoBehaviour
 {
-	// Token: 0x060014E1 RID: 5345 RVA: 0x000CE214 File Offset: 0x000CC414
+	// Token: 0x060014E1 RID: 5345 RVA: 0x000CE1E0 File Offset: 0x000CC3E0
 	private void Start()
 	{
 		Animation component = base.GetComponent<Animation>();
@@ -20,7 +20,7 @@ public class GardeningClubMemberScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014E2 RID: 5346 RVA: 0x000CE2D4 File Offset: 0x000CC4D4
+	// Token: 0x060014E2 RID: 5346 RVA: 0x000CE2A0 File Offset: 0x000CC4A0
 	private void Update()
 	{
 		if (!this.Angry)
@@ -165,7 +165,7 @@ public class GardeningClubMemberScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014E3 RID: 5347 RVA: 0x000CE8A8 File Offset: 0x000CCAA8
+	// Token: 0x060014E3 RID: 5347 RVA: 0x000CE874 File Offset: 0x000CCA74
 	private void Punish()
 	{
 		Animation component = base.GetComponent<Animation>();
@@ -181,7 +181,7 @@ public class GardeningClubMemberScript : MonoBehaviour
 		this.PickpocketPanel.enabled = false;
 	}
 
-	// Token: 0x060014E4 RID: 5348 RVA: 0x000CE93C File Offset: 0x000CCB3C
+	// Token: 0x060014E4 RID: 5348 RVA: 0x000CE908 File Offset: 0x000CCB08
 	private void LookForYandere()
 	{
 		float num = Vector3.Distance(base.transform.position, this.Yandere.transform.position);

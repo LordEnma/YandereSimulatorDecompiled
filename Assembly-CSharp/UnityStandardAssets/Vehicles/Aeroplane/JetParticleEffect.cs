@@ -7,7 +7,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	[RequireComponent(typeof(ParticleSystem))]
 	public class JetParticleEffect : MonoBehaviour
 	{
-		// Token: 0x0600223F RID: 8767 RVA: 0x001F40A4 File Offset: 0x001F22A4
+		// Token: 0x06002240 RID: 8768 RVA: 0x001F41A0 File Offset: 0x001F23A0
 		private void Start()
 		{
 			this.m_Jet = this.FindAeroplaneParent();
@@ -17,7 +17,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_OriginalStartColor = this.m_System.main.startColor.color;
 		}
 
-		// Token: 0x06002240 RID: 8768 RVA: 0x001F412C File Offset: 0x001F232C
+		// Token: 0x06002241 RID: 8769 RVA: 0x001F4228 File Offset: 0x001F2428
 		private void Update()
 		{
 			ParticleSystem.MainModule main = this.m_System.main;
@@ -26,7 +26,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			main.startColor = Color.Lerp(this.minColour, this.m_OriginalStartColor, this.m_Jet.Throttle);
 		}
 
-		// Token: 0x06002241 RID: 8769 RVA: 0x001F41C4 File Offset: 0x001F23C4
+		// Token: 0x06002242 RID: 8770 RVA: 0x001F42C0 File Offset: 0x001F24C0
 		private AeroplaneController FindAeroplaneParent()
 		{
 			Transform transform = base.transform;

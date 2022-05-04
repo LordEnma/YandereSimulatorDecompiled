@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 	[Serializable]
 	public sealed class ColorGradingCurve
 	{
-		// Token: 0x060023E9 RID: 9193 RVA: 0x001FBDF4 File Offset: 0x001F9FF4
+		// Token: 0x060023EA RID: 9194 RVA: 0x001FBEF0 File Offset: 0x001FA0F0
 		public ColorGradingCurve(AnimationCurve curve, float zeroValue, bool loop, Vector2 bounds)
 		{
 			this.curve = curve;
@@ -15,7 +15,7 @@ namespace UnityEngine.PostProcessing
 			this.m_Range = bounds.magnitude;
 		}
 
-		// Token: 0x060023EA RID: 9194 RVA: 0x001FBE20 File Offset: 0x001FA020
+		// Token: 0x060023EB RID: 9195 RVA: 0x001FBF1C File Offset: 0x001FA11C
 		public void Cache()
 		{
 			if (!this.m_Loop)
@@ -40,7 +40,7 @@ namespace UnityEngine.PostProcessing
 			this.m_InternalLoopingCurve.AddKey(key2);
 		}
 
-		// Token: 0x060023EB RID: 9195 RVA: 0x001FBED0 File Offset: 0x001FA0D0
+		// Token: 0x060023EC RID: 9196 RVA: 0x001FBFCC File Offset: 0x001FA1CC
 		public float Evaluate(float t)
 		{
 			if (this.curve.length == 0)

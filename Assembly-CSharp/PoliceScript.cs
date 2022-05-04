@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020003B1 RID: 945
 public class PoliceScript : MonoBehaviour
 {
-	// Token: 0x06001AE9 RID: 6889 RVA: 0x00124CF4 File Offset: 0x00122EF4
+	// Token: 0x06001AE9 RID: 6889 RVA: 0x00124CC0 File Offset: 0x00122EC0
 	private void Start()
 	{
 		if (SchoolGlobals.SchoolAtmosphere > 0.5f)
@@ -29,7 +29,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AEA RID: 6890 RVA: 0x00124E9C File Offset: 0x0012309C
+	// Token: 0x06001AEA RID: 6890 RVA: 0x00124E68 File Offset: 0x00123068
 	private void Update()
 	{
 		if (this.Show)
@@ -356,7 +356,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AEB RID: 6891 RVA: 0x00125D40 File Offset: 0x00123F40
+	// Token: 0x06001AEB RID: 6891 RVA: 0x00125D0C File Offset: 0x00123F0C
 	private void DetermineResults()
 	{
 		if (this.Yandere.VtuberID > 0)
@@ -732,7 +732,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AEC RID: 6892 RVA: 0x00126EB0 File Offset: 0x001250B0
+	// Token: 0x06001AEC RID: 6892 RVA: 0x00126E7C File Offset: 0x0012507C
 	public void KillStudents()
 	{
 		Debug.Log("KillStudents() is being called.");
@@ -876,7 +876,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AED RID: 6893 RVA: 0x00127324 File Offset: 0x00125524
+	// Token: 0x06001AED RID: 6893 RVA: 0x001272F0 File Offset: 0x001254F0
 	public void BeginFadingOut()
 	{
 		this.DayOver = true;
@@ -891,7 +891,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AEE RID: 6894 RVA: 0x0012738C File Offset: 0x0012558C
+	// Token: 0x06001AEE RID: 6894 RVA: 0x00127358 File Offset: 0x00125558
 	public void UpdateCorpses()
 	{
 		foreach (RagdollScript ragdollScript in this.CorpseList)

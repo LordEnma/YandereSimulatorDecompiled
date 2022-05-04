@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020004BF RID: 1215
 public class WalkToSchoolManagerScript : MonoBehaviour
 {
-	// Token: 0x06001FD2 RID: 8146 RVA: 0x001C1364 File Offset: 0x001BF564
+	// Token: 0x06001FD3 RID: 8147 RVA: 0x001C1460 File Offset: 0x001BF660
 	private void Start()
 	{
 		Application.targetFrameRate = 60;
@@ -28,7 +28,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FD3 RID: 8147 RVA: 0x001C147C File Offset: 0x001BF67C
+	// Token: 0x06001FD4 RID: 8148 RVA: 0x001C1578 File Offset: 0x001BF778
 	private void Update()
 	{
 		for (int i = 1; i < 3; i++)
@@ -175,7 +175,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FD4 RID: 8148 RVA: 0x001C1B28 File Offset: 0x001BFD28
+	// Token: 0x06001FD5 RID: 8149 RVA: 0x001C1C24 File Offset: 0x001BFE24
 	private void LateUpdate()
 	{
 		if (this.Talk)
@@ -238,7 +238,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FD5 RID: 8149 RVA: 0x001C22A8 File Offset: 0x001C04A8
+	// Token: 0x06001FD6 RID: 8150 RVA: 0x001C23A4 File Offset: 0x001C05A4
 	public void UpdateNameLabel()
 	{
 		if (this.Speakers[this.ID])
@@ -249,7 +249,7 @@ public class WalkToSchoolManagerScript : MonoBehaviour
 		this.NameLabel.text = "Senpai-kun";
 	}
 
-	// Token: 0x06001FD6 RID: 8150 RVA: 0x001C22DA File Offset: 0x001C04DA
+	// Token: 0x06001FD7 RID: 8151 RVA: 0x001C23D6 File Offset: 0x001C05D6
 	public void End()
 	{
 		this.PromptBar.Show = false;

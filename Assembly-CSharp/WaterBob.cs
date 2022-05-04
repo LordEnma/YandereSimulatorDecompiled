@@ -5,14 +5,14 @@ using UnityEngine;
 [ExecuteAlways]
 public class WaterBob : MonoBehaviour
 {
-	// Token: 0x06002134 RID: 8500 RVA: 0x001EC7B0 File Offset: 0x001EA9B0
+	// Token: 0x06002135 RID: 8501 RVA: 0x001EC8AC File Offset: 0x001EAAAC
 	private void Awake()
 	{
 		this.initialPosition = base.transform.position;
 		this.offset = 1f - UnityEngine.Random.value * 2f;
 	}
 
-	// Token: 0x06002135 RID: 8501 RVA: 0x001EC7DC File Offset: 0x001EA9DC
+	// Token: 0x06002136 RID: 8502 RVA: 0x001EC8D8 File Offset: 0x001EAAD8
 	private void Update()
 	{
 		base.transform.position = this.initialPosition - Vector3.up * Mathf.Sin((Time.time + this.offset) * this.period) * this.height;

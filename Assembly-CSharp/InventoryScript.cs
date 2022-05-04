@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000341 RID: 833
 public class InventoryScript : MonoBehaviour
 {
-	// Token: 0x06001915 RID: 6421 RVA: 0x000FBC0C File Offset: 0x000F9E0C
+	// Token: 0x06001915 RID: 6421 RVA: 0x000FBBD8 File Offset: 0x000F9DD8
 	private void Start()
 	{
 		this.DirectionalMic = PlayerGlobals.DirectionalMic;
@@ -64,7 +64,7 @@ public class InventoryScript : MonoBehaviour
 		this.UpdateMoney();
 	}
 
-	// Token: 0x06001916 RID: 6422 RVA: 0x000FBD30 File Offset: 0x000F9F30
+	// Token: 0x06001916 RID: 6422 RVA: 0x000FBCFC File Offset: 0x000F9EFC
 	public void UpdateMoney()
 	{
 		this.MoneyLabel.text = "$" + this.Money.ToString("F2", NumberFormatInfo.InvariantInfo);

@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class BloomModel : PostProcessingModel
 	{
 		// Token: 0x17000504 RID: 1284
-		// (get) Token: 0x0600237C RID: 9084 RVA: 0x001FAD1E File Offset: 0x001F8F1E
-		// (set) Token: 0x0600237D RID: 9085 RVA: 0x001FAD26 File Offset: 0x001F8F26
+		// (get) Token: 0x0600237D RID: 9085 RVA: 0x001FAE1A File Offset: 0x001F901A
+		// (set) Token: 0x0600237E RID: 9086 RVA: 0x001FAE22 File Offset: 0x001F9022
 		public BloomModel.Settings settings
 		{
 			get
@@ -21,7 +21,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600237E RID: 9086 RVA: 0x001FAD2F File Offset: 0x001F8F2F
+		// Token: 0x0600237F RID: 9087 RVA: 0x001FAE2B File Offset: 0x001F902B
 		public override void Reset()
 		{
 			this.m_Settings = BloomModel.Settings.defaultSettings;
@@ -36,8 +36,8 @@ namespace UnityEngine.PostProcessing
 		public struct BloomSettings
 		{
 			// Token: 0x17000591 RID: 1425
-			// (get) Token: 0x06002784 RID: 10116 RVA: 0x0020922C File Offset: 0x0020742C
-			// (set) Token: 0x06002783 RID: 10115 RVA: 0x0020921E File Offset: 0x0020741E
+			// (get) Token: 0x06002785 RID: 10117 RVA: 0x00209328 File Offset: 0x00207528
+			// (set) Token: 0x06002784 RID: 10116 RVA: 0x0020931A File Offset: 0x0020751A
 			public float thresholdLinear
 			{
 				get
@@ -51,7 +51,7 @@ namespace UnityEngine.PostProcessing
 			}
 
 			// Token: 0x17000592 RID: 1426
-			// (get) Token: 0x06002785 RID: 10117 RVA: 0x0020923C File Offset: 0x0020743C
+			// (get) Token: 0x06002786 RID: 10118 RVA: 0x00209338 File Offset: 0x00207538
 			public static BloomModel.BloomSettings defaultSettings
 			{
 				get
@@ -97,7 +97,7 @@ namespace UnityEngine.PostProcessing
 		public struct LensDirtSettings
 		{
 			// Token: 0x17000593 RID: 1427
-			// (get) Token: 0x06002786 RID: 10118 RVA: 0x0020928C File Offset: 0x0020748C
+			// (get) Token: 0x06002787 RID: 10119 RVA: 0x00209388 File Offset: 0x00207588
 			public static BloomModel.LensDirtSettings defaultSettings
 			{
 				get
@@ -125,7 +125,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x17000594 RID: 1428
-			// (get) Token: 0x06002787 RID: 10119 RVA: 0x002092B8 File Offset: 0x002074B8
+			// (get) Token: 0x06002788 RID: 10120 RVA: 0x002093B4 File Offset: 0x002075B4
 			public static BloomModel.Settings defaultSettings
 			{
 				get

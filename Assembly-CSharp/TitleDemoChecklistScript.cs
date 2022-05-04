@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200047D RID: 1149
 public class TitleDemoChecklistScript : MonoBehaviour
 {
-	// Token: 0x06001EF9 RID: 7929 RVA: 0x001B5FB0 File Offset: 0x001B41B0
+	// Token: 0x06001EFA RID: 7930 RVA: 0x001B60AC File Offset: 0x001B42AC
 	private void Start()
 	{
 		this.UpdateHighlight();
@@ -107,13 +107,13 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EFA RID: 7930 RVA: 0x001B6314 File Offset: 0x001B4514
+	// Token: 0x06001EFB RID: 7931 RVA: 0x001B6410 File Offset: 0x001B4610
 	public void GetIndex()
 	{
 		this.Selected = this.Column + this.Row * this.Columns + 1;
 	}
 
-	// Token: 0x06001EFB RID: 7931 RVA: 0x001B6334 File Offset: 0x001B4534
+	// Token: 0x06001EFC RID: 7932 RVA: 0x001B6430 File Offset: 0x001B4630
 	private void Update()
 	{
 		if (this.Zoom)
@@ -255,7 +255,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EFC RID: 7932 RVA: 0x001B6948 File Offset: 0x001B4B48
+	// Token: 0x06001EFD RID: 7933 RVA: 0x001B6A44 File Offset: 0x001B4C44
 	private void UpdateHighlight()
 	{
 		this.Highlight.localPosition = new Vector3(-350f + (float)this.Column * 100f, 100f - (float)this.Row * 100f, this.Highlight.localPosition.z);
@@ -264,7 +264,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
 		this.ItemDescLabel.text = this.ItemDescs[this.Selected];
 	}
 
-	// Token: 0x06001EFD RID: 7933 RVA: 0x001B69D4 File Offset: 0x001B4BD4
+	// Token: 0x06001EFE RID: 7934 RVA: 0x001B6AD0 File Offset: 0x001B4CD0
 	private void ResetConfirmations()
 	{
 		this.ResetLabel.text = "Are you ABSOLUTELY CERTAIN that you want to reset your Demo Checklist progress?\n\nMash the Confirm button 10 times to reaffirm this decision.";

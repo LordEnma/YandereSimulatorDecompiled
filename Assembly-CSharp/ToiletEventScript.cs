@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000484 RID: 1156
 public class ToiletEventScript : MonoBehaviour
 {
-	// Token: 0x06001F14 RID: 7956 RVA: 0x001B7AB1 File Offset: 0x001B5CB1
+	// Token: 0x06001F15 RID: 7957 RVA: 0x001B7BAD File Offset: 0x001B5DAD
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -14,7 +14,7 @@ public class ToiletEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F15 RID: 7957 RVA: 0x001B7ADC File Offset: 0x001B5CDC
+	// Token: 0x06001F16 RID: 7958 RVA: 0x001B7BD8 File Offset: 0x001B5DD8
 	private void Update()
 	{
 		if (!this.Clock.StopTime && this.EventCheck && this.Clock.HourTime > this.EventTime)
@@ -194,7 +194,7 @@ public class ToiletEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F16 RID: 7958 RVA: 0x001B8308 File Offset: 0x001B6508
+	// Token: 0x06001F17 RID: 7959 RVA: 0x001B8404 File Offset: 0x001B6604
 	public void EndEvent()
 	{
 		if (!this.EventOver)

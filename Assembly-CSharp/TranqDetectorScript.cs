@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x0200048B RID: 1163
 public class TranqDetectorScript : MonoBehaviour
 {
-	// Token: 0x06001F2B RID: 7979 RVA: 0x001B8F56 File Offset: 0x001B7156
+	// Token: 0x06001F2C RID: 7980 RVA: 0x001B9052 File Offset: 0x001B7252
 	private void Start()
 	{
 		this.Checklist.alpha = 0f;
 		this.BasementPrisoner = SchoolGlobals.KidnapVictim;
 	}
 
-	// Token: 0x06001F2C RID: 7980 RVA: 0x001B8F74 File Offset: 0x001B7174
+	// Token: 0x06001F2D RID: 7981 RVA: 0x001B9070 File Offset: 0x001B7270
 	private void Update()
 	{
 		if (!this.StopChecking)
@@ -90,7 +90,7 @@ public class TranqDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F2D RID: 7981 RVA: 0x001B920C File Offset: 0x001B740C
+	// Token: 0x06001F2E RID: 7982 RVA: 0x001B9308 File Offset: 0x001B7508
 	public void TranqCheck()
 	{
 		if (!this.StopChecking && !this.CannotKidnap && this.TranquilizerIcon.spriteName == "Yes" && this.FollowerIcon.spriteName == "Yes" && this.BiologyIcon.spriteName == "Yes" && this.SyringeIcon.spriteName == "Yes" && this.DoorIcon.spriteName == "Yes")
@@ -119,7 +119,7 @@ public class TranqDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F2E RID: 7982 RVA: 0x001B9384 File Offset: 0x001B7584
+	// Token: 0x06001F2F RID: 7983 RVA: 0x001B9480 File Offset: 0x001B7680
 	public void GarroteAttack()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();

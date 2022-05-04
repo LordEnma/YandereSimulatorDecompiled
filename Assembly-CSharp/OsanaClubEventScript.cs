@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E1 RID: 993
 public class OsanaClubEventScript : MonoBehaviour
 {
-	// Token: 0x06001BB6 RID: 7094 RVA: 0x0013AE7B File Offset: 0x0013907B
+	// Token: 0x06001BB6 RID: 7094 RVA: 0x0013AE47 File Offset: 0x00139047
 	private void Start()
 	{
 		if (DateGlobals.Weekday != this.EventDay || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || GameGlobals.Eighties)
@@ -13,7 +13,7 @@ public class OsanaClubEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BB7 RID: 7095 RVA: 0x0013AEA8 File Offset: 0x001390A8
+	// Token: 0x06001BB7 RID: 7095 RVA: 0x0013AE74 File Offset: 0x00139074
 	private void Update()
 	{
 		if (this.VoiceClip != null)
@@ -229,13 +229,13 @@ public class OsanaClubEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BB8 RID: 7096 RVA: 0x0013B9AD File Offset: 0x00139BAD
+	// Token: 0x06001BB8 RID: 7096 RVA: 0x0013B979 File Offset: 0x00139B79
 	private void SettleFriend()
 	{
 		this.EventStudent[2].MoveTowardsTarget(this.EventStudent[2].Pathfinding.target.position);
 	}
 
-	// Token: 0x06001BB9 RID: 7097 RVA: 0x0013B9D4 File Offset: 0x00139BD4
+	// Token: 0x06001BB9 RID: 7097 RVA: 0x0013B9A0 File Offset: 0x00139BA0
 	public void EndEvent()
 	{
 		Debug.Log("Ending Osana's club event.");
@@ -265,7 +265,7 @@ public class OsanaClubEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001BBA RID: 7098 RVA: 0x0013BAF0 File Offset: 0x00139CF0
+	// Token: 0x06001BBA RID: 7098 RVA: 0x0013BABC File Offset: 0x00139CBC
 	public void CheckForRooftopConvo()
 	{
 		if (this.StudentManager.Students[10] != null && this.StudentManager.Students[10].CurrentAction == StudentActionType.Follow)

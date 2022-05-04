@@ -5,14 +5,14 @@ using UnityEngine.PostProcessing;
 // Token: 0x0200037A RID: 890
 public class NewSettingsScript : MonoBehaviour
 {
-	// Token: 0x06001A0B RID: 6667 RVA: 0x0010E2B2 File Offset: 0x0010C4B2
+	// Token: 0x06001A0B RID: 6667 RVA: 0x0010E27E File Offset: 0x0010C47E
 	private void Start()
 	{
 		Debug.Log("The NewSettings script is running.");
 		this.UpdateLabels();
 	}
 
-	// Token: 0x06001A0C RID: 6668 RVA: 0x0010E2C4 File Offset: 0x0010C4C4
+	// Token: 0x06001A0C RID: 6668 RVA: 0x0010E290 File Offset: 0x0010C490
 	private void Update()
 	{
 		this.Cursor.transform.parent.Rotate(new Vector3(Time.unscaledDeltaTime * 100f, 0f, 0f), Space.Self);
@@ -777,7 +777,7 @@ public class NewSettingsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A0D RID: 6669 RVA: 0x0010FC90 File Offset: 0x0010DE90
+	// Token: 0x06001A0D RID: 6669 RVA: 0x0010FC5C File Offset: 0x0010DE5C
 	private void UpdateCursor()
 	{
 		if (this.Selection > this.Limit[this.Menu])
@@ -791,7 +791,7 @@ public class NewSettingsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A0E RID: 6670 RVA: 0x0010FCCC File Offset: 0x0010DECC
+	// Token: 0x06001A0E RID: 6670 RVA: 0x0010FC98 File Offset: 0x0010DE98
 	private void UpdatePanels()
 	{
 		for (int i = 0; i < this.Panel.Length; i++)
@@ -807,7 +807,7 @@ public class NewSettingsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A0F RID: 6671 RVA: 0x0010FD5C File Offset: 0x0010DF5C
+	// Token: 0x06001A0F RID: 6671 RVA: 0x0010FD28 File Offset: 0x0010DF28
 	public void UpdateLabels()
 	{
 		this.Labels[1].text = (this.Profile.antialiasing.enabled ? "On" : "Off");
@@ -884,7 +884,7 @@ public class NewSettingsScript : MonoBehaviour
 		OptionGlobals.DisableBloom = !this.Profile.bloom.enabled;
 	}
 
-	// Token: 0x06001A10 RID: 6672 RVA: 0x001103C8 File Offset: 0x0010E5C8
+	// Token: 0x06001A10 RID: 6672 RVA: 0x00110394 File Offset: 0x0010E594
 	public void SetWindowsOpaque()
 	{
 		if (!OptionGlobals.OpaqueWindows)
@@ -897,7 +897,7 @@ public class NewSettingsScript : MonoBehaviour
 		this.Window.sharedMaterial.shader = Shader.Find("Diffuse");
 	}
 
-	// Token: 0x06001A11 RID: 6673 RVA: 0x00110464 File Offset: 0x0010E664
+	// Token: 0x06001A11 RID: 6673 RVA: 0x00110430 File Offset: 0x0010E630
 	public void UpdateShaders()
 	{
 		if (OptionGlobals.RimLight)
@@ -942,7 +942,7 @@ public class NewSettingsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A12 RID: 6674 RVA: 0x0011069B File Offset: 0x0010E89B
+	// Token: 0x06001A12 RID: 6674 RVA: 0x00110667 File Offset: 0x0010E867
 	public void AdjustRimLight(Material mat)
 	{
 		mat.SetFloat("_RimLightIntencity", 5f);
@@ -950,7 +950,7 @@ public class NewSettingsScript : MonoBehaviour
 		mat.SetFloat("_RimAdditive", 0.5f);
 	}
 
-	// Token: 0x06001A13 RID: 6675 RVA: 0x001106D0 File Offset: 0x0010E8D0
+	// Token: 0x06001A13 RID: 6675 RVA: 0x0011069C File Offset: 0x0010E89C
 	public void UpdateGraphics()
 	{
 		this.SetWindowsOpaque();
@@ -998,7 +998,7 @@ public class NewSettingsScript : MonoBehaviour
 		this.QualityManager.UpdateEightiesEffects();
 	}
 
-	// Token: 0x06001A14 RID: 6676 RVA: 0x00110818 File Offset: 0x0010EA18
+	// Token: 0x06001A14 RID: 6676 RVA: 0x001107E4 File Offset: 0x0010E9E4
 	public void QualityManagerUpdateGraphics()
 	{
 		this.QualityManager.UpdateOpaqueWindows();
@@ -1014,7 +1014,7 @@ public class NewSettingsScript : MonoBehaviour
 		this.QualityManager.UpdateEightiesEffects();
 	}
 
-	// Token: 0x06001A15 RID: 6677 RVA: 0x001108A0 File Offset: 0x0010EAA0
+	// Token: 0x06001A15 RID: 6677 RVA: 0x0011086C File Offset: 0x0010EA6C
 	public void EightiesifyLabel(UILabel Label)
 	{
 		Label.applyGradient = false;

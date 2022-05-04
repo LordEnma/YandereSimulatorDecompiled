@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000361 RID: 865
 public class MatchScript : MonoBehaviour
 {
-	// Token: 0x060019AD RID: 6573 RVA: 0x001066C4 File Offset: 0x001048C4
+	// Token: 0x060019AD RID: 6573 RVA: 0x00106690 File Offset: 0x00104890
 	private void Update()
 	{
 		base.transform.Rotate(360f * Time.deltaTime, 360f * Time.deltaTime, 360f * Time.deltaTime);
 	}
 
-	// Token: 0x060019AE RID: 6574 RVA: 0x001066F4 File Offset: 0x001048F4
+	// Token: 0x060019AE RID: 6574 RVA: 0x001066C0 File Offset: 0x001048C0
 	private void OnCollisionEnter(Collision collision)
 	{
 		if (collision.gameObject.layer == 0 || collision.gameObject.layer == 8)

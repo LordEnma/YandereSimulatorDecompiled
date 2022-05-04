@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000477 RID: 1143
 public class TextureManagerScript : MonoBehaviour
 {
-	// Token: 0x06001EE5 RID: 7909 RVA: 0x001B473C File Offset: 0x001B293C
+	// Token: 0x06001EE6 RID: 7910 RVA: 0x001B4838 File Offset: 0x001B2A38
 	public Texture2D MergeTextures(Texture2D BackgroundTex, Texture2D TopTex)
 	{
 		Texture2D texture2D = new Texture2D(1024, 1024);

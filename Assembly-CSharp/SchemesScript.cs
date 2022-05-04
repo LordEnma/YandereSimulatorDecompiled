@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000418 RID: 1048
 public class SchemesScript : MonoBehaviour
 {
-	// Token: 0x06001C7F RID: 7295 RVA: 0x0014DC80 File Offset: 0x0014BE80
+	// Token: 0x06001C7F RID: 7295 RVA: 0x0014DC4C File Offset: 0x0014BE4C
 	private void Start()
 	{
 		for (int i = 1; i < this.SchemeNameLabels.Length; i++)
@@ -65,7 +65,7 @@ public class SchemesScript : MonoBehaviour
 		this.UpdateSchemeInfo();
 	}
 
-	// Token: 0x06001C80 RID: 7296 RVA: 0x0014DDFC File Offset: 0x0014BFFC
+	// Token: 0x06001C80 RID: 7296 RVA: 0x0014DDC8 File Offset: 0x0014BFC8
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -170,7 +170,7 @@ public class SchemesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C81 RID: 7297 RVA: 0x0014E150 File Offset: 0x0014C350
+	// Token: 0x06001C81 RID: 7297 RVA: 0x0014E11C File Offset: 0x0014C31C
 	public void UpdateSchemeList()
 	{
 		for (int i = 1; i < this.SchemeNameLabels.Length; i++)
@@ -199,7 +199,7 @@ public class SchemesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C82 RID: 7298 RVA: 0x0014E22C File Offset: 0x0014C42C
+	// Token: 0x06001C82 RID: 7298 RVA: 0x0014E1F8 File Offset: 0x0014C3F8
 	public void UpdateSchemeInfo()
 	{
 		if (SchemeGlobals.GetSchemeStage(this.ID + this.ListPosition) != 100)
@@ -271,7 +271,7 @@ public class SchemesScript : MonoBehaviour
 		this.UpdatePantyCount();
 	}
 
-	// Token: 0x06001C83 RID: 7299 RVA: 0x0014E5E7 File Offset: 0x0014C7E7
+	// Token: 0x06001C83 RID: 7299 RVA: 0x0014E5B3 File Offset: 0x0014C7B3
 	public void UpdatePantyCount()
 	{
 		if (this.Inventory != null)
@@ -280,7 +280,7 @@ public class SchemesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C84 RID: 7300 RVA: 0x0014E614 File Offset: 0x0014C814
+	// Token: 0x06001C84 RID: 7300 RVA: 0x0014E5E0 File Offset: 0x0014C7E0
 	public void UpdateInstructions()
 	{
 		this.Steps = this.SchemeSteps[SchemeGlobals.CurrentScheme].Split(new char[]
@@ -323,7 +323,7 @@ public class SchemesScript : MonoBehaviour
 		this.NextStepInput.SetActive(true);
 	}
 
-	// Token: 0x06001C85 RID: 7301 RVA: 0x0014E74C File Offset: 0x0014C94C
+	// Token: 0x06001C85 RID: 7301 RVA: 0x0014E718 File Offset: 0x0014C918
 	public void UpdateSchemeDestinations()
 	{
 		if (this.StudentManager.Students[this.StudentManager.RivalID] != null)

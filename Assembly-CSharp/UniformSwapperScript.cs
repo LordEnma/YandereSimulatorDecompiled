@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000495 RID: 1173
 public class UniformSwapperScript : MonoBehaviour
 {
-	// Token: 0x06001F54 RID: 8020 RVA: 0x001BEEE8 File Offset: 0x001BD0E8
+	// Token: 0x06001F55 RID: 8021 RVA: 0x001BEFE4 File Offset: 0x001BD1E4
 	private void Start()
 	{
 		int maleUniform = StudentGlobals.MaleUniform;
@@ -51,7 +51,7 @@ public class UniformSwapperScript : MonoBehaviour
 		this.MyRenderer.materials[this.UniformID].mainTexture = mainTexture;
 	}
 
-	// Token: 0x06001F55 RID: 8021 RVA: 0x001BF007 File Offset: 0x001BD207
+	// Token: 0x06001F56 RID: 8022 RVA: 0x001BF103 File Offset: 0x001BD303
 	private void LateUpdate()
 	{
 		if (this.LookTarget != null)

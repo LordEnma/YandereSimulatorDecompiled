@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004C4 RID: 1220
 public class WeaponMenuScript : MonoBehaviour
 {
-	// Token: 0x06001FF5 RID: 8181 RVA: 0x001C410F File Offset: 0x001C230F
+	// Token: 0x06001FF6 RID: 8182 RVA: 0x001C420B File Offset: 0x001C240B
 	private void Start()
 	{
 		this.KeyboardMenu.localScale = Vector3.zero;
@@ -13,7 +13,7 @@ public class WeaponMenuScript : MonoBehaviour
 		this.UpdateSprites();
 	}
 
-	// Token: 0x06001FF6 RID: 8182 RVA: 0x001C414C File Offset: 0x001C234C
+	// Token: 0x06001FF7 RID: 8183 RVA: 0x001C4248 File Offset: 0x001C2448
 	private void Update()
 	{
 		if (!this.PauseScreen.Show && !this.Yandere.DebugMenu.activeInHierarchy)
@@ -260,7 +260,7 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FF7 RID: 8183 RVA: 0x001C4AC8 File Offset: 0x001C2CC8
+	// Token: 0x06001FF8 RID: 8184 RVA: 0x001C4BC4 File Offset: 0x001C2DC4
 	public void Equip()
 	{
 		if (this.Yandere.Weapon[this.Selected] != null)
@@ -312,7 +312,7 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FF8 RID: 8184 RVA: 0x001C4CC4 File Offset: 0x001C2EC4
+	// Token: 0x06001FF9 RID: 8185 RVA: 0x001C4DC0 File Offset: 0x001C2FC0
 	public void UpdateSprites()
 	{
 		this.EquipCaseWeaponButton.enabled = false;
@@ -474,7 +474,7 @@ public class WeaponMenuScript : MonoBehaviour
 		this.Yandere.UpdateConcealedWeaponStatus();
 	}
 
-	// Token: 0x06001FF9 RID: 8185 RVA: 0x001C5AF4 File Offset: 0x001C3CF4
+	// Token: 0x06001FFA RID: 8186 RVA: 0x001C5BF0 File Offset: 0x001C3DF0
 	private void DropMask()
 	{
 		if (this.Yandere.Mask != null)
@@ -492,7 +492,7 @@ public class WeaponMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FFA RID: 8186 RVA: 0x001C5B90 File Offset: 0x001C3D90
+	// Token: 0x06001FFB RID: 8187 RVA: 0x001C5C8C File Offset: 0x001C3E8C
 	private void DropBookbag()
 	{
 		if (this.Yandere.Bookbag != null)
@@ -503,7 +503,7 @@ public class WeaponMenuScript : MonoBehaviour
 		this.UpdateSprites();
 	}
 
-	// Token: 0x06001FFB RID: 8187 RVA: 0x001C5BC6 File Offset: 0x001C3DC6
+	// Token: 0x06001FFC RID: 8188 RVA: 0x001C5CC2 File Offset: 0x001C3EC2
 	public void InstantHide()
 	{
 		this.KeyboardMenu.localScale = Vector3.zero;

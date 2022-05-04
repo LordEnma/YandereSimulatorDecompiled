@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003F0 RID: 1008
 public class RobotArmScript : MonoBehaviour
 {
-	// Token: 0x06001BFF RID: 7167 RVA: 0x00147E54 File Offset: 0x00146054
+	// Token: 0x06001BFF RID: 7167 RVA: 0x00147E20 File Offset: 0x00146020
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -139,7 +139,7 @@ public class RobotArmScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C00 RID: 7168 RVA: 0x00148480 File Offset: 0x00146680
+	// Token: 0x06001C00 RID: 7168 RVA: 0x0014844C File Offset: 0x0014664C
 	public void ActivateArms()
 	{
 		this.Prompt.Circle[0].fillAmount = 1f;
@@ -160,7 +160,7 @@ public class RobotArmScript : MonoBehaviour
 		this.MyAudio.Play();
 	}
 
-	// Token: 0x06001C01 RID: 7169 RVA: 0x00148525 File Offset: 0x00146725
+	// Token: 0x06001C01 RID: 7169 RVA: 0x001484F1 File Offset: 0x001466F1
 	public void ToggleWork()
 	{
 		this.Prompt.Circle[1].fillAmount = 1f;

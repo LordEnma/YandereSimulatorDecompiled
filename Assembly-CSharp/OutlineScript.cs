@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000390 RID: 912
 public class OutlineScript : MonoBehaviour
 {
-	// Token: 0x06001A66 RID: 6758 RVA: 0x00118F32 File Offset: 0x00117132
+	// Token: 0x06001A66 RID: 6758 RVA: 0x00118EFE File Offset: 0x001170FE
 	public void Awake()
 	{
 		this.h = base.GetComponent<Highlighter>();
@@ -15,7 +15,7 @@ public class OutlineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A67 RID: 6759 RVA: 0x00118F5F File Offset: 0x0011715F
+	// Token: 0x06001A67 RID: 6759 RVA: 0x00118F2B File Offset: 0x0011712B
 	private void Update()
 	{
 		this.h.ConstantOnImmediate(this.color);

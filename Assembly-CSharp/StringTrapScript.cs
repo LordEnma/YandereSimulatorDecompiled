@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000456 RID: 1110
 public class StringTrapScript : MonoBehaviour
 {
-	// Token: 0x06001D6D RID: 7533 RVA: 0x001620D4 File Offset: 0x001602D4
+	// Token: 0x06001D6D RID: 7533 RVA: 0x001620A0 File Offset: 0x001602A0
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)

@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000429 RID: 1065
 public class ShoePairScript : MonoBehaviour
 {
-	// Token: 0x06001CB7 RID: 7351 RVA: 0x00150F3F File Offset: 0x0014F13F
+	// Token: 0x06001CB7 RID: 7351 RVA: 0x00150F0B File Offset: 0x0014F10B
 	private void Start()
 	{
 		this.Police = GameObject.Find("Police").GetComponent<PoliceScript>();
 		this.Note.SetActive(false);
 	}
 
-	// Token: 0x06001CB8 RID: 7352 RVA: 0x00150F64 File Offset: 0x0014F164
+	// Token: 0x06001CB8 RID: 7352 RVA: 0x00150F30 File Offset: 0x0014F130
 	private void Update()
 	{
 		if (this.Prompt.Yandere.Class.LanguageGrade + this.Prompt.Yandere.Class.LanguageBonus < 1)

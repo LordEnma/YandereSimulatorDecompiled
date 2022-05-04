@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000292 RID: 658
 public class DrinkingFountainScript : MonoBehaviour
 {
-	// Token: 0x060013CF RID: 5071 RVA: 0x000BBC18 File Offset: 0x000B9E18
+	// Token: 0x060013CF RID: 5071 RVA: 0x000BBBE4 File Offset: 0x000B9DE4
 	private void Update()
 	{
 		if (this.Prompt.Yandere.EquippedWeapon != null)

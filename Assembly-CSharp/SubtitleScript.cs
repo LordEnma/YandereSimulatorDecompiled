@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000464 RID: 1124
 public class SubtitleScript : MonoBehaviour
 {
-	// Token: 0x06001E94 RID: 7828 RVA: 0x001A370C File Offset: 0x001A190C
+	// Token: 0x06001E95 RID: 7829 RVA: 0x001A3814 File Offset: 0x001A1A14
 	private void Awake()
 	{
 		if (GameGlobals.Eighties)
@@ -862,19 +862,19 @@ public class SubtitleScript : MonoBehaviour
 		};
 	}
 
-	// Token: 0x06001E95 RID: 7829 RVA: 0x001A4EFD File Offset: 0x001A30FD
+	// Token: 0x06001E96 RID: 7830 RVA: 0x001A5005 File Offset: 0x001A3205
 	private void Start()
 	{
 		this.Label.text = string.Empty;
 	}
 
-	// Token: 0x06001E96 RID: 7830 RVA: 0x001A4F0F File Offset: 0x001A310F
+	// Token: 0x06001E97 RID: 7831 RVA: 0x001A5017 File Offset: 0x001A3217
 	private string GetRandomString(string[] strings)
 	{
 		return strings[UnityEngine.Random.Range(0, strings.Length)];
 	}
 
-	// Token: 0x06001E97 RID: 7831 RVA: 0x001A4F1C File Offset: 0x001A311C
+	// Token: 0x06001E98 RID: 7832 RVA: 0x001A5024 File Offset: 0x001A3224
 	public void UpdateLabel(SubtitleType subtitleType, int ID, float Duration)
 	{
 		if (!this.Jukebox.Yandere.Talking && subtitleType == this.PreviousSubtitle && this.Timer > 0f)
@@ -2263,7 +2263,7 @@ public class SubtitleScript : MonoBehaviour
 		this.Timer = Duration;
 	}
 
-	// Token: 0x06001E98 RID: 7832 RVA: 0x001A7E9C File Offset: 0x001A609C
+	// Token: 0x06001E99 RID: 7833 RVA: 0x001A7FA4 File Offset: 0x001A61A4
 	private void Update()
 	{
 		if (this.Timer > 0f)
@@ -2278,7 +2278,7 @@ public class SubtitleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E99 RID: 7833 RVA: 0x001A7F00 File Offset: 0x001A6100
+	// Token: 0x06001E9A RID: 7834 RVA: 0x001A8008 File Offset: 0x001A6208
 	private void PlayVoice(SubtitleType subtitleType, int ID)
 	{
 		if (this.CurrentClip != null)
@@ -2296,7 +2296,7 @@ public class SubtitleScript : MonoBehaviour
 		this.PlayClip(audioClipArrayWrapper[0], base.transform.position);
 	}
 
-	// Token: 0x06001E9A RID: 7834 RVA: 0x001A7F80 File Offset: 0x001A6180
+	// Token: 0x06001E9B RID: 7835 RVA: 0x001A8088 File Offset: 0x001A6288
 	public float GetClipLength(int StudentID, int TaskPhase)
 	{
 		if (StudentID == 6)
@@ -2401,7 +2401,7 @@ public class SubtitleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E9B RID: 7835 RVA: 0x001A819C File Offset: 0x001A639C
+	// Token: 0x06001E9C RID: 7836 RVA: 0x001A82A4 File Offset: 0x001A64A4
 	public float GetClubClipLength(ClubType Club, int ClubPhase)
 	{
 		if (Club == ClubType.Cooking)
@@ -2466,7 +2466,7 @@ public class SubtitleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E9C RID: 7836 RVA: 0x001A830C File Offset: 0x001A650C
+	// Token: 0x06001E9D RID: 7837 RVA: 0x001A8414 File Offset: 0x001A6614
 	private void PlayClip(AudioClip clip, Vector3 pos)
 	{
 		if (clip != null)
@@ -2498,7 +2498,7 @@ public class SubtitleScript : MonoBehaviour
 		Debug.Log("Could not play a voice line. The audio clip was null.");
 	}
 
-	// Token: 0x06001E9D RID: 7837 RVA: 0x001A845C File Offset: 0x001A665C
+	// Token: 0x06001E9E RID: 7838 RVA: 0x001A8564 File Offset: 0x001A6764
 	public void Silence(AudioClip[] ClipArray)
 	{
 		for (int i = 0; i < 11; i++)

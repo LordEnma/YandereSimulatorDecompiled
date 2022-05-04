@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class FxaaComponent : PostProcessingComponentRenderTexture<AntialiasingModel>
 	{
 		// Token: 0x170004F8 RID: 1272
-		// (get) Token: 0x06002347 RID: 9031 RVA: 0x001F95BA File Offset: 0x001F77BA
+		// (get) Token: 0x06002348 RID: 9032 RVA: 0x001F96B6 File Offset: 0x001F78B6
 		public override bool active
 		{
 			get
@@ -15,7 +15,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002348 RID: 9032 RVA: 0x001F95EC File Offset: 0x001F77EC
+		// Token: 0x06002349 RID: 9033 RVA: 0x001F96E8 File Offset: 0x001F78E8
 		public void Render(RenderTexture source, RenderTexture destination)
 		{
 			AntialiasingModel.FxaaSettings fxaaSettings = base.model.settings.fxaaSettings;

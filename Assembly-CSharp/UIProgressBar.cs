@@ -572,6 +572,6 @@ public class UIProgressBar : UIWidgetContainer
 	}
 
 	// Token: 0x020005E3 RID: 1507
-	// (Invoke) Token: 0x06002566 RID: 9574
+	// (Invoke) Token: 0x06002567 RID: 9575
 	public delegate void OnDragFinished();
 }

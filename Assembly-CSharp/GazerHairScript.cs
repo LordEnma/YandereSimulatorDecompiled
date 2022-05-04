@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002DF RID: 735
 public class GazerHairScript : MonoBehaviour
 {
-	// Token: 0x060014F3 RID: 5363 RVA: 0x000CFF10 File Offset: 0x000CE110
+	// Token: 0x060014F3 RID: 5363 RVA: 0x000CFEDC File Offset: 0x000CE0DC
 	private void Update()
 	{
 		this.ID = 0;

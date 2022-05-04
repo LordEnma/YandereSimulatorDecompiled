@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200039B RID: 923
 public class PeekScript : MonoBehaviour
 {
-	// Token: 0x06001A8A RID: 6794 RVA: 0x0011C9E3 File Offset: 0x0011ABE3
+	// Token: 0x06001A8A RID: 6794 RVA: 0x0011C9AF File Offset: 0x0011ABAF
 	private void Start()
 	{
 		this.Prompt.Door = true;
 	}
 
-	// Token: 0x06001A8B RID: 6795 RVA: 0x0011C9F4 File Offset: 0x0011ABF4
+	// Token: 0x06001A8B RID: 6795 RVA: 0x0011C9C0 File Offset: 0x0011ABC0
 	private void Update()
 	{
 		if (Vector3.Distance(base.transform.position, this.Prompt.Yandere.transform.position) < 2f)

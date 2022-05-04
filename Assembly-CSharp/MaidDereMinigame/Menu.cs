@@ -7,7 +7,7 @@ namespace MaidDereMinigame
 	// Token: 0x020005B2 RID: 1458
 	public class Menu : MonoBehaviour
 	{
-		// Token: 0x060024D1 RID: 9425 RVA: 0x002020E8 File Offset: 0x002002E8
+		// Token: 0x060024D2 RID: 9426 RVA: 0x002021E4 File Offset: 0x002003E4
 		private void Start()
 		{
 			for (int i = 0; i < this.mainMenuButtons.Count; i++)
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			this.SetActiveMenuButton(0);
 		}
 
-		// Token: 0x060024D2 RID: 9426 RVA: 0x0020216C File Offset: 0x0020036C
+		// Token: 0x060024D3 RID: 9427 RVA: 0x00202268 File Offset: 0x00200468
 		private void Update()
 		{
 			if (this.cancelInputs)
@@ -74,7 +74,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024D3 RID: 9427 RVA: 0x002022AC File Offset: 0x002004AC
+		// Token: 0x060024D4 RID: 9428 RVA: 0x002023A8 File Offset: 0x002005A8
 		public void SetActiveMenuButton(int index)
 		{
 			if (this.activeMenuButton != null)
@@ -85,7 +85,7 @@ namespace MaidDereMinigame
 			this.activeMenuButton.spriteRenderer.enabled = true;
 		}
 
-		// Token: 0x060024D4 RID: 9428 RVA: 0x002022FB File Offset: 0x002004FB
+		// Token: 0x060024D5 RID: 9429 RVA: 0x002023F7 File Offset: 0x002005F7
 		public void StopInputs()
 		{
 			this.cancelInputs = true;

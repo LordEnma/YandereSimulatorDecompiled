@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class ChromaticAberrationComponent : PostProcessingComponentRenderTexture<ChromaticAberrationModel>
 	{
 		// Token: 0x170004F2 RID: 1266
-		// (get) Token: 0x06002310 RID: 8976 RVA: 0x001F7A40 File Offset: 0x001F5C40
+		// (get) Token: 0x06002311 RID: 8977 RVA: 0x001F7B3C File Offset: 0x001F5D3C
 		public override bool active
 		{
 			get
@@ -15,14 +15,14 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002311 RID: 8977 RVA: 0x001F7A76 File Offset: 0x001F5C76
+		// Token: 0x06002312 RID: 8978 RVA: 0x001F7B72 File Offset: 0x001F5D72
 		public override void OnDisable()
 		{
 			GraphicsUtils.Destroy(this.m_SpectrumLut);
 			this.m_SpectrumLut = null;
 		}
 
-		// Token: 0x06002312 RID: 8978 RVA: 0x001F7A8C File Offset: 0x001F5C8C
+		// Token: 0x06002313 RID: 8979 RVA: 0x001F7B88 File Offset: 0x001F5D88
 		public override void Prepare(Material uberMaterial)
 		{
 			ChromaticAberrationModel.Settings settings = base.model.settings;

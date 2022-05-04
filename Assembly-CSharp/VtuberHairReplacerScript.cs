@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004BE RID: 1214
 public class VtuberHairReplacerScript : MonoBehaviour
 {
-	// Token: 0x06001FD0 RID: 8144 RVA: 0x001C1325 File Offset: 0x001BF525
+	// Token: 0x06001FD1 RID: 8145 RVA: 0x001C1421 File Offset: 0x001BF621
 	private void Start()
 	{
 		if (GameGlobals.VtuberID > 0)

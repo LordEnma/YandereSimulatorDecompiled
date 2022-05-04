@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200030E RID: 782
 public class HallucinationScript : MonoBehaviour
 {
-	// Token: 0x06001853 RID: 6227 RVA: 0x000E6F4C File Offset: 0x000E514C
+	// Token: 0x06001853 RID: 6227 RVA: 0x000E6F18 File Offset: 0x000E5118
 	private void Start()
 	{
 		this.YandereHairRenderer.material = this.Black;
@@ -48,7 +48,7 @@ public class HallucinationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001854 RID: 6228 RVA: 0x000E7108 File Offset: 0x000E5308
+	// Token: 0x06001854 RID: 6228 RVA: 0x000E70D4 File Offset: 0x000E52D4
 	private void Update()
 	{
 		if (this.Yandere.Sanity < 33.33333f)
@@ -124,7 +124,7 @@ public class HallucinationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001855 RID: 6229 RVA: 0x000E7570 File Offset: 0x000E5770
+	// Token: 0x06001855 RID: 6229 RVA: 0x000E753C File Offset: 0x000E573C
 	private void MakeTransparent()
 	{
 		this.Alpha = 0f;

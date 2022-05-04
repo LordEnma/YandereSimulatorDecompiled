@@ -9,7 +9,7 @@ namespace MaidDereMinigame
 	[CreateAssetMenu(fileName = "New Scene Wrapper", menuName = "Scenes/New Scene Wrapper")]
 	public class SceneWrapper : ScriptableObject
 	{
-		// Token: 0x060024DB RID: 9435 RVA: 0x00202470 File Offset: 0x00200670
+		// Token: 0x060024DC RID: 9436 RVA: 0x0020256C File Offset: 0x0020076C
 		public SceneObject GetSceneByBuildIndex(int buildIndex)
 		{
 			foreach (SceneObject sceneObject in this.m_Scenes)
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			return null;
 		}
 
-		// Token: 0x060024DC RID: 9436 RVA: 0x002024C8 File Offset: 0x002006C8
+		// Token: 0x060024DD RID: 9437 RVA: 0x002025C4 File Offset: 0x002007C4
 		public SceneObject GetSceneByName(string name)
 		{
 			foreach (SceneObject sceneObject in this.m_Scenes)
@@ -35,13 +35,13 @@ namespace MaidDereMinigame
 			return null;
 		}
 
-		// Token: 0x060024DD RID: 9437 RVA: 0x00202524 File Offset: 0x00200724
+		// Token: 0x060024DE RID: 9438 RVA: 0x00202620 File Offset: 0x00200820
 		public static void LoadScene(SceneObject sceneObject)
 		{
 			GameController.Scenes.LoadLevel(sceneObject);
 		}
 
-		// Token: 0x060024DE RID: 9438 RVA: 0x00202534 File Offset: 0x00200734
+		// Token: 0x060024DF RID: 9439 RVA: 0x00202630 File Offset: 0x00200830
 		public void LoadLevel(SceneObject sceneObject)
 		{
 			int num = -1;
@@ -60,7 +60,7 @@ namespace MaidDereMinigame
 			SceneManager.LoadScene(num);
 		}
 
-		// Token: 0x060024DF RID: 9439 RVA: 0x00202594 File Offset: 0x00200794
+		// Token: 0x060024E0 RID: 9440 RVA: 0x00202690 File Offset: 0x00200890
 		public int GetSceneID(SceneObject scene)
 		{
 			for (int i = 0; i < this.m_Scenes.Count; i++)
@@ -73,7 +73,7 @@ namespace MaidDereMinigame
 			return -1;
 		}
 
-		// Token: 0x060024E0 RID: 9440 RVA: 0x002025CE File Offset: 0x002007CE
+		// Token: 0x060024E1 RID: 9441 RVA: 0x002026CA File Offset: 0x002008CA
 		public SceneObject GetSceneByIndex(int scene)
 		{
 			return this.m_Scenes[scene];

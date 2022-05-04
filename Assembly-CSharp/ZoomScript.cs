@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004F6 RID: 1270
 public class ZoomScript : MonoBehaviour
 {
-	// Token: 0x0600211F RID: 8479 RVA: 0x001EACE4 File Offset: 0x001E8EE4
+	// Token: 0x06002120 RID: 8480 RVA: 0x001EADE0 File Offset: 0x001E8FE0
 	private void Update()
 	{
 		if (this.Yandere.FollowHips)
@@ -125,7 +125,7 @@ public class ZoomScript : MonoBehaviour
 		base.transform.localPosition = Vector3.MoveTowards(base.transform.localPosition, this.Target, Time.deltaTime * this.ShakeStrength * 0.1f);
 	}
 
-	// Token: 0x06002120 RID: 8480 RVA: 0x001EB554 File Offset: 0x001E9754
+	// Token: 0x06002121 RID: 8481 RVA: 0x001EB650 File Offset: 0x001E9850
 	public void LateUpdate()
 	{
 		base.transform.eulerAngles = Vector3.zero;

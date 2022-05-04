@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003ED RID: 1005
 public class RivalMorningEventManagerScript : MonoBehaviour
 {
-	// Token: 0x06001BF4 RID: 7156 RVA: 0x00146BD8 File Offset: 0x00144DD8
+	// Token: 0x06001BF4 RID: 7156 RVA: 0x00146BA4 File Offset: 0x00144DA4
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -24,7 +24,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BF5 RID: 7157 RVA: 0x00146CC4 File Offset: 0x00144EC4
+	// Token: 0x06001BF5 RID: 7157 RVA: 0x00146C90 File Offset: 0x00144E90
 	private void Update()
 	{
 		if (this.VoiceClip != null)
@@ -224,7 +224,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BF6 RID: 7158 RVA: 0x0014765C File Offset: 0x0014585C
+	// Token: 0x06001BF6 RID: 7158 RVA: 0x00147628 File Offset: 0x00145828
 	public void EndEvent()
 	{
 		Debug.Log("Osana's morning ''Talk with Senpai'' event has ended.");

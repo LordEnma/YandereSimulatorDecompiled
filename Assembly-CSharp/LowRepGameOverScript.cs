@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200035C RID: 860
 public class LowRepGameOverScript : MonoBehaviour
 {
-	// Token: 0x0600199D RID: 6557 RVA: 0x001045B4 File Offset: 0x001027B4
+	// Token: 0x0600199D RID: 6557 RVA: 0x00104580 File Offset: 0x00102780
 	private void Start()
 	{
 		this.GossipGroup[1].SetActive(false);
@@ -35,7 +35,7 @@ public class LowRepGameOverScript : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x0600199E RID: 6558 RVA: 0x001047A8 File Offset: 0x001029A8
+	// Token: 0x0600199E RID: 6558 RVA: 0x00104774 File Offset: 0x00102974
 	private void Update()
 	{
 		this.Darkness.material.color = new Color(this.Darkness.material.color.r, this.Darkness.material.color.g, this.Darkness.material.color.b, this.Darkness.material.color.a - Time.deltaTime * 0.5f);
@@ -215,7 +215,7 @@ public class LowRepGameOverScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600199F RID: 6559 RVA: 0x0010519C File Offset: 0x0010339C
+	// Token: 0x0600199F RID: 6559 RVA: 0x00105168 File Offset: 0x00103368
 	private void Giggle()
 	{
 		this.GiggleID = UnityEngine.Random.Range(1, this.Giggles.Length);

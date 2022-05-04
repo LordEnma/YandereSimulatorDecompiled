@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004E2 RID: 1250
 public class YanvaniaCutsceneTriggerScript : MonoBehaviour
 {
-	// Token: 0x060020D1 RID: 8401 RVA: 0x001E41DC File Offset: 0x001E23DC
+	// Token: 0x060020D2 RID: 8402 RVA: 0x001E42D8 File Offset: 0x001E24D8
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "YanmontChan")

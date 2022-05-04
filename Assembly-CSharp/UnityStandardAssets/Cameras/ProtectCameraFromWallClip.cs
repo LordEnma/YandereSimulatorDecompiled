@@ -8,11 +8,11 @@ namespace UnityStandardAssets.Cameras
 	public class ProtectCameraFromWallClip : MonoBehaviour
 	{
 		// Token: 0x170004EB RID: 1259
-		// (get) Token: 0x060022D5 RID: 8917 RVA: 0x001F5B57 File Offset: 0x001F3D57
-		// (set) Token: 0x060022D6 RID: 8918 RVA: 0x001F5B5F File Offset: 0x001F3D5F
+		// (get) Token: 0x060022D6 RID: 8918 RVA: 0x001F5C53 File Offset: 0x001F3E53
+		// (set) Token: 0x060022D7 RID: 8919 RVA: 0x001F5C5B File Offset: 0x001F3E5B
 		public bool protecting { get; private set; }
 
-		// Token: 0x060022D7 RID: 8919 RVA: 0x001F5B68 File Offset: 0x001F3D68
+		// Token: 0x060022D8 RID: 8920 RVA: 0x001F5C64 File Offset: 0x001F3E64
 		private void Start()
 		{
 			this.m_Cam = base.GetComponentInChildren<Camera>().transform;
@@ -22,7 +22,7 @@ namespace UnityStandardAssets.Cameras
 			this.m_RayHitComparer = new ProtectCameraFromWallClip.RayHitComparer();
 		}
 
-		// Token: 0x060022D8 RID: 8920 RVA: 0x001F5BC8 File Offset: 0x001F3DC8
+		// Token: 0x060022D9 RID: 8921 RVA: 0x001F5CC4 File Offset: 0x001F3EC4
 		private void LateUpdate()
 		{
 			float num = this.m_OriginalDist;
@@ -114,7 +114,7 @@ namespace UnityStandardAssets.Cameras
 		// Token: 0x0200069B RID: 1691
 		public class RayHitComparer : IComparer
 		{
-			// Token: 0x06002757 RID: 10071 RVA: 0x00207D24 File Offset: 0x00205F24
+			// Token: 0x06002758 RID: 10072 RVA: 0x00207E20 File Offset: 0x00206020
 			public int Compare(object x, object y)
 			{
 				return ((RaycastHit)x).distance.CompareTo(((RaycastHit)y).distance);

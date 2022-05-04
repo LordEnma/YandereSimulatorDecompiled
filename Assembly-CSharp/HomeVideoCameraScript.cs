@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200032A RID: 810
 public class HomeVideoCameraScript : MonoBehaviour
 {
-	// Token: 0x060018C9 RID: 6345 RVA: 0x000F4040 File Offset: 0x000F2240
+	// Token: 0x060018C9 RID: 6345 RVA: 0x000F400C File Offset: 0x000F220C
 	private void Update()
 	{
 		if (!this.TextSet && !HomeGlobals.Night)

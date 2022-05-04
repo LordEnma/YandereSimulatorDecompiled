@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200046E RID: 1134
 public class TapePlayerScript : MonoBehaviour
 {
-	// Token: 0x06001EC1 RID: 7873 RVA: 0x001B288C File Offset: 0x001B0A8C
+	// Token: 0x06001EC2 RID: 7874 RVA: 0x001B2988 File Offset: 0x001B0B88
 	private void Start()
 	{
 		this.Tape.SetActive(false);
 	}
 
-	// Token: 0x06001EC2 RID: 7874 RVA: 0x001B289C File Offset: 0x001B0A9C
+	// Token: 0x06001EC3 RID: 7875 RVA: 0x001B2998 File Offset: 0x001B0B98
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

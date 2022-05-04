@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003EA RID: 1002
 public class OsanaVendingMachineEventScript : MonoBehaviour
 {
-	// Token: 0x06001BE7 RID: 7143 RVA: 0x001442AB File Offset: 0x001424AB
+	// Token: 0x06001BE7 RID: 7143 RVA: 0x00144277 File Offset: 0x00142477
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -14,7 +14,7 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BE8 RID: 7144 RVA: 0x001442D0 File Offset: 0x001424D0
+	// Token: 0x06001BE8 RID: 7144 RVA: 0x0014429C File Offset: 0x0014249C
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -194,7 +194,7 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BE9 RID: 7145 RVA: 0x00144CD4 File Offset: 0x00142ED4
+	// Token: 0x06001BE9 RID: 7145 RVA: 0x00144CA0 File Offset: 0x00142EA0
 	private void EndEvent()
 	{
 		Debug.Log("Osana's vending machine event has ended.");

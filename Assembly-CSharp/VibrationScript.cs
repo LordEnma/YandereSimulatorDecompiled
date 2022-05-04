@@ -5,13 +5,13 @@ using XInputDotNetPure;
 // Token: 0x020004BC RID: 1212
 public class VibrationScript : MonoBehaviour
 {
-	// Token: 0x06001FC8 RID: 8136 RVA: 0x001C01B3 File Offset: 0x001BE3B3
+	// Token: 0x06001FC9 RID: 8137 RVA: 0x001C02AF File Offset: 0x001BE4AF
 	private void Start()
 	{
 		GamePad.SetVibration(PlayerIndex.One, this.Strength1, this.Strength2);
 	}
 
-	// Token: 0x06001FC9 RID: 8137 RVA: 0x001C01C7 File Offset: 0x001BE3C7
+	// Token: 0x06001FCA RID: 8138 RVA: 0x001C02C3 File Offset: 0x001BE4C3
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;

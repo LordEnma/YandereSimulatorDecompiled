@@ -7,7 +7,7 @@ namespace MaidDereMinigame
 	// Token: 0x020005A0 RID: 1440
 	public class ServingCounter : MonoBehaviour
 	{
-		// Token: 0x06002484 RID: 9348 RVA: 0x00200E04 File Offset: 0x001FF004
+		// Token: 0x06002485 RID: 9349 RVA: 0x00200F00 File Offset: 0x001FF100
 		private void Awake()
 		{
 			this.plates = new List<FoodInstance>();
@@ -25,19 +25,19 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002485 RID: 9349 RVA: 0x00200EDA File Offset: 0x001FF0DA
+		// Token: 0x06002486 RID: 9350 RVA: 0x00200FD6 File Offset: 0x001FF1D6
 		private void OnEnable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(this.SetPause));
 		}
 
-		// Token: 0x06002486 RID: 9350 RVA: 0x00200EFC File Offset: 0x001FF0FC
+		// Token: 0x06002487 RID: 9351 RVA: 0x00200FF8 File Offset: 0x001FF1F8
 		private void OnDisable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(this.SetPause));
 		}
 
-		// Token: 0x06002487 RID: 9351 RVA: 0x00200F20 File Offset: 0x001FF120
+		// Token: 0x06002488 RID: 9352 RVA: 0x0020101C File Offset: 0x001FF21C
 		private void Update()
 		{
 			switch (this.state)
@@ -213,7 +213,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002488 RID: 9352 RVA: 0x002014AC File Offset: 0x001FF6AC
+		// Token: 0x06002489 RID: 9353 RVA: 0x002015A8 File Offset: 0x001FF7A8
 		public void SetMask(int position)
 		{
 			this.counterMask.gameObject.SetActive(position == 0);
@@ -222,7 +222,7 @@ namespace MaidDereMinigame
 			this.plateMask.gameObject.SetActive(position == 3);
 		}
 
-		// Token: 0x06002489 RID: 9353 RVA: 0x0020150C File Offset: 0x001FF70C
+		// Token: 0x0600248A RID: 9354 RVA: 0x00201608 File Offset: 0x001FF808
 		public void AddPlate(Food food)
 		{
 			if (this.plates.Count >= this.maxPlates)
@@ -244,7 +244,7 @@ namespace MaidDereMinigame
 			this.plates.Insert(0, foodInstance2);
 		}
 
-		// Token: 0x0600248A RID: 9354 RVA: 0x002015E0 File Offset: 0x001FF7E0
+		// Token: 0x0600248B RID: 9355 RVA: 0x002016DC File Offset: 0x001FF8DC
 		public void RemovePlate(int index)
 		{
 			Component component = this.plates[index];
@@ -258,13 +258,13 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x0600248B RID: 9355 RVA: 0x00201657 File Offset: 0x001FF857
+		// Token: 0x0600248C RID: 9356 RVA: 0x00201753 File Offset: 0x001FF953
 		public void SetPause(bool toPause)
 		{
 			this.isPaused = toPause;
 		}
 
-		// Token: 0x0600248C RID: 9356 RVA: 0x00201660 File Offset: 0x001FF860
+		// Token: 0x0600248D RID: 9357 RVA: 0x0020175C File Offset: 0x001FF95C
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
 			this.interactionIndicator.gameObject.SetActive(true);
@@ -273,7 +273,7 @@ namespace MaidDereMinigame
 			InteractionMenu.SetAButton(InteractionMenu.AButtonText.KitchenMenu);
 		}
 
-		// Token: 0x0600248D RID: 9357 RVA: 0x00201696 File Offset: 0x001FF896
+		// Token: 0x0600248E RID: 9358 RVA: 0x00201792 File Offset: 0x001FF992
 		private void OnTriggerExit2D(Collider2D collision)
 		{
 			this.interactionIndicator.gameObject.SetActive(false);

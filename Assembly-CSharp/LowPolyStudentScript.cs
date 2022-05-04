@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200035B RID: 859
 public class LowPolyStudentScript : MonoBehaviour
 {
-	// Token: 0x0600199A RID: 6554 RVA: 0x0010448B File Offset: 0x0010268B
+	// Token: 0x0600199A RID: 6554 RVA: 0x00104457 File Offset: 0x00102657
 	private void Start()
 	{
 		if (this.Student.StudentManager == null)
@@ -13,7 +13,7 @@ public class LowPolyStudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600199B RID: 6555 RVA: 0x001044A8 File Offset: 0x001026A8
+	// Token: 0x0600199B RID: 6555 RVA: 0x00104474 File Offset: 0x00102674
 	private void Update()
 	{
 		if ((float)this.Student.StudentManager.LowDetailThreshold > 0f)

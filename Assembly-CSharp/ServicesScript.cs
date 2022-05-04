@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000425 RID: 1061
 public class ServicesScript : MonoBehaviour
 {
-	// Token: 0x06001CA5 RID: 7333 RVA: 0x0014F314 File Offset: 0x0014D514
+	// Token: 0x06001CA5 RID: 7333 RVA: 0x0014F2E0 File Offset: 0x0014D4E0
 	private void Start()
 	{
 		for (int i = 1; i < this.ServiceNames.Length; i++)
@@ -14,7 +14,7 @@ public class ServicesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CA6 RID: 7334 RVA: 0x0014F358 File Offset: 0x0014D558
+	// Token: 0x06001CA6 RID: 7334 RVA: 0x0014F324 File Offset: 0x0014D524
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -182,7 +182,7 @@ public class ServicesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CA7 RID: 7335 RVA: 0x0014FAE4 File Offset: 0x0014DCE4
+	// Token: 0x06001CA7 RID: 7335 RVA: 0x0014FAB0 File Offset: 0x0014DCB0
 	public void UpdateList()
 	{
 		this.ID = 1;
@@ -250,7 +250,7 @@ public class ServicesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CA8 RID: 7336 RVA: 0x0014FD58 File Offset: 0x0014DF58
+	// Token: 0x06001CA8 RID: 7336 RVA: 0x0014FD24 File Offset: 0x0014DF24
 	public void UpdateDesc()
 	{
 		if (this.ServiceAvailable[this.Selected] && !this.ServicePurchased[this.Selected])
@@ -274,13 +274,13 @@ public class ServicesScript : MonoBehaviour
 		this.UpdatePantyCount();
 	}
 
-	// Token: 0x06001CA9 RID: 7337 RVA: 0x0014FEA6 File Offset: 0x0014E0A6
+	// Token: 0x06001CA9 RID: 7337 RVA: 0x0014FE72 File Offset: 0x0014E072
 	public void UpdatePantyCount()
 	{
 		this.PantyCount.text = this.Inventory.PantyShots.ToString();
 	}
 
-	// Token: 0x06001CAA RID: 7338 RVA: 0x0014FEC4 File Offset: 0x0014E0C4
+	// Token: 0x06001CAA RID: 7338 RVA: 0x0014FE90 File Offset: 0x0014E090
 	public void Purchase()
 	{
 		this.TextMessageManager.SpawnMessage(this.Selected);
@@ -293,7 +293,7 @@ public class ServicesScript : MonoBehaviour
 		this.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001CAB RID: 7339 RVA: 0x0014FF5C File Offset: 0x0014E15C
+	// Token: 0x06001CAB RID: 7339 RVA: 0x0014FF28 File Offset: 0x0014E128
 	public void SaveServicesPurchased()
 	{
 		for (int i = 1; i < this.ServiceNames.Length; i++)

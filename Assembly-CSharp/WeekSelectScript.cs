@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020004C9 RID: 1225
 public class WeekSelectScript : MonoBehaviour
 {
-	// Token: 0x0600200F RID: 8207 RVA: 0x001C7CAF File Offset: 0x001C5EAF
+	// Token: 0x06002010 RID: 8208 RVA: 0x001C7DAB File Offset: 0x001C5FAB
 	private void Start()
 	{
 		this.Darkness.alpha = 1f;
@@ -13,7 +13,7 @@ public class WeekSelectScript : MonoBehaviour
 		this.UpdateText();
 	}
 
-	// Token: 0x06002010 RID: 8208 RVA: 0x001C7CD0 File Offset: 0x001C5ED0
+	// Token: 0x06002011 RID: 8209 RVA: 0x001C7DCC File Offset: 0x001C5FCC
 	private void Update()
 	{
 		if (this.Fading)
@@ -341,7 +341,7 @@ public class WeekSelectScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002011 RID: 8209 RVA: 0x001C8428 File Offset: 0x001C6628
+	// Token: 0x06002012 RID: 8210 RVA: 0x001C8524 File Offset: 0x001C6724
 	private void UpdateArrow()
 	{
 		if (this.SettingWeek)
@@ -371,7 +371,7 @@ public class WeekSelectScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002012 RID: 8210 RVA: 0x001C8528 File Offset: 0x001C6728
+	// Token: 0x06002013 RID: 8211 RVA: 0x001C8624 File Offset: 0x001C6824
 	private void UpdateText()
 	{
 		this.WeekLabel.text = "STARTING WEEK: " + DateGlobals.Week.ToString();
@@ -391,7 +391,7 @@ public class WeekSelectScript : MonoBehaviour
 		this.Stats.Start();
 	}
 
-	// Token: 0x06002013 RID: 8211 RVA: 0x001C85A4 File Offset: 0x001C67A4
+	// Token: 0x06002014 RID: 8212 RVA: 0x001C86A0 File Offset: 0x001C68A0
 	private void SetGrudges(bool Grudge)
 	{
 		for (int i = 2; i < 12; i++)
@@ -400,7 +400,7 @@ public class WeekSelectScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002014 RID: 8212 RVA: 0x001C85C8 File Offset: 0x001C67C8
+	// Token: 0x06002015 RID: 8213 RVA: 0x001C86C4 File Offset: 0x001C68C4
 	private void MakeFriends(bool Friend)
 	{
 		for (int i = 2; i < 86; i++)

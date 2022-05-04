@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class FogModel : PostProcessingModel
 	{
 		// Token: 0x1700050E RID: 1294
-		// (get) Token: 0x0600239F RID: 9119 RVA: 0x001FAEEF File Offset: 0x001F90EF
-		// (set) Token: 0x060023A0 RID: 9120 RVA: 0x001FAEF7 File Offset: 0x001F90F7
+		// (get) Token: 0x060023A0 RID: 9120 RVA: 0x001FAFEB File Offset: 0x001F91EB
+		// (set) Token: 0x060023A1 RID: 9121 RVA: 0x001FAFF3 File Offset: 0x001F91F3
 		public FogModel.Settings settings
 		{
 			get
@@ -21,7 +21,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023A1 RID: 9121 RVA: 0x001FAF00 File Offset: 0x001F9100
+		// Token: 0x060023A2 RID: 9122 RVA: 0x001FAFFC File Offset: 0x001F91FC
 		public override void Reset()
 		{
 			this.m_Settings = FogModel.Settings.defaultSettings;
@@ -36,7 +36,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x170005A4 RID: 1444
-			// (get) Token: 0x06002797 RID: 10135 RVA: 0x00209980 File Offset: 0x00207B80
+			// (get) Token: 0x06002798 RID: 10136 RVA: 0x00209A7C File Offset: 0x00207C7C
 			public static FogModel.Settings defaultSettings
 			{
 				get

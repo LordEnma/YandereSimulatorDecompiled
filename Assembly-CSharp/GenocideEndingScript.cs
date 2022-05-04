@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020002E4 RID: 740
 public class GenocideEndingScript : MonoBehaviour
 {
-	// Token: 0x0600150A RID: 5386 RVA: 0x000D8304 File Offset: 0x000D6504
+	// Token: 0x0600150A RID: 5386 RVA: 0x000D82D0 File Offset: 0x000D64D0
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -65,7 +65,7 @@ public class GenocideEndingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600150B RID: 5387 RVA: 0x000D8588 File Offset: 0x000D6788
+	// Token: 0x0600150B RID: 5387 RVA: 0x000D8554 File Offset: 0x000D6754
 	private void Update()
 	{
 		if (!this.EightiesEnding)
@@ -173,13 +173,13 @@ public class GenocideEndingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600150C RID: 5388 RVA: 0x000D8970 File Offset: 0x000D6B70
+	// Token: 0x0600150C RID: 5388 RVA: 0x000D893C File Offset: 0x000D6B3C
 	private void LateUpdate()
 	{
 		this.Neck.transform.localEulerAngles = new Vector3(0f, this.Neck.transform.localEulerAngles.y, this.Neck.transform.localEulerAngles.z);
 	}
 
-	// Token: 0x0600150D RID: 5389 RVA: 0x000D89C4 File Offset: 0x000D6BC4
+	// Token: 0x0600150D RID: 5389 RVA: 0x000D8990 File Offset: 0x000D6B90
 	public void YellowifyLabel(UILabel Label)
 	{
 		Label.trueTypeFont = this.Arial;

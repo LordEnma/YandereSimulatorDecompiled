@@ -1782,14 +1782,14 @@ public class UIPanel : UIRect
 	}
 
 	// Token: 0x02000643 RID: 1603
-	// (Invoke) Token: 0x06002645 RID: 9797
+	// (Invoke) Token: 0x06002646 RID: 9798
 	public delegate void OnGeometryUpdated();
 
 	// Token: 0x02000644 RID: 1604
-	// (Invoke) Token: 0x06002649 RID: 9801
+	// (Invoke) Token: 0x0600264A RID: 9802
 	public delegate void OnClippingMoved(UIPanel panel);
 
 	// Token: 0x02000645 RID: 1605
-	// (Invoke) Token: 0x0600264D RID: 9805
+	// (Invoke) Token: 0x0600264E RID: 9806
 	public delegate Material OnCreateMaterial(UIWidget widget, Material mat);
 }

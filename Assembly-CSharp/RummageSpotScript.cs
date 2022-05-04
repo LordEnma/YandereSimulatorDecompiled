@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003F4 RID: 1012
 public class RummageSpotScript : MonoBehaviour
 {
-	// Token: 0x06001C0A RID: 7178 RVA: 0x00148818 File Offset: 0x00146A18
+	// Token: 0x06001C0A RID: 7178 RVA: 0x001487E4 File Offset: 0x001469E4
 	private void Start()
 	{
 		if (this.ID == 1)
@@ -26,7 +26,7 @@ public class RummageSpotScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C0B RID: 7179 RVA: 0x001488A0 File Offset: 0x00146AA0
+	// Token: 0x06001C0B RID: 7179 RVA: 0x0014886C File Offset: 0x00146A6C
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -56,7 +56,7 @@ public class RummageSpotScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C0C RID: 7180 RVA: 0x001489E0 File Offset: 0x00146BE0
+	// Token: 0x06001C0C RID: 7180 RVA: 0x001489AC File Offset: 0x00146BAC
 	public void GetReward()
 	{
 		if (this.ID == 1)

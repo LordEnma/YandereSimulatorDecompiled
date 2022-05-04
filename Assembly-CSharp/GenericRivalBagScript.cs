@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002E2 RID: 738
 public class GenericRivalBagScript : MonoBehaviour
 {
-	// Token: 0x060014FC RID: 5372 RVA: 0x000D1B18 File Offset: 0x000CFD18
+	// Token: 0x060014FC RID: 5372 RVA: 0x000D1AE4 File Offset: 0x000CFCE4
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -22,7 +22,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014FD RID: 5373 RVA: 0x000D1BC8 File Offset: 0x000CFDC8
+	// Token: 0x060014FD RID: 5373 RVA: 0x000D1B94 File Offset: 0x000CFD94
 	private void Update()
 	{
 		if (!this.Window.activeInHierarchy)
@@ -313,7 +313,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014FE RID: 5374 RVA: 0x000D2684 File Offset: 0x000D0884
+	// Token: 0x060014FE RID: 5374 RVA: 0x000D2650 File Offset: 0x000D0850
 	private void CloseWindow()
 	{
 		this.Selected = 1;
@@ -326,7 +326,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		this.PromptBar.Show = false;
 	}
 
-	// Token: 0x060014FF RID: 5375 RVA: 0x000D26F4 File Offset: 0x000D08F4
+	// Token: 0x060014FF RID: 5375 RVA: 0x000D26C0 File Offset: 0x000D08C0
 	private void UpdateHighlight()
 	{
 		if (this.Selected > this.Limit)
@@ -340,7 +340,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(0f, (float)(400 - this.Selected * 100), 0f);
 	}
 
-	// Token: 0x06001500 RID: 5376 RVA: 0x000D2758 File Offset: 0x000D0958
+	// Token: 0x06001500 RID: 5376 RVA: 0x000D2724 File Offset: 0x000D0924
 	private void UpdateMenuLabels()
 	{
 		this.Selected = 1;
@@ -496,7 +496,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001501 RID: 5377 RVA: 0x000D2EA4 File Offset: 0x000D10A4
+	// Token: 0x06001501 RID: 5377 RVA: 0x000D2E70 File Offset: 0x000D1070
 	public void GrabRivalInfo()
 	{
 		this.Rival = this.Prompt.Yandere.StudentManager.Students[this.Prompt.Yandere.StudentManager.RivalID];
@@ -537,7 +537,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001502 RID: 5378 RVA: 0x000D2FF8 File Offset: 0x000D11F8
+	// Token: 0x06001502 RID: 5378 RVA: 0x000D2FC4 File Offset: 0x000D11C4
 	private void HideAllHearts()
 	{
 		this.PonytailHearts.SetActive(false);
@@ -555,7 +555,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		this.QuoteBoxes.SetActive(false);
 	}
 
-	// Token: 0x06001503 RID: 5379 RVA: 0x000D30A4 File Offset: 0x000D12A4
+	// Token: 0x06001503 RID: 5379 RVA: 0x000D3070 File Offset: 0x000D1270
 	private void UpdateHearts()
 	{
 		if (this.Page == 1)

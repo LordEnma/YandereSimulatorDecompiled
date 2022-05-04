@@ -5,7 +5,7 @@ using UnityEngine.PostProcessing;
 // Token: 0x02000444 RID: 1092
 public class StalkerIntroScript : MonoBehaviour
 {
-	// Token: 0x06001D1C RID: 7452 RVA: 0x0015B2EC File Offset: 0x001594EC
+	// Token: 0x06001D1C RID: 7452 RVA: 0x0015B2B8 File Offset: 0x001594B8
 	private void Start()
 	{
 		this.Profile.colorGrading.enabled = true;
@@ -25,7 +25,7 @@ public class StalkerIntroScript : MonoBehaviour
 		this.SkipPanel.alpha = 0f;
 	}
 
-	// Token: 0x06001D1D RID: 7453 RVA: 0x0015B3D0 File Offset: 0x001595D0
+	// Token: 0x06001D1D RID: 7453 RVA: 0x0015B39C File Offset: 0x0015959C
 	private void Update()
 	{
 		if (this.SkipPanel.enabled)
@@ -95,7 +95,7 @@ public class StalkerIntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D1E RID: 7454 RVA: 0x0015B7A0 File Offset: 0x001599A0
+	// Token: 0x06001D1E RID: 7454 RVA: 0x0015B76C File Offset: 0x0015996C
 	private void UpdateDOF(float Value)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -104,7 +104,7 @@ public class StalkerIntroScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x06001D1F RID: 7455 RVA: 0x0015B7E4 File Offset: 0x001599E4
+	// Token: 0x06001D1F RID: 7455 RVA: 0x0015B7B0 File Offset: 0x001599B0
 	public void SetVignetteBlack()
 	{
 		VignetteModel.Settings settings = this.Profile.vignette.settings;
@@ -115,7 +115,7 @@ public class StalkerIntroScript : MonoBehaviour
 		this.Profile.vignette.settings = settings;
 	}
 
-	// Token: 0x06001D20 RID: 7456 RVA: 0x0015B858 File Offset: 0x00159A58
+	// Token: 0x06001D20 RID: 7456 RVA: 0x0015B824 File Offset: 0x00159A24
 	private void UpdateSkipPanel()
 	{
 		this.SkipTimer += Time.deltaTime;

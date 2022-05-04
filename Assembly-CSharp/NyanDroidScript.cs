@@ -5,13 +5,13 @@ using UnityEngine;
 // Token: 0x02000385 RID: 901
 public class NyanDroidScript : MonoBehaviour
 {
-	// Token: 0x06001A44 RID: 6724 RVA: 0x001153D0 File Offset: 0x001135D0
+	// Token: 0x06001A44 RID: 6724 RVA: 0x0011539C File Offset: 0x0011359C
 	private void Start()
 	{
 		this.OriginalPosition = base.transform.position;
 	}
 
-	// Token: 0x06001A45 RID: 6725 RVA: 0x001153E4 File Offset: 0x001135E4
+	// Token: 0x06001A45 RID: 6725 RVA: 0x001153B0 File Offset: 0x001135B0
 	private void Update()
 	{
 		if (!this.Pathfinding.canSearch)

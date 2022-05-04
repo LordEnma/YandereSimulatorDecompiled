@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x0200030C RID: 780
 public class GrowShrinkScript : MonoBehaviour
 {
-	// Token: 0x0600184C RID: 6220 RVA: 0x000E6BBC File Offset: 0x000E4DBC
+	// Token: 0x0600184C RID: 6220 RVA: 0x000E6B88 File Offset: 0x000E4D88
 	private void Start()
 	{
 		this.OriginalPosition = base.transform.localPosition;
 		base.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x0600184D RID: 6221 RVA: 0x000E6BE0 File Offset: 0x000E4DE0
+	// Token: 0x0600184D RID: 6221 RVA: 0x000E6BAC File Offset: 0x000E4DAC
 	private void Update()
 	{
 		this.Timer += Time.deltaTime * 2f;
@@ -51,7 +51,7 @@ public class GrowShrinkScript : MonoBehaviour
 		base.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
 	}
 
-	// Token: 0x0600184E RID: 6222 RVA: 0x000E6DA0 File Offset: 0x000E4FA0
+	// Token: 0x0600184E RID: 6222 RVA: 0x000E6D6C File Offset: 0x000E4F6C
 	public void Return()
 	{
 		base.transform.localPosition = this.OriginalPosition;

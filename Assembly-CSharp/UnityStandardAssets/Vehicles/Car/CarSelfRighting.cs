@@ -6,13 +6,13 @@ namespace UnityStandardAssets.Vehicles.Car
 	// Token: 0x02000533 RID: 1331
 	public class CarSelfRighting : MonoBehaviour
 	{
-		// Token: 0x060021E8 RID: 8680 RVA: 0x001F2AFB File Offset: 0x001F0CFB
+		// Token: 0x060021E9 RID: 8681 RVA: 0x001F2BF7 File Offset: 0x001F0DF7
 		private void Start()
 		{
 			this.m_Rigidbody = base.GetComponent<Rigidbody>();
 		}
 
-		// Token: 0x060021E9 RID: 8681 RVA: 0x001F2B0C File Offset: 0x001F0D0C
+		// Token: 0x060021EA RID: 8682 RVA: 0x001F2C08 File Offset: 0x001F0E08
 		private void Update()
 		{
 			if (base.transform.up.y > 0f || this.m_Rigidbody.velocity.magnitude > this.m_VelocityThreshold)
@@ -25,7 +25,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021EA RID: 8682 RVA: 0x001F2B70 File Offset: 0x001F0D70
+		// Token: 0x060021EB RID: 8683 RVA: 0x001F2C6C File Offset: 0x001F0E6C
 		private void RightCar()
 		{
 			base.transform.position += Vector3.up;

@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class RangeInt
 {
-	// Token: 0x06001F90 RID: 8080 RVA: 0x001BF95C File Offset: 0x001BDB5C
+	// Token: 0x06001F91 RID: 8081 RVA: 0x001BFA58 File Offset: 0x001BDC58
 	public RangeInt(int value, int min, int max)
 	{
 		this.value = value;
@@ -13,14 +13,14 @@ public class RangeInt
 		this.max = max;
 	}
 
-	// Token: 0x06001F91 RID: 8081 RVA: 0x001BF979 File Offset: 0x001BDB79
+	// Token: 0x06001F92 RID: 8082 RVA: 0x001BFA75 File Offset: 0x001BDC75
 	public RangeInt(int min, int max) : this(min, min, max)
 	{
 	}
 
 	// Token: 0x170004C1 RID: 1217
-	// (get) Token: 0x06001F92 RID: 8082 RVA: 0x001BF984 File Offset: 0x001BDB84
-	// (set) Token: 0x06001F93 RID: 8083 RVA: 0x001BF98C File Offset: 0x001BDB8C
+	// (get) Token: 0x06001F93 RID: 8083 RVA: 0x001BFA80 File Offset: 0x001BDC80
+	// (set) Token: 0x06001F94 RID: 8084 RVA: 0x001BFA88 File Offset: 0x001BDC88
 	public int Value
 	{
 		get
@@ -34,7 +34,7 @@ public class RangeInt
 	}
 
 	// Token: 0x170004C2 RID: 1218
-	// (get) Token: 0x06001F94 RID: 8084 RVA: 0x001BF995 File Offset: 0x001BDB95
+	// (get) Token: 0x06001F95 RID: 8085 RVA: 0x001BFA91 File Offset: 0x001BDC91
 	public int Min
 	{
 		get
@@ -44,7 +44,7 @@ public class RangeInt
 	}
 
 	// Token: 0x170004C3 RID: 1219
-	// (get) Token: 0x06001F95 RID: 8085 RVA: 0x001BF99D File Offset: 0x001BDB9D
+	// (get) Token: 0x06001F96 RID: 8086 RVA: 0x001BFA99 File Offset: 0x001BDC99
 	public int Max
 	{
 		get
@@ -54,7 +54,7 @@ public class RangeInt
 	}
 
 	// Token: 0x170004C4 RID: 1220
-	// (get) Token: 0x06001F96 RID: 8086 RVA: 0x001BF9A5 File Offset: 0x001BDBA5
+	// (get) Token: 0x06001F97 RID: 8087 RVA: 0x001BFAA1 File Offset: 0x001BDCA1
 	public int Next
 	{
 		get
@@ -68,7 +68,7 @@ public class RangeInt
 	}
 
 	// Token: 0x170004C5 RID: 1221
-	// (get) Token: 0x06001F97 RID: 8087 RVA: 0x001BF9C4 File Offset: 0x001BDBC4
+	// (get) Token: 0x06001F98 RID: 8088 RVA: 0x001BFAC0 File Offset: 0x001BDCC0
 	public int Previous
 	{
 		get

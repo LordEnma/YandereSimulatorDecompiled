@@ -602,7 +602,7 @@ public class UISpriteCollection : UIBasicSprite
 	// Token: 0x02000648 RID: 1608
 	public struct Sprite
 	{
-		// Token: 0x06002650 RID: 9808 RVA: 0x002042F0 File Offset: 0x002024F0
+		// Token: 0x06002651 RID: 9809 RVA: 0x002043EC File Offset: 0x002025EC
 		public Vector4 GetDrawingDimensions(float pixelSize)
 		{
 			float num = -this.pivot.x * this.width;
@@ -695,22 +695,22 @@ public class UISpriteCollection : UIBasicSprite
 	}
 
 	// Token: 0x02000649 RID: 1609
-	// (Invoke) Token: 0x06002652 RID: 9810
+	// (Invoke) Token: 0x06002653 RID: 9811
 	public delegate void OnHoverCB(object obj, bool isOver);
 
 	// Token: 0x0200064A RID: 1610
-	// (Invoke) Token: 0x06002656 RID: 9814
+	// (Invoke) Token: 0x06002657 RID: 9815
 	public delegate void OnPressCB(object obj, bool isPressed);
 
 	// Token: 0x0200064B RID: 1611
-	// (Invoke) Token: 0x0600265A RID: 9818
+	// (Invoke) Token: 0x0600265B RID: 9819
 	public delegate void OnClickCB(object obj);
 
 	// Token: 0x0200064C RID: 1612
-	// (Invoke) Token: 0x0600265E RID: 9822
+	// (Invoke) Token: 0x0600265F RID: 9823
 	public delegate void OnDragCB(object obj, Vector2 delta);
 
 	// Token: 0x0200064D RID: 1613
-	// (Invoke) Token: 0x06002662 RID: 9826
+	// (Invoke) Token: 0x06002663 RID: 9827
 	public delegate void OnTooltipCB(object obj, bool show);
 }

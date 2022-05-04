@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003CC RID: 972
 public class RagdollScript : MonoBehaviour
 {
-	// Token: 0x06001B68 RID: 7016 RVA: 0x001330B8 File Offset: 0x001312B8
+	// Token: 0x06001B68 RID: 7016 RVA: 0x00133084 File Offset: 0x00131284
 	private void Start()
 	{
 		this.ElectrocutionAnimation = false;
@@ -61,7 +61,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B69 RID: 7017 RVA: 0x00133288 File Offset: 0x00131488
+	// Token: 0x06001B69 RID: 7017 RVA: 0x00133254 File Offset: 0x00131454
 	private void Update()
 	{
 		if (this.UpdateNextFrame)
@@ -467,7 +467,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B6A RID: 7018 RVA: 0x00134608 File Offset: 0x00132808
+	// Token: 0x06001B6A RID: 7018 RVA: 0x001345D4 File Offset: 0x001327D4
 	private void LateUpdate()
 	{
 		if (!this.Male)
@@ -535,7 +535,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B6B RID: 7019 RVA: 0x00134A28 File Offset: 0x00132C28
+	// Token: 0x06001B6B RID: 7019 RVA: 0x001349F4 File Offset: 0x00132BF4
 	public void StopDragging()
 	{
 		Rigidbody[] allRigidbodies = this.Student.Ragdoll.AllRigidbodies;
@@ -560,7 +560,7 @@ public class RagdollScript : MonoBehaviour
 		this.Dragged = false;
 	}
 
-	// Token: 0x06001B6C RID: 7020 RVA: 0x00134B18 File Offset: 0x00132D18
+	// Token: 0x06001B6C RID: 7020 RVA: 0x00134AE4 File Offset: 0x00132CE4
 	private void PickNearestLimb()
 	{
 		if (this.Concealed)
@@ -581,7 +581,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B6D RID: 7021 RVA: 0x00134BAC File Offset: 0x00132DAC
+	// Token: 0x06001B6D RID: 7021 RVA: 0x00134B78 File Offset: 0x00132D78
 	public void Dump()
 	{
 		if (this.DumpType == RagdollDumpType.Incinerator)
@@ -609,7 +609,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B6E RID: 7022 RVA: 0x00134C8C File Offset: 0x00132E8C
+	// Token: 0x06001B6E RID: 7022 RVA: 0x00134C58 File Offset: 0x00132E58
 	public void Fall()
 	{
 		base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + 0.0001f, base.transform.position.z);
@@ -642,7 +642,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B6F RID: 7023 RVA: 0x00134DE4 File Offset: 0x00132FE4
+	// Token: 0x06001B6F RID: 7023 RVA: 0x00134DB0 File Offset: 0x00132FB0
 	public void QuickDismember()
 	{
 		Debug.Log("QuickDismember() was called.");
@@ -665,7 +665,7 @@ public class RagdollScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001B70 RID: 7024 RVA: 0x00134F5C File Offset: 0x0013315C
+	// Token: 0x06001B70 RID: 7024 RVA: 0x00134F28 File Offset: 0x00133128
 	public void Dismember()
 	{
 		Debug.Log("Dismembering a character.");
@@ -819,7 +819,7 @@ public class RagdollScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B71 RID: 7025 RVA: 0x00135900 File Offset: 0x00133B00
+	// Token: 0x06001B71 RID: 7025 RVA: 0x001358CC File Offset: 0x00133ACC
 	public void Remove()
 	{
 		this.Student.Removed = true;
@@ -835,7 +835,7 @@ public class RagdollScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001B72 RID: 7026 RVA: 0x00135960 File Offset: 0x00133B60
+	// Token: 0x06001B72 RID: 7026 RVA: 0x0013592C File Offset: 0x00133B2C
 	public void DestroyRigidbodies()
 	{
 		this.BloodPoolSpawner.gameObject.SetActive(false);
@@ -853,7 +853,7 @@ public class RagdollScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001B73 RID: 7027 RVA: 0x001359FC File Offset: 0x00133BFC
+	// Token: 0x06001B73 RID: 7027 RVA: 0x001359C8 File Offset: 0x00133BC8
 	public void DisableRigidbodies()
 	{
 		for (int i = 0; i < this.AllRigidbodies.Length; i++)
@@ -865,7 +865,7 @@ public class RagdollScript : MonoBehaviour
 		this.StopAnimation = true;
 	}
 
-	// Token: 0x06001B74 RID: 7028 RVA: 0x00135A48 File Offset: 0x00133C48
+	// Token: 0x06001B74 RID: 7028 RVA: 0x00135A14 File Offset: 0x00133C14
 	public void EnableRigidbodies()
 	{
 		for (int i = 0; i < this.AllRigidbodies.Length; i++)
@@ -878,7 +878,7 @@ public class RagdollScript : MonoBehaviour
 		this.StopAnimation = false;
 	}
 
-	// Token: 0x06001B75 RID: 7029 RVA: 0x00135AB4 File Offset: 0x00133CB4
+	// Token: 0x06001B75 RID: 7029 RVA: 0x00135A80 File Offset: 0x00133C80
 	public void HideAccessories()
 	{
 		this.Student.Cosmetic.RightStockings[0].SetActive(false);
@@ -889,7 +889,7 @@ public class RagdollScript : MonoBehaviour
 		this.Student.Cosmetic.Hoodie.SetActive(false);
 	}
 
-	// Token: 0x06001B76 RID: 7030 RVA: 0x00135B4C File Offset: 0x00133D4C
+	// Token: 0x06001B76 RID: 7030 RVA: 0x00135B18 File Offset: 0x00133D18
 	public void ConcealInTrashBag()
 	{
 		this.Prompt.Label[0].text = "     Dismember";

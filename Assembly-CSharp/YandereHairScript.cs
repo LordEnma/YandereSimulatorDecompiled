@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020004D0 RID: 1232
 public class YandereHairScript : MonoBehaviour
 {
-	// Token: 0x0600203A RID: 8250 RVA: 0x001CD672 File Offset: 0x001CB872
+	// Token: 0x0600203B RID: 8251 RVA: 0x001CD76E File Offset: 0x001CB96E
 	private void Start()
 	{
 		ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/YandereHair/Hair_" + this.Yandere.Hairstyle.ToString() + ".png");
 		this.Limit = this.Yandere.Hairstyles.Length - 1;
 	}
 
-	// Token: 0x0600203B RID: 8251 RVA: 0x001CD6B4 File Offset: 0x001CB8B4
+	// Token: 0x0600203C RID: 8252 RVA: 0x001CD7B0 File Offset: 0x001CB9B0
 	private void Update()
 	{
 		if (this.Yandere.Hairstyle < this.Limit)

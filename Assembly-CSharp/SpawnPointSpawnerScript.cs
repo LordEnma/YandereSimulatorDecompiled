@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200043C RID: 1084
 public class SpawnPointSpawnerScript : MonoBehaviour
 {
-	// Token: 0x06001D04 RID: 7428 RVA: 0x0015A918 File Offset: 0x00158B18
+	// Token: 0x06001D04 RID: 7428 RVA: 0x0015A8E4 File Offset: 0x00158AE4
 	private void Start()
 	{
 		while (this.ID < this.Limit)

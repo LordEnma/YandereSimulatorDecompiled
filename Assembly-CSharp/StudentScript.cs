@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class StudentScript : MonoBehaviour
 {
 	// Token: 0x170004A9 RID: 1193
-	// (get) Token: 0x06001E05 RID: 7685 RVA: 0x001710E9 File Offset: 0x0016F2E9
+	// (get) Token: 0x06001E06 RID: 7686 RVA: 0x00171209 File Offset: 0x0016F409
 	public bool Alive
 	{
 		get
@@ -17,7 +17,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E06 RID: 7686 RVA: 0x001710F4 File Offset: 0x0016F2F4
+	// Token: 0x06001E07 RID: 7687 RVA: 0x00171214 File Offset: 0x0016F414
 	public void Start()
 	{
 		this.CounterAnim = "f02_teacherCounterB_00";
@@ -1350,7 +1350,7 @@ public class StudentScript : MonoBehaviour
 		this.CharacterAnimation.Sample();
 	}
 
-	// Token: 0x06001E07 RID: 7687 RVA: 0x0017407C File Offset: 0x0017227C
+	// Token: 0x06001E08 RID: 7688 RVA: 0x0017419C File Offset: 0x0017239C
 	private float GetPerceptionPercent(float distance)
 	{
 		float num = Mathf.Clamp01(distance / this.VisionDistance);
@@ -1358,7 +1358,7 @@ public class StudentScript : MonoBehaviour
 	}
 
 	// Token: 0x170004AA RID: 1194
-	// (get) Token: 0x06001E08 RID: 7688 RVA: 0x001740A0 File Offset: 0x001722A0
+	// (get) Token: 0x06001E09 RID: 7689 RVA: 0x001741C0 File Offset: 0x001723C0
 	private SubtitleType LostPhoneSubtitleType
 	{
 		get
@@ -1376,7 +1376,7 @@ public class StudentScript : MonoBehaviour
 	}
 
 	// Token: 0x170004AB RID: 1195
-	// (get) Token: 0x06001E09 RID: 7689 RVA: 0x001740F4 File Offset: 0x001722F4
+	// (get) Token: 0x06001E0A RID: 7690 RVA: 0x00174214 File Offset: 0x00172414
 	private SubtitleType PickpocketSubtitleType
 	{
 		get
@@ -1400,7 +1400,7 @@ public class StudentScript : MonoBehaviour
 	}
 
 	// Token: 0x170004AC RID: 1196
-	// (get) Token: 0x06001E0A RID: 7690 RVA: 0x00174170 File Offset: 0x00172370
+	// (get) Token: 0x06001E0B RID: 7691 RVA: 0x00174290 File Offset: 0x00172490
 	private SubtitleType SplashSubtitleType
 	{
 		get
@@ -1425,7 +1425,7 @@ public class StudentScript : MonoBehaviour
 	}
 
 	// Token: 0x170004AD RID: 1197
-	// (get) Token: 0x06001E0B RID: 7691 RVA: 0x001741D8 File Offset: 0x001723D8
+	// (get) Token: 0x06001E0C RID: 7692 RVA: 0x001742F8 File Offset: 0x001724F8
 	public SubtitleType TaskLineResponseType
 	{
 		get
@@ -1535,7 +1535,7 @@ public class StudentScript : MonoBehaviour
 	}
 
 	// Token: 0x170004AE RID: 1198
-	// (get) Token: 0x06001E0C RID: 7692 RVA: 0x00174388 File Offset: 0x00172588
+	// (get) Token: 0x06001E0D RID: 7693 RVA: 0x001744A8 File Offset: 0x001726A8
 	public SubtitleType ClubInfoResponseType
 	{
 		get
@@ -1607,7 +1607,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E0D RID: 7693 RVA: 0x00174454 File Offset: 0x00172654
+	// Token: 0x06001E0E RID: 7694 RVA: 0x00174574 File Offset: 0x00172774
 	private bool PointIsInFOV(Vector3 point)
 	{
 		Vector3 position = this.Eyes.transform.position;
@@ -1616,7 +1616,7 @@ public class StudentScript : MonoBehaviour
 		return Vector3.Angle(this.Head.transform.forward, to) <= num;
 	}
 
-	// Token: 0x06001E0E RID: 7694 RVA: 0x0017449C File Offset: 0x0017269C
+	// Token: 0x06001E0F RID: 7695 RVA: 0x001745BC File Offset: 0x001727BC
 	public bool SeenByYandere()
 	{
 		Debug.Log("A ''SeenByYandere'' check is occuring.");
@@ -1633,7 +1633,7 @@ public class StudentScript : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06001E0F RID: 7695 RVA: 0x001745C8 File Offset: 0x001727C8
+	// Token: 0x06001E10 RID: 7696 RVA: 0x001746E8 File Offset: 0x001728E8
 	public bool CanSeeObject(GameObject obj, Vector3 targetPoint, int[] layers, int mask)
 	{
 		Vector3 position = this.Eyes.transform.position;
@@ -1660,7 +1660,7 @@ public class StudentScript : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06001E10 RID: 7696 RVA: 0x00174664 File Offset: 0x00172864
+	// Token: 0x06001E11 RID: 7697 RVA: 0x00174784 File Offset: 0x00172984
 	public bool CanSeeObject(GameObject obj, Vector3 targetPoint)
 	{
 		if (!this.Blind)
@@ -1680,13 +1680,13 @@ public class StudentScript : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06001E11 RID: 7697 RVA: 0x001746FF File Offset: 0x001728FF
+	// Token: 0x06001E12 RID: 7698 RVA: 0x0017481F File Offset: 0x00172A1F
 	public bool CanSeeObject(GameObject obj)
 	{
 		return this.CanSeeObject(obj, obj.transform.position);
 	}
 
-	// Token: 0x06001E12 RID: 7698 RVA: 0x00174714 File Offset: 0x00172914
+	// Token: 0x06001E13 RID: 7699 RVA: 0x00174834 File Offset: 0x00172A34
 	private void Update()
 	{
 		if (!this.Stop)
@@ -1748,7 +1748,7 @@ public class StudentScript : MonoBehaviour
 		this.UpdateStop();
 	}
 
-	// Token: 0x06001E13 RID: 7699 RVA: 0x00174828 File Offset: 0x00172A28
+	// Token: 0x06001E14 RID: 7700 RVA: 0x00174948 File Offset: 0x00172B48
 	private void UpdateStop()
 	{
 		if (this.StudentManager.Pose)
@@ -1895,7 +1895,7 @@ public class StudentScript : MonoBehaviour
 		this.UpdateDetectionMarker();
 	}
 
-	// Token: 0x06001E14 RID: 7700 RVA: 0x00174E14 File Offset: 0x00173014
+	// Token: 0x06001E15 RID: 7701 RVA: 0x00174F34 File Offset: 0x00173134
 	private void UpdateRoutine()
 	{
 		if (this.Routine)
@@ -9581,7 +9581,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E15 RID: 7701 RVA: 0x0018A728 File Offset: 0x00188928
+	// Token: 0x06001E16 RID: 7702 RVA: 0x0018A848 File Offset: 0x00188A48
 	private void UpdateVisibleCorpses()
 	{
 		this.VisibleCorpses.Clear();
@@ -9626,7 +9626,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E16 RID: 7702 RVA: 0x0018A948 File Offset: 0x00188B48
+	// Token: 0x06001E17 RID: 7703 RVA: 0x0018AA68 File Offset: 0x00188C68
 	private void UpdateVisibleBlood()
 	{
 		this.ID = 0;
@@ -9652,7 +9652,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E17 RID: 7703 RVA: 0x0018AB00 File Offset: 0x00188D00
+	// Token: 0x06001E18 RID: 7704 RVA: 0x0018AC20 File Offset: 0x00188E20
 	private void UpdateVisibleLimbs()
 	{
 		this.ID = 0;
@@ -9678,7 +9678,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E18 RID: 7704 RVA: 0x0018AC90 File Offset: 0x00188E90
+	// Token: 0x06001E19 RID: 7705 RVA: 0x0018ADB0 File Offset: 0x00188FB0
 	private void UpdateVisibleWeapons()
 	{
 		this.ID = 0;
@@ -9728,7 +9728,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E19 RID: 7705 RVA: 0x0018AFF0 File Offset: 0x001891F0
+	// Token: 0x06001E1A RID: 7706 RVA: 0x0018B110 File Offset: 0x00189310
 	private void UpdateVision()
 	{
 		bool flag = false;
@@ -10210,7 +10210,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E1A RID: 7706 RVA: 0x0018CACC File Offset: 0x0018ACCC
+	// Token: 0x06001E1B RID: 7707 RVA: 0x0018CBEC File Offset: 0x0018ADEC
 	public void BecomeAlarmed()
 	{
 		if (this.Yandere.Medusa && this.YandereVisible)
@@ -10494,7 +10494,7 @@ public class StudentScript : MonoBehaviour
 		this.SawCorpseThisFrame = false;
 	}
 
-	// Token: 0x06001E1B RID: 7707 RVA: 0x0018D388 File Offset: 0x0018B588
+	// Token: 0x06001E1C RID: 7708 RVA: 0x0018D4A8 File Offset: 0x0018B6A8
 	private void UpdateDetectionMarker()
 	{
 		if (this.Alarm < 0f)
@@ -10530,7 +10530,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E1C RID: 7708 RVA: 0x0018D56C File Offset: 0x0018B76C
+	// Token: 0x06001E1D RID: 7709 RVA: 0x0018D68C File Offset: 0x0018B88C
 	private void UpdateTalkInput()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -11131,7 +11131,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E1D RID: 7709 RVA: 0x0018F438 File Offset: 0x0018D638
+	// Token: 0x06001E1E RID: 7710 RVA: 0x0018F558 File Offset: 0x0018D758
 	private void UpdateDying()
 	{
 		this.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
@@ -11244,7 +11244,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E1E RID: 7710 RVA: 0x0018FBA0 File Offset: 0x0018DDA0
+	// Token: 0x06001E1F RID: 7711 RVA: 0x0018FCC0 File Offset: 0x0018DEC0
 	private void UpdatePushed()
 	{
 		this.Alarm -= Time.deltaTime * 100f * (1f / this.Paranoia);
@@ -11255,7 +11255,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E1F RID: 7711 RVA: 0x0018FC28 File Offset: 0x0018DE28
+	// Token: 0x06001E20 RID: 7712 RVA: 0x0018FD48 File Offset: 0x0018DF48
 	private void UpdateDrowned()
 	{
 		this.SplashTimer += Time.deltaTime;
@@ -11272,7 +11272,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E20 RID: 7712 RVA: 0x0018FCF8 File Offset: 0x0018DEF8
+	// Token: 0x06001E21 RID: 7713 RVA: 0x0018FE18 File Offset: 0x0018E018
 	private void UpdateWitnessedMurder()
 	{
 		if (this.Threatened)
@@ -11413,7 +11413,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E21 RID: 7713 RVA: 0x00190204 File Offset: 0x0018E404
+	// Token: 0x06001E22 RID: 7714 RVA: 0x00190324 File Offset: 0x0018E524
 	private void UpdateAlarmed()
 	{
 		if (!this.Threatened)
@@ -12257,7 +12257,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E22 RID: 7714 RVA: 0x0019233C File Offset: 0x0019053C
+	// Token: 0x06001E23 RID: 7715 RVA: 0x0019245C File Offset: 0x0019065C
 	private void UpdateBurning()
 	{
 		if (this.DistanceToPlayer < 1f && !this.Yandere.Shoved && !this.Yandere.Egg)
@@ -12279,7 +12279,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E23 RID: 7715 RVA: 0x00192404 File Offset: 0x00190604
+	// Token: 0x06001E24 RID: 7716 RVA: 0x00192524 File Offset: 0x00190724
 	private void UpdateSplashed()
 	{
 		this.CharacterAnimation.CrossFade(this.SplashedAnim);
@@ -12385,7 +12385,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E24 RID: 7716 RVA: 0x00192880 File Offset: 0x00190A80
+	// Token: 0x06001E25 RID: 7717 RVA: 0x001929A0 File Offset: 0x00190BA0
 	private void UpdateTurningOffRadio()
 	{
 		if (this.Radio.On || (this.RadioPhase == 3 && this.Radio.transform.parent == null))
@@ -12480,7 +12480,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E25 RID: 7717 RVA: 0x00192D34 File Offset: 0x00190F34
+	// Token: 0x06001E26 RID: 7718 RVA: 0x00192E54 File Offset: 0x00191054
 	private void UpdateVomiting()
 	{
 		if (this.VomitPhase != 0 && this.VomitPhase != 4)
@@ -12588,7 +12588,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E26 RID: 7718 RVA: 0x00193150 File Offset: 0x00191350
+	// Token: 0x06001E27 RID: 7719 RVA: 0x00193270 File Offset: 0x00191470
 	private void StopVomitting()
 	{
 		this.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
@@ -12608,7 +12608,7 @@ public class StudentScript : MonoBehaviour
 		this.WalkAnim = this.OriginalWalkAnim;
 	}
 
-	// Token: 0x06001E27 RID: 7719 RVA: 0x00193200 File Offset: 0x00191400
+	// Token: 0x06001E28 RID: 7720 RVA: 0x00193320 File Offset: 0x00191520
 	private void UpdateConfessing()
 	{
 		if (!this.Male)
@@ -12715,7 +12715,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E28 RID: 7720 RVA: 0x001936AC File Offset: 0x001918AC
+	// Token: 0x06001E29 RID: 7721 RVA: 0x001937CC File Offset: 0x001919CC
 	private void UpdateMisc()
 	{
 		if (this.IgnoreTimer > 0f)
@@ -12800,7 +12800,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E29 RID: 7721 RVA: 0x00193CD0 File Offset: 0x00191ED0
+	// Token: 0x06001E2A RID: 7722 RVA: 0x00193DF0 File Offset: 0x00191FF0
 	private void LateUpdate()
 	{
 		if (this.StudentManager.DisableFarAnims && this.DistanceToPlayer >= (float)this.StudentManager.FarAnimThreshold && this.CharacterAnimation.cullingType != AnimationCullingType.AlwaysAnimate && !this.WitnessCamera.Show)
@@ -12966,7 +12966,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E2A RID: 7722 RVA: 0x001946AC File Offset: 0x001928AC
+	// Token: 0x06001E2B RID: 7723 RVA: 0x001947CC File Offset: 0x001929CC
 	public void CalculateReputationPenalty()
 	{
 		if ((this.Male && this.Yandere.Class.Seduction + this.Yandere.Class.SeductionBonus > 2) || this.Yandere.Class.Seduction + this.Yandere.Class.SeductionBonus > 4)
@@ -13014,7 +13014,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E2B RID: 7723 RVA: 0x00194864 File Offset: 0x00192A64
+	// Token: 0x06001E2C RID: 7724 RVA: 0x00194984 File Offset: 0x00192B84
 	public void MoveTowardsTarget(Vector3 target)
 	{
 		if (Time.timeScale > 0.0001f && this.MyController.enabled)
@@ -13027,13 +13027,13 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E2C RID: 7724 RVA: 0x001948CD File Offset: 0x00192ACD
+	// Token: 0x06001E2D RID: 7725 RVA: 0x001949ED File Offset: 0x00192BED
 	private void LookTowardsTarget(Vector3 target)
 	{
 		float timeScale = Time.timeScale;
 	}
 
-	// Token: 0x06001E2D RID: 7725 RVA: 0x001948DC File Offset: 0x00192ADC
+	// Token: 0x06001E2E RID: 7726 RVA: 0x001949FC File Offset: 0x00192BFC
 	public void AttackReaction()
 	{
 		Debug.Log(this.Name + " is being attacked.");
@@ -13254,7 +13254,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E2E RID: 7726 RVA: 0x00195278 File Offset: 0x00193478
+	// Token: 0x06001E2F RID: 7727 RVA: 0x00195398 File Offset: 0x00193598
 	public void DropPlate()
 	{
 		if (this.MyPlate != null)
@@ -13277,7 +13277,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E2F RID: 7727 RVA: 0x00195334 File Offset: 0x00193534
+	// Token: 0x06001E30 RID: 7728 RVA: 0x00195454 File Offset: 0x00193654
 	public void SenpaiNoticed()
 	{
 		Debug.Log("The ''SenpaiNoticed'' function has been called.");
@@ -13382,7 +13382,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E30 RID: 7728 RVA: 0x00195810 File Offset: 0x00193A10
+	// Token: 0x06001E31 RID: 7729 RVA: 0x00195930 File Offset: 0x00193B30
 	private void WitnessMurder()
 	{
 		Debug.Log(this.Name + " just realized that Yandere-chan is responsible for a murder!");
@@ -13659,7 +13659,7 @@ public class StudentScript : MonoBehaviour
 		this.StudentManager.UpdateMe(this.StudentID);
 	}
 
-	// Token: 0x06001E31 RID: 7729 RVA: 0x001961B8 File Offset: 0x001943B8
+	// Token: 0x06001E32 RID: 7730 RVA: 0x001962D8 File Offset: 0x001944D8
 	public void DropMisplacedWeapon()
 	{
 		this.WitnessedWeapon = false;
@@ -13673,7 +13673,7 @@ public class StudentScript : MonoBehaviour
 		this.WalkAnim = this.BeforeReturnAnim;
 	}
 
-	// Token: 0x06001E32 RID: 7730 RVA: 0x00196228 File Offset: 0x00194428
+	// Token: 0x06001E33 RID: 7731 RVA: 0x00196348 File Offset: 0x00194548
 	private void ChaseYandere()
 	{
 		Debug.Log(this.Name + " has begun to chase Yandere-chan.");
@@ -13691,7 +13691,7 @@ public class StudentScript : MonoBehaviour
 		this.StudentManager.UpdateStudents(0);
 	}
 
-	// Token: 0x06001E33 RID: 7731 RVA: 0x001962D0 File Offset: 0x001944D0
+	// Token: 0x06001E34 RID: 7732 RVA: 0x001963F0 File Offset: 0x001945F0
 	private void PersonaReaction()
 	{
 		if (this.Persona == PersonaType.Sleuth)
@@ -14377,7 +14377,7 @@ public class StudentScript : MonoBehaviour
 		this.UpdateDetectionMarker();
 	}
 
-	// Token: 0x06001E34 RID: 7732 RVA: 0x00197C18 File Offset: 0x00195E18
+	// Token: 0x06001E35 RID: 7733 RVA: 0x00197D38 File Offset: 0x00195F38
 	private void BeginStruggle()
 	{
 		Debug.Log(this.Name + " has begun a struggle with Yandere-chan.");
@@ -14434,7 +14434,7 @@ public class StudentScript : MonoBehaviour
 		this.SpawnAlarmDisc();
 	}
 
-	// Token: 0x06001E35 RID: 7733 RVA: 0x00197E94 File Offset: 0x00196094
+	// Token: 0x06001E36 RID: 7734 RVA: 0x00197FB4 File Offset: 0x001961B4
 	public void GetDestinations()
 	{
 		if (!this.Teacher)
@@ -14925,7 +14925,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E36 RID: 7734 RVA: 0x00199320 File Offset: 0x00197520
+	// Token: 0x06001E37 RID: 7735 RVA: 0x00199440 File Offset: 0x00197640
 	private void UpdateOutlines()
 	{
 		Debug.Log("Turning " + this.Name + "'s outlines orange.");
@@ -14951,7 +14951,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E37 RID: 7735 RVA: 0x00199448 File Offset: 0x00197648
+	// Token: 0x06001E38 RID: 7736 RVA: 0x00199568 File Offset: 0x00197768
 	public void AddOutlineToHair()
 	{
 		if (this.Cosmetic.HairRenderer != null)
@@ -14985,7 +14985,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E38 RID: 7736 RVA: 0x00199624 File Offset: 0x00197824
+	// Token: 0x06001E39 RID: 7737 RVA: 0x00199744 File Offset: 0x00197944
 	public void PickRandomAnim()
 	{
 		if (this.Grudge)
@@ -15001,7 +15001,7 @@ public class StudentScript : MonoBehaviour
 		this.RandomAnim = this.DelinquentAnims[UnityEngine.Random.Range(0, this.DelinquentAnims.Length)];
 	}
 
-	// Token: 0x06001E39 RID: 7737 RVA: 0x00199688 File Offset: 0x00197888
+	// Token: 0x06001E3A RID: 7738 RVA: 0x001997A8 File Offset: 0x001979A8
 	private void PickRandomGossipAnim()
 	{
 		if (this.Grudge)
@@ -15025,7 +15025,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E3A RID: 7738 RVA: 0x00199734 File Offset: 0x00197934
+	// Token: 0x06001E3B RID: 7739 RVA: 0x00199854 File Offset: 0x00197A54
 	private void PickRandomSleuthAnim()
 	{
 		if (!this.Sleuthing)
@@ -15036,7 +15036,7 @@ public class StudentScript : MonoBehaviour
 		this.RandomSleuthAnim = this.SleuthAnims[UnityEngine.Random.Range(3, 6)];
 	}
 
-	// Token: 0x06001E3B RID: 7739 RVA: 0x00199768 File Offset: 0x00197968
+	// Token: 0x06001E3C RID: 7740 RVA: 0x00199888 File Offset: 0x00197A88
 	private void BecomeTeacher()
 	{
 		base.transform.localScale = new Vector3(1.1f, 1.1f, 1.1f);
@@ -15091,7 +15091,7 @@ public class StudentScript : MonoBehaviour
 		base.gameObject.tag = "Untagged";
 	}
 
-	// Token: 0x06001E3C RID: 7740 RVA: 0x001999BC File Offset: 0x00197BBC
+	// Token: 0x06001E3D RID: 7741 RVA: 0x00199ADC File Offset: 0x00197CDC
 	public void RemoveShoes()
 	{
 		if (!this.Male)
@@ -15103,7 +15103,7 @@ public class StudentScript : MonoBehaviour
 		this.MyRenderer.materials[this.Cosmetic.UniformID].mainTexture = this.Cosmetic.SocksTexture;
 	}
 
-	// Token: 0x06001E3D RID: 7741 RVA: 0x00199A34 File Offset: 0x00197C34
+	// Token: 0x06001E3E RID: 7742 RVA: 0x00199B54 File Offset: 0x00197D54
 	public void BecomeRagdoll()
 	{
 		if (this.BloodPool != null)
@@ -15314,7 +15314,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E3E RID: 7742 RVA: 0x0019A29C File Offset: 0x0019849C
+	// Token: 0x06001E3F RID: 7743 RVA: 0x0019A3BC File Offset: 0x001985BC
 	public void GetWet()
 	{
 		if (SchemeGlobals.GetSchemeStage(1) == 3 && this.Rival)
@@ -15433,7 +15433,7 @@ public class StudentScript : MonoBehaviour
 		this.UpdateDetectionMarker();
 	}
 
-	// Token: 0x06001E3F RID: 7743 RVA: 0x0019A680 File Offset: 0x00198880
+	// Token: 0x06001E40 RID: 7744 RVA: 0x0019A7A0 File Offset: 0x001989A0
 	public void UnWet()
 	{
 		this.ID = 0;
@@ -15444,7 +15444,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E40 RID: 7744 RVA: 0x0019A6CC File Offset: 0x001988CC
+	// Token: 0x06001E41 RID: 7745 RVA: 0x0019A7EC File Offset: 0x001989EC
 	public void SetSplashes(bool Bool)
 	{
 		this.ID = 0;
@@ -15455,7 +15455,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E41 RID: 7745 RVA: 0x0019A718 File Offset: 0x00198918
+	// Token: 0x06001E42 RID: 7746 RVA: 0x0019A838 File Offset: 0x00198A38
 	public void StopMeeting()
 	{
 		Debug.Log(this.Name + " has called the StopMeeting() function.");
@@ -15477,7 +15477,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E42 RID: 7746 RVA: 0x0019A7CC File Offset: 0x001989CC
+	// Token: 0x06001E43 RID: 7747 RVA: 0x0019A8EC File Offset: 0x00198AEC
 	public void RemoveOfferHelpPrompt()
 	{
 		OfferHelpScript offerHelpScript = null;
@@ -15509,7 +15509,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E43 RID: 7747 RVA: 0x0019A8B8 File Offset: 0x00198AB8
+	// Token: 0x06001E44 RID: 7748 RVA: 0x0019A9D8 File Offset: 0x00198BD8
 	public void Combust()
 	{
 		this.Police.CorpseList[this.Police.Corpses] = this.Ragdoll;
@@ -15563,7 +15563,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E44 RID: 7748 RVA: 0x0019AAD0 File Offset: 0x00198CD0
+	// Token: 0x06001E45 RID: 7749 RVA: 0x0019ABF0 File Offset: 0x00198DF0
 	public void JojoReact()
 	{
 		UnityEngine.Object.Instantiate<GameObject>(this.JojoHitEffect, base.transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
@@ -15597,7 +15597,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E45 RID: 7749 RVA: 0x0019AC08 File Offset: 0x00198E08
+	// Token: 0x06001E46 RID: 7750 RVA: 0x0019AD28 File Offset: 0x00198F28
 	private void Nude()
 	{
 		if (!this.Male)
@@ -15656,7 +15656,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E46 RID: 7750 RVA: 0x0019AE6C File Offset: 0x0019906C
+	// Token: 0x06001E47 RID: 7751 RVA: 0x0019AF8C File Offset: 0x0019918C
 	public void ChangeSchoolwear()
 	{
 		this.ID = 0;
@@ -15800,7 +15800,7 @@ public class StudentScript : MonoBehaviour
 		this.WalkAnim = this.OriginalWalkAnim;
 	}
 
-	// Token: 0x06001E47 RID: 7751 RVA: 0x0019B418 File Offset: 0x00199618
+	// Token: 0x06001E48 RID: 7752 RVA: 0x0019B538 File Offset: 0x00199738
 	public void AttackOnTitan()
 	{
 		this.CharacterAnimation.CrossFade(this.WalkAnim);
@@ -15845,7 +15845,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E48 RID: 7752 RVA: 0x0019B5AC File Offset: 0x001997AC
+	// Token: 0x06001E49 RID: 7753 RVA: 0x0019B6CC File Offset: 0x001998CC
 	public void Spook()
 	{
 		if (!this.Male)
@@ -15862,7 +15862,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E49 RID: 7753 RVA: 0x0019B62C File Offset: 0x0019982C
+	// Token: 0x06001E4A RID: 7754 RVA: 0x0019B74C File Offset: 0x0019994C
 	private void Unspook()
 	{
 		this.MyRenderer.enabled = true;
@@ -15874,7 +15874,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E4A RID: 7754 RVA: 0x0019B680 File Offset: 0x00199880
+	// Token: 0x06001E4B RID: 7755 RVA: 0x0019B7A0 File Offset: 0x001999A0
 	private void GoChange()
 	{
 		if (!this.Male)
@@ -15892,7 +15892,7 @@ public class StudentScript : MonoBehaviour
 		this.Distracted = false;
 	}
 
-	// Token: 0x06001E4B RID: 7755 RVA: 0x0019B714 File Offset: 0x00199914
+	// Token: 0x06001E4C RID: 7756 RVA: 0x0019B834 File Offset: 0x00199A34
 	public void SpawnAlarmDisc()
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity);
@@ -15917,7 +15917,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E4C RID: 7756 RVA: 0x0019B810 File Offset: 0x00199A10
+	// Token: 0x06001E4D RID: 7757 RVA: 0x0019B930 File Offset: 0x00199B30
 	public void SpawnSmallAlarmDisc()
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.AlarmDisc, base.transform.position + Vector3.up, Quaternion.identity);
@@ -15925,7 +15925,7 @@ public class StudentScript : MonoBehaviour
 		gameObject.GetComponent<AlarmDiscScript>().NoScream = true;
 	}
 
-	// Token: 0x06001E4D RID: 7757 RVA: 0x0019B86C File Offset: 0x00199A6C
+	// Token: 0x06001E4E RID: 7758 RVA: 0x0019B98C File Offset: 0x00199B8C
 	public void ChangeClubwear()
 	{
 		if (!this.ClubAttire)
@@ -16066,7 +16066,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E4E RID: 7758 RVA: 0x0019BE18 File Offset: 0x0019A018
+	// Token: 0x06001E4F RID: 7759 RVA: 0x0019BF38 File Offset: 0x0019A138
 	private void WearLabCoat()
 	{
 		if (this.LabcoatAttacher.enabled)
@@ -16110,7 +16110,7 @@ public class StudentScript : MonoBehaviour
 		this.MyRenderer.materials[2].mainTexture = this.NudeTexture;
 	}
 
-	// Token: 0x06001E4F RID: 7759 RVA: 0x0019C010 File Offset: 0x0019A210
+	// Token: 0x06001E50 RID: 7760 RVA: 0x0019C130 File Offset: 0x0019A330
 	public void WearBikini()
 	{
 		if (!this.BikiniAttacher.enabled)
@@ -16138,7 +16138,7 @@ public class StudentScript : MonoBehaviour
 		this.ChangeSchoolwear();
 	}
 
-	// Token: 0x06001E50 RID: 7760 RVA: 0x0019C13C File Offset: 0x0019A33C
+	// Token: 0x06001E51 RID: 7761 RVA: 0x0019C25C File Offset: 0x0019A45C
 	public void AttachRiggedAccessory()
 	{
 		this.RiggedAccessory.GetComponent<RiggedAccessoryAttacher>().ID = this.StudentID;
@@ -16153,7 +16153,7 @@ public class StudentScript : MonoBehaviour
 		this.RiggedAccessory.SetActive(true);
 	}
 
-	// Token: 0x06001E51 RID: 7761 RVA: 0x0019C1B4 File Offset: 0x0019A3B4
+	// Token: 0x06001E52 RID: 7762 RVA: 0x0019C2D4 File Offset: 0x0019A4D4
 	public void CameraReact()
 	{
 		this.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
@@ -16245,7 +16245,7 @@ public class StudentScript : MonoBehaviour
 		this.EmptyHands();
 	}
 
-	// Token: 0x06001E52 RID: 7762 RVA: 0x0019C525 File Offset: 0x0019A725
+	// Token: 0x06001E53 RID: 7763 RVA: 0x0019C645 File Offset: 0x0019A845
 	private void LookForYandere()
 	{
 		if (!this.Yandere.Chased && this.CanSeeObject(this.Yandere.gameObject, this.Yandere.HeadPosition))
@@ -16254,7 +16254,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E53 RID: 7763 RVA: 0x0019C560 File Offset: 0x0019A760
+	// Token: 0x06001E54 RID: 7764 RVA: 0x0019C680 File Offset: 0x0019A880
 	public void UpdatePerception()
 	{
 		if ((this.Yandere != null && this.Yandere.Club == ClubType.Occult) || (this.Yandere != null && this.Yandere.Class.StealthBonus > 0))
@@ -16272,7 +16272,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E54 RID: 7764 RVA: 0x0019C5E4 File Offset: 0x0019A7E4
+	// Token: 0x06001E55 RID: 7765 RVA: 0x0019C704 File Offset: 0x0019A904
 	public void StopInvestigating()
 	{
 		this.Giggle = null;
@@ -16320,7 +16320,7 @@ public class StudentScript : MonoBehaviour
 		this.Routine = true;
 	}
 
-	// Token: 0x06001E55 RID: 7765 RVA: 0x0019C76C File Offset: 0x0019A96C
+	// Token: 0x06001E56 RID: 7766 RVA: 0x0019C88C File Offset: 0x0019AA8C
 	public void ForgetGiggle()
 	{
 		Debug.Log("For some reason, " + this.Name + " was just told to ForgetGiggle() and stop investigating.");
@@ -16333,7 +16333,7 @@ public class StudentScript : MonoBehaviour
 	}
 
 	// Token: 0x170004AF RID: 1199
-	// (get) Token: 0x06001E56 RID: 7766 RVA: 0x0019C7C1 File Offset: 0x0019A9C1
+	// (get) Token: 0x06001E57 RID: 7767 RVA: 0x0019C8E1 File Offset: 0x0019AAE1
 	public bool InCouple
 	{
 		get
@@ -16342,7 +16342,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E57 RID: 7767 RVA: 0x0019C7CC File Offset: 0x0019A9CC
+	// Token: 0x06001E58 RID: 7768 RVA: 0x0019C8EC File Offset: 0x0019AAEC
 	private bool LovedOneIsTargeted(int yandereTargetID)
 	{
 		bool flag = this.StudentID == this.StudentManager.SuitorID && yandereTargetID == this.StudentManager.RivalID;
@@ -16368,7 +16368,7 @@ public class StudentScript : MonoBehaviour
 		return flag || flag12;
 	}
 
-	// Token: 0x06001E58 RID: 7768 RVA: 0x0019C934 File Offset: 0x0019AB34
+	// Token: 0x06001E59 RID: 7769 RVA: 0x0019CA54 File Offset: 0x0019AC54
 	private void Pose()
 	{
 		this.StudentManager.PoseMode.ChoosingAction = true;
@@ -16388,7 +16388,7 @@ public class StudentScript : MonoBehaviour
 		this.Posing = true;
 	}
 
-	// Token: 0x06001E59 RID: 7769 RVA: 0x0019CA70 File Offset: 0x0019AC70
+	// Token: 0x06001E5A RID: 7770 RVA: 0x0019CB90 File Offset: 0x0019AD90
 	public void DisableEffects()
 	{
 		this.LiquidProjector.enabled = false;
@@ -16430,7 +16430,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E5A RID: 7770 RVA: 0x0019CBC4 File Offset: 0x0019ADC4
+	// Token: 0x06001E5B RID: 7771 RVA: 0x0019CCE4 File Offset: 0x0019AEE4
 	public void DetermineSenpaiReaction()
 	{
 		Debug.Log("We are now determining Senpai's reaction to Yandere-chan's behavior.");
@@ -16491,7 +16491,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E5B RID: 7771 RVA: 0x0019CD54 File Offset: 0x0019AF54
+	// Token: 0x06001E5C RID: 7772 RVA: 0x0019CE74 File Offset: 0x0019B074
 	public void ForgetRadio()
 	{
 		bool flag = false;
@@ -16511,7 +16511,7 @@ public class StudentScript : MonoBehaviour
 		this.Radio = null;
 	}
 
-	// Token: 0x06001E5C RID: 7772 RVA: 0x0019CDDC File Offset: 0x0019AFDC
+	// Token: 0x06001E5D RID: 7773 RVA: 0x0019CEFC File Offset: 0x0019B0FC
 	public void RealizePhoneIsMissing()
 	{
 		this.Phoneless = true;
@@ -16527,7 +16527,7 @@ public class StudentScript : MonoBehaviour
 		this.GetDestinations();
 	}
 
-	// Token: 0x06001E5D RID: 7773 RVA: 0x0019CE50 File Offset: 0x0019B050
+	// Token: 0x06001E5E RID: 7774 RVA: 0x0019CF70 File Offset: 0x0019B170
 	public void TeleportToDestination()
 	{
 		this.GetDestinations();
@@ -16549,7 +16549,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E5E RID: 7774 RVA: 0x0019CF3C File Offset: 0x0019B13C
+	// Token: 0x06001E5F RID: 7775 RVA: 0x0019D05C File Offset: 0x0019B25C
 	public void AltTeleportToDestination()
 	{
 		if (this.Club != ClubType.Council)
@@ -16579,7 +16579,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E5F RID: 7775 RVA: 0x0019D054 File Offset: 0x0019B254
+	// Token: 0x06001E60 RID: 7776 RVA: 0x0019D174 File Offset: 0x0019B374
 	public void GoCommitMurder()
 	{
 		Debug.Log("A mind-broken slave has just been instructed to go kill somebody.");
@@ -16628,7 +16628,7 @@ public class StudentScript : MonoBehaviour
 		this.Prompt.enabled = false;
 	}
 
-	// Token: 0x06001E60 RID: 7776 RVA: 0x0019D26C File Offset: 0x0019B46C
+	// Token: 0x06001E61 RID: 7777 RVA: 0x0019D38C File Offset: 0x0019B58C
 	public void Shove()
 	{
 		if (!this.Yandere.Shoved && !this.Dying && !this.Yandere.Egg && !this.Yandere.Lifting && !this.Yandere.SneakingShot && !this.ShoeRemoval.enabled && !this.Yandere.Talking && !this.SentToLocker)
@@ -16737,7 +16737,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E61 RID: 7777 RVA: 0x0019D750 File Offset: 0x0019B950
+	// Token: 0x06001E62 RID: 7778 RVA: 0x0019D870 File Offset: 0x0019BA70
 	public void PushYandereAway()
 	{
 		if (this.Yandere.Aiming)
@@ -16765,7 +16765,7 @@ public class StudentScript : MonoBehaviour
 		this.Yandere.ShoveSpeed = 2f;
 	}
 
-	// Token: 0x06001E62 RID: 7778 RVA: 0x0019D8D0 File Offset: 0x0019BAD0
+	// Token: 0x06001E63 RID: 7779 RVA: 0x0019D9F0 File Offset: 0x0019BBF0
 	public void Spray()
 	{
 		Debug.Log(this.Name + " is trying to Spray Yandere-chan!");
@@ -16894,7 +16894,7 @@ public class StudentScript : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x06001E63 RID: 7779 RVA: 0x0019DED0 File Offset: 0x0019C0D0
+	// Token: 0x06001E64 RID: 7780 RVA: 0x0019DFF0 File Offset: 0x0019C1F0
 	private void DetermineCorpseLocation()
 	{
 		Debug.Log(this.Name + " has called the DetermineCorpseLocation() function.");
@@ -16914,7 +16914,7 @@ public class StudentScript : MonoBehaviour
 		this.AssignCorpseGuardLocations();
 	}
 
-	// Token: 0x06001E64 RID: 7780 RVA: 0x0019DFE8 File Offset: 0x0019C1E8
+	// Token: 0x06001E65 RID: 7781 RVA: 0x0019E108 File Offset: 0x0019C308
 	private void DetermineBloodLocation()
 	{
 		if (this.StudentManager.BloodReporter == null)
@@ -16930,7 +16930,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E65 RID: 7781 RVA: 0x0019E0B4 File Offset: 0x0019C2B4
+	// Token: 0x06001E66 RID: 7782 RVA: 0x0019E1D4 File Offset: 0x0019C3D4
 	private void AssignCorpseGuardLocations()
 	{
 		this.StudentManager.CorpseGuardLocation[1].position = this.StudentManager.CorpseLocation.position + new Vector3(0f, 0f, 1f);
@@ -16943,7 +16943,7 @@ public class StudentScript : MonoBehaviour
 		this.LookAway(this.StudentManager.CorpseGuardLocation[4], this.StudentManager.CorpseLocation);
 	}
 
-	// Token: 0x06001E66 RID: 7782 RVA: 0x0019E228 File Offset: 0x0019C428
+	// Token: 0x06001E67 RID: 7783 RVA: 0x0019E348 File Offset: 0x0019C548
 	private void AssignBloodGuardLocations()
 	{
 		this.StudentManager.BloodGuardLocation[1].position = this.StudentManager.BloodLocation.position + new Vector3(0f, 0f, 1f);
@@ -16956,7 +16956,7 @@ public class StudentScript : MonoBehaviour
 		this.LookAway(this.StudentManager.BloodGuardLocation[4], this.StudentManager.BloodLocation);
 	}
 
-	// Token: 0x06001E67 RID: 7783 RVA: 0x0019E39C File Offset: 0x0019C59C
+	// Token: 0x06001E68 RID: 7784 RVA: 0x0019E4BC File Offset: 0x0019C6BC
 	private void AssignTeacherGuardLocations()
 	{
 		this.StudentManager.TeacherGuardLocation[1].position = this.StudentManager.CorpseLocation.position + new Vector3(0.75f, 0f, 0.75f);
@@ -16973,7 +16973,7 @@ public class StudentScript : MonoBehaviour
 		this.LookAway(this.StudentManager.TeacherGuardLocation[6], this.StudentManager.CorpseLocation);
 	}
 
-	// Token: 0x06001E68 RID: 7784 RVA: 0x0019E5C0 File Offset: 0x0019C7C0
+	// Token: 0x06001E69 RID: 7785 RVA: 0x0019E6E0 File Offset: 0x0019C8E0
 	private void LookAway(Transform T1, Transform T2)
 	{
 		T1.LookAt(T2);
@@ -16981,7 +16981,7 @@ public class StudentScript : MonoBehaviour
 		T1.eulerAngles = new Vector3(T1.eulerAngles.x, y, T1.eulerAngles.z);
 	}
 
-	// Token: 0x06001E69 RID: 7785 RVA: 0x0019E608 File Offset: 0x0019C808
+	// Token: 0x06001E6A RID: 7786 RVA: 0x0019E728 File Offset: 0x0019C928
 	public void TurnToStone()
 	{
 		this.Cosmetic.RightEyeRenderer.material.mainTexture = this.Yandere.Stone;
@@ -17021,7 +17021,7 @@ public class StudentScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001E6A RID: 7786 RVA: 0x0019E8EC File Offset: 0x0019CAEC
+	// Token: 0x06001E6B RID: 7787 RVA: 0x0019EA0C File Offset: 0x0019CC0C
 	public void StopPairing()
 	{
 		if (this.Actions[this.Phase] != StudentActionType.Clean && this.Persona == PersonaType.PhoneAddict && !this.Phoneless && !this.LostTeacherTrust)
@@ -17032,7 +17032,7 @@ public class StudentScript : MonoBehaviour
 		this.Paired = false;
 	}
 
-	// Token: 0x06001E6B RID: 7787 RVA: 0x0019E940 File Offset: 0x0019CB40
+	// Token: 0x06001E6C RID: 7788 RVA: 0x0019EA60 File Offset: 0x0019CC60
 	public void ChameleonCheck()
 	{
 		this.ChameleonBonus = 0f;
@@ -17045,7 +17045,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E6C RID: 7788 RVA: 0x0019EB94 File Offset: 0x0019CD94
+	// Token: 0x06001E6D RID: 7789 RVA: 0x0019ECB4 File Offset: 0x0019CEB4
 	private void PhoneAddictGameOver()
 	{
 		if (!this.Yandere.Lost)
@@ -17064,7 +17064,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E6D RID: 7789 RVA: 0x0019EC54 File Offset: 0x0019CE54
+	// Token: 0x06001E6E RID: 7790 RVA: 0x0019ED74 File Offset: 0x0019CF74
 	private void EndAlarm()
 	{
 		if (this.ReturnToRoutineAfter)
@@ -17151,7 +17151,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E6E RID: 7790 RVA: 0x0019EF1C File Offset: 0x0019D11C
+	// Token: 0x06001E6F RID: 7791 RVA: 0x0019F03C File Offset: 0x0019D23C
 	public void GetSleuthTarget()
 	{
 		this.TargetDistance = 2f;
@@ -17199,7 +17199,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E6F RID: 7791 RVA: 0x0019F084 File Offset: 0x0019D284
+	// Token: 0x06001E70 RID: 7792 RVA: 0x0019F1A4 File Offset: 0x0019D3A4
 	public void GetFoodTarget()
 	{
 		this.Attempts++;
@@ -17249,7 +17249,7 @@ public class StudentScript : MonoBehaviour
 		this.Attempts = 0;
 	}
 
-	// Token: 0x06001E70 RID: 7792 RVA: 0x0019F3A8 File Offset: 0x0019D5A8
+	// Token: 0x06001E71 RID: 7793 RVA: 0x0019F4C8 File Offset: 0x0019D6C8
 	private void PhoneAddictCameraUpdate()
 	{
 		if (this.SmartPhone.transform.parent != null)
@@ -17307,7 +17307,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E71 RID: 7793 RVA: 0x0019F5D0 File Offset: 0x0019D7D0
+	// Token: 0x06001E72 RID: 7794 RVA: 0x0019F6F0 File Offset: 0x0019D8F0
 	private void ReturnToRoutine()
 	{
 		if (this.Actions[this.Phase] == StudentActionType.Patrol)
@@ -17330,7 +17330,7 @@ public class StudentScript : MonoBehaviour
 		this.Pathfinding.speed = this.WalkSpeed;
 	}
 
-	// Token: 0x06001E72 RID: 7794 RVA: 0x0019F69C File Offset: 0x0019D89C
+	// Token: 0x06001E73 RID: 7795 RVA: 0x0019F7BC File Offset: 0x0019D9BC
 	public void EmptyHands()
 	{
 		bool flag = false;
@@ -17438,7 +17438,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E73 RID: 7795 RVA: 0x0019FAA4 File Offset: 0x0019DCA4
+	// Token: 0x06001E74 RID: 7796 RVA: 0x0019FBC4 File Offset: 0x0019DDC4
 	public void UpdateAnimLayers()
 	{
 		this.CharacterAnimation[this.LeanAnim].speed += (float)this.StudentID * 0.01f;
@@ -17544,7 +17544,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E74 RID: 7796 RVA: 0x001A01E8 File Offset: 0x0019E3E8
+	// Token: 0x06001E75 RID: 7797 RVA: 0x001A0308 File Offset: 0x0019E508
 	private void SpawnDetectionMarker()
 	{
 		this.DetectionMarker = UnityEngine.Object.Instantiate<GameObject>(this.Marker, this.Yandere.DetectionPanel.transform.position, Quaternion.identity).GetComponent<DetectionMarkerScript>();
@@ -17556,7 +17556,7 @@ public class StudentScript : MonoBehaviour
 		this.DetectionMarker.Target = base.transform;
 	}
 
-	// Token: 0x06001E75 RID: 7797 RVA: 0x001A0290 File Offset: 0x0019E490
+	// Token: 0x06001E76 RID: 7798 RVA: 0x001A03B0 File Offset: 0x0019E5B0
 	public void EquipCleaningItems()
 	{
 		if (this.CurrentAction == StudentActionType.Clean)
@@ -17579,7 +17579,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E76 RID: 7798 RVA: 0x001A034C File Offset: 0x0019E54C
+	// Token: 0x06001E77 RID: 7799 RVA: 0x001A046C File Offset: 0x0019E66C
 	public void DetermineWhatWasWitnessed()
 	{
 		if (this.Witnessed == StudentWitnessType.Murder)
@@ -17840,7 +17840,6 @@ public class StudentScript : MonoBehaviour
 		}
 		if (this.StudentID > 1 && this.Witnessed != StudentWitnessType.None)
 		{
-			Debug.Log("Changing " + this.Name + "'s outlines to yellow.");
 			this.ID = 0;
 			while (this.ID < this.Outlines.Length)
 			{
@@ -17863,7 +17862,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E77 RID: 7799 RVA: 0x001A0DC4 File Offset: 0x0019EFC4
+	// Token: 0x06001E78 RID: 7800 RVA: 0x001A0ECC File Offset: 0x0019F0CC
 	public void DetermineTeacherSubtitle()
 	{
 		Debug.Log("We are now determining what line of dialogue the teacher should say.");
@@ -17983,7 +17982,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E78 RID: 7800 RVA: 0x001A10EC File Offset: 0x0019F2EC
+	// Token: 0x06001E79 RID: 7801 RVA: 0x001A11F4 File Offset: 0x0019F3F4
 	public void ReturnMisplacedWeapon()
 	{
 		Debug.Log(this.Name + " has returned a misplaced weapon.");
@@ -18031,7 +18030,7 @@ public class StudentScript : MonoBehaviour
 		this.Hurry = this.WasHurrying;
 	}
 
-	// Token: 0x06001E79 RID: 7801 RVA: 0x001A132C File Offset: 0x0019F52C
+	// Token: 0x06001E7A RID: 7802 RVA: 0x001A1434 File Offset: 0x0019F634
 	public void StopMusic()
 	{
 		if (this.StudentID == 51)
@@ -18065,7 +18064,7 @@ public class StudentScript : MonoBehaviour
 		this.Drumsticks[1].SetActive(false);
 	}
 
-	// Token: 0x06001E7A RID: 7802 RVA: 0x001A14B0 File Offset: 0x0019F6B0
+	// Token: 0x06001E7B RID: 7803 RVA: 0x001A15B8 File Offset: 0x0019F7B8
 	public void DropPuzzle()
 	{
 		this.PuzzleCube.enabled = true;
@@ -18075,7 +18074,7 @@ public class StudentScript : MonoBehaviour
 		this.PuzzleTimer = 0f;
 	}
 
-	// Token: 0x06001E7B RID: 7803 RVA: 0x001A14E4 File Offset: 0x0019F6E4
+	// Token: 0x06001E7C RID: 7804 RVA: 0x001A15EC File Offset: 0x0019F7EC
 	public void ReturnToNormal()
 	{
 		Debug.Log(this.Name + " has been instructed to forget everything and return to normal.");
@@ -18146,7 +18145,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E7C RID: 7804 RVA: 0x001A1778 File Offset: 0x0019F978
+	// Token: 0x06001E7D RID: 7805 RVA: 0x001A1880 File Offset: 0x0019FA80
 	public void ForgetAboutBloodPool()
 	{
 		Debug.Log(this.Name + " was told to ForgetAboutBloodPool()");
@@ -18190,7 +18189,7 @@ public class StudentScript : MonoBehaviour
 		this.BloodPool = null;
 	}
 
-	// Token: 0x06001E7D RID: 7805 RVA: 0x001A192F File Offset: 0x0019FB2F
+	// Token: 0x06001E7E RID: 7806 RVA: 0x001A1A37 File Offset: 0x0019FC37
 	private void SimpleForgetAboutBloodPool()
 	{
 		this.InvestigatingBloodPool = false;
@@ -18201,7 +18200,7 @@ public class StudentScript : MonoBehaviour
 		this.Distracted = false;
 	}
 
-	// Token: 0x06001E7E RID: 7806 RVA: 0x001A195C File Offset: 0x0019FB5C
+	// Token: 0x06001E7F RID: 7807 RVA: 0x001A1A64 File Offset: 0x0019FC64
 	private void SummonWitnessCamera()
 	{
 		this.WitnessCamera.transform.parent = this.WitnessPOV;
@@ -18211,7 +18210,7 @@ public class StudentScript : MonoBehaviour
 		this.WitnessCamera.Show = true;
 	}
 
-	// Token: 0x06001E7F RID: 7807 RVA: 0x001A19C6 File Offset: 0x0019FBC6
+	// Token: 0x06001E80 RID: 7808 RVA: 0x001A1ACE File Offset: 0x0019FCCE
 	public void SilentlyForgetBloodPool()
 	{
 		Debug.Log(this.Name + " was told to SilentlyForgetBloodPool()");
@@ -18222,7 +18221,7 @@ public class StudentScript : MonoBehaviour
 		this.WitnessedWeapon = false;
 	}
 
-	// Token: 0x06001E80 RID: 7808 RVA: 0x001A1A00 File Offset: 0x0019FC00
+	// Token: 0x06001E81 RID: 7809 RVA: 0x001A1B08 File Offset: 0x0019FD08
 	private void CheckForEndRaibaruEvent()
 	{
 		if (this.StudentManager.Students[46] == null || this.StudentManager.Students[46].Phase > this.Phase)
@@ -18261,7 +18260,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E81 RID: 7809 RVA: 0x001A1B9C File Offset: 0x0019FD9C
+	// Token: 0x06001E82 RID: 7810 RVA: 0x001A1CA4 File Offset: 0x0019FEA4
 	private void RaibaruOsanaDeathScheduleChanges()
 	{
 		ScheduleBlock scheduleBlock = this.ScheduleBlocks[1];
@@ -18279,7 +18278,7 @@ public class StudentScript : MonoBehaviour
 		this.OriginalIdleAnim = this.IdleAnim;
 	}
 
-	// Token: 0x06001E82 RID: 7810 RVA: 0x001A1C2C File Offset: 0x0019FE2C
+	// Token: 0x06001E83 RID: 7811 RVA: 0x001A1D34 File Offset: 0x0019FF34
 	private void RaibaruStopsFollowingOsana()
 	{
 		ScheduleBlock scheduleBlock = this.ScheduleBlocks[3];
@@ -18302,7 +18301,7 @@ public class StudentScript : MonoBehaviour
 		scheduleBlock6.action = "Exit";
 	}
 
-	// Token: 0x06001E83 RID: 7811 RVA: 0x001A1CE8 File Offset: 0x0019FEE8
+	// Token: 0x06001E84 RID: 7812 RVA: 0x001A1DF0 File Offset: 0x0019FFF0
 	private void BoyStopsFollowingGravureModel()
 	{
 		ScheduleBlock scheduleBlock = this.ScheduleBlocks[2];
@@ -18319,7 +18318,7 @@ public class StudentScript : MonoBehaviour
 		scheduleBlock4.action = "Exit";
 	}
 
-	// Token: 0x06001E84 RID: 7812 RVA: 0x001A1D6C File Offset: 0x0019FF6C
+	// Token: 0x06001E85 RID: 7813 RVA: 0x001A1E74 File Offset: 0x001A0074
 	public void StopDrinking()
 	{
 		this.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
@@ -18331,7 +18330,7 @@ public class StudentScript : MonoBehaviour
 		this.StudentManager.UpdateMe(this.StudentID);
 	}
 
-	// Token: 0x06001E85 RID: 7813 RVA: 0x001A1DC0 File Offset: 0x0019FFC0
+	// Token: 0x06001E86 RID: 7814 RVA: 0x001A1EC8 File Offset: 0x001A00C8
 	public void GoToClass()
 	{
 		ScheduleBlock scheduleBlock = this.ScheduleBlocks[this.Phase];
@@ -18344,7 +18343,7 @@ public class StudentScript : MonoBehaviour
 		this.Pathfinding.target = this.Destinations[this.Phase];
 	}
 
-	// Token: 0x06001E86 RID: 7814 RVA: 0x001A1E38 File Offset: 0x001A0038
+	// Token: 0x06001E87 RID: 7815 RVA: 0x001A1F40 File Offset: 0x001A0140
 	public void RaibaruCannotFindOsana()
 	{
 		this.SpeechLines.Stop();
@@ -18362,7 +18361,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E87 RID: 7815 RVA: 0x001A1EE0 File Offset: 0x001A00E0
+	// Token: 0x06001E88 RID: 7816 RVA: 0x001A1FE8 File Offset: 0x001A01E8
 	public void BoyCannotFindGravureModel()
 	{
 		Debug.Log("A boy cannot find the gravure model he's supposed to be following.");
@@ -18379,7 +18378,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E88 RID: 7816 RVA: 0x001A1F74 File Offset: 0x001A0174
+	// Token: 0x06001E89 RID: 7817 RVA: 0x001A207C File Offset: 0x001A027C
 	public void DisableProps()
 	{
 		this.RandomCheerAnim = this.CheerAnims[UnityEngine.Random.Range(0, this.CheerAnims.Length)];
@@ -18426,7 +18425,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E89 RID: 7817 RVA: 0x001A2158 File Offset: 0x001A0358
+	// Token: 0x06001E8A RID: 7818 RVA: 0x001A2260 File Offset: 0x001A0460
 	public void DisableFemaleProps()
 	{
 		this.SkirtOrigins[0] = this.Skirt[0].transform.localPosition;
@@ -18469,7 +18468,7 @@ public class StudentScript : MonoBehaviour
 		this.DisableEffects();
 	}
 
-	// Token: 0x06001E8A RID: 7818 RVA: 0x001A2320 File Offset: 0x001A0520
+	// Token: 0x06001E8B RID: 7819 RVA: 0x001A2428 File Offset: 0x001A0628
 	public void DisableMaleProps()
 	{
 		this.MapMarker.gameObject.SetActive(false);
@@ -18483,7 +18482,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E8B RID: 7819 RVA: 0x001A2384 File Offset: 0x001A0584
+	// Token: 0x06001E8C RID: 7820 RVA: 0x001A248C File Offset: 0x001A068C
 	public void TriggerBeatEmUpMinigame()
 	{
 		GameGlobals.BeatEmUpDifficulty = 1;
@@ -18495,7 +18494,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E8C RID: 7820 RVA: 0x001A23C8 File Offset: 0x001A05C8
+	// Token: 0x06001E8D RID: 7821 RVA: 0x001A24D0 File Offset: 0x001A06D0
 	public void PlaceBag()
 	{
 		if (this.Seat.position.x < 0f)
@@ -18605,7 +18604,7 @@ public class StudentScript : MonoBehaviour
 		this.CurrentAction = this.Actions[this.Phase];
 	}
 
-	// Token: 0x06001E8D RID: 7821 RVA: 0x001A2850 File Offset: 0x001A0A50
+	// Token: 0x06001E8E RID: 7822 RVA: 0x001A2958 File Offset: 0x001A0B58
 	public void BecomeSleuth()
 	{
 		if (this.Club == ClubType.Newspaper)
@@ -18728,7 +18727,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E8E RID: 7822 RVA: 0x001A2C08 File Offset: 0x001A0E08
+	// Token: 0x06001E8F RID: 7823 RVA: 0x001A2D10 File Offset: 0x001A0F10
 	public void CheckForBento()
 	{
 		if (this.Bento.activeInHierarchy && this.StudentID > 1 && this.Bento.transform.parent != null)
@@ -18751,7 +18750,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E8F RID: 7823 RVA: 0x001A2D14 File Offset: 0x001A0F14
+	// Token: 0x06001E90 RID: 7824 RVA: 0x001A2E1C File Offset: 0x001A101C
 	public void BlendIntoSittingAnim()
 	{
 		if (this.CharacterAnimation[this.SocialSitAnim].weight != 1f)
@@ -18764,7 +18763,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E90 RID: 7824 RVA: 0x001A2DBC File Offset: 0x001A0FBC
+	// Token: 0x06001E91 RID: 7825 RVA: 0x001A2EC4 File Offset: 0x001A10C4
 	public void BlendOutOfSittingAnim()
 	{
 		if (this.CharacterAnimation[this.SocialSitAnim].weight != 0f)
@@ -18777,7 +18776,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E91 RID: 7825 RVA: 0x001A2E64 File Offset: 0x001A1064
+	// Token: 0x06001E92 RID: 7826 RVA: 0x001A2F6C File Offset: 0x001A116C
 	public void Oversleep()
 	{
 		if (this.StudentID != 15 && this.ScheduleBlocks.Length == 10)
@@ -18801,7 +18800,7 @@ public class StudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001E92 RID: 7826 RVA: 0x001A2F30 File Offset: 0x001A1130
+	// Token: 0x06001E93 RID: 7827 RVA: 0x001A3038 File Offset: 0x001A1238
 	public void UpdateGemaAppearance()
 	{
 		this.Cosmetic.FacialHairstyle = 0;

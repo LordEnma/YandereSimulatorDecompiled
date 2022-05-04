@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200048A RID: 1162
 public class TranqCaseScript : MonoBehaviour
 {
-	// Token: 0x06001F28 RID: 7976 RVA: 0x001B8BD3 File Offset: 0x001B6DD3
+	// Token: 0x06001F29 RID: 7977 RVA: 0x001B8CCF File Offset: 0x001B6ECF
 	private void Start()
 	{
 		this.Prompt.enabled = false;
 	}
 
-	// Token: 0x06001F29 RID: 7977 RVA: 0x001B8BE4 File Offset: 0x001B6DE4
+	// Token: 0x06001F2A RID: 7978 RVA: 0x001B8CE0 File Offset: 0x001B6EE0
 	private void Update()
 	{
 		if (this.Yandere.transform.position.x > base.transform.position.x && Vector3.Distance(base.transform.position, this.Yandere.transform.position) < 1f)

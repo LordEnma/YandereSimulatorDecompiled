@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002E0 RID: 736
 public class GenericBentoScript : MonoBehaviour
 {
-	// Token: 0x060014F5 RID: 5365 RVA: 0x000CFFEC File Offset: 0x000CE1EC
+	// Token: 0x060014F5 RID: 5365 RVA: 0x000CFFB8 File Offset: 0x000CE1B8
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f || this.Prompt.Circle[1].fillAmount == 0f || this.Prompt.Circle[2].fillAmount == 0f || this.Prompt.Circle[3].fillAmount == 0f)
@@ -82,7 +82,7 @@ public class GenericBentoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014F6 RID: 5366 RVA: 0x000D0344 File Offset: 0x000CE544
+	// Token: 0x060014F6 RID: 5366 RVA: 0x000D0310 File Offset: 0x000CE510
 	private void ShutOff()
 	{
 		Debug.Log("Shutting off a bento. This bento should be inaccessible from now on...");
@@ -103,7 +103,7 @@ public class GenericBentoScript : MonoBehaviour
 		this.Prompt.Hide();
 	}
 
-	// Token: 0x060014F7 RID: 5367 RVA: 0x000D04B4 File Offset: 0x000CE6B4
+	// Token: 0x060014F7 RID: 5367 RVA: 0x000D0480 File Offset: 0x000CE680
 	public void UpdatePrompts()
 	{
 		if (!this.Tampered)

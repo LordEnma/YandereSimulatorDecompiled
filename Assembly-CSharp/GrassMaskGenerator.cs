@@ -7,13 +7,13 @@ using UnityEngine;
 [RequireComponent(typeof(Camera))]
 public class GrassMaskGenerator : MonoBehaviour
 {
-	// Token: 0x06002126 RID: 8486 RVA: 0x001EBB5C File Offset: 0x001E9D5C
+	// Token: 0x06002127 RID: 8487 RVA: 0x001EBC58 File Offset: 0x001E9E58
 	public void Start()
 	{
 		UnityEngine.Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06002127 RID: 8487 RVA: 0x001EBB6C File Offset: 0x001E9D6C
+	// Token: 0x06002128 RID: 8488 RVA: 0x001EBC68 File Offset: 0x001E9E68
 	private void Update()
 	{
 		if (this.camera == null)
@@ -38,7 +38,7 @@ public class GrassMaskGenerator : MonoBehaviour
 		this.camera.targetTexture = this.targetTexture;
 	}
 
-	// Token: 0x06002128 RID: 8488 RVA: 0x001EBCBC File Offset: 0x001E9EBC
+	// Token: 0x06002129 RID: 8489 RVA: 0x001EBDB8 File Offset: 0x001E9FB8
 	[ContextMenu("Generate and save the grass occlusion map")]
 	public void GenerateMap()
 	{
@@ -94,7 +94,7 @@ public class GrassMaskGenerator : MonoBehaviour
 		}.AddComponent<MeshRenderer>().gameObject.AddComponent<MeshFilter>().mesh = mesh;
 	}
 
-	// Token: 0x06002129 RID: 8489 RVA: 0x001EBF5C File Offset: 0x001EA15C
+	// Token: 0x0600212A RID: 8490 RVA: 0x001EC058 File Offset: 0x001EA258
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.yellow;

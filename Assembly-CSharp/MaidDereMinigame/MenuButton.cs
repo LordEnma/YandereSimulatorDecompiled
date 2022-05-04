@@ -7,19 +7,19 @@ namespace MaidDereMinigame
 	[RequireComponent(typeof(SpriteRenderer))]
 	public class MenuButton : MonoBehaviour
 	{
-		// Token: 0x060024D6 RID: 9430 RVA: 0x00202317 File Offset: 0x00200517
+		// Token: 0x060024D7 RID: 9431 RVA: 0x00202413 File Offset: 0x00200613
 		public void Init()
 		{
 			this.spriteRenderer = base.GetComponent<SpriteRenderer>();
 		}
 
-		// Token: 0x060024D7 RID: 9431 RVA: 0x00202325 File Offset: 0x00200525
+		// Token: 0x060024D8 RID: 9432 RVA: 0x00202421 File Offset: 0x00200621
 		private void OnMouseEnter()
 		{
 			this.menu.SetActiveMenuButton(this.index);
 		}
 
-		// Token: 0x060024D8 RID: 9432 RVA: 0x00202338 File Offset: 0x00200538
+		// Token: 0x060024D9 RID: 9433 RVA: 0x00202434 File Offset: 0x00200634
 		public void DoClick()
 		{
 			switch (this.buttonType)

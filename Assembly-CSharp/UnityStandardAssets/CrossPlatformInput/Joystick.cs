@@ -7,19 +7,19 @@ namespace UnityStandardAssets.CrossPlatformInput
 	// Token: 0x02000546 RID: 1350
 	public class Joystick : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IPointerUpHandler, IDragHandler
 	{
-		// Token: 0x06002270 RID: 8816 RVA: 0x001F4642 File Offset: 0x001F2842
+		// Token: 0x06002271 RID: 8817 RVA: 0x001F473E File Offset: 0x001F293E
 		private void OnEnable()
 		{
 			this.CreateVirtualAxes();
 		}
 
-		// Token: 0x06002271 RID: 8817 RVA: 0x001F464A File Offset: 0x001F284A
+		// Token: 0x06002272 RID: 8818 RVA: 0x001F4746 File Offset: 0x001F2946
 		private void Start()
 		{
 			this.m_StartPos = base.transform.position;
 		}
 
-		// Token: 0x06002272 RID: 8818 RVA: 0x001F4660 File Offset: 0x001F2860
+		// Token: 0x06002273 RID: 8819 RVA: 0x001F475C File Offset: 0x001F295C
 		private void UpdateVirtualAxes(Vector3 value)
 		{
 			Vector3 vector = this.m_StartPos - value;
@@ -35,7 +35,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002273 RID: 8819 RVA: 0x001F46CC File Offset: 0x001F28CC
+		// Token: 0x06002274 RID: 8820 RVA: 0x001F47C8 File Offset: 0x001F29C8
 		private void CreateVirtualAxes()
 		{
 			this.m_UseX = (this.axesToUse == Joystick.AxisOption.Both || this.axesToUse == Joystick.AxisOption.OnlyHorizontal);
@@ -52,7 +52,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002274 RID: 8820 RVA: 0x001F4758 File Offset: 0x001F2958
+		// Token: 0x06002275 RID: 8821 RVA: 0x001F4854 File Offset: 0x001F2A54
 		public void OnDrag(PointerEventData data)
 		{
 			Vector3 zero = Vector3.zero;
@@ -72,19 +72,19 @@ namespace UnityStandardAssets.CrossPlatformInput
 			this.UpdateVirtualAxes(base.transform.position);
 		}
 
-		// Token: 0x06002275 RID: 8821 RVA: 0x001F483E File Offset: 0x001F2A3E
+		// Token: 0x06002276 RID: 8822 RVA: 0x001F493A File Offset: 0x001F2B3A
 		public void OnPointerUp(PointerEventData data)
 		{
 			base.transform.position = this.m_StartPos;
 			this.UpdateVirtualAxes(this.m_StartPos);
 		}
 
-		// Token: 0x06002276 RID: 8822 RVA: 0x001F485D File Offset: 0x001F2A5D
+		// Token: 0x06002277 RID: 8823 RVA: 0x001F4959 File Offset: 0x001F2B59
 		public void OnPointerDown(PointerEventData data)
 		{
 		}
 
-		// Token: 0x06002277 RID: 8823 RVA: 0x001F485F File Offset: 0x001F2A5F
+		// Token: 0x06002278 RID: 8824 RVA: 0x001F495B File Offset: 0x001F2B5B
 		private void OnDisable()
 		{
 			if (this.m_UseX)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000427 RID: 1063
 public class SewingMachineScript : MonoBehaviour
 {
-	// Token: 0x06001CB2 RID: 7346 RVA: 0x00150AE1 File Offset: 0x0014ECE1
+	// Token: 0x06001CB2 RID: 7346 RVA: 0x00150AAD File Offset: 0x0014ECAD
 	private void Start()
 	{
 		if (this.StudentManager.TaskManager.TaskStatus[30] == 1)
@@ -18,7 +18,7 @@ public class SewingMachineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CB3 RID: 7347 RVA: 0x00150B20 File Offset: 0x0014ED20
+	// Token: 0x06001CB3 RID: 7347 RVA: 0x00150AEC File Offset: 0x0014ECEC
 	private void Update()
 	{
 		if (this.Check)

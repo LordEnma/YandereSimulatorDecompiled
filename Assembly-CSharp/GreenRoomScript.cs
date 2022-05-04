@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x0200030A RID: 778
 public class GreenRoomScript : MonoBehaviour
 {
-	// Token: 0x06001846 RID: 6214 RVA: 0x000E6A1D File Offset: 0x000E4C1D
+	// Token: 0x06001846 RID: 6214 RVA: 0x000E69E9 File Offset: 0x000E4BE9
 	private void Start()
 	{
 		this.QualityManager.Obscurance.enabled = false;
 		this.UpdateColor();
 	}
 
-	// Token: 0x06001847 RID: 6215 RVA: 0x000E6A36 File Offset: 0x000E4C36
+	// Token: 0x06001847 RID: 6215 RVA: 0x000E6A02 File Offset: 0x000E4C02
 	private void Update()
 	{
 		if (Input.GetKeyDown("z"))
@@ -20,7 +20,7 @@ public class GreenRoomScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001848 RID: 6216 RVA: 0x000E6A4C File Offset: 0x000E4C4C
+	// Token: 0x06001848 RID: 6216 RVA: 0x000E6A18 File Offset: 0x000E4C18
 	private void UpdateColor()
 	{
 		this.ID++;

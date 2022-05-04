@@ -8,7 +8,7 @@ namespace AmplifyMotion
 	// Token: 0x02000592 RID: 1426
 	internal class WorkerThreadPool
 	{
-		// Token: 0x06002442 RID: 9282 RVA: 0x001FF650 File Offset: 0x001FD850
+		// Token: 0x06002443 RID: 9283 RVA: 0x001FF74C File Offset: 0x001FD94C
 		internal void InitializeAsyncUpdateThreads(int threadCount, bool systemThreadPool)
 		{
 			if (systemThreadPool)
@@ -42,7 +42,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002443 RID: 9283 RVA: 0x001FF774 File Offset: 0x001FD974
+		// Token: 0x06002444 RID: 9284 RVA: 0x001FF870 File Offset: 0x001FDA70
 		internal void FinalizeAsyncUpdateThreads()
 		{
 			if (!this.m_threadPoolFallback)
@@ -76,7 +76,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002444 RID: 9284 RVA: 0x001FF86C File Offset: 0x001FDA6C
+		// Token: 0x06002445 RID: 9285 RVA: 0x001FF968 File Offset: 0x001FDB68
 		internal void EnqueueAsyncUpdate(MotionState state)
 		{
 			if (!this.m_threadPoolFallback)
@@ -100,13 +100,13 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002445 RID: 9285 RVA: 0x001FF914 File Offset: 0x001FDB14
+		// Token: 0x06002446 RID: 9286 RVA: 0x001FFA10 File Offset: 0x001FDC10
 		private static void AsyncUpdateCallback(object obj)
 		{
 			((MotionState)obj).AsyncUpdate();
 		}
 
-		// Token: 0x06002446 RID: 9286 RVA: 0x001FF924 File Offset: 0x001FDB24
+		// Token: 0x06002447 RID: 9287 RVA: 0x001FFA20 File Offset: 0x001FDC20
 		private static void AsyncUpdateThread(object obj)
 		{
 			KeyValuePair<object, int> keyValuePair = (KeyValuePair<object, int>)obj;

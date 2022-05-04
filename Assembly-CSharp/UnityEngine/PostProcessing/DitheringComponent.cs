@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class DitheringComponent : PostProcessingComponentRenderTexture<DitheringModel>
 	{
 		// Token: 0x170004F5 RID: 1269
-		// (get) Token: 0x06002334 RID: 9012 RVA: 0x001F8DA2 File Offset: 0x001F6FA2
+		// (get) Token: 0x06002335 RID: 9013 RVA: 0x001F8E9E File Offset: 0x001F709E
 		public override bool active
 		{
 			get
@@ -15,13 +15,13 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002335 RID: 9013 RVA: 0x001F8DC1 File Offset: 0x001F6FC1
+		// Token: 0x06002336 RID: 9014 RVA: 0x001F8EBD File Offset: 0x001F70BD
 		public override void OnDisable()
 		{
 			this.noiseTextures = null;
 		}
 
-		// Token: 0x06002336 RID: 9014 RVA: 0x001F8DCC File Offset: 0x001F6FCC
+		// Token: 0x06002337 RID: 9015 RVA: 0x001F8EC8 File Offset: 0x001F70C8
 		private void LoadNoiseTextures()
 		{
 			this.noiseTextures = new Texture2D[64];
@@ -31,7 +31,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002337 RID: 9015 RVA: 0x001F8E14 File Offset: 0x001F7014
+		// Token: 0x06002338 RID: 9016 RVA: 0x001F8F10 File Offset: 0x001F7110
 		public override void Prepare(Material uberMaterial)
 		{
 			int num = this.textureIndex + 1;

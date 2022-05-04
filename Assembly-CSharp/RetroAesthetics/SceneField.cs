@@ -8,7 +8,7 @@ namespace RetroAesthetics
 	public class SceneField
 	{
 		// Token: 0x170004EC RID: 1260
-		// (get) Token: 0x060022E2 RID: 8930 RVA: 0x001F6171 File Offset: 0x001F4371
+		// (get) Token: 0x060022E3 RID: 8931 RVA: 0x001F626D File Offset: 0x001F446D
 		public string SceneName
 		{
 			get
@@ -17,7 +17,7 @@ namespace RetroAesthetics
 			}
 		}
 
-		// Token: 0x060022E3 RID: 8931 RVA: 0x001F6179 File Offset: 0x001F4379
+		// Token: 0x060022E4 RID: 8932 RVA: 0x001F6275 File Offset: 0x001F4475
 		public static implicit operator string(SceneField sceneField)
 		{
 			return sceneField.SceneName;

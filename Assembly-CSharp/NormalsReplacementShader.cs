@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004FC RID: 1276
 public class NormalsReplacementShader : MonoBehaviour
 {
-	// Token: 0x06002132 RID: 8498 RVA: 0x001EC6F4 File Offset: 0x001EA8F4
+	// Token: 0x06002133 RID: 8499 RVA: 0x001EC7F0 File Offset: 0x001EA9F0
 	private void Start()
 	{
 		Camera component = base.GetComponent<Camera>();

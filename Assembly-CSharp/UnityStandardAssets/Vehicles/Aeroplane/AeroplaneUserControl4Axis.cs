@@ -8,13 +8,13 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	[RequireComponent(typeof(AeroplaneController))]
 	public class AeroplaneUserControl4Axis : MonoBehaviour
 	{
-		// Token: 0x0600223B RID: 8763 RVA: 0x001F3F98 File Offset: 0x001F2198
+		// Token: 0x0600223C RID: 8764 RVA: 0x001F4094 File Offset: 0x001F2294
 		private void Awake()
 		{
 			this.m_Aeroplane = base.GetComponent<AeroplaneController>();
 		}
 
-		// Token: 0x0600223C RID: 8764 RVA: 0x001F3FA8 File Offset: 0x001F21A8
+		// Token: 0x0600223D RID: 8765 RVA: 0x001F40A4 File Offset: 0x001F22A4
 		private void FixedUpdate()
 		{
 			float axis = CrossPlatformInputManager.GetAxis("Mouse X");
@@ -25,7 +25,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_Aeroplane.Move(axis, axis2, this.m_Yaw, this.m_Throttle, this.m_AirBrakes);
 		}
 
-		// Token: 0x0600223D RID: 8765 RVA: 0x001F401C File Offset: 0x001F221C
+		// Token: 0x0600223E RID: 8766 RVA: 0x001F4118 File Offset: 0x001F2318
 		private void AdjustInputForMobileControls(ref float roll, ref float pitch, ref float throttle)
 		{
 			float num = roll * this.maxRollAngle * 0.017453292f;

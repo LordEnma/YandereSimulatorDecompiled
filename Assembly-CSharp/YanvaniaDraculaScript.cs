@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020004E4 RID: 1252
 public class YanvaniaDraculaScript : MonoBehaviour
 {
-	// Token: 0x060020D6 RID: 8406 RVA: 0x001E46AC File Offset: 0x001E28AC
+	// Token: 0x060020D7 RID: 8407 RVA: 0x001E47A8 File Offset: 0x001E29A8
 	private void Awake()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -15,7 +15,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
 		component["succubus_a_charm_03"].speed = 4.66666f;
 	}
 
-	// Token: 0x060020D7 RID: 8407 RVA: 0x001E4704 File Offset: 0x001E2904
+	// Token: 0x060020D8 RID: 8408 RVA: 0x001E4800 File Offset: 0x001E2A00
 	private void Update()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -236,7 +236,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020D8 RID: 8408 RVA: 0x001E51E4 File Offset: 0x001E33E4
+	// Token: 0x060020D9 RID: 8409 RVA: 0x001E52E0 File Offset: 0x001E34E0
 	public void SpawnTeleportEffect()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -262,13 +262,13 @@ public class YanvaniaDraculaScript : MonoBehaviour
 		this.AttackID = 0;
 	}
 
-	// Token: 0x060020D9 RID: 8409 RVA: 0x001E5360 File Offset: 0x001E3560
+	// Token: 0x060020DA RID: 8410 RVA: 0x001E545C File Offset: 0x001E365C
 	private void Teleport()
 	{
 		base.transform.position = new Vector3(base.transform.position.x, (base.transform.position.y > 0f) ? -10f : 6.5f, 0f);
 	}
 
-	// Token: 0x060020DA RID: 8410 RVA: 0x001E53B8 File Offset: 0x001E35B8
+	// Token: 0x060020DB RID: 8411 RVA: 0x001E54B4 File Offset: 0x001E36B4
 	public void TakeDamage()
 	{
 		this.Health -= 5f + ((float)this.Yanmont.Level * 5f - 5f);
@@ -285,7 +285,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
 		component.Play();
 	}
 
-	// Token: 0x060020DB RID: 8411 RVA: 0x001E544D File Offset: 0x001E364D
+	// Token: 0x060020DC RID: 8412 RVA: 0x001E5549 File Offset: 0x001E3749
 	private IEnumerator ApplyScreenshot()
 	{
 		this.PhotoTaken = true;

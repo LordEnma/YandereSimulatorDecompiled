@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(CharacterController))]
 public class YanvaniaYanmontScript : MonoBehaviour
 {
-	// Token: 0x06002101 RID: 8449 RVA: 0x001E7E44 File Offset: 0x001E6044
+	// Token: 0x06002102 RID: 8450 RVA: 0x001E7F40 File Offset: 0x001E6140
 	private void Awake()
 	{
 		this.MyAnimation = this.Character.GetComponent<Animation>();
@@ -26,7 +26,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		Physics.IgnoreLayerCollision(19, 19, true);
 	}
 
-	// Token: 0x06002102 RID: 8450 RVA: 0x001E7FB0 File Offset: 0x001E61B0
+	// Token: 0x06002103 RID: 8451 RVA: 0x001E80AC File Offset: 0x001E62AC
 	private void Start()
 	{
 		this.WhipChain[0].transform.localScale = Vector3.zero;
@@ -40,7 +40,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		this.originalThreshold = this.fallingDamageThreshold;
 	}
 
-	// Token: 0x06002103 RID: 8451 RVA: 0x001E805C File Offset: 0x001E625C
+	// Token: 0x06002104 RID: 8452 RVA: 0x001E8158 File Offset: 0x001E6358
 	private void FixedUpdate()
 	{
 		if (this.CanMove)
@@ -324,7 +324,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002104 RID: 8452 RVA: 0x001E8E54 File Offset: 0x001E7054
+	// Token: 0x06002105 RID: 8453 RVA: 0x001E8F50 File Offset: 0x001E7150
 	private void Update()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -602,18 +602,18 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002105 RID: 8453 RVA: 0x001E9819 File Offset: 0x001E7A19
+	// Token: 0x06002106 RID: 8454 RVA: 0x001E9915 File Offset: 0x001E7B15
 	private void LateUpdate()
 	{
 	}
 
-	// Token: 0x06002106 RID: 8454 RVA: 0x001E981B File Offset: 0x001E7A1B
+	// Token: 0x06002107 RID: 8455 RVA: 0x001E9917 File Offset: 0x001E7B17
 	private void OnControllerColliderHit(ControllerColliderHit hit)
 	{
 		this.contactPoint = this.hit.point;
 	}
 
-	// Token: 0x06002107 RID: 8455 RVA: 0x001E9830 File Offset: 0x001E7A30
+	// Token: 0x06002108 RID: 8456 RVA: 0x001E992C File Offset: 0x001E7B2C
 	private void FallingDamageAlert(float fallDistance)
 	{
 		AudioClipPlayer.Play2D(this.LandSound, base.transform.position, UnityEngine.Random.Range(0.9f, 1.1f));
@@ -621,7 +621,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		this.fallingDamageThreshold = this.originalThreshold;
 	}
 
-	// Token: 0x06002108 RID: 8456 RVA: 0x001E9888 File Offset: 0x001E7A88
+	// Token: 0x06002109 RID: 8457 RVA: 0x001E9984 File Offset: 0x001E7B84
 	private void SpinRight()
 	{
 		if (!this.SpunRight)
@@ -635,7 +635,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		this.Character.GetComponent<Animation>().CrossFade(this.WhipRightAnim, 0.1f);
 	}
 
-	// Token: 0x06002109 RID: 8457 RVA: 0x001E9900 File Offset: 0x001E7B00
+	// Token: 0x0600210A RID: 8458 RVA: 0x001E99FC File Offset: 0x001E7BFC
 	private void SpinLeft()
 	{
 		if (!this.SpunLeft)
@@ -649,7 +649,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		this.Character.GetComponent<Animation>().CrossFade(this.WhipLeftAnim, 0.1f);
 	}
 
-	// Token: 0x0600210A RID: 8458 RVA: 0x001E9978 File Offset: 0x001E7B78
+	// Token: 0x0600210B RID: 8459 RVA: 0x001E9A74 File Offset: 0x001E7C74
 	private void StraightenWhip()
 	{
 		for (int i = 1; i < this.WhipChain.Length; i++)
@@ -665,7 +665,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		this.Loose = false;
 	}
 
-	// Token: 0x0600210B RID: 8459 RVA: 0x001E9A28 File Offset: 0x001E7C28
+	// Token: 0x0600210C RID: 8460 RVA: 0x001E9B24 File Offset: 0x001E7D24
 	private void LoosenWhip()
 	{
 		if (!this.Loose)
@@ -683,7 +683,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600210C RID: 8460 RVA: 0x001E9A9C File Offset: 0x001E7C9C
+	// Token: 0x0600210D RID: 8461 RVA: 0x001E9B98 File Offset: 0x001E7D98
 	private void StopAttacking()
 	{
 		this.Character.GetComponent<Animation>()[this.CrouchPoseAnim].weight = 0f;
@@ -697,7 +697,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
 		this.SpunLeft = false;
 	}
 
-	// Token: 0x0600210D RID: 8461 RVA: 0x001E9B0C File Offset: 0x001E7D0C
+	// Token: 0x0600210E RID: 8462 RVA: 0x001E9C08 File Offset: 0x001E7E08
 	public void TakeDamage(int Damage)
 	{
 		if (this.WhipCollider[1].enabled)

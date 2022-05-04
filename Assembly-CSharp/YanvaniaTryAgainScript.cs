@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 // Token: 0x020004EE RID: 1262
 public class YanvaniaTryAgainScript : MonoBehaviour
 {
-	// Token: 0x060020F9 RID: 8441 RVA: 0x001E7740 File Offset: 0x001E5940
+	// Token: 0x060020FA RID: 8442 RVA: 0x001E783C File Offset: 0x001E5A3C
 	private void Start()
 	{
 		base.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x060020FA RID: 8442 RVA: 0x001E7754 File Offset: 0x001E5954
+	// Token: 0x060020FB RID: 8443 RVA: 0x001E7850 File Offset: 0x001E5A50
 	private void Update()
 	{
 		if (!this.FadeOut)

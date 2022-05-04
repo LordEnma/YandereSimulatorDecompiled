@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000325 RID: 805
 public class HomePrisonerChanScript : MonoBehaviour
 {
-	// Token: 0x060018B2 RID: 6322 RVA: 0x000F2008 File Offset: 0x000F0208
+	// Token: 0x060018B2 RID: 6322 RVA: 0x000F1FD4 File Offset: 0x000F01D4
 	private void Start()
 	{
 		if (SchoolGlobals.KidnapVictim > 0)
@@ -65,7 +65,7 @@ public class HomePrisonerChanScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018B3 RID: 6323 RVA: 0x000F2280 File Offset: 0x000F0480
+	// Token: 0x060018B3 RID: 6323 RVA: 0x000F224C File Offset: 0x000F044C
 	private void LateUpdate()
 	{
 		this.Skirt.transform.localPosition = new Vector3(0f, -0.135f, 0.01f);
@@ -138,7 +138,7 @@ public class HomePrisonerChanScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018B4 RID: 6324 RVA: 0x000F2830 File Offset: 0x000F0A30
+	// Token: 0x060018B4 RID: 6324 RVA: 0x000F27FC File Offset: 0x000F09FC
 	public void UpdateSanity()
 	{
 		this.Sanity = StudentGlobals.GetStudentSanity(this.StudentID);

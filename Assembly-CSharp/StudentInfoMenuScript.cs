@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200045A RID: 1114
 public class StudentInfoMenuScript : MonoBehaviour
 {
-	// Token: 0x06001D76 RID: 7542 RVA: 0x00162CA8 File Offset: 0x00160EA8
+	// Token: 0x06001D76 RID: 7542 RVA: 0x00162C74 File Offset: 0x00160E74
 	private void Start()
 	{
 		StudentGlobals.GetStudentPhotographed(11);
@@ -37,7 +37,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		this.Row = 0;
 	}
 
-	// Token: 0x06001D77 RID: 7543 RVA: 0x00162E0C File Offset: 0x0016100C
+	// Token: 0x06001D77 RID: 7543 RVA: 0x00162DD8 File Offset: 0x00160FD8
 	private void Update()
 	{
 		if (!this.GrabbedPortraits)
@@ -292,7 +292,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D78 RID: 7544 RVA: 0x0016381C File Offset: 0x00161A1C
+	// Token: 0x06001D78 RID: 7544 RVA: 0x001637E8 File Offset: 0x001619E8
 	public void UpdateHighlight()
 	{
 		this.Highlight.localPosition = new Vector3(-300f + (float)this.Column * 150f, 80f - (float)this.Row * 160f, this.Highlight.localPosition.z);
@@ -440,18 +440,25 @@ public class StudentInfoMenuScript : MonoBehaviour
 		this.UpdateNameLabel();
 	}
 
-	// Token: 0x06001D79 RID: 7545 RVA: 0x00164198 File Offset: 0x00162398
+	// Token: 0x06001D79 RID: 7545 RVA: 0x00164164 File Offset: 0x00162364
 	private void UpdateNameLabel()
 	{
 		if (this.StudentID > 97 || StudentGlobals.GetStudentPhotographed(this.StudentID) || this.GettingInfo)
 		{
 			this.NameLabel.text = this.JSON.Students[this.StudentID].Name;
-			return;
+			if (this.StudentManager.Eighties && this.StudentID > 10 && this.StudentID < 21 && DateGlobals.Week < this.StudentID - 10)
+			{
+				this.NameLabel.text = "Unknown";
+				return;
+			}
 		}
-		this.NameLabel.text = "Unknown";
+		else
+		{
+			this.NameLabel.text = "Unknown";
+		}
 	}
 
-	// Token: 0x06001D7A RID: 7546 RVA: 0x001641F7 File Offset: 0x001623F7
+	// Token: 0x06001D7A RID: 7546 RVA: 0x00164204 File Offset: 0x00162404
 	public IEnumerator UpdatePortraits()
 	{
 		if (this.Debugging)

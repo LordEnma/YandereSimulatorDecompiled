@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200034C RID: 844
 public class KittenScript : MonoBehaviour
 {
-	// Token: 0x06001966 RID: 6502 RVA: 0x000FF0A4 File Offset: 0x000FD2A4
+	// Token: 0x06001966 RID: 6502 RVA: 0x000FF070 File Offset: 0x000FD270
 	private void LateUpdate()
 	{
 		if (Vector3.Distance(base.transform.position, this.Yandere.transform.position) < 5f)

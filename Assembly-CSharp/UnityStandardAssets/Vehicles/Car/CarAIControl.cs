@@ -7,7 +7,7 @@ namespace UnityStandardAssets.Vehicles.Car
 	[RequireComponent(typeof(CarController))]
 	public class CarAIControl : MonoBehaviour
 	{
-		// Token: 0x060021C1 RID: 8641 RVA: 0x001F18A2 File Offset: 0x001EFAA2
+		// Token: 0x060021C2 RID: 8642 RVA: 0x001F199E File Offset: 0x001EFB9E
 		private void Awake()
 		{
 			this.m_CarController = base.GetComponent<CarController>();
@@ -15,7 +15,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.m_Rigidbody = base.GetComponent<Rigidbody>();
 		}
 
-		// Token: 0x060021C2 RID: 8642 RVA: 0x001F18D0 File Offset: 0x001EFAD0
+		// Token: 0x060021C3 RID: 8643 RVA: 0x001F19CC File Offset: 0x001EFBCC
 		private void FixedUpdate()
 		{
 			if (this.m_Target == null || !this.m_Driving)
@@ -71,7 +71,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021C3 RID: 8643 RVA: 0x001F1C00 File Offset: 0x001EFE00
+		// Token: 0x060021C4 RID: 8644 RVA: 0x001F1CFC File Offset: 0x001EFEFC
 		private void OnCollisionStay(Collision col)
 		{
 			if (col.rigidbody != null)
@@ -95,7 +95,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021C4 RID: 8644 RVA: 0x001F1CCE File Offset: 0x001EFECE
+		// Token: 0x060021C5 RID: 8645 RVA: 0x001F1DCA File Offset: 0x001EFFCA
 		public void SetTarget(Transform target)
 		{
 			this.m_Target = target;

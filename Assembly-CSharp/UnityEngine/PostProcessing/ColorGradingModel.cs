@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class ColorGradingModel : PostProcessingModel
 	{
 		// Token: 0x17000508 RID: 1288
-		// (get) Token: 0x0600238A RID: 9098 RVA: 0x001FADF4 File Offset: 0x001F8FF4
-		// (set) Token: 0x0600238B RID: 9099 RVA: 0x001FADFC File Offset: 0x001F8FFC
+		// (get) Token: 0x0600238B RID: 9099 RVA: 0x001FAEF0 File Offset: 0x001F90F0
+		// (set) Token: 0x0600238C RID: 9100 RVA: 0x001FAEF8 File Offset: 0x001F90F8
 		public ColorGradingModel.Settings settings
 		{
 			get
@@ -23,23 +23,23 @@ namespace UnityEngine.PostProcessing
 		}
 
 		// Token: 0x17000509 RID: 1289
-		// (get) Token: 0x0600238C RID: 9100 RVA: 0x001FAE0B File Offset: 0x001F900B
-		// (set) Token: 0x0600238D RID: 9101 RVA: 0x001FAE13 File Offset: 0x001F9013
+		// (get) Token: 0x0600238D RID: 9101 RVA: 0x001FAF07 File Offset: 0x001F9107
+		// (set) Token: 0x0600238E RID: 9102 RVA: 0x001FAF0F File Offset: 0x001F910F
 		public bool isDirty { get; internal set; }
 
 		// Token: 0x1700050A RID: 1290
-		// (get) Token: 0x0600238E RID: 9102 RVA: 0x001FAE1C File Offset: 0x001F901C
-		// (set) Token: 0x0600238F RID: 9103 RVA: 0x001FAE24 File Offset: 0x001F9024
+		// (get) Token: 0x0600238F RID: 9103 RVA: 0x001FAF18 File Offset: 0x001F9118
+		// (set) Token: 0x06002390 RID: 9104 RVA: 0x001FAF20 File Offset: 0x001F9120
 		public RenderTexture bakedLut { get; internal set; }
 
-		// Token: 0x06002390 RID: 9104 RVA: 0x001FAE2D File Offset: 0x001F902D
+		// Token: 0x06002391 RID: 9105 RVA: 0x001FAF29 File Offset: 0x001F9129
 		public override void Reset()
 		{
 			this.m_Settings = ColorGradingModel.Settings.defaultSettings;
 			this.OnValidate();
 		}
 
-		// Token: 0x06002391 RID: 9105 RVA: 0x001FAE40 File Offset: 0x001F9040
+		// Token: 0x06002392 RID: 9106 RVA: 0x001FAF3C File Offset: 0x001F913C
 		public override void OnValidate()
 		{
 			this.isDirty = true;
@@ -65,7 +65,7 @@ namespace UnityEngine.PostProcessing
 		public struct TonemappingSettings
 		{
 			// Token: 0x17000599 RID: 1433
-			// (get) Token: 0x0600278C RID: 10124 RVA: 0x002093CC File Offset: 0x002075CC
+			// (get) Token: 0x0600278D RID: 10125 RVA: 0x002094C8 File Offset: 0x002076C8
 			public static ColorGradingModel.TonemappingSettings defaultSettings
 			{
 				get
@@ -117,7 +117,7 @@ namespace UnityEngine.PostProcessing
 		public struct BasicSettings
 		{
 			// Token: 0x1700059A RID: 1434
-			// (get) Token: 0x0600278D RID: 10125 RVA: 0x00209434 File Offset: 0x00207634
+			// (get) Token: 0x0600278E RID: 10126 RVA: 0x00209530 File Offset: 0x00207730
 			public static ColorGradingModel.BasicSettings defaultSettings
 			{
 				get
@@ -169,7 +169,7 @@ namespace UnityEngine.PostProcessing
 		public struct ChannelMixerSettings
 		{
 			// Token: 0x1700059B RID: 1435
-			// (get) Token: 0x0600278E RID: 10126 RVA: 0x00209494 File Offset: 0x00207694
+			// (get) Token: 0x0600278F RID: 10127 RVA: 0x00209590 File Offset: 0x00207790
 			public static ColorGradingModel.ChannelMixerSettings defaultSettings
 			{
 				get
@@ -203,7 +203,7 @@ namespace UnityEngine.PostProcessing
 		public struct LogWheelsSettings
 		{
 			// Token: 0x1700059C RID: 1436
-			// (get) Token: 0x0600278F RID: 10127 RVA: 0x00209504 File Offset: 0x00207704
+			// (get) Token: 0x06002790 RID: 10128 RVA: 0x00209600 File Offset: 0x00207800
 			public static ColorGradingModel.LogWheelsSettings defaultSettings
 			{
 				get
@@ -235,7 +235,7 @@ namespace UnityEngine.PostProcessing
 		public struct LinearWheelsSettings
 		{
 			// Token: 0x1700059D RID: 1437
-			// (get) Token: 0x06002790 RID: 10128 RVA: 0x00209540 File Offset: 0x00207740
+			// (get) Token: 0x06002791 RID: 10129 RVA: 0x0020963C File Offset: 0x0020783C
 			public static ColorGradingModel.LinearWheelsSettings defaultSettings
 			{
 				get
@@ -276,7 +276,7 @@ namespace UnityEngine.PostProcessing
 		public struct ColorWheelsSettings
 		{
 			// Token: 0x1700059E RID: 1438
-			// (get) Token: 0x06002791 RID: 10129 RVA: 0x0020957C File Offset: 0x0020777C
+			// (get) Token: 0x06002792 RID: 10130 RVA: 0x00209678 File Offset: 0x00207878
 			public static ColorGradingModel.ColorWheelsSettings defaultSettings
 			{
 				get
@@ -307,7 +307,7 @@ namespace UnityEngine.PostProcessing
 		public struct CurvesSettings
 		{
 			// Token: 0x1700059F RID: 1439
-			// (get) Token: 0x06002792 RID: 10130 RVA: 0x002095B4 File Offset: 0x002077B4
+			// (get) Token: 0x06002793 RID: 10131 RVA: 0x002096B0 File Offset: 0x002078B0
 			public static ColorGradingModel.CurvesSettings defaultSettings
 			{
 				get
@@ -397,7 +397,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x170005A0 RID: 1440
-			// (get) Token: 0x06002793 RID: 10131 RVA: 0x0020983C File Offset: 0x00207A3C
+			// (get) Token: 0x06002794 RID: 10132 RVA: 0x00209938 File Offset: 0x00207B38
 			public static ColorGradingModel.Settings defaultSettings
 			{
 				get

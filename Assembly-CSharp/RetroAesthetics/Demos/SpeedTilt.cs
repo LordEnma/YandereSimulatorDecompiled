@@ -6,7 +6,7 @@ namespace RetroAesthetics.Demos
 	// Token: 0x0200055A RID: 1370
 	public class SpeedTilt : MonoBehaviour
 	{
-		// Token: 0x060022F3 RID: 8947 RVA: 0x001F6B08 File Offset: 0x001F4D08
+		// Token: 0x060022F4 RID: 8948 RVA: 0x001F6C04 File Offset: 0x001F4E04
 		private void Start()
 		{
 			this._maxPositionY = base.transform.localPosition.y;
@@ -23,7 +23,7 @@ namespace RetroAesthetics.Demos
 			this._minFOV = this._camera.fieldOfView;
 		}
 
-		// Token: 0x060022F4 RID: 8948 RVA: 0x001F6BE0 File Offset: 0x001F4DE0
+		// Token: 0x060022F5 RID: 8949 RVA: 0x001F6CDC File Offset: 0x001F4EDC
 		private void FixedUpdate()
 		{
 			Vector3 vector = this._lastPosition - base.transform.position;

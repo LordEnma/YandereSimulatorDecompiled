@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public abstract class PostProcessingModel
 	{
 		// Token: 0x1700051C RID: 1308
-		// (get) Token: 0x060023E3 RID: 9187 RVA: 0x001FBD15 File Offset: 0x001F9F15
-		// (set) Token: 0x060023E4 RID: 9188 RVA: 0x001FBD1D File Offset: 0x001F9F1D
+		// (get) Token: 0x060023E4 RID: 9188 RVA: 0x001FBE11 File Offset: 0x001FA011
+		// (set) Token: 0x060023E5 RID: 9189 RVA: 0x001FBE19 File Offset: 0x001FA019
 		public bool enabled
 		{
 			get
@@ -25,10 +25,10 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023E5 RID: 9189
+		// Token: 0x060023E6 RID: 9190
 		public abstract void Reset();
 
-		// Token: 0x060023E6 RID: 9190 RVA: 0x001FBD2F File Offset: 0x001F9F2F
+		// Token: 0x060023E7 RID: 9191 RVA: 0x001FBE2B File Offset: 0x001FA02B
 		public virtual void OnValidate()
 		{
 		}

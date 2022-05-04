@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000440 RID: 1088
 public class SplashCameraScript : MonoBehaviour
 {
-	// Token: 0x06001D0F RID: 7439 RVA: 0x0015AC2A File Offset: 0x00158E2A
+	// Token: 0x06001D0F RID: 7439 RVA: 0x0015ABF6 File Offset: 0x00158DF6
 	private void Start()
 	{
 		this.MyCamera.enabled = false;
 		this.MyCamera.rect = new Rect(0f, 0.219f, 0f, 0f);
 	}
 
-	// Token: 0x06001D10 RID: 7440 RVA: 0x0015AC5C File Offset: 0x00158E5C
+	// Token: 0x06001D10 RID: 7440 RVA: 0x0015AC28 File Offset: 0x00158E28
 	private void Update()
 	{
 		if (this.Show)

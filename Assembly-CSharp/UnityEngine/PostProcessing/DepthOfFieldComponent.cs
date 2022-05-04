@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class DepthOfFieldComponent : PostProcessingComponentRenderTexture<DepthOfFieldModel>
 	{
 		// Token: 0x170004F4 RID: 1268
-		// (get) Token: 0x0600232B RID: 9003 RVA: 0x001F8963 File Offset: 0x001F6B63
+		// (get) Token: 0x0600232C RID: 9004 RVA: 0x001F8A5F File Offset: 0x001F6C5F
 		public override bool active
 		{
 			get
@@ -15,13 +15,13 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600232C RID: 9004 RVA: 0x001F8982 File Offset: 0x001F6B82
+		// Token: 0x0600232D RID: 9005 RVA: 0x001F8A7E File Offset: 0x001F6C7E
 		public override DepthTextureMode GetCameraFlags()
 		{
 			return DepthTextureMode.Depth;
 		}
 
-		// Token: 0x0600232D RID: 9005 RVA: 0x001F8988 File Offset: 0x001F6B88
+		// Token: 0x0600232E RID: 9006 RVA: 0x001F8A84 File Offset: 0x001F6C84
 		private float CalculateFocalLength()
 		{
 			DepthOfFieldModel.Settings settings = base.model.settings;
@@ -33,20 +33,20 @@ namespace UnityEngine.PostProcessing
 			return 0.012f / Mathf.Tan(0.5f * num);
 		}
 
-		// Token: 0x0600232E RID: 9006 RVA: 0x001F89E0 File Offset: 0x001F6BE0
+		// Token: 0x0600232F RID: 9007 RVA: 0x001F8ADC File Offset: 0x001F6CDC
 		private float CalculateMaxCoCRadius(int screenHeight)
 		{
 			float num = (float)base.model.settings.kernelSize * 4f + 6f;
 			return Mathf.Min(0.05f, num / (float)screenHeight);
 		}
 
-		// Token: 0x0600232F RID: 9007 RVA: 0x001F8A19 File Offset: 0x001F6C19
+		// Token: 0x06002330 RID: 9008 RVA: 0x001F8B15 File Offset: 0x001F6D15
 		private bool CheckHistory(int width, int height)
 		{
 			return this.m_CoCHistory != null && this.m_CoCHistory.IsCreated() && this.m_CoCHistory.width == width && this.m_CoCHistory.height == height;
 		}
 
-		// Token: 0x06002330 RID: 9008 RVA: 0x001F8A54 File Offset: 0x001F6C54
+		// Token: 0x06002331 RID: 9009 RVA: 0x001F8B50 File Offset: 0x001F6D50
 		private RenderTextureFormat SelectFormat(RenderTextureFormat primary, RenderTextureFormat secondary)
 		{
 			if (SystemInfo.SupportsRenderTextureFormat(primary))
@@ -60,7 +60,7 @@ namespace UnityEngine.PostProcessing
 			return RenderTextureFormat.Default;
 		}
 
-		// Token: 0x06002331 RID: 9009 RVA: 0x001F8A6C File Offset: 0x001F6C6C
+		// Token: 0x06002332 RID: 9010 RVA: 0x001F8B68 File Offset: 0x001F6D68
 		public void Prepare(RenderTexture source, Material uberMaterial, bool antialiasCoC, Vector2 taaJitter, float taaBlending)
 		{
 			DepthOfFieldModel.Settings settings = base.model.settings;
@@ -114,7 +114,7 @@ namespace UnityEngine.PostProcessing
 			this.context.renderTextureFactory.Release(renderTexture3);
 		}
 
-		// Token: 0x06002332 RID: 9010 RVA: 0x001F8D78 File Offset: 0x001F6F78
+		// Token: 0x06002333 RID: 9011 RVA: 0x001F8E74 File Offset: 0x001F7074
 		public override void OnDisable()
 		{
 			if (this.m_CoCHistory != null)

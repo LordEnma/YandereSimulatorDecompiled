@@ -4,7 +4,7 @@
 [Serializable]
 public class CollectibleSaveData
 {
-	// Token: 0x06001C25 RID: 7205 RVA: 0x001493D8 File Offset: 0x001475D8
+	// Token: 0x06001C25 RID: 7205 RVA: 0x001493A4 File Offset: 0x001475A4
 	public static CollectibleSaveData ReadFromGlobals()
 	{
 		CollectibleSaveData collectibleSaveData = new CollectibleSaveData();
@@ -46,7 +46,7 @@ public class CollectibleSaveData
 		return collectibleSaveData;
 	}
 
-	// Token: 0x06001C26 RID: 7206 RVA: 0x001494DC File Offset: 0x001476DC
+	// Token: 0x06001C26 RID: 7206 RVA: 0x001494A8 File Offset: 0x001476A8
 	public static void WriteToGlobals(CollectibleSaveData data)
 	{
 		foreach (int tapeID in data.basementTapeCollected)

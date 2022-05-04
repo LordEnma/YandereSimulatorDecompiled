@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200038D RID: 909
 public class OsanaWarningScript : MonoBehaviour
 {
-	// Token: 0x06001A5C RID: 6748 RVA: 0x00118A70 File Offset: 0x00116C70
+	// Token: 0x06001A5C RID: 6748 RVA: 0x00118A3C File Offset: 0x00116C3C
 	private void Start()
 	{
 		this.Darkness.color = new Color(0f, 0f, 0f, 1f);
@@ -25,7 +25,7 @@ public class OsanaWarningScript : MonoBehaviour
 		this.Profile.bloom.settings = settings3;
 	}
 
-	// Token: 0x06001A5D RID: 6749 RVA: 0x00118BA4 File Offset: 0x00116DA4
+	// Token: 0x06001A5D RID: 6749 RVA: 0x00118B70 File Offset: 0x00116D70
 	private void Update()
 	{
 		if (this.FadeOut)
@@ -51,7 +51,7 @@ public class OsanaWarningScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A5E RID: 6750 RVA: 0x00118C50 File Offset: 0x00116E50
+	// Token: 0x06001A5E RID: 6750 RVA: 0x00118C1C File Offset: 0x00116E1C
 	private void LateUpdate()
 	{
 		this.RightHand.localEulerAngles += new Vector3(UnityEngine.Random.Range(1f, -1f), UnityEngine.Random.Range(1f, -1f), UnityEngine.Random.Range(1f, -1f));

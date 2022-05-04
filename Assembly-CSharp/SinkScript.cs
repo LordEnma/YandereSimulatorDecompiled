@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200042E RID: 1070
 public class SinkScript : MonoBehaviour
 {
-	// Token: 0x06001CD6 RID: 7382 RVA: 0x00156A3D File Offset: 0x00154C3D
+	// Token: 0x06001CD6 RID: 7382 RVA: 0x00156A09 File Offset: 0x00154C09
 	private void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
 	}
 
-	// Token: 0x06001CD7 RID: 7383 RVA: 0x00156A54 File Offset: 0x00154C54
+	// Token: 0x06001CD7 RID: 7383 RVA: 0x00156A20 File Offset: 0x00154C20
 	private void Update()
 	{
 		if (this.Yandere.PickUp != null)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002E6 RID: 742
 public class GhostScript : MonoBehaviour
 {
-	// Token: 0x06001511 RID: 5393 RVA: 0x000D8AA0 File Offset: 0x000D6CA0
+	// Token: 0x06001511 RID: 5393 RVA: 0x000D8A6C File Offset: 0x000D6C6C
 	private void Update()
 	{
 		if (Time.timeScale > 0.0001f)
@@ -19,7 +19,7 @@ public class GhostScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001512 RID: 5394 RVA: 0x000D8AEF File Offset: 0x000D6CEF
+	// Token: 0x06001512 RID: 5394 RVA: 0x000D8ABB File Offset: 0x000D6CBB
 	public void Look()
 	{
 		this.Neck.LookAt(this.SmartphoneCamera.position);

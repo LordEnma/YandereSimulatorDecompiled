@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000350 RID: 848
 public class LeaveGiftScript : MonoBehaviour
 {
-	// Token: 0x06001972 RID: 6514 RVA: 0x000FFAEC File Offset: 0x000FDCEC
+	// Token: 0x06001972 RID: 6514 RVA: 0x000FFAB8 File Offset: 0x000FDCB8
 	private void Start()
 	{
 		this.Note.SetActive(false);
@@ -16,7 +16,7 @@ public class LeaveGiftScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001973 RID: 6515 RVA: 0x000FFB3C File Offset: 0x000FDD3C
+	// Token: 0x06001973 RID: 6515 RVA: 0x000FFB08 File Offset: 0x000FDD08
 	private void Update()
 	{
 		if (this.Prompt.InView)
@@ -46,7 +46,7 @@ public class LeaveGiftScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001974 RID: 6516 RVA: 0x000FFC24 File Offset: 0x000FDE24
+	// Token: 0x06001974 RID: 6516 RVA: 0x000FFBF0 File Offset: 0x000FDDF0
 	private void CheckForDisable()
 	{
 		if (this.Prompt.HideButton[0] && this.Prompt.HideButton[1])

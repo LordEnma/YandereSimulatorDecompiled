@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200034F RID: 847
 public class LaptopScript : MonoBehaviour
 {
-	// Token: 0x0600196E RID: 6510 RVA: 0x000FF640 File Offset: 0x000FD840
+	// Token: 0x0600196E RID: 6510 RVA: 0x000FF60C File Offset: 0x000FD80C
 	private void Start()
 	{
 		if (SchoolGlobals.SCP || GameGlobals.AlphabetMode)
@@ -22,7 +22,7 @@ public class LaptopScript : MonoBehaviour
 		this.MyAudio = base.GetComponent<AudioSource>();
 	}
 
-	// Token: 0x0600196F RID: 6511 RVA: 0x000FF6E4 File Offset: 0x000FD8E4
+	// Token: 0x0600196F RID: 6511 RVA: 0x000FF6B0 File Offset: 0x000FD8B0
 	private void Update()
 	{
 		if (this.FirstFrame == 2)
@@ -98,7 +98,7 @@ public class LaptopScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001970 RID: 6512 RVA: 0x000FFA78 File Offset: 0x000FDC78
+	// Token: 0x06001970 RID: 6512 RVA: 0x000FFA44 File Offset: 0x000FDC44
 	private void TurnOff()
 	{
 		this.MyAudio.clip = this.ShutDown;

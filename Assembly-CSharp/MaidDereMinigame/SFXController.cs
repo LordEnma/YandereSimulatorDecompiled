@@ -8,7 +8,7 @@ namespace MaidDereMinigame
 	public class SFXController : MonoBehaviour
 	{
 		// Token: 0x1700052B RID: 1323
-		// (get) Token: 0x060024B9 RID: 9401 RVA: 0x00201D50 File Offset: 0x001FFF50
+		// (get) Token: 0x060024BA RID: 9402 RVA: 0x00201E4C File Offset: 0x0020004C
 		public static SFXController Instance
 		{
 			get
@@ -21,7 +21,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024BA RID: 9402 RVA: 0x00201D6E File Offset: 0x001FFF6E
+		// Token: 0x060024BB RID: 9403 RVA: 0x00201E6A File Offset: 0x0020006A
 		private void Awake()
 		{
 			if (SFXController.Instance != this)
@@ -32,7 +32,7 @@ namespace MaidDereMinigame
 			UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
 		}
 
-		// Token: 0x060024BB RID: 9403 RVA: 0x00201D94 File Offset: 0x001FFF94
+		// Token: 0x060024BC RID: 9404 RVA: 0x00201E90 File Offset: 0x00200090
 		public static void PlaySound(SFXController.Sounds sound)
 		{
 			SoundEmitter emitter = SFXController.Instance.GetEmitter(sound);
@@ -44,7 +44,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024BC RID: 9404 RVA: 0x00201DDC File Offset: 0x001FFFDC
+		// Token: 0x060024BD RID: 9405 RVA: 0x00201ED8 File Offset: 0x002000D8
 		private SoundEmitter GetEmitter(SFXController.Sounds sound)
 		{
 			foreach (SoundEmitter soundEmitter in this.emitters)
@@ -58,7 +58,7 @@ namespace MaidDereMinigame
 			return null;
 		}
 
-		// Token: 0x060024BD RID: 9405 RVA: 0x00201E48 File Offset: 0x00200048
+		// Token: 0x060024BE RID: 9406 RVA: 0x00201F44 File Offset: 0x00200144
 		private AudioClip GetRandomClip(SoundEmitter emitter)
 		{
 			int index = UnityEngine.Random.Range(0, emitter.clips.Count);

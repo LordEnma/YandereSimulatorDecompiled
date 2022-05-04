@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200043E RID: 1086
 public class SpeedrunTimerScript : MonoBehaviour
 {
-	// Token: 0x06001D09 RID: 7433 RVA: 0x0015AACF File Offset: 0x00158CCF
+	// Token: 0x06001D09 RID: 7433 RVA: 0x0015AA9B File Offset: 0x00158C9B
 	private void Start()
 	{
 		this.Label.enabled = false;
 	}
 
-	// Token: 0x06001D0A RID: 7434 RVA: 0x0015AAE0 File Offset: 0x00158CE0
+	// Token: 0x06001D0A RID: 7434 RVA: 0x0015AAAC File Offset: 0x00158CAC
 	private void Update()
 	{
 		if (!this.Police.FadeOut)
@@ -27,7 +27,7 @@ public class SpeedrunTimerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D0B RID: 7435 RVA: 0x0015AB5C File Offset: 0x00158D5C
+	// Token: 0x06001D0B RID: 7435 RVA: 0x0015AB28 File Offset: 0x00158D28
 	private string FormatTime(float time)
 	{
 		int num = (int)time;

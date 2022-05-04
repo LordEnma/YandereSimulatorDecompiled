@@ -4,7 +4,7 @@
 [Serializable]
 public class SchoolSaveData
 {
-	// Token: 0x06001C4C RID: 7244 RVA: 0x0014A70C File Offset: 0x0014890C
+	// Token: 0x06001C4C RID: 7244 RVA: 0x0014A6D8 File Offset: 0x001488D8
 	public static SchoolSaveData ReadFromGlobals()
 	{
 		SchoolSaveData schoolSaveData = new SchoolSaveData();
@@ -31,7 +31,7 @@ public class SchoolSaveData
 		return schoolSaveData;
 	}
 
-	// Token: 0x06001C4D RID: 7245 RVA: 0x0014A7C0 File Offset: 0x001489C0
+	// Token: 0x06001C4D RID: 7245 RVA: 0x0014A78C File Offset: 0x0014898C
 	public static void WriteToGlobals(SchoolSaveData data)
 	{
 		foreach (int demonID in data.demonActive)

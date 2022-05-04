@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002A4 RID: 676
 public class EmergencyShowerScript : MonoBehaviour
 {
-	// Token: 0x0600142C RID: 5164 RVA: 0x000C0C18 File Offset: 0x000BEE18
+	// Token: 0x0600142C RID: 5164 RVA: 0x000C0BE4 File Offset: 0x000BEDE4
 	private void Update()
 	{
 		if (this.Yandere.Bloodiness > 0f && this.Yandere.PickUp != null && this.Yandere.PickUp.Clothing && !this.Yandere.PickUp.Evidence && this.Yandere.PickUp.Gloves == null)

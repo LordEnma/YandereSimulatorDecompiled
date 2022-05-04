@@ -6,14 +6,14 @@ namespace UnityEngine.PostProcessing
 	// Token: 0x0200056B RID: 1387
 	public sealed class ScreenSpaceReflectionComponent : PostProcessingComponentCommandBuffer<ScreenSpaceReflectionModel>
 	{
-		// Token: 0x06002359 RID: 9049 RVA: 0x001F9B53 File Offset: 0x001F7D53
+		// Token: 0x0600235A RID: 9050 RVA: 0x001F9C4F File Offset: 0x001F7E4F
 		public override DepthTextureMode GetCameraFlags()
 		{
 			return DepthTextureMode.Depth;
 		}
 
 		// Token: 0x170004FD RID: 1277
-		// (get) Token: 0x0600235A RID: 9050 RVA: 0x001F9B56 File Offset: 0x001F7D56
+		// (get) Token: 0x0600235B RID: 9051 RVA: 0x001F9C52 File Offset: 0x001F7E52
 		public override bool active
 		{
 			get
@@ -22,7 +22,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600235B RID: 9051 RVA: 0x001F9B84 File Offset: 0x001F7D84
+		// Token: 0x0600235C RID: 9052 RVA: 0x001F9C80 File Offset: 0x001F7E80
 		public override void OnEnable()
 		{
 			this.m_ReflectionTextures[0] = Shader.PropertyToID("_ReflectionTexture0");
@@ -32,19 +32,19 @@ namespace UnityEngine.PostProcessing
 			this.m_ReflectionTextures[4] = Shader.PropertyToID("_ReflectionTexture4");
 		}
 
-		// Token: 0x0600235C RID: 9052 RVA: 0x001F9BEB File Offset: 0x001F7DEB
+		// Token: 0x0600235D RID: 9053 RVA: 0x001F9CE7 File Offset: 0x001F7EE7
 		public override string GetName()
 		{
 			return "Screen Space Reflection";
 		}
 
-		// Token: 0x0600235D RID: 9053 RVA: 0x001F9BF2 File Offset: 0x001F7DF2
+		// Token: 0x0600235E RID: 9054 RVA: 0x001F9CEE File Offset: 0x001F7EEE
 		public override CameraEvent GetCameraEvent()
 		{
 			return CameraEvent.AfterFinalPass;
 		}
 
-		// Token: 0x0600235E RID: 9054 RVA: 0x001F9BF8 File Offset: 0x001F7DF8
+		// Token: 0x0600235F RID: 9055 RVA: 0x001F9CF4 File Offset: 0x001F7EF4
 		public override void PopulateCommandBuffer(CommandBuffer cb)
 		{
 			ScreenSpaceReflectionModel.Settings settings = base.model.settings;

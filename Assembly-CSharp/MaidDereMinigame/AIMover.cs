@@ -6,10 +6,10 @@ namespace MaidDereMinigame
 	// Token: 0x0200059B RID: 1435
 	public abstract class AIMover : MonoBehaviour
 	{
-		// Token: 0x0600246E RID: 9326
+		// Token: 0x0600246F RID: 9327
 		public abstract ControlInput GetInput();
 
-		// Token: 0x0600246F RID: 9327 RVA: 0x0020069C File Offset: 0x001FE89C
+		// Token: 0x06002470 RID: 9328 RVA: 0x00200798 File Offset: 0x001FE998
 		private void FixedUpdate()
 		{
 			ControlInput input = this.GetInput();

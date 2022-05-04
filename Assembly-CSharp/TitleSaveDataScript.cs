@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000480 RID: 1152
 public class TitleSaveDataScript : MonoBehaviour
 {
-	// Token: 0x06001F05 RID: 7941 RVA: 0x001B6EE0 File Offset: 0x001B50E0
+	// Token: 0x06001F06 RID: 7942 RVA: 0x001B6FDC File Offset: 0x001B51DC
 	public void Start()
 	{
 		this.Eighties = GameGlobals.Eighties;

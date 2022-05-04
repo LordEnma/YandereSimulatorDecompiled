@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020004CD RID: 1229
 public class WorkbenchScript : MonoBehaviour
 {
-	// Token: 0x06002020 RID: 8224 RVA: 0x001C9767 File Offset: 0x001C7967
+	// Token: 0x06002021 RID: 8225 RVA: 0x001C9863 File Offset: 0x001C7A63
 	private void Start()
 	{
 		this.RemoveCheckmarks();
 	}
 
-	// Token: 0x06002021 RID: 8225 RVA: 0x001C9770 File Offset: 0x001C7970
+	// Token: 0x06002022 RID: 8226 RVA: 0x001C986C File Offset: 0x001C7A6C
 	private void Update()
 	{
 		if (!this.Show)
@@ -214,14 +214,14 @@ public class WorkbenchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002022 RID: 8226 RVA: 0x001CA1CC File Offset: 0x001C83CC
+	// Token: 0x06002023 RID: 8227 RVA: 0x001CA2C8 File Offset: 0x001C84C8
 	private void PlayRandomSound()
 	{
 		this.MyAudio.clip = this.SFX[UnityEngine.Random.Range(1, this.SFX.Length)];
 		this.MyAudio.Play();
 	}
 
-	// Token: 0x06002023 RID: 8227 RVA: 0x001CA1FC File Offset: 0x001C83FC
+	// Token: 0x06002024 RID: 8228 RVA: 0x001CA2F8 File Offset: 0x001C84F8
 	private void CheckInventory()
 	{
 		Debug.Log("The game is now checking what items are currently in Yandere-chan's inventory.");
@@ -295,7 +295,7 @@ public class WorkbenchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002024 RID: 8228 RVA: 0x001CA4B4 File Offset: 0x001C86B4
+	// Token: 0x06002025 RID: 8229 RVA: 0x001CA5B0 File Offset: 0x001C87B0
 	private void UpdateHighlight()
 	{
 		if (this.Selection > 11)
@@ -309,7 +309,7 @@ public class WorkbenchScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 440f - 80f * (float)this.Selection, this.Highlight.localPosition.z);
 	}
 
-	// Token: 0x06002025 RID: 8229 RVA: 0x001CA528 File Offset: 0x001C8728
+	// Token: 0x06002026 RID: 8230 RVA: 0x001CA624 File Offset: 0x001C8824
 	private void CountCheckmarks()
 	{
 		Debug.Log("The game is now counting how many checkmarks are currently displayed.");
@@ -339,7 +339,7 @@ public class WorkbenchScript : MonoBehaviour
 		this.DisableInvalidOptions();
 	}
 
-	// Token: 0x06002026 RID: 8230 RVA: 0x001CA604 File Offset: 0x001C8804
+	// Token: 0x06002027 RID: 8231 RVA: 0x001CA700 File Offset: 0x001C8900
 	private void RemoveCheckmarks()
 	{
 		for (int i = 1; i < this.Checkmark.Length; i++)
@@ -350,7 +350,7 @@ public class WorkbenchScript : MonoBehaviour
 		this.Checkmarks = 0;
 	}
 
-	// Token: 0x06002027 RID: 8231 RVA: 0x001CA648 File Offset: 0x001C8848
+	// Token: 0x06002028 RID: 8232 RVA: 0x001CA744 File Offset: 0x001C8944
 	private void DisableInvalidOptions()
 	{
 		Debug.Log("The player has picked a material, and the game is now disabling the materials that cannot be applied to that material.");

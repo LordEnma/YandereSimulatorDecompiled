@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class ScreenSpaceReflectionModel : PostProcessingModel
 	{
 		// Token: 0x17000511 RID: 1297
-		// (get) Token: 0x060023AB RID: 9131 RVA: 0x001FAF82 File Offset: 0x001F9182
-		// (set) Token: 0x060023AC RID: 9132 RVA: 0x001FAF8A File Offset: 0x001F918A
+		// (get) Token: 0x060023AC RID: 9132 RVA: 0x001FB07E File Offset: 0x001F927E
+		// (set) Token: 0x060023AD RID: 9133 RVA: 0x001FB086 File Offset: 0x001F9286
 		public ScreenSpaceReflectionModel.Settings settings
 		{
 			get
@@ -21,7 +21,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023AD RID: 9133 RVA: 0x001FAF93 File Offset: 0x001F9193
+		// Token: 0x060023AE RID: 9134 RVA: 0x001FB08F File Offset: 0x001F928F
 		public override void Reset()
 		{
 			this.m_Settings = ScreenSpaceReflectionModel.Settings.defaultSettings;
@@ -131,7 +131,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x170005A7 RID: 1447
-			// (get) Token: 0x0600279A RID: 10138 RVA: 0x00209A1C File Offset: 0x00207C1C
+			// (get) Token: 0x0600279B RID: 10139 RVA: 0x00209B18 File Offset: 0x00207D18
 			public static ScreenSpaceReflectionModel.Settings defaultSettings
 			{
 				get

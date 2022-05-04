@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020003F6 RID: 1014
 public class SabotageVendingMachineScript : MonoBehaviour
 {
-	// Token: 0x06001C11 RID: 7185 RVA: 0x00148B69 File Offset: 0x00146D69
+	// Token: 0x06001C11 RID: 7185 RVA: 0x00148B35 File Offset: 0x00146D35
 	private void Start()
 	{
 		this.Prompt.enabled = false;
 		this.Prompt.Hide();
 	}
 
-	// Token: 0x06001C12 RID: 7186 RVA: 0x00148B84 File Offset: 0x00146D84
+	// Token: 0x06001C12 RID: 7186 RVA: 0x00148B50 File Offset: 0x00146D50
 	private void Update()
 	{
 		if (this.Yandere.Armed)

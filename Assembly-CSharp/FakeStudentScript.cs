@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020002C4 RID: 708
 public class FakeStudentScript : MonoBehaviour
 {
-	// Token: 0x06001498 RID: 5272 RVA: 0x000C9975 File Offset: 0x000C7B75
+	// Token: 0x06001498 RID: 5272 RVA: 0x000C9941 File Offset: 0x000C7B41
 	private void Start()
 	{
 		this.targetRotation = base.transform.rotation;
 		this.Student.Club = this.Club;
 	}
 
-	// Token: 0x06001499 RID: 5273 RVA: 0x000C999C File Offset: 0x000C7B9C
+	// Token: 0x06001499 RID: 5273 RVA: 0x000C9968 File Offset: 0x000C7B68
 	private void Update()
 	{
 		if (!this.Student.Talking)

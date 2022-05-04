@@ -7,7 +7,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class FogComponent : PostProcessingComponentCommandBuffer<FogModel>
 	{
 		// Token: 0x170004F7 RID: 1271
-		// (get) Token: 0x06002341 RID: 9025 RVA: 0x001F9421 File Offset: 0x001F7621
+		// (get) Token: 0x06002342 RID: 9026 RVA: 0x001F951D File Offset: 0x001F771D
 		public override bool active
 		{
 			get
@@ -16,25 +16,25 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002342 RID: 9026 RVA: 0x001F9454 File Offset: 0x001F7654
+		// Token: 0x06002343 RID: 9027 RVA: 0x001F9550 File Offset: 0x001F7750
 		public override string GetName()
 		{
 			return "Fog";
 		}
 
-		// Token: 0x06002343 RID: 9027 RVA: 0x001F945B File Offset: 0x001F765B
+		// Token: 0x06002344 RID: 9028 RVA: 0x001F9557 File Offset: 0x001F7757
 		public override DepthTextureMode GetCameraFlags()
 		{
 			return DepthTextureMode.Depth;
 		}
 
-		// Token: 0x06002344 RID: 9028 RVA: 0x001F945E File Offset: 0x001F765E
+		// Token: 0x06002345 RID: 9029 RVA: 0x001F955A File Offset: 0x001F775A
 		public override CameraEvent GetCameraEvent()
 		{
 			return CameraEvent.AfterImageEffectsOpaque;
 		}
 
-		// Token: 0x06002345 RID: 9029 RVA: 0x001F9464 File Offset: 0x001F7664
+		// Token: 0x06002346 RID: 9030 RVA: 0x001F9560 File Offset: 0x001F7760
 		public override void PopulateCommandBuffer(CommandBuffer cb)
 		{
 			FogModel.Settings settings = base.model.settings;

@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200028D RID: 653
 public class DoorGapScript : MonoBehaviour
 {
-	// Token: 0x060013B8 RID: 5048 RVA: 0x000B952F File Offset: 0x000B772F
+	// Token: 0x060013B8 RID: 5048 RVA: 0x000B94FB File Offset: 0x000B76FB
 	private void Start()
 	{
 		this.Papers[1].gameObject.SetActive(false);
 	}
 
-	// Token: 0x060013B9 RID: 5049 RVA: 0x000B9544 File Offset: 0x000B7744
+	// Token: 0x060013B9 RID: 5049 RVA: 0x000B9510 File Offset: 0x000B7710
 	private void Update()
 	{
 		if (!this.StolenPhoneDropoff)
@@ -123,7 +123,7 @@ public class DoorGapScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013BA RID: 5050 RVA: 0x000B9AAC File Offset: 0x000B7CAC
+	// Token: 0x060013BA RID: 5050 RVA: 0x000B9A78 File Offset: 0x000B7C78
 	public void SetPhonesHacked()
 	{
 		for (int i = 1; i < 101; i++)

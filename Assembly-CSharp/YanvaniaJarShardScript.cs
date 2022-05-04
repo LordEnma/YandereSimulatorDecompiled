@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020004E7 RID: 1255
 public class YanvaniaJarShardScript : MonoBehaviour
 {
-	// Token: 0x060020E3 RID: 8419 RVA: 0x001E5B18 File Offset: 0x001E3D18
+	// Token: 0x060020E4 RID: 8420 RVA: 0x001E5C14 File Offset: 0x001E3E14
 	private void Start()
 	{
 		this.Rotation = UnityEngine.Random.Range(-360f, 360f);
 		base.GetComponent<Rigidbody>().AddForce(UnityEngine.Random.Range(-100f, 100f), UnityEngine.Random.Range(0f, 100f), UnityEngine.Random.Range(-100f, 100f));
 	}
 
-	// Token: 0x060020E4 RID: 8420 RVA: 0x001E5B74 File Offset: 0x001E3D74
+	// Token: 0x060020E5 RID: 8421 RVA: 0x001E5C70 File Offset: 0x001E3E70
 	private void Update()
 	{
 		this.MyRotation += this.Rotation;

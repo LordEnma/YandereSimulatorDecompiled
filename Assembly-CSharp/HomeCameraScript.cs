@@ -5,7 +5,7 @@ using UnityEngine.PostProcessing;
 // Token: 0x02000318 RID: 792
 public class HomeCameraScript : MonoBehaviour
 {
-	// Token: 0x06001878 RID: 6264 RVA: 0x000ECAF0 File Offset: 0x000EACF0
+	// Token: 0x06001878 RID: 6264 RVA: 0x000ECABC File Offset: 0x000EACBC
 	public void Start()
 	{
 		this.ResetBloom();
@@ -93,7 +93,7 @@ public class HomeCameraScript : MonoBehaviour
 		this.Triggers[1].transform.parent.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001879 RID: 6265 RVA: 0x000ECE4C File Offset: 0x000EB04C
+	// Token: 0x06001879 RID: 6265 RVA: 0x000ECE18 File Offset: 0x000EB018
 	private void LateUpdate()
 	{
 		if (this.HomeYandere.transform.position.y > -5f)
@@ -240,7 +240,7 @@ public class HomeCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600187A RID: 6266 RVA: 0x000ED6A2 File Offset: 0x000EB8A2
+	// Token: 0x0600187A RID: 6266 RVA: 0x000ED66E File Offset: 0x000EB86E
 	public void PlayMusic()
 	{
 		if (!YanvaniaGlobals.DraculaDefeated && !HomeGlobals.MiyukiDefeated)
@@ -256,7 +256,7 @@ public class HomeCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600187B RID: 6267 RVA: 0x000ED6E4 File Offset: 0x000EB8E4
+	// Token: 0x0600187B RID: 6267 RVA: 0x000ED6B0 File Offset: 0x000EB8B0
 	private void LoveSickColorSwap()
 	{
 		foreach (GameObject gameObject in UnityEngine.Object.FindObjectsOfType<GameObject>())
@@ -283,7 +283,7 @@ public class HomeCameraScript : MonoBehaviour
 		this.PlayMusic();
 	}
 
-	// Token: 0x0600187C RID: 6268 RVA: 0x000ED84C File Offset: 0x000EBA4C
+	// Token: 0x0600187C RID: 6268 RVA: 0x000ED818 File Offset: 0x000EBA18
 	public void UpdateDOF(float Focus)
 	{
 		Focus *= ((float)Screen.width / 1280f + (float)Screen.height / 720f) * 0.5f;
@@ -292,7 +292,7 @@ public class HomeCameraScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x0600187D RID: 6269 RVA: 0x000ED8A8 File Offset: 0x000EBAA8
+	// Token: 0x0600187D RID: 6269 RVA: 0x000ED874 File Offset: 0x000EBA74
 	private void ReduceKnee()
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -300,7 +300,7 @@ public class HomeCameraScript : MonoBehaviour
 		this.Profile.bloom.settings = settings;
 	}
 
-	// Token: 0x0600187E RID: 6270 RVA: 0x000ED8E8 File Offset: 0x000EBAE8
+	// Token: 0x0600187E RID: 6270 RVA: 0x000ED8B4 File Offset: 0x000EBAB4
 	private void ResetBloom()
 	{
 		BloomModel.Settings settings = this.Profile.bloom.settings;
@@ -311,7 +311,7 @@ public class HomeCameraScript : MonoBehaviour
 		this.Profile.bloom.settings = settings;
 	}
 
-	// Token: 0x0600187F RID: 6271 RVA: 0x000ED95C File Offset: 0x000EBB5C
+	// Token: 0x0600187F RID: 6271 RVA: 0x000ED928 File Offset: 0x000EBB28
 	private void BecomeEighties()
 	{
 		this.Eighties = true;
@@ -358,7 +358,7 @@ public class HomeCameraScript : MonoBehaviour
 		this.CeilingLight.GetComponent<Light>().intensity = 3f;
 	}
 
-	// Token: 0x06001880 RID: 6272 RVA: 0x000EDB5C File Offset: 0x000EBD5C
+	// Token: 0x06001880 RID: 6272 RVA: 0x000EDB28 File Offset: 0x000EBD28
 	public void EightiesifyLabel(UILabel Label)
 	{
 		Label.trueTypeFont = this.VCR;

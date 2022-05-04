@@ -1047,11 +1047,11 @@ public class UIDrawCall : MonoBehaviour
 	}
 
 	// Token: 0x02000601 RID: 1537
-	// (Invoke) Token: 0x0600259F RID: 9631
+	// (Invoke) Token: 0x060025A0 RID: 9632
 	public delegate void OnRenderCallback(Material mat);
 
 	// Token: 0x02000602 RID: 1538
-	// (Invoke) Token: 0x060025A3 RID: 9635
+	// (Invoke) Token: 0x060025A4 RID: 9636
 	public delegate void OnCreateDrawCall(UIDrawCall dc, MeshFilter filter, MeshRenderer ren);
 
 	// Token: 0x02000603 RID: 1539

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000441 RID: 1089
 public class SplashSpawnerScript : MonoBehaviour
 {
-	// Token: 0x06001D12 RID: 7442 RVA: 0x0015ADF0 File Offset: 0x00158FF0
+	// Token: 0x06001D12 RID: 7442 RVA: 0x0015ADBC File Offset: 0x00158FBC
 	private void Update()
 	{
 		if (!this.FootUp)
@@ -27,7 +27,7 @@ public class SplashSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D13 RID: 7443 RVA: 0x0015AF03 File Offset: 0x00159103
+	// Token: 0x06001D13 RID: 7443 RVA: 0x0015AECF File Offset: 0x001590CF
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "BloodPool(Clone)")

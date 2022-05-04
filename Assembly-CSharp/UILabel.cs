@@ -2326,6 +2326,6 @@ public class UILabel : UIWidget
 	}
 
 	// Token: 0x02000641 RID: 1601
-	// (Invoke) Token: 0x06002641 RID: 9793
+	// (Invoke) Token: 0x06002642 RID: 9794
 	public delegate string ModifierFunc(string s);
 }

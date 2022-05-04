@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E0 RID: 992
 public class RivalDeskScript : MonoBehaviour
 {
-	// Token: 0x06001BB3 RID: 7091 RVA: 0x0013AD51 File Offset: 0x00138F51
+	// Token: 0x06001BB3 RID: 7091 RVA: 0x0013AD1D File Offset: 0x00138F1D
 	private void Start()
 	{
 		if (DateGlobals.Weekday != DayOfWeek.Friday)
@@ -13,7 +13,7 @@ public class RivalDeskScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BB4 RID: 7092 RVA: 0x0013AD64 File Offset: 0x00138F64
+	// Token: 0x06001BB4 RID: 7092 RVA: 0x0013AD30 File Offset: 0x00138F30
 	private void Update()
 	{
 		if (!this.Prompt.Yandere.Inventory.AnswerSheet && this.Prompt.Yandere.Inventory.DuplicateSheet)

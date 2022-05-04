@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000431 RID: 1073
 public class SkullScript : MonoBehaviour
 {
-	// Token: 0x06001CE2 RID: 7394 RVA: 0x00157330 File Offset: 0x00155530
+	// Token: 0x06001CE2 RID: 7394 RVA: 0x001572FC File Offset: 0x001554FC
 	private void Start()
 	{
 		this.OriginalPosition = this.RitualKnife.transform.position;
@@ -19,7 +19,7 @@ public class SkullScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CE3 RID: 7395 RVA: 0x001573A8 File Offset: 0x001555A8
+	// Token: 0x06001CE3 RID: 7395 RVA: 0x00157374 File Offset: 0x00155574
 	private void Update()
 	{
 		if (this.Yandere.Armed)

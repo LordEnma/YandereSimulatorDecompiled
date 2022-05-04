@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200041F RID: 1055
 public class ScrollingTexture : MonoBehaviour
 {
-	// Token: 0x06001C94 RID: 7316 RVA: 0x0014ECAB File Offset: 0x0014CEAB
+	// Token: 0x06001C94 RID: 7316 RVA: 0x0014EC77 File Offset: 0x0014CE77
 	private void Start()
 	{
 		this.MyRenderer = base.GetComponent<Renderer>();
 	}
 
-	// Token: 0x06001C95 RID: 7317 RVA: 0x0014ECBC File Offset: 0x0014CEBC
+	// Token: 0x06001C95 RID: 7317 RVA: 0x0014EC88 File Offset: 0x0014CE88
 	private void Update()
 	{
 		this.Offset += Time.deltaTime * this.Speed;

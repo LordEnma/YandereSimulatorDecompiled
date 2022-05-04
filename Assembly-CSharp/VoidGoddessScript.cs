@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004BD RID: 1213
 public class VoidGoddessScript : MonoBehaviour
 {
-	// Token: 0x06001FCB RID: 8139 RVA: 0x001C0208 File Offset: 0x001BE408
+	// Token: 0x06001FCC RID: 8140 RVA: 0x001C0304 File Offset: 0x001BE504
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -80,7 +80,7 @@ public class VoidGoddessScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FCC RID: 8140 RVA: 0x001C0584 File Offset: 0x001BE784
+	// Token: 0x06001FCD RID: 8141 RVA: 0x001C0680 File Offset: 0x001BE880
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -391,7 +391,7 @@ public class VoidGoddessScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FCD RID: 8141 RVA: 0x001C1164 File Offset: 0x001BF364
+	// Token: 0x06001FCE RID: 8142 RVA: 0x001C1260 File Offset: 0x001BF460
 	private void UpdateHighlight()
 	{
 		if (this.Row < 0)
@@ -414,7 +414,7 @@ public class VoidGoddessScript : MonoBehaviour
 		this.Selected = 1 + this.Row * 10 + this.Column;
 	}
 
-	// Token: 0x06001FCE RID: 8142 RVA: 0x001C1214 File Offset: 0x001BF414
+	// Token: 0x06001FCF RID: 8143 RVA: 0x001C1310 File Offset: 0x001BF510
 	public void UpdatePortraits()
 	{
 		this.ID = 1;

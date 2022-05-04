@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003AB RID: 939
 public class PickpocketMinigameScript : MonoBehaviour
 {
-	// Token: 0x06001AD3 RID: 6867 RVA: 0x00123664 File Offset: 0x00121864
+	// Token: 0x06001AD3 RID: 6867 RVA: 0x00123630 File Offset: 0x00121830
 	private void Start()
 	{
 		base.transform.localScale = Vector3.zero;
@@ -20,7 +20,7 @@ public class PickpocketMinigameScript : MonoBehaviour
 		this.BG.enabled = false;
 	}
 
-	// Token: 0x06001AD4 RID: 6868 RVA: 0x0012371C File Offset: 0x0012191C
+	// Token: 0x06001AD4 RID: 6868 RVA: 0x001236E8 File Offset: 0x001218E8
 	private void Update()
 	{
 		if (this.Show)
@@ -95,7 +95,7 @@ public class PickpocketMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AD5 RID: 6869 RVA: 0x00123A64 File Offset: 0x00121C64
+	// Token: 0x06001AD5 RID: 6869 RVA: 0x00123A30 File Offset: 0x00121C30
 	private void ChooseButton()
 	{
 		this.ButtonPrompts[1].enabled = false;
@@ -133,7 +133,7 @@ public class PickpocketMinigameScript : MonoBehaviour
 		this.BG.enabled = true;
 	}
 
-	// Token: 0x06001AD6 RID: 6870 RVA: 0x00123BA8 File Offset: 0x00121DA8
+	// Token: 0x06001AD6 RID: 6870 RVA: 0x00123B74 File Offset: 0x00121D74
 	public void End()
 	{
 		Debug.Log("Ending minigame.");

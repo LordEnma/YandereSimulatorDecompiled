@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	// Token: 0x0200053B RID: 1339
 	public class AeroplaneControlSurfaceAnimator : MonoBehaviour
 	{
-		// Token: 0x0600220A RID: 8714 RVA: 0x001F3350 File Offset: 0x001F1550
+		// Token: 0x0600220B RID: 8715 RVA: 0x001F344C File Offset: 0x001F164C
 		private void Start()
 		{
 			this.m_Plane = base.GetComponent<AeroplaneController>();
@@ -16,7 +16,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			}
 		}
 
-		// Token: 0x0600220B RID: 8715 RVA: 0x001F3394 File Offset: 0x001F1594
+		// Token: 0x0600220C RID: 8716 RVA: 0x001F3490 File Offset: 0x001F1690
 		private void Update()
 		{
 			foreach (AeroplaneControlSurfaceAnimator.ControlSurface controlSurface in this.m_ControlSurfaces)
@@ -59,7 +59,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			}
 		}
 
-		// Token: 0x0600220C RID: 8716 RVA: 0x001F34F4 File Offset: 0x001F16F4
+		// Token: 0x0600220D RID: 8717 RVA: 0x001F35F0 File Offset: 0x001F17F0
 		private void RotateSurface(AeroplaneControlSurfaceAnimator.ControlSurface surface, Quaternion rotation)
 		{
 			Quaternion b = surface.originalLocalRotation * rotation;

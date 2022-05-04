@@ -1565,6 +1565,6 @@ public class UIInput : MonoBehaviour
 	}
 
 	// Token: 0x0200063C RID: 1596
-	// (Invoke) Token: 0x0600263D RID: 9789
+	// (Invoke) Token: 0x0600263E RID: 9790
 	public delegate char OnValidate(string text, int charIndex, char addedChar);
 }

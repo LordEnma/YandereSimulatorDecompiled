@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000314 RID: 788
 public class HideColliderScript : MonoBehaviour
 {
-	// Token: 0x0600186E RID: 6254 RVA: 0x000EC2A0 File Offset: 0x000EA4A0
+	// Token: 0x0600186E RID: 6254 RVA: 0x000EC26C File Offset: 0x000EA46C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 11)

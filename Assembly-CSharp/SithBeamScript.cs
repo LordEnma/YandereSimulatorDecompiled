@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200042F RID: 1071
 public class SithBeamScript : MonoBehaviour
 {
-	// Token: 0x06001CD9 RID: 7385 RVA: 0x00156D1C File Offset: 0x00154F1C
+	// Token: 0x06001CD9 RID: 7385 RVA: 0x00156CE8 File Offset: 0x00154EE8
 	private void Update()
 	{
 		if (this.Projectile)
@@ -18,7 +18,7 @@ public class SithBeamScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CDA RID: 7386 RVA: 0x00156D90 File Offset: 0x00154F90
+	// Token: 0x06001CDA RID: 7386 RVA: 0x00156D5C File Offset: 0x00154F5C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)

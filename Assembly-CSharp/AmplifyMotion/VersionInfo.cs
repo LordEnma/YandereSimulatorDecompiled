@@ -7,20 +7,20 @@ namespace AmplifyMotion
 	[Serializable]
 	public class VersionInfo
 	{
-		// Token: 0x0600241D RID: 9245 RVA: 0x001FD919 File Offset: 0x001FBB19
+		// Token: 0x0600241E RID: 9246 RVA: 0x001FDA15 File Offset: 0x001FBC15
 		public static string StaticToString()
 		{
 			return string.Format("{0}.{1}.{2}", 1, 8, 3) + VersionInfo.StageSuffix + VersionInfo.TrialSuffix;
 		}
 
-		// Token: 0x0600241E RID: 9246 RVA: 0x001FD946 File Offset: 0x001FBB46
+		// Token: 0x0600241F RID: 9247 RVA: 0x001FDA42 File Offset: 0x001FBC42
 		public override string ToString()
 		{
 			return string.Format("{0}.{1}.{2}", this.m_major, this.m_minor, this.m_release) + VersionInfo.StageSuffix + VersionInfo.TrialSuffix;
 		}
 
 		// Token: 0x17000524 RID: 1316
-		// (get) Token: 0x0600241F RID: 9247 RVA: 0x001FD982 File Offset: 0x001FBB82
+		// (get) Token: 0x06002420 RID: 9248 RVA: 0x001FDA7E File Offset: 0x001FBC7E
 		public int Number
 		{
 			get
@@ -29,7 +29,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002420 RID: 9248 RVA: 0x001FD99E File Offset: 0x001FBB9E
+		// Token: 0x06002421 RID: 9249 RVA: 0x001FDA9A File Offset: 0x001FBC9A
 		private VersionInfo()
 		{
 			this.m_major = 1;
@@ -37,7 +37,7 @@ namespace AmplifyMotion
 			this.m_release = 3;
 		}
 
-		// Token: 0x06002421 RID: 9249 RVA: 0x001FD9BB File Offset: 0x001FBBBB
+		// Token: 0x06002422 RID: 9250 RVA: 0x001FDAB7 File Offset: 0x001FBCB7
 		private VersionInfo(byte major, byte minor, byte release)
 		{
 			this.m_major = (int)major;
@@ -45,13 +45,13 @@ namespace AmplifyMotion
 			this.m_release = (int)release;
 		}
 
-		// Token: 0x06002422 RID: 9250 RVA: 0x001FD9D8 File Offset: 0x001FBBD8
+		// Token: 0x06002423 RID: 9251 RVA: 0x001FDAD4 File Offset: 0x001FBCD4
 		public static VersionInfo Current()
 		{
 			return new VersionInfo(1, 8, 3);
 		}
 
-		// Token: 0x06002423 RID: 9251 RVA: 0x001FD9E2 File Offset: 0x001FBBE2
+		// Token: 0x06002424 RID: 9252 RVA: 0x001FDADE File Offset: 0x001FBCDE
 		public static bool Matches(VersionInfo version)
 		{
 			return 1 == version.m_major && 8 == version.m_minor && 3 == version.m_release;

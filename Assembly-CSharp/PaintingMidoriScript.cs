@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000392 RID: 914
 public class PaintingMidoriScript : MonoBehaviour
 {
-	// Token: 0x06001A6B RID: 6763 RVA: 0x001190E8 File Offset: 0x001172E8
+	// Token: 0x06001A6B RID: 6763 RVA: 0x001190B4 File Offset: 0x001172B4
 	private void Update()
 	{
 		if (Input.GetKeyDown("z"))

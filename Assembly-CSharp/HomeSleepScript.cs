@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000328 RID: 808
 public class HomeSleepScript : MonoBehaviour
 {
-	// Token: 0x060018C0 RID: 6336 RVA: 0x000F3D2C File Offset: 0x000F1F2C
+	// Token: 0x060018C0 RID: 6336 RVA: 0x000F3CF8 File Offset: 0x000F1EF8
 	public void Start()
 	{
 		if (!this.Anime)
@@ -29,7 +29,7 @@ public class HomeSleepScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018C1 RID: 6337 RVA: 0x000F3DBC File Offset: 0x000F1FBC
+	// Token: 0x060018C1 RID: 6337 RVA: 0x000F3D88 File Offset: 0x000F1F88
 	private void Update()
 	{
 		if (!this.HomeYandere.CanMove && !this.HomeDarkness.FadeOut)

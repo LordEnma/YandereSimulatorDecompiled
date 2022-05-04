@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002C6 RID: 710
 public class FalconPunchScript : MonoBehaviour
 {
-	// Token: 0x0600149D RID: 5277 RVA: 0x000C9E33 File Offset: 0x000C8033
+	// Token: 0x0600149D RID: 5277 RVA: 0x000C9DFF File Offset: 0x000C7FFF
 	private void Start()
 	{
 		if (this.Mecha)
@@ -13,7 +13,7 @@ public class FalconPunchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600149E RID: 5278 RVA: 0x000C9E68 File Offset: 0x000C8068
+	// Token: 0x0600149E RID: 5278 RVA: 0x000C9E34 File Offset: 0x000C8034
 	private void Update()
 	{
 		if (!this.IgnoreTime)
@@ -30,7 +30,7 @@ public class FalconPunchScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600149F RID: 5279 RVA: 0x000C9ED4 File Offset: 0x000C80D4
+	// Token: 0x0600149F RID: 5279 RVA: 0x000C9EA0 File Offset: 0x000C80A0
 	private void OnTriggerEnter(Collider other)
 	{
 		Debug.Log("A punch collided with something.");

@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020003AD RID: 941
 public class PlaceholderStudentScript : MonoBehaviour
 {
-	// Token: 0x06001ADD RID: 6877 RVA: 0x0012454A File Offset: 0x0012274A
+	// Token: 0x06001ADD RID: 6877 RVA: 0x00124516 File Offset: 0x00122716
 	private void Start()
 	{
 		this.Target = UnityEngine.Object.Instantiate<GameObject>(this.EmptyGameObject).transform;
 		this.ChooseNewDestination();
 	}
 
-	// Token: 0x06001ADE RID: 6878 RVA: 0x00124568 File Offset: 0x00122768
+	// Token: 0x06001ADE RID: 6878 RVA: 0x00124534 File Offset: 0x00122734
 	private void Update()
 	{
 		base.transform.LookAt(this.Target.position);
@@ -58,7 +58,7 @@ public class PlaceholderStudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ADF RID: 6879 RVA: 0x001247FC File Offset: 0x001229FC
+	// Token: 0x06001ADF RID: 6879 RVA: 0x001247C8 File Offset: 0x001229C8
 	private void ChooseNewDestination()
 	{
 		if (this.NESW == 1)

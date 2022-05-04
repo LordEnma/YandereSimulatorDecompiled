@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000508 RID: 1288
 public class BarScript : MonoBehaviour
 {
-	// Token: 0x06002166 RID: 8550 RVA: 0x001ECF9D File Offset: 0x001EB19D
+	// Token: 0x06002167 RID: 8551 RVA: 0x001ED099 File Offset: 0x001EB299
 	private void Start()
 	{
 		base.transform.localScale = new Vector3(0f, 1f, 1f);
 	}
 
-	// Token: 0x06002167 RID: 8551 RVA: 0x001ECFC0 File Offset: 0x001EB1C0
+	// Token: 0x06002168 RID: 8552 RVA: 0x001ED0BC File Offset: 0x001EB2BC
 	private void Update()
 	{
 		if (this.Goal == 0f)

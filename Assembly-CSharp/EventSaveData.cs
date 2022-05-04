@@ -4,7 +4,7 @@
 [Serializable]
 public class EventSaveData
 {
-	// Token: 0x06001C31 RID: 7217 RVA: 0x00149AD7 File Offset: 0x00147CD7
+	// Token: 0x06001C31 RID: 7217 RVA: 0x00149AA3 File Offset: 0x00147CA3
 	public static EventSaveData ReadFromGlobals()
 	{
 		return new EventSaveData
@@ -17,7 +17,7 @@ public class EventSaveData
 		};
 	}
 
-	// Token: 0x06001C32 RID: 7218 RVA: 0x00149B15 File Offset: 0x00147D15
+	// Token: 0x06001C32 RID: 7218 RVA: 0x00149AE1 File Offset: 0x00147CE1
 	public static void WriteToGlobals(EventSaveData data)
 	{
 		EventGlobals.BefriendConversation = data.befriendConversation;

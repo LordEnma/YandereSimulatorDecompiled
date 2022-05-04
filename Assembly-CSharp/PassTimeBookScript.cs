@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000397 RID: 919
 public class PassTimeBookScript : MonoBehaviour
 {
-	// Token: 0x06001A75 RID: 6773 RVA: 0x00119578 File Offset: 0x00117778
+	// Token: 0x06001A75 RID: 6773 RVA: 0x00119544 File Offset: 0x00117744
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -72,7 +72,7 @@ public class PassTimeBookScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A76 RID: 6774 RVA: 0x0011997C File Offset: 0x00117B7C
+	// Token: 0x06001A76 RID: 6774 RVA: 0x00119948 File Offset: 0x00117B48
 	public void DisplayErrorMessage()
 	{
 		if (this.Yandere.Armed)

@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020003AE RID: 942
 public class PodScript : MonoBehaviour
 {
-	// Token: 0x06001AE1 RID: 6881 RVA: 0x00124930 File Offset: 0x00122B30
+	// Token: 0x06001AE1 RID: 6881 RVA: 0x001248FC File Offset: 0x00122AFC
 	private void Start()
 	{
 		this.Timer = 1f;
 	}
 
-	// Token: 0x06001AE2 RID: 6882 RVA: 0x00124940 File Offset: 0x00122B40
+	// Token: 0x06001AE2 RID: 6882 RVA: 0x0012490C File Offset: 0x00122B0C
 	private void LateUpdate()
 	{
 		this.PodTarget.transform.parent.eulerAngles = new Vector3(0f, this.AimTarget.parent.eulerAngles.y, 0f);

@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x0200036D RID: 877
 public class MiyukiEnemyScript : MonoBehaviour
 {
-	// Token: 0x060019D3 RID: 6611 RVA: 0x00108CF2 File Offset: 0x00106EF2
+	// Token: 0x060019D3 RID: 6611 RVA: 0x00108CBE File Offset: 0x00106EBE
 	private void Start()
 	{
 		base.transform.position = this.SpawnPoints[this.ID].position;
 		base.transform.rotation = this.SpawnPoints[this.ID].rotation;
 	}
 
-	// Token: 0x060019D4 RID: 6612 RVA: 0x00108D30 File Offset: 0x00106F30
+	// Token: 0x060019D4 RID: 6612 RVA: 0x00108CFC File Offset: 0x00106EFC
 	private void Update()
 	{
 		if (this.Enemy.activeInHierarchy)
@@ -56,7 +56,7 @@ public class MiyukiEnemyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019D5 RID: 6613 RVA: 0x00108F84 File Offset: 0x00107184
+	// Token: 0x060019D5 RID: 6613 RVA: 0x00108F50 File Offset: 0x00107150
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Enemy.activeInHierarchy && other.gameObject.tag == "missile")

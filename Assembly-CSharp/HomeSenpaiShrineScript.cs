@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000327 RID: 807
 public class HomeSenpaiShrineScript : MonoBehaviour
 {
-	// Token: 0x060018BA RID: 6330 RVA: 0x000F3858 File Offset: 0x000F1A58
+	// Token: 0x060018BA RID: 6330 RVA: 0x000F3824 File Offset: 0x000F1A24
 	public void Start()
 	{
 		this.UpdateText(this.GetCurrentIndex());
@@ -17,13 +17,13 @@ public class HomeSenpaiShrineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018BB RID: 6331 RVA: 0x000F3894 File Offset: 0x000F1A94
+	// Token: 0x060018BB RID: 6331 RVA: 0x000F3860 File Offset: 0x000F1A60
 	private bool InUpperHalf()
 	{
 		return this.Y < 2;
 	}
 
-	// Token: 0x060018BC RID: 6332 RVA: 0x000F389F File Offset: 0x000F1A9F
+	// Token: 0x060018BC RID: 6332 RVA: 0x000F386B File Offset: 0x000F1A6B
 	private int GetCurrentIndex()
 	{
 		if (this.InUpperHalf())
@@ -33,7 +33,7 @@ public class HomeSenpaiShrineScript : MonoBehaviour
 		return 2 + (this.X + (this.Y - 2) * this.Columns);
 	}
 
-	// Token: 0x060018BD RID: 6333 RVA: 0x000F38C8 File Offset: 0x000F1AC8
+	// Token: 0x060018BD RID: 6333 RVA: 0x000F3894 File Offset: 0x000F1A94
 	private void Update()
 	{
 		if (!this.HomeYandere.CanMove && !this.PauseScreen.Show)
@@ -94,7 +94,7 @@ public class HomeSenpaiShrineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018BE RID: 6334 RVA: 0x000F3C78 File Offset: 0x000F1E78
+	// Token: 0x060018BE RID: 6334 RVA: 0x000F3C44 File Offset: 0x000F1E44
 	private void UpdateText(int newIndex)
 	{
 		if (newIndex == -1)

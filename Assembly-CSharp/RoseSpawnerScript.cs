@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000525 RID: 1317
 public class RoseSpawnerScript : MonoBehaviour
 {
-	// Token: 0x060021A7 RID: 8615 RVA: 0x001F04EA File Offset: 0x001EE6EA
+	// Token: 0x060021A8 RID: 8616 RVA: 0x001F05E6 File Offset: 0x001EE7E6
 	private void Start()
 	{
 		this.SpawnRose();
 	}
 
-	// Token: 0x060021A8 RID: 8616 RVA: 0x001F04F2 File Offset: 0x001EE6F2
+	// Token: 0x060021A9 RID: 8617 RVA: 0x001F05EE File Offset: 0x001EE7EE
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -20,7 +20,7 @@ public class RoseSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060021A9 RID: 8617 RVA: 0x001F051C File Offset: 0x001EE71C
+	// Token: 0x060021AA RID: 8618 RVA: 0x001F0618 File Offset: 0x001EE818
 	private void SpawnRose()
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Rose, base.transform.position, Quaternion.identity);

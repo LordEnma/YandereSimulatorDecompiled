@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200038A RID: 906
 public class OsanaPoolEventScript : MonoBehaviour
 {
-	// Token: 0x06001A53 RID: 6739 RVA: 0x00116FED File Offset: 0x001151ED
+	// Token: 0x06001A53 RID: 6739 RVA: 0x00116FB9 File Offset: 0x001151B9
 	private void Start()
 	{
 		if (GameGlobals.Eighties || DateGlobals.Weekday != this.EventDay)
@@ -13,7 +13,7 @@ public class OsanaPoolEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A54 RID: 6740 RVA: 0x0011700C File Offset: 0x0011520C
+	// Token: 0x06001A54 RID: 6740 RVA: 0x00116FD8 File Offset: 0x001151D8
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -340,7 +340,7 @@ public class OsanaPoolEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A55 RID: 6741 RVA: 0x0011841C File Offset: 0x0011661C
+	// Token: 0x06001A55 RID: 6741 RVA: 0x001183E8 File Offset: 0x001165E8
 	public void EndEvent()
 	{
 		Debug.Log("Osana's pool event has ended.");
@@ -401,7 +401,7 @@ public class OsanaPoolEventScript : MonoBehaviour
 		this.Jukebox.Dip = 1f;
 	}
 
-	// Token: 0x06001A56 RID: 6742 RVA: 0x00118750 File Offset: 0x00116950
+	// Token: 0x06001A56 RID: 6742 RVA: 0x0011871C File Offset: 0x0011691C
 	public void ReturnFromSave()
 	{
 		this.Rival = this.StudentManager.Students[this.RivalID];

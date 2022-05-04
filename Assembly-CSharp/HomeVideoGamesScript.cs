@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200032B RID: 811
 public class HomeVideoGamesScript : MonoBehaviour
 {
-	// Token: 0x060018CB RID: 6347 RVA: 0x000F41E4 File Offset: 0x000F23E4
+	// Token: 0x060018CB RID: 6347 RVA: 0x000F41B0 File Offset: 0x000F23B0
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -24,7 +24,7 @@ public class HomeVideoGamesScript : MonoBehaviour
 		this.TitleScreen.mainTexture = this.TitleScreens[1];
 	}
 
-	// Token: 0x060018CC RID: 6348 RVA: 0x000F42C0 File Offset: 0x000F24C0
+	// Token: 0x060018CC RID: 6348 RVA: 0x000F428C File Offset: 0x000F248C
 	private void Update()
 	{
 		if (this.HomeCamera.Destination == this.HomeCamera.Destinations[5])
@@ -94,7 +94,7 @@ public class HomeVideoGamesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018CD RID: 6349 RVA: 0x000F4678 File Offset: 0x000F2878
+	// Token: 0x060018CD RID: 6349 RVA: 0x000F4644 File Offset: 0x000F2844
 	public void Quit()
 	{
 		if (!this.HomeCamera.Eighties)

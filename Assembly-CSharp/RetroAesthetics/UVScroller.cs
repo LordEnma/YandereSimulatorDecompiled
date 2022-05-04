@@ -6,7 +6,7 @@ namespace RetroAesthetics
 	// Token: 0x02000557 RID: 1367
 	public class UVScroller : MonoBehaviour
 	{
-		// Token: 0x060022E5 RID: 8933 RVA: 0x001F6194 File Offset: 0x001F4394
+		// Token: 0x060022E6 RID: 8934 RVA: 0x001F6290 File Offset: 0x001F4490
 		private void Start()
 		{
 			Renderer component = base.GetComponent<Renderer>();
@@ -24,7 +24,7 @@ namespace RetroAesthetics
 			}
 		}
 
-		// Token: 0x060022E6 RID: 8934 RVA: 0x001F6208 File Offset: 0x001F4408
+		// Token: 0x060022E7 RID: 8935 RVA: 0x001F6304 File Offset: 0x001F4504
 		private void Update()
 		{
 			this.offset += this.scrollSpeed * Time.deltaTime * (float)Application.targetFrameRate;

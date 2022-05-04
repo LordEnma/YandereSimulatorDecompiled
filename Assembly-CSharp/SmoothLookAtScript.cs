@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000437 RID: 1079
 public class SmoothLookAtScript : MonoBehaviour
 {
-	// Token: 0x06001CF3 RID: 7411 RVA: 0x001584A8 File Offset: 0x001566A8
+	// Token: 0x06001CF3 RID: 7411 RVA: 0x00158474 File Offset: 0x00156674
 	private void LateUpdate()
 	{
 		Quaternion b = Quaternion.LookRotation(this.Target.transform.position - base.transform.position);

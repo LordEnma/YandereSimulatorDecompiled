@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000323 RID: 803
 public class HomePantiesScript : MonoBehaviour
 {
-	// Token: 0x060018AB RID: 6315 RVA: 0x000F1980 File Offset: 0x000EFB80
+	// Token: 0x060018AB RID: 6315 RVA: 0x000F194C File Offset: 0x000EFB4C
 	private void Start()
 	{
 		if (this.ID > 0 && !CollectibleGlobals.GetPantyPurchased(this.ID))
@@ -14,7 +14,7 @@ public class HomePantiesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018AC RID: 6316 RVA: 0x000F19E0 File Offset: 0x000EFBE0
+	// Token: 0x060018AC RID: 6316 RVA: 0x000F19AC File Offset: 0x000EFBAC
 	private void Update()
 	{
 		float y = (this.PantyChanger.Selected == this.ID) ? (base.transform.eulerAngles.y + Time.deltaTime * this.RotationSpeed) : 0f;

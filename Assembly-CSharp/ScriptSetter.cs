@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000510 RID: 1296
 public class ScriptSetter : MonoBehaviour
 {
-	// Token: 0x0600217E RID: 8574 RVA: 0x001ED58C File Offset: 0x001EB78C
+	// Token: 0x0600217F RID: 8575 RVA: 0x001ED688 File Offset: 0x001EB888
 	private void Start()
 	{
 		foreach (Component component in base.GetComponents(typeof(Component)))

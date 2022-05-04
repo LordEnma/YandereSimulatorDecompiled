@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003B5 RID: 949
 public class PortalScript : MonoBehaviour
 {
-	// Token: 0x06001AF8 RID: 6904 RVA: 0x0012761C File Offset: 0x0012581C
+	// Token: 0x06001AF8 RID: 6904 RVA: 0x001275E8 File Offset: 0x001257E8
 	private void Start()
 	{
 		this.EvidenceWarning.SetActive(false);
@@ -15,7 +15,7 @@ public class PortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AF9 RID: 6905 RVA: 0x0012764C File Offset: 0x0012584C
+	// Token: 0x06001AF9 RID: 6905 RVA: 0x00127618 File Offset: 0x00125818
 	private void Update()
 	{
 		if (this.Clock.HourTime > 8.52f && this.Clock.HourTime < 8.53f && !this.Yandere.InClass && !this.LateReport1)
@@ -365,7 +365,7 @@ public class PortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AFA RID: 6906 RVA: 0x00128674 File Offset: 0x00126874
+	// Token: 0x06001AFA RID: 6906 RVA: 0x00128640 File Offset: 0x00126840
 	public void CheckForProblems()
 	{
 		if (this.Yandere.Armed || this.Yandere.Bloodiness > 0f || this.Yandere.Sanity < 33.333f || this.Yandere.Attacking || this.Yandere.Dragging || this.Yandere.Carrying || this.Yandere.PickUp != null || this.Yandere.Chased || this.Yandere.Chasers > 0 || (this.StudentManager.Reporter != null && !this.Police.Show) || this.StudentManager.MurderTakingPlace)
@@ -374,7 +374,7 @@ public class PortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AFB RID: 6907 RVA: 0x00128744 File Offset: 0x00126944
+	// Token: 0x06001AFB RID: 6907 RVA: 0x00128710 File Offset: 0x00126910
 	public void EndDay()
 	{
 		this.StudentManager.StopMoving();
@@ -391,7 +391,7 @@ public class PortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AFC RID: 6908 RVA: 0x001287D0 File Offset: 0x001269D0
+	// Token: 0x06001AFC RID: 6908 RVA: 0x0012879C File Offset: 0x0012699C
 	private void CheckForLateness()
 	{
 		this.Late = 0;
@@ -442,7 +442,7 @@ public class PortalScript : MonoBehaviour
 		int late = this.Late;
 	}
 
-	// Token: 0x06001AFD RID: 6909 RVA: 0x0012893C File Offset: 0x00126B3C
+	// Token: 0x06001AFD RID: 6909 RVA: 0x00128908 File Offset: 0x00126B08
 	public void EndEvents()
 	{
 		for (int i = 0; i < this.MorningEvents.Length; i++)
@@ -490,7 +490,7 @@ public class PortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AFE RID: 6910 RVA: 0x00128A80 File Offset: 0x00126C80
+	// Token: 0x06001AFE RID: 6910 RVA: 0x00128A4C File Offset: 0x00126C4C
 	public void EndLaterEvents()
 	{
 		if (this.OsanaMondayLunchEvent.enabled && this.OsanaMondayLunchEvent.Phase > 0 && this.OsanaMondayLunchEvent.Bento[1].Poison > 0)
@@ -526,7 +526,7 @@ public class PortalScript : MonoBehaviour
 		Debug.Log("Sabotage Progress is currently: " + this.StudentManager.SabotageProgress.ToString());
 	}
 
-	// Token: 0x06001AFF RID: 6911 RVA: 0x00128BE8 File Offset: 0x00126DE8
+	// Token: 0x06001AFF RID: 6911 RVA: 0x00128BB4 File Offset: 0x00126DB4
 	public void EndFinalEvents()
 	{
 		this.EndedFinalEvents = true;
@@ -560,7 +560,7 @@ public class PortalScript : MonoBehaviour
 		Debug.Log("It is the end of the day, and Sabotage Progress is currently " + this.StudentManager.SabotageProgress.ToString() + " out of 5.");
 	}
 
-	// Token: 0x06001B00 RID: 6912 RVA: 0x00128D68 File Offset: 0x00126F68
+	// Token: 0x06001B00 RID: 6912 RVA: 0x00128D34 File Offset: 0x00126F34
 	public void CheckForPoison()
 	{
 		for (int i = 0; i < this.StudentManager.Students.Length; i++)

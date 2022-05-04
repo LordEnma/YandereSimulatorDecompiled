@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000470 RID: 1136
 public class TaskListScript : MonoBehaviour
 {
-	// Token: 0x06001EC7 RID: 7879 RVA: 0x001B2D88 File Offset: 0x001B0F88
+	// Token: 0x06001EC8 RID: 7880 RVA: 0x001B2E84 File Offset: 0x001B1084
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -70,7 +70,7 @@ public class TaskListScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EC8 RID: 7880 RVA: 0x001B2EFC File Offset: 0x001B10FC
+	// Token: 0x06001EC9 RID: 7881 RVA: 0x001B2FF8 File Offset: 0x001B11F8
 	public void UpdateTaskList()
 	{
 		if (!this.TaskWindow.TaskManager.Initialized)
@@ -99,7 +99,7 @@ public class TaskListScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EC9 RID: 7881 RVA: 0x001B3019 File Offset: 0x001B1219
+	// Token: 0x06001ECA RID: 7882 RVA: 0x001B3115 File Offset: 0x001B1315
 	public IEnumerator UpdateTaskInfo()
 	{
 		this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 200f - 25f * (float)this.ID, this.Highlight.localPosition.z);
@@ -153,7 +153,7 @@ public class TaskListScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06001ECA RID: 7882 RVA: 0x001B3028 File Offset: 0x001B1228
+	// Token: 0x06001ECB RID: 7883 RVA: 0x001B3124 File Offset: 0x001B1324
 	public void Exit()
 	{
 		this.PauseScreen.PromptBar.ClearButtons();

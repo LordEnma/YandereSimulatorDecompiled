@@ -4,7 +4,7 @@
 [Serializable]
 public class ClubSaveData
 {
-	// Token: 0x06001C22 RID: 7202 RVA: 0x00149224 File Offset: 0x00147424
+	// Token: 0x06001C22 RID: 7202 RVA: 0x001491F0 File Offset: 0x001473F0
 	public static ClubSaveData ReadFromGlobals()
 	{
 		ClubSaveData clubSaveData = new ClubSaveData();
@@ -33,7 +33,7 @@ public class ClubSaveData
 		return clubSaveData;
 	}
 
-	// Token: 0x06001C23 RID: 7203 RVA: 0x001492D0 File Offset: 0x001474D0
+	// Token: 0x06001C23 RID: 7203 RVA: 0x0014929C File Offset: 0x0014749C
 	public static void WriteToGlobals(ClubSaveData data)
 	{
 		ClubGlobals.Club = data.club;

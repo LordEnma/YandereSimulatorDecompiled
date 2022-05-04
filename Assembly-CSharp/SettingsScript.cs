@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000426 RID: 1062
 public class SettingsScript : MonoBehaviour
 {
-	// Token: 0x06001CAD RID: 7341 RVA: 0x0014FFA0 File Offset: 0x0014E1A0
+	// Token: 0x06001CAD RID: 7341 RVA: 0x0014FF6C File Offset: 0x0014E16C
 	private void Start()
 	{
 		Debug.Log("Does this run? Anywhere? Ever?");
 	}
 
-	// Token: 0x06001CAE RID: 7342 RVA: 0x0014FFAC File Offset: 0x0014E1AC
+	// Token: 0x06001CAE RID: 7342 RVA: 0x0014FF78 File Offset: 0x0014E178
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -293,7 +293,7 @@ public class SettingsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CAF RID: 7343 RVA: 0x001507E8 File Offset: 0x0014E9E8
+	// Token: 0x06001CAF RID: 7343 RVA: 0x001507B4 File Offset: 0x0014E9B4
 	public void UpdateText()
 	{
 		if (OptionGlobals.ParticleCount == 3)
@@ -326,7 +326,7 @@ public class SettingsScript : MonoBehaviour
 		this.ShadowsLabel.text = (OptionGlobals.EnableShadows ? "Yes" : "No");
 	}
 
-	// Token: 0x06001CB0 RID: 7344 RVA: 0x00150A50 File Offset: 0x0014EC50
+	// Token: 0x06001CB0 RID: 7344 RVA: 0x00150A1C File Offset: 0x0014EC1C
 	private void UpdateHighlight()
 	{
 		if (this.Selected == 0)

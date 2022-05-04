@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003F1 RID: 1009
 public class RooftopCorpseDisposalScript : MonoBehaviour
 {
-	// Token: 0x06001C03 RID: 7171 RVA: 0x0014856B File Offset: 0x0014676B
+	// Token: 0x06001C03 RID: 7171 RVA: 0x00148537 File Offset: 0x00146737
 	private void Start()
 	{
 		if (SchoolGlobals.RoofFence)
@@ -13,7 +13,7 @@ public class RooftopCorpseDisposalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C04 RID: 7172 RVA: 0x00148580 File Offset: 0x00146780
+	// Token: 0x06001C04 RID: 7172 RVA: 0x0014854C File Offset: 0x0014674C
 	private void Update()
 	{
 		if (this.MyCollider.bounds.Contains(this.Yandere.transform.position))

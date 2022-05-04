@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000367 RID: 871
 public class MemorialSceneScript : MonoBehaviour
 {
-	// Token: 0x060019BB RID: 6587 RVA: 0x001073D8 File Offset: 0x001055D8
+	// Token: 0x060019BB RID: 6587 RVA: 0x001073A4 File Offset: 0x001055A4
 	private void Start()
 	{
 		if (PlayerPrefs.GetInt("LoadingSave") == 1)
@@ -106,7 +106,7 @@ public class MemorialSceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019BC RID: 6588 RVA: 0x001076D0 File Offset: 0x001058D0
+	// Token: 0x060019BC RID: 6588 RVA: 0x0010769C File Offset: 0x0010589C
 	private void Update()
 	{
 		this.Speed += Time.deltaTime;
@@ -174,7 +174,7 @@ public class MemorialSceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019BD RID: 6589 RVA: 0x00107A98 File Offset: 0x00105C98
+	// Token: 0x060019BD RID: 6589 RVA: 0x00107A64 File Offset: 0x00105C64
 	private void TurnYoung()
 	{
 		this.YoungHeadmaster.SetActive(true);

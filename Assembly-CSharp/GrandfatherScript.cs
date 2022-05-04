@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000308 RID: 776
 public class GrandfatherScript : MonoBehaviour
 {
-	// Token: 0x06001842 RID: 6210 RVA: 0x000E6858 File Offset: 0x000E4A58
+	// Token: 0x06001842 RID: 6210 RVA: 0x000E6824 File Offset: 0x000E4A24
 	private void Update()
 	{
 		if (!this.Flip)

@@ -6,14 +6,14 @@ namespace UnityStandardAssets.Cameras
 	// Token: 0x02000551 RID: 1361
 	public class LookatTarget : AbstractTargetFollower
 	{
-		// Token: 0x060022D0 RID: 8912 RVA: 0x001F5972 File Offset: 0x001F3B72
+		// Token: 0x060022D1 RID: 8913 RVA: 0x001F5A6E File Offset: 0x001F3C6E
 		protected override void Start()
 		{
 			base.Start();
 			this.m_OriginalRotation = base.transform.localRotation;
 		}
 
-		// Token: 0x060022D1 RID: 8913 RVA: 0x001F598C File Offset: 0x001F3B8C
+		// Token: 0x060022D2 RID: 8914 RVA: 0x001F5A88 File Offset: 0x001F3C88
 		protected override void FollowTarget(float deltaTime)
 		{
 			base.transform.localRotation = this.m_OriginalRotation;

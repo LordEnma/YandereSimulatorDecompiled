@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x020003B4 RID: 948
 public class PopulationManagerScript : MonoBehaviour
 {
-	// Token: 0x06001AF5 RID: 6901 RVA: 0x00127478 File Offset: 0x00125678
+	// Token: 0x06001AF5 RID: 6901 RVA: 0x00127444 File Offset: 0x00125644
 	public Vector3 GetCrowdedLocation()
 	{
 		AreaScript crowdedArea = this.GetCrowdedArea();
@@ -38,7 +38,7 @@ public class PopulationManagerScript : MonoBehaviour
 		return new Vector3(vector.x, (float)num2, vector.z);
 	}
 
-	// Token: 0x06001AF6 RID: 6902 RVA: 0x001275A8 File Offset: 0x001257A8
+	// Token: 0x06001AF6 RID: 6902 RVA: 0x00127574 File Offset: 0x00125774
 	public AreaScript GetCrowdedArea()
 	{
 		AreaScript result = null;

@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000333 RID: 819
 public class IfElseScript : MonoBehaviour
 {
-	// Token: 0x060018EA RID: 6378 RVA: 0x000F5E30 File Offset: 0x000F4030
+	// Token: 0x060018EA RID: 6378 RVA: 0x000F5DFC File Offset: 0x000F3FFC
 	private void Start()
 	{
 		this.SwitchCase();
 	}
 
-	// Token: 0x060018EB RID: 6379 RVA: 0x000F5E38 File Offset: 0x000F4038
+	// Token: 0x060018EB RID: 6379 RVA: 0x000F5E04 File Offset: 0x000F4004
 	private void IfElse()
 	{
 		if (this.ID == 1)
@@ -49,7 +49,7 @@ public class IfElseScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018EC RID: 6380 RVA: 0x000F5ED8 File Offset: 0x000F40D8
+	// Token: 0x060018EC RID: 6380 RVA: 0x000F5EA4 File Offset: 0x000F40A4
 	private void SwitchCase()
 	{
 		switch (this.ID)

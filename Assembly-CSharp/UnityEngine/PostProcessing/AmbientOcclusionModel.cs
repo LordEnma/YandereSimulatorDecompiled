@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class AmbientOcclusionModel : PostProcessingModel
 	{
 		// Token: 0x17000502 RID: 1282
-		// (get) Token: 0x06002374 RID: 9076 RVA: 0x001FACBC File Offset: 0x001F8EBC
-		// (set) Token: 0x06002375 RID: 9077 RVA: 0x001FACC4 File Offset: 0x001F8EC4
+		// (get) Token: 0x06002375 RID: 9077 RVA: 0x001FADB8 File Offset: 0x001F8FB8
+		// (set) Token: 0x06002376 RID: 9078 RVA: 0x001FADC0 File Offset: 0x001F8FC0
 		public AmbientOcclusionModel.Settings settings
 		{
 			get
@@ -21,7 +21,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002376 RID: 9078 RVA: 0x001FACCD File Offset: 0x001F8ECD
+		// Token: 0x06002377 RID: 9079 RVA: 0x001FADC9 File Offset: 0x001F8FC9
 		public override void Reset()
 		{
 			this.m_Settings = AmbientOcclusionModel.Settings.defaultSettings;
@@ -49,7 +49,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x1700058D RID: 1421
-			// (get) Token: 0x0600277D RID: 10109 RVA: 0x00208EB4 File Offset: 0x002070B4
+			// (get) Token: 0x0600277E RID: 10110 RVA: 0x00208FB0 File Offset: 0x002071B0
 			public static AmbientOcclusionModel.Settings defaultSettings
 			{
 				get

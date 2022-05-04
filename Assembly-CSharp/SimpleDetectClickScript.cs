@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200042D RID: 1069
 public class SimpleDetectClickScript : MonoBehaviour
 {
-	// Token: 0x06001CD4 RID: 7380 RVA: 0x001569E8 File Offset: 0x00154BE8
+	// Token: 0x06001CD4 RID: 7380 RVA: 0x001569B4 File Offset: 0x00154BB4
 	private void Update()
 	{
 		RaycastHit raycastHit;

@@ -7,7 +7,7 @@ namespace UnityStandardAssets.Cameras
 	[ExecuteInEditMode]
 	public class AutoCam : PivotBasedCameraRig
 	{
-		// Token: 0x060022C6 RID: 8902 RVA: 0x001F5318 File Offset: 0x001F3518
+		// Token: 0x060022C7 RID: 8903 RVA: 0x001F5414 File Offset: 0x001F3614
 		protected override void FollowTarget(float deltaTime)
 		{
 			if (deltaTime <= 0f || this.m_Target == null)

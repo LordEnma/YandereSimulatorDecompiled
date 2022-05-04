@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public abstract class Entity
 {
-	// Token: 0x06001459 RID: 5209 RVA: 0x000C6FA3 File Offset: 0x000C51A3
+	// Token: 0x06001459 RID: 5209 RVA: 0x000C6F6F File Offset: 0x000C516F
 	public Entity(GenderType gender)
 	{
 		this.gender = gender;
@@ -13,7 +13,7 @@ public abstract class Entity
 	}
 
 	// Token: 0x17000363 RID: 867
-	// (get) Token: 0x0600145A RID: 5210 RVA: 0x000C6FB9 File Offset: 0x000C51B9
+	// (get) Token: 0x0600145A RID: 5210 RVA: 0x000C6F85 File Offset: 0x000C5185
 	public GenderType Gender
 	{
 		get
@@ -23,8 +23,8 @@ public abstract class Entity
 	}
 
 	// Token: 0x17000364 RID: 868
-	// (get) Token: 0x0600145B RID: 5211 RVA: 0x000C6FC1 File Offset: 0x000C51C1
-	// (set) Token: 0x0600145C RID: 5212 RVA: 0x000C6FC9 File Offset: 0x000C51C9
+	// (get) Token: 0x0600145B RID: 5211 RVA: 0x000C6F8D File Offset: 0x000C518D
+	// (set) Token: 0x0600145C RID: 5212 RVA: 0x000C6F95 File Offset: 0x000C5195
 	public DeathType DeathType
 	{
 		get

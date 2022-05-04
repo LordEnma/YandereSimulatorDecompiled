@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004F0 RID: 1264
 public class YanvaniaWitchScript : MonoBehaviour
 {
-	// Token: 0x060020FE RID: 8446 RVA: 0x001E7B1C File Offset: 0x001E5D1C
+	// Token: 0x060020FF RID: 8447 RVA: 0x001E7C18 File Offset: 0x001E5E18
 	private void Update()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -38,7 +38,7 @@ public class YanvaniaWitchScript : MonoBehaviour
 		this.HitReactTimer += Time.deltaTime * 10f;
 	}
 
-	// Token: 0x060020FF RID: 8447 RVA: 0x001E7CD0 File Offset: 0x001E5ED0
+	// Token: 0x06002100 RID: 8448 RVA: 0x001E7DCC File Offset: 0x001E5FCC
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.HP > 0f)

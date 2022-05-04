@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200033E RID: 830
 public class IntroYandereScript : MonoBehaviour
 {
-	// Token: 0x0600190F RID: 6415 RVA: 0x000FB400 File Offset: 0x000F9600
+	// Token: 0x0600190F RID: 6415 RVA: 0x000FB3CC File Offset: 0x000F95CC
 	private void LateUpdate()
 	{
 		this.Hips.localEulerAngles = new Vector3(this.Hips.localEulerAngles.x + this.X, this.Hips.localEulerAngles.y, this.Hips.localEulerAngles.z);

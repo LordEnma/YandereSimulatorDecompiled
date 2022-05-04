@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000388 RID: 904
 public class OsanaJokeScript : MonoBehaviour
 {
-	// Token: 0x06001A4F RID: 6735 RVA: 0x00116DC8 File Offset: 0x00114FC8
+	// Token: 0x06001A4F RID: 6735 RVA: 0x00116D94 File Offset: 0x00114F94
 	private void Update()
 	{
 		if (this.Advance)

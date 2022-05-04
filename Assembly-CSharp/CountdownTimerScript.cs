@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000262 RID: 610
 public class CountdownTimerScript : MonoBehaviour
 {
-	// Token: 0x060012F2 RID: 4850 RVA: 0x000A6D06 File Offset: 0x000A4F06
+	// Token: 0x060012F2 RID: 4850 RVA: 0x000A6CD2 File Offset: 0x000A4ED2
 	private void Update()
 	{
 		this.Timer = Mathf.MoveTowards(this.Timer, 0f, Time.deltaTime);
 		this.DisplayTime(this.Timer);
 	}
 
-	// Token: 0x060012F3 RID: 4851 RVA: 0x000A6D30 File Offset: 0x000A4F30
+	// Token: 0x060012F3 RID: 4851 RVA: 0x000A6CFC File Offset: 0x000A4EFC
 	private void DisplayTime(float timeToDisplay)
 	{
 		float num = (float)Mathf.FloorToInt(timeToDisplay / 60f);

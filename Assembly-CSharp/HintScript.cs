@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000316 RID: 790
 public class HintScript : MonoBehaviour
 {
-	// Token: 0x06001872 RID: 6258 RVA: 0x000EC52C File Offset: 0x000EA72C
+	// Token: 0x06001872 RID: 6258 RVA: 0x000EC4F8 File Offset: 0x000EA6F8
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(0.2043f, 0f, 1f);
@@ -18,7 +18,7 @@ public class HintScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001873 RID: 6259 RVA: 0x000EC584 File Offset: 0x000EA784
+	// Token: 0x06001873 RID: 6259 RVA: 0x000EC550 File Offset: 0x000EA750
 	private void Update()
 	{
 		if (this.MyPanel.alpha == 1f)

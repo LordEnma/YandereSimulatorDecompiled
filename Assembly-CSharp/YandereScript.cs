@@ -8,7 +8,7 @@ using XInputDotNetPure;
 // Token: 0x020004D7 RID: 1239
 public class YandereScript : MonoBehaviour
 {
-	// Token: 0x06002040 RID: 8256 RVA: 0x001CE400 File Offset: 0x001CC600
+	// Token: 0x06002041 RID: 8257 RVA: 0x001CE4FC File Offset: 0x001CC6FC
 	private void Start()
 	{
 		Application.runInBackground = false;
@@ -172,8 +172,8 @@ public class YandereScript : MonoBehaviour
 	}
 
 	// Token: 0x170004CB RID: 1227
-	// (get) Token: 0x06002041 RID: 8257 RVA: 0x001CEBB3 File Offset: 0x001CCDB3
-	// (set) Token: 0x06002042 RID: 8258 RVA: 0x001CEBBC File Offset: 0x001CCDBC
+	// (get) Token: 0x06002042 RID: 8258 RVA: 0x001CECAF File Offset: 0x001CCEAF
+	// (set) Token: 0x06002043 RID: 8259 RVA: 0x001CECB8 File Offset: 0x001CCEB8
 	public float Sanity
 	{
 		get
@@ -237,8 +237,8 @@ public class YandereScript : MonoBehaviour
 	}
 
 	// Token: 0x170004CC RID: 1228
-	// (get) Token: 0x06002043 RID: 8259 RVA: 0x001CED89 File Offset: 0x001CCF89
-	// (set) Token: 0x06002044 RID: 8260 RVA: 0x001CED94 File Offset: 0x001CCF94
+	// (get) Token: 0x06002044 RID: 8260 RVA: 0x001CEE85 File Offset: 0x001CD085
+	// (set) Token: 0x06002045 RID: 8261 RVA: 0x001CEE90 File Offset: 0x001CD090
 	public float Bloodiness
 	{
 		get
@@ -342,8 +342,8 @@ public class YandereScript : MonoBehaviour
 	}
 
 	// Token: 0x170004CD RID: 1229
-	// (get) Token: 0x06002045 RID: 8261 RVA: 0x001CF113 File Offset: 0x001CD313
-	// (set) Token: 0x06002046 RID: 8262 RVA: 0x001CF122 File Offset: 0x001CD322
+	// (get) Token: 0x06002046 RID: 8262 RVA: 0x001CF20F File Offset: 0x001CD40F
+	// (set) Token: 0x06002047 RID: 8263 RVA: 0x001CF21E File Offset: 0x001CD41E
 	public WeaponScript EquippedWeapon
 	{
 		get
@@ -357,7 +357,7 @@ public class YandereScript : MonoBehaviour
 	}
 
 	// Token: 0x170004CE RID: 1230
-	// (get) Token: 0x06002047 RID: 8263 RVA: 0x001CF132 File Offset: 0x001CD332
+	// (get) Token: 0x06002048 RID: 8264 RVA: 0x001CF22E File Offset: 0x001CD42E
 	public bool Armed
 	{
 		get
@@ -367,7 +367,7 @@ public class YandereScript : MonoBehaviour
 	}
 
 	// Token: 0x170004CF RID: 1231
-	// (get) Token: 0x06002048 RID: 8264 RVA: 0x001CF140 File Offset: 0x001CD340
+	// (get) Token: 0x06002049 RID: 8265 RVA: 0x001CF23C File Offset: 0x001CD43C
 	public SanityType SanityType
 	{
 		get
@@ -384,7 +384,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002049 RID: 8265 RVA: 0x001CF16D File Offset: 0x001CD36D
+	// Token: 0x0600204A RID: 8266 RVA: 0x001CF269 File Offset: 0x001CD469
 	public string GetSanityString(SanityType sanityType)
 	{
 		if (sanityType == SanityType.High)
@@ -399,7 +399,7 @@ public class YandereScript : MonoBehaviour
 	}
 
 	// Token: 0x170004D0 RID: 1232
-	// (get) Token: 0x0600204A RID: 8266 RVA: 0x001CF188 File Offset: 0x001CD388
+	// (get) Token: 0x0600204B RID: 8267 RVA: 0x001CF284 File Offset: 0x001CD484
 	public Vector3 HeadPosition
 	{
 		get
@@ -408,7 +408,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600204B RID: 8267 RVA: 0x001CF1D8 File Offset: 0x001CD3D8
+	// Token: 0x0600204C RID: 8268 RVA: 0x001CF2D4 File Offset: 0x001CD4D4
 	public void SetAnimationLayers()
 	{
 		this.CharacterAnimation["f02_yanderePose_00"].layer = 1;
@@ -533,7 +533,7 @@ public class YandereScript : MonoBehaviour
 		this.CharacterAnimation["CyborgNinja_Run_Unarmed"].speed = 2f;
 	}
 
-	// Token: 0x0600204C RID: 8268 RVA: 0x001CFCAC File Offset: 0x001CDEAC
+	// Token: 0x0600204D RID: 8269 RVA: 0x001CFDA8 File Offset: 0x001CDFA8
 	private void Update()
 	{
 		if (!this.StudentManager.Eighties && Input.GetKeyDown(KeyCode.LeftAlt))
@@ -633,7 +633,7 @@ public class YandereScript : MonoBehaviour
 		this.MyAudio.volume -= 0.33333334f;
 	}
 
-	// Token: 0x0600204D RID: 8269 RVA: 0x001D030C File Offset: 0x001CE50C
+	// Token: 0x0600204E RID: 8270 RVA: 0x001D0408 File Offset: 0x001CE608
 	private void GoToPKDir(PKDirType pkDir, string sansAnim, Vector3 ragdollLocalPos)
 	{
 		this.CharacterAnimation.CrossFade(sansAnim);
@@ -645,7 +645,7 @@ public class YandereScript : MonoBehaviour
 		this.PKDir = pkDir;
 	}
 
-	// Token: 0x0600204E RID: 8270 RVA: 0x001D0368 File Offset: 0x001CE568
+	// Token: 0x0600204F RID: 8271 RVA: 0x001D0464 File Offset: 0x001CE664
 	private void UpdateMovement()
 	{
 		if (this.CanMove)
@@ -3353,7 +3353,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600204F RID: 8271 RVA: 0x001D84B4 File Offset: 0x001D66B4
+	// Token: 0x06002050 RID: 8272 RVA: 0x001D85B0 File Offset: 0x001D67B0
 	private void UpdatePoisoning()
 	{
 		if (this.Poisoning)
@@ -3390,7 +3390,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002050 RID: 8272 RVA: 0x001D8690 File Offset: 0x001D6890
+	// Token: 0x06002051 RID: 8273 RVA: 0x001D878C File Offset: 0x001D698C
 	private void UpdateEffects()
 	{
 		if (!this.Attacking && !this.DelinquentFighting && !this.Lost && this.CanMove)
@@ -3627,7 +3627,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002051 RID: 8273 RVA: 0x001D9468 File Offset: 0x001D7668
+	// Token: 0x06002052 RID: 8274 RVA: 0x001D9564 File Offset: 0x001D7764
 	private void UpdateTalking()
 	{
 		if (this.Talking)
@@ -4167,7 +4167,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002052 RID: 8274 RVA: 0x001DA604 File Offset: 0x001D8804
+	// Token: 0x06002053 RID: 8275 RVA: 0x001DA700 File Offset: 0x001D8900
 	private void UpdateAttacking()
 	{
 		if (this.Attacking)
@@ -4444,7 +4444,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002053 RID: 8275 RVA: 0x001DB28C File Offset: 0x001D948C
+	// Token: 0x06002054 RID: 8276 RVA: 0x001DB388 File Offset: 0x001D9588
 	public void UpdateSlouch()
 	{
 		if (!this.FloppyHat.activeInHierarchy)
@@ -4468,7 +4468,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002054 RID: 8276 RVA: 0x001DB448 File Offset: 0x001D9648
+	// Token: 0x06002055 RID: 8277 RVA: 0x001DB544 File Offset: 0x001D9744
 	private void UpdateTwitch()
 	{
 		if (this.Sanity < 100f)
@@ -4484,7 +4484,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002055 RID: 8277 RVA: 0x001DB53C File Offset: 0x001D973C
+	// Token: 0x06002056 RID: 8278 RVA: 0x001DB638 File Offset: 0x001D9838
 	private void UpdateWarnings()
 	{
 		if (this.NearBodies > 0)
@@ -4524,7 +4524,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002056 RID: 8278 RVA: 0x001DB604 File Offset: 0x001D9804
+	// Token: 0x06002057 RID: 8279 RVA: 0x001DB700 File Offset: 0x001D9900
 	private void UpdateDebugFunctionality()
 	{
 		if (!this.EasterEggMenu.activeInHierarchy && !this.DebugMenu.activeInHierarchy)
@@ -4913,7 +4913,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugTimer = Mathf.MoveTowards(this.DebugTimer, 0f, Time.deltaTime);
 	}
 
-	// Token: 0x06002057 RID: 8279 RVA: 0x001DC02C File Offset: 0x001DA22C
+	// Token: 0x06002058 RID: 8280 RVA: 0x001DC128 File Offset: 0x001DA328
 	private void LateUpdate()
 	{
 		if (this.VibrationCheck)
@@ -5242,7 +5242,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002058 RID: 8280 RVA: 0x001DD47C File Offset: 0x001DB67C
+	// Token: 0x06002059 RID: 8281 RVA: 0x001DD578 File Offset: 0x001DB778
 	public void StainWeapon()
 	{
 		if (this.EquippedWeapon != null)
@@ -5282,14 +5282,14 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002059 RID: 8281 RVA: 0x001DD60C File Offset: 0x001DB80C
+	// Token: 0x0600205A RID: 8282 RVA: 0x001DD708 File Offset: 0x001DB908
 	public void MoveTowardsTarget(Vector3 target)
 	{
 		Vector3 a = target - base.transform.position;
 		this.MyController.Move(a * (Time.deltaTime * 10f));
 	}
 
-	// Token: 0x0600205A RID: 8282 RVA: 0x001DD648 File Offset: 0x001DB848
+	// Token: 0x0600205B RID: 8283 RVA: 0x001DD744 File Offset: 0x001DB944
 	public void StopAiming()
 	{
 		this.UpdateAccessory();
@@ -5339,7 +5339,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600205B RID: 8283 RVA: 0x001DD880 File Offset: 0x001DBA80
+	// Token: 0x0600205C RID: 8284 RVA: 0x001DD97C File Offset: 0x001DBB7C
 	public void FixCamera()
 	{
 		if (!this.SneakingShot)
@@ -5355,7 +5355,7 @@ public class YandereScript : MonoBehaviour
 		this.Blur.enabled = false;
 	}
 
-	// Token: 0x0600205C RID: 8284 RVA: 0x001DD8FC File Offset: 0x001DBAFC
+	// Token: 0x0600205D RID: 8285 RVA: 0x001DD9F8 File Offset: 0x001DBBF8
 	public void ResetSenpaiEffects()
 	{
 		this.SenpaiFilter.enabled = false;
@@ -5372,7 +5372,7 @@ public class YandereScript : MonoBehaviour
 		this.SenpaiTint = 0f;
 	}
 
-	// Token: 0x0600205D RID: 8285 RVA: 0x001DD9B8 File Offset: 0x001DBBB8
+	// Token: 0x0600205E RID: 8286 RVA: 0x001DDAB4 File Offset: 0x001DBCB4
 	public void ResetYandereEffects()
 	{
 		this.YandereTimer = 0f;
@@ -5395,7 +5395,7 @@ public class YandereScript : MonoBehaviour
 		this.HighlightingB.enabled = false;
 	}
 
-	// Token: 0x0600205E RID: 8286 RVA: 0x001DDB5C File Offset: 0x001DBD5C
+	// Token: 0x0600205F RID: 8287 RVA: 0x001DDC58 File Offset: 0x001DBE58
 	private void DumpRagdoll(RagdollDumpType Type)
 	{
 		this.Ragdoll.transform.position = base.transform.position;
@@ -5417,7 +5417,7 @@ public class YandereScript : MonoBehaviour
 		component.Dump();
 	}
 
-	// Token: 0x0600205F RID: 8287 RVA: 0x001DDC68 File Offset: 0x001DBE68
+	// Token: 0x06002060 RID: 8288 RVA: 0x001DDD64 File Offset: 0x001DBF64
 	public void Unequip()
 	{
 		if (this.CanMove || this.Noticed)
@@ -5445,7 +5445,7 @@ public class YandereScript : MonoBehaviour
 		this.UpdateConcealedWeaponStatus();
 	}
 
-	// Token: 0x06002060 RID: 8288 RVA: 0x001DDD34 File Offset: 0x001DBF34
+	// Token: 0x06002061 RID: 8289 RVA: 0x001DDE30 File Offset: 0x001DC030
 	public void DropWeapon(int ID)
 	{
 		if (!this.Weapon[ID].Undroppable)
@@ -5461,7 +5461,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002061 RID: 8289 RVA: 0x001DDDA0 File Offset: 0x001DBFA0
+	// Token: 0x06002062 RID: 8290 RVA: 0x001DDE9C File Offset: 0x001DC09C
 	public void EmptyHands()
 	{
 		if (this.Carrying || this.HeavyWeight)
@@ -5489,13 +5489,13 @@ public class YandereScript : MonoBehaviour
 		this.Mopping = false;
 	}
 
-	// Token: 0x06002062 RID: 8290 RVA: 0x001DDE44 File Offset: 0x001DC044
+	// Token: 0x06002063 RID: 8291 RVA: 0x001DDF40 File Offset: 0x001DC140
 	public void UpdateNumbness()
 	{
 		this.Numbness = 1f - 0.1f * (float)(this.Class.Numbness + this.Class.NumbnessBonus + this.Class.PsychologyGrade + this.Class.PsychologyBonus);
 	}
 
-	// Token: 0x06002063 RID: 8291 RVA: 0x001DDE94 File Offset: 0x001DC094
+	// Token: 0x06002064 RID: 8292 RVA: 0x001DDF90 File Offset: 0x001DC190
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.StudentManager != null && !this.StudentManager.TutorialActive && other.gameObject.name == "BloodPool(Clone)" && other.transform.localScale.x > 0.3f)
@@ -5511,7 +5511,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002064 RID: 8292 RVA: 0x001DDF28 File Offset: 0x001DC128
+	// Token: 0x06002065 RID: 8293 RVA: 0x001DE024 File Offset: 0x001DC224
 	public void UpdateHair()
 	{
 		if (this.Hairstyle > this.Hairstyles.Length - 1)
@@ -5534,7 +5534,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002065 RID: 8293 RVA: 0x001DDFC0 File Offset: 0x001DC1C0
+	// Token: 0x06002066 RID: 8294 RVA: 0x001DE0BC File Offset: 0x001DC2BC
 	public void StopLaughing()
 	{
 		this.BladeHairCollider1.enabled = false;
@@ -5565,7 +5565,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002066 RID: 8294 RVA: 0x001DE09C File Offset: 0x001DC29C
+	// Token: 0x06002067 RID: 8295 RVA: 0x001DE198 File Offset: 0x001DC398
 	private void SetUniform()
 	{
 		if (StudentGlobals.FemaleUniform == 0)
@@ -5587,7 +5587,7 @@ public class YandereScript : MonoBehaviour
 		base.StartCoroutine(this.ApplyCustomCostume());
 	}
 
-	// Token: 0x06002067 RID: 8295 RVA: 0x001DE150 File Offset: 0x001DC350
+	// Token: 0x06002068 RID: 8296 RVA: 0x001DE24C File Offset: 0x001DC44C
 	private IEnumerator ApplyCustomCostume()
 	{
 		if (StudentGlobals.FemaleUniform == 1)
@@ -5689,7 +5689,7 @@ public class YandereScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002068 RID: 8296 RVA: 0x001DE160 File Offset: 0x001DC360
+	// Token: 0x06002069 RID: 8297 RVA: 0x001DE25C File Offset: 0x001DC45C
 	public void WearGloves()
 	{
 		if (this.Bloodiness > 0f && !this.Gloves.Blood.enabled)
@@ -5716,7 +5716,7 @@ public class YandereScript : MonoBehaviour
 		this.GloveAttacher.newRenderer.enabled = true;
 	}
 
-	// Token: 0x06002069 RID: 8297 RVA: 0x001DE22C File Offset: 0x001DC42C
+	// Token: 0x0600206A RID: 8298 RVA: 0x001DE328 File Offset: 0x001DC528
 	private void AttackOnTitan()
 	{
 		this.MyRenderer.sharedMesh = this.NudeMesh;
@@ -5746,7 +5746,7 @@ public class YandereScript : MonoBehaviour
 		this.Outline.h.ReinitMaterials();
 	}
 
-	// Token: 0x0600206A RID: 8298 RVA: 0x001DE3E0 File Offset: 0x001DC5E0
+	// Token: 0x0600206B RID: 8299 RVA: 0x001DE4DC File Offset: 0x001DC6DC
 	private void KON()
 	{
 		this.MyRenderer.sharedMesh = this.Uniforms[4];
@@ -5756,7 +5756,7 @@ public class YandereScript : MonoBehaviour
 		this.Outline.h.ReinitMaterials();
 	}
 
-	// Token: 0x0600206B RID: 8299 RVA: 0x001DE458 File Offset: 0x001DC658
+	// Token: 0x0600206C RID: 8300 RVA: 0x001DE554 File Offset: 0x001DC754
 	private void Punish()
 	{
 		this.PunishedShader = Shader.Find("Toon/Cutoff");
@@ -5787,7 +5787,7 @@ public class YandereScript : MonoBehaviour
 		this.Outline.h.ReinitMaterials();
 	}
 
-	// Token: 0x0600206C RID: 8300 RVA: 0x001DE644 File Offset: 0x001DC844
+	// Token: 0x0600206D RID: 8301 RVA: 0x001DE740 File Offset: 0x001DC940
 	private void Hate()
 	{
 		this.PantyAttacher.newRenderer.enabled = false;
@@ -5807,7 +5807,7 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x0600206D RID: 8301 RVA: 0x001DE750 File Offset: 0x001DC950
+	// Token: 0x0600206E RID: 8302 RVA: 0x001DE84C File Offset: 0x001DCA4C
 	private void Sukeban()
 	{
 		this.IdleAnim = "f02_idle_00";
@@ -5820,7 +5820,7 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x0600206E RID: 8302 RVA: 0x001DE7E4 File Offset: 0x001DC9E4
+	// Token: 0x0600206F RID: 8303 RVA: 0x001DE8E0 File Offset: 0x001DCAE0
 	private void Bancho()
 	{
 		this.PantyAttacher.newRenderer.enabled = false;
@@ -5863,7 +5863,7 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x0600206F RID: 8303 RVA: 0x001DEA20 File Offset: 0x001DCC20
+	// Token: 0x06002070 RID: 8304 RVA: 0x001DEB1C File Offset: 0x001DCD1C
 	private void Slend()
 	{
 		this.PantyAttacher.newRenderer.enabled = false;
@@ -5890,7 +5890,7 @@ public class YandereScript : MonoBehaviour
 		this.Sanity = 0f;
 	}
 
-	// Token: 0x06002070 RID: 8304 RVA: 0x001DEBCC File Offset: 0x001DCDCC
+	// Token: 0x06002071 RID: 8305 RVA: 0x001DECC8 File Offset: 0x001DCEC8
 	private void X()
 	{
 		this.PantyAttacher.newRenderer.enabled = false;
@@ -5911,7 +5911,7 @@ public class YandereScript : MonoBehaviour
 		this.MyRenderer.materials[2].mainTexture = this.XFace;
 	}
 
-	// Token: 0x06002071 RID: 8305 RVA: 0x001DECC0 File Offset: 0x001DCEC0
+	// Token: 0x06002072 RID: 8306 RVA: 0x001DEDBC File Offset: 0x001DCFBC
 	private void GaloSengen()
 	{
 		this.PantyAttacher.newRenderer.enabled = false;
@@ -5934,7 +5934,7 @@ public class YandereScript : MonoBehaviour
 		this.UpdateHair();
 	}
 
-	// Token: 0x06002072 RID: 8306 RVA: 0x001DEDDC File Offset: 0x001DCFDC
+	// Token: 0x06002073 RID: 8307 RVA: 0x001DEED8 File Offset: 0x001DD0D8
 	public void Jojo()
 	{
 		this.ShoulderCamera.LastPosition = this.ShoulderCamera.transform.position;
@@ -5953,7 +5953,7 @@ public class YandereScript : MonoBehaviour
 		this.Laugh4 = this.YanYan;
 	}
 
-	// Token: 0x06002073 RID: 8307 RVA: 0x001DEEA4 File Offset: 0x001DD0A4
+	// Token: 0x06002074 RID: 8308 RVA: 0x001DEFA0 File Offset: 0x001DD1A0
 	private void Agent()
 	{
 		this.PantyAttacher.newRenderer.enabled = false;
@@ -5970,7 +5970,7 @@ public class YandereScript : MonoBehaviour
 		this.UpdateHair();
 	}
 
-	// Token: 0x06002074 RID: 8308 RVA: 0x001DEF84 File Offset: 0x001DD184
+	// Token: 0x06002075 RID: 8309 RVA: 0x001DF080 File Offset: 0x001DD280
 	private void Cirno()
 	{
 		this.PantyAttacher.newRenderer.enabled = false;
@@ -5993,7 +5993,7 @@ public class YandereScript : MonoBehaviour
 		this.UpdateHair();
 	}
 
-	// Token: 0x06002075 RID: 8309 RVA: 0x001DF0A0 File Offset: 0x001DD2A0
+	// Token: 0x06002076 RID: 8310 RVA: 0x001DF19C File Offset: 0x001DD39C
 	private void Falcon()
 	{
 		this.MyRenderer.sharedMesh = this.NudeMesh;
@@ -6017,7 +6017,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
 
-	// Token: 0x06002076 RID: 8310 RVA: 0x001DF1F4 File Offset: 0x001DD3F4
+	// Token: 0x06002077 RID: 8311 RVA: 0x001DF2F0 File Offset: 0x001DD4F0
 	private void Punch()
 	{
 		this.MusicCredit.SongLabel.text = "Now Playing: Unknown Hero";
@@ -6040,7 +6040,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
 
-	// Token: 0x06002077 RID: 8311 RVA: 0x001DF33C File Offset: 0x001DD53C
+	// Token: 0x06002078 RID: 8312 RVA: 0x001DF438 File Offset: 0x001DD638
 	private void BadTime()
 	{
 		this.MyRenderer.sharedMesh = this.Jersey;
@@ -6063,7 +6063,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().EasterEggCheck();
 	}
 
-	// Token: 0x06002078 RID: 8312 RVA: 0x001DF464 File Offset: 0x001DD664
+	// Token: 0x06002079 RID: 8313 RVA: 0x001DF560 File Offset: 0x001DD760
 	private void CyborgNinja()
 	{
 		this.PantyAttacher.newRenderer.enabled = false;
@@ -6103,7 +6103,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
 
-	// Token: 0x06002079 RID: 8313 RVA: 0x001DF61C File Offset: 0x001DD81C
+	// Token: 0x0600207A RID: 8314 RVA: 0x001DF718 File Offset: 0x001DD918
 	private void Ebola()
 	{
 		this.StudentManager.Ebola = true;
@@ -6121,13 +6121,13 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x0600207A RID: 8314 RVA: 0x001DF6D3 File Offset: 0x001DD8D3
+	// Token: 0x0600207B RID: 8315 RVA: 0x001DF7CF File Offset: 0x001DD9CF
 	private void Long()
 	{
 		this.MyRenderer.sharedMesh = this.LongUniform;
 	}
 
-	// Token: 0x0600207B RID: 8315 RVA: 0x001DF6E8 File Offset: 0x001DD8E8
+	// Token: 0x0600207C RID: 8316 RVA: 0x001DF7E4 File Offset: 0x001DD9E4
 	private void SwapMesh()
 	{
 		this.MyRenderer.sharedMesh = this.NewMesh;
@@ -6138,7 +6138,7 @@ public class YandereScript : MonoBehaviour
 		this.LeftYandereEye.gameObject.SetActive(false);
 	}
 
-	// Token: 0x0600207C RID: 8316 RVA: 0x001DF770 File Offset: 0x001DD970
+	// Token: 0x0600207D RID: 8317 RVA: 0x001DF86C File Offset: 0x001DDA6C
 	private void Nude()
 	{
 		Debug.Log("Making Yandere-chan nude.");
@@ -6167,7 +6167,7 @@ public class YandereScript : MonoBehaviour
 		this.ClubAccessory();
 	}
 
-	// Token: 0x0600207D RID: 8317 RVA: 0x001DF8AC File Offset: 0x001DDAAC
+	// Token: 0x0600207E RID: 8318 RVA: 0x001DF9A8 File Offset: 0x001DDBA8
 	private void Samus()
 	{
 		this.MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -6182,7 +6182,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
 
-	// Token: 0x0600207E RID: 8318 RVA: 0x001DF984 File Offset: 0x001DDB84
+	// Token: 0x0600207F RID: 8319 RVA: 0x001DFA80 File Offset: 0x001DDC80
 	private void Witch()
 	{
 		this.MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -6201,7 +6201,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
 
-	// Token: 0x0600207F RID: 8319 RVA: 0x001DFA6E File Offset: 0x001DDC6E
+	// Token: 0x06002080 RID: 8320 RVA: 0x001DFB6A File Offset: 0x001DDD6A
 	private void Pose()
 	{
 		if (!this.StudentManager.Pose)
@@ -6215,7 +6215,7 @@ public class YandereScript : MonoBehaviour
 		this.StudentManager.UpdateStudents(0);
 	}
 
-	// Token: 0x06002080 RID: 8320 RVA: 0x001DFAA3 File Offset: 0x001DDCA3
+	// Token: 0x06002081 RID: 8321 RVA: 0x001DFB9F File Offset: 0x001DDD9F
 	private void HairBlades()
 	{
 		this.Hairstyle = 0;
@@ -6224,7 +6224,7 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x06002081 RID: 8321 RVA: 0x001DFAC8 File Offset: 0x001DDCC8
+	// Token: 0x06002082 RID: 8322 RVA: 0x001DFBC4 File Offset: 0x001DDDC4
 	private void Tornado()
 	{
 		this.Hairstyle = 0;
@@ -6248,7 +6248,7 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x06002082 RID: 8322 RVA: 0x001DFBF4 File Offset: 0x001DDDF4
+	// Token: 0x06002083 RID: 8323 RVA: 0x001DFCF0 File Offset: 0x001DDEF0
 	private void GenderSwap()
 	{
 		this.Kun.SetActive(true);
@@ -6267,7 +6267,7 @@ public class YandereScript : MonoBehaviour
 		this.UpdateHair();
 	}
 
-	// Token: 0x06002083 RID: 8323 RVA: 0x001DFCC0 File Offset: 0x001DDEC0
+	// Token: 0x06002084 RID: 8324 RVA: 0x001DFDBC File Offset: 0x001DDFBC
 	private void Mandere()
 	{
 		this.Man.SetActive(true);
@@ -6288,7 +6288,7 @@ public class YandereScript : MonoBehaviour
 		this.UpdateHair();
 	}
 
-	// Token: 0x06002084 RID: 8324 RVA: 0x001DFDB0 File Offset: 0x001DDFB0
+	// Token: 0x06002085 RID: 8325 RVA: 0x001DFEAC File Offset: 0x001DE0AC
 	private void BlackHoleChan()
 	{
 		this.MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -6313,7 +6313,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
 
-	// Token: 0x06002085 RID: 8325 RVA: 0x001DFEF0 File Offset: 0x001DE0F0
+	// Token: 0x06002086 RID: 8326 RVA: 0x001DFFEC File Offset: 0x001DE1EC
 	private void ElfenLied()
 	{
 		this.MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -6343,7 +6343,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
 
-	// Token: 0x06002086 RID: 8326 RVA: 0x001E0050 File Offset: 0x001DE250
+	// Token: 0x06002087 RID: 8327 RVA: 0x001E014C File Offset: 0x001DE34C
 	private void Ghoul()
 	{
 		this.MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -6373,7 +6373,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
 
-	// Token: 0x06002087 RID: 8327 RVA: 0x001E01B0 File Offset: 0x001DE3B0
+	// Token: 0x06002088 RID: 8328 RVA: 0x001E02AC File Offset: 0x001DE4AC
 	private void Berserk()
 	{
 		SchoolGlobals.SchoolAtmosphere = 0.5f;
@@ -6413,7 +6413,7 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x06002088 RID: 8328 RVA: 0x001E0368 File Offset: 0x001DE568
+	// Token: 0x06002089 RID: 8329 RVA: 0x001E0464 File Offset: 0x001DE664
 	private void Sith()
 	{
 		this.Hairstyle = 67;
@@ -6441,7 +6441,7 @@ public class YandereScript : MonoBehaviour
 		this.Zoom.TargetZoom = 0.4f;
 	}
 
-	// Token: 0x06002089 RID: 8329 RVA: 0x001E04D8 File Offset: 0x001DE6D8
+	// Token: 0x0600208A RID: 8330 RVA: 0x001E05D4 File Offset: 0x001DE7D4
 	private void Snake()
 	{
 		this.PantyAttacher.newRenderer.enabled = false;
@@ -6457,7 +6457,7 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x0600208A RID: 8330 RVA: 0x001E05A8 File Offset: 0x001DE7A8
+	// Token: 0x0600208B RID: 8331 RVA: 0x001E06A4 File Offset: 0x001DE8A4
 	private void Gazer()
 	{
 		this.MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -6484,7 +6484,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
 
-	// Token: 0x0600208B RID: 8331 RVA: 0x001E0708 File Offset: 0x001DE908
+	// Token: 0x0600208C RID: 8332 RVA: 0x001E0804 File Offset: 0x001DEA04
 	private void Six()
 	{
 		RenderSettings.skybox = this.HatefulSkybox;
@@ -6517,7 +6517,7 @@ public class YandereScript : MonoBehaviour
 		this.StudentManager.Students[1].Blind = true;
 	}
 
-	// Token: 0x0600208C RID: 8332 RVA: 0x001E089C File Offset: 0x001DEA9C
+	// Token: 0x0600208D RID: 8333 RVA: 0x001E0998 File Offset: 0x001DEB98
 	public void WearRaincoat()
 	{
 		Debug.Log("Yandere-chan is now firing the WearRaincoat() function.");
@@ -6545,7 +6545,7 @@ public class YandereScript : MonoBehaviour
 		this.TheDebugMenuScript.UpdateCensor();
 	}
 
-	// Token: 0x0600208D RID: 8333 RVA: 0x001E09B0 File Offset: 0x001DEBB0
+	// Token: 0x0600208E RID: 8334 RVA: 0x001E0AAC File Offset: 0x001DECAC
 	private void KLK()
 	{
 		this.MyRenderer.materials[0].SetFloat("_BlendAmount", 0f);
@@ -6579,7 +6579,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
 
-	// Token: 0x0600208E RID: 8334 RVA: 0x001E0B34 File Offset: 0x001DED34
+	// Token: 0x0600208F RID: 8335 RVA: 0x001E0C30 File Offset: 0x001DEE30
 	public void Miyuki()
 	{
 		this.MiyukiCostume.SetActive(true);
@@ -6601,7 +6601,7 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x0600208F RID: 8335 RVA: 0x001E0C24 File Offset: 0x001DEE24
+	// Token: 0x06002090 RID: 8336 RVA: 0x001E0D20 File Offset: 0x001DEF20
 	public void AzurLane()
 	{
 		this.Schoolwear = 2;
@@ -6622,7 +6622,7 @@ public class YandereScript : MonoBehaviour
 		this.Jukebox.Shipgirl();
 	}
 
-	// Token: 0x06002090 RID: 8336 RVA: 0x001E0CD8 File Offset: 0x001DEED8
+	// Token: 0x06002091 RID: 8337 RVA: 0x001E0DD4 File Offset: 0x001DEFD4
 	private void GarbageMode()
 	{
 		this.PantyAttacher.newRenderer.enabled = false;
@@ -6643,7 +6643,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002091 RID: 8337 RVA: 0x001E0DDC File Offset: 0x001DEFDC
+	// Token: 0x06002092 RID: 8338 RVA: 0x001E0ED8 File Offset: 0x001DF0D8
 	private void TallMode()
 	{
 		SchoolGlobals.SchoolAtmosphere = 0.5f;
@@ -6670,7 +6670,7 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x06002092 RID: 8338 RVA: 0x001E0F4C File Offset: 0x001DF14C
+	// Token: 0x06002093 RID: 8339 RVA: 0x001E1048 File Offset: 0x001DF248
 	private void HollowMode()
 	{
 		RenderSettings.ambientLight = new Color(0.1f, 0.1f, 0.1f);
@@ -6708,7 +6708,7 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x06002093 RID: 8339 RVA: 0x001E1108 File Offset: 0x001DF308
+	// Token: 0x06002094 RID: 8340 RVA: 0x001E1204 File Offset: 0x001DF404
 	private void Blacklight()
 	{
 		this.BlacklightShader.enabled = true;
@@ -6729,7 +6729,7 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x06002094 RID: 8340 RVA: 0x001E1214 File Offset: 0x001DF414
+	// Token: 0x06002095 RID: 8341 RVA: 0x001E1310 File Offset: 0x001DF510
 	public void Weather()
 	{
 		if (!this.Rain.activeInHierarchy)
@@ -6753,7 +6753,7 @@ public class YandereScript : MonoBehaviour
 		this.TheDebugMenuScript.UpdateCensor();
 	}
 
-	// Token: 0x06002095 RID: 8341 RVA: 0x001E1328 File Offset: 0x001DF528
+	// Token: 0x06002096 RID: 8342 RVA: 0x001E1424 File Offset: 0x001DF624
 	private void Horror()
 	{
 		this.Rain.SetActive(false);
@@ -6795,7 +6795,7 @@ public class YandereScript : MonoBehaviour
 		this.Egg = true;
 	}
 
-	// Token: 0x06002096 RID: 8342 RVA: 0x001E15F0 File Offset: 0x001DF7F0
+	// Token: 0x06002097 RID: 8343 RVA: 0x001E16EC File Offset: 0x001DF8EC
 	private void LifeNote()
 	{
 		this.ID = 1;
@@ -6823,7 +6823,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
 
-	// Token: 0x06002097 RID: 8343 RVA: 0x001E178C File Offset: 0x001DF98C
+	// Token: 0x06002098 RID: 8344 RVA: 0x001E1888 File Offset: 0x001DFA88
 	private void Nier()
 	{
 		this.NierCostume.SetActive(true);
@@ -6854,7 +6854,7 @@ public class YandereScript : MonoBehaviour
 		this.DebugMenu.transform.parent.GetComponent<DebugMenuScript>().UpdateCensor();
 	}
 
-	// Token: 0x06002098 RID: 8344 RVA: 0x001E1918 File Offset: 0x001DFB18
+	// Token: 0x06002099 RID: 8345 RVA: 0x001E1A14 File Offset: 0x001DFC14
 	public void WearChinaDress()
 	{
 		this.EbolaHair.SetActive(false);
@@ -6867,7 +6867,7 @@ public class YandereScript : MonoBehaviour
 		this.PantyAttacher.newRenderer.enabled = true;
 	}
 
-	// Token: 0x06002099 RID: 8345 RVA: 0x001E19B8 File Offset: 0x001DFBB8
+	// Token: 0x0600209A RID: 8346 RVA: 0x001E1AB4 File Offset: 0x001DFCB4
 	public void Medibang()
 	{
 		this.MedibangAttacher.SetActive(true);
@@ -6876,7 +6876,7 @@ public class YandereScript : MonoBehaviour
 		this.MyRenderer.enabled = false;
 	}
 
-	// Token: 0x0600209A RID: 8346 RVA: 0x001E19E4 File Offset: 0x001DFBE4
+	// Token: 0x0600209B RID: 8347 RVA: 0x001E1AE0 File Offset: 0x001DFCE0
 	private void Vaporwave()
 	{
 		this.VaporwaveVisuals.ApplyNormalView();
@@ -6888,7 +6888,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600209B RID: 8347 RVA: 0x001E1A34 File Offset: 0x001DFC34
+	// Token: 0x0600209C RID: 8348 RVA: 0x001E1B30 File Offset: 0x001DFD30
 	public void ChangeSchoolwear()
 	{
 		if (this.StudentManager.Eighties)
@@ -6977,7 +6977,7 @@ public class YandereScript : MonoBehaviour
 		this.ClubAccessory();
 	}
 
-	// Token: 0x0600209C RID: 8348 RVA: 0x001E1F0C File Offset: 0x001E010C
+	// Token: 0x0600209D RID: 8349 RVA: 0x001E2008 File Offset: 0x001E0208
 	public void ChangeClubwear()
 	{
 		this.PantyAttacher.newRenderer.enabled = false;
@@ -7028,7 +7028,7 @@ public class YandereScript : MonoBehaviour
 		this.MyLocker.UpdateButtons();
 	}
 
-	// Token: 0x0600209D RID: 8349 RVA: 0x001E2140 File Offset: 0x001E0340
+	// Token: 0x0600209E RID: 8350 RVA: 0x001E223C File Offset: 0x001E043C
 	public void ClubAccessory()
 	{
 		this.ID = 0;
@@ -7047,7 +7047,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600209E RID: 8350 RVA: 0x001E21DC File Offset: 0x001E03DC
+	// Token: 0x0600209F RID: 8351 RVA: 0x001E22D8 File Offset: 0x001E04D8
 	public void StopCarrying()
 	{
 		this.CurrentRagdoll = null;
@@ -7062,28 +7062,28 @@ public class YandereScript : MonoBehaviour
 		this.RunAnim = this.OriginalRunAnim;
 	}
 
-	// Token: 0x0600209F RID: 8351 RVA: 0x001E2240 File Offset: 0x001E0440
+	// Token: 0x060020A0 RID: 8352 RVA: 0x001E233C File Offset: 0x001E053C
 	private void Crouch()
 	{
 		this.MyController.center = new Vector3(this.MyController.center.x, 0.55f, this.MyController.center.z);
 		this.MyController.height = 0.9f;
 	}
 
-	// Token: 0x060020A0 RID: 8352 RVA: 0x001E2294 File Offset: 0x001E0494
+	// Token: 0x060020A1 RID: 8353 RVA: 0x001E2390 File Offset: 0x001E0590
 	private void Crawl()
 	{
 		this.MyController.center = new Vector3(this.MyController.center.x, 0.25f, this.MyController.center.z);
 		this.MyController.height = 0.1f;
 	}
 
-	// Token: 0x060020A1 RID: 8353 RVA: 0x001E22E8 File Offset: 0x001E04E8
+	// Token: 0x060020A2 RID: 8354 RVA: 0x001E23E4 File Offset: 0x001E05E4
 	public void Uncrouch()
 	{
 		this.MyController.center = new Vector3(this.MyController.center.x, 0.875f, this.MyController.center.z);
 		this.MyController.height = 1.55f;
 	}
 
-	// Token: 0x060020A2 RID: 8354 RVA: 0x001E233C File Offset: 0x001E053C
+	// Token: 0x060020A3 RID: 8355 RVA: 0x001E2438 File Offset: 0x001E0638
 	private void StopArmedAnim()
 	{
 		this.ID = 0;
@@ -7095,7 +7095,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020A3 RID: 8355 RVA: 0x001E23B8 File Offset: 0x001E05B8
+	// Token: 0x060020A4 RID: 8356 RVA: 0x001E24B4 File Offset: 0x001E06B4
 	public void UpdateAccessory()
 	{
 		if (this.AccessoryGroup != null)
@@ -7121,7 +7121,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020A4 RID: 8356 RVA: 0x001E2460 File Offset: 0x001E0660
+	// Token: 0x060020A5 RID: 8357 RVA: 0x001E255C File Offset: 0x001E075C
 	private void DisableHairAndAccessories()
 	{
 		this.ID = 1;
@@ -7138,7 +7138,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020A5 RID: 8357 RVA: 0x001E24E4 File Offset: 0x001E06E4
+	// Token: 0x060020A6 RID: 8358 RVA: 0x001E25E0 File Offset: 0x001E07E0
 	public void BullyPhotoCheck()
 	{
 		Debug.Log("We are now going to perform a bully photo check.");
@@ -7152,7 +7152,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020A6 RID: 8358 RVA: 0x001E252C File Offset: 0x001E072C
+	// Token: 0x060020A7 RID: 8359 RVA: 0x001E2628 File Offset: 0x001E0828
 	public void UpdatePersona(int NewPersona)
 	{
 		switch (NewPersona)
@@ -7201,7 +7201,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020A7 RID: 8359 RVA: 0x001E25E0 File Offset: 0x001E07E0
+	// Token: 0x060020A8 RID: 8360 RVA: 0x001E26DC File Offset: 0x001E08DC
 	private void SithSoundCheck()
 	{
 		if (this.SithBeam[1].Damage == 10f || this.NierDamage == 10f)
@@ -7274,7 +7274,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020A8 RID: 8360 RVA: 0x001E28B8 File Offset: 0x001E0AB8
+	// Token: 0x060020A9 RID: 8361 RVA: 0x001E29B4 File Offset: 0x001E0BB4
 	public void UpdateSelfieStatus()
 	{
 		if (this.Selfie)
@@ -7306,19 +7306,19 @@ public class YandereScript : MonoBehaviour
 		this.Blur.enabled = false;
 	}
 
-	// Token: 0x060020A9 RID: 8361 RVA: 0x001E29F6 File Offset: 0x001E0BF6
+	// Token: 0x060020AA RID: 8362 RVA: 0x001E2AF2 File Offset: 0x001E0CF2
 	private void OnApplicationFocus(bool hasFocus)
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 	}
 
-	// Token: 0x060020AA RID: 8362 RVA: 0x001E29FE File Offset: 0x001E0BFE
+	// Token: 0x060020AB RID: 8363 RVA: 0x001E2AFA File Offset: 0x001E0CFA
 	private void OnApplicationPause(bool pauseStatus)
 	{
 		Cursor.lockState = CursorLockMode.None;
 	}
 
-	// Token: 0x060020AB RID: 8363 RVA: 0x001E2A08 File Offset: 0x001E0C08
+	// Token: 0x060020AC RID: 8364 RVA: 0x001E2B04 File Offset: 0x001E0D04
 	private void AddImpact(Vector3 dir, float force)
 	{
 		dir.Normalize();
@@ -7330,7 +7330,7 @@ public class YandereScript : MonoBehaviour
 	}
 
 	// Token: 0x170004D1 RID: 1233
-	// (get) Token: 0x060020AC RID: 8364 RVA: 0x001E2A60 File Offset: 0x001E0C60
+	// (get) Token: 0x060020AD RID: 8365 RVA: 0x001E2B5C File Offset: 0x001E0D5C
 	public int OnlyGroundLayer
 	{
 		get
@@ -7339,7 +7339,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020AD RID: 8365 RVA: 0x001E2A68 File Offset: 0x001E0C68
+	// Token: 0x060020AE RID: 8366 RVA: 0x001E2B64 File Offset: 0x001E0D64
 	private void CheckForGround()
 	{
 		this.RaycastOrigin = this.Zoom.transform;
@@ -7354,7 +7354,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020AE RID: 8366 RVA: 0x001E2B00 File Offset: 0x001E0D00
+	// Token: 0x060020AF RID: 8367 RVA: 0x001E2BFC File Offset: 0x001E0DFC
 	private void UpdateODM()
 	{
 		if (this.Jumping && (this.CharacterAnimation["ODM_Jump"].time > 0.25f || this.CharacterAnimation["ODM_Slash"].time > 0f))
@@ -7414,7 +7414,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020AF RID: 8367 RVA: 0x001E2F68 File Offset: 0x001E1168
+	// Token: 0x060020B0 RID: 8368 RVA: 0x001E3064 File Offset: 0x001E1264
 	private void BecomeRyoba()
 	{
 		if (this.VtuberID == 0)
@@ -7448,7 +7448,7 @@ public class YandereScript : MonoBehaviour
 		this.EightiesCamera.SetActive(true);
 	}
 
-	// Token: 0x060020B0 RID: 8368 RVA: 0x001E310F File Offset: 0x001E130F
+	// Token: 0x060020B1 RID: 8369 RVA: 0x001E320B File Offset: 0x001E140B
 	public void LoseGentleEyes()
 	{
 		if (!this.Egg)
@@ -7459,7 +7459,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020B1 RID: 8369 RVA: 0x001E3150 File Offset: 0x001E1350
+	// Token: 0x060020B2 RID: 8370 RVA: 0x001E324C File Offset: 0x001E144C
 	public void RestoreGentleEyes()
 	{
 		if (!this.Egg && this.VtuberID == 0)
@@ -7470,7 +7470,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020B2 RID: 8370 RVA: 0x001E31A4 File Offset: 0x001E13A4
+	// Token: 0x060020B3 RID: 8371 RVA: 0x001E32A0 File Offset: 0x001E14A0
 	public void VtuberFace()
 	{
 		if (!this.Egg)
@@ -7484,7 +7484,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020B3 RID: 8371 RVA: 0x001E3218 File Offset: 0x001E1418
+	// Token: 0x060020B4 RID: 8372 RVA: 0x001E3314 File Offset: 0x001E1514
 	public void UpdateConcealedWeaponStatus()
 	{
 		this.ConcealedWeaponLabel.alpha = 0.5f;
@@ -7507,7 +7507,7 @@ public class YandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020B4 RID: 8372 RVA: 0x001E32CF File Offset: 0x001E14CF
+	// Token: 0x060020B5 RID: 8373 RVA: 0x001E33CB File Offset: 0x001E15CB
 	public void VtuberCheck()
 	{
 		this.VtuberID = GameGlobals.VtuberID;

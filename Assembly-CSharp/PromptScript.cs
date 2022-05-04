@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003C6 RID: 966
 public class PromptScript : MonoBehaviour
 {
-	// Token: 0x06001B38 RID: 6968 RVA: 0x0012F528 File Offset: 0x0012D728
+	// Token: 0x06001B38 RID: 6968 RVA: 0x0012F4F4 File Offset: 0x0012D6F4
 	private void Awake()
 	{
 		if (this.MyStudent == null)
@@ -133,7 +133,7 @@ public class PromptScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B39 RID: 6969 RVA: 0x0012FC69 File Offset: 0x0012DE69
+	// Token: 0x06001B39 RID: 6969 RVA: 0x0012FC35 File Offset: 0x0012DE35
 	private void Start()
 	{
 		if (this.DisableAtStart)
@@ -143,7 +143,7 @@ public class PromptScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B3A RID: 6970 RVA: 0x0012FC80 File Offset: 0x0012DE80
+	// Token: 0x06001B3A RID: 6970 RVA: 0x0012FC4C File Offset: 0x0012DE4C
 	private PromptOwnerType DecideOwnerType()
 	{
 		if (base.GetComponent<DoorScript>() != null)
@@ -153,19 +153,19 @@ public class PromptScript : MonoBehaviour
 		return PromptOwnerType.Unknown;
 	}
 
-	// Token: 0x06001B3B RID: 6971 RVA: 0x0012FC93 File Offset: 0x0012DE93
+	// Token: 0x06001B3B RID: 6971 RVA: 0x0012FC5F File Offset: 0x0012DE5F
 	private bool AllowedWhenCrouching(PromptOwnerType ownerType)
 	{
 		return ownerType == PromptOwnerType.Door;
 	}
 
-	// Token: 0x06001B3C RID: 6972 RVA: 0x0012FC99 File Offset: 0x0012DE99
+	// Token: 0x06001B3C RID: 6972 RVA: 0x0012FC65 File Offset: 0x0012DE65
 	private bool AllowedWhenCrawling(PromptOwnerType ownerType)
 	{
 		return false;
 	}
 
-	// Token: 0x06001B3D RID: 6973 RVA: 0x0012FC9C File Offset: 0x0012DE9C
+	// Token: 0x06001B3D RID: 6973 RVA: 0x0012FC68 File Offset: 0x0012DE68
 	private void Update()
 	{
 		if (this.PauseScreen == null)
@@ -476,20 +476,20 @@ public class PromptScript : MonoBehaviour
 		this.Hide();
 	}
 
-	// Token: 0x06001B3E RID: 6974 RVA: 0x00130A4E File Offset: 0x0012EC4E
+	// Token: 0x06001B3E RID: 6974 RVA: 0x00130A1A File Offset: 0x0012EC1A
 	private void OnBecameVisible()
 	{
 		this.InView = true;
 	}
 
-	// Token: 0x06001B3F RID: 6975 RVA: 0x00130A57 File Offset: 0x0012EC57
+	// Token: 0x06001B3F RID: 6975 RVA: 0x00130A23 File Offset: 0x0012EC23
 	private void OnBecameInvisible()
 	{
 		this.InView = false;
 		this.Hide();
 	}
 
-	// Token: 0x06001B40 RID: 6976 RVA: 0x00130A68 File Offset: 0x0012EC68
+	// Token: 0x06001B40 RID: 6976 RVA: 0x00130A34 File Offset: 0x0012EC34
 	public void Hide()
 	{
 		if (!this.Hidden)

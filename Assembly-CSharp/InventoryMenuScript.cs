@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000340 RID: 832
 public class InventoryMenuScript : MonoBehaviour
 {
-	// Token: 0x06001912 RID: 6418 RVA: 0x000FB7B8 File Offset: 0x000F99B8
+	// Token: 0x06001912 RID: 6418 RVA: 0x000FB784 File Offset: 0x000F9984
 	public void UpdateLabels()
 	{
 		this.Labels[0].alpha = ((!this.Inventory.ModifiedUniform) ? 0.75f : 1f);
@@ -36,7 +36,7 @@ public class InventoryMenuScript : MonoBehaviour
 		this.Labels[26].alpha = ((!this.Inventory.ShedKey) ? 0.75f : 1f);
 	}
 
-	// Token: 0x06001913 RID: 6419 RVA: 0x000FBBD9 File Offset: 0x000F9DD9
+	// Token: 0x06001913 RID: 6419 RVA: 0x000FBBA5 File Offset: 0x000F9DA5
 	private void Update()
 	{
 		if (Input.GetButtonDown("B"))

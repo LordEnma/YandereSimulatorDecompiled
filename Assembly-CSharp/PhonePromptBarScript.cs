@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020003A5 RID: 933
 public class PhonePromptBarScript : MonoBehaviour
 {
-	// Token: 0x06001AA6 RID: 6822 RVA: 0x0011F27C File Offset: 0x0011D47C
+	// Token: 0x06001AA6 RID: 6822 RVA: 0x0011F248 File Offset: 0x0011D448
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(base.transform.localPosition.x, 630f, base.transform.localPosition.z);
 		this.Panel.enabled = false;
 	}
 
-	// Token: 0x06001AA7 RID: 6823 RVA: 0x0011F2CC File Offset: 0x0011D4CC
+	// Token: 0x06001AA7 RID: 6823 RVA: 0x0011F298 File Offset: 0x0011D498
 	private void Update()
 	{
 		float t = Time.unscaledDeltaTime * 10f;

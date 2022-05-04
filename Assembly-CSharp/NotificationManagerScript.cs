@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000381 RID: 897
 public class NotificationManagerScript : MonoBehaviour
 {
-	// Token: 0x06001A37 RID: 6711 RVA: 0x00114D84 File Offset: 0x00112F84
+	// Token: 0x06001A37 RID: 6711 RVA: 0x00114D50 File Offset: 0x00112F50
 	private void Awake()
 	{
 		this.NotificationMessages = new NotificationTypeAndStringDictionary
@@ -88,7 +88,7 @@ public class NotificationManagerScript : MonoBehaviour
 		};
 	}
 
-	// Token: 0x06001A38 RID: 6712 RVA: 0x00114E8C File Offset: 0x0011308C
+	// Token: 0x06001A38 RID: 6712 RVA: 0x00114E58 File Offset: 0x00113058
 	private void Update()
 	{
 		if (this.NotificationParent.localPosition.y > 0.001f + -0.049f * (float)this.NotificationsSpawned)
@@ -142,7 +142,7 @@ public class NotificationManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A39 RID: 6713 RVA: 0x00115034 File Offset: 0x00113234
+	// Token: 0x06001A39 RID: 6713 RVA: 0x00115000 File Offset: 0x00113200
 	public void DisplayNotification(NotificationType Type)
 	{
 		if (!this.Yandere.Egg)

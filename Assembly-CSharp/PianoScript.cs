@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003A9 RID: 937
 public class PianoScript : MonoBehaviour
 {
-	// Token: 0x06001ACB RID: 6859 RVA: 0x00122110 File Offset: 0x00120310
+	// Token: 0x06001ACB RID: 6859 RVA: 0x001220DC File Offset: 0x001202DC
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount < 1f && this.Prompt.Circle[0].fillAmount > 0f)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002D5 RID: 725
 public class FootstepScript : MonoBehaviour
 {
-	// Token: 0x060014CB RID: 5323 RVA: 0x000CD0A8 File Offset: 0x000CB2A8
+	// Token: 0x060014CB RID: 5323 RVA: 0x000CD074 File Offset: 0x000CB274
 	private void Start()
 	{
 		if (!this.Student.Nemesis)
@@ -13,7 +13,7 @@ public class FootstepScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014CC RID: 5324 RVA: 0x000CD0C0 File Offset: 0x000CB2C0
+	// Token: 0x060014CC RID: 5324 RVA: 0x000CD08C File Offset: 0x000CB28C
 	private void Update()
 	{
 		if (!this.FootUp)

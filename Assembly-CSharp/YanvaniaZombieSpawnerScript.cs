@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004F3 RID: 1267
 public class YanvaniaZombieSpawnerScript : MonoBehaviour
 {
-	// Token: 0x06002114 RID: 8468 RVA: 0x001EA580 File Offset: 0x001E8780
+	// Token: 0x06002115 RID: 8469 RVA: 0x001EA67C File Offset: 0x001E887C
 	private void Update()
 	{
 		if (this.Yanmont.transform.position.y > 0f)

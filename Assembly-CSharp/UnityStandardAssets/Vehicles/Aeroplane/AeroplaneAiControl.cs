@@ -7,20 +7,20 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	[RequireComponent(typeof(AeroplaneController))]
 	public class AeroplaneAiControl : MonoBehaviour
 	{
-		// Token: 0x06002202 RID: 8706 RVA: 0x001F2E73 File Offset: 0x001F1073
+		// Token: 0x06002203 RID: 8707 RVA: 0x001F2F6F File Offset: 0x001F116F
 		private void Awake()
 		{
 			this.m_AeroplaneController = base.GetComponent<AeroplaneController>();
 			this.m_RandomPerlin = UnityEngine.Random.Range(0f, 100f);
 		}
 
-		// Token: 0x06002203 RID: 8707 RVA: 0x001F2E96 File Offset: 0x001F1096
+		// Token: 0x06002204 RID: 8708 RVA: 0x001F2F92 File Offset: 0x001F1192
 		public void Reset()
 		{
 			this.m_TakenOff = false;
 		}
 
-		// Token: 0x06002204 RID: 8708 RVA: 0x001F2EA0 File Offset: 0x001F10A0
+		// Token: 0x06002205 RID: 8709 RVA: 0x001F2F9C File Offset: 0x001F119C
 		private void FixedUpdate()
 		{
 			if (this.m_Target != null)
@@ -54,7 +54,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_AeroplaneController.Move(0f, 0f, 0f, 0f, false);
 		}
 
-		// Token: 0x06002205 RID: 8709 RVA: 0x001F3042 File Offset: 0x001F1242
+		// Token: 0x06002206 RID: 8710 RVA: 0x001F313E File Offset: 0x001F133E
 		public void SetTarget(Transform target)
 		{
 			this.m_Target = target;

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000432 RID: 1074
 public class SlowMoScript : MonoBehaviour
 {
-	// Token: 0x06001CE5 RID: 7397 RVA: 0x00157BF8 File Offset: 0x00155DF8
+	// Token: 0x06001CE5 RID: 7397 RVA: 0x00157BC4 File Offset: 0x00155DC4
 	private void Update()
 	{
 		if (Input.GetKeyDown("s"))

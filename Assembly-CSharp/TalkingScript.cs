@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200046B RID: 1131
 public class TalkingScript : MonoBehaviour
 {
-	// Token: 0x06001EB1 RID: 7857 RVA: 0x001A9EE0 File Offset: 0x001A80E0
+	// Token: 0x06001EB2 RID: 7858 RVA: 0x001A9FE8 File Offset: 0x001A81E8
 	private void Update()
 	{
 		if (this.S.Talking)
@@ -1734,7 +1734,7 @@ public class TalkingScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EB2 RID: 7858 RVA: 0x001AFB8C File Offset: 0x001ADD8C
+	// Token: 0x06001EB3 RID: 7859 RVA: 0x001AFC94 File Offset: 0x001ADE94
 	private void CalculateRepBonus()
 	{
 		this.S.RepBonus = 0;

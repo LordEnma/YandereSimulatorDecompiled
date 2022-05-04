@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200047E RID: 1150
 public class TitleExtrasScript : MonoBehaviour
 {
-	// Token: 0x06001EFF RID: 7935 RVA: 0x001B6BA4 File Offset: 0x001B4DA4
+	// Token: 0x06001F00 RID: 7936 RVA: 0x001B6CA0 File Offset: 0x001B4EA0
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(1050f, base.transform.localPosition.y, base.transform.localPosition.z);
 	}
 
-	// Token: 0x06001F00 RID: 7936 RVA: 0x001B6BDC File Offset: 0x001B4DDC
+	// Token: 0x06001F01 RID: 7937 RVA: 0x001B6CD8 File Offset: 0x001B4ED8
 	private void Update()
 	{
 		if (!this.Show)

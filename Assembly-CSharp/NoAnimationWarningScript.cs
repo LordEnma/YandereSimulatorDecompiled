@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200037C RID: 892
 public class NoAnimationWarningScript : MonoBehaviour
 {
-	// Token: 0x06001A25 RID: 6693 RVA: 0x00112986 File Offset: 0x00110B86
+	// Token: 0x06001A25 RID: 6693 RVA: 0x00112952 File Offset: 0x00110B52
 	private void Start()
 	{
 		this.Darkness.color = new Color(0f, 0f, 0f, 1f);
 	}
 
-	// Token: 0x06001A26 RID: 6694 RVA: 0x001129AC File Offset: 0x00110BAC
+	// Token: 0x06001A26 RID: 6694 RVA: 0x00112978 File Offset: 0x00110B78
 	private void Update()
 	{
 		if (!this.FadeOut)

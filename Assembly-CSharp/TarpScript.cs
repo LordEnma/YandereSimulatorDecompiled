@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200046F RID: 1135
 public class TarpScript : MonoBehaviour
 {
-	// Token: 0x06001EC4 RID: 7876 RVA: 0x001B2BFE File Offset: 0x001B0DFE
+	// Token: 0x06001EC5 RID: 7877 RVA: 0x001B2CFA File Offset: 0x001B0EFA
 	private void Start()
 	{
 		base.transform.localScale = new Vector3(1f, 1f, 1f);
 	}
 
-	// Token: 0x06001EC5 RID: 7877 RVA: 0x001B2C20 File Offset: 0x001B0E20
+	// Token: 0x06001EC6 RID: 7878 RVA: 0x001B2D1C File Offset: 0x001B0F1C
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

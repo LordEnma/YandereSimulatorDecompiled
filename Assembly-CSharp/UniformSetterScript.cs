@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000494 RID: 1172
 public class UniformSetterScript : MonoBehaviour
 {
-	// Token: 0x06001F50 RID: 8016 RVA: 0x001BEC7C File Offset: 0x001BCE7C
+	// Token: 0x06001F51 RID: 8017 RVA: 0x001BED78 File Offset: 0x001BCF78
 	public void Start()
 	{
 		if (this.MyRenderer == null)
@@ -27,7 +27,7 @@ public class UniformSetterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F51 RID: 8017 RVA: 0x001BED2C File Offset: 0x001BCF2C
+	// Token: 0x06001F52 RID: 8018 RVA: 0x001BEE28 File Offset: 0x001BD028
 	public void SetMaleUniform()
 	{
 		int num = StudentGlobals.MaleUniform;
@@ -59,7 +59,7 @@ public class UniformSetterScript : MonoBehaviour
 		this.MyRenderer.materials[this.UniformID].mainTexture = this.MaleUniformTextures[num];
 	}
 
-	// Token: 0x06001F52 RID: 8018 RVA: 0x001BEE18 File Offset: 0x001BD018
+	// Token: 0x06001F53 RID: 8019 RVA: 0x001BEF14 File Offset: 0x001BD114
 	public void SetFemaleUniform()
 	{
 		int num = StudentGlobals.FemaleUniform;

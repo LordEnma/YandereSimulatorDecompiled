@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000394 RID: 916
 public class PantyDetectorScript : MonoBehaviour
 {
-	// Token: 0x06001A6F RID: 6767 RVA: 0x00119332 File Offset: 0x00117532
+	// Token: 0x06001A6F RID: 6767 RVA: 0x001192FE File Offset: 0x001174FE
 	private void Update()
 	{
 		if (this.Frame == 1)
@@ -15,7 +15,7 @@ public class PantyDetectorScript : MonoBehaviour
 		this.Frame++;
 	}
 
-	// Token: 0x06001A70 RID: 6768 RVA: 0x00119368 File Offset: 0x00117568
+	// Token: 0x06001A70 RID: 6768 RVA: 0x00119334 File Offset: 0x00117534
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Student == null && other.gameObject.name == "Panties")

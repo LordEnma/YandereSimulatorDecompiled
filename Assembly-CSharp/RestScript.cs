@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D9 RID: 985
 public class RestScript : MonoBehaviour
 {
-	// Token: 0x06001B9D RID: 7069 RVA: 0x001391C8 File Offset: 0x001373C8
+	// Token: 0x06001B9D RID: 7069 RVA: 0x00139194 File Offset: 0x00137394
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

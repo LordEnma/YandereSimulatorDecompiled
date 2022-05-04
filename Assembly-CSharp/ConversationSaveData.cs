@@ -4,7 +4,7 @@
 [Serializable]
 public class ConversationSaveData
 {
-	// Token: 0x06001C28 RID: 7208 RVA: 0x00149670 File Offset: 0x00147870
+	// Token: 0x06001C28 RID: 7208 RVA: 0x0014963C File Offset: 0x0014783C
 	public static ConversationSaveData ReadFromGlobals()
 	{
 		ConversationSaveData conversationSaveData = new ConversationSaveData();
@@ -25,7 +25,7 @@ public class ConversationSaveData
 		return conversationSaveData;
 	}
 
-	// Token: 0x06001C29 RID: 7209 RVA: 0x001496F0 File Offset: 0x001478F0
+	// Token: 0x06001C29 RID: 7209 RVA: 0x001496BC File Offset: 0x001478BC
 	public static void WriteToGlobals(ConversationSaveData data)
 	{
 		foreach (int topicID in data.topicDiscovered)

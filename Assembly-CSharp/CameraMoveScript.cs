@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000521 RID: 1313
 public class CameraMoveScript : MonoBehaviour
 {
-	// Token: 0x0600219B RID: 8603 RVA: 0x001F01C5 File Offset: 0x001EE3C5
+	// Token: 0x0600219C RID: 8604 RVA: 0x001F02C1 File Offset: 0x001EE4C1
 	private void Start()
 	{
 		base.transform.position = this.StartPos.position;
 		base.transform.rotation = this.StartPos.rotation;
 	}
 
-	// Token: 0x0600219C RID: 8604 RVA: 0x001F01F4 File Offset: 0x001EE3F4
+	// Token: 0x0600219D RID: 8605 RVA: 0x001F02F0 File Offset: 0x001EE4F0
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Space))
@@ -35,7 +35,7 @@ public class CameraMoveScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600219D RID: 8605 RVA: 0x001F0387 File Offset: 0x001EE587
+	// Token: 0x0600219E RID: 8606 RVA: 0x001F0483 File Offset: 0x001EE683
 	private void LateUpdate()
 	{
 		if (this.Target != null)

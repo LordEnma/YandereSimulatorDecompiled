@@ -6,13 +6,13 @@ namespace MaidDereMinigame
 	// Token: 0x020005BB RID: 1467
 	public class Meter : MonoBehaviour
 	{
-		// Token: 0x060024FB RID: 9467 RVA: 0x00202AB8 File Offset: 0x00200CB8
+		// Token: 0x060024FC RID: 9468 RVA: 0x00202BB4 File Offset: 0x00200DB4
 		private void Awake()
 		{
 			this.startPos = this.fillBar.transform.localPosition.x;
 		}
 
-		// Token: 0x060024FC RID: 9468 RVA: 0x00202AD8 File Offset: 0x00200CD8
+		// Token: 0x060024FD RID: 9469 RVA: 0x00202BD4 File Offset: 0x00200DD4
 		public void SetFill(float interpolater)
 		{
 			float num = Mathf.Lerp(this.emptyPos, this.startPos, interpolater);

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000352 RID: 850
 public class LifeNoteScript : MonoBehaviour
 {
-	// Token: 0x06001978 RID: 6520 RVA: 0x000FFCC8 File Offset: 0x000FDEC8
+	// Token: 0x06001978 RID: 6520 RVA: 0x000FFC94 File Offset: 0x000FDE94
 	private void Start()
 	{
 		Application.targetFrameRate = 60;
@@ -18,7 +18,7 @@ public class LifeNoteScript : MonoBehaviour
 		this.TextWindow.color = new Color(1f, 1f, 1f, 0f);
 	}
 
-	// Token: 0x06001979 RID: 6521 RVA: 0x000FFD98 File Offset: 0x000FDF98
+	// Token: 0x06001979 RID: 6521 RVA: 0x000FFD64 File Offset: 0x000FDF64
 	private void Update()
 	{
 		if (this.Controls.activeInHierarchy)

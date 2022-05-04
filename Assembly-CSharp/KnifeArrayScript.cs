@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200034D RID: 845
 public class KnifeArrayScript : MonoBehaviour
 {
-	// Token: 0x06001968 RID: 6504 RVA: 0x000FF200 File Offset: 0x000FD400
+	// Token: 0x06001968 RID: 6504 RVA: 0x000FF1CC File Offset: 0x000FD3CC
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;

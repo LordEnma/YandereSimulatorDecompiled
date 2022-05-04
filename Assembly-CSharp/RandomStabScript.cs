@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D2 RID: 978
 public class RandomStabScript : MonoBehaviour
 {
-	// Token: 0x06001B85 RID: 7045 RVA: 0x00136278 File Offset: 0x00134478
+	// Token: 0x06001B85 RID: 7045 RVA: 0x00136244 File Offset: 0x00134444
 	private void Start()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200044B RID: 1099
 public class StandWeaponScript : MonoBehaviour
 {
-	// Token: 0x06001D41 RID: 7489 RVA: 0x0015E718 File Offset: 0x0015C918
+	// Token: 0x06001D41 RID: 7489 RVA: 0x0015E6E4 File Offset: 0x0015C8E4
 	private void Update()
 	{
 		if (this.Prompt.enabled)
@@ -23,7 +23,7 @@ public class StandWeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D42 RID: 7490 RVA: 0x0015E7B8 File Offset: 0x0015C9B8
+	// Token: 0x06001D42 RID: 7490 RVA: 0x0015E784 File Offset: 0x0015C984
 	private void MoveToStand()
 	{
 		this.Prompt.Hide();

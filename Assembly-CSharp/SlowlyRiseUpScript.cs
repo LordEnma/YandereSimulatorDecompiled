@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000433 RID: 1075
 public class SlowlyRiseUpScript : MonoBehaviour
 {
-	// Token: 0x06001CE7 RID: 7399 RVA: 0x00157D1C File Offset: 0x00155F1C
+	// Token: 0x06001CE7 RID: 7399 RVA: 0x00157CE8 File Offset: 0x00155EE8
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))

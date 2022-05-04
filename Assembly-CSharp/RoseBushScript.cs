@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003F3 RID: 1011
 public class RoseBushScript : MonoBehaviour
 {
-	// Token: 0x06001C08 RID: 7176 RVA: 0x001487B4 File Offset: 0x001469B4
+	// Token: 0x06001C08 RID: 7176 RVA: 0x00148780 File Offset: 0x00146980
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

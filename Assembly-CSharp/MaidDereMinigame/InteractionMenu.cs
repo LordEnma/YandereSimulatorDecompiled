@@ -7,7 +7,7 @@ namespace MaidDereMinigame
 	public class InteractionMenu : MonoBehaviour
 	{
 		// Token: 0x1700052F RID: 1327
-		// (get) Token: 0x060024F5 RID: 9461 RVA: 0x0020298C File Offset: 0x00200B8C
+		// (get) Token: 0x060024F6 RID: 9462 RVA: 0x00202A88 File Offset: 0x00200C88
 		public static InteractionMenu Instance
 		{
 			get
@@ -20,7 +20,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024F6 RID: 9462 RVA: 0x002029AA File Offset: 0x00200BAA
+		// Token: 0x060024F7 RID: 9463 RVA: 0x00202AA6 File Offset: 0x00200CA6
 		private void Awake()
 		{
 			InteractionMenu.SetAButton(InteractionMenu.AButtonText.None);
@@ -28,7 +28,7 @@ namespace MaidDereMinigame
 			InteractionMenu.SetADButton(true);
 		}
 
-		// Token: 0x060024F7 RID: 9463 RVA: 0x002029C0 File Offset: 0x00200BC0
+		// Token: 0x060024F8 RID: 9464 RVA: 0x00202ABC File Offset: 0x00200CBC
 		public static void SetAButton(InteractionMenu.AButtonText text)
 		{
 			for (int i = 0; i < InteractionMenu.Instance.aButtonSprites.Length; i++)
@@ -49,7 +49,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024F8 RID: 9464 RVA: 0x00202A48 File Offset: 0x00200C48
+		// Token: 0x060024F9 RID: 9465 RVA: 0x00202B44 File Offset: 0x00200D44
 		public static void SetBButton(bool on)
 		{
 			SpriteRenderer[] array = InteractionMenu.Instance.backButtons;
@@ -59,7 +59,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024F9 RID: 9465 RVA: 0x00202A7C File Offset: 0x00200C7C
+		// Token: 0x060024FA RID: 9466 RVA: 0x00202B78 File Offset: 0x00200D78
 		public static void SetADButton(bool on)
 		{
 			SpriteRenderer[] array = InteractionMenu.Instance.moveButtons;

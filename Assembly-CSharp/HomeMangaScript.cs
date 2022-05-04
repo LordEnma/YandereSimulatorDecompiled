@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000322 RID: 802
 public class HomeMangaScript : MonoBehaviour
 {
-	// Token: 0x060018A5 RID: 6309 RVA: 0x000F0E80 File Offset: 0x000EF080
+	// Token: 0x060018A5 RID: 6309 RVA: 0x000F0E4C File Offset: 0x000EF04C
 	private void Start()
 	{
 		this.UpdateCurrentLabel();
@@ -55,7 +55,7 @@ public class HomeMangaScript : MonoBehaviour
 		this.UpdateMangaLabels();
 	}
 
-	// Token: 0x060018A6 RID: 6310 RVA: 0x000F11EC File Offset: 0x000EF3EC
+	// Token: 0x060018A6 RID: 6310 RVA: 0x000F11B8 File Offset: 0x000EF3B8
 	private void Update()
 	{
 		if (this.HomeWindow.Show)
@@ -148,7 +148,7 @@ public class HomeMangaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018A7 RID: 6311 RVA: 0x000F1500 File Offset: 0x000EF700
+	// Token: 0x060018A7 RID: 6311 RVA: 0x000F14CC File Offset: 0x000EF6CC
 	private void UpdateMangaLabels()
 	{
 		if (this.Selected < 5)
@@ -223,7 +223,7 @@ public class HomeMangaScript : MonoBehaviour
 		this.MangaBuffLabel.text = "?????";
 	}
 
-	// Token: 0x060018A8 RID: 6312 RVA: 0x000F1768 File Offset: 0x000EF968
+	// Token: 0x060018A8 RID: 6312 RVA: 0x000F1734 File Offset: 0x000EF934
 	private void UpdateCurrentLabel()
 	{
 		if (this.Selected < 5)

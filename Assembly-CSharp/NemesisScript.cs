@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000378 RID: 888
 public class NemesisScript : MonoBehaviour
 {
-	// Token: 0x060019F7 RID: 6647 RVA: 0x0010AF30 File Offset: 0x00109130
+	// Token: 0x060019F7 RID: 6647 RVA: 0x0010AEFC File Offset: 0x001090FC
 	private void Start()
 	{
 		foreach (GameObject gameObject in this.Cosmetic.FemaleHair)
@@ -113,7 +113,7 @@ public class NemesisScript : MonoBehaviour
 		this.Aggressive = MissionModeGlobals.NemesisAggression;
 	}
 
-	// Token: 0x060019F8 RID: 6648 RVA: 0x0010B41C File Offset: 0x0010961C
+	// Token: 0x060019F8 RID: 6648 RVA: 0x0010B3E8 File Offset: 0x001095E8
 	private void Update()
 	{
 		if (this.PutOnDisguise)
@@ -317,7 +317,7 @@ public class NemesisScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019F9 RID: 6649 RVA: 0x0010BEEC File Offset: 0x0010A0EC
+	// Token: 0x060019F9 RID: 6649 RVA: 0x0010BEB8 File Offset: 0x0010A0B8
 	private void LookForYandere()
 	{
 		this.Student.VisionDistance = 25f;
@@ -333,7 +333,7 @@ public class NemesisScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019FA RID: 6650 RVA: 0x0010BF68 File Offset: 0x0010A168
+	// Token: 0x060019FA RID: 6650 RVA: 0x0010BF34 File Offset: 0x0010A134
 	private void UpdateLKP()
 	{
 		if (!this.Chasing)
@@ -359,7 +359,7 @@ public class NemesisScript : MonoBehaviour
 		this.InView = true;
 	}
 
-	// Token: 0x060019FB RID: 6651 RVA: 0x0010C018 File Offset: 0x0010A218
+	// Token: 0x060019FB RID: 6651 RVA: 0x0010BFE4 File Offset: 0x0010A1E4
 	private void SpecialEffect()
 	{
 		Animation component = this.Student.Character.GetComponent<Animation>();
@@ -388,7 +388,7 @@ public class NemesisScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019FC RID: 6652 RVA: 0x0010C188 File Offset: 0x0010A388
+	// Token: 0x060019FC RID: 6652 RVA: 0x0010C154 File Offset: 0x0010A354
 	private void HideObjects()
 	{
 		this.Student.Cosmetic.RightStockings[0].SetActive(false);

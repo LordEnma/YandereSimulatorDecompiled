@@ -6,7 +6,7 @@ namespace YandereSimulator.Yancord
 	// Token: 0x02000528 RID: 1320
 	public class MessageScript : MonoBehaviour
 	{
-		// Token: 0x060021B0 RID: 8624 RVA: 0x001F07B4 File Offset: 0x001EE9B4
+		// Token: 0x060021B1 RID: 8625 RVA: 0x001F08B0 File Offset: 0x001EEAB0
 		public void Awake()
 		{
 			if (this.MyProfile != null)

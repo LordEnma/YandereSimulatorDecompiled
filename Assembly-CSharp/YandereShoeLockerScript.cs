@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004D8 RID: 1240
 public class YandereShoeLockerScript : MonoBehaviour
 {
-	// Token: 0x060020B6 RID: 8374 RVA: 0x001E3470 File Offset: 0x001E1670
+	// Token: 0x060020B7 RID: 8375 RVA: 0x001E356C File Offset: 0x001E176C
 	private void Update()
 	{
 		if (this.Yandere.transform.position.y < 1f && this.Yandere.CanMove && this.Yandere.Schoolwear == 1 && !this.Yandere.ClubAttire && !this.Yandere.Egg && !this.Yandere.WearingRaincoat && !this.Yandere.CanCloak)
@@ -26,7 +26,7 @@ public class YandereShoeLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020B7 RID: 8375 RVA: 0x001E3610 File Offset: 0x001E1810
+	// Token: 0x060020B8 RID: 8376 RVA: 0x001E370C File Offset: 0x001E190C
 	private void UpdateShoes()
 	{
 		int bloodiness = this.Yandere.RightFootprintSpawner.Bloodiness;

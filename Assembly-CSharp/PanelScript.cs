@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000393 RID: 915
 public class PanelScript : MonoBehaviour
 {
-	// Token: 0x06001A6D RID: 6765 RVA: 0x001191C8 File Offset: 0x001173C8
+	// Token: 0x06001A6D RID: 6765 RVA: 0x00119194 File Offset: 0x00117394
 	private void Update()
 	{
 		if (this.Player.position.z > this.StairsZ || this.Player.position.z < -this.StairsZ)

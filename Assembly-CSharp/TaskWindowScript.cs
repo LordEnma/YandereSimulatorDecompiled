@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000473 RID: 1139
 public class TaskWindowScript : MonoBehaviour
 {
-	// Token: 0x06001ED3 RID: 7891 RVA: 0x001B3CA4 File Offset: 0x001B1EA4
+	// Token: 0x06001ED4 RID: 7892 RVA: 0x001B3DA0 File Offset: 0x001B1FA0
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -21,7 +21,7 @@ public class TaskWindowScript : MonoBehaviour
 		this.Window.SetActive(false);
 	}
 
-	// Token: 0x06001ED4 RID: 7892 RVA: 0x001B3D08 File Offset: 0x001B1F08
+	// Token: 0x06001ED5 RID: 7893 RVA: 0x001B3E04 File Offset: 0x001B2004
 	public void UpdateWindow(int ID)
 	{
 		this.PromptBar.ClearButtons();
@@ -44,7 +44,7 @@ public class TaskWindowScript : MonoBehaviour
 		Time.timeScale = 0.0001f;
 	}
 
-	// Token: 0x06001ED5 RID: 7893 RVA: 0x001B3DE4 File Offset: 0x001B1FE4
+	// Token: 0x06001ED6 RID: 7894 RVA: 0x001B3EE0 File Offset: 0x001B20E0
 	private void Update()
 	{
 		if (this.Window.activeInHierarchy)
@@ -107,7 +107,7 @@ public class TaskWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ED6 RID: 7894 RVA: 0x001B403C File Offset: 0x001B223C
+	// Token: 0x06001ED7 RID: 7895 RVA: 0x001B4138 File Offset: 0x001B2338
 	private void TaskCheck()
 	{
 		this.GenericCheck();
@@ -132,7 +132,7 @@ public class TaskWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ED7 RID: 7895 RVA: 0x001B40E4 File Offset: 0x001B22E4
+	// Token: 0x06001ED8 RID: 7896 RVA: 0x001B41E0 File Offset: 0x001B23E0
 	private void GetPortrait(int ID)
 	{
 		string text = "";
@@ -153,7 +153,7 @@ public class TaskWindowScript : MonoBehaviour
 		this.Portrait.mainTexture = www.texture;
 	}
 
-	// Token: 0x06001ED8 RID: 7896 RVA: 0x001B415C File Offset: 0x001B235C
+	// Token: 0x06001ED9 RID: 7897 RVA: 0x001B4258 File Offset: 0x001B2458
 	private void UpdateTaskObjects(int StudentID)
 	{
 		if (!this.Yandere.StudentManager.Eighties && this.StudentID == 30)
@@ -162,7 +162,7 @@ public class TaskWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ED9 RID: 7897 RVA: 0x001B4188 File Offset: 0x001B2388
+	// Token: 0x06001EDA RID: 7898 RVA: 0x001B4284 File Offset: 0x001B2484
 	public void GenericCheck()
 	{
 		this.Generic = false;
@@ -180,7 +180,7 @@ public class TaskWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EDA RID: 7898 RVA: 0x001B43A0 File Offset: 0x001B25A0
+	// Token: 0x06001EDB RID: 7899 RVA: 0x001B449C File Offset: 0x001B269C
 	public void AltGenericCheck(int TempID)
 	{
 		this.Generic = false;

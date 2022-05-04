@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E8 RID: 1000
 public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 {
-	// Token: 0x06001BDD RID: 7133 RVA: 0x00141D1C File Offset: 0x0013FF1C
+	// Token: 0x06001BDD RID: 7133 RVA: 0x00141CE8 File Offset: 0x0013FEE8
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -14,7 +14,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BDE RID: 7134 RVA: 0x00141D50 File Offset: 0x0013FF50
+	// Token: 0x06001BDE RID: 7134 RVA: 0x00141D1C File Offset: 0x0013FF1C
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -226,7 +226,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BDF RID: 7135 RVA: 0x00142888 File Offset: 0x00140A88
+	// Token: 0x06001BDF RID: 7135 RVA: 0x00142854 File Offset: 0x00140A54
 	public void EndEvent()
 	{
 		Debug.Log("Osana's Thursday after class event has ended.");
@@ -275,14 +275,14 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001BE0 RID: 7136 RVA: 0x00142AE0 File Offset: 0x00140CE0
+	// Token: 0x06001BE0 RID: 7136 RVA: 0x00142AAC File Offset: 0x00140CAC
 	public void ReturnFromSave()
 	{
 		this.ReturningFromSave = false;
 		this.BeginEvent();
 	}
 
-	// Token: 0x06001BE1 RID: 7137 RVA: 0x00142AF0 File Offset: 0x00140CF0
+	// Token: 0x06001BE1 RID: 7137 RVA: 0x00142ABC File Offset: 0x00140CBC
 	public void BeginEvent()
 	{
 		Debug.Log("Osana's Thursday after class event has begun.");

@@ -7,7 +7,7 @@ namespace YandereSimulator.Yancord
 	// Token: 0x02000526 RID: 1318
 	public class ChatPartnerScript : MonoBehaviour
 	{
-		// Token: 0x060021AB RID: 8619 RVA: 0x001F0628 File Offset: 0x001EE828
+		// Token: 0x060021AC RID: 8620 RVA: 0x001F0724 File Offset: 0x001EE924
 		private void Awake()
 		{
 			if (this.MyProfile != null)
@@ -35,7 +35,7 @@ namespace YandereSimulator.Yancord
 			UnityEngine.Object.Destroy(base.gameObject);
 		}
 
-		// Token: 0x060021AC RID: 8620 RVA: 0x001F0728 File Offset: 0x001EE928
+		// Token: 0x060021AD RID: 8621 RVA: 0x001F0824 File Offset: 0x001EEA24
 		private Texture2D GetStatusTexture(Status currentStatus)
 		{
 			switch (currentStatus)

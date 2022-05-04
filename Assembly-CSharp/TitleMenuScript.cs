@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x0200047F RID: 1151
 public class TitleMenuScript : MonoBehaviour
 {
-	// Token: 0x06001F02 RID: 7938 RVA: 0x001B6CA4 File Offset: 0x001B4EA4
+	// Token: 0x06001F03 RID: 7939 RVA: 0x001B6DA0 File Offset: 0x001B4FA0
 	private void Start()
 	{
 		RenderSettings.ambientLight = new Color(0.25f, 0.25f, 0.25f, 1f);
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x06001F03 RID: 7939 RVA: 0x001B6CD0 File Offset: 0x001B4ED0
+	// Token: 0x06001F04 RID: 7940 RVA: 0x001B6DCC File Offset: 0x001B4FCC
 	private void Update()
 	{
 		if (this.Phase == 0)

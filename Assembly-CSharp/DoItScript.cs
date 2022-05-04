@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200028A RID: 650
 public class DoItScript : MonoBehaviour
 {
-	// Token: 0x060013B1 RID: 5041 RVA: 0x000B90F4 File Offset: 0x000B72F4
+	// Token: 0x060013B1 RID: 5041 RVA: 0x000B90C0 File Offset: 0x000B72C0
 	private void Start()
 	{
 		this.MyLabel.fontSize = UnityEngine.Random.Range(50, 100);
 	}
 
-	// Token: 0x060013B2 RID: 5042 RVA: 0x000B910C File Offset: 0x000B730C
+	// Token: 0x060013B2 RID: 5042 RVA: 0x000B90D8 File Offset: 0x000B72D8
 	private void Update()
 	{
 		base.transform.localScale += new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);

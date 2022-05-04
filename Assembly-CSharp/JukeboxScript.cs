@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200034A RID: 842
 public class JukeboxScript : MonoBehaviour
 {
-	// Token: 0x06001959 RID: 6489 RVA: 0x000FDB84 File Offset: 0x000FBD84
+	// Token: 0x06001959 RID: 6489 RVA: 0x000FDB50 File Offset: 0x000FBD50
 	public void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -139,7 +139,7 @@ public class JukeboxScript : MonoBehaviour
 		this.Hitman.time = 26f;
 	}
 
-	// Token: 0x0600195A RID: 6490 RVA: 0x000FDF98 File Offset: 0x000FC198
+	// Token: 0x0600195A RID: 6490 RVA: 0x000FDF64 File Offset: 0x000FC164
 	private void Update()
 	{
 		if (!this.Yandere.PauseScreen.Show && !this.Yandere.EasterEggMenu.activeInHierarchy && Input.GetKeyDown(KeyCode.M))
@@ -388,7 +388,7 @@ public class JukeboxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600195B RID: 6491 RVA: 0x000FEBA4 File Offset: 0x000FCDA4
+	// Token: 0x0600195B RID: 6491 RVA: 0x000FEB70 File Offset: 0x000FCD70
 	public void StartStopMusic()
 	{
 		if (this.Custom.isPlaying)
@@ -414,7 +414,7 @@ public class JukeboxScript : MonoBehaviour
 		this.Volume = 0f;
 	}
 
-	// Token: 0x0600195C RID: 6492 RVA: 0x000FEC49 File Offset: 0x000FCE49
+	// Token: 0x0600195C RID: 6492 RVA: 0x000FEC15 File Offset: 0x000FCE15
 	public void Shipgirl()
 	{
 		this.Egg = true;
@@ -422,7 +422,7 @@ public class JukeboxScript : MonoBehaviour
 		this.AzurLane.enabled = true;
 	}
 
-	// Token: 0x0600195D RID: 6493 RVA: 0x000FEC64 File Offset: 0x000FCE64
+	// Token: 0x0600195D RID: 6493 RVA: 0x000FEC30 File Offset: 0x000FCE30
 	public void MiyukiMusic()
 	{
 		this.Egg = true;
@@ -430,7 +430,7 @@ public class JukeboxScript : MonoBehaviour
 		this.Miyuki.enabled = true;
 	}
 
-	// Token: 0x0600195E RID: 6494 RVA: 0x000FEC7F File Offset: 0x000FCE7F
+	// Token: 0x0600195E RID: 6494 RVA: 0x000FEC4B File Offset: 0x000FCE4B
 	public void KillVolume()
 	{
 		this.FullSanity.volume = 0f;
@@ -439,7 +439,7 @@ public class JukeboxScript : MonoBehaviour
 		this.Volume = 0.5f;
 	}
 
-	// Token: 0x0600195F RID: 6495 RVA: 0x000FECBC File Offset: 0x000FCEBC
+	// Token: 0x0600195F RID: 6495 RVA: 0x000FEC88 File Offset: 0x000FCE88
 	public void GameOver()
 	{
 		this.AttackOnTitan.Stop();
@@ -476,7 +476,7 @@ public class JukeboxScript : MonoBehaviour
 		this.NoSanity.Stop();
 	}
 
-	// Token: 0x06001960 RID: 6496 RVA: 0x000FEE29 File Offset: 0x000FD029
+	// Token: 0x06001960 RID: 6496 RVA: 0x000FEDF5 File Offset: 0x000FCFF5
 	public void PlayJojo()
 	{
 		this.Egg = true;
@@ -484,7 +484,7 @@ public class JukeboxScript : MonoBehaviour
 		this.Jojo.enabled = true;
 	}
 
-	// Token: 0x06001961 RID: 6497 RVA: 0x000FEE44 File Offset: 0x000FD044
+	// Token: 0x06001961 RID: 6497 RVA: 0x000FEE10 File Offset: 0x000FD010
 	public void PlayCustom()
 	{
 		this.Egg = true;

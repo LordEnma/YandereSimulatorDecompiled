@@ -7,7 +7,7 @@ namespace UnityStandardAssets.Vehicles.Car
 	// Token: 0x02000536 RID: 1334
 	public class SkidTrail : MonoBehaviour
 	{
-		// Token: 0x060021F2 RID: 8690 RVA: 0x001F2C66 File Offset: 0x001F0E66
+		// Token: 0x060021F3 RID: 8691 RVA: 0x001F2D62 File Offset: 0x001F0F62
 		private IEnumerator Start()
 		{
 			for (;;)

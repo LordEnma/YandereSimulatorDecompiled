@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003F2 RID: 1010
 public class RooftopScript : MonoBehaviour
 {
-	// Token: 0x06001C06 RID: 7174 RVA: 0x00148760 File Offset: 0x00146960
+	// Token: 0x06001C06 RID: 7174 RVA: 0x0014872C File Offset: 0x0014692C
 	private void Start()
 	{
 		if (SchoolGlobals.RoofFence)

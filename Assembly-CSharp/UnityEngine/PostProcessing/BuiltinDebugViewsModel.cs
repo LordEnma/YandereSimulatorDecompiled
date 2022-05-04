@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class BuiltinDebugViewsModel : PostProcessingModel
 	{
 		// Token: 0x17000505 RID: 1285
-		// (get) Token: 0x06002380 RID: 9088 RVA: 0x001FAD4F File Offset: 0x001F8F4F
-		// (set) Token: 0x06002381 RID: 9089 RVA: 0x001FAD57 File Offset: 0x001F8F57
+		// (get) Token: 0x06002381 RID: 9089 RVA: 0x001FAE4B File Offset: 0x001F904B
+		// (set) Token: 0x06002382 RID: 9090 RVA: 0x001FAE53 File Offset: 0x001F9053
 		public BuiltinDebugViewsModel.Settings settings
 		{
 			get
@@ -22,7 +22,7 @@ namespace UnityEngine.PostProcessing
 		}
 
 		// Token: 0x17000506 RID: 1286
-		// (get) Token: 0x06002382 RID: 9090 RVA: 0x001FAD60 File Offset: 0x001F8F60
+		// (get) Token: 0x06002383 RID: 9091 RVA: 0x001FAE5C File Offset: 0x001F905C
 		public bool willInterrupt
 		{
 			get
@@ -31,13 +31,13 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002383 RID: 9091 RVA: 0x001FAD93 File Offset: 0x001F8F93
+		// Token: 0x06002384 RID: 9092 RVA: 0x001FAE8F File Offset: 0x001F908F
 		public override void Reset()
 		{
 			this.settings = BuiltinDebugViewsModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x06002384 RID: 9092 RVA: 0x001FADA0 File Offset: 0x001F8FA0
+		// Token: 0x06002385 RID: 9093 RVA: 0x001FAE9C File Offset: 0x001F909C
 		public bool IsModeActive(BuiltinDebugViewsModel.Mode mode)
 		{
 			return this.m_Settings.mode == mode;
@@ -52,7 +52,7 @@ namespace UnityEngine.PostProcessing
 		public struct DepthSettings
 		{
 			// Token: 0x17000595 RID: 1429
-			// (get) Token: 0x06002788 RID: 10120 RVA: 0x002092E8 File Offset: 0x002074E8
+			// (get) Token: 0x06002789 RID: 10121 RVA: 0x002093E4 File Offset: 0x002075E4
 			public static BuiltinDebugViewsModel.DepthSettings defaultSettings
 			{
 				get
@@ -75,7 +75,7 @@ namespace UnityEngine.PostProcessing
 		public struct MotionVectorsSettings
 		{
 			// Token: 0x17000596 RID: 1430
-			// (get) Token: 0x06002789 RID: 10121 RVA: 0x0020930C File Offset: 0x0020750C
+			// (get) Token: 0x0600278A RID: 10122 RVA: 0x00209408 File Offset: 0x00207608
 			public static BuiltinDebugViewsModel.MotionVectorsSettings defaultSettings
 			{
 				get
@@ -153,7 +153,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x17000597 RID: 1431
-			// (get) Token: 0x0600278A RID: 10122 RVA: 0x00209368 File Offset: 0x00207568
+			// (get) Token: 0x0600278B RID: 10123 RVA: 0x00209464 File Offset: 0x00207664
 			public static BuiltinDebugViewsModel.Settings defaultSettings
 			{
 				get

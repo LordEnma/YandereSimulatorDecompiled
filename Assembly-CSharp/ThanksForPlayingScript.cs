@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000478 RID: 1144
 public class ThanksForPlayingScript : MonoBehaviour
 {
-	// Token: 0x06001EE7 RID: 7911 RVA: 0x001B47A8 File Offset: 0x001B29A8
+	// Token: 0x06001EE8 RID: 7912 RVA: 0x001B48A4 File Offset: 0x001B2AA4
 	private void Start()
 	{
 		this.Ryoba["f02_faceCouncilGrace_00"].layer = 1;
@@ -21,7 +21,7 @@ public class ThanksForPlayingScript : MonoBehaviour
 		this.CameraEffects.UpdateBloomRadius(4f);
 	}
 
-	// Token: 0x06001EE8 RID: 7912 RVA: 0x001B4884 File Offset: 0x001B2A84
+	// Token: 0x06001EE9 RID: 7913 RVA: 0x001B4980 File Offset: 0x001B2B80
 	private void Update()
 	{
 		if (!this.FadeOut)

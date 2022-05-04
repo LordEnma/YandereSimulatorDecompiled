@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class GrainComponent : PostProcessingComponentRenderTexture<GrainModel>
 	{
 		// Token: 0x170004F9 RID: 1273
-		// (get) Token: 0x0600234A RID: 9034 RVA: 0x001F96A2 File Offset: 0x001F78A2
+		// (get) Token: 0x0600234B RID: 9035 RVA: 0x001F979E File Offset: 0x001F799E
 		public override bool active
 		{
 			get
@@ -15,14 +15,14 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600234B RID: 9035 RVA: 0x001F96E0 File Offset: 0x001F78E0
+		// Token: 0x0600234C RID: 9036 RVA: 0x001F97DC File Offset: 0x001F79DC
 		public override void OnDisable()
 		{
 			GraphicsUtils.Destroy(this.m_GrainLookupRT);
 			this.m_GrainLookupRT = null;
 		}
 
-		// Token: 0x0600234C RID: 9036 RVA: 0x001F96F4 File Offset: 0x001F78F4
+		// Token: 0x0600234D RID: 9037 RVA: 0x001F97F0 File Offset: 0x001F79F0
 		public override void Prepare(Material uberMaterial)
 		{
 			GrainModel.Settings settings = base.model.settings;

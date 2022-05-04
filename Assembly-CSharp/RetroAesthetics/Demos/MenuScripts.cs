@@ -7,7 +7,7 @@ namespace RetroAesthetics.Demos
 	// Token: 0x02000559 RID: 1369
 	public class MenuScripts : MonoBehaviour
 	{
-		// Token: 0x060022EF RID: 8943 RVA: 0x001F69F8 File Offset: 0x001F4BF8
+		// Token: 0x060022F0 RID: 8944 RVA: 0x001F6AF4 File Offset: 0x001F4CF4
 		private void Start()
 		{
 			if (this.fadeInMenu)
@@ -20,7 +20,7 @@ namespace RetroAesthetics.Demos
 			}
 		}
 
-		// Token: 0x060022F0 RID: 8944 RVA: 0x001F6A2C File Offset: 0x001F4C2C
+		// Token: 0x060022F1 RID: 8945 RVA: 0x001F6B28 File Offset: 0x001F4D28
 		public virtual void StartLevel()
 		{
 			if (this.levelScene == null)
@@ -46,7 +46,7 @@ namespace RetroAesthetics.Demos
 			this.LoadNextScene();
 		}
 
-		// Token: 0x060022F1 RID: 8945 RVA: 0x001F6ACA File Offset: 0x001F4CCA
+		// Token: 0x060022F2 RID: 8946 RVA: 0x001F6BC6 File Offset: 0x001F4DC6
 		private void LoadNextScene()
 		{
 			if (this._loadingSceneAsync != null)

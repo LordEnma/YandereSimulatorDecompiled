@@ -10,7 +10,7 @@ namespace AmplifyMotion
 	internal abstract class MotionState
 	{
 		// Token: 0x17000521 RID: 1313
-		// (get) Token: 0x060023FD RID: 9213 RVA: 0x001FC48B File Offset: 0x001FA68B
+		// (get) Token: 0x060023FE RID: 9214 RVA: 0x001FC587 File Offset: 0x001FA787
 		public AmplifyMotionCamera Owner
 		{
 			get
@@ -20,7 +20,7 @@ namespace AmplifyMotion
 		}
 
 		// Token: 0x17000522 RID: 1314
-		// (get) Token: 0x060023FE RID: 9214 RVA: 0x001FC493 File Offset: 0x001FA693
+		// (get) Token: 0x060023FF RID: 9215 RVA: 0x001FC58F File Offset: 0x001FA78F
 		public bool Initialized
 		{
 			get
@@ -30,7 +30,7 @@ namespace AmplifyMotion
 		}
 
 		// Token: 0x17000523 RID: 1315
-		// (get) Token: 0x060023FF RID: 9215 RVA: 0x001FC49B File Offset: 0x001FA69B
+		// (get) Token: 0x06002400 RID: 9216 RVA: 0x001FC597 File Offset: 0x001FA797
 		public bool Error
 		{
 			get
@@ -39,7 +39,7 @@ namespace AmplifyMotion
 			}
 		}
 
-		// Token: 0x06002400 RID: 9216 RVA: 0x001FC4A3 File Offset: 0x001FA6A3
+		// Token: 0x06002401 RID: 9217 RVA: 0x001FC59F File Offset: 0x001FA79F
 		public MotionState(AmplifyMotionCamera owner, AmplifyMotionObjectBase obj)
 		{
 			this.m_error = false;
@@ -49,36 +49,36 @@ namespace AmplifyMotion
 			this.m_transform = obj.transform;
 		}
 
-		// Token: 0x06002401 RID: 9217 RVA: 0x001FC4D3 File Offset: 0x001FA6D3
+		// Token: 0x06002402 RID: 9218 RVA: 0x001FC5CF File Offset: 0x001FA7CF
 		internal virtual void Initialize()
 		{
 			this.m_initialized = true;
 		}
 
-		// Token: 0x06002402 RID: 9218 RVA: 0x001FC4DC File Offset: 0x001FA6DC
+		// Token: 0x06002403 RID: 9219 RVA: 0x001FC5D8 File Offset: 0x001FA7D8
 		internal virtual void Shutdown()
 		{
 		}
 
-		// Token: 0x06002403 RID: 9219 RVA: 0x001FC4DE File Offset: 0x001FA6DE
+		// Token: 0x06002404 RID: 9220 RVA: 0x001FC5DA File Offset: 0x001FA7DA
 		internal virtual void AsyncUpdate()
 		{
 		}
 
-		// Token: 0x06002404 RID: 9220
+		// Token: 0x06002405 RID: 9221
 		internal abstract void UpdateTransform(CommandBuffer updateCB, bool starting);
 
-		// Token: 0x06002405 RID: 9221 RVA: 0x001FC4E0 File Offset: 0x001FA6E0
+		// Token: 0x06002406 RID: 9222 RVA: 0x001FC5DC File Offset: 0x001FA7DC
 		internal virtual void RenderVectors(Camera camera, CommandBuffer renderCB, float scale, Quality quality)
 		{
 		}
 
-		// Token: 0x06002406 RID: 9222 RVA: 0x001FC4E2 File Offset: 0x001FA6E2
+		// Token: 0x06002407 RID: 9223 RVA: 0x001FC5DE File Offset: 0x001FA7DE
 		internal virtual void RenderDebugHUD()
 		{
 		}
 
-		// Token: 0x06002407 RID: 9223 RVA: 0x001FC4E4 File Offset: 0x001FA6E4
+		// Token: 0x06002408 RID: 9224 RVA: 0x001FC5E0 File Offset: 0x001FA7E0
 		protected MotionState.MaterialDesc[] ProcessSharedMaterials(Material[] mats)
 		{
 			MotionState.MaterialDesc[] array = new MotionState.MaterialDesc[mats.Length];
@@ -105,13 +105,13 @@ namespace AmplifyMotion
 			return array;
 		}
 
-		// Token: 0x06002408 RID: 9224 RVA: 0x001FC62C File Offset: 0x001FA82C
+		// Token: 0x06002409 RID: 9225 RVA: 0x001FC728 File Offset: 0x001FA928
 		protected static bool MatrixChanged(MotionState.Matrix3x4 a, MotionState.Matrix3x4 b)
 		{
 			return Vector4.SqrMagnitude(new Vector4(a.m00 - b.m00, a.m01 - b.m01, a.m02 - b.m02, a.m03 - b.m03)) > 0f || Vector4.SqrMagnitude(new Vector4(a.m10 - b.m10, a.m11 - b.m11, a.m12 - b.m12, a.m13 - b.m13)) > 0f || Vector4.SqrMagnitude(new Vector4(a.m20 - b.m20, a.m21 - b.m21, a.m22 - b.m22, a.m23 - b.m23)) > 0f;
 		}
 
-		// Token: 0x06002409 RID: 9225 RVA: 0x001FC710 File Offset: 0x001FA910
+		// Token: 0x0600240A RID: 9226 RVA: 0x001FC80C File Offset: 0x001FAA0C
 		protected static void MulPoint3x4_XYZ(ref Vector3 result, ref MotionState.Matrix3x4 mat, Vector4 vec)
 		{
 			result.x = mat.m00 * vec.x + mat.m01 * vec.y + mat.m02 * vec.z + mat.m03;
@@ -119,7 +119,7 @@ namespace AmplifyMotion
 			result.z = mat.m20 * vec.x + mat.m21 * vec.y + mat.m22 * vec.z + mat.m23;
 		}
 
-		// Token: 0x0600240A RID: 9226 RVA: 0x001FC7C0 File Offset: 0x001FA9C0
+		// Token: 0x0600240B RID: 9227 RVA: 0x001FC8BC File Offset: 0x001FAABC
 		protected static void MulPoint3x4_XYZW(ref Vector3 result, ref MotionState.Matrix3x4 mat, Vector4 vec)
 		{
 			result.x = mat.m00 * vec.x + mat.m01 * vec.y + mat.m02 * vec.z + mat.m03 * vec.w;
@@ -127,7 +127,7 @@ namespace AmplifyMotion
 			result.z = mat.m20 * vec.x + mat.m21 * vec.y + mat.m22 * vec.z + mat.m23 * vec.w;
 		}
 
-		// Token: 0x0600240B RID: 9227 RVA: 0x001FC884 File Offset: 0x001FAA84
+		// Token: 0x0600240C RID: 9228 RVA: 0x001FC980 File Offset: 0x001FAB80
 		protected static void MulAddPoint3x4_XYZW(ref Vector3 result, ref MotionState.Matrix3x4 mat, Vector4 vec)
 		{
 			result.x += mat.m00 * vec.x + mat.m01 * vec.y + mat.m02 * vec.z + mat.m03 * vec.w;
@@ -175,7 +175,7 @@ namespace AmplifyMotion
 		// Token: 0x020006E1 RID: 1761
 		protected struct Matrix3x4
 		{
-			// Token: 0x0600279D RID: 10141 RVA: 0x00209BB0 File Offset: 0x00207DB0
+			// Token: 0x0600279E RID: 10142 RVA: 0x00209CAC File Offset: 0x00207EAC
 			public Vector4 GetRow(int i)
 			{
 				if (i == 0)
@@ -193,7 +193,7 @@ namespace AmplifyMotion
 				return new Vector4(0f, 0f, 0f, 1f);
 			}
 
-			// Token: 0x0600279E RID: 10142 RVA: 0x00209C3C File Offset: 0x00207E3C
+			// Token: 0x0600279F RID: 10143 RVA: 0x00209D38 File Offset: 0x00207F38
 			public static implicit operator MotionState.Matrix3x4(Matrix4x4 from)
 			{
 				return new MotionState.Matrix3x4
@@ -213,7 +213,7 @@ namespace AmplifyMotion
 				};
 			}
 
-			// Token: 0x0600279F RID: 10143 RVA: 0x00209CF0 File Offset: 0x00207EF0
+			// Token: 0x060027A0 RID: 10144 RVA: 0x00209DEC File Offset: 0x00207FEC
 			public static implicit operator Matrix4x4(MotionState.Matrix3x4 from)
 			{
 				Matrix4x4 result = default(Matrix4x4);
@@ -234,7 +234,7 @@ namespace AmplifyMotion
 				return result;
 			}
 
-			// Token: 0x060027A0 RID: 10144 RVA: 0x00209DD0 File Offset: 0x00207FD0
+			// Token: 0x060027A1 RID: 10145 RVA: 0x00209ECC File Offset: 0x002080CC
 			public static MotionState.Matrix3x4 operator *(MotionState.Matrix3x4 a, MotionState.Matrix3x4 b)
 			{
 				return new MotionState.Matrix3x4

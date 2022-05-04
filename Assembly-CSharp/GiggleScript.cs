@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020002E7 RID: 743
 public class GiggleScript : MonoBehaviour
 {
-	// Token: 0x06001514 RID: 5396 RVA: 0x000D8B10 File Offset: 0x000D6D10
+	// Token: 0x06001514 RID: 5396 RVA: 0x000D8ADC File Offset: 0x000D6CDC
 	private void Start()
 	{
 		float num = 500f * (2f - SchoolGlobals.SchoolAtmosphere);
 		base.transform.localScale = new Vector3(num, base.transform.localScale.y, num);
 	}
 
-	// Token: 0x06001515 RID: 5397 RVA: 0x000D8B51 File Offset: 0x000D6D51
+	// Token: 0x06001515 RID: 5397 RVA: 0x000D8B1D File Offset: 0x000D6D1D
 	private void Update()
 	{
 		if (this.Frame > 0)
@@ -21,7 +21,7 @@ public class GiggleScript : MonoBehaviour
 		this.Frame++;
 	}
 
-	// Token: 0x06001516 RID: 5398 RVA: 0x000D8B78 File Offset: 0x000D6D78
+	// Token: 0x06001516 RID: 5398 RVA: 0x000D8B44 File Offset: 0x000D6D44
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9 && !this.Distracted)

@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class MotionBlurModel : PostProcessingModel
 	{
 		// Token: 0x17000510 RID: 1296
-		// (get) Token: 0x060023A7 RID: 9127 RVA: 0x001FAF51 File Offset: 0x001F9151
-		// (set) Token: 0x060023A8 RID: 9128 RVA: 0x001FAF59 File Offset: 0x001F9159
+		// (get) Token: 0x060023A8 RID: 9128 RVA: 0x001FB04D File Offset: 0x001F924D
+		// (set) Token: 0x060023A9 RID: 9129 RVA: 0x001FB055 File Offset: 0x001F9255
 		public MotionBlurModel.Settings settings
 		{
 			get
@@ -21,7 +21,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023A9 RID: 9129 RVA: 0x001FAF62 File Offset: 0x001F9162
+		// Token: 0x060023AA RID: 9130 RVA: 0x001FB05E File Offset: 0x001F925E
 		public override void Reset()
 		{
 			this.m_Settings = MotionBlurModel.Settings.defaultSettings;
@@ -36,7 +36,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x170005A6 RID: 1446
-			// (get) Token: 0x06002799 RID: 10137 RVA: 0x002099E4 File Offset: 0x00207BE4
+			// (get) Token: 0x0600279A RID: 10138 RVA: 0x00209AE0 File Offset: 0x00207CE0
 			public static MotionBlurModel.Settings defaultSettings
 			{
 				get

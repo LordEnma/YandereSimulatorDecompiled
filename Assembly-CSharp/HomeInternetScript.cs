@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000320 RID: 800
 public class HomeInternetScript : MonoBehaviour
 {
-	// Token: 0x0600189A RID: 6298 RVA: 0x000EEEA8 File Offset: 0x000ED0A8
+	// Token: 0x0600189A RID: 6298 RVA: 0x000EEE74 File Offset: 0x000ED074
 	private void Awake()
 	{
 		this.StudentPost1.localPosition = new Vector3(this.StudentPost1.localPosition.x, -180f, this.StudentPost1.localPosition.z);
@@ -58,7 +58,7 @@ public class HomeInternetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600189B RID: 6299 RVA: 0x000EF1D4 File Offset: 0x000ED3D4
+	// Token: 0x0600189B RID: 6299 RVA: 0x000EF1A0 File Offset: 0x000ED3A0
 	private void Update()
 	{
 		if (!this.HomeYandere.CanMove && !this.PauseScreen.Show)
@@ -494,7 +494,7 @@ public class HomeInternetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600189C RID: 6300 RVA: 0x000F0AF4 File Offset: 0x000EECF4
+	// Token: 0x0600189C RID: 6300 RVA: 0x000F0AC0 File Offset: 0x000EECC0
 	private void ExitPost()
 	{
 		this.Highlights[1].enabled = false;
@@ -508,7 +508,7 @@ public class HomeInternetScript : MonoBehaviour
 		this.WritingPost = false;
 	}
 
-	// Token: 0x0600189D RID: 6301 RVA: 0x000F0B80 File Offset: 0x000EED80
+	// Token: 0x0600189D RID: 6301 RVA: 0x000F0B4C File Offset: 0x000EED4C
 	private void UpdateHighlight()
 	{
 		if (this.Selected > 3)
@@ -525,7 +525,7 @@ public class HomeInternetScript : MonoBehaviour
 		this.Highlights[this.Selected].enabled = true;
 	}
 
-	// Token: 0x0600189E RID: 6302 RVA: 0x000F0BEC File Offset: 0x000EEDEC
+	// Token: 0x0600189E RID: 6302 RVA: 0x000F0BB8 File Offset: 0x000EEDB8
 	private void UpdateMenuHighlight()
 	{
 		if (this.MenuSelected > 10)
@@ -539,7 +539,7 @@ public class HomeInternetScript : MonoBehaviour
 		this.MenuHighlight.transform.localPosition = new Vector3(this.MenuHighlight.transform.localPosition.x, 220f - 40f * (float)this.MenuSelected, this.MenuHighlight.transform.localPosition.z);
 	}
 
-	// Token: 0x0600189F RID: 6303 RVA: 0x000F0C70 File Offset: 0x000EEE70
+	// Token: 0x0600189F RID: 6303 RVA: 0x000F0C3C File Offset: 0x000EEE3C
 	private void CheckForCompletion()
 	{
 		if (this.PostLabels[1].text != string.Empty && this.PostLabels[2].text != string.Empty && this.PostLabels[3].text != string.Empty)
@@ -549,7 +549,7 @@ public class HomeInternetScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018A0 RID: 6304 RVA: 0x000F0CE0 File Offset: 0x000EEEE0
+	// Token: 0x060018A0 RID: 6304 RVA: 0x000F0CAC File Offset: 0x000EEEAC
 	private void GetPortrait(int ID)
 	{
 		WWW www = new WWW(string.Concat(new string[]

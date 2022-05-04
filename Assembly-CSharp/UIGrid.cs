@@ -348,7 +348,7 @@ public class UIGrid : UIWidgetContainer
 	protected bool mInitDone;
 
 	// Token: 0x020005D5 RID: 1493
-	// (Invoke) Token: 0x06002552 RID: 9554
+	// (Invoke) Token: 0x06002553 RID: 9555
 	public delegate void OnReposition();
 
 	// Token: 0x020005D6 RID: 1494

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000421 RID: 1057
 public class SecurityCameraScript : MonoBehaviour
 {
-	// Token: 0x06001C9A RID: 7322 RVA: 0x0014EDA0 File Offset: 0x0014CFA0
+	// Token: 0x06001C9A RID: 7322 RVA: 0x0014ED6C File Offset: 0x0014CF6C
 	private void Update()
 	{
 		this.Rotation += (float)this.Direction * 36f * Time.deltaTime;
@@ -23,7 +23,7 @@ public class SecurityCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C9B RID: 7323 RVA: 0x0014EE44 File Offset: 0x0014D044
+	// Token: 0x06001C9B RID: 7323 RVA: 0x0014EE10 File Offset: 0x0014D010
 	private void OnTriggerStay(Collider other)
 	{
 		if (this.MissionMode.GameOverID == 0)

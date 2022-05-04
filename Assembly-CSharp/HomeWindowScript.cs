@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200032C RID: 812
 public class HomeWindowScript : MonoBehaviour
 {
-	// Token: 0x060018CF RID: 6351 RVA: 0x000F4788 File Offset: 0x000F2988
+	// Token: 0x060018CF RID: 6351 RVA: 0x000F4754 File Offset: 0x000F2954
 	private void Start()
 	{
 		this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, 0f);
 	}
 
-	// Token: 0x060018D0 RID: 6352 RVA: 0x000F47DC File Offset: 0x000F29DC
+	// Token: 0x060018D0 RID: 6352 RVA: 0x000F47A8 File Offset: 0x000F29A8
 	private void Update()
 	{
 		this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, Mathf.Lerp(this.Sprite.color.a, this.Show ? 1f : 0f, Time.deltaTime * 10f));

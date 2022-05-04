@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002A2 RID: 674
 public class ElectrifiedPuddleScript : MonoBehaviour
 {
-	// Token: 0x06001427 RID: 5159 RVA: 0x000C09E4 File Offset: 0x000BEBE4
+	// Token: 0x06001427 RID: 5159 RVA: 0x000C09B0 File Offset: 0x000BEBB0
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)

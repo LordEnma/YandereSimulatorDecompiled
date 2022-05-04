@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020004C0 RID: 1216
 public class WarningScript : MonoBehaviour
 {
-	// Token: 0x06001FD8 RID: 8152 RVA: 0x001C2340 File Offset: 0x001C0540
+	// Token: 0x06001FD9 RID: 8153 RVA: 0x001C243C File Offset: 0x001C063C
 	private void Start()
 	{
 		this.WarningLabel.gameObject.SetActive(false);
@@ -13,7 +13,7 @@ public class WarningScript : MonoBehaviour
 		this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, 1f);
 	}
 
-	// Token: 0x06001FD9 RID: 8153 RVA: 0x001C23B4 File Offset: 0x001C05B4
+	// Token: 0x06001FDA RID: 8154 RVA: 0x001C24B0 File Offset: 0x001C06B0
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();

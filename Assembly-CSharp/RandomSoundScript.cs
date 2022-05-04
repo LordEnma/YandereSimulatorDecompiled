@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D1 RID: 977
 public class RandomSoundScript : MonoBehaviour
 {
-	// Token: 0x06001B83 RID: 7043 RVA: 0x00136248 File Offset: 0x00134448
+	// Token: 0x06001B83 RID: 7043 RVA: 0x00136214 File Offset: 0x00134414
 	private void Start()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();

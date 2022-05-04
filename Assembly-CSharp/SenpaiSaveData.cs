@@ -4,7 +4,7 @@
 [Serializable]
 public class SenpaiSaveData
 {
-	// Token: 0x06001C4F RID: 7247 RVA: 0x0014A8B4 File Offset: 0x00148AB4
+	// Token: 0x06001C4F RID: 7247 RVA: 0x0014A880 File Offset: 0x00148A80
 	public static SenpaiSaveData ReadFromGlobals()
 	{
 		return new SenpaiSaveData
@@ -19,7 +19,7 @@ public class SenpaiSaveData
 		};
 	}
 
-	// Token: 0x06001C50 RID: 7248 RVA: 0x0014A914 File Offset: 0x00148B14
+	// Token: 0x06001C50 RID: 7248 RVA: 0x0014A8E0 File Offset: 0x00148AE0
 	public static void WriteToGlobals(SenpaiSaveData data)
 	{
 		SenpaiGlobals.CustomSenpai = data.customSenpai;

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020004EC RID: 1260
 public class YanvaniaTitleScript : MonoBehaviour
 {
-	// Token: 0x060020F2 RID: 8434 RVA: 0x001E6A5C File Offset: 0x001E4C5C
+	// Token: 0x060020F3 RID: 8435 RVA: 0x001E6B58 File Offset: 0x001E4D58
 	private void Start()
 	{
 		this.Midori.transform.localPosition = new Vector3(1540f, 0f, 0f);
@@ -28,7 +28,7 @@ public class YanvaniaTitleScript : MonoBehaviour
 		this.Logo.color = new Color(this.Logo.color.r, this.Logo.color.g, this.Logo.color.b, 0f);
 	}
 
-	// Token: 0x060020F3 RID: 8435 RVA: 0x001E6BD0 File Offset: 0x001E4DD0
+	// Token: 0x060020F4 RID: 8436 RVA: 0x001E6CCC File Offset: 0x001E4ECC
 	private void Update()
 	{
 		if (!this.Logo.gameObject.activeInHierarchy && Input.GetKeyDown(KeyCode.M))
@@ -245,7 +245,7 @@ public class YanvaniaTitleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020F4 RID: 8436 RVA: 0x001E74AC File Offset: 0x001E56AC
+	// Token: 0x060020F5 RID: 8437 RVA: 0x001E75A8 File Offset: 0x001E57A8
 	private void Skip()
 	{
 		this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, 0f);

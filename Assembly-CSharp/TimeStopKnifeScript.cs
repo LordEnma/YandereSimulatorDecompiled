@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200047B RID: 1147
 public class TimeStopKnifeScript : MonoBehaviour
 {
-	// Token: 0x06001EEE RID: 7918 RVA: 0x001B4FC8 File Offset: 0x001B31C8
+	// Token: 0x06001EEF RID: 7919 RVA: 0x001B50C4 File Offset: 0x001B32C4
 	private void Start()
 	{
 		base.transform.localScale = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x06001EEF RID: 7919 RVA: 0x001B4FEC File Offset: 0x001B31EC
+	// Token: 0x06001EF0 RID: 7920 RVA: 0x001B50E8 File Offset: 0x001B32E8
 	private void Update()
 	{
 		if (!this.Unfreeze)
@@ -33,7 +33,7 @@ public class TimeStopKnifeScript : MonoBehaviour
 		base.transform.Translate(Vector3.forward * this.Speed * Time.deltaTime, Space.Self);
 	}
 
-	// Token: 0x06001EF0 RID: 7920 RVA: 0x001B50CC File Offset: 0x001B32CC
+	// Token: 0x06001EF1 RID: 7921 RVA: 0x001B51C8 File Offset: 0x001B33C8
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Unfreeze && other.gameObject.layer == 9)

@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000384 RID: 900
 public class NuzzleScript : MonoBehaviour
 {
-	// Token: 0x06001A41 RID: 6721 RVA: 0x00115311 File Offset: 0x00113511
+	// Token: 0x06001A41 RID: 6721 RVA: 0x001152DD File Offset: 0x001134DD
 	private void Start()
 	{
 		this.OriginalRotation = base.transform.localEulerAngles;
 	}
 
-	// Token: 0x06001A42 RID: 6722 RVA: 0x00115324 File Offset: 0x00113524
+	// Token: 0x06001A42 RID: 6722 RVA: 0x001152F0 File Offset: 0x001134F0
 	private void Update()
 	{
 		if (!this.Down)

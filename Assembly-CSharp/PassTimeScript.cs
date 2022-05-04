@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000398 RID: 920
 public class PassTimeScript : MonoBehaviour
 {
-	// Token: 0x06001A78 RID: 6776 RVA: 0x00119B6C File Offset: 0x00117D6C
+	// Token: 0x06001A78 RID: 6776 RVA: 0x00119B38 File Offset: 0x00117D38
 	private void Update()
 	{
 		if (this.InputManager.TappedLeft || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
@@ -35,7 +35,7 @@ public class PassTimeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A79 RID: 6777 RVA: 0x00119C58 File Offset: 0x00117E58
+	// Token: 0x06001A79 RID: 6777 RVA: 0x00119C24 File Offset: 0x00117E24
 	private void UpdateHighlightPosition()
 	{
 		if (this.Selected == 1)
@@ -54,7 +54,7 @@ public class PassTimeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A7A RID: 6778 RVA: 0x00119D24 File Offset: 0x00117F24
+	// Token: 0x06001A7A RID: 6778 RVA: 0x00119CF0 File Offset: 0x00117EF0
 	public void GetCurrentTime()
 	{
 		this.Digits[1] = this.Clock.Hour;
@@ -75,7 +75,7 @@ public class PassTimeScript : MonoBehaviour
 		this.UpdateTime(0);
 	}
 
-	// Token: 0x06001A7B RID: 6779 RVA: 0x00119E00 File Offset: 0x00118000
+	// Token: 0x06001A7B RID: 6779 RVA: 0x00119DCC File Offset: 0x00117FCC
 	private void UpdateTime(int Increment)
 	{
 		this.Digits[this.Selected] += (float)Increment;

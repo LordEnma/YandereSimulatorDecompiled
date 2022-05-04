@@ -4,7 +4,7 @@
 [Serializable]
 public class ClassSaveData
 {
-	// Token: 0x06001C1F RID: 7199 RVA: 0x001490B0 File Offset: 0x001472B0
+	// Token: 0x06001C1F RID: 7199 RVA: 0x0014907C File Offset: 0x0014727C
 	public static ClassSaveData ReadFromGlobals()
 	{
 		return new ClassSaveData
@@ -27,7 +27,7 @@ public class ClassSaveData
 		};
 	}
 
-	// Token: 0x06001C20 RID: 7200 RVA: 0x00149168 File Offset: 0x00147368
+	// Token: 0x06001C20 RID: 7200 RVA: 0x00149134 File Offset: 0x00147334
 	public static void WriteToGlobals(ClassSaveData data)
 	{
 		ClassGlobals.Biology = data.biology;

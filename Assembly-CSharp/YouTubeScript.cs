@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x020004F5 RID: 1269
 public class YouTubeScript : MonoBehaviour
 {
-	// Token: 0x0600211C RID: 8476 RVA: 0x001EA93C File Offset: 0x001E8B3C
+	// Token: 0x0600211D RID: 8477 RVA: 0x001EAA38 File Offset: 0x001E8C38
 	private void Start()
 	{
 		if (this.Girl != null)
@@ -14,7 +14,7 @@ public class YouTubeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600211D RID: 8477 RVA: 0x001EA968 File Offset: 0x001E8B68
+	// Token: 0x0600211E RID: 8478 RVA: 0x001EAA64 File Offset: 0x001E8C64
 	private void Update()
 	{
 		if (this.Type == 6)

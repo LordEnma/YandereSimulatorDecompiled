@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000313 RID: 787
 public class HenshinScript : MonoBehaviour
 {
-	// Token: 0x0600186A RID: 6250 RVA: 0x000EB434 File Offset: 0x000E9634
+	// Token: 0x0600186A RID: 6250 RVA: 0x000EB400 File Offset: 0x000E9600
 	public void TransformYandere()
 	{
 		this.TransformingYandere = true;
@@ -31,7 +31,7 @@ public class HenshinScript : MonoBehaviour
 		this.Start();
 	}
 
-	// Token: 0x0600186B RID: 6251 RVA: 0x000EB5B8 File Offset: 0x000E97B8
+	// Token: 0x0600186B RID: 6251 RVA: 0x000EB584 File Offset: 0x000E9784
 	private void Start()
 	{
 		if (this.OriginalMesh == null)
@@ -76,7 +76,7 @@ public class HenshinScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600186C RID: 6252 RVA: 0x000EB870 File Offset: 0x000E9A70
+	// Token: 0x0600186C RID: 6252 RVA: 0x000EB83C File Offset: 0x000E9A3C
 	private void Update()
 	{
 		if (this.TransformingYandere && Input.GetKeyDown("="))

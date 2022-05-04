@@ -7,7 +7,7 @@ namespace UnityStandardAssets.Cameras
 	// Token: 0x0200054F RID: 1359
 	public class FreeLookCam : PivotBasedCameraRig
 	{
-		// Token: 0x060022C8 RID: 8904 RVA: 0x001F55A4 File Offset: 0x001F37A4
+		// Token: 0x060022C9 RID: 8905 RVA: 0x001F56A0 File Offset: 0x001F38A0
 		protected override void Awake()
 		{
 			base.Awake();
@@ -18,7 +18,7 @@ namespace UnityStandardAssets.Cameras
 			this.m_TransformTargetRot = base.transform.localRotation;
 		}
 
-		// Token: 0x060022C9 RID: 8905 RVA: 0x001F5616 File Offset: 0x001F3816
+		// Token: 0x060022CA RID: 8906 RVA: 0x001F5712 File Offset: 0x001F3912
 		protected void Update()
 		{
 			this.HandleRotationMovement();
@@ -29,14 +29,14 @@ namespace UnityStandardAssets.Cameras
 			}
 		}
 
-		// Token: 0x060022CA RID: 8906 RVA: 0x001F564D File Offset: 0x001F384D
+		// Token: 0x060022CB RID: 8907 RVA: 0x001F5749 File Offset: 0x001F3949
 		private void OnDisable()
 		{
 			Cursor.lockState = CursorLockMode.None;
 			Cursor.visible = true;
 		}
 
-		// Token: 0x060022CB RID: 8907 RVA: 0x001F565B File Offset: 0x001F385B
+		// Token: 0x060022CC RID: 8908 RVA: 0x001F5757 File Offset: 0x001F3957
 		protected override void FollowTarget(float deltaTime)
 		{
 			if (this.m_Target == null)
@@ -46,7 +46,7 @@ namespace UnityStandardAssets.Cameras
 			base.transform.position = Vector3.Lerp(base.transform.position, this.m_Target.position, deltaTime * this.m_MoveSpeed);
 		}
 
-		// Token: 0x060022CC RID: 8908 RVA: 0x001F569C File Offset: 0x001F389C
+		// Token: 0x060022CD RID: 8909 RVA: 0x001F5798 File Offset: 0x001F3998
 		private void HandleRotationMovement()
 		{
 			if (Time.timeScale < 1E-45f)

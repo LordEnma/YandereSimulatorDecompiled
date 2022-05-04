@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E3 RID: 995
 public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 {
-	// Token: 0x06001BC0 RID: 7104 RVA: 0x0013C2E4 File Offset: 0x0013A4E4
+	// Token: 0x06001BC0 RID: 7104 RVA: 0x0013C2B0 File Offset: 0x0013A4B0
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -14,7 +14,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BC1 RID: 7105 RVA: 0x0013C378 File Offset: 0x0013A578
+	// Token: 0x06001BC1 RID: 7105 RVA: 0x0013C344 File Offset: 0x0013A544
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -211,7 +211,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BC2 RID: 7106 RVA: 0x0013CF2C File Offset: 0x0013B12C
+	// Token: 0x06001BC2 RID: 7106 RVA: 0x0013CEF8 File Offset: 0x0013B0F8
 	public void EndEvent()
 	{
 		Debug.Log("Osana's second Friday before class event has ended.");
@@ -279,7 +279,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001BC3 RID: 7107 RVA: 0x0013D288 File Offset: 0x0013B488
+	// Token: 0x06001BC3 RID: 7107 RVA: 0x0013D254 File Offset: 0x0013B454
 	private void SettleRival()
 	{
 		this.Rival.MoveTowardsTarget(this.Location[1].position);
@@ -289,7 +289,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BC4 RID: 7108 RVA: 0x0013D314 File Offset: 0x0013B514
+	// Token: 0x06001BC4 RID: 7108 RVA: 0x0013D2E0 File Offset: 0x0013B4E0
 	private void SettleGanguro()
 	{
 		this.Ganguro.MoveTowardsTarget(this.Location[2].position);

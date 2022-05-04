@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020004CE RID: 1230
 public class WritheScript : MonoBehaviour
 {
-	// Token: 0x06002029 RID: 8233 RVA: 0x001CA9FE File Offset: 0x001C8BFE
+	// Token: 0x0600202A RID: 8234 RVA: 0x001CAAFA File Offset: 0x001C8CFA
 	private void Start()
 	{
 		this.StartTime = Time.time;
 		this.Duration = UnityEngine.Random.Range(1f, 5f);
 	}
 
-	// Token: 0x0600202A RID: 8234 RVA: 0x001CAA20 File Offset: 0x001C8C20
+	// Token: 0x0600202B RID: 8235 RVA: 0x001CAB1C File Offset: 0x001C8D1C
 	private void Update()
 	{
 		if (this.Rotation == this.EndValue)

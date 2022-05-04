@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020004CA RID: 1226
 public class WelcomeScript : MonoBehaviour
 {
-	// Token: 0x06002016 RID: 8214 RVA: 0x001C862C File Offset: 0x001C682C
+	// Token: 0x06002017 RID: 8215 RVA: 0x001C8728 File Offset: 0x001C6928
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -36,7 +36,7 @@ public class WelcomeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002017 RID: 8215 RVA: 0x001C8834 File Offset: 0x001C6A34
+	// Token: 0x06002018 RID: 8216 RVA: 0x001C8930 File Offset: 0x001C6B30
 	private void Update()
 	{
 		Input.GetKeyDown(KeyCode.S);

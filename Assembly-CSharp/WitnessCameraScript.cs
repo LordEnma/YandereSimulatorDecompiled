@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020004CB RID: 1227
 public class WitnessCameraScript : MonoBehaviour
 {
-	// Token: 0x06002019 RID: 8217 RVA: 0x001C8A77 File Offset: 0x001C6C77
+	// Token: 0x0600201A RID: 8218 RVA: 0x001C8B73 File Offset: 0x001C6D73
 	private void Start()
 	{
 		this.MyCamera.enabled = false;
 		this.MyCamera.rect = new Rect(0f, 0f, 0f, 0f);
 	}
 
-	// Token: 0x0600201A RID: 8218 RVA: 0x001C8AAC File Offset: 0x001C6CAC
+	// Token: 0x0600201B RID: 8219 RVA: 0x001C8BA8 File Offset: 0x001C6DA8
 	private void Update()
 	{
 		if (this.Show)

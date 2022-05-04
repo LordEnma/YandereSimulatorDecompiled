@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200041D RID: 1053
 public class SciFiTerminalScript : MonoBehaviour
 {
-	// Token: 0x06001C8E RID: 7310 RVA: 0x0014EB5E File Offset: 0x0014CD5E
+	// Token: 0x06001C8E RID: 7310 RVA: 0x0014EB2A File Offset: 0x0014CD2A
 	private void Start()
 	{
 		if (this.Student.StudentID != 65)
@@ -15,7 +15,7 @@ public class SciFiTerminalScript : MonoBehaviour
 		this.RobotArms = this.Student.StudentManager.RobotArms;
 	}
 
-	// Token: 0x06001C8F RID: 7311 RVA: 0x0014EB90 File Offset: 0x0014CD90
+	// Token: 0x06001C8F RID: 7311 RVA: 0x0014EB5C File Offset: 0x0014CD5C
 	private void Update()
 	{
 		if (this.RobotArms != null)

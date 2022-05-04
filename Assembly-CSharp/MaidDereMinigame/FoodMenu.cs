@@ -9,7 +9,7 @@ namespace MaidDereMinigame
 	public class FoodMenu : MonoBehaviour
 	{
 		// Token: 0x1700052E RID: 1326
-		// (get) Token: 0x060024EB RID: 9451 RVA: 0x002026CC File Offset: 0x002008CC
+		// (get) Token: 0x060024EC RID: 9452 RVA: 0x002027C8 File Offset: 0x002009C8
 		public static FoodMenu Instance
 		{
 			get
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024EC RID: 9452 RVA: 0x002026EC File Offset: 0x002008EC
+		// Token: 0x060024ED RID: 9453 RVA: 0x002027E8 File Offset: 0x002009E8
 		private void Awake()
 		{
 			this.SetMenuIcons();
@@ -31,7 +31,7 @@ namespace MaidDereMinigame
 			this.startZ = this.menuSelector.position.z;
 		}
 
-		// Token: 0x060024ED RID: 9453 RVA: 0x00202748 File Offset: 0x00200948
+		// Token: 0x060024EE RID: 9454 RVA: 0x00202844 File Offset: 0x00200A44
 		public void SetMenuIcons()
 		{
 			this.menuSlots = new List<Transform>();
@@ -46,7 +46,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024EE RID: 9454 RVA: 0x002027BF File Offset: 0x002009BF
+		// Token: 0x060024EF RID: 9455 RVA: 0x002028BB File Offset: 0x00200ABB
 		public void SetActive(int index)
 		{
 			this.menuSelectorTarget = this.menuSlots[index].position.x;
@@ -54,7 +54,7 @@ namespace MaidDereMinigame
 			this.activeIndex = index;
 		}
 
-		// Token: 0x060024EF RID: 9455 RVA: 0x002027EF File Offset: 0x002009EF
+		// Token: 0x060024F0 RID: 9456 RVA: 0x002028EB File Offset: 0x00200AEB
 		public Food GetActiveFood()
 		{
 			Food food = UnityEngine.Object.Instantiate<Food>(this.foodItems[this.activeIndex]);
@@ -62,7 +62,7 @@ namespace MaidDereMinigame
 			return food;
 		}
 
-		// Token: 0x060024F0 RID: 9456 RVA: 0x00202824 File Offset: 0x00200A24
+		// Token: 0x060024F1 RID: 9457 RVA: 0x00202920 File Offset: 0x00200B20
 		public Food GetRandomFood()
 		{
 			int index = UnityEngine.Random.Range(0, this.foodItems.Count);
@@ -71,7 +71,7 @@ namespace MaidDereMinigame
 			return food;
 		}
 
-		// Token: 0x060024F1 RID: 9457 RVA: 0x0020286C File Offset: 0x00200A6C
+		// Token: 0x060024F2 RID: 9458 RVA: 0x00202968 File Offset: 0x00200B68
 		private void Update()
 		{
 			if (this.interpolator < 1f)
@@ -95,14 +95,14 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024F2 RID: 9458 RVA: 0x00202922 File Offset: 0x00200B22
+		// Token: 0x060024F3 RID: 9459 RVA: 0x00202A1E File Offset: 0x00200C1E
 		private void IncrementSelection()
 		{
 			this.SetActive((this.activeIndex + 1) % this.menuSlots.Count);
 			SFXController.PlaySound(SFXController.Sounds.MenuSelect);
 		}
 
-		// Token: 0x060024F3 RID: 9459 RVA: 0x00202945 File Offset: 0x00200B45
+		// Token: 0x060024F4 RID: 9460 RVA: 0x00202A41 File Offset: 0x00200C41
 		private void DecrementSelection()
 		{
 			if (this.activeIndex == 0)

@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000374 RID: 884
 public class MusicMenuScript : MonoBehaviour
 {
-	// Token: 0x060019EA RID: 6634 RVA: 0x0010A9AC File Offset: 0x00108BAC
+	// Token: 0x060019EA RID: 6634 RVA: 0x0010A978 File Offset: 0x00108B78
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.C))
@@ -41,7 +41,7 @@ public class MusicMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019EB RID: 6635 RVA: 0x0010AAD6 File Offset: 0x00108CD6
+	// Token: 0x060019EB RID: 6635 RVA: 0x0010AAA2 File Offset: 0x00108CA2
 	private IEnumerator DownloadCoroutine()
 	{
 		WWW CurrentDownload = new WWW(string.Concat(new string[]
@@ -59,7 +59,7 @@ public class MusicMenuScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060019EC RID: 6636 RVA: 0x0010AAE8 File Offset: 0x00108CE8
+	// Token: 0x060019EC RID: 6636 RVA: 0x0010AAB4 File Offset: 0x00108CB4
 	private void UpdateHighlight()
 	{
 		if (this.Selected < 0)

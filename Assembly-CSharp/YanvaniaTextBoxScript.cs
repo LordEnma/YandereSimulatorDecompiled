@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004EB RID: 1259
 public class YanvaniaTextBoxScript : MonoBehaviour
 {
-	// Token: 0x060020EE RID: 8430 RVA: 0x001E5E58 File Offset: 0x001E4058
+	// Token: 0x060020EF RID: 8431 RVA: 0x001E5F54 File Offset: 0x001E4154
 	private void Start()
 	{
 		this.Portrait.transform.localScale = Vector3.zero;
@@ -15,7 +15,7 @@ public class YanvaniaTextBoxScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060020EF RID: 8431 RVA: 0x001E5F64 File Offset: 0x001E4164
+	// Token: 0x060020F0 RID: 8432 RVA: 0x001E6060 File Offset: 0x001E4260
 	private void Update()
 	{
 		if (!this.Leave)
@@ -225,7 +225,7 @@ public class YanvaniaTextBoxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020F0 RID: 8432 RVA: 0x001E6974 File Offset: 0x001E4B74
+	// Token: 0x060020F1 RID: 8433 RVA: 0x001E6A70 File Offset: 0x001E4C70
 	private void SpawnLabel()
 	{
 		this.NewLabel = UnityEngine.Object.Instantiate<GameObject>(this.Label, base.transform.position, Quaternion.identity);

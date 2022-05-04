@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000324 RID: 804
 public class HomePantyChangerScript : MonoBehaviour
 {
-	// Token: 0x060018AE RID: 6318 RVA: 0x000F1A60 File Offset: 0x000EFC60
+	// Token: 0x060018AE RID: 6318 RVA: 0x000F1A2C File Offset: 0x000EFC2C
 	private void Start()
 	{
 		for (int i = 0; i < this.TotalPanties; i++)
@@ -22,7 +22,7 @@ public class HomePantyChangerScript : MonoBehaviour
 		this.PantyParent.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060018AF RID: 6319 RVA: 0x000F1C2C File Offset: 0x000EFE2C
+	// Token: 0x060018AF RID: 6319 RVA: 0x000F1BF8 File Offset: 0x000EFDF8
 	private void Update()
 	{
 		if (this.HomeWindow.Show)
@@ -89,7 +89,7 @@ public class HomePantyChangerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018B0 RID: 6320 RVA: 0x000F1EFC File Offset: 0x000F00FC
+	// Token: 0x060018B0 RID: 6320 RVA: 0x000F1EC8 File Offset: 0x000F00C8
 	private void UpdatePantyLabels()
 	{
 		if (this.Selected == 0 || CollectibleGlobals.GetPantyPurchased(this.Selected))

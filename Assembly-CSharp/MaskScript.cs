@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200035F RID: 863
 public class MaskScript : MonoBehaviour
 {
-	// Token: 0x060019A7 RID: 6567 RVA: 0x00106428 File Offset: 0x00104628
+	// Token: 0x060019A7 RID: 6567 RVA: 0x001063F4 File Offset: 0x001045F4
 	private void Start()
 	{
 		if (GameGlobals.MasksBanned)
@@ -19,7 +19,7 @@ public class MaskScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x060019A8 RID: 6568 RVA: 0x00106488 File Offset: 0x00104688
+	// Token: 0x060019A8 RID: 6568 RVA: 0x00106454 File Offset: 0x00104654
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -47,7 +47,7 @@ public class MaskScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019A9 RID: 6569 RVA: 0x001065D0 File Offset: 0x001047D0
+	// Token: 0x060019A9 RID: 6569 RVA: 0x0010659C File Offset: 0x0010479C
 	public void Drop()
 	{
 		this.Prompt.MyCollider.isTrigger = false;

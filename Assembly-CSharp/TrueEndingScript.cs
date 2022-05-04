@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000490 RID: 1168
 public class TrueEndingScript : MonoBehaviour
 {
-	// Token: 0x06001F3D RID: 7997 RVA: 0x001BA106 File Offset: 0x001B8306
+	// Token: 0x06001F3E RID: 7998 RVA: 0x001BA202 File Offset: 0x001B8402
 	private void Start()
 	{
 		this.Darkness.alpha = 1f;
 		this.Subtitle.text = "";
 	}
 
-	// Token: 0x06001F3E RID: 7998 RVA: 0x001BA128 File Offset: 0x001B8328
+	// Token: 0x06001F3F RID: 7999 RVA: 0x001BA224 File Offset: 0x001B8424
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;

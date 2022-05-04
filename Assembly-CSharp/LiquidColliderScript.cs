@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000354 RID: 852
 public class LiquidColliderScript : MonoBehaviour
 {
-	// Token: 0x0600197E RID: 6526 RVA: 0x00100678 File Offset: 0x000FE878
+	// Token: 0x0600197E RID: 6526 RVA: 0x00100644 File Offset: 0x000FE844
 	private void Start()
 	{
 		if (this.Bucket)
@@ -13,7 +13,7 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600197F RID: 6527 RVA: 0x0010069C File Offset: 0x000FE89C
+	// Token: 0x0600197F RID: 6527 RVA: 0x00100668 File Offset: 0x000FE868
 	private void Update()
 	{
 		if (!this.Static)
@@ -40,7 +40,7 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001980 RID: 6528 RVA: 0x0010081C File Offset: 0x000FEA1C
+	// Token: 0x06001980 RID: 6528 RVA: 0x001007E8 File Offset: 0x000FE9E8
 	private void OnTriggerEnter(Collider other)
 	{
 		if (!this.AlreadyDoused && other.gameObject.layer == 9)

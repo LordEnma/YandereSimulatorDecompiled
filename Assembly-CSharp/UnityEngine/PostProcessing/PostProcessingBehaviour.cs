@@ -12,7 +12,7 @@ namespace UnityEngine.PostProcessing
 	[AddComponentMenu("Effects/Post-Processing Behaviour", -1)]
 	public class PostProcessingBehaviour : MonoBehaviour
 	{
-		// Token: 0x060023B7 RID: 9143 RVA: 0x001FB018 File Offset: 0x001F9218
+		// Token: 0x060023B8 RID: 9144 RVA: 0x001FB114 File Offset: 0x001F9314
 		private void OnEnable()
 		{
 			this.m_CommandBuffers = new Dictionary<Type, KeyValuePair<CameraEvent, CommandBuffer>>();
@@ -44,7 +44,7 @@ namespace UnityEngine.PostProcessing
 			base.useGUILayout = false;
 		}
 
-		// Token: 0x060023B8 RID: 9144 RVA: 0x001FB1CC File Offset: 0x001F93CC
+		// Token: 0x060023B9 RID: 9145 RVA: 0x001FB2C8 File Offset: 0x001F94C8
 		private void OnPreCull()
 		{
 			this.m_Camera = base.GetComponent<Camera>();
@@ -94,7 +94,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023B9 RID: 9145 RVA: 0x001FB47C File Offset: 0x001F967C
+		// Token: 0x060023BA RID: 9146 RVA: 0x001FB578 File Offset: 0x001F9778
 		private void OnPreRender()
 		{
 			if (this.profile == null)
@@ -111,7 +111,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023BA RID: 9146 RVA: 0x001FB4DC File Offset: 0x001F96DC
+		// Token: 0x060023BB RID: 9147 RVA: 0x001FB5D8 File Offset: 0x001F97D8
 		private void OnPostRender()
 		{
 			if (this.profile == null || this.m_Camera == null)
@@ -124,7 +124,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023BB RID: 9147 RVA: 0x001FB540 File Offset: 0x001F9740
+		// Token: 0x060023BC RID: 9148 RVA: 0x001FB63C File Offset: 0x001F983C
 		private void OnRenderImage(RenderTexture source, RenderTexture destination)
 		{
 			if (this.profile == null || this.m_Camera == null)
@@ -200,7 +200,7 @@ namespace UnityEngine.PostProcessing
 			this.m_RenderTextureFactory.ReleaseAll();
 		}
 
-		// Token: 0x060023BC RID: 9148 RVA: 0x001FB78C File Offset: 0x001F998C
+		// Token: 0x060023BD RID: 9149 RVA: 0x001FB888 File Offset: 0x001F9A88
 		private void OnGUI()
 		{
 			if (Event.current.type != EventType.Repaint)
@@ -227,7 +227,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023BD RID: 9149 RVA: 0x001FB848 File Offset: 0x001F9A48
+		// Token: 0x060023BE RID: 9150 RVA: 0x001FB944 File Offset: 0x001F9B44
 		private void OnDisable()
 		{
 			foreach (KeyValuePair<CameraEvent, CommandBuffer> keyValuePair in this.m_CommandBuffers.Values)
@@ -246,7 +246,7 @@ namespace UnityEngine.PostProcessing
 			GraphicsUtils.Dispose();
 		}
 
-		// Token: 0x060023BE RID: 9150 RVA: 0x001FB904 File Offset: 0x001F9B04
+		// Token: 0x060023BF RID: 9151 RVA: 0x001FBA00 File Offset: 0x001F9C00
 		public void ResetTemporalEffects()
 		{
 			this.m_Taa.ResetHistory();
@@ -254,7 +254,7 @@ namespace UnityEngine.PostProcessing
 			this.m_EyeAdaptation.ResetHistory();
 		}
 
-		// Token: 0x060023BF RID: 9151 RVA: 0x001FB928 File Offset: 0x001F9B28
+		// Token: 0x060023C0 RID: 9152 RVA: 0x001FBA24 File Offset: 0x001F9C24
 		private void CheckObservers()
 		{
 			foreach (KeyValuePair<PostProcessingComponentBase, bool> keyValuePair in this.m_ComponentStates)
@@ -289,7 +289,7 @@ namespace UnityEngine.PostProcessing
 			this.m_ComponentsToEnable.Clear();
 		}
 
-		// Token: 0x060023C0 RID: 9152 RVA: 0x001FBA44 File Offset: 0x001F9C44
+		// Token: 0x060023C1 RID: 9153 RVA: 0x001FBB40 File Offset: 0x001F9D40
 		private void DisableComponents()
 		{
 			foreach (PostProcessingComponentBase postProcessingComponentBase in this.m_Components)
@@ -302,7 +302,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023C1 RID: 9153 RVA: 0x001FBAA8 File Offset: 0x001F9CA8
+		// Token: 0x060023C2 RID: 9154 RVA: 0x001FBBA4 File Offset: 0x001F9DA4
 		private CommandBuffer AddCommandBuffer<T>(CameraEvent evt, string name) where T : PostProcessingModel
 		{
 			CommandBuffer value = new CommandBuffer
@@ -315,7 +315,7 @@ namespace UnityEngine.PostProcessing
 			return value2.Value;
 		}
 
-		// Token: 0x060023C2 RID: 9154 RVA: 0x001FBAFC File Offset: 0x001F9CFC
+		// Token: 0x060023C3 RID: 9155 RVA: 0x001FBBF8 File Offset: 0x001F9DF8
 		private void RemoveCommandBuffer<T>() where T : PostProcessingModel
 		{
 			Type typeFromHandle = typeof(T);
@@ -329,7 +329,7 @@ namespace UnityEngine.PostProcessing
 			keyValuePair.Value.Dispose();
 		}
 
-		// Token: 0x060023C3 RID: 9155 RVA: 0x001FBB58 File Offset: 0x001F9D58
+		// Token: 0x060023C4 RID: 9156 RVA: 0x001FBC54 File Offset: 0x001F9E54
 		private CommandBuffer GetCommandBuffer<T>(CameraEvent evt, string name) where T : PostProcessingModel
 		{
 			KeyValuePair<CameraEvent, CommandBuffer> keyValuePair;
@@ -350,7 +350,7 @@ namespace UnityEngine.PostProcessing
 			return result;
 		}
 
-		// Token: 0x060023C4 RID: 9156 RVA: 0x001FBBB0 File Offset: 0x001F9DB0
+		// Token: 0x060023C5 RID: 9157 RVA: 0x001FBCAC File Offset: 0x001F9EAC
 		private void TryExecuteCommandBuffer<T>(PostProcessingComponentCommandBuffer<T> component) where T : PostProcessingModel
 		{
 			if (component.active)
@@ -363,7 +363,7 @@ namespace UnityEngine.PostProcessing
 			this.RemoveCommandBuffer<T>();
 		}
 
-		// Token: 0x060023C5 RID: 9157 RVA: 0x001FBBEC File Offset: 0x001F9DEC
+		// Token: 0x060023C6 RID: 9158 RVA: 0x001FBCE8 File Offset: 0x001F9EE8
 		private bool TryPrepareUberImageEffect<T>(PostProcessingComponentRenderTexture<T> component, Material material) where T : PostProcessingModel
 		{
 			if (!component.active)
@@ -374,7 +374,7 @@ namespace UnityEngine.PostProcessing
 			return true;
 		}
 
-		// Token: 0x060023C6 RID: 9158 RVA: 0x001FBC00 File Offset: 0x001F9E00
+		// Token: 0x060023C7 RID: 9159 RVA: 0x001FBCFC File Offset: 0x001F9EFC
 		private T AddComponent<T>(T component) where T : PostProcessingComponentBase
 		{
 			this.m_Components.Add(component);

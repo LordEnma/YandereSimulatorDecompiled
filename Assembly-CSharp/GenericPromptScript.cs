@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002E1 RID: 737
 public class GenericPromptScript : MonoBehaviour
 {
-	// Token: 0x060014F9 RID: 5369 RVA: 0x000D05F8 File Offset: 0x000CE7F8
+	// Token: 0x060014F9 RID: 5369 RVA: 0x000D05C4 File Offset: 0x000CE7C4
 	private void Update()
 	{
 		if (this.ID == 1)
@@ -443,7 +443,7 @@ public class GenericPromptScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014FA RID: 5370 RVA: 0x000D1AD9 File Offset: 0x000CFCD9
+	// Token: 0x060014FA RID: 5370 RVA: 0x000D1AA5 File Offset: 0x000CFCA5
 	public void SabotageAndDisable()
 	{
 		this.Event.Sabotage();

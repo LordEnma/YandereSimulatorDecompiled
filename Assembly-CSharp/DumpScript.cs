@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000294 RID: 660
 public class DumpScript : MonoBehaviour
 {
-	// Token: 0x060013D7 RID: 5079 RVA: 0x000BC3A4 File Offset: 0x000BA5A4
+	// Token: 0x060013D7 RID: 5079 RVA: 0x000BC370 File Offset: 0x000BA570
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;

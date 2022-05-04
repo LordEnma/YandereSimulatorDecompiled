@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000307 RID: 775
 public class GradingPaperScript : MonoBehaviour
 {
-	// Token: 0x0600183F RID: 6207 RVA: 0x000E63E8 File Offset: 0x000E45E8
+	// Token: 0x0600183F RID: 6207 RVA: 0x000E63B4 File Offset: 0x000E45B4
 	private void Start()
 	{
 		this.OriginalPosition = this.Chair.position;
 	}
 
-	// Token: 0x06001840 RID: 6208 RVA: 0x000E63FC File Offset: 0x000E45FC
+	// Token: 0x06001840 RID: 6208 RVA: 0x000E63C8 File Offset: 0x000E45C8
 	private void Update()
 	{
 		if (this.Teacher != null && this.Teacher.DistanceToPlayer < 10f)
@@ -19,16 +19,14 @@ public class GradingPaperScript : MonoBehaviour
 			{
 				if (Vector3.Distance(this.Chair.position, this.OriginalPosition) > 0.01f)
 				{
-					Debug.Log("Running this.");
 					this.Chair.position = Vector3.Lerp(this.Chair.position, this.OriginalPosition, Time.deltaTime * 10f);
 					return;
 				}
 			}
-			else if (this.Character != null)
+			else if (this.Character != null && this.Teacher.DistanceToDestination < 1f)
 			{
 				if (Vector3.Distance(this.Chair.position, this.Character.transform.position + this.Character.transform.forward * 0.1f) > 0.01f)
 				{
-					Debug.Log("And running this.");
 					this.Chair.position = Vector3.Lerp(this.Chair.position, this.Character.transform.position + this.Character.transform.forward * 0.1f, Time.deltaTime * 10f);
 				}
 				switch (this.Phase)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000483 RID: 1155
 public class TitleScreenOsanaScript : MonoBehaviour
 {
-	// Token: 0x06001F12 RID: 7954 RVA: 0x001B7A78 File Offset: 0x001B5C78
+	// Token: 0x06001F13 RID: 7955 RVA: 0x001B7B74 File Offset: 0x001B5D74
 	private void Start()
 	{
 		if (GameGlobals.SpecificEliminationID > 0)

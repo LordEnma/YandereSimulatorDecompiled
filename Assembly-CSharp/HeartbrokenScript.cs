@@ -5,7 +5,7 @@ using XInputDotNetPure;
 // Token: 0x02000312 RID: 786
 public class HeartbrokenScript : MonoBehaviour
 {
-	// Token: 0x06001865 RID: 6245 RVA: 0x000E9B80 File Offset: 0x000E7D80
+	// Token: 0x06001865 RID: 6245 RVA: 0x000E9B4C File Offset: 0x000E7D4C
 	private void Start()
 	{
 		this.Week = DateGlobals.Week;
@@ -247,7 +247,7 @@ public class HeartbrokenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001866 RID: 6246 RVA: 0x000EA9BC File Offset: 0x000E8BBC
+	// Token: 0x06001866 RID: 6246 RVA: 0x000EA988 File Offset: 0x000E8B88
 	private void Update()
 	{
 		if (Input.GetKeyDown("m"))
@@ -367,7 +367,7 @@ public class HeartbrokenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001867 RID: 6247 RVA: 0x000EB0DC File Offset: 0x000E92DC
+	// Token: 0x06001867 RID: 6247 RVA: 0x000EB0A8 File Offset: 0x000E92A8
 	private void UpdateSubtitle()
 	{
 		StudentScript component = this.Yandere.Senpai.GetComponent<StudentScript>();
@@ -422,7 +422,7 @@ public class HeartbrokenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001868 RID: 6248 RVA: 0x000EB2A8 File Offset: 0x000E94A8
+	// Token: 0x06001868 RID: 6248 RVA: 0x000EB274 File Offset: 0x000E9474
 	public void Darken()
 	{
 		for (int i = 0; i < this.Letters.Length; i++)

@@ -6,13 +6,13 @@ namespace UnityStandardAssets.Vehicles.Car
 	// Token: 0x02000535 RID: 1333
 	public class Mudguard : MonoBehaviour
 	{
-		// Token: 0x060021EF RID: 8687 RVA: 0x001F2C19 File Offset: 0x001F0E19
+		// Token: 0x060021F0 RID: 8688 RVA: 0x001F2D15 File Offset: 0x001F0F15
 		private void Start()
 		{
 			this.m_OriginalRotation = base.transform.localRotation;
 		}
 
-		// Token: 0x060021F0 RID: 8688 RVA: 0x001F2C2C File Offset: 0x001F0E2C
+		// Token: 0x060021F1 RID: 8689 RVA: 0x001F2D28 File Offset: 0x001F0F28
 		private void Update()
 		{
 			base.transform.localRotation = this.m_OriginalRotation * Quaternion.Euler(0f, this.carController.CurrentSteerAngle, 0f);

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D6 RID: 982
 public class ReputationScript : MonoBehaviour
 {
-	// Token: 0x06001B8E RID: 7054 RVA: 0x00137047 File Offset: 0x00135247
+	// Token: 0x06001B8E RID: 7054 RVA: 0x00137013 File Offset: 0x00135213
 	private void Start()
 	{
 		this.RepUpdateLabel.enabled = true;
@@ -20,7 +20,7 @@ public class ReputationScript : MonoBehaviour
 		this.Reputation = PlayerGlobals.Reputation;
 	}
 
-	// Token: 0x06001B8F RID: 7055 RVA: 0x00137088 File Offset: 0x00135288
+	// Token: 0x06001B8F RID: 7055 RVA: 0x00137054 File Offset: 0x00135254
 	private void Update()
 	{
 		switch (this.Phase)
@@ -96,7 +96,7 @@ public class ReputationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B90 RID: 7056 RVA: 0x001374AC File Offset: 0x001356AC
+	// Token: 0x06001B90 RID: 7056 RVA: 0x00137478 File Offset: 0x00135678
 	public void UpdateRep()
 	{
 		this.Reputation += this.PendingRep;
@@ -116,7 +116,7 @@ public class ReputationScript : MonoBehaviour
 		this.StudentManager.WipePendingRep();
 	}
 
-	// Token: 0x06001B91 RID: 7057 RVA: 0x00137536 File Offset: 0x00135736
+	// Token: 0x06001B91 RID: 7057 RVA: 0x00137502 File Offset: 0x00135702
 	public void BecomeEighties()
 	{
 		this.StudentManager.EightiesifyLabel(this.PendingRepLabel);
@@ -124,7 +124,7 @@ public class ReputationScript : MonoBehaviour
 		this.StudentManager.EightiesifyLabel(this.RepLabel);
 	}
 
-	// Token: 0x06001B92 RID: 7058 RVA: 0x0013756C File Offset: 0x0013576C
+	// Token: 0x06001B92 RID: 7058 RVA: 0x00137538 File Offset: 0x00135738
 	public void UpdatePendingRepLabel()
 	{
 		this.PreviousRep = this.PendingRep;

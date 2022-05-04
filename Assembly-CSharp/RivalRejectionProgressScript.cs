@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020003EF RID: 1007
 public class RivalRejectionProgressScript : MonoBehaviour
 {
-	// Token: 0x06001BFC RID: 7164 RVA: 0x00147C14 File Offset: 0x00145E14
+	// Token: 0x06001BFC RID: 7164 RVA: 0x00147BE0 File Offset: 0x00145DE0
 	private void Start()
 	{
 		this.Label.text = string.Concat(new string[]
@@ -26,7 +26,7 @@ public class RivalRejectionProgressScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BFD RID: 7165 RVA: 0x00147D00 File Offset: 0x00145F00
+	// Token: 0x06001BFD RID: 7165 RVA: 0x00147CCC File Offset: 0x00145ECC
 	private void Update()
 	{
 		if (this.Phase == 1)

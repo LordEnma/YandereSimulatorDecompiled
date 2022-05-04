@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020003CD RID: 973
 public class RainbowScript : MonoBehaviour
 {
-	// Token: 0x06001B78 RID: 7032 RVA: 0x00135E89 File Offset: 0x00134089
+	// Token: 0x06001B78 RID: 7032 RVA: 0x00135E55 File Offset: 0x00134055
 	private void Start()
 	{
 		this.MyRenderer.material.color = Color.red;
 		this.cyclesPerSecond = 0.25f;
 	}
 
-	// Token: 0x06001B79 RID: 7033 RVA: 0x00135EAC File Offset: 0x001340AC
+	// Token: 0x06001B79 RID: 7033 RVA: 0x00135E78 File Offset: 0x00134078
 	private void Update()
 	{
 		this.percent = (this.percent + Time.deltaTime * this.cyclesPerSecond) % 1f;

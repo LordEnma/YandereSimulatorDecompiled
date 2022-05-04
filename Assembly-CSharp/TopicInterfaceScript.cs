@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000486 RID: 1158
 public class TopicInterfaceScript : MonoBehaviour
 {
-	// Token: 0x06001F1A RID: 7962 RVA: 0x001B84C8 File Offset: 0x001B66C8
+	// Token: 0x06001F1B RID: 7963 RVA: 0x001B85C4 File Offset: 0x001B67C4
 	private void Start()
 	{
 		if (this.Student == null)
@@ -18,7 +18,7 @@ public class TopicInterfaceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F1B RID: 7963 RVA: 0x001B8514 File Offset: 0x001B6714
+	// Token: 0x06001F1C RID: 7964 RVA: 0x001B8610 File Offset: 0x001B6810
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -74,7 +74,7 @@ public class TopicInterfaceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F1C RID: 7964 RVA: 0x001B8690 File Offset: 0x001B6890
+	// Token: 0x06001F1D RID: 7965 RVA: 0x001B878C File Offset: 0x001B698C
 	public void UpdateTopicHighlight()
 	{
 		if (this.Row < 1)
@@ -150,7 +150,7 @@ public class TopicInterfaceScript : MonoBehaviour
 		this.NegativeRemark.SetActive(true);
 	}
 
-	// Token: 0x06001F1D RID: 7965 RVA: 0x001B893C File Offset: 0x001B6B3C
+	// Token: 0x06001F1E RID: 7966 RVA: 0x001B8A38 File Offset: 0x001B6C38
 	public void UpdateOpinions()
 	{
 		for (int i = 1; i <= 25; i++)
@@ -168,7 +168,7 @@ public class TopicInterfaceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F1E RID: 7966 RVA: 0x001B89A4 File Offset: 0x001B6BA4
+	// Token: 0x06001F1F RID: 7967 RVA: 0x001B8AA0 File Offset: 0x001B6CA0
 	private void DetermineOpinion()
 	{
 		int[] topics = this.JSON.Topics[this.StudentID].Topics;

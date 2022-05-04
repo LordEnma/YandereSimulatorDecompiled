@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000370 RID: 880
 public class MopScript : MonoBehaviour
 {
-	// Token: 0x060019DB RID: 6619 RVA: 0x001091FE File Offset: 0x001073FE
+	// Token: 0x060019DB RID: 6619 RVA: 0x001091CA File Offset: 0x001073CA
 	private void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
@@ -12,7 +12,7 @@ public class MopScript : MonoBehaviour
 		this.UpdateBlood();
 	}
 
-	// Token: 0x060019DC RID: 6620 RVA: 0x00109228 File Offset: 0x00107428
+	// Token: 0x060019DC RID: 6620 RVA: 0x001091F4 File Offset: 0x001073F4
 	private void Update()
 	{
 		if (this.PickUp.Clock != null)
@@ -120,7 +120,7 @@ public class MopScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019DD RID: 6621 RVA: 0x001095BC File Offset: 0x001077BC
+	// Token: 0x060019DD RID: 6621 RVA: 0x00109588 File Offset: 0x00107788
 	public void UpdateBlood()
 	{
 		if (this.Bloodiness > 100f)
@@ -132,7 +132,7 @@ public class MopScript : MonoBehaviour
 		this.Blood.material.color = new Color(this.Blood.material.color.r, this.Blood.material.color.g, this.Blood.material.color.b, this.Bloodiness / 100f * 0.9f);
 	}
 
-	// Token: 0x060019DE RID: 6622 RVA: 0x00109659 File Offset: 0x00107859
+	// Token: 0x060019DE RID: 6622 RVA: 0x00109625 File Offset: 0x00107825
 	public void Dip()
 	{
 		this.Yandere.YandereVision = false;

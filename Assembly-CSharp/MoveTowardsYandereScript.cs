@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000371 RID: 881
 public class MoveTowardsYandereScript : MonoBehaviour
 {
-	// Token: 0x060019E0 RID: 6624 RVA: 0x0010969E File Offset: 0x0010789E
+	// Token: 0x060019E0 RID: 6624 RVA: 0x0010966A File Offset: 0x0010786A
 	private void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>().Spine[3];
 		this.Distance = Vector3.Distance(base.transform.position, this.Yandere.position);
 	}
 
-	// Token: 0x060019E1 RID: 6625 RVA: 0x001096E0 File Offset: 0x001078E0
+	// Token: 0x060019E1 RID: 6625 RVA: 0x001096AC File Offset: 0x001078AC
 	private void Update()
 	{
 		if (Vector3.Distance(base.transform.position, this.Yandere.position) > this.Distance * 0.5f && base.transform.position.y < this.Yandere.position.y + 0.5f)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E5 RID: 997
 public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 {
-	// Token: 0x06001BCB RID: 7115 RVA: 0x0013E6FC File Offset: 0x0013C8FC
+	// Token: 0x06001BCB RID: 7115 RVA: 0x0013E6C8 File Offset: 0x0013C8C8
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -16,7 +16,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BCC RID: 7116 RVA: 0x0013E774 File Offset: 0x0013C974
+	// Token: 0x06001BCC RID: 7116 RVA: 0x0013E740 File Offset: 0x0013C940
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -194,7 +194,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BCD RID: 7117 RVA: 0x0013EFA0 File Offset: 0x0013D1A0
+	// Token: 0x06001BCD RID: 7117 RVA: 0x0013EF6C File Offset: 0x0013D16C
 	public void EndEvent()
 	{
 		Debug.Log("Osana's before class event ended.");

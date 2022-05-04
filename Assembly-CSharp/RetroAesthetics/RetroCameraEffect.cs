@@ -9,7 +9,7 @@ namespace RetroAesthetics
 	[ImageEffectAllowedInSceneView]
 	public class RetroCameraEffect : MonoBehaviour
 	{
-		// Token: 0x060022E8 RID: 8936 RVA: 0x001F628C File Offset: 0x001F448C
+		// Token: 0x060022E9 RID: 8937 RVA: 0x001F6388 File Offset: 0x001F4588
 		public virtual void Glitch(float amount = 1f)
 		{
 			Vector2 zero = Vector2.zero;
@@ -25,7 +25,7 @@ namespace RetroAesthetics
 			this._material.SetFloat("_ChromaticAberration", UnityEngine.Random.Range(this.chromaticAberration, amount * this.chromaticAberration * 2.5f));
 		}
 
-		// Token: 0x060022E9 RID: 8937 RVA: 0x001F6336 File Offset: 0x001F4536
+		// Token: 0x060022EA RID: 8938 RVA: 0x001F6432 File Offset: 0x001F4632
 		public virtual void FadeIn(float speed = 1f, Action callback = null)
 		{
 			this._isFading = true;
@@ -35,7 +35,7 @@ namespace RetroAesthetics
 			this._callback = callback;
 		}
 
-		// Token: 0x060022EA RID: 8938 RVA: 0x001F6363 File Offset: 0x001F4563
+		// Token: 0x060022EB RID: 8939 RVA: 0x001F645F File Offset: 0x001F465F
 		public virtual void FadeOut(float speed = 1f, Action callback = null)
 		{
 			this._isFading = true;
@@ -44,7 +44,7 @@ namespace RetroAesthetics
 			this._callback = callback;
 		}
 
-		// Token: 0x060022EB RID: 8939 RVA: 0x001F638C File Offset: 0x001F458C
+		// Token: 0x060022EC RID: 8940 RVA: 0x001F6488 File Offset: 0x001F4688
 		private void Awake()
 		{
 			this._material = new Material(Shader.Find("Hidden/RetroCameraEffect"));
@@ -55,7 +55,7 @@ namespace RetroAesthetics
 			this._material.SetFloat("_DisplacementSpeed", this.displacementSpeed);
 		}
 
-		// Token: 0x060022EC RID: 8940 RVA: 0x001F6424 File Offset: 0x001F4624
+		// Token: 0x060022ED RID: 8941 RVA: 0x001F6520 File Offset: 0x001F4720
 		private void Update()
 		{
 			if (this._isFading)
@@ -74,7 +74,7 @@ namespace RetroAesthetics
 			}
 		}
 
-		// Token: 0x060022ED RID: 8941 RVA: 0x001F64B8 File Offset: 0x001F46B8
+		// Token: 0x060022EE RID: 8942 RVA: 0x001F65B4 File Offset: 0x001F47B4
 		public void OnRenderImage(RenderTexture source, RenderTexture destination)
 		{
 			if (this._material == null)

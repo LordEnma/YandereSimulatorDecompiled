@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003A4 RID: 932
 public class PhoneMinigameScript : MonoBehaviour
 {
-	// Token: 0x06001AA3 RID: 6819 RVA: 0x0011ED70 File Offset: 0x0011CF70
+	// Token: 0x06001AA3 RID: 6819 RVA: 0x0011ED3C File Offset: 0x0011CF3C
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -77,7 +77,7 @@ public class PhoneMinigameScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AA4 RID: 6820 RVA: 0x0011F1A8 File Offset: 0x0011D3A8
+	// Token: 0x06001AA4 RID: 6820 RVA: 0x0011F174 File Offset: 0x0011D374
 	private void End()
 	{
 		this.Prompt.Yandere.CameraEffects.UpdateDOF(2f);

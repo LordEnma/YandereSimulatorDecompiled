@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000475 RID: 1141
 public class TextMessageManagerScript : MonoBehaviour
 {
-	// Token: 0x06001EDE RID: 7902 RVA: 0x001B4494 File Offset: 0x001B2694
+	// Token: 0x06001EDF RID: 7903 RVA: 0x001B4590 File Offset: 0x001B2790
 	private void Update()
 	{
 		if (Input.GetButtonDown("B"))
@@ -21,7 +21,7 @@ public class TextMessageManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EDF RID: 7903 RVA: 0x001B453C File Offset: 0x001B273C
+	// Token: 0x06001EE0 RID: 7904 RVA: 0x001B4638 File Offset: 0x001B2838
 	public void SpawnMessage(int ServiceID)
 	{
 		this.PromptBar.ClearButtons();

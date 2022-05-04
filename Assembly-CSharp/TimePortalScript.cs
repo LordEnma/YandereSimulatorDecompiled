@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200047A RID: 1146
 public class TimePortalScript : MonoBehaviour
 {
-	// Token: 0x06001EEC RID: 7916 RVA: 0x001B4F04 File Offset: 0x001B3104
+	// Token: 0x06001EED RID: 7917 RVA: 0x001B5000 File Offset: 0x001B3200
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))

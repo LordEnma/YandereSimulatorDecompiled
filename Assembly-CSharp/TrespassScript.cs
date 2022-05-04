@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200048E RID: 1166
 public class TrespassScript : MonoBehaviour
 {
-	// Token: 0x06001F37 RID: 7991 RVA: 0x001B9D68 File Offset: 0x001B7F68
+	// Token: 0x06001F38 RID: 7992 RVA: 0x001B9E64 File Offset: 0x001B8064
 	private void OnTriggerEnter(Collider other)
 	{
 		if (base.enabled && other.gameObject.layer == 13)
@@ -22,7 +22,7 @@ public class TrespassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F38 RID: 7992 RVA: 0x001B9DE4 File Offset: 0x001B7FE4
+	// Token: 0x06001F39 RID: 7993 RVA: 0x001B9EE0 File Offset: 0x001B80E0
 	private void OnTriggerExit(Collider other)
 	{
 		if (this.Yandere != null && other.gameObject == this.YandereObject)

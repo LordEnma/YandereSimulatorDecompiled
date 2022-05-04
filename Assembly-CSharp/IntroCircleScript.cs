@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200033C RID: 828
 public class IntroCircleScript : MonoBehaviour
 {
-	// Token: 0x06001903 RID: 6403 RVA: 0x000F7AF8 File Offset: 0x000F5CF8
+	// Token: 0x06001903 RID: 6403 RVA: 0x000F7AC4 File Offset: 0x000F5CC4
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;

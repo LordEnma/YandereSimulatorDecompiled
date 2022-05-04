@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200031B RID: 795
 public class HomeCorkboardScript : MonoBehaviour
 {
-	// Token: 0x0600188A RID: 6282 RVA: 0x000EDEFC File Offset: 0x000EC0FC
+	// Token: 0x0600188A RID: 6282 RVA: 0x000EDEC8 File Offset: 0x000EC0C8
 	private void Update()
 	{
 		if (!this.HomeYandere.CanMove)

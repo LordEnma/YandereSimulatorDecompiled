@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	// Token: 0x0200053D RID: 1341
 	public class AeroplanePropellerAnimator : MonoBehaviour
 	{
-		// Token: 0x06002234 RID: 8756 RVA: 0x001F3D24 File Offset: 0x001F1F24
+		// Token: 0x06002235 RID: 8757 RVA: 0x001F3E20 File Offset: 0x001F2020
 		private void Awake()
 		{
 			this.m_Plane = base.GetComponent<AeroplaneController>();
@@ -15,7 +15,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_PropellorBlur.parent = this.m_PropellorModel;
 		}
 
-		// Token: 0x06002235 RID: 8757 RVA: 0x001F3D70 File Offset: 0x001F1F70
+		// Token: 0x06002236 RID: 8758 RVA: 0x001F3E6C File Offset: 0x001F206C
 		private void Update()
 		{
 			this.m_PropellorModel.Rotate(0f, this.m_MaxRpm * this.m_Plane.Throttle * Time.deltaTime * 60f, 0f);

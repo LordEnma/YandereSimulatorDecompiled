@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000399 RID: 921
 public class PauseScreenScript : MonoBehaviour
 {
-	// Token: 0x06001A7D RID: 6781 RVA: 0x0011A250 File Offset: 0x00118450
+	// Token: 0x06001A7D RID: 6781 RVA: 0x0011A21C File Offset: 0x0011841C
 	private void Start()
 	{
 		if (SceneManager.GetActiveScene().name != "SchoolScene")
@@ -101,7 +101,7 @@ public class PauseScreenScript : MonoBehaviour
 		this.HomeButton.SetActive(false);
 	}
 
-	// Token: 0x06001A7E RID: 6782 RVA: 0x0011A838 File Offset: 0x00118A38
+	// Token: 0x06001A7E RID: 6782 RVA: 0x0011A804 File Offset: 0x00118A04
 	private void Update()
 	{
 		this.Speed = Time.unscaledDeltaTime * 10f;
@@ -702,7 +702,7 @@ public class PauseScreenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A7F RID: 6783 RVA: 0x0011C3A8 File Offset: 0x0011A5A8
+	// Token: 0x06001A7F RID: 6783 RVA: 0x0011C374 File Offset: 0x0011A574
 	public void ShowScheduleScreen()
 	{
 		this.Schedule.gameObject.SetActive(true);
@@ -720,7 +720,7 @@ public class PauseScreenScript : MonoBehaviour
 		this.PromptBar.Show = true;
 	}
 
-	// Token: 0x06001A80 RID: 6784 RVA: 0x0011C48C File Offset: 0x0011A68C
+	// Token: 0x06001A80 RID: 6784 RVA: 0x0011C458 File Offset: 0x0011A658
 	public void JumpToQuit()
 	{
 		if (!this.Police.FadeOut && !this.Clock.TimeSkip && !this.Yandere.Noticed)
@@ -744,7 +744,7 @@ public class PauseScreenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A81 RID: 6785 RVA: 0x0011C588 File Offset: 0x0011A788
+	// Token: 0x06001A81 RID: 6785 RVA: 0x0011C554 File Offset: 0x0011A754
 	public void ExitPhone()
 	{
 		if (!this.Home)
@@ -773,7 +773,7 @@ public class PauseScreenScript : MonoBehaviour
 		this.Show = false;
 	}
 
-	// Token: 0x06001A82 RID: 6786 RVA: 0x0011C660 File Offset: 0x0011A860
+	// Token: 0x06001A82 RID: 6786 RVA: 0x0011C62C File Offset: 0x0011A82C
 	private void UpdateSelection()
 	{
 		if (this.Row < 0)
@@ -800,7 +800,7 @@ public class PauseScreenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A83 RID: 6787 RVA: 0x0011C71C File Offset: 0x0011A91C
+	// Token: 0x06001A83 RID: 6787 RVA: 0x0011C6E8 File Offset: 0x0011A8E8
 	private void CheckIfSavePossible()
 	{
 		this.PhoneIcons[9].color = new Color(1f, 1f, 1f, 1f);
@@ -825,7 +825,7 @@ public class PauseScreenScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A84 RID: 6788 RVA: 0x0011C8DC File Offset: 0x0011AADC
+	// Token: 0x06001A84 RID: 6788 RVA: 0x0011C8A8 File Offset: 0x0011AAA8
 	public void UpdateSubtitleSize()
 	{
 		if (!OptionGlobals.SubtitleSize)
@@ -838,7 +838,7 @@ public class PauseScreenScript : MonoBehaviour
 		this.SubtitlePanel.localScale = new Vector3(0.00133333f, 0.00133333f, 0.00133333f);
 	}
 
-	// Token: 0x06001A85 RID: 6789 RVA: 0x0011C970 File Offset: 0x0011AB70
+	// Token: 0x06001A85 RID: 6789 RVA: 0x0011C93C File Offset: 0x0011AB3C
 	public void BlackenAllText()
 	{
 		foreach (UILabel uilabel in base.GetComponentsInChildren<UILabel>())

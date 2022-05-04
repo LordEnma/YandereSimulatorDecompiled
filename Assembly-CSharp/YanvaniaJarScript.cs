@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004E6 RID: 1254
 public class YanvaniaJarScript : MonoBehaviour
 {
-	// Token: 0x060020E1 RID: 8417 RVA: 0x001E5A28 File Offset: 0x001E3C28
+	// Token: 0x060020E2 RID: 8418 RVA: 0x001E5B24 File Offset: 0x001E3D24
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 19 && !this.Destroyed)

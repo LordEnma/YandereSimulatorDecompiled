@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000265 RID: 613
 public class CraftableItemScript : MonoBehaviour
 {
-	// Token: 0x060012FF RID: 4863 RVA: 0x000A87D4 File Offset: 0x000A69D4
+	// Token: 0x060012FF RID: 4863 RVA: 0x000A87A0 File Offset: 0x000A69A0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

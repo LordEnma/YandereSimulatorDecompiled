@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200048D RID: 1165
 public class TrashCanScript : MonoBehaviour
 {
-	// Token: 0x06001F32 RID: 7986 RVA: 0x001B9464 File Offset: 0x001B7664
+	// Token: 0x06001F33 RID: 7987 RVA: 0x001B9560 File Offset: 0x001B7760
 	private void Update()
 	{
 		if (!this.Occupied)
@@ -125,7 +125,7 @@ public class TrashCanScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F33 RID: 7987 RVA: 0x001B9A30 File Offset: 0x001B7C30
+	// Token: 0x06001F34 RID: 7988 RVA: 0x001B9B2C File Offset: 0x001B7D2C
 	public void UpdatePrompt()
 	{
 		if (this.Occupied)
@@ -159,7 +159,7 @@ public class TrashCanScript : MonoBehaviour
 		this.Prompt.HideButton[0] = true;
 	}
 
-	// Token: 0x06001F34 RID: 7988 RVA: 0x001B9B5C File Offset: 0x001B7D5C
+	// Token: 0x06001F35 RID: 7989 RVA: 0x001B9C58 File Offset: 0x001B7E58
 	public void RemoveContents()
 	{
 		Debug.Log("The object that was in this container has been removed.");
@@ -177,7 +177,7 @@ public class TrashCanScript : MonoBehaviour
 		this.UpdatePrompt();
 	}
 
-	// Token: 0x06001F35 RID: 7989 RVA: 0x001B9C0C File Offset: 0x001B7E0C
+	// Token: 0x06001F36 RID: 7990 RVA: 0x001B9D08 File Offset: 0x001B7F08
 	public void StashItem()
 	{
 		if (this.Yandere.PickUp != null)

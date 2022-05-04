@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200045D RID: 1117
 public class StudentPortraitScript : MonoBehaviour
 {
-	// Token: 0x06001E03 RID: 7683 RVA: 0x001710AF File Offset: 0x0016F2AF
+	// Token: 0x06001E04 RID: 7684 RVA: 0x001711CF File Offset: 0x0016F3CF
 	private void Start()
 	{
 		this.DeathShadow.SetActive(false);

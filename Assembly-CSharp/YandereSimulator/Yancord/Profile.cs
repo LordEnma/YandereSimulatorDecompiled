@@ -7,7 +7,7 @@ namespace YandereSimulator.Yancord
 	[CreateAssetMenu(fileName = "ChatProfile", menuName = "Yancord/Profile", order = 1)]
 	public class Profile : ScriptableObject
 	{
-		// Token: 0x060021B3 RID: 8627 RVA: 0x001F085C File Offset: 0x001EEA5C
+		// Token: 0x060021B4 RID: 8628 RVA: 0x001F0958 File Offset: 0x001EEB58
 		public string GetTag(bool WithHashtag)
 		{
 			string text = this.Tag;

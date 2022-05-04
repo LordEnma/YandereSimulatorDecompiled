@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004F2 RID: 1266
 public class YanvaniaZombieScript : MonoBehaviour
 {
-	// Token: 0x0600210F RID: 8463 RVA: 0x001E9E2C File Offset: 0x001E802C
+	// Token: 0x06002110 RID: 8464 RVA: 0x001E9F28 File Offset: 0x001E8128
 	private void Start()
 	{
 		base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, (this.Yanmont.transform.position.x > base.transform.position.x) ? 90f : -90f, base.transform.eulerAngles.z);
@@ -18,7 +18,7 @@ public class YanvaniaZombieScript : MonoBehaviour
 		this.MyCollider.enabled = false;
 	}
 
-	// Token: 0x06002110 RID: 8464 RVA: 0x001E9F54 File Offset: 0x001E8154
+	// Token: 0x06002111 RID: 8465 RVA: 0x001EA050 File Offset: 0x001E8250
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -118,7 +118,7 @@ public class YanvaniaZombieScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002111 RID: 8465 RVA: 0x001EA424 File Offset: 0x001E8624
+	// Token: 0x06002112 RID: 8466 RVA: 0x001EA520 File Offset: 0x001E8720
 	private void SinkNow()
 	{
 		Animation component = this.Character.GetComponent<Animation>();
@@ -131,7 +131,7 @@ public class YanvaniaZombieScript : MonoBehaviour
 		this.Sink = true;
 	}
 
-	// Token: 0x06002112 RID: 8466 RVA: 0x001EA4C0 File Offset: 0x001E86C0
+	// Token: 0x06002113 RID: 8467 RVA: 0x001EA5BC File Offset: 0x001E87BC
 	private void OnTriggerEnter(Collider other)
 	{
 		if (!this.Dying)

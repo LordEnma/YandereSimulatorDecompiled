@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000290 RID: 656
 public class DramaticPanUpScript : MonoBehaviour
 {
-	// Token: 0x060013CB RID: 5067 RVA: 0x000BBB60 File Offset: 0x000B9D60
+	// Token: 0x060013CB RID: 5067 RVA: 0x000BBB2C File Offset: 0x000B9D2C
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))

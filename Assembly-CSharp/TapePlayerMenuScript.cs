@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200046D RID: 1133
 public class TapePlayerMenuScript : MonoBehaviour
 {
-	// Token: 0x06001EBC RID: 7868 RVA: 0x001B0EC4 File Offset: 0x001AF0C4
+	// Token: 0x06001EBD RID: 7869 RVA: 0x001B0FC0 File Offset: 0x001AF1C0
 	private void Start()
 	{
 		this.List.transform.localPosition = new Vector3(-955f, this.List.transform.localPosition.y, this.List.transform.localPosition.z);
@@ -13,7 +13,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 		this.TapePlayerCamera.position = new Vector3(-26.15f, this.TapePlayerCamera.position.y, 5.35f);
 	}
 
-	// Token: 0x06001EBD RID: 7869 RVA: 0x001B0F84 File Offset: 0x001AF184
+	// Token: 0x06001EBE RID: 7870 RVA: 0x001B1080 File Offset: 0x001AF280
 	private void Update()
 	{
 		float t = Time.unscaledDeltaTime * 10f;
@@ -577,7 +577,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 		this.List.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001EBE RID: 7870 RVA: 0x001B25DC File Offset: 0x001B07DC
+	// Token: 0x06001EBF RID: 7871 RVA: 0x001B26D8 File Offset: 0x001B08D8
 	public void UpdateLabels()
 	{
 		int i = 0;
@@ -629,7 +629,7 @@ public class TapePlayerMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EBF RID: 7871 RVA: 0x001B2778 File Offset: 0x001B0978
+	// Token: 0x06001EC0 RID: 7872 RVA: 0x001B2874 File Offset: 0x001B0A74
 	public void CheckSelection()
 	{
 		if (this.Category == 1)

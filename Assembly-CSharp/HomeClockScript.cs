@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000319 RID: 793
 public class HomeClockScript : MonoBehaviour
 {
-	// Token: 0x06001882 RID: 6274 RVA: 0x000EDBCC File Offset: 0x000EBDCC
+	// Token: 0x06001882 RID: 6274 RVA: 0x000EDB98 File Offset: 0x000EBD98
 	private void Start()
 	{
 		this.DayLabel.text = this.GetWeekdayText(DateGlobals.Weekday);
@@ -20,7 +20,7 @@ public class HomeClockScript : MonoBehaviour
 		this.UpdateMoneyLabel();
 	}
 
-	// Token: 0x06001883 RID: 6275 RVA: 0x000EDC2C File Offset: 0x000EBE2C
+	// Token: 0x06001883 RID: 6275 RVA: 0x000EDBF8 File Offset: 0x000EBDF8
 	private void Update()
 	{
 		if (this.ShakeMoney)
@@ -37,7 +37,7 @@ public class HomeClockScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001884 RID: 6276 RVA: 0x000EDD44 File Offset: 0x000EBF44
+	// Token: 0x06001884 RID: 6276 RVA: 0x000EDD10 File Offset: 0x000EBF10
 	private string GetWeekdayText(DayOfWeek weekday)
 	{
 		if (weekday == DayOfWeek.Sunday)
@@ -67,13 +67,13 @@ public class HomeClockScript : MonoBehaviour
 		return "SATURDAY";
 	}
 
-	// Token: 0x06001885 RID: 6277 RVA: 0x000EDD94 File Offset: 0x000EBF94
+	// Token: 0x06001885 RID: 6277 RVA: 0x000EDD60 File Offset: 0x000EBF60
 	public void UpdateMoneyLabel()
 	{
 		this.MoneyLabel.text = "$" + PlayerGlobals.Money.ToString("F2", NumberFormatInfo.InvariantInfo);
 	}
 
-	// Token: 0x06001886 RID: 6278 RVA: 0x000EDDD0 File Offset: 0x000EBFD0
+	// Token: 0x06001886 RID: 6278 RVA: 0x000EDD9C File Offset: 0x000EBF9C
 	public void MoneyFail()
 	{
 		if (this.Origin != Vector3.zero)

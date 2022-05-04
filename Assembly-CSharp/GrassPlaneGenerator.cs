@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 // Token: 0x020004FA RID: 1274
 public class GrassPlaneGenerator : MonoBehaviour
 {
-	// Token: 0x0600212B RID: 8491 RVA: 0x001EC028 File Offset: 0x001EA228
+	// Token: 0x0600212C RID: 8492 RVA: 0x001EC124 File Offset: 0x001EA324
 	private void OnDrawGizmosSelected()
 	{
 		this.quadSize = Mathf.Clamp(this.quadSize, 0.1f, 10f);
@@ -30,7 +30,7 @@ public class GrassPlaneGenerator : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600212C RID: 8492 RVA: 0x001EC198 File Offset: 0x001EA398
+	// Token: 0x0600212D RID: 8493 RVA: 0x001EC294 File Offset: 0x001EA494
 	public void Bake()
 	{
 		List<Vector3> list = new List<Vector3>();

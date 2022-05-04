@@ -6,32 +6,32 @@ namespace MaidDereMinigame.Malee
 	// Token: 0x020005C0 RID: 1472
 	public class ReorderableAttribute : PropertyAttribute
 	{
-		// Token: 0x0600250B RID: 9483 RVA: 0x00202F79 File Offset: 0x00201179
+		// Token: 0x0600250C RID: 9484 RVA: 0x00203075 File Offset: 0x00201275
 		public ReorderableAttribute() : this(null)
 		{
 		}
 
-		// Token: 0x0600250C RID: 9484 RVA: 0x00202F82 File Offset: 0x00201182
+		// Token: 0x0600250D RID: 9485 RVA: 0x0020307E File Offset: 0x0020127E
 		public ReorderableAttribute(string elementNameProperty) : this(true, true, true, elementNameProperty, null, null)
 		{
 		}
 
-		// Token: 0x0600250D RID: 9485 RVA: 0x00202F90 File Offset: 0x00201190
+		// Token: 0x0600250E RID: 9486 RVA: 0x0020308C File Offset: 0x0020128C
 		public ReorderableAttribute(string elementNameProperty, string elementIconPath) : this(true, true, true, elementNameProperty, null, elementIconPath)
 		{
 		}
 
-		// Token: 0x0600250E RID: 9486 RVA: 0x00202F9E File Offset: 0x0020119E
+		// Token: 0x0600250F RID: 9487 RVA: 0x0020309A File Offset: 0x0020129A
 		public ReorderableAttribute(string elementNameProperty, string elementNameOverride, string elementIconPath) : this(true, true, true, elementNameProperty, elementNameOverride, elementIconPath)
 		{
 		}
 
-		// Token: 0x0600250F RID: 9487 RVA: 0x00202FAC File Offset: 0x002011AC
+		// Token: 0x06002510 RID: 9488 RVA: 0x002030A8 File Offset: 0x002012A8
 		public ReorderableAttribute(bool add, bool remove, bool draggable, string elementNameProperty = null, string elementIconPath = null) : this(add, remove, draggable, elementNameProperty, null, elementIconPath)
 		{
 		}
 
-		// Token: 0x06002510 RID: 9488 RVA: 0x00202FBC File Offset: 0x002011BC
+		// Token: 0x06002511 RID: 9489 RVA: 0x002030B8 File Offset: 0x002012B8
 		public ReorderableAttribute(bool add, bool remove, bool draggable, string elementNameProperty = null, string elementNameOverride = null, string elementIconPath = null)
 		{
 			this.add = add;

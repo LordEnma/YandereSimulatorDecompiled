@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200042B RID: 1067
 public class ShoulderCameraScript : MonoBehaviour
 {
-	// Token: 0x06001CC4 RID: 7364 RVA: 0x001524B0 File Offset: 0x001506B0
+	// Token: 0x06001CC4 RID: 7364 RVA: 0x0015247C File Offset: 0x0015067C
 	private void LateUpdate()
 	{
 		if (!this.PauseScreen.Show)
@@ -539,7 +539,7 @@ public class ShoulderCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CC5 RID: 7365 RVA: 0x00154452 File Offset: 0x00152652
+	// Token: 0x06001CC5 RID: 7365 RVA: 0x0015441E File Offset: 0x0015261E
 	public void YandereNo()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -547,7 +547,7 @@ public class ShoulderCameraScript : MonoBehaviour
 		component.Play();
 	}
 
-	// Token: 0x06001CC6 RID: 7366 RVA: 0x0015446C File Offset: 0x0015266C
+	// Token: 0x06001CC6 RID: 7366 RVA: 0x00154438 File Offset: 0x00152638
 	public void GameOver()
 	{
 		this.NoticedPOV.parent = this.Yandere.transform;

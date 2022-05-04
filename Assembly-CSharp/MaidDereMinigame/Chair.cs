@@ -7,7 +7,7 @@ namespace MaidDereMinigame
 	public class Chair : MonoBehaviour
 	{
 		// Token: 0x17000527 RID: 1319
-		// (get) Token: 0x0600247F RID: 9343 RVA: 0x00200D08 File Offset: 0x001FEF08
+		// (get) Token: 0x06002480 RID: 9344 RVA: 0x00200E04 File Offset: 0x001FF004
 		public static Chairs AllChairs
 		{
 			get
@@ -25,7 +25,7 @@ namespace MaidDereMinigame
 		}
 
 		// Token: 0x17000528 RID: 1320
-		// (get) Token: 0x06002480 RID: 9344 RVA: 0x00200D5C File Offset: 0x001FEF5C
+		// (get) Token: 0x06002481 RID: 9345 RVA: 0x00200E58 File Offset: 0x001FF058
 		public static Chair RandomChair
 		{
 			get
@@ -48,7 +48,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002481 RID: 9345 RVA: 0x00200DE4 File Offset: 0x001FEFE4
+		// Token: 0x06002482 RID: 9346 RVA: 0x00200EE0 File Offset: 0x001FF0E0
 		private void OnDestroy()
 		{
 			Chair.chairs = null;

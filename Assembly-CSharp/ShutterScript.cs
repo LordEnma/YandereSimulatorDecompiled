@@ -5,7 +5,7 @@ using UnityEngine;
 public class ShutterScript : MonoBehaviour
 {
 	// Token: 0x170004A5 RID: 1189
-	// (get) Token: 0x06001CC8 RID: 7368 RVA: 0x001545D2 File Offset: 0x001527D2
+	// (get) Token: 0x06001CC8 RID: 7368 RVA: 0x0015459E File Offset: 0x0015279E
 	public int OnlyPhotography
 	{
 		get
@@ -15,7 +15,7 @@ public class ShutterScript : MonoBehaviour
 	}
 
 	// Token: 0x170004A6 RID: 1190
-	// (get) Token: 0x06001CC9 RID: 7369 RVA: 0x001545D9 File Offset: 0x001527D9
+	// (get) Token: 0x06001CC9 RID: 7369 RVA: 0x001545A5 File Offset: 0x001527A5
 	public int OnlyCharacters
 	{
 		get
@@ -25,7 +25,7 @@ public class ShutterScript : MonoBehaviour
 	}
 
 	// Token: 0x170004A7 RID: 1191
-	// (get) Token: 0x06001CCA RID: 7370 RVA: 0x001545E0 File Offset: 0x001527E0
+	// (get) Token: 0x06001CCA RID: 7370 RVA: 0x001545AC File Offset: 0x001527AC
 	public int OnlyRagdolls
 	{
 		get
@@ -35,7 +35,7 @@ public class ShutterScript : MonoBehaviour
 	}
 
 	// Token: 0x170004A8 RID: 1192
-	// (get) Token: 0x06001CCB RID: 7371 RVA: 0x001545E7 File Offset: 0x001527E7
+	// (get) Token: 0x06001CCB RID: 7371 RVA: 0x001545B3 File Offset: 0x001527B3
 	public int OnlyBlood
 	{
 		get
@@ -44,7 +44,7 @@ public class ShutterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CCC RID: 7372 RVA: 0x001545F0 File Offset: 0x001527F0
+	// Token: 0x06001CCC RID: 7372 RVA: 0x001545BC File Offset: 0x001527BC
 	private void Start()
 	{
 		if (MissionModeGlobals.MissionMode)
@@ -58,7 +58,7 @@ public class ShutterScript : MonoBehaviour
 		this.OriginalPosition = this.PhotoIcons.transform.localPosition;
 	}
 
-	// Token: 0x06001CCD RID: 7373 RVA: 0x00154694 File Offset: 0x00152894
+	// Token: 0x06001CCD RID: 7373 RVA: 0x00154660 File Offset: 0x00152860
 	private void Update()
 	{
 		bool selfie = this.Yandere.Selfie;
@@ -452,7 +452,7 @@ public class ShutterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CCE RID: 7374 RVA: 0x00155718 File Offset: 0x00153918
+	// Token: 0x06001CCE RID: 7374 RVA: 0x001556E4 File Offset: 0x001538E4
 	public void Snap()
 	{
 		this.ErrorWindow.transform.localScale = Vector3.zero;
@@ -474,7 +474,7 @@ public class ShutterScript : MonoBehaviour
 		this.Frame = 0;
 	}
 
-	// Token: 0x06001CCF RID: 7375 RVA: 0x00155844 File Offset: 0x00153A44
+	// Token: 0x06001CCF RID: 7375 RVA: 0x00155810 File Offset: 0x00153A10
 	public void CheckPhoto()
 	{
 		Debug.Log("We are now checking what Yandere-chan took a picture of.");
@@ -668,7 +668,7 @@ public class ShutterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CD0 RID: 7376 RVA: 0x001560E4 File Offset: 0x001542E4
+	// Token: 0x06001CD0 RID: 7376 RVA: 0x001560B0 File Offset: 0x001542B0
 	public void SpawnMessage()
 	{
 		Debug.Log("Spawning a message.");
@@ -850,7 +850,7 @@ public class ShutterScript : MonoBehaviour
 		this.NewMessage.GetComponent<TextMessageScript>().Label.text = text;
 	}
 
-	// Token: 0x06001CD1 RID: 7377 RVA: 0x00156558 File Offset: 0x00154758
+	// Token: 0x06001CD1 RID: 7377 RVA: 0x00156524 File Offset: 0x00154724
 	public void ResumeGameplay()
 	{
 		this.ErrorWindow.transform.localScale = Vector3.zero;
@@ -916,7 +916,7 @@ public class ShutterScript : MonoBehaviour
 		this.Yandere.RPGCamera.mouseSmoothingFactor = 0f;
 	}
 
-	// Token: 0x06001CD2 RID: 7378 RVA: 0x00156800 File Offset: 0x00154A00
+	// Token: 0x06001CD2 RID: 7378 RVA: 0x001567CC File Offset: 0x001549CC
 	public void Penalize()
 	{
 		this.PenaltyTimer += Time.deltaTime;

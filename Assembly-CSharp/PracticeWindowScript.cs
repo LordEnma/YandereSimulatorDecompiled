@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 // Token: 0x020003BF RID: 959
 public class PracticeWindowScript : MonoBehaviour
 {
-	// Token: 0x06001B1F RID: 6943 RVA: 0x0012D042 File Offset: 0x0012B242
+	// Token: 0x06001B1F RID: 6943 RVA: 0x0012D00E File Offset: 0x0012B20E
 	private void Start()
 	{
 		this.Window.SetActive(false);
 	}
 
-	// Token: 0x06001B20 RID: 6944 RVA: 0x0012D050 File Offset: 0x0012B250
+	// Token: 0x06001B20 RID: 6944 RVA: 0x0012D01C File Offset: 0x0012B21C
 	private void Update()
 	{
 		if (this.Window.activeInHierarchy)
@@ -232,7 +232,7 @@ public class PracticeWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B21 RID: 6945 RVA: 0x0012DB20 File Offset: 0x0012BD20
+	// Token: 0x06001B21 RID: 6945 RVA: 0x0012DAEC File Offset: 0x0012BCEC
 	public void Finish()
 	{
 		if (this.Selected == 4)
@@ -253,7 +253,7 @@ public class PracticeWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B22 RID: 6946 RVA: 0x0012DBF0 File Offset: 0x0012BDF0
+	// Token: 0x06001B22 RID: 6946 RVA: 0x0012DBBC File Offset: 0x0012BDBC
 	public void UpdateWindow()
 	{
 		this.PromptBar.ClearButtons();
@@ -347,7 +347,7 @@ public class PracticeWindowScript : MonoBehaviour
 		this.UpdateHighlight();
 	}
 
-	// Token: 0x06001B23 RID: 6947 RVA: 0x0012E2B8 File Offset: 0x0012C4B8
+	// Token: 0x06001B23 RID: 6947 RVA: 0x0012E284 File Offset: 0x0012C484
 	public void UpdateHighlight()
 	{
 		if (this.Selected < 1)

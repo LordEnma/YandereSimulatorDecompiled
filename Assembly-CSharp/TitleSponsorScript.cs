@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000482 RID: 1154
 public class TitleSponsorScript : MonoBehaviour
 {
-	// Token: 0x06001F0B RID: 7947 RVA: 0x001B7721 File Offset: 0x001B5921
+	// Token: 0x06001F0C RID: 7948 RVA: 0x001B781D File Offset: 0x001B5A1D
 	private void Start()
 	{
 		this.UpdateHighlight();
@@ -14,19 +14,19 @@ public class TitleSponsorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F0C RID: 7948 RVA: 0x001B7736 File Offset: 0x001B5936
+	// Token: 0x06001F0D RID: 7949 RVA: 0x001B7832 File Offset: 0x001B5A32
 	public int GetSponsorIndex()
 	{
 		return this.Column + this.Row * this.Columns;
 	}
 
-	// Token: 0x06001F0D RID: 7949 RVA: 0x001B774C File Offset: 0x001B594C
+	// Token: 0x06001F0E RID: 7950 RVA: 0x001B7848 File Offset: 0x001B5A48
 	public bool SponsorHasWebsite(int index)
 	{
 		return !string.IsNullOrEmpty(this.SponsorURLs[index]);
 	}
 
-	// Token: 0x06001F0E RID: 7950 RVA: 0x001B7760 File Offset: 0x001B5960
+	// Token: 0x06001F0F RID: 7951 RVA: 0x001B785C File Offset: 0x001B5A5C
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -79,14 +79,14 @@ public class TitleSponsorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F0F RID: 7951 RVA: 0x001B7968 File Offset: 0x001B5B68
+	// Token: 0x06001F10 RID: 7952 RVA: 0x001B7A64 File Offset: 0x001B5C64
 	private void UpdateHighlight()
 	{
 		this.Highlight.localPosition = new Vector3(-384f + (float)this.Column * 256f, 128f - (float)this.Row * 256f, this.Highlight.localPosition.z);
 		this.SponsorName.text = this.Sponsors[this.GetSponsorIndex()];
 	}
 
-	// Token: 0x06001F10 RID: 7952 RVA: 0x001B79D4 File Offset: 0x001B5BD4
+	// Token: 0x06001F11 RID: 7953 RVA: 0x001B7AD0 File Offset: 0x001B5CD0
 	private void TurnLoveSick()
 	{
 		this.BlackSprite.color = Color.black;

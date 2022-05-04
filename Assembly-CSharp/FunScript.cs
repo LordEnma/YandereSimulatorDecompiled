@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020002D9 RID: 729
 public class FunScript : MonoBehaviour
 {
-	// Token: 0x060014D8 RID: 5336 RVA: 0x000CD5CC File Offset: 0x000CB7CC
+	// Token: 0x060014D8 RID: 5336 RVA: 0x000CD598 File Offset: 0x000CB798
 	private void Start()
 	{
 		if (PlayerPrefs.GetInt("DebugNumber") > 0)
@@ -106,7 +106,7 @@ public class FunScript : MonoBehaviour
 		this.Girl.color = new Color(this.R, this.G, this.B, 0f);
 	}
 
-	// Token: 0x060014D9 RID: 5337 RVA: 0x000CD95C File Offset: 0x000CBB5C
+	// Token: 0x060014D9 RID: 5337 RVA: 0x000CD928 File Offset: 0x000CBB28
 	private void Update()
 	{
 		if (Input.GetKeyDown(",") && PlayerPrefs.GetInt("DebugNumber") > 0)

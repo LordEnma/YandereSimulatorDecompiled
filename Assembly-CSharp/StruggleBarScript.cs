@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000457 RID: 1111
 public class StruggleBarScript : MonoBehaviour
 {
-	// Token: 0x06001D6F RID: 7535 RVA: 0x001625FD File Offset: 0x001607FD
+	// Token: 0x06001D6F RID: 7535 RVA: 0x001625C9 File Offset: 0x001607C9
 	private void Start()
 	{
 		base.transform.localScale = Vector3.zero;
 		this.ChooseButton();
 	}
 
-	// Token: 0x06001D70 RID: 7536 RVA: 0x00162618 File Offset: 0x00160818
+	// Token: 0x06001D70 RID: 7536 RVA: 0x001625E4 File Offset: 0x001607E4
 	private void Update()
 	{
 		if (this.Struggling)
@@ -107,7 +107,7 @@ public class StruggleBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D71 RID: 7537 RVA: 0x00162A7C File Offset: 0x00160C7C
+	// Token: 0x06001D71 RID: 7537 RVA: 0x00162A48 File Offset: 0x00160C48
 	public void HeroWins()
 	{
 		if (this.Yandere.enabled && this.Yandere.Armed)
@@ -124,7 +124,7 @@ public class StruggleBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D72 RID: 7538 RVA: 0x00162B00 File Offset: 0x00160D00
+	// Token: 0x06001D72 RID: 7538 RVA: 0x00162ACC File Offset: 0x00160CCC
 	private void ChooseButton()
 	{
 		int buttonID = this.ButtonID;

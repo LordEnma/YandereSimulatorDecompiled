@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000488 RID: 1160
 public class TornadoScript : MonoBehaviour
 {
-	// Token: 0x06001F23 RID: 7971 RVA: 0x001B8A00 File Offset: 0x001B6C00
+	// Token: 0x06001F24 RID: 7972 RVA: 0x001B8AFC File Offset: 0x001B6CFC
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -15,7 +15,7 @@ public class TornadoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F24 RID: 7972 RVA: 0x001B8A80 File Offset: 0x001B6C80
+	// Token: 0x06001F25 RID: 7973 RVA: 0x001B8B7C File Offset: 0x001B6D7C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000362 RID: 866
 public class MatchTriggerScript : MonoBehaviour
 {
-	// Token: 0x060019B0 RID: 6576 RVA: 0x00106810 File Offset: 0x00104A10
+	// Token: 0x060019B0 RID: 6576 RVA: 0x001067DC File Offset: 0x001049DC
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)

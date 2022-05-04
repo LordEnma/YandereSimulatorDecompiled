@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [Serializable]
 public class MissionModeSaveData
 {
-	// Token: 0x06001C3A RID: 7226 RVA: 0x00149BFC File Offset: 0x00147DFC
+	// Token: 0x06001C3A RID: 7226 RVA: 0x00149BC8 File Offset: 0x00147DC8
 	public static MissionModeSaveData ReadFromGlobals()
 	{
 		MissionModeSaveData missionModeSaveData = new MissionModeSaveData();
@@ -24,7 +24,7 @@ public class MissionModeSaveData
 		return missionModeSaveData;
 	}
 
-	// Token: 0x06001C3B RID: 7227 RVA: 0x00149C94 File Offset: 0x00147E94
+	// Token: 0x06001C3B RID: 7227 RVA: 0x00149C60 File Offset: 0x00147E60
 	public static void WriteToGlobals(MissionModeSaveData data)
 	{
 		foreach (KeyValuePair<int, int> keyValuePair in data.missionCondition)

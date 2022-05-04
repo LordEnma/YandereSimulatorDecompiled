@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004BA RID: 1210
 public class VendingMachineScript : MonoBehaviour
 {
-	// Token: 0x06001FC2 RID: 8130 RVA: 0x001BFF34 File Offset: 0x001BE134
+	// Token: 0x06001FC3 RID: 8131 RVA: 0x001C0030 File Offset: 0x001BE230
 	private void Start()
 	{
 		if (this.SnackMachine)
@@ -18,7 +18,7 @@ public class VendingMachineScript : MonoBehaviour
 		this.Prompt.Label[0].text = "     " + this.Prompt.Text[0];
 	}
 
-	// Token: 0x06001FC3 RID: 8131 RVA: 0x001BFFC4 File Offset: 0x001BE1C4
+	// Token: 0x06001FC4 RID: 8132 RVA: 0x001C00C0 File Offset: 0x001BE2C0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

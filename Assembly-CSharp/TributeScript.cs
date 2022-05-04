@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200048F RID: 1167
 public class TributeScript : MonoBehaviour
 {
-	// Token: 0x06001F3A RID: 7994 RVA: 0x001B9E4F File Offset: 0x001B804F
+	// Token: 0x06001F3B RID: 7995 RVA: 0x001B9F4B File Offset: 0x001B814B
 	private void Start()
 	{
 		if (GameGlobals.LoveSick || MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.EightiesTutorial || DateGlobals.Week > 10)
@@ -15,7 +15,7 @@ public class TributeScript : MonoBehaviour
 		this.Rainey.SetActive(false);
 	}
 
-	// Token: 0x06001F3B RID: 7995 RVA: 0x001B9E90 File Offset: 0x001B8090
+	// Token: 0x06001F3C RID: 7996 RVA: 0x001B9F8C File Offset: 0x001B818C
 	private void Update()
 	{
 		if (this.RiggedAttacher.gameObject.activeInHierarchy)

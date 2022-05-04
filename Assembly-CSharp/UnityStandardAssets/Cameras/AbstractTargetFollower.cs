@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Cameras
 	// Token: 0x0200054D RID: 1357
 	public abstract class AbstractTargetFollower : MonoBehaviour
 	{
-		// Token: 0x060022BD RID: 8893 RVA: 0x001F51AC File Offset: 0x001F33AC
+		// Token: 0x060022BE RID: 8894 RVA: 0x001F52A8 File Offset: 0x001F34A8
 		protected virtual void Start()
 		{
 			if (this.m_AutoTargetPlayer)
@@ -20,7 +20,7 @@ namespace UnityStandardAssets.Cameras
 			this.targetRigidbody = this.m_Target.GetComponent<Rigidbody>();
 		}
 
-		// Token: 0x060022BE RID: 8894 RVA: 0x001F51DC File Offset: 0x001F33DC
+		// Token: 0x060022BF RID: 8895 RVA: 0x001F52D8 File Offset: 0x001F34D8
 		private void FixedUpdate()
 		{
 			if (this.m_AutoTargetPlayer && (this.m_Target == null || !this.m_Target.gameObject.activeSelf))
@@ -33,7 +33,7 @@ namespace UnityStandardAssets.Cameras
 			}
 		}
 
-		// Token: 0x060022BF RID: 8895 RVA: 0x001F522C File Offset: 0x001F342C
+		// Token: 0x060022C0 RID: 8896 RVA: 0x001F5328 File Offset: 0x001F3528
 		private void LateUpdate()
 		{
 			if (this.m_AutoTargetPlayer && (this.m_Target == null || !this.m_Target.gameObject.activeSelf))
@@ -46,7 +46,7 @@ namespace UnityStandardAssets.Cameras
 			}
 		}
 
-		// Token: 0x060022C0 RID: 8896 RVA: 0x001F527C File Offset: 0x001F347C
+		// Token: 0x060022C1 RID: 8897 RVA: 0x001F5378 File Offset: 0x001F3578
 		public void ManualUpdate()
 		{
 			if (this.m_AutoTargetPlayer && (this.m_Target == null || !this.m_Target.gameObject.activeSelf))
@@ -59,10 +59,10 @@ namespace UnityStandardAssets.Cameras
 			}
 		}
 
-		// Token: 0x060022C1 RID: 8897
+		// Token: 0x060022C2 RID: 8898
 		protected abstract void FollowTarget(float deltaTime);
 
-		// Token: 0x060022C2 RID: 8898 RVA: 0x001F52CC File Offset: 0x001F34CC
+		// Token: 0x060022C3 RID: 8899 RVA: 0x001F53C8 File Offset: 0x001F35C8
 		public void FindAndTargetPlayer()
 		{
 			GameObject gameObject = GameObject.FindGameObjectWithTag("Player");
@@ -72,14 +72,14 @@ namespace UnityStandardAssets.Cameras
 			}
 		}
 
-		// Token: 0x060022C3 RID: 8899 RVA: 0x001F52F8 File Offset: 0x001F34F8
+		// Token: 0x060022C4 RID: 8900 RVA: 0x001F53F4 File Offset: 0x001F35F4
 		public virtual void SetTarget(Transform newTransform)
 		{
 			this.m_Target = newTransform;
 		}
 
 		// Token: 0x170004EA RID: 1258
-		// (get) Token: 0x060022C4 RID: 8900 RVA: 0x001F5301 File Offset: 0x001F3501
+		// (get) Token: 0x060022C5 RID: 8901 RVA: 0x001F53FD File Offset: 0x001F35FD
 		public Transform Target
 		{
 			get

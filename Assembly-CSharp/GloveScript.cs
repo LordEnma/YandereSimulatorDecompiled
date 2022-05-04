@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000306 RID: 774
 public class GloveScript : MonoBehaviour
 {
-	// Token: 0x0600183C RID: 6204 RVA: 0x000E61CC File Offset: 0x000E43CC
+	// Token: 0x0600183C RID: 6204 RVA: 0x000E6198 File Offset: 0x000E4398
 	private void Start()
 	{
 		Physics.IgnoreCollision(GameObject.Find("YandereChan").GetComponent<YandereScript>().GetComponent<Collider>(), this.MyCollider);
@@ -14,7 +14,7 @@ public class GloveScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600183D RID: 6205 RVA: 0x000E6230 File Offset: 0x000E4430
+	// Token: 0x0600183D RID: 6205 RVA: 0x000E61FC File Offset: 0x000E43FC
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

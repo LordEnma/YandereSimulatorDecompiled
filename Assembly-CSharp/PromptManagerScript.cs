@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003C3 RID: 963
 public class PromptManagerScript : MonoBehaviour
 {
-	// Token: 0x06001B35 RID: 6965 RVA: 0x0012F47C File Offset: 0x0012D67C
+	// Token: 0x06001B35 RID: 6965 RVA: 0x0012F448 File Offset: 0x0012D648
 	private void Update()
 	{
 		if (this.Yandere.transform.position.z < -38f)

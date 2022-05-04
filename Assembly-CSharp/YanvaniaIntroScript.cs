@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004E5 RID: 1253
 public class YanvaniaIntroScript : MonoBehaviour
 {
-	// Token: 0x060020DD RID: 8413 RVA: 0x001E5488 File Offset: 0x001E3688
+	// Token: 0x060020DE RID: 8414 RVA: 0x001E5584 File Offset: 0x001E3784
 	private void Start()
 	{
 		this.BlackRight.gameObject.SetActive(true);
@@ -17,7 +17,7 @@ public class YanvaniaIntroScript : MonoBehaviour
 		this.FinalStage.transform.localPosition = new Vector3(-1300f, this.FinalStage.transform.localPosition.y, this.FinalStage.transform.localPosition.z);
 	}
 
-	// Token: 0x060020DE RID: 8414 RVA: 0x001E5588 File Offset: 0x001E3788
+	// Token: 0x060020DF RID: 8415 RVA: 0x001E5684 File Offset: 0x001E3884
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -62,7 +62,7 @@ public class YanvaniaIntroScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060020DF RID: 8415 RVA: 0x001E59E1 File Offset: 0x001E3BE1
+	// Token: 0x060020E0 RID: 8416 RVA: 0x001E5ADD File Offset: 0x001E3CDD
 	private void Finish()
 	{
 		if (!this.Jukebox.activeInHierarchy)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000332 RID: 818
 public class IdolStageScript : MonoBehaviour
 {
-	// Token: 0x060018E8 RID: 6376 RVA: 0x000F5BDC File Offset: 0x000F3DDC
+	// Token: 0x060018E8 RID: 6376 RVA: 0x000F5BA8 File Offset: 0x000F3DA8
 	private void Update()
 	{
 		for (int i = 1; i < 5; i++)

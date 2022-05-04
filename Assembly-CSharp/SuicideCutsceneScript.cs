@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000467 RID: 1127
 public class SuicideCutsceneScript : MonoBehaviour
 {
-	// Token: 0x06001EA5 RID: 7845 RVA: 0x001A88BC File Offset: 0x001A6ABC
+	// Token: 0x06001EA6 RID: 7846 RVA: 0x001A89C4 File Offset: 0x001A6BC4
 	private void Start()
 	{
 		this.PointLight.color = new Color(0.1f, 0.1f, 0.1f, 1f);
@@ -18,7 +18,7 @@ public class SuicideCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EA6 RID: 7846 RVA: 0x001A8944 File Offset: 0x001A6B44
+	// Token: 0x06001EA7 RID: 7847 RVA: 0x001A8A4C File Offset: 0x001A6C4C
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;

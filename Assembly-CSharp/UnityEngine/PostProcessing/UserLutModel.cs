@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class UserLutModel : PostProcessingModel
 	{
 		// Token: 0x17000512 RID: 1298
-		// (get) Token: 0x060023AF RID: 9135 RVA: 0x001FAFB3 File Offset: 0x001F91B3
-		// (set) Token: 0x060023B0 RID: 9136 RVA: 0x001FAFBB File Offset: 0x001F91BB
+		// (get) Token: 0x060023B0 RID: 9136 RVA: 0x001FB0AF File Offset: 0x001F92AF
+		// (set) Token: 0x060023B1 RID: 9137 RVA: 0x001FB0B7 File Offset: 0x001F92B7
 		public UserLutModel.Settings settings
 		{
 			get
@@ -21,7 +21,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023B1 RID: 9137 RVA: 0x001FAFC4 File Offset: 0x001F91C4
+		// Token: 0x060023B2 RID: 9138 RVA: 0x001FB0C0 File Offset: 0x001F92C0
 		public override void Reset()
 		{
 			this.m_Settings = UserLutModel.Settings.defaultSettings;
@@ -36,7 +36,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x170005A8 RID: 1448
-			// (get) Token: 0x0600279B RID: 10139 RVA: 0x00209AF0 File Offset: 0x00207CF0
+			// (get) Token: 0x0600279C RID: 10140 RVA: 0x00209BEC File Offset: 0x00207DEC
 			public static UserLutModel.Settings defaultSettings
 			{
 				get

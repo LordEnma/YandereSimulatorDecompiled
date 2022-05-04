@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000439 RID: 1081
 public class SnappedYandereScript : MonoBehaviour
 {
-	// Token: 0x06001CF8 RID: 7416 RVA: 0x0015894C File Offset: 0x00156B4C
+	// Token: 0x06001CF8 RID: 7416 RVA: 0x00158918 File Offset: 0x00156B18
 	private void Start()
 	{
 		this.MyAnim[this.AttackAnims[1]].speed = 1.5f;
@@ -15,7 +15,7 @@ public class SnappedYandereScript : MonoBehaviour
 		this.MyAnim[this.AttackAnims[5]].speed = 1.5f;
 	}
 
-	// Token: 0x06001CF9 RID: 7417 RVA: 0x001589EC File Offset: 0x00156BEC
+	// Token: 0x06001CF9 RID: 7417 RVA: 0x001589B8 File Offset: 0x00156BB8
 	private void Update()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
@@ -418,7 +418,7 @@ public class SnappedYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CFA RID: 7418 RVA: 0x0015A134 File Offset: 0x00158334
+	// Token: 0x06001CFA RID: 7418 RVA: 0x0015A100 File Offset: 0x00158300
 	private void UpdateMovement()
 	{
 		this.MyController.Move(Physics.gravity * Time.deltaTime);
@@ -456,20 +456,20 @@ public class SnappedYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CFB RID: 7419 RVA: 0x0015A31C File Offset: 0x0015851C
+	// Token: 0x06001CFB RID: 7419 RVA: 0x0015A2E8 File Offset: 0x001584E8
 	private void MoveTowardsTarget(Vector3 target)
 	{
 		Vector3 a = target - base.transform.position;
 		this.MyController.Move(a * (Time.deltaTime * 10f));
 	}
 
-	// Token: 0x06001CFC RID: 7420 RVA: 0x0015A358 File Offset: 0x00158558
+	// Token: 0x06001CFC RID: 7420 RVA: 0x0015A324 File Offset: 0x00158524
 	private void RotateTowardsTarget(Quaternion target)
 	{
 		base.transform.rotation = Quaternion.Slerp(base.transform.rotation, target, Time.deltaTime * 10f);
 	}
 
-	// Token: 0x06001CFD RID: 7421 RVA: 0x0015A384 File Offset: 0x00158584
+	// Token: 0x06001CFD RID: 7421 RVA: 0x0015A350 File Offset: 0x00158550
 	private void SetGlitches(bool State)
 	{
 		this.GlitchTimer = 0f;
@@ -490,7 +490,7 @@ public class SnappedYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CFE RID: 7422 RVA: 0x0015A448 File Offset: 0x00158648
+	// Token: 0x06001CFE RID: 7422 RVA: 0x0015A414 File Offset: 0x00158614
 	public void ChooseAttack()
 	{
 		this.BloodSpawned = 0;
@@ -535,7 +535,7 @@ public class SnappedYandereScript : MonoBehaviour
 		this.TargetStudent.MyAnim[this.TargetStudent.AttackAnims[this.AttackID]].time = 0f;
 	}
 
-	// Token: 0x06001CFF RID: 7423 RVA: 0x0015A714 File Offset: 0x00158914
+	// Token: 0x06001CFF RID: 7423 RVA: 0x0015A6E0 File Offset: 0x001588E0
 	public void Teleport()
 	{
 		if (!this.Armed)

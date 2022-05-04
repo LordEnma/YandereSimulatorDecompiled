@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002C5 RID: 709
 public class FakeStudentSpawnerScript : MonoBehaviour
 {
-	// Token: 0x0600149B RID: 5275 RVA: 0x000C9B78 File Offset: 0x000C7D78
+	// Token: 0x0600149B RID: 5275 RVA: 0x000C9B44 File Offset: 0x000C7D44
 	public void Spawn()
 	{
 		if (!this.AlreadySpawned)

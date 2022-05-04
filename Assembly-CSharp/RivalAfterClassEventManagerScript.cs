@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003EC RID: 1004
 public class RivalAfterClassEventManagerScript : MonoBehaviour
 {
-	// Token: 0x06001BEF RID: 7151 RVA: 0x00145598 File Offset: 0x00143798
+	// Token: 0x06001BEF RID: 7151 RVA: 0x00145564 File Offset: 0x00143764
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -16,7 +16,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BF0 RID: 7152 RVA: 0x00145600 File Offset: 0x00143800
+	// Token: 0x06001BF0 RID: 7152 RVA: 0x001455CC File Offset: 0x001437CC
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -324,7 +324,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BF1 RID: 7153 RVA: 0x00146768 File Offset: 0x00144968
+	// Token: 0x06001BF1 RID: 7153 RVA: 0x00146734 File Offset: 0x00144934
 	private void EndEvent()
 	{
 		if (this.VoiceClip != null)
@@ -398,7 +398,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 		this.Jukebox.Dip = 1f;
 	}
 
-	// Token: 0x06001BF2 RID: 7154 RVA: 0x00146ABC File Offset: 0x00144CBC
+	// Token: 0x06001BF2 RID: 7154 RVA: 0x00146A88 File Offset: 0x00144C88
 	private void EndSenpai()
 	{
 		if (!this.Senpai.Alarmed)

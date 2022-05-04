@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020004E3 RID: 1251
 public class YanvaniaDoubleFireballScript : MonoBehaviour
 {
-	// Token: 0x060020D3 RID: 8403 RVA: 0x001E4220 File Offset: 0x001E2420
+	// Token: 0x060020D4 RID: 8404 RVA: 0x001E431C File Offset: 0x001E251C
 	private void Start()
 	{
 		UnityEngine.Object.Instantiate<GameObject>(this.LightningEffect, new Vector3(base.transform.position.x, 8f, 0f), Quaternion.identity);
 		this.Direction = ((this.Dracula.position.x > base.transform.position.x) ? -1 : 1);
 	}
 
-	// Token: 0x060020D4 RID: 8404 RVA: 0x001E428C File Offset: 0x001E248C
+	// Token: 0x060020D5 RID: 8405 RVA: 0x001E4388 File Offset: 0x001E2588
 	private void Update()
 	{
 		if (this.Timer > 1f && !this.SpawnedFirst)

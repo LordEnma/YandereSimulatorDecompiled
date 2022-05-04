@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200027F RID: 639
 public class DemonSlashScript : MonoBehaviour
 {
-	// Token: 0x06001385 RID: 4997 RVA: 0x000B42E9 File Offset: 0x000B24E9
+	// Token: 0x06001385 RID: 4997 RVA: 0x000B42B5 File Offset: 0x000B24B5
 	private void Start()
 	{
 		this.MyAudio = base.GetComponent<AudioSource>();
 	}
 
-	// Token: 0x06001386 RID: 4998 RVA: 0x000B42F8 File Offset: 0x000B24F8
+	// Token: 0x06001386 RID: 4998 RVA: 0x000B42C4 File Offset: 0x000B24C4
 	private void Update()
 	{
 		if (this.MyCollider.enabled)
@@ -24,7 +24,7 @@ public class DemonSlashScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001387 RID: 4999 RVA: 0x000B4348 File Offset: 0x000B2548
+	// Token: 0x06001387 RID: 4999 RVA: 0x000B4314 File Offset: 0x000B2514
 	private void OnTriggerEnter(Collider other)
 	{
 		Transform root = other.gameObject.transform.root;

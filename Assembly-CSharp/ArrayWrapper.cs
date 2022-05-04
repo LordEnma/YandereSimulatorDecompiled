@@ -5,13 +5,13 @@ using UnityEngine;
 // Token: 0x02000497 RID: 1175
 public class ArrayWrapper<T> : IEnumerable
 {
-	// Token: 0x06001F5B RID: 8027 RVA: 0x001BF118 File Offset: 0x001BD318
+	// Token: 0x06001F5C RID: 8028 RVA: 0x001BF214 File Offset: 0x001BD414
 	public ArrayWrapper(int size)
 	{
 		this.elements = new T[size];
 	}
 
-	// Token: 0x06001F5C RID: 8028 RVA: 0x001BF12C File Offset: 0x001BD32C
+	// Token: 0x06001F5D RID: 8029 RVA: 0x001BF228 File Offset: 0x001BD428
 	public ArrayWrapper(T[] elements)
 	{
 		this.elements = elements;
@@ -31,7 +31,7 @@ public class ArrayWrapper<T> : IEnumerable
 	}
 
 	// Token: 0x170004B2 RID: 1202
-	// (get) Token: 0x06001F5F RID: 8031 RVA: 0x001BF158 File Offset: 0x001BD358
+	// (get) Token: 0x06001F60 RID: 8032 RVA: 0x001BF254 File Offset: 0x001BD454
 	public int Length
 	{
 		get
@@ -40,13 +40,13 @@ public class ArrayWrapper<T> : IEnumerable
 		}
 	}
 
-	// Token: 0x06001F60 RID: 8032 RVA: 0x001BF162 File Offset: 0x001BD362
+	// Token: 0x06001F61 RID: 8033 RVA: 0x001BF25E File Offset: 0x001BD45E
 	public T[] Get()
 	{
 		return this.elements;
 	}
 
-	// Token: 0x06001F61 RID: 8033 RVA: 0x001BF16A File Offset: 0x001BD36A
+	// Token: 0x06001F62 RID: 8034 RVA: 0x001BF266 File Offset: 0x001BD466
 	public IEnumerator GetEnumerator()
 	{
 		return this.elements.GetEnumerator();

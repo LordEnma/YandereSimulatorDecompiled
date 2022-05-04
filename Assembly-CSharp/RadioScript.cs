@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003CA RID: 970
 public class RadioScript : MonoBehaviour
 {
-	// Token: 0x06001B63 RID: 7011 RVA: 0x00132C3E File Offset: 0x00130E3E
+	// Token: 0x06001B63 RID: 7011 RVA: 0x00132C0A File Offset: 0x00130E0A
 	private void Start()
 	{
 		if (this.Delinquent && StudentGlobals.GetStudentExpelled(76))
@@ -17,7 +17,7 @@ public class RadioScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B64 RID: 7012 RVA: 0x00132C74 File Offset: 0x00130E74
+	// Token: 0x06001B64 RID: 7012 RVA: 0x00132C40 File Offset: 0x00130E40
 	private void Update()
 	{
 		if (base.transform.parent == null)
@@ -111,7 +111,7 @@ public class RadioScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B65 RID: 7013 RVA: 0x00132FD4 File Offset: 0x001311D4
+	// Token: 0x06001B65 RID: 7013 RVA: 0x00132FA0 File Offset: 0x001311A0
 	public void TurnOn()
 	{
 		this.Prompt.Label[0].text = "     Turn Off";
@@ -121,7 +121,7 @@ public class RadioScript : MonoBehaviour
 		this.On = true;
 	}
 
-	// Token: 0x06001B66 RID: 7014 RVA: 0x0013302C File Offset: 0x0013122C
+	// Token: 0x06001B66 RID: 7014 RVA: 0x00132FF8 File Offset: 0x001311F8
 	public void TurnOff()
 	{
 		this.Prompt.Label[0].text = "     Turn On";

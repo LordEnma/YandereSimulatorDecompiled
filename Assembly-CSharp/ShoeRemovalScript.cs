@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200042A RID: 1066
 public class ShoeRemovalScript : MonoBehaviour
 {
-	// Token: 0x06001CBA RID: 7354 RVA: 0x00151010 File Offset: 0x0014F210
+	// Token: 0x06001CBA RID: 7354 RVA: 0x00150FDC File Offset: 0x0014F1DC
 	public void Start()
 	{
 		if (this.Locker == null)
@@ -35,7 +35,7 @@ public class ShoeRemovalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CBB RID: 7355 RVA: 0x00151214 File Offset: 0x0014F414
+	// Token: 0x06001CBB RID: 7355 RVA: 0x001511E0 File Offset: 0x0014F3E0
 	public void StartChangingShoes()
 	{
 		if (!this.Student.AoT)
@@ -55,7 +55,7 @@ public class ShoeRemovalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CBC RID: 7356 RVA: 0x001512C8 File Offset: 0x0014F4C8
+	// Token: 0x06001CBC RID: 7356 RVA: 0x00151294 File Offset: 0x0014F494
 	private void Update()
 	{
 		if (!this.Student.DiscCheck && !this.Student.Dying && !this.Student.InEvent && !this.Student.Alarmed && !this.Student.Splashed && !this.Student.TurnOffRadio)
@@ -246,7 +246,7 @@ public class ShoeRemovalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CBD RID: 7357 RVA: 0x00151D58 File Offset: 0x0014FF58
+	// Token: 0x06001CBD RID: 7357 RVA: 0x00151D24 File Offset: 0x0014FF24
 	private void LateUpdate()
 	{
 		if (this.Phase < 7)
@@ -256,7 +256,7 @@ public class ShoeRemovalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CBE RID: 7358 RVA: 0x00151DAC File Offset: 0x0014FFAC
+	// Token: 0x06001CBE RID: 7358 RVA: 0x00151D78 File Offset: 0x0014FF78
 	public void PutOnShoes()
 	{
 		this.CloseLocker();
@@ -313,12 +313,12 @@ public class ShoeRemovalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CBF RID: 7359 RVA: 0x001521D2 File Offset: 0x001503D2
+	// Token: 0x06001CBF RID: 7359 RVA: 0x0015219E File Offset: 0x0015039E
 	public void CloseLocker()
 	{
 	}
 
-	// Token: 0x06001CC0 RID: 7360 RVA: 0x001521D4 File Offset: 0x001503D4
+	// Token: 0x06001CC0 RID: 7360 RVA: 0x001521A0 File Offset: 0x001503A0
 	private void UpdateShoes()
 	{
 		this.Student.Indoors = true;
@@ -334,7 +334,7 @@ public class ShoeRemovalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CC1 RID: 7361 RVA: 0x0015225C File Offset: 0x0015045C
+	// Token: 0x06001CC1 RID: 7361 RVA: 0x00152228 File Offset: 0x00150428
 	public void LeavingSchool()
 	{
 		if (this.Locker == null)
@@ -373,7 +373,7 @@ public class ShoeRemovalScript : MonoBehaviour
 		this.LeftCurrentShoe.localScale = new Vector3(1.111113f, 1f, 1.111113f);
 	}
 
-	// Token: 0x06001CC2 RID: 7362 RVA: 0x00152441 File Offset: 0x00150641
+	// Token: 0x06001CC2 RID: 7362 RVA: 0x0015240D File Offset: 0x0015060D
 	private void GetHeight(int StudentID)
 	{
 		this.Height = 5;

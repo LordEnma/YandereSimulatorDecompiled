@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000358 RID: 856
 public class LocationScript : MonoBehaviour
 {
-	// Token: 0x0600198F RID: 6543 RVA: 0x00103544 File Offset: 0x00101744
+	// Token: 0x0600198F RID: 6543 RVA: 0x00103510 File Offset: 0x00101710
 	private void Start()
 	{
 		this.Label.color = new Color(this.Label.color.r, this.Label.color.g, this.Label.color.b, 0f);
 		this.BG.color = new Color(this.BG.color.r, this.BG.color.g, this.BG.color.b, 0f);
 	}
 
-	// Token: 0x06001990 RID: 6544 RVA: 0x001035DC File Offset: 0x001017DC
+	// Token: 0x06001990 RID: 6544 RVA: 0x001035A8 File Offset: 0x001017A8
 	private void Update()
 	{
 		if (this.Show)

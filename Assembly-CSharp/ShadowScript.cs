@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000428 RID: 1064
 public class ShadowScript : MonoBehaviour
 {
-	// Token: 0x06001CB5 RID: 7349 RVA: 0x00150EEC File Offset: 0x0014F0EC
+	// Token: 0x06001CB5 RID: 7349 RVA: 0x00150EB8 File Offset: 0x0014F0B8
 	private void Update()
 	{
 		Vector3 position = base.transform.position;

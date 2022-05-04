@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000344 RID: 836
 public class JournalistScript : MonoBehaviour
 {
-	// Token: 0x06001920 RID: 6432 RVA: 0x000FC95C File Offset: 0x000FAB5C
+	// Token: 0x06001920 RID: 6432 RVA: 0x000FC928 File Offset: 0x000FAB28
 	private void Start()
 	{
 		if (!GameGlobals.Eighties || GameGlobals.EightiesTutorial || DateGlobals.Week > 10)
@@ -19,7 +19,7 @@ public class JournalistScript : MonoBehaviour
 		this.PepperSpray.SetActive(false);
 	}
 
-	// Token: 0x06001921 RID: 6433 RVA: 0x000FC9B0 File Offset: 0x000FABB0
+	// Token: 0x06001921 RID: 6433 RVA: 0x000FC97C File Offset: 0x000FAB7C
 	private void Update()
 	{
 		if (base.transform.position.z > -95f)
@@ -168,7 +168,7 @@ public class JournalistScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001922 RID: 6434 RVA: 0x000FD10C File Offset: 0x000FB30C
+	// Token: 0x06001922 RID: 6434 RVA: 0x000FD0D8 File Offset: 0x000FB2D8
 	private void CheckBehavior()
 	{
 		if (this.Yandere.CanMove && !this.Yandere.Egg && (this.Yandere.Chased || this.Yandere.Chasers > 0 || (this.Yandere.Armed && this.Yandere.EquippedWeapon.Bloody) || (this.Yandere.Carrying && !this.Yandere.CurrentRagdoll.Concealed) || (this.Yandere.Dragging && !this.Yandere.CurrentRagdoll.Concealed) || (this.Yandere.Bloodiness + (float)this.Yandere.GloveBlood > 0f && !this.Yandere.Paint) || (this.Yandere.PickUp != null && this.Yandere.PickUp.BodyPart && !this.Yandere.PickUp.Garbage)))
@@ -177,7 +177,7 @@ public class JournalistScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001923 RID: 6435 RVA: 0x000FD22C File Offset: 0x000FB42C
+	// Token: 0x06001923 RID: 6435 RVA: 0x000FD1F8 File Offset: 0x000FB3F8
 	public bool CanSeeYandere()
 	{
 		if (!this.Yandere.Egg)
@@ -193,7 +193,7 @@ public class JournalistScript : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06001924 RID: 6436 RVA: 0x000FD2D0 File Offset: 0x000FB4D0
+	// Token: 0x06001924 RID: 6436 RVA: 0x000FD29C File Offset: 0x000FB49C
 	private void Chase()
 	{
 		this.Face.name = "RENAMED";

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000293 RID: 659
 public class DropsScript : MonoBehaviour
 {
-	// Token: 0x060013D1 RID: 5073 RVA: 0x000BBE5C File Offset: 0x000BA05C
+	// Token: 0x060013D1 RID: 5073 RVA: 0x000BBE28 File Offset: 0x000BA028
 	private void Start()
 	{
 		this.ID = 1;
@@ -21,7 +21,7 @@ public class DropsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013D2 RID: 5074 RVA: 0x000BBEDC File Offset: 0x000BA0DC
+	// Token: 0x060013D2 RID: 5074 RVA: 0x000BBEA8 File Offset: 0x000BA0A8
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -99,7 +99,7 @@ public class DropsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013D3 RID: 5075 RVA: 0x000BC15C File Offset: 0x000BA35C
+	// Token: 0x060013D3 RID: 5075 RVA: 0x000BC128 File Offset: 0x000BA328
 	public void UpdateList()
 	{
 		this.ID = 1;
@@ -120,7 +120,7 @@ public class DropsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013D4 RID: 5076 RVA: 0x000BC258 File Offset: 0x000BA458
+	// Token: 0x060013D4 RID: 5076 RVA: 0x000BC224 File Offset: 0x000BA424
 	public void UpdateDesc()
 	{
 		if (!this.Purchased[this.Selected])
@@ -147,7 +147,7 @@ public class DropsScript : MonoBehaviour
 		this.UpdatePantyCount();
 	}
 
-	// Token: 0x060013D5 RID: 5077 RVA: 0x000BC371 File Offset: 0x000BA571
+	// Token: 0x060013D5 RID: 5077 RVA: 0x000BC33D File Offset: 0x000BA53D
 	public void UpdatePantyCount()
 	{
 		this.PantyCount.text = this.Inventory.PantyShots.ToString();

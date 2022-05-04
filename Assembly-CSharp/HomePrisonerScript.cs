@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000326 RID: 806
 public class HomePrisonerScript : MonoBehaviour
 {
-	// Token: 0x060018B6 RID: 6326 RVA: 0x000F287C File Offset: 0x000F0A7C
+	// Token: 0x060018B6 RID: 6326 RVA: 0x000F2848 File Offset: 0x000F0A48
 	private void Start()
 	{
 		this.Sanity = StudentGlobals.GetStudentSanity(SchoolGlobals.KidnapVictim);
@@ -104,7 +104,7 @@ public class HomePrisonerScript : MonoBehaviour
 		this.EightiesPrisoner.gameObject.SetActive(false);
 	}
 
-	// Token: 0x060018B7 RID: 6327 RVA: 0x000F2DC4 File Offset: 0x000F0FC4
+	// Token: 0x060018B7 RID: 6327 RVA: 0x000F2D90 File Offset: 0x000F0F90
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -308,7 +308,7 @@ public class HomePrisonerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018B8 RID: 6328 RVA: 0x000F369C File Offset: 0x000F189C
+	// Token: 0x060018B8 RID: 6328 RVA: 0x000F3668 File Offset: 0x000F1868
 	public void UpdateDesc()
 	{
 		this.HomeCamera.PromptBar.Label[0].text = "Accept";

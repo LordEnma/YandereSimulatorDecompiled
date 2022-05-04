@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004EA RID: 1258
 public class YanvaniaTeleportEffectScript : MonoBehaviour
 {
-	// Token: 0x060020EB RID: 8427 RVA: 0x001E5D14 File Offset: 0x001E3F14
+	// Token: 0x060020EC RID: 8428 RVA: 0x001E5E10 File Offset: 0x001E4010
 	private void Start()
 	{
 		this.FirstBeam.material.color = new Color(this.FirstBeam.material.color.r, this.FirstBeam.material.color.g, this.FirstBeam.material.color.b, 0f);
@@ -13,7 +13,7 @@ public class YanvaniaTeleportEffectScript : MonoBehaviour
 		this.SecondBeamParent.transform.localScale = new Vector3(this.SecondBeamParent.transform.localScale.x, 0f, this.SecondBeamParent.transform.localScale.z);
 	}
 
-	// Token: 0x060020EC RID: 8428 RVA: 0x001E5E4B File Offset: 0x001E404B
+	// Token: 0x060020ED RID: 8429 RVA: 0x001E5F47 File Offset: 0x001E4147
 	private void Update()
 	{
 	}

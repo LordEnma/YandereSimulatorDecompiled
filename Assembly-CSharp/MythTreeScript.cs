@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000376 RID: 886
 public class MythTreeScript : MonoBehaviour
 {
-	// Token: 0x060019F1 RID: 6641 RVA: 0x0010ACFE File Offset: 0x00108EFE
+	// Token: 0x060019F1 RID: 6641 RVA: 0x0010ACCA File Offset: 0x00108ECA
 	private void Start()
 	{
 		if (SchemeGlobals.GetSchemeStage(2) > 2 || GameGlobals.Eighties)
@@ -13,7 +13,7 @@ public class MythTreeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019F2 RID: 6642 RVA: 0x0010AD18 File Offset: 0x00108F18
+	// Token: 0x060019F2 RID: 6642 RVA: 0x0010ACE4 File Offset: 0x00108EE4
 	private void Update()
 	{
 		if (!this.Spoken)

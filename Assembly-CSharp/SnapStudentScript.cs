@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000438 RID: 1080
 public class SnapStudentScript : MonoBehaviour
 {
-	// Token: 0x06001CF5 RID: 7413 RVA: 0x0015850C File Offset: 0x0015670C
+	// Token: 0x06001CF5 RID: 7413 RVA: 0x001584D8 File Offset: 0x001566D8
 	private void Start()
 	{
 		this.MyAnim.enabled = false;
@@ -12,7 +12,7 @@ public class SnapStudentScript : MonoBehaviour
 		this.MyAnim.enabled = true;
 	}
 
-	// Token: 0x06001CF6 RID: 7414 RVA: 0x00158568 File Offset: 0x00156768
+	// Token: 0x06001CF6 RID: 7414 RVA: 0x00158534 File Offset: 0x00156734
 	private void Update()
 	{
 		if (Vector3.Distance(base.transform.position, this.Yandere.transform.position) < 1f)

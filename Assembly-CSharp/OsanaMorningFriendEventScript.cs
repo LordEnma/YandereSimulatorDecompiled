@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E7 RID: 999
 public class OsanaMorningFriendEventScript : MonoBehaviour
 {
-	// Token: 0x06001BD6 RID: 7126 RVA: 0x00140D7C File Offset: 0x0013EF7C
+	// Token: 0x06001BD6 RID: 7126 RVA: 0x00140D48 File Offset: 0x0013EF48
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -22,7 +22,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BD7 RID: 7127 RVA: 0x00140E70 File Offset: 0x0013F070
+	// Token: 0x06001BD7 RID: 7127 RVA: 0x00140E3C File Offset: 0x0013F03C
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -205,7 +205,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BD8 RID: 7128 RVA: 0x001417F0 File Offset: 0x0013F9F0
+	// Token: 0x06001BD8 RID: 7128 RVA: 0x001417BC File Offset: 0x0013F9BC
 	public void EndEvent()
 	{
 		Debug.Log("Osana's ''talk with friend before going to the lockers'' event has ended.");
@@ -287,7 +287,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BD9 RID: 7129 RVA: 0x00141B90 File Offset: 0x0013FD90
+	// Token: 0x06001BD9 RID: 7129 RVA: 0x00141B5C File Offset: 0x0013FD5C
 	private void SettleRival()
 	{
 		this.Rival.MoveTowardsTarget(this.Location[2].position);
@@ -297,14 +297,14 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BDA RID: 7130 RVA: 0x00141C1B File Offset: 0x0013FE1B
+	// Token: 0x06001BDA RID: 7130 RVA: 0x00141BE7 File Offset: 0x0013FDE7
 	private void SettleFriend()
 	{
 		this.Friend.MoveTowardsTarget(this.Location[1].position);
 		this.Friend.transform.LookAt(this.Rival.transform.position);
 	}
 
-	// Token: 0x06001BDB RID: 7131 RVA: 0x00141C58 File Offset: 0x0013FE58
+	// Token: 0x06001BDB RID: 7131 RVA: 0x00141C24 File Offset: 0x0013FE24
 	private void PlayRelevantAnim()
 	{
 		if (this.Speaker[this.SpeechPhase] == 1)

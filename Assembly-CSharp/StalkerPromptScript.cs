@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000445 RID: 1093
 public class StalkerPromptScript : MonoBehaviour
 {
-	// Token: 0x06001D22 RID: 7458 RVA: 0x0015B92C File Offset: 0x00159B2C
+	// Token: 0x06001D22 RID: 7458 RVA: 0x0015B8F8 File Offset: 0x00159AF8
 	private void Start()
 	{
 		this.Eighties = GameGlobals.Eighties;
@@ -28,7 +28,7 @@ public class StalkerPromptScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D23 RID: 7459 RVA: 0x0015B9B0 File Offset: 0x00159BB0
+	// Token: 0x06001D23 RID: 7459 RVA: 0x0015B97C File Offset: 0x00159B7C
 	private void Update()
 	{
 		base.transform.LookAt(this.Yandere.MainCamera.transform);
@@ -257,7 +257,7 @@ public class StalkerPromptScript : MonoBehaviour
 		this.MySprite.color = new Color(1f, 1f, 1f, this.Alpha);
 	}
 
-	// Token: 0x06001D24 RID: 7460 RVA: 0x0015C408 File Offset: 0x0015A608
+	// Token: 0x06001D24 RID: 7460 RVA: 0x0015C3D4 File Offset: 0x0015A5D4
 	public void BeginCarryingCat()
 	{
 		this.Yandere.MyAnimation["f02_grip_00"].layer = 1;
@@ -271,7 +271,7 @@ public class StalkerPromptScript : MonoBehaviour
 		this.CatCage.GetComponent<Collider>().isTrigger = true;
 	}
 
-	// Token: 0x06001D25 RID: 7461 RVA: 0x0015C4E0 File Offset: 0x0015A6E0
+	// Token: 0x06001D25 RID: 7461 RVA: 0x0015C4AC File Offset: 0x0015A6AC
 	public void CountBags()
 	{
 		this.BagsToBurn--;

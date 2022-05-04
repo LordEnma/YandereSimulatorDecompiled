@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200039F RID: 927
 public class PhoneScript : MonoBehaviour
 {
-	// Token: 0x06001A91 RID: 6801 RVA: 0x0011CE28 File Offset: 0x0011B028
+	// Token: 0x06001A91 RID: 6801 RVA: 0x0011CDF4 File Offset: 0x0011AFF4
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -66,7 +66,7 @@ public class PhoneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A92 RID: 6802 RVA: 0x0011D0B8 File Offset: 0x0011B2B8
+	// Token: 0x06001A92 RID: 6802 RVA: 0x0011D084 File Offset: 0x0011B284
 	private void Update()
 	{
 		if (!this.FadeOut)
@@ -215,7 +215,7 @@ public class PhoneScript : MonoBehaviour
 		this.Timer += Time.deltaTime;
 	}
 
-	// Token: 0x06001A93 RID: 6803 RVA: 0x0011D730 File Offset: 0x0011B930
+	// Token: 0x06001A93 RID: 6803 RVA: 0x0011D6FC File Offset: 0x0011B8FC
 	private void SpawnMessage()
 	{
 		if (this.NewMessage != null)
@@ -255,7 +255,7 @@ public class PhoneScript : MonoBehaviour
 		this.NewMessage.GetComponent<TextMessageScript>().Label.text = this.Text[this.ID];
 	}
 
-	// Token: 0x06001A94 RID: 6804 RVA: 0x0011D988 File Offset: 0x0011BB88
+	// Token: 0x06001A94 RID: 6804 RVA: 0x0011D954 File Offset: 0x0011BB54
 	private void LoveSickColorSwap()
 	{
 		foreach (GameObject gameObject in UnityEngine.Object.FindObjectsOfType<GameObject>())

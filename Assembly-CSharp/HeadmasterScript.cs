@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200030F RID: 783
 public class HeadmasterScript : MonoBehaviour
 {
-	// Token: 0x06001857 RID: 6231 RVA: 0x000E76C8 File Offset: 0x000E58C8
+	// Token: 0x06001857 RID: 6231 RVA: 0x000E7694 File Offset: 0x000E5894
 	private void Start()
 	{
 		this.MyAnimation["HeadmasterRaiseTazer"].speed = 2f;
@@ -43,7 +43,7 @@ public class HeadmasterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001858 RID: 6232 RVA: 0x000E787C File Offset: 0x000E5A7C
+	// Token: 0x06001858 RID: 6232 RVA: 0x000E7848 File Offset: 0x000E5A48
 	private void Update()
 	{
 		if (this.Yandere.transform.position.y > base.transform.position.y - 1f && this.Yandere.transform.position.y < base.transform.position.y + 1f && this.Yandere.transform.position.x < 6f && this.Yandere.transform.position.x > -6f)
@@ -226,7 +226,7 @@ public class HeadmasterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001859 RID: 6233 RVA: 0x000E8070 File Offset: 0x000E6270
+	// Token: 0x06001859 RID: 6233 RVA: 0x000E803C File Offset: 0x000E623C
 	private void LateUpdate()
 	{
 		if (this.Distance < this.MaxDistance)
@@ -253,7 +253,7 @@ public class HeadmasterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600185A RID: 6234 RVA: 0x000E81C4 File Offset: 0x000E63C4
+	// Token: 0x0600185A RID: 6234 RVA: 0x000E8190 File Offset: 0x000E6390
 	private void AimBodyAtYandere()
 	{
 		this.targetRotation = Quaternion.LookRotation(this.Yandere.transform.position - base.transform.position);
@@ -261,7 +261,7 @@ public class HeadmasterScript : MonoBehaviour
 		this.Chair.localPosition = Vector3.Lerp(this.Chair.localPosition, new Vector3(this.Chair.localPosition.x, this.Chair.localPosition.y, -5.2f), Time.deltaTime * 1f);
 	}
 
-	// Token: 0x0600185B RID: 6235 RVA: 0x000E8278 File Offset: 0x000E6478
+	// Token: 0x0600185B RID: 6235 RVA: 0x000E8244 File Offset: 0x000E6444
 	private void AimWeaponAtYandere()
 	{
 		if (!this.Aiming)
@@ -290,7 +290,7 @@ public class HeadmasterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600185C RID: 6236 RVA: 0x000E8348 File Offset: 0x000E6548
+	// Token: 0x0600185C RID: 6236 RVA: 0x000E8314 File Offset: 0x000E6514
 	public void Shoot()
 	{
 		this.StudentManager.YandereDying = true;
@@ -330,7 +330,7 @@ public class HeadmasterScript : MonoBehaviour
 		this.Shooting = true;
 	}
 
-	// Token: 0x0600185D RID: 6237 RVA: 0x000E84E8 File Offset: 0x000E66E8
+	// Token: 0x0600185D RID: 6237 RVA: 0x000E84B4 File Offset: 0x000E66B4
 	private void CheckBehavior()
 	{
 		if (this.Yandere.CanMove && !this.Yandere.Egg)
@@ -358,7 +358,7 @@ public class HeadmasterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600185E RID: 6238 RVA: 0x000E85B0 File Offset: 0x000E67B0
+	// Token: 0x0600185E RID: 6238 RVA: 0x000E857C File Offset: 0x000E677C
 	public void Taze()
 	{
 		if (this.Yandere.CanMove)

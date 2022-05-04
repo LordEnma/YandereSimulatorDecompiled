@@ -5,13 +5,13 @@ using UnityEngine;
 // Token: 0x02000504 RID: 1284
 public class Drawer_Pull_Z : MonoBehaviour
 {
-	// Token: 0x0600214E RID: 8526 RVA: 0x001ECB1F File Offset: 0x001EAD1F
+	// Token: 0x0600214F RID: 8527 RVA: 0x001ECC1B File Offset: 0x001EAE1B
 	private void Start()
 	{
 		this.open = false;
 	}
 
-	// Token: 0x0600214F RID: 8527 RVA: 0x001ECB28 File Offset: 0x001EAD28
+	// Token: 0x06002150 RID: 8528 RVA: 0x001ECC24 File Offset: 0x001EAE24
 	private void OnMouseOver()
 	{
 		if (this.Player && Vector3.Distance(this.Player.position, base.transform.position) < 10f)
@@ -32,7 +32,7 @@ public class Drawer_Pull_Z : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002150 RID: 8528 RVA: 0x001ECBA9 File Offset: 0x001EADA9
+	// Token: 0x06002151 RID: 8529 RVA: 0x001ECCA5 File Offset: 0x001EAEA5
 	private IEnumerator opening()
 	{
 		MonoBehaviour.print("you are opening the door");
@@ -42,7 +42,7 @@ public class Drawer_Pull_Z : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06002151 RID: 8529 RVA: 0x001ECBB8 File Offset: 0x001EADB8
+	// Token: 0x06002152 RID: 8530 RVA: 0x001ECCB4 File Offset: 0x001EAEB4
 	private IEnumerator closing()
 	{
 		MonoBehaviour.print("you are closing the door");

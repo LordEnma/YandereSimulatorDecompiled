@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000481 RID: 1153
 public class TitleSaveFilesScript : MonoBehaviour
 {
-	// Token: 0x06001F07 RID: 7943 RVA: 0x001B71C0 File Offset: 0x001B53C0
+	// Token: 0x06001F08 RID: 7944 RVA: 0x001B72BC File Offset: 0x001B54BC
 	private void Update()
 	{
 		if (this.NewTitleScreen.Speed > 3f && !this.NewTitleScreen.FadeOut)
@@ -135,7 +135,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F08 RID: 7944 RVA: 0x001B75D0 File Offset: 0x001B57D0
+	// Token: 0x06001F09 RID: 7945 RVA: 0x001B76CC File Offset: 0x001B58CC
 	private void UpdateHighlight()
 	{
 		this.Highlight.localPosition = new Vector3(0f, 700f - 350f * (float)this.ID, 0f);
@@ -160,7 +160,7 @@ public class TitleSaveFilesScript : MonoBehaviour
 		this.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001F09 RID: 7945 RVA: 0x001B76D4 File Offset: 0x001B58D4
+	// Token: 0x06001F0A RID: 7946 RVA: 0x001B77D0 File Offset: 0x001B59D0
 	public void UpdateOutlines()
 	{
 		UILabel[] componentsInChildren = base.GetComponentsInChildren<UILabel>();

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004C6 RID: 1222
 public class WeaponScript : MonoBehaviour
 {
-	// Token: 0x06001FFD RID: 8189 RVA: 0x001C5C00 File Offset: 0x001C3E00
+	// Token: 0x06001FFE RID: 8190 RVA: 0x001C5CFC File Offset: 0x001C3EFC
 	public void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
@@ -43,7 +43,7 @@ public class WeaponScript : MonoBehaviour
 		this.Innocent = !this.Suspicious;
 	}
 
-	// Token: 0x06001FFE RID: 8190 RVA: 0x001C5DB4 File Offset: 0x001C3FB4
+	// Token: 0x06001FFF RID: 8191 RVA: 0x001C5EB0 File Offset: 0x001C40B0
 	public string GetTypePrefix()
 	{
 		if (this.Type == WeaponType.Knife)
@@ -78,7 +78,7 @@ public class WeaponScript : MonoBehaviour
 		return string.Empty;
 	}
 
-	// Token: 0x06001FFF RID: 8191 RVA: 0x001C5E54 File Offset: 0x001C4054
+	// Token: 0x06002000 RID: 8192 RVA: 0x001C5F50 File Offset: 0x001C4150
 	public AudioClip GetClip(float sanity, bool stealth)
 	{
 		AudioClip[] array;
@@ -105,7 +105,7 @@ public class WeaponScript : MonoBehaviour
 		return array[3];
 	}
 
-	// Token: 0x06002000 RID: 8192 RVA: 0x001C5EB0 File Offset: 0x001C40B0
+	// Token: 0x06002001 RID: 8193 RVA: 0x001C5FAC File Offset: 0x001C41AC
 	private void Update()
 	{
 		if (this.WeaponID == 16 && this.Yandere.EquippedWeapon == this && Input.GetButtonDown("RB") && this.ExtraBlade != null)
@@ -204,7 +204,7 @@ public class WeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002001 RID: 8193 RVA: 0x001C64B4 File Offset: 0x001C46B4
+	// Token: 0x06002002 RID: 8194 RVA: 0x001C65B0 File Offset: 0x001C47B0
 	private void LateUpdate()
 	{
 		if (this.Prompt.Circle[3].fillAmount == 0f)
@@ -416,7 +416,7 @@ public class WeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002002 RID: 8194 RVA: 0x001C6C78 File Offset: 0x001C4E78
+	// Token: 0x06002003 RID: 8195 RVA: 0x001C6D74 File Offset: 0x001C4F74
 	public void Drop()
 	{
 		if (!this.Undroppable)
@@ -511,7 +511,7 @@ public class WeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002003 RID: 8195 RVA: 0x001C7020 File Offset: 0x001C5220
+	// Token: 0x06002004 RID: 8196 RVA: 0x001C711C File Offset: 0x001C531C
 	public void UpdateLabel()
 	{
 		if (this != null && base.gameObject.activeInHierarchy)
@@ -536,7 +536,7 @@ public class WeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002004 RID: 8196 RVA: 0x001C7160 File Offset: 0x001C5360
+	// Token: 0x06002005 RID: 8197 RVA: 0x001C725C File Offset: 0x001C545C
 	public void Effect()
 	{
 		if (this.WeaponID == 7)
@@ -564,7 +564,7 @@ public class WeaponScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002005 RID: 8197 RVA: 0x001C723F File Offset: 0x001C543F
+	// Token: 0x06002006 RID: 8198 RVA: 0x001C733B File Offset: 0x001C553B
 	public void Dismember()
 	{
 		this.Yandere.CameraEffects.UpdateDOF(0.6666667f);
@@ -573,7 +573,7 @@ public class WeaponScript : MonoBehaviour
 		this.Dismembering = true;
 	}
 
-	// Token: 0x06002006 RID: 8198 RVA: 0x001C727C File Offset: 0x001C547C
+	// Token: 0x06002007 RID: 8199 RVA: 0x001C7378 File Offset: 0x001C5578
 	public void SuspicionCheck()
 	{
 		if (this.Innocent)

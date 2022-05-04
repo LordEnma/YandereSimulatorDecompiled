@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x0200051B RID: 1307
 public class YanSaveIdentifier : MonoBehaviour
 {
-	// Token: 0x06002192 RID: 8594 RVA: 0x001EFF50 File Offset: 0x001EE150
+	// Token: 0x06002193 RID: 8595 RVA: 0x001F004C File Offset: 0x001EE24C
 	public static GameObject GetObject(string id)
 	{
 		foreach (YanSaveIdentifier yanSaveIdentifier in YanSaveIdentifier.Identifiers)
@@ -18,7 +18,7 @@ public class YanSaveIdentifier : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06002193 RID: 8595 RVA: 0x001EFFB8 File Offset: 0x001EE1B8
+	// Token: 0x06002194 RID: 8596 RVA: 0x001F00B4 File Offset: 0x001EE2B4
 	public static GameObject GetObject(SerializedGameObject serializedGameObject)
 	{
 		foreach (YanSaveIdentifier yanSaveIdentifier in YanSaveIdentifier.Identifiers)
@@ -31,7 +31,7 @@ public class YanSaveIdentifier : MonoBehaviour
 		return null;
 	}
 
-	// Token: 0x06002194 RID: 8596 RVA: 0x001F0024 File Offset: 0x001EE224
+	// Token: 0x06002195 RID: 8597 RVA: 0x001F0120 File Offset: 0x001EE320
 	public void OnEnable()
 	{
 		if (!YanSaveIdentifier.Identifiers.Contains(this))
@@ -44,7 +44,7 @@ public class YanSaveIdentifier : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002195 RID: 8597 RVA: 0x001F005C File Offset: 0x001EE25C
+	// Token: 0x06002196 RID: 8598 RVA: 0x001F0158 File Offset: 0x001EE358
 	public void OnDestroy()
 	{
 		YanSaveIdentifier.Identifiers.Remove(this);

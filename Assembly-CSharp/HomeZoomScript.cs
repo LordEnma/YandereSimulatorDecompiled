@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200032F RID: 815
 public class HomeZoomScript : MonoBehaviour
 {
-	// Token: 0x060018E0 RID: 6368 RVA: 0x000F558C File Offset: 0x000F378C
+	// Token: 0x060018E0 RID: 6368 RVA: 0x000F5558 File Offset: 0x000F3758
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();

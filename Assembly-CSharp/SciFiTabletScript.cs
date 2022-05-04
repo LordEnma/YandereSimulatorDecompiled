@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200041C RID: 1052
 public class SciFiTabletScript : MonoBehaviour
 {
-	// Token: 0x06001C8B RID: 7307 RVA: 0x0014EAE6 File Offset: 0x0014CCE6
+	// Token: 0x06001C8B RID: 7307 RVA: 0x0014EAB2 File Offset: 0x0014CCB2
 	private void Start()
 	{
 		this.Holograms = this.Student.StudentManager.Holograms;
 	}
 
-	// Token: 0x06001C8C RID: 7308 RVA: 0x0014EB00 File Offset: 0x0014CD00
+	// Token: 0x06001C8C RID: 7308 RVA: 0x0014EACC File Offset: 0x0014CCCC
 	private void Update()
 	{
 		if ((double)Vector3.Distance(this.Finger.position, base.transform.position) < 0.1)

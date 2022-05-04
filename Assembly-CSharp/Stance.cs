@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class Stance
 {
-	// Token: 0x06001463 RID: 5219 RVA: 0x000C7108 File Offset: 0x000C5308
+	// Token: 0x06001463 RID: 5219 RVA: 0x000C70D4 File Offset: 0x000C52D4
 	public Stance(StanceType initialStance)
 	{
 		this.current = initialStance;
@@ -13,8 +13,8 @@ public class Stance
 	}
 
 	// Token: 0x17000368 RID: 872
-	// (get) Token: 0x06001464 RID: 5220 RVA: 0x000C711E File Offset: 0x000C531E
-	// (set) Token: 0x06001465 RID: 5221 RVA: 0x000C7126 File Offset: 0x000C5326
+	// (get) Token: 0x06001464 RID: 5220 RVA: 0x000C70EA File Offset: 0x000C52EA
+	// (set) Token: 0x06001465 RID: 5221 RVA: 0x000C70F2 File Offset: 0x000C52F2
 	public StanceType Current
 	{
 		get
@@ -29,7 +29,7 @@ public class Stance
 	}
 
 	// Token: 0x17000369 RID: 873
-	// (get) Token: 0x06001466 RID: 5222 RVA: 0x000C713B File Offset: 0x000C533B
+	// (get) Token: 0x06001466 RID: 5222 RVA: 0x000C7107 File Offset: 0x000C5307
 	public StanceType Previous
 	{
 		get

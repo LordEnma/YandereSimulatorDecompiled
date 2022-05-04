@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200029C RID: 668
 public class RivalEditorScript : MonoBehaviour
 {
-	// Token: 0x0600140F RID: 5135 RVA: 0x000BEAD9 File Offset: 0x000BCCD9
+	// Token: 0x0600140F RID: 5135 RVA: 0x000BEAA5 File Offset: 0x000BCCA5
 	private void Awake()
 	{
 		this.inputManager = UnityEngine.Object.FindObjectOfType<InputManagerScript>();
 	}
 
-	// Token: 0x06001410 RID: 5136 RVA: 0x000BEAE8 File Offset: 0x000BCCE8
+	// Token: 0x06001410 RID: 5136 RVA: 0x000BEAB4 File Offset: 0x000BCCB4
 	private void OnEnable()
 	{
 		this.promptBar.Label[0].text = string.Empty;
@@ -19,7 +19,7 @@ public class RivalEditorScript : MonoBehaviour
 		this.promptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001411 RID: 5137 RVA: 0x000BEB45 File Offset: 0x000BCD45
+	// Token: 0x06001411 RID: 5137 RVA: 0x000BEB11 File Offset: 0x000BCD11
 	private void HandleInput()
 	{
 		if (Input.GetButtonDown("B"))
@@ -29,7 +29,7 @@ public class RivalEditorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001412 RID: 5138 RVA: 0x000BEB75 File Offset: 0x000BCD75
+	// Token: 0x06001412 RID: 5138 RVA: 0x000BEB41 File Offset: 0x000BCD41
 	private void Update()
 	{
 		this.HandleInput();

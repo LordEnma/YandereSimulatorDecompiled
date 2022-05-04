@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class EyeAdaptationComponent : PostProcessingComponentRenderTexture<EyeAdaptationModel>
 	{
 		// Token: 0x170004F6 RID: 1270
-		// (get) Token: 0x06002339 RID: 9017 RVA: 0x001F8EBE File Offset: 0x001F70BE
+		// (get) Token: 0x0600233A RID: 9018 RVA: 0x001F8FBA File Offset: 0x001F71BA
 		public override bool active
 		{
 			get
@@ -15,19 +15,19 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600233A RID: 9018 RVA: 0x001F8EE4 File Offset: 0x001F70E4
+		// Token: 0x0600233B RID: 9019 RVA: 0x001F8FE0 File Offset: 0x001F71E0
 		public void ResetHistory()
 		{
 			this.m_FirstFrame = true;
 		}
 
-		// Token: 0x0600233B RID: 9019 RVA: 0x001F8EED File Offset: 0x001F70ED
+		// Token: 0x0600233C RID: 9020 RVA: 0x001F8FE9 File Offset: 0x001F71E9
 		public override void OnEnable()
 		{
 			this.m_FirstFrame = true;
 		}
 
-		// Token: 0x0600233C RID: 9020 RVA: 0x001F8EF8 File Offset: 0x001F70F8
+		// Token: 0x0600233D RID: 9021 RVA: 0x001F8FF4 File Offset: 0x001F71F4
 		public override void OnDisable()
 		{
 			RenderTexture[] autoExposurePool = this.m_AutoExposurePool;
@@ -47,7 +47,7 @@ namespace UnityEngine.PostProcessing
 			this.m_DebugHistogram = null;
 		}
 
-		// Token: 0x0600233D RID: 9021 RVA: 0x001F8F5C File Offset: 0x001F715C
+		// Token: 0x0600233E RID: 9022 RVA: 0x001F9058 File Offset: 0x001F7258
 		private Vector4 GetHistogramScaleOffsetRes()
 		{
 			EyeAdaptationModel.Settings settings = base.model.settings;
@@ -57,7 +57,7 @@ namespace UnityEngine.PostProcessing
 			return new Vector4(num2, y, Mathf.Floor((float)this.context.width / 2f), Mathf.Floor((float)this.context.height / 2f));
 		}
 
-		// Token: 0x0600233E RID: 9022 RVA: 0x001F8FCC File Offset: 0x001F71CC
+		// Token: 0x0600233F RID: 9023 RVA: 0x001F90C8 File Offset: 0x001F72C8
 		public Texture Prepare(RenderTexture source, Material uberMaterial)
 		{
 			EyeAdaptationModel.Settings settings = base.model.settings;
@@ -136,7 +136,7 @@ namespace UnityEngine.PostProcessing
 			return this.m_CurrentAutoExposure;
 		}
 
-		// Token: 0x0600233F RID: 9023 RVA: 0x001F9390 File Offset: 0x001F7590
+		// Token: 0x06002340 RID: 9024 RVA: 0x001F948C File Offset: 0x001F768C
 		public void OnGUI()
 		{
 			if (this.m_DebugHistogram == null || !this.m_DebugHistogram.IsCreated())

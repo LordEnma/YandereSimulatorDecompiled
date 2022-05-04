@@ -656,27 +656,27 @@ public class EventDelegate
 	[Serializable]
 	public class Parameter
 	{
-		// Token: 0x06002583 RID: 9603 RVA: 0x00203BB2 File Offset: 0x00201DB2
+		// Token: 0x06002584 RID: 9604 RVA: 0x00203CAE File Offset: 0x00201EAE
 		public Parameter()
 		{
 		}
 
-		// Token: 0x06002584 RID: 9604 RVA: 0x00203BCA File Offset: 0x00201DCA
+		// Token: 0x06002585 RID: 9605 RVA: 0x00203CC6 File Offset: 0x00201EC6
 		public Parameter(UnityEngine.Object obj, string field)
 		{
 			this.obj = obj;
 			this.field = field;
 		}
 
-		// Token: 0x06002585 RID: 9605 RVA: 0x00203BF0 File Offset: 0x00201DF0
+		// Token: 0x06002586 RID: 9606 RVA: 0x00203CEC File Offset: 0x00201EEC
 		public Parameter(object val)
 		{
 			this.mValue = val;
 		}
 
 		// Token: 0x17000544 RID: 1348
-		// (get) Token: 0x06002586 RID: 9606 RVA: 0x00203C10 File Offset: 0x00201E10
-		// (set) Token: 0x06002587 RID: 9607 RVA: 0x00203D21 File Offset: 0x00201F21
+		// (get) Token: 0x06002587 RID: 9607 RVA: 0x00203D0C File Offset: 0x00201F0C
+		// (set) Token: 0x06002588 RID: 9608 RVA: 0x00203E1D File Offset: 0x0020201D
 		public object value
 		{
 			get
@@ -725,7 +725,7 @@ public class EventDelegate
 		}
 
 		// Token: 0x17000545 RID: 1349
-		// (get) Token: 0x06002588 RID: 9608 RVA: 0x00203D2A File Offset: 0x00201F2A
+		// (get) Token: 0x06002589 RID: 9609 RVA: 0x00203E26 File Offset: 0x00202026
 		public Type type
 		{
 			get
@@ -770,6 +770,6 @@ public class EventDelegate
 	}
 
 	// Token: 0x020005F2 RID: 1522
-	// (Invoke) Token: 0x0600258A RID: 9610
+	// (Invoke) Token: 0x0600258B RID: 9611
 	public delegate void Callback();
 }

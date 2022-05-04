@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000278 RID: 632
 public class DelinquentManagerScript : MonoBehaviour
 {
-	// Token: 0x0600136D RID: 4973 RVA: 0x000B1FA7 File Offset: 0x000B01A7
+	// Token: 0x0600136D RID: 4973 RVA: 0x000B1F73 File Offset: 0x000B0173
 	private void Start()
 	{
 		this.Delinquents.SetActive(false);
@@ -13,7 +13,7 @@ public class DelinquentManagerScript : MonoBehaviour
 		this.Phase++;
 	}
 
-	// Token: 0x0600136E RID: 4974 RVA: 0x000B1FDC File Offset: 0x000B01DC
+	// Token: 0x0600136E RID: 4974 RVA: 0x000B1FA8 File Offset: 0x000B01A8
 	private void Update()
 	{
 		this.SpeechTimer = Mathf.MoveTowards(this.SpeechTimer, 0f, Time.deltaTime);
@@ -69,7 +69,7 @@ public class DelinquentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600136F RID: 4975 RVA: 0x000B2254 File Offset: 0x000B0454
+	// Token: 0x0600136F RID: 4975 RVA: 0x000B2220 File Offset: 0x000B0420
 	public void CheckTime()
 	{
 		if (this.Clock.HourTime < 13f)
@@ -89,7 +89,7 @@ public class DelinquentManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001370 RID: 4976 RVA: 0x000B22D8 File Offset: 0x000B04D8
+	// Token: 0x06001370 RID: 4976 RVA: 0x000B22A4 File Offset: 0x000B04A4
 	public void EasterEgg()
 	{
 		this.RapBeat.SetActive(true);

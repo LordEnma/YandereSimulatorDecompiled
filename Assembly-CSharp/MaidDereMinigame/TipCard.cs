@@ -9,7 +9,7 @@ namespace MaidDereMinigame
 	// Token: 0x020005BD RID: 1469
 	public class TipCard : MonoBehaviour
 	{
-		// Token: 0x06002504 RID: 9476 RVA: 0x00202C0C File Offset: 0x00200E0C
+		// Token: 0x06002505 RID: 9477 RVA: 0x00202D08 File Offset: 0x00200F08
 		public void SetTip(float tip)
 		{
 			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");

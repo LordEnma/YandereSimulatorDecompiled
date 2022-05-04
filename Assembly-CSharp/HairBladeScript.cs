@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x0200030D RID: 781
 public class HairBladeScript : MonoBehaviour
 {
-	// Token: 0x06001850 RID: 6224 RVA: 0x000E6E71 File Offset: 0x000E5071
+	// Token: 0x06001850 RID: 6224 RVA: 0x000E6E3D File Offset: 0x000E503D
 	private void Update()
 	{
 	}
 
-	// Token: 0x06001851 RID: 6225 RVA: 0x000E6E74 File Offset: 0x000E5074
+	// Token: 0x06001851 RID: 6225 RVA: 0x000E6E40 File Offset: 0x000E5040
 	private void OnTriggerEnter(Collider other)
 	{
 		GameObject gameObject = other.gameObject.transform.root.gameObject;

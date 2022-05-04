@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000492 RID: 1170
 public class TutorialWindowScript : MonoBehaviour
 {
-	// Token: 0x06001F46 RID: 8006 RVA: 0x001BD540 File Offset: 0x001BB740
+	// Token: 0x06001F47 RID: 8007 RVA: 0x001BD63C File Offset: 0x001BB83C
 	private void Start()
 	{
 		base.transform.localScale = new Vector3(0f, 0f, 0f);
@@ -32,7 +32,7 @@ public class TutorialWindowScript : MonoBehaviour
 		this.IgnoreRep = TutorialGlobals.IgnoreRep;
 	}
 
-	// Token: 0x06001F47 RID: 8007 RVA: 0x001BD638 File Offset: 0x001BB838
+	// Token: 0x06001F48 RID: 8008 RVA: 0x001BD734 File Offset: 0x001BB934
 	private void Update()
 	{
 		if (this.Show)
@@ -360,7 +360,7 @@ public class TutorialWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F48 RID: 8008 RVA: 0x001BE4BC File Offset: 0x001BC6BC
+	// Token: 0x06001F49 RID: 8009 RVA: 0x001BE5B8 File Offset: 0x001BC7B8
 	public void DisplayHint()
 	{
 		if (!this.Yandere.PauseScreen.Show)
@@ -371,7 +371,7 @@ public class TutorialWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F49 RID: 8009 RVA: 0x001BE514 File Offset: 0x001BC714
+	// Token: 0x06001F4A RID: 8010 RVA: 0x001BE610 File Offset: 0x001BC810
 	public void SummonWindow()
 	{
 		Debug.Log("SummonWindow() has been called.");
@@ -393,7 +393,7 @@ public class TutorialWindowScript : MonoBehaviour
 		this.ShortLabel.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001F4A RID: 8010 RVA: 0x001BE5F0 File Offset: 0x001BC7F0
+	// Token: 0x06001F4B RID: 8011 RVA: 0x001BE6EC File Offset: 0x001BC8EC
 	public void ShowTutorial()
 	{
 		Debug.Log("ShowTutorial() has been called, and ForceID is: " + this.ForceID.ToString());

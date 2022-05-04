@@ -8,13 +8,13 @@ namespace AmplifyMotion
 	// Token: 0x02000591 RID: 1425
 	internal class SolidState : MotionState
 	{
-		// Token: 0x0600243C RID: 9276 RVA: 0x001FF2DF File Offset: 0x001FD4DF
+		// Token: 0x0600243D RID: 9277 RVA: 0x001FF3DB File Offset: 0x001FD5DB
 		public SolidState(AmplifyMotionCamera owner, AmplifyMotionObjectBase obj) : base(owner, obj)
 		{
 			this.m_meshRenderer = this.m_obj.GetComponent<MeshRenderer>();
 		}
 
-		// Token: 0x0600243D RID: 9277 RVA: 0x001FF2FA File Offset: 0x001FD4FA
+		// Token: 0x0600243E RID: 9278 RVA: 0x001FF3F6 File Offset: 0x001FD5F6
 		private void IssueError(string message)
 		{
 			if (!SolidState.m_uniqueWarnings.Contains(this.m_obj))
@@ -25,7 +25,7 @@ namespace AmplifyMotion
 			this.m_error = true;
 		}
 
-		// Token: 0x0600243E RID: 9278 RVA: 0x001FF32C File Offset: 0x001FD52C
+		// Token: 0x0600243F RID: 9279 RVA: 0x001FF428 File Offset: 0x001FD628
 		internal override void Initialize()
 		{
 			MeshFilter component = this.m_obj.GetComponent<MeshFilter>();
@@ -40,7 +40,7 @@ namespace AmplifyMotion
 			this.m_wasVisible = false;
 		}
 
-		// Token: 0x0600243F RID: 9279 RVA: 0x001FF3B0 File Offset: 0x001FD5B0
+		// Token: 0x06002440 RID: 9280 RVA: 0x001FF4AC File Offset: 0x001FD6AC
 		internal override void UpdateTransform(CommandBuffer updateCB, bool starting)
 		{
 			if (!this.m_initialized)
@@ -65,7 +65,7 @@ namespace AmplifyMotion
 			this.m_wasVisible = this.m_meshRenderer.isVisible;
 		}
 
-		// Token: 0x06002440 RID: 9280 RVA: 0x001FF454 File Offset: 0x001FD654
+		// Token: 0x06002441 RID: 9281 RVA: 0x001FF550 File Offset: 0x001FD750
 		internal override void RenderVectors(Camera camera, CommandBuffer renderCB, float scale, Quality quality)
 		{
 			if (this.m_initialized && !this.m_error && this.m_meshRenderer.isVisible)

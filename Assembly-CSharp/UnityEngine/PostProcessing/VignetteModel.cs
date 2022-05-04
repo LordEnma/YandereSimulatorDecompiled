@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class VignetteModel : PostProcessingModel
 	{
 		// Token: 0x17000513 RID: 1299
-		// (get) Token: 0x060023B3 RID: 9139 RVA: 0x001FAFE4 File Offset: 0x001F91E4
-		// (set) Token: 0x060023B4 RID: 9140 RVA: 0x001FAFEC File Offset: 0x001F91EC
+		// (get) Token: 0x060023B4 RID: 9140 RVA: 0x001FB0E0 File Offset: 0x001F92E0
+		// (set) Token: 0x060023B5 RID: 9141 RVA: 0x001FB0E8 File Offset: 0x001F92E8
 		public VignetteModel.Settings settings
 		{
 			get
@@ -21,7 +21,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023B5 RID: 9141 RVA: 0x001FAFF5 File Offset: 0x001F91F5
+		// Token: 0x060023B6 RID: 9142 RVA: 0x001FB0F1 File Offset: 0x001F92F1
 		public override void Reset()
 		{
 			this.m_Settings = VignetteModel.Settings.defaultSettings;
@@ -45,7 +45,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x170005A9 RID: 1449
-			// (get) Token: 0x0600279C RID: 10140 RVA: 0x00209B1C File Offset: 0x00207D1C
+			// (get) Token: 0x0600279D RID: 10141 RVA: 0x00209C18 File Offset: 0x00207E18
 			public static VignetteModel.Settings defaultSettings
 			{
 				get

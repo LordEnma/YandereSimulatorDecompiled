@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000451 RID: 1105
 public class StreetManagerScript : MonoBehaviour
 {
-	// Token: 0x06001D55 RID: 7509 RVA: 0x0015FA4C File Offset: 0x0015DC4C
+	// Token: 0x06001D55 RID: 7509 RVA: 0x0015FA18 File Offset: 0x0015DC18
 	private void Start()
 	{
 		this.MaidAnimation["f02_faceCouncilGrace_00"].layer = 1;
@@ -57,7 +57,7 @@ public class StreetManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D56 RID: 7510 RVA: 0x0015FC88 File Offset: 0x0015DE88
+	// Token: 0x06001D56 RID: 7510 RVA: 0x0015FC54 File Offset: 0x0015DE54
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -179,13 +179,13 @@ public class StreetManagerScript : MonoBehaviour
 		this.Stars.material.SetColor("_TintColor", new Color(1f, 1f, 1f, this.StarAlpha));
 	}
 
-	// Token: 0x06001D57 RID: 7511 RVA: 0x001601E6 File Offset: 0x0015E3E6
+	// Token: 0x06001D57 RID: 7511 RVA: 0x001601B2 File Offset: 0x0015E3B2
 	private void LateUpdate()
 	{
 		this.Hips.LookAt(this.BinocularCamera.position);
 	}
 
-	// Token: 0x06001D58 RID: 7512 RVA: 0x00160200 File Offset: 0x0015E400
+	// Token: 0x06001D58 RID: 7512 RVA: 0x001601CC File Offset: 0x0015E3CC
 	private void BecomeEighties()
 	{
 		for (int i = 1; i < this.HUDLabels.Length; i++)
@@ -201,7 +201,7 @@ public class StreetManagerScript : MonoBehaviour
 		this.Konbini.material.mainTexture = this.EightiesKonbini;
 	}
 
-	// Token: 0x06001D59 RID: 7513 RVA: 0x001602C0 File Offset: 0x0015E4C0
+	// Token: 0x06001D59 RID: 7513 RVA: 0x0016028C File Offset: 0x0015E48C
 	public void EightiesifyLabel(UILabel Label)
 	{
 		Label.trueTypeFont = this.VCR;

@@ -4,7 +4,7 @@
 [Serializable]
 public class OptionSaveData
 {
-	// Token: 0x06001C3D RID: 7229 RVA: 0x00149D6C File Offset: 0x00147F6C
+	// Token: 0x06001C3D RID: 7229 RVA: 0x00149D38 File Offset: 0x00147F38
 	public static OptionSaveData ReadFromGlobals()
 	{
 		return new OptionSaveData
@@ -24,7 +24,7 @@ public class OptionSaveData
 		};
 	}
 
-	// Token: 0x06001C3E RID: 7230 RVA: 0x00149E04 File Offset: 0x00148004
+	// Token: 0x06001C3E RID: 7230 RVA: 0x00149DD0 File Offset: 0x00147FD0
 	public static void WriteToGlobals(OptionSaveData data)
 	{
 		OptionGlobals.DisableBloom = data.disableBloom;

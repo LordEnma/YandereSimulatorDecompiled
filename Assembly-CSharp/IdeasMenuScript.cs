@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000331 RID: 817
 public class IdeasMenuScript : MonoBehaviour
 {
-	// Token: 0x060018E4 RID: 6372 RVA: 0x000F57DC File Offset: 0x000F39DC
+	// Token: 0x060018E4 RID: 6372 RVA: 0x000F57A8 File Offset: 0x000F39A8
 	private void Start()
 	{
 		for (int i = 1; i < 11; i++)
@@ -20,7 +20,7 @@ public class IdeasMenuScript : MonoBehaviour
 		this.List.SetActive(true);
 	}
 
-	// Token: 0x060018E5 RID: 6373 RVA: 0x000F583C File Offset: 0x000F3A3C
+	// Token: 0x060018E5 RID: 6373 RVA: 0x000F5808 File Offset: 0x000F3A08
 	private void Update()
 	{
 		if (this.List.activeInHierarchy)
@@ -75,7 +75,7 @@ public class IdeasMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018E6 RID: 6374 RVA: 0x000F5ABC File Offset: 0x000F3CBC
+	// Token: 0x060018E6 RID: 6374 RVA: 0x000F5A88 File Offset: 0x000F3C88
 	private void UpdateHighlightPosition()
 	{
 		if (this.Selected < 1)

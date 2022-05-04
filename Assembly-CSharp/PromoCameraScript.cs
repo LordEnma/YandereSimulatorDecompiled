@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003C1 RID: 961
 public class PromoCameraScript : MonoBehaviour
 {
-	// Token: 0x06001B2B RID: 6955 RVA: 0x0012EC90 File Offset: 0x0012CE90
+	// Token: 0x06001B2B RID: 6955 RVA: 0x0012EC5C File Offset: 0x0012CE5C
 	private void Start()
 	{
 		base.transform.eulerAngles = this.StartRotations[this.ID];
@@ -15,7 +15,7 @@ public class PromoCameraScript : MonoBehaviour
 		this.Rope.material.color = new Color(this.Rope.material.color.r, this.Rope.material.color.g, this.Rope.material.color.b, 0f);
 	}
 
-	// Token: 0x06001B2C RID: 6956 RVA: 0x0012EDF4 File Offset: 0x0012CFF4
+	// Token: 0x06001B2C RID: 6956 RVA: 0x0012EDC0 File Offset: 0x0012CFC0
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Space) && this.ID < 3)
@@ -71,7 +71,7 @@ public class PromoCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B2D RID: 6957 RVA: 0x0012F104 File Offset: 0x0012D304
+	// Token: 0x06001B2D RID: 6957 RVA: 0x0012F0D0 File Offset: 0x0012D2D0
 	private void UpdatePosition()
 	{
 		base.transform.position = this.StartPositions[this.ID];

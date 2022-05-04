@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003A7 RID: 935
 public class PhotoSwapperScript : MonoBehaviour
 {
-	// Token: 0x06001AC7 RID: 6855 RVA: 0x00122028 File Offset: 0x00120228
+	// Token: 0x06001AC7 RID: 6855 RVA: 0x00121FF4 File Offset: 0x001201F4
 	private void Start()
 	{
 		for (int i = 1; i < this.PhotoRenderer.Length; i++)

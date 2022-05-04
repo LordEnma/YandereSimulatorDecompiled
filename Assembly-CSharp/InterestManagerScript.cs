@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200033B RID: 827
 public class InterestManagerScript : MonoBehaviour
 {
-	// Token: 0x060018FF RID: 6399 RVA: 0x000F7526 File Offset: 0x000F5726
+	// Token: 0x060018FF RID: 6399 RVA: 0x000F74F2 File Offset: 0x000F56F2
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -13,7 +13,7 @@ public class InterestManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001900 RID: 6400 RVA: 0x000F7540 File Offset: 0x000F5740
+	// Token: 0x06001900 RID: 6400 RVA: 0x000F750C File Offset: 0x000F570C
 	private void Update()
 	{
 		if (this.Yandere.Follower != null)
@@ -110,7 +110,7 @@ public class InterestManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001901 RID: 6401 RVA: 0x000F7A9C File Offset: 0x000F5C9C
+	// Token: 0x06001901 RID: 6401 RVA: 0x000F7A68 File Offset: 0x000F5C68
 	public void UpdateIgnore()
 	{
 		for (int i = 1; i < 26; i++)

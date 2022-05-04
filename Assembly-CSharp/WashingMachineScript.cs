@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020004C1 RID: 1217
 public class WashingMachineScript : MonoBehaviour
 {
-	// Token: 0x06001FDB RID: 8155 RVA: 0x001C2589 File Offset: 0x001C0789
+	// Token: 0x06001FDC RID: 8156 RVA: 0x001C2685 File Offset: 0x001C0885
 	private void Start()
 	{
 		this.Panel.SetActive(false);
 	}
 
-	// Token: 0x06001FDC RID: 8156 RVA: 0x001C2598 File Offset: 0x001C0798
+	// Token: 0x06001FDD RID: 8157 RVA: 0x001C2694 File Offset: 0x001C0894
 	private void Update()
 	{
 		if (!this.Washing)

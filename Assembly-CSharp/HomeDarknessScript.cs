@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200031E RID: 798
 public class HomeDarknessScript : MonoBehaviour
 {
-	// Token: 0x06001892 RID: 6290 RVA: 0x000EE304 File Offset: 0x000EC504
+	// Token: 0x06001892 RID: 6290 RVA: 0x000EE2D0 File Offset: 0x000EC4D0
 	private void Start()
 	{
 		if (GameGlobals.LoveSick)
@@ -15,7 +15,7 @@ public class HomeDarknessScript : MonoBehaviour
 		this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, 1f);
 	}
 
-	// Token: 0x06001893 RID: 6291 RVA: 0x000EE384 File Offset: 0x000EC584
+	// Token: 0x06001893 RID: 6291 RVA: 0x000EE350 File Offset: 0x000EC550
 	private void Update()
 	{
 		if (this.FadeOut)
@@ -179,7 +179,7 @@ public class HomeDarknessScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001894 RID: 6292 RVA: 0x000EE984 File Offset: 0x000ECB84
+	// Token: 0x06001894 RID: 6292 RVA: 0x000EE950 File Offset: 0x000ECB50
 	private void CheckForOsanaThursday()
 	{
 		if (this.InputDevice.Type == InputDeviceType.Gamepad)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000282 RID: 642
 public class DetectionCameraScript : MonoBehaviour
 {
-	// Token: 0x06001394 RID: 5012 RVA: 0x000B45F0 File Offset: 0x000B27F0
+	// Token: 0x06001394 RID: 5012 RVA: 0x000B45BC File Offset: 0x000B27BC
 	private void Update()
 	{
 		base.transform.position = this.YandereChan.transform.position + Vector3.up * 100f;

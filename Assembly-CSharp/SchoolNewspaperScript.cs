@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200041B RID: 1051
 public class SchoolNewspaperScript : MonoBehaviour
 {
-	// Token: 0x06001C88 RID: 7304 RVA: 0x0014E91C File Offset: 0x0014CB1C
+	// Token: 0x06001C88 RID: 7304 RVA: 0x0014E8E8 File Offset: 0x0014CAE8
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -26,7 +26,7 @@ public class SchoolNewspaperScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C89 RID: 7305 RVA: 0x0014E994 File Offset: 0x0014CB94
+	// Token: 0x06001C89 RID: 7305 RVA: 0x0014E960 File Offset: 0x0014CB60
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

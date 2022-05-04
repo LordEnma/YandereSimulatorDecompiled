@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000435 RID: 1077
 public class SmokeBombBoxScript : MonoBehaviour
 {
-	// Token: 0x06001CEB RID: 7403 RVA: 0x00157ED4 File Offset: 0x001560D4
+	// Token: 0x06001CEB RID: 7403 RVA: 0x00157EA0 File Offset: 0x001560A0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

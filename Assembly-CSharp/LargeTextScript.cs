@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200050B RID: 1291
 public class LargeTextScript : MonoBehaviour
 {
-	// Token: 0x0600216E RID: 8558 RVA: 0x001ED1D7 File Offset: 0x001EB3D7
+	// Token: 0x0600216F RID: 8559 RVA: 0x001ED2D3 File Offset: 0x001EB4D3
 	private void Start()
 	{
 		this.Label.text = this.String[this.ID];
 	}
 
-	// Token: 0x0600216F RID: 8559 RVA: 0x001ED1F1 File Offset: 0x001EB3F1
+	// Token: 0x06002170 RID: 8560 RVA: 0x001ED2ED File Offset: 0x001EB4ED
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))

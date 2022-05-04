@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x020004DA RID: 1242
 public class YandereShowerScript : MonoBehaviour
 {
-	// Token: 0x060020BB RID: 8379 RVA: 0x001E3947 File Offset: 0x001E1B47
+	// Token: 0x060020BC RID: 8380 RVA: 0x001E3A43 File Offset: 0x001E1C43
 	private void Start()
 	{
 	}
 
-	// Token: 0x060020BC RID: 8380 RVA: 0x001E394C File Offset: 0x001E1B4C
+	// Token: 0x060020BD RID: 8381 RVA: 0x001E3A48 File Offset: 0x001E1C48
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

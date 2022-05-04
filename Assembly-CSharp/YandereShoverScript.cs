@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004D9 RID: 1241
 public class YandereShoverScript : MonoBehaviour
 {
-	// Token: 0x060020B9 RID: 8377 RVA: 0x001E3698 File Offset: 0x001E1898
+	// Token: 0x060020BA RID: 8378 RVA: 0x001E3794 File Offset: 0x001E1994
 	private void OnTriggerStay(Collider other)
 	{
 		if (other.gameObject.layer == 13)

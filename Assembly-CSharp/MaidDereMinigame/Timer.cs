@@ -6,7 +6,7 @@ namespace MaidDereMinigame
 	// Token: 0x020005BC RID: 1468
 	public class Timer : Meter
 	{
-		// Token: 0x060024FE RID: 9470 RVA: 0x00202B33 File Offset: 0x00200D33
+		// Token: 0x060024FF RID: 9471 RVA: 0x00202C2F File Offset: 0x00200E2F
 		private void Awake()
 		{
 			this.gameTime = GameController.Instance.activeDifficultyVariables.gameTime;
@@ -14,25 +14,25 @@ namespace MaidDereMinigame
 			this.isPaused = true;
 		}
 
-		// Token: 0x060024FF RID: 9471 RVA: 0x00202B5C File Offset: 0x00200D5C
+		// Token: 0x06002500 RID: 9472 RVA: 0x00202C58 File Offset: 0x00200E58
 		private void OnEnable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(this.SetPause));
 		}
 
-		// Token: 0x06002500 RID: 9472 RVA: 0x00202B7E File Offset: 0x00200D7E
+		// Token: 0x06002501 RID: 9473 RVA: 0x00202C7A File Offset: 0x00200E7A
 		private void OnDisable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(this.SetPause));
 		}
 
-		// Token: 0x06002501 RID: 9473 RVA: 0x00202BA0 File Offset: 0x00200DA0
+		// Token: 0x06002502 RID: 9474 RVA: 0x00202C9C File Offset: 0x00200E9C
 		public void SetPause(bool toPause)
 		{
 			this.isPaused = toPause;
 		}
 
-		// Token: 0x06002502 RID: 9474 RVA: 0x00202BAC File Offset: 0x00200DAC
+		// Token: 0x06002503 RID: 9475 RVA: 0x00202CA8 File Offset: 0x00200EA8
 		private void Update()
 		{
 			if (this.isPaused)

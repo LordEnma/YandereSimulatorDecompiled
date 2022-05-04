@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200044A RID: 1098
 public class StandScript : MonoBehaviour
 {
-	// Token: 0x06001D3C RID: 7484 RVA: 0x0015E105 File Offset: 0x0015C305
+	// Token: 0x06001D3C RID: 7484 RVA: 0x0015E0D1 File Offset: 0x0015C2D1
 	private void Start()
 	{
 		if (GameGlobals.LoveSick)
@@ -13,7 +13,7 @@ public class StandScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D3D RID: 7485 RVA: 0x0015E118 File Offset: 0x0015C318
+	// Token: 0x06001D3D RID: 7485 RVA: 0x0015E0E4 File Offset: 0x0015C2E4
 	private void Update()
 	{
 		if (!this.Stand.activeInHierarchy)
@@ -109,7 +109,7 @@ public class StandScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D3E RID: 7486 RVA: 0x0015E5CC File Offset: 0x0015C7CC
+	// Token: 0x06001D3E RID: 7486 RVA: 0x0015E598 File Offset: 0x0015C798
 	public void Spawn()
 	{
 		this.FalconPunch.MyCollider.enabled = false;
@@ -119,7 +119,7 @@ public class StandScript : MonoBehaviour
 		this.Stand.SetActive(true);
 	}
 
-	// Token: 0x06001D3F RID: 7487 RVA: 0x0015E620 File Offset: 0x0015C820
+	// Token: 0x06001D3F RID: 7487 RVA: 0x0015E5EC File Offset: 0x0015C7EC
 	private void Return()
 	{
 		if (Vector3.Distance(this.Stand.transform.localPosition, new Vector3(0f, 0f, -0.5f)) > 0.01f)

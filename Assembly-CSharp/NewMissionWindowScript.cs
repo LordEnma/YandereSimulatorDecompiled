@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000379 RID: 889
 public class NewMissionWindowScript : MonoBehaviour
 {
-	// Token: 0x060019FE RID: 6654 RVA: 0x0010C58C File Offset: 0x0010A78C
+	// Token: 0x060019FE RID: 6654 RVA: 0x0010C558 File Offset: 0x0010A758
 	private void Start()
 	{
 		this.UpdateHighlight();
@@ -18,7 +18,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.DifficultyOptions.localScale = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x060019FF RID: 6655 RVA: 0x0010C610 File Offset: 0x0010A810
+	// Token: 0x060019FF RID: 6655 RVA: 0x0010C5DC File Offset: 0x0010A7DC
 	private void ChangeFont(UILabel Text)
 	{
 		Text.trueTypeFont = this.Arial;
@@ -28,7 +28,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A00 RID: 6656 RVA: 0x0010C634 File Offset: 0x0010A834
+	// Token: 0x06001A00 RID: 6656 RVA: 0x0010C600 File Offset: 0x0010A800
 	private void Update()
 	{
 		if (!this.ChangingDifficulty)
@@ -261,7 +261,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.UpdateNemesisList();
 	}
 
-	// Token: 0x06001A01 RID: 6657 RVA: 0x0010D554 File Offset: 0x0010B754
+	// Token: 0x06001A01 RID: 6657 RVA: 0x0010D520 File Offset: 0x0010B720
 	private void Increment(int Number)
 	{
 		this.Target[this.Column + Number]++;
@@ -296,7 +296,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.Portrait[this.Column + Number].mainTexture = www.texture;
 	}
 
-	// Token: 0x06001A02 RID: 6658 RVA: 0x0010D6B8 File Offset: 0x0010B8B8
+	// Token: 0x06001A02 RID: 6658 RVA: 0x0010D684 File Offset: 0x0010B884
 	private void Decrement(int Number)
 	{
 		this.Target[this.Column + Number]--;
@@ -335,7 +335,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.Portrait[this.Column + Number].mainTexture = www.texture;
 	}
 
-	// Token: 0x06001A03 RID: 6659 RVA: 0x0010D860 File Offset: 0x0010BA60
+	// Token: 0x06001A03 RID: 6659 RVA: 0x0010D82C File Offset: 0x0010BA2C
 	private void Randomize()
 	{
 		int i;
@@ -362,7 +362,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.Column = 2;
 	}
 
-	// Token: 0x06001A04 RID: 6660 RVA: 0x0010D9F0 File Offset: 0x0010BBF0
+	// Token: 0x06001A04 RID: 6660 RVA: 0x0010D9BC File Offset: 0x0010BBBC
 	public void UpdateHighlight()
 	{
 		this.MissionModeMenu.PromptBar.Label[0].text = "";
@@ -435,7 +435,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.MissionModeMenu.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001A05 RID: 6661 RVA: 0x0010DC1C File Offset: 0x0010BE1C
+	// Token: 0x06001A05 RID: 6661 RVA: 0x0010DBE8 File Offset: 0x0010BDE8
 	private void SaveInfo()
 	{
 		for (int i = 1; i < 11; i++)
@@ -447,7 +447,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		MissionModeGlobals.NemesisAggression = this.NemesisAggression;
 	}
 
-	// Token: 0x06001A06 RID: 6662 RVA: 0x0010DC88 File Offset: 0x0010BE88
+	// Token: 0x06001A06 RID: 6662 RVA: 0x0010DC54 File Offset: 0x0010BE54
 	public void FillOutInfo()
 	{
 		for (int i = 1; i < 11; i++)
@@ -478,7 +478,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A07 RID: 6663 RVA: 0x0010DDDA File Offset: 0x0010BFDA
+	// Token: 0x06001A07 RID: 6663 RVA: 0x0010DDA6 File Offset: 0x0010BFA6
 	public void HideButtons()
 	{
 		this.Button[0].SetActive(false);
@@ -487,7 +487,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.Button[3].SetActive(false);
 	}
 
-	// Token: 0x06001A08 RID: 6664 RVA: 0x0010DE14 File Offset: 0x0010C014
+	// Token: 0x06001A08 RID: 6664 RVA: 0x0010DDE0 File Offset: 0x0010BFE0
 	private void UpdateNemesisDifficulty()
 	{
 		if (this.NemesisDifficulty < 0)
@@ -507,7 +507,7 @@ public class NewMissionWindowScript : MonoBehaviour
 		this.NemesisPortrait.mainTexture = ((this.NemesisDifficulty > 2) ? this.AnonymousPortrait : this.NemesisGraphic);
 	}
 
-	// Token: 0x06001A09 RID: 6665 RVA: 0x0010DE90 File Offset: 0x0010C090
+	// Token: 0x06001A09 RID: 6665 RVA: 0x0010DE5C File Offset: 0x0010C05C
 	private void UpdateNemesisList()
 	{
 		if (this.NemesisDifficulty == 0)

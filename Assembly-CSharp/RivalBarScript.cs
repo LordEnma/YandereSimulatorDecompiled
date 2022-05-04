@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200050F RID: 1295
 public class RivalBarScript : MonoBehaviour
 {
-	// Token: 0x0600217A RID: 8570 RVA: 0x001ED398 File Offset: 0x001EB598
+	// Token: 0x0600217B RID: 8571 RVA: 0x001ED494 File Offset: 0x001EB694
 	private void Start()
 	{
 		for (int i = 1; i < 11; i++)
@@ -13,7 +13,7 @@ public class RivalBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600217B RID: 8571 RVA: 0x001ED3D8 File Offset: 0x001EB5D8
+	// Token: 0x0600217C RID: 8572 RVA: 0x001ED4D4 File Offset: 0x001EB6D4
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))
@@ -45,7 +45,7 @@ public class RivalBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600217C RID: 8572 RVA: 0x001ED538 File Offset: 0x001EB738
+	// Token: 0x0600217D RID: 8573 RVA: 0x001ED634 File Offset: 0x001EB834
 	private void UpdateBars()
 	{
 		int i = 1;

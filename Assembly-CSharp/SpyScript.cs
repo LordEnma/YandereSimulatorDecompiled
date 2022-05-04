@@ -4,12 +4,12 @@ using UnityEngine;
 // Token: 0x02000443 RID: 1091
 public class SpyScript : MonoBehaviour
 {
-	// Token: 0x06001D18 RID: 7448 RVA: 0x0015B0B8 File Offset: 0x001592B8
+	// Token: 0x06001D18 RID: 7448 RVA: 0x0015B084 File Offset: 0x00159284
 	private void Start()
 	{
 	}
 
-	// Token: 0x06001D19 RID: 7449 RVA: 0x0015B0BC File Offset: 0x001592BC
+	// Token: 0x06001D19 RID: 7449 RVA: 0x0015B088 File Offset: 0x00159288
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -47,7 +47,7 @@ public class SpyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D1A RID: 7450 RVA: 0x0015B274 File Offset: 0x00159474
+	// Token: 0x06001D1A RID: 7450 RVA: 0x0015B240 File Offset: 0x00159440
 	public void End()
 	{
 		this.PromptBar.ClearButtons();

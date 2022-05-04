@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200035E RID: 862
 public class MapScript : MonoBehaviour
 {
-	// Token: 0x060019A3 RID: 6563 RVA: 0x001058FC File Offset: 0x00103AFC
+	// Token: 0x060019A3 RID: 6563 RVA: 0x001058C8 File Offset: 0x00103AC8
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -21,7 +21,7 @@ public class MapScript : MonoBehaviour
 		this.Y = 0.5f;
 	}
 
-	// Token: 0x060019A4 RID: 6564 RVA: 0x00105970 File Offset: 0x00103B70
+	// Token: 0x060019A4 RID: 6564 RVA: 0x0010593C File Offset: 0x00103B3C
 	private void Update()
 	{
 		if (Input.GetButtonDown("Back") && this.Yandere.CanMove && !this.Yandere.StudentManager.TutorialWindow.Show && this.Yandere.Police.Darkness.color.a <= 0f)
@@ -178,7 +178,7 @@ public class MapScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019A5 RID: 6565 RVA: 0x001063B0 File Offset: 0x001045B0
+	// Token: 0x060019A5 RID: 6565 RVA: 0x0010637C File Offset: 0x0010457C
 	private void DisableCamera()
 	{
 		this.Border.transform.localScale = new Vector3(0f, 0f, 0f);

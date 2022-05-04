@@ -6,7 +6,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 	// Token: 0x02000548 RID: 1352
 	public class TiltInput : MonoBehaviour
 	{
-		// Token: 0x0600227E RID: 8830 RVA: 0x001F4948 File Offset: 0x001F2B48
+		// Token: 0x0600227F RID: 8831 RVA: 0x001F4A44 File Offset: 0x001F2C44
 		private void OnEnable()
 		{
 			if (this.mapping.type == TiltInput.AxisMapping.MappingType.NamedAxis)
@@ -16,7 +16,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x0600227F RID: 8831 RVA: 0x001F4978 File Offset: 0x001F2B78
+		// Token: 0x06002280 RID: 8832 RVA: 0x001F4A74 File Offset: 0x001F2C74
 		private void Update()
 		{
 			float value = 0f;
@@ -55,7 +55,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002280 RID: 8832 RVA: 0x001F4A77 File Offset: 0x001F2C77
+		// Token: 0x06002281 RID: 8833 RVA: 0x001F4B73 File Offset: 0x001F2D73
 		private void OnDisable()
 		{
 			this.m_SteerAxis.Remove();

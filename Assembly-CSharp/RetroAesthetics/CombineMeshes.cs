@@ -7,13 +7,13 @@ namespace RetroAesthetics
 	[ExecuteInEditMode]
 	public class CombineMeshes : MonoBehaviour
 	{
-		// Token: 0x060022DF RID: 8927 RVA: 0x001F603A File Offset: 0x001F423A
+		// Token: 0x060022E0 RID: 8928 RVA: 0x001F6136 File Offset: 0x001F4336
 		private void CombineButtonHandler()
 		{
 			this.CombineChildMeshes();
 		}
 
-		// Token: 0x060022E0 RID: 8928 RVA: 0x001F6044 File Offset: 0x001F4244
+		// Token: 0x060022E1 RID: 8929 RVA: 0x001F6140 File Offset: 0x001F4340
 		public virtual void CombineChildMeshes()
 		{
 			Vector3 position = base.transform.position;

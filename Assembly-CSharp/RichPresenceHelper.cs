@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020003DA RID: 986
 public class RichPresenceHelper : MonoBehaviour
 {
-	// Token: 0x06001B9F RID: 7071 RVA: 0x00139428 File Offset: 0x00137628
+	// Token: 0x06001B9F RID: 7071 RVA: 0x001393F4 File Offset: 0x001375F4
 	private void Start()
 	{
 		this.CompileDictionaries();
@@ -22,7 +22,7 @@ public class RichPresenceHelper : MonoBehaviour
 		base.InvokeRepeating("UpdatePresence", 0f, 10f);
 	}
 
-	// Token: 0x06001BA0 RID: 7072 RVA: 0x001394E4 File Offset: 0x001376E4
+	// Token: 0x06001BA0 RID: 7072 RVA: 0x001394B0 File Offset: 0x001376B0
 	private void OnLevelWasLoaded(int level)
 	{
 		if (level == 12)
@@ -32,14 +32,14 @@ public class RichPresenceHelper : MonoBehaviour
 		this.UpdatePresence();
 	}
 
-	// Token: 0x06001BA1 RID: 7073 RVA: 0x001394FC File Offset: 0x001376FC
+	// Token: 0x06001BA1 RID: 7073 RVA: 0x001394C8 File Offset: 0x001376C8
 	private void UpdatePresence()
 	{
 		this._discordController.presence.state = this.GetSceneDescription();
 		DiscordRpc.UpdatePresence(this._discordController.presence);
 	}
 
-	// Token: 0x06001BA2 RID: 7074 RVA: 0x00139524 File Offset: 0x00137724
+	// Token: 0x06001BA2 RID: 7074 RVA: 0x001394F0 File Offset: 0x001376F0
 	private void CompileDictionaries()
 	{
 		this._weekdays.Add(1, "Monday");
@@ -86,7 +86,7 @@ public class RichPresenceHelper : MonoBehaviour
 		this._sceneDescriptions.Add("OsanaJoke", "Killing Osana at long last!");
 	}
 
-	// Token: 0x06001BA3 RID: 7075 RVA: 0x00139878 File Offset: 0x00137A78
+	// Token: 0x06001BA3 RID: 7075 RVA: 0x00139844 File Offset: 0x00137A44
 	private string GetSceneDescription()
 	{
 		string name = SceneManager.GetActiveScene().name;

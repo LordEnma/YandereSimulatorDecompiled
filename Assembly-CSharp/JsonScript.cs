@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000349 RID: 841
 public class JsonScript : MonoBehaviour
 {
-	// Token: 0x06001953 RID: 6483 RVA: 0x000FD934 File Offset: 0x000FBB34
+	// Token: 0x06001953 RID: 6483 RVA: 0x000FD900 File Offset: 0x000FBB00
 	private void Start()
 	{
 		this.students = StudentJson.LoadFromJson(StudentJson.FilePath);
@@ -23,7 +23,7 @@ public class JsonScript : MonoBehaviour
 	}
 
 	// Token: 0x17000495 RID: 1173
-	// (get) Token: 0x06001954 RID: 6484 RVA: 0x000FD9BC File Offset: 0x000FBBBC
+	// (get) Token: 0x06001954 RID: 6484 RVA: 0x000FD988 File Offset: 0x000FBB88
 	public StudentJson[] Students
 	{
 		get
@@ -33,7 +33,7 @@ public class JsonScript : MonoBehaviour
 	}
 
 	// Token: 0x17000496 RID: 1174
-	// (get) Token: 0x06001955 RID: 6485 RVA: 0x000FD9C4 File Offset: 0x000FBBC4
+	// (get) Token: 0x06001955 RID: 6485 RVA: 0x000FD990 File Offset: 0x000FBB90
 	public CreditJson[] Credits
 	{
 		get
@@ -43,7 +43,7 @@ public class JsonScript : MonoBehaviour
 	}
 
 	// Token: 0x17000497 RID: 1175
-	// (get) Token: 0x06001956 RID: 6486 RVA: 0x000FD9CC File Offset: 0x000FBBCC
+	// (get) Token: 0x06001956 RID: 6486 RVA: 0x000FD998 File Offset: 0x000FBB98
 	public TopicJson[] Topics
 	{
 		get
@@ -52,7 +52,7 @@ public class JsonScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001957 RID: 6487 RVA: 0x000FD9D4 File Offset: 0x000FBBD4
+	// Token: 0x06001957 RID: 6487 RVA: 0x000FD9A0 File Offset: 0x000FBBA0
 	private void ReplaceDeadTeachers(string[] firstNames, string[] lastNames)
 	{
 		for (int i = 90; i < 101; i++)

@@ -8,7 +8,7 @@ namespace MaidDereMinigame
 	// Token: 0x020005AA RID: 1450
 	public class GameStarter : MonoBehaviour
 	{
-		// Token: 0x060024B2 RID: 9394 RVA: 0x00201C5C File Offset: 0x001FFE5C
+		// Token: 0x060024B3 RID: 9395 RVA: 0x00201D58 File Offset: 0x001FFF58
 		private void Awake()
 		{
 			this.spriteRenderer = base.GetComponent<SpriteRenderer>();
@@ -18,7 +18,7 @@ namespace MaidDereMinigame
 			GameController.Instance.whiteFadeOutPost = this.whiteFadeOutPost;
 		}
 
-		// Token: 0x060024B3 RID: 9395 RVA: 0x00201CB0 File Offset: 0x001FFEB0
+		// Token: 0x060024B4 RID: 9396 RVA: 0x00201DAC File Offset: 0x001FFFAC
 		public void SetGameTime(float gameTime)
 		{
 			int num = Mathf.CeilToInt(gameTime);
@@ -38,14 +38,14 @@ namespace MaidDereMinigame
 			this.EndGame();
 		}
 
-		// Token: 0x060024B4 RID: 9396 RVA: 0x00201D00 File Offset: 0x001FFF00
+		// Token: 0x060024B5 RID: 9397 RVA: 0x00201DFC File Offset: 0x001FFFFC
 		public void EndGame()
 		{
 			base.StartCoroutine(this.EndGameRoutine());
 			SFXController.PlaySound(SFXController.Sounds.GameSuccess);
 		}
 
-		// Token: 0x060024B5 RID: 9397 RVA: 0x00201D15 File Offset: 0x001FFF15
+		// Token: 0x060024B6 RID: 9398 RVA: 0x00201E11 File Offset: 0x00200011
 		private IEnumerator CountdownToStart()
 		{
 			yield return new WaitForSeconds(GameController.Instance.activeDifficultyVariables.transitionTime);
@@ -62,7 +62,7 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x060024B6 RID: 9398 RVA: 0x00201D24 File Offset: 0x001FFF24
+		// Token: 0x060024B7 RID: 9399 RVA: 0x00201E20 File Offset: 0x00200020
 		private IEnumerator EndGameRoutine()
 		{
 			GameController.SetPause(true);
@@ -73,7 +73,7 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x060024B7 RID: 9399 RVA: 0x00201D33 File Offset: 0x001FFF33
+		// Token: 0x060024B8 RID: 9400 RVA: 0x00201E2F File Offset: 0x0020002F
 		public void SetAudioPitch(float value)
 		{
 			this.audioSource.pitch = value;

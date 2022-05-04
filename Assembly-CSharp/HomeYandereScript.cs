@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200032E RID: 814
 public class HomeYandereScript : MonoBehaviour
 {
-	// Token: 0x060018D5 RID: 6357 RVA: 0x000F48A4 File Offset: 0x000F2AA4
+	// Token: 0x060018D5 RID: 6357 RVA: 0x000F4870 File Offset: 0x000F2A70
 	public void Start()
 	{
 		this.VtuberCheck();
@@ -132,7 +132,7 @@ public class HomeYandereScript : MonoBehaviour
 		PlayerGlobals.BringingItem = 0;
 	}
 
-	// Token: 0x060018D6 RID: 6358 RVA: 0x000F4DAC File Offset: 0x000F2FAC
+	// Token: 0x060018D6 RID: 6358 RVA: 0x000F4D78 File Offset: 0x000F2F78
 	private void Update()
 	{
 		if (this.UpdateFace)
@@ -238,7 +238,7 @@ public class HomeYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018D7 RID: 6359 RVA: 0x000F5198 File Offset: 0x000F3398
+	// Token: 0x060018D7 RID: 6359 RVA: 0x000F5164 File Offset: 0x000F3364
 	private void LateUpdate()
 	{
 		if (!this.CannotAlphabet && Input.GetKeyDown(this.Letter[this.AlphabetID]))
@@ -260,7 +260,7 @@ public class HomeYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018D8 RID: 6360 RVA: 0x000F5220 File Offset: 0x000F3420
+	// Token: 0x060018D8 RID: 6360 RVA: 0x000F51EC File Offset: 0x000F33EC
 	private void UpdateHair()
 	{
 		if (this.Hairstyle == 0)
@@ -282,7 +282,7 @@ public class HomeYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018D9 RID: 6361 RVA: 0x000F52A0 File Offset: 0x000F34A0
+	// Token: 0x060018D9 RID: 6361 RVA: 0x000F526C File Offset: 0x000F346C
 	private void ChangeSchoolwear()
 	{
 		this.MyRenderer.sharedMesh = this.Uniforms[StudentGlobals.FemaleUniform];
@@ -292,7 +292,7 @@ public class HomeYandereScript : MonoBehaviour
 		base.StartCoroutine(this.ApplyCustomCostume());
 	}
 
-	// Token: 0x060018DA RID: 6362 RVA: 0x000F5328 File Offset: 0x000F3528
+	// Token: 0x060018DA RID: 6362 RVA: 0x000F52F4 File Offset: 0x000F34F4
 	private void WearPajamas()
 	{
 		this.Pajamas.gameObject.SetActive(true);
@@ -307,7 +307,7 @@ public class HomeYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018DB RID: 6363 RVA: 0x000F53B8 File Offset: 0x000F35B8
+	// Token: 0x060018DB RID: 6363 RVA: 0x000F5384 File Offset: 0x000F3584
 	private void Nude()
 	{
 		this.MyRenderer.sharedMesh = this.NudeMesh;
@@ -316,7 +316,7 @@ public class HomeYandereScript : MonoBehaviour
 		this.MyRenderer.materials[2].mainTexture = this.NudeTexture;
 	}
 
-	// Token: 0x060018DC RID: 6364 RVA: 0x000F541E File Offset: 0x000F361E
+	// Token: 0x060018DC RID: 6364 RVA: 0x000F53EA File Offset: 0x000F35EA
 	private IEnumerator ApplyCustomCostume()
 	{
 		if (StudentGlobals.FemaleUniform == 1)
@@ -367,7 +367,7 @@ public class HomeYandereScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060018DD RID: 6365 RVA: 0x000F542D File Offset: 0x000F362D
+	// Token: 0x060018DD RID: 6365 RVA: 0x000F53F9 File Offset: 0x000F35F9
 	private IEnumerator ApplyCustomFace()
 	{
 		WWW CustomFace = new WWW("file:///" + Application.streamingAssetsPath + "/CustomFace.png");
@@ -386,7 +386,7 @@ public class HomeYandereScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060018DE RID: 6366 RVA: 0x000F543C File Offset: 0x000F363C
+	// Token: 0x060018DE RID: 6366 RVA: 0x000F5408 File Offset: 0x000F3608
 	private void VtuberCheck()
 	{
 		if (GameGlobals.VtuberID > 0)

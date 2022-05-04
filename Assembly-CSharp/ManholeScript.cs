@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200035D RID: 861
 public class ManholeScript : MonoBehaviour
 {
-	// Token: 0x060019A1 RID: 6561 RVA: 0x00105258 File Offset: 0x00103458
+	// Token: 0x060019A1 RID: 6561 RVA: 0x00105224 File Offset: 0x00103424
 	private void Update()
 	{
 		if (!this.Open)

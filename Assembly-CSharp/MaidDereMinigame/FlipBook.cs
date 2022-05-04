@@ -9,7 +9,7 @@ namespace MaidDereMinigame
 	public class FlipBook : MonoBehaviour
 	{
 		// Token: 0x1700052C RID: 1324
-		// (get) Token: 0x060024C4 RID: 9412 RVA: 0x00201EEB File Offset: 0x002000EB
+		// (get) Token: 0x060024C5 RID: 9413 RVA: 0x00201FE7 File Offset: 0x002001E7
 		public static FlipBook Instance
 		{
 			get
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024C5 RID: 9413 RVA: 0x00201F09 File Offset: 0x00200109
+		// Token: 0x060024C6 RID: 9414 RVA: 0x00202005 File Offset: 0x00200205
 		private void Awake()
 		{
 			base.StartCoroutine(this.OpenBook());
@@ -35,7 +35,7 @@ namespace MaidDereMinigame
 			this.Ryoba.enabled = false;
 		}
 
-		// Token: 0x060024C6 RID: 9414 RVA: 0x00201F3F File Offset: 0x0020013F
+		// Token: 0x060024C7 RID: 9415 RVA: 0x0020203B File Offset: 0x0020023B
 		private IEnumerator OpenBook()
 		{
 			yield return new WaitForSeconds(1f);
@@ -43,7 +43,7 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x060024C7 RID: 9415 RVA: 0x00201F50 File Offset: 0x00200150
+		// Token: 0x060024C8 RID: 9416 RVA: 0x0020204C File Offset: 0x0020024C
 		private void Update()
 		{
 			if (this.UpdateRyobaSprite)
@@ -71,20 +71,20 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024C8 RID: 9416 RVA: 0x00202019 File Offset: 0x00200219
+		// Token: 0x060024C9 RID: 9417 RVA: 0x00202115 File Offset: 0x00200315
 		public void StopInputs()
 		{
 			this.stopInputs = true;
 		}
 
-		// Token: 0x060024C9 RID: 9417 RVA: 0x00202022 File Offset: 0x00200222
+		// Token: 0x060024CA RID: 9418 RVA: 0x0020211E File Offset: 0x0020031E
 		public void FlipToPage(int page)
 		{
 			SFXController.PlaySound(SFXController.Sounds.PageTurn);
 			base.StartCoroutine(this.FlipToPageRoutine(page));
 		}
 
-		// Token: 0x060024CA RID: 9418 RVA: 0x00202038 File Offset: 0x00200238
+		// Token: 0x060024CB RID: 9419 RVA: 0x00202134 File Offset: 0x00200334
 		private IEnumerator FlipToPageRoutine(int page)
 		{
 			bool flag = this.curPage < page;

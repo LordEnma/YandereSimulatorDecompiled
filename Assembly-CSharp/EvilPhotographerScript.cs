@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020002C0 RID: 704
 public class EvilPhotographerScript : MonoBehaviour
 {
-	// Token: 0x06001489 RID: 5257 RVA: 0x000C844B File Offset: 0x000C664B
+	// Token: 0x06001489 RID: 5257 RVA: 0x000C8417 File Offset: 0x000C6617
 	private void Start()
 	{
 		this.Subtitle.transform.localScale = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x0600148A RID: 5258 RVA: 0x000C8474 File Offset: 0x000C6674
+	// Token: 0x0600148A RID: 5258 RVA: 0x000C8440 File Offset: 0x000C6640
 	private void Update()
 	{
 		if (!this.GameOver)
@@ -184,7 +184,7 @@ public class EvilPhotographerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600148B RID: 5259 RVA: 0x000C8C90 File Offset: 0x000C6E90
+	// Token: 0x0600148B RID: 5259 RVA: 0x000C8C5C File Offset: 0x000C6E5C
 	private bool YandereIsInFOV()
 	{
 		Vector3 to = this.Yandere.transform.position - this.Head.position;
@@ -192,7 +192,7 @@ public class EvilPhotographerScript : MonoBehaviour
 		return Vector3.Angle(this.Head.forward, to) <= num;
 	}
 
-	// Token: 0x0600148C RID: 5260 RVA: 0x000C8CDC File Offset: 0x000C6EDC
+	// Token: 0x0600148C RID: 5260 RVA: 0x000C8CA8 File Offset: 0x000C6EA8
 	private bool YandereIsInLOS()
 	{
 		Debug.DrawLine(this.Head.position, new Vector3(this.Yandere.transform.position.x, this.YandereHead.position.y, this.Yandere.transform.position.z), Color.red);
@@ -200,7 +200,7 @@ public class EvilPhotographerScript : MonoBehaviour
 		return Physics.Linecast(this.Head.position, new Vector3(this.Yandere.transform.position.x, this.YandereHead.position.y, this.Yandere.transform.position.z), out raycastHit) && raycastHit.collider.gameObject.layer == 13;
 	}
 
-	// Token: 0x0600148D RID: 5261 RVA: 0x000C8DA8 File Offset: 0x000C6FA8
+	// Token: 0x0600148D RID: 5261 RVA: 0x000C8D74 File Offset: 0x000C6F74
 	private void TransitionToGameOver()
 	{
 		this.Marker.Tex.transform.localScale = new Vector3(1f, 0f, 1f);
@@ -215,7 +215,7 @@ public class EvilPhotographerScript : MonoBehaviour
 		this.Alpha = 0f;
 	}
 
-	// Token: 0x0600148E RID: 5262 RVA: 0x000C8E88 File Offset: 0x000C7088
+	// Token: 0x0600148E RID: 5262 RVA: 0x000C8E54 File Offset: 0x000C7054
 	private void LookForYandere()
 	{
 		if (!this.Yandere.Invisible)

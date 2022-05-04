@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020002C9 RID: 713
 public class FamilyVoiceScript : MonoBehaviour
 {
-	// Token: 0x060014A6 RID: 5286 RVA: 0x000CA43A File Offset: 0x000C863A
+	// Token: 0x060014A6 RID: 5286 RVA: 0x000CA406 File Offset: 0x000C8606
 	private void Start()
 	{
 		this.Subtitle.transform.localScale = new Vector3(0f, 0f, 0f);
 	}
 
-	// Token: 0x060014A7 RID: 5287 RVA: 0x000CA460 File Offset: 0x000C8660
+	// Token: 0x060014A7 RID: 5287 RVA: 0x000CA42C File Offset: 0x000C862C
 	private void Update()
 	{
 		if (!this.GameOver)
@@ -189,7 +189,7 @@ public class FamilyVoiceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014A8 RID: 5288 RVA: 0x000CAD38 File Offset: 0x000C8F38
+	// Token: 0x060014A8 RID: 5288 RVA: 0x000CAD04 File Offset: 0x000C8F04
 	private bool YandereIsInFOV()
 	{
 		Vector3 to = this.Yandere.transform.position - this.Head.position;
@@ -197,7 +197,7 @@ public class FamilyVoiceScript : MonoBehaviour
 		return Vector3.Angle(this.Head.forward, to) <= num;
 	}
 
-	// Token: 0x060014A9 RID: 5289 RVA: 0x000CAD84 File Offset: 0x000C8F84
+	// Token: 0x060014A9 RID: 5289 RVA: 0x000CAD50 File Offset: 0x000C8F50
 	private bool YandereIsInLOS()
 	{
 		Debug.DrawLine(this.Head.position, new Vector3(this.Yandere.transform.position.x, this.YandereHead.position.y, this.Yandere.transform.position.z), Color.red);
@@ -205,7 +205,7 @@ public class FamilyVoiceScript : MonoBehaviour
 		return Physics.Linecast(this.Head.position, new Vector3(this.Yandere.transform.position.x, this.YandereHead.position.y, this.Yandere.transform.position.z), out raycastHit) && raycastHit.collider.gameObject.layer == 13;
 	}
 
-	// Token: 0x060014AA RID: 5290 RVA: 0x000CAE50 File Offset: 0x000C9050
+	// Token: 0x060014AA RID: 5290 RVA: 0x000CAE1C File Offset: 0x000C901C
 	private void TransitionToGameOver()
 	{
 		this.Marker.Tex.transform.localScale = new Vector3(1f, 0f, 1f);
@@ -220,7 +220,7 @@ public class FamilyVoiceScript : MonoBehaviour
 		this.Alpha = 0f;
 	}
 
-	// Token: 0x060014AB RID: 5291 RVA: 0x000CAF30 File Offset: 0x000C9130
+	// Token: 0x060014AB RID: 5291 RVA: 0x000CAEFC File Offset: 0x000C90FC
 	private void LookForYandere()
 	{
 		if (this.Yandere.Hidden && this.Yandere.Stance.Current == StanceType.Crouching)

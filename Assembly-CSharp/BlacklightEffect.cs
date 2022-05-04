@@ -5,7 +5,7 @@ using UnityEngine;
 [ExecuteInEditMode]
 public class BlacklightEffect : MonoBehaviour
 {
-	// Token: 0x06002122 RID: 8482 RVA: 0x001EB6D8 File Offset: 0x001E98D8
+	// Token: 0x06002123 RID: 8483 RVA: 0x001EB7D4 File Offset: 0x001E99D4
 	private void Update()
 	{
 		if (this.camera != null)
@@ -51,7 +51,7 @@ public class BlacklightEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002123 RID: 8483 RVA: 0x001EB988 File Offset: 0x001E9B88
+	// Token: 0x06002124 RID: 8484 RVA: 0x001EBA84 File Offset: 0x001E9C84
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		if (this.camera == null)
@@ -66,7 +66,7 @@ public class BlacklightEffect : MonoBehaviour
 		Graphics.Blit(source, destination, this.post);
 	}
 
-	// Token: 0x06002124 RID: 8484 RVA: 0x001EB9E0 File Offset: 0x001E9BE0
+	// Token: 0x06002125 RID: 8485 RVA: 0x001EBADC File Offset: 0x001E9CDC
 	[ContextMenu("Refresh")]
 	public void Refresh()
 	{

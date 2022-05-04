@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class ChromaticAberrationModel : PostProcessingModel
 	{
 		// Token: 0x17000507 RID: 1287
-		// (get) Token: 0x06002386 RID: 9094 RVA: 0x001FADC3 File Offset: 0x001F8FC3
-		// (set) Token: 0x06002387 RID: 9095 RVA: 0x001FADCB File Offset: 0x001F8FCB
+		// (get) Token: 0x06002387 RID: 9095 RVA: 0x001FAEBF File Offset: 0x001F90BF
+		// (set) Token: 0x06002388 RID: 9096 RVA: 0x001FAEC7 File Offset: 0x001F90C7
 		public ChromaticAberrationModel.Settings settings
 		{
 			get
@@ -21,7 +21,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002388 RID: 9096 RVA: 0x001FADD4 File Offset: 0x001F8FD4
+		// Token: 0x06002389 RID: 9097 RVA: 0x001FAED0 File Offset: 0x001F90D0
 		public override void Reset()
 		{
 			this.m_Settings = ChromaticAberrationModel.Settings.defaultSettings;
@@ -36,7 +36,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x17000598 RID: 1432
-			// (get) Token: 0x0600278B RID: 10123 RVA: 0x002093A0 File Offset: 0x002075A0
+			// (get) Token: 0x0600278C RID: 10124 RVA: 0x0020949C File Offset: 0x0020769C
 			public static ChromaticAberrationModel.Settings defaultSettings
 			{
 				get

@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x0200044F RID: 1103
 public class StopAnimationScript : MonoBehaviour
 {
-	// Token: 0x06001D4E RID: 7502 RVA: 0x0015F7E7 File Offset: 0x0015D9E7
+	// Token: 0x06001D4E RID: 7502 RVA: 0x0015F7B3 File Offset: 0x0015D9B3
 	private void Start()
 	{
 		this.StudentManager = GameObject.Find("StudentManager").GetComponent<StudentManagerScript>();
 		this.Anim = base.GetComponent<Animation>();
 	}
 
-	// Token: 0x06001D4F RID: 7503 RVA: 0x0015F80C File Offset: 0x0015DA0C
+	// Token: 0x06001D4F RID: 7503 RVA: 0x0015F7D8 File Offset: 0x0015D9D8
 	private void Update()
 	{
 		if (this.StudentManager.DisableFarAnims)

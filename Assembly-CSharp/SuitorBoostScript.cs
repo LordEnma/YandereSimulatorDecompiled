@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000468 RID: 1128
 public class SuitorBoostScript : MonoBehaviour
 {
-	// Token: 0x06001EA8 RID: 7848 RVA: 0x001A8B20 File Offset: 0x001A6D20
+	// Token: 0x06001EA9 RID: 7849 RVA: 0x001A8C28 File Offset: 0x001A6E28
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -180,7 +180,7 @@ public class SuitorBoostScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EA9 RID: 7849 RVA: 0x001A954C File Offset: 0x001A774C
+	// Token: 0x06001EAA RID: 7850 RVA: 0x001A9654 File Offset: 0x001A7854
 	private void LateUpdate()
 	{
 		if (this.TraitID == 2 && this.Boosting && this.Phase > 1 && this.Phase < 5)

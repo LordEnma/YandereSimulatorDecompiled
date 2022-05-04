@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000491 RID: 1169
 public class TutorialScript : MonoBehaviour
 {
-	// Token: 0x06001F40 RID: 8000 RVA: 0x001BA454 File Offset: 0x001B8654
+	// Token: 0x06001F41 RID: 8001 RVA: 0x001BA550 File Offset: 0x001B8750
 	private void Start()
 	{
 		if (!GameGlobals.EightiesTutorial)
@@ -75,7 +75,7 @@ public class TutorialScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F41 RID: 8001 RVA: 0x001BA834 File Offset: 0x001B8A34
+	// Token: 0x06001F42 RID: 8002 RVA: 0x001BA930 File Offset: 0x001B8B30
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
@@ -1005,7 +1005,7 @@ public class TutorialScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F42 RID: 8002 RVA: 0x001BD2EC File Offset: 0x001BB4EC
+	// Token: 0x06001F43 RID: 8003 RVA: 0x001BD3E8 File Offset: 0x001BB5E8
 	private void UpdateInstructionText()
 	{
 		this.PreviousInputDevice = this.InputDevice.Type;
@@ -1017,7 +1017,7 @@ public class TutorialScript : MonoBehaviour
 		this.InstructionLabel.text = this.KeyboardInstructions[this.Phase];
 	}
 
-	// Token: 0x06001F43 RID: 8003 RVA: 0x001BD34C File Offset: 0x001BB54C
+	// Token: 0x06001F44 RID: 8004 RVA: 0x001BD448 File Offset: 0x001BB648
 	private void LateUpdate()
 	{
 		if (this.EyeShrink > 0f)
@@ -1033,7 +1033,7 @@ public class TutorialScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F44 RID: 8004 RVA: 0x001BD4B4 File Offset: 0x001BB6B4
+	// Token: 0x06001F45 RID: 8005 RVA: 0x001BD5B0 File Offset: 0x001BB7B0
 	public void TogglePauseScreen()
 	{
 		this.Pause = !this.Pause;

@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200034E RID: 846
 public class KnifeDetectorScript : MonoBehaviour
 {
-	// Token: 0x0600196A RID: 6506 RVA: 0x000FF332 File Offset: 0x000FD532
+	// Token: 0x0600196A RID: 6506 RVA: 0x000FF2FE File Offset: 0x000FD4FE
 	private void Start()
 	{
 		this.Disable();
 	}
 
-	// Token: 0x0600196B RID: 6507 RVA: 0x000FF33C File Offset: 0x000FD53C
+	// Token: 0x0600196B RID: 6507 RVA: 0x000FF308 File Offset: 0x000FD508
 	private void Update()
 	{
 		if (this.Blowtorches[1].transform.parent != this.Torches || this.Blowtorches[2].transform.parent != this.Torches || this.Blowtorches[3].transform.parent != this.Torches)
@@ -68,7 +68,7 @@ public class KnifeDetectorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600196C RID: 6508 RVA: 0x000FF60C File Offset: 0x000FD80C
+	// Token: 0x0600196C RID: 6508 RVA: 0x000FF5D8 File Offset: 0x000FD7D8
 	private void Disable()
 	{
 		this.Prompt.Hide();

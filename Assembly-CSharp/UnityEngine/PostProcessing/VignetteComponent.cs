@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class VignetteComponent : PostProcessingComponentRenderTexture<VignetteModel>
 	{
 		// Token: 0x17000501 RID: 1281
-		// (get) Token: 0x06002371 RID: 9073 RVA: 0x001FAB96 File Offset: 0x001F8D96
+		// (get) Token: 0x06002372 RID: 9074 RVA: 0x001FAC92 File Offset: 0x001F8E92
 		public override bool active
 		{
 			get
@@ -15,7 +15,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002372 RID: 9074 RVA: 0x001FABB8 File Offset: 0x001F8DB8
+		// Token: 0x06002373 RID: 9075 RVA: 0x001FACB4 File Offset: 0x001F8EB4
 		public override void Prepare(Material uberMaterial)
 		{
 			VignetteModel.Settings settings = base.model.settings;

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002A1 RID: 673
 public class EightiesStatsScript : MonoBehaviour
 {
-	// Token: 0x06001425 RID: 5157 RVA: 0x000C0558 File Offset: 0x000BE758
+	// Token: 0x06001425 RID: 5157 RVA: 0x000C0524 File Offset: 0x000BE724
 	public void Start()
 	{
 		if (!GameGlobals.Eighties)

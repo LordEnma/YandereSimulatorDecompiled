@@ -6,7 +6,7 @@ using UnityEngine;
 // Token: 0x0200029D RID: 669
 public class StudentEditorScript : MonoBehaviour
 {
-	// Token: 0x06001414 RID: 5140 RVA: 0x000BEB88 File Offset: 0x000BCD88
+	// Token: 0x06001414 RID: 5140 RVA: 0x000BEB54 File Offset: 0x000BCD54
 	private void Awake()
 	{
 		Dictionary<string, object>[] array = EditorManagerScript.DeserializeJson("Students.json");
@@ -30,7 +30,7 @@ public class StudentEditorScript : MonoBehaviour
 		this.inputManager = UnityEngine.Object.FindObjectOfType<InputManagerScript>();
 	}
 
-	// Token: 0x06001415 RID: 5141 RVA: 0x000BECE2 File Offset: 0x000BCEE2
+	// Token: 0x06001415 RID: 5141 RVA: 0x000BECAE File Offset: 0x000BCEAE
 	private void OnEnable()
 	{
 		this.promptBar.Label[0].text = string.Empty;
@@ -38,7 +38,7 @@ public class StudentEditorScript : MonoBehaviour
 		this.promptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001416 RID: 5142 RVA: 0x000BED20 File Offset: 0x000BCF20
+	// Token: 0x06001416 RID: 5142 RVA: 0x000BECEC File Offset: 0x000BCEEC
 	private static ScheduleBlock[] DeserializeScheduleBlocks(Dictionary<string, object> dict)
 	{
 		string[] array = TFUtils.LoadString(dict, "ScheduleTime").Split(new char[]
@@ -61,7 +61,7 @@ public class StudentEditorScript : MonoBehaviour
 		return array4;
 	}
 
-	// Token: 0x06001417 RID: 5143 RVA: 0x000BEDB8 File Offset: 0x000BCFB8
+	// Token: 0x06001417 RID: 5143 RVA: 0x000BED84 File Offset: 0x000BCF84
 	private static string GetStudentText(StudentEditorScript.StudentData data)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
@@ -98,7 +98,7 @@ public class StudentEditorScript : MonoBehaviour
 		return stringBuilder.ToString();
 	}
 
-	// Token: 0x06001418 RID: 5144 RVA: 0x000BF078 File Offset: 0x000BD278
+	// Token: 0x06001418 RID: 5144 RVA: 0x000BF044 File Offset: 0x000BD244
 	private void HandleInput()
 	{
 		if (Input.GetButtonDown("B"))
@@ -124,7 +124,7 @@ public class StudentEditorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001419 RID: 5145 RVA: 0x000BF134 File Offset: 0x000BD334
+	// Token: 0x06001419 RID: 5145 RVA: 0x000BF100 File Offset: 0x000BD300
 	private void Update()
 	{
 		this.HandleInput();
@@ -166,7 +166,7 @@ public class StudentEditorScript : MonoBehaviour
 	// Token: 0x02000665 RID: 1637
 	private class StudentAttendanceInfo
 	{
-		// Token: 0x0600267E RID: 9854 RVA: 0x002053ED File Offset: 0x002035ED
+		// Token: 0x0600267F RID: 9855 RVA: 0x002054E9 File Offset: 0x002036E9
 		public static StudentEditorScript.StudentAttendanceInfo Deserialize(Dictionary<string, object> dict)
 		{
 			return new StudentEditorScript.StudentAttendanceInfo
@@ -190,7 +190,7 @@ public class StudentEditorScript : MonoBehaviour
 	// Token: 0x02000666 RID: 1638
 	private class StudentPersonality
 	{
-		// Token: 0x06002680 RID: 9856 RVA: 0x0020542F File Offset: 0x0020362F
+		// Token: 0x06002681 RID: 9857 RVA: 0x0020552B File Offset: 0x0020372B
 		public static StudentEditorScript.StudentPersonality Deserialize(Dictionary<string, object> dict)
 		{
 			return new StudentEditorScript.StudentPersonality
@@ -210,7 +210,7 @@ public class StudentEditorScript : MonoBehaviour
 	// Token: 0x02000667 RID: 1639
 	private class StudentStats
 	{
-		// Token: 0x06002682 RID: 9858 RVA: 0x00205460 File Offset: 0x00203660
+		// Token: 0x06002683 RID: 9859 RVA: 0x0020555C File Offset: 0x0020375C
 		public static StudentEditorScript.StudentStats Deserialize(Dictionary<string, object> dict)
 		{
 			return new StudentEditorScript.StudentStats
@@ -226,7 +226,7 @@ public class StudentEditorScript : MonoBehaviour
 	// Token: 0x02000668 RID: 1640
 	private class StudentCosmetics
 	{
-		// Token: 0x06002684 RID: 9860 RVA: 0x00205480 File Offset: 0x00203680
+		// Token: 0x06002685 RID: 9861 RVA: 0x0020557C File Offset: 0x0020377C
 		public static StudentEditorScript.StudentCosmetics Deserialize(Dictionary<string, object> dict)
 		{
 			return new StudentEditorScript.StudentCosmetics
@@ -262,7 +262,7 @@ public class StudentEditorScript : MonoBehaviour
 	// Token: 0x02000669 RID: 1641
 	private class StudentData
 	{
-		// Token: 0x06002686 RID: 9862 RVA: 0x00205500 File Offset: 0x00203700
+		// Token: 0x06002687 RID: 9863 RVA: 0x002055FC File Offset: 0x002037FC
 		public static StudentEditorScript.StudentData Deserialize(Dictionary<string, object> dict)
 		{
 			return new StudentEditorScript.StudentData

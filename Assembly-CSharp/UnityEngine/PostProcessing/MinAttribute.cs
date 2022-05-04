@@ -5,7 +5,7 @@ namespace UnityEngine.PostProcessing
 	// Token: 0x0200055C RID: 1372
 	public sealed class MinAttribute : PropertyAttribute
 	{
-		// Token: 0x060022F7 RID: 8951 RVA: 0x001F6D58 File Offset: 0x001F4F58
+		// Token: 0x060022F8 RID: 8952 RVA: 0x001F6E54 File Offset: 0x001F5054
 		public MinAttribute(float min)
 		{
 			this.min = min;

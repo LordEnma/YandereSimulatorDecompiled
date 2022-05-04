@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000387 RID: 903
 public class OfferHelpScript : MonoBehaviour
 {
-	// Token: 0x06001A4A RID: 6730 RVA: 0x00115810 File Offset: 0x00113A10
+	// Token: 0x06001A4A RID: 6730 RVA: 0x001157DC File Offset: 0x001139DC
 	private void Start()
 	{
 		this.Prompt.enabled = true;
@@ -189,7 +189,7 @@ public class OfferHelpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A4B RID: 6731 RVA: 0x00116080 File Offset: 0x00114280
+	// Token: 0x06001A4B RID: 6731 RVA: 0x0011604C File Offset: 0x0011424C
 	private void Update()
 	{
 		if (!this.Unable)
@@ -351,7 +351,7 @@ public class OfferHelpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A4C RID: 6732 RVA: 0x0011685C File Offset: 0x00114A5C
+	// Token: 0x06001A4C RID: 6732 RVA: 0x00116828 File Offset: 0x00114A28
 	public void UpdateLocation()
 	{
 		if (this.Eighties)
@@ -400,7 +400,7 @@ public class OfferHelpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A4D RID: 6733 RVA: 0x00116A80 File Offset: 0x00114C80
+	// Token: 0x06001A4D RID: 6733 RVA: 0x00116A4C File Offset: 0x00114C4C
 	public void Continue()
 	{
 		Debug.Log("Proceeding to next line.");

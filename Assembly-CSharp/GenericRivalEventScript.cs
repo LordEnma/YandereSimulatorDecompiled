@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002E3 RID: 739
 public class GenericRivalEventScript : MonoBehaviour
 {
-	// Token: 0x06001505 RID: 5381 RVA: 0x000D31F8 File Offset: 0x000D13F8
+	// Token: 0x06001505 RID: 5381 RVA: 0x000D31C4 File Offset: 0x000D13C4
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -1534,7 +1534,7 @@ public class GenericRivalEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001506 RID: 5382 RVA: 0x000D738C File Offset: 0x000D558C
+	// Token: 0x06001506 RID: 5382 RVA: 0x000D7358 File Offset: 0x000D5558
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -1748,7 +1748,7 @@ public class GenericRivalEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001507 RID: 5383 RVA: 0x000D7E30 File Offset: 0x000D6030
+	// Token: 0x06001507 RID: 5383 RVA: 0x000D7DFC File Offset: 0x000D5FFC
 	public void EndEvent()
 	{
 		Debug.Log(base.gameObject.name + " has ended.");
@@ -1854,7 +1854,7 @@ public class GenericRivalEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001508 RID: 5384 RVA: 0x000D8298 File Offset: 0x000D6498
+	// Token: 0x06001508 RID: 5384 RVA: 0x000D8264 File Offset: 0x000D6464
 	public void Sabotage()
 	{
 		Debug.Log("A Senpai-Rival interaction event has just been sabotaged.");

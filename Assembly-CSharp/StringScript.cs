@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000455 RID: 1109
 public class StringScript : MonoBehaviour
 {
-	// Token: 0x06001D6A RID: 7530 RVA: 0x00162023 File Offset: 0x00160223
+	// Token: 0x06001D6A RID: 7530 RVA: 0x00161FEF File Offset: 0x001601EF
 	private void Start()
 	{
 		if (this.ArrayID == 0)
@@ -13,7 +13,7 @@ public class StringScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D6B RID: 7531 RVA: 0x00162044 File Offset: 0x00160244
+	// Token: 0x06001D6B RID: 7531 RVA: 0x00162010 File Offset: 0x00160210
 	private void Update()
 	{
 		this.String.position = this.Origin.position;

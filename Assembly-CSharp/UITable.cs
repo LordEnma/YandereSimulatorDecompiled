@@ -267,7 +267,7 @@ public class UITable : UIWidgetContainer
 	protected bool mReposition;
 
 	// Token: 0x020005EA RID: 1514
-	// (Invoke) Token: 0x0600256E RID: 9582
+	// (Invoke) Token: 0x0600256F RID: 9583
 	public delegate void OnReposition();
 
 	// Token: 0x020005EB RID: 1515

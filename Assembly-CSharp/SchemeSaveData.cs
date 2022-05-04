@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [Serializable]
 public class SchemeSaveData
 {
-	// Token: 0x06001C49 RID: 7241 RVA: 0x0014A434 File Offset: 0x00148634
+	// Token: 0x06001C49 RID: 7241 RVA: 0x0014A400 File Offset: 0x00148600
 	public static SchemeSaveData ReadFromGlobals()
 	{
 		SchemeSaveData schemeSaveData = new SchemeSaveData();
@@ -43,7 +43,7 @@ public class SchemeSaveData
 		return schemeSaveData;
 	}
 
-	// Token: 0x06001C4A RID: 7242 RVA: 0x0014A548 File Offset: 0x00148748
+	// Token: 0x06001C4A RID: 7242 RVA: 0x0014A514 File Offset: 0x00148714
 	public static void WriteToGlobals(SchemeSaveData data)
 	{
 		SchemeGlobals.CurrentScheme = data.currentScheme;

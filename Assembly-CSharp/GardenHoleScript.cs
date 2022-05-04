@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002DA RID: 730
 public class GardenHoleScript : MonoBehaviour
 {
-	// Token: 0x060014DB RID: 5339 RVA: 0x000CDC04 File Offset: 0x000CBE04
+	// Token: 0x060014DB RID: 5339 RVA: 0x000CDBD0 File Offset: 0x000CBDD0
 	private void Start()
 	{
 		if (SchoolGlobals.GetGardenGraveOccupied(this.ID))
@@ -15,7 +15,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014DC RID: 5340 RVA: 0x000CDC34 File Offset: 0x000CBE34
+	// Token: 0x060014DC RID: 5340 RVA: 0x000CDC00 File Offset: 0x000CBE00
 	private void Update()
 	{
 		if (this.Prompt.DistanceSqr < 10f)
@@ -115,7 +115,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014DD RID: 5341 RVA: 0x000CE14C File Offset: 0x000CC34C
+	// Token: 0x060014DD RID: 5341 RVA: 0x000CE118 File Offset: 0x000CC318
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Dug && other.gameObject.layer == 11)
@@ -126,7 +126,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014DE RID: 5342 RVA: 0x000CE1A9 File Offset: 0x000CC3A9
+	// Token: 0x060014DE RID: 5342 RVA: 0x000CE175 File Offset: 0x000CC375
 	private void OnTriggerExit(Collider other)
 	{
 		if (this.Dug && other.gameObject.layer == 11)
@@ -137,7 +137,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014DF RID: 5343 RVA: 0x000CE1E7 File Offset: 0x000CC3E7
+	// Token: 0x060014DF RID: 5343 RVA: 0x000CE1B3 File Offset: 0x000CC3B3
 	public void EndOfDayCheck()
 	{
 		if (this.VictimID > 0)

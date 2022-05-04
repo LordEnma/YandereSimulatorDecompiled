@@ -7,7 +7,7 @@ using UnityEngine.PostProcessing;
 // Token: 0x02000447 RID: 1095
 public class StalkerYandereScript : MonoBehaviour
 {
-	// Token: 0x06001D2B RID: 7467 RVA: 0x0015CCB8 File Offset: 0x0015AEB8
+	// Token: 0x06001D2B RID: 7467 RVA: 0x0015CC84 File Offset: 0x0015AE84
 	public void Start()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
@@ -65,7 +65,7 @@ public class StalkerYandereScript : MonoBehaviour
 		this.VtuberCheck();
 	}
 
-	// Token: 0x06001D2C RID: 7468 RVA: 0x0015CF10 File Offset: 0x0015B110
+	// Token: 0x06001D2C RID: 7468 RVA: 0x0015CEDC File Offset: 0x0015B0DC
 	private void Update()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
@@ -246,7 +246,7 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D2D RID: 7469 RVA: 0x0015D720 File Offset: 0x0015B920
+	// Token: 0x06001D2D RID: 7469 RVA: 0x0015D6EC File Offset: 0x0015B8EC
 	private void UpdateMovement()
 	{
 		if (!OptionGlobals.ToggleRun)
@@ -339,7 +339,7 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D2E RID: 7470 RVA: 0x0015DA6C File Offset: 0x0015BC6C
+	// Token: 0x06001D2E RID: 7470 RVA: 0x0015DA38 File Offset: 0x0015BC38
 	private void LateUpdate()
 	{
 		if (this.Object != null)
@@ -352,20 +352,20 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D2F RID: 7471 RVA: 0x0015DAEC File Offset: 0x0015BCEC
+	// Token: 0x06001D2F RID: 7471 RVA: 0x0015DAB8 File Offset: 0x0015BCB8
 	private void MoveTowardsTarget(Vector3 target)
 	{
 		Vector3 a = target - base.transform.position;
 		this.MyController.Move(a * (Time.deltaTime * 10f));
 	}
 
-	// Token: 0x06001D30 RID: 7472 RVA: 0x0015DB28 File Offset: 0x0015BD28
+	// Token: 0x06001D30 RID: 7472 RVA: 0x0015DAF4 File Offset: 0x0015BCF4
 	private void SpinTowardsTarget(Quaternion target)
 	{
 		base.transform.rotation = Quaternion.Slerp(base.transform.rotation, target, Time.deltaTime * 10f);
 	}
 
-	// Token: 0x06001D31 RID: 7473 RVA: 0x0015DB54 File Offset: 0x0015BD54
+	// Token: 0x06001D31 RID: 7473 RVA: 0x0015DB20 File Offset: 0x0015BD20
 	public void UpdateVignette()
 	{
 		VignetteModel.Settings settings = this.Profile.vignette.settings;
@@ -376,7 +376,7 @@ public class StalkerYandereScript : MonoBehaviour
 		this.Profile.vignette.settings = settings;
 	}
 
-	// Token: 0x06001D32 RID: 7474 RVA: 0x0015DBC8 File Offset: 0x0015BDC8
+	// Token: 0x06001D32 RID: 7474 RVA: 0x0015DB94 File Offset: 0x0015BD94
 	public void BeginStruggle()
 	{
 		this.MyAnimation.CrossFade("f02_struggleA_00");
@@ -388,7 +388,7 @@ public class StalkerYandereScript : MonoBehaviour
 		this.Object = null;
 	}
 
-	// Token: 0x06001D33 RID: 7475 RVA: 0x0015DC44 File Offset: 0x0015BE44
+	// Token: 0x06001D33 RID: 7475 RVA: 0x0015DC10 File Offset: 0x0015BE10
 	public void UpdateYandereVision()
 	{
 		if (Input.GetButton("RB"))
@@ -426,7 +426,7 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D34 RID: 7476 RVA: 0x0015DDB0 File Offset: 0x0015BFB0
+	// Token: 0x06001D34 RID: 7476 RVA: 0x0015DD7C File Offset: 0x0015BF7C
 	private void ResetYandereEffects()
 	{
 		this.HighlightingR.enabled = false;
@@ -438,7 +438,7 @@ public class StalkerYandereScript : MonoBehaviour
 		this.UpdateVignette();
 	}
 
-	// Token: 0x06001D35 RID: 7477 RVA: 0x0015DE0C File Offset: 0x0015C00C
+	// Token: 0x06001D35 RID: 7477 RVA: 0x0015DDD8 File Offset: 0x0015BFD8
 	public void UpdatePebbles()
 	{
 		if (this.PebbleIcon != null)
@@ -453,7 +453,7 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D36 RID: 7478 RVA: 0x0015DE68 File Offset: 0x0015C068
+	// Token: 0x06001D36 RID: 7478 RVA: 0x0015DE34 File Offset: 0x0015C034
 	public void VtuberCheck()
 	{
 		if (GameGlobals.VtuberID > 0)

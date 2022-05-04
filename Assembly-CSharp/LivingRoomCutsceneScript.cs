@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000356 RID: 854
 public class LivingRoomCutsceneScript : MonoBehaviour
 {
-	// Token: 0x06001984 RID: 6532 RVA: 0x00100B50 File Offset: 0x000FED50
+	// Token: 0x06001984 RID: 6532 RVA: 0x00100B1C File Offset: 0x000FED1C
 	private void Start()
 	{
 		this.VtuberCheck();
@@ -157,7 +157,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001985 RID: 6533 RVA: 0x00101148 File Offset: 0x000FF348
+	// Token: 0x06001985 RID: 6533 RVA: 0x00101114 File Offset: 0x000FF314
 	private void Update()
 	{
 		if (this.Phase > 3 && !this.WaitingForInput && this.Timer < 172f && !this.NoSkip)
@@ -694,7 +694,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001986 RID: 6534 RVA: 0x00102B88 File Offset: 0x00100D88
+	// Token: 0x06001986 RID: 6534 RVA: 0x00102B54 File Offset: 0x00100D54
 	private void LateUpdate()
 	{
 		if (this.Phase > 2)
@@ -729,7 +729,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001987 RID: 6535 RVA: 0x00102E80 File Offset: 0x00101080
+	// Token: 0x06001987 RID: 6535 RVA: 0x00102E4C File Offset: 0x0010104C
 	private void IncreaseYandereEffects()
 	{
 		if (!this.Jukebox.isPlaying)
@@ -773,7 +773,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001988 RID: 6536 RVA: 0x00103144 File Offset: 0x00101344
+	// Token: 0x06001988 RID: 6536 RVA: 0x00103110 File Offset: 0x00101310
 	private void DecreaseYandereEffects()
 	{
 		this.Jukebox.volume = Mathf.MoveTowards(this.Jukebox.volume, 0f, Time.deltaTime / 5f);
@@ -789,7 +789,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		this.EyeShrink = Mathf.MoveTowards(this.EyeShrink, 0f, Time.deltaTime);
 	}
 
-	// Token: 0x06001989 RID: 6537 RVA: 0x00103300 File Offset: 0x00101500
+	// Token: 0x06001989 RID: 6537 RVA: 0x001032CC File Offset: 0x001014CC
 	private void BetrayRival()
 	{
 		StudentGlobals.SetStudentKidnapped(10 + DateGlobals.Week, true);
@@ -806,7 +806,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600198A RID: 6538 RVA: 0x0010336F File Offset: 0x0010156F
+	// Token: 0x0600198A RID: 6538 RVA: 0x0010333B File Offset: 0x0010153B
 	private void BefriendRival()
 	{
 		SceneManager.LoadScene("CalendarScene");
@@ -819,7 +819,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600198B RID: 6539 RVA: 0x001033A0 File Offset: 0x001015A0
+	// Token: 0x0600198B RID: 6539 RVA: 0x0010336C File Offset: 0x0010156C
 	private void VtuberCheck()
 	{
 		if (GameGlobals.VtuberID > 0)

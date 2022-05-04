@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003C7 RID: 967
 public class PromptSwapScript : MonoBehaviour
 {
-	// Token: 0x06001B42 RID: 6978 RVA: 0x00130D25 File Offset: 0x0012EF25
+	// Token: 0x06001B42 RID: 6978 RVA: 0x00130CF1 File Offset: 0x0012EEF1
 	private void Awake()
 	{
 		if (this.InputDevice == null)
@@ -13,7 +13,7 @@ public class PromptSwapScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B43 RID: 6979 RVA: 0x00130D40 File Offset: 0x0012EF40
+	// Token: 0x06001B43 RID: 6979 RVA: 0x00130D0C File Offset: 0x0012EF0C
 	public void UpdateSpriteType(InputDeviceType deviceType)
 	{
 		if (this.InputDevice == null)

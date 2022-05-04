@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class PlayerSaveData
 {
-	// Token: 0x06001C40 RID: 7232 RVA: 0x00149EA4 File Offset: 0x001480A4
+	// Token: 0x06001C40 RID: 7232 RVA: 0x00149E70 File Offset: 0x00148070
 	public static PlayerSaveData ReadFromGlobals()
 	{
 		PlayerSaveData playerSaveData = new PlayerSaveData();
@@ -72,7 +72,7 @@ public class PlayerSaveData
 		return playerSaveData;
 	}
 
-	// Token: 0x06001C41 RID: 7233 RVA: 0x0014A0B0 File Offset: 0x001482B0
+	// Token: 0x06001C41 RID: 7233 RVA: 0x0014A07C File Offset: 0x0014827C
 	public static void WriteToGlobals(PlayerSaveData data)
 	{
 		PlayerGlobals.Alerts = data.alerts;

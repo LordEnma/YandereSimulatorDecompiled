@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003C0 RID: 960
 public class PrayScript : MonoBehaviour
 {
-	// Token: 0x06001B25 RID: 6949 RVA: 0x0012E324 File Offset: 0x0012C524
+	// Token: 0x06001B25 RID: 6949 RVA: 0x0012E2F0 File Offset: 0x0012C4F0
 	private void Start()
 	{
 		if (StudentGlobals.GetStudentDead(39))
@@ -16,7 +16,7 @@ public class PrayScript : MonoBehaviour
 		this.Prompt.enabled = true;
 	}
 
-	// Token: 0x06001B26 RID: 6950 RVA: 0x0012E3AC File Offset: 0x0012C5AC
+	// Token: 0x06001B26 RID: 6950 RVA: 0x0012E378 File Offset: 0x0012C578
 	private void Update()
 	{
 		if (!this.FemaleVictimChecked)
@@ -227,7 +227,7 @@ public class PrayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B27 RID: 6951 RVA: 0x0012EB20 File Offset: 0x0012CD20
+	// Token: 0x06001B27 RID: 6951 RVA: 0x0012EAEC File Offset: 0x0012CCEC
 	private void UpdateHighlight()
 	{
 		if (this.Selected < 1)
@@ -241,7 +241,7 @@ public class PrayScript : MonoBehaviour
 		this.Highlight.transform.localPosition = new Vector3(this.Highlight.transform.localPosition.x, 225f - 50f * (float)this.Selected, this.Highlight.transform.localPosition.z);
 	}
 
-	// Token: 0x06001B28 RID: 6952 RVA: 0x0012EBA4 File Offset: 0x0012CDA4
+	// Token: 0x06001B28 RID: 6952 RVA: 0x0012EB70 File Offset: 0x0012CD70
 	private void Exit()
 	{
 		this.Yandere.CameraEffects.UpdateDOF(2f);
@@ -260,7 +260,7 @@ public class PrayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B29 RID: 6953 RVA: 0x0012EC40 File Offset: 0x0012CE40
+	// Token: 0x06001B29 RID: 6953 RVA: 0x0012EC0C File Offset: 0x0012CE0C
 	public void SpawnWeapons()
 	{
 		for (int i = 1; i < 6; i++)

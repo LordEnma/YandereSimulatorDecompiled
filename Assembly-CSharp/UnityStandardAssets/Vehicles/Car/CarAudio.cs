@@ -7,7 +7,7 @@ namespace UnityStandardAssets.Vehicles.Car
 	[RequireComponent(typeof(CarController))]
 	public class CarAudio : MonoBehaviour
 	{
-		// Token: 0x060021C6 RID: 8646 RVA: 0x001F1D80 File Offset: 0x001EFF80
+		// Token: 0x060021C7 RID: 8647 RVA: 0x001F1E7C File Offset: 0x001F007C
 		private void StartSound()
 		{
 			this.m_CarController = base.GetComponent<CarController>();
@@ -21,7 +21,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.m_StartedSound = true;
 		}
 
-		// Token: 0x060021C7 RID: 8647 RVA: 0x001F1DF4 File Offset: 0x001EFFF4
+		// Token: 0x060021C8 RID: 8648 RVA: 0x001F1EF0 File Offset: 0x001F00F0
 		private void StopSound()
 		{
 			AudioSource[] components = base.GetComponents<AudioSource>();
@@ -32,7 +32,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.m_StartedSound = false;
 		}
 
-		// Token: 0x060021C8 RID: 8648 RVA: 0x001F1E28 File Offset: 0x001F0028
+		// Token: 0x060021C9 RID: 8649 RVA: 0x001F1F24 File Offset: 0x001F0124
 		private void Update()
 		{
 			float sqrMagnitude = (Camera.main.transform.position - base.transform.position).sqrMagnitude;
@@ -78,7 +78,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021C9 RID: 8649 RVA: 0x001F20DC File Offset: 0x001F02DC
+		// Token: 0x060021CA RID: 8650 RVA: 0x001F21D8 File Offset: 0x001F03D8
 		private AudioSource SetUpEngineAudioSource(AudioClip clip)
 		{
 			AudioSource audioSource = base.gameObject.AddComponent<AudioSource>();
@@ -93,7 +93,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			return audioSource;
 		}
 
-		// Token: 0x060021CA RID: 8650 RVA: 0x001F214B File Offset: 0x001F034B
+		// Token: 0x060021CB RID: 8651 RVA: 0x001F2247 File Offset: 0x001F0447
 		private static float ULerp(float from, float to, float value)
 		{
 			return (1f - value) * from + value * to;

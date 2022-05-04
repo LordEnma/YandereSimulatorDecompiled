@@ -8,14 +8,14 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200029A RID: 666
 public class EditorManagerScript : MonoBehaviour
 {
-	// Token: 0x06001403 RID: 5123 RVA: 0x000BE83A File Offset: 0x000BCA3A
+	// Token: 0x06001403 RID: 5123 RVA: 0x000BE806 File Offset: 0x000BCA06
 	private void Awake()
 	{
 		this.buttonIndex = 0;
 		this.inputManager = UnityEngine.Object.FindObjectOfType<InputManagerScript>();
 	}
 
-	// Token: 0x06001404 RID: 5124 RVA: 0x000BE850 File Offset: 0x000BCA50
+	// Token: 0x06001404 RID: 5124 RVA: 0x000BE81C File Offset: 0x000BCA1C
 	private void Start()
 	{
 		this.promptBar.Label[0].text = "Select";
@@ -24,7 +24,7 @@ public class EditorManagerScript : MonoBehaviour
 		this.promptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001405 RID: 5125 RVA: 0x000BE8B0 File Offset: 0x000BCAB0
+	// Token: 0x06001405 RID: 5125 RVA: 0x000BE87C File Offset: 0x000BCA7C
 	private void OnEnable()
 	{
 		this.promptBar.Label[0].text = "Select";
@@ -33,13 +33,13 @@ public class EditorManagerScript : MonoBehaviour
 		this.promptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001406 RID: 5126 RVA: 0x000BE90D File Offset: 0x000BCB0D
+	// Token: 0x06001406 RID: 5126 RVA: 0x000BE8D9 File Offset: 0x000BCAD9
 	public static Dictionary<string, object>[] DeserializeJson(string filename)
 	{
 		return JsonReader.Deserialize<Dictionary<string, object>[]>(File.ReadAllText(Path.Combine(Application.streamingAssetsPath, Path.Combine("JSON", filename))));
 	}
 
-	// Token: 0x06001407 RID: 5127 RVA: 0x000BE930 File Offset: 0x000BCB30
+	// Token: 0x06001407 RID: 5127 RVA: 0x000BE8FC File Offset: 0x000BCAFC
 	private void HandleInput()
 	{
 		if (Input.GetButtonDown("B"))
@@ -68,7 +68,7 @@ public class EditorManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001408 RID: 5128 RVA: 0x000BEA1F File Offset: 0x000BCC1F
+	// Token: 0x06001408 RID: 5128 RVA: 0x000BE9EB File Offset: 0x000BCBEB
 	private void Update()
 	{
 		this.HandleInput();

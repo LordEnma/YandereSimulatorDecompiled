@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x0200034B RID: 843
 public class KatanaCaseScript : MonoBehaviour
 {
-	// Token: 0x06001963 RID: 6499 RVA: 0x000FEE85 File Offset: 0x000FD085
+	// Token: 0x06001963 RID: 6499 RVA: 0x000FEE51 File Offset: 0x000FD051
 	private void Start()
 	{
 		this.CasePrompt.enabled = false;
 	}
 
-	// Token: 0x06001964 RID: 6500 RVA: 0x000FEE94 File Offset: 0x000FD094
+	// Token: 0x06001964 RID: 6500 RVA: 0x000FEE60 File Offset: 0x000FD060
 	private void Update()
 	{
 		if (this.Key.activeInHierarchy && this.KeyPrompt.Circle[0].fillAmount == 0f)

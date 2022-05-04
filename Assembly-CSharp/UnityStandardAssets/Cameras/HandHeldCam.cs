@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Cameras
 	// Token: 0x02000550 RID: 1360
 	public class HandHeldCam : LookatTarget
 	{
-		// Token: 0x060022CE RID: 8910 RVA: 0x001F5854 File Offset: 0x001F3A54
+		// Token: 0x060022CF RID: 8911 RVA: 0x001F5950 File Offset: 0x001F3B50
 		protected override void FollowTarget(float deltaTime)
 		{
 			base.FollowTarget(deltaTime);

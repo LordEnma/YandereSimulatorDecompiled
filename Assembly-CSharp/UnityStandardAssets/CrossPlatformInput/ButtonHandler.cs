@@ -6,42 +6,42 @@ namespace UnityStandardAssets.CrossPlatformInput
 	// Token: 0x02000543 RID: 1347
 	public class ButtonHandler : MonoBehaviour
 	{
-		// Token: 0x0600224C RID: 8780 RVA: 0x001F4460 File Offset: 0x001F2660
+		// Token: 0x0600224D RID: 8781 RVA: 0x001F455C File Offset: 0x001F275C
 		private void OnEnable()
 		{
 		}
 
-		// Token: 0x0600224D RID: 8781 RVA: 0x001F4462 File Offset: 0x001F2662
+		// Token: 0x0600224E RID: 8782 RVA: 0x001F455E File Offset: 0x001F275E
 		public void SetDownState()
 		{
 			CrossPlatformInputManager.SetButtonDown(this.Name);
 		}
 
-		// Token: 0x0600224E RID: 8782 RVA: 0x001F446F File Offset: 0x001F266F
+		// Token: 0x0600224F RID: 8783 RVA: 0x001F456B File Offset: 0x001F276B
 		public void SetUpState()
 		{
 			CrossPlatformInputManager.SetButtonUp(this.Name);
 		}
 
-		// Token: 0x0600224F RID: 8783 RVA: 0x001F447C File Offset: 0x001F267C
+		// Token: 0x06002250 RID: 8784 RVA: 0x001F4578 File Offset: 0x001F2778
 		public void SetAxisPositiveState()
 		{
 			CrossPlatformInputManager.SetAxisPositive(this.Name);
 		}
 
-		// Token: 0x06002250 RID: 8784 RVA: 0x001F4489 File Offset: 0x001F2689
+		// Token: 0x06002251 RID: 8785 RVA: 0x001F4585 File Offset: 0x001F2785
 		public void SetAxisNeutralState()
 		{
 			CrossPlatformInputManager.SetAxisZero(this.Name);
 		}
 
-		// Token: 0x06002251 RID: 8785 RVA: 0x001F4496 File Offset: 0x001F2696
+		// Token: 0x06002252 RID: 8786 RVA: 0x001F4592 File Offset: 0x001F2792
 		public void SetAxisNegativeState()
 		{
 			CrossPlatformInputManager.SetAxisNegative(this.Name);
 		}
 
-		// Token: 0x06002252 RID: 8786 RVA: 0x001F44A3 File Offset: 0x001F26A3
+		// Token: 0x06002253 RID: 8787 RVA: 0x001F459F File Offset: 0x001F279F
 		public void Update()
 		{
 		}

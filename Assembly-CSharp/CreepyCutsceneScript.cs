@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000269 RID: 617
 public class CreepyCutsceneScript : MonoBehaviour
 {
-	// Token: 0x0600130C RID: 4876 RVA: 0x000A8F08 File Offset: 0x000A7108
+	// Token: 0x0600130C RID: 4876 RVA: 0x000A8ED4 File Offset: 0x000A70D4
 	private void Update()
 	{
 		if (Input.GetButtonDown("A"))

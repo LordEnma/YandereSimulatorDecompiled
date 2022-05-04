@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200046C RID: 1132
 public class TallLockerScript : MonoBehaviour
 {
-	// Token: 0x06001EB4 RID: 7860 RVA: 0x001AFCCC File Offset: 0x001ADECC
+	// Token: 0x06001EB5 RID: 7861 RVA: 0x001AFDD4 File Offset: 0x001ADFD4
 	private void Start()
 	{
 		this.Prompt.HideButton[1] = true;
@@ -12,7 +12,7 @@ public class TallLockerScript : MonoBehaviour
 		this.Prompt.HideButton[3] = true;
 	}
 
-	// Token: 0x06001EB5 RID: 7861 RVA: 0x001AFCF8 File Offset: 0x001ADEF8
+	// Token: 0x06001EB6 RID: 7862 RVA: 0x001AFE00 File Offset: 0x001AE000
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f && !this.Yandere.Chased && this.Yandere.Chasers == 0)
@@ -279,7 +279,7 @@ public class TallLockerScript : MonoBehaviour
 									StudentScript student = this.Student;
 									Debug.Log(((student != null) ? student.ToString() : null) + " just left her smartphone in the locker room!");
 									this.RivalPhone.transform.parent = this.StudentManager.StrippingPositions[this.Student.GirlID];
-									this.RivalPhone.transform.localPosition = new Vector3(0f, 0.92f, 0.2375f);
+									this.RivalPhone.transform.localPosition = new Vector3(0.1f, 0.92f, 0.2375f);
 									this.RivalPhone.transform.localEulerAngles = new Vector3(-80f, 0f, 0f);
 									Physics.SyncTransforms();
 									this.RivalPhone.gameObject.SetActive(true);
@@ -288,6 +288,7 @@ public class TallLockerScript : MonoBehaviour
 								}
 								if (this.Student.StudentID == 2 && this.Student.Cosmetic.FemaleAccessories[this.Student.Cosmetic.Accessory].activeInHierarchy)
 								{
+									this.Student.Cosmetic.FemaleAccessories[this.Student.Cosmetic.Accessory].SetActive(false);
 									Debug.Log("Sakyu Basu just left her ring in the locker room!");
 									this.Rings.gameObject.SetActive(true);
 								}
@@ -318,7 +319,7 @@ public class TallLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EB6 RID: 7862 RVA: 0x001B0828 File Offset: 0x001AEA28
+	// Token: 0x06001EB7 RID: 7863 RVA: 0x001B0958 File Offset: 0x001AEB58
 	public void SpawnSteam()
 	{
 		if (this.Student != null)
@@ -341,13 +342,9 @@ public class TallLockerScript : MonoBehaviour
 		this.Student.Pathfinding.canSearch = false;
 		this.Student.Pathfinding.canMove = false;
 		this.Student.Cosmetic.RemoveRings();
-		if (this.Student.StudentID == 2)
-		{
-			this.Student.Cosmetic.FemaleAccessories[this.Student.Cosmetic.Accessory].SetActive(false);
-		}
 	}
 
-	// Token: 0x06001EB7 RID: 7863 RVA: 0x001B09AC File Offset: 0x001AEBAC
+	// Token: 0x06001EB8 RID: 7864 RVA: 0x001B0AA8 File Offset: 0x001AECA8
 	public void SpawnSteamNoSideEffects(StudentScript SteamStudent)
 	{
 		Debug.Log(string.Concat(new string[]
@@ -368,7 +365,7 @@ public class TallLockerScript : MonoBehaviour
 		SteamStudent.WalkAnim = SteamStudent.OriginalOriginalWalkAnim;
 	}
 
-	// Token: 0x06001EB8 RID: 7864 RVA: 0x001B0A84 File Offset: 0x001AEC84
+	// Token: 0x06001EB9 RID: 7865 RVA: 0x001B0B80 File Offset: 0x001AED80
 	public void UpdateSchoolwear()
 	{
 		if (this.DropCleanUniform)
@@ -416,7 +413,7 @@ public class TallLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EB9 RID: 7865 RVA: 0x001B0C58 File Offset: 0x001AEE58
+	// Token: 0x06001EBA RID: 7866 RVA: 0x001B0D54 File Offset: 0x001AEF54
 	public void UpdateButtons()
 	{
 		if (!this.Yandere.ClubAttire || (this.Yandere.ClubAttire && this.Yandere.Bloodiness > 0f))
@@ -465,7 +462,7 @@ public class TallLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EBA RID: 7866 RVA: 0x001B0DB0 File Offset: 0x001AEFB0
+	// Token: 0x06001EBB RID: 7867 RVA: 0x001B0EAC File Offset: 0x001AF0AC
 	private void CheckAvailableUniforms()
 	{
 		this.AvailableUniforms = this.StudentManager.OriginalUniforms;

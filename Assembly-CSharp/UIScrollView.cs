@@ -1031,6 +1031,6 @@ public class UIScrollView : MonoBehaviour
 	}
 
 	// Token: 0x020005E8 RID: 1512
-	// (Invoke) Token: 0x0600256A RID: 9578
+	// (Invoke) Token: 0x0600256B RID: 9579
 	public delegate void OnDragNotification();
 }

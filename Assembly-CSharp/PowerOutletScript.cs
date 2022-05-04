@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003BD RID: 957
 public class PowerOutletScript : MonoBehaviour
 {
-	// Token: 0x06001B19 RID: 6937 RVA: 0x0012CBD0 File Offset: 0x0012ADD0
+	// Token: 0x06001B19 RID: 6937 RVA: 0x0012CB9C File Offset: 0x0012AD9C
 	private void Update()
 	{
 		if (this.PowerStrip == null)

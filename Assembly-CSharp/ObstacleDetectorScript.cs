@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000386 RID: 902
 public class ObstacleDetectorScript : MonoBehaviour
 {
-	// Token: 0x06001A47 RID: 6727 RVA: 0x0011567C File Offset: 0x0011387C
+	// Token: 0x06001A47 RID: 6727 RVA: 0x00115648 File Offset: 0x00113848
 	private void Update()
 	{
 		this.Frame++;
@@ -34,7 +34,7 @@ public class ObstacleDetectorScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001A48 RID: 6728 RVA: 0x0011575C File Offset: 0x0011395C
+	// Token: 0x06001A48 RID: 6728 RVA: 0x00115728 File Offset: 0x00113928
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Yandere.Container.CelloCase && other.gameObject.layer != 1 && other.gameObject.layer != 2 && other.gameObject.layer != 8 && other.gameObject.layer != 13 && other.gameObject.layer != 14)

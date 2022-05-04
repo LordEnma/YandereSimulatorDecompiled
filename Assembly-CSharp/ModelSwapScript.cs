@@ -5,19 +5,19 @@ using UnityEngine;
 // Token: 0x0200050C RID: 1292
 public class ModelSwapScript : MonoBehaviour
 {
-	// Token: 0x06002171 RID: 8561 RVA: 0x001ED22D File Offset: 0x001EB42D
+	// Token: 0x06002172 RID: 8562 RVA: 0x001ED329 File Offset: 0x001EB529
 	public void Update()
 	{
 		Input.GetKeyDown("z");
 	}
 
-	// Token: 0x06002172 RID: 8562 RVA: 0x001ED23A File Offset: 0x001EB43A
+	// Token: 0x06002173 RID: 8563 RVA: 0x001ED336 File Offset: 0x001EB536
 	public void Attach(GameObject Attachment, bool Inactives)
 	{
 		base.StartCoroutine(this.Attach_Threat(this.PelvisRoot, Attachment, Inactives));
 	}
 
-	// Token: 0x06002173 RID: 8563 RVA: 0x001ED251 File Offset: 0x001EB451
+	// Token: 0x06002174 RID: 8564 RVA: 0x001ED34D File Offset: 0x001EB54D
 	public IEnumerator Attach_Threat(Transform PelvisRoot, GameObject Attachment, bool Inactives)
 	{
 		Attachment.transform.SetParent(PelvisRoot);

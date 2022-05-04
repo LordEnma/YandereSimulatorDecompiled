@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000448 RID: 1096
 public class StalkerIntroCameraScript : MonoBehaviour
 {
-	// Token: 0x06001D38 RID: 7480 RVA: 0x0015DFC4 File Offset: 0x0015C1C4
+	// Token: 0x06001D38 RID: 7480 RVA: 0x0015DF90 File Offset: 0x0015C190
 	private void Update()
 	{
 		if (this.YandereAnim["f02_wallJump_00"].time > this.YandereAnim["f02_wallJump_00"].length)

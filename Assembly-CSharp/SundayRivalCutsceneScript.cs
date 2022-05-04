@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000469 RID: 1129
 public class SundayRivalCutsceneScript : MonoBehaviour
 {
-	// Token: 0x06001EAB RID: 7851 RVA: 0x001A95C4 File Offset: 0x001A77C4
+	// Token: 0x06001EAC RID: 7852 RVA: 0x001A96CC File Offset: 0x001A78CC
 	private void Start()
 	{
 		if (!GameGlobals.Eighties && DateGlobals.Weekday == DayOfWeek.Sunday)
@@ -39,7 +39,7 @@ public class SundayRivalCutsceneScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001EAC RID: 7852 RVA: 0x001A9888 File Offset: 0x001A7A88
+	// Token: 0x06001EAD RID: 7853 RVA: 0x001A9990 File Offset: 0x001A7B90
 	private void Update()
 	{
 		if (Input.GetKeyDown("="))

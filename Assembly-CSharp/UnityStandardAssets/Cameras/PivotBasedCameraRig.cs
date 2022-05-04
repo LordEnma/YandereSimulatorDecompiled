@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Cameras
 	// Token: 0x02000552 RID: 1362
 	public abstract class PivotBasedCameraRig : AbstractTargetFollower
 	{
-		// Token: 0x060022D3 RID: 8915 RVA: 0x001F5B2B File Offset: 0x001F3D2B
+		// Token: 0x060022D4 RID: 8916 RVA: 0x001F5C27 File Offset: 0x001F3E27
 		protected virtual void Awake()
 		{
 			this.m_Cam = base.GetComponentInChildren<Camera>().transform;

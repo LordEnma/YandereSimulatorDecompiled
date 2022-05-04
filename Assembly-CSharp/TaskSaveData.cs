@@ -5,7 +5,7 @@ using System.Collections.Generic;
 [Serializable]
 public class TaskSaveData
 {
-	// Token: 0x06001C55 RID: 7253 RVA: 0x0014B430 File Offset: 0x00149630
+	// Token: 0x06001C55 RID: 7253 RVA: 0x0014B3FC File Offset: 0x001495FC
 	public static TaskSaveData ReadFromGlobals()
 	{
 		TaskSaveData taskSaveData = new TaskSaveData();
@@ -37,7 +37,7 @@ public class TaskSaveData
 		return taskSaveData;
 	}
 
-	// Token: 0x06001C56 RID: 7254 RVA: 0x0014B500 File Offset: 0x00149700
+	// Token: 0x06001C56 RID: 7254 RVA: 0x0014B4CC File Offset: 0x001496CC
 	public static void WriteToGlobals(TaskSaveData data)
 	{
 		foreach (int photoID in data.kittenPhoto)

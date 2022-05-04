@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000389 RID: 905
 public class OsanaMatrixScript : MonoBehaviour
 {
-	// Token: 0x06001A51 RID: 6737 RVA: 0x00116F44 File Offset: 0x00115144
+	// Token: 0x06001A51 RID: 6737 RVA: 0x00116F10 File Offset: 0x00115110
 	private void Update()
 	{
 		if (Input.GetKeyDown("z"))

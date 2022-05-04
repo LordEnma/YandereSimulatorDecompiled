@@ -6,14 +6,14 @@ namespace UnityStandardAssets.Vehicles.Car
 	// Token: 0x02000537 RID: 1335
 	public class Suspension : MonoBehaviour
 	{
-		// Token: 0x060021F4 RID: 8692 RVA: 0x001F2C7D File Offset: 0x001F0E7D
+		// Token: 0x060021F5 RID: 8693 RVA: 0x001F2D79 File Offset: 0x001F0F79
 		private void Start()
 		{
 			this.m_TargetOriginalPosition = this.wheel.transform.localPosition;
 			this.m_Origin = base.transform.localPosition;
 		}
 
-		// Token: 0x060021F5 RID: 8693 RVA: 0x001F2CA6 File Offset: 0x001F0EA6
+		// Token: 0x060021F6 RID: 8694 RVA: 0x001F2DA2 File Offset: 0x001F0FA2
 		private void Update()
 		{
 			base.transform.localPosition = this.m_Origin + (this.wheel.transform.localPosition - this.m_TargetOriginalPosition);

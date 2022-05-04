@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000375 RID: 885
 public class MusicTest : MonoBehaviour
 {
-	// Token: 0x060019EE RID: 6638 RVA: 0x0010AB80 File Offset: 0x00108D80
+	// Token: 0x060019EE RID: 6638 RVA: 0x0010AB4C File Offset: 0x00108D4C
 	private void Start()
 	{
 		int num = this.freqData.Length;
@@ -29,7 +29,7 @@ public class MusicTest : MonoBehaviour
 		base.InvokeRepeating("check", 0f, 0.033333335f);
 	}
 
-	// Token: 0x060019EF RID: 6639 RVA: 0x0010AC38 File Offset: 0x00108E38
+	// Token: 0x060019EF RID: 6639 RVA: 0x0010AC04 File Offset: 0x00108E04
 	private void check()
 	{
 		base.GetComponent<AudioSource>().GetSpectrumData(this.freqData, 0, FFTWindow.Rectangular);

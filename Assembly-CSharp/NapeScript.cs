@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000377 RID: 887
 public class NapeScript : MonoBehaviour
 {
-	// Token: 0x060019F4 RID: 6644 RVA: 0x0010AE16 File Offset: 0x00109016
+	// Token: 0x060019F4 RID: 6644 RVA: 0x0010ADE2 File Offset: 0x00108FE2
 	private void Start()
 	{
 		this.Nape.enabled = true;
@@ -13,7 +13,7 @@ public class NapeScript : MonoBehaviour
 		rigidbody.isKinematic = true;
 	}
 
-	// Token: 0x060019F5 RID: 6645 RVA: 0x0010AE3C File Offset: 0x0010903C
+	// Token: 0x060019F5 RID: 6645 RVA: 0x0010AE08 File Offset: 0x00109008
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "0")

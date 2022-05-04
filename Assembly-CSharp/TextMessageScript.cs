@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003A0 RID: 928
 public class TextMessageScript : MonoBehaviour
 {
-	// Token: 0x06001A96 RID: 6806 RVA: 0x0011DA6C File Offset: 0x0011BC6C
+	// Token: 0x06001A96 RID: 6806 RVA: 0x0011DA38 File Offset: 0x0011BC38
 	private void Start()
 	{
 		if (!this.Attachment && this.Image != null)
@@ -18,7 +18,7 @@ public class TextMessageScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A97 RID: 6807 RVA: 0x0011DAED File Offset: 0x0011BCED
+	// Token: 0x06001A97 RID: 6807 RVA: 0x0011DAB9 File Offset: 0x0011BCB9
 	private void Update()
 	{
 		base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);

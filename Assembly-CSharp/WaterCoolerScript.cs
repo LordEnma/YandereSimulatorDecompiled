@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020004C2 RID: 1218
 public class WaterCoolerScript : MonoBehaviour
 {
-	// Token: 0x06001FDE RID: 8158 RVA: 0x001C2EC0 File Offset: 0x001C10C0
+	// Token: 0x06001FDF RID: 8159 RVA: 0x001C2FBC File Offset: 0x001C11BC
 	private void Start()
 	{
 		this.Cylinder.localScale = new Vector3(1f, 0f, 1f);
@@ -14,7 +14,7 @@ public class WaterCoolerScript : MonoBehaviour
 		this.OriginalColor[1] = this.Prompt.Label[1].gradientBottom;
 	}
 
-	// Token: 0x06001FDF RID: 8159 RVA: 0x001C2F44 File Offset: 0x001C1144
+	// Token: 0x06001FE0 RID: 8160 RVA: 0x001C3040 File Offset: 0x001C1240
 	private void Update()
 	{
 		if (this.Empty)
@@ -133,7 +133,7 @@ public class WaterCoolerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001FE0 RID: 8160 RVA: 0x001C3544 File Offset: 0x001C1744
+	// Token: 0x06001FE1 RID: 8161 RVA: 0x001C3640 File Offset: 0x001C1840
 	public void UpdateCylinderColor()
 	{
 		if (this.BrownPaint)
@@ -154,7 +154,7 @@ public class WaterCoolerScript : MonoBehaviour
 		this.CylinderRenderer.material.color = new Color(0f, 1f, 1f, 1f);
 	}
 
-	// Token: 0x06001FE1 RID: 8161 RVA: 0x001C3610 File Offset: 0x001C1810
+	// Token: 0x06001FE2 RID: 8162 RVA: 0x001C370C File Offset: 0x001C190C
 	public void SetTrap()
 	{
 		this.Prompt.Label[1].text = "     Remove Trap";

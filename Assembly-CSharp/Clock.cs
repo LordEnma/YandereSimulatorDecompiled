@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Clock
 {
-	// Token: 0x06001F72 RID: 8050 RVA: 0x001BF53C File Offset: 0x001BD73C
+	// Token: 0x06001F73 RID: 8051 RVA: 0x001BF638 File Offset: 0x001BD838
 	public Clock(int hours, int minutes, int seconds, float currentSecond)
 	{
 		this.hours = hours;
@@ -15,18 +15,18 @@ public class Clock
 		this.currentSecond = currentSecond;
 	}
 
-	// Token: 0x06001F73 RID: 8051 RVA: 0x001BF561 File Offset: 0x001BD761
+	// Token: 0x06001F74 RID: 8052 RVA: 0x001BF65D File Offset: 0x001BD85D
 	public Clock(int hours, int minutes, int seconds) : this(hours, minutes, seconds, 0f)
 	{
 	}
 
-	// Token: 0x06001F74 RID: 8052 RVA: 0x001BF571 File Offset: 0x001BD771
+	// Token: 0x06001F75 RID: 8053 RVA: 0x001BF66D File Offset: 0x001BD86D
 	public Clock() : this(0, 0, 0, 0f)
 	{
 	}
 
 	// Token: 0x170004B3 RID: 1203
-	// (get) Token: 0x06001F75 RID: 8053 RVA: 0x001BF581 File Offset: 0x001BD781
+	// (get) Token: 0x06001F76 RID: 8054 RVA: 0x001BF67D File Offset: 0x001BD87D
 	public int Hours24
 	{
 		get
@@ -36,7 +36,7 @@ public class Clock
 	}
 
 	// Token: 0x170004B4 RID: 1204
-	// (get) Token: 0x06001F76 RID: 8054 RVA: 0x001BF58C File Offset: 0x001BD78C
+	// (get) Token: 0x06001F77 RID: 8055 RVA: 0x001BF688 File Offset: 0x001BD888
 	public int Hours12
 	{
 		get
@@ -51,7 +51,7 @@ public class Clock
 	}
 
 	// Token: 0x170004B5 RID: 1205
-	// (get) Token: 0x06001F77 RID: 8055 RVA: 0x001BF5AA File Offset: 0x001BD7AA
+	// (get) Token: 0x06001F78 RID: 8056 RVA: 0x001BF6A6 File Offset: 0x001BD8A6
 	public int Minutes
 	{
 		get
@@ -61,7 +61,7 @@ public class Clock
 	}
 
 	// Token: 0x170004B6 RID: 1206
-	// (get) Token: 0x06001F78 RID: 8056 RVA: 0x001BF5B2 File Offset: 0x001BD7B2
+	// (get) Token: 0x06001F79 RID: 8057 RVA: 0x001BF6AE File Offset: 0x001BD8AE
 	public int Seconds
 	{
 		get
@@ -71,7 +71,7 @@ public class Clock
 	}
 
 	// Token: 0x170004B7 RID: 1207
-	// (get) Token: 0x06001F79 RID: 8057 RVA: 0x001BF5BA File Offset: 0x001BD7BA
+	// (get) Token: 0x06001F7A RID: 8058 RVA: 0x001BF6B6 File Offset: 0x001BD8B6
 	public float CurrentSecond
 	{
 		get
@@ -81,7 +81,7 @@ public class Clock
 	}
 
 	// Token: 0x170004B8 RID: 1208
-	// (get) Token: 0x06001F7A RID: 8058 RVA: 0x001BF5C2 File Offset: 0x001BD7C2
+	// (get) Token: 0x06001F7B RID: 8059 RVA: 0x001BF6BE File Offset: 0x001BD8BE
 	public int TotalSeconds
 	{
 		get
@@ -91,7 +91,7 @@ public class Clock
 	}
 
 	// Token: 0x170004B9 RID: 1209
-	// (get) Token: 0x06001F7B RID: 8059 RVA: 0x001BF5E1 File Offset: 0x001BD7E1
+	// (get) Token: 0x06001F7C RID: 8060 RVA: 0x001BF6DD File Offset: 0x001BD8DD
 	public float PreciseTotalSeconds
 	{
 		get
@@ -101,7 +101,7 @@ public class Clock
 	}
 
 	// Token: 0x170004BA RID: 1210
-	// (get) Token: 0x06001F7C RID: 8060 RVA: 0x001BF5F1 File Offset: 0x001BD7F1
+	// (get) Token: 0x06001F7D RID: 8061 RVA: 0x001BF6ED File Offset: 0x001BD8ED
 	public bool IsAM
 	{
 		get
@@ -111,7 +111,7 @@ public class Clock
 	}
 
 	// Token: 0x170004BB RID: 1211
-	// (get) Token: 0x06001F7D RID: 8061 RVA: 0x001BF600 File Offset: 0x001BD800
+	// (get) Token: 0x06001F7E RID: 8062 RVA: 0x001BF6FC File Offset: 0x001BD8FC
 	public TimeOfDay TimeOfDay
 	{
 		get
@@ -149,7 +149,7 @@ public class Clock
 	}
 
 	// Token: 0x170004BC RID: 1212
-	// (get) Token: 0x06001F7E RID: 8062 RVA: 0x001BF660 File Offset: 0x001BD860
+	// (get) Token: 0x06001F7F RID: 8063 RVA: 0x001BF75C File Offset: 0x001BD95C
 	public string TimeOfDayString
 	{
 		get
@@ -158,19 +158,19 @@ public class Clock
 		}
 	}
 
-	// Token: 0x06001F7F RID: 8063 RVA: 0x001BF672 File Offset: 0x001BD872
+	// Token: 0x06001F80 RID: 8064 RVA: 0x001BF76E File Offset: 0x001BD96E
 	public bool IsBefore(Clock clock)
 	{
 		return this.TotalSeconds < clock.TotalSeconds;
 	}
 
-	// Token: 0x06001F80 RID: 8064 RVA: 0x001BF682 File Offset: 0x001BD882
+	// Token: 0x06001F81 RID: 8065 RVA: 0x001BF77E File Offset: 0x001BD97E
 	public bool IsAfter(Clock clock)
 	{
 		return this.TotalSeconds > clock.TotalSeconds;
 	}
 
-	// Token: 0x06001F81 RID: 8065 RVA: 0x001BF692 File Offset: 0x001BD892
+	// Token: 0x06001F82 RID: 8066 RVA: 0x001BF78E File Offset: 0x001BD98E
 	public void IncrementHour()
 	{
 		this.hours++;
@@ -180,7 +180,7 @@ public class Clock
 		}
 	}
 
-	// Token: 0x06001F82 RID: 8066 RVA: 0x001BF6B3 File Offset: 0x001BD8B3
+	// Token: 0x06001F83 RID: 8067 RVA: 0x001BF7AF File Offset: 0x001BD9AF
 	public void IncrementMinute()
 	{
 		this.minutes++;
@@ -191,7 +191,7 @@ public class Clock
 		}
 	}
 
-	// Token: 0x06001F83 RID: 8067 RVA: 0x001BF6DA File Offset: 0x001BD8DA
+	// Token: 0x06001F84 RID: 8068 RVA: 0x001BF7D6 File Offset: 0x001BD9D6
 	public void IncrementSecond()
 	{
 		this.seconds++;
@@ -202,7 +202,7 @@ public class Clock
 		}
 	}
 
-	// Token: 0x06001F84 RID: 8068 RVA: 0x001BF701 File Offset: 0x001BD901
+	// Token: 0x06001F85 RID: 8069 RVA: 0x001BF7FD File Offset: 0x001BD9FD
 	public void Tick(float dt)
 	{
 		this.currentSecond += dt;

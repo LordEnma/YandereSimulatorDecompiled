@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x0200044C RID: 1100
 public class StatsScript : MonoBehaviour
 {
-	// Token: 0x06001D44 RID: 7492 RVA: 0x0015E84C File Offset: 0x0015CA4C
+	// Token: 0x06001D44 RID: 7492 RVA: 0x0015E818 File Offset: 0x0015CA18
 	private void Awake()
 	{
 		this.ClubLabels = new ClubTypeAndStringDictionary
@@ -61,7 +61,7 @@ public class StatsScript : MonoBehaviour
 		};
 	}
 
-	// Token: 0x06001D45 RID: 7493 RVA: 0x0015E8F8 File Offset: 0x0015CAF8
+	// Token: 0x06001D45 RID: 7493 RVA: 0x0015E8C4 File Offset: 0x0015CAC4
 	private void Start()
 	{
 		if (this.PauseScreen.Eighties)
@@ -75,7 +75,7 @@ public class StatsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D46 RID: 7494 RVA: 0x0015E984 File Offset: 0x0015CB84
+	// Token: 0x06001D46 RID: 7494 RVA: 0x0015E950 File Offset: 0x0015CB50
 	private void Update()
 	{
 		if (Input.GetButtonDown("B"))
@@ -92,7 +92,7 @@ public class StatsScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D47 RID: 7495 RVA: 0x0015EA30 File Offset: 0x0015CC30
+	// Token: 0x06001D47 RID: 7495 RVA: 0x0015E9FC File Offset: 0x0015CBFC
 	public void UpdateStats()
 	{
 		Debug.Log("The Stats script just checked the Class script for info and updated the bars accordingly.");

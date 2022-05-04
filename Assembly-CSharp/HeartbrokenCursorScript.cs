@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000311 RID: 785
 public class HeartbrokenCursorScript : MonoBehaviour
 {
-	// Token: 0x06001862 RID: 6242 RVA: 0x000E8960 File Offset: 0x000E6B60
+	// Token: 0x06001862 RID: 6242 RVA: 0x000E892C File Offset: 0x000E6B2C
 	private void Start()
 	{
 		this.Continue.color = new Color(this.Continue.color.r, this.Continue.color.g, this.Continue.color.b, 0f);
@@ -25,7 +25,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001863 RID: 6243 RVA: 0x000E8A88 File Offset: 0x000E6C88
+	// Token: 0x06001863 RID: 6243 RVA: 0x000E8A54 File Offset: 0x000E6C54
 	private void Update()
 	{
 		base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.Lerp(base.transform.localPosition.y, 255f - (float)this.Selected * 50f, Time.deltaTime * 10f), base.transform.localPosition.z);

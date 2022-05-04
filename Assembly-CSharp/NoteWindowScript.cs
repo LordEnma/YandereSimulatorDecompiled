@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200037F RID: 895
 public class NoteWindowScript : MonoBehaviour
 {
-	// Token: 0x06001A2E RID: 6702 RVA: 0x0011374C File Offset: 0x0011194C
+	// Token: 0x06001A2E RID: 6702 RVA: 0x00113718 File Offset: 0x00111918
 	private void Start()
 	{
 		this.SubMenu.transform.localScale = Vector3.zero;
@@ -22,7 +22,7 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A2F RID: 6703 RVA: 0x0011381C File Offset: 0x00111A1C
+	// Token: 0x06001A2F RID: 6703 RVA: 0x001137E8 File Offset: 0x001119E8
 	public void BecomeLifeNote()
 	{
 		this.Stationery.mainTexture = this.LifeNoteTexture;
@@ -52,7 +52,7 @@ public class NoteWindowScript : MonoBehaviour
 		this.LifeNote = true;
 	}
 
-	// Token: 0x06001A30 RID: 6704 RVA: 0x001139F0 File Offset: 0x00111BF0
+	// Token: 0x06001A30 RID: 6704 RVA: 0x001139BC File Offset: 0x00111BBC
 	private void Update()
 	{
 		float t = Time.unscaledDeltaTime * 10f;
@@ -313,7 +313,7 @@ public class NoteWindowScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001A31 RID: 6705 RVA: 0x00114608 File Offset: 0x00112808
+	// Token: 0x06001A31 RID: 6705 RVA: 0x001145D4 File Offset: 0x001127D4
 	private void UpdateHighlights()
 	{
 		for (int i = 1; i < this.SlotHighlights.Length; i++)
@@ -323,7 +323,7 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A32 RID: 6706 RVA: 0x00114664 File Offset: 0x00112864
+	// Token: 0x06001A32 RID: 6706 RVA: 0x00114630 File Offset: 0x00112830
 	private void UpdateSubLabels()
 	{
 		if (this.Slot == 1)
@@ -390,7 +390,7 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A33 RID: 6707 RVA: 0x001148B8 File Offset: 0x00112AB8
+	// Token: 0x06001A33 RID: 6707 RVA: 0x00114884 File Offset: 0x00112A84
 	public void CheckForCompletion()
 	{
 		if (this.SlotsFilled[1] && this.SlotsFilled[2] && this.SlotsFilled[3])
@@ -400,7 +400,7 @@ public class NoteWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A34 RID: 6708 RVA: 0x00114908 File Offset: 0x00112B08
+	// Token: 0x06001A34 RID: 6708 RVA: 0x001148D4 File Offset: 0x00112AD4
 	private void Exit()
 	{
 		this.UpdateHighlights();
@@ -428,7 +428,7 @@ public class NoteWindowScript : MonoBehaviour
 		this.SlotsFilled[3] = false;
 	}
 
-	// Token: 0x06001A35 RID: 6709 RVA: 0x00114A50 File Offset: 0x00112C50
+	// Token: 0x06001A35 RID: 6709 RVA: 0x00114A1C File Offset: 0x00112C1C
 	private void DisableOptions()
 	{
 		if (this.Clock.HourTime >= 7.25f)

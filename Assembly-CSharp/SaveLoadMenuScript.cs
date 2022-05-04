@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000411 RID: 1041
 public class SaveLoadMenuScript : MonoBehaviour
 {
-	// Token: 0x06001C6A RID: 7274 RVA: 0x0014BCCD File Offset: 0x00149ECD
+	// Token: 0x06001C6A RID: 7274 RVA: 0x0014BC99 File Offset: 0x00149E99
 	public void Start()
 	{
 		if (GameGlobals.Profile == 0)
@@ -20,7 +20,7 @@ public class SaveLoadMenuScript : MonoBehaviour
 		base.StartCoroutine(this.GetThumbnails());
 	}
 
-	// Token: 0x06001C6B RID: 7275 RVA: 0x0014BD0C File Offset: 0x00149F0C
+	// Token: 0x06001C6B RID: 7275 RVA: 0x0014BCD8 File Offset: 0x00149ED8
 	public void Update()
 	{
 		if (!this.ConfirmWindow.activeInHierarchy)
@@ -317,7 +317,7 @@ public class SaveLoadMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C6C RID: 7276 RVA: 0x0014C6FD File Offset: 0x0014A8FD
+	// Token: 0x06001C6C RID: 7276 RVA: 0x0014C6C9 File Offset: 0x0014A8C9
 	public IEnumerator GetThumbnails()
 	{
 		int num;
@@ -371,7 +371,7 @@ public class SaveLoadMenuScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x06001C6D RID: 7277 RVA: 0x0014C70C File Offset: 0x0014A90C
+	// Token: 0x06001C6D RID: 7277 RVA: 0x0014C6D8 File Offset: 0x0014A8D8
 	public void UpdateHighlight()
 	{
 		if (this.Row < 1)

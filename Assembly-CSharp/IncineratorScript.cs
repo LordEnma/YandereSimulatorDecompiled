@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000334 RID: 820
 public class IncineratorScript : MonoBehaviour
 {
-	// Token: 0x060018EE RID: 6382 RVA: 0x000F5F6C File Offset: 0x000F416C
+	// Token: 0x060018EE RID: 6382 RVA: 0x000F5F38 File Offset: 0x000F4138
 	private void Start()
 	{
 		this.Panel.SetActive(false);
@@ -19,7 +19,7 @@ public class IncineratorScript : MonoBehaviour
 		this.MyAudio = base.GetComponent<AudioSource>();
 	}
 
-	// Token: 0x060018EF RID: 6383 RVA: 0x000F5FD8 File Offset: 0x000F41D8
+	// Token: 0x060018EF RID: 6383 RVA: 0x000F5FA4 File Offset: 0x000F41A4
 	private void Update()
 	{
 		if (this.Animate)
@@ -278,7 +278,7 @@ public class IncineratorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018F0 RID: 6384 RVA: 0x000F6C9C File Offset: 0x000F4E9C
+	// Token: 0x060018F0 RID: 6384 RVA: 0x000F6C68 File Offset: 0x000F4E68
 	public void SetVictimsMissing()
 	{
 		foreach (int num in this.ConfirmedDead)
@@ -291,7 +291,7 @@ public class IncineratorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018F1 RID: 6385 RVA: 0x000F6CE8 File Offset: 0x000F4EE8
+	// Token: 0x060018F1 RID: 6385 RVA: 0x000F6CB4 File Offset: 0x000F4EB4
 	public void DumpGarbageBag(PickUpScript PickUp)
 	{
 		Debug.Log("A garbage bag was dumped into the incinerator!");

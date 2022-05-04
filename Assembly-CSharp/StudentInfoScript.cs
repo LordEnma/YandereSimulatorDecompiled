@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200045B RID: 1115
 public class StudentInfoScript : MonoBehaviour
 {
-	// Token: 0x06001D7C RID: 7548 RVA: 0x00164210 File Offset: 0x00162410
+	// Token: 0x06001D7C RID: 7548 RVA: 0x0016421C File Offset: 0x0016241C
 	private void Start()
 	{
 		StudentGlobals.SetStudentPhotographed(98, true);
@@ -22,7 +22,7 @@ public class StudentInfoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D7D RID: 7549 RVA: 0x0016429C File Offset: 0x0016249C
+	// Token: 0x06001D7D RID: 7549 RVA: 0x001642A8 File Offset: 0x001624A8
 	public void UpdateInfo(int ID)
 	{
 		this.CurrentStudent = ID;
@@ -95,13 +95,13 @@ public class StudentInfoScript : MonoBehaviour
 		this.MatchmadeCheck();
 		if (this.Matchmade)
 		{
-			this.LeftCrushLabel.text = "Relationship:";
+			this.LeftCrushLabel.text = "Relationship";
 			this.CrushLabel.text = this.JSON.Students[studentJson.Crush].Name;
 			this.CrushLabel.text = this.PartnerName;
 		}
 		else
 		{
-			this.LeftCrushLabel.text = "Crush:";
+			this.LeftCrushLabel.text = "Crush";
 			if (studentJson.Crush == 0)
 			{
 				this.CrushLabel.text = "Unknown";
@@ -176,6 +176,10 @@ public class StudentInfoScript : MonoBehaviour
 				{
 					this.Portrait.mainTexture = this.BlankPortrait;
 				}
+				if (this.Eighties && this.CurrentStudent > 10 && this.CurrentStudent < 21 && DateGlobals.Week < this.CurrentStudent - 10)
+				{
+					this.Portrait.mainTexture = this.StudentInfoMenu.EightiesUnknown;
+				}
 			}
 			else
 			{
@@ -206,9 +210,10 @@ public class StudentInfoScript : MonoBehaviour
 		}
 		this.UpdateAdditionalInfo(ID);
 		this.UpdateRepChart();
+		this.CensorUnknownRivalInfo();
 	}
 
-	// Token: 0x06001D7E RID: 7550 RVA: 0x0016494C File Offset: 0x00162B4C
+	// Token: 0x06001D7E RID: 7550 RVA: 0x001649AC File Offset: 0x00162BAC
 	private void Update()
 	{
 		if (this.CurrentStudent == 100)
@@ -548,7 +553,7 @@ public class StudentInfoScript : MonoBehaviour
 		this.ReputationChart.transform.localScale = Vector3.Lerp(this.ReputationChart.transform.localScale, new Vector3(0f, 0f, 0f), Time.unscaledDeltaTime * 10f);
 	}
 
-	// Token: 0x06001D7F RID: 7551 RVA: 0x00165BEC File Offset: 0x00163DEC
+	// Token: 0x06001D7F RID: 7551 RVA: 0x00165C4C File Offset: 0x00163E4C
 	private void UpdateAdditionalInfo(int ID)
 	{
 		if (!this.Eighties)
@@ -611,7 +616,7 @@ public class StudentInfoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D80 RID: 7552 RVA: 0x00165DBC File Offset: 0x00163FBC
+	// Token: 0x06001D80 RID: 7552 RVA: 0x00165E1C File Offset: 0x0016401C
 	private void UpdateTopics()
 	{
 		int num = 0;
@@ -643,7 +648,7 @@ public class StudentInfoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D81 RID: 7553 RVA: 0x00165E80 File Offset: 0x00164080
+	// Token: 0x06001D81 RID: 7553 RVA: 0x00165EE0 File Offset: 0x001640E0
 	private void UpdateRepChart()
 	{
 		Vector3 vector = Vector3.zero;
@@ -664,10 +669,9 @@ public class StudentInfoScript : MonoBehaviour
 		this.ReputationChart.fields[2].Value = vector.z;
 	}
 
-	// Token: 0x06001D82 RID: 7554 RVA: 0x00165F44 File Offset: 0x00164144
+	// Token: 0x06001D82 RID: 7554 RVA: 0x00165FA4 File Offset: 0x001641A4
 	private void MatchmadeCheck()
 	{
-		Debug.Log("Performing Matchmaking Check.");
 		this.Matchmade = false;
 		if (this.Eighties)
 		{
@@ -788,6 +792,22 @@ public class StudentInfoScript : MonoBehaviour
 			{
 				this.PartnerName = this.JSON.Students[11].Name;
 			}
+		}
+	}
+
+	// Token: 0x06001D83 RID: 7555 RVA: 0x00166418 File Offset: 0x00164618
+	private void CensorUnknownRivalInfo()
+	{
+		if (this.CurrentStudent > 10 && this.CurrentStudent < 21 && DateGlobals.Week < this.CurrentStudent - 10)
+		{
+			this.NameLabel.text = "?????";
+			this.PersonaLabel.text = "?????";
+			this.CrushLabel.text = "?????";
+			this.ClubLabel.text = "?????";
+			this.StrengthLabel.text = "?????";
+			this.InfoLabel.text = "?????";
+			this.ReputationLabel.text = "";
+			this.ReputationBar.localPosition = new Vector3(0f, -10f, 0f);
 		}
 	}
 

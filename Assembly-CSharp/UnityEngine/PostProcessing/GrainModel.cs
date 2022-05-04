@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class GrainModel : PostProcessingModel
 	{
 		// Token: 0x1700050F RID: 1295
-		// (get) Token: 0x060023A3 RID: 9123 RVA: 0x001FAF20 File Offset: 0x001F9120
-		// (set) Token: 0x060023A4 RID: 9124 RVA: 0x001FAF28 File Offset: 0x001F9128
+		// (get) Token: 0x060023A4 RID: 9124 RVA: 0x001FB01C File Offset: 0x001F921C
+		// (set) Token: 0x060023A5 RID: 9125 RVA: 0x001FB024 File Offset: 0x001F9224
 		public GrainModel.Settings settings
 		{
 			get
@@ -21,7 +21,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023A5 RID: 9125 RVA: 0x001FAF31 File Offset: 0x001F9131
+		// Token: 0x060023A6 RID: 9126 RVA: 0x001FB02D File Offset: 0x001F922D
 		public override void Reset()
 		{
 			this.m_Settings = GrainModel.Settings.defaultSettings;
@@ -36,7 +36,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x170005A5 RID: 1445
-			// (get) Token: 0x06002798 RID: 10136 RVA: 0x002099A0 File Offset: 0x00207BA0
+			// (get) Token: 0x06002799 RID: 10137 RVA: 0x00209A9C File Offset: 0x00207C9C
 			public static GrainModel.Settings defaultSettings
 			{
 				get

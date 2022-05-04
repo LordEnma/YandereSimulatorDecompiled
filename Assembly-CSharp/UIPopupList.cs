@@ -1232,6 +1232,6 @@ public class UIPopupList : UIWidgetContainer
 	}
 
 	// Token: 0x020005DF RID: 1503
-	// (Invoke) Token: 0x06002556 RID: 9558
+	// (Invoke) Token: 0x06002557 RID: 9559
 	public delegate void LegacyEvent(string val);
 }

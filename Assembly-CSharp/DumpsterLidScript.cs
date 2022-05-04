@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000296 RID: 662
 public class DumpsterLidScript : MonoBehaviour
 {
-	// Token: 0x060013DD RID: 5085 RVA: 0x000BCA21 File Offset: 0x000BAC21
+	// Token: 0x060013DD RID: 5085 RVA: 0x000BC9ED File Offset: 0x000BABED
 	private void Start()
 	{
 		this.FallChecker.SetActive(false);
 		this.Prompt.HideButton[3] = true;
 	}
 
-	// Token: 0x060013DE RID: 5086 RVA: 0x000BCA40 File Offset: 0x000BAC40
+	// Token: 0x060013DE RID: 5086 RVA: 0x000BCA0C File Offset: 0x000BAC0C
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -106,7 +106,7 @@ public class DumpsterLidScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013DF RID: 5087 RVA: 0x000BCF00 File Offset: 0x000BB100
+	// Token: 0x060013DF RID: 5087 RVA: 0x000BCECC File Offset: 0x000BB0CC
 	public void SetVictimMissing()
 	{
 		StudentGlobals.SetStudentMissing(this.StudentToGoMissing, true);

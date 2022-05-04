@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003B6 RID: 950
 public class PortraitScript : MonoBehaviour
 {
-	// Token: 0x06001B02 RID: 6914 RVA: 0x00128E26 File Offset: 0x00127026
+	// Token: 0x06001B02 RID: 6914 RVA: 0x00128DF2 File Offset: 0x00126FF2
 	private void Start()
 	{
 		this.StudentObject[1].SetActive(false);
@@ -13,7 +13,7 @@ public class PortraitScript : MonoBehaviour
 		this.UpdateHair();
 	}
 
-	// Token: 0x06001B03 RID: 6915 RVA: 0x00128E54 File Offset: 0x00127054
+	// Token: 0x06001B03 RID: 6915 RVA: 0x00128E20 File Offset: 0x00127020
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -48,7 +48,7 @@ public class PortraitScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B04 RID: 6916 RVA: 0x00128F4C File Offset: 0x0012714C
+	// Token: 0x06001B04 RID: 6916 RVA: 0x00128F18 File Offset: 0x00127118
 	private void UpdateHair()
 	{
 		Texture mainTexture = this.HairSet2[this.CurrentHair];

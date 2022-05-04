@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D3 RID: 979
 public class RedStringScript : MonoBehaviour
 {
-	// Token: 0x06001B87 RID: 7047 RVA: 0x001362E8 File Offset: 0x001344E8
+	// Token: 0x06001B87 RID: 7047 RVA: 0x001362B4 File Offset: 0x001344B4
 	private void LateUpdate()
 	{
 		base.transform.LookAt(this.Target.position);

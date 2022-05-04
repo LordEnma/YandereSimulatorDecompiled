@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020003D8 RID: 984
 public class ResolutionScript : MonoBehaviour
 {
-	// Token: 0x06001B96 RID: 7062 RVA: 0x00138B6C File Offset: 0x00136D6C
+	// Token: 0x06001B96 RID: 7062 RVA: 0x00138B38 File Offset: 0x00136D38
 	private void Start()
 	{
 		if (Screen.width < 1280 || Screen.height < 720)
@@ -35,7 +35,7 @@ public class ResolutionScript : MonoBehaviour
 		Debug.Log("ResolutionScene. DepthOfField settings are: " + OptionGlobals.DepthOfField.ToString());
 	}
 
-	// Token: 0x06001B97 RID: 7063 RVA: 0x00138CC0 File Offset: 0x00136EC0
+	// Token: 0x06001B97 RID: 7063 RVA: 0x00138C8C File Offset: 0x00136E8C
 	private void Update()
 	{
 		if (Screen.width < 1280 || Screen.height < 720)
@@ -147,14 +147,14 @@ public class ResolutionScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B98 RID: 7064 RVA: 0x00139054 File Offset: 0x00137254
+	// Token: 0x06001B98 RID: 7064 RVA: 0x00139020 File Offset: 0x00137220
 	private void UpdateRes()
 	{
 		Screen.SetResolution(this.Widths[this.ResID], this.Heights[this.ResID], Screen.fullScreen);
 		this.ResolutionLabel.text = this.Widths[this.ResID].ToString() + " x " + this.Heights[this.ResID].ToString();
 	}
 
-	// Token: 0x06001B99 RID: 7065 RVA: 0x001390C8 File Offset: 0x001372C8
+	// Token: 0x06001B99 RID: 7065 RVA: 0x00139094 File Offset: 0x00137294
 	private void UpdateQuality()
 	{
 		QualitySettings.SetQualityLevel(this.QualityID, true);
@@ -162,7 +162,7 @@ public class ResolutionScript : MonoBehaviour
 		Debug.Log("The quality level is set to: " + QualitySettings.GetQualityLevel().ToString());
 	}
 
-	// Token: 0x06001B9A RID: 7066 RVA: 0x0013911E File Offset: 0x0013731E
+	// Token: 0x06001B9A RID: 7066 RVA: 0x001390EA File Offset: 0x001372EA
 	private void UpdateHighlight()
 	{
 		if (this.ID < 1)
@@ -176,7 +176,7 @@ public class ResolutionScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B9B RID: 7067 RVA: 0x00139144 File Offset: 0x00137344
+	// Token: 0x06001B9B RID: 7067 RVA: 0x00139110 File Offset: 0x00137310
 	private void ResetGraphicsToDefault()
 	{
 		OptionGlobals.DrawDistance = 350;

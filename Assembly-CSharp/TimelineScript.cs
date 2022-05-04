@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200047C RID: 1148
 public class TimelineScript : MonoBehaviour
 {
-	// Token: 0x06001EF2 RID: 7922 RVA: 0x001B5170 File Offset: 0x001B3370
+	// Token: 0x06001EF3 RID: 7923 RVA: 0x001B526C File Offset: 0x001B346C
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(0f, -0.6f, 1f);
@@ -175,7 +175,7 @@ public class TimelineScript : MonoBehaviour
 		this.SpawnMiscData("Ayano Aishi finds her Senpai.");
 	}
 
-	// Token: 0x06001EF3 RID: 7923 RVA: 0x001B5A08 File Offset: 0x001B3C08
+	// Token: 0x06001EF4 RID: 7924 RVA: 0x001B5B04 File Offset: 0x001B3D04
 	private void Update()
 	{
 		if (base.transform.localPosition.y > 9.75f)
@@ -237,7 +237,7 @@ public class TimelineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EF4 RID: 7924 RVA: 0x001B5D1C File Offset: 0x001B3F1C
+	// Token: 0x06001EF5 RID: 7925 RVA: 0x001B5E18 File Offset: 0x001B4018
 	private void SpawnYear(int Year)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.YearObject);
@@ -248,7 +248,7 @@ public class TimelineScript : MonoBehaviour
 		this.Height -= 50;
 	}
 
-	// Token: 0x06001EF5 RID: 7925 RVA: 0x001B5DB0 File Offset: 0x001B3FB0
+	// Token: 0x06001EF6 RID: 7926 RVA: 0x001B5EAC File Offset: 0x001B40AC
 	private void SpawnAishiData(string Data)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.TextObject);
@@ -258,7 +258,7 @@ public class TimelineScript : MonoBehaviour
 		gameObject.GetComponent<UILabel>().text = (Data ?? "");
 	}
 
-	// Token: 0x06001EF6 RID: 7926 RVA: 0x001B5E30 File Offset: 0x001B4030
+	// Token: 0x06001EF7 RID: 7927 RVA: 0x001B5F2C File Offset: 0x001B412C
 	private void SpawnSaikouData(string Data)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.TextObject);
@@ -268,7 +268,7 @@ public class TimelineScript : MonoBehaviour
 		gameObject.GetComponent<UILabel>().text = (Data ?? "");
 	}
 
-	// Token: 0x06001EF7 RID: 7927 RVA: 0x001B5EB0 File Offset: 0x001B40B0
+	// Token: 0x06001EF8 RID: 7928 RVA: 0x001B5FAC File Offset: 0x001B41AC
 	private void SpawnMiscData(string Data)
 	{
 		GameObject gameObject;

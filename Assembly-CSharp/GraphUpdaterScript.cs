@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000309 RID: 777
 public class GraphUpdaterScript : MonoBehaviour
 {
-	// Token: 0x06001844 RID: 6212 RVA: 0x000E69EA File Offset: 0x000E4BEA
+	// Token: 0x06001844 RID: 6212 RVA: 0x000E69B6 File Offset: 0x000E4BB6
 	private void Update()
 	{
 		if (this.Frames > 0)

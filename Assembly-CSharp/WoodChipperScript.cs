@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020004CC RID: 1228
 public class WoodChipperScript : MonoBehaviour
 {
-	// Token: 0x0600201C RID: 8220 RVA: 0x001C8CB7 File Offset: 0x001C6EB7
+	// Token: 0x0600201D RID: 8221 RVA: 0x001C8DB3 File Offset: 0x001C6FB3
 	private void Start()
 	{
 		this.MyAudio = base.GetComponent<AudioSource>();
 	}
 
-	// Token: 0x0600201D RID: 8221 RVA: 0x001C8CC8 File Offset: 0x001C6EC8
+	// Token: 0x0600201E RID: 8222 RVA: 0x001C8DC4 File Offset: 0x001C6FC4
 	private void Update()
 	{
 		if (!this.Acid)
@@ -267,7 +267,7 @@ public class WoodChipperScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600201E RID: 8222 RVA: 0x001C9734 File Offset: 0x001C7934
+	// Token: 0x0600201F RID: 8223 RVA: 0x001C9830 File Offset: 0x001C7A30
 	public void SetVictimsMissing()
 	{
 		int[] victimList = this.VictimList;

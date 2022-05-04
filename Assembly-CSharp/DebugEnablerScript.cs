@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000276 RID: 630
 public class DebugEnablerScript : MonoBehaviour
 {
-	// Token: 0x06001363 RID: 4963 RVA: 0x000AF7DC File Offset: 0x000AD9DC
+	// Token: 0x06001363 RID: 4963 RVA: 0x000AF7A8 File Offset: 0x000AD9A8
 	private void Start()
 	{
 		if (MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.LoveSick || (!GameGlobals.Eighties && DateGlobals.Week == 2))
@@ -18,7 +18,7 @@ public class DebugEnablerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001364 RID: 4964 RVA: 0x000AF834 File Offset: 0x000ADA34
+	// Token: 0x06001364 RID: 4964 RVA: 0x000AF800 File Offset: 0x000ADA00
 	public void EnableDebug()
 	{
 		this.Yandere.NotificationManager.CustomText = "Debug Commands Enabled!";

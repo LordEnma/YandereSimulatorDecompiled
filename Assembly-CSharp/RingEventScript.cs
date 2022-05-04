@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003DB RID: 987
 public class RingEventScript : MonoBehaviour
 {
-	// Token: 0x06001BA5 RID: 7077 RVA: 0x00139974 File Offset: 0x00137B74
+	// Token: 0x06001BA5 RID: 7077 RVA: 0x00139940 File Offset: 0x00137B40
 	private void Start()
 	{
 		this.HoldingPosition = new Vector3(0.0075f, -0.0355f, 0.0175f);
@@ -20,7 +20,7 @@ public class RingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BA6 RID: 7078 RVA: 0x001399E0 File Offset: 0x00137BE0
+	// Token: 0x06001BA6 RID: 7078 RVA: 0x001399AC File Offset: 0x00137BAC
 	private void Update()
 	{
 		if (!this.Clock.StopTime && !this.EventActive && this.Clock.HourTime > this.EventTime)
@@ -258,7 +258,7 @@ public class RingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BA7 RID: 7079 RVA: 0x0013A6A0 File Offset: 0x001388A0
+	// Token: 0x06001BA7 RID: 7079 RVA: 0x0013A66C File Offset: 0x0013886C
 	private void EndEvent()
 	{
 		if (!this.EventOver)
@@ -285,7 +285,7 @@ public class RingEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001BA8 RID: 7080 RVA: 0x0013A7B4 File Offset: 0x001389B4
+	// Token: 0x06001BA8 RID: 7080 RVA: 0x0013A780 File Offset: 0x00138980
 	public void ReturnRing()
 	{
 		if (this.EventStudent.Cosmetic.FemaleAccessories[this.AccessoryID] != null)

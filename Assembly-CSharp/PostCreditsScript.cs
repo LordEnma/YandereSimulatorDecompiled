@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020003BC RID: 956
 public class PostCreditsScript : MonoBehaviour
 {
-	// Token: 0x06001B16 RID: 6934 RVA: 0x0012C620 File Offset: 0x0012A820
+	// Token: 0x06001B16 RID: 6934 RVA: 0x0012C5EC File Offset: 0x0012A7EC
 	private void Start()
 	{
 		this.Darkness.color = new Color(0f, 0f, 0f, 1f);
@@ -15,7 +15,7 @@ public class PostCreditsScript : MonoBehaviour
 		this.LovesickLogo.SetActive(false);
 	}
 
-	// Token: 0x06001B17 RID: 6935 RVA: 0x0012C688 File Offset: 0x0012A888
+	// Token: 0x06001B17 RID: 6935 RVA: 0x0012C654 File Offset: 0x0012A854
 	private void Update()
 	{
 		this.SkipTimer += Time.deltaTime;

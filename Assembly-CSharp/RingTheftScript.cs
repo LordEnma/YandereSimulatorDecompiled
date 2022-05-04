@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003DD RID: 989
 public class RingTheftScript : MonoBehaviour
 {
-	// Token: 0x06001BAC RID: 7084 RVA: 0x0013A9A0 File Offset: 0x00138BA0
+	// Token: 0x06001BAC RID: 7084 RVA: 0x0013A96C File Offset: 0x00138B6C
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -14,7 +14,7 @@ public class RingTheftScript : MonoBehaviour
 		}
 		else
 		{
-			base.transform.position = new Vector3(11.272f, 0.8306667f, -1.3f);
+			base.transform.localPosition = new Vector3(11.272f, 0.8306667f, -1.3f);
 			foreach (GameObject gameObject in this.Rings)
 			{
 				if (gameObject != null)
@@ -26,7 +26,7 @@ public class RingTheftScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001BAD RID: 7085 RVA: 0x0013AA20 File Offset: 0x00138C20
+	// Token: 0x06001BAD RID: 7085 RVA: 0x0013A9EC File Offset: 0x00138BEC
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

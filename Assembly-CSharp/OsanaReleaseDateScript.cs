@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200038B RID: 907
 public class OsanaReleaseDateScript : MonoBehaviour
 {
-	// Token: 0x06001A58 RID: 6744 RVA: 0x001188A0 File Offset: 0x00116AA0
+	// Token: 0x06001A58 RID: 6744 RVA: 0x0011886C File Offset: 0x00116A6C
 	private void Start()
 	{
 		Time.timeScale = 1f;
@@ -17,7 +17,7 @@ public class OsanaReleaseDateScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A59 RID: 6745 RVA: 0x001188E4 File Offset: 0x00116AE4
+	// Token: 0x06001A59 RID: 6745 RVA: 0x001188B0 File Offset: 0x00116AB0
 	private void Update()
 	{
 		if (Input.GetKeyDown("-"))

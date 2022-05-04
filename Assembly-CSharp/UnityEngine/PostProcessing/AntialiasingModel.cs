@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class AntialiasingModel : PostProcessingModel
 	{
 		// Token: 0x17000503 RID: 1283
-		// (get) Token: 0x06002378 RID: 9080 RVA: 0x001FACED File Offset: 0x001F8EED
-		// (set) Token: 0x06002379 RID: 9081 RVA: 0x001FACF5 File Offset: 0x001F8EF5
+		// (get) Token: 0x06002379 RID: 9081 RVA: 0x001FADE9 File Offset: 0x001F8FE9
+		// (set) Token: 0x0600237A RID: 9082 RVA: 0x001FADF1 File Offset: 0x001F8FF1
 		public AntialiasingModel.Settings settings
 		{
 			get
@@ -21,7 +21,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x0600237A RID: 9082 RVA: 0x001FACFE File Offset: 0x001F8EFE
+		// Token: 0x0600237B RID: 9083 RVA: 0x001FADFA File Offset: 0x001F8FFA
 		public override void Reset()
 		{
 			this.m_Settings = AntialiasingModel.Settings.defaultSettings;
@@ -180,7 +180,7 @@ namespace UnityEngine.PostProcessing
 		public struct FxaaSettings
 		{
 			// Token: 0x1700058E RID: 1422
-			// (get) Token: 0x06002780 RID: 10112 RVA: 0x00209180 File Offset: 0x00207380
+			// (get) Token: 0x06002781 RID: 10113 RVA: 0x0020927C File Offset: 0x0020747C
 			public static AntialiasingModel.FxaaSettings defaultSettings
 			{
 				get
@@ -201,7 +201,7 @@ namespace UnityEngine.PostProcessing
 		public struct TaaSettings
 		{
 			// Token: 0x1700058F RID: 1423
-			// (get) Token: 0x06002781 RID: 10113 RVA: 0x002091A0 File Offset: 0x002073A0
+			// (get) Token: 0x06002782 RID: 10114 RVA: 0x0020929C File Offset: 0x0020749C
 			public static AntialiasingModel.TaaSettings defaultSettings
 			{
 				get
@@ -242,7 +242,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x17000590 RID: 1424
-			// (get) Token: 0x06002782 RID: 10114 RVA: 0x002091E8 File Offset: 0x002073E8
+			// (get) Token: 0x06002783 RID: 10115 RVA: 0x002092E4 File Offset: 0x002074E4
 			public static AntialiasingModel.Settings defaultSettings
 			{
 				get

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D0 RID: 976
 public class RandomPatrolScript : MonoBehaviour
 {
-	// Token: 0x06001B81 RID: 7041 RVA: 0x00136008 File Offset: 0x00134208
+	// Token: 0x06001B81 RID: 7041 RVA: 0x00135FD4 File Offset: 0x001341D4
 	private void Start()
 	{
 		for (int i = 1; i < 5; i++)

@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000412 RID: 1042
 public class SaveLoadScript : MonoBehaviour
 {
-	// Token: 0x06001C6F RID: 7279 RVA: 0x0014C7D8 File Offset: 0x0014A9D8
+	// Token: 0x06001C6F RID: 7279 RVA: 0x0014C7A4 File Offset: 0x0014A9A4
 	private void DetermineFilePath()
 	{
 		this.SaveProfile = GameGlobals.Profile;
@@ -23,7 +23,7 @@ public class SaveLoadScript : MonoBehaviour
 		});
 	}
 
-	// Token: 0x06001C70 RID: 7280 RVA: 0x0014C868 File Offset: 0x0014AA68
+	// Token: 0x06001C70 RID: 7280 RVA: 0x0014C834 File Offset: 0x0014AA34
 	public void SaveData()
 	{
 		this.DetermineFilePath();
@@ -91,7 +91,7 @@ public class SaveLoadScript : MonoBehaviour
 		}), base.transform.eulerAngles.z);
 	}
 
-	// Token: 0x06001C71 RID: 7281 RVA: 0x0014CB38 File Offset: 0x0014AD38
+	// Token: 0x06001C71 RID: 7281 RVA: 0x0014CB04 File Offset: 0x0014AD04
 	public void LoadData()
 	{
 		this.DetermineFilePath();

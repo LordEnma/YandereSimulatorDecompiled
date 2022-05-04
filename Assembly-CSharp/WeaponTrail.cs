@@ -6,7 +6,7 @@ using UnityEngine;
 public class WeaponTrail : MonoBehaviour
 {
 	// Token: 0x170004CA RID: 1226
-	// (set) Token: 0x06002008 RID: 8200 RVA: 0x001C73E1 File Offset: 0x001C55E1
+	// (set) Token: 0x06002009 RID: 8201 RVA: 0x001C74DD File Offset: 0x001C56DD
 	public bool Emit
 	{
 		set
@@ -15,7 +15,7 @@ public class WeaponTrail : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002009 RID: 8201 RVA: 0x001C73EC File Offset: 0x001C55EC
+	// Token: 0x0600200A RID: 8202 RVA: 0x001C74E8 File Offset: 0x001C56E8
 	public void Start()
 	{
 		this._lastPosition = base.transform.position;
@@ -32,13 +32,13 @@ public class WeaponTrail : MonoBehaviour
 		this._o.GetComponent<MeshFilter>().mesh = this._trailMesh;
 	}
 
-	// Token: 0x0600200A RID: 8202 RVA: 0x001C74D4 File Offset: 0x001C56D4
+	// Token: 0x0600200B RID: 8203 RVA: 0x001C75D0 File Offset: 0x001C57D0
 	private void OnDisable()
 	{
 		UnityEngine.Object.Destroy(this._o);
 	}
 
-	// Token: 0x0600200B RID: 8203 RVA: 0x001C74E4 File Offset: 0x001C56E4
+	// Token: 0x0600200C RID: 8204 RVA: 0x001C75E0 File Offset: 0x001C57E0
 	private void Update()
 	{
 		if (this._emit && this._emitTime != 0f)

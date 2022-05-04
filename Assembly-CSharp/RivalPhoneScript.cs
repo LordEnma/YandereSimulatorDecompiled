@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003EE RID: 1006
 public class RivalPhoneScript : MonoBehaviour
 {
-	// Token: 0x06001BF8 RID: 7160 RVA: 0x0014799C File Offset: 0x00145B9C
+	// Token: 0x06001BF8 RID: 7160 RVA: 0x00147968 File Offset: 0x00145B68
 	private void Start()
 	{
 		this.OriginalParent = base.transform.parent;
@@ -14,7 +14,7 @@ public class RivalPhoneScript : MonoBehaviour
 		this.Prompt.Hide();
 	}
 
-	// Token: 0x06001BF9 RID: 7161 RVA: 0x001479F4 File Offset: 0x00145BF4
+	// Token: 0x06001BF9 RID: 7161 RVA: 0x001479C0 File Offset: 0x00145BC0
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -46,7 +46,7 @@ public class RivalPhoneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BFA RID: 7162 RVA: 0x00147B9C File Offset: 0x00145D9C
+	// Token: 0x06001BFA RID: 7162 RVA: 0x00147B68 File Offset: 0x00145D68
 	public void ReturnToOrigin()
 	{
 		base.transform.parent = this.OriginalParent;

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D4 RID: 980
 public class RefrigeratorScript : MonoBehaviour
 {
-	// Token: 0x06001B89 RID: 7049 RVA: 0x00136348 File Offset: 0x00134548
+	// Token: 0x06001B89 RID: 7049 RVA: 0x00136314 File Offset: 0x00134514
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

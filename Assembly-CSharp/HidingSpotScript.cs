@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000315 RID: 789
 public class HidingSpotScript : MonoBehaviour
 {
-	// Token: 0x06001870 RID: 6256 RVA: 0x000EC344 File Offset: 0x000EA544
+	// Token: 0x06001870 RID: 6256 RVA: 0x000EC310 File Offset: 0x000EA510
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

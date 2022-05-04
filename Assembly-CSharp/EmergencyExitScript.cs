@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002A3 RID: 675
 public class EmergencyExitScript : MonoBehaviour
 {
-	// Token: 0x06001429 RID: 5161 RVA: 0x000C0ABC File Offset: 0x000BECBC
+	// Token: 0x06001429 RID: 5161 RVA: 0x000C0A88 File Offset: 0x000BEC88
 	private void Update()
 	{
 		if (Vector3.Distance(this.Yandere.position, base.transform.position) < 2f)
@@ -25,7 +25,7 @@ public class EmergencyExitScript : MonoBehaviour
 		this.Timer = Mathf.MoveTowards(this.Timer, 0f, Time.deltaTime);
 	}
 
-	// Token: 0x0600142A RID: 5162 RVA: 0x000C0BDD File Offset: 0x000BEDDD
+	// Token: 0x0600142A RID: 5162 RVA: 0x000C0BA9 File Offset: 0x000BEDA9
 	private void OnTriggerStay(Collider other)
 	{
 		this.Student = other.gameObject.GetComponent<StudentScript>();

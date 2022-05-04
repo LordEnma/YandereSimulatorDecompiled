@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E4 RID: 996
 public class OsanaFridayLunchEventScript : MonoBehaviour
 {
-	// Token: 0x06001BC6 RID: 7110 RVA: 0x0013D3C8 File Offset: 0x0013B5C8
+	// Token: 0x06001BC6 RID: 7110 RVA: 0x0013D394 File Offset: 0x0013B594
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -16,7 +16,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BC7 RID: 7111 RVA: 0x0013D430 File Offset: 0x0013B630
+	// Token: 0x06001BC7 RID: 7111 RVA: 0x0013D3FC File Offset: 0x0013B5FC
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -270,7 +270,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BC8 RID: 7112 RVA: 0x0013E264 File Offset: 0x0013C464
+	// Token: 0x06001BC8 RID: 7112 RVA: 0x0013E230 File Offset: 0x0013C430
 	public void EndEvent()
 	{
 		Debug.Log("Osana's Friday lunchtime event has ended.");
@@ -341,7 +341,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001BC9 RID: 7113 RVA: 0x0013E5AC File Offset: 0x0013C7AC
+	// Token: 0x06001BC9 RID: 7113 RVA: 0x0013E578 File Offset: 0x0013C778
 	private void EndSenpai()
 	{
 		if (!this.Senpai.Alarmed)

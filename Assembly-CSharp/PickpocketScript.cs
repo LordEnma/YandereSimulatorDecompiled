@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003AC RID: 940
 public class PickpocketScript : MonoBehaviour
 {
-	// Token: 0x06001AD8 RID: 6872 RVA: 0x00123CA0 File Offset: 0x00121EA0
+	// Token: 0x06001AD8 RID: 6872 RVA: 0x00123C6C File Offset: 0x00121E6C
 	private void Start()
 	{
 		if (this.Student.StudentID != 71)
@@ -29,7 +29,7 @@ public class PickpocketScript : MonoBehaviour
 		this.NotNurse = true;
 	}
 
-	// Token: 0x06001AD9 RID: 6873 RVA: 0x00123D70 File Offset: 0x00121F70
+	// Token: 0x06001AD9 RID: 6873 RVA: 0x00123D3C File Offset: 0x00121F3C
 	private void Update()
 	{
 		if (this.Prompt.transform.parent != null)
@@ -152,7 +152,7 @@ public class PickpocketScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ADA RID: 6874 RVA: 0x001242F4 File Offset: 0x001224F4
+	// Token: 0x06001ADA RID: 6874 RVA: 0x001242C0 File Offset: 0x001224C0
 	private void Punish()
 	{
 		Debug.Log("Punishing Yandere-chan for pickpocketing.");
@@ -179,7 +179,7 @@ public class PickpocketScript : MonoBehaviour
 		this.Student.PatrolTimer = 0f;
 	}
 
-	// Token: 0x06001ADB RID: 6875 RVA: 0x00124438 File Offset: 0x00122638
+	// Token: 0x06001ADB RID: 6875 RVA: 0x00124404 File Offset: 0x00122604
 	private void Succeed()
 	{
 		if (this.ID == 1)

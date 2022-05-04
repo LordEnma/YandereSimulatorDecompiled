@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000335 RID: 821
 public class InfoChanWindowScript : MonoBehaviour
 {
-	// Token: 0x060018F3 RID: 6387 RVA: 0x000F6D78 File Offset: 0x000F4F78
+	// Token: 0x060018F3 RID: 6387 RVA: 0x000F6D44 File Offset: 0x000F4F44
 	private void Update()
 	{
 		if (this.Drop)
@@ -37,7 +37,7 @@ public class InfoChanWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018F4 RID: 6388 RVA: 0x000F6EE6 File Offset: 0x000F50E6
+	// Token: 0x060018F4 RID: 6388 RVA: 0x000F6EB2 File Offset: 0x000F50B2
 	public void DropObject()
 	{
 		this.Rotation = 0f;

@@ -6,7 +6,7 @@ namespace UnityEngine.PostProcessing
 	public sealed class BloomComponent : PostProcessingComponentRenderTexture<BloomModel>
 	{
 		// Token: 0x170004F0 RID: 1264
-		// (get) Token: 0x06002302 RID: 8962 RVA: 0x001F720F File Offset: 0x001F540F
+		// (get) Token: 0x06002303 RID: 8963 RVA: 0x001F730B File Offset: 0x001F550B
 		public override bool active
 		{
 			get
@@ -15,7 +15,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002303 RID: 8963 RVA: 0x001F724C File Offset: 0x001F544C
+		// Token: 0x06002304 RID: 8964 RVA: 0x001F7348 File Offset: 0x001F5548
 		public void Prepare(RenderTexture source, Material uberMaterial, Texture autoExposure)
 		{
 			BloomModel.BloomSettings bloom = base.model.settings.bloom;

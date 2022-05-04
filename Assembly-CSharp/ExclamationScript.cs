@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002C1 RID: 705
 public class ExclamationScript : MonoBehaviour
 {
-	// Token: 0x06001490 RID: 5264 RVA: 0x000C8FE8 File Offset: 0x000C71E8
+	// Token: 0x06001490 RID: 5264 RVA: 0x000C8FB4 File Offset: 0x000C71B4
 	private void Start()
 	{
 		base.transform.localScale = Vector3.zero;
@@ -12,7 +12,7 @@ public class ExclamationScript : MonoBehaviour
 		this.MainCamera = Camera.main;
 	}
 
-	// Token: 0x06001491 RID: 5265 RVA: 0x000C9040 File Offset: 0x000C7240
+	// Token: 0x06001491 RID: 5265 RVA: 0x000C900C File Offset: 0x000C720C
 	private void Update()
 	{
 		this.Timer -= Time.deltaTime;

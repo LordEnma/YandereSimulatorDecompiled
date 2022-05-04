@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000353 RID: 851
 public class LightSwitchScript : MonoBehaviour
 {
-	// Token: 0x0600197B RID: 6523 RVA: 0x00100383 File Offset: 0x000FE583
+	// Token: 0x0600197B RID: 6523 RVA: 0x0010034F File Offset: 0x000FE54F
 	private void Start()
 	{
 		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
 	}
 
-	// Token: 0x0600197C RID: 6524 RVA: 0x0010039C File Offset: 0x000FE59C
+	// Token: 0x0600197C RID: 6524 RVA: 0x00100368 File Offset: 0x000FE568
 	private void Update()
 	{
 		if (this.Flicker)

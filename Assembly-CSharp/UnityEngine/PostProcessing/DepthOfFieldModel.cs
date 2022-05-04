@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class DepthOfFieldModel : PostProcessingModel
 	{
 		// Token: 0x1700050B RID: 1291
-		// (get) Token: 0x06002393 RID: 9107 RVA: 0x001FAE5C File Offset: 0x001F905C
-		// (set) Token: 0x06002394 RID: 9108 RVA: 0x001FAE64 File Offset: 0x001F9064
+		// (get) Token: 0x06002394 RID: 9108 RVA: 0x001FAF58 File Offset: 0x001F9158
+		// (set) Token: 0x06002395 RID: 9109 RVA: 0x001FAF60 File Offset: 0x001F9160
 		public DepthOfFieldModel.Settings settings
 		{
 			get
@@ -21,7 +21,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002395 RID: 9109 RVA: 0x001FAE6D File Offset: 0x001F906D
+		// Token: 0x06002396 RID: 9110 RVA: 0x001FAF69 File Offset: 0x001F9169
 		public override void Reset()
 		{
 			this.m_Settings = DepthOfFieldModel.Settings.defaultSettings;
@@ -49,7 +49,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x170005A1 RID: 1441
-			// (get) Token: 0x06002794 RID: 10132 RVA: 0x00209890 File Offset: 0x00207A90
+			// (get) Token: 0x06002795 RID: 10133 RVA: 0x0020998C File Offset: 0x00207B8C
 			public static DepthOfFieldModel.Settings defaultSettings
 			{
 				get

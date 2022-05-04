@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E6 RID: 998
 public class OsanaMondayLunchEventScript : MonoBehaviour
 {
-	// Token: 0x06001BCF RID: 7119 RVA: 0x0013F230 File Offset: 0x0013D430
+	// Token: 0x06001BCF RID: 7119 RVA: 0x0013F1FC File Offset: 0x0013D3FC
 	private void Start()
 	{
 		this.OriginalPosition = this.Epicenter.position;
@@ -16,7 +16,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BD0 RID: 7120 RVA: 0x0013F29C File Offset: 0x0013D49C
+	// Token: 0x06001BD0 RID: 7120 RVA: 0x0013F268 File Offset: 0x0013D468
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -340,7 +340,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BD1 RID: 7121 RVA: 0x00140738 File Offset: 0x0013E938
+	// Token: 0x06001BD1 RID: 7121 RVA: 0x00140704 File Offset: 0x0013E904
 	private void SettleFriend()
 	{
 		this.Friend.MoveTowardsTarget(this.Location[3].position);
@@ -350,7 +350,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BD2 RID: 7122 RVA: 0x001407C4 File Offset: 0x0013E9C4
+	// Token: 0x06001BD2 RID: 7122 RVA: 0x00140790 File Offset: 0x0013E990
 	private void EndEvent()
 	{
 		if (this.VoiceClip != null)
@@ -437,7 +437,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		this.DisableBentos();
 	}
 
-	// Token: 0x06001BD3 RID: 7123 RVA: 0x00140BFC File Offset: 0x0013EDFC
+	// Token: 0x06001BD3 RID: 7123 RVA: 0x00140BC8 File Offset: 0x0013EDC8
 	private void DisableBentos()
 	{
 		this.Bento[1].Prompt.Hide();
@@ -450,7 +450,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		this.Bento[2].enabled = false;
 	}
 
-	// Token: 0x06001BD4 RID: 7124 RVA: 0x00140C98 File Offset: 0x0013EE98
+	// Token: 0x06001BD4 RID: 7124 RVA: 0x00140C64 File Offset: 0x0013EE64
 	private void MakeRaibaruGoHide()
 	{
 		if (this.Friend != null && this.Friend.DistanceToDestination > 1f)

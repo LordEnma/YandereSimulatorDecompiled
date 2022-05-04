@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200026D RID: 621
 public class CutsceneManagerScript : MonoBehaviour
 {
-	// Token: 0x06001333 RID: 4915 RVA: 0x000AB994 File Offset: 0x000A9B94
+	// Token: 0x06001333 RID: 4915 RVA: 0x000AB960 File Offset: 0x000A9B60
 	private void Update()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();

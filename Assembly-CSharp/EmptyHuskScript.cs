@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002A5 RID: 677
 public class EmptyHuskScript : MonoBehaviour
 {
-	// Token: 0x0600142E RID: 5166 RVA: 0x000C1198 File Offset: 0x000BF398
+	// Token: 0x0600142E RID: 5166 RVA: 0x000C1164 File Offset: 0x000BF364
 	private void Update()
 	{
 		if (this.EatPhase < this.BloodTimes.Length && this.MyAnimation["f02_sixEat_00"].time > this.BloodTimes[this.EatPhase])

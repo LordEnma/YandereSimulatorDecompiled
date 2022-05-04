@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000295 RID: 661
 public class DumpsterHandleScript : MonoBehaviour
 {
-	// Token: 0x060013D9 RID: 5081 RVA: 0x000BC3EB File Offset: 0x000BA5EB
+	// Token: 0x060013D9 RID: 5081 RVA: 0x000BC3B7 File Offset: 0x000BA5B7
 	private void Start()
 	{
 		this.Panel.SetActive(false);
 	}
 
-	// Token: 0x060013DA RID: 5082 RVA: 0x000BC3FC File Offset: 0x000BA5FC
+	// Token: 0x060013DA RID: 5082 RVA: 0x000BC3C8 File Offset: 0x000BA5C8
 	private void Update()
 	{
 		this.Prompt.HideButton[3] = (this.Prompt.Yandere.PickUp != null || this.Prompt.Yandere.Dragging || this.Prompt.Yandere.Carrying);
@@ -76,7 +76,7 @@ public class DumpsterHandleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013DB RID: 5083 RVA: 0x000BC9C0 File Offset: 0x000BABC0
+	// Token: 0x060013DB RID: 5083 RVA: 0x000BC98C File Offset: 0x000BAB8C
 	private void StopGrabbing()
 	{
 		this.Prompt.Yandere.DumpsterGrabbing = false;

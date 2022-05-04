@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class StudentSaveData
 {
-	// Token: 0x06001C52 RID: 7250 RVA: 0x0014A98C File Offset: 0x00148B8C
+	// Token: 0x06001C52 RID: 7250 RVA: 0x0014A958 File Offset: 0x00148B58
 	public static StudentSaveData ReadFromGlobals()
 	{
 		StudentSaveData studentSaveData = new StudentSaveData();
@@ -132,7 +132,7 @@ public class StudentSaveData
 		return studentSaveData;
 	}
 
-	// Token: 0x06001C53 RID: 7251 RVA: 0x0014AD84 File Offset: 0x00148F84
+	// Token: 0x06001C53 RID: 7251 RVA: 0x0014AD50 File Offset: 0x00148F50
 	public static void WriteToGlobals(StudentSaveData data)
 	{
 		StudentGlobals.CustomSuitor = data.customSuitor;

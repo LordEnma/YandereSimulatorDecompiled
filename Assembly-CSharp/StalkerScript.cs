@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000446 RID: 1094
 public class StalkerScript : MonoBehaviour
 {
-	// Token: 0x06001D27 RID: 7463 RVA: 0x0015C56C File Offset: 0x0015A76C
+	// Token: 0x06001D27 RID: 7463 RVA: 0x0015C538 File Offset: 0x0015A738
 	private void Update()
 	{
 		if (!this.Chase)
@@ -153,7 +153,7 @@ public class StalkerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D28 RID: 7464 RVA: 0x0015CB78 File Offset: 0x0015AD78
+	// Token: 0x06001D28 RID: 7464 RVA: 0x0015CB44 File Offset: 0x0015AD44
 	private void ChaseNow()
 	{
 		this.SpeechClip = this.AlarmedClip;
@@ -170,7 +170,7 @@ public class StalkerScript : MonoBehaviour
 		this.Chase = true;
 	}
 
-	// Token: 0x06001D29 RID: 7465 RVA: 0x0015CC34 File Offset: 0x0015AE34
+	// Token: 0x06001D29 RID: 7465 RVA: 0x0015CC00 File Offset: 0x0015AE00
 	private void TriggerAlarm()
 	{
 		this.MyAnimation.CrossFade("readyToFight_00");

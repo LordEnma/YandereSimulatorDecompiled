@@ -5,13 +5,13 @@ using UnityEngine;
 // Token: 0x02000450 RID: 1104
 public class StreetCivilianScript : MonoBehaviour
 {
-	// Token: 0x06001D51 RID: 7505 RVA: 0x0015F89D File Offset: 0x0015DA9D
+	// Token: 0x06001D51 RID: 7505 RVA: 0x0015F869 File Offset: 0x0015DA69
 	private void Start()
 	{
 		this.Pathfinding.target = this.Destinations[0];
 	}
 
-	// Token: 0x06001D52 RID: 7506 RVA: 0x0015F8B4 File Offset: 0x0015DAB4
+	// Token: 0x06001D52 RID: 7506 RVA: 0x0015F880 File Offset: 0x0015DA80
 	private void Update()
 	{
 		if (Vector3.Distance(base.transform.position, this.Destinations[this.ID].position) < 0.55f)
@@ -37,7 +37,7 @@ public class StreetCivilianScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D53 RID: 7507 RVA: 0x0015F9BC File Offset: 0x0015DBBC
+	// Token: 0x06001D53 RID: 7507 RVA: 0x0015F988 File Offset: 0x0015DB88
 	public void MoveTowardsTarget(Vector3 target)
 	{
 		Vector3 a = target - base.transform.position;

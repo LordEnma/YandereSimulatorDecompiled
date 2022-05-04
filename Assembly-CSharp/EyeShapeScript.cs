@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002C3 RID: 707
 public class EyeShapeScript : MonoBehaviour
 {
-	// Token: 0x06001495 RID: 5269 RVA: 0x000C92A4 File Offset: 0x000C74A4
+	// Token: 0x06001495 RID: 5269 RVA: 0x000C9270 File Offset: 0x000C7470
 	private void Start()
 	{
 		this.PosOffsetX = UnityEngine.Random.Range(-0.002f, 0.002f);
@@ -15,7 +15,7 @@ public class EyeShapeScript : MonoBehaviour
 		this.RotOffsetZ = UnityEngine.Random.Range(-15f, 15f);
 	}
 
-	// Token: 0x06001496 RID: 5270 RVA: 0x000C9330 File Offset: 0x000C7530
+	// Token: 0x06001496 RID: 5270 RVA: 0x000C92FC File Offset: 0x000C74FC
 	private void LateUpdate()
 	{
 		this.eyelid_und1_Left.localPosition += new Vector3(this.PosOffsetX, this.PosOffsetY, this.PosOffsetZ);

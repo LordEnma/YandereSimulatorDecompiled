@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000413 RID: 1043
 public class SceneLoader : MonoBehaviour
 {
-	// Token: 0x06001C73 RID: 7283 RVA: 0x0014CDD4 File Offset: 0x0014AFD4
+	// Token: 0x06001C73 RID: 7283 RVA: 0x0014CDA0 File Offset: 0x0014AFA0
 	private void Start()
 	{
 		if (OptionGlobals.DrawDistanceLimit == 0)
@@ -79,7 +79,7 @@ public class SceneLoader : MonoBehaviour
 		this.Debugging = false;
 	}
 
-	// Token: 0x06001C74 RID: 7284 RVA: 0x0014D08C File Offset: 0x0014B28C
+	// Token: 0x06001C74 RID: 7284 RVA: 0x0014D058 File Offset: 0x0014B258
 	private void Update()
 	{
 		if (this.Timer == 1f)
@@ -101,7 +101,7 @@ public class SceneLoader : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001C75 RID: 7285 RVA: 0x0014D0FD File Offset: 0x0014B2FD
+	// Token: 0x06001C75 RID: 7285 RVA: 0x0014D0C9 File Offset: 0x0014B2C9
 	private IEnumerator LoadNewScene()
 	{
 		AsyncOperation async = SceneManager.LoadSceneAsync("SchoolScene");

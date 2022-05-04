@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D5 RID: 981
 public class RendererListScript : MonoBehaviour
 {
-	// Token: 0x06001B8B RID: 7051 RVA: 0x00136FA8 File Offset: 0x001351A8
+	// Token: 0x06001B8B RID: 7051 RVA: 0x00136F74 File Offset: 0x00135174
 	private void Start()
 	{
 		Transform[] componentsInChildren = base.gameObject.GetComponentsInChildren<Transform>();
@@ -19,7 +19,7 @@ public class RendererListScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B8C RID: 7052 RVA: 0x00137000 File Offset: 0x00135200
+	// Token: 0x06001B8C RID: 7052 RVA: 0x00136FCC File Offset: 0x001351CC
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.LeftControl))

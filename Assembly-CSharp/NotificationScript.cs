@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000382 RID: 898
 public class NotificationScript : MonoBehaviour
 {
-	// Token: 0x06001A3B RID: 6715 RVA: 0x00115164 File Offset: 0x00113364
+	// Token: 0x06001A3B RID: 6715 RVA: 0x00115130 File Offset: 0x00113330
 	private void Start()
 	{
 		if (MissionModeGlobals.MissionMode)
@@ -16,7 +16,7 @@ public class NotificationScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A3C RID: 6716 RVA: 0x001151F4 File Offset: 0x001133F4
+	// Token: 0x06001A3C RID: 6716 RVA: 0x001151C0 File Offset: 0x001133C0
 	private void Update()
 	{
 		if (!this.Display)

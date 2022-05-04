@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002D1 RID: 721
 public class FollowSkirtScript : MonoBehaviour
 {
-	// Token: 0x060014C2 RID: 5314 RVA: 0x000CC8F8 File Offset: 0x000CAAF8
+	// Token: 0x060014C2 RID: 5314 RVA: 0x000CC8C4 File Offset: 0x000CAAC4
 	private void LateUpdate()
 	{
 		this.SkirtHips.position = this.TargetSkirtHips.position;

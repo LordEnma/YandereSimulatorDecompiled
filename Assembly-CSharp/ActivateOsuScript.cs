@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200038E RID: 910
 public class ActivateOsuScript : MonoBehaviour
 {
-	// Token: 0x06001A60 RID: 6752 RVA: 0x00118CB8 File Offset: 0x00116EB8
+	// Token: 0x06001A60 RID: 6752 RVA: 0x00118C84 File Offset: 0x00116E84
 	private void Start()
 	{
 		this.OsuScripts = this.Osu.GetComponents<OsuScript>();
@@ -12,7 +12,7 @@ public class ActivateOsuScript : MonoBehaviour
 		this.OriginalMousePosition = this.Mouse.transform.position;
 	}
 
-	// Token: 0x06001A61 RID: 6753 RVA: 0x00118CF8 File Offset: 0x00116EF8
+	// Token: 0x06001A61 RID: 6753 RVA: 0x00118CC4 File Offset: 0x00116EC4
 	private void Update()
 	{
 		if (this.Student == null)
@@ -38,7 +38,7 @@ public class ActivateOsuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A62 RID: 6754 RVA: 0x00118E30 File Offset: 0x00117030
+	// Token: 0x06001A62 RID: 6754 RVA: 0x00118DFC File Offset: 0x00116FFC
 	private void ActivateOsu()
 	{
 		this.Osu.transform.parent.gameObject.SetActive(true);
@@ -48,7 +48,7 @@ public class ActivateOsuScript : MonoBehaviour
 		this.Mouse.transform.localPosition = Vector3.zero;
 	}
 
-	// Token: 0x06001A63 RID: 6755 RVA: 0x00118EA0 File Offset: 0x001170A0
+	// Token: 0x06001A63 RID: 6755 RVA: 0x00118E6C File Offset: 0x0011706C
 	private void DeactivateOsu()
 	{
 		this.Osu.transform.parent.gameObject.SetActive(false);

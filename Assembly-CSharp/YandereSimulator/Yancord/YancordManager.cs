@@ -8,7 +8,7 @@ namespace YandereSimulator.Yancord
 	// Token: 0x0200052C RID: 1324
 	public class YancordManager : MonoBehaviour
 	{
-		// Token: 0x060021B5 RID: 8629 RVA: 0x001F08A8 File Offset: 0x001EEAA8
+		// Token: 0x060021B6 RID: 8630 RVA: 0x001F09A4 File Offset: 0x001EEBA4
 		public void Start()
 		{
 			if (YancordGlobals.CurrentConversation > 5)
@@ -50,7 +50,7 @@ namespace YandereSimulator.Yancord
 			this.FadeIn = true;
 		}
 
-		// Token: 0x060021B6 RID: 8630 RVA: 0x001F0A20 File Offset: 0x001EEC20
+		// Token: 0x060021B7 RID: 8631 RVA: 0x001F0B1C File Offset: 0x001EED1C
 		public void Update()
 		{
 			if (this.FadeIn)
@@ -262,7 +262,7 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x060021B7 RID: 8631 RVA: 0x001F1180 File Offset: 0x001EF380
+		// Token: 0x060021B8 RID: 8632 RVA: 0x001F127C File Offset: 0x001EF47C
 		private string GetReaction(int phase)
 		{
 			switch (this.Choice[phase])
@@ -278,7 +278,7 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x060021B8 RID: 8632 RVA: 0x001F11E4 File Offset: 0x001EF3E4
+		// Token: 0x060021B9 RID: 8633 RVA: 0x001F12E0 File Offset: 0x001EF4E0
 		private string GetAnswer(int phase)
 		{
 			switch (this.Choice[phase])
@@ -294,7 +294,7 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x060021B9 RID: 8633 RVA: 0x001F1248 File Offset: 0x001EF448
+		// Token: 0x060021BA RID: 8634 RVA: 0x001F1344 File Offset: 0x001EF544
 		private void SpawnAll()
 		{
 			for (int i = 1; i < this.Dialogue.Count; i++)
@@ -323,7 +323,7 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x060021BA RID: 8634 RVA: 0x001F13D4 File Offset: 0x001EF5D4
+		// Token: 0x060021BB RID: 8635 RVA: 0x001F14D0 File Offset: 0x001EF6D0
 		private void SpawnChatMessage()
 		{
 			if (this.Messages[this.currentPhase].transform.position.y < -400f || this.Messages[this.currentPhase].transform.localPosition.y - (float)this.Messages[this.currentPhase].MessageLabel.height < -400f)
@@ -357,7 +357,7 @@ namespace YandereSimulator.Yancord
 			}
 		}
 
-		// Token: 0x060021BB RID: 8635 RVA: 0x001F1738 File Offset: 0x001EF938
+		// Token: 0x060021BC RID: 8636 RVA: 0x001F1834 File Offset: 0x001EFA34
 		private void JoinServer()
 		{
 			this.NewServer.SetActive(true);
@@ -370,7 +370,7 @@ namespace YandereSimulator.Yancord
 			this.FirstTimeUI.gameObject.SetActive(false);
 		}
 
-		// Token: 0x060021BC RID: 8636 RVA: 0x001F1811 File Offset: 0x001EFA11
+		// Token: 0x060021BD RID: 8637 RVA: 0x001F190D File Offset: 0x001EFB0D
 		private void CalculateMessageDelay()
 		{
 			this.messageDelay = 3f;

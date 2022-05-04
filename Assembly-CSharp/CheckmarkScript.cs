@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000509 RID: 1289
 public class CheckmarkScript : MonoBehaviour
 {
-	// Token: 0x06002169 RID: 8553 RVA: 0x001ED0A3 File Offset: 0x001EB2A3
+	// Token: 0x0600216A RID: 8554 RVA: 0x001ED19F File Offset: 0x001EB39F
 	private void Start()
 	{
 		while (this.ID < this.Checkmarks.Length)
@@ -15,7 +15,7 @@ public class CheckmarkScript : MonoBehaviour
 		this.ID = 0;
 	}
 
-	// Token: 0x0600216A RID: 8554 RVA: 0x001ED0E0 File Offset: 0x001EB2E0
+	// Token: 0x0600216B RID: 8555 RVA: 0x001ED1DC File Offset: 0x001EB3DC
 	private void Update()
 	{
 		if (Input.GetKeyDown("space") && this.ButtonPresses < 26)

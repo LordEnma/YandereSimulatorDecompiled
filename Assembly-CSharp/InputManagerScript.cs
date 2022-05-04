@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000338 RID: 824
 public class InputManagerScript : MonoBehaviour
 {
-	// Token: 0x060018F9 RID: 6393 RVA: 0x000F7104 File Offset: 0x000F5304
+	// Token: 0x060018F9 RID: 6393 RVA: 0x000F70D0 File Offset: 0x000F52D0
 	private void Update()
 	{
 		this.TappedUp = false;
@@ -109,7 +109,7 @@ public class InputManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018FA RID: 6394 RVA: 0x000F740D File Offset: 0x000F560D
+	// Token: 0x060018FA RID: 6394 RVA: 0x000F73D9 File Offset: 0x000F55D9
 	private void NoStick()
 	{
 		this.StickUp = false;

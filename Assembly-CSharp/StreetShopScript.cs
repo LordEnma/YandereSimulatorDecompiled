@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000454 RID: 1108
 public class StreetShopScript : MonoBehaviour
 {
-	// Token: 0x06001D65 RID: 7525 RVA: 0x001613EC File Offset: 0x0015F5EC
+	// Token: 0x06001D65 RID: 7525 RVA: 0x001613B8 File Offset: 0x0015F5B8
 	private void Start()
 	{
 		this.MyLabel.color = new Color(1f, 1f, 1f, 0f);
@@ -89,7 +89,7 @@ public class StreetShopScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D66 RID: 7526 RVA: 0x001616C8 File Offset: 0x0015F8C8
+	// Token: 0x06001D66 RID: 7526 RVA: 0x00161694 File Offset: 0x0015F894
 	private void Update()
 	{
 		if (Vector3.Distance(this.Yandere.transform.position, base.transform.position) < 1f)
@@ -211,7 +211,7 @@ public class StreetShopScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D67 RID: 7527 RVA: 0x00161C80 File Offset: 0x0015FE80
+	// Token: 0x06001D67 RID: 7527 RVA: 0x00161C4C File Offset: 0x0015FE4C
 	private void UpdateShopInterface()
 	{
 		if (this.Descs[1] != "")
@@ -270,7 +270,7 @@ public class StreetShopScript : MonoBehaviour
 		this.StreetShopInterface.UpdateFakeID();
 	}
 
-	// Token: 0x06001D68 RID: 7528 RVA: 0x00161F58 File Offset: 0x00160158
+	// Token: 0x06001D68 RID: 7528 RVA: 0x00161F24 File Offset: 0x00160124
 	public void EightiesBarber()
 	{
 		this.Products[1] = "The Benefits of Manga";

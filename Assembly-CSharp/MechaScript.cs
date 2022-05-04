@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000365 RID: 869
 public class MechaScript : MonoBehaviour
 {
-	// Token: 0x060019B6 RID: 6582 RVA: 0x00106B28 File Offset: 0x00104D28
+	// Token: 0x060019B6 RID: 6582 RVA: 0x00106AF4 File Offset: 0x00104CF4
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -126,7 +126,7 @@ public class MechaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019B7 RID: 6583 RVA: 0x0010713C File Offset: 0x0010533C
+	// Token: 0x060019B7 RID: 6583 RVA: 0x00107108 File Offset: 0x00105308
 	private void UpdateMovement()
 	{
 		if (!this.Prompt.Yandere.ToggleRun)

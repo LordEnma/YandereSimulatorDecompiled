@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x02000476 RID: 1142
 public class TextureCycleScript : MonoBehaviour
 {
-	// Token: 0x06001EE1 RID: 7905 RVA: 0x001B46B6 File Offset: 0x001B28B6
+	// Token: 0x06001EE2 RID: 7906 RVA: 0x001B47B2 File Offset: 0x001B29B2
 	private void Awake()
 	{
 	}
 
 	// Token: 0x170004B0 RID: 1200
-	// (get) Token: 0x06001EE2 RID: 7906 RVA: 0x001B46B8 File Offset: 0x001B28B8
+	// (get) Token: 0x06001EE3 RID: 7907 RVA: 0x001B47B4 File Offset: 0x001B29B4
 	private float SecondsPerFrame
 	{
 		get
@@ -19,7 +19,7 @@ public class TextureCycleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001EE3 RID: 7907 RVA: 0x001B46C8 File Offset: 0x001B28C8
+	// Token: 0x06001EE4 RID: 7908 RVA: 0x001B47C4 File Offset: 0x001B29C4
 	private void Update()
 	{
 		this.ID++;

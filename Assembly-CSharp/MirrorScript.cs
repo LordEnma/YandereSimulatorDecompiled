@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200036A RID: 874
 public class MirrorScript : MonoBehaviour
 {
-	// Token: 0x060019CC RID: 6604 RVA: 0x00108850 File Offset: 0x00106A50
+	// Token: 0x060019CC RID: 6604 RVA: 0x0010881C File Offset: 0x00106A1C
 	private void Start()
 	{
 		this.Started = true;
@@ -24,7 +24,7 @@ public class MirrorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019CD RID: 6605 RVA: 0x001088D8 File Offset: 0x00106AD8
+	// Token: 0x060019CD RID: 6605 RVA: 0x001088A4 File Offset: 0x00106AA4
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -53,7 +53,7 @@ public class MirrorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019CE RID: 6606 RVA: 0x00108A00 File Offset: 0x00106C00
+	// Token: 0x060019CE RID: 6606 RVA: 0x001089CC File Offset: 0x00106BCC
 	public void UpdatePersona()
 	{
 		if (!this.Started)

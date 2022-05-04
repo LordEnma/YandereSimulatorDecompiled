@@ -1386,11 +1386,11 @@ public class UIWidget : UIRect
 	}
 
 	// Token: 0x0200060E RID: 1550
-	// (Invoke) Token: 0x060025CC RID: 9676
+	// (Invoke) Token: 0x060025CD RID: 9677
 	public delegate void OnDimensionsChanged();
 
 	// Token: 0x0200060F RID: 1551
-	// (Invoke) Token: 0x060025D0 RID: 9680
+	// (Invoke) Token: 0x060025D1 RID: 9681
 	public delegate void OnPostFillCallback(UIWidget widget, int bufferOffset, List<Vector3> verts, List<Vector2> uvs, List<Color> cols);
 
 	// Token: 0x02000610 RID: 1552
@@ -1406,6 +1406,6 @@ public class UIWidget : UIRect
 	}
 
 	// Token: 0x02000611 RID: 1553
-	// (Invoke) Token: 0x060025D4 RID: 9684
+	// (Invoke) Token: 0x060025D5 RID: 9685
 	public delegate bool HitCheck(Vector3 worldPos);
 }

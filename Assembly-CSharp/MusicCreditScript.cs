@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000373 RID: 883
 public class MusicCreditScript : MonoBehaviour
 {
-	// Token: 0x060019E7 RID: 6631 RVA: 0x0010A7AC File Offset: 0x001089AC
+	// Token: 0x060019E7 RID: 6631 RVA: 0x0010A778 File Offset: 0x00108978
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(400f, base.transform.localPosition.y, base.transform.localPosition.z);
 		this.Panel.enabled = false;
 	}
 
-	// Token: 0x060019E8 RID: 6632 RVA: 0x0010A7FC File Offset: 0x001089FC
+	// Token: 0x060019E8 RID: 6632 RVA: 0x0010A7C8 File Offset: 0x001089C8
 	private void Update()
 	{
 		if (this.Slide)
