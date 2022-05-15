@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200025D RID: 605
+// Token: 0x0200025E RID: 606
 public class CookingEventScript : MonoBehaviour
 {
-	// Token: 0x060012C4 RID: 4804 RVA: 0x0009BAA4 File Offset: 0x00099CA4
+	// Token: 0x060012C6 RID: 4806 RVA: 0x0009BD14 File Offset: 0x00099F14
 	private void Start()
 	{
 		this.Octodog.SetActive(false);
@@ -23,7 +23,7 @@ public class CookingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C5 RID: 4805 RVA: 0x0009BB24 File Offset: 0x00099D24
+	// Token: 0x060012C7 RID: 4807 RVA: 0x0009BD94 File Offset: 0x00099F94
 	private void Update()
 	{
 		Input.GetKeyDown(KeyCode.Space);
@@ -303,7 +303,7 @@ public class CookingEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C6 RID: 4806 RVA: 0x0009CB94 File Offset: 0x0009AD94
+	// Token: 0x060012C8 RID: 4808 RVA: 0x0009CE04 File Offset: 0x0009B004
 	private void EndEvent()
 	{
 		if (!this.EventOver)
@@ -346,105 +346,105 @@ public class CookingEventScript : MonoBehaviour
 		this.EventCheck = false;
 	}
 
-	// Token: 0x040018FB RID: 6395
+	// Token: 0x04001901 RID: 6401
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040018FC RID: 6396
+	// Token: 0x04001902 RID: 6402
 	public RefrigeratorScript Snacks;
 
-	// Token: 0x040018FD RID: 6397
+	// Token: 0x04001903 RID: 6403
 	public SchemesScript Schemes;
 
-	// Token: 0x040018FE RID: 6398
+	// Token: 0x04001904 RID: 6404
 	public YandereScript Yandere;
 
-	// Token: 0x040018FF RID: 6399
+	// Token: 0x04001905 RID: 6405
 	public ClockScript Clock;
 
-	// Token: 0x04001900 RID: 6400
+	// Token: 0x04001906 RID: 6406
 	public GameObject Refrigerator;
 
-	// Token: 0x04001901 RID: 6401
+	// Token: 0x04001907 RID: 6407
 	public GameObject RivalPhone;
 
-	// Token: 0x04001902 RID: 6402
+	// Token: 0x04001908 RID: 6408
 	public GameObject Octodog;
 
-	// Token: 0x04001903 RID: 6403
+	// Token: 0x04001909 RID: 6409
 	public GameObject Sausage;
 
-	// Token: 0x04001904 RID: 6404
+	// Token: 0x0400190A RID: 6410
 	public Transform CookingClub;
 
-	// Token: 0x04001905 RID: 6405
+	// Token: 0x0400190B RID: 6411
 	public Transform JarLid;
 
-	// Token: 0x04001906 RID: 6406
+	// Token: 0x0400190C RID: 6412
 	public Transform Knife;
 
-	// Token: 0x04001907 RID: 6407
+	// Token: 0x0400190D RID: 6413
 	public Transform Plate;
 
-	// Token: 0x04001908 RID: 6408
+	// Token: 0x0400190E RID: 6414
 	public Transform Jar;
 
-	// Token: 0x04001909 RID: 6409
+	// Token: 0x0400190F RID: 6415
 	public Transform[] Octodogs;
 
-	// Token: 0x0400190A RID: 6410
+	// Token: 0x04001910 RID: 6416
 	public StudentScript EventStudent;
 
-	// Token: 0x0400190B RID: 6411
+	// Token: 0x04001911 RID: 6417
 	public UILabel EventSubtitle;
 
-	// Token: 0x0400190C RID: 6412
+	// Token: 0x04001912 RID: 6418
 	public Transform[] EventLocations;
 
-	// Token: 0x0400190D RID: 6413
+	// Token: 0x04001913 RID: 6419
 	public AudioClip[] EventClip;
 
-	// Token: 0x0400190E RID: 6414
+	// Token: 0x04001914 RID: 6420
 	public string[] EventSpeech;
 
-	// Token: 0x0400190F RID: 6415
+	// Token: 0x04001915 RID: 6421
 	public string[] EventAnim;
 
-	// Token: 0x04001910 RID: 6416
+	// Token: 0x04001916 RID: 6422
 	public int[] ClubMembers;
 
-	// Token: 0x04001911 RID: 6417
+	// Token: 0x04001917 RID: 6423
 	public GameObject VoiceClip;
 
-	// Token: 0x04001912 RID: 6418
+	// Token: 0x04001918 RID: 6424
 	public bool EventActive;
 
-	// Token: 0x04001913 RID: 6419
+	// Token: 0x04001919 RID: 6425
 	public bool EventCheck;
 
-	// Token: 0x04001914 RID: 6420
+	// Token: 0x0400191A RID: 6426
 	public bool EventOver;
 
-	// Token: 0x04001915 RID: 6421
+	// Token: 0x0400191B RID: 6427
 	public int EventStudentID;
 
-	// Token: 0x04001916 RID: 6422
+	// Token: 0x0400191C RID: 6428
 	public float EventTime = 7f;
 
-	// Token: 0x04001917 RID: 6423
+	// Token: 0x0400191D RID: 6429
 	public int EventPhase = 1;
 
-	// Token: 0x04001918 RID: 6424
+	// Token: 0x0400191E RID: 6430
 	public DayOfWeek EventDay = DayOfWeek.Tuesday;
 
-	// Token: 0x04001919 RID: 6425
+	// Token: 0x0400191F RID: 6431
 	public int Loop;
 
-	// Token: 0x0400191A RID: 6426
+	// Token: 0x04001920 RID: 6432
 	public float CurrentClipLength;
 
-	// Token: 0x0400191B RID: 6427
+	// Token: 0x04001921 RID: 6433
 	public float Rotation;
 
-	// Token: 0x0400191C RID: 6428
+	// Token: 0x04001922 RID: 6434
 	public float Timer;
 }

@@ -3,29 +3,29 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x02000537 RID: 1335
+	// Token: 0x02000538 RID: 1336
 	public class Suspension : MonoBehaviour
 	{
-		// Token: 0x060021F5 RID: 8693 RVA: 0x001F2D79 File Offset: 0x001F0F79
+		// Token: 0x060021FF RID: 8703 RVA: 0x001F43C9 File Offset: 0x001F25C9
 		private void Start()
 		{
 			this.m_TargetOriginalPosition = this.wheel.transform.localPosition;
 			this.m_Origin = base.transform.localPosition;
 		}
 
-		// Token: 0x060021F6 RID: 8694 RVA: 0x001F2DA2 File Offset: 0x001F0FA2
+		// Token: 0x06002200 RID: 8704 RVA: 0x001F43F2 File Offset: 0x001F25F2
 		private void Update()
 		{
 			base.transform.localPosition = this.m_Origin + (this.wheel.transform.localPosition - this.m_TargetOriginalPosition);
 		}
 
-		// Token: 0x04004AA1 RID: 19105
+		// Token: 0x04004AC8 RID: 19144
 		public GameObject wheel;
 
-		// Token: 0x04004AA2 RID: 19106
+		// Token: 0x04004AC9 RID: 19145
 		private Vector3 m_TargetOriginalPosition;
 
-		// Token: 0x04004AA3 RID: 19107
+		// Token: 0x04004ACA RID: 19146
 		private Vector3 m_Origin;
 	}
 }

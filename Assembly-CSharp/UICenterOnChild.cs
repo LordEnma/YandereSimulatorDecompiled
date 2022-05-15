@@ -291,7 +291,7 @@ public class UICenterOnChild : MonoBehaviour
 	// Token: 0x04000325 RID: 805
 	private GameObject mCenteredObject;
 
-	// Token: 0x020005D2 RID: 1490
-	// (Invoke) Token: 0x0600254F RID: 9551
+	// Token: 0x020005D3 RID: 1491
+	// (Invoke) Token: 0x06002559 RID: 9561
 	public delegate void OnCenterCallback(GameObject centeredObject);
 }

@@ -2,11 +2,11 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000587 RID: 1415
+	// Token: 0x02000588 RID: 1416
 	public static class GraphicsUtils
 	{
-		// Token: 0x1700051D RID: 1309
-		// (get) Token: 0x060023ED RID: 9197 RVA: 0x001FC01C File Offset: 0x001FA21C
+		// Token: 0x1700051E RID: 1310
+		// (get) Token: 0x060023F7 RID: 9207 RVA: 0x001FD66C File Offset: 0x001FB86C
 		public static bool isLinearColorSpace
 		{
 			get
@@ -15,8 +15,8 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x1700051E RID: 1310
-		// (get) Token: 0x060023EE RID: 9198 RVA: 0x001FC026 File Offset: 0x001FA226
+		// Token: 0x1700051F RID: 1311
+		// (get) Token: 0x060023F8 RID: 9208 RVA: 0x001FD676 File Offset: 0x001FB876
 		public static bool supportsDX11
 		{
 			get
@@ -25,8 +25,8 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x1700051F RID: 1311
-		// (get) Token: 0x060023EF RID: 9199 RVA: 0x001FC038 File Offset: 0x001FA238
+		// Token: 0x17000520 RID: 1312
+		// (get) Token: 0x060023F9 RID: 9209 RVA: 0x001FD688 File Offset: 0x001FB888
 		public static Texture2D whiteTexture
 		{
 			get
@@ -42,8 +42,8 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x17000520 RID: 1312
-		// (get) Token: 0x060023F0 RID: 9200 RVA: 0x001FC09C File Offset: 0x001FA29C
+		// Token: 0x17000521 RID: 1313
+		// (get) Token: 0x060023FA RID: 9210 RVA: 0x001FD6EC File Offset: 0x001FB8EC
 		public static Mesh quad
 		{
 			get
@@ -87,7 +87,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023F1 RID: 9201 RVA: 0x001FC1D8 File Offset: 0x001FA3D8
+		// Token: 0x060023FB RID: 9211 RVA: 0x001FD828 File Offset: 0x001FBA28
 		public static void Blit(Material material, int pass)
 		{
 			GL.PushMatrix();
@@ -106,7 +106,7 @@ namespace UnityEngine.PostProcessing
 			GL.PopMatrix();
 		}
 
-		// Token: 0x060023F2 RID: 9202 RVA: 0x001FC294 File Offset: 0x001FA494
+		// Token: 0x060023FC RID: 9212 RVA: 0x001FD8E4 File Offset: 0x001FBAE4
 		public static void ClearAndBlit(Texture source, RenderTexture destination, Material material, int pass, bool clearColor = true, bool clearDepth = false)
 		{
 			RenderTexture active = RenderTexture.active;
@@ -130,7 +130,7 @@ namespace UnityEngine.PostProcessing
 			RenderTexture.active = active;
 		}
 
-		// Token: 0x060023F3 RID: 9203 RVA: 0x001FC378 File Offset: 0x001FA578
+		// Token: 0x060023FD RID: 9213 RVA: 0x001FD9C8 File Offset: 0x001FBBC8
 		public static void Destroy(Object obj)
 		{
 			if (obj != null)
@@ -139,16 +139,16 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023F4 RID: 9204 RVA: 0x001FC389 File Offset: 0x001FA589
+		// Token: 0x060023FE RID: 9214 RVA: 0x001FD9D9 File Offset: 0x001FBBD9
 		public static void Dispose()
 		{
 			GraphicsUtils.Destroy(GraphicsUtils.s_Quad);
 		}
 
-		// Token: 0x04004C2C RID: 19500
+		// Token: 0x04004C53 RID: 19539
 		private static Texture2D s_WhiteTexture;
 
-		// Token: 0x04004C2D RID: 19501
+		// Token: 0x04004C54 RID: 19540
 		private static Mesh s_Quad;
 	}
 }

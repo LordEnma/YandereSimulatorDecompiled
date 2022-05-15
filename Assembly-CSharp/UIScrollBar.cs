@@ -177,14 +177,14 @@ public class UIScrollBar : UISlider
 	[SerializeField]
 	private UIScrollBar.Direction mDir = UIScrollBar.Direction.Upgraded;
 
-	// Token: 0x020005E4 RID: 1508
+	// Token: 0x020005E5 RID: 1509
 	private enum Direction
 	{
-		// Token: 0x04004E4E RID: 20046
+		// Token: 0x04004E75 RID: 20085
 		Horizontal,
-		// Token: 0x04004E4F RID: 20047
+		// Token: 0x04004E76 RID: 20086
 		Vertical,
-		// Token: 0x04004E50 RID: 20048
+		// Token: 0x04004E77 RID: 20087
 		Upgraded
 	}
 }

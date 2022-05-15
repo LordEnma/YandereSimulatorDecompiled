@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020000EA RID: 234
+// Token: 0x020000EB RID: 235
 public class BloodPoolSpawnerScript : MonoBehaviour
 {
-	// Token: 0x06000A3C RID: 2620 RVA: 0x0005AF7C File Offset: 0x0005917C
+	// Token: 0x06000A3E RID: 2622 RVA: 0x0005B1FC File Offset: 0x000593FC
 	public void Start()
 	{
 		if (SceneManager.GetActiveScene().name == "SchoolScene")
@@ -31,7 +31,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		this.Positions[4] = new Vector3(0f, 0.012f, -0.5f);
 	}
 
-	// Token: 0x06000A3D RID: 2621 RVA: 0x0005B0F7 File Offset: 0x000592F7
+	// Token: 0x06000A3F RID: 2623 RVA: 0x0005B377 File Offset: 0x00059577
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "BloodPool(Clone)")
@@ -41,7 +41,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A3E RID: 2622 RVA: 0x0005B12A File Offset: 0x0005932A
+	// Token: 0x06000A40 RID: 2624 RVA: 0x0005B3AA File Offset: 0x000595AA
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.gameObject.name == "BloodPool(Clone)")
@@ -50,7 +50,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A3F RID: 2623 RVA: 0x0005B154 File Offset: 0x00059354
+	// Token: 0x06000A41 RID: 2625 RVA: 0x0005B3D4 File Offset: 0x000595D4
 	private void Update()
 	{
 		if (!this.Falling)
@@ -82,6 +82,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 							gameObject = UnityEngine.Object.Instantiate<GameObject>(this.BloodPool, new Vector3(position.x, this.Height + 0.012f, position.z), Quaternion.identity);
 							gameObject.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
 							gameObject.transform.parent = this.BloodParent;
+							gameObject.GetComponent<BloodPoolScript>().StudentBloodID = this.Ragdoll.StudentID;
 							this.PoolsSpawned++;
 							this.Ragdoll.Student.BloodPoolsSpawned++;
 						}
@@ -90,6 +91,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 							gameObject = UnityEngine.Object.Instantiate<GameObject>(this.BloodPool, new Vector3(position.x, this.Height + 0.012f, position.z), Quaternion.identity);
 							gameObject.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
 							gameObject.transform.parent = this.BloodParent;
+							gameObject.GetComponent<BloodPoolScript>().StudentBloodID = this.Ragdoll.StudentID;
 							this.PoolsSpawned++;
 							this.Ragdoll.Student.BloodPoolsSpawned++;
 							gameObject.GetComponent<BloodPoolScript>().TargetSize = 1f - (float)(this.PoolsSpawned - 10) * 0.1f;
@@ -117,7 +119,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A40 RID: 2624 RVA: 0x0005B4D4 File Offset: 0x000596D4
+	// Token: 0x06000A42 RID: 2626 RVA: 0x0005B780 File Offset: 0x00059980
 	public void SpawnBigPool()
 	{
 		this.SetHeight();
@@ -131,10 +133,11 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 			GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.BloodPool, a + this.Positions[i], Quaternion.identity);
 			gameObject.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
 			gameObject.transform.parent = this.BloodParent;
+			gameObject.GetComponent<BloodPoolScript>().StudentBloodID = this.Ragdoll.StudentID;
 		}
 	}
 
-	// Token: 0x06000A41 RID: 2625 RVA: 0x0005B590 File Offset: 0x00059790
+	// Token: 0x06000A43 RID: 2627 RVA: 0x0005B858 File Offset: 0x00059A58
 	private void SpawnRow(Transform Location)
 	{
 		Vector3 position = Location.position;
@@ -142,23 +145,27 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.BloodPool, position + forward * 2f, Quaternion.identity);
 		gameObject.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
 		gameObject.transform.parent = this.BloodParent;
+		gameObject.GetComponent<BloodPoolScript>().StudentBloodID = this.Ragdoll.StudentID;
 		GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(this.BloodPool, position + forward * 2.5f, Quaternion.identity);
 		gameObject2.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
 		gameObject2.transform.parent = this.BloodParent;
+		gameObject2.GetComponent<BloodPoolScript>().StudentBloodID = this.Ragdoll.StudentID;
 		GameObject gameObject3 = UnityEngine.Object.Instantiate<GameObject>(this.BloodPool, position + forward * 3f, Quaternion.identity);
 		gameObject3.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
 		gameObject3.transform.parent = this.BloodParent;
+		gameObject3.GetComponent<BloodPoolScript>().StudentBloodID = this.Ragdoll.StudentID;
 	}
 
-	// Token: 0x06000A42 RID: 2626 RVA: 0x0005B6BC File Offset: 0x000598BC
+	// Token: 0x06000A44 RID: 2628 RVA: 0x0005B9C4 File Offset: 0x00059BC4
 	public void SpawnPool(Transform Location)
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.BloodPool, Location.position + Location.forward + new Vector3(0f, 0.0001f, 0f), Quaternion.identity);
 		gameObject.transform.localEulerAngles = new Vector3(90f, UnityEngine.Random.Range(0f, 360f), 0f);
 		gameObject.transform.parent = this.BloodParent;
+		gameObject.GetComponent<BloodPoolScript>().StudentBloodID = this.Ragdoll.StudentID;
 	}
 
-	// Token: 0x06000A43 RID: 2627 RVA: 0x0005B73C File Offset: 0x0005993C
+	// Token: 0x06000A45 RID: 2629 RVA: 0x0005BA5C File Offset: 0x00059C5C
 	private void SetHeight()
 	{
 		float y = base.transform.position.y;
@@ -180,69 +187,69 @@ public class BloodPoolSpawnerScript : MonoBehaviour
 		this.Height = 12f;
 	}
 
-	// Token: 0x04000BB0 RID: 2992
+	// Token: 0x04000BB5 RID: 2997
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000BB1 RID: 2993
+	// Token: 0x04000BB6 RID: 2998
 	public RagdollScript Ragdoll;
 
-	// Token: 0x04000BB2 RID: 2994
+	// Token: 0x04000BB7 RID: 2999
 	public GameObject LastBloodPool;
 
-	// Token: 0x04000BB3 RID: 2995
+	// Token: 0x04000BB8 RID: 3000
 	public GameObject BloodPool;
 
-	// Token: 0x04000BB4 RID: 2996
+	// Token: 0x04000BB9 RID: 3001
 	public Transform BloodParent;
 
-	// Token: 0x04000BB5 RID: 2997
+	// Token: 0x04000BBA RID: 3002
 	public Transform Hips;
 
-	// Token: 0x04000BB6 RID: 2998
+	// Token: 0x04000BBB RID: 3003
 	public Collider MyCollider;
 
-	// Token: 0x04000BB7 RID: 2999
+	// Token: 0x04000BBC RID: 3004
 	public Collider GardenArea;
 
-	// Token: 0x04000BB8 RID: 3000
+	// Token: 0x04000BBD RID: 3005
 	public Collider TreeArea;
 
-	// Token: 0x04000BB9 RID: 3001
+	// Token: 0x04000BBE RID: 3006
 	public Collider NEStairs;
 
-	// Token: 0x04000BBA RID: 3002
+	// Token: 0x04000BBF RID: 3007
 	public Collider NWStairs;
 
-	// Token: 0x04000BBB RID: 3003
+	// Token: 0x04000BC0 RID: 3008
 	public Collider SEStairs;
 
-	// Token: 0x04000BBC RID: 3004
+	// Token: 0x04000BC1 RID: 3009
 	public Collider SWStairs;
 
-	// Token: 0x04000BBD RID: 3005
+	// Token: 0x04000BC2 RID: 3010
 	public Vector3[] Positions;
 
-	// Token: 0x04000BBE RID: 3006
+	// Token: 0x04000BC3 RID: 3011
 	public bool CanSpawn;
 
-	// Token: 0x04000BBF RID: 3007
+	// Token: 0x04000BC4 RID: 3012
 	public bool Falling;
 
-	// Token: 0x04000BC0 RID: 3008
+	// Token: 0x04000BC5 RID: 3013
 	public int PoolsSpawned;
 
-	// Token: 0x04000BC1 RID: 3009
+	// Token: 0x04000BC6 RID: 3014
 	public int NearbyBlood;
 
-	// Token: 0x04000BC2 RID: 3010
+	// Token: 0x04000BC7 RID: 3015
 	public float FallTimer;
 
-	// Token: 0x04000BC3 RID: 3011
+	// Token: 0x04000BC8 RID: 3016
 	public float Height;
 
-	// Token: 0x04000BC4 RID: 3012
+	// Token: 0x04000BC9 RID: 3017
 	public float Timer;
 
-	// Token: 0x04000BC5 RID: 3013
+	// Token: 0x04000BCA RID: 3018
 	public LayerMask Mask;
 }

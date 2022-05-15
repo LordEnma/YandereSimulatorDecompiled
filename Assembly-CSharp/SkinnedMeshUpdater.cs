@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000430 RID: 1072
+// Token: 0x02000431 RID: 1073
 public class SkinnedMeshUpdater : MonoBehaviour
 {
-	// Token: 0x06001CDC RID: 7388 RVA: 0x00156FC1 File Offset: 0x001551C1
+	// Token: 0x06001CE2 RID: 7394 RVA: 0x00157C75 File Offset: 0x00155E75
 	public void Start()
 	{
 		this.GlassesCheck();
 	}
 
-	// Token: 0x06001CDD RID: 7389 RVA: 0x00156FCC File Offset: 0x001551CC
+	// Token: 0x06001CE3 RID: 7395 RVA: 0x00157C80 File Offset: 0x00155E80
 	public void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -42,7 +42,7 @@ public class SkinnedMeshUpdater : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CDE RID: 7390 RVA: 0x00157130 File Offset: 0x00155330
+	// Token: 0x06001CE4 RID: 7396 RVA: 0x00157DE4 File Offset: 0x00155FE4
 	public void UpdateSkin()
 	{
 		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Characters[this.ID], Vector3.zero, Quaternion.identity);
@@ -54,7 +54,7 @@ public class SkinnedMeshUpdater : MonoBehaviour
 		this.MyRenderer.materials[2].mainTexture = this.Faces[this.ID];
 	}
 
-	// Token: 0x06001CDF RID: 7391 RVA: 0x001571D8 File Offset: 0x001553D8
+	// Token: 0x06001CE5 RID: 7397 RVA: 0x00157E8C File Offset: 0x0015608C
 	private void UpdateMeshRenderer(SkinnedMeshRenderer newMeshRenderer)
 	{
 		SkinnedMeshRenderer myRenderer = this.Prompt.Yandere.MyRenderer;
@@ -80,7 +80,7 @@ public class SkinnedMeshUpdater : MonoBehaviour
 		myRenderer.bones = array;
 	}
 
-	// Token: 0x06001CE0 RID: 7392 RVA: 0x001572A4 File Offset: 0x001554A4
+	// Token: 0x06001CE6 RID: 7398 RVA: 0x00157F58 File Offset: 0x00156158
 	private void GlassesCheck()
 	{
 		this.FumiGlasses.SetActive(false);
@@ -96,42 +96,42 @@ public class SkinnedMeshUpdater : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040033EC RID: 13292
+	// Token: 0x04003401 RID: 13313
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x040033ED RID: 13293
+	// Token: 0x04003402 RID: 13314
 	public GameObject TransformEffect;
 
-	// Token: 0x040033EE RID: 13294
+	// Token: 0x04003403 RID: 13315
 	public GameObject[] Characters;
 
-	// Token: 0x040033EF RID: 13295
+	// Token: 0x04003404 RID: 13316
 	public PromptScript Prompt;
 
-	// Token: 0x040033F0 RID: 13296
+	// Token: 0x04003405 RID: 13317
 	public GameObject BreastR;
 
-	// Token: 0x040033F1 RID: 13297
+	// Token: 0x04003406 RID: 13318
 	public GameObject BreastL;
 
-	// Token: 0x040033F2 RID: 13298
+	// Token: 0x04003407 RID: 13319
 	public GameObject FumiGlasses;
 
-	// Token: 0x040033F3 RID: 13299
+	// Token: 0x04003408 RID: 13320
 	public GameObject NinaGlasses;
 
-	// Token: 0x040033F4 RID: 13300
+	// Token: 0x04003409 RID: 13321
 	private SkinnedMeshRenderer TempRenderer;
 
-	// Token: 0x040033F5 RID: 13301
+	// Token: 0x0400340A RID: 13322
 	public Texture[] Bodies;
 
-	// Token: 0x040033F6 RID: 13302
+	// Token: 0x0400340B RID: 13323
 	public Texture[] Faces;
 
-	// Token: 0x040033F7 RID: 13303
+	// Token: 0x0400340C RID: 13324
 	public float Timer;
 
-	// Token: 0x040033F8 RID: 13304
+	// Token: 0x0400340D RID: 13325
 	public int ID;
 }

@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000373 RID: 883
+// Token: 0x02000374 RID: 884
 public class MusicCreditScript : MonoBehaviour
 {
-	// Token: 0x060019E7 RID: 6631 RVA: 0x0010A778 File Offset: 0x00108978
+	// Token: 0x060019ED RID: 6637 RVA: 0x0010AFF8 File Offset: 0x001091F8
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(400f, base.transform.localPosition.y, base.transform.localPosition.z);
 		this.Panel.enabled = false;
 	}
 
-	// Token: 0x060019E8 RID: 6632 RVA: 0x0010A7C8 File Offset: 0x001089C8
+	// Token: 0x060019EE RID: 6638 RVA: 0x0010B048 File Offset: 0x00109248
 	private void Update()
 	{
 		if (this.Slide)
@@ -34,18 +34,18 @@ public class MusicCreditScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040029BA RID: 10682
+	// Token: 0x040029CC RID: 10700
 	public UILabel SongLabel;
 
-	// Token: 0x040029BB RID: 10683
+	// Token: 0x040029CD RID: 10701
 	public UILabel BandLabel;
 
-	// Token: 0x040029BC RID: 10684
+	// Token: 0x040029CE RID: 10702
 	public UIPanel Panel;
 
-	// Token: 0x040029BD RID: 10685
+	// Token: 0x040029CF RID: 10703
 	public bool Slide;
 
-	// Token: 0x040029BE RID: 10686
+	// Token: 0x040029D0 RID: 10704
 	public float Timer;
 }

@@ -3,22 +3,22 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-// Token: 0x020004F4 RID: 1268
+// Token: 0x020004F5 RID: 1269
 public class YouTubeCheckScript : MonoBehaviour
 {
-	// Token: 0x06002117 RID: 8471 RVA: 0x001EA95B File Offset: 0x001E8B5B
+	// Token: 0x06002121 RID: 8481 RVA: 0x001EBFAB File Offset: 0x001EA1AB
 	private void Awake()
 	{
 		UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
 	}
 
-	// Token: 0x06002118 RID: 8472 RVA: 0x001EA968 File Offset: 0x001E8B68
+	// Token: 0x06002122 RID: 8482 RVA: 0x001EBFB8 File Offset: 0x001EA1B8
 	private void Start()
 	{
 		this.StreamAPI();
 	}
 
-	// Token: 0x06002119 RID: 8473 RVA: 0x001EA970 File Offset: 0x001E8B70
+	// Token: 0x06002123 RID: 8483 RVA: 0x001EBFC0 File Offset: 0x001EA1C0
 	private void StreamAPI()
 	{
 		try
@@ -36,7 +36,7 @@ public class YouTubeCheckScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600211A RID: 8474 RVA: 0x001EA9C8 File Offset: 0x001E8BC8
+	// Token: 0x06002124 RID: 8484 RVA: 0x001EC018 File Offset: 0x001EA218
 	private IEnumerator GetRequest(string url, Action<UnityWebRequest> callback)
 	{
 		UnityWebRequest request = null;
@@ -51,7 +51,7 @@ public class YouTubeCheckScript : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x0600211B RID: 8475 RVA: 0x001EA9E0 File Offset: 0x001E8BE0
+	// Token: 0x06002125 RID: 8485 RVA: 0x001EC030 File Offset: 0x001EA230
 	public void GetPosts()
 	{
 		string url = Environment.GetCommandLineArgs()[2].ToString() ?? "";

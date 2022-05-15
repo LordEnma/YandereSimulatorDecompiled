@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003B0 RID: 944
+// Token: 0x020003B1 RID: 945
 public class PoisonScript : MonoBehaviour
 {
-	// Token: 0x06001AE6 RID: 6886 RVA: 0x00124BE8 File Offset: 0x00122DE8
+	// Token: 0x06001AEC RID: 6892 RVA: 0x001255A8 File Offset: 0x001237A8
 	public void Start()
 	{
 		if (this.Yandere.Class.ChemistryGrade + this.Yandere.Class.ChemistryBonus < 1 && ClassGlobals.ChemistryGrade + ClassGlobals.ChemistryGrade < 1)
@@ -15,7 +15,7 @@ public class PoisonScript : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x06001AE7 RID: 6887 RVA: 0x00124C40 File Offset: 0x00122E40
+	// Token: 0x06001AED RID: 6893 RVA: 0x00125600 File Offset: 0x00123800
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -28,12 +28,12 @@ public class PoisonScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002D0A RID: 11530
+	// Token: 0x04002D1D RID: 11549
 	public YandereScript Yandere;
 
-	// Token: 0x04002D0B RID: 11531
+	// Token: 0x04002D1E RID: 11550
 	public PromptScript Prompt;
 
-	// Token: 0x04002D0C RID: 11532
+	// Token: 0x04002D1F RID: 11551
 	public GameObject Bottle;
 }

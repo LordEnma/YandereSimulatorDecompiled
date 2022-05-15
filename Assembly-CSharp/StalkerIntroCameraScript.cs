@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000448 RID: 1096
+// Token: 0x02000449 RID: 1097
 public class StalkerIntroCameraScript : MonoBehaviour
 {
-	// Token: 0x06001D38 RID: 7480 RVA: 0x0015DF90 File Offset: 0x0015C190
+	// Token: 0x06001D3E RID: 7486 RVA: 0x0015EC44 File Offset: 0x0015CE44
 	private void Update()
 	{
 		if (this.YandereAnim["f02_wallJump_00"].time > this.YandereAnim["f02_wallJump_00"].length)
@@ -16,12 +16,12 @@ public class StalkerIntroCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003555 RID: 13653
+	// Token: 0x0400356A RID: 13674
 	public Animation YandereAnim;
 
-	// Token: 0x04003556 RID: 13654
+	// Token: 0x0400356B RID: 13675
 	public Transform Yandere;
 
-	// Token: 0x04003557 RID: 13655
+	// Token: 0x0400356C RID: 13676
 	public float Speed;
 }

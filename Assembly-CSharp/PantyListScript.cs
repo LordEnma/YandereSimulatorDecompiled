@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000395 RID: 917
+// Token: 0x02000396 RID: 918
 public class PantyListScript : MonoBehaviour
 {
-	// Token: 0x04002B74 RID: 11124
+	// Token: 0x04002B86 RID: 11142
 	public Texture[] ModernPanties;
 
-	// Token: 0x04002B75 RID: 11125
+	// Token: 0x04002B87 RID: 11143
 	public Texture[] EightiesPanties;
 }

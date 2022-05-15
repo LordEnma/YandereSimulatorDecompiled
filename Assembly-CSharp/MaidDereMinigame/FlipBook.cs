@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005B0 RID: 1456
+	// Token: 0x020005B1 RID: 1457
 	public class FlipBook : MonoBehaviour
 	{
-		// Token: 0x1700052C RID: 1324
-		// (get) Token: 0x060024C5 RID: 9413 RVA: 0x00201FE7 File Offset: 0x002001E7
+		// Token: 0x1700052D RID: 1325
+		// (get) Token: 0x060024CF RID: 9423 RVA: 0x00203637 File Offset: 0x00201837
 		public static FlipBook Instance
 		{
 			get
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024C6 RID: 9414 RVA: 0x00202005 File Offset: 0x00200205
+		// Token: 0x060024D0 RID: 9424 RVA: 0x00203655 File Offset: 0x00201855
 		private void Awake()
 		{
 			base.StartCoroutine(this.OpenBook());
@@ -35,7 +35,7 @@ namespace MaidDereMinigame
 			this.Ryoba.enabled = false;
 		}
 
-		// Token: 0x060024C7 RID: 9415 RVA: 0x0020203B File Offset: 0x0020023B
+		// Token: 0x060024D1 RID: 9425 RVA: 0x0020368B File Offset: 0x0020188B
 		private IEnumerator OpenBook()
 		{
 			yield return new WaitForSeconds(1f);
@@ -43,7 +43,7 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x060024C8 RID: 9416 RVA: 0x0020204C File Offset: 0x0020024C
+		// Token: 0x060024D2 RID: 9426 RVA: 0x0020369C File Offset: 0x0020189C
 		private void Update()
 		{
 			if (this.UpdateRyobaSprite)
@@ -71,20 +71,20 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024C9 RID: 9417 RVA: 0x00202115 File Offset: 0x00200315
+		// Token: 0x060024D3 RID: 9427 RVA: 0x00203765 File Offset: 0x00201965
 		public void StopInputs()
 		{
 			this.stopInputs = true;
 		}
 
-		// Token: 0x060024CA RID: 9418 RVA: 0x0020211E File Offset: 0x0020031E
+		// Token: 0x060024D4 RID: 9428 RVA: 0x0020376E File Offset: 0x0020196E
 		public void FlipToPage(int page)
 		{
 			SFXController.PlaySound(SFXController.Sounds.PageTurn);
 			base.StartCoroutine(this.FlipToPageRoutine(page));
 		}
 
-		// Token: 0x060024CB RID: 9419 RVA: 0x00202134 File Offset: 0x00200334
+		// Token: 0x060024D5 RID: 9429 RVA: 0x00203784 File Offset: 0x00201984
 		private IEnumerator FlipToPageRoutine(int page)
 		{
 			bool flag = this.curPage < page;
@@ -118,34 +118,34 @@ namespace MaidDereMinigame
 			yield break;
 		}
 
-		// Token: 0x04004D39 RID: 19769
+		// Token: 0x04004D60 RID: 19808
 		public SpriteRenderer Cover;
 
-		// Token: 0x04004D3A RID: 19770
+		// Token: 0x04004D61 RID: 19809
 		public SpriteRenderer Ryoba;
 
-		// Token: 0x04004D3B RID: 19771
+		// Token: 0x04004D62 RID: 19810
 		public Sprite[] CoverSprites;
 
-		// Token: 0x04004D3C RID: 19772
+		// Token: 0x04004D63 RID: 19811
 		public Sprite[] RyobaSprites;
 
-		// Token: 0x04004D3D RID: 19773
+		// Token: 0x04004D64 RID: 19812
 		private static FlipBook instance;
 
-		// Token: 0x04004D3E RID: 19774
+		// Token: 0x04004D65 RID: 19813
 		public List<FlipBookPage> flipBookPages;
 
-		// Token: 0x04004D3F RID: 19775
+		// Token: 0x04004D66 RID: 19814
 		private int curPage;
 
-		// Token: 0x04004D40 RID: 19776
+		// Token: 0x04004D67 RID: 19815
 		private bool canGoBack;
 
-		// Token: 0x04004D41 RID: 19777
+		// Token: 0x04004D68 RID: 19816
 		private bool stopInputs;
 
-		// Token: 0x04004D42 RID: 19778
+		// Token: 0x04004D69 RID: 19817
 		private bool UpdateRyobaSprite;
 	}
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200025C RID: 604
+// Token: 0x0200025D RID: 605
 public class ConvoManagerScript : MonoBehaviour
 {
-	// Token: 0x060012BF RID: 4799 RVA: 0x0009A4B0 File Offset: 0x000986B0
+	// Token: 0x060012C1 RID: 4801 RVA: 0x0009A720 File Offset: 0x00098920
 	public void Start()
 	{
 		if (!MissionModeGlobals.MissionMode && DateGlobals.Week == 1)
@@ -14,7 +14,7 @@ public class ConvoManagerScript : MonoBehaviour
 		this.Eighties = GameGlobals.Eighties;
 	}
 
-	// Token: 0x060012C0 RID: 4800 RVA: 0x0009A4D4 File Offset: 0x000986D4
+	// Token: 0x060012C2 RID: 4802 RVA: 0x0009A744 File Offset: 0x00098944
 	public void CheckMe(int StudentID)
 	{
 		if (!this.Eighties)
@@ -451,7 +451,7 @@ public class ConvoManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C1 RID: 4801 RVA: 0x0009B72C File Offset: 0x0009992C
+	// Token: 0x060012C3 RID: 4803 RVA: 0x0009B99C File Offset: 0x00099B9C
 	public void MartialArtsCheck()
 	{
 		this.CheckTimer += Time.deltaTime;
@@ -476,7 +476,7 @@ public class ConvoManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012C2 RID: 4802 RVA: 0x0009B8B8 File Offset: 0x00099AB8
+	// Token: 0x060012C4 RID: 4804 RVA: 0x0009BB28 File Offset: 0x00099D28
 	public void LateUpdate()
 	{
 		this.CheckTimer = Mathf.MoveTowards(this.CheckTimer, 0f, Time.deltaTime);
@@ -505,36 +505,36 @@ public class ConvoManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040018F0 RID: 6384
+	// Token: 0x040018F6 RID: 6390
 	public StudentManagerScript SM;
 
-	// Token: 0x040018F1 RID: 6385
+	// Token: 0x040018F7 RID: 6391
 	public int NearbyStudents;
 
-	// Token: 0x040018F2 RID: 6386
+	// Token: 0x040018F8 RID: 6392
 	public int Week;
 
-	// Token: 0x040018F3 RID: 6387
+	// Token: 0x040018F9 RID: 6393
 	public int ID;
 
-	// Token: 0x040018F4 RID: 6388
+	// Token: 0x040018FA RID: 6394
 	public bool Eighties;
 
-	// Token: 0x040018F5 RID: 6389
+	// Token: 0x040018FB RID: 6395
 	public string[] FemaleCombatAnims;
 
-	// Token: 0x040018F6 RID: 6390
+	// Token: 0x040018FC RID: 6396
 	public string[] MaleCombatAnims;
 
-	// Token: 0x040018F7 RID: 6391
+	// Token: 0x040018FD RID: 6397
 	public int CombatAnimID;
 
-	// Token: 0x040018F8 RID: 6392
+	// Token: 0x040018FE RID: 6398
 	public float CheckTimer;
 
-	// Token: 0x040018F9 RID: 6393
+	// Token: 0x040018FF RID: 6399
 	public bool Confirmed;
 
-	// Token: 0x040018FA RID: 6394
+	// Token: 0x04001900 RID: 6400
 	public int Cycles;
 }

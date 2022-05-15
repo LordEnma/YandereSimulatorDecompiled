@@ -1,11 +1,11 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004F7 RID: 1271
+// Token: 0x020004F8 RID: 1272
 [ExecuteInEditMode]
 public class BlacklightEffect : MonoBehaviour
 {
-	// Token: 0x06002123 RID: 8483 RVA: 0x001EB7D4 File Offset: 0x001E99D4
+	// Token: 0x0600212D RID: 8493 RVA: 0x001ECE24 File Offset: 0x001EB024
 	private void Update()
 	{
 		if (this.camera != null)
@@ -51,7 +51,7 @@ public class BlacklightEffect : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002124 RID: 8484 RVA: 0x001EBA84 File Offset: 0x001E9C84
+	// Token: 0x0600212E RID: 8494 RVA: 0x001ED0D4 File Offset: 0x001EB2D4
 	private void OnRenderImage(RenderTexture source, RenderTexture destination)
 	{
 		if (this.camera == null)
@@ -66,7 +66,7 @@ public class BlacklightEffect : MonoBehaviour
 		Graphics.Blit(source, destination, this.post);
 	}
 
-	// Token: 0x06002125 RID: 8485 RVA: 0x001EBADC File Offset: 0x001E9CDC
+	// Token: 0x0600212F RID: 8495 RVA: 0x001ED12C File Offset: 0x001EB32C
 	[ContextMenu("Refresh")]
 	public void Refresh()
 	{
@@ -74,105 +74,105 @@ public class BlacklightEffect : MonoBehaviour
 		this.post = null;
 	}
 
-	// Token: 0x0400494E RID: 18766
+	// Token: 0x04004975 RID: 18805
 	[SerializeField]
 	private Color fogColorDark = new Color32(14, 11, 31, byte.MaxValue);
 
-	// Token: 0x0400494F RID: 18767
+	// Token: 0x04004976 RID: 18806
 	[SerializeField]
 	private Color fogColorLight = new Color32(87, 89, 111, byte.MaxValue);
 
-	// Token: 0x04004950 RID: 18768
+	// Token: 0x04004977 RID: 18807
 	[SerializeField]
 	[Range(0f, 1f)]
 	private float fogOpacity = 1f;
 
-	// Token: 0x04004951 RID: 18769
+	// Token: 0x04004978 RID: 18808
 	[SerializeField]
 	private float fogDepth = 8f;
 
-	// Token: 0x04004952 RID: 18770
+	// Token: 0x04004979 RID: 18809
 	[Space(5f)]
 	[Header("Glow")]
 	[SerializeField]
 	[ColorUsage(true, true, 0f, 3f, 0f, 3f)]
 	private Color glowColor = new Color(0f, 0.48235294f, 0.7490196f) * 9f;
 
-	// Token: 0x04004953 RID: 18771
+	// Token: 0x0400497A RID: 18810
 	[SerializeField]
 	[ColorUsage(true, true, 0f, 3f, 0f, 3f)]
 	private Color glowColorSecondary = new Color(0.7490196f, 0f, 0.6784314f) * 9f;
 
-	// Token: 0x04004954 RID: 18772
+	// Token: 0x0400497B RID: 18811
 	[SerializeField]
 	private float glowBias = 13f;
 
-	// Token: 0x04004955 RID: 18773
+	// Token: 0x0400497C RID: 18812
 	[SerializeField]
 	[Range(0f, 1f)]
 	private float glowFlip;
 
-	// Token: 0x04004956 RID: 18774
+	// Token: 0x0400497D RID: 18813
 	[SerializeField]
 	private bool glow = true;
 
-	// Token: 0x04004957 RID: 18775
+	// Token: 0x0400497E RID: 18814
 	[Space(5f)]
 	[Header("Targetted highlighting")]
 	[SerializeField]
 	private HighlightTarget[] highlightTargets;
 
-	// Token: 0x04004958 RID: 18776
+	// Token: 0x0400497F RID: 18815
 	[SerializeField]
 	[Range(0f, 1f)]
 	private float smoothDropoff;
 
-	// Token: 0x04004959 RID: 18777
+	// Token: 0x04004980 RID: 18816
 	[Space(5f)]
 	[Header("Edge")]
 	[SerializeField]
 	private Color edgeColor = new Color32(7, byte.MaxValue, 83, byte.MaxValue);
 
-	// Token: 0x0400495A RID: 18778
+	// Token: 0x04004981 RID: 18817
 	[SerializeField]
 	[Range(0.01f, 1f)]
 	private float threshold = 0.45f;
 
-	// Token: 0x0400495B RID: 18779
+	// Token: 0x04004982 RID: 18818
 	[SerializeField]
 	[Range(0f, 1f)]
 	private float edgeOpacity = 1f;
 
-	// Token: 0x0400495C RID: 18780
+	// Token: 0x04004983 RID: 18819
 	[Space(5f)]
 	[Header("Overlay")]
 	[SerializeField]
 	private Color overlayTop = new Color32(233, 0, byte.MaxValue, byte.MaxValue);
 
-	// Token: 0x0400495D RID: 18781
+	// Token: 0x04004984 RID: 18820
 	[SerializeField]
 	private Color overlayBottom = new Color32(0, 38, byte.MaxValue, byte.MaxValue);
 
-	// Token: 0x0400495E RID: 18782
+	// Token: 0x04004985 RID: 18821
 	[SerializeField]
 	[Range(0f, 1f)]
 	private float overlayOpacity = 0.06f;
 
-	// Token: 0x0400495F RID: 18783
+	// Token: 0x04004986 RID: 18822
 	private Color[] hTargets = new Color[100];
 
-	// Token: 0x04004960 RID: 18784
+	// Token: 0x04004987 RID: 18823
 	private float[] hThresholds = new float[100];
 
-	// Token: 0x04004961 RID: 18785
+	// Token: 0x04004988 RID: 18824
 	private Color[] hColors = new Color[100];
 
-	// Token: 0x04004962 RID: 18786
+	// Token: 0x04004989 RID: 18825
 	private float[] hColorInterpolations = new float[100];
 
-	// Token: 0x04004963 RID: 18787
+	// Token: 0x0400498A RID: 18826
 	private Camera camera;
 
-	// Token: 0x04004964 RID: 18788
+	// Token: 0x0400498B RID: 18827
 	private Material post;
 }

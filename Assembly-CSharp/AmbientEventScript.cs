@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000C6 RID: 198
 public class AmbientEventScript : MonoBehaviour
 {
-	// Token: 0x060009B2 RID: 2482 RVA: 0x0005022C File Offset: 0x0004E42C
+	// Token: 0x060009B2 RID: 2482 RVA: 0x00050254 File Offset: 0x0004E454
 	private void Start()
 	{
 		if (this.Sitting)
@@ -35,7 +35,7 @@ public class AmbientEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009B3 RID: 2483 RVA: 0x000502FC File Offset: 0x0004E4FC
+	// Token: 0x060009B3 RID: 2483 RVA: 0x00050324 File Offset: 0x0004E524
 	private void Update()
 	{
 		if (!this.EventOn)
@@ -197,12 +197,23 @@ public class AmbientEventScript : MonoBehaviour
 						return;
 					}
 					this.Yandere.Eavesdropping = false;
+					return;
+				}
+			}
+			else
+			{
+				float num3 = Vector3.Distance(this.EventStudent[1].transform.position, this.EventLocation[1].parent.position);
+				float num4 = Vector3.Distance(this.EventStudent[2].transform.position, this.EventLocation[1].parent.position);
+				float num5 = Vector3.Distance(this.Yandere.transform.position, this.EventLocation[1].parent.position);
+				if ((num3 < 5f && num5 < 5f) || (num4 < 5f && num5 < 5f))
+				{
+					this.EndEvent();
 				}
 			}
 		}
 	}
 
-	// Token: 0x060009B4 RID: 2484 RVA: 0x00050C70 File Offset: 0x0004EE70
+	// Token: 0x060009B4 RID: 2484 RVA: 0x00050D40 File Offset: 0x0004EF40
 	private void LateUpdate()
 	{
 		if (this.RotateSpine)
@@ -232,7 +243,7 @@ public class AmbientEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009B5 RID: 2485 RVA: 0x0005101C File Offset: 0x0004F21C
+	// Token: 0x060009B5 RID: 2485 RVA: 0x000510EC File Offset: 0x0004F2EC
 	public void EndEvent()
 	{
 		Debug.Log("An Ambient Event named " + base.gameObject.name + " has ended.");

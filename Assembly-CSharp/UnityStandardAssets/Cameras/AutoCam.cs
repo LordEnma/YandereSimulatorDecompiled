@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Cameras
 {
-	// Token: 0x0200054E RID: 1358
+	// Token: 0x0200054F RID: 1359
 	[ExecuteInEditMode]
 	public class AutoCam : PivotBasedCameraRig
 	{
-		// Token: 0x060022C7 RID: 8903 RVA: 0x001F5414 File Offset: 0x001F3614
+		// Token: 0x060022D1 RID: 8913 RVA: 0x001F6A64 File Offset: 0x001F4C64
 		protected override void FollowTarget(float deltaTime)
 		{
 			if (deltaTime <= 0f || this.m_Target == null)
@@ -66,48 +66,48 @@ namespace UnityStandardAssets.Cameras
 			base.transform.rotation = Quaternion.Lerp(base.transform.rotation, b, this.m_TurnSpeed * this.m_CurrentTurnAmount * deltaTime);
 		}
 
-		// Token: 0x04004B3B RID: 19259
+		// Token: 0x04004B62 RID: 19298
 		[SerializeField]
 		private float m_MoveSpeed = 3f;
 
-		// Token: 0x04004B3C RID: 19260
+		// Token: 0x04004B63 RID: 19299
 		[SerializeField]
 		private float m_TurnSpeed = 1f;
 
-		// Token: 0x04004B3D RID: 19261
+		// Token: 0x04004B64 RID: 19300
 		[SerializeField]
 		private float m_RollSpeed = 0.2f;
 
-		// Token: 0x04004B3E RID: 19262
+		// Token: 0x04004B65 RID: 19301
 		[SerializeField]
 		private bool m_FollowVelocity;
 
-		// Token: 0x04004B3F RID: 19263
+		// Token: 0x04004B66 RID: 19302
 		[SerializeField]
 		private bool m_FollowTilt = true;
 
-		// Token: 0x04004B40 RID: 19264
+		// Token: 0x04004B67 RID: 19303
 		[SerializeField]
 		private float m_SpinTurnLimit = 90f;
 
-		// Token: 0x04004B41 RID: 19265
+		// Token: 0x04004B68 RID: 19304
 		[SerializeField]
 		private float m_TargetVelocityLowerLimit = 4f;
 
-		// Token: 0x04004B42 RID: 19266
+		// Token: 0x04004B69 RID: 19305
 		[SerializeField]
 		private float m_SmoothTurnTime = 0.2f;
 
-		// Token: 0x04004B43 RID: 19267
+		// Token: 0x04004B6A RID: 19306
 		private float m_LastFlatAngle;
 
-		// Token: 0x04004B44 RID: 19268
+		// Token: 0x04004B6B RID: 19307
 		private float m_CurrentTurnAmount;
 
-		// Token: 0x04004B45 RID: 19269
+		// Token: 0x04004B6C RID: 19308
 		private float m_TurnSpeedVelocityChange;
 
-		// Token: 0x04004B46 RID: 19270
+		// Token: 0x04004B6D RID: 19309
 		private Vector3 m_RollUp = Vector3.up;
 	}
 }

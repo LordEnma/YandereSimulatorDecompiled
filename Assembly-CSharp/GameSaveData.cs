@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x02000402 RID: 1026
+// Token: 0x02000403 RID: 1027
 [Serializable]
 public class GameSaveData
 {
-	// Token: 0x06001C34 RID: 7220 RVA: 0x00149B22 File Offset: 0x00147D22
+	// Token: 0x06001C3A RID: 7226 RVA: 0x0014A7D6 File Offset: 0x001489D6
 	public static GameSaveData ReadFromGlobals()
 	{
 		return new GameSaveData
@@ -15,7 +15,7 @@ public class GameSaveData
 		};
 	}
 
-	// Token: 0x06001C35 RID: 7221 RVA: 0x00149B4A File Offset: 0x00147D4A
+	// Token: 0x06001C3B RID: 7227 RVA: 0x0014A7FE File Offset: 0x001489FE
 	public static void WriteToGlobals(GameSaveData data)
 	{
 		GameGlobals.LoveSick = data.loveSick;
@@ -23,12 +23,12 @@ public class GameSaveData
 		GameGlobals.Paranormal = data.paranormal;
 	}
 
-	// Token: 0x040031AA RID: 12714
+	// Token: 0x040031BF RID: 12735
 	public bool loveSick;
 
-	// Token: 0x040031AB RID: 12715
+	// Token: 0x040031C0 RID: 12736
 	public bool masksBanned;
 
-	// Token: 0x040031AC RID: 12716
+	// Token: 0x040031C1 RID: 12737
 	public bool paranormal;
 }

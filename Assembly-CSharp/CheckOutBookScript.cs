@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000240 RID: 576
+// Token: 0x02000241 RID: 577
 public class CheckOutBookScript : MonoBehaviour
 {
-	// Token: 0x06001243 RID: 4675 RVA: 0x0008CC24 File Offset: 0x0008AE24
+	// Token: 0x06001245 RID: 4677 RVA: 0x0008CF50 File Offset: 0x0008B150
 	private void Start()
 	{
 		if (!GameGlobals.Eighties)
@@ -25,7 +25,7 @@ public class CheckOutBookScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001244 RID: 4676 RVA: 0x0008CC98 File Offset: 0x0008AE98
+	// Token: 0x06001246 RID: 4678 RVA: 0x0008CFC4 File Offset: 0x0008B1C4
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -44,7 +44,7 @@ public class CheckOutBookScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001245 RID: 4677 RVA: 0x0008CD2C File Offset: 0x0008AF2C
+	// Token: 0x06001247 RID: 4679 RVA: 0x0008D058 File Offset: 0x0008B258
 	public void UpdatePrompt()
 	{
 		if ((this.ID == 0 && this.Prompt.Yandere.Inventory.Book) || (this.ID == 1 && this.Prompt.Yandere.Inventory.FinishedHomework))
@@ -57,9 +57,9 @@ public class CheckOutBookScript : MonoBehaviour
 		this.Prompt.Hide();
 	}
 
-	// Token: 0x04001718 RID: 5912
+	// Token: 0x0400171E RID: 5918
 	public PromptScript Prompt;
 
-	// Token: 0x04001719 RID: 5913
+	// Token: 0x0400171F RID: 5919
 	public int ID;
 }

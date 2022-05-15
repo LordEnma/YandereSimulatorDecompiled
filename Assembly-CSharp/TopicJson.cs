@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-// Token: 0x02000348 RID: 840
+// Token: 0x02000349 RID: 841
 [Serializable]
 public class TopicJson : JsonData
 {
-	// Token: 0x17000493 RID: 1171
-	// (get) Token: 0x0600194F RID: 6479 RVA: 0x000FD83D File Offset: 0x000FBA3D
+	// Token: 0x17000494 RID: 1172
+	// (get) Token: 0x06001955 RID: 6485 RVA: 0x000FE079 File Offset: 0x000FC279
 	public static string FilePath
 	{
 		get
@@ -21,7 +21,7 @@ public class TopicJson : JsonData
 		}
 	}
 
-	// Token: 0x06001950 RID: 6480 RVA: 0x000FD868 File Offset: 0x000FBA68
+	// Token: 0x06001956 RID: 6486 RVA: 0x000FE0A4 File Offset: 0x000FC2A4
 	public static TopicJson[] LoadFromJson(string path)
 	{
 		TopicJson[] array = new TopicJson[101];
@@ -43,8 +43,8 @@ public class TopicJson : JsonData
 		return array;
 	}
 
-	// Token: 0x17000494 RID: 1172
-	// (get) Token: 0x06001951 RID: 6481 RVA: 0x000FD8ED File Offset: 0x000FBAED
+	// Token: 0x17000495 RID: 1173
+	// (get) Token: 0x06001957 RID: 6487 RVA: 0x000FE129 File Offset: 0x000FC329
 	public int[] Topics
 	{
 		get
@@ -53,7 +53,7 @@ public class TopicJson : JsonData
 		}
 	}
 
-	// Token: 0x040027B8 RID: 10168
+	// Token: 0x040027C9 RID: 10185
 	[SerializeField]
 	private int[] topics;
 }

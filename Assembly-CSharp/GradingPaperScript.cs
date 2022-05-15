@@ -1,34 +1,27 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000307 RID: 775
+// Token: 0x02000308 RID: 776
 public class GradingPaperScript : MonoBehaviour
 {
-	// Token: 0x0600183F RID: 6207 RVA: 0x000E63B4 File Offset: 0x000E45B4
+	// Token: 0x06001843 RID: 6211 RVA: 0x000E6730 File Offset: 0x000E4930
 	private void Start()
 	{
 		this.OriginalPosition = this.Chair.position;
+		this.Paper.localScale = new Vector3(0.9090909f, 0.9090909f, 0.9090909f);
+		if (this.ID == 8 && GameGlobals.Eighties && DateGlobals.Week == 1)
+		{
+			base.enabled = false;
+		}
 	}
 
-	// Token: 0x06001840 RID: 6208 RVA: 0x000E63C8 File Offset: 0x000E45C8
+	// Token: 0x06001844 RID: 6212 RVA: 0x000E678C File Offset: 0x000E498C
 	private void Update()
 	{
-		if (this.Teacher != null && this.Teacher.DistanceToPlayer < 10f)
+		if (this.Teacher != null && this.Teacher.DistanceToPlayer < 10f && this.Writing && this.Character != null)
 		{
-			if (!this.Writing)
+			if (this.Teacher.DistanceToDestination < 1f)
 			{
-				if (Vector3.Distance(this.Chair.position, this.OriginalPosition) > 0.01f)
-				{
-					this.Chair.position = Vector3.Lerp(this.Chair.position, this.OriginalPosition, Time.deltaTime * 10f);
-					return;
-				}
-			}
-			else if (this.Character != null && this.Teacher.DistanceToDestination < 1f)
-			{
-				if (Vector3.Distance(this.Chair.position, this.Character.transform.position + this.Character.transform.forward * 0.1f) > 0.01f)
-				{
-					this.Chair.position = Vector3.Lerp(this.Chair.position, this.Character.transform.position + this.Character.transform.forward * 0.1f, Time.deltaTime * 10f);
-				}
 				switch (this.Phase)
 				{
 				case 1:
@@ -38,7 +31,7 @@ public class GradingPaperScript : MonoBehaviour
 						this.Paper.parent = this.LeftHand;
 						this.Paper.localPosition = this.PickUpPosition1;
 						this.Paper.localEulerAngles = this.PickUpRotation1;
-						this.Paper.localScale = new Vector3(0.9090909f, 0.9090909f, 0.9090909f);
+						this.Paper.gameObject.SetActive(true);
 						this.Phase++;
 					}
 					break;
@@ -64,7 +57,7 @@ public class GradingPaperScript : MonoBehaviour
 					if (this.Teacher.CharacterAnimation["f02_deskWrite"].time > this.SetDownTime2)
 					{
 						this.Paper.parent = this.Character.transform;
-						this.Paper.localScale = Vector3.zero;
+						this.Paper.gameObject.SetActive(false);
 						this.Phase++;
 					}
 					break;
@@ -79,70 +72,87 @@ public class GradingPaperScript : MonoBehaviour
 				}
 				if ((this.Phase != 1 && this.Teacher.Actions[this.Teacher.Phase] != StudentActionType.GradePapers) || !this.Teacher.Routine || this.Teacher.Stop)
 				{
-					this.Paper.localScale = Vector3.zero;
-					this.Teacher.Obstacle.enabled = false;
-					this.Teacher.Pen.SetActive(false);
-					this.Writing = false;
-					this.Phase = 1;
+					this.RemoveProps();
+					return;
 				}
+			}
+			else
+			{
+				this.RemoveProps();
 			}
 		}
 	}
 
-	// Token: 0x04002339 RID: 9017
-	public StudentScript Teacher;
-
-	// Token: 0x0400233A RID: 9018
-	public GameObject Character;
-
-	// Token: 0x0400233B RID: 9019
-	public Transform LeftHand;
-
-	// Token: 0x0400233C RID: 9020
-	public Transform Chair;
-
-	// Token: 0x0400233D RID: 9021
-	public Transform Paper;
-
-	// Token: 0x0400233E RID: 9022
-	public float PickUpTime1;
-
-	// Token: 0x0400233F RID: 9023
-	public float SetDownTime1;
-
-	// Token: 0x04002340 RID: 9024
-	public float PickUpTime2;
-
-	// Token: 0x04002341 RID: 9025
-	public float SetDownTime2;
-
-	// Token: 0x04002342 RID: 9026
-	public Vector3 OriginalPosition;
+	// Token: 0x06001845 RID: 6213 RVA: 0x000E6AA8 File Offset: 0x000E4CA8
+	public void RemoveProps()
+	{
+		if (this.Paper.gameObject.activeInHierarchy)
+		{
+			this.Paper.gameObject.SetActive(false);
+			this.Teacher.Obstacle.enabled = false;
+			this.Teacher.Pen.SetActive(false);
+			this.Writing = false;
+			this.Phase = 1;
+		}
+	}
 
 	// Token: 0x04002343 RID: 9027
-	public Vector3 PickUpPosition1;
+	public StudentScript Teacher;
 
 	// Token: 0x04002344 RID: 9028
-	public Vector3 SetDownPosition1;
+	public GameObject Character;
 
 	// Token: 0x04002345 RID: 9029
-	public Vector3 PickUpPosition2;
+	public Transform LeftHand;
 
 	// Token: 0x04002346 RID: 9030
-	public Vector3 PickUpRotation1;
+	public Transform Chair;
 
 	// Token: 0x04002347 RID: 9031
-	public Vector3 SetDownRotation1;
+	public Transform Paper;
 
 	// Token: 0x04002348 RID: 9032
-	public Vector3 PickUpRotation2;
+	public float PickUpTime1;
 
 	// Token: 0x04002349 RID: 9033
-	public int Phase = 1;
+	public float SetDownTime1;
 
 	// Token: 0x0400234A RID: 9034
-	public float Speed = 1f;
+	public float PickUpTime2;
 
 	// Token: 0x0400234B RID: 9035
+	public float SetDownTime2;
+
+	// Token: 0x0400234C RID: 9036
+	public Vector3 OriginalPosition;
+
+	// Token: 0x0400234D RID: 9037
+	public Vector3 PickUpPosition1;
+
+	// Token: 0x0400234E RID: 9038
+	public Vector3 SetDownPosition1;
+
+	// Token: 0x0400234F RID: 9039
+	public Vector3 PickUpPosition2;
+
+	// Token: 0x04002350 RID: 9040
+	public Vector3 PickUpRotation1;
+
+	// Token: 0x04002351 RID: 9041
+	public Vector3 SetDownRotation1;
+
+	// Token: 0x04002352 RID: 9042
+	public Vector3 PickUpRotation2;
+
+	// Token: 0x04002353 RID: 9043
+	public int Phase = 1;
+
+	// Token: 0x04002354 RID: 9044
+	public float Speed = 1f;
+
+	// Token: 0x04002355 RID: 9045
 	public bool Writing;
+
+	// Token: 0x04002356 RID: 9046
+	public int ID;
 }

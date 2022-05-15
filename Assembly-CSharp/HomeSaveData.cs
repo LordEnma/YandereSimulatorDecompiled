@@ -1,10 +1,10 @@
 ﻿using System;
 
-// Token: 0x02000403 RID: 1027
+// Token: 0x02000404 RID: 1028
 [Serializable]
 public class HomeSaveData
 {
-	// Token: 0x06001C37 RID: 7223 RVA: 0x00149B75 File Offset: 0x00147D75
+	// Token: 0x06001C3D RID: 7229 RVA: 0x0014A829 File Offset: 0x00148A29
 	public static HomeSaveData ReadFromGlobals()
 	{
 		return new HomeSaveData
@@ -15,7 +15,7 @@ public class HomeSaveData
 		};
 	}
 
-	// Token: 0x06001C38 RID: 7224 RVA: 0x00149B9D File Offset: 0x00147D9D
+	// Token: 0x06001C3E RID: 7230 RVA: 0x0014A851 File Offset: 0x00148A51
 	public static void WriteToGlobals(HomeSaveData data)
 	{
 		HomeGlobals.LateForSchool = data.lateForSchool;
@@ -23,12 +23,12 @@ public class HomeSaveData
 		HomeGlobals.StartInBasement = data.startInBasement;
 	}
 
-	// Token: 0x040031AD RID: 12717
+	// Token: 0x040031C2 RID: 12738
 	public bool lateForSchool;
 
-	// Token: 0x040031AE RID: 12718
+	// Token: 0x040031C3 RID: 12739
 	public bool night;
 
-	// Token: 0x040031AF RID: 12719
+	// Token: 0x040031C4 RID: 12740
 	public bool startInBasement;
 }

@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200030C RID: 780
+// Token: 0x0200030D RID: 781
 public class GrowShrinkScript : MonoBehaviour
 {
-	// Token: 0x0600184C RID: 6220 RVA: 0x000E6B88 File Offset: 0x000E4D88
+	// Token: 0x06001851 RID: 6225 RVA: 0x000E6E88 File Offset: 0x000E5088
 	private void Start()
 	{
 		this.OriginalPosition = base.transform.localPosition;
 		base.transform.localScale = Vector3.zero;
 	}
 
-	// Token: 0x0600184D RID: 6221 RVA: 0x000E6BAC File Offset: 0x000E4DAC
+	// Token: 0x06001852 RID: 6226 RVA: 0x000E6EAC File Offset: 0x000E50AC
 	private void Update()
 	{
 		this.Timer += Time.deltaTime * 2f;
@@ -51,7 +51,7 @@ public class GrowShrinkScript : MonoBehaviour
 		base.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
 	}
 
-	// Token: 0x0600184E RID: 6222 RVA: 0x000E6D6C File Offset: 0x000E4F6C
+	// Token: 0x06001853 RID: 6227 RVA: 0x000E706C File Offset: 0x000E526C
 	public void Return()
 	{
 		base.transform.localPosition = this.OriginalPosition;
@@ -67,33 +67,33 @@ public class GrowShrinkScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x04002360 RID: 9056
+	// Token: 0x0400236B RID: 9067
 	public float FallSpeed;
 
-	// Token: 0x04002361 RID: 9057
+	// Token: 0x0400236C RID: 9068
 	public float Threshold = 1f;
 
-	// Token: 0x04002362 RID: 9058
+	// Token: 0x0400236D RID: 9069
 	public float Slowdown = 0.5f;
 
-	// Token: 0x04002363 RID: 9059
+	// Token: 0x0400236E RID: 9070
 	public float Strength = 1f;
 
-	// Token: 0x04002364 RID: 9060
+	// Token: 0x0400236F RID: 9071
 	public float Target = 1f;
 
-	// Token: 0x04002365 RID: 9061
+	// Token: 0x04002370 RID: 9072
 	public float Scale;
 
-	// Token: 0x04002366 RID: 9062
+	// Token: 0x04002371 RID: 9073
 	public float Speed = 5f;
 
-	// Token: 0x04002367 RID: 9063
+	// Token: 0x04002372 RID: 9074
 	public float Timer;
 
-	// Token: 0x04002368 RID: 9064
+	// Token: 0x04002373 RID: 9075
 	public bool Shrink;
 
-	// Token: 0x04002369 RID: 9065
+	// Token: 0x04002374 RID: 9076
 	public Vector3 OriginalPosition;
 }

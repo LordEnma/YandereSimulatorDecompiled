@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000D0 RID: 208
 public class RivalPoseScript : MonoBehaviour
 {
-	// Token: 0x060009D3 RID: 2515 RVA: 0x00051FE4 File Offset: 0x000501E4
+	// Token: 0x060009D3 RID: 2515 RVA: 0x000520B4 File Offset: 0x000502B4
 	private void Start()
 	{
 		int femaleUniform = StudentGlobals.FemaleUniform;

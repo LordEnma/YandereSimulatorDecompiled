@@ -5,10 +5,10 @@ using Discord;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000287 RID: 647
+// Token: 0x02000288 RID: 648
 public class DiscordRPC : MonoBehaviour
 {
-	// Token: 0x060013A3 RID: 5027 RVA: 0x000B88E4 File Offset: 0x000B6AE4
+	// Token: 0x060013A5 RID: 5029 RVA: 0x000B8B60 File Offset: 0x000B6D60
 	private void Start()
 	{
 		UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
@@ -24,7 +24,7 @@ public class DiscordRPC : MonoBehaviour
 		base.StartCoroutine(this.RichPresenceUpdate());
 	}
 
-	// Token: 0x060013A4 RID: 5028 RVA: 0x000B8945 File Offset: 0x000B6B45
+	// Token: 0x060013A6 RID: 5030 RVA: 0x000B8BC1 File Offset: 0x000B6DC1
 	private void Update()
 	{
 		if (this._discord != null)
@@ -33,18 +33,17 @@ public class DiscordRPC : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013A5 RID: 5029 RVA: 0x000B895C File Offset: 0x000B6B5C
+	// Token: 0x060013A7 RID: 5031 RVA: 0x000B8BD8 File Offset: 0x000B6DD8
 	private void UpdateRichPresenceInfo()
 	{
 		if (SceneManager.GetActiveScene().name == "SchoolScene" && this._clockScript == null)
 		{
 			this._clockScript = UnityEngine.Object.FindObjectOfType<ClockScript>();
-			Debug.Log("'ClockScript' behavior found.");
 		}
 		this.UpdateActivity();
 	}
 
-	// Token: 0x060013A6 RID: 5030 RVA: 0x000B89AC File Offset: 0x000B6BAC
+	// Token: 0x060013A8 RID: 5032 RVA: 0x000B8C20 File Offset: 0x000B6E20
 	private void UpdateActivity()
 	{
 		this._currentScene = SceneManager.GetActiveScene().name;
@@ -66,7 +65,7 @@ public class DiscordRPC : MonoBehaviour
 		});
 	}
 
-	// Token: 0x060013A7 RID: 5031 RVA: 0x000B8A50 File Offset: 0x000B6C50
+	// Token: 0x060013A9 RID: 5033 RVA: 0x000B8CC4 File Offset: 0x000B6EC4
 	private string GetSceneDescription()
 	{
 		this.UpdateSceneDescription();
@@ -90,7 +89,7 @@ public class DiscordRPC : MonoBehaviour
 		return "No description available yet.";
 	}
 
-	// Token: 0x060013A8 RID: 5032 RVA: 0x000B8B2C File Offset: 0x000B6D2C
+	// Token: 0x060013AA RID: 5034 RVA: 0x000B8DA0 File Offset: 0x000B6FA0
 	private void UpdateSceneDescription()
 	{
 		if (!this._createdDictionary)
@@ -153,7 +152,7 @@ public class DiscordRPC : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013A9 RID: 5033 RVA: 0x000B8F85 File Offset: 0x000B7185
+	// Token: 0x060013AB RID: 5035 RVA: 0x000B91F9 File Offset: 0x000B73F9
 	private IEnumerator RichPresenceUpdate()
 	{
 		while (this._updateRichPresence)
@@ -164,7 +163,7 @@ public class DiscordRPC : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060013AA RID: 5034 RVA: 0x000B8F94 File Offset: 0x000B7194
+	// Token: 0x060013AC RID: 5036 RVA: 0x000B9208 File Offset: 0x000B7408
 	private void OnDisable()
 	{
 		if (this._discord != null)
@@ -173,54 +172,54 @@ public class DiscordRPC : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D2B RID: 7467
+	// Token: 0x04001D32 RID: 7474
 	private Discord _discord;
 
-	// Token: 0x04001D2C RID: 7468
+	// Token: 0x04001D33 RID: 7475
 	private ActivityManager _activity;
 
-	// Token: 0x04001D2D RID: 7469
-	private ClockScript _clockScript;
-
-	// Token: 0x04001D2E RID: 7470
-	[SerializeField]
-	private string _applicationID = "560185502691491841";
-
-	// Token: 0x04001D2F RID: 7471
-	[SerializeField]
-	private string _boxArtImage = "boxart";
-
-	// Token: 0x04001D30 RID: 7472
-	[SerializeField]
-	private string _boxArtText = "This might be the game's box art one day!";
-
-	// Token: 0x04001D31 RID: 7473
-	[SerializeField]
-	private string _details = "He... will... be... mine.";
-
-	// Token: 0x04001D32 RID: 7474
-	private string _currentScene;
-
-	// Token: 0x04001D33 RID: 7475
-	[SerializeField]
-	private float _updateRate = 5f;
-
 	// Token: 0x04001D34 RID: 7476
-	private bool _createdDictionary;
+	private ClockScript _clockScript;
 
 	// Token: 0x04001D35 RID: 7477
 	[SerializeField]
-	private bool _updateRichPresence = true;
+	private string _applicationID = "560185502691491841";
 
 	// Token: 0x04001D36 RID: 7478
 	[SerializeField]
-	private Dictionary<string, string> _sceneDescription = new Dictionary<string, string>();
+	private string _boxArtImage = "boxart";
 
 	// Token: 0x04001D37 RID: 7479
 	[SerializeField]
-	private Dictionary<int, string> _gamePeriod = new Dictionary<int, string>();
+	private string _boxArtText = "This might be the game's box art one day!";
 
 	// Token: 0x04001D38 RID: 7480
+	[SerializeField]
+	private string _details = "He... will... be... mine.";
+
+	// Token: 0x04001D39 RID: 7481
+	private string _currentScene;
+
+	// Token: 0x04001D3A RID: 7482
+	[SerializeField]
+	private float _updateRate = 5f;
+
+	// Token: 0x04001D3B RID: 7483
+	private bool _createdDictionary;
+
+	// Token: 0x04001D3C RID: 7484
+	[SerializeField]
+	private bool _updateRichPresence = true;
+
+	// Token: 0x04001D3D RID: 7485
+	[SerializeField]
+	private Dictionary<string, string> _sceneDescription = new Dictionary<string, string>();
+
+	// Token: 0x04001D3E RID: 7486
+	[SerializeField]
+	private Dictionary<int, string> _gamePeriod = new Dictionary<int, string>();
+
+	// Token: 0x04001D3F RID: 7487
 	[SerializeField]
 	private Dictionary<int, string> _gameWeekday = new Dictionary<int, string>();
 }

@@ -2,22 +2,22 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000506 RID: 1286
+// Token: 0x02000507 RID: 1287
 public class PlayerMove : MonoBehaviour
 {
-	// Token: 0x0600215A RID: 8538 RVA: 0x001ECDF5 File Offset: 0x001EAFF5
+	// Token: 0x06002164 RID: 8548 RVA: 0x001EE445 File Offset: 0x001EC645
 	private void Awake()
 	{
 		this.charController = base.GetComponent<CharacterController>();
 	}
 
-	// Token: 0x0600215B RID: 8539 RVA: 0x001ECE03 File Offset: 0x001EB003
+	// Token: 0x06002165 RID: 8549 RVA: 0x001EE453 File Offset: 0x001EC653
 	private void Update()
 	{
 		this.PlayerMovement();
 	}
 
-	// Token: 0x0600215C RID: 8540 RVA: 0x001ECE0C File Offset: 0x001EB00C
+	// Token: 0x06002166 RID: 8550 RVA: 0x001EE45C File Offset: 0x001EC65C
 	private void PlayerMovement()
 	{
 		float axis = Input.GetAxis(this.horizontalInputName);
@@ -33,7 +33,7 @@ public class PlayerMove : MonoBehaviour
 		this.JumpInput();
 	}
 
-	// Token: 0x0600215D RID: 8541 RVA: 0x001ECEE4 File Offset: 0x001EB0E4
+	// Token: 0x06002167 RID: 8551 RVA: 0x001EE534 File Offset: 0x001EC734
 	private void SetMovementSpeed()
 	{
 		if (Input.GetKey(this.runKey))
@@ -44,7 +44,7 @@ public class PlayerMove : MonoBehaviour
 		this.movementSpeed = Mathf.Lerp(this.movementSpeed, this.walkSpeed, Time.deltaTime * this.runBuildUpSpeed);
 	}
 
-	// Token: 0x0600215E RID: 8542 RVA: 0x001ECF48 File Offset: 0x001EB148
+	// Token: 0x06002168 RID: 8552 RVA: 0x001EE598 File Offset: 0x001EC798
 	private bool OnSlope()
 	{
 		if (this.isJumping)
@@ -60,7 +60,7 @@ public class PlayerMove : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x0600215F RID: 8543 RVA: 0x001ECFB0 File Offset: 0x001EB1B0
+	// Token: 0x06002169 RID: 8553 RVA: 0x001EE600 File Offset: 0x001EC800
 	private void JumpInput()
 	{
 		if (Input.GetKeyDown(this.jumpKey) && !this.isJumping)
@@ -70,7 +70,7 @@ public class PlayerMove : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002160 RID: 8544 RVA: 0x001ECFDB File Offset: 0x001EB1DB
+	// Token: 0x0600216A RID: 8554 RVA: 0x001EE62B File Offset: 0x001EC82B
 	private IEnumerator JumpEvent()
 	{
 		this.charController.slopeLimit = 90f;
@@ -88,56 +88,56 @@ public class PlayerMove : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x04004992 RID: 18834
+	// Token: 0x040049B9 RID: 18873
 	[SerializeField]
 	private string horizontalInputName;
 
-	// Token: 0x04004993 RID: 18835
+	// Token: 0x040049BA RID: 18874
 	[SerializeField]
 	private string verticalInputName;
 
-	// Token: 0x04004994 RID: 18836
+	// Token: 0x040049BB RID: 18875
 	[SerializeField]
 	private float walkSpeed;
 
-	// Token: 0x04004995 RID: 18837
+	// Token: 0x040049BC RID: 18876
 	[SerializeField]
 	private float runSpeed;
 
-	// Token: 0x04004996 RID: 18838
+	// Token: 0x040049BD RID: 18877
 	[SerializeField]
 	private float runBuildUpSpeed;
 
-	// Token: 0x04004997 RID: 18839
+	// Token: 0x040049BE RID: 18878
 	[SerializeField]
 	private KeyCode runKey;
 
-	// Token: 0x04004998 RID: 18840
+	// Token: 0x040049BF RID: 18879
 	private float movementSpeed;
 
-	// Token: 0x04004999 RID: 18841
+	// Token: 0x040049C0 RID: 18880
 	[SerializeField]
 	private float slopeForce;
 
-	// Token: 0x0400499A RID: 18842
+	// Token: 0x040049C1 RID: 18881
 	[SerializeField]
 	private float slopeForceRayLength;
 
-	// Token: 0x0400499B RID: 18843
+	// Token: 0x040049C2 RID: 18882
 	private CharacterController charController;
 
-	// Token: 0x0400499C RID: 18844
+	// Token: 0x040049C3 RID: 18883
 	[SerializeField]
 	private AnimationCurve jumpFallOff;
 
-	// Token: 0x0400499D RID: 18845
+	// Token: 0x040049C4 RID: 18884
 	[SerializeField]
 	private float jumpMultiplier;
 
-	// Token: 0x0400499E RID: 18846
+	// Token: 0x040049C5 RID: 18885
 	[SerializeField]
 	private KeyCode jumpKey;
 
-	// Token: 0x0400499F RID: 18847
+	// Token: 0x040049C6 RID: 18886
 	private bool isJumping;
 }

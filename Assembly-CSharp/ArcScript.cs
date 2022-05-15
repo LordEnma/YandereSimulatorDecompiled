@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000D1 RID: 209
 public class ArcScript : MonoBehaviour
 {
-	// Token: 0x060009D5 RID: 2517 RVA: 0x00052290 File Offset: 0x00050490
+	// Token: 0x060009D5 RID: 2517 RVA: 0x00052360 File Offset: 0x00050560
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;

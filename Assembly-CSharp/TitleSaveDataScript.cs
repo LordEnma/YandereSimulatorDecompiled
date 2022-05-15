@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000480 RID: 1152
+// Token: 0x02000481 RID: 1153
 public class TitleSaveDataScript : MonoBehaviour
 {
-	// Token: 0x06001F06 RID: 7942 RVA: 0x001B6FDC File Offset: 0x001B51DC
+	// Token: 0x06001F0E RID: 7950 RVA: 0x001B8154 File Offset: 0x001B6354
 	public void Start()
 	{
 		this.Eighties = GameGlobals.Eighties;
@@ -69,51 +69,51 @@ public class TitleSaveDataScript : MonoBehaviour
 		this.Blood.enabled = false;
 	}
 
-	// Token: 0x04004096 RID: 16534
+	// Token: 0x040040B4 RID: 16564
 	public TitleSaveFilesScript TitleSaveFiles;
 
-	// Token: 0x04004097 RID: 16535
+	// Token: 0x040040B5 RID: 16565
 	public GameObject EmptyFile;
 
-	// Token: 0x04004098 RID: 16536
+	// Token: 0x040040B6 RID: 16566
 	public GameObject Data;
 
-	// Token: 0x04004099 RID: 16537
+	// Token: 0x040040B7 RID: 16567
 	public Texture[] Bloods;
 
-	// Token: 0x0400409A RID: 16538
+	// Token: 0x040040B8 RID: 16568
 	public UITexture Blood;
 
-	// Token: 0x0400409B RID: 16539
+	// Token: 0x040040B9 RID: 16569
 	public UILabel Kills;
 
-	// Token: 0x0400409C RID: 16540
+	// Token: 0x040040BA RID: 16570
 	public UILabel Mood;
 
-	// Token: 0x0400409D RID: 16541
+	// Token: 0x040040BB RID: 16571
 	public UILabel Alerts;
 
-	// Token: 0x0400409E RID: 16542
+	// Token: 0x040040BC RID: 16572
 	public UILabel Week;
 
-	// Token: 0x0400409F RID: 16543
+	// Token: 0x040040BD RID: 16573
 	public UILabel Day;
 
-	// Token: 0x040040A0 RID: 16544
+	// Token: 0x040040BE RID: 16574
 	public UILabel Rival;
 
-	// Token: 0x040040A1 RID: 16545
+	// Token: 0x040040BF RID: 16575
 	public UILabel Rep;
 
-	// Token: 0x040040A2 RID: 16546
+	// Token: 0x040040C0 RID: 16576
 	public UILabel Club;
 
-	// Token: 0x040040A3 RID: 16547
+	// Token: 0x040040C1 RID: 16577
 	public UILabel Friends;
 
-	// Token: 0x040040A4 RID: 16548
+	// Token: 0x040040C2 RID: 16578
 	public bool Eighties;
 
-	// Token: 0x040040A5 RID: 16549
+	// Token: 0x040040C3 RID: 16579
 	public int ID;
 }

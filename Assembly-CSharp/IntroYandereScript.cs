@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200033E RID: 830
+// Token: 0x0200033F RID: 831
 public class IntroYandereScript : MonoBehaviour
 {
-	// Token: 0x0600190F RID: 6415 RVA: 0x000FB3CC File Offset: 0x000F95CC
+	// Token: 0x06001914 RID: 6420 RVA: 0x000FB6D0 File Offset: 0x000F98D0
 	private void LateUpdate()
 	{
 		this.Hips.localEulerAngles = new Vector3(this.Hips.localEulerAngles.x + this.X, this.Hips.localEulerAngles.y, this.Hips.localEulerAngles.z);
@@ -22,45 +22,45 @@ public class IntroYandereScript : MonoBehaviour
 		this.LeftFoot.localEulerAngles = new Vector3(this.LeftFoot.localEulerAngles.x - this.X, this.LeftFoot.localEulerAngles.y, this.LeftFoot.localEulerAngles.z);
 	}
 
-	// Token: 0x0400270A RID: 9994
+	// Token: 0x04002716 RID: 10006
 	public Transform Hips;
 
-	// Token: 0x0400270B RID: 9995
+	// Token: 0x04002717 RID: 10007
 	public Transform Spine;
 
-	// Token: 0x0400270C RID: 9996
+	// Token: 0x04002718 RID: 10008
 	public Transform Spine1;
 
-	// Token: 0x0400270D RID: 9997
+	// Token: 0x04002719 RID: 10009
 	public Transform Spine2;
 
-	// Token: 0x0400270E RID: 9998
+	// Token: 0x0400271A RID: 10010
 	public Transform Spine3;
 
-	// Token: 0x0400270F RID: 9999
+	// Token: 0x0400271B RID: 10011
 	public Transform Neck;
 
-	// Token: 0x04002710 RID: 10000
+	// Token: 0x0400271C RID: 10012
 	public Transform Head;
 
-	// Token: 0x04002711 RID: 10001
+	// Token: 0x0400271D RID: 10013
 	public Transform RightUpLeg;
 
-	// Token: 0x04002712 RID: 10002
+	// Token: 0x0400271E RID: 10014
 	public Transform RightLeg;
 
-	// Token: 0x04002713 RID: 10003
+	// Token: 0x0400271F RID: 10015
 	public Transform RightFoot;
 
-	// Token: 0x04002714 RID: 10004
+	// Token: 0x04002720 RID: 10016
 	public Transform LeftUpLeg;
 
-	// Token: 0x04002715 RID: 10005
+	// Token: 0x04002721 RID: 10017
 	public Transform LeftLeg;
 
-	// Token: 0x04002716 RID: 10006
+	// Token: 0x04002722 RID: 10018
 	public Transform LeftFoot;
 
-	// Token: 0x04002717 RID: 10007
+	// Token: 0x04002723 RID: 10019
 	public float X;
 }

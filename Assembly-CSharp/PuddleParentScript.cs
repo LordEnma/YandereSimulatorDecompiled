@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003C8 RID: 968
+// Token: 0x020003C9 RID: 969
 public class PuddleParentScript : MonoBehaviour
 {
-	// Token: 0x06001B45 RID: 6981 RVA: 0x00130DC0 File Offset: 0x0012EFC0
+	// Token: 0x06001B4B RID: 6987 RVA: 0x00131984 File Offset: 0x0012FB84
 	public void RecordAllPuddles()
 	{
 		this.PoolID = 0;
@@ -32,7 +32,7 @@ public class PuddleParentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B46 RID: 6982 RVA: 0x00130EA4 File Offset: 0x0012F0A4
+	// Token: 0x06001B4C RID: 6988 RVA: 0x00131A68 File Offset: 0x0012FC68
 	public void RestoreAllPuddles()
 	{
 		while (this.PoolID > 0)
@@ -57,24 +57,24 @@ public class PuddleParentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002E86 RID: 11910
+	// Token: 0x04002E9B RID: 11931
 	public GameObject WaterPuddle;
 
-	// Token: 0x04002E87 RID: 11911
+	// Token: 0x04002E9C RID: 11932
 	public GameObject GasPuddle;
 
-	// Token: 0x04002E88 RID: 11912
+	// Token: 0x04002E9D RID: 11933
 	public GameObject BrownPuddle;
 
-	// Token: 0x04002E89 RID: 11913
+	// Token: 0x04002E9E RID: 11934
 	public Vector3[] PuddlePositions;
 
-	// Token: 0x04002E8A RID: 11914
+	// Token: 0x04002E9F RID: 11935
 	public Vector3[] PuddleRotations;
 
-	// Token: 0x04002E8B RID: 11915
+	// Token: 0x04002EA0 RID: 11936
 	public int[] Type;
 
-	// Token: 0x04002E8C RID: 11916
+	// Token: 0x04002EA1 RID: 11937
 	public int PoolID;
 }

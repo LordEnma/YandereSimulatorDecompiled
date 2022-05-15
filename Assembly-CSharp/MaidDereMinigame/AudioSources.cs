@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005AF RID: 1455
+	// Token: 0x020005B0 RID: 1456
 	[Serializable]
 	public class AudioSources : ReorderableArray<AudioSource>
 	{

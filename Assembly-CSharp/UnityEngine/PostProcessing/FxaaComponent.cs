@@ -2,11 +2,11 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000568 RID: 1384
+	// Token: 0x02000569 RID: 1385
 	public sealed class FxaaComponent : PostProcessingComponentRenderTexture<AntialiasingModel>
 	{
-		// Token: 0x170004F8 RID: 1272
-		// (get) Token: 0x06002348 RID: 9032 RVA: 0x001F96B6 File Offset: 0x001F78B6
+		// Token: 0x170004F9 RID: 1273
+		// (get) Token: 0x06002352 RID: 9042 RVA: 0x001FAD06 File Offset: 0x001F8F06
 		public override bool active
 		{
 			get
@@ -15,7 +15,7 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002349 RID: 9033 RVA: 0x001F96E8 File Offset: 0x001F78E8
+		// Token: 0x06002353 RID: 9043 RVA: 0x001FAD38 File Offset: 0x001F8F38
 		public void Render(RenderTexture source, RenderTexture destination)
 		{
 			AntialiasingModel.FxaaSettings fxaaSettings = base.model.settings.fxaaSettings;
@@ -27,13 +27,13 @@ namespace UnityEngine.PostProcessing
 			Graphics.Blit(source, destination, material, 0);
 		}
 
-		// Token: 0x020006A9 RID: 1705
+		// Token: 0x020006AA RID: 1706
 		private static class Uniforms
 		{
-			// Token: 0x0400514C RID: 20812
+			// Token: 0x04005173 RID: 20851
 			internal static readonly int _QualitySettings = Shader.PropertyToID("_QualitySettings");
 
-			// Token: 0x0400514D RID: 20813
+			// Token: 0x04005174 RID: 20852
 			internal static readonly int _ConsoleSettings = Shader.PropertyToID("_ConsoleSettings");
 		}
 	}

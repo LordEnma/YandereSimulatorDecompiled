@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002DA RID: 730
+// Token: 0x020002DB RID: 731
 public class GardenHoleScript : MonoBehaviour
 {
-	// Token: 0x060014DB RID: 5339 RVA: 0x000CDBD0 File Offset: 0x000CBDD0
+	// Token: 0x060014DD RID: 5341 RVA: 0x000CDED0 File Offset: 0x000CC0D0
 	private void Start()
 	{
 		if (SchoolGlobals.GetGardenGraveOccupied(this.ID))
@@ -15,33 +15,30 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014DC RID: 5340 RVA: 0x000CDC00 File Offset: 0x000CBE00
+	// Token: 0x060014DE RID: 5342 RVA: 0x000CDF00 File Offset: 0x000CC100
 	private void Update()
 	{
 		if (this.Prompt.DistanceSqr < 10f)
 		{
-			if (this.Yandere.Equipped > 0)
+			if (this.Yandere.Armed)
 			{
 				if (this.Yandere.EquippedWeapon.WeaponID == 10)
 				{
-					this.Prompt.enabled = true;
+					this.Prompt.HideButton[0] = false;
 				}
 				else if (this.Prompt.enabled)
 				{
-					this.Prompt.Hide();
-					this.Prompt.enabled = false;
+					this.Prompt.HideButton[0] = true;
 				}
 			}
 			else if (this.Prompt.enabled)
 			{
-				this.Prompt.Hide();
-				this.Prompt.enabled = false;
+				this.Prompt.HideButton[0] = true;
 			}
 		}
 		else if (this.Prompt.enabled)
 		{
-			this.Prompt.Hide();
-			this.Prompt.enabled = false;
+			this.Prompt.HideButton[0] = true;
 		}
 		if (this.Prompt.Circle[0].fillAmount == 0f)
 		{
@@ -115,7 +112,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014DD RID: 5341 RVA: 0x000CE118 File Offset: 0x000CC318
+	// Token: 0x060014DF RID: 5343 RVA: 0x000CE400 File Offset: 0x000CC600
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Dug && other.gameObject.layer == 11)
@@ -126,7 +123,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014DE RID: 5342 RVA: 0x000CE175 File Offset: 0x000CC375
+	// Token: 0x060014E0 RID: 5344 RVA: 0x000CE45D File Offset: 0x000CC65D
 	private void OnTriggerExit(Collider other)
 	{
 		if (this.Dug && other.gameObject.layer == 11)
@@ -137,7 +134,7 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014DF RID: 5343 RVA: 0x000CE1B3 File Offset: 0x000CC3B3
+	// Token: 0x060014E1 RID: 5345 RVA: 0x000CE49B File Offset: 0x000CC69B
 	public void EndOfDayCheck()
 	{
 		if (this.VictimID > 0)
@@ -147,42 +144,42 @@ public class GardenHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040020D6 RID: 8406
+	// Token: 0x040020DF RID: 8415
 	public YandereScript Yandere;
 
-	// Token: 0x040020D7 RID: 8407
+	// Token: 0x040020E0 RID: 8416
 	public RagdollScript Corpse;
 
-	// Token: 0x040020D8 RID: 8408
+	// Token: 0x040020E1 RID: 8417
 	public PromptScript Prompt;
 
-	// Token: 0x040020D9 RID: 8409
+	// Token: 0x040020E2 RID: 8418
 	public Collider MyCollider;
 
-	// Token: 0x040020DA RID: 8410
+	// Token: 0x040020E3 RID: 8419
 	public MeshFilter MyMesh;
 
-	// Token: 0x040020DB RID: 8411
+	// Token: 0x040020E4 RID: 8420
 	public GameObject Carrots;
 
-	// Token: 0x040020DC RID: 8412
+	// Token: 0x040020E5 RID: 8421
 	public GameObject Pile;
 
-	// Token: 0x040020DD RID: 8413
+	// Token: 0x040020E6 RID: 8422
 	public Mesh MoundMesh;
 
-	// Token: 0x040020DE RID: 8414
+	// Token: 0x040020E7 RID: 8423
 	public Mesh HoleMesh;
 
-	// Token: 0x040020DF RID: 8415
+	// Token: 0x040020E8 RID: 8424
 	public bool Bury;
 
-	// Token: 0x040020E0 RID: 8416
+	// Token: 0x040020E9 RID: 8425
 	public bool Dug;
 
-	// Token: 0x040020E1 RID: 8417
+	// Token: 0x040020EA RID: 8426
 	public int VictimID;
 
-	// Token: 0x040020E2 RID: 8418
+	// Token: 0x040020EB RID: 8427
 	public int ID;
 }

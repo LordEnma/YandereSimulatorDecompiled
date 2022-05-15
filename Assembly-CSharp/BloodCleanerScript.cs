@@ -2,10 +2,10 @@
 using Pathfinding;
 using UnityEngine;
 
-// Token: 0x020000E7 RID: 231
+// Token: 0x020000E8 RID: 232
 public class BloodCleanerScript : MonoBehaviour
 {
-	// Token: 0x06000A32 RID: 2610 RVA: 0x0005A82C File Offset: 0x00058A2C
+	// Token: 0x06000A34 RID: 2612 RVA: 0x0005AAAC File Offset: 0x00058CAC
 	private void Start()
 	{
 		if (this.Super)
@@ -16,7 +16,7 @@ public class BloodCleanerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A33 RID: 2611 RVA: 0x0005A858 File Offset: 0x00058A58
+	// Token: 0x06000A35 RID: 2613 RVA: 0x0005AAD8 File Offset: 0x00058CD8
 	private void Update()
 	{
 		if (this.Blood < 100f)
@@ -77,27 +77,27 @@ public class BloodCleanerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000B93 RID: 2963
+	// Token: 0x04000B97 RID: 2967
 	public Transform BloodParent;
 
-	// Token: 0x04000B94 RID: 2964
+	// Token: 0x04000B98 RID: 2968
 	public PromptScript Prompt;
 
-	// Token: 0x04000B95 RID: 2965
+	// Token: 0x04000B99 RID: 2969
 	public AIPath Pathfinding;
 
-	// Token: 0x04000B96 RID: 2966
+	// Token: 0x04000B9A RID: 2970
 	public GameObject Lens;
 
-	// Token: 0x04000B97 RID: 2967
+	// Token: 0x04000B9B RID: 2971
 	public UILabel Label;
 
-	// Token: 0x04000B98 RID: 2968
+	// Token: 0x04000B9C RID: 2972
 	public float Distance;
 
-	// Token: 0x04000B99 RID: 2969
+	// Token: 0x04000B9D RID: 2973
 	public float Blood;
 
-	// Token: 0x04000B9A RID: 2970
+	// Token: 0x04000B9E RID: 2974
 	public bool Super;
 }

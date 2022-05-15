@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020004DD RID: 1245
+// Token: 0x020004DE RID: 1246
 public class YanvaniaBlackHoleScript : MonoBehaviour
 {
-	// Token: 0x060020C5 RID: 8389 RVA: 0x001E3DD0 File Offset: 0x001E1FD0
+	// Token: 0x060020CF RID: 8399 RVA: 0x001E5420 File Offset: 0x001E3620
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -20,15 +20,15 @@ public class YanvaniaBlackHoleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040047F0 RID: 18416
+	// Token: 0x04004817 RID: 18455
 	public GameObject BlackHoleAttack;
 
-	// Token: 0x040047F1 RID: 18417
+	// Token: 0x04004818 RID: 18456
 	public int Attacks;
 
-	// Token: 0x040047F2 RID: 18418
+	// Token: 0x04004819 RID: 18457
 	public float SpawnTimer;
 
-	// Token: 0x040047F3 RID: 18419
+	// Token: 0x0400481A RID: 18458
 	public float Timer;
 }

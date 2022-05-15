@@ -1,29 +1,29 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000505 RID: 1285
+// Token: 0x02000506 RID: 1286
 public class PlayerLook : MonoBehaviour
 {
-	// Token: 0x06002154 RID: 8532 RVA: 0x001ECCCB File Offset: 0x001EAECB
+	// Token: 0x0600215E RID: 8542 RVA: 0x001EE31B File Offset: 0x001EC51B
 	private void Awake()
 	{
 		this.LockCursor();
 		this.xAxisClamp = 0f;
 	}
 
-	// Token: 0x06002155 RID: 8533 RVA: 0x001ECCDE File Offset: 0x001EAEDE
+	// Token: 0x0600215F RID: 8543 RVA: 0x001EE32E File Offset: 0x001EC52E
 	private void LockCursor()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
 	}
 
-	// Token: 0x06002156 RID: 8534 RVA: 0x001ECCE6 File Offset: 0x001EAEE6
+	// Token: 0x06002160 RID: 8544 RVA: 0x001EE336 File Offset: 0x001EC536
 	private void Update()
 	{
 		this.CameraRotation();
 	}
 
-	// Token: 0x06002157 RID: 8535 RVA: 0x001ECCF0 File Offset: 0x001EAEF0
+	// Token: 0x06002161 RID: 8545 RVA: 0x001EE340 File Offset: 0x001EC540
 	private void CameraRotation()
 	{
 		float d = Input.GetAxis(this.mouseXInputName) * this.mouseSensitivity * Time.deltaTime;
@@ -45,7 +45,7 @@ public class PlayerLook : MonoBehaviour
 		this.playerBody.Rotate(Vector3.up * d);
 	}
 
-	// Token: 0x06002158 RID: 8536 RVA: 0x001ECDC0 File Offset: 0x001EAFC0
+	// Token: 0x06002162 RID: 8546 RVA: 0x001EE410 File Offset: 0x001EC610
 	private void ClampXAxisRotationToValue(float value)
 	{
 		Vector3 eulerAngles = base.transform.eulerAngles;
@@ -53,22 +53,22 @@ public class PlayerLook : MonoBehaviour
 		base.transform.eulerAngles = eulerAngles;
 	}
 
-	// Token: 0x0400498D RID: 18829
+	// Token: 0x040049B4 RID: 18868
 	[SerializeField]
 	private string mouseXInputName;
 
-	// Token: 0x0400498E RID: 18830
+	// Token: 0x040049B5 RID: 18869
 	[SerializeField]
 	private string mouseYInputName;
 
-	// Token: 0x0400498F RID: 18831
+	// Token: 0x040049B6 RID: 18870
 	[SerializeField]
 	private float mouseSensitivity;
 
-	// Token: 0x04004990 RID: 18832
+	// Token: 0x040049B7 RID: 18871
 	[SerializeField]
 	private Transform playerBody;
 
-	// Token: 0x04004991 RID: 18833
+	// Token: 0x040049B8 RID: 18872
 	private float xAxisClamp;
 }

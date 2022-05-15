@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000496 RID: 1174
+// Token: 0x02000497 RID: 1175
 public class UpthrustScript : MonoBehaviour
 {
-	// Token: 0x06001F58 RID: 8024 RVA: 0x001BF12C File Offset: 0x001BD32C
+	// Token: 0x06001F61 RID: 8033 RVA: 0x001C02C4 File Offset: 0x001BE4C4
 	private void Start()
 	{
 		this.startPosition = base.transform.localPosition;
 	}
 
-	// Token: 0x06001F59 RID: 8025 RVA: 0x001BF140 File Offset: 0x001BD340
+	// Token: 0x06001F62 RID: 8034 RVA: 0x001C02D8 File Offset: 0x001BE4D8
 	private void Update()
 	{
 		float d = this.amplitude * Mathf.Sin(6.2831855f * this.frequency * Time.time);
@@ -18,25 +18,25 @@ public class UpthrustScript : MonoBehaviour
 		base.transform.Rotate(this.rotationAmplitude * d);
 	}
 
-	// Token: 0x06001F5A RID: 8026 RVA: 0x001BF1A4 File Offset: 0x001BD3A4
+	// Token: 0x06001F63 RID: 8035 RVA: 0x001C033C File Offset: 0x001BE53C
 	private Vector3 evaluatePosition(float time)
 	{
 		float y = this.amplitude * Mathf.Sin(6.2831855f * this.frequency * time);
 		return new Vector3(0f, y, 0f);
 	}
 
-	// Token: 0x04004226 RID: 16934
+	// Token: 0x04004244 RID: 16964
 	[SerializeField]
 	private float amplitude = 0.1f;
 
-	// Token: 0x04004227 RID: 16935
+	// Token: 0x04004245 RID: 16965
 	[SerializeField]
 	private float frequency = 0.6f;
 
-	// Token: 0x04004228 RID: 16936
+	// Token: 0x04004246 RID: 16966
 	[SerializeField]
 	private Vector3 rotationAmplitude = new Vector3(4.45f, 4.45f, 4.45f);
 
-	// Token: 0x04004229 RID: 16937
+	// Token: 0x04004247 RID: 16967
 	private Vector3 startPosition;
 }

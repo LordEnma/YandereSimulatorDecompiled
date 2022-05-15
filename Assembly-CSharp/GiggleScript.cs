@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002E7 RID: 743
+// Token: 0x020002E8 RID: 744
 public class GiggleScript : MonoBehaviour
 {
-	// Token: 0x06001514 RID: 5396 RVA: 0x000D8ADC File Offset: 0x000D6CDC
+	// Token: 0x06001516 RID: 5398 RVA: 0x000D8DC4 File Offset: 0x000D6FC4
 	private void Start()
 	{
 		float num = 500f * (2f - SchoolGlobals.SchoolAtmosphere);
 		base.transform.localScale = new Vector3(num, base.transform.localScale.y, num);
 	}
 
-	// Token: 0x06001515 RID: 5397 RVA: 0x000D8B1D File Offset: 0x000D6D1D
+	// Token: 0x06001517 RID: 5399 RVA: 0x000D8E05 File Offset: 0x000D7005
 	private void Update()
 	{
 		if (this.Frame > 0)
@@ -21,7 +21,7 @@ public class GiggleScript : MonoBehaviour
 		this.Frame++;
 	}
 
-	// Token: 0x06001516 RID: 5398 RVA: 0x000D8B44 File Offset: 0x000D6D44
+	// Token: 0x06001518 RID: 5400 RVA: 0x000D8E2C File Offset: 0x000D702C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9 && !this.Distracted)
@@ -85,6 +85,7 @@ public class GiggleScript : MonoBehaviour
 						this.Student.CleanTimer = 0f;
 						this.Student.ReadPhase = 0;
 						this.Student.StopPairing();
+						Debug.Log(this.Student.Name + " just heard a giggle, so their ''DiskCheck'' was set to ''true''.");
 						if (this.Student.SunbathePhase > 2)
 						{
 							this.Student.SunbathePhase = 2;
@@ -169,24 +170,24 @@ public class GiggleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040021D7 RID: 8663
+	// Token: 0x040021E0 RID: 8672
 	public GameObject EmptyGameObject;
 
-	// Token: 0x040021D8 RID: 8664
+	// Token: 0x040021E1 RID: 8673
 	public GameObject Giggle;
 
-	// Token: 0x040021D9 RID: 8665
+	// Token: 0x040021E2 RID: 8674
 	public StudentScript Student;
 
-	// Token: 0x040021DA RID: 8666
+	// Token: 0x040021E3 RID: 8675
 	public bool StudentIsBusy;
 
-	// Token: 0x040021DB RID: 8667
+	// Token: 0x040021E4 RID: 8676
 	public bool Distracted;
 
-	// Token: 0x040021DC RID: 8668
+	// Token: 0x040021E5 RID: 8677
 	public bool BangSnap;
 
-	// Token: 0x040021DD RID: 8669
+	// Token: 0x040021E6 RID: 8678
 	public int Frame;
 }

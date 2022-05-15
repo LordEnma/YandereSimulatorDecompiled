@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x0200059D RID: 1437
+	// Token: 0x0200059E RID: 1438
 	[RequireComponent(typeof(SpriteRenderer))]
 	[RequireComponent(typeof(Animator))]
 	public class YandereController : AIMover
 	{
-		// Token: 0x17000526 RID: 1318
-		// (get) Token: 0x06002472 RID: 9330 RVA: 0x002007F4 File Offset: 0x001FE9F4
+		// Token: 0x17000527 RID: 1319
+		// (get) Token: 0x0600247C RID: 9340 RVA: 0x00201E44 File Offset: 0x00200044
 		public static YandereController Instance
 		{
 			get
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002473 RID: 9331 RVA: 0x00200814 File Offset: 0x001FEA14
+		// Token: 0x0600247D RID: 9341 RVA: 0x00201E64 File Offset: 0x00200064
 		private void Awake()
 		{
 			this.spriteRenderer = base.GetComponent<SpriteRenderer>();
@@ -36,19 +36,19 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x06002474 RID: 9332 RVA: 0x0020087E File Offset: 0x001FEA7E
+		// Token: 0x0600247E RID: 9342 RVA: 0x00201ECE File Offset: 0x002000CE
 		private void OnEnable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Combine(GameController.PauseGame, new BoolParameterEvent(this.Pause));
 		}
 
-		// Token: 0x06002475 RID: 9333 RVA: 0x002008A0 File Offset: 0x001FEAA0
+		// Token: 0x0600247F RID: 9343 RVA: 0x00201EF0 File Offset: 0x002000F0
 		private void OnDisable()
 		{
 			GameController.PauseGame = (BoolParameterEvent)Delegate.Remove(GameController.PauseGame, new BoolParameterEvent(this.Pause));
 		}
 
-		// Token: 0x06002476 RID: 9334 RVA: 0x002008C2 File Offset: 0x001FEAC2
+		// Token: 0x06002480 RID: 9344 RVA: 0x00201F12 File Offset: 0x00200112
 		public void Pause(bool toPause)
 		{
 			this.isPaused = toPause;
@@ -59,7 +59,7 @@ namespace MaidDereMinigame
 			this.animator.speed = (float)(this.isPaused ? 0 : 1);
 		}
 
-		// Token: 0x06002477 RID: 9335 RVA: 0x002008FC File Offset: 0x001FEAFC
+		// Token: 0x06002481 RID: 9345 RVA: 0x00201F4C File Offset: 0x0020014C
 		private void Update()
 		{
 			YandereController.rightButton = false;
@@ -117,7 +117,7 @@ namespace MaidDereMinigame
 			this.interactionIndicator.gameObject.SetActive(false);
 		}
 
-		// Token: 0x06002478 RID: 9336 RVA: 0x00200B74 File Offset: 0x001FED74
+		// Token: 0x06002482 RID: 9346 RVA: 0x002021C4 File Offset: 0x002003C4
 		public override ControlInput GetInput()
 		{
 			if (this.isPaused)
@@ -162,7 +162,7 @@ namespace MaidDereMinigame
 			return controlInput;
 		}
 
-		// Token: 0x06002479 RID: 9337 RVA: 0x00200C70 File Offset: 0x001FEE70
+		// Token: 0x06002483 RID: 9347 RVA: 0x002022C0 File Offset: 0x002004C0
 		public void PickUpTray(Food plate)
 		{
 			this.animator.SetTrigger("GetTray");
@@ -172,7 +172,7 @@ namespace MaidDereMinigame
 			this.plateTransform.gameObject.SetActive(true);
 		}
 
-		// Token: 0x0600247A RID: 9338 RVA: 0x00200CD1 File Offset: 0x001FEED1
+		// Token: 0x06002484 RID: 9348 RVA: 0x00202321 File Offset: 0x00200521
 		public void DropTray()
 		{
 			this.plateTransform.gameObject.SetActive(false);
@@ -180,7 +180,7 @@ namespace MaidDereMinigame
 			this.heldItem = null;
 		}
 
-		// Token: 0x0600247B RID: 9339 RVA: 0x00200CFC File Offset: 0x001FEEFC
+		// Token: 0x06002485 RID: 9349 RVA: 0x0020234C File Offset: 0x0020054C
 		private void OnTriggerEnter2D(Collider2D collision)
 		{
 			AIController component = collision.GetComponent<AIController>();
@@ -199,7 +199,7 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x0600247C RID: 9340 RVA: 0x00200D54 File Offset: 0x001FEF54
+		// Token: 0x06002486 RID: 9350 RVA: 0x002023A4 File Offset: 0x002005A4
 		private void OnTriggerExit2D(Collider2D collision)
 		{
 			AIController component = collision.GetComponent<AIController>();
@@ -210,13 +210,13 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x0600247D RID: 9341 RVA: 0x00200D8C File Offset: 0x001FEF8C
+		// Token: 0x06002487 RID: 9351 RVA: 0x002023DC File Offset: 0x002005DC
 		public void SetPause(bool toPause)
 		{
 			this.isPaused = toPause;
 		}
 
-		// Token: 0x0600247E RID: 9342 RVA: 0x00200D98 File Offset: 0x001FEF98
+		// Token: 0x06002488 RID: 9352 RVA: 0x002023E8 File Offset: 0x002005E8
 		public void PositionTray(string point)
 		{
 			string[] array = point.Split(new char[]
@@ -231,55 +231,55 @@ namespace MaidDereMinigame
 			this.plateTransform.localPosition = new Vector3(this.spriteRenderer.flipX ? (-num) : num, y, 0f);
 		}
 
-		// Token: 0x04004CDD RID: 19677
+		// Token: 0x04004D04 RID: 19716
 		private static YandereController instance;
 
-		// Token: 0x04004CDE RID: 19678
+		// Token: 0x04004D05 RID: 19717
 		public static bool leftButton;
 
-		// Token: 0x04004CDF RID: 19679
+		// Token: 0x04004D06 RID: 19718
 		public static bool rightButton;
 
-		// Token: 0x04004CE0 RID: 19680
+		// Token: 0x04004D07 RID: 19719
 		public Transform leftBounds;
 
-		// Token: 0x04004CE1 RID: 19681
+		// Token: 0x04004D08 RID: 19720
 		public Transform rightBounds;
 
-		// Token: 0x04004CE2 RID: 19682
+		// Token: 0x04004D09 RID: 19721
 		public Transform interactionIndicator;
 
-		// Token: 0x04004CE3 RID: 19683
+		// Token: 0x04004D0A RID: 19722
 		public Transform plateTransform;
 
-		// Token: 0x04004CE4 RID: 19684
+		// Token: 0x04004D0B RID: 19723
 		public Food heldItem;
 
-		// Token: 0x04004CE5 RID: 19685
+		// Token: 0x04004D0C RID: 19724
 		public RuntimeAnimatorController EightiesAnimator;
 
-		// Token: 0x04004CE6 RID: 19686
+		// Token: 0x04004D0D RID: 19725
 		private SpriteRenderer spriteRenderer;
 
-		// Token: 0x04004CE7 RID: 19687
+		// Token: 0x04004D0E RID: 19726
 		private Animator animator;
 
-		// Token: 0x04004CE8 RID: 19688
+		// Token: 0x04004D0F RID: 19727
 		private AIController aiTarget;
 
-		// Token: 0x04004CE9 RID: 19689
+		// Token: 0x04004D10 RID: 19728
 		public bool leftButtonPast;
 
-		// Token: 0x04004CEA RID: 19690
+		// Token: 0x04004D11 RID: 19729
 		public bool rightButtonPast;
 
-		// Token: 0x04004CEB RID: 19691
+		// Token: 0x04004D12 RID: 19730
 		private bool isPaused;
 
-		// Token: 0x04004CEC RID: 19692
+		// Token: 0x04004D13 RID: 19731
 		private bool LastKnownFlip;
 
-		// Token: 0x04004CED RID: 19693
+		// Token: 0x04004D14 RID: 19732
 		public string LastKnownPoints;
 	}
 }

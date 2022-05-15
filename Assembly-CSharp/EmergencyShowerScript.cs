@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002A4 RID: 676
+// Token: 0x020002A5 RID: 677
 public class EmergencyShowerScript : MonoBehaviour
 {
-	// Token: 0x0600142C RID: 5164 RVA: 0x000C0BE4 File Offset: 0x000BEDE4
+	// Token: 0x0600142E RID: 5166 RVA: 0x000C0E58 File Offset: 0x000BF058
 	private void Update()
 	{
 		if (this.Yandere.Bloodiness > 0f && this.Yandere.PickUp != null && this.Yandere.PickUp.Clothing && !this.Yandere.PickUp.Evidence && this.Yandere.PickUp.Gloves == null)
@@ -113,48 +113,48 @@ public class EmergencyShowerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001E5B RID: 7771
+	// Token: 0x04001E62 RID: 7778
 	public FoldedUniformScript CleanUniform;
 
-	// Token: 0x04001E5C RID: 7772
+	// Token: 0x04001E63 RID: 7779
 	public SkinnedMeshRenderer Curtain;
 
-	// Token: 0x04001E5D RID: 7773
+	// Token: 0x04001E64 RID: 7780
 	public TallLockerScript TallLocker;
 
-	// Token: 0x04001E5E RID: 7774
+	// Token: 0x04001E65 RID: 7781
 	public GameObject CensorSteam;
 
-	// Token: 0x04001E5F RID: 7775
+	// Token: 0x04001E66 RID: 7782
 	public YandereScript Yandere;
 
-	// Token: 0x04001E60 RID: 7776
+	// Token: 0x04001E67 RID: 7783
 	public PromptScript Prompt;
 
-	// Token: 0x04001E61 RID: 7777
+	// Token: 0x04001E68 RID: 7784
 	public Transform BatheSpot;
 
-	// Token: 0x04001E62 RID: 7778
+	// Token: 0x04001E69 RID: 7785
 	public float OpenValue;
 
-	// Token: 0x04001E63 RID: 7779
+	// Token: 0x04001E6A RID: 7786
 	public float Timer;
 
-	// Token: 0x04001E64 RID: 7780
+	// Token: 0x04001E6B RID: 7787
 	public int Phase = 1;
 
-	// Token: 0x04001E65 RID: 7781
+	// Token: 0x04001E6C RID: 7788
 	public bool Bathing;
 
-	// Token: 0x04001E66 RID: 7782
+	// Token: 0x04001E6D RID: 7789
 	public AudioSource MyAudio;
 
-	// Token: 0x04001E67 RID: 7783
+	// Token: 0x04001E6E RID: 7790
 	public AudioClip CurtainClose;
 
-	// Token: 0x04001E68 RID: 7784
+	// Token: 0x04001E6F RID: 7791
 	public AudioClip CurtainOpen;
 
-	// Token: 0x04001E69 RID: 7785
+	// Token: 0x04001E70 RID: 7792
 	public AudioClip ClothRustle;
 }

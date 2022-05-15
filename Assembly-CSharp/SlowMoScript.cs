@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000432 RID: 1074
+// Token: 0x02000433 RID: 1075
 public class SlowMoScript : MonoBehaviour
 {
-	// Token: 0x06001CE5 RID: 7397 RVA: 0x00157BC4 File Offset: 0x00155DC4
+	// Token: 0x06001CEB RID: 7403 RVA: 0x00158878 File Offset: 0x00156A78
 	private void Update()
 	{
 		if (Input.GetKeyDown("s"))
@@ -37,9 +37,9 @@ public class SlowMoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003410 RID: 13328
+	// Token: 0x04003425 RID: 13349
 	public bool Spinning;
 
-	// Token: 0x04003411 RID: 13329
+	// Token: 0x04003426 RID: 13350
 	public float Speed;
 }

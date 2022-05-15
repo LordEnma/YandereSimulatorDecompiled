@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000F3 RID: 243
+// Token: 0x020000F4 RID: 244
 public class BookbagScript : MonoBehaviour
 {
-	// Token: 0x06000A59 RID: 2649 RVA: 0x0005C3A4 File Offset: 0x0005A5A4
+	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C6C4 File Offset: 0x0005A8C4
 	private void Start()
 	{
 		this.MyRigidbody.useGravity = false;
@@ -16,7 +16,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A5A RID: 2650 RVA: 0x0005C3F8 File Offset: 0x0005A5F8
+	// Token: 0x06000A5C RID: 2652 RVA: 0x0005C718 File Offset: 0x0005A918
 	private void Update()
 	{
 		if (this.Prompt.Yandere.PickUp != null || this.ConcealedPickup != null)
@@ -35,6 +35,7 @@ public class BookbagScript : MonoBehaviour
 					else if (this.Prompt.Yandere.PickUp.TrashCan == null && !this.Prompt.Yandere.PickUp.JerryCan && !this.Prompt.Yandere.PickUp.Mop && !this.Prompt.Yandere.PickUp.Bucket && !this.Prompt.Yandere.PickUp.Bleach && !this.Prompt.Yandere.PickUp.TooBig)
 					{
 						this.ConcealedPickup = this.Prompt.Yandere.PickUp;
+						this.ConcealedPickup.InsideBookbag = true;
 						this.ConcealedPickup.Drop();
 						this.ConcealedPickup.gameObject.SetActive(false);
 						if (this.ConcealedPickup.Prompt.Text[3] != "")
@@ -57,6 +58,7 @@ public class BookbagScript : MonoBehaviour
 					this.ConcealedPickup.transform.position = base.transform.position;
 					this.ConcealedPickup.gameObject.SetActive(true);
 					this.ConcealedPickup.Prompt.Circle[3].fillAmount = -1f;
+					this.ConcealedPickup.InsideBookbag = false;
 					this.ConcealedPickup = null;
 					this.Prompt.Label[0].text = "     Conceal Item";
 				}
@@ -72,7 +74,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C6F0 File Offset: 0x0005A8F0
+	// Token: 0x06000A5D RID: 2653 RVA: 0x0005CA2C File Offset: 0x0005AC2C
 	public void Drop()
 	{
 		this.Worn = false;
@@ -85,7 +87,7 @@ public class BookbagScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x06000A5C RID: 2652 RVA: 0x0005C760 File Offset: 0x0005A960
+	// Token: 0x06000A5E RID: 2654 RVA: 0x0005CA9C File Offset: 0x0005AC9C
 	public void Wear()
 	{
 		this.Worn = true;
@@ -102,27 +104,27 @@ public class BookbagScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x04000C0A RID: 3082
+	// Token: 0x04000C0F RID: 3087
 	public PickUpScript ConcealedPickup;
 
-	// Token: 0x04000C0B RID: 3083
+	// Token: 0x04000C10 RID: 3088
 	public Rigidbody MyRigidbody;
 
-	// Token: 0x04000C0C RID: 3084
+	// Token: 0x04000C11 RID: 3089
 	public PromptScript Prompt;
 
-	// Token: 0x04000C0D RID: 3085
+	// Token: 0x04000C12 RID: 3090
 	public Texture EightiesBookBagTexture;
 
-	// Token: 0x04000C0E RID: 3086
+	// Token: 0x04000C13 RID: 3091
 	public Mesh EightiesBookBag;
 
-	// Token: 0x04000C0F RID: 3087
+	// Token: 0x04000C14 RID: 3092
 	public Renderer MyRenderer;
 
-	// Token: 0x04000C10 RID: 3088
+	// Token: 0x04000C15 RID: 3093
 	public MeshFilter MyMesh;
 
-	// Token: 0x04000C11 RID: 3089
+	// Token: 0x04000C16 RID: 3094
 	public bool Worn;
 }

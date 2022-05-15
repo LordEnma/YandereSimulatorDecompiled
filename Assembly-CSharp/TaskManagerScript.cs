@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000471 RID: 1137
+// Token: 0x02000472 RID: 1138
 public class TaskManagerScript : MonoBehaviour
 {
-	// Token: 0x06001ECD RID: 7885 RVA: 0x001B3208 File Offset: 0x001B1408
+	// Token: 0x06001ED5 RID: 7893 RVA: 0x001B4380 File Offset: 0x001B2580
 	public void Start()
 	{
 		for (int i = 1; i < 101; i++)
@@ -30,7 +30,7 @@ public class TaskManagerScript : MonoBehaviour
 		this.Initialized = true;
 	}
 
-	// Token: 0x06001ECE RID: 7886 RVA: 0x001B329C File Offset: 0x001B149C
+	// Token: 0x06001ED6 RID: 7894 RVA: 0x001B4414 File Offset: 0x001B2614
 	public void CheckTaskPickups()
 	{
 		if (!this.StudentManager.Eighties)
@@ -68,7 +68,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ECF RID: 7887 RVA: 0x001B3460 File Offset: 0x001B1660
+	// Token: 0x06001ED7 RID: 7895 RVA: 0x001B45D8 File Offset: 0x001B27D8
 	public void UpdateTaskStatus()
 	{
 		if (!this.StudentManager.Eighties)
@@ -281,7 +281,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ED0 RID: 7888 RVA: 0x001B3CD4 File Offset: 0x001B1ED4
+	// Token: 0x06001ED8 RID: 7896 RVA: 0x001B4E4C File Offset: 0x001B304C
 	public void SaveTaskStatuses()
 	{
 		for (int i = 1; i < 101; i++)
@@ -294,30 +294,30 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003FDC RID: 16348
+	// Token: 0x04003FFA RID: 16378
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003FDD RID: 16349
+	// Token: 0x04003FFB RID: 16379
 	public YandereScript Yandere;
 
-	// Token: 0x04003FDE RID: 16350
+	// Token: 0x04003FFC RID: 16380
 	public Transform MuddyFootprintParent;
 
-	// Token: 0x04003FDF RID: 16351
+	// Token: 0x04003FFD RID: 16381
 	public GameObject[] TaskObjects;
 
-	// Token: 0x04003FE0 RID: 16352
+	// Token: 0x04003FFE RID: 16382
 	public PromptScript[] Prompts;
 
-	// Token: 0x04003FE1 RID: 16353
+	// Token: 0x04003FFF RID: 16383
 	public bool[] GirlsQuestioned;
 
-	// Token: 0x04003FE2 RID: 16354
+	// Token: 0x04004000 RID: 16384
 	public GameObject FixedDummy;
 
-	// Token: 0x04003FE3 RID: 16355
+	// Token: 0x04004001 RID: 16385
 	public int[] TaskStatus;
 
-	// Token: 0x04003FE4 RID: 16356
+	// Token: 0x04004002 RID: 16386
 	public bool Initialized;
 }

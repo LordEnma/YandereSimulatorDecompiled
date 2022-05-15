@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000298 RID: 664
+// Token: 0x02000299 RID: 665
 [AddComponentMenu("Dynamic Bone/Dynamic Bone")]
 public class DynamicBone : MonoBehaviour
 {
-	// Token: 0x060013E4 RID: 5092 RVA: 0x000BD078 File Offset: 0x000BB278
+	// Token: 0x060013E6 RID: 5094 RVA: 0x000BD2EC File Offset: 0x000BB4EC
 	private void Start()
 	{
 		if (SceneManager.GetActiveScene().name == "PortraitScene")
@@ -38,7 +38,7 @@ public class DynamicBone : MonoBehaviour
 		this.SetupParticles();
 	}
 
-	// Token: 0x060013E5 RID: 5093 RVA: 0x000BD123 File Offset: 0x000BB323
+	// Token: 0x060013E7 RID: 5095 RVA: 0x000BD397 File Offset: 0x000BB597
 	private void FixedUpdate()
 	{
 		if (this.m_UpdateMode == DynamicBone.UpdateMode.AnimatePhysics)
@@ -47,7 +47,7 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013E6 RID: 5094 RVA: 0x000BD134 File Offset: 0x000BB334
+	// Token: 0x060013E8 RID: 5096 RVA: 0x000BD3A8 File Offset: 0x000BB5A8
 	private void Update()
 	{
 		if (this.m_UpdateMode != DynamicBone.UpdateMode.AnimatePhysics)
@@ -56,7 +56,7 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013E7 RID: 5095 RVA: 0x000BD148 File Offset: 0x000BB348
+	// Token: 0x060013E9 RID: 5097 RVA: 0x000BD3BC File Offset: 0x000BB5BC
 	private void LateUpdate()
 	{
 		this.CheckTimer += Time.deltaTime;
@@ -75,7 +75,7 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013E8 RID: 5096 RVA: 0x000BD1B7 File Offset: 0x000BB3B7
+	// Token: 0x060013EA RID: 5098 RVA: 0x000BD42B File Offset: 0x000BB62B
 	private void PreUpdate()
 	{
 		if (this.m_Weight > 0f && (!this.m_DistantDisable || !this.m_DistantDisabled))
@@ -84,7 +84,7 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013E9 RID: 5097 RVA: 0x000BD1DC File Offset: 0x000BB3DC
+	// Token: 0x060013EB RID: 5099 RVA: 0x000BD450 File Offset: 0x000BB650
 	private void CheckDistance()
 	{
 		Transform transform = this.m_ReferenceObject;
@@ -106,19 +106,19 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013EA RID: 5098 RVA: 0x000BD263 File Offset: 0x000BB463
+	// Token: 0x060013EC RID: 5100 RVA: 0x000BD4D7 File Offset: 0x000BB6D7
 	private void OnEnable()
 	{
 		this.ResetParticlesPosition();
 	}
 
-	// Token: 0x060013EB RID: 5099 RVA: 0x000BD26B File Offset: 0x000BB46B
+	// Token: 0x060013ED RID: 5101 RVA: 0x000BD4DF File Offset: 0x000BB6DF
 	private void OnDisable()
 	{
 		this.InitTransforms();
 	}
 
-	// Token: 0x060013EC RID: 5100 RVA: 0x000BD274 File Offset: 0x000BB474
+	// Token: 0x060013EE RID: 5102 RVA: 0x000BD4E8 File Offset: 0x000BB6E8
 	private void OnValidate()
 	{
 		this.m_UpdateRate = Mathf.Max(this.m_UpdateRate, 0f);
@@ -134,7 +134,7 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013ED RID: 5101 RVA: 0x000BD30C File Offset: 0x000BB50C
+	// Token: 0x060013EF RID: 5103 RVA: 0x000BD580 File Offset: 0x000BB780
 	private void OnDrawGizmosSelected()
 	{
 		if (!base.enabled || this.m_Root == null)
@@ -162,7 +162,7 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013EE RID: 5102 RVA: 0x000BD3D5 File Offset: 0x000BB5D5
+	// Token: 0x060013F0 RID: 5104 RVA: 0x000BD649 File Offset: 0x000BB849
 	public void SetWeight(float w)
 	{
 		if (this.m_Weight != w)
@@ -179,13 +179,13 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013EF RID: 5103 RVA: 0x000BD40A File Offset: 0x000BB60A
+	// Token: 0x060013F1 RID: 5105 RVA: 0x000BD67E File Offset: 0x000BB87E
 	public float GetWeight()
 	{
 		return this.m_Weight;
 	}
 
-	// Token: 0x060013F0 RID: 5104 RVA: 0x000BD414 File Offset: 0x000BB614
+	// Token: 0x060013F2 RID: 5106 RVA: 0x000BD688 File Offset: 0x000BB888
 	private void UpdateDynamicBones(float t)
 	{
 		if (this.m_Root == null)
@@ -227,7 +227,7 @@ public class DynamicBone : MonoBehaviour
 		this.ApplyParticlesToTransforms();
 	}
 
-	// Token: 0x060013F1 RID: 5105 RVA: 0x000BD508 File Offset: 0x000BB708
+	// Token: 0x060013F3 RID: 5107 RVA: 0x000BD77C File Offset: 0x000BB97C
 	private void SetupParticles()
 	{
 		this.m_Particles.Clear();
@@ -281,7 +281,7 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013F2 RID: 5106 RVA: 0x000BD764 File Offset: 0x000BB964
+	// Token: 0x060013F4 RID: 5108 RVA: 0x000BD9D8 File Offset: 0x000BBBD8
 	private void AppendParticles(Transform b, int parentIndex, float boneLength)
 	{
 		DynamicBone.Particle particle = new DynamicBone.Particle();
@@ -350,7 +350,7 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013F3 RID: 5107 RVA: 0x000BD994 File Offset: 0x000BBB94
+	// Token: 0x060013F5 RID: 5109 RVA: 0x000BDC08 File Offset: 0x000BBE08
 	private void InitTransforms()
 	{
 		for (int i = 0; i < this.m_Particles.Count; i++)
@@ -364,7 +364,7 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013F4 RID: 5108 RVA: 0x000BD9F4 File Offset: 0x000BBBF4
+	// Token: 0x060013F6 RID: 5110 RVA: 0x000BDC68 File Offset: 0x000BBE68
 	private void ResetParticlesPosition()
 	{
 		for (int i = 0; i < this.m_Particles.Count; i++)
@@ -383,7 +383,7 @@ public class DynamicBone : MonoBehaviour
 		this.m_ObjectPrevPosition = base.transform.position;
 	}
 
-	// Token: 0x060013F5 RID: 5109 RVA: 0x000BDA94 File Offset: 0x000BBC94
+	// Token: 0x060013F7 RID: 5111 RVA: 0x000BDD08 File Offset: 0x000BBF08
 	private void UpdateParticles1()
 	{
 		Vector3 vector = this.m_Gravity;
@@ -410,7 +410,7 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013F6 RID: 5110 RVA: 0x000BDBCC File Offset: 0x000BBDCC
+	// Token: 0x060013F8 RID: 5112 RVA: 0x000BDE40 File Offset: 0x000BC040
 	private void UpdateParticles2()
 	{
 		Plane plane = default(Plane);
@@ -491,7 +491,7 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013F7 RID: 5111 RVA: 0x000BDECC File Offset: 0x000BC0CC
+	// Token: 0x060013F9 RID: 5113 RVA: 0x000BE140 File Offset: 0x000BC340
 	private void SkipUpdateParticles()
 	{
 		for (int i = 0; i < this.m_Particles.Count; i++)
@@ -548,13 +548,13 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013F8 RID: 5112 RVA: 0x000BE0D1 File Offset: 0x000BC2D1
+	// Token: 0x060013FA RID: 5114 RVA: 0x000BE345 File Offset: 0x000BC545
 	private static Vector3 MirrorVector(Vector3 v, Vector3 axis)
 	{
 		return v - axis * (Vector3.Dot(v, axis) * 2f);
 	}
 
-	// Token: 0x060013F9 RID: 5113 RVA: 0x000BE0EC File Offset: 0x000BC2EC
+	// Token: 0x060013FB RID: 5115 RVA: 0x000BE360 File Offset: 0x000BC560
 	private void ApplyParticlesToTransforms()
 	{
 		for (int i = 1; i < this.m_Particles.Count; i++)
@@ -583,176 +583,176 @@ public class DynamicBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001DBD RID: 7613
+	// Token: 0x04001DC4 RID: 7620
 	public Transform m_Root;
 
-	// Token: 0x04001DBE RID: 7614
+	// Token: 0x04001DC5 RID: 7621
 	public float m_UpdateRate = 60f;
 
-	// Token: 0x04001DBF RID: 7615
+	// Token: 0x04001DC6 RID: 7622
 	public DynamicBone.UpdateMode m_UpdateMode;
 
-	// Token: 0x04001DC0 RID: 7616
+	// Token: 0x04001DC7 RID: 7623
 	[Range(0f, 1f)]
 	public float m_Damping = 0.1f;
 
-	// Token: 0x04001DC1 RID: 7617
+	// Token: 0x04001DC8 RID: 7624
 	public AnimationCurve m_DampingDistrib;
 
-	// Token: 0x04001DC2 RID: 7618
+	// Token: 0x04001DC9 RID: 7625
 	[Range(0f, 1f)]
 	public float m_Elasticity = 0.1f;
 
-	// Token: 0x04001DC3 RID: 7619
+	// Token: 0x04001DCA RID: 7626
 	public AnimationCurve m_ElasticityDistrib;
 
-	// Token: 0x04001DC4 RID: 7620
+	// Token: 0x04001DCB RID: 7627
 	[Range(0f, 1f)]
 	public float m_Stiffness = 0.1f;
 
-	// Token: 0x04001DC5 RID: 7621
+	// Token: 0x04001DCC RID: 7628
 	public AnimationCurve m_StiffnessDistrib;
 
-	// Token: 0x04001DC6 RID: 7622
+	// Token: 0x04001DCD RID: 7629
 	[Range(0f, 1f)]
 	public float m_Inert;
 
-	// Token: 0x04001DC7 RID: 7623
+	// Token: 0x04001DCE RID: 7630
 	public AnimationCurve m_InertDistrib;
 
-	// Token: 0x04001DC8 RID: 7624
+	// Token: 0x04001DCF RID: 7631
 	public float m_Radius;
 
-	// Token: 0x04001DC9 RID: 7625
+	// Token: 0x04001DD0 RID: 7632
 	public AnimationCurve m_RadiusDistrib;
 
-	// Token: 0x04001DCA RID: 7626
+	// Token: 0x04001DD1 RID: 7633
 	public float m_EndLength;
 
-	// Token: 0x04001DCB RID: 7627
+	// Token: 0x04001DD2 RID: 7634
 	public Vector3 m_EndOffset = Vector3.zero;
 
-	// Token: 0x04001DCC RID: 7628
+	// Token: 0x04001DD3 RID: 7635
 	public Vector3 m_Gravity = Vector3.zero;
 
-	// Token: 0x04001DCD RID: 7629
+	// Token: 0x04001DD4 RID: 7636
 	public Vector3 m_Force = Vector3.zero;
 
-	// Token: 0x04001DCE RID: 7630
+	// Token: 0x04001DD5 RID: 7637
 	public List<DynamicBoneCollider> m_Colliders;
 
-	// Token: 0x04001DCF RID: 7631
+	// Token: 0x04001DD6 RID: 7638
 	public List<Transform> m_Exclusions;
 
-	// Token: 0x04001DD0 RID: 7632
+	// Token: 0x04001DD7 RID: 7639
 	public DynamicBone.FreezeAxis m_FreezeAxis;
 
-	// Token: 0x04001DD1 RID: 7633
+	// Token: 0x04001DD8 RID: 7640
 	public bool m_DistantDisable;
 
-	// Token: 0x04001DD2 RID: 7634
+	// Token: 0x04001DD9 RID: 7641
 	public Transform m_ReferenceObject;
 
-	// Token: 0x04001DD3 RID: 7635
+	// Token: 0x04001DDA RID: 7642
 	public float m_DistanceToObject = 20f;
 
-	// Token: 0x04001DD4 RID: 7636
+	// Token: 0x04001DDB RID: 7643
 	private Vector3 m_LocalGravity = Vector3.zero;
 
-	// Token: 0x04001DD5 RID: 7637
+	// Token: 0x04001DDC RID: 7644
 	private Vector3 m_ObjectMove = Vector3.zero;
 
-	// Token: 0x04001DD6 RID: 7638
+	// Token: 0x04001DDD RID: 7645
 	private Vector3 m_ObjectPrevPosition = Vector3.zero;
 
-	// Token: 0x04001DD7 RID: 7639
+	// Token: 0x04001DDE RID: 7646
 	private float m_BoneTotalLength;
 
-	// Token: 0x04001DD8 RID: 7640
+	// Token: 0x04001DDF RID: 7647
 	private float m_ObjectScale = 1f;
 
-	// Token: 0x04001DD9 RID: 7641
+	// Token: 0x04001DE0 RID: 7648
 	private float m_Time;
 
-	// Token: 0x04001DDA RID: 7642
+	// Token: 0x04001DE1 RID: 7649
 	private float m_Weight = 1f;
 
-	// Token: 0x04001DDB RID: 7643
+	// Token: 0x04001DE2 RID: 7650
 	private bool m_DistantDisabled;
 
-	// Token: 0x04001DDC RID: 7644
+	// Token: 0x04001DE3 RID: 7651
 	private Camera MainCamera;
 
-	// Token: 0x04001DDD RID: 7645
+	// Token: 0x04001DE4 RID: 7652
 	private float CheckTimer;
 
-	// Token: 0x04001DDE RID: 7646
+	// Token: 0x04001DE5 RID: 7653
 	private List<DynamicBone.Particle> m_Particles = new List<DynamicBone.Particle>();
 
-	// Token: 0x02000660 RID: 1632
+	// Token: 0x02000661 RID: 1633
 	public enum UpdateMode
 	{
-		// Token: 0x04004FF8 RID: 20472
+		// Token: 0x0400501F RID: 20511
 		Normal,
-		// Token: 0x04004FF9 RID: 20473
+		// Token: 0x04005020 RID: 20512
 		AnimatePhysics,
-		// Token: 0x04004FFA RID: 20474
+		// Token: 0x04005021 RID: 20513
 		UnscaledTime
 	}
 
-	// Token: 0x02000661 RID: 1633
+	// Token: 0x02000662 RID: 1634
 	public enum FreezeAxis
 	{
-		// Token: 0x04004FFC RID: 20476
+		// Token: 0x04005023 RID: 20515
 		None,
-		// Token: 0x04004FFD RID: 20477
+		// Token: 0x04005024 RID: 20516
 		X,
-		// Token: 0x04004FFE RID: 20478
+		// Token: 0x04005025 RID: 20517
 		Y,
-		// Token: 0x04004FFF RID: 20479
+		// Token: 0x04005026 RID: 20518
 		Z
 	}
 
-	// Token: 0x02000662 RID: 1634
+	// Token: 0x02000663 RID: 1635
 	private class Particle
 	{
-		// Token: 0x04005000 RID: 20480
+		// Token: 0x04005027 RID: 20519
 		public Transform m_Transform;
 
-		// Token: 0x04005001 RID: 20481
+		// Token: 0x04005028 RID: 20520
 		public int m_ParentIndex = -1;
 
-		// Token: 0x04005002 RID: 20482
+		// Token: 0x04005029 RID: 20521
 		public float m_Damping;
 
-		// Token: 0x04005003 RID: 20483
+		// Token: 0x0400502A RID: 20522
 		public float m_Elasticity;
 
-		// Token: 0x04005004 RID: 20484
+		// Token: 0x0400502B RID: 20523
 		public float m_Stiffness;
 
-		// Token: 0x04005005 RID: 20485
+		// Token: 0x0400502C RID: 20524
 		public float m_Inert;
 
-		// Token: 0x04005006 RID: 20486
+		// Token: 0x0400502D RID: 20525
 		public float m_Radius;
 
-		// Token: 0x04005007 RID: 20487
+		// Token: 0x0400502E RID: 20526
 		public float m_BoneLength;
 
-		// Token: 0x04005008 RID: 20488
+		// Token: 0x0400502F RID: 20527
 		public Vector3 m_Position = Vector3.zero;
 
-		// Token: 0x04005009 RID: 20489
+		// Token: 0x04005030 RID: 20528
 		public Vector3 m_PrevPosition = Vector3.zero;
 
-		// Token: 0x0400500A RID: 20490
+		// Token: 0x04005031 RID: 20529
 		public Vector3 m_EndOffset = Vector3.zero;
 
-		// Token: 0x0400500B RID: 20491
+		// Token: 0x04005032 RID: 20530
 		public Vector3 m_InitLocalPosition = Vector3.zero;
 
-		// Token: 0x0400500C RID: 20492
+		// Token: 0x04005033 RID: 20531
 		public Quaternion m_InitLocalRotation = Quaternion.identity;
 	}
 }

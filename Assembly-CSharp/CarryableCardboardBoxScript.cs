@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000238 RID: 568
+// Token: 0x02000239 RID: 569
 public class CarryableCardboardBoxScript : MonoBehaviour
 {
-	// Token: 0x06001230 RID: 4656 RVA: 0x0008BD68 File Offset: 0x00089F68
+	// Token: 0x06001232 RID: 4658 RVA: 0x0008C094 File Offset: 0x0008A294
 	private void Update()
 	{
 		if (!this.Closed)
@@ -61,21 +61,21 @@ public class CarryableCardboardBoxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040016E7 RID: 5863
+	// Token: 0x040016ED RID: 5869
 	public WeaponScript MyCutter;
 
-	// Token: 0x040016E8 RID: 5864
+	// Token: 0x040016EE RID: 5870
 	public PickUpScript PickUp;
 
-	// Token: 0x040016E9 RID: 5865
+	// Token: 0x040016EF RID: 5871
 	public PromptScript Prompt;
 
-	// Token: 0x040016EA RID: 5866
+	// Token: 0x040016F0 RID: 5872
 	public MeshFilter MyRenderer;
 
-	// Token: 0x040016EB RID: 5867
+	// Token: 0x040016F1 RID: 5873
 	public Mesh ClosedMesh;
 
-	// Token: 0x040016EC RID: 5868
+	// Token: 0x040016F2 RID: 5874
 	public bool Closed;
 }

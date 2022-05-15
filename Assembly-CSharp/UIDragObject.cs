@@ -348,15 +348,15 @@ public class UIDragObject : MonoBehaviour
 	// Token: 0x0400034E RID: 846
 	private bool mPressed;
 
-	// Token: 0x020005D4 RID: 1492
+	// Token: 0x020005D5 RID: 1493
 	[DoNotObfuscateNGUI]
 	public enum DragEffect
 	{
-		// Token: 0x04004E10 RID: 19984
+		// Token: 0x04004E37 RID: 20023
 		None,
-		// Token: 0x04004E11 RID: 19985
+		// Token: 0x04004E38 RID: 20024
 		Momentum,
-		// Token: 0x04004E12 RID: 19986
+		// Token: 0x04004E39 RID: 20025
 		MomentumAndSpring
 	}
 }

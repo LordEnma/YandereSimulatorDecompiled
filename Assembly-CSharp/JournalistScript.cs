@@ -2,10 +2,10 @@
 using Pathfinding;
 using UnityEngine;
 
-// Token: 0x02000344 RID: 836
+// Token: 0x02000345 RID: 837
 public class JournalistScript : MonoBehaviour
 {
-	// Token: 0x06001920 RID: 6432 RVA: 0x000FC928 File Offset: 0x000FAB28
+	// Token: 0x06001925 RID: 6437 RVA: 0x000FCC2C File Offset: 0x000FAE2C
 	private void Start()
 	{
 		if (!GameGlobals.Eighties || GameGlobals.EightiesTutorial || DateGlobals.Week > 10)
@@ -19,165 +19,243 @@ public class JournalistScript : MonoBehaviour
 		this.PepperSpray.SetActive(false);
 	}
 
-	// Token: 0x06001921 RID: 6433 RVA: 0x000FC97C File Offset: 0x000FAB7C
+	// Token: 0x06001926 RID: 6438 RVA: 0x000FCC80 File Offset: 0x000FAE80
 	private void Update()
 	{
-		if (base.transform.position.z > -95f)
+		this.DistanceToDestination = Vector3.Distance(base.transform.position, this.Pathfinding.target.position);
+		this.DistanceToPlayer = Vector3.Distance(base.transform.position, this.Yandere.transform.position);
+		if (this.Flee)
 		{
-			this.DistanceToDestination = Vector3.Distance(base.transform.position, this.Pathfinding.target.position);
-			this.DistanceToPlayer = Vector3.Distance(base.transform.position, this.Yandere.transform.position);
-			if (!this.Chasing)
+			if (this.DistanceToDestination < 2.2f)
 			{
-				if (this.DistanceToPlayer < 5f && this.CanSeeYandere())
+				this.Yandere.StudentManager.Police.Show = true;
+				base.gameObject.SetActive(false);
+				return;
+			}
+		}
+		else if (this.Freeze)
+		{
+			this.MyAnimation.CrossFade("readyToFight_00");
+			this.Pathfinding.canSearch = false;
+			this.Pathfinding.canMove = false;
+			if (this.Corpse != null)
+			{
+				this.FreezeTimer += Time.deltaTime;
+				this.targetRotation = Quaternion.LookRotation(new Vector3(this.Corpse.Student.Hips.position.x, base.transform.position.y, this.Corpse.Student.Hips.position.z) - base.transform.position);
+				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
+				if (this.FreezeTimer > 5f)
 				{
-					this.MyAnimation.CrossFade("idleTough_00");
-					this.Pathfinding.canSearch = false;
-					this.Pathfinding.canMove = false;
-					this.targetRotation = Quaternion.LookRotation(this.Yandere.transform.position - base.transform.position);
-					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
-					if (this.DistanceToPlayer > 1f)
-					{
-						this.SpeechTimer -= Time.deltaTime;
-						if (this.SpeechTimer <= 0f && this.SpeechID < this.SpeechLines.Length)
-						{
-							AudioSource.PlayClipAtPoint(this.SpeechClips[this.SpeechID], base.transform.position);
-							if (this.Subtitle.EventSubtitle.text == "" || this.Subtitle.EventSubtitle.transform.localScale.x < 1f)
-							{
-								this.Subtitle.CustomText = this.SpeechLines[this.SpeechID];
-								this.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 4f);
-							}
-							this.SpeechTimer = 5f;
-							this.SpeechID++;
-						}
-					}
-					else
-					{
-						this.ThreatTimer -= Time.deltaTime;
-						if (this.ThreatTimer <= 0f && this.ThreatID < this.ThreatLines.Length)
-						{
-							AudioSource.PlayClipAtPoint(this.ThreatClips[this.ThreatID], base.transform.position);
-							if (this.Subtitle.EventSubtitle.text == "" || this.Subtitle.EventSubtitle.transform.localScale.x < 1f)
-							{
-								this.Subtitle.PreviousSubtitle = SubtitleType.AcceptFood;
-								this.Subtitle.CustomText = this.ThreatLines[this.ThreatID];
-								this.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 4f);
-							}
-							this.ThreatTimer = 5f;
-							this.ThreatID++;
-						}
-						if (this.Yandere.Armed)
-						{
-							this.Chase();
-						}
-					}
-				}
-				else if (this.DistanceToDestination < 1f)
-				{
-					this.MyAnimation.CrossFade("leaning_00");
-					this.Pathfinding.canSearch = false;
-					this.Pathfinding.canMove = false;
-					this.targetRotation = Quaternion.LookRotation(this.LookTarget.position - base.transform.position);
-					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
-					this.Timer += Time.deltaTime;
-					if (this.Timer > 5f)
-					{
-						if (this.Pathfinding.target != this.Destinations[1])
-						{
-							this.Pathfinding.target = this.Destinations[1];
-						}
-						else
-						{
-							this.Pathfinding.target = this.Destinations[2];
-						}
-						this.Timer = 0f;
-					}
-				}
-				else
-				{
-					this.MyAnimation.CrossFade("walkTough_00");
-					this.Pathfinding.canSearch = true;
-					this.Pathfinding.canMove = true;
-				}
-				if (this.DistanceToPlayer < 15f && this.CanSeeYandere())
-				{
-					this.CheckBehavior();
+					this.RunAway();
 					return;
 				}
 			}
 			else
 			{
-				this.targetRotation = Quaternion.LookRotation(base.transform.position - this.Yandere.transform.position);
-				this.Yandere.transform.rotation = Quaternion.Slerp(this.Yandere.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
-				this.ChaseTimer += Time.deltaTime;
-				if (this.ChaseTimer > 1f)
+				this.targetRotation = Quaternion.LookRotation(this.Yandere.StudentManager.MindBrokenSlave.transform.position - base.transform.position);
+				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
+				if (!this.Yandere.StudentManager.MindBrokenSlave.Alive)
 				{
-					if (this.DistanceToPlayer > 1f)
+					this.RunAway();
+					return;
+				}
+			}
+		}
+		else if (!this.Chasing)
+		{
+			if (this.Yandere.transform.position.z < -51f)
+			{
+				this.Pathfinding.target = this.Yandere.transform;
+			}
+			else if (this.Pathfinding.target == this.Yandere.transform)
+			{
+				this.Pathfinding.target = this.Destinations[0];
+			}
+			if (this.DistanceToPlayer < 5f && this.CanSeeYandere())
+			{
+				this.MyAnimation.CrossFade("idleTough_00");
+				this.Pathfinding.canSearch = false;
+				this.Pathfinding.canMove = false;
+				this.targetRotation = Quaternion.LookRotation(this.Yandere.transform.position - base.transform.position);
+				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
+				if (this.DistanceToPlayer > 1f)
+				{
+					this.SpeechTimer -= Time.deltaTime;
+					if (this.SpeechTimer <= 0f && this.SpeechID < this.SpeechLines.Length)
 					{
-						this.MyAnimation.CrossFade("sprint_00");
-						this.Pathfinding.canSearch = true;
-						this.Pathfinding.canMove = true;
-						this.Pathfinding.speed = 5f;
-						return;
-					}
-					if (!this.Yandere.Sprayed)
-					{
-						AudioSource.PlayClipAtPoint(this.PepperSpraySFX, base.transform.position);
-					}
-					this.targetRotation = Quaternion.LookRotation(this.Yandere.transform.position - base.transform.position);
-					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
-					this.Yandere.CharacterAnimation.CrossFade("f02_sprayed_00");
-					this.Yandere.SprayedByJournalist = true;
-					this.Yandere.YandereVision = false;
-					this.Yandere.NearSenpai = false;
-					this.Yandere.Attacking = false;
-					this.Yandere.FollowHips = true;
-					this.Yandere.Punching = false;
-					this.Yandere.CanMove = false;
-					this.Yandere.Sprayed = true;
-					this.Yandere.StudentManager.YandereDying = true;
-					this.Yandere.StudentManager.StopMoving();
-					this.Yandere.Jukebox.Volume = 0f;
-					this.Yandere.Blur.Size = 1f;
-					if (this.Yandere.DelinquentFighting)
-					{
-						this.Yandere.StudentManager.CombatMinigame.Stop();
-					}
-					this.MyAnimation.CrossFade("spray_00");
-					this.Pathfinding.canSearch = false;
-					this.Pathfinding.canMove = false;
-					this.Pathfinding.speed = 0f;
-					this.PepperSpray.SetActive(true);
-					if ((double)this.MyAnimation["spray_00"].time > 0.66666)
-					{
-						this.PepperSprayEffect.Play();
-						if (this.Yandere.Armed)
+						AudioSource.PlayClipAtPoint(this.SpeechClips[this.SpeechID], base.transform.position);
+						if (this.Subtitle.EventSubtitle.text == "" || this.Subtitle.EventSubtitle.transform.localScale.x < 1f)
 						{
-							this.Yandere.EquippedWeapon.Drop();
+							this.Subtitle.CustomText = this.SpeechLines[this.SpeechID];
+							this.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 4f);
 						}
-						this.Yandere.EmptyHands();
-						base.enabled = false;
-						return;
+						this.SpeechTimer = 5f;
+						this.SpeechID++;
 					}
 				}
 				else
 				{
-					this.targetRotation = Quaternion.LookRotation(this.Yandere.transform.position - base.transform.position);
-					base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
+					this.ThreatTimer -= Time.deltaTime;
+					if (this.ThreatTimer <= 0f && this.ThreatID < this.ThreatLines.Length)
+					{
+						AudioSource.PlayClipAtPoint(this.ThreatClips[this.ThreatID], base.transform.position);
+						if (this.Subtitle.EventSubtitle.text == "" || this.Subtitle.EventSubtitle.transform.localScale.x < 1f)
+						{
+							this.Subtitle.PreviousSubtitle = SubtitleType.AcceptFood;
+							this.Subtitle.CustomText = this.ThreatLines[this.ThreatID];
+							this.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 4f);
+						}
+						this.ThreatTimer = 5f;
+						this.ThreatID++;
+					}
+					if (this.Yandere.Armed)
+					{
+						this.Chase();
+					}
 				}
+			}
+			else if (this.Yandere.transform.position.z < -51f && this.DistanceToPlayer < 10f)
+			{
+				this.MyAnimation.CrossFade("idleTough_00");
+				this.Pathfinding.canSearch = false;
+				this.Pathfinding.canMove = false;
+				this.targetRotation = Quaternion.LookRotation(this.Yandere.transform.position - base.transform.position);
+				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
+			}
+			else if (this.DistanceToDestination < 1f)
+			{
+				this.MyAnimation.CrossFade("leaning_00");
+				this.Pathfinding.canSearch = false;
+				this.Pathfinding.canMove = false;
+				this.targetRotation = Quaternion.LookRotation(this.LookTarget.position - base.transform.position);
+				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
+				this.Timer += Time.deltaTime;
+				if (this.Timer > 5f)
+				{
+					if (this.Pathfinding.target != this.Destinations[1])
+					{
+						this.Pathfinding.target = this.Destinations[1];
+					}
+					else
+					{
+						this.Pathfinding.target = this.Destinations[2];
+					}
+					this.Timer = 0f;
+				}
+			}
+			else if ((this.Yandere.transform.position.z < -51f && this.Yandere.Attacking) || (this.Yandere.transform.position.z < -51f && this.Yandere.Follower != null))
+			{
+				this.MyAnimation.CrossFade("sprint_00");
+				base.transform.LookAt(this.Yandere.transform.position);
+				this.MyController.Move(base.transform.forward * Time.deltaTime * 5f);
+				this.Pathfinding.canSearch = false;
+				this.Pathfinding.canMove = false;
+			}
+			else
+			{
+				this.MyAnimation.CrossFade("walkTough_00");
+				this.Pathfinding.canSearch = true;
+				this.Pathfinding.canMove = true;
+			}
+			if (this.DistanceToPlayer < 15f && this.CanSeeYandere())
+			{
+				this.CheckBehavior();
+			}
+			if (this.Yandere.StudentManager.MurderTakingPlace)
+			{
+				Debug.Log("Journalist acknowledges that a mind-broken slave murder is taking place...");
+				if (this.Yandere.StudentManager.MindBrokenSlave.MurderSuicidePhase > 0 && Vector3.Distance(base.transform.position, this.Yandere.StudentManager.MindBrokenSlave.transform.position) < 10f)
+				{
+					this.Freeze = true;
+					return;
+				}
+			}
+			else if (this.Yandere.StudentManager.Police.Corpses > 0)
+			{
+				Debug.Log("Journalist acknowledges that there are corpses on school grounds...");
+				for (int i = 0; i < this.Yandere.StudentManager.Police.Corpses; i++)
+				{
+					if (this.Yandere.StudentManager.Police.CorpseList[i] != null && Vector3.Distance(base.transform.position, this.Yandere.StudentManager.Police.CorpseList[i].transform.position) < 10f)
+					{
+						this.Corpse = this.Yandere.StudentManager.Police.CorpseList[i];
+						this.Freeze = true;
+					}
+				}
+				return;
+			}
+		}
+		else
+		{
+			this.targetRotation = Quaternion.LookRotation(base.transform.position - this.Yandere.transform.position);
+			this.Yandere.transform.rotation = Quaternion.Slerp(this.Yandere.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
+			this.ChaseTimer += Time.deltaTime;
+			if (this.ChaseTimer > 1f)
+			{
+				if (this.DistanceToPlayer > 1f)
+				{
+					this.MyAnimation.CrossFade("sprint_00");
+					this.Pathfinding.canSearch = true;
+					this.Pathfinding.canMove = true;
+					this.Pathfinding.speed = 5f;
+					return;
+				}
+				if (!this.Yandere.Sprayed)
+				{
+					AudioSource.PlayClipAtPoint(this.PepperSpraySFX, base.transform.position);
+				}
+				this.targetRotation = Quaternion.LookRotation(this.Yandere.transform.position - base.transform.position);
+				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
+				this.Yandere.CharacterAnimation.CrossFade("f02_sprayed_00");
+				this.Yandere.SprayedByJournalist = true;
+				this.Yandere.YandereVision = false;
+				this.Yandere.NearSenpai = false;
+				this.Yandere.Attacking = false;
+				this.Yandere.FollowHips = true;
+				this.Yandere.Punching = false;
+				this.Yandere.CanMove = false;
+				this.Yandere.Sprayed = true;
+				this.Yandere.StudentManager.YandereDying = true;
+				this.Yandere.StudentManager.StopMoving();
+				this.Yandere.Jukebox.Volume = 0f;
+				this.Yandere.Blur.Size = 1f;
+				if (this.Yandere.DelinquentFighting)
+				{
+					this.Yandere.StudentManager.CombatMinigame.Stop();
+				}
+				this.MyAnimation.CrossFade("spray_00");
+				this.Pathfinding.canSearch = false;
+				this.Pathfinding.canMove = false;
+				this.Pathfinding.speed = 0f;
+				this.PepperSpray.SetActive(true);
+				if ((double)this.MyAnimation["spray_00"].time > 0.66666)
+				{
+					this.PepperSprayEffect.Play();
+					if (this.Yandere.Armed)
+					{
+						this.Yandere.EquippedWeapon.Drop();
+					}
+					this.Yandere.EmptyHands();
+					base.enabled = false;
+					return;
+				}
+			}
+			else
+			{
+				this.targetRotation = Quaternion.LookRotation(this.Yandere.transform.position - base.transform.position);
+				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
 			}
 		}
 	}
 
-	// Token: 0x06001922 RID: 6434 RVA: 0x000FD0D8 File Offset: 0x000FB2D8
+	// Token: 0x06001927 RID: 6439 RVA: 0x000FD894 File Offset: 0x000FBA94
 	private void CheckBehavior()
 	{
-		if (this.Yandere.CanMove && !this.Yandere.Egg && (this.Yandere.Chased || this.Yandere.Chasers > 0 || (this.Yandere.Armed && this.Yandere.EquippedWeapon.Bloody) || (this.Yandere.Carrying && !this.Yandere.CurrentRagdoll.Concealed) || (this.Yandere.Dragging && !this.Yandere.CurrentRagdoll.Concealed) || (this.Yandere.Bloodiness + (float)this.Yandere.GloveBlood > 0f && !this.Yandere.Paint) || (this.Yandere.PickUp != null && this.Yandere.PickUp.BodyPart && !this.Yandere.PickUp.Garbage)))
+		if (this.Yandere.CanMove && !this.Yandere.Egg && (this.Yandere.Chased || this.Yandere.Chasers > 0 || (this.Yandere.Armed && this.Yandere.EquippedWeapon.Bloody) || (this.Yandere.Carrying && !this.Yandere.CurrentRagdoll.Concealed) || (this.Yandere.Dragging && !this.Yandere.CurrentRagdoll.Concealed) || (this.Yandere.Bloodiness + (float)this.Yandere.GloveBlood > 0f && !this.Yandere.Paint && this.Yandere.MyProjector.enabled) || (this.Yandere.PickUp != null && this.Yandere.PickUp.BodyPart && !this.Yandere.PickUp.Garbage)))
 		{
 			this.Chase();
 		}
 	}
 
-	// Token: 0x06001923 RID: 6435 RVA: 0x000FD1F8 File Offset: 0x000FB3F8
+	// Token: 0x06001928 RID: 6440 RVA: 0x000FD9C8 File Offset: 0x000FBBC8
 	public bool CanSeeYandere()
 	{
 		if (!this.Yandere.Egg)
@@ -193,7 +271,7 @@ public class JournalistScript : MonoBehaviour
 		return false;
 	}
 
-	// Token: 0x06001924 RID: 6436 RVA: 0x000FD29C File Offset: 0x000FB49C
+	// Token: 0x06001929 RID: 6441 RVA: 0x000FDA6C File Offset: 0x000FBC6C
 	private void Chase()
 	{
 		this.Face.name = "RENAMED";
@@ -214,84 +292,110 @@ public class JournalistScript : MonoBehaviour
 		this.Chasing = true;
 	}
 
-	// Token: 0x04002788 RID: 10120
-	public ParticleSystem PepperSprayEffect;
-
-	// Token: 0x04002789 RID: 10121
-	public float DistanceToDestination;
-
-	// Token: 0x0400278A RID: 10122
-	public float DistanceToPlayer;
-
-	// Token: 0x0400278B RID: 10123
-	public float SpeechTimer;
-
-	// Token: 0x0400278C RID: 10124
-	public float ThreatTimer;
-
-	// Token: 0x0400278D RID: 10125
-	public float ChaseTimer;
-
-	// Token: 0x0400278E RID: 10126
-	public float Timer;
-
-	// Token: 0x0400278F RID: 10127
-	public Quaternion targetRotation;
-
-	// Token: 0x04002790 RID: 10128
-	public AudioClip PepperSpraySFX;
-
-	// Token: 0x04002791 RID: 10129
-	public AudioClip ChaseVoice;
-
-	// Token: 0x04002792 RID: 10130
-	public Transform[] Destinations;
-
-	// Token: 0x04002793 RID: 10131
-	public AudioClip[] SpeechClips;
+	// Token: 0x0600192A RID: 6442 RVA: 0x000FDB58 File Offset: 0x000FBD58
+	private void RunAway()
+	{
+		this.Pathfinding.target = this.Yandere.StudentManager.Exit;
+		this.MyAnimation.CrossFade("sprint_00");
+		this.Pathfinding.canSearch = true;
+		this.Pathfinding.canMove = true;
+		this.Pathfinding.speed = 5f;
+		this.Flee = true;
+	}
 
 	// Token: 0x04002794 RID: 10132
-	public AudioClip[] ThreatClips;
+	public ParticleSystem PepperSprayEffect;
 
 	// Token: 0x04002795 RID: 10133
-	public string[] SpeechLines;
+	public CharacterController MyController;
 
 	// Token: 0x04002796 RID: 10134
-	public string[] ThreatLines;
+	public RagdollScript Corpse;
 
 	// Token: 0x04002797 RID: 10135
-	public SubtitleScript Subtitle;
+	public float DistanceToDestination;
 
 	// Token: 0x04002798 RID: 10136
-	public YandereScript Yandere;
+	public float DistanceToPlayer;
 
 	// Token: 0x04002799 RID: 10137
-	public GameObject PepperSpray;
+	public float SpeechTimer;
 
 	// Token: 0x0400279A RID: 10138
-	public GameObject Face;
+	public float ThreatTimer;
 
 	// Token: 0x0400279B RID: 10139
-	public Animation MyAnimation;
+	public float ChaseTimer;
 
 	// Token: 0x0400279C RID: 10140
-	public Transform LookTarget;
+	public float Timer;
 
 	// Token: 0x0400279D RID: 10141
-	public AIPath Pathfinding;
+	public Quaternion targetRotation;
 
 	// Token: 0x0400279E RID: 10142
-	public bool Chasing;
+	public AudioClip PepperSpraySFX;
 
 	// Token: 0x0400279F RID: 10143
-	public int SpeechID;
+	public AudioClip ChaseVoice;
 
 	// Token: 0x040027A0 RID: 10144
-	public int ThreatID;
+	public Transform[] Destinations;
 
 	// Token: 0x040027A1 RID: 10145
-	public Transform Head;
+	public AudioClip[] SpeechClips;
 
 	// Token: 0x040027A2 RID: 10146
+	public AudioClip[] ThreatClips;
+
+	// Token: 0x040027A3 RID: 10147
+	public string[] SpeechLines;
+
+	// Token: 0x040027A4 RID: 10148
+	public string[] ThreatLines;
+
+	// Token: 0x040027A5 RID: 10149
+	public SubtitleScript Subtitle;
+
+	// Token: 0x040027A6 RID: 10150
+	public YandereScript Yandere;
+
+	// Token: 0x040027A7 RID: 10151
+	public GameObject PepperSpray;
+
+	// Token: 0x040027A8 RID: 10152
+	public GameObject Face;
+
+	// Token: 0x040027A9 RID: 10153
+	public Animation MyAnimation;
+
+	// Token: 0x040027AA RID: 10154
+	public Transform LookTarget;
+
+	// Token: 0x040027AB RID: 10155
+	public AIPath Pathfinding;
+
+	// Token: 0x040027AC RID: 10156
+	public float FreezeTimer;
+
+	// Token: 0x040027AD RID: 10157
+	public bool Chasing;
+
+	// Token: 0x040027AE RID: 10158
+	public bool Freeze;
+
+	// Token: 0x040027AF RID: 10159
+	public bool Flee;
+
+	// Token: 0x040027B0 RID: 10160
+	public int SpeechID;
+
+	// Token: 0x040027B1 RID: 10161
+	public int ThreatID;
+
+	// Token: 0x040027B2 RID: 10162
+	public Transform Head;
+
+	// Token: 0x040027B3 RID: 10163
 	public LayerMask Mask;
 }

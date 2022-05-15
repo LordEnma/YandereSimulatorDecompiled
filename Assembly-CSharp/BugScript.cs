@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000100 RID: 256
+// Token: 0x02000101 RID: 257
 public class BugScript : MonoBehaviour
 {
-	// Token: 0x06000A91 RID: 2705 RVA: 0x0005F563 File Offset: 0x0005D763
+	// Token: 0x06000A93 RID: 2707 RVA: 0x0005F8DB File Offset: 0x0005DADB
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -16,7 +16,7 @@ public class BugScript : MonoBehaviour
 		this.MyRenderer.enabled = false;
 	}
 
-	// Token: 0x06000A92 RID: 2706 RVA: 0x0005F59C File Offset: 0x0005D79C
+	// Token: 0x06000A94 RID: 2708 RVA: 0x0005F914 File Offset: 0x0005DB14
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -34,7 +34,7 @@ public class BugScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A93 RID: 2707 RVA: 0x0005F693 File Offset: 0x0005D893
+	// Token: 0x06000A95 RID: 2709 RVA: 0x0005FA0B File Offset: 0x0005DC0B
 	public void CheckStatus()
 	{
 		if (this.Placed)
@@ -46,18 +46,18 @@ public class BugScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000C79 RID: 3193
+	// Token: 0x04000C7F RID: 3199
 	public PromptScript Prompt;
 
-	// Token: 0x04000C7A RID: 3194
+	// Token: 0x04000C80 RID: 3200
 	public Renderer MyRenderer;
 
-	// Token: 0x04000C7B RID: 3195
+	// Token: 0x04000C81 RID: 3201
 	public AudioSource MyAudio;
 
-	// Token: 0x04000C7C RID: 3196
+	// Token: 0x04000C82 RID: 3202
 	public AudioClip[] Praise;
 
-	// Token: 0x04000C7D RID: 3197
+	// Token: 0x04000C83 RID: 3203
 	public bool Placed;
 }

@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020000DC RID: 220
 public class BakeSaleScript : MonoBehaviour
 {
-	// Token: 0x06000A0C RID: 2572 RVA: 0x00056DF0 File Offset: 0x00054FF0
+	// Token: 0x06000A0C RID: 2572 RVA: 0x00056ED0 File Offset: 0x000550D0
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -41,7 +41,7 @@ public class BakeSaleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A0D RID: 2573 RVA: 0x00056F89 File Offset: 0x00055189
+	// Token: 0x06000A0D RID: 2573 RVA: 0x00057069 File Offset: 0x00055269
 	private void IncreaseID()
 	{
 		this.ID++;

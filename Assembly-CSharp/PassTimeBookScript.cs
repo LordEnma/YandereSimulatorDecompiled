@@ -1,16 +1,21 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000397 RID: 919
+// Token: 0x02000398 RID: 920
 public class PassTimeBookScript : MonoBehaviour
 {
-	// Token: 0x06001A75 RID: 6773 RVA: 0x00119544 File Offset: 0x00117744
+	// Token: 0x06001A7B RID: 6779 RVA: 0x00119E6C File Offset: 0x0011806C
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
 		{
 			this.Prompt.Circle[0].fillAmount = 1f;
-			if (this.Yandere.StudentManager.Clock.HourTime < 15.5f)
+			if (this.Yandere.Police.Show)
+			{
+				this.Yandere.NotificationManager.CustomText = "Not when police are coming!";
+				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+			}
+			else if (this.Yandere.StudentManager.Clock.HourTime < 15.5f)
 			{
 				this.Yandere.NotificationManager.CustomText = "Only available after 3:30 PM";
 				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
@@ -72,7 +77,7 @@ public class PassTimeBookScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A76 RID: 6774 RVA: 0x00119948 File Offset: 0x00117B48
+	// Token: 0x06001A7C RID: 6780 RVA: 0x0011A2AC File Offset: 0x001184AC
 	public void DisplayErrorMessage()
 	{
 		if (this.Yandere.Armed)
@@ -116,18 +121,18 @@ public class PassTimeBookScript : MonoBehaviour
 		this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 	}
 
-	// Token: 0x04002B77 RID: 11127
+	// Token: 0x04002B89 RID: 11145
 	public YandereScript Yandere;
 
-	// Token: 0x04002B78 RID: 11128
+	// Token: 0x04002B8A RID: 11146
 	public PromptScript Prompt;
 
-	// Token: 0x04002B79 RID: 11129
+	// Token: 0x04002B8B RID: 11147
 	public UISprite Darkness;
 
-	// Token: 0x04002B7A RID: 11130
+	// Token: 0x04002B8C RID: 11148
 	public bool TimeSkipping;
 
-	// Token: 0x04002B7B RID: 11131
+	// Token: 0x04002B8D RID: 11149
 	public bool FadeOut;
 }

@@ -1,18 +1,18 @@
 ﻿using System;
 
-// Token: 0x020000EF RID: 239
+// Token: 0x020000F0 RID: 240
 public enum BodyPartType
 {
-	// Token: 0x04000BD9 RID: 3033
-	Head,
-	// Token: 0x04000BDA RID: 3034
-	Torso,
-	// Token: 0x04000BDB RID: 3035
-	LeftArm,
-	// Token: 0x04000BDC RID: 3036
-	RightArm,
-	// Token: 0x04000BDD RID: 3037
-	LeftLeg,
 	// Token: 0x04000BDE RID: 3038
+	Head,
+	// Token: 0x04000BDF RID: 3039
+	Torso,
+	// Token: 0x04000BE0 RID: 3040
+	LeftArm,
+	// Token: 0x04000BE1 RID: 3041
+	RightArm,
+	// Token: 0x04000BE2 RID: 3042
+	LeftLeg,
+	// Token: 0x04000BE3 RID: 3043
 	RightLeg
 }

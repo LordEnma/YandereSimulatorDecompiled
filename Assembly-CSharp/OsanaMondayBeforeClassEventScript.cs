@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003E5 RID: 997
+// Token: 0x020003E6 RID: 998
 public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 {
-	// Token: 0x06001BCB RID: 7115 RVA: 0x0013E6C8 File Offset: 0x0013C8C8
+	// Token: 0x06001BD1 RID: 7121 RVA: 0x0013F2B8 File Offset: 0x0013D4B8
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -16,7 +16,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BCC RID: 7116 RVA: 0x0013E740 File Offset: 0x0013C940
+	// Token: 0x06001BD2 RID: 7122 RVA: 0x0013F330 File Offset: 0x0013D530
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -43,8 +43,9 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 							this.Rival.Pathfinding.canMove = true;
 							this.Rival.Routine = false;
 							this.Rival.InEvent = true;
-							if (this.Rival.Follower != null)
+							if (this.Rival.Follower != null && !this.Rival.Follower.ReturningMisplacedWeapon && this.Rival.Follower.DistanceToDestination < 5f)
 							{
+								Debug.Log("Raibaru will be joining Osana for her bento event.");
 								this.Rival.Follower.TargetDistance = 1.5f;
 								this.Rival.Follower.InEvent = true;
 								this.Rival.Follower.CurrentDestination = this.Rival.FollowTargetDestination;
@@ -76,7 +77,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 			if (this.Rival.DistanceToDestination < 0.5f)
 			{
 				AudioClipPlayer.Play(this.SpeechClip, this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-				if (this.Rival.Follower != null)
+				if (this.Rival.Follower != null && this.Rival.Follower.InEvent)
 				{
 					this.Rival.Follower.CurrentDestination = this.Rival.transform;
 					this.Rival.Follower.Pathfinding.target = this.Rival.transform;
@@ -88,7 +89,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 				this.Bentos[2].SetActive(true);
 				this.Phase++;
 			}
-			if (this.Rival.Follower != null)
+			if (this.Rival.Follower != null && this.Rival.Follower.InEvent)
 			{
 				if (this.Rival.Follower.DistanceToDestination >= this.Rival.Follower.TargetDistance + 0.1f)
 				{
@@ -104,7 +105,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		{
 			this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
 			this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
-			if (this.Rival.Follower != null)
+			if (this.Rival.Follower != null && this.Rival.Follower.InEvent)
 			{
 				if (this.Rival.Follower.DistanceToDestination >= this.Rival.Follower.TargetDistance + 0.1f)
 				{
@@ -124,7 +125,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 			{
 				if (this.Timer > this.SpeechTime[this.SpeechPhase])
 				{
-					if (this.Rival.Follower == null)
+					if (this.Rival.Follower == null || !this.Rival.Follower.InEvent)
 					{
 						this.EndEvent();
 					}
@@ -194,7 +195,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BCD RID: 7117 RVA: 0x0013EF6C File Offset: 0x0013D16C
+	// Token: 0x06001BD3 RID: 7123 RVA: 0x0013FBE0 File Offset: 0x0013DDE0
 	public void EndEvent()
 	{
 		Debug.Log("Osana's before class event ended.");
@@ -231,7 +232,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		}
 		this.Rival.CharacterAnimation["f02_pondering_00"].speed = 1f;
 		this.Jukebox.Dip = 1f;
-		if (this.Rival.Follower != null)
+		if (this.Rival.Follower != null && this.Rival.Follower.InEvent)
 		{
 			this.Rival.Follower.TargetDistance = 1f;
 			this.Rival.Follower.InEvent = false;
@@ -243,72 +244,72 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x0400301F RID: 12319
+	// Token: 0x04003034 RID: 12340
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003020 RID: 12320
+	// Token: 0x04003035 RID: 12341
 	public EventManagerScript NextEvent;
 
-	// Token: 0x04003021 RID: 12321
+	// Token: 0x04003036 RID: 12342
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04003022 RID: 12322
+	// Token: 0x04003037 RID: 12343
 	public UILabel EventSubtitle;
 
-	// Token: 0x04003023 RID: 12323
+	// Token: 0x04003038 RID: 12344
 	public YandereScript Yandere;
 
-	// Token: 0x04003024 RID: 12324
+	// Token: 0x04003039 RID: 12345
 	public ClockScript Clock;
 
-	// Token: 0x04003025 RID: 12325
+	// Token: 0x0400303A RID: 12346
 	public StudentScript Rival;
 
-	// Token: 0x04003026 RID: 12326
+	// Token: 0x0400303B RID: 12347
 	public Transform Destination;
 
-	// Token: 0x04003027 RID: 12327
+	// Token: 0x0400303C RID: 12348
 	public AudioClip SpeechClip;
 
-	// Token: 0x04003028 RID: 12328
+	// Token: 0x0400303D RID: 12349
 	public string[] SpeechText;
 
-	// Token: 0x04003029 RID: 12329
+	// Token: 0x0400303E RID: 12350
 	public float[] SpeechTime;
 
-	// Token: 0x0400302A RID: 12330
+	// Token: 0x0400303F RID: 12351
 	public GameObject AlarmDisc;
 
-	// Token: 0x0400302B RID: 12331
+	// Token: 0x04003040 RID: 12352
 	public GameObject VoiceClip;
 
-	// Token: 0x0400302C RID: 12332
+	// Token: 0x04003041 RID: 12353
 	public GameObject[] Bentos;
 
-	// Token: 0x0400302D RID: 12333
+	// Token: 0x04003042 RID: 12354
 	public bool EventActive;
 
-	// Token: 0x0400302E RID: 12334
+	// Token: 0x04003043 RID: 12355
 	public bool HintGiven;
 
-	// Token: 0x0400302F RID: 12335
+	// Token: 0x04003044 RID: 12356
 	public float Distance;
 
-	// Token: 0x04003030 RID: 12336
+	// Token: 0x04003045 RID: 12357
 	public float Scale;
 
-	// Token: 0x04003031 RID: 12337
+	// Token: 0x04003046 RID: 12358
 	public float Timer;
 
-	// Token: 0x04003032 RID: 12338
+	// Token: 0x04003047 RID: 12359
 	public int SpeechPhase = 1;
 
-	// Token: 0x04003033 RID: 12339
+	// Token: 0x04003048 RID: 12360
 	public int RivalID = 11;
 
-	// Token: 0x04003034 RID: 12340
+	// Token: 0x04003049 RID: 12361
 	public int Phase;
 
-	// Token: 0x04003035 RID: 12341
+	// Token: 0x0400304A RID: 12362
 	public int Frame;
 }

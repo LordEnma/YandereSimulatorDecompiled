@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000350 RID: 848
+// Token: 0x02000351 RID: 849
 public class LeaveGiftScript : MonoBehaviour
 {
-	// Token: 0x06001972 RID: 6514 RVA: 0x000FFAB8 File Offset: 0x000FDCB8
+	// Token: 0x06001978 RID: 6520 RVA: 0x001002F4 File Offset: 0x000FE4F4
 	private void Start()
 	{
 		this.Note.SetActive(false);
@@ -16,7 +16,7 @@ public class LeaveGiftScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001973 RID: 6515 RVA: 0x000FFB08 File Offset: 0x000FDD08
+	// Token: 0x06001979 RID: 6521 RVA: 0x00100344 File Offset: 0x000FE544
 	private void Update()
 	{
 		if (this.Prompt.InView)
@@ -46,7 +46,7 @@ public class LeaveGiftScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001974 RID: 6516 RVA: 0x000FFBF0 File Offset: 0x000FDDF0
+	// Token: 0x0600197A RID: 6522 RVA: 0x0010042C File Offset: 0x000FE62C
 	private void CheckForDisable()
 	{
 		if (this.Prompt.HideButton[0] && this.Prompt.HideButton[1])
@@ -57,15 +57,15 @@ public class LeaveGiftScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002850 RID: 10320
+	// Token: 0x04002861 RID: 10337
 	public EndOfDayScript EndOfDay;
 
-	// Token: 0x04002851 RID: 10321
+	// Token: 0x04002862 RID: 10338
 	public PromptScript Prompt;
 
-	// Token: 0x04002852 RID: 10322
+	// Token: 0x04002863 RID: 10339
 	public GameObject Note;
 
-	// Token: 0x04002853 RID: 10323
+	// Token: 0x04002864 RID: 10340
 	public GameObject Box;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000387 RID: 903
+// Token: 0x02000388 RID: 904
 public class OfferHelpScript : MonoBehaviour
 {
-	// Token: 0x06001A4A RID: 6730 RVA: 0x001157DC File Offset: 0x001139DC
+	// Token: 0x06001A50 RID: 6736 RVA: 0x001160B4 File Offset: 0x001142B4
 	private void Start()
 	{
 		this.Prompt.enabled = true;
@@ -189,7 +189,7 @@ public class OfferHelpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A4B RID: 6731 RVA: 0x0011604C File Offset: 0x0011424C
+	// Token: 0x06001A51 RID: 6737 RVA: 0x00116924 File Offset: 0x00114B24
 	private void Update()
 	{
 		if (!this.Unable)
@@ -351,7 +351,7 @@ public class OfferHelpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A4C RID: 6732 RVA: 0x00116828 File Offset: 0x00114A28
+	// Token: 0x06001A52 RID: 6738 RVA: 0x00117100 File Offset: 0x00115300
 	public void UpdateLocation()
 	{
 		if (this.Eighties)
@@ -400,7 +400,7 @@ public class OfferHelpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A4D RID: 6733 RVA: 0x00116A4C File Offset: 0x00114C4C
+	// Token: 0x06001A53 RID: 6739 RVA: 0x00117324 File Offset: 0x00115524
 	public void Continue()
 	{
 		Debug.Log("Proceeding to next line.");
@@ -469,78 +469,78 @@ public class OfferHelpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B00 RID: 11008
+	// Token: 0x04002B12 RID: 11026
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002B01 RID: 11009
+	// Token: 0x04002B13 RID: 11027
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002B02 RID: 11010
+	// Token: 0x04002B14 RID: 11028
 	public StudentScript Student;
 
-	// Token: 0x04002B03 RID: 11011
+	// Token: 0x04002B15 RID: 11029
 	public YandereScript Yandere;
 
-	// Token: 0x04002B04 RID: 11012
+	// Token: 0x04002B16 RID: 11030
 	public PromptScript Prompt;
 
-	// Token: 0x04002B05 RID: 11013
+	// Token: 0x04002B17 RID: 11031
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04002B06 RID: 11014
+	// Token: 0x04002B18 RID: 11032
 	public Vector3 OriginalRotation;
 
-	// Token: 0x04002B07 RID: 11015
+	// Token: 0x04002B19 RID: 11033
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002B08 RID: 11016
+	// Token: 0x04002B1A RID: 11034
 	public Transform BystanderSpot;
 
-	// Token: 0x04002B09 RID: 11017
+	// Token: 0x04002B1B RID: 11035
 	public Transform[] Locations;
 
-	// Token: 0x04002B0A RID: 11018
+	// Token: 0x04002B1C RID: 11036
 	public AudioClip[] EventClip;
 
-	// Token: 0x04002B0B RID: 11019
+	// Token: 0x04002B1D RID: 11037
 	public string[] EventSpeech;
 
-	// Token: 0x04002B0C RID: 11020
+	// Token: 0x04002B1E RID: 11038
 	public string[] EventAnim;
 
-	// Token: 0x04002B0D RID: 11021
+	// Token: 0x04002B1F RID: 11039
 	public int[] EventSpeaker;
 
-	// Token: 0x04002B0E RID: 11022
+	// Token: 0x04002B20 RID: 11040
 	public bool Eavesdropped;
 
-	// Token: 0x04002B0F RID: 11023
+	// Token: 0x04002B21 RID: 11041
 	public bool Eighties;
 
-	// Token: 0x04002B10 RID: 11024
+	// Token: 0x04002B22 RID: 11042
 	public bool Offering;
 
-	// Token: 0x04002B11 RID: 11025
+	// Token: 0x04002B23 RID: 11043
 	public bool Spoken;
 
-	// Token: 0x04002B12 RID: 11026
+	// Token: 0x04002B24 RID: 11044
 	public bool Unable;
 
-	// Token: 0x04002B13 RID: 11027
+	// Token: 0x04002B25 RID: 11045
 	public int EventStudentID;
 
-	// Token: 0x04002B14 RID: 11028
+	// Token: 0x04002B26 RID: 11046
 	public int EventPhase = 1;
 
-	// Token: 0x04002B15 RID: 11029
+	// Token: 0x04002B27 RID: 11047
 	public float Timer;
 
-	// Token: 0x04002B16 RID: 11030
+	// Token: 0x04002B28 RID: 11048
 	public AudioClip ShortSilence;
 
-	// Token: 0x04002B17 RID: 11031
+	// Token: 0x04002B29 RID: 11049
 	public AudioClip AltClip;
 
-	// Token: 0x04002B18 RID: 11032
+	// Token: 0x04002B2A RID: 11050
 	public string AltSpeech;
 }

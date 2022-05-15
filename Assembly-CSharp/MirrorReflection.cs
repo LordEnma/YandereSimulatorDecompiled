@@ -2,11 +2,11 @@
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000369 RID: 873
+// Token: 0x0200036A RID: 874
 [ExecuteInEditMode]
 public class MirrorReflection : MonoBehaviour
 {
-	// Token: 0x060019C3 RID: 6595 RVA: 0x001080C8 File Offset: 0x001062C8
+	// Token: 0x060019C9 RID: 6601 RVA: 0x00108904 File Offset: 0x00106B04
 	public void OnWillRenderObject()
 	{
 		Renderer component = base.GetComponent<Renderer>();
@@ -67,7 +67,7 @@ public class MirrorReflection : MonoBehaviour
 		MirrorReflection.s_InsideRendering = false;
 	}
 
-	// Token: 0x060019C4 RID: 6596 RVA: 0x001082C0 File Offset: 0x001064C0
+	// Token: 0x060019CA RID: 6602 RVA: 0x00108AFC File Offset: 0x00106CFC
 	private void OnDisable()
 	{
 		if (this.m_ReflectionTexture)
@@ -82,7 +82,7 @@ public class MirrorReflection : MonoBehaviour
 		this.m_ReflectionCameras.Clear();
 	}
 
-	// Token: 0x060019C5 RID: 6597 RVA: 0x00108354 File Offset: 0x00106554
+	// Token: 0x060019CB RID: 6603 RVA: 0x00108B90 File Offset: 0x00106D90
 	private void UpdateCameraModes(Camera src, Camera dest)
 	{
 		if (dest == null)
@@ -113,7 +113,7 @@ public class MirrorReflection : MonoBehaviour
 		dest.orthographicSize = src.orthographicSize;
 	}
 
-	// Token: 0x060019C6 RID: 6598 RVA: 0x00108434 File Offset: 0x00106634
+	// Token: 0x060019CC RID: 6604 RVA: 0x00108C70 File Offset: 0x00106E70
 	private void CreateMirrorObjects(Camera currentCamera, out Camera reflectionCamera)
 	{
 		reflectionCamera = null;
@@ -147,7 +147,7 @@ public class MirrorReflection : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019C7 RID: 6599 RVA: 0x001085A9 File Offset: 0x001067A9
+	// Token: 0x060019CD RID: 6605 RVA: 0x00108DE5 File Offset: 0x00106FE5
 	private static float sgn(float a)
 	{
 		if (a > 0f)
@@ -161,7 +161,7 @@ public class MirrorReflection : MonoBehaviour
 		return 0f;
 	}
 
-	// Token: 0x060019C8 RID: 6600 RVA: 0x001085CC File Offset: 0x001067CC
+	// Token: 0x060019CE RID: 6606 RVA: 0x00108E08 File Offset: 0x00107008
 	private Vector4 CameraSpacePlane(Camera cam, Vector3 pos, Vector3 normal, float sideSign)
 	{
 		Vector3 point = pos + normal * this.m_ClipPlaneOffset;
@@ -171,7 +171,7 @@ public class MirrorReflection : MonoBehaviour
 		return new Vector4(vector.x, vector.y, vector.z, -Vector3.Dot(lhs, vector));
 	}
 
-	// Token: 0x060019C9 RID: 6601 RVA: 0x00108634 File Offset: 0x00106834
+	// Token: 0x060019CF RID: 6607 RVA: 0x00108E70 File Offset: 0x00107070
 	private static void CalculateReflectionMatrix(ref Matrix4x4 reflectionMat, Vector4 plane)
 	{
 		reflectionMat.m00 = 1f - 2f * plane[0] * plane[0];
@@ -192,27 +192,27 @@ public class MirrorReflection : MonoBehaviour
 		reflectionMat.m33 = 1f;
 	}
 
-	// Token: 0x04002975 RID: 10613
+	// Token: 0x04002986 RID: 10630
 	public bool m_DisablePixelLights = true;
 
-	// Token: 0x04002976 RID: 10614
+	// Token: 0x04002987 RID: 10631
 	public int m_TextureSize = 256;
 
-	// Token: 0x04002977 RID: 10615
+	// Token: 0x04002988 RID: 10632
 	public float m_ClipPlaneOffset = 0.07f;
 
-	// Token: 0x04002978 RID: 10616
+	// Token: 0x04002989 RID: 10633
 	public LayerMask m_ReflectLayers = -1;
 
-	// Token: 0x04002979 RID: 10617
+	// Token: 0x0400298A RID: 10634
 	private Hashtable m_ReflectionCameras = new Hashtable();
 
-	// Token: 0x0400297A RID: 10618
+	// Token: 0x0400298B RID: 10635
 	private RenderTexture m_ReflectionTexture;
 
-	// Token: 0x0400297B RID: 10619
+	// Token: 0x0400298C RID: 10636
 	private int m_OldReflectionTextureSize;
 
-	// Token: 0x0400297C RID: 10620
+	// Token: 0x0400298D RID: 10637
 	private static bool s_InsideRendering;
 }

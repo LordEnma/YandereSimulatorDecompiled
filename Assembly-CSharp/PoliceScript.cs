@@ -2,10 +2,10 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020003B1 RID: 945
+// Token: 0x020003B2 RID: 946
 public class PoliceScript : MonoBehaviour
 {
-	// Token: 0x06001AE9 RID: 6889 RVA: 0x00124CC0 File Offset: 0x00122EC0
+	// Token: 0x06001AEF RID: 6895 RVA: 0x00125680 File Offset: 0x00123880
 	private void Start()
 	{
 		if (SchoolGlobals.SchoolAtmosphere > 0.5f)
@@ -29,7 +29,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AEA RID: 6890 RVA: 0x00124E68 File Offset: 0x00123068
+	// Token: 0x06001AF0 RID: 6896 RVA: 0x00125828 File Offset: 0x00123A28
 	private void Update()
 	{
 		if (this.Show)
@@ -138,8 +138,13 @@ public class PoliceScript : MonoBehaviour
 			if (this.Timer <= 0f)
 			{
 				this.Timer = 0f;
-				if (!this.Yandere.Attacking && !this.Yandere.Struggling && !this.Yandere.Egg && !this.FadeOut)
+				if (!this.Yandere.Attacking && !this.Yandere.Struggling && !this.Yandere.Egg && !this.Yandere.Lifting && !this.FadeOut)
 				{
+					this.Reputation.UpdateRep();
+					if (this.Reputation.Reputation <= -100f)
+					{
+						this.Show = false;
+					}
 					this.BeginFadingOut();
 				}
 			}
@@ -356,7 +361,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AEB RID: 6891 RVA: 0x00125D0C File Offset: 0x00123F0C
+	// Token: 0x06001AF1 RID: 6897 RVA: 0x001266FC File Offset: 0x001248FC
 	private void DetermineResults()
 	{
 		if (this.Yandere.VtuberID > 0)
@@ -732,7 +737,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AEC RID: 6892 RVA: 0x00126E7C File Offset: 0x0012507C
+	// Token: 0x06001AF2 RID: 6898 RVA: 0x0012786C File Offset: 0x00125A6C
 	public void KillStudents()
 	{
 		Debug.Log("KillStudents() is being called.");
@@ -876,13 +881,16 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AED RID: 6893 RVA: 0x001272F0 File Offset: 0x001254F0
+	// Token: 0x06001AF3 RID: 6899 RVA: 0x00127CE0 File Offset: 0x00125EE0
 	public void BeginFadingOut()
 	{
 		this.DayOver = true;
 		this.StudentManager.StopMoving();
 		this.Darkness.enabled = true;
-		this.Yandere.StopLaughing();
+		if (this.Yandere.Laughing)
+		{
+			this.Yandere.StopLaughing();
+		}
 		this.Clock.StopTime = true;
 		this.FadeOut = true;
 		if (!this.EndOfDay.gameObject.activeInHierarchy)
@@ -891,7 +899,7 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001AEE RID: 6894 RVA: 0x00127358 File Offset: 0x00125558
+	// Token: 0x06001AF4 RID: 6900 RVA: 0x00127D54 File Offset: 0x00125F54
 	public void UpdateCorpses()
 	{
 		foreach (RagdollScript ragdollScript in this.CorpseList)
@@ -907,291 +915,291 @@ public class PoliceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002D0D RID: 11533
+	// Token: 0x04002D20 RID: 11552
 	public LowRepGameOverScript LowRepGameOver;
 
-	// Token: 0x04002D0E RID: 11534
+	// Token: 0x04002D21 RID: 11553
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002D0F RID: 11535
+	// Token: 0x04002D22 RID: 11554
 	public ClubManagerScript ClubManager;
 
-	// Token: 0x04002D10 RID: 11536
+	// Token: 0x04002D23 RID: 11555
 	public HeartbrokenScript Heartbroken;
 
-	// Token: 0x04002D11 RID: 11537
+	// Token: 0x04002D24 RID: 11556
 	public LoveManagerScript LoveManager;
 
-	// Token: 0x04002D12 RID: 11538
+	// Token: 0x04002D25 RID: 11557
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04002D13 RID: 11539
+	// Token: 0x04002D26 RID: 11558
 	public ReputationScript Reputation;
 
-	// Token: 0x04002D14 RID: 11540
+	// Token: 0x04002D27 RID: 11559
 	public TranqCaseScript TranqCase;
 
-	// Token: 0x04002D15 RID: 11541
+	// Token: 0x04002D28 RID: 11560
 	public EndOfDayScript EndOfDay;
 
-	// Token: 0x04002D16 RID: 11542
+	// Token: 0x04002D29 RID: 11561
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002D17 RID: 11543
+	// Token: 0x04002D2A RID: 11562
 	public YandereScript Yandere;
 
-	// Token: 0x04002D18 RID: 11544
+	// Token: 0x04002D2B RID: 11563
 	public ClockScript Clock;
 
-	// Token: 0x04002D19 RID: 11545
+	// Token: 0x04002D2C RID: 11564
 	public JsonScript JSON;
 
-	// Token: 0x04002D1A RID: 11546
+	// Token: 0x04002D2D RID: 11565
 	public UIPanel Panel;
 
-	// Token: 0x04002D1B RID: 11547
+	// Token: 0x04002D2E RID: 11566
 	public GameObject HeartbeatCamera;
 
-	// Token: 0x04002D1C RID: 11548
+	// Token: 0x04002D2F RID: 11567
 	public GameObject DetectionCamera;
 
-	// Token: 0x04002D1D RID: 11549
+	// Token: 0x04002D30 RID: 11568
 	public GameObject SuicideStudent;
 
-	// Token: 0x04002D1E RID: 11550
+	// Token: 0x04002D31 RID: 11569
 	public GameObject UICamera;
 
-	// Token: 0x04002D1F RID: 11551
+	// Token: 0x04002D32 RID: 11570
 	public GameObject Icons;
 
-	// Token: 0x04002D20 RID: 11552
+	// Token: 0x04002D33 RID: 11571
 	public GameObject FPS;
 
-	// Token: 0x04002D21 RID: 11553
+	// Token: 0x04002D34 RID: 11572
 	public Transform GarbageParent;
 
-	// Token: 0x04002D22 RID: 11554
+	// Token: 0x04002D35 RID: 11573
 	public Transform BloodParent;
 
-	// Token: 0x04002D23 RID: 11555
+	// Token: 0x04002D36 RID: 11574
 	public Transform LimbParent;
 
-	// Token: 0x04002D24 RID: 11556
+	// Token: 0x04002D37 RID: 11575
 	public RagdollScript[] CorpseList;
 
-	// Token: 0x04002D25 RID: 11557
+	// Token: 0x04002D38 RID: 11576
 	public UILabel[] ResultsLabels;
 
-	// Token: 0x04002D26 RID: 11558
+	// Token: 0x04002D39 RID: 11577
 	public UILabel ContinueLabel;
 
-	// Token: 0x04002D27 RID: 11559
+	// Token: 0x04002D3A RID: 11578
 	public UILabel TimeLabel;
 
-	// Token: 0x04002D28 RID: 11560
+	// Token: 0x04002D3B RID: 11579
 	public UISprite ContinueButton;
 
-	// Token: 0x04002D29 RID: 11561
+	// Token: 0x04002D3C RID: 11580
 	public UISprite Darkness;
 
-	// Token: 0x04002D2A RID: 11562
+	// Token: 0x04002D3D RID: 11581
 	public UISprite BloodIcon;
 
-	// Token: 0x04002D2B RID: 11563
+	// Token: 0x04002D3E RID: 11582
 	public UISprite UniformIcon;
 
-	// Token: 0x04002D2C RID: 11564
+	// Token: 0x04002D3F RID: 11583
 	public UISprite WeaponIcon;
 
-	// Token: 0x04002D2D RID: 11565
+	// Token: 0x04002D40 RID: 11584
 	public UISprite CorpseIcon;
 
-	// Token: 0x04002D2E RID: 11566
+	// Token: 0x04002D41 RID: 11585
 	public UISprite PartsIcon;
 
-	// Token: 0x04002D2F RID: 11567
+	// Token: 0x04002D42 RID: 11586
 	public UISprite SanityIcon;
 
-	// Token: 0x04002D30 RID: 11568
+	// Token: 0x04002D43 RID: 11587
 	public string ElectrocutedStudentName = string.Empty;
 
-	// Token: 0x04002D31 RID: 11569
+	// Token: 0x04002D44 RID: 11588
 	public string DrownedStudentName = string.Empty;
 
-	// Token: 0x04002D32 RID: 11570
+	// Token: 0x04002D45 RID: 11589
 	public bool BloodDisposed;
 
-	// Token: 0x04002D33 RID: 11571
+	// Token: 0x04002D46 RID: 11590
 	public bool UniformDisposed;
 
-	// Token: 0x04002D34 RID: 11572
+	// Token: 0x04002D47 RID: 11591
 	public bool WeaponDisposed;
 
-	// Token: 0x04002D35 RID: 11573
+	// Token: 0x04002D48 RID: 11592
 	public bool CorpseDisposed;
 
-	// Token: 0x04002D36 RID: 11574
+	// Token: 0x04002D49 RID: 11593
 	public bool PartsDisposed;
 
-	// Token: 0x04002D37 RID: 11575
+	// Token: 0x04002D4A RID: 11594
 	public bool SanityRestored;
 
-	// Token: 0x04002D38 RID: 11576
+	// Token: 0x04002D4B RID: 11595
 	public bool MurderSuicideScene;
 
-	// Token: 0x04002D39 RID: 11577
+	// Token: 0x04002D4C RID: 11596
 	public bool ElectroScene;
 
-	// Token: 0x04002D3A RID: 11578
+	// Token: 0x04002D4D RID: 11597
 	public bool SuicideScene;
 
-	// Token: 0x04002D3B RID: 11579
+	// Token: 0x04002D4E RID: 11598
 	public bool PoisonScene;
 
-	// Token: 0x04002D3C RID: 11580
+	// Token: 0x04002D4F RID: 11599
 	public bool MurderScene;
 
-	// Token: 0x04002D3D RID: 11581
+	// Token: 0x04002D50 RID: 11600
 	public bool SkippingPastPoison;
 
-	// Token: 0x04002D3E RID: 11582
+	// Token: 0x04002D51 RID: 11601
 	public bool StudentFoundCorpse;
 
-	// Token: 0x04002D3F RID: 11583
+	// Token: 0x04002D52 RID: 11602
 	public bool BeginConfession;
 
-	// Token: 0x04002D40 RID: 11584
+	// Token: 0x04002D53 RID: 11603
 	public bool GenocideEnding;
 
-	// Token: 0x04002D41 RID: 11585
+	// Token: 0x04002D54 RID: 11604
 	public bool TeacherReport;
 
-	// Token: 0x04002D42 RID: 11586
+	// Token: 0x04002D55 RID: 11605
 	public bool ClubActivity;
 
-	// Token: 0x04002D43 RID: 11587
+	// Token: 0x04002D56 RID: 11606
 	public bool CouncilDeath;
 
-	// Token: 0x04002D44 RID: 11588
+	// Token: 0x04002D57 RID: 11607
 	public bool MaskReported;
 
-	// Token: 0x04002D45 RID: 11589
+	// Token: 0x04002D58 RID: 11608
 	public bool SelfReported;
 
-	// Token: 0x04002D46 RID: 11590
+	// Token: 0x04002D59 RID: 11609
 	public bool FadeResults;
 
-	// Token: 0x04002D47 RID: 11591
+	// Token: 0x04002D5A RID: 11610
 	public bool ShowResults;
 
-	// Token: 0x04002D48 RID: 11592
+	// Token: 0x04002D5B RID: 11611
 	public bool SuicideNote;
 
-	// Token: 0x04002D49 RID: 11593
+	// Token: 0x04002D5C RID: 11612
 	public bool TextUpdated;
 
-	// Token: 0x04002D4A RID: 11594
+	// Token: 0x04002D5D RID: 11613
 	public bool GameOver;
 
-	// Token: 0x04002D4B RID: 11595
+	// Token: 0x04002D5E RID: 11614
 	public bool DayOver;
 
-	// Token: 0x04002D4C RID: 11596
+	// Token: 0x04002D5F RID: 11615
 	public bool Delayed;
 
-	// Token: 0x04002D4D RID: 11597
+	// Token: 0x04002D60 RID: 11616
 	public bool FadeOut;
 
-	// Token: 0x04002D4E RID: 11598
+	// Token: 0x04002D61 RID: 11617
 	public bool Invalid;
 
-	// Token: 0x04002D4F RID: 11599
+	// Token: 0x04002D62 RID: 11618
 	public bool Suicide;
 
-	// Token: 0x04002D50 RID: 11600
+	// Token: 0x04002D63 RID: 11619
 	public bool Called;
 
-	// Token: 0x04002D51 RID: 11601
+	// Token: 0x04002D64 RID: 11620
 	public bool LowRep;
 
-	// Token: 0x04002D52 RID: 11602
+	// Token: 0x04002D65 RID: 11621
 	public bool Show;
 
-	// Token: 0x04002D53 RID: 11603
+	// Token: 0x04002D66 RID: 11622
 	public int IncineratedWeapons;
 
-	// Token: 0x04002D54 RID: 11604
+	// Token: 0x04002D67 RID: 11623
 	public int RedPaintClothing;
 
-	// Token: 0x04002D55 RID: 11605
+	// Token: 0x04002D68 RID: 11624
 	public int SuicideVictims;
 
-	// Token: 0x04002D56 RID: 11606
+	// Token: 0x04002D69 RID: 11625
 	public int BloodyClothing;
 
-	// Token: 0x04002D57 RID: 11607
+	// Token: 0x04002D6A RID: 11626
 	public int BloodyWeapons;
 
-	// Token: 0x04002D58 RID: 11608
+	// Token: 0x04002D6B RID: 11627
 	public int HiddenCorpses;
 
-	// Token: 0x04002D59 RID: 11609
+	// Token: 0x04002D6C RID: 11628
 	public int MurderWeapons;
 
-	// Token: 0x04002D5A RID: 11610
+	// Token: 0x04002D6D RID: 11629
 	public int PhotoEvidence;
 
-	// Token: 0x04002D5B RID: 11611
+	// Token: 0x04002D6E RID: 11630
 	public int DrownVictims;
 
-	// Token: 0x04002D5C RID: 11612
+	// Token: 0x04002D6F RID: 11631
 	public int BodyParts;
 
-	// Token: 0x04002D5D RID: 11613
+	// Token: 0x04002D70 RID: 11632
 	public int SuicideID;
 
-	// Token: 0x04002D5E RID: 11614
+	// Token: 0x04002D71 RID: 11633
 	public int Witnesses;
 
-	// Token: 0x04002D5F RID: 11615
+	// Token: 0x04002D72 RID: 11634
 	public int Corpses;
 
-	// Token: 0x04002D60 RID: 11616
+	// Token: 0x04002D73 RID: 11635
 	public int Deaths;
 
-	// Token: 0x04002D61 RID: 11617
+	// Token: 0x04002D74 RID: 11636
 	public int Frame;
 
-	// Token: 0x04002D62 RID: 11618
+	// Token: 0x04002D75 RID: 11637
 	public float ResultsTimer;
 
-	// Token: 0x04002D63 RID: 11619
+	// Token: 0x04002D76 RID: 11638
 	public float Timer;
 
-	// Token: 0x04002D64 RID: 11620
+	// Token: 0x04002D77 RID: 11639
 	public float TargetX;
 
-	// Token: 0x04002D65 RID: 11621
+	// Token: 0x04002D78 RID: 11640
 	public float TargetY;
 
-	// Token: 0x04002D66 RID: 11622
+	// Token: 0x04002D79 RID: 11641
 	public int Minutes;
 
-	// Token: 0x04002D67 RID: 11623
+	// Token: 0x04002D7A RID: 11642
 	public int Seconds;
 
-	// Token: 0x04002D68 RID: 11624
+	// Token: 0x04002D7B RID: 11643
 	public string Protagonist = "Ayano";
 
-	// Token: 0x04002D69 RID: 11625
+	// Token: 0x04002D7C RID: 11644
 	public string[] VtuberNames;
 
-	// Token: 0x04002D6A RID: 11626
+	// Token: 0x04002D7D RID: 11645
 	public int SuspensionLength;
 
-	// Token: 0x04002D6B RID: 11627
+	// Token: 0x04002D7E RID: 11646
 	public int RemainingDays;
 
-	// Token: 0x04002D6C RID: 11628
+	// Token: 0x04002D7F RID: 11647
 	public bool Suspended;
 }

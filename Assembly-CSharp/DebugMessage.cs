@@ -1,12 +1,12 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000275 RID: 629
+// Token: 0x02000276 RID: 630
 public struct DebugMessage
 {
-	// Token: 0x04001C2D RID: 7213
+	// Token: 0x04001C34 RID: 7220
 	public LogType messageType;
 
-	// Token: 0x04001C2E RID: 7214
+	// Token: 0x04001C35 RID: 7221
 	public string content;
 }

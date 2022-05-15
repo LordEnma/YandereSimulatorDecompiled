@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000366 RID: 870
+// Token: 0x02000367 RID: 871
 public class MemeManagerScript : MonoBehaviour
 {
-	// Token: 0x060019B9 RID: 6585 RVA: 0x00107368 File Offset: 0x00105568
+	// Token: 0x060019BF RID: 6591 RVA: 0x00107BA4 File Offset: 0x00105DA4
 	private void Start()
 	{
 		if (GameGlobals.LoveSick)
@@ -17,7 +17,7 @@ public class MemeManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002956 RID: 10582
+	// Token: 0x04002967 RID: 10599
 	[SerializeField]
 	private GameObject[] Memes;
 }

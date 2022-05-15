@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x0200052E RID: 1326
+	// Token: 0x0200052F RID: 1327
 	[RequireComponent(typeof(CarController))]
 	public class CarAIControl : MonoBehaviour
 	{
-		// Token: 0x060021C2 RID: 8642 RVA: 0x001F199E File Offset: 0x001EFB9E
+		// Token: 0x060021CC RID: 8652 RVA: 0x001F2FEE File Offset: 0x001F11EE
 		private void Awake()
 		{
 			this.m_CarController = base.GetComponent<CarController>();
@@ -15,7 +15,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			this.m_Rigidbody = base.GetComponent<Rigidbody>();
 		}
 
-		// Token: 0x060021C3 RID: 8643 RVA: 0x001F19CC File Offset: 0x001EFBCC
+		// Token: 0x060021CD RID: 8653 RVA: 0x001F301C File Offset: 0x001F121C
 		private void FixedUpdate()
 		{
 			if (this.m_Target == null || !this.m_Driving)
@@ -71,7 +71,7 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021C4 RID: 8644 RVA: 0x001F1CFC File Offset: 0x001EFEFC
+		// Token: 0x060021CE RID: 8654 RVA: 0x001F334C File Offset: 0x001F154C
 		private void OnCollisionStay(Collision col)
 		{
 			if (col.rigidbody != null)
@@ -95,106 +95,106 @@ namespace UnityStandardAssets.Vehicles.Car
 			}
 		}
 
-		// Token: 0x060021C5 RID: 8645 RVA: 0x001F1DCA File Offset: 0x001EFFCA
+		// Token: 0x060021CF RID: 8655 RVA: 0x001F341A File Offset: 0x001F161A
 		public void SetTarget(Transform target)
 		{
 			this.m_Target = target;
 			this.m_Driving = true;
 		}
 
-		// Token: 0x04004A4A RID: 19018
+		// Token: 0x04004A71 RID: 19057
 		[SerializeField]
 		[Range(0f, 1f)]
 		private float m_CautiousSpeedFactor = 0.05f;
 
-		// Token: 0x04004A4B RID: 19019
+		// Token: 0x04004A72 RID: 19058
 		[SerializeField]
 		[Range(0f, 180f)]
 		private float m_CautiousMaxAngle = 50f;
 
-		// Token: 0x04004A4C RID: 19020
+		// Token: 0x04004A73 RID: 19059
 		[SerializeField]
 		private float m_CautiousMaxDistance = 100f;
 
-		// Token: 0x04004A4D RID: 19021
+		// Token: 0x04004A74 RID: 19060
 		[SerializeField]
 		private float m_CautiousAngularVelocityFactor = 30f;
 
-		// Token: 0x04004A4E RID: 19022
+		// Token: 0x04004A75 RID: 19061
 		[SerializeField]
 		private float m_SteerSensitivity = 0.05f;
 
-		// Token: 0x04004A4F RID: 19023
+		// Token: 0x04004A76 RID: 19062
 		[SerializeField]
 		private float m_AccelSensitivity = 0.04f;
 
-		// Token: 0x04004A50 RID: 19024
+		// Token: 0x04004A77 RID: 19063
 		[SerializeField]
 		private float m_BrakeSensitivity = 1f;
 
-		// Token: 0x04004A51 RID: 19025
+		// Token: 0x04004A78 RID: 19064
 		[SerializeField]
 		private float m_LateralWanderDistance = 3f;
 
-		// Token: 0x04004A52 RID: 19026
+		// Token: 0x04004A79 RID: 19065
 		[SerializeField]
 		private float m_LateralWanderSpeed = 0.1f;
 
-		// Token: 0x04004A53 RID: 19027
+		// Token: 0x04004A7A RID: 19066
 		[SerializeField]
 		[Range(0f, 1f)]
 		private float m_AccelWanderAmount = 0.1f;
 
-		// Token: 0x04004A54 RID: 19028
+		// Token: 0x04004A7B RID: 19067
 		[SerializeField]
 		private float m_AccelWanderSpeed = 0.1f;
 
-		// Token: 0x04004A55 RID: 19029
+		// Token: 0x04004A7C RID: 19068
 		[SerializeField]
 		private CarAIControl.BrakeCondition m_BrakeCondition = CarAIControl.BrakeCondition.TargetDistance;
 
-		// Token: 0x04004A56 RID: 19030
+		// Token: 0x04004A7D RID: 19069
 		[SerializeField]
 		private bool m_Driving;
 
-		// Token: 0x04004A57 RID: 19031
+		// Token: 0x04004A7E RID: 19070
 		[SerializeField]
 		private Transform m_Target;
 
-		// Token: 0x04004A58 RID: 19032
+		// Token: 0x04004A7F RID: 19071
 		[SerializeField]
 		private bool m_StopWhenTargetReached;
 
-		// Token: 0x04004A59 RID: 19033
+		// Token: 0x04004A80 RID: 19072
 		[SerializeField]
 		private float m_ReachTargetThreshold = 2f;
 
-		// Token: 0x04004A5A RID: 19034
+		// Token: 0x04004A81 RID: 19073
 		private float m_RandomPerlin;
 
-		// Token: 0x04004A5B RID: 19035
+		// Token: 0x04004A82 RID: 19074
 		private CarController m_CarController;
 
-		// Token: 0x04004A5C RID: 19036
+		// Token: 0x04004A83 RID: 19075
 		private float m_AvoidOtherCarTime;
 
-		// Token: 0x04004A5D RID: 19037
+		// Token: 0x04004A84 RID: 19076
 		private float m_AvoidOtherCarSlowdown;
 
-		// Token: 0x04004A5E RID: 19038
+		// Token: 0x04004A85 RID: 19077
 		private float m_AvoidPathOffset;
 
-		// Token: 0x04004A5F RID: 19039
+		// Token: 0x04004A86 RID: 19078
 		private Rigidbody m_Rigidbody;
 
-		// Token: 0x0200068B RID: 1675
+		// Token: 0x0200068C RID: 1676
 		public enum BrakeCondition
 		{
-			// Token: 0x040050B6 RID: 20662
+			// Token: 0x040050DD RID: 20701
 			NeverBrake,
-			// Token: 0x040050B7 RID: 20663
+			// Token: 0x040050DE RID: 20702
 			TargetDirectionDifference,
-			// Token: 0x040050B8 RID: 20664
+			// Token: 0x040050DF RID: 20703
 			TargetDistance
 		}
 	}

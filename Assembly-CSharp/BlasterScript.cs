@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000E4 RID: 228
+// Token: 0x020000E5 RID: 229
 public class BlasterScript : MonoBehaviour
 {
-	// Token: 0x06000A2A RID: 2602 RVA: 0x0005A643 File Offset: 0x00058843
+	// Token: 0x06000A2C RID: 2604 RVA: 0x0005A8C3 File Offset: 0x00058AC3
 	private void Start()
 	{
 		this.Skull.localScale = Vector3.zero;
 		this.Beam.localScale = Vector3.zero;
 	}
 
-	// Token: 0x06000A2B RID: 2603 RVA: 0x0005A668 File Offset: 0x00058868
+	// Token: 0x06000A2D RID: 2605 RVA: 0x0005A8E8 File Offset: 0x00058AE8
 	private void Update()
 	{
 		AnimationState animationState = base.GetComponent<Animation>()["Blast"];
@@ -26,7 +26,7 @@ public class BlasterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A2C RID: 2604 RVA: 0x0005A710 File Offset: 0x00058910
+	// Token: 0x06000A2E RID: 2606 RVA: 0x0005A990 File Offset: 0x00058B90
 	private void LateUpdate()
 	{
 		AnimationState animationState = base.GetComponent<Animation>()["Blast"];
@@ -34,15 +34,15 @@ public class BlasterScript : MonoBehaviour
 		this.Skull.localScale = new Vector3(this.Size, this.Size, this.Size);
 	}
 
-	// Token: 0x04000B8B RID: 2955
+	// Token: 0x04000B8F RID: 2959
 	public Transform Skull;
 
-	// Token: 0x04000B8C RID: 2956
+	// Token: 0x04000B90 RID: 2960
 	public Renderer Eyes;
 
-	// Token: 0x04000B8D RID: 2957
+	// Token: 0x04000B91 RID: 2961
 	public Transform Beam;
 
-	// Token: 0x04000B8E RID: 2958
+	// Token: 0x04000B92 RID: 2962
 	public float Size;
 }

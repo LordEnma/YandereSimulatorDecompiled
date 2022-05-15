@@ -4,13 +4,12 @@ using UnityEngine;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000105 RID: 261
+// Token: 0x02000106 RID: 262
 public class CalendarScript : MonoBehaviour
 {
-	// Token: 0x06000AA3 RID: 2723 RVA: 0x00061EC4 File Offset: 0x000600C4
+	// Token: 0x06000AA5 RID: 2725 RVA: 0x0006223C File Offset: 0x0006043C
 	private void Start()
 	{
-		Debug.Log("We just arrived at the calendar screen. DateGlobals.PassDays is: " + DateGlobals.PassDays.ToString());
 		this.NewTitleScreenProfile.colorGrading.enabled = false;
 		this.SetVignettePink();
 		PlayerGlobals.BringingItem = 0;
@@ -157,7 +156,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA4 RID: 2724 RVA: 0x00062404 File Offset: 0x00060604
+	// Token: 0x06000AA6 RID: 2726 RVA: 0x00062760 File Offset: 0x00060960
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -190,7 +189,6 @@ public class CalendarScript : MonoBehaviour
 							DateGlobals.ForceSkip = false;
 							this.SundayLabel.SetActive(false);
 							flag = true;
-							Debug.Log("ForceSkip was true.");
 						}
 						while (flag || (DateGlobals.PassDays > 0 && DateGlobals.Weekday != DayOfWeek.Saturday && DateGlobals.Weekday != DayOfWeek.Sunday))
 						{
@@ -199,7 +197,6 @@ public class CalendarScript : MonoBehaviour
 							DateGlobals.Weekday++;
 							this.ChangeDayColor();
 							flag = false;
-							Debug.Log("Passed one day. " + DateGlobals.PassDays.ToString() + " days remaining.");
 						}
 						this.Skipping = false;
 					}
@@ -485,7 +482,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA5 RID: 2725 RVA: 0x00062F14 File Offset: 0x00061114
+	// Token: 0x06000AA7 RID: 2727 RVA: 0x00063240 File Offset: 0x00061440
 	public void ChangeDayColor()
 	{
 		foreach (UILabel uilabel in this.DayLabel)
@@ -514,7 +511,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA6 RID: 2726 RVA: 0x00062FCC File Offset: 0x000611CC
+	// Token: 0x06000AA8 RID: 2728 RVA: 0x000632F8 File Offset: 0x000614F8
 	public void LoveSickCheck()
 	{
 		if (GameGlobals.LoveSick)
@@ -555,7 +552,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AA7 RID: 2727 RVA: 0x00063160 File Offset: 0x00061360
+	// Token: 0x06000AA9 RID: 2729 RVA: 0x0006348C File Offset: 0x0006168C
 	public void SetVignettePink()
 	{
 		VignetteModel.Settings settings = this.NewTitleScreenProfile.vignette.settings;
@@ -563,7 +560,7 @@ public class CalendarScript : MonoBehaviour
 		this.NewTitleScreenProfile.vignette.settings = settings;
 	}
 
-	// Token: 0x06000AA8 RID: 2728 RVA: 0x000631B0 File Offset: 0x000613B0
+	// Token: 0x06000AAA RID: 2730 RVA: 0x000634DC File Offset: 0x000616DC
 	private void ImproveSchoolAtmosphere()
 	{
 		if (SchoolGlobals.SchoolAtmosphere > 1f)
@@ -581,7 +578,7 @@ public class CalendarScript : MonoBehaviour
 		SchoolGlobals.PreviousSchoolAtmosphere = SchoolGlobals.SchoolAtmosphere;
 	}
 
-	// Token: 0x06000AA9 RID: 2729 RVA: 0x000632DC File Offset: 0x000614DC
+	// Token: 0x06000AAB RID: 2731 RVA: 0x00063608 File Offset: 0x00061808
 	private void BecomeEighties()
 	{
 		this.Vignette.enabled = false;
@@ -747,7 +744,7 @@ public class CalendarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000AAA RID: 2730 RVA: 0x00063BBC File Offset: 0x00061DBC
+	// Token: 0x06000AAC RID: 2732 RVA: 0x00063EE8 File Offset: 0x000620E8
 	public void EightiesifyLabel(UILabel Label)
 	{
 		Label.trueTypeFont = this.VCR;
@@ -757,7 +754,7 @@ public class CalendarScript : MonoBehaviour
 		Label.effectColor = new Color(0f, 0f, 0f, 1f);
 	}
 
-	// Token: 0x06000AAB RID: 2731 RVA: 0x00063C24 File Offset: 0x00061E24
+	// Token: 0x06000AAD RID: 2733 RVA: 0x00063F50 File Offset: 0x00062150
 	public void ResetSaveFile()
 	{
 		int num = GameGlobals.Profile;
@@ -797,144 +794,144 @@ public class CalendarScript : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
-	// Token: 0x04000CC9 RID: 3273
+	// Token: 0x04000CCF RID: 3279
 	public PostProcessingProfile NewTitleScreenProfile;
 
-	// Token: 0x04000CCA RID: 3274
+	// Token: 0x04000CD0 RID: 3280
 	public SelectiveGrayscale GrayscaleEffect;
 
-	// Token: 0x04000CCB RID: 3275
+	// Token: 0x04000CD1 RID: 3281
 	public ChallengeScript Challenge;
 
-	// Token: 0x04000CCC RID: 3276
+	// Token: 0x04000CD2 RID: 3282
 	public Vignetting Vignette;
 
-	// Token: 0x04000CCD RID: 3277
+	// Token: 0x04000CD3 RID: 3283
 	public GameObject SkipConfirmationWindow;
 
-	// Token: 0x04000CCE RID: 3278
+	// Token: 0x04000CD4 RID: 3284
 	public GameObject CongratulationsWindow;
 
-	// Token: 0x04000CCF RID: 3279
+	// Token: 0x04000CD5 RID: 3285
 	public GameObject ConfirmationWindow;
 
-	// Token: 0x04000CD0 RID: 3280
+	// Token: 0x04000CD6 RID: 3286
 	public GameObject ResetWeekWindow;
 
-	// Token: 0x04000CD1 RID: 3281
+	// Token: 0x04000CD7 RID: 3287
 	public GameObject AmaiWindow;
 
-	// Token: 0x04000CD2 RID: 3282
+	// Token: 0x04000CD8 RID: 3288
 	public GameObject DeadlineLabel;
 
-	// Token: 0x04000CD3 RID: 3283
+	// Token: 0x04000CD9 RID: 3289
 	public GameObject StatsButton;
 
-	// Token: 0x04000CD4 RID: 3284
+	// Token: 0x04000CDA RID: 3290
 	public GameObject AmaiButton;
 
-	// Token: 0x04000CD5 RID: 3285
+	// Token: 0x04000CDB RID: 3291
 	public GameObject SkipButton;
 
-	// Token: 0x04000CD6 RID: 3286
+	// Token: 0x04000CDC RID: 3292
 	public UILabel AtmosphereLabel;
 
-	// Token: 0x04000CD7 RID: 3287
+	// Token: 0x04000CDD RID: 3293
 	public UIPanel ChallengePanel;
 
-	// Token: 0x04000CD8 RID: 3288
+	// Token: 0x04000CDE RID: 3294
 	public UIPanel CalendarPanel;
 
-	// Token: 0x04000CD9 RID: 3289
+	// Token: 0x04000CDF RID: 3295
 	public UISprite Darkness;
 
-	// Token: 0x04000CDA RID: 3290
+	// Token: 0x04000CE0 RID: 3296
 	public UITexture Cloud;
 
-	// Token: 0x04000CDB RID: 3291
+	// Token: 0x04000CE1 RID: 3297
 	public UITexture Sun;
 
-	// Token: 0x04000CDC RID: 3292
+	// Token: 0x04000CE2 RID: 3298
 	public Transform Highlight;
 
-	// Token: 0x04000CDD RID: 3293
+	// Token: 0x04000CE3 RID: 3299
 	public Transform Continue;
 
-	// Token: 0x04000CDE RID: 3294
+	// Token: 0x04000CE4 RID: 3300
 	public UILabel[] DayNumber;
 
-	// Token: 0x04000CDF RID: 3295
+	// Token: 0x04000CE5 RID: 3301
 	public UILabel[] DayLabel;
 
-	// Token: 0x04000CE0 RID: 3296
+	// Token: 0x04000CE6 RID: 3302
 	public UILabel MonthLabel;
 
-	// Token: 0x04000CE1 RID: 3297
+	// Token: 0x04000CE7 RID: 3303
 	public UILabel WeekNumber;
 
-	// Token: 0x04000CE2 RID: 3298
+	// Token: 0x04000CE8 RID: 3304
 	public UILabel YearLabel;
 
-	// Token: 0x04000CE3 RID: 3299
+	// Token: 0x04000CE9 RID: 3305
 	public UILabel SkipLabel;
 
-	// Token: 0x04000CE4 RID: 3300
+	// Token: 0x04000CEA RID: 3306
 	public bool CameFromTitleScreen;
 
-	// Token: 0x04000CE5 RID: 3301
+	// Token: 0x04000CEB RID: 3307
 	public bool ViewingStats;
 
-	// Token: 0x04000CE6 RID: 3302
+	// Token: 0x04000CEC RID: 3308
 	public bool Incremented;
 
-	// Token: 0x04000CE7 RID: 3303
+	// Token: 0x04000CED RID: 3309
 	public bool ResetWeek;
 
-	// Token: 0x04000CE8 RID: 3304
+	// Token: 0x04000CEE RID: 3310
 	public bool Eighties;
 
-	// Token: 0x04000CE9 RID: 3305
+	// Token: 0x04000CEF RID: 3311
 	public bool LoveSick;
 
-	// Token: 0x04000CEA RID: 3306
+	// Token: 0x04000CF0 RID: 3312
 	public bool Skipping;
 
-	// Token: 0x04000CEB RID: 3307
+	// Token: 0x04000CF1 RID: 3313
 	public bool FadeOut;
 
-	// Token: 0x04000CEC RID: 3308
+	// Token: 0x04000CF2 RID: 3314
 	public bool Switch;
 
-	// Token: 0x04000CED RID: 3309
+	// Token: 0x04000CF3 RID: 3315
 	public bool Reset;
 
-	// Token: 0x04000CEE RID: 3310
+	// Token: 0x04000CF4 RID: 3316
 	public float Timer;
 
-	// Token: 0x04000CEF RID: 3311
+	// Token: 0x04000CF5 RID: 3317
 	public float Target;
 
-	// Token: 0x04000CF0 RID: 3312
+	// Token: 0x04000CF6 RID: 3318
 	public float Offset = 66.66666f;
 
-	// Token: 0x04000CF1 RID: 3313
+	// Token: 0x04000CF7 RID: 3319
 	public int Adjustment;
 
-	// Token: 0x04000CF2 RID: 3314
+	// Token: 0x04000CF8 RID: 3320
 	public int Phase = 1;
 
-	// Token: 0x04000CF3 RID: 3315
+	// Token: 0x04000CF9 RID: 3321
 	public AudioClip EightiesJingle;
 
-	// Token: 0x04000CF4 RID: 3316
+	// Token: 0x04000CFA RID: 3322
 	public UILabel[] Labels;
 
-	// Token: 0x04000CF5 RID: 3317
+	// Token: 0x04000CFB RID: 3323
 	public GameObject SundayLabel;
 
-	// Token: 0x04000CF6 RID: 3318
+	// Token: 0x04000CFC RID: 3324
 	public GameObject EndingLabel;
 
-	// Token: 0x04000CF7 RID: 3319
+	// Token: 0x04000CFD RID: 3325
 	public Font VCR;
 }

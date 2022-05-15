@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000438 RID: 1080
+// Token: 0x02000439 RID: 1081
 public class SnapStudentScript : MonoBehaviour
 {
-	// Token: 0x06001CF5 RID: 7413 RVA: 0x001584D8 File Offset: 0x001566D8
+	// Token: 0x06001CFB RID: 7419 RVA: 0x0015918C File Offset: 0x0015738C
 	private void Start()
 	{
 		this.MyAnim.enabled = false;
@@ -12,7 +12,7 @@ public class SnapStudentScript : MonoBehaviour
 		this.MyAnim.enabled = true;
 	}
 
-	// Token: 0x06001CF6 RID: 7414 RVA: 0x00158534 File Offset: 0x00156734
+	// Token: 0x06001CFC RID: 7420 RVA: 0x001591E8 File Offset: 0x001573E8
 	private void Update()
 	{
 		if (Vector3.Distance(base.transform.position, this.Yandere.transform.position) < 1f)
@@ -54,7 +54,7 @@ public class SnapStudentScript : MonoBehaviour
 				}
 			}
 		}
-		else if (Vector3.Distance(base.transform.position, this.Yandere.transform.position) < 5f)
+		else if (Vector3.Distance(base.transform.position, this.Yandere.transform.position) < 4f)
 		{
 			if (!this.VoicedConcern && this.Yandere.CanMove && !this.Yandere.SnapVoice.isPlaying)
 			{
@@ -89,30 +89,30 @@ public class SnapStudentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400342C RID: 13356
+	// Token: 0x04003441 RID: 13377
 	public SnappedYandereScript Yandere;
 
-	// Token: 0x0400342D RID: 13357
+	// Token: 0x04003442 RID: 13378
 	public Quaternion targetRotation;
 
-	// Token: 0x0400342E RID: 13358
+	// Token: 0x04003443 RID: 13379
 	public StudentScript Student;
 
-	// Token: 0x0400342F RID: 13359
+	// Token: 0x04003444 RID: 13380
 	public Animation MyAnim;
 
-	// Token: 0x04003430 RID: 13360
+	// Token: 0x04003445 RID: 13381
 	public string FearAnim;
 
-	// Token: 0x04003431 RID: 13361
+	// Token: 0x04003446 RID: 13382
 	public string[] AttackAnims;
 
-	// Token: 0x04003432 RID: 13362
+	// Token: 0x04003447 RID: 13383
 	public bool VoicedConcern;
 
-	// Token: 0x04003433 RID: 13363
+	// Token: 0x04003448 RID: 13384
 	public AudioClip[] StudentFear;
 
-	// Token: 0x04003434 RID: 13364
+	// Token: 0x04003449 RID: 13385
 	public AudioClip SenpaiFear;
 }

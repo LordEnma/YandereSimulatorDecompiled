@@ -89,7 +89,7 @@ public class AlarmDiscScript : MonoBehaviour
 						{
 							StudentActionType currentAction = this.Student.CurrentAction;
 						}
-						if ((!this.Student.TurnOffRadio && this.Student.Alive && !this.Student.Pushed && !this.Student.Dying && !this.Student.Alarmed && !this.Student.Guarding && !this.Student.Wet && !this.Student.Slave && !this.Student.CheckingNote && !this.Student.WitnessedMurder && !this.Student.WitnessedCorpse && !this.Student.Emetic && !this.Student.Confessing && !this.StudentIsBusy && !this.Student.FocusOnYandere && !this.Student.Fleeing && !this.Student.Shoving && !this.Student.SentHome && this.Student.ClubActivityPhase < 16 && !this.Student.Vomiting && !this.Student.Lethal && !this.Student.Headache && !this.Student.Sedated && !this.Student.SenpaiWitnessingRivalDie && !this.Student.Hunted && !this.Student.Drowned && !this.Student.DramaticReaction && !this.Student.Blind && !this.Student.Yandere.Chased && !this.Student.ImmuneToLaughter && !this.Student.ListeningToReport) || (this.Student.Persona == PersonaType.Protective && this.Originator != null && this.Originator.StudentID == 11 && !this.Student.Hunted && !this.Student.Emetic))
+						if ((!this.Student.TurnOffRadio && this.Student.Alive && !this.Student.Pushed && !this.Student.Dying && !this.Student.Alarmed && !this.Student.Guarding && !this.Student.Wet && !this.Student.Slave && !this.Student.CheckingNote && !this.Student.WitnessedMurder && !this.Student.WitnessedCorpse && !this.Student.Emetic && !this.Student.Confessing && !this.StudentIsBusy && !this.Student.FocusOnYandere && !this.Student.Fleeing && !this.Student.Shoving && !this.Student.SentHome && this.Student.ClubActivityPhase < 16 && !this.Student.Vomiting && !this.Student.Lethal && !this.Student.Headache && !this.Student.Sedated && !this.Student.SenpaiWitnessingRivalDie && !this.Student.Hunted && !this.Student.Drowned && !this.Student.DramaticReaction && !this.Student.Blind && !this.Student.Yandere.Chased && !this.Student.ImmuneToLaughter && !this.Student.ListeningToReport) || (this.Student.Persona == PersonaType.Protective && this.Originator != null && this.Originator.StudentID == 11 && !this.Student.Hunted && !this.Student.Emetic && !this.Student.Headache))
 						{
 							bool male = this.Student.Male;
 							if (!this.Student.Struggling)
@@ -116,6 +116,7 @@ public class AlarmDiscScript : MonoBehaviour
 								this.Student.DistractionSpot = new Vector3(base.transform.position.x, this.Student.transform.position.y, base.transform.position.z);
 							}
 							this.Student.DiscCheck = true;
+							Debug.Log(this.Student.Name + "'s ''DiskCheck'' was just set to ''true''.");
 							if (this.Shocking)
 							{
 								this.Student.Hesitation = 0.5f;
@@ -149,16 +150,15 @@ public class AlarmDiscScript : MonoBehaviour
 				}
 				else
 				{
-					Debug.Log("A student just heard a radio...");
 					if (this.Student.Giggle != null)
 					{
 						this.Student.StopInvestigating();
 					}
-					if (!this.Student.Nemesis && this.Student.Alive && !this.Student.Dying && !this.Student.Guarding && !this.Student.Alarmed && !this.Student.Wet && !this.Student.Slave && !this.Student.Headache && !this.Student.WitnessedMurder && !this.Student.WitnessedCorpse && !this.Student.Lethal && !this.Student.InEvent && !this.Student.Following && !this.Student.Distracting && this.Student.Actions[this.Student.Phase] != StudentActionType.Teaching && this.Student.Actions[this.Student.Phase] != StudentActionType.SitAndTakeNotes && !this.Student.GoAway && this.Student.Routine && !this.Student.CheckingNote && !this.Student.SentHome)
+					if (!this.Student.Nemesis && this.Student.Alive && !this.Student.Dying && !this.Student.Guarding && !this.Student.Alarmed && !this.Student.Wet && !this.Student.Slave && !this.Student.Headache && !this.Student.WitnessedMurder && !this.Student.WitnessedCorpse && !this.Student.Lethal && !this.Student.InEvent && !this.Student.Following && !this.Student.Distracting && !this.Student.GoAway && this.Student.Routine && !this.Student.CheckingNote && !this.Student.SentHome)
 					{
 						if (this.Student.CharacterAnimation != null && this.SourceRadio.Victim == null)
 						{
-							if (this.Student.StudentManager.LockerRoomArea.bounds.Contains(base.transform.position) || this.Student.StudentManager.WestBathroomArea.bounds.Contains(base.transform.position) || this.Student.StudentManager.EastBathroomArea.bounds.Contains(base.transform.position) || (this.Student.Club != ClubType.Delinquent && this.Student.StudentManager.IncineratorArea.bounds.Contains(base.transform.position)) || this.Student.StudentManager.HeadmasterArea.bounds.Contains(base.transform.position))
+							if (this.Student.StudentManager.LockerRoomArea.bounds.Contains(base.transform.position) || this.Student.StudentManager.WestBathroomArea.bounds.Contains(base.transform.position) || this.Student.StudentManager.EastBathroomArea.bounds.Contains(base.transform.position) || (this.Student.Club != ClubType.Delinquent && this.Student.StudentManager.IncineratorArea.bounds.Contains(base.transform.position)) || this.Student.StudentManager.HeadmasterArea.bounds.Contains(base.transform.position) || (this.Student.Rival && this.Student.Actions[this.Student.Phase] == StudentActionType.SitAndTakeNotes))
 							{
 								if (this.Student.Yandere.NotificationManager.NotificationParent.childCount < 5)
 								{
@@ -253,7 +253,7 @@ public class AlarmDiscScript : MonoBehaviour
 		this.Student = null;
 	}
 
-	// Token: 0x060009AA RID: 2474 RVA: 0x0004F6C8 File Offset: 0x0004D8C8
+	// Token: 0x060009AA RID: 2474 RVA: 0x0004F6D8 File Offset: 0x0004D8D8
 	private void PlayClip(AudioClip clip, Vector3 pos)
 	{
 		GameObject gameObject = new GameObject("TempAudio");
@@ -273,7 +273,7 @@ public class AlarmDiscScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009AB RID: 2475 RVA: 0x0004F758 File Offset: 0x0004D958
+	// Token: 0x060009AB RID: 2475 RVA: 0x0004F768 File Offset: 0x0004D968
 	private void InvestigateScream()
 	{
 		Debug.Log(this.Student.Name + " just heard a scream.");
@@ -289,6 +289,7 @@ public class AlarmDiscScript : MonoBehaviour
 			this.Student.Giggle = giggle;
 			if (this.Student.Pathfinding != null && !this.Student.Nemesis)
 			{
+				Debug.Log(this.Student.Name + " just heard a scream, so their ''DiskCheck'' was set to ''true''.");
 				this.Student.Pathfinding.canSearch = false;
 				this.Student.Pathfinding.canMove = false;
 				this.Student.InvestigationPhase = 0;

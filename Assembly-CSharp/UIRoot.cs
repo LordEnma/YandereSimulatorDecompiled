@@ -289,29 +289,29 @@ public class UIRoot : MonoBehaviour
 	// Token: 0x0400075C RID: 1884
 	private Transform mTrans;
 
-	// Token: 0x02000646 RID: 1606
+	// Token: 0x02000647 RID: 1607
 	[DoNotObfuscateNGUI]
 	public enum Scaling
 	{
-		// Token: 0x04004F5C RID: 20316
+		// Token: 0x04004F83 RID: 20355
 		Flexible,
-		// Token: 0x04004F5D RID: 20317
+		// Token: 0x04004F84 RID: 20356
 		Constrained,
-		// Token: 0x04004F5E RID: 20318
+		// Token: 0x04004F85 RID: 20357
 		ConstrainedOnMobiles
 	}
 
-	// Token: 0x02000647 RID: 1607
+	// Token: 0x02000648 RID: 1608
 	[DoNotObfuscateNGUI]
 	public enum Constraint
 	{
-		// Token: 0x04004F60 RID: 20320
+		// Token: 0x04004F87 RID: 20359
 		Fit,
-		// Token: 0x04004F61 RID: 20321
+		// Token: 0x04004F88 RID: 20360
 		Fill,
-		// Token: 0x04004F62 RID: 20322
+		// Token: 0x04004F89 RID: 20361
 		FitWidth,
-		// Token: 0x04004F63 RID: 20323
+		// Token: 0x04004F8A RID: 20362
 		FitHeight
 	}
 }

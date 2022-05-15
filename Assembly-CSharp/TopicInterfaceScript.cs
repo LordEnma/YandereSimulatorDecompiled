@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000486 RID: 1158
+// Token: 0x02000487 RID: 1159
 public class TopicInterfaceScript : MonoBehaviour
 {
-	// Token: 0x06001F1B RID: 7963 RVA: 0x001B85C4 File Offset: 0x001B67C4
+	// Token: 0x06001F23 RID: 7971 RVA: 0x001B973C File Offset: 0x001B793C
 	private void Start()
 	{
 		if (this.Student == null)
@@ -18,7 +18,7 @@ public class TopicInterfaceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F1C RID: 7964 RVA: 0x001B8610 File Offset: 0x001B6810
+	// Token: 0x06001F24 RID: 7972 RVA: 0x001B9788 File Offset: 0x001B7988
 	private void Update()
 	{
 		if (this.InputManager.TappedUp)
@@ -74,7 +74,7 @@ public class TopicInterfaceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F1D RID: 7965 RVA: 0x001B878C File Offset: 0x001B698C
+	// Token: 0x06001F25 RID: 7973 RVA: 0x001B9904 File Offset: 0x001B7B04
 	public void UpdateTopicHighlight()
 	{
 		if (this.Row < 1)
@@ -150,7 +150,7 @@ public class TopicInterfaceScript : MonoBehaviour
 		this.NegativeRemark.SetActive(true);
 	}
 
-	// Token: 0x06001F1E RID: 7966 RVA: 0x001B8A38 File Offset: 0x001B6C38
+	// Token: 0x06001F26 RID: 7974 RVA: 0x001B9BB0 File Offset: 0x001B7DB0
 	public void UpdateOpinions()
 	{
 		for (int i = 1; i <= 25; i++)
@@ -168,7 +168,7 @@ public class TopicInterfaceScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F1F RID: 7967 RVA: 0x001B8AA0 File Offset: 0x001B6CA0
+	// Token: 0x06001F27 RID: 7975 RVA: 0x001B9C18 File Offset: 0x001B7E18
 	private void DetermineOpinion()
 	{
 		int[] topics = this.JSON.Topics[this.StudentID].Topics;
@@ -176,81 +176,81 @@ public class TopicInterfaceScript : MonoBehaviour
 		this.Success = false;
 	}
 
-	// Token: 0x040040E4 RID: 16612
+	// Token: 0x04004102 RID: 16642
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040040E5 RID: 16613
+	// Token: 0x04004103 RID: 16643
 	public InputManagerScript InputManager;
 
-	// Token: 0x040040E6 RID: 16614
+	// Token: 0x04004104 RID: 16644
 	public StudentScript TargetStudent;
 
-	// Token: 0x040040E7 RID: 16615
+	// Token: 0x04004105 RID: 16645
 	public StudentScript Student;
 
-	// Token: 0x040040E8 RID: 16616
+	// Token: 0x04004106 RID: 16646
 	public YandereScript Yandere;
 
-	// Token: 0x040040E9 RID: 16617
+	// Token: 0x04004107 RID: 16647
 	public JsonScript JSON;
 
-	// Token: 0x040040EA RID: 16618
+	// Token: 0x04004108 RID: 16648
 	public GameObject NegativeRemark;
 
-	// Token: 0x040040EB RID: 16619
+	// Token: 0x04004109 RID: 16649
 	public GameObject PositiveRemark;
 
-	// Token: 0x040040EC RID: 16620
+	// Token: 0x0400410A RID: 16650
 	public GameObject EmbarassingSecret;
 
-	// Token: 0x040040ED RID: 16621
+	// Token: 0x0400410B RID: 16651
 	public Transform TopicHighlight;
 
-	// Token: 0x040040EE RID: 16622
+	// Token: 0x0400410C RID: 16652
 	public UISprite[] OpinionIcons;
 
-	// Token: 0x040040EF RID: 16623
+	// Token: 0x0400410D RID: 16653
 	public UILabel EmbarassingLabel;
 
-	// Token: 0x040040F0 RID: 16624
+	// Token: 0x0400410E RID: 16654
 	public UILabel Label;
 
-	// Token: 0x040040F1 RID: 16625
+	// Token: 0x0400410F RID: 16655
 	public int TopicSelected;
 
-	// Token: 0x040040F2 RID: 16626
+	// Token: 0x04004110 RID: 16656
 	public int Opinion;
 
-	// Token: 0x040040F3 RID: 16627
+	// Token: 0x04004111 RID: 16657
 	public int Column;
 
-	// Token: 0x040040F4 RID: 16628
+	// Token: 0x04004112 RID: 16658
 	public int Row;
 
-	// Token: 0x040040F5 RID: 16629
+	// Token: 0x04004113 RID: 16659
 	public bool Socializing;
 
-	// Token: 0x040040F6 RID: 16630
+	// Token: 0x04004114 RID: 16660
 	public bool Positive;
 
-	// Token: 0x040040F7 RID: 16631
+	// Token: 0x04004115 RID: 16661
 	public bool Success;
 
-	// Token: 0x040040F8 RID: 16632
+	// Token: 0x04004116 RID: 16662
 	public string[] OpinionSpriteNames;
 
-	// Token: 0x040040F9 RID: 16633
+	// Token: 0x04004117 RID: 16663
 	public string[] TopicNames;
 
-	// Token: 0x040040FA RID: 16634
+	// Token: 0x04004118 RID: 16664
 	public string Statement;
 
-	// Token: 0x040040FB RID: 16635
+	// Token: 0x04004119 RID: 16665
 	public string LoveHate;
 
-	// Token: 0x040040FC RID: 16636
+	// Token: 0x0400411A RID: 16666
 	public int TargetStudentID = 1;
 
-	// Token: 0x040040FD RID: 16637
+	// Token: 0x0400411B RID: 16667
 	public int StudentID = 1;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000389 RID: 905
+// Token: 0x0200038A RID: 906
 public class OsanaMatrixScript : MonoBehaviour
 {
-	// Token: 0x06001A51 RID: 6737 RVA: 0x00116F10 File Offset: 0x00115110
+	// Token: 0x06001A57 RID: 6743 RVA: 0x001177E8 File Offset: 0x001159E8
 	private void Update()
 	{
 		if (Input.GetKeyDown("z"))
@@ -27,12 +27,12 @@ public class OsanaMatrixScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002B23 RID: 11043
+	// Token: 0x04002B35 RID: 11061
 	public CameraFilterPack_3D_Matrix MatrixEffect;
 
-	// Token: 0x04002B24 RID: 11044
+	// Token: 0x04002B36 RID: 11062
 	public GameObject Rivals;
 
-	// Token: 0x04002B25 RID: 11045
+	// Token: 0x04002B37 RID: 11063
 	public int Phase = 1;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200031D RID: 797
+// Token: 0x0200031E RID: 798
 public class HomeCyberstalkScript : MonoBehaviour
 {
-	// Token: 0x06001890 RID: 6288 RVA: 0x000EE218 File Offset: 0x000EC418
+	// Token: 0x06001895 RID: 6293 RVA: 0x000EE518 File Offset: 0x000EC718
 	private void Update()
 	{
 		if (Input.GetButtonDown("A"))
@@ -25,6 +25,6 @@ public class HomeCyberstalkScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040024C3 RID: 9411
+	// Token: 0x040024CE RID: 9422
 	public HomeDarknessScript HomeDarkness;
 }

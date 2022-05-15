@@ -2,18 +2,26 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020004C9 RID: 1225
+// Token: 0x020004CA RID: 1226
 public class WeekSelectScript : MonoBehaviour
 {
-	// Token: 0x06002010 RID: 8208 RVA: 0x001C7DAB File Offset: 0x001C5FAB
+	// Token: 0x06002019 RID: 8217 RVA: 0x001C8F80 File Offset: 0x001C7180
 	private void Start()
 	{
+		base.transform.position = new Vector3(0f, 2.31f, 0f);
+		this.EditLabel.gameObject.SetActive(false);
+		this.StartLabel.text = "NEXT";
 		this.Darkness.alpha = 1f;
 		this.UpdateArrow();
 		this.UpdateText();
+		for (int i = 1; i < 11; i++)
+		{
+			this.StartingPosition[i] = this.Sleeve[i].position;
+		}
+		this.DetermineSelectedWeek();
 	}
 
-	// Token: 0x06002011 RID: 8209 RVA: 0x001C7DCC File Offset: 0x001C5FCC
+	// Token: 0x0600201A RID: 8218 RVA: 0x001C9018 File Offset: 0x001C7218
 	private void Update()
 	{
 		if (this.Fading)
@@ -34,23 +42,24 @@ public class WeekSelectScript : MonoBehaviour
 				{
 					for (int i = 1; i < 11; i++)
 					{
-						if (GameGlobals.GetRivalEliminations(i) == 1 || GameGlobals.GetRivalEliminations(i) == 5 || GameGlobals.GetRivalEliminations(i) == 6 || GameGlobals.GetRivalEliminations(i) == 7 || GameGlobals.GetRivalEliminations(i) == 8 || GameGlobals.GetRivalEliminations(i) == 10 || GameGlobals.GetRivalEliminations(i) == 14 || GameGlobals.GetRivalEliminations(i) == 15 || GameGlobals.GetRivalEliminations(i) == 16 || GameGlobals.GetRivalEliminations(i) == 17 || GameGlobals.GetRivalEliminations(i) == 19 || GameGlobals.GetRivalEliminations(i) == 20)
+						if (GameGlobals.GetSpecificEliminations(i) == 1 || GameGlobals.GetSpecificEliminations(i) == 5 || GameGlobals.GetSpecificEliminations(i) == 6 || GameGlobals.GetSpecificEliminations(i) == 7 || GameGlobals.GetSpecificEliminations(i) == 8 || GameGlobals.GetSpecificEliminations(i) == 10 || GameGlobals.GetSpecificEliminations(i) == 14 || GameGlobals.GetSpecificEliminations(i) == 15 || GameGlobals.GetSpecificEliminations(i) == 16 || GameGlobals.GetSpecificEliminations(i) == 17 || GameGlobals.GetSpecificEliminations(i) == 19 || GameGlobals.GetSpecificEliminations(i) == 20)
 						{
+							Debug.Log("Rival #" + i.ToString() + " is dead.");
 							StudentGlobals.SetStudentDead(i + 10, true);
 						}
-						else if (GameGlobals.GetRivalEliminations(i) == 3 || GameGlobals.GetRivalEliminations(i) == 4)
+						else if (GameGlobals.GetSpecificEliminations(i) == 3 || GameGlobals.GetSpecificEliminations(i) == 4)
 						{
 							StudentGlobals.SetStudentMissing(i + 10, true);
 						}
-						else if (GameGlobals.GetRivalEliminations(i) == 9)
+						else if (GameGlobals.GetSpecificEliminations(i) == 9)
 						{
 							StudentGlobals.SetStudentExpelled(i + 10, true);
 						}
-						else if (GameGlobals.GetRivalEliminations(i) == 11)
+						else if (GameGlobals.GetSpecificEliminations(i) == 11)
 						{
 							StudentGlobals.SetStudentArrested(i + 10, true);
 						}
-						else if (GameGlobals.GetRivalEliminations(i) == 12)
+						else if (GameGlobals.GetSpecificEliminations(i) == 12)
 						{
 							StudentGlobals.SetStudentKidnapped(i + 10, true);
 						}
@@ -64,44 +73,35 @@ public class WeekSelectScript : MonoBehaviour
 		}
 		if (this.SettingWeek)
 		{
-			if (this.InputManager.TappedDown)
+			if (this.InputManager.TappedDown || this.InputManager.TappedUp)
 			{
-				this.SettingWeek = false;
-				this.SettingRivals = true;
-				this.RivalID = 1;
-				this.UpdateArrow();
-			}
-			else if (this.InputManager.TappedUp)
-			{
-				this.SettingWeek = false;
-				this.SettingDetails = true;
-				this.DetailID = 4;
-				this.UpdateArrow();
-			}
-			else if (Input.GetButtonDown("X"))
-			{
-				DateGlobals.Week--;
-				if (DateGlobals.Week < 1)
+				if (this.Row == 1)
 				{
-					for (int j = 1; j < 10; j++)
-					{
-						GameGlobals.SetRivalEliminations(j, 1);
-						GameGlobals.SetSpecificEliminations(j, 1);
-					}
-					DateGlobals.Week = 10;
+					this.Row = 2;
 				}
-				this.UpdateText();
-			}
-			else if (Input.GetButtonDown("Y"))
-			{
-				DateGlobals.Week++;
-				if (DateGlobals.Week > 10)
+				else
 				{
-					DateGlobals.Week = 1;
+					this.Row = 1;
 				}
-				GameGlobals.SetRivalEliminations(DateGlobals.Week - 1, 1);
-				GameGlobals.SetSpecificEliminations(DateGlobals.Week - 1, 1);
-				this.UpdateText();
+				this.DetermineSelectedWeek();
+			}
+			else if (this.InputManager.TappedRight)
+			{
+				this.Column++;
+				if (this.Column > 5)
+				{
+					this.Column = 1;
+				}
+				this.DetermineSelectedWeek();
+			}
+			else if (this.InputManager.TappedLeft)
+			{
+				this.Column--;
+				if (this.Column < 1)
+				{
+					this.Column = 5;
+				}
+				this.DetermineSelectedWeek();
 			}
 		}
 		else if (this.SettingRivals)
@@ -129,12 +129,7 @@ public class WeekSelectScript : MonoBehaviour
 			}
 			else if (this.InputManager.TappedUp)
 			{
-				if (this.RivalID == 1 || this.RivalID == 6)
-				{
-					this.SettingRivals = false;
-					this.SettingWeek = true;
-				}
-				else
+				if (this.RivalID != 1 && this.RivalID != 6)
 				{
 					this.RivalID--;
 				}
@@ -172,6 +167,8 @@ public class WeekSelectScript : MonoBehaviour
 					GameGlobals.SetSpecificEliminations(this.RivalID, 1);
 				}
 				GameGlobals.SetRivalEliminations(this.RivalID, this.Specifics[GameGlobals.GetSpecificEliminations(this.RivalID)]);
+				Debug.Log("Rival #" + this.RivalID.ToString() + "'s SpecificElimination is now " + GameGlobals.GetSpecificEliminations(this.RivalID).ToString());
+				Debug.Log("Rival #" + this.RivalID.ToString() + "'s Elimination is now " + GameGlobals.GetRivalEliminations(this.RivalID).ToString());
 				this.UpdateText();
 			}
 			else if (Input.GetButtonDown("X"))
@@ -187,12 +184,7 @@ public class WeekSelectScript : MonoBehaviour
 		}
 		else if (this.InputManager.TappedDown)
 		{
-			if (this.DetailID == 4 || this.DetailID == 8)
-			{
-				this.SettingDetails = false;
-				this.SettingWeek = true;
-			}
-			else
+			if (this.DetailID != 4 && this.DetailID != 8)
 			{
 				this.DetailID++;
 			}
@@ -335,18 +327,57 @@ public class WeekSelectScript : MonoBehaviour
 			}
 			this.UpdateText();
 		}
-		if (Input.GetButtonDown("A"))
+		if (this.SettingWeek)
 		{
-			this.Fading = true;
+			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(0f, 2.31f, 0f), Time.deltaTime * 10f);
+			if (Input.GetButtonDown("A"))
+			{
+				this.SettingWeek = false;
+				this.SettingRivals = true;
+				this.EditLabel.gameObject.SetActive(true);
+				this.StartLabel.text = "START";
+				this.RivalID = 1;
+				this.UpdateArrow();
+			}
+		}
+		else
+		{
+			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(0f, 0f, 0f), Time.deltaTime * 10f);
+			if (Input.GetButtonDown("A"))
+			{
+				this.Fading = true;
+			}
+			if (Input.GetButtonDown("B"))
+			{
+				this.SettingWeek = true;
+				this.SettingRivals = false;
+				this.SettingDetails = false;
+				this.EditLabel.gameObject.SetActive(false);
+				this.StartLabel.text = "NEXT";
+				this.UpdateArrow();
+			}
+		}
+		for (int j = 1; j < 11; j++)
+		{
+			if (j == this.CurrentWeek)
+			{
+				this.Sleeve[j].transform.position = Vector3.Lerp(this.Sleeve[j].transform.position, this.StartingPosition[j] + base.transform.up * 0.05f + base.transform.right * -0.05f, Time.deltaTime * 10f);
+				this.Tape[j].transform.localPosition = Vector3.Lerp(this.Tape[j].transform.localPosition, new Vector3(0f, -0.0003f, 0f), Time.deltaTime * 10f);
+			}
+			else
+			{
+				this.Sleeve[j].transform.position = Vector3.Lerp(this.Sleeve[j].transform.position, this.StartingPosition[j], Time.deltaTime * 10f);
+				this.Tape[j].transform.localPosition = Vector3.Lerp(this.Tape[j].transform.localPosition, Vector3.zero, Time.deltaTime * 10f);
+			}
 		}
 	}
 
-	// Token: 0x06002012 RID: 8210 RVA: 0x001C8524 File Offset: 0x001C6724
+	// Token: 0x0600201B RID: 8219 RVA: 0x001C99F8 File Offset: 0x001C7BF8
 	private void UpdateArrow()
 	{
 		if (this.SettingWeek)
 		{
-			this.Arrow.localPosition = new Vector3(-550f, 500f, 0f);
+			this.Arrow.localPosition = new Vector3(0f, 610f, 0f);
 			return;
 		}
 		if (this.SettingRivals)
@@ -371,10 +402,10 @@ public class WeekSelectScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002013 RID: 8211 RVA: 0x001C8624 File Offset: 0x001C6824
+	// Token: 0x0600201C RID: 8220 RVA: 0x001C9AF8 File Offset: 0x001C7CF8
 	private void UpdateText()
 	{
-		this.WeekLabel.text = "STARTING WEEK: " + DateGlobals.Week.ToString();
+		this.WeekLabel.text = "STARTING WEEK: " + this.CurrentWeek.ToString();
 		for (int i = 1; i < 11; i++)
 		{
 			if (i < DateGlobals.Week)
@@ -391,7 +422,7 @@ public class WeekSelectScript : MonoBehaviour
 		this.Stats.Start();
 	}
 
-	// Token: 0x06002014 RID: 8212 RVA: 0x001C86A0 File Offset: 0x001C68A0
+	// Token: 0x0600201D RID: 8221 RVA: 0x001C9B74 File Offset: 0x001C7D74
 	private void SetGrudges(bool Grudge)
 	{
 		for (int i = 2; i < 12; i++)
@@ -400,7 +431,7 @@ public class WeekSelectScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002015 RID: 8213 RVA: 0x001C86C4 File Offset: 0x001C68C4
+	// Token: 0x0600201E RID: 8222 RVA: 0x001C9B98 File Offset: 0x001C7D98
 	private void MakeFriends(bool Friend)
 	{
 		for (int i = 2; i < 86; i++)
@@ -417,48 +448,90 @@ public class WeekSelectScript : MonoBehaviour
 		GameGlobals.YakuzaPhase = 0;
 	}
 
-	// Token: 0x0400437A RID: 17274
+	// Token: 0x0600201F RID: 8223 RVA: 0x001C9BD8 File Offset: 0x001C7DD8
+	private void DetermineSelectedWeek()
+	{
+		this.CurrentWeek = this.Column + (this.Row - 1) * 5;
+		for (int i = 1; i < 10; i++)
+		{
+			GameGlobals.SetRivalEliminations(i, 0);
+			GameGlobals.SetSpecificEliminations(i, 0);
+		}
+		for (int i = 1; i < this.CurrentWeek; i++)
+		{
+			GameGlobals.SetRivalEliminations(i, 1);
+			GameGlobals.SetSpecificEliminations(i, 1);
+		}
+		DateGlobals.Week = this.CurrentWeek;
+		this.UpdateText();
+	}
+
+	// Token: 0x04004398 RID: 17304
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400437B RID: 17275
+	// Token: 0x04004399 RID: 17305
 	public EightiesStatsScript Stats;
 
-	// Token: 0x0400437C RID: 17276
+	// Token: 0x0400439A RID: 17306
 	public GameObject[] Shadow;
 
-	// Token: 0x0400437D RID: 17277
+	// Token: 0x0400439B RID: 17307
 	public UISprite Darkness;
 
-	// Token: 0x0400437E RID: 17278
+	// Token: 0x0400439C RID: 17308
+	public UILabel StartLabel;
+
+	// Token: 0x0400439D RID: 17309
+	public UILabel EditLabel;
+
+	// Token: 0x0400439E RID: 17310
 	public UILabel WeekLabel;
 
-	// Token: 0x0400437F RID: 17279
+	// Token: 0x0400439F RID: 17311
 	public Transform Arrow;
 
-	// Token: 0x04004380 RID: 17280
+	// Token: 0x040043A0 RID: 17312
 	public bool SettingDetails;
 
-	// Token: 0x04004381 RID: 17281
+	// Token: 0x040043A1 RID: 17313
 	public bool SettingRivals;
 
-	// Token: 0x04004382 RID: 17282
+	// Token: 0x040043A2 RID: 17314
 	public bool SettingWeek;
 
-	// Token: 0x04004383 RID: 17283
+	// Token: 0x040043A3 RID: 17315
 	public bool Fading;
 
-	// Token: 0x04004384 RID: 17284
+	// Token: 0x040043A4 RID: 17316
 	public int DetailID = 1;
 
-	// Token: 0x04004385 RID: 17285
+	// Token: 0x040043A5 RID: 17317
 	public int RivalID = 1;
 
-	// Token: 0x04004386 RID: 17286
+	// Token: 0x040043A6 RID: 17318
 	public int WeekID = 1;
 
-	// Token: 0x04004387 RID: 17287
+	// Token: 0x040043A7 RID: 17319
 	public int FadeID = 1;
 
-	// Token: 0x04004388 RID: 17288
+	// Token: 0x040043A8 RID: 17320
+	public int Row = 1;
+
+	// Token: 0x040043A9 RID: 17321
+	public int Column = 1;
+
+	// Token: 0x040043AA RID: 17322
 	public int[] Specifics;
+
+	// Token: 0x040043AB RID: 17323
+	public int CurrentWeek;
+
+	// Token: 0x040043AC RID: 17324
+	public Vector3[] StartingPosition;
+
+	// Token: 0x040043AD RID: 17325
+	public Transform[] Sleeve;
+
+	// Token: 0x040043AE RID: 17326
+	public Transform[] Tape;
 }

@@ -1,32 +1,32 @@
 ﻿using System;
 
-// Token: 0x020004D6 RID: 1238
+// Token: 0x020004D7 RID: 1239
 public enum YanderePersonaType
 {
-	// Token: 0x040044C5 RID: 17605
+	// Token: 0x040044EB RID: 17643
 	Default,
-	// Token: 0x040044C6 RID: 17606
+	// Token: 0x040044EC RID: 17644
 	Chill,
-	// Token: 0x040044C7 RID: 17607
+	// Token: 0x040044ED RID: 17645
 	Confident,
-	// Token: 0x040044C8 RID: 17608
+	// Token: 0x040044EE RID: 17646
 	Elegant,
-	// Token: 0x040044C9 RID: 17609
+	// Token: 0x040044EF RID: 17647
 	Girly,
-	// Token: 0x040044CA RID: 17610
+	// Token: 0x040044F0 RID: 17648
 	Graceful,
-	// Token: 0x040044CB RID: 17611
+	// Token: 0x040044F1 RID: 17649
 	Haughty,
-	// Token: 0x040044CC RID: 17612
+	// Token: 0x040044F2 RID: 17650
 	Lively,
-	// Token: 0x040044CD RID: 17613
+	// Token: 0x040044F3 RID: 17651
 	Scholarly,
-	// Token: 0x040044CE RID: 17614
+	// Token: 0x040044F4 RID: 17652
 	Shy,
-	// Token: 0x040044CF RID: 17615
+	// Token: 0x040044F5 RID: 17653
 	Tough,
-	// Token: 0x040044D0 RID: 17616
+	// Token: 0x040044F6 RID: 17654
 	Aggressive,
-	// Token: 0x040044D1 RID: 17617
+	// Token: 0x040044F7 RID: 17655
 	Grunt
 }

@@ -109,29 +109,29 @@ public class PropertyBinding : MonoBehaviour
 	// Token: 0x040004FC RID: 1276
 	private object mLastValue;
 
-	// Token: 0x020005F9 RID: 1529
+	// Token: 0x020005FA RID: 1530
 	[DoNotObfuscateNGUI]
 	public enum UpdateCondition
 	{
-		// Token: 0x04004E8A RID: 20106
+		// Token: 0x04004EB1 RID: 20145
 		OnStart,
-		// Token: 0x04004E8B RID: 20107
+		// Token: 0x04004EB2 RID: 20146
 		OnUpdate,
-		// Token: 0x04004E8C RID: 20108
+		// Token: 0x04004EB3 RID: 20147
 		OnLateUpdate,
-		// Token: 0x04004E8D RID: 20109
+		// Token: 0x04004EB4 RID: 20148
 		OnFixedUpdate
 	}
 
-	// Token: 0x020005FA RID: 1530
+	// Token: 0x020005FB RID: 1531
 	[DoNotObfuscateNGUI]
 	public enum Direction
 	{
-		// Token: 0x04004E8F RID: 20111
+		// Token: 0x04004EB6 RID: 20150
 		SourceUpdatesTarget,
-		// Token: 0x04004E90 RID: 20112
+		// Token: 0x04004EB7 RID: 20151
 		TargetUpdatesSource,
-		// Token: 0x04004E91 RID: 20113
+		// Token: 0x04004EB8 RID: 20152
 		BiDirectional
 	}
 }

@@ -2,13 +2,13 @@
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200056F RID: 1391
+	// Token: 0x02000570 RID: 1392
 	[Serializable]
 	public class AmbientOcclusionModel : PostProcessingModel
 	{
-		// Token: 0x17000502 RID: 1282
-		// (get) Token: 0x06002375 RID: 9077 RVA: 0x001FADB8 File Offset: 0x001F8FB8
-		// (set) Token: 0x06002376 RID: 9078 RVA: 0x001FADC0 File Offset: 0x001F8FC0
+		// Token: 0x17000503 RID: 1283
+		// (get) Token: 0x0600237F RID: 9087 RVA: 0x001FC408 File Offset: 0x001FA608
+		// (set) Token: 0x06002380 RID: 9088 RVA: 0x001FC410 File Offset: 0x001FA610
 		public AmbientOcclusionModel.Settings settings
 		{
 			get
@@ -21,35 +21,35 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x06002377 RID: 9079 RVA: 0x001FADC9 File Offset: 0x001F8FC9
+		// Token: 0x06002381 RID: 9089 RVA: 0x001FC419 File Offset: 0x001FA619
 		public override void Reset()
 		{
 			this.m_Settings = AmbientOcclusionModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004BE2 RID: 19426
+		// Token: 0x04004C09 RID: 19465
 		[SerializeField]
 		private AmbientOcclusionModel.Settings m_Settings = AmbientOcclusionModel.Settings.defaultSettings;
 
-		// Token: 0x020006B4 RID: 1716
+		// Token: 0x020006B5 RID: 1717
 		public enum SampleCount
 		{
-			// Token: 0x040051B6 RID: 20918
+			// Token: 0x040051DD RID: 20957
 			Lowest = 3,
-			// Token: 0x040051B7 RID: 20919
+			// Token: 0x040051DE RID: 20958
 			Low = 6,
-			// Token: 0x040051B8 RID: 20920
+			// Token: 0x040051DF RID: 20959
 			Medium = 10,
-			// Token: 0x040051B9 RID: 20921
+			// Token: 0x040051E0 RID: 20960
 			High = 16
 		}
 
-		// Token: 0x020006B5 RID: 1717
+		// Token: 0x020006B6 RID: 1718
 		[Serializable]
 		public struct Settings
 		{
-			// Token: 0x1700058D RID: 1421
-			// (get) Token: 0x0600277E RID: 10110 RVA: 0x00208FB0 File Offset: 0x002071B0
+			// Token: 0x1700058E RID: 1422
+			// (get) Token: 0x06002788 RID: 10120 RVA: 0x0020A600 File Offset: 0x00208800
 			public static AmbientOcclusionModel.Settings defaultSettings
 			{
 				get
@@ -67,33 +67,33 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x040051BA RID: 20922
+			// Token: 0x040051E1 RID: 20961
 			[Range(0f, 4f)]
 			[Tooltip("Degree of darkness produced by the effect.")]
 			public float intensity;
 
-			// Token: 0x040051BB RID: 20923
+			// Token: 0x040051E2 RID: 20962
 			[Min(0.0001f)]
 			[Tooltip("Radius of sample points, which affects extent of darkened areas.")]
 			public float radius;
 
-			// Token: 0x040051BC RID: 20924
+			// Token: 0x040051E3 RID: 20963
 			[Tooltip("Number of sample points, which affects quality and performance.")]
 			public AmbientOcclusionModel.SampleCount sampleCount;
 
-			// Token: 0x040051BD RID: 20925
+			// Token: 0x040051E4 RID: 20964
 			[Tooltip("Halves the resolution of the effect to increase performance at the cost of visual quality.")]
 			public bool downsampling;
 
-			// Token: 0x040051BE RID: 20926
+			// Token: 0x040051E5 RID: 20965
 			[Tooltip("Forces compatibility with Forward rendered objects when working with the Deferred rendering path.")]
 			public bool forceForwardCompatibility;
 
-			// Token: 0x040051BF RID: 20927
+			// Token: 0x040051E6 RID: 20966
 			[Tooltip("Enables the ambient-only mode in that the effect only affects ambient lighting. This mode is only available with the Deferred rendering path and HDR rendering.")]
 			public bool ambientOnly;
 
-			// Token: 0x040051C0 RID: 20928
+			// Token: 0x040051E7 RID: 20967
 			[Tooltip("Toggles the use of a higher precision depth texture with the forward rendering path (may impact performances). Has no effect with the deferred rendering path.")]
 			public bool highPrecision;
 		}

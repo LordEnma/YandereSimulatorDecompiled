@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003E1 RID: 993
+// Token: 0x020003E2 RID: 994
 public class OsanaClubEventScript : MonoBehaviour
 {
-	// Token: 0x06001BB6 RID: 7094 RVA: 0x0013AE47 File Offset: 0x00139047
+	// Token: 0x06001BBC RID: 7100 RVA: 0x0013BA37 File Offset: 0x00139C37
 	private void Start()
 	{
 		if (DateGlobals.Weekday != this.EventDay || GameGlobals.AlphabetMode || MissionModeGlobals.MissionMode || GameGlobals.Eighties)
@@ -13,7 +13,7 @@ public class OsanaClubEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BB7 RID: 7095 RVA: 0x0013AE74 File Offset: 0x00139074
+	// Token: 0x06001BBD RID: 7101 RVA: 0x0013BA64 File Offset: 0x00139C64
 	private void Update()
 	{
 		if (this.VoiceClip != null)
@@ -229,13 +229,13 @@ public class OsanaClubEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BB8 RID: 7096 RVA: 0x0013B979 File Offset: 0x00139B79
+	// Token: 0x06001BBE RID: 7102 RVA: 0x0013C569 File Offset: 0x0013A769
 	private void SettleFriend()
 	{
 		this.EventStudent[2].MoveTowardsTarget(this.EventStudent[2].Pathfinding.target.position);
 	}
 
-	// Token: 0x06001BB9 RID: 7097 RVA: 0x0013B9A0 File Offset: 0x00139BA0
+	// Token: 0x06001BBF RID: 7103 RVA: 0x0013C590 File Offset: 0x0013A790
 	public void EndEvent()
 	{
 		Debug.Log("Ending Osana's club event.");
@@ -265,7 +265,7 @@ public class OsanaClubEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x06001BBA RID: 7098 RVA: 0x0013BABC File Offset: 0x00139CBC
+	// Token: 0x06001BC0 RID: 7104 RVA: 0x0013C6AC File Offset: 0x0013A8AC
 	public void CheckForRooftopConvo()
 	{
 		if (this.StudentManager.Students[10] != null && this.StudentManager.Students[10].CurrentAction == StudentActionType.Follow)
@@ -275,72 +275,72 @@ public class OsanaClubEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002F9F RID: 12191
+	// Token: 0x04002FB4 RID: 12212
 	public EventManagerScript RooftopConversation;
 
-	// Token: 0x04002FA0 RID: 12192
+	// Token: 0x04002FB5 RID: 12213
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002FA1 RID: 12193
+	// Token: 0x04002FB6 RID: 12214
 	public UILabel EventSubtitle;
 
-	// Token: 0x04002FA2 RID: 12194
+	// Token: 0x04002FB7 RID: 12215
 	public YandereScript Yandere;
 
-	// Token: 0x04002FA3 RID: 12195
+	// Token: 0x04002FB8 RID: 12216
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002FA4 RID: 12196
+	// Token: 0x04002FB9 RID: 12217
 	public ClockScript Clock;
 
-	// Token: 0x04002FA5 RID: 12197
+	// Token: 0x04002FBA RID: 12218
 	public StudentScript[] EventStudent;
 
-	// Token: 0x04002FA6 RID: 12198
+	// Token: 0x04002FBB RID: 12219
 	public Transform[] EventLocation;
 
-	// Token: 0x04002FA7 RID: 12199
+	// Token: 0x04002FBC RID: 12220
 	public AudioClip[] EventClip;
 
-	// Token: 0x04002FA8 RID: 12200
+	// Token: 0x04002FBD RID: 12221
 	public string[] EventSpeech;
 
-	// Token: 0x04002FA9 RID: 12201
+	// Token: 0x04002FBE RID: 12222
 	public string[] EventAnim;
 
-	// Token: 0x04002FAA RID: 12202
+	// Token: 0x04002FBF RID: 12223
 	public int[] EventSpeaker;
 
-	// Token: 0x04002FAB RID: 12203
+	// Token: 0x04002FC0 RID: 12224
 	public int[] ClubIDs;
 
-	// Token: 0x04002FAC RID: 12204
+	// Token: 0x04002FC1 RID: 12225
 	public GameObject VoiceClip;
 
-	// Token: 0x04002FAD RID: 12205
+	// Token: 0x04002FC2 RID: 12226
 	public AudioSource VoiceClipSource;
 
-	// Token: 0x04002FAE RID: 12206
+	// Token: 0x04002FC3 RID: 12227
 	public bool ReachedTheEnd;
 
-	// Token: 0x04002FAF RID: 12207
+	// Token: 0x04002FC4 RID: 12228
 	public bool EventOn;
 
-	// Token: 0x04002FB0 RID: 12208
+	// Token: 0x04002FC5 RID: 12229
 	public bool Spoken;
 
-	// Token: 0x04002FB1 RID: 12209
+	// Token: 0x04002FC6 RID: 12230
 	public int EventPhase;
 
-	// Token: 0x04002FB2 RID: 12210
+	// Token: 0x04002FC7 RID: 12231
 	public float Timer;
 
-	// Token: 0x04002FB3 RID: 12211
+	// Token: 0x04002FC8 RID: 12232
 	public float Scale;
 
-	// Token: 0x04002FB4 RID: 12212
+	// Token: 0x04002FC9 RID: 12233
 	public int[] StudentID;
 
-	// Token: 0x04002FB5 RID: 12213
+	// Token: 0x04002FCA RID: 12234
 	public DayOfWeek EventDay;
 }

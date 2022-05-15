@@ -1,64 +1,64 @@
 ﻿using System;
 
-// Token: 0x02000460 RID: 1120
+// Token: 0x02000461 RID: 1121
 public enum StudentWitnessType
 {
-	// Token: 0x040038C1 RID: 14529
+	// Token: 0x040038DE RID: 14558
 	None,
-	// Token: 0x040038C2 RID: 14530
+	// Token: 0x040038DF RID: 14559
 	Accident,
-	// Token: 0x040038C3 RID: 14531
+	// Token: 0x040038E0 RID: 14560
 	Blood,
-	// Token: 0x040038C4 RID: 14532
+	// Token: 0x040038E1 RID: 14561
 	BloodAndInsanity,
-	// Token: 0x040038C5 RID: 14533
+	// Token: 0x040038E2 RID: 14562
 	Corpse,
-	// Token: 0x040038C6 RID: 14534
+	// Token: 0x040038E3 RID: 14563
 	Eavesdropping,
-	// Token: 0x040038C7 RID: 14535
+	// Token: 0x040038E4 RID: 14564
 	Insanity,
-	// Token: 0x040038C8 RID: 14536
+	// Token: 0x040038E5 RID: 14565
 	Interruption,
-	// Token: 0x040038C9 RID: 14537
+	// Token: 0x040038E6 RID: 14566
 	Lewd,
-	// Token: 0x040038CA RID: 14538
+	// Token: 0x040038E7 RID: 14567
 	Murder,
-	// Token: 0x040038CB RID: 14539
+	// Token: 0x040038E8 RID: 14568
 	Pickpocketing,
-	// Token: 0x040038CC RID: 14540
+	// Token: 0x040038E9 RID: 14569
 	CleaningItem,
-	// Token: 0x040038CD RID: 14541
+	// Token: 0x040038EA RID: 14570
 	Suspicious,
-	// Token: 0x040038CE RID: 14542
+	// Token: 0x040038EB RID: 14571
 	Stalking,
-	// Token: 0x040038CF RID: 14543
+	// Token: 0x040038EC RID: 14572
 	Theft,
-	// Token: 0x040038D0 RID: 14544
+	// Token: 0x040038ED RID: 14573
 	Trespassing,
-	// Token: 0x040038D1 RID: 14545
+	// Token: 0x040038EE RID: 14574
 	Violence,
-	// Token: 0x040038D2 RID: 14546
+	// Token: 0x040038EF RID: 14575
 	Poisoning,
-	// Token: 0x040038D3 RID: 14547
+	// Token: 0x040038F0 RID: 14576
 	Weapon,
-	// Token: 0x040038D4 RID: 14548
+	// Token: 0x040038F1 RID: 14577
 	WeaponAndBlood,
-	// Token: 0x040038D5 RID: 14549
+	// Token: 0x040038F2 RID: 14578
 	WeaponAndBloodAndInsanity,
-	// Token: 0x040038D6 RID: 14550
+	// Token: 0x040038F3 RID: 14579
 	WeaponAndInsanity,
-	// Token: 0x040038D7 RID: 14551
+	// Token: 0x040038F4 RID: 14580
 	BloodPool,
-	// Token: 0x040038D8 RID: 14552
+	// Token: 0x040038F5 RID: 14581
 	SeveredLimb,
-	// Token: 0x040038D9 RID: 14553
+	// Token: 0x040038F6 RID: 14582
 	BloodyWeapon,
-	// Token: 0x040038DA RID: 14554
+	// Token: 0x040038F7 RID: 14583
 	DroppedWeapon,
-	// Token: 0x040038DB RID: 14555
+	// Token: 0x040038F8 RID: 14584
 	CoverUp,
-	// Token: 0x040038DC RID: 14556
+	// Token: 0x040038F9 RID: 14585
 	HoldingBloodyClothing,
-	// Token: 0x040038DD RID: 14557
+	// Token: 0x040038FA RID: 14586
 	Tutorial
 }

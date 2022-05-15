@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002E2 RID: 738
+// Token: 0x020002E3 RID: 739
 public class GenericRivalBagScript : MonoBehaviour
 {
-	// Token: 0x060014FC RID: 5372 RVA: 0x000D1AE4 File Offset: 0x000CFCE4
+	// Token: 0x060014FE RID: 5374 RVA: 0x000D1DCC File Offset: 0x000CFFCC
 	public void Start()
 	{
 		if (!this.Initialized)
@@ -22,7 +22,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014FD RID: 5373 RVA: 0x000D1B94 File Offset: 0x000CFD94
+	// Token: 0x060014FF RID: 5375 RVA: 0x000D1E7C File Offset: 0x000D007C
 	private void Update()
 	{
 		if (!this.Window.activeInHierarchy)
@@ -313,7 +313,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014FE RID: 5374 RVA: 0x000D2650 File Offset: 0x000D0850
+	// Token: 0x06001500 RID: 5376 RVA: 0x000D2938 File Offset: 0x000D0B38
 	private void CloseWindow()
 	{
 		this.Selected = 1;
@@ -326,7 +326,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		this.PromptBar.Show = false;
 	}
 
-	// Token: 0x060014FF RID: 5375 RVA: 0x000D26C0 File Offset: 0x000D08C0
+	// Token: 0x06001501 RID: 5377 RVA: 0x000D29A8 File Offset: 0x000D0BA8
 	private void UpdateHighlight()
 	{
 		if (this.Selected > this.Limit)
@@ -340,7 +340,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(0f, (float)(400 - this.Selected * 100), 0f);
 	}
 
-	// Token: 0x06001500 RID: 5376 RVA: 0x000D2724 File Offset: 0x000D0924
+	// Token: 0x06001502 RID: 5378 RVA: 0x000D2A0C File Offset: 0x000D0C0C
 	private void UpdateMenuLabels()
 	{
 		this.Selected = 1;
@@ -496,7 +496,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001501 RID: 5377 RVA: 0x000D2E70 File Offset: 0x000D1070
+	// Token: 0x06001503 RID: 5379 RVA: 0x000D3158 File Offset: 0x000D1358
 	public void GrabRivalInfo()
 	{
 		this.Rival = this.Prompt.Yandere.StudentManager.Students[this.Prompt.Yandere.StudentManager.RivalID];
@@ -537,7 +537,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001502 RID: 5378 RVA: 0x000D2FC4 File Offset: 0x000D11C4
+	// Token: 0x06001504 RID: 5380 RVA: 0x000D32AC File Offset: 0x000D14AC
 	private void HideAllHearts()
 	{
 		this.PonytailHearts.SetActive(false);
@@ -555,7 +555,7 @@ public class GenericRivalBagScript : MonoBehaviour
 		this.QuoteBoxes.SetActive(false);
 	}
 
-	// Token: 0x06001503 RID: 5379 RVA: 0x000D3070 File Offset: 0x000D1270
+	// Token: 0x06001505 RID: 5381 RVA: 0x000D3358 File Offset: 0x000D1558
 	private void UpdateHearts()
 	{
 		if (this.Page == 1)
@@ -619,207 +619,207 @@ public class GenericRivalBagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002148 RID: 8520
+	// Token: 0x04002151 RID: 8529
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002149 RID: 8521
+	// Token: 0x04002152 RID: 8530
 	public GenericRivalEventScript Event;
 
-	// Token: 0x0400214A RID: 8522
+	// Token: 0x04002153 RID: 8531
 	public PromptBarScript PromptBar;
 
-	// Token: 0x0400214B RID: 8523
+	// Token: 0x04002154 RID: 8532
 	public StudentScript Rival;
 
-	// Token: 0x0400214C RID: 8524
+	// Token: 0x04002155 RID: 8533
 	public PromptScript Prompt;
 
-	// Token: 0x0400214D RID: 8525
+	// Token: 0x04002156 RID: 8534
 	public JsonScript JSON;
 
-	// Token: 0x0400214E RID: 8526
+	// Token: 0x04002157 RID: 8535
 	public Transform Highlight;
 
-	// Token: 0x0400214F RID: 8527
+	// Token: 0x04002158 RID: 8536
 	public GameObject Window;
 
-	// Token: 0x04002150 RID: 8528
+	// Token: 0x04002159 RID: 8537
 	public UILabel[] Label;
 
-	// Token: 0x04002151 RID: 8529
+	// Token: 0x0400215A RID: 8538
 	public bool BorrowedBook;
 
-	// Token: 0x04002152 RID: 8530
+	// Token: 0x0400215B RID: 8539
 	public bool Alcohol;
 
-	// Token: 0x04002153 RID: 8531
+	// Token: 0x0400215C RID: 8540
 	public bool Condoms;
 
-	// Token: 0x04002154 RID: 8532
+	// Token: 0x0400215D RID: 8541
 	public bool Cigarettes;
 
-	// Token: 0x04002155 RID: 8533
+	// Token: 0x0400215E RID: 8542
 	public bool StolenRing;
 
-	// Token: 0x04002156 RID: 8534
+	// Token: 0x0400215F RID: 8543
 	public bool AnswerSheet;
 
-	// Token: 0x04002157 RID: 8535
+	// Token: 0x04002160 RID: 8544
 	public bool Narcotics;
 
-	// Token: 0x04002158 RID: 8536
+	// Token: 0x04002161 RID: 8545
 	public bool ShowMagazine;
 
-	// Token: 0x04002159 RID: 8537
+	// Token: 0x04002162 RID: 8546
 	public bool BentoStolen;
 
-	// Token: 0x0400215A RID: 8538
+	// Token: 0x04002163 RID: 8547
 	public bool NoBento;
 
-	// Token: 0x0400215B RID: 8539
+	// Token: 0x04002164 RID: 8548
 	public int Selected;
 
-	// Token: 0x0400215C RID: 8540
+	// Token: 0x04002165 RID: 8549
 	public int Limit;
 
-	// Token: 0x0400215D RID: 8541
+	// Token: 0x04002166 RID: 8550
 	public int Menu;
 
-	// Token: 0x0400215E RID: 8542
+	// Token: 0x04002167 RID: 8551
 	public int[] RivalOpinions;
 
-	// Token: 0x0400215F RID: 8543
+	// Token: 0x04002168 RID: 8552
 	public string[] Subjects;
 
-	// Token: 0x04002160 RID: 8544
+	// Token: 0x04002169 RID: 8553
 	public string[] RivalDislikes;
 
-	// Token: 0x04002161 RID: 8545
+	// Token: 0x0400216A RID: 8554
 	public string[] RivalLikes;
 
-	// Token: 0x04002162 RID: 8546
+	// Token: 0x0400216B RID: 8555
 	public int Dislikes = 1;
 
-	// Token: 0x04002163 RID: 8547
+	// Token: 0x0400216C RID: 8556
 	public int Likes = 1;
 
-	// Token: 0x04002164 RID: 8548
+	// Token: 0x0400216D RID: 8557
 	public int[] DesiredHairstyles;
 
-	// Token: 0x04002165 RID: 8549
+	// Token: 0x0400216E RID: 8558
 	public int[] DesiredAccessories;
 
-	// Token: 0x04002166 RID: 8550
+	// Token: 0x0400216F RID: 8559
 	public int[] DesiredEyewears;
 
-	// Token: 0x04002167 RID: 8551
+	// Token: 0x04002170 RID: 8560
 	public int[] DesiredSkins;
 
-	// Token: 0x04002168 RID: 8552
+	// Token: 0x04002171 RID: 8561
 	public string[] DesiredHairColors;
 
-	// Token: 0x04002169 RID: 8553
+	// Token: 0x04002172 RID: 8562
 	public bool[] DesiredJewelries;
 
-	// Token: 0x0400216A RID: 8554
+	// Token: 0x04002173 RID: 8563
 	public int[] DesiredTraits;
 
-	// Token: 0x0400216B RID: 8555
+	// Token: 0x04002174 RID: 8564
 	public int DesiredHairstyle;
 
-	// Token: 0x0400216C RID: 8556
+	// Token: 0x04002175 RID: 8565
 	public int DesiredAccessory;
 
-	// Token: 0x0400216D RID: 8557
+	// Token: 0x04002176 RID: 8566
 	public int DesiredEyewear;
 
-	// Token: 0x0400216E RID: 8558
+	// Token: 0x04002177 RID: 8567
 	public int DesiredSkin;
 
-	// Token: 0x0400216F RID: 8559
+	// Token: 0x04002178 RID: 8568
 	public string DesiredHairColor;
 
-	// Token: 0x04002170 RID: 8560
+	// Token: 0x04002179 RID: 8569
 	public bool DesiredJewelry;
 
-	// Token: 0x04002171 RID: 8561
+	// Token: 0x0400217A RID: 8570
 	public int DesiredTrait;
 
-	// Token: 0x04002172 RID: 8562
+	// Token: 0x0400217B RID: 8571
 	public string DesiredHairstyleText;
 
-	// Token: 0x04002173 RID: 8563
+	// Token: 0x0400217C RID: 8572
 	public string DesiredAccessoryText;
 
-	// Token: 0x04002174 RID: 8564
+	// Token: 0x0400217D RID: 8573
 	public string DesiredEyewearText;
 
-	// Token: 0x04002175 RID: 8565
+	// Token: 0x0400217E RID: 8574
 	public string DesiredSkinText;
 
-	// Token: 0x04002176 RID: 8566
+	// Token: 0x0400217F RID: 8575
 	public string DesiredHairColorText;
 
-	// Token: 0x04002177 RID: 8567
+	// Token: 0x04002180 RID: 8576
 	public string DesiredJewelryText;
 
-	// Token: 0x04002178 RID: 8568
+	// Token: 0x04002181 RID: 8577
 	public string DesiredTraitText;
 
-	// Token: 0x04002179 RID: 8569
+	// Token: 0x04002182 RID: 8578
 	public bool Initialized;
 
-	// Token: 0x0400217A RID: 8570
+	// Token: 0x04002183 RID: 8579
 	public GameObject MagazineButton;
 
-	// Token: 0x0400217B RID: 8571
+	// Token: 0x04002184 RID: 8580
 	public Transform Magazine;
 
-	// Token: 0x0400217C RID: 8572
+	// Token: 0x04002185 RID: 8581
 	public int Page = 1;
 
-	// Token: 0x0400217D RID: 8573
+	// Token: 0x04002186 RID: 8582
 	public GameObject TanHearts;
 
-	// Token: 0x0400217E RID: 8574
+	// Token: 0x04002187 RID: 8583
 	public GameObject PiercingHearts;
 
-	// Token: 0x0400217F RID: 8575
+	// Token: 0x04002188 RID: 8584
 	public GameObject DarkHairHearts;
 
-	// Token: 0x04002180 RID: 8576
+	// Token: 0x04002189 RID: 8585
 	public GameObject GlassesHearts;
 
-	// Token: 0x04002181 RID: 8577
+	// Token: 0x0400218A RID: 8586
 	public GameObject BandanaHearts;
 
-	// Token: 0x04002182 RID: 8578
+	// Token: 0x0400218B RID: 8587
 	public GameObject JewleryHearts;
 
-	// Token: 0x04002183 RID: 8579
+	// Token: 0x0400218C RID: 8588
 	public GameObject SunglassesHearts;
 
-	// Token: 0x04002184 RID: 8580
+	// Token: 0x0400218D RID: 8589
 	public GameObject PonytailHearts;
 
-	// Token: 0x04002185 RID: 8581
+	// Token: 0x0400218E RID: 8590
 	public GameObject SlickHearts;
 
-	// Token: 0x04002186 RID: 8582
+	// Token: 0x0400218F RID: 8591
 	public GameObject CourageHearts;
 
-	// Token: 0x04002187 RID: 8583
+	// Token: 0x04002190 RID: 8592
 	public GameObject SmartHearts;
 
-	// Token: 0x04002188 RID: 8584
+	// Token: 0x04002191 RID: 8593
 	public GameObject StrongHearts;
 
-	// Token: 0x04002189 RID: 8585
+	// Token: 0x04002192 RID: 8594
 	public GameObject QuoteBoxes;
 
-	// Token: 0x0400218A RID: 8586
+	// Token: 0x04002193 RID: 8595
 	public Transform Pivot;
 
-	// Token: 0x0400218B RID: 8587
+	// Token: 0x04002194 RID: 8596
 	public UITexture[] Pages;
 }

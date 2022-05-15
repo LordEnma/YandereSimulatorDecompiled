@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x020000D3 RID: 211
 public class AreaScript : MonoBehaviour
 {
-	// Token: 0x060009DB RID: 2523 RVA: 0x0005237C File Offset: 0x0005057C
+	// Token: 0x060009DB RID: 2523 RVA: 0x0005244C File Offset: 0x0005064C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.CompareTag("Student"))
@@ -19,7 +19,7 @@ public class AreaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009DC RID: 2524 RVA: 0x000523C0 File Offset: 0x000505C0
+	// Token: 0x060009DC RID: 2524 RVA: 0x00052490 File Offset: 0x00050690
 	private void OnTriggerExit(Collider other)
 	{
 		if (other.CompareTag("Student"))

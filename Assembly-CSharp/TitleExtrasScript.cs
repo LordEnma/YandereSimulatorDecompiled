@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200047E RID: 1150
+// Token: 0x0200047F RID: 1151
 public class TitleExtrasScript : MonoBehaviour
 {
-	// Token: 0x06001F00 RID: 7936 RVA: 0x001B6CA0 File Offset: 0x001B4EA0
+	// Token: 0x06001F08 RID: 7944 RVA: 0x001B7E18 File Offset: 0x001B6018
 	private void Start()
 	{
 		base.transform.localPosition = new Vector3(1050f, base.transform.localPosition.y, base.transform.localPosition.z);
 	}
 
-	// Token: 0x06001F01 RID: 7937 RVA: 0x001B6CD8 File Offset: 0x001B4ED8
+	// Token: 0x06001F09 RID: 7945 RVA: 0x001B7E50 File Offset: 0x001B6050
 	private void Update()
 	{
 		if (!this.Show)
@@ -21,6 +21,6 @@ public class TitleExtrasScript : MonoBehaviour
 		base.transform.localPosition = new Vector3(Mathf.Lerp(base.transform.localPosition.x, 0f, Time.deltaTime * 10f), base.transform.localPosition.y, base.transform.localPosition.z);
 	}
 
-	// Token: 0x0400405C RID: 16476
+	// Token: 0x0400407A RID: 16506
 	public bool Show;
 }

@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200027E RID: 638
+// Token: 0x0200027F RID: 639
 public class DemonScript : MonoBehaviour
 {
-	// Token: 0x06001383 RID: 4995 RVA: 0x000B3C50 File Offset: 0x000B1E50
+	// Token: 0x06001385 RID: 4997 RVA: 0x000B3ECC File Offset: 0x000B20CC
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -114,57 +114,57 @@ public class DemonScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001CD1 RID: 7377
+	// Token: 0x04001CD8 RID: 7384
 	public SkinnedMeshRenderer Face;
 
-	// Token: 0x04001CD2 RID: 7378
+	// Token: 0x04001CD9 RID: 7385
 	public YandereScript Yandere;
 
-	// Token: 0x04001CD3 RID: 7379
+	// Token: 0x04001CDA RID: 7386
 	public PromptScript Prompt;
 
-	// Token: 0x04001CD4 RID: 7380
+	// Token: 0x04001CDB RID: 7387
 	public UILabel DemonSubtitle;
 
-	// Token: 0x04001CD5 RID: 7381
+	// Token: 0x04001CDC RID: 7388
 	public UISprite Darkness;
 
-	// Token: 0x04001CD6 RID: 7382
+	// Token: 0x04001CDD RID: 7389
 	public UISprite Button;
 
-	// Token: 0x04001CD7 RID: 7383
+	// Token: 0x04001CDE RID: 7390
 	public AudioClip MouthOpen;
 
-	// Token: 0x04001CD8 RID: 7384
+	// Token: 0x04001CDF RID: 7391
 	public AudioClip MouthClose;
 
-	// Token: 0x04001CD9 RID: 7385
+	// Token: 0x04001CE0 RID: 7392
 	public AudioClip[] Clips;
 
-	// Token: 0x04001CDA RID: 7386
+	// Token: 0x04001CE1 RID: 7393
 	public string[] Lines;
 
-	// Token: 0x04001CDB RID: 7387
+	// Token: 0x04001CE2 RID: 7394
 	public bool Communing;
 
-	// Token: 0x04001CDC RID: 7388
+	// Token: 0x04001CE3 RID: 7395
 	public bool Open;
 
-	// Token: 0x04001CDD RID: 7389
+	// Token: 0x04001CE4 RID: 7396
 	public float Intensity = 1f;
 
-	// Token: 0x04001CDE RID: 7390
+	// Token: 0x04001CE5 RID: 7397
 	public float Value;
 
-	// Token: 0x04001CDF RID: 7391
+	// Token: 0x04001CE6 RID: 7398
 	public Color MyColor;
 
-	// Token: 0x04001CE0 RID: 7392
+	// Token: 0x04001CE7 RID: 7399
 	public int DemonID;
 
-	// Token: 0x04001CE1 RID: 7393
+	// Token: 0x04001CE8 RID: 7400
 	public int Phase = 1;
 
-	// Token: 0x04001CE2 RID: 7394
+	// Token: 0x04001CE9 RID: 7401
 	public int ID;
 }

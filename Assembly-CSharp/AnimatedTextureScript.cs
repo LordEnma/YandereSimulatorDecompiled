@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020000CA RID: 202
 public class AnimatedTextureScript : MonoBehaviour
 {
-	// Token: 0x060009BE RID: 2494 RVA: 0x000514B7 File Offset: 0x0004F6B7
+	// Token: 0x060009BE RID: 2494 RVA: 0x00051587 File Offset: 0x0004F787
 	private void Awake()
 	{
 	}
 
 	// Token: 0x170001F5 RID: 501
-	// (get) Token: 0x060009BF RID: 2495 RVA: 0x000514B9 File Offset: 0x0004F6B9
+	// (get) Token: 0x060009BF RID: 2495 RVA: 0x00051589 File Offset: 0x0004F789
 	private float SecondsPerFrame
 	{
 		get
@@ -19,7 +19,7 @@ public class AnimatedTextureScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009C0 RID: 2496 RVA: 0x000514C8 File Offset: 0x0004F6C8
+	// Token: 0x060009C0 RID: 2496 RVA: 0x00051598 File Offset: 0x0004F798
 	private void Update()
 	{
 		this.CurrentSeconds += Time.unscaledDeltaTime;

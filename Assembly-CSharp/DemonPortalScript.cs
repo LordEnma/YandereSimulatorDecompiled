@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200027D RID: 637
+// Token: 0x0200027E RID: 638
 public class DemonPortalScript : MonoBehaviour
 {
-	// Token: 0x06001381 RID: 4993 RVA: 0x000B3914 File Offset: 0x000B1B14
+	// Token: 0x06001383 RID: 4995 RVA: 0x000B3B90 File Offset: 0x000B1D90
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -59,36 +59,36 @@ public class DemonPortalScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001CC6 RID: 7366
+	// Token: 0x04001CCD RID: 7373
 	public YandereScript Yandere;
 
-	// Token: 0x04001CC7 RID: 7367
+	// Token: 0x04001CCE RID: 7374
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04001CC8 RID: 7368
+	// Token: 0x04001CCF RID: 7375
 	public PromptScript Prompt;
 
-	// Token: 0x04001CC9 RID: 7369
+	// Token: 0x04001CD0 RID: 7376
 	public ClockScript Clock;
 
-	// Token: 0x04001CCA RID: 7370
+	// Token: 0x04001CD1 RID: 7377
 	public AudioSource DemonRealmAudio;
 
-	// Token: 0x04001CCB RID: 7371
+	// Token: 0x04001CD2 RID: 7378
 	public GameObject HeartbeatCamera;
 
-	// Token: 0x04001CCC RID: 7372
+	// Token: 0x04001CD3 RID: 7379
 	public GameObject DarkAura;
 
-	// Token: 0x04001CCD RID: 7373
+	// Token: 0x04001CD4 RID: 7380
 	public GameObject FPS;
 
-	// Token: 0x04001CCE RID: 7374
+	// Token: 0x04001CD5 RID: 7381
 	public GameObject HUD;
 
-	// Token: 0x04001CCF RID: 7375
+	// Token: 0x04001CD6 RID: 7382
 	public UISprite Darkness;
 
-	// Token: 0x04001CD0 RID: 7376
+	// Token: 0x04001CD7 RID: 7383
 	public float Timer;
 }

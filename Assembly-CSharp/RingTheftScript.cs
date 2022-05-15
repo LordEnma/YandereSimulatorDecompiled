@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003DD RID: 989
+// Token: 0x020003DE RID: 990
 public class RingTheftScript : MonoBehaviour
 {
-	// Token: 0x06001BAC RID: 7084 RVA: 0x0013A96C File Offset: 0x00138B6C
+	// Token: 0x06001BB2 RID: 7090 RVA: 0x0013B4EC File Offset: 0x001396EC
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -26,47 +26,63 @@ public class RingTheftScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001BAD RID: 7085 RVA: 0x0013A9EC File Offset: 0x00138BEC
+	// Token: 0x06001BB3 RID: 7091 RVA: 0x0013B56C File Offset: 0x0013976C
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
 		{
 			this.Prompt.Circle[0].fillAmount = 1f;
 			this.Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
-			if (!this.Prompt.Yandere.StudentManager.YandereVisible)
+			if (!this.Prompt.Yandere.Inventory.Ring)
+			{
+				if (!this.Prompt.Yandere.StudentManager.YandereVisible)
+				{
+					if (this.Eighties)
+					{
+						this.Rings[DateGlobals.Week].SetActive(false);
+					}
+					else
+					{
+						this.BasuRing.SetActive(false);
+					}
+					this.Prompt.Yandere.Inventory.Ring = true;
+					this.Stolen = true;
+					this.Prompt.Label[0].text = "     Return Stolen Ring";
+					return;
+				}
+				this.Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
+				this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+				return;
+			}
+			else
 			{
 				if (this.Eighties)
 				{
-					this.Rings[DateGlobals.Week].SetActive(false);
+					this.Rings[DateGlobals.Week].SetActive(true);
 				}
 				else
 				{
-					this.BasuRing.SetActive(false);
+					this.BasuRing.SetActive(true);
 				}
-				this.Prompt.Yandere.Inventory.Ring = true;
-				this.Stolen = true;
-				this.Prompt.Hide();
-				this.Prompt.enabled = false;
-				base.enabled = false;
-				return;
+				this.Prompt.Yandere.Inventory.Ring = false;
+				this.Stolen = false;
+				this.Prompt.Label[0].text = "     Steal Ring";
 			}
-			this.Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
-			this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
 		}
 	}
 
-	// Token: 0x04002F88 RID: 12168
+	// Token: 0x04002F9D RID: 12189
 	public PromptScript Prompt;
 
-	// Token: 0x04002F89 RID: 12169
+	// Token: 0x04002F9E RID: 12190
 	public GameObject BasuRing;
 
-	// Token: 0x04002F8A RID: 12170
+	// Token: 0x04002F9F RID: 12191
 	public GameObject[] Rings;
 
-	// Token: 0x04002F8B RID: 12171
+	// Token: 0x04002FA0 RID: 12192
 	public bool Eighties;
 
-	// Token: 0x04002F8C RID: 12172
+	// Token: 0x04002FA1 RID: 12193
 	public bool Stolen;
 }

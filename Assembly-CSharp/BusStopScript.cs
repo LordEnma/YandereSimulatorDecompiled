@@ -3,10 +3,10 @@ using UnityEngine;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000102 RID: 258
+// Token: 0x02000103 RID: 259
 public class BusStopScript : MonoBehaviour
 {
-	// Token: 0x06000A97 RID: 2711 RVA: 0x0005F83C File Offset: 0x0005DA3C
+	// Token: 0x06000A99 RID: 2713 RVA: 0x0005FBB4 File Offset: 0x0005DDB4
 	private void Start()
 	{
 		this.Renderer.material.color = new Color(0f, 0f, 0f, 1f);
@@ -31,7 +31,7 @@ public class BusStopScript : MonoBehaviour
 		Debug.Log("GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID.ToString());
 	}
 
-	// Token: 0x06000A98 RID: 2712 RVA: 0x0005F984 File Offset: 0x0005DB84
+	// Token: 0x06000A9A RID: 2714 RVA: 0x0005FCFC File Offset: 0x0005DEFC
 	private void Update()
 	{
 		this.SkipTimer += Time.deltaTime;
@@ -607,7 +607,7 @@ public class BusStopScript : MonoBehaviour
 		this.DoomJukebox.pitch = Time.timeScale;
 	}
 
-	// Token: 0x06000A99 RID: 2713 RVA: 0x000618BC File Offset: 0x0005FABC
+	// Token: 0x06000A9B RID: 2715 RVA: 0x00061C34 File Offset: 0x0005FE34
 	private void LateUpdate()
 	{
 		this.SenpaiBrow[0].localPosition = new Vector3(-0.025f, 0.025f, 0f);
@@ -623,7 +623,7 @@ public class BusStopScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A9A RID: 2714 RVA: 0x00061A04 File Offset: 0x0005FC04
+	// Token: 0x06000A9C RID: 2716 RVA: 0x00061D7C File Offset: 0x0005FF7C
 	private void UpdateDOF(float Focus)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
@@ -647,7 +647,7 @@ public class BusStopScript : MonoBehaviour
 		this.Profile.depthOfField.settings = settings;
 	}
 
-	// Token: 0x06000A9B RID: 2715 RVA: 0x00061A79 File Offset: 0x0005FC79
+	// Token: 0x06000A9D RID: 2717 RVA: 0x00061DF1 File Offset: 0x0005FFF1
 	private void ExitCutscene()
 	{
 		DateGlobals.Week = 2;
@@ -656,198 +656,198 @@ public class BusStopScript : MonoBehaviour
 		SceneManager.LoadScene("CalendarScene");
 	}
 
-	// Token: 0x04000C81 RID: 3201
+	// Token: 0x04000C87 RID: 3207
 	public PostProcessingProfile Profile;
 
-	// Token: 0x04000C82 RID: 3202
+	// Token: 0x04000C88 RID: 3208
 	public RiggedAccessoryAttacher BakerAttacher;
 
-	// Token: 0x04000C83 RID: 3203
+	// Token: 0x04000C89 RID: 3209
 	public RiggedAccessoryAttacher Attacher;
 
-	// Token: 0x04000C84 RID: 3204
+	// Token: 0x04000C8A RID: 3210
 	public SkinnedMeshRenderer BakerSenpaiRenderer;
 
-	// Token: 0x04000C85 RID: 3205
+	// Token: 0x04000C8B RID: 3211
 	public SkinnedMeshRenderer NewSenpaiRenderer;
 
-	// Token: 0x04000C86 RID: 3206
+	// Token: 0x04000C8C RID: 3212
 	public SkinnedMeshRenderer SenpaiRenderer;
 
-	// Token: 0x04000C87 RID: 3207
+	// Token: 0x04000C8D RID: 3213
 	public CosmeticScript Cosmetic;
 
-	// Token: 0x04000C88 RID: 3208
+	// Token: 0x04000C8E RID: 3214
 	public Texture CasualClothes;
 
-	// Token: 0x04000C89 RID: 3209
+	// Token: 0x04000C8F RID: 3215
 	public MeshRenderer Renderer;
 
-	// Token: 0x04000C8A RID: 3210
+	// Token: 0x04000C90 RID: 3216
 	public Animation SenpaiAnim;
 
-	// Token: 0x04000C8B RID: 3211
+	// Token: 0x04000C91 RID: 3217
 	public AudioSource MeetingJukebox;
 
-	// Token: 0x04000C8C RID: 3212
+	// Token: 0x04000C92 RID: 3218
 	public AudioSource DoomJukebox;
 
-	// Token: 0x04000C8D RID: 3213
+	// Token: 0x04000C93 RID: 3219
 	public UILabel Subtitle;
 
-	// Token: 0x04000C8E RID: 3214
+	// Token: 0x04000C94 RID: 3220
 	public UISprite SkipCircle;
 
-	// Token: 0x04000C8F RID: 3215
+	// Token: 0x04000C95 RID: 3221
 	public UIPanel SkipPanel;
 
-	// Token: 0x04000C90 RID: 3216
+	// Token: 0x04000C96 RID: 3222
 	public Animation BakerySenpai;
 
-	// Token: 0x04000C91 RID: 3217
+	// Token: 0x04000C97 RID: 3223
 	public Animation BakeryAmai;
 
-	// Token: 0x04000C92 RID: 3218
+	// Token: 0x04000C98 RID: 3224
 	public Animation SecondAmai;
 
-	// Token: 0x04000C93 RID: 3219
+	// Token: 0x04000C99 RID: 3225
 	public Animation ThirdAmai;
 
-	// Token: 0x04000C94 RID: 3220
+	// Token: 0x04000C9A RID: 3226
 	public Animation InfoChan;
 
-	// Token: 0x04000C95 RID: 3221
+	// Token: 0x04000C9B RID: 3227
 	public Animation NewSenpaiAnim;
 
-	// Token: 0x04000C96 RID: 3222
+	// Token: 0x04000C9C RID: 3228
 	public Animation NewAmaiAnim;
 
-	// Token: 0x04000C97 RID: 3223
+	// Token: 0x04000C9D RID: 3229
 	public Transform SenpaiLeftHand;
 
-	// Token: 0x04000C98 RID: 3224
+	// Token: 0x04000C9E RID: 3230
 	public Transform AmaiRightHand;
 
-	// Token: 0x04000C99 RID: 3225
+	// Token: 0x04000C9F RID: 3231
 	public Transform AmaiLeftHand;
 
-	// Token: 0x04000C9A RID: 3226
+	// Token: 0x04000CA0 RID: 3232
 	public Transform CupcakeBox;
 
-	// Token: 0x04000C9B RID: 3227
+	// Token: 0x04000CA1 RID: 3233
 	public Transform DonutLid;
 
-	// Token: 0x04000C9C RID: 3228
+	// Token: 0x04000CA2 RID: 3234
 	public Transform Cupcake;
 
-	// Token: 0x04000C9D RID: 3229
+	// Token: 0x04000CA3 RID: 3235
 	public Transform Target;
 
-	// Token: 0x04000C9E RID: 3230
+	// Token: 0x04000CA4 RID: 3236
 	public Transform Hips;
 
-	// Token: 0x04000C9F RID: 3231
+	// Token: 0x04000CA5 RID: 3237
 	public Transform[] SenpaiBrow;
 
-	// Token: 0x04000CA0 RID: 3232
+	// Token: 0x04000CA6 RID: 3238
 	public Transform[] SenpaiLip;
 
-	// Token: 0x04000CA1 RID: 3233
+	// Token: 0x04000CA7 RID: 3239
 	public GameObject UtilityPole;
 
-	// Token: 0x04000CA2 RID: 3234
+	// Token: 0x04000CA8 RID: 3240
 	public GameObject Amai;
 
-	// Token: 0x04000CA3 RID: 3235
+	// Token: 0x04000CA9 RID: 3241
 	public Mesh CasualMesh;
 
-	// Token: 0x04000CA4 RID: 3236
+	// Token: 0x04000CAA RID: 3242
 	public int RivalEliminationID;
 
-	// Token: 0x04000CA5 RID: 3237
+	// Token: 0x04000CAB RID: 3243
 	public int ShockPhase;
 
-	// Token: 0x04000CA6 RID: 3238
+	// Token: 0x04000CAC RID: 3244
 	public int SpeechID;
 
-	// Token: 0x04000CA7 RID: 3239
+	// Token: 0x04000CAD RID: 3245
 	public int Phase = 1;
 
-	// Token: 0x04000CA8 RID: 3240
+	// Token: 0x04000CAE RID: 3246
 	public float BakeryFocus;
 
-	// Token: 0x04000CA9 RID: 3241
+	// Token: 0x04000CAF RID: 3247
 	public float ExtraTimer;
 
-	// Token: 0x04000CAA RID: 3242
+	// Token: 0x04000CB0 RID: 3248
 	public float AnimTimer;
 
-	// Token: 0x04000CAB RID: 3243
+	// Token: 0x04000CB1 RID: 3249
 	public float TimeLimit;
 
-	// Token: 0x04000CAC RID: 3244
+	// Token: 0x04000CB2 RID: 3250
 	public float SkipTimer;
 
-	// Token: 0x04000CAD RID: 3245
+	// Token: 0x04000CB3 RID: 3251
 	public float Rotation;
 
-	// Token: 0x04000CAE RID: 3246
+	// Token: 0x04000CB4 RID: 3252
 	public float Alpha;
 
-	// Token: 0x04000CAF RID: 3247
+	// Token: 0x04000CB5 RID: 3253
 	public float Speed;
 
-	// Token: 0x04000CB0 RID: 3248
+	// Token: 0x04000CB6 RID: 3254
 	public float Timer;
 
-	// Token: 0x04000CB1 RID: 3249
+	// Token: 0x04000CB7 RID: 3255
 	public float DOF;
 
-	// Token: 0x04000CB2 RID: 3250
+	// Token: 0x04000CB8 RID: 3256
 	public float RotationX;
 
-	// Token: 0x04000CB3 RID: 3251
+	// Token: 0x04000CB9 RID: 3257
 	public float RotationY;
 
-	// Token: 0x04000CB4 RID: 3252
+	// Token: 0x04000CBA RID: 3258
 	public float RotationZ;
 
-	// Token: 0x04000CB5 RID: 3253
+	// Token: 0x04000CBB RID: 3259
 	public bool EndEarly;
 
-	// Token: 0x04000CB6 RID: 3254
+	// Token: 0x04000CBC RID: 3260
 	public bool InBakery;
 
-	// Token: 0x04000CB7 RID: 3255
+	// Token: 0x04000CBD RID: 3261
 	public bool TreeShot;
 
-	// Token: 0x04000CB8 RID: 3256
+	// Token: 0x04000CBE RID: 3262
 	public bool CloseUp;
 
-	// Token: 0x04000CB9 RID: 3257
+	// Token: 0x04000CBF RID: 3263
 	public bool NoAnim;
 
-	// Token: 0x04000CBA RID: 3258
+	// Token: 0x04000CC0 RID: 3264
 	public AudioClip[] OsanaEliminations;
 
-	// Token: 0x04000CBB RID: 3259
+	// Token: 0x04000CC1 RID: 3265
 	public AudioClip[] Speech;
 
-	// Token: 0x04000CBC RID: 3260
+	// Token: 0x04000CC2 RID: 3266
 	public AudioSource Audio;
 
-	// Token: 0x04000CBD RID: 3261
+	// Token: 0x04000CC3 RID: 3267
 	public string[] EliminationDescriptions;
 
-	// Token: 0x04000CBE RID: 3262
+	// Token: 0x04000CC4 RID: 3268
 	public string[] Subtitles;
 
-	// Token: 0x04000CBF RID: 3263
+	// Token: 0x04000CC5 RID: 3269
 	public bool Smile;
 
-	// Token: 0x04000CC0 RID: 3264
+	// Token: 0x04000CC6 RID: 3270
 	public float Strength;
 
-	// Token: 0x04000CC1 RID: 3265
+	// Token: 0x04000CC7 RID: 3271
 	public float LipValue = -0.08f;
 }

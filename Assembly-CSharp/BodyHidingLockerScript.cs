@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000EE RID: 238
+// Token: 0x020000EF RID: 239
 public class BodyHidingLockerScript : MonoBehaviour
 {
-	// Token: 0x06000A4C RID: 2636 RVA: 0x0005B8E9 File Offset: 0x00059AE9
+	// Token: 0x06000A4E RID: 2638 RVA: 0x0005BC09 File Offset: 0x00059E09
 	private void Start()
 	{
 		this.Outline = base.GetComponentInChildren<OutlineScript>();
 	}
 
-	// Token: 0x06000A4D RID: 2637 RVA: 0x0005B8F8 File Offset: 0x00059AF8
+	// Token: 0x06000A4F RID: 2639 RVA: 0x0005BC18 File Offset: 0x00059E18
 	private void Update()
 	{
 		if (this.Rotation != 0f)
@@ -131,7 +131,7 @@ public class BodyHidingLockerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A4E RID: 2638 RVA: 0x0005BF18 File Offset: 0x0005A118
+	// Token: 0x06000A50 RID: 2640 RVA: 0x0005C238 File Offset: 0x0005A438
 	public void UpdateCorpse()
 	{
 		this.Corpse = this.StudentManager.Students[this.StudentID].Ragdoll;
@@ -140,36 +140,36 @@ public class BodyHidingLockerScript : MonoBehaviour
 		this.Prompt.enabled = true;
 	}
 
-	// Token: 0x04000BCD RID: 3021
+	// Token: 0x04000BD2 RID: 3026
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04000BCE RID: 3022
+	// Token: 0x04000BD3 RID: 3027
 	public OutlineScript Outline;
 
-	// Token: 0x04000BCF RID: 3023
+	// Token: 0x04000BD4 RID: 3028
 	public RagdollScript Corpse;
 
-	// Token: 0x04000BD0 RID: 3024
+	// Token: 0x04000BD5 RID: 3029
 	public PromptScript Prompt;
 
-	// Token: 0x04000BD1 RID: 3025
+	// Token: 0x04000BD6 RID: 3030
 	public AudioClip LockerClose;
 
-	// Token: 0x04000BD2 RID: 3026
+	// Token: 0x04000BD7 RID: 3031
 	public AudioClip LockerOpen;
 
-	// Token: 0x04000BD3 RID: 3027
+	// Token: 0x04000BD8 RID: 3032
 	public float Rotation;
 
-	// Token: 0x04000BD4 RID: 3028
+	// Token: 0x04000BD9 RID: 3033
 	public float Speed;
 
-	// Token: 0x04000BD5 RID: 3029
+	// Token: 0x04000BDA RID: 3034
 	public Transform Door;
 
-	// Token: 0x04000BD6 RID: 3030
+	// Token: 0x04000BDB RID: 3035
 	public int StudentID;
 
-	// Token: 0x04000BD7 RID: 3031
+	// Token: 0x04000BDC RID: 3036
 	public bool ABC;
 }

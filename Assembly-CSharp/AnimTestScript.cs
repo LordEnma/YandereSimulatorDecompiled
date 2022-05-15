@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020000C8 RID: 200
 public class AnimTestScript : MonoBehaviour
 {
-	// Token: 0x060009B7 RID: 2487 RVA: 0x000512CD File Offset: 0x0004F4CD
+	// Token: 0x060009B7 RID: 2487 RVA: 0x0005139D File Offset: 0x0004F59D
 	private void Start()
 	{
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x060009B8 RID: 2488 RVA: 0x000512DC File Offset: 0x0004F4DC
+	// Token: 0x060009B8 RID: 2488 RVA: 0x000513AC File Offset: 0x0004F5AC
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))

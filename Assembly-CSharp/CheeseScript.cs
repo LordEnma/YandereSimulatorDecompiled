@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000242 RID: 578
+// Token: 0x02000243 RID: 579
 public class CheeseScript : MonoBehaviour
 {
-	// Token: 0x06001249 RID: 4681 RVA: 0x0008CE1C File Offset: 0x0008B01C
+	// Token: 0x0600124B RID: 4683 RVA: 0x0008D148 File Offset: 0x0008B348
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -26,15 +26,15 @@ public class CheeseScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400171D RID: 5917
+	// Token: 0x04001723 RID: 5923
 	public GameObject GlowingEye;
 
-	// Token: 0x0400171E RID: 5918
+	// Token: 0x04001724 RID: 5924
 	public PromptScript Prompt;
 
-	// Token: 0x0400171F RID: 5919
+	// Token: 0x04001725 RID: 5925
 	public UILabel Subtitle;
 
-	// Token: 0x04001720 RID: 5920
+	// Token: 0x04001726 RID: 5926
 	public float Timer;
 }

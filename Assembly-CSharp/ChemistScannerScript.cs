@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000243 RID: 579
+// Token: 0x02000244 RID: 580
 public class ChemistScannerScript : MonoBehaviour
 {
-	// Token: 0x0600124B RID: 4683 RVA: 0x0008CED0 File Offset: 0x0008B0D0
+	// Token: 0x0600124D RID: 4685 RVA: 0x0008D1FC File Offset: 0x0008B3FC
 	private void Update()
 	{
 		if (this.Student.Ragdoll != null && this.Student.Ragdoll.enabled)
@@ -69,30 +69,30 @@ public class ChemistScannerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001721 RID: 5921
+	// Token: 0x04001727 RID: 5927
 	public StudentScript Student;
 
-	// Token: 0x04001722 RID: 5922
+	// Token: 0x04001728 RID: 5928
 	public Renderer MyRenderer;
 
-	// Token: 0x04001723 RID: 5923
+	// Token: 0x04001729 RID: 5929
 	public Texture AlarmedEyes;
 
-	// Token: 0x04001724 RID: 5924
+	// Token: 0x0400172A RID: 5930
 	public Texture DeadEyes;
 
-	// Token: 0x04001725 RID: 5925
+	// Token: 0x0400172B RID: 5931
 	public Texture SadEyes;
 
-	// Token: 0x04001726 RID: 5926
+	// Token: 0x0400172C RID: 5932
 	public Texture[] Textures;
 
-	// Token: 0x04001727 RID: 5927
+	// Token: 0x0400172D RID: 5933
 	public float Timer;
 
-	// Token: 0x04001728 RID: 5928
+	// Token: 0x0400172E RID: 5934
 	public int PreviousID;
 
-	// Token: 0x04001729 RID: 5929
+	// Token: 0x0400172F RID: 5935
 	public int ID;
 }

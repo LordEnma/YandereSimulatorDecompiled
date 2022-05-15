@@ -212,62 +212,62 @@ public class TweenLetters : UITweener
 	// Token: 0x040005D2 RID: 1490
 	private TweenLetters.AnimationProperties mCurrent;
 
-	// Token: 0x02000613 RID: 1555
+	// Token: 0x02000614 RID: 1556
 	[DoNotObfuscateNGUI]
 	public enum AnimationLetterOrder
 	{
-		// Token: 0x04004EC8 RID: 20168
+		// Token: 0x04004EEF RID: 20207
 		Forward,
-		// Token: 0x04004EC9 RID: 20169
+		// Token: 0x04004EF0 RID: 20208
 		Reverse,
-		// Token: 0x04004ECA RID: 20170
+		// Token: 0x04004EF1 RID: 20209
 		Random
 	}
 
-	// Token: 0x02000614 RID: 1556
+	// Token: 0x02000615 RID: 1557
 	private class LetterProperties
 	{
-		// Token: 0x04004ECB RID: 20171
+		// Token: 0x04004EF2 RID: 20210
 		public float start;
 
-		// Token: 0x04004ECC RID: 20172
+		// Token: 0x04004EF3 RID: 20211
 		public float duration;
 
-		// Token: 0x04004ECD RID: 20173
+		// Token: 0x04004EF4 RID: 20212
 		public Vector2 offset;
 	}
 
-	// Token: 0x02000615 RID: 1557
+	// Token: 0x02000616 RID: 1558
 	[Serializable]
 	public class AnimationProperties
 	{
-		// Token: 0x04004ECE RID: 20174
+		// Token: 0x04004EF5 RID: 20213
 		public TweenLetters.AnimationLetterOrder animationOrder = TweenLetters.AnimationLetterOrder.Random;
 
-		// Token: 0x04004ECF RID: 20175
+		// Token: 0x04004EF6 RID: 20214
 		[Range(0f, 1f)]
 		public float overlap = 0.5f;
 
-		// Token: 0x04004ED0 RID: 20176
+		// Token: 0x04004EF7 RID: 20215
 		public bool randomDurations;
 
-		// Token: 0x04004ED1 RID: 20177
+		// Token: 0x04004EF8 RID: 20216
 		[MinMaxRange(0f, 1f)]
 		public Vector2 randomness = new Vector2(0.25f, 0.75f);
 
-		// Token: 0x04004ED2 RID: 20178
+		// Token: 0x04004EF9 RID: 20217
 		public Vector2 offsetRange = Vector2.zero;
 
-		// Token: 0x04004ED3 RID: 20179
+		// Token: 0x04004EFA RID: 20218
 		public Vector3 pos = Vector3.zero;
 
-		// Token: 0x04004ED4 RID: 20180
+		// Token: 0x04004EFB RID: 20219
 		public Vector3 rot = Vector3.zero;
 
-		// Token: 0x04004ED5 RID: 20181
+		// Token: 0x04004EFC RID: 20220
 		public Vector3 scale = Vector3.one;
 
-		// Token: 0x04004ED6 RID: 20182
+		// Token: 0x04004EFD RID: 20221
 		public float alpha = 1f;
 	}
 }

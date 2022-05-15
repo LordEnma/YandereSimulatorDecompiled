@@ -1,23 +1,23 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000F6 RID: 246
+// Token: 0x020000F7 RID: 247
 public class BountyMenuScript : MonoBehaviour
 {
-	// Token: 0x06000A63 RID: 2659 RVA: 0x0005CB5B File Offset: 0x0005AD5B
+	// Token: 0x06000A65 RID: 2661 RVA: 0x0005CE97 File Offset: 0x0005B097
 	private void Start()
 	{
 		this.DescLabel.text = this.Descriptions[this.Clock.Day];
 		this.GetPortrait(this.StudentIDs[this.Clock.Day]);
 	}
 
-	// Token: 0x06000A64 RID: 2660 RVA: 0x0005CB92 File Offset: 0x0005AD92
+	// Token: 0x06000A66 RID: 2662 RVA: 0x0005CECE File Offset: 0x0005B0CE
 	private void Update()
 	{
 		this.DescLabel.text = this.DescLabel.text.Replace('@', '\n');
 	}
 
-	// Token: 0x06000A65 RID: 2661 RVA: 0x0005CBB4 File Offset: 0x0005ADB4
+	// Token: 0x06000A67 RID: 2663 RVA: 0x0005CEF0 File Offset: 0x0005B0F0
 	private void GetPortrait(int ID)
 	{
 		WWW www = new WWW(string.Concat(new string[]
@@ -31,18 +31,18 @@ public class BountyMenuScript : MonoBehaviour
 		this.Portrait.mainTexture = www.texture;
 	}
 
-	// Token: 0x04000C1E RID: 3102
+	// Token: 0x04000C23 RID: 3107
 	public ClockScript Clock;
 
-	// Token: 0x04000C1F RID: 3103
+	// Token: 0x04000C24 RID: 3108
 	public UITexture Portrait;
 
-	// Token: 0x04000C20 RID: 3104
+	// Token: 0x04000C25 RID: 3109
 	public UILabel DescLabel;
 
-	// Token: 0x04000C21 RID: 3105
+	// Token: 0x04000C26 RID: 3110
 	public string[] Descriptions;
 
-	// Token: 0x04000C22 RID: 3106
+	// Token: 0x04000C27 RID: 3111
 	public int[] StudentIDs;
 }

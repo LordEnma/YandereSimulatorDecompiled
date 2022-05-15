@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000435 RID: 1077
+// Token: 0x02000436 RID: 1078
 public class SmokeBombBoxScript : MonoBehaviour
 {
-	// Token: 0x06001CEB RID: 7403 RVA: 0x00157EA0 File Offset: 0x001560A0
+	// Token: 0x06001CF1 RID: 7409 RVA: 0x00158B54 File Offset: 0x00156D54
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -51,24 +51,24 @@ public class SmokeBombBoxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400341D RID: 13341
+	// Token: 0x04003432 RID: 13362
 	public AlphabetScript Alphabet;
 
-	// Token: 0x0400341E RID: 13342
+	// Token: 0x04003433 RID: 13363
 	public UITexture BombTexture;
 
-	// Token: 0x0400341F RID: 13343
+	// Token: 0x04003434 RID: 13364
 	public PromptScript Prompt;
 
-	// Token: 0x04003420 RID: 13344
+	// Token: 0x04003435 RID: 13365
 	public AudioSource MyAudio;
 
-	// Token: 0x04003421 RID: 13345
+	// Token: 0x04003436 RID: 13366
 	public bool Cheated;
 
-	// Token: 0x04003422 RID: 13346
+	// Token: 0x04003437 RID: 13367
 	public bool Amnesia;
 
-	// Token: 0x04003423 RID: 13347
+	// Token: 0x04003438 RID: 13368
 	public bool Stink;
 }

@@ -1,17 +1,17 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x0200036D RID: 877
+// Token: 0x0200036E RID: 878
 public class MiyukiEnemyScript : MonoBehaviour
 {
-	// Token: 0x060019D3 RID: 6611 RVA: 0x00108CBE File Offset: 0x00106EBE
+	// Token: 0x060019D9 RID: 6617 RVA: 0x001094FA File Offset: 0x001076FA
 	private void Start()
 	{
 		base.transform.position = this.SpawnPoints[this.ID].position;
 		base.transform.rotation = this.SpawnPoints[this.ID].rotation;
 	}
 
-	// Token: 0x060019D4 RID: 6612 RVA: 0x00108CFC File Offset: 0x00106EFC
+	// Token: 0x060019DA RID: 6618 RVA: 0x00109538 File Offset: 0x00107738
 	private void Update()
 	{
 		if (this.Enemy.activeInHierarchy)
@@ -56,7 +56,7 @@ public class MiyukiEnemyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060019D5 RID: 6613 RVA: 0x00108F50 File Offset: 0x00107150
+	// Token: 0x060019DB RID: 6619 RVA: 0x0010978C File Offset: 0x0010798C
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Enemy.activeInHierarchy && other.gameObject.tag == "missile")
@@ -78,39 +78,39 @@ public class MiyukiEnemyScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002987 RID: 10631
+	// Token: 0x04002998 RID: 10648
 	public float Float;
 
-	// Token: 0x04002988 RID: 10632
+	// Token: 0x04002999 RID: 10649
 	public float Limit;
 
-	// Token: 0x04002989 RID: 10633
+	// Token: 0x0400299A RID: 10650
 	public float Speed;
 
-	// Token: 0x0400298A RID: 10634
+	// Token: 0x0400299B RID: 10651
 	public bool Dead;
 
-	// Token: 0x0400298B RID: 10635
+	// Token: 0x0400299C RID: 10652
 	public bool Down;
 
-	// Token: 0x0400298C RID: 10636
+	// Token: 0x0400299D RID: 10653
 	public GameObject DeathEffect;
 
-	// Token: 0x0400298D RID: 10637
+	// Token: 0x0400299E RID: 10654
 	public GameObject HitEffect;
 
-	// Token: 0x0400298E RID: 10638
+	// Token: 0x0400299F RID: 10655
 	public GameObject Enemy;
 
-	// Token: 0x0400298F RID: 10639
+	// Token: 0x040029A0 RID: 10656
 	public Transform[] SpawnPoints;
 
-	// Token: 0x04002990 RID: 10640
+	// Token: 0x040029A1 RID: 10657
 	public float RespawnTimer;
 
-	// Token: 0x04002991 RID: 10641
+	// Token: 0x040029A2 RID: 10658
 	public float Health;
 
-	// Token: 0x04002992 RID: 10642
+	// Token: 0x040029A3 RID: 10659
 	public int ID;
 }

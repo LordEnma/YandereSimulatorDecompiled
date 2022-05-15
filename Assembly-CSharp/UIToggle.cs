@@ -335,7 +335,7 @@ public class UIToggle : UIWidgetContainer
 	// Token: 0x0400046B RID: 1131
 	private bool mStarted;
 
-	// Token: 0x020005ED RID: 1517
-	// (Invoke) Token: 0x06002573 RID: 9587
+	// Token: 0x020005EE RID: 1518
+	// (Invoke) Token: 0x0600257D RID: 9597
 	public delegate bool Validate(bool choice);
 }

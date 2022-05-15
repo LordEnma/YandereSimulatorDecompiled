@@ -2,16 +2,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020003BF RID: 959
+// Token: 0x020003C0 RID: 960
 public class PracticeWindowScript : MonoBehaviour
 {
-	// Token: 0x06001B1F RID: 6943 RVA: 0x0012D00E File Offset: 0x0012B20E
+	// Token: 0x06001B25 RID: 6949 RVA: 0x0012DBB6 File Offset: 0x0012BDB6
 	private void Start()
 	{
 		this.Window.SetActive(false);
 	}
 
-	// Token: 0x06001B20 RID: 6944 RVA: 0x0012D01C File Offset: 0x0012B21C
+	// Token: 0x06001B26 RID: 6950 RVA: 0x0012DBC4 File Offset: 0x0012BDC4
 	private void Update()
 	{
 		if (this.Window.activeInHierarchy)
@@ -232,7 +232,7 @@ public class PracticeWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B21 RID: 6945 RVA: 0x0012DAEC File Offset: 0x0012BCEC
+	// Token: 0x06001B27 RID: 6951 RVA: 0x0012E694 File Offset: 0x0012C894
 	public void Finish()
 	{
 		if (this.Selected == 4)
@@ -242,7 +242,7 @@ public class PracticeWindowScript : MonoBehaviour
 		}
 		for (int i = 1; i < 6; i++)
 		{
-			if (this.StudentManager.Students[45 + i] != null)
+			if (this.StudentManager.Students[45 + i] != null && this.StudentManager.Students[45 + i].Alive)
 			{
 				this.StudentManager.Students[45 + i].Pathfinding.canSearch = true;
 				this.StudentManager.Students[45 + i].Pathfinding.canMove = true;
@@ -253,7 +253,7 @@ public class PracticeWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B22 RID: 6946 RVA: 0x0012DBBC File Offset: 0x0012BDBC
+	// Token: 0x06001B28 RID: 6952 RVA: 0x0012E780 File Offset: 0x0012C980
 	public void UpdateWindow()
 	{
 		this.PromptBar.ClearButtons();
@@ -347,7 +347,7 @@ public class PracticeWindowScript : MonoBehaviour
 		this.UpdateHighlight();
 	}
 
-	// Token: 0x06001B23 RID: 6947 RVA: 0x0012E284 File Offset: 0x0012C484
+	// Token: 0x06001B29 RID: 6953 RVA: 0x0012EE48 File Offset: 0x0012D048
 	public void UpdateHighlight()
 	{
 		if (this.Selected < 1)
@@ -361,84 +361,84 @@ public class PracticeWindowScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(0f, (float)(660 - 220 * this.Selected), 0f);
 	}
 
-	// Token: 0x04002DF9 RID: 11769
+	// Token: 0x04002E0E RID: 11790
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002DFA RID: 11770
+	// Token: 0x04002E0F RID: 11791
 	public DialogueWheelScript DialogueWheel;
 
-	// Token: 0x04002DFB RID: 11771
+	// Token: 0x04002E10 RID: 11792
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002DFC RID: 11772
+	// Token: 0x04002E11 RID: 11793
 	public StudentScript SparringPartner;
 
-	// Token: 0x04002DFD RID: 11773
+	// Token: 0x04002E12 RID: 11794
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002DFE RID: 11774
+	// Token: 0x04002E13 RID: 11795
 	public YandereScript Yandere;
 
-	// Token: 0x04002DFF RID: 11775
+	// Token: 0x04002E14 RID: 11796
 	public WeaponScript Baton;
 
-	// Token: 0x04002E00 RID: 11776
+	// Token: 0x04002E15 RID: 11797
 	public Texture[] DelinquentDificultyIcons;
 
-	// Token: 0x04002E01 RID: 11777
+	// Token: 0x04002E16 RID: 11798
 	public Texture[] AlbumCovers;
 
-	// Token: 0x04002E02 RID: 11778
+	// Token: 0x04002E17 RID: 11799
 	public Transform[] KneelSpot;
 
-	// Token: 0x04002E03 RID: 11779
+	// Token: 0x04002E18 RID: 11800
 	public Transform[] SparSpot;
 
-	// Token: 0x04002E04 RID: 11780
+	// Token: 0x04002E19 RID: 11801
 	public string[] Difficulties;
 
-	// Token: 0x04002E05 RID: 11781
+	// Token: 0x04002E1A RID: 11802
 	public UITexture[] Texture;
 
-	// Token: 0x04002E06 RID: 11782
+	// Token: 0x04002E1B RID: 11803
 	public UILabel[] Label;
 
-	// Token: 0x04002E07 RID: 11783
+	// Token: 0x04002E1C RID: 11804
 	public Transform Highlight;
 
-	// Token: 0x04002E08 RID: 11784
+	// Token: 0x04002E1D RID: 11805
 	public GameObject Window;
 
-	// Token: 0x04002E09 RID: 11785
+	// Token: 0x04002E1E RID: 11806
 	public UISprite Darkness;
 
-	// Token: 0x04002E0A RID: 11786
+	// Token: 0x04002E1F RID: 11807
 	public int Selected;
 
-	// Token: 0x04002E0B RID: 11787
+	// Token: 0x04002E20 RID: 11808
 	public int ClubID;
 
-	// Token: 0x04002E0C RID: 11788
+	// Token: 0x04002E21 RID: 11809
 	public int ID = 1;
 
-	// Token: 0x04002E0D RID: 11789
+	// Token: 0x04002E22 RID: 11810
 	public ClubType Club;
 
-	// Token: 0x04002E0E RID: 11790
+	// Token: 0x04002E23 RID: 11811
 	public bool PlayedRhythmMinigame;
 
-	// Token: 0x04002E0F RID: 11791
+	// Token: 0x04002E24 RID: 11812
 	public bool DefeatedSho;
 
-	// Token: 0x04002E10 RID: 11792
+	// Token: 0x04002E25 RID: 11813
 	public bool ButtonUp;
 
-	// Token: 0x04002E11 RID: 11793
+	// Token: 0x04002E26 RID: 11814
 	public bool FadeOut;
 
-	// Token: 0x04002E12 RID: 11794
+	// Token: 0x04002E27 RID: 11815
 	public bool FadeIn;
 
-	// Token: 0x04002E13 RID: 11795
+	// Token: 0x04002E28 RID: 11816
 	public float Timer;
 }

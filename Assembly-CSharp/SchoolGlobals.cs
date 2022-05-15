@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020002FC RID: 764
+// Token: 0x020002FD RID: 765
 public static class SchoolGlobals
 {
-	// Token: 0x06001726 RID: 5926 RVA: 0x000E13F0 File Offset: 0x000DF5F0
+	// Token: 0x0600172A RID: 5930 RVA: 0x000E176C File Offset: 0x000DF96C
 	public static bool GetDemonActive(int demonID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_" + demonID.ToString());
 	}
 
-	// Token: 0x06001727 RID: 5927 RVA: 0x000E1428 File Offset: 0x000DF628
+	// Token: 0x0600172B RID: 5931 RVA: 0x000E17A4 File Offset: 0x000DF9A4
 	public static void SetDemonActive(int demonID, bool value)
 	{
 		string text = demonID.ToString();
@@ -18,19 +18,19 @@ public static class SchoolGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_" + text, value);
 	}
 
-	// Token: 0x06001728 RID: 5928 RVA: 0x000E1484 File Offset: 0x000DF684
+	// Token: 0x0600172C RID: 5932 RVA: 0x000E1800 File Offset: 0x000DFA00
 	public static int[] KeysOfDemonActive()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_");
 	}
 
-	// Token: 0x06001729 RID: 5929 RVA: 0x000E14B4 File Offset: 0x000DF6B4
+	// Token: 0x0600172D RID: 5933 RVA: 0x000E1830 File Offset: 0x000DFA30
 	public static bool GetGardenGraveOccupied(int graveID)
 	{
 		return GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_GardenGraveOccupied_" + graveID.ToString());
 	}
 
-	// Token: 0x0600172A RID: 5930 RVA: 0x000E14EC File Offset: 0x000DF6EC
+	// Token: 0x0600172E RID: 5934 RVA: 0x000E1868 File Offset: 0x000DFA68
 	public static void SetGardenGraveOccupied(int graveID, bool value)
 	{
 		string text = graveID.ToString();
@@ -38,15 +38,15 @@ public static class SchoolGlobals
 		GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_GardenGraveOccupied_" + text, value);
 	}
 
-	// Token: 0x0600172B RID: 5931 RVA: 0x000E1548 File Offset: 0x000DF748
+	// Token: 0x0600172F RID: 5935 RVA: 0x000E18C4 File Offset: 0x000DFAC4
 	public static int[] KeysOfGardenGraveOccupied()
 	{
 		return KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_GardenGraveOccupied_");
 	}
 
-	// Token: 0x17000420 RID: 1056
-	// (get) Token: 0x0600172C RID: 5932 RVA: 0x000E1578 File Offset: 0x000DF778
-	// (set) Token: 0x0600172D RID: 5933 RVA: 0x000E15A8 File Offset: 0x000DF7A8
+	// Token: 0x17000421 RID: 1057
+	// (get) Token: 0x06001730 RID: 5936 RVA: 0x000E18F4 File Offset: 0x000DFAF4
+	// (set) Token: 0x06001731 RID: 5937 RVA: 0x000E1924 File Offset: 0x000DFB24
 	public static int KidnapVictim
 	{
 		get
@@ -59,9 +59,9 @@ public static class SchoolGlobals
 		}
 	}
 
-	// Token: 0x17000421 RID: 1057
-	// (get) Token: 0x0600172E RID: 5934 RVA: 0x000E15D8 File Offset: 0x000DF7D8
-	// (set) Token: 0x0600172F RID: 5935 RVA: 0x000E1608 File Offset: 0x000DF808
+	// Token: 0x17000422 RID: 1058
+	// (get) Token: 0x06001732 RID: 5938 RVA: 0x000E1954 File Offset: 0x000DFB54
+	// (set) Token: 0x06001733 RID: 5939 RVA: 0x000E1984 File Offset: 0x000DFB84
 	public static int Population
 	{
 		get
@@ -74,9 +74,9 @@ public static class SchoolGlobals
 		}
 	}
 
-	// Token: 0x17000422 RID: 1058
-	// (get) Token: 0x06001730 RID: 5936 RVA: 0x000E1638 File Offset: 0x000DF838
-	// (set) Token: 0x06001731 RID: 5937 RVA: 0x000E1668 File Offset: 0x000DF868
+	// Token: 0x17000423 RID: 1059
+	// (get) Token: 0x06001734 RID: 5940 RVA: 0x000E19B4 File Offset: 0x000DFBB4
+	// (set) Token: 0x06001735 RID: 5941 RVA: 0x000E19E4 File Offset: 0x000DFBE4
 	public static bool RoofFence
 	{
 		get
@@ -89,9 +89,9 @@ public static class SchoolGlobals
 		}
 	}
 
-	// Token: 0x17000423 RID: 1059
-	// (get) Token: 0x06001732 RID: 5938 RVA: 0x000E1698 File Offset: 0x000DF898
-	// (set) Token: 0x06001733 RID: 5939 RVA: 0x000E16C8 File Offset: 0x000DF8C8
+	// Token: 0x17000424 RID: 1060
+	// (get) Token: 0x06001736 RID: 5942 RVA: 0x000E1A14 File Offset: 0x000DFC14
+	// (set) Token: 0x06001737 RID: 5943 RVA: 0x000E1A44 File Offset: 0x000DFC44
 	public static float PreviousSchoolAtmosphere
 	{
 		get
@@ -104,9 +104,9 @@ public static class SchoolGlobals
 		}
 	}
 
-	// Token: 0x17000424 RID: 1060
-	// (get) Token: 0x06001734 RID: 5940 RVA: 0x000E16F8 File Offset: 0x000DF8F8
-	// (set) Token: 0x06001735 RID: 5941 RVA: 0x000E1728 File Offset: 0x000DF928
+	// Token: 0x17000425 RID: 1061
+	// (get) Token: 0x06001738 RID: 5944 RVA: 0x000E1A74 File Offset: 0x000DFC74
+	// (set) Token: 0x06001739 RID: 5945 RVA: 0x000E1AA4 File Offset: 0x000DFCA4
 	public static float SchoolAtmosphere
 	{
 		get
@@ -119,9 +119,9 @@ public static class SchoolGlobals
 		}
 	}
 
-	// Token: 0x17000425 RID: 1061
-	// (get) Token: 0x06001736 RID: 5942 RVA: 0x000E1758 File Offset: 0x000DF958
-	// (set) Token: 0x06001737 RID: 5943 RVA: 0x000E1788 File Offset: 0x000DF988
+	// Token: 0x17000426 RID: 1062
+	// (get) Token: 0x0600173A RID: 5946 RVA: 0x000E1AD4 File Offset: 0x000DFCD4
+	// (set) Token: 0x0600173B RID: 5947 RVA: 0x000E1B04 File Offset: 0x000DFD04
 	public static bool SchoolAtmosphereSet
 	{
 		get
@@ -134,9 +134,9 @@ public static class SchoolGlobals
 		}
 	}
 
-	// Token: 0x17000426 RID: 1062
-	// (get) Token: 0x06001738 RID: 5944 RVA: 0x000E17B8 File Offset: 0x000DF9B8
-	// (set) Token: 0x06001739 RID: 5945 RVA: 0x000E17E8 File Offset: 0x000DF9E8
+	// Token: 0x17000427 RID: 1063
+	// (get) Token: 0x0600173C RID: 5948 RVA: 0x000E1B34 File Offset: 0x000DFD34
+	// (set) Token: 0x0600173D RID: 5949 RVA: 0x000E1B64 File Offset: 0x000DFD64
 	public static bool ReactedToGameLeader
 	{
 		get
@@ -149,9 +149,9 @@ public static class SchoolGlobals
 		}
 	}
 
-	// Token: 0x17000427 RID: 1063
-	// (get) Token: 0x0600173A RID: 5946 RVA: 0x000E1818 File Offset: 0x000DFA18
-	// (set) Token: 0x0600173B RID: 5947 RVA: 0x000E1848 File Offset: 0x000DFA48
+	// Token: 0x17000428 RID: 1064
+	// (get) Token: 0x0600173E RID: 5950 RVA: 0x000E1B94 File Offset: 0x000DFD94
+	// (set) Token: 0x0600173F RID: 5951 RVA: 0x000E1BC4 File Offset: 0x000DFDC4
 	public static bool HighSecurity
 	{
 		get
@@ -164,9 +164,9 @@ public static class SchoolGlobals
 		}
 	}
 
-	// Token: 0x17000428 RID: 1064
-	// (get) Token: 0x0600173C RID: 5948 RVA: 0x000E1878 File Offset: 0x000DFA78
-	// (set) Token: 0x0600173D RID: 5949 RVA: 0x000E18A8 File Offset: 0x000DFAA8
+	// Token: 0x17000429 RID: 1065
+	// (get) Token: 0x06001740 RID: 5952 RVA: 0x000E1BF4 File Offset: 0x000DFDF4
+	// (set) Token: 0x06001741 RID: 5953 RVA: 0x000E1C24 File Offset: 0x000DFE24
 	public static bool SCP
 	{
 		get
@@ -179,7 +179,7 @@ public static class SchoolGlobals
 		}
 	}
 
-	// Token: 0x0600173E RID: 5950 RVA: 0x000E18D8 File Offset: 0x000DFAD8
+	// Token: 0x06001742 RID: 5954 RVA: 0x000E1C54 File Offset: 0x000DFE54
 	public static void DeleteAll()
 	{
 		Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_DemonActive_", SchoolGlobals.KeysOfDemonActive());
@@ -195,36 +195,36 @@ public static class SchoolGlobals
 		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SCP");
 	}
 
-	// Token: 0x040022BB RID: 8891
+	// Token: 0x040022C5 RID: 8901
 	private const string Str_DemonActive = "DemonActive_";
 
-	// Token: 0x040022BC RID: 8892
+	// Token: 0x040022C6 RID: 8902
 	private const string Str_GardenGraveOccupied = "GardenGraveOccupied_";
 
-	// Token: 0x040022BD RID: 8893
+	// Token: 0x040022C7 RID: 8903
 	private const string Str_KidnapVictim = "KidnapVictim";
 
-	// Token: 0x040022BE RID: 8894
+	// Token: 0x040022C8 RID: 8904
 	private const string Str_Population = "Population";
 
-	// Token: 0x040022BF RID: 8895
+	// Token: 0x040022C9 RID: 8905
 	private const string Str_RoofFence = "RoofFence";
 
-	// Token: 0x040022C0 RID: 8896
+	// Token: 0x040022CA RID: 8906
 	private const string Str_SchoolAtmosphere = "SchoolAtmosphere";
 
-	// Token: 0x040022C1 RID: 8897
+	// Token: 0x040022CB RID: 8907
 	private const string Str_SchoolAtmosphereSet = "SchoolAtmosphereSet";
 
-	// Token: 0x040022C2 RID: 8898
+	// Token: 0x040022CC RID: 8908
 	private const string Str_PreviousSchoolAtmosphere = "PreviousSchoolAtmosphere";
 
-	// Token: 0x040022C3 RID: 8899
+	// Token: 0x040022CD RID: 8909
 	private const string Str_ReactedToGameLeader = "ReactedToGameLeader";
 
-	// Token: 0x040022C4 RID: 8900
+	// Token: 0x040022CE RID: 8910
 	private const string Str_SCP = "SCP";
 
-	// Token: 0x040022C5 RID: 8901
+	// Token: 0x040022CF RID: 8911
 	private const string Str_HighSecurity = "HighSecurity";
 }

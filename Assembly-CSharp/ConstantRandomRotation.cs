@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000259 RID: 601
+// Token: 0x0200025A RID: 602
 public class ConstantRandomRotation : MonoBehaviour
 {
-	// Token: 0x060012B5 RID: 4789 RVA: 0x00099B8C File Offset: 0x00097D8C
+	// Token: 0x060012B7 RID: 4791 RVA: 0x00099DFC File Offset: 0x00097FFC
 	private void Update()
 	{
 		int num = UnityEngine.Random.Range(0, 360);

@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000236 RID: 566
+// Token: 0x02000237 RID: 567
 public class CardboardBoxScript : MonoBehaviour
 {
-	// Token: 0x0600122C RID: 4652 RVA: 0x0008BB90 File Offset: 0x00089D90
+	// Token: 0x0600122E RID: 4654 RVA: 0x0008BEBC File Offset: 0x0008A0BC
 	private void Start()
 	{
 		Physics.IgnoreCollision(this.Prompt.Yandere.GetComponent<Collider>(), base.GetComponent<Collider>());
 	}
 
-	// Token: 0x0600122D RID: 4653 RVA: 0x0008BBB0 File Offset: 0x00089DB0
+	// Token: 0x0600122F RID: 4655 RVA: 0x0008BEDC File Offset: 0x0008A0DC
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -43,6 +43,6 @@ public class CardboardBoxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040016E5 RID: 5861
+	// Token: 0x040016EB RID: 5867
 	public PromptScript Prompt;
 }

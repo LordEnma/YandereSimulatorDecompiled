@@ -4,10 +4,10 @@ using HighlightingSystem;
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
-// Token: 0x02000447 RID: 1095
+// Token: 0x02000448 RID: 1096
 public class StalkerYandereScript : MonoBehaviour
 {
-	// Token: 0x06001D2B RID: 7467 RVA: 0x0015CC84 File Offset: 0x0015AE84
+	// Token: 0x06001D31 RID: 7473 RVA: 0x0015D938 File Offset: 0x0015BB38
 	public void Start()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
@@ -65,7 +65,7 @@ public class StalkerYandereScript : MonoBehaviour
 		this.VtuberCheck();
 	}
 
-	// Token: 0x06001D2C RID: 7468 RVA: 0x0015CEDC File Offset: 0x0015B0DC
+	// Token: 0x06001D32 RID: 7474 RVA: 0x0015DB90 File Offset: 0x0015BD90
 	private void Update()
 	{
 		Cursor.lockState = CursorLockMode.Locked;
@@ -246,7 +246,7 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D2D RID: 7469 RVA: 0x0015D6EC File Offset: 0x0015B8EC
+	// Token: 0x06001D33 RID: 7475 RVA: 0x0015E3A0 File Offset: 0x0015C5A0
 	private void UpdateMovement()
 	{
 		if (!OptionGlobals.ToggleRun)
@@ -339,7 +339,7 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D2E RID: 7470 RVA: 0x0015DA38 File Offset: 0x0015BC38
+	// Token: 0x06001D34 RID: 7476 RVA: 0x0015E6EC File Offset: 0x0015C8EC
 	private void LateUpdate()
 	{
 		if (this.Object != null)
@@ -352,20 +352,20 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D2F RID: 7471 RVA: 0x0015DAB8 File Offset: 0x0015BCB8
+	// Token: 0x06001D35 RID: 7477 RVA: 0x0015E76C File Offset: 0x0015C96C
 	private void MoveTowardsTarget(Vector3 target)
 	{
 		Vector3 a = target - base.transform.position;
 		this.MyController.Move(a * (Time.deltaTime * 10f));
 	}
 
-	// Token: 0x06001D30 RID: 7472 RVA: 0x0015DAF4 File Offset: 0x0015BCF4
+	// Token: 0x06001D36 RID: 7478 RVA: 0x0015E7A8 File Offset: 0x0015C9A8
 	private void SpinTowardsTarget(Quaternion target)
 	{
 		base.transform.rotation = Quaternion.Slerp(base.transform.rotation, target, Time.deltaTime * 10f);
 	}
 
-	// Token: 0x06001D31 RID: 7473 RVA: 0x0015DB20 File Offset: 0x0015BD20
+	// Token: 0x06001D37 RID: 7479 RVA: 0x0015E7D4 File Offset: 0x0015C9D4
 	public void UpdateVignette()
 	{
 		VignetteModel.Settings settings = this.Profile.vignette.settings;
@@ -376,7 +376,7 @@ public class StalkerYandereScript : MonoBehaviour
 		this.Profile.vignette.settings = settings;
 	}
 
-	// Token: 0x06001D32 RID: 7474 RVA: 0x0015DB94 File Offset: 0x0015BD94
+	// Token: 0x06001D38 RID: 7480 RVA: 0x0015E848 File Offset: 0x0015CA48
 	public void BeginStruggle()
 	{
 		this.MyAnimation.CrossFade("f02_struggleA_00");
@@ -388,7 +388,7 @@ public class StalkerYandereScript : MonoBehaviour
 		this.Object = null;
 	}
 
-	// Token: 0x06001D33 RID: 7475 RVA: 0x0015DC10 File Offset: 0x0015BE10
+	// Token: 0x06001D39 RID: 7481 RVA: 0x0015E8C4 File Offset: 0x0015CAC4
 	public void UpdateYandereVision()
 	{
 		if (Input.GetButton("RB"))
@@ -426,7 +426,7 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D34 RID: 7476 RVA: 0x0015DD7C File Offset: 0x0015BF7C
+	// Token: 0x06001D3A RID: 7482 RVA: 0x0015EA30 File Offset: 0x0015CC30
 	private void ResetYandereEffects()
 	{
 		this.HighlightingR.enabled = false;
@@ -438,7 +438,7 @@ public class StalkerYandereScript : MonoBehaviour
 		this.UpdateVignette();
 	}
 
-	// Token: 0x06001D35 RID: 7477 RVA: 0x0015DDD8 File Offset: 0x0015BFD8
+	// Token: 0x06001D3B RID: 7483 RVA: 0x0015EA8C File Offset: 0x0015CC8C
 	public void UpdatePebbles()
 	{
 		if (this.PebbleIcon != null)
@@ -453,7 +453,7 @@ public class StalkerYandereScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D36 RID: 7478 RVA: 0x0015DE34 File Offset: 0x0015C034
+	// Token: 0x06001D3C RID: 7484 RVA: 0x0015EAE8 File Offset: 0x0015CCE8
 	public void VtuberCheck()
 	{
 		if (GameGlobals.VtuberID > 0)
@@ -485,225 +485,225 @@ public class StalkerYandereScript : MonoBehaviour
 		this.VtuberHairs[1].SetActive(false);
 	}
 
-	// Token: 0x0400350B RID: 13579
+	// Token: 0x04003520 RID: 13600
 	public CharacterController MyController;
 
-	// Token: 0x0400350C RID: 13580
+	// Token: 0x04003521 RID: 13601
 	public PostProcessingProfile Profile;
 
-	// Token: 0x0400350D RID: 13581
+	// Token: 0x04003522 RID: 13602
 	public AutoSaveManager SaveManager;
 
-	// Token: 0x0400350E RID: 13582
+	// Token: 0x04003523 RID: 13603
 	public StalkerScript Stalker;
 
-	// Token: 0x0400350F RID: 13583
+	// Token: 0x04003524 RID: 13604
 	public ArcScript Arc;
 
-	// Token: 0x04003510 RID: 13584
+	// Token: 0x04003525 RID: 13605
 	public Transform TrellisClimbSpot;
 
-	// Token: 0x04003511 RID: 13585
+	// Token: 0x04003526 RID: 13606
 	public Transform CameraTarget;
 
-	// Token: 0x04003512 RID: 13586
+	// Token: 0x04003527 RID: 13607
 	public Transform ObjectTarget;
 
-	// Token: 0x04003513 RID: 13587
+	// Token: 0x04003528 RID: 13608
 	public Transform RightHand;
 
-	// Token: 0x04003514 RID: 13588
+	// Token: 0x04003529 RID: 13609
 	public Transform EntryPOV;
 
-	// Token: 0x04003515 RID: 13589
+	// Token: 0x0400352A RID: 13610
 	public Transform RightArm;
 
-	// Token: 0x04003516 RID: 13590
+	// Token: 0x0400352B RID: 13611
 	public Transform Object;
 
-	// Token: 0x04003517 RID: 13591
+	// Token: 0x0400352C RID: 13612
 	public Transform Hips;
 
-	// Token: 0x04003518 RID: 13592
+	// Token: 0x0400352D RID: 13613
 	public Renderer PonytailRenderer;
 
-	// Token: 0x04003519 RID: 13593
+	// Token: 0x0400352E RID: 13614
 	public GameObject GroundImpact;
 
-	// Token: 0x0400351A RID: 13594
+	// Token: 0x0400352F RID: 13615
 	public Animation MyAnimation;
 
-	// Token: 0x0400351B RID: 13595
+	// Token: 0x04003530 RID: 13616
 	public RPG_Camera RPGCamera;
 
-	// Token: 0x0400351C RID: 13596
+	// Token: 0x04003531 RID: 13617
 	public AudioSource Jukebox;
 
-	// Token: 0x0400351D RID: 13597
+	// Token: 0x04003532 RID: 13618
 	public Camera MainCamera;
 
-	// Token: 0x0400351E RID: 13598
+	// Token: 0x04003533 RID: 13619
 	public bool Struggling;
 
-	// Token: 0x0400351F RID: 13599
+	// Token: 0x04003534 RID: 13620
 	public bool Climbing;
 
-	// Token: 0x04003520 RID: 13600
+	// Token: 0x04003535 RID: 13621
 	public bool Running;
 
-	// Token: 0x04003521 RID: 13601
+	// Token: 0x04003536 RID: 13622
 	public bool Invisible;
 
-	// Token: 0x04003522 RID: 13602
+	// Token: 0x04003537 RID: 13623
 	public bool Eighties;
 
-	// Token: 0x04003523 RID: 13603
+	// Token: 0x04003538 RID: 13624
 	public bool InDesert;
 
-	// Token: 0x04003524 RID: 13604
+	// Token: 0x04003539 RID: 13625
 	public bool CanMove;
 
-	// Token: 0x04003525 RID: 13605
+	// Token: 0x0400353A RID: 13626
 	public bool Chased;
 
-	// Token: 0x04003526 RID: 13606
+	// Token: 0x0400353B RID: 13627
 	public bool Hidden;
 
-	// Token: 0x04003527 RID: 13607
+	// Token: 0x0400353C RID: 13628
 	public bool Street;
 
-	// Token: 0x04003528 RID: 13608
+	// Token: 0x0400353D RID: 13629
 	public Stance Stance = new Stance(StanceType.Standing);
 
-	// Token: 0x04003529 RID: 13609
+	// Token: 0x0400353E RID: 13630
 	public string IdleAnim;
 
-	// Token: 0x0400352A RID: 13610
+	// Token: 0x0400353F RID: 13631
 	public string WalkAnim;
 
-	// Token: 0x0400352B RID: 13611
+	// Token: 0x04003540 RID: 13632
 	public string RunAnim;
 
-	// Token: 0x0400352C RID: 13612
+	// Token: 0x04003541 RID: 13633
 	public string CrouchIdleAnim;
 
-	// Token: 0x0400352D RID: 13613
+	// Token: 0x04003542 RID: 13634
 	public string CrouchWalkAnim;
 
-	// Token: 0x0400352E RID: 13614
+	// Token: 0x04003543 RID: 13635
 	public string CrouchRunAnim;
 
-	// Token: 0x0400352F RID: 13615
+	// Token: 0x04003544 RID: 13636
 	public float WalkSpeed;
 
-	// Token: 0x04003530 RID: 13616
+	// Token: 0x04003545 RID: 13637
 	public float RunSpeed;
 
-	// Token: 0x04003531 RID: 13617
+	// Token: 0x04003546 RID: 13638
 	public float CrouchWalkSpeed;
 
-	// Token: 0x04003532 RID: 13618
+	// Token: 0x04003547 RID: 13639
 	public float CrouchRunSpeed;
 
-	// Token: 0x04003533 RID: 13619
+	// Token: 0x04003548 RID: 13640
 	public float Intensity = 0.45f;
 
-	// Token: 0x04003534 RID: 13620
+	// Token: 0x04003549 RID: 13641
 	public int ClimbPhase;
 
-	// Token: 0x04003535 RID: 13621
+	// Token: 0x0400354A RID: 13642
 	public int Pebbles;
 
-	// Token: 0x04003536 RID: 13622
+	// Token: 0x0400354B RID: 13643
 	public int Frame;
 
-	// Token: 0x04003537 RID: 13623
+	// Token: 0x0400354C RID: 13644
 	public SkinnedMeshRenderer MyRenderer;
 
-	// Token: 0x04003538 RID: 13624
+	// Token: 0x0400354D RID: 13645
 	public GameObject ClothingAttacher;
 
-	// Token: 0x04003539 RID: 13625
+	// Token: 0x0400354E RID: 13646
 	public GameObject EightiesAttacher;
 
-	// Token: 0x0400353A RID: 13626
+	// Token: 0x0400354F RID: 13647
 	public GameObject RyobaHair;
 
-	// Token: 0x0400353B RID: 13627
+	// Token: 0x04003550 RID: 13648
 	public Material Transparent;
 
-	// Token: 0x0400353C RID: 13628
+	// Token: 0x04003551 RID: 13649
 	public Texture BlondePony;
 
-	// Token: 0x0400353D RID: 13629
+	// Token: 0x04003552 RID: 13650
 	public Mesh HeadOnlyMesh;
 
-	// Token: 0x0400353E RID: 13630
+	// Token: 0x04003553 RID: 13651
 	public Transform BreastL;
 
-	// Token: 0x0400353F RID: 13631
+	// Token: 0x04003554 RID: 13652
 	public Transform BreastR;
 
-	// Token: 0x04003540 RID: 13632
+	// Token: 0x04003555 RID: 13653
 	public AudioSource MyAudio;
 
-	// Token: 0x04003541 RID: 13633
+	// Token: 0x04003556 RID: 13654
 	public GameObject Pebble;
 
-	// Token: 0x04003542 RID: 13634
+	// Token: 0x04003557 RID: 13655
 	public bool UpdateBlendshapes;
 
-	// Token: 0x04003543 RID: 13635
+	// Token: 0x04003558 RID: 13656
 	public bool LethalPoison;
 
-	// Token: 0x04003544 RID: 13636
+	// Token: 0x04003559 RID: 13657
 	public bool Initialized;
 
-	// Token: 0x04003545 RID: 13637
+	// Token: 0x0400355A RID: 13658
 	public bool Sedative;
 
-	// Token: 0x04003546 RID: 13638
+	// Token: 0x0400355B RID: 13659
 	public bool Asylum;
 
-	// Token: 0x04003547 RID: 13639
+	// Token: 0x0400355C RID: 13660
 	public bool Cigs;
 
-	// Token: 0x04003548 RID: 13640
+	// Token: 0x0400355D RID: 13661
 	private int UpdateFrame;
 
-	// Token: 0x04003549 RID: 13641
+	// Token: 0x0400355E RID: 13662
 	public CameraFilterPack_Colors_Adjust_PreFilters YandereFilter;
 
-	// Token: 0x0400354A RID: 13642
+	// Token: 0x0400355F RID: 13663
 	public HighlightingRenderer HighlightingR;
 
-	// Token: 0x0400354B RID: 13643
+	// Token: 0x04003560 RID: 13664
 	public HighlightingBlitter HighlightingB;
 
-	// Token: 0x0400354C RID: 13644
+	// Token: 0x04003561 RID: 13665
 	public GameObject ThrowButton;
 
-	// Token: 0x0400354D RID: 13645
+	// Token: 0x04003562 RID: 13666
 	public GameObject PebbleIcon;
 
-	// Token: 0x0400354E RID: 13646
+	// Token: 0x04003563 RID: 13667
 	public GameObject AimButton;
 
-	// Token: 0x0400354F RID: 13647
+	// Token: 0x04003564 RID: 13668
 	public UILabel PebbleLabel;
 
-	// Token: 0x04003550 RID: 13648
+	// Token: 0x04003565 RID: 13669
 	public GameObject[] OriginalHairs;
 
-	// Token: 0x04003551 RID: 13649
+	// Token: 0x04003566 RID: 13670
 	public GameObject[] VtuberHairs;
 
-	// Token: 0x04003552 RID: 13650
+	// Token: 0x04003567 RID: 13671
 	public Texture[] VtuberFaces;
 
-	// Token: 0x04003553 RID: 13651
+	// Token: 0x04003568 RID: 13672
 	public bool UpdateTextures;
 
-	// Token: 0x04003554 RID: 13652
+	// Token: 0x04003569 RID: 13673
 	public bool Vtuber;
 }

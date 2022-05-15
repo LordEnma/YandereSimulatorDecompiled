@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020004F9 RID: 1273
+// Token: 0x020004FA RID: 1274
 [ExecuteInEditMode]
 [RequireComponent(typeof(Camera))]
 public class GrassMaskGenerator : MonoBehaviour
 {
-	// Token: 0x06002127 RID: 8487 RVA: 0x001EBC58 File Offset: 0x001E9E58
+	// Token: 0x06002131 RID: 8497 RVA: 0x001ED2A8 File Offset: 0x001EB4A8
 	public void Start()
 	{
 		UnityEngine.Object.Destroy(base.gameObject);
 	}
 
-	// Token: 0x06002128 RID: 8488 RVA: 0x001EBC68 File Offset: 0x001E9E68
+	// Token: 0x06002132 RID: 8498 RVA: 0x001ED2B8 File Offset: 0x001EB4B8
 	private void Update()
 	{
 		if (this.camera == null)
@@ -38,7 +38,7 @@ public class GrassMaskGenerator : MonoBehaviour
 		this.camera.targetTexture = this.targetTexture;
 	}
 
-	// Token: 0x06002129 RID: 8489 RVA: 0x001EBDB8 File Offset: 0x001E9FB8
+	// Token: 0x06002133 RID: 8499 RVA: 0x001ED408 File Offset: 0x001EB608
 	[ContextMenu("Generate and save the grass occlusion map")]
 	public void GenerateMap()
 	{
@@ -94,7 +94,7 @@ public class GrassMaskGenerator : MonoBehaviour
 		}.AddComponent<MeshRenderer>().gameObject.AddComponent<MeshFilter>().mesh = mesh;
 	}
 
-	// Token: 0x0600212A RID: 8490 RVA: 0x001EC058 File Offset: 0x001EA258
+	// Token: 0x06002134 RID: 8500 RVA: 0x001ED6A8 File Offset: 0x001EB8A8
 	private void OnDrawGizmosSelected()
 	{
 		Gizmos.color = Color.yellow;
@@ -105,25 +105,25 @@ public class GrassMaskGenerator : MonoBehaviour
 		Gizmos.DrawWireCube(new Vector3(0f, 0f, z2), new Vector3(this.camera.orthographicSize * 2f * this.camera.aspect, this.camera.orthographicSize * 2f, z));
 	}
 
-	// Token: 0x04004969 RID: 18793
+	// Token: 0x04004990 RID: 18832
 	[SerializeField]
 	private float aspectWidth;
 
-	// Token: 0x0400496A RID: 18794
+	// Token: 0x04004991 RID: 18833
 	[SerializeField]
 	private float aspectHeight;
 
-	// Token: 0x0400496B RID: 18795
+	// Token: 0x04004992 RID: 18834
 	[SerializeField]
 	private float mapScale;
 
-	// Token: 0x0400496C RID: 18796
+	// Token: 0x04004993 RID: 18835
 	[SerializeField]
 	private int mapUpscale;
 
-	// Token: 0x0400496D RID: 18797
+	// Token: 0x04004994 RID: 18836
 	private Camera camera;
 
-	// Token: 0x0400496E RID: 18798
+	// Token: 0x04004995 RID: 18837
 	private RenderTexture targetTexture;
 }

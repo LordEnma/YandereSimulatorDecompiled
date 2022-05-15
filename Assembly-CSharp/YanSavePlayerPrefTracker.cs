@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// Token: 0x0200051F RID: 1311
+// Token: 0x02000520 RID: 1312
 [Serializable]
 public struct YanSavePlayerPrefTracker
 {
-	// Token: 0x040049EC RID: 18924
+	// Token: 0x04004A13 RID: 18963
 	public List<string> PrefFormatValues;
 
-	// Token: 0x040049ED RID: 18925
+	// Token: 0x04004A14 RID: 18964
 	public YanSavePlayerPrefsType PrefType;
 
-	// Token: 0x040049EE RID: 18926
+	// Token: 0x04004A15 RID: 18965
 	public string PrefFormat;
 
-	// Token: 0x040049EF RID: 18927
+	// Token: 0x04004A16 RID: 18966
 	public int RangeMax;
 }

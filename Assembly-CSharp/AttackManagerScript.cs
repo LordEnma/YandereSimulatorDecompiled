@@ -4,26 +4,26 @@ using UnityEngine;
 // Token: 0x020000D8 RID: 216
 public class AttackManagerScript : MonoBehaviour
 {
-	// Token: 0x060009F5 RID: 2549 RVA: 0x000543D4 File Offset: 0x000525D4
+	// Token: 0x060009F5 RID: 2549 RVA: 0x000544A4 File Offset: 0x000526A4
 	private void Awake()
 	{
 		this.Yandere = base.GetComponent<YandereScript>();
 	}
 
-	// Token: 0x060009F6 RID: 2550 RVA: 0x000543E2 File Offset: 0x000525E2
+	// Token: 0x060009F6 RID: 2550 RVA: 0x000544B2 File Offset: 0x000526B2
 	private void Start()
 	{
 		this.Censor = GameGlobals.CensorKillingAnims;
 		this.OriginalBloodEffect = this.BloodEffect;
 	}
 
-	// Token: 0x060009F7 RID: 2551 RVA: 0x000543FB File Offset: 0x000525FB
+	// Token: 0x060009F7 RID: 2551 RVA: 0x000544CB File Offset: 0x000526CB
 	public bool IsAttacking()
 	{
 		return this.Victim != null;
 	}
 
-	// Token: 0x060009F8 RID: 2552 RVA: 0x0005440C File Offset: 0x0005260C
+	// Token: 0x060009F8 RID: 2552 RVA: 0x000544DC File Offset: 0x000526DC
 	private float GetReachDistance(WeaponType weaponType, SanityType sanityType)
 	{
 		if (weaponType == WeaponType.Knife)
@@ -97,7 +97,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009F9 RID: 2553 RVA: 0x000544F8 File Offset: 0x000526F8
+	// Token: 0x060009F9 RID: 2553 RVA: 0x000545C8 File Offset: 0x000527C8
 	public void Attack(GameObject victim, WeaponScript weapon)
 	{
 		this.Victim = victim;
@@ -143,7 +143,7 @@ public class AttackManagerScript : MonoBehaviour
 		this.Distance = this.GetReachDistance(weapon.Type, sanityType);
 	}
 
-	// Token: 0x060009FA RID: 2554 RVA: 0x000546F0 File Offset: 0x000528F0
+	// Token: 0x060009FA RID: 2554 RVA: 0x000547C0 File Offset: 0x000529C0
 	private void Update()
 	{
 		if (this.IsAttacking())
@@ -169,7 +169,7 @@ public class AttackManagerScript : MonoBehaviour
 			WeaponScript equippedWeapon = this.Yandere.EquippedWeapon;
 			SanityType sanityType = this.Yandere.SanityType;
 			this.AttackTimer += Time.deltaTime;
-			if (this.Yandere.TargetStudent.StudentID == this.Yandere.StudentManager.RivalID && !this.Yandere.CanTranq)
+			if (this.Yandere.TargetStudent.StudentID == this.Yandere.StudentManager.RivalID && !this.Yandere.CanTranq && !this.Yandere.StudentManager.DisableRivalDeathSloMo)
 			{
 				if (this.AttackTimer < 1.5f)
 				{
@@ -258,7 +258,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009FB RID: 2555 RVA: 0x00054B78 File Offset: 0x00052D78
+	// Token: 0x060009FB RID: 2555 RVA: 0x00054C58 File Offset: 0x00052E58
 	private void SpecialEffect(WeaponScript weapon, SanityType sanityType)
 	{
 		this.BloodEffect = this.OriginalBloodEffect;
@@ -766,7 +766,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009FC RID: 2556 RVA: 0x000561C0 File Offset: 0x000543C0
+	// Token: 0x060009FC RID: 2556 RVA: 0x000562A0 File Offset: 0x000544A0
 	private void LoopCheck(WeaponScript weapon)
 	{
 		if (Input.GetButtonDown("X") && !this.Yandere.Chased && this.Yandere.Chasers == 0)
@@ -854,7 +854,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009FD RID: 2557 RVA: 0x0005667A File Offset: 0x0005487A
+	// Token: 0x060009FD RID: 2557 RVA: 0x0005675A File Offset: 0x0005495A
 	private void CheckForSpecialCase(WeaponScript weapon)
 	{
 		if (weapon.WeaponID == 8 && GameGlobals.Paranormal)
@@ -865,7 +865,7 @@ public class AttackManagerScript : MonoBehaviour
 	}
 
 	// Token: 0x170001FD RID: 509
-	// (get) Token: 0x060009FE RID: 2558 RVA: 0x000566A8 File Offset: 0x000548A8
+	// (get) Token: 0x060009FE RID: 2558 RVA: 0x00056788 File Offset: 0x00054988
 	public int OnlyDefault
 	{
 		get
@@ -874,7 +874,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009FF RID: 2559 RVA: 0x000566AC File Offset: 0x000548AC
+	// Token: 0x060009FF RID: 2559 RVA: 0x0005678C File Offset: 0x0005498C
 	private void CheckForWalls()
 	{
 		this.RaycastOrigin = this.Yandere.Zoom.transform;

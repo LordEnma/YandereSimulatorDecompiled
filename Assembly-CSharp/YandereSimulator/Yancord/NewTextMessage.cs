@@ -3,40 +3,40 @@ using UnityEngine;
 
 namespace YandereSimulator.Yancord
 {
-	// Token: 0x02000529 RID: 1321
+	// Token: 0x0200052A RID: 1322
 	[Serializable]
 	public class NewTextMessage
 	{
-		// Token: 0x04004A10 RID: 18960
+		// Token: 0x04004A37 RID: 18999
 		public string Message;
 
-		// Token: 0x04004A11 RID: 18961
+		// Token: 0x04004A38 RID: 19000
 		public bool isQuestion;
 
-		// Token: 0x04004A12 RID: 18962
+		// Token: 0x04004A39 RID: 19001
 		public bool sentByPlayer;
 
-		// Token: 0x04004A13 RID: 18963
+		// Token: 0x04004A3A RID: 19002
 		public bool isSystemMessage;
 
-		// Token: 0x04004A14 RID: 18964
+		// Token: 0x04004A3B RID: 19003
 		[Header("== Question Related ==")]
 		public string OptionQ;
 
-		// Token: 0x04004A15 RID: 18965
+		// Token: 0x04004A3C RID: 19004
 		public string OptionR;
 
-		// Token: 0x04004A16 RID: 18966
+		// Token: 0x04004A3D RID: 19005
 		public string OptionF;
 
-		// Token: 0x04004A17 RID: 18967
+		// Token: 0x04004A3E RID: 19006
 		[Space(20f)]
 		public string ReactionQ;
 
-		// Token: 0x04004A18 RID: 18968
+		// Token: 0x04004A3F RID: 19007
 		public string ReactionR;
 
-		// Token: 0x04004A19 RID: 18969
+		// Token: 0x04004A40 RID: 19008
 		public string ReactionF;
 	}
 }

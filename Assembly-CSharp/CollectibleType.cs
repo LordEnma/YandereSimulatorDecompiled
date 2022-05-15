@@ -1,18 +1,18 @@
 ﻿using System;
 
-// Token: 0x02000252 RID: 594
+// Token: 0x02000253 RID: 595
 public enum CollectibleType
 {
-	// Token: 0x0400183F RID: 6207
+	// Token: 0x04001845 RID: 6213
 	HeadmasterTape,
-	// Token: 0x04001840 RID: 6208
+	// Token: 0x04001846 RID: 6214
 	BasementTape,
-	// Token: 0x04001841 RID: 6209
+	// Token: 0x04001847 RID: 6215
 	Manga,
-	// Token: 0x04001842 RID: 6210
+	// Token: 0x04001848 RID: 6216
 	Tape,
-	// Token: 0x04001843 RID: 6211
+	// Token: 0x04001849 RID: 6217
 	Key,
-	// Token: 0x04001844 RID: 6212
+	// Token: 0x0400184A RID: 6218
 	Panty
 }

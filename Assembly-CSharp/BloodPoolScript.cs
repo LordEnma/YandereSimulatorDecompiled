@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020000E9 RID: 233
+// Token: 0x020000EA RID: 234
 public class BloodPoolScript : MonoBehaviour
 {
-	// Token: 0x06000A38 RID: 2616 RVA: 0x0005ACD8 File Offset: 0x00058ED8
+	// Token: 0x06000A3A RID: 2618 RVA: 0x0005AF58 File Offset: 0x00059158
 	private void Start()
 	{
 		if (PlayerGlobals.PantiesEquipped == 11 && this.Blood)
@@ -35,7 +35,7 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A39 RID: 2617 RVA: 0x0005ADFC File Offset: 0x00058FFC
+	// Token: 0x06000A3B RID: 2619 RVA: 0x0005B07C File Offset: 0x0005927C
 	private void Update()
 	{
 		if (this.Grow)
@@ -52,7 +52,7 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A3A RID: 2618 RVA: 0x0005AEA0 File Offset: 0x000590A0
+	// Token: 0x06000A3C RID: 2620 RVA: 0x0005B120 File Offset: 0x00059320
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Water && this.ElectroTimer == 0f && other.gameObject.tag == "E")
@@ -68,36 +68,39 @@ public class BloodPoolScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04000BA5 RID: 2981
+	// Token: 0x04000BA9 RID: 2985
 	public float TargetSize;
 
-	// Token: 0x04000BA6 RID: 2982
+	// Token: 0x04000BAA RID: 2986
 	public bool Gasoline;
 
-	// Token: 0x04000BA7 RID: 2983
+	// Token: 0x04000BAB RID: 2987
 	public bool Brown;
 
-	// Token: 0x04000BA8 RID: 2984
+	// Token: 0x04000BAC RID: 2988
 	public bool Water;
 
-	// Token: 0x04000BA9 RID: 2985
+	// Token: 0x04000BAD RID: 2989
 	public bool Blood = true;
 
-	// Token: 0x04000BAA RID: 2986
+	// Token: 0x04000BAE RID: 2990
 	public bool Grow;
 
-	// Token: 0x04000BAB RID: 2987
+	// Token: 0x04000BAF RID: 2991
 	public GameObject Electricity;
 
-	// Token: 0x04000BAC RID: 2988
+	// Token: 0x04000BB0 RID: 2992
 	public Renderer MyRenderer;
 
-	// Token: 0x04000BAD RID: 2989
+	// Token: 0x04000BB1 RID: 2993
 	public Material BloodPool;
 
-	// Token: 0x04000BAE RID: 2990
+	// Token: 0x04000BB2 RID: 2994
 	public Material Flower;
 
-	// Token: 0x04000BAF RID: 2991
+	// Token: 0x04000BB3 RID: 2995
 	public float ElectroTimer;
+
+	// Token: 0x04000BB4 RID: 2996
+	public int StudentBloodID;
 }

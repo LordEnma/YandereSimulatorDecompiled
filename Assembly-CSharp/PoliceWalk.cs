@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x020003B2 RID: 946
+// Token: 0x020003B3 RID: 947
 public class PoliceWalk : MonoBehaviour
 {
-	// Token: 0x06001AF0 RID: 6896 RVA: 0x001273F8 File Offset: 0x001255F8
+	// Token: 0x06001AF6 RID: 6902 RVA: 0x00127DF4 File Offset: 0x00125FF4
 	private void Update()
 	{
 		Vector3 position = base.transform.position;

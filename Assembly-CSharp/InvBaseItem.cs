@@ -39,26 +39,26 @@ public class InvBaseItem
 	// Token: 0x04000289 RID: 649
 	public string iconName = "";
 
-	// Token: 0x020005C9 RID: 1481
+	// Token: 0x020005CA RID: 1482
 	public enum Slot
 	{
-		// Token: 0x04004DD0 RID: 19920
+		// Token: 0x04004DF7 RID: 19959
 		None,
-		// Token: 0x04004DD1 RID: 19921
+		// Token: 0x04004DF8 RID: 19960
 		Weapon,
-		// Token: 0x04004DD2 RID: 19922
+		// Token: 0x04004DF9 RID: 19961
 		Shield,
-		// Token: 0x04004DD3 RID: 19923
+		// Token: 0x04004DFA RID: 19962
 		Body,
-		// Token: 0x04004DD4 RID: 19924
+		// Token: 0x04004DFB RID: 19963
 		Shoulders,
-		// Token: 0x04004DD5 RID: 19925
+		// Token: 0x04004DFC RID: 19964
 		Bracers,
-		// Token: 0x04004DD6 RID: 19926
+		// Token: 0x04004DFD RID: 19965
 		Boots,
-		// Token: 0x04004DD7 RID: 19927
+		// Token: 0x04004DFE RID: 19966
 		Trinket,
-		// Token: 0x04004DD8 RID: 19928
+		// Token: 0x04004DFF RID: 19967
 		_LastDoNotUse
 	}
 }

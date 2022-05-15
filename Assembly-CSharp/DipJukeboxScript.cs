@@ -1,10 +1,10 @@
 ﻿using System;
 using UnityEngine;
 
-// Token: 0x02000285 RID: 645
+// Token: 0x02000286 RID: 646
 public class DipJukeboxScript : MonoBehaviour
 {
-	// Token: 0x0600139F RID: 5023 RVA: 0x000B87AC File Offset: 0x000B69AC
+	// Token: 0x060013A1 RID: 5025 RVA: 0x000B8A28 File Offset: 0x000B6C28
 	private void Update()
 	{
 		if (this.MyAudio.isPlaying)
@@ -30,12 +30,12 @@ public class DipJukeboxScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04001D27 RID: 7463
+	// Token: 0x04001D2E RID: 7470
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04001D28 RID: 7464
+	// Token: 0x04001D2F RID: 7471
 	public AudioSource MyAudio;
 
-	// Token: 0x04001D29 RID: 7465
+	// Token: 0x04001D30 RID: 7472
 	public Transform Yandere;
 }
