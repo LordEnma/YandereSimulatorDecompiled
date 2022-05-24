@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000285 RID: 645
 public class DialogueWheelScript : MonoBehaviour
 {
-	// Token: 0x0600139B RID: 5019 RVA: 0x000B4A14 File Offset: 0x000B2C14
+	// Token: 0x0600139B RID: 5019 RVA: 0x000B4AAC File Offset: 0x000B2CAC
 	private void Start()
 	{
 		this.Interaction.localScale = new Vector3(1f, 1f, 1f);
@@ -19,7 +19,7 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600139C RID: 5020 RVA: 0x000B4AB0 File Offset: 0x000B2CB0
+	// Token: 0x0600139C RID: 5020 RVA: 0x000B4B48 File Offset: 0x000B2D48
 	private void Update()
 	{
 		if (!this.Show)
@@ -536,7 +536,7 @@ public class DialogueWheelScript : MonoBehaviour
 		this.PreviousPosition = Input.mousePosition;
 	}
 
-	// Token: 0x0600139D RID: 5021 RVA: 0x000B6570 File Offset: 0x000B4770
+	// Token: 0x0600139D RID: 5021 RVA: 0x000B6608 File Offset: 0x000B4808
 	public void HideShadows()
 	{
 		this.Jukebox.Dip = 0.5f;
@@ -861,7 +861,7 @@ public class DialogueWheelScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600139E RID: 5022 RVA: 0x000B7DCC File Offset: 0x000B5FCC
+	// Token: 0x0600139E RID: 5022 RVA: 0x000B7E64 File Offset: 0x000B6064
 	private void CheckTaskCompletion()
 	{
 		bool flag = false;
@@ -960,7 +960,7 @@ public class DialogueWheelScript : MonoBehaviour
 		this.Text[6] = "Ask Favor";
 	}
 
-	// Token: 0x0600139F RID: 5023 RVA: 0x000B843C File Offset: 0x000B663C
+	// Token: 0x0600139F RID: 5023 RVA: 0x000B84D4 File Offset: 0x000B66D4
 	public void End()
 	{
 		if (this.Yandere.TargetStudent != null)

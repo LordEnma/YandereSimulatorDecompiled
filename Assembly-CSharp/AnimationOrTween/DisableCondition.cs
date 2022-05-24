@@ -6,11 +6,11 @@ namespace AnimationOrTween
 	[DoNotObfuscateNGUI]
 	public enum DisableCondition
 	{
-		// Token: 0x04004CD9 RID: 19673
+		// Token: 0x04004CE2 RID: 19682
 		DisableAfterReverse = -1,
-		// Token: 0x04004CDA RID: 19674
+		// Token: 0x04004CE3 RID: 19683
 		DoNotDisable,
-		// Token: 0x04004CDB RID: 19675
+		// Token: 0x04004CE4 RID: 19684
 		DisableAfterForward
 	}
 }

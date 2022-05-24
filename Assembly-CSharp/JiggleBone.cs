@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000344 RID: 836
 public class JiggleBone : MonoBehaviour
 {
-	// Token: 0x06001922 RID: 6434 RVA: 0x000FC85C File Offset: 0x000FAA5C
+	// Token: 0x06001922 RID: 6434 RVA: 0x000FC9D8 File Offset: 0x000FABD8
 	private void Awake()
 	{
 		Vector3 vector = base.transform.position + base.transform.TransformDirection(this.boneAxis * this.targetDistance);
 		this.dynamicPos = vector;
 	}
 
-	// Token: 0x06001923 RID: 6435 RVA: 0x000FC8A0 File Offset: 0x000FAAA0
+	// Token: 0x06001923 RID: 6435 RVA: 0x000FCA1C File Offset: 0x000FAC1C
 	private void LateUpdate()
 	{
 		base.transform.rotation = default(Quaternion);
@@ -67,45 +67,45 @@ public class JiggleBone : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002786 RID: 10118
+	// Token: 0x04002789 RID: 10121
 	public bool debugMode = true;
 
-	// Token: 0x04002787 RID: 10119
+	// Token: 0x0400278A RID: 10122
 	private Vector3 dynamicPos;
 
-	// Token: 0x04002788 RID: 10120
+	// Token: 0x0400278B RID: 10123
 	public Vector3 boneAxis = new Vector3(0f, 0f, 1f);
 
-	// Token: 0x04002789 RID: 10121
+	// Token: 0x0400278C RID: 10124
 	public float targetDistance = 2f;
 
-	// Token: 0x0400278A RID: 10122
+	// Token: 0x0400278D RID: 10125
 	public float bStiffness = 0.1f;
 
-	// Token: 0x0400278B RID: 10123
+	// Token: 0x0400278E RID: 10126
 	public float bMass = 0.9f;
 
-	// Token: 0x0400278C RID: 10124
+	// Token: 0x0400278F RID: 10127
 	public float bDamping = 0.75f;
 
-	// Token: 0x0400278D RID: 10125
+	// Token: 0x04002790 RID: 10128
 	public float bGravity = 0.75f;
 
-	// Token: 0x0400278E RID: 10126
+	// Token: 0x04002791 RID: 10129
 	private Vector3 force;
 
-	// Token: 0x0400278F RID: 10127
+	// Token: 0x04002792 RID: 10130
 	private Vector3 acc;
 
-	// Token: 0x04002790 RID: 10128
+	// Token: 0x04002793 RID: 10131
 	private Vector3 vel;
 
-	// Token: 0x04002791 RID: 10129
+	// Token: 0x04002794 RID: 10132
 	public bool SquashAndStretch = true;
 
-	// Token: 0x04002792 RID: 10130
+	// Token: 0x04002795 RID: 10133
 	public float sideStretch = 0.15f;
 
-	// Token: 0x04002793 RID: 10131
+	// Token: 0x04002796 RID: 10134
 	public float frontStretch = 0.2f;
 }

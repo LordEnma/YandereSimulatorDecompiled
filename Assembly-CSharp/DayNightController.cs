@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000273 RID: 627
 public class DayNightController : MonoBehaviour
 {
-	// Token: 0x06001351 RID: 4945 RVA: 0x000AF16C File Offset: 0x000AD36C
+	// Token: 0x06001351 RID: 4945 RVA: 0x000AF204 File Offset: 0x000AD404
 	private void Initialize()
 	{
 		this.quarterDay = this.dayCycleLength * 0.25f;
@@ -19,7 +19,7 @@ public class DayNightController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001352 RID: 4946 RVA: 0x000AF1EC File Offset: 0x000AD3EC
+	// Token: 0x06001352 RID: 4946 RVA: 0x000AF284 File Offset: 0x000AD484
 	private void Reset()
 	{
 		this.dayCycleLength = 120f;
@@ -47,13 +47,13 @@ public class DayNightController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001353 RID: 4947 RVA: 0x000AF312 File Offset: 0x000AD512
+	// Token: 0x06001353 RID: 4947 RVA: 0x000AF3AA File Offset: 0x000AD5AA
 	private void Start()
 	{
 		this.Initialize();
 	}
 
-	// Token: 0x06001354 RID: 4948 RVA: 0x000AF31C File Offset: 0x000AD51C
+	// Token: 0x06001354 RID: 4948 RVA: 0x000AF3B4 File Offset: 0x000AD5B4
 	private void Update()
 	{
 		if (this.currentCycleTime > this.nightTime && this.currentPhase == DayNightController.DayPhase.Dusk)
@@ -79,7 +79,7 @@ public class DayNightController : MonoBehaviour
 		this.currentCycleTime %= this.dayCycleLength;
 	}
 
-	// Token: 0x06001355 RID: 4949 RVA: 0x000AF3E8 File Offset: 0x000AD5E8
+	// Token: 0x06001355 RID: 4949 RVA: 0x000AF480 File Offset: 0x000AD680
 	public void SetDawn()
 	{
 		RenderSettings.skybox = this.dawnDuskSkybox;
@@ -91,7 +91,7 @@ public class DayNightController : MonoBehaviour
 		this.currentPhase = DayNightController.DayPhase.Dawn;
 	}
 
-	// Token: 0x06001356 RID: 4950 RVA: 0x000AF420 File Offset: 0x000AD620
+	// Token: 0x06001356 RID: 4950 RVA: 0x000AF4B8 File Offset: 0x000AD6B8
 	public void SetDay()
 	{
 		RenderSettings.skybox = this.daySkybox;
@@ -104,14 +104,14 @@ public class DayNightController : MonoBehaviour
 		this.currentPhase = DayNightController.DayPhase.Day;
 	}
 
-	// Token: 0x06001357 RID: 4951 RVA: 0x000AF466 File Offset: 0x000AD666
+	// Token: 0x06001357 RID: 4951 RVA: 0x000AF4FE File Offset: 0x000AD6FE
 	public void SetDusk()
 	{
 		RenderSettings.skybox = this.dawnDuskSkybox;
 		this.currentPhase = DayNightController.DayPhase.Dusk;
 	}
 
-	// Token: 0x06001358 RID: 4952 RVA: 0x000AF47C File Offset: 0x000AD67C
+	// Token: 0x06001358 RID: 4952 RVA: 0x000AF514 File Offset: 0x000AD714
 	public void SetNight()
 	{
 		RenderSettings.skybox = this.nightSkybox;
@@ -124,7 +124,7 @@ public class DayNightController : MonoBehaviour
 		this.currentPhase = DayNightController.DayPhase.Night;
 	}
 
-	// Token: 0x06001359 RID: 4953 RVA: 0x000AF4C0 File Offset: 0x000AD6C0
+	// Token: 0x06001359 RID: 4953 RVA: 0x000AF558 File Offset: 0x000AD758
 	private void UpdateDaylight()
 	{
 		if (this.currentPhase == DayNightController.DayPhase.Dawn)
@@ -150,7 +150,7 @@ public class DayNightController : MonoBehaviour
 		base.transform.Rotate(Vector3.up * (Time.deltaTime / this.dayCycleLength * 360f), Space.Self);
 	}
 
-	// Token: 0x0600135A RID: 4954 RVA: 0x000AF5B4 File Offset: 0x000AD7B4
+	// Token: 0x0600135A RID: 4954 RVA: 0x000AF64C File Offset: 0x000AD84C
 	private void UpdateFog()
 	{
 		if (this.currentPhase == DayNightController.DayPhase.Dawn)
@@ -178,7 +178,7 @@ public class DayNightController : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600135B RID: 4955 RVA: 0x000AF697 File Offset: 0x000AD897
+	// Token: 0x0600135B RID: 4955 RVA: 0x000AF72F File Offset: 0x000AD92F
 	private void UpdateWorldTime()
 	{
 		this.worldTimeHour = (int)((Mathf.Ceil(this.currentCycleTime / this.dayCycleLength * this.hoursPerDay) + this.dawnTimeOffset) % this.hoursPerDay) + 1;
@@ -247,13 +247,13 @@ public class DayNightController : MonoBehaviour
 	// Token: 0x0200065E RID: 1630
 	public enum DayPhase
 	{
-		// Token: 0x04005015 RID: 20501
+		// Token: 0x0400501E RID: 20510
 		Night,
-		// Token: 0x04005016 RID: 20502
+		// Token: 0x0400501F RID: 20511
 		Dawn,
-		// Token: 0x04005017 RID: 20503
+		// Token: 0x04005020 RID: 20512
 		Day,
-		// Token: 0x04005018 RID: 20504
+		// Token: 0x04005021 RID: 20513
 		Dusk
 	}
 }

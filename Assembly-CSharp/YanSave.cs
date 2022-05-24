@@ -14,7 +14,7 @@ using UnityEngine.SceneManagement;
 public static class YanSave
 {
 	// Token: 0x170004D3 RID: 1235
-	// (get) Token: 0x0600218F RID: 8591 RVA: 0x001EF4CB File Offset: 0x001ED6CB
+	// (get) Token: 0x06002190 RID: 8592 RVA: 0x001EFA33 File Offset: 0x001EDC33
 	public static string SaveDataPath
 	{
 		get
@@ -23,7 +23,7 @@ public static class YanSave
 		}
 	}
 
-	// Token: 0x06002190 RID: 8592 RVA: 0x001EF4DC File Offset: 0x001ED6DC
+	// Token: 0x06002191 RID: 8593 RVA: 0x001EFA44 File Offset: 0x001EDC44
 	public static void SaveData(string targetSave)
 	{
 		YanSaveIdentifier[] array = Resources.FindObjectsOfTypeAll<YanSaveIdentifier>();
@@ -456,7 +456,7 @@ public static class YanSave
 		onSave();
 	}
 
-	// Token: 0x06002191 RID: 8593 RVA: 0x001F0434 File Offset: 0x001EE634
+	// Token: 0x06002192 RID: 8594 RVA: 0x001F099C File Offset: 0x001EEB9C
 	public static void LoadData(string targetSave, bool recreateMissing = false)
 	{
 		if (!File.Exists(Path.Combine(YanSave.SaveDataPath, targetSave + ".yansave")))
@@ -908,7 +908,7 @@ public static class YanSave
 		onLoad();
 	}
 
-	// Token: 0x06002192 RID: 8594 RVA: 0x001F13EC File Offset: 0x001EF5EC
+	// Token: 0x06002193 RID: 8595 RVA: 0x001F1954 File Offset: 0x001EFB54
 	public static void LoadPrefs(string targetSave)
 	{
 		foreach (KeyValuePair<string, object> keyValuePair in JsonConvert.DeserializeObject<YanSaveData>(File.ReadAllText(Path.Combine(YanSave.SaveDataPath, targetSave + ".yansave"))).SerializedPlayerPrefs)
@@ -930,14 +930,14 @@ public static class YanSave
 		}
 	}
 
-	// Token: 0x06002193 RID: 8595 RVA: 0x001F1514 File Offset: 0x001EF714
+	// Token: 0x06002194 RID: 8596 RVA: 0x001F1A7C File Offset: 0x001EFC7C
 	public static void LoadAll(string targetSave)
 	{
 		YanSave.LoadData(targetSave, false);
 		YanSave.LoadPrefs(targetSave);
 	}
 
-	// Token: 0x06002194 RID: 8596 RVA: 0x001F1524 File Offset: 0x001EF724
+	// Token: 0x06002195 RID: 8597 RVA: 0x001F1A8C File Offset: 0x001EFC8C
 	public static void RemoveData(string targetSave)
 	{
 		string path = Path.Combine(YanSave.SaveDataPath, targetSave + ".yansave");
@@ -953,7 +953,7 @@ public static class YanSave
 		}
 	}
 
-	// Token: 0x06002195 RID: 8597 RVA: 0x001F156C File Offset: 0x001EF76C
+	// Token: 0x06002196 RID: 8598 RVA: 0x001F1AD4 File Offset: 0x001EFCD4
 	private static PropertyInfo[] GetCachedProperties(Type type)
 	{
 		if (YanSave.PropertyCache.ContainsKey(type))
@@ -964,7 +964,7 @@ public static class YanSave
 		return YanSave.PropertyCache[type];
 	}
 
-	// Token: 0x06002196 RID: 8598 RVA: 0x001F15A4 File Offset: 0x001EF7A4
+	// Token: 0x06002197 RID: 8599 RVA: 0x001F1B0C File Offset: 0x001EFD0C
 	private static FieldInfo[] GetCachedFields(Type type)
 	{
 		if (YanSave.FieldCache.ContainsKey(type))
@@ -976,7 +976,7 @@ public static class YanSave
 		return fields;
 	}
 
-	// Token: 0x06002197 RID: 8599 RVA: 0x001F15E0 File Offset: 0x001EF7E0
+	// Token: 0x06002198 RID: 8600 RVA: 0x001F1B48 File Offset: 0x001EFD48
 	private static Type GetType(string typeName)
 	{
 		Type type = Type.GetType(typeName);
@@ -992,18 +992,18 @@ public static class YanSave
 		return assembly.GetType(typeName);
 	}
 
-	// Token: 0x040049E5 RID: 18917
+	// Token: 0x040049EE RID: 18926
 	public const string SAVE_EXTENSION = "yansave";
 
-	// Token: 0x040049E6 RID: 18918
+	// Token: 0x040049EF RID: 18927
 	public static Action OnLoad;
 
-	// Token: 0x040049E7 RID: 18919
+	// Token: 0x040049F0 RID: 18928
 	public static Action OnSave;
 
-	// Token: 0x040049E8 RID: 18920
+	// Token: 0x040049F1 RID: 18929
 	private static Dictionary<Type, PropertyInfo[]> PropertyCache = new Dictionary<Type, PropertyInfo[]>();
 
-	// Token: 0x040049E9 RID: 18921
+	// Token: 0x040049F2 RID: 18930
 	private static Dictionary<Type, FieldInfo[]> FieldCache = new Dictionary<Type, FieldInfo[]>();
 }

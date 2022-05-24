@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000286 RID: 646
 public class DipJukeboxScript : MonoBehaviour
 {
-	// Token: 0x060013A1 RID: 5025 RVA: 0x000B8A28 File Offset: 0x000B6C28
+	// Token: 0x060013A1 RID: 5025 RVA: 0x000B8AC0 File Offset: 0x000B6CC0
 	private void Update()
 	{
 		if (this.MyAudio.isPlaying)

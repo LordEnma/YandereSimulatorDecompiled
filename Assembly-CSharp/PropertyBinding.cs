@@ -113,13 +113,13 @@ public class PropertyBinding : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum UpdateCondition
 	{
-		// Token: 0x04004EB1 RID: 20145
+		// Token: 0x04004EBA RID: 20154
 		OnStart,
-		// Token: 0x04004EB2 RID: 20146
+		// Token: 0x04004EBB RID: 20155
 		OnUpdate,
-		// Token: 0x04004EB3 RID: 20147
+		// Token: 0x04004EBC RID: 20156
 		OnLateUpdate,
-		// Token: 0x04004EB4 RID: 20148
+		// Token: 0x04004EBD RID: 20157
 		OnFixedUpdate
 	}
 
@@ -127,11 +127,11 @@ public class PropertyBinding : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Direction
 	{
-		// Token: 0x04004EB6 RID: 20150
+		// Token: 0x04004EBF RID: 20159
 		SourceUpdatesTarget,
-		// Token: 0x04004EB7 RID: 20151
+		// Token: 0x04004EC0 RID: 20160
 		TargetUpdatesSource,
-		// Token: 0x04004EB8 RID: 20152
+		// Token: 0x04004EC1 RID: 20161
 		BiDirectional
 	}
 }

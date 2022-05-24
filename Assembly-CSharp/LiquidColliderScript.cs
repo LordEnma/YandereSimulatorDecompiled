@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000355 RID: 853
 public class LiquidColliderScript : MonoBehaviour
 {
-	// Token: 0x06001984 RID: 6532 RVA: 0x00100E80 File Offset: 0x000FF080
+	// Token: 0x06001985 RID: 6533 RVA: 0x00101084 File Offset: 0x000FF284
 	private void Start()
 	{
 		if (this.Bucket)
@@ -13,7 +13,7 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001985 RID: 6533 RVA: 0x00100EA4 File Offset: 0x000FF0A4
+	// Token: 0x06001986 RID: 6534 RVA: 0x001010A8 File Offset: 0x000FF2A8
 	private void Update()
 	{
 		if (!this.Static)
@@ -40,7 +40,7 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001986 RID: 6534 RVA: 0x00101024 File Offset: 0x000FF224
+	// Token: 0x06001987 RID: 6535 RVA: 0x00101228 File Offset: 0x000FF428
 	private void OnTriggerEnter(Collider other)
 	{
 		if (!this.AlreadyDoused && other.gameObject.layer == 9)
@@ -115,36 +115,36 @@ public class LiquidColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400288C RID: 10380
+	// Token: 0x04002893 RID: 10387
 	private GameObject NewPool;
 
-	// Token: 0x0400288D RID: 10381
+	// Token: 0x04002894 RID: 10388
 	public AudioClip SplashSound;
 
-	// Token: 0x0400288E RID: 10382
+	// Token: 0x04002895 RID: 10389
 	public GameObject GroundSplash;
 
-	// Token: 0x0400288F RID: 10383
+	// Token: 0x04002896 RID: 10390
 	public GameObject Splash;
 
-	// Token: 0x04002890 RID: 10384
+	// Token: 0x04002897 RID: 10391
 	public GameObject Pool;
 
-	// Token: 0x04002891 RID: 10385
+	// Token: 0x04002898 RID: 10392
 	public bool AlreadyDoused;
 
-	// Token: 0x04002892 RID: 10386
+	// Token: 0x04002899 RID: 10393
 	public bool Static;
 
-	// Token: 0x04002893 RID: 10387
+	// Token: 0x0400289A RID: 10394
 	public bool Bucket;
 
-	// Token: 0x04002894 RID: 10388
+	// Token: 0x0400289B RID: 10395
 	public bool Brown;
 
-	// Token: 0x04002895 RID: 10389
+	// Token: 0x0400289C RID: 10396
 	public bool Blood;
 
-	// Token: 0x04002896 RID: 10390
+	// Token: 0x0400289D RID: 10397
 	public bool Gas;
 }

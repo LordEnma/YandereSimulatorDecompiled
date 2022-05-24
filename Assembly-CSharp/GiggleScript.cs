@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020002E8 RID: 744
 public class GiggleScript : MonoBehaviour
 {
-	// Token: 0x06001516 RID: 5398 RVA: 0x000D8DC4 File Offset: 0x000D6FC4
+	// Token: 0x06001516 RID: 5398 RVA: 0x000D8F30 File Offset: 0x000D7130
 	private void Start()
 	{
 		float num = 500f * (2f - SchoolGlobals.SchoolAtmosphere);
 		base.transform.localScale = new Vector3(num, base.transform.localScale.y, num);
 	}
 
-	// Token: 0x06001517 RID: 5399 RVA: 0x000D8E05 File Offset: 0x000D7005
+	// Token: 0x06001517 RID: 5399 RVA: 0x000D8F71 File Offset: 0x000D7171
 	private void Update()
 	{
 		if (this.Frame > 0)
@@ -21,7 +21,7 @@ public class GiggleScript : MonoBehaviour
 		this.Frame++;
 	}
 
-	// Token: 0x06001518 RID: 5400 RVA: 0x000D8E2C File Offset: 0x000D702C
+	// Token: 0x06001518 RID: 5400 RVA: 0x000D8F98 File Offset: 0x000D7198
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9 && !this.Distracted)
@@ -54,7 +54,7 @@ public class GiggleScript : MonoBehaviour
 				{
 					StudentActionType currentAction = this.Student.CurrentAction;
 				}
-				if (!this.Student.YandereVisible && !this.Student.Alarmed && !this.Student.Distracted && !this.Student.Wet && !this.Student.Slave && !this.Student.WitnessedMurder && !this.Student.WitnessedCorpse && !this.Student.Investigating && !this.Student.InEvent && !this.Student.Following && !this.Student.Confessing && !this.Student.Meeting && !this.Student.TurnOffRadio && !this.Student.Fleeing && !this.Student.Distracting && !this.Student.GoAway && !this.Student.FocusOnYandere && !this.StudentIsBusy && this.Student.Actions[this.Student.Phase] != StudentActionType.Teaching && this.Student.Actions[this.Student.Phase] != StudentActionType.SitAndTakeNotes && this.Student.Actions[this.Student.Phase] != StudentActionType.Graffiti && this.Student.Actions[this.Student.Phase] != StudentActionType.Bully && this.Student.Routine && !this.Student.Headache && !this.Student.MyBento.Tampered)
+				if (!this.Student.YandereVisible && !this.Student.Alarmed && !this.Student.Distracted && !this.Student.Wet && !this.Student.Slave && !this.Student.WitnessedMurder && !this.Student.WitnessedCorpse && !this.Student.Investigating && !this.Student.InEvent && !this.Student.Following && !this.Student.Confessing && !this.Student.Meeting && !this.Student.TurnOffRadio && !this.Student.Fleeing && !this.Student.Distracting && !this.Student.GoAway && !this.Student.FocusOnYandere && !this.StudentIsBusy && this.Student.Actions[this.Student.Phase] != StudentActionType.Teaching && this.Student.Actions[this.Student.Phase] != StudentActionType.SitAndTakeNotes && this.Student.Actions[this.Student.Phase] != StudentActionType.Graffiti && this.Student.Actions[this.Student.Phase] != StudentActionType.Bully && this.Student.Routine && !this.Student.Headache && !this.Student.MyBento.Tampered && this.Student.Indoors)
 				{
 					this.Student.CharacterAnimation.CrossFade(this.Student.IdleAnim);
 					this.Giggle = UnityEngine.Object.Instantiate<GameObject>(this.EmptyGameObject, new Vector3(base.transform.position.x, this.Student.transform.position.y, base.transform.position.z), Quaternion.identity);
@@ -170,24 +170,24 @@ public class GiggleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040021E0 RID: 8672
+	// Token: 0x040021E1 RID: 8673
 	public GameObject EmptyGameObject;
 
-	// Token: 0x040021E1 RID: 8673
+	// Token: 0x040021E2 RID: 8674
 	public GameObject Giggle;
 
-	// Token: 0x040021E2 RID: 8674
+	// Token: 0x040021E3 RID: 8675
 	public StudentScript Student;
 
-	// Token: 0x040021E3 RID: 8675
+	// Token: 0x040021E4 RID: 8676
 	public bool StudentIsBusy;
 
-	// Token: 0x040021E4 RID: 8676
+	// Token: 0x040021E5 RID: 8677
 	public bool Distracted;
 
-	// Token: 0x040021E5 RID: 8677
+	// Token: 0x040021E6 RID: 8678
 	public bool BangSnap;
 
-	// Token: 0x040021E6 RID: 8678
+	// Token: 0x040021E7 RID: 8679
 	public int Frame;
 }

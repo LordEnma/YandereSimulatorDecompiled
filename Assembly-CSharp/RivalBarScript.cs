@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000510 RID: 1296
 public class RivalBarScript : MonoBehaviour
 {
-	// Token: 0x06002185 RID: 8581 RVA: 0x001EEAE4 File Offset: 0x001ECCE4
+	// Token: 0x06002186 RID: 8582 RVA: 0x001EF04C File Offset: 0x001ED24C
 	private void Start()
 	{
 		for (int i = 1; i < 11; i++)
@@ -13,7 +13,7 @@ public class RivalBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002186 RID: 8582 RVA: 0x001EEB24 File Offset: 0x001ECD24
+	// Token: 0x06002187 RID: 8583 RVA: 0x001EF08C File Offset: 0x001ED28C
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))
@@ -45,7 +45,7 @@ public class RivalBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06002187 RID: 8583 RVA: 0x001EEC84 File Offset: 0x001ECE84
+	// Token: 0x06002188 RID: 8584 RVA: 0x001EF1EC File Offset: 0x001ED3EC
 	private void UpdateBars()
 	{
 		int i = 1;
@@ -61,18 +61,18 @@ public class RivalBarScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040049D8 RID: 18904
+	// Token: 0x040049E1 RID: 18913
 	public int ID;
 
-	// Token: 0x040049D9 RID: 18905
+	// Token: 0x040049E2 RID: 18914
 	public float Speed;
 
-	// Token: 0x040049DA RID: 18906
+	// Token: 0x040049E3 RID: 18915
 	public float Timer;
 
-	// Token: 0x040049DB RID: 18907
+	// Token: 0x040049E4 RID: 18916
 	public UISprite[] Bars;
 
-	// Token: 0x040049DC RID: 18908
+	// Token: 0x040049E5 RID: 18917
 	public float[] TargetHeights;
 }

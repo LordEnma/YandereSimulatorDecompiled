@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020002D8 RID: 728
 public class FramerateScript : MonoBehaviour
 {
-	// Token: 0x060014D3 RID: 5331 RVA: 0x000CD64F File Offset: 0x000CB84F
+	// Token: 0x060014D3 RID: 5331 RVA: 0x000CD6E7 File Offset: 0x000CB8E7
 	private void Start()
 	{
 		this.timeleft = this.updateInterval;
 	}
 
-	// Token: 0x060014D4 RID: 5332 RVA: 0x000CD660 File Offset: 0x000CB860
+	// Token: 0x060014D4 RID: 5332 RVA: 0x000CD6F8 File Offset: 0x000CB8F8
 	private void Update()
 	{
 		this.FpsCurrent = 1f / Time.unscaledDeltaTime;

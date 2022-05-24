@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200027C RID: 636
 public class DelinquentVoicesScript : MonoBehaviour
 {
-	// Token: 0x0600137C RID: 4988 RVA: 0x000B378A File Offset: 0x000B198A
+	// Token: 0x0600137C RID: 4988 RVA: 0x000B3822 File Offset: 0x000B1A22
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -14,7 +14,7 @@ public class DelinquentVoicesScript : MonoBehaviour
 		this.Timer = 5f;
 	}
 
-	// Token: 0x0600137D RID: 4989 RVA: 0x000B37A8 File Offset: 0x000B19A8
+	// Token: 0x0600137D RID: 4989 RVA: 0x000B3840 File Offset: 0x000B1A40
 	private void Update()
 	{
 		if (this.Radio != null)

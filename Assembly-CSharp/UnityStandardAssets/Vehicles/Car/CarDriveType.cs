@@ -5,11 +5,11 @@ namespace UnityStandardAssets.Vehicles.Car
 	// Token: 0x02000531 RID: 1329
 	internal enum CarDriveType
 	{
-		// Token: 0x04004A9A RID: 19098
+		// Token: 0x04004AA3 RID: 19107
 		FrontWheelDrive,
-		// Token: 0x04004A9B RID: 19099
+		// Token: 0x04004AA4 RID: 19108
 		RearWheelDrive,
-		// Token: 0x04004A9C RID: 19100
+		// Token: 0x04004AA5 RID: 19109
 		FourWheelDrive
 	}
 }

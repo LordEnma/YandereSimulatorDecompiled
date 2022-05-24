@@ -5,15 +5,15 @@ using System.Collections.Generic;
 [Serializable]
 public struct YanSavePlayerPrefTracker
 {
-	// Token: 0x04004A13 RID: 18963
+	// Token: 0x04004A1C RID: 18972
 	public List<string> PrefFormatValues;
 
-	// Token: 0x04004A14 RID: 18964
+	// Token: 0x04004A1D RID: 18973
 	public YanSavePlayerPrefsType PrefType;
 
-	// Token: 0x04004A15 RID: 18965
+	// Token: 0x04004A1E RID: 18974
 	public string PrefFormat;
 
-	// Token: 0x04004A16 RID: 18966
+	// Token: 0x04004A1F RID: 18975
 	public int RangeMax;
 }

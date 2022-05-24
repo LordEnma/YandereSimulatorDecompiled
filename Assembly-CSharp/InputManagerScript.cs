@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000339 RID: 825
 public class InputManagerScript : MonoBehaviour
 {
-	// Token: 0x060018FE RID: 6398 RVA: 0x000F73D4 File Offset: 0x000F55D4
+	// Token: 0x060018FE RID: 6398 RVA: 0x000F7550 File Offset: 0x000F5750
 	private void Update()
 	{
 		this.TappedUp = false;
@@ -109,7 +109,7 @@ public class InputManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018FF RID: 6399 RVA: 0x000F76DD File Offset: 0x000F58DD
+	// Token: 0x060018FF RID: 6399 RVA: 0x000F7859 File Offset: 0x000F5A59
 	private void NoStick()
 	{
 		this.StickUp = false;
@@ -118,39 +118,39 @@ public class InputManagerScript : MonoBehaviour
 		this.StickRight = false;
 	}
 
-	// Token: 0x0400267B RID: 9851
+	// Token: 0x0400267E RID: 9854
 	public bool TappedUp;
 
-	// Token: 0x0400267C RID: 9852
+	// Token: 0x0400267F RID: 9855
 	public bool TappedDown;
 
-	// Token: 0x0400267D RID: 9853
+	// Token: 0x04002680 RID: 9856
 	public bool TappedRight;
 
-	// Token: 0x0400267E RID: 9854
+	// Token: 0x04002681 RID: 9857
 	public bool TappedLeft;
 
-	// Token: 0x0400267F RID: 9855
+	// Token: 0x04002682 RID: 9858
 	public bool DPadUp;
 
-	// Token: 0x04002680 RID: 9856
+	// Token: 0x04002683 RID: 9859
 	public bool DPadDown;
 
-	// Token: 0x04002681 RID: 9857
+	// Token: 0x04002684 RID: 9860
 	public bool DPadRight;
 
-	// Token: 0x04002682 RID: 9858
+	// Token: 0x04002685 RID: 9861
 	public bool DPadLeft;
 
-	// Token: 0x04002683 RID: 9859
+	// Token: 0x04002686 RID: 9862
 	public bool StickUp;
 
-	// Token: 0x04002684 RID: 9860
+	// Token: 0x04002687 RID: 9863
 	public bool StickDown;
 
-	// Token: 0x04002685 RID: 9861
+	// Token: 0x04002688 RID: 9864
 	public bool StickRight;
 
-	// Token: 0x04002686 RID: 9862
+	// Token: 0x04002689 RID: 9865
 	public bool StickLeft;
 }

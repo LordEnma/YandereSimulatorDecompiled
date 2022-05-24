@@ -5,7 +5,7 @@ using UnityEngine;
 // Token: 0x02000391 RID: 913
 public class OutlineScript : MonoBehaviour
 {
-	// Token: 0x06001A6C RID: 6764 RVA: 0x00119826 File Offset: 0x00117A26
+	// Token: 0x06001A6D RID: 6765 RVA: 0x00119A56 File Offset: 0x00117C56
 	public void Awake()
 	{
 		this.h = base.GetComponent<Highlighter>();
@@ -15,18 +15,18 @@ public class OutlineScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001A6D RID: 6765 RVA: 0x00119853 File Offset: 0x00117A53
+	// Token: 0x06001A6E RID: 6766 RVA: 0x00119A83 File Offset: 0x00117C83
 	private void Update()
 	{
 		this.h.ConstantOnImmediate(this.color);
 	}
 
-	// Token: 0x04002B73 RID: 11123
+	// Token: 0x04002B7A RID: 11130
 	public YandereScript Yandere;
 
-	// Token: 0x04002B74 RID: 11124
+	// Token: 0x04002B7B RID: 11131
 	public Highlighter h;
 
-	// Token: 0x04002B75 RID: 11125
+	// Token: 0x04002B7C RID: 11132
 	public Color color = new Color(1f, 1f, 1f, 1f);
 }

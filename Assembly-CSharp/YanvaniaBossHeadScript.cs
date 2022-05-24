@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020004DF RID: 1247
 public class YanvaniaBossHeadScript : MonoBehaviour
 {
-	// Token: 0x060020D1 RID: 8401 RVA: 0x001E54B1 File Offset: 0x001E36B1
+	// Token: 0x060020D2 RID: 8402 RVA: 0x001E5A19 File Offset: 0x001E3C19
 	private void Update()
 	{
 		this.Timer -= Time.deltaTime;
 	}
 
-	// Token: 0x060020D2 RID: 8402 RVA: 0x001E54C8 File Offset: 0x001E36C8
+	// Token: 0x060020D3 RID: 8403 RVA: 0x001E5A30 File Offset: 0x001E3C30
 	private void OnTriggerEnter(Collider other)
 	{
 		if (this.Timer <= 0f && this.Dracula.NewTeleportEffect == null && other.gameObject.name == "Heart")
@@ -21,12 +21,12 @@ public class YanvaniaBossHeadScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400481B RID: 18459
+	// Token: 0x04004824 RID: 18468
 	public YanvaniaDraculaScript Dracula;
 
-	// Token: 0x0400481C RID: 18460
+	// Token: 0x04004825 RID: 18469
 	public GameObject HitEffect;
 
-	// Token: 0x0400481D RID: 18461
+	// Token: 0x04004826 RID: 18470
 	public float Timer;
 }

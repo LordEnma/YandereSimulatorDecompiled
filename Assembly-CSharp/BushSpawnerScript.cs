@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000104 RID: 260
 public class BushSpawnerScript : MonoBehaviour
 {
-	// Token: 0x06000A9F RID: 2719 RVA: 0x00061E2C File Offset: 0x0006002C
+	// Token: 0x06000A9F RID: 2719 RVA: 0x00061E58 File Offset: 0x00060058
 	private void Update()
 	{
 		if (Input.GetKeyDown("z"))

@@ -5,13 +5,13 @@ using UnityEngine.SceneManagement;
 // Token: 0x020003C0 RID: 960
 public class PracticeWindowScript : MonoBehaviour
 {
-	// Token: 0x06001B25 RID: 6949 RVA: 0x0012DBB6 File Offset: 0x0012BDB6
+	// Token: 0x06001B26 RID: 6950 RVA: 0x0012DE1E File Offset: 0x0012C01E
 	private void Start()
 	{
 		this.Window.SetActive(false);
 	}
 
-	// Token: 0x06001B26 RID: 6950 RVA: 0x0012DBC4 File Offset: 0x0012BDC4
+	// Token: 0x06001B27 RID: 6951 RVA: 0x0012DE2C File Offset: 0x0012C02C
 	private void Update()
 	{
 		if (this.Window.activeInHierarchy)
@@ -232,7 +232,7 @@ public class PracticeWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B27 RID: 6951 RVA: 0x0012E694 File Offset: 0x0012C894
+	// Token: 0x06001B28 RID: 6952 RVA: 0x0012E8FC File Offset: 0x0012CAFC
 	public void Finish()
 	{
 		if (this.Selected == 4)
@@ -251,9 +251,10 @@ public class PracticeWindowScript : MonoBehaviour
 				this.StudentManager.Students[45 + i].Routine = true;
 			}
 		}
+		this.Yandere.StudentManager.QualityManager.UpdateFPSIndex();
 	}
 
-	// Token: 0x06001B28 RID: 6952 RVA: 0x0012E780 File Offset: 0x0012C980
+	// Token: 0x06001B29 RID: 6953 RVA: 0x0012E9FC File Offset: 0x0012CBFC
 	public void UpdateWindow()
 	{
 		this.PromptBar.ClearButtons();
@@ -347,7 +348,7 @@ public class PracticeWindowScript : MonoBehaviour
 		this.UpdateHighlight();
 	}
 
-	// Token: 0x06001B29 RID: 6953 RVA: 0x0012EE48 File Offset: 0x0012D048
+	// Token: 0x06001B2A RID: 6954 RVA: 0x0012F0C4 File Offset: 0x0012D2C4
 	public void UpdateHighlight()
 	{
 		if (this.Selected < 1)
@@ -361,84 +362,84 @@ public class PracticeWindowScript : MonoBehaviour
 		this.Highlight.localPosition = new Vector3(0f, (float)(660 - 220 * this.Selected), 0f);
 	}
 
-	// Token: 0x04002E0E RID: 11790
+	// Token: 0x04002E16 RID: 11798
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002E0F RID: 11791
+	// Token: 0x04002E17 RID: 11799
 	public DialogueWheelScript DialogueWheel;
 
-	// Token: 0x04002E10 RID: 11792
+	// Token: 0x04002E18 RID: 11800
 	public InputManagerScript InputManager;
 
-	// Token: 0x04002E11 RID: 11793
+	// Token: 0x04002E19 RID: 11801
 	public StudentScript SparringPartner;
 
-	// Token: 0x04002E12 RID: 11794
+	// Token: 0x04002E1A RID: 11802
 	public PromptBarScript PromptBar;
 
-	// Token: 0x04002E13 RID: 11795
+	// Token: 0x04002E1B RID: 11803
 	public YandereScript Yandere;
 
-	// Token: 0x04002E14 RID: 11796
+	// Token: 0x04002E1C RID: 11804
 	public WeaponScript Baton;
 
-	// Token: 0x04002E15 RID: 11797
+	// Token: 0x04002E1D RID: 11805
 	public Texture[] DelinquentDificultyIcons;
 
-	// Token: 0x04002E16 RID: 11798
+	// Token: 0x04002E1E RID: 11806
 	public Texture[] AlbumCovers;
 
-	// Token: 0x04002E17 RID: 11799
+	// Token: 0x04002E1F RID: 11807
 	public Transform[] KneelSpot;
 
-	// Token: 0x04002E18 RID: 11800
+	// Token: 0x04002E20 RID: 11808
 	public Transform[] SparSpot;
 
-	// Token: 0x04002E19 RID: 11801
+	// Token: 0x04002E21 RID: 11809
 	public string[] Difficulties;
 
-	// Token: 0x04002E1A RID: 11802
+	// Token: 0x04002E22 RID: 11810
 	public UITexture[] Texture;
 
-	// Token: 0x04002E1B RID: 11803
+	// Token: 0x04002E23 RID: 11811
 	public UILabel[] Label;
 
-	// Token: 0x04002E1C RID: 11804
+	// Token: 0x04002E24 RID: 11812
 	public Transform Highlight;
 
-	// Token: 0x04002E1D RID: 11805
+	// Token: 0x04002E25 RID: 11813
 	public GameObject Window;
 
-	// Token: 0x04002E1E RID: 11806
+	// Token: 0x04002E26 RID: 11814
 	public UISprite Darkness;
 
-	// Token: 0x04002E1F RID: 11807
+	// Token: 0x04002E27 RID: 11815
 	public int Selected;
 
-	// Token: 0x04002E20 RID: 11808
+	// Token: 0x04002E28 RID: 11816
 	public int ClubID;
 
-	// Token: 0x04002E21 RID: 11809
+	// Token: 0x04002E29 RID: 11817
 	public int ID = 1;
 
-	// Token: 0x04002E22 RID: 11810
+	// Token: 0x04002E2A RID: 11818
 	public ClubType Club;
 
-	// Token: 0x04002E23 RID: 11811
+	// Token: 0x04002E2B RID: 11819
 	public bool PlayedRhythmMinigame;
 
-	// Token: 0x04002E24 RID: 11812
+	// Token: 0x04002E2C RID: 11820
 	public bool DefeatedSho;
 
-	// Token: 0x04002E25 RID: 11813
+	// Token: 0x04002E2D RID: 11821
 	public bool ButtonUp;
 
-	// Token: 0x04002E26 RID: 11814
+	// Token: 0x04002E2E RID: 11822
 	public bool FadeOut;
 
-	// Token: 0x04002E27 RID: 11815
+	// Token: 0x04002E2F RID: 11823
 	public bool FadeIn;
 
-	// Token: 0x04002E28 RID: 11816
+	// Token: 0x04002E30 RID: 11824
 	public float Timer;
 }

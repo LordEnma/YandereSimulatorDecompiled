@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020004E8 RID: 1256
 public class YanvaniaJarShardScript : MonoBehaviour
 {
-	// Token: 0x060020EE RID: 8430 RVA: 0x001E7264 File Offset: 0x001E5464
+	// Token: 0x060020EF RID: 8431 RVA: 0x001E77CC File Offset: 0x001E59CC
 	private void Start()
 	{
 		this.Rotation = UnityEngine.Random.Range(-360f, 360f);
 		base.GetComponent<Rigidbody>().AddForce(UnityEngine.Random.Range(-100f, 100f), UnityEngine.Random.Range(0f, 100f), UnityEngine.Random.Range(-100f, 100f));
 	}
 
-	// Token: 0x060020EF RID: 8431 RVA: 0x001E72C0 File Offset: 0x001E54C0
+	// Token: 0x060020F0 RID: 8432 RVA: 0x001E7828 File Offset: 0x001E5A28
 	private void Update()
 	{
 		this.MyRotation += this.Rotation;
@@ -22,9 +22,9 @@ public class YanvaniaJarShardScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400486D RID: 18541
+	// Token: 0x04004876 RID: 18550
 	public float MyRotation;
 
-	// Token: 0x0400486E RID: 18542
+	// Token: 0x04004877 RID: 18551
 	public float Rotation;
 }

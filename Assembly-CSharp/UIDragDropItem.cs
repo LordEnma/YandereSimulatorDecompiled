@@ -514,13 +514,13 @@ public class UIDragDropItem : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Restriction
 	{
-		// Token: 0x04004E32 RID: 20018
+		// Token: 0x04004E3B RID: 20027
 		None,
-		// Token: 0x04004E33 RID: 20019
+		// Token: 0x04004E3C RID: 20028
 		Horizontal,
-		// Token: 0x04004E34 RID: 20020
+		// Token: 0x04004E3D RID: 20029
 		Vertical,
-		// Token: 0x04004E35 RID: 20021
+		// Token: 0x04004E3E RID: 20030
 		PressAndHold
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000252 RID: 594
 public class ClubWindowScript : MonoBehaviour
 {
-	// Token: 0x06001289 RID: 4745 RVA: 0x00093A2C File Offset: 0x00091C2C
+	// Token: 0x06001289 RID: 4745 RVA: 0x00093A84 File Offset: 0x00091C84
 	private void Start()
 	{
 		this.Window.SetActive(false);
@@ -24,7 +24,7 @@ public class ClubWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600128A RID: 4746 RVA: 0x00093A9C File Offset: 0x00091C9C
+	// Token: 0x0600128A RID: 4746 RVA: 0x00093AF4 File Offset: 0x00091CF4
 	private void Update()
 	{
 		if (this.Window.activeInHierarchy)
@@ -114,7 +114,7 @@ public class ClubWindowScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600128B RID: 4747 RVA: 0x00093DCC File Offset: 0x00091FCC
+	// Token: 0x0600128B RID: 4747 RVA: 0x00093E24 File Offset: 0x00092024
 	public void UpdateWindow()
 	{
 		this.ClubName.text = this.ClubNames[(int)this.Club];

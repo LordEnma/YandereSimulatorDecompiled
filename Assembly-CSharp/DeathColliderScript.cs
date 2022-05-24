@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000274 RID: 628
 public class DeathColliderScript : MonoBehaviour
 {
-	// Token: 0x0600135D RID: 4957 RVA: 0x000AF6D4 File Offset: 0x000AD8D4
+	// Token: 0x0600135D RID: 4957 RVA: 0x000AF76C File Offset: 0x000AD96C
 	private void OnTriggerEnter(Collider other)
 	{
 		StudentScript component = other.gameObject.GetComponent<StudentScript>();

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200027D RID: 637
 public class DemonArmScript : MonoBehaviour
 {
-	// Token: 0x0600137F RID: 4991 RVA: 0x000B3930 File Offset: 0x000B1B30
+	// Token: 0x0600137F RID: 4991 RVA: 0x000B39C8 File Offset: 0x000B1BC8
 	private void Start()
 	{
 		this.MyAnimation = base.GetComponent<Animation>();
@@ -15,7 +15,7 @@ public class DemonArmScript : MonoBehaviour
 		this.MyAnimation[this.AttackAnim].speed = 1f;
 	}
 
-	// Token: 0x06001380 RID: 4992 RVA: 0x000B3990 File Offset: 0x000B1B90
+	// Token: 0x06001380 RID: 4992 RVA: 0x000B3A28 File Offset: 0x000B1C28
 	private void Update()
 	{
 		if (!this.Rising)
@@ -57,7 +57,7 @@ public class DemonArmScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001381 RID: 4993 RVA: 0x000B3AF0 File Offset: 0x000B1CF0
+	// Token: 0x06001381 RID: 4993 RVA: 0x000B3B88 File Offset: 0x000B1D88
 	private void OnTriggerEnter(Collider other)
 	{
 		StudentScript component = other.gameObject.GetComponent<StudentScript>();

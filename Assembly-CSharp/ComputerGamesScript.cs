@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000256 RID: 598
 public class ComputerGamesScript : MonoBehaviour
 {
-	// Token: 0x0600129D RID: 4765 RVA: 0x00096D60 File Offset: 0x00094F60
+	// Token: 0x0600129D RID: 4765 RVA: 0x00096DB8 File Offset: 0x00094FB8
 	private void Start()
 	{
 		this.GameWindow.gameObject.SetActive(false);
@@ -19,7 +19,7 @@ public class ComputerGamesScript : MonoBehaviour
 		this.DisableGames();
 	}
 
-	// Token: 0x0600129E RID: 4766 RVA: 0x00096DB8 File Offset: 0x00094FB8
+	// Token: 0x0600129E RID: 4766 RVA: 0x00096E10 File Offset: 0x00095010
 	private void Update()
 	{
 		if (this.ShowWindow)
@@ -133,7 +133,7 @@ public class ComputerGamesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600129F RID: 4767 RVA: 0x000973B8 File Offset: 0x000955B8
+	// Token: 0x0600129F RID: 4767 RVA: 0x00097410 File Offset: 0x00095610
 	public void EnableGames()
 	{
 		for (int i = 1; i < this.ComputerGames.Length; i++)
@@ -143,7 +143,7 @@ public class ComputerGamesScript : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x060012A0 RID: 4768 RVA: 0x000973F4 File Offset: 0x000955F4
+	// Token: 0x060012A0 RID: 4768 RVA: 0x0009744C File Offset: 0x0009564C
 	private void PlayGames()
 	{
 		this.Yandere.Character.GetComponent<Animation>().CrossFade("f02_playingGames_00");
@@ -154,13 +154,13 @@ public class ComputerGamesScript : MonoBehaviour
 		this.UpdateImage();
 	}
 
-	// Token: 0x060012A1 RID: 4769 RVA: 0x0009744F File Offset: 0x0009564F
+	// Token: 0x060012A1 RID: 4769 RVA: 0x000974A7 File Offset: 0x000956A7
 	private void UpdateImage()
 	{
 		this.MyTexture.mainTexture = this.Textures[this.Subject];
 	}
 
-	// Token: 0x060012A2 RID: 4770 RVA: 0x0009746C File Offset: 0x0009566C
+	// Token: 0x060012A2 RID: 4770 RVA: 0x000974C4 File Offset: 0x000956C4
 	public void DisableGames()
 	{
 		for (int i = 1; i < this.ComputerGames.Length; i++)
@@ -174,7 +174,7 @@ public class ComputerGamesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012A3 RID: 4771 RVA: 0x000974BC File Offset: 0x000956BC
+	// Token: 0x060012A3 RID: 4771 RVA: 0x00097514 File Offset: 0x00095714
 	private void EnableChairs()
 	{
 		for (int i = 1; i < this.Chairs.Length; i++)
@@ -184,7 +184,7 @@ public class ComputerGamesScript : MonoBehaviour
 		base.gameObject.SetActive(true);
 	}
 
-	// Token: 0x060012A4 RID: 4772 RVA: 0x000974F8 File Offset: 0x000956F8
+	// Token: 0x060012A4 RID: 4772 RVA: 0x00097550 File Offset: 0x00095750
 	private void DisableChairs()
 	{
 		for (int i = 1; i < this.Chairs.Length; i++)
@@ -193,7 +193,7 @@ public class ComputerGamesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012A5 RID: 4773 RVA: 0x00097528 File Offset: 0x00095728
+	// Token: 0x060012A5 RID: 4773 RVA: 0x00097580 File Offset: 0x00095780
 	private void ActivateBenefit()
 	{
 		if (this.Subject == 1)
@@ -249,7 +249,7 @@ public class ComputerGamesScript : MonoBehaviour
 		this.Police.UpdateCorpses();
 	}
 
-	// Token: 0x060012A6 RID: 4774 RVA: 0x000976B8 File Offset: 0x000958B8
+	// Token: 0x060012A6 RID: 4774 RVA: 0x00097710 File Offset: 0x00095910
 	private void DeactivateBenefit()
 	{
 		if (this.Subject == 1)
@@ -305,7 +305,7 @@ public class ComputerGamesScript : MonoBehaviour
 		this.Police.UpdateCorpses();
 	}
 
-	// Token: 0x060012A7 RID: 4775 RVA: 0x00097848 File Offset: 0x00095A48
+	// Token: 0x060012A7 RID: 4775 RVA: 0x000978A0 File Offset: 0x00095AA0
 	public void DeactivateAllBenefits()
 	{
 		this.Yandere.Class.BiologyBonus = 0;
@@ -325,7 +325,7 @@ public class ComputerGamesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060012A8 RID: 4776 RVA: 0x0009792C File Offset: 0x00095B2C
+	// Token: 0x060012A8 RID: 4776 RVA: 0x00097984 File Offset: 0x00095B84
 	private void UpdateHighlight()
 	{
 		if (this.Subject < 1)

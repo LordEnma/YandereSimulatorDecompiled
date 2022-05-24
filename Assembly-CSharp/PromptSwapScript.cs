@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003C8 RID: 968
 public class PromptSwapScript : MonoBehaviour
 {
-	// Token: 0x06001B48 RID: 6984 RVA: 0x001318B5 File Offset: 0x0012FAB5
+	// Token: 0x06001B49 RID: 6985 RVA: 0x00131B31 File Offset: 0x0012FD31
 	private void Awake()
 	{
 		if (this.InputDevice == null)
@@ -13,7 +13,7 @@ public class PromptSwapScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B49 RID: 6985 RVA: 0x001318D0 File Offset: 0x0012FAD0
+	// Token: 0x06001B4A RID: 6986 RVA: 0x00131B4C File Offset: 0x0012FD4C
 	public void UpdateSpriteType(InputDeviceType deviceType)
 	{
 		if (this.InputDevice == null)
@@ -39,21 +39,21 @@ public class PromptSwapScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002E95 RID: 11925
+	// Token: 0x04002E9D RID: 11933
 	public InputDeviceScript InputDevice;
 
-	// Token: 0x04002E96 RID: 11926
+	// Token: 0x04002E9E RID: 11934
 	public UISprite MySprite;
 
-	// Token: 0x04002E97 RID: 11927
+	// Token: 0x04002E9F RID: 11935
 	public UILabel MyLetter;
 
-	// Token: 0x04002E98 RID: 11928
+	// Token: 0x04002EA0 RID: 11936
 	public string KeyboardLetter = string.Empty;
 
-	// Token: 0x04002E99 RID: 11929
+	// Token: 0x04002EA1 RID: 11937
 	public string KeyboardName = string.Empty;
 
-	// Token: 0x04002E9A RID: 11930
+	// Token: 0x04002EA2 RID: 11938
 	public string GamepadName = string.Empty;
 }

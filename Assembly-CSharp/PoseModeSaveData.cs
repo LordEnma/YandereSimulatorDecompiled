@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class PoseModeSaveData
 {
-	// Token: 0x06001C49 RID: 7241 RVA: 0x0014B038 File Offset: 0x00149238
+	// Token: 0x06001C4A RID: 7242 RVA: 0x0014B2F4 File Offset: 0x001494F4
 	public static PoseModeSaveData ReadFromGlobals()
 	{
 		return new PoseModeSaveData
@@ -16,7 +16,7 @@ public class PoseModeSaveData
 		};
 	}
 
-	// Token: 0x06001C4A RID: 7242 RVA: 0x0014B060 File Offset: 0x00149260
+	// Token: 0x06001C4B RID: 7243 RVA: 0x0014B31C File Offset: 0x0014951C
 	public static void WriteToGlobals(PoseModeSaveData data)
 	{
 		PoseModeGlobals.PosePosition = data.posePosition;
@@ -24,12 +24,12 @@ public class PoseModeSaveData
 		PoseModeGlobals.PoseScale = data.poseScale;
 	}
 
-	// Token: 0x040031F1 RID: 12785
+	// Token: 0x040031F9 RID: 12793
 	public Vector3 posePosition;
 
-	// Token: 0x040031F2 RID: 12786
+	// Token: 0x040031FA RID: 12794
 	public Vector3 poseRotation;
 
-	// Token: 0x040031F3 RID: 12787
+	// Token: 0x040031FB RID: 12795
 	public Vector3 poseScale;
 }

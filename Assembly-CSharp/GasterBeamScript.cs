@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002DD RID: 733
 public class GasterBeamScript : MonoBehaviour
 {
-	// Token: 0x060014E8 RID: 5352 RVA: 0x000CEFAA File Offset: 0x000CD1AA
+	// Token: 0x060014E8 RID: 5352 RVA: 0x000CF042 File Offset: 0x000CD242
 	private void Start()
 	{
 		if (this.LoveLoveBeam)
@@ -13,7 +13,7 @@ public class GasterBeamScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014E9 RID: 5353 RVA: 0x000CEFD4 File Offset: 0x000CD1D4
+	// Token: 0x060014E9 RID: 5353 RVA: 0x000CF06C File Offset: 0x000CD26C
 	private void Update()
 	{
 		if (this.LoveLoveBeam)
@@ -30,7 +30,7 @@ public class GasterBeamScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014EA RID: 5354 RVA: 0x000CF06C File Offset: 0x000CD26C
+	// Token: 0x060014EA RID: 5354 RVA: 0x000CF104 File Offset: 0x000CD304
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)

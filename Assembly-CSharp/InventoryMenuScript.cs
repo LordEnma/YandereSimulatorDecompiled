@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000341 RID: 833
 public class InventoryMenuScript : MonoBehaviour
 {
-	// Token: 0x06001917 RID: 6423 RVA: 0x000FBA88 File Offset: 0x000F9C88
+	// Token: 0x06001917 RID: 6423 RVA: 0x000FBC04 File Offset: 0x000F9E04
 	public void UpdateLabels()
 	{
 		this.Labels[0].alpha = ((!this.Inventory.ModifiedUniform) ? 0.75f : 1f);
@@ -36,7 +36,7 @@ public class InventoryMenuScript : MonoBehaviour
 		this.Labels[26].alpha = ((!this.Inventory.ShedKey) ? 0.75f : 1f);
 	}
 
-	// Token: 0x06001918 RID: 6424 RVA: 0x000FBEA9 File Offset: 0x000FA0A9
+	// Token: 0x06001918 RID: 6424 RVA: 0x000FC025 File Offset: 0x000FA225
 	private void Update()
 	{
 		if (Input.GetButtonDown("B"))
@@ -46,12 +46,12 @@ public class InventoryMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002728 RID: 10024
+	// Token: 0x0400272B RID: 10027
 	public PauseScreenScript PauseScreen;
 
-	// Token: 0x04002729 RID: 10025
+	// Token: 0x0400272C RID: 10028
 	public InventoryScript Inventory;
 
-	// Token: 0x0400272A RID: 10026
+	// Token: 0x0400272D RID: 10029
 	public UILabel[] Labels;
 }

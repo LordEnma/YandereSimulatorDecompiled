@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002B9 RID: 697
 public class EventManagerScript : MonoBehaviour
 {
-	// Token: 0x0600146D RID: 5229 RVA: 0x000C74B4 File Offset: 0x000C56B4
+	// Token: 0x0600146D RID: 5229 RVA: 0x000C754C File Offset: 0x000C574C
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -27,7 +27,7 @@ public class EventManagerScript : MonoBehaviour
 		this.NoteLocker.CanLeaveNote = true;
 	}
 
-	// Token: 0x0600146E RID: 5230 RVA: 0x000C7538 File Offset: 0x000C5738
+	// Token: 0x0600146E RID: 5230 RVA: 0x000C75D0 File Offset: 0x000C57D0
 	private void Update()
 	{
 		if (this.VoiceClip != null)
@@ -281,7 +281,7 @@ public class EventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600146F RID: 5231 RVA: 0x000C8164 File Offset: 0x000C6364
+	// Token: 0x0600146F RID: 5231 RVA: 0x000C81FC File Offset: 0x000C63FC
 	private void SettleFriend()
 	{
 		this.EventStudent[2].MoveTowardsTarget(this.EventLocation[2].position);
@@ -291,7 +291,7 @@ public class EventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001470 RID: 5232 RVA: 0x000C81F8 File Offset: 0x000C63F8
+	// Token: 0x06001470 RID: 5232 RVA: 0x000C8290 File Offset: 0x000C6490
 	public void EndEvent()
 	{
 		if (this.VoiceClip != null)

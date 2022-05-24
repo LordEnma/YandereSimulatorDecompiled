@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002DF RID: 735
 public class GazerEyesScript : MonoBehaviour
 {
-	// Token: 0x060014EF RID: 5359 RVA: 0x000CF65C File Offset: 0x000CD85C
+	// Token: 0x060014EF RID: 5359 RVA: 0x000CF6F4 File Offset: 0x000CD8F4
 	private void Start()
 	{
 		base.GetComponent<Animation>()["Eyeballs_Run"].speed = 0f;
@@ -12,7 +12,7 @@ public class GazerEyesScript : MonoBehaviour
 		base.GetComponent<Animation>()["Eyeballs_Idle"].speed = 0f;
 	}
 
-	// Token: 0x060014F0 RID: 5360 RVA: 0x000CF6B8 File Offset: 0x000CD8B8
+	// Token: 0x060014F0 RID: 5360 RVA: 0x000CF750 File Offset: 0x000CD950
 	private void Update()
 	{
 		this.StudentManager.UpdateStudents(0);
@@ -83,7 +83,7 @@ public class GazerEyesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014F1 RID: 5361 RVA: 0x000CF984 File Offset: 0x000CDB84
+	// Token: 0x060014F1 RID: 5361 RVA: 0x000CFA1C File Offset: 0x000CDC1C
 	public void ChangeEffect()
 	{
 		this.Effect++;
@@ -100,7 +100,7 @@ public class GazerEyesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014F2 RID: 5362 RVA: 0x000CFA2C File Offset: 0x000CDC2C
+	// Token: 0x060014F2 RID: 5362 RVA: 0x000CFAC4 File Offset: 0x000CDCC4
 	public void Attack()
 	{
 		if (!this.Shinigami)
@@ -157,7 +157,7 @@ public class GazerEyesScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014F3 RID: 5363 RVA: 0x000CFD28 File Offset: 0x000CDF28
+	// Token: 0x060014F3 RID: 5363 RVA: 0x000CFDC0 File Offset: 0x000CDFC0
 	public void ElectrocuteStudent(StudentScript Target)
 	{
 		if (Target.Following)

@@ -6,8 +6,8 @@ using UnityEngine;
 public class BucketWeights : BucketContents
 {
 	// Token: 0x17000209 RID: 521
-	// (get) Token: 0x06000A82 RID: 2690 RVA: 0x0005D6F7 File Offset: 0x0005B8F7
-	// (set) Token: 0x06000A83 RID: 2691 RVA: 0x0005D6FF File Offset: 0x0005B8FF
+	// (get) Token: 0x06000A82 RID: 2690 RVA: 0x0005D71F File Offset: 0x0005B91F
+	// (set) Token: 0x06000A83 RID: 2691 RVA: 0x0005D727 File Offset: 0x0005B927
 	public int Count
 	{
 		get
@@ -21,7 +21,7 @@ public class BucketWeights : BucketContents
 	}
 
 	// Token: 0x1700020A RID: 522
-	// (get) Token: 0x06000A84 RID: 2692 RVA: 0x0005D70F File Offset: 0x0005B90F
+	// (get) Token: 0x06000A84 RID: 2692 RVA: 0x0005D737 File Offset: 0x0005B937
 	public override BucketContentsType Type
 	{
 		get
@@ -31,7 +31,7 @@ public class BucketWeights : BucketContents
 	}
 
 	// Token: 0x1700020B RID: 523
-	// (get) Token: 0x06000A85 RID: 2693 RVA: 0x0005D712 File Offset: 0x0005B912
+	// (get) Token: 0x06000A85 RID: 2693 RVA: 0x0005D73A File Offset: 0x0005B93A
 	public override bool IsCleaningAgent
 	{
 		get
@@ -41,7 +41,7 @@ public class BucketWeights : BucketContents
 	}
 
 	// Token: 0x1700020C RID: 524
-	// (get) Token: 0x06000A86 RID: 2694 RVA: 0x0005D715 File Offset: 0x0005B915
+	// (get) Token: 0x06000A86 RID: 2694 RVA: 0x0005D73D File Offset: 0x0005B93D
 	public override bool IsFlammable
 	{
 		get
@@ -50,7 +50,7 @@ public class BucketWeights : BucketContents
 		}
 	}
 
-	// Token: 0x06000A87 RID: 2695 RVA: 0x0005D718 File Offset: 0x0005B918
+	// Token: 0x06000A87 RID: 2695 RVA: 0x0005D740 File Offset: 0x0005B940
 	public override bool CanBeLifted(int strength)
 	{
 		return strength > 0;

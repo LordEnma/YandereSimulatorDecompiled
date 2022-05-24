@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200029F RID: 671
 public class EightiesCutsceneScript : MonoBehaviour
 {
-	// Token: 0x0600141D RID: 5149 RVA: 0x000BF384 File Offset: 0x000BD584
+	// Token: 0x0600141D RID: 5149 RVA: 0x000BF41C File Offset: 0x000BD61C
 	private void Start()
 	{
 		GameGlobals.Eighties = true;
@@ -126,7 +126,7 @@ public class EightiesCutsceneScript : MonoBehaviour
 		Time.timeScale = 1f;
 	}
 
-	// Token: 0x0600141E RID: 5150 RVA: 0x000BF75C File Offset: 0x000BD95C
+	// Token: 0x0600141E RID: 5150 RVA: 0x000BF7F4 File Offset: 0x000BD9F4
 	private void Update()
 	{
 		if (this.Phase < 3)
@@ -322,7 +322,7 @@ public class EightiesCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600141F RID: 5151 RVA: 0x000BFD54 File Offset: 0x000BDF54
+	// Token: 0x0600141F RID: 5151 RVA: 0x000BFDEC File Offset: 0x000BDFEC
 	private void Save()
 	{
 		int profile = GameGlobals.Profile;

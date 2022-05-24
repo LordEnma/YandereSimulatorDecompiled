@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020002A9 RID: 681
 public class EndOfDayScript : MonoBehaviour
 {
-	// Token: 0x06001432 RID: 5170 RVA: 0x000C14D0 File Offset: 0x000BF6D0
+	// Token: 0x06001432 RID: 5170 RVA: 0x000C1568 File Offset: 0x000BF768
 	public void Start()
 	{
 		Debug.Log("The End-of-Day GameObject has just fired its Start() function.");
@@ -90,7 +90,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001433 RID: 5171 RVA: 0x000C191C File Offset: 0x000BFB1C
+	// Token: 0x06001433 RID: 5171 RVA: 0x000C19B4 File Offset: 0x000BFBB4
 	private void Update()
 	{
 		this.Yandere.UpdateSlouch();
@@ -250,7 +250,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001434 RID: 5172 RVA: 0x000C2058 File Offset: 0x000C0258
+	// Token: 0x06001434 RID: 5172 RVA: 0x000C20F0 File Offset: 0x000C02F0
 	public void UpdateScene()
 	{
 		this.Label.color = new Color(0f, 0f, 0f, 1f);
@@ -1785,7 +1785,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001435 RID: 5173 RVA: 0x000C5D28 File Offset: 0x000C3F28
+	// Token: 0x06001435 RID: 5173 RVA: 0x000C5DC0 File Offset: 0x000C3FC0
 	private void TeleportYandere()
 	{
 		this.Yandere.MyController.enabled = false;
@@ -1795,7 +1795,7 @@ public class EndOfDayScript : MonoBehaviour
 		Physics.SyncTransforms();
 	}
 
-	// Token: 0x06001436 RID: 5174 RVA: 0x000C5DAC File Offset: 0x000C3FAC
+	// Token: 0x06001436 RID: 5174 RVA: 0x000C5E44 File Offset: 0x000C4044
 	private void Finish()
 	{
 		Debug.Log("We have reached the end of the End-of-Day sequence.");
@@ -2194,7 +2194,7 @@ public class EndOfDayScript : MonoBehaviour
 		this.ArrestStudents();
 	}
 
-	// Token: 0x06001437 RID: 5175 RVA: 0x000C6AEC File Offset: 0x000C4CEC
+	// Token: 0x06001437 RID: 5175 RVA: 0x000C6B84 File Offset: 0x000C4D84
 	private void DisableThings(StudentScript TargetStudent)
 	{
 		if (TargetStudent != null)
@@ -2215,7 +2215,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001438 RID: 5176 RVA: 0x000C6BB8 File Offset: 0x000C4DB8
+	// Token: 0x06001438 RID: 5176 RVA: 0x000C6C50 File Offset: 0x000C4E50
 	private void CheckForNatureOfDeath()
 	{
 		if (this.StudentManager.Students[this.StudentManager.RivalID] != null)
@@ -2337,7 +2337,7 @@ public class EndOfDayScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001439 RID: 5177 RVA: 0x000C6E10 File Offset: 0x000C5010
+	// Token: 0x06001439 RID: 5177 RVA: 0x000C6EA8 File Offset: 0x000C50A8
 	public void SetFormerRivalDeath(int RivalID, StudentScript Rival)
 	{
 		Debug.Log("The elimination information for Rival #" + RivalID.ToString() + " is now being updated.");
@@ -2387,7 +2387,7 @@ public class EndOfDayScript : MonoBehaviour
 		GameGlobals.SetRivalEliminations(RivalID, 14);
 	}
 
-	// Token: 0x0600143A RID: 5178 RVA: 0x000C6F04 File Offset: 0x000C5104
+	// Token: 0x0600143A RID: 5178 RVA: 0x000C6F9C File Offset: 0x000C519C
 	public void ArrestStudents()
 	{
 		for (int i = 1; i < 101; i++)

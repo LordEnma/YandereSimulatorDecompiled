@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x02000271 RID: 625
 public class DateReverseScript : MonoBehaviour
 {
-	// Token: 0x0600133F RID: 4927 RVA: 0x000AC2B7 File Offset: 0x000AA4B7
+	// Token: 0x0600133F RID: 4927 RVA: 0x000AC34F File Offset: 0x000AA54F
 	private void Start()
 	{
 		Time.timeScale = 1f;
 		this.UpdateDate();
 	}
 
-	// Token: 0x06001340 RID: 4928 RVA: 0x000AC2CC File Offset: 0x000AA4CC
+	// Token: 0x06001340 RID: 4928 RVA: 0x000AC364 File Offset: 0x000AA564
 	private void Update()
 	{
 		if (Input.GetKeyDown("space"))
@@ -54,7 +54,7 @@ public class DateReverseScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001341 RID: 4929 RVA: 0x000AC474 File Offset: 0x000AA674
+	// Token: 0x06001341 RID: 4929 RVA: 0x000AC50C File Offset: 0x000AA70C
 	private void UpdateDate()
 	{
 		if (this.Day < 1)

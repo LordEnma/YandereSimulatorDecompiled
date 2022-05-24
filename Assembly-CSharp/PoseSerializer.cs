@@ -6,7 +6,7 @@ using UnityEngine;
 // Token: 0x020003BA RID: 954
 public static class PoseSerializer
 {
-	// Token: 0x06001B18 RID: 6936 RVA: 0x0012CECC File Offset: 0x0012B0CC
+	// Token: 0x06001B19 RID: 6937 RVA: 0x0012D134 File Offset: 0x0012B334
 	public static void SerializePose(CosmeticScript cosmeticScript, Transform root, string poseName)
 	{
 		StudentCosmeticSheet studentCosmeticSheet = cosmeticScript.CosmeticSheet();
@@ -19,7 +19,7 @@ public static class PoseSerializer
 		File.WriteAllText(text, contents);
 	}
 
-	// Token: 0x06001B19 RID: 6937 RVA: 0x0012CF3C File Offset: 0x0012B13C
+	// Token: 0x06001B1A RID: 6938 RVA: 0x0012D1A4 File Offset: 0x0012B3A4
 	private static BoneData[] getBoneData(Transform root)
 	{
 		List<BoneData> list = new List<BoneData>();
@@ -36,7 +36,7 @@ public static class PoseSerializer
 		return list.ToArray();
 	}
 
-	// Token: 0x06001B1A RID: 6938 RVA: 0x0012CFC4 File Offset: 0x0012B1C4
+	// Token: 0x06001B1B RID: 6939 RVA: 0x0012D22C File Offset: 0x0012B42C
 	public static void DeserializePose(CosmeticScript cosmeticScript, Transform root, string poseName)
 	{
 		string path = string.Format("{0}/Poses/{1}", Application.streamingAssetsPath, poseName + ".txt");
@@ -72,7 +72,7 @@ public static class PoseSerializer
 		}
 	}
 
-	// Token: 0x06001B1B RID: 6939 RVA: 0x0012D138 File Offset: 0x0012B338
+	// Token: 0x06001B1C RID: 6940 RVA: 0x0012D3A0 File Offset: 0x0012B5A0
 	public static string[] GetSavedPoses()
 	{
 		string[] files = Directory.GetFiles(string.Format("{0}/Poses/{1}", Application.streamingAssetsPath, ""));
@@ -87,6 +87,6 @@ public static class PoseSerializer
 		return list.ToArray();
 	}
 
-	// Token: 0x04002DE3 RID: 11747
+	// Token: 0x04002DEB RID: 11755
 	public const string SavePath = "{0}/Poses/{1}";
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003DE RID: 990
 public class RingTheftScript : MonoBehaviour
 {
-	// Token: 0x06001BB2 RID: 7090 RVA: 0x0013B4EC File Offset: 0x001396EC
+	// Token: 0x06001BB3 RID: 7091 RVA: 0x0013B788 File Offset: 0x00139988
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -26,7 +26,7 @@ public class RingTheftScript : MonoBehaviour
 		base.gameObject.SetActive(false);
 	}
 
-	// Token: 0x06001BB3 RID: 7091 RVA: 0x0013B56C File Offset: 0x0013976C
+	// Token: 0x06001BB4 RID: 7092 RVA: 0x0013B808 File Offset: 0x00139A08
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -43,6 +43,8 @@ public class RingTheftScript : MonoBehaviour
 					}
 					else
 					{
+						SchemeGlobals.SetSchemeStage(2, 5);
+						this.Prompt.Yandere.StudentManager.Schemes.UpdateInstructions();
 						this.BasuRing.SetActive(false);
 					}
 					this.Prompt.Yandere.Inventory.Ring = true;
@@ -71,18 +73,18 @@ public class RingTheftScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002F9D RID: 12189
+	// Token: 0x04002FA5 RID: 12197
 	public PromptScript Prompt;
 
-	// Token: 0x04002F9E RID: 12190
+	// Token: 0x04002FA6 RID: 12198
 	public GameObject BasuRing;
 
-	// Token: 0x04002F9F RID: 12191
+	// Token: 0x04002FA7 RID: 12199
 	public GameObject[] Rings;
 
-	// Token: 0x04002FA0 RID: 12192
+	// Token: 0x04002FA8 RID: 12200
 	public bool Eighties;
 
-	// Token: 0x04002FA1 RID: 12193
+	// Token: 0x04002FA9 RID: 12201
 	public bool Stolen;
 }

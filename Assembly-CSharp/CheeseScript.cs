@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000243 RID: 579
 public class CheeseScript : MonoBehaviour
 {
-	// Token: 0x0600124B RID: 4683 RVA: 0x0008D148 File Offset: 0x0008B348
+	// Token: 0x0600124B RID: 4683 RVA: 0x0008D174 File Offset: 0x0008B374
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002CC RID: 716
 public class FavorMenuScript : MonoBehaviour
 {
-	// Token: 0x060014B2 RID: 5298 RVA: 0x000CBDEC File Offset: 0x000C9FEC
+	// Token: 0x060014B2 RID: 5298 RVA: 0x000CBE84 File Offset: 0x000CA084
 	private void Update()
 	{
 		if (!this.BountyMenu.activeInHierarchy)
@@ -106,7 +106,7 @@ public class FavorMenuScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014B3 RID: 5299 RVA: 0x000CC1C8 File Offset: 0x000CA3C8
+	// Token: 0x060014B3 RID: 5299 RVA: 0x000CC260 File Offset: 0x000CA460
 	private void UpdateHighlight()
 	{
 		if (this.ID > 4)

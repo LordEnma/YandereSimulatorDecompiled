@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000312 RID: 786
 public class HeartbrokenCursorScript : MonoBehaviour
 {
-	// Token: 0x06001867 RID: 6247 RVA: 0x000E8C2C File Offset: 0x000E6E2C
+	// Token: 0x06001867 RID: 6247 RVA: 0x000E8DA8 File Offset: 0x000E6FA8
 	private void Start()
 	{
 		this.Continue.color = new Color(this.Continue.color.r, this.Continue.color.g, this.Continue.color.b, 0f);
@@ -25,7 +25,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001868 RID: 6248 RVA: 0x000E8D54 File Offset: 0x000E6F54
+	// Token: 0x06001868 RID: 6248 RVA: 0x000E8ED0 File Offset: 0x000E70D0
 	private void Update()
 	{
 		base.transform.localPosition = new Vector3(base.transform.localPosition.x, Mathf.Lerp(base.transform.localPosition.y, 255f - (float)this.Selected * 50f, Time.deltaTime * 10f), base.transform.localPosition.z);
@@ -332,159 +332,159 @@ public class HeartbrokenCursorScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040023E3 RID: 9187
+	// Token: 0x040023E4 RID: 9188
 	public SnappedYandereScript SnappedYandere;
 
-	// Token: 0x040023E4 RID: 9188
+	// Token: 0x040023E5 RID: 9189
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040023E5 RID: 9189
+	// Token: 0x040023E6 RID: 9190
 	public InputManagerScript InputManager;
 
-	// Token: 0x040023E6 RID: 9190
+	// Token: 0x040023E7 RID: 9191
 	public HeartbrokenScript Heartbroken;
 
-	// Token: 0x040023E7 RID: 9191
+	// Token: 0x040023E8 RID: 9192
 	public VibrateScript[] Vibrations;
 
-	// Token: 0x040023E8 RID: 9192
+	// Token: 0x040023E9 RID: 9193
 	public UISprite CursorSprite;
 
-	// Token: 0x040023E9 RID: 9193
+	// Token: 0x040023EA RID: 9194
 	public UISprite Darkness;
 
-	// Token: 0x040023EA RID: 9194
+	// Token: 0x040023EB RID: 9195
 	public AudioClip SelectSound;
 
-	// Token: 0x040023EB RID: 9195
+	// Token: 0x040023EC RID: 9196
 	public AudioClip MoveSound;
 
-	// Token: 0x040023EC RID: 9196
+	// Token: 0x040023ED RID: 9197
 	public AudioSource MyAudio;
 
-	// Token: 0x040023ED RID: 9197
+	// Token: 0x040023EE RID: 9198
 	public UILabel Continue;
 
-	// Token: 0x040023EE RID: 9198
+	// Token: 0x040023EF RID: 9199
 	public UILabel MyLabel;
 
-	// Token: 0x040023EF RID: 9199
+	// Token: 0x040023F0 RID: 9200
 	public GameObject FPS;
 
-	// Token: 0x040023F0 RID: 9200
+	// Token: 0x040023F1 RID: 9201
 	public bool LoveSick;
 
-	// Token: 0x040023F1 RID: 9201
+	// Token: 0x040023F2 RID: 9202
 	public bool FadeOut;
 
-	// Token: 0x040023F2 RID: 9202
+	// Token: 0x040023F3 RID: 9203
 	public bool Nudge;
 
-	// Token: 0x040023F3 RID: 9203
+	// Token: 0x040023F4 RID: 9204
 	public int CracksSpawned;
 
-	// Token: 0x040023F4 RID: 9204
+	// Token: 0x040023F5 RID: 9205
 	public int Selected = 1;
 
-	// Token: 0x040023F5 RID: 9205
+	// Token: 0x040023F6 RID: 9206
 	public int Options = 5;
 
-	// Token: 0x040023F6 RID: 9206
+	// Token: 0x040023F7 RID: 9207
 	public int LastRandomCrack;
 
-	// Token: 0x040023F7 RID: 9207
+	// Token: 0x040023F8 RID: 9208
 	public int RandomCrack;
 
-	// Token: 0x040023F8 RID: 9208
+	// Token: 0x040023F9 RID: 9209
 	public CameraFilterPack_Gradients_FireGradient HeartbrokenFilter;
 
-	// Token: 0x040023F9 RID: 9209
+	// Token: 0x040023FA RID: 9210
 	public CameraFilterPack_Gradients_FireGradient MainFilter;
 
-	// Token: 0x040023FA RID: 9210
+	// Token: 0x040023FB RID: 9211
 	public Camera HeartbrokenCamera;
 
-	// Token: 0x040023FB RID: 9211
+	// Token: 0x040023FC RID: 9212
 	public AudioSource GameOverMusic;
 
-	// Token: 0x040023FC RID: 9212
+	// Token: 0x040023FD RID: 9213
 	public AudioSource SnapStatic;
 
-	// Token: 0x040023FD RID: 9213
+	// Token: 0x040023FE RID: 9214
 	public AudioSource SnapMusic;
 
-	// Token: 0x040023FE RID: 9214
+	// Token: 0x040023FF RID: 9215
 	public AudioClip GlassShatter;
 
-	// Token: 0x040023FF RID: 9215
+	// Token: 0x04002400 RID: 9216
 	public AudioClip ReverseHit;
 
-	// Token: 0x04002400 RID: 9216
+	// Token: 0x04002401 RID: 9217
 	public AudioClip[] CrackSound;
 
-	// Token: 0x04002401 RID: 9217
+	// Token: 0x04002402 RID: 9218
 	public GameObject ShatterPrefab;
 
-	// Token: 0x04002402 RID: 9218
+	// Token: 0x04002403 RID: 9219
 	public GameObject SNAPLetters;
 
-	// Token: 0x04002403 RID: 9219
+	// Token: 0x04002404 RID: 9220
 	public GameObject SnapUICamera;
 
-	// Token: 0x04002404 RID: 9220
+	// Token: 0x04002405 RID: 9221
 	public UIPanel SNAPPanel;
 
-	// Token: 0x04002405 RID: 9221
+	// Token: 0x04002406 RID: 9222
 	public GameObject[] Background;
 
-	// Token: 0x04002406 RID: 9222
+	// Token: 0x04002407 RID: 9223
 	public GameObject[] CrackMeshes;
 
-	// Token: 0x04002407 RID: 9223
+	// Token: 0x04002408 RID: 9224
 	public GameObject[] Cracks;
 
-	// Token: 0x04002408 RID: 9224
+	// Token: 0x04002409 RID: 9225
 	public AudioClip[] CracksTier1;
 
-	// Token: 0x04002409 RID: 9225
+	// Token: 0x0400240A RID: 9226
 	public AudioClip[] CracksTier2;
 
-	// Token: 0x0400240A RID: 9226
+	// Token: 0x0400240B RID: 9227
 	public AudioClip[] CracksTier3;
 
-	// Token: 0x0400240B RID: 9227
+	// Token: 0x0400240C RID: 9228
 	public AudioClip[] CracksTier4;
 
-	// Token: 0x0400240C RID: 9228
+	// Token: 0x0400240D RID: 9229
 	public Texture BlackTexture;
 
-	// Token: 0x0400240D RID: 9229
+	// Token: 0x0400240E RID: 9230
 	public Transform SnapDestination;
 
-	// Token: 0x0400240E RID: 9230
+	// Token: 0x0400240F RID: 9231
 	public Transform SnapFocus;
 
-	// Token: 0x0400240F RID: 9231
+	// Token: 0x04002410 RID: 9232
 	public Transform SnapPOV;
 
-	// Token: 0x04002410 RID: 9232
+	// Token: 0x04002411 RID: 9233
 	public bool BefriendBetrayMission;
 
-	// Token: 0x04002411 RID: 9233
+	// Token: 0x04002412 RID: 9234
 	public bool SnapSequence;
 
-	// Token: 0x04002412 RID: 9234
+	// Token: 0x04002413 RID: 9235
 	public bool ReloadScene;
 
-	// Token: 0x04002413 RID: 9235
+	// Token: 0x04002414 RID: 9236
 	public bool NeverSnap;
 
-	// Token: 0x04002414 RID: 9236
+	// Token: 0x04002415 RID: 9237
 	public float SnapTimer;
 
-	// Token: 0x04002415 RID: 9237
+	// Token: 0x04002416 RID: 9238
 	public float Speed;
 
-	// Token: 0x04002416 RID: 9238
+	// Token: 0x04002417 RID: 9239
 	public int TwitchID;
 }

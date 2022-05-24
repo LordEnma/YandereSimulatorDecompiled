@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000109 RID: 265
 public class CameraFilterScript : MonoBehaviour
 {
-	// Token: 0x06000AB4 RID: 2740 RVA: 0x000648AC File Offset: 0x00062AAC
+	// Token: 0x06000AB4 RID: 2740 RVA: 0x000648D8 File Offset: 0x00062AD8
 	private void Start()
 	{
 		this.Anomaly = base.gameObject.AddComponent<CameraFilterPack_3D_Anomaly>();
@@ -608,7 +608,7 @@ public class CameraFilterScript : MonoBehaviour
 		this.Watermark.text = "Use the 'z' and 'x' keys to change the current camera filter!";
 	}
 
-	// Token: 0x06000AB5 RID: 2741 RVA: 0x00066AA0 File Offset: 0x00064CA0
+	// Token: 0x06000AB5 RID: 2741 RVA: 0x00066ACC File Offset: 0x00064CCC
 	private void Update()
 	{
 		if (Input.GetKey(KeyCode.LeftShift))
@@ -647,7 +647,7 @@ public class CameraFilterScript : MonoBehaviour
 		this.NameLabel.transform.localPosition = Vector3.MoveTowards(this.NameLabel.transform.localPosition, Vector3.zero, this.Speed);
 	}
 
-	// Token: 0x06000AB6 RID: 2742 RVA: 0x00066BEC File Offset: 0x00064DEC
+	// Token: 0x06000AB6 RID: 2742 RVA: 0x00066C18 File Offset: 0x00064E18
 	private void UpdateFilter()
 	{
 		this.NameLabel.transform.localPosition = Vector3.zero;

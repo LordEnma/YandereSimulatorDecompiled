@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003EE RID: 1006
 public class RivalMorningEventManagerScript : MonoBehaviour
 {
-	// Token: 0x06001BFA RID: 7162 RVA: 0x00147858 File Offset: 0x00145A58
+	// Token: 0x06001BFB RID: 7163 RVA: 0x00147B14 File Offset: 0x00145D14
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -24,7 +24,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BFB RID: 7163 RVA: 0x00147944 File Offset: 0x00145B44
+	// Token: 0x06001BFC RID: 7164 RVA: 0x00147C00 File Offset: 0x00145E00
 	private void Update()
 	{
 		if (this.VoiceClip != null)
@@ -224,7 +224,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BFC RID: 7164 RVA: 0x001482DC File Offset: 0x001464DC
+	// Token: 0x06001BFD RID: 7165 RVA: 0x00148598 File Offset: 0x00146798
 	public void EndEvent()
 	{
 		Debug.Log("Osana's morning ''Talk with Senpai'' event has ended.");
@@ -306,102 +306,102 @@ public class RivalMorningEventManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003132 RID: 12594
+	// Token: 0x0400313A RID: 12602
 	public OsanaMorningFriendEventScript OsanaLoseFriendEvent;
 
-	// Token: 0x04003133 RID: 12595
+	// Token: 0x0400313B RID: 12603
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003134 RID: 12596
+	// Token: 0x0400313C RID: 12604
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04003135 RID: 12597
+	// Token: 0x0400313D RID: 12605
 	public UILabel EventSubtitle;
 
-	// Token: 0x04003136 RID: 12598
+	// Token: 0x0400313E RID: 12606
 	public YandereScript Yandere;
 
-	// Token: 0x04003137 RID: 12599
+	// Token: 0x0400313F RID: 12607
 	public ClockScript Clock;
 
-	// Token: 0x04003138 RID: 12600
+	// Token: 0x04003140 RID: 12608
 	public SpyScript Spy;
 
-	// Token: 0x04003139 RID: 12601
+	// Token: 0x04003141 RID: 12609
 	public StudentScript Friend;
 
-	// Token: 0x0400313A RID: 12602
+	// Token: 0x04003142 RID: 12610
 	public StudentScript Senpai;
 
-	// Token: 0x0400313B RID: 12603
+	// Token: 0x04003143 RID: 12611
 	public StudentScript Rival;
 
-	// Token: 0x0400313C RID: 12604
+	// Token: 0x04003144 RID: 12612
 	public Transform[] Location;
 
-	// Token: 0x0400313D RID: 12605
+	// Token: 0x04003145 RID: 12613
 	public Transform Epicenter;
 
-	// Token: 0x0400313E RID: 12606
+	// Token: 0x04003146 RID: 12614
 	public AudioClip SpeechClip;
 
-	// Token: 0x0400313F RID: 12607
+	// Token: 0x04003147 RID: 12615
 	public string[] SpeechText;
 
-	// Token: 0x04003140 RID: 12608
+	// Token: 0x04003148 RID: 12616
 	public float[] SpeechTime;
 
-	// Token: 0x04003141 RID: 12609
+	// Token: 0x04003149 RID: 12617
 	public GameObject AlarmDisc;
 
-	// Token: 0x04003142 RID: 12610
+	// Token: 0x0400314A RID: 12618
 	public GameObject VoiceClip;
 
-	// Token: 0x04003143 RID: 12611
+	// Token: 0x0400314B RID: 12619
 	public AudioSource VoiceClipSource;
 
-	// Token: 0x04003144 RID: 12612
+	// Token: 0x0400314C RID: 12620
 	public bool NaturalEnd;
 
-	// Token: 0x04003145 RID: 12613
+	// Token: 0x0400314D RID: 12621
 	public bool HintGiven;
 
-	// Token: 0x04003146 RID: 12614
+	// Token: 0x0400314E RID: 12622
 	public bool Transfer;
 
-	// Token: 0x04003147 RID: 12615
+	// Token: 0x0400314F RID: 12623
 	public bool End;
 
-	// Token: 0x04003148 RID: 12616
+	// Token: 0x04003150 RID: 12624
 	public float TransferTime;
 
-	// Token: 0x04003149 RID: 12617
+	// Token: 0x04003151 RID: 12625
 	public float Distance;
 
-	// Token: 0x0400314A RID: 12618
+	// Token: 0x04003152 RID: 12626
 	public float Scale;
 
-	// Token: 0x0400314B RID: 12619
+	// Token: 0x04003153 RID: 12627
 	public float Timer;
 
-	// Token: 0x0400314C RID: 12620
+	// Token: 0x04003154 RID: 12628
 	public DayOfWeek EventDay;
 
-	// Token: 0x0400314D RID: 12621
+	// Token: 0x04003155 RID: 12629
 	public int SpeechPhase = 1;
 
-	// Token: 0x0400314E RID: 12622
+	// Token: 0x04003156 RID: 12630
 	public int FriendID = 6;
 
-	// Token: 0x0400314F RID: 12623
+	// Token: 0x04003157 RID: 12631
 	public int RivalID = 11;
 
-	// Token: 0x04003150 RID: 12624
+	// Token: 0x04003158 RID: 12632
 	public int Phase;
 
-	// Token: 0x04003151 RID: 12625
+	// Token: 0x04003159 RID: 12633
 	public int Frame;
 
-	// Token: 0x04003152 RID: 12626
+	// Token: 0x0400315A RID: 12634
 	public string Weekday = string.Empty;
 }

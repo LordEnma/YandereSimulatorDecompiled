@@ -2275,13 +2275,13 @@ public class UILabel : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum Effect
 	{
-		// Token: 0x04004F6C RID: 20332
+		// Token: 0x04004F75 RID: 20341
 		None,
-		// Token: 0x04004F6D RID: 20333
+		// Token: 0x04004F76 RID: 20342
 		Shadow,
-		// Token: 0x04004F6E RID: 20334
+		// Token: 0x04004F77 RID: 20343
 		Outline,
-		// Token: 0x04004F6F RID: 20335
+		// Token: 0x04004F78 RID: 20344
 		Outline8
 	}
 
@@ -2289,13 +2289,13 @@ public class UILabel : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum Overflow
 	{
-		// Token: 0x04004F71 RID: 20337
+		// Token: 0x04004F7A RID: 20346
 		ShrinkContent,
-		// Token: 0x04004F72 RID: 20338
+		// Token: 0x04004F7B RID: 20347
 		ClampContent,
-		// Token: 0x04004F73 RID: 20339
+		// Token: 0x04004F7C RID: 20348
 		ResizeFreely,
-		// Token: 0x04004F74 RID: 20340
+		// Token: 0x04004F7D RID: 20349
 		ResizeHeight
 	}
 
@@ -2303,11 +2303,11 @@ public class UILabel : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum Crispness
 	{
-		// Token: 0x04004F76 RID: 20342
+		// Token: 0x04004F7F RID: 20351
 		Never,
-		// Token: 0x04004F77 RID: 20343
+		// Token: 0x04004F80 RID: 20352
 		OnDesktop,
-		// Token: 0x04004F78 RID: 20344
+		// Token: 0x04004F81 RID: 20353
 		Always
 	}
 
@@ -2315,17 +2315,17 @@ public class UILabel : UIWidget
 	[DoNotObfuscateNGUI]
 	public enum Modifier
 	{
-		// Token: 0x04004F7A RID: 20346
+		// Token: 0x04004F83 RID: 20355
 		None,
-		// Token: 0x04004F7B RID: 20347
+		// Token: 0x04004F84 RID: 20356
 		ToUppercase,
-		// Token: 0x04004F7C RID: 20348
+		// Token: 0x04004F85 RID: 20357
 		ToLowercase,
-		// Token: 0x04004F7D RID: 20349
+		// Token: 0x04004F86 RID: 20358
 		Custom = 255
 	}
 
 	// Token: 0x02000642 RID: 1602
-	// (Invoke) Token: 0x0600264C RID: 9804
+	// (Invoke) Token: 0x0600264D RID: 9805
 	public delegate string ModifierFunc(string s);
 }

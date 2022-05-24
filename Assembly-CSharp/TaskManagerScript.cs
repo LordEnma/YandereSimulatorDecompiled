@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000472 RID: 1138
 public class TaskManagerScript : MonoBehaviour
 {
-	// Token: 0x06001ED5 RID: 7893 RVA: 0x001B4380 File Offset: 0x001B2580
+	// Token: 0x06001ED6 RID: 7894 RVA: 0x001B4810 File Offset: 0x001B2A10
 	public void Start()
 	{
 		for (int i = 1; i < 101; i++)
@@ -30,7 +30,7 @@ public class TaskManagerScript : MonoBehaviour
 		this.Initialized = true;
 	}
 
-	// Token: 0x06001ED6 RID: 7894 RVA: 0x001B4414 File Offset: 0x001B2614
+	// Token: 0x06001ED7 RID: 7895 RVA: 0x001B48A4 File Offset: 0x001B2AA4
 	public void CheckTaskPickups()
 	{
 		if (!this.StudentManager.Eighties)
@@ -68,7 +68,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ED7 RID: 7895 RVA: 0x001B45D8 File Offset: 0x001B27D8
+	// Token: 0x06001ED8 RID: 7896 RVA: 0x001B4A68 File Offset: 0x001B2C68
 	public void UpdateTaskStatus()
 	{
 		if (!this.StudentManager.Eighties)
@@ -281,7 +281,7 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001ED8 RID: 7896 RVA: 0x001B4E4C File Offset: 0x001B304C
+	// Token: 0x06001ED9 RID: 7897 RVA: 0x001B52DC File Offset: 0x001B34DC
 	public void SaveTaskStatuses()
 	{
 		for (int i = 1; i < 101; i++)
@@ -294,30 +294,30 @@ public class TaskManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003FFA RID: 16378
+	// Token: 0x04004003 RID: 16387
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04003FFB RID: 16379
+	// Token: 0x04004004 RID: 16388
 	public YandereScript Yandere;
 
-	// Token: 0x04003FFC RID: 16380
+	// Token: 0x04004005 RID: 16389
 	public Transform MuddyFootprintParent;
 
-	// Token: 0x04003FFD RID: 16381
+	// Token: 0x04004006 RID: 16390
 	public GameObject[] TaskObjects;
 
-	// Token: 0x04003FFE RID: 16382
+	// Token: 0x04004007 RID: 16391
 	public PromptScript[] Prompts;
 
-	// Token: 0x04003FFF RID: 16383
+	// Token: 0x04004008 RID: 16392
 	public bool[] GirlsQuestioned;
 
-	// Token: 0x04004000 RID: 16384
+	// Token: 0x04004009 RID: 16393
 	public GameObject FixedDummy;
 
-	// Token: 0x04004001 RID: 16385
+	// Token: 0x0400400A RID: 16394
 	public int[] TaskStatus;
 
-	// Token: 0x04004002 RID: 16386
+	// Token: 0x0400400B RID: 16395
 	public bool Initialized;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200023B RID: 571
 public class CensorBloodScript : MonoBehaviour
 {
-	// Token: 0x06001237 RID: 4663 RVA: 0x0008C59C File Offset: 0x0008A79C
+	// Token: 0x06001237 RID: 4663 RVA: 0x0008C5C8 File Offset: 0x0008A7C8
 	private void Start()
 	{
 		if (GameGlobals.CensorBlood)

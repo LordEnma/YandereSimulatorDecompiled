@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020004CA RID: 1226
 public class WeekSelectScript : MonoBehaviour
 {
-	// Token: 0x06002019 RID: 8217 RVA: 0x001C8F80 File Offset: 0x001C7180
+	// Token: 0x0600201A RID: 8218 RVA: 0x001C9494 File Offset: 0x001C7694
 	private void Start()
 	{
 		base.transform.position = new Vector3(0f, 2.31f, 0f);
@@ -21,7 +21,7 @@ public class WeekSelectScript : MonoBehaviour
 		this.DetermineSelectedWeek();
 	}
 
-	// Token: 0x0600201A RID: 8218 RVA: 0x001C9018 File Offset: 0x001C7218
+	// Token: 0x0600201B RID: 8219 RVA: 0x001C952C File Offset: 0x001C772C
 	private void Update()
 	{
 		if (this.Fading)
@@ -372,7 +372,7 @@ public class WeekSelectScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600201B RID: 8219 RVA: 0x001C99F8 File Offset: 0x001C7BF8
+	// Token: 0x0600201C RID: 8220 RVA: 0x001C9F0C File Offset: 0x001C810C
 	private void UpdateArrow()
 	{
 		if (this.SettingWeek)
@@ -402,7 +402,7 @@ public class WeekSelectScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600201C RID: 8220 RVA: 0x001C9AF8 File Offset: 0x001C7CF8
+	// Token: 0x0600201D RID: 8221 RVA: 0x001CA00C File Offset: 0x001C820C
 	private void UpdateText()
 	{
 		this.WeekLabel.text = "STARTING WEEK: " + this.CurrentWeek.ToString();
@@ -422,7 +422,7 @@ public class WeekSelectScript : MonoBehaviour
 		this.Stats.Start();
 	}
 
-	// Token: 0x0600201D RID: 8221 RVA: 0x001C9B74 File Offset: 0x001C7D74
+	// Token: 0x0600201E RID: 8222 RVA: 0x001CA088 File Offset: 0x001C8288
 	private void SetGrudges(bool Grudge)
 	{
 		for (int i = 2; i < 12; i++)
@@ -431,7 +431,7 @@ public class WeekSelectScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600201E RID: 8222 RVA: 0x001C9B98 File Offset: 0x001C7D98
+	// Token: 0x0600201F RID: 8223 RVA: 0x001CA0AC File Offset: 0x001C82AC
 	private void MakeFriends(bool Friend)
 	{
 		for (int i = 2; i < 86; i++)
@@ -448,7 +448,7 @@ public class WeekSelectScript : MonoBehaviour
 		GameGlobals.YakuzaPhase = 0;
 	}
 
-	// Token: 0x0600201F RID: 8223 RVA: 0x001C9BD8 File Offset: 0x001C7DD8
+	// Token: 0x06002020 RID: 8224 RVA: 0x001CA0EC File Offset: 0x001C82EC
 	private void DetermineSelectedWeek()
 	{
 		this.CurrentWeek = this.Column + (this.Row - 1) * 5;
@@ -466,72 +466,72 @@ public class WeekSelectScript : MonoBehaviour
 		this.UpdateText();
 	}
 
-	// Token: 0x04004398 RID: 17304
+	// Token: 0x040043A1 RID: 17313
 	public InputManagerScript InputManager;
 
-	// Token: 0x04004399 RID: 17305
+	// Token: 0x040043A2 RID: 17314
 	public EightiesStatsScript Stats;
 
-	// Token: 0x0400439A RID: 17306
+	// Token: 0x040043A3 RID: 17315
 	public GameObject[] Shadow;
 
-	// Token: 0x0400439B RID: 17307
+	// Token: 0x040043A4 RID: 17316
 	public UISprite Darkness;
 
-	// Token: 0x0400439C RID: 17308
+	// Token: 0x040043A5 RID: 17317
 	public UILabel StartLabel;
 
-	// Token: 0x0400439D RID: 17309
+	// Token: 0x040043A6 RID: 17318
 	public UILabel EditLabel;
 
-	// Token: 0x0400439E RID: 17310
+	// Token: 0x040043A7 RID: 17319
 	public UILabel WeekLabel;
 
-	// Token: 0x0400439F RID: 17311
+	// Token: 0x040043A8 RID: 17320
 	public Transform Arrow;
 
-	// Token: 0x040043A0 RID: 17312
+	// Token: 0x040043A9 RID: 17321
 	public bool SettingDetails;
 
-	// Token: 0x040043A1 RID: 17313
+	// Token: 0x040043AA RID: 17322
 	public bool SettingRivals;
 
-	// Token: 0x040043A2 RID: 17314
+	// Token: 0x040043AB RID: 17323
 	public bool SettingWeek;
 
-	// Token: 0x040043A3 RID: 17315
+	// Token: 0x040043AC RID: 17324
 	public bool Fading;
 
-	// Token: 0x040043A4 RID: 17316
+	// Token: 0x040043AD RID: 17325
 	public int DetailID = 1;
 
-	// Token: 0x040043A5 RID: 17317
+	// Token: 0x040043AE RID: 17326
 	public int RivalID = 1;
 
-	// Token: 0x040043A6 RID: 17318
+	// Token: 0x040043AF RID: 17327
 	public int WeekID = 1;
 
-	// Token: 0x040043A7 RID: 17319
+	// Token: 0x040043B0 RID: 17328
 	public int FadeID = 1;
 
-	// Token: 0x040043A8 RID: 17320
+	// Token: 0x040043B1 RID: 17329
 	public int Row = 1;
 
-	// Token: 0x040043A9 RID: 17321
+	// Token: 0x040043B2 RID: 17330
 	public int Column = 1;
 
-	// Token: 0x040043AA RID: 17322
+	// Token: 0x040043B3 RID: 17331
 	public int[] Specifics;
 
-	// Token: 0x040043AB RID: 17323
+	// Token: 0x040043B4 RID: 17332
 	public int CurrentWeek;
 
-	// Token: 0x040043AC RID: 17324
+	// Token: 0x040043B5 RID: 17333
 	public Vector3[] StartingPosition;
 
-	// Token: 0x040043AD RID: 17325
+	// Token: 0x040043B6 RID: 17334
 	public Transform[] Sleeve;
 
-	// Token: 0x040043AE RID: 17326
+	// Token: 0x040043B7 RID: 17335
 	public Transform[] Tape;
 }

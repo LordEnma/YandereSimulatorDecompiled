@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200048E RID: 1166
 public class TrashCanScript : MonoBehaviour
 {
-	// Token: 0x06001F3B RID: 7995 RVA: 0x001BA6D8 File Offset: 0x001B88D8
+	// Token: 0x06001F3C RID: 7996 RVA: 0x001BAB68 File Offset: 0x001B8D68
 	private void Update()
 	{
 		if (!this.Occupied)
@@ -125,7 +125,7 @@ public class TrashCanScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001F3C RID: 7996 RVA: 0x001BACA4 File Offset: 0x001B8EA4
+	// Token: 0x06001F3D RID: 7997 RVA: 0x001BB134 File Offset: 0x001B9334
 	public void UpdatePrompt()
 	{
 		if (this.Occupied)
@@ -159,7 +159,7 @@ public class TrashCanScript : MonoBehaviour
 		this.Prompt.HideButton[0] = true;
 	}
 
-	// Token: 0x06001F3D RID: 7997 RVA: 0x001BADD0 File Offset: 0x001B8FD0
+	// Token: 0x06001F3E RID: 7998 RVA: 0x001BB260 File Offset: 0x001B9460
 	public void RemoveContents()
 	{
 		Debug.Log("The object that was in this container has been removed.");
@@ -177,13 +177,12 @@ public class TrashCanScript : MonoBehaviour
 		this.UpdatePrompt();
 	}
 
-	// Token: 0x06001F3E RID: 7998 RVA: 0x001BAE80 File Offset: 0x001B9080
+	// Token: 0x06001F3F RID: 7999 RVA: 0x001BB310 File Offset: 0x001B9510
 	public void StashItem()
 	{
 		if (this.Yandere.PickUp != null)
 		{
 			this.Item = this.Yandere.PickUp.gameObject;
-			this.Yandere.MyController.radius = 0.5f;
 			this.Yandere.EmptyHands();
 		}
 		else
@@ -205,36 +204,36 @@ public class TrashCanScript : MonoBehaviour
 		this.Item.transform.localScale = new Vector3(0.33333f, 0.5f, 0.5f);
 	}
 
-	// Token: 0x0400413C RID: 16700
+	// Token: 0x04004145 RID: 16709
 	public WeaponScript ConcealedWeapon;
 
-	// Token: 0x0400413D RID: 16701
+	// Token: 0x04004146 RID: 16710
 	public ContainerScript Container;
 
-	// Token: 0x0400413E RID: 16702
+	// Token: 0x04004147 RID: 16711
 	public YandereScript Yandere;
 
-	// Token: 0x0400413F RID: 16703
+	// Token: 0x04004148 RID: 16712
 	public PromptScript Prompt;
 
-	// Token: 0x04004140 RID: 16704
+	// Token: 0x04004149 RID: 16713
 	public Transform TrashPosition;
 
-	// Token: 0x04004141 RID: 16705
+	// Token: 0x0400414A RID: 16714
 	public Rigidbody MyRigidbody;
 
-	// Token: 0x04004142 RID: 16706
+	// Token: 0x0400414B RID: 16715
 	public GameObject Item;
 
-	// Token: 0x04004143 RID: 16707
+	// Token: 0x0400414C RID: 16716
 	public bool Occupied;
 
-	// Token: 0x04004144 RID: 16708
+	// Token: 0x0400414D RID: 16717
 	public bool Wearable;
 
-	// Token: 0x04004145 RID: 16709
+	// Token: 0x0400414E RID: 16718
 	public bool Weapon;
 
-	// Token: 0x04004146 RID: 16710
+	// Token: 0x0400414F RID: 16719
 	public float KinematicTimer;
 }

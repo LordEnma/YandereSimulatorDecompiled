@@ -5,15 +5,15 @@ using UnityEngine;
 [Serializable]
 public class Club
 {
-	// Token: 0x06001457 RID: 5207 RVA: 0x000C70BE File Offset: 0x000C52BE
+	// Token: 0x06001457 RID: 5207 RVA: 0x000C7156 File Offset: 0x000C5356
 	public Club(ClubType type)
 	{
 		this.type = type;
 	}
 
 	// Token: 0x17000362 RID: 866
-	// (get) Token: 0x06001458 RID: 5208 RVA: 0x000C70CD File Offset: 0x000C52CD
-	// (set) Token: 0x06001459 RID: 5209 RVA: 0x000C70D5 File Offset: 0x000C52D5
+	// (get) Token: 0x06001458 RID: 5208 RVA: 0x000C7165 File Offset: 0x000C5365
+	// (set) Token: 0x06001459 RID: 5209 RVA: 0x000C716D File Offset: 0x000C536D
 	public ClubType Type
 	{
 		get

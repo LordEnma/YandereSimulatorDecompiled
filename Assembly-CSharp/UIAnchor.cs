@@ -229,23 +229,23 @@ public class UIAnchor : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Side
 	{
-		// Token: 0x04004F0F RID: 20239
+		// Token: 0x04004F18 RID: 20248
 		BottomLeft,
-		// Token: 0x04004F10 RID: 20240
+		// Token: 0x04004F19 RID: 20249
 		Left,
-		// Token: 0x04004F11 RID: 20241
+		// Token: 0x04004F1A RID: 20250
 		TopLeft,
-		// Token: 0x04004F12 RID: 20242
+		// Token: 0x04004F1B RID: 20251
 		Top,
-		// Token: 0x04004F13 RID: 20243
+		// Token: 0x04004F1C RID: 20252
 		TopRight,
-		// Token: 0x04004F14 RID: 20244
+		// Token: 0x04004F1D RID: 20253
 		Right,
-		// Token: 0x04004F15 RID: 20245
+		// Token: 0x04004F1E RID: 20254
 		BottomRight,
-		// Token: 0x04004F16 RID: 20246
+		// Token: 0x04004F1F RID: 20255
 		Bottom,
-		// Token: 0x04004F17 RID: 20247
+		// Token: 0x04004F20 RID: 20256
 		Center
 	}
 }

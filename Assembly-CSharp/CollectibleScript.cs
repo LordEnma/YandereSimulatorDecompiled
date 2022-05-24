@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000254 RID: 596
 public class CollectibleScript : MonoBehaviour
 {
-	// Token: 0x0600128D RID: 4749 RVA: 0x00093FF8 File Offset: 0x000921F8
+	// Token: 0x0600128D RID: 4749 RVA: 0x00094050 File Offset: 0x00092250
 	private void Start()
 	{
 		if ((this.CollectibleType == CollectibleType.BasementTape && CollectibleGlobals.GetBasementTapeCollected(this.ID)) || (this.CollectibleType == CollectibleType.Manga && CollectibleGlobals.GetMangaCollected(this.ID)) || (this.CollectibleType == CollectibleType.Tape && CollectibleGlobals.GetTapeCollected(this.ID)) || (this.CollectibleType == CollectibleType.Panty && CollectibleGlobals.GetPantyPurchased(11)))
@@ -23,7 +23,7 @@ public class CollectibleScript : MonoBehaviour
 	}
 
 	// Token: 0x17000337 RID: 823
-	// (get) Token: 0x0600128E RID: 4750 RVA: 0x000940B8 File Offset: 0x000922B8
+	// (get) Token: 0x0600128E RID: 4750 RVA: 0x00094110 File Offset: 0x00092310
 	public CollectibleType CollectibleType
 	{
 		get
@@ -57,7 +57,7 @@ public class CollectibleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600128F RID: 4751 RVA: 0x0009414C File Offset: 0x0009234C
+	// Token: 0x0600128F RID: 4751 RVA: 0x000941A4 File Offset: 0x000923A4
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -96,7 +96,7 @@ public class CollectibleScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001290 RID: 4752 RVA: 0x00094294 File Offset: 0x00092494
+	// Token: 0x06001290 RID: 4752 RVA: 0x000942EC File Offset: 0x000924EC
 	private void CountPanties()
 	{
 		int num = 1;

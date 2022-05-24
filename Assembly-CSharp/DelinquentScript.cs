@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200027B RID: 635
 public class DelinquentScript : MonoBehaviour
 {
-	// Token: 0x06001376 RID: 4982 RVA: 0x000B25A8 File Offset: 0x000B07A8
+	// Token: 0x06001376 RID: 4982 RVA: 0x000B2640 File Offset: 0x000B0840
 	private void Start()
 	{
 		this.EasterHair.SetActive(false);
@@ -19,7 +19,7 @@ public class DelinquentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001377 RID: 4983 RVA: 0x000B2674 File Offset: 0x000B0874
+	// Token: 0x06001377 RID: 4983 RVA: 0x000B270C File Offset: 0x000B090C
 	private void Update()
 	{
 		this.DistanceToPlayer = Vector3.Distance(base.transform.position, this.Yandere.transform.position);
@@ -306,7 +306,7 @@ public class DelinquentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001378 RID: 4984 RVA: 0x000B3464 File Offset: 0x000B1664
+	// Token: 0x06001378 RID: 4984 RVA: 0x000B34FC File Offset: 0x000B16FC
 	private void Shove()
 	{
 		if (!this.Yandere.Shoved && !this.Yandere.Tripping && this.DistanceToPlayer < 0.5f)
@@ -339,7 +339,7 @@ public class DelinquentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001379 RID: 4985 RVA: 0x000B3614 File Offset: 0x000B1814
+	// Token: 0x06001379 RID: 4985 RVA: 0x000B36AC File Offset: 0x000B18AC
 	private void LateUpdate()
 	{
 		if (!this.Threatening)
@@ -361,7 +361,7 @@ public class DelinquentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600137A RID: 4986 RVA: 0x000B36F9 File Offset: 0x000B18F9
+	// Token: 0x0600137A RID: 4986 RVA: 0x000B3791 File Offset: 0x000B1991
 	private void OnEnable()
 	{
 		this.Character.GetComponent<Animation>().CrossFade(this.IdleAnim, 1f);

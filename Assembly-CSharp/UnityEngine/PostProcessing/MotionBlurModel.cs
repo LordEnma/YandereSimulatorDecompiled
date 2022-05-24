@@ -7,8 +7,8 @@ namespace UnityEngine.PostProcessing
 	public class MotionBlurModel : PostProcessingModel
 	{
 		// Token: 0x17000511 RID: 1297
-		// (get) Token: 0x060023B2 RID: 9138 RVA: 0x001FC69D File Offset: 0x001FA89D
-		// (set) Token: 0x060023B3 RID: 9139 RVA: 0x001FC6A5 File Offset: 0x001FA8A5
+		// (get) Token: 0x060023B3 RID: 9139 RVA: 0x001FCC05 File Offset: 0x001FAE05
+		// (set) Token: 0x060023B4 RID: 9140 RVA: 0x001FCC0D File Offset: 0x001FAE0D
 		public MotionBlurModel.Settings settings
 		{
 			get
@@ -21,13 +21,13 @@ namespace UnityEngine.PostProcessing
 			}
 		}
 
-		// Token: 0x060023B4 RID: 9140 RVA: 0x001FC6AE File Offset: 0x001FA8AE
+		// Token: 0x060023B5 RID: 9141 RVA: 0x001FCC16 File Offset: 0x001FAE16
 		public override void Reset()
 		{
 			this.m_Settings = MotionBlurModel.Settings.defaultSettings;
 		}
 
-		// Token: 0x04004C16 RID: 19478
+		// Token: 0x04004C1F RID: 19487
 		[SerializeField]
 		private MotionBlurModel.Settings m_Settings = MotionBlurModel.Settings.defaultSettings;
 
@@ -36,7 +36,7 @@ namespace UnityEngine.PostProcessing
 		public struct Settings
 		{
 			// Token: 0x170005A7 RID: 1447
-			// (get) Token: 0x060027A4 RID: 10148 RVA: 0x0020B130 File Offset: 0x00209330
+			// (get) Token: 0x060027A5 RID: 10149 RVA: 0x0020B6C0 File Offset: 0x002098C0
 			public static MotionBlurModel.Settings defaultSettings
 			{
 				get
@@ -50,17 +50,17 @@ namespace UnityEngine.PostProcessing
 				}
 			}
 
-			// Token: 0x04005272 RID: 21106
+			// Token: 0x0400527B RID: 21115
 			[Range(0f, 360f)]
 			[Tooltip("The angle of rotary shutter. Larger values give longer exposure.")]
 			public float shutterAngle;
 
-			// Token: 0x04005273 RID: 21107
+			// Token: 0x0400527C RID: 21116
 			[Range(4f, 32f)]
 			[Tooltip("The amount of sample points, which affects quality and performances.")]
 			public int sampleCount;
 
-			// Token: 0x04005274 RID: 21108
+			// Token: 0x0400527D RID: 21117
 			[Range(0f, 1f)]
 			[Tooltip("The strength of multiple frame blending. The opacity of preceding frames are determined from this coefficient and time differences.")]
 			public float frameBlending;

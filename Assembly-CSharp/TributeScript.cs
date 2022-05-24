@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000490 RID: 1168
 public class TributeScript : MonoBehaviour
 {
-	// Token: 0x06001F43 RID: 8003 RVA: 0x001BB0C3 File Offset: 0x001B92C3
+	// Token: 0x06001F44 RID: 8004 RVA: 0x001BB53F File Offset: 0x001B973F
 	private void Start()
 	{
 		if (GameGlobals.LoveSick || MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.EightiesTutorial || DateGlobals.Week > 10)
@@ -15,7 +15,7 @@ public class TributeScript : MonoBehaviour
 		this.Rainey.SetActive(false);
 	}
 
-	// Token: 0x06001F44 RID: 8004 RVA: 0x001BB104 File Offset: 0x001B9304
+	// Token: 0x06001F45 RID: 8005 RVA: 0x001BB580 File Offset: 0x001B9780
 	private void Update()
 	{
 		if (this.RiggedAttacher.gameObject.activeInHierarchy)
@@ -78,54 +78,54 @@ public class TributeScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400414D RID: 16717
+	// Token: 0x04004156 RID: 16726
 	public RiggedAccessoryAttacher RiggedAttacher;
 
-	// Token: 0x0400414E RID: 16718
+	// Token: 0x04004157 RID: 16727
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x0400414F RID: 16719
+	// Token: 0x04004158 RID: 16728
 	public HenshinScript Henshin;
 
-	// Token: 0x04004150 RID: 16720
+	// Token: 0x04004159 RID: 16729
 	public YandereScript Yandere;
 
-	// Token: 0x04004151 RID: 16721
+	// Token: 0x0400415A RID: 16730
 	public GameObject Rainey;
 
-	// Token: 0x04004152 RID: 16722
+	// Token: 0x0400415B RID: 16731
 	public string[] MedibangLetters;
 
-	// Token: 0x04004153 RID: 16723
+	// Token: 0x0400415C RID: 16732
 	public string[] MiyukiLetters;
 
-	// Token: 0x04004154 RID: 16724
+	// Token: 0x0400415D RID: 16733
 	public string[] NurseLetters;
 
-	// Token: 0x04004155 RID: 16725
+	// Token: 0x0400415E RID: 16734
 	public string[] AzurLane;
 
-	// Token: 0x04004156 RID: 16726
+	// Token: 0x0400415F RID: 16735
 	public string[] Letter;
 
-	// Token: 0x04004157 RID: 16727
+	// Token: 0x04004160 RID: 16736
 	public int MedibangID;
 
-	// Token: 0x04004158 RID: 16728
+	// Token: 0x04004161 RID: 16737
 	public int MiyukiID;
 
-	// Token: 0x04004159 RID: 16729
+	// Token: 0x04004162 RID: 16738
 	public int NurseID;
 
-	// Token: 0x0400415A RID: 16730
+	// Token: 0x04004163 RID: 16739
 	public int AzurID;
 
-	// Token: 0x0400415B RID: 16731
+	// Token: 0x04004164 RID: 16740
 	public int ID;
 
-	// Token: 0x0400415C RID: 16732
+	// Token: 0x04004165 RID: 16741
 	public Mesh ThiccMesh;
 
-	// Token: 0x0400415D RID: 16733
+	// Token: 0x04004166 RID: 16742
 	public bool TransformNurse;
 }

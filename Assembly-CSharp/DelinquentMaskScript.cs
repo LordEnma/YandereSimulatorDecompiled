@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200027A RID: 634
 public class DelinquentMaskScript : MonoBehaviour
 {
-	// Token: 0x06001374 RID: 4980 RVA: 0x000B2550 File Offset: 0x000B0750
+	// Token: 0x06001374 RID: 4980 RVA: 0x000B25E8 File Offset: 0x000B07E8
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.LeftAlt))

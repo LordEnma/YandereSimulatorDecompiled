@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200048A RID: 1162
 public class TrailScript : MonoBehaviour
 {
-	// Token: 0x06001F2F RID: 7983 RVA: 0x001B9DEC File Offset: 0x001B7FEC
+	// Token: 0x06001F30 RID: 7984 RVA: 0x001BA27C File Offset: 0x001B847C
 	private void Start()
 	{
 		Physics.IgnoreCollision(GameObject.Find("YandereChan").GetComponent<Collider>(), base.GetComponent<Collider>());

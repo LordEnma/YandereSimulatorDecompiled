@@ -7,7 +7,7 @@ namespace MaidDereMinigame
 	// Token: 0x02000599 RID: 1433
 	public class CharacterHairPlacer : MonoBehaviour
 	{
-		// Token: 0x0600245E RID: 9310 RVA: 0x00201350 File Offset: 0x001FF550
+		// Token: 0x0600245F RID: 9311 RVA: 0x002018B8 File Offset: 0x001FFAB8
 		private void Awake()
 		{
 			int num = UnityEngine.Random.Range(0, this.hairSprites.Length);
@@ -21,13 +21,13 @@ namespace MaidDereMinigame
 			this.hairInstance.sprite = this.hairSprites[num];
 		}
 
-		// Token: 0x0600245F RID: 9311 RVA: 0x002013D7 File Offset: 0x001FF5D7
+		// Token: 0x06002460 RID: 9312 RVA: 0x0020193F File Offset: 0x001FFB3F
 		public void WalkPose(float height)
 		{
 			this.hairInstance.transform.localPosition = new Vector3(0f, height, this.hairInstance.transform.localPosition.z);
 		}
 
-		// Token: 0x06002460 RID: 9312 RVA: 0x0020140C File Offset: 0x001FF60C
+		// Token: 0x06002461 RID: 9313 RVA: 0x00201974 File Offset: 0x001FFB74
 		public void HairPose(string point)
 		{
 			string[] array = point.Split(new char[]
@@ -46,10 +46,10 @@ namespace MaidDereMinigame
 			Debug.Log("There was an error while parsing the hair position in CharacterHairPlacer");
 		}
 
-		// Token: 0x04004CE6 RID: 19686
+		// Token: 0x04004CEF RID: 19695
 		public Sprite[] hairSprites;
 
-		// Token: 0x04004CE7 RID: 19687
+		// Token: 0x04004CF0 RID: 19696
 		[HideInInspector]
 		public SpriteRenderer hairInstance;
 	}

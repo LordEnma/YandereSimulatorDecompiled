@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003D3 RID: 979
 public class RandomStabScript : MonoBehaviour
 {
-	// Token: 0x06001B8B RID: 7051 RVA: 0x00136E90 File Offset: 0x00135090
+	// Token: 0x06001B8C RID: 7052 RVA: 0x0013712C File Offset: 0x0013532C
 	private void Start()
 	{
 		AudioSource component = base.GetComponent<AudioSource>();
@@ -19,12 +19,12 @@ public class RandomStabScript : MonoBehaviour
 		component.Play();
 	}
 
-	// Token: 0x04002F45 RID: 12101
+	// Token: 0x04002F4D RID: 12109
 	public AudioClip[] Stabs;
 
-	// Token: 0x04002F46 RID: 12102
+	// Token: 0x04002F4E RID: 12110
 	public AudioClip Bite;
 
-	// Token: 0x04002F47 RID: 12103
+	// Token: 0x04002F4F RID: 12111
 	public bool Biting;
 }

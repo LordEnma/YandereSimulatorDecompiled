@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000E7 RID: 231
 public class BlendshapeScript : MonoBehaviour
 {
-	// Token: 0x06000A32 RID: 2610 RVA: 0x0005AA44 File Offset: 0x00058C44
+	// Token: 0x06000A32 RID: 2610 RVA: 0x0005AA6C File Offset: 0x00058C6C
 	private void LateUpdate()
 	{
 		this.Happiness += Time.deltaTime * 10f;

@@ -6,14 +6,14 @@ namespace MaidDereMinigame
 	// Token: 0x020005B2 RID: 1458
 	public class FlipBookPage : MonoBehaviour
 	{
-		// Token: 0x060024D7 RID: 9431 RVA: 0x002037A2 File Offset: 0x002019A2
+		// Token: 0x060024D8 RID: 9432 RVA: 0x00203D0A File Offset: 0x00201F0A
 		private void Awake()
 		{
 			this.animator = base.GetComponent<Animator>();
 			this.spriteRenderer = base.GetComponent<SpriteRenderer>();
 		}
 
-		// Token: 0x060024D8 RID: 9432 RVA: 0x002037BC File Offset: 0x002019BC
+		// Token: 0x060024D9 RID: 9433 RVA: 0x00203D24 File Offset: 0x00201F24
 		public void Transition(bool toOpen)
 		{
 			this.animator.SetTrigger(toOpen ? "OpenPage" : "ClosePage");
@@ -23,13 +23,13 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x060024D9 RID: 9433 RVA: 0x002037F2 File Offset: 0x002019F2
+		// Token: 0x060024DA RID: 9434 RVA: 0x00203D5A File Offset: 0x00201F5A
 		public void SwitchSort()
 		{
 			this.spriteRenderer.sortingOrder = 10 - this.spriteRenderer.sortingOrder;
 		}
 
-		// Token: 0x060024DA RID: 9434 RVA: 0x0020380D File Offset: 0x00201A0D
+		// Token: 0x060024DB RID: 9435 RVA: 0x00203D75 File Offset: 0x00201F75
 		public void ObjectActive(bool toActive = true)
 		{
 			if (this.objectToActivate != null)
@@ -38,15 +38,15 @@ namespace MaidDereMinigame
 			}
 		}
 
-		// Token: 0x04004D6A RID: 19818
+		// Token: 0x04004D73 RID: 19827
 		[HideInInspector]
 		public Animator animator;
 
-		// Token: 0x04004D6B RID: 19819
+		// Token: 0x04004D74 RID: 19828
 		[HideInInspector]
 		public SpriteRenderer spriteRenderer;
 
-		// Token: 0x04004D6C RID: 19820
+		// Token: 0x04004D75 RID: 19829
 		public GameObject objectToActivate;
 	}
 }

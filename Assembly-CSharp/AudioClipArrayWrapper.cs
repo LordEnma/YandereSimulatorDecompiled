@@ -5,12 +5,12 @@ using UnityEngine;
 [Serializable]
 public class AudioClipArrayWrapper : ArrayWrapper<AudioClip>
 {
-	// Token: 0x06001F6C RID: 8044 RVA: 0x001C040B File Offset: 0x001BE60B
+	// Token: 0x06001F6D RID: 8045 RVA: 0x001C0887 File Offset: 0x001BEA87
 	public AudioClipArrayWrapper(int size) : base(size)
 	{
 	}
 
-	// Token: 0x06001F6D RID: 8045 RVA: 0x001C0414 File Offset: 0x001BE614
+	// Token: 0x06001F6E RID: 8046 RVA: 0x001C0890 File Offset: 0x001BEA90
 	public AudioClipArrayWrapper(AudioClip[] elements) : base(elements)
 	{
 	}

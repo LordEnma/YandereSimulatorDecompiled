@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F4 RID: 244
 public class BookbagScript : MonoBehaviour
 {
-	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C6C4 File Offset: 0x0005A8C4
+	// Token: 0x06000A5B RID: 2651 RVA: 0x0005C6EC File Offset: 0x0005A8EC
 	private void Start()
 	{
 		this.MyRigidbody.useGravity = false;
@@ -16,7 +16,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A5C RID: 2652 RVA: 0x0005C718 File Offset: 0x0005A918
+	// Token: 0x06000A5C RID: 2652 RVA: 0x0005C740 File Offset: 0x0005A940
 	private void Update()
 	{
 		if (this.Prompt.Yandere.PickUp != null || this.ConcealedPickup != null)
@@ -74,7 +74,7 @@ public class BookbagScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A5D RID: 2653 RVA: 0x0005CA2C File Offset: 0x0005AC2C
+	// Token: 0x06000A5D RID: 2653 RVA: 0x0005CA54 File Offset: 0x0005AC54
 	public void Drop()
 	{
 		this.Worn = false;
@@ -87,7 +87,7 @@ public class BookbagScript : MonoBehaviour
 		base.enabled = true;
 	}
 
-	// Token: 0x06000A5E RID: 2654 RVA: 0x0005CA9C File Offset: 0x0005AC9C
+	// Token: 0x06000A5E RID: 2654 RVA: 0x0005CAC4 File Offset: 0x0005ACC4
 	public void Wear()
 	{
 		this.Worn = true;

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F6 RID: 246
 public class BoundaryScript : MonoBehaviour
 {
-	// Token: 0x06000A63 RID: 2659 RVA: 0x0005CCAC File Offset: 0x0005AEAC
+	// Token: 0x06000A63 RID: 2659 RVA: 0x0005CCD4 File Offset: 0x0005AED4
 	private void Update()
 	{
 		float z = this.Yandere.position.z;

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200028D RID: 653
 public class DoorBoxScript : MonoBehaviour
 {
-	// Token: 0x060013B8 RID: 5048 RVA: 0x000B96F4 File Offset: 0x000B78F4
+	// Token: 0x060013B8 RID: 5048 RVA: 0x000B978C File Offset: 0x000B798C
 	private void Update()
 	{
 		float y = Mathf.Lerp(base.transform.localPosition.y, this.Show ? -530f : -630f, Time.deltaTime * 10f);

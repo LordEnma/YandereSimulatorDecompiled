@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000101 RID: 257
 public class BugScript : MonoBehaviour
 {
-	// Token: 0x06000A93 RID: 2707 RVA: 0x0005F8DB File Offset: 0x0005DADB
+	// Token: 0x06000A93 RID: 2707 RVA: 0x0005F907 File Offset: 0x0005DB07
 	private void Start()
 	{
 		if (GameGlobals.Eighties)
@@ -16,7 +16,7 @@ public class BugScript : MonoBehaviour
 		this.MyRenderer.enabled = false;
 	}
 
-	// Token: 0x06000A94 RID: 2708 RVA: 0x0005F914 File Offset: 0x0005DB14
+	// Token: 0x06000A94 RID: 2708 RVA: 0x0005F940 File Offset: 0x0005DB40
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)
@@ -34,7 +34,7 @@ public class BugScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A95 RID: 2709 RVA: 0x0005FA0B File Offset: 0x0005DC0B
+	// Token: 0x06000A95 RID: 2709 RVA: 0x0005FA37 File Offset: 0x0005DC37
 	public void CheckStatus()
 	{
 		if (this.Placed)

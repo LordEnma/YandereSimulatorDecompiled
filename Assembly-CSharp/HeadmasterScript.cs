@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000310 RID: 784
 public class HeadmasterScript : MonoBehaviour
 {
-	// Token: 0x0600185C RID: 6236 RVA: 0x000E7994 File Offset: 0x000E5B94
+	// Token: 0x0600185C RID: 6236 RVA: 0x000E7B10 File Offset: 0x000E5D10
 	private void Start()
 	{
 		this.MyAnimation["HeadmasterRaiseTazer"].speed = 2f;
@@ -43,7 +43,7 @@ public class HeadmasterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600185D RID: 6237 RVA: 0x000E7B48 File Offset: 0x000E5D48
+	// Token: 0x0600185D RID: 6237 RVA: 0x000E7CC4 File Offset: 0x000E5EC4
 	private void Update()
 	{
 		if (this.Yandere.transform.position.y > base.transform.position.y - 1f && this.Yandere.transform.position.y < base.transform.position.y + 1f && this.Yandere.transform.position.x < 6f && this.Yandere.transform.position.x > -6f)
@@ -226,7 +226,7 @@ public class HeadmasterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600185E RID: 6238 RVA: 0x000E833C File Offset: 0x000E653C
+	// Token: 0x0600185E RID: 6238 RVA: 0x000E84B8 File Offset: 0x000E66B8
 	private void LateUpdate()
 	{
 		if (this.Distance < this.MaxDistance)
@@ -253,7 +253,7 @@ public class HeadmasterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600185F RID: 6239 RVA: 0x000E8490 File Offset: 0x000E6690
+	// Token: 0x0600185F RID: 6239 RVA: 0x000E860C File Offset: 0x000E680C
 	private void AimBodyAtYandere()
 	{
 		this.targetRotation = Quaternion.LookRotation(this.Yandere.transform.position - base.transform.position);
@@ -261,7 +261,7 @@ public class HeadmasterScript : MonoBehaviour
 		this.Chair.localPosition = Vector3.Lerp(this.Chair.localPosition, new Vector3(this.Chair.localPosition.x, this.Chair.localPosition.y, -5.2f), Time.deltaTime * 1f);
 	}
 
-	// Token: 0x06001860 RID: 6240 RVA: 0x000E8544 File Offset: 0x000E6744
+	// Token: 0x06001860 RID: 6240 RVA: 0x000E86C0 File Offset: 0x000E68C0
 	private void AimWeaponAtYandere()
 	{
 		if (!this.Aiming)
@@ -290,7 +290,7 @@ public class HeadmasterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001861 RID: 6241 RVA: 0x000E8614 File Offset: 0x000E6814
+	// Token: 0x06001861 RID: 6241 RVA: 0x000E8790 File Offset: 0x000E6990
 	public void Shoot()
 	{
 		this.StudentManager.YandereDying = true;
@@ -330,7 +330,7 @@ public class HeadmasterScript : MonoBehaviour
 		this.Shooting = true;
 	}
 
-	// Token: 0x06001862 RID: 6242 RVA: 0x000E87B4 File Offset: 0x000E69B4
+	// Token: 0x06001862 RID: 6242 RVA: 0x000E8930 File Offset: 0x000E6B30
 	private void CheckBehavior()
 	{
 		if (this.Yandere.CanMove && !this.Yandere.Egg)
@@ -358,7 +358,7 @@ public class HeadmasterScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001863 RID: 6243 RVA: 0x000E887C File Offset: 0x000E6A7C
+	// Token: 0x06001863 RID: 6243 RVA: 0x000E89F8 File Offset: 0x000E6BF8
 	public void Taze()
 	{
 		if (this.Yandere.CanMove)
@@ -384,73 +384,73 @@ public class HeadmasterScript : MonoBehaviour
 		this.Shooting = false;
 	}
 
-	// Token: 0x04002390 RID: 9104
+	// Token: 0x04002391 RID: 9105
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x04002391 RID: 9105
+	// Token: 0x04002392 RID: 9106
 	public HeartbrokenScript Heartbroken;
 
-	// Token: 0x04002392 RID: 9106
+	// Token: 0x04002393 RID: 9107
 	public YandereScript Yandere;
 
-	// Token: 0x04002393 RID: 9107
+	// Token: 0x04002394 RID: 9108
 	public JukeboxScript Jukebox;
 
-	// Token: 0x04002394 RID: 9108
+	// Token: 0x04002395 RID: 9109
 	public AudioClip[] HeadmasterSpeechClips;
 
-	// Token: 0x04002395 RID: 9109
+	// Token: 0x04002396 RID: 9110
 	public AudioClip[] HeadmasterThreatClips;
 
-	// Token: 0x04002396 RID: 9110
+	// Token: 0x04002397 RID: 9111
 	public AudioClip[] HeadmasterBoxClips;
 
-	// Token: 0x04002397 RID: 9111
+	// Token: 0x04002398 RID: 9112
 	public AudioClip HeadmasterRelaxClip;
 
-	// Token: 0x04002398 RID: 9112
+	// Token: 0x04002399 RID: 9113
 	public AudioClip HeadmasterAttackClip;
 
-	// Token: 0x04002399 RID: 9113
+	// Token: 0x0400239A RID: 9114
 	public AudioClip HeadmasterCrypticClip;
 
-	// Token: 0x0400239A RID: 9114
+	// Token: 0x0400239B RID: 9115
 	public AudioClip HeadmasterShockClip;
 
-	// Token: 0x0400239B RID: 9115
+	// Token: 0x0400239C RID: 9116
 	public AudioClip HeadmasterPatienceClip;
 
-	// Token: 0x0400239C RID: 9116
+	// Token: 0x0400239D RID: 9117
 	public AudioClip HeadmasterCorpseClip;
 
-	// Token: 0x0400239D RID: 9117
+	// Token: 0x0400239E RID: 9118
 	public AudioClip HeadmasterWeaponClip;
 
-	// Token: 0x0400239E RID: 9118
+	// Token: 0x0400239F RID: 9119
 	public AudioClip[] EightiesHeadmasterSpeechClips;
 
-	// Token: 0x0400239F RID: 9119
+	// Token: 0x040023A0 RID: 9120
 	public AudioClip[] EightiesHeadmasterThreatClips;
 
-	// Token: 0x040023A0 RID: 9120
+	// Token: 0x040023A1 RID: 9121
 	public AudioClip[] EightiesHeadmasterBoxClips;
 
-	// Token: 0x040023A1 RID: 9121
+	// Token: 0x040023A2 RID: 9122
 	public AudioClip EightiesHeadmasterCrypticClip;
 
-	// Token: 0x040023A2 RID: 9122
+	// Token: 0x040023A3 RID: 9123
 	public AudioClip EightiesHeadmasterCorpseClip;
 
-	// Token: 0x040023A3 RID: 9123
+	// Token: 0x040023A4 RID: 9124
 	public AudioClip Crumple;
 
-	// Token: 0x040023A4 RID: 9124
+	// Token: 0x040023A5 RID: 9125
 	public AudioClip StandUp;
 
-	// Token: 0x040023A5 RID: 9125
+	// Token: 0x040023A6 RID: 9126
 	public AudioClip SitDown;
 
-	// Token: 0x040023A6 RID: 9126
+	// Token: 0x040023A7 RID: 9127
 	public string[] HeadmasterSpeechText = new string[]
 	{
 		"",
@@ -461,7 +461,7 @@ public class HeadmasterScript : MonoBehaviour
 		"There is nothing for you to achieve here. Just. Get. Out."
 	};
 
-	// Token: 0x040023A7 RID: 9127
+	// Token: 0x040023A8 RID: 9128
 	public string[] HeadmasterThreatText = new string[]
 	{
 		"",
@@ -472,7 +472,7 @@ public class HeadmasterScript : MonoBehaviour
 		"This is your final warning. Get out of here...or else."
 	};
 
-	// Token: 0x040023A8 RID: 9128
+	// Token: 0x040023A9 RID: 9129
 	public string[] HeadmasterBoxText = new string[]
 	{
 		"",
@@ -483,7 +483,7 @@ public class HeadmasterScript : MonoBehaviour
 		"I don't have time for this tomfoolery. Leave at once!"
 	};
 
-	// Token: 0x040023A9 RID: 9129
+	// Token: 0x040023AA RID: 9130
 	public string[] EightiesHeadmasterSpeechText = new string[]
 	{
 		"",
@@ -494,7 +494,7 @@ public class HeadmasterScript : MonoBehaviour
 		"Well, I suppose there's no harm in letting you spend a bit of time here..."
 	};
 
-	// Token: 0x040023AA RID: 9130
+	// Token: 0x040023AB RID: 9131
 	public string[] EightiesHeadmasterThreatText = new string[]
 	{
 		"",
@@ -505,7 +505,7 @@ public class HeadmasterScript : MonoBehaviour
 		"Well, I suppose you're...technically...not breaking any rules..."
 	};
 
-	// Token: 0x040023AB RID: 9131
+	// Token: 0x040023AC RID: 9132
 	public string[] EightiesHeadmasterBoxText = new string[]
 	{
 		"",
@@ -516,165 +516,165 @@ public class HeadmasterScript : MonoBehaviour
 		"Well, I suppose that a small amount of tomfoolery is just...part of youth."
 	};
 
-	// Token: 0x040023AC RID: 9132
+	// Token: 0x040023AD RID: 9133
 	public string HeadmasterRelaxText = "Hmm...a wise decision.";
 
-	// Token: 0x040023AD RID: 9133
+	// Token: 0x040023AE RID: 9134
 	public string HeadmasterAttackText = "You asked for it!";
 
-	// Token: 0x040023AE RID: 9134
+	// Token: 0x040023AF RID: 9135
 	public string HeadmasterCrypticText = "Mr. Saikou...the deal is off.";
 
-	// Token: 0x040023AF RID: 9135
+	// Token: 0x040023B0 RID: 9136
 	public string HeadmasterWeaponText = "How dare you raise a weapon in my office!";
 
-	// Token: 0x040023B0 RID: 9136
+	// Token: 0x040023B1 RID: 9137
 	public string HeadmasterPatienceText = "Enough of this nonsense!";
 
-	// Token: 0x040023B1 RID: 9137
+	// Token: 0x040023B2 RID: 9138
 	public string HeadmasterCorpseText = "You...you murderer!";
 
-	// Token: 0x040023B2 RID: 9138
+	// Token: 0x040023B3 RID: 9139
 	public string EightiesHeadmasterWeaponText = "What are you doing?! Stay back!";
 
-	// Token: 0x040023B3 RID: 9139
+	// Token: 0x040023B4 RID: 9140
 	public string EightiesHeadmasterCrypticText = "Mr. Saikou, you'll never believe what just happened!";
 
-	// Token: 0x040023B4 RID: 9140
+	// Token: 0x040023B5 RID: 9141
 	public string EightiesHeadmasterCorpseText = "You...you killed someone!";
 
-	// Token: 0x040023B5 RID: 9141
+	// Token: 0x040023B6 RID: 9142
 	public UILabel HeadmasterSubtitle;
 
-	// Token: 0x040023B6 RID: 9142
+	// Token: 0x040023B7 RID: 9143
 	public Animation MyAnimation;
 
-	// Token: 0x040023B7 RID: 9143
+	// Token: 0x040023B8 RID: 9144
 	public AudioSource MyAudio;
 
-	// Token: 0x040023B8 RID: 9144
+	// Token: 0x040023B9 RID: 9145
 	public GameObject LightningEffect;
 
-	// Token: 0x040023B9 RID: 9145
+	// Token: 0x040023BA RID: 9146
 	public GameObject Tazer;
 
-	// Token: 0x040023BA RID: 9146
+	// Token: 0x040023BB RID: 9147
 	public Transform TazerEffectTarget;
 
-	// Token: 0x040023BB RID: 9147
+	// Token: 0x040023BC RID: 9148
 	public Transform CardboardBox;
 
-	// Token: 0x040023BC RID: 9148
+	// Token: 0x040023BD RID: 9149
 	public Transform Chair;
 
-	// Token: 0x040023BD RID: 9149
+	// Token: 0x040023BE RID: 9150
 	public Quaternion targetRotation;
 
-	// Token: 0x040023BE RID: 9150
+	// Token: 0x040023BF RID: 9151
 	public float PatienceTimer;
 
-	// Token: 0x040023BF RID: 9151
+	// Token: 0x040023C0 RID: 9152
 	public float ScratchTimer;
 
-	// Token: 0x040023C0 RID: 9152
+	// Token: 0x040023C1 RID: 9153
 	public float SpeechTimer;
 
-	// Token: 0x040023C1 RID: 9153
+	// Token: 0x040023C2 RID: 9154
 	public float ThreatTimer;
 
-	// Token: 0x040023C2 RID: 9154
+	// Token: 0x040023C3 RID: 9155
 	public float MaxDistance = 10f;
 
-	// Token: 0x040023C3 RID: 9155
+	// Token: 0x040023C4 RID: 9156
 	public float MidDistance = 2.8f;
 
-	// Token: 0x040023C4 RID: 9156
+	// Token: 0x040023C5 RID: 9157
 	public float MinDistance = 1.2f;
 
-	// Token: 0x040023C5 RID: 9157
+	// Token: 0x040023C6 RID: 9158
 	public float Distance;
 
-	// Token: 0x040023C6 RID: 9158
+	// Token: 0x040023C7 RID: 9159
 	public int Patience = 10;
 
-	// Token: 0x040023C7 RID: 9159
+	// Token: 0x040023C8 RID: 9160
 	public int ThreatID;
 
-	// Token: 0x040023C8 RID: 9160
+	// Token: 0x040023C9 RID: 9161
 	public int VoiceID;
 
-	// Token: 0x040023C9 RID: 9161
+	// Token: 0x040023CA RID: 9162
 	public int BoxID;
 
-	// Token: 0x040023CA RID: 9162
+	// Token: 0x040023CB RID: 9163
 	public bool PlayedStandSound;
 
-	// Token: 0x040023CB RID: 9163
+	// Token: 0x040023CC RID: 9164
 	public bool PlayedSitSound;
 
-	// Token: 0x040023CC RID: 9164
+	// Token: 0x040023CD RID: 9165
 	public bool LostPatience;
 
-	// Token: 0x040023CD RID: 9165
+	// Token: 0x040023CE RID: 9166
 	public bool Threatened;
 
-	// Token: 0x040023CE RID: 9166
+	// Token: 0x040023CF RID: 9167
 	public bool Eighties;
 
-	// Token: 0x040023CF RID: 9167
+	// Token: 0x040023D0 RID: 9168
 	public bool Relaxing;
 
-	// Token: 0x040023D0 RID: 9168
+	// Token: 0x040023D1 RID: 9169
 	public bool Shooting;
 
-	// Token: 0x040023D1 RID: 9169
+	// Token: 0x040023D2 RID: 9170
 	public bool Aiming;
 
-	// Token: 0x040023D2 RID: 9170
+	// Token: 0x040023D3 RID: 9171
 	public string IdleAnim;
 
-	// Token: 0x040023D3 RID: 9171
+	// Token: 0x040023D4 RID: 9172
 	public RiggedAccessoryAttacher EightiesAttacher;
 
-	// Token: 0x040023D4 RID: 9172
+	// Token: 0x040023D5 RID: 9173
 	public GameObject EightiesPaper;
 
-	// Token: 0x040023D5 RID: 9173
+	// Token: 0x040023D6 RID: 9174
 	public GameObject Trashcan;
 
-	// Token: 0x040023D6 RID: 9174
+	// Token: 0x040023D7 RID: 9175
 	public GameObject Laptop;
 
-	// Token: 0x040023D7 RID: 9175
+	// Token: 0x040023D8 RID: 9176
 	public GameObject Pen;
 
-	// Token: 0x040023D8 RID: 9176
+	// Token: 0x040023D9 RID: 9177
 	public GameObject[] OriginalMesh;
 
-	// Token: 0x040023D9 RID: 9177
+	// Token: 0x040023DA RID: 9178
 	public Material Transparency;
 
-	// Token: 0x040023DA RID: 9178
+	// Token: 0x040023DB RID: 9179
 	public bool LookAtPlayer;
 
-	// Token: 0x040023DB RID: 9179
+	// Token: 0x040023DC RID: 9180
 	public bool Initialized;
 
-	// Token: 0x040023DC RID: 9180
+	// Token: 0x040023DD RID: 9181
 	public Vector3 LookAtTarget;
 
-	// Token: 0x040023DD RID: 9181
+	// Token: 0x040023DE RID: 9182
 	public Transform Default;
 
-	// Token: 0x040023DE RID: 9182
+	// Token: 0x040023DF RID: 9183
 	public Transform Head;
 
-	// Token: 0x040023DF RID: 9183
+	// Token: 0x040023E0 RID: 9184
 	public float LipTimer;
 
-	// Token: 0x040023E0 RID: 9184
+	// Token: 0x040023E1 RID: 9185
 	public float JawRot;
 
-	// Token: 0x040023E1 RID: 9185
+	// Token: 0x040023E2 RID: 9186
 	public Transform Jaw;
 }

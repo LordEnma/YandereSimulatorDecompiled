@@ -146,34 +146,34 @@ public class InvStat
 	// Token: 0x020005CC RID: 1484
 	public enum Identifier
 	{
-		// Token: 0x04004E0F RID: 19983
-		Strength,
-		// Token: 0x04004E10 RID: 19984
-		Constitution,
-		// Token: 0x04004E11 RID: 19985
-		Agility,
-		// Token: 0x04004E12 RID: 19986
-		Intelligence,
-		// Token: 0x04004E13 RID: 19987
-		Damage,
-		// Token: 0x04004E14 RID: 19988
-		Crit,
-		// Token: 0x04004E15 RID: 19989
-		Armor,
-		// Token: 0x04004E16 RID: 19990
-		Health,
-		// Token: 0x04004E17 RID: 19991
-		Mana,
 		// Token: 0x04004E18 RID: 19992
+		Strength,
+		// Token: 0x04004E19 RID: 19993
+		Constitution,
+		// Token: 0x04004E1A RID: 19994
+		Agility,
+		// Token: 0x04004E1B RID: 19995
+		Intelligence,
+		// Token: 0x04004E1C RID: 19996
+		Damage,
+		// Token: 0x04004E1D RID: 19997
+		Crit,
+		// Token: 0x04004E1E RID: 19998
+		Armor,
+		// Token: 0x04004E1F RID: 19999
+		Health,
+		// Token: 0x04004E20 RID: 20000
+		Mana,
+		// Token: 0x04004E21 RID: 20001
 		Other
 	}
 
 	// Token: 0x020005CD RID: 1485
 	public enum Modifier
 	{
-		// Token: 0x04004E1A RID: 19994
+		// Token: 0x04004E23 RID: 20003
 		Added,
-		// Token: 0x04004E1B RID: 19995
+		// Token: 0x04004E24 RID: 20004
 		Percent
 	}
 }

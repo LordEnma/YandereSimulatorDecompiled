@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002D1 RID: 721
 public class FoldedUniformScript : MonoBehaviour
 {
-	// Token: 0x060014C0 RID: 5312 RVA: 0x000CC760 File Offset: 0x000CA960
+	// Token: 0x060014C0 RID: 5312 RVA: 0x000CC7F8 File Offset: 0x000CA9F8
 	private void Start()
 	{
 		for (int i = 1; i < this.Uniforms.Length; i++)
@@ -66,7 +66,7 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014C1 RID: 5313 RVA: 0x000CC96C File Offset: 0x000CAB6C
+	// Token: 0x060014C1 RID: 5313 RVA: 0x000CCA04 File Offset: 0x000CAC04
 	private void Update()
 	{
 		if (this.Clean)
@@ -107,7 +107,7 @@ public class FoldedUniformScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014C2 RID: 5314 RVA: 0x000CCB44 File Offset: 0x000CAD44
+	// Token: 0x060014C2 RID: 5314 RVA: 0x000CCBDC File Offset: 0x000CADDC
 	public void CleanUp()
 	{
 		Debug.Log("A folded uniform is firing the ''CleanUp()'' function.");

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003E7 RID: 999
 public class OsanaMondayLunchEventScript : MonoBehaviour
 {
-	// Token: 0x06001BD5 RID: 7125 RVA: 0x0013FE80 File Offset: 0x0013E080
+	// Token: 0x06001BD6 RID: 7126 RVA: 0x0014013C File Offset: 0x0013E33C
 	private void Start()
 	{
 		this.OriginalPosition = this.Epicenter.position;
@@ -16,7 +16,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BD6 RID: 7126 RVA: 0x0013FEEC File Offset: 0x0013E0EC
+	// Token: 0x06001BD7 RID: 7127 RVA: 0x001401A8 File Offset: 0x0013E3A8
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -340,7 +340,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BD7 RID: 7127 RVA: 0x00141388 File Offset: 0x0013F588
+	// Token: 0x06001BD8 RID: 7128 RVA: 0x00141644 File Offset: 0x0013F844
 	private void SettleFriend()
 	{
 		this.Friend.MoveTowardsTarget(this.Location[3].position);
@@ -350,7 +350,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BD8 RID: 7128 RVA: 0x00141414 File Offset: 0x0013F614
+	// Token: 0x06001BD9 RID: 7129 RVA: 0x001416D0 File Offset: 0x0013F8D0
 	private void EndEvent()
 	{
 		if (this.VoiceClip != null)
@@ -437,7 +437,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		this.DisableBentos();
 	}
 
-	// Token: 0x06001BD9 RID: 7129 RVA: 0x0014185C File Offset: 0x0013FA5C
+	// Token: 0x06001BDA RID: 7130 RVA: 0x00141B18 File Offset: 0x0013FD18
 	private void DisableBentos()
 	{
 		this.Bento[1].Prompt.Hide();
@@ -450,7 +450,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		this.Bento[2].enabled = false;
 	}
 
-	// Token: 0x06001BDA RID: 7130 RVA: 0x001418F8 File Offset: 0x0013FAF8
+	// Token: 0x06001BDB RID: 7131 RVA: 0x00141BB4 File Offset: 0x0013FDB4
 	private void MakeRaibaruGoHide()
 	{
 		if (this.Friend != null && this.Friend.DistanceToDestination > 1f)
@@ -466,105 +466,105 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400304B RID: 12363
+	// Token: 0x04003053 RID: 12371
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x0400304C RID: 12364
+	// Token: 0x04003054 RID: 12372
 	public OsanaClubEventScript ClubEvent;
 
-	// Token: 0x0400304D RID: 12365
+	// Token: 0x04003055 RID: 12373
 	public JukeboxScript Jukebox;
 
-	// Token: 0x0400304E RID: 12366
+	// Token: 0x04003056 RID: 12374
 	public UILabel EventSubtitle;
 
-	// Token: 0x0400304F RID: 12367
+	// Token: 0x04003057 RID: 12375
 	public YandereScript Yandere;
 
-	// Token: 0x04003050 RID: 12368
+	// Token: 0x04003058 RID: 12376
 	public ClockScript Clock;
 
-	// Token: 0x04003051 RID: 12369
+	// Token: 0x04003059 RID: 12377
 	public SpyScript Spy;
 
-	// Token: 0x04003052 RID: 12370
+	// Token: 0x0400305A RID: 12378
 	public StudentScript Senpai;
 
-	// Token: 0x04003053 RID: 12371
+	// Token: 0x0400305B RID: 12379
 	public StudentScript Friend;
 
-	// Token: 0x04003054 RID: 12372
+	// Token: 0x0400305C RID: 12380
 	public StudentScript Rival;
 
-	// Token: 0x04003055 RID: 12373
+	// Token: 0x0400305D RID: 12381
 	public BentoScript[] Bento;
 
-	// Token: 0x04003056 RID: 12374
+	// Token: 0x0400305E RID: 12382
 	public string[] SabotagedSpeechText;
 
-	// Token: 0x04003057 RID: 12375
+	// Token: 0x0400305F RID: 12383
 	public string[] SpeechText;
 
-	// Token: 0x04003058 RID: 12376
+	// Token: 0x04003060 RID: 12384
 	public float[] SabotagedSpeechTime;
 
-	// Token: 0x04003059 RID: 12377
+	// Token: 0x04003061 RID: 12385
 	public float[] SpeechTime;
 
-	// Token: 0x0400305A RID: 12378
+	// Token: 0x04003062 RID: 12386
 	public AudioClip[] SpeechClip;
 
-	// Token: 0x0400305B RID: 12379
+	// Token: 0x04003063 RID: 12387
 	public Transform[] Location;
 
-	// Token: 0x0400305C RID: 12380
+	// Token: 0x04003064 RID: 12388
 	public Transform Epicenter;
 
-	// Token: 0x0400305D RID: 12381
+	// Token: 0x04003065 RID: 12389
 	public GameObject AlarmDisc;
 
-	// Token: 0x0400305E RID: 12382
+	// Token: 0x04003066 RID: 12390
 	public GameObject VoiceClip;
 
-	// Token: 0x0400305F RID: 12383
+	// Token: 0x04003067 RID: 12391
 	public Vector3 OriginalPosition;
 
-	// Token: 0x04003060 RID: 12384
+	// Token: 0x04003068 RID: 12392
 	public bool Sabotaged;
 
-	// Token: 0x04003061 RID: 12385
+	// Token: 0x04003069 RID: 12393
 	public float Distance;
 
-	// Token: 0x04003062 RID: 12386
+	// Token: 0x0400306A RID: 12394
 	public float Scale;
 
-	// Token: 0x04003063 RID: 12387
+	// Token: 0x0400306B RID: 12395
 	public float Timer;
 
-	// Token: 0x04003064 RID: 12388
+	// Token: 0x0400306C RID: 12396
 	public float RotationX;
 
-	// Token: 0x04003065 RID: 12389
+	// Token: 0x0400306D RID: 12397
 	public float RotationY;
 
-	// Token: 0x04003066 RID: 12390
+	// Token: 0x0400306E RID: 12398
 	public float RotationZ;
 
-	// Token: 0x04003067 RID: 12391
+	// Token: 0x0400306F RID: 12399
 	public int SpeechPhase = 1;
 
-	// Token: 0x04003068 RID: 12392
+	// Token: 0x04003070 RID: 12400
 	public int DebugPoison;
 
-	// Token: 0x04003069 RID: 12393
+	// Token: 0x04003071 RID: 12401
 	public int FriendID = 6;
 
-	// Token: 0x0400306A RID: 12394
+	// Token: 0x04003072 RID: 12402
 	public int RivalID = 11;
 
-	// Token: 0x0400306B RID: 12395
+	// Token: 0x04003073 RID: 12403
 	public int Phase;
 
-	// Token: 0x0400306C RID: 12396
+	// Token: 0x04003074 RID: 12404
 	public int Frame;
 }

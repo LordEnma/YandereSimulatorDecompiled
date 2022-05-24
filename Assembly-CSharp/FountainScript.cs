@@ -4,14 +4,14 @@ using UnityEngine;
 // Token: 0x020002D7 RID: 727
 public class FountainScript : MonoBehaviour
 {
-	// Token: 0x060014D0 RID: 5328 RVA: 0x000CD4BF File Offset: 0x000CB6BF
+	// Token: 0x060014D0 RID: 5328 RVA: 0x000CD557 File Offset: 0x000CB757
 	private void Start()
 	{
 		this.SpraySFX.volume = 0.1f;
 		this.DropsSFX.volume = 0.1f;
 	}
 
-	// Token: 0x060014D1 RID: 5329 RVA: 0x000CD4E4 File Offset: 0x000CB6E4
+	// Token: 0x060014D1 RID: 5329 RVA: 0x000CD57C File Offset: 0x000CB77C
 	private void Update()
 	{
 		if (this.StartTimer < 1f)

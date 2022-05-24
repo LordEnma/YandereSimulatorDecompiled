@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003C2 RID: 962
 public class PromoCameraScript : MonoBehaviour
 {
-	// Token: 0x06001B31 RID: 6961 RVA: 0x0012F820 File Offset: 0x0012DA20
+	// Token: 0x06001B32 RID: 6962 RVA: 0x0012FA9C File Offset: 0x0012DC9C
 	private void Start()
 	{
 		base.transform.eulerAngles = this.StartRotations[this.ID];
@@ -15,7 +15,7 @@ public class PromoCameraScript : MonoBehaviour
 		this.Rope.material.color = new Color(this.Rope.material.color.r, this.Rope.material.color.g, this.Rope.material.color.b, 0f);
 	}
 
-	// Token: 0x06001B32 RID: 6962 RVA: 0x0012F984 File Offset: 0x0012DB84
+	// Token: 0x06001B33 RID: 6963 RVA: 0x0012FC00 File Offset: 0x0012DE00
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Space) && this.ID < 3)
@@ -71,7 +71,7 @@ public class PromoCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001B33 RID: 6963 RVA: 0x0012FC94 File Offset: 0x0012DE94
+	// Token: 0x06001B34 RID: 6964 RVA: 0x0012FF10 File Offset: 0x0012E110
 	private void UpdatePosition()
 	{
 		base.transform.position = this.StartPositions[this.ID];
@@ -88,33 +88,33 @@ public class PromoCameraScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04002E46 RID: 11846
+	// Token: 0x04002E4E RID: 11854
 	public PortraitChanScript PromoCharacter;
 
-	// Token: 0x04002E47 RID: 11847
+	// Token: 0x04002E4F RID: 11855
 	public Vector3[] StartPositions;
 
-	// Token: 0x04002E48 RID: 11848
+	// Token: 0x04002E50 RID: 11856
 	public Vector3[] StartRotations;
 
-	// Token: 0x04002E49 RID: 11849
+	// Token: 0x04002E51 RID: 11857
 	public Renderer PromoBlack;
 
-	// Token: 0x04002E4A RID: 11850
+	// Token: 0x04002E52 RID: 11858
 	public Renderer Noose;
 
-	// Token: 0x04002E4B RID: 11851
+	// Token: 0x04002E53 RID: 11859
 	public Renderer Rope;
 
-	// Token: 0x04002E4C RID: 11852
+	// Token: 0x04002E54 RID: 11860
 	public Camera MyCamera;
 
-	// Token: 0x04002E4D RID: 11853
+	// Token: 0x04002E55 RID: 11861
 	public Transform Drills;
 
-	// Token: 0x04002E4E RID: 11854
+	// Token: 0x04002E56 RID: 11862
 	public float Timer;
 
-	// Token: 0x04002E4F RID: 11855
+	// Token: 0x04002E57 RID: 11863
 	public int ID;
 }

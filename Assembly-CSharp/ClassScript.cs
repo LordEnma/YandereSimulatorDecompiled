@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x0200024A RID: 586
 public class ClassScript : MonoBehaviour
 {
-	// Token: 0x0600125B RID: 4699 RVA: 0x0008D954 File Offset: 0x0008BB54
+	// Token: 0x0600125B RID: 4699 RVA: 0x0008D980 File Offset: 0x0008BB80
 	private void Start()
 	{
 		if (this.Portal == null || !this.Portal.StudentManager.ReturnedFromSave)
@@ -35,7 +35,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600125C RID: 4700 RVA: 0x0008DA80 File Offset: 0x0008BC80
+	// Token: 0x0600125C RID: 4700 RVA: 0x0008DAAC File Offset: 0x0008BCAC
 	public void GetStats()
 	{
 		if (!this.Initialized)
@@ -102,7 +102,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600125D RID: 4701 RVA: 0x0008DC10 File Offset: 0x0008BE10
+	// Token: 0x0600125D RID: 4701 RVA: 0x0008DC3C File Offset: 0x0008BE3C
 	private void Update()
 	{
 		if (this.Show)
@@ -232,13 +232,17 @@ public class ClassScript : MonoBehaviour
 								base.gameObject.SetActive(false);
 								return;
 							}
+							Debug.Log("We don't need to go to the counselor's office.");
 							if (!this.Portal.FadeOut)
 							{
+								Debug.Log("Instructing the portal to proceed with its code.");
 								this.Portal.Yandere.PhysicalGrade = this.PhysicalGrade;
-								this.Portal.ClassDarkness.alpha = 1f;
 								this.Portal.Yandere.CameraEffects.UpdateDOF(this.Portal.OriginalDOF);
-								this.PromptBar.Show = false;
+								this.Portal.ClassDarkness.alpha = 1f;
+								this.Portal.Transition = true;
+								this.Portal.FadeOut = false;
 								this.Portal.Proceed = true;
+								this.PromptBar.Show = false;
 								base.gameObject.SetActive(false);
 								return;
 							}
@@ -290,7 +294,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600125E RID: 4702 RVA: 0x0008E35C File Offset: 0x0008C55C
+	// Token: 0x0600125E RID: 4702 RVA: 0x0008E3B4 File Offset: 0x0008C5B4
 	private void UpdateSubjectLabels()
 	{
 		for (int i = 1; i < 6; i++)
@@ -300,7 +304,7 @@ public class ClassScript : MonoBehaviour
 		this.SubjectLabels[this.Selected].color = new Color(1f, 1f, 1f, 1f);
 	}
 
-	// Token: 0x0600125F RID: 4703 RVA: 0x0008E3C8 File Offset: 0x0008C5C8
+	// Token: 0x0600125F RID: 4703 RVA: 0x0008E420 File Offset: 0x0008C620
 	public void UpdateLabel()
 	{
 		this.StudyPointsLabel.text = "STUDY POINTS: " + this.StudyPoints.ToString();
@@ -308,7 +312,7 @@ public class ClassScript : MonoBehaviour
 		this.PromptBar.UpdateButtons();
 	}
 
-	// Token: 0x06001260 RID: 4704 RVA: 0x0008E418 File Offset: 0x0008C618
+	// Token: 0x06001260 RID: 4704 RVA: 0x0008E470 File Offset: 0x0008C670
 	private void UpdateBars()
 	{
 		for (int i = 1; i < 6; i++)
@@ -393,7 +397,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001261 RID: 4705 RVA: 0x0008E890 File Offset: 0x0008CA90
+	// Token: 0x06001261 RID: 4705 RVA: 0x0008E8E8 File Offset: 0x0008CAE8
 	private void CheckForGradeUp()
 	{
 		if (this.Biology >= 20 && this.BiologyGrade < 1)
@@ -574,7 +578,7 @@ public class ClassScript : MonoBehaviour
 		this.Portal.Yandere.UpdateNumbness();
 	}
 
-	// Token: 0x06001262 RID: 4706 RVA: 0x0008EDB8 File Offset: 0x0008CFB8
+	// Token: 0x06001262 RID: 4706 RVA: 0x0008EE10 File Offset: 0x0008D010
 	private void GivePoints()
 	{
 		this.BiologyGrade = 0;
@@ -595,7 +599,7 @@ public class ClassScript : MonoBehaviour
 		this.UpdateBars();
 	}
 
-	// Token: 0x06001263 RID: 4707 RVA: 0x0008EE5C File Offset: 0x0008D05C
+	// Token: 0x06001263 RID: 4707 RVA: 0x0008EEB4 File Offset: 0x0008D0B4
 	private void MaxPhysical()
 	{
 		this.PhysicalGrade = 0;
@@ -604,7 +608,7 @@ public class ClassScript : MonoBehaviour
 		this.UpdateBars();
 	}
 
-	// Token: 0x06001264 RID: 4708 RVA: 0x0008EE84 File Offset: 0x0008D084
+	// Token: 0x06001264 RID: 4708 RVA: 0x0008EEDC File Offset: 0x0008D0DC
 	private void AddStudyPoints()
 	{
 		if (this.StudyPoints > 0 && this.Subject[this.Selected] + this.SubjectTemp[this.Selected] < 100)
@@ -616,7 +620,7 @@ public class ClassScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001265 RID: 4709 RVA: 0x0008EEEC File Offset: 0x0008D0EC
+	// Token: 0x06001265 RID: 4709 RVA: 0x0008EF44 File Offset: 0x0008D144
 	private void SubtractStudyPoints()
 	{
 		if (this.SubjectTemp[this.Selected] > 0)

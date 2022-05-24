@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200027F RID: 639
 public class DemonScript : MonoBehaviour
 {
-	// Token: 0x06001385 RID: 4997 RVA: 0x000B3ECC File Offset: 0x000B20CC
+	// Token: 0x06001385 RID: 4997 RVA: 0x000B3F64 File Offset: 0x000B2164
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

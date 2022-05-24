@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000102 RID: 258
 public class BuildingDestructionScript : MonoBehaviour
 {
-	// Token: 0x06000A97 RID: 2711 RVA: 0x0005FA48 File Offset: 0x0005DC48
+	// Token: 0x06000A97 RID: 2711 RVA: 0x0005FA74 File Offset: 0x0005DC74
 	private void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Space))

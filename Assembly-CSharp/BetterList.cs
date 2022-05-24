@@ -245,6 +245,6 @@ public class BetterList<T>
 	public int size;
 
 	// Token: 0x020005F0 RID: 1520
-	// (Invoke) Token: 0x06002585 RID: 9605
+	// (Invoke) Token: 0x06002586 RID: 9606
 	public delegate int CompareFunc(T left, T right);
 }

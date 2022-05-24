@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020003EC RID: 1004
 public class OsanaWednesdayLunchEventScript : MonoBehaviour
 {
-	// Token: 0x06001BF1 RID: 7153 RVA: 0x00145AE8 File Offset: 0x00143CE8
+	// Token: 0x06001BF2 RID: 7154 RVA: 0x00145DA4 File Offset: 0x00143FA4
 	private void Start()
 	{
 		this.EventSubtitle.transform.localScale = Vector3.zero;
@@ -14,7 +14,7 @@ public class OsanaWednesdayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BF2 RID: 7154 RVA: 0x00145B1C File Offset: 0x00143D1C
+	// Token: 0x06001BF3 RID: 7155 RVA: 0x00145DD8 File Offset: 0x00143FD8
 	private void Update()
 	{
 		if (this.Phase == 0)
@@ -125,7 +125,7 @@ public class OsanaWednesdayLunchEventScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001BF3 RID: 7155 RVA: 0x001460E4 File Offset: 0x001442E4
+	// Token: 0x06001BF4 RID: 7156 RVA: 0x001463A0 File Offset: 0x001445A0
 	private void EndEvent()
 	{
 		Debug.Log("Osana's Wednesday lunchtime event has ended.");
@@ -155,60 +155,60 @@ public class OsanaWednesdayLunchEventScript : MonoBehaviour
 		base.enabled = false;
 	}
 
-	// Token: 0x040030EC RID: 12524
+	// Token: 0x040030F4 RID: 12532
 	public StudentManagerScript StudentManager;
 
-	// Token: 0x040030ED RID: 12525
+	// Token: 0x040030F5 RID: 12533
 	public JukeboxScript Jukebox;
 
-	// Token: 0x040030EE RID: 12526
+	// Token: 0x040030F6 RID: 12534
 	public UILabel EventSubtitle;
 
-	// Token: 0x040030EF RID: 12527
+	// Token: 0x040030F7 RID: 12535
 	public YandereScript Yandere;
 
-	// Token: 0x040030F0 RID: 12528
+	// Token: 0x040030F8 RID: 12536
 	public ClockScript Clock;
 
-	// Token: 0x040030F1 RID: 12529
+	// Token: 0x040030F9 RID: 12537
 	public StudentScript Rival;
 
-	// Token: 0x040030F2 RID: 12530
+	// Token: 0x040030FA RID: 12538
 	public Transform Location;
 
-	// Token: 0x040030F3 RID: 12531
+	// Token: 0x040030FB RID: 12539
 	public AudioClip SpeechClip;
 
-	// Token: 0x040030F4 RID: 12532
+	// Token: 0x040030FC RID: 12540
 	public string SpeechText;
 
-	// Token: 0x040030F5 RID: 12533
+	// Token: 0x040030FD RID: 12541
 	public string EventAnim;
 
-	// Token: 0x040030F6 RID: 12534
+	// Token: 0x040030FE RID: 12542
 	public GameObject AlarmDisc;
 
-	// Token: 0x040030F7 RID: 12535
+	// Token: 0x040030FF RID: 12543
 	public GameObject VoiceClip;
 
-	// Token: 0x040030F8 RID: 12536
+	// Token: 0x04003100 RID: 12544
 	public float Distance;
 
-	// Token: 0x040030F9 RID: 12537
+	// Token: 0x04003101 RID: 12545
 	public float Scale;
 
-	// Token: 0x040030FA RID: 12538
+	// Token: 0x04003102 RID: 12546
 	public DayOfWeek EventDay;
 
-	// Token: 0x040030FB RID: 12539
+	// Token: 0x04003103 RID: 12547
 	public int StartPeriod;
 
-	// Token: 0x040030FC RID: 12540
+	// Token: 0x04003104 RID: 12548
 	public int RivalID = 11;
 
-	// Token: 0x040030FD RID: 12541
+	// Token: 0x04003105 RID: 12549
 	public int Phase;
 
-	// Token: 0x040030FE RID: 12542
+	// Token: 0x04003106 RID: 12550
 	public int Frame;
 }

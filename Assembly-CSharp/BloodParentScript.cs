@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000E9 RID: 233
 public class BloodParentScript : MonoBehaviour
 {
-	// Token: 0x06000A37 RID: 2615 RVA: 0x0005AD24 File Offset: 0x00058F24
+	// Token: 0x06000A37 RID: 2615 RVA: 0x0005AD4C File Offset: 0x00058F4C
 	public void RecordAllBlood()
 	{
 		this.PoolID = 0;
@@ -35,7 +35,7 @@ public class BloodParentScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A38 RID: 2616 RVA: 0x0005AE40 File Offset: 0x00059040
+	// Token: 0x06000A38 RID: 2616 RVA: 0x0005AE68 File Offset: 0x00059068
 	public void RestoreAllBlood()
 	{
 		while (this.PoolID > 0)

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002DE RID: 734
 public class GateScript : MonoBehaviour
 {
-	// Token: 0x060014EC RID: 5356 RVA: 0x000CF12C File Offset: 0x000CD32C
+	// Token: 0x060014EC RID: 5356 RVA: 0x000CF1C4 File Offset: 0x000CD3C4
 	private void Update()
 	{
 		if (!this.ManuallyAdjusted)
@@ -111,7 +111,7 @@ public class GateScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014ED RID: 5357 RVA: 0x000CF5F0 File Offset: 0x000CD7F0
+	// Token: 0x060014ED RID: 5357 RVA: 0x000CF688 File Offset: 0x000CD888
 	public void PlayAudio()
 	{
 		this.RightGateAudio.clip = this.Start;

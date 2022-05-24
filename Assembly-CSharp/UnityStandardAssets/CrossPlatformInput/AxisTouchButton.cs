@@ -7,7 +7,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 	// Token: 0x02000543 RID: 1347
 	public class AxisTouchButton : MonoBehaviour, IPointerDownHandler, IEventSystemHandler, IPointerUpHandler
 	{
-		// Token: 0x06002251 RID: 8785 RVA: 0x001F5A40 File Offset: 0x001F3C40
+		// Token: 0x06002252 RID: 8786 RVA: 0x001F5FA8 File Offset: 0x001F41A8
 		private void OnEnable()
 		{
 			if (!CrossPlatformInputManager.AxisExists(this.axisName))
@@ -22,7 +22,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			this.FindPairedButton();
 		}
 
-		// Token: 0x06002252 RID: 8786 RVA: 0x001F5A90 File Offset: 0x001F3C90
+		// Token: 0x06002253 RID: 8787 RVA: 0x001F5FF8 File Offset: 0x001F41F8
 		private void FindPairedButton()
 		{
 			AxisTouchButton[] array = UnityEngine.Object.FindObjectsOfType(typeof(AxisTouchButton)) as AxisTouchButton[];
@@ -38,13 +38,13 @@ namespace UnityStandardAssets.CrossPlatformInput
 			}
 		}
 
-		// Token: 0x06002253 RID: 8787 RVA: 0x001F5AEC File Offset: 0x001F3CEC
+		// Token: 0x06002254 RID: 8788 RVA: 0x001F6054 File Offset: 0x001F4254
 		private void OnDisable()
 		{
 			this.m_Axis.Remove();
 		}
 
-		// Token: 0x06002254 RID: 8788 RVA: 0x001F5AFC File Offset: 0x001F3CFC
+		// Token: 0x06002255 RID: 8789 RVA: 0x001F6064 File Offset: 0x001F4264
 		public void OnPointerDown(PointerEventData data)
 		{
 			if (this.m_PairedWith == null)
@@ -54,28 +54,28 @@ namespace UnityStandardAssets.CrossPlatformInput
 			this.m_Axis.Update(Mathf.MoveTowards(this.m_Axis.GetValue, this.axisValue, this.responseSpeed * Time.deltaTime));
 		}
 
-		// Token: 0x06002255 RID: 8789 RVA: 0x001F5B4A File Offset: 0x001F3D4A
+		// Token: 0x06002256 RID: 8790 RVA: 0x001F60B2 File Offset: 0x001F42B2
 		public void OnPointerUp(PointerEventData data)
 		{
 			this.m_Axis.Update(Mathf.MoveTowards(this.m_Axis.GetValue, 0f, this.responseSpeed * Time.deltaTime));
 		}
 
-		// Token: 0x04004B2F RID: 19247
+		// Token: 0x04004B38 RID: 19256
 		public string axisName = "Horizontal";
 
-		// Token: 0x04004B30 RID: 19248
+		// Token: 0x04004B39 RID: 19257
 		public float axisValue = 1f;
 
-		// Token: 0x04004B31 RID: 19249
+		// Token: 0x04004B3A RID: 19258
 		public float responseSpeed = 3f;
 
-		// Token: 0x04004B32 RID: 19250
+		// Token: 0x04004B3B RID: 19259
 		public float returnToCentreSpeed = 3f;
 
-		// Token: 0x04004B33 RID: 19251
+		// Token: 0x04004B3C RID: 19260
 		private AxisTouchButton m_PairedWith;
 
-		// Token: 0x04004B34 RID: 19252
+		// Token: 0x04004B3D RID: 19261
 		private CrossPlatformInputManager.VirtualAxis m_Axis;
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002CB RID: 715
 public class FanCoverScript : MonoBehaviour
 {
-	// Token: 0x060014AF RID: 5295 RVA: 0x000CB3C8 File Offset: 0x000C95C8
+	// Token: 0x060014AF RID: 5295 RVA: 0x000CB460 File Offset: 0x000C9660
 	private void Start()
 	{
 		if (this.StudentManager.Eighties || this.StudentManager.Students[this.RivalID] == null)
@@ -17,7 +17,7 @@ public class FanCoverScript : MonoBehaviour
 		this.Rival = this.StudentManager.Students[this.RivalID];
 	}
 
-	// Token: 0x060014B0 RID: 5296 RVA: 0x000CB434 File Offset: 0x000C9634
+	// Token: 0x060014B0 RID: 5296 RVA: 0x000CB4CC File Offset: 0x000C96CC
 	private void Update()
 	{
 		if (Vector3.Distance(base.transform.position, this.Yandere.transform.position) < 2f)

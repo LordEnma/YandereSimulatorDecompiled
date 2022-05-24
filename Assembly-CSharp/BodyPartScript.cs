@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000F1 RID: 241
 public class BodyPartScript : MonoBehaviour
 {
-	// Token: 0x06000A52 RID: 2642 RVA: 0x0005C2A4 File Offset: 0x0005A4A4
+	// Token: 0x06000A52 RID: 2642 RVA: 0x0005C2CC File Offset: 0x0005A4CC
 	private void Update()
 	{
 		if (this.Prompt != null)

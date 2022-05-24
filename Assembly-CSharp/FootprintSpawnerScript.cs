@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002D5 RID: 725
 public class FootprintSpawnerScript : MonoBehaviour
 {
-	// Token: 0x060014CA RID: 5322 RVA: 0x000CCDE4 File Offset: 0x000CAFE4
+	// Token: 0x060014CA RID: 5322 RVA: 0x000CCE7C File Offset: 0x000CB07C
 	private void Start()
 	{
 		if (this.MyAudio == null)
@@ -20,7 +20,7 @@ public class FootprintSpawnerScript : MonoBehaviour
 		this.SWStairs = this.Yandere.StudentManager.SWStairs;
 	}
 
-	// Token: 0x060014CB RID: 5323 RVA: 0x000CCEA8 File Offset: 0x000CB0A8
+	// Token: 0x060014CB RID: 5323 RVA: 0x000CCF40 File Offset: 0x000CB140
 	private void Update()
 	{
 		if (!this.FootUp)

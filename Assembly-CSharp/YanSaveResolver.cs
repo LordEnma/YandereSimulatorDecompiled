@@ -9,7 +9,7 @@ using UnityEngine;
 // Token: 0x0200051E RID: 1310
 internal class YanSaveResolver : DefaultContractResolver
 {
-	// Token: 0x060021A3 RID: 8611 RVA: 0x001F17EC File Offset: 0x001EF9EC
+	// Token: 0x060021A4 RID: 8612 RVA: 0x001F1D54 File Offset: 0x001EFF54
 	protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
 	{
 		IList<JsonProperty> list = base.CreateProperties(type, memberSerialization);

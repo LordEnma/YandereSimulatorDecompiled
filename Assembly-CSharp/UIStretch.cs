@@ -284,19 +284,19 @@ public class UIStretch : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Style
 	{
-		// Token: 0x04004F96 RID: 20374
+		// Token: 0x04004F9F RID: 20383
 		None,
-		// Token: 0x04004F97 RID: 20375
+		// Token: 0x04004FA0 RID: 20384
 		Horizontal,
-		// Token: 0x04004F98 RID: 20376
+		// Token: 0x04004FA1 RID: 20385
 		Vertical,
-		// Token: 0x04004F99 RID: 20377
+		// Token: 0x04004FA2 RID: 20386
 		Both,
-		// Token: 0x04004F9A RID: 20378
+		// Token: 0x04004FA3 RID: 20387
 		BasedOnHeight,
-		// Token: 0x04004F9B RID: 20379
+		// Token: 0x04004FA4 RID: 20388
 		FillKeepingRatio,
-		// Token: 0x04004F9C RID: 20380
+		// Token: 0x04004FA5 RID: 20389
 		FitInternalKeepingRatio
 	}
 }

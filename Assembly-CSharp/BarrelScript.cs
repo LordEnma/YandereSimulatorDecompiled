@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020000DD RID: 221
 public class BarrelScript : MonoBehaviour
 {
-	// Token: 0x06000A0F RID: 2575 RVA: 0x0005709C File Offset: 0x0005529C
+	// Token: 0x06000A0F RID: 2575 RVA: 0x000570C4 File Offset: 0x000552C4
 	private void Update()
 	{
 		if (this.Fall)

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020000E2 RID: 226
 public class BeatEmUpScript : MonoBehaviour
 {
-	// Token: 0x06000A1C RID: 2588 RVA: 0x000586D8 File Offset: 0x000568D8
+	// Token: 0x06000A1C RID: 2588 RVA: 0x00058700 File Offset: 0x00056900
 	private void Start()
 	{
 		this.Difficulty = GameGlobals.BeatEmUpDifficulty;
@@ -60,7 +60,7 @@ public class BeatEmUpScript : MonoBehaviour
 		this.UpdateDOF(2f);
 	}
 
-	// Token: 0x06000A1D RID: 2589 RVA: 0x00058A1C File Offset: 0x00056C1C
+	// Token: 0x06000A1D RID: 2589 RVA: 0x00058A44 File Offset: 0x00056C44
 	private void ChangeSchoolwear()
 	{
 		this.MyRenderer.sharedMesh = this.Uniforms[StudentGlobals.FemaleUniform];
@@ -73,7 +73,7 @@ public class BeatEmUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A1E RID: 2590 RVA: 0x00058AB4 File Offset: 0x00056CB4
+	// Token: 0x06000A1E RID: 2590 RVA: 0x00058ADC File Offset: 0x00056CDC
 	private void Update()
 	{
 		if (!this.Victory)
@@ -484,7 +484,7 @@ public class BeatEmUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A1F RID: 2591 RVA: 0x00059EB8 File Offset: 0x000580B8
+	// Token: 0x06000A1F RID: 2591 RVA: 0x00059EE0 File Offset: 0x000580E0
 	public void GetNearestEnemy()
 	{
 		this.Enemy = null;
@@ -510,7 +510,7 @@ public class BeatEmUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A20 RID: 2592 RVA: 0x00059FBC File Offset: 0x000581BC
+	// Token: 0x06000A20 RID: 2592 RVA: 0x00059FE4 File Offset: 0x000581E4
 	public void VictoryCheck()
 	{
 		this.Enemies--;
@@ -532,7 +532,7 @@ public class BeatEmUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A21 RID: 2593 RVA: 0x0005A094 File Offset: 0x00058294
+	// Token: 0x06000A21 RID: 2593 RVA: 0x0005A0BC File Offset: 0x000582BC
 	private void OnTriggerEnter(Collider other)
 	{
 		if (!this.Rolling && other.gameObject.layer == 1)
@@ -566,7 +566,7 @@ public class BeatEmUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A22 RID: 2594 RVA: 0x0005A250 File Offset: 0x00058450
+	// Token: 0x06000A22 RID: 2594 RVA: 0x0005A278 File Offset: 0x00058478
 	private void LateUpdate()
 	{
 		if (this.HitReacting)
@@ -576,7 +576,7 @@ public class BeatEmUpScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A23 RID: 2595 RVA: 0x0005A2FC File Offset: 0x000584FC
+	// Token: 0x06000A23 RID: 2595 RVA: 0x0005A324 File Offset: 0x00058524
 	public void Quit()
 	{
 		GameGlobals.BeatEmUpSuccess = !this.Defeated;
@@ -588,7 +588,7 @@ public class BeatEmUpScript : MonoBehaviour
 		SceneManager.UnloadSceneAsync(41);
 	}
 
-	// Token: 0x06000A24 RID: 2596 RVA: 0x0005A344 File Offset: 0x00058544
+	// Token: 0x06000A24 RID: 2596 RVA: 0x0005A36C File Offset: 0x0005856C
 	private void UpdateDOF(float Focus)
 	{
 		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;

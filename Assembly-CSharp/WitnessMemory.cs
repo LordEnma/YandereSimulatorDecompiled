@@ -5,7 +5,7 @@ using UnityEngine;
 [Serializable]
 public class WitnessMemory
 {
-	// Token: 0x06001469 RID: 5225 RVA: 0x000C7400 File Offset: 0x000C5600
+	// Token: 0x06001469 RID: 5225 RVA: 0x000C7498 File Offset: 0x000C5698
 	public WitnessMemory()
 	{
 		this.memories = new float[Enum.GetValues(typeof(WitnessMemoryType)).Length];
@@ -16,19 +16,19 @@ public class WitnessMemory
 		this.memorySpan = 1800f;
 	}
 
-	// Token: 0x0600146A RID: 5226 RVA: 0x000C745D File Offset: 0x000C565D
+	// Token: 0x0600146A RID: 5226 RVA: 0x000C74F5 File Offset: 0x000C56F5
 	public bool Remembers(WitnessMemoryType type)
 	{
 		return this.memories[(int)type] < this.memorySpan;
 	}
 
-	// Token: 0x0600146B RID: 5227 RVA: 0x000C746F File Offset: 0x000C566F
+	// Token: 0x0600146B RID: 5227 RVA: 0x000C7507 File Offset: 0x000C5707
 	public void Refresh(WitnessMemoryType type)
 	{
 		this.memories[(int)type] = 0f;
 	}
 
-	// Token: 0x0600146C RID: 5228 RVA: 0x000C7480 File Offset: 0x000C5680
+	// Token: 0x0600146C RID: 5228 RVA: 0x000C7518 File Offset: 0x000C5718
 	public void Tick(float dt)
 	{
 		for (int i = 0; i < this.memories.Length; i++)

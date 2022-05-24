@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x020002AA RID: 682
 public class EnterGuardStateColliderScript : MonoBehaviour
 {
-	// Token: 0x0600143C RID: 5180 RVA: 0x000C6F54 File Offset: 0x000C5154
+	// Token: 0x0600143C RID: 5180 RVA: 0x000C6FEC File Offset: 0x000C51EC
 	private void Update()
 	{
 		this.Frame++;
@@ -14,7 +14,7 @@ public class EnterGuardStateColliderScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0600143D RID: 5181 RVA: 0x000C6F78 File Offset: 0x000C5178
+	// Token: 0x0600143D RID: 5181 RVA: 0x000C7010 File Offset: 0x000C5210
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)

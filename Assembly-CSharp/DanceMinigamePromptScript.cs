@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200026F RID: 623
 public class DanceMinigamePromptScript : MonoBehaviour
 {
-	// Token: 0x06001337 RID: 4919 RVA: 0x000ABEB4 File Offset: 0x000AA0B4
+	// Token: 0x06001337 RID: 4919 RVA: 0x000ABF4C File Offset: 0x000AA14C
 	private void Update()
 	{
 		if (this.Prompt.Circle[0].fillAmount == 0f)

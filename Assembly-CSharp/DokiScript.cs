@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200028C RID: 652
 public class DokiScript : MonoBehaviour
 {
-	// Token: 0x060013B6 RID: 5046 RVA: 0x000B93F8 File Offset: 0x000B75F8
+	// Token: 0x060013B6 RID: 5046 RVA: 0x000B9490 File Offset: 0x000B7690
 	private void Update()
 	{
 		if (!this.Yandere.Egg)

@@ -287,11 +287,11 @@ public class UIKeyBinding : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Action
 	{
-		// Token: 0x04004E45 RID: 20037
+		// Token: 0x04004E4E RID: 20046
 		PressAndClick,
-		// Token: 0x04004E46 RID: 20038
+		// Token: 0x04004E4F RID: 20047
 		Select,
-		// Token: 0x04004E47 RID: 20039
+		// Token: 0x04004E50 RID: 20048
 		All
 	}
 
@@ -299,15 +299,15 @@ public class UIKeyBinding : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Modifier
 	{
-		// Token: 0x04004E49 RID: 20041
+		// Token: 0x04004E52 RID: 20050
 		Any,
-		// Token: 0x04004E4A RID: 20042
+		// Token: 0x04004E53 RID: 20051
 		Shift,
-		// Token: 0x04004E4B RID: 20043
+		// Token: 0x04004E54 RID: 20052
 		Ctrl,
-		// Token: 0x04004E4C RID: 20044
+		// Token: 0x04004E55 RID: 20053
 		Alt,
-		// Token: 0x04004E4D RID: 20045
+		// Token: 0x04004E56 RID: 20054
 		None
 	}
 }

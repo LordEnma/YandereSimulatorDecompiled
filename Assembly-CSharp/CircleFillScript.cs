@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000248 RID: 584
 public class CircleFillScript : MonoBehaviour
 {
-	// Token: 0x06001256 RID: 4694 RVA: 0x0008D7F0 File Offset: 0x0008B9F0
+	// Token: 0x06001256 RID: 4694 RVA: 0x0008D81C File Offset: 0x0008BA1C
 	private void Update()
 	{
 		this.Speed += Time.deltaTime;

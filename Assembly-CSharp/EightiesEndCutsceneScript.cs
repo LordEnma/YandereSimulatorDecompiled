@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x020002A1 RID: 673
 public class EightiesEndCutsceneScript : MonoBehaviour
 {
-	// Token: 0x06001424 RID: 5156 RVA: 0x000BFF10 File Offset: 0x000BE110
+	// Token: 0x06001424 RID: 5156 RVA: 0x000BFFA8 File Offset: 0x000BE1A8
 	private void Start()
 	{
 		this.MainCamera.transform.localPosition = new Vector3(0f, 1.482f, -10f);
@@ -81,7 +81,7 @@ public class EightiesEndCutsceneScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001425 RID: 5157 RVA: 0x000C0224 File Offset: 0x000BE424
+	// Token: 0x06001425 RID: 5157 RVA: 0x000C02BC File Offset: 0x000BE4BC
 	private void Update()
 	{
 		if (this.WarmUp)

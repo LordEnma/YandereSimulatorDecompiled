@@ -4,20 +4,20 @@ using UnityEngine;
 // Token: 0x020000F7 RID: 247
 public class BountyMenuScript : MonoBehaviour
 {
-	// Token: 0x06000A65 RID: 2661 RVA: 0x0005CE97 File Offset: 0x0005B097
+	// Token: 0x06000A65 RID: 2661 RVA: 0x0005CEBF File Offset: 0x0005B0BF
 	private void Start()
 	{
 		this.DescLabel.text = this.Descriptions[this.Clock.Day];
 		this.GetPortrait(this.StudentIDs[this.Clock.Day]);
 	}
 
-	// Token: 0x06000A66 RID: 2662 RVA: 0x0005CECE File Offset: 0x0005B0CE
+	// Token: 0x06000A66 RID: 2662 RVA: 0x0005CEF6 File Offset: 0x0005B0F6
 	private void Update()
 	{
 		this.DescLabel.text = this.DescLabel.text.Replace('@', '\n');
 	}
 
-	// Token: 0x06000A67 RID: 2663 RVA: 0x0005CEF0 File Offset: 0x0005B0F0
+	// Token: 0x06000A67 RID: 2663 RVA: 0x0005CF18 File Offset: 0x0005B118
 	private void GetPortrait(int ID)
 	{
 		WWW www = new WWW(string.Concat(new string[]

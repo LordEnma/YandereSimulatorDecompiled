@@ -9,7 +9,7 @@ namespace MaidDereMinigame
 	[CreateAssetMenu(fileName = "New Scene Wrapper", menuName = "Scenes/New Scene Wrapper")]
 	public class SceneWrapper : ScriptableObject
 	{
-		// Token: 0x060024E6 RID: 9446 RVA: 0x00203BBC File Offset: 0x00201DBC
+		// Token: 0x060024E7 RID: 9447 RVA: 0x00204124 File Offset: 0x00202324
 		public SceneObject GetSceneByBuildIndex(int buildIndex)
 		{
 			foreach (SceneObject sceneObject in this.m_Scenes)
@@ -22,7 +22,7 @@ namespace MaidDereMinigame
 			return null;
 		}
 
-		// Token: 0x060024E7 RID: 9447 RVA: 0x00203C14 File Offset: 0x00201E14
+		// Token: 0x060024E8 RID: 9448 RVA: 0x0020417C File Offset: 0x0020237C
 		public SceneObject GetSceneByName(string name)
 		{
 			foreach (SceneObject sceneObject in this.m_Scenes)
@@ -35,13 +35,13 @@ namespace MaidDereMinigame
 			return null;
 		}
 
-		// Token: 0x060024E8 RID: 9448 RVA: 0x00203C70 File Offset: 0x00201E70
+		// Token: 0x060024E9 RID: 9449 RVA: 0x002041D8 File Offset: 0x002023D8
 		public static void LoadScene(SceneObject sceneObject)
 		{
 			GameController.Scenes.LoadLevel(sceneObject);
 		}
 
-		// Token: 0x060024E9 RID: 9449 RVA: 0x00203C80 File Offset: 0x00201E80
+		// Token: 0x060024EA RID: 9450 RVA: 0x002041E8 File Offset: 0x002023E8
 		public void LoadLevel(SceneObject sceneObject)
 		{
 			int num = -1;
@@ -60,7 +60,7 @@ namespace MaidDereMinigame
 			SceneManager.LoadScene(num);
 		}
 
-		// Token: 0x060024EA RID: 9450 RVA: 0x00203CE0 File Offset: 0x00201EE0
+		// Token: 0x060024EB RID: 9451 RVA: 0x00204248 File Offset: 0x00202448
 		public int GetSceneID(SceneObject scene)
 		{
 			for (int i = 0; i < this.m_Scenes.Count; i++)
@@ -73,13 +73,13 @@ namespace MaidDereMinigame
 			return -1;
 		}
 
-		// Token: 0x060024EB RID: 9451 RVA: 0x00203D1A File Offset: 0x00201F1A
+		// Token: 0x060024EC RID: 9452 RVA: 0x00204282 File Offset: 0x00202482
 		public SceneObject GetSceneByIndex(int scene)
 		{
 			return this.m_Scenes[scene];
 		}
 
-		// Token: 0x04004D79 RID: 19833
+		// Token: 0x04004D82 RID: 19842
 		[Reorderable]
 		public SceneObjectMetaData m_Scenes;
 	}

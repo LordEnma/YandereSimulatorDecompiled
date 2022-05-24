@@ -6,7 +6,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	// Token: 0x0200053B RID: 1339
 	public class AeroplaneAudio : MonoBehaviour
 	{
-		// Token: 0x06002212 RID: 8722 RVA: 0x001F4804 File Offset: 0x001F2A04
+		// Token: 0x06002213 RID: 8723 RVA: 0x001F4D6C File Offset: 0x001F2F6C
 		private void Awake()
 		{
 			this.m_Plane = base.GetComponent<AeroplaneController>();
@@ -30,7 +30,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_WindSoundSource.Play();
 		}
 
-		// Token: 0x06002213 RID: 8723 RVA: 0x001F4940 File Offset: 0x001F2B40
+		// Token: 0x06002214 RID: 8724 RVA: 0x001F4EA8 File Offset: 0x001F30A8
 		private void Update()
 		{
 			float t = Mathf.InverseLerp(0f, this.m_Plane.MaxEnginePower, this.m_Plane.EnginePower);
@@ -42,81 +42,81 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_WindSoundSource.volume = Mathf.InverseLerp(0f, this.m_WindMaxSpeedVolume, magnitude) * this.m_AdvancedSetttings.windMasterVolume;
 		}
 
-		// Token: 0x04004ADF RID: 19167
+		// Token: 0x04004AE8 RID: 19176
 		[SerializeField]
 		private AudioClip m_EngineSound;
 
-		// Token: 0x04004AE0 RID: 19168
+		// Token: 0x04004AE9 RID: 19177
 		[SerializeField]
 		private float m_EngineMinThrottlePitch = 0.4f;
 
-		// Token: 0x04004AE1 RID: 19169
+		// Token: 0x04004AEA RID: 19178
 		[SerializeField]
 		private float m_EngineMaxThrottlePitch = 2f;
 
-		// Token: 0x04004AE2 RID: 19170
+		// Token: 0x04004AEB RID: 19179
 		[SerializeField]
 		private float m_EngineFwdSpeedMultiplier = 0.002f;
 
-		// Token: 0x04004AE3 RID: 19171
+		// Token: 0x04004AEC RID: 19180
 		[SerializeField]
 		private AudioClip m_WindSound;
 
-		// Token: 0x04004AE4 RID: 19172
+		// Token: 0x04004AED RID: 19181
 		[SerializeField]
 		private float m_WindBasePitch = 0.2f;
 
-		// Token: 0x04004AE5 RID: 19173
+		// Token: 0x04004AEE RID: 19182
 		[SerializeField]
 		private float m_WindSpeedPitchFactor = 0.004f;
 
-		// Token: 0x04004AE6 RID: 19174
+		// Token: 0x04004AEF RID: 19183
 		[SerializeField]
 		private float m_WindMaxSpeedVolume = 100f;
 
-		// Token: 0x04004AE7 RID: 19175
+		// Token: 0x04004AF0 RID: 19184
 		[SerializeField]
 		private AeroplaneAudio.AdvancedSetttings m_AdvancedSetttings = new AeroplaneAudio.AdvancedSetttings();
 
-		// Token: 0x04004AE8 RID: 19176
+		// Token: 0x04004AF1 RID: 19185
 		private AudioSource m_EngineSoundSource;
 
-		// Token: 0x04004AE9 RID: 19177
+		// Token: 0x04004AF2 RID: 19186
 		private AudioSource m_WindSoundSource;
 
-		// Token: 0x04004AEA RID: 19178
+		// Token: 0x04004AF3 RID: 19187
 		private AeroplaneController m_Plane;
 
-		// Token: 0x04004AEB RID: 19179
+		// Token: 0x04004AF4 RID: 19188
 		private Rigidbody m_Rigidbody;
 
 		// Token: 0x02000690 RID: 1680
 		[Serializable]
 		public class AdvancedSetttings
 		{
-			// Token: 0x040050E9 RID: 20713
+			// Token: 0x040050F2 RID: 20722
 			public float engineMinDistance = 50f;
 
-			// Token: 0x040050EA RID: 20714
+			// Token: 0x040050F3 RID: 20723
 			public float engineMaxDistance = 1000f;
 
-			// Token: 0x040050EB RID: 20715
+			// Token: 0x040050F4 RID: 20724
 			public float engineDopplerLevel = 1f;
 
-			// Token: 0x040050EC RID: 20716
+			// Token: 0x040050F5 RID: 20725
 			[Range(0f, 1f)]
 			public float engineMasterVolume = 0.5f;
 
-			// Token: 0x040050ED RID: 20717
+			// Token: 0x040050F6 RID: 20726
 			public float windMinDistance = 10f;
 
-			// Token: 0x040050EE RID: 20718
+			// Token: 0x040050F7 RID: 20727
 			public float windMaxDistance = 100f;
 
-			// Token: 0x040050EF RID: 20719
+			// Token: 0x040050F8 RID: 20728
 			public float windDopplerLevel = 1f;
 
-			// Token: 0x040050F0 RID: 20720
+			// Token: 0x040050F9 RID: 20729
 			[Range(0f, 1f)]
 			public float windMasterVolume = 0.5f;
 		}

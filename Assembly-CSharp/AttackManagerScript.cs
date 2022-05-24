@@ -101,6 +101,7 @@ public class AttackManagerScript : MonoBehaviour
 	public void Attack(GameObject victim, WeaponScript weapon)
 	{
 		this.Victim = victim;
+		this.Yandere.TargetStudent.FocusOnYandere = false;
 		this.Yandere.FollowHips = true;
 		this.AttackTimer = 0f;
 		this.EffectPhase = 0;
@@ -117,6 +118,7 @@ public class AttackManagerScript : MonoBehaviour
 				str = "extin";
 			}
 			this.AnimName = "f02_" + str + sanityString + "SanityA_00";
+			Debug.Log("VictimAnimName is: " + this.VictimAnimName);
 		}
 		else
 		{
@@ -143,7 +145,7 @@ public class AttackManagerScript : MonoBehaviour
 		this.Distance = this.GetReachDistance(weapon.Type, sanityType);
 	}
 
-	// Token: 0x060009FA RID: 2554 RVA: 0x000547C0 File Offset: 0x000529C0
+	// Token: 0x060009FA RID: 2554 RVA: 0x000547E8 File Offset: 0x000529E8
 	private void Update()
 	{
 		if (this.IsAttacking())
@@ -258,7 +260,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009FB RID: 2555 RVA: 0x00054C58 File Offset: 0x00052E58
+	// Token: 0x060009FB RID: 2555 RVA: 0x00054C80 File Offset: 0x00052E80
 	private void SpecialEffect(WeaponScript weapon, SanityType sanityType)
 	{
 		this.BloodEffect = this.OriginalBloodEffect;
@@ -766,7 +768,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009FC RID: 2556 RVA: 0x000562A0 File Offset: 0x000544A0
+	// Token: 0x060009FC RID: 2556 RVA: 0x000562C8 File Offset: 0x000544C8
 	private void LoopCheck(WeaponScript weapon)
 	{
 		if (Input.GetButtonDown("X") && !this.Yandere.Chased && this.Yandere.Chasers == 0)
@@ -854,7 +856,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009FD RID: 2557 RVA: 0x0005675A File Offset: 0x0005495A
+	// Token: 0x060009FD RID: 2557 RVA: 0x00056782 File Offset: 0x00054982
 	private void CheckForSpecialCase(WeaponScript weapon)
 	{
 		if (weapon.WeaponID == 8 && GameGlobals.Paranormal)
@@ -865,7 +867,7 @@ public class AttackManagerScript : MonoBehaviour
 	}
 
 	// Token: 0x170001FD RID: 509
-	// (get) Token: 0x060009FE RID: 2558 RVA: 0x00056788 File Offset: 0x00054988
+	// (get) Token: 0x060009FE RID: 2558 RVA: 0x000567B0 File Offset: 0x000549B0
 	public int OnlyDefault
 	{
 		get
@@ -874,7 +876,7 @@ public class AttackManagerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060009FF RID: 2559 RVA: 0x0005678C File Offset: 0x0005498C
+	// Token: 0x060009FF RID: 2559 RVA: 0x000567B4 File Offset: 0x000549B4
 	private void CheckForWalls()
 	{
 		this.RaycastOrigin = this.Yandere.Zoom.transform;

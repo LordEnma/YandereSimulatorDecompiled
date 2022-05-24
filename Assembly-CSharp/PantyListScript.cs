@@ -4,9 +4,9 @@ using UnityEngine;
 // Token: 0x02000396 RID: 918
 public class PantyListScript : MonoBehaviour
 {
-	// Token: 0x04002B86 RID: 11142
+	// Token: 0x04002B8D RID: 11149
 	public Texture[] ModernPanties;
 
-	// Token: 0x04002B87 RID: 11143
+	// Token: 0x04002B8E RID: 11150
 	public Texture[] EightiesPanties;
 }

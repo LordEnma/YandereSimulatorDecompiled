@@ -4,7 +4,7 @@
 [Serializable]
 public class EventSaveData
 {
-	// Token: 0x06001C37 RID: 7223 RVA: 0x0014A757 File Offset: 0x00148957
+	// Token: 0x06001C38 RID: 7224 RVA: 0x0014AA13 File Offset: 0x00148C13
 	public static EventSaveData ReadFromGlobals()
 	{
 		return new EventSaveData
@@ -17,7 +17,7 @@ public class EventSaveData
 		};
 	}
 
-	// Token: 0x06001C38 RID: 7224 RVA: 0x0014A795 File Offset: 0x00148995
+	// Token: 0x06001C39 RID: 7225 RVA: 0x0014AA51 File Offset: 0x00148C51
 	public static void WriteToGlobals(EventSaveData data)
 	{
 		EventGlobals.BefriendConversation = data.befriendConversation;
@@ -27,18 +27,18 @@ public class EventSaveData
 		EventGlobals.LivingRoom = data.livingRoom;
 	}
 
-	// Token: 0x040031BA RID: 12730
+	// Token: 0x040031C2 RID: 12738
 	public bool befriendConversation;
 
-	// Token: 0x040031BB RID: 12731
+	// Token: 0x040031C3 RID: 12739
 	public bool event1;
 
-	// Token: 0x040031BC RID: 12732
+	// Token: 0x040031C4 RID: 12740
 	public bool event2;
 
-	// Token: 0x040031BD RID: 12733
+	// Token: 0x040031C5 RID: 12741
 	public bool kidnapConversation;
 
-	// Token: 0x040031BE RID: 12734
+	// Token: 0x040031C6 RID: 12742
 	public bool livingRoom;
 }

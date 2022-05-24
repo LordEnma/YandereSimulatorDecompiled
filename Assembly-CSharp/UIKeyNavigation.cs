@@ -342,13 +342,13 @@ public class UIKeyNavigation : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum Constraint
 	{
-		// Token: 0x04004E4F RID: 20047
+		// Token: 0x04004E58 RID: 20056
 		None,
-		// Token: 0x04004E50 RID: 20048
+		// Token: 0x04004E59 RID: 20057
 		Vertical,
-		// Token: 0x04004E51 RID: 20049
+		// Token: 0x04004E5A RID: 20058
 		Horizontal,
-		// Token: 0x04004E52 RID: 20050
+		// Token: 0x04004E5B RID: 20059
 		Explicit
 	}
 }

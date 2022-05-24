@@ -134,6 +134,6 @@ public class UIGeometry
 	private Vector4 mRtpTan;
 
 	// Token: 0x0200060B RID: 1547
-	// (Invoke) Token: 0x060025CA RID: 9674
+	// (Invoke) Token: 0x060025CB RID: 9675
 	public delegate void OnCustomWrite(List<Vector3> v, List<Vector2> u, List<Color> c, List<Vector3> n, List<Vector4> t, List<Vector4> u2);
 }

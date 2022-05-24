@@ -4,13 +4,13 @@ using UnityEngine;
 // Token: 0x020002D9 RID: 729
 public class FunGirlScript : MonoBehaviour
 {
-	// Token: 0x060014D6 RID: 5334 RVA: 0x000CD745 File Offset: 0x000CB945
+	// Token: 0x060014D6 RID: 5334 RVA: 0x000CD7DD File Offset: 0x000CB9DD
 	private void Start()
 	{
 		this.ChaseYandereChan();
 	}
 
-	// Token: 0x060014D7 RID: 5335 RVA: 0x000CD750 File Offset: 0x000CB950
+	// Token: 0x060014D7 RID: 5335 RVA: 0x000CD7E8 File Offset: 0x000CB9E8
 	private void Update()
 	{
 		if (this.Speed < 5f)
@@ -29,7 +29,7 @@ public class FunGirlScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060014D8 RID: 5336 RVA: 0x000CD800 File Offset: 0x000CBA00
+	// Token: 0x060014D8 RID: 5336 RVA: 0x000CD898 File Offset: 0x000CBA98
 	private void ChaseYandereChan()
 	{
 		SchoolGlobals.SchoolAtmosphereSet = true;

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200023A RID: 570
 public class CautionScript : MonoBehaviour
 {
-	// Token: 0x06001234 RID: 4660 RVA: 0x0008C360 File Offset: 0x0008A560
+	// Token: 0x06001234 RID: 4660 RVA: 0x0008C38C File Offset: 0x0008A58C
 	private void Start()
 	{
 		this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, 0f);
@@ -14,7 +14,7 @@ public class CautionScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001235 RID: 4661 RVA: 0x0008C3C8 File Offset: 0x0008A5C8
+	// Token: 0x06001235 RID: 4661 RVA: 0x0008C3F4 File Offset: 0x0008A5F4
 	private void Update()
 	{
 		if ((this.Yandere.Armed && this.Yandere.EquippedWeapon.Suspicious) || this.Yandere.Bloodiness > 0f || this.Yandere.Sanity < 33.333332f || this.Yandere.NearBodies > 0)

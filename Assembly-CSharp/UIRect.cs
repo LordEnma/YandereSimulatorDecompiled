@@ -621,25 +621,25 @@ public abstract class UIRect : MonoBehaviour
 	[Serializable]
 	public class AnchorPoint
 	{
-		// Token: 0x060025CD RID: 9677 RVA: 0x002054B8 File Offset: 0x002036B8
+		// Token: 0x060025CE RID: 9678 RVA: 0x00205A20 File Offset: 0x00203C20
 		public AnchorPoint()
 		{
 		}
 
-		// Token: 0x060025CE RID: 9678 RVA: 0x002054C0 File Offset: 0x002036C0
+		// Token: 0x060025CF RID: 9679 RVA: 0x00205A28 File Offset: 0x00203C28
 		public AnchorPoint(float relative)
 		{
 			this.relative = relative;
 		}
 
-		// Token: 0x060025CF RID: 9679 RVA: 0x002054CF File Offset: 0x002036CF
+		// Token: 0x060025D0 RID: 9680 RVA: 0x00205A37 File Offset: 0x00203C37
 		public void Set(float relative, float absolute)
 		{
 			this.relative = relative;
 			this.absolute = Mathf.FloorToInt(absolute + 0.5f);
 		}
 
-		// Token: 0x060025D0 RID: 9680 RVA: 0x002054EA File Offset: 0x002036EA
+		// Token: 0x060025D1 RID: 9681 RVA: 0x00205A52 File Offset: 0x00203C52
 		public void Set(Transform target, float relative, float absolute)
 		{
 			this.target = target;
@@ -647,13 +647,13 @@ public abstract class UIRect : MonoBehaviour
 			this.absolute = Mathf.FloorToInt(absolute + 0.5f);
 		}
 
-		// Token: 0x060025D1 RID: 9681 RVA: 0x0020550C File Offset: 0x0020370C
+		// Token: 0x060025D2 RID: 9682 RVA: 0x00205A74 File Offset: 0x00203C74
 		public void SetToNearest(float abs0, float abs1, float abs2)
 		{
 			this.SetToNearest(0f, 0.5f, 1f, abs0, abs1, abs2);
 		}
 
-		// Token: 0x060025D2 RID: 9682 RVA: 0x00205528 File Offset: 0x00203728
+		// Token: 0x060025D3 RID: 9683 RVA: 0x00205A90 File Offset: 0x00203C90
 		public void SetToNearest(float rel0, float rel1, float rel2, float abs0, float abs1, float abs2)
 		{
 			float num = Mathf.Abs(abs0);
@@ -672,7 +672,7 @@ public abstract class UIRect : MonoBehaviour
 			this.Set(rel2, abs2);
 		}
 
-		// Token: 0x060025D3 RID: 9683 RVA: 0x0020557C File Offset: 0x0020377C
+		// Token: 0x060025D4 RID: 9684 RVA: 0x00205AE4 File Offset: 0x00203CE4
 		public void SetHorizontal(Transform parent, float localPos)
 		{
 			if (this.rect)
@@ -690,7 +690,7 @@ public abstract class UIRect : MonoBehaviour
 			this.absolute = Mathf.FloorToInt(localPos - vector.x + 0.5f);
 		}
 
-		// Token: 0x060025D4 RID: 9684 RVA: 0x00205614 File Offset: 0x00203814
+		// Token: 0x060025D5 RID: 9685 RVA: 0x00205B7C File Offset: 0x00203D7C
 		public void SetVertical(Transform parent, float localPos)
 		{
 			if (this.rect)
@@ -708,7 +708,7 @@ public abstract class UIRect : MonoBehaviour
 			this.absolute = Mathf.FloorToInt(localPos - vector.y + 0.5f);
 		}
 
-		// Token: 0x060025D5 RID: 9685 RVA: 0x002056AC File Offset: 0x002038AC
+		// Token: 0x060025D6 RID: 9686 RVA: 0x00205C14 File Offset: 0x00203E14
 		public Vector3[] GetSides(Transform relativeTo)
 		{
 			if (this.target != null)
@@ -726,20 +726,20 @@ public abstract class UIRect : MonoBehaviour
 			return null;
 		}
 
-		// Token: 0x04004ED7 RID: 20183
+		// Token: 0x04004EE0 RID: 20192
 		public Transform target;
 
-		// Token: 0x04004ED8 RID: 20184
+		// Token: 0x04004EE1 RID: 20193
 		public float relative;
 
-		// Token: 0x04004ED9 RID: 20185
+		// Token: 0x04004EE2 RID: 20194
 		public int absolute;
 
-		// Token: 0x04004EDA RID: 20186
+		// Token: 0x04004EE3 RID: 20195
 		[NonSerialized]
 		public UIRect rect;
 
-		// Token: 0x04004EDB RID: 20187
+		// Token: 0x04004EE4 RID: 20196
 		[NonSerialized]
 		public Camera targetCam;
 	}
@@ -748,11 +748,11 @@ public abstract class UIRect : MonoBehaviour
 	[DoNotObfuscateNGUI]
 	public enum AnchorUpdate
 	{
-		// Token: 0x04004EDD RID: 20189
+		// Token: 0x04004EE6 RID: 20198
 		OnEnable,
-		// Token: 0x04004EDE RID: 20190
+		// Token: 0x04004EE7 RID: 20199
 		OnUpdate,
-		// Token: 0x04004EDF RID: 20191
+		// Token: 0x04004EE8 RID: 20200
 		OnStart
 	}
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200043D RID: 1085
 public class SpawnPointSpawnerScript : MonoBehaviour
 {
-	// Token: 0x06001D0A RID: 7434 RVA: 0x0015B598 File Offset: 0x00159798
+	// Token: 0x06001D0B RID: 7435 RVA: 0x0015B854 File Offset: 0x00159A54
 	private void Start()
 	{
 		while (this.ID < this.Limit)
@@ -47,36 +47,36 @@ public class SpawnPointSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x0400349B RID: 13467
+	// Token: 0x040034A3 RID: 13475
 	public Transform SpawnPointParent;
 
-	// Token: 0x0400349C RID: 13468
+	// Token: 0x040034A4 RID: 13476
 	public GameObject SimpleGirl;
 
-	// Token: 0x0400349D RID: 13469
+	// Token: 0x040034A5 RID: 13477
 	public GameObject SpawnPoint;
 
-	// Token: 0x0400349E RID: 13470
+	// Token: 0x040034A6 RID: 13478
 	public int IterationsToWait = 3;
 
-	// Token: 0x0400349F RID: 13471
+	// Token: 0x040034A7 RID: 13479
 	public int Direction = 1;
 
-	// Token: 0x040034A0 RID: 13472
+	// Token: 0x040034A8 RID: 13480
 	public int Column = -4;
 
-	// Token: 0x040034A1 RID: 13473
+	// Token: 0x040034A9 RID: 13481
 	public int Iterations;
 
-	// Token: 0x040034A2 RID: 13474
+	// Token: 0x040034AA RID: 13482
 	public int Limit;
 
-	// Token: 0x040034A3 RID: 13475
+	// Token: 0x040034AB RID: 13483
 	public int Row;
 
-	// Token: 0x040034A4 RID: 13476
+	// Token: 0x040034AC RID: 13484
 	public int ID;
 
-	// Token: 0x040034A5 RID: 13477
+	// Token: 0x040034AD RID: 13485
 	public bool SpawnGirl;
 }

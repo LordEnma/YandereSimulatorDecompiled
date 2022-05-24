@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x0200031B RID: 795
 public class HomeCorkboardPhotoScript : MonoBehaviour
 {
-	// Token: 0x0600188D RID: 6285 RVA: 0x000EE124 File Offset: 0x000EC324
+	// Token: 0x0600188D RID: 6285 RVA: 0x000EE2A0 File Offset: 0x000EC4A0
 	private void OnTriggerStay(Collider other)
 	{
 		if (other.gameObject.layer == 4)
@@ -13,9 +13,9 @@ public class HomeCorkboardPhotoScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040024C1 RID: 9409
+	// Token: 0x040024C2 RID: 9410
 	public int ArrayID;
 
-	// Token: 0x040024C2 RID: 9410
+	// Token: 0x040024C3 RID: 9411
 	public int ID;
 }

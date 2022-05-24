@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000437 RID: 1079
 public class SmokeBombScript : MonoBehaviour
 {
-	// Token: 0x06001CF3 RID: 7411 RVA: 0x00158D84 File Offset: 0x00156F84
+	// Token: 0x06001CF4 RID: 7412 RVA: 0x00159040 File Offset: 0x00157240
 	private void Update()
 	{
 		this.Timer += Time.deltaTime;
@@ -24,7 +24,7 @@ public class SmokeBombScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CF4 RID: 7412 RVA: 0x00158DF0 File Offset: 0x00156FF0
+	// Token: 0x06001CF5 RID: 7413 RVA: 0x001590AC File Offset: 0x001572AC
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.layer == 9)
@@ -54,7 +54,7 @@ public class SmokeBombScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CF5 RID: 7413 RVA: 0x00158E94 File Offset: 0x00157094
+	// Token: 0x06001CF6 RID: 7414 RVA: 0x00159150 File Offset: 0x00157350
 	private void OnTriggerStay(Collider other)
 	{
 		if (this.Stink)
@@ -79,7 +79,7 @@ public class SmokeBombScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CF6 RID: 7414 RVA: 0x00158F34 File Offset: 0x00157134
+	// Token: 0x06001CF7 RID: 7415 RVA: 0x001591F0 File Offset: 0x001573F0
 	private void OnTriggerExit(Collider other)
 	{
 		if (!this.Stink && !this.Amnesia && other.gameObject.layer == 9)
@@ -93,7 +93,7 @@ public class SmokeBombScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001CF7 RID: 7415 RVA: 0x00158F94 File Offset: 0x00157194
+	// Token: 0x06001CF8 RID: 7416 RVA: 0x00159250 File Offset: 0x00157450
 	private void GoAway(StudentScript Student)
 	{
 		if (!Student.Chasing && !Student.WitnessedMurder && !Student.WitnessedCorpse && !Student.Fleeing && !Student.Yandere.Noticed && !Student.Hunting && !Student.Confessing)
@@ -127,21 +127,21 @@ public class SmokeBombScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x04003439 RID: 13369
+	// Token: 0x04003441 RID: 13377
 	public StudentScript[] Students;
 
-	// Token: 0x0400343A RID: 13370
+	// Token: 0x04003442 RID: 13378
 	public float TimeLimit = 15f;
 
-	// Token: 0x0400343B RID: 13371
+	// Token: 0x04003443 RID: 13379
 	public float Timer;
 
-	// Token: 0x0400343C RID: 13372
+	// Token: 0x04003444 RID: 13380
 	public bool Amnesia;
 
-	// Token: 0x0400343D RID: 13373
+	// Token: 0x04003445 RID: 13381
 	public bool Stink;
 
-	// Token: 0x0400343E RID: 13374
+	// Token: 0x04003446 RID: 13382
 	public int ID;
 }

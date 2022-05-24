@@ -8,7 +8,7 @@ using UnityEngine;
 public class CreditJson : JsonData
 {
 	// Token: 0x17000491 RID: 1169
-	// (get) Token: 0x06001950 RID: 6480 RVA: 0x000FDFE8 File Offset: 0x000FC1E8
+	// (get) Token: 0x06001951 RID: 6481 RVA: 0x000FE1EC File Offset: 0x000FC3EC
 	public static string FilePath
 	{
 		get
@@ -17,7 +17,7 @@ public class CreditJson : JsonData
 		}
 	}
 
-	// Token: 0x06001951 RID: 6481 RVA: 0x000FDFFC File Offset: 0x000FC1FC
+	// Token: 0x06001952 RID: 6482 RVA: 0x000FE200 File Offset: 0x000FC400
 	public static CreditJson[] LoadFromJson(string path)
 	{
 		List<CreditJson> list = new List<CreditJson>();
@@ -33,7 +33,7 @@ public class CreditJson : JsonData
 	}
 
 	// Token: 0x17000492 RID: 1170
-	// (get) Token: 0x06001952 RID: 6482 RVA: 0x000FE061 File Offset: 0x000FC261
+	// (get) Token: 0x06001953 RID: 6483 RVA: 0x000FE265 File Offset: 0x000FC465
 	public string Name
 	{
 		get
@@ -43,7 +43,7 @@ public class CreditJson : JsonData
 	}
 
 	// Token: 0x17000493 RID: 1171
-	// (get) Token: 0x06001953 RID: 6483 RVA: 0x000FE069 File Offset: 0x000FC269
+	// (get) Token: 0x06001954 RID: 6484 RVA: 0x000FE26D File Offset: 0x000FC46D
 	public int Size
 	{
 		get
@@ -52,11 +52,11 @@ public class CreditJson : JsonData
 		}
 	}
 
-	// Token: 0x040027C7 RID: 10183
+	// Token: 0x040027CE RID: 10190
 	[SerializeField]
 	private string name;
 
-	// Token: 0x040027C8 RID: 10184
+	// Token: 0x040027CF RID: 10191
 	[SerializeField]
 	private int size;
 }

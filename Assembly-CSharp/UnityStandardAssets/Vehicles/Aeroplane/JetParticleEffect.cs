@@ -7,7 +7,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	[RequireComponent(typeof(ParticleSystem))]
 	public class JetParticleEffect : MonoBehaviour
 	{
-		// Token: 0x0600224A RID: 8778 RVA: 0x001F57F0 File Offset: 0x001F39F0
+		// Token: 0x0600224B RID: 8779 RVA: 0x001F5D58 File Offset: 0x001F3F58
 		private void Start()
 		{
 			this.m_Jet = this.FindAeroplaneParent();
@@ -17,7 +17,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_OriginalStartColor = this.m_System.main.startColor.color;
 		}
 
-		// Token: 0x0600224B RID: 8779 RVA: 0x001F5878 File Offset: 0x001F3A78
+		// Token: 0x0600224C RID: 8780 RVA: 0x001F5DE0 File Offset: 0x001F3FE0
 		private void Update()
 		{
 			ParticleSystem.MainModule main = this.m_System.main;
@@ -26,7 +26,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			main.startColor = Color.Lerp(this.minColour, this.m_OriginalStartColor, this.m_Jet.Throttle);
 		}
 
-		// Token: 0x0600224C RID: 8780 RVA: 0x001F5910 File Offset: 0x001F3B10
+		// Token: 0x0600224D RID: 8781 RVA: 0x001F5E78 File Offset: 0x001F4078
 		private AeroplaneController FindAeroplaneParent()
 		{
 			Transform transform = base.transform;
@@ -42,22 +42,22 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			throw new Exception(" AeroplaneContoller not found in object hierarchy");
 		}
 
-		// Token: 0x04004B23 RID: 19235
+		// Token: 0x04004B2C RID: 19244
 		public Color minColour;
 
-		// Token: 0x04004B24 RID: 19236
+		// Token: 0x04004B2D RID: 19245
 		private AeroplaneController m_Jet;
 
-		// Token: 0x04004B25 RID: 19237
+		// Token: 0x04004B2E RID: 19246
 		private ParticleSystem m_System;
 
-		// Token: 0x04004B26 RID: 19238
+		// Token: 0x04004B2F RID: 19247
 		private float m_OriginalStartSize;
 
-		// Token: 0x04004B27 RID: 19239
+		// Token: 0x04004B30 RID: 19248
 		private float m_OriginalLifetime;
 
-		// Token: 0x04004B28 RID: 19240
+		// Token: 0x04004B31 RID: 19249
 		private Color m_OriginalStartColor;
 	}
 }

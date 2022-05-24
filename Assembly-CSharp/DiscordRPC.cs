@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 // Token: 0x02000288 RID: 648
 public class DiscordRPC : MonoBehaviour
 {
-	// Token: 0x060013A5 RID: 5029 RVA: 0x000B8B60 File Offset: 0x000B6D60
+	// Token: 0x060013A5 RID: 5029 RVA: 0x000B8BF8 File Offset: 0x000B6DF8
 	private void Start()
 	{
 		UnityEngine.Object.DontDestroyOnLoad(base.gameObject);
@@ -24,7 +24,7 @@ public class DiscordRPC : MonoBehaviour
 		base.StartCoroutine(this.RichPresenceUpdate());
 	}
 
-	// Token: 0x060013A6 RID: 5030 RVA: 0x000B8BC1 File Offset: 0x000B6DC1
+	// Token: 0x060013A6 RID: 5030 RVA: 0x000B8C59 File Offset: 0x000B6E59
 	private void Update()
 	{
 		if (this._discord != null)
@@ -33,7 +33,7 @@ public class DiscordRPC : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013A7 RID: 5031 RVA: 0x000B8BD8 File Offset: 0x000B6DD8
+	// Token: 0x060013A7 RID: 5031 RVA: 0x000B8C70 File Offset: 0x000B6E70
 	private void UpdateRichPresenceInfo()
 	{
 		if (SceneManager.GetActiveScene().name == "SchoolScene" && this._clockScript == null)
@@ -43,7 +43,7 @@ public class DiscordRPC : MonoBehaviour
 		this.UpdateActivity();
 	}
 
-	// Token: 0x060013A8 RID: 5032 RVA: 0x000B8C20 File Offset: 0x000B6E20
+	// Token: 0x060013A8 RID: 5032 RVA: 0x000B8CB8 File Offset: 0x000B6EB8
 	private void UpdateActivity()
 	{
 		this._currentScene = SceneManager.GetActiveScene().name;
@@ -59,13 +59,11 @@ public class DiscordRPC : MonoBehaviour
 			if (RichPresenceResult != Result.Ok)
 			{
 				Debug.Log("Error! Connection Error (" + RichPresenceResult.ToString() + ")");
-				return;
 			}
-			Debug.Log("Discord Rich Presence activated successfully!");
 		});
 	}
 
-	// Token: 0x060013A9 RID: 5033 RVA: 0x000B8CC4 File Offset: 0x000B6EC4
+	// Token: 0x060013A9 RID: 5033 RVA: 0x000B8D5C File Offset: 0x000B6F5C
 	private string GetSceneDescription()
 	{
 		this.UpdateSceneDescription();
@@ -89,7 +87,7 @@ public class DiscordRPC : MonoBehaviour
 		return "No description available yet.";
 	}
 
-	// Token: 0x060013AA RID: 5034 RVA: 0x000B8DA0 File Offset: 0x000B6FA0
+	// Token: 0x060013AA RID: 5034 RVA: 0x000B8E38 File Offset: 0x000B7038
 	private void UpdateSceneDescription()
 	{
 		if (!this._createdDictionary)
@@ -152,7 +150,7 @@ public class DiscordRPC : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060013AB RID: 5035 RVA: 0x000B91F9 File Offset: 0x000B73F9
+	// Token: 0x060013AB RID: 5035 RVA: 0x000B9291 File Offset: 0x000B7491
 	private IEnumerator RichPresenceUpdate()
 	{
 		while (this._updateRichPresence)
@@ -163,7 +161,7 @@ public class DiscordRPC : MonoBehaviour
 		yield break;
 	}
 
-	// Token: 0x060013AC RID: 5036 RVA: 0x000B9208 File Offset: 0x000B7408
+	// Token: 0x060013AC RID: 5036 RVA: 0x000B92A0 File Offset: 0x000B74A0
 	private void OnDisable()
 	{
 		if (this._discord != null)

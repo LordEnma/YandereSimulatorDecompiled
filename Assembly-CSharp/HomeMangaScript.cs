@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000323 RID: 803
 public class HomeMangaScript : MonoBehaviour
 {
-	// Token: 0x060018AA RID: 6314 RVA: 0x000F114C File Offset: 0x000EF34C
+	// Token: 0x060018AA RID: 6314 RVA: 0x000F12C8 File Offset: 0x000EF4C8
 	private void Start()
 	{
 		this.UpdateCurrentLabel();
@@ -55,7 +55,7 @@ public class HomeMangaScript : MonoBehaviour
 		this.UpdateMangaLabels();
 	}
 
-	// Token: 0x060018AB RID: 6315 RVA: 0x000F14B8 File Offset: 0x000EF6B8
+	// Token: 0x060018AB RID: 6315 RVA: 0x000F1634 File Offset: 0x000EF834
 	private void Update()
 	{
 		if (this.HomeWindow.Show)
@@ -148,7 +148,7 @@ public class HomeMangaScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x060018AC RID: 6316 RVA: 0x000F17CC File Offset: 0x000EF9CC
+	// Token: 0x060018AC RID: 6316 RVA: 0x000F1948 File Offset: 0x000EFB48
 	private void UpdateMangaLabels()
 	{
 		if (this.Selected < 5)
@@ -223,7 +223,7 @@ public class HomeMangaScript : MonoBehaviour
 		this.MangaBuffLabel.text = "?????";
 	}
 
-	// Token: 0x060018AD RID: 6317 RVA: 0x000F1A34 File Offset: 0x000EFC34
+	// Token: 0x060018AD RID: 6317 RVA: 0x000F1BB0 File Offset: 0x000EFDB0
 	private void UpdateCurrentLabel()
 	{
 		if (this.Selected < 5)
@@ -265,7 +265,7 @@ public class HomeMangaScript : MonoBehaviour
 		AudioSource.PlayClipAtPoint(this.ChangeSelection, base.transform.position);
 	}
 
-	// Token: 0x04002529 RID: 9513
+	// Token: 0x0400252A RID: 9514
 	private static readonly string[] SeductionStrings = new string[]
 	{
 		"Innocent",
@@ -276,7 +276,7 @@ public class HomeMangaScript : MonoBehaviour
 		"Succubus"
 	};
 
-	// Token: 0x0400252A RID: 9514
+	// Token: 0x0400252B RID: 9515
 	private static readonly string[] NumbnessStrings = new string[]
 	{
 		"Stoic",
@@ -287,7 +287,7 @@ public class HomeMangaScript : MonoBehaviour
 		"Dead Inside"
 	};
 
-	// Token: 0x0400252B RID: 9515
+	// Token: 0x0400252C RID: 9516
 	private static readonly string[] EnlightenmentStrings = new string[]
 	{
 		"Asleep",
@@ -298,90 +298,90 @@ public class HomeMangaScript : MonoBehaviour
 		"Omniscient"
 	};
 
-	// Token: 0x0400252C RID: 9516
+	// Token: 0x0400252D RID: 9517
 	public InputManagerScript InputManager;
 
-	// Token: 0x0400252D RID: 9517
+	// Token: 0x0400252E RID: 9518
 	public HomeYandereScript HomeYandere;
 
-	// Token: 0x0400252E RID: 9518
+	// Token: 0x0400252F RID: 9519
 	public HomeCameraScript HomeCamera;
 
-	// Token: 0x0400252F RID: 9519
+	// Token: 0x04002530 RID: 9520
 	public HomeWindowScript HomeWindow;
 
-	// Token: 0x04002530 RID: 9520
+	// Token: 0x04002531 RID: 9521
 	public HomeDarknessScript Darkness;
 
-	// Token: 0x04002531 RID: 9521
+	// Token: 0x04002532 RID: 9522
 	private GameObject NewManga;
 
-	// Token: 0x04002532 RID: 9522
+	// Token: 0x04002533 RID: 9523
 	public GameObject ReadButtonGroup;
 
-	// Token: 0x04002533 RID: 9523
+	// Token: 0x04002534 RID: 9524
 	public GameObject MysteryManga;
 
-	// Token: 0x04002534 RID: 9524
+	// Token: 0x04002535 RID: 9525
 	public GameObject AreYouSure;
 
-	// Token: 0x04002535 RID: 9525
+	// Token: 0x04002536 RID: 9526
 	public GameObject MangaGroup;
 
-	// Token: 0x04002536 RID: 9526
+	// Token: 0x04002537 RID: 9527
 	public GameObject[] MangaList;
 
-	// Token: 0x04002537 RID: 9527
+	// Token: 0x04002538 RID: 9528
 	public UILabel MangaNameLabel;
 
-	// Token: 0x04002538 RID: 9528
+	// Token: 0x04002539 RID: 9529
 	public UILabel MangaDescLabel;
 
-	// Token: 0x04002539 RID: 9529
+	// Token: 0x0400253A RID: 9530
 	public UILabel MangaBuffLabel;
 
-	// Token: 0x0400253A RID: 9530
+	// Token: 0x0400253B RID: 9531
 	public UILabel RequiredLabel;
 
-	// Token: 0x0400253B RID: 9531
+	// Token: 0x0400253C RID: 9532
 	public UILabel CurrentLabel;
 
-	// Token: 0x0400253C RID: 9532
+	// Token: 0x0400253D RID: 9533
 	public UILabel ButtonLabel;
 
-	// Token: 0x0400253D RID: 9533
+	// Token: 0x0400253E RID: 9534
 	public Transform MangaParent;
 
-	// Token: 0x0400253E RID: 9534
+	// Token: 0x0400253F RID: 9535
 	public bool DestinationReached;
 
-	// Token: 0x0400253F RID: 9535
+	// Token: 0x04002540 RID: 9536
 	public float TargetRotation;
 
-	// Token: 0x04002540 RID: 9536
+	// Token: 0x04002541 RID: 9537
 	public float Rotation;
 
-	// Token: 0x04002541 RID: 9537
+	// Token: 0x04002542 RID: 9538
 	public int TotalManga;
 
-	// Token: 0x04002542 RID: 9538
+	// Token: 0x04002543 RID: 9539
 	public int Selected;
 
-	// Token: 0x04002543 RID: 9539
+	// Token: 0x04002544 RID: 9540
 	public string Title = string.Empty;
 
-	// Token: 0x04002544 RID: 9540
+	// Token: 0x04002545 RID: 9541
 	public GameObject[] MangaModels;
 
-	// Token: 0x04002545 RID: 9541
+	// Token: 0x04002546 RID: 9542
 	public string[] MangaNames;
 
-	// Token: 0x04002546 RID: 9542
+	// Token: 0x04002547 RID: 9543
 	public string[] MangaDescs;
 
-	// Token: 0x04002547 RID: 9543
+	// Token: 0x04002548 RID: 9544
 	public string[] MangaBuffs;
 
-	// Token: 0x04002548 RID: 9544
+	// Token: 0x04002549 RID: 9545
 	public AudioClip ChangeSelection;
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000442 RID: 1090
 public class SplashSpawnerScript : MonoBehaviour
 {
-	// Token: 0x06001D18 RID: 7448 RVA: 0x0015BA70 File Offset: 0x00159C70
+	// Token: 0x06001D19 RID: 7449 RVA: 0x0015BD2C File Offset: 0x00159F2C
 	private void Update()
 	{
 		if (!this.FootUp)
@@ -27,7 +27,7 @@ public class SplashSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06001D19 RID: 7449 RVA: 0x0015BB83 File Offset: 0x00159D83
+	// Token: 0x06001D1A RID: 7450 RVA: 0x0015BE3F File Offset: 0x0015A03F
 	private void OnTriggerEnter(Collider other)
 	{
 		if (other.gameObject.name == "BloodPool(Clone)")
@@ -36,24 +36,24 @@ public class SplashSpawnerScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x040034B3 RID: 13491
+	// Token: 0x040034BB RID: 13499
 	public GameObject BloodSplash;
 
-	// Token: 0x040034B4 RID: 13492
+	// Token: 0x040034BC RID: 13500
 	public Transform Yandere;
 
-	// Token: 0x040034B5 RID: 13493
+	// Token: 0x040034BD RID: 13501
 	public bool Bloody;
 
-	// Token: 0x040034B6 RID: 13494
+	// Token: 0x040034BE RID: 13502
 	public bool FootUp;
 
-	// Token: 0x040034B7 RID: 13495
+	// Token: 0x040034BF RID: 13503
 	public float DownThreshold;
 
-	// Token: 0x040034B8 RID: 13496
+	// Token: 0x040034C0 RID: 13504
 	public float UpThreshold;
 
-	// Token: 0x040034B9 RID: 13497
+	// Token: 0x040034C1 RID: 13505
 	public float Height;
 }

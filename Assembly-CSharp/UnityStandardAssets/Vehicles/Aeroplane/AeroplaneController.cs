@@ -8,32 +8,32 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 	public class AeroplaneController : MonoBehaviour
 	{
 		// Token: 0x170004DD RID: 1245
-		// (get) Token: 0x06002219 RID: 8729 RVA: 0x001F4C95 File Offset: 0x001F2E95
-		// (set) Token: 0x0600221A RID: 8730 RVA: 0x001F4C9D File Offset: 0x001F2E9D
+		// (get) Token: 0x0600221A RID: 8730 RVA: 0x001F51FD File Offset: 0x001F33FD
+		// (set) Token: 0x0600221B RID: 8731 RVA: 0x001F5205 File Offset: 0x001F3405
 		public float Altitude { get; private set; }
 
 		// Token: 0x170004DE RID: 1246
-		// (get) Token: 0x0600221B RID: 8731 RVA: 0x001F4CA6 File Offset: 0x001F2EA6
-		// (set) Token: 0x0600221C RID: 8732 RVA: 0x001F4CAE File Offset: 0x001F2EAE
+		// (get) Token: 0x0600221C RID: 8732 RVA: 0x001F520E File Offset: 0x001F340E
+		// (set) Token: 0x0600221D RID: 8733 RVA: 0x001F5216 File Offset: 0x001F3416
 		public float Throttle { get; private set; }
 
 		// Token: 0x170004DF RID: 1247
-		// (get) Token: 0x0600221D RID: 8733 RVA: 0x001F4CB7 File Offset: 0x001F2EB7
-		// (set) Token: 0x0600221E RID: 8734 RVA: 0x001F4CBF File Offset: 0x001F2EBF
+		// (get) Token: 0x0600221E RID: 8734 RVA: 0x001F521F File Offset: 0x001F341F
+		// (set) Token: 0x0600221F RID: 8735 RVA: 0x001F5227 File Offset: 0x001F3427
 		public bool AirBrakes { get; private set; }
 
 		// Token: 0x170004E0 RID: 1248
-		// (get) Token: 0x0600221F RID: 8735 RVA: 0x001F4CC8 File Offset: 0x001F2EC8
-		// (set) Token: 0x06002220 RID: 8736 RVA: 0x001F4CD0 File Offset: 0x001F2ED0
+		// (get) Token: 0x06002220 RID: 8736 RVA: 0x001F5230 File Offset: 0x001F3430
+		// (set) Token: 0x06002221 RID: 8737 RVA: 0x001F5238 File Offset: 0x001F3438
 		public float ForwardSpeed { get; private set; }
 
 		// Token: 0x170004E1 RID: 1249
-		// (get) Token: 0x06002221 RID: 8737 RVA: 0x001F4CD9 File Offset: 0x001F2ED9
-		// (set) Token: 0x06002222 RID: 8738 RVA: 0x001F4CE1 File Offset: 0x001F2EE1
+		// (get) Token: 0x06002222 RID: 8738 RVA: 0x001F5241 File Offset: 0x001F3441
+		// (set) Token: 0x06002223 RID: 8739 RVA: 0x001F5249 File Offset: 0x001F3449
 		public float EnginePower { get; private set; }
 
 		// Token: 0x170004E2 RID: 1250
-		// (get) Token: 0x06002223 RID: 8739 RVA: 0x001F4CEA File Offset: 0x001F2EEA
+		// (get) Token: 0x06002224 RID: 8740 RVA: 0x001F5252 File Offset: 0x001F3452
 		public float MaxEnginePower
 		{
 			get
@@ -43,36 +43,36 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 		}
 
 		// Token: 0x170004E3 RID: 1251
-		// (get) Token: 0x06002224 RID: 8740 RVA: 0x001F4CF2 File Offset: 0x001F2EF2
-		// (set) Token: 0x06002225 RID: 8741 RVA: 0x001F4CFA File Offset: 0x001F2EFA
+		// (get) Token: 0x06002225 RID: 8741 RVA: 0x001F525A File Offset: 0x001F345A
+		// (set) Token: 0x06002226 RID: 8742 RVA: 0x001F5262 File Offset: 0x001F3462
 		public float RollAngle { get; private set; }
 
 		// Token: 0x170004E4 RID: 1252
-		// (get) Token: 0x06002226 RID: 8742 RVA: 0x001F4D03 File Offset: 0x001F2F03
-		// (set) Token: 0x06002227 RID: 8743 RVA: 0x001F4D0B File Offset: 0x001F2F0B
+		// (get) Token: 0x06002227 RID: 8743 RVA: 0x001F526B File Offset: 0x001F346B
+		// (set) Token: 0x06002228 RID: 8744 RVA: 0x001F5273 File Offset: 0x001F3473
 		public float PitchAngle { get; private set; }
 
 		// Token: 0x170004E5 RID: 1253
-		// (get) Token: 0x06002228 RID: 8744 RVA: 0x001F4D14 File Offset: 0x001F2F14
-		// (set) Token: 0x06002229 RID: 8745 RVA: 0x001F4D1C File Offset: 0x001F2F1C
+		// (get) Token: 0x06002229 RID: 8745 RVA: 0x001F527C File Offset: 0x001F347C
+		// (set) Token: 0x0600222A RID: 8746 RVA: 0x001F5284 File Offset: 0x001F3484
 		public float RollInput { get; private set; }
 
 		// Token: 0x170004E6 RID: 1254
-		// (get) Token: 0x0600222A RID: 8746 RVA: 0x001F4D25 File Offset: 0x001F2F25
-		// (set) Token: 0x0600222B RID: 8747 RVA: 0x001F4D2D File Offset: 0x001F2F2D
+		// (get) Token: 0x0600222B RID: 8747 RVA: 0x001F528D File Offset: 0x001F348D
+		// (set) Token: 0x0600222C RID: 8748 RVA: 0x001F5295 File Offset: 0x001F3495
 		public float PitchInput { get; private set; }
 
 		// Token: 0x170004E7 RID: 1255
-		// (get) Token: 0x0600222C RID: 8748 RVA: 0x001F4D36 File Offset: 0x001F2F36
-		// (set) Token: 0x0600222D RID: 8749 RVA: 0x001F4D3E File Offset: 0x001F2F3E
+		// (get) Token: 0x0600222D RID: 8749 RVA: 0x001F529E File Offset: 0x001F349E
+		// (set) Token: 0x0600222E RID: 8750 RVA: 0x001F52A6 File Offset: 0x001F34A6
 		public float YawInput { get; private set; }
 
 		// Token: 0x170004E8 RID: 1256
-		// (get) Token: 0x0600222E RID: 8750 RVA: 0x001F4D47 File Offset: 0x001F2F47
-		// (set) Token: 0x0600222F RID: 8751 RVA: 0x001F4D4F File Offset: 0x001F2F4F
+		// (get) Token: 0x0600222F RID: 8751 RVA: 0x001F52AF File Offset: 0x001F34AF
+		// (set) Token: 0x06002230 RID: 8752 RVA: 0x001F52B7 File Offset: 0x001F34B7
 		public float ThrottleInput { get; private set; }
 
-		// Token: 0x06002230 RID: 8752 RVA: 0x001F4D58 File Offset: 0x001F2F58
+		// Token: 0x06002231 RID: 8753 RVA: 0x001F52C0 File Offset: 0x001F34C0
 		private void Start()
 		{
 			this.m_Rigidbody = base.GetComponent<Rigidbody>();
@@ -88,7 +88,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			}
 		}
 
-		// Token: 0x06002231 RID: 8753 RVA: 0x001F4DD8 File Offset: 0x001F2FD8
+		// Token: 0x06002232 RID: 8754 RVA: 0x001F5340 File Offset: 0x001F3540
 		public void Move(float rollInput, float pitchInput, float yawInput, float throttleInput, bool airBrakes)
 		{
 			this.RollInput = rollInput;
@@ -108,7 +108,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.CalculateAltitude();
 		}
 
-		// Token: 0x06002232 RID: 8754 RVA: 0x001F4E48 File Offset: 0x001F3048
+		// Token: 0x06002233 RID: 8755 RVA: 0x001F53B0 File Offset: 0x001F35B0
 		private void ClampInputs()
 		{
 			this.RollInput = Mathf.Clamp(this.RollInput, -1f, 1f);
@@ -117,7 +117,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.ThrottleInput = Mathf.Clamp(this.ThrottleInput, -1f, 1f);
 		}
 
-		// Token: 0x06002233 RID: 8755 RVA: 0x001F4EC4 File Offset: 0x001F30C4
+		// Token: 0x06002234 RID: 8756 RVA: 0x001F542C File Offset: 0x001F362C
 		private void CalculateRollAndPitchAngles()
 		{
 			Vector3 forward = base.transform.forward;
@@ -133,7 +133,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			}
 		}
 
-		// Token: 0x06002234 RID: 8756 RVA: 0x001F4F54 File Offset: 0x001F3154
+		// Token: 0x06002235 RID: 8757 RVA: 0x001F54BC File Offset: 0x001F36BC
 		private void AutoLevel()
 		{
 			this.m_BankedTurnAmount = Mathf.Sin(this.RollAngle);
@@ -148,14 +148,14 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			}
 		}
 
-		// Token: 0x06002235 RID: 8757 RVA: 0x001F4FDC File Offset: 0x001F31DC
+		// Token: 0x06002236 RID: 8758 RVA: 0x001F5544 File Offset: 0x001F3744
 		private void CalculateForwardSpeed()
 		{
 			Vector3 vector = base.transform.InverseTransformDirection(this.m_Rigidbody.velocity);
 			this.ForwardSpeed = Mathf.Max(0f, vector.z);
 		}
 
-		// Token: 0x06002236 RID: 8758 RVA: 0x001F5018 File Offset: 0x001F3218
+		// Token: 0x06002237 RID: 8759 RVA: 0x001F5580 File Offset: 0x001F3780
 		private void ControlThrottle()
 		{
 			if (this.m_Immobilized)
@@ -166,7 +166,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.EnginePower = this.Throttle * this.m_MaxEnginePower;
 		}
 
-		// Token: 0x06002237 RID: 8759 RVA: 0x001F5070 File Offset: 0x001F3270
+		// Token: 0x06002238 RID: 8760 RVA: 0x001F55D8 File Offset: 0x001F37D8
 		private void CalculateDrag()
 		{
 			float num = this.m_Rigidbody.velocity.magnitude * this.m_DragIncreaseFactor;
@@ -174,7 +174,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_Rigidbody.angularDrag = this.m_OriginalAngularDrag * this.ForwardSpeed;
 		}
 
-		// Token: 0x06002238 RID: 8760 RVA: 0x001F50DC File Offset: 0x001F32DC
+		// Token: 0x06002239 RID: 8761 RVA: 0x001F5644 File Offset: 0x001F3844
 		private void CaluclateAerodynamicEffect()
 		{
 			if (this.m_Rigidbody.velocity.magnitude > 0f)
@@ -187,7 +187,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			}
 		}
 
-		// Token: 0x06002239 RID: 8761 RVA: 0x001F51D4 File Offset: 0x001F33D4
+		// Token: 0x0600223A RID: 8762 RVA: 0x001F573C File Offset: 0x001F393C
 		private void CalculateLinearForces()
 		{
 			Vector3 vector = Vector3.zero;
@@ -199,7 +199,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_Rigidbody.AddForce(vector);
 		}
 
-		// Token: 0x0600223A RID: 8762 RVA: 0x001F5278 File Offset: 0x001F3478
+		// Token: 0x0600223B RID: 8763 RVA: 0x001F57E0 File Offset: 0x001F39E0
 		private void CalculateTorque()
 		{
 			Vector3 a = Vector3.zero;
@@ -210,7 +210,7 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.m_Rigidbody.AddTorque(a * this.ForwardSpeed * this.m_AeroFactor);
 		}
 
-		// Token: 0x0600223B RID: 8763 RVA: 0x001F5340 File Offset: 0x001F3540
+		// Token: 0x0600223C RID: 8764 RVA: 0x001F58A8 File Offset: 0x001F3AA8
 		private void CalculateAltitude()
 		{
 			Ray ray = new Ray(base.transform.position - Vector3.up * 10f, -Vector3.up);
@@ -218,93 +218,93 @@ namespace UnityStandardAssets.Vehicles.Aeroplane
 			this.Altitude = (Physics.Raycast(ray, out raycastHit) ? (raycastHit.distance + 10f) : base.transform.position.y);
 		}
 
-		// Token: 0x0600223C RID: 8764 RVA: 0x001F53AC File Offset: 0x001F35AC
+		// Token: 0x0600223D RID: 8765 RVA: 0x001F5914 File Offset: 0x001F3B14
 		public void Immobilize()
 		{
 			this.m_Immobilized = true;
 		}
 
-		// Token: 0x0600223D RID: 8765 RVA: 0x001F53B5 File Offset: 0x001F35B5
+		// Token: 0x0600223E RID: 8766 RVA: 0x001F591D File Offset: 0x001F3B1D
 		public void Reset()
 		{
 			this.m_Immobilized = false;
 		}
 
-		// Token: 0x04004AEF RID: 19183
+		// Token: 0x04004AF8 RID: 19192
 		[SerializeField]
 		private float m_MaxEnginePower = 40f;
 
-		// Token: 0x04004AF0 RID: 19184
+		// Token: 0x04004AF9 RID: 19193
 		[SerializeField]
 		private float m_Lift = 0.002f;
 
-		// Token: 0x04004AF1 RID: 19185
+		// Token: 0x04004AFA RID: 19194
 		[SerializeField]
 		private float m_ZeroLiftSpeed = 300f;
 
-		// Token: 0x04004AF2 RID: 19186
+		// Token: 0x04004AFB RID: 19195
 		[SerializeField]
 		private float m_RollEffect = 1f;
 
-		// Token: 0x04004AF3 RID: 19187
+		// Token: 0x04004AFC RID: 19196
 		[SerializeField]
 		private float m_PitchEffect = 1f;
 
-		// Token: 0x04004AF4 RID: 19188
+		// Token: 0x04004AFD RID: 19197
 		[SerializeField]
 		private float m_YawEffect = 0.2f;
 
-		// Token: 0x04004AF5 RID: 19189
+		// Token: 0x04004AFE RID: 19198
 		[SerializeField]
 		private float m_BankedTurnEffect = 0.5f;
 
-		// Token: 0x04004AF6 RID: 19190
+		// Token: 0x04004AFF RID: 19199
 		[SerializeField]
 		private float m_AerodynamicEffect = 0.02f;
 
-		// Token: 0x04004AF7 RID: 19191
+		// Token: 0x04004B00 RID: 19200
 		[SerializeField]
 		private float m_AutoTurnPitch = 0.5f;
 
-		// Token: 0x04004AF8 RID: 19192
+		// Token: 0x04004B01 RID: 19201
 		[SerializeField]
 		private float m_AutoRollLevel = 0.2f;
 
-		// Token: 0x04004AF9 RID: 19193
+		// Token: 0x04004B02 RID: 19202
 		[SerializeField]
 		private float m_AutoPitchLevel = 0.2f;
 
-		// Token: 0x04004AFA RID: 19194
+		// Token: 0x04004B03 RID: 19203
 		[SerializeField]
 		private float m_AirBrakesEffect = 3f;
 
-		// Token: 0x04004AFB RID: 19195
+		// Token: 0x04004B04 RID: 19204
 		[SerializeField]
 		private float m_ThrottleChangeSpeed = 0.3f;
 
-		// Token: 0x04004AFC RID: 19196
+		// Token: 0x04004B05 RID: 19205
 		[SerializeField]
 		private float m_DragIncreaseFactor = 0.001f;
 
-		// Token: 0x04004B08 RID: 19208
+		// Token: 0x04004B11 RID: 19217
 		private float m_OriginalDrag;
 
-		// Token: 0x04004B09 RID: 19209
+		// Token: 0x04004B12 RID: 19218
 		private float m_OriginalAngularDrag;
 
-		// Token: 0x04004B0A RID: 19210
+		// Token: 0x04004B13 RID: 19219
 		private float m_AeroFactor;
 
-		// Token: 0x04004B0B RID: 19211
+		// Token: 0x04004B14 RID: 19220
 		private bool m_Immobilized;
 
-		// Token: 0x04004B0C RID: 19212
+		// Token: 0x04004B15 RID: 19221
 		private float m_BankedTurnAmount;
 
-		// Token: 0x04004B0D RID: 19213
+		// Token: 0x04004B16 RID: 19222
 		private Rigidbody m_Rigidbody;
 
-		// Token: 0x04004B0E RID: 19214
+		// Token: 0x04004B17 RID: 19223
 		private WheelCollider[] m_WheelColliders;
 	}
 }

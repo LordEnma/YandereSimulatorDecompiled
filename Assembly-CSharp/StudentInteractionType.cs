@@ -3,62 +3,62 @@
 // Token: 0x02000460 RID: 1120
 public enum StudentInteractionType
 {
-	// Token: 0x040038C0 RID: 14528
-	Idle,
-	// Token: 0x040038C1 RID: 14529
-	Forgiving,
-	// Token: 0x040038C2 RID: 14530
-	ReceivingCompliment,
-	// Token: 0x040038C3 RID: 14531
-	Gossiping,
-	// Token: 0x040038C4 RID: 14532
-	Bye,
-	// Token: 0x040038C5 RID: 14533
-	GivingTask,
-	// Token: 0x040038C6 RID: 14534
-	FollowingPlayer,
-	// Token: 0x040038C7 RID: 14535
-	GoingAway,
 	// Token: 0x040038C8 RID: 14536
-	DistractingTarget,
+	Idle,
 	// Token: 0x040038C9 RID: 14537
-	PersonalGrudge,
+	Forgiving,
 	// Token: 0x040038CA RID: 14538
-	ClubInfo,
+	ReceivingCompliment,
 	// Token: 0x040038CB RID: 14539
-	ClubJoin,
+	Gossiping,
 	// Token: 0x040038CC RID: 14540
-	ClubQuit,
+	Bye,
 	// Token: 0x040038CD RID: 14541
-	ClubBye,
+	GivingTask,
 	// Token: 0x040038CE RID: 14542
-	ClubActivity,
+	FollowingPlayer,
 	// Token: 0x040038CF RID: 14543
-	ClubUnwelcome,
+	GoingAway,
 	// Token: 0x040038D0 RID: 14544
-	ClubKick,
+	DistractingTarget,
 	// Token: 0x040038D1 RID: 14545
-	ClubGrudge,
+	PersonalGrudge,
 	// Token: 0x040038D2 RID: 14546
-	ClubPractice,
+	ClubInfo,
 	// Token: 0x040038D3 RID: 14547
-	NamingCrush,
+	ClubJoin,
 	// Token: 0x040038D4 RID: 14548
-	ChangingAppearance,
+	ClubQuit,
 	// Token: 0x040038D5 RID: 14549
-	Court,
+	ClubBye,
 	// Token: 0x040038D6 RID: 14550
-	Advice,
+	ClubActivity,
 	// Token: 0x040038D7 RID: 14551
-	Feeding,
+	ClubUnwelcome,
 	// Token: 0x040038D8 RID: 14552
-	TaskInquiry,
+	ClubKick,
 	// Token: 0x040038D9 RID: 14553
-	TakingSnack,
+	ClubGrudge,
 	// Token: 0x040038DA RID: 14554
-	GivingHelp,
+	ClubPractice,
 	// Token: 0x040038DB RID: 14555
-	SentToLocker,
+	NamingCrush,
 	// Token: 0x040038DC RID: 14556
+	ChangingAppearance,
+	// Token: 0x040038DD RID: 14557
+	Court,
+	// Token: 0x040038DE RID: 14558
+	Advice,
+	// Token: 0x040038DF RID: 14559
+	Feeding,
+	// Token: 0x040038E0 RID: 14560
+	TaskInquiry,
+	// Token: 0x040038E1 RID: 14561
+	TakingSnack,
+	// Token: 0x040038E2 RID: 14562
+	GivingHelp,
+	// Token: 0x040038E3 RID: 14563
+	SentToLocker,
+	// Token: 0x040038E4 RID: 14564
 	WaitingForBeatEmUpResult
 }

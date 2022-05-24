@@ -4,7 +4,7 @@ using UnityEngine;
 // Token: 0x02000100 RID: 256
 public class BucketScript : MonoBehaviour
 {
-	// Token: 0x06000A8C RID: 2700 RVA: 0x0005DB90 File Offset: 0x0005BD90
+	// Token: 0x06000A8C RID: 2700 RVA: 0x0005DBB8 File Offset: 0x0005BDB8
 	private void Start()
 	{
 		this.Water.transform.localPosition = new Vector3(this.Water.transform.localPosition.x, 0f, this.Water.transform.localPosition.z);
@@ -21,7 +21,7 @@ public class BucketScript : MonoBehaviour
 		this.Yandere.StudentManager.BucketID++;
 	}
 
-	// Token: 0x06000A8D RID: 2701 RVA: 0x0005DE44 File Offset: 0x0005C044
+	// Token: 0x06000A8D RID: 2701 RVA: 0x0005DE6C File Offset: 0x0005C06C
 	private void Update()
 	{
 		bool flag = false;
@@ -401,7 +401,7 @@ public class BucketScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A8E RID: 2702 RVA: 0x0005F4A0 File Offset: 0x0005D6A0
+	// Token: 0x06000A8E RID: 2702 RVA: 0x0005F4C8 File Offset: 0x0005D6C8
 	public void Empty()
 	{
 		if (SchemeGlobals.GetSchemeStage(1) == 2)
@@ -421,16 +421,12 @@ public class BucketScript : MonoBehaviour
 		this.Prompt.HideButton[0] = true;
 		this.Prompt.OffsetY[0] = 0.5f;
 		this.PickUp.Usable = false;
+		this.PickUp.Outline[0].color = new Color(0f, 1f, 1f, 1f);
 	}
 
-	// Token: 0x06000A8F RID: 2703 RVA: 0x0005F554 File Offset: 0x0005D754
+	// Token: 0x06000A8F RID: 2703 RVA: 0x0005F5A8 File Offset: 0x0005D7A8
 	public void Fill()
 	{
-		if (SchemeGlobals.GetSchemeStage(1) == 1)
-		{
-			SchemeGlobals.SetSchemeStage(1, 2);
-			this.Yandere.PauseScreen.Schemes.UpdateInstructions();
-		}
 		AudioSource.PlayClipAtPoint(this.FillBucket, base.transform.position);
 		this.Prompt.Label[0].text = "     Spill";
 		this.Prompt.HideButton[0] = false;
@@ -442,7 +438,7 @@ public class BucketScript : MonoBehaviour
 		this.Full = true;
 	}
 
-	// Token: 0x06000A90 RID: 2704 RVA: 0x0005F608 File Offset: 0x0005D808
+	// Token: 0x06000A90 RID: 2704 RVA: 0x0005F634 File Offset: 0x0005D834
 	private void OnCollisionEnter(Collision other)
 	{
 		if (this.Dropped)
@@ -474,7 +470,7 @@ public class BucketScript : MonoBehaviour
 		}
 	}
 
-	// Token: 0x06000A91 RID: 2705 RVA: 0x0005F750 File Offset: 0x0005D950
+	// Token: 0x06000A91 RID: 2705 RVA: 0x0005F77C File Offset: 0x0005D97C
 	public void Spill()
 	{
 		GameObject original;
