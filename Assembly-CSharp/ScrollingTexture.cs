@@ -1,28 +1,22 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ScrollingTexture
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000420 RID: 1056
 public class ScrollingTexture : MonoBehaviour
 {
-	// Token: 0x06001C9B RID: 7323 RVA: 0x0014FBE7 File Offset: 0x0014DDE7
-	private void Start()
-	{
-		this.MyRenderer = base.GetComponent<Renderer>();
-	}
+  public Renderer MyRenderer;
+  public float Offset;
+  public float Speed;
 
-	// Token: 0x06001C9C RID: 7324 RVA: 0x0014FBF8 File Offset: 0x0014DDF8
-	private void Update()
-	{
-		this.Offset += Time.deltaTime * this.Speed;
-		this.MyRenderer.material.SetTextureOffset("_MainTex", new Vector2(this.Offset, this.Offset));
-	}
+  private void Start() => this.MyRenderer = this.GetComponent<Renderer>();
 
-	// Token: 0x04003307 RID: 13063
-	public Renderer MyRenderer;
-
-	// Token: 0x04003308 RID: 13064
-	public float Offset;
-
-	// Token: 0x04003309 RID: 13065
-	public float Speed;
+  private void Update()
+  {
+    this.Offset += Time.deltaTime * this.Speed;
+    this.MyRenderer.material.SetTextureOffset("_MainTex", new Vector2(this.Offset, this.Offset));
+  }
 }

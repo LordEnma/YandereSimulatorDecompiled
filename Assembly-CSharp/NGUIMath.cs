@@ -1,1115 +1,909 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: NGUIMath
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using System.Diagnostics;
 using UnityEngine;
 
-// Token: 0x02000076 RID: 118
 public static class NGUIMath
 {
-	// Token: 0x0600037F RID: 895 RVA: 0x00022E2E File Offset: 0x0002102E
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static float Lerp(float from, float to, float factor)
-	{
-		return from * (1f - factor) + to * factor;
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static float Lerp(float from, float to, float factor) => (float) ((double) from * (1.0 - (double) factor) + (double) to * (double) factor);
 
-	// Token: 0x06000380 RID: 896 RVA: 0x00022E3D File Offset: 0x0002103D
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static int ClampIndex(int val, int max)
-	{
-		if (val < 0)
-		{
-			return 0;
-		}
-		if (val >= max)
-		{
-			return max - 1;
-		}
-		return val;
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static int ClampIndex(int val, int max)
+  {
+    if (val < 0)
+      return 0;
+    return val >= max ? max - 1 : val;
+  }
 
-	// Token: 0x06000381 RID: 897 RVA: 0x00022E4E File Offset: 0x0002104E
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static int RepeatIndex(int val, int max)
-	{
-		if (max < 1)
-		{
-			return 0;
-		}
-		while (val < 0)
-		{
-			val += max;
-		}
-		while (val >= max)
-		{
-			val -= max;
-		}
-		return val;
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static int RepeatIndex(int val, int max)
+  {
+    if (max < 1)
+      return 0;
+    while (val < 0)
+      val += max;
+    while (val >= max)
+      val -= max;
+    return val;
+  }
 
-	// Token: 0x06000382 RID: 898 RVA: 0x00022E6B File Offset: 0x0002106B
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static float WrapAngle(float angle)
-	{
-		while (angle > 180f)
-		{
-			angle -= 360f;
-		}
-		while (angle < -180f)
-		{
-			angle += 360f;
-		}
-		return angle;
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static float WrapAngle(float angle)
+  {
+    while ((double) angle > 180.0)
+      angle -= 360f;
+    while ((double) angle < -180.0)
+      angle += 360f;
+    return angle;
+  }
 
-	// Token: 0x06000383 RID: 899 RVA: 0x00022E94 File Offset: 0x00021094
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static float Wrap01(float val)
-	{
-		return val - (float)Mathf.FloorToInt(val);
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static float Wrap01(float val) => val - (float) Mathf.FloorToInt(val);
 
-	// Token: 0x06000384 RID: 900 RVA: 0x00022EA0 File Offset: 0x000210A0
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static int HexToDecimal(char ch)
-	{
-		switch (ch)
-		{
-		case '0':
-			return 0;
-		case '1':
-			return 1;
-		case '2':
-			return 2;
-		case '3':
-			return 3;
-		case '4':
-			return 4;
-		case '5':
-			return 5;
-		case '6':
-			return 6;
-		case '7':
-			return 7;
-		case '8':
-			return 8;
-		case '9':
-			return 9;
-		case ':':
-		case ';':
-		case '<':
-		case '=':
-		case '>':
-		case '?':
-		case '@':
-			return 15;
-		case 'A':
-			break;
-		case 'B':
-			return 11;
-		case 'C':
-			return 12;
-		case 'D':
-			return 13;
-		case 'E':
-			return 14;
-		case 'F':
-			return 15;
-		default:
-			switch (ch)
-			{
-			case 'a':
-				break;
-			case 'b':
-				return 11;
-			case 'c':
-				return 12;
-			case 'd':
-				return 13;
-			case 'e':
-				return 14;
-			case 'f':
-				return 15;
-			default:
-				return 15;
-			}
-			break;
-		}
-		return 10;
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static int HexToDecimal(char ch)
+  {
+    switch (ch)
+    {
+      case '0':
+        return 0;
+      case '1':
+        return 1;
+      case '2':
+        return 2;
+      case '3':
+        return 3;
+      case '4':
+        return 4;
+      case '5':
+        return 5;
+      case '6':
+        return 6;
+      case '7':
+        return 7;
+      case '8':
+        return 8;
+      case '9':
+        return 9;
+      case 'A':
+      case 'a':
+        return 10;
+      case 'B':
+      case 'b':
+        return 11;
+      case 'C':
+      case 'c':
+        return 12;
+      case 'D':
+      case 'd':
+        return 13;
+      case 'E':
+      case 'e':
+        return 14;
+      case 'F':
+      case 'f':
+        return 15;
+      default:
+        return 15;
+    }
+  }
 
-	// Token: 0x06000385 RID: 901 RVA: 0x00022F5E File Offset: 0x0002115E
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static char DecimalToHexChar(int num)
-	{
-		if (num > 15)
-		{
-			return 'F';
-		}
-		if (num < 10)
-		{
-			return (char)(48 + num);
-		}
-		return (char)(65 + num - 10);
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static char DecimalToHexChar(int num)
+  {
+    if (num > 15)
+      return 'F';
+    return num < 10 ? (char) (48 + num) : (char) (65 + num - 10);
+  }
 
-	// Token: 0x06000386 RID: 902 RVA: 0x00022F7B File Offset: 0x0002117B
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static string DecimalToHex8(int num)
-	{
-		num &= 255;
-		return num.ToString("X2");
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static string DecimalToHex8(int num)
+  {
+    num &= (int) byte.MaxValue;
+    return num.ToString("X2");
+  }
 
-	// Token: 0x06000387 RID: 903 RVA: 0x00022F92 File Offset: 0x00021192
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static string DecimalToHex24(int num)
-	{
-		num &= 16777215;
-		return num.ToString("X6");
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static string DecimalToHex24(int num)
+  {
+    num &= 16777215;
+    return num.ToString("X6");
+  }
 
-	// Token: 0x06000388 RID: 904 RVA: 0x00022FA9 File Offset: 0x000211A9
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static string DecimalToHex32(int num)
-	{
-		return num.ToString("X8");
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static string DecimalToHex32(int num) => num.ToString("X8");
 
-	// Token: 0x06000389 RID: 905 RVA: 0x00022FB8 File Offset: 0x000211B8
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static int ColorToInt(Color c)
-	{
-		return 0 | Mathf.RoundToInt(c.r * 255f) << 24 | Mathf.RoundToInt(c.g * 255f) << 16 | Mathf.RoundToInt(c.b * 255f) << 8 | Mathf.RoundToInt(c.a * 255f);
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static int ColorToInt(Color c) => 0 | Mathf.RoundToInt(c.r * (float) byte.MaxValue) << 24 | Mathf.RoundToInt(c.g * (float) byte.MaxValue) << 16 | Mathf.RoundToInt(c.b * (float) byte.MaxValue) << 8 | Mathf.RoundToInt(c.a * (float) byte.MaxValue);
 
-	// Token: 0x0600038A RID: 906 RVA: 0x00023018 File Offset: 0x00021218
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static Color IntToColor(int val)
-	{
-		float num = 0.003921569f;
-		Color black = Color.black;
-		black.r = num * (float)(val >> 24 & 255);
-		black.g = num * (float)(val >> 16 & 255);
-		black.b = num * (float)(val >> 8 & 255);
-		black.a = num * (float)(val & 255);
-		return black;
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static Color IntToColor(int val)
+  {
+    float num = 0.003921569f;
+    return Color.black with
+    {
+      r = num * (float) (val >> 24 & (int) byte.MaxValue),
+      g = num * (float) (val >> 16 & (int) byte.MaxValue),
+      b = num * (float) (val >> 8 & (int) byte.MaxValue),
+      a = num * (float) (val & (int) byte.MaxValue)
+    };
+  }
 
-	// Token: 0x0600038B RID: 907 RVA: 0x00023080 File Offset: 0x00021280
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static string IntToBinary(int val, int bits)
-	{
-		string text = "";
-		int i = bits;
-		while (i > 0)
-		{
-			if (i == 8 || i == 16 || i == 24)
-			{
-				text += " ";
-			}
-			text += (((val & 1 << --i) != 0) ? '1' : '0').ToString();
-		}
-		return text;
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static string IntToBinary(int val, int bits)
+  {
+    string binary = "";
+    for (int index = bits; index > 0; binary += ((val & 1 << --index) != 0 ? '1' : '0').ToString())
+    {
+      if (index == 8 || index == 16 || index == 24)
+        binary += " ";
+    }
+    return binary;
+  }
 
-	// Token: 0x0600038C RID: 908 RVA: 0x000230D9 File Offset: 0x000212D9
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	public static Color HexToColor(uint val)
-	{
-		return NGUIMath.IntToColor((int)val);
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  public static Color HexToColor(uint val) => NGUIMath.IntToColor((int) val);
 
-	// Token: 0x0600038D RID: 909 RVA: 0x000230E4 File Offset: 0x000212E4
-	public static Rect ConvertToTexCoords(Rect rect, int width, int height)
-	{
-		Rect result = rect;
-		if ((float)width != 0f && (float)height != 0f)
-		{
-			result.xMin = rect.xMin / (float)width;
-			result.xMax = rect.xMax / (float)width;
-			result.yMin = 1f - rect.yMax / (float)height;
-			result.yMax = 1f - rect.yMin / (float)height;
-		}
-		return result;
-	}
+  public static Rect ConvertToTexCoords(Rect rect, int width, int height)
+  {
+    Rect texCoords = rect;
+    if ((double) width != 0.0 && (double) height != 0.0)
+    {
+      texCoords.xMin = rect.xMin / (float) width;
+      texCoords.xMax = rect.xMax / (float) width;
+      texCoords.yMin = (float) (1.0 - (double) rect.yMax / (double) height);
+      texCoords.yMax = (float) (1.0 - (double) rect.yMin / (double) height);
+    }
+    return texCoords;
+  }
 
-	// Token: 0x0600038E RID: 910 RVA: 0x00023158 File Offset: 0x00021358
-	public static Rect ConvertToPixels(Rect rect, int width, int height, bool round)
-	{
-		Rect result = rect;
-		if (round)
-		{
-			result.xMin = (float)Mathf.RoundToInt(rect.xMin * (float)width);
-			result.xMax = (float)Mathf.RoundToInt(rect.xMax * (float)width);
-			result.yMin = (float)Mathf.RoundToInt((1f - rect.yMax) * (float)height);
-			result.yMax = (float)Mathf.RoundToInt((1f - rect.yMin) * (float)height);
-		}
-		else
-		{
-			result.xMin = rect.xMin * (float)width;
-			result.xMax = rect.xMax * (float)width;
-			result.yMin = (1f - rect.yMax) * (float)height;
-			result.yMax = (1f - rect.yMin) * (float)height;
-		}
-		return result;
-	}
+  public static Rect ConvertToPixels(Rect rect, int width, int height, bool round)
+  {
+    Rect pixels = rect;
+    if (round)
+    {
+      pixels.xMin = (float) Mathf.RoundToInt(rect.xMin * (float) width);
+      pixels.xMax = (float) Mathf.RoundToInt(rect.xMax * (float) width);
+      pixels.yMin = (float) Mathf.RoundToInt((1f - rect.yMax) * (float) height);
+      pixels.yMax = (float) Mathf.RoundToInt((1f - rect.yMin) * (float) height);
+    }
+    else
+    {
+      pixels.xMin = rect.xMin * (float) width;
+      pixels.xMax = rect.xMax * (float) width;
+      pixels.yMin = (1f - rect.yMax) * (float) height;
+      pixels.yMax = (1f - rect.yMin) * (float) height;
+    }
+    return pixels;
+  }
 
-	// Token: 0x0600038F RID: 911 RVA: 0x00023228 File Offset: 0x00021428
-	public static Rect MakePixelPerfect(Rect rect)
-	{
-		rect.xMin = (float)Mathf.RoundToInt(rect.xMin);
-		rect.yMin = (float)Mathf.RoundToInt(rect.yMin);
-		rect.xMax = (float)Mathf.RoundToInt(rect.xMax);
-		rect.yMax = (float)Mathf.RoundToInt(rect.yMax);
-		return rect;
-	}
+  public static Rect MakePixelPerfect(Rect rect)
+  {
+    rect.xMin = (float) Mathf.RoundToInt(rect.xMin);
+    rect.yMin = (float) Mathf.RoundToInt(rect.yMin);
+    rect.xMax = (float) Mathf.RoundToInt(rect.xMax);
+    rect.yMax = (float) Mathf.RoundToInt(rect.yMax);
+    return rect;
+  }
 
-	// Token: 0x06000390 RID: 912 RVA: 0x00023288 File Offset: 0x00021488
-	public static Rect MakePixelPerfect(Rect rect, int width, int height)
-	{
-		rect = NGUIMath.ConvertToPixels(rect, width, height, true);
-		rect.xMin = (float)Mathf.RoundToInt(rect.xMin);
-		rect.yMin = (float)Mathf.RoundToInt(rect.yMin);
-		rect.xMax = (float)Mathf.RoundToInt(rect.xMax);
-		rect.yMax = (float)Mathf.RoundToInt(rect.yMax);
-		return NGUIMath.ConvertToTexCoords(rect, width, height);
-	}
+  public static Rect MakePixelPerfect(Rect rect, int width, int height)
+  {
+    rect = NGUIMath.ConvertToPixels(rect, width, height, true);
+    rect.xMin = (float) Mathf.RoundToInt(rect.xMin);
+    rect.yMin = (float) Mathf.RoundToInt(rect.yMin);
+    rect.xMax = (float) Mathf.RoundToInt(rect.xMax);
+    rect.yMax = (float) Mathf.RoundToInt(rect.yMax);
+    return NGUIMath.ConvertToTexCoords(rect, width, height);
+  }
 
-	// Token: 0x06000391 RID: 913 RVA: 0x000232F8 File Offset: 0x000214F8
-	public static Vector2 ConstrainRect(Vector2 minRect, Vector2 maxRect, Vector2 minArea, Vector2 maxArea)
-	{
-		Vector2 zero = Vector2.zero;
-		float num = maxRect.x - minRect.x;
-		float num2 = maxRect.y - minRect.y;
-		float num3 = maxArea.x - minArea.x;
-		float num4 = maxArea.y - minArea.y;
-		if (num > num3)
-		{
-			float num5 = num - num3;
-			minArea.x -= num5;
-			maxArea.x += num5;
-		}
-		if (num2 > num4)
-		{
-			float num6 = num2 - num4;
-			minArea.y -= num6;
-			maxArea.y += num6;
-		}
-		if (minRect.x < minArea.x)
-		{
-			zero.x += minArea.x - minRect.x;
-		}
-		if (maxRect.x > maxArea.x)
-		{
-			zero.x -= maxRect.x - maxArea.x;
-		}
-		if (minRect.y < minArea.y)
-		{
-			zero.y += minArea.y - minRect.y;
-		}
-		if (maxRect.y > maxArea.y)
-		{
-			zero.y -= maxRect.y - maxArea.y;
-		}
-		return zero;
-	}
+  public static Vector2 ConstrainRect(
+    Vector2 minRect,
+    Vector2 maxRect,
+    Vector2 minArea,
+    Vector2 maxArea)
+  {
+    Vector2 zero = Vector2.zero;
+    float num1 = maxRect.x - minRect.x;
+    float num2 = maxRect.y - minRect.y;
+    float num3 = maxArea.x - minArea.x;
+    float num4 = maxArea.y - minArea.y;
+    if ((double) num1 > (double) num3)
+    {
+      float num5 = num1 - num3;
+      minArea.x -= num5;
+      maxArea.x += num5;
+    }
+    if ((double) num2 > (double) num4)
+    {
+      float num6 = num2 - num4;
+      minArea.y -= num6;
+      maxArea.y += num6;
+    }
+    if ((double) minRect.x < (double) minArea.x)
+      zero.x += minArea.x - minRect.x;
+    if ((double) maxRect.x > (double) maxArea.x)
+      zero.x -= maxRect.x - maxArea.x;
+    if ((double) minRect.y < (double) minArea.y)
+      zero.y += minArea.y - minRect.y;
+    if ((double) maxRect.y > (double) maxArea.y)
+      zero.y -= maxRect.y - maxArea.y;
+    return zero;
+  }
 
-	// Token: 0x06000392 RID: 914 RVA: 0x00023428 File Offset: 0x00021628
-	public static Bounds CalculateAbsoluteWidgetBounds(Transform trans)
-	{
-		if (!(trans != null))
-		{
-			return new Bounds(Vector3.zero, Vector3.zero);
-		}
-		UIWidget[] componentsInChildren = trans.GetComponentsInChildren<UIWidget>();
-		if (componentsInChildren.Length == 0)
-		{
-			return new Bounds(trans.position, Vector3.zero);
-		}
-		Vector3 vector = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
-		Vector3 vector2 = new Vector3(float.MinValue, float.MinValue, float.MinValue);
-		int i = 0;
-		int num = componentsInChildren.Length;
-		while (i < num)
-		{
-			UIWidget uiwidget = componentsInChildren[i];
-			if (uiwidget.enabled)
-			{
-				Vector3[] worldCorners = uiwidget.worldCorners;
-				for (int j = 0; j < 4; j++)
-				{
-					Vector3 vector3 = worldCorners[j];
-					if (vector3.x > vector2.x)
-					{
-						vector2.x = vector3.x;
-					}
-					if (vector3.y > vector2.y)
-					{
-						vector2.y = vector3.y;
-					}
-					if (vector3.z > vector2.z)
-					{
-						vector2.z = vector3.z;
-					}
-					if (vector3.x < vector.x)
-					{
-						vector.x = vector3.x;
-					}
-					if (vector3.y < vector.y)
-					{
-						vector.y = vector3.y;
-					}
-					if (vector3.z < vector.z)
-					{
-						vector.z = vector3.z;
-					}
-				}
-			}
-			i++;
-		}
-		Bounds result = new Bounds(vector, Vector3.zero);
-		result.Encapsulate(vector2);
-		return result;
-	}
+  public static Bounds CalculateAbsoluteWidgetBounds(Transform trans)
+  {
+    if (!((Object) trans != (Object) null))
+      return new Bounds(Vector3.zero, Vector3.zero);
+    UIWidget[] componentsInChildren = trans.GetComponentsInChildren<UIWidget>();
+    if (componentsInChildren.Length == 0)
+      return new Bounds(trans.position, Vector3.zero);
+    Vector3 center = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+    Vector3 point = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+    int index1 = 0;
+    for (int length = componentsInChildren.Length; index1 < length; ++index1)
+    {
+      UIWidget uiWidget = componentsInChildren[index1];
+      if (uiWidget.enabled)
+      {
+        Vector3[] worldCorners = uiWidget.worldCorners;
+        for (int index2 = 0; index2 < 4; ++index2)
+        {
+          Vector3 vector3 = worldCorners[index2];
+          if ((double) vector3.x > (double) point.x)
+            point.x = vector3.x;
+          if ((double) vector3.y > (double) point.y)
+            point.y = vector3.y;
+          if ((double) vector3.z > (double) point.z)
+            point.z = vector3.z;
+          if ((double) vector3.x < (double) center.x)
+            center.x = vector3.x;
+          if ((double) vector3.y < (double) center.y)
+            center.y = vector3.y;
+          if ((double) vector3.z < (double) center.z)
+            center.z = vector3.z;
+        }
+      }
+    }
+    Bounds absoluteWidgetBounds = new Bounds(center, Vector3.zero);
+    absoluteWidgetBounds.Encapsulate(point);
+    return absoluteWidgetBounds;
+  }
 
-	// Token: 0x06000393 RID: 915 RVA: 0x000235A9 File Offset: 0x000217A9
-	public static Bounds CalculateRelativeWidgetBounds(Transform trans)
-	{
-		return NGUIMath.CalculateRelativeWidgetBounds(trans, trans, !trans.gameObject.activeSelf, true);
-	}
+  public static Bounds CalculateRelativeWidgetBounds(Transform trans) => NGUIMath.CalculateRelativeWidgetBounds(trans, trans, !trans.gameObject.activeSelf);
 
-	// Token: 0x06000394 RID: 916 RVA: 0x000235C1 File Offset: 0x000217C1
-	public static Bounds CalculateRelativeWidgetBounds(Transform trans, bool considerInactive)
-	{
-		return NGUIMath.CalculateRelativeWidgetBounds(trans, trans, considerInactive, true);
-	}
+  public static Bounds CalculateRelativeWidgetBounds(Transform trans, bool considerInactive) => NGUIMath.CalculateRelativeWidgetBounds(trans, trans, considerInactive);
 
-	// Token: 0x06000395 RID: 917 RVA: 0x000235CC File Offset: 0x000217CC
-	public static Bounds CalculateRelativeWidgetBounds(Transform relativeTo, Transform content)
-	{
-		return NGUIMath.CalculateRelativeWidgetBounds(relativeTo, content, !content.gameObject.activeSelf, true);
-	}
+  public static Bounds CalculateRelativeWidgetBounds(Transform relativeTo, Transform content) => NGUIMath.CalculateRelativeWidgetBounds(relativeTo, content, !content.gameObject.activeSelf);
 
-	// Token: 0x06000396 RID: 918 RVA: 0x000235E4 File Offset: 0x000217E4
-	public static Bounds CalculateRelativeWidgetBounds(Transform relativeTo, Transform content, bool considerInactive, bool considerChildren = true)
-	{
-		if (content != null && relativeTo != null)
-		{
-			bool flag = false;
-			Matrix4x4 worldToLocalMatrix = relativeTo.worldToLocalMatrix;
-			Vector3 center = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
-			Vector3 point = new Vector3(float.MinValue, float.MinValue, float.MinValue);
-			NGUIMath.CalculateRelativeWidgetBounds(content, considerInactive, true, ref worldToLocalMatrix, ref center, ref point, ref flag, considerChildren);
-			if (flag)
-			{
-				Bounds result = new Bounds(center, Vector3.zero);
-				result.Encapsulate(point);
-				return result;
-			}
-		}
-		return new Bounds(Vector3.zero, Vector3.zero);
-	}
+  public static Bounds CalculateRelativeWidgetBounds(
+    Transform relativeTo,
+    Transform content,
+    bool considerInactive,
+    bool considerChildren = true)
+  {
+    if ((Object) content != (Object) null && (Object) relativeTo != (Object) null)
+    {
+      bool isSet = false;
+      Matrix4x4 worldToLocalMatrix = relativeTo.worldToLocalMatrix;
+      Vector3 vMin = new Vector3(float.MaxValue, float.MaxValue, float.MaxValue);
+      Vector3 vMax = new Vector3(float.MinValue, float.MinValue, float.MinValue);
+      NGUIMath.CalculateRelativeWidgetBounds(content, considerInactive, true, ref worldToLocalMatrix, ref vMin, ref vMax, ref isSet, considerChildren);
+      if (isSet)
+      {
+        Bounds relativeWidgetBounds = new Bounds(vMin, Vector3.zero);
+        relativeWidgetBounds.Encapsulate(vMax);
+        return relativeWidgetBounds;
+      }
+    }
+    return new Bounds(Vector3.zero, Vector3.zero);
+  }
 
-	// Token: 0x06000397 RID: 919 RVA: 0x00023674 File Offset: 0x00021874
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	private static void CalculateRelativeWidgetBounds(Transform content, bool considerInactive, bool isRoot, ref Matrix4x4 toLocal, ref Vector3 vMin, ref Vector3 vMax, ref bool isSet, bool considerChildren)
-	{
-		if (content == null)
-		{
-			return;
-		}
-		if (!considerInactive && !NGUITools.GetActive(content.gameObject))
-		{
-			return;
-		}
-		UIPanel uipanel = isRoot ? null : content.GetComponent<UIPanel>();
-		if (uipanel != null && !uipanel.enabled)
-		{
-			return;
-		}
-		if (uipanel != null && uipanel.clipping != UIDrawCall.Clipping.None)
-		{
-			Vector3[] worldCorners = uipanel.worldCorners;
-			for (int i = 0; i < 4; i++)
-			{
-				Vector3 vector = toLocal.MultiplyPoint3x4(worldCorners[i]);
-				if (vector.x > vMax.x)
-				{
-					vMax.x = vector.x;
-				}
-				if (vector.y > vMax.y)
-				{
-					vMax.y = vector.y;
-				}
-				if (vector.z > vMax.z)
-				{
-					vMax.z = vector.z;
-				}
-				if (vector.x < vMin.x)
-				{
-					vMin.x = vector.x;
-				}
-				if (vector.y < vMin.y)
-				{
-					vMin.y = vector.y;
-				}
-				if (vector.z < vMin.z)
-				{
-					vMin.z = vector.z;
-				}
-				isSet = true;
-			}
-			return;
-		}
-		UIWidget component = content.GetComponent<UIWidget>();
-		if (component != null && component.enabled)
-		{
-			Vector3[] worldCorners2 = component.worldCorners;
-			for (int j = 0; j < 4; j++)
-			{
-				Vector3 vector2 = toLocal.MultiplyPoint3x4(worldCorners2[j]);
-				if (vector2.x > vMax.x)
-				{
-					vMax.x = vector2.x;
-				}
-				if (vector2.y > vMax.y)
-				{
-					vMax.y = vector2.y;
-				}
-				if (vector2.z > vMax.z)
-				{
-					vMax.z = vector2.z;
-				}
-				if (vector2.x < vMin.x)
-				{
-					vMin.x = vector2.x;
-				}
-				if (vector2.y < vMin.y)
-				{
-					vMin.y = vector2.y;
-				}
-				if (vector2.z < vMin.z)
-				{
-					vMin.z = vector2.z;
-				}
-				isSet = true;
-			}
-			if (!considerChildren)
-			{
-				return;
-			}
-		}
-		int k = 0;
-		int childCount = content.childCount;
-		while (k < childCount)
-		{
-			NGUIMath.CalculateRelativeWidgetBounds(content.GetChild(k), considerInactive, false, ref toLocal, ref vMin, ref vMax, ref isSet, true);
-			k++;
-		}
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  private static void CalculateRelativeWidgetBounds(
+    Transform content,
+    bool considerInactive,
+    bool isRoot,
+    ref Matrix4x4 toLocal,
+    ref Vector3 vMin,
+    ref Vector3 vMax,
+    ref bool isSet,
+    bool considerChildren)
+  {
+    if ((Object) content == (Object) null || !considerInactive && !NGUITools.GetActive(content.gameObject))
+      return;
+    UIPanel uiPanel = isRoot ? (UIPanel) null : content.GetComponent<UIPanel>();
+    if ((Object) uiPanel != (Object) null && !uiPanel.enabled)
+      return;
+    if ((Object) uiPanel != (Object) null && uiPanel.clipping != UIDrawCall.Clipping.None)
+    {
+      Vector3[] worldCorners = uiPanel.worldCorners;
+      for (int index = 0; index < 4; ++index)
+      {
+        Vector3 vector3 = toLocal.MultiplyPoint3x4(worldCorners[index]);
+        if ((double) vector3.x > (double) vMax.x)
+          vMax.x = vector3.x;
+        if ((double) vector3.y > (double) vMax.y)
+          vMax.y = vector3.y;
+        if ((double) vector3.z > (double) vMax.z)
+          vMax.z = vector3.z;
+        if ((double) vector3.x < (double) vMin.x)
+          vMin.x = vector3.x;
+        if ((double) vector3.y < (double) vMin.y)
+          vMin.y = vector3.y;
+        if ((double) vector3.z < (double) vMin.z)
+          vMin.z = vector3.z;
+        isSet = true;
+      }
+    }
+    else
+    {
+      UIWidget component = content.GetComponent<UIWidget>();
+      if ((Object) component != (Object) null && component.enabled)
+      {
+        Vector3[] worldCorners = component.worldCorners;
+        for (int index = 0; index < 4; ++index)
+        {
+          Vector3 vector3 = toLocal.MultiplyPoint3x4(worldCorners[index]);
+          if ((double) vector3.x > (double) vMax.x)
+            vMax.x = vector3.x;
+          if ((double) vector3.y > (double) vMax.y)
+            vMax.y = vector3.y;
+          if ((double) vector3.z > (double) vMax.z)
+            vMax.z = vector3.z;
+          if ((double) vector3.x < (double) vMin.x)
+            vMin.x = vector3.x;
+          if ((double) vector3.y < (double) vMin.y)
+            vMin.y = vector3.y;
+          if ((double) vector3.z < (double) vMin.z)
+            vMin.z = vector3.z;
+          isSet = true;
+        }
+        if (!considerChildren)
+          return;
+      }
+      int index1 = 0;
+      for (int childCount = content.childCount; index1 < childCount; ++index1)
+        NGUIMath.CalculateRelativeWidgetBounds(content.GetChild(index1), considerInactive, false, ref toLocal, ref vMin, ref vMax, ref isSet, true);
+    }
+  }
 
-	// Token: 0x06000398 RID: 920 RVA: 0x000238E4 File Offset: 0x00021AE4
-	public static Vector3 SpringDampen(ref Vector3 velocity, float strength, float deltaTime)
-	{
-		if (deltaTime > 1f)
-		{
-			deltaTime = 1f;
-		}
-		float f = 1f - strength * 0.001f;
-		int num = Mathf.RoundToInt(deltaTime * 1000f);
-		float num2 = Mathf.Pow(f, (float)num);
-		Vector3 a = velocity * ((num2 - 1f) / Mathf.Log(f));
-		velocity *= num2;
-		return a * 0.06f;
-	}
+  public static Vector3 SpringDampen(ref Vector3 velocity, float strength, float deltaTime)
+  {
+    if ((double) deltaTime > 1.0)
+      deltaTime = 1f;
+    float f = (float) (1.0 - (double) strength * (1.0 / 1000.0));
+    int p = Mathf.RoundToInt(deltaTime * 1000f);
+    float num = Mathf.Pow(f, (float) p);
+    Vector3 vector3 = velocity * ((num - 1f) / Mathf.Log(f));
+    velocity *= num;
+    return vector3 * 0.06f;
+  }
 
-	// Token: 0x06000399 RID: 921 RVA: 0x0002395C File Offset: 0x00021B5C
-	public static Vector2 SpringDampen(ref Vector2 velocity, float strength, float deltaTime)
-	{
-		if (deltaTime > 1f)
-		{
-			deltaTime = 1f;
-		}
-		float f = 1f - strength * 0.001f;
-		int num = Mathf.RoundToInt(deltaTime * 1000f);
-		float num2 = Mathf.Pow(f, (float)num);
-		Vector2 a = velocity * ((num2 - 1f) / Mathf.Log(f));
-		velocity *= num2;
-		return a * 0.06f;
-	}
+  public static Vector2 SpringDampen(ref Vector2 velocity, float strength, float deltaTime)
+  {
+    if ((double) deltaTime > 1.0)
+      deltaTime = 1f;
+    float f = (float) (1.0 - (double) strength * (1.0 / 1000.0));
+    int p = Mathf.RoundToInt(deltaTime * 1000f);
+    float num = Mathf.Pow(f, (float) p);
+    Vector2 vector2 = velocity * ((num - 1f) / Mathf.Log(f));
+    velocity *= num;
+    return vector2 * 0.06f;
+  }
 
-	// Token: 0x0600039A RID: 922 RVA: 0x000239D4 File Offset: 0x00021BD4
-	public static float SpringLerp(float strength, float deltaTime)
-	{
-		if (deltaTime > 1f)
-		{
-			deltaTime = 1f;
-		}
-		int num = Mathf.RoundToInt(deltaTime * 1000f);
-		deltaTime = 0.001f * strength;
-		float num2 = 0f;
-		for (int i = 0; i < num; i++)
-		{
-			num2 = Mathf.Lerp(num2, 1f, deltaTime);
-		}
-		return num2;
-	}
+  public static float SpringLerp(float strength, float deltaTime)
+  {
+    if ((double) deltaTime > 1.0)
+      deltaTime = 1f;
+    int num = Mathf.RoundToInt(deltaTime * 1000f);
+    deltaTime = 1f / 1000f * strength;
+    float a = 0.0f;
+    for (int index = 0; index < num; ++index)
+      a = Mathf.Lerp(a, 1f, deltaTime);
+    return a;
+  }
 
-	// Token: 0x0600039B RID: 923 RVA: 0x00023A28 File Offset: 0x00021C28
-	public static float SpringLerp(float from, float to, float strength, float deltaTime)
-	{
-		if (deltaTime > 1f)
-		{
-			deltaTime = 1f;
-		}
-		int num = Mathf.RoundToInt(deltaTime * 1000f);
-		deltaTime = 0.001f * strength;
-		for (int i = 0; i < num; i++)
-		{
-			from = Mathf.Lerp(from, to, deltaTime);
-		}
-		return from;
-	}
+  public static float SpringLerp(float from, float to, float strength, float deltaTime)
+  {
+    if ((double) deltaTime > 1.0)
+      deltaTime = 1f;
+    int num = Mathf.RoundToInt(deltaTime * 1000f);
+    deltaTime = 1f / 1000f * strength;
+    for (int index = 0; index < num; ++index)
+      from = Mathf.Lerp(from, to, deltaTime);
+    return from;
+  }
 
-	// Token: 0x0600039C RID: 924 RVA: 0x00023A71 File Offset: 0x00021C71
-	public static Vector2 SpringLerp(Vector2 from, Vector2 to, float strength, float deltaTime)
-	{
-		return Vector2.Lerp(from, to, NGUIMath.SpringLerp(strength, deltaTime));
-	}
+  public static Vector2 SpringLerp(
+    Vector2 from,
+    Vector2 to,
+    float strength,
+    float deltaTime)
+  {
+    return Vector2.Lerp(from, to, NGUIMath.SpringLerp(strength, deltaTime));
+  }
 
-	// Token: 0x0600039D RID: 925 RVA: 0x00023A81 File Offset: 0x00021C81
-	public static Vector3 SpringLerp(Vector3 from, Vector3 to, float strength, float deltaTime)
-	{
-		return Vector3.Lerp(from, to, NGUIMath.SpringLerp(strength, deltaTime));
-	}
+  public static Vector3 SpringLerp(
+    Vector3 from,
+    Vector3 to,
+    float strength,
+    float deltaTime)
+  {
+    return Vector3.Lerp(from, to, NGUIMath.SpringLerp(strength, deltaTime));
+  }
 
-	// Token: 0x0600039E RID: 926 RVA: 0x00023A91 File Offset: 0x00021C91
-	public static Quaternion SpringLerp(Quaternion from, Quaternion to, float strength, float deltaTime)
-	{
-		return Quaternion.Slerp(from, to, NGUIMath.SpringLerp(strength, deltaTime));
-	}
+  public static Quaternion SpringLerp(
+    Quaternion from,
+    Quaternion to,
+    float strength,
+    float deltaTime)
+  {
+    return Quaternion.Slerp(from, to, NGUIMath.SpringLerp(strength, deltaTime));
+  }
 
-	// Token: 0x0600039F RID: 927 RVA: 0x00023AA4 File Offset: 0x00021CA4
-	public static float RotateTowards(float from, float to, float maxAngle)
-	{
-		float num = NGUIMath.WrapAngle(to - from);
-		if (Mathf.Abs(num) > maxAngle)
-		{
-			num = maxAngle * Mathf.Sign(num);
-		}
-		return from + num;
-	}
+  public static float RotateTowards(float from, float to, float maxAngle)
+  {
+    float f = NGUIMath.WrapAngle(to - from);
+    if ((double) Mathf.Abs(f) > (double) maxAngle)
+      f = maxAngle * Mathf.Sign(f);
+    return from + f;
+  }
 
-	// Token: 0x060003A0 RID: 928 RVA: 0x00023AD0 File Offset: 0x00021CD0
-	private static float DistancePointToLineSegment(Vector2 point, Vector2 a, Vector2 b)
-	{
-		float sqrMagnitude = (b - a).sqrMagnitude;
-		if (sqrMagnitude == 0f)
-		{
-			return (point - a).magnitude;
-		}
-		float num = Vector2.Dot(point - a, b - a) / sqrMagnitude;
-		if (num < 0f)
-		{
-			return (point - a).magnitude;
-		}
-		if (num > 1f)
-		{
-			return (point - b).magnitude;
-		}
-		Vector2 b2 = a + num * (b - a);
-		return (point - b2).magnitude;
-	}
+  private static float DistancePointToLineSegment(Vector2 point, Vector2 a, Vector2 b)
+  {
+    float sqrMagnitude = (b - a).sqrMagnitude;
+    if ((double) sqrMagnitude == 0.0)
+      return (point - a).magnitude;
+    float num = Vector2.Dot(point - a, b - a) / sqrMagnitude;
+    if ((double) num < 0.0)
+      return (point - a).magnitude;
+    if ((double) num > 1.0)
+      return (point - b).magnitude;
+    Vector2 vector2 = a + num * (b - a);
+    return (point - vector2).magnitude;
+  }
 
-	// Token: 0x060003A1 RID: 929 RVA: 0x00023B70 File Offset: 0x00021D70
-	public static float DistanceToRectangle(Vector2[] screenPoints, Vector2 mousePos)
-	{
-		bool flag = false;
-		int val = 4;
-		for (int i = 0; i < 5; i++)
-		{
-			Vector3 vector = screenPoints[NGUIMath.RepeatIndex(i, 4)];
-			Vector3 vector2 = screenPoints[NGUIMath.RepeatIndex(val, 4)];
-			if (vector.y > mousePos.y != vector2.y > mousePos.y && mousePos.x < (vector2.x - vector.x) * (mousePos.y - vector.y) / (vector2.y - vector.y) + vector.x)
-			{
-				flag = !flag;
-			}
-			val = i;
-		}
-		if (!flag)
-		{
-			float num = -1f;
-			for (int j = 0; j < 4; j++)
-			{
-				Vector3 v = screenPoints[j];
-				Vector3 v2 = screenPoints[NGUIMath.RepeatIndex(j + 1, 4)];
-				float num2 = NGUIMath.DistancePointToLineSegment(mousePos, v, v2);
-				if (num2 < num || num < 0f)
-				{
-					num = num2;
-				}
-			}
-			return num;
-		}
-		return 0f;
-	}
+  public static float DistanceToRectangle(Vector2[] screenPoints, Vector2 mousePos)
+  {
+    bool flag = false;
+    int val1 = 4;
+    for (int val2 = 0; val2 < 5; ++val2)
+    {
+      Vector3 screenPoint1 = (Vector3) screenPoints[NGUIMath.RepeatIndex(val2, 4)];
+      Vector3 screenPoint2 = (Vector3) screenPoints[NGUIMath.RepeatIndex(val1, 4)];
+      if ((double) screenPoint1.y > (double) mousePos.y != (double) screenPoint2.y > (double) mousePos.y && (double) mousePos.x < ((double) screenPoint2.x - (double) screenPoint1.x) * ((double) mousePos.y - (double) screenPoint1.y) / ((double) screenPoint2.y - (double) screenPoint1.y) + (double) screenPoint1.x)
+        flag = !flag;
+      val1 = val2;
+    }
+    if (flag)
+      return 0.0f;
+    float rectangle = -1f;
+    for (int index = 0; index < 4; ++index)
+    {
+      Vector3 screenPoint3 = (Vector3) screenPoints[index];
+      Vector3 screenPoint4 = (Vector3) screenPoints[NGUIMath.RepeatIndex(index + 1, 4)];
+      float lineSegment = NGUIMath.DistancePointToLineSegment(mousePos, (Vector2) screenPoint3, (Vector2) screenPoint4);
+      if ((double) lineSegment < (double) rectangle || (double) rectangle < 0.0)
+        rectangle = lineSegment;
+    }
+    return rectangle;
+  }
 
-	// Token: 0x060003A2 RID: 930 RVA: 0x00023C8C File Offset: 0x00021E8C
-	public static float DistanceToRectangle(Vector3[] worldPoints, Vector2 mousePos, Camera cam)
-	{
-		Vector2[] array = new Vector2[4];
-		for (int i = 0; i < 4; i++)
-		{
-			array[i] = cam.WorldToScreenPoint(worldPoints[i]);
-		}
-		return NGUIMath.DistanceToRectangle(array, mousePos);
-	}
+  public static float DistanceToRectangle(Vector3[] worldPoints, Vector2 mousePos, Camera cam)
+  {
+    Vector2[] screenPoints = new Vector2[4];
+    for (int index = 0; index < 4; ++index)
+      screenPoints[index] = (Vector2) cam.WorldToScreenPoint(worldPoints[index]);
+    return NGUIMath.DistanceToRectangle(screenPoints, mousePos);
+  }
 
-	// Token: 0x060003A3 RID: 931 RVA: 0x00023CCC File Offset: 0x00021ECC
-	public static Vector2 GetPivotOffset(UIWidget.Pivot pv)
-	{
-		Vector2 zero = Vector2.zero;
-		if (pv == UIWidget.Pivot.Top || pv == UIWidget.Pivot.Center || pv == UIWidget.Pivot.Bottom)
-		{
-			zero.x = 0.5f;
-		}
-		else if (pv == UIWidget.Pivot.TopRight || pv == UIWidget.Pivot.Right || pv == UIWidget.Pivot.BottomRight)
-		{
-			zero.x = 1f;
-		}
-		else
-		{
-			zero.x = 0f;
-		}
-		if (pv == UIWidget.Pivot.Left || pv == UIWidget.Pivot.Center || pv == UIWidget.Pivot.Right)
-		{
-			zero.y = 0.5f;
-		}
-		else if (pv == UIWidget.Pivot.TopLeft || pv == UIWidget.Pivot.Top || pv == UIWidget.Pivot.TopRight)
-		{
-			zero.y = 1f;
-		}
-		else
-		{
-			zero.y = 0f;
-		}
-		return zero;
-	}
+  public static Vector2 GetPivotOffset(UIWidget.Pivot pv)
+  {
+    Vector2 zero = Vector2.zero;
+    switch (pv)
+    {
+      case UIWidget.Pivot.Top:
+      case UIWidget.Pivot.Center:
+      case UIWidget.Pivot.Bottom:
+        zero.x = 0.5f;
+        break;
+      case UIWidget.Pivot.TopRight:
+      case UIWidget.Pivot.Right:
+      case UIWidget.Pivot.BottomRight:
+        zero.x = 1f;
+        break;
+      default:
+        zero.x = 0.0f;
+        break;
+    }
+    switch (pv)
+    {
+      case UIWidget.Pivot.TopLeft:
+      case UIWidget.Pivot.Top:
+      case UIWidget.Pivot.TopRight:
+        zero.y = 1f;
+        break;
+      case UIWidget.Pivot.Left:
+      case UIWidget.Pivot.Center:
+      case UIWidget.Pivot.Right:
+        zero.y = 0.5f;
+        break;
+      default:
+        zero.y = 0.0f;
+        break;
+    }
+    return zero;
+  }
 
-	// Token: 0x060003A4 RID: 932 RVA: 0x00023D60 File Offset: 0x00021F60
-	public static UIWidget.Pivot GetPivot(Vector2 offset)
-	{
-		if (offset.x == 0f)
-		{
-			if (offset.y == 0f)
-			{
-				return UIWidget.Pivot.BottomLeft;
-			}
-			if (offset.y == 1f)
-			{
-				return UIWidget.Pivot.TopLeft;
-			}
-			return UIWidget.Pivot.Left;
-		}
-		else if (offset.x == 1f)
-		{
-			if (offset.y == 0f)
-			{
-				return UIWidget.Pivot.BottomRight;
-			}
-			if (offset.y == 1f)
-			{
-				return UIWidget.Pivot.TopRight;
-			}
-			return UIWidget.Pivot.Right;
-		}
-		else
-		{
-			if (offset.y == 0f)
-			{
-				return UIWidget.Pivot.Bottom;
-			}
-			if (offset.y == 1f)
-			{
-				return UIWidget.Pivot.Top;
-			}
-			return UIWidget.Pivot.Center;
-		}
-	}
+  public static UIWidget.Pivot GetPivot(Vector2 offset)
+  {
+    if ((double) offset.x == 0.0)
+    {
+      if ((double) offset.y == 0.0)
+        return UIWidget.Pivot.BottomLeft;
+      return (double) offset.y == 1.0 ? UIWidget.Pivot.TopLeft : UIWidget.Pivot.Left;
+    }
+    if ((double) offset.x == 1.0)
+    {
+      if ((double) offset.y == 0.0)
+        return UIWidget.Pivot.BottomRight;
+      return (double) offset.y == 1.0 ? UIWidget.Pivot.TopRight : UIWidget.Pivot.Right;
+    }
+    if ((double) offset.y == 0.0)
+      return UIWidget.Pivot.Bottom;
+    return (double) offset.y == 1.0 ? UIWidget.Pivot.Top : UIWidget.Pivot.Center;
+  }
 
-	// Token: 0x060003A5 RID: 933 RVA: 0x00023DE6 File Offset: 0x00021FE6
-	public static void MoveWidget(UIRect w, float x, float y)
-	{
-		NGUIMath.MoveRect(w, x, y);
-	}
+  public static void MoveWidget(UIRect w, float x, float y) => NGUIMath.MoveRect(w, x, y);
 
-	// Token: 0x060003A6 RID: 934 RVA: 0x00023DF0 File Offset: 0x00021FF0
-	public static void MoveRect(UIRect rect, float x, float y)
-	{
-		int num = Mathf.FloorToInt(x + 0.5f);
-		int num2 = Mathf.FloorToInt(y + 0.5f);
-		rect.cachedTransform.localPosition += new Vector3((float)num, (float)num2);
-		int num3 = 0;
-		if (rect.leftAnchor.target)
-		{
-			num3++;
-			rect.leftAnchor.absolute += num;
-		}
-		if (rect.rightAnchor.target)
-		{
-			num3++;
-			rect.rightAnchor.absolute += num;
-		}
-		if (rect.bottomAnchor.target)
-		{
-			num3++;
-			rect.bottomAnchor.absolute += num2;
-		}
-		if (rect.topAnchor.target)
-		{
-			num3++;
-			rect.topAnchor.absolute += num2;
-		}
-		if (num3 != 0)
-		{
-			rect.UpdateAnchors();
-		}
-	}
+  public static void MoveRect(UIRect rect, float x, float y)
+  {
+    int x1 = Mathf.FloorToInt(x + 0.5f);
+    int y1 = Mathf.FloorToInt(y + 0.5f);
+    rect.cachedTransform.localPosition += new Vector3((float) x1, (float) y1);
+    int num = 0;
+    if ((bool) (Object) rect.leftAnchor.target)
+    {
+      ++num;
+      rect.leftAnchor.absolute += x1;
+    }
+    if ((bool) (Object) rect.rightAnchor.target)
+    {
+      ++num;
+      rect.rightAnchor.absolute += x1;
+    }
+    if ((bool) (Object) rect.bottomAnchor.target)
+    {
+      ++num;
+      rect.bottomAnchor.absolute += y1;
+    }
+    if ((bool) (Object) rect.topAnchor.target)
+    {
+      ++num;
+      rect.topAnchor.absolute += y1;
+    }
+    if (num == 0)
+      return;
+    rect.UpdateAnchors();
+  }
 
-	// Token: 0x060003A7 RID: 935 RVA: 0x00023EE5 File Offset: 0x000220E5
-	public static void ResizeWidget(UIWidget w, UIWidget.Pivot pivot, float x, float y, int minWidth, int minHeight)
-	{
-		NGUIMath.ResizeWidget(w, pivot, x, y, 2, 2, 100000, 100000);
-	}
+  public static void ResizeWidget(
+    UIWidget w,
+    UIWidget.Pivot pivot,
+    float x,
+    float y,
+    int minWidth,
+    int minHeight)
+  {
+    NGUIMath.ResizeWidget(w, pivot, x, y, 2, 2, 100000, 100000);
+  }
 
-	// Token: 0x060003A8 RID: 936 RVA: 0x00023EFC File Offset: 0x000220FC
-	public static void ResizeWidget(UIWidget w, UIWidget.Pivot pivot, float x, float y, int minWidth, int minHeight, int maxWidth, int maxHeight)
-	{
-		if (pivot == UIWidget.Pivot.Center)
-		{
-			int num = Mathf.RoundToInt(x - (float)w.width);
-			int num2 = Mathf.RoundToInt(y - (float)w.height);
-			num -= (num & 1);
-			num2 -= (num2 & 1);
-			if ((num | num2) != 0)
-			{
-				num >>= 1;
-				num2 >>= 1;
-				NGUIMath.AdjustWidget(w, (float)(-(float)num), (float)(-(float)num2), (float)num, (float)num2, minWidth, minHeight);
-			}
-			return;
-		}
-		Vector3 vector = new Vector3(x, y);
-		vector = Quaternion.Inverse(w.cachedTransform.localRotation) * vector;
-		switch (pivot)
-		{
-		case UIWidget.Pivot.TopLeft:
-			NGUIMath.AdjustWidget(w, vector.x, 0f, 0f, vector.y, minWidth, minHeight, maxWidth, maxHeight);
-			return;
-		case UIWidget.Pivot.Top:
-			NGUIMath.AdjustWidget(w, 0f, 0f, 0f, vector.y, minWidth, minHeight, maxWidth, maxHeight);
-			return;
-		case UIWidget.Pivot.TopRight:
-			NGUIMath.AdjustWidget(w, 0f, 0f, vector.x, vector.y, minWidth, minHeight, maxWidth, maxHeight);
-			return;
-		case UIWidget.Pivot.Left:
-			NGUIMath.AdjustWidget(w, vector.x, 0f, 0f, 0f, minWidth, minHeight, maxWidth, maxHeight);
-			return;
-		case UIWidget.Pivot.Center:
-			break;
-		case UIWidget.Pivot.Right:
-			NGUIMath.AdjustWidget(w, 0f, 0f, vector.x, 0f, minWidth, minHeight, maxWidth, maxHeight);
-			return;
-		case UIWidget.Pivot.BottomLeft:
-			NGUIMath.AdjustWidget(w, vector.x, vector.y, 0f, 0f, minWidth, minHeight, maxWidth, maxHeight);
-			return;
-		case UIWidget.Pivot.Bottom:
-			NGUIMath.AdjustWidget(w, 0f, vector.y, 0f, 0f, minWidth, minHeight, maxWidth, maxHeight);
-			break;
-		case UIWidget.Pivot.BottomRight:
-			NGUIMath.AdjustWidget(w, 0f, vector.y, vector.x, 0f, minWidth, minHeight, maxWidth, maxHeight);
-			return;
-		default:
-			return;
-		}
-	}
+  public static void ResizeWidget(
+    UIWidget w,
+    UIWidget.Pivot pivot,
+    float x,
+    float y,
+    int minWidth,
+    int minHeight,
+    int maxWidth,
+    int maxHeight)
+  {
+    if (pivot == UIWidget.Pivot.Center)
+    {
+      int num1 = Mathf.RoundToInt(x - (float) w.width);
+      int num2 = Mathf.RoundToInt(y - (float) w.height);
+      int num3 = num1 - (num1 & 1);
+      int num4 = num2 - (num2 & 1);
+      if ((num3 | num4) == 0)
+        return;
+      int right = num3 >> 1;
+      int top = num4 >> 1;
+      NGUIMath.AdjustWidget(w, (float) -right, (float) -top, (float) right, (float) top, minWidth, minHeight);
+    }
+    else
+    {
+      Vector3 vector3_1 = new Vector3(x, y);
+      Vector3 vector3_2 = Quaternion.Inverse(w.cachedTransform.localRotation) * vector3_1;
+      switch (pivot)
+      {
+        case UIWidget.Pivot.TopLeft:
+          NGUIMath.AdjustWidget(w, vector3_2.x, 0.0f, 0.0f, vector3_2.y, minWidth, minHeight, maxWidth, maxHeight);
+          break;
+        case UIWidget.Pivot.Top:
+          NGUIMath.AdjustWidget(w, 0.0f, 0.0f, 0.0f, vector3_2.y, minWidth, minHeight, maxWidth, maxHeight);
+          break;
+        case UIWidget.Pivot.TopRight:
+          NGUIMath.AdjustWidget(w, 0.0f, 0.0f, vector3_2.x, vector3_2.y, minWidth, minHeight, maxWidth, maxHeight);
+          break;
+        case UIWidget.Pivot.Left:
+          NGUIMath.AdjustWidget(w, vector3_2.x, 0.0f, 0.0f, 0.0f, minWidth, minHeight, maxWidth, maxHeight);
+          break;
+        case UIWidget.Pivot.Right:
+          NGUIMath.AdjustWidget(w, 0.0f, 0.0f, vector3_2.x, 0.0f, minWidth, minHeight, maxWidth, maxHeight);
+          break;
+        case UIWidget.Pivot.BottomLeft:
+          NGUIMath.AdjustWidget(w, vector3_2.x, vector3_2.y, 0.0f, 0.0f, minWidth, minHeight, maxWidth, maxHeight);
+          break;
+        case UIWidget.Pivot.Bottom:
+          NGUIMath.AdjustWidget(w, 0.0f, vector3_2.y, 0.0f, 0.0f, minWidth, minHeight, maxWidth, maxHeight);
+          break;
+        case UIWidget.Pivot.BottomRight:
+          NGUIMath.AdjustWidget(w, 0.0f, vector3_2.y, vector3_2.x, 0.0f, minWidth, minHeight, maxWidth, maxHeight);
+          break;
+      }
+    }
+  }
 
-	// Token: 0x060003A9 RID: 937 RVA: 0x000240C8 File Offset: 0x000222C8
-	public static void AdjustWidget(UIWidget w, float left, float bottom, float right, float top)
-	{
-		NGUIMath.AdjustWidget(w, left, bottom, right, top, 2, 2, 100000, 100000);
-	}
+  public static void AdjustWidget(UIWidget w, float left, float bottom, float right, float top) => NGUIMath.AdjustWidget(w, left, bottom, right, top, 2, 2, 100000, 100000);
 
-	// Token: 0x060003AA RID: 938 RVA: 0x000240EC File Offset: 0x000222EC
-	public static void AdjustWidget(UIWidget w, float left, float bottom, float right, float top, int minWidth, int minHeight)
-	{
-		NGUIMath.AdjustWidget(w, left, bottom, right, top, minWidth, minHeight, 100000, 100000);
-	}
+  public static void AdjustWidget(
+    UIWidget w,
+    float left,
+    float bottom,
+    float right,
+    float top,
+    int minWidth,
+    int minHeight)
+  {
+    NGUIMath.AdjustWidget(w, left, bottom, right, top, minWidth, minHeight, 100000, 100000);
+  }
 
-	// Token: 0x060003AB RID: 939 RVA: 0x00024114 File Offset: 0x00022314
-	public static void AdjustWidget(UIWidget w, float left, float bottom, float right, float top, int minWidth, int minHeight, int maxWidth, int maxHeight)
-	{
-		Vector2 pivotOffset = w.pivotOffset;
-		Transform transform = w.cachedTransform;
-		Quaternion localRotation = transform.localRotation;
-		int num = Mathf.FloorToInt(left + 0.5f);
-		int num2 = Mathf.FloorToInt(bottom + 0.5f);
-		int num3 = Mathf.FloorToInt(right + 0.5f);
-		int num4 = Mathf.FloorToInt(top + 0.5f);
-		if (pivotOffset.x == 0.5f && (num == 0 || num3 == 0))
-		{
-			num = num >> 1 << 1;
-			num3 = num3 >> 1 << 1;
-		}
-		if (pivotOffset.y == 0.5f && (num2 == 0 || num4 == 0))
-		{
-			num2 = num2 >> 1 << 1;
-			num4 = num4 >> 1 << 1;
-		}
-		Vector3 vector = localRotation * new Vector3((float)num, (float)num4);
-		Vector3 vector2 = localRotation * new Vector3((float)num3, (float)num4);
-		Vector3 vector3 = localRotation * new Vector3((float)num, (float)num2);
-		Vector3 vector4 = localRotation * new Vector3((float)num3, (float)num2);
-		Vector3 vector5 = localRotation * new Vector3((float)num, 0f);
-		Vector3 vector6 = localRotation * new Vector3((float)num3, 0f);
-		Vector3 vector7 = localRotation * new Vector3(0f, (float)num4);
-		Vector3 vector8 = localRotation * new Vector3(0f, (float)num2);
-		Vector3 zero = Vector3.zero;
-		if (pivotOffset.x == 0f && pivotOffset.y == 1f)
-		{
-			zero.x = vector.x;
-			zero.y = vector.y;
-		}
-		else if (pivotOffset.x == 1f && pivotOffset.y == 0f)
-		{
-			zero.x = vector4.x;
-			zero.y = vector4.y;
-		}
-		else if (pivotOffset.x == 0f && pivotOffset.y == 0f)
-		{
-			zero.x = vector3.x;
-			zero.y = vector3.y;
-		}
-		else if (pivotOffset.x == 1f && pivotOffset.y == 1f)
-		{
-			zero.x = vector2.x;
-			zero.y = vector2.y;
-		}
-		else if (pivotOffset.x == 0f && pivotOffset.y == 0.5f)
-		{
-			zero.x = vector5.x + (vector7.x + vector8.x) * 0.5f;
-			zero.y = vector5.y + (vector7.y + vector8.y) * 0.5f;
-		}
-		else if (pivotOffset.x == 1f && pivotOffset.y == 0.5f)
-		{
-			zero.x = vector6.x + (vector7.x + vector8.x) * 0.5f;
-			zero.y = vector6.y + (vector7.y + vector8.y) * 0.5f;
-		}
-		else if (pivotOffset.x == 0.5f && pivotOffset.y == 1f)
-		{
-			zero.x = vector7.x + (vector5.x + vector6.x) * 0.5f;
-			zero.y = vector7.y + (vector5.y + vector6.y) * 0.5f;
-		}
-		else if (pivotOffset.x == 0.5f && pivotOffset.y == 0f)
-		{
-			zero.x = vector8.x + (vector5.x + vector6.x) * 0.5f;
-			zero.y = vector8.y + (vector5.y + vector6.y) * 0.5f;
-		}
-		else if (pivotOffset.x == 0.5f && pivotOffset.y == 0.5f)
-		{
-			zero.x = (vector5.x + vector6.x + vector7.x + vector8.x) * 0.5f;
-			zero.y = (vector7.y + vector8.y + vector5.y + vector6.y) * 0.5f;
-		}
-		minWidth = Mathf.Max(minWidth, w.minWidth);
-		minHeight = Mathf.Max(minHeight, w.minHeight);
-		int num5 = w.width + num3 - num;
-		int num6 = w.height + num4 - num2;
-		Vector3 zero2 = Vector3.zero;
-		int num7 = num5;
-		if (num5 < minWidth)
-		{
-			num7 = minWidth;
-		}
-		else if (num5 > maxWidth)
-		{
-			num7 = maxWidth;
-		}
-		if (num5 != num7)
-		{
-			if (num != 0)
-			{
-				zero2.x -= Mathf.Lerp((float)(num7 - num5), 0f, pivotOffset.x);
-			}
-			else
-			{
-				zero2.x += Mathf.Lerp(0f, (float)(num7 - num5), pivotOffset.x);
-			}
-			num5 = num7;
-		}
-		int num8 = num6;
-		if (num6 < minHeight)
-		{
-			num8 = minHeight;
-		}
-		else if (num6 > maxHeight)
-		{
-			num8 = maxHeight;
-		}
-		if (num6 != num8)
-		{
-			if (num2 != 0)
-			{
-				zero2.y -= Mathf.Lerp((float)(num8 - num6), 0f, pivotOffset.y);
-			}
-			else
-			{
-				zero2.y += Mathf.Lerp(0f, (float)(num8 - num6), pivotOffset.y);
-			}
-			num6 = num8;
-		}
-		if (pivotOffset.x == 0.5f)
-		{
-			num5 = num5 >> 1 << 1;
-		}
-		if (pivotOffset.y == 0.5f)
-		{
-			num6 = num6 >> 1 << 1;
-		}
-		Vector3 vector9 = transform.localPosition + zero + localRotation * zero2;
-		transform.localPosition = vector9;
-		w.SetDimensions(num5, num6);
-		if (w.isAnchored)
-		{
-			transform = transform.parent;
-			float num9 = vector9.x - pivotOffset.x * (float)num5;
-			float num10 = vector9.y - pivotOffset.y * (float)num6;
-			if (w.leftAnchor.target)
-			{
-				w.leftAnchor.SetHorizontal(transform, num9);
-			}
-			if (w.rightAnchor.target)
-			{
-				w.rightAnchor.SetHorizontal(transform, num9 + (float)num5);
-			}
-			if (w.bottomAnchor.target)
-			{
-				w.bottomAnchor.SetVertical(transform, num10);
-			}
-			if (w.topAnchor.target)
-			{
-				w.topAnchor.SetVertical(transform, num10 + (float)num6);
-			}
-		}
-	}
+  public static void AdjustWidget(
+    UIWidget w,
+    float left,
+    float bottom,
+    float right,
+    float top,
+    int minWidth,
+    int minHeight,
+    int maxWidth,
+    int maxHeight)
+  {
+    Vector2 pivotOffset = w.pivotOffset;
+    Transform cachedTransform = w.cachedTransform;
+    Quaternion localRotation = cachedTransform.localRotation;
+    int x1 = Mathf.FloorToInt(left + 0.5f);
+    int y1 = Mathf.FloorToInt(bottom + 0.5f);
+    int x2 = Mathf.FloorToInt(right + 0.5f);
+    int y2 = Mathf.FloorToInt(top + 0.5f);
+    if ((double) pivotOffset.x == 0.5 && (x1 == 0 || x2 == 0))
+    {
+      x1 = x1 >> 1 << 1;
+      x2 = x2 >> 1 << 1;
+    }
+    if ((double) pivotOffset.y == 0.5 && (y1 == 0 || y2 == 0))
+    {
+      y1 = y1 >> 1 << 1;
+      y2 = y2 >> 1 << 1;
+    }
+    Vector3 vector3_1 = localRotation * new Vector3((float) x1, (float) y2);
+    Vector3 vector3_2 = localRotation * new Vector3((float) x2, (float) y2);
+    Vector3 vector3_3 = localRotation * new Vector3((float) x1, (float) y1);
+    Vector3 vector3_4 = localRotation * new Vector3((float) x2, (float) y1);
+    Vector3 vector3_5 = localRotation * new Vector3((float) x1, 0.0f);
+    Vector3 vector3_6 = localRotation * new Vector3((float) x2, 0.0f);
+    Vector3 vector3_7 = localRotation * new Vector3(0.0f, (float) y2);
+    Vector3 vector3_8 = localRotation * new Vector3(0.0f, (float) y1);
+    Vector3 zero1 = Vector3.zero;
+    if ((double) pivotOffset.x == 0.0 && (double) pivotOffset.y == 1.0)
+    {
+      zero1.x = vector3_1.x;
+      zero1.y = vector3_1.y;
+    }
+    else if ((double) pivotOffset.x == 1.0 && (double) pivotOffset.y == 0.0)
+    {
+      zero1.x = vector3_4.x;
+      zero1.y = vector3_4.y;
+    }
+    else if ((double) pivotOffset.x == 0.0 && (double) pivotOffset.y == 0.0)
+    {
+      zero1.x = vector3_3.x;
+      zero1.y = vector3_3.y;
+    }
+    else if ((double) pivotOffset.x == 1.0 && (double) pivotOffset.y == 1.0)
+    {
+      zero1.x = vector3_2.x;
+      zero1.y = vector3_2.y;
+    }
+    else if ((double) pivotOffset.x == 0.0 && (double) pivotOffset.y == 0.5)
+    {
+      zero1.x = vector3_5.x + (float) (((double) vector3_7.x + (double) vector3_8.x) * 0.5);
+      zero1.y = vector3_5.y + (float) (((double) vector3_7.y + (double) vector3_8.y) * 0.5);
+    }
+    else if ((double) pivotOffset.x == 1.0 && (double) pivotOffset.y == 0.5)
+    {
+      zero1.x = vector3_6.x + (float) (((double) vector3_7.x + (double) vector3_8.x) * 0.5);
+      zero1.y = vector3_6.y + (float) (((double) vector3_7.y + (double) vector3_8.y) * 0.5);
+    }
+    else if ((double) pivotOffset.x == 0.5 && (double) pivotOffset.y == 1.0)
+    {
+      zero1.x = vector3_7.x + (float) (((double) vector3_5.x + (double) vector3_6.x) * 0.5);
+      zero1.y = vector3_7.y + (float) (((double) vector3_5.y + (double) vector3_6.y) * 0.5);
+    }
+    else if ((double) pivotOffset.x == 0.5 && (double) pivotOffset.y == 0.0)
+    {
+      zero1.x = vector3_8.x + (float) (((double) vector3_5.x + (double) vector3_6.x) * 0.5);
+      zero1.y = vector3_8.y + (float) (((double) vector3_5.y + (double) vector3_6.y) * 0.5);
+    }
+    else if ((double) pivotOffset.x == 0.5 && (double) pivotOffset.y == 0.5)
+    {
+      zero1.x = (float) (((double) vector3_5.x + (double) vector3_6.x + (double) vector3_7.x + (double) vector3_8.x) * 0.5);
+      zero1.y = (float) (((double) vector3_7.y + (double) vector3_8.y + (double) vector3_5.y + (double) vector3_6.y) * 0.5);
+    }
+    minWidth = Mathf.Max(minWidth, w.minWidth);
+    minHeight = Mathf.Max(minHeight, w.minHeight);
+    int w1 = w.width + x2 - x1;
+    int h = w.height + y2 - y1;
+    Vector3 zero2 = Vector3.zero;
+    int num1 = w1;
+    if (w1 < minWidth)
+      num1 = minWidth;
+    else if (w1 > maxWidth)
+      num1 = maxWidth;
+    if (w1 != num1)
+    {
+      if (x1 != 0)
+        zero2.x -= Mathf.Lerp((float) (num1 - w1), 0.0f, pivotOffset.x);
+      else
+        zero2.x += Mathf.Lerp(0.0f, (float) (num1 - w1), pivotOffset.x);
+      w1 = num1;
+    }
+    int num2 = h;
+    if (h < minHeight)
+      num2 = minHeight;
+    else if (h > maxHeight)
+      num2 = maxHeight;
+    if (h != num2)
+    {
+      if (y1 != 0)
+        zero2.y -= Mathf.Lerp((float) (num2 - h), 0.0f, pivotOffset.y);
+      else
+        zero2.y += Mathf.Lerp(0.0f, (float) (num2 - h), pivotOffset.y);
+      h = num2;
+    }
+    if ((double) pivotOffset.x == 0.5)
+      w1 = w1 >> 1 << 1;
+    if ((double) pivotOffset.y == 0.5)
+      h = h >> 1 << 1;
+    Vector3 vector3_9 = cachedTransform.localPosition + zero1 + localRotation * zero2;
+    cachedTransform.localPosition = vector3_9;
+    w.SetDimensions(w1, h);
+    if (!w.isAnchored)
+      return;
+    Transform parent = cachedTransform.parent;
+    float localPos1 = vector3_9.x - pivotOffset.x * (float) w1;
+    float localPos2 = vector3_9.y - pivotOffset.y * (float) h;
+    if ((bool) (Object) w.leftAnchor.target)
+      w.leftAnchor.SetHorizontal(parent, localPos1);
+    if ((bool) (Object) w.rightAnchor.target)
+      w.rightAnchor.SetHorizontal(parent, localPos1 + (float) w1);
+    if ((bool) (Object) w.bottomAnchor.target)
+      w.bottomAnchor.SetVertical(parent, localPos2);
+    if (!(bool) (Object) w.topAnchor.target)
+      return;
+    w.topAnchor.SetVertical(parent, localPos2 + (float) h);
+  }
 
-	// Token: 0x060003AC RID: 940 RVA: 0x00024784 File Offset: 0x00022984
-	public static int AdjustByDPI(float height)
-	{
-		float num = Screen.dpi;
-		RuntimePlatform platform = Application.platform;
-		if (num == 0f)
-		{
-			num = ((platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer) ? 160f : 96f);
-		}
-		int num2 = Mathf.RoundToInt(height * (96f / num));
-		if ((num2 & 1) == 1)
-		{
-			num2++;
-		}
-		return num2;
-	}
+  public static int AdjustByDPI(float height)
+  {
+    float num1 = Screen.dpi;
+    RuntimePlatform platform = Application.platform;
+    if ((double) num1 == 0.0)
+      num1 = platform == RuntimePlatform.Android || platform == RuntimePlatform.IPhonePlayer ? 160f : 96f;
+    int num2 = Mathf.RoundToInt(height * (96f / num1));
+    if ((num2 & 1) == 1)
+      ++num2;
+    return num2;
+  }
 
-	// Token: 0x060003AD RID: 941 RVA: 0x000247D8 File Offset: 0x000229D8
-	public static Vector2 ScreenToPixels(Vector2 pos, Transform relativeTo)
-	{
-		int layer = relativeTo.gameObject.layer;
-		Camera camera = NGUITools.FindCameraForLayer(layer);
-		if (camera == null)
-		{
-			UnityEngine.Debug.LogWarning("No camera found for layer " + layer.ToString());
-			return pos;
-		}
-		Vector3 position = camera.ScreenToWorldPoint(pos);
-		return relativeTo.InverseTransformPoint(position);
-	}
+  public static Vector2 ScreenToPixels(Vector2 pos, Transform relativeTo)
+  {
+    int layer = relativeTo.gameObject.layer;
+    Camera cameraForLayer = NGUITools.FindCameraForLayer(layer);
+    if ((Object) cameraForLayer == (Object) null)
+    {
+      UnityEngine.Debug.LogWarning((object) ("No camera found for layer " + layer.ToString()));
+      return pos;
+    }
+    Vector3 worldPoint = cameraForLayer.ScreenToWorldPoint((Vector3) pos);
+    return (Vector2) relativeTo.InverseTransformPoint(worldPoint);
+  }
 
-	// Token: 0x060003AE RID: 942 RVA: 0x00024834 File Offset: 0x00022A34
-	public static Vector2 ScreenToParentPixels(Vector2 pos, Transform relativeTo)
-	{
-		int layer = relativeTo.gameObject.layer;
-		if (relativeTo.parent != null)
-		{
-			relativeTo = relativeTo.parent;
-		}
-		Camera camera = NGUITools.FindCameraForLayer(layer);
-		if (camera == null)
-		{
-			UnityEngine.Debug.LogWarning("No camera found for layer " + layer.ToString());
-			return pos;
-		}
-		Vector3 vector = camera.ScreenToWorldPoint(pos);
-		return (relativeTo != null) ? relativeTo.InverseTransformPoint(vector) : vector;
-	}
+  public static Vector2 ScreenToParentPixels(Vector2 pos, Transform relativeTo)
+  {
+    int layer = relativeTo.gameObject.layer;
+    if ((Object) relativeTo.parent != (Object) null)
+      relativeTo = relativeTo.parent;
+    Camera cameraForLayer = NGUITools.FindCameraForLayer(layer);
+    if ((Object) cameraForLayer == (Object) null)
+    {
+      UnityEngine.Debug.LogWarning((object) ("No camera found for layer " + layer.ToString()));
+      return pos;
+    }
+    Vector3 worldPoint = cameraForLayer.ScreenToWorldPoint((Vector3) pos);
+    return (Vector2) ((Object) relativeTo != (Object) null ? relativeTo.InverseTransformPoint(worldPoint) : worldPoint);
+  }
 
-	// Token: 0x060003AF RID: 943 RVA: 0x000248B0 File Offset: 0x00022AB0
-	public static Vector3 WorldToLocalPoint(Vector3 worldPos, Camera worldCam, Camera uiCam, Transform relativeTo)
-	{
-		worldPos = worldCam.WorldToViewportPoint(worldPos);
-		worldPos = uiCam.ViewportToWorldPoint(worldPos);
-		if (relativeTo == null)
-		{
-			return worldPos;
-		}
-		relativeTo = relativeTo.parent;
-		if (relativeTo == null)
-		{
-			return worldPos;
-		}
-		return relativeTo.InverseTransformPoint(worldPos);
-	}
+  public static Vector3 WorldToLocalPoint(
+    Vector3 worldPos,
+    Camera worldCam,
+    Camera uiCam,
+    Transform relativeTo)
+  {
+    worldPos = worldCam.WorldToViewportPoint(worldPos);
+    worldPos = uiCam.ViewportToWorldPoint(worldPos);
+    if ((Object) relativeTo == (Object) null)
+      return worldPos;
+    relativeTo = relativeTo.parent;
+    return (Object) relativeTo == (Object) null ? worldPos : relativeTo.InverseTransformPoint(worldPos);
+  }
 
-	// Token: 0x060003B0 RID: 944 RVA: 0x000248EC File Offset: 0x00022AEC
-	public static void OverlayPosition(this Transform trans, Vector3 worldPos, Camera worldCam, Camera myCam)
-	{
-		worldPos = worldCam.WorldToViewportPoint(worldPos);
-		worldPos = myCam.ViewportToWorldPoint(worldPos);
-		Transform parent = trans.parent;
-		trans.localPosition = ((parent != null) ? parent.InverseTransformPoint(worldPos) : worldPos);
-	}
+  public static void OverlayPosition(
+    this Transform trans,
+    Vector3 worldPos,
+    Camera worldCam,
+    Camera myCam)
+  {
+    worldPos = worldCam.WorldToViewportPoint(worldPos);
+    worldPos = myCam.ViewportToWorldPoint(worldPos);
+    Transform parent = trans.parent;
+    trans.localPosition = (Object) parent != (Object) null ? parent.InverseTransformPoint(worldPos) : worldPos;
+  }
 
-	// Token: 0x060003B1 RID: 945 RVA: 0x0002492C File Offset: 0x00022B2C
-	public static void OverlayPosition(this Transform trans, Vector3 worldPos, Camera worldCam)
-	{
-		Camera camera = NGUITools.FindCameraForLayer(trans.gameObject.layer);
-		if (camera != null)
-		{
-			trans.OverlayPosition(worldPos, worldCam, camera);
-		}
-	}
+  public static void OverlayPosition(this Transform trans, Vector3 worldPos, Camera worldCam)
+  {
+    Camera cameraForLayer = NGUITools.FindCameraForLayer(trans.gameObject.layer);
+    if (!((Object) cameraForLayer != (Object) null))
+      return;
+    trans.OverlayPosition(worldPos, worldCam, cameraForLayer);
+  }
 
-	// Token: 0x060003B2 RID: 946 RVA: 0x0002495C File Offset: 0x00022B5C
-	public static void OverlayPosition(this Transform trans, Transform target)
-	{
-		Camera camera = NGUITools.FindCameraForLayer(trans.gameObject.layer);
-		Camera camera2 = NGUITools.FindCameraForLayer(target.gameObject.layer);
-		if (camera != null && camera2 != null)
-		{
-			trans.OverlayPosition(target.position, camera2, camera);
-		}
-	}
+  public static void OverlayPosition(this Transform trans, Transform target)
+  {
+    Camera cameraForLayer1 = NGUITools.FindCameraForLayer(trans.gameObject.layer);
+    Camera cameraForLayer2 = NGUITools.FindCameraForLayer(target.gameObject.layer);
+    if (!((Object) cameraForLayer1 != (Object) null) || !((Object) cameraForLayer2 != (Object) null))
+      return;
+    trans.OverlayPosition(target.position, cameraForLayer2, cameraForLayer1);
+  }
 }

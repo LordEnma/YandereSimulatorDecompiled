@@ -1,32 +1,25 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YanvaniaBossHeadScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020004DF RID: 1247
 public class YanvaniaBossHeadScript : MonoBehaviour
 {
-	// Token: 0x060020D2 RID: 8402 RVA: 0x001E5A19 File Offset: 0x001E3C19
-	private void Update()
-	{
-		this.Timer -= Time.deltaTime;
-	}
+  public YanvaniaDraculaScript Dracula;
+  public GameObject HitEffect;
+  public float Timer;
 
-	// Token: 0x060020D3 RID: 8403 RVA: 0x001E5A30 File Offset: 0x001E3C30
-	private void OnTriggerEnter(Collider other)
-	{
-		if (this.Timer <= 0f && this.Dracula.NewTeleportEffect == null && other.gameObject.name == "Heart")
-		{
-			UnityEngine.Object.Instantiate<GameObject>(this.HitEffect, base.transform.position, Quaternion.identity);
-			this.Timer = 1f;
-			this.Dracula.TakeDamage();
-		}
-	}
+  private void Update() => this.Timer -= Time.deltaTime;
 
-	// Token: 0x04004824 RID: 18468
-	public YanvaniaDraculaScript Dracula;
-
-	// Token: 0x04004825 RID: 18469
-	public GameObject HitEffect;
-
-	// Token: 0x04004826 RID: 18470
-	public float Timer;
+  private void OnTriggerEnter(Collider other)
+  {
+    if ((double) this.Timer > 0.0 || !((Object) this.Dracula.NewTeleportEffect == (Object) null) || !(other.gameObject.name == "Heart"))
+      return;
+    Object.Instantiate<GameObject>(this.HitEffect, this.transform.position, Quaternion.identity);
+    this.Timer = 1f;
+    this.Dracula.TakeDamage();
+  }
 }

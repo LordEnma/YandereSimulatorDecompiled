@@ -1,807 +1,564 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: JukeboxScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200034B RID: 843
 public class JukeboxScript : MonoBehaviour
 {
-	// Token: 0x06001960 RID: 6496 RVA: 0x000FE590 File Offset: 0x000FC790
-	public void Start()
-	{
-		if (GameGlobals.Eighties)
-		{
-			this.BGMLimit = 6;
-			this.OriginalFull = this.EightiesOneFull;
-			this.OriginalHalf = this.EightiesOneHalf;
-			this.OriginalNo = this.EightiesOneNo;
-			this.AlternateFull = this.EightiesTwoFull;
-			this.AlternateHalf = this.EightiesTwoHalf;
-			this.AlternateNo = this.EightiesTwoNo;
-			this.ThirdFull = this.EightiesThreeFull;
-			this.ThirdHalf = this.EightiesThreeHalf;
-			this.ThirdNo = this.EightiesThreeNo;
-			this.FourthFull = this.EightiesFourFull;
-			this.FourthHalf = this.EightiesFourHalf;
-			this.FourthNo = this.EightiesFourNo;
-			this.FifthFull = this.EightiesFiveFull;
-			this.FifthHalf = this.EightiesFiveHalf;
-			this.FifthNo = this.EightiesFiveNo;
-			this.SixthFull = this.EightiesSixFull;
-			this.SixthHalf = this.EightiesSixHalf;
-			this.SixthNo = this.EightiesSixNo;
-		}
-		if (!this.Initialized)
-		{
-			this.BGM = UnityEngine.Random.Range(1, this.BGMLimit + 1);
-			this.Initialized = true;
-		}
-		else
-		{
-			this.BGM++;
-			if (this.BGM > this.BGMLimit)
-			{
-				this.BGM = 1;
-			}
-			else if (this.BGM == 0)
-			{
-				this.BGM = this.BGMLimit;
-			}
-		}
-		if (this.BGM == 1)
-		{
-			this.FullSanities = this.OriginalFull;
-			this.HalfSanities = this.OriginalHalf;
-			this.NoSanities = this.OriginalNo;
-		}
-		else if (this.BGM == 2)
-		{
-			this.FullSanities = this.AlternateFull;
-			this.HalfSanities = this.AlternateHalf;
-			this.NoSanities = this.AlternateNo;
-		}
-		else if (this.BGM == 3)
-		{
-			this.FullSanities = this.ThirdFull;
-			this.HalfSanities = this.ThirdHalf;
-			this.NoSanities = this.ThirdNo;
-		}
-		else if (this.BGM == 4)
-		{
-			this.FullSanities = this.FourthFull;
-			this.HalfSanities = this.FourthHalf;
-			this.NoSanities = this.FourthNo;
-		}
-		else if (this.BGM == 5)
-		{
-			this.FullSanities = this.FifthFull;
-			this.HalfSanities = this.FifthHalf;
-			this.NoSanities = this.FifthNo;
-		}
-		else if (this.BGM == 6)
-		{
-			this.FullSanities = this.SixthFull;
-			this.HalfSanities = this.SixthHalf;
-			this.NoSanities = this.SixthNo;
-		}
-		else if (this.BGM == 7)
-		{
-			this.FullSanities = this.SeventhFull;
-			this.HalfSanities = this.SeventhHalf;
-			this.NoSanities = this.SeventhNo;
-		}
-		else if (this.BGM == 8)
-		{
-			this.FullSanities = this.EighthFull;
-			this.HalfSanities = this.EighthHalf;
-			this.NoSanities = this.EighthNo;
-		}
-		else if (this.BGM == 9)
-		{
-			this.FullSanities = this.NinthFull;
-			this.HalfSanities = this.NinthHalf;
-			this.NoSanities = this.NinthNo;
-		}
-		else if (this.BGM == 10)
-		{
-			this.FullSanities = this.TenthFull;
-			this.HalfSanities = this.TenthHalf;
-			this.NoSanities = this.TenthNo;
-		}
-		else if (this.BGM == 11)
-		{
-			this.FullSanities = this.TwelfthFull;
-			this.HalfSanities = this.TwelfthHalf;
-			this.NoSanities = this.TwelfthNo;
-		}
-		if (!SchoolGlobals.SchoolAtmosphereSet)
-		{
-			SchoolGlobals.SchoolAtmosphereSet = true;
-			SchoolGlobals.PreviousSchoolAtmosphere = 1f;
-			SchoolGlobals.SchoolAtmosphere = 1f;
-		}
-		int num;
-		if (SchoolAtmosphere.Type == SchoolAtmosphereType.High)
-		{
-			num = 3;
-		}
-		else if (SchoolAtmosphere.Type == SchoolAtmosphereType.Medium)
-		{
-			num = 2;
-		}
-		else
-		{
-			num = 1;
-		}
-		this.FullSanity.clip = this.FullSanities[num];
-		this.HalfSanity.clip = this.HalfSanities[num];
-		this.NoSanity.clip = this.NoSanities[num];
-		this.Volume = 0.25f;
-		this.FullSanity.volume = 0f;
-		this.Hitman.time = 26f;
-	}
-
-	// Token: 0x06001961 RID: 6497 RVA: 0x000FE9A4 File Offset: 0x000FCBA4
-	private void Update()
-	{
-		if (!this.Yandere.PauseScreen.Show && !this.Yandere.EasterEggMenu.activeInHierarchy && Input.GetKeyDown(KeyCode.M))
-		{
-			this.StartStopMusic();
-		}
-		if (!this.Egg)
-		{
-			if (!this.Yandere.Police.Clock.SchoolBell.isPlaying && !this.Yandere.StudentManager.MemorialScene.enabled)
-			{
-				if (!this.StartMusic)
-				{
-					this.FullSanity.Play();
-					this.HalfSanity.Play();
-					this.NoSanity.Play();
-					this.StartMusic = true;
-				}
-				if (this.Yandere.Sanity >= 66.666664f)
-				{
-					this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.016666668f * this.FadeSpeed);
-					this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0f, 0.016666668f * this.FadeSpeed);
-					this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0f, 0.016666668f * this.FadeSpeed);
-				}
-				else if (this.Yandere.Sanity >= 33.333332f)
-				{
-					this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0f, 0.016666668f * this.FadeSpeed);
-					this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.016666668f * this.FadeSpeed);
-					this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0f, 0.016666668f * this.FadeSpeed);
-				}
-				else
-				{
-					this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0f, 0.016666668f * this.FadeSpeed);
-					this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0f, 0.016666668f * this.FadeSpeed);
-					this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.016666668f * this.FadeSpeed);
-				}
-			}
-		}
-		else
-		{
-			this.AttackOnTitan.volume = Mathf.MoveTowards(this.AttackOnTitan.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Megalovania.volume = Mathf.MoveTowards(this.Megalovania.volume, this.Volume * this.Dip, 0.16666667f);
-			this.MissionMode.volume = Mathf.MoveTowards(this.MissionMode.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Skeletons.volume = Mathf.MoveTowards(this.Skeletons.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Vaporwave.volume = Mathf.MoveTowards(this.Vaporwave.volume, this.Volume * this.Dip, 0.16666667f);
-			this.AzurLane.volume = Mathf.MoveTowards(this.AzurLane.volume, this.Volume * this.Dip, 0.16666667f);
-			this.LifeNote.volume = Mathf.MoveTowards(this.LifeNote.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Berserk.volume = Mathf.MoveTowards(this.Berserk.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Metroid.volume = Mathf.MoveTowards(this.Metroid.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Nuclear.volume = Mathf.MoveTowards(this.Nuclear.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Slender.volume = Mathf.MoveTowards(this.Slender.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Sukeban.volume = Mathf.MoveTowards(this.Sukeban.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Hatred.volume = Mathf.MoveTowards(this.Hatred.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Hitman.volume = Mathf.MoveTowards(this.Hitman.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Touhou.volume = Mathf.MoveTowards(this.Touhou.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Falcon.volume = Mathf.MoveTowards(this.Falcon.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Miyuki.volume = Mathf.MoveTowards(this.Miyuki.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Demon.volume = Mathf.MoveTowards(this.Demon.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Ebola.volume = Mathf.MoveTowards(this.Ebola.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Ninja.volume = Mathf.MoveTowards(this.Ninja.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Punch.volume = Mathf.MoveTowards(this.Punch.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Galo.volume = Mathf.MoveTowards(this.Galo.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Jojo.volume = Mathf.MoveTowards(this.Jojo.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Lied.volume = Mathf.MoveTowards(this.Lied.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Nier.volume = Mathf.MoveTowards(this.Nier.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Sith.volume = Mathf.MoveTowards(this.Sith.volume, this.Volume * this.Dip, 0.16666667f);
-			this.DK.volume = Mathf.MoveTowards(this.DK.volume, this.Volume * this.Dip, 0.16666667f);
-			this.Horror.volume = Mathf.MoveTowards(this.Horror.volume, this.Volume * this.Dip, 0.16666667f);
-			if (this.Custom.enabled)
-			{
-				this.Custom.volume = Mathf.MoveTowards(this.Custom.volume, this.Volume * this.Dip - this.ClubDip, 0.016666668f * this.FadeSpeed);
-			}
-		}
-		if (!this.Yandere.PauseScreen.Show && !this.Yandere.Noticed && this.Yandere.CanMove && this.Yandere.EasterEggMenu.activeInHierarchy && !this.Egg)
-		{
-			if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.Alpha4))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.AttackOnTitan.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.P))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Nuclear.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.H))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Hatred.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.B))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Sukeban.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Z))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Slender.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.G))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Galo.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.L))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Hitman.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.S))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Skeletons.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.K))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.DK.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.C))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Touhou.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.F))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Falcon.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.O))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Punch.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.U))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Megalovania.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.Q))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Metroid.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.Y))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Ninja.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.F5) || Input.GetKeyDown(KeyCode.W))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Ebola.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.Alpha6))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Demon.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
-			{
-				if (Input.GetKeyDown(KeyCode.A))
-				{
-					this.Sith.pitch = 0.1f;
-				}
-				this.Egg = true;
-				this.KillVolume();
-				this.Sith.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.F2))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Horror.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.F3))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.LifeNote.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.F6) || Input.GetKeyDown(KeyCode.F9) || Input.GetKeyDown(KeyCode.F12))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Lied.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.F7))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Berserk.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.F8))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Nier.enabled = true;
-				return;
-			}
-			if (Input.GetKeyDown(KeyCode.V))
-			{
-				this.Egg = true;
-				this.KillVolume();
-				this.Vaporwave.enabled = true;
-			}
-		}
-	}
-
-	// Token: 0x06001962 RID: 6498 RVA: 0x000FF5B0 File Offset: 0x000FD7B0
-	public void StartStopMusic()
-	{
-		if (this.Custom.isPlaying)
-		{
-			this.Egg = false;
-			this.Custom.Stop();
-			this.FadeSpeed = 1f;
-			this.StartMusic = false;
-			this.Volume = this.LastVolume;
-			this.Start();
-			return;
-		}
-		if (this.Volume == 0f)
-		{
-			this.FadeSpeed = 1f;
-			this.StartMusic = false;
-			this.Volume = this.LastVolume;
-			this.Start();
-			return;
-		}
-		this.LastVolume = this.Volume;
-		this.FadeSpeed = 10f;
-		this.Volume = 0f;
-	}
-
-	// Token: 0x06001963 RID: 6499 RVA: 0x000FF655 File Offset: 0x000FD855
-	public void Shipgirl()
-	{
-		this.Egg = true;
-		this.KillVolume();
-		this.AzurLane.enabled = true;
-	}
-
-	// Token: 0x06001964 RID: 6500 RVA: 0x000FF670 File Offset: 0x000FD870
-	public void MiyukiMusic()
-	{
-		this.Egg = true;
-		this.KillVolume();
-		this.Miyuki.enabled = true;
-	}
-
-	// Token: 0x06001965 RID: 6501 RVA: 0x000FF68B File Offset: 0x000FD88B
-	public void KillVolume()
-	{
-		this.FullSanity.volume = 0f;
-		this.HalfSanity.volume = 0f;
-		this.NoSanity.volume = 0f;
-		this.Volume = 0.5f;
-	}
-
-	// Token: 0x06001966 RID: 6502 RVA: 0x000FF6C8 File Offset: 0x000FD8C8
-	public void GameOver()
-	{
-		this.AttackOnTitan.Stop();
-		this.Megalovania.Stop();
-		this.MissionMode.Stop();
-		this.Skeletons.Stop();
-		this.Vaporwave.Stop();
-		this.AzurLane.Stop();
-		this.LifeNote.Stop();
-		this.Berserk.Stop();
-		this.Metroid.Stop();
-		this.Nuclear.Stop();
-		this.Sukeban.Stop();
-		this.Custom.Stop();
-		this.Slender.Stop();
-		this.Hatred.Stop();
-		this.Hitman.Stop();
-		this.Horror.Stop();
-		this.Touhou.Stop();
-		this.Falcon.Stop();
-		this.Miyuki.Stop();
-		this.Ebola.Stop();
-		this.Punch.Stop();
-		this.Ninja.Stop();
-		this.Jojo.Stop();
-		this.Galo.Stop();
-		this.Lied.Stop();
-		this.Nier.Stop();
-		this.Sith.Stop();
-		this.DK.Stop();
-		this.Confession.Stop();
-		this.FullSanity.Stop();
-		this.HalfSanity.Stop();
-		this.NoSanity.Stop();
-	}
-
-	// Token: 0x06001967 RID: 6503 RVA: 0x000FF835 File Offset: 0x000FDA35
-	public void PlayJojo()
-	{
-		this.Egg = true;
-		this.KillVolume();
-		this.Jojo.enabled = true;
-	}
-
-	// Token: 0x06001968 RID: 6504 RVA: 0x000FF850 File Offset: 0x000FDA50
-	public void PlayCustom()
-	{
-		this.Egg = true;
-		this.KillVolume();
-		this.Custom.enabled = true;
-		this.Custom.Play();
-	}
-
-	// Token: 0x040027D4 RID: 10196
-	public YandereScript Yandere;
-
-	// Token: 0x040027D5 RID: 10197
-	public AudioSource SFX;
-
-	// Token: 0x040027D6 RID: 10198
-	public AudioSource AttackOnTitan;
-
-	// Token: 0x040027D7 RID: 10199
-	public AudioSource Megalovania;
-
-	// Token: 0x040027D8 RID: 10200
-	public AudioSource MissionMode;
-
-	// Token: 0x040027D9 RID: 10201
-	public AudioSource Skeletons;
-
-	// Token: 0x040027DA RID: 10202
-	public AudioSource Vaporwave;
-
-	// Token: 0x040027DB RID: 10203
-	public AudioSource AzurLane;
-
-	// Token: 0x040027DC RID: 10204
-	public AudioSource LifeNote;
-
-	// Token: 0x040027DD RID: 10205
-	public AudioSource Berserk;
-
-	// Token: 0x040027DE RID: 10206
-	public AudioSource Metroid;
-
-	// Token: 0x040027DF RID: 10207
-	public AudioSource Nuclear;
-
-	// Token: 0x040027E0 RID: 10208
-	public AudioSource Slender;
-
-	// Token: 0x040027E1 RID: 10209
-	public AudioSource Sukeban;
-
-	// Token: 0x040027E2 RID: 10210
-	public AudioSource Custom;
-
-	// Token: 0x040027E3 RID: 10211
-	public AudioSource Hatred;
-
-	// Token: 0x040027E4 RID: 10212
-	public AudioSource Hitman;
-
-	// Token: 0x040027E5 RID: 10213
-	public AudioSource Horror;
-
-	// Token: 0x040027E6 RID: 10214
-	public AudioSource Touhou;
-
-	// Token: 0x040027E7 RID: 10215
-	public AudioSource Falcon;
-
-	// Token: 0x040027E8 RID: 10216
-	public AudioSource Miyuki;
-
-	// Token: 0x040027E9 RID: 10217
-	public AudioSource Ebola;
-
-	// Token: 0x040027EA RID: 10218
-	public AudioSource Demon;
-
-	// Token: 0x040027EB RID: 10219
-	public AudioSource Ninja;
-
-	// Token: 0x040027EC RID: 10220
-	public AudioSource Punch;
-
-	// Token: 0x040027ED RID: 10221
-	public AudioSource Galo;
-
-	// Token: 0x040027EE RID: 10222
-	public AudioSource Jojo;
-
-	// Token: 0x040027EF RID: 10223
-	public AudioSource Lied;
-
-	// Token: 0x040027F0 RID: 10224
-	public AudioSource Nier;
-
-	// Token: 0x040027F1 RID: 10225
-	public AudioSource Sith;
-
-	// Token: 0x040027F2 RID: 10226
-	public AudioSource DK;
-
-	// Token: 0x040027F3 RID: 10227
-	public AudioSource Confession;
-
-	// Token: 0x040027F4 RID: 10228
-	public AudioSource FullSanity;
-
-	// Token: 0x040027F5 RID: 10229
-	public AudioSource HalfSanity;
-
-	// Token: 0x040027F6 RID: 10230
-	public AudioSource NoSanity;
-
-	// Token: 0x040027F7 RID: 10231
-	public AudioSource Chase;
-
-	// Token: 0x040027F8 RID: 10232
-	public float LastVolume;
-
-	// Token: 0x040027F9 RID: 10233
-	public float FadeSpeed;
-
-	// Token: 0x040027FA RID: 10234
-	public float ClubDip;
-
-	// Token: 0x040027FB RID: 10235
-	public float Volume;
-
-	// Token: 0x040027FC RID: 10236
-	public float Dip = 1f;
-
-	// Token: 0x040027FD RID: 10237
-	public int BGMLimit = 12;
-
-	// Token: 0x040027FE RID: 10238
-	public int Track;
-
-	// Token: 0x040027FF RID: 10239
-	public int BGM;
-
-	// Token: 0x04002800 RID: 10240
-	public bool Initialized;
-
-	// Token: 0x04002801 RID: 10241
-	public bool StartMusic;
-
-	// Token: 0x04002802 RID: 10242
-	public bool Egg;
-
-	// Token: 0x04002803 RID: 10243
-	public AudioClip[] FullSanities;
-
-	// Token: 0x04002804 RID: 10244
-	public AudioClip[] HalfSanities;
-
-	// Token: 0x04002805 RID: 10245
-	public AudioClip[] NoSanities;
-
-	// Token: 0x04002806 RID: 10246
-	public AudioClip[] OriginalFull;
-
-	// Token: 0x04002807 RID: 10247
-	public AudioClip[] OriginalHalf;
-
-	// Token: 0x04002808 RID: 10248
-	public AudioClip[] OriginalNo;
-
-	// Token: 0x04002809 RID: 10249
-	public AudioClip[] AlternateFull;
-
-	// Token: 0x0400280A RID: 10250
-	public AudioClip[] AlternateHalf;
-
-	// Token: 0x0400280B RID: 10251
-	public AudioClip[] AlternateNo;
-
-	// Token: 0x0400280C RID: 10252
-	public AudioClip[] ThirdFull;
-
-	// Token: 0x0400280D RID: 10253
-	public AudioClip[] ThirdHalf;
-
-	// Token: 0x0400280E RID: 10254
-	public AudioClip[] ThirdNo;
-
-	// Token: 0x0400280F RID: 10255
-	public AudioClip[] FourthFull;
-
-	// Token: 0x04002810 RID: 10256
-	public AudioClip[] FourthHalf;
-
-	// Token: 0x04002811 RID: 10257
-	public AudioClip[] FourthNo;
-
-	// Token: 0x04002812 RID: 10258
-	public AudioClip[] FifthFull;
-
-	// Token: 0x04002813 RID: 10259
-	public AudioClip[] FifthHalf;
-
-	// Token: 0x04002814 RID: 10260
-	public AudioClip[] FifthNo;
-
-	// Token: 0x04002815 RID: 10261
-	public AudioClip[] SixthFull;
-
-	// Token: 0x04002816 RID: 10262
-	public AudioClip[] SixthHalf;
-
-	// Token: 0x04002817 RID: 10263
-	public AudioClip[] SixthNo;
-
-	// Token: 0x04002818 RID: 10264
-	public AudioClip[] SeventhFull;
-
-	// Token: 0x04002819 RID: 10265
-	public AudioClip[] SeventhHalf;
-
-	// Token: 0x0400281A RID: 10266
-	public AudioClip[] SeventhNo;
-
-	// Token: 0x0400281B RID: 10267
-	public AudioClip[] EighthFull;
-
-	// Token: 0x0400281C RID: 10268
-	public AudioClip[] EighthHalf;
-
-	// Token: 0x0400281D RID: 10269
-	public AudioClip[] EighthNo;
-
-	// Token: 0x0400281E RID: 10270
-	public AudioClip[] NinthFull;
-
-	// Token: 0x0400281F RID: 10271
-	public AudioClip[] NinthHalf;
-
-	// Token: 0x04002820 RID: 10272
-	public AudioClip[] NinthNo;
-
-	// Token: 0x04002821 RID: 10273
-	public AudioClip[] TenthFull;
-
-	// Token: 0x04002822 RID: 10274
-	public AudioClip[] TenthHalf;
-
-	// Token: 0x04002823 RID: 10275
-	public AudioClip[] TenthNo;
-
-	// Token: 0x04002824 RID: 10276
-	public AudioClip[] EleventhFull;
-
-	// Token: 0x04002825 RID: 10277
-	public AudioClip[] EleventhHalf;
-
-	// Token: 0x04002826 RID: 10278
-	public AudioClip[] EleventhNo;
-
-	// Token: 0x04002827 RID: 10279
-	public AudioClip[] TwelfthFull;
-
-	// Token: 0x04002828 RID: 10280
-	public AudioClip[] TwelfthHalf;
-
-	// Token: 0x04002829 RID: 10281
-	public AudioClip[] TwelfthNo;
-
-	// Token: 0x0400282A RID: 10282
-	public AudioClip[] EightiesOneFull;
-
-	// Token: 0x0400282B RID: 10283
-	public AudioClip[] EightiesOneHalf;
-
-	// Token: 0x0400282C RID: 10284
-	public AudioClip[] EightiesOneNo;
-
-	// Token: 0x0400282D RID: 10285
-	public AudioClip[] EightiesTwoFull;
-
-	// Token: 0x0400282E RID: 10286
-	public AudioClip[] EightiesTwoHalf;
-
-	// Token: 0x0400282F RID: 10287
-	public AudioClip[] EightiesTwoNo;
-
-	// Token: 0x04002830 RID: 10288
-	public AudioClip[] EightiesThreeFull;
-
-	// Token: 0x04002831 RID: 10289
-	public AudioClip[] EightiesThreeHalf;
-
-	// Token: 0x04002832 RID: 10290
-	public AudioClip[] EightiesThreeNo;
-
-	// Token: 0x04002833 RID: 10291
-	public AudioClip[] EightiesFourFull;
-
-	// Token: 0x04002834 RID: 10292
-	public AudioClip[] EightiesFourHalf;
-
-	// Token: 0x04002835 RID: 10293
-	public AudioClip[] EightiesFourNo;
-
-	// Token: 0x04002836 RID: 10294
-	public AudioClip[] EightiesFiveFull;
-
-	// Token: 0x04002837 RID: 10295
-	public AudioClip[] EightiesFiveHalf;
-
-	// Token: 0x04002838 RID: 10296
-	public AudioClip[] EightiesFiveNo;
-
-	// Token: 0x04002839 RID: 10297
-	public AudioClip[] EightiesSixFull;
-
-	// Token: 0x0400283A RID: 10298
-	public AudioClip[] EightiesSixHalf;
-
-	// Token: 0x0400283B RID: 10299
-	public AudioClip[] EightiesSixNo;
+  public YandereScript Yandere;
+  public AudioSource SFX;
+  public AudioSource AttackOnTitan;
+  public AudioSource Megalovania;
+  public AudioSource MissionMode;
+  public AudioSource Skeletons;
+  public AudioSource Vaporwave;
+  public AudioSource AzurLane;
+  public AudioSource LifeNote;
+  public AudioSource Berserk;
+  public AudioSource Metroid;
+  public AudioSource Nuclear;
+  public AudioSource Slender;
+  public AudioSource Sukeban;
+  public AudioSource Custom;
+  public AudioSource Hatred;
+  public AudioSource Hitman;
+  public AudioSource Horror;
+  public AudioSource Touhou;
+  public AudioSource Falcon;
+  public AudioSource Miyuki;
+  public AudioSource Ebola;
+  public AudioSource Demon;
+  public AudioSource Ninja;
+  public AudioSource Punch;
+  public AudioSource Galo;
+  public AudioSource Jojo;
+  public AudioSource Lied;
+  public AudioSource Nier;
+  public AudioSource Sith;
+  public AudioSource DK;
+  public AudioSource Confession;
+  public AudioSource FullSanity;
+  public AudioSource HalfSanity;
+  public AudioSource NoSanity;
+  public AudioSource Chase;
+  public float LastVolume;
+  public float FadeSpeed;
+  public float ClubDip;
+  public float Volume;
+  public float Dip = 1f;
+  public int BGMLimit = 12;
+  public int Track;
+  public int BGM;
+  public bool Initialized;
+  public bool StartMusic;
+  public bool Egg;
+  public AudioClip[] FullSanities;
+  public AudioClip[] HalfSanities;
+  public AudioClip[] NoSanities;
+  public AudioClip[] OriginalFull;
+  public AudioClip[] OriginalHalf;
+  public AudioClip[] OriginalNo;
+  public AudioClip[] AlternateFull;
+  public AudioClip[] AlternateHalf;
+  public AudioClip[] AlternateNo;
+  public AudioClip[] ThirdFull;
+  public AudioClip[] ThirdHalf;
+  public AudioClip[] ThirdNo;
+  public AudioClip[] FourthFull;
+  public AudioClip[] FourthHalf;
+  public AudioClip[] FourthNo;
+  public AudioClip[] FifthFull;
+  public AudioClip[] FifthHalf;
+  public AudioClip[] FifthNo;
+  public AudioClip[] SixthFull;
+  public AudioClip[] SixthHalf;
+  public AudioClip[] SixthNo;
+  public AudioClip[] SeventhFull;
+  public AudioClip[] SeventhHalf;
+  public AudioClip[] SeventhNo;
+  public AudioClip[] EighthFull;
+  public AudioClip[] EighthHalf;
+  public AudioClip[] EighthNo;
+  public AudioClip[] NinthFull;
+  public AudioClip[] NinthHalf;
+  public AudioClip[] NinthNo;
+  public AudioClip[] TenthFull;
+  public AudioClip[] TenthHalf;
+  public AudioClip[] TenthNo;
+  public AudioClip[] EleventhFull;
+  public AudioClip[] EleventhHalf;
+  public AudioClip[] EleventhNo;
+  public AudioClip[] TwelfthFull;
+  public AudioClip[] TwelfthHalf;
+  public AudioClip[] TwelfthNo;
+  public AudioClip[] EightiesOneFull;
+  public AudioClip[] EightiesOneHalf;
+  public AudioClip[] EightiesOneNo;
+  public AudioClip[] EightiesTwoFull;
+  public AudioClip[] EightiesTwoHalf;
+  public AudioClip[] EightiesTwoNo;
+  public AudioClip[] EightiesThreeFull;
+  public AudioClip[] EightiesThreeHalf;
+  public AudioClip[] EightiesThreeNo;
+  public AudioClip[] EightiesFourFull;
+  public AudioClip[] EightiesFourHalf;
+  public AudioClip[] EightiesFourNo;
+  public AudioClip[] EightiesFiveFull;
+  public AudioClip[] EightiesFiveHalf;
+  public AudioClip[] EightiesFiveNo;
+  public AudioClip[] EightiesSixFull;
+  public AudioClip[] EightiesSixHalf;
+  public AudioClip[] EightiesSixNo;
+
+  public void Start()
+  {
+    if (GameGlobals.Eighties)
+    {
+      this.BGMLimit = 6;
+      this.OriginalFull = this.EightiesOneFull;
+      this.OriginalHalf = this.EightiesOneHalf;
+      this.OriginalNo = this.EightiesOneNo;
+      this.AlternateFull = this.EightiesTwoFull;
+      this.AlternateHalf = this.EightiesTwoHalf;
+      this.AlternateNo = this.EightiesTwoNo;
+      this.ThirdFull = this.EightiesThreeFull;
+      this.ThirdHalf = this.EightiesThreeHalf;
+      this.ThirdNo = this.EightiesThreeNo;
+      this.FourthFull = this.EightiesFourFull;
+      this.FourthHalf = this.EightiesFourHalf;
+      this.FourthNo = this.EightiesFourNo;
+      this.FifthFull = this.EightiesFiveFull;
+      this.FifthHalf = this.EightiesFiveHalf;
+      this.FifthNo = this.EightiesFiveNo;
+      this.SixthFull = this.EightiesSixFull;
+      this.SixthHalf = this.EightiesSixHalf;
+      this.SixthNo = this.EightiesSixNo;
+    }
+    if (!this.Initialized)
+    {
+      this.BGM = Random.Range(1, this.BGMLimit + 1);
+      this.Initialized = true;
+    }
+    else
+    {
+      ++this.BGM;
+      if (this.BGM > this.BGMLimit)
+        this.BGM = 1;
+      else if (this.BGM == 0)
+        this.BGM = this.BGMLimit;
+    }
+    if (this.BGM == 1)
+    {
+      this.FullSanities = this.OriginalFull;
+      this.HalfSanities = this.OriginalHalf;
+      this.NoSanities = this.OriginalNo;
+    }
+    else if (this.BGM == 2)
+    {
+      this.FullSanities = this.AlternateFull;
+      this.HalfSanities = this.AlternateHalf;
+      this.NoSanities = this.AlternateNo;
+    }
+    else if (this.BGM == 3)
+    {
+      this.FullSanities = this.ThirdFull;
+      this.HalfSanities = this.ThirdHalf;
+      this.NoSanities = this.ThirdNo;
+    }
+    else if (this.BGM == 4)
+    {
+      this.FullSanities = this.FourthFull;
+      this.HalfSanities = this.FourthHalf;
+      this.NoSanities = this.FourthNo;
+    }
+    else if (this.BGM == 5)
+    {
+      this.FullSanities = this.FifthFull;
+      this.HalfSanities = this.FifthHalf;
+      this.NoSanities = this.FifthNo;
+    }
+    else if (this.BGM == 6)
+    {
+      this.FullSanities = this.SixthFull;
+      this.HalfSanities = this.SixthHalf;
+      this.NoSanities = this.SixthNo;
+    }
+    else if (this.BGM == 7)
+    {
+      this.FullSanities = this.SeventhFull;
+      this.HalfSanities = this.SeventhHalf;
+      this.NoSanities = this.SeventhNo;
+    }
+    else if (this.BGM == 8)
+    {
+      this.FullSanities = this.EighthFull;
+      this.HalfSanities = this.EighthHalf;
+      this.NoSanities = this.EighthNo;
+    }
+    else if (this.BGM == 9)
+    {
+      this.FullSanities = this.NinthFull;
+      this.HalfSanities = this.NinthHalf;
+      this.NoSanities = this.NinthNo;
+    }
+    else if (this.BGM == 10)
+    {
+      this.FullSanities = this.TenthFull;
+      this.HalfSanities = this.TenthHalf;
+      this.NoSanities = this.TenthNo;
+    }
+    else if (this.BGM == 11)
+    {
+      this.FullSanities = this.TwelfthFull;
+      this.HalfSanities = this.TwelfthHalf;
+      this.NoSanities = this.TwelfthNo;
+    }
+    if (!SchoolGlobals.SchoolAtmosphereSet)
+    {
+      SchoolGlobals.SchoolAtmosphereSet = true;
+      SchoolGlobals.PreviousSchoolAtmosphere = 1f;
+      SchoolGlobals.SchoolAtmosphere = 1f;
+    }
+    int index;
+    switch (SchoolAtmosphere.Type)
+    {
+      case SchoolAtmosphereType.High:
+        index = 3;
+        break;
+      case SchoolAtmosphereType.Medium:
+        index = 2;
+        break;
+      default:
+        index = 1;
+        break;
+    }
+    this.FullSanity.clip = this.FullSanities[index];
+    this.HalfSanity.clip = this.HalfSanities[index];
+    this.NoSanity.clip = this.NoSanities[index];
+    this.Volume = 0.25f;
+    this.FullSanity.volume = 0.0f;
+    this.Hitman.time = 26f;
+  }
+
+  private void Update()
+  {
+    if (!this.Yandere.PauseScreen.Show && !this.Yandere.EasterEggMenu.activeInHierarchy && Input.GetKeyDown(KeyCode.M))
+      this.StartStopMusic();
+    if (!this.Egg)
+    {
+      if (!this.Yandere.Police.Clock.SchoolBell.isPlaying && !this.Yandere.StudentManager.MemorialScene.enabled)
+      {
+        if (!this.StartMusic)
+        {
+          this.FullSanity.Play();
+          this.HalfSanity.Play();
+          this.NoSanity.Play();
+          this.StartMusic = true;
+        }
+        if ((double) this.Yandere.Sanity >= 66.6666641235352)
+        {
+          this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
+          this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+          this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+        }
+        else if ((double) this.Yandere.Sanity >= 33.3333320617676)
+        {
+          this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+          this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
+          this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+        }
+        else
+        {
+          this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+          this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+          this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
+        }
+      }
+    }
+    else
+    {
+      this.AttackOnTitan.volume = Mathf.MoveTowards(this.AttackOnTitan.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Megalovania.volume = Mathf.MoveTowards(this.Megalovania.volume, this.Volume * this.Dip, 0.1666667f);
+      this.MissionMode.volume = Mathf.MoveTowards(this.MissionMode.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Skeletons.volume = Mathf.MoveTowards(this.Skeletons.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Vaporwave.volume = Mathf.MoveTowards(this.Vaporwave.volume, this.Volume * this.Dip, 0.1666667f);
+      this.AzurLane.volume = Mathf.MoveTowards(this.AzurLane.volume, this.Volume * this.Dip, 0.1666667f);
+      this.LifeNote.volume = Mathf.MoveTowards(this.LifeNote.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Berserk.volume = Mathf.MoveTowards(this.Berserk.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Metroid.volume = Mathf.MoveTowards(this.Metroid.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Nuclear.volume = Mathf.MoveTowards(this.Nuclear.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Slender.volume = Mathf.MoveTowards(this.Slender.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Sukeban.volume = Mathf.MoveTowards(this.Sukeban.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Hatred.volume = Mathf.MoveTowards(this.Hatred.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Hitman.volume = Mathf.MoveTowards(this.Hitman.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Touhou.volume = Mathf.MoveTowards(this.Touhou.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Falcon.volume = Mathf.MoveTowards(this.Falcon.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Miyuki.volume = Mathf.MoveTowards(this.Miyuki.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Demon.volume = Mathf.MoveTowards(this.Demon.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Ebola.volume = Mathf.MoveTowards(this.Ebola.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Ninja.volume = Mathf.MoveTowards(this.Ninja.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Punch.volume = Mathf.MoveTowards(this.Punch.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Galo.volume = Mathf.MoveTowards(this.Galo.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Jojo.volume = Mathf.MoveTowards(this.Jojo.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Lied.volume = Mathf.MoveTowards(this.Lied.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Nier.volume = Mathf.MoveTowards(this.Nier.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Sith.volume = Mathf.MoveTowards(this.Sith.volume, this.Volume * this.Dip, 0.1666667f);
+      this.DK.volume = Mathf.MoveTowards(this.DK.volume, this.Volume * this.Dip, 0.1666667f);
+      this.Horror.volume = Mathf.MoveTowards(this.Horror.volume, this.Volume * this.Dip, 0.1666667f);
+      if (this.Custom.enabled)
+        this.Custom.volume = Mathf.MoveTowards(this.Custom.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
+    }
+    if (this.Yandere.PauseScreen.Show || this.Yandere.Noticed || !this.Yandere.CanMove || !this.Yandere.EasterEggMenu.activeInHierarchy || this.Egg)
+      return;
+    if (Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.Alpha4))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.AttackOnTitan.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.P))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Nuclear.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.H))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Hatred.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.B))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Sukeban.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.X) || Input.GetKeyDown(KeyCode.Z))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Slender.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.G))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Galo.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.L))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Hitman.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.S))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Skeletons.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.K))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.DK.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.C))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Touhou.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.F))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Falcon.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.O))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Punch.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.U))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Megalovania.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.Q))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Metroid.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.Y))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Ninja.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha7) || Input.GetKeyDown(KeyCode.F5) || Input.GetKeyDown(KeyCode.W))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Ebola.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.Alpha6))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Demon.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.A))
+    {
+      if (Input.GetKeyDown(KeyCode.A))
+        this.Sith.pitch = 0.1f;
+      this.Egg = true;
+      this.KillVolume();
+      this.Sith.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.F2))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Horror.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.F3))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.LifeNote.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.F6) || Input.GetKeyDown(KeyCode.F9) || Input.GetKeyDown(KeyCode.F12))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Lied.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.F7))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Berserk.enabled = true;
+    }
+    else if (Input.GetKeyDown(KeyCode.F8))
+    {
+      this.Egg = true;
+      this.KillVolume();
+      this.Nier.enabled = true;
+    }
+    else
+    {
+      if (!Input.GetKeyDown(KeyCode.V))
+        return;
+      this.Egg = true;
+      this.KillVolume();
+      this.Vaporwave.enabled = true;
+    }
+  }
+
+  public void StartStopMusic()
+  {
+    if (this.Custom.isPlaying)
+    {
+      this.Egg = false;
+      this.Custom.Stop();
+      this.FadeSpeed = 1f;
+      this.StartMusic = false;
+      this.Volume = this.LastVolume;
+      this.Start();
+    }
+    else if ((double) this.Volume == 0.0)
+    {
+      this.FadeSpeed = 1f;
+      this.StartMusic = false;
+      this.Volume = this.LastVolume;
+      this.Start();
+    }
+    else
+    {
+      this.LastVolume = this.Volume;
+      this.FadeSpeed = 10f;
+      this.Volume = 0.0f;
+    }
+  }
+
+  public void Shipgirl()
+  {
+    this.Egg = true;
+    this.KillVolume();
+    this.AzurLane.enabled = true;
+  }
+
+  public void MiyukiMusic()
+  {
+    this.Egg = true;
+    this.KillVolume();
+    this.Miyuki.enabled = true;
+  }
+
+  public void KillVolume()
+  {
+    this.FullSanity.volume = 0.0f;
+    this.HalfSanity.volume = 0.0f;
+    this.NoSanity.volume = 0.0f;
+    this.Volume = 0.5f;
+  }
+
+  public void GameOver()
+  {
+    this.AttackOnTitan.Stop();
+    this.Megalovania.Stop();
+    this.MissionMode.Stop();
+    this.Skeletons.Stop();
+    this.Vaporwave.Stop();
+    this.AzurLane.Stop();
+    this.LifeNote.Stop();
+    this.Berserk.Stop();
+    this.Metroid.Stop();
+    this.Nuclear.Stop();
+    this.Sukeban.Stop();
+    this.Custom.Stop();
+    this.Slender.Stop();
+    this.Hatred.Stop();
+    this.Hitman.Stop();
+    this.Horror.Stop();
+    this.Touhou.Stop();
+    this.Falcon.Stop();
+    this.Miyuki.Stop();
+    this.Ebola.Stop();
+    this.Punch.Stop();
+    this.Ninja.Stop();
+    this.Jojo.Stop();
+    this.Galo.Stop();
+    this.Lied.Stop();
+    this.Nier.Stop();
+    this.Sith.Stop();
+    this.DK.Stop();
+    this.Confession.Stop();
+    this.FullSanity.Stop();
+    this.HalfSanity.Stop();
+    this.NoSanity.Stop();
+  }
+
+  public void PlayJojo()
+  {
+    this.Egg = true;
+    this.KillVolume();
+    this.Jojo.enabled = true;
+  }
+
+  public void PlayCustom()
+  {
+    this.Egg = true;
+    this.KillVolume();
+    this.Custom.enabled = true;
+    this.Custom.Play();
+  }
 }

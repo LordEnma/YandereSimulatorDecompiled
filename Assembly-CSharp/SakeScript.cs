@@ -1,33 +1,35 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SakeScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003F9 RID: 1017
 public class SakeScript : MonoBehaviour
 {
-	// Token: 0x06001C1E RID: 7198 RVA: 0x00149E8E File Offset: 0x0014808E
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Yandere.Inventory.Sake = true;
-			this.UpdatePrompt();
-		}
-	}
+  public PromptScript Prompt;
 
-	// Token: 0x06001C1F RID: 7199 RVA: 0x00149EC8 File Offset: 0x001480C8
-	public void UpdatePrompt()
-	{
-		if (this.Prompt.Yandere.Inventory.Sake)
-		{
-			this.Prompt.enabled = false;
-			this.Prompt.Hide();
-			UnityEngine.Object.Destroy(base.gameObject);
-			return;
-		}
-		this.Prompt.enabled = true;
-		this.Prompt.Hide();
-	}
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    this.Prompt.Yandere.Inventory.Sake = true;
+    this.UpdatePrompt();
+  }
 
-	// Token: 0x0400319B RID: 12699
-	public PromptScript Prompt;
+  public void UpdatePrompt()
+  {
+    if (this.Prompt.Yandere.Inventory.Sake)
+    {
+      this.Prompt.enabled = false;
+      this.Prompt.Hide();
+      Object.Destroy((Object) this.gameObject);
+    }
+    else
+    {
+      this.Prompt.enabled = true;
+      this.Prompt.Hide();
+    }
+  }
 }

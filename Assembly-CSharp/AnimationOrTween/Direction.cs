@@ -1,16 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AnimationOrTween.Direction
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace AnimationOrTween
 {
-	// Token: 0x02000595 RID: 1429
-	[DoNotObfuscateNGUI]
-	public enum Direction
-	{
-		// Token: 0x04004CDA RID: 19674
-		Reverse = -1,
-		// Token: 0x04004CDB RID: 19675
-		Toggle,
-		// Token: 0x04004CDC RID: 19676
-		Forward
-	}
+  [DoNotObfuscateNGUI]
+  public enum Direction
+  {
+    Reverse = -1, // 0xFFFFFFFF
+    Toggle = 0,
+    Forward = 1,
+  }
 }

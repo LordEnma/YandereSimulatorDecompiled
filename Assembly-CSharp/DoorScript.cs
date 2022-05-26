@@ -1,926 +1,712 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DoorScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000290 RID: 656
 public class DoorScript : MonoBehaviour
 {
-	// Token: 0x1700034A RID: 842
-	// (get) Token: 0x060013C2 RID: 5058 RVA: 0x000B9EDF File Offset: 0x000B80DF
-	private bool Double
-	{
-		get
-		{
-			return this.Doors.Length == 2;
-		}
-	}
+  [SerializeField]
+  private Transform RelativeCharacter;
+  [SerializeField]
+  private YanSaveIdentifier Identifier;
+  [SerializeField]
+  private HideColliderScript HideCollider;
+  public StudentScript Student;
+  [SerializeField]
+  private YandereScript Yandere;
+  [SerializeField]
+  private BucketScript Bucket;
+  public PromptScript Prompt;
+  [SerializeField]
+  private Collider[] DoorColliders;
+  [SerializeField]
+  private float[] ClosedPositions;
+  [SerializeField]
+  private float[] OpenPositions;
+  [SerializeField]
+  private Transform[] Doors;
+  [SerializeField]
+  private Texture[] Plates;
+  [SerializeField]
+  private UILabel[] Labels;
+  [SerializeField]
+  private float[] OriginX;
+  [SerializeField]
+  private bool CanSetBucket;
+  [SerializeField]
+  private bool OneWayDoor;
+  [SerializeField]
+  private bool HidingSpot;
+  [SerializeField]
+  private bool BucketSet;
+  [SerializeField]
+  private bool Swinging;
+  public bool Locked;
+  [SerializeField]
+  private bool NoTrap;
+  [SerializeField]
+  private bool North;
+  public bool Open;
+  [SerializeField]
+  private bool Near;
+  [SerializeField]
+  private float ShiftNorth = -0.1f;
+  [SerializeField]
+  private float ShiftSouth = 0.1f;
+  [SerializeField]
+  private float Rotation;
+  public float TimeLimit = 2f;
+  public float Timer;
+  [SerializeField]
+  private float TrapSwing = 12.15f;
+  [SerializeField]
+  private float Swing = 150f;
+  [SerializeField]
+  private Renderer Sign;
+  [SerializeField]
+  private string RoomName = string.Empty;
+  [SerializeField]
+  private string Facing = string.Empty;
+  [SerializeField]
+  private int RoomID;
+  [SerializeField]
+  private ClubType Club;
+  [SerializeField]
+  private bool DisableSelf;
+  private StudentManagerScript StudentManager;
+  public OcclusionPortal Portal;
+  public int DoorID;
+  public bool Initialized;
 
-	// Token: 0x060013C3 RID: 5059 RVA: 0x000B9EEC File Offset: 0x000B80EC
-	public void Start()
-	{
-		if (!this.Initialized)
-		{
-			this.Initialized = true;
-			this.Identifier = base.GetComponent<YanSaveIdentifier>();
-			this.TrapSwing = 12.15f;
-			this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
-			this.StudentManager = this.Yandere.StudentManager;
-			this.StudentManager.Doors[this.StudentManager.DoorID] = this;
-			this.StudentManager.DoorID++;
-			this.DoorID = this.StudentManager.DoorID;
-			if (this.Identifier != null)
-			{
-				this.Identifier.ObjectID = "Door_" + this.DoorID.ToString();
-			}
-			else
-			{
-				Debug.Log(base.gameObject.name + " doesn't have an identifier.");
-			}
-			if (this.StudentManager.EastBathroomArea.bounds.Contains(base.transform.position) || this.StudentManager.WestBathroomArea.bounds.Contains(base.transform.position))
-			{
-				this.RoomName = "Toilet Stall";
-			}
-			if (this.Swinging)
-			{
-				this.OriginX[0] = this.Doors[0].transform.localPosition.z;
-				if (this.OriginX.Length > 1)
-				{
-					this.OriginX[1] = this.Doors[1].transform.localPosition.z;
-				}
-				this.TimeLimit = 1f;
-			}
-			if (this.Labels.Length != 0)
-			{
-				this.Labels[0].text = this.RoomName;
-				this.Labels[1].text = this.RoomName;
-				this.UpdatePlate();
-			}
-			if (this.Club != ClubType.None && ClubGlobals.GetClubClosed(this.Club))
-			{
-				this.Prompt.Hide();
-				this.Prompt.enabled = false;
-				base.enabled = false;
-			}
-			if (this.DisableSelf)
-			{
-				base.enabled = false;
-			}
-			this.Prompt.Student = false;
-			this.Prompt.Door = true;
-			this.DoorColliders = new Collider[2];
-			this.DoorColliders[0] = this.Doors[0].gameObject.GetComponent<BoxCollider>();
-			if (this.DoorColliders[0] == null)
-			{
-				this.DoorColliders[0] = this.Doors[0].GetChild(0).gameObject.GetComponent<BoxCollider>();
-			}
-			if (this.Doors.Length > 1)
-			{
-				this.DoorColliders[1] = this.Doors[1].GetComponent<BoxCollider>();
-			}
-			if (!this.StudentManager.Eighties && this.RoomID == 22)
-			{
-				this.Club = ClubType.None;
-			}
-			if (base.transform.position.z < 55f && Mathf.Abs(base.transform.position.x) < 62f)
-			{
-				base.GetComponent<BoxCollider>().size = new Vector3(0.2f, 0.01f, 0.2f);
-				return;
-			}
-			base.GetComponent<BoxCollider>().size = new Vector3(0.2f, 0.1f, 0.2f);
-		}
-	}
+  private bool Double => this.Doors.Length == 2;
 
-	// Token: 0x060013C4 RID: 5060 RVA: 0x000BA214 File Offset: 0x000B8414
-	private void Update()
-	{
-		if (this.Prompt.DistanceSqr <= 1f)
-		{
-			if (Vector3.Distance(this.Yandere.transform.position, base.transform.position) < 2f)
-			{
-				if (!this.Near)
-				{
-					this.TopicCheck();
-					this.Yandere.Location.Label.text = this.RoomName;
-					this.Yandere.Location.Show = true;
-					this.Near = true;
-				}
-				if (this.Prompt.Circle[0].fillAmount < 1f && this.Prompt.Circle[0].fillAmount > 0f)
-				{
-					this.Prompt.Circle[0].fillAmount = 0f;
-					if (!this.Locked)
-					{
-						if (!this.Open)
-						{
-							this.OpenDoor();
-						}
-						else
-						{
-							this.CloseDoor();
-						}
-					}
-				}
-				if (this.Double && this.Swinging && this.Prompt.Circle[1].fillAmount == 0f)
-				{
-					this.Prompt.Circle[1].fillAmount = 1f;
-					if (!this.BucketSet)
-					{
-						if (SchemeGlobals.GetSchemeStage(1) == 2)
-						{
-							SchemeGlobals.SetSchemeStage(1, 3);
-							this.Yandere.PauseScreen.Schemes.UpdateInstructions();
-						}
-						this.Bucket = this.Yandere.PickUp.Bucket;
-						this.Yandere.EmptyHands();
-						this.Bucket.transform.parent = base.transform;
-						this.Bucket.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
-						this.Bucket.Trap = true;
-						this.Bucket.Prompt.Hide();
-						this.Bucket.Prompt.enabled = false;
-						this.CheckDirection();
-						if (this.North)
-						{
-							this.Bucket.transform.localPosition = new Vector3(0f, 2.25f, 0.2975f);
-						}
-						else
-						{
-							this.Bucket.transform.localPosition = new Vector3(0f, 2.25f, -0.2975f);
-						}
-						this.Bucket.GetComponent<Rigidbody>().isKinematic = true;
-						this.Bucket.GetComponent<Rigidbody>().useGravity = false;
-						if (this.Open)
-						{
-							this.DoorColliders[0].isTrigger = true;
-							this.DoorColliders[1].isTrigger = true;
-						}
-						this.Prompt.Label[1].text = "     Remove Bucket";
-						this.Prompt.HideButton[0] = true;
-						this.CanSetBucket = false;
-						this.BucketSet = true;
-						this.Open = false;
-						this.Timer = 0f;
-					}
-					else
-					{
-						this.Yandere.EmptyHands();
-						this.Bucket.PickUp.BePickedUp();
-						this.Prompt.HideButton[0] = false;
-						this.Prompt.Label[1].text = "     Set Trap";
-						this.BucketSet = false;
-						this.Bucket = null;
-						this.Timer = 0f;
-					}
-				}
-			}
-		}
-		else if (this.Near)
-		{
-			this.Yandere.Location.Show = false;
-			this.Near = false;
-		}
-		if (this.Timer < this.TimeLimit)
-		{
-			this.Timer += Time.deltaTime;
-			if (!this.Open && !this.OneWayDoor && this.Timer >= this.TimeLimit)
-			{
-				this.DoorColliders[0].isTrigger = false;
-				if (this.DoorColliders[1] != null)
-				{
-					this.DoorColliders[1].isTrigger = false;
-				}
-			}
-			if (this.BucketSet)
-			{
-				for (int i = 0; i < this.Doors.Length; i++)
-				{
-					Transform transform = this.Doors[i];
-					transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, Mathf.Lerp(transform.localPosition.z, this.OriginX[i] + (this.North ? this.ShiftSouth : this.ShiftNorth), Time.deltaTime * 3.6f));
-					this.Rotation = Mathf.Lerp(this.Rotation, this.North ? (-this.TrapSwing) : this.TrapSwing, Time.deltaTime * 3.6f);
-					transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, (i == 0) ? this.Rotation : (-this.Rotation), transform.localEulerAngles.z);
-				}
-			}
-			else if (!this.Open)
-			{
-				for (int j = 0; j < this.Doors.Length; j++)
-				{
-					Transform transform2 = this.Doors[j];
-					if (!this.Swinging)
-					{
-						transform2.localPosition = new Vector3(Mathf.Lerp(transform2.localPosition.x, this.ClosedPositions[j], Time.deltaTime * 3.6f), transform2.localPosition.y, transform2.localPosition.z);
-					}
-					else
-					{
-						this.Rotation = Mathf.Lerp(this.Rotation, 0f, Time.deltaTime * 3.6f);
-						transform2.localPosition = new Vector3(transform2.localPosition.x, transform2.localPosition.y, Mathf.Lerp(transform2.localPosition.z, this.OriginX[j], Time.deltaTime * 3.6f));
-						transform2.localEulerAngles = new Vector3(transform2.localEulerAngles.x, (j == 0) ? this.Rotation : (-this.Rotation), transform2.localEulerAngles.z);
-					}
-				}
-			}
-			else
-			{
-				for (int k = 0; k < this.Doors.Length; k++)
-				{
-					Transform transform3 = this.Doors[k];
-					if (!this.Swinging)
-					{
-						transform3.localPosition = new Vector3(Mathf.Lerp(transform3.localPosition.x, this.OpenPositions[k], Time.deltaTime * 3.6f), transform3.localPosition.y, transform3.localPosition.z);
-					}
-					else
-					{
-						transform3.localPosition = new Vector3(transform3.localPosition.x, transform3.localPosition.y, Mathf.Lerp(transform3.localPosition.z, this.OriginX[k] + (this.North ? this.ShiftNorth : this.ShiftSouth), Time.deltaTime * 3.6f));
-						this.Rotation = Mathf.Lerp(this.Rotation, this.North ? this.Swing : (-this.Swing), Time.deltaTime * 3.6f);
-						transform3.localEulerAngles = new Vector3(transform3.localEulerAngles.x, (k == 0) ? this.Rotation : (-this.Rotation), transform3.localEulerAngles.z);
-					}
-				}
-			}
-		}
-		else if (this.Locked)
-		{
-			if (this.Prompt.Circle[0].fillAmount < 1f)
-			{
-				this.Prompt.Label[0].text = "     Locked";
-				this.Prompt.Circle[0].fillAmount = 1f;
-			}
-			if (this.Yandere.Inventory.LockPick)
-			{
-				this.Prompt.HideButton[2] = false;
-				if (this.Prompt.Circle[2].fillAmount == 0f)
-				{
-					this.Prompt.Yandere.Inventory.LockPick = false;
-					this.Prompt.HideButton[2] = true;
-					this.Locked = false;
-				}
-			}
-			else if (!this.Prompt.HideButton[2])
-			{
-				this.Prompt.HideButton[2] = true;
-			}
-		}
-		if (!this.NoTrap && this.Swinging && this.Double)
-		{
-			if (this.Yandere.PickUp != null)
-			{
-				if (this.Yandere.PickUp.Bucket != null)
-				{
-					if (this.Yandere.PickUp.GetComponent<BucketScript>().Full)
-					{
-						if (this.Bucket == null)
-						{
-							this.Prompt.HideButton[1] = false;
-							this.CanSetBucket = true;
-						}
-					}
-					else if (this.CanSetBucket)
-					{
-						this.Prompt.HideButton[1] = true;
-						this.CanSetBucket = false;
-					}
-				}
-				else if (this.CanSetBucket)
-				{
-					this.Prompt.HideButton[1] = true;
-					this.CanSetBucket = false;
-				}
-			}
-			else if (this.CanSetBucket)
-			{
-				this.Prompt.HideButton[1] = true;
-				this.CanSetBucket = false;
-			}
-		}
-		if (this.BucketSet && this.Bucket.Gasoline && this.StudentManager.Students[this.StudentManager.RivalID] != null && !this.StudentManager.Students[this.StudentManager.RivalID].GasWarned)
-		{
-			StudentScript follower = this.StudentManager.Students[this.StudentManager.RivalID].Follower;
-			if (follower != null && follower.Alive && follower.CurrentAction == StudentActionType.Follow && Vector3.Distance(this.StudentManager.Students[this.StudentManager.RivalID].transform.position, follower.transform.position) < 10f && Vector3.Distance(base.transform.position, this.StudentManager.Students[this.StudentManager.RivalID].transform.position) < 10f)
-			{
-				this.Yandere.Subtitle.UpdateLabel(SubtitleType.GasWarning, 1, 5f);
-				this.StudentManager.Students[this.StudentManager.RivalID].GasWarned = true;
-			}
-		}
-	}
+  public void Start()
+  {
+    if (this.Initialized)
+      return;
+    this.Initialized = true;
+    this.Identifier = this.GetComponent<YanSaveIdentifier>();
+    this.TrapSwing = 12.15f;
+    this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
+    this.StudentManager = this.Yandere.StudentManager;
+    this.StudentManager.Doors[this.StudentManager.DoorID] = this;
+    ++this.StudentManager.DoorID;
+    this.DoorID = this.StudentManager.DoorID;
+    if ((Object) this.Identifier != (Object) null)
+      this.Identifier.ObjectID = "Door_" + this.DoorID.ToString();
+    else
+      Debug.Log((object) (this.gameObject.name + " doesn't have an identifier."));
+    Bounds bounds = this.StudentManager.EastBathroomArea.bounds;
+    if (!bounds.Contains(this.transform.position))
+    {
+      bounds = this.StudentManager.WestBathroomArea.bounds;
+      if (!bounds.Contains(this.transform.position))
+        goto label_7;
+    }
+    this.RoomName = "Toilet Stall";
+label_7:
+    if (this.Swinging)
+    {
+      this.OriginX[0] = this.Doors[0].transform.localPosition.z;
+      if (this.OriginX.Length > 1)
+        this.OriginX[1] = this.Doors[1].transform.localPosition.z;
+      this.TimeLimit = 1f;
+    }
+    if (this.Labels.Length != 0)
+    {
+      this.Labels[0].text = this.RoomName;
+      this.Labels[1].text = this.RoomName;
+      this.UpdatePlate();
+    }
+    if (this.Club != ClubType.None && ClubGlobals.GetClubClosed(this.Club))
+    {
+      this.Prompt.Hide();
+      this.Prompt.enabled = false;
+      this.enabled = false;
+    }
+    if (this.DisableSelf)
+      this.enabled = false;
+    this.Prompt.Student = false;
+    this.Prompt.Door = true;
+    this.DoorColliders = new Collider[2];
+    this.DoorColliders[0] = (Collider) this.Doors[0].gameObject.GetComponent<BoxCollider>();
+    if ((Object) this.DoorColliders[0] == (Object) null)
+      this.DoorColliders[0] = (Collider) this.Doors[0].GetChild(0).gameObject.GetComponent<BoxCollider>();
+    if (this.Doors.Length > 1)
+      this.DoorColliders[1] = (Collider) this.Doors[1].GetComponent<BoxCollider>();
+    if (!this.StudentManager.Eighties && this.RoomID == 22)
+      this.Club = ClubType.None;
+    if ((double) this.transform.position.z < 55.0 && (double) Mathf.Abs(this.transform.position.x) < 62.0)
+      this.GetComponent<BoxCollider>().size = new Vector3(0.2f, 0.01f, 0.2f);
+    else
+      this.GetComponent<BoxCollider>().size = new Vector3(0.2f, 0.1f, 0.2f);
+  }
 
-	// Token: 0x060013C5 RID: 5061 RVA: 0x000BAC38 File Offset: 0x000B8E38
-	public void OpenDoor()
-	{
-		this.DoorColliders[0].isTrigger = true;
-		if (this.DoorColliders[1] != null)
-		{
-			this.DoorColliders[1].isTrigger = true;
-		}
-		if (this.Portal != null)
-		{
-			this.Portal.open = true;
-		}
-		this.Open = true;
-		this.Timer = 0f;
-		this.UpdateLabel();
-		if (this.HidingSpot)
-		{
-			UnityEngine.Object.Destroy(this.HideCollider.GetComponent<BoxCollider>());
-		}
-		this.CheckDirection();
-		if (this.BucketSet)
-		{
-			this.Bucket.GetComponent<Rigidbody>().isKinematic = false;
-			this.Bucket.GetComponent<Rigidbody>().useGravity = true;
-			this.Bucket.UpdateAppearance = true;
-			this.Bucket.Prompt.enabled = true;
-			this.Bucket.Fly = true;
-			this.Prompt.HideButton[0] = false;
-			this.Prompt.HideButton[1] = true;
-			this.Prompt.Label[1].text = "     Set Trap";
-			this.Prompt.enabled = true;
-			this.BucketSet = false;
-			this.Bucket = null;
-		}
-		if (this.Swinging)
-		{
-			AudioSource.PlayClipAtPoint(this.StudentManager.SwingingDoorOpen, base.transform.position);
-			return;
-		}
-		AudioSource.PlayClipAtPoint(this.StudentManager.SlidingDoorOpen, base.transform.position);
-	}
+  private void Update()
+  {
+    if ((double) this.Prompt.DistanceSqr <= 1.0)
+    {
+      if ((double) Vector3.Distance(this.Yandere.transform.position, this.transform.position) < 2.0)
+      {
+        if (!this.Near)
+        {
+          this.TopicCheck();
+          this.Yandere.Location.Label.text = this.RoomName;
+          this.Yandere.Location.Show = true;
+          this.Near = true;
+        }
+        if ((double) this.Prompt.Circle[0].fillAmount < 1.0 && (double) this.Prompt.Circle[0].fillAmount > 0.0)
+        {
+          this.Prompt.Circle[0].fillAmount = 0.0f;
+          if (!this.Locked)
+          {
+            if (!this.Open)
+              this.OpenDoor();
+            else
+              this.CloseDoor();
+          }
+        }
+        if (this.Double && this.Swinging && (double) this.Prompt.Circle[1].fillAmount == 0.0)
+        {
+          this.Prompt.Circle[1].fillAmount = 1f;
+          if (!this.BucketSet)
+          {
+            if (SchemeGlobals.GetSchemeStage(1) == 2)
+            {
+              SchemeGlobals.SetSchemeStage(1, 3);
+              this.Yandere.PauseScreen.Schemes.UpdateInstructions();
+            }
+            this.Bucket = this.Yandere.PickUp.Bucket;
+            this.Yandere.EmptyHands();
+            this.Bucket.transform.parent = this.transform;
+            this.Bucket.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+            this.Bucket.Trap = true;
+            this.Bucket.Prompt.Hide();
+            this.Bucket.Prompt.enabled = false;
+            this.CheckDirection();
+            if (this.North)
+              this.Bucket.transform.localPosition = new Vector3(0.0f, 2.25f, 0.2975f);
+            else
+              this.Bucket.transform.localPosition = new Vector3(0.0f, 2.25f, -0.2975f);
+            this.Bucket.GetComponent<Rigidbody>().isKinematic = true;
+            this.Bucket.GetComponent<Rigidbody>().useGravity = false;
+            if (this.Open)
+            {
+              this.DoorColliders[0].isTrigger = true;
+              this.DoorColliders[1].isTrigger = true;
+            }
+            this.Prompt.Label[1].text = "     Remove Bucket";
+            this.Prompt.HideButton[0] = true;
+            this.CanSetBucket = false;
+            this.BucketSet = true;
+            this.Open = false;
+            this.Timer = 0.0f;
+          }
+          else
+          {
+            this.Yandere.EmptyHands();
+            this.Bucket.PickUp.BePickedUp();
+            this.Prompt.HideButton[0] = false;
+            this.Prompt.Label[1].text = "     Set Trap";
+            this.BucketSet = false;
+            this.Bucket = (BucketScript) null;
+            this.Timer = 0.0f;
+          }
+        }
+      }
+    }
+    else if (this.Near)
+    {
+      this.Yandere.Location.Show = false;
+      this.Near = false;
+    }
+    if ((double) this.Timer < (double) this.TimeLimit)
+    {
+      this.Timer += Time.deltaTime;
+      if (!this.Open && !this.OneWayDoor && (double) this.Timer >= (double) this.TimeLimit)
+      {
+        this.DoorColliders[0].isTrigger = false;
+        if ((Object) this.DoorColliders[1] != (Object) null)
+          this.DoorColliders[1].isTrigger = false;
+      }
+      if (this.BucketSet)
+      {
+        for (int index = 0; index < this.Doors.Length; ++index)
+        {
+          Transform door = this.Doors[index];
+          door.localPosition = new Vector3(door.localPosition.x, door.localPosition.y, Mathf.Lerp(door.localPosition.z, this.OriginX[index] + (this.North ? this.ShiftSouth : this.ShiftNorth), Time.deltaTime * 3.6f));
+          this.Rotation = Mathf.Lerp(this.Rotation, this.North ? -this.TrapSwing : this.TrapSwing, Time.deltaTime * 3.6f);
+          door.localEulerAngles = new Vector3(door.localEulerAngles.x, index == 0 ? this.Rotation : -this.Rotation, door.localEulerAngles.z);
+        }
+      }
+      else if (!this.Open)
+      {
+        for (int index = 0; index < this.Doors.Length; ++index)
+        {
+          Transform door = this.Doors[index];
+          if (!this.Swinging)
+          {
+            door.localPosition = new Vector3(Mathf.Lerp(door.localPosition.x, this.ClosedPositions[index], Time.deltaTime * 3.6f), door.localPosition.y, door.localPosition.z);
+          }
+          else
+          {
+            this.Rotation = Mathf.Lerp(this.Rotation, 0.0f, Time.deltaTime * 3.6f);
+            door.localPosition = new Vector3(door.localPosition.x, door.localPosition.y, Mathf.Lerp(door.localPosition.z, this.OriginX[index], Time.deltaTime * 3.6f));
+            door.localEulerAngles = new Vector3(door.localEulerAngles.x, index == 0 ? this.Rotation : -this.Rotation, door.localEulerAngles.z);
+          }
+        }
+      }
+      else
+      {
+        for (int index = 0; index < this.Doors.Length; ++index)
+        {
+          Transform door = this.Doors[index];
+          if (!this.Swinging)
+          {
+            door.localPosition = new Vector3(Mathf.Lerp(door.localPosition.x, this.OpenPositions[index], Time.deltaTime * 3.6f), door.localPosition.y, door.localPosition.z);
+          }
+          else
+          {
+            door.localPosition = new Vector3(door.localPosition.x, door.localPosition.y, Mathf.Lerp(door.localPosition.z, this.OriginX[index] + (this.North ? this.ShiftNorth : this.ShiftSouth), Time.deltaTime * 3.6f));
+            this.Rotation = Mathf.Lerp(this.Rotation, this.North ? this.Swing : -this.Swing, Time.deltaTime * 3.6f);
+            door.localEulerAngles = new Vector3(door.localEulerAngles.x, index == 0 ? this.Rotation : -this.Rotation, door.localEulerAngles.z);
+          }
+        }
+      }
+    }
+    else if (this.Locked)
+    {
+      if ((double) this.Prompt.Circle[0].fillAmount < 1.0)
+      {
+        this.Prompt.Label[0].text = "     Locked";
+        this.Prompt.Circle[0].fillAmount = 1f;
+      }
+      if (this.Yandere.Inventory.LockPick)
+      {
+        this.Prompt.HideButton[2] = false;
+        if ((double) this.Prompt.Circle[2].fillAmount == 0.0)
+        {
+          this.Prompt.Yandere.Inventory.LockPick = false;
+          this.Prompt.HideButton[2] = true;
+          this.Locked = false;
+        }
+      }
+      else if (!this.Prompt.HideButton[2])
+        this.Prompt.HideButton[2] = true;
+    }
+    if (!this.NoTrap && this.Swinging && this.Double)
+    {
+      if ((Object) this.Yandere.PickUp != (Object) null)
+      {
+        if ((Object) this.Yandere.PickUp.Bucket != (Object) null)
+        {
+          if (this.Yandere.PickUp.GetComponent<BucketScript>().Full)
+          {
+            if ((Object) this.Bucket == (Object) null)
+            {
+              this.Prompt.HideButton[1] = false;
+              this.CanSetBucket = true;
+            }
+          }
+          else if (this.CanSetBucket)
+          {
+            this.Prompt.HideButton[1] = true;
+            this.CanSetBucket = false;
+          }
+        }
+        else if (this.CanSetBucket)
+        {
+          this.Prompt.HideButton[1] = true;
+          this.CanSetBucket = false;
+        }
+      }
+      else if (this.CanSetBucket)
+      {
+        this.Prompt.HideButton[1] = true;
+        this.CanSetBucket = false;
+      }
+    }
+    if (!this.BucketSet || !this.Bucket.Gasoline || !((Object) this.StudentManager.Students[this.StudentManager.RivalID] != (Object) null) || this.StudentManager.Students[this.StudentManager.RivalID].GasWarned)
+      return;
+    StudentScript follower = this.StudentManager.Students[this.StudentManager.RivalID].Follower;
+    if (!((Object) follower != (Object) null) || !follower.Alive || follower.CurrentAction != StudentActionType.Follow || (double) Vector3.Distance(this.StudentManager.Students[this.StudentManager.RivalID].transform.position, follower.transform.position) >= 10.0 || (double) Vector3.Distance(this.transform.position, this.StudentManager.Students[this.StudentManager.RivalID].transform.position) >= 10.0)
+      return;
+    this.Yandere.Subtitle.UpdateLabel(SubtitleType.GasWarning, 1, 5f);
+    this.StudentManager.Students[this.StudentManager.RivalID].GasWarned = true;
+  }
 
-	// Token: 0x060013C6 RID: 5062 RVA: 0x000BADA3 File Offset: 0x000B8FA3
-	private void LockDoor()
-	{
-		this.Open = false;
-		this.Prompt.Hide();
-		this.Prompt.enabled = false;
-	}
+  public void OpenDoor()
+  {
+    this.DoorColliders[0].isTrigger = true;
+    if ((Object) this.DoorColliders[1] != (Object) null)
+      this.DoorColliders[1].isTrigger = true;
+    if ((Object) this.Portal != (Object) null)
+      this.Portal.open = true;
+    this.Open = true;
+    this.Timer = 0.0f;
+    this.UpdateLabel();
+    if (this.HidingSpot)
+      Object.Destroy((Object) this.HideCollider.GetComponent<BoxCollider>());
+    this.CheckDirection();
+    if (this.BucketSet)
+    {
+      this.Bucket.GetComponent<Rigidbody>().isKinematic = false;
+      this.Bucket.GetComponent<Rigidbody>().useGravity = true;
+      this.Bucket.UpdateAppearance = true;
+      this.Bucket.Prompt.enabled = true;
+      this.Bucket.Fly = true;
+      this.Prompt.HideButton[0] = false;
+      this.Prompt.HideButton[1] = true;
+      this.Prompt.Label[1].text = "     Set Trap";
+      this.Prompt.enabled = true;
+      this.BucketSet = false;
+      this.Bucket = (BucketScript) null;
+    }
+    if (this.Swinging)
+      AudioSource.PlayClipAtPoint(this.StudentManager.SwingingDoorOpen, this.transform.position);
+    else
+      AudioSource.PlayClipAtPoint(this.StudentManager.SlidingDoorOpen, this.transform.position);
+  }
 
-	// Token: 0x060013C7 RID: 5063 RVA: 0x000BADC4 File Offset: 0x000B8FC4
-	private void CheckDirection()
-	{
-		this.North = false;
-		if (!this.OneWayDoor)
-		{
-			this.RelativeCharacter = ((this.Student != null) ? this.Student.transform : this.Yandere.transform);
-			if (this.Facing == "North")
-			{
-				if (this.RelativeCharacter.position.z < base.transform.position.z)
-				{
-					this.North = true;
-				}
-			}
-			else if (this.Facing == "South")
-			{
-				if (this.RelativeCharacter.position.z > base.transform.position.z)
-				{
-					this.North = true;
-				}
-			}
-			else if (this.Facing == "East")
-			{
-				if (this.RelativeCharacter.position.x < base.transform.position.x)
-				{
-					this.North = true;
-				}
-			}
-			else if (this.Facing == "West" && this.RelativeCharacter.position.x > base.transform.position.x)
-			{
-				this.North = true;
-			}
-		}
-		this.Student = null;
-	}
+  private void LockDoor()
+  {
+    this.Open = false;
+    this.Prompt.Hide();
+    this.Prompt.enabled = false;
+  }
 
-	// Token: 0x060013C8 RID: 5064 RVA: 0x000BAF14 File Offset: 0x000B9114
-	public void CloseDoor()
-	{
-		this.Open = false;
-		this.Timer = 0f;
-		this.UpdateLabel();
-		this.DoorColliders[0].isTrigger = true;
-		if (this.DoorColliders[1] != null)
-		{
-			this.DoorColliders[1].isTrigger = true;
-		}
-		if (this.HidingSpot)
-		{
-			this.HideCollider.gameObject.AddComponent<BoxCollider>();
-			BoxCollider component = this.HideCollider.GetComponent<BoxCollider>();
-			component.size = new Vector3(component.size.x, component.size.y, 2f);
-			component.isTrigger = true;
-			this.HideCollider.MyCollider = component;
-		}
-		if (this.Swinging)
-		{
-			AudioSource.PlayClipAtPoint(this.StudentManager.SwingingDoorShut, base.transform.position);
-			return;
-		}
-		AudioSource.PlayClipAtPoint(this.StudentManager.SlidingDoorShut, base.transform.position);
-	}
+  private void CheckDirection()
+  {
+    this.North = false;
+    if (!this.OneWayDoor)
+    {
+      this.RelativeCharacter = (Object) this.Student != (Object) null ? this.Student.transform : this.Yandere.transform;
+      if (this.Facing == "North")
+      {
+        if ((double) this.RelativeCharacter.position.z < (double) this.transform.position.z)
+          this.North = true;
+      }
+      else if (this.Facing == "South")
+      {
+        if ((double) this.RelativeCharacter.position.z > (double) this.transform.position.z)
+          this.North = true;
+      }
+      else if (this.Facing == "East")
+      {
+        if ((double) this.RelativeCharacter.position.x < (double) this.transform.position.x)
+          this.North = true;
+      }
+      else if (this.Facing == "West" && (double) this.RelativeCharacter.position.x > (double) this.transform.position.x)
+        this.North = true;
+    }
+    this.Student = (StudentScript) null;
+  }
 
-	// Token: 0x060013C9 RID: 5065 RVA: 0x000BB002 File Offset: 0x000B9202
-	private void UpdateLabel()
-	{
-		if (this.Open)
-		{
-			this.Prompt.Label[0].text = "     Close";
-			return;
-		}
-		this.Prompt.Label[0].text = "     Open";
-	}
+  public void CloseDoor()
+  {
+    this.Open = false;
+    this.Timer = 0.0f;
+    this.UpdateLabel();
+    this.DoorColliders[0].isTrigger = true;
+    if ((Object) this.DoorColliders[1] != (Object) null)
+      this.DoorColliders[1].isTrigger = true;
+    if (this.HidingSpot)
+    {
+      this.HideCollider.gameObject.AddComponent<BoxCollider>();
+      BoxCollider component = this.HideCollider.GetComponent<BoxCollider>();
+      component.size = new Vector3(component.size.x, component.size.y, 2f);
+      component.isTrigger = true;
+      this.HideCollider.MyCollider = (Collider) component;
+    }
+    if (this.Swinging)
+      AudioSource.PlayClipAtPoint(this.StudentManager.SwingingDoorShut, this.transform.position);
+    else
+      AudioSource.PlayClipAtPoint(this.StudentManager.SlidingDoorShut, this.transform.position);
+  }
 
-	// Token: 0x060013CA RID: 5066 RVA: 0x000BB03C File Offset: 0x000B923C
-	private void UpdatePlate()
-	{
-		switch (this.RoomID)
-		{
-		case 1:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0f, 0.75f);
-			return;
-		case 2:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0f, 0.5f);
-			return;
-		case 3:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0f, 0.25f);
-			return;
-		case 4:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0f, 0f);
-			return;
-		case 5:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.75f);
-			return;
-		case 6:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.5f);
-			return;
-		case 7:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.25f);
-			return;
-		case 8:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0f);
-			return;
-		case 9:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.75f);
-			return;
-		case 10:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.5f);
-			return;
-		case 11:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.25f);
-			return;
-		case 12:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0f);
-			return;
-		case 13:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.75f);
-			return;
-		case 14:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.5f);
-			return;
-		case 15:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.25f);
-			return;
-		case 16:
-			this.Sign.material.mainTexture = this.Plates[1];
-			this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0f);
-			return;
-		case 17:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0f, 0.75f);
-			return;
-		case 18:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0f, 0.5f);
-			return;
-		case 19:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0f, 0.25f);
-			return;
-		case 20:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0f, 0f);
-			return;
-		case 21:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.75f);
-			return;
-		case 22:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.5f);
-			return;
-		case 23:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.25f);
-			return;
-		case 24:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0f);
-			return;
-		case 25:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.75f);
-			return;
-		case 26:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.5f);
-			return;
-		case 27:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.25f);
-			return;
-		case 28:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0f);
-			return;
-		case 29:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.75f);
-			return;
-		case 30:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.5f);
-			return;
-		case 31:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.25f);
-			return;
-		case 32:
-			this.Sign.material.mainTexture = this.Plates[2];
-			this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0f);
-			return;
-		case 33:
-			this.Sign.material.mainTexture = this.Plates[3];
-			this.Sign.material.mainTextureOffset = new Vector2(0f, 0.75f);
-			return;
-		case 34:
-			this.Sign.material.mainTexture = this.Plates[3];
-			this.Sign.material.mainTextureOffset = new Vector2(0f, 0.5f);
-			return;
-		case 35:
-		case 36:
-		case 37:
-		case 38:
-		case 39:
-			break;
-		case 40:
-			this.Sign.material.mainTexture = this.Plates[3];
-			this.Sign.material.mainTextureOffset = new Vector2(0f, 0.25f);
-			break;
-		default:
-			return;
-		}
-	}
+  private void UpdateLabel()
+  {
+    if (this.Open)
+      this.Prompt.Label[0].text = "     Close";
+    else
+      this.Prompt.Label[0].text = "     Open";
+  }
 
-	// Token: 0x060013CB RID: 5067 RVA: 0x000BB8A0 File Offset: 0x000B9AA0
-	private void TopicCheck()
-	{
-		if (this.RoomID > 25 && this.RoomID < 37)
-		{
-			this.StudentManager.TutorialWindow.ShowClubMessage = true;
-		}
-		switch (this.RoomID)
-		{
-		case 1:
-		case 2:
-		case 4:
-		case 5:
-		case 6:
-		case 7:
-		case 8:
-		case 9:
-		case 10:
-		case 11:
-		case 12:
-		case 14:
-		case 15:
-		case 16:
-		case 17:
-		case 18:
-		case 19:
-		case 20:
-		case 21:
-		case 23:
-		case 24:
-		case 25:
-		case 33:
-		case 37:
-		case 38:
-		case 39:
-		case 40:
-			break;
-		case 3:
-			if (!ConversationGlobals.GetTopicDiscovered(22))
-			{
-				ConversationGlobals.SetTopicDiscovered(22, true);
-				this.Yandere.NotificationManager.TopicName = "School";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				return;
-			}
-			break;
-		case 13:
-			if (!ConversationGlobals.GetTopicDiscovered(18))
-			{
-				ConversationGlobals.SetTopicDiscovered(18, true);
-				this.Yandere.NotificationManager.TopicName = "Reading";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				return;
-			}
-			break;
-		case 22:
-			if (!ConversationGlobals.GetTopicDiscovered(11))
-			{
-				ConversationGlobals.SetTopicDiscovered(11, true);
-				ConversationGlobals.SetTopicDiscovered(12, true);
-				ConversationGlobals.SetTopicDiscovered(13, true);
-				ConversationGlobals.SetTopicDiscovered(14, true);
-				this.Yandere.NotificationManager.TopicName = "Video Games";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				this.Yandere.NotificationManager.TopicName = "Anime";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				this.Yandere.NotificationManager.TopicName = "Cosplay";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				if (!this.StudentManager.Eighties)
-				{
-					this.Yandere.NotificationManager.TopicName = "Memes";
-				}
-				else
-				{
-					this.Yandere.NotificationManager.TopicName = "Jokes";
-				}
-				this.Yandere.NotificationManager.TopicName = "Memes";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				return;
-			}
-			break;
-		case 26:
-			if (!ConversationGlobals.GetTopicDiscovered(1))
-			{
-				ConversationGlobals.SetTopicDiscovered(1, true);
-				this.Yandere.NotificationManager.TopicName = "Cooking";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				return;
-			}
-			break;
-		case 27:
-			if (!ConversationGlobals.GetTopicDiscovered(2))
-			{
-				ConversationGlobals.SetTopicDiscovered(2, true);
-				this.Yandere.NotificationManager.TopicName = "Drama";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				return;
-			}
-			break;
-		case 28:
-			if (!ConversationGlobals.GetTopicDiscovered(3))
-			{
-				ConversationGlobals.SetTopicDiscovered(3, true);
-				this.Yandere.NotificationManager.TopicName = "Occult";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				return;
-			}
-			break;
-		case 29:
-			if (!ConversationGlobals.GetTopicDiscovered(4))
-			{
-				ConversationGlobals.SetTopicDiscovered(4, true);
-				this.Yandere.NotificationManager.TopicName = "Art";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				return;
-			}
-			break;
-		case 30:
-			if (!ConversationGlobals.GetTopicDiscovered(5))
-			{
-				ConversationGlobals.SetTopicDiscovered(5, true);
-				this.Yandere.NotificationManager.TopicName = "Music";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				return;
-			}
-			break;
-		case 31:
-			if (!ConversationGlobals.GetTopicDiscovered(6))
-			{
-				ConversationGlobals.SetTopicDiscovered(6, true);
-				this.Yandere.NotificationManager.TopicName = "Martial Arts";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-			}
-			if (!ConversationGlobals.GetTopicDiscovered(16))
-			{
-				ConversationGlobals.SetTopicDiscovered(16, true);
-				this.Yandere.NotificationManager.TopicName = "Justice";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-			}
-			if (!ConversationGlobals.GetTopicDiscovered(17))
-			{
-				ConversationGlobals.SetTopicDiscovered(17, true);
-				this.Yandere.NotificationManager.TopicName = "Violence";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				return;
-			}
-			break;
-		case 32:
-			if (!ConversationGlobals.GetTopicDiscovered(7))
-			{
-				ConversationGlobals.SetTopicDiscovered(7, true);
-				this.Yandere.NotificationManager.TopicName = "Photography";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				return;
-			}
-			break;
-		case 34:
-			if (!ConversationGlobals.GetTopicDiscovered(8))
-			{
-				ConversationGlobals.SetTopicDiscovered(8, true);
-				this.Yandere.NotificationManager.TopicName = "Science";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				return;
-			}
-			break;
-		case 35:
-			if (!ConversationGlobals.GetTopicDiscovered(9))
-			{
-				ConversationGlobals.SetTopicDiscovered(9, true);
-				this.Yandere.NotificationManager.TopicName = "Sports";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-				return;
-			}
-			break;
-		case 36:
-			if (!ConversationGlobals.GetTopicDiscovered(10))
-			{
-				ConversationGlobals.SetTopicDiscovered(10, true);
-				this.Yandere.NotificationManager.TopicName = "Gardening";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-			}
-			if (!ConversationGlobals.GetTopicDiscovered(24))
-			{
-				ConversationGlobals.SetTopicDiscovered(24, true);
-				this.Yandere.NotificationManager.TopicName = "Nature";
-				this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-			}
-			break;
-		default:
-			return;
-		}
-	}
+  private void UpdatePlate()
+  {
+    switch (this.RoomID)
+    {
+      case 1:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.0f, 0.75f);
+        break;
+      case 2:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.0f, 0.5f);
+        break;
+      case 3:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.0f, 0.25f);
+        break;
+      case 4:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.0f, 0.0f);
+        break;
+      case 5:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.75f);
+        break;
+      case 6:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.5f);
+        break;
+      case 7:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.25f);
+        break;
+      case 8:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.0f);
+        break;
+      case 9:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.75f);
+        break;
+      case 10:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.5f);
+        break;
+      case 11:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.25f);
+        break;
+      case 12:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.0f);
+        break;
+      case 13:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.75f);
+        break;
+      case 14:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.5f);
+        break;
+      case 15:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.25f);
+        break;
+      case 16:
+        this.Sign.material.mainTexture = this.Plates[1];
+        this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.0f);
+        break;
+      case 17:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.0f, 0.75f);
+        break;
+      case 18:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.0f, 0.5f);
+        break;
+      case 19:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.0f, 0.25f);
+        break;
+      case 20:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.0f, 0.0f);
+        break;
+      case 21:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.75f);
+        break;
+      case 22:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.5f);
+        break;
+      case 23:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.25f);
+        break;
+      case 24:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.25f, 0.0f);
+        break;
+      case 25:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.75f);
+        break;
+      case 26:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.5f);
+        break;
+      case 27:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.25f);
+        break;
+      case 28:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.5f, 0.0f);
+        break;
+      case 29:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.75f);
+        break;
+      case 30:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.5f);
+        break;
+      case 31:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.25f);
+        break;
+      case 32:
+        this.Sign.material.mainTexture = this.Plates[2];
+        this.Sign.material.mainTextureOffset = new Vector2(0.75f, 0.0f);
+        break;
+      case 33:
+        this.Sign.material.mainTexture = this.Plates[3];
+        this.Sign.material.mainTextureOffset = new Vector2(0.0f, 0.75f);
+        break;
+      case 34:
+        this.Sign.material.mainTexture = this.Plates[3];
+        this.Sign.material.mainTextureOffset = new Vector2(0.0f, 0.5f);
+        break;
+      case 40:
+        this.Sign.material.mainTexture = this.Plates[3];
+        this.Sign.material.mainTextureOffset = new Vector2(0.0f, 0.25f);
+        break;
+    }
+  }
 
-	// Token: 0x04001D5A RID: 7514
-	[SerializeField]
-	private Transform RelativeCharacter;
-
-	// Token: 0x04001D5B RID: 7515
-	[SerializeField]
-	private YanSaveIdentifier Identifier;
-
-	// Token: 0x04001D5C RID: 7516
-	[SerializeField]
-	private HideColliderScript HideCollider;
-
-	// Token: 0x04001D5D RID: 7517
-	public StudentScript Student;
-
-	// Token: 0x04001D5E RID: 7518
-	[SerializeField]
-	private YandereScript Yandere;
-
-	// Token: 0x04001D5F RID: 7519
-	[SerializeField]
-	private BucketScript Bucket;
-
-	// Token: 0x04001D60 RID: 7520
-	public PromptScript Prompt;
-
-	// Token: 0x04001D61 RID: 7521
-	[SerializeField]
-	private Collider[] DoorColliders;
-
-	// Token: 0x04001D62 RID: 7522
-	[SerializeField]
-	private float[] ClosedPositions;
-
-	// Token: 0x04001D63 RID: 7523
-	[SerializeField]
-	private float[] OpenPositions;
-
-	// Token: 0x04001D64 RID: 7524
-	[SerializeField]
-	private Transform[] Doors;
-
-	// Token: 0x04001D65 RID: 7525
-	[SerializeField]
-	private Texture[] Plates;
-
-	// Token: 0x04001D66 RID: 7526
-	[SerializeField]
-	private UILabel[] Labels;
-
-	// Token: 0x04001D67 RID: 7527
-	[SerializeField]
-	private float[] OriginX;
-
-	// Token: 0x04001D68 RID: 7528
-	[SerializeField]
-	private bool CanSetBucket;
-
-	// Token: 0x04001D69 RID: 7529
-	[SerializeField]
-	private bool OneWayDoor;
-
-	// Token: 0x04001D6A RID: 7530
-	[SerializeField]
-	private bool HidingSpot;
-
-	// Token: 0x04001D6B RID: 7531
-	[SerializeField]
-	private bool BucketSet;
-
-	// Token: 0x04001D6C RID: 7532
-	[SerializeField]
-	private bool Swinging;
-
-	// Token: 0x04001D6D RID: 7533
-	public bool Locked;
-
-	// Token: 0x04001D6E RID: 7534
-	[SerializeField]
-	private bool NoTrap;
-
-	// Token: 0x04001D6F RID: 7535
-	[SerializeField]
-	private bool North;
-
-	// Token: 0x04001D70 RID: 7536
-	public bool Open;
-
-	// Token: 0x04001D71 RID: 7537
-	[SerializeField]
-	private bool Near;
-
-	// Token: 0x04001D72 RID: 7538
-	[SerializeField]
-	private float ShiftNorth = -0.1f;
-
-	// Token: 0x04001D73 RID: 7539
-	[SerializeField]
-	private float ShiftSouth = 0.1f;
-
-	// Token: 0x04001D74 RID: 7540
-	[SerializeField]
-	private float Rotation;
-
-	// Token: 0x04001D75 RID: 7541
-	public float TimeLimit = 2f;
-
-	// Token: 0x04001D76 RID: 7542
-	public float Timer;
-
-	// Token: 0x04001D77 RID: 7543
-	[SerializeField]
-	private float TrapSwing = 12.15f;
-
-	// Token: 0x04001D78 RID: 7544
-	[SerializeField]
-	private float Swing = 150f;
-
-	// Token: 0x04001D79 RID: 7545
-	[SerializeField]
-	private Renderer Sign;
-
-	// Token: 0x04001D7A RID: 7546
-	[SerializeField]
-	private string RoomName = string.Empty;
-
-	// Token: 0x04001D7B RID: 7547
-	[SerializeField]
-	private string Facing = string.Empty;
-
-	// Token: 0x04001D7C RID: 7548
-	[SerializeField]
-	private int RoomID;
-
-	// Token: 0x04001D7D RID: 7549
-	[SerializeField]
-	private ClubType Club;
-
-	// Token: 0x04001D7E RID: 7550
-	[SerializeField]
-	private bool DisableSelf;
-
-	// Token: 0x04001D7F RID: 7551
-	private StudentManagerScript StudentManager;
-
-	// Token: 0x04001D80 RID: 7552
-	public OcclusionPortal Portal;
-
-	// Token: 0x04001D81 RID: 7553
-	public int DoorID;
-
-	// Token: 0x04001D82 RID: 7554
-	public bool Initialized;
+  private void TopicCheck()
+  {
+    if (this.RoomID > 25 && this.RoomID < 37)
+      this.StudentManager.TutorialWindow.ShowClubMessage = true;
+    switch (this.RoomID)
+    {
+      case 3:
+        if (ConversationGlobals.GetTopicDiscovered(22))
+          break;
+        ConversationGlobals.SetTopicDiscovered(22, true);
+        this.Yandere.NotificationManager.TopicName = "School";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+      case 13:
+        if (ConversationGlobals.GetTopicDiscovered(18))
+          break;
+        ConversationGlobals.SetTopicDiscovered(18, true);
+        this.Yandere.NotificationManager.TopicName = "Reading";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+      case 22:
+        if (ConversationGlobals.GetTopicDiscovered(11))
+          break;
+        ConversationGlobals.SetTopicDiscovered(11, true);
+        ConversationGlobals.SetTopicDiscovered(12, true);
+        ConversationGlobals.SetTopicDiscovered(13, true);
+        ConversationGlobals.SetTopicDiscovered(14, true);
+        this.Yandere.NotificationManager.TopicName = "Video Games";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        this.Yandere.NotificationManager.TopicName = "Anime";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        this.Yandere.NotificationManager.TopicName = "Cosplay";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        this.Yandere.NotificationManager.TopicName = this.StudentManager.Eighties ? "Jokes" : "Memes";
+        this.Yandere.NotificationManager.TopicName = "Memes";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+      case 26:
+        if (ConversationGlobals.GetTopicDiscovered(1))
+          break;
+        ConversationGlobals.SetTopicDiscovered(1, true);
+        this.Yandere.NotificationManager.TopicName = "Cooking";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+      case 27:
+        if (ConversationGlobals.GetTopicDiscovered(2))
+          break;
+        ConversationGlobals.SetTopicDiscovered(2, true);
+        this.Yandere.NotificationManager.TopicName = "Drama";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+      case 28:
+        if (ConversationGlobals.GetTopicDiscovered(3))
+          break;
+        ConversationGlobals.SetTopicDiscovered(3, true);
+        this.Yandere.NotificationManager.TopicName = "Occult";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+      case 29:
+        if (ConversationGlobals.GetTopicDiscovered(4))
+          break;
+        ConversationGlobals.SetTopicDiscovered(4, true);
+        this.Yandere.NotificationManager.TopicName = "Art";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+      case 30:
+        if (ConversationGlobals.GetTopicDiscovered(5))
+          break;
+        ConversationGlobals.SetTopicDiscovered(5, true);
+        this.Yandere.NotificationManager.TopicName = "Music";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+      case 31:
+        if (!ConversationGlobals.GetTopicDiscovered(6))
+        {
+          ConversationGlobals.SetTopicDiscovered(6, true);
+          this.Yandere.NotificationManager.TopicName = "Martial Arts";
+          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        }
+        if (!ConversationGlobals.GetTopicDiscovered(16))
+        {
+          ConversationGlobals.SetTopicDiscovered(16, true);
+          this.Yandere.NotificationManager.TopicName = "Justice";
+          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        }
+        if (ConversationGlobals.GetTopicDiscovered(17))
+          break;
+        ConversationGlobals.SetTopicDiscovered(17, true);
+        this.Yandere.NotificationManager.TopicName = "Violence";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+      case 32:
+        if (ConversationGlobals.GetTopicDiscovered(7))
+          break;
+        ConversationGlobals.SetTopicDiscovered(7, true);
+        this.Yandere.NotificationManager.TopicName = "Photography";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+      case 34:
+        if (ConversationGlobals.GetTopicDiscovered(8))
+          break;
+        ConversationGlobals.SetTopicDiscovered(8, true);
+        this.Yandere.NotificationManager.TopicName = "Science";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+      case 35:
+        if (ConversationGlobals.GetTopicDiscovered(9))
+          break;
+        ConversationGlobals.SetTopicDiscovered(9, true);
+        this.Yandere.NotificationManager.TopicName = "Sports";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+      case 36:
+        if (!ConversationGlobals.GetTopicDiscovered(10))
+        {
+          ConversationGlobals.SetTopicDiscovered(10, true);
+          this.Yandere.NotificationManager.TopicName = "Gardening";
+          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        }
+        if (ConversationGlobals.GetTopicDiscovered(24))
+          break;
+        ConversationGlobals.SetTopicDiscovered(24, true);
+        this.Yandere.NotificationManager.TopicName = "Nature";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+        break;
+    }
+  }
 }

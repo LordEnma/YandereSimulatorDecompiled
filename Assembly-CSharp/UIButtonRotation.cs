@@ -1,97 +1,71 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIButtonRotation
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000049 RID: 73
 [AddComponentMenu("NGUI/Interaction/Button Rotation")]
 public class UIButtonRotation : MonoBehaviour
 {
-	// Token: 0x06000148 RID: 328 RVA: 0x00014AA9 File Offset: 0x00012CA9
-	private void Start()
-	{
-		if (!this.mStarted)
-		{
-			this.mStarted = true;
-			if (this.tweenTarget == null)
-			{
-				this.tweenTarget = base.transform;
-			}
-			this.mRot = this.tweenTarget.localRotation;
-		}
-	}
+  public Transform tweenTarget;
+  public Vector3 hover = Vector3.zero;
+  public Vector3 pressed = Vector3.zero;
+  public float duration = 0.2f;
+  private Quaternion mRot;
+  private bool mStarted;
 
-	// Token: 0x06000149 RID: 329 RVA: 0x00014AE5 File Offset: 0x00012CE5
-	private void OnEnable()
-	{
-		if (this.mStarted)
-		{
-			this.OnHover(UICamera.IsHighlighted(base.gameObject));
-		}
-	}
+  private void Start()
+  {
+    if (this.mStarted)
+      return;
+    this.mStarted = true;
+    if ((Object) this.tweenTarget == (Object) null)
+      this.tweenTarget = this.transform;
+    this.mRot = this.tweenTarget.localRotation;
+  }
 
-	// Token: 0x0600014A RID: 330 RVA: 0x00014B00 File Offset: 0x00012D00
-	private void OnDisable()
-	{
-		if (this.mStarted && this.tweenTarget != null)
-		{
-			TweenRotation component = this.tweenTarget.GetComponent<TweenRotation>();
-			if (component != null)
-			{
-				component.value = this.mRot;
-				component.enabled = false;
-			}
-		}
-	}
+  private void OnEnable()
+  {
+    if (!this.mStarted)
+      return;
+    this.OnHover(UICamera.IsHighlighted(this.gameObject));
+  }
 
-	// Token: 0x0600014B RID: 331 RVA: 0x00014B4C File Offset: 0x00012D4C
-	private void OnPress(bool isPressed)
-	{
-		if (base.enabled)
-		{
-			if (!this.mStarted)
-			{
-				this.Start();
-			}
-			TweenRotation.Begin(this.tweenTarget.gameObject, this.duration, isPressed ? (this.mRot * Quaternion.Euler(this.pressed)) : (UICamera.IsHighlighted(base.gameObject) ? (this.mRot * Quaternion.Euler(this.hover)) : this.mRot)).method = UITweener.Method.EaseInOut;
-		}
-	}
+  private void OnDisable()
+  {
+    if (!this.mStarted || !((Object) this.tweenTarget != (Object) null))
+      return;
+    TweenRotation component = this.tweenTarget.GetComponent<TweenRotation>();
+    if (!((Object) component != (Object) null))
+      return;
+    component.value = this.mRot;
+    component.enabled = false;
+  }
 
-	// Token: 0x0600014C RID: 332 RVA: 0x00014BD4 File Offset: 0x00012DD4
-	private void OnHover(bool isOver)
-	{
-		if (base.enabled)
-		{
-			if (!this.mStarted)
-			{
-				this.Start();
-			}
-			TweenRotation.Begin(this.tweenTarget.gameObject, this.duration, isOver ? (this.mRot * Quaternion.Euler(this.hover)) : this.mRot).method = UITweener.Method.EaseInOut;
-		}
-	}
+  private void OnPress(bool isPressed)
+  {
+    if (!this.enabled)
+      return;
+    if (!this.mStarted)
+      this.Start();
+    TweenRotation.Begin(this.tweenTarget.gameObject, this.duration, isPressed ? this.mRot * Quaternion.Euler(this.pressed) : (UICamera.IsHighlighted(this.gameObject) ? this.mRot * Quaternion.Euler(this.hover) : this.mRot)).method = UITweener.Method.EaseInOut;
+  }
 
-	// Token: 0x0600014D RID: 333 RVA: 0x00014C34 File Offset: 0x00012E34
-	private void OnSelect(bool isSelected)
-	{
-		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
-		{
-			this.OnHover(isSelected);
-		}
-	}
+  private void OnHover(bool isOver)
+  {
+    if (!this.enabled)
+      return;
+    if (!this.mStarted)
+      this.Start();
+    TweenRotation.Begin(this.tweenTarget.gameObject, this.duration, isOver ? this.mRot * Quaternion.Euler(this.hover) : this.mRot).method = UITweener.Method.EaseInOut;
+  }
 
-	// Token: 0x04000314 RID: 788
-	public Transform tweenTarget;
-
-	// Token: 0x04000315 RID: 789
-	public Vector3 hover = Vector3.zero;
-
-	// Token: 0x04000316 RID: 790
-	public Vector3 pressed = Vector3.zero;
-
-	// Token: 0x04000317 RID: 791
-	public float duration = 0.2f;
-
-	// Token: 0x04000318 RID: 792
-	private Quaternion mRot;
-
-	// Token: 0x04000319 RID: 793
-	private bool mStarted;
+  private void OnSelect(bool isSelected)
+  {
+    if (!this.enabled || isSelected && UICamera.currentScheme != UICamera.ControlScheme.Controller)
+      return;
+    this.OnHover(isSelected);
+  }
 }

@@ -1,46 +1,41 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MopHeadScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000370 RID: 880
 public class MopHeadScript : MonoBehaviour
 {
-	// Token: 0x060019E0 RID: 6624 RVA: 0x00109B10 File Offset: 0x00107D10
-	private void OnTriggerStay(Collider other)
-	{
-		if (this.Mop.Bloodiness < 100f && other.tag == "Puddle")
-		{
-			this.BloodPool = other.gameObject.GetComponent<BloodPoolScript>();
-			if (this.BloodPool != null)
-			{
-				this.BloodPool.Grow = false;
-				other.transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
-				if (this.BloodPool.Blood)
-				{
-					this.Mop.Bloodiness += Time.deltaTime * 10f;
-					this.Mop.UpdateBlood();
-				}
-				this.Mop.StudentBloodID = this.BloodPool.StudentBloodID;
-				if (other.transform.localScale.x < 0.1f)
-				{
-					UnityEngine.Object.Destroy(other.gameObject);
-					return;
-				}
-			}
-			else
-			{
-				FootprintScript component = other.transform.GetChild(0).GetComponent<FootprintScript>();
-				if (component != null)
-				{
-					this.Mop.StudentBloodID = component.StudentBloodID;
-				}
-				UnityEngine.Object.Destroy(other.gameObject);
-			}
-		}
-	}
+  public BloodPoolScript BloodPool;
+  public MopScript Mop;
 
-	// Token: 0x040029AC RID: 10668
-	public BloodPoolScript BloodPool;
-
-	// Token: 0x040029AD RID: 10669
-	public MopScript Mop;
+  private void OnTriggerStay(Collider other)
+  {
+    if ((double) this.Mop.Bloodiness >= 100.0 || !(other.tag == "Puddle"))
+      return;
+    this.BloodPool = other.gameObject.GetComponent<BloodPoolScript>();
+    if ((Object) this.BloodPool != (Object) null)
+    {
+      this.BloodPool.Grow = false;
+      other.transform.localScale -= new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
+      if (this.BloodPool.Blood)
+      {
+        this.Mop.Bloodiness += Time.deltaTime * 10f;
+        this.Mop.UpdateBlood();
+      }
+      this.Mop.StudentBloodID = this.BloodPool.StudentBloodID;
+      if ((double) other.transform.localScale.x >= 0.100000001490116)
+        return;
+      Object.Destroy((Object) other.gameObject);
+    }
+    else
+    {
+      FootprintScript component = other.transform.GetChild(0).GetComponent<FootprintScript>();
+      if ((Object) component != (Object) null)
+        this.Mop.StudentBloodID = component.StudentBloodID;
+      Object.Destroy((Object) other.gameObject);
+    }
+  }
 }

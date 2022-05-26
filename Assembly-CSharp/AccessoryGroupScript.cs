@@ -1,19 +1,18 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AccessoryGroupScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000C1 RID: 193
 public class AccessoryGroupScript : MonoBehaviour
 {
-	// Token: 0x0600099B RID: 2459 RVA: 0x0004D1C4 File Offset: 0x0004B3C4
-	public void SetPartsActive(bool active)
-	{
-		GameObject[] parts = this.Parts;
-		for (int i = 0; i < parts.Length; i++)
-		{
-			parts[i].SetActive(active);
-		}
-	}
+  public GameObject[] Parts;
 
-	// Token: 0x0400085F RID: 2143
-	public GameObject[] Parts;
+  public void SetPartsActive(bool active)
+  {
+    foreach (GameObject part in this.Parts)
+      part.SetActive(active);
+  }
 }

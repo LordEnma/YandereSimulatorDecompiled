@@ -1,22 +1,21 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TeleportScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000475 RID: 1141
 public class TeleportScript : MonoBehaviour
 {
-	// Token: 0x06001EE6 RID: 7910 RVA: 0x001B5B4D File Offset: 0x001B3D4D
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Yandere.transform.position = this.Destination.position;
-			Physics.SyncTransforms();
-		}
-	}
+  public PromptScript Prompt;
+  public Transform Destination;
 
-	// Token: 0x04004026 RID: 16422
-	public PromptScript Prompt;
-
-	// Token: 0x04004027 RID: 16423
-	public Transform Destination;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    this.Prompt.Yandere.transform.position = this.Destination.position;
+    Physics.SyncTransforms();
+  }
 }

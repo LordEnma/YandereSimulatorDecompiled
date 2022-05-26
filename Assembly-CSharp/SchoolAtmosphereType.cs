@@ -1,12 +1,12 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SchoolAtmosphereType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x0200041A RID: 1050
 public enum SchoolAtmosphereType
 {
-	// Token: 0x040032EF RID: 13039
-	High,
-	// Token: 0x040032F0 RID: 13040
-	Medium,
-	// Token: 0x040032F1 RID: 13041
-	Low
+  High,
+  Medium,
+  Low,
 }

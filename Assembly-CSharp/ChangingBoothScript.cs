@@ -1,190 +1,151 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ChangingBoothScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200023E RID: 574
 public class ChangingBoothScript : MonoBehaviour
 {
-	// Token: 0x0600123D RID: 4669 RVA: 0x0008C7AE File Offset: 0x0008A9AE
-	private void Start()
-	{
-		this.CheckYandereClub();
-	}
+  public YandereScript Yandere;
+  public StudentScript Student;
+  public PromptScript Prompt;
+  public SkinnedMeshRenderer Curtains;
+  public Transform ExitSpot;
+  public Transform[] WaitSpots;
+  public bool YandereChanging;
+  public bool CannotChange;
+  public bool Occupied;
+  public AudioSource MyAudioSource;
+  public AudioClip CurtainSound;
+  public AudioClip ClothSound;
+  public float OccupyTimer;
+  public float Weight;
+  public ClubType ClubID;
+  public int Phase;
 
-	// Token: 0x0600123E RID: 4670 RVA: 0x0008C7B8 File Offset: 0x0008A9B8
-	private void Update()
-	{
-		if (!this.Occupied && this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Yandere.EmptyHands();
-			this.Yandere.CanMove = false;
-			this.YandereChanging = true;
-			this.Occupied = true;
-			this.Prompt.Hide();
-			this.Prompt.enabled = false;
-		}
-		if (this.Occupied)
-		{
-			if (this.OccupyTimer == 0f)
-			{
-				if (this.Yandere.transform.position.y > base.transform.position.y - 1f && this.Yandere.transform.position.y < base.transform.position.y + 1f)
-				{
-					this.MyAudioSource.clip = this.CurtainSound;
-					this.MyAudioSource.Play();
-				}
-			}
-			else if (this.OccupyTimer > 1f && this.Phase == 0)
-			{
-				if (this.Yandere.transform.position.y > base.transform.position.y - 1f && this.Yandere.transform.position.y < base.transform.position.y + 1f)
-				{
-					this.MyAudioSource.clip = this.ClothSound;
-					this.MyAudioSource.Play();
-				}
-				this.Phase++;
-			}
-			this.OccupyTimer += Time.deltaTime;
-			if (this.YandereChanging)
-			{
-				if (this.OccupyTimer < 2f)
-				{
-					this.Yandere.CharacterAnimation.CrossFade(this.Yandere.IdleAnim);
-					this.Weight = Mathf.Lerp(this.Weight, 0f, Time.deltaTime * 10f);
-					this.Curtains.SetBlendShapeWeight(0, this.Weight);
-					this.Yandere.MoveTowardsTarget(base.transform.position);
-					return;
-				}
-				if (this.OccupyTimer < 3f)
-				{
-					this.Weight = Mathf.Lerp(this.Weight, 100f, Time.deltaTime * 10f);
-					this.Curtains.SetBlendShapeWeight(0, this.Weight);
-					if (this.Phase < 2)
-					{
-						this.MyAudioSource.clip = this.CurtainSound;
-						this.MyAudioSource.Play();
-						if (!this.Yandere.ClubAttire)
-						{
-							this.Yandere.PreviousSchoolwear = this.Yandere.Schoolwear;
-						}
-						this.Yandere.ChangeClubwear();
-						this.Phase++;
-					}
-					this.Yandere.transform.rotation = Quaternion.Slerp(this.Yandere.transform.rotation, base.transform.rotation, 10f * Time.deltaTime);
-					this.Yandere.MoveTowardsTarget(this.ExitSpot.position);
-					return;
-				}
-				this.YandereChanging = false;
-				this.Yandere.CanMove = true;
-				this.Prompt.enabled = true;
-				this.Occupied = false;
-				this.OccupyTimer = 0f;
-				this.Phase = 0;
-				return;
-			}
-			else
-			{
-				if (this.OccupyTimer < 2f)
-				{
-					this.Weight = Mathf.Lerp(this.Weight, 0f, Time.deltaTime * 10f);
-					this.Curtains.SetBlendShapeWeight(0, this.Weight);
-					return;
-				}
-				if (this.OccupyTimer < 3f)
-				{
-					this.Weight = Mathf.Lerp(this.Weight, 100f, Time.deltaTime * 10f);
-					this.Curtains.SetBlendShapeWeight(0, this.Weight);
-					if (this.Phase < 2)
-					{
-						if (this.Yandere.transform.position.y > base.transform.position.y - 1f && this.Yandere.transform.position.y < base.transform.position.y + 1f)
-						{
-							this.MyAudioSource.clip = this.CurtainSound;
-							this.MyAudioSource.Play();
-						}
-						this.Student.ChangeClubwear();
-						this.Phase++;
-						return;
-					}
-				}
-				else
-				{
-					this.Student.WalkAnim = this.Student.OriginalWalkAnim;
-					this.Occupied = false;
-					this.OccupyTimer = 0f;
-					this.Student = null;
-					this.Phase = 0;
-					this.CheckYandereClub();
-				}
-			}
-		}
-	}
+  private void Start() => this.CheckYandereClub();
 
-	// Token: 0x0600123F RID: 4671 RVA: 0x0008CC78 File Offset: 0x0008AE78
-	public void CheckYandereClub()
-	{
-		if (this.Yandere.Club != this.ClubID)
-		{
-			this.Prompt.Hide();
-			this.Prompt.enabled = false;
-			return;
-		}
-		if (this.Yandere.Bloodiness != 0f || this.CannotChange || this.Yandere.Schoolwear <= 0)
-		{
-			this.Prompt.Hide();
-			this.Prompt.enabled = false;
-			return;
-		}
-		if (!this.Occupied)
-		{
-			this.Prompt.enabled = true;
-			return;
-		}
-		this.Prompt.Hide();
-		this.Prompt.enabled = false;
-	}
+  private void Update()
+  {
+    if (!this.Occupied && (double) this.Prompt.Circle[0].fillAmount == 0.0)
+    {
+      this.Yandere.EmptyHands();
+      this.Yandere.CanMove = false;
+      this.YandereChanging = true;
+      this.Occupied = true;
+      this.Prompt.Hide();
+      this.Prompt.enabled = false;
+    }
+    if (!this.Occupied)
+      return;
+    if ((double) this.OccupyTimer == 0.0)
+    {
+      if ((double) this.Yandere.transform.position.y > (double) this.transform.position.y - 1.0 && (double) this.Yandere.transform.position.y < (double) this.transform.position.y + 1.0)
+      {
+        this.MyAudioSource.clip = this.CurtainSound;
+        this.MyAudioSource.Play();
+      }
+    }
+    else if ((double) this.OccupyTimer > 1.0 && this.Phase == 0)
+    {
+      if ((double) this.Yandere.transform.position.y > (double) this.transform.position.y - 1.0 && (double) this.Yandere.transform.position.y < (double) this.transform.position.y + 1.0)
+      {
+        this.MyAudioSource.clip = this.ClothSound;
+        this.MyAudioSource.Play();
+      }
+      ++this.Phase;
+    }
+    this.OccupyTimer += Time.deltaTime;
+    if (this.YandereChanging)
+    {
+      if ((double) this.OccupyTimer < 2.0)
+      {
+        this.Yandere.CharacterAnimation.CrossFade(this.Yandere.IdleAnim);
+        this.Weight = Mathf.Lerp(this.Weight, 0.0f, Time.deltaTime * 10f);
+        this.Curtains.SetBlendShapeWeight(0, this.Weight);
+        this.Yandere.MoveTowardsTarget(this.transform.position);
+      }
+      else if ((double) this.OccupyTimer < 3.0)
+      {
+        this.Weight = Mathf.Lerp(this.Weight, 100f, Time.deltaTime * 10f);
+        this.Curtains.SetBlendShapeWeight(0, this.Weight);
+        if (this.Phase < 2)
+        {
+          this.MyAudioSource.clip = this.CurtainSound;
+          this.MyAudioSource.Play();
+          if (!this.Yandere.ClubAttire)
+            this.Yandere.PreviousSchoolwear = this.Yandere.Schoolwear;
+          this.Yandere.ChangeClubwear();
+          ++this.Phase;
+        }
+        this.Yandere.transform.rotation = Quaternion.Slerp(this.Yandere.transform.rotation, this.transform.rotation, 10f * Time.deltaTime);
+        this.Yandere.MoveTowardsTarget(this.ExitSpot.position);
+      }
+      else
+      {
+        this.YandereChanging = false;
+        this.Yandere.CanMove = true;
+        this.Prompt.enabled = true;
+        this.Occupied = false;
+        this.OccupyTimer = 0.0f;
+        this.Phase = 0;
+      }
+    }
+    else if ((double) this.OccupyTimer < 2.0)
+    {
+      this.Weight = Mathf.Lerp(this.Weight, 0.0f, Time.deltaTime * 10f);
+      this.Curtains.SetBlendShapeWeight(0, this.Weight);
+    }
+    else if ((double) this.OccupyTimer < 3.0)
+    {
+      this.Weight = Mathf.Lerp(this.Weight, 100f, Time.deltaTime * 10f);
+      this.Curtains.SetBlendShapeWeight(0, this.Weight);
+      if (this.Phase >= 2)
+        return;
+      if ((double) this.Yandere.transform.position.y > (double) this.transform.position.y - 1.0 && (double) this.Yandere.transform.position.y < (double) this.transform.position.y + 1.0)
+      {
+        this.MyAudioSource.clip = this.CurtainSound;
+        this.MyAudioSource.Play();
+      }
+      this.Student.ChangeClubwear();
+      ++this.Phase;
+    }
+    else
+    {
+      this.Student.WalkAnim = this.Student.OriginalWalkAnim;
+      this.Occupied = false;
+      this.OccupyTimer = 0.0f;
+      this.Student = (StudentScript) null;
+      this.Phase = 0;
+      this.CheckYandereClub();
+    }
+  }
 
-	// Token: 0x040016FF RID: 5887
-	public YandereScript Yandere;
-
-	// Token: 0x04001700 RID: 5888
-	public StudentScript Student;
-
-	// Token: 0x04001701 RID: 5889
-	public PromptScript Prompt;
-
-	// Token: 0x04001702 RID: 5890
-	public SkinnedMeshRenderer Curtains;
-
-	// Token: 0x04001703 RID: 5891
-	public Transform ExitSpot;
-
-	// Token: 0x04001704 RID: 5892
-	public Transform[] WaitSpots;
-
-	// Token: 0x04001705 RID: 5893
-	public bool YandereChanging;
-
-	// Token: 0x04001706 RID: 5894
-	public bool CannotChange;
-
-	// Token: 0x04001707 RID: 5895
-	public bool Occupied;
-
-	// Token: 0x04001708 RID: 5896
-	public AudioSource MyAudioSource;
-
-	// Token: 0x04001709 RID: 5897
-	public AudioClip CurtainSound;
-
-	// Token: 0x0400170A RID: 5898
-	public AudioClip ClothSound;
-
-	// Token: 0x0400170B RID: 5899
-	public float OccupyTimer;
-
-	// Token: 0x0400170C RID: 5900
-	public float Weight;
-
-	// Token: 0x0400170D RID: 5901
-	public ClubType ClubID;
-
-	// Token: 0x0400170E RID: 5902
-	public int Phase;
+  public void CheckYandereClub()
+  {
+    if (this.Yandere.Club != this.ClubID)
+    {
+      this.Prompt.Hide();
+      this.Prompt.enabled = false;
+    }
+    else if ((double) this.Yandere.Bloodiness == 0.0 && !this.CannotChange && this.Yandere.Schoolwear > 0)
+    {
+      if (!this.Occupied)
+      {
+        this.Prompt.enabled = true;
+      }
+      else
+      {
+        this.Prompt.Hide();
+        this.Prompt.enabled = false;
+      }
+    }
+    else
+    {
+      this.Prompt.Hide();
+      this.Prompt.enabled = false;
+    }
+  }
 }

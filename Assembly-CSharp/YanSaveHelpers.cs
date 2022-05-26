@@ -1,25 +1,24 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YanSaveHelpers
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using System.Reflection;
 
-// Token: 0x0200051B RID: 1307
 public static class YanSaveHelpers
 {
-	// Token: 0x0600219D RID: 8605 RVA: 0x001F1BBC File Offset: 0x001EFDBC
-	public static Type GrabType(string type)
-	{
-		if (string.IsNullOrEmpty(type))
-		{
-			return null;
-		}
-		Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
-		for (int i = 0; i < assemblies.Length; i++)
-		{
-			Type type2 = assemblies[i].GetType(type);
-			if (type2 != null)
-			{
-				return type2;
-			}
-		}
-		return null;
-	}
+  public static System.Type GrabType(string type)
+  {
+    if (string.IsNullOrEmpty(type))
+      return (System.Type) null;
+    foreach (Assembly assembly in AppDomain.CurrentDomain.GetAssemblies())
+    {
+      System.Type type1 = assembly.GetType(type);
+      if (type1 != (System.Type) null)
+        return type1;
+    }
+    return (System.Type) null;
+  }
 }

@@ -1,17 +1,19 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BloodyScreamScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000ED RID: 237
 public class BloodyScreamScript : MonoBehaviour
 {
-	// Token: 0x06000A49 RID: 2633 RVA: 0x0005BB43 File Offset: 0x00059D43
-	private void Start()
-	{
-		AudioSource component = base.GetComponent<AudioSource>();
-		component.clip = this.Screams[UnityEngine.Random.Range(0, this.Screams.Length)];
-		component.Play();
-	}
+  public AudioClip[] Screams;
 
-	// Token: 0x04000BCB RID: 3019
-	public AudioClip[] Screams;
+  private void Start()
+  {
+    AudioSource component = this.GetComponent<AudioSource>();
+    component.clip = this.Screams[Random.Range(0, this.Screams.Length)];
+    component.Play();
+  }
 }

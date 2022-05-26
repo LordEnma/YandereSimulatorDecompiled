@@ -1,38 +1,33 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MaidDereMinigame.SoundEmitter
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using MaidDereMinigame.Malee;
+using System;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005AE RID: 1454
-	[Serializable]
-	public class SoundEmitter
-	{
-		// Token: 0x060024CC RID: 9420 RVA: 0x00203B38 File Offset: 0x00201D38
-		public AudioSource GetSource()
-		{
-			for (int i = 0; i < this.sources.Count; i++)
-			{
-				if (!this.sources[i].isPlaying)
-				{
-					return this.sources[i];
-				}
-			}
-			return this.sources[0];
-		}
+  [Serializable]
+  public class SoundEmitter
+  {
+    public SFXController.Sounds sound;
+    public bool interupt;
+    [Reorderable]
+    public AudioSources sources;
+    [Reorderable]
+    public AudioClips clips;
 
-		// Token: 0x04004D65 RID: 19813
-		public SFXController.Sounds sound;
-
-		// Token: 0x04004D66 RID: 19814
-		public bool interupt;
-
-		// Token: 0x04004D67 RID: 19815
-		[Reorderable]
-		public AudioSources sources;
-
-		// Token: 0x04004D68 RID: 19816
-		[Reorderable]
-		public AudioClips clips;
-	}
+    public AudioSource GetSource()
+    {
+      for (int index = 0; index < this.sources.Count; ++index)
+      {
+        if (!this.sources[index].isPlaying)
+          return this.sources[index];
+      }
+      return this.sources[0];
+    }
+  }
 }

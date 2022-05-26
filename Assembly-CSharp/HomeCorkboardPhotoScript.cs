@@ -1,21 +1,20 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: HomeCorkboardPhotoScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200031B RID: 795
 public class HomeCorkboardPhotoScript : MonoBehaviour
 {
-	// Token: 0x0600188D RID: 6285 RVA: 0x000EE2A0 File Offset: 0x000EC4A0
-	private void OnTriggerStay(Collider other)
-	{
-		if (other.gameObject.layer == 4)
-		{
-			base.transform.localScale = new Vector3(Mathf.MoveTowards(base.transform.localScale.x, 1f, Time.deltaTime * 10f), Mathf.MoveTowards(base.transform.localScale.y, 1f, Time.deltaTime * 10f), Mathf.MoveTowards(base.transform.localScale.z, 1f, Time.deltaTime * 10f));
-		}
-	}
+  public int ArrayID;
+  public int ID;
 
-	// Token: 0x040024C2 RID: 9410
-	public int ArrayID;
-
-	// Token: 0x040024C3 RID: 9411
-	public int ID;
+  private void OnTriggerStay(Collider other)
+  {
+    if (other.gameObject.layer != 4)
+      return;
+    this.transform.localScale = new Vector3(Mathf.MoveTowards(this.transform.localScale.x, 1f, Time.deltaTime * 10f), Mathf.MoveTowards(this.transform.localScale.y, 1f, Time.deltaTime * 10f), Mathf.MoveTowards(this.transform.localScale.z, 1f, Time.deltaTime * 10f));
+  }
 }

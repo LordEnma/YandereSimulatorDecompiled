@@ -1,27 +1,23 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AnimatedColor
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000086 RID: 134
 [ExecuteInEditMode]
-[RequireComponent(typeof(UIWidget))]
+[RequireComponent(typeof (UIWidget))]
 public class AnimatedColor : MonoBehaviour
 {
-	// Token: 0x0600054F RID: 1359 RVA: 0x00033D82 File Offset: 0x00031F82
-	private void OnEnable()
-	{
-		this.mWidget = base.GetComponent<UIWidget>();
-		this.LateUpdate();
-	}
+  public Color color = Color.white;
+  private UIWidget mWidget;
 
-	// Token: 0x06000550 RID: 1360 RVA: 0x00033D96 File Offset: 0x00031F96
-	private void LateUpdate()
-	{
-		this.mWidget.color = this.color;
-	}
+  private void OnEnable()
+  {
+    this.mWidget = this.GetComponent<UIWidget>();
+    this.LateUpdate();
+  }
 
-	// Token: 0x0400059B RID: 1435
-	public Color color = Color.white;
-
-	// Token: 0x0400059C RID: 1436
-	private UIWidget mWidget;
+  private void LateUpdate() => this.mWidget.color = this.color;
 }

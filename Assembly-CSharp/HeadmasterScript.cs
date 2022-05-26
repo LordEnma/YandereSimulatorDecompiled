@@ -1,680 +1,487 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: HeadmasterScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000310 RID: 784
 public class HeadmasterScript : MonoBehaviour
 {
-	// Token: 0x0600185C RID: 6236 RVA: 0x000E7B10 File Offset: 0x000E5D10
-	private void Start()
-	{
-		this.MyAnimation["HeadmasterRaiseTazer"].speed = 2f;
-		this.Tazer.SetActive(false);
-		this.IdleAnim = "HeadmasterType";
-		if (GameGlobals.Eighties)
-		{
-			this.IdleAnim = "HeadmasterDeskWritePingPong";
-			this.MyAnimation.CrossFade(this.IdleAnim);
-			this.EightiesPaper.SetActive(true);
-			this.Trashcan.SetActive(false);
-			this.Laptop.SetActive(false);
-			this.Pen.SetActive(true);
-			this.EightiesAttacher.gameObject.SetActive(true);
-			this.OriginalMesh[1].GetComponent<SkinnedMeshRenderer>().material = this.Transparency;
-			this.OriginalMesh[2].SetActive(false);
-			this.OriginalMesh[3].SetActive(false);
-			this.OriginalMesh[4].SetActive(false);
-			this.OriginalMesh[5].SetActive(false);
-			this.HeadmasterSpeechText = this.EightiesHeadmasterSpeechText;
-			this.HeadmasterThreatText = this.EightiesHeadmasterThreatText;
-			this.HeadmasterBoxText = this.EightiesHeadmasterBoxText;
-			this.HeadmasterWeaponText = this.EightiesHeadmasterCorpseText;
-			this.HeadmasterCrypticText = this.EightiesHeadmasterCrypticText;
-			this.HeadmasterCorpseText = this.EightiesHeadmasterCorpseText;
-			this.HeadmasterSpeechClips = this.EightiesHeadmasterSpeechClips;
-			this.HeadmasterThreatClips = this.EightiesHeadmasterThreatClips;
-			this.HeadmasterBoxClips = this.EightiesHeadmasterBoxClips;
-			this.HeadmasterWeaponClip = this.EightiesHeadmasterCorpseClip;
-			this.HeadmasterCorpseClip = this.EightiesHeadmasterCorpseClip;
-			this.HeadmasterAttackClip = this.EightiesHeadmasterCorpseClip;
-			this.Head = this.Head.parent;
-			this.MidDistance = 1.54f;
-			this.MinDistance = 0.0001f;
-			this.Eighties = true;
-		}
-	}
-
-	// Token: 0x0600185D RID: 6237 RVA: 0x000E7CC4 File Offset: 0x000E5EC4
-	private void Update()
-	{
-		if (this.Yandere.transform.position.y > base.transform.position.y - 1f && this.Yandere.transform.position.y < base.transform.position.y + 1f && this.Yandere.transform.position.x < 6f && this.Yandere.transform.position.x > -6f)
-		{
-			this.Distance = Vector3.Distance(base.transform.position, this.Yandere.transform.position);
-			if (this.Shooting)
-			{
-				this.targetRotation = Quaternion.LookRotation(base.transform.position - this.Yandere.transform.position);
-				this.Yandere.transform.rotation = Quaternion.Slerp(this.Yandere.transform.rotation, this.targetRotation, Time.deltaTime * 10f);
-				this.AimWeaponAtYandere();
-				this.AimBodyAtYandere();
-				this.Yandere.CanMove = false;
-			}
-			else if (this.Distance < this.MinDistance)
-			{
-				this.AimBodyAtYandere();
-				if (this.Yandere.CanMove && !this.Yandere.Egg && !this.Shooting)
-				{
-					this.Shoot();
-				}
-			}
-			else if (this.Distance < this.MidDistance)
-			{
-				this.PlayedSitSound = false;
-				if (!this.StudentManager.Eighties)
-				{
-					if (!this.StudentManager.Clock.StopTime)
-					{
-						this.PatienceTimer -= Time.deltaTime;
-					}
-					if (this.PatienceTimer < 0f && !this.Yandere.Egg)
-					{
-						this.LostPatience = true;
-						this.PatienceTimer = 60f;
-						this.Patience = 0;
-						this.Shoot();
-					}
-					if (!this.LostPatience)
-					{
-						this.LostPatience = true;
-						this.Patience--;
-						if (this.Patience < 1 && !this.Yandere.Egg && !this.Shooting)
-						{
-							this.Shoot();
-						}
-					}
-					this.AimBodyAtYandere();
-					this.Threatened = true;
-					this.AimWeaponAtYandere();
-				}
-				this.ThreatTimer = Mathf.MoveTowards(this.ThreatTimer, 0f, Time.deltaTime);
-				if (this.ThreatTimer == 0f)
-				{
-					this.ThreatID++;
-					if (this.ThreatID < 6)
-					{
-						this.HeadmasterSubtitle.text = this.HeadmasterThreatText[this.ThreatID];
-						this.MyAudio.clip = this.HeadmasterThreatClips[this.ThreatID];
-						this.MyAudio.Play();
-						this.ThreatTimer = this.HeadmasterThreatClips[this.ThreatID].length + 1f;
-					}
-				}
-				this.CheckBehavior();
-			}
-			else if (this.Distance < this.MaxDistance)
-			{
-				this.PlayedStandSound = false;
-				this.LostPatience = false;
-				this.targetRotation = Quaternion.LookRotation(new Vector3(0f, 8f, 0f) - base.transform.position);
-				base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, Time.deltaTime * 10f);
-				this.Chair.localPosition = Vector3.Lerp(this.Chair.localPosition, new Vector3(this.Chair.localPosition.x, this.Chair.localPosition.y, -4.66666f), Time.deltaTime * 1f);
-				this.LookAtPlayer = true;
-				if (!this.Threatened)
-				{
-					if (this.StudentManager.Eighties && this.Yandere.transform.position.z < -32.63333f)
-					{
-						this.MyAnimation.CrossFade(this.IdleAnim, 1f);
-						this.LookAtPlayer = false;
-					}
-					else
-					{
-						this.MyAnimation.CrossFade("HeadmasterAttention", 1f);
-					}
-					this.ScratchTimer = 0f;
-					this.SpeechTimer = Mathf.MoveTowards(this.SpeechTimer, 0f, Time.deltaTime);
-					if (this.SpeechTimer == 0f)
-					{
-						if (this.CardboardBox.parent != this.Yandere.Hips && this.Yandere.Mask == null)
-						{
-							this.VoiceID++;
-							if (this.VoiceID < 6)
-							{
-								this.HeadmasterSubtitle.text = this.HeadmasterSpeechText[this.VoiceID];
-								this.MyAudio.clip = this.HeadmasterSpeechClips[this.VoiceID];
-								this.MyAudio.Play();
-								this.SpeechTimer = this.HeadmasterSpeechClips[this.VoiceID].length + 1f;
-							}
-						}
-						else
-						{
-							this.BoxID++;
-							if (this.BoxID < 6)
-							{
-								this.HeadmasterSubtitle.text = this.HeadmasterBoxText[this.BoxID];
-								this.MyAudio.clip = this.HeadmasterBoxClips[this.BoxID];
-								this.MyAudio.Play();
-								this.SpeechTimer = this.HeadmasterBoxClips[this.BoxID].length + 1f;
-							}
-						}
-					}
-				}
-				else if (!this.Relaxing)
-				{
-					this.HeadmasterSubtitle.text = this.HeadmasterRelaxText;
-					this.MyAudio.clip = this.HeadmasterRelaxClip;
-					this.MyAudio.Play();
-					this.Relaxing = true;
-				}
-				else
-				{
-					if (!this.PlayedSitSound)
-					{
-						AudioSource.PlayClipAtPoint(this.SitDown, base.transform.position);
-						this.PlayedSitSound = true;
-					}
-					this.MyAnimation.CrossFade("HeadmasterLowerTazer");
-					this.Aiming = false;
-					if ((double)this.MyAnimation["HeadmasterLowerTazer"].time > 1.33333)
-					{
-						this.Tazer.SetActive(false);
-					}
-					if (this.MyAnimation["HeadmasterLowerTazer"].time > this.MyAnimation["HeadmasterLowerTazer"].length)
-					{
-						this.Threatened = false;
-						this.Relaxing = false;
-					}
-				}
-				this.CheckBehavior();
-			}
-			else
-			{
-				if (this.LookAtPlayer)
-				{
-					this.MyAnimation.CrossFade(this.IdleAnim);
-					this.LookAtPlayer = false;
-					this.Threatened = false;
-					this.Relaxing = false;
-					this.Aiming = false;
-				}
-				this.ScratchTimer += Time.deltaTime;
-				if (this.ScratchTimer > 10f)
-				{
-					this.MyAnimation.CrossFade("HeadmasterScratch");
-					if (this.MyAnimation["HeadmasterScratch"].time > this.MyAnimation["HeadmasterScratch"].length)
-					{
-						this.MyAnimation.CrossFade(this.IdleAnim);
-						this.ScratchTimer = 0f;
-					}
-				}
-			}
-			if (!this.MyAudio.isPlaying)
-			{
-				this.HeadmasterSubtitle.text = string.Empty;
-				if (this.Shooting)
-				{
-					this.Taze();
-				}
-			}
-			if (this.Yandere.Attacked && this.Yandere.CharacterAnimation["f02_swingB_00"].time >= this.Yandere.CharacterAnimation["f02_swingB_00"].length * 0.85f)
-			{
-				this.MyAudio.clip = this.Crumple;
-				this.MyAudio.Play();
-				base.enabled = false;
-				return;
-			}
-		}
-		else
-		{
-			this.HeadmasterSubtitle.text = string.Empty;
-		}
-	}
-
-	// Token: 0x0600185E RID: 6238 RVA: 0x000E84B8 File Offset: 0x000E66B8
-	private void LateUpdate()
-	{
-		if (this.Distance < this.MaxDistance)
-		{
-			this.LookAtTarget = Vector3.Lerp(this.LookAtTarget, this.LookAtPlayer ? this.Yandere.Head.position : this.Default.position, Time.deltaTime * 10f);
-			this.Head.LookAt(this.LookAtTarget);
-			if (this.EightiesAttacher.gameObject.activeInHierarchy && !this.Initialized)
-			{
-				this.EightiesAttacher.newRenderer.SetBlendShapeWeight(11, 100f);
-				this.Initialized = true;
-			}
-			if (this.HeadmasterSubtitle.text != string.Empty)
-			{
-				this.LipTimer = Mathf.MoveTowards(this.LipTimer, 0f, Time.deltaTime);
-				if (this.LipTimer == 0f)
-				{
-					this.JawRot = UnityEngine.Random.Range(30f, 35f);
-					this.LipTimer = 0.1f;
-				}
-				this.Jaw.transform.localEulerAngles = new Vector3(0f, 0f, this.JawRot);
-				return;
-			}
-			this.Jaw.transform.localEulerAngles = new Vector3(0f, 0f, 30f);
-		}
-	}
-
-	// Token: 0x0600185F RID: 6239 RVA: 0x000E860C File Offset: 0x000E680C
-	private void AimBodyAtYandere()
-	{
-		this.targetRotation = Quaternion.LookRotation(this.Yandere.transform.position - base.transform.position);
-		base.transform.rotation = Quaternion.Slerp(base.transform.rotation, this.targetRotation, Time.deltaTime * 5f);
-		this.Chair.localPosition = Vector3.Lerp(this.Chair.localPosition, new Vector3(this.Chair.localPosition.x, this.Chair.localPosition.y, -5.2f), Time.deltaTime * 1f);
-	}
-
-	// Token: 0x06001860 RID: 6240 RVA: 0x000E86C0 File Offset: 0x000E68C0
-	private void AimWeaponAtYandere()
-	{
-		if (!this.Aiming)
-		{
-			Debug.Log("The headmaster is being told to raise his tazer.");
-			this.MyAnimation.CrossFade("HeadmasterRaiseTazer");
-			if (!this.PlayedStandSound)
-			{
-				AudioSource.PlayClipAtPoint(this.StandUp, base.transform.position);
-				this.PlayedStandSound = true;
-			}
-			if ((double)this.MyAnimation["HeadmasterRaiseTazer"].time > 1.166666)
-			{
-				this.Tazer.SetActive(true);
-				this.Aiming = true;
-				return;
-			}
-		}
-		else
-		{
-			Debug.Log("The headmaster is being told to aim his tazer.");
-			if (this.MyAnimation["HeadmasterRaiseTazer"].time > this.MyAnimation["HeadmasterRaiseTazer"].length)
-			{
-				this.MyAnimation.CrossFade("HeadmasterAimTazer");
-			}
-		}
-	}
-
-	// Token: 0x06001861 RID: 6241 RVA: 0x000E8790 File Offset: 0x000E6990
-	public void Shoot()
-	{
-		this.StudentManager.YandereDying = true;
-		if (this.StudentManager.Clock.TimeSkip)
-		{
-			this.StudentManager.Clock.EndTimeSkip();
-		}
-		this.Yandere.StopAiming();
-		this.Yandere.StopLaughing();
-		this.Yandere.CharacterAnimation.CrossFade("f02_readyToFight_00");
-		if (this.Patience < 1)
-		{
-			this.HeadmasterSubtitle.text = this.HeadmasterPatienceText;
-			this.MyAudio.clip = this.HeadmasterPatienceClip;
-		}
-		else if (this.Yandere.Armed)
-		{
-			this.HeadmasterSubtitle.text = this.HeadmasterWeaponText;
-			this.MyAudio.clip = this.HeadmasterWeaponClip;
-		}
-		else if (this.Yandere.Carrying || this.Yandere.Dragging || (this.Yandere.PickUp != null && this.Yandere.PickUp.BodyPart))
-		{
-			this.HeadmasterSubtitle.text = this.HeadmasterCorpseText;
-			this.MyAudio.clip = this.HeadmasterCorpseClip;
-		}
-		else
-		{
-			this.HeadmasterSubtitle.text = this.HeadmasterAttackText;
-			this.MyAudio.clip = this.HeadmasterAttackClip;
-		}
-		this.StudentManager.StopMoving();
-		this.Yandere.EmptyHands();
-		this.Yandere.CanMove = false;
-		this.Yandere.Stance.Current = StanceType.Standing;
-		this.MyAudio.Play();
-		this.LookAtPlayer = true;
-		this.Shooting = true;
-	}
-
-	// Token: 0x06001862 RID: 6242 RVA: 0x000E8930 File Offset: 0x000E6B30
-	private void CheckBehavior()
-	{
-		if (this.Yandere.CanMove && !this.Yandere.Egg)
-		{
-			if (this.Yandere.Chased || this.Yandere.Chasers > 0)
-			{
-				if (!this.Shooting)
-				{
-					this.Shoot();
-					return;
-				}
-			}
-			else if (this.Yandere.Armed)
-			{
-				if (!this.Shooting)
-				{
-					this.Shoot();
-					return;
-				}
-			}
-			else if ((this.Yandere.Carrying || this.Yandere.Dragging || (this.Yandere.PickUp != null && this.Yandere.PickUp.BodyPart)) && !this.Shooting)
-			{
-				this.Shoot();
-			}
-		}
-	}
-
-	// Token: 0x06001863 RID: 6243 RVA: 0x000E89F8 File Offset: 0x000E6BF8
-	public void Taze()
-	{
-		if (this.Yandere.CanMove)
-		{
-			this.StudentManager.YandereDying = true;
-			this.Yandere.StopAiming();
-			this.Yandere.StopLaughing();
-			this.StudentManager.StopMoving();
-			this.Yandere.EmptyHands();
-			this.Yandere.CanMove = false;
-		}
-		UnityEngine.Object.Instantiate<GameObject>(this.LightningEffect, this.TazerEffectTarget.position, Quaternion.identity);
-		UnityEngine.Object.Instantiate<GameObject>(this.LightningEffect, this.Yandere.Spine[3].position, Quaternion.identity);
-		this.MyAudio.clip = this.HeadmasterShockClip;
-		this.MyAudio.Play();
-		this.Yandere.CharacterAnimation.CrossFade("f02_swingB_00");
-		this.Yandere.CharacterAnimation["f02_swingB_00"].time = 0.5f;
-		this.Yandere.RPGCamera.enabled = false;
-		this.Yandere.FakingReaction = false;
-		this.Yandere.Attacked = true;
-		this.Heartbroken.Headmaster = true;
-		this.Jukebox.Volume = 0f;
-		this.Shooting = false;
-	}
-
-	// Token: 0x04002391 RID: 9105
-	public StudentManagerScript StudentManager;
-
-	// Token: 0x04002392 RID: 9106
-	public HeartbrokenScript Heartbroken;
-
-	// Token: 0x04002393 RID: 9107
-	public YandereScript Yandere;
-
-	// Token: 0x04002394 RID: 9108
-	public JukeboxScript Jukebox;
-
-	// Token: 0x04002395 RID: 9109
-	public AudioClip[] HeadmasterSpeechClips;
-
-	// Token: 0x04002396 RID: 9110
-	public AudioClip[] HeadmasterThreatClips;
-
-	// Token: 0x04002397 RID: 9111
-	public AudioClip[] HeadmasterBoxClips;
-
-	// Token: 0x04002398 RID: 9112
-	public AudioClip HeadmasterRelaxClip;
-
-	// Token: 0x04002399 RID: 9113
-	public AudioClip HeadmasterAttackClip;
-
-	// Token: 0x0400239A RID: 9114
-	public AudioClip HeadmasterCrypticClip;
-
-	// Token: 0x0400239B RID: 9115
-	public AudioClip HeadmasterShockClip;
-
-	// Token: 0x0400239C RID: 9116
-	public AudioClip HeadmasterPatienceClip;
-
-	// Token: 0x0400239D RID: 9117
-	public AudioClip HeadmasterCorpseClip;
-
-	// Token: 0x0400239E RID: 9118
-	public AudioClip HeadmasterWeaponClip;
-
-	// Token: 0x0400239F RID: 9119
-	public AudioClip[] EightiesHeadmasterSpeechClips;
-
-	// Token: 0x040023A0 RID: 9120
-	public AudioClip[] EightiesHeadmasterThreatClips;
-
-	// Token: 0x040023A1 RID: 9121
-	public AudioClip[] EightiesHeadmasterBoxClips;
-
-	// Token: 0x040023A2 RID: 9122
-	public AudioClip EightiesHeadmasterCrypticClip;
-
-	// Token: 0x040023A3 RID: 9123
-	public AudioClip EightiesHeadmasterCorpseClip;
-
-	// Token: 0x040023A4 RID: 9124
-	public AudioClip Crumple;
-
-	// Token: 0x040023A5 RID: 9125
-	public AudioClip StandUp;
-
-	// Token: 0x040023A6 RID: 9126
-	public AudioClip SitDown;
-
-	// Token: 0x040023A7 RID: 9127
-	public string[] HeadmasterSpeechText = new string[]
-	{
-		"",
-		"Ahh...! It's...it's you!",
-		"No, that would be impossible...you must be...her daughter...",
-		"I'll tolerate you in my school, but not in my office.",
-		"Leave at once.",
-		"There is nothing for you to achieve here. Just. Get. Out."
-	};
-
-	// Token: 0x040023A8 RID: 9128
-	public string[] HeadmasterThreatText = new string[]
-	{
-		"",
-		"Not another step!",
-		"You're up to no good! I know it!",
-		"I'm not going to let you harm me!",
-		"I'll use self-defense if I deem it necessary!",
-		"This is your final warning. Get out of here...or else."
-	};
-
-	// Token: 0x040023A9 RID: 9129
-	public string[] HeadmasterBoxText = new string[]
-	{
-		"",
-		"What...in...blazes are you doing?",
-		"Are you trying to re-enact something you saw in a video game?",
-		"Ugh, do you really think such a stupid ploy is going to work?",
-		"I know who you are. It's obvious. You're not fooling anyone.",
-		"I don't have time for this tomfoolery. Leave at once!"
-	};
-
-	// Token: 0x040023AA RID: 9130
-	public string[] EightiesHeadmasterSpeechText = new string[]
-	{
-		"",
-		"...oh! Um...hello there, young lady!",
-		"Can I, uh...help you with anything?",
-		"You don't really...talk much, do you?",
-		"Don't you...have a class to run along to?",
-		"Well, I suppose there's no harm in letting you spend a bit of time here..."
-	};
-
-	// Token: 0x040023AB RID: 9131
-	public string[] EightiesHeadmasterThreatText = new string[]
-	{
-		"",
-		"My my, you're quite comfortable here, aren't you?",
-		"Care to...introduce yourself?",
-		"Most students...don't really do this sort of thing.",
-		"You...really seem to have a lot of free time on your hands.",
-		"Well, I suppose you're...technically...not breaking any rules..."
-	};
-
-	// Token: 0x040023AC RID: 9132
-	public string[] EightiesHeadmasterBoxText = new string[]
-	{
-		"",
-		"...uh.",
-		"...why are you...doing that?",
-		"Is this what the kids like to do these days?",
-		"Is this some sort of new fad that nobody told me about?",
-		"Well, I suppose that a small amount of tomfoolery is just...part of youth."
-	};
-
-	// Token: 0x040023AD RID: 9133
-	public string HeadmasterRelaxText = "Hmm...a wise decision.";
-
-	// Token: 0x040023AE RID: 9134
-	public string HeadmasterAttackText = "You asked for it!";
-
-	// Token: 0x040023AF RID: 9135
-	public string HeadmasterCrypticText = "Mr. Saikou...the deal is off.";
-
-	// Token: 0x040023B0 RID: 9136
-	public string HeadmasterWeaponText = "How dare you raise a weapon in my office!";
-
-	// Token: 0x040023B1 RID: 9137
-	public string HeadmasterPatienceText = "Enough of this nonsense!";
-
-	// Token: 0x040023B2 RID: 9138
-	public string HeadmasterCorpseText = "You...you murderer!";
-
-	// Token: 0x040023B3 RID: 9139
-	public string EightiesHeadmasterWeaponText = "What are you doing?! Stay back!";
-
-	// Token: 0x040023B4 RID: 9140
-	public string EightiesHeadmasterCrypticText = "Mr. Saikou, you'll never believe what just happened!";
-
-	// Token: 0x040023B5 RID: 9141
-	public string EightiesHeadmasterCorpseText = "You...you killed someone!";
-
-	// Token: 0x040023B6 RID: 9142
-	public UILabel HeadmasterSubtitle;
-
-	// Token: 0x040023B7 RID: 9143
-	public Animation MyAnimation;
-
-	// Token: 0x040023B8 RID: 9144
-	public AudioSource MyAudio;
-
-	// Token: 0x040023B9 RID: 9145
-	public GameObject LightningEffect;
-
-	// Token: 0x040023BA RID: 9146
-	public GameObject Tazer;
-
-	// Token: 0x040023BB RID: 9147
-	public Transform TazerEffectTarget;
-
-	// Token: 0x040023BC RID: 9148
-	public Transform CardboardBox;
-
-	// Token: 0x040023BD RID: 9149
-	public Transform Chair;
-
-	// Token: 0x040023BE RID: 9150
-	public Quaternion targetRotation;
-
-	// Token: 0x040023BF RID: 9151
-	public float PatienceTimer;
-
-	// Token: 0x040023C0 RID: 9152
-	public float ScratchTimer;
-
-	// Token: 0x040023C1 RID: 9153
-	public float SpeechTimer;
-
-	// Token: 0x040023C2 RID: 9154
-	public float ThreatTimer;
-
-	// Token: 0x040023C3 RID: 9155
-	public float MaxDistance = 10f;
-
-	// Token: 0x040023C4 RID: 9156
-	public float MidDistance = 2.8f;
-
-	// Token: 0x040023C5 RID: 9157
-	public float MinDistance = 1.2f;
-
-	// Token: 0x040023C6 RID: 9158
-	public float Distance;
-
-	// Token: 0x040023C7 RID: 9159
-	public int Patience = 10;
-
-	// Token: 0x040023C8 RID: 9160
-	public int ThreatID;
-
-	// Token: 0x040023C9 RID: 9161
-	public int VoiceID;
-
-	// Token: 0x040023CA RID: 9162
-	public int BoxID;
-
-	// Token: 0x040023CB RID: 9163
-	public bool PlayedStandSound;
-
-	// Token: 0x040023CC RID: 9164
-	public bool PlayedSitSound;
-
-	// Token: 0x040023CD RID: 9165
-	public bool LostPatience;
-
-	// Token: 0x040023CE RID: 9166
-	public bool Threatened;
-
-	// Token: 0x040023CF RID: 9167
-	public bool Eighties;
-
-	// Token: 0x040023D0 RID: 9168
-	public bool Relaxing;
-
-	// Token: 0x040023D1 RID: 9169
-	public bool Shooting;
-
-	// Token: 0x040023D2 RID: 9170
-	public bool Aiming;
-
-	// Token: 0x040023D3 RID: 9171
-	public string IdleAnim;
-
-	// Token: 0x040023D4 RID: 9172
-	public RiggedAccessoryAttacher EightiesAttacher;
-
-	// Token: 0x040023D5 RID: 9173
-	public GameObject EightiesPaper;
-
-	// Token: 0x040023D6 RID: 9174
-	public GameObject Trashcan;
-
-	// Token: 0x040023D7 RID: 9175
-	public GameObject Laptop;
-
-	// Token: 0x040023D8 RID: 9176
-	public GameObject Pen;
-
-	// Token: 0x040023D9 RID: 9177
-	public GameObject[] OriginalMesh;
-
-	// Token: 0x040023DA RID: 9178
-	public Material Transparency;
-
-	// Token: 0x040023DB RID: 9179
-	public bool LookAtPlayer;
-
-	// Token: 0x040023DC RID: 9180
-	public bool Initialized;
-
-	// Token: 0x040023DD RID: 9181
-	public Vector3 LookAtTarget;
-
-	// Token: 0x040023DE RID: 9182
-	public Transform Default;
-
-	// Token: 0x040023DF RID: 9183
-	public Transform Head;
-
-	// Token: 0x040023E0 RID: 9184
-	public float LipTimer;
-
-	// Token: 0x040023E1 RID: 9185
-	public float JawRot;
-
-	// Token: 0x040023E2 RID: 9186
-	public Transform Jaw;
+  public StudentManagerScript StudentManager;
+  public HeartbrokenScript Heartbroken;
+  public YandereScript Yandere;
+  public JukeboxScript Jukebox;
+  public AudioClip[] HeadmasterSpeechClips;
+  public AudioClip[] HeadmasterThreatClips;
+  public AudioClip[] HeadmasterBoxClips;
+  public AudioClip HeadmasterRelaxClip;
+  public AudioClip HeadmasterAttackClip;
+  public AudioClip HeadmasterCrypticClip;
+  public AudioClip HeadmasterShockClip;
+  public AudioClip HeadmasterPatienceClip;
+  public AudioClip HeadmasterCorpseClip;
+  public AudioClip HeadmasterWeaponClip;
+  public AudioClip[] EightiesHeadmasterSpeechClips;
+  public AudioClip[] EightiesHeadmasterThreatClips;
+  public AudioClip[] EightiesHeadmasterBoxClips;
+  public AudioClip EightiesHeadmasterCrypticClip;
+  public AudioClip EightiesHeadmasterCorpseClip;
+  public AudioClip Crumple;
+  public AudioClip StandUp;
+  public AudioClip SitDown;
+  public string[] HeadmasterSpeechText = new string[6]
+  {
+    "",
+    "Ahh...! It's...it's you!",
+    "No, that would be impossible...you must be...her daughter...",
+    "I'll tolerate you in my school, but not in my office.",
+    "Leave at once.",
+    "There is nothing for you to achieve here. Just. Get. Out."
+  };
+  public string[] HeadmasterThreatText = new string[6]
+  {
+    "",
+    "Not another step!",
+    "You're up to no good! I know it!",
+    "I'm not going to let you harm me!",
+    "I'll use self-defense if I deem it necessary!",
+    "This is your final warning. Get out of here...or else."
+  };
+  public string[] HeadmasterBoxText = new string[6]
+  {
+    "",
+    "What...in...blazes are you doing?",
+    "Are you trying to re-enact something you saw in a video game?",
+    "Ugh, do you really think such a stupid ploy is going to work?",
+    "I know who you are. It's obvious. You're not fooling anyone.",
+    "I don't have time for this tomfoolery. Leave at once!"
+  };
+  public string[] EightiesHeadmasterSpeechText = new string[6]
+  {
+    "",
+    "...oh! Um...hello there, young lady!",
+    "Can I, uh...help you with anything?",
+    "You don't really...talk much, do you?",
+    "Don't you...have a class to run along to?",
+    "Well, I suppose there's no harm in letting you spend a bit of time here..."
+  };
+  public string[] EightiesHeadmasterThreatText = new string[6]
+  {
+    "",
+    "My my, you're quite comfortable here, aren't you?",
+    "Care to...introduce yourself?",
+    "Most students...don't really do this sort of thing.",
+    "You...really seem to have a lot of free time on your hands.",
+    "Well, I suppose you're...technically...not breaking any rules..."
+  };
+  public string[] EightiesHeadmasterBoxText = new string[6]
+  {
+    "",
+    "...uh.",
+    "...why are you...doing that?",
+    "Is this what the kids like to do these days?",
+    "Is this some sort of new fad that nobody told me about?",
+    "Well, I suppose that a small amount of tomfoolery is just...part of youth."
+  };
+  public string HeadmasterRelaxText = "Hmm...a wise decision.";
+  public string HeadmasterAttackText = "You asked for it!";
+  public string HeadmasterCrypticText = "Mr. Saikou...the deal is off.";
+  public string HeadmasterWeaponText = "How dare you raise a weapon in my office!";
+  public string HeadmasterPatienceText = "Enough of this nonsense!";
+  public string HeadmasterCorpseText = "You...you murderer!";
+  public string EightiesHeadmasterWeaponText = "What are you doing?! Stay back!";
+  public string EightiesHeadmasterCrypticText = "Mr. Saikou, you'll never believe what just happened!";
+  public string EightiesHeadmasterCorpseText = "You...you killed someone!";
+  public UILabel HeadmasterSubtitle;
+  public Animation MyAnimation;
+  public AudioSource MyAudio;
+  public GameObject LightningEffect;
+  public GameObject Tazer;
+  public Transform TazerEffectTarget;
+  public Transform CardboardBox;
+  public Transform Chair;
+  public Quaternion targetRotation;
+  public float PatienceTimer;
+  public float ScratchTimer;
+  public float SpeechTimer;
+  public float ThreatTimer;
+  public float MaxDistance = 10f;
+  public float MidDistance = 2.8f;
+  public float MinDistance = 1.2f;
+  public float Distance;
+  public int Patience = 10;
+  public int ThreatID;
+  public int VoiceID;
+  public int BoxID;
+  public bool PlayedStandSound;
+  public bool PlayedSitSound;
+  public bool LostPatience;
+  public bool Threatened;
+  public bool Eighties;
+  public bool Relaxing;
+  public bool Shooting;
+  public bool Aiming;
+  public string IdleAnim;
+  public RiggedAccessoryAttacher EightiesAttacher;
+  public GameObject EightiesPaper;
+  public GameObject Trashcan;
+  public GameObject Laptop;
+  public GameObject Pen;
+  public GameObject[] OriginalMesh;
+  public Material Transparency;
+  public bool LookAtPlayer;
+  public bool Initialized;
+  public Vector3 LookAtTarget;
+  public Transform Default;
+  public Transform Head;
+  public float LipTimer;
+  public float JawRot;
+  public Transform Jaw;
+
+  private void Start()
+  {
+    this.MyAnimation["HeadmasterRaiseTazer"].speed = 2f;
+    this.Tazer.SetActive(false);
+    this.IdleAnim = "HeadmasterType";
+    if (!GameGlobals.Eighties)
+      return;
+    this.IdleAnim = "HeadmasterDeskWritePingPong";
+    this.MyAnimation.CrossFade(this.IdleAnim);
+    this.EightiesPaper.SetActive(true);
+    this.Trashcan.SetActive(false);
+    this.Laptop.SetActive(false);
+    this.Pen.SetActive(true);
+    this.EightiesAttacher.gameObject.SetActive(true);
+    this.OriginalMesh[1].GetComponent<SkinnedMeshRenderer>().material = this.Transparency;
+    this.OriginalMesh[2].SetActive(false);
+    this.OriginalMesh[3].SetActive(false);
+    this.OriginalMesh[4].SetActive(false);
+    this.OriginalMesh[5].SetActive(false);
+    this.HeadmasterSpeechText = this.EightiesHeadmasterSpeechText;
+    this.HeadmasterThreatText = this.EightiesHeadmasterThreatText;
+    this.HeadmasterBoxText = this.EightiesHeadmasterBoxText;
+    this.HeadmasterWeaponText = this.EightiesHeadmasterCorpseText;
+    this.HeadmasterCrypticText = this.EightiesHeadmasterCrypticText;
+    this.HeadmasterCorpseText = this.EightiesHeadmasterCorpseText;
+    this.HeadmasterSpeechClips = this.EightiesHeadmasterSpeechClips;
+    this.HeadmasterThreatClips = this.EightiesHeadmasterThreatClips;
+    this.HeadmasterBoxClips = this.EightiesHeadmasterBoxClips;
+    this.HeadmasterWeaponClip = this.EightiesHeadmasterCorpseClip;
+    this.HeadmasterCorpseClip = this.EightiesHeadmasterCorpseClip;
+    this.HeadmasterAttackClip = this.EightiesHeadmasterCorpseClip;
+    this.Head = this.Head.parent;
+    this.MidDistance = 1.54f;
+    this.MinDistance = 0.0001f;
+    this.Eighties = true;
+  }
+
+  private void Update()
+  {
+    if ((double) this.Yandere.transform.position.y > (double) this.transform.position.y - 1.0 && (double) this.Yandere.transform.position.y < (double) this.transform.position.y + 1.0 && (double) this.Yandere.transform.position.x < 6.0 && (double) this.Yandere.transform.position.x > -6.0)
+    {
+      this.Distance = Vector3.Distance(this.transform.position, this.Yandere.transform.position);
+      if (this.Shooting)
+      {
+        this.targetRotation = Quaternion.LookRotation(this.transform.position - this.Yandere.transform.position);
+        this.Yandere.transform.rotation = Quaternion.Slerp(this.Yandere.transform.rotation, this.targetRotation, Time.deltaTime * 10f);
+        this.AimWeaponAtYandere();
+        this.AimBodyAtYandere();
+        this.Yandere.CanMove = false;
+      }
+      else if ((double) this.Distance < (double) this.MinDistance)
+      {
+        this.AimBodyAtYandere();
+        if (this.Yandere.CanMove && !this.Yandere.Egg && !this.Shooting)
+          this.Shoot();
+      }
+      else if ((double) this.Distance < (double) this.MidDistance)
+      {
+        this.PlayedSitSound = false;
+        if (!this.StudentManager.Eighties)
+        {
+          if (!this.StudentManager.Clock.StopTime)
+            this.PatienceTimer -= Time.deltaTime;
+          if ((double) this.PatienceTimer < 0.0 && !this.Yandere.Egg)
+          {
+            this.LostPatience = true;
+            this.PatienceTimer = 60f;
+            this.Patience = 0;
+            this.Shoot();
+          }
+          if (!this.LostPatience)
+          {
+            this.LostPatience = true;
+            --this.Patience;
+            if (this.Patience < 1 && !this.Yandere.Egg && !this.Shooting)
+              this.Shoot();
+          }
+          this.AimBodyAtYandere();
+          this.Threatened = true;
+          this.AimWeaponAtYandere();
+        }
+        this.ThreatTimer = Mathf.MoveTowards(this.ThreatTimer, 0.0f, Time.deltaTime);
+        if ((double) this.ThreatTimer == 0.0)
+        {
+          ++this.ThreatID;
+          if (this.ThreatID < 6)
+          {
+            this.HeadmasterSubtitle.text = this.HeadmasterThreatText[this.ThreatID];
+            this.MyAudio.clip = this.HeadmasterThreatClips[this.ThreatID];
+            this.MyAudio.Play();
+            this.ThreatTimer = this.HeadmasterThreatClips[this.ThreatID].length + 1f;
+          }
+        }
+        this.CheckBehavior();
+      }
+      else if ((double) this.Distance < (double) this.MaxDistance)
+      {
+        this.PlayedStandSound = false;
+        this.LostPatience = false;
+        this.targetRotation = Quaternion.LookRotation(new Vector3(0.0f, 8f, 0.0f) - this.transform.position);
+        this.transform.rotation = Quaternion.Slerp(this.transform.rotation, this.targetRotation, Time.deltaTime * 10f);
+        this.Chair.localPosition = Vector3.Lerp(this.Chair.localPosition, new Vector3(this.Chair.localPosition.x, this.Chair.localPosition.y, -4.66666f), Time.deltaTime * 1f);
+        this.LookAtPlayer = true;
+        if (!this.Threatened)
+        {
+          if (this.StudentManager.Eighties && (double) this.Yandere.transform.position.z < -32.6333312988281)
+          {
+            this.MyAnimation.CrossFade(this.IdleAnim, 1f);
+            this.LookAtPlayer = false;
+          }
+          else
+            this.MyAnimation.CrossFade("HeadmasterAttention", 1f);
+          this.ScratchTimer = 0.0f;
+          this.SpeechTimer = Mathf.MoveTowards(this.SpeechTimer, 0.0f, Time.deltaTime);
+          if ((double) this.SpeechTimer == 0.0)
+          {
+            if ((Object) this.CardboardBox.parent != (Object) this.Yandere.Hips && (Object) this.Yandere.Mask == (Object) null)
+            {
+              ++this.VoiceID;
+              if (this.VoiceID < 6)
+              {
+                this.HeadmasterSubtitle.text = this.HeadmasterSpeechText[this.VoiceID];
+                this.MyAudio.clip = this.HeadmasterSpeechClips[this.VoiceID];
+                this.MyAudio.Play();
+                this.SpeechTimer = this.HeadmasterSpeechClips[this.VoiceID].length + 1f;
+              }
+            }
+            else
+            {
+              ++this.BoxID;
+              if (this.BoxID < 6)
+              {
+                this.HeadmasterSubtitle.text = this.HeadmasterBoxText[this.BoxID];
+                this.MyAudio.clip = this.HeadmasterBoxClips[this.BoxID];
+                this.MyAudio.Play();
+                this.SpeechTimer = this.HeadmasterBoxClips[this.BoxID].length + 1f;
+              }
+            }
+          }
+        }
+        else if (!this.Relaxing)
+        {
+          this.HeadmasterSubtitle.text = this.HeadmasterRelaxText;
+          this.MyAudio.clip = this.HeadmasterRelaxClip;
+          this.MyAudio.Play();
+          this.Relaxing = true;
+        }
+        else
+        {
+          if (!this.PlayedSitSound)
+          {
+            AudioSource.PlayClipAtPoint(this.SitDown, this.transform.position);
+            this.PlayedSitSound = true;
+          }
+          this.MyAnimation.CrossFade("HeadmasterLowerTazer");
+          this.Aiming = false;
+          if ((double) this.MyAnimation["HeadmasterLowerTazer"].time > 1.33333)
+            this.Tazer.SetActive(false);
+          if ((double) this.MyAnimation["HeadmasterLowerTazer"].time > (double) this.MyAnimation["HeadmasterLowerTazer"].length)
+          {
+            this.Threatened = false;
+            this.Relaxing = false;
+          }
+        }
+        this.CheckBehavior();
+      }
+      else
+      {
+        if (this.LookAtPlayer)
+        {
+          this.MyAnimation.CrossFade(this.IdleAnim);
+          this.LookAtPlayer = false;
+          this.Threatened = false;
+          this.Relaxing = false;
+          this.Aiming = false;
+        }
+        this.ScratchTimer += Time.deltaTime;
+        if ((double) this.ScratchTimer > 10.0)
+        {
+          this.MyAnimation.CrossFade("HeadmasterScratch");
+          if ((double) this.MyAnimation["HeadmasterScratch"].time > (double) this.MyAnimation["HeadmasterScratch"].length)
+          {
+            this.MyAnimation.CrossFade(this.IdleAnim);
+            this.ScratchTimer = 0.0f;
+          }
+        }
+      }
+      if (!this.MyAudio.isPlaying)
+      {
+        this.HeadmasterSubtitle.text = string.Empty;
+        if (this.Shooting)
+          this.Taze();
+      }
+      if (!this.Yandere.Attacked || (double) this.Yandere.CharacterAnimation["f02_swingB_00"].time < (double) this.Yandere.CharacterAnimation["f02_swingB_00"].length * 0.850000023841858)
+        return;
+      this.MyAudio.clip = this.Crumple;
+      this.MyAudio.Play();
+      this.enabled = false;
+    }
+    else
+      this.HeadmasterSubtitle.text = string.Empty;
+  }
+
+  private void LateUpdate()
+  {
+    if ((double) this.Distance >= (double) this.MaxDistance)
+      return;
+    this.LookAtTarget = Vector3.Lerp(this.LookAtTarget, this.LookAtPlayer ? this.Yandere.Head.position : this.Default.position, Time.deltaTime * 10f);
+    this.Head.LookAt(this.LookAtTarget);
+    if (this.EightiesAttacher.gameObject.activeInHierarchy && !this.Initialized)
+    {
+      this.EightiesAttacher.newRenderer.SetBlendShapeWeight(11, 100f);
+      this.Initialized = true;
+    }
+    if (this.HeadmasterSubtitle.text != string.Empty)
+    {
+      this.LipTimer = Mathf.MoveTowards(this.LipTimer, 0.0f, Time.deltaTime);
+      if ((double) this.LipTimer == 0.0)
+      {
+        this.JawRot = Random.Range(30f, 35f);
+        this.LipTimer = 0.1f;
+      }
+      this.Jaw.transform.localEulerAngles = new Vector3(0.0f, 0.0f, this.JawRot);
+    }
+    else
+      this.Jaw.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 30f);
+  }
+
+  private void AimBodyAtYandere()
+  {
+    this.targetRotation = Quaternion.LookRotation(this.Yandere.transform.position - this.transform.position);
+    this.transform.rotation = Quaternion.Slerp(this.transform.rotation, this.targetRotation, Time.deltaTime * 5f);
+    this.Chair.localPosition = Vector3.Lerp(this.Chair.localPosition, new Vector3(this.Chair.localPosition.x, this.Chair.localPosition.y, -5.2f), Time.deltaTime * 1f);
+  }
+
+  private void AimWeaponAtYandere()
+  {
+    if (!this.Aiming)
+    {
+      Debug.Log((object) "The headmaster is being told to raise his tazer.");
+      this.MyAnimation.CrossFade("HeadmasterRaiseTazer");
+      if (!this.PlayedStandSound)
+      {
+        AudioSource.PlayClipAtPoint(this.StandUp, this.transform.position);
+        this.PlayedStandSound = true;
+      }
+      if ((double) this.MyAnimation["HeadmasterRaiseTazer"].time <= 1.166666)
+        return;
+      this.Tazer.SetActive(true);
+      this.Aiming = true;
+    }
+    else
+    {
+      Debug.Log((object) "The headmaster is being told to aim his tazer.");
+      if ((double) this.MyAnimation["HeadmasterRaiseTazer"].time <= (double) this.MyAnimation["HeadmasterRaiseTazer"].length)
+        return;
+      this.MyAnimation.CrossFade("HeadmasterAimTazer");
+    }
+  }
+
+  public void Shoot()
+  {
+    this.StudentManager.YandereDying = true;
+    if (this.StudentManager.Clock.TimeSkip)
+      this.StudentManager.Clock.EndTimeSkip();
+    this.Yandere.StopAiming();
+    this.Yandere.StopLaughing();
+    this.Yandere.CharacterAnimation.CrossFade("f02_readyToFight_00");
+    if (this.Patience < 1)
+    {
+      this.HeadmasterSubtitle.text = this.HeadmasterPatienceText;
+      this.MyAudio.clip = this.HeadmasterPatienceClip;
+    }
+    else if (this.Yandere.Armed)
+    {
+      this.HeadmasterSubtitle.text = this.HeadmasterWeaponText;
+      this.MyAudio.clip = this.HeadmasterWeaponClip;
+    }
+    else if (this.Yandere.Carrying || this.Yandere.Dragging || (Object) this.Yandere.PickUp != (Object) null && (bool) (Object) this.Yandere.PickUp.BodyPart)
+    {
+      this.HeadmasterSubtitle.text = this.HeadmasterCorpseText;
+      this.MyAudio.clip = this.HeadmasterCorpseClip;
+    }
+    else
+    {
+      this.HeadmasterSubtitle.text = this.HeadmasterAttackText;
+      this.MyAudio.clip = this.HeadmasterAttackClip;
+    }
+    this.StudentManager.StopMoving();
+    this.Yandere.EmptyHands();
+    this.Yandere.CanMove = false;
+    this.Yandere.Stance.Current = StanceType.Standing;
+    this.MyAudio.Play();
+    this.LookAtPlayer = true;
+    this.Shooting = true;
+  }
+
+  private void CheckBehavior()
+  {
+    if (!this.Yandere.CanMove || this.Yandere.Egg)
+      return;
+    if (this.Yandere.Chased || this.Yandere.Chasers > 0)
+    {
+      if (this.Shooting)
+        return;
+      this.Shoot();
+    }
+    else if (this.Yandere.Armed)
+    {
+      if (this.Shooting)
+        return;
+      this.Shoot();
+    }
+    else
+    {
+      if (!this.Yandere.Carrying && !this.Yandere.Dragging && (!((Object) this.Yandere.PickUp != (Object) null) || !(bool) (Object) this.Yandere.PickUp.BodyPart) || this.Shooting)
+        return;
+      this.Shoot();
+    }
+  }
+
+  public void Taze()
+  {
+    if (this.Yandere.CanMove)
+    {
+      this.StudentManager.YandereDying = true;
+      this.Yandere.StopAiming();
+      this.Yandere.StopLaughing();
+      this.StudentManager.StopMoving();
+      this.Yandere.EmptyHands();
+      this.Yandere.CanMove = false;
+    }
+    Object.Instantiate<GameObject>(this.LightningEffect, this.TazerEffectTarget.position, Quaternion.identity);
+    Object.Instantiate<GameObject>(this.LightningEffect, this.Yandere.Spine[3].position, Quaternion.identity);
+    this.MyAudio.clip = this.HeadmasterShockClip;
+    this.MyAudio.Play();
+    this.Yandere.CharacterAnimation.CrossFade("f02_swingB_00");
+    this.Yandere.CharacterAnimation["f02_swingB_00"].time = 0.5f;
+    this.Yandere.RPGCamera.enabled = false;
+    this.Yandere.FakingReaction = false;
+    this.Yandere.Attacked = true;
+    this.Heartbroken.Headmaster = true;
+    this.Jukebox.Volume = 0.0f;
+    this.Shooting = false;
+  }
 }

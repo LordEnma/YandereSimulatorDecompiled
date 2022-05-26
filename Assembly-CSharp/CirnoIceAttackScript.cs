@@ -1,32 +1,33 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: CirnoIceAttackScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000249 RID: 585
 public class CirnoIceAttackScript : MonoBehaviour
 {
-	// Token: 0x06001258 RID: 4696 RVA: 0x0008D8F1 File Offset: 0x0008BAF1
-	private void Start()
-	{
-		Physics.IgnoreLayerCollision(18, 13, true);
-		Physics.IgnoreLayerCollision(18, 18, true);
-	}
+  public GameObject IceExplosion;
 
-	// Token: 0x06001259 RID: 4697 RVA: 0x0008D908 File Offset: 0x0008BB08
-	private void OnCollisionEnter(Collision collision)
-	{
-		UnityEngine.Object.Instantiate<GameObject>(this.IceExplosion, base.transform.position, Quaternion.identity);
-		if (collision.gameObject.layer == 9)
-		{
-			StudentScript component = collision.gameObject.GetComponent<StudentScript>();
-			if (component != null && component.StudentID != 1)
-			{
-				component.SpawnAlarmDisc();
-				component.BecomeRagdoll();
-			}
-		}
-		UnityEngine.Object.Destroy(base.gameObject);
-	}
+  private void Start()
+  {
+    Physics.IgnoreLayerCollision(18, 13, true);
+    Physics.IgnoreLayerCollision(18, 18, true);
+  }
 
-	// Token: 0x0400173D RID: 5949
-	public GameObject IceExplosion;
+  private void OnCollisionEnter(Collision collision)
+  {
+    Object.Instantiate<GameObject>(this.IceExplosion, this.transform.position, Quaternion.identity);
+    if (collision.gameObject.layer == 9)
+    {
+      StudentScript component = collision.gameObject.GetComponent<StudentScript>();
+      if ((Object) component != (Object) null && component.StudentID != 1)
+      {
+        component.SpawnAlarmDisc();
+        component.BecomeRagdoll();
+      }
+    }
+    Object.Destroy((Object) this.gameObject);
+  }
 }

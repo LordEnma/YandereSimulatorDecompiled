@@ -1,30 +1,31 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: HomeCyberstalkScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200031E RID: 798
 public class HomeCyberstalkScript : MonoBehaviour
 {
-	// Token: 0x06001895 RID: 6293 RVA: 0x000EE694 File Offset: 0x000EC894
-	private void Update()
-	{
-		if (Input.GetButtonDown("A"))
-		{
-			this.HomeDarkness.Sprite.color = new Color(0f, 0f, 0f, 0f);
-			this.HomeDarkness.Cyberstalking = true;
-			this.HomeDarkness.FadeOut = true;
-			base.gameObject.SetActive(false);
-			for (int i = 1; i < 26; i++)
-			{
-				ConversationGlobals.SetTopicLearnedByStudent(i, this.HomeDarkness.HomeCamera.HomeInternet.Student, true);
-				ConversationGlobals.SetTopicDiscovered(i, true);
-			}
-		}
-		if (Input.GetButtonDown("B"))
-		{
-			base.gameObject.SetActive(false);
-		}
-	}
+  public HomeDarknessScript HomeDarkness;
 
-	// Token: 0x040024CF RID: 9423
-	public HomeDarknessScript HomeDarkness;
+  private void Update()
+  {
+    if (Input.GetButtonDown("A"))
+    {
+      this.HomeDarkness.Sprite.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+      this.HomeDarkness.Cyberstalking = true;
+      this.HomeDarkness.FadeOut = true;
+      this.gameObject.SetActive(false);
+      for (int topicID = 1; topicID < 26; ++topicID)
+      {
+        ConversationGlobals.SetTopicLearnedByStudent(topicID, this.HomeDarkness.HomeCamera.HomeInternet.Student, true);
+        ConversationGlobals.SetTopicDiscovered(topicID, true);
+      }
+    }
+    if (!Input.GetButtonDown("B"))
+      return;
+    this.gameObject.SetActive(false);
+  }
 }

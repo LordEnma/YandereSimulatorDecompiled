@@ -1,43 +1,30 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SecurityCameraManagerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000421 RID: 1057
 public class SecurityCameraManagerScript : MonoBehaviour
 {
-	// Token: 0x06001C9E RID: 7326 RVA: 0x0014FC4C File Offset: 0x0014DE4C
-	private void Start()
-	{
-		int i;
-		if (SchoolGlobals.HighSecurity)
-		{
-			i = this.Cameras.Length;
-		}
-		else
-		{
-			i = PlayerGlobals.CorpsesDiscovered;
-		}
-		while (i > 0)
-		{
-			if (i < this.Cameras.Length)
-			{
-				this.Cameras[i].SetActive(true);
-			}
-			i--;
-		}
-	}
+  public GameObject[] Cameras;
 
-	// Token: 0x06001C9F RID: 7327 RVA: 0x0014FC98 File Offset: 0x0014DE98
-	public void ActivateAllCameras()
-	{
-		for (int i = this.Cameras.Length; i > 0; i--)
-		{
-			if (i < this.Cameras.Length)
-			{
-				this.Cameras[i].SetActive(true);
-			}
-		}
-	}
+  private void Start()
+  {
+    for (int index = !SchoolGlobals.HighSecurity ? PlayerGlobals.CorpsesDiscovered : this.Cameras.Length; index > 0; --index)
+    {
+      if (index < this.Cameras.Length)
+        this.Cameras[index].SetActive(true);
+    }
+  }
 
-	// Token: 0x0400330A RID: 13066
-	public GameObject[] Cameras;
+  public void ActivateAllCameras()
+  {
+    for (int length = this.Cameras.Length; length > 0; --length)
+    {
+      if (length < this.Cameras.Length)
+        this.Cameras[length].SetActive(true);
+    }
+  }
 }

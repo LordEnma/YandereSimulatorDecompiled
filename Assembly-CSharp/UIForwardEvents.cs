@@ -1,118 +1,85 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIForwardEvents
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000056 RID: 86
 [AddComponentMenu("NGUI/Interaction/Forward Events (Legacy)")]
 public class UIForwardEvents : MonoBehaviour
 {
-	// Token: 0x060001B6 RID: 438 RVA: 0x000176E6 File Offset: 0x000158E6
-	private void OnHover(bool isOver)
-	{
-		if (this.onHover && this.target != null)
-		{
-			this.target.SendMessage("OnHover", isOver, SendMessageOptions.DontRequireReceiver);
-		}
-	}
+  public GameObject target;
+  public bool onHover;
+  public bool onPress;
+  public bool onClick;
+  public bool onDoubleClick;
+  public bool onSelect;
+  public bool onDrag;
+  public bool onDrop;
+  public bool onSubmit;
+  public bool onScroll;
 
-	// Token: 0x060001B7 RID: 439 RVA: 0x00017715 File Offset: 0x00015915
-	private void OnPress(bool pressed)
-	{
-		if (this.onPress && this.target != null)
-		{
-			this.target.SendMessage("OnPress", pressed, SendMessageOptions.DontRequireReceiver);
-		}
-	}
+  private void OnHover(bool isOver)
+  {
+    if (!this.onHover || !((Object) this.target != (Object) null))
+      return;
+    this.target.SendMessage(nameof (OnHover), (object) isOver, SendMessageOptions.DontRequireReceiver);
+  }
 
-	// Token: 0x060001B8 RID: 440 RVA: 0x00017744 File Offset: 0x00015944
-	private void OnClick()
-	{
-		if (this.onClick && this.target != null)
-		{
-			this.target.SendMessage("OnClick", SendMessageOptions.DontRequireReceiver);
-		}
-	}
+  private void OnPress(bool pressed)
+  {
+    if (!this.onPress || !((Object) this.target != (Object) null))
+      return;
+    this.target.SendMessage(nameof (OnPress), (object) pressed, SendMessageOptions.DontRequireReceiver);
+  }
 
-	// Token: 0x060001B9 RID: 441 RVA: 0x0001776D File Offset: 0x0001596D
-	private void OnDoubleClick()
-	{
-		if (this.onDoubleClick && this.target != null)
-		{
-			this.target.SendMessage("OnDoubleClick", SendMessageOptions.DontRequireReceiver);
-		}
-	}
+  private void OnClick()
+  {
+    if (!this.onClick || !((Object) this.target != (Object) null))
+      return;
+    this.target.SendMessage(nameof (OnClick), SendMessageOptions.DontRequireReceiver);
+  }
 
-	// Token: 0x060001BA RID: 442 RVA: 0x00017796 File Offset: 0x00015996
-	private void OnSelect(bool selected)
-	{
-		if (this.onSelect && this.target != null)
-		{
-			this.target.SendMessage("OnSelect", selected, SendMessageOptions.DontRequireReceiver);
-		}
-	}
+  private void OnDoubleClick()
+  {
+    if (!this.onDoubleClick || !((Object) this.target != (Object) null))
+      return;
+    this.target.SendMessage(nameof (OnDoubleClick), SendMessageOptions.DontRequireReceiver);
+  }
 
-	// Token: 0x060001BB RID: 443 RVA: 0x000177C5 File Offset: 0x000159C5
-	private void OnDrag(Vector2 delta)
-	{
-		if (this.onDrag && this.target != null)
-		{
-			this.target.SendMessage("OnDrag", delta, SendMessageOptions.DontRequireReceiver);
-		}
-	}
+  private void OnSelect(bool selected)
+  {
+    if (!this.onSelect || !((Object) this.target != (Object) null))
+      return;
+    this.target.SendMessage(nameof (OnSelect), (object) selected, SendMessageOptions.DontRequireReceiver);
+  }
 
-	// Token: 0x060001BC RID: 444 RVA: 0x000177F4 File Offset: 0x000159F4
-	private void OnDrop(GameObject go)
-	{
-		if (this.onDrop && this.target != null)
-		{
-			this.target.SendMessage("OnDrop", go, SendMessageOptions.DontRequireReceiver);
-		}
-	}
+  private void OnDrag(Vector2 delta)
+  {
+    if (!this.onDrag || !((Object) this.target != (Object) null))
+      return;
+    this.target.SendMessage(nameof (OnDrag), (object) delta, SendMessageOptions.DontRequireReceiver);
+  }
 
-	// Token: 0x060001BD RID: 445 RVA: 0x0001781E File Offset: 0x00015A1E
-	private void OnSubmit()
-	{
-		if (this.onSubmit && this.target != null)
-		{
-			this.target.SendMessage("OnSubmit", SendMessageOptions.DontRequireReceiver);
-		}
-	}
+  private void OnDrop(GameObject go)
+  {
+    if (!this.onDrop || !((Object) this.target != (Object) null))
+      return;
+    this.target.SendMessage(nameof (OnDrop), (object) go, SendMessageOptions.DontRequireReceiver);
+  }
 
-	// Token: 0x060001BE RID: 446 RVA: 0x00017847 File Offset: 0x00015A47
-	private void OnScroll(float delta)
-	{
-		if (this.onScroll && this.target != null)
-		{
-			this.target.SendMessage("OnScroll", delta, SendMessageOptions.DontRequireReceiver);
-		}
-	}
+  private void OnSubmit()
+  {
+    if (!this.onSubmit || !((Object) this.target != (Object) null))
+      return;
+    this.target.SendMessage(nameof (OnSubmit), SendMessageOptions.DontRequireReceiver);
+  }
 
-	// Token: 0x0400037F RID: 895
-	public GameObject target;
-
-	// Token: 0x04000380 RID: 896
-	public bool onHover;
-
-	// Token: 0x04000381 RID: 897
-	public bool onPress;
-
-	// Token: 0x04000382 RID: 898
-	public bool onClick;
-
-	// Token: 0x04000383 RID: 899
-	public bool onDoubleClick;
-
-	// Token: 0x04000384 RID: 900
-	public bool onSelect;
-
-	// Token: 0x04000385 RID: 901
-	public bool onDrag;
-
-	// Token: 0x04000386 RID: 902
-	public bool onDrop;
-
-	// Token: 0x04000387 RID: 903
-	public bool onSubmit;
-
-	// Token: 0x04000388 RID: 904
-	public bool onScroll;
+  private void OnScroll(float delta)
+  {
+    if (!this.onScroll || !((Object) this.target != (Object) null))
+      return;
+    this.target.SendMessage(nameof (OnScroll), (object) delta, SendMessageOptions.DontRequireReceiver);
+  }
 }

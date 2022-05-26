@@ -1,46 +1,35 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PanWithMouse
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000036 RID: 54
 [AddComponentMenu("NGUI/Examples/Pan With Mouse")]
 public class PanWithMouse : MonoBehaviour
 {
-	// Token: 0x060000E0 RID: 224 RVA: 0x00012AA7 File Offset: 0x00010CA7
-	private void Start()
-	{
-		this.mTrans = base.transform;
-		this.mStart = this.mTrans.localRotation;
-	}
+  public Vector2 degrees = new Vector2(5f, 3f);
+  public float range = 1f;
+  private Transform mTrans;
+  private Quaternion mStart;
+  private Vector2 mRot = Vector2.zero;
 
-	// Token: 0x060000E1 RID: 225 RVA: 0x00012AC8 File Offset: 0x00010CC8
-	private void Update()
-	{
-		float deltaTime = RealTime.deltaTime;
-		Vector3 vector = UICamera.lastEventPosition;
-		float num = (float)Screen.width * 0.5f;
-		float num2 = (float)Screen.height * 0.5f;
-		if (this.range < 0.1f)
-		{
-			this.range = 0.1f;
-		}
-		float x = Mathf.Clamp((vector.x - num) / num / this.range, -1f, 1f);
-		float y = Mathf.Clamp((vector.y - num2) / num2 / this.range, -1f, 1f);
-		this.mRot = Vector2.Lerp(this.mRot, new Vector2(x, y), deltaTime * 5f);
-		this.mTrans.localRotation = this.mStart * Quaternion.Euler(-this.mRot.y * this.degrees.y, this.mRot.x * this.degrees.x, 0f);
-	}
+  private void Start()
+  {
+    this.mTrans = this.transform;
+    this.mStart = this.mTrans.localRotation;
+  }
 
-	// Token: 0x040002B0 RID: 688
-	public Vector2 degrees = new Vector2(5f, 3f);
-
-	// Token: 0x040002B1 RID: 689
-	public float range = 1f;
-
-	// Token: 0x040002B2 RID: 690
-	private Transform mTrans;
-
-	// Token: 0x040002B3 RID: 691
-	private Quaternion mStart;
-
-	// Token: 0x040002B4 RID: 692
-	private Vector2 mRot = Vector2.zero;
+  private void Update()
+  {
+    float deltaTime = RealTime.deltaTime;
+    Vector3 lastEventPosition = (Vector3) UICamera.lastEventPosition;
+    float num1 = (float) Screen.width * 0.5f;
+    float num2 = (float) Screen.height * 0.5f;
+    if ((double) this.range < 0.100000001490116)
+      this.range = 0.1f;
+    this.mRot = Vector2.Lerp(this.mRot, new Vector2(Mathf.Clamp((lastEventPosition.x - num1) / num1 / this.range, -1f, 1f), Mathf.Clamp((lastEventPosition.y - num2) / num2 / this.range, -1f, 1f)), deltaTime * 5f);
+    this.mTrans.localRotation = this.mStart * Quaternion.Euler(-this.mRot.y * this.degrees.y, this.mRot.x * this.degrees.x, 0.0f);
+  }
 }

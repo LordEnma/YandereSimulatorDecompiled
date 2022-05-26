@@ -1,27 +1,24 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: CheerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000242 RID: 578
 public class CheerScript : MonoBehaviour
 {
-	// Token: 0x06001249 RID: 4681 RVA: 0x0008D108 File Offset: 0x0008B308
-	private void Update()
-	{
-		this.Timer += Time.deltaTime;
-		if (this.Timer > 5f)
-		{
-			this.MyAudio.clip = this.Cheers[UnityEngine.Random.Range(1, this.Cheers.Length)];
-			this.MyAudio.Play();
-			this.Timer = 0f;
-		}
-	}
+  public AudioSource MyAudio;
+  public AudioClip[] Cheers;
+  public float Timer;
 
-	// Token: 0x04001720 RID: 5920
-	public AudioSource MyAudio;
-
-	// Token: 0x04001721 RID: 5921
-	public AudioClip[] Cheers;
-
-	// Token: 0x04001722 RID: 5922
-	public float Timer;
+  private void Update()
+  {
+    this.Timer += Time.deltaTime;
+    if ((double) this.Timer <= 5.0)
+      return;
+    this.MyAudio.clip = this.Cheers[Random.Range(1, this.Cheers.Length)];
+    this.MyAudio.Play();
+    this.Timer = 0.0f;
+  }
 }

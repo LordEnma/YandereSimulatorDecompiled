@@ -1,98 +1,70 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ChemistScannerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000244 RID: 580
 public class ChemistScannerScript : MonoBehaviour
 {
-	// Token: 0x0600124D RID: 4685 RVA: 0x0008D228 File Offset: 0x0008B428
-	private void Update()
-	{
-		if (this.Student.Ragdoll != null && this.Student.Ragdoll.enabled)
-		{
-			this.MyRenderer.materials[1].mainTexture = this.DeadEyes;
-			base.enabled = false;
-			return;
-		}
-		if (this.Student.Dying)
-		{
-			if (this.MyRenderer.materials[1].mainTexture != this.AlarmedEyes)
-			{
-				this.MyRenderer.materials[1].mainTexture = this.AlarmedEyes;
-				return;
-			}
-		}
-		else if (this.Student.Emetic || this.Student.Lethal || this.Student.Tranquil || this.Student.Headache)
-		{
-			if (this.MyRenderer.materials[1].mainTexture != this.Textures[6])
-			{
-				this.MyRenderer.materials[1].mainTexture = this.Textures[6];
-				return;
-			}
-		}
-		else if (this.Student.Grudge)
-		{
-			if (this.MyRenderer.materials[1].mainTexture != this.Textures[1])
-			{
-				this.MyRenderer.materials[1].mainTexture = this.Textures[1];
-				return;
-			}
-		}
-		else if (this.Student.LostTeacherTrust)
-		{
-			if (this.MyRenderer.materials[1].mainTexture != this.SadEyes)
-			{
-				this.MyRenderer.materials[1].mainTexture = this.SadEyes;
-				return;
-			}
-		}
-		else if (this.Student.WitnessedMurder || this.Student.WitnessedCorpse)
-		{
-			if (this.MyRenderer.materials[1].mainTexture != this.AlarmedEyes)
-			{
-				this.MyRenderer.materials[1].mainTexture = this.AlarmedEyes;
-				return;
-			}
-		}
-		else
-		{
-			this.Timer += Time.deltaTime;
-			if (this.Timer > 2f)
-			{
-				while (this.ID == this.PreviousID)
-				{
-					this.ID = UnityEngine.Random.Range(0, this.Textures.Length);
-				}
-				this.MyRenderer.materials[1].mainTexture = this.Textures[this.ID];
-				this.PreviousID = this.ID;
-				this.Timer = 0f;
-			}
-		}
-	}
+  public StudentScript Student;
+  public Renderer MyRenderer;
+  public Texture AlarmedEyes;
+  public Texture DeadEyes;
+  public Texture SadEyes;
+  public Texture[] Textures;
+  public float Timer;
+  public int PreviousID;
+  public int ID;
 
-	// Token: 0x04001727 RID: 5927
-	public StudentScript Student;
-
-	// Token: 0x04001728 RID: 5928
-	public Renderer MyRenderer;
-
-	// Token: 0x04001729 RID: 5929
-	public Texture AlarmedEyes;
-
-	// Token: 0x0400172A RID: 5930
-	public Texture DeadEyes;
-
-	// Token: 0x0400172B RID: 5931
-	public Texture SadEyes;
-
-	// Token: 0x0400172C RID: 5932
-	public Texture[] Textures;
-
-	// Token: 0x0400172D RID: 5933
-	public float Timer;
-
-	// Token: 0x0400172E RID: 5934
-	public int PreviousID;
-
-	// Token: 0x0400172F RID: 5935
-	public int ID;
+  private void Update()
+  {
+    if ((Object) this.Student.Ragdoll != (Object) null && this.Student.Ragdoll.enabled)
+    {
+      this.MyRenderer.materials[1].mainTexture = this.DeadEyes;
+      this.enabled = false;
+    }
+    else if (this.Student.Dying)
+    {
+      if (!((Object) this.MyRenderer.materials[1].mainTexture != (Object) this.AlarmedEyes))
+        return;
+      this.MyRenderer.materials[1].mainTexture = this.AlarmedEyes;
+    }
+    else if (this.Student.Emetic || this.Student.Lethal || this.Student.Tranquil || this.Student.Headache)
+    {
+      if (!((Object) this.MyRenderer.materials[1].mainTexture != (Object) this.Textures[6]))
+        return;
+      this.MyRenderer.materials[1].mainTexture = this.Textures[6];
+    }
+    else if (this.Student.Grudge)
+    {
+      if (!((Object) this.MyRenderer.materials[1].mainTexture != (Object) this.Textures[1]))
+        return;
+      this.MyRenderer.materials[1].mainTexture = this.Textures[1];
+    }
+    else if (this.Student.LostTeacherTrust)
+    {
+      if (!((Object) this.MyRenderer.materials[1].mainTexture != (Object) this.SadEyes))
+        return;
+      this.MyRenderer.materials[1].mainTexture = this.SadEyes;
+    }
+    else if (this.Student.WitnessedMurder || this.Student.WitnessedCorpse)
+    {
+      if (!((Object) this.MyRenderer.materials[1].mainTexture != (Object) this.AlarmedEyes))
+        return;
+      this.MyRenderer.materials[1].mainTexture = this.AlarmedEyes;
+    }
+    else
+    {
+      this.Timer += Time.deltaTime;
+      if ((double) this.Timer <= 2.0)
+        return;
+      while (this.ID == this.PreviousID)
+        this.ID = Random.Range(0, this.Textures.Length);
+      this.MyRenderer.materials[1].mainTexture = this.Textures[this.ID];
+      this.PreviousID = this.ID;
+      this.Timer = 0.0f;
+    }
+  }
 }

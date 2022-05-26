@@ -1,17 +1,22 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AudioClipArrayWrapper
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
-// Token: 0x02000499 RID: 1177
 [Serializable]
 public class AudioClipArrayWrapper : ArrayWrapper<AudioClip>
 {
-	// Token: 0x06001F6D RID: 8045 RVA: 0x001C0887 File Offset: 0x001BEA87
-	public AudioClipArrayWrapper(int size) : base(size)
-	{
-	}
+  public AudioClipArrayWrapper(int size)
+    : base(size)
+  {
+  }
 
-	// Token: 0x06001F6E RID: 8046 RVA: 0x001C0890 File Offset: 0x001BEA90
-	public AudioClipArrayWrapper(AudioClip[] elements) : base(elements)
-	{
-	}
+  public AudioClipArrayWrapper(AudioClip[] elements)
+    : base(elements)
+  {
+  }
 }

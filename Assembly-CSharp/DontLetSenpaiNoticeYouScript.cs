@@ -1,69 +1,54 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DontLetSenpaiNoticeYouScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000CE RID: 206
 public class DontLetSenpaiNoticeYouScript : MonoBehaviour
 {
-	// Token: 0x060009CE RID: 2510 RVA: 0x00051E5C File Offset: 0x0005005C
-	private void Start()
-	{
-		while (this.ID < this.Letters.Length)
-		{
-			UILabel uilabel = this.Letters[this.ID];
-			uilabel.transform.localScale = new Vector3(10f, 10f, 1f);
-			uilabel.color = new Color(uilabel.color.r, uilabel.color.g, uilabel.color.b, 0f);
-			this.Origins[this.ID] = uilabel.transform.localPosition;
-			this.ID++;
-		}
-		this.ID = 0;
-	}
+  public UILabel[] Letters;
+  public Vector3[] Origins;
+  public AudioClip Slam;
+  public bool Proceed;
+  public int ShakeID;
+  public int ID;
 
-	// Token: 0x060009CF RID: 2511 RVA: 0x00051F10 File Offset: 0x00050110
-	private void Update()
-	{
-		if (Input.GetButtonDown("A"))
-		{
-			this.Proceed = true;
-		}
-		if (this.Proceed)
-		{
-			if (this.ID < this.Letters.Length)
-			{
-				UILabel uilabel = this.Letters[this.ID];
-				uilabel.transform.localScale = Vector3.MoveTowards(uilabel.transform.localScale, Vector3.one, Time.deltaTime * 100f);
-				uilabel.color = new Color(uilabel.color.r, uilabel.color.g, uilabel.color.b, uilabel.color.a + Time.deltaTime * 10f);
-				if (uilabel.transform.localScale == Vector3.one)
-				{
-					base.GetComponent<AudioSource>().PlayOneShot(this.Slam);
-					this.ID++;
-				}
-			}
-			this.ShakeID = 0;
-			while (this.ShakeID < this.Letters.Length)
-			{
-				UILabel uilabel2 = this.Letters[this.ShakeID];
-				Vector3 vector = this.Origins[this.ShakeID];
-				uilabel2.transform.localPosition = new Vector3(vector.x + UnityEngine.Random.Range(-5f, 5f), vector.y + UnityEngine.Random.Range(-5f, 5f), uilabel2.transform.localPosition.z);
-				this.ShakeID++;
-			}
-		}
-	}
+  private void Start()
+  {
+    for (; this.ID < this.Letters.Length; ++this.ID)
+    {
+      UILabel letter = this.Letters[this.ID];
+      letter.transform.localScale = new Vector3(10f, 10f, 1f);
+      letter.color = new Color(letter.color.r, letter.color.g, letter.color.b, 0.0f);
+      this.Origins[this.ID] = letter.transform.localPosition;
+    }
+    this.ID = 0;
+  }
 
-	// Token: 0x04000A3E RID: 2622
-	public UILabel[] Letters;
-
-	// Token: 0x04000A3F RID: 2623
-	public Vector3[] Origins;
-
-	// Token: 0x04000A40 RID: 2624
-	public AudioClip Slam;
-
-	// Token: 0x04000A41 RID: 2625
-	public bool Proceed;
-
-	// Token: 0x04000A42 RID: 2626
-	public int ShakeID;
-
-	// Token: 0x04000A43 RID: 2627
-	public int ID;
+  private void Update()
+  {
+    if (Input.GetButtonDown("A"))
+      this.Proceed = true;
+    if (!this.Proceed)
+      return;
+    if (this.ID < this.Letters.Length)
+    {
+      UILabel letter = this.Letters[this.ID];
+      letter.transform.localScale = Vector3.MoveTowards(letter.transform.localScale, Vector3.one, Time.deltaTime * 100f);
+      letter.color = new Color(letter.color.r, letter.color.g, letter.color.b, letter.color.a + Time.deltaTime * 10f);
+      if (letter.transform.localScale == Vector3.one)
+      {
+        this.GetComponent<AudioSource>().PlayOneShot(this.Slam);
+        ++this.ID;
+      }
+    }
+    for (this.ShakeID = 0; this.ShakeID < this.Letters.Length; ++this.ShakeID)
+    {
+      UILabel letter = this.Letters[this.ShakeID];
+      Vector3 origin = this.Origins[this.ShakeID];
+      letter.transform.localPosition = new Vector3(origin.x + Random.Range(-5f, 5f), origin.y + Random.Range(-5f, 5f), letter.transform.localPosition.z);
+    }
+  }
 }

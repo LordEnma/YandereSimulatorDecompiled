@@ -1,30 +1,28 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YanvaniaJarShardScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020004E8 RID: 1256
 public class YanvaniaJarShardScript : MonoBehaviour
 {
-	// Token: 0x060020EF RID: 8431 RVA: 0x001E77CC File Offset: 0x001E59CC
-	private void Start()
-	{
-		this.Rotation = UnityEngine.Random.Range(-360f, 360f);
-		base.GetComponent<Rigidbody>().AddForce(UnityEngine.Random.Range(-100f, 100f), UnityEngine.Random.Range(0f, 100f), UnityEngine.Random.Range(-100f, 100f));
-	}
+  public float MyRotation;
+  public float Rotation;
 
-	// Token: 0x060020F0 RID: 8432 RVA: 0x001E7828 File Offset: 0x001E5A28
-	private void Update()
-	{
-		this.MyRotation += this.Rotation;
-		base.transform.eulerAngles = new Vector3(this.MyRotation, this.MyRotation, this.MyRotation);
-		if (base.transform.position.y < 6.5f)
-		{
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  private void Start()
+  {
+    this.Rotation = Random.Range(-360f, 360f);
+    this.GetComponent<Rigidbody>().AddForce(Random.Range(-100f, 100f), Random.Range(0.0f, 100f), Random.Range(-100f, 100f));
+  }
 
-	// Token: 0x04004876 RID: 18550
-	public float MyRotation;
-
-	// Token: 0x04004877 RID: 18551
-	public float Rotation;
+  private void Update()
+  {
+    this.MyRotation += this.Rotation;
+    this.transform.eulerAngles = new Vector3(this.MyRotation, this.MyRotation, this.MyRotation);
+    if ((double) this.transform.position.y >= 6.5)
+      return;
+    Object.Destroy((Object) this.gameObject);
+  }
 }

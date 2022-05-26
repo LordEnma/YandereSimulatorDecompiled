@@ -1,14 +1,18 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MaidDereMinigame.SceneObject
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005B5 RID: 1461
-	[CreateAssetMenu(fileName = "New Scene Object", menuName = "Scenes/New Scene Object")]
-	[Serializable]
-	public class SceneObject : ScriptableObject
-	{
-		// Token: 0x04004D81 RID: 19841
-		public int sceneBuildNumber = -1;
-	}
+  [CreateAssetMenu(fileName = "New Scene Object", menuName = "Scenes/New Scene Object")]
+  [Serializable]
+  public class SceneObject : ScriptableObject
+  {
+    public int sceneBuildNumber = -1;
+  }
 }

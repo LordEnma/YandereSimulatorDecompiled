@@ -1,77 +1,62 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YandereSimulator.Yancord.ChatPartnerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace YandereSimulator.Yancord
 {
-	// Token: 0x02000527 RID: 1319
-	public class ChatPartnerScript : MonoBehaviour
-	{
-		// Token: 0x060021B7 RID: 8631 RVA: 0x001F22DC File Offset: 0x001F04DC
-		private void Awake()
-		{
-			if (this.MyProfile != null)
-			{
-				if (this.NameLabel != null)
-				{
-					this.NameLabel.text = this.MyProfile.FirstName + " " + this.MyProfile.LastName;
-				}
-				if (this.TagLabel != null)
-				{
-					this.TagLabel.text = this.MyProfile.GetTag(true);
-				}
-				if (this.ProfilPictureTexture != null)
-				{
-					this.ProfilPictureTexture.mainTexture = this.MyProfile.ProfilePicture;
-				}
-				if (this.StatusTexture != null)
-				{
-					this.StatusTexture.mainTexture = this.GetStatusTexture(this.MyProfile.CurrentStatus);
-				}
-				base.gameObject.name = this.MyProfile.FirstName + "_Profile";
-				return;
-			}
-			Debug.LogError("[ChatPartnerScript] MyProfile wasn't assgined!");
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
+  public class ChatPartnerScript : MonoBehaviour
+  {
+    [Header("== Partner Informations ==")]
+    public Profile MyProfile;
+    [Space(20f)]
+    public UILabel NameLabel;
+    public UILabel TagLabel;
+    public UITexture ProfilPictureTexture;
+    public UITexture StatusTexture;
+    [Space(20f)]
+    public List<Texture2D> StatusTextures = new List<Texture2D>();
 
-		// Token: 0x060021B8 RID: 8632 RVA: 0x001F23DC File Offset: 0x001F05DC
-		private Texture2D GetStatusTexture(Status currentStatus)
-		{
-			switch (currentStatus)
-			{
-			case Status.Online:
-				return this.StatusTextures[1];
-			case Status.Idle:
-				return this.StatusTextures[2];
-			case Status.DontDisturb:
-				return this.StatusTextures[3];
-			case Status.Invisible:
-				return this.StatusTextures[4];
-			default:
-				return null;
-			}
-		}
+    private void Awake()
+    {
+      if ((Object) this.MyProfile != (Object) null)
+      {
+        if ((Object) this.NameLabel != (Object) null)
+          this.NameLabel.text = this.MyProfile.FirstName + " " + this.MyProfile.LastName;
+        if ((Object) this.TagLabel != (Object) null)
+          this.TagLabel.text = this.MyProfile.GetTag(true);
+        if ((Object) this.ProfilPictureTexture != (Object) null)
+          this.ProfilPictureTexture.mainTexture = (Texture) this.MyProfile.ProfilePicture;
+        if ((Object) this.StatusTexture != (Object) null)
+          this.StatusTexture.mainTexture = (Texture) this.GetStatusTexture(this.MyProfile.CurrentStatus);
+        this.gameObject.name = this.MyProfile.FirstName + "_Profile";
+      }
+      else
+      {
+        Debug.LogError((object) "[ChatPartnerScript] MyProfile wasn't assgined!");
+        Object.Destroy((Object) this.gameObject);
+      }
+    }
 
-		// Token: 0x04004A36 RID: 18998
-		[Header("== Partner Informations ==")]
-		public Profile MyProfile;
-
-		// Token: 0x04004A37 RID: 18999
-		[Space(20f)]
-		public UILabel NameLabel;
-
-		// Token: 0x04004A38 RID: 19000
-		public UILabel TagLabel;
-
-		// Token: 0x04004A39 RID: 19001
-		public UITexture ProfilPictureTexture;
-
-		// Token: 0x04004A3A RID: 19002
-		public UITexture StatusTexture;
-
-		// Token: 0x04004A3B RID: 19003
-		[Space(20f)]
-		public List<Texture2D> StatusTextures = new List<Texture2D>();
-	}
+    private Texture2D GetStatusTexture(Status currentStatus)
+    {
+      switch (currentStatus)
+      {
+        case Status.Online:
+          return this.StatusTextures[1];
+        case Status.Idle:
+          return this.StatusTextures[2];
+        case Status.DontDisturb:
+          return this.StatusTextures[3];
+        case Status.Invisible:
+          return this.StatusTextures[4];
+        default:
+          return (Texture2D) null;
+      }
+    }
+  }
 }

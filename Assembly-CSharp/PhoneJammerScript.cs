@@ -1,27 +1,26 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PhoneJammerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003A4 RID: 932
 public class PhoneJammerScript : MonoBehaviour
 {
-	// Token: 0x06001AA8 RID: 6824 RVA: 0x0011F830 File Offset: 0x0011DA30
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Yandere.Alphabet.Cheats++;
-			this.Prompt.Yandere.Alphabet.UpdateDifficultyLabel();
-			this.Prompt.Yandere.StudentManager.Jammed = true;
-			this.JammingLines.SetActive(true);
-			this.Prompt.enabled = false;
-			this.Prompt.Hide();
-			base.enabled = false;
-		}
-	}
+  public GameObject JammingLines;
+  public PromptScript Prompt;
 
-	// Token: 0x04002C5A RID: 11354
-	public GameObject JammingLines;
-
-	// Token: 0x04002C5B RID: 11355
-	public PromptScript Prompt;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    ++this.Prompt.Yandere.Alphabet.Cheats;
+    this.Prompt.Yandere.Alphabet.UpdateDifficultyLabel();
+    this.Prompt.Yandere.StudentManager.Jammed = true;
+    this.JammingLines.SetActive(true);
+    this.Prompt.enabled = false;
+    this.Prompt.Hide();
+    this.enabled = false;
+  }
 }

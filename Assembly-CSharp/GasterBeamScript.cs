@@ -1,59 +1,49 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: GasterBeamScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020002DD RID: 733
 public class GasterBeamScript : MonoBehaviour
 {
-	// Token: 0x060014E8 RID: 5352 RVA: 0x000CF042 File Offset: 0x000CD242
-	private void Start()
-	{
-		if (this.LoveLoveBeam)
-		{
-			base.transform.localScale = new Vector3(0f, 0f, 0f);
-		}
-	}
+  public float Strength = 1000f;
+  public float Target = 2f;
+  public bool LoveLoveBeam;
 
-	// Token: 0x060014E9 RID: 5353 RVA: 0x000CF06C File Offset: 0x000CD26C
-	private void Update()
-	{
-		if (this.LoveLoveBeam)
-		{
-			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(100f, this.Target, this.Target), Time.deltaTime * 10f);
-			if (base.transform.localScale.x > 99.99f)
-			{
-				this.Target = 0f;
-				if (base.transform.localScale.y < 0.1f)
-				{
-					UnityEngine.Object.Destroy(base.gameObject);
-				}
-			}
-		}
-	}
+  private void Start()
+  {
+    if (!this.LoveLoveBeam)
+      return;
+    this.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+  }
 
-	// Token: 0x060014EA RID: 5354 RVA: 0x000CF104 File Offset: 0x000CD304
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.layer == 9)
-		{
-			StudentScript component = other.gameObject.GetComponent<StudentScript>();
-			if (component != null)
-			{
-				component.DeathType = DeathType.Burning;
-				component.BecomeRagdoll();
-				Rigidbody rigidbody = component.Ragdoll.AllRigidbodies[0];
-				rigidbody.isKinematic = false;
-				rigidbody.AddForce((rigidbody.transform.root.position - base.transform.root.position) * this.Strength);
-				rigidbody.AddForce(Vector3.up * 1000f);
-			}
-		}
-	}
+  private void Update()
+  {
+    if (!this.LoveLoveBeam)
+      return;
+    this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(100f, this.Target, this.Target), Time.deltaTime * 10f);
+    if ((double) this.transform.localScale.x <= 99.9899978637695)
+      return;
+    this.Target = 0.0f;
+    if ((double) this.transform.localScale.y >= 0.100000001490116)
+      return;
+    Object.Destroy((Object) this.gameObject);
+  }
 
-	// Token: 0x0400210B RID: 8459
-	public float Strength = 1000f;
-
-	// Token: 0x0400210C RID: 8460
-	public float Target = 2f;
-
-	// Token: 0x0400210D RID: 8461
-	public bool LoveLoveBeam;
+  private void OnTriggerEnter(Collider other)
+  {
+    if (other.gameObject.layer != 9)
+      return;
+    StudentScript component = other.gameObject.GetComponent<StudentScript>();
+    if (!((Object) component != (Object) null))
+      return;
+    component.DeathType = DeathType.Burning;
+    component.BecomeRagdoll();
+    Rigidbody allRigidbody = component.Ragdoll.AllRigidbodies[0];
+    allRigidbody.isKinematic = false;
+    allRigidbody.AddForce((allRigidbody.transform.root.position - this.transform.root.position) * this.Strength);
+    allRigidbody.AddForce(Vector3.up * 1000f);
+  }
 }

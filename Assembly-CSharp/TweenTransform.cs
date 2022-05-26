@@ -1,79 +1,66 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TweenTransform
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000093 RID: 147
 [AddComponentMenu("NGUI/Tween/Tween Transform")]
 public class TweenTransform : UITweener
 {
-	// Token: 0x060005CC RID: 1484 RVA: 0x0003562C File Offset: 0x0003382C
-	protected override void OnUpdate(float factor, bool isFinished)
-	{
-		if (this.to != null)
-		{
-			if (this.mTrans == null)
-			{
-				this.mTrans = base.transform;
-				this.mPos = this.mTrans.position;
-				this.mRot = this.mTrans.rotation;
-				this.mScale = this.mTrans.localScale;
-			}
-			if (this.from != null)
-			{
-				this.mTrans.position = this.from.position * (1f - factor) + this.to.position * factor;
-				this.mTrans.localScale = this.from.localScale * (1f - factor) + this.to.localScale * factor;
-				this.mTrans.rotation = Quaternion.Slerp(this.from.rotation, this.to.rotation, factor);
-			}
-			else
-			{
-				this.mTrans.position = this.mPos * (1f - factor) + this.to.position * factor;
-				this.mTrans.localScale = this.mScale * (1f - factor) + this.to.localScale * factor;
-				this.mTrans.rotation = Quaternion.Slerp(this.mRot, this.to.rotation, factor);
-			}
-			if (this.parentWhenFinished && isFinished)
-			{
-				this.mTrans.parent = this.to;
-			}
-		}
-	}
+  public Transform from;
+  public Transform to;
+  public bool parentWhenFinished;
+  private Transform mTrans;
+  private Vector3 mPos;
+  private Quaternion mRot;
+  private Vector3 mScale;
 
-	// Token: 0x060005CD RID: 1485 RVA: 0x000357E7 File Offset: 0x000339E7
-	public static TweenTransform Begin(GameObject go, float duration, Transform to)
-	{
-		return TweenTransform.Begin(go, duration, null, to);
-	}
+  protected override void OnUpdate(float factor, bool isFinished)
+  {
+    if (!((Object) this.to != (Object) null))
+      return;
+    if ((Object) this.mTrans == (Object) null)
+    {
+      this.mTrans = this.transform;
+      this.mPos = this.mTrans.position;
+      this.mRot = this.mTrans.rotation;
+      this.mScale = this.mTrans.localScale;
+    }
+    if ((Object) this.from != (Object) null)
+    {
+      this.mTrans.position = this.from.position * (1f - factor) + this.to.position * factor;
+      this.mTrans.localScale = this.from.localScale * (1f - factor) + this.to.localScale * factor;
+      this.mTrans.rotation = Quaternion.Slerp(this.from.rotation, this.to.rotation, factor);
+    }
+    else
+    {
+      this.mTrans.position = this.mPos * (1f - factor) + this.to.position * factor;
+      this.mTrans.localScale = this.mScale * (1f - factor) + this.to.localScale * factor;
+      this.mTrans.rotation = Quaternion.Slerp(this.mRot, this.to.rotation, factor);
+    }
+    if (!(this.parentWhenFinished & isFinished))
+      return;
+    this.mTrans.parent = this.to;
+  }
 
-	// Token: 0x060005CE RID: 1486 RVA: 0x000357F4 File Offset: 0x000339F4
-	public static TweenTransform Begin(GameObject go, float duration, Transform from, Transform to)
-	{
-		TweenTransform tweenTransform = UITweener.Begin<TweenTransform>(go, duration, 0f);
-		tweenTransform.from = from;
-		tweenTransform.to = to;
-		if (duration <= 0f)
-		{
-			tweenTransform.Sample(1f, true);
-			tweenTransform.enabled = false;
-		}
-		return tweenTransform;
-	}
+  public static TweenTransform Begin(GameObject go, float duration, Transform to) => TweenTransform.Begin(go, duration, (Transform) null, to);
 
-	// Token: 0x040005E4 RID: 1508
-	public Transform from;
-
-	// Token: 0x040005E5 RID: 1509
-	public Transform to;
-
-	// Token: 0x040005E6 RID: 1510
-	public bool parentWhenFinished;
-
-	// Token: 0x040005E7 RID: 1511
-	private Transform mTrans;
-
-	// Token: 0x040005E8 RID: 1512
-	private Vector3 mPos;
-
-	// Token: 0x040005E9 RID: 1513
-	private Quaternion mRot;
-
-	// Token: 0x040005EA RID: 1514
-	private Vector3 mScale;
+  public static TweenTransform Begin(
+    GameObject go,
+    float duration,
+    Transform from,
+    Transform to)
+  {
+    TweenTransform tweenTransform = UITweener.Begin<TweenTransform>(go, duration);
+    tweenTransform.from = from;
+    tweenTransform.to = to;
+    if ((double) duration <= 0.0)
+    {
+      tweenTransform.Sample(1f, true);
+      tweenTransform.enabled = false;
+    }
+    return tweenTransform;
+  }
 }

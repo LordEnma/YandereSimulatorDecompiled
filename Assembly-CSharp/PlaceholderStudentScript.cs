@@ -1,108 +1,78 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PlaceholderStudentScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003AE RID: 942
 public class PlaceholderStudentScript : MonoBehaviour
 {
-	// Token: 0x06001AE4 RID: 6884 RVA: 0x00125106 File Offset: 0x00123306
-	private void Start()
-	{
-		this.Target = UnityEngine.Object.Instantiate<GameObject>(this.EmptyGameObject).transform;
-		this.ChooseNewDestination();
-	}
+  public FakeStudentSpawnerScript FakeStudentSpawner;
+  public GameObject EmptyGameObject;
+  public bool ShootRaycasts;
+  public Transform Target;
+  public Transform Eyes;
+  public int StudentID;
+  public int Phase;
+  public int NESW;
 
-	// Token: 0x06001AE5 RID: 6885 RVA: 0x00125124 File Offset: 0x00123324
-	private void Update()
-	{
-		base.transform.LookAt(this.Target.position);
-		base.transform.position = Vector3.MoveTowards(base.transform.position, this.Target.position, Time.deltaTime);
-		if (Vector3.Distance(base.transform.position, this.Target.position) < 1f)
-		{
-			this.ChooseNewDestination();
-		}
-		if (Input.GetKeyDown("space"))
-		{
-			if (!this.ShootRaycasts)
-			{
-				this.ShootRaycasts = true;
-			}
-			else
-			{
-				this.Phase++;
-			}
-		}
-		if (base.transform.position.y < 1f && this.ShootRaycasts)
-		{
-			if (this.Phase == 0)
-			{
-				Debug.DrawLine(this.Eyes.position, this.FakeStudentSpawner.SuspiciousObjects[0].transform.position, Color.red);
-				Debug.DrawLine(this.Eyes.position, this.FakeStudentSpawner.SuspiciousObjects[1].transform.position, Color.red);
-				Debug.DrawLine(this.Eyes.position, this.FakeStudentSpawner.SuspiciousObjects[2].transform.position, Color.red);
-				return;
-			}
-			if (this.StudentID < this.FakeStudentSpawner.StudentID + 5 && this.StudentID > this.FakeStudentSpawner.StudentID - 5)
-			{
-				if (Vector3.Distance(base.transform.position, this.FakeStudentSpawner.SuspiciousObjects[0].transform.position) < 5f)
-				{
-					Debug.DrawLine(this.Eyes.position, this.FakeStudentSpawner.SuspiciousObjects[0].transform.position, Color.red);
-				}
-				if (Vector3.Distance(base.transform.position, this.FakeStudentSpawner.SuspiciousObjects[1].transform.position) < 5f)
-				{
-					Debug.DrawLine(this.Eyes.position, this.FakeStudentSpawner.SuspiciousObjects[1].transform.position, Color.red);
-				}
-				if (Vector3.Distance(base.transform.position, this.FakeStudentSpawner.SuspiciousObjects[2].transform.position) < 5f)
-				{
-					Debug.DrawLine(this.Eyes.position, this.FakeStudentSpawner.SuspiciousObjects[2].transform.position, Color.red);
-				}
-			}
-		}
-	}
+  private void Start()
+  {
+    this.Target = Object.Instantiate<GameObject>(this.EmptyGameObject).transform;
+    this.ChooseNewDestination();
+  }
 
-	// Token: 0x06001AE6 RID: 6886 RVA: 0x001253B8 File Offset: 0x001235B8
-	private void ChooseNewDestination()
-	{
-		if (this.NESW == 1)
-		{
-			this.Target.position = new Vector3(UnityEngine.Random.Range(-21f, 21f), base.transform.position.y, UnityEngine.Random.Range(21f, 19f));
-			return;
-		}
-		if (this.NESW == 2)
-		{
-			this.Target.position = new Vector3(UnityEngine.Random.Range(19f, 21f), base.transform.position.y, UnityEngine.Random.Range(29f, -37f));
-			return;
-		}
-		if (this.NESW == 3)
-		{
-			this.Target.position = new Vector3(UnityEngine.Random.Range(-21f, 21f), base.transform.position.y, UnityEngine.Random.Range(-21f, -19f));
-			return;
-		}
-		if (this.NESW == 4)
-		{
-			this.Target.position = new Vector3(UnityEngine.Random.Range(-19f, -21f), base.transform.position.y, UnityEngine.Random.Range(29f, -37f));
-		}
-	}
+  private void Update()
+  {
+    this.transform.LookAt(this.Target.position);
+    this.transform.position = Vector3.MoveTowards(this.transform.position, this.Target.position, Time.deltaTime);
+    if ((double) Vector3.Distance(this.transform.position, this.Target.position) < 1.0)
+      this.ChooseNewDestination();
+    if (Input.GetKeyDown("space"))
+    {
+      if (!this.ShootRaycasts)
+        this.ShootRaycasts = true;
+      else
+        ++this.Phase;
+    }
+    if ((double) this.transform.position.y >= 1.0 || !this.ShootRaycasts)
+      return;
+    if (this.Phase == 0)
+    {
+      Debug.DrawLine(this.Eyes.position, this.FakeStudentSpawner.SuspiciousObjects[0].transform.position, Color.red);
+      Debug.DrawLine(this.Eyes.position, this.FakeStudentSpawner.SuspiciousObjects[1].transform.position, Color.red);
+      Debug.DrawLine(this.Eyes.position, this.FakeStudentSpawner.SuspiciousObjects[2].transform.position, Color.red);
+    }
+    else
+    {
+      if (this.StudentID >= this.FakeStudentSpawner.StudentID + 5 || this.StudentID <= this.FakeStudentSpawner.StudentID - 5)
+        return;
+      if ((double) Vector3.Distance(this.transform.position, this.FakeStudentSpawner.SuspiciousObjects[0].transform.position) < 5.0)
+        Debug.DrawLine(this.Eyes.position, this.FakeStudentSpawner.SuspiciousObjects[0].transform.position, Color.red);
+      if ((double) Vector3.Distance(this.transform.position, this.FakeStudentSpawner.SuspiciousObjects[1].transform.position) < 5.0)
+        Debug.DrawLine(this.Eyes.position, this.FakeStudentSpawner.SuspiciousObjects[1].transform.position, Color.red);
+      if ((double) Vector3.Distance(this.transform.position, this.FakeStudentSpawner.SuspiciousObjects[2].transform.position) >= 5.0)
+        return;
+      Debug.DrawLine(this.Eyes.position, this.FakeStudentSpawner.SuspiciousObjects[2].transform.position, Color.red);
+    }
+  }
 
-	// Token: 0x04002D13 RID: 11539
-	public FakeStudentSpawnerScript FakeStudentSpawner;
-
-	// Token: 0x04002D14 RID: 11540
-	public GameObject EmptyGameObject;
-
-	// Token: 0x04002D15 RID: 11541
-	public bool ShootRaycasts;
-
-	// Token: 0x04002D16 RID: 11542
-	public Transform Target;
-
-	// Token: 0x04002D17 RID: 11543
-	public Transform Eyes;
-
-	// Token: 0x04002D18 RID: 11544
-	public int StudentID;
-
-	// Token: 0x04002D19 RID: 11545
-	public int Phase;
-
-	// Token: 0x04002D1A RID: 11546
-	public int NESW;
+  private void ChooseNewDestination()
+  {
+    if (this.NESW == 1)
+      this.Target.position = new Vector3(Random.Range(-21f, 21f), this.transform.position.y, Random.Range(21f, 19f));
+    else if (this.NESW == 2)
+      this.Target.position = new Vector3(Random.Range(19f, 21f), this.transform.position.y, Random.Range(29f, -37f));
+    else if (this.NESW == 3)
+    {
+      this.Target.position = new Vector3(Random.Range(-21f, 21f), this.transform.position.y, Random.Range(-21f, -19f));
+    }
+    else
+    {
+      if (this.NESW != 4)
+        return;
+      this.Target.position = new Vector3(Random.Range(-19f, -21f), this.transform.position.y, Random.Range(29f, -37f));
+    }
+  }
 }

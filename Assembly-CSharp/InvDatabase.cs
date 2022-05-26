@@ -1,137 +1,95 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: InvDatabase
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000029 RID: 41
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Examples/Item Database")]
 public class InvDatabase : MonoBehaviour
 {
-	// Token: 0x17000005 RID: 5
-	// (get) Token: 0x060000A3 RID: 163 RVA: 0x00011C00 File Offset: 0x0000FE00
-	public static InvDatabase[] list
-	{
-		get
-		{
-			if (InvDatabase.mIsDirty)
-			{
-				InvDatabase.mIsDirty = false;
-				InvDatabase.mList = NGUITools.FindActive<InvDatabase>();
-			}
-			return InvDatabase.mList;
-		}
-	}
+  private static InvDatabase[] mList;
+  private static bool mIsDirty = true;
+  public int databaseID;
+  public List<InvBaseItem> items = new List<InvBaseItem>();
+  public Object iconAtlas;
 
-	// Token: 0x060000A4 RID: 164 RVA: 0x00011C1E File Offset: 0x0000FE1E
-	private void OnEnable()
-	{
-		InvDatabase.mIsDirty = true;
-	}
+  public static InvDatabase[] list
+  {
+    get
+    {
+      if (InvDatabase.mIsDirty)
+      {
+        InvDatabase.mIsDirty = false;
+        InvDatabase.mList = NGUITools.FindActive<InvDatabase>();
+      }
+      return InvDatabase.mList;
+    }
+  }
 
-	// Token: 0x060000A5 RID: 165 RVA: 0x00011C26 File Offset: 0x0000FE26
-	private void OnDisable()
-	{
-		InvDatabase.mIsDirty = true;
-	}
+  private void OnEnable() => InvDatabase.mIsDirty = true;
 
-	// Token: 0x060000A6 RID: 166 RVA: 0x00011C30 File Offset: 0x0000FE30
-	private InvBaseItem GetItem(int id16)
-	{
-		int i = 0;
-		int count = this.items.Count;
-		while (i < count)
-		{
-			InvBaseItem invBaseItem = this.items[i];
-			if (invBaseItem.id16 == id16)
-			{
-				return invBaseItem;
-			}
-			i++;
-		}
-		return null;
-	}
+  private void OnDisable() => InvDatabase.mIsDirty = true;
 
-	// Token: 0x060000A7 RID: 167 RVA: 0x00011C70 File Offset: 0x0000FE70
-	private static InvDatabase GetDatabase(int dbID)
-	{
-		int i = 0;
-		int num = InvDatabase.list.Length;
-		while (i < num)
-		{
-			InvDatabase invDatabase = InvDatabase.list[i];
-			if (invDatabase.databaseID == dbID)
-			{
-				return invDatabase;
-			}
-			i++;
-		}
-		return null;
-	}
+  private InvBaseItem GetItem(int id16)
+  {
+    int index = 0;
+    for (int count = this.items.Count; index < count; ++index)
+    {
+      InvBaseItem invBaseItem = this.items[index];
+      if (invBaseItem.id16 == id16)
+        return invBaseItem;
+    }
+    return (InvBaseItem) null;
+  }
 
-	// Token: 0x060000A8 RID: 168 RVA: 0x00011CA8 File Offset: 0x0000FEA8
-	public static InvBaseItem FindByID(int id32)
-	{
-		InvDatabase database = InvDatabase.GetDatabase(id32 >> 16);
-		if (!(database != null))
-		{
-			return null;
-		}
-		return database.GetItem(id32 & 65535);
-	}
+  private static InvDatabase GetDatabase(int dbID)
+  {
+    int index = 0;
+    for (int length = InvDatabase.list.Length; index < length; ++index)
+    {
+      InvDatabase database = InvDatabase.list[index];
+      if (database.databaseID == dbID)
+        return database;
+    }
+    return (InvDatabase) null;
+  }
 
-	// Token: 0x060000A9 RID: 169 RVA: 0x00011CD8 File Offset: 0x0000FED8
-	public static InvBaseItem FindByName(string exact)
-	{
-		int i = 0;
-		int num = InvDatabase.list.Length;
-		while (i < num)
-		{
-			InvDatabase invDatabase = InvDatabase.list[i];
-			int j = 0;
-			int count = invDatabase.items.Count;
-			while (j < count)
-			{
-				InvBaseItem invBaseItem = invDatabase.items[j];
-				if (invBaseItem.name == exact)
-				{
-					return invBaseItem;
-				}
-				j++;
-			}
-			i++;
-		}
-		return null;
-	}
+  public static InvBaseItem FindByID(int id32)
+  {
+    InvDatabase database = InvDatabase.GetDatabase(id32 >> 16);
+    return !((Object) database != (Object) null) ? (InvBaseItem) null : database.GetItem(id32 & (int) ushort.MaxValue);
+  }
 
-	// Token: 0x060000AA RID: 170 RVA: 0x00011D3C File Offset: 0x0000FF3C
-	public static int FindItemID(InvBaseItem item)
-	{
-		int i = 0;
-		int num = InvDatabase.list.Length;
-		while (i < num)
-		{
-			InvDatabase invDatabase = InvDatabase.list[i];
-			if (invDatabase.items.Contains(item))
-			{
-				return invDatabase.databaseID << 16 | item.id16;
-			}
-			i++;
-		}
-		return -1;
-	}
+  public static InvBaseItem FindByName(string exact)
+  {
+    int index1 = 0;
+    for (int length = InvDatabase.list.Length; index1 < length; ++index1)
+    {
+      InvDatabase invDatabase = InvDatabase.list[index1];
+      int index2 = 0;
+      for (int count = invDatabase.items.Count; index2 < count; ++index2)
+      {
+        InvBaseItem byName = invDatabase.items[index2];
+        if (byName.name == exact)
+          return byName;
+      }
+    }
+    return (InvBaseItem) null;
+  }
 
-	// Token: 0x0400028A RID: 650
-	private static InvDatabase[] mList;
-
-	// Token: 0x0400028B RID: 651
-	private static bool mIsDirty = true;
-
-	// Token: 0x0400028C RID: 652
-	public int databaseID;
-
-	// Token: 0x0400028D RID: 653
-	public List<InvBaseItem> items = new List<InvBaseItem>();
-
-	// Token: 0x0400028E RID: 654
-	public UnityEngine.Object iconAtlas;
+  public static int FindItemID(InvBaseItem item)
+  {
+    int index = 0;
+    for (int length = InvDatabase.list.Length; index < length; ++index)
+    {
+      InvDatabase invDatabase = InvDatabase.list[index];
+      if (invDatabase.items.Contains(item))
+        return invDatabase.databaseID << 16 | item.id16;
+    }
+    return -1;
+  }
 }

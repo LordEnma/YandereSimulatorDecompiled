@@ -1,52 +1,42 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MaidDereMinigame.FlipBookPage
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005B2 RID: 1458
-	public class FlipBookPage : MonoBehaviour
-	{
-		// Token: 0x060024D8 RID: 9432 RVA: 0x00203D0A File Offset: 0x00201F0A
-		private void Awake()
-		{
-			this.animator = base.GetComponent<Animator>();
-			this.spriteRenderer = base.GetComponent<SpriteRenderer>();
-		}
+  public class FlipBookPage : MonoBehaviour
+  {
+    [HideInInspector]
+    public Animator animator;
+    [HideInInspector]
+    public SpriteRenderer spriteRenderer;
+    public GameObject objectToActivate;
 
-		// Token: 0x060024D9 RID: 9433 RVA: 0x00203D24 File Offset: 0x00201F24
-		public void Transition(bool toOpen)
-		{
-			this.animator.SetTrigger(toOpen ? "OpenPage" : "ClosePage");
-			if (this.objectToActivate != null)
-			{
-				this.objectToActivate.SetActive(false);
-			}
-		}
+    private void Awake()
+    {
+      this.animator = this.GetComponent<Animator>();
+      this.spriteRenderer = this.GetComponent<SpriteRenderer>();
+    }
 
-		// Token: 0x060024DA RID: 9434 RVA: 0x00203D5A File Offset: 0x00201F5A
-		public void SwitchSort()
-		{
-			this.spriteRenderer.sortingOrder = 10 - this.spriteRenderer.sortingOrder;
-		}
+    public void Transition(bool toOpen)
+    {
+      this.animator.SetTrigger(toOpen ? "OpenPage" : "ClosePage");
+      if (!((Object) this.objectToActivate != (Object) null))
+        return;
+      this.objectToActivate.SetActive(false);
+    }
 
-		// Token: 0x060024DB RID: 9435 RVA: 0x00203D75 File Offset: 0x00201F75
-		public void ObjectActive(bool toActive = true)
-		{
-			if (this.objectToActivate != null)
-			{
-				this.objectToActivate.SetActive(toActive);
-			}
-		}
+    public void SwitchSort() => this.spriteRenderer.sortingOrder = 10 - this.spriteRenderer.sortingOrder;
 
-		// Token: 0x04004D73 RID: 19827
-		[HideInInspector]
-		public Animator animator;
-
-		// Token: 0x04004D74 RID: 19828
-		[HideInInspector]
-		public SpriteRenderer spriteRenderer;
-
-		// Token: 0x04004D75 RID: 19829
-		public GameObject objectToActivate;
-	}
+    public void ObjectActive(bool toActive = true)
+    {
+      if (!((Object) this.objectToActivate != (Object) null))
+        return;
+      this.objectToActivate.SetActive(toActive);
+    }
+  }
 }

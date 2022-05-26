@@ -1,74 +1,57 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: OsanaWarningScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
-// Token: 0x0200038E RID: 910
 public class OsanaWarningScript : MonoBehaviour
 {
-	// Token: 0x06001A63 RID: 6755 RVA: 0x00119594 File Offset: 0x00117794
-	private void Start()
-	{
-		this.Darkness.color = new Color(0f, 0f, 0f, 1f);
-		ColorGradingModel.Settings settings = this.Profile.colorGrading.settings;
-		settings.basic.saturation = 1f;
-		settings.channelMixer.red = new Vector3(1f, 0f, 0f);
-		settings.channelMixer.green = new Vector3(0f, 1f, 0f);
-		settings.channelMixer.blue = new Vector3(0f, 0f, 1f);
-		this.Profile.colorGrading.settings = settings;
-		DepthOfFieldModel.Settings settings2 = this.Profile.depthOfField.settings;
-		settings2.focusDistance = 10f;
-		settings2.aperture = 11.2f;
-		this.Profile.depthOfField.settings = settings2;
-		BloomModel.Settings settings3 = this.Profile.bloom.settings;
-		settings3.bloom.intensity = 1f;
-		this.Profile.bloom.settings = settings3;
-	}
+  public PostProcessingProfile Profile;
+  public Transform RightHand;
+  public UISprite Darkness;
+  public float Alpha = 1f;
+  public bool FadeOut;
 
-	// Token: 0x06001A64 RID: 6756 RVA: 0x001196C8 File Offset: 0x001178C8
-	private void Update()
-	{
-		if (this.FadeOut)
-		{
-			this.Alpha = Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime);
-		}
-		else
-		{
-			this.Alpha = Mathf.MoveTowards(this.Alpha, 0f, Time.deltaTime);
-		}
-		this.Darkness.color = new Color(0f, 0f, 0f, this.Alpha);
-		if (this.Alpha == 0f)
-		{
-			if (Input.GetButtonDown("A"))
-			{
-				this.FadeOut = true;
-				return;
-			}
-		}
-		else if (this.Alpha == 1f)
-		{
-			SceneManager.LoadScene("CalendarScene");
-		}
-	}
+  private void Start()
+  {
+    this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
+    ColorGradingModel.Settings settings1 = this.Profile.colorGrading.settings;
+    settings1.basic.saturation = 1f;
+    settings1.channelMixer.red = new Vector3(1f, 0.0f, 0.0f);
+    settings1.channelMixer.green = new Vector3(0.0f, 1f, 0.0f);
+    settings1.channelMixer.blue = new Vector3(0.0f, 0.0f, 1f);
+    this.Profile.colorGrading.settings = settings1;
+    this.Profile.depthOfField.settings = this.Profile.depthOfField.settings with
+    {
+      focusDistance = 10f,
+      aperture = 11.2f
+    };
+    BloomModel.Settings settings2 = this.Profile.bloom.settings;
+    settings2.bloom.intensity = 1f;
+    this.Profile.bloom.settings = settings2;
+  }
 
-	// Token: 0x06001A65 RID: 6757 RVA: 0x00119774 File Offset: 0x00117974
-	private void LateUpdate()
-	{
-		this.RightHand.localEulerAngles += new Vector3(UnityEngine.Random.Range(1f, -1f), UnityEngine.Random.Range(1f, -1f), UnityEngine.Random.Range(1f, -1f));
-	}
+  private void Update()
+  {
+    this.Alpha = !this.FadeOut ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime) : Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime);
+    this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, this.Alpha);
+    if ((double) this.Alpha == 0.0)
+    {
+      if (!Input.GetButtonDown("A"))
+        return;
+      this.FadeOut = true;
+    }
+    else
+    {
+      if ((double) this.Alpha != 1.0)
+        return;
+      SceneManager.LoadScene("CalendarScene");
+    }
+  }
 
-	// Token: 0x04002B61 RID: 11105
-	public PostProcessingProfile Profile;
-
-	// Token: 0x04002B62 RID: 11106
-	public Transform RightHand;
-
-	// Token: 0x04002B63 RID: 11107
-	public UISprite Darkness;
-
-	// Token: 0x04002B64 RID: 11108
-	public float Alpha = 1f;
-
-	// Token: 0x04002B65 RID: 11109
-	public bool FadeOut;
+  private void LateUpdate() => this.RightHand.localEulerAngles += new Vector3(Random.Range(1f, -1f), Random.Range(1f, -1f), Random.Range(1f, -1f));
 }

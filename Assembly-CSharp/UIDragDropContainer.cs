@@ -1,19 +1,20 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIDragDropContainer
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200004E RID: 78
 [AddComponentMenu("NGUI/Interaction/Drag and Drop Container")]
 public class UIDragDropContainer : MonoBehaviour
 {
-	// Token: 0x06000167 RID: 359 RVA: 0x000156FB File Offset: 0x000138FB
-	protected virtual void Start()
-	{
-		if (this.reparentTarget == null)
-		{
-			this.reparentTarget = base.transform;
-		}
-	}
+  public Transform reparentTarget;
 
-	// Token: 0x04000327 RID: 807
-	public Transform reparentTarget;
+  protected virtual void Start()
+  {
+    if (!((Object) this.reparentTarget == (Object) null))
+      return;
+    this.reparentTarget = this.transform;
+  }
 }

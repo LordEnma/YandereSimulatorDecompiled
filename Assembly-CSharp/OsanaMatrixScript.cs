@@ -1,38 +1,32 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: OsanaMatrixScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200038A RID: 906
 public class OsanaMatrixScript : MonoBehaviour
 {
-	// Token: 0x06001A58 RID: 6744 RVA: 0x00117A18 File Offset: 0x00115C18
-	private void Update()
-	{
-		if (Input.GetKeyDown("z"))
-		{
-			this.Phase++;
-		}
-		if (this.Phase == 2)
-		{
-			this.MatrixEffect.Fade = Mathf.MoveTowards(this.MatrixEffect.Fade, 1f, Time.deltaTime);
-			return;
-		}
-		if (this.Phase == 3)
-		{
-			this.MatrixEffect.Fade = Mathf.MoveTowards(this.MatrixEffect.Fade, 0f, Time.deltaTime);
-			return;
-		}
-		if (this.Phase == 4)
-		{
-			this.Rivals.SetActive(true);
-		}
-	}
+  public CameraFilterPack_3D_Matrix MatrixEffect;
+  public GameObject Rivals;
+  public int Phase = 1;
 
-	// Token: 0x04002B3C RID: 11068
-	public CameraFilterPack_3D_Matrix MatrixEffect;
-
-	// Token: 0x04002B3D RID: 11069
-	public GameObject Rivals;
-
-	// Token: 0x04002B3E RID: 11070
-	public int Phase = 1;
+  private void Update()
+  {
+    if (Input.GetKeyDown("z"))
+      ++this.Phase;
+    if (this.Phase == 2)
+      this.MatrixEffect.Fade = Mathf.MoveTowards(this.MatrixEffect.Fade, 1f, Time.deltaTime);
+    else if (this.Phase == 3)
+    {
+      this.MatrixEffect.Fade = Mathf.MoveTowards(this.MatrixEffect.Fade, 0.0f, Time.deltaTime);
+    }
+    else
+    {
+      if (this.Phase != 4)
+        return;
+      this.Rivals.SetActive(true);
+    }
+  }
 }

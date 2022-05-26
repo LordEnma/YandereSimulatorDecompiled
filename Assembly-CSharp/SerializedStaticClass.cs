@@ -1,27 +1,19 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SerializedStaticClass
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x02000517 RID: 1303
+using System;
+
 [Serializable]
 public struct SerializedStaticClass
 {
-	// Token: 0x04004A09 RID: 18953
-	public string TypePath;
-
-	// Token: 0x04004A0A RID: 18954
-	public ValueDict PropertyValues;
-
-	// Token: 0x04004A0B RID: 18955
-	public ValueDict FieldValues;
-
-	// Token: 0x04004A0C RID: 18956
-	public ReferenceDict PropertyReferences;
-
-	// Token: 0x04004A0D RID: 18957
-	public ReferenceDict FieldReferences;
-
-	// Token: 0x04004A0E RID: 18958
-	public ReferenceArrayDict PropertyReferenceArrays;
-
-	// Token: 0x04004A0F RID: 18959
-	public ReferenceArrayDict FieldReferenceArrays;
+  public string TypePath;
+  public ValueDict PropertyValues;
+  public ValueDict FieldValues;
+  public ReferenceDict PropertyReferences;
+  public ReferenceDict FieldReferences;
+  public ReferenceArrayDict PropertyReferenceArrays;
+  public ReferenceArrayDict FieldReferenceArrays;
 }

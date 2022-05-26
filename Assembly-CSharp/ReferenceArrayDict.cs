@@ -1,7 +1,12 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ReferenceArrayDict
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using System.Collections.Generic;
 
-// Token: 0x0200051A RID: 1306
 [Serializable]
 public class ReferenceArrayDict : SerializableDictionary<string, List<string>>
 {

@@ -1,45 +1,32 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: GhostScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020002E7 RID: 743
 public class GhostScript : MonoBehaviour
 {
-	// Token: 0x06001513 RID: 5395 RVA: 0x000D8EC0 File Offset: 0x000D70C0
-	private void Update()
-	{
-		if (Time.timeScale > 0.0001f)
-		{
-			if (this.Frame > 0)
-			{
-				base.GetComponent<Animation>().enabled = false;
-				base.gameObject.SetActive(false);
-				this.Frame = 0;
-			}
-			this.Frame++;
-		}
-	}
+  public Transform SmartphoneCamera;
+  public Transform Neck;
+  public Transform GhostEyeLocation;
+  public Transform GhostEye;
+  public int Frame;
+  public bool Move;
 
-	// Token: 0x06001514 RID: 5396 RVA: 0x000D8F0F File Offset: 0x000D710F
-	public void Look()
-	{
-		this.Neck.LookAt(this.SmartphoneCamera.position);
-	}
+  private void Update()
+  {
+    if ((double) Time.timeScale <= 9.99999974737875E-05)
+      return;
+    if (this.Frame > 0)
+    {
+      this.GetComponent<Animation>().enabled = false;
+      this.gameObject.SetActive(false);
+      this.Frame = 0;
+    }
+    ++this.Frame;
+  }
 
-	// Token: 0x040021DB RID: 8667
-	public Transform SmartphoneCamera;
-
-	// Token: 0x040021DC RID: 8668
-	public Transform Neck;
-
-	// Token: 0x040021DD RID: 8669
-	public Transform GhostEyeLocation;
-
-	// Token: 0x040021DE RID: 8670
-	public Transform GhostEye;
-
-	// Token: 0x040021DF RID: 8671
-	public int Frame;
-
-	// Token: 0x040021E0 RID: 8672
-	public bool Move;
+  public void Look() => this.Neck.LookAt(this.SmartphoneCamera.position);
 }

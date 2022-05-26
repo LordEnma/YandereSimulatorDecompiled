@@ -1,63 +1,49 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UISliderColors
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200003D RID: 61
 [AddComponentMenu("NGUI/Examples/Slider Colors")]
 public class UISliderColors : MonoBehaviour
 {
-	// Token: 0x060000F4 RID: 244 RVA: 0x000130DB File Offset: 0x000112DB
-	private void Start()
-	{
-		this.mBar = base.GetComponent<UIProgressBar>();
-		this.mSprite = base.GetComponent<UIBasicSprite>();
-		this.Update();
-	}
+  public UISprite sprite;
+  public Color[] colors = new Color[3]
+  {
+    Color.red,
+    Color.yellow,
+    Color.green
+  };
+  private UIProgressBar mBar;
+  private UIBasicSprite mSprite;
 
-	// Token: 0x060000F5 RID: 245 RVA: 0x000130FC File Offset: 0x000112FC
-	private void Update()
-	{
-		if (this.sprite == null || this.colors.Length == 0)
-		{
-			return;
-		}
-		float num = (this.mBar != null) ? this.mBar.value : this.mSprite.fillAmount;
-		num *= (float)(this.colors.Length - 1);
-		int num2 = Mathf.FloorToInt(num);
-		Color color = this.colors[0];
-		if (num2 >= 0)
-		{
-			if (num2 + 1 < this.colors.Length)
-			{
-				float t = num - (float)num2;
-				color = Color.Lerp(this.colors[num2], this.colors[num2 + 1], t);
-			}
-			else if (num2 < this.colors.Length)
-			{
-				color = this.colors[num2];
-			}
-			else
-			{
-				color = this.colors[this.colors.Length - 1];
-			}
-		}
-		color.a = this.sprite.color.a;
-		this.sprite.color = color;
-	}
+  private void Start()
+  {
+    this.mBar = this.GetComponent<UIProgressBar>();
+    this.mSprite = this.GetComponent<UIBasicSprite>();
+    this.Update();
+  }
 
-	// Token: 0x040002C3 RID: 707
-	public UISprite sprite;
-
-	// Token: 0x040002C4 RID: 708
-	public Color[] colors = new Color[]
-	{
-		Color.red,
-		Color.yellow,
-		Color.green
-	};
-
-	// Token: 0x040002C5 RID: 709
-	private UIProgressBar mBar;
-
-	// Token: 0x040002C6 RID: 710
-	private UIBasicSprite mSprite;
+  private void Update()
+  {
+    if ((Object) this.sprite == (Object) null || this.colors.Length == 0)
+      return;
+    float f = ((Object) this.mBar != (Object) null ? this.mBar.value : this.mSprite.fillAmount) * (float) (this.colors.Length - 1);
+    int index = Mathf.FloorToInt(f);
+    Color color = this.colors[0];
+    if (index >= 0)
+    {
+      if (index + 1 < this.colors.Length)
+      {
+        float t = f - (float) index;
+        color = Color.Lerp(this.colors[index], this.colors[index + 1], t);
+      }
+      else
+        color = index >= this.colors.Length ? this.colors[this.colors.Length - 1] : this.colors[index];
+    }
+    color.a = this.sprite.color.a;
+    this.sprite.color = color;
+  }
 }

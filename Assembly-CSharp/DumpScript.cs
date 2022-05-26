@@ -1,26 +1,23 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DumpScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000295 RID: 661
 public class DumpScript : MonoBehaviour
 {
-	// Token: 0x060013D9 RID: 5081 RVA: 0x000BC67C File Offset: 0x000BA87C
-	private void Update()
-	{
-		this.Timer += Time.deltaTime;
-		if (this.Timer > 5f)
-		{
-			this.Incinerator.Corpses++;
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  public SkinnedMeshRenderer MyRenderer;
+  public IncineratorScript Incinerator;
+  public float Timer;
 
-	// Token: 0x04001DA9 RID: 7593
-	public SkinnedMeshRenderer MyRenderer;
-
-	// Token: 0x04001DAA RID: 7594
-	public IncineratorScript Incinerator;
-
-	// Token: 0x04001DAB RID: 7595
-	public float Timer;
+  private void Update()
+  {
+    this.Timer += Time.deltaTime;
+    if ((double) this.Timer <= 5.0)
+      return;
+    ++this.Incinerator.Corpses;
+    Object.Destroy((Object) this.gameObject);
+  }
 }

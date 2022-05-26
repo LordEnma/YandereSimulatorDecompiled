@@ -1,189 +1,140 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: StalkerIntroScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
-// Token: 0x02000445 RID: 1093
 public class StalkerIntroScript : MonoBehaviour
 {
-	// Token: 0x06001D23 RID: 7459 RVA: 0x0015C228 File Offset: 0x0015A428
-	private void Start()
-	{
-		this.Profile.colorGrading.enabled = true;
-		RenderSettings.ambientIntensity = 8f;
-		Cursor.lockState = CursorLockMode.Locked;
-		Cursor.visible = false;
-		base.transform.position = new Vector3(12.5f, 5f, 13f);
-		base.transform.LookAt(this.Moon);
-		this.CameraFocus.parent = base.transform;
-		this.CameraFocus.localPosition = new Vector3(0f, 0f, 100f);
-		this.CameraFocus.parent = null;
-		this.SetVignetteBlack();
-		this.UpdateDOF(4f);
-		this.DOF = 4f;
-		this.Alpha = 1f;
-		this.Yandere.Start();
-		this.SkipPanel.alpha = 0f;
-	}
+  public PostProcessingProfile Profile;
+  public StalkerYandereScript Yandere;
+  public RPG_Camera RPGCamera;
+  public Transform CameraFocus;
+  public Transform Moon;
+  public Renderer Darkness;
+  public float Alpha;
+  public float Speed;
+  public float Timer;
+  public float DOF;
+  public int Phase;
+  public GameObject[] Neighborhood;
+  public UIPanel SkipPanel;
+  public UISprite SkipCircle;
+  private float SkipTimer;
 
-	// Token: 0x06001D24 RID: 7460 RVA: 0x0015C30C File Offset: 0x0015A50C
-	private void Update()
-	{
-		if (this.SkipPanel.enabled)
-		{
-			this.UpdateSkipPanel();
-		}
-		this.Moon.LookAt(base.transform);
-		if (this.Phase == 0)
-		{
-			this.Alpha = Mathf.MoveTowards(this.Alpha, 0f, Time.deltaTime * 0.5f);
-			this.Darkness.material.color = new Color(0f, 0f, 0f, this.Alpha);
-			if (this.Alpha == 0f)
-			{
-				this.Timer += Time.deltaTime;
-				if (this.Timer > 2f)
-				{
-					this.Yandere.VtuberCheck();
-					this.Phase++;
-					return;
-				}
-			}
-		}
-		else if (this.Phase == 1)
-		{
-			if (this.Speed == 0f)
-			{
-				this.Yandere.MyAnimation.Play();
-			}
-			this.Speed += Time.deltaTime;
-			base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(11.5f, 1f, 13f), Time.deltaTime * this.Speed);
-			this.CameraFocus.position = Vector3.Lerp(this.CameraFocus.position, new Vector3(13.62132f, 1f, 15.12132f), Time.deltaTime * this.Speed);
-			this.DOF = Mathf.MoveTowards(this.DOF, 1.4f, Time.deltaTime * this.Speed);
-			this.UpdateDOF(this.DOF);
-			base.transform.LookAt(this.CameraFocus);
-			if (this.Yandere.MyAnimation["f02_jumpOverWall_00"].time > 13f)
-			{
-				this.Yandere.transform.position = new Vector3(13.15f, 0f, 13f);
-				base.transform.position = new Vector3(12.75f, 1.3f, 12.4f);
-				base.transform.eulerAngles = new Vector3(0f, 45f, 0f);
-				this.DOF = 0.5f;
-				this.UpdateDOF(this.DOF);
-				this.Speed = -1f;
-				this.Phase++;
-				return;
-			}
-		}
-		else if (this.Phase == 2)
-		{
-			this.Speed += Time.deltaTime;
-			if (this.Speed > 0f)
-			{
-				this.Yandere.transform.position = new Vector3(13.15f, 0f, 13f);
-				base.transform.position = Vector3.Lerp(base.transform.position, new Vector3(13.15f, 1.51515f, 14.92272f), Time.deltaTime * this.Speed);
-				base.transform.eulerAngles = Vector3.Lerp(base.transform.eulerAngles, new Vector3(15f, 180f, 0f), Time.deltaTime * this.Speed * 2f);
-				this.DOF = Mathf.MoveTowards(this.DOF, 2f, Time.deltaTime * this.Speed);
-				this.UpdateDOF(this.DOF);
-				if (this.Speed > 4f)
-				{
-					this.DOF = 2f;
-					this.UpdateDOF(this.DOF);
-					this.SkipPanel.enabled = false;
-					this.RPGCamera.enabled = true;
-					this.Yandere.enabled = true;
-					this.Phase++;
-				}
-			}
-		}
-	}
+  private void Start()
+  {
+    this.Profile.colorGrading.enabled = true;
+    RenderSettings.ambientIntensity = 8f;
+    Cursor.lockState = CursorLockMode.Locked;
+    Cursor.visible = false;
+    this.transform.position = new Vector3(12.5f, 5f, 13f);
+    this.transform.LookAt(this.Moon);
+    this.CameraFocus.parent = this.transform;
+    this.CameraFocus.localPosition = new Vector3(0.0f, 0.0f, 100f);
+    this.CameraFocus.parent = (Transform) null;
+    this.SetVignetteBlack();
+    this.UpdateDOF(4f);
+    this.DOF = 4f;
+    this.Alpha = 1f;
+    this.Yandere.Start();
+    this.SkipPanel.alpha = 0.0f;
+  }
 
-	// Token: 0x06001D25 RID: 7461 RVA: 0x0015C6DC File Offset: 0x0015A8DC
-	private void UpdateDOF(float Value)
-	{
-		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
-		settings.focusDistance = Value;
-		settings.aperture = 5.6f;
-		this.Profile.depthOfField.settings = settings;
-	}
+  private void Update()
+  {
+    if (this.SkipPanel.enabled)
+      this.UpdateSkipPanel();
+    this.Moon.LookAt(this.transform);
+    if (this.Phase == 0)
+    {
+      this.Alpha = Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * 0.5f);
+      this.Darkness.material.color = new Color(0.0f, 0.0f, 0.0f, this.Alpha);
+      if ((double) this.Alpha != 0.0)
+        return;
+      this.Timer += Time.deltaTime;
+      if ((double) this.Timer <= 2.0)
+        return;
+      this.Yandere.VtuberCheck();
+      ++this.Phase;
+    }
+    else if (this.Phase == 1)
+    {
+      if ((double) this.Speed == 0.0)
+        this.Yandere.MyAnimation.Play();
+      this.Speed += Time.deltaTime;
+      this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(11.5f, 1f, 13f), Time.deltaTime * this.Speed);
+      this.CameraFocus.position = Vector3.Lerp(this.CameraFocus.position, new Vector3(13.62132f, 1f, 15.12132f), Time.deltaTime * this.Speed);
+      this.DOF = Mathf.MoveTowards(this.DOF, 1.4f, Time.deltaTime * this.Speed);
+      this.UpdateDOF(this.DOF);
+      this.transform.LookAt(this.CameraFocus);
+      if ((double) this.Yandere.MyAnimation["f02_jumpOverWall_00"].time <= 13.0)
+        return;
+      this.Yandere.transform.position = new Vector3(13.15f, 0.0f, 13f);
+      this.transform.position = new Vector3(12.75f, 1.3f, 12.4f);
+      this.transform.eulerAngles = new Vector3(0.0f, 45f, 0.0f);
+      this.DOF = 0.5f;
+      this.UpdateDOF(this.DOF);
+      this.Speed = -1f;
+      ++this.Phase;
+    }
+    else
+    {
+      if (this.Phase != 2)
+        return;
+      this.Speed += Time.deltaTime;
+      if ((double) this.Speed <= 0.0)
+        return;
+      this.Yandere.transform.position = new Vector3(13.15f, 0.0f, 13f);
+      this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(13.15f, 1.51515f, 14.92272f), Time.deltaTime * this.Speed);
+      this.transform.eulerAngles = Vector3.Lerp(this.transform.eulerAngles, new Vector3(15f, 180f, 0.0f), (float) ((double) Time.deltaTime * (double) this.Speed * 2.0));
+      this.DOF = Mathf.MoveTowards(this.DOF, 2f, Time.deltaTime * this.Speed);
+      this.UpdateDOF(this.DOF);
+      if ((double) this.Speed <= 4.0)
+        return;
+      this.DOF = 2f;
+      this.UpdateDOF(this.DOF);
+      this.SkipPanel.enabled = false;
+      this.RPGCamera.enabled = true;
+      this.Yandere.enabled = true;
+      ++this.Phase;
+    }
+  }
 
-	// Token: 0x06001D26 RID: 7462 RVA: 0x0015C720 File Offset: 0x0015A920
-	public void SetVignetteBlack()
-	{
-		VignetteModel.Settings settings = this.Profile.vignette.settings;
-		settings.color = new Color(0f, 0f, 0f, 1f);
-		settings.intensity = 0.45f;
-		settings.smoothness = 0.2f;
-		settings.roundness = 1f;
-		this.Profile.vignette.settings = settings;
-	}
+  private void UpdateDOF(float Value) => this.Profile.depthOfField.settings = this.Profile.depthOfField.settings with
+  {
+    focusDistance = Value,
+    aperture = 5.6f
+  };
 
-	// Token: 0x06001D27 RID: 7463 RVA: 0x0015C794 File Offset: 0x0015A994
-	private void UpdateSkipPanel()
-	{
-		this.SkipTimer += Time.deltaTime;
-		if (this.SkipTimer > 1f)
-		{
-			this.SkipPanel.alpha += Time.deltaTime;
-		}
-		if (Input.GetButton("X"))
-		{
-			this.SkipPanel.alpha = 1f;
-			this.SkipTimer = 0f;
-			this.SkipCircle.fillAmount -= Time.deltaTime;
-			if (this.SkipCircle.fillAmount == 0f)
-			{
-				this.Phase = 2;
-				this.Speed = 100f;
-				this.Yandere.MyAnimation.Play("f02_stealthIdle_00");
-				return;
-			}
-		}
-		else
-		{
-			this.SkipCircle.fillAmount = 1f;
-		}
-	}
+  public void SetVignetteBlack() => this.Profile.vignette.settings = this.Profile.vignette.settings with
+  {
+    color = new Color(0.0f, 0.0f, 0.0f, 1f),
+    intensity = 0.45f,
+    smoothness = 0.2f,
+    roundness = 1f
+  };
 
-	// Token: 0x040034D1 RID: 13521
-	public PostProcessingProfile Profile;
-
-	// Token: 0x040034D2 RID: 13522
-	public StalkerYandereScript Yandere;
-
-	// Token: 0x040034D3 RID: 13523
-	public RPG_Camera RPGCamera;
-
-	// Token: 0x040034D4 RID: 13524
-	public Transform CameraFocus;
-
-	// Token: 0x040034D5 RID: 13525
-	public Transform Moon;
-
-	// Token: 0x040034D6 RID: 13526
-	public Renderer Darkness;
-
-	// Token: 0x040034D7 RID: 13527
-	public float Alpha;
-
-	// Token: 0x040034D8 RID: 13528
-	public float Speed;
-
-	// Token: 0x040034D9 RID: 13529
-	public float Timer;
-
-	// Token: 0x040034DA RID: 13530
-	public float DOF;
-
-	// Token: 0x040034DB RID: 13531
-	public int Phase;
-
-	// Token: 0x040034DC RID: 13532
-	public GameObject[] Neighborhood;
-
-	// Token: 0x040034DD RID: 13533
-	public UIPanel SkipPanel;
-
-	// Token: 0x040034DE RID: 13534
-	public UISprite SkipCircle;
-
-	// Token: 0x040034DF RID: 13535
-	private float SkipTimer;
+  private void UpdateSkipPanel()
+  {
+    this.SkipTimer += Time.deltaTime;
+    if ((double) this.SkipTimer > 1.0)
+      this.SkipPanel.alpha += Time.deltaTime;
+    if (Input.GetButton("X"))
+    {
+      this.SkipPanel.alpha = 1f;
+      this.SkipTimer = 0.0f;
+      this.SkipCircle.fillAmount -= Time.deltaTime;
+      if ((double) this.SkipCircle.fillAmount != 0.0)
+        return;
+      this.Phase = 2;
+      this.Speed = 100f;
+      this.Yandere.MyAnimation.Play("f02_stealthIdle_00");
+    }
+    else
+      this.SkipCircle.fillAmount = 1f;
+  }
 }

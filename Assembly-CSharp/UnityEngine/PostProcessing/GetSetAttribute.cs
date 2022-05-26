@@ -1,20 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityEngine.PostProcessing.GetSetAttribute
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200055C RID: 1372
-	public sealed class GetSetAttribute : PropertyAttribute
-	{
-		// Token: 0x06002302 RID: 8962 RVA: 0x001F89FD File Offset: 0x001F6BFD
-		public GetSetAttribute(string name)
-		{
-			this.name = name;
-		}
+  public sealed class GetSetAttribute : PropertyAttribute
+  {
+    public readonly string name;
+    public bool dirty;
 
-		// Token: 0x04004BDE RID: 19422
-		public readonly string name;
-
-		// Token: 0x04004BDF RID: 19423
-		public bool dirty;
-	}
+    public GetSetAttribute(string name) => this.name = name;
+  }
 }

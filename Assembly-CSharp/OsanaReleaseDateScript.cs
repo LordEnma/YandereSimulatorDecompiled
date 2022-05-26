@@ -1,87 +1,60 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: OsanaReleaseDateScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200038C RID: 908
 public class OsanaReleaseDateScript : MonoBehaviour
 {
-	// Token: 0x06001A5F RID: 6751 RVA: 0x001193C4 File Offset: 0x001175C4
-	private void Start()
-	{
-		Time.timeScale = 1f;
-		foreach (UISprite uisprite in this.BlackRectangles)
-		{
-			if (uisprite != null)
-			{
-				uisprite.alpha = 1f;
-			}
-		}
-	}
+  public UISprite[] BlackRectangles;
+  public bool ChooseRectangle = true;
+  public int LettersRevealed;
+  public int RandomID;
 
-	// Token: 0x06001A60 RID: 6752 RVA: 0x00119408 File Offset: 0x00117608
-	private void Update()
-	{
-		if (Input.GetKeyDown("-"))
-		{
-			Time.timeScale -= 1f;
-		}
-		if (Input.GetKeyDown("="))
-		{
-			Time.timeScale += 1f;
-		}
-		if (this.ChooseRectangle)
-		{
-			if (this.LettersRevealed < 33)
-			{
-				this.RandomID = UnityEngine.Random.Range(1, this.BlackRectangles.Length);
-				for (;;)
-				{
-					if (this.BlackRectangles[this.RandomID].alpha != 0f)
-					{
-						if (this.RandomID <= 28)
-						{
-							break;
-						}
-						if (this.RandomID >= 34)
-						{
-							break;
-						}
-					}
-					this.RandomID = UnityEngine.Random.Range(1, this.BlackRectangles.Length);
-				}
-			}
-			else
-			{
-				this.RandomID = UnityEngine.Random.Range(28, 34);
-				while (this.BlackRectangles[this.RandomID].alpha == 0f)
-				{
-					this.RandomID = UnityEngine.Random.Range(1, this.BlackRectangles.Length);
-				}
-			}
-			this.ChooseRectangle = false;
-			return;
-		}
-		this.BlackRectangles[this.RandomID].alpha = Mathf.MoveTowards(this.BlackRectangles[this.RandomID].alpha, 0f, Time.deltaTime * 0.6333333f);
-		if (this.BlackRectangles[this.RandomID].alpha == 0f)
-		{
-			this.LettersRevealed++;
-			if (this.LettersRevealed < 38)
-			{
-				this.ChooseRectangle = true;
-				return;
-			}
-			base.enabled = false;
-		}
-	}
+  private void Start()
+  {
+    Time.timeScale = 1f;
+    foreach (UISprite blackRectangle in this.BlackRectangles)
+    {
+      if ((Object) blackRectangle != (Object) null)
+        blackRectangle.alpha = 1f;
+    }
+  }
 
-	// Token: 0x04002B59 RID: 11097
-	public UISprite[] BlackRectangles;
-
-	// Token: 0x04002B5A RID: 11098
-	public bool ChooseRectangle = true;
-
-	// Token: 0x04002B5B RID: 11099
-	public int LettersRevealed;
-
-	// Token: 0x04002B5C RID: 11100
-	public int RandomID;
+  private void Update()
+  {
+    if (Input.GetKeyDown("-"))
+      --Time.timeScale;
+    if (Input.GetKeyDown("="))
+      ++Time.timeScale;
+    if (this.ChooseRectangle)
+    {
+      if (this.LettersRevealed < 33)
+      {
+        this.RandomID = Random.Range(1, this.BlackRectangles.Length);
+        while ((double) this.BlackRectangles[this.RandomID].alpha == 0.0 || this.RandomID > 28 && this.RandomID < 34)
+          this.RandomID = Random.Range(1, this.BlackRectangles.Length);
+      }
+      else
+      {
+        this.RandomID = Random.Range(28, 34);
+        while ((double) this.BlackRectangles[this.RandomID].alpha == 0.0)
+          this.RandomID = Random.Range(1, this.BlackRectangles.Length);
+      }
+      this.ChooseRectangle = false;
+    }
+    else
+    {
+      this.BlackRectangles[this.RandomID].alpha = Mathf.MoveTowards(this.BlackRectangles[this.RandomID].alpha, 0.0f, Time.deltaTime * 0.6333333f);
+      if ((double) this.BlackRectangles[this.RandomID].alpha != 0.0)
+        return;
+      ++this.LettersRevealed;
+      if (this.LettersRevealed < 38)
+        this.ChooseRectangle = true;
+      else
+        this.enabled = false;
+    }
+  }
 }

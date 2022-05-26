@@ -1,712 +1,518 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PromptScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003C7 RID: 967
 public class PromptScript : MonoBehaviour
 {
-	// Token: 0x06001B3F RID: 6975 RVA: 0x00130334 File Offset: 0x0012E534
-	private void Awake()
-	{
-		if (this.MyStudent == null)
-		{
-			this.MinimumDistanceSqr = this.MinimumDistance * this.MinimumDistance;
-			this.MaximumDistanceSqr = this.MaximumDistance * this.MaximumDistance;
-		}
-		else
-		{
-			this.MinimumDistanceSqr = this.MinimumDistance;
-			this.MaximumDistanceSqr = this.MaximumDistance;
-		}
-		this.CurrentPosition = base.transform.position;
-		this.DistanceSqr = float.PositiveInfinity;
-		this.OwnerType = this.DecideOwnerType();
-		if (this.RaycastTarget == null)
-		{
-			this.RaycastTarget = base.transform;
-		}
-		if (this.OffsetZ.Length == 0)
-		{
-			this.OffsetZ = new float[4];
-		}
-		if (this.Yandere == null)
-		{
-			this.YandereObject = GameObject.Find("YandereChan");
-			if (this.YandereObject != null)
-			{
-				this.Yandere = this.YandereObject.GetComponent<YandereScript>();
-			}
-		}
-		if (this.Yandere != null)
-		{
-			this.PromptParent = this.Yandere.PromptParent;
-			if (this.PromptParent == null)
-			{
-				base.enabled = false;
-				return;
-			}
-			this.PauseScreen = this.Yandere.PauseScreen;
-			this.UICamera = this.Yandere.UICamera;
-			this.MainCamera = this.Yandere.MainCamera;
-			if (this.Noisy)
-			{
-				this.Speaker = UnityEngine.Object.Instantiate<GameObject>(this.SpeakerObject, this.CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
-				this.Speaker.transform.parent = this.PromptParent.transform;
-				this.Speaker.transform.localScale = new Vector3(1f, 1f, 1f);
-				this.Speaker.transform.localEulerAngles = Vector3.zero;
-				this.Speaker.enabled = false;
-			}
-			this.Square = UnityEngine.Object.Instantiate<GameObject>(this.PromptParent.SquareObject, this.CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
-			this.Square.transform.parent = this.PromptParent.transform;
-			this.Square.transform.localScale = new Vector3(1f, 1f, 1f);
-			this.Square.transform.localEulerAngles = Vector3.zero;
-			this.Square.applyGradient = true;
-			this.Square.gradientTop = new Color(1f, 1f, 1f, 1f);
-			this.Square.gradientBottom = new Color(1f, 0.75f, 1f, 1f);
-			this.Square.color = new Color(1f, 1f, 1f, 0f);
-			Color color = this.Square.color;
-			color.a = 0f;
-			this.Square.color = color;
-			this.Square.enabled = false;
-			this.ID = 0;
-			while (this.ID < 4)
-			{
-				if (this.ButtonActive[this.ID])
-				{
-					this.Button[this.ID] = UnityEngine.Object.Instantiate<GameObject>(this.ButtonObject[this.ID], this.CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
-					UISprite uisprite = this.Button[this.ID];
-					uisprite.transform.parent = this.PromptParent.transform;
-					uisprite.transform.localScale = new Vector3(1f, 1f, 1f);
-					uisprite.transform.localEulerAngles = Vector3.zero;
-					uisprite.color = new Color(uisprite.color.r, uisprite.color.g, uisprite.color.b, 0f);
-					uisprite.enabled = false;
-					this.Circle[this.ID] = UnityEngine.Object.Instantiate<GameObject>(this.CircleObject, this.CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
-					UISprite uisprite2 = this.Circle[this.ID];
-					uisprite2.transform.parent = this.Button[this.ID].transform;
-					uisprite2.transform.localScale = new Vector3(1f, 1f, 1f);
-					uisprite2.transform.localEulerAngles = Vector3.zero;
-					uisprite2.transform.localPosition = Vector3.zero;
-					uisprite2.color = new Color(uisprite2.color.r, uisprite2.color.g, uisprite2.color.b, 0f);
-					uisprite2.enabled = false;
-					this.Label[this.ID] = UnityEngine.Object.Instantiate<GameObject>(this.LabelObject, this.CurrentPosition, Quaternion.identity).GetComponent<UILabel>();
-					UILabel uilabel = this.Label[this.ID];
-					uilabel.transform.parent = this.Button[this.ID].transform;
-					uilabel.transform.localScale = new Vector3(1f, 1f, 1f);
-					uilabel.transform.localEulerAngles = Vector3.zero;
-					uilabel.transform.localPosition = Vector3.zero;
-					uilabel.color = new Color(uilabel.color.r, uilabel.color.g, uilabel.color.b, 0f);
-					uilabel.enabled = false;
-					if (this.Suspicious)
-					{
-						uilabel.color = new Color(1f, 0f, 0f, 0f);
-					}
-					else
-					{
-						uilabel.applyGradient = true;
-						uilabel.gradientTop = new Color(1f, 1f, 1f, 1f);
-						uilabel.gradientBottom = new Color(1f, 0.75f, 1f, 1f);
-						uilabel.color = new Color(1f, 1f, 1f, 0f);
-					}
-					uilabel.text = "     " + this.Text[this.ID];
-				}
-				this.AcceptingInput[this.ID] = true;
-				this.ID++;
-			}
-			if (this.Student && !this.Door)
-			{
-				this.BloodMask = 4;
-				this.BloodMask |= 512;
-				this.BloodMask |= 8192;
-				this.BloodMask |= 16384;
-				this.BloodMask |= 65536;
-				this.BloodMask |= 2097152;
-				this.BloodMask = ~this.BloodMask;
-				return;
-			}
-			this.BloodMask = 2;
-			this.BloodMask |= 4;
-			this.BloodMask |= 512;
-			this.BloodMask |= 8192;
-			this.BloodMask |= 16384;
-			this.BloodMask |= 65536;
-			this.BloodMask |= 2097152;
-			this.BloodMask = ~this.BloodMask;
-		}
-	}
+  public PauseScreenScript PauseScreen;
+  public StudentScript MyStudent;
+  public YandereScript Yandere;
+  public GameObject[] ButtonObject;
+  public GameObject SpeakerObject;
+  public GameObject CircleObject;
+  public GameObject LabelObject;
+  public PromptParentScript PromptParent;
+  public Collider MyCollider;
+  public Camera MainCamera;
+  public Camera UICamera;
+  public bool[] AcceptingInput;
+  public bool[] ButtonActive;
+  public bool[] HideButton;
+  public UISprite[] Button;
+  public UISprite[] Circle;
+  public UILabel[] Label;
+  public UISprite Speaker;
+  public UISprite Square;
+  public float[] OffsetX;
+  public float[] OffsetY;
+  public float[] OffsetZ;
+  public string[] Text;
+  public PromptOwnerType OwnerType;
+  public bool DisableAtStart;
+  public bool Suspicious;
+  public bool Debugging;
+  public bool SquareSet;
+  public bool Carried;
+  [Tooltip("This means that the prompt's renderer is within the camera's cone of vision.")]
+  public bool InSight;
+  [Tooltip("This means that a raycast can hit the prompt's collider.")]
+  public bool InView;
+  public bool NoCheck;
+  public bool Attack;
+  public bool Weapon;
+  public bool Noisy;
+  public bool Local = true;
+  public float RelativePosition;
+  public float MaximumDistance = 5f;
+  public float MinimumDistance;
+  public float DistanceSqr;
+  public float Height;
+  public int ButtonHeld;
+  public int BloodMask;
+  public int Priority;
+  public int ID;
+  public GameObject YandereObject;
+  public Transform RaycastTarget;
+  public float MinimumDistanceSqr;
+  public float MaximumDistanceSqr;
+  public Vector3 CurrentPosition;
+  public float Timer;
+  public bool Student;
+  public bool Door;
+  public bool Hidden;
 
-	// Token: 0x06001B40 RID: 6976 RVA: 0x00130A75 File Offset: 0x0012EC75
-	private void Start()
-	{
-		if (this.DisableAtStart)
-		{
-			this.Hide();
-			base.enabled = false;
-		}
-	}
+  private void Awake()
+  {
+    if ((Object) this.MyStudent == (Object) null)
+    {
+      this.MinimumDistanceSqr = this.MinimumDistance * this.MinimumDistance;
+      this.MaximumDistanceSqr = this.MaximumDistance * this.MaximumDistance;
+    }
+    else
+    {
+      this.MinimumDistanceSqr = this.MinimumDistance;
+      this.MaximumDistanceSqr = this.MaximumDistance;
+    }
+    this.CurrentPosition = this.transform.position;
+    this.DistanceSqr = float.PositiveInfinity;
+    this.OwnerType = this.DecideOwnerType();
+    if ((Object) this.RaycastTarget == (Object) null)
+      this.RaycastTarget = this.transform;
+    if (this.OffsetZ.Length == 0)
+      this.OffsetZ = new float[4];
+    if ((Object) this.Yandere == (Object) null)
+    {
+      this.YandereObject = GameObject.Find("YandereChan");
+      if ((Object) this.YandereObject != (Object) null)
+        this.Yandere = this.YandereObject.GetComponent<YandereScript>();
+    }
+    if (!((Object) this.Yandere != (Object) null))
+      return;
+    this.PromptParent = this.Yandere.PromptParent;
+    if ((Object) this.PromptParent == (Object) null)
+    {
+      this.enabled = false;
+    }
+    else
+    {
+      this.PauseScreen = this.Yandere.PauseScreen;
+      this.UICamera = this.Yandere.UICamera;
+      this.MainCamera = this.Yandere.MainCamera;
+      if (this.Noisy)
+      {
+        this.Speaker = Object.Instantiate<GameObject>(this.SpeakerObject, this.CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
+        this.Speaker.transform.parent = this.PromptParent.transform;
+        this.Speaker.transform.localScale = new Vector3(1f, 1f, 1f);
+        this.Speaker.transform.localEulerAngles = Vector3.zero;
+        this.Speaker.enabled = false;
+      }
+      this.Square = Object.Instantiate<GameObject>(this.PromptParent.SquareObject, this.CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
+      this.Square.transform.parent = this.PromptParent.transform;
+      this.Square.transform.localScale = new Vector3(1f, 1f, 1f);
+      this.Square.transform.localEulerAngles = Vector3.zero;
+      this.Square.applyGradient = true;
+      this.Square.gradientTop = new Color(1f, 1f, 1f, 1f);
+      this.Square.gradientBottom = new Color(1f, 0.75f, 1f, 1f);
+      this.Square.color = new Color(1f, 1f, 1f, 0.0f);
+      this.Square.color = this.Square.color with
+      {
+        a = 0.0f
+      };
+      this.Square.enabled = false;
+      for (this.ID = 0; this.ID < 4; ++this.ID)
+      {
+        if (this.ButtonActive[this.ID])
+        {
+          this.Button[this.ID] = Object.Instantiate<GameObject>(this.ButtonObject[this.ID], this.CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
+          UISprite uiSprite1 = this.Button[this.ID];
+          uiSprite1.transform.parent = this.PromptParent.transform;
+          uiSprite1.transform.localScale = new Vector3(1f, 1f, 1f);
+          uiSprite1.transform.localEulerAngles = Vector3.zero;
+          uiSprite1.color = new Color(uiSprite1.color.r, uiSprite1.color.g, uiSprite1.color.b, 0.0f);
+          uiSprite1.enabled = false;
+          this.Circle[this.ID] = Object.Instantiate<GameObject>(this.CircleObject, this.CurrentPosition, Quaternion.identity).GetComponent<UISprite>();
+          UISprite uiSprite2 = this.Circle[this.ID];
+          uiSprite2.transform.parent = this.Button[this.ID].transform;
+          uiSprite2.transform.localScale = new Vector3(1f, 1f, 1f);
+          uiSprite2.transform.localEulerAngles = Vector3.zero;
+          uiSprite2.transform.localPosition = Vector3.zero;
+          uiSprite2.color = new Color(uiSprite2.color.r, uiSprite2.color.g, uiSprite2.color.b, 0.0f);
+          uiSprite2.enabled = false;
+          this.Label[this.ID] = Object.Instantiate<GameObject>(this.LabelObject, this.CurrentPosition, Quaternion.identity).GetComponent<UILabel>();
+          UILabel uiLabel = this.Label[this.ID];
+          uiLabel.transform.parent = this.Button[this.ID].transform;
+          uiLabel.transform.localScale = new Vector3(1f, 1f, 1f);
+          uiLabel.transform.localEulerAngles = Vector3.zero;
+          uiLabel.transform.localPosition = Vector3.zero;
+          uiLabel.color = new Color(uiLabel.color.r, uiLabel.color.g, uiLabel.color.b, 0.0f);
+          uiLabel.enabled = false;
+          if (this.Suspicious)
+          {
+            uiLabel.color = new Color(1f, 0.0f, 0.0f, 0.0f);
+          }
+          else
+          {
+            uiLabel.applyGradient = true;
+            uiLabel.gradientTop = new Color(1f, 1f, 1f, 1f);
+            uiLabel.gradientBottom = new Color(1f, 0.75f, 1f, 1f);
+            uiLabel.color = new Color(1f, 1f, 1f, 0.0f);
+          }
+          uiLabel.text = "     " + this.Text[this.ID];
+        }
+        this.AcceptingInput[this.ID] = true;
+      }
+      if (this.Student && !this.Door)
+      {
+        this.BloodMask = 4;
+        this.BloodMask |= 512;
+        this.BloodMask |= 8192;
+        this.BloodMask |= 16384;
+        this.BloodMask |= 65536;
+        this.BloodMask |= 2097152;
+        this.BloodMask = ~this.BloodMask;
+      }
+      else
+      {
+        this.BloodMask = 2;
+        this.BloodMask |= 4;
+        this.BloodMask |= 512;
+        this.BloodMask |= 8192;
+        this.BloodMask |= 16384;
+        this.BloodMask |= 65536;
+        this.BloodMask |= 2097152;
+        this.BloodMask = ~this.BloodMask;
+      }
+    }
+  }
 
-	// Token: 0x06001B41 RID: 6977 RVA: 0x00130A8C File Offset: 0x0012EC8C
-	private PromptOwnerType DecideOwnerType()
-	{
-		if (base.GetComponent<DoorScript>() != null)
-		{
-			return PromptOwnerType.Door;
-		}
-		return PromptOwnerType.Unknown;
-	}
+  private void Start()
+  {
+    if (!this.DisableAtStart)
+      return;
+    this.Hide();
+    this.enabled = false;
+  }
 
-	// Token: 0x06001B42 RID: 6978 RVA: 0x00130A9F File Offset: 0x0012EC9F
-	private bool AllowedWhenCrouching(PromptOwnerType ownerType)
-	{
-		return ownerType == PromptOwnerType.Door;
-	}
+  private PromptOwnerType DecideOwnerType() => (Object) this.GetComponent<DoorScript>() != (Object) null ? PromptOwnerType.Door : PromptOwnerType.Unknown;
 
-	// Token: 0x06001B43 RID: 6979 RVA: 0x00130AA5 File Offset: 0x0012ECA5
-	private bool AllowedWhenCrawling(PromptOwnerType ownerType)
-	{
-		return false;
-	}
+  private bool AllowedWhenCrouching(PromptOwnerType ownerType) => ownerType == PromptOwnerType.Door;
 
-	// Token: 0x06001B44 RID: 6980 RVA: 0x00130AA8 File Offset: 0x0012ECA8
-	private void Update()
-	{
-		if (this.PauseScreen == null)
-		{
-			Debug.Log("My name is " + base.name + " and I am a prompt that is disabling itself because my PauseScreen reference is null.");
-			base.enabled = false;
-			this.Hide();
-			return;
-		}
-		if (this.PauseScreen.Show)
-		{
-			this.Hide();
-			return;
-		}
-		if (!this.InView)
-		{
-			this.DistanceSqr = float.PositiveInfinity;
-			this.Hide();
-			return;
-		}
-		this.CurrentPosition = base.transform.position;
-		if (this.MyStudent == null)
-		{
-			Vector3 a = new Vector3(this.CurrentPosition.x, this.Yandere.transform.position.y, this.CurrentPosition.z);
-			this.DistanceSqr = (a - this.Yandere.transform.position).sqrMagnitude;
-		}
-		else
-		{
-			this.DistanceSqr = this.MyStudent.DistanceToPlayer;
-		}
-		if (this.DistanceSqr >= this.MaximumDistanceSqr)
-		{
-			this.Hide();
-			return;
-		}
-		this.NoCheck = true;
-		bool flag = this.Yandere.Stance.Current == StanceType.Crouching;
-		bool flag2 = this.Yandere.Stance.Current == StanceType.Crawling;
-		if (!this.Yandere.CanMove || (flag && !this.AllowedWhenCrouching(this.OwnerType)) || (flag2 && !this.AllowedWhenCrawling(this.OwnerType)) || this.Yandere.Aiming || this.Yandere.Mopping || this.Yandere.NearSenpai)
-		{
-			this.Hide();
-			return;
-		}
-		this.InSight = false;
-		RaycastHit raycastHit;
-		if (Physics.Linecast(this.Yandere.Eyes.position + Vector3.down * this.Height, this.RaycastTarget.position, out raycastHit, this.BloodMask))
-		{
-			this.InSight = (raycastHit.collider == this.MyCollider);
-		}
-		if (this.Carried || this.InSight)
-		{
-			this.SquareSet = false;
-			this.Hidden = false;
-			Vector2 vector = Vector2.zero;
-			this.ID = 0;
-			while (this.ID < 4)
-			{
-				if (this.ButtonActive[this.ID])
-				{
-					if (!this.Button[this.ID].gameObject.activeInHierarchy)
-					{
-						this.Button[this.ID].gameObject.SetActive(true);
-					}
-					if (Vector3.Angle(this.Yandere.MainCamera.transform.forward, this.Yandere.MainCamera.transform.position - this.CurrentPosition) > 90f)
-					{
-						if (this.Local)
-						{
-							Vector2 vector2 = this.MainCamera.WorldToScreenPoint(this.CurrentPosition + base.transform.right * this.OffsetX[this.ID] + base.transform.up * this.OffsetY[this.ID] + base.transform.forward * this.OffsetZ[this.ID]);
-							this.Button[this.ID].transform.position = this.UICamera.ScreenToWorldPoint(new Vector3(vector2.x, vector2.y, 1f));
-							if (!this.SquareSet)
-							{
-								this.Square.transform.position = this.Button[this.ID].transform.position;
-								this.SquareSet = true;
-							}
-							this.RelativePosition = vector2.x;
-						}
-						else
-						{
-							vector = this.MainCamera.WorldToScreenPoint(this.CurrentPosition + new Vector3(this.OffsetX[this.ID], this.OffsetY[this.ID], this.OffsetZ[this.ID]));
-							this.Button[this.ID].transform.position = this.UICamera.ScreenToWorldPoint(new Vector3(vector.x, vector.y, 1f));
-							if (!this.SquareSet)
-							{
-								this.Square.transform.position = this.Button[this.ID].transform.position;
-								this.SquareSet = true;
-							}
-							this.RelativePosition = vector.x;
-						}
-						if (!this.HideButton[this.ID])
-						{
-							this.Square.enabled = true;
-							this.Square.color = new Color(this.Square.color.r, this.Square.color.g, this.Square.color.b, 1f);
-						}
-					}
-				}
-				this.ID++;
-			}
-			if (this.Noisy)
-			{
-				this.Speaker.transform.position = this.UICamera.ScreenToWorldPoint(new Vector3(vector.x, vector.y + 40f, 1f));
-			}
-			if (this.DistanceSqr < this.MinimumDistanceSqr)
-			{
-				if (this.Yandere.NearestPrompt == null)
-				{
-					this.Yandere.NearestPrompt = this;
-				}
-				else if (Mathf.Abs(this.RelativePosition - (float)Screen.width * 0.5f) < Mathf.Abs(this.Yandere.NearestPrompt.RelativePosition - (float)Screen.width * 0.5f))
-				{
-					this.Yandere.NearestPrompt = this;
-				}
-				if (this.Yandere.NearestPrompt == this)
-				{
-					this.Square.enabled = false;
-					this.Square.color = new Color(this.Square.color.r, this.Square.color.g, this.Square.color.b, 0f);
-					this.ID = 0;
-					while (this.ID < 4)
-					{
-						if (this.ButtonActive[this.ID])
-						{
-							if (!this.Button[this.ID].enabled)
-							{
-								this.Button[this.ID].enabled = true;
-								this.Circle[this.ID].enabled = true;
-								this.Label[this.ID].enabled = true;
-							}
-							this.Button[this.ID].color = new Color(1f, 1f, 1f, 1f);
-							this.Circle[this.ID].color = new Color(0.5f, 0.5f, 0.5f, 1f);
-							Color color = this.Label[this.ID].color;
-							color.a = 1f;
-							this.Label[this.ID].color = color;
-							if (this.Speaker != null)
-							{
-								this.Speaker.enabled = true;
-								Color color2 = this.Speaker.color;
-								color2.a = 1f;
-								this.Speaker.color = color2;
-							}
-						}
-						this.ID++;
-					}
-					if (Input.GetButton("A"))
-					{
-						this.ButtonHeld = 1;
-					}
-					else if (Input.GetButton("B"))
-					{
-						this.ButtonHeld = 2;
-					}
-					else if (Input.GetButton("X"))
-					{
-						this.ButtonHeld = 3;
-					}
-					else if (Input.GetButton("Y"))
-					{
-						this.ButtonHeld = 4;
-					}
-					else
-					{
-						this.ButtonHeld = 0;
-					}
-					if (this.ButtonHeld > 0)
-					{
-						this.ID = 0;
-						while (this.ID < 4)
-						{
-							if (((this.ButtonActive[this.ID] && this.ID != this.ButtonHeld - 1) || this.HideButton[this.ID]) && this.Circle[this.ID] != null)
-							{
-								this.Circle[this.ID].fillAmount = 1f;
-							}
-							this.ID++;
-						}
-						if (this.ButtonActive[this.ButtonHeld - 1] && !this.HideButton[this.ButtonHeld - 1] && this.AcceptingInput[this.ButtonHeld - 1] && !this.Yandere.Attacking)
-						{
-							this.Circle[this.ButtonHeld - 1].color = new Color(1f, 1f, 1f, 1f);
-							if (!this.Attack)
-							{
-								this.Circle[this.ButtonHeld - 1].fillAmount -= Time.deltaTime * 2f;
-							}
-							else
-							{
-								this.Circle[this.ButtonHeld - 1].fillAmount = 0f;
-							}
-							this.ID = 0;
-						}
-					}
-					else
-					{
-						this.ID = 0;
-						while (this.ID < 4)
-						{
-							if (this.ButtonActive[this.ID])
-							{
-								this.Circle[this.ID].fillAmount = 1f;
-							}
-							this.ID++;
-						}
-					}
-				}
-				else
-				{
-					this.Square.color = new Color(this.Square.color.r, this.Square.color.g, this.Square.color.b, 1f);
-					this.ID = 0;
-					while (this.ID < 4)
-					{
-						if (this.ButtonActive[this.ID])
-						{
-							UISprite uisprite = this.Button[this.ID];
-							UISprite uisprite2 = this.Circle[this.ID];
-							UILabel uilabel = this.Label[this.ID];
-							uisprite.enabled = false;
-							uisprite2.enabled = false;
-							uilabel.enabled = false;
-							Color color3 = uisprite.color;
-							Color color4 = uisprite2.color;
-							Color color5 = uilabel.color;
-							color3.a = 0f;
-							color4.a = 0f;
-							color5.a = 0f;
-							uisprite.color = color3;
-							uisprite2.color = color4;
-							uilabel.color = color5;
-						}
-						this.ID++;
-					}
-					if (this.Speaker != null)
-					{
-						this.Speaker.enabled = false;
-						Color color6 = this.Speaker.color;
-						color6.a = 0f;
-						this.Speaker.color = color6;
-					}
-				}
-			}
-			else
-			{
-				if (this.Yandere.NearestPrompt == this)
-				{
-					this.Yandere.NearestPrompt = null;
-				}
-				this.Square.color = new Color(this.Square.color.r, this.Square.color.g, this.Square.color.b, 1f);
-				this.ID = 0;
-				while (this.ID < 4)
-				{
-					if (this.ButtonActive[this.ID])
-					{
-						UISprite uisprite3 = this.Button[this.ID];
-						UISprite uisprite4 = this.Circle[this.ID];
-						UILabel uilabel2 = this.Label[this.ID];
-						uisprite4.fillAmount = 1f;
-						uisprite3.enabled = false;
-						uisprite4.enabled = false;
-						uilabel2.enabled = false;
-						Color color7 = uisprite3.color;
-						Color color8 = uisprite4.color;
-						Color color9 = uilabel2.color;
-						color7.a = 0f;
-						color8.a = 0f;
-						color9.a = 0f;
-						uisprite3.color = color7;
-						uisprite4.color = color8;
-						uilabel2.color = color9;
-					}
-					this.ID++;
-				}
-				if (this.Speaker != null)
-				{
-					this.Speaker.enabled = false;
-					Color color10 = this.Speaker.color;
-					color10.a = 0f;
-					this.Speaker.color = color10;
-				}
-			}
-			Color color11 = this.Square.color;
-			color11.a = 1f;
-			this.Square.color = color11;
-			this.ID = 0;
-			while (this.ID < 4)
-			{
-				if (this.ButtonActive[this.ID] && this.HideButton[this.ID])
-				{
-					UISprite uisprite5 = this.Button[this.ID];
-					UISprite uisprite6 = this.Circle[this.ID];
-					UILabel uilabel3 = this.Label[this.ID];
-					uisprite5.enabled = false;
-					uisprite6.enabled = false;
-					uilabel3.enabled = false;
-					Color color12 = uisprite5.color;
-					Color color13 = uisprite6.color;
-					Color color14 = uilabel3.color;
-					color12.a = 0f;
-					color13.a = 0f;
-					color14.a = 0f;
-					uisprite5.color = color12;
-					uisprite6.color = color13;
-					uilabel3.color = color14;
-					if (this.Speaker != null)
-					{
-						this.Speaker.enabled = false;
-						Color color15 = this.Speaker.color;
-						color15.a = 0f;
-						this.Speaker.color = color15;
-					}
-				}
-				this.ID++;
-			}
-			return;
-		}
-		this.Hide();
-	}
+  private bool AllowedWhenCrawling(PromptOwnerType ownerType) => false;
 
-	// Token: 0x06001B45 RID: 6981 RVA: 0x0013185A File Offset: 0x0012FA5A
-	private void OnBecameVisible()
-	{
-		this.InView = true;
-	}
+  private void Update()
+  {
+    if ((Object) this.PauseScreen == (Object) null)
+    {
+      Debug.Log((object) ("My name is " + this.name + " and I am a prompt that is disabling itself because my PauseScreen reference is null."));
+      this.enabled = false;
+      this.Hide();
+    }
+    else if (!this.PauseScreen.Show)
+    {
+      if (this.InView)
+      {
+        this.CurrentPosition = this.transform.position;
+        this.DistanceSqr = !((Object) this.MyStudent == (Object) null) ? this.MyStudent.DistanceToPlayer : (new Vector3(this.CurrentPosition.x, this.Yandere.transform.position.y, this.CurrentPosition.z) - this.Yandere.transform.position).sqrMagnitude;
+        if ((double) this.DistanceSqr < (double) this.MaximumDistanceSqr)
+        {
+          this.NoCheck = true;
+          bool flag1 = this.Yandere.Stance.Current == StanceType.Crouching;
+          bool flag2 = this.Yandere.Stance.Current == StanceType.Crawling;
+          if (this.Yandere.CanMove && (!flag1 || this.AllowedWhenCrouching(this.OwnerType)) && (!flag2 || this.AllowedWhenCrawling(this.OwnerType)) && !this.Yandere.Aiming && !this.Yandere.Mopping && !this.Yandere.NearSenpai)
+          {
+            this.InSight = false;
+            RaycastHit hitInfo;
+            if (Physics.Linecast(this.Yandere.Eyes.position + Vector3.down * this.Height, this.RaycastTarget.position, out hitInfo, this.BloodMask))
+              this.InSight = (Object) hitInfo.collider == (Object) this.MyCollider;
+            if (this.Carried || this.InSight)
+            {
+              this.SquareSet = false;
+              this.Hidden = false;
+              Vector2 vector2 = Vector2.zero;
+              for (this.ID = 0; this.ID < 4; ++this.ID)
+              {
+                if (this.ButtonActive[this.ID])
+                {
+                  if (!this.Button[this.ID].gameObject.activeInHierarchy)
+                    this.Button[this.ID].gameObject.SetActive(true);
+                  if ((double) Vector3.Angle(this.Yandere.MainCamera.transform.forward, this.Yandere.MainCamera.transform.position - this.CurrentPosition) > 90.0)
+                  {
+                    if (this.Local)
+                    {
+                      Vector2 screenPoint = (Vector2) this.MainCamera.WorldToScreenPoint(this.CurrentPosition + this.transform.right * this.OffsetX[this.ID] + this.transform.up * this.OffsetY[this.ID] + this.transform.forward * this.OffsetZ[this.ID]);
+                      this.Button[this.ID].transform.position = this.UICamera.ScreenToWorldPoint(new Vector3(screenPoint.x, screenPoint.y, 1f));
+                      if (!this.SquareSet)
+                      {
+                        this.Square.transform.position = this.Button[this.ID].transform.position;
+                        this.SquareSet = true;
+                      }
+                      this.RelativePosition = screenPoint.x;
+                    }
+                    else
+                    {
+                      vector2 = (Vector2) this.MainCamera.WorldToScreenPoint(this.CurrentPosition + new Vector3(this.OffsetX[this.ID], this.OffsetY[this.ID], this.OffsetZ[this.ID]));
+                      this.Button[this.ID].transform.position = this.UICamera.ScreenToWorldPoint(new Vector3(vector2.x, vector2.y, 1f));
+                      if (!this.SquareSet)
+                      {
+                        this.Square.transform.position = this.Button[this.ID].transform.position;
+                        this.SquareSet = true;
+                      }
+                      this.RelativePosition = vector2.x;
+                    }
+                    if (!this.HideButton[this.ID])
+                    {
+                      this.Square.enabled = true;
+                      this.Square.color = new Color(this.Square.color.r, this.Square.color.g, this.Square.color.b, 1f);
+                    }
+                  }
+                }
+              }
+              if (this.Noisy)
+                this.Speaker.transform.position = this.UICamera.ScreenToWorldPoint(new Vector3(vector2.x, vector2.y + 40f, 1f));
+              if ((double) this.DistanceSqr < (double) this.MinimumDistanceSqr)
+              {
+                if ((Object) this.Yandere.NearestPrompt == (Object) null)
+                  this.Yandere.NearestPrompt = this;
+                else if ((double) Mathf.Abs(this.RelativePosition - (float) Screen.width * 0.5f) < (double) Mathf.Abs(this.Yandere.NearestPrompt.RelativePosition - (float) Screen.width * 0.5f))
+                  this.Yandere.NearestPrompt = this;
+                if ((Object) this.Yandere.NearestPrompt == (Object) this)
+                {
+                  this.Square.enabled = false;
+                  this.Square.color = new Color(this.Square.color.r, this.Square.color.g, this.Square.color.b, 0.0f);
+                  for (this.ID = 0; this.ID < 4; ++this.ID)
+                  {
+                    if (this.ButtonActive[this.ID])
+                    {
+                      if (!this.Button[this.ID].enabled)
+                      {
+                        this.Button[this.ID].enabled = true;
+                        this.Circle[this.ID].enabled = true;
+                        this.Label[this.ID].enabled = true;
+                      }
+                      this.Button[this.ID].color = new Color(1f, 1f, 1f, 1f);
+                      this.Circle[this.ID].color = new Color(0.5f, 0.5f, 0.5f, 1f);
+                      this.Label[this.ID].color = this.Label[this.ID].color with
+                      {
+                        a = 1f
+                      };
+                      if ((Object) this.Speaker != (Object) null)
+                      {
+                        this.Speaker.enabled = true;
+                        this.Speaker.color = this.Speaker.color with
+                        {
+                          a = 1f
+                        };
+                      }
+                    }
+                  }
+                  this.ButtonHeld = !Input.GetButton("A") ? (!Input.GetButton("B") ? (!Input.GetButton("X") ? (!Input.GetButton("Y") ? 0 : 4) : 3) : 2) : 1;
+                  if (this.ButtonHeld > 0)
+                  {
+                    for (this.ID = 0; this.ID < 4; ++this.ID)
+                    {
+                      if ((this.ButtonActive[this.ID] && this.ID != this.ButtonHeld - 1 || this.HideButton[this.ID]) && (Object) this.Circle[this.ID] != (Object) null)
+                        this.Circle[this.ID].fillAmount = 1f;
+                    }
+                    if (this.ButtonActive[this.ButtonHeld - 1] && !this.HideButton[this.ButtonHeld - 1] && this.AcceptingInput[this.ButtonHeld - 1] && !this.Yandere.Attacking)
+                    {
+                      this.Circle[this.ButtonHeld - 1].color = new Color(1f, 1f, 1f, 1f);
+                      if (!this.Attack)
+                        this.Circle[this.ButtonHeld - 1].fillAmount -= Time.deltaTime * 2f;
+                      else
+                        this.Circle[this.ButtonHeld - 1].fillAmount = 0.0f;
+                      this.ID = 0;
+                    }
+                  }
+                  else
+                  {
+                    for (this.ID = 0; this.ID < 4; ++this.ID)
+                    {
+                      if (this.ButtonActive[this.ID])
+                        this.Circle[this.ID].fillAmount = 1f;
+                    }
+                  }
+                }
+                else
+                {
+                  this.Square.color = new Color(this.Square.color.r, this.Square.color.g, this.Square.color.b, 1f);
+                  for (this.ID = 0; this.ID < 4; ++this.ID)
+                  {
+                    if (this.ButtonActive[this.ID])
+                    {
+                      UISprite uiSprite1 = this.Button[this.ID];
+                      UISprite uiSprite2 = this.Circle[this.ID];
+                      UILabel uiLabel = this.Label[this.ID];
+                      uiSprite1.enabled = false;
+                      uiSprite2.enabled = false;
+                      uiLabel.enabled = false;
+                      Color color1 = uiSprite1.color;
+                      Color color2 = uiSprite2.color;
+                      Color color3 = uiLabel.color;
+                      color1.a = 0.0f;
+                      color2.a = 0.0f;
+                      color3.a = 0.0f;
+                      uiSprite1.color = color1;
+                      uiSprite2.color = color2;
+                      uiLabel.color = color3;
+                    }
+                  }
+                  if ((Object) this.Speaker != (Object) null)
+                  {
+                    this.Speaker.enabled = false;
+                    this.Speaker.color = this.Speaker.color with
+                    {
+                      a = 0.0f
+                    };
+                  }
+                }
+              }
+              else
+              {
+                if ((Object) this.Yandere.NearestPrompt == (Object) this)
+                  this.Yandere.NearestPrompt = (PromptScript) null;
+                this.Square.color = new Color(this.Square.color.r, this.Square.color.g, this.Square.color.b, 1f);
+                for (this.ID = 0; this.ID < 4; ++this.ID)
+                {
+                  if (this.ButtonActive[this.ID])
+                  {
+                    UISprite uiSprite3 = this.Button[this.ID];
+                    UISprite uiSprite4 = this.Circle[this.ID];
+                    UILabel uiLabel = this.Label[this.ID];
+                    uiSprite4.fillAmount = 1f;
+                    uiSprite3.enabled = false;
+                    uiSprite4.enabled = false;
+                    uiLabel.enabled = false;
+                    Color color4 = uiSprite3.color;
+                    Color color5 = uiSprite4.color;
+                    Color color6 = uiLabel.color;
+                    color4.a = 0.0f;
+                    color5.a = 0.0f;
+                    color6.a = 0.0f;
+                    uiSprite3.color = color4;
+                    uiSprite4.color = color5;
+                    uiLabel.color = color6;
+                  }
+                }
+                if ((Object) this.Speaker != (Object) null)
+                {
+                  this.Speaker.enabled = false;
+                  this.Speaker.color = this.Speaker.color with
+                  {
+                    a = 0.0f
+                  };
+                }
+              }
+              this.Square.color = this.Square.color with
+              {
+                a = 1f
+              };
+              for (this.ID = 0; this.ID < 4; ++this.ID)
+              {
+                if (this.ButtonActive[this.ID] && this.HideButton[this.ID])
+                {
+                  UISprite uiSprite5 = this.Button[this.ID];
+                  UISprite uiSprite6 = this.Circle[this.ID];
+                  UILabel uiLabel = this.Label[this.ID];
+                  uiSprite5.enabled = false;
+                  uiSprite6.enabled = false;
+                  uiLabel.enabled = false;
+                  Color color7 = uiSprite5.color;
+                  Color color8 = uiSprite6.color;
+                  Color color9 = uiLabel.color;
+                  color7.a = 0.0f;
+                  color8.a = 0.0f;
+                  color9.a = 0.0f;
+                  uiSprite5.color = color7;
+                  uiSprite6.color = color8;
+                  uiLabel.color = color9;
+                  if ((Object) this.Speaker != (Object) null)
+                  {
+                    this.Speaker.enabled = false;
+                    this.Speaker.color = this.Speaker.color with
+                    {
+                      a = 0.0f
+                    };
+                  }
+                }
+              }
+            }
+            else
+              this.Hide();
+          }
+          else
+            this.Hide();
+        }
+        else
+          this.Hide();
+      }
+      else
+      {
+        this.DistanceSqr = float.PositiveInfinity;
+        this.Hide();
+      }
+    }
+    else
+      this.Hide();
+  }
 
-	// Token: 0x06001B46 RID: 6982 RVA: 0x00131863 File Offset: 0x0012FA63
-	private void OnBecameInvisible()
-	{
-		this.InView = false;
-		this.Hide();
-	}
+  private void OnBecameVisible() => this.InView = true;
 
-	// Token: 0x06001B47 RID: 6983 RVA: 0x00131874 File Offset: 0x0012FA74
-	public void Hide()
-	{
-		if (!this.Hidden)
-		{
-			this.NoCheck = false;
-			this.Hidden = true;
-			if (this.Yandere != null)
-			{
-				if (this.Yandere.NearestPrompt == this)
-				{
-					this.Yandere.NearestPrompt = null;
-				}
-				if (this.Square == null)
-				{
-					Debug.Log("An object named " + base.gameObject.name + " doesn't have a ''Square'' Sprite. The object's root is " + base.transform.root.gameObject.name);
-					return;
-				}
-				if (this.Square.enabled)
-				{
-					this.Square.enabled = false;
-					this.Square.color = new Color(this.Square.color.r, this.Square.color.g, this.Square.color.b, 0f);
-				}
-				this.ID = 0;
-				while (this.ID < 4)
-				{
-					if (this.ButtonActive[this.ID])
-					{
-						UISprite uisprite = this.Button[this.ID];
-						if (uisprite.enabled)
-						{
-							UISprite uisprite2 = this.Circle[this.ID];
-							UILabel uilabel = this.Label[this.ID];
-							uisprite2.fillAmount = 1f;
-							uisprite.enabled = false;
-							uisprite2.enabled = false;
-							uilabel.enabled = false;
-							uisprite.color = new Color(uisprite.color.r, uisprite.color.g, uisprite.color.b, 0f);
-							uisprite2.color = new Color(uisprite2.color.r, uisprite2.color.g, uisprite2.color.b, 0f);
-							uilabel.color = new Color(uilabel.color.r, uilabel.color.g, uilabel.color.b, 0f);
-						}
-					}
-					if (this.Button[this.ID] != null)
-					{
-						this.Button[this.ID].gameObject.SetActive(false);
-					}
-					this.ID++;
-				}
-				if (this.Speaker != null)
-				{
-					this.Speaker.enabled = false;
-					this.Speaker.color = new Color(this.Speaker.color.r, this.Speaker.color.g, this.Speaker.color.b, 0f);
-				}
-			}
-		}
-	}
+  private void OnBecameInvisible()
+  {
+    this.InView = false;
+    this.Hide();
+  }
 
-	// Token: 0x04002E67 RID: 11879
-	public PauseScreenScript PauseScreen;
-
-	// Token: 0x04002E68 RID: 11880
-	public StudentScript MyStudent;
-
-	// Token: 0x04002E69 RID: 11881
-	public YandereScript Yandere;
-
-	// Token: 0x04002E6A RID: 11882
-	public GameObject[] ButtonObject;
-
-	// Token: 0x04002E6B RID: 11883
-	public GameObject SpeakerObject;
-
-	// Token: 0x04002E6C RID: 11884
-	public GameObject CircleObject;
-
-	// Token: 0x04002E6D RID: 11885
-	public GameObject LabelObject;
-
-	// Token: 0x04002E6E RID: 11886
-	public PromptParentScript PromptParent;
-
-	// Token: 0x04002E6F RID: 11887
-	public Collider MyCollider;
-
-	// Token: 0x04002E70 RID: 11888
-	public Camera MainCamera;
-
-	// Token: 0x04002E71 RID: 11889
-	public Camera UICamera;
-
-	// Token: 0x04002E72 RID: 11890
-	public bool[] AcceptingInput;
-
-	// Token: 0x04002E73 RID: 11891
-	public bool[] ButtonActive;
-
-	// Token: 0x04002E74 RID: 11892
-	public bool[] HideButton;
-
-	// Token: 0x04002E75 RID: 11893
-	public UISprite[] Button;
-
-	// Token: 0x04002E76 RID: 11894
-	public UISprite[] Circle;
-
-	// Token: 0x04002E77 RID: 11895
-	public UILabel[] Label;
-
-	// Token: 0x04002E78 RID: 11896
-	public UISprite Speaker;
-
-	// Token: 0x04002E79 RID: 11897
-	public UISprite Square;
-
-	// Token: 0x04002E7A RID: 11898
-	public float[] OffsetX;
-
-	// Token: 0x04002E7B RID: 11899
-	public float[] OffsetY;
-
-	// Token: 0x04002E7C RID: 11900
-	public float[] OffsetZ;
-
-	// Token: 0x04002E7D RID: 11901
-	public string[] Text;
-
-	// Token: 0x04002E7E RID: 11902
-	public PromptOwnerType OwnerType;
-
-	// Token: 0x04002E7F RID: 11903
-	public bool DisableAtStart;
-
-	// Token: 0x04002E80 RID: 11904
-	public bool Suspicious;
-
-	// Token: 0x04002E81 RID: 11905
-	public bool Debugging;
-
-	// Token: 0x04002E82 RID: 11906
-	public bool SquareSet;
-
-	// Token: 0x04002E83 RID: 11907
-	public bool Carried;
-
-	// Token: 0x04002E84 RID: 11908
-	[Tooltip("This means that the prompt's renderer is within the camera's cone of vision.")]
-	public bool InSight;
-
-	// Token: 0x04002E85 RID: 11909
-	[Tooltip("This means that a raycast can hit the prompt's collider.")]
-	public bool InView;
-
-	// Token: 0x04002E86 RID: 11910
-	public bool NoCheck;
-
-	// Token: 0x04002E87 RID: 11911
-	public bool Attack;
-
-	// Token: 0x04002E88 RID: 11912
-	public bool Weapon;
-
-	// Token: 0x04002E89 RID: 11913
-	public bool Noisy;
-
-	// Token: 0x04002E8A RID: 11914
-	public bool Local = true;
-
-	// Token: 0x04002E8B RID: 11915
-	public float RelativePosition;
-
-	// Token: 0x04002E8C RID: 11916
-	public float MaximumDistance = 5f;
-
-	// Token: 0x04002E8D RID: 11917
-	public float MinimumDistance;
-
-	// Token: 0x04002E8E RID: 11918
-	public float DistanceSqr;
-
-	// Token: 0x04002E8F RID: 11919
-	public float Height;
-
-	// Token: 0x04002E90 RID: 11920
-	public int ButtonHeld;
-
-	// Token: 0x04002E91 RID: 11921
-	public int BloodMask;
-
-	// Token: 0x04002E92 RID: 11922
-	public int Priority;
-
-	// Token: 0x04002E93 RID: 11923
-	public int ID;
-
-	// Token: 0x04002E94 RID: 11924
-	public GameObject YandereObject;
-
-	// Token: 0x04002E95 RID: 11925
-	public Transform RaycastTarget;
-
-	// Token: 0x04002E96 RID: 11926
-	public float MinimumDistanceSqr;
-
-	// Token: 0x04002E97 RID: 11927
-	public float MaximumDistanceSqr;
-
-	// Token: 0x04002E98 RID: 11928
-	public Vector3 CurrentPosition;
-
-	// Token: 0x04002E99 RID: 11929
-	public float Timer;
-
-	// Token: 0x04002E9A RID: 11930
-	public bool Student;
-
-	// Token: 0x04002E9B RID: 11931
-	public bool Door;
-
-	// Token: 0x04002E9C RID: 11932
-	public bool Hidden;
+  public void Hide()
+  {
+    if (this.Hidden)
+      return;
+    this.NoCheck = false;
+    this.Hidden = true;
+    if (!((Object) this.Yandere != (Object) null))
+      return;
+    if ((Object) this.Yandere.NearestPrompt == (Object) this)
+      this.Yandere.NearestPrompt = (PromptScript) null;
+    if ((Object) this.Square == (Object) null)
+    {
+      Debug.Log((object) ("An object named " + this.gameObject.name + " doesn't have a ''Square'' Sprite. The object's root is " + this.transform.root.gameObject.name));
+    }
+    else
+    {
+      if (this.Square.enabled)
+      {
+        this.Square.enabled = false;
+        this.Square.color = new Color(this.Square.color.r, this.Square.color.g, this.Square.color.b, 0.0f);
+      }
+      for (this.ID = 0; this.ID < 4; ++this.ID)
+      {
+        if (this.ButtonActive[this.ID])
+        {
+          UISprite uiSprite1 = this.Button[this.ID];
+          if (uiSprite1.enabled)
+          {
+            UISprite uiSprite2 = this.Circle[this.ID];
+            UILabel uiLabel = this.Label[this.ID];
+            uiSprite2.fillAmount = 1f;
+            uiSprite1.enabled = false;
+            uiSprite2.enabled = false;
+            uiLabel.enabled = false;
+            uiSprite1.color = new Color(uiSprite1.color.r, uiSprite1.color.g, uiSprite1.color.b, 0.0f);
+            uiSprite2.color = new Color(uiSprite2.color.r, uiSprite2.color.g, uiSprite2.color.b, 0.0f);
+            uiLabel.color = new Color(uiLabel.color.r, uiLabel.color.g, uiLabel.color.b, 0.0f);
+          }
+        }
+        if ((Object) this.Button[this.ID] != (Object) null)
+          this.Button[this.ID].gameObject.SetActive(false);
+      }
+      if (!((Object) this.Speaker != (Object) null))
+        return;
+      this.Speaker.enabled = false;
+      this.Speaker.color = new Color(this.Speaker.color.r, this.Speaker.color.g, this.Speaker.color.b, 0.0f);
+    }
+  }
 }

@@ -1,103 +1,84 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MaidDereMinigame.GameStarter
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005AB RID: 1451
-	public class GameStarter : MonoBehaviour
-	{
-		// Token: 0x060024BE RID: 9406 RVA: 0x00203910 File Offset: 0x00201B10
-		private void Awake()
-		{
-			this.spriteRenderer = base.GetComponent<SpriteRenderer>();
-			this.audioSource = base.GetComponent<AudioSource>();
-			base.StartCoroutine(this.CountdownToStart());
-			GameController.Instance.tipPage = this.tipPage;
-			GameController.Instance.whiteFadeOutPost = this.whiteFadeOutPost;
-		}
+  public class GameStarter : MonoBehaviour
+  {
+    public List<Sprite> numbers;
+    public SpriteRenderer whiteFadeOutPost;
+    public Sprite timeUp;
+    public TipPage tipPage;
+    private AudioSource audioSource;
+    private SpriteRenderer spriteRenderer;
+    private int timeToStart = 3;
 
-		// Token: 0x060024BF RID: 9407 RVA: 0x00203964 File Offset: 0x00201B64
-		public void SetGameTime(float gameTime)
-		{
-			int num = Mathf.CeilToInt(gameTime);
-			if ((float)num == 10f)
-			{
-				SFXController.PlaySound(SFXController.Sounds.ClockTick);
-			}
-			if (gameTime > 3f)
-			{
-				return;
-			}
-			if (num - 1 <= 2)
-			{
-				this.spriteRenderer.sprite = this.numbers[num];
-				return;
-			}
-			this.EndGame();
-		}
+    private void Awake()
+    {
+      this.spriteRenderer = this.GetComponent<SpriteRenderer>();
+      this.audioSource = this.GetComponent<AudioSource>();
+      this.StartCoroutine(this.CountdownToStart());
+      GameController.Instance.tipPage = this.tipPage;
+      GameController.Instance.whiteFadeOutPost = this.whiteFadeOutPost;
+    }
 
-		// Token: 0x060024C0 RID: 9408 RVA: 0x002039B4 File Offset: 0x00201BB4
-		public void EndGame()
-		{
-			base.StartCoroutine(this.EndGameRoutine());
-			SFXController.PlaySound(SFXController.Sounds.GameSuccess);
-		}
+    public void SetGameTime(float gameTime)
+    {
+      int index = Mathf.CeilToInt(gameTime);
+      if ((double) index == 10.0)
+        SFXController.PlaySound(SFXController.Sounds.ClockTick);
+      if ((double) gameTime > 3.0)
+        return;
+      switch (index)
+      {
+        case 1:
+        case 2:
+        case 3:
+          this.spriteRenderer.sprite = this.numbers[index];
+          break;
+        default:
+          this.EndGame();
+          break;
+      }
+    }
 
-		// Token: 0x060024C1 RID: 9409 RVA: 0x002039C9 File Offset: 0x00201BC9
-		private IEnumerator CountdownToStart()
-		{
-			yield return new WaitForSeconds(GameController.Instance.activeDifficultyVariables.transitionTime);
-			SFXController.PlaySound(SFXController.Sounds.Countdown);
-			while (this.timeToStart > 0)
-			{
-				yield return new WaitForSeconds(1f);
-				this.timeToStart--;
-				this.spriteRenderer.sprite = this.numbers[this.timeToStart];
-			}
-			yield return new WaitForSeconds(1f);
-			GameController.SetPause(false);
-			this.spriteRenderer.sprite = null;
-			yield break;
-		}
+    public void EndGame()
+    {
+      this.StartCoroutine(this.EndGameRoutine());
+      SFXController.PlaySound(SFXController.Sounds.GameSuccess);
+    }
 
-		// Token: 0x060024C2 RID: 9410 RVA: 0x002039D8 File Offset: 0x00201BD8
-		private IEnumerator EndGameRoutine()
-		{
-			GameController.SetPause(true);
-			this.spriteRenderer.sprite = this.timeUp;
-			yield return new WaitForSeconds(1f);
-			UnityEngine.Object.FindObjectOfType<InteractionMenu>().gameObject.SetActive(false);
-			GameController.TimeUp();
-			yield break;
-		}
+    private IEnumerator CountdownToStart()
+    {
+      yield return (object) new WaitForSeconds(GameController.Instance.activeDifficultyVariables.transitionTime);
+      SFXController.PlaySound(SFXController.Sounds.Countdown);
+      while (this.timeToStart > 0)
+      {
+        yield return (object) new WaitForSeconds(1f);
+        --this.timeToStart;
+        this.spriteRenderer.sprite = this.numbers[this.timeToStart];
+      }
+      yield return (object) new WaitForSeconds(1f);
+      GameController.SetPause(false);
+      this.spriteRenderer.sprite = (Sprite) null;
+    }
 
-		// Token: 0x060024C3 RID: 9411 RVA: 0x002039E7 File Offset: 0x00201BE7
-		public void SetAudioPitch(float value)
-		{
-			this.audioSource.pitch = value;
-		}
+    private IEnumerator EndGameRoutine()
+    {
+      GameController.SetPause(true);
+      this.spriteRenderer.sprite = this.timeUp;
+      yield return (object) new WaitForSeconds(1f);
+      Object.FindObjectOfType<InteractionMenu>().gameObject.SetActive(false);
+      GameController.TimeUp();
+    }
 
-		// Token: 0x04004D5C RID: 19804
-		public List<Sprite> numbers;
-
-		// Token: 0x04004D5D RID: 19805
-		public SpriteRenderer whiteFadeOutPost;
-
-		// Token: 0x04004D5E RID: 19806
-		public Sprite timeUp;
-
-		// Token: 0x04004D5F RID: 19807
-		public TipPage tipPage;
-
-		// Token: 0x04004D60 RID: 19808
-		private AudioSource audioSource;
-
-		// Token: 0x04004D61 RID: 19809
-		private SpriteRenderer spriteRenderer;
-
-		// Token: 0x04004D62 RID: 19810
-		private int timeToStart = 3;
-	}
+    public void SetAudioPitch(float value) => this.audioSource.pitch = value;
+  }
 }

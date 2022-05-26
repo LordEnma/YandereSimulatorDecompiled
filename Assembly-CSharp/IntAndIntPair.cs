@@ -1,16 +1,21 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: IntAndIntPair
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x020004B9 RID: 1209
+using System;
+
 [Serializable]
 public class IntAndIntPair : SerializablePair<int, int>
 {
-	// Token: 0x06001FC3 RID: 8131 RVA: 0x001C15AD File Offset: 0x001BF7AD
-	public IntAndIntPair(int first, int second) : base(first, second)
-	{
-	}
+  public IntAndIntPair(int first, int second)
+    : base(first, second)
+  {
+  }
 
-	// Token: 0x06001FC4 RID: 8132 RVA: 0x001C15B7 File Offset: 0x001BF7B7
-	public IntAndIntPair() : base(0, 0)
-	{
-	}
+  public IntAndIntPair()
+    : base(0, 0)
+  {
+  }
 }

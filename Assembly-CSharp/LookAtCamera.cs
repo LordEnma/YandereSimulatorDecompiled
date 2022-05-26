@@ -1,25 +1,21 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: LookAtCamera
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000524 RID: 1316
 public class LookAtCamera : MonoBehaviour
 {
-	// Token: 0x060021AD RID: 8621 RVA: 0x001F20C5 File Offset: 0x001F02C5
-	private void Start()
-	{
-		if (this.cameraToLookAt == null)
-		{
-			this.cameraToLookAt = Camera.main;
-		}
-	}
+  public Camera cameraToLookAt;
 
-	// Token: 0x060021AE RID: 8622 RVA: 0x001F20E0 File Offset: 0x001F02E0
-	private void Update()
-	{
-		Vector3 b = new Vector3(0f, this.cameraToLookAt.transform.position.y - base.transform.position.y, 0f);
-		base.transform.LookAt(this.cameraToLookAt.transform.position - b);
-	}
+  private void Start()
+  {
+    if (!((Object) this.cameraToLookAt == (Object) null))
+      return;
+    this.cameraToLookAt = Camera.main;
+  }
 
-	// Token: 0x04004A2E RID: 18990
-	public Camera cameraToLookAt;
+  private void Update() => this.transform.LookAt(this.cameraToLookAt.transform.position - new Vector3(0.0f, this.cameraToLookAt.transform.position.y - this.transform.position.y, 0.0f));
 }

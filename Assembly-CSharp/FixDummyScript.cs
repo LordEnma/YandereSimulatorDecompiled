@@ -1,47 +1,45 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: FixDummyScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020002CE RID: 718
 public class FixDummyScript : MonoBehaviour
 {
-	// Token: 0x060014B8 RID: 5304 RVA: 0x000CC579 File Offset: 0x000CA779
-	private void Start()
-	{
-		this.FixedDummy.SetActive(false);
-		if (GameGlobals.Eighties)
-		{
-			this.Fix();
-		}
-	}
+  public GameObject FixedDummy;
+  public PromptScript Prompt;
 
-	// Token: 0x060014B9 RID: 5305 RVA: 0x000CC594 File Offset: 0x000CA794
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Circle[0].fillAmount = 1f;
-			if (this.Prompt.Yandere.Armed && this.Prompt.Yandere.EquippedWeapon.WeaponID == 24)
-			{
-				this.Fix();
-				return;
-			}
-			this.Prompt.Yandere.NotificationManager.CustomText = "Wrench required!";
-			this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-		}
-	}
+  private void Start()
+  {
+    this.FixedDummy.SetActive(false);
+    if (!GameGlobals.Eighties)
+      return;
+    this.Fix();
+  }
 
-	// Token: 0x060014BA RID: 5306 RVA: 0x000CC634 File Offset: 0x000CA834
-	private void Fix()
-	{
-		base.gameObject.SetActive(false);
-		this.FixedDummy.SetActive(true);
-		this.Prompt.enabled = false;
-		this.Prompt.Hide();
-	}
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    this.Prompt.Circle[0].fillAmount = 1f;
+    if (this.Prompt.Yandere.Armed && this.Prompt.Yandere.EquippedWeapon.WeaponID == 24)
+    {
+      this.Fix();
+    }
+    else
+    {
+      this.Prompt.Yandere.NotificationManager.CustomText = "Wrench required!";
+      this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+    }
+  }
 
-	// Token: 0x04002075 RID: 8309
-	public GameObject FixedDummy;
-
-	// Token: 0x04002076 RID: 8310
-	public PromptScript Prompt;
+  private void Fix()
+  {
+    this.gameObject.SetActive(false);
+    this.FixedDummy.SetActive(true);
+    this.Prompt.enabled = false;
+    this.Prompt.Hide();
+  }
 }

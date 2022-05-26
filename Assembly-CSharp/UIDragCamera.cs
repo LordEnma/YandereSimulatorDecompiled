@@ -1,47 +1,42 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIDragCamera
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200004D RID: 77
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Interaction/Drag Camera")]
 public class UIDragCamera : MonoBehaviour
 {
-	// Token: 0x06000162 RID: 354 RVA: 0x00015618 File Offset: 0x00013818
-	private void Awake()
-	{
-		if (this.draggableCamera == null)
-		{
-			this.draggableCamera = NGUITools.FindInParents<UIDraggableCamera>(base.gameObject);
-		}
-	}
+  public UIDraggableCamera draggableCamera;
 
-	// Token: 0x06000163 RID: 355 RVA: 0x00015639 File Offset: 0x00013839
-	private void OnPress(bool isPressed)
-	{
-		if (base.enabled && NGUITools.GetActive(base.gameObject) && this.draggableCamera != null && this.draggableCamera.enabled)
-		{
-			this.draggableCamera.Press(isPressed);
-		}
-	}
+  private void Awake()
+  {
+    if (!((Object) this.draggableCamera == (Object) null))
+      return;
+    this.draggableCamera = NGUITools.FindInParents<UIDraggableCamera>(this.gameObject);
+  }
 
-	// Token: 0x06000164 RID: 356 RVA: 0x00015677 File Offset: 0x00013877
-	private void OnDrag(Vector2 delta)
-	{
-		if (base.enabled && NGUITools.GetActive(base.gameObject) && this.draggableCamera != null && this.draggableCamera.enabled)
-		{
-			this.draggableCamera.Drag(delta);
-		}
-	}
+  private void OnPress(bool isPressed)
+  {
+    if (!this.enabled || !NGUITools.GetActive(this.gameObject) || !((Object) this.draggableCamera != (Object) null) || !this.draggableCamera.enabled)
+      return;
+    this.draggableCamera.Press(isPressed);
+  }
 
-	// Token: 0x06000165 RID: 357 RVA: 0x000156B5 File Offset: 0x000138B5
-	private void OnScroll(float delta)
-	{
-		if (base.enabled && NGUITools.GetActive(base.gameObject) && this.draggableCamera != null && this.draggableCamera.enabled)
-		{
-			this.draggableCamera.Scroll(delta);
-		}
-	}
+  private void OnDrag(Vector2 delta)
+  {
+    if (!this.enabled || !NGUITools.GetActive(this.gameObject) || !((Object) this.draggableCamera != (Object) null) || !this.draggableCamera.enabled)
+      return;
+    this.draggableCamera.Drag(delta);
+  }
 
-	// Token: 0x04000326 RID: 806
-	public UIDraggableCamera draggableCamera;
+  private void OnScroll(float delta)
+  {
+    if (!this.enabled || !NGUITools.GetActive(this.gameObject) || !((Object) this.draggableCamera != (Object) null) || !this.draggableCamera.enabled)
+      return;
+    this.draggableCamera.Scroll(delta);
+  }
 }

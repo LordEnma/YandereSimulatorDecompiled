@@ -1,30 +1,24 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: StudentPortraitScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200045E RID: 1118
 public class StudentPortraitScript : MonoBehaviour
 {
-	// Token: 0x06001E0D RID: 7693 RVA: 0x0017252B File Offset: 0x0017072B
-	private void Start()
-	{
-		this.DeathShadow.SetActive(false);
-		this.PrisonBars.SetActive(false);
-		this.Panties.SetActive(false);
-		this.Friend.SetActive(false);
-	}
+  public GameObject DeathShadow;
+  public GameObject PrisonBars;
+  public GameObject Panties;
+  public GameObject Friend;
+  public UITexture Portrait;
 
-	// Token: 0x0400388F RID: 14479
-	public GameObject DeathShadow;
-
-	// Token: 0x04003890 RID: 14480
-	public GameObject PrisonBars;
-
-	// Token: 0x04003891 RID: 14481
-	public GameObject Panties;
-
-	// Token: 0x04003892 RID: 14482
-	public GameObject Friend;
-
-	// Token: 0x04003893 RID: 14483
-	public UITexture Portrait;
+  private void Start()
+  {
+    this.DeathShadow.SetActive(false);
+    this.PrisonBars.SetActive(false);
+    this.Panties.SetActive(false);
+    this.Friend.SetActive(false);
+  }
 }

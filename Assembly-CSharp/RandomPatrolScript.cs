@@ -1,49 +1,41 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: RandomPatrolScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003D1 RID: 977
 public class RandomPatrolScript : MonoBehaviour
 {
-	// Token: 0x06001B88 RID: 7048 RVA: 0x00136EBC File Offset: 0x001350BC
-	private void Start()
-	{
-		for (int i = 1; i < 5; i++)
-		{
-			this.Height[i] = UnityEngine.Random.Range(1, 5);
-			if (this.Height[i] == 1)
-			{
-				this.Height[i] = 0;
-			}
-			else if (this.Height[i] == 2)
-			{
-				this.Height[i] = 4;
-			}
-			else if (this.Height[i] == 3)
-			{
-				this.Height[i] = 8;
-			}
-			else if (this.Height[i] == 4)
-			{
-				this.Height[i] = 12;
-			}
-		}
-		Transform transform = this.PatrolPoints[1];
-		Transform transform2 = this.PatrolPoints[2];
-		Transform transform3 = this.PatrolPoints[3];
-		Transform transform4 = this.PatrolPoints[4];
-		transform.position = new Vector3(UnityEngine.Random.Range(-21f, 21f), (float)this.Height[1], UnityEngine.Random.Range(21f, 19f));
-		transform2.position = new Vector3(UnityEngine.Random.Range(19f, 21f), (float)this.Height[2], UnityEngine.Random.Range(29f, -37f));
-		transform3.position = new Vector3(UnityEngine.Random.Range(-21f, 21f), (float)this.Height[3], UnityEngine.Random.Range(-21f, -19f));
-		transform4.position = new Vector3(UnityEngine.Random.Range(-19f, -21f), (float)this.Height[4], UnityEngine.Random.Range(29f, -37f));
-		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, UnityEngine.Random.Range(0f, 360f), transform.localEulerAngles.z);
-		transform2.localEulerAngles = new Vector3(transform2.localEulerAngles.x, UnityEngine.Random.Range(0f, 360f), transform2.localEulerAngles.z);
-		transform3.localEulerAngles = new Vector3(transform3.localEulerAngles.x, UnityEngine.Random.Range(0f, 360f), transform3.localEulerAngles.z);
-		transform4.localEulerAngles = new Vector3(transform4.localEulerAngles.x, UnityEngine.Random.Range(0f, 360f), transform4.localEulerAngles.z);
-	}
+  public Transform[] PatrolPoints;
+  public int[] Height;
 
-	// Token: 0x04002F4A RID: 12106
-	public Transform[] PatrolPoints;
-
-	// Token: 0x04002F4B RID: 12107
-	public int[] Height;
+  private void Start()
+  {
+    for (int index = 1; index < 5; ++index)
+    {
+      this.Height[index] = Random.Range(1, 5);
+      if (this.Height[index] == 1)
+        this.Height[index] = 0;
+      else if (this.Height[index] == 2)
+        this.Height[index] = 4;
+      else if (this.Height[index] == 3)
+        this.Height[index] = 8;
+      else if (this.Height[index] == 4)
+        this.Height[index] = 12;
+    }
+    Transform patrolPoint1 = this.PatrolPoints[1];
+    Transform patrolPoint2 = this.PatrolPoints[2];
+    Transform patrolPoint3 = this.PatrolPoints[3];
+    Transform patrolPoint4 = this.PatrolPoints[4];
+    patrolPoint1.position = new Vector3(Random.Range(-21f, 21f), (float) this.Height[1], Random.Range(21f, 19f));
+    patrolPoint2.position = new Vector3(Random.Range(19f, 21f), (float) this.Height[2], Random.Range(29f, -37f));
+    patrolPoint3.position = new Vector3(Random.Range(-21f, 21f), (float) this.Height[3], Random.Range(-21f, -19f));
+    patrolPoint4.position = new Vector3(Random.Range(-19f, -21f), (float) this.Height[4], Random.Range(29f, -37f));
+    patrolPoint1.localEulerAngles = new Vector3(patrolPoint1.localEulerAngles.x, Random.Range(0.0f, 360f), patrolPoint1.localEulerAngles.z);
+    patrolPoint2.localEulerAngles = new Vector3(patrolPoint2.localEulerAngles.x, Random.Range(0.0f, 360f), patrolPoint2.localEulerAngles.z);
+    patrolPoint3.localEulerAngles = new Vector3(patrolPoint3.localEulerAngles.x, Random.Range(0.0f, 360f), patrolPoint3.localEulerAngles.z);
+    patrolPoint4.localEulerAngles = new Vector3(patrolPoint4.localEulerAngles.x, Random.Range(0.0f, 360f), patrolPoint4.localEulerAngles.z);
+  }
 }

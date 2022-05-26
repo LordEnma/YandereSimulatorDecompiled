@@ -1,12 +1,12 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DrillScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000292 RID: 658
 public class DrillScript : MonoBehaviour
 {
-	// Token: 0x060013CF RID: 5071 RVA: 0x000BBEC2 File Offset: 0x000BA0C2
-	private void LateUpdate()
-	{
-		base.transform.Rotate(Vector3.up * Time.deltaTime * 3600f);
-	}
+  private void LateUpdate() => this.transform.Rotate(Vector3.up * Time.deltaTime * 3600f);
 }

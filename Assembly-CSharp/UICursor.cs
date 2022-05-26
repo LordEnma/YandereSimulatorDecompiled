@@ -1,107 +1,80 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UICursor
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000022 RID: 34
-[RequireComponent(typeof(UISprite))]
+[RequireComponent(typeof (UISprite))]
 [AddComponentMenu("NGUI/Examples/UI Cursor")]
 public class UICursor : MonoBehaviour
 {
-	// Token: 0x06000085 RID: 133 RVA: 0x00011227 File Offset: 0x0000F427
-	private void Awake()
-	{
-		UICursor.instance = this;
-	}
+  public static UICursor instance;
+  public Camera uiCamera;
+  private Transform mTrans;
+  private UISprite mSprite;
+  private INGUIAtlas mAtlas;
+  private string mSpriteName;
 
-	// Token: 0x06000086 RID: 134 RVA: 0x0001122F File Offset: 0x0000F42F
-	private void OnDestroy()
-	{
-		UICursor.instance = null;
-	}
+  private void Awake() => UICursor.instance = this;
 
-	// Token: 0x06000087 RID: 135 RVA: 0x00011238 File Offset: 0x0000F438
-	private void Start()
-	{
-		this.mTrans = base.transform;
-		this.mSprite = base.GetComponentInChildren<UISprite>();
-		if (this.uiCamera == null)
-		{
-			this.uiCamera = NGUITools.FindCameraForLayer(base.gameObject.layer);
-		}
-		if (this.mSprite != null)
-		{
-			this.mAtlas = this.mSprite.atlas;
-			this.mSpriteName = this.mSprite.spriteName;
-			if (this.mSprite.depth < 100)
-			{
-				this.mSprite.depth = 100;
-			}
-		}
-	}
+  private void OnDestroy() => UICursor.instance = (UICursor) null;
 
-	// Token: 0x06000088 RID: 136 RVA: 0x000112D0 File Offset: 0x0000F4D0
-	private void Update()
-	{
-		Vector3 mousePosition = Input.mousePosition;
-		if (this.uiCamera != null)
-		{
-			mousePosition.x = Mathf.Clamp01(mousePosition.x / (float)Screen.width);
-			mousePosition.y = Mathf.Clamp01(mousePosition.y / (float)Screen.height);
-			this.mTrans.position = this.uiCamera.ViewportToWorldPoint(mousePosition);
-			if (this.uiCamera.orthographic)
-			{
-				Vector3 localPosition = this.mTrans.localPosition;
-				localPosition.x = Mathf.Round(localPosition.x);
-				localPosition.y = Mathf.Round(localPosition.y);
-				this.mTrans.localPosition = localPosition;
-				return;
-			}
-		}
-		else
-		{
-			mousePosition.x -= (float)Screen.width * 0.5f;
-			mousePosition.y -= (float)Screen.height * 0.5f;
-			mousePosition.x = Mathf.Round(mousePosition.x);
-			mousePosition.y = Mathf.Round(mousePosition.y);
-			this.mTrans.localPosition = mousePosition;
-		}
-	}
+  private void Start()
+  {
+    this.mTrans = this.transform;
+    this.mSprite = this.GetComponentInChildren<UISprite>();
+    if ((Object) this.uiCamera == (Object) null)
+      this.uiCamera = NGUITools.FindCameraForLayer(this.gameObject.layer);
+    if (!((Object) this.mSprite != (Object) null))
+      return;
+    this.mAtlas = this.mSprite.atlas;
+    this.mSpriteName = this.mSprite.spriteName;
+    if (this.mSprite.depth >= 100)
+      return;
+    this.mSprite.depth = 100;
+  }
 
-	// Token: 0x06000089 RID: 137 RVA: 0x000113E8 File Offset: 0x0000F5E8
-	public static void Clear()
-	{
-		if (UICursor.instance != null && UICursor.instance.mSprite != null)
-		{
-			UICursor.Set(UICursor.instance.mAtlas, UICursor.instance.mSpriteName);
-		}
-	}
+  private void Update()
+  {
+    Vector3 mousePosition = Input.mousePosition;
+    if ((Object) this.uiCamera != (Object) null)
+    {
+      mousePosition.x = Mathf.Clamp01(mousePosition.x / (float) Screen.width);
+      mousePosition.y = Mathf.Clamp01(mousePosition.y / (float) Screen.height);
+      this.mTrans.position = this.uiCamera.ViewportToWorldPoint(mousePosition);
+      if (!this.uiCamera.orthographic)
+        return;
+      Vector3 localPosition = this.mTrans.localPosition;
+      localPosition.x = Mathf.Round(localPosition.x);
+      localPosition.y = Mathf.Round(localPosition.y);
+      this.mTrans.localPosition = localPosition;
+    }
+    else
+    {
+      mousePosition.x -= (float) Screen.width * 0.5f;
+      mousePosition.y -= (float) Screen.height * 0.5f;
+      mousePosition.x = Mathf.Round(mousePosition.x);
+      mousePosition.y = Mathf.Round(mousePosition.y);
+      this.mTrans.localPosition = mousePosition;
+    }
+  }
 
-	// Token: 0x0600008A RID: 138 RVA: 0x00011424 File Offset: 0x0000F624
-	public static void Set(INGUIAtlas atlas, string sprite)
-	{
-		if (UICursor.instance != null && UICursor.instance.mSprite)
-		{
-			UICursor.instance.mSprite.atlas = atlas;
-			UICursor.instance.mSprite.spriteName = sprite;
-			UICursor.instance.mSprite.MakePixelPerfect();
-			UICursor.instance.Update();
-		}
-	}
+  public static void Clear()
+  {
+    if (!((Object) UICursor.instance != (Object) null) || !((Object) UICursor.instance.mSprite != (Object) null))
+      return;
+    UICursor.Set(UICursor.instance.mAtlas, UICursor.instance.mSpriteName);
+  }
 
-	// Token: 0x04000261 RID: 609
-	public static UICursor instance;
-
-	// Token: 0x04000262 RID: 610
-	public Camera uiCamera;
-
-	// Token: 0x04000263 RID: 611
-	private Transform mTrans;
-
-	// Token: 0x04000264 RID: 612
-	private UISprite mSprite;
-
-	// Token: 0x04000265 RID: 613
-	private INGUIAtlas mAtlas;
-
-	// Token: 0x04000266 RID: 614
-	private string mSpriteName;
+  public static void Set(INGUIAtlas atlas, string sprite)
+  {
+    if (!((Object) UICursor.instance != (Object) null) || !(bool) (Object) UICursor.instance.mSprite)
+      return;
+    UICursor.instance.mSprite.atlas = atlas;
+    UICursor.instance.mSprite.spriteName = sprite;
+    UICursor.instance.mSprite.MakePixelPerfect();
+    UICursor.instance.Update();
+  }
 }

@@ -1,17 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AmplifyMotion.Quality
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace AmplifyMotion
 {
-	// Token: 0x0200058B RID: 1419
-	public enum Quality
-	{
-		// Token: 0x04004C61 RID: 19553
-		Mobile,
-		// Token: 0x04004C62 RID: 19554
-		Standard,
-		// Token: 0x04004C63 RID: 19555
-		Standard_SM3,
-		// Token: 0x04004C64 RID: 19556
-		SoftEdge_SM3
-	}
+  public enum Quality
+  {
+    Mobile,
+    Standard,
+    Standard_SM3,
+    SoftEdge_SM3,
+  }
 }

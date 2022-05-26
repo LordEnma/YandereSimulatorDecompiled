@@ -1,15 +1,15 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityStandardAssets.Vehicles.Car.CarDriveType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x02000531 RID: 1329
-	internal enum CarDriveType
-	{
-		// Token: 0x04004AA3 RID: 19107
-		FrontWheelDrive,
-		// Token: 0x04004AA4 RID: 19108
-		RearWheelDrive,
-		// Token: 0x04004AA5 RID: 19109
-		FourWheelDrive
-	}
+  internal enum CarDriveType
+  {
+    FrontWheelDrive,
+    RearWheelDrive,
+    FourWheelDrive,
+  }
 }

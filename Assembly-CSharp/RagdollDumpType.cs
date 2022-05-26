@@ -1,14 +1,13 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: RagdollDumpType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x020003CC RID: 972
 public enum RagdollDumpType
 {
-	// Token: 0x04002EE2 RID: 12002
-	None,
-	// Token: 0x04002EE3 RID: 12003
-	Incinerator,
-	// Token: 0x04002EE4 RID: 12004
-	TranqCase,
-	// Token: 0x04002EE5 RID: 12005
-	WoodChipper
+  None,
+  Incinerator,
+  TranqCase,
+  WoodChipper,
 }

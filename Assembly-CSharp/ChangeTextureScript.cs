@@ -1,29 +1,24 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ChangeTextureScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200023D RID: 573
 public class ChangeTextureScript : MonoBehaviour
 {
-	// Token: 0x0600123B RID: 4667 RVA: 0x0008C744 File Offset: 0x0008A944
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.LeftAlt))
-		{
-			this.ID++;
-			if (this.ID == this.Textures.Length)
-			{
-				this.ID = 1;
-			}
-			this.MyRenderer.material.mainTexture = this.Textures[this.ID];
-		}
-	}
+  public Renderer MyRenderer;
+  public Texture[] Textures;
+  public int ID = 1;
 
-	// Token: 0x040016FC RID: 5884
-	public Renderer MyRenderer;
-
-	// Token: 0x040016FD RID: 5885
-	public Texture[] Textures;
-
-	// Token: 0x040016FE RID: 5886
-	public int ID = 1;
+  private void Update()
+  {
+    if (!Input.GetKeyDown(KeyCode.LeftAlt))
+      return;
+    ++this.ID;
+    if (this.ID == this.Textures.Length)
+      this.ID = 1;
+    this.MyRenderer.material.mainTexture = this.Textures[this.ID];
+  }
 }

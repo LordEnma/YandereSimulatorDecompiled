@@ -1,12 +1,12 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BucketContentsType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x020000FA RID: 250
 public enum BucketContentsType
 {
-	// Token: 0x04000C49 RID: 3145
-	Water,
-	// Token: 0x04000C4A RID: 3146
-	Gas,
-	// Token: 0x04000C4B RID: 3147
-	Weights
+  Water,
+  Gas,
+  Weights,
 }

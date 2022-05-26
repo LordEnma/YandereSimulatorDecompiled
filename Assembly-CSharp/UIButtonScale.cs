@@ -1,97 +1,71 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIButtonScale
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200004A RID: 74
 [AddComponentMenu("NGUI/Interaction/Button Scale")]
 public class UIButtonScale : MonoBehaviour
 {
-	// Token: 0x0600014F RID: 335 RVA: 0x00014C79 File Offset: 0x00012E79
-	private void Start()
-	{
-		if (!this.mStarted)
-		{
-			this.mStarted = true;
-			if (this.tweenTarget == null)
-			{
-				this.tweenTarget = base.transform;
-			}
-			this.mScale = this.tweenTarget.localScale;
-		}
-	}
+  public Transform tweenTarget;
+  public Vector3 hover = new Vector3(1.1f, 1.1f, 1.1f);
+  public Vector3 pressed = new Vector3(1.05f, 1.05f, 1.05f);
+  public float duration = 0.2f;
+  private Vector3 mScale;
+  private bool mStarted;
 
-	// Token: 0x06000150 RID: 336 RVA: 0x00014CB5 File Offset: 0x00012EB5
-	private void OnEnable()
-	{
-		if (this.mStarted)
-		{
-			this.OnHover(UICamera.IsHighlighted(base.gameObject));
-		}
-	}
+  private void Start()
+  {
+    if (this.mStarted)
+      return;
+    this.mStarted = true;
+    if ((Object) this.tweenTarget == (Object) null)
+      this.tweenTarget = this.transform;
+    this.mScale = this.tweenTarget.localScale;
+  }
 
-	// Token: 0x06000151 RID: 337 RVA: 0x00014CD0 File Offset: 0x00012ED0
-	private void OnDisable()
-	{
-		if (this.mStarted && this.tweenTarget != null)
-		{
-			TweenScale component = this.tweenTarget.GetComponent<TweenScale>();
-			if (component != null)
-			{
-				component.value = this.mScale;
-				component.enabled = false;
-			}
-		}
-	}
+  private void OnEnable()
+  {
+    if (!this.mStarted)
+      return;
+    this.OnHover(UICamera.IsHighlighted(this.gameObject));
+  }
 
-	// Token: 0x06000152 RID: 338 RVA: 0x00014D1C File Offset: 0x00012F1C
-	private void OnPress(bool isPressed)
-	{
-		if (base.enabled)
-		{
-			if (!this.mStarted)
-			{
-				this.Start();
-			}
-			TweenScale.Begin(this.tweenTarget.gameObject, this.duration, isPressed ? Vector3.Scale(this.mScale, this.pressed) : (UICamera.IsHighlighted(base.gameObject) ? Vector3.Scale(this.mScale, this.hover) : this.mScale)).method = UITweener.Method.EaseInOut;
-		}
-	}
+  private void OnDisable()
+  {
+    if (!this.mStarted || !((Object) this.tweenTarget != (Object) null))
+      return;
+    TweenScale component = this.tweenTarget.GetComponent<TweenScale>();
+    if (!((Object) component != (Object) null))
+      return;
+    component.value = this.mScale;
+    component.enabled = false;
+  }
 
-	// Token: 0x06000153 RID: 339 RVA: 0x00014D98 File Offset: 0x00012F98
-	private void OnHover(bool isOver)
-	{
-		if (base.enabled)
-		{
-			if (!this.mStarted)
-			{
-				this.Start();
-			}
-			TweenScale.Begin(this.tweenTarget.gameObject, this.duration, isOver ? Vector3.Scale(this.mScale, this.hover) : this.mScale).method = UITweener.Method.EaseInOut;
-		}
-	}
+  private void OnPress(bool isPressed)
+  {
+    if (!this.enabled)
+      return;
+    if (!this.mStarted)
+      this.Start();
+    TweenScale.Begin(this.tweenTarget.gameObject, this.duration, isPressed ? Vector3.Scale(this.mScale, this.pressed) : (UICamera.IsHighlighted(this.gameObject) ? Vector3.Scale(this.mScale, this.hover) : this.mScale)).method = UITweener.Method.EaseInOut;
+  }
 
-	// Token: 0x06000154 RID: 340 RVA: 0x00014DF3 File Offset: 0x00012FF3
-	private void OnSelect(bool isSelected)
-	{
-		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
-		{
-			this.OnHover(isSelected);
-		}
-	}
+  private void OnHover(bool isOver)
+  {
+    if (!this.enabled)
+      return;
+    if (!this.mStarted)
+      this.Start();
+    TweenScale.Begin(this.tweenTarget.gameObject, this.duration, isOver ? Vector3.Scale(this.mScale, this.hover) : this.mScale).method = UITweener.Method.EaseInOut;
+  }
 
-	// Token: 0x0400031A RID: 794
-	public Transform tweenTarget;
-
-	// Token: 0x0400031B RID: 795
-	public Vector3 hover = new Vector3(1.1f, 1.1f, 1.1f);
-
-	// Token: 0x0400031C RID: 796
-	public Vector3 pressed = new Vector3(1.05f, 1.05f, 1.05f);
-
-	// Token: 0x0400031D RID: 797
-	public float duration = 0.2f;
-
-	// Token: 0x0400031E RID: 798
-	private Vector3 mScale;
-
-	// Token: 0x0400031F RID: 799
-	private bool mStarted;
+  private void OnSelect(bool isSelected)
+  {
+    if (!this.enabled || isSelected && UICamera.currentScheme != UICamera.ControlScheme.Controller)
+      return;
+    this.OnHover(isSelected);
+  }
 }

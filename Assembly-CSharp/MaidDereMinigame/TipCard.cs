@@ -1,62 +1,53 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MaidDereMinigame.TipCard
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using MaidDereMinigame.Malee;
+using System;
 using System.Globalization;
 using System.Threading;
-using MaidDereMinigame.Malee;
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005BE RID: 1470
-	public class TipCard : MonoBehaviour
-	{
-		// Token: 0x06002510 RID: 9488 RVA: 0x002048C0 File Offset: 0x00202AC0
-		public void SetTip(float tip)
-		{
-			Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
-			if (tip == 0f)
-			{
-				base.gameObject.SetActive(false);
-			}
-			string text = string.Format("{0:#.00}", tip).Replace(".", "");
-			string text2 = "";
-			for (int i = text.Length - 1; i >= 0; i--)
-			{
-				text2 += text[i].ToString();
-			}
-			for (int j = 0; j < text2.Length; j++)
-			{
-				int index = -1;
-				if (int.TryParse(text2[j].ToString(), NumberStyles.Float, NumberFormatInfo.InvariantInfo, out index))
-				{
-					this.digits[j].sprite = GameController.Instance.numbers[index];
-				}
-				else
-				{
-					Debug.LogError("There was an issue while parsing the value in TipCard.SetTip");
-				}
-			}
-			if (text2.Length <= 3)
-			{
-				this.digits[3].sprite = GameController.Instance.numbers[10];
-				this.dollarSign.gameObject.SetActive(false);
-			}
-			if (text2.Length <= 4 && this.digits.Count > 4)
-			{
-				this.digits[4].sprite = GameController.Instance.numbers[10];
-				this.dollarSign.gameObject.SetActive(false);
-				if (text2.Length < 4)
-				{
-					this.digits[3].sprite = GameController.Instance.numbers[10];
-					this.digits[4].gameObject.SetActive(false);
-				}
-			}
-		}
+  public class TipCard : MonoBehaviour
+  {
+    [Reorderable]
+    public SpriteRenderers digits;
+    public SpriteRenderer dollarSign;
 
-		// Token: 0x04004DA2 RID: 19874
-		[Reorderable]
-		public SpriteRenderers digits;
-
-		// Token: 0x04004DA3 RID: 19875
-		public SpriteRenderer dollarSign;
-	}
+    public void SetTip(float tip)
+    {
+      Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
+      if ((double) tip == 0.0)
+        this.gameObject.SetActive(false);
+      string str1 = string.Format("{0:#.00}", (object) tip).Replace(".", "");
+      string str2 = "";
+      for (int index = str1.Length - 1; index >= 0; --index)
+        str2 += str1[index].ToString();
+      for (int index = 0; index < str2.Length; ++index)
+      {
+        int result = -1;
+        if (int.TryParse(str2[index].ToString(), NumberStyles.Float, (IFormatProvider) NumberFormatInfo.InvariantInfo, out result))
+          this.digits[index].sprite = GameController.Instance.numbers[result];
+        else
+          Debug.LogError((object) "There was an issue while parsing the value in TipCard.SetTip");
+      }
+      if (str2.Length <= 3)
+      {
+        this.digits[3].sprite = GameController.Instance.numbers[10];
+        this.dollarSign.gameObject.SetActive(false);
+      }
+      if (str2.Length > 4 || this.digits.Count <= 4)
+        return;
+      this.digits[4].sprite = GameController.Instance.numbers[10];
+      this.dollarSign.gameObject.SetActive(false);
+      if (str2.Length >= 4)
+        return;
+      this.digits[3].sprite = GameController.Instance.numbers[10];
+      this.digits[4].gameObject.SetActive(false);
+    }
+  }
 }

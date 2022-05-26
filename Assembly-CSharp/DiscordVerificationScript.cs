@@ -1,16 +1,18 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DiscordVerificationScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000289 RID: 649
 public class DiscordVerificationScript : MonoBehaviour
 {
-	// Token: 0x060013AE RID: 5038 RVA: 0x000B932A File Offset: 0x000B752A
-	private void Update()
-	{
-		if (Input.GetKeyDown("q"))
-		{
-			SceneManager.LoadScene("MissionModeScene");
-		}
-	}
+  private void Update()
+  {
+    if (!Input.GetKeyDown("q"))
+      return;
+    SceneManager.LoadScene("MissionModeScene");
+  }
 }

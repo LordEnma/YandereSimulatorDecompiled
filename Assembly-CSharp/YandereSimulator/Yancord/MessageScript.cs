@@ -1,40 +1,31 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YandereSimulator.Yancord.MessageScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
 namespace YandereSimulator.Yancord
 {
-	// Token: 0x02000529 RID: 1321
-	public class MessageScript : MonoBehaviour
-	{
-		// Token: 0x060021BC RID: 8636 RVA: 0x001F2468 File Offset: 0x001F0668
-		public void Awake()
-		{
-			if (this.MyProfile != null)
-			{
-				if (this.NameLabel != null)
-				{
-					this.NameLabel.text = this.MyProfile.FirstName + " " + this.MyProfile.LastName;
-				}
-				if (this.ProfilPictureTexture != null)
-				{
-					this.ProfilPictureTexture.mainTexture = this.MyProfile.ProfilePicture;
-				}
-				base.gameObject.name = this.MyProfile.FirstName + "_Message";
-			}
-		}
+  public class MessageScript : MonoBehaviour
+  {
+    [Header("== Partner Informations ==")]
+    public Profile MyProfile;
+    [Space(20f)]
+    public UILabel NameLabel;
+    public UILabel MessageLabel;
+    public UITexture ProfilPictureTexture;
 
-		// Token: 0x04004A3C RID: 19004
-		[Header("== Partner Informations ==")]
-		public Profile MyProfile;
-
-		// Token: 0x04004A3D RID: 19005
-		[Space(20f)]
-		public UILabel NameLabel;
-
-		// Token: 0x04004A3E RID: 19006
-		public UILabel MessageLabel;
-
-		// Token: 0x04004A3F RID: 19007
-		public UITexture ProfilPictureTexture;
-	}
+    public void Awake()
+    {
+      if (!((Object) this.MyProfile != (Object) null))
+        return;
+      if ((Object) this.NameLabel != (Object) null)
+        this.NameLabel.text = this.MyProfile.FirstName + " " + this.MyProfile.LastName;
+      if ((Object) this.ProfilPictureTexture != (Object) null)
+        this.ProfilPictureTexture.mainTexture = (Texture) this.MyProfile.ProfilePicture;
+      this.gameObject.name = this.MyProfile.FirstName + "_Message";
+    }
+  }
 }

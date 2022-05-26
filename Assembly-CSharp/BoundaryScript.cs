@@ -1,59 +1,55 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BoundaryScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000F6 RID: 246
 public class BoundaryScript : MonoBehaviour
 {
-	// Token: 0x06000A63 RID: 2659 RVA: 0x0005CCD4 File Offset: 0x0005AED4
-	private void Update()
-	{
-		float z = this.Yandere.position.z;
-		if (z < -94f)
-		{
-			this.Intensity = -95f + Mathf.Abs(z);
-			this.TextureCycle.gameObject.SetActive(true);
-			this.TextureCycle.Sprite.enabled = true;
-			this.TextureCycle.enabled = true;
-			Color color = this.Static.color + new Color(0.0001f, 0.0001f, 0.0001f, 0.0001f);
-			Color color2 = this.Label.color;
-			color.a = this.Intensity / 5f;
-			color2.a = this.Intensity / 5f;
-			this.Static.color = color;
-			this.Label.color = color2;
-			base.GetComponent<AudioSource>().volume = this.Intensity / 5f * 0.1f;
-			Vector3 localPosition = this.Label.transform.localPosition;
-			localPosition.x = UnityEngine.Random.Range(-10f, 10f);
-			localPosition.y = UnityEngine.Random.Range(-10f, 10f);
-			this.Label.transform.localPosition = localPosition;
-			return;
-		}
-		if (this.TextureCycle.enabled)
-		{
-			this.TextureCycle.gameObject.SetActive(false);
-			this.TextureCycle.Sprite.enabled = false;
-			this.TextureCycle.enabled = false;
-			Color color3 = this.Static.color;
-			Color color4 = this.Label.color;
-			color3.a = 0f;
-			color4.a = 0f;
-			this.Static.color = color3;
-			this.Label.color = color4;
-			base.GetComponent<AudioSource>().volume = 0f;
-		}
-	}
+  public TextureCycleScript TextureCycle;
+  public Transform Yandere;
+  public UITexture Static;
+  public UILabel Label;
+  public float Intensity;
 
-	// Token: 0x04000C1E RID: 3102
-	public TextureCycleScript TextureCycle;
-
-	// Token: 0x04000C1F RID: 3103
-	public Transform Yandere;
-
-	// Token: 0x04000C20 RID: 3104
-	public UITexture Static;
-
-	// Token: 0x04000C21 RID: 3105
-	public UILabel Label;
-
-	// Token: 0x04000C22 RID: 3106
-	public float Intensity;
+  private void Update()
+  {
+    float z = this.Yandere.position.z;
+    if ((double) z < -94.0)
+    {
+      this.Intensity = Mathf.Abs(z) - 95f;
+      this.TextureCycle.gameObject.SetActive(true);
+      this.TextureCycle.Sprite.enabled = true;
+      this.TextureCycle.enabled = true;
+      Color color1 = this.Static.color + new Color(0.0001f, 0.0001f, 0.0001f, 0.0001f);
+      Color color2 = this.Label.color;
+      color1.a = this.Intensity / 5f;
+      color2.a = this.Intensity / 5f;
+      this.Static.color = color1;
+      this.Label.color = color2;
+      this.GetComponent<AudioSource>().volume = (float) ((double) this.Intensity / 5.0 * 0.100000001490116);
+      this.Label.transform.localPosition = this.Label.transform.localPosition with
+      {
+        x = Random.Range(-10f, 10f),
+        y = Random.Range(-10f, 10f)
+      };
+    }
+    else
+    {
+      if (!this.TextureCycle.enabled)
+        return;
+      this.TextureCycle.gameObject.SetActive(false);
+      this.TextureCycle.Sprite.enabled = false;
+      this.TextureCycle.enabled = false;
+      Color color3 = this.Static.color;
+      Color color4 = this.Label.color;
+      color3.a = 0.0f;
+      color4.a = 0.0f;
+      this.Static.color = color3;
+      this.Label.color = color4;
+      this.GetComponent<AudioSource>().volume = 0.0f;
+    }
+  }
 }

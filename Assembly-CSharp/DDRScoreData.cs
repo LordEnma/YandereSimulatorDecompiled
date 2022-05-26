@@ -1,12 +1,14 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DDRScoreData
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x02000009 RID: 9
+using System;
+
 [Serializable]
 public struct DDRScoreData
 {
-	// Token: 0x04000055 RID: 85
-	public DDRRating Rating;
-
-	// Token: 0x04000056 RID: 86
-	public float Points;
+  public DDRRating Rating;
+  public float Points;
 }

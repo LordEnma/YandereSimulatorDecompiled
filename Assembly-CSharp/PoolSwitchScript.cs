@@ -1,16 +1,18 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PoolSwitchScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003B4 RID: 948
 public class PoolSwitchScript : MonoBehaviour
 {
-	// Token: 0x06001AF9 RID: 6905 RVA: 0x00128061 File Offset: 0x00126261
-	private void Start()
-	{
-	}
+  private void Start()
+  {
+  }
 
-	// Token: 0x06001AFA RID: 6906 RVA: 0x00128063 File Offset: 0x00126263
-	private void Update()
-	{
-	}
+  private void Update()
+  {
+  }
 }

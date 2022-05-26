@@ -1,31 +1,28 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: HideColliderScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000315 RID: 789
 public class HideColliderScript : MonoBehaviour
 {
-	// Token: 0x06001873 RID: 6259 RVA: 0x000EC6E8 File Offset: 0x000EA8E8
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.layer == 11)
-		{
-			GameObject gameObject = other.gameObject.transform.root.gameObject;
-			if (!gameObject.GetComponent<StudentScript>().Alive)
-			{
-				this.Corpse = gameObject.GetComponent<RagdollScript>();
-				if (!this.Corpse.Hidden && !this.Corpse.Concealed)
-				{
-					this.Corpse.HideCollider = this.MyCollider;
-					this.Corpse.Police.HiddenCorpses++;
-					this.Corpse.Hidden = true;
-				}
-			}
-		}
-	}
+  public RagdollScript Corpse;
+  public Collider MyCollider;
 
-	// Token: 0x04002462 RID: 9314
-	public RagdollScript Corpse;
-
-	// Token: 0x04002463 RID: 9315
-	public Collider MyCollider;
+  private void OnTriggerEnter(Collider other)
+  {
+    if (other.gameObject.layer != 11)
+      return;
+    GameObject gameObject = other.gameObject.transform.root.gameObject;
+    if (gameObject.GetComponent<StudentScript>().Alive)
+      return;
+    this.Corpse = gameObject.GetComponent<RagdollScript>();
+    if (this.Corpse.Hidden || this.Corpse.Concealed)
+      return;
+    this.Corpse.HideCollider = this.MyCollider;
+    ++this.Corpse.Police.HiddenCorpses;
+    this.Corpse.Hidden = true;
+  }
 }

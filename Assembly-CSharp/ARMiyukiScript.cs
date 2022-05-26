@@ -1,60 +1,43 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ARMiyukiScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000BE RID: 190
 public class ARMiyukiScript : MonoBehaviour
 {
-	// Token: 0x06000990 RID: 2448 RVA: 0x0004CB6D File Offset: 0x0004AD6D
-	private void Start()
-	{
-		if (this.Enemy == null && this.MyStudent.StudentManager != null)
-		{
-			this.Enemy = this.MyStudent.StudentManager.MiyukiCat;
-		}
-	}
+  public Transform BulletSpawnPoint;
+  public StudentScript MyStudent;
+  public YandereScript Yandere;
+  public GameObject Bullet;
+  public Transform Enemy;
+  public GameObject MagicalGirl;
+  public bool Student;
 
-	// Token: 0x06000991 RID: 2449 RVA: 0x0004CBA8 File Offset: 0x0004ADA8
-	private void Update()
-	{
-		if (!this.Student && this.Yandere.AR && Time.timeScale == 1f)
-		{
-			base.transform.LookAt(this.Enemy.position);
-			if (Input.GetButtonDown("X"))
-			{
-				this.Shoot();
-			}
-		}
-	}
+  private void Start()
+  {
+    if (!((Object) this.Enemy == (Object) null) || !((Object) this.MyStudent.StudentManager != (Object) null))
+      return;
+    this.Enemy = this.MyStudent.StudentManager.MiyukiCat;
+  }
 
-	// Token: 0x06000992 RID: 2450 RVA: 0x0004CC00 File Offset: 0x0004AE00
-	public void Shoot()
-	{
-		if (this.Enemy == null)
-		{
-			this.Enemy = this.MyStudent.StudentManager.MiyukiCat;
-		}
-		base.transform.LookAt(this.Enemy.position);
-		UnityEngine.Object.Instantiate<GameObject>(this.Bullet, this.BulletSpawnPoint.position, base.transform.rotation);
-	}
+  private void Update()
+  {
+    if (this.Student || !this.Yandere.AR || (double) Time.timeScale != 1.0)
+      return;
+    this.transform.LookAt(this.Enemy.position);
+    if (!Input.GetButtonDown("X"))
+      return;
+    this.Shoot();
+  }
 
-	// Token: 0x04000843 RID: 2115
-	public Transform BulletSpawnPoint;
-
-	// Token: 0x04000844 RID: 2116
-	public StudentScript MyStudent;
-
-	// Token: 0x04000845 RID: 2117
-	public YandereScript Yandere;
-
-	// Token: 0x04000846 RID: 2118
-	public GameObject Bullet;
-
-	// Token: 0x04000847 RID: 2119
-	public Transform Enemy;
-
-	// Token: 0x04000848 RID: 2120
-	public GameObject MagicalGirl;
-
-	// Token: 0x04000849 RID: 2121
-	public bool Student;
+  public void Shoot()
+  {
+    if ((Object) this.Enemy == (Object) null)
+      this.Enemy = this.MyStudent.StudentManager.MiyukiCat;
+    this.transform.LookAt(this.Enemy.position);
+    Object.Instantiate<GameObject>(this.Bullet, this.BulletSpawnPoint.position, this.transform.rotation);
+  }
 }

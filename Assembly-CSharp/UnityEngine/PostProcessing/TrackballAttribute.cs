@@ -1,17 +1,15 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityEngine.PostProcessing.TrackballAttribute
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200055E RID: 1374
-	public sealed class TrackballAttribute : PropertyAttribute
-	{
-		// Token: 0x06002304 RID: 8964 RVA: 0x001F8A1B File Offset: 0x001F6C1B
-		public TrackballAttribute(string method)
-		{
-			this.method = method;
-		}
+  public sealed class TrackballAttribute : PropertyAttribute
+  {
+    public readonly string method;
 
-		// Token: 0x04004BE1 RID: 19425
-		public readonly string method;
-	}
+    public TrackballAttribute(string method) => this.method = method;
+  }
 }

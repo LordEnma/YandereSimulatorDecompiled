@@ -1,117 +1,87 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YanvaniaWitchScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020004F1 RID: 1265
 public class YanvaniaWitchScript : MonoBehaviour
 {
-	// Token: 0x0600210A RID: 8458 RVA: 0x001E97D0 File Offset: 0x001E79D0
-	private void Update()
-	{
-		Animation component = this.Character.GetComponent<Animation>();
-		if (this.AttackTimer < 10f)
-		{
-			this.AttackTimer += Time.deltaTime;
-			if (this.AttackTimer > 0.8f && !this.CastSpell)
-			{
-				this.CastSpell = true;
-				UnityEngine.Object.Instantiate<GameObject>(this.BlackHole, base.transform.position + Vector3.up * 3f + Vector3.right * 6f, Quaternion.identity);
-				UnityEngine.Object.Instantiate<GameObject>(this.GroundImpact, base.transform.position + Vector3.right * 1.15f, Quaternion.identity);
-			}
-			if (component["Staff Spell Ground"].time >= component["Staff Spell Ground"].length)
-			{
-				component.CrossFade("Staff Stance");
-				this.Casting = false;
-			}
-		}
-		else if (Vector3.Distance(base.transform.position, this.Yanmont.transform.position) < 5f)
-		{
-			this.AttackTimer = 0f;
-			this.Casting = true;
-			this.CastSpell = false;
-			component["Staff Spell Ground"].time = 0f;
-			component.CrossFade("Staff Spell Ground");
-		}
-		if (!this.Casting && component["Receive Damage"].time >= component["Receive Damage"].length)
-		{
-			component.CrossFade("Staff Stance");
-		}
-		this.HitReactTimer += Time.deltaTime * 10f;
-	}
+  public YanvaniaYanmontScript Yanmont;
+  public GameObject GroundImpact;
+  public GameObject BlackHole;
+  public GameObject Character;
+  public GameObject HitEffect;
+  public GameObject Wall;
+  public AudioClip DeathScream;
+  public AudioClip HitSound;
+  public float HitReactTimer;
+  public float AttackTimer = 10f;
+  public float HP = 100f;
+  public bool CastSpell;
+  public bool Casting;
 
-	// Token: 0x0600210B RID: 8459 RVA: 0x001E9984 File Offset: 0x001E7B84
-	private void OnTriggerEnter(Collider other)
-	{
-		if (this.HP > 0f)
-		{
-			if (other.gameObject.tag == "Player")
-			{
-				this.Yanmont.TakeDamage(5);
-			}
-			if (other.gameObject.name == "Heart")
-			{
-				Animation component = this.Character.GetComponent<Animation>();
-				if (!this.Casting)
-				{
-					component["Receive Damage"].time = 0f;
-					component.Play("Receive Damage");
-				}
-				if (this.HitReactTimer >= 1f)
-				{
-					UnityEngine.Object.Instantiate<GameObject>(this.HitEffect, other.transform.position, Quaternion.identity);
-					this.HitReactTimer = 0f;
-					this.HP -= 5f + ((float)this.Yanmont.Level * 5f - 5f);
-					AudioSource component2 = base.GetComponent<AudioSource>();
-					if (this.HP <= 0f)
-					{
-						component2.PlayOneShot(this.DeathScream);
-						component.Play("Die 2");
-						this.Yanmont.EXP += 100f;
-						base.enabled = false;
-						UnityEngine.Object.Destroy(this.Wall);
-						return;
-					}
-					component2.PlayOneShot(this.HitSound);
-				}
-			}
-		}
-	}
+  private void Update()
+  {
+    Animation component = this.Character.GetComponent<Animation>();
+    if ((double) this.AttackTimer < 10.0)
+    {
+      this.AttackTimer += Time.deltaTime;
+      if ((double) this.AttackTimer > 0.800000011920929 && !this.CastSpell)
+      {
+        this.CastSpell = true;
+        Object.Instantiate<GameObject>(this.BlackHole, this.transform.position + Vector3.up * 3f + Vector3.right * 6f, Quaternion.identity);
+        Object.Instantiate<GameObject>(this.GroundImpact, this.transform.position + Vector3.right * 1.15f, Quaternion.identity);
+      }
+      if ((double) component["Staff Spell Ground"].time >= (double) component["Staff Spell Ground"].length)
+      {
+        component.CrossFade("Staff Stance");
+        this.Casting = false;
+      }
+    }
+    else if ((double) Vector3.Distance(this.transform.position, this.Yanmont.transform.position) < 5.0)
+    {
+      this.AttackTimer = 0.0f;
+      this.Casting = true;
+      this.CastSpell = false;
+      component["Staff Spell Ground"].time = 0.0f;
+      component.CrossFade("Staff Spell Ground");
+    }
+    if (!this.Casting && (double) component["Receive Damage"].time >= (double) component["Receive Damage"].length)
+      component.CrossFade("Staff Stance");
+    this.HitReactTimer += Time.deltaTime * 10f;
+  }
 
-	// Token: 0x040048C2 RID: 18626
-	public YanvaniaYanmontScript Yanmont;
-
-	// Token: 0x040048C3 RID: 18627
-	public GameObject GroundImpact;
-
-	// Token: 0x040048C4 RID: 18628
-	public GameObject BlackHole;
-
-	// Token: 0x040048C5 RID: 18629
-	public GameObject Character;
-
-	// Token: 0x040048C6 RID: 18630
-	public GameObject HitEffect;
-
-	// Token: 0x040048C7 RID: 18631
-	public GameObject Wall;
-
-	// Token: 0x040048C8 RID: 18632
-	public AudioClip DeathScream;
-
-	// Token: 0x040048C9 RID: 18633
-	public AudioClip HitSound;
-
-	// Token: 0x040048CA RID: 18634
-	public float HitReactTimer;
-
-	// Token: 0x040048CB RID: 18635
-	public float AttackTimer = 10f;
-
-	// Token: 0x040048CC RID: 18636
-	public float HP = 100f;
-
-	// Token: 0x040048CD RID: 18637
-	public bool CastSpell;
-
-	// Token: 0x040048CE RID: 18638
-	public bool Casting;
+  private void OnTriggerEnter(Collider other)
+  {
+    if ((double) this.HP <= 0.0)
+      return;
+    if (other.gameObject.tag == "Player")
+      this.Yanmont.TakeDamage(5);
+    if (!(other.gameObject.name == "Heart"))
+      return;
+    Animation component1 = this.Character.GetComponent<Animation>();
+    if (!this.Casting)
+    {
+      component1["Receive Damage"].time = 0.0f;
+      component1.Play("Receive Damage");
+    }
+    if ((double) this.HitReactTimer < 1.0)
+      return;
+    Object.Instantiate<GameObject>(this.HitEffect, other.transform.position, Quaternion.identity);
+    this.HitReactTimer = 0.0f;
+    this.HP -= (float) (5.0 + ((double) this.Yanmont.Level * 5.0 - 5.0));
+    AudioSource component2 = this.GetComponent<AudioSource>();
+    if ((double) this.HP <= 0.0)
+    {
+      component2.PlayOneShot(this.DeathScream);
+      component1.Play("Die 2");
+      this.Yanmont.EXP += 100f;
+      this.enabled = false;
+      Object.Destroy((Object) this.Wall);
+    }
+    else
+      component2.PlayOneShot(this.HitSound);
+  }
 }

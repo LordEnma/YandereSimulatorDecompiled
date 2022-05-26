@@ -1,24 +1,23 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MoneyWadScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200036F RID: 879
 public class MoneyWadScript : MonoBehaviour
 {
-	// Token: 0x060019DE RID: 6622 RVA: 0x00109A70 File Offset: 0x00107C70
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Yandere.Inventory.Money += 20f;
-			this.Prompt.Yandere.Inventory.UpdateMoney();
-			if (this.Prompt.Yandere.Inventory.Money > 1000f && !GameGlobals.Debug)
-			{
-				PlayerPrefs.SetInt("RichGirl", 1);
-			}
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  public PromptScript Prompt;
 
-	// Token: 0x040029AB RID: 10667
-	public PromptScript Prompt;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    this.Prompt.Yandere.Inventory.Money += 20f;
+    this.Prompt.Yandere.Inventory.UpdateMoney();
+    if ((double) this.Prompt.Yandere.Inventory.Money > 1000.0 && !GameGlobals.Debug)
+      PlayerPrefs.SetInt("RichGirl", 1);
+    Object.Destroy((Object) this.gameObject);
+  }
 }

@@ -1,105 +1,75 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIItemStorage
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000025 RID: 37
 [AddComponentMenu("NGUI/Examples/UI Item Storage")]
 public class UIItemStorage : MonoBehaviour
 {
-	// Token: 0x17000003 RID: 3
-	// (get) Token: 0x06000098 RID: 152 RVA: 0x000118B7 File Offset: 0x0000FAB7
-	public List<InvGameItem> items
-	{
-		get
-		{
-			while (this.mItems.Count < this.maxItemCount)
-			{
-				this.mItems.Add(null);
-			}
-			return this.mItems;
-		}
-	}
+  public int maxItemCount = 8;
+  public int maxRows = 4;
+  public int maxColumns = 4;
+  public GameObject template;
+  public UIWidget background;
+  public int spacing = 128;
+  public int padding = 10;
+  private List<InvGameItem> mItems = new List<InvGameItem>();
 
-	// Token: 0x06000099 RID: 153 RVA: 0x000118E0 File Offset: 0x0000FAE0
-	public InvGameItem GetItem(int slot)
-	{
-		if (slot >= this.items.Count)
-		{
-			return null;
-		}
-		return this.mItems[slot];
-	}
+  public List<InvGameItem> items
+  {
+    get
+    {
+      while (this.mItems.Count < this.maxItemCount)
+        this.mItems.Add((InvGameItem) null);
+      return this.mItems;
+    }
+  }
 
-	// Token: 0x0600009A RID: 154 RVA: 0x000118FE File Offset: 0x0000FAFE
-	public InvGameItem Replace(int slot, InvGameItem item)
-	{
-		if (slot < this.maxItemCount)
-		{
-			InvGameItem result = this.items[slot];
-			this.mItems[slot] = item;
-			return result;
-		}
-		return item;
-	}
+  public InvGameItem GetItem(int slot) => slot >= this.items.Count ? (InvGameItem) null : this.mItems[slot];
 
-	// Token: 0x0600009B RID: 155 RVA: 0x00011924 File Offset: 0x0000FB24
-	private void Start()
-	{
-		if (this.template != null)
-		{
-			int num = 0;
-			Bounds bounds = default(Bounds);
-			for (int i = 0; i < this.maxRows; i++)
-			{
-				for (int j = 0; j < this.maxColumns; j++)
-				{
-					GameObject gameObject = base.gameObject.AddChild(this.template);
-					gameObject.transform.localPosition = new Vector3((float)this.padding + ((float)j + 0.5f) * (float)this.spacing, (float)(-(float)this.padding) - ((float)i + 0.5f) * (float)this.spacing, 0f);
-					UIStorageSlot component = gameObject.GetComponent<UIStorageSlot>();
-					if (component != null)
-					{
-						component.storage = this;
-						component.slot = num;
-					}
-					bounds.Encapsulate(new Vector3((float)this.padding * 2f + (float)((j + 1) * this.spacing), (float)(-(float)this.padding) * 2f - (float)((i + 1) * this.spacing), 0f));
-					if (++num >= this.maxItemCount)
-					{
-						if (this.background != null)
-						{
-							this.background.transform.localScale = bounds.size;
-						}
-						return;
-					}
-				}
-			}
-			if (this.background != null)
-			{
-				this.background.transform.localScale = bounds.size;
-			}
-		}
-	}
+  public InvGameItem Replace(int slot, InvGameItem item)
+  {
+    if (slot >= this.maxItemCount)
+      return item;
+    InvGameItem invGameItem = this.items[slot];
+    this.mItems[slot] = item;
+    return invGameItem;
+  }
 
-	// Token: 0x04000272 RID: 626
-	public int maxItemCount = 8;
-
-	// Token: 0x04000273 RID: 627
-	public int maxRows = 4;
-
-	// Token: 0x04000274 RID: 628
-	public int maxColumns = 4;
-
-	// Token: 0x04000275 RID: 629
-	public GameObject template;
-
-	// Token: 0x04000276 RID: 630
-	public UIWidget background;
-
-	// Token: 0x04000277 RID: 631
-	public int spacing = 128;
-
-	// Token: 0x04000278 RID: 632
-	public int padding = 10;
-
-	// Token: 0x04000279 RID: 633
-	private List<InvGameItem> mItems = new List<InvGameItem>();
+  private void Start()
+  {
+    if (!((Object) this.template != (Object) null))
+      return;
+    int num = 0;
+    Bounds bounds = new Bounds();
+    for (int index1 = 0; index1 < this.maxRows; ++index1)
+    {
+      for (int index2 = 0; index2 < this.maxColumns; ++index2)
+      {
+        GameObject gameObject = this.gameObject.AddChild(this.template);
+        gameObject.transform.localPosition = new Vector3((float) this.padding + ((float) index2 + 0.5f) * (float) this.spacing, (float) -this.padding - ((float) index1 + 0.5f) * (float) this.spacing, 0.0f);
+        UIStorageSlot component = gameObject.GetComponent<UIStorageSlot>();
+        if ((Object) component != (Object) null)
+        {
+          component.storage = this;
+          component.slot = num;
+        }
+        bounds.Encapsulate(new Vector3((float) this.padding * 2f + (float) ((index2 + 1) * this.spacing), (float) -this.padding * 2f - (float) ((index1 + 1) * this.spacing), 0.0f));
+        if (++num >= this.maxItemCount)
+        {
+          if (!((Object) this.background != (Object) null))
+            return;
+          this.background.transform.localScale = bounds.size;
+          return;
+        }
+      }
+    }
+    if (!((Object) this.background != (Object) null))
+      return;
+    this.background.transform.localScale = bounds.size;
+  }
 }

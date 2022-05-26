@@ -1,45 +1,39 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: NapeScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000378 RID: 888
 public class NapeScript : MonoBehaviour
 {
-	// Token: 0x060019FB RID: 6651 RVA: 0x0010B866 File Offset: 0x00109A66
-	private void Start()
-	{
-		this.Nape.enabled = true;
-		Rigidbody rigidbody = base.gameObject.AddComponent<Rigidbody>();
-		rigidbody.useGravity = false;
-		rigidbody.isKinematic = true;
-	}
+  public StudentScript MyStudent;
+  public GameObject BloodEffect;
+  public string Prefix;
+  public Collider Nape;
 
-	// Token: 0x060019FC RID: 6652 RVA: 0x0010B88C File Offset: 0x00109A8C
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.name == "0")
-		{
-			this.MyStudent.CharacterAnimation[this.Prefix + "down_22"].speed = 0.1f;
-			this.MyStudent.CharacterAnimation.CrossFade(this.Prefix + "down_22", 1f);
-			this.MyStudent.Pathfinding.canSearch = false;
-			this.MyStudent.Pathfinding.canMove = false;
-			this.MyStudent.Routine = false;
-			this.MyStudent.DeathType = DeathType.Weapon;
-			this.MyStudent.Yandere.Bloodiness += 20f;
-			this.BloodEffect.SetActive(true);
-			this.Nape.enabled = false;
-			base.enabled = false;
-		}
-	}
+  private void Start()
+  {
+    this.Nape.enabled = true;
+    Rigidbody rigidbody = this.gameObject.AddComponent<Rigidbody>();
+    rigidbody.useGravity = false;
+    rigidbody.isKinematic = true;
+  }
 
-	// Token: 0x040029EB RID: 10731
-	public StudentScript MyStudent;
-
-	// Token: 0x040029EC RID: 10732
-	public GameObject BloodEffect;
-
-	// Token: 0x040029ED RID: 10733
-	public string Prefix;
-
-	// Token: 0x040029EE RID: 10734
-	public Collider Nape;
+  private void OnTriggerEnter(Collider other)
+  {
+    if (!(other.gameObject.name == "0"))
+      return;
+    this.MyStudent.CharacterAnimation[this.Prefix + "down_22"].speed = 0.1f;
+    this.MyStudent.CharacterAnimation.CrossFade(this.Prefix + "down_22", 1f);
+    this.MyStudent.Pathfinding.canSearch = false;
+    this.MyStudent.Pathfinding.canMove = false;
+    this.MyStudent.Routine = false;
+    this.MyStudent.DeathType = DeathType.Weapon;
+    this.MyStudent.Yandere.Bloodiness += 20f;
+    this.BloodEffect.SetActive(true);
+    this.Nape.enabled = false;
+    this.enabled = false;
+  }
 }

@@ -1,51 +1,37 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BounceScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000F5 RID: 245
 public class BounceScript : MonoBehaviour
 {
-	// Token: 0x06000A60 RID: 2656 RVA: 0x0005CBB0 File Offset: 0x0005ADB0
-	private void Start()
-	{
-		this.StartingMotion += UnityEngine.Random.Range(-0.001f, 0.001f);
-		this.DecliningSpeed += UnityEngine.Random.Range(-0.001f, 0.001f);
-	}
+  public float StartingMotion;
+  public float DecliningSpeed;
+  public float Motion;
+  public float PositionX;
+  public float Speed;
+  public Transform MyCamera;
+  public bool Go;
 
-	// Token: 0x06000A61 RID: 2657 RVA: 0x0005CBEC File Offset: 0x0005ADEC
-	private void Update()
-	{
-		base.transform.position += new Vector3(0f, this.Motion, 0f);
-		this.Motion -= Time.deltaTime * this.DecliningSpeed;
-		if (base.transform.position.y < 0.5f)
-		{
-			this.Motion = this.StartingMotion;
-		}
-		if (this.MyCamera != null && this.Go)
-		{
-			this.Speed += Time.deltaTime;
-			this.PositionX = Mathf.Lerp(this.PositionX, -0.999f, Time.deltaTime * this.Speed);
-			this.MyCamera.position = new Vector3(this.PositionX, 1f, -10f);
-		}
-	}
+  private void Start()
+  {
+    this.StartingMotion += Random.Range(-1f / 1000f, 1f / 1000f);
+    this.DecliningSpeed += Random.Range(-1f / 1000f, 1f / 1000f);
+  }
 
-	// Token: 0x04000C17 RID: 3095
-	public float StartingMotion;
-
-	// Token: 0x04000C18 RID: 3096
-	public float DecliningSpeed;
-
-	// Token: 0x04000C19 RID: 3097
-	public float Motion;
-
-	// Token: 0x04000C1A RID: 3098
-	public float PositionX;
-
-	// Token: 0x04000C1B RID: 3099
-	public float Speed;
-
-	// Token: 0x04000C1C RID: 3100
-	public Transform MyCamera;
-
-	// Token: 0x04000C1D RID: 3101
-	public bool Go;
+  private void Update()
+  {
+    this.transform.position += new Vector3(0.0f, this.Motion, 0.0f);
+    this.Motion -= Time.deltaTime * this.DecliningSpeed;
+    if ((double) this.transform.position.y < 0.5)
+      this.Motion = this.StartingMotion;
+    if (!((Object) this.MyCamera != (Object) null) || !this.Go)
+      return;
+    this.Speed += Time.deltaTime;
+    this.PositionX = Mathf.Lerp(this.PositionX, -0.999f, Time.deltaTime * this.Speed);
+    this.MyCamera.position = new Vector3(this.PositionX, 1f, -10f);
+  }
 }

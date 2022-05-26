@@ -1,46 +1,41 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: RetroAesthetics.UVScroller
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
 namespace RetroAesthetics
 {
-	// Token: 0x02000558 RID: 1368
-	public class UVScroller : MonoBehaviour
-	{
-		// Token: 0x060022F1 RID: 8945 RVA: 0x001F7E48 File Offset: 0x001F6048
-		private void Start()
-		{
-			Renderer component = base.GetComponent<Renderer>();
-			if (component == null || component.material == null)
-			{
-				base.enabled = false;
-				return;
-			}
-			this.target = component.material;
-			if (!this.target.HasProperty(this.textureName))
-			{
-				Debug.LogWarning("Texture name '" + this.textureName + "' not found in material.");
-				base.enabled = false;
-				return;
-			}
-		}
+  public class UVScroller : MonoBehaviour
+  {
+    public Vector2 scrollSpeed = new Vector2(-1f, 0.0f);
+    public string textureName = "_GridTex";
+    private Material target;
+    private Vector2 offset = Vector2.zero;
 
-		// Token: 0x060022F2 RID: 8946 RVA: 0x001F7EBC File Offset: 0x001F60BC
-		private void Update()
-		{
-			this.offset += this.scrollSpeed * Time.deltaTime * (float)Application.targetFrameRate;
-			this.target.SetTextureOffset(this.textureName, this.offset);
-		}
+    private void Start()
+    {
+      Renderer component = this.GetComponent<Renderer>();
+      if ((Object) component == (Object) null || (Object) component.material == (Object) null)
+      {
+        this.enabled = false;
+      }
+      else
+      {
+        this.target = component.material;
+        if (this.target.HasProperty(this.textureName))
+          return;
+        Debug.LogWarning((object) ("Texture name '" + this.textureName + "' not found in material."));
+        this.enabled = false;
+      }
+    }
 
-		// Token: 0x04004BA9 RID: 19369
-		public Vector2 scrollSpeed = new Vector2(-1f, 0f);
-
-		// Token: 0x04004BAA RID: 19370
-		public string textureName = "_GridTex";
-
-		// Token: 0x04004BAB RID: 19371
-		private Material target;
-
-		// Token: 0x04004BAC RID: 19372
-		private Vector2 offset = Vector2.zero;
-	}
+    private void Update()
+    {
+      this.offset += this.scrollSpeed * Time.deltaTime * (float) Application.targetFrameRate;
+      this.target.SetTextureOffset(this.textureName, this.offset);
+    }
+  }
 }

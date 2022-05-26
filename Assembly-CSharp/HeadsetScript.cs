@@ -1,20 +1,21 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: HeadsetScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000311 RID: 785
 public class HeadsetScript : MonoBehaviour
 {
-	// Token: 0x06001865 RID: 6245 RVA: 0x000E8D3C File Offset: 0x000E6F3C
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Yandere.Inventory.Schemes.UpdateInstructions();
-			this.Prompt.Yandere.Inventory.Headset = true;
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  public PromptScript Prompt;
 
-	// Token: 0x040023E3 RID: 9187
-	public PromptScript Prompt;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    this.Prompt.Yandere.Inventory.Schemes.UpdateInstructions();
+    this.Prompt.Yandere.Inventory.Headset = true;
+    Object.Destroy((Object) this.gameObject);
+  }
 }

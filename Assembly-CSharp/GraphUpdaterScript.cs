@@ -1,23 +1,23 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: GraphUpdaterScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200030A RID: 778
 public class GraphUpdaterScript : MonoBehaviour
 {
-	// Token: 0x06001849 RID: 6217 RVA: 0x000E6E32 File Offset: 0x000E5032
-	private void Update()
-	{
-		if (this.Frames > 0)
-		{
-			this.Graph.Scan(null);
-			UnityEngine.Object.Destroy(this);
-		}
-		this.Frames++;
-	}
+  public AstarPath Graph;
+  public int Frames;
 
-	// Token: 0x04002360 RID: 9056
-	public AstarPath Graph;
-
-	// Token: 0x04002361 RID: 9057
-	public int Frames;
+  private void Update()
+  {
+    if (this.Frames > 0)
+    {
+      this.Graph.Scan();
+      Object.Destroy((Object) this);
+    }
+    ++this.Frames;
+  }
 }

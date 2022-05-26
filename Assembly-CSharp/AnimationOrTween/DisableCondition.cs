@@ -1,16 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AnimationOrTween.DisableCondition
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace AnimationOrTween
 {
-	// Token: 0x02000597 RID: 1431
-	[DoNotObfuscateNGUI]
-	public enum DisableCondition
-	{
-		// Token: 0x04004CE2 RID: 19682
-		DisableAfterReverse = -1,
-		// Token: 0x04004CE3 RID: 19683
-		DoNotDisable,
-		// Token: 0x04004CE4 RID: 19684
-		DisableAfterForward
-	}
+  [DoNotObfuscateNGUI]
+  public enum DisableCondition
+  {
+    DisableAfterReverse = -1, // 0xFFFFFFFF
+    DoNotDisable = 0,
+    DisableAfterForward = 1,
+  }
 }

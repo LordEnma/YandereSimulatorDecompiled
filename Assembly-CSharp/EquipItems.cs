@@ -1,45 +1,39 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: EquipItems
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000020 RID: 32
 [AddComponentMenu("NGUI/Examples/Equip Items")]
 public class EquipItems : MonoBehaviour
 {
-	// Token: 0x06000081 RID: 129 RVA: 0x000110C4 File Offset: 0x0000F2C4
-	private void Start()
-	{
-		if (this.itemIDs != null && this.itemIDs.Length != 0)
-		{
-			InvEquipment invEquipment = base.GetComponent<InvEquipment>();
-			if (invEquipment == null)
-			{
-				invEquipment = base.gameObject.AddComponent<InvEquipment>();
-			}
-			int maxExclusive = 12;
-			int i = 0;
-			int num = this.itemIDs.Length;
-			while (i < num)
-			{
-				int num2 = this.itemIDs[i];
-				InvBaseItem invBaseItem = InvDatabase.FindByID(num2);
-				if (invBaseItem != null)
-				{
-					invEquipment.Equip(new InvGameItem(num2, invBaseItem)
-					{
-						quality = (InvGameItem.Quality)UnityEngine.Random.Range(0, maxExclusive),
-						itemLevel = NGUITools.RandomRange(invBaseItem.minItemLevel, invBaseItem.maxItemLevel)
-					});
-				}
-				else
-				{
-					Debug.LogWarning("Can't resolve the item ID of " + num2.ToString());
-				}
-				i++;
-			}
-		}
-		UnityEngine.Object.Destroy(this);
-	}
+  public int[] itemIDs;
 
-	// Token: 0x0400025F RID: 607
-	public int[] itemIDs;
+  private void Start()
+  {
+    if (this.itemIDs != null && this.itemIDs.Length != 0)
+    {
+      InvEquipment invEquipment = this.GetComponent<InvEquipment>();
+      if ((Object) invEquipment == (Object) null)
+        invEquipment = this.gameObject.AddComponent<InvEquipment>();
+      int maxExclusive = 12;
+      int index = 0;
+      for (int length = this.itemIDs.Length; index < length; ++index)
+      {
+        int itemId = this.itemIDs[index];
+        InvBaseItem byId = InvDatabase.FindByID(itemId);
+        if (byId != null)
+          invEquipment.Equip(new InvGameItem(itemId, byId)
+          {
+            quality = (InvGameItem.Quality) Random.Range(0, maxExclusive),
+            itemLevel = NGUITools.RandomRange(byId.minItemLevel, byId.maxItemLevel)
+          });
+        else
+          Debug.LogWarning((object) ("Can't resolve the item ID of " + itemId.ToString()));
+      }
+    }
+    Object.Destroy((Object) this);
+  }
 }

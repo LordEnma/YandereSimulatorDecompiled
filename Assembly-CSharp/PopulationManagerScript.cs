@@ -1,65 +1,48 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PopulationManagerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020003B5 RID: 949
 public class PopulationManagerScript : MonoBehaviour
 {
-	// Token: 0x06001AFC RID: 6908 RVA: 0x00128070 File Offset: 0x00126270
-	public Vector3 GetCrowdedLocation()
-	{
-		AreaScript crowdedArea = this.GetCrowdedArea();
-		Vector3 position = crowdedArea.transform.position;
-		Vector3 vector = new Vector3(0f, 0f, 0f);
-		float num = 0f;
-		foreach (StudentScript studentScript in crowdedArea.Students)
-		{
-			vector += new Vector3(studentScript.transform.position.x, 0f, studentScript.transform.position.z);
-			num += 1f;
-		}
-		vector /= num;
-		int num2;
-		if (position.y >= 0f && position.y < 4f)
-		{
-			num2 = 0;
-		}
-		else if (position.y >= 4f && position.y < 8f)
-		{
-			num2 = 4;
-		}
-		else if (position.y >= 8f && position.y < 12f)
-		{
-			num2 = 8;
-		}
-		else
-		{
-			num2 = 12;
-		}
-		return new Vector3(vector.x, (float)num2, vector.z);
-	}
+  [Tooltip("All defined areas should go in here. If your area is not in here, it will not count as an actual area.")]
+  [SerializeField]
+  private List<AreaScript> _definedAreas;
+  public Transform Cube;
 
-	// Token: 0x06001AFD RID: 6909 RVA: 0x001281A0 File Offset: 0x001263A0
-	public AreaScript GetCrowdedArea()
-	{
-		AreaScript result = null;
-		float num = 0f;
-		foreach (AreaScript areaScript in this._definedAreas)
-		{
-			int population = areaScript.Population;
-			if ((float)population > num)
-			{
-				num = (float)population;
-				result = areaScript;
-			}
-		}
-		return result;
-	}
+  public Vector3 GetCrowdedLocation()
+  {
+    AreaScript crowdedArea = this.GetCrowdedArea();
+    Vector3 position = crowdedArea.transform.position;
+    Vector3 vector3_1 = new Vector3(0.0f, 0.0f, 0.0f);
+    float num = 0.0f;
+    foreach (StudentScript student in crowdedArea.Students)
+    {
+      vector3_1 += new Vector3(student.transform.position.x, 0.0f, student.transform.position.z);
+      ++num;
+    }
+    Vector3 vector3_2 = vector3_1 / num;
+    int y = (double) position.y < 0.0 || (double) position.y >= 4.0 ? ((double) position.y < 4.0 || (double) position.y >= 8.0 ? ((double) position.y < 8.0 || (double) position.y >= 12.0 ? 12 : 8) : 4) : 0;
+    return new Vector3(vector3_2.x, (float) y, vector3_2.z);
+  }
 
-	// Token: 0x04002D87 RID: 11655
-	[Tooltip("All defined areas should go in here. If your area is not in here, it will not count as an actual area.")]
-	[SerializeField]
-	private List<AreaScript> _definedAreas;
-
-	// Token: 0x04002D88 RID: 11656
-	public Transform Cube;
+  public AreaScript GetCrowdedArea()
+  {
+    AreaScript crowdedArea = (AreaScript) null;
+    float num = 0.0f;
+    foreach (AreaScript definedArea in this._definedAreas)
+    {
+      int population = definedArea.Population;
+      if ((double) population > (double) num)
+      {
+        num = (float) population;
+        crowdedArea = definedArea;
+      }
+    }
+    return crowdedArea;
+  }
 }

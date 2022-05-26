@@ -1,36 +1,32 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YanvaniaCandlestickHeadScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020004E1 RID: 1249
 public class YanvaniaCandlestickHeadScript : MonoBehaviour
 {
-	// Token: 0x060020D8 RID: 8408 RVA: 0x001E5D20 File Offset: 0x001E3F20
-	private void Start()
-	{
-		Rigidbody component = base.GetComponent<Rigidbody>();
-		component.AddForce(base.transform.up * 100f);
-		component.AddForce(base.transform.right * 100f);
-		this.Value = UnityEngine.Random.Range(-1f, 1f);
-	}
+  public GameObject Fire;
+  public Vector3 Rotation;
+  public float Value;
 
-	// Token: 0x060020D9 RID: 8409 RVA: 0x001E5D80 File Offset: 0x001E3F80
-	private void Update()
-	{
-		this.Rotation += new Vector3(this.Value, this.Value, this.Value);
-		base.transform.localEulerAngles = this.Rotation;
-		if (base.transform.localPosition.y < 0.23f)
-		{
-			UnityEngine.Object.Instantiate<GameObject>(this.Fire, base.transform.position, Quaternion.identity);
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  private void Start()
+  {
+    Rigidbody component = this.GetComponent<Rigidbody>();
+    component.AddForce(this.transform.up * 100f);
+    component.AddForce(this.transform.right * 100f);
+    this.Value = Random.Range(-1f, 1f);
+  }
 
-	// Token: 0x0400482E RID: 18478
-	public GameObject Fire;
-
-	// Token: 0x0400482F RID: 18479
-	public Vector3 Rotation;
-
-	// Token: 0x04004830 RID: 18480
-	public float Value;
+  private void Update()
+  {
+    this.Rotation += new Vector3(this.Value, this.Value, this.Value);
+    this.transform.localEulerAngles = this.Rotation;
+    if ((double) this.transform.localPosition.y >= 0.230000004172325)
+      return;
+    Object.Instantiate<GameObject>(this.Fire, this.transform.position, Quaternion.identity);
+    Object.Destroy((Object) this.gameObject);
+  }
 }

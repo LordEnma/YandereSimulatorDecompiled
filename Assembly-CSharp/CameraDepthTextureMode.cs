@@ -1,28 +1,19 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: CameraDepthTextureMode
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020004FC RID: 1276
 public class CameraDepthTextureMode : MonoBehaviour
 {
-	// Token: 0x0600213A RID: 8506 RVA: 0x001EE37A File Offset: 0x001EC57A
-	private void OnValidate()
-	{
-		this.SetCameraDepthTextureMode();
-	}
+  [SerializeField]
+  private DepthTextureMode depthTextureMode;
 
-	// Token: 0x0600213B RID: 8507 RVA: 0x001EE382 File Offset: 0x001EC582
-	private void Awake()
-	{
-		this.SetCameraDepthTextureMode();
-	}
+  private void OnValidate() => this.SetCameraDepthTextureMode();
 
-	// Token: 0x0600213C RID: 8508 RVA: 0x001EE38A File Offset: 0x001EC58A
-	private void SetCameraDepthTextureMode()
-	{
-		base.GetComponent<Camera>().depthTextureMode = this.depthTextureMode;
-	}
+  private void Awake() => this.SetCameraDepthTextureMode();
 
-	// Token: 0x040049A6 RID: 18854
-	[SerializeField]
-	private DepthTextureMode depthTextureMode;
+  private void SetCameraDepthTextureMode() => this.GetComponent<Camera>().depthTextureMode = this.depthTextureMode;
 }

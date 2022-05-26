@@ -1,43 +1,40 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: InstantDeathColliderScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200033B RID: 827
 public class InstantDeathColliderScript : MonoBehaviour
 {
-	// Token: 0x06001901 RID: 6401 RVA: 0x000F787F File Offset: 0x000F5A7F
-	private void Update()
-	{
-		this.Frame++;
-		if (this.Frame > 1)
-		{
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  public int Frame;
 
-	// Token: 0x06001902 RID: 6402 RVA: 0x000F78A4 File Offset: 0x000F5AA4
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.layer == 9)
-		{
-			StudentScript component = other.gameObject.GetComponent<StudentScript>();
-			if (component != null && component.StudentID > 1)
-			{
-				if (component.Rival)
-				{
-					component.StudentManager.RivalEliminated = true;
-					component.StudentManager.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Accident;
-					Debug.Log("Attempting to tell the game that the rival was murdered.");
-				}
-				component.DeathType = DeathType.Explosion;
-				component.BecomeRagdoll();
-				Rigidbody rigidbody = component.Ragdoll.AllRigidbodies[0];
-				rigidbody.isKinematic = false;
-				Vector3 a = rigidbody.transform.position - base.transform.position;
-				rigidbody.AddForce(a * 5000f);
-			}
-		}
-	}
+  private void Update()
+  {
+    ++this.Frame;
+    if (this.Frame <= 1)
+      return;
+    Object.Destroy((Object) this.gameObject);
+  }
 
-	// Token: 0x0400269D RID: 9885
-	public int Frame;
+  private void OnTriggerEnter(Collider other)
+  {
+    if (other.gameObject.layer != 9)
+      return;
+    StudentScript component = other.gameObject.GetComponent<StudentScript>();
+    if (!((Object) component != (Object) null) || component.StudentID <= 1)
+      return;
+    if (component.Rival)
+    {
+      component.StudentManager.RivalEliminated = true;
+      component.StudentManager.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Accident;
+      Debug.Log((object) "Attempting to tell the game that the rival was murdered.");
+    }
+    component.DeathType = DeathType.Explosion;
+    component.BecomeRagdoll();
+    Rigidbody allRigidbody = component.Ragdoll.AllRigidbodies[0];
+    allRigidbody.isKinematic = false;
+    allRigidbody.AddForce((allRigidbody.transform.position - this.transform.position) * 5000f);
+  }
 }

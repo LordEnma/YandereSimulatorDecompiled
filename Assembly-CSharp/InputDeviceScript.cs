@@ -1,74 +1,59 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: InputDeviceScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
-// Token: 0x02000338 RID: 824
 public class InputDeviceScript : MonoBehaviour
 {
-	// Token: 0x060018FB RID: 6395 RVA: 0x000F7378 File Offset: 0x000F5578
-	private void Start()
-	{
-		this.joystickNames = new string[20];
-		for (int i = 0; i < 20; i++)
-		{
-			this.joystickNames[i] = "joystick 1 button " + i.ToString();
-		}
-	}
+  public InputDeviceType Type = InputDeviceType.Gamepad;
+  public Vector3 MousePrevious;
+  public Vector3 MouseDelta;
+  public float Horizontal;
+  public float Vertical;
+  public string[] joystickNames;
 
-	// Token: 0x060018FC RID: 6396 RVA: 0x000F73B8 File Offset: 0x000F55B8
-	private void Update()
-	{
-		this.MouseDelta = Input.mousePosition - this.MousePrevious;
-		this.MousePrevious = Input.mousePosition;
-		InputDeviceType type = this.Type;
-		if ((Input.GetJoystickNames().Length == 0 && Input.anyKey) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || this.MouseDelta != Vector3.zero)
-		{
-			this.Type = InputDeviceType.MouseAndKeyboard;
-		}
-		else
-		{
-			bool flag = false;
-			for (int i = 0; i < 20; i++)
-			{
-				if (Input.GetKey(this.joystickNames[i]))
-				{
-					flag = true;
-					break;
-				}
-			}
-			bool flag2 = Math.Abs(Input.GetAxis("DpadX")) > 0.5f || Math.Abs(Input.GetAxis("DpadY")) > 0.5f;
-			bool flag3 = Mathf.Abs(Input.GetAxis("Vertical")) == 1f || Mathf.Abs(Input.GetAxis("Horizontal")) == 1f;
-			if (flag || flag2 || flag3)
-			{
-				this.Type = InputDeviceType.Gamepad;
-			}
-		}
-		if (this.Type != type)
-		{
-			PromptSwapScript[] array = Resources.FindObjectsOfTypeAll<PromptSwapScript>();
-			for (int j = 0; j < array.Length; j++)
-			{
-				array[j].UpdateSpriteType(this.Type);
-			}
-		}
-		this.Horizontal = Input.GetAxis("Horizontal");
-		this.Vertical = Input.GetAxis("Vertical");
-	}
+  private void Start()
+  {
+    this.joystickNames = new string[20];
+    for (int index = 0; index < 20; ++index)
+      this.joystickNames[index] = "joystick 1 button " + index.ToString();
+  }
 
-	// Token: 0x04002678 RID: 9848
-	public InputDeviceType Type = InputDeviceType.Gamepad;
-
-	// Token: 0x04002679 RID: 9849
-	public Vector3 MousePrevious;
-
-	// Token: 0x0400267A RID: 9850
-	public Vector3 MouseDelta;
-
-	// Token: 0x0400267B RID: 9851
-	public float Horizontal;
-
-	// Token: 0x0400267C RID: 9852
-	public float Vertical;
-
-	// Token: 0x0400267D RID: 9853
-	public string[] joystickNames;
+  private void Update()
+  {
+    this.MouseDelta = Input.mousePosition - this.MousePrevious;
+    this.MousePrevious = Input.mousePosition;
+    InputDeviceType type = this.Type;
+    if (Input.GetJoystickNames().Length == 0 && Input.anyKey || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D) || Input.GetMouseButton(0) || Input.GetMouseButton(1) || Input.GetMouseButton(2) || this.MouseDelta != Vector3.zero)
+    {
+      this.Type = InputDeviceType.MouseAndKeyboard;
+    }
+    else
+    {
+      bool flag1 = false;
+      for (int index = 0; index < 20; ++index)
+      {
+        if (Input.GetKey(this.joystickNames[index]))
+        {
+          flag1 = true;
+          break;
+        }
+      }
+      bool flag2 = (double) Math.Abs(Input.GetAxis("DpadX")) > 0.5 || (double) Math.Abs(Input.GetAxis("DpadY")) > 0.5;
+      bool flag3 = (double) Mathf.Abs(Input.GetAxis("Vertical")) == 1.0 || (double) Mathf.Abs(Input.GetAxis("Horizontal")) == 1.0;
+      if (flag1 | flag2 | flag3)
+        this.Type = InputDeviceType.Gamepad;
+    }
+    if (this.Type != type)
+    {
+      foreach (PromptSwapScript promptSwapScript in Resources.FindObjectsOfTypeAll<PromptSwapScript>())
+        promptSwapScript.UpdateSpriteType(this.Type);
+    }
+    this.Horizontal = Input.GetAxis("Horizontal");
+    this.Vertical = Input.GetAxis("Vertical");
+  }
 }

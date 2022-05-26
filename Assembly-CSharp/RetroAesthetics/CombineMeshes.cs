@@ -1,56 +1,46 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: RetroAesthetics.CombineMeshes
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
 namespace RetroAesthetics
 {
-	// Token: 0x02000556 RID: 1366
-	[ExecuteInEditMode]
-	public class CombineMeshes : MonoBehaviour
-	{
-		// Token: 0x060022EB RID: 8939 RVA: 0x001F7CEE File Offset: 0x001F5EEE
-		private void CombineButtonHandler()
-		{
-			this.CombineChildMeshes();
-		}
+  [ExecuteInEditMode]
+  public class CombineMeshes : MonoBehaviour
+  {
+    [InspectorButton("CombineButtonHandler")]
+    public bool combineChildMeshes;
 
-		// Token: 0x060022EC RID: 8940 RVA: 0x001F7CF8 File Offset: 0x001F5EF8
-		public virtual void CombineChildMeshes()
-		{
-			Vector3 position = base.transform.position;
-			base.transform.position = Vector3.zero;
-			MeshFilter[] componentsInChildren = base.GetComponentsInChildren<MeshFilter>();
-			CombineInstance[] array = new CombineInstance[componentsInChildren.Length];
-			Material material = null;
-			for (int i = 0; i < componentsInChildren.Length; i++)
-			{
-				array[i].mesh = componentsInChildren[i].sharedMesh;
-				array[i].transform = componentsInChildren[i].transform.localToWorldMatrix;
-				Renderer component = componentsInChildren[i].gameObject.GetComponent<Renderer>();
-				if (component != null)
-				{
-					component.enabled = false;
-				}
-				if (material == null && component.sharedMaterial != null)
-				{
-					material = component.sharedMaterial;
-				}
-			}
-			MeshFilter meshFilter = base.GetComponent<MeshFilter>();
-			if (meshFilter == null)
-			{
-				meshFilter = base.gameObject.AddComponent<MeshFilter>();
-			}
-			meshFilter.mesh = new Mesh();
-			meshFilter.sharedMesh.CombineMeshes(array, true, true);
-			if (base.GetComponent<MeshRenderer>() == null)
-			{
-				base.gameObject.AddComponent<MeshRenderer>().sharedMaterial = material;
-			}
-			base.transform.position = position;
-		}
+    private void CombineButtonHandler() => this.CombineChildMeshes();
 
-		// Token: 0x04004BA6 RID: 19366
-		[InspectorButton("CombineButtonHandler")]
-		public bool combineChildMeshes;
-	}
+    public virtual void CombineChildMeshes()
+    {
+      Vector3 position = this.transform.position;
+      this.transform.position = Vector3.zero;
+      MeshFilter[] componentsInChildren = this.GetComponentsInChildren<MeshFilter>();
+      CombineInstance[] combine = new CombineInstance[componentsInChildren.Length];
+      Material material = (Material) null;
+      for (int index = 0; index < componentsInChildren.Length; ++index)
+      {
+        combine[index].mesh = componentsInChildren[index].sharedMesh;
+        combine[index].transform = componentsInChildren[index].transform.localToWorldMatrix;
+        Renderer component = componentsInChildren[index].gameObject.GetComponent<Renderer>();
+        if ((Object) component != (Object) null)
+          component.enabled = false;
+        if ((Object) material == (Object) null && (Object) component.sharedMaterial != (Object) null)
+          material = component.sharedMaterial;
+      }
+      MeshFilter meshFilter = this.GetComponent<MeshFilter>();
+      if ((Object) meshFilter == (Object) null)
+        meshFilter = this.gameObject.AddComponent<MeshFilter>();
+      meshFilter.mesh = new Mesh();
+      meshFilter.sharedMesh.CombineMeshes(combine, true, true);
+      if ((Object) this.GetComponent<MeshRenderer>() == (Object) null)
+        this.gameObject.AddComponent<MeshRenderer>().sharedMaterial = material;
+      this.transform.position = position;
+    }
+  }
 }

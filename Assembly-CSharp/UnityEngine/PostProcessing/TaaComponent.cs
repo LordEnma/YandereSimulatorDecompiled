@@ -1,209 +1,161 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityEngine.PostProcessing.TaaComponent
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x0200056D RID: 1389
-	public sealed class TaaComponent : PostProcessingComponentRenderTexture<AntialiasingModel>
-	{
-		// Token: 0x170004FF RID: 1279
-		// (get) Token: 0x0600236C RID: 9068 RVA: 0x001FBF90 File Offset: 0x001FA190
-		public override bool active
-		{
-			get
-			{
-				return base.model.enabled && base.model.settings.method == AntialiasingModel.Method.Taa && SystemInfo.supportsMotionVectors && SystemInfo.supportedRenderTargetCount >= 2 && !this.context.interrupted;
-			}
-		}
+  public sealed class TaaComponent : PostProcessingComponentRenderTexture<AntialiasingModel>
+  {
+    private const string k_ShaderString = "Hidden/Post FX/Temporal Anti-aliasing";
+    private const int k_SampleCount = 8;
+    private readonly RenderBuffer[] m_MRT = new RenderBuffer[2];
+    private int m_SampleIndex;
+    private bool m_ResetHistory = true;
+    private RenderTexture m_HistoryTexture;
 
-		// Token: 0x0600236D RID: 9069 RVA: 0x001FBFDC File Offset: 0x001FA1DC
-		public override DepthTextureMode GetCameraFlags()
-		{
-			return DepthTextureMode.Depth | DepthTextureMode.MotionVectors;
-		}
+    public override bool active => this.model.enabled && this.model.settings.method == AntialiasingModel.Method.Taa && SystemInfo.supportsMotionVectors && SystemInfo.supportedRenderTargetCount >= 2 && !this.context.interrupted;
 
-		// Token: 0x17000500 RID: 1280
-		// (get) Token: 0x0600236E RID: 9070 RVA: 0x001FBFDF File Offset: 0x001FA1DF
-		// (set) Token: 0x0600236F RID: 9071 RVA: 0x001FBFE7 File Offset: 0x001FA1E7
-		public Vector2 jitterVector { get; private set; }
+    public override DepthTextureMode GetCameraFlags() => DepthTextureMode.Depth | DepthTextureMode.MotionVectors;
 
-		// Token: 0x06002370 RID: 9072 RVA: 0x001FBFF0 File Offset: 0x001FA1F0
-		public void ResetHistory()
-		{
-			this.m_ResetHistory = true;
-		}
+    public Vector2 jitterVector { get; private set; }
 
-		// Token: 0x06002371 RID: 9073 RVA: 0x001FBFFC File Offset: 0x001FA1FC
-		public void SetProjectionMatrix(Func<Vector2, Matrix4x4> jitteredFunc)
-		{
-			AntialiasingModel.TaaSettings taaSettings = base.model.settings.taaSettings;
-			Vector2 vector = this.GenerateRandomOffset();
-			vector *= taaSettings.jitterSpread;
-			this.context.camera.nonJitteredProjectionMatrix = this.context.camera.projectionMatrix;
-			if (jitteredFunc != null)
-			{
-				this.context.camera.projectionMatrix = jitteredFunc(vector);
-			}
-			else
-			{
-				this.context.camera.projectionMatrix = (this.context.camera.orthographic ? this.GetOrthographicProjectionMatrix(vector) : this.GetPerspectiveProjectionMatrix(vector));
-			}
-			this.context.camera.useJitteredProjectionMatrixForTransparentRendering = false;
-			vector.x /= (float)this.context.width;
-			vector.y /= (float)this.context.height;
-			this.context.materialFactory.Get("Hidden/Post FX/Temporal Anti-aliasing").SetVector(TaaComponent.Uniforms._Jitter, vector);
-			this.jitterVector = vector;
-		}
+    public void ResetHistory() => this.m_ResetHistory = true;
 
-		// Token: 0x06002372 RID: 9074 RVA: 0x001FC108 File Offset: 0x001FA308
-		public void Render(RenderTexture source, RenderTexture destination)
-		{
-			Material material = this.context.materialFactory.Get("Hidden/Post FX/Temporal Anti-aliasing");
-			material.shaderKeywords = null;
-			AntialiasingModel.TaaSettings taaSettings = base.model.settings.taaSettings;
-			if (this.m_ResetHistory || this.m_HistoryTexture == null || this.m_HistoryTexture.width != source.width || this.m_HistoryTexture.height != source.height)
-			{
-				if (this.m_HistoryTexture)
-				{
-					RenderTexture.ReleaseTemporary(this.m_HistoryTexture);
-				}
-				this.m_HistoryTexture = RenderTexture.GetTemporary(source.width, source.height, 0, source.format);
-				this.m_HistoryTexture.name = "TAA History";
-				Graphics.Blit(source, this.m_HistoryTexture, material, 2);
-			}
-			material.SetVector(TaaComponent.Uniforms._SharpenParameters, new Vector4(taaSettings.sharpen, 0f, 0f, 0f));
-			material.SetVector(TaaComponent.Uniforms._FinalBlendParameters, new Vector4(taaSettings.stationaryBlending, taaSettings.motionBlending, 6000f, 0f));
-			material.SetTexture(TaaComponent.Uniforms._MainTex, source);
-			material.SetTexture(TaaComponent.Uniforms._HistoryTex, this.m_HistoryTexture);
-			RenderTexture temporary = RenderTexture.GetTemporary(source.width, source.height, 0, source.format);
-			temporary.name = "TAA History";
-			this.m_MRT[0] = destination.colorBuffer;
-			this.m_MRT[1] = temporary.colorBuffer;
-			Graphics.SetRenderTarget(this.m_MRT, source.depthBuffer);
-			GraphicsUtils.Blit(material, this.context.camera.orthographic ? 1 : 0);
-			RenderTexture.ReleaseTemporary(this.m_HistoryTexture);
-			this.m_HistoryTexture = temporary;
-			this.m_ResetHistory = false;
-		}
+    public void SetProjectionMatrix(Func<Vector2, Matrix4x4> jitteredFunc)
+    {
+      AntialiasingModel.TaaSettings taaSettings = this.model.settings.taaSettings;
+      Vector2 offset = this.GenerateRandomOffset() * taaSettings.jitterSpread;
+      this.context.camera.nonJitteredProjectionMatrix = this.context.camera.projectionMatrix;
+      if (jitteredFunc != null)
+        this.context.camera.projectionMatrix = jitteredFunc(offset);
+      else
+        this.context.camera.projectionMatrix = this.context.camera.orthographic ? this.GetOrthographicProjectionMatrix(offset) : this.GetPerspectiveProjectionMatrix(offset);
+      this.context.camera.useJitteredProjectionMatrixForTransparentRendering = false;
+      offset.x /= (float) this.context.width;
+      offset.y /= (float) this.context.height;
+      this.context.materialFactory.Get("Hidden/Post FX/Temporal Anti-aliasing").SetVector(TaaComponent.Uniforms._Jitter, (Vector4) offset);
+      this.jitterVector = offset;
+    }
 
-		// Token: 0x06002373 RID: 9075 RVA: 0x001FC2CC File Offset: 0x001FA4CC
-		private float GetHaltonValue(int index, int radix)
-		{
-			float num = 0f;
-			float num2 = 1f / (float)radix;
-			while (index > 0)
-			{
-				num += (float)(index % radix) * num2;
-				index /= radix;
-				num2 /= (float)radix;
-			}
-			return num;
-		}
+    public void Render(RenderTexture source, RenderTexture destination)
+    {
+      Material material = this.context.materialFactory.Get("Hidden/Post FX/Temporal Anti-aliasing");
+      material.shaderKeywords = (string[]) null;
+      AntialiasingModel.TaaSettings taaSettings = this.model.settings.taaSettings;
+      if (this.m_ResetHistory || (UnityEngine.Object) this.m_HistoryTexture == (UnityEngine.Object) null || this.m_HistoryTexture.width != source.width || this.m_HistoryTexture.height != source.height)
+      {
+        if ((bool) (UnityEngine.Object) this.m_HistoryTexture)
+          RenderTexture.ReleaseTemporary(this.m_HistoryTexture);
+        this.m_HistoryTexture = RenderTexture.GetTemporary(source.width, source.height, 0, source.format);
+        this.m_HistoryTexture.name = "TAA History";
+        Graphics.Blit((Texture) source, this.m_HistoryTexture, material, 2);
+      }
+      material.SetVector(TaaComponent.Uniforms._SharpenParameters, new Vector4(taaSettings.sharpen, 0.0f, 0.0f, 0.0f));
+      material.SetVector(TaaComponent.Uniforms._FinalBlendParameters, new Vector4(taaSettings.stationaryBlending, taaSettings.motionBlending, 6000f, 0.0f));
+      material.SetTexture(TaaComponent.Uniforms._MainTex, (Texture) source);
+      material.SetTexture(TaaComponent.Uniforms._HistoryTex, (Texture) this.m_HistoryTexture);
+      RenderTexture temporary = RenderTexture.GetTemporary(source.width, source.height, 0, source.format);
+      temporary.name = "TAA History";
+      this.m_MRT[0] = destination.colorBuffer;
+      this.m_MRT[1] = temporary.colorBuffer;
+      Graphics.SetRenderTarget(this.m_MRT, source.depthBuffer);
+      GraphicsUtils.Blit(material, this.context.camera.orthographic ? 1 : 0);
+      RenderTexture.ReleaseTemporary(this.m_HistoryTexture);
+      this.m_HistoryTexture = temporary;
+      this.m_ResetHistory = false;
+    }
 
-		// Token: 0x06002374 RID: 9076 RVA: 0x001FC304 File Offset: 0x001FA504
-		private Vector2 GenerateRandomOffset()
-		{
-			Vector2 result = new Vector2(this.GetHaltonValue(this.m_SampleIndex & 1023, 2), this.GetHaltonValue(this.m_SampleIndex & 1023, 3));
-			int num = this.m_SampleIndex + 1;
-			this.m_SampleIndex = num;
-			if (num >= 8)
-			{
-				this.m_SampleIndex = 0;
-			}
-			return result;
-		}
+    private float GetHaltonValue(int index, int radix)
+    {
+      float haltonValue = 0.0f;
+      float num = 1f / (float) radix;
+      while (index > 0)
+      {
+        haltonValue += (float) (index % radix) * num;
+        index /= radix;
+        num /= (float) radix;
+      }
+      return haltonValue;
+    }
 
-		// Token: 0x06002375 RID: 9077 RVA: 0x001FC358 File Offset: 0x001FA558
-		private Matrix4x4 GetPerspectiveProjectionMatrix(Vector2 offset)
-		{
-			float num = Mathf.Tan(0.008726646f * this.context.camera.fieldOfView);
-			float num2 = num * this.context.camera.aspect;
-			offset.x *= num2 / (0.5f * (float)this.context.width);
-			offset.y *= num / (0.5f * (float)this.context.height);
-			float num3 = (offset.x - num2) * this.context.camera.nearClipPlane;
-			float num4 = (offset.x + num2) * this.context.camera.nearClipPlane;
-			float num5 = (offset.y + num) * this.context.camera.nearClipPlane;
-			float num6 = (offset.y - num) * this.context.camera.nearClipPlane;
-			Matrix4x4 result = default(Matrix4x4);
-			result[0, 0] = 2f * this.context.camera.nearClipPlane / (num4 - num3);
-			result[0, 1] = 0f;
-			result[0, 2] = (num4 + num3) / (num4 - num3);
-			result[0, 3] = 0f;
-			result[1, 0] = 0f;
-			result[1, 1] = 2f * this.context.camera.nearClipPlane / (num5 - num6);
-			result[1, 2] = (num5 + num6) / (num5 - num6);
-			result[1, 3] = 0f;
-			result[2, 0] = 0f;
-			result[2, 1] = 0f;
-			result[2, 2] = -(this.context.camera.farClipPlane + this.context.camera.nearClipPlane) / (this.context.camera.farClipPlane - this.context.camera.nearClipPlane);
-			result[2, 3] = -(2f * this.context.camera.farClipPlane * this.context.camera.nearClipPlane) / (this.context.camera.farClipPlane - this.context.camera.nearClipPlane);
-			result[3, 0] = 0f;
-			result[3, 1] = 0f;
-			result[3, 2] = -1f;
-			result[3, 3] = 0f;
-			return result;
-		}
+    private Vector2 GenerateRandomOffset()
+    {
+      Vector2 randomOffset = new Vector2(this.GetHaltonValue(this.m_SampleIndex & 1023, 2), this.GetHaltonValue(this.m_SampleIndex & 1023, 3));
+      if (++this.m_SampleIndex < 8)
+        return randomOffset;
+      this.m_SampleIndex = 0;
+      return randomOffset;
+    }
 
-		// Token: 0x06002376 RID: 9078 RVA: 0x001FC5E0 File Offset: 0x001FA7E0
-		private Matrix4x4 GetOrthographicProjectionMatrix(Vector2 offset)
-		{
-			float orthographicSize = this.context.camera.orthographicSize;
-			float num = orthographicSize * this.context.camera.aspect;
-			offset.x *= num / (0.5f * (float)this.context.width);
-			offset.y *= orthographicSize / (0.5f * (float)this.context.height);
-			float left = offset.x - num;
-			float right = offset.x + num;
-			float top = offset.y + orthographicSize;
-			float bottom = offset.y - orthographicSize;
-			return Matrix4x4.Ortho(left, right, bottom, top, this.context.camera.nearClipPlane, this.context.camera.farClipPlane);
-		}
+    private Matrix4x4 GetPerspectiveProjectionMatrix(Vector2 offset)
+    {
+      float num1 = Mathf.Tan((float) Math.PI / 360f * this.context.camera.fieldOfView);
+      float num2 = num1 * this.context.camera.aspect;
+      offset.x *= num2 / (0.5f * (float) this.context.width);
+      offset.y *= num1 / (0.5f * (float) this.context.height);
+      float num3 = (offset.x - num2) * this.context.camera.nearClipPlane;
+      float num4 = (offset.x + num2) * this.context.camera.nearClipPlane;
+      float num5 = (offset.y + num1) * this.context.camera.nearClipPlane;
+      float num6 = (offset.y - num1) * this.context.camera.nearClipPlane;
+      return new Matrix4x4()
+      {
+        [0, 0] = (float) (2.0 * (double) this.context.camera.nearClipPlane / ((double) num4 - (double) num3)),
+        [0, 1] = 0.0f,
+        [0, 2] = (float) (((double) num4 + (double) num3) / ((double) num4 - (double) num3)),
+        [0, 3] = 0.0f,
+        [1, 0] = 0.0f,
+        [1, 1] = (float) (2.0 * (double) this.context.camera.nearClipPlane / ((double) num5 - (double) num6)),
+        [1, 2] = (float) (((double) num5 + (double) num6) / ((double) num5 - (double) num6)),
+        [1, 3] = 0.0f,
+        [2, 0] = 0.0f,
+        [2, 1] = 0.0f,
+        [2, 2] = (float) (-((double) this.context.camera.farClipPlane + (double) this.context.camera.nearClipPlane) / ((double) this.context.camera.farClipPlane - (double) this.context.camera.nearClipPlane)),
+        [2, 3] = (float) (-(2.0 * (double) this.context.camera.farClipPlane * (double) this.context.camera.nearClipPlane) / ((double) this.context.camera.farClipPlane - (double) this.context.camera.nearClipPlane)),
+        [3, 0] = 0.0f,
+        [3, 1] = 0.0f,
+        [3, 2] = -1f,
+        [3, 3] = 0.0f
+      };
+    }
 
-		// Token: 0x06002377 RID: 9079 RVA: 0x001FC69C File Offset: 0x001FA89C
-		public override void OnDisable()
-		{
-			if (this.m_HistoryTexture != null)
-			{
-				RenderTexture.ReleaseTemporary(this.m_HistoryTexture);
-			}
-			this.m_HistoryTexture = null;
-			this.m_SampleIndex = 0;
-			this.ResetHistory();
-		}
+    private Matrix4x4 GetOrthographicProjectionMatrix(Vector2 offset)
+    {
+      float orthographicSize = this.context.camera.orthographicSize;
+      float num1 = orthographicSize * this.context.camera.aspect;
+      offset.x *= num1 / (0.5f * (float) this.context.width);
+      offset.y *= orthographicSize / (0.5f * (float) this.context.height);
+      double left = (double) offset.x - (double) num1;
+      float num2 = offset.x + num1;
+      float num3 = offset.y + orthographicSize;
+      float num4 = offset.y - orthographicSize;
+      double right = (double) num2;
+      double bottom = (double) num4;
+      double top = (double) num3;
+      double nearClipPlane = (double) this.context.camera.nearClipPlane;
+      double farClipPlane = (double) this.context.camera.farClipPlane;
+      return Matrix4x4.Ortho((float) left, (float) right, (float) bottom, (float) top, (float) nearClipPlane, (float) farClipPlane);
+    }
 
-		// Token: 0x04004C0B RID: 19467
-		private const string k_ShaderString = "Hidden/Post FX/Temporal Anti-aliasing";
+    public override void OnDisable()
+    {
+      if ((UnityEngine.Object) this.m_HistoryTexture != (UnityEngine.Object) null)
+        RenderTexture.ReleaseTemporary(this.m_HistoryTexture);
+      this.m_HistoryTexture = (RenderTexture) null;
+      this.m_SampleIndex = 0;
+      this.ResetHistory();
+    }
 
-		// Token: 0x04004C0C RID: 19468
-		private const int k_SampleCount = 8;
-
-		// Token: 0x04004C0D RID: 19469
-		private readonly RenderBuffer[] m_MRT = new RenderBuffer[2];
-
-		// Token: 0x04004C0E RID: 19470
-		private int m_SampleIndex;
-
-		// Token: 0x04004C0F RID: 19471
-		private bool m_ResetHistory = true;
-
-		// Token: 0x04004C10 RID: 19472
-		private RenderTexture m_HistoryTexture;
-
-		// Token: 0x020006B2 RID: 1714
-		private static class Uniforms
-		{
-			// Token: 0x040051D9 RID: 20953
-			internal static int _Jitter = Shader.PropertyToID("_Jitter");
-
-			// Token: 0x040051DA RID: 20954
-			internal static int _SharpenParameters = Shader.PropertyToID("_SharpenParameters");
-
-			// Token: 0x040051DB RID: 20955
-			internal static int _FinalBlendParameters = Shader.PropertyToID("_FinalBlendParameters");
-
-			// Token: 0x040051DC RID: 20956
-			internal static int _HistoryTex = Shader.PropertyToID("_HistoryTex");
-
-			// Token: 0x040051DD RID: 20957
-			internal static int _MainTex = Shader.PropertyToID("_MainTex");
-		}
-	}
+    private static class Uniforms
+    {
+      internal static int _Jitter = Shader.PropertyToID(nameof (_Jitter));
+      internal static int _SharpenParameters = Shader.PropertyToID(nameof (_SharpenParameters));
+      internal static int _FinalBlendParameters = Shader.PropertyToID(nameof (_FinalBlendParameters));
+      internal static int _HistoryTex = Shader.PropertyToID(nameof (_HistoryTex));
+      internal static int _MainTex = Shader.PropertyToID(nameof (_MainTex));
+    }
+  }
 }

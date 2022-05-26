@@ -1,63 +1,44 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: LanguageSelection
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000041 RID: 65
-[RequireComponent(typeof(UIPopupList))]
+[RequireComponent(typeof (UIPopupList))]
 [AddComponentMenu("NGUI/Interaction/Language Selection")]
 public class LanguageSelection : MonoBehaviour
 {
-	// Token: 0x06000102 RID: 258 RVA: 0x000134CB File Offset: 0x000116CB
-	private void Awake()
-	{
-		this.mList = base.GetComponent<UIPopupList>();
-	}
+  private UIPopupList mList;
+  private bool mStarted;
 
-	// Token: 0x06000103 RID: 259 RVA: 0x000134D9 File Offset: 0x000116D9
-	private void Start()
-	{
-		this.mStarted = true;
-		this.Refresh();
-		EventDelegate.Add(this.mList.onChange, delegate()
-		{
-			Localization.language = UIPopupList.current.value;
-		});
-	}
+  private void Awake() => this.mList = this.GetComponent<UIPopupList>();
 
-	// Token: 0x06000104 RID: 260 RVA: 0x00013518 File Offset: 0x00011718
-	private void OnEnable()
-	{
-		if (this.mStarted)
-		{
-			this.Refresh();
-		}
-	}
+  private void Start()
+  {
+    this.mStarted = true;
+    this.Refresh();
+    EventDelegate.Add(this.mList.onChange, (EventDelegate.Callback) (() => Localization.language = UIPopupList.current.value));
+  }
 
-	// Token: 0x06000105 RID: 261 RVA: 0x00013528 File Offset: 0x00011728
-	public void Refresh()
-	{
-		if (this.mList != null && Localization.knownLanguages != null)
-		{
-			this.mList.Clear();
-			int i = 0;
-			int num = Localization.knownLanguages.Length;
-			while (i < num)
-			{
-				this.mList.items.Add(Localization.knownLanguages[i]);
-				i++;
-			}
-			this.mList.value = Localization.language;
-		}
-	}
+  private void OnEnable()
+  {
+    if (!this.mStarted)
+      return;
+    this.Refresh();
+  }
 
-	// Token: 0x06000106 RID: 262 RVA: 0x00013590 File Offset: 0x00011790
-	private void OnLocalize()
-	{
-		this.Refresh();
-	}
+  public void Refresh()
+  {
+    if (!((Object) this.mList != (Object) null) || Localization.knownLanguages == null)
+      return;
+    this.mList.Clear();
+    int index = 0;
+    for (int length = Localization.knownLanguages.Length; index < length; ++index)
+      this.mList.items.Add(Localization.knownLanguages[index]);
+    this.mList.value = Localization.language;
+  }
 
-	// Token: 0x040002D7 RID: 727
-	private UIPopupList mList;
-
-	// Token: 0x040002D8 RID: 728
-	private bool mStarted;
+  private void OnLocalize() => this.Refresh();
 }

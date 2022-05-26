@@ -1,17 +1,19 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: RandomSoundScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003D2 RID: 978
 public class RandomSoundScript : MonoBehaviour
 {
-	// Token: 0x06001B8A RID: 7050 RVA: 0x001370FC File Offset: 0x001352FC
-	private void Start()
-	{
-		AudioSource component = base.GetComponent<AudioSource>();
-		component.clip = this.Clips[UnityEngine.Random.Range(1, this.Clips.Length)];
-		component.Play();
-	}
+  public AudioClip[] Clips;
 
-	// Token: 0x04002F4C RID: 12108
-	public AudioClip[] Clips;
+  private void Start()
+  {
+    AudioSource component = this.GetComponent<AudioSource>();
+    component.clip = this.Clips[Random.Range(1, this.Clips.Length)];
+    component.Play();
+  }
 }

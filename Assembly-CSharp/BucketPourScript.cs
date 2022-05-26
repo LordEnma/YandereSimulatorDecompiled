@@ -1,128 +1,121 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BucketPourScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000FF RID: 255
 public class BucketPourScript : MonoBehaviour
 {
-	// Token: 0x06000A89 RID: 2697 RVA: 0x0005D74E File Offset: 0x0005B94E
-	private void Start()
-	{
-	}
+  public SplashCameraScript SplashCamera;
+  public YandereScript Yandere;
+  public PromptScript Prompt;
+  public string PourHeight = string.Empty;
+  public float PourDistance;
+  public float PourTime;
+  public int ID;
 
-	// Token: 0x06000A8A RID: 2698 RVA: 0x0005D750 File Offset: 0x0005B950
-	private void Update()
-	{
-		if (this.Yandere.PickUp != null)
-		{
-			if (this.Yandere.PickUp.Bucket != null)
-			{
-				if (this.Yandere.PickUp.Bucket.Full)
-				{
-					if (!this.Prompt.enabled)
-					{
-						this.Prompt.Label[0].text = "     Pour";
-						this.Prompt.enabled = true;
-					}
-				}
-				else if (this.Yandere.PickUp.Bucket.Dumbbells == 5)
-				{
-					if (!this.Prompt.enabled)
-					{
-						this.Prompt.Label[0].text = "     Drop";
-						this.Prompt.enabled = true;
-					}
-				}
-				else if (this.Prompt.enabled)
-				{
-					this.Prompt.Hide();
-					this.Prompt.enabled = false;
-				}
-			}
-			else if (this.Prompt.enabled)
-			{
-				this.Prompt.Hide();
-				this.Prompt.enabled = false;
-			}
-		}
-		else if (this.Prompt.enabled)
-		{
-			this.Prompt.Hide();
-			this.Prompt.enabled = false;
-		}
-		if (this.Prompt.Circle[0] != null && this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Circle[0].fillAmount = 1f;
-			if (!this.Yandere.Chased && this.Yandere.Chasers == 0)
-			{
-				if (this.Yandere.PickUp.Bucket.Dumbbells == 5)
-				{
-					this.Yandere.CharacterAnimation.CrossFade("f02_bucketDrop_00");
-					this.Yandere.MyController.radius = 0f;
-					this.Yandere.BucketDropping = true;
-					this.Yandere.DropSpot = base.transform;
-					this.Yandere.CanMove = false;
-				}
-				else
-				{
-					this.Yandere.Stool = base.transform;
-					this.Yandere.CanMove = false;
-					this.Yandere.Pouring = true;
-					this.Yandere.PourDistance = this.PourDistance;
-					this.Yandere.PourHeight = this.PourHeight;
-					this.Yandere.PourTime = this.PourTime;
-				}
-			}
-		}
-		if (this.Yandere.Pouring)
-		{
-			if (Input.GetButtonDown("B") && this.Prompt.DistanceSqr < 1f)
-			{
-				this.SplashCamera.Show = true;
-				this.SplashCamera.MyCamera.enabled = true;
-				if (this.ID == 1)
-				{
-					this.SplashCamera.transform.position = new Vector3(32.1f, 0.8f, 26.9f);
-					this.SplashCamera.transform.eulerAngles = new Vector3(0f, -45f, 0f);
-					return;
-				}
-				this.SplashCamera.transform.position = new Vector3(1.1f, 0.8f, 32.1f);
-				this.SplashCamera.transform.eulerAngles = new Vector3(0f, -135f, 0f);
-				return;
-			}
-		}
-		else if (this.Yandere.BucketDropping && Input.GetButtonDown("B") && this.Prompt.DistanceSqr < 1f)
-		{
-			this.SplashCamera.Show = true;
-			this.SplashCamera.MyCamera.enabled = true;
-			if (this.ID == 1)
-			{
-				this.SplashCamera.transform.position = new Vector3(32.1f, 0.8f, 26.9f);
-				this.SplashCamera.transform.eulerAngles = new Vector3(0f, -45f, 0f);
-				return;
-			}
-			this.SplashCamera.transform.position = new Vector3(1.1f, 0.8f, 32.1f);
-			this.SplashCamera.transform.eulerAngles = new Vector3(0f, -135f, 0f);
-		}
-	}
+  private void Start()
+  {
+  }
 
-	// Token: 0x04000C4F RID: 3151
-	public SplashCameraScript SplashCamera;
-
-	// Token: 0x04000C50 RID: 3152
-	public YandereScript Yandere;
-
-	// Token: 0x04000C51 RID: 3153
-	public PromptScript Prompt;
-
-	// Token: 0x04000C52 RID: 3154
-	public string PourHeight = string.Empty;
-
-	// Token: 0x04000C53 RID: 3155
-	public float PourDistance;
-
-	// Token: 0x04000C54 RID: 3156
-	public float PourTime;
-
-	// Token: 0x04000C55 RID: 3157
-	public int ID;
+  private void Update()
+  {
+    if ((Object) this.Yandere.PickUp != (Object) null)
+    {
+      if ((Object) this.Yandere.PickUp.Bucket != (Object) null)
+      {
+        if (this.Yandere.PickUp.Bucket.Full)
+        {
+          if (!this.Prompt.enabled)
+          {
+            this.Prompt.Label[0].text = "     Pour";
+            this.Prompt.enabled = true;
+          }
+        }
+        else if (this.Yandere.PickUp.Bucket.Dumbbells == 5)
+        {
+          if (!this.Prompt.enabled)
+          {
+            this.Prompt.Label[0].text = "     Drop";
+            this.Prompt.enabled = true;
+          }
+        }
+        else if (this.Prompt.enabled)
+        {
+          this.Prompt.Hide();
+          this.Prompt.enabled = false;
+        }
+      }
+      else if (this.Prompt.enabled)
+      {
+        this.Prompt.Hide();
+        this.Prompt.enabled = false;
+      }
+    }
+    else if (this.Prompt.enabled)
+    {
+      this.Prompt.Hide();
+      this.Prompt.enabled = false;
+    }
+    if ((Object) this.Prompt.Circle[0] != (Object) null && (double) this.Prompt.Circle[0].fillAmount == 0.0)
+    {
+      this.Prompt.Circle[0].fillAmount = 1f;
+      if (!this.Yandere.Chased && this.Yandere.Chasers == 0)
+      {
+        if (this.Yandere.PickUp.Bucket.Dumbbells == 5)
+        {
+          this.Yandere.CharacterAnimation.CrossFade("f02_bucketDrop_00");
+          this.Yandere.MyController.radius = 0.0f;
+          this.Yandere.BucketDropping = true;
+          this.Yandere.DropSpot = this.transform;
+          this.Yandere.CanMove = false;
+        }
+        else
+        {
+          this.Yandere.Stool = this.transform;
+          this.Yandere.CanMove = false;
+          this.Yandere.Pouring = true;
+          this.Yandere.PourDistance = this.PourDistance;
+          this.Yandere.PourHeight = this.PourHeight;
+          this.Yandere.PourTime = this.PourTime;
+        }
+      }
+    }
+    if (this.Yandere.Pouring)
+    {
+      if (!Input.GetButtonDown("B") || (double) this.Prompt.DistanceSqr >= 1.0)
+        return;
+      this.SplashCamera.Show = true;
+      this.SplashCamera.MyCamera.enabled = true;
+      if (this.ID == 1)
+      {
+        this.SplashCamera.transform.position = new Vector3(32.1f, 0.8f, 26.9f);
+        this.SplashCamera.transform.eulerAngles = new Vector3(0.0f, -45f, 0.0f);
+      }
+      else
+      {
+        this.SplashCamera.transform.position = new Vector3(1.1f, 0.8f, 32.1f);
+        this.SplashCamera.transform.eulerAngles = new Vector3(0.0f, -135f, 0.0f);
+      }
+    }
+    else
+    {
+      if (!this.Yandere.BucketDropping || !Input.GetButtonDown("B") || (double) this.Prompt.DistanceSqr >= 1.0)
+        return;
+      this.SplashCamera.Show = true;
+      this.SplashCamera.MyCamera.enabled = true;
+      if (this.ID == 1)
+      {
+        this.SplashCamera.transform.position = new Vector3(32.1f, 0.8f, 26.9f);
+        this.SplashCamera.transform.eulerAngles = new Vector3(0.0f, -45f, 0.0f);
+      }
+      else
+      {
+        this.SplashCamera.transform.position = new Vector3(1.1f, 0.8f, 32.1f);
+        this.SplashCamera.transform.eulerAngles = new Vector3(0.0f, -135f, 0.0f);
+      }
+    }
+  }
 }

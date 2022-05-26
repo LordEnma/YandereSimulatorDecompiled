@@ -1,71 +1,58 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityEngine.PostProcessing.ChromaticAberrationComponent
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000563 RID: 1379
-	public sealed class ChromaticAberrationComponent : PostProcessingComponentRenderTexture<ChromaticAberrationModel>
-	{
-		// Token: 0x170004F3 RID: 1267
-		// (get) Token: 0x0600231C RID: 8988 RVA: 0x001F96F4 File Offset: 0x001F78F4
-		public override bool active
-		{
-			get
-			{
-				return base.model.enabled && base.model.settings.intensity > 0f && !this.context.interrupted;
-			}
-		}
+  public sealed class ChromaticAberrationComponent : 
+    PostProcessingComponentRenderTexture<ChromaticAberrationModel>
+  {
+    private Texture2D m_SpectrumLut;
 
-		// Token: 0x0600231D RID: 8989 RVA: 0x001F972A File Offset: 0x001F792A
-		public override void OnDisable()
-		{
-			GraphicsUtils.Destroy(this.m_SpectrumLut);
-			this.m_SpectrumLut = null;
-		}
+    public override bool active => this.model.enabled && (double) this.model.settings.intensity > 0.0 && !this.context.interrupted;
 
-		// Token: 0x0600231E RID: 8990 RVA: 0x001F9740 File Offset: 0x001F7940
-		public override void Prepare(Material uberMaterial)
-		{
-			ChromaticAberrationModel.Settings settings = base.model.settings;
-			Texture2D texture2D = settings.spectralTexture;
-			if (texture2D == null)
-			{
-				if (this.m_SpectrumLut == null)
-				{
-					this.m_SpectrumLut = new Texture2D(3, 1, TextureFormat.RGB24, false)
-					{
-						name = "Chromatic Aberration Spectrum Lookup",
-						filterMode = FilterMode.Bilinear,
-						wrapMode = TextureWrapMode.Clamp,
-						anisoLevel = 0,
-						hideFlags = HideFlags.DontSave
-					};
-					Color[] pixels = new Color[]
-					{
-						new Color(1f, 0f, 0f),
-						new Color(0f, 1f, 0f),
-						new Color(0f, 0f, 1f)
-					};
-					this.m_SpectrumLut.SetPixels(pixels);
-					this.m_SpectrumLut.Apply();
-				}
-				texture2D = this.m_SpectrumLut;
-			}
-			uberMaterial.EnableKeyword("CHROMATIC_ABERRATION");
-			uberMaterial.SetFloat(ChromaticAberrationComponent.Uniforms._ChromaticAberration_Amount, settings.intensity * 0.03f);
-			uberMaterial.SetTexture(ChromaticAberrationComponent.Uniforms._ChromaticAberration_Spectrum, texture2D);
-		}
+    public override void OnDisable()
+    {
+      GraphicsUtils.Destroy((Object) this.m_SpectrumLut);
+      this.m_SpectrumLut = (Texture2D) null;
+    }
 
-		// Token: 0x04004BEA RID: 19434
-		private Texture2D m_SpectrumLut;
+    public override void Prepare(Material uberMaterial)
+    {
+      ChromaticAberrationModel.Settings settings = this.model.settings;
+      Texture2D texture2D1 = settings.spectralTexture;
+      if ((Object) texture2D1 == (Object) null)
+      {
+        if ((Object) this.m_SpectrumLut == (Object) null)
+        {
+          Texture2D texture2D2 = new Texture2D(3, 1, TextureFormat.RGB24, false);
+          texture2D2.name = "Chromatic Aberration Spectrum Lookup";
+          texture2D2.filterMode = FilterMode.Bilinear;
+          texture2D2.wrapMode = TextureWrapMode.Clamp;
+          texture2D2.anisoLevel = 0;
+          texture2D2.hideFlags = HideFlags.DontSave;
+          this.m_SpectrumLut = texture2D2;
+          this.m_SpectrumLut.SetPixels(new Color[3]
+          {
+            new Color(1f, 0.0f, 0.0f),
+            new Color(0.0f, 1f, 0.0f),
+            new Color(0.0f, 0.0f, 1f)
+          });
+          this.m_SpectrumLut.Apply();
+        }
+        texture2D1 = this.m_SpectrumLut;
+      }
+      uberMaterial.EnableKeyword("CHROMATIC_ABERRATION");
+      uberMaterial.SetFloat(ChromaticAberrationComponent.Uniforms._ChromaticAberration_Amount, settings.intensity * 0.03f);
+      uberMaterial.SetTexture(ChromaticAberrationComponent.Uniforms._ChromaticAberration_Spectrum, (Texture) texture2D1);
+    }
 
-		// Token: 0x020006A4 RID: 1700
-		private static class Uniforms
-		{
-			// Token: 0x0400514E RID: 20814
-			internal static readonly int _ChromaticAberration_Amount = Shader.PropertyToID("_ChromaticAberration_Amount");
-
-			// Token: 0x0400514F RID: 20815
-			internal static readonly int _ChromaticAberration_Spectrum = Shader.PropertyToID("_ChromaticAberration_Spectrum");
-		}
-	}
+    private static class Uniforms
+    {
+      internal static readonly int _ChromaticAberration_Amount = Shader.PropertyToID(nameof (_ChromaticAberration_Amount));
+      internal static readonly int _ChromaticAberration_Spectrum = Shader.PropertyToID(nameof (_ChromaticAberration_Spectrum));
+    }
+  }
 }

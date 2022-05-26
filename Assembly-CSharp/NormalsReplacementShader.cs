@@ -1,31 +1,28 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: NormalsReplacementShader
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020004FD RID: 1277
 public class NormalsReplacementShader : MonoBehaviour
 {
-	// Token: 0x0600213E RID: 8510 RVA: 0x001EE3A8 File Offset: 0x001EC5A8
-	private void Start()
-	{
-		Camera component = base.GetComponent<Camera>();
-		this.renderTexture = new RenderTexture(component.pixelWidth, component.pixelHeight, 24);
-		Shader.SetGlobalTexture("_CameraNormalsTexture", this.renderTexture);
-		GameObject gameObject = new GameObject("Normals camera");
-		this.camera = gameObject.AddComponent<Camera>();
-		this.camera.CopyFrom(component);
-		this.camera.transform.SetParent(base.transform);
-		this.camera.targetTexture = this.renderTexture;
-		this.camera.SetReplacementShader(this.normalsShader, "RenderType");
-		this.camera.depth = component.depth - 1f;
-	}
+  [SerializeField]
+  private Shader normalsShader;
+  private RenderTexture renderTexture;
+  private Camera camera;
 
-	// Token: 0x040049A7 RID: 18855
-	[SerializeField]
-	private Shader normalsShader;
-
-	// Token: 0x040049A8 RID: 18856
-	private RenderTexture renderTexture;
-
-	// Token: 0x040049A9 RID: 18857
-	private Camera camera;
+  private void Start()
+  {
+    Camera component = this.GetComponent<Camera>();
+    this.renderTexture = new RenderTexture(component.pixelWidth, component.pixelHeight, 24);
+    Shader.SetGlobalTexture("_CameraNormalsTexture", (Texture) this.renderTexture);
+    this.camera = new GameObject("Normals camera").AddComponent<Camera>();
+    this.camera.CopyFrom(component);
+    this.camera.transform.SetParent(this.transform);
+    this.camera.targetTexture = this.renderTexture;
+    this.camera.SetReplacementShader(this.normalsShader, "RenderType");
+    this.camera.depth = component.depth - 1f;
+  }
 }

@@ -1,46 +1,40 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DownloadTexture
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Networking;
 
-// Token: 0x0200002E RID: 46
-[RequireComponent(typeof(UITexture))]
+[RequireComponent(typeof (UITexture))]
 public class DownloadTexture : MonoBehaviour
 {
-	// Token: 0x060000C6 RID: 198 RVA: 0x0001264C File Offset: 0x0001084C
-	private IEnumerator Start()
-	{
-		UnityWebRequest www = UnityWebRequest.Get(this.url);
-		yield return www.SendWebRequest();
-		this.mTex = DownloadHandlerTexture.GetContent(www);
-		if (this.mTex != null)
-		{
-			UITexture component = base.GetComponent<UITexture>();
-			component.mainTexture = this.mTex;
-			if (this.pixelPerfect)
-			{
-				component.MakePixelPerfect();
-			}
-		}
-		www.Dispose();
-		yield break;
-	}
+  public string url = "http://www.yourwebsite.com/logo.png";
+  public bool pixelPerfect = true;
+  private Texture2D mTex;
 
-	// Token: 0x060000C7 RID: 199 RVA: 0x0001265B File Offset: 0x0001085B
-	private void OnDestroy()
-	{
-		if (this.mTex != null)
-		{
-			UnityEngine.Object.Destroy(this.mTex);
-		}
-	}
+  private IEnumerator Start()
+  {
+    DownloadTexture downloadTexture = this;
+    UnityWebRequest www = UnityWebRequest.Get(downloadTexture.url);
+    yield return (object) www.SendWebRequest();
+    downloadTexture.mTex = DownloadHandlerTexture.GetContent(www);
+    if ((Object) downloadTexture.mTex != (Object) null)
+    {
+      UITexture component = downloadTexture.GetComponent<UITexture>();
+      component.mainTexture = (Texture) downloadTexture.mTex;
+      if (downloadTexture.pixelPerfect)
+        component.MakePixelPerfect();
+    }
+    www.Dispose();
+  }
 
-	// Token: 0x0400029B RID: 667
-	public string url = "http://www.yourwebsite.com/logo.png";
-
-	// Token: 0x0400029C RID: 668
-	public bool pixelPerfect = true;
-
-	// Token: 0x0400029D RID: 669
-	private Texture2D mTex;
+  private void OnDestroy()
+  {
+    if (!((Object) this.mTex != (Object) null))
+      return;
+    Object.Destroy((Object) this.mTex);
+  }
 }

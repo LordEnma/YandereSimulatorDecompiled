@@ -1,64 +1,55 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BoneScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000F2 RID: 242
 public class BoneScript : MonoBehaviour
 {
-	// Token: 0x06000A54 RID: 2644 RVA: 0x0005C418 File Offset: 0x0005A618
-	private void Start()
-	{
-		base.transform.eulerAngles = new Vector3(base.transform.eulerAngles.x, UnityEngine.Random.Range(0f, 360f), base.transform.eulerAngles.z);
-		this.Origin = base.transform.position.y;
-		this.MyAudio.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
-	}
+  public AudioSource MyAudio;
+  public float Height;
+  public float Origin;
+  public bool Drop;
 
-	// Token: 0x06000A55 RID: 2645 RVA: 0x0005C494 File Offset: 0x0005A694
-	private void Update()
-	{
-		if (this.Drop)
-		{
-			this.Height -= Time.deltaTime;
-			base.transform.position = new Vector3(base.transform.position.x, base.transform.position.y + this.Height, base.transform.position.z);
-			if (base.transform.position.y < this.Origin - 2.155f)
-			{
-				UnityEngine.Object.Destroy(base.gameObject);
-			}
-			return;
-		}
-		if (base.transform.position.y < this.Origin + 2f - 0.0001f)
-		{
-			base.transform.position = new Vector3(base.transform.position.x, Mathf.Lerp(base.transform.position.y, this.Origin + 2f, Time.deltaTime * 10f), base.transform.position.z);
-			return;
-		}
-		this.Drop = true;
-	}
+  private void Start()
+  {
+    this.transform.eulerAngles = new Vector3(this.transform.eulerAngles.x, Random.Range(0.0f, 360f), this.transform.eulerAngles.z);
+    this.Origin = this.transform.position.y;
+    this.MyAudio.pitch = Random.Range(0.9f, 1.1f);
+  }
 
-	// Token: 0x06000A56 RID: 2646 RVA: 0x0005C5B8 File Offset: 0x0005A7B8
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.layer == 9)
-		{
-			StudentScript component = other.gameObject.GetComponent<StudentScript>();
-			if (component != null)
-			{
-				component.DeathType = DeathType.EasterEgg;
-				component.BecomeRagdoll();
-				Rigidbody rigidbody = component.Ragdoll.AllRigidbodies[0];
-				rigidbody.isKinematic = false;
-				rigidbody.AddForce(base.transform.up);
-			}
-		}
-	}
+  private void Update()
+  {
+    if (!this.Drop)
+    {
+      if ((double) this.transform.position.y < (double) this.Origin + 2.0 - 9.99999974737875E-05)
+        this.transform.position = new Vector3(this.transform.position.x, Mathf.Lerp(this.transform.position.y, this.Origin + 2f, Time.deltaTime * 10f), this.transform.position.z);
+      else
+        this.Drop = true;
+    }
+    else
+    {
+      this.Height -= Time.deltaTime;
+      this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + this.Height, this.transform.position.z);
+      if ((double) this.transform.position.y >= (double) this.Origin - 2.15499997138977)
+        return;
+      Object.Destroy((Object) this.gameObject);
+    }
+  }
 
-	// Token: 0x04000BEA RID: 3050
-	public AudioSource MyAudio;
-
-	// Token: 0x04000BEB RID: 3051
-	public float Height;
-
-	// Token: 0x04000BEC RID: 3052
-	public float Origin;
-
-	// Token: 0x04000BED RID: 3053
-	public bool Drop;
+  private void OnTriggerEnter(Collider other)
+  {
+    if (other.gameObject.layer != 9)
+      return;
+    StudentScript component = other.gameObject.GetComponent<StudentScript>();
+    if (!((Object) component != (Object) null))
+      return;
+    component.DeathType = DeathType.EasterEgg;
+    component.BecomeRagdoll();
+    Rigidbody allRigidbody = component.Ragdoll.AllRigidbodies[0];
+    allRigidbody.isKinematic = false;
+    allRigidbody.AddForce(this.transform.up);
+  }
 }

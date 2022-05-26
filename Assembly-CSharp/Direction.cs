@@ -1,14 +1,13 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: Direction
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x0200049D RID: 1181
 public enum Direction
 {
-	// Token: 0x04004253 RID: 16979
-	North,
-	// Token: 0x04004254 RID: 16980
-	East,
-	// Token: 0x04004255 RID: 16981
-	South,
-	// Token: 0x04004256 RID: 16982
-	West
+  North,
+  East,
+  South,
+  West,
 }

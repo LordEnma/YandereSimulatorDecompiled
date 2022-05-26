@@ -1,37 +1,27 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: GazerHairScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020002E0 RID: 736
 public class GazerHairScript : MonoBehaviour
 {
-	// Token: 0x060014F5 RID: 5365 RVA: 0x000D025C File Offset: 0x000CE45C
-	private void Update()
-	{
-		this.ID = 0;
-		while (this.ID < this.Weight.Length)
-		{
-			this.Weight[this.ID] = Mathf.MoveTowards(this.Weight[this.ID], this.TargetWeight[this.ID], Time.deltaTime * this.Strength);
-			if (this.Weight[this.ID] == this.TargetWeight[this.ID])
-			{
-				this.TargetWeight[this.ID] = UnityEngine.Random.Range(0f, 100f);
-			}
-			this.MyMesh.SetBlendShapeWeight(this.ID, this.Weight[this.ID]);
-			this.ID++;
-		}
-	}
+  public SkinnedMeshRenderer MyMesh;
+  public float[] TargetWeight;
+  public float[] Weight;
+  public float Strength = 100f;
+  public int ID;
 
-	// Token: 0x04002131 RID: 8497
-	public SkinnedMeshRenderer MyMesh;
-
-	// Token: 0x04002132 RID: 8498
-	public float[] TargetWeight;
-
-	// Token: 0x04002133 RID: 8499
-	public float[] Weight;
-
-	// Token: 0x04002134 RID: 8500
-	public float Strength = 100f;
-
-	// Token: 0x04002135 RID: 8501
-	public int ID;
+  private void Update()
+  {
+    for (this.ID = 0; this.ID < this.Weight.Length; ++this.ID)
+    {
+      this.Weight[this.ID] = Mathf.MoveTowards(this.Weight[this.ID], this.TargetWeight[this.ID], Time.deltaTime * this.Strength);
+      if ((double) this.Weight[this.ID] == (double) this.TargetWeight[this.ID])
+        this.TargetWeight[this.ID] = Random.Range(0.0f, 100f);
+      this.MyMesh.SetBlendShapeWeight(this.ID, this.Weight[this.ID]);
+    }
+  }
 }

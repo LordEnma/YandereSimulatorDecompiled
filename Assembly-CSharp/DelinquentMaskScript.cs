@@ -1,29 +1,24 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DelinquentMaskScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200027A RID: 634
 public class DelinquentMaskScript : MonoBehaviour
 {
-	// Token: 0x06001374 RID: 4980 RVA: 0x000B25E8 File Offset: 0x000B07E8
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.LeftAlt))
-		{
-			this.ID++;
-			if (this.ID > 4)
-			{
-				this.ID = 0;
-			}
-			this.MyRenderer.mesh = this.Meshes[this.ID];
-		}
-	}
+  public MeshFilter MyRenderer;
+  public Mesh[] Meshes;
+  public int ID;
 
-	// Token: 0x04001C7B RID: 7291
-	public MeshFilter MyRenderer;
-
-	// Token: 0x04001C7C RID: 7292
-	public Mesh[] Meshes;
-
-	// Token: 0x04001C7D RID: 7293
-	public int ID;
+  private void Update()
+  {
+    if (!Input.GetKeyDown(KeyCode.LeftAlt))
+      return;
+    ++this.ID;
+    if (this.ID > 4)
+      this.ID = 0;
+    this.MyRenderer.mesh = this.Meshes[this.ID];
+  }
 }

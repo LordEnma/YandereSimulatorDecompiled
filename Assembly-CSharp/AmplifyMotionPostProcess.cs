@@ -1,35 +1,27 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AmplifyMotionPostProcess
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000B7 RID: 183
 [AddComponentMenu("")]
-[RequireComponent(typeof(Camera))]
+[RequireComponent(typeof (Camera))]
 public sealed class AmplifyMotionPostProcess : MonoBehaviour
 {
-	// Token: 0x170001F2 RID: 498
-	// (get) Token: 0x0600095F RID: 2399 RVA: 0x0004B589 File Offset: 0x00049789
-	// (set) Token: 0x06000960 RID: 2400 RVA: 0x0004B591 File Offset: 0x00049791
-	public AmplifyMotionEffectBase Instance
-	{
-		get
-		{
-			return this.m_instance;
-		}
-		set
-		{
-			this.m_instance = value;
-		}
-	}
+  private AmplifyMotionEffectBase m_instance;
 
-	// Token: 0x06000961 RID: 2401 RVA: 0x0004B59A File Offset: 0x0004979A
-	private void OnRenderImage(RenderTexture source, RenderTexture destination)
-	{
-		if (this.m_instance != null)
-		{
-			this.m_instance.PostProcess(source, destination);
-		}
-	}
+  public AmplifyMotionEffectBase Instance
+  {
+    get => this.m_instance;
+    set => this.m_instance = value;
+  }
 
-	// Token: 0x0400080B RID: 2059
-	private AmplifyMotionEffectBase m_instance;
+  private void OnRenderImage(RenderTexture source, RenderTexture destination)
+  {
+    if (!((Object) this.m_instance != (Object) null))
+      return;
+    this.m_instance.PostProcess(source, destination);
+  }
 }

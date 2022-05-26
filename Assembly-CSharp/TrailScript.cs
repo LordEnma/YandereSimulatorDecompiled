@@ -1,17 +1,20 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TrailScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200048A RID: 1162
 public class TrailScript : MonoBehaviour
 {
-	// Token: 0x06001F30 RID: 7984 RVA: 0x001BA27C File Offset: 0x001B847C
-	private void Start()
-	{
-		Physics.IgnoreCollision(GameObject.Find("YandereChan").GetComponent<Collider>(), base.GetComponent<Collider>());
-		Physics.IgnoreLayerCollision(20, 8, false);
-		Physics.IgnoreLayerCollision(8, 20, false);
-		Physics.IgnoreLayerCollision(20, 15, true);
-		Physics.IgnoreLayerCollision(15, 20, true);
-		UnityEngine.Object.Destroy(this);
-	}
+  private void Start()
+  {
+    Physics.IgnoreCollision(GameObject.Find("YandereChan").GetComponent<Collider>(), this.GetComponent<Collider>());
+    Physics.IgnoreLayerCollision(20, 8, false);
+    Physics.IgnoreLayerCollision(8, 20, false);
+    Physics.IgnoreLayerCollision(20, 15, true);
+    Physics.IgnoreLayerCollision(15, 20, true);
+    Object.Destroy((Object) this);
+  }
 }

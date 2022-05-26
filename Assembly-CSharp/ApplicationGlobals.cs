@@ -1,30 +1,20 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ApplicationGlobals
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020002ED RID: 749
 public static class ApplicationGlobals
 {
-	// Token: 0x1700036F RID: 879
-	// (get) Token: 0x06001541 RID: 5441 RVA: 0x000DA110 File Offset: 0x000D8310
-	// (set) Token: 0x06001542 RID: 5442 RVA: 0x000DA140 File Offset: 0x000D8340
-	public static float VersionNumber
-	{
-		get
-		{
-			return PlayerPrefs.GetFloat("Profile_" + GameGlobals.Profile.ToString() + "_VersionNumber");
-		}
-		set
-		{
-			PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_VersionNumber", value);
-		}
-	}
+  private const string Str_VersionNumber = "VersionNumber";
 
-	// Token: 0x06001543 RID: 5443 RVA: 0x000DA170 File Offset: 0x000D8370
-	public static void DeleteAll()
-	{
-		Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_VersionNumber");
-	}
+  public static float VersionNumber
+  {
+    get => PlayerPrefs.GetFloat("Profile_" + GameGlobals.Profile.ToString() + "_VersionNumber");
+    set => PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_VersionNumber", value);
+  }
 
-	// Token: 0x040021ED RID: 8685
-	private const string Str_VersionNumber = "VersionNumber";
+  public static void DeleteAll() => Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_VersionNumber");
 }

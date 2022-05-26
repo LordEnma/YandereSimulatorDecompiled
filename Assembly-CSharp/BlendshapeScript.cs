@@ -1,24 +1,22 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BlendshapeScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000E7 RID: 231
 public class BlendshapeScript : MonoBehaviour
 {
-	// Token: 0x06000A32 RID: 2610 RVA: 0x0005AA6C File Offset: 0x00058C6C
-	private void LateUpdate()
-	{
-		this.Happiness += Time.deltaTime * 10f;
-		this.MyMesh.SetBlendShapeWeight(0, this.Happiness);
-		this.Blink += Time.deltaTime * 10f;
-		this.MyMesh.SetBlendShapeWeight(8, 100f);
-	}
+  public SkinnedMeshRenderer MyMesh;
+  public float Happiness;
+  public float Blink;
 
-	// Token: 0x04000B94 RID: 2964
-	public SkinnedMeshRenderer MyMesh;
-
-	// Token: 0x04000B95 RID: 2965
-	public float Happiness;
-
-	// Token: 0x04000B96 RID: 2966
-	public float Blink;
+  private void LateUpdate()
+  {
+    this.Happiness += Time.deltaTime * 10f;
+    this.MyMesh.SetBlendShapeWeight(0, this.Happiness);
+    this.Blink += Time.deltaTime * 10f;
+    this.MyMesh.SetBlendShapeWeight(8, 100f);
+  }
 }

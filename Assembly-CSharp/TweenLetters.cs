@@ -1,273 +1,218 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TweenLetters
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200008E RID: 142
 public class TweenLetters : UITweener
 {
-	// Token: 0x06000591 RID: 1425 RVA: 0x00034A3A File Offset: 0x00032C3A
-	private void OnEnable()
-	{
-		this.mVertexCount = -1;
-		UILabel uilabel = this.mLabel;
-		uilabel.onPostFill = (UIWidget.OnPostFillCallback)Delegate.Combine(uilabel.onPostFill, new UIWidget.OnPostFillCallback(this.OnPostFill));
-	}
+  public TweenLetters.AnimationProperties hoverOver;
+  public TweenLetters.AnimationProperties hoverOut;
+  private UILabel mLabel;
+  private int mVertexCount = -1;
+  private int[] mLetterOrder;
+  private TweenLetters.LetterProperties[] mLetter;
+  private TweenLetters.AnimationProperties mCurrent;
 
-	// Token: 0x06000592 RID: 1426 RVA: 0x00034A6A File Offset: 0x00032C6A
-	private void OnDisable()
-	{
-		UILabel uilabel = this.mLabel;
-		uilabel.onPostFill = (UIWidget.OnPostFillCallback)Delegate.Remove(uilabel.onPostFill, new UIWidget.OnPostFillCallback(this.OnPostFill));
-	}
+  private void OnEnable()
+  {
+    this.mVertexCount = -1;
+    UILabel mLabel = this.mLabel;
+    mLabel.onPostFill = mLabel.onPostFill + new UIWidget.OnPostFillCallback(this.OnPostFill);
+  }
 
-	// Token: 0x06000593 RID: 1427 RVA: 0x00034A93 File Offset: 0x00032C93
-	private void Awake()
-	{
-		this.mLabel = base.GetComponent<UILabel>();
-		this.mCurrent = this.hoverOver;
-	}
+  private void OnDisable()
+  {
+    UILabel mLabel = this.mLabel;
+    mLabel.onPostFill = mLabel.onPostFill - new UIWidget.OnPostFillCallback(this.OnPostFill);
+  }
 
-	// Token: 0x06000594 RID: 1428 RVA: 0x00034AAD File Offset: 0x00032CAD
-	public override void Play(bool forward)
-	{
-		this.mCurrent = (forward ? this.hoverOver : this.hoverOut);
-		base.Play(forward);
-	}
+  private void Awake()
+  {
+    this.mLabel = this.GetComponent<UILabel>();
+    this.mCurrent = this.hoverOver;
+  }
 
-	// Token: 0x06000595 RID: 1429 RVA: 0x00034AD0 File Offset: 0x00032CD0
-	private void OnPostFill(UIWidget widget, int bufferOffset, List<Vector3> verts, List<Vector2> uvs, List<Color> cols)
-	{
-		if (verts == null)
-		{
-			return;
-		}
-		int count = verts.Count;
-		if (verts == null || count == 0)
-		{
-			return;
-		}
-		if (this.mLabel == null)
-		{
-			return;
-		}
-		try
-		{
-			int quadsPerCharacter = this.mLabel.quadsPerCharacter;
-			int num = count / quadsPerCharacter / 4;
-			string printedText = this.mLabel.printedText;
-			if (this.mVertexCount != count)
-			{
-				this.mVertexCount = count;
-				this.SetLetterOrder(num);
-				this.GetLetterDuration(num);
-			}
-			Matrix4x4 identity = Matrix4x4.identity;
-			Vector3 pos = Vector3.zero;
-			Quaternion q = Quaternion.identity;
-			Vector3 s = Vector3.one;
-			Vector3 b = Vector3.zero;
-			Quaternion a = Quaternion.Euler(this.mCurrent.rot);
-			Vector3 vector = Vector3.zero;
-			Color value = Color.clear;
-			float num2 = base.tweenFactor * this.duration;
-			for (int i = 0; i < quadsPerCharacter; i++)
-			{
-				for (int j = 0; j < num; j++)
-				{
-					int num3 = this.mLetterOrder[j];
-					int num4 = i * num * 4 + num3 * 4;
-					if (num4 < count)
-					{
-						float start = this.mLetter[num3].start;
-						float num5 = Mathf.Clamp(num2 - start, 0f, this.mLetter[num3].duration) / this.mLetter[num3].duration;
-						num5 = this.animationCurve.Evaluate(num5);
-						b = TweenLetters.GetCenter(verts, num4, 4);
-						Vector2 offset = this.mLetter[num3].offset;
-						pos = Vector3.LerpUnclamped(this.mCurrent.pos + new Vector3(offset.x, offset.y, 0f), Vector3.zero, num5);
-						q = Quaternion.SlerpUnclamped(a, Quaternion.identity, num5);
-						s = Vector3.LerpUnclamped(this.mCurrent.scale, Vector3.one, num5);
-						float num6 = Mathf.LerpUnclamped(this.mCurrent.alpha, 1f, num5);
-						identity.SetTRS(pos, q, s);
-						for (int k = num4; k < num4 + 4; k++)
-						{
-							vector = verts[k];
-							vector -= b;
-							vector = identity.MultiplyPoint3x4(vector);
-							vector += b;
-							verts[k] = vector;
-							value = cols[k];
-							value.a *= num6;
-							cols[k] = value;
-						}
-					}
-				}
-			}
-		}
-		catch (Exception)
-		{
-			base.enabled = false;
-		}
-	}
+  public override void Play(bool forward)
+  {
+    this.mCurrent = forward ? this.hoverOver : this.hoverOut;
+    base.Play(forward);
+  }
 
-	// Token: 0x06000596 RID: 1430 RVA: 0x00034D60 File Offset: 0x00032F60
-	protected override void OnUpdate(float factor, bool isFinished)
-	{
-		this.mLabel.MarkAsChanged();
-	}
+  private void OnPostFill(
+    UIWidget widget,
+    int bufferOffset,
+    List<Vector3> verts,
+    List<Vector2> uvs,
+    List<Color> cols)
+  {
+    if (verts == null)
+      return;
+    int count = verts.Count;
+    if (verts == null || count == 0)
+      return;
+    if ((UnityEngine.Object) this.mLabel == (UnityEngine.Object) null)
+      return;
+    try
+    {
+      int quadsPerCharacter = this.mLabel.quadsPerCharacter;
+      int letterCount = count / quadsPerCharacter / 4;
+      string printedText = this.mLabel.printedText;
+      if (this.mVertexCount != count)
+      {
+        this.mVertexCount = count;
+        this.SetLetterOrder(letterCount);
+        this.GetLetterDuration(letterCount);
+      }
+      Matrix4x4 identity1 = Matrix4x4.identity;
+      Vector3 zero1 = Vector3.zero;
+      Quaternion identity2 = Quaternion.identity;
+      Vector3 one = Vector3.one;
+      Vector3 zero2 = Vector3.zero;
+      Quaternion a = Quaternion.Euler(this.mCurrent.rot);
+      Vector3 zero3 = Vector3.zero;
+      Color clear = Color.clear;
+      float num1 = this.tweenFactor * this.duration;
+      for (int index1 = 0; index1 < quadsPerCharacter; ++index1)
+      {
+        for (int index2 = 0; index2 < letterCount; ++index2)
+        {
+          int index3 = this.mLetterOrder[index2];
+          int firstVert = index1 * letterCount * 4 + index3 * 4;
+          if (firstVert < count)
+          {
+            float start = this.mLetter[index3].start;
+            float t = this.animationCurve.Evaluate(Mathf.Clamp(num1 - start, 0.0f, this.mLetter[index3].duration) / this.mLetter[index3].duration);
+            Vector3 center = TweenLetters.GetCenter(verts, firstVert, 4);
+            Vector2 offset = this.mLetter[index3].offset;
+            Vector3 pos = Vector3.LerpUnclamped(this.mCurrent.pos + new Vector3(offset.x, offset.y, 0.0f), Vector3.zero, t);
+            Quaternion q = Quaternion.SlerpUnclamped(a, Quaternion.identity, t);
+            Vector3 s = Vector3.LerpUnclamped(this.mCurrent.scale, Vector3.one, t);
+            float num2 = Mathf.LerpUnclamped(this.mCurrent.alpha, 1f, t);
+            identity1.SetTRS(pos, q, s);
+            for (int index4 = firstVert; index4 < firstVert + 4; ++index4)
+            {
+              Vector3 point = verts[index4] - center;
+              Vector3 vector3 = identity1.MultiplyPoint3x4(point) + center;
+              verts[index4] = vector3;
+              Color col = cols[index4];
+              col.a *= num2;
+              cols[index4] = col;
+            }
+          }
+        }
+      }
+    }
+    catch (Exception ex)
+    {
+      this.enabled = false;
+    }
+  }
 
-	// Token: 0x06000597 RID: 1431 RVA: 0x00034D70 File Offset: 0x00032F70
-	private void SetLetterOrder(int letterCount)
-	{
-		if (letterCount == 0)
-		{
-			this.mLetter = null;
-			this.mLetterOrder = null;
-			return;
-		}
-		this.mLetterOrder = new int[letterCount];
-		this.mLetter = new TweenLetters.LetterProperties[letterCount];
-		for (int i = 0; i < letterCount; i++)
-		{
-			this.mLetterOrder[i] = ((this.mCurrent.animationOrder == TweenLetters.AnimationLetterOrder.Reverse) ? (letterCount - 1 - i) : i);
-			int num = this.mLetterOrder[i];
-			this.mLetter[num] = new TweenLetters.LetterProperties();
-			this.mLetter[num].offset = new Vector2(UnityEngine.Random.Range(-this.mCurrent.offsetRange.x, this.mCurrent.offsetRange.x), UnityEngine.Random.Range(-this.mCurrent.offsetRange.y, this.mCurrent.offsetRange.y));
-		}
-		if (this.mCurrent.animationOrder == TweenLetters.AnimationLetterOrder.Random)
-		{
-			System.Random random = new System.Random();
-			int j = letterCount;
-			while (j > 1)
-			{
-				int num2 = random.Next(--j + 1);
-				int num3 = this.mLetterOrder[num2];
-				this.mLetterOrder[num2] = this.mLetterOrder[j];
-				this.mLetterOrder[j] = num3;
-			}
-		}
-	}
+  protected override void OnUpdate(float factor, bool isFinished) => this.mLabel.MarkAsChanged();
 
-	// Token: 0x06000598 RID: 1432 RVA: 0x00034E9C File Offset: 0x0003309C
-	private void GetLetterDuration(int letterCount)
-	{
-		if (this.mCurrent.randomDurations)
-		{
-			for (int i = 0; i < this.mLetter.Length; i++)
-			{
-				this.mLetter[i].start = UnityEngine.Random.Range(0f, this.mCurrent.randomness.x * this.duration);
-				float num = UnityEngine.Random.Range(this.mCurrent.randomness.y * this.duration, this.duration);
-				this.mLetter[i].duration = num - this.mLetter[i].start;
-			}
-			return;
-		}
-		float num2 = this.duration / (float)letterCount;
-		float num3 = 1f - this.mCurrent.overlap;
-		float num4 = num2 * (float)letterCount * num3;
-		float duration = this.ScaleRange(num2, num4 + num2 * this.mCurrent.overlap, this.duration);
-		float num5 = 0f;
-		for (int j = 0; j < this.mLetter.Length; j++)
-		{
-			int num6 = this.mLetterOrder[j];
-			this.mLetter[num6].start = num5;
-			this.mLetter[num6].duration = duration;
-			num5 += this.mLetter[num6].duration * num3;
-		}
-	}
+  private void SetLetterOrder(int letterCount)
+  {
+    if (letterCount == 0)
+    {
+      this.mLetter = (TweenLetters.LetterProperties[]) null;
+      this.mLetterOrder = (int[]) null;
+    }
+    else
+    {
+      this.mLetterOrder = new int[letterCount];
+      this.mLetter = new TweenLetters.LetterProperties[letterCount];
+      for (int index1 = 0; index1 < letterCount; ++index1)
+      {
+        this.mLetterOrder[index1] = this.mCurrent.animationOrder == TweenLetters.AnimationLetterOrder.Reverse ? letterCount - 1 - index1 : index1;
+        int index2 = this.mLetterOrder[index1];
+        this.mLetter[index2] = new TweenLetters.LetterProperties();
+        this.mLetter[index2].offset = new Vector2(UnityEngine.Random.Range(-this.mCurrent.offsetRange.x, this.mCurrent.offsetRange.x), UnityEngine.Random.Range(-this.mCurrent.offsetRange.y, this.mCurrent.offsetRange.y));
+      }
+      if (this.mCurrent.animationOrder != TweenLetters.AnimationLetterOrder.Random)
+        return;
+      System.Random random = new System.Random();
+      int index3 = letterCount;
+      while (index3 > 1)
+      {
+        int index4 = random.Next(--index3 + 1);
+        int num = this.mLetterOrder[index4];
+        this.mLetterOrder[index4] = this.mLetterOrder[index3];
+        this.mLetterOrder[index3] = num;
+      }
+    }
+  }
 
-	// Token: 0x06000599 RID: 1433 RVA: 0x00034FDB File Offset: 0x000331DB
-	private float ScaleRange(float value, float baseMax, float limitMax)
-	{
-		return limitMax * value / baseMax;
-	}
+  private void GetLetterDuration(int letterCount)
+  {
+    if (this.mCurrent.randomDurations)
+    {
+      for (int index = 0; index < this.mLetter.Length; ++index)
+      {
+        this.mLetter[index].start = UnityEngine.Random.Range(0.0f, this.mCurrent.randomness.x * this.duration);
+        float num = UnityEngine.Random.Range(this.mCurrent.randomness.y * this.duration, this.duration);
+        this.mLetter[index].duration = num - this.mLetter[index].start;
+      }
+    }
+    else
+    {
+      float num1 = this.duration / (float) letterCount;
+      float num2 = 1f - this.mCurrent.overlap;
+      float num3 = num1 * (float) letterCount * num2;
+      float num4 = this.ScaleRange(num1, num3 + num1 * this.mCurrent.overlap, this.duration);
+      float num5 = 0.0f;
+      for (int index1 = 0; index1 < this.mLetter.Length; ++index1)
+      {
+        int index2 = this.mLetterOrder[index1];
+        this.mLetter[index2].start = num5;
+        this.mLetter[index2].duration = num4;
+        num5 += this.mLetter[index2].duration * num2;
+      }
+    }
+  }
 
-	// Token: 0x0600059A RID: 1434 RVA: 0x00034FE4 File Offset: 0x000331E4
-	private static Vector3 GetCenter(List<Vector3> verts, int firstVert, int length)
-	{
-		Vector3 a = verts[firstVert];
-		for (int i = firstVert + 1; i < firstVert + length; i++)
-		{
-			a += verts[i];
-		}
-		return a / (float)length;
-	}
+  private float ScaleRange(float value, float baseMax, float limitMax) => limitMax * value / baseMax;
 
-	// Token: 0x040005CC RID: 1484
-	public TweenLetters.AnimationProperties hoverOver;
+  private static Vector3 GetCenter(List<Vector3> verts, int firstVert, int length)
+  {
+    Vector3 vert = verts[firstVert];
+    for (int index = firstVert + 1; index < firstVert + length; ++index)
+      vert += verts[index];
+    return vert / (float) length;
+  }
 
-	// Token: 0x040005CD RID: 1485
-	public TweenLetters.AnimationProperties hoverOut;
+  [DoNotObfuscateNGUI]
+  public enum AnimationLetterOrder
+  {
+    Forward,
+    Reverse,
+    Random,
+  }
 
-	// Token: 0x040005CE RID: 1486
-	private UILabel mLabel;
+  private class LetterProperties
+  {
+    public float start;
+    public float duration;
+    public Vector2 offset;
+  }
 
-	// Token: 0x040005CF RID: 1487
-	private int mVertexCount = -1;
-
-	// Token: 0x040005D0 RID: 1488
-	private int[] mLetterOrder;
-
-	// Token: 0x040005D1 RID: 1489
-	private TweenLetters.LetterProperties[] mLetter;
-
-	// Token: 0x040005D2 RID: 1490
-	private TweenLetters.AnimationProperties mCurrent;
-
-	// Token: 0x02000614 RID: 1556
-	[DoNotObfuscateNGUI]
-	public enum AnimationLetterOrder
-	{
-		// Token: 0x04004EF8 RID: 20216
-		Forward,
-		// Token: 0x04004EF9 RID: 20217
-		Reverse,
-		// Token: 0x04004EFA RID: 20218
-		Random
-	}
-
-	// Token: 0x02000615 RID: 1557
-	private class LetterProperties
-	{
-		// Token: 0x04004EFB RID: 20219
-		public float start;
-
-		// Token: 0x04004EFC RID: 20220
-		public float duration;
-
-		// Token: 0x04004EFD RID: 20221
-		public Vector2 offset;
-	}
-
-	// Token: 0x02000616 RID: 1558
-	[Serializable]
-	public class AnimationProperties
-	{
-		// Token: 0x04004EFE RID: 20222
-		public TweenLetters.AnimationLetterOrder animationOrder = TweenLetters.AnimationLetterOrder.Random;
-
-		// Token: 0x04004EFF RID: 20223
-		[Range(0f, 1f)]
-		public float overlap = 0.5f;
-
-		// Token: 0x04004F00 RID: 20224
-		public bool randomDurations;
-
-		// Token: 0x04004F01 RID: 20225
-		[MinMaxRange(0f, 1f)]
-		public Vector2 randomness = new Vector2(0.25f, 0.75f);
-
-		// Token: 0x04004F02 RID: 20226
-		public Vector2 offsetRange = Vector2.zero;
-
-		// Token: 0x04004F03 RID: 20227
-		public Vector3 pos = Vector3.zero;
-
-		// Token: 0x04004F04 RID: 20228
-		public Vector3 rot = Vector3.zero;
-
-		// Token: 0x04004F05 RID: 20229
-		public Vector3 scale = Vector3.one;
-
-		// Token: 0x04004F06 RID: 20230
-		public float alpha = 1f;
-	}
+  [Serializable]
+  public class AnimationProperties
+  {
+    public TweenLetters.AnimationLetterOrder animationOrder = TweenLetters.AnimationLetterOrder.Random;
+    [Range(0.0f, 1f)]
+    public float overlap = 0.5f;
+    public bool randomDurations;
+    [MinMaxRange(0.0f, 1f)]
+    public Vector2 randomness = new Vector2(0.25f, 0.75f);
+    public Vector2 offsetRange = Vector2.zero;
+    public Vector3 pos = Vector3.zero;
+    public Vector3 rot = Vector3.zero;
+    public Vector3 scale = Vector3.one;
+    public float alpha = 1f;
+  }
 }

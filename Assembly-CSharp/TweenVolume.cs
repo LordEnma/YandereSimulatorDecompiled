@@ -1,114 +1,82 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TweenVolume
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
-// Token: 0x02000094 RID: 148
-[RequireComponent(typeof(AudioSource))]
+[RequireComponent(typeof (AudioSource))]
 [AddComponentMenu("NGUI/Tween/Tween Volume")]
 public class TweenVolume : UITweener
 {
-	// Token: 0x170000CD RID: 205
-	// (get) Token: 0x060005D0 RID: 1488 RVA: 0x00035840 File Offset: 0x00033A40
-	public AudioSource audioSource
-	{
-		get
-		{
-			if (this.mSource == null)
-			{
-				this.mSource = base.GetComponent<AudioSource>();
-				if (this.mSource == null)
-				{
-					this.mSource = base.GetComponent<AudioSource>();
-					if (this.mSource == null)
-					{
-						Debug.LogError("TweenVolume needs an AudioSource to work with", this);
-						base.enabled = false;
-					}
-				}
-			}
-			return this.mSource;
-		}
-	}
+  [Range(0.0f, 1f)]
+  public float from = 1f;
+  [Range(0.0f, 1f)]
+  public float to = 1f;
+  private AudioSource mSource;
 
-	// Token: 0x170000CE RID: 206
-	// (get) Token: 0x060005D1 RID: 1489 RVA: 0x000358A7 File Offset: 0x00033AA7
-	// (set) Token: 0x060005D2 RID: 1490 RVA: 0x000358AF File Offset: 0x00033AAF
-	[Obsolete("Use 'value' instead")]
-	public float volume
-	{
-		get
-		{
-			return this.value;
-		}
-		set
-		{
-			this.value = value;
-		}
-	}
+  public AudioSource audioSource
+  {
+    get
+    {
+      if ((UnityEngine.Object) this.mSource == (UnityEngine.Object) null)
+      {
+        this.mSource = this.GetComponent<AudioSource>();
+        if ((UnityEngine.Object) this.mSource == (UnityEngine.Object) null)
+        {
+          this.mSource = this.GetComponent<AudioSource>();
+          if ((UnityEngine.Object) this.mSource == (UnityEngine.Object) null)
+          {
+            Debug.LogError((object) "TweenVolume needs an AudioSource to work with", (UnityEngine.Object) this);
+            this.enabled = false;
+          }
+        }
+      }
+      return this.mSource;
+    }
+  }
 
-	// Token: 0x170000CF RID: 207
-	// (get) Token: 0x060005D3 RID: 1491 RVA: 0x000358B8 File Offset: 0x00033AB8
-	// (set) Token: 0x060005D4 RID: 1492 RVA: 0x000358D9 File Offset: 0x00033AD9
-	public float value
-	{
-		get
-		{
-			if (!(this.audioSource != null))
-			{
-				return 0f;
-			}
-			return this.mSource.volume;
-		}
-		set
-		{
-			if (this.audioSource != null)
-			{
-				this.mSource.volume = value;
-			}
-		}
-	}
+  [Obsolete("Use 'value' instead")]
+  public float volume
+  {
+    get => this.value;
+    set => this.value = value;
+  }
 
-	// Token: 0x060005D5 RID: 1493 RVA: 0x000358F5 File Offset: 0x00033AF5
-	protected override void OnUpdate(float factor, bool isFinished)
-	{
-		this.value = this.from * (1f - factor) + this.to * factor;
-		this.mSource.enabled = (this.mSource.volume > 0.01f);
-	}
+  public float value
+  {
+    get => !((UnityEngine.Object) this.audioSource != (UnityEngine.Object) null) ? 0.0f : this.mSource.volume;
+    set
+    {
+      if (!((UnityEngine.Object) this.audioSource != (UnityEngine.Object) null))
+        return;
+      this.mSource.volume = value;
+    }
+  }
 
-	// Token: 0x060005D6 RID: 1494 RVA: 0x00035934 File Offset: 0x00033B34
-	public static TweenVolume Begin(GameObject go, float duration, float targetVolume)
-	{
-		TweenVolume tweenVolume = UITweener.Begin<TweenVolume>(go, duration, 0f);
-		tweenVolume.from = tweenVolume.value;
-		tweenVolume.to = targetVolume;
-		if (targetVolume > 0f)
-		{
-			AudioSource audioSource = tweenVolume.audioSource;
-			audioSource.enabled = true;
-			audioSource.Play();
-		}
-		return tweenVolume;
-	}
+  protected override void OnUpdate(float factor, bool isFinished)
+  {
+    this.value = (float) ((double) this.from * (1.0 - (double) factor) + (double) this.to * (double) factor);
+    this.mSource.enabled = (double) this.mSource.volume > 0.00999999977648258;
+  }
 
-	// Token: 0x060005D7 RID: 1495 RVA: 0x0003597C File Offset: 0x00033B7C
-	public override void SetStartToCurrentValue()
-	{
-		this.from = this.value;
-	}
+  public static TweenVolume Begin(GameObject go, float duration, float targetVolume)
+  {
+    TweenVolume tweenVolume = UITweener.Begin<TweenVolume>(go, duration);
+    tweenVolume.from = tweenVolume.value;
+    tweenVolume.to = targetVolume;
+    if ((double) targetVolume > 0.0)
+    {
+      AudioSource audioSource = tweenVolume.audioSource;
+      audioSource.enabled = true;
+      audioSource.Play();
+    }
+    return tweenVolume;
+  }
 
-	// Token: 0x060005D8 RID: 1496 RVA: 0x0003598A File Offset: 0x00033B8A
-	public override void SetEndToCurrentValue()
-	{
-		this.to = this.value;
-	}
+  public override void SetStartToCurrentValue() => this.from = this.value;
 
-	// Token: 0x040005EB RID: 1515
-	[Range(0f, 1f)]
-	public float from = 1f;
-
-	// Token: 0x040005EC RID: 1516
-	[Range(0f, 1f)]
-	public float to = 1f;
-
-	// Token: 0x040005ED RID: 1517
-	private AudioSource mSource;
+  public override void SetEndToCurrentValue() => this.to = this.value;
 }

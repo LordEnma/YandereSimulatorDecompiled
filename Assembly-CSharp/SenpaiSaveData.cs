@@ -1,54 +1,41 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SenpaiSaveData
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x0200040C RID: 1036
+using System;
+
 [Serializable]
 public class SenpaiSaveData
 {
-	// Token: 0x06001C56 RID: 7254 RVA: 0x0014B7F0 File Offset: 0x001499F0
-	public static SenpaiSaveData ReadFromGlobals()
-	{
-		return new SenpaiSaveData
-		{
-			customSenpai = SenpaiGlobals.CustomSenpai,
-			senpaiEyeColor = SenpaiGlobals.SenpaiEyeColor,
-			senpaiEyeWear = SenpaiGlobals.SenpaiEyeWear,
-			senpaiFacialHair = SenpaiGlobals.SenpaiFacialHair,
-			senpaiHairColor = SenpaiGlobals.SenpaiHairColor,
-			senpaiHairStyle = SenpaiGlobals.SenpaiHairStyle,
-			senpaiSkinColor = SenpaiGlobals.SenpaiSkinColor
-		};
-	}
+  public bool customSenpai;
+  public string senpaiEyeColor = string.Empty;
+  public int senpaiEyeWear;
+  public int senpaiFacialHair;
+  public string senpaiHairColor = string.Empty;
+  public int senpaiHairStyle;
+  public int senpaiSkinColor;
 
-	// Token: 0x06001C57 RID: 7255 RVA: 0x0014B850 File Offset: 0x00149A50
-	public static void WriteToGlobals(SenpaiSaveData data)
-	{
-		SenpaiGlobals.CustomSenpai = data.customSenpai;
-		SenpaiGlobals.SenpaiEyeColor = data.senpaiEyeColor;
-		SenpaiGlobals.SenpaiEyeWear = data.senpaiEyeWear;
-		SenpaiGlobals.SenpaiFacialHair = data.senpaiFacialHair;
-		SenpaiGlobals.SenpaiHairColor = data.senpaiHairColor;
-		SenpaiGlobals.SenpaiHairStyle = data.senpaiHairStyle;
-		SenpaiGlobals.SenpaiSkinColor = data.senpaiSkinColor;
-	}
+  public static SenpaiSaveData ReadFromGlobals() => new SenpaiSaveData()
+  {
+    customSenpai = SenpaiGlobals.CustomSenpai,
+    senpaiEyeColor = SenpaiGlobals.SenpaiEyeColor,
+    senpaiEyeWear = SenpaiGlobals.SenpaiEyeWear,
+    senpaiFacialHair = SenpaiGlobals.SenpaiFacialHair,
+    senpaiHairColor = SenpaiGlobals.SenpaiHairColor,
+    senpaiHairStyle = SenpaiGlobals.SenpaiHairStyle,
+    senpaiSkinColor = SenpaiGlobals.SenpaiSkinColor
+  };
 
-	// Token: 0x0400320C RID: 12812
-	public bool customSenpai;
-
-	// Token: 0x0400320D RID: 12813
-	public string senpaiEyeColor = string.Empty;
-
-	// Token: 0x0400320E RID: 12814
-	public int senpaiEyeWear;
-
-	// Token: 0x0400320F RID: 12815
-	public int senpaiFacialHair;
-
-	// Token: 0x04003210 RID: 12816
-	public string senpaiHairColor = string.Empty;
-
-	// Token: 0x04003211 RID: 12817
-	public int senpaiHairStyle;
-
-	// Token: 0x04003212 RID: 12818
-	public int senpaiSkinColor;
+  public static void WriteToGlobals(SenpaiSaveData data)
+  {
+    SenpaiGlobals.CustomSenpai = data.customSenpai;
+    SenpaiGlobals.SenpaiEyeColor = data.senpaiEyeColor;
+    SenpaiGlobals.SenpaiEyeWear = data.senpaiEyeWear;
+    SenpaiGlobals.SenpaiFacialHair = data.senpaiFacialHair;
+    SenpaiGlobals.SenpaiHairColor = data.senpaiHairColor;
+    SenpaiGlobals.SenpaiHairStyle = data.senpaiHairStyle;
+    SenpaiGlobals.SenpaiSkinColor = data.senpaiSkinColor;
+  }
 }

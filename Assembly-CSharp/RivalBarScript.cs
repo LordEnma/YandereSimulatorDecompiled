@@ -1,78 +1,69 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: RivalBarScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000510 RID: 1296
 public class RivalBarScript : MonoBehaviour
 {
-	// Token: 0x06002186 RID: 8582 RVA: 0x001EF04C File Offset: 0x001ED24C
-	private void Start()
-	{
-		for (int i = 1; i < 11; i++)
-		{
-			this.Bars[i].transform.localScale = new Vector3(1f, 0f, 1f);
-		}
-	}
+  public int ID;
+  public float Speed;
+  public float Timer;
+  public UISprite[] Bars;
+  public float[] TargetHeights;
 
-	// Token: 0x06002187 RID: 8583 RVA: 0x001EF08C File Offset: 0x001ED28C
-	private void Update()
-	{
-		if (Input.GetKeyDown("space"))
-		{
-			this.UpdateBars();
-		}
-		this.Timer += Time.deltaTime;
-		if (this.ID < 11)
-		{
-			if (this.Timer > 1f)
-			{
-				this.UpdateBars();
-				this.Timer = 0f;
-			}
-		}
-		else if (this.Timer > 2.5f)
-		{
-			this.UpdateBars();
-			this.Timer = 0f;
-		}
-		for (int i = 1; i < this.ID; i++)
-		{
-			this.Bars[i].transform.localScale = Vector3.Lerp(this.Bars[i].transform.localScale, new Vector3(1f, this.TargetHeights[i], 1f), Time.deltaTime * this.Speed);
-			this.Bars[i].color = new Color(this.TargetHeights[i] / 7f, 1f - this.TargetHeights[i] / 7f, 0f);
-			if (i == 1)
-			{
-				Debug.Log("R is: " + (this.TargetHeights[i] / 7f).ToString() + " G is: " + (1f - this.TargetHeights[i] / 7f).ToString());
-			}
-		}
-	}
+  private void Start()
+  {
+    for (int index = 1; index < 11; ++index)
+      this.Bars[index].transform.localScale = new Vector3(1f, 0.0f, 1f);
+  }
 
-	// Token: 0x06002188 RID: 8584 RVA: 0x001EF1EC File Offset: 0x001ED3EC
-	private void UpdateBars()
-	{
-		int i = 1;
-		if (this.ID < 11)
-		{
-			this.ID++;
-			return;
-		}
-		while (i < this.ID)
-		{
-			this.TargetHeights[i] = UnityEngine.Random.Range(0.7f, 7f);
-			i++;
-		}
-	}
+  private void Update()
+  {
+    if (Input.GetKeyDown("space"))
+      this.UpdateBars();
+    this.Timer += Time.deltaTime;
+    if (this.ID < 11)
+    {
+      if ((double) this.Timer > 1.0)
+      {
+        this.UpdateBars();
+        this.Timer = 0.0f;
+      }
+    }
+    else if ((double) this.Timer > 2.5)
+    {
+      this.UpdateBars();
+      this.Timer = 0.0f;
+    }
+    for (int index = 1; index < this.ID; ++index)
+    {
+      this.Bars[index].transform.localScale = Vector3.Lerp(this.Bars[index].transform.localScale, new Vector3(1f, this.TargetHeights[index], 1f), Time.deltaTime * this.Speed);
+      this.Bars[index].color = new Color(this.TargetHeights[index] / 7f, (float) (1.0 - (double) this.TargetHeights[index] / 7.0), 0.0f);
+      if (index == 1)
+      {
+        float num = this.TargetHeights[index] / 7f;
+        string str1 = num.ToString();
+        num = (float) (1.0 - (double) this.TargetHeights[index] / 7.0);
+        string str2 = num.ToString();
+        Debug.Log((object) ("R is: " + str1 + " G is: " + str2));
+      }
+    }
+  }
 
-	// Token: 0x040049E1 RID: 18913
-	public int ID;
-
-	// Token: 0x040049E2 RID: 18914
-	public float Speed;
-
-	// Token: 0x040049E3 RID: 18915
-	public float Timer;
-
-	// Token: 0x040049E4 RID: 18916
-	public UISprite[] Bars;
-
-	// Token: 0x040049E5 RID: 18917
-	public float[] TargetHeights;
+  private void UpdateBars()
+  {
+    int index = 1;
+    if (this.ID < 11)
+    {
+      ++this.ID;
+    }
+    else
+    {
+      for (; index < this.ID; ++index)
+        this.TargetHeights[index] = Random.Range(0.7f, 7f);
+    }
+  }
 }

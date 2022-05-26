@@ -1,315 +1,183 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: StudentSaveData
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200040D RID: 1037
 [Serializable]
 public class StudentSaveData
 {
-	// Token: 0x06001C59 RID: 7257 RVA: 0x0014B8C8 File Offset: 0x00149AC8
-	public static StudentSaveData ReadFromGlobals()
-	{
-		StudentSaveData studentSaveData = new StudentSaveData();
-		studentSaveData.customSuitor = StudentGlobals.CustomSuitor;
-		studentSaveData.customSuitorAccessory = StudentGlobals.CustomSuitorAccessory;
-		studentSaveData.customSuitorBlonde = StudentGlobals.CustomSuitorBlonde;
-		studentSaveData.customSuitorEyewear = StudentGlobals.CustomSuitorEyewear;
-		studentSaveData.customSuitorHair = StudentGlobals.CustomSuitorHair;
-		studentSaveData.customSuitorJewelry = StudentGlobals.CustomSuitorJewelry;
-		studentSaveData.customSuitorTan = StudentGlobals.CustomSuitorTan;
-		studentSaveData.expelProgress = StudentGlobals.ExpelProgress;
-		studentSaveData.femaleUniform = StudentGlobals.FemaleUniform;
-		studentSaveData.maleUniform = StudentGlobals.MaleUniform;
-		foreach (int num in StudentGlobals.KeysOfStudentAccessory())
-		{
-			studentSaveData.studentAccessory.Add(num, StudentGlobals.GetStudentAccessory(num));
-		}
-		foreach (int num2 in StudentGlobals.KeysOfStudentArrested())
-		{
-			if (StudentGlobals.GetStudentArrested(num2))
-			{
-				studentSaveData.studentArrested.Add(num2);
-			}
-		}
-		foreach (int num3 in StudentGlobals.KeysOfStudentBroken())
-		{
-			if (StudentGlobals.GetStudentBroken(num3))
-			{
-				studentSaveData.studentBroken.Add(num3);
-			}
-		}
-		foreach (int num4 in StudentGlobals.KeysOfStudentBustSize())
-		{
-			studentSaveData.studentBustSize.Add(num4, StudentGlobals.GetStudentBustSize(num4));
-		}
-		foreach (int num5 in StudentGlobals.KeysOfStudentColor())
-		{
-			studentSaveData.studentColor.Add(num5, StudentGlobals.GetStudentColor(num5));
-		}
-		foreach (int num6 in StudentGlobals.KeysOfStudentDead())
-		{
-			if (StudentGlobals.GetStudentDead(num6))
-			{
-				studentSaveData.studentDead.Add(num6);
-			}
-		}
-		foreach (int num7 in StudentGlobals.KeysOfStudentDying())
-		{
-			if (StudentGlobals.GetStudentDying(num7))
-			{
-				studentSaveData.studentDying.Add(num7);
-			}
-		}
-		foreach (int num8 in StudentGlobals.KeysOfStudentExpelled())
-		{
-			if (StudentGlobals.GetStudentExpelled(num8))
-			{
-				studentSaveData.studentExpelled.Add(num8);
-			}
-		}
-		foreach (int num9 in StudentGlobals.KeysOfStudentExposed())
-		{
-			if (StudentGlobals.GetStudentExposed(num9))
-			{
-				studentSaveData.studentExposed.Add(num9);
-			}
-		}
-		foreach (int num10 in StudentGlobals.KeysOfStudentEyeColor())
-		{
-			studentSaveData.studentEyeColor.Add(num10, StudentGlobals.GetStudentEyeColor(num10));
-		}
-		foreach (int num11 in StudentGlobals.KeysOfStudentGrudge())
-		{
-			if (StudentGlobals.GetStudentGrudge(num11))
-			{
-				studentSaveData.studentGrudge.Add(num11);
-			}
-		}
-		foreach (int num12 in StudentGlobals.KeysOfStudentHairstyle())
-		{
-			studentSaveData.studentHairstyle.Add(num12, StudentGlobals.GetStudentHairstyle(num12));
-		}
-		foreach (int num13 in StudentGlobals.KeysOfStudentKidnapped())
-		{
-			if (StudentGlobals.GetStudentKidnapped(num13))
-			{
-				studentSaveData.studentKidnapped.Add(num13);
-			}
-		}
-		foreach (int num14 in StudentGlobals.KeysOfStudentMissing())
-		{
-			if (StudentGlobals.GetStudentMissing(num14))
-			{
-				studentSaveData.studentMissing.Add(num14);
-			}
-		}
-		foreach (int num15 in StudentGlobals.KeysOfStudentName())
-		{
-			studentSaveData.studentName.Add(num15, StudentGlobals.GetStudentName(num15));
-		}
-		foreach (int num16 in StudentGlobals.KeysOfStudentPhotographed())
-		{
-			if (StudentGlobals.GetStudentPhotographed(num16))
-			{
-				studentSaveData.studentPhotographed.Add(num16);
-			}
-		}
-		foreach (int num17 in StudentGlobals.KeysOfStudentReplaced())
-		{
-			if (StudentGlobals.GetStudentReplaced(num17))
-			{
-				studentSaveData.studentReplaced.Add(num17);
-			}
-		}
-		foreach (int num18 in StudentGlobals.KeysOfStudentReputation())
-		{
-			studentSaveData.studentReputation.Add(num18, StudentGlobals.GetStudentReputation(num18));
-		}
-		foreach (int num19 in StudentGlobals.KeysOfStudentSanity())
-		{
-			studentSaveData.studentSanity.Add(num19, StudentGlobals.GetStudentSanity(num19));
-		}
-		return studentSaveData;
-	}
+  public bool customSuitor;
+  public int customSuitorAccessory;
+  public bool customSuitorBlonde;
+  public int customSuitorEyewear;
+  public int customSuitorHair;
+  public int customSuitorJewelry;
+  public bool customSuitorTan;
+  public int expelProgress;
+  public int femaleUniform;
+  public int maleUniform;
+  public IntAndStringDictionary studentAccessory = new IntAndStringDictionary();
+  public IntHashSet studentArrested = new IntHashSet();
+  public IntHashSet studentBroken = new IntHashSet();
+  public IntAndFloatDictionary studentBustSize = new IntAndFloatDictionary();
+  public IntAndColorDictionary studentColor = new IntAndColorDictionary();
+  public IntHashSet studentDead = new IntHashSet();
+  public IntHashSet studentDying = new IntHashSet();
+  public IntHashSet studentExpelled = new IntHashSet();
+  public IntHashSet studentExposed = new IntHashSet();
+  public IntAndColorDictionary studentEyeColor = new IntAndColorDictionary();
+  public IntHashSet studentGrudge = new IntHashSet();
+  public IntAndStringDictionary studentHairstyle = new IntAndStringDictionary();
+  public IntHashSet studentKidnapped = new IntHashSet();
+  public IntHashSet studentMissing = new IntHashSet();
+  public IntAndStringDictionary studentName = new IntAndStringDictionary();
+  public IntHashSet studentPhotographed = new IntHashSet();
+  public IntHashSet studentReplaced = new IntHashSet();
+  public IntAndIntDictionary studentReputation = new IntAndIntDictionary();
+  public IntAndFloatDictionary studentSanity = new IntAndFloatDictionary();
+  public IntHashSet studentSlave = new IntHashSet();
 
-	// Token: 0x06001C5A RID: 7258 RVA: 0x0014BCC0 File Offset: 0x00149EC0
-	public static void WriteToGlobals(StudentSaveData data)
-	{
-		StudentGlobals.CustomSuitor = data.customSuitor;
-		StudentGlobals.CustomSuitorAccessory = data.customSuitorAccessory;
-		StudentGlobals.CustomSuitorBlonde = data.customSuitorBlonde;
-		StudentGlobals.CustomSuitorEyewear = data.customSuitorEyewear;
-		StudentGlobals.CustomSuitorHair = data.customSuitorHair;
-		StudentGlobals.CustomSuitorJewelry = data.customSuitorJewelry;
-		StudentGlobals.CustomSuitorTan = data.customSuitorTan;
-		StudentGlobals.ExpelProgress = data.expelProgress;
-		StudentGlobals.FemaleUniform = data.femaleUniform;
-		StudentGlobals.MaleUniform = data.maleUniform;
-		foreach (KeyValuePair<int, string> keyValuePair in data.studentAccessory)
-		{
-			StudentGlobals.SetStudentAccessory(keyValuePair.Key, keyValuePair.Value);
-		}
-		foreach (int studentID in data.studentArrested)
-		{
-			StudentGlobals.SetStudentArrested(studentID, true);
-		}
-		foreach (int studentID2 in data.studentBroken)
-		{
-			StudentGlobals.SetStudentBroken(studentID2, true);
-		}
-		foreach (KeyValuePair<int, float> keyValuePair2 in data.studentBustSize)
-		{
-			StudentGlobals.SetStudentBustSize(keyValuePair2.Key, keyValuePair2.Value);
-		}
-		foreach (KeyValuePair<int, Color> keyValuePair3 in data.studentColor)
-		{
-			StudentGlobals.SetStudentColor(keyValuePair3.Key, keyValuePair3.Value);
-		}
-		foreach (int studentID3 in data.studentDead)
-		{
-			StudentGlobals.SetStudentDead(studentID3, true);
-		}
-		foreach (int studentID4 in data.studentDying)
-		{
-			StudentGlobals.SetStudentDying(studentID4, true);
-		}
-		foreach (int studentID5 in data.studentExpelled)
-		{
-			StudentGlobals.SetStudentExpelled(studentID5, true);
-		}
-		foreach (int studentID6 in data.studentExposed)
-		{
-			StudentGlobals.SetStudentExposed(studentID6, true);
-		}
-		foreach (KeyValuePair<int, Color> keyValuePair4 in data.studentEyeColor)
-		{
-			StudentGlobals.SetStudentEyeColor(keyValuePair4.Key, keyValuePair4.Value);
-		}
-		foreach (int studentID7 in data.studentGrudge)
-		{
-			StudentGlobals.SetStudentGrudge(studentID7, true);
-		}
-		foreach (KeyValuePair<int, string> keyValuePair5 in data.studentHairstyle)
-		{
-			StudentGlobals.SetStudentHairstyle(keyValuePair5.Key, keyValuePair5.Value);
-		}
-		foreach (int studentID8 in data.studentKidnapped)
-		{
-			StudentGlobals.SetStudentKidnapped(studentID8, true);
-		}
-		foreach (int studentID9 in data.studentMissing)
-		{
-			StudentGlobals.SetStudentMissing(studentID9, true);
-		}
-		foreach (KeyValuePair<int, string> keyValuePair6 in data.studentName)
-		{
-			StudentGlobals.SetStudentName(keyValuePair6.Key, keyValuePair6.Value);
-		}
-		foreach (int studentID10 in data.studentPhotographed)
-		{
-			StudentGlobals.SetStudentPhotographed(studentID10, true);
-		}
-		foreach (int studentID11 in data.studentReplaced)
-		{
-			StudentGlobals.SetStudentReplaced(studentID11, true);
-		}
-		foreach (KeyValuePair<int, int> keyValuePair7 in data.studentReputation)
-		{
-			StudentGlobals.SetStudentReputation(keyValuePair7.Key, keyValuePair7.Value);
-		}
-		foreach (KeyValuePair<int, float> keyValuePair8 in data.studentSanity)
-		{
-			StudentGlobals.SetStudentSanity(keyValuePair8.Key, keyValuePair8.Value);
-		}
-	}
+  public static StudentSaveData ReadFromGlobals()
+  {
+    StudentSaveData studentSaveData = new StudentSaveData();
+    studentSaveData.customSuitor = StudentGlobals.CustomSuitor;
+    studentSaveData.customSuitorAccessory = StudentGlobals.CustomSuitorAccessory;
+    studentSaveData.customSuitorBlonde = StudentGlobals.CustomSuitorBlonde;
+    studentSaveData.customSuitorEyewear = StudentGlobals.CustomSuitorEyewear;
+    studentSaveData.customSuitorHair = StudentGlobals.CustomSuitorHair;
+    studentSaveData.customSuitorJewelry = StudentGlobals.CustomSuitorJewelry;
+    studentSaveData.customSuitorTan = StudentGlobals.CustomSuitorTan;
+    studentSaveData.expelProgress = StudentGlobals.ExpelProgress;
+    studentSaveData.femaleUniform = StudentGlobals.FemaleUniform;
+    studentSaveData.maleUniform = StudentGlobals.MaleUniform;
+    foreach (int num in StudentGlobals.KeysOfStudentAccessory())
+      studentSaveData.studentAccessory.Add(num, StudentGlobals.GetStudentAccessory(num));
+    foreach (int studentID in StudentGlobals.KeysOfStudentArrested())
+    {
+      if (StudentGlobals.GetStudentArrested(studentID))
+        studentSaveData.studentArrested.Add(studentID);
+    }
+    foreach (int studentID in StudentGlobals.KeysOfStudentBroken())
+    {
+      if (StudentGlobals.GetStudentBroken(studentID))
+        studentSaveData.studentBroken.Add(studentID);
+    }
+    foreach (int num in StudentGlobals.KeysOfStudentBustSize())
+      studentSaveData.studentBustSize.Add(num, StudentGlobals.GetStudentBustSize(num));
+    foreach (int num in StudentGlobals.KeysOfStudentColor())
+      studentSaveData.studentColor.Add(num, StudentGlobals.GetStudentColor(num));
+    foreach (int studentID in StudentGlobals.KeysOfStudentDead())
+    {
+      if (StudentGlobals.GetStudentDead(studentID))
+        studentSaveData.studentDead.Add(studentID);
+    }
+    foreach (int studentID in StudentGlobals.KeysOfStudentDying())
+    {
+      if (StudentGlobals.GetStudentDying(studentID))
+        studentSaveData.studentDying.Add(studentID);
+    }
+    foreach (int studentID in StudentGlobals.KeysOfStudentExpelled())
+    {
+      if (StudentGlobals.GetStudentExpelled(studentID))
+        studentSaveData.studentExpelled.Add(studentID);
+    }
+    foreach (int studentID in StudentGlobals.KeysOfStudentExposed())
+    {
+      if (StudentGlobals.GetStudentExposed(studentID))
+        studentSaveData.studentExposed.Add(studentID);
+    }
+    foreach (int num in StudentGlobals.KeysOfStudentEyeColor())
+      studentSaveData.studentEyeColor.Add(num, StudentGlobals.GetStudentEyeColor(num));
+    foreach (int studentID in StudentGlobals.KeysOfStudentGrudge())
+    {
+      if (StudentGlobals.GetStudentGrudge(studentID))
+        studentSaveData.studentGrudge.Add(studentID);
+    }
+    foreach (int num in StudentGlobals.KeysOfStudentHairstyle())
+      studentSaveData.studentHairstyle.Add(num, StudentGlobals.GetStudentHairstyle(num));
+    foreach (int studentID in StudentGlobals.KeysOfStudentKidnapped())
+    {
+      if (StudentGlobals.GetStudentKidnapped(studentID))
+        studentSaveData.studentKidnapped.Add(studentID);
+    }
+    foreach (int studentID in StudentGlobals.KeysOfStudentMissing())
+    {
+      if (StudentGlobals.GetStudentMissing(studentID))
+        studentSaveData.studentMissing.Add(studentID);
+    }
+    foreach (int num in StudentGlobals.KeysOfStudentName())
+      studentSaveData.studentName.Add(num, StudentGlobals.GetStudentName(num));
+    foreach (int studentID in StudentGlobals.KeysOfStudentPhotographed())
+    {
+      if (StudentGlobals.GetStudentPhotographed(studentID))
+        studentSaveData.studentPhotographed.Add(studentID);
+    }
+    foreach (int studentID in StudentGlobals.KeysOfStudentReplaced())
+    {
+      if (StudentGlobals.GetStudentReplaced(studentID))
+        studentSaveData.studentReplaced.Add(studentID);
+    }
+    foreach (int num in StudentGlobals.KeysOfStudentReputation())
+      studentSaveData.studentReputation.Add(num, StudentGlobals.GetStudentReputation(num));
+    foreach (int num in StudentGlobals.KeysOfStudentSanity())
+      studentSaveData.studentSanity.Add(num, StudentGlobals.GetStudentSanity(num));
+    return studentSaveData;
+  }
 
-	// Token: 0x04003213 RID: 12819
-	public bool customSuitor;
-
-	// Token: 0x04003214 RID: 12820
-	public int customSuitorAccessory;
-
-	// Token: 0x04003215 RID: 12821
-	public bool customSuitorBlonde;
-
-	// Token: 0x04003216 RID: 12822
-	public int customSuitorEyewear;
-
-	// Token: 0x04003217 RID: 12823
-	public int customSuitorHair;
-
-	// Token: 0x04003218 RID: 12824
-	public int customSuitorJewelry;
-
-	// Token: 0x04003219 RID: 12825
-	public bool customSuitorTan;
-
-	// Token: 0x0400321A RID: 12826
-	public int expelProgress;
-
-	// Token: 0x0400321B RID: 12827
-	public int femaleUniform;
-
-	// Token: 0x0400321C RID: 12828
-	public int maleUniform;
-
-	// Token: 0x0400321D RID: 12829
-	public IntAndStringDictionary studentAccessory = new IntAndStringDictionary();
-
-	// Token: 0x0400321E RID: 12830
-	public IntHashSet studentArrested = new IntHashSet();
-
-	// Token: 0x0400321F RID: 12831
-	public IntHashSet studentBroken = new IntHashSet();
-
-	// Token: 0x04003220 RID: 12832
-	public IntAndFloatDictionary studentBustSize = new IntAndFloatDictionary();
-
-	// Token: 0x04003221 RID: 12833
-	public IntAndColorDictionary studentColor = new IntAndColorDictionary();
-
-	// Token: 0x04003222 RID: 12834
-	public IntHashSet studentDead = new IntHashSet();
-
-	// Token: 0x04003223 RID: 12835
-	public IntHashSet studentDying = new IntHashSet();
-
-	// Token: 0x04003224 RID: 12836
-	public IntHashSet studentExpelled = new IntHashSet();
-
-	// Token: 0x04003225 RID: 12837
-	public IntHashSet studentExposed = new IntHashSet();
-
-	// Token: 0x04003226 RID: 12838
-	public IntAndColorDictionary studentEyeColor = new IntAndColorDictionary();
-
-	// Token: 0x04003227 RID: 12839
-	public IntHashSet studentGrudge = new IntHashSet();
-
-	// Token: 0x04003228 RID: 12840
-	public IntAndStringDictionary studentHairstyle = new IntAndStringDictionary();
-
-	// Token: 0x04003229 RID: 12841
-	public IntHashSet studentKidnapped = new IntHashSet();
-
-	// Token: 0x0400322A RID: 12842
-	public IntHashSet studentMissing = new IntHashSet();
-
-	// Token: 0x0400322B RID: 12843
-	public IntAndStringDictionary studentName = new IntAndStringDictionary();
-
-	// Token: 0x0400322C RID: 12844
-	public IntHashSet studentPhotographed = new IntHashSet();
-
-	// Token: 0x0400322D RID: 12845
-	public IntHashSet studentReplaced = new IntHashSet();
-
-	// Token: 0x0400322E RID: 12846
-	public IntAndIntDictionary studentReputation = new IntAndIntDictionary();
-
-	// Token: 0x0400322F RID: 12847
-	public IntAndFloatDictionary studentSanity = new IntAndFloatDictionary();
-
-	// Token: 0x04003230 RID: 12848
-	public IntHashSet studentSlave = new IntHashSet();
+  public static void WriteToGlobals(StudentSaveData data)
+  {
+    StudentGlobals.CustomSuitor = data.customSuitor;
+    StudentGlobals.CustomSuitorAccessory = data.customSuitorAccessory;
+    StudentGlobals.CustomSuitorBlonde = data.customSuitorBlonde;
+    StudentGlobals.CustomSuitorEyewear = data.customSuitorEyewear;
+    StudentGlobals.CustomSuitorHair = data.customSuitorHair;
+    StudentGlobals.CustomSuitorJewelry = data.customSuitorJewelry;
+    StudentGlobals.CustomSuitorTan = data.customSuitorTan;
+    StudentGlobals.ExpelProgress = data.expelProgress;
+    StudentGlobals.FemaleUniform = data.femaleUniform;
+    StudentGlobals.MaleUniform = data.maleUniform;
+    foreach (KeyValuePair<int, string> keyValuePair in (Dictionary<int, string>) data.studentAccessory)
+      StudentGlobals.SetStudentAccessory(keyValuePair.Key, keyValuePair.Value);
+    foreach (int studentID in (HashSet<int>) data.studentArrested)
+      StudentGlobals.SetStudentArrested(studentID, true);
+    foreach (int studentID in (HashSet<int>) data.studentBroken)
+      StudentGlobals.SetStudentBroken(studentID, true);
+    foreach (KeyValuePair<int, float> keyValuePair in (Dictionary<int, float>) data.studentBustSize)
+      StudentGlobals.SetStudentBustSize(keyValuePair.Key, keyValuePair.Value);
+    foreach (KeyValuePair<int, Color> keyValuePair in (Dictionary<int, Color>) data.studentColor)
+      StudentGlobals.SetStudentColor(keyValuePair.Key, keyValuePair.Value);
+    foreach (int studentID in (HashSet<int>) data.studentDead)
+      StudentGlobals.SetStudentDead(studentID, true);
+    foreach (int studentID in (HashSet<int>) data.studentDying)
+      StudentGlobals.SetStudentDying(studentID, true);
+    foreach (int studentID in (HashSet<int>) data.studentExpelled)
+      StudentGlobals.SetStudentExpelled(studentID, true);
+    foreach (int studentID in (HashSet<int>) data.studentExposed)
+      StudentGlobals.SetStudentExposed(studentID, true);
+    foreach (KeyValuePair<int, Color> keyValuePair in (Dictionary<int, Color>) data.studentEyeColor)
+      StudentGlobals.SetStudentEyeColor(keyValuePair.Key, keyValuePair.Value);
+    foreach (int studentID in (HashSet<int>) data.studentGrudge)
+      StudentGlobals.SetStudentGrudge(studentID, true);
+    foreach (KeyValuePair<int, string> keyValuePair in (Dictionary<int, string>) data.studentHairstyle)
+      StudentGlobals.SetStudentHairstyle(keyValuePair.Key, keyValuePair.Value);
+    foreach (int studentID in (HashSet<int>) data.studentKidnapped)
+      StudentGlobals.SetStudentKidnapped(studentID, true);
+    foreach (int studentID in (HashSet<int>) data.studentMissing)
+      StudentGlobals.SetStudentMissing(studentID, true);
+    foreach (KeyValuePair<int, string> keyValuePair in (Dictionary<int, string>) data.studentName)
+      StudentGlobals.SetStudentName(keyValuePair.Key, keyValuePair.Value);
+    foreach (int studentID in (HashSet<int>) data.studentPhotographed)
+      StudentGlobals.SetStudentPhotographed(studentID, true);
+    foreach (int studentID in (HashSet<int>) data.studentReplaced)
+      StudentGlobals.SetStudentReplaced(studentID, true);
+    foreach (KeyValuePair<int, int> keyValuePair in (Dictionary<int, int>) data.studentReputation)
+      StudentGlobals.SetStudentReputation(keyValuePair.Key, keyValuePair.Value);
+    foreach (KeyValuePair<int, float> keyValuePair in (Dictionary<int, float>) data.studentSanity)
+      StudentGlobals.SetStudentSanity(keyValuePair.Key, keyValuePair.Value);
+  }
 }

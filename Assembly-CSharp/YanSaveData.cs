@@ -1,18 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YanSaveData
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x02000514 RID: 1300
+using System;
+
 [Serializable]
 public struct YanSaveData
 {
-	// Token: 0x040049F3 RID: 18931
-	public string LoadedLevelName;
-
-	// Token: 0x040049F4 RID: 18932
-	public SerializedGameObject[] SerializedGameObjects;
-
-	// Token: 0x040049F5 RID: 18933
-	public SerializedStaticClass[] SerializedStaticClasses;
-
-	// Token: 0x040049F6 RID: 18934
-	public ValueDict SerializedPlayerPrefs;
+  public string LoadedLevelName;
+  public SerializedGameObject[] SerializedGameObjects;
+  public SerializedStaticClass[] SerializedStaticClasses;
+  public ValueDict SerializedPlayerPrefs;
 }

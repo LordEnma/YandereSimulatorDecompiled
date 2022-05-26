@@ -1,19 +1,17 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BoneData
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
-// Token: 0x020003BC RID: 956
 [Serializable]
 public struct BoneData
 {
-	// Token: 0x04002DEE RID: 11758
-	public string BoneName;
-
-	// Token: 0x04002DEF RID: 11759
-	public Quaternion LocalRotation;
-
-	// Token: 0x04002DF0 RID: 11760
-	public Vector3 LocalPosition;
-
-	// Token: 0x04002DF1 RID: 11761
-	public Vector3 LocalScale;
+  public string BoneName;
+  public Quaternion LocalRotation;
+  public Vector3 LocalPosition;
+  public Vector3 LocalScale;
 }

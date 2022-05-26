@@ -1,52 +1,38 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: RoseSpawnerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000526 RID: 1318
 public class RoseSpawnerScript : MonoBehaviour
 {
-	// Token: 0x060021B3 RID: 8627 RVA: 0x001F219E File Offset: 0x001F039E
-	private void Start()
-	{
-		this.SpawnRose();
-	}
+  public Transform DramaGirl;
+  public Transform Target;
+  public GameObject Rose;
+  public float Timer;
+  public float ForwardForce;
+  public float UpwardForce;
 
-	// Token: 0x060021B4 RID: 8628 RVA: 0x001F21A6 File Offset: 0x001F03A6
-	private void Update()
-	{
-		this.Timer += Time.deltaTime;
-		if (this.Timer > 0.1f)
-		{
-			this.SpawnRose();
-		}
-	}
+  private void Start() => this.SpawnRose();
 
-	// Token: 0x060021B5 RID: 8629 RVA: 0x001F21D0 File Offset: 0x001F03D0
-	private void SpawnRose()
-	{
-		GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Rose, base.transform.position, Quaternion.identity);
-		gameObject.GetComponent<Rigidbody>().AddForce(base.transform.forward * this.ForwardForce);
-		gameObject.GetComponent<Rigidbody>().AddForce(base.transform.up * this.UpwardForce);
-		gameObject.transform.localEulerAngles = new Vector3(UnityEngine.Random.Range(0f, 360f), UnityEngine.Random.Range(0f, 360f), UnityEngine.Random.Range(0f, 360f));
-		base.transform.localPosition = new Vector3(UnityEngine.Random.Range(-5f, 5f), base.transform.localPosition.y, base.transform.localPosition.z);
-		base.transform.LookAt(this.DramaGirl);
-		this.Timer = 0f;
-	}
+  private void Update()
+  {
+    this.Timer += Time.deltaTime;
+    if ((double) this.Timer <= 0.100000001490116)
+      return;
+    this.SpawnRose();
+  }
 
-	// Token: 0x04004A30 RID: 18992
-	public Transform DramaGirl;
-
-	// Token: 0x04004A31 RID: 18993
-	public Transform Target;
-
-	// Token: 0x04004A32 RID: 18994
-	public GameObject Rose;
-
-	// Token: 0x04004A33 RID: 18995
-	public float Timer;
-
-	// Token: 0x04004A34 RID: 18996
-	public float ForwardForce;
-
-	// Token: 0x04004A35 RID: 18997
-	public float UpwardForce;
+  private void SpawnRose()
+  {
+    GameObject gameObject = Object.Instantiate<GameObject>(this.Rose, this.transform.position, Quaternion.identity);
+    gameObject.GetComponent<Rigidbody>().AddForce(this.transform.forward * this.ForwardForce);
+    gameObject.GetComponent<Rigidbody>().AddForce(this.transform.up * this.UpwardForce);
+    gameObject.transform.localEulerAngles = new Vector3(Random.Range(0.0f, 360f), Random.Range(0.0f, 360f), Random.Range(0.0f, 360f));
+    this.transform.localPosition = new Vector3(Random.Range(-5f, 5f), this.transform.localPosition.y, this.transform.localPosition.z);
+    this.transform.LookAt(this.DramaGirl);
+    this.Timer = 0.0f;
+  }
 }

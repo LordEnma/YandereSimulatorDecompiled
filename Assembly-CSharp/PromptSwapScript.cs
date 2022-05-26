@@ -1,59 +1,44 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PromptSwapScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003C8 RID: 968
 public class PromptSwapScript : MonoBehaviour
 {
-	// Token: 0x06001B49 RID: 6985 RVA: 0x00131B31 File Offset: 0x0012FD31
-	private void Awake()
-	{
-		if (this.InputDevice == null)
-		{
-			this.InputDevice = UnityEngine.Object.FindObjectOfType<InputDeviceScript>();
-		}
-	}
+  public InputDeviceScript InputDevice;
+  public UISprite MySprite;
+  public UILabel MyLetter;
+  public string KeyboardLetter = string.Empty;
+  public string KeyboardName = string.Empty;
+  public string GamepadName = string.Empty;
 
-	// Token: 0x06001B4A RID: 6986 RVA: 0x00131B4C File Offset: 0x0012FD4C
-	public void UpdateSpriteType(InputDeviceType deviceType)
-	{
-		if (this.InputDevice == null)
-		{
-			this.InputDevice = UnityEngine.Object.FindObjectOfType<InputDeviceScript>();
-		}
-		if (deviceType == InputDeviceType.Gamepad)
-		{
-			this.MySprite.spriteName = this.GamepadName;
-			if (this.MyLetter != null)
-			{
-				this.MyLetter.text = "";
-				return;
-			}
-		}
-		else
-		{
-			this.MySprite.spriteName = this.KeyboardName;
-			if (this.MyLetter != null)
-			{
-				this.MyLetter.text = this.KeyboardLetter;
-			}
-		}
-	}
+  private void Awake()
+  {
+    if (!((Object) this.InputDevice == (Object) null))
+      return;
+    this.InputDevice = Object.FindObjectOfType<InputDeviceScript>();
+  }
 
-	// Token: 0x04002E9D RID: 11933
-	public InputDeviceScript InputDevice;
-
-	// Token: 0x04002E9E RID: 11934
-	public UISprite MySprite;
-
-	// Token: 0x04002E9F RID: 11935
-	public UILabel MyLetter;
-
-	// Token: 0x04002EA0 RID: 11936
-	public string KeyboardLetter = string.Empty;
-
-	// Token: 0x04002EA1 RID: 11937
-	public string KeyboardName = string.Empty;
-
-	// Token: 0x04002EA2 RID: 11938
-	public string GamepadName = string.Empty;
+  public void UpdateSpriteType(InputDeviceType deviceType)
+  {
+    if ((Object) this.InputDevice == (Object) null)
+      this.InputDevice = Object.FindObjectOfType<InputDeviceScript>();
+    if (deviceType == InputDeviceType.Gamepad)
+    {
+      this.MySprite.spriteName = this.GamepadName;
+      if (!((Object) this.MyLetter != (Object) null))
+        return;
+      this.MyLetter.text = "";
+    }
+    else
+    {
+      this.MySprite.spriteName = this.KeyboardName;
+      if (!((Object) this.MyLetter != (Object) null))
+        return;
+      this.MyLetter.text = this.KeyboardLetter;
+    }
+  }
 }

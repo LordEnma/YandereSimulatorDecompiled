@@ -1,207 +1,141 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TweenAlpha
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
-// Token: 0x02000089 RID: 137
 [AddComponentMenu("NGUI/Tween/Tween Alpha")]
 public class TweenAlpha : UITweener
 {
-	// Token: 0x170000B6 RID: 182
-	// (get) Token: 0x0600055A RID: 1370 RVA: 0x000340AF File Offset: 0x000322AF
-	// (set) Token: 0x0600055B RID: 1371 RVA: 0x000340B7 File Offset: 0x000322B7
-	[Obsolete("Use 'value' instead")]
-	public float alpha
-	{
-		get
-		{
-			return this.value;
-		}
-		set
-		{
-			this.value = value;
-		}
-	}
+  [Range(0.0f, 1f)]
+  public float from = 1f;
+  [Range(0.0f, 1f)]
+  public float to = 1f;
+  [Tooltip("If used on a renderer, the material should probably be cleaned up after this script gets destroyed...")]
+  public bool autoCleanup;
+  [Tooltip("Color to adjust")]
+  public string colorProperty;
+  [NonSerialized]
+  private bool mCached;
+  [NonSerialized]
+  private UIRect mRect;
+  [NonSerialized]
+  private Material mShared;
+  [NonSerialized]
+  private Material mMat;
+  [NonSerialized]
+  private Light mLight;
+  [NonSerialized]
+  private SpriteRenderer mSr;
+  [NonSerialized]
+  private float mBaseIntensity = 1f;
 
-	// Token: 0x0600055C RID: 1372 RVA: 0x000340C0 File Offset: 0x000322C0
-	private void OnDestroy()
-	{
-		if (this.autoCleanup && this.mMat != null && this.mShared != this.mMat)
-		{
-			UnityEngine.Object.Destroy(this.mMat);
-			this.mMat = null;
-		}
-	}
+  [Obsolete("Use 'value' instead")]
+  public float alpha
+  {
+    get => this.value;
+    set => this.value = value;
+  }
 
-	// Token: 0x0600055D RID: 1373 RVA: 0x00034100 File Offset: 0x00032300
-	private void Cache()
-	{
-		this.mCached = true;
-		this.mRect = base.GetComponent<UIRect>();
-		this.mSr = base.GetComponent<SpriteRenderer>();
-		if (this.mRect == null && this.mSr == null)
-		{
-			this.mLight = base.GetComponent<Light>();
-			if (this.mLight == null)
-			{
-				Renderer component = base.GetComponent<Renderer>();
-				if (component != null)
-				{
-					this.mShared = component.sharedMaterial;
-					this.mMat = component.material;
-				}
-				if (this.mMat == null)
-				{
-					this.mRect = base.GetComponentInChildren<UIRect>();
-					return;
-				}
-			}
-			else
-			{
-				this.mBaseIntensity = this.mLight.intensity;
-			}
-		}
-	}
+  private void OnDestroy()
+  {
+    if (!this.autoCleanup || !((UnityEngine.Object) this.mMat != (UnityEngine.Object) null) || !((UnityEngine.Object) this.mShared != (UnityEngine.Object) this.mMat))
+      return;
+    UnityEngine.Object.Destroy((UnityEngine.Object) this.mMat);
+    this.mMat = (Material) null;
+  }
 
-	// Token: 0x170000B7 RID: 183
-	// (get) Token: 0x0600055E RID: 1374 RVA: 0x000341B8 File Offset: 0x000323B8
-	// (set) Token: 0x0600055F RID: 1375 RVA: 0x00034254 File Offset: 0x00032454
-	public float value
-	{
-		get
-		{
-			if (!this.mCached)
-			{
-				this.Cache();
-			}
-			if (this.mRect != null)
-			{
-				return this.mRect.alpha;
-			}
-			if (this.mSr != null)
-			{
-				return this.mSr.color.a;
-			}
-			if (this.mMat == null)
-			{
-				return 1f;
-			}
-			if (string.IsNullOrEmpty(this.colorProperty))
-			{
-				return this.mMat.color.a;
-			}
-			return this.mMat.GetColor(this.colorProperty).a;
-		}
-		set
-		{
-			if (!this.mCached)
-			{
-				this.Cache();
-			}
-			if (this.mRect != null)
-			{
-				this.mRect.alpha = value;
-				return;
-			}
-			if (this.mSr != null)
-			{
-				Color color = this.mSr.color;
-				color.a = value;
-				this.mSr.color = color;
-				return;
-			}
-			if (!(this.mMat != null))
-			{
-				if (this.mLight != null)
-				{
-					this.mLight.intensity = this.mBaseIntensity * value;
-				}
-				return;
-			}
-			if (string.IsNullOrEmpty(this.colorProperty))
-			{
-				Color color2 = this.mMat.color;
-				color2.a = value;
-				this.mMat.color = color2;
-				return;
-			}
-			Color color3 = this.mMat.GetColor(this.colorProperty);
-			color3.a = value;
-			this.mMat.SetColor(this.colorProperty, color3);
-		}
-	}
+  private void Cache()
+  {
+    this.mCached = true;
+    this.mRect = this.GetComponent<UIRect>();
+    this.mSr = this.GetComponent<SpriteRenderer>();
+    if (!((UnityEngine.Object) this.mRect == (UnityEngine.Object) null) || !((UnityEngine.Object) this.mSr == (UnityEngine.Object) null))
+      return;
+    this.mLight = this.GetComponent<Light>();
+    if ((UnityEngine.Object) this.mLight == (UnityEngine.Object) null)
+    {
+      Renderer component = this.GetComponent<Renderer>();
+      if ((UnityEngine.Object) component != (UnityEngine.Object) null)
+      {
+        this.mShared = component.sharedMaterial;
+        this.mMat = component.material;
+      }
+      if (!((UnityEngine.Object) this.mMat == (UnityEngine.Object) null))
+        return;
+      this.mRect = this.GetComponentInChildren<UIRect>();
+    }
+    else
+      this.mBaseIntensity = this.mLight.intensity;
+  }
 
-	// Token: 0x06000560 RID: 1376 RVA: 0x00034343 File Offset: 0x00032543
-	protected override void OnUpdate(float factor, bool isFinished)
-	{
-		this.value = Mathf.Lerp(this.from, this.to, factor);
-	}
+  public float value
+  {
+    get
+    {
+      if (!this.mCached)
+        this.Cache();
+      if ((UnityEngine.Object) this.mRect != (UnityEngine.Object) null)
+        return this.mRect.alpha;
+      if ((UnityEngine.Object) this.mSr != (UnityEngine.Object) null)
+        return this.mSr.color.a;
+      if ((UnityEngine.Object) this.mMat == (UnityEngine.Object) null)
+        return 1f;
+      return string.IsNullOrEmpty(this.colorProperty) ? this.mMat.color.a : this.mMat.GetColor(this.colorProperty).a;
+    }
+    set
+    {
+      if (!this.mCached)
+        this.Cache();
+      if ((UnityEngine.Object) this.mRect != (UnityEngine.Object) null)
+        this.mRect.alpha = value;
+      else if ((UnityEngine.Object) this.mSr != (UnityEngine.Object) null)
+        this.mSr.color = this.mSr.color with { a = value };
+      else if ((UnityEngine.Object) this.mMat != (UnityEngine.Object) null)
+      {
+        if (string.IsNullOrEmpty(this.colorProperty))
+          this.mMat.color = this.mMat.color with
+          {
+            a = value
+          };
+        else
+          this.mMat.SetColor(this.colorProperty, this.mMat.GetColor(this.colorProperty) with
+          {
+            a = value
+          });
+      }
+      else
+      {
+        if (!((UnityEngine.Object) this.mLight != (UnityEngine.Object) null))
+          return;
+        this.mLight.intensity = this.mBaseIntensity * value;
+      }
+    }
+  }
 
-	// Token: 0x06000561 RID: 1377 RVA: 0x00034360 File Offset: 0x00032560
-	public static TweenAlpha Begin(GameObject go, float duration, float alpha, float delay = 0f)
-	{
-		TweenAlpha tweenAlpha = UITweener.Begin<TweenAlpha>(go, duration, delay);
-		tweenAlpha.from = tweenAlpha.value;
-		tweenAlpha.to = alpha;
-		if (duration <= 0f)
-		{
-			tweenAlpha.Sample(1f, true);
-			tweenAlpha.enabled = false;
-		}
-		return tweenAlpha;
-	}
+  protected override void OnUpdate(float factor, bool isFinished) => this.value = Mathf.Lerp(this.from, this.to, factor);
 
-	// Token: 0x06000562 RID: 1378 RVA: 0x000343A5 File Offset: 0x000325A5
-	public override void SetStartToCurrentValue()
-	{
-		this.from = this.value;
-	}
+  public static TweenAlpha Begin(
+    GameObject go,
+    float duration,
+    float alpha,
+    float delay = 0.0f)
+  {
+    TweenAlpha tweenAlpha = UITweener.Begin<TweenAlpha>(go, duration, delay);
+    tweenAlpha.from = tweenAlpha.value;
+    tweenAlpha.to = alpha;
+    if ((double) duration <= 0.0)
+    {
+      tweenAlpha.Sample(1f, true);
+      tweenAlpha.enabled = false;
+    }
+    return tweenAlpha;
+  }
 
-	// Token: 0x06000563 RID: 1379 RVA: 0x000343B3 File Offset: 0x000325B3
-	public override void SetEndToCurrentValue()
-	{
-		this.to = this.value;
-	}
+  public override void SetStartToCurrentValue() => this.from = this.value;
 
-	// Token: 0x040005AC RID: 1452
-	[Range(0f, 1f)]
-	public float from = 1f;
-
-	// Token: 0x040005AD RID: 1453
-	[Range(0f, 1f)]
-	public float to = 1f;
-
-	// Token: 0x040005AE RID: 1454
-	[Tooltip("If used on a renderer, the material should probably be cleaned up after this script gets destroyed...")]
-	public bool autoCleanup;
-
-	// Token: 0x040005AF RID: 1455
-	[Tooltip("Color to adjust")]
-	public string colorProperty;
-
-	// Token: 0x040005B0 RID: 1456
-	[NonSerialized]
-	private bool mCached;
-
-	// Token: 0x040005B1 RID: 1457
-	[NonSerialized]
-	private UIRect mRect;
-
-	// Token: 0x040005B2 RID: 1458
-	[NonSerialized]
-	private Material mShared;
-
-	// Token: 0x040005B3 RID: 1459
-	[NonSerialized]
-	private Material mMat;
-
-	// Token: 0x040005B4 RID: 1460
-	[NonSerialized]
-	private Light mLight;
-
-	// Token: 0x040005B5 RID: 1461
-	[NonSerialized]
-	private SpriteRenderer mSr;
-
-	// Token: 0x040005B6 RID: 1462
-	[NonSerialized]
-	private float mBaseIntensity = 1f;
+  public override void SetEndToCurrentValue() => this.to = this.value;
 }

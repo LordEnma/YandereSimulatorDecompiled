@@ -1,28 +1,23 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TitleScreenOsanaScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000484 RID: 1156
 public class TitleScreenOsanaScript : MonoBehaviour
 {
-	// Token: 0x06001F1C RID: 7964 RVA: 0x001B917C File Offset: 0x001B737C
-	private void Start()
-	{
-		if (GameGlobals.SpecificEliminationID > 0)
-		{
-			this.NewTitleScreen.ExtrasLabel.alpha = 1f;
-			this.DeadOsanas[GameGlobals.SpecificEliminationID].SetActive(true);
-		}
-	}
+  public NewTitleScreenScript NewTitleScreen;
+  public Animation CharacterAnimation;
+  public GameObject BloodPool;
+  public GameObject[] DeadOsanas;
 
-	// Token: 0x040040EA RID: 16618
-	public NewTitleScreenScript NewTitleScreen;
-
-	// Token: 0x040040EB RID: 16619
-	public Animation CharacterAnimation;
-
-	// Token: 0x040040EC RID: 16620
-	public GameObject BloodPool;
-
-	// Token: 0x040040ED RID: 16621
-	public GameObject[] DeadOsanas;
+  private void Start()
+  {
+    if (GameGlobals.SpecificEliminationID <= 0)
+      return;
+    this.NewTitleScreen.ExtrasLabel.alpha = 1f;
+    this.DeadOsanas[GameGlobals.SpecificEliminationID].SetActive(true);
+  }
 }

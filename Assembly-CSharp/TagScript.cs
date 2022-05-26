@@ -1,38 +1,30 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TagScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200046B RID: 1131
 public class TagScript : MonoBehaviour
 {
-	// Token: 0x06001EB8 RID: 7864 RVA: 0x001AB4A6 File Offset: 0x001A96A6
-	private void Start()
-	{
-		this.Sprite.color = new Color(1f, 0f, 0f, 0f);
-		this.MainCameraCamera = this.MainCamera.GetComponent<Camera>();
-	}
+  public UISprite Sprite;
+  public Camera UICamera;
+  public Camera MainCameraCamera;
+  public Transform MainCamera;
+  public Transform Target;
 
-	// Token: 0x06001EB9 RID: 7865 RVA: 0x001AB4E0 File Offset: 0x001A96E0
-	private void Update()
-	{
-		if (this.Target != null && Vector3.Angle(this.MainCamera.forward, this.MainCamera.position - this.Target.position) > 90f)
-		{
-			Vector2 vector = this.MainCameraCamera.WorldToScreenPoint(this.Target.position);
-			base.transform.position = this.UICamera.ScreenToWorldPoint(new Vector3(vector.x, vector.y, 1f));
-		}
-	}
+  private void Start()
+  {
+    this.Sprite.color = new Color(1f, 0.0f, 0.0f, 0.0f);
+    this.MainCameraCamera = this.MainCamera.GetComponent<Camera>();
+  }
 
-	// Token: 0x04003F62 RID: 16226
-	public UISprite Sprite;
-
-	// Token: 0x04003F63 RID: 16227
-	public Camera UICamera;
-
-	// Token: 0x04003F64 RID: 16228
-	public Camera MainCameraCamera;
-
-	// Token: 0x04003F65 RID: 16229
-	public Transform MainCamera;
-
-	// Token: 0x04003F66 RID: 16230
-	public Transform Target;
+  private void Update()
+  {
+    if (!((Object) this.Target != (Object) null) || (double) Vector3.Angle(this.MainCamera.forward, this.MainCamera.position - this.Target.position) <= 90.0)
+      return;
+    Vector2 screenPoint = (Vector2) this.MainCameraCamera.WorldToScreenPoint(this.Target.position);
+    this.transform.position = this.UICamera.ScreenToWorldPoint(new Vector3(screenPoint.x, screenPoint.y, 1f));
+  }
 }

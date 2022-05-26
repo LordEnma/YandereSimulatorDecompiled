@@ -1,97 +1,74 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SinkScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200042F RID: 1071
 public class SinkScript : MonoBehaviour
 {
-	// Token: 0x06001CDD RID: 7389 RVA: 0x00157979 File Offset: 0x00155B79
-	private void Start()
-	{
-		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
-	}
+  public YandereScript Yandere;
+  public PromptScript Prompt;
 
-	// Token: 0x06001CDE RID: 7390 RVA: 0x00157990 File Offset: 0x00155B90
-	private void Update()
-	{
-		if (this.Yandere.PickUp != null)
-		{
-			if (this.Yandere.PickUp.Bucket != null)
-			{
-				if (this.Yandere.PickUp.Bucket.Dumbbells == 0)
-				{
-					this.Prompt.enabled = true;
-					if (!this.Yandere.PickUp.Bucket.Full)
-					{
-						this.Prompt.Label[0].text = "     Fill Bucket";
-					}
-					else
-					{
-						this.Prompt.Label[0].text = "     Empty Bucket";
-					}
-				}
-				else if (this.Prompt.enabled)
-				{
-					this.Prompt.Hide();
-					this.Prompt.enabled = false;
-				}
-			}
-			else if (this.Yandere.PickUp.BloodCleaner != null)
-			{
-				if (this.Yandere.PickUp.BloodCleaner.Blood > 0f)
-				{
-					this.Prompt.Label[0].text = "     Empty Robot";
-					this.Prompt.enabled = true;
-				}
-				else
-				{
-					this.Prompt.Hide();
-					this.Prompt.enabled = false;
-				}
-			}
-			else if (this.Prompt.enabled)
-			{
-				this.Prompt.Hide();
-				this.Prompt.enabled = false;
-			}
-		}
-		else if (this.Prompt.enabled)
-		{
-			this.Prompt.Hide();
-			this.Prompt.enabled = false;
-		}
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			if (this.Yandere.PickUp.Bucket != null)
-			{
-				if (!this.Yandere.PickUp.Bucket.Full)
-				{
-					this.Yandere.PickUp.Bucket.Fill();
-				}
-				else
-				{
-					this.Yandere.PickUp.Bucket.Empty();
-				}
-				if (!this.Yandere.PickUp.Bucket.Full)
-				{
-					this.Prompt.Label[0].text = "     Fill Bucket";
-				}
-				else
-				{
-					this.Prompt.Label[0].text = "     Empty Bucket";
-				}
-			}
-			else if (this.Yandere.PickUp.BloodCleaner != null)
-			{
-				this.Yandere.PickUp.BloodCleaner.Blood = 0f;
-				this.Yandere.PickUp.BloodCleaner.Lens.SetActive(false);
-			}
-			this.Prompt.Circle[0].fillAmount = 1f;
-		}
-	}
+  private void Start() => this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
 
-	// Token: 0x040033FE RID: 13310
-	public YandereScript Yandere;
-
-	// Token: 0x040033FF RID: 13311
-	public PromptScript Prompt;
+  private void Update()
+  {
+    if ((Object) this.Yandere.PickUp != (Object) null)
+    {
+      if ((Object) this.Yandere.PickUp.Bucket != (Object) null)
+      {
+        if (this.Yandere.PickUp.Bucket.Dumbbells == 0)
+        {
+          this.Prompt.enabled = true;
+          this.Prompt.Label[0].text = this.Yandere.PickUp.Bucket.Full ? "     Empty Bucket" : "     Fill Bucket";
+        }
+        else if (this.Prompt.enabled)
+        {
+          this.Prompt.Hide();
+          this.Prompt.enabled = false;
+        }
+      }
+      else if ((Object) this.Yandere.PickUp.BloodCleaner != (Object) null)
+      {
+        if ((double) this.Yandere.PickUp.BloodCleaner.Blood > 0.0)
+        {
+          this.Prompt.Label[0].text = "     Empty Robot";
+          this.Prompt.enabled = true;
+        }
+        else
+        {
+          this.Prompt.Hide();
+          this.Prompt.enabled = false;
+        }
+      }
+      else if (this.Prompt.enabled)
+      {
+        this.Prompt.Hide();
+        this.Prompt.enabled = false;
+      }
+    }
+    else if (this.Prompt.enabled)
+    {
+      this.Prompt.Hide();
+      this.Prompt.enabled = false;
+    }
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    if ((Object) this.Yandere.PickUp.Bucket != (Object) null)
+    {
+      if (!this.Yandere.PickUp.Bucket.Full)
+        this.Yandere.PickUp.Bucket.Fill();
+      else
+        this.Yandere.PickUp.Bucket.Empty();
+      this.Prompt.Label[0].text = this.Yandere.PickUp.Bucket.Full ? "     Empty Bucket" : "     Fill Bucket";
+    }
+    else if ((Object) this.Yandere.PickUp.BloodCleaner != (Object) null)
+    {
+      this.Yandere.PickUp.BloodCleaner.Blood = 0.0f;
+      this.Yandere.PickUp.BloodCleaner.Lens.SetActive(false);
+    }
+    this.Prompt.Circle[0].fillAmount = 1f;
+  }
 }

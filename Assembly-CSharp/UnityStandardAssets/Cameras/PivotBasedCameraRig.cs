@@ -1,25 +1,23 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityStandardAssets.Cameras.PivotBasedCameraRig
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
 namespace UnityStandardAssets.Cameras
 {
-	// Token: 0x02000553 RID: 1363
-	public abstract class PivotBasedCameraRig : AbstractTargetFollower
-	{
-		// Token: 0x060022DF RID: 8927 RVA: 0x001F77DF File Offset: 0x001F59DF
-		protected virtual void Awake()
-		{
-			this.m_Cam = base.GetComponentInChildren<Camera>().transform;
-			this.m_Pivot = this.m_Cam.parent;
-		}
+  public abstract class PivotBasedCameraRig : AbstractTargetFollower
+  {
+    protected Transform m_Cam;
+    protected Transform m_Pivot;
+    protected Vector3 m_LastTargetPosition;
 
-		// Token: 0x04004B8D RID: 19341
-		protected Transform m_Cam;
-
-		// Token: 0x04004B8E RID: 19342
-		protected Transform m_Pivot;
-
-		// Token: 0x04004B8F RID: 19343
-		protected Vector3 m_LastTargetPosition;
-	}
+    protected virtual void Awake()
+    {
+      this.m_Cam = this.GetComponentInChildren<Camera>().transform;
+      this.m_Pivot = this.m_Cam.parent;
+    }
+  }
 }

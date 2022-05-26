@@ -1,13 +1,14 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityStandardAssets.Vehicles.Car.SpeedType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x02000532 RID: 1330
-	internal enum SpeedType
-	{
-		// Token: 0x04004AA7 RID: 19111
-		MPH,
-		// Token: 0x04004AA8 RID: 19112
-		KPH
-	}
+  internal enum SpeedType
+  {
+    MPH,
+    KPH,
+  }
 }

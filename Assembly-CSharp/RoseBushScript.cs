@@ -1,21 +1,22 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: RoseBushScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003F4 RID: 1012
 public class RoseBushScript : MonoBehaviour
 {
-	// Token: 0x06001C0F RID: 7183 RVA: 0x001496F0 File Offset: 0x001478F0
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Yandere.Inventory.Rose = true;
-			base.enabled = false;
-			this.Prompt.Hide();
-			this.Prompt.enabled = false;
-		}
-	}
+  public PromptScript Prompt;
 
-	// Token: 0x04003181 RID: 12673
-	public PromptScript Prompt;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    this.Prompt.Yandere.Inventory.Rose = true;
+    this.enabled = false;
+    this.Prompt.Hide();
+    this.Prompt.enabled = false;
+  }
 }

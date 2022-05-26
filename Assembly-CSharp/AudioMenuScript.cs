@@ -1,150 +1,112 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AudioMenuScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000DA RID: 218
 public class AudioMenuScript : MonoBehaviour
 {
-	// Token: 0x06000A04 RID: 2564 RVA: 0x000568C3 File Offset: 0x00054AC3
-	private void Start()
-	{
-		this.UpdateText();
-	}
+  public InputManagerScript InputManager;
+  public PauseScreenScript PauseScreen;
+  public PromptBarScript PromptBar;
+  public JukeboxScript Jukebox;
+  public UILabel CurrentTrackLabel;
+  public UILabel MusicVolumeLabel;
+  public UILabel SubtitlesOnOffLabel;
+  public UIPanel SubtitlePanel;
+  public int SelectionLimit = 5;
+  public int Selected = 1;
+  public Transform Highlight;
+  public GameObject CustomMusicMenu;
 
-	// Token: 0x06000A05 RID: 2565 RVA: 0x000568CC File Offset: 0x00054ACC
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.C))
-		{
-			this.CustomMusicMenu.SetActive(true);
-			base.gameObject.SetActive(false);
-		}
-		if (this.InputManager.TappedUp)
-		{
-			this.Selected--;
-			this.UpdateHighlight();
-		}
-		else if (this.InputManager.TappedDown)
-		{
-			this.Selected++;
-			this.UpdateHighlight();
-		}
-		if (this.Selected == 1)
-		{
-			if (this.InputManager.TappedRight)
-			{
-				this.Jukebox.StartStopMusic();
-				this.Jukebox.StartStopMusic();
-				this.UpdateText();
-			}
-			else if (this.InputManager.TappedLeft)
-			{
-				this.Jukebox.BGM -= 2;
-				this.Jukebox.StartStopMusic();
-				this.Jukebox.StartStopMusic();
-				this.UpdateText();
-			}
-		}
-		else if (this.Selected == 2)
-		{
-			if (this.InputManager.TappedRight)
-			{
-				if (this.Jukebox.Volume < 1f)
-				{
-					this.Jukebox.Volume += 0.05f;
-				}
-				this.UpdateText();
-			}
-			else if (this.InputManager.TappedLeft)
-			{
-				if (this.Jukebox.Volume > 0f)
-				{
-					this.Jukebox.Volume -= 0.05f;
-				}
-				this.UpdateText();
-			}
-		}
-		else
-		{
-			int selected = this.Selected;
-		}
-		if (Input.GetButtonDown("B"))
-		{
-			this.PromptBar.ClearButtons();
-			this.PromptBar.Label[0].text = "Accept";
-			this.PromptBar.Label[1].text = "Exit";
-			this.PromptBar.Label[4].text = "Choose";
-			this.PromptBar.UpdateButtons();
-			this.PauseScreen.Yandere.Blur.enabled = true;
-			this.PauseScreen.MainMenu.SetActive(true);
-			this.PauseScreen.Sideways = false;
-			this.PauseScreen.PressedB = true;
-			base.gameObject.SetActive(false);
-		}
-	}
+  private void Start() => this.UpdateText();
 
-	// Token: 0x06000A06 RID: 2566 RVA: 0x00056AFC File Offset: 0x00054CFC
-	public void UpdateText()
-	{
-		if (this.Jukebox != null)
-		{
-			this.CurrentTrackLabel.text = (this.Jukebox.BGM.ToString() ?? "");
-			this.MusicVolumeLabel.text = ((this.Jukebox.Volume * 10f).ToString("F1") ?? "");
-			if (this.SubtitlePanel.alpha == 1f)
-			{
-				this.SubtitlesOnOffLabel.text = "On";
-				return;
-			}
-			this.SubtitlesOnOffLabel.text = "Off";
-		}
-	}
+  private void Update()
+  {
+    if (Input.GetKeyDown(KeyCode.C))
+    {
+      this.CustomMusicMenu.SetActive(true);
+      this.gameObject.SetActive(false);
+    }
+    if (this.InputManager.TappedUp)
+    {
+      --this.Selected;
+      this.UpdateHighlight();
+    }
+    else if (this.InputManager.TappedDown)
+    {
+      ++this.Selected;
+      this.UpdateHighlight();
+    }
+    if (this.Selected == 1)
+    {
+      if (this.InputManager.TappedRight)
+      {
+        this.Jukebox.StartStopMusic();
+        this.Jukebox.StartStopMusic();
+        this.UpdateText();
+      }
+      else if (this.InputManager.TappedLeft)
+      {
+        this.Jukebox.BGM -= 2;
+        this.Jukebox.StartStopMusic();
+        this.Jukebox.StartStopMusic();
+        this.UpdateText();
+      }
+    }
+    else if (this.Selected == 2)
+    {
+      if (this.InputManager.TappedRight)
+      {
+        if ((double) this.Jukebox.Volume < 1.0)
+          this.Jukebox.Volume += 0.05f;
+        this.UpdateText();
+      }
+      else if (this.InputManager.TappedLeft)
+      {
+        if ((double) this.Jukebox.Volume > 0.0)
+          this.Jukebox.Volume -= 0.05f;
+        this.UpdateText();
+      }
+    }
+    else
+    {
+      int selected = this.Selected;
+    }
+    if (!Input.GetButtonDown("B"))
+      return;
+    this.PromptBar.ClearButtons();
+    this.PromptBar.Label[0].text = "Accept";
+    this.PromptBar.Label[1].text = "Exit";
+    this.PromptBar.Label[4].text = "Choose";
+    this.PromptBar.UpdateButtons();
+    this.PauseScreen.Yandere.Blur.enabled = true;
+    this.PauseScreen.MainMenu.SetActive(true);
+    this.PauseScreen.Sideways = false;
+    this.PauseScreen.PressedB = true;
+    this.gameObject.SetActive(false);
+  }
 
-	// Token: 0x06000A07 RID: 2567 RVA: 0x00056BA4 File Offset: 0x00054DA4
-	private void UpdateHighlight()
-	{
-		if (this.Selected == 0)
-		{
-			this.Selected = this.SelectionLimit;
-		}
-		else if (this.Selected > this.SelectionLimit)
-		{
-			this.Selected = 1;
-		}
-		this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 440f - 60f * (float)this.Selected, this.Highlight.localPosition.z);
-	}
+  public void UpdateText()
+  {
+    if (!((Object) this.Jukebox != (Object) null))
+      return;
+    this.CurrentTrackLabel.text = this.Jukebox.BGM.ToString() ?? "";
+    this.MusicVolumeLabel.text = (this.Jukebox.Volume * 10f).ToString("F1") ?? "";
+    if ((double) this.SubtitlePanel.alpha == 1.0)
+      this.SubtitlesOnOffLabel.text = "On";
+    else
+      this.SubtitlesOnOffLabel.text = "Off";
+  }
 
-	// Token: 0x04000ABD RID: 2749
-	public InputManagerScript InputManager;
-
-	// Token: 0x04000ABE RID: 2750
-	public PauseScreenScript PauseScreen;
-
-	// Token: 0x04000ABF RID: 2751
-	public PromptBarScript PromptBar;
-
-	// Token: 0x04000AC0 RID: 2752
-	public JukeboxScript Jukebox;
-
-	// Token: 0x04000AC1 RID: 2753
-	public UILabel CurrentTrackLabel;
-
-	// Token: 0x04000AC2 RID: 2754
-	public UILabel MusicVolumeLabel;
-
-	// Token: 0x04000AC3 RID: 2755
-	public UILabel SubtitlesOnOffLabel;
-
-	// Token: 0x04000AC4 RID: 2756
-	public UIPanel SubtitlePanel;
-
-	// Token: 0x04000AC5 RID: 2757
-	public int SelectionLimit = 5;
-
-	// Token: 0x04000AC6 RID: 2758
-	public int Selected = 1;
-
-	// Token: 0x04000AC7 RID: 2759
-	public Transform Highlight;
-
-	// Token: 0x04000AC8 RID: 2760
-	public GameObject CustomMusicMenu;
+  private void UpdateHighlight()
+  {
+    if (this.Selected == 0)
+      this.Selected = this.SelectionLimit;
+    else if (this.Selected > this.SelectionLimit)
+      this.Selected = 1;
+    this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (440.0 - 60.0 * (double) this.Selected), this.Highlight.localPosition.z);
+  }
 }

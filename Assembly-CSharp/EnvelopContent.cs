@@ -1,69 +1,55 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: EnvelopContent
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000040 RID: 64
-[RequireComponent(typeof(UIWidget))]
+[RequireComponent(typeof (UIWidget))]
 [AddComponentMenu("NGUI/Interaction/Envelop Content")]
 public class EnvelopContent : MonoBehaviour
 {
-	// Token: 0x060000FE RID: 254 RVA: 0x000133AF File Offset: 0x000115AF
-	private void Start()
-	{
-		this.mStarted = true;
-		this.Execute();
-	}
+  public Transform targetRoot;
+  public int padLeft;
+  public int padRight;
+  public int padBottom;
+  public int padTop;
+  public bool ignoreDisabled = true;
+  private bool mStarted;
 
-	// Token: 0x060000FF RID: 255 RVA: 0x000133BE File Offset: 0x000115BE
-	private void OnEnable()
-	{
-		if (this.mStarted)
-		{
-			this.Execute();
-		}
-	}
+  private void Start()
+  {
+    this.mStarted = true;
+    this.Execute();
+  }
 
-	// Token: 0x06000100 RID: 256 RVA: 0x000133D0 File Offset: 0x000115D0
-	[ContextMenu("Execute")]
-	public void Execute()
-	{
-		if (this.targetRoot == base.transform)
-		{
-			Debug.LogError("Target Root object cannot be the same object that has Envelop Content. Make it a sibling instead.", this);
-			return;
-		}
-		if (NGUITools.IsChild(this.targetRoot, base.transform))
-		{
-			Debug.LogError("Target Root object should not be a parent of Envelop Content. Make it a sibling instead.", this);
-			return;
-		}
-		Bounds bounds = NGUIMath.CalculateRelativeWidgetBounds(base.transform.parent, this.targetRoot, !this.ignoreDisabled, true);
-		float num = bounds.min.x + (float)this.padLeft;
-		float num2 = bounds.min.y + (float)this.padBottom;
-		float num3 = bounds.max.x + (float)this.padRight;
-		float num4 = bounds.max.y + (float)this.padTop;
-		base.GetComponent<UIWidget>().SetRect(num, num2, num3 - num, num4 - num2);
-		base.BroadcastMessage("UpdateAnchors", SendMessageOptions.DontRequireReceiver);
-		NGUITools.UpdateWidgetCollider(base.gameObject);
-	}
+  private void OnEnable()
+  {
+    if (!this.mStarted)
+      return;
+    this.Execute();
+  }
 
-	// Token: 0x040002D0 RID: 720
-	public Transform targetRoot;
-
-	// Token: 0x040002D1 RID: 721
-	public int padLeft;
-
-	// Token: 0x040002D2 RID: 722
-	public int padRight;
-
-	// Token: 0x040002D3 RID: 723
-	public int padBottom;
-
-	// Token: 0x040002D4 RID: 724
-	public int padTop;
-
-	// Token: 0x040002D5 RID: 725
-	public bool ignoreDisabled = true;
-
-	// Token: 0x040002D6 RID: 726
-	private bool mStarted;
+  [ContextMenu("Execute")]
+  public void Execute()
+  {
+    if ((Object) this.targetRoot == (Object) this.transform)
+      Debug.LogError((object) "Target Root object cannot be the same object that has Envelop Content. Make it a sibling instead.", (Object) this);
+    else if (NGUITools.IsChild(this.targetRoot, this.transform))
+    {
+      Debug.LogError((object) "Target Root object should not be a parent of Envelop Content. Make it a sibling instead.", (Object) this);
+    }
+    else
+    {
+      Bounds relativeWidgetBounds = NGUIMath.CalculateRelativeWidgetBounds(this.transform.parent, this.targetRoot, !this.ignoreDisabled);
+      float x = relativeWidgetBounds.min.x + (float) this.padLeft;
+      float y = relativeWidgetBounds.min.y + (float) this.padBottom;
+      float num1 = relativeWidgetBounds.max.x + (float) this.padRight;
+      float num2 = relativeWidgetBounds.max.y + (float) this.padTop;
+      this.GetComponent<UIWidget>().SetRect(x, y, num1 - x, num2 - y);
+      this.BroadcastMessage("UpdateAnchors", SendMessageOptions.DontRequireReceiver);
+      NGUITools.UpdateWidgetCollider(this.gameObject);
+    }
+  }
 }

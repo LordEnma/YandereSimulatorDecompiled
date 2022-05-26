@@ -1,21 +1,17 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YandereSimulator.Yancord.PlayerPrefsHelper
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
 namespace YandereSimulator.Yancord
 {
-	// Token: 0x02000528 RID: 1320
-	public static class PlayerPrefsHelper
-	{
-		// Token: 0x060021BA RID: 8634 RVA: 0x001F2449 File Offset: 0x001F0649
-		public static void SetBool(string name, bool flag)
-		{
-			PlayerPrefs.SetInt(name, flag ? 1 : 0);
-		}
+  public static class PlayerPrefsHelper
+  {
+    public static void SetBool(string name, bool flag) => PlayerPrefs.SetInt(name, flag ? 1 : 0);
 
-		// Token: 0x060021BB RID: 8635 RVA: 0x001F2458 File Offset: 0x001F0658
-		public static bool GetBool(string name)
-		{
-			return PlayerPrefs.GetInt(name) == 1;
-		}
-	}
+    public static bool GetBool(string name) => PlayerPrefs.GetInt(name) == 1;
+  }
 }

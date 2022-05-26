@@ -1,63 +1,52 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityStandardAssets.Vehicles.Aeroplane.JetParticleEffect
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Aeroplane
 {
-	// Token: 0x02000541 RID: 1345
-	[RequireComponent(typeof(ParticleSystem))]
-	public class JetParticleEffect : MonoBehaviour
-	{
-		// Token: 0x0600224B RID: 8779 RVA: 0x001F5D58 File Offset: 0x001F3F58
-		private void Start()
-		{
-			this.m_Jet = this.FindAeroplaneParent();
-			this.m_System = base.GetComponent<ParticleSystem>();
-			this.m_OriginalLifetime = this.m_System.main.startLifetime.constant;
-			this.m_OriginalStartSize = this.m_System.main.startSize.constant;
-			this.m_OriginalStartColor = this.m_System.main.startColor.color;
-		}
+  [RequireComponent(typeof (ParticleSystem))]
+  public class JetParticleEffect : MonoBehaviour
+  {
+    public Color minColour;
+    private AeroplaneController m_Jet;
+    private ParticleSystem m_System;
+    private float m_OriginalStartSize;
+    private float m_OriginalLifetime;
+    private Color m_OriginalStartColor;
 
-		// Token: 0x0600224C RID: 8780 RVA: 0x001F5DE0 File Offset: 0x001F3FE0
-		private void Update()
-		{
-			ParticleSystem.MainModule main = this.m_System.main;
-			main.startLifetime = Mathf.Lerp(0f, this.m_OriginalLifetime, this.m_Jet.Throttle);
-			main.startSize = Mathf.Lerp(this.m_OriginalStartSize * 0.3f, this.m_OriginalStartSize, this.m_Jet.Throttle);
-			main.startColor = Color.Lerp(this.minColour, this.m_OriginalStartColor, this.m_Jet.Throttle);
-		}
+    private void Start()
+    {
+      this.m_Jet = this.FindAeroplaneParent();
+      this.m_System = this.GetComponent<ParticleSystem>();
+      this.m_OriginalLifetime = this.m_System.main.startLifetime.constant;
+      this.m_OriginalStartSize = this.m_System.main.startSize.constant;
+      this.m_OriginalStartColor = this.m_System.main.startColor.color;
+    }
 
-		// Token: 0x0600224D RID: 8781 RVA: 0x001F5E78 File Offset: 0x001F4078
-		private AeroplaneController FindAeroplaneParent()
-		{
-			Transform transform = base.transform;
-			while (transform != null)
-			{
-				AeroplaneController component = transform.GetComponent<AeroplaneController>();
-				if (!(component == null))
-				{
-					return component;
-				}
-				transform = transform.parent;
-			}
-			throw new Exception(" AeroplaneContoller not found in object hierarchy");
-		}
+    private void Update()
+    {
+      ParticleSystem.MainModule main = this.m_System.main with
+      {
+        startLifetime = (ParticleSystem.MinMaxCurve) Mathf.Lerp(0.0f, this.m_OriginalLifetime, this.m_Jet.Throttle),
+        startSize = (ParticleSystem.MinMaxCurve) Mathf.Lerp(this.m_OriginalStartSize * 0.3f, this.m_OriginalStartSize, this.m_Jet.Throttle),
+        startColor = (ParticleSystem.MinMaxGradient) Color.Lerp(this.minColour, this.m_OriginalStartColor, this.m_Jet.Throttle)
+      };
+    }
 
-		// Token: 0x04004B2C RID: 19244
-		public Color minColour;
-
-		// Token: 0x04004B2D RID: 19245
-		private AeroplaneController m_Jet;
-
-		// Token: 0x04004B2E RID: 19246
-		private ParticleSystem m_System;
-
-		// Token: 0x04004B2F RID: 19247
-		private float m_OriginalStartSize;
-
-		// Token: 0x04004B30 RID: 19248
-		private float m_OriginalLifetime;
-
-		// Token: 0x04004B31 RID: 19249
-		private Color m_OriginalStartColor;
-	}
+    private AeroplaneController FindAeroplaneParent()
+    {
+      for (Transform transform = this.transform; (UnityEngine.Object) transform != (UnityEngine.Object) null; transform = transform.parent)
+      {
+        AeroplaneController component = transform.GetComponent<AeroplaneController>();
+        if (!((UnityEngine.Object) component == (UnityEngine.Object) null))
+          return component;
+      }
+      throw new Exception(" AeroplaneContoller not found in object hierarchy");
+    }
+  }
 }

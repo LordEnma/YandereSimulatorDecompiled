@@ -1,24 +1,20 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SaveFileSaveData
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x02000409 RID: 1033
+using System;
+
 [Serializable]
 public class SaveFileSaveData
 {
-	// Token: 0x06001C4D RID: 7245 RVA: 0x0014B347 File Offset: 0x00149547
-	public static SaveFileSaveData ReadFromGlobals()
-	{
-		return new SaveFileSaveData
-		{
-			currentSaveFile = SaveFileGlobals.CurrentSaveFile
-		};
-	}
+  public int currentSaveFile;
 
-	// Token: 0x06001C4E RID: 7246 RVA: 0x0014B359 File Offset: 0x00149559
-	public static void WriteToGlobals(SaveFileSaveData data)
-	{
-		SaveFileGlobals.CurrentSaveFile = data.currentSaveFile;
-	}
+  public static SaveFileSaveData ReadFromGlobals() => new SaveFileSaveData()
+  {
+    currentSaveFile = SaveFileGlobals.CurrentSaveFile
+  };
 
-	// Token: 0x040031FC RID: 12796
-	public int currentSaveFile;
+  public static void WriteToGlobals(SaveFileSaveData data) => SaveFileGlobals.CurrentSaveFile = data.currentSaveFile;
 }

@@ -1,51 +1,44 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MusicCreditScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000374 RID: 884
 public class MusicCreditScript : MonoBehaviour
 {
-	// Token: 0x060019EE RID: 6638 RVA: 0x0010B1FC File Offset: 0x001093FC
-	private void Start()
-	{
-		base.transform.localPosition = new Vector3(400f, base.transform.localPosition.y, base.transform.localPosition.z);
-		this.Panel.enabled = false;
-	}
+  public UILabel SongLabel;
+  public UILabel BandLabel;
+  public UIPanel Panel;
+  public bool Slide;
+  public float Timer;
 
-	// Token: 0x060019EF RID: 6639 RVA: 0x0010B24C File Offset: 0x0010944C
-	private void Update()
-	{
-		if (this.Slide)
-		{
-			this.Timer += Time.deltaTime;
-			if (this.Timer < 5f)
-			{
-				base.transform.localPosition = new Vector3(Mathf.Lerp(base.transform.localPosition.x, 0f, Time.deltaTime * 10f), base.transform.localPosition.y, base.transform.localPosition.z);
-				return;
-			}
-			base.transform.localPosition = new Vector3(base.transform.localPosition.x + Time.deltaTime, base.transform.localPosition.y, base.transform.localPosition.z);
-			base.transform.localPosition = new Vector3(base.transform.localPosition.x + Mathf.Abs(base.transform.localPosition.x * 0.01f) * (Time.deltaTime * 1000f), base.transform.localPosition.y, base.transform.localPosition.z);
-			if (base.transform.localPosition.x > 400f)
-			{
-				base.transform.localPosition = new Vector3(400f, base.transform.localPosition.y, base.transform.localPosition.z);
-				this.Panel.enabled = false;
-				this.Slide = false;
-				this.Timer = 0f;
-			}
-		}
-	}
+  private void Start()
+  {
+    this.transform.localPosition = new Vector3(400f, this.transform.localPosition.y, this.transform.localPosition.z);
+    this.Panel.enabled = false;
+  }
 
-	// Token: 0x040029D3 RID: 10707
-	public UILabel SongLabel;
-
-	// Token: 0x040029D4 RID: 10708
-	public UILabel BandLabel;
-
-	// Token: 0x040029D5 RID: 10709
-	public UIPanel Panel;
-
-	// Token: 0x040029D6 RID: 10710
-	public bool Slide;
-
-	// Token: 0x040029D7 RID: 10711
-	public float Timer;
+  private void Update()
+  {
+    if (!this.Slide)
+      return;
+    this.Timer += Time.deltaTime;
+    if ((double) this.Timer < 5.0)
+    {
+      this.transform.localPosition = new Vector3(Mathf.Lerp(this.transform.localPosition.x, 0.0f, Time.deltaTime * 10f), this.transform.localPosition.y, this.transform.localPosition.z);
+    }
+    else
+    {
+      this.transform.localPosition = new Vector3(this.transform.localPosition.x + Time.deltaTime, this.transform.localPosition.y, this.transform.localPosition.z);
+      this.transform.localPosition = new Vector3(this.transform.localPosition.x + Mathf.Abs(this.transform.localPosition.x * 0.01f) * (Time.deltaTime * 1000f), this.transform.localPosition.y, this.transform.localPosition.z);
+      if ((double) this.transform.localPosition.x <= 400.0)
+        return;
+      this.transform.localPosition = new Vector3(400f, this.transform.localPosition.y, this.transform.localPosition.z);
+      this.Panel.enabled = false;
+      this.Slide = false;
+      this.Timer = 0.0f;
+    }
+  }
 }

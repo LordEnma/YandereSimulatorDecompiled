@@ -1,16 +1,18 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: WeekLimitScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020004C9 RID: 1225
 public class WeekLimitScript : MonoBehaviour
 {
-	// Token: 0x06002018 RID: 8216 RVA: 0x001C9478 File Offset: 0x001C7678
-	private void Update()
-	{
-		if (Input.anyKeyDown)
-		{
-			SceneManager.LoadScene("HomeScene");
-		}
-	}
+  private void Update()
+  {
+    if (!Input.anyKeyDown)
+      return;
+    SceneManager.LoadScene("HomeScene");
+  }
 }

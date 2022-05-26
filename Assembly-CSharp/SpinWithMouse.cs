@@ -1,34 +1,26 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SpinWithMouse
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200003B RID: 59
 [AddComponentMenu("NGUI/Examples/Spin With Mouse")]
 public class SpinWithMouse : MonoBehaviour
 {
-	// Token: 0x060000EF RID: 239 RVA: 0x00012FCD File Offset: 0x000111CD
-	private void Start()
-	{
-		this.mTrans = base.transform;
-	}
+  public Transform target;
+  public float speed = 1f;
+  private Transform mTrans;
 
-	// Token: 0x060000F0 RID: 240 RVA: 0x00012FDC File Offset: 0x000111DC
-	private void OnDrag(Vector2 delta)
-	{
-		UICamera.currentTouch.clickNotification = UICamera.ClickNotification.None;
-		if (this.target != null)
-		{
-			this.target.localRotation = Quaternion.Euler(0f, -0.5f * delta.x * this.speed, 0f) * this.target.localRotation;
-			return;
-		}
-		this.mTrans.localRotation = Quaternion.Euler(0f, -0.5f * delta.x * this.speed, 0f) * this.mTrans.localRotation;
-	}
+  private void Start() => this.mTrans = this.transform;
 
-	// Token: 0x040002C0 RID: 704
-	public Transform target;
-
-	// Token: 0x040002C1 RID: 705
-	public float speed = 1f;
-
-	// Token: 0x040002C2 RID: 706
-	private Transform mTrans;
+  private void OnDrag(Vector2 delta)
+  {
+    UICamera.currentTouch.clickNotification = UICamera.ClickNotification.None;
+    if ((Object) this.target != (Object) null)
+      this.target.localRotation = Quaternion.Euler(0.0f, -0.5f * delta.x * this.speed, 0.0f) * this.target.localRotation;
+    else
+      this.mTrans.localRotation = Quaternion.Euler(0.0f, -0.5f * delta.x * this.speed, 0.0f) * this.mTrans.localRotation;
+  }
 }

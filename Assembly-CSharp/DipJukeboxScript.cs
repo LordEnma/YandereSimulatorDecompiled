@@ -1,41 +1,36 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DipJukeboxScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000286 RID: 646
 public class DipJukeboxScript : MonoBehaviour
 {
-	// Token: 0x060013A1 RID: 5025 RVA: 0x000B8AC0 File Offset: 0x000B6CC0
-	private void Update()
-	{
-		if (this.MyAudio.isPlaying)
-		{
-			float num = Vector3.Distance(this.Yandere.position, base.transform.position);
-			if (num < 8f)
-			{
-				this.Jukebox.ClubDip = Mathf.MoveTowards(this.Jukebox.ClubDip, (7f - num) * 0.25f * this.Jukebox.Volume, Time.deltaTime);
-				if (this.Jukebox.ClubDip < 0f)
-				{
-					this.Jukebox.ClubDip = 0f;
-				}
-				if (this.Jukebox.ClubDip > this.Jukebox.Volume)
-				{
-					this.Jukebox.ClubDip = this.Jukebox.Volume;
-					return;
-				}
-			}
-		}
-		else if (this.MyAudio.isPlaying)
-		{
-			this.Jukebox.ClubDip = 0f;
-		}
-	}
+  public JukeboxScript Jukebox;
+  public AudioSource MyAudio;
+  public Transform Yandere;
 
-	// Token: 0x04001D2E RID: 7470
-	public JukeboxScript Jukebox;
-
-	// Token: 0x04001D2F RID: 7471
-	public AudioSource MyAudio;
-
-	// Token: 0x04001D30 RID: 7472
-	public Transform Yandere;
+  private void Update()
+  {
+    if (this.MyAudio.isPlaying)
+    {
+      float num = Vector3.Distance(this.Yandere.position, this.transform.position);
+      if ((double) num >= 8.0)
+        return;
+      this.Jukebox.ClubDip = Mathf.MoveTowards(this.Jukebox.ClubDip, (float) ((7.0 - (double) num) * 0.25) * this.Jukebox.Volume, Time.deltaTime);
+      if ((double) this.Jukebox.ClubDip < 0.0)
+        this.Jukebox.ClubDip = 0.0f;
+      if ((double) this.Jukebox.ClubDip <= (double) this.Jukebox.Volume)
+        return;
+      this.Jukebox.ClubDip = this.Jukebox.Volume;
+    }
+    else
+    {
+      if (!this.MyAudio.isPlaying)
+        return;
+      this.Jukebox.ClubDip = 0.0f;
+    }
+  }
 }

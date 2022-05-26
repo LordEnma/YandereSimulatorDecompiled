@@ -1,45 +1,33 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TextureManagerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000478 RID: 1144
 public class TextureManagerScript : MonoBehaviour
 {
-	// Token: 0x06001EEF RID: 7919 RVA: 0x001B5E40 File Offset: 0x001B4040
-	public Texture2D MergeTextures(Texture2D BackgroundTex, Texture2D TopTex)
-	{
-		Texture2D texture2D = new Texture2D(1024, 1024);
-		Color32[] pixels = BackgroundTex.GetPixels32();
-		Color32[] pixels2 = TopTex.GetPixels32();
-		for (int i = 0; i < pixels2.Length; i++)
-		{
-			if (pixels2[i].a != 0)
-			{
-				pixels[i] = pixels2[i];
-			}
-		}
-		texture2D.SetPixels32(pixels);
-		texture2D.Apply();
-		return texture2D;
-	}
+  public Texture[] UniformTextures;
+  public Texture[] CasualTextures;
+  public Texture[] SocksTextures;
+  public Texture2D PurpleStockings;
+  public Texture2D GreenStockings;
+  public Texture2D Base2D;
+  public Texture2D Overlay2D;
 
-	// Token: 0x04004038 RID: 16440
-	public Texture[] UniformTextures;
-
-	// Token: 0x04004039 RID: 16441
-	public Texture[] CasualTextures;
-
-	// Token: 0x0400403A RID: 16442
-	public Texture[] SocksTextures;
-
-	// Token: 0x0400403B RID: 16443
-	public Texture2D PurpleStockings;
-
-	// Token: 0x0400403C RID: 16444
-	public Texture2D GreenStockings;
-
-	// Token: 0x0400403D RID: 16445
-	public Texture2D Base2D;
-
-	// Token: 0x0400403E RID: 16446
-	public Texture2D Overlay2D;
+  public Texture2D MergeTextures(Texture2D BackgroundTex, Texture2D TopTex)
+  {
+    Texture2D texture2D = new Texture2D(1024, 1024);
+    Color32[] pixels32_1 = BackgroundTex.GetPixels32();
+    Color32[] pixels32_2 = TopTex.GetPixels32();
+    for (int index = 0; index < pixels32_2.Length; ++index)
+    {
+      if (pixels32_2[index].a != (byte) 0)
+        pixels32_1[index] = pixels32_2[index];
+    }
+    texture2D.SetPixels32(pixels32_1);
+    texture2D.Apply();
+    return texture2D;
+  }
 }

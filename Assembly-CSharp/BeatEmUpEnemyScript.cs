@@ -1,487 +1,343 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BeatEmUpEnemyScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000E0 RID: 224
 public class BeatEmUpEnemyScript : MonoBehaviour
 {
-	// Token: 0x06000A16 RID: 2582 RVA: 0x00057868 File Offset: 0x00055A68
-	public void DisableWeapon()
-	{
-		for (int i = 1; i < this.Weapons.Length; i++)
-		{
-			this.Weapons[i].SetActive(false);
-		}
-	}
+  public CharacterController MyController;
+  public BeatEmUpScript Player;
+  public GameObject StraightSpecialWarning;
+  public GameObject StraightSpecialHitbox;
+  public GameObject ArcSpecialWarning;
+  public GameObject ArcSpecialHitbox;
+  public GameObject EyeTwinkle;
+  public GameObject MyRenderer;
+  public GameObject HitEffect;
+  public GameObject BeltCoat;
+  public GameObject Warning;
+  public GameObject Hitbox;
+  public Renderer WeaponBagRenderer;
+  public Renderer HairRenderer;
+  public Transform WeaponParent;
+  public Transform RightHand;
+  public Animation MyAnimation;
+  public GameObject[] Weapons;
+  public AudioSource MyAudio;
+  public AudioClip HitSFX;
+  public AudioClip Whoosh;
+  public AudioClip[] HitReact;
+  public AudioClip[] Defeat;
+  public float MaxKnockBackSpeed;
+  public float KnockBackSpeed;
+  public float MaxSpeed;
+  public float Speed;
+  public string KnockedDownAnim;
+  public string KnockedDownLoop;
+  public string DefeatAnim;
+  public string DefeatLoop;
+  public string StraightSpecialAnim;
+  public string ArcSpecialAnimA;
+  public string ArcSpecialAnimB;
+  public string HitReactAnim;
+  public string AttackAnim;
+  public string IdleAnim;
+  public string WalkAnim;
+  public string Name;
+  public bool StraightSpecial;
+  public bool HitboxSpawned;
+  public bool HitReacting;
+  public bool KnockedDown;
+  public bool ArcSpecial;
+  public bool Attacking;
+  public bool Defeated;
+  public float SpecialTimer;
+  public float AttackTimer;
+  public float AnimSpeed;
+  public float MaxHealth;
+  public float Health;
+  public int Difficulty = 1;
+  public int MyWeapon = 1;
+  public int EnemyID = 1;
 
-	// Token: 0x06000A17 RID: 2583 RVA: 0x00057898 File Offset: 0x00055A98
-	public void Start()
-	{
-		Physics.IgnoreLayerCollision(9, 9);
-		this.Difficulty = GameGlobals.BeatEmUpDifficulty;
-		this.MaxHealth += (float)(this.Difficulty * 25);
-		this.MyAnimation[this.WalkAnim].speed = this.AnimSpeed;
-		this.Weapons[this.MyWeapon].SetActive(true);
-		this.Health = this.MaxHealth;
-		if (GameGlobals.Eighties)
-		{
-			this.HairRenderer.material.color = new Color(0.2f, 0.2f, 0.2f, 1f);
-			this.Name = "Rival Gang Member #" + this.EnemyID.ToString();
-			this.WeaponBagRenderer.enabled = false;
-			this.MyRenderer.SetActive(false);
-			this.BeltCoat.SetActive(true);
-		}
-	}
+  public void DisableWeapon()
+  {
+    for (int index = 1; index < this.Weapons.Length; ++index)
+      this.Weapons[index].SetActive(false);
+  }
 
-	// Token: 0x06000A18 RID: 2584 RVA: 0x0005797C File Offset: 0x00055B7C
-	private void Update()
-	{
-		if (!this.StraightSpecial && !this.ArcSpecial)
-		{
-			base.transform.LookAt(this.Player.transform.position);
-		}
-		if (this.Player.Defeated)
-		{
-			this.MyAnimation.CrossFade(this.IdleAnim);
-			if (this.Warning != null)
-			{
-				UnityEngine.Object.Destroy(this.Warning);
-				return;
-			}
-		}
-		else if (this.HitReacting)
-		{
-			if (this.MyAnimation[this.HitReactAnim].time >= this.MyAnimation[this.HitReactAnim].length)
-			{
-				this.MyAnimation.CrossFade(this.IdleAnim);
-				this.HitReacting = false;
-				return;
-			}
-		}
-		else if (this.Attacking)
-		{
-			if (this.MyAnimation[this.AttackAnim].time >= this.MyAnimation[this.AttackAnim].length)
-			{
-				this.MyAnimation.CrossFade(this.IdleAnim);
-				this.Attacking = false;
-				return;
-			}
-			if (!this.HitboxSpawned && this.MyAnimation[this.AttackAnim].time >= this.MyAnimation[this.AttackAnim].length * 0.45f)
-			{
-				UnityEngine.Object.Instantiate<GameObject>(this.Hitbox, base.transform.position + base.transform.forward * 0.67f + new Vector3(0f, 1f, 0f), base.transform.rotation);
-				this.HitboxSpawned = true;
-				return;
-			}
-		}
-		else if (this.StraightSpecial)
-		{
-			if (this.MyAnimation[this.StraightSpecialAnim].time >= this.MyAnimation[this.StraightSpecialAnim].length * 0.9f)
-			{
-				this.StraightSpecialHitbox.SetActive(false);
-				this.EyeTwinkle.SetActive(false);
-				this.StraightSpecial = false;
-				this.HitboxSpawned = false;
-				UnityEngine.Object.Destroy(this.Warning);
-				return;
-			}
-			if (!this.HitboxSpawned)
-			{
-				if (this.MyAnimation[this.StraightSpecialAnim].time >= this.MyAnimation[this.StraightSpecialAnim].length * 0.39f)
-				{
-					this.StraightSpecialHitbox.SetActive(true);
-					this.HitboxSpawned = true;
-					this.Speed = this.MaxSpeed;
-					return;
-				}
-			}
-			else
-			{
-				this.MyController.Move(base.transform.forward * this.Speed * Time.deltaTime);
-				this.Speed = Mathf.MoveTowards(this.Speed, 0f, Time.deltaTime * this.MaxSpeed);
-				if (this.Speed < 1f)
-				{
-					this.StraightSpecialHitbox.SetActive(false);
-					return;
-				}
-			}
-		}
-		else if (this.ArcSpecial)
-		{
-			if (Vector3.Distance(base.transform.position, this.Player.transform.position) > 1f)
-			{
-				this.MyController.Move(base.transform.forward * this.Speed * Time.deltaTime);
-			}
-			this.Speed = Mathf.MoveTowards(this.Speed, 0f, Time.deltaTime * this.MaxSpeed);
-			if (this.Speed > 0f)
-			{
-				base.transform.LookAt(this.Player.transform.position);
-			}
-			if (this.MyAnimation[this.ArcSpecialAnimA].time >= this.MyAnimation[this.ArcSpecialAnimA].length)
-			{
-				this.MyAnimation.CrossFade(this.ArcSpecialAnimB);
-			}
-			else if (this.MyAnimation[this.ArcSpecialAnimA].time >= this.MyAnimation[this.ArcSpecialAnimA].length * 0.35f)
-			{
-				this.Weapons[this.MyWeapon].transform.parent = this.RightHand;
-				this.Weapons[this.MyWeapon].transform.localPosition = Vector3.zero;
-				this.Weapons[this.MyWeapon].transform.localEulerAngles = Vector3.zero;
-			}
-			if (this.MyAnimation[this.ArcSpecialAnimB].time >= this.MyAnimation[this.ArcSpecialAnimB].length * 0.9f)
-			{
-				this.Weapons[this.MyWeapon].transform.parent = this.WeaponParent;
-				this.Weapons[this.MyWeapon].transform.localPosition = Vector3.zero;
-				this.Weapons[this.MyWeapon].transform.localEulerAngles = Vector3.zero;
-				this.EyeTwinkle.SetActive(false);
-				this.HitboxSpawned = false;
-				this.ArcSpecial = false;
-				UnityEngine.Object.Destroy(this.Warning);
-				return;
-			}
-			if (!this.HitboxSpawned)
-			{
-				if (this.MyAnimation[this.ArcSpecialAnimB].time >= this.MyAnimation[this.ArcSpecialAnimB].length * 0.34f)
-				{
-					this.ArcSpecialHitbox.SetActive(true);
-					this.HitboxSpawned = true;
-					return;
-				}
-			}
-			else if (this.MyAnimation[this.ArcSpecialAnimB].time >= this.MyAnimation[this.ArcSpecialAnimB].length * 0.44f)
-			{
-				this.ArcSpecialHitbox.SetActive(false);
-				return;
-			}
-		}
-		else if (this.Defeated)
-		{
-			if (this.KnockedDown)
-			{
-				this.KnockBackSpeed = this.MaxKnockBackSpeed * (1f - this.MyAnimation[this.KnockedDownAnim].time / this.MyAnimation[this.KnockedDownAnim].length);
-				this.MyController.Move(base.transform.forward * this.KnockBackSpeed * -1f * Time.deltaTime);
-				if (this.MyAnimation[this.KnockedDownAnim].time >= this.MyAnimation[this.KnockedDownAnim].length)
-				{
-					this.MyAnimation.CrossFade(this.KnockedDownLoop);
-					this.MyController.enabled = false;
-					base.enabled = false;
-					return;
-				}
-			}
-			else if (this.MyAnimation[this.DefeatAnim].time >= this.MyAnimation[this.DefeatAnim].length)
-			{
-				this.MyAnimation.CrossFade(this.DefeatLoop);
-				base.enabled = false;
-				return;
-			}
-		}
-		else
-		{
-			if (Vector3.Distance(base.transform.position, this.Player.transform.position) < 5f)
-			{
-				this.SpecialTimer += Time.deltaTime;
-				if (this.SpecialTimer > 5f)
-				{
-					this.SpecialTimer = 0f;
-					int num = UnityEngine.Random.RandomRange(0, 3);
-					if (num == 1)
-					{
-						this.Warning = UnityEngine.Object.Instantiate<GameObject>(this.StraightSpecialWarning, base.transform.position, base.transform.rotation);
-						this.MyAnimation.CrossFade(this.StraightSpecialAnim);
-						this.EyeTwinkle.SetActive(true);
-						this.StraightSpecial = true;
-					}
-					else if (num == 2)
-					{
-						this.Warning = UnityEngine.Object.Instantiate<GameObject>(this.ArcSpecialWarning, base.transform.position, base.transform.rotation);
-						this.Warning.transform.parent = base.transform;
-						this.MyAnimation.CrossFade(this.ArcSpecialAnimA);
-						this.EyeTwinkle.SetActive(true);
-						this.ArcSpecial = true;
-						this.Speed = 5f;
-					}
-				}
-			}
-			if (!this.StraightSpecial && !this.ArcSpecial)
-			{
-				if (this.Player.Enemy == this)
-				{
-					if (Vector3.Distance(base.transform.position, this.Player.transform.position) > 1f)
-					{
-						this.MyController.Move(base.transform.forward * Time.deltaTime);
-						this.MyAnimation.CrossFade(this.WalkAnim);
-						return;
-					}
-					this.MyAnimation.CrossFade(this.IdleAnim);
-					this.AttackTimer += Time.deltaTime;
-					if (this.AttackTimer > 0.5f)
-					{
-						this.MyAnimation.CrossFade(this.AttackAnim);
-						this.MyAudio.clip = this.Whoosh;
-						this.MyAudio.Play();
-						this.HitboxSpawned = false;
-						this.Attacking = true;
-						this.AttackTimer = 0f;
-						return;
-					}
-				}
-				else
-				{
-					this.MyAnimation.CrossFade(this.WalkAnim);
-					if ((double)Vector3.Distance(base.transform.position, this.Player.transform.position) > 2.5)
-					{
-						this.MyController.Move(base.transform.forward * Time.deltaTime);
-						return;
-					}
-					this.MyController.Move(base.transform.right * -1f * Time.deltaTime);
-				}
-			}
-		}
-	}
+  public void Start()
+  {
+    Physics.IgnoreLayerCollision(9, 9);
+    this.Difficulty = GameGlobals.BeatEmUpDifficulty;
+    this.MaxHealth += (float) (this.Difficulty * 25);
+    this.MyAnimation[this.WalkAnim].speed = this.AnimSpeed;
+    this.Weapons[this.MyWeapon].SetActive(true);
+    this.Health = this.MaxHealth;
+    if (!GameGlobals.Eighties)
+      return;
+    this.HairRenderer.material.color = new Color(0.2f, 0.2f, 0.2f, 1f);
+    this.Name = "Rival Gang Member #" + this.EnemyID.ToString();
+    this.WeaponBagRenderer.enabled = false;
+    this.MyRenderer.SetActive(false);
+    this.BeltCoat.SetActive(true);
+  }
 
-	// Token: 0x06000A19 RID: 2585 RVA: 0x00058300 File Offset: 0x00056500
-	private void OnTriggerEnter(Collider other)
-	{
-		if (this.Health > 0f && other.gameObject.layer == 18)
-		{
-			BeatEmUpHitboxScript component = other.gameObject.GetComponent<BeatEmUpHitboxScript>();
-			if (!component.Enemy)
-			{
-				if (!component.Super)
-				{
-					this.Player.SuperMeter += 5f;
-					if (this.Player.SuperMeter > this.Player.MaxSuper)
-					{
-						this.Player.SuperMeter = this.Player.MaxSuper;
-					}
-					if (this.Player.SuperMeter >= 100f)
-					{
-						this.Player.SuperButton.alpha = 1f;
-					}
-					this.Player.SuperLabel.text = this.Player.SuperMeter.ToString() + " / " + this.Player.MaxSuper.ToString();
-					this.Player.SuperBar.transform.localScale = new Vector3(this.Player.SuperMeter / this.Player.MaxSuper, 1f, 1f);
-				}
-				this.MyAudio.clip = this.HitSFX;
-				this.MyAudio.pitch = UnityEngine.Random.Range(0.9f, 1.1f);
-				this.MyAudio.Play();
-				base.transform.localScale = new Vector3(base.transform.localScale.x * -1f, 1f, 1f);
-				if (component.Heavy)
-				{
-					UnityEngine.Object.Instantiate<GameObject>(this.HitEffect, this.Player.RightFoot.position, Quaternion.identity);
-				}
-				else if (component.AttackID == 1 || component.AttackID == 3 || component.AttackID == 5)
-				{
-					UnityEngine.Object.Instantiate<GameObject>(this.HitEffect, this.Player.LeftHand.position, Quaternion.identity);
-				}
-				else
-				{
-					UnityEngine.Object.Instantiate<GameObject>(this.HitEffect, this.Player.RightHand.position, Quaternion.identity);
-				}
-				this.Health -= component.Damage;
-				if (this.Health <= 0f)
-				{
-					AudioSource.PlayClipAtPoint(this.Defeat[UnityEngine.Random.Range(1, this.Defeat.Length)], this.Player.MainCamera.transform.position);
-					this.StraightSpecialHitbox.SetActive(false);
-					this.ArcSpecialHitbox.SetActive(false);
-					if (this.Warning != null)
-					{
-						UnityEngine.Object.Destroy(this.Warning);
-					}
-					this.StraightSpecial = false;
-					this.HitReacting = false;
-					this.ArcSpecial = false;
-					this.Defeated = true;
-					this.Health = 0f;
-					if (component.AttackID == 14)
-					{
-						this.MyAnimation.CrossFade(this.KnockedDownAnim);
-						this.KnockedDown = true;
-					}
-					else
-					{
-						this.MyAnimation.CrossFade(this.DefeatAnim);
-						this.MyController.enabled = false;
-					}
-					this.Player.VictoryCheck();
-					if (this.Player.Super)
-					{
-						this.Player.GetNearestEnemy();
-						this.Player.transform.LookAt(this.Player.Ring.position);
-						return;
-					}
-				}
-				else
-				{
-					AudioSource.PlayClipAtPoint(this.HitReact[UnityEngine.Random.Range(1, this.HitReact.Length)], this.Player.MainCamera.transform.position);
-					if (!this.StraightSpecial && !this.ArcSpecial)
-					{
-						this.MyAnimation[this.HitReactAnim].time = 0f;
-						this.MyAnimation.CrossFade(this.HitReactAnim);
-						this.HitReacting = true;
-						this.Attacking = false;
-						this.AttackTimer = 0f;
-					}
-				}
-			}
-		}
-	}
+  private void Update()
+  {
+    if (!this.StraightSpecial && !this.ArcSpecial)
+      this.transform.LookAt(this.Player.transform.position);
+    if (this.Player.Defeated)
+    {
+      this.MyAnimation.CrossFade(this.IdleAnim);
+      if (!((Object) this.Warning != (Object) null))
+        return;
+      Object.Destroy((Object) this.Warning);
+    }
+    else if (this.HitReacting)
+    {
+      if ((double) this.MyAnimation[this.HitReactAnim].time < (double) this.MyAnimation[this.HitReactAnim].length)
+        return;
+      this.MyAnimation.CrossFade(this.IdleAnim);
+      this.HitReacting = false;
+    }
+    else if (this.Attacking)
+    {
+      if ((double) this.MyAnimation[this.AttackAnim].time >= (double) this.MyAnimation[this.AttackAnim].length)
+      {
+        this.MyAnimation.CrossFade(this.IdleAnim);
+        this.Attacking = false;
+      }
+      else
+      {
+        if (this.HitboxSpawned || (double) this.MyAnimation[this.AttackAnim].time < (double) this.MyAnimation[this.AttackAnim].length * 0.449999988079071)
+          return;
+        Object.Instantiate<GameObject>(this.Hitbox, this.transform.position + this.transform.forward * 0.67f + new Vector3(0.0f, 1f, 0.0f), this.transform.rotation);
+        this.HitboxSpawned = true;
+      }
+    }
+    else if (this.StraightSpecial)
+    {
+      if ((double) this.MyAnimation[this.StraightSpecialAnim].time >= (double) this.MyAnimation[this.StraightSpecialAnim].length * 0.899999976158142)
+      {
+        this.StraightSpecialHitbox.SetActive(false);
+        this.EyeTwinkle.SetActive(false);
+        this.StraightSpecial = false;
+        this.HitboxSpawned = false;
+        Object.Destroy((Object) this.Warning);
+      }
+      else if (!this.HitboxSpawned)
+      {
+        if ((double) this.MyAnimation[this.StraightSpecialAnim].time < (double) this.MyAnimation[this.StraightSpecialAnim].length * 0.389999985694885)
+          return;
+        this.StraightSpecialHitbox.SetActive(true);
+        this.HitboxSpawned = true;
+        this.Speed = this.MaxSpeed;
+      }
+      else
+      {
+        int num = (int) this.MyController.Move(this.transform.forward * this.Speed * Time.deltaTime);
+        this.Speed = Mathf.MoveTowards(this.Speed, 0.0f, Time.deltaTime * this.MaxSpeed);
+        if ((double) this.Speed >= 1.0)
+          return;
+        this.StraightSpecialHitbox.SetActive(false);
+      }
+    }
+    else if (this.ArcSpecial)
+    {
+      if ((double) Vector3.Distance(this.transform.position, this.Player.transform.position) > 1.0)
+      {
+        int num = (int) this.MyController.Move(this.transform.forward * this.Speed * Time.deltaTime);
+      }
+      this.Speed = Mathf.MoveTowards(this.Speed, 0.0f, Time.deltaTime * this.MaxSpeed);
+      if ((double) this.Speed > 0.0)
+        this.transform.LookAt(this.Player.transform.position);
+      if ((double) this.MyAnimation[this.ArcSpecialAnimA].time >= (double) this.MyAnimation[this.ArcSpecialAnimA].length)
+        this.MyAnimation.CrossFade(this.ArcSpecialAnimB);
+      else if ((double) this.MyAnimation[this.ArcSpecialAnimA].time >= (double) this.MyAnimation[this.ArcSpecialAnimA].length * 0.349999994039536)
+      {
+        this.Weapons[this.MyWeapon].transform.parent = this.RightHand;
+        this.Weapons[this.MyWeapon].transform.localPosition = Vector3.zero;
+        this.Weapons[this.MyWeapon].transform.localEulerAngles = Vector3.zero;
+      }
+      if ((double) this.MyAnimation[this.ArcSpecialAnimB].time >= (double) this.MyAnimation[this.ArcSpecialAnimB].length * 0.899999976158142)
+      {
+        this.Weapons[this.MyWeapon].transform.parent = this.WeaponParent;
+        this.Weapons[this.MyWeapon].transform.localPosition = Vector3.zero;
+        this.Weapons[this.MyWeapon].transform.localEulerAngles = Vector3.zero;
+        this.EyeTwinkle.SetActive(false);
+        this.HitboxSpawned = false;
+        this.ArcSpecial = false;
+        Object.Destroy((Object) this.Warning);
+      }
+      else if (!this.HitboxSpawned)
+      {
+        if ((double) this.MyAnimation[this.ArcSpecialAnimB].time < (double) this.MyAnimation[this.ArcSpecialAnimB].length * 0.340000003576279)
+          return;
+        this.ArcSpecialHitbox.SetActive(true);
+        this.HitboxSpawned = true;
+      }
+      else
+      {
+        if ((double) this.MyAnimation[this.ArcSpecialAnimB].time < (double) this.MyAnimation[this.ArcSpecialAnimB].length * 0.439999997615814)
+          return;
+        this.ArcSpecialHitbox.SetActive(false);
+      }
+    }
+    else if (this.Defeated)
+    {
+      if (this.KnockedDown)
+      {
+        this.KnockBackSpeed = this.MaxKnockBackSpeed * (float) (1.0 - (double) this.MyAnimation[this.KnockedDownAnim].time / (double) this.MyAnimation[this.KnockedDownAnim].length);
+        int num = (int) this.MyController.Move(this.transform.forward * this.KnockBackSpeed * -1f * Time.deltaTime);
+        if ((double) this.MyAnimation[this.KnockedDownAnim].time < (double) this.MyAnimation[this.KnockedDownAnim].length)
+          return;
+        this.MyAnimation.CrossFade(this.KnockedDownLoop);
+        this.MyController.enabled = false;
+        this.enabled = false;
+      }
+      else
+      {
+        if ((double) this.MyAnimation[this.DefeatAnim].time < (double) this.MyAnimation[this.DefeatAnim].length)
+          return;
+        this.MyAnimation.CrossFade(this.DefeatLoop);
+        this.enabled = false;
+      }
+    }
+    else
+    {
+      if ((double) Vector3.Distance(this.transform.position, this.Player.transform.position) < 5.0)
+      {
+        this.SpecialTimer += Time.deltaTime;
+        if ((double) this.SpecialTimer > 5.0)
+        {
+          this.SpecialTimer = 0.0f;
+          switch (Random.RandomRange(0, 3))
+          {
+            case 1:
+              this.Warning = Object.Instantiate<GameObject>(this.StraightSpecialWarning, this.transform.position, this.transform.rotation);
+              this.MyAnimation.CrossFade(this.StraightSpecialAnim);
+              this.EyeTwinkle.SetActive(true);
+              this.StraightSpecial = true;
+              break;
+            case 2:
+              this.Warning = Object.Instantiate<GameObject>(this.ArcSpecialWarning, this.transform.position, this.transform.rotation);
+              this.Warning.transform.parent = this.transform;
+              this.MyAnimation.CrossFade(this.ArcSpecialAnimA);
+              this.EyeTwinkle.SetActive(true);
+              this.ArcSpecial = true;
+              this.Speed = 5f;
+              break;
+          }
+        }
+      }
+      if (this.StraightSpecial || this.ArcSpecial)
+        return;
+      if ((Object) this.Player.Enemy == (Object) this)
+      {
+        if ((double) Vector3.Distance(this.transform.position, this.Player.transform.position) > 1.0)
+        {
+          int num = (int) this.MyController.Move(this.transform.forward * Time.deltaTime);
+          this.MyAnimation.CrossFade(this.WalkAnim);
+        }
+        else
+        {
+          this.MyAnimation.CrossFade(this.IdleAnim);
+          this.AttackTimer += Time.deltaTime;
+          if ((double) this.AttackTimer <= 0.5)
+            return;
+          this.MyAnimation.CrossFade(this.AttackAnim);
+          this.MyAudio.clip = this.Whoosh;
+          this.MyAudio.Play();
+          this.HitboxSpawned = false;
+          this.Attacking = true;
+          this.AttackTimer = 0.0f;
+        }
+      }
+      else
+      {
+        this.MyAnimation.CrossFade(this.WalkAnim);
+        if ((double) Vector3.Distance(this.transform.position, this.Player.transform.position) > 2.5)
+        {
+          int num1 = (int) this.MyController.Move(this.transform.forward * Time.deltaTime);
+        }
+        else
+        {
+          int num2 = (int) this.MyController.Move(this.transform.right * -1f * Time.deltaTime);
+        }
+      }
+    }
+  }
 
-	// Token: 0x04000AF0 RID: 2800
-	public CharacterController MyController;
-
-	// Token: 0x04000AF1 RID: 2801
-	public BeatEmUpScript Player;
-
-	// Token: 0x04000AF2 RID: 2802
-	public GameObject StraightSpecialWarning;
-
-	// Token: 0x04000AF3 RID: 2803
-	public GameObject StraightSpecialHitbox;
-
-	// Token: 0x04000AF4 RID: 2804
-	public GameObject ArcSpecialWarning;
-
-	// Token: 0x04000AF5 RID: 2805
-	public GameObject ArcSpecialHitbox;
-
-	// Token: 0x04000AF6 RID: 2806
-	public GameObject EyeTwinkle;
-
-	// Token: 0x04000AF7 RID: 2807
-	public GameObject MyRenderer;
-
-	// Token: 0x04000AF8 RID: 2808
-	public GameObject HitEffect;
-
-	// Token: 0x04000AF9 RID: 2809
-	public GameObject BeltCoat;
-
-	// Token: 0x04000AFA RID: 2810
-	public GameObject Warning;
-
-	// Token: 0x04000AFB RID: 2811
-	public GameObject Hitbox;
-
-	// Token: 0x04000AFC RID: 2812
-	public Renderer WeaponBagRenderer;
-
-	// Token: 0x04000AFD RID: 2813
-	public Renderer HairRenderer;
-
-	// Token: 0x04000AFE RID: 2814
-	public Transform WeaponParent;
-
-	// Token: 0x04000AFF RID: 2815
-	public Transform RightHand;
-
-	// Token: 0x04000B00 RID: 2816
-	public Animation MyAnimation;
-
-	// Token: 0x04000B01 RID: 2817
-	public GameObject[] Weapons;
-
-	// Token: 0x04000B02 RID: 2818
-	public AudioSource MyAudio;
-
-	// Token: 0x04000B03 RID: 2819
-	public AudioClip HitSFX;
-
-	// Token: 0x04000B04 RID: 2820
-	public AudioClip Whoosh;
-
-	// Token: 0x04000B05 RID: 2821
-	public AudioClip[] HitReact;
-
-	// Token: 0x04000B06 RID: 2822
-	public AudioClip[] Defeat;
-
-	// Token: 0x04000B07 RID: 2823
-	public float MaxKnockBackSpeed;
-
-	// Token: 0x04000B08 RID: 2824
-	public float KnockBackSpeed;
-
-	// Token: 0x04000B09 RID: 2825
-	public float MaxSpeed;
-
-	// Token: 0x04000B0A RID: 2826
-	public float Speed;
-
-	// Token: 0x04000B0B RID: 2827
-	public string KnockedDownAnim;
-
-	// Token: 0x04000B0C RID: 2828
-	public string KnockedDownLoop;
-
-	// Token: 0x04000B0D RID: 2829
-	public string DefeatAnim;
-
-	// Token: 0x04000B0E RID: 2830
-	public string DefeatLoop;
-
-	// Token: 0x04000B0F RID: 2831
-	public string StraightSpecialAnim;
-
-	// Token: 0x04000B10 RID: 2832
-	public string ArcSpecialAnimA;
-
-	// Token: 0x04000B11 RID: 2833
-	public string ArcSpecialAnimB;
-
-	// Token: 0x04000B12 RID: 2834
-	public string HitReactAnim;
-
-	// Token: 0x04000B13 RID: 2835
-	public string AttackAnim;
-
-	// Token: 0x04000B14 RID: 2836
-	public string IdleAnim;
-
-	// Token: 0x04000B15 RID: 2837
-	public string WalkAnim;
-
-	// Token: 0x04000B16 RID: 2838
-	public string Name;
-
-	// Token: 0x04000B17 RID: 2839
-	public bool StraightSpecial;
-
-	// Token: 0x04000B18 RID: 2840
-	public bool HitboxSpawned;
-
-	// Token: 0x04000B19 RID: 2841
-	public bool HitReacting;
-
-	// Token: 0x04000B1A RID: 2842
-	public bool KnockedDown;
-
-	// Token: 0x04000B1B RID: 2843
-	public bool ArcSpecial;
-
-	// Token: 0x04000B1C RID: 2844
-	public bool Attacking;
-
-	// Token: 0x04000B1D RID: 2845
-	public bool Defeated;
-
-	// Token: 0x04000B1E RID: 2846
-	public float SpecialTimer;
-
-	// Token: 0x04000B1F RID: 2847
-	public float AttackTimer;
-
-	// Token: 0x04000B20 RID: 2848
-	public float AnimSpeed;
-
-	// Token: 0x04000B21 RID: 2849
-	public float MaxHealth;
-
-	// Token: 0x04000B22 RID: 2850
-	public float Health;
-
-	// Token: 0x04000B23 RID: 2851
-	public int Difficulty = 1;
-
-	// Token: 0x04000B24 RID: 2852
-	public int MyWeapon = 1;
-
-	// Token: 0x04000B25 RID: 2853
-	public int EnemyID = 1;
+  private void OnTriggerEnter(Collider other)
+  {
+    if ((double) this.Health <= 0.0 || other.gameObject.layer != 18)
+      return;
+    BeatEmUpHitboxScript component = other.gameObject.GetComponent<BeatEmUpHitboxScript>();
+    if (component.Enemy)
+      return;
+    if (!component.Super)
+    {
+      this.Player.SuperMeter += 5f;
+      if ((double) this.Player.SuperMeter > (double) this.Player.MaxSuper)
+        this.Player.SuperMeter = this.Player.MaxSuper;
+      if ((double) this.Player.SuperMeter >= 100.0)
+        this.Player.SuperButton.alpha = 1f;
+      this.Player.SuperLabel.text = this.Player.SuperMeter.ToString() + " / " + this.Player.MaxSuper.ToString();
+      this.Player.SuperBar.transform.localScale = new Vector3(this.Player.SuperMeter / this.Player.MaxSuper, 1f, 1f);
+    }
+    this.MyAudio.clip = this.HitSFX;
+    this.MyAudio.pitch = Random.Range(0.9f, 1.1f);
+    this.MyAudio.Play();
+    this.transform.localScale = new Vector3(this.transform.localScale.x * -1f, 1f, 1f);
+    if (component.Heavy)
+      Object.Instantiate<GameObject>(this.HitEffect, this.Player.RightFoot.position, Quaternion.identity);
+    else if (component.AttackID == 1 || component.AttackID == 3 || component.AttackID == 5)
+      Object.Instantiate<GameObject>(this.HitEffect, this.Player.LeftHand.position, Quaternion.identity);
+    else
+      Object.Instantiate<GameObject>(this.HitEffect, this.Player.RightHand.position, Quaternion.identity);
+    this.Health -= component.Damage;
+    if ((double) this.Health <= 0.0)
+    {
+      AudioSource.PlayClipAtPoint(this.Defeat[Random.Range(1, this.Defeat.Length)], this.Player.MainCamera.transform.position);
+      this.StraightSpecialHitbox.SetActive(false);
+      this.ArcSpecialHitbox.SetActive(false);
+      if ((Object) this.Warning != (Object) null)
+        Object.Destroy((Object) this.Warning);
+      this.StraightSpecial = false;
+      this.HitReacting = false;
+      this.ArcSpecial = false;
+      this.Defeated = true;
+      this.Health = 0.0f;
+      if (component.AttackID == 14)
+      {
+        this.MyAnimation.CrossFade(this.KnockedDownAnim);
+        this.KnockedDown = true;
+      }
+      else
+      {
+        this.MyAnimation.CrossFade(this.DefeatAnim);
+        this.MyController.enabled = false;
+      }
+      this.Player.VictoryCheck();
+      if (!this.Player.Super)
+        return;
+      this.Player.GetNearestEnemy();
+      this.Player.transform.LookAt(this.Player.Ring.position);
+    }
+    else
+    {
+      AudioSource.PlayClipAtPoint(this.HitReact[Random.Range(1, this.HitReact.Length)], this.Player.MainCamera.transform.position);
+      if (this.StraightSpecial || this.ArcSpecial)
+        return;
+      this.MyAnimation[this.HitReactAnim].time = 0.0f;
+      this.MyAnimation.CrossFade(this.HitReactAnim);
+      this.HitReacting = true;
+      this.Attacking = false;
+      this.AttackTimer = 0.0f;
+    }
+  }
 }

@@ -1,36 +1,27 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UISnapshotPoint
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000083 RID: 131
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Internal/Snapshot Point")]
 public class UISnapshotPoint : MonoBehaviour
 {
-	// Token: 0x060004FF RID: 1279 RVA: 0x00031E68 File Offset: 0x00030068
-	private void Start()
-	{
-		if (base.tag != "EditorOnly")
-		{
-			base.tag = "EditorOnly";
-		}
-	}
+  public bool isOrthographic = true;
+  public float nearClip = -100f;
+  public float farClip = 100f;
+  [Range(10f, 80f)]
+  public int fieldOfView = 35;
+  public float orthoSize = 30f;
+  public Texture2D thumbnail;
 
-	// Token: 0x04000573 RID: 1395
-	public bool isOrthographic = true;
-
-	// Token: 0x04000574 RID: 1396
-	public float nearClip = -100f;
-
-	// Token: 0x04000575 RID: 1397
-	public float farClip = 100f;
-
-	// Token: 0x04000576 RID: 1398
-	[Range(10f, 80f)]
-	public int fieldOfView = 35;
-
-	// Token: 0x04000577 RID: 1399
-	public float orthoSize = 30f;
-
-	// Token: 0x04000578 RID: 1400
-	public Texture2D thumbnail;
+  private void Start()
+  {
+    if (!(this.tag != "EditorOnly"))
+      return;
+    this.tag = "EditorOnly";
+  }
 }

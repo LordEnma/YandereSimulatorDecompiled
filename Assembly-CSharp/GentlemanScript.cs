@@ -1,27 +1,25 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: GentlemanScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020002E6 RID: 742
 public class GentlemanScript : MonoBehaviour
 {
-	// Token: 0x06001511 RID: 5393 RVA: 0x000D8E54 File Offset: 0x000D7054
-	private void Update()
-	{
-		if (Input.GetButtonDown("RB"))
-		{
-			AudioSource component = base.GetComponent<AudioSource>();
-			if (!component.isPlaying)
-			{
-				component.clip = this.Clips[UnityEngine.Random.Range(0, this.Clips.Length - 1)];
-				component.Play();
-				this.Yandere.Sanity += 10f;
-			}
-		}
-	}
+  public YandereScript Yandere;
+  public AudioClip[] Clips;
 
-	// Token: 0x040021D9 RID: 8665
-	public YandereScript Yandere;
-
-	// Token: 0x040021DA RID: 8666
-	public AudioClip[] Clips;
+  private void Update()
+  {
+    if (!Input.GetButtonDown("RB"))
+      return;
+    AudioSource component = this.GetComponent<AudioSource>();
+    if (component.isPlaying)
+      return;
+    component.clip = this.Clips[Random.Range(0, this.Clips.Length - 1)];
+    component.Play();
+    this.Yandere.Sanity += 10f;
+  }
 }

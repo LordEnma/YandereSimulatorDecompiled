@@ -1,19 +1,20 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DirectionalMicScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000287 RID: 647
 public class DirectionalMicScript : MonoBehaviour
 {
-	// Token: 0x060013A3 RID: 5027 RVA: 0x000B8BB3 File Offset: 0x000B6DB3
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Yandere.Inventory.DirectionalMic = true;
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  public PromptScript Prompt;
 
-	// Token: 0x04001D31 RID: 7473
-	public PromptScript Prompt;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    this.Prompt.Yandere.Inventory.DirectionalMic = true;
+    Object.Destroy((Object) this.gameObject);
+  }
 }

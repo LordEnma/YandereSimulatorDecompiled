@@ -1,13 +1,13 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: LoadingScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000358 RID: 856
 public class LoadingScript : MonoBehaviour
 {
-	// Token: 0x06001994 RID: 6548 RVA: 0x00103F39 File Offset: 0x00102139
-	private void Start()
-	{
-		SceneManager.LoadScene("SchoolScene");
-	}
+  private void Start() => SceneManager.LoadScene("SchoolScene");
 }

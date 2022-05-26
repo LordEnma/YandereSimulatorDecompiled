@@ -1,1083 +1,959 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIBasicSprite
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
 
-// Token: 0x0200007E RID: 126
 public abstract class UIBasicSprite : UIWidget
 {
-	// Token: 0x1700006E RID: 110
-	// (get) Token: 0x06000470 RID: 1136 RVA: 0x0002CD0A File Offset: 0x0002AF0A
-	// (set) Token: 0x06000471 RID: 1137 RVA: 0x0002CD12 File Offset: 0x0002AF12
-	public virtual UIBasicSprite.Type type
-	{
-		get
-		{
-			return this.mType;
-		}
-		set
-		{
-			if (this.mType != value)
-			{
-				this.mType = value;
-				this.MarkAsChanged();
-			}
-		}
-	}
+  [HideInInspector]
+  [SerializeField]
+  protected UIBasicSprite.Type mType;
+  [HideInInspector]
+  [SerializeField]
+  protected UIBasicSprite.FillDirection mFillDirection = UIBasicSprite.FillDirection.Radial360;
+  [Range(0.0f, 1f)]
+  [HideInInspector]
+  [SerializeField]
+  protected float mFillAmount = 1f;
+  [HideInInspector]
+  [SerializeField]
+  protected bool mInvert;
+  [HideInInspector]
+  [SerializeField]
+  protected UIBasicSprite.Flip mFlip;
+  [HideInInspector]
+  [SerializeField]
+  protected bool mApplyGradient;
+  [HideInInspector]
+  [SerializeField]
+  protected Color mGradientTop = Color.white;
+  [HideInInspector]
+  [SerializeField]
+  protected Color mGradientBottom = new Color(0.7f, 0.7f, 0.7f);
+  [NonSerialized]
+  protected Rect mInnerUV;
+  [NonSerialized]
+  protected Rect mOuterUV;
+  public UIBasicSprite.AdvancedType centerType = UIBasicSprite.AdvancedType.Sliced;
+  public UIBasicSprite.AdvancedType leftType = UIBasicSprite.AdvancedType.Sliced;
+  public UIBasicSprite.AdvancedType rightType = UIBasicSprite.AdvancedType.Sliced;
+  public UIBasicSprite.AdvancedType bottomType = UIBasicSprite.AdvancedType.Sliced;
+  public UIBasicSprite.AdvancedType topType = UIBasicSprite.AdvancedType.Sliced;
+  protected static Vector2[] mTempPos = new Vector2[4];
+  protected static Vector2[] mTempUVs = new Vector2[4];
 
-	// Token: 0x1700006F RID: 111
-	// (get) Token: 0x06000472 RID: 1138 RVA: 0x0002CD2A File Offset: 0x0002AF2A
-	// (set) Token: 0x06000473 RID: 1139 RVA: 0x0002CD32 File Offset: 0x0002AF32
-	public UIBasicSprite.Flip flip
-	{
-		get
-		{
-			return this.mFlip;
-		}
-		set
-		{
-			if (this.mFlip != value)
-			{
-				this.mFlip = value;
-				this.MarkAsChanged();
-			}
-		}
-	}
+  public virtual UIBasicSprite.Type type
+  {
+    get => this.mType;
+    set
+    {
+      if (this.mType == value)
+        return;
+      this.mType = value;
+      this.MarkAsChanged();
+    }
+  }
 
-	// Token: 0x17000070 RID: 112
-	// (get) Token: 0x06000474 RID: 1140 RVA: 0x0002CD4A File Offset: 0x0002AF4A
-	// (set) Token: 0x06000475 RID: 1141 RVA: 0x0002CD52 File Offset: 0x0002AF52
-	public UIBasicSprite.FillDirection fillDirection
-	{
-		get
-		{
-			return this.mFillDirection;
-		}
-		set
-		{
-			if (this.mFillDirection != value)
-			{
-				this.mFillDirection = value;
-				this.mChanged = true;
-			}
-		}
-	}
+  public UIBasicSprite.Flip flip
+  {
+    get => this.mFlip;
+    set
+    {
+      if (this.mFlip == value)
+        return;
+      this.mFlip = value;
+      this.MarkAsChanged();
+    }
+  }
 
-	// Token: 0x17000071 RID: 113
-	// (get) Token: 0x06000476 RID: 1142 RVA: 0x0002CD6B File Offset: 0x0002AF6B
-	// (set) Token: 0x06000477 RID: 1143 RVA: 0x0002CD74 File Offset: 0x0002AF74
-	public float fillAmount
-	{
-		get
-		{
-			return this.mFillAmount;
-		}
-		set
-		{
-			float num = Mathf.Clamp01(value);
-			if (this.mFillAmount != num)
-			{
-				this.mFillAmount = num;
-				this.mChanged = true;
-			}
-		}
-	}
+  public UIBasicSprite.FillDirection fillDirection
+  {
+    get => this.mFillDirection;
+    set
+    {
+      if (this.mFillDirection == value)
+        return;
+      this.mFillDirection = value;
+      this.mChanged = true;
+    }
+  }
 
-	// Token: 0x17000072 RID: 114
-	// (get) Token: 0x06000478 RID: 1144 RVA: 0x0002CDA0 File Offset: 0x0002AFA0
-	public override int minWidth
-	{
-		get
-		{
-			if (this.type == UIBasicSprite.Type.Sliced || this.type == UIBasicSprite.Type.Advanced)
-			{
-				Vector4 vector = this.border * this.pixelSize;
-				int num = Mathf.RoundToInt(vector.x + vector.z);
-				return Mathf.Max(base.minWidth, ((num & 1) == 1) ? (num + 1) : num);
-			}
-			return base.minWidth;
-		}
-	}
+  public float fillAmount
+  {
+    get => this.mFillAmount;
+    set
+    {
+      float num = Mathf.Clamp01(value);
+      if ((double) this.mFillAmount == (double) num)
+        return;
+      this.mFillAmount = num;
+      this.mChanged = true;
+    }
+  }
 
-	// Token: 0x17000073 RID: 115
-	// (get) Token: 0x06000479 RID: 1145 RVA: 0x0002CE04 File Offset: 0x0002B004
-	public override int minHeight
-	{
-		get
-		{
-			if (this.type == UIBasicSprite.Type.Sliced || this.type == UIBasicSprite.Type.Advanced)
-			{
-				Vector4 vector = this.border * this.pixelSize;
-				int num = Mathf.RoundToInt(vector.y + vector.w);
-				return Mathf.Max(base.minHeight, ((num & 1) == 1) ? (num + 1) : num);
-			}
-			return base.minHeight;
-		}
-	}
+  public override int minWidth
+  {
+    get
+    {
+      if (this.type != UIBasicSprite.Type.Sliced && this.type != UIBasicSprite.Type.Advanced)
+        return base.minWidth;
+      Vector4 vector4 = this.border * this.pixelSize;
+      int num = Mathf.RoundToInt(vector4.x + vector4.z);
+      return Mathf.Max(base.minWidth, (num & 1) == 1 ? num + 1 : num);
+    }
+  }
 
-	// Token: 0x17000074 RID: 116
-	// (get) Token: 0x0600047A RID: 1146 RVA: 0x0002CE66 File Offset: 0x0002B066
-	// (set) Token: 0x0600047B RID: 1147 RVA: 0x0002CE6E File Offset: 0x0002B06E
-	public bool invert
-	{
-		get
-		{
-			return this.mInvert;
-		}
-		set
-		{
-			if (this.mInvert != value)
-			{
-				this.mInvert = value;
-				this.mChanged = true;
-			}
-		}
-	}
+  public override int minHeight
+  {
+    get
+    {
+      if (this.type != UIBasicSprite.Type.Sliced && this.type != UIBasicSprite.Type.Advanced)
+        return base.minHeight;
+      Vector4 vector4 = this.border * this.pixelSize;
+      int num = Mathf.RoundToInt(vector4.y + vector4.w);
+      return Mathf.Max(base.minHeight, (num & 1) == 1 ? num + 1 : num);
+    }
+  }
 
-	// Token: 0x17000075 RID: 117
-	// (get) Token: 0x0600047C RID: 1148 RVA: 0x0002CE88 File Offset: 0x0002B088
-	public bool hasBorder
-	{
-		get
-		{
-			Vector4 border = this.border;
-			return border.x != 0f || border.y != 0f || border.z != 0f || border.w != 0f;
-		}
-	}
+  public bool invert
+  {
+    get => this.mInvert;
+    set
+    {
+      if (this.mInvert == value)
+        return;
+      this.mInvert = value;
+      this.mChanged = true;
+    }
+  }
 
-	// Token: 0x17000076 RID: 118
-	// (get) Token: 0x0600047D RID: 1149 RVA: 0x0002CED5 File Offset: 0x0002B0D5
-	public virtual bool premultipliedAlpha
-	{
-		get
-		{
-			return false;
-		}
-	}
+  public bool hasBorder
+  {
+    get
+    {
+      Vector4 border = this.border;
+      return (double) border.x != 0.0 || (double) border.y != 0.0 || (double) border.z != 0.0 || (double) border.w != 0.0;
+    }
+  }
 
-	// Token: 0x17000077 RID: 119
-	// (get) Token: 0x0600047E RID: 1150 RVA: 0x0002CED8 File Offset: 0x0002B0D8
-	public virtual float pixelSize
-	{
-		get
-		{
-			return 1f;
-		}
-	}
+  public virtual bool premultipliedAlpha => false;
 
-	// Token: 0x17000078 RID: 120
-	// (get) Token: 0x0600047F RID: 1151 RVA: 0x0002CEDF File Offset: 0x0002B0DF
-	protected virtual Vector4 padding
-	{
-		get
-		{
-			return new Vector4(0f, 0f, 0f, 0f);
-		}
-	}
+  public virtual float pixelSize => 1f;
 
-	// Token: 0x17000079 RID: 121
-	// (get) Token: 0x06000480 RID: 1152 RVA: 0x0002CEFC File Offset: 0x0002B0FC
-	protected Vector4 drawingUVs
-	{
-		get
-		{
-			switch (this.mFlip)
-			{
-			case UIBasicSprite.Flip.Horizontally:
-				return new Vector4(this.mOuterUV.xMax, this.mOuterUV.yMin, this.mOuterUV.xMin, this.mOuterUV.yMax);
-			case UIBasicSprite.Flip.Vertically:
-				return new Vector4(this.mOuterUV.xMin, this.mOuterUV.yMax, this.mOuterUV.xMax, this.mOuterUV.yMin);
-			case UIBasicSprite.Flip.Both:
-				return new Vector4(this.mOuterUV.xMax, this.mOuterUV.yMax, this.mOuterUV.xMin, this.mOuterUV.yMin);
-			default:
-				return new Vector4(this.mOuterUV.xMin, this.mOuterUV.yMin, this.mOuterUV.xMax, this.mOuterUV.yMax);
-			}
-		}
-	}
+  protected virtual Vector4 padding => new Vector4(0.0f, 0.0f, 0.0f, 0.0f);
 
-	// Token: 0x1700007A RID: 122
-	// (get) Token: 0x06000481 RID: 1153 RVA: 0x0002CFF0 File Offset: 0x0002B1F0
-	protected Color drawingColor
-	{
-		get
-		{
-			Color color = base.color;
-			color.a = this.finalAlpha;
-			if (this.premultipliedAlpha)
-			{
-				color = NGUITools.ApplyPMA(color);
-			}
-			return color;
-		}
-	}
+  protected Vector4 drawingUVs
+  {
+    get
+    {
+      switch (this.mFlip)
+      {
+        case UIBasicSprite.Flip.Horizontally:
+          return new Vector4(this.mOuterUV.xMax, this.mOuterUV.yMin, this.mOuterUV.xMin, this.mOuterUV.yMax);
+        case UIBasicSprite.Flip.Vertically:
+          return new Vector4(this.mOuterUV.xMin, this.mOuterUV.yMax, this.mOuterUV.xMax, this.mOuterUV.yMin);
+        case UIBasicSprite.Flip.Both:
+          return new Vector4(this.mOuterUV.xMax, this.mOuterUV.yMax, this.mOuterUV.xMin, this.mOuterUV.yMin);
+        default:
+          return new Vector4(this.mOuterUV.xMin, this.mOuterUV.yMin, this.mOuterUV.xMax, this.mOuterUV.yMax);
+      }
+    }
+  }
 
-	// Token: 0x06000482 RID: 1154 RVA: 0x0002D024 File Offset: 0x0002B224
-	protected void Fill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, Rect outer, Rect inner)
-	{
-		this.mOuterUV = outer;
-		this.mInnerUV = inner;
-		Vector4 drawingDimensions = this.drawingDimensions;
-		Vector4 drawingUVs = this.drawingUVs;
-		Color drawingColor = this.drawingColor;
-		switch (this.type)
-		{
-		case UIBasicSprite.Type.Simple:
-			this.SimpleFill(verts, uvs, cols, ref drawingDimensions, ref drawingUVs, ref drawingColor);
-			return;
-		case UIBasicSprite.Type.Sliced:
-			this.SlicedFill(verts, uvs, cols, ref drawingDimensions, ref drawingUVs, ref drawingColor);
-			return;
-		case UIBasicSprite.Type.Tiled:
-			this.TiledFill(verts, uvs, cols, ref drawingDimensions, ref drawingColor);
-			return;
-		case UIBasicSprite.Type.Filled:
-			this.FilledFill(verts, uvs, cols, ref drawingDimensions, ref drawingUVs, ref drawingColor);
-			return;
-		case UIBasicSprite.Type.Advanced:
-			this.AdvancedFill(verts, uvs, cols, ref drawingDimensions, ref drawingUVs, ref drawingColor);
-			return;
-		default:
-			return;
-		}
-	}
+  protected Color drawingColor
+  {
+    get
+    {
+      Color c = this.color with { a = this.finalAlpha };
+      if (this.premultipliedAlpha)
+        c = NGUITools.ApplyPMA(c);
+      return c;
+    }
+  }
 
-	// Token: 0x06000483 RID: 1155 RVA: 0x0002D0C8 File Offset: 0x0002B2C8
-	protected void SimpleFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, ref Vector4 v, ref Vector4 u, ref Color c)
-	{
-		verts.Add(new Vector3(v.x, v.y));
-		verts.Add(new Vector3(v.x, v.w));
-		verts.Add(new Vector3(v.z, v.w));
-		verts.Add(new Vector3(v.z, v.y));
-		uvs.Add(new Vector2(u.x, u.y));
-		uvs.Add(new Vector2(u.x, u.w));
-		uvs.Add(new Vector2(u.z, u.w));
-		uvs.Add(new Vector2(u.z, u.y));
-		if (!this.mApplyGradient)
-		{
-			cols.Add(c);
-			cols.Add(c);
-			cols.Add(c);
-			cols.Add(c);
-			return;
-		}
-		this.AddVertexColours(cols, ref c, 1, 1);
-		this.AddVertexColours(cols, ref c, 1, 2);
-		this.AddVertexColours(cols, ref c, 2, 2);
-		this.AddVertexColours(cols, ref c, 2, 1);
-	}
+  protected void Fill(
+    List<Vector3> verts,
+    List<Vector2> uvs,
+    List<Color> cols,
+    Rect outer,
+    Rect inner)
+  {
+    this.mOuterUV = outer;
+    this.mInnerUV = inner;
+    Vector4 drawingDimensions = this.drawingDimensions;
+    Vector4 drawingUvs = this.drawingUVs;
+    Color drawingColor = this.drawingColor;
+    switch (this.type)
+    {
+      case UIBasicSprite.Type.Simple:
+        this.SimpleFill(verts, uvs, cols, ref drawingDimensions, ref drawingUvs, ref drawingColor);
+        break;
+      case UIBasicSprite.Type.Sliced:
+        this.SlicedFill(verts, uvs, cols, ref drawingDimensions, ref drawingUvs, ref drawingColor);
+        break;
+      case UIBasicSprite.Type.Tiled:
+        this.TiledFill(verts, uvs, cols, ref drawingDimensions, ref drawingColor);
+        break;
+      case UIBasicSprite.Type.Filled:
+        this.FilledFill(verts, uvs, cols, ref drawingDimensions, ref drawingUvs, ref drawingColor);
+        break;
+      case UIBasicSprite.Type.Advanced:
+        this.AdvancedFill(verts, uvs, cols, ref drawingDimensions, ref drawingUvs, ref drawingColor);
+        break;
+    }
+  }
 
-	// Token: 0x06000484 RID: 1156 RVA: 0x0002D208 File Offset: 0x0002B408
-	protected void SlicedFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, ref Vector4 v, ref Vector4 u, ref Color gc)
-	{
-		Vector4 vector = this.border * this.pixelSize;
-		if (vector.x == 0f && vector.y == 0f && vector.z == 0f && vector.w == 0f)
-		{
-			this.SimpleFill(verts, uvs, cols, ref v, ref u, ref gc);
-			return;
-		}
-		UIBasicSprite.mTempPos[0].x = v.x;
-		UIBasicSprite.mTempPos[0].y = v.y;
-		UIBasicSprite.mTempPos[3].x = v.z;
-		UIBasicSprite.mTempPos[3].y = v.w;
-		if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
-		{
-			UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x + vector.z;
-			UIBasicSprite.mTempPos[2].x = UIBasicSprite.mTempPos[3].x - vector.x;
-			UIBasicSprite.mTempUVs[3].x = this.mOuterUV.xMin;
-			UIBasicSprite.mTempUVs[2].x = this.mInnerUV.xMin;
-			UIBasicSprite.mTempUVs[1].x = this.mInnerUV.xMax;
-			UIBasicSprite.mTempUVs[0].x = this.mOuterUV.xMax;
-		}
-		else
-		{
-			UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x + vector.x;
-			UIBasicSprite.mTempPos[2].x = UIBasicSprite.mTempPos[3].x - vector.z;
-			UIBasicSprite.mTempUVs[0].x = this.mOuterUV.xMin;
-			UIBasicSprite.mTempUVs[1].x = this.mInnerUV.xMin;
-			UIBasicSprite.mTempUVs[2].x = this.mInnerUV.xMax;
-			UIBasicSprite.mTempUVs[3].x = this.mOuterUV.xMax;
-		}
-		if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
-		{
-			UIBasicSprite.mTempPos[1].y = UIBasicSprite.mTempPos[0].y + vector.w;
-			UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[3].y - vector.y;
-			UIBasicSprite.mTempUVs[3].y = this.mOuterUV.yMin;
-			UIBasicSprite.mTempUVs[2].y = this.mInnerUV.yMin;
-			UIBasicSprite.mTempUVs[1].y = this.mInnerUV.yMax;
-			UIBasicSprite.mTempUVs[0].y = this.mOuterUV.yMax;
-		}
-		else
-		{
-			UIBasicSprite.mTempPos[1].y = UIBasicSprite.mTempPos[0].y + vector.y;
-			UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[3].y - vector.w;
-			UIBasicSprite.mTempUVs[0].y = this.mOuterUV.yMin;
-			UIBasicSprite.mTempUVs[1].y = this.mInnerUV.yMin;
-			UIBasicSprite.mTempUVs[2].y = this.mInnerUV.yMax;
-			UIBasicSprite.mTempUVs[3].y = this.mOuterUV.yMax;
-		}
-		for (int i = 0; i < 3; i++)
-		{
-			int num = i + 1;
-			for (int j = 0; j < 3; j++)
-			{
-				if (this.centerType != UIBasicSprite.AdvancedType.Invisible || i != 1 || j != 1)
-				{
-					int num2 = j + 1;
-					verts.Add(new Vector3(UIBasicSprite.mTempPos[i].x, UIBasicSprite.mTempPos[j].y));
-					verts.Add(new Vector3(UIBasicSprite.mTempPos[i].x, UIBasicSprite.mTempPos[num2].y));
-					verts.Add(new Vector3(UIBasicSprite.mTempPos[num].x, UIBasicSprite.mTempPos[num2].y));
-					verts.Add(new Vector3(UIBasicSprite.mTempPos[num].x, UIBasicSprite.mTempPos[j].y));
-					uvs.Add(new Vector2(UIBasicSprite.mTempUVs[i].x, UIBasicSprite.mTempUVs[j].y));
-					uvs.Add(new Vector2(UIBasicSprite.mTempUVs[i].x, UIBasicSprite.mTempUVs[num2].y));
-					uvs.Add(new Vector2(UIBasicSprite.mTempUVs[num].x, UIBasicSprite.mTempUVs[num2].y));
-					uvs.Add(new Vector2(UIBasicSprite.mTempUVs[num].x, UIBasicSprite.mTempUVs[j].y));
-					if (!this.mApplyGradient)
-					{
-						cols.Add(gc);
-						cols.Add(gc);
-						cols.Add(gc);
-						cols.Add(gc);
-					}
-					else
-					{
-						this.AddVertexColours(cols, ref gc, i, j);
-						this.AddVertexColours(cols, ref gc, i, num2);
-						this.AddVertexColours(cols, ref gc, num, num2);
-						this.AddVertexColours(cols, ref gc, num, j);
-					}
-				}
-			}
-		}
-	}
+  protected void SimpleFill(
+    List<Vector3> verts,
+    List<Vector2> uvs,
+    List<Color> cols,
+    ref Vector4 v,
+    ref Vector4 u,
+    ref Color c)
+  {
+    verts.Add(new Vector3(v.x, v.y));
+    verts.Add(new Vector3(v.x, v.w));
+    verts.Add(new Vector3(v.z, v.w));
+    verts.Add(new Vector3(v.z, v.y));
+    uvs.Add(new Vector2(u.x, u.y));
+    uvs.Add(new Vector2(u.x, u.w));
+    uvs.Add(new Vector2(u.z, u.w));
+    uvs.Add(new Vector2(u.z, u.y));
+    if (!this.mApplyGradient)
+    {
+      cols.Add(c);
+      cols.Add(c);
+      cols.Add(c);
+      cols.Add(c);
+    }
+    else
+    {
+      this.AddVertexColours(cols, ref c, 1, 1);
+      this.AddVertexColours(cols, ref c, 1, 2);
+      this.AddVertexColours(cols, ref c, 2, 2);
+      this.AddVertexColours(cols, ref c, 2, 1);
+    }
+  }
 
-	// Token: 0x06000485 RID: 1157 RVA: 0x0002D7EC File Offset: 0x0002B9EC
-	[DebuggerHidden]
-	[DebuggerStepThrough]
-	private void AddVertexColours(List<Color> cols, ref Color color, int x, int y)
-	{
-		Vector4 vector = this.border * this.pixelSize;
-		if (this.type == UIBasicSprite.Type.Simple || (vector.x == 0f && vector.y == 0f && vector.z == 0f && vector.w == 0f))
-		{
-			if (y == 0 || y == 1)
-			{
-				cols.Add(color * this.mGradientBottom);
-				return;
-			}
-			if (y == 2 || y == 3)
-			{
-				cols.Add(color * this.mGradientTop);
-				return;
-			}
-		}
-		else
-		{
-			if (y == 0)
-			{
-				cols.Add(color * this.mGradientBottom);
-			}
-			if (y == 1)
-			{
-				Color b = Color.Lerp(this.mGradientBottom, this.mGradientTop, vector.y / (float)this.mHeight);
-				cols.Add(color * b);
-			}
-			if (y == 2)
-			{
-				Color b2 = Color.Lerp(this.mGradientTop, this.mGradientBottom, vector.w / (float)this.mHeight);
-				cols.Add(color * b2);
-			}
-			if (y == 3)
-			{
-				cols.Add(color * this.mGradientTop);
-			}
-		}
-	}
+  protected void SlicedFill(
+    List<Vector3> verts,
+    List<Vector2> uvs,
+    List<Color> cols,
+    ref Vector4 v,
+    ref Vector4 u,
+    ref Color gc)
+  {
+    Vector4 vector4 = this.border * this.pixelSize;
+    if ((double) vector4.x == 0.0 && (double) vector4.y == 0.0 && (double) vector4.z == 0.0 && (double) vector4.w == 0.0)
+    {
+      this.SimpleFill(verts, uvs, cols, ref v, ref u, ref gc);
+    }
+    else
+    {
+      UIBasicSprite.mTempPos[0].x = v.x;
+      UIBasicSprite.mTempPos[0].y = v.y;
+      UIBasicSprite.mTempPos[3].x = v.z;
+      UIBasicSprite.mTempPos[3].y = v.w;
+      if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
+      {
+        UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x + vector4.z;
+        UIBasicSprite.mTempPos[2].x = UIBasicSprite.mTempPos[3].x - vector4.x;
+        UIBasicSprite.mTempUVs[3].x = this.mOuterUV.xMin;
+        UIBasicSprite.mTempUVs[2].x = this.mInnerUV.xMin;
+        UIBasicSprite.mTempUVs[1].x = this.mInnerUV.xMax;
+        UIBasicSprite.mTempUVs[0].x = this.mOuterUV.xMax;
+      }
+      else
+      {
+        UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x + vector4.x;
+        UIBasicSprite.mTempPos[2].x = UIBasicSprite.mTempPos[3].x - vector4.z;
+        UIBasicSprite.mTempUVs[0].x = this.mOuterUV.xMin;
+        UIBasicSprite.mTempUVs[1].x = this.mInnerUV.xMin;
+        UIBasicSprite.mTempUVs[2].x = this.mInnerUV.xMax;
+        UIBasicSprite.mTempUVs[3].x = this.mOuterUV.xMax;
+      }
+      if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
+      {
+        UIBasicSprite.mTempPos[1].y = UIBasicSprite.mTempPos[0].y + vector4.w;
+        UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[3].y - vector4.y;
+        UIBasicSprite.mTempUVs[3].y = this.mOuterUV.yMin;
+        UIBasicSprite.mTempUVs[2].y = this.mInnerUV.yMin;
+        UIBasicSprite.mTempUVs[1].y = this.mInnerUV.yMax;
+        UIBasicSprite.mTempUVs[0].y = this.mOuterUV.yMax;
+      }
+      else
+      {
+        UIBasicSprite.mTempPos[1].y = UIBasicSprite.mTempPos[0].y + vector4.y;
+        UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[3].y - vector4.w;
+        UIBasicSprite.mTempUVs[0].y = this.mOuterUV.yMin;
+        UIBasicSprite.mTempUVs[1].y = this.mInnerUV.yMin;
+        UIBasicSprite.mTempUVs[2].y = this.mInnerUV.yMax;
+        UIBasicSprite.mTempUVs[3].y = this.mOuterUV.yMax;
+      }
+      for (int x1 = 0; x1 < 3; ++x1)
+      {
+        int x2 = x1 + 1;
+        for (int y1 = 0; y1 < 3; ++y1)
+        {
+          if (this.centerType != UIBasicSprite.AdvancedType.Invisible || x1 != 1 || y1 != 1)
+          {
+            int y2 = y1 + 1;
+            verts.Add(new Vector3(UIBasicSprite.mTempPos[x1].x, UIBasicSprite.mTempPos[y1].y));
+            verts.Add(new Vector3(UIBasicSprite.mTempPos[x1].x, UIBasicSprite.mTempPos[y2].y));
+            verts.Add(new Vector3(UIBasicSprite.mTempPos[x2].x, UIBasicSprite.mTempPos[y2].y));
+            verts.Add(new Vector3(UIBasicSprite.mTempPos[x2].x, UIBasicSprite.mTempPos[y1].y));
+            uvs.Add(new Vector2(UIBasicSprite.mTempUVs[x1].x, UIBasicSprite.mTempUVs[y1].y));
+            uvs.Add(new Vector2(UIBasicSprite.mTempUVs[x1].x, UIBasicSprite.mTempUVs[y2].y));
+            uvs.Add(new Vector2(UIBasicSprite.mTempUVs[x2].x, UIBasicSprite.mTempUVs[y2].y));
+            uvs.Add(new Vector2(UIBasicSprite.mTempUVs[x2].x, UIBasicSprite.mTempUVs[y1].y));
+            if (!this.mApplyGradient)
+            {
+              cols.Add(gc);
+              cols.Add(gc);
+              cols.Add(gc);
+              cols.Add(gc);
+            }
+            else
+            {
+              this.AddVertexColours(cols, ref gc, x1, y1);
+              this.AddVertexColours(cols, ref gc, x1, y2);
+              this.AddVertexColours(cols, ref gc, x2, y2);
+              this.AddVertexColours(cols, ref gc, x2, y1);
+            }
+          }
+        }
+      }
+    }
+  }
 
-	// Token: 0x06000486 RID: 1158 RVA: 0x0002D934 File Offset: 0x0002BB34
-	protected void TiledFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, ref Vector4 v, ref Color c)
-	{
-		Texture mainTexture = this.mainTexture;
-		if (mainTexture == null)
-		{
-			return;
-		}
-		Vector2 vector = new Vector2(this.mInnerUV.width * (float)mainTexture.width, this.mInnerUV.height * (float)mainTexture.height);
-		vector *= this.pixelSize;
-		if (vector.x < 2f || vector.y < 2f)
-		{
-			return;
-		}
-		Vector4 padding = this.padding;
-		Vector4 vector2;
-		Vector4 vector3;
-		if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
-		{
-			vector2.x = this.mInnerUV.xMax;
-			vector2.z = this.mInnerUV.xMin;
-			vector3.x = padding.z * this.pixelSize;
-			vector3.z = padding.x * this.pixelSize;
-		}
-		else
-		{
-			vector2.x = this.mInnerUV.xMin;
-			vector2.z = this.mInnerUV.xMax;
-			vector3.x = padding.x * this.pixelSize;
-			vector3.z = padding.z * this.pixelSize;
-		}
-		if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
-		{
-			vector2.y = this.mInnerUV.yMax;
-			vector2.w = this.mInnerUV.yMin;
-			vector3.y = padding.w * this.pixelSize;
-			vector3.w = padding.y * this.pixelSize;
-		}
-		else
-		{
-			vector2.y = this.mInnerUV.yMin;
-			vector2.w = this.mInnerUV.yMax;
-			vector3.y = padding.y * this.pixelSize;
-			vector3.w = padding.w * this.pixelSize;
-		}
-		float num = v.x;
-		float num2 = v.y;
-		float x = vector2.x;
-		float y = vector2.y;
-		while (num2 < v.w)
-		{
-			num2 += vector3.y;
-			num = v.x;
-			float num3 = num2 + vector.y;
-			float y2 = vector2.w;
-			if (num3 > v.w)
-			{
-				y2 = Mathf.Lerp(vector2.y, vector2.w, (v.w - num2) / vector.y);
-				num3 = v.w;
-			}
-			while (num < v.z)
-			{
-				num += vector3.x;
-				float num4 = num + vector.x;
-				float x2 = vector2.z;
-				if (num4 > v.z)
-				{
-					x2 = Mathf.Lerp(vector2.x, vector2.z, (v.z - num) / vector.x);
-					num4 = v.z;
-				}
-				verts.Add(new Vector3(num, num2));
-				verts.Add(new Vector3(num, num3));
-				verts.Add(new Vector3(num4, num3));
-				verts.Add(new Vector3(num4, num2));
-				uvs.Add(new Vector2(x, y));
-				uvs.Add(new Vector2(x, y2));
-				uvs.Add(new Vector2(x2, y2));
-				uvs.Add(new Vector2(x2, y));
-				cols.Add(c);
-				cols.Add(c);
-				cols.Add(c);
-				cols.Add(c);
-				num += vector.x + vector3.z;
-			}
-			num2 += vector.y + vector3.w;
-		}
-	}
+  [DebuggerHidden]
+  [DebuggerStepThrough]
+  private void AddVertexColours(List<Color> cols, ref Color color, int x, int y)
+  {
+    Vector4 vector4 = this.border * this.pixelSize;
+    if (this.type == UIBasicSprite.Type.Simple || (double) vector4.x == 0.0 && (double) vector4.y == 0.0 && (double) vector4.z == 0.0 && (double) vector4.w == 0.0)
+    {
+      switch (y)
+      {
+        case 0:
+        case 1:
+          cols.Add(color * this.mGradientBottom);
+          break;
+        case 2:
+        case 3:
+          cols.Add(color * this.mGradientTop);
+          break;
+      }
+    }
+    else
+    {
+      if (y == 0)
+        cols.Add(color * this.mGradientBottom);
+      if (y == 1)
+      {
+        Color color1 = Color.Lerp(this.mGradientBottom, this.mGradientTop, vector4.y / (float) this.mHeight);
+        cols.Add(color * color1);
+      }
+      if (y == 2)
+      {
+        Color color2 = Color.Lerp(this.mGradientTop, this.mGradientBottom, vector4.w / (float) this.mHeight);
+        cols.Add(color * color2);
+      }
+      if (y != 3)
+        return;
+      cols.Add(color * this.mGradientTop);
+    }
+  }
 
-	// Token: 0x06000487 RID: 1159 RVA: 0x0002DCE0 File Offset: 0x0002BEE0
-	protected void FilledFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, ref Vector4 v, ref Vector4 u, ref Color c)
-	{
-		if (this.mFillAmount < 0.001f)
-		{
-			return;
-		}
-		if (this.mFillDirection == UIBasicSprite.FillDirection.Horizontal || this.mFillDirection == UIBasicSprite.FillDirection.Vertical)
-		{
-			if (this.mFillDirection == UIBasicSprite.FillDirection.Horizontal)
-			{
-				float num = (u.z - u.x) * this.mFillAmount;
-				if (this.mInvert)
-				{
-					v.x = v.z - (v.z - v.x) * this.mFillAmount;
-					u.x = u.z - num;
-				}
-				else
-				{
-					v.z = v.x + (v.z - v.x) * this.mFillAmount;
-					u.z = u.x + num;
-				}
-			}
-			else if (this.mFillDirection == UIBasicSprite.FillDirection.Vertical)
-			{
-				float num2 = (u.w - u.y) * this.mFillAmount;
-				if (this.mInvert)
-				{
-					v.y = v.w - (v.w - v.y) * this.mFillAmount;
-					u.y = u.w - num2;
-				}
-				else
-				{
-					v.w = v.y + (v.w - v.y) * this.mFillAmount;
-					u.w = u.y + num2;
-				}
-			}
-		}
-		UIBasicSprite.mTempPos[0] = new Vector2(v.x, v.y);
-		UIBasicSprite.mTempPos[1] = new Vector2(v.x, v.w);
-		UIBasicSprite.mTempPos[2] = new Vector2(v.z, v.w);
-		UIBasicSprite.mTempPos[3] = new Vector2(v.z, v.y);
-		UIBasicSprite.mTempUVs[0] = new Vector2(u.x, u.y);
-		UIBasicSprite.mTempUVs[1] = new Vector2(u.x, u.w);
-		UIBasicSprite.mTempUVs[2] = new Vector2(u.z, u.w);
-		UIBasicSprite.mTempUVs[3] = new Vector2(u.z, u.y);
-		if (this.mFillAmount < 1f)
-		{
-			if (this.mFillDirection == UIBasicSprite.FillDirection.Radial90)
-			{
-				if (UIBasicSprite.RadialCut(UIBasicSprite.mTempPos, UIBasicSprite.mTempUVs, this.mFillAmount, this.mInvert, 0))
-				{
-					for (int i = 0; i < 4; i++)
-					{
-						verts.Add(UIBasicSprite.mTempPos[i]);
-						uvs.Add(UIBasicSprite.mTempUVs[i]);
-						cols.Add(c);
-					}
-				}
-				return;
-			}
-			if (this.mFillDirection == UIBasicSprite.FillDirection.Radial180)
-			{
-				for (int j = 0; j < 2; j++)
-				{
-					float t = 0f;
-					float t2 = 1f;
-					float t3;
-					float t4;
-					if (j == 0)
-					{
-						t3 = 0f;
-						t4 = 0.5f;
-					}
-					else
-					{
-						t3 = 0.5f;
-						t4 = 1f;
-					}
-					UIBasicSprite.mTempPos[0].x = Mathf.Lerp(v.x, v.z, t3);
-					UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x;
-					UIBasicSprite.mTempPos[2].x = Mathf.Lerp(v.x, v.z, t4);
-					UIBasicSprite.mTempPos[3].x = UIBasicSprite.mTempPos[2].x;
-					UIBasicSprite.mTempPos[0].y = Mathf.Lerp(v.y, v.w, t);
-					UIBasicSprite.mTempPos[1].y = Mathf.Lerp(v.y, v.w, t2);
-					UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[1].y;
-					UIBasicSprite.mTempPos[3].y = UIBasicSprite.mTempPos[0].y;
-					UIBasicSprite.mTempUVs[0].x = Mathf.Lerp(u.x, u.z, t3);
-					UIBasicSprite.mTempUVs[1].x = UIBasicSprite.mTempUVs[0].x;
-					UIBasicSprite.mTempUVs[2].x = Mathf.Lerp(u.x, u.z, t4);
-					UIBasicSprite.mTempUVs[3].x = UIBasicSprite.mTempUVs[2].x;
-					UIBasicSprite.mTempUVs[0].y = Mathf.Lerp(u.y, u.w, t);
-					UIBasicSprite.mTempUVs[1].y = Mathf.Lerp(u.y, u.w, t2);
-					UIBasicSprite.mTempUVs[2].y = UIBasicSprite.mTempUVs[1].y;
-					UIBasicSprite.mTempUVs[3].y = UIBasicSprite.mTempUVs[0].y;
-					float value = (!this.mInvert) ? (this.fillAmount * 2f - (float)j) : (this.mFillAmount * 2f - (float)(1 - j));
-					if (UIBasicSprite.RadialCut(UIBasicSprite.mTempPos, UIBasicSprite.mTempUVs, Mathf.Clamp01(value), !this.mInvert, NGUIMath.RepeatIndex(j + 3, 4)))
-					{
-						for (int k = 0; k < 4; k++)
-						{
-							verts.Add(UIBasicSprite.mTempPos[k]);
-							uvs.Add(UIBasicSprite.mTempUVs[k]);
-							cols.Add(c);
-						}
-					}
-				}
-				return;
-			}
-			if (this.mFillDirection == UIBasicSprite.FillDirection.Radial360)
-			{
-				for (int l = 0; l < 4; l++)
-				{
-					float t5;
-					float t6;
-					if (l < 2)
-					{
-						t5 = 0f;
-						t6 = 0.5f;
-					}
-					else
-					{
-						t5 = 0.5f;
-						t6 = 1f;
-					}
-					float t7;
-					float t8;
-					if (l == 0 || l == 3)
-					{
-						t7 = 0f;
-						t8 = 0.5f;
-					}
-					else
-					{
-						t7 = 0.5f;
-						t8 = 1f;
-					}
-					UIBasicSprite.mTempPos[0].x = Mathf.Lerp(v.x, v.z, t5);
-					UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x;
-					UIBasicSprite.mTempPos[2].x = Mathf.Lerp(v.x, v.z, t6);
-					UIBasicSprite.mTempPos[3].x = UIBasicSprite.mTempPos[2].x;
-					UIBasicSprite.mTempPos[0].y = Mathf.Lerp(v.y, v.w, t7);
-					UIBasicSprite.mTempPos[1].y = Mathf.Lerp(v.y, v.w, t8);
-					UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[1].y;
-					UIBasicSprite.mTempPos[3].y = UIBasicSprite.mTempPos[0].y;
-					UIBasicSprite.mTempUVs[0].x = Mathf.Lerp(u.x, u.z, t5);
-					UIBasicSprite.mTempUVs[1].x = UIBasicSprite.mTempUVs[0].x;
-					UIBasicSprite.mTempUVs[2].x = Mathf.Lerp(u.x, u.z, t6);
-					UIBasicSprite.mTempUVs[3].x = UIBasicSprite.mTempUVs[2].x;
-					UIBasicSprite.mTempUVs[0].y = Mathf.Lerp(u.y, u.w, t7);
-					UIBasicSprite.mTempUVs[1].y = Mathf.Lerp(u.y, u.w, t8);
-					UIBasicSprite.mTempUVs[2].y = UIBasicSprite.mTempUVs[1].y;
-					UIBasicSprite.mTempUVs[3].y = UIBasicSprite.mTempUVs[0].y;
-					float value2 = this.mInvert ? (this.mFillAmount * 4f - (float)NGUIMath.RepeatIndex(l + 2, 4)) : (this.mFillAmount * 4f - (float)(3 - NGUIMath.RepeatIndex(l + 2, 4)));
-					if (UIBasicSprite.RadialCut(UIBasicSprite.mTempPos, UIBasicSprite.mTempUVs, Mathf.Clamp01(value2), this.mInvert, NGUIMath.RepeatIndex(l + 2, 4)))
-					{
-						for (int m = 0; m < 4; m++)
-						{
-							verts.Add(UIBasicSprite.mTempPos[m]);
-							uvs.Add(UIBasicSprite.mTempUVs[m]);
-							cols.Add(c);
-						}
-					}
-				}
-				return;
-			}
-		}
-		for (int n = 0; n < 4; n++)
-		{
-			verts.Add(UIBasicSprite.mTempPos[n]);
-			uvs.Add(UIBasicSprite.mTempUVs[n]);
-			cols.Add(c);
-		}
-	}
+  protected void TiledFill(
+    List<Vector3> verts,
+    List<Vector2> uvs,
+    List<Color> cols,
+    ref Vector4 v,
+    ref Color c)
+  {
+    Texture mainTexture = this.mainTexture;
+    if ((UnityEngine.Object) mainTexture == (UnityEngine.Object) null)
+      return;
+    Vector2 vector2 = new Vector2(this.mInnerUV.width * (float) mainTexture.width, this.mInnerUV.height * (float) mainTexture.height) * this.pixelSize;
+    if ((double) vector2.x < 2.0 || (double) vector2.y < 2.0)
+      return;
+    Vector4 padding = this.padding;
+    Vector4 vector4_1;
+    Vector4 vector4_2;
+    if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
+    {
+      vector4_1.x = this.mInnerUV.xMax;
+      vector4_1.z = this.mInnerUV.xMin;
+      vector4_2.x = padding.z * this.pixelSize;
+      vector4_2.z = padding.x * this.pixelSize;
+    }
+    else
+    {
+      vector4_1.x = this.mInnerUV.xMin;
+      vector4_1.z = this.mInnerUV.xMax;
+      vector4_2.x = padding.x * this.pixelSize;
+      vector4_2.z = padding.z * this.pixelSize;
+    }
+    if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
+    {
+      vector4_1.y = this.mInnerUV.yMax;
+      vector4_1.w = this.mInnerUV.yMin;
+      vector4_2.y = padding.w * this.pixelSize;
+      vector4_2.w = padding.y * this.pixelSize;
+    }
+    else
+    {
+      vector4_1.y = this.mInnerUV.yMin;
+      vector4_1.w = this.mInnerUV.yMax;
+      vector4_2.y = padding.y * this.pixelSize;
+      vector4_2.w = padding.w * this.pixelSize;
+    }
+    float x1 = v.x;
+    float num1 = v.y;
+    float x2 = vector4_1.x;
+    float y1 = vector4_1.y;
+    float y2;
+    for (; (double) num1 < (double) v.w; num1 = y2 + (vector2.y + vector4_2.w))
+    {
+      y2 = num1 + vector4_2.y;
+      float num2 = v.x;
+      float y3 = y2 + vector2.y;
+      float y4 = vector4_1.w;
+      if ((double) y3 > (double) v.w)
+      {
+        y4 = Mathf.Lerp(vector4_1.y, vector4_1.w, (v.w - y2) / vector2.y);
+        y3 = v.w;
+      }
+      float x3;
+      for (; (double) num2 < (double) v.z; num2 = x3 + (vector2.x + vector4_2.z))
+      {
+        x3 = num2 + vector4_2.x;
+        float x4 = x3 + vector2.x;
+        float x5 = vector4_1.z;
+        if ((double) x4 > (double) v.z)
+        {
+          x5 = Mathf.Lerp(vector4_1.x, vector4_1.z, (v.z - x3) / vector2.x);
+          x4 = v.z;
+        }
+        verts.Add(new Vector3(x3, y2));
+        verts.Add(new Vector3(x3, y3));
+        verts.Add(new Vector3(x4, y3));
+        verts.Add(new Vector3(x4, y2));
+        uvs.Add(new Vector2(x2, y1));
+        uvs.Add(new Vector2(x2, y4));
+        uvs.Add(new Vector2(x5, y4));
+        uvs.Add(new Vector2(x5, y1));
+        cols.Add(c);
+        cols.Add(c);
+        cols.Add(c);
+        cols.Add(c);
+      }
+    }
+  }
 
-	// Token: 0x06000488 RID: 1160 RVA: 0x0002E648 File Offset: 0x0002C848
-	protected void AdvancedFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, ref Vector4 v, ref Vector4 u, ref Color c)
-	{
-		Texture mainTexture = this.mainTexture;
-		if (mainTexture == null)
-		{
-			return;
-		}
-		Vector4 vector = this.border * this.pixelSize;
-		if (vector.x == 0f && vector.y == 0f && vector.z == 0f && vector.w == 0f)
-		{
-			this.SimpleFill(verts, uvs, cols, ref v, ref u, ref c);
-			return;
-		}
-		Vector2 vector2 = new Vector2(this.mInnerUV.width * (float)mainTexture.width, this.mInnerUV.height * (float)mainTexture.height);
-		vector2 *= this.pixelSize;
-		if (vector2.x < 1f)
-		{
-			vector2.x = 1f;
-		}
-		if (vector2.y < 1f)
-		{
-			vector2.y = 1f;
-		}
-		UIBasicSprite.mTempPos[0].x = v.x;
-		UIBasicSprite.mTempPos[0].y = v.y;
-		UIBasicSprite.mTempPos[3].x = v.z;
-		UIBasicSprite.mTempPos[3].y = v.w;
-		if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
-		{
-			UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x + vector.z;
-			UIBasicSprite.mTempPos[2].x = UIBasicSprite.mTempPos[3].x - vector.x;
-			UIBasicSprite.mTempUVs[3].x = this.mOuterUV.xMin;
-			UIBasicSprite.mTempUVs[2].x = this.mInnerUV.xMin;
-			UIBasicSprite.mTempUVs[1].x = this.mInnerUV.xMax;
-			UIBasicSprite.mTempUVs[0].x = this.mOuterUV.xMax;
-		}
-		else
-		{
-			UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x + vector.x;
-			UIBasicSprite.mTempPos[2].x = UIBasicSprite.mTempPos[3].x - vector.z;
-			UIBasicSprite.mTempUVs[0].x = this.mOuterUV.xMin;
-			UIBasicSprite.mTempUVs[1].x = this.mInnerUV.xMin;
-			UIBasicSprite.mTempUVs[2].x = this.mInnerUV.xMax;
-			UIBasicSprite.mTempUVs[3].x = this.mOuterUV.xMax;
-		}
-		if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
-		{
-			UIBasicSprite.mTempPos[1].y = UIBasicSprite.mTempPos[0].y + vector.w;
-			UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[3].y - vector.y;
-			UIBasicSprite.mTempUVs[3].y = this.mOuterUV.yMin;
-			UIBasicSprite.mTempUVs[2].y = this.mInnerUV.yMin;
-			UIBasicSprite.mTempUVs[1].y = this.mInnerUV.yMax;
-			UIBasicSprite.mTempUVs[0].y = this.mOuterUV.yMax;
-		}
-		else
-		{
-			UIBasicSprite.mTempPos[1].y = UIBasicSprite.mTempPos[0].y + vector.y;
-			UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[3].y - vector.w;
-			UIBasicSprite.mTempUVs[0].y = this.mOuterUV.yMin;
-			UIBasicSprite.mTempUVs[1].y = this.mInnerUV.yMin;
-			UIBasicSprite.mTempUVs[2].y = this.mInnerUV.yMax;
-			UIBasicSprite.mTempUVs[3].y = this.mOuterUV.yMax;
-		}
-		for (int i = 0; i < 3; i++)
-		{
-			int num = i + 1;
-			for (int j = 0; j < 3; j++)
-			{
-				if (this.centerType != UIBasicSprite.AdvancedType.Invisible || i != 1 || j != 1)
-				{
-					int num2 = j + 1;
-					if (i == 1 && j == 1)
-					{
-						if (this.centerType == UIBasicSprite.AdvancedType.Tiled)
-						{
-							float x = UIBasicSprite.mTempPos[i].x;
-							float x2 = UIBasicSprite.mTempPos[num].x;
-							float y = UIBasicSprite.mTempPos[j].y;
-							float y2 = UIBasicSprite.mTempPos[num2].y;
-							float x3 = UIBasicSprite.mTempUVs[i].x;
-							float y3 = UIBasicSprite.mTempUVs[j].y;
-							for (float num3 = y; num3 < y2; num3 += vector2.y)
-							{
-								float num4 = x;
-								float num5 = UIBasicSprite.mTempUVs[num2].y;
-								float num6 = num3 + vector2.y;
-								if (num6 > y2)
-								{
-									num5 = Mathf.Lerp(y3, num5, (y2 - num3) / vector2.y);
-									num6 = y2;
-								}
-								while (num4 < x2)
-								{
-									float num7 = num4 + vector2.x;
-									float num8 = UIBasicSprite.mTempUVs[num].x;
-									if (num7 > x2)
-									{
-										num8 = Mathf.Lerp(x3, num8, (x2 - num4) / vector2.x);
-										num7 = x2;
-									}
-									UIBasicSprite.Fill(verts, uvs, cols, num4, num7, num3, num6, x3, num8, y3, num5, c);
-									num4 += vector2.x;
-								}
-							}
-						}
-						else if (this.centerType == UIBasicSprite.AdvancedType.Sliced)
-						{
-							UIBasicSprite.Fill(verts, uvs, cols, UIBasicSprite.mTempPos[i].x, UIBasicSprite.mTempPos[num].x, UIBasicSprite.mTempPos[j].y, UIBasicSprite.mTempPos[num2].y, UIBasicSprite.mTempUVs[i].x, UIBasicSprite.mTempUVs[num].x, UIBasicSprite.mTempUVs[j].y, UIBasicSprite.mTempUVs[num2].y, c);
-						}
-					}
-					else if (i == 1)
-					{
-						if ((j == 0 && this.bottomType == UIBasicSprite.AdvancedType.Tiled) || (j == 2 && this.topType == UIBasicSprite.AdvancedType.Tiled))
-						{
-							float x4 = UIBasicSprite.mTempPos[i].x;
-							float x5 = UIBasicSprite.mTempPos[num].x;
-							float y4 = UIBasicSprite.mTempPos[j].y;
-							float y5 = UIBasicSprite.mTempPos[num2].y;
-							float x6 = UIBasicSprite.mTempUVs[i].x;
-							float y6 = UIBasicSprite.mTempUVs[j].y;
-							float y7 = UIBasicSprite.mTempUVs[num2].y;
-							for (float num9 = x4; num9 < x5; num9 += vector2.x)
-							{
-								float num10 = num9 + vector2.x;
-								float num11 = UIBasicSprite.mTempUVs[num].x;
-								if (num10 > x5)
-								{
-									num11 = Mathf.Lerp(x6, num11, (x5 - num9) / vector2.x);
-									num10 = x5;
-								}
-								UIBasicSprite.Fill(verts, uvs, cols, num9, num10, y4, y5, x6, num11, y6, y7, c);
-							}
-						}
-						else if ((j == 0 && this.bottomType != UIBasicSprite.AdvancedType.Invisible) || (j == 2 && this.topType != UIBasicSprite.AdvancedType.Invisible))
-						{
-							UIBasicSprite.Fill(verts, uvs, cols, UIBasicSprite.mTempPos[i].x, UIBasicSprite.mTempPos[num].x, UIBasicSprite.mTempPos[j].y, UIBasicSprite.mTempPos[num2].y, UIBasicSprite.mTempUVs[i].x, UIBasicSprite.mTempUVs[num].x, UIBasicSprite.mTempUVs[j].y, UIBasicSprite.mTempUVs[num2].y, c);
-						}
-					}
-					else if (j == 1)
-					{
-						if ((i == 0 && this.leftType == UIBasicSprite.AdvancedType.Tiled) || (i == 2 && this.rightType == UIBasicSprite.AdvancedType.Tiled))
-						{
-							float x7 = UIBasicSprite.mTempPos[i].x;
-							float x8 = UIBasicSprite.mTempPos[num].x;
-							float y8 = UIBasicSprite.mTempPos[j].y;
-							float y9 = UIBasicSprite.mTempPos[num2].y;
-							float x9 = UIBasicSprite.mTempUVs[i].x;
-							float x10 = UIBasicSprite.mTempUVs[num].x;
-							float y10 = UIBasicSprite.mTempUVs[j].y;
-							for (float num12 = y8; num12 < y9; num12 += vector2.y)
-							{
-								float num13 = UIBasicSprite.mTempUVs[num2].y;
-								float num14 = num12 + vector2.y;
-								if (num14 > y9)
-								{
-									num13 = Mathf.Lerp(y10, num13, (y9 - num12) / vector2.y);
-									num14 = y9;
-								}
-								UIBasicSprite.Fill(verts, uvs, cols, x7, x8, num12, num14, x9, x10, y10, num13, c);
-							}
-						}
-						else if ((i == 0 && this.leftType != UIBasicSprite.AdvancedType.Invisible) || (i == 2 && this.rightType != UIBasicSprite.AdvancedType.Invisible))
-						{
-							UIBasicSprite.Fill(verts, uvs, cols, UIBasicSprite.mTempPos[i].x, UIBasicSprite.mTempPos[num].x, UIBasicSprite.mTempPos[j].y, UIBasicSprite.mTempPos[num2].y, UIBasicSprite.mTempUVs[i].x, UIBasicSprite.mTempUVs[num].x, UIBasicSprite.mTempUVs[j].y, UIBasicSprite.mTempUVs[num2].y, c);
-						}
-					}
-					else if ((j != 0 || this.bottomType != UIBasicSprite.AdvancedType.Invisible) && (j != 2 || this.topType != UIBasicSprite.AdvancedType.Invisible) && (i != 0 || this.leftType != UIBasicSprite.AdvancedType.Invisible) && (i != 2 || this.rightType != UIBasicSprite.AdvancedType.Invisible))
-					{
-						UIBasicSprite.Fill(verts, uvs, cols, UIBasicSprite.mTempPos[i].x, UIBasicSprite.mTempPos[num].x, UIBasicSprite.mTempPos[j].y, UIBasicSprite.mTempPos[num2].y, UIBasicSprite.mTempUVs[i].x, UIBasicSprite.mTempUVs[num].x, UIBasicSprite.mTempUVs[j].y, UIBasicSprite.mTempUVs[num2].y, c);
-					}
-				}
-			}
-		}
-	}
+  protected void FilledFill(
+    List<Vector3> verts,
+    List<Vector2> uvs,
+    List<Color> cols,
+    ref Vector4 v,
+    ref Vector4 u,
+    ref Color c)
+  {
+    if ((double) this.mFillAmount < 1.0 / 1000.0)
+      return;
+    if (this.mFillDirection == UIBasicSprite.FillDirection.Horizontal || this.mFillDirection == UIBasicSprite.FillDirection.Vertical)
+    {
+      if (this.mFillDirection == UIBasicSprite.FillDirection.Horizontal)
+      {
+        float num = (u.z - u.x) * this.mFillAmount;
+        if (this.mInvert)
+        {
+          v.x = v.z - (v.z - v.x) * this.mFillAmount;
+          u.x = u.z - num;
+        }
+        else
+        {
+          v.z = v.x + (v.z - v.x) * this.mFillAmount;
+          u.z = u.x + num;
+        }
+      }
+      else if (this.mFillDirection == UIBasicSprite.FillDirection.Vertical)
+      {
+        float num = (u.w - u.y) * this.mFillAmount;
+        if (this.mInvert)
+        {
+          v.y = v.w - (v.w - v.y) * this.mFillAmount;
+          u.y = u.w - num;
+        }
+        else
+        {
+          v.w = v.y + (v.w - v.y) * this.mFillAmount;
+          u.w = u.y + num;
+        }
+      }
+    }
+    UIBasicSprite.mTempPos[0] = new Vector2(v.x, v.y);
+    UIBasicSprite.mTempPos[1] = new Vector2(v.x, v.w);
+    UIBasicSprite.mTempPos[2] = new Vector2(v.z, v.w);
+    UIBasicSprite.mTempPos[3] = new Vector2(v.z, v.y);
+    UIBasicSprite.mTempUVs[0] = new Vector2(u.x, u.y);
+    UIBasicSprite.mTempUVs[1] = new Vector2(u.x, u.w);
+    UIBasicSprite.mTempUVs[2] = new Vector2(u.z, u.w);
+    UIBasicSprite.mTempUVs[3] = new Vector2(u.z, u.y);
+    if ((double) this.mFillAmount < 1.0)
+    {
+      if (this.mFillDirection == UIBasicSprite.FillDirection.Radial90)
+      {
+        if (!UIBasicSprite.RadialCut(UIBasicSprite.mTempPos, UIBasicSprite.mTempUVs, this.mFillAmount, this.mInvert, 0))
+          return;
+        for (int index = 0; index < 4; ++index)
+        {
+          verts.Add((Vector3) UIBasicSprite.mTempPos[index]);
+          uvs.Add(UIBasicSprite.mTempUVs[index]);
+          cols.Add(c);
+        }
+        return;
+      }
+      if (this.mFillDirection == UIBasicSprite.FillDirection.Radial180)
+      {
+        for (int index1 = 0; index1 < 2; ++index1)
+        {
+          float t1 = 0.0f;
+          float t2 = 1f;
+          float t3;
+          float t4;
+          if (index1 == 0)
+          {
+            t3 = 0.0f;
+            t4 = 0.5f;
+          }
+          else
+          {
+            t3 = 0.5f;
+            t4 = 1f;
+          }
+          UIBasicSprite.mTempPos[0].x = Mathf.Lerp(v.x, v.z, t3);
+          UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x;
+          UIBasicSprite.mTempPos[2].x = Mathf.Lerp(v.x, v.z, t4);
+          UIBasicSprite.mTempPos[3].x = UIBasicSprite.mTempPos[2].x;
+          UIBasicSprite.mTempPos[0].y = Mathf.Lerp(v.y, v.w, t1);
+          UIBasicSprite.mTempPos[1].y = Mathf.Lerp(v.y, v.w, t2);
+          UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[1].y;
+          UIBasicSprite.mTempPos[3].y = UIBasicSprite.mTempPos[0].y;
+          UIBasicSprite.mTempUVs[0].x = Mathf.Lerp(u.x, u.z, t3);
+          UIBasicSprite.mTempUVs[1].x = UIBasicSprite.mTempUVs[0].x;
+          UIBasicSprite.mTempUVs[2].x = Mathf.Lerp(u.x, u.z, t4);
+          UIBasicSprite.mTempUVs[3].x = UIBasicSprite.mTempUVs[2].x;
+          UIBasicSprite.mTempUVs[0].y = Mathf.Lerp(u.y, u.w, t1);
+          UIBasicSprite.mTempUVs[1].y = Mathf.Lerp(u.y, u.w, t2);
+          UIBasicSprite.mTempUVs[2].y = UIBasicSprite.mTempUVs[1].y;
+          UIBasicSprite.mTempUVs[3].y = UIBasicSprite.mTempUVs[0].y;
+          float num = !this.mInvert ? this.fillAmount * 2f - (float) index1 : this.mFillAmount * 2f - (float) (1 - index1);
+          if (UIBasicSprite.RadialCut(UIBasicSprite.mTempPos, UIBasicSprite.mTempUVs, Mathf.Clamp01(num), !this.mInvert, NGUIMath.RepeatIndex(index1 + 3, 4)))
+          {
+            for (int index2 = 0; index2 < 4; ++index2)
+            {
+              verts.Add((Vector3) UIBasicSprite.mTempPos[index2]);
+              uvs.Add(UIBasicSprite.mTempUVs[index2]);
+              cols.Add(c);
+            }
+          }
+        }
+        return;
+      }
+      if (this.mFillDirection == UIBasicSprite.FillDirection.Radial360)
+      {
+        for (int index3 = 0; index3 < 4; ++index3)
+        {
+          float t5;
+          float t6;
+          if (index3 < 2)
+          {
+            t5 = 0.0f;
+            t6 = 0.5f;
+          }
+          else
+          {
+            t5 = 0.5f;
+            t6 = 1f;
+          }
+          float t7;
+          float t8;
+          if (index3 == 0 || index3 == 3)
+          {
+            t7 = 0.0f;
+            t8 = 0.5f;
+          }
+          else
+          {
+            t7 = 0.5f;
+            t8 = 1f;
+          }
+          UIBasicSprite.mTempPos[0].x = Mathf.Lerp(v.x, v.z, t5);
+          UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x;
+          UIBasicSprite.mTempPos[2].x = Mathf.Lerp(v.x, v.z, t6);
+          UIBasicSprite.mTempPos[3].x = UIBasicSprite.mTempPos[2].x;
+          UIBasicSprite.mTempPos[0].y = Mathf.Lerp(v.y, v.w, t7);
+          UIBasicSprite.mTempPos[1].y = Mathf.Lerp(v.y, v.w, t8);
+          UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[1].y;
+          UIBasicSprite.mTempPos[3].y = UIBasicSprite.mTempPos[0].y;
+          UIBasicSprite.mTempUVs[0].x = Mathf.Lerp(u.x, u.z, t5);
+          UIBasicSprite.mTempUVs[1].x = UIBasicSprite.mTempUVs[0].x;
+          UIBasicSprite.mTempUVs[2].x = Mathf.Lerp(u.x, u.z, t6);
+          UIBasicSprite.mTempUVs[3].x = UIBasicSprite.mTempUVs[2].x;
+          UIBasicSprite.mTempUVs[0].y = Mathf.Lerp(u.y, u.w, t7);
+          UIBasicSprite.mTempUVs[1].y = Mathf.Lerp(u.y, u.w, t8);
+          UIBasicSprite.mTempUVs[2].y = UIBasicSprite.mTempUVs[1].y;
+          UIBasicSprite.mTempUVs[3].y = UIBasicSprite.mTempUVs[0].y;
+          float num = this.mInvert ? this.mFillAmount * 4f - (float) NGUIMath.RepeatIndex(index3 + 2, 4) : this.mFillAmount * 4f - (float) (3 - NGUIMath.RepeatIndex(index3 + 2, 4));
+          if (UIBasicSprite.RadialCut(UIBasicSprite.mTempPos, UIBasicSprite.mTempUVs, Mathf.Clamp01(num), this.mInvert, NGUIMath.RepeatIndex(index3 + 2, 4)))
+          {
+            for (int index4 = 0; index4 < 4; ++index4)
+            {
+              verts.Add((Vector3) UIBasicSprite.mTempPos[index4]);
+              uvs.Add(UIBasicSprite.mTempUVs[index4]);
+              cols.Add(c);
+            }
+          }
+        }
+        return;
+      }
+    }
+    for (int index = 0; index < 4; ++index)
+    {
+      verts.Add((Vector3) UIBasicSprite.mTempPos[index]);
+      uvs.Add(UIBasicSprite.mTempUVs[index]);
+      cols.Add(c);
+    }
+  }
 
-	// Token: 0x06000489 RID: 1161 RVA: 0x0002F170 File Offset: 0x0002D370
-	private static bool RadialCut(Vector2[] xy, Vector2[] uv, float fill, bool invert, int corner)
-	{
-		if (fill < 0.001f)
-		{
-			return false;
-		}
-		if ((corner & 1) == 1)
-		{
-			invert = !invert;
-		}
-		if (!invert && fill > 0.999f)
-		{
-			return true;
-		}
-		float num = Mathf.Clamp01(fill);
-		if (invert)
-		{
-			num = 1f - num;
-		}
-		num *= 1.5707964f;
-		float cos = Mathf.Cos(num);
-		float sin = Mathf.Sin(num);
-		UIBasicSprite.RadialCut(xy, cos, sin, invert, corner);
-		UIBasicSprite.RadialCut(uv, cos, sin, invert, corner);
-		return true;
-	}
+  protected void AdvancedFill(
+    List<Vector3> verts,
+    List<Vector2> uvs,
+    List<Color> cols,
+    ref Vector4 v,
+    ref Vector4 u,
+    ref Color c)
+  {
+    Texture mainTexture = this.mainTexture;
+    if ((UnityEngine.Object) mainTexture == (UnityEngine.Object) null)
+      return;
+    Vector4 vector4 = this.border * this.pixelSize;
+    if ((double) vector4.x == 0.0 && (double) vector4.y == 0.0 && (double) vector4.z == 0.0 && (double) vector4.w == 0.0)
+    {
+      this.SimpleFill(verts, uvs, cols, ref v, ref u, ref c);
+    }
+    else
+    {
+      Vector2 vector2 = new Vector2(this.mInnerUV.width * (float) mainTexture.width, this.mInnerUV.height * (float) mainTexture.height) * this.pixelSize;
+      if ((double) vector2.x < 1.0)
+        vector2.x = 1f;
+      if ((double) vector2.y < 1.0)
+        vector2.y = 1f;
+      UIBasicSprite.mTempPos[0].x = v.x;
+      UIBasicSprite.mTempPos[0].y = v.y;
+      UIBasicSprite.mTempPos[3].x = v.z;
+      UIBasicSprite.mTempPos[3].y = v.w;
+      if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
+      {
+        UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x + vector4.z;
+        UIBasicSprite.mTempPos[2].x = UIBasicSprite.mTempPos[3].x - vector4.x;
+        UIBasicSprite.mTempUVs[3].x = this.mOuterUV.xMin;
+        UIBasicSprite.mTempUVs[2].x = this.mInnerUV.xMin;
+        UIBasicSprite.mTempUVs[1].x = this.mInnerUV.xMax;
+        UIBasicSprite.mTempUVs[0].x = this.mOuterUV.xMax;
+      }
+      else
+      {
+        UIBasicSprite.mTempPos[1].x = UIBasicSprite.mTempPos[0].x + vector4.x;
+        UIBasicSprite.mTempPos[2].x = UIBasicSprite.mTempPos[3].x - vector4.z;
+        UIBasicSprite.mTempUVs[0].x = this.mOuterUV.xMin;
+        UIBasicSprite.mTempUVs[1].x = this.mInnerUV.xMin;
+        UIBasicSprite.mTempUVs[2].x = this.mInnerUV.xMax;
+        UIBasicSprite.mTempUVs[3].x = this.mOuterUV.xMax;
+      }
+      if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
+      {
+        UIBasicSprite.mTempPos[1].y = UIBasicSprite.mTempPos[0].y + vector4.w;
+        UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[3].y - vector4.y;
+        UIBasicSprite.mTempUVs[3].y = this.mOuterUV.yMin;
+        UIBasicSprite.mTempUVs[2].y = this.mInnerUV.yMin;
+        UIBasicSprite.mTempUVs[1].y = this.mInnerUV.yMax;
+        UIBasicSprite.mTempUVs[0].y = this.mOuterUV.yMax;
+      }
+      else
+      {
+        UIBasicSprite.mTempPos[1].y = UIBasicSprite.mTempPos[0].y + vector4.y;
+        UIBasicSprite.mTempPos[2].y = UIBasicSprite.mTempPos[3].y - vector4.w;
+        UIBasicSprite.mTempUVs[0].y = this.mOuterUV.yMin;
+        UIBasicSprite.mTempUVs[1].y = this.mInnerUV.yMin;
+        UIBasicSprite.mTempUVs[2].y = this.mInnerUV.yMax;
+        UIBasicSprite.mTempUVs[3].y = this.mOuterUV.yMax;
+      }
+      for (int index1 = 0; index1 < 3; ++index1)
+      {
+        int index2 = index1 + 1;
+        for (int index3 = 0; index3 < 3; ++index3)
+        {
+          if (this.centerType != UIBasicSprite.AdvancedType.Invisible || index1 != 1 || index3 != 1)
+          {
+            int index4 = index3 + 1;
+            if (index1 == 1 && index3 == 1)
+            {
+              if (this.centerType == UIBasicSprite.AdvancedType.Tiled)
+              {
+                float x1 = UIBasicSprite.mTempPos[index1].x;
+                float x2 = UIBasicSprite.mTempPos[index2].x;
+                double y1 = (double) UIBasicSprite.mTempPos[index3].y;
+                float y2 = UIBasicSprite.mTempPos[index4].y;
+                float x3 = UIBasicSprite.mTempUVs[index1].x;
+                float y3 = UIBasicSprite.mTempUVs[index3].y;
+                for (float v0y = (float) y1; (double) v0y < (double) y2; v0y += vector2.y)
+                {
+                  float v0x = x1;
+                  float num1 = UIBasicSprite.mTempUVs[index4].y;
+                  float v1y = v0y + vector2.y;
+                  if ((double) v1y > (double) y2)
+                  {
+                    num1 = Mathf.Lerp(y3, num1, (y2 - v0y) / vector2.y);
+                    v1y = y2;
+                  }
+                  for (; (double) v0x < (double) x2; v0x += vector2.x)
+                  {
+                    float v1x = v0x + vector2.x;
+                    float num2 = UIBasicSprite.mTempUVs[index2].x;
+                    if ((double) v1x > (double) x2)
+                    {
+                      num2 = Mathf.Lerp(x3, num2, (x2 - v0x) / vector2.x);
+                      v1x = x2;
+                    }
+                    UIBasicSprite.Fill(verts, uvs, cols, v0x, v1x, v0y, v1y, x3, num2, y3, num1, c);
+                  }
+                }
+              }
+              else if (this.centerType == UIBasicSprite.AdvancedType.Sliced)
+                UIBasicSprite.Fill(verts, uvs, cols, UIBasicSprite.mTempPos[index1].x, UIBasicSprite.mTempPos[index2].x, UIBasicSprite.mTempPos[index3].y, UIBasicSprite.mTempPos[index4].y, UIBasicSprite.mTempUVs[index1].x, UIBasicSprite.mTempUVs[index2].x, UIBasicSprite.mTempUVs[index3].y, UIBasicSprite.mTempUVs[index4].y, c);
+            }
+            else if (index1 == 1)
+            {
+              if (index3 == 0 && this.bottomType == UIBasicSprite.AdvancedType.Tiled || index3 == 2 && this.topType == UIBasicSprite.AdvancedType.Tiled)
+              {
+                double x4 = (double) UIBasicSprite.mTempPos[index1].x;
+                float x5 = UIBasicSprite.mTempPos[index2].x;
+                float y4 = UIBasicSprite.mTempPos[index3].y;
+                float y5 = UIBasicSprite.mTempPos[index4].y;
+                float x6 = UIBasicSprite.mTempUVs[index1].x;
+                float y6 = UIBasicSprite.mTempUVs[index3].y;
+                float y7 = UIBasicSprite.mTempUVs[index4].y;
+                for (float v0x = (float) x4; (double) v0x < (double) x5; v0x += vector2.x)
+                {
+                  float v1x = v0x + vector2.x;
+                  float num = UIBasicSprite.mTempUVs[index2].x;
+                  if ((double) v1x > (double) x5)
+                  {
+                    num = Mathf.Lerp(x6, num, (x5 - v0x) / vector2.x);
+                    v1x = x5;
+                  }
+                  UIBasicSprite.Fill(verts, uvs, cols, v0x, v1x, y4, y5, x6, num, y6, y7, c);
+                }
+              }
+              else if (index3 == 0 && this.bottomType != UIBasicSprite.AdvancedType.Invisible || index3 == 2 && this.topType != UIBasicSprite.AdvancedType.Invisible)
+                UIBasicSprite.Fill(verts, uvs, cols, UIBasicSprite.mTempPos[index1].x, UIBasicSprite.mTempPos[index2].x, UIBasicSprite.mTempPos[index3].y, UIBasicSprite.mTempPos[index4].y, UIBasicSprite.mTempUVs[index1].x, UIBasicSprite.mTempUVs[index2].x, UIBasicSprite.mTempUVs[index3].y, UIBasicSprite.mTempUVs[index4].y, c);
+            }
+            else if (index3 == 1)
+            {
+              if (index1 == 0 && this.leftType == UIBasicSprite.AdvancedType.Tiled || index1 == 2 && this.rightType == UIBasicSprite.AdvancedType.Tiled)
+              {
+                float x7 = UIBasicSprite.mTempPos[index1].x;
+                float x8 = UIBasicSprite.mTempPos[index2].x;
+                double y8 = (double) UIBasicSprite.mTempPos[index3].y;
+                float y9 = UIBasicSprite.mTempPos[index4].y;
+                float x9 = UIBasicSprite.mTempUVs[index1].x;
+                float x10 = UIBasicSprite.mTempUVs[index2].x;
+                float y10 = UIBasicSprite.mTempUVs[index3].y;
+                for (float v0y = (float) y8; (double) v0y < (double) y9; v0y += vector2.y)
+                {
+                  float num = UIBasicSprite.mTempUVs[index4].y;
+                  float v1y = v0y + vector2.y;
+                  if ((double) v1y > (double) y9)
+                  {
+                    num = Mathf.Lerp(y10, num, (y9 - v0y) / vector2.y);
+                    v1y = y9;
+                  }
+                  UIBasicSprite.Fill(verts, uvs, cols, x7, x8, v0y, v1y, x9, x10, y10, num, c);
+                }
+              }
+              else if (index1 == 0 && this.leftType != UIBasicSprite.AdvancedType.Invisible || index1 == 2 && this.rightType != UIBasicSprite.AdvancedType.Invisible)
+                UIBasicSprite.Fill(verts, uvs, cols, UIBasicSprite.mTempPos[index1].x, UIBasicSprite.mTempPos[index2].x, UIBasicSprite.mTempPos[index3].y, UIBasicSprite.mTempPos[index4].y, UIBasicSprite.mTempUVs[index1].x, UIBasicSprite.mTempUVs[index2].x, UIBasicSprite.mTempUVs[index3].y, UIBasicSprite.mTempUVs[index4].y, c);
+            }
+            else if ((index3 != 0 || this.bottomType != UIBasicSprite.AdvancedType.Invisible) && (index3 != 2 || this.topType != UIBasicSprite.AdvancedType.Invisible) && (index1 != 0 || this.leftType != UIBasicSprite.AdvancedType.Invisible) && (index1 != 2 || this.rightType != UIBasicSprite.AdvancedType.Invisible))
+              UIBasicSprite.Fill(verts, uvs, cols, UIBasicSprite.mTempPos[index1].x, UIBasicSprite.mTempPos[index2].x, UIBasicSprite.mTempPos[index3].y, UIBasicSprite.mTempPos[index4].y, UIBasicSprite.mTempUVs[index1].x, UIBasicSprite.mTempUVs[index2].x, UIBasicSprite.mTempUVs[index3].y, UIBasicSprite.mTempUVs[index4].y, c);
+          }
+        }
+      }
+    }
+  }
 
-	// Token: 0x0600048A RID: 1162 RVA: 0x0002F1E0 File Offset: 0x0002D3E0
-	private static void RadialCut(Vector2[] xy, float cos, float sin, bool invert, int corner)
-	{
-		int num = NGUIMath.RepeatIndex(corner + 1, 4);
-		int num2 = NGUIMath.RepeatIndex(corner + 2, 4);
-		int num3 = NGUIMath.RepeatIndex(corner + 3, 4);
-		if ((corner & 1) == 1)
-		{
-			if (sin > cos)
-			{
-				cos /= sin;
-				sin = 1f;
-				if (invert)
-				{
-					xy[num].x = Mathf.Lerp(xy[corner].x, xy[num2].x, cos);
-					xy[num2].x = xy[num].x;
-				}
-			}
-			else if (cos > sin)
-			{
-				sin /= cos;
-				cos = 1f;
-				if (!invert)
-				{
-					xy[num2].y = Mathf.Lerp(xy[corner].y, xy[num2].y, sin);
-					xy[num3].y = xy[num2].y;
-				}
-			}
-			else
-			{
-				cos = 1f;
-				sin = 1f;
-			}
-			if (!invert)
-			{
-				xy[num3].x = Mathf.Lerp(xy[corner].x, xy[num2].x, cos);
-				return;
-			}
-			xy[num].y = Mathf.Lerp(xy[corner].y, xy[num2].y, sin);
-			return;
-		}
-		else
-		{
-			if (cos > sin)
-			{
-				sin /= cos;
-				cos = 1f;
-				if (!invert)
-				{
-					xy[num].y = Mathf.Lerp(xy[corner].y, xy[num2].y, sin);
-					xy[num2].y = xy[num].y;
-				}
-			}
-			else if (sin > cos)
-			{
-				cos /= sin;
-				sin = 1f;
-				if (invert)
-				{
-					xy[num2].x = Mathf.Lerp(xy[corner].x, xy[num2].x, cos);
-					xy[num3].x = xy[num2].x;
-				}
-			}
-			else
-			{
-				cos = 1f;
-				sin = 1f;
-			}
-			if (invert)
-			{
-				xy[num3].y = Mathf.Lerp(xy[corner].y, xy[num2].y, sin);
-				return;
-			}
-			xy[num].x = Mathf.Lerp(xy[corner].x, xy[num2].x, cos);
-			return;
-		}
-	}
+  private static bool RadialCut(Vector2[] xy, Vector2[] uv, float fill, bool invert, int corner)
+  {
+    if ((double) fill < 1.0 / 1000.0)
+      return false;
+    if ((corner & 1) == 1)
+      invert = !invert;
+    if (!invert && (double) fill > 0.999000012874603)
+      return true;
+    float num = Mathf.Clamp01(fill);
+    if (invert)
+      num = 1f - num;
+    float f = num * 1.570796f;
+    float cos = Mathf.Cos(f);
+    float sin = Mathf.Sin(f);
+    UIBasicSprite.RadialCut(xy, cos, sin, invert, corner);
+    UIBasicSprite.RadialCut(uv, cos, sin, invert, corner);
+    return true;
+  }
 
-	// Token: 0x0600048B RID: 1163 RVA: 0x0002F44C File Offset: 0x0002D64C
-	private static void Fill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols, float v0x, float v1x, float v0y, float v1y, float u0x, float u1x, float u0y, float u1y, Color col)
-	{
-		verts.Add(new Vector3(v0x, v0y));
-		verts.Add(new Vector3(v0x, v1y));
-		verts.Add(new Vector3(v1x, v1y));
-		verts.Add(new Vector3(v1x, v0y));
-		uvs.Add(new Vector2(u0x, u0y));
-		uvs.Add(new Vector2(u0x, u1y));
-		uvs.Add(new Vector2(u1x, u1y));
-		uvs.Add(new Vector2(u1x, u0y));
-		cols.Add(col);
-		cols.Add(col);
-		cols.Add(col);
-		cols.Add(col);
-	}
+  private static void RadialCut(Vector2[] xy, float cos, float sin, bool invert, int corner)
+  {
+    int index1 = corner;
+    int index2 = NGUIMath.RepeatIndex(corner + 1, 4);
+    int index3 = NGUIMath.RepeatIndex(corner + 2, 4);
+    int index4 = NGUIMath.RepeatIndex(corner + 3, 4);
+    if ((corner & 1) == 1)
+    {
+      if ((double) sin > (double) cos)
+      {
+        cos /= sin;
+        sin = 1f;
+        if (invert)
+        {
+          xy[index2].x = Mathf.Lerp(xy[index1].x, xy[index3].x, cos);
+          xy[index3].x = xy[index2].x;
+        }
+      }
+      else if ((double) cos > (double) sin)
+      {
+        sin /= cos;
+        cos = 1f;
+        if (!invert)
+        {
+          xy[index3].y = Mathf.Lerp(xy[index1].y, xy[index3].y, sin);
+          xy[index4].y = xy[index3].y;
+        }
+      }
+      else
+      {
+        cos = 1f;
+        sin = 1f;
+      }
+      if (!invert)
+        xy[index4].x = Mathf.Lerp(xy[index1].x, xy[index3].x, cos);
+      else
+        xy[index2].y = Mathf.Lerp(xy[index1].y, xy[index3].y, sin);
+    }
+    else
+    {
+      if ((double) cos > (double) sin)
+      {
+        sin /= cos;
+        cos = 1f;
+        if (!invert)
+        {
+          xy[index2].y = Mathf.Lerp(xy[index1].y, xy[index3].y, sin);
+          xy[index3].y = xy[index2].y;
+        }
+      }
+      else if ((double) sin > (double) cos)
+      {
+        cos /= sin;
+        sin = 1f;
+        if (invert)
+        {
+          xy[index3].x = Mathf.Lerp(xy[index1].x, xy[index3].x, cos);
+          xy[index4].x = xy[index3].x;
+        }
+      }
+      else
+      {
+        cos = 1f;
+        sin = 1f;
+      }
+      if (invert)
+        xy[index4].y = Mathf.Lerp(xy[index1].y, xy[index3].y, sin);
+      else
+        xy[index2].x = Mathf.Lerp(xy[index1].x, xy[index3].x, cos);
+    }
+  }
 
-	// Token: 0x0400050A RID: 1290
-	[HideInInspector]
-	[SerializeField]
-	protected UIBasicSprite.Type mType;
+  private static void Fill(
+    List<Vector3> verts,
+    List<Vector2> uvs,
+    List<Color> cols,
+    float v0x,
+    float v1x,
+    float v0y,
+    float v1y,
+    float u0x,
+    float u1x,
+    float u0y,
+    float u1y,
+    Color col)
+  {
+    verts.Add(new Vector3(v0x, v0y));
+    verts.Add(new Vector3(v0x, v1y));
+    verts.Add(new Vector3(v1x, v1y));
+    verts.Add(new Vector3(v1x, v0y));
+    uvs.Add(new Vector2(u0x, u0y));
+    uvs.Add(new Vector2(u0x, u1y));
+    uvs.Add(new Vector2(u1x, u1y));
+    uvs.Add(new Vector2(u1x, u0y));
+    cols.Add(col);
+    cols.Add(col);
+    cols.Add(col);
+    cols.Add(col);
+  }
 
-	// Token: 0x0400050B RID: 1291
-	[HideInInspector]
-	[SerializeField]
-	protected UIBasicSprite.FillDirection mFillDirection = UIBasicSprite.FillDirection.Radial360;
+  [DoNotObfuscateNGUI]
+  public enum Type
+  {
+    Simple,
+    Sliced,
+    Tiled,
+    Filled,
+    Advanced,
+  }
 
-	// Token: 0x0400050C RID: 1292
-	[Range(0f, 1f)]
-	[HideInInspector]
-	[SerializeField]
-	protected float mFillAmount = 1f;
+  [DoNotObfuscateNGUI]
+  public enum FillDirection
+  {
+    Horizontal,
+    Vertical,
+    Radial90,
+    Radial180,
+    Radial360,
+  }
 
-	// Token: 0x0400050D RID: 1293
-	[HideInInspector]
-	[SerializeField]
-	protected bool mInvert;
+  [DoNotObfuscateNGUI]
+  public enum AdvancedType
+  {
+    Invisible,
+    Sliced,
+    Tiled,
+  }
 
-	// Token: 0x0400050E RID: 1294
-	[HideInInspector]
-	[SerializeField]
-	protected UIBasicSprite.Flip mFlip;
-
-	// Token: 0x0400050F RID: 1295
-	[HideInInspector]
-	[SerializeField]
-	protected bool mApplyGradient;
-
-	// Token: 0x04000510 RID: 1296
-	[HideInInspector]
-	[SerializeField]
-	protected Color mGradientTop = Color.white;
-
-	// Token: 0x04000511 RID: 1297
-	[HideInInspector]
-	[SerializeField]
-	protected Color mGradientBottom = new Color(0.7f, 0.7f, 0.7f);
-
-	// Token: 0x04000512 RID: 1298
-	[NonSerialized]
-	protected Rect mInnerUV;
-
-	// Token: 0x04000513 RID: 1299
-	[NonSerialized]
-	protected Rect mOuterUV;
-
-	// Token: 0x04000514 RID: 1300
-	public UIBasicSprite.AdvancedType centerType = UIBasicSprite.AdvancedType.Sliced;
-
-	// Token: 0x04000515 RID: 1301
-	public UIBasicSprite.AdvancedType leftType = UIBasicSprite.AdvancedType.Sliced;
-
-	// Token: 0x04000516 RID: 1302
-	public UIBasicSprite.AdvancedType rightType = UIBasicSprite.AdvancedType.Sliced;
-
-	// Token: 0x04000517 RID: 1303
-	public UIBasicSprite.AdvancedType bottomType = UIBasicSprite.AdvancedType.Sliced;
-
-	// Token: 0x04000518 RID: 1304
-	public UIBasicSprite.AdvancedType topType = UIBasicSprite.AdvancedType.Sliced;
-
-	// Token: 0x04000519 RID: 1305
-	protected static Vector2[] mTempPos = new Vector2[4];
-
-	// Token: 0x0400051A RID: 1306
-	protected static Vector2[] mTempUVs = new Vector2[4];
-
-	// Token: 0x020005FD RID: 1533
-	[DoNotObfuscateNGUI]
-	public enum Type
-	{
-		// Token: 0x04004EC3 RID: 20163
-		Simple,
-		// Token: 0x04004EC4 RID: 20164
-		Sliced,
-		// Token: 0x04004EC5 RID: 20165
-		Tiled,
-		// Token: 0x04004EC6 RID: 20166
-		Filled,
-		// Token: 0x04004EC7 RID: 20167
-		Advanced
-	}
-
-	// Token: 0x020005FE RID: 1534
-	[DoNotObfuscateNGUI]
-	public enum FillDirection
-	{
-		// Token: 0x04004EC9 RID: 20169
-		Horizontal,
-		// Token: 0x04004ECA RID: 20170
-		Vertical,
-		// Token: 0x04004ECB RID: 20171
-		Radial90,
-		// Token: 0x04004ECC RID: 20172
-		Radial180,
-		// Token: 0x04004ECD RID: 20173
-		Radial360
-	}
-
-	// Token: 0x020005FF RID: 1535
-	[DoNotObfuscateNGUI]
-	public enum AdvancedType
-	{
-		// Token: 0x04004ECF RID: 20175
-		Invisible,
-		// Token: 0x04004ED0 RID: 20176
-		Sliced,
-		// Token: 0x04004ED1 RID: 20177
-		Tiled
-	}
-
-	// Token: 0x02000600 RID: 1536
-	[DoNotObfuscateNGUI]
-	public enum Flip
-	{
-		// Token: 0x04004ED3 RID: 20179
-		Nothing,
-		// Token: 0x04004ED4 RID: 20180
-		Horizontally,
-		// Token: 0x04004ED5 RID: 20181
-		Vertically,
-		// Token: 0x04004ED6 RID: 20182
-		Both
-	}
+  [DoNotObfuscateNGUI]
+  public enum Flip
+  {
+    Nothing,
+    Horizontally,
+    Vertically,
+    Both,
+  }
 }

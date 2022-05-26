@@ -1,60 +1,49 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: CleanUpScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200024B RID: 587
 public class CleanUpScript : MonoBehaviour
 {
-	// Token: 0x06001267 RID: 4711 RVA: 0x0008EF9C File Offset: 0x0008D19C
-	private void Update()
-	{
-		if (this.Prompt.Yandere.PickUp != null && this.Prompt.Yandere.PickUp.Mop != null && this.Prompt.Yandere.PickUp.Mop.Bleached)
-		{
-			this.Prompt.HideButton[0] = false;
-			if (this.Prompt.Circle[0].fillAmount == 0f)
-			{
-				this.Prompt.Yandere.CanMove = false;
-				this.FadeOut = true;
-			}
-			if (this.FadeOut)
-			{
-				this.CleanUpDarkness.alpha = Mathf.MoveTowards(this.CleanUpDarkness.alpha, 1f, Time.deltaTime);
-				if (this.CleanUpDarkness.alpha == 1f)
-				{
-					this.BloodProjector.enabled = false;
-					this.FadeOut = false;
-					this.FadeIn = true;
-				}
-			}
-			if (this.FadeIn)
-			{
-				this.CleanUpDarkness.alpha = Mathf.MoveTowards(this.CleanUpDarkness.alpha, 0f, Time.deltaTime);
-				if (this.CleanUpDarkness.alpha == 0f)
-				{
-					this.Prompt.Hide();
-					this.BloodProjector.gameObject.SetActive(false);
-					this.Prompt.Yandere.CanMove = true;
-					return;
-				}
-			}
-		}
-		else
-		{
-			this.Prompt.HideButton[0] = true;
-		}
-	}
+  public Projector BloodProjector;
+  public UISprite CleanUpDarkness;
+  public PromptScript Prompt;
+  public bool FadeOut;
+  public bool FadeIn;
 
-	// Token: 0x0400177F RID: 6015
-	public Projector BloodProjector;
-
-	// Token: 0x04001780 RID: 6016
-	public UISprite CleanUpDarkness;
-
-	// Token: 0x04001781 RID: 6017
-	public PromptScript Prompt;
-
-	// Token: 0x04001782 RID: 6018
-	public bool FadeOut;
-
-	// Token: 0x04001783 RID: 6019
-	public bool FadeIn;
+  private void Update()
+  {
+    if ((Object) this.Prompt.Yandere.PickUp != (Object) null && (Object) this.Prompt.Yandere.PickUp.Mop != (Object) null && this.Prompt.Yandere.PickUp.Mop.Bleached)
+    {
+      this.Prompt.HideButton[0] = false;
+      if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
+      {
+        this.Prompt.Yandere.CanMove = false;
+        this.FadeOut = true;
+      }
+      if (this.FadeOut)
+      {
+        this.CleanUpDarkness.alpha = Mathf.MoveTowards(this.CleanUpDarkness.alpha, 1f, Time.deltaTime);
+        if ((double) this.CleanUpDarkness.alpha == 1.0)
+        {
+          this.BloodProjector.enabled = false;
+          this.FadeOut = false;
+          this.FadeIn = true;
+        }
+      }
+      if (!this.FadeIn)
+        return;
+      this.CleanUpDarkness.alpha = Mathf.MoveTowards(this.CleanUpDarkness.alpha, 0.0f, Time.deltaTime);
+      if ((double) this.CleanUpDarkness.alpha != 0.0)
+        return;
+      this.Prompt.Hide();
+      this.BloodProjector.gameObject.SetActive(false);
+      this.Prompt.Yandere.CanMove = true;
+    }
+    else
+      this.Prompt.HideButton[0] = true;
+  }
 }

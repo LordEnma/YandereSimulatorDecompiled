@@ -1,15 +1,12 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ConstantRandomRotation
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200025A RID: 602
 public class ConstantRandomRotation : MonoBehaviour
 {
-	// Token: 0x060012B7 RID: 4791 RVA: 0x00099E54 File Offset: 0x00098054
-	private void Update()
-	{
-		int num = UnityEngine.Random.Range(0, 360);
-		int num2 = UnityEngine.Random.Range(0, 360);
-		int num3 = UnityEngine.Random.Range(0, 360);
-		base.transform.Rotate((float)num, (float)num2, (float)num3);
-	}
+  private void Update() => this.transform.Rotate((float) Random.Range(0, 360), (float) Random.Range(0, 360), (float) Random.Range(0, 360));
 }

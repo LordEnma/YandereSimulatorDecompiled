@@ -1,49 +1,40 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ClothingScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200024F RID: 591
 public class ClothingScript : MonoBehaviour
 {
-	// Token: 0x0600127A RID: 4730 RVA: 0x000911DA File Offset: 0x0008F3DA
-	private void Start()
-	{
-		this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
-	}
+  public YandereScript Yandere;
+  public PromptScript Prompt;
+  public GameObject FoldedUniform;
+  public bool CanPickUp;
 
-	// Token: 0x0600127B RID: 4731 RVA: 0x000911F4 File Offset: 0x0008F3F4
-	private void Update()
-	{
-		if (this.CanPickUp)
-		{
-			if (this.Yandere.Bloodiness == 0f)
-			{
-				this.CanPickUp = false;
-				this.Prompt.Hide();
-				this.Prompt.enabled = false;
-			}
-		}
-		else if (this.Yandere.Bloodiness > 0f)
-		{
-			this.CanPickUp = true;
-			this.Prompt.enabled = true;
-		}
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Yandere.Bloodiness = 0f;
-			UnityEngine.Object.Instantiate<GameObject>(this.FoldedUniform, base.transform.position + Vector3.up, Quaternion.identity);
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  private void Start() => this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
 
-	// Token: 0x040017D0 RID: 6096
-	public YandereScript Yandere;
-
-	// Token: 0x040017D1 RID: 6097
-	public PromptScript Prompt;
-
-	// Token: 0x040017D2 RID: 6098
-	public GameObject FoldedUniform;
-
-	// Token: 0x040017D3 RID: 6099
-	public bool CanPickUp;
+  private void Update()
+  {
+    if (this.CanPickUp)
+    {
+      if ((double) this.Yandere.Bloodiness == 0.0)
+      {
+        this.CanPickUp = false;
+        this.Prompt.Hide();
+        this.Prompt.enabled = false;
+      }
+    }
+    else if ((double) this.Yandere.Bloodiness > 0.0)
+    {
+      this.CanPickUp = true;
+      this.Prompt.enabled = true;
+    }
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    this.Prompt.Yandere.Bloodiness = 0.0f;
+    Object.Instantiate<GameObject>(this.FoldedUniform, this.transform.position + Vector3.up, Quaternion.identity);
+    Object.Destroy((Object) this.gameObject);
+  }
 }

@@ -1,22 +1,21 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIButtonActivate
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000044 RID: 68
 [AddComponentMenu("NGUI/Interaction/Button Activate")]
 public class UIButtonActivate : MonoBehaviour
 {
-	// Token: 0x0600011E RID: 286 RVA: 0x00014069 File Offset: 0x00012269
-	private void OnClick()
-	{
-		if (this.target != null)
-		{
-			NGUITools.SetActive(this.target, this.state);
-		}
-	}
+  public GameObject target;
+  public bool state = true;
 
-	// Token: 0x040002F7 RID: 759
-	public GameObject target;
-
-	// Token: 0x040002F8 RID: 760
-	public bool state = true;
+  private void OnClick()
+  {
+    if (!((Object) this.target != (Object) null))
+      return;
+    NGUITools.SetActive(this.target, this.state);
+  }
 }

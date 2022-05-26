@@ -1,143 +1,101 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TrueEndingScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000491 RID: 1169
 public class TrueEndingScript : MonoBehaviour
 {
-	// Token: 0x06001F47 RID: 8007 RVA: 0x001BB7F6 File Offset: 0x001B99F6
-	private void Start()
-	{
-		this.Darkness.alpha = 1f;
-		this.Subtitle.text = "";
-	}
+  public GameObject TrueEndingPanel;
+  public GameObject TimelinePanel;
+  public AudioSource Ambience;
+  public AudioSource MyAudio;
+  public AudioSource BuildUp;
+  public UISprite Darkness;
+  public Texture DarkLogo;
+  public AudioClip[] Clip;
+  public UILabel Subtitle;
+  public UITexture Logo;
+  public string[] Text;
+  public float SpeechTimer;
+  public float FadeTimer;
+  public float WaitTimer;
+  public float Timer;
+  public float Intensity;
+  public bool FadeOut;
+  public bool Shake;
+  public int Phase;
 
-	// Token: 0x06001F48 RID: 8008 RVA: 0x001BB818 File Offset: 0x001B9A18
-	private void Update()
-	{
-		this.Timer += Time.deltaTime;
-		this.Ambience.volume = Mathf.MoveTowards(this.Ambience.volume, 0.25f, Time.deltaTime * 0.25f);
-		if (this.Timer > 1f)
-		{
-			if (!this.FadeOut)
-			{
-				this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0f, Time.deltaTime);
-			}
-			else
-			{
-				this.Logo.alpha = Mathf.MoveTowards(this.Logo.alpha, 0f, Time.deltaTime * 0.33333f);
-				if (this.Logo.alpha == 0f)
-				{
-					this.TrueEndingPanel.SetActive(false);
-					this.TimelinePanel.SetActive(true);
-					base.enabled = false;
-				}
-			}
-			this.WaitTimer += Time.deltaTime;
-			if (this.WaitTimer > 1f)
-			{
-				if (Input.GetButtonDown("A"))
-				{
-					this.SpeechTimer = 1f;
-					if (this.Phase < 16)
-					{
-						this.MyAudio.Stop();
-					}
-				}
-				if (!this.MyAudio.isPlaying && this.Darkness.alpha == 0f)
-				{
-					this.SpeechTimer += Time.deltaTime;
-					if (this.SpeechTimer > 0.5f && this.Phase < this.Clip.Length - 1)
-					{
-						this.Phase++;
-						this.Subtitle.text = this.Text[this.Phase];
-						this.MyAudio.clip = this.Clip[this.Phase];
-						this.MyAudio.Play();
-						if (this.Phase == this.Clip.Length - 1)
-						{
-							this.Logo.mainTexture = this.DarkLogo;
-							this.Ambience.Stop();
-							this.BuildUp.Stop();
-							this.Shake = true;
-						}
-						else if (this.Phase == this.Clip.Length - 2)
-						{
-							this.BuildUp.Play();
-						}
-						this.SpeechTimer = 0f;
-					}
-				}
-			}
-		}
-		if (this.Shake)
-		{
-			this.Logo.transform.localPosition = new Vector3(UnityEngine.Random.Range(-1f, 1f) * this.Intensity, UnityEngine.Random.Range(-1f, 1f) * this.Intensity, UnityEngine.Random.Range(-1f, 1f) * this.Intensity);
-			this.Intensity = Mathf.MoveTowards(this.Intensity, 0f, Time.deltaTime * 100f);
-			if (this.Intensity == 0f)
-			{
-				this.FadeTimer += Time.deltaTime;
-				if (this.FadeTimer > 5f && !this.FadeOut)
-				{
-					this.Darkness.color = new Color(0f, 0f, 0f, 0f);
-					this.FadeOut = true;
-				}
-			}
-		}
-	}
+  private void Start()
+  {
+    this.Darkness.alpha = 1f;
+    this.Subtitle.text = "";
+  }
 
-	// Token: 0x04004167 RID: 16743
-	public GameObject TrueEndingPanel;
-
-	// Token: 0x04004168 RID: 16744
-	public GameObject TimelinePanel;
-
-	// Token: 0x04004169 RID: 16745
-	public AudioSource Ambience;
-
-	// Token: 0x0400416A RID: 16746
-	public AudioSource MyAudio;
-
-	// Token: 0x0400416B RID: 16747
-	public AudioSource BuildUp;
-
-	// Token: 0x0400416C RID: 16748
-	public UISprite Darkness;
-
-	// Token: 0x0400416D RID: 16749
-	public Texture DarkLogo;
-
-	// Token: 0x0400416E RID: 16750
-	public AudioClip[] Clip;
-
-	// Token: 0x0400416F RID: 16751
-	public UILabel Subtitle;
-
-	// Token: 0x04004170 RID: 16752
-	public UITexture Logo;
-
-	// Token: 0x04004171 RID: 16753
-	public string[] Text;
-
-	// Token: 0x04004172 RID: 16754
-	public float SpeechTimer;
-
-	// Token: 0x04004173 RID: 16755
-	public float FadeTimer;
-
-	// Token: 0x04004174 RID: 16756
-	public float WaitTimer;
-
-	// Token: 0x04004175 RID: 16757
-	public float Timer;
-
-	// Token: 0x04004176 RID: 16758
-	public float Intensity;
-
-	// Token: 0x04004177 RID: 16759
-	public bool FadeOut;
-
-	// Token: 0x04004178 RID: 16760
-	public bool Shake;
-
-	// Token: 0x04004179 RID: 16761
-	public int Phase;
+  private void Update()
+  {
+    this.Timer += Time.deltaTime;
+    this.Ambience.volume = Mathf.MoveTowards(this.Ambience.volume, 0.25f, Time.deltaTime * 0.25f);
+    if ((double) this.Timer > 1.0)
+    {
+      if (!this.FadeOut)
+      {
+        this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0.0f, Time.deltaTime);
+      }
+      else
+      {
+        this.Logo.alpha = Mathf.MoveTowards(this.Logo.alpha, 0.0f, Time.deltaTime * 0.33333f);
+        if ((double) this.Logo.alpha == 0.0)
+        {
+          this.TrueEndingPanel.SetActive(false);
+          this.TimelinePanel.SetActive(true);
+          this.enabled = false;
+        }
+      }
+      this.WaitTimer += Time.deltaTime;
+      if ((double) this.WaitTimer > 1.0)
+      {
+        if (Input.GetButtonDown("A"))
+        {
+          this.SpeechTimer = 1f;
+          if (this.Phase < 16)
+            this.MyAudio.Stop();
+        }
+        if (!this.MyAudio.isPlaying && (double) this.Darkness.alpha == 0.0)
+        {
+          this.SpeechTimer += Time.deltaTime;
+          if ((double) this.SpeechTimer > 0.5 && this.Phase < this.Clip.Length - 1)
+          {
+            ++this.Phase;
+            this.Subtitle.text = this.Text[this.Phase];
+            this.MyAudio.clip = this.Clip[this.Phase];
+            this.MyAudio.Play();
+            if (this.Phase == this.Clip.Length - 1)
+            {
+              this.Logo.mainTexture = this.DarkLogo;
+              this.Ambience.Stop();
+              this.BuildUp.Stop();
+              this.Shake = true;
+            }
+            else if (this.Phase == this.Clip.Length - 2)
+              this.BuildUp.Play();
+            this.SpeechTimer = 0.0f;
+          }
+        }
+      }
+    }
+    if (!this.Shake)
+      return;
+    this.Logo.transform.localPosition = new Vector3(Random.Range(-1f, 1f) * this.Intensity, Random.Range(-1f, 1f) * this.Intensity, Random.Range(-1f, 1f) * this.Intensity);
+    this.Intensity = Mathf.MoveTowards(this.Intensity, 0.0f, Time.deltaTime * 100f);
+    if ((double) this.Intensity != 0.0)
+      return;
+    this.FadeTimer += Time.deltaTime;
+    if ((double) this.FadeTimer <= 5.0 || this.FadeOut)
+      return;
+    this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+    this.FadeOut = true;
+  }
 }

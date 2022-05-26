@@ -1,16 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AnimationOrTween.EnableCondition
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace AnimationOrTween
 {
-	// Token: 0x02000596 RID: 1430
-	[DoNotObfuscateNGUI]
-	public enum EnableCondition
-	{
-		// Token: 0x04004CDE RID: 19678
-		DoNothing,
-		// Token: 0x04004CDF RID: 19679
-		EnableThenPlay,
-		// Token: 0x04004CE0 RID: 19680
-		IgnoreDisabledState
-	}
+  [DoNotObfuscateNGUI]
+  public enum EnableCondition
+  {
+    DoNothing,
+    EnableThenPlay,
+    IgnoreDisabledState,
+  }
 }

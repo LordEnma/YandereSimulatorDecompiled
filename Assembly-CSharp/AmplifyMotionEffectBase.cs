@@ -1,1302 +1,871 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AmplifyMotionEffectBase
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using AmplifyMotion;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using AmplifyMotion;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;
 
-// Token: 0x020000B2 RID: 178
-[RequireComponent(typeof(Camera))]
+[RequireComponent(typeof (Camera))]
 [AddComponentMenu("")]
 public class AmplifyMotionEffectBase : MonoBehaviour
 {
-	// Token: 0x170001D9 RID: 473
-	// (get) Token: 0x060008E5 RID: 2277 RVA: 0x00048F0F File Offset: 0x0004710F
-	// (set) Token: 0x060008E6 RID: 2278 RVA: 0x00048F17 File Offset: 0x00047117
-	[Obsolete("workerThreads is deprecated, please use WorkerThreads instead.")]
-	public int workerThreads
-	{
-		get
-		{
-			return this.WorkerThreads;
-		}
-		set
-		{
-			this.WorkerThreads = value;
-		}
-	}
-
-	// Token: 0x170001DA RID: 474
-	// (get) Token: 0x060008E7 RID: 2279 RVA: 0x00048F20 File Offset: 0x00047120
-	internal Material ReprojectionMaterial
-	{
-		get
-		{
-			return this.m_reprojectionMaterial;
-		}
-	}
-
-	// Token: 0x170001DB RID: 475
-	// (get) Token: 0x060008E8 RID: 2280 RVA: 0x00048F28 File Offset: 0x00047128
-	internal Material SolidVectorsMaterial
-	{
-		get
-		{
-			return this.m_solidVectorsMaterial;
-		}
-	}
-
-	// Token: 0x170001DC RID: 476
-	// (get) Token: 0x060008E9 RID: 2281 RVA: 0x00048F30 File Offset: 0x00047130
-	internal Material SkinnedVectorsMaterial
-	{
-		get
-		{
-			return this.m_skinnedVectorsMaterial;
-		}
-	}
-
-	// Token: 0x170001DD RID: 477
-	// (get) Token: 0x060008EA RID: 2282 RVA: 0x00048F38 File Offset: 0x00047138
-	internal Material ClothVectorsMaterial
-	{
-		get
-		{
-			return this.m_clothVectorsMaterial;
-		}
-	}
-
-	// Token: 0x170001DE RID: 478
-	// (get) Token: 0x060008EB RID: 2283 RVA: 0x00048F40 File Offset: 0x00047140
-	internal RenderTexture MotionRenderTexture
-	{
-		get
-		{
-			return this.m_motionRT;
-		}
-	}
-
-	// Token: 0x170001DF RID: 479
-	// (get) Token: 0x060008EC RID: 2284 RVA: 0x00048F48 File Offset: 0x00047148
-	public Dictionary<Camera, AmplifyMotionCamera> LinkedCameras
-	{
-		get
-		{
-			return this.m_linkedCameras;
-		}
-	}
-
-	// Token: 0x170001E0 RID: 480
-	// (get) Token: 0x060008ED RID: 2285 RVA: 0x00048F50 File Offset: 0x00047150
-	internal float MotionScaleNorm
-	{
-		get
-		{
-			return this.m_motionScaleNorm;
-		}
-	}
-
-	// Token: 0x170001E1 RID: 481
-	// (get) Token: 0x060008EE RID: 2286 RVA: 0x00048F58 File Offset: 0x00047158
-	internal float FixedMotionScaleNorm
-	{
-		get
-		{
-			return this.m_fixedMotionScaleNorm;
-		}
-	}
-
-	// Token: 0x170001E2 RID: 482
-	// (get) Token: 0x060008EF RID: 2287 RVA: 0x00048F60 File Offset: 0x00047160
-	public AmplifyMotionCamera BaseCamera
-	{
-		get
-		{
-			return this.m_baseCamera;
-		}
-	}
-
-	// Token: 0x170001E3 RID: 483
-	// (get) Token: 0x060008F0 RID: 2288 RVA: 0x00048F68 File Offset: 0x00047168
-	internal WorkerThreadPool WorkerPool
-	{
-		get
-		{
-			return this.m_workerThreadPool;
-		}
-	}
-
-	// Token: 0x170001E4 RID: 484
-	// (get) Token: 0x060008F1 RID: 2289 RVA: 0x00048F70 File Offset: 0x00047170
-	public static bool IsD3D
-	{
-		get
-		{
-			return AmplifyMotionEffectBase.m_isD3D;
-		}
-	}
-
-	// Token: 0x170001E5 RID: 485
-	// (get) Token: 0x060008F2 RID: 2290 RVA: 0x00048F77 File Offset: 0x00047177
-	public bool CanUseGPU
-	{
-		get
-		{
-			return this.m_canUseGPU;
-		}
-	}
-
-	// Token: 0x170001E6 RID: 486
-	// (get) Token: 0x060008F3 RID: 2291 RVA: 0x00048F7F File Offset: 0x0004717F
-	public static bool IgnoreMotionScaleWarning
-	{
-		get
-		{
-			return AmplifyMotionEffectBase.m_ignoreMotionScaleWarning;
-		}
-	}
-
-	// Token: 0x170001E7 RID: 487
-	// (get) Token: 0x060008F4 RID: 2292 RVA: 0x00048F86 File Offset: 0x00047186
-	public static AmplifyMotionEffectBase FirstInstance
-	{
-		get
-		{
-			return AmplifyMotionEffectBase.m_firstInstance;
-		}
-	}
-
-	// Token: 0x170001E8 RID: 488
-	// (get) Token: 0x060008F5 RID: 2293 RVA: 0x00048F8D File Offset: 0x0004718D
-	public static AmplifyMotionEffectBase Instance
-	{
-		get
-		{
-			return AmplifyMotionEffectBase.m_firstInstance;
-		}
-	}
-
-	// Token: 0x060008F6 RID: 2294 RVA: 0x00048F94 File Offset: 0x00047194
-	private void Awake()
-	{
-		if (AmplifyMotionEffectBase.m_firstInstance == null)
-		{
-			AmplifyMotionEffectBase.m_firstInstance = this;
-		}
-		AmplifyMotionEffectBase.m_isD3D = SystemInfo.graphicsDeviceVersion.StartsWith("Direct3D");
-		this.m_globalObjectId = 1;
-		this.m_width = (this.m_height = 0);
-		if (this.ForceCPUOnly)
-		{
-			this.m_canUseGPU = false;
-			return;
-		}
-		bool flag = SystemInfo.graphicsShaderLevel >= 30;
-		bool flag2 = SystemInfo.SupportsTextureFormat(TextureFormat.RHalf);
-		bool flag3 = SystemInfo.SupportsTextureFormat(TextureFormat.RGHalf);
-		bool flag4 = SystemInfo.SupportsTextureFormat(TextureFormat.RGBAHalf);
-		bool flag5 = SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGBFloat);
-		this.m_canUseGPU = (flag && flag2 && flag3 && flag4 && flag5);
-	}
-
-	// Token: 0x060008F7 RID: 2295 RVA: 0x0004902F File Offset: 0x0004722F
-	internal void ResetObjectId()
-	{
-		this.m_globalObjectId = 1;
-	}
-
-	// Token: 0x060008F8 RID: 2296 RVA: 0x00049038 File Offset: 0x00047238
-	internal int GenerateObjectId(GameObject obj)
-	{
-		if (obj.isStatic)
-		{
-			return 0;
-		}
-		this.m_globalObjectId++;
-		if (this.m_globalObjectId > 254)
-		{
-			this.m_globalObjectId = 1;
-		}
-		return this.m_globalObjectId;
-	}
-
-	// Token: 0x060008F9 RID: 2297 RVA: 0x0004906C File Offset: 0x0004726C
-	private void SafeDestroyMaterial(ref Material mat)
-	{
-		if (mat != null)
-		{
-			UnityEngine.Object.DestroyImmediate(mat);
-			mat = null;
-		}
-	}
-
-	// Token: 0x060008FA RID: 2298 RVA: 0x00049084 File Offset: 0x00047284
-	private bool CheckMaterialAndShader(Material material, string name)
-	{
-		bool result = true;
-		if (material == null || material.shader == null)
-		{
-			Debug.LogWarning("[AmplifyMotion] Error creating " + name + " material");
-			result = false;
-		}
-		else if (!material.shader.isSupported)
-		{
-			Debug.LogWarning("[AmplifyMotion] " + name + " shader not supported on this platform");
-			result = false;
-		}
-		return result;
-	}
-
-	// Token: 0x060008FB RID: 2299 RVA: 0x000490E8 File Offset: 0x000472E8
-	private void DestroyMaterials()
-	{
-		this.SafeDestroyMaterial(ref this.m_blurMaterial);
-		this.SafeDestroyMaterial(ref this.m_solidVectorsMaterial);
-		this.SafeDestroyMaterial(ref this.m_skinnedVectorsMaterial);
-		this.SafeDestroyMaterial(ref this.m_clothVectorsMaterial);
-		this.SafeDestroyMaterial(ref this.m_reprojectionMaterial);
-		this.SafeDestroyMaterial(ref this.m_combineMaterial);
-		this.SafeDestroyMaterial(ref this.m_dilationMaterial);
-		this.SafeDestroyMaterial(ref this.m_depthMaterial);
-		this.SafeDestroyMaterial(ref this.m_debugMaterial);
-	}
-
-	// Token: 0x060008FC RID: 2300 RVA: 0x00049164 File Offset: 0x00047364
-	private bool CreateMaterials()
-	{
-		this.DestroyMaterials();
-		string name = "Hidden/Amplify Motion/MotionBlurSM" + ((SystemInfo.graphicsShaderLevel >= 30) ? 3 : 2).ToString();
-		string name2 = "Hidden/Amplify Motion/SolidVectors";
-		string name3 = "Hidden/Amplify Motion/SkinnedVectors";
-		string name4 = "Hidden/Amplify Motion/ClothVectors";
-		string name5 = "Hidden/Amplify Motion/ReprojectionVectors";
-		string name6 = "Hidden/Amplify Motion/Combine";
-		string name7 = "Hidden/Amplify Motion/Dilation";
-		string name8 = "Hidden/Amplify Motion/Depth";
-		string name9 = "Hidden/Amplify Motion/Debug";
-		try
-		{
-			this.m_blurMaterial = new Material(Shader.Find(name))
-			{
-				hideFlags = HideFlags.DontSave
-			};
-			this.m_solidVectorsMaterial = new Material(Shader.Find(name2))
-			{
-				hideFlags = HideFlags.DontSave
-			};
-			this.m_skinnedVectorsMaterial = new Material(Shader.Find(name3))
-			{
-				hideFlags = HideFlags.DontSave
-			};
-			this.m_clothVectorsMaterial = new Material(Shader.Find(name4))
-			{
-				hideFlags = HideFlags.DontSave
-			};
-			this.m_reprojectionMaterial = new Material(Shader.Find(name5))
-			{
-				hideFlags = HideFlags.DontSave
-			};
-			this.m_combineMaterial = new Material(Shader.Find(name6))
-			{
-				hideFlags = HideFlags.DontSave
-			};
-			this.m_dilationMaterial = new Material(Shader.Find(name7))
-			{
-				hideFlags = HideFlags.DontSave
-			};
-			this.m_depthMaterial = new Material(Shader.Find(name8))
-			{
-				hideFlags = HideFlags.DontSave
-			};
-			this.m_debugMaterial = new Material(Shader.Find(name9))
-			{
-				hideFlags = HideFlags.DontSave
-			};
-		}
-		catch (Exception)
-		{
-		}
-		return this.CheckMaterialAndShader(this.m_blurMaterial, name) && this.CheckMaterialAndShader(this.m_solidVectorsMaterial, name2) && this.CheckMaterialAndShader(this.m_skinnedVectorsMaterial, name3) && this.CheckMaterialAndShader(this.m_clothVectorsMaterial, name4) && this.CheckMaterialAndShader(this.m_reprojectionMaterial, name5) && this.CheckMaterialAndShader(this.m_combineMaterial, name6) && this.CheckMaterialAndShader(this.m_dilationMaterial, name7) && this.CheckMaterialAndShader(this.m_depthMaterial, name8) && this.CheckMaterialAndShader(this.m_debugMaterial, name9);
-	}
-
-	// Token: 0x060008FD RID: 2301 RVA: 0x0004936C File Offset: 0x0004756C
-	private RenderTexture CreateRenderTexture(string name, int depth, RenderTextureFormat fmt, RenderTextureReadWrite rw, FilterMode fm)
-	{
-		RenderTexture renderTexture = new RenderTexture(this.m_width, this.m_height, depth, fmt, rw);
-		renderTexture.hideFlags = HideFlags.DontSave;
-		renderTexture.name = name;
-		renderTexture.wrapMode = TextureWrapMode.Clamp;
-		renderTexture.filterMode = fm;
-		renderTexture.Create();
-		return renderTexture;
-	}
-
-	// Token: 0x060008FE RID: 2302 RVA: 0x000493A8 File Offset: 0x000475A8
-	private void SafeDestroyRenderTexture(ref RenderTexture rt)
-	{
-		if (rt != null)
-		{
-			RenderTexture.active = null;
-			rt.Release();
-			UnityEngine.Object.DestroyImmediate(rt);
-			rt = null;
-		}
-	}
-
-	// Token: 0x060008FF RID: 2303 RVA: 0x000493CB File Offset: 0x000475CB
-	private void SafeDestroyTexture(ref Texture tex)
-	{
-		if (tex != null)
-		{
-			UnityEngine.Object.DestroyImmediate(tex);
-			tex = null;
-		}
-	}
-
-	// Token: 0x06000900 RID: 2304 RVA: 0x000493E1 File Offset: 0x000475E1
-	private void DestroyRenderTextures()
-	{
-		RenderTexture.active = null;
-		this.SafeDestroyRenderTexture(ref this.m_motionRT);
-	}
-
-	// Token: 0x06000901 RID: 2305 RVA: 0x000493F8 File Offset: 0x000475F8
-	private void UpdateRenderTextures(bool qualityChanged)
-	{
-		int num = Mathf.Max(Mathf.FloorToInt((float)this.m_camera.pixelWidth + 0.5f), 1);
-		int num2 = Mathf.Max(Mathf.FloorToInt((float)this.m_camera.pixelHeight + 0.5f), 1);
-		if (this.QualityLevel == Quality.Mobile)
-		{
-			num /= 2;
-			num2 /= 2;
-		}
-		if (this.m_width != num || this.m_height != num2)
-		{
-			this.m_width = num;
-			this.m_height = num2;
-			this.DestroyRenderTextures();
-		}
-		if (this.m_motionRT == null)
-		{
-			this.m_motionRT = this.CreateRenderTexture("AM-MotionVectors", 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear, FilterMode.Point);
-		}
-	}
-
-	// Token: 0x06000902 RID: 2306 RVA: 0x0004949B File Offset: 0x0004769B
-	public bool CheckSupport()
-	{
-		if (!SystemInfo.supportsImageEffects)
-		{
-			Debug.LogError("[AmplifyMotion] Initialization failed. This plugin requires support for Image Effects and Render Textures.");
-			return false;
-		}
-		return true;
-	}
-
-	// Token: 0x06000903 RID: 2307 RVA: 0x000494B1 File Offset: 0x000476B1
-	private void InitializeThreadPool()
-	{
-		if (this.WorkerThreads <= 0)
-		{
-			this.WorkerThreads = Mathf.Max(Environment.ProcessorCount / 2, 1);
-		}
-		this.m_workerThreadPool = new WorkerThreadPool();
-		this.m_workerThreadPool.InitializeAsyncUpdateThreads(this.WorkerThreads, this.SystemThreadPool);
-	}
-
-	// Token: 0x06000904 RID: 2308 RVA: 0x000494F1 File Offset: 0x000476F1
-	private void ShutdownThreadPool()
-	{
-		if (this.m_workerThreadPool != null)
-		{
-			this.m_workerThreadPool.FinalizeAsyncUpdateThreads();
-			this.m_workerThreadPool = null;
-		}
-	}
-
-	// Token: 0x06000905 RID: 2309 RVA: 0x00049510 File Offset: 0x00047710
-	private void InitializeCommandBuffers()
-	{
-		this.ShutdownCommandBuffers();
-		this.m_updateCB = new CommandBuffer();
-		this.m_updateCB.name = "AmplifyMotion.Update";
-		this.m_camera.AddCommandBuffer(CameraEvent.BeforeImageEffectsOpaque, this.m_updateCB);
-		this.m_fixedUpdateCB = new CommandBuffer();
-		this.m_fixedUpdateCB.name = "AmplifyMotion.FixedUpdate";
-		this.m_camera.AddCommandBuffer(CameraEvent.BeforeImageEffectsOpaque, this.m_fixedUpdateCB);
-	}
-
-	// Token: 0x06000906 RID: 2310 RVA: 0x00049580 File Offset: 0x00047780
-	private void ShutdownCommandBuffers()
-	{
-		if (this.m_updateCB != null)
-		{
-			this.m_camera.RemoveCommandBuffer(CameraEvent.BeforeImageEffectsOpaque, this.m_updateCB);
-			this.m_updateCB.Release();
-			this.m_updateCB = null;
-		}
-		if (this.m_fixedUpdateCB != null)
-		{
-			this.m_camera.RemoveCommandBuffer(CameraEvent.BeforeImageEffectsOpaque, this.m_fixedUpdateCB);
-			this.m_fixedUpdateCB.Release();
-			this.m_fixedUpdateCB = null;
-		}
-	}
-
-	// Token: 0x06000907 RID: 2311 RVA: 0x000495E8 File Offset: 0x000477E8
-	private void OnEnable()
-	{
-		this.m_camera = base.GetComponent<Camera>();
-		if (!this.CheckSupport())
-		{
-			base.enabled = false;
-			return;
-		}
-		this.InitializeThreadPool();
-		this.m_starting = true;
-		if (!this.CreateMaterials())
-		{
-			Debug.LogError("[AmplifyMotion] Failed loading or compiling necessary shaders. Please try reinstalling Amplify Motion or contact support@amplify.pt");
-			base.enabled = false;
-			return;
-		}
-		if (this.AutoRegisterObjs)
-		{
-			this.UpdateActiveObjects();
-		}
-		this.InitializeCameras();
-		this.InitializeCommandBuffers();
-		this.UpdateRenderTextures(true);
-		this.m_linkedCameras.TryGetValue(this.m_camera, out this.m_baseCamera);
-		if (this.m_baseCamera == null)
-		{
-			Debug.LogError("[AmplifyMotion] Failed setting up Base Camera. Please contact support@amplify.pt");
-			base.enabled = false;
-			return;
-		}
-		if (this.m_currentPostProcess != null)
-		{
-			this.m_currentPostProcess.enabled = true;
-		}
-		this.m_qualityLevel = this.QualityLevel;
-	}
-
-	// Token: 0x06000908 RID: 2312 RVA: 0x000496B7 File Offset: 0x000478B7
-	private void OnDisable()
-	{
-		if (this.m_currentPostProcess != null)
-		{
-			this.m_currentPostProcess.enabled = false;
-		}
-		this.ShutdownCommandBuffers();
-		this.ShutdownThreadPool();
-	}
-
-	// Token: 0x06000909 RID: 2313 RVA: 0x000496DF File Offset: 0x000478DF
-	private void Start()
-	{
-		this.UpdatePostProcess();
-	}
-
-	// Token: 0x0600090A RID: 2314 RVA: 0x000496E7 File Offset: 0x000478E7
-	internal void RemoveCamera(Camera reference)
-	{
-		this.m_linkedCameras.Remove(reference);
-	}
-
-	// Token: 0x0600090B RID: 2315 RVA: 0x000496F8 File Offset: 0x000478F8
-	private void OnDestroy()
-	{
-		foreach (AmplifyMotionCamera amplifyMotionCamera in this.m_linkedCameras.Values.ToArray<AmplifyMotionCamera>())
-		{
-			if (amplifyMotionCamera != null && amplifyMotionCamera.gameObject != base.gameObject)
-			{
-				Camera component = amplifyMotionCamera.GetComponent<Camera>();
-				if (component != null)
-				{
-					component.targetTexture = null;
-				}
-				UnityEngine.Object.DestroyImmediate(amplifyMotionCamera);
-			}
-		}
-		this.DestroyRenderTextures();
-		this.DestroyMaterials();
-	}
-
-	// Token: 0x0600090C RID: 2316 RVA: 0x00049770 File Offset: 0x00047970
-	private GameObject RecursiveFindCamera(GameObject obj, string auxCameraName)
-	{
-		GameObject gameObject = null;
-		if (obj.name == auxCameraName)
-		{
-			gameObject = obj;
-		}
-		else
-		{
-			foreach (object obj2 in obj.transform)
-			{
-				Transform transform = (Transform)obj2;
-				gameObject = this.RecursiveFindCamera(transform.gameObject, auxCameraName);
-				if (gameObject != null)
-				{
-					break;
-				}
-			}
-		}
-		return gameObject;
-	}
-
-	// Token: 0x0600090D RID: 2317 RVA: 0x000497F0 File Offset: 0x000479F0
-	private void InitializeCameras()
-	{
-		List<Camera> list = new List<Camera>(this.OverlayCameras.Length);
-		for (int i = 0; i < this.OverlayCameras.Length; i++)
-		{
-			if (this.OverlayCameras[i] != null)
-			{
-				list.Add(this.OverlayCameras[i]);
-			}
-		}
-		Camera[] array = new Camera[list.Count + 1];
-		array[0] = this.m_camera;
-		for (int j = 0; j < list.Count; j++)
-		{
-			array[j + 1] = list[j];
-		}
-		this.m_linkedCameras.Clear();
-		for (int k = 0; k < array.Length; k++)
-		{
-			Camera camera = array[k];
-			if (!this.m_linkedCameras.ContainsKey(camera))
-			{
-				AmplifyMotionCamera amplifyMotionCamera = camera.gameObject.GetComponent<AmplifyMotionCamera>();
-				if (amplifyMotionCamera != null)
-				{
-					amplifyMotionCamera.enabled = false;
-					amplifyMotionCamera.enabled = true;
-				}
-				else
-				{
-					amplifyMotionCamera = camera.gameObject.AddComponent<AmplifyMotionCamera>();
-				}
-				amplifyMotionCamera.LinkTo(this, k > 0);
-				this.m_linkedCameras.Add(camera, amplifyMotionCamera);
-				this.m_linkedCamerasChanged = true;
-			}
-		}
-	}
-
-	// Token: 0x0600090E RID: 2318 RVA: 0x000498FD File Offset: 0x00047AFD
-	public void UpdateActiveCameras()
-	{
-		this.InitializeCameras();
-	}
-
-	// Token: 0x0600090F RID: 2319 RVA: 0x00049908 File Offset: 0x00047B08
-	internal static void RegisterCamera(AmplifyMotionCamera cam)
-	{
-		if (!AmplifyMotionEffectBase.m_activeCameras.ContainsValue(cam))
-		{
-			AmplifyMotionEffectBase.m_activeCameras.Add(cam.GetComponent<Camera>(), cam);
-		}
-		foreach (AmplifyMotionObjectBase amplifyMotionObjectBase in AmplifyMotionEffectBase.m_activeObjects.Values)
-		{
-			amplifyMotionObjectBase.RegisterCamera(cam);
-		}
-	}
-
-	// Token: 0x06000910 RID: 2320 RVA: 0x0004997C File Offset: 0x00047B7C
-	internal static void UnregisterCamera(AmplifyMotionCamera cam)
-	{
-		foreach (AmplifyMotionObjectBase amplifyMotionObjectBase in AmplifyMotionEffectBase.m_activeObjects.Values)
-		{
-			amplifyMotionObjectBase.UnregisterCamera(cam);
-		}
-		AmplifyMotionEffectBase.m_activeCameras.Remove(cam.GetComponent<Camera>());
-	}
-
-	// Token: 0x06000911 RID: 2321 RVA: 0x000499E4 File Offset: 0x00047BE4
-	public void UpdateActiveObjects()
-	{
-		GameObject[] array = UnityEngine.Object.FindObjectsOfType(typeof(GameObject)) as GameObject[];
-		for (int i = 0; i < array.Length; i++)
-		{
-			if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(array[i]))
-			{
-				AmplifyMotionEffectBase.TryRegister(array[i], true);
-			}
-		}
-	}
-
-	// Token: 0x06000912 RID: 2322 RVA: 0x00049A2C File Offset: 0x00047C2C
-	internal static void RegisterObject(AmplifyMotionObjectBase obj)
-	{
-		AmplifyMotionEffectBase.m_activeObjects.Add(obj.gameObject, obj);
-		foreach (AmplifyMotionCamera camera in AmplifyMotionEffectBase.m_activeCameras.Values)
-		{
-			obj.RegisterCamera(camera);
-		}
-	}
-
-	// Token: 0x06000913 RID: 2323 RVA: 0x00049A94 File Offset: 0x00047C94
-	internal static void UnregisterObject(AmplifyMotionObjectBase obj)
-	{
-		foreach (AmplifyMotionCamera camera in AmplifyMotionEffectBase.m_activeCameras.Values)
-		{
-			obj.UnregisterCamera(camera);
-		}
-		AmplifyMotionEffectBase.m_activeObjects.Remove(obj.gameObject);
-	}
-
-	// Token: 0x06000914 RID: 2324 RVA: 0x00049AFC File Offset: 0x00047CFC
-	internal static bool FindValidTag(Material[] materials)
-	{
-		foreach (Material material in materials)
-		{
-			if (material != null)
-			{
-				string tag = material.GetTag("RenderType", false);
-				if (tag == "Opaque" || tag == "TransparentCutout")
-				{
-					return !material.IsKeywordEnabled("_ALPHABLEND_ON") && !material.IsKeywordEnabled("_ALPHAPREMULTIPLY_ON");
-				}
-			}
-		}
-		return false;
-	}
-
-	// Token: 0x06000915 RID: 2325 RVA: 0x00049B6C File Offset: 0x00047D6C
-	internal static bool CanRegister(GameObject gameObj, bool autoReg)
-	{
-		if (gameObj.isStatic)
-		{
-			return false;
-		}
-		Renderer component = gameObj.GetComponent<Renderer>();
-		if (component == null || component.sharedMaterials == null || component.isPartOfStaticBatch)
-		{
-			return false;
-		}
-		if (!component.enabled)
-		{
-			return false;
-		}
-		if (component.shadowCastingMode == ShadowCastingMode.ShadowsOnly)
-		{
-			return false;
-		}
-		if (component.GetType() == typeof(SpriteRenderer))
-		{
-			return false;
-		}
-		if (!AmplifyMotionEffectBase.FindValidTag(component.sharedMaterials))
-		{
-			return false;
-		}
-		Type type = component.GetType();
-		if (type == typeof(MeshRenderer) || type == typeof(SkinnedMeshRenderer))
-		{
-			return true;
-		}
-		if (type == typeof(ParticleSystemRenderer) && !autoReg)
-		{
-			ParticleSystemRenderMode renderMode = (component as ParticleSystemRenderer).renderMode;
-			return renderMode == ParticleSystemRenderMode.Mesh || renderMode == ParticleSystemRenderMode.Billboard;
-		}
-		return false;
-	}
-
-	// Token: 0x06000916 RID: 2326 RVA: 0x00049C3C File Offset: 0x00047E3C
-	internal static void TryRegister(GameObject gameObj, bool autoReg)
-	{
-		if (AmplifyMotionEffectBase.CanRegister(gameObj, autoReg) && gameObj.GetComponent<AmplifyMotionObjectBase>() == null)
-		{
-			AmplifyMotionObjectBase.ApplyToChildren = false;
-			gameObj.AddComponent<AmplifyMotionObjectBase>();
-			AmplifyMotionObjectBase.ApplyToChildren = true;
-		}
-	}
-
-	// Token: 0x06000917 RID: 2327 RVA: 0x00049C68 File Offset: 0x00047E68
-	internal static void TryUnregister(GameObject gameObj)
-	{
-		AmplifyMotionObjectBase component = gameObj.GetComponent<AmplifyMotionObjectBase>();
-		if (component != null)
-		{
-			UnityEngine.Object.Destroy(component);
-		}
-	}
-
-	// Token: 0x06000918 RID: 2328 RVA: 0x00049C8B File Offset: 0x00047E8B
-	public void Register(GameObject gameObj)
-	{
-		if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
-		{
-			AmplifyMotionEffectBase.TryRegister(gameObj, false);
-		}
-	}
-
-	// Token: 0x06000919 RID: 2329 RVA: 0x00049CA1 File Offset: 0x00047EA1
-	public static void RegisterS(GameObject gameObj)
-	{
-		if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
-		{
-			AmplifyMotionEffectBase.TryRegister(gameObj, false);
-		}
-	}
-
-	// Token: 0x0600091A RID: 2330 RVA: 0x00049CB8 File Offset: 0x00047EB8
-	public void RegisterRecursively(GameObject gameObj)
-	{
-		if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
-		{
-			AmplifyMotionEffectBase.TryRegister(gameObj, false);
-		}
-		foreach (object obj in gameObj.transform)
-		{
-			Transform transform = (Transform)obj;
-			this.RegisterRecursively(transform.gameObject);
-		}
-	}
-
-	// Token: 0x0600091B RID: 2331 RVA: 0x00049D2C File Offset: 0x00047F2C
-	public static void RegisterRecursivelyS(GameObject gameObj)
-	{
-		if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
-		{
-			AmplifyMotionEffectBase.TryRegister(gameObj, false);
-		}
-		foreach (object obj in gameObj.transform)
-		{
-			AmplifyMotionEffectBase.RegisterRecursivelyS(((Transform)obj).gameObject);
-		}
-	}
-
-	// Token: 0x0600091C RID: 2332 RVA: 0x00049D9C File Offset: 0x00047F9C
-	public void Unregister(GameObject gameObj)
-	{
-		if (AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
-		{
-			AmplifyMotionEffectBase.TryUnregister(gameObj);
-		}
-	}
-
-	// Token: 0x0600091D RID: 2333 RVA: 0x00049DB1 File Offset: 0x00047FB1
-	public static void UnregisterS(GameObject gameObj)
-	{
-		if (AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
-		{
-			AmplifyMotionEffectBase.TryUnregister(gameObj);
-		}
-	}
-
-	// Token: 0x0600091E RID: 2334 RVA: 0x00049DC8 File Offset: 0x00047FC8
-	public void UnregisterRecursively(GameObject gameObj)
-	{
-		if (AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
-		{
-			AmplifyMotionEffectBase.TryUnregister(gameObj);
-		}
-		foreach (object obj in gameObj.transform)
-		{
-			Transform transform = (Transform)obj;
-			this.UnregisterRecursively(transform.gameObject);
-		}
-	}
-
-	// Token: 0x0600091F RID: 2335 RVA: 0x00049E3C File Offset: 0x0004803C
-	public static void UnregisterRecursivelyS(GameObject gameObj)
-	{
-		if (AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
-		{
-			AmplifyMotionEffectBase.TryUnregister(gameObj);
-		}
-		foreach (object obj in gameObj.transform)
-		{
-			AmplifyMotionEffectBase.UnregisterRecursivelyS(((Transform)obj).gameObject);
-		}
-	}
-
-	// Token: 0x06000920 RID: 2336 RVA: 0x00049EAC File Offset: 0x000480AC
-	private void UpdatePostProcess()
-	{
-		Camera camera = null;
-		float num = float.MinValue;
-		if (this.m_linkedCamerasChanged)
-		{
-			this.UpdateLinkedCameras();
-		}
-		for (int i = 0; i < this.m_linkedCameraKeys.Length; i++)
-		{
-			if (this.m_linkedCameraKeys[i] != null && this.m_linkedCameraKeys[i].isActiveAndEnabled && this.m_linkedCameraKeys[i].depth > num)
-			{
-				camera = this.m_linkedCameraKeys[i];
-				num = this.m_linkedCameraKeys[i].depth;
-			}
-		}
-		if (this.m_currentPostProcess != null && this.m_currentPostProcess.gameObject != camera.gameObject)
-		{
-			UnityEngine.Object.DestroyImmediate(this.m_currentPostProcess);
-			this.m_currentPostProcess = null;
-		}
-		if (this.m_currentPostProcess == null && camera != null && camera != this.m_camera)
-		{
-			AmplifyMotionPostProcess[] components = base.gameObject.GetComponents<AmplifyMotionPostProcess>();
-			if (components != null && components.Length != 0)
-			{
-				for (int j = 0; j < components.Length; j++)
-				{
-					UnityEngine.Object.DestroyImmediate(components[j]);
-				}
-			}
-			this.m_currentPostProcess = camera.gameObject.AddComponent<AmplifyMotionPostProcess>();
-			this.m_currentPostProcess.Instance = this;
-		}
-	}
-
-	// Token: 0x06000921 RID: 2337 RVA: 0x00049FD0 File Offset: 0x000481D0
-	private void LateUpdate()
-	{
-		if (this.m_baseCamera.AutoStep)
-		{
-			float num = Application.isPlaying ? Time.unscaledDeltaTime : Time.fixedDeltaTime;
-			float fixedDeltaTime = Time.fixedDeltaTime;
-			this.m_deltaTime = ((num > float.Epsilon) ? num : this.m_deltaTime);
-			this.m_fixedDeltaTime = ((num > float.Epsilon) ? fixedDeltaTime : this.m_fixedDeltaTime);
-		}
-		this.QualitySteps = Mathf.Clamp(this.QualitySteps, 0, 16);
-		this.MotionScale = Mathf.Max(this.MotionScale, 0f);
-		this.MinVelocity = Mathf.Min(this.MinVelocity, this.MaxVelocity);
-		this.DepthThreshold = Mathf.Max(this.DepthThreshold, 0f);
-		this.MinResetDeltaDist = Mathf.Max(this.MinResetDeltaDist, 0f);
-		this.MinResetDeltaDistSqr = this.MinResetDeltaDist * this.MinResetDeltaDist;
-		this.ResetFrameDelay = Mathf.Max(this.ResetFrameDelay, 0);
-		this.UpdatePostProcess();
-	}
-
-	// Token: 0x06000922 RID: 2338 RVA: 0x0004A0CC File Offset: 0x000482CC
-	public void StopAutoStep()
-	{
-		foreach (AmplifyMotionCamera amplifyMotionCamera in this.m_linkedCameras.Values)
-		{
-			amplifyMotionCamera.StopAutoStep();
-		}
-	}
-
-	// Token: 0x06000923 RID: 2339 RVA: 0x0004A124 File Offset: 0x00048324
-	public void StartAutoStep()
-	{
-		foreach (AmplifyMotionCamera amplifyMotionCamera in this.m_linkedCameras.Values)
-		{
-			amplifyMotionCamera.StartAutoStep();
-		}
-	}
-
-	// Token: 0x06000924 RID: 2340 RVA: 0x0004A17C File Offset: 0x0004837C
-	public void Step(float delta)
-	{
-		this.m_deltaTime = delta;
-		this.m_fixedDeltaTime = delta;
-		foreach (AmplifyMotionCamera amplifyMotionCamera in this.m_linkedCameras.Values)
-		{
-			amplifyMotionCamera.Step();
-		}
-	}
-
-	// Token: 0x06000925 RID: 2341 RVA: 0x0004A1E0 File Offset: 0x000483E0
-	private void UpdateLinkedCameras()
-	{
-		Dictionary<Camera, AmplifyMotionCamera>.KeyCollection keys = this.m_linkedCameras.Keys;
-		Dictionary<Camera, AmplifyMotionCamera>.ValueCollection values = this.m_linkedCameras.Values;
-		if (this.m_linkedCameraKeys == null || keys.Count != this.m_linkedCameraKeys.Length)
-		{
-			this.m_linkedCameraKeys = new Camera[keys.Count];
-		}
-		if (this.m_linkedCameraValues == null || values.Count != this.m_linkedCameraValues.Length)
-		{
-			this.m_linkedCameraValues = new AmplifyMotionCamera[values.Count];
-		}
-		keys.CopyTo(this.m_linkedCameraKeys, 0);
-		values.CopyTo(this.m_linkedCameraValues, 0);
-		this.m_linkedCamerasChanged = false;
-	}
-
-	// Token: 0x06000926 RID: 2342 RVA: 0x0004A278 File Offset: 0x00048478
-	private void FixedUpdate()
-	{
-		if (this.m_camera.enabled)
-		{
-			if (this.m_linkedCamerasChanged)
-			{
-				this.UpdateLinkedCameras();
-			}
-			this.m_fixedUpdateCB.Clear();
-			for (int i = 0; i < this.m_linkedCameraValues.Length; i++)
-			{
-				if (this.m_linkedCameraValues[i] != null && this.m_linkedCameraValues[i].isActiveAndEnabled)
-				{
-					this.m_linkedCameraValues[i].FixedUpdateTransform(this, this.m_fixedUpdateCB);
-				}
-			}
-		}
-	}
-
-	// Token: 0x06000927 RID: 2343 RVA: 0x0004A2F4 File Offset: 0x000484F4
-	private void OnPreRender()
-	{
-		if (this.m_camera.enabled && (Time.frameCount == 1 || Mathf.Abs(Time.unscaledDeltaTime) > 1E-45f))
-		{
-			if (this.m_linkedCamerasChanged)
-			{
-				this.UpdateLinkedCameras();
-			}
-			this.m_updateCB.Clear();
-			for (int i = 0; i < this.m_linkedCameraValues.Length; i++)
-			{
-				if (this.m_linkedCameraValues[i] != null && this.m_linkedCameraValues[i].isActiveAndEnabled)
-				{
-					this.m_linkedCameraValues[i].UpdateTransform(this, this.m_updateCB);
-				}
-			}
-		}
-	}
-
-	// Token: 0x06000928 RID: 2344 RVA: 0x0004A388 File Offset: 0x00048588
-	private void OnPostRender()
-	{
-		bool qualityChanged = this.QualityLevel != this.m_qualityLevel;
-		this.m_qualityLevel = this.QualityLevel;
-		this.UpdateRenderTextures(qualityChanged);
-		this.ResetObjectId();
-		bool flag = this.CameraMotionMult > float.Epsilon;
-		bool clearColor = !flag || this.m_starting;
-		float num = (this.DepthThreshold > float.Epsilon) ? (1f / this.DepthThreshold) : float.MaxValue;
-		this.m_motionScaleNorm = ((this.m_deltaTime >= float.Epsilon) ? (this.MotionScale * (1f / this.m_deltaTime)) : 0f);
-		this.m_fixedMotionScaleNorm = ((this.m_fixedDeltaTime >= float.Epsilon) ? (this.MotionScale * (1f / this.m_fixedDeltaTime)) : 0f);
-		float scale = (!this.m_starting) ? this.m_motionScaleNorm : 0f;
-		float fixedScale = (!this.m_starting) ? this.m_fixedMotionScaleNorm : 0f;
-		Shader.SetGlobalFloat("_AM_MIN_VELOCITY", this.MinVelocity);
-		Shader.SetGlobalFloat("_AM_MAX_VELOCITY", this.MaxVelocity);
-		Shader.SetGlobalFloat("_AM_RCP_TOTAL_VELOCITY", 1f / (this.MaxVelocity - this.MinVelocity));
-		Shader.SetGlobalVector("_AM_DEPTH_THRESHOLD", new Vector2(this.DepthThreshold, num));
-		this.m_motionRT.DiscardContents();
-		this.m_baseCamera.PreRenderVectors(this.m_motionRT, clearColor, num);
-		for (int i = 0; i < this.m_linkedCameraValues.Length; i++)
-		{
-			AmplifyMotionCamera amplifyMotionCamera = this.m_linkedCameraValues[i];
-			if (amplifyMotionCamera != null && amplifyMotionCamera.Overlay && amplifyMotionCamera.isActiveAndEnabled)
-			{
-				amplifyMotionCamera.PreRenderVectors(this.m_motionRT, clearColor, num);
-				amplifyMotionCamera.RenderVectors(scale, fixedScale, this.QualityLevel);
-			}
-		}
-		if (flag)
-		{
-			float num2 = (this.m_deltaTime >= float.Epsilon) ? (this.MotionScale * this.CameraMotionMult * (1f / this.m_deltaTime)) : 0f;
-			float scale2 = (!this.m_starting) ? num2 : 0f;
-			this.m_motionRT.DiscardContents();
-			this.m_baseCamera.RenderReprojectionVectors(this.m_motionRT, scale2);
-		}
-		this.m_baseCamera.RenderVectors(scale, fixedScale, this.QualityLevel);
-		for (int j = 0; j < this.m_linkedCameraValues.Length; j++)
-		{
-			AmplifyMotionCamera amplifyMotionCamera2 = this.m_linkedCameraValues[j];
-			if (amplifyMotionCamera2 != null && amplifyMotionCamera2.Overlay && amplifyMotionCamera2.isActiveAndEnabled)
-			{
-				amplifyMotionCamera2.RenderVectors(scale, fixedScale, this.QualityLevel);
-			}
-		}
-		this.m_starting = false;
-	}
-
-	// Token: 0x06000929 RID: 2345 RVA: 0x0004A628 File Offset: 0x00048828
-	private void ApplyMotionBlur(RenderTexture source, RenderTexture destination, Vector4 blurStep)
-	{
-		bool flag = this.QualityLevel == Quality.Mobile;
-		int pass = (int)(this.QualityLevel + (this.Noise ? 4 : 0));
-		RenderTexture renderTexture = null;
-		if (flag)
-		{
-			renderTexture = RenderTexture.GetTemporary(this.m_width, this.m_height, 0, RenderTextureFormat.ARGB32);
-			renderTexture.name = "AM-DepthTemp";
-			renderTexture.wrapMode = TextureWrapMode.Clamp;
-			renderTexture.filterMode = FilterMode.Point;
-		}
-		RenderTexture temporary = RenderTexture.GetTemporary(this.m_width, this.m_height, 0, source.format);
-		temporary.name = "AM-CombinedTemp";
-		temporary.wrapMode = TextureWrapMode.Clamp;
-		temporary.filterMode = FilterMode.Point;
-		temporary.DiscardContents();
-		this.m_combineMaterial.SetTexture("_MotionTex", this.m_motionRT);
-		source.filterMode = FilterMode.Point;
-		Graphics.Blit(source, temporary, this.m_combineMaterial, 0);
-		this.m_blurMaterial.SetTexture("_MotionTex", this.m_motionRT);
-		if (flag)
-		{
-			Graphics.Blit(null, renderTexture, this.m_depthMaterial, 0);
-			this.m_blurMaterial.SetTexture("_DepthTex", renderTexture);
-		}
-		if (this.QualitySteps > 1)
-		{
-			RenderTexture temporary2 = RenderTexture.GetTemporary(this.m_width, this.m_height, 0, source.format);
-			temporary2.name = "AM-CombinedTemp2";
-			temporary2.filterMode = FilterMode.Point;
-			float num = 1f / (float)this.QualitySteps;
-			float num2 = 1f;
-			RenderTexture renderTexture2 = temporary;
-			RenderTexture renderTexture3 = temporary2;
-			for (int i = 0; i < this.QualitySteps; i++)
-			{
-				if (renderTexture3 != destination)
-				{
-					renderTexture3.DiscardContents();
-				}
-				this.m_blurMaterial.SetVector("_AM_BLUR_STEP", blurStep * num2);
-				Graphics.Blit(renderTexture2, renderTexture3, this.m_blurMaterial, pass);
-				if (i < this.QualitySteps - 2)
-				{
-					RenderTexture renderTexture4 = renderTexture3;
-					renderTexture3 = renderTexture2;
-					renderTexture2 = renderTexture4;
-				}
-				else
-				{
-					renderTexture2 = renderTexture3;
-					renderTexture3 = destination;
-				}
-				num2 -= num;
-			}
-			RenderTexture.ReleaseTemporary(temporary2);
-		}
-		else
-		{
-			this.m_blurMaterial.SetVector("_AM_BLUR_STEP", blurStep);
-			Graphics.Blit(temporary, destination, this.m_blurMaterial, pass);
-		}
-		if (flag)
-		{
-			this.m_combineMaterial.SetTexture("_MotionTex", this.m_motionRT);
-			Graphics.Blit(source, destination, this.m_combineMaterial, 1);
-		}
-		RenderTexture.ReleaseTemporary(temporary);
-		if (renderTexture != null)
-		{
-			RenderTexture.ReleaseTemporary(renderTexture);
-		}
-	}
-
-	// Token: 0x0600092A RID: 2346 RVA: 0x0004A84D File Offset: 0x00048A4D
-	private void OnRenderImage(RenderTexture source, RenderTexture destination)
-	{
-		if (this.m_currentPostProcess == null)
-		{
-			this.PostProcess(source, destination);
-			return;
-		}
-		Graphics.Blit(source, destination);
-	}
-
-	// Token: 0x0600092B RID: 2347 RVA: 0x0004A870 File Offset: 0x00048A70
-	public void PostProcess(RenderTexture source, RenderTexture destination)
-	{
-		Vector4 zero = Vector4.zero;
-		zero.x = this.MaxVelocity / 1000f;
-		zero.y = this.MaxVelocity / 1000f;
-		RenderTexture renderTexture = null;
-		if (QualitySettings.antiAliasing > 1)
-		{
-			renderTexture = RenderTexture.GetTemporary(this.m_width, this.m_height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
-			renderTexture.name = "AM-DilatedTemp";
-			renderTexture.filterMode = FilterMode.Point;
-			this.m_dilationMaterial.SetTexture("_MotionTex", this.m_motionRT);
-			Graphics.Blit(this.m_motionRT, renderTexture, this.m_dilationMaterial, 0);
-			this.m_dilationMaterial.SetTexture("_MotionTex", renderTexture);
-			Graphics.Blit(renderTexture, this.m_motionRT, this.m_dilationMaterial, 1);
-		}
-		if (this.DebugMode)
-		{
-			this.m_debugMaterial.SetTexture("_MotionTex", this.m_motionRT);
-			Graphics.Blit(source, destination, this.m_debugMaterial);
-		}
-		else
-		{
-			this.ApplyMotionBlur(source, destination, zero);
-		}
-		if (renderTexture != null)
-		{
-			RenderTexture.ReleaseTemporary(renderTexture);
-		}
-	}
-
-	// Token: 0x040007B8 RID: 1976
-	[Header("Motion Blur")]
-	public Quality QualityLevel = Quality.Standard;
-
-	// Token: 0x040007B9 RID: 1977
-	public int QualitySteps = 1;
-
-	// Token: 0x040007BA RID: 1978
-	public float MotionScale = 3f;
-
-	// Token: 0x040007BB RID: 1979
-	public float CameraMotionMult = 1f;
-
-	// Token: 0x040007BC RID: 1980
-	public float MinVelocity = 1f;
-
-	// Token: 0x040007BD RID: 1981
-	public float MaxVelocity = 10f;
-
-	// Token: 0x040007BE RID: 1982
-	public float DepthThreshold = 0.01f;
-
-	// Token: 0x040007BF RID: 1983
-	public bool Noise;
-
-	// Token: 0x040007C0 RID: 1984
-	[Header("Camera")]
-	public Camera[] OverlayCameras = new Camera[0];
-
-	// Token: 0x040007C1 RID: 1985
-	public LayerMask CullingMask = -1;
-
-	// Token: 0x040007C2 RID: 1986
-	[Header("Objects")]
-	public bool AutoRegisterObjs = true;
-
-	// Token: 0x040007C3 RID: 1987
-	public float MinResetDeltaDist = 1000f;
-
-	// Token: 0x040007C4 RID: 1988
-	[NonSerialized]
-	public float MinResetDeltaDistSqr;
-
-	// Token: 0x040007C5 RID: 1989
-	public int ResetFrameDelay = 1;
-
-	// Token: 0x040007C6 RID: 1990
-	[Header("Low-Level")]
-	[FormerlySerializedAs("workerThreads")]
-	public int WorkerThreads;
-
-	// Token: 0x040007C7 RID: 1991
-	public bool SystemThreadPool;
-
-	// Token: 0x040007C8 RID: 1992
-	public bool ForceCPUOnly;
-
-	// Token: 0x040007C9 RID: 1993
-	public bool DebugMode;
-
-	// Token: 0x040007CA RID: 1994
-	private Camera m_camera;
-
-	// Token: 0x040007CB RID: 1995
-	private bool m_starting = true;
-
-	// Token: 0x040007CC RID: 1996
-	private int m_width;
-
-	// Token: 0x040007CD RID: 1997
-	private int m_height;
-
-	// Token: 0x040007CE RID: 1998
-	private RenderTexture m_motionRT;
-
-	// Token: 0x040007CF RID: 1999
-	private Material m_blurMaterial;
-
-	// Token: 0x040007D0 RID: 2000
-	private Material m_solidVectorsMaterial;
-
-	// Token: 0x040007D1 RID: 2001
-	private Material m_skinnedVectorsMaterial;
-
-	// Token: 0x040007D2 RID: 2002
-	private Material m_clothVectorsMaterial;
-
-	// Token: 0x040007D3 RID: 2003
-	private Material m_reprojectionMaterial;
-
-	// Token: 0x040007D4 RID: 2004
-	private Material m_combineMaterial;
-
-	// Token: 0x040007D5 RID: 2005
-	private Material m_dilationMaterial;
-
-	// Token: 0x040007D6 RID: 2006
-	private Material m_depthMaterial;
-
-	// Token: 0x040007D7 RID: 2007
-	private Material m_debugMaterial;
-
-	// Token: 0x040007D8 RID: 2008
-	private Dictionary<Camera, AmplifyMotionCamera> m_linkedCameras = new Dictionary<Camera, AmplifyMotionCamera>();
-
-	// Token: 0x040007D9 RID: 2009
-	internal Camera[] m_linkedCameraKeys;
-
-	// Token: 0x040007DA RID: 2010
-	internal AmplifyMotionCamera[] m_linkedCameraValues;
-
-	// Token: 0x040007DB RID: 2011
-	internal bool m_linkedCamerasChanged = true;
-
-	// Token: 0x040007DC RID: 2012
-	private AmplifyMotionPostProcess m_currentPostProcess;
-
-	// Token: 0x040007DD RID: 2013
-	private int m_globalObjectId = 1;
-
-	// Token: 0x040007DE RID: 2014
-	private float m_deltaTime;
-
-	// Token: 0x040007DF RID: 2015
-	private float m_fixedDeltaTime;
-
-	// Token: 0x040007E0 RID: 2016
-	private float m_motionScaleNorm;
-
-	// Token: 0x040007E1 RID: 2017
-	private float m_fixedMotionScaleNorm;
-
-	// Token: 0x040007E2 RID: 2018
-	private Quality m_qualityLevel;
-
-	// Token: 0x040007E3 RID: 2019
-	private AmplifyMotionCamera m_baseCamera;
-
-	// Token: 0x040007E4 RID: 2020
-	private WorkerThreadPool m_workerThreadPool;
-
-	// Token: 0x040007E5 RID: 2021
-	public static Dictionary<GameObject, AmplifyMotionObjectBase> m_activeObjects = new Dictionary<GameObject, AmplifyMotionObjectBase>();
-
-	// Token: 0x040007E6 RID: 2022
-	public static Dictionary<Camera, AmplifyMotionCamera> m_activeCameras = new Dictionary<Camera, AmplifyMotionCamera>();
-
-	// Token: 0x040007E7 RID: 2023
-	private static bool m_isD3D = false;
-
-	// Token: 0x040007E8 RID: 2024
-	private bool m_canUseGPU;
-
-	// Token: 0x040007E9 RID: 2025
-	private const CameraEvent m_updateCBEvent = CameraEvent.BeforeImageEffectsOpaque;
-
-	// Token: 0x040007EA RID: 2026
-	private CommandBuffer m_updateCB;
-
-	// Token: 0x040007EB RID: 2027
-	private const CameraEvent m_fixedUpdateCBEvent = CameraEvent.BeforeImageEffectsOpaque;
-
-	// Token: 0x040007EC RID: 2028
-	private CommandBuffer m_fixedUpdateCB;
-
-	// Token: 0x040007ED RID: 2029
-	private static bool m_ignoreMotionScaleWarning = false;
-
-	// Token: 0x040007EE RID: 2030
-	private static AmplifyMotionEffectBase m_firstInstance = null;
+  [Header("Motion Blur")]
+  public AmplifyMotion.Quality QualityLevel = AmplifyMotion.Quality.Standard;
+  public int QualitySteps = 1;
+  public float MotionScale = 3f;
+  public float CameraMotionMult = 1f;
+  public float MinVelocity = 1f;
+  public float MaxVelocity = 10f;
+  public float DepthThreshold = 0.01f;
+  public bool Noise;
+  [Header("Camera")]
+  public Camera[] OverlayCameras = new Camera[0];
+  public LayerMask CullingMask = (LayerMask) -1;
+  [Header("Objects")]
+  public bool AutoRegisterObjs = true;
+  public float MinResetDeltaDist = 1000f;
+  [NonSerialized]
+  public float MinResetDeltaDistSqr;
+  public int ResetFrameDelay = 1;
+  [Header("Low-Level")]
+  [FormerlySerializedAs("workerThreads")]
+  public int WorkerThreads;
+  public bool SystemThreadPool;
+  public bool ForceCPUOnly;
+  public bool DebugMode;
+  private Camera m_camera;
+  private bool m_starting = true;
+  private int m_width;
+  private int m_height;
+  private RenderTexture m_motionRT;
+  private Material m_blurMaterial;
+  private Material m_solidVectorsMaterial;
+  private Material m_skinnedVectorsMaterial;
+  private Material m_clothVectorsMaterial;
+  private Material m_reprojectionMaterial;
+  private Material m_combineMaterial;
+  private Material m_dilationMaterial;
+  private Material m_depthMaterial;
+  private Material m_debugMaterial;
+  private Dictionary<Camera, AmplifyMotionCamera> m_linkedCameras = new Dictionary<Camera, AmplifyMotionCamera>();
+  internal Camera[] m_linkedCameraKeys;
+  internal AmplifyMotionCamera[] m_linkedCameraValues;
+  internal bool m_linkedCamerasChanged = true;
+  private AmplifyMotionPostProcess m_currentPostProcess;
+  private int m_globalObjectId = 1;
+  private float m_deltaTime;
+  private float m_fixedDeltaTime;
+  private float m_motionScaleNorm;
+  private float m_fixedMotionScaleNorm;
+  private AmplifyMotion.Quality m_qualityLevel;
+  private AmplifyMotionCamera m_baseCamera;
+  private WorkerThreadPool m_workerThreadPool;
+  public static Dictionary<GameObject, AmplifyMotionObjectBase> m_activeObjects = new Dictionary<GameObject, AmplifyMotionObjectBase>();
+  public static Dictionary<Camera, AmplifyMotionCamera> m_activeCameras = new Dictionary<Camera, AmplifyMotionCamera>();
+  private static bool m_isD3D = false;
+  private bool m_canUseGPU;
+  private const CameraEvent m_updateCBEvent = CameraEvent.BeforeImageEffectsOpaque;
+  private CommandBuffer m_updateCB;
+  private const CameraEvent m_fixedUpdateCBEvent = CameraEvent.BeforeImageEffectsOpaque;
+  private CommandBuffer m_fixedUpdateCB;
+  private static bool m_ignoreMotionScaleWarning = false;
+  private static AmplifyMotionEffectBase m_firstInstance = (AmplifyMotionEffectBase) null;
+
+  [Obsolete("workerThreads is deprecated, please use WorkerThreads instead.")]
+  public int workerThreads
+  {
+    get => this.WorkerThreads;
+    set => this.WorkerThreads = value;
+  }
+
+  internal Material ReprojectionMaterial => this.m_reprojectionMaterial;
+
+  internal Material SolidVectorsMaterial => this.m_solidVectorsMaterial;
+
+  internal Material SkinnedVectorsMaterial => this.m_skinnedVectorsMaterial;
+
+  internal Material ClothVectorsMaterial => this.m_clothVectorsMaterial;
+
+  internal RenderTexture MotionRenderTexture => this.m_motionRT;
+
+  public Dictionary<Camera, AmplifyMotionCamera> LinkedCameras => this.m_linkedCameras;
+
+  internal float MotionScaleNorm => this.m_motionScaleNorm;
+
+  internal float FixedMotionScaleNorm => this.m_fixedMotionScaleNorm;
+
+  public AmplifyMotionCamera BaseCamera => this.m_baseCamera;
+
+  internal WorkerThreadPool WorkerPool => this.m_workerThreadPool;
+
+  public static bool IsD3D => AmplifyMotionEffectBase.m_isD3D;
+
+  public bool CanUseGPU => this.m_canUseGPU;
+
+  public static bool IgnoreMotionScaleWarning => AmplifyMotionEffectBase.m_ignoreMotionScaleWarning;
+
+  public static AmplifyMotionEffectBase FirstInstance => AmplifyMotionEffectBase.m_firstInstance;
+
+  public static AmplifyMotionEffectBase Instance => AmplifyMotionEffectBase.m_firstInstance;
+
+  private void Awake()
+  {
+    if ((UnityEngine.Object) AmplifyMotionEffectBase.m_firstInstance == (UnityEngine.Object) null)
+      AmplifyMotionEffectBase.m_firstInstance = this;
+    AmplifyMotionEffectBase.m_isD3D = SystemInfo.graphicsDeviceVersion.StartsWith("Direct3D");
+    this.m_globalObjectId = 1;
+    this.m_width = this.m_height = 0;
+    if (this.ForceCPUOnly)
+      this.m_canUseGPU = false;
+    else
+      this.m_canUseGPU = SystemInfo.graphicsShaderLevel >= 30 & SystemInfo.SupportsTextureFormat(TextureFormat.RHalf) & SystemInfo.SupportsTextureFormat(TextureFormat.RGHalf) & SystemInfo.SupportsTextureFormat(TextureFormat.RGBAHalf) & SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGBFloat);
+  }
+
+  internal void ResetObjectId() => this.m_globalObjectId = 1;
+
+  internal int GenerateObjectId(GameObject obj)
+  {
+    if (obj.isStatic)
+      return 0;
+    ++this.m_globalObjectId;
+    if (this.m_globalObjectId > 254)
+      this.m_globalObjectId = 1;
+    return this.m_globalObjectId;
+  }
+
+  private void SafeDestroyMaterial(ref Material mat)
+  {
+    if (!((UnityEngine.Object) mat != (UnityEngine.Object) null))
+      return;
+    UnityEngine.Object.DestroyImmediate((UnityEngine.Object) mat);
+    mat = (Material) null;
+  }
+
+  private bool CheckMaterialAndShader(Material material, string name)
+  {
+    bool flag = true;
+    if ((UnityEngine.Object) material == (UnityEngine.Object) null || (UnityEngine.Object) material.shader == (UnityEngine.Object) null)
+    {
+      Debug.LogWarning((object) ("[AmplifyMotion] Error creating " + name + " material"));
+      flag = false;
+    }
+    else if (!material.shader.isSupported)
+    {
+      Debug.LogWarning((object) ("[AmplifyMotion] " + name + " shader not supported on this platform"));
+      flag = false;
+    }
+    return flag;
+  }
+
+  private void DestroyMaterials()
+  {
+    this.SafeDestroyMaterial(ref this.m_blurMaterial);
+    this.SafeDestroyMaterial(ref this.m_solidVectorsMaterial);
+    this.SafeDestroyMaterial(ref this.m_skinnedVectorsMaterial);
+    this.SafeDestroyMaterial(ref this.m_clothVectorsMaterial);
+    this.SafeDestroyMaterial(ref this.m_reprojectionMaterial);
+    this.SafeDestroyMaterial(ref this.m_combineMaterial);
+    this.SafeDestroyMaterial(ref this.m_dilationMaterial);
+    this.SafeDestroyMaterial(ref this.m_depthMaterial);
+    this.SafeDestroyMaterial(ref this.m_debugMaterial);
+  }
+
+  private bool CreateMaterials()
+  {
+    this.DestroyMaterials();
+    string name1 = "Hidden/Amplify Motion/MotionBlurSM" + (SystemInfo.graphicsShaderLevel >= 30 ? 3 : 2).ToString();
+    string name2 = "Hidden/Amplify Motion/SolidVectors";
+    string name3 = "Hidden/Amplify Motion/SkinnedVectors";
+    string name4 = "Hidden/Amplify Motion/ClothVectors";
+    string name5 = "Hidden/Amplify Motion/ReprojectionVectors";
+    string name6 = "Hidden/Amplify Motion/Combine";
+    string name7 = "Hidden/Amplify Motion/Dilation";
+    string name8 = "Hidden/Amplify Motion/Depth";
+    string name9 = "Hidden/Amplify Motion/Debug";
+    try
+    {
+      Material material1 = new Material(Shader.Find(name1));
+      material1.hideFlags = HideFlags.DontSave;
+      this.m_blurMaterial = material1;
+      Material material2 = new Material(Shader.Find(name2));
+      material2.hideFlags = HideFlags.DontSave;
+      this.m_solidVectorsMaterial = material2;
+      Material material3 = new Material(Shader.Find(name3));
+      material3.hideFlags = HideFlags.DontSave;
+      this.m_skinnedVectorsMaterial = material3;
+      Material material4 = new Material(Shader.Find(name4));
+      material4.hideFlags = HideFlags.DontSave;
+      this.m_clothVectorsMaterial = material4;
+      Material material5 = new Material(Shader.Find(name5));
+      material5.hideFlags = HideFlags.DontSave;
+      this.m_reprojectionMaterial = material5;
+      Material material6 = new Material(Shader.Find(name6));
+      material6.hideFlags = HideFlags.DontSave;
+      this.m_combineMaterial = material6;
+      Material material7 = new Material(Shader.Find(name7));
+      material7.hideFlags = HideFlags.DontSave;
+      this.m_dilationMaterial = material7;
+      Material material8 = new Material(Shader.Find(name8));
+      material8.hideFlags = HideFlags.DontSave;
+      this.m_depthMaterial = material8;
+      Material material9 = new Material(Shader.Find(name9));
+      material9.hideFlags = HideFlags.DontSave;
+      this.m_debugMaterial = material9;
+    }
+    catch (Exception ex)
+    {
+    }
+    return (((((((!this.CheckMaterialAndShader(this.m_blurMaterial, name1) ? 0 : (this.CheckMaterialAndShader(this.m_solidVectorsMaterial, name2) ? 1 : 0)) == 0 ? 0 : (this.CheckMaterialAndShader(this.m_skinnedVectorsMaterial, name3) ? 1 : 0)) == 0 ? 0 : (this.CheckMaterialAndShader(this.m_clothVectorsMaterial, name4) ? 1 : 0)) == 0 ? 0 : (this.CheckMaterialAndShader(this.m_reprojectionMaterial, name5) ? 1 : 0)) == 0 ? 0 : (this.CheckMaterialAndShader(this.m_combineMaterial, name6) ? 1 : 0)) == 0 ? 0 : (this.CheckMaterialAndShader(this.m_dilationMaterial, name7) ? 1 : 0)) == 0 ? 0 : (this.CheckMaterialAndShader(this.m_depthMaterial, name8) ? 1 : 0)) != 0 && this.CheckMaterialAndShader(this.m_debugMaterial, name9);
+  }
+
+  private RenderTexture CreateRenderTexture(
+    string name,
+    int depth,
+    RenderTextureFormat fmt,
+    RenderTextureReadWrite rw,
+    FilterMode fm)
+  {
+    RenderTexture renderTexture = new RenderTexture(this.m_width, this.m_height, depth, fmt, rw);
+    renderTexture.hideFlags = HideFlags.DontSave;
+    renderTexture.name = name;
+    renderTexture.wrapMode = TextureWrapMode.Clamp;
+    renderTexture.filterMode = fm;
+    renderTexture.Create();
+    return renderTexture;
+  }
+
+  private void SafeDestroyRenderTexture(ref RenderTexture rt)
+  {
+    if (!((UnityEngine.Object) rt != (UnityEngine.Object) null))
+      return;
+    RenderTexture.active = (RenderTexture) null;
+    rt.Release();
+    UnityEngine.Object.DestroyImmediate((UnityEngine.Object) rt);
+    rt = (RenderTexture) null;
+  }
+
+  private void SafeDestroyTexture(ref Texture tex)
+  {
+    if (!((UnityEngine.Object) tex != (UnityEngine.Object) null))
+      return;
+    UnityEngine.Object.DestroyImmediate((UnityEngine.Object) tex);
+    tex = (Texture) null;
+  }
+
+  private void DestroyRenderTextures()
+  {
+    RenderTexture.active = (RenderTexture) null;
+    this.SafeDestroyRenderTexture(ref this.m_motionRT);
+  }
+
+  private void UpdateRenderTextures(bool qualityChanged)
+  {
+    int num1 = Mathf.Max(Mathf.FloorToInt((float) this.m_camera.pixelWidth + 0.5f), 1);
+    int num2 = Mathf.Max(Mathf.FloorToInt((float) this.m_camera.pixelHeight + 0.5f), 1);
+    if (this.QualityLevel == AmplifyMotion.Quality.Mobile)
+    {
+      num1 /= 2;
+      num2 /= 2;
+    }
+    if (this.m_width != num1 || this.m_height != num2)
+    {
+      this.m_width = num1;
+      this.m_height = num2;
+      this.DestroyRenderTextures();
+    }
+    if (!((UnityEngine.Object) this.m_motionRT == (UnityEngine.Object) null))
+      return;
+    this.m_motionRT = this.CreateRenderTexture("AM-MotionVectors", 24, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear, FilterMode.Point);
+  }
+
+  public bool CheckSupport()
+  {
+    if (SystemInfo.supportsImageEffects)
+      return true;
+    Debug.LogError((object) "[AmplifyMotion] Initialization failed. This plugin requires support for Image Effects and Render Textures.");
+    return false;
+  }
+
+  private void InitializeThreadPool()
+  {
+    if (this.WorkerThreads <= 0)
+      this.WorkerThreads = Mathf.Max(Environment.ProcessorCount / 2, 1);
+    this.m_workerThreadPool = new WorkerThreadPool();
+    this.m_workerThreadPool.InitializeAsyncUpdateThreads(this.WorkerThreads, this.SystemThreadPool);
+  }
+
+  private void ShutdownThreadPool()
+  {
+    if (this.m_workerThreadPool == null)
+      return;
+    this.m_workerThreadPool.FinalizeAsyncUpdateThreads();
+    this.m_workerThreadPool = (WorkerThreadPool) null;
+  }
+
+  private void InitializeCommandBuffers()
+  {
+    this.ShutdownCommandBuffers();
+    this.m_updateCB = new CommandBuffer();
+    this.m_updateCB.name = "AmplifyMotion.Update";
+    this.m_camera.AddCommandBuffer(CameraEvent.BeforeImageEffectsOpaque, this.m_updateCB);
+    this.m_fixedUpdateCB = new CommandBuffer();
+    this.m_fixedUpdateCB.name = "AmplifyMotion.FixedUpdate";
+    this.m_camera.AddCommandBuffer(CameraEvent.BeforeImageEffectsOpaque, this.m_fixedUpdateCB);
+  }
+
+  private void ShutdownCommandBuffers()
+  {
+    if (this.m_updateCB != null)
+    {
+      this.m_camera.RemoveCommandBuffer(CameraEvent.BeforeImageEffectsOpaque, this.m_updateCB);
+      this.m_updateCB.Release();
+      this.m_updateCB = (CommandBuffer) null;
+    }
+    if (this.m_fixedUpdateCB == null)
+      return;
+    this.m_camera.RemoveCommandBuffer(CameraEvent.BeforeImageEffectsOpaque, this.m_fixedUpdateCB);
+    this.m_fixedUpdateCB.Release();
+    this.m_fixedUpdateCB = (CommandBuffer) null;
+  }
+
+  private void OnEnable()
+  {
+    this.m_camera = this.GetComponent<Camera>();
+    if (!this.CheckSupport())
+    {
+      this.enabled = false;
+    }
+    else
+    {
+      this.InitializeThreadPool();
+      this.m_starting = true;
+      if (!this.CreateMaterials())
+      {
+        Debug.LogError((object) "[AmplifyMotion] Failed loading or compiling necessary shaders. Please try reinstalling Amplify Motion or contact support@amplify.pt");
+        this.enabled = false;
+      }
+      else
+      {
+        if (this.AutoRegisterObjs)
+          this.UpdateActiveObjects();
+        this.InitializeCameras();
+        this.InitializeCommandBuffers();
+        this.UpdateRenderTextures(true);
+        this.m_linkedCameras.TryGetValue(this.m_camera, out this.m_baseCamera);
+        if ((UnityEngine.Object) this.m_baseCamera == (UnityEngine.Object) null)
+        {
+          Debug.LogError((object) "[AmplifyMotion] Failed setting up Base Camera. Please contact support@amplify.pt");
+          this.enabled = false;
+        }
+        else
+        {
+          if ((UnityEngine.Object) this.m_currentPostProcess != (UnityEngine.Object) null)
+            this.m_currentPostProcess.enabled = true;
+          this.m_qualityLevel = this.QualityLevel;
+        }
+      }
+    }
+  }
+
+  private void OnDisable()
+  {
+    if ((UnityEngine.Object) this.m_currentPostProcess != (UnityEngine.Object) null)
+      this.m_currentPostProcess.enabled = false;
+    this.ShutdownCommandBuffers();
+    this.ShutdownThreadPool();
+  }
+
+  private void Start() => this.UpdatePostProcess();
+
+  internal void RemoveCamera(Camera reference) => this.m_linkedCameras.Remove(reference);
+
+  private void OnDestroy()
+  {
+    foreach (AmplifyMotionCamera amplifyMotionCamera in this.m_linkedCameras.Values.ToArray<AmplifyMotionCamera>())
+    {
+      if ((UnityEngine.Object) amplifyMotionCamera != (UnityEngine.Object) null && (UnityEngine.Object) amplifyMotionCamera.gameObject != (UnityEngine.Object) this.gameObject)
+      {
+        Camera component = amplifyMotionCamera.GetComponent<Camera>();
+        if ((UnityEngine.Object) component != (UnityEngine.Object) null)
+          component.targetTexture = (RenderTexture) null;
+        UnityEngine.Object.DestroyImmediate((UnityEngine.Object) amplifyMotionCamera);
+      }
+    }
+    this.DestroyRenderTextures();
+    this.DestroyMaterials();
+  }
+
+  private GameObject RecursiveFindCamera(GameObject obj, string auxCameraName)
+  {
+    GameObject camera = (GameObject) null;
+    if (obj.name == auxCameraName)
+    {
+      camera = obj;
+    }
+    else
+    {
+      foreach (Component component in obj.transform)
+      {
+        camera = this.RecursiveFindCamera(component.gameObject, auxCameraName);
+        if ((UnityEngine.Object) camera != (UnityEngine.Object) null)
+          break;
+      }
+    }
+    return camera;
+  }
+
+  private void InitializeCameras()
+  {
+    List<Camera> cameraList = new List<Camera>(this.OverlayCameras.Length);
+    for (int index = 0; index < this.OverlayCameras.Length; ++index)
+    {
+      if ((UnityEngine.Object) this.OverlayCameras[index] != (UnityEngine.Object) null)
+        cameraList.Add(this.OverlayCameras[index]);
+    }
+    Camera[] cameraArray = new Camera[cameraList.Count + 1];
+    cameraArray[0] = this.m_camera;
+    for (int index = 0; index < cameraList.Count; ++index)
+      cameraArray[index + 1] = cameraList[index];
+    this.m_linkedCameras.Clear();
+    for (int index = 0; index < cameraArray.Length; ++index)
+    {
+      Camera key = cameraArray[index];
+      if (!this.m_linkedCameras.ContainsKey(key))
+      {
+        AmplifyMotionCamera amplifyMotionCamera = key.gameObject.GetComponent<AmplifyMotionCamera>();
+        if ((UnityEngine.Object) amplifyMotionCamera != (UnityEngine.Object) null)
+        {
+          amplifyMotionCamera.enabled = false;
+          amplifyMotionCamera.enabled = true;
+        }
+        else
+          amplifyMotionCamera = key.gameObject.AddComponent<AmplifyMotionCamera>();
+        amplifyMotionCamera.LinkTo(this, index > 0);
+        this.m_linkedCameras.Add(key, amplifyMotionCamera);
+        this.m_linkedCamerasChanged = true;
+      }
+    }
+  }
+
+  public void UpdateActiveCameras() => this.InitializeCameras();
+
+  internal static void RegisterCamera(AmplifyMotionCamera cam)
+  {
+    if (!AmplifyMotionEffectBase.m_activeCameras.ContainsValue(cam))
+      AmplifyMotionEffectBase.m_activeCameras.Add(cam.GetComponent<Camera>(), cam);
+    foreach (AmplifyMotionObjectBase motionObjectBase in AmplifyMotionEffectBase.m_activeObjects.Values)
+      motionObjectBase.RegisterCamera(cam);
+  }
+
+  internal static void UnregisterCamera(AmplifyMotionCamera cam)
+  {
+    foreach (AmplifyMotionObjectBase motionObjectBase in AmplifyMotionEffectBase.m_activeObjects.Values)
+      motionObjectBase.UnregisterCamera(cam);
+    AmplifyMotionEffectBase.m_activeCameras.Remove(cam.GetComponent<Camera>());
+  }
+
+  public void UpdateActiveObjects()
+  {
+    GameObject[] objectsOfType = UnityEngine.Object.FindObjectsOfType(typeof (GameObject)) as GameObject[];
+    for (int index = 0; index < objectsOfType.Length; ++index)
+    {
+      if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(objectsOfType[index]))
+        AmplifyMotionEffectBase.TryRegister(objectsOfType[index], true);
+    }
+  }
+
+  internal static void RegisterObject(AmplifyMotionObjectBase obj)
+  {
+    AmplifyMotionEffectBase.m_activeObjects.Add(obj.gameObject, obj);
+    foreach (AmplifyMotionCamera camera in AmplifyMotionEffectBase.m_activeCameras.Values)
+      obj.RegisterCamera(camera);
+  }
+
+  internal static void UnregisterObject(AmplifyMotionObjectBase obj)
+  {
+    foreach (AmplifyMotionCamera camera in AmplifyMotionEffectBase.m_activeCameras.Values)
+      obj.UnregisterCamera(camera);
+    AmplifyMotionEffectBase.m_activeObjects.Remove(obj.gameObject);
+  }
+
+  internal static bool FindValidTag(Material[] materials)
+  {
+    for (int index = 0; index < materials.Length; ++index)
+    {
+      Material material = materials[index];
+      if ((UnityEngine.Object) material != (UnityEngine.Object) null)
+      {
+        string tag = material.GetTag("RenderType", false);
+        if (tag == "Opaque" || tag == "TransparentCutout")
+          return !material.IsKeywordEnabled("_ALPHABLEND_ON") && !material.IsKeywordEnabled("_ALPHAPREMULTIPLY_ON");
+      }
+    }
+    return false;
+  }
+
+  internal static bool CanRegister(GameObject gameObj, bool autoReg)
+  {
+    if (gameObj.isStatic)
+      return false;
+    Renderer component = gameObj.GetComponent<Renderer>();
+    if ((UnityEngine.Object) component == (UnityEngine.Object) null || component.sharedMaterials == null || component.isPartOfStaticBatch || !component.enabled || component.shadowCastingMode == ShadowCastingMode.ShadowsOnly || ((object) component).GetType() == typeof (SpriteRenderer) || !AmplifyMotionEffectBase.FindValidTag(component.sharedMaterials))
+      return false;
+    System.Type type = ((object) component).GetType();
+    if (type == typeof (MeshRenderer) || type == typeof (SkinnedMeshRenderer))
+      return true;
+    if (!(type == typeof (ParticleSystemRenderer)) || autoReg)
+      return false;
+    ParticleSystemRenderMode renderMode = (component as ParticleSystemRenderer).renderMode;
+    return renderMode == ParticleSystemRenderMode.Mesh || renderMode == ParticleSystemRenderMode.Billboard;
+  }
+
+  internal static void TryRegister(GameObject gameObj, bool autoReg)
+  {
+    if (!AmplifyMotionEffectBase.CanRegister(gameObj, autoReg) || !((UnityEngine.Object) gameObj.GetComponent<AmplifyMotionObjectBase>() == (UnityEngine.Object) null))
+      return;
+    AmplifyMotionObjectBase.ApplyToChildren = false;
+    gameObj.AddComponent<AmplifyMotionObjectBase>();
+    AmplifyMotionObjectBase.ApplyToChildren = true;
+  }
+
+  internal static void TryUnregister(GameObject gameObj)
+  {
+    AmplifyMotionObjectBase component = gameObj.GetComponent<AmplifyMotionObjectBase>();
+    if (!((UnityEngine.Object) component != (UnityEngine.Object) null))
+      return;
+    UnityEngine.Object.Destroy((UnityEngine.Object) component);
+  }
+
+  public void Register(GameObject gameObj)
+  {
+    if (AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
+      return;
+    AmplifyMotionEffectBase.TryRegister(gameObj, false);
+  }
+
+  public static void RegisterS(GameObject gameObj)
+  {
+    if (AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
+      return;
+    AmplifyMotionEffectBase.TryRegister(gameObj, false);
+  }
+
+  public void RegisterRecursively(GameObject gameObj)
+  {
+    if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
+      AmplifyMotionEffectBase.TryRegister(gameObj, false);
+    foreach (Component component in gameObj.transform)
+      this.RegisterRecursively(component.gameObject);
+  }
+
+  public static void RegisterRecursivelyS(GameObject gameObj)
+  {
+    if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
+      AmplifyMotionEffectBase.TryRegister(gameObj, false);
+    foreach (Component component in gameObj.transform)
+      AmplifyMotionEffectBase.RegisterRecursivelyS(component.gameObject);
+  }
+
+  public void Unregister(GameObject gameObj)
+  {
+    if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
+      return;
+    AmplifyMotionEffectBase.TryUnregister(gameObj);
+  }
+
+  public static void UnregisterS(GameObject gameObj)
+  {
+    if (!AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
+      return;
+    AmplifyMotionEffectBase.TryUnregister(gameObj);
+  }
+
+  public void UnregisterRecursively(GameObject gameObj)
+  {
+    if (AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
+      AmplifyMotionEffectBase.TryUnregister(gameObj);
+    foreach (Component component in gameObj.transform)
+      this.UnregisterRecursively(component.gameObject);
+  }
+
+  public static void UnregisterRecursivelyS(GameObject gameObj)
+  {
+    if (AmplifyMotionEffectBase.m_activeObjects.ContainsKey(gameObj))
+      AmplifyMotionEffectBase.TryUnregister(gameObj);
+    foreach (Component component in gameObj.transform)
+      AmplifyMotionEffectBase.UnregisterRecursivelyS(component.gameObject);
+  }
+
+  private void UpdatePostProcess()
+  {
+    Camera camera = (Camera) null;
+    float num = float.MinValue;
+    if (this.m_linkedCamerasChanged)
+      this.UpdateLinkedCameras();
+    for (int index = 0; index < this.m_linkedCameraKeys.Length; ++index)
+    {
+      if ((UnityEngine.Object) this.m_linkedCameraKeys[index] != (UnityEngine.Object) null && this.m_linkedCameraKeys[index].isActiveAndEnabled && (double) this.m_linkedCameraKeys[index].depth > (double) num)
+      {
+        camera = this.m_linkedCameraKeys[index];
+        num = this.m_linkedCameraKeys[index].depth;
+      }
+    }
+    if ((UnityEngine.Object) this.m_currentPostProcess != (UnityEngine.Object) null && (UnityEngine.Object) this.m_currentPostProcess.gameObject != (UnityEngine.Object) camera.gameObject)
+    {
+      UnityEngine.Object.DestroyImmediate((UnityEngine.Object) this.m_currentPostProcess);
+      this.m_currentPostProcess = (AmplifyMotionPostProcess) null;
+    }
+    if (!((UnityEngine.Object) this.m_currentPostProcess == (UnityEngine.Object) null) || !((UnityEngine.Object) camera != (UnityEngine.Object) null) || !((UnityEngine.Object) camera != (UnityEngine.Object) this.m_camera))
+      return;
+    AmplifyMotionPostProcess[] components = this.gameObject.GetComponents<AmplifyMotionPostProcess>();
+    if (components != null && components.Length != 0)
+    {
+      for (int index = 0; index < components.Length; ++index)
+        UnityEngine.Object.DestroyImmediate((UnityEngine.Object) components[index]);
+    }
+    this.m_currentPostProcess = camera.gameObject.AddComponent<AmplifyMotionPostProcess>();
+    this.m_currentPostProcess.Instance = this;
+  }
+
+  private void LateUpdate()
+  {
+    if (this.m_baseCamera.AutoStep)
+    {
+      float num = Application.isPlaying ? Time.unscaledDeltaTime : Time.fixedDeltaTime;
+      float fixedDeltaTime = Time.fixedDeltaTime;
+      this.m_deltaTime = (double) num > 1.40129846432482E-45 ? num : this.m_deltaTime;
+      this.m_fixedDeltaTime = (double) num > 1.40129846432482E-45 ? fixedDeltaTime : this.m_fixedDeltaTime;
+    }
+    this.QualitySteps = Mathf.Clamp(this.QualitySteps, 0, 16);
+    this.MotionScale = Mathf.Max(this.MotionScale, 0.0f);
+    this.MinVelocity = Mathf.Min(this.MinVelocity, this.MaxVelocity);
+    this.DepthThreshold = Mathf.Max(this.DepthThreshold, 0.0f);
+    this.MinResetDeltaDist = Mathf.Max(this.MinResetDeltaDist, 0.0f);
+    this.MinResetDeltaDistSqr = this.MinResetDeltaDist * this.MinResetDeltaDist;
+    this.ResetFrameDelay = Mathf.Max(this.ResetFrameDelay, 0);
+    this.UpdatePostProcess();
+  }
+
+  public void StopAutoStep()
+  {
+    foreach (AmplifyMotionCamera amplifyMotionCamera in this.m_linkedCameras.Values)
+      amplifyMotionCamera.StopAutoStep();
+  }
+
+  public void StartAutoStep()
+  {
+    foreach (AmplifyMotionCamera amplifyMotionCamera in this.m_linkedCameras.Values)
+      amplifyMotionCamera.StartAutoStep();
+  }
+
+  public void Step(float delta)
+  {
+    this.m_deltaTime = delta;
+    this.m_fixedDeltaTime = delta;
+    foreach (AmplifyMotionCamera amplifyMotionCamera in this.m_linkedCameras.Values)
+      amplifyMotionCamera.Step();
+  }
+
+  private void UpdateLinkedCameras()
+  {
+    Dictionary<Camera, AmplifyMotionCamera>.KeyCollection keys = this.m_linkedCameras.Keys;
+    Dictionary<Camera, AmplifyMotionCamera>.ValueCollection values = this.m_linkedCameras.Values;
+    if (this.m_linkedCameraKeys == null || keys.Count != this.m_linkedCameraKeys.Length)
+      this.m_linkedCameraKeys = new Camera[keys.Count];
+    if (this.m_linkedCameraValues == null || values.Count != this.m_linkedCameraValues.Length)
+      this.m_linkedCameraValues = new AmplifyMotionCamera[values.Count];
+    keys.CopyTo(this.m_linkedCameraKeys, 0);
+    values.CopyTo(this.m_linkedCameraValues, 0);
+    this.m_linkedCamerasChanged = false;
+  }
+
+  private void FixedUpdate()
+  {
+    if (!this.m_camera.enabled)
+      return;
+    if (this.m_linkedCamerasChanged)
+      this.UpdateLinkedCameras();
+    this.m_fixedUpdateCB.Clear();
+    for (int index = 0; index < this.m_linkedCameraValues.Length; ++index)
+    {
+      if ((UnityEngine.Object) this.m_linkedCameraValues[index] != (UnityEngine.Object) null && this.m_linkedCameraValues[index].isActiveAndEnabled)
+        this.m_linkedCameraValues[index].FixedUpdateTransform(this, this.m_fixedUpdateCB);
+    }
+  }
+
+  private void OnPreRender()
+  {
+    if (!this.m_camera.enabled || Time.frameCount != 1 && (double) Mathf.Abs(Time.unscaledDeltaTime) <= 1.40129846432482E-45)
+      return;
+    if (this.m_linkedCamerasChanged)
+      this.UpdateLinkedCameras();
+    this.m_updateCB.Clear();
+    for (int index = 0; index < this.m_linkedCameraValues.Length; ++index)
+    {
+      if ((UnityEngine.Object) this.m_linkedCameraValues[index] != (UnityEngine.Object) null && this.m_linkedCameraValues[index].isActiveAndEnabled)
+        this.m_linkedCameraValues[index].UpdateTransform(this, this.m_updateCB);
+    }
+  }
+
+  private void OnPostRender()
+  {
+    bool qualityChanged = this.QualityLevel != this.m_qualityLevel;
+    this.m_qualityLevel = this.QualityLevel;
+    this.UpdateRenderTextures(qualityChanged);
+    this.ResetObjectId();
+    bool flag = (double) this.CameraMotionMult > 1.40129846432482E-45;
+    bool clearColor = !flag || this.m_starting;
+    float num1 = (double) this.DepthThreshold > 1.40129846432482E-45 ? 1f / this.DepthThreshold : float.MaxValue;
+    this.m_motionScaleNorm = (double) this.m_deltaTime >= 1.40129846432482E-45 ? this.MotionScale * (1f / this.m_deltaTime) : 0.0f;
+    this.m_fixedMotionScaleNorm = (double) this.m_fixedDeltaTime >= 1.40129846432482E-45 ? this.MotionScale * (1f / this.m_fixedDeltaTime) : 0.0f;
+    float scale1 = !this.m_starting ? this.m_motionScaleNorm : 0.0f;
+    float fixedScale = !this.m_starting ? this.m_fixedMotionScaleNorm : 0.0f;
+    Shader.SetGlobalFloat("_AM_MIN_VELOCITY", this.MinVelocity);
+    Shader.SetGlobalFloat("_AM_MAX_VELOCITY", this.MaxVelocity);
+    Shader.SetGlobalFloat("_AM_RCP_TOTAL_VELOCITY", (float) (1.0 / ((double) this.MaxVelocity - (double) this.MinVelocity)));
+    Shader.SetGlobalVector("_AM_DEPTH_THRESHOLD", (Vector4) new Vector2(this.DepthThreshold, num1));
+    this.m_motionRT.DiscardContents();
+    this.m_baseCamera.PreRenderVectors(this.m_motionRT, clearColor, num1);
+    for (int index = 0; index < this.m_linkedCameraValues.Length; ++index)
+    {
+      AmplifyMotionCamera linkedCameraValue = this.m_linkedCameraValues[index];
+      if ((UnityEngine.Object) linkedCameraValue != (UnityEngine.Object) null && linkedCameraValue.Overlay && linkedCameraValue.isActiveAndEnabled)
+      {
+        linkedCameraValue.PreRenderVectors(this.m_motionRT, clearColor, num1);
+        linkedCameraValue.RenderVectors(scale1, fixedScale, this.QualityLevel);
+      }
+    }
+    if (flag)
+    {
+      float num2 = (double) this.m_deltaTime >= 1.40129846432482E-45 ? (float) ((double) this.MotionScale * (double) this.CameraMotionMult * (1.0 / (double) this.m_deltaTime)) : 0.0f;
+      float scale2 = !this.m_starting ? num2 : 0.0f;
+      this.m_motionRT.DiscardContents();
+      this.m_baseCamera.RenderReprojectionVectors(this.m_motionRT, scale2);
+    }
+    this.m_baseCamera.RenderVectors(scale1, fixedScale, this.QualityLevel);
+    for (int index = 0; index < this.m_linkedCameraValues.Length; ++index)
+    {
+      AmplifyMotionCamera linkedCameraValue = this.m_linkedCameraValues[index];
+      if ((UnityEngine.Object) linkedCameraValue != (UnityEngine.Object) null && linkedCameraValue.Overlay && linkedCameraValue.isActiveAndEnabled)
+        linkedCameraValue.RenderVectors(scale1, fixedScale, this.QualityLevel);
+    }
+    this.m_starting = false;
+  }
+
+  private void ApplyMotionBlur(RenderTexture source, RenderTexture destination, Vector4 blurStep)
+  {
+    bool flag = this.QualityLevel == AmplifyMotion.Quality.Mobile;
+    int pass = (int) (this.QualityLevel + (this.Noise ? 4 : 0));
+    RenderTexture renderTexture1 = (RenderTexture) null;
+    if (flag)
+    {
+      renderTexture1 = RenderTexture.GetTemporary(this.m_width, this.m_height, 0, RenderTextureFormat.ARGB32);
+      renderTexture1.name = "AM-DepthTemp";
+      renderTexture1.wrapMode = TextureWrapMode.Clamp;
+      renderTexture1.filterMode = FilterMode.Point;
+    }
+    RenderTexture temporary1 = RenderTexture.GetTemporary(this.m_width, this.m_height, 0, source.format);
+    temporary1.name = "AM-CombinedTemp";
+    temporary1.wrapMode = TextureWrapMode.Clamp;
+    temporary1.filterMode = FilterMode.Point;
+    temporary1.DiscardContents();
+    this.m_combineMaterial.SetTexture("_MotionTex", (Texture) this.m_motionRT);
+    source.filterMode = FilterMode.Point;
+    Graphics.Blit((Texture) source, temporary1, this.m_combineMaterial, 0);
+    this.m_blurMaterial.SetTexture("_MotionTex", (Texture) this.m_motionRT);
+    if (flag)
+    {
+      Graphics.Blit((Texture) null, renderTexture1, this.m_depthMaterial, 0);
+      this.m_blurMaterial.SetTexture("_DepthTex", (Texture) renderTexture1);
+    }
+    if (this.QualitySteps > 1)
+    {
+      RenderTexture temporary2 = RenderTexture.GetTemporary(this.m_width, this.m_height, 0, source.format);
+      temporary2.name = "AM-CombinedTemp2";
+      temporary2.filterMode = FilterMode.Point;
+      float num1 = 1f / (float) this.QualitySteps;
+      float num2 = 1f;
+      RenderTexture source1 = temporary1;
+      RenderTexture dest = temporary2;
+      for (int index = 0; index < this.QualitySteps; ++index)
+      {
+        if ((UnityEngine.Object) dest != (UnityEngine.Object) destination)
+          dest.DiscardContents();
+        this.m_blurMaterial.SetVector("_AM_BLUR_STEP", blurStep * num2);
+        Graphics.Blit((Texture) source1, dest, this.m_blurMaterial, pass);
+        if (index < this.QualitySteps - 2)
+        {
+          RenderTexture renderTexture2 = dest;
+          dest = source1;
+          source1 = renderTexture2;
+        }
+        else
+        {
+          source1 = dest;
+          dest = destination;
+        }
+        num2 -= num1;
+      }
+      RenderTexture.ReleaseTemporary(temporary2);
+    }
+    else
+    {
+      this.m_blurMaterial.SetVector("_AM_BLUR_STEP", blurStep);
+      Graphics.Blit((Texture) temporary1, destination, this.m_blurMaterial, pass);
+    }
+    if (flag)
+    {
+      this.m_combineMaterial.SetTexture("_MotionTex", (Texture) this.m_motionRT);
+      Graphics.Blit((Texture) source, destination, this.m_combineMaterial, 1);
+    }
+    RenderTexture.ReleaseTemporary(temporary1);
+    if (!((UnityEngine.Object) renderTexture1 != (UnityEngine.Object) null))
+      return;
+    RenderTexture.ReleaseTemporary(renderTexture1);
+  }
+
+  private void OnRenderImage(RenderTexture source, RenderTexture destination)
+  {
+    if ((UnityEngine.Object) this.m_currentPostProcess == (UnityEngine.Object) null)
+      this.PostProcess(source, destination);
+    else
+      Graphics.Blit((Texture) source, destination);
+  }
+
+  public void PostProcess(RenderTexture source, RenderTexture destination)
+  {
+    Vector4 zero = Vector4.zero with
+    {
+      x = this.MaxVelocity / 1000f,
+      y = this.MaxVelocity / 1000f
+    };
+    RenderTexture renderTexture = (RenderTexture) null;
+    if (QualitySettings.antiAliasing > 1)
+    {
+      renderTexture = RenderTexture.GetTemporary(this.m_width, this.m_height, 0, RenderTextureFormat.ARGB32, RenderTextureReadWrite.Linear);
+      renderTexture.name = "AM-DilatedTemp";
+      renderTexture.filterMode = FilterMode.Point;
+      this.m_dilationMaterial.SetTexture("_MotionTex", (Texture) this.m_motionRT);
+      Graphics.Blit((Texture) this.m_motionRT, renderTexture, this.m_dilationMaterial, 0);
+      this.m_dilationMaterial.SetTexture("_MotionTex", (Texture) renderTexture);
+      Graphics.Blit((Texture) renderTexture, this.m_motionRT, this.m_dilationMaterial, 1);
+    }
+    if (this.DebugMode)
+    {
+      this.m_debugMaterial.SetTexture("_MotionTex", (Texture) this.m_motionRT);
+      Graphics.Blit((Texture) source, destination, this.m_debugMaterial);
+    }
+    else
+      this.ApplyMotionBlur(source, destination, zero);
+    if (!((UnityEngine.Object) renderTexture != (UnityEngine.Object) null))
+      return;
+    RenderTexture.ReleaseTemporary(renderTexture);
+  }
 }

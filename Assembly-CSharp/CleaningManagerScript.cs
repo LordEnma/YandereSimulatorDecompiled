@@ -1,369 +1,346 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: CleaningManagerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200024C RID: 588
 public class CleaningManagerScript : MonoBehaviour
 {
-	// Token: 0x06001269 RID: 4713 RVA: 0x0008F120 File Offset: 0x0008D320
-	private void Start()
-	{
-		if (SchoolGlobals.RoofFence)
-		{
-			for (int i = 1; i < this.ClappingSpots.Length; i++)
-			{
-				this.ClappingSpots[i].transform.position = new Vector3(this.ClappingSpots[i].transform.position.x, this.ClappingSpots[i].transform.position.y, this.ClappingSpots[i].transform.position.z + 0.5f);
-			}
-		}
-		this.Eighties = GameGlobals.Eighties;
-	}
+  public StudentManagerScript StudentManager;
+  public Transform[] Windows;
+  public Transform[] Desks;
+  public Transform[] Floors;
+  public Transform[] Toilets;
+  public Transform[] Rooftops;
+  public Transform[] ClappingSpots;
+  public Transform Spot;
+  public bool Eighties;
+  public int Role;
 
-	// Token: 0x0600126A RID: 4714 RVA: 0x0008F1B4 File Offset: 0x0008D3B4
-	public void GetRole(int StudentID)
-	{
-		switch (StudentID)
-		{
-		case 1:
-			this.Role = 4;
-			this.Spot = this.Toilets[0];
-			return;
-		case 2:
-			this.Role = 1;
-			this.Spot = this.Windows[4];
-			return;
-		case 3:
-			this.Role = 2;
-			this.Spot = this.Desks[4];
-			return;
-		case 4:
-			this.Role = 3;
-			this.Spot = this.Floors[4];
-			return;
-		case 5:
-			this.Role = 5;
-			this.Spot = this.Rooftops[4];
-			return;
-		case 6:
-			this.Role = 3;
-			this.Spot = this.Floors[12];
-			return;
-		case 7:
-			this.Role = 3;
-			this.Spot = this.Floors[13];
-			return;
-		case 8:
-			this.Role = 3;
-			this.Spot = this.Floors[14];
-			return;
-		case 9:
-			this.Role = 3;
-			this.Spot = this.Floors[15];
-			return;
-		case 10:
-			if (this.Eighties)
-			{
-				this.Role = 3;
-				this.Spot = this.Floors[45];
-				return;
-			}
-			if (this.StudentManager.Students[11] != null)
-			{
-				this.Role = 3;
-				this.Spot = this.StudentManager.Students[11].transform;
-				return;
-			}
-			break;
-		case 11:
-			this.Role = 3;
-			this.Spot = this.Floors[35];
-			return;
-		case 12:
-			this.Role = 3;
-			this.Spot = this.Floors[36];
-			return;
-		case 13:
-			this.Role = 3;
-			this.Spot = this.Floors[37];
-			return;
-		case 14:
-			this.Role = 3;
-			this.Spot = this.Floors[38];
-			return;
-		case 15:
-			this.Role = 3;
-			this.Spot = this.Floors[39];
-			return;
-		case 16:
-			this.Role = 3;
-			this.Spot = this.Floors[40];
-			return;
-		case 17:
-			this.Role = 3;
-			this.Spot = this.Floors[41];
-			return;
-		case 18:
-			this.Role = 3;
-			this.Spot = this.Floors[42];
-			return;
-		case 19:
-			this.Role = 3;
-			this.Spot = this.Floors[43];
-			return;
-		case 20:
-			this.Role = 3;
-			this.Spot = this.Floors[44];
-			return;
-		case 21:
-			this.Role = 1;
-			this.Spot = this.Windows[6];
-			return;
-		case 22:
-			this.Role = 1;
-			this.Spot = this.Windows[5];
-			return;
-		case 23:
-			this.Role = 1;
-			this.Spot = this.Windows[3];
-			return;
-		case 24:
-			this.Role = 1;
-			this.Spot = this.Windows[2];
-			return;
-		case 25:
-			this.Role = 1;
-			this.Spot = this.Windows[1];
-			return;
-		case 26:
-			this.Role = 2;
-			this.Spot = this.Desks[6];
-			return;
-		case 27:
-			this.Role = 2;
-			this.Spot = this.Desks[5];
-			return;
-		case 28:
-			this.Role = 2;
-			this.Spot = this.Desks[3];
-			return;
-		case 29:
-			this.Role = 2;
-			this.Spot = this.Desks[2];
-			return;
-		case 30:
-			this.Role = 2;
-			this.Spot = this.Desks[1];
-			return;
-		case 31:
-			this.Role = 3;
-			this.Spot = this.Floors[6];
-			return;
-		case 32:
-			this.Role = 3;
-			this.Spot = this.Floors[5];
-			return;
-		case 33:
-			this.Role = 3;
-			this.Spot = this.Floors[3];
-			return;
-		case 34:
-			this.Role = 3;
-			this.Spot = this.Floors[2];
-			return;
-		case 35:
-			this.Role = 3;
-			this.Spot = this.Floors[1];
-			return;
-		case 36:
-			this.Role = 3;
-			this.Spot = this.Floors[7];
-			return;
-		case 37:
-			this.Role = 3;
-			this.Spot = this.Floors[8];
-			return;
-		case 38:
-			this.Role = 3;
-			this.Spot = this.Floors[9];
-			return;
-		case 39:
-			this.Role = 3;
-			this.Spot = this.Floors[10];
-			return;
-		case 40:
-			this.Role = 3;
-			this.Spot = this.Floors[11];
-			return;
-		case 41:
-			this.Role = 5;
-			this.Spot = this.Rooftops[6];
-			return;
-		case 42:
-			this.Role = 5;
-			this.Spot = this.Rooftops[5];
-			return;
-		case 43:
-			this.Role = 5;
-			this.Spot = this.Rooftops[3];
-			return;
-		case 44:
-			this.Role = 5;
-			this.Spot = this.Rooftops[2];
-			return;
-		case 45:
-			this.Role = 5;
-			this.Spot = this.Rooftops[1];
-			return;
-		case 46:
-			this.Role = 4;
-			this.Spot = this.Toilets[1];
-			return;
-		case 47:
-			this.Role = 4;
-			this.Spot = this.Toilets[2];
-			return;
-		case 48:
-			this.Role = 4;
-			this.Spot = this.Toilets[3];
-			return;
-		case 49:
-			this.Role = 3;
-			this.Spot = this.Floors[16];
-			return;
-		case 50:
-			this.Role = 3;
-			this.Spot = this.Floors[17];
-			return;
-		case 51:
-			this.Role = 4;
-			this.Spot = this.Toilets[7];
-			return;
-		case 52:
-			this.Role = 4;
-			this.Spot = this.Toilets[8];
-			return;
-		case 53:
-			this.Role = 4;
-			this.Spot = this.Toilets[9];
-			return;
-		case 54:
-			this.Role = 4;
-			this.Spot = this.Toilets[10];
-			return;
-		case 55:
-			this.Role = 4;
-			this.Spot = this.Toilets[11];
-			return;
-		case 56:
-			this.Role = 4;
-			this.Spot = this.Toilets[4];
-			return;
-		case 57:
-			this.Role = 4;
-			this.Spot = this.Toilets[5];
-			return;
-		case 58:
-			this.Role = 4;
-			this.Spot = this.Toilets[6];
-			return;
-		case 59:
-			this.Role = 3;
-			this.Spot = this.Floors[18];
-			return;
-		case 60:
-			this.Role = 3;
-			this.Spot = this.Floors[19];
-			return;
-		case 61:
-			this.Role = 3;
-			this.Spot = this.Floors[20];
-			return;
-		case 62:
-			this.Role = 3;
-			this.Spot = this.Floors[21];
-			return;
-		case 63:
-			this.Role = 3;
-			this.Spot = this.Floors[22];
-			return;
-		case 64:
-			this.Role = 3;
-			this.Spot = this.Floors[23];
-			return;
-		case 65:
-			this.Role = 3;
-			this.Spot = this.Floors[24];
-			return;
-		case 66:
-			this.Role = 3;
-			this.Spot = this.Floors[25];
-			return;
-		case 67:
-			this.Role = 3;
-			this.Spot = this.Floors[26];
-			return;
-		case 68:
-			this.Role = 3;
-			this.Spot = this.Floors[27];
-			return;
-		case 69:
-			this.Role = 3;
-			this.Spot = this.Floors[28];
-			return;
-		case 70:
-			this.Role = 3;
-			this.Spot = this.Floors[29];
-			return;
-		case 71:
-			this.Role = 3;
-			this.Spot = this.Floors[30];
-			return;
-		case 72:
-			this.Role = 3;
-			this.Spot = this.Floors[31];
-			return;
-		case 73:
-			this.Role = 3;
-			this.Spot = this.Floors[32];
-			return;
-		case 74:
-			this.Role = 3;
-			this.Spot = this.Floors[33];
-			return;
-		case 75:
-			this.Role = 3;
-			this.Spot = this.Floors[34];
-			break;
-		default:
-			return;
-		}
-	}
+  private void Start()
+  {
+    if (SchoolGlobals.RoofFence)
+    {
+      for (int index = 1; index < this.ClappingSpots.Length; ++index)
+        this.ClappingSpots[index].transform.position = new Vector3(this.ClappingSpots[index].transform.position.x, this.ClappingSpots[index].transform.position.y, this.ClappingSpots[index].transform.position.z + 0.5f);
+    }
+    this.Eighties = GameGlobals.Eighties;
+  }
 
-	// Token: 0x04001784 RID: 6020
-	public StudentManagerScript StudentManager;
-
-	// Token: 0x04001785 RID: 6021
-	public Transform[] Windows;
-
-	// Token: 0x04001786 RID: 6022
-	public Transform[] Desks;
-
-	// Token: 0x04001787 RID: 6023
-	public Transform[] Floors;
-
-	// Token: 0x04001788 RID: 6024
-	public Transform[] Toilets;
-
-	// Token: 0x04001789 RID: 6025
-	public Transform[] Rooftops;
-
-	// Token: 0x0400178A RID: 6026
-	public Transform[] ClappingSpots;
-
-	// Token: 0x0400178B RID: 6027
-	public Transform Spot;
-
-	// Token: 0x0400178C RID: 6028
-	public bool Eighties;
-
-	// Token: 0x0400178D RID: 6029
-	public int Role;
+  public void GetRole(int StudentID)
+  {
+    switch (StudentID)
+    {
+      case 1:
+        this.Role = 4;
+        this.Spot = this.Toilets[0];
+        break;
+      case 2:
+        this.Role = 1;
+        this.Spot = this.Windows[4];
+        break;
+      case 3:
+        this.Role = 2;
+        this.Spot = this.Desks[4];
+        break;
+      case 4:
+        this.Role = 3;
+        this.Spot = this.Floors[4];
+        break;
+      case 5:
+        this.Role = 5;
+        this.Spot = this.Rooftops[4];
+        break;
+      case 6:
+        this.Role = 3;
+        this.Spot = this.Floors[12];
+        break;
+      case 7:
+        this.Role = 3;
+        this.Spot = this.Floors[13];
+        break;
+      case 8:
+        this.Role = 3;
+        this.Spot = this.Floors[14];
+        break;
+      case 9:
+        this.Role = 3;
+        this.Spot = this.Floors[15];
+        break;
+      case 10:
+        if (!this.Eighties)
+        {
+          if (!((Object) this.StudentManager.Students[11] != (Object) null))
+            break;
+          this.Role = 3;
+          this.Spot = this.StudentManager.Students[11].transform;
+          break;
+        }
+        this.Role = 3;
+        this.Spot = this.Floors[45];
+        break;
+      case 11:
+        this.Role = 3;
+        this.Spot = this.Floors[35];
+        break;
+      case 12:
+        this.Role = 3;
+        this.Spot = this.Floors[36];
+        break;
+      case 13:
+        this.Role = 3;
+        this.Spot = this.Floors[37];
+        break;
+      case 14:
+        this.Role = 3;
+        this.Spot = this.Floors[38];
+        break;
+      case 15:
+        this.Role = 3;
+        this.Spot = this.Floors[39];
+        break;
+      case 16:
+        this.Role = 3;
+        this.Spot = this.Floors[40];
+        break;
+      case 17:
+        this.Role = 3;
+        this.Spot = this.Floors[41];
+        break;
+      case 18:
+        this.Role = 3;
+        this.Spot = this.Floors[42];
+        break;
+      case 19:
+        this.Role = 3;
+        this.Spot = this.Floors[43];
+        break;
+      case 20:
+        this.Role = 3;
+        this.Spot = this.Floors[44];
+        break;
+      case 21:
+        this.Role = 1;
+        this.Spot = this.Windows[6];
+        break;
+      case 22:
+        this.Role = 1;
+        this.Spot = this.Windows[5];
+        break;
+      case 23:
+        this.Role = 1;
+        this.Spot = this.Windows[3];
+        break;
+      case 24:
+        this.Role = 1;
+        this.Spot = this.Windows[2];
+        break;
+      case 25:
+        this.Role = 1;
+        this.Spot = this.Windows[1];
+        break;
+      case 26:
+        this.Role = 2;
+        this.Spot = this.Desks[6];
+        break;
+      case 27:
+        this.Role = 2;
+        this.Spot = this.Desks[5];
+        break;
+      case 28:
+        this.Role = 2;
+        this.Spot = this.Desks[3];
+        break;
+      case 29:
+        this.Role = 2;
+        this.Spot = this.Desks[2];
+        break;
+      case 30:
+        this.Role = 2;
+        this.Spot = this.Desks[1];
+        break;
+      case 31:
+        this.Role = 3;
+        this.Spot = this.Floors[6];
+        break;
+      case 32:
+        this.Role = 3;
+        this.Spot = this.Floors[5];
+        break;
+      case 33:
+        this.Role = 3;
+        this.Spot = this.Floors[3];
+        break;
+      case 34:
+        this.Role = 3;
+        this.Spot = this.Floors[2];
+        break;
+      case 35:
+        this.Role = 3;
+        this.Spot = this.Floors[1];
+        break;
+      case 36:
+        this.Role = 3;
+        this.Spot = this.Floors[7];
+        break;
+      case 37:
+        this.Role = 3;
+        this.Spot = this.Floors[8];
+        break;
+      case 38:
+        this.Role = 3;
+        this.Spot = this.Floors[9];
+        break;
+      case 39:
+        this.Role = 3;
+        this.Spot = this.Floors[10];
+        break;
+      case 40:
+        this.Role = 3;
+        this.Spot = this.Floors[11];
+        break;
+      case 41:
+        this.Role = 5;
+        this.Spot = this.Rooftops[6];
+        break;
+      case 42:
+        this.Role = 5;
+        this.Spot = this.Rooftops[5];
+        break;
+      case 43:
+        this.Role = 5;
+        this.Spot = this.Rooftops[3];
+        break;
+      case 44:
+        this.Role = 5;
+        this.Spot = this.Rooftops[2];
+        break;
+      case 45:
+        this.Role = 5;
+        this.Spot = this.Rooftops[1];
+        break;
+      case 46:
+        this.Role = 4;
+        this.Spot = this.Toilets[1];
+        break;
+      case 47:
+        this.Role = 4;
+        this.Spot = this.Toilets[2];
+        break;
+      case 48:
+        this.Role = 4;
+        this.Spot = this.Toilets[3];
+        break;
+      case 49:
+        this.Role = 3;
+        this.Spot = this.Floors[16];
+        break;
+      case 50:
+        this.Role = 3;
+        this.Spot = this.Floors[17];
+        break;
+      case 51:
+        this.Role = 4;
+        this.Spot = this.Toilets[7];
+        break;
+      case 52:
+        this.Role = 4;
+        this.Spot = this.Toilets[8];
+        break;
+      case 53:
+        this.Role = 4;
+        this.Spot = this.Toilets[9];
+        break;
+      case 54:
+        this.Role = 4;
+        this.Spot = this.Toilets[10];
+        break;
+      case 55:
+        this.Role = 4;
+        this.Spot = this.Toilets[11];
+        break;
+      case 56:
+        this.Role = 4;
+        this.Spot = this.Toilets[4];
+        break;
+      case 57:
+        this.Role = 4;
+        this.Spot = this.Toilets[5];
+        break;
+      case 58:
+        this.Role = 4;
+        this.Spot = this.Toilets[6];
+        break;
+      case 59:
+        this.Role = 3;
+        this.Spot = this.Floors[18];
+        break;
+      case 60:
+        this.Role = 3;
+        this.Spot = this.Floors[19];
+        break;
+      case 61:
+        this.Role = 3;
+        this.Spot = this.Floors[20];
+        break;
+      case 62:
+        this.Role = 3;
+        this.Spot = this.Floors[21];
+        break;
+      case 63:
+        this.Role = 3;
+        this.Spot = this.Floors[22];
+        break;
+      case 64:
+        this.Role = 3;
+        this.Spot = this.Floors[23];
+        break;
+      case 65:
+        this.Role = 3;
+        this.Spot = this.Floors[24];
+        break;
+      case 66:
+        this.Role = 3;
+        this.Spot = this.Floors[25];
+        break;
+      case 67:
+        this.Role = 3;
+        this.Spot = this.Floors[26];
+        break;
+      case 68:
+        this.Role = 3;
+        this.Spot = this.Floors[27];
+        break;
+      case 69:
+        this.Role = 3;
+        this.Spot = this.Floors[28];
+        break;
+      case 70:
+        this.Role = 3;
+        this.Spot = this.Floors[29];
+        break;
+      case 71:
+        this.Role = 3;
+        this.Spot = this.Floors[30];
+        break;
+      case 72:
+        this.Role = 3;
+        this.Spot = this.Floors[31];
+        break;
+      case 73:
+        this.Role = 3;
+        this.Spot = this.Floors[32];
+        break;
+      case 74:
+        this.Role = 3;
+        this.Spot = this.Floors[33];
+        break;
+      case 75:
+        this.Role = 3;
+        this.Spot = this.Floors[34];
+        break;
+    }
+  }
 }

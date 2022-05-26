@@ -1,158 +1,35 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: CorkboardGlobals
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000306 RID: 774
 public static class CorkboardGlobals
 {
-	// Token: 0x0600183F RID: 6207 RVA: 0x000E617C File Offset: 0x000E437C
-	public static void DeleteAll()
-	{
-		for (int i = 0; i < 100; i++)
-		{
-			PlayerPrefs.SetInt(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardPhoto_",
-				i.ToString(),
-				"_Exists"
-			}), 0);
-			PlayerPrefs.SetInt(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardPhoto_",
-				i.ToString(),
-				"_PhotoID"
-			}), 0);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardPhoto_",
-				i.ToString(),
-				"_PositionX"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardPhoto_",
-				i.ToString(),
-				"_PositionY"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardPhoto_",
-				i.ToString(),
-				"_PositionZ"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardPhoto_",
-				i.ToString(),
-				"_RotationX"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardPhoto_",
-				i.ToString(),
-				"_RotationY"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardPhoto_",
-				i.ToString(),
-				"_RotationZ"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardPhoto_",
-				i.ToString(),
-				"_ScaleX"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardPhoto_",
-				i.ToString(),
-				"_ScaleY"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardPhoto_",
-				i.ToString(),
-				"_ScaleZ"
-			}), 0f);
-			PlayerPrefs.SetInt(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardString_",
-				i.ToString(),
-				"_Exists"
-			}), 0);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardString_",
-				i.ToString(),
-				"_PositionX"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardString_",
-				i.ToString(),
-				"_PositionY"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardString_",
-				i.ToString(),
-				"_PositionZ"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardString2_",
-				i.ToString(),
-				"_PositionX"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardString2_",
-				i.ToString(),
-				"_PositionY"
-			}), 0f);
-			PlayerPrefs.SetFloat(string.Concat(new string[]
-			{
-				"Profile_",
-				GameGlobals.Profile.ToString(),
-				"_CorkboardString2_",
-				i.ToString(),
-				"_PositionZ"
-			}), 0f);
-		}
-	}
+  public static void DeleteAll()
+  {
+    for (int index = 0; index < 100; ++index)
+    {
+      PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index.ToString() + "_Exists", 0);
+      PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index.ToString() + "_PhotoID", 0);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index.ToString() + "_PositionX", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index.ToString() + "_PositionY", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index.ToString() + "_PositionZ", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index.ToString() + "_RotationX", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index.ToString() + "_RotationY", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index.ToString() + "_RotationZ", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index.ToString() + "_ScaleX", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index.ToString() + "_ScaleY", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index.ToString() + "_ScaleZ", 0.0f);
+      PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString_" + index.ToString() + "_Exists", 0);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString_" + index.ToString() + "_PositionX", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString_" + index.ToString() + "_PositionY", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString_" + index.ToString() + "_PositionZ", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString2_" + index.ToString() + "_PositionX", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString2_" + index.ToString() + "_PositionY", 0.0f);
+      PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString2_" + index.ToString() + "_PositionZ", 0.0f);
+    }
+  }
 }

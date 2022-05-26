@@ -1,49 +1,35 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: NuzzleScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000385 RID: 901
 public class NuzzleScript : MonoBehaviour
 {
-	// Token: 0x06001A48 RID: 6728 RVA: 0x00115DE5 File Offset: 0x00113FE5
-	private void Start()
-	{
-		this.OriginalRotation = base.transform.localEulerAngles;
-	}
+  public Vector3 OriginalRotation;
+  public float Rotate;
+  public float Limit;
+  public float Speed;
+  private bool Down;
 
-	// Token: 0x06001A49 RID: 6729 RVA: 0x00115DF8 File Offset: 0x00113FF8
-	private void Update()
-	{
-		if (!this.Down)
-		{
-			this.Rotate += Time.deltaTime * this.Speed;
-			if (this.Rotate > this.Limit)
-			{
-				this.Down = true;
-			}
-		}
-		else
-		{
-			this.Rotate -= Time.deltaTime * this.Speed;
-			if (this.Rotate < -1f * this.Limit)
-			{
-				this.Down = false;
-			}
-		}
-		base.transform.localEulerAngles = this.OriginalRotation + new Vector3(this.Rotate, 0f, 0f);
-	}
+  private void Start() => this.OriginalRotation = this.transform.localEulerAngles;
 
-	// Token: 0x04002B0A RID: 11018
-	public Vector3 OriginalRotation;
-
-	// Token: 0x04002B0B RID: 11019
-	public float Rotate;
-
-	// Token: 0x04002B0C RID: 11020
-	public float Limit;
-
-	// Token: 0x04002B0D RID: 11021
-	public float Speed;
-
-	// Token: 0x04002B0E RID: 11022
-	private bool Down;
+  private void Update()
+  {
+    if (!this.Down)
+    {
+      this.Rotate += Time.deltaTime * this.Speed;
+      if ((double) this.Rotate > (double) this.Limit)
+        this.Down = true;
+    }
+    else
+    {
+      this.Rotate -= Time.deltaTime * this.Speed;
+      if ((double) this.Rotate < -1.0 * (double) this.Limit)
+        this.Down = false;
+    }
+    this.transform.localEulerAngles = this.OriginalRotation + new Vector3(this.Rotate, 0.0f, 0.0f);
+  }
 }

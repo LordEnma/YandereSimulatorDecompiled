@@ -1,53 +1,45 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: EmergencyExitScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020002A4 RID: 676
 public class EmergencyExitScript : MonoBehaviour
 {
-	// Token: 0x0600142B RID: 5163 RVA: 0x000C0D94 File Offset: 0x000BEF94
-	private void Update()
-	{
-		if (Vector3.Distance(this.Yandere.position, base.transform.position) < 2f)
-		{
-			this.Open = true;
-		}
-		else if (this.Timer == 0f)
-		{
-			this.Student = null;
-			this.Open = false;
-		}
-		if (!this.Open)
-		{
-			this.Pivot.localEulerAngles = new Vector3(this.Pivot.localEulerAngles.x, Mathf.Lerp(this.Pivot.localEulerAngles.y, 0f, Time.deltaTime * 10f), this.Pivot.localEulerAngles.z);
-			return;
-		}
-		this.Pivot.localEulerAngles = new Vector3(this.Pivot.localEulerAngles.x, Mathf.Lerp(this.Pivot.localEulerAngles.y, 90f, Time.deltaTime * 10f), this.Pivot.localEulerAngles.z);
-		this.Timer = Mathf.MoveTowards(this.Timer, 0f, Time.deltaTime);
-	}
+  public StudentScript Student;
+  public Transform Yandere;
+  public Transform Pivot;
+  public float Timer;
+  public bool Open;
 
-	// Token: 0x0600142C RID: 5164 RVA: 0x000C0EB5 File Offset: 0x000BF0B5
-	private void OnTriggerStay(Collider other)
-	{
-		this.Student = other.gameObject.GetComponent<StudentScript>();
-		if (this.Student != null)
-		{
-			this.Timer = 1f;
-			this.Open = true;
-		}
-	}
+  private void Update()
+  {
+    if ((double) Vector3.Distance(this.Yandere.position, this.transform.position) < 2.0)
+      this.Open = true;
+    else if ((double) this.Timer == 0.0)
+    {
+      this.Student = (StudentScript) null;
+      this.Open = false;
+    }
+    if (!this.Open)
+    {
+      this.Pivot.localEulerAngles = new Vector3(this.Pivot.localEulerAngles.x, Mathf.Lerp(this.Pivot.localEulerAngles.y, 0.0f, Time.deltaTime * 10f), this.Pivot.localEulerAngles.z);
+    }
+    else
+    {
+      this.Pivot.localEulerAngles = new Vector3(this.Pivot.localEulerAngles.x, Mathf.Lerp(this.Pivot.localEulerAngles.y, 90f, Time.deltaTime * 10f), this.Pivot.localEulerAngles.z);
+      this.Timer = Mathf.MoveTowards(this.Timer, 0.0f, Time.deltaTime);
+    }
+  }
 
-	// Token: 0x04001E5D RID: 7773
-	public StudentScript Student;
-
-	// Token: 0x04001E5E RID: 7774
-	public Transform Yandere;
-
-	// Token: 0x04001E5F RID: 7775
-	public Transform Pivot;
-
-	// Token: 0x04001E60 RID: 7776
-	public float Timer;
-
-	// Token: 0x04001E61 RID: 7777
-	public bool Open;
+  private void OnTriggerStay(Collider other)
+  {
+    this.Student = other.gameObject.GetComponent<StudentScript>();
+    if (!((Object) this.Student != (Object) null))
+      return;
+    this.Timer = 1f;
+    this.Open = true;
+  }
 }

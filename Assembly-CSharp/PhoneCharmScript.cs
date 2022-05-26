@@ -1,12 +1,12 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PhoneCharmScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003A2 RID: 930
 public class PhoneCharmScript : MonoBehaviour
 {
-	// Token: 0x06001AA0 RID: 6816 RVA: 0x0011E691 File Offset: 0x0011C891
-	private void Update()
-	{
-		base.transform.eulerAngles = new Vector3(90f, base.transform.eulerAngles.y, base.transform.eulerAngles.z);
-	}
+  private void Update() => this.transform.eulerAngles = new Vector3(90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z);
 }

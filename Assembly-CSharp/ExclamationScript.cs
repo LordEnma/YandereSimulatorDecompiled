@@ -1,53 +1,45 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ExclamationScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020002C2 RID: 706
 public class ExclamationScript : MonoBehaviour
 {
-	// Token: 0x06001492 RID: 5266 RVA: 0x000C9348 File Offset: 0x000C7548
-	private void Start()
-	{
-		base.transform.localScale = Vector3.zero;
-		this.Graphic.material.SetColor("_TintColor", new Color(0.5f, 0.5f, 0.5f, 0f));
-		this.MainCamera = Camera.main;
-	}
+  public Renderer Graphic;
+  public float Alpha;
+  public float Timer;
+  public Camera MainCamera;
 
-	// Token: 0x06001493 RID: 5267 RVA: 0x000C93A0 File Offset: 0x000C75A0
-	private void Update()
-	{
-		this.Timer -= Time.deltaTime;
-		if (this.Timer > 0f)
-		{
-			base.transform.LookAt(this.MainCamera.transform);
-			if (this.Timer > 1.5f)
-			{
-				base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-				this.Alpha = Mathf.Lerp(this.Alpha, 0.5f, Time.deltaTime * 10f);
-				this.Graphic.material.SetColor("_TintColor", new Color(0.5f, 0.5f, 0.5f, this.Alpha));
-				return;
-			}
-			if (base.transform.localScale.x > 0.1f)
-			{
-				base.transform.localScale = Vector3.Lerp(base.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
-			}
-			else
-			{
-				base.transform.localScale = Vector3.zero;
-			}
-			this.Alpha = Mathf.Lerp(this.Alpha, 0f, Time.deltaTime * 10f);
-			this.Graphic.material.SetColor("_TintColor", new Color(0.5f, 0.5f, 0.5f, this.Alpha));
-		}
-	}
+  private void Start()
+  {
+    this.transform.localScale = Vector3.zero;
+    this.Graphic.material.SetColor("_TintColor", new Color(0.5f, 0.5f, 0.5f, 0.0f));
+    this.MainCamera = Camera.main;
+  }
 
-	// Token: 0x04001FDA RID: 8154
-	public Renderer Graphic;
-
-	// Token: 0x04001FDB RID: 8155
-	public float Alpha;
-
-	// Token: 0x04001FDC RID: 8156
-	public float Timer;
-
-	// Token: 0x04001FDD RID: 8157
-	public Camera MainCamera;
+  private void Update()
+  {
+    this.Timer -= Time.deltaTime;
+    if ((double) this.Timer <= 0.0)
+      return;
+    this.transform.LookAt(this.MainCamera.transform);
+    if ((double) this.Timer > 1.5)
+    {
+      this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+      this.Alpha = Mathf.Lerp(this.Alpha, 0.5f, Time.deltaTime * 10f);
+      this.Graphic.material.SetColor("_TintColor", new Color(0.5f, 0.5f, 0.5f, this.Alpha));
+    }
+    else
+    {
+      if ((double) this.transform.localScale.x > 0.100000001490116)
+        this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
+      else
+        this.transform.localScale = Vector3.zero;
+      this.Alpha = Mathf.Lerp(this.Alpha, 0.0f, Time.deltaTime * 10f);
+      this.Graphic.material.SetColor("_TintColor", new Color(0.5f, 0.5f, 0.5f, this.Alpha));
+    }
+  }
 }

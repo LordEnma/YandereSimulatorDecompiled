@@ -1,20 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PhaseOfDay
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x0200039E RID: 926
 public enum PhaseOfDay
 {
-	// Token: 0x04002C06 RID: 11270
-	None,
-	// Token: 0x04002C07 RID: 11271
-	BeforeClass,
-	// Token: 0x04002C08 RID: 11272
-	FirstPeriod,
-	// Token: 0x04002C09 RID: 11273
-	Lunchtime,
-	// Token: 0x04002C0A RID: 11274
-	SecondPeriod,
-	// Token: 0x04002C0B RID: 11275
-	CleaningTime,
-	// Token: 0x04002C0C RID: 11276
-	AfterClass
+  None,
+  BeforeClass,
+  FirstPeriod,
+  Lunchtime,
+  SecondPeriod,
+  CleaningTime,
+  AfterClass,
 }

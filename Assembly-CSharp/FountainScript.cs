@@ -1,73 +1,58 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: FountainScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020002D7 RID: 727
 public class FountainScript : MonoBehaviour
 {
-	// Token: 0x060014D0 RID: 5328 RVA: 0x000CD557 File Offset: 0x000CB757
-	private void Start()
-	{
-		this.SpraySFX.volume = 0.1f;
-		this.DropsSFX.volume = 0.1f;
-	}
+  public ParticleSystem Splashes;
+  public UILabel EventSubtitle;
+  public Collider[] Colliders;
+  public bool Drowning;
+  public AudioSource SpraySFX;
+  public AudioSource DropsSFX;
+  public float StartTimer;
+  public float Timer;
 
-	// Token: 0x060014D1 RID: 5329 RVA: 0x000CD57C File Offset: 0x000CB77C
-	private void Update()
-	{
-		if (this.StartTimer < 1f)
-		{
-			this.StartTimer += Time.deltaTime;
-			if (this.StartTimer > 1f)
-			{
-				this.SpraySFX.gameObject.SetActive(true);
-				this.DropsSFX.gameObject.SetActive(true);
-			}
-		}
-		if (this.Drowning)
-		{
-			if (this.Timer == 0f && this.EventSubtitle.transform.localScale.x < 1f)
-			{
-				this.EventSubtitle.transform.localScale = new Vector3(1f, 1f, 1f);
-				this.EventSubtitle.text = "Hey, what are you -";
-				base.GetComponent<AudioSource>().Play();
-			}
-			this.Timer += Time.deltaTime;
-			if (this.Timer > 3f && this.EventSubtitle.transform.localScale.x > 0f)
-			{
-				this.EventSubtitle.transform.localScale = Vector3.zero;
-				this.EventSubtitle.text = string.Empty;
-				this.Splashes.Play();
-			}
-			if (this.Timer > 9f)
-			{
-				this.Drowning = false;
-				this.Splashes.Stop();
-				this.Timer = 0f;
-			}
-		}
-	}
+  private void Start()
+  {
+    this.SpraySFX.volume = 0.1f;
+    this.DropsSFX.volume = 0.1f;
+  }
 
-	// Token: 0x040020BB RID: 8379
-	public ParticleSystem Splashes;
-
-	// Token: 0x040020BC RID: 8380
-	public UILabel EventSubtitle;
-
-	// Token: 0x040020BD RID: 8381
-	public Collider[] Colliders;
-
-	// Token: 0x040020BE RID: 8382
-	public bool Drowning;
-
-	// Token: 0x040020BF RID: 8383
-	public AudioSource SpraySFX;
-
-	// Token: 0x040020C0 RID: 8384
-	public AudioSource DropsSFX;
-
-	// Token: 0x040020C1 RID: 8385
-	public float StartTimer;
-
-	// Token: 0x040020C2 RID: 8386
-	public float Timer;
+  private void Update()
+  {
+    if ((double) this.StartTimer < 1.0)
+    {
+      this.StartTimer += Time.deltaTime;
+      if ((double) this.StartTimer > 1.0)
+      {
+        this.SpraySFX.gameObject.SetActive(true);
+        this.DropsSFX.gameObject.SetActive(true);
+      }
+    }
+    if (!this.Drowning)
+      return;
+    if ((double) this.Timer == 0.0 && (double) this.EventSubtitle.transform.localScale.x < 1.0)
+    {
+      this.EventSubtitle.transform.localScale = new Vector3(1f, 1f, 1f);
+      this.EventSubtitle.text = "Hey, what are you -";
+      this.GetComponent<AudioSource>().Play();
+    }
+    this.Timer += Time.deltaTime;
+    if ((double) this.Timer > 3.0 && (double) this.EventSubtitle.transform.localScale.x > 0.0)
+    {
+      this.EventSubtitle.transform.localScale = Vector3.zero;
+      this.EventSubtitle.text = string.Empty;
+      this.Splashes.Play();
+    }
+    if ((double) this.Timer <= 9.0)
+      return;
+    this.Drowning = false;
+    this.Splashes.Stop();
+    this.Timer = 0.0f;
+  }
 }

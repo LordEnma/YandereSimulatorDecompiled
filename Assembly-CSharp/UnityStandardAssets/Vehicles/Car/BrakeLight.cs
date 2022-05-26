@@ -1,27 +1,20 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityStandardAssets.Vehicles.Car.BrakeLight
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x0200052E RID: 1326
-	public class BrakeLight : MonoBehaviour
-	{
-		// Token: 0x060021CA RID: 8650 RVA: 0x001F3521 File Offset: 0x001F1721
-		private void Start()
-		{
-			this.m_Renderer = base.GetComponent<Renderer>();
-		}
+  public class BrakeLight : MonoBehaviour
+  {
+    public CarController car;
+    private Renderer m_Renderer;
 
-		// Token: 0x060021CB RID: 8651 RVA: 0x001F352F File Offset: 0x001F172F
-		private void Update()
-		{
-			this.m_Renderer.enabled = (this.car.BrakeInput > 0f);
-		}
+    private void Start() => this.m_Renderer = this.GetComponent<Renderer>();
 
-		// Token: 0x04004A78 RID: 19064
-		public CarController car;
-
-		// Token: 0x04004A79 RID: 19065
-		private Renderer m_Renderer;
-	}
+    private void Update() => this.m_Renderer.enabled = (double) this.car.BrakeInput > 0.0;
+  }
 }

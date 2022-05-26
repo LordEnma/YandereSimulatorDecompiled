@@ -1,33 +1,25 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SpinScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000440 RID: 1088
 public class SpinScript : MonoBehaviour
 {
-	// Token: 0x06001D14 RID: 7444 RVA: 0x0015BAE4 File Offset: 0x00159CE4
-	private void Update()
-	{
-		this.RotationX += this.X * Time.deltaTime;
-		this.RotationY += this.Y * Time.deltaTime;
-		this.RotationZ += this.Z * Time.deltaTime;
-		base.transform.localEulerAngles = new Vector3(this.RotationX, this.RotationY, this.RotationZ);
-	}
+  public float X;
+  public float Y;
+  public float Z;
+  private float RotationX;
+  private float RotationY;
+  private float RotationZ;
 
-	// Token: 0x040034B2 RID: 13490
-	public float X;
-
-	// Token: 0x040034B3 RID: 13491
-	public float Y;
-
-	// Token: 0x040034B4 RID: 13492
-	public float Z;
-
-	// Token: 0x040034B5 RID: 13493
-	private float RotationX;
-
-	// Token: 0x040034B6 RID: 13494
-	private float RotationY;
-
-	// Token: 0x040034B7 RID: 13495
-	private float RotationZ;
+  private void Update()
+  {
+    this.RotationX += this.X * Time.deltaTime;
+    this.RotationY += this.Y * Time.deltaTime;
+    this.RotationZ += this.Z * Time.deltaTime;
+    this.transform.localEulerAngles = new Vector3(this.RotationX, this.RotationY, this.RotationZ);
+  }
 }

@@ -1,103 +1,70 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BloodCleanerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using Pathfinding;
 using UnityEngine;
 
-// Token: 0x020000E8 RID: 232
 public class BloodCleanerScript : MonoBehaviour
 {
-	// Token: 0x06000A34 RID: 2612 RVA: 0x0005AAD4 File Offset: 0x00058CD4
-	private void Start()
-	{
-		if (this.Super)
-		{
-			Physics.IgnoreLayerCollision(11, 15, true);
-			this.Prompt.Hide();
-			this.Prompt.enabled = false;
-		}
-	}
+  public Transform BloodParent;
+  public PromptScript Prompt;
+  public AIPath Pathfinding;
+  public GameObject Lens;
+  public UILabel Label;
+  public float Distance;
+  public float Blood;
+  public bool Super;
 
-	// Token: 0x06000A35 RID: 2613 RVA: 0x0005AB00 File Offset: 0x00058D00
-	private void Update()
-	{
-		if (this.Blood < 100f)
-		{
-			if (this.BloodParent.childCount > 0)
-			{
-				this.Pathfinding.target = this.BloodParent.GetChild(0);
-				this.Pathfinding.speed = 4f;
-				if (this.Pathfinding.target.position.y < 4f)
-				{
-					this.Label.text = "1";
-				}
-				else if (this.Pathfinding.target.position.y < 8f)
-				{
-					this.Label.text = "2";
-				}
-				else if (this.Pathfinding.target.position.y < 12f)
-				{
-					this.Label.text = "3";
-				}
-				else
-				{
-					this.Label.text = "R";
-				}
-				if (this.Pathfinding.target != null)
-				{
-					this.Distance = Vector3.Distance(base.transform.position, this.Pathfinding.target.position);
-					if (this.Distance >= 1f)
-					{
-						this.Pathfinding.speed = 4f;
-						return;
-					}
-					this.Pathfinding.speed = 0f;
-					Transform child = this.BloodParent.GetChild(0);
-					if (!(child.GetComponent("BloodPoolScript") != null))
-					{
-						UnityEngine.Object.Destroy(child.gameObject);
-						return;
-					}
-					child.localScale = new Vector3(child.localScale.x - Time.deltaTime, child.localScale.y - Time.deltaTime, child.localScale.z);
-					this.Blood += Time.deltaTime;
-					if (this.Blood >= 100f)
-					{
-						this.Lens.SetActive(true);
-					}
-					if (child.transform.localScale.x < 0.1f)
-					{
-						UnityEngine.Object.Destroy(child.gameObject);
-						return;
-					}
-				}
-			}
-			else if (this.Super)
-			{
-				this.Pathfinding.target = this.Prompt.Yandere.transform;
-				this.Pathfinding.speed = 4f;
-			}
-		}
-	}
+  private void Start()
+  {
+    if (!this.Super)
+      return;
+    Physics.IgnoreLayerCollision(11, 15, true);
+    this.Prompt.Hide();
+    this.Prompt.enabled = false;
+  }
 
-	// Token: 0x04000B97 RID: 2967
-	public Transform BloodParent;
-
-	// Token: 0x04000B98 RID: 2968
-	public PromptScript Prompt;
-
-	// Token: 0x04000B99 RID: 2969
-	public AIPath Pathfinding;
-
-	// Token: 0x04000B9A RID: 2970
-	public GameObject Lens;
-
-	// Token: 0x04000B9B RID: 2971
-	public UILabel Label;
-
-	// Token: 0x04000B9C RID: 2972
-	public float Distance;
-
-	// Token: 0x04000B9D RID: 2973
-	public float Blood;
-
-	// Token: 0x04000B9E RID: 2974
-	public bool Super;
+  private void Update()
+  {
+    if ((double) this.Blood >= 100.0)
+      return;
+    if (this.BloodParent.childCount > 0)
+    {
+      this.Pathfinding.target = this.BloodParent.GetChild(0);
+      this.Pathfinding.speed = 4f;
+      this.Label.text = (double) this.Pathfinding.target.position.y >= 4.0 ? ((double) this.Pathfinding.target.position.y >= 8.0 ? ((double) this.Pathfinding.target.position.y >= 12.0 ? "R" : "3") : "2") : "1";
+      if (!((Object) this.Pathfinding.target != (Object) null))
+        return;
+      this.Distance = Vector3.Distance(this.transform.position, this.Pathfinding.target.position);
+      if ((double) this.Distance < 1.0)
+      {
+        this.Pathfinding.speed = 0.0f;
+        Transform child = this.BloodParent.GetChild(0);
+        if ((Object) child.GetComponent("BloodPoolScript") != (Object) null)
+        {
+          child.localScale = new Vector3(child.localScale.x - Time.deltaTime, child.localScale.y - Time.deltaTime, child.localScale.z);
+          this.Blood += Time.deltaTime;
+          if ((double) this.Blood >= 100.0)
+            this.Lens.SetActive(true);
+          if ((double) child.transform.localScale.x >= 0.100000001490116)
+            return;
+          Object.Destroy((Object) child.gameObject);
+        }
+        else
+          Object.Destroy((Object) child.gameObject);
+      }
+      else
+        this.Pathfinding.speed = 4f;
+    }
+    else
+    {
+      if (!this.Super)
+        return;
+      this.Pathfinding.target = this.Prompt.Yandere.transform;
+      this.Pathfinding.speed = 4f;
+    }
+  }
 }

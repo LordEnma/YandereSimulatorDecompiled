@@ -1,20 +1,21 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SodaScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200043C RID: 1084
 public class SodaScript : MonoBehaviour
 {
-	// Token: 0x06001D09 RID: 7433 RVA: 0x0015B7E8 File Offset: 0x001599E8
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Yandere.Inventory.Soda = true;
-			this.Prompt.Yandere.StudentManager.TaskManager.UpdateTaskStatus();
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  public PromptScript Prompt;
 
-	// Token: 0x040034A2 RID: 13474
-	public PromptScript Prompt;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    this.Prompt.Yandere.Inventory.Soda = true;
+    this.Prompt.Yandere.StudentManager.TaskManager.UpdateTaskStatus();
+    Object.Destroy((Object) this.gameObject);
+  }
 }

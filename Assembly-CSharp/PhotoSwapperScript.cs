@@ -1,21 +1,19 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PhotoSwapperScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003A8 RID: 936
 public class PhotoSwapperScript : MonoBehaviour
 {
-	// Token: 0x06001ACE RID: 6862 RVA: 0x00122B88 File Offset: 0x00120D88
-	private void Start()
-	{
-		for (int i = 1; i < this.PhotoRenderer.Length; i++)
-		{
-			this.PhotoRenderer[i].material.mainTexture = this.EightiesPhoto[i];
-		}
-	}
+  public Renderer[] PhotoRenderer;
+  public Texture[] EightiesPhoto;
 
-	// Token: 0x04002C9A RID: 11418
-	public Renderer[] PhotoRenderer;
-
-	// Token: 0x04002C9B RID: 11419
-	public Texture[] EightiesPhoto;
+  private void Start()
+  {
+    for (int index = 1; index < this.PhotoRenderer.Length; ++index)
+      this.PhotoRenderer[index].material.mainTexture = this.EightiesPhoto[index];
+  }
 }

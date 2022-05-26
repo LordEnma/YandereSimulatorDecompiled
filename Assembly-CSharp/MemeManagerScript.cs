@@ -1,23 +1,21 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MemeManagerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000367 RID: 871
 public class MemeManagerScript : MonoBehaviour
 {
-	// Token: 0x060019C0 RID: 6592 RVA: 0x00107DA8 File Offset: 0x00105FA8
-	private void Start()
-	{
-		if (GameGlobals.LoveSick)
-		{
-			GameObject[] memes = this.Memes;
-			for (int i = 0; i < memes.Length; i++)
-			{
-				memes[i].SetActive(false);
-			}
-		}
-	}
+  [SerializeField]
+  private GameObject[] Memes;
 
-	// Token: 0x0400296E RID: 10606
-	[SerializeField]
-	private GameObject[] Memes;
+  private void Start()
+  {
+    if (!GameGlobals.LoveSick)
+      return;
+    foreach (GameObject meme in this.Memes)
+      meme.SetActive(false);
+  }
 }

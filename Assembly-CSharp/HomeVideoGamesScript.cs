@@ -1,160 +1,118 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: HomeVideoGamesScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x0200032C RID: 812
 public class HomeVideoGamesScript : MonoBehaviour
 {
-	// Token: 0x060018D0 RID: 6352 RVA: 0x000F462C File Offset: 0x000F282C
-	private void Start()
-	{
-		if (GameGlobals.Eighties)
-		{
-			this.GameTitles[2].text = "Space Witch";
-			this.GameTitles[1].text = "??????????";
-			this.GameTitles[1].color = new Color(1f, 1f, 1f, 0.5f);
-		}
-		else if (TaskGlobals.GetTaskStatus(38) == 0)
-		{
-			this.TitleScreens[1] = this.TitleScreens[5];
-			UILabel uilabel = this.GameTitles[1];
-			uilabel.text = this.GameTitles[5].text;
-			uilabel.color = new Color(uilabel.color.r, uilabel.color.g, uilabel.color.b, 0.5f);
-		}
-		this.TitleScreen.mainTexture = this.TitleScreens[1];
-	}
+  public InputManagerScript InputManager;
+  public HomeDarknessScript HomeDarkness;
+  public HomeYandereScript HomeYandere;
+  public HomeCameraScript HomeCamera;
+  public HomeWindowScript HomeWindow;
+  public PromptBarScript PromptBar;
+  public Texture[] TitleScreens;
+  public UITexture TitleScreen;
+  public Transform Highlight;
+  public UILabel[] GameTitles;
+  public Transform TV;
+  public int ID = 1;
+  public GameObject EightiesController;
+  public GameObject Controller;
 
-	// Token: 0x060018D1 RID: 6353 RVA: 0x000F4708 File Offset: 0x000F2908
-	private void Update()
-	{
-		if (this.HomeCamera.Destination == this.HomeCamera.Destinations[5])
-		{
-			if (Input.GetKeyDown("y"))
-			{
-				TaskGlobals.SetTaskStatus(38, 1);
-				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-			}
-			this.TV.localScale = Vector3.Lerp(this.TV.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-			if (!this.HomeYandere.CanMove)
-			{
-				if (this.HomeDarkness.FadeOut)
-				{
-					Transform transform = this.HomeCamera.Destinations[5];
-					Transform transform2 = this.HomeCamera.Targets[5];
-					transform.position = new Vector3(Mathf.Lerp(transform.position.x, transform2.position.x, Time.deltaTime * 0.75f), Mathf.Lerp(transform.position.y, transform2.position.y, Time.deltaTime * 10f), Mathf.Lerp(transform.position.z, transform2.position.z, Time.deltaTime * 10f));
-					return;
-				}
-				if (this.InputManager.TappedDown)
-				{
-					this.ID++;
-					if (this.ID > 5)
-					{
-						this.ID = 1;
-					}
-					this.TitleScreen.mainTexture = this.TitleScreens[this.ID];
-					this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 150f - (float)this.ID * 50f, this.Highlight.localPosition.z);
-				}
-				if (this.InputManager.TappedUp)
-				{
-					this.ID--;
-					if (this.ID < 1)
-					{
-						this.ID = 5;
-					}
-					this.TitleScreen.mainTexture = this.TitleScreens[this.ID];
-					this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, 150f - (float)this.ID * 50f, this.Highlight.localPosition.z);
-				}
-				if (Input.GetButtonDown("A") && this.GameTitles[this.ID].color.a == 1f)
-				{
-					Transform transform3 = this.HomeCamera.Targets[5];
-					if (!this.HomeCamera.Eighties)
-					{
-						transform3.localPosition = new Vector3(transform3.localPosition.x, 1.153333f, transform3.localPosition.z);
-					}
-					else
-					{
-						transform3.localPosition = new Vector3(transform3.localPosition.x, 0.948f, transform3.localPosition.z);
-					}
-					this.HomeDarkness.Sprite.color = new Color(this.HomeDarkness.Sprite.color.r, this.HomeDarkness.Sprite.color.g, this.HomeDarkness.Sprite.color.b, -1f);
-					this.HomeDarkness.FadeOut = true;
-					this.HomeWindow.Show = false;
-					this.PromptBar.Show = false;
-					this.HomeCamera.ID = 5;
-				}
-				if (Input.GetButtonDown("B"))
-				{
-					this.Quit();
-					return;
-				}
-			}
-		}
-		else
-		{
-			this.TV.localScale = Vector3.Lerp(this.TV.localScale, Vector3.zero, Time.deltaTime * 10f);
-		}
-	}
+  private void Start()
+  {
+    if (GameGlobals.Eighties)
+    {
+      this.GameTitles[2].text = "Space Witch";
+      this.GameTitles[1].text = "??????????";
+      this.GameTitles[1].color = new Color(1f, 1f, 1f, 0.5f);
+    }
+    else if (TaskGlobals.GetTaskStatus(38) == 0)
+    {
+      this.TitleScreens[1] = this.TitleScreens[5];
+      UILabel gameTitle = this.GameTitles[1];
+      gameTitle.text = this.GameTitles[5].text;
+      gameTitle.color = new Color(gameTitle.color.r, gameTitle.color.g, gameTitle.color.b, 0.5f);
+    }
+    this.TitleScreen.mainTexture = this.TitleScreens[1];
+  }
 
-	// Token: 0x060018D2 RID: 6354 RVA: 0x000F4AC0 File Offset: 0x000F2CC0
-	public void Quit()
-	{
-		if (!this.HomeCamera.Eighties)
-		{
-			this.Controller.transform.localPosition = new Vector3(0.20385f, 0.0595f, 0.0215f);
-			this.Controller.transform.localEulerAngles = new Vector3(-90f, -90f, 0f);
-		}
-		else
-		{
-			this.EightiesController.transform.localPosition = new Vector3(-0.08163334f, -0.1855f, -0.02433333f);
-		}
-		this.HomeCamera.Destination = this.HomeCamera.Destinations[0];
-		this.HomeCamera.Target = this.HomeCamera.Targets[0];
-		this.HomeYandere.CanMove = true;
-		this.HomeYandere.enabled = true;
-		this.HomeWindow.Show = false;
-		this.HomeCamera.PlayMusic();
-		this.PromptBar.ClearButtons();
-		this.PromptBar.Show = false;
-	}
+  private void Update()
+  {
+    if ((Object) this.HomeCamera.Destination == (Object) this.HomeCamera.Destinations[5])
+    {
+      if (Input.GetKeyDown("y"))
+      {
+        TaskGlobals.SetTaskStatus(38, 1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+      }
+      this.TV.localScale = Vector3.Lerp(this.TV.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+      if (this.HomeYandere.CanMove)
+        return;
+      if (!this.HomeDarkness.FadeOut)
+      {
+        if (this.InputManager.TappedDown)
+        {
+          ++this.ID;
+          if (this.ID > 5)
+            this.ID = 1;
+          this.TitleScreen.mainTexture = this.TitleScreens[this.ID];
+          this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (150.0 - (double) this.ID * 50.0), this.Highlight.localPosition.z);
+        }
+        if (this.InputManager.TappedUp)
+        {
+          --this.ID;
+          if (this.ID < 1)
+            this.ID = 5;
+          this.TitleScreen.mainTexture = this.TitleScreens[this.ID];
+          this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (150.0 - (double) this.ID * 50.0), this.Highlight.localPosition.z);
+        }
+        if (Input.GetButtonDown("A") && (double) this.GameTitles[this.ID].color.a == 1.0)
+        {
+          Transform target = this.HomeCamera.Targets[5];
+          target.localPosition = this.HomeCamera.Eighties ? new Vector3(target.localPosition.x, 0.948f, target.localPosition.z) : new Vector3(target.localPosition.x, 1.153333f, target.localPosition.z);
+          this.HomeDarkness.Sprite.color = new Color(this.HomeDarkness.Sprite.color.r, this.HomeDarkness.Sprite.color.g, this.HomeDarkness.Sprite.color.b, -1f);
+          this.HomeDarkness.FadeOut = true;
+          this.HomeWindow.Show = false;
+          this.PromptBar.Show = false;
+          this.HomeCamera.ID = 5;
+        }
+        if (!Input.GetButtonDown("B"))
+          return;
+        this.Quit();
+      }
+      else
+      {
+        Transform destination = this.HomeCamera.Destinations[5];
+        Transform target = this.HomeCamera.Targets[5];
+        destination.position = new Vector3(Mathf.Lerp(destination.position.x, target.position.x, Time.deltaTime * 0.75f), Mathf.Lerp(destination.position.y, target.position.y, Time.deltaTime * 10f), Mathf.Lerp(destination.position.z, target.position.z, Time.deltaTime * 10f));
+      }
+    }
+    else
+      this.TV.localScale = Vector3.Lerp(this.TV.localScale, Vector3.zero, Time.deltaTime * 10f);
+  }
 
-	// Token: 0x040025E4 RID: 9700
-	public InputManagerScript InputManager;
-
-	// Token: 0x040025E5 RID: 9701
-	public HomeDarknessScript HomeDarkness;
-
-	// Token: 0x040025E6 RID: 9702
-	public HomeYandereScript HomeYandere;
-
-	// Token: 0x040025E7 RID: 9703
-	public HomeCameraScript HomeCamera;
-
-	// Token: 0x040025E8 RID: 9704
-	public HomeWindowScript HomeWindow;
-
-	// Token: 0x040025E9 RID: 9705
-	public PromptBarScript PromptBar;
-
-	// Token: 0x040025EA RID: 9706
-	public Texture[] TitleScreens;
-
-	// Token: 0x040025EB RID: 9707
-	public UITexture TitleScreen;
-
-	// Token: 0x040025EC RID: 9708
-	public Transform Highlight;
-
-	// Token: 0x040025ED RID: 9709
-	public UILabel[] GameTitles;
-
-	// Token: 0x040025EE RID: 9710
-	public Transform TV;
-
-	// Token: 0x040025EF RID: 9711
-	public int ID = 1;
-
-	// Token: 0x040025F0 RID: 9712
-	public GameObject EightiesController;
-
-	// Token: 0x040025F1 RID: 9713
-	public GameObject Controller;
+  public void Quit()
+  {
+    if (!this.HomeCamera.Eighties)
+    {
+      this.Controller.transform.localPosition = new Vector3(0.20385f, 0.0595f, 0.0215f);
+      this.Controller.transform.localEulerAngles = new Vector3(-90f, -90f, 0.0f);
+    }
+    else
+      this.EightiesController.transform.localPosition = new Vector3(-0.08163334f, -0.1855f, -0.02433333f);
+    this.HomeCamera.Destination = this.HomeCamera.Destinations[0];
+    this.HomeCamera.Target = this.HomeCamera.Targets[0];
+    this.HomeYandere.CanMove = true;
+    this.HomeYandere.enabled = true;
+    this.HomeWindow.Show = false;
+    this.HomeCamera.PlayMusic();
+    this.PromptBar.ClearButtons();
+    this.PromptBar.Show = false;
+  }
 }

@@ -1,41 +1,27 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ScriptSetter
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using System.Reflection;
 using UnityEngine;
 
-// Token: 0x02000511 RID: 1297
 public class ScriptSetter : MonoBehaviour
 {
-	// Token: 0x0600218A RID: 8586 RVA: 0x001EF240 File Offset: 0x001ED440
-	private void Start()
-	{
-		foreach (Component component in base.GetComponents(typeof(Component)))
-		{
-			string[] array = new string[6];
-			array[0] = "name ";
-			array[1] = component.name;
-			array[2] = " type ";
-			int num = 3;
-			Type type = component.GetType();
-			array[num] = ((type != null) ? type.ToString() : null);
-			array[4] = " basetype ";
-			int num2 = 5;
-			Type baseType = component.GetType().BaseType;
-			array[num2] = ((baseType != null) ? baseType.ToString() : null);
-			Debug.Log(string.Concat(array));
-			foreach (FieldInfo fieldInfo in component.GetType().GetFields())
-			{
-				object obj = component;
-				string name = fieldInfo.Name;
-				string str = " value is: ";
-				object value = fieldInfo.GetValue(obj);
-				Debug.Log(name + str + ((value != null) ? value.ToString() : null));
-			}
-		}
-	}
+  public StudentScript OldStudent;
+  public StudentScript NewStudent;
 
-	// Token: 0x040049E6 RID: 18918
-	public StudentScript OldStudent;
-
-	// Token: 0x040049E7 RID: 18919
-	public StudentScript NewStudent;
+  private void Start()
+  {
+    foreach (Component component in this.GetComponents(typeof (Component)))
+    {
+      Debug.Log((object) ("name " + component.name + " type " + ((object) component).GetType()?.ToString() + " basetype " + ((object) component).GetType().BaseType?.ToString()));
+      foreach (FieldInfo field in ((object) component).GetType().GetFields())
+      {
+        object obj = (object) component;
+        Debug.Log((object) (field.Name + " value is: " + field.GetValue(obj)?.ToString()));
+      }
+    }
+  }
 }

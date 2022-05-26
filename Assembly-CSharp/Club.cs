@@ -1,154 +1,61 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: Club
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
-// Token: 0x020002AD RID: 685
 [Serializable]
 public class Club
 {
-	// Token: 0x06001457 RID: 5207 RVA: 0x000C7156 File Offset: 0x000C5356
-	public Club(ClubType type)
-	{
-		this.type = type;
-	}
+  [SerializeField]
+  private ClubType type;
+  public static readonly ClubTypeAndStringDictionary ClubNames;
+  public static readonly IntAndStringDictionary TeacherClubNames;
 
-	// Token: 0x17000362 RID: 866
-	// (get) Token: 0x06001458 RID: 5208 RVA: 0x000C7165 File Offset: 0x000C5365
-	// (set) Token: 0x06001459 RID: 5209 RVA: 0x000C716D File Offset: 0x000C536D
-	public ClubType Type
-	{
-		get
-		{
-			return this.type;
-		}
-		set
-		{
-			this.type = value;
-		}
-	}
+  public Club(ClubType type) => this.type = type;
 
-	// Token: 0x04001F35 RID: 7989
-	[SerializeField]
-	private ClubType type;
+  public ClubType Type
+  {
+    get => this.type;
+    set => this.type = value;
+  }
 
-	// Token: 0x04001F36 RID: 7990
-	public static readonly ClubTypeAndStringDictionary ClubNames = new ClubTypeAndStringDictionary
-	{
-		{
-			ClubType.None,
-			"No Club"
-		},
-		{
-			ClubType.Cooking,
-			"Cooking"
-		},
-		{
-			ClubType.Drama,
-			"Drama"
-		},
-		{
-			ClubType.Occult,
-			"Occult"
-		},
-		{
-			ClubType.Art,
-			"Art"
-		},
-		{
-			ClubType.LightMusic,
-			"Light Music"
-		},
-		{
-			ClubType.MartialArts,
-			"Martial Arts"
-		},
-		{
-			ClubType.Photography,
-			"Photography"
-		},
-		{
-			ClubType.Science,
-			"Science"
-		},
-		{
-			ClubType.Sports,
-			"Sports"
-		},
-		{
-			ClubType.Gardening,
-			"Gardening"
-		},
-		{
-			ClubType.Gaming,
-			"Gaming"
-		},
-		{
-			ClubType.Council,
-			"Student Council"
-		},
-		{
-			ClubType.Delinquent,
-			"Delinquent"
-		},
-		{
-			ClubType.Bully,
-			"No Club"
-		},
-		{
-			ClubType.Newspaper,
-			"Newspaper"
-		},
-		{
-			ClubType.Nemesis,
-			"?????"
-		}
-	};
-
-	// Token: 0x04001F37 RID: 7991
-	public static readonly IntAndStringDictionary TeacherClubNames = new IntAndStringDictionary
-	{
-		{
-			0,
-			"Gym Teacher"
-		},
-		{
-			1,
-			"School Nurse"
-		},
-		{
-			2,
-			"Guidance Counselor"
-		},
-		{
-			3,
-			"Headmaster"
-		},
-		{
-			4,
-			"?????"
-		},
-		{
-			11,
-			"Teacher of Class 1-1"
-		},
-		{
-			12,
-			"Teacher of Class 1-2"
-		},
-		{
-			21,
-			"Teacher of Class 2-1"
-		},
-		{
-			22,
-			"Teacher of Class 2-2"
-		},
-		{
-			31,
-			"Teacher of Class 3-1"
-		},
-		{
-			32,
-			"Teacher of Class 3-2"
-		}
-	};
+  static Club()
+  {
+    ClubTypeAndStringDictionary stringDictionary1 = new ClubTypeAndStringDictionary();
+    stringDictionary1.Add(ClubType.None, "No Club");
+    stringDictionary1.Add(ClubType.Cooking, "Cooking");
+    stringDictionary1.Add(ClubType.Drama, "Drama");
+    stringDictionary1.Add(ClubType.Occult, "Occult");
+    stringDictionary1.Add(ClubType.Art, "Art");
+    stringDictionary1.Add(ClubType.LightMusic, "Light Music");
+    stringDictionary1.Add(ClubType.MartialArts, "Martial Arts");
+    stringDictionary1.Add(ClubType.Photography, "Photography");
+    stringDictionary1.Add(ClubType.Science, "Science");
+    stringDictionary1.Add(ClubType.Sports, "Sports");
+    stringDictionary1.Add(ClubType.Gardening, "Gardening");
+    stringDictionary1.Add(ClubType.Gaming, "Gaming");
+    stringDictionary1.Add(ClubType.Council, "Student Council");
+    stringDictionary1.Add(ClubType.Delinquent, "Delinquent");
+    stringDictionary1.Add(ClubType.Bully, "No Club");
+    stringDictionary1.Add(ClubType.Newspaper, "Newspaper");
+    stringDictionary1.Add(ClubType.Nemesis, "?????");
+    Club.ClubNames = stringDictionary1;
+    IntAndStringDictionary stringDictionary2 = new IntAndStringDictionary();
+    stringDictionary2.Add(0, "Gym Teacher");
+    stringDictionary2.Add(1, "School Nurse");
+    stringDictionary2.Add(2, "Guidance Counselor");
+    stringDictionary2.Add(3, "Headmaster");
+    stringDictionary2.Add(4, "?????");
+    stringDictionary2.Add(11, "Teacher of Class 1-1");
+    stringDictionary2.Add(12, "Teacher of Class 1-2");
+    stringDictionary2.Add(21, "Teacher of Class 2-1");
+    stringDictionary2.Add(22, "Teacher of Class 2-2");
+    stringDictionary2.Add(31, "Teacher of Class 3-1");
+    stringDictionary2.Add(32, "Teacher of Class 3-2");
+    Club.TeacherClubNames = stringDictionary2;
+  }
 }

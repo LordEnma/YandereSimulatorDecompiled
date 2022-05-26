@@ -1,111 +1,87 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: JsonScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x0200034A RID: 842
 public class JsonScript : MonoBehaviour
 {
-	// Token: 0x0600195A RID: 6490 RVA: 0x000FE340 File Offset: 0x000FC540
-	private void Start()
-	{
-		this.students = StudentJson.LoadFromJson(StudentJson.FilePath);
-		this.topics = TopicJson.LoadFromJson(TopicJson.FilePath);
-		if (SceneManager.GetActiveScene().name == "SchoolScene")
-		{
-			StudentManagerScript studentManagerScript = UnityEngine.Object.FindObjectOfType<StudentManagerScript>();
-			this.ReplaceDeadTeachers(studentManagerScript.FirstNames, studentManagerScript.LastNames);
-			return;
-		}
-		if (SceneManager.GetActiveScene().name == "CreditsScene")
-		{
-			this.credits = CreditJson.LoadFromJson(CreditJson.FilePath);
-		}
-	}
+  [SerializeField]
+  private StudentJson[] students;
+  [SerializeField]
+  private CreditJson[] credits;
+  [SerializeField]
+  private TopicJson[] topics;
 
-	// Token: 0x17000496 RID: 1174
-	// (get) Token: 0x0600195B RID: 6491 RVA: 0x000FE3C8 File Offset: 0x000FC5C8
-	public StudentJson[] Students
-	{
-		get
-		{
-			return this.students;
-		}
-	}
+  private void Start()
+  {
+    this.students = StudentJson.LoadFromJson(StudentJson.FilePath);
+    this.topics = TopicJson.LoadFromJson(TopicJson.FilePath);
+    if (SceneManager.GetActiveScene().name == "SchoolScene")
+    {
+      StudentManagerScript objectOfType = Object.FindObjectOfType<StudentManagerScript>();
+      this.ReplaceDeadTeachers(objectOfType.FirstNames, objectOfType.LastNames);
+    }
+    else
+    {
+      if (!(SceneManager.GetActiveScene().name == "CreditsScene"))
+        return;
+      this.credits = CreditJson.LoadFromJson(CreditJson.FilePath);
+    }
+  }
 
-	// Token: 0x17000497 RID: 1175
-	// (get) Token: 0x0600195C RID: 6492 RVA: 0x000FE3D0 File Offset: 0x000FC5D0
-	public CreditJson[] Credits
-	{
-		get
-		{
-			return this.credits;
-		}
-	}
+  public StudentJson[] Students => this.students;
 
-	// Token: 0x17000498 RID: 1176
-	// (get) Token: 0x0600195D RID: 6493 RVA: 0x000FE3D8 File Offset: 0x000FC5D8
-	public TopicJson[] Topics
-	{
-		get
-		{
-			return this.topics;
-		}
-	}
+  public CreditJson[] Credits => this.credits;
 
-	// Token: 0x0600195E RID: 6494 RVA: 0x000FE3E0 File Offset: 0x000FC5E0
-	private void ReplaceDeadTeachers(string[] firstNames, string[] lastNames)
-	{
-		for (int i = 90; i < 101; i++)
-		{
-			if (StudentGlobals.GetStudentDead(i))
-			{
-				StudentGlobals.SetStudentReplaced(i, true);
-				StudentGlobals.SetStudentDead(i, false);
-				string value = firstNames[UnityEngine.Random.Range(0, firstNames.Length)] + " " + lastNames[UnityEngine.Random.Range(0, lastNames.Length)];
-				StudentGlobals.SetStudentName(i, value);
-				StudentGlobals.SetStudentBustSize(i, UnityEngine.Random.Range(1f, 1.5f));
-				StudentGlobals.SetStudentHairstyle(i, UnityEngine.Random.Range(1, 8).ToString());
-				float r = UnityEngine.Random.Range(0f, 1f);
-				float g = UnityEngine.Random.Range(0f, 1f);
-				float b = UnityEngine.Random.Range(0f, 1f);
-				StudentGlobals.SetStudentColor(i, new Color(r, g, b));
-				r = UnityEngine.Random.Range(0f, 1f);
-				g = UnityEngine.Random.Range(0f, 1f);
-				b = UnityEngine.Random.Range(0f, 1f);
-				StudentGlobals.SetStudentEyeColor(i, new Color(r, g, b));
-				StudentGlobals.SetStudentAccessory(i, UnityEngine.Random.Range(1, 7).ToString());
-			}
-		}
-		for (int j = 90; j < 101; j++)
-		{
-			if (StudentGlobals.GetStudentReplaced(j))
-			{
-				StudentJson studentJson = this.students[j];
-				studentJson.Name = StudentGlobals.GetStudentName(j);
-				studentJson.BreastSize = StudentGlobals.GetStudentBustSize(j);
-				studentJson.Hairstyle = StudentGlobals.GetStudentHairstyle(j);
-				studentJson.Accessory = StudentGlobals.GetStudentAccessory(j);
-				if (j == 97)
-				{
-					studentJson.Accessory = "7";
-				}
-				if (j == 90)
-				{
-					studentJson.Accessory = "8";
-				}
-			}
-		}
-	}
+  public TopicJson[] Topics => this.topics;
 
-	// Token: 0x040027D1 RID: 10193
-	[SerializeField]
-	private StudentJson[] students;
-
-	// Token: 0x040027D2 RID: 10194
-	[SerializeField]
-	private CreditJson[] credits;
-
-	// Token: 0x040027D3 RID: 10195
-	[SerializeField]
-	private TopicJson[] topics;
+  private void ReplaceDeadTeachers(string[] firstNames, string[] lastNames)
+  {
+    for (int studentID1 = 90; studentID1 < 101; ++studentID1)
+    {
+      if (StudentGlobals.GetStudentDead(studentID1))
+      {
+        StudentGlobals.SetStudentReplaced(studentID1, true);
+        StudentGlobals.SetStudentDead(studentID1, false);
+        string str1 = firstNames[Random.Range(0, firstNames.Length)] + " " + lastNames[Random.Range(0, lastNames.Length)];
+        StudentGlobals.SetStudentName(studentID1, str1);
+        StudentGlobals.SetStudentBustSize(studentID1, Random.Range(1f, 1.5f));
+        int studentID2 = studentID1;
+        int num = Random.Range(1, 8);
+        string str2 = num.ToString();
+        StudentGlobals.SetStudentHairstyle(studentID2, str2);
+        float r1 = Random.Range(0.0f, 1f);
+        float g1 = Random.Range(0.0f, 1f);
+        float b1 = Random.Range(0.0f, 1f);
+        StudentGlobals.SetStudentColor(studentID1, new Color(r1, g1, b1));
+        float r2 = Random.Range(0.0f, 1f);
+        float g2 = Random.Range(0.0f, 1f);
+        float b2 = Random.Range(0.0f, 1f);
+        StudentGlobals.SetStudentEyeColor(studentID1, new Color(r2, g2, b2));
+        int studentID3 = studentID1;
+        num = Random.Range(1, 7);
+        string str3 = num.ToString();
+        StudentGlobals.SetStudentAccessory(studentID3, str3);
+      }
+    }
+    for (int studentID = 90; studentID < 101; ++studentID)
+    {
+      if (StudentGlobals.GetStudentReplaced(studentID))
+      {
+        StudentJson student = this.students[studentID];
+        student.Name = StudentGlobals.GetStudentName(studentID);
+        student.BreastSize = StudentGlobals.GetStudentBustSize(studentID);
+        student.Hairstyle = StudentGlobals.GetStudentHairstyle(studentID);
+        student.Accessory = StudentGlobals.GetStudentAccessory(studentID);
+        if (studentID == 97)
+          student.Accessory = "7";
+        if (studentID == 90)
+          student.Accessory = "8";
+      }
+    }
+  }
 }

@@ -1,60 +1,47 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIViewport
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000B1 RID: 177
 [ExecuteInEditMode]
-[RequireComponent(typeof(Camera))]
+[RequireComponent(typeof (Camera))]
 [AddComponentMenu("NGUI/UI/Viewport Camera")]
 public class UIViewport : MonoBehaviour
 {
-	// Token: 0x060008E2 RID: 2274 RVA: 0x00048DB8 File Offset: 0x00046FB8
-	private void Start()
-	{
-		this.mCam = base.GetComponent<Camera>();
-		if (this.sourceCamera == null)
-		{
-			this.sourceCamera = Camera.main;
-		}
-	}
+  public Camera sourceCamera;
+  public Transform topLeft;
+  public Transform bottomRight;
+  public float fullSize = 1f;
+  private Camera mCam;
 
-	// Token: 0x060008E3 RID: 2275 RVA: 0x00048DE0 File Offset: 0x00046FE0
-	private void LateUpdate()
-	{
-		if (this.topLeft != null && this.bottomRight != null)
-		{
-			if (this.topLeft.gameObject.activeInHierarchy)
-			{
-				Vector3 vector = this.sourceCamera.WorldToScreenPoint(this.topLeft.position);
-				Vector3 vector2 = this.sourceCamera.WorldToScreenPoint(this.bottomRight.position);
-				Rect rect = new Rect(vector.x / (float)Screen.width, vector2.y / (float)Screen.height, (vector2.x - vector.x) / (float)Screen.width, (vector.y - vector2.y) / (float)Screen.height);
-				float num = this.fullSize * rect.height;
-				if (rect != this.mCam.rect)
-				{
-					this.mCam.rect = rect;
-				}
-				if (this.mCam.orthographicSize != num)
-				{
-					this.mCam.orthographicSize = num;
-				}
-				this.mCam.enabled = true;
-				return;
-			}
-			this.mCam.enabled = false;
-		}
-	}
+  private void Start()
+  {
+    this.mCam = this.GetComponent<Camera>();
+    if (!((Object) this.sourceCamera == (Object) null))
+      return;
+    this.sourceCamera = Camera.main;
+  }
 
-	// Token: 0x040007B3 RID: 1971
-	public Camera sourceCamera;
-
-	// Token: 0x040007B4 RID: 1972
-	public Transform topLeft;
-
-	// Token: 0x040007B5 RID: 1973
-	public Transform bottomRight;
-
-	// Token: 0x040007B6 RID: 1974
-	public float fullSize = 1f;
-
-	// Token: 0x040007B7 RID: 1975
-	private Camera mCam;
+  private void LateUpdate()
+  {
+    if (!((Object) this.topLeft != (Object) null) || !((Object) this.bottomRight != (Object) null))
+      return;
+    if (this.topLeft.gameObject.activeInHierarchy)
+    {
+      Vector3 screenPoint1 = this.sourceCamera.WorldToScreenPoint(this.topLeft.position);
+      Vector3 screenPoint2 = this.sourceCamera.WorldToScreenPoint(this.bottomRight.position);
+      Rect rect = new Rect(screenPoint1.x / (float) Screen.width, screenPoint2.y / (float) Screen.height, (screenPoint2.x - screenPoint1.x) / (float) Screen.width, (screenPoint1.y - screenPoint2.y) / (float) Screen.height);
+      float num = this.fullSize * rect.height;
+      if (rect != this.mCam.rect)
+        this.mCam.rect = rect;
+      if ((double) this.mCam.orthographicSize != (double) num)
+        this.mCam.orthographicSize = num;
+      this.mCam.enabled = true;
+    }
+    else
+      this.mCam.enabled = false;
+  }
 }

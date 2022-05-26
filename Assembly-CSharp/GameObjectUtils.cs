@@ -1,26 +1,24 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: GameObjectUtils
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020004A2 RID: 1186
 public static class GameObjectUtils
 {
-	// Token: 0x06001F99 RID: 8089 RVA: 0x001C0FA4 File Offset: 0x001BF1A4
-	public static void SetLayerRecursively(GameObject obj, int newLayer)
-	{
-		obj.layer = newLayer;
-		foreach (object obj2 in obj.transform)
-		{
-			GameObjectUtils.SetLayerRecursively(((Transform)obj2).gameObject, newLayer);
-		}
-	}
+  public static void SetLayerRecursively(GameObject obj, int newLayer)
+  {
+    obj.layer = newLayer;
+    foreach (Component component in obj.transform)
+      GameObjectUtils.SetLayerRecursively(component.gameObject, newLayer);
+  }
 
-	// Token: 0x06001F9A RID: 8090 RVA: 0x001C1008 File Offset: 0x001BF208
-	public static void SetTagRecursively(GameObject obj, string newTag)
-	{
-		obj.tag = newTag;
-		foreach (object obj2 in obj.transform)
-		{
-			GameObjectUtils.SetTagRecursively(((Transform)obj2).gameObject, newTag);
-		}
-	}
+  public static void SetTagRecursively(GameObject obj, string newTag)
+  {
+    obj.tag = newTag;
+    foreach (Component component in obj.transform)
+      GameObjectUtils.SetTagRecursively(component.gameObject, newTag);
+  }
 }

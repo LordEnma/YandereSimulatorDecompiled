@@ -1,16 +1,18 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ControlScreenScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200025C RID: 604
 public class ControlScreenScript : MonoBehaviour
 {
-	// Token: 0x060012BE RID: 4798 RVA: 0x0009A76C File Offset: 0x0009896C
-	private void Start()
-	{
-	}
+  private void Start()
+  {
+  }
 
-	// Token: 0x060012BF RID: 4799 RVA: 0x0009A76E File Offset: 0x0009896E
-	private void Update()
-	{
-	}
+  private void Update()
+  {
+  }
 }

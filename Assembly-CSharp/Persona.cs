@@ -1,108 +1,45 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: Persona
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
-// Token: 0x020002B3 RID: 691
 [Serializable]
 public class Persona
 {
-	// Token: 0x06001460 RID: 5216 RVA: 0x000C7326 File Offset: 0x000C5526
-	public Persona(PersonaType type)
-	{
-		this.type = type;
-	}
+  [SerializeField]
+  private PersonaType type;
+  public static readonly PersonaTypeAndStringDictionary PersonaNames;
 
-	// Token: 0x17000366 RID: 870
-	// (get) Token: 0x06001461 RID: 5217 RVA: 0x000C7335 File Offset: 0x000C5535
-	public PersonaType Type
-	{
-		get
-		{
-			return this.type;
-		}
-	}
+  public Persona(PersonaType type) => this.type = type;
 
-	// Token: 0x04001F62 RID: 8034
-	[SerializeField]
-	private PersonaType type;
+  public PersonaType Type => this.type;
 
-	// Token: 0x04001F63 RID: 8035
-	public static readonly PersonaTypeAndStringDictionary PersonaNames = new PersonaTypeAndStringDictionary
-	{
-		{
-			PersonaType.None,
-			"None"
-		},
-		{
-			PersonaType.Loner,
-			"Loner"
-		},
-		{
-			PersonaType.TeachersPet,
-			"Teacher's Pet"
-		},
-		{
-			PersonaType.Heroic,
-			"Heroic"
-		},
-		{
-			PersonaType.Coward,
-			"Coward"
-		},
-		{
-			PersonaType.Evil,
-			"Evil"
-		},
-		{
-			PersonaType.SocialButterfly,
-			"Social Butterfly"
-		},
-		{
-			PersonaType.Lovestruck,
-			"Lovestruck"
-		},
-		{
-			PersonaType.Dangerous,
-			"Dangerous"
-		},
-		{
-			PersonaType.Strict,
-			"Strict"
-		},
-		{
-			PersonaType.PhoneAddict,
-			"Phone Addict"
-		},
-		{
-			PersonaType.Fragile,
-			"Fragile"
-		},
-		{
-			PersonaType.Spiteful,
-			"Spiteful"
-		},
-		{
-			PersonaType.Sleuth,
-			"Sleuth"
-		},
-		{
-			PersonaType.Vengeful,
-			"Vengeful"
-		},
-		{
-			PersonaType.Protective,
-			"Protective"
-		},
-		{
-			PersonaType.Violent,
-			"Violent"
-		},
-		{
-			PersonaType.LandlineUser,
-			"Snitch"
-		},
-		{
-			PersonaType.Nemesis,
-			"?????"
-		}
-	};
+  static Persona()
+  {
+    PersonaTypeAndStringDictionary stringDictionary = new PersonaTypeAndStringDictionary();
+    stringDictionary.Add(PersonaType.None, "None");
+    stringDictionary.Add(PersonaType.Loner, "Loner");
+    stringDictionary.Add(PersonaType.TeachersPet, "Teacher's Pet");
+    stringDictionary.Add(PersonaType.Heroic, "Heroic");
+    stringDictionary.Add(PersonaType.Coward, "Coward");
+    stringDictionary.Add(PersonaType.Evil, "Evil");
+    stringDictionary.Add(PersonaType.SocialButterfly, "Social Butterfly");
+    stringDictionary.Add(PersonaType.Lovestruck, "Lovestruck");
+    stringDictionary.Add(PersonaType.Dangerous, "Dangerous");
+    stringDictionary.Add(PersonaType.Strict, "Strict");
+    stringDictionary.Add(PersonaType.PhoneAddict, "Phone Addict");
+    stringDictionary.Add(PersonaType.Fragile, "Fragile");
+    stringDictionary.Add(PersonaType.Spiteful, "Spiteful");
+    stringDictionary.Add(PersonaType.Sleuth, "Sleuth");
+    stringDictionary.Add(PersonaType.Vengeful, "Vengeful");
+    stringDictionary.Add(PersonaType.Protective, "Protective");
+    stringDictionary.Add(PersonaType.Violent, "Violent");
+    stringDictionary.Add(PersonaType.LandlineUser, "Snitch");
+    stringDictionary.Add(PersonaType.Nemesis, "?????");
+    Persona.PersonaNames = stringDictionary;
+  }
 }

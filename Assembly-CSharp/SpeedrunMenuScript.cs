@@ -1,20 +1,18 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SpeedrunMenuScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200043E RID: 1086
 public class SpeedrunMenuScript : MonoBehaviour
 {
-	// Token: 0x06001D0D RID: 7437 RVA: 0x0015B9E5 File Offset: 0x00159BE5
-	private void Start()
-	{
-		this.YandereAnim["f02_nierRun_00"].speed = 1.5f;
-	}
+  public Animation YandereAnim;
 
-	// Token: 0x06001D0E RID: 7438 RVA: 0x0015BA01 File Offset: 0x00159C01
-	private void Update()
-	{
-	}
+  private void Start() => this.YandereAnim["f02_nierRun_00"].speed = 1.5f;
 
-	// Token: 0x040034AE RID: 13486
-	public Animation YandereAnim;
+  private void Update()
+  {
+  }
 }

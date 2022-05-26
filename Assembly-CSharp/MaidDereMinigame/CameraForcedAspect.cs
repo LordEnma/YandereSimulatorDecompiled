@@ -1,46 +1,44 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MaidDereMinigame.CameraForcedAspect
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x020005A6 RID: 1446
-	[RequireComponent(typeof(Camera))]
-	public class CameraForcedAspect : MonoBehaviour
-	{
-		// Token: 0x060024A9 RID: 9385 RVA: 0x00203510 File Offset: 0x00201710
-		private void Awake()
-		{
-			this.cam = base.GetComponent<Camera>();
-		}
+  [RequireComponent(typeof (Camera))]
+  public class CameraForcedAspect : MonoBehaviour
+  {
+    public Vector2 targetAspect = new Vector2(16f, 9f);
+    private Camera cam;
 
-		// Token: 0x060024AA RID: 9386 RVA: 0x00203520 File Offset: 0x00201720
-		private void Start()
-		{
-			float num = this.targetAspect.x / this.targetAspect.y;
-			float num2 = (float)Screen.width / (float)Screen.height / num;
-			if (num2 < 1f)
-			{
-				Rect rect = this.cam.rect;
-				rect.width = 1f;
-				rect.height = num2;
-				rect.x = 0f;
-				rect.y = (1f - num2) / 2f;
-				this.cam.rect = rect;
-				return;
-			}
-			Rect rect2 = this.cam.rect;
-			float num3 = 1f / num2;
-			rect2.width = num3;
-			rect2.height = 1f;
-			rect2.x = (1f - num3) / 2f;
-			rect2.y = 0f;
-			this.cam.rect = rect2;
-		}
+    private void Awake() => this.cam = this.GetComponent<Camera>();
 
-		// Token: 0x04004D3E RID: 19774
-		public Vector2 targetAspect = new Vector2(16f, 9f);
-
-		// Token: 0x04004D3F RID: 19775
-		private Camera cam;
-	}
+    private void Start()
+    {
+      float num1 = (float) Screen.width / (float) Screen.height / (this.targetAspect.x / this.targetAspect.y);
+      if ((double) num1 < 1.0)
+      {
+        this.cam.rect = this.cam.rect with
+        {
+          width = 1f,
+          height = num1,
+          x = 0.0f,
+          y = (float) ((1.0 - (double) num1) / 2.0)
+        };
+      }
+      else
+      {
+        Rect rect = this.cam.rect;
+        float num2 = 1f / num1;
+        rect.width = num2;
+        rect.height = 1f;
+        rect.x = (float) ((1.0 - (double) num2) / 2.0);
+        rect.y = 0.0f;
+        this.cam.rect = rect;
+      }
+    }
+  }
 }

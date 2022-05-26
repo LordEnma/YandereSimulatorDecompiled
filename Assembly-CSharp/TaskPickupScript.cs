@@ -1,22 +1,21 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TaskPickupScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000473 RID: 1139
 public class TaskPickupScript : MonoBehaviour
 {
-	// Token: 0x06001EDB RID: 7899 RVA: 0x001B533C File Offset: 0x001B353C
-	private void Update()
-	{
-		if (this.Prompt.Circle[this.ButtonID].fillAmount == 0f)
-		{
-			this.Prompt.Yandere.StudentManager.TaskManager.CheckTaskPickups();
-			this.Prompt.Yandere.Inventory.Bra = true;
-		}
-	}
+  public PromptScript Prompt;
+  public int ButtonID = 3;
 
-	// Token: 0x0400400C RID: 16396
-	public PromptScript Prompt;
-
-	// Token: 0x0400400D RID: 16397
-	public int ButtonID = 3;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[this.ButtonID].fillAmount != 0.0)
+      return;
+    this.Prompt.Yandere.StudentManager.TaskManager.CheckTaskPickups();
+    this.Prompt.Yandere.Inventory.Bra = true;
+  }
 }

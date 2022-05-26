@@ -1,19 +1,15 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DoorBoxScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200028D RID: 653
 public class DoorBoxScript : MonoBehaviour
 {
-	// Token: 0x060013B8 RID: 5048 RVA: 0x000B978C File Offset: 0x000B798C
-	private void Update()
-	{
-		float y = Mathf.Lerp(base.transform.localPosition.y, this.Show ? -530f : -630f, Time.deltaTime * 10f);
-		base.transform.localPosition = new Vector3(base.transform.localPosition.x, y, base.transform.localPosition.z);
-	}
+  public UILabel Label;
+  public bool Show;
 
-	// Token: 0x04001D4E RID: 7502
-	public UILabel Label;
-
-	// Token: 0x04001D4F RID: 7503
-	public bool Show;
+  private void Update() => this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.Lerp(this.transform.localPosition.y, this.Show ? -530f : -630f, Time.deltaTime * 10f), this.transform.localPosition.z);
 }

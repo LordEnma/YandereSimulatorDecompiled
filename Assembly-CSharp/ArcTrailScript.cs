@@ -1,21 +1,20 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ArcTrailScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000D2 RID: 210
 public class ArcTrailScript : MonoBehaviour
 {
-	// Token: 0x060009D8 RID: 2520 RVA: 0x000523F6 File Offset: 0x000505F6
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.layer == 9)
-		{
-			this.Trail.material.SetColor("_TintColor", ArcTrailScript.TRAIL_TINT_COLOR);
-		}
-	}
+  private static readonly Color TRAIL_TINT_COLOR = new Color(1f, 0.0f, 0.0f, 1f);
+  public TrailRenderer Trail;
 
-	// Token: 0x04000A67 RID: 2663
-	private static readonly Color TRAIL_TINT_COLOR = new Color(1f, 0f, 0f, 1f);
-
-	// Token: 0x04000A68 RID: 2664
-	public TrailRenderer Trail;
+  private void OnTriggerEnter(Collider other)
+  {
+    if (other.gameObject.layer != 9)
+      return;
+    this.Trail.material.SetColor("_TintColor", ArcTrailScript.TRAIL_TINT_COLOR);
+  }
 }

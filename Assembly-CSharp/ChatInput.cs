@@ -1,46 +1,38 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ChatInput
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200002D RID: 45
-[RequireComponent(typeof(UIInput))]
+[RequireComponent(typeof (UIInput))]
 [AddComponentMenu("NGUI/Examples/Chat Input")]
 public class ChatInput : MonoBehaviour
 {
-	// Token: 0x060000C3 RID: 195 RVA: 0x00012568 File Offset: 0x00010768
-	private void Start()
-	{
-		this.mInput = base.GetComponent<UIInput>();
-		this.mInput.label.maxLineCount = 1;
-		if (this.fillWithDummyData && this.textList != null)
-		{
-			for (int i = 0; i < 30; i++)
-			{
-				this.textList.Add(((i % 2 == 0) ? "[FFFFFF]" : "[AAAAAA]") + "This is an example paragraph for the text list, testing line " + i.ToString() + "[-]");
-			}
-		}
-	}
+  public UITextList textList;
+  public bool fillWithDummyData;
+  private UIInput mInput;
 
-	// Token: 0x060000C4 RID: 196 RVA: 0x000125E8 File Offset: 0x000107E8
-	public void OnSubmit()
-	{
-		if (this.textList != null)
-		{
-			string text = NGUIText.StripSymbols(this.mInput.value);
-			if (!string.IsNullOrEmpty(text))
-			{
-				this.textList.Add(text);
-				this.mInput.value = "";
-				this.mInput.isSelected = false;
-			}
-		}
-	}
+  private void Start()
+  {
+    this.mInput = this.GetComponent<UIInput>();
+    this.mInput.label.maxLineCount = 1;
+    if (!this.fillWithDummyData || !((Object) this.textList != (Object) null))
+      return;
+    for (int index = 0; index < 30; ++index)
+      this.textList.Add((index % 2 == 0 ? "[FFFFFF]" : "[AAAAAA]") + "This is an example paragraph for the text list, testing line " + index.ToString() + "[-]");
+  }
 
-	// Token: 0x04000298 RID: 664
-	public UITextList textList;
-
-	// Token: 0x04000299 RID: 665
-	public bool fillWithDummyData;
-
-	// Token: 0x0400029A RID: 666
-	private UIInput mInput;
+  public void OnSubmit()
+  {
+    if (!((Object) this.textList != (Object) null))
+      return;
+    string text = NGUIText.StripSymbols(this.mInput.value);
+    if (string.IsNullOrEmpty(text))
+      return;
+    this.textList.Add(text);
+    this.mInput.value = "";
+    this.mInput.isSelected = false;
+  }
 }

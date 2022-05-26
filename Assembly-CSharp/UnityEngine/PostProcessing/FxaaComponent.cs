@@ -1,40 +1,30 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityEngine.PostProcessing.FxaaComponent
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000569 RID: 1385
-	public sealed class FxaaComponent : PostProcessingComponentRenderTexture<AntialiasingModel>
-	{
-		// Token: 0x170004F9 RID: 1273
-		// (get) Token: 0x06002353 RID: 9043 RVA: 0x001FB26E File Offset: 0x001F946E
-		public override bool active
-		{
-			get
-			{
-				return base.model.enabled && base.model.settings.method == AntialiasingModel.Method.Fxaa && !this.context.interrupted;
-			}
-		}
+  public sealed class FxaaComponent : PostProcessingComponentRenderTexture<AntialiasingModel>
+  {
+    public override bool active => this.model.enabled && this.model.settings.method == AntialiasingModel.Method.Fxaa && !this.context.interrupted;
 
-		// Token: 0x06002354 RID: 9044 RVA: 0x001FB2A0 File Offset: 0x001F94A0
-		public void Render(RenderTexture source, RenderTexture destination)
-		{
-			AntialiasingModel.FxaaSettings fxaaSettings = base.model.settings.fxaaSettings;
-			Material material = this.context.materialFactory.Get("Hidden/Post FX/FXAA");
-			AntialiasingModel.FxaaQualitySettings fxaaQualitySettings = AntialiasingModel.FxaaQualitySettings.presets[(int)fxaaSettings.preset];
-			AntialiasingModel.FxaaConsoleSettings fxaaConsoleSettings = AntialiasingModel.FxaaConsoleSettings.presets[(int)fxaaSettings.preset];
-			material.SetVector(FxaaComponent.Uniforms._QualitySettings, new Vector3(fxaaQualitySettings.subpixelAliasingRemovalAmount, fxaaQualitySettings.edgeDetectionThreshold, fxaaQualitySettings.minimumRequiredLuminance));
-			material.SetVector(FxaaComponent.Uniforms._ConsoleSettings, new Vector4(fxaaConsoleSettings.subpixelSpreadAmount, fxaaConsoleSettings.edgeSharpnessAmount, fxaaConsoleSettings.edgeDetectionThreshold, fxaaConsoleSettings.minimumRequiredLuminance));
-			Graphics.Blit(source, destination, material, 0);
-		}
+    public void Render(RenderTexture source, RenderTexture destination)
+    {
+      AntialiasingModel.FxaaSettings fxaaSettings = this.model.settings.fxaaSettings;
+      Material mat = this.context.materialFactory.Get("Hidden/Post FX/FXAA");
+      AntialiasingModel.FxaaQualitySettings preset1 = AntialiasingModel.FxaaQualitySettings.presets[(int) fxaaSettings.preset];
+      AntialiasingModel.FxaaConsoleSettings preset2 = AntialiasingModel.FxaaConsoleSettings.presets[(int) fxaaSettings.preset];
+      mat.SetVector(FxaaComponent.Uniforms._QualitySettings, (Vector4) new Vector3(preset1.subpixelAliasingRemovalAmount, preset1.edgeDetectionThreshold, preset1.minimumRequiredLuminance));
+      mat.SetVector(FxaaComponent.Uniforms._ConsoleSettings, new Vector4(preset2.subpixelSpreadAmount, preset2.edgeSharpnessAmount, preset2.edgeDetectionThreshold, preset2.minimumRequiredLuminance));
+      Graphics.Blit((Texture) source, destination, mat, 0);
+    }
 
-		// Token: 0x020006AA RID: 1706
-		private static class Uniforms
-		{
-			// Token: 0x0400517C RID: 20860
-			internal static readonly int _QualitySettings = Shader.PropertyToID("_QualitySettings");
-
-			// Token: 0x0400517D RID: 20861
-			internal static readonly int _ConsoleSettings = Shader.PropertyToID("_ConsoleSettings");
-		}
-	}
+    private static class Uniforms
+    {
+      internal static readonly int _QualitySettings = Shader.PropertyToID(nameof (_QualitySettings));
+      internal static readonly int _ConsoleSettings = Shader.PropertyToID(nameof (_ConsoleSettings));
+    }
+  }
 }

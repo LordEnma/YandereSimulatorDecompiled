@@ -1,19 +1,17 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AmplifyMotion.ObjectType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace AmplifyMotion
 {
-	// Token: 0x0200058C RID: 1420
-	public enum ObjectType
-	{
-		// Token: 0x04004C66 RID: 19558
-		None,
-		// Token: 0x04004C67 RID: 19559
-		Solid,
-		// Token: 0x04004C68 RID: 19560
-		Skinned,
-		// Token: 0x04004C69 RID: 19561
-		Cloth,
-		// Token: 0x04004C6A RID: 19562
-		Particle
-	}
+  public enum ObjectType
+  {
+    None,
+    Solid,
+    Skinned,
+    Cloth,
+    Particle,
+  }
 }

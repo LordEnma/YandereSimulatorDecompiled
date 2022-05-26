@@ -1,27 +1,26 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: HomeYandereDetectorScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200032E RID: 814
 public class HomeYandereDetectorScript : MonoBehaviour
 {
-	// Token: 0x060018D7 RID: 6359 RVA: 0x000F4CAD File Offset: 0x000F2EAD
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.tag == "Player")
-		{
-			this.YandereDetected = true;
-		}
-	}
+  public bool YandereDetected;
 
-	// Token: 0x060018D8 RID: 6360 RVA: 0x000F4CC8 File Offset: 0x000F2EC8
-	private void OnTriggerExit(Collider other)
-	{
-		if (other.tag == "Player")
-		{
-			this.YandereDetected = false;
-		}
-	}
+  private void OnTriggerEnter(Collider other)
+  {
+    if (!(other.tag == "Player"))
+      return;
+    this.YandereDetected = true;
+  }
 
-	// Token: 0x040025F4 RID: 9716
-	public bool YandereDetected;
+  private void OnTriggerExit(Collider other)
+  {
+    if (!(other.tag == "Player"))
+      return;
+    this.YandereDetected = false;
+  }
 }

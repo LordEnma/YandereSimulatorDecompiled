@@ -1,20 +1,21 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: LoadLevelOnClick
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000033 RID: 51
 [AddComponentMenu("NGUI/Examples/Load Level On Click")]
 public class LoadLevelOnClick : MonoBehaviour
 {
-	// Token: 0x060000D9 RID: 217 RVA: 0x000129AA File Offset: 0x00010BAA
-	private void OnClick()
-	{
-		if (!string.IsNullOrEmpty(this.levelName))
-		{
-			SceneManager.LoadScene(this.levelName);
-		}
-	}
+  public string levelName;
 
-	// Token: 0x040002AB RID: 683
-	public string levelName;
+  private void OnClick()
+  {
+    if (string.IsNullOrEmpty(this.levelName))
+      return;
+    SceneManager.LoadScene(this.levelName);
+  }
 }

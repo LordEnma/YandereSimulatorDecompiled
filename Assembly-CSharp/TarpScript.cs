@@ -1,58 +1,42 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TarpScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000470 RID: 1136
 public class TarpScript : MonoBehaviour
 {
-	// Token: 0x06001ECE RID: 7886 RVA: 0x001B4302 File Offset: 0x001B2502
-	private void Start()
-	{
-		base.transform.localScale = new Vector3(1f, 1f, 1f);
-	}
+  public PromptScript Prompt;
+  public MechaScript Mecha;
+  public AudioClip Tarp;
+  public float PreviousSpeed;
+  public float Speed;
+  public bool Unwrap;
 
-	// Token: 0x06001ECF RID: 7887 RVA: 0x001B4324 File Offset: 0x001B2524
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			AudioSource.PlayClipAtPoint(this.Tarp, base.transform.position);
-			this.Unwrap = true;
-			this.Prompt.Hide();
-			this.Prompt.enabled = false;
-			this.Mecha.enabled = true;
-			this.Mecha.Prompt.enabled = true;
-		}
-		if (this.Unwrap)
-		{
-			this.Speed += Time.deltaTime * 10f;
-			base.transform.localEulerAngles = Vector3.Lerp(base.transform.localEulerAngles, new Vector3(90f, 90f, 0f), Time.deltaTime * this.Speed);
-			if (base.transform.localEulerAngles.x > 45f)
-			{
-				if (this.PreviousSpeed == 0f)
-				{
-					this.PreviousSpeed = this.Speed;
-				}
-				this.Speed += Time.deltaTime * 10f;
-				base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 0.0001f), (this.Speed - this.PreviousSpeed) * Time.deltaTime);
-			}
-		}
-	}
+  private void Start() => this.transform.localScale = new Vector3(1f, 1f, 1f);
 
-	// Token: 0x04003FE8 RID: 16360
-	public PromptScript Prompt;
-
-	// Token: 0x04003FE9 RID: 16361
-	public MechaScript Mecha;
-
-	// Token: 0x04003FEA RID: 16362
-	public AudioClip Tarp;
-
-	// Token: 0x04003FEB RID: 16363
-	public float PreviousSpeed;
-
-	// Token: 0x04003FEC RID: 16364
-	public float Speed;
-
-	// Token: 0x04003FED RID: 16365
-	public bool Unwrap;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
+    {
+      AudioSource.PlayClipAtPoint(this.Tarp, this.transform.position);
+      this.Unwrap = true;
+      this.Prompt.Hide();
+      this.Prompt.enabled = false;
+      this.Mecha.enabled = true;
+      this.Mecha.Prompt.enabled = true;
+    }
+    if (!this.Unwrap)
+      return;
+    this.Speed += Time.deltaTime * 10f;
+    this.transform.localEulerAngles = Vector3.Lerp(this.transform.localEulerAngles, new Vector3(90f, 90f, 0.0f), Time.deltaTime * this.Speed);
+    if ((double) this.transform.localEulerAngles.x <= 45.0)
+      return;
+    if ((double) this.PreviousSpeed == 0.0)
+      this.PreviousSpeed = this.Speed;
+    this.Speed += Time.deltaTime * 10f;
+    this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(1f, 1f, 0.0001f), (this.Speed - this.PreviousSpeed) * Time.deltaTime);
+  }
 }

@@ -1,27 +1,20 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityStandardAssets.Vehicles.Car.Mudguard
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x02000536 RID: 1334
-	public class Mudguard : MonoBehaviour
-	{
-		// Token: 0x060021FB RID: 8699 RVA: 0x001F48CD File Offset: 0x001F2ACD
-		private void Start()
-		{
-			this.m_OriginalRotation = base.transform.localRotation;
-		}
+  public class Mudguard : MonoBehaviour
+  {
+    public CarController carController;
+    private Quaternion m_OriginalRotation;
 
-		// Token: 0x060021FC RID: 8700 RVA: 0x001F48E0 File Offset: 0x001F2AE0
-		private void Update()
-		{
-			base.transform.localRotation = this.m_OriginalRotation * Quaternion.Euler(0f, this.carController.CurrentSteerAngle, 0f);
-		}
+    private void Start() => this.m_OriginalRotation = this.transform.localRotation;
 
-		// Token: 0x04004ACE RID: 19150
-		public CarController carController;
-
-		// Token: 0x04004ACF RID: 19151
-		private Quaternion m_OriginalRotation;
-	}
+    private void Update() => this.transform.localRotation = this.m_OriginalRotation * Quaternion.Euler(0.0f, this.carController.CurrentSteerAngle, 0.0f);
+  }
 }

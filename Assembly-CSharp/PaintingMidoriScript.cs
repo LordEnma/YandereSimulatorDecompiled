@@ -1,38 +1,30 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PaintingMidoriScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000393 RID: 915
 public class PaintingMidoriScript : MonoBehaviour
 {
-	// Token: 0x06001A72 RID: 6770 RVA: 0x00119C0C File Offset: 0x00117E0C
-	private void Update()
-	{
-		if (Input.GetKeyDown("z"))
-		{
-			this.ID++;
-		}
-		if (this.ID == 0)
-		{
-			this.Anim.CrossFade("f02_painting_00");
-		}
-		else if (this.ID == 1)
-		{
-			this.Anim.CrossFade("f02_shock_00");
-			this.Rotation = Mathf.Lerp(this.Rotation, -180f, Time.deltaTime * 10f);
-		}
-		else if (this.ID == 2)
-		{
-			base.transform.position -= new Vector3(Time.deltaTime * 2f, 0f, 0f);
-		}
-		base.transform.localEulerAngles = new Vector3(0f, this.Rotation, 0f);
-	}
+  public Animation Anim;
+  public float Rotation;
+  public int ID;
 
-	// Token: 0x04002B7E RID: 11134
-	public Animation Anim;
-
-	// Token: 0x04002B7F RID: 11135
-	public float Rotation;
-
-	// Token: 0x04002B80 RID: 11136
-	public int ID;
+  private void Update()
+  {
+    if (Input.GetKeyDown("z"))
+      ++this.ID;
+    if (this.ID == 0)
+      this.Anim.CrossFade("f02_painting_00");
+    else if (this.ID == 1)
+    {
+      this.Anim.CrossFade("f02_shock_00");
+      this.Rotation = Mathf.Lerp(this.Rotation, -180f, Time.deltaTime * 10f);
+    }
+    else if (this.ID == 2)
+      this.transform.position -= new Vector3(Time.deltaTime * 2f, 0.0f, 0.0f);
+    this.transform.localEulerAngles = new Vector3(0.0f, this.Rotation, 0.0f);
+  }
 }

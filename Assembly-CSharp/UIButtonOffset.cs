@@ -1,122 +1,91 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIButtonOffset
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
-// Token: 0x02000048 RID: 72
 [AddComponentMenu("NGUI/Interaction/Button Offset")]
 public class UIButtonOffset : MonoBehaviour
 {
-	// Token: 0x0600013F RID: 319 RVA: 0x00014874 File Offset: 0x00012A74
-	private void Start()
-	{
-		if (!this.mStarted)
-		{
-			this.mStarted = true;
-			if (this.tweenTarget == null)
-			{
-				this.tweenTarget = base.transform;
-			}
-			this.mPos = this.tweenTarget.localPosition;
-		}
-	}
+  public Transform tweenTarget;
+  public Vector3 hover = Vector3.zero;
+  public Vector3 pressed = new Vector3(2f, -2f);
+  public float duration = 0.2f;
+  [NonSerialized]
+  private Vector3 mPos;
+  [NonSerialized]
+  private bool mStarted;
+  [NonSerialized]
+  private bool mPressed;
 
-	// Token: 0x06000140 RID: 320 RVA: 0x000148B0 File Offset: 0x00012AB0
-	private void OnEnable()
-	{
-		if (this.mStarted)
-		{
-			this.OnHover(UICamera.IsHighlighted(base.gameObject));
-		}
-	}
+  private void Start()
+  {
+    if (this.mStarted)
+      return;
+    this.mStarted = true;
+    if ((UnityEngine.Object) this.tweenTarget == (UnityEngine.Object) null)
+      this.tweenTarget = this.transform;
+    this.mPos = this.tweenTarget.localPosition;
+  }
 
-	// Token: 0x06000141 RID: 321 RVA: 0x000148CC File Offset: 0x00012ACC
-	private void OnDisable()
-	{
-		if (this.mStarted && this.tweenTarget != null)
-		{
-			TweenPosition component = this.tweenTarget.GetComponent<TweenPosition>();
-			if (component != null)
-			{
-				component.value = this.mPos;
-				component.enabled = false;
-			}
-		}
-	}
+  private void OnEnable()
+  {
+    if (!this.mStarted)
+      return;
+    this.OnHover(UICamera.IsHighlighted(this.gameObject));
+  }
 
-	// Token: 0x06000142 RID: 322 RVA: 0x00014918 File Offset: 0x00012B18
-	private void OnPress(bool isPressed)
-	{
-		this.mPressed = isPressed;
-		if (base.enabled)
-		{
-			if (!this.mStarted)
-			{
-				this.Start();
-			}
-			TweenPosition.Begin(this.tweenTarget.gameObject, this.duration, isPressed ? (this.mPos + this.pressed) : (UICamera.IsHighlighted(base.gameObject) ? (this.mPos + this.hover) : this.mPos)).method = UITweener.Method.EaseInOut;
-		}
-	}
+  private void OnDisable()
+  {
+    if (!this.mStarted || !((UnityEngine.Object) this.tweenTarget != (UnityEngine.Object) null))
+      return;
+    TweenPosition component = this.tweenTarget.GetComponent<TweenPosition>();
+    if (!((UnityEngine.Object) component != (UnityEngine.Object) null))
+      return;
+    component.value = this.mPos;
+    component.enabled = false;
+  }
 
-	// Token: 0x06000143 RID: 323 RVA: 0x0001499C File Offset: 0x00012B9C
-	private void OnHover(bool isOver)
-	{
-		if (base.enabled)
-		{
-			if (!this.mStarted)
-			{
-				this.Start();
-			}
-			TweenPosition.Begin(this.tweenTarget.gameObject, this.duration, isOver ? (this.mPos + this.hover) : this.mPos).method = UITweener.Method.EaseInOut;
-		}
-	}
+  private void OnPress(bool isPressed)
+  {
+    this.mPressed = isPressed;
+    if (!this.enabled)
+      return;
+    if (!this.mStarted)
+      this.Start();
+    TweenPosition.Begin(this.tweenTarget.gameObject, this.duration, isPressed ? this.mPos + this.pressed : (UICamera.IsHighlighted(this.gameObject) ? this.mPos + this.hover : this.mPos)).method = UITweener.Method.EaseInOut;
+  }
 
-	// Token: 0x06000144 RID: 324 RVA: 0x000149F7 File Offset: 0x00012BF7
-	private void OnDragOver()
-	{
-		if (this.mPressed)
-		{
-			TweenPosition.Begin(this.tweenTarget.gameObject, this.duration, this.mPos + this.hover).method = UITweener.Method.EaseInOut;
-		}
-	}
+  private void OnHover(bool isOver)
+  {
+    if (!this.enabled)
+      return;
+    if (!this.mStarted)
+      this.Start();
+    TweenPosition.Begin(this.tweenTarget.gameObject, this.duration, isOver ? this.mPos + this.hover : this.mPos).method = UITweener.Method.EaseInOut;
+  }
 
-	// Token: 0x06000145 RID: 325 RVA: 0x00014A2E File Offset: 0x00012C2E
-	private void OnDragOut()
-	{
-		if (this.mPressed)
-		{
-			TweenPosition.Begin(this.tweenTarget.gameObject, this.duration, this.mPos).method = UITweener.Method.EaseInOut;
-		}
-	}
+  private void OnDragOver()
+  {
+    if (!this.mPressed)
+      return;
+    TweenPosition.Begin(this.tweenTarget.gameObject, this.duration, this.mPos + this.hover).method = UITweener.Method.EaseInOut;
+  }
 
-	// Token: 0x06000146 RID: 326 RVA: 0x00014A5A File Offset: 0x00012C5A
-	private void OnSelect(bool isSelected)
-	{
-		if (base.enabled && (!isSelected || UICamera.currentScheme == UICamera.ControlScheme.Controller))
-		{
-			this.OnHover(isSelected);
-		}
-	}
+  private void OnDragOut()
+  {
+    if (!this.mPressed)
+      return;
+    TweenPosition.Begin(this.tweenTarget.gameObject, this.duration, this.mPos).method = UITweener.Method.EaseInOut;
+  }
 
-	// Token: 0x0400030D RID: 781
-	public Transform tweenTarget;
-
-	// Token: 0x0400030E RID: 782
-	public Vector3 hover = Vector3.zero;
-
-	// Token: 0x0400030F RID: 783
-	public Vector3 pressed = new Vector3(2f, -2f);
-
-	// Token: 0x04000310 RID: 784
-	public float duration = 0.2f;
-
-	// Token: 0x04000311 RID: 785
-	[NonSerialized]
-	private Vector3 mPos;
-
-	// Token: 0x04000312 RID: 786
-	[NonSerialized]
-	private bool mStarted;
-
-	// Token: 0x04000313 RID: 787
-	[NonSerialized]
-	private bool mPressed;
+  private void OnSelect(bool isSelected)
+  {
+    if (!this.enabled || isSelected && UICamera.currentScheme != UICamera.ControlScheme.Controller)
+      return;
+    this.OnHover(isSelected);
+  }
 }

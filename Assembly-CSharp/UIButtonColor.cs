@@ -1,354 +1,261 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIButtonColor
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
-// Token: 0x02000045 RID: 69
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Interaction/Button Color")]
 public class UIButtonColor : UIWidgetContainer
 {
-	// Token: 0x17000010 RID: 16
-	// (get) Token: 0x06000120 RID: 288 RVA: 0x00014099 File Offset: 0x00012299
-	// (set) Token: 0x06000121 RID: 289 RVA: 0x000140A1 File Offset: 0x000122A1
-	public UIButtonColor.State state
-	{
-		get
-		{
-			return this.mState;
-		}
-		set
-		{
-			this.SetState(value, false);
-		}
-	}
+  public GameObject tweenTarget;
+  public Color hover = new Color(0.8823529f, 0.7843137f, 0.5882353f, 1f);
+  public Color pressed = new Color(0.7176471f, 0.6392157f, 0.4823529f, 1f);
+  public Color disabledColor = Color.grey;
+  public float duration = 0.2f;
+  [NonSerialized]
+  protected Color mStartingColor;
+  [NonSerialized]
+  protected Color mDefaultColor;
+  [NonSerialized]
+  protected bool mInitDone;
+  [NonSerialized]
+  protected UIWidget mWidget;
+  [NonSerialized]
+  protected UIButtonColor.State mState;
 
-	// Token: 0x17000011 RID: 17
-	// (get) Token: 0x06000122 RID: 290 RVA: 0x000140AB File Offset: 0x000122AB
-	// (set) Token: 0x06000123 RID: 291 RVA: 0x000140C4 File Offset: 0x000122C4
-	public Color defaultColor
-	{
-		get
-		{
-			if (!this.mInitDone)
-			{
-				this.OnInit();
-			}
-			return this.mDefaultColor;
-		}
-		set
-		{
-			if (!this.mInitDone)
-			{
-				this.OnInit();
-			}
-			this.mDefaultColor = value;
-			UIButtonColor.State state = this.mState;
-			this.mState = UIButtonColor.State.Disabled;
-			this.SetState(state, false);
-		}
-	}
+  public UIButtonColor.State state
+  {
+    get => this.mState;
+    set => this.SetState(value, false);
+  }
 
-	// Token: 0x17000012 RID: 18
-	// (get) Token: 0x06000124 RID: 292 RVA: 0x000140FC File Offset: 0x000122FC
-	// (set) Token: 0x06000125 RID: 293 RVA: 0x00014104 File Offset: 0x00012304
-	public virtual bool isEnabled
-	{
-		get
-		{
-			return base.enabled;
-		}
-		set
-		{
-			base.enabled = value;
-		}
-	}
+  public Color defaultColor
+  {
+    get
+    {
+      if (!this.mInitDone)
+        this.OnInit();
+      return this.mDefaultColor;
+    }
+    set
+    {
+      if (!this.mInitDone)
+        this.OnInit();
+      this.mDefaultColor = value;
+      UIButtonColor.State mState = this.mState;
+      this.mState = UIButtonColor.State.Disabled;
+      this.SetState(mState, false);
+    }
+  }
 
-	// Token: 0x06000126 RID: 294 RVA: 0x0001410D File Offset: 0x0001230D
-	public void ResetDefaultColor()
-	{
-		this.defaultColor = this.mStartingColor;
-	}
+  public virtual bool isEnabled
+  {
+    get => this.enabled;
+    set => this.enabled = value;
+  }
 
-	// Token: 0x06000127 RID: 295 RVA: 0x0001411B File Offset: 0x0001231B
-	public void CacheDefaultColor()
-	{
-		if (!this.mInitDone)
-		{
-			this.OnInit();
-		}
-	}
+  public void ResetDefaultColor() => this.defaultColor = this.mStartingColor;
 
-	// Token: 0x06000128 RID: 296 RVA: 0x0001412B File Offset: 0x0001232B
-	private void Start()
-	{
-		if (!this.mInitDone)
-		{
-			this.OnInit();
-		}
-		if (!this.isEnabled)
-		{
-			this.SetState(UIButtonColor.State.Disabled, true);
-		}
-	}
+  public void CacheDefaultColor()
+  {
+    if (this.mInitDone)
+      return;
+    this.OnInit();
+  }
 
-	// Token: 0x06000129 RID: 297 RVA: 0x0001414C File Offset: 0x0001234C
-	protected virtual void OnInit()
-	{
-		this.mInitDone = true;
-		if (this.tweenTarget == null && !Application.isPlaying)
-		{
-			this.tweenTarget = base.gameObject;
-		}
-		if (this.tweenTarget != null)
-		{
-			this.mWidget = this.tweenTarget.GetComponent<UIWidget>();
-		}
-		if (this.mWidget != null)
-		{
-			this.mDefaultColor = this.mWidget.color;
-			this.mStartingColor = this.mDefaultColor;
-			return;
-		}
-		if (this.tweenTarget != null)
-		{
-			Renderer component = this.tweenTarget.GetComponent<Renderer>();
-			if (component != null)
-			{
-				this.mDefaultColor = (Application.isPlaying ? component.material.color : component.sharedMaterial.color);
-				this.mStartingColor = this.mDefaultColor;
-				return;
-			}
-			Light component2 = this.tweenTarget.GetComponent<Light>();
-			if (component2 != null)
-			{
-				this.mDefaultColor = component2.color;
-				this.mStartingColor = this.mDefaultColor;
-				return;
-			}
-			this.tweenTarget = null;
-			this.mInitDone = false;
-		}
-	}
+  private void Start()
+  {
+    if (!this.mInitDone)
+      this.OnInit();
+    if (this.isEnabled)
+      return;
+    this.SetState(UIButtonColor.State.Disabled, true);
+  }
 
-	// Token: 0x0600012A RID: 298 RVA: 0x00014260 File Offset: 0x00012460
-	protected virtual void OnEnable()
-	{
-		if (this.mInitDone)
-		{
-			this.OnHover(UICamera.IsHighlighted(base.gameObject));
-		}
-		if (UICamera.currentTouch != null)
-		{
-			if (UICamera.currentTouch.pressed == base.gameObject)
-			{
-				this.OnPress(true);
-				return;
-			}
-			if (UICamera.currentTouch.current == base.gameObject)
-			{
-				this.OnHover(true);
-			}
-		}
-	}
+  protected virtual void OnInit()
+  {
+    this.mInitDone = true;
+    if ((UnityEngine.Object) this.tweenTarget == (UnityEngine.Object) null && !Application.isPlaying)
+      this.tweenTarget = this.gameObject;
+    if ((UnityEngine.Object) this.tweenTarget != (UnityEngine.Object) null)
+      this.mWidget = this.tweenTarget.GetComponent<UIWidget>();
+    if ((UnityEngine.Object) this.mWidget != (UnityEngine.Object) null)
+    {
+      this.mDefaultColor = this.mWidget.color;
+      this.mStartingColor = this.mDefaultColor;
+    }
+    else
+    {
+      if (!((UnityEngine.Object) this.tweenTarget != (UnityEngine.Object) null))
+        return;
+      Renderer component1 = this.tweenTarget.GetComponent<Renderer>();
+      if ((UnityEngine.Object) component1 != (UnityEngine.Object) null)
+      {
+        this.mDefaultColor = Application.isPlaying ? component1.material.color : component1.sharedMaterial.color;
+        this.mStartingColor = this.mDefaultColor;
+      }
+      else
+      {
+        Light component2 = this.tweenTarget.GetComponent<Light>();
+        if ((UnityEngine.Object) component2 != (UnityEngine.Object) null)
+        {
+          this.mDefaultColor = component2.color;
+          this.mStartingColor = this.mDefaultColor;
+        }
+        else
+        {
+          this.tweenTarget = (GameObject) null;
+          this.mInitDone = false;
+        }
+      }
+    }
+  }
 
-	// Token: 0x0600012B RID: 299 RVA: 0x000142CC File Offset: 0x000124CC
-	protected virtual void OnDisable()
-	{
-		if (this.mInitDone && this.mState != UIButtonColor.State.Normal)
-		{
-			this.SetState(UIButtonColor.State.Normal, true);
-			if (this.tweenTarget != null)
-			{
-				TweenColor component = this.tweenTarget.GetComponent<TweenColor>();
-				if (component != null)
-				{
-					component.value = this.mDefaultColor;
-					component.enabled = false;
-				}
-			}
-		}
-	}
+  protected virtual void OnEnable()
+  {
+    if (this.mInitDone)
+      this.OnHover(UICamera.IsHighlighted(this.gameObject));
+    if (UICamera.currentTouch == null)
+      return;
+    if ((UnityEngine.Object) UICamera.currentTouch.pressed == (UnityEngine.Object) this.gameObject)
+    {
+      this.OnPress(true);
+    }
+    else
+    {
+      if (!((UnityEngine.Object) UICamera.currentTouch.current == (UnityEngine.Object) this.gameObject))
+        return;
+      this.OnHover(true);
+    }
+  }
 
-	// Token: 0x0600012C RID: 300 RVA: 0x00014327 File Offset: 0x00012527
-	protected virtual void OnHover(bool isOver)
-	{
-		if (this.isEnabled)
-		{
-			if (!this.mInitDone)
-			{
-				this.OnInit();
-			}
-			if (this.tweenTarget != null)
-			{
-				this.SetState(isOver ? UIButtonColor.State.Hover : UIButtonColor.State.Normal, false);
-			}
-		}
-	}
+  protected virtual void OnDisable()
+  {
+    if (!this.mInitDone || this.mState == UIButtonColor.State.Normal)
+      return;
+    this.SetState(UIButtonColor.State.Normal, true);
+    if (!((UnityEngine.Object) this.tweenTarget != (UnityEngine.Object) null))
+      return;
+    TweenColor component = this.tweenTarget.GetComponent<TweenColor>();
+    if (!((UnityEngine.Object) component != (UnityEngine.Object) null))
+      return;
+    component.value = this.mDefaultColor;
+    component.enabled = false;
+  }
 
-	// Token: 0x0600012D RID: 301 RVA: 0x0001435C File Offset: 0x0001255C
-	protected virtual void OnPress(bool isPressed)
-	{
-		if (this.isEnabled)
-		{
-			if (!this.mInitDone)
-			{
-				this.OnInit();
-			}
-			if (this.tweenTarget != null)
-			{
-				if (isPressed)
-				{
-					this.SetState(UIButtonColor.State.Pressed, false);
-					return;
-				}
-				if (UICamera.currentTouch != null && UICamera.currentTouch.current == base.gameObject)
-				{
-					if (UICamera.currentScheme == UICamera.ControlScheme.Controller)
-					{
-						this.SetState(UIButtonColor.State.Hover, false);
-						return;
-					}
-					if (UICamera.currentScheme == UICamera.ControlScheme.Mouse && UICamera.hoveredObject == base.gameObject)
-					{
-						this.SetState(UIButtonColor.State.Hover, false);
-						return;
-					}
-					this.SetState(UIButtonColor.State.Normal, false);
-					return;
-				}
-				else
-				{
-					this.SetState(UIButtonColor.State.Normal, false);
-				}
-			}
-		}
-	}
+  protected virtual void OnHover(bool isOver)
+  {
+    if (!this.isEnabled)
+      return;
+    if (!this.mInitDone)
+      this.OnInit();
+    if (!((UnityEngine.Object) this.tweenTarget != (UnityEngine.Object) null))
+      return;
+    this.SetState(isOver ? UIButtonColor.State.Hover : UIButtonColor.State.Normal, false);
+  }
 
-	// Token: 0x0600012E RID: 302 RVA: 0x000143FE File Offset: 0x000125FE
-	protected virtual void OnDragOver()
-	{
-		if (this.isEnabled)
-		{
-			if (!this.mInitDone)
-			{
-				this.OnInit();
-			}
-			if (this.tweenTarget != null)
-			{
-				this.SetState(UIButtonColor.State.Pressed, false);
-			}
-		}
-	}
+  protected virtual void OnPress(bool isPressed)
+  {
+    if (!this.isEnabled)
+      return;
+    if (!this.mInitDone)
+      this.OnInit();
+    if (!((UnityEngine.Object) this.tweenTarget != (UnityEngine.Object) null))
+      return;
+    if (isPressed)
+      this.SetState(UIButtonColor.State.Pressed, false);
+    else if (UICamera.currentTouch != null && (UnityEngine.Object) UICamera.currentTouch.current == (UnityEngine.Object) this.gameObject)
+    {
+      switch (UICamera.currentScheme)
+      {
+        case UICamera.ControlScheme.Mouse:
+          if ((UnityEngine.Object) UICamera.hoveredObject == (UnityEngine.Object) this.gameObject)
+          {
+            this.SetState(UIButtonColor.State.Hover, false);
+            return;
+          }
+          break;
+        case UICamera.ControlScheme.Controller:
+          this.SetState(UIButtonColor.State.Hover, false);
+          return;
+      }
+      this.SetState(UIButtonColor.State.Normal, false);
+    }
+    else
+      this.SetState(UIButtonColor.State.Normal, false);
+  }
 
-	// Token: 0x0600012F RID: 303 RVA: 0x0001442C File Offset: 0x0001262C
-	protected virtual void OnDragOut()
-	{
-		if (this.isEnabled)
-		{
-			if (!this.mInitDone)
-			{
-				this.OnInit();
-			}
-			if (this.tweenTarget != null)
-			{
-				this.SetState(UIButtonColor.State.Normal, false);
-			}
-		}
-	}
+  protected virtual void OnDragOver()
+  {
+    if (!this.isEnabled)
+      return;
+    if (!this.mInitDone)
+      this.OnInit();
+    if (!((UnityEngine.Object) this.tweenTarget != (UnityEngine.Object) null))
+      return;
+    this.SetState(UIButtonColor.State.Pressed, false);
+  }
 
-	// Token: 0x06000130 RID: 304 RVA: 0x0001445A File Offset: 0x0001265A
-	public virtual void SetState(UIButtonColor.State state, bool instant)
-	{
-		if (!this.mInitDone)
-		{
-			this.mInitDone = true;
-			this.OnInit();
-		}
-		if (this.mState != state)
-		{
-			this.mState = state;
-			this.UpdateColor(instant);
-		}
-	}
+  protected virtual void OnDragOut()
+  {
+    if (!this.isEnabled)
+      return;
+    if (!this.mInitDone)
+      this.OnInit();
+    if (!((UnityEngine.Object) this.tweenTarget != (UnityEngine.Object) null))
+      return;
+    this.SetState(UIButtonColor.State.Normal, false);
+  }
 
-	// Token: 0x06000131 RID: 305 RVA: 0x00014488 File Offset: 0x00012688
-	public void UpdateColor(bool instant)
-	{
-		if (!this.mInitDone)
-		{
-			return;
-		}
-		if (this.tweenTarget != null)
-		{
-			TweenColor tweenColor;
-			switch (this.mState)
-			{
-			case UIButtonColor.State.Hover:
-				tweenColor = TweenColor.Begin(this.tweenTarget, this.duration, this.hover);
-				break;
-			case UIButtonColor.State.Pressed:
-				tweenColor = TweenColor.Begin(this.tweenTarget, this.duration, this.pressed);
-				break;
-			case UIButtonColor.State.Disabled:
-				tweenColor = TweenColor.Begin(this.tweenTarget, this.duration, this.disabledColor);
-				break;
-			default:
-				tweenColor = TweenColor.Begin(this.tweenTarget, this.duration, this.mDefaultColor);
-				break;
-			}
-			if (instant && tweenColor != null)
-			{
-				tweenColor.value = tweenColor.to;
-				tweenColor.enabled = false;
-			}
-		}
-	}
+  public virtual void SetState(UIButtonColor.State state, bool instant)
+  {
+    if (!this.mInitDone)
+    {
+      this.mInitDone = true;
+      this.OnInit();
+    }
+    if (this.mState == state)
+      return;
+    this.mState = state;
+    this.UpdateColor(instant);
+  }
 
-	// Token: 0x040002F9 RID: 761
-	public GameObject tweenTarget;
+  public void UpdateColor(bool instant)
+  {
+    if (!this.mInitDone || !((UnityEngine.Object) this.tweenTarget != (UnityEngine.Object) null))
+      return;
+    TweenColor tweenColor;
+    switch (this.mState)
+    {
+      case UIButtonColor.State.Hover:
+        tweenColor = TweenColor.Begin(this.tweenTarget, this.duration, this.hover);
+        break;
+      case UIButtonColor.State.Pressed:
+        tweenColor = TweenColor.Begin(this.tweenTarget, this.duration, this.pressed);
+        break;
+      case UIButtonColor.State.Disabled:
+        tweenColor = TweenColor.Begin(this.tweenTarget, this.duration, this.disabledColor);
+        break;
+      default:
+        tweenColor = TweenColor.Begin(this.tweenTarget, this.duration, this.mDefaultColor);
+        break;
+    }
+    if (!instant || !((UnityEngine.Object) tweenColor != (UnityEngine.Object) null))
+      return;
+    tweenColor.value = tweenColor.to;
+    tweenColor.enabled = false;
+  }
 
-	// Token: 0x040002FA RID: 762
-	public Color hover = new Color(0.88235295f, 0.78431374f, 0.5882353f, 1f);
-
-	// Token: 0x040002FB RID: 763
-	public Color pressed = new Color(0.7176471f, 0.6392157f, 0.48235294f, 1f);
-
-	// Token: 0x040002FC RID: 764
-	public Color disabledColor = Color.grey;
-
-	// Token: 0x040002FD RID: 765
-	public float duration = 0.2f;
-
-	// Token: 0x040002FE RID: 766
-	[NonSerialized]
-	protected Color mStartingColor;
-
-	// Token: 0x040002FF RID: 767
-	[NonSerialized]
-	protected Color mDefaultColor;
-
-	// Token: 0x04000300 RID: 768
-	[NonSerialized]
-	protected bool mInitDone;
-
-	// Token: 0x04000301 RID: 769
-	[NonSerialized]
-	protected UIWidget mWidget;
-
-	// Token: 0x04000302 RID: 770
-	[NonSerialized]
-	protected UIButtonColor.State mState;
-
-	// Token: 0x020005D1 RID: 1489
-	[DoNotObfuscateNGUI]
-	public enum State
-	{
-		// Token: 0x04004E2F RID: 20015
-		Normal,
-		// Token: 0x04004E30 RID: 20016
-		Hover,
-		// Token: 0x04004E31 RID: 20017
-		Pressed,
-		// Token: 0x04004E32 RID: 20018
-		Disabled
-	}
+  [DoNotObfuscateNGUI]
+  public enum State
+  {
+    Normal,
+    Hover,
+    Pressed,
+    Disabled,
+  }
 }

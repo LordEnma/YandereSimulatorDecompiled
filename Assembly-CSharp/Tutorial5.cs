@@ -1,16 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: Tutorial5
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200003C RID: 60
 public class Tutorial5 : MonoBehaviour
 {
-	// Token: 0x060000F2 RID: 242 RVA: 0x00013090 File Offset: 0x00011290
-	public void SetDurationToCurrentProgress()
-	{
-		UITweener[] componentsInChildren = base.GetComponentsInChildren<UITweener>();
-		for (int i = 0; i < componentsInChildren.Length; i++)
-		{
-			componentsInChildren[i].duration = Mathf.Lerp(2f, 0.5f, UIProgressBar.current.value);
-		}
-	}
+  public void SetDurationToCurrentProgress()
+  {
+    foreach (UITweener componentsInChild in this.GetComponentsInChildren<UITweener>())
+      componentsInChild.duration = Mathf.Lerp(2f, 0.5f, UIProgressBar.current.value);
+  }
 }

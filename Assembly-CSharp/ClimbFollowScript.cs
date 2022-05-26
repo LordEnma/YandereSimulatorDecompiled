@@ -1,15 +1,14 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ClimbFollowScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200001F RID: 31
 public class ClimbFollowScript : MonoBehaviour
 {
-	// Token: 0x0600007F RID: 127 RVA: 0x0001106C File Offset: 0x0000F26C
-	private void Update()
-	{
-		base.transform.position = new Vector3(base.transform.position.x, this.Yandere.position.y, base.transform.position.z);
-	}
+  public Transform Yandere;
 
-	// Token: 0x0400025E RID: 606
-	public Transform Yandere;
+  private void Update() => this.transform.position = new Vector3(this.transform.position.x, this.Yandere.position.y, this.transform.position.z);
 }

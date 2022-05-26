@@ -1,23 +1,24 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SanityPillsScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003FA RID: 1018
 public class SanityPillsScript : MonoBehaviour
 {
-	// Token: 0x06001C21 RID: 7201 RVA: 0x00149F30 File Offset: 0x00148130
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Yandere.Alphabet.Cheats++;
-			this.Prompt.Yandere.Alphabet.UpdateDifficultyLabel();
-			this.Prompt.Yandere.SanityPills = true;
-			this.Prompt.enabled = false;
-			this.Prompt.Hide();
-			base.gameObject.SetActive(false);
-		}
-	}
+  public PromptScript Prompt;
 
-	// Token: 0x0400319C RID: 12700
-	public PromptScript Prompt;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    ++this.Prompt.Yandere.Alphabet.Cheats;
+    this.Prompt.Yandere.Alphabet.UpdateDifficultyLabel();
+    this.Prompt.Yandere.SanityPills = true;
+    this.Prompt.enabled = false;
+    this.Prompt.Hide();
+    this.gameObject.SetActive(false);
+  }
 }

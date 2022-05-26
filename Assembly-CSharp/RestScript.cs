@@ -1,57 +1,54 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: RestScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003DA RID: 986
 public class RestScript : MonoBehaviour
 {
-	// Token: 0x06001BA4 RID: 7076 RVA: 0x00139FB0 File Offset: 0x001381B0
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Portal.CanAttendClass = true;
-			this.Portal.CheckForProblems();
-			if (!this.Portal.CanAttendClass)
-			{
-				this.Prompt.Circle[0].fillAmount = 1f;
-				return;
-			}
-			if (this.Portal.Clock.Period < 5)
-			{
-				this.Portal.Reputation.PendingRep -= 10f;
-				this.Portal.Reputation.UpdateRep();
-				this.Prompt.Yandere.Resting = true;
-				if (this.Portal.Police.PoisonScene || (this.Portal.Police.SuicideScene && this.Portal.Police.Corpses - this.Portal.Police.HiddenCorpses > 0) || this.Portal.Police.Corpses - this.Portal.Police.HiddenCorpses > 0 || this.Portal.Reputation.Reputation <= -100f)
-				{
-					this.Portal.EndDay();
-					return;
-				}
-				this.Portal.ClassDarkness.enabled = true;
-				this.Portal.Clock.StopTime = true;
-				this.Portal.Transition = true;
-				this.Portal.FadeOut = true;
-				this.Prompt.Yandere.Character.GetComponent<Animation>().CrossFade(this.Prompt.Yandere.IdleAnim);
-				this.Prompt.Yandere.YandereVision = false;
-				this.Prompt.Yandere.CanMove = false;
-				this.Portal.EndEvents();
-				this.Prompt.Hide();
-				this.Prompt.enabled = false;
-				return;
-			}
-			else
-			{
-				this.Prompt.Yandere.Character.GetComponent<Animation>().CrossFade(this.Prompt.Yandere.IdleAnim);
-				this.Prompt.Yandere.YandereVision = false;
-				this.Prompt.Yandere.CanMove = false;
-				this.Prompt.Yandere.Resting = true;
-				this.Portal.EndDay();
-			}
-		}
-	}
+  public PortalScript Portal;
+  public PromptScript Prompt;
 
-	// Token: 0x04002F85 RID: 12165
-	public PortalScript Portal;
-
-	// Token: 0x04002F86 RID: 12166
-	public PromptScript Prompt;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    this.Portal.CanAttendClass = true;
+    this.Portal.CheckForProblems();
+    if (!this.Portal.CanAttendClass)
+      this.Prompt.Circle[0].fillAmount = 1f;
+    else if (this.Portal.Clock.Period < 5)
+    {
+      this.Portal.Reputation.PendingRep -= 10f;
+      this.Portal.Reputation.UpdateRep();
+      this.Prompt.Yandere.Resting = true;
+      if (this.Portal.Police.PoisonScene || this.Portal.Police.SuicideScene && this.Portal.Police.Corpses - this.Portal.Police.HiddenCorpses > 0 || this.Portal.Police.Corpses - this.Portal.Police.HiddenCorpses > 0 || (double) this.Portal.Reputation.Reputation <= -100.0)
+      {
+        this.Portal.EndDay();
+      }
+      else
+      {
+        this.Portal.ClassDarkness.enabled = true;
+        this.Portal.Clock.StopTime = true;
+        this.Portal.Transition = true;
+        this.Portal.FadeOut = true;
+        this.Prompt.Yandere.Character.GetComponent<Animation>().CrossFade(this.Prompt.Yandere.IdleAnim);
+        this.Prompt.Yandere.YandereVision = false;
+        this.Prompt.Yandere.CanMove = false;
+        this.Portal.EndEvents();
+        this.Prompt.Hide();
+        this.Prompt.enabled = false;
+      }
+    }
+    else
+    {
+      this.Prompt.Yandere.Character.GetComponent<Animation>().CrossFade(this.Prompt.Yandere.IdleAnim);
+      this.Prompt.Yandere.YandereVision = false;
+      this.Prompt.Yandere.CanMove = false;
+      this.Prompt.Yandere.Resting = true;
+      this.Portal.EndDay();
+    }
+  }
 }

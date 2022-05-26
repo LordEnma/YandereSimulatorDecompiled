@@ -1,12 +1,12 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MovementType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x020004D5 RID: 1237
 public enum MovementType
 {
-	// Token: 0x040044EA RID: 17642
-	Idle,
-	// Token: 0x040044EB RID: 17643
-	Walking,
-	// Token: 0x040044EC RID: 17644
-	Running
+  Idle,
+  Walking,
+  Running,
 }

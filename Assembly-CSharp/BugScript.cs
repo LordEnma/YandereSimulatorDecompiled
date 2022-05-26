@@ -1,63 +1,53 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BugScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000101 RID: 257
 public class BugScript : MonoBehaviour
 {
-	// Token: 0x06000A93 RID: 2707 RVA: 0x0005F907 File Offset: 0x0005DB07
-	private void Start()
-	{
-		if (GameGlobals.Eighties)
-		{
-			this.Prompt.Hide();
-			this.Prompt.enabled = false;
-			base.gameObject.SetActive(false);
-		}
-		this.MyRenderer.enabled = false;
-	}
+  public PromptScript Prompt;
+  public Renderer MyRenderer;
+  public AudioSource MyAudio;
+  public AudioClip[] Praise;
+  public bool Placed;
 
-	// Token: 0x06000A94 RID: 2708 RVA: 0x0005F940 File Offset: 0x0005DB40
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.MyAudio.clip = this.Praise[UnityEngine.Random.Range(0, this.Praise.Length)];
-			this.MyAudio.Play();
-			this.MyRenderer.enabled = true;
-			this.Prompt.Yandere.Inventory.PantyShots += 5;
-			this.Prompt.Yandere.NotificationManager.CustomText = "+5 Info Points! You have " + this.Prompt.Yandere.Inventory.PantyShots.ToString() + " in total";
-			this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-			this.Placed = true;
-			base.enabled = false;
-			this.Prompt.enabled = false;
-			this.Prompt.Hide();
-		}
-	}
+  private void Start()
+  {
+    if (GameGlobals.Eighties)
+    {
+      this.Prompt.Hide();
+      this.Prompt.enabled = false;
+      this.gameObject.SetActive(false);
+    }
+    this.MyRenderer.enabled = false;
+  }
 
-	// Token: 0x06000A95 RID: 2709 RVA: 0x0005FA37 File Offset: 0x0005DC37
-	public void CheckStatus()
-	{
-		if (this.Placed)
-		{
-			this.MyRenderer.enabled = true;
-			base.enabled = false;
-			this.Prompt.enabled = false;
-			this.Prompt.Hide();
-		}
-	}
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    this.MyAudio.clip = this.Praise[Random.Range(0, this.Praise.Length)];
+    this.MyAudio.Play();
+    this.MyRenderer.enabled = true;
+    this.Prompt.Yandere.Inventory.PantyShots += 5;
+    this.Prompt.Yandere.NotificationManager.CustomText = "+5 Info Points! You have " + this.Prompt.Yandere.Inventory.PantyShots.ToString() + " in total";
+    this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+    this.Placed = true;
+    this.enabled = false;
+    this.Prompt.enabled = false;
+    this.Prompt.Hide();
+  }
 
-	// Token: 0x04000C7F RID: 3199
-	public PromptScript Prompt;
-
-	// Token: 0x04000C80 RID: 3200
-	public Renderer MyRenderer;
-
-	// Token: 0x04000C81 RID: 3201
-	public AudioSource MyAudio;
-
-	// Token: 0x04000C82 RID: 3202
-	public AudioClip[] Praise;
-
-	// Token: 0x04000C83 RID: 3203
-	public bool Placed;
+  public void CheckStatus()
+  {
+    if (!this.Placed)
+      return;
+    this.MyRenderer.enabled = true;
+    this.enabled = false;
+    this.Prompt.enabled = false;
+    this.Prompt.Hide();
+  }
 }

@@ -1,45 +1,34 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TimePortalScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200047B RID: 1147
 public class TimePortalScript : MonoBehaviour
 {
-	// Token: 0x06001EF6 RID: 7926 RVA: 0x001B6608 File Offset: 0x001B4808
-	private void Update()
-	{
-		if (Input.GetKeyDown("space"))
-		{
-			this.Suck = true;
-		}
-		if (this.Suck)
-		{
-			UnityEngine.Object.Instantiate<GameObject>(this.BlackHole, base.transform.position + new Vector3(0f, 1f, 0f), Quaternion.identity);
-			this.Timer += Time.deltaTime;
-			if (this.Timer > 1.1f)
-			{
-				this.Delinquent[this.ID].Suck = true;
-				this.Timer = 1f;
-				this.ID++;
-				if (this.ID > 9)
-				{
-					base.enabled = false;
-				}
-			}
-		}
-	}
+  public DelinquentScript[] Delinquent;
+  public GameObject BlackHole;
+  public float Timer;
+  public bool Suck;
+  public int ID;
 
-	// Token: 0x04004053 RID: 16467
-	public DelinquentScript[] Delinquent;
-
-	// Token: 0x04004054 RID: 16468
-	public GameObject BlackHole;
-
-	// Token: 0x04004055 RID: 16469
-	public float Timer;
-
-	// Token: 0x04004056 RID: 16470
-	public bool Suck;
-
-	// Token: 0x04004057 RID: 16471
-	public int ID;
+  private void Update()
+  {
+    if (Input.GetKeyDown("space"))
+      this.Suck = true;
+    if (!this.Suck)
+      return;
+    Object.Instantiate<GameObject>(this.BlackHole, this.transform.position + new Vector3(0.0f, 1f, 0.0f), Quaternion.identity);
+    this.Timer += Time.deltaTime;
+    if ((double) this.Timer <= 1.10000002384186)
+      return;
+    this.Delinquent[this.ID].Suck = true;
+    this.Timer = 1f;
+    ++this.ID;
+    if (this.ID <= 9)
+      return;
+    this.enabled = false;
+  }
 }

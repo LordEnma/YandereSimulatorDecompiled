@@ -1,13 +1,15 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DisabledYanSaveMember
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
-// Token: 0x0200051D RID: 1309
 [Serializable]
 public struct DisabledYanSaveMember
 {
-	// Token: 0x04004A17 RID: 18967
-	public Component Component;
-
-	// Token: 0x04004A18 RID: 18968
-	public string Name;
+  public Component Component;
+  public string Name;
 }

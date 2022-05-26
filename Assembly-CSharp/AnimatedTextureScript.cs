@@ -1,64 +1,43 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AnimatedTextureScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000CA RID: 202
 public class AnimatedTextureScript : MonoBehaviour
 {
-	// Token: 0x060009BE RID: 2494 RVA: 0x00051587 File Offset: 0x0004F787
-	private void Awake()
-	{
-	}
+  [SerializeField]
+  private Renderer MyRenderer;
+  [SerializeField]
+  private int Start;
+  [SerializeField]
+  private int Frame;
+  [SerializeField]
+  private int Limit;
+  [SerializeField]
+  private float FramesPerSecond;
+  [SerializeField]
+  private float CurrentSeconds;
+  public Texture[] Image;
 
-	// Token: 0x170001F5 RID: 501
-	// (get) Token: 0x060009BF RID: 2495 RVA: 0x00051589 File Offset: 0x0004F789
-	private float SecondsPerFrame
-	{
-		get
-		{
-			return 1f / this.FramesPerSecond;
-		}
-	}
+  private void Awake()
+  {
+  }
 
-	// Token: 0x060009C0 RID: 2496 RVA: 0x00051598 File Offset: 0x0004F798
-	private void Update()
-	{
-		this.CurrentSeconds += Time.unscaledDeltaTime;
-		while (this.CurrentSeconds >= this.SecondsPerFrame)
-		{
-			this.CurrentSeconds -= this.SecondsPerFrame;
-			this.Frame++;
-			if (this.Frame > this.Limit)
-			{
-				this.Frame = this.Start;
-			}
-		}
-		this.MyRenderer.material.mainTexture = this.Image[this.Frame];
-	}
+  private float SecondsPerFrame => 1f / this.FramesPerSecond;
 
-	// Token: 0x04000A23 RID: 2595
-	[SerializeField]
-	private Renderer MyRenderer;
-
-	// Token: 0x04000A24 RID: 2596
-	[SerializeField]
-	private int Start;
-
-	// Token: 0x04000A25 RID: 2597
-	[SerializeField]
-	private int Frame;
-
-	// Token: 0x04000A26 RID: 2598
-	[SerializeField]
-	private int Limit;
-
-	// Token: 0x04000A27 RID: 2599
-	[SerializeField]
-	private float FramesPerSecond;
-
-	// Token: 0x04000A28 RID: 2600
-	[SerializeField]
-	private float CurrentSeconds;
-
-	// Token: 0x04000A29 RID: 2601
-	public Texture[] Image;
+  private void Update()
+  {
+    this.CurrentSeconds += Time.unscaledDeltaTime;
+    while ((double) this.CurrentSeconds >= (double) this.SecondsPerFrame)
+    {
+      this.CurrentSeconds -= this.SecondsPerFrame;
+      ++this.Frame;
+      if (this.Frame > this.Limit)
+        this.Frame = this.Start;
+    }
+    this.MyRenderer.material.mainTexture = this.Image[this.Frame];
+  }
 }

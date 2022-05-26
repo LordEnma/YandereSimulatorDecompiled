@@ -1,14 +1,13 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ScheduledEventTimeType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x020002BB RID: 699
 public enum ScheduledEventTimeType
 {
-	// Token: 0x04001F9A RID: 8090
-	Specific,
-	// Token: 0x04001F9B RID: 8091
-	TimeOfDay,
-	// Token: 0x04001F9C RID: 8092
-	Day,
-	// Token: 0x04001F9D RID: 8093
-	Week
+  Specific,
+  TimeOfDay,
+  Day,
+  Week,
 }

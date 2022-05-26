@@ -1,1237 +1,902 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIPopupList
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x0200005E RID: 94
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Interaction/Popup List")]
 public class UIPopupList : UIWidgetContainer
 {
-	// Token: 0x1700001E RID: 30
-	// (get) Token: 0x0600022F RID: 559 RVA: 0x000199C2 File Offset: 0x00017BC2
-	// (set) Token: 0x06000230 RID: 560 RVA: 0x000199FD File Offset: 0x00017BFD
-	public INGUIFont font
-	{
-		get
-		{
-			if (!(this.bitmapFont != null))
-			{
-				return null;
-			}
-			if (this.bitmapFont is GameObject)
-			{
-				return (this.bitmapFont as GameObject).GetComponent<UIFont>();
-			}
-			return this.bitmapFont as INGUIFont;
-		}
-		set
-		{
-			this.bitmapFont = (value as UnityEngine.Object);
-			this.trueTypeFont = null;
-		}
-	}
-
-	// Token: 0x1700001F RID: 31
-	// (get) Token: 0x06000231 RID: 561 RVA: 0x00019A14 File Offset: 0x00017C14
-	// (set) Token: 0x06000232 RID: 562 RVA: 0x00019A6C File Offset: 0x00017C6C
-	public UnityEngine.Object ambigiousFont
-	{
-		get
-		{
-			if (this.trueTypeFont != null)
-			{
-				return this.trueTypeFont;
-			}
-			if (!(this.bitmapFont != null))
-			{
-				return null;
-			}
-			if (this.bitmapFont is GameObject)
-			{
-				return (this.bitmapFont as GameObject).GetComponent<UIFont>();
-			}
-			return this.bitmapFont;
-		}
-		set
-		{
-			if (value is Font)
-			{
-				this.trueTypeFont = (value as Font);
-				this.bitmapFont = null;
-				return;
-			}
-			if (value is INGUIFont)
-			{
-				this.bitmapFont = value;
-				this.trueTypeFont = null;
-				return;
-			}
-			if (value is GameObject)
-			{
-				this.bitmapFont = (value as GameObject).GetComponent<UIFont>();
-				this.trueTypeFont = null;
-			}
-		}
-	}
-
-	// Token: 0x17000020 RID: 32
-	// (get) Token: 0x06000233 RID: 563 RVA: 0x00019ACC File Offset: 0x00017CCC
-	// (set) Token: 0x06000234 RID: 564 RVA: 0x00019AD4 File Offset: 0x00017CD4
-	[Obsolete("Use EventDelegate.Add(popup.onChange, YourCallback) instead, and UIPopupList.current.value to determine the state")]
-	public UIPopupList.LegacyEvent onSelectionChange
-	{
-		get
-		{
-			return this.mLegacyEvent;
-		}
-		set
-		{
-			this.mLegacyEvent = value;
-		}
-	}
-
-	// Token: 0x17000021 RID: 33
-	// (get) Token: 0x06000235 RID: 565 RVA: 0x00019ADD File Offset: 0x00017CDD
-	public static bool isOpen
-	{
-		get
-		{
-			return UIPopupList.current != null && (UIPopupList.mChild != null || UIPopupList.mFadeOutComplete > Time.unscaledTime);
-		}
-	}
-
-	// Token: 0x17000022 RID: 34
-	// (get) Token: 0x06000236 RID: 566 RVA: 0x00019B09 File Offset: 0x00017D09
-	// (set) Token: 0x06000237 RID: 567 RVA: 0x00019B11 File Offset: 0x00017D11
-	public virtual string value
-	{
-		get
-		{
-			return this.mSelectedItem;
-		}
-		set
-		{
-			this.Set(value, true);
-		}
-	}
-
-	// Token: 0x17000023 RID: 35
-	// (get) Token: 0x06000238 RID: 568 RVA: 0x00019B1C File Offset: 0x00017D1C
-	public virtual object data
-	{
-		get
-		{
-			int num = this.items.IndexOf(this.mSelectedItem);
-			if (num <= -1 || num >= this.itemData.Count)
-			{
-				return null;
-			}
-			return this.itemData[num];
-		}
-	}
-
-	// Token: 0x17000024 RID: 36
-	// (get) Token: 0x06000239 RID: 569 RVA: 0x00019B5C File Offset: 0x00017D5C
-	public Action callback
-	{
-		get
-		{
-			int num = this.items.IndexOf(this.mSelectedItem);
-			if (num <= -1 || num >= this.itemCallbacks.Count)
-			{
-				return null;
-			}
-			return this.itemCallbacks[num];
-		}
-	}
-
-	// Token: 0x17000025 RID: 37
-	// (get) Token: 0x0600023A RID: 570 RVA: 0x00019B9C File Offset: 0x00017D9C
-	// (set) Token: 0x0600023B RID: 571 RVA: 0x00019BD8 File Offset: 0x00017DD8
-	public bool isColliderEnabled
-	{
-		get
-		{
-			Collider component = base.GetComponent<Collider>();
-			if (component != null)
-			{
-				return component.enabled;
-			}
-			Collider2D component2 = base.GetComponent<Collider2D>();
-			return component2 != null && component2.enabled;
-		}
-		set
-		{
-			Collider component = base.GetComponent<Collider>();
-			if (component != null)
-			{
-				component.enabled = value;
-				return;
-			}
-			Collider2D component2 = base.GetComponent<Collider2D>();
-			if (component2 != null)
-			{
-				component2.enabled = value;
-				return;
-			}
-		}
-	}
-
-	// Token: 0x17000026 RID: 38
-	// (get) Token: 0x0600023C RID: 572 RVA: 0x00019C15 File Offset: 0x00017E15
-	protected bool isValid
-	{
-		get
-		{
-			return this.ambigiousFont != null;
-		}
-	}
-
-	// Token: 0x17000027 RID: 39
-	// (get) Token: 0x0600023D RID: 573 RVA: 0x00019C24 File Offset: 0x00017E24
-	protected int activeFontSize
-	{
-		get
-		{
-			INGUIFont font = this.font;
-			if (this.trueTypeFont != null || font == null)
-			{
-				return this.fontSize;
-			}
-			if (font == null)
-			{
-				return this.fontSize;
-			}
-			return font.defaultSize;
-		}
-	}
-
-	// Token: 0x17000028 RID: 40
-	// (get) Token: 0x0600023E RID: 574 RVA: 0x00019C60 File Offset: 0x00017E60
-	protected float activeFontScale
-	{
-		get
-		{
-			INGUIFont font = this.font;
-			if (this.trueTypeFont != null || font == null)
-			{
-				return 1f;
-			}
-			if (font == null)
-			{
-				return 1f;
-			}
-			return (float)this.fontSize / (float)font.defaultSize;
-		}
-	}
-
-	// Token: 0x17000029 RID: 41
-	// (get) Token: 0x0600023F RID: 575 RVA: 0x00019CA4 File Offset: 0x00017EA4
-	protected float fitScale
-	{
-		get
-		{
-			if (this.separatePanel)
-			{
-				float num = (float)this.items.Count * ((float)this.fontSize + this.padding.y) + this.padding.y;
-				float y = NGUITools.screenSize.y;
-				if (num > y)
-				{
-					return y / num;
-				}
-			}
-			else if (this.mPanel != null && this.mPanel.anchorCamera != null && this.mPanel.anchorCamera.orthographic)
-			{
-				float num2 = (float)this.items.Count * ((float)this.fontSize + this.padding.y) + this.padding.y;
-				float height = this.mPanel.height;
-				if (num2 > height)
-				{
-					return height / num2;
-				}
-			}
-			return 1f;
-		}
-	}
-
-	// Token: 0x06000240 RID: 576 RVA: 0x00019D72 File Offset: 0x00017F72
-	public void Set(string value, bool notify = true)
-	{
-		if (this.mSelectedItem != value)
-		{
-			this.mSelectedItem = value;
-			if (this.mSelectedItem == null)
-			{
-				return;
-			}
-			if (notify && this.mSelectedItem != null)
-			{
-				this.TriggerCallbacks();
-			}
-			if (!this.keepValue)
-			{
-				this.mSelectedItem = null;
-			}
-		}
-	}
-
-	// Token: 0x06000241 RID: 577 RVA: 0x00019DB2 File Offset: 0x00017FB2
-	public virtual void Clear()
-	{
-		this.items.Clear();
-		this.itemData.Clear();
-		this.itemCallbacks.Clear();
-	}
-
-	// Token: 0x06000242 RID: 578 RVA: 0x00019DD5 File Offset: 0x00017FD5
-	public virtual void AddItem(string text)
-	{
-		this.items.Add(text);
-		this.itemData.Add(text);
-		this.itemCallbacks.Add(null);
-	}
-
-	// Token: 0x06000243 RID: 579 RVA: 0x00019DFB File Offset: 0x00017FFB
-	public virtual void AddItem(string text, Action del)
-	{
-		this.items.Add(text);
-		this.itemCallbacks.Add(del);
-	}
-
-	// Token: 0x06000244 RID: 580 RVA: 0x00019E15 File Offset: 0x00018015
-	public virtual void AddItem(string text, object data, Action del = null)
-	{
-		this.items.Add(text);
-		this.itemData.Add(data);
-		this.itemCallbacks.Add(del);
-	}
-
-	// Token: 0x06000245 RID: 581 RVA: 0x00019E3C File Offset: 0x0001803C
-	public virtual void RemoveItem(string text)
-	{
-		int num = this.items.IndexOf(text);
-		if (num != -1)
-		{
-			this.items.RemoveAt(num);
-			this.itemData.RemoveAt(num);
-			if (num < this.itemCallbacks.Count)
-			{
-				this.itemCallbacks.RemoveAt(num);
-			}
-		}
-	}
-
-	// Token: 0x06000246 RID: 582 RVA: 0x00019E8C File Offset: 0x0001808C
-	public virtual void RemoveItemByData(object data)
-	{
-		int num = this.itemData.IndexOf(data);
-		if (num != -1)
-		{
-			this.items.RemoveAt(num);
-			this.itemData.RemoveAt(num);
-			if (num < this.itemCallbacks.Count)
-			{
-				this.itemCallbacks.RemoveAt(num);
-			}
-		}
-	}
-
-	// Token: 0x06000247 RID: 583 RVA: 0x00019EDC File Offset: 0x000180DC
-	protected void TriggerCallbacks()
-	{
-		if (!this.mExecuting)
-		{
-			this.mExecuting = true;
-			UIPopupList uipopupList = UIPopupList.current;
-			UIPopupList.current = this;
-			if (this.mLegacyEvent != null)
-			{
-				this.mLegacyEvent(this.mSelectedItem);
-			}
-			if (EventDelegate.IsValid(this.onChange))
-			{
-				EventDelegate.Execute(this.onChange);
-			}
-			else if (this.eventReceiver != null && !string.IsNullOrEmpty(this.functionName))
-			{
-				this.eventReceiver.SendMessage(this.functionName, this.mSelectedItem, SendMessageOptions.DontRequireReceiver);
-			}
-			Action callback = this.callback;
-			if (callback != null)
-			{
-				callback();
-			}
-			UIPopupList.current = uipopupList;
-			this.mExecuting = false;
-		}
-	}
-
-	// Token: 0x06000248 RID: 584 RVA: 0x00019F88 File Offset: 0x00018188
-	protected virtual void OnEnable()
-	{
-		if (EventDelegate.IsValid(this.onChange))
-		{
-			this.eventReceiver = null;
-			this.functionName = null;
-		}
-		INGUIFont font = this.font;
-		if (this.textScale != 0f)
-		{
-			this.fontSize = ((font != null) ? Mathf.RoundToInt((float)font.defaultSize * this.textScale) : 16);
-			this.textScale = 0f;
-		}
-		if (this.trueTypeFont == null && font != null && font.isDynamic && font.replacement == null)
-		{
-			this.trueTypeFont = font.dynamicFont;
-			this.bitmapFont = null;
-		}
-	}
-
-	// Token: 0x06000249 RID: 585 RVA: 0x0001A024 File Offset: 0x00018224
-	public virtual void Start()
-	{
-		if (this.mStarted)
-		{
-			return;
-		}
-		this.mStarted = true;
-		if (this.keepValue)
-		{
-			string value = this.mSelectedItem;
-			this.mSelectedItem = null;
-			this.value = value;
-		}
-		else
-		{
-			this.mSelectedItem = null;
-		}
-		if (this.textLabel != null)
-		{
-			EventDelegate.Add(this.onChange, new EventDelegate.Callback(this.textLabel.SetCurrentSelection));
-			this.textLabel = null;
-		}
-	}
-
-	// Token: 0x0600024A RID: 586 RVA: 0x0001A099 File Offset: 0x00018299
-	protected virtual void OnLocalize()
-	{
-		if (this.isLocalized)
-		{
-			this.TriggerCallbacks();
-		}
-	}
-
-	// Token: 0x0600024B RID: 587 RVA: 0x0001A0AC File Offset: 0x000182AC
-	protected virtual void Highlight(UILabel lbl, bool instant)
-	{
-		if (this.mHighlight != null)
-		{
-			this.mHighlightedLabel = lbl;
-			Vector3 highlightPosition = this.GetHighlightPosition();
-			if (!instant && this.isAnimated)
-			{
-				TweenPosition.Begin(this.mHighlight.gameObject, 0.1f, highlightPosition).method = UITweener.Method.EaseOut;
-				if (!this.mTweening)
-				{
-					this.mTweening = true;
-					base.StartCoroutine("UpdateTweenPosition");
-					return;
-				}
-			}
-			else
-			{
-				this.mHighlight.cachedTransform.localPosition = highlightPosition;
-			}
-		}
-	}
-
-	// Token: 0x0600024C RID: 588 RVA: 0x0001A12C File Offset: 0x0001832C
-	protected virtual Vector3 GetHighlightPosition()
-	{
-		if (this.mHighlightedLabel == null || this.mHighlight == null)
-		{
-			return Vector3.zero;
-		}
-		Vector4 border = this.mHighlight.border;
-		float num = 1f;
-		INGUIAtlas inguiatlas = this.atlas as INGUIAtlas;
-		if (inguiatlas != null)
-		{
-			num = inguiatlas.pixelSize;
-		}
-		float num2 = border.x * num;
-		float y = border.w * num;
-		return this.mHighlightedLabel.cachedTransform.localPosition + new Vector3(-num2, y, 1f);
-	}
-
-	// Token: 0x0600024D RID: 589 RVA: 0x0001A1B5 File Offset: 0x000183B5
-	protected virtual IEnumerator UpdateTweenPosition()
-	{
-		if (this.mHighlight != null && this.mHighlightedLabel != null)
-		{
-			TweenPosition tp = this.mHighlight.GetComponent<TweenPosition>();
-			while (tp != null && tp.enabled)
-			{
-				tp.to = this.GetHighlightPosition();
-				yield return null;
-			}
-			tp = null;
-		}
-		this.mTweening = false;
-		yield break;
-	}
-
-	// Token: 0x0600024E RID: 590 RVA: 0x0001A1C4 File Offset: 0x000183C4
-	protected virtual void OnItemHover(GameObject go, bool isOver)
-	{
-		if (isOver)
-		{
-			UILabel component = go.GetComponent<UILabel>();
-			this.Highlight(component, false);
-		}
-	}
-
-	// Token: 0x0600024F RID: 591 RVA: 0x0001A1E3 File Offset: 0x000183E3
-	protected virtual void OnItemPress(GameObject go, bool isPressed)
-	{
-		if (isPressed && this.selection == UIPopupList.Selection.OnPress)
-		{
-			this.OnItemClick(go);
-		}
-	}
-
-	// Token: 0x06000250 RID: 592 RVA: 0x0001A1F8 File Offset: 0x000183F8
-	protected virtual void OnItemClick(GameObject go)
-	{
-		this.Select(go.GetComponent<UILabel>(), true);
-		UIEventListener component = go.GetComponent<UIEventListener>();
-		this.value = (component.parameter as string);
-		UIPlaySound[] components = base.GetComponents<UIPlaySound>();
-		int i = 0;
-		int num = components.Length;
-		while (i < num)
-		{
-			UIPlaySound uiplaySound = components[i];
-			if (uiplaySound.trigger == UIPlaySound.Trigger.OnClick)
-			{
-				NGUITools.PlaySound(uiplaySound.audioClip, uiplaySound.volume, 1f);
-			}
-			i++;
-		}
-		this.CloseSelf();
-	}
-
-	// Token: 0x06000251 RID: 593 RVA: 0x0001A26E File Offset: 0x0001846E
-	private void Select(UILabel lbl, bool instant)
-	{
-		this.Highlight(lbl, instant);
-	}
-
-	// Token: 0x06000252 RID: 594 RVA: 0x0001A278 File Offset: 0x00018478
-	protected virtual void OnNavigate(KeyCode key)
-	{
-		if (base.enabled && UIPopupList.current == this)
-		{
-			int num = this.mLabelList.IndexOf(this.mHighlightedLabel);
-			if (num == -1)
-			{
-				num = 0;
-			}
-			if (key == KeyCode.UpArrow)
-			{
-				if (num > 0)
-				{
-					this.Select(this.mLabelList[num - 1], false);
-					return;
-				}
-			}
-			else if (key == KeyCode.DownArrow && num + 1 < this.mLabelList.Count)
-			{
-				this.Select(this.mLabelList[num + 1], false);
-			}
-		}
-	}
-
-	// Token: 0x06000253 RID: 595 RVA: 0x0001A305 File Offset: 0x00018505
-	protected virtual void OnKey(KeyCode key)
-	{
-		if (base.enabled && UIPopupList.current == this && (key == UICamera.current.cancelKey0 || key == UICamera.current.cancelKey1))
-		{
-			this.OnSelect(false);
-		}
-	}
-
-	// Token: 0x06000254 RID: 596 RVA: 0x0001A33D File Offset: 0x0001853D
-	protected virtual void OnDisable()
-	{
-		this.CloseSelf();
-	}
-
-	// Token: 0x06000255 RID: 597 RVA: 0x0001A348 File Offset: 0x00018548
-	protected virtual void OnSelect(bool isSelected)
-	{
-		if (!isSelected)
-		{
-			GameObject selectedObject = UICamera.selectedObject;
-			if (selectedObject == null || (!(selectedObject == UIPopupList.mChild) && (!(UIPopupList.mChild != null) || !(selectedObject != null) || !NGUITools.IsChild(UIPopupList.mChild.transform, selectedObject.transform))))
-			{
-				this.CloseSelf();
-			}
-		}
-	}
-
-	// Token: 0x06000256 RID: 598 RVA: 0x0001A3A7 File Offset: 0x000185A7
-	public static void Close()
-	{
-		if (UIPopupList.current != null)
-		{
-			UIPopupList.current.CloseSelf();
-			UIPopupList.current = null;
-		}
-	}
-
-	// Token: 0x06000257 RID: 599 RVA: 0x0001A3C8 File Offset: 0x000185C8
-	public virtual void CloseSelf()
-	{
-		if (UIPopupList.mChild != null && UIPopupList.current == this)
-		{
-			base.StopCoroutine("CloseIfUnselected");
-			this.mSelection = null;
-			this.mLabelList.Clear();
-			if (this.isAnimated)
-			{
-				UIWidget[] componentsInChildren = UIPopupList.mChild.GetComponentsInChildren<UIWidget>();
-				int i = 0;
-				int num = componentsInChildren.Length;
-				while (i < num)
-				{
-					UIWidget uiwidget = componentsInChildren[i];
-					Color color = uiwidget.color;
-					color.a = 0f;
-					TweenColor.Begin(uiwidget.gameObject, 0.15f, color).method = UITweener.Method.EaseOut;
-					i++;
-				}
-				Collider[] componentsInChildren2 = UIPopupList.mChild.GetComponentsInChildren<Collider>();
-				int j = 0;
-				int num2 = componentsInChildren2.Length;
-				while (j < num2)
-				{
-					componentsInChildren2[j].enabled = false;
-					j++;
-				}
-				UnityEngine.Object.Destroy(UIPopupList.mChild, 0.15f);
-				UIPopupList.mFadeOutComplete = Time.unscaledTime + Mathf.Max(0.1f, 0.15f);
-			}
-			else
-			{
-				UnityEngine.Object.Destroy(UIPopupList.mChild);
-				UIPopupList.mFadeOutComplete = Time.unscaledTime + 0.1f;
-			}
-			this.mBackground = null;
-			this.mHighlight = null;
-			UIPopupList.mChild = null;
-			UIPopupList.current = null;
-		}
-	}
-
-	// Token: 0x06000258 RID: 600 RVA: 0x0001A4F0 File Offset: 0x000186F0
-	protected virtual void AnimateColor(UIWidget widget)
-	{
-		Color color = widget.color;
-		widget.color = new Color(color.r, color.g, color.b, 0f);
-		TweenColor.Begin(widget.gameObject, 0.15f, color).method = UITweener.Method.EaseOut;
-	}
-
-	// Token: 0x06000259 RID: 601 RVA: 0x0001A540 File Offset: 0x00018740
-	protected virtual void AnimatePosition(UIWidget widget, bool placeAbove, float bottom)
-	{
-		Vector3 localPosition = widget.cachedTransform.localPosition;
-		Vector3 localPosition2 = placeAbove ? new Vector3(localPosition.x, bottom, localPosition.z) : new Vector3(localPosition.x, 0f, localPosition.z);
-		widget.cachedTransform.localPosition = localPosition2;
-		TweenPosition.Begin(widget.gameObject, 0.15f, localPosition).method = UITweener.Method.EaseOut;
-	}
-
-	// Token: 0x0600025A RID: 602 RVA: 0x0001A5AC File Offset: 0x000187AC
-	protected virtual void AnimateScale(UIWidget widget, bool placeAbove, float bottom)
-	{
-		GameObject gameObject = widget.gameObject;
-		Transform cachedTransform = widget.cachedTransform;
-		float fitScale = this.fitScale;
-		float num = (float)this.activeFontSize * this.activeFontScale + this.mBgBorder * 2f;
-		cachedTransform.localScale = new Vector3(fitScale, fitScale * num / (float)widget.height, fitScale);
-		TweenScale.Begin(gameObject, 0.15f, Vector3.one).method = UITweener.Method.EaseOut;
-		if (placeAbove)
-		{
-			Vector3 localPosition = cachedTransform.localPosition;
-			cachedTransform.localPosition = new Vector3(localPosition.x, localPosition.y - fitScale * (float)widget.height + fitScale * num, localPosition.z);
-			TweenPosition.Begin(gameObject, 0.15f, localPosition).method = UITweener.Method.EaseOut;
-		}
-	}
-
-	// Token: 0x0600025B RID: 603 RVA: 0x0001A664 File Offset: 0x00018864
-	protected void Animate(UIWidget widget, bool placeAbove, float bottom)
-	{
-		this.AnimateColor(widget);
-		this.AnimatePosition(widget, placeAbove, bottom);
-	}
-
-	// Token: 0x0600025C RID: 604 RVA: 0x0001A678 File Offset: 0x00018878
-	protected virtual void OnClick()
-	{
-		if (this.mOpenFrame == Time.frameCount)
-		{
-			return;
-		}
-		if (!(UIPopupList.mChild == null))
-		{
-			if (this.mHighlightedLabel != null)
-			{
-				this.OnItemPress(this.mHighlightedLabel.gameObject, true);
-			}
-			return;
-		}
-		if (this.openOn == UIPopupList.OpenOn.DoubleClick || this.openOn == UIPopupList.OpenOn.Manual)
-		{
-			return;
-		}
-		if (this.openOn == UIPopupList.OpenOn.RightClick && UICamera.currentTouchID != -2)
-		{
-			return;
-		}
-		this.Show();
-	}
-
-	// Token: 0x0600025D RID: 605 RVA: 0x0001A6ED File Offset: 0x000188ED
-	protected virtual void OnDoubleClick()
-	{
-		if (this.openOn == UIPopupList.OpenOn.DoubleClick)
-		{
-			this.Show();
-		}
-	}
-
-	// Token: 0x0600025E RID: 606 RVA: 0x0001A6FE File Offset: 0x000188FE
-	private IEnumerator CloseIfUnselected()
-	{
-		GameObject selectedObject;
-		do
-		{
-			yield return null;
-			selectedObject = UICamera.selectedObject;
-		}
-		while (!(selectedObject != this.mSelection) || (!(selectedObject == null) && (selectedObject == UIPopupList.mChild || NGUITools.IsChild(UIPopupList.mChild.transform, selectedObject.transform))));
-		this.CloseSelf();
-		yield break;
-	}
-
-	// Token: 0x0600025F RID: 607 RVA: 0x0001A710 File Offset: 0x00018910
-	public virtual void Show()
-	{
-		if (!base.enabled || !NGUITools.GetActive(base.gameObject) || !(UIPopupList.mChild == null) || !this.isValid || this.items.Count <= 0)
-		{
-			this.OnSelect(false);
-			return;
-		}
-		this.mLabelList.Clear();
-		base.StopCoroutine("CloseIfUnselected");
-		UICamera.selectedObject = (UICamera.hoveredObject ?? base.gameObject);
-		this.mSelection = UICamera.selectedObject;
-		this.source = this.mSelection;
-		if (this.source == null)
-		{
-			Debug.LogError("Popup list needs a source object...");
-			return;
-		}
-		this.mOpenFrame = Time.frameCount;
-		if (this.mPanel == null)
-		{
-			this.mPanel = UIPanel.Find(base.transform);
-			if (this.mPanel == null)
-			{
-				return;
-			}
-		}
-		UIPopupList.mChild = new GameObject("Drop-down List");
-		UIPopupList.mChild.layer = base.gameObject.layer;
-		if (this.separatePanel)
-		{
-			if (base.GetComponent<Collider>() != null)
-			{
-				UIPopupList.mChild.AddComponent<Rigidbody>().isKinematic = true;
-			}
-			else if (base.GetComponent<Collider2D>() != null)
-			{
-				UIPopupList.mChild.AddComponent<Rigidbody2D>().isKinematic = true;
-			}
-			UIPanel uipanel = UIPopupList.mChild.AddComponent<UIPanel>();
-			uipanel.depth = 1000000;
-			uipanel.sortingOrder = this.mPanel.sortingOrder;
-		}
-		UIPopupList.current = this;
-		Transform cachedTransform = this.mPanel.cachedTransform;
-		Transform transform = UIPopupList.mChild.transform;
-		transform.parent = cachedTransform;
-		Transform parent = cachedTransform;
-		if (this.separatePanel)
-		{
-			UIRoot uiroot = this.mPanel.GetComponentInParent<UIRoot>();
-			if (uiroot == null && UIRoot.list.Count != 0)
-			{
-				uiroot = UIRoot.list[0];
-			}
-			if (uiroot != null)
-			{
-				parent = uiroot.transform;
-			}
-		}
-		Vector3 vector;
-		Vector3 vector2;
-		if (this.openOn == UIPopupList.OpenOn.Manual && this.mSelection != base.gameObject)
-		{
-			this.startingPosition = UICamera.lastEventPosition;
-			vector = cachedTransform.InverseTransformPoint(this.mPanel.anchorCamera.ScreenToWorldPoint(this.startingPosition));
-			vector2 = vector;
-			transform.localPosition = vector;
-			this.startingPosition = transform.position;
-		}
-		else
-		{
-			Bounds bounds = NGUIMath.CalculateRelativeWidgetBounds(cachedTransform, base.transform, false, false);
-			vector = bounds.min;
-			vector2 = bounds.max;
-			transform.localPosition = vector;
-			this.startingPosition = transform.position;
-		}
-		base.StartCoroutine("CloseIfUnselected");
-		float fitScale = this.fitScale;
-		transform.localRotation = Quaternion.identity;
-		transform.localScale = new Vector3(fitScale, fitScale, fitScale);
-		int num = this.separatePanel ? 0 : NGUITools.CalculateNextDepth(this.mPanel.gameObject);
-		if (this.background2DSprite != null)
-		{
-			UI2DSprite ui2DSprite = UIPopupList.mChild.AddWidget(num);
-			ui2DSprite.sprite2D = this.background2DSprite;
-			this.mBackground = ui2DSprite;
-		}
-		else
-		{
-			if (!(this.atlas != null))
-			{
-				return;
-			}
-			this.mBackground = UIPopupList.mChild.AddSprite(this.atlas as INGUIAtlas, this.backgroundSprite, num);
-		}
-		bool flag = this.position == UIPopupList.Position.Above;
-		if (this.position == UIPopupList.Position.Auto)
-		{
-			UICamera uicamera = UICamera.FindCameraForLayer(this.mSelection.layer);
-			if (uicamera != null)
-			{
-				flag = (uicamera.cachedCamera.WorldToViewportPoint(this.startingPosition).y < 0.5f);
-			}
-		}
-		this.mBackground.pivot = UIWidget.Pivot.TopLeft;
-		this.mBackground.color = this.backgroundColor;
-		Vector4 border = this.mBackground.border;
-		this.mBgBorder = border.y;
-		this.mBackground.cachedTransform.localPosition = new Vector3(0f, flag ? (border.y * 2f - (float)this.overlap) : ((float)this.overlap), 0f);
-		if (this.highlight2DSprite != null)
-		{
-			UI2DSprite ui2DSprite2 = UIPopupList.mChild.AddWidget(num + 1);
-			ui2DSprite2.sprite2D = this.highlight2DSprite;
-			this.mHighlight = ui2DSprite2;
-		}
-		else
-		{
-			if (!(this.atlas != null))
-			{
-				return;
-			}
-			this.mHighlight = UIPopupList.mChild.AddSprite(this.atlas as INGUIAtlas, this.highlightSprite, num + 1);
-		}
-		float num2 = 0f;
-		float num3 = 0f;
-		if (this.mHighlight.hasBorder)
-		{
-			num2 = this.mHighlight.border.w;
-			num3 = this.mHighlight.border.x;
-		}
-		this.mHighlight.pivot = UIWidget.Pivot.TopLeft;
-		this.mHighlight.color = this.highlightColor;
-		float num4 = (float)this.activeFontSize * this.activeFontScale;
-		float num5 = num4 + this.padding.y;
-		float num6 = 0f;
-		float num7 = flag ? (border.y - this.padding.y - (float)this.overlap) : (-this.padding.y - border.y + (float)this.overlap);
-		float num8 = border.y * 2f + this.padding.y;
-		List<UILabel> list = new List<UILabel>();
-		if (!this.items.Contains(this.mSelectedItem))
-		{
-			this.mSelectedItem = null;
-		}
-		int i = 0;
-		int count = this.items.Count;
-		while (i < count)
-		{
-			string text = this.items[i];
-			UILabel uilabel = UIPopupList.mChild.AddWidget(this.mBackground.depth + 2);
-			uilabel.name = i.ToString();
-			uilabel.pivot = UIWidget.Pivot.TopLeft;
-			uilabel.bitmapFont = (this.bitmapFont as INGUIFont);
-			uilabel.trueTypeFont = this.trueTypeFont;
-			uilabel.fontSize = this.fontSize;
-			uilabel.fontStyle = this.fontStyle;
-			uilabel.text = (this.isLocalized ? Localization.Get(text, true) : text);
-			uilabel.modifier = this.textModifier;
-			uilabel.color = this.textColor;
-			uilabel.cachedTransform.localPosition = new Vector3(border.x + this.padding.x - uilabel.pivotOffset.x, num7, -1f);
-			uilabel.overflowMethod = UILabel.Overflow.ResizeFreely;
-			uilabel.alignment = this.alignment;
-			uilabel.symbolStyle = NGUIText.SymbolStyle.Colored;
-			list.Add(uilabel);
-			num8 += num5;
-			num7 -= num5;
-			num6 = Mathf.Max(num6, uilabel.printedSize.x);
-			UIEventListener uieventListener = UIEventListener.Get(uilabel.gameObject);
-			uieventListener.onHover = new UIEventListener.BoolDelegate(this.OnItemHover);
-			uieventListener.onPress = new UIEventListener.BoolDelegate(this.OnItemPress);
-			uieventListener.onClick = new UIEventListener.VoidDelegate(this.OnItemClick);
-			uieventListener.parameter = text;
-			if (this.mSelectedItem == text || (i == 0 && string.IsNullOrEmpty(this.mSelectedItem)))
-			{
-				this.Highlight(uilabel, true);
-			}
-			this.mLabelList.Add(uilabel);
-			i++;
-		}
-		num6 = Mathf.Max(num6, vector2.x - vector.x - (border.x + this.padding.x) * 2f);
-		float num9 = num6;
-		Vector3 vector3 = new Vector3(num9 * 0.5f, -num4 * 0.5f, 0f);
-		Vector3 vector4 = new Vector3(num9, num4 + this.padding.y, 1f);
-		int j = 0;
-		int count2 = list.Count;
-		while (j < count2)
-		{
-			UILabel uilabel2 = list[j];
-			NGUITools.AddWidgetCollider(uilabel2.gameObject);
-			uilabel2.autoResizeBoxCollider = false;
-			BoxCollider component = uilabel2.GetComponent<BoxCollider>();
-			if (component != null)
-			{
-				vector3.z = component.center.z;
-				component.center = vector3;
-				component.size = vector4;
-			}
-			else
-			{
-				BoxCollider2D component2 = uilabel2.GetComponent<BoxCollider2D>();
-				component2.offset = vector3;
-				component2.size = vector4;
-			}
-			j++;
-		}
-		int width = Mathf.RoundToInt(num6);
-		num6 += (border.x + this.padding.x) * 2f;
-		num7 -= border.y;
-		this.mBackground.width = Mathf.RoundToInt(num6);
-		this.mBackground.height = Mathf.RoundToInt(num8);
-		int k = 0;
-		int count3 = list.Count;
-		while (k < count3)
-		{
-			UILabel uilabel3 = list[k];
-			uilabel3.overflowMethod = UILabel.Overflow.ShrinkContent;
-			uilabel3.width = width;
-			k++;
-		}
-		float num10 = 2f;
-		INGUIAtlas inguiatlas = this.atlas as INGUIAtlas;
-		if (inguiatlas != null)
-		{
-			num10 *= inguiatlas.pixelSize;
-		}
-		float f = num6 - (border.x + this.padding.x) * 2f + num3 * num10;
-		float f2 = num4 + num2 * num10;
-		this.mHighlight.width = Mathf.RoundToInt(f);
-		this.mHighlight.height = Mathf.RoundToInt(f2);
-		if (this.isAnimated)
-		{
-			this.AnimateColor(this.mBackground);
-			if (Time.timeScale == 0f || Time.timeScale >= 0.1f)
-			{
-				float bottom = num7 + num4;
-				this.Animate(this.mHighlight, flag, bottom);
-				int l = 0;
-				int count4 = list.Count;
-				while (l < count4)
-				{
-					this.Animate(list[l], flag, bottom);
-					l++;
-				}
-				this.AnimateScale(this.mBackground, flag, bottom);
-			}
-		}
-		if (flag)
-		{
-			float num11 = border.y * fitScale;
-			vector.y = vector2.y - border.y * fitScale;
-			vector2.y = vector.y + ((float)this.mBackground.height - border.y * 2f) * fitScale;
-			vector2.x = vector.x + (float)this.mBackground.width * fitScale;
-			transform.localPosition = new Vector3(vector.x, vector2.y - num11, vector.z);
-		}
-		else
-		{
-			vector2.y = vector.y + border.y * fitScale;
-			vector.y = vector2.y - (float)this.mBackground.height * fitScale;
-			vector2.x = vector.x + (float)this.mBackground.width * fitScale;
-		}
-		UIPanel uipanel2 = this.mPanel;
-		for (;;)
-		{
-			UIRect parent2 = uipanel2.parent;
-			if (parent2 == null)
-			{
-				break;
-			}
-			UIPanel componentInParent = parent2.GetComponentInParent<UIPanel>();
-			if (componentInParent == null)
-			{
-				break;
-			}
-			uipanel2 = componentInParent;
-		}
-		if (cachedTransform != null)
-		{
-			vector = cachedTransform.TransformPoint(vector);
-			vector2 = cachedTransform.TransformPoint(vector2);
-			vector = uipanel2.cachedTransform.InverseTransformPoint(vector);
-			vector2 = uipanel2.cachedTransform.InverseTransformPoint(vector2);
-			float pixelSizeAdjustment = UIRoot.GetPixelSizeAdjustment(base.gameObject);
-			vector /= pixelSizeAdjustment;
-			vector2 /= pixelSizeAdjustment;
-		}
-		Vector3 b = uipanel2.CalculateConstrainOffset(vector, vector2);
-		Vector3 vector5 = transform.localPosition + b;
-		vector5.x = Mathf.Round(vector5.x);
-		vector5.y = Mathf.Round(vector5.y);
-		transform.localPosition = vector5;
-		transform.parent = parent;
-	}
-
-	// Token: 0x040003D6 RID: 982
-	public static UIPopupList current;
-
-	// Token: 0x040003D7 RID: 983
-	protected static GameObject mChild;
-
-	// Token: 0x040003D8 RID: 984
-	protected static float mFadeOutComplete;
-
-	// Token: 0x040003D9 RID: 985
-	private const float animSpeed = 0.15f;
-
-	// Token: 0x040003DA RID: 986
-	public UnityEngine.Object atlas;
-
-	// Token: 0x040003DB RID: 987
-	public UnityEngine.Object bitmapFont;
-
-	// Token: 0x040003DC RID: 988
-	public Font trueTypeFont;
-
-	// Token: 0x040003DD RID: 989
-	public int fontSize = 16;
-
-	// Token: 0x040003DE RID: 990
-	public FontStyle fontStyle;
-
-	// Token: 0x040003DF RID: 991
-	public string backgroundSprite;
-
-	// Token: 0x040003E0 RID: 992
-	public string highlightSprite;
-
-	// Token: 0x040003E1 RID: 993
-	public Sprite background2DSprite;
-
-	// Token: 0x040003E2 RID: 994
-	public Sprite highlight2DSprite;
-
-	// Token: 0x040003E3 RID: 995
-	public UIPopupList.Position position;
-
-	// Token: 0x040003E4 RID: 996
-	public UIPopupList.Selection selection;
-
-	// Token: 0x040003E5 RID: 997
-	public NGUIText.Alignment alignment = NGUIText.Alignment.Left;
-
-	// Token: 0x040003E6 RID: 998
-	public List<string> items = new List<string>();
-
-	// Token: 0x040003E7 RID: 999
-	public List<object> itemData = new List<object>();
-
-	// Token: 0x040003E8 RID: 1000
-	public List<Action> itemCallbacks = new List<Action>();
-
-	// Token: 0x040003E9 RID: 1001
-	public Vector2 padding = new Vector3(4f, 4f);
-
-	// Token: 0x040003EA RID: 1002
-	public Color textColor = Color.white;
-
-	// Token: 0x040003EB RID: 1003
-	public Color backgroundColor = Color.white;
-
-	// Token: 0x040003EC RID: 1004
-	public Color highlightColor = new Color(0.88235295f, 0.78431374f, 0.5882353f, 1f);
-
-	// Token: 0x040003ED RID: 1005
-	public bool isAnimated = true;
-
-	// Token: 0x040003EE RID: 1006
-	public bool isLocalized;
-
-	// Token: 0x040003EF RID: 1007
-	public UILabel.Modifier textModifier;
-
-	// Token: 0x040003F0 RID: 1008
-	public bool separatePanel = true;
-
-	// Token: 0x040003F1 RID: 1009
-	public int overlap;
-
-	// Token: 0x040003F2 RID: 1010
-	public UIPopupList.OpenOn openOn;
-
-	// Token: 0x040003F3 RID: 1011
-	public List<EventDelegate> onChange = new List<EventDelegate>();
-
-	// Token: 0x040003F4 RID: 1012
-	[HideInInspector]
-	[SerializeField]
-	protected string mSelectedItem;
-
-	// Token: 0x040003F5 RID: 1013
-	[HideInInspector]
-	[SerializeField]
-	protected UIPanel mPanel;
-
-	// Token: 0x040003F6 RID: 1014
-	[HideInInspector]
-	[SerializeField]
-	protected UIBasicSprite mBackground;
-
-	// Token: 0x040003F7 RID: 1015
-	[HideInInspector]
-	[SerializeField]
-	protected UIBasicSprite mHighlight;
-
-	// Token: 0x040003F8 RID: 1016
-	[HideInInspector]
-	[SerializeField]
-	protected UILabel mHighlightedLabel;
-
-	// Token: 0x040003F9 RID: 1017
-	[HideInInspector]
-	[SerializeField]
-	protected List<UILabel> mLabelList = new List<UILabel>();
-
-	// Token: 0x040003FA RID: 1018
-	[HideInInspector]
-	[SerializeField]
-	protected float mBgBorder;
-
-	// Token: 0x040003FB RID: 1019
-	[Tooltip("Whether the selection will be persistent even after the popup list is closed. By default the selection is cleared when the popup is closed so that the same selection can be chosen again the next time the popup list is opened. If enabled, the selection will persist, but selecting the same choice in succession will not result in the onChange notification being triggered more than once.")]
-	public bool keepValue;
-
-	// Token: 0x040003FC RID: 1020
-	[NonSerialized]
-	protected GameObject mSelection;
-
-	// Token: 0x040003FD RID: 1021
-	[NonSerialized]
-	protected int mOpenFrame;
-
-	// Token: 0x040003FE RID: 1022
-	[HideInInspector]
-	[SerializeField]
-	private GameObject eventReceiver;
-
-	// Token: 0x040003FF RID: 1023
-	[HideInInspector]
-	[SerializeField]
-	private string functionName = "OnSelectionChange";
-
-	// Token: 0x04000400 RID: 1024
-	[HideInInspector]
-	[SerializeField]
-	private float textScale;
-
-	// Token: 0x04000401 RID: 1025
-	[HideInInspector]
-	[SerializeField]
-	private UILabel textLabel;
-
-	// Token: 0x04000402 RID: 1026
-	[NonSerialized]
-	public Vector3 startingPosition;
-
-	// Token: 0x04000403 RID: 1027
-	private UIPopupList.LegacyEvent mLegacyEvent;
-
-	// Token: 0x04000404 RID: 1028
-	[NonSerialized]
-	protected bool mExecuting;
-
-	// Token: 0x04000405 RID: 1029
-	[NonSerialized]
-	protected bool mStarted;
-
-	// Token: 0x04000406 RID: 1030
-	protected bool mTweening;
-
-	// Token: 0x04000407 RID: 1031
-	public GameObject source;
-
-	// Token: 0x020005DD RID: 1501
-	[DoNotObfuscateNGUI]
-	public enum Position
-	{
-		// Token: 0x04004E66 RID: 20070
-		Auto,
-		// Token: 0x04004E67 RID: 20071
-		Above,
-		// Token: 0x04004E68 RID: 20072
-		Below
-	}
-
-	// Token: 0x020005DE RID: 1502
-	[DoNotObfuscateNGUI]
-	public enum Selection
-	{
-		// Token: 0x04004E6A RID: 20074
-		OnPress,
-		// Token: 0x04004E6B RID: 20075
-		OnClick
-	}
-
-	// Token: 0x020005DF RID: 1503
-	[DoNotObfuscateNGUI]
-	public enum OpenOn
-	{
-		// Token: 0x04004E6D RID: 20077
-		ClickOrTap,
-		// Token: 0x04004E6E RID: 20078
-		RightClick,
-		// Token: 0x04004E6F RID: 20079
-		DoubleClick,
-		// Token: 0x04004E70 RID: 20080
-		Manual
-	}
-
-	// Token: 0x020005E0 RID: 1504
-	// (Invoke) Token: 0x06002562 RID: 9570
-	public delegate void LegacyEvent(string val);
+  public static UIPopupList current;
+  protected static GameObject mChild;
+  protected static float mFadeOutComplete;
+  private const float animSpeed = 0.15f;
+  public UnityEngine.Object atlas;
+  public UnityEngine.Object bitmapFont;
+  public Font trueTypeFont;
+  public int fontSize = 16;
+  public FontStyle fontStyle;
+  public string backgroundSprite;
+  public string highlightSprite;
+  public UnityEngine.Sprite background2DSprite;
+  public UnityEngine.Sprite highlight2DSprite;
+  public UIPopupList.Position position;
+  public UIPopupList.Selection selection;
+  public NGUIText.Alignment alignment = NGUIText.Alignment.Left;
+  public List<string> items = new List<string>();
+  public List<object> itemData = new List<object>();
+  public List<System.Action> itemCallbacks = new List<System.Action>();
+  public Vector2 padding = (Vector2) new Vector3(4f, 4f);
+  public Color textColor = Color.white;
+  public Color backgroundColor = Color.white;
+  public Color highlightColor = new Color(0.8823529f, 0.7843137f, 0.5882353f, 1f);
+  public bool isAnimated = true;
+  public bool isLocalized;
+  public UILabel.Modifier textModifier;
+  public bool separatePanel = true;
+  public int overlap;
+  public UIPopupList.OpenOn openOn;
+  public List<EventDelegate> onChange = new List<EventDelegate>();
+  [HideInInspector]
+  [SerializeField]
+  protected string mSelectedItem;
+  [HideInInspector]
+  [SerializeField]
+  protected UIPanel mPanel;
+  [HideInInspector]
+  [SerializeField]
+  protected UIBasicSprite mBackground;
+  [HideInInspector]
+  [SerializeField]
+  protected UIBasicSprite mHighlight;
+  [HideInInspector]
+  [SerializeField]
+  protected UILabel mHighlightedLabel;
+  [HideInInspector]
+  [SerializeField]
+  protected List<UILabel> mLabelList = new List<UILabel>();
+  [HideInInspector]
+  [SerializeField]
+  protected float mBgBorder;
+  [Tooltip("Whether the selection will be persistent even after the popup list is closed. By default the selection is cleared when the popup is closed so that the same selection can be chosen again the next time the popup list is opened. If enabled, the selection will persist, but selecting the same choice in succession will not result in the onChange notification being triggered more than once.")]
+  public bool keepValue;
+  [NonSerialized]
+  protected GameObject mSelection;
+  [NonSerialized]
+  protected int mOpenFrame;
+  [HideInInspector]
+  [SerializeField]
+  private GameObject eventReceiver;
+  [HideInInspector]
+  [SerializeField]
+  private string functionName = "OnSelectionChange";
+  [HideInInspector]
+  [SerializeField]
+  private float textScale;
+  [HideInInspector]
+  [SerializeField]
+  private UILabel textLabel;
+  [NonSerialized]
+  public Vector3 startingPosition;
+  private UIPopupList.LegacyEvent mLegacyEvent;
+  [NonSerialized]
+  protected bool mExecuting;
+  [NonSerialized]
+  protected bool mStarted;
+  protected bool mTweening;
+  public GameObject source;
+
+  public INGUIFont font
+  {
+    get
+    {
+      if (!(this.bitmapFont != (UnityEngine.Object) null))
+        return (INGUIFont) null;
+      return this.bitmapFont is GameObject ? (INGUIFont) (this.bitmapFont as GameObject).GetComponent<UIFont>() : this.bitmapFont as INGUIFont;
+    }
+    set
+    {
+      this.bitmapFont = value as UnityEngine.Object;
+      this.trueTypeFont = (Font) null;
+    }
+  }
+
+  public UnityEngine.Object ambigiousFont
+  {
+    get
+    {
+      if ((UnityEngine.Object) this.trueTypeFont != (UnityEngine.Object) null)
+        return (UnityEngine.Object) this.trueTypeFont;
+      if (!(this.bitmapFont != (UnityEngine.Object) null))
+        return (UnityEngine.Object) null;
+      return this.bitmapFont is GameObject ? (UnityEngine.Object) (this.bitmapFont as GameObject).GetComponent<UIFont>() : this.bitmapFont;
+    }
+    set
+    {
+      switch (value)
+      {
+        case Font _:
+          this.trueTypeFont = value as Font;
+          this.bitmapFont = (UnityEngine.Object) null;
+          break;
+        case INGUIFont _:
+          this.bitmapFont = value;
+          this.trueTypeFont = (Font) null;
+          break;
+        case GameObject _:
+          this.bitmapFont = (UnityEngine.Object) (value as GameObject).GetComponent<UIFont>();
+          this.trueTypeFont = (Font) null;
+          break;
+      }
+    }
+  }
+
+  [Obsolete("Use EventDelegate.Add(popup.onChange, YourCallback) instead, and UIPopupList.current.value to determine the state")]
+  public UIPopupList.LegacyEvent onSelectionChange
+  {
+    get => this.mLegacyEvent;
+    set => this.mLegacyEvent = value;
+  }
+
+  public static bool isOpen
+  {
+    get
+    {
+      if (!((UnityEngine.Object) UIPopupList.current != (UnityEngine.Object) null))
+        return false;
+      return (UnityEngine.Object) UIPopupList.mChild != (UnityEngine.Object) null || (double) UIPopupList.mFadeOutComplete > (double) Time.unscaledTime;
+    }
+  }
+
+  public virtual string value
+  {
+    get => this.mSelectedItem;
+    set => this.Set(value);
+  }
+
+  public virtual object data
+  {
+    get
+    {
+      int index = this.items.IndexOf(this.mSelectedItem);
+      return index <= -1 || index >= this.itemData.Count ? (object) null : this.itemData[index];
+    }
+  }
+
+  public System.Action callback
+  {
+    get
+    {
+      int index = this.items.IndexOf(this.mSelectedItem);
+      return index <= -1 || index >= this.itemCallbacks.Count ? (System.Action) null : this.itemCallbacks[index];
+    }
+  }
+
+  public bool isColliderEnabled
+  {
+    get
+    {
+      Collider component1 = this.GetComponent<Collider>();
+      if ((UnityEngine.Object) component1 != (UnityEngine.Object) null)
+        return component1.enabled;
+      Collider2D component2 = this.GetComponent<Collider2D>();
+      return (UnityEngine.Object) component2 != (UnityEngine.Object) null && component2.enabled;
+    }
+    set
+    {
+      Collider component1 = this.GetComponent<Collider>();
+      if ((UnityEngine.Object) component1 != (UnityEngine.Object) null)
+      {
+        component1.enabled = value;
+      }
+      else
+      {
+        Collider2D component2 = this.GetComponent<Collider2D>();
+        if (!((UnityEngine.Object) component2 != (UnityEngine.Object) null))
+          return;
+        component2.enabled = value;
+      }
+    }
+  }
+
+  protected bool isValid => this.ambigiousFont != (UnityEngine.Object) null;
+
+  protected int activeFontSize
+  {
+    get
+    {
+      INGUIFont font = this.font;
+      return (UnityEngine.Object) this.trueTypeFont != (UnityEngine.Object) null || font == null || font == null ? this.fontSize : font.defaultSize;
+    }
+  }
+
+  protected float activeFontScale
+  {
+    get
+    {
+      INGUIFont font = this.font;
+      return (UnityEngine.Object) this.trueTypeFont != (UnityEngine.Object) null || font == null || font == null ? 1f : (float) this.fontSize / (float) font.defaultSize;
+    }
+  }
+
+  protected float fitScale
+  {
+    get
+    {
+      if (this.separatePanel)
+      {
+        float num = (float) this.items.Count * ((float) this.fontSize + this.padding.y) + this.padding.y;
+        float y = NGUITools.screenSize.y;
+        if ((double) num > (double) y)
+          return y / num;
+      }
+      else if ((UnityEngine.Object) this.mPanel != (UnityEngine.Object) null && (UnityEngine.Object) this.mPanel.anchorCamera != (UnityEngine.Object) null && this.mPanel.anchorCamera.orthographic)
+      {
+        float num = (float) this.items.Count * ((float) this.fontSize + this.padding.y) + this.padding.y;
+        float height = this.mPanel.height;
+        if ((double) num > (double) height)
+          return height / num;
+      }
+      return 1f;
+    }
+  }
+
+  public void Set(string value, bool notify = true)
+  {
+    if (!(this.mSelectedItem != value))
+      return;
+    this.mSelectedItem = value;
+    if (this.mSelectedItem == null)
+      return;
+    if (notify && this.mSelectedItem != null)
+      this.TriggerCallbacks();
+    if (this.keepValue)
+      return;
+    this.mSelectedItem = (string) null;
+  }
+
+  public virtual void Clear()
+  {
+    this.items.Clear();
+    this.itemData.Clear();
+    this.itemCallbacks.Clear();
+  }
+
+  public virtual void AddItem(string text)
+  {
+    this.items.Add(text);
+    this.itemData.Add((object) text);
+    this.itemCallbacks.Add((System.Action) null);
+  }
+
+  public virtual void AddItem(string text, System.Action del)
+  {
+    this.items.Add(text);
+    this.itemCallbacks.Add(del);
+  }
+
+  public virtual void AddItem(string text, object data, System.Action del = null)
+  {
+    this.items.Add(text);
+    this.itemData.Add(data);
+    this.itemCallbacks.Add(del);
+  }
+
+  public virtual void RemoveItem(string text)
+  {
+    int index = this.items.IndexOf(text);
+    if (index == -1)
+      return;
+    this.items.RemoveAt(index);
+    this.itemData.RemoveAt(index);
+    if (index >= this.itemCallbacks.Count)
+      return;
+    this.itemCallbacks.RemoveAt(index);
+  }
+
+  public virtual void RemoveItemByData(object data)
+  {
+    int index = this.itemData.IndexOf(data);
+    if (index == -1)
+      return;
+    this.items.RemoveAt(index);
+    this.itemData.RemoveAt(index);
+    if (index >= this.itemCallbacks.Count)
+      return;
+    this.itemCallbacks.RemoveAt(index);
+  }
+
+  protected void TriggerCallbacks()
+  {
+    if (this.mExecuting)
+      return;
+    this.mExecuting = true;
+    UIPopupList current = UIPopupList.current;
+    UIPopupList.current = this;
+    if (this.mLegacyEvent != null)
+      this.mLegacyEvent(this.mSelectedItem);
+    if (EventDelegate.IsValid(this.onChange))
+      EventDelegate.Execute(this.onChange);
+    else if ((UnityEngine.Object) this.eventReceiver != (UnityEngine.Object) null && !string.IsNullOrEmpty(this.functionName))
+      this.eventReceiver.SendMessage(this.functionName, (object) this.mSelectedItem, SendMessageOptions.DontRequireReceiver);
+    System.Action callback = this.callback;
+    if (callback != null)
+      callback();
+    UIPopupList.current = current;
+    this.mExecuting = false;
+  }
+
+  protected virtual void OnEnable()
+  {
+    if (EventDelegate.IsValid(this.onChange))
+    {
+      this.eventReceiver = (GameObject) null;
+      this.functionName = (string) null;
+    }
+    INGUIFont font = this.font;
+    if ((double) this.textScale != 0.0)
+    {
+      this.fontSize = font != null ? Mathf.RoundToInt((float) font.defaultSize * this.textScale) : 16;
+      this.textScale = 0.0f;
+    }
+    if (!((UnityEngine.Object) this.trueTypeFont == (UnityEngine.Object) null) || font == null || !font.isDynamic || font.replacement != null)
+      return;
+    this.trueTypeFont = font.dynamicFont;
+    this.bitmapFont = (UnityEngine.Object) null;
+  }
+
+  public virtual void Start()
+  {
+    if (this.mStarted)
+      return;
+    this.mStarted = true;
+    if (this.keepValue)
+    {
+      string mSelectedItem = this.mSelectedItem;
+      this.mSelectedItem = (string) null;
+      this.value = mSelectedItem;
+    }
+    else
+      this.mSelectedItem = (string) null;
+    if (!((UnityEngine.Object) this.textLabel != (UnityEngine.Object) null))
+      return;
+    EventDelegate.Add(this.onChange, new EventDelegate.Callback(this.textLabel.SetCurrentSelection));
+    this.textLabel = (UILabel) null;
+  }
+
+  protected virtual void OnLocalize()
+  {
+    if (!this.isLocalized)
+      return;
+    this.TriggerCallbacks();
+  }
+
+  protected virtual void Highlight(UILabel lbl, bool instant)
+  {
+    if (!((UnityEngine.Object) this.mHighlight != (UnityEngine.Object) null))
+      return;
+    this.mHighlightedLabel = lbl;
+    Vector3 highlightPosition = this.GetHighlightPosition();
+    if (!instant && this.isAnimated)
+    {
+      TweenPosition.Begin(this.mHighlight.gameObject, 0.1f, highlightPosition).method = UITweener.Method.EaseOut;
+      if (this.mTweening)
+        return;
+      this.mTweening = true;
+      this.StartCoroutine("UpdateTweenPosition");
+    }
+    else
+      this.mHighlight.cachedTransform.localPosition = highlightPosition;
+  }
+
+  protected virtual Vector3 GetHighlightPosition()
+  {
+    if ((UnityEngine.Object) this.mHighlightedLabel == (UnityEngine.Object) null || (UnityEngine.Object) this.mHighlight == (UnityEngine.Object) null)
+      return Vector3.zero;
+    Vector4 border = this.mHighlight.border;
+    float num = 1f;
+    if (this.atlas is INGUIAtlas atlas)
+      num = atlas.pixelSize;
+    return this.mHighlightedLabel.cachedTransform.localPosition + new Vector3(-(border.x * num), border.w * num, 1f);
+  }
+
+  protected virtual IEnumerator UpdateTweenPosition()
+  {
+    if ((UnityEngine.Object) this.mHighlight != (UnityEngine.Object) null && (UnityEngine.Object) this.mHighlightedLabel != (UnityEngine.Object) null)
+    {
+      TweenPosition tp = this.mHighlight.GetComponent<TweenPosition>();
+      while ((UnityEngine.Object) tp != (UnityEngine.Object) null && tp.enabled)
+      {
+        tp.to = this.GetHighlightPosition();
+        yield return (object) null;
+      }
+      tp = (TweenPosition) null;
+    }
+    this.mTweening = false;
+  }
+
+  protected virtual void OnItemHover(GameObject go, bool isOver)
+  {
+    if (!isOver)
+      return;
+    this.Highlight(go.GetComponent<UILabel>(), false);
+  }
+
+  protected virtual void OnItemPress(GameObject go, bool isPressed)
+  {
+    if (!isPressed || this.selection != UIPopupList.Selection.OnPress)
+      return;
+    this.OnItemClick(go);
+  }
+
+  protected virtual void OnItemClick(GameObject go)
+  {
+    this.Select(go.GetComponent<UILabel>(), true);
+    this.value = go.GetComponent<UIEventListener>().parameter as string;
+    UIPlaySound[] components = this.GetComponents<UIPlaySound>();
+    int index = 0;
+    for (int length = components.Length; index < length; ++index)
+    {
+      UIPlaySound uiPlaySound = components[index];
+      if (uiPlaySound.trigger == UIPlaySound.Trigger.OnClick)
+        NGUITools.PlaySound(uiPlaySound.audioClip, uiPlaySound.volume, 1f);
+    }
+    this.CloseSelf();
+  }
+
+  private void Select(UILabel lbl, bool instant) => this.Highlight(lbl, instant);
+
+  protected virtual void OnNavigate(KeyCode key)
+  {
+    if (!this.enabled || !((UnityEngine.Object) UIPopupList.current == (UnityEngine.Object) this))
+      return;
+    int num1 = this.mLabelList.IndexOf(this.mHighlightedLabel);
+    if (num1 == -1)
+      num1 = 0;
+    int num2;
+    switch (key)
+    {
+      case KeyCode.UpArrow:
+        if (num1 <= 0)
+          break;
+        this.Select(this.mLabelList[num2 = num1 - 1], false);
+        break;
+      case KeyCode.DownArrow:
+        if (num1 + 1 >= this.mLabelList.Count)
+          break;
+        this.Select(this.mLabelList[num2 = num1 + 1], false);
+        break;
+    }
+  }
+
+  protected virtual void OnKey(KeyCode key)
+  {
+    if (!this.enabled || !((UnityEngine.Object) UIPopupList.current == (UnityEngine.Object) this) || key != UICamera.current.cancelKey0 && key != UICamera.current.cancelKey1)
+      return;
+    this.OnSelect(false);
+  }
+
+  protected virtual void OnDisable() => this.CloseSelf();
+
+  protected virtual void OnSelect(bool isSelected)
+  {
+    if (isSelected)
+      return;
+    GameObject selectedObject = UICamera.selectedObject;
+    if (!((UnityEngine.Object) selectedObject == (UnityEngine.Object) null) && ((UnityEngine.Object) selectedObject == (UnityEngine.Object) UIPopupList.mChild || (UnityEngine.Object) UIPopupList.mChild != (UnityEngine.Object) null && (UnityEngine.Object) selectedObject != (UnityEngine.Object) null && NGUITools.IsChild(UIPopupList.mChild.transform, selectedObject.transform)))
+      return;
+    this.CloseSelf();
+  }
+
+  public static void Close()
+  {
+    if (!((UnityEngine.Object) UIPopupList.current != (UnityEngine.Object) null))
+      return;
+    UIPopupList.current.CloseSelf();
+    UIPopupList.current = (UIPopupList) null;
+  }
+
+  public virtual void CloseSelf()
+  {
+    if (!((UnityEngine.Object) UIPopupList.mChild != (UnityEngine.Object) null) || !((UnityEngine.Object) UIPopupList.current == (UnityEngine.Object) this))
+      return;
+    this.StopCoroutine("CloseIfUnselected");
+    this.mSelection = (GameObject) null;
+    this.mLabelList.Clear();
+    if (this.isAnimated)
+    {
+      UIWidget[] componentsInChildren1 = UIPopupList.mChild.GetComponentsInChildren<UIWidget>();
+      int index1 = 0;
+      for (int length = componentsInChildren1.Length; index1 < length; ++index1)
+      {
+        UIWidget uiWidget = componentsInChildren1[index1];
+        TweenColor.Begin(uiWidget.gameObject, 0.15f, uiWidget.color with
+        {
+          a = 0.0f
+        }).method = UITweener.Method.EaseOut;
+      }
+      Collider[] componentsInChildren2 = UIPopupList.mChild.GetComponentsInChildren<Collider>();
+      int index2 = 0;
+      for (int length = componentsInChildren2.Length; index2 < length; ++index2)
+        componentsInChildren2[index2].enabled = false;
+      UnityEngine.Object.Destroy((UnityEngine.Object) UIPopupList.mChild, 0.15f);
+      UIPopupList.mFadeOutComplete = Time.unscaledTime + Mathf.Max(0.1f, 0.15f);
+    }
+    else
+    {
+      UnityEngine.Object.Destroy((UnityEngine.Object) UIPopupList.mChild);
+      UIPopupList.mFadeOutComplete = Time.unscaledTime + 0.1f;
+    }
+    this.mBackground = (UIBasicSprite) null;
+    this.mHighlight = (UIBasicSprite) null;
+    UIPopupList.mChild = (GameObject) null;
+    UIPopupList.current = (UIPopupList) null;
+  }
+
+  protected virtual void AnimateColor(UIWidget widget)
+  {
+    Color color = widget.color;
+    widget.color = new Color(color.r, color.g, color.b, 0.0f);
+    TweenColor.Begin(widget.gameObject, 0.15f, color).method = UITweener.Method.EaseOut;
+  }
+
+  protected virtual void AnimatePosition(UIWidget widget, bool placeAbove, float bottom)
+  {
+    Vector3 localPosition = widget.cachedTransform.localPosition;
+    Vector3 vector3 = placeAbove ? new Vector3(localPosition.x, bottom, localPosition.z) : new Vector3(localPosition.x, 0.0f, localPosition.z);
+    widget.cachedTransform.localPosition = vector3;
+    TweenPosition.Begin(widget.gameObject, 0.15f, localPosition).method = UITweener.Method.EaseOut;
+  }
+
+  protected virtual void AnimateScale(UIWidget widget, bool placeAbove, float bottom)
+  {
+    GameObject gameObject = widget.gameObject;
+    Transform cachedTransform = widget.cachedTransform;
+    float fitScale = this.fitScale;
+    float num = (float) ((double) this.activeFontSize * (double) this.activeFontScale + (double) this.mBgBorder * 2.0);
+    cachedTransform.localScale = new Vector3(fitScale, fitScale * num / (float) widget.height, fitScale);
+    TweenScale.Begin(gameObject, 0.15f, Vector3.one).method = UITweener.Method.EaseOut;
+    if (!placeAbove)
+      return;
+    Vector3 localPosition = cachedTransform.localPosition;
+    cachedTransform.localPosition = new Vector3(localPosition.x, (float) ((double) localPosition.y - (double) fitScale * (double) widget.height + (double) fitScale * (double) num), localPosition.z);
+    TweenPosition.Begin(gameObject, 0.15f, localPosition).method = UITweener.Method.EaseOut;
+  }
+
+  protected void Animate(UIWidget widget, bool placeAbove, float bottom)
+  {
+    this.AnimateColor(widget);
+    this.AnimatePosition(widget, placeAbove, bottom);
+  }
+
+  protected virtual void OnClick()
+  {
+    if (this.mOpenFrame == Time.frameCount)
+      return;
+    if ((UnityEngine.Object) UIPopupList.mChild == (UnityEngine.Object) null)
+    {
+      if (this.openOn == UIPopupList.OpenOn.DoubleClick || this.openOn == UIPopupList.OpenOn.Manual || this.openOn == UIPopupList.OpenOn.RightClick && UICamera.currentTouchID != -2)
+        return;
+      this.Show();
+    }
+    else
+    {
+      if (!((UnityEngine.Object) this.mHighlightedLabel != (UnityEngine.Object) null))
+        return;
+      this.OnItemPress(this.mHighlightedLabel.gameObject, true);
+    }
+  }
+
+  protected virtual void OnDoubleClick()
+  {
+    if (this.openOn != UIPopupList.OpenOn.DoubleClick)
+      return;
+    this.Show();
+  }
+
+  private IEnumerator CloseIfUnselected()
+  {
+    GameObject selectedObject;
+    do
+    {
+      yield return (object) null;
+      selectedObject = UICamera.selectedObject;
+    }
+    while (!((UnityEngine.Object) selectedObject != (UnityEngine.Object) this.mSelection) || !((UnityEngine.Object) selectedObject == (UnityEngine.Object) null) && ((UnityEngine.Object) selectedObject == (UnityEngine.Object) UIPopupList.mChild || NGUITools.IsChild(UIPopupList.mChild.transform, selectedObject.transform)));
+    this.CloseSelf();
+  }
+
+  public virtual void Show()
+  {
+    if (this.enabled && NGUITools.GetActive(this.gameObject) && (UnityEngine.Object) UIPopupList.mChild == (UnityEngine.Object) null && this.isValid && this.items.Count > 0)
+    {
+      this.mLabelList.Clear();
+      this.StopCoroutine("CloseIfUnselected");
+      UICamera.selectedObject = UICamera.hoveredObject ?? this.gameObject;
+      this.mSelection = UICamera.selectedObject;
+      this.source = this.mSelection;
+      if ((UnityEngine.Object) this.source == (UnityEngine.Object) null)
+      {
+        Debug.LogError((object) "Popup list needs a source object...");
+      }
+      else
+      {
+        this.mOpenFrame = Time.frameCount;
+        if ((UnityEngine.Object) this.mPanel == (UnityEngine.Object) null)
+        {
+          this.mPanel = UIPanel.Find(this.transform);
+          if ((UnityEngine.Object) this.mPanel == (UnityEngine.Object) null)
+            return;
+        }
+        UIPopupList.mChild = new GameObject("Drop-down List");
+        UIPopupList.mChild.layer = this.gameObject.layer;
+        if (this.separatePanel)
+        {
+          if ((UnityEngine.Object) this.GetComponent<Collider>() != (UnityEngine.Object) null)
+            UIPopupList.mChild.AddComponent<Rigidbody>().isKinematic = true;
+          else if ((UnityEngine.Object) this.GetComponent<Collider2D>() != (UnityEngine.Object) null)
+            UIPopupList.mChild.AddComponent<Rigidbody2D>().isKinematic = true;
+          UIPanel uiPanel = UIPopupList.mChild.AddComponent<UIPanel>();
+          uiPanel.depth = 1000000;
+          uiPanel.sortingOrder = this.mPanel.sortingOrder;
+        }
+        UIPopupList.current = this;
+        Transform cachedTransform = this.mPanel.cachedTransform;
+        Transform transform1 = UIPopupList.mChild.transform;
+        transform1.parent = cachedTransform;
+        Transform transform2 = cachedTransform;
+        if (this.separatePanel)
+        {
+          UIRoot componentInParent = this.mPanel.GetComponentInParent<UIRoot>();
+          if ((UnityEngine.Object) componentInParent == (UnityEngine.Object) null && UIRoot.list.Count != 0)
+            componentInParent = UIRoot.list[0];
+          if ((UnityEngine.Object) componentInParent != (UnityEngine.Object) null)
+            transform2 = componentInParent.transform;
+        }
+        Vector3 vector3_1;
+        Vector3 vector3_2;
+        if (this.openOn == UIPopupList.OpenOn.Manual && (UnityEngine.Object) this.mSelection != (UnityEngine.Object) this.gameObject)
+        {
+          this.startingPosition = (Vector3) UICamera.lastEventPosition;
+          vector3_1 = cachedTransform.InverseTransformPoint(this.mPanel.anchorCamera.ScreenToWorldPoint(this.startingPosition));
+          vector3_2 = vector3_1;
+          transform1.localPosition = vector3_1;
+          this.startingPosition = transform1.position;
+        }
+        else
+        {
+          Bounds relativeWidgetBounds = NGUIMath.CalculateRelativeWidgetBounds(cachedTransform, this.transform, false, false);
+          vector3_1 = relativeWidgetBounds.min;
+          vector3_2 = relativeWidgetBounds.max;
+          transform1.localPosition = vector3_1;
+          this.startingPosition = transform1.position;
+        }
+        this.StartCoroutine("CloseIfUnselected");
+        float fitScale = this.fitScale;
+        transform1.localRotation = Quaternion.identity;
+        transform1.localScale = new Vector3(fitScale, fitScale, fitScale);
+        int depth = this.separatePanel ? 0 : NGUITools.CalculateNextDepth(this.mPanel.gameObject);
+        if ((UnityEngine.Object) this.background2DSprite != (UnityEngine.Object) null)
+        {
+          UI2DSprite ui2Dsprite = UIPopupList.mChild.AddWidget<UI2DSprite>(depth);
+          ui2Dsprite.sprite2D = this.background2DSprite;
+          this.mBackground = (UIBasicSprite) ui2Dsprite;
+        }
+        else
+        {
+          if (!(this.atlas != (UnityEngine.Object) null))
+            return;
+          this.mBackground = (UIBasicSprite) UIPopupList.mChild.AddSprite(this.atlas as INGUIAtlas, this.backgroundSprite, depth);
+        }
+        bool placeAbove = this.position == UIPopupList.Position.Above;
+        if (this.position == UIPopupList.Position.Auto)
+        {
+          UICamera cameraForLayer = UICamera.FindCameraForLayer(this.mSelection.layer);
+          if ((UnityEngine.Object) cameraForLayer != (UnityEngine.Object) null)
+            placeAbove = (double) cameraForLayer.cachedCamera.WorldToViewportPoint(this.startingPosition).y < 0.5;
+        }
+        this.mBackground.pivot = UIWidget.Pivot.TopLeft;
+        this.mBackground.color = this.backgroundColor;
+        Vector4 border = this.mBackground.border;
+        this.mBgBorder = border.y;
+        this.mBackground.cachedTransform.localPosition = new Vector3(0.0f, placeAbove ? border.y * 2f - (float) this.overlap : (float) this.overlap, 0.0f);
+        int num1;
+        if ((UnityEngine.Object) this.highlight2DSprite != (UnityEngine.Object) null)
+        {
+          UI2DSprite ui2Dsprite = UIPopupList.mChild.AddWidget<UI2DSprite>(num1 = depth + 1);
+          ui2Dsprite.sprite2D = this.highlight2DSprite;
+          this.mHighlight = (UIBasicSprite) ui2Dsprite;
+        }
+        else
+        {
+          if (!(this.atlas != (UnityEngine.Object) null))
+            return;
+          this.mHighlight = (UIBasicSprite) UIPopupList.mChild.AddSprite(this.atlas as INGUIAtlas, this.highlightSprite, num1 = depth + 1);
+        }
+        float num2 = 0.0f;
+        float num3 = 0.0f;
+        if (this.mHighlight.hasBorder)
+        {
+          num2 = this.mHighlight.border.w;
+          num3 = this.mHighlight.border.x;
+        }
+        this.mHighlight.pivot = UIWidget.Pivot.TopLeft;
+        this.mHighlight.color = this.highlightColor;
+        float num4 = (float) this.activeFontSize * this.activeFontScale;
+        float num5 = num4 + this.padding.y;
+        float a = 0.0f;
+        float y = placeAbove ? border.y - this.padding.y - (float) this.overlap : -this.padding.y - border.y + (float) this.overlap;
+        float f1 = border.y * 2f + this.padding.y;
+        List<UILabel> uiLabelList = new List<UILabel>();
+        if (!this.items.Contains(this.mSelectedItem))
+          this.mSelectedItem = (string) null;
+        int index1 = 0;
+        for (int count = this.items.Count; index1 < count; ++index1)
+        {
+          string key = this.items[index1];
+          UILabel lbl = UIPopupList.mChild.AddWidget<UILabel>(this.mBackground.depth + 2);
+          lbl.name = index1.ToString();
+          lbl.pivot = UIWidget.Pivot.TopLeft;
+          lbl.bitmapFont = this.bitmapFont as INGUIFont;
+          lbl.trueTypeFont = this.trueTypeFont;
+          lbl.fontSize = this.fontSize;
+          lbl.fontStyle = this.fontStyle;
+          lbl.text = this.isLocalized ? Localization.Get(key) : key;
+          lbl.modifier = this.textModifier;
+          lbl.color = this.textColor;
+          lbl.cachedTransform.localPosition = new Vector3(border.x + this.padding.x - lbl.pivotOffset.x, y, -1f);
+          lbl.overflowMethod = UILabel.Overflow.ResizeFreely;
+          lbl.alignment = this.alignment;
+          lbl.symbolStyle = NGUIText.SymbolStyle.Colored;
+          uiLabelList.Add(lbl);
+          f1 += num5;
+          y -= num5;
+          a = Mathf.Max(a, lbl.printedSize.x);
+          UIEventListener uiEventListener = UIEventListener.Get(lbl.gameObject);
+          uiEventListener.onHover = new UIEventListener.BoolDelegate(this.OnItemHover);
+          uiEventListener.onPress = new UIEventListener.BoolDelegate(this.OnItemPress);
+          uiEventListener.onClick = new UIEventListener.VoidDelegate(this.OnItemClick);
+          uiEventListener.parameter = (object) key;
+          if (this.mSelectedItem == key || index1 == 0 && string.IsNullOrEmpty(this.mSelectedItem))
+            this.Highlight(lbl, true);
+          this.mLabelList.Add(lbl);
+        }
+        float f2 = Mathf.Max(a, (float) ((double) vector3_2.x - (double) vector3_1.x - ((double) border.x + (double) this.padding.x) * 2.0));
+        float x = f2;
+        Vector3 vector3_3 = new Vector3(x * 0.5f, (float) (-(double) num4 * 0.5), 0.0f);
+        Vector3 vector3_4 = new Vector3(x, num4 + this.padding.y, 1f);
+        int index2 = 0;
+        for (int count = uiLabelList.Count; index2 < count; ++index2)
+        {
+          UILabel uiLabel = uiLabelList[index2];
+          NGUITools.AddWidgetCollider(uiLabel.gameObject);
+          uiLabel.autoResizeBoxCollider = false;
+          BoxCollider component1 = uiLabel.GetComponent<BoxCollider>();
+          if ((UnityEngine.Object) component1 != (UnityEngine.Object) null)
+          {
+            vector3_3.z = component1.center.z;
+            component1.center = vector3_3;
+            component1.size = vector3_4;
+          }
+          else
+          {
+            BoxCollider2D component2 = uiLabel.GetComponent<BoxCollider2D>();
+            component2.offset = (Vector2) vector3_3;
+            component2.size = (Vector2) vector3_4;
+          }
+        }
+        int num6 = Mathf.RoundToInt(f2);
+        float f3 = f2 + (float) (((double) border.x + (double) this.padding.x) * 2.0);
+        float num7 = y - border.y;
+        this.mBackground.width = Mathf.RoundToInt(f3);
+        this.mBackground.height = Mathf.RoundToInt(f1);
+        int index3 = 0;
+        for (int count = uiLabelList.Count; index3 < count; ++index3)
+        {
+          UILabel uiLabel = uiLabelList[index3];
+          uiLabel.overflowMethod = UILabel.Overflow.ShrinkContent;
+          uiLabel.width = num6;
+        }
+        float num8 = 2f;
+        if (this.atlas is INGUIAtlas atlas)
+          num8 *= atlas.pixelSize;
+        float f4 = (float) ((double) f3 - ((double) border.x + (double) this.padding.x) * 2.0 + (double) num3 * (double) num8);
+        float f5 = num4 + num2 * num8;
+        this.mHighlight.width = Mathf.RoundToInt(f4);
+        this.mHighlight.height = Mathf.RoundToInt(f5);
+        if (this.isAnimated)
+        {
+          this.AnimateColor((UIWidget) this.mBackground);
+          if ((double) Time.timeScale == 0.0 || (double) Time.timeScale >= 0.100000001490116)
+          {
+            float bottom = num7 + num4;
+            this.Animate((UIWidget) this.mHighlight, placeAbove, bottom);
+            int index4 = 0;
+            for (int count = uiLabelList.Count; index4 < count; ++index4)
+              this.Animate((UIWidget) uiLabelList[index4], placeAbove, bottom);
+            this.AnimateScale((UIWidget) this.mBackground, placeAbove, bottom);
+          }
+        }
+        if (placeAbove)
+        {
+          float num9 = border.y * fitScale;
+          vector3_1.y = vector3_2.y - border.y * fitScale;
+          vector3_2.y = vector3_1.y + ((float) this.mBackground.height - border.y * 2f) * fitScale;
+          vector3_2.x = vector3_1.x + (float) this.mBackground.width * fitScale;
+          transform1.localPosition = new Vector3(vector3_1.x, vector3_2.y - num9, vector3_1.z);
+        }
+        else
+        {
+          vector3_2.y = vector3_1.y + border.y * fitScale;
+          vector3_1.y = vector3_2.y - (float) this.mBackground.height * fitScale;
+          vector3_2.x = vector3_1.x + (float) this.mBackground.width * fitScale;
+        }
+        UIPanel uiPanel1 = this.mPanel;
+        while (true)
+        {
+          UIRect parent = uiPanel1.parent;
+          if (!((UnityEngine.Object) parent == (UnityEngine.Object) null))
+          {
+            UIPanel componentInParent = parent.GetComponentInParent<UIPanel>();
+            if (!((UnityEngine.Object) componentInParent == (UnityEngine.Object) null))
+              uiPanel1 = componentInParent;
+            else
+              break;
+          }
+          else
+            break;
+        }
+        if ((UnityEngine.Object) cachedTransform != (UnityEngine.Object) null)
+        {
+          Vector3 position1 = cachedTransform.TransformPoint(vector3_1);
+          Vector3 position2 = cachedTransform.TransformPoint(vector3_2);
+          Vector3 vector3_5 = uiPanel1.cachedTransform.InverseTransformPoint(position1);
+          Vector3 vector3_6 = uiPanel1.cachedTransform.InverseTransformPoint(position2);
+          float pixelSizeAdjustment = UIRoot.GetPixelSizeAdjustment(this.gameObject);
+          vector3_1 = vector3_5 / pixelSizeAdjustment;
+          vector3_2 = vector3_6 / pixelSizeAdjustment;
+        }
+        Vector3 constrainOffset = uiPanel1.CalculateConstrainOffset((Vector2) vector3_1, (Vector2) vector3_2);
+        Vector3 vector3_7 = transform1.localPosition + constrainOffset;
+        vector3_7.x = Mathf.Round(vector3_7.x);
+        vector3_7.y = Mathf.Round(vector3_7.y);
+        transform1.localPosition = vector3_7;
+        transform1.parent = transform2;
+      }
+    }
+    else
+      this.OnSelect(false);
+  }
+
+  [DoNotObfuscateNGUI]
+  public enum Position
+  {
+    Auto,
+    Above,
+    Below,
+  }
+
+  [DoNotObfuscateNGUI]
+  public enum Selection
+  {
+    OnPress,
+    OnClick,
+  }
+
+  [DoNotObfuscateNGUI]
+  public enum OpenOn
+  {
+    ClickOrTap,
+    RightClick,
+    DoubleClick,
+    Manual,
+  }
+
+  public delegate void LegacyEvent(string val);
 }

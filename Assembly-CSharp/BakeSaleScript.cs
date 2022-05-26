@@ -1,71 +1,59 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BakeSaleScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020000DC RID: 220
 public class BakeSaleScript : MonoBehaviour
 {
-	// Token: 0x06000A0C RID: 2572 RVA: 0x00056EF8 File Offset: 0x000550F8
-	private void Update()
-	{
-		this.Timer += Time.deltaTime;
-		if (this.Timer > 60f && this.StudentManager.Students[this.ID] != null)
-		{
-			if (this.StudentManager.Students[this.ID].Routine)
-			{
-				Debug.Log(this.StudentManager.Students[this.ID].Name + " has decided to go to the bake sale.");
-				this.Timer = 0f;
-				this.StudentManager.Students[this.ID].Meeting = true;
-				this.StudentManager.Students[this.ID].BakeSale = true;
-				this.StudentManager.Students[this.ID].MeetTime = 0.0001f;
-				this.StudentManager.Students[this.ID].MeetSpot = this.MeetSpot;
-				this.IncreaseID();
-			}
-			else
-			{
-				this.IncreaseID();
-			}
-		}
-		if (this.StudentManager.Yandere.Alerts > 0 || this.StudentManager.Yandere.Police.StudentFoundCorpse)
-		{
-			this.AmaiFail.SetActive(true);
-			if (Input.GetKeyDown("`"))
-			{
-				SceneManager.LoadScene("LoadingScene");
-				return;
-			}
-		}
-		else if (this.StudentManager.Students[12] != null && this.StudentManager.Students[12].Ragdoll.Disposed)
-		{
-			this.AmaiSuccess.SetActive(true);
-		}
-	}
+  public StudentManagerScript StudentManager;
+  public GameObject AmaiSuccess;
+  public GameObject AmaiFail;
+  public Transform MeetSpot;
+  public float Timer;
+  public int ID = 46;
 
-	// Token: 0x06000A0D RID: 2573 RVA: 0x00057091 File Offset: 0x00055291
-	private void IncreaseID()
-	{
-		this.ID++;
-		if (this.ID > 89)
-		{
-			this.ID = 46;
-		}
-	}
+  private void Update()
+  {
+    this.Timer += Time.deltaTime;
+    if ((double) this.Timer > 60.0 && (Object) this.StudentManager.Students[this.ID] != (Object) null)
+    {
+      if (this.StudentManager.Students[this.ID].Routine)
+      {
+        Debug.Log((object) (this.StudentManager.Students[this.ID].Name + " has decided to go to the bake sale."));
+        this.Timer = 0.0f;
+        this.StudentManager.Students[this.ID].Meeting = true;
+        this.StudentManager.Students[this.ID].BakeSale = true;
+        this.StudentManager.Students[this.ID].MeetTime = 0.0001f;
+        this.StudentManager.Students[this.ID].MeetSpot = this.MeetSpot;
+        this.IncreaseID();
+      }
+      else
+        this.IncreaseID();
+    }
+    if (this.StudentManager.Yandere.Alerts > 0 || this.StudentManager.Yandere.Police.StudentFoundCorpse)
+    {
+      this.AmaiFail.SetActive(true);
+      if (!Input.GetKeyDown("`"))
+        return;
+      SceneManager.LoadScene("LoadingScene");
+    }
+    else
+    {
+      if (!((Object) this.StudentManager.Students[12] != (Object) null) || !this.StudentManager.Students[12].Ragdoll.Disposed)
+        return;
+      this.AmaiSuccess.SetActive(true);
+    }
+  }
 
-	// Token: 0x04000AD4 RID: 2772
-	public StudentManagerScript StudentManager;
-
-	// Token: 0x04000AD5 RID: 2773
-	public GameObject AmaiSuccess;
-
-	// Token: 0x04000AD6 RID: 2774
-	public GameObject AmaiFail;
-
-	// Token: 0x04000AD7 RID: 2775
-	public Transform MeetSpot;
-
-	// Token: 0x04000AD8 RID: 2776
-	public float Timer;
-
-	// Token: 0x04000AD9 RID: 2777
-	public int ID = 46;
+  private void IncreaseID()
+  {
+    ++this.ID;
+    if (this.ID <= 89)
+      return;
+    this.ID = 46;
+  }
 }

@@ -1,19 +1,15 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SmoothLookAtScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000438 RID: 1080
 public class SmoothLookAtScript : MonoBehaviour
 {
-	// Token: 0x06001CFA RID: 7418 RVA: 0x001593E4 File Offset: 0x001575E4
-	private void LateUpdate()
-	{
-		Quaternion b = Quaternion.LookRotation(this.Target.transform.position - base.transform.position);
-		base.transform.rotation = Quaternion.Slerp(base.transform.rotation, b, Time.deltaTime * this.Speed);
-	}
+  public Transform Target;
+  public float Speed;
 
-	// Token: 0x04003447 RID: 13383
-	public Transform Target;
-
-	// Token: 0x04003448 RID: 13384
-	public float Speed;
+  private void LateUpdate() => this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(this.Target.transform.position - this.transform.position), Time.deltaTime * this.Speed);
 }

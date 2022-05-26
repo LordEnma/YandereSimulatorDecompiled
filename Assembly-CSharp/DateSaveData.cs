@@ -1,29 +1,26 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DateSaveData
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x02000400 RID: 1024
+using System;
+
 [Serializable]
 public class DateSaveData
 {
-	// Token: 0x06001C32 RID: 7218 RVA: 0x0014A6EA File Offset: 0x001488EA
-	public static DateSaveData ReadFromGlobals()
-	{
-		return new DateSaveData
-		{
-			week = DateGlobals.Week,
-			weekday = DateGlobals.Weekday
-		};
-	}
+  public int week;
+  public DayOfWeek weekday;
 
-	// Token: 0x06001C33 RID: 7219 RVA: 0x0014A707 File Offset: 0x00148907
-	public static void WriteToGlobals(DateSaveData data)
-	{
-		DateGlobals.Week = data.week;
-		DateGlobals.Weekday = data.weekday;
-	}
+  public static DateSaveData ReadFromGlobals() => new DateSaveData()
+  {
+    week = DateGlobals.Week,
+    weekday = DateGlobals.Weekday
+  };
 
-	// Token: 0x040031B8 RID: 12728
-	public int week;
-
-	// Token: 0x040031B9 RID: 12729
-	public DayOfWeek weekday;
+  public static void WriteToGlobals(DateSaveData data)
+  {
+    DateGlobals.Week = data.week;
+    DateGlobals.Weekday = data.weekday;
+  }
 }

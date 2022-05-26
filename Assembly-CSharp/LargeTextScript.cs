@@ -1,31 +1,24 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: LargeTextScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200050C RID: 1292
 public class LargeTextScript : MonoBehaviour
 {
-	// Token: 0x0600217A RID: 8570 RVA: 0x001EEE8B File Offset: 0x001ED08B
-	private void Start()
-	{
-		this.Label.text = this.String[this.ID];
-	}
+  public UILabel Label;
+  public string[] String;
+  public int ID;
 
-	// Token: 0x0600217B RID: 8571 RVA: 0x001EEEA5 File Offset: 0x001ED0A5
-	private void Update()
-	{
-		if (Input.GetKeyDown("space"))
-		{
-			this.ID++;
-			this.Label.text = this.String[this.ID];
-		}
-	}
+  private void Start() => this.Label.text = this.String[this.ID];
 
-	// Token: 0x040049D9 RID: 18905
-	public UILabel Label;
-
-	// Token: 0x040049DA RID: 18906
-	public string[] String;
-
-	// Token: 0x040049DB RID: 18907
-	public int ID;
+  private void Update()
+  {
+    if (!Input.GetKeyDown("space"))
+      return;
+    ++this.ID;
+    this.Label.text = this.String[this.ID];
+  }
 }

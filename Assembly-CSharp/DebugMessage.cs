@@ -1,12 +1,13 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DebugMessage
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000276 RID: 630
 public struct DebugMessage
 {
-	// Token: 0x04001C34 RID: 7220
-	public LogType messageType;
-
-	// Token: 0x04001C35 RID: 7221
-	public string content;
+  public LogType messageType;
+  public string content;
 }

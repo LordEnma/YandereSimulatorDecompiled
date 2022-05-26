@@ -1,22 +1,19 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MaidDereMinigame.AIMover
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x0200059C RID: 1436
-	public abstract class AIMover : MonoBehaviour
-	{
-		// Token: 0x0600247A RID: 9338
-		public abstract ControlInput GetInput();
+  public abstract class AIMover : MonoBehaviour
+  {
+    protected float moveSpeed = 3f;
 
-		// Token: 0x0600247B RID: 9339 RVA: 0x00202350 File Offset: 0x00200550
-		private void FixedUpdate()
-		{
-			ControlInput input = this.GetInput();
-			base.transform.Translate(new Vector2(input.horizontal, 0f) * Time.fixedDeltaTime * this.moveSpeed);
-		}
+    public abstract ControlInput GetInput();
 
-		// Token: 0x04004D0B RID: 19723
-		protected float moveSpeed = 3f;
-	}
+    private void FixedUpdate() => this.transform.Translate((Vector3) (new Vector2(this.GetInput().horizontal, 0.0f) * Time.fixedDeltaTime * this.moveSpeed));
+  }
 }

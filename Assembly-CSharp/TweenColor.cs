@@ -1,177 +1,113 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: TweenColor
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
-// Token: 0x0200008A RID: 138
 [AddComponentMenu("NGUI/Tween/Tween Color")]
 public class TweenColor : UITweener
 {
-	// Token: 0x06000565 RID: 1381 RVA: 0x000343EC File Offset: 0x000325EC
-	private void Cache()
-	{
-		this.mCached = true;
-		this.mWidget = base.GetComponent<UIWidget>();
-		if (this.mWidget != null)
-		{
-			return;
-		}
-		this.mSr = base.GetComponent<SpriteRenderer>();
-		if (this.mSr != null)
-		{
-			return;
-		}
-		Renderer component = base.GetComponent<Renderer>();
-		if (component != null)
-		{
-			this.mMat = component.material;
-			return;
-		}
-		this.mLight = base.GetComponent<Light>();
-		if (this.mLight == null)
-		{
-			this.mWidget = base.GetComponentInChildren<UIWidget>();
-		}
-	}
+  public Color from = Color.white;
+  public Color to = Color.white;
+  private bool mCached;
+  private UIWidget mWidget;
+  private Material mMat;
+  private Light mLight;
+  private SpriteRenderer mSr;
 
-	// Token: 0x170000B8 RID: 184
-	// (get) Token: 0x06000566 RID: 1382 RVA: 0x00034479 File Offset: 0x00032679
-	// (set) Token: 0x06000567 RID: 1383 RVA: 0x00034481 File Offset: 0x00032681
-	[Obsolete("Use 'value' instead")]
-	public Color color
-	{
-		get
-		{
-			return this.value;
-		}
-		set
-		{
-			this.value = value;
-		}
-	}
+  private void Cache()
+  {
+    this.mCached = true;
+    this.mWidget = this.GetComponent<UIWidget>();
+    if ((UnityEngine.Object) this.mWidget != (UnityEngine.Object) null)
+      return;
+    this.mSr = this.GetComponent<SpriteRenderer>();
+    if ((UnityEngine.Object) this.mSr != (UnityEngine.Object) null)
+      return;
+    Renderer component = this.GetComponent<Renderer>();
+    if ((UnityEngine.Object) component != (UnityEngine.Object) null)
+    {
+      this.mMat = component.material;
+    }
+    else
+    {
+      this.mLight = this.GetComponent<Light>();
+      if (!((UnityEngine.Object) this.mLight == (UnityEngine.Object) null))
+        return;
+      this.mWidget = this.GetComponentInChildren<UIWidget>();
+    }
+  }
 
-	// Token: 0x170000B9 RID: 185
-	// (get) Token: 0x06000568 RID: 1384 RVA: 0x0003448C File Offset: 0x0003268C
-	// (set) Token: 0x06000569 RID: 1385 RVA: 0x00034514 File Offset: 0x00032714
-	public Color value
-	{
-		get
-		{
-			if (!this.mCached)
-			{
-				this.Cache();
-			}
-			if (this.mWidget != null)
-			{
-				return this.mWidget.color;
-			}
-			if (this.mMat != null)
-			{
-				return this.mMat.color;
-			}
-			if (this.mSr != null)
-			{
-				return this.mSr.color;
-			}
-			if (this.mLight != null)
-			{
-				return this.mLight.color;
-			}
-			return Color.black;
-		}
-		set
-		{
-			if (!this.mCached)
-			{
-				this.Cache();
-			}
-			if (this.mWidget != null)
-			{
-				this.mWidget.color = value;
-				return;
-			}
-			if (this.mMat != null)
-			{
-				this.mMat.color = value;
-				return;
-			}
-			if (this.mSr != null)
-			{
-				this.mSr.color = value;
-				return;
-			}
-			if (this.mLight != null)
-			{
-				this.mLight.color = value;
-				this.mLight.enabled = (value.r + value.g + value.b > 0.01f);
-			}
-		}
-	}
+  [Obsolete("Use 'value' instead")]
+  public Color color
+  {
+    get => this.value;
+    set => this.value = value;
+  }
 
-	// Token: 0x0600056A RID: 1386 RVA: 0x000345C0 File Offset: 0x000327C0
-	protected override void OnUpdate(float factor, bool isFinished)
-	{
-		this.value = Color.Lerp(this.from, this.to, factor);
-	}
+  public Color value
+  {
+    get
+    {
+      if (!this.mCached)
+        this.Cache();
+      if ((UnityEngine.Object) this.mWidget != (UnityEngine.Object) null)
+        return this.mWidget.color;
+      if ((UnityEngine.Object) this.mMat != (UnityEngine.Object) null)
+        return this.mMat.color;
+      if ((UnityEngine.Object) this.mSr != (UnityEngine.Object) null)
+        return this.mSr.color;
+      return (UnityEngine.Object) this.mLight != (UnityEngine.Object) null ? this.mLight.color : Color.black;
+    }
+    set
+    {
+      if (!this.mCached)
+        this.Cache();
+      if ((UnityEngine.Object) this.mWidget != (UnityEngine.Object) null)
+        this.mWidget.color = value;
+      else if ((UnityEngine.Object) this.mMat != (UnityEngine.Object) null)
+        this.mMat.color = value;
+      else if ((UnityEngine.Object) this.mSr != (UnityEngine.Object) null)
+      {
+        this.mSr.color = value;
+      }
+      else
+      {
+        if (!((UnityEngine.Object) this.mLight != (UnityEngine.Object) null))
+          return;
+        this.mLight.color = value;
+        this.mLight.enabled = (double) value.r + (double) value.g + (double) value.b > 0.00999999977648258;
+      }
+    }
+  }
 
-	// Token: 0x0600056B RID: 1387 RVA: 0x000345DC File Offset: 0x000327DC
-	public static TweenColor Begin(GameObject go, float duration, Color color)
-	{
-		TweenColor tweenColor = UITweener.Begin<TweenColor>(go, duration, 0f);
-		tweenColor.from = tweenColor.value;
-		tweenColor.to = color;
-		if (duration <= 0f)
-		{
-			tweenColor.Sample(1f, true);
-			tweenColor.enabled = false;
-		}
-		return tweenColor;
-	}
+  protected override void OnUpdate(float factor, bool isFinished) => this.value = Color.Lerp(this.from, this.to, factor);
 
-	// Token: 0x0600056C RID: 1388 RVA: 0x00034625 File Offset: 0x00032825
-	[ContextMenu("Set 'From' to current value")]
-	public override void SetStartToCurrentValue()
-	{
-		this.from = this.value;
-	}
+  public static TweenColor Begin(GameObject go, float duration, Color color)
+  {
+    TweenColor tweenColor = UITweener.Begin<TweenColor>(go, duration);
+    tweenColor.from = tweenColor.value;
+    tweenColor.to = color;
+    if ((double) duration <= 0.0)
+    {
+      tweenColor.Sample(1f, true);
+      tweenColor.enabled = false;
+    }
+    return tweenColor;
+  }
 
-	// Token: 0x0600056D RID: 1389 RVA: 0x00034633 File Offset: 0x00032833
-	[ContextMenu("Set 'To' to current value")]
-	public override void SetEndToCurrentValue()
-	{
-		this.to = this.value;
-	}
+  [ContextMenu("Set 'From' to current value")]
+  public override void SetStartToCurrentValue() => this.from = this.value;
 
-	// Token: 0x0600056E RID: 1390 RVA: 0x00034641 File Offset: 0x00032841
-	[ContextMenu("Assume value of 'From'")]
-	private void SetCurrentValueToStart()
-	{
-		this.value = this.from;
-	}
+  [ContextMenu("Set 'To' to current value")]
+  public override void SetEndToCurrentValue() => this.to = this.value;
 
-	// Token: 0x0600056F RID: 1391 RVA: 0x0003464F File Offset: 0x0003284F
-	[ContextMenu("Assume value of 'To'")]
-	private void SetCurrentValueToEnd()
-	{
-		this.value = this.to;
-	}
+  [ContextMenu("Assume value of 'From'")]
+  private void SetCurrentValueToStart() => this.value = this.from;
 
-	// Token: 0x040005B7 RID: 1463
-	public Color from = Color.white;
-
-	// Token: 0x040005B8 RID: 1464
-	public Color to = Color.white;
-
-	// Token: 0x040005B9 RID: 1465
-	private bool mCached;
-
-	// Token: 0x040005BA RID: 1466
-	private UIWidget mWidget;
-
-	// Token: 0x040005BB RID: 1467
-	private Material mMat;
-
-	// Token: 0x040005BC RID: 1468
-	private Light mLight;
-
-	// Token: 0x040005BD RID: 1469
-	private SpriteRenderer mSr;
+  [ContextMenu("Assume value of 'To'")]
+  private void SetCurrentValueToEnd() => this.value = this.to;
 }

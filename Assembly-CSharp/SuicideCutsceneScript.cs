@@ -1,101 +1,74 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SuicideCutsceneScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-// Token: 0x02000468 RID: 1128
 public class SuicideCutsceneScript : MonoBehaviour
 {
-	// Token: 0x06001EAF RID: 7855 RVA: 0x001A9F5C File Offset: 0x001A815C
-	private void Start()
-	{
-		this.PointLight.color = new Color(0.1f, 0.1f, 0.1f, 1f);
-		this.Door.eulerAngles = new Vector3(0f, 0f, 0f);
-		if (GameGlobals.Eighties)
-		{
-			this.MyAudio.clip = this.EightiesMother;
-			this.RivalHair[1].SetActive(false);
-			this.EightiesHair[DateGlobals.Week].SetActive(true);
-		}
-	}
+  public AudioSource MyAudio;
+  public AudioClip EightiesMother;
+  public Light DirectionalLight;
+  public Light PointLight;
+  public Transform Door;
+  public Animation Mom;
+  public float Timer;
+  public float Rotation;
+  public float Speed;
+  public int ID;
+  public GameObject[] RivalHair;
+  public GameObject[] EightiesHair;
 
-	// Token: 0x06001EB0 RID: 7856 RVA: 0x001A9FE4 File Offset: 0x001A81E4
-	private void Update()
-	{
-		this.Timer += Time.deltaTime;
-		if (this.ID == 0)
-		{
-			if (this.Timer > 1f)
-			{
-				this.MyAudio.Play();
-				this.ID++;
-				return;
-			}
-		}
-		else if (this.ID == 1)
-		{
-			if (this.Timer > 6f)
-			{
-				this.Speed += Time.deltaTime * 0.66666f;
-				this.Rotation = Mathf.Lerp(this.Rotation, -45f, Time.deltaTime * this.Speed);
-				this.PointLight.color = new Color(0.1f + this.Rotation / -45f * 0.9f, 0.1f + this.Rotation / -45f * 0.9f, 0.1f + this.Rotation / -45f * 0.9f, 1f);
-				this.Door.eulerAngles = new Vector3(0f, this.Rotation, 0f);
-			}
-			if (this.Timer > 8.5f)
-			{
-				this.Mom.CrossFade("f02_shock_00");
-			}
-			if (this.Timer > 9.5f)
-			{
-				this.DirectionalLight.color = new Color(0f, 0f, 0f);
-				this.PointLight.color = new Color(0f, 0f, 0f);
-			}
-			if (this.Timer > 11f)
-			{
-				GameGlobals.SpecificEliminationID = 19;
-				if (!GameGlobals.Debug)
-				{
-					PlayerPrefs.SetInt("Suicide", 1);
-				}
-				SchoolGlobals.SchoolAtmosphere -= 0.1f;
-				GameGlobals.SenpaiMourning = true;
-				SceneManager.LoadScene("HomeScene");
-			}
-		}
-	}
+  private void Start()
+  {
+    this.PointLight.color = new Color(0.1f, 0.1f, 0.1f, 1f);
+    this.Door.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+    if (!GameGlobals.Eighties)
+      return;
+    this.MyAudio.clip = this.EightiesMother;
+    this.RivalHair[1].SetActive(false);
+    this.EightiesHair[DateGlobals.Week].SetActive(true);
+  }
 
-	// Token: 0x04003F2B RID: 16171
-	public AudioSource MyAudio;
-
-	// Token: 0x04003F2C RID: 16172
-	public AudioClip EightiesMother;
-
-	// Token: 0x04003F2D RID: 16173
-	public Light DirectionalLight;
-
-	// Token: 0x04003F2E RID: 16174
-	public Light PointLight;
-
-	// Token: 0x04003F2F RID: 16175
-	public Transform Door;
-
-	// Token: 0x04003F30 RID: 16176
-	public Animation Mom;
-
-	// Token: 0x04003F31 RID: 16177
-	public float Timer;
-
-	// Token: 0x04003F32 RID: 16178
-	public float Rotation;
-
-	// Token: 0x04003F33 RID: 16179
-	public float Speed;
-
-	// Token: 0x04003F34 RID: 16180
-	public int ID;
-
-	// Token: 0x04003F35 RID: 16181
-	public GameObject[] RivalHair;
-
-	// Token: 0x04003F36 RID: 16182
-	public GameObject[] EightiesHair;
+  private void Update()
+  {
+    this.Timer += Time.deltaTime;
+    if (this.ID == 0)
+    {
+      if ((double) this.Timer <= 1.0)
+        return;
+      this.MyAudio.Play();
+      ++this.ID;
+    }
+    else
+    {
+      if (this.ID != 1)
+        return;
+      if ((double) this.Timer > 6.0)
+      {
+        this.Speed += Time.deltaTime * 0.66666f;
+        this.Rotation = Mathf.Lerp(this.Rotation, -45f, Time.deltaTime * this.Speed);
+        this.PointLight.color = new Color((float) (0.100000001490116 + (double) this.Rotation / -45.0 * 0.899999976158142), (float) (0.100000001490116 + (double) this.Rotation / -45.0 * 0.899999976158142), (float) (0.100000001490116 + (double) this.Rotation / -45.0 * 0.899999976158142), 1f);
+        this.Door.eulerAngles = new Vector3(0.0f, this.Rotation, 0.0f);
+      }
+      if ((double) this.Timer > 8.5)
+        this.Mom.CrossFade("f02_shock_00");
+      if ((double) this.Timer > 9.5)
+      {
+        this.DirectionalLight.color = new Color(0.0f, 0.0f, 0.0f);
+        this.PointLight.color = new Color(0.0f, 0.0f, 0.0f);
+      }
+      if ((double) this.Timer <= 11.0)
+        return;
+      GameGlobals.SpecificEliminationID = 19;
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("Suicide", 1);
+      SchoolGlobals.SchoolAtmosphere -= 0.1f;
+      GameGlobals.SenpaiMourning = true;
+      SceneManager.LoadScene("HomeScene");
+    }
+  }
 }

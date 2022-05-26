@@ -1,34 +1,31 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIOrthoCamera
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000A6 RID: 166
 [ExecuteInEditMode]
-[RequireComponent(typeof(Camera))]
+[RequireComponent(typeof (Camera))]
 [AddComponentMenu("NGUI/UI/Orthographic Camera")]
 public class UIOrthoCamera : MonoBehaviour
 {
-	// Token: 0x060007EF RID: 2031 RVA: 0x000425A1 File Offset: 0x000407A1
-	private void Start()
-	{
-		this.mCam = base.GetComponent<Camera>();
-		this.mTrans = base.transform;
-		this.mCam.orthographic = true;
-	}
+  private Camera mCam;
+  private Transform mTrans;
 
-	// Token: 0x060007F0 RID: 2032 RVA: 0x000425C8 File Offset: 0x000407C8
-	private void Update()
-	{
-		float num = this.mCam.rect.yMin * (float)Screen.height;
-		float num2 = (this.mCam.rect.yMax * (float)Screen.height - num) * 0.5f * this.mTrans.lossyScale.y;
-		if (!Mathf.Approximately(this.mCam.orthographicSize, num2))
-		{
-			this.mCam.orthographicSize = num2;
-		}
-	}
+  private void Start()
+  {
+    this.mCam = this.GetComponent<Camera>();
+    this.mTrans = this.transform;
+    this.mCam.orthographic = true;
+  }
 
-	// Token: 0x04000722 RID: 1826
-	private Camera mCam;
-
-	// Token: 0x04000723 RID: 1827
-	private Transform mTrans;
+  private void Update()
+  {
+    float b = (float) (((double) this.mCam.rect.yMax * (double) Screen.height - (double) (this.mCam.rect.yMin * (float) Screen.height)) * 0.5) * this.mTrans.lossyScale.y;
+    if (Mathf.Approximately(this.mCam.orthographicSize, b))
+      return;
+    this.mCam.orthographicSize = b;
+  }
 }

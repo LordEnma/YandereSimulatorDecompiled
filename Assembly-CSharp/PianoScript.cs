@@ -1,30 +1,26 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PianoScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003AA RID: 938
 public class PianoScript : MonoBehaviour
 {
-	// Token: 0x06001AD2 RID: 6866 RVA: 0x00122C70 File Offset: 0x00120E70
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount < 1f && this.Prompt.Circle[0].fillAmount > 0f)
-		{
-			this.Prompt.Circle[0].fillAmount = 0f;
-			this.Notes[this.ID].Play();
-			this.ID++;
-			if (this.ID == this.Notes.Length)
-			{
-				this.ID = 0;
-			}
-		}
-	}
+  public PromptScript Prompt;
+  public AudioSource[] Notes;
+  public int ID;
 
-	// Token: 0x04002CA1 RID: 11425
-	public PromptScript Prompt;
-
-	// Token: 0x04002CA2 RID: 11426
-	public AudioSource[] Notes;
-
-	// Token: 0x04002CA3 RID: 11427
-	public int ID;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount >= 1.0 || (double) this.Prompt.Circle[0].fillAmount <= 0.0)
+      return;
+    this.Prompt.Circle[0].fillAmount = 0.0f;
+    this.Notes[this.ID].Play();
+    ++this.ID;
+    if (this.ID != this.Notes.Length)
+      return;
+    this.ID = 0;
+  }
 }

@@ -1,25 +1,22 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SentenceScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000425 RID: 1061
 public class SentenceScript : MonoBehaviour
 {
-	// Token: 0x06001CAA RID: 7338 RVA: 0x00150212 File Offset: 0x0014E412
-	private void Update()
-	{
-		if (Input.GetButtonDown("A"))
-		{
-			this.Sentence.text = this.Words[this.ID];
-			this.ID++;
-		}
-	}
+  public UILabel Sentence;
+  public string[] Words;
+  public int ID;
 
-	// Token: 0x04003317 RID: 13079
-	public UILabel Sentence;
-
-	// Token: 0x04003318 RID: 13080
-	public string[] Words;
-
-	// Token: 0x04003319 RID: 13081
-	public int ID;
+  private void Update()
+  {
+    if (!Input.GetButtonDown("A"))
+      return;
+    this.Sentence.text = this.Words[this.ID];
+    ++this.ID;
+  }
 }

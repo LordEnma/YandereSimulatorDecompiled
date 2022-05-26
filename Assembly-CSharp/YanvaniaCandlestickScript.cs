@@ -1,27 +1,24 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YanvaniaCandlestickScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020004E2 RID: 1250
 public class YanvaniaCandlestickScript : MonoBehaviour
 {
-	// Token: 0x060020DB RID: 8411 RVA: 0x001E5E0C File Offset: 0x001E400C
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.layer == 19 && !this.Destroyed)
-		{
-			UnityEngine.Object.Instantiate<GameObject>(this.DestroyedCandlestick, base.transform.position, Quaternion.identity).transform.localScale = base.transform.localScale;
-			this.Destroyed = true;
-			AudioClipPlayer.Play2D(this.Break, base.transform.position);
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  public GameObject DestroyedCandlestick;
+  public bool Destroyed;
+  public AudioClip Break;
 
-	// Token: 0x04004831 RID: 18481
-	public GameObject DestroyedCandlestick;
-
-	// Token: 0x04004832 RID: 18482
-	public bool Destroyed;
-
-	// Token: 0x04004833 RID: 18483
-	public AudioClip Break;
+  private void OnTriggerEnter(Collider other)
+  {
+    if (other.gameObject.layer != 19 || this.Destroyed)
+      return;
+    Object.Instantiate<GameObject>(this.DestroyedCandlestick, this.transform.position, Quaternion.identity).transform.localScale = this.transform.localScale;
+    this.Destroyed = true;
+    AudioClipPlayer.Play2D(this.Break, this.transform.position);
+    Object.Destroy((Object) this.gameObject);
+  }
 }

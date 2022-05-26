@@ -1,34 +1,30 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: CreditsLabelScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000267 RID: 615
 public class CreditsLabelScript : MonoBehaviour
 {
-	// Token: 0x06001303 RID: 4867 RVA: 0x000A8C48 File Offset: 0x000A6E48
-	private void Start()
-	{
-		this.Rotation = -90f;
-		base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, this.Rotation, base.transform.localEulerAngles.z);
-	}
+  public float RotationSpeed;
+  public float MovementSpeed;
+  public float Rotation;
 
-	// Token: 0x06001304 RID: 4868 RVA: 0x000A8C98 File Offset: 0x000A6E98
-	private void Update()
-	{
-		this.Rotation += Time.deltaTime * this.RotationSpeed;
-		base.transform.localEulerAngles = new Vector3(base.transform.localEulerAngles.x, this.Rotation, base.transform.localEulerAngles.z);
-		base.transform.localPosition = new Vector3(base.transform.localPosition.x, base.transform.localPosition.y + Time.deltaTime * this.MovementSpeed, base.transform.localPosition.z);
-		if (this.Rotation > 90f)
-		{
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  private void Start()
+  {
+    this.Rotation = -90f;
+    this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.Rotation, this.transform.localEulerAngles.z);
+  }
 
-	// Token: 0x04001B19 RID: 6937
-	public float RotationSpeed;
-
-	// Token: 0x04001B1A RID: 6938
-	public float MovementSpeed;
-
-	// Token: 0x04001B1B RID: 6939
-	public float Rotation;
+  private void Update()
+  {
+    this.Rotation += Time.deltaTime * this.RotationSpeed;
+    this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.Rotation, this.transform.localEulerAngles.z);
+    this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y + Time.deltaTime * this.MovementSpeed, this.transform.localPosition.z);
+    if ((double) this.Rotation <= 90.0)
+      return;
+    Object.Destroy((Object) this.gameObject);
+  }
 }

@@ -1,190 +1,129 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIScrollBar
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using UnityEngine;
 
-// Token: 0x02000061 RID: 97
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Interaction/NGUI Scroll Bar")]
 public class UIScrollBar : UISlider
 {
-	// Token: 0x17000034 RID: 52
-	// (get) Token: 0x06000284 RID: 644 RVA: 0x0001C132 File Offset: 0x0001A332
-	// (set) Token: 0x06000285 RID: 645 RVA: 0x0001C13A File Offset: 0x0001A33A
-	[Obsolete("Use 'value' instead")]
-	public float scrollValue
-	{
-		get
-		{
-			return base.value;
-		}
-		set
-		{
-			base.value = value;
-		}
-	}
+  [HideInInspector]
+  [SerializeField]
+  protected float mSize = 1f;
+  [HideInInspector]
+  [SerializeField]
+  private float mScroll;
+  [HideInInspector]
+  [SerializeField]
+  private UIScrollBar.Direction mDir = UIScrollBar.Direction.Upgraded;
 
-	// Token: 0x17000035 RID: 53
-	// (get) Token: 0x06000286 RID: 646 RVA: 0x0001C143 File Offset: 0x0001A343
-	// (set) Token: 0x06000287 RID: 647 RVA: 0x0001C14C File Offset: 0x0001A34C
-	public float barSize
-	{
-		get
-		{
-			return this.mSize;
-		}
-		set
-		{
-			float num = Mathf.Clamp01(value);
-			if (this.mSize != num)
-			{
-				this.mSize = num;
-				this.mIsDirty = true;
-				if (NGUITools.GetActive(this))
-				{
-					if (UIProgressBar.current == null && this.onChange != null)
-					{
-						UIProgressBar.current = this;
-						EventDelegate.Execute(this.onChange);
-						UIProgressBar.current = null;
-					}
-					this.ForceUpdate();
-				}
-			}
-		}
-	}
+  [Obsolete("Use 'value' instead")]
+  public float scrollValue
+  {
+    get => this.value;
+    set => this.value = value;
+  }
 
-	// Token: 0x06000288 RID: 648 RVA: 0x0001C1B4 File Offset: 0x0001A3B4
-	protected override void Upgrade()
-	{
-		if (this.mDir != UIScrollBar.Direction.Upgraded)
-		{
-			this.mValue = this.mScroll;
-			if (this.mDir == UIScrollBar.Direction.Horizontal)
-			{
-				this.mFill = (this.mInverted ? UIProgressBar.FillDirection.RightToLeft : UIProgressBar.FillDirection.LeftToRight);
-			}
-			else
-			{
-				this.mFill = (this.mInverted ? UIProgressBar.FillDirection.BottomToTop : UIProgressBar.FillDirection.TopToBottom);
-			}
-			this.mDir = UIScrollBar.Direction.Upgraded;
-		}
-	}
+  public float barSize
+  {
+    get => this.mSize;
+    set
+    {
+      float num = Mathf.Clamp01(value);
+      if ((double) this.mSize == (double) num)
+        return;
+      this.mSize = num;
+      this.mIsDirty = true;
+      if (!NGUITools.GetActive((Behaviour) this))
+        return;
+      if ((UnityEngine.Object) UIProgressBar.current == (UnityEngine.Object) null && this.onChange != null)
+      {
+        UIProgressBar.current = (UIProgressBar) this;
+        EventDelegate.Execute(this.onChange);
+        UIProgressBar.current = (UIProgressBar) null;
+      }
+      this.ForceUpdate();
+    }
+  }
 
-	// Token: 0x06000289 RID: 649 RVA: 0x0001C20C File Offset: 0x0001A40C
-	protected override void OnStart()
-	{
-		base.OnStart();
-		if (this.mFG != null && this.mFG.gameObject != base.gameObject)
-		{
-			if (!(this.mFG.GetComponent<Collider>() != null) && !(this.mFG.GetComponent<Collider2D>() != null))
-			{
-				return;
-			}
-			UIEventListener uieventListener = UIEventListener.Get(this.mFG.gameObject);
-			uieventListener.onPress = (UIEventListener.BoolDelegate)Delegate.Combine(uieventListener.onPress, new UIEventListener.BoolDelegate(base.OnPressForeground));
-			uieventListener.onDrag = (UIEventListener.VectorDelegate)Delegate.Combine(uieventListener.onDrag, new UIEventListener.VectorDelegate(base.OnDragForeground));
-			this.mFG.autoResizeBoxCollider = true;
-		}
-	}
+  protected override void Upgrade()
+  {
+    if (this.mDir == UIScrollBar.Direction.Upgraded)
+      return;
+    this.mValue = this.mScroll;
+    if (this.mDir == UIScrollBar.Direction.Horizontal)
+      this.mFill = this.mInverted ? UIProgressBar.FillDirection.RightToLeft : UIProgressBar.FillDirection.LeftToRight;
+    else
+      this.mFill = this.mInverted ? UIProgressBar.FillDirection.BottomToTop : UIProgressBar.FillDirection.TopToBottom;
+    this.mDir = UIScrollBar.Direction.Upgraded;
+  }
 
-	// Token: 0x0600028A RID: 650 RVA: 0x0001C2D4 File Offset: 0x0001A4D4
-	protected override float LocalToValue(Vector2 localPos)
-	{
-		if (!(this.mFG != null))
-		{
-			return base.LocalToValue(localPos);
-		}
-		float num = Mathf.Clamp01(this.mSize) * 0.5f;
-		float num2 = num;
-		float num3 = 1f - num;
-		Vector3[] localCorners = this.mFG.localCorners;
-		if (base.isHorizontal)
-		{
-			num2 = Mathf.Lerp(localCorners[0].x, localCorners[2].x, num2);
-			num3 = Mathf.Lerp(localCorners[0].x, localCorners[2].x, num3);
-			float num4 = num3 - num2;
-			if (num4 == 0f)
-			{
-				return base.value;
-			}
-			if (!base.isInverted)
-			{
-				return (localPos.x - num2) / num4;
-			}
-			return (num3 - localPos.x) / num4;
-		}
-		else
-		{
-			num2 = Mathf.Lerp(localCorners[0].y, localCorners[1].y, num2);
-			num3 = Mathf.Lerp(localCorners[3].y, localCorners[2].y, num3);
-			float num5 = num3 - num2;
-			if (num5 == 0f)
-			{
-				return base.value;
-			}
-			if (!base.isInverted)
-			{
-				return (localPos.y - num2) / num5;
-			}
-			return (num3 - localPos.y) / num5;
-		}
-	}
+  protected override void OnStart()
+  {
+    base.OnStart();
+    if (!((UnityEngine.Object) this.mFG != (UnityEngine.Object) null) || !((UnityEngine.Object) this.mFG.gameObject != (UnityEngine.Object) this.gameObject) || ((UnityEngine.Object) this.mFG.GetComponent<Collider>() != (UnityEngine.Object) null ? 1 : ((UnityEngine.Object) this.mFG.GetComponent<Collider2D>() != (UnityEngine.Object) null ? 1 : 0)) == 0)
+      return;
+    UIEventListener uiEventListener = UIEventListener.Get(this.mFG.gameObject);
+    uiEventListener.onPress += new UIEventListener.BoolDelegate(((UISlider) this).OnPressForeground);
+    uiEventListener.onDrag += new UIEventListener.VectorDelegate(((UISlider) this).OnDragForeground);
+    this.mFG.autoResizeBoxCollider = true;
+  }
 
-	// Token: 0x0600028B RID: 651 RVA: 0x0001C410 File Offset: 0x0001A610
-	public override void ForceUpdate()
-	{
-		if (this.mFG != null)
-		{
-			this.mIsDirty = false;
-			float num = Mathf.Clamp01(this.mSize) * 0.5f;
-			float num2 = Mathf.Lerp(num, 1f - num, base.value);
-			float num3 = num2 - num;
-			float num4 = num2 + num;
-			if (base.isHorizontal)
-			{
-				this.mFG.drawRegion = (base.isInverted ? new Vector4(1f - num4, 0f, 1f - num3, 1f) : new Vector4(num3, 0f, num4, 1f));
-			}
-			else
-			{
-				this.mFG.drawRegion = (base.isInverted ? new Vector4(0f, 1f - num4, 1f, 1f - num3) : new Vector4(0f, num3, 1f, num4));
-			}
-			if (this.thumb != null)
-			{
-				Vector4 drawingDimensions = this.mFG.drawingDimensions;
-				Vector3 position = new Vector3(Mathf.Lerp(drawingDimensions.x, drawingDimensions.z, 0.5f), Mathf.Lerp(drawingDimensions.y, drawingDimensions.w, 0.5f));
-				base.SetThumbPosition(this.mFG.cachedTransform.TransformPoint(position));
-				return;
-			}
-		}
-		else
-		{
-			base.ForceUpdate();
-		}
-	}
+  protected override float LocalToValue(Vector2 localPos)
+  {
+    if (!((UnityEngine.Object) this.mFG != (UnityEngine.Object) null))
+      return base.LocalToValue(localPos);
+    float num1 = Mathf.Clamp01(this.mSize) * 0.5f;
+    float t1 = num1;
+    float t2 = 1f - num1;
+    Vector3[] localCorners = this.mFG.localCorners;
+    if (this.isHorizontal)
+    {
+      float num2 = Mathf.Lerp(localCorners[0].x, localCorners[2].x, t1);
+      float num3 = Mathf.Lerp(localCorners[0].x, localCorners[2].x, t2);
+      float num4 = num3 - num2;
+      if ((double) num4 == 0.0)
+        return this.value;
+      return !this.isInverted ? (localPos.x - num2) / num4 : (num3 - localPos.x) / num4;
+    }
+    float num5 = Mathf.Lerp(localCorners[0].y, localCorners[1].y, t1);
+    float num6 = Mathf.Lerp(localCorners[3].y, localCorners[2].y, t2);
+    float num7 = num6 - num5;
+    if ((double) num7 == 0.0)
+      return this.value;
+    return !this.isInverted ? (localPos.y - num5) / num7 : (num6 - localPos.y) / num7;
+  }
 
-	// Token: 0x0400041A RID: 1050
-	[HideInInspector]
-	[SerializeField]
-	protected float mSize = 1f;
+  public override void ForceUpdate()
+  {
+    if ((UnityEngine.Object) this.mFG != (UnityEngine.Object) null)
+    {
+      this.mIsDirty = false;
+      float a = Mathf.Clamp01(this.mSize) * 0.5f;
+      double num1 = (double) Mathf.Lerp(a, 1f - a, this.value);
+      float num2 = (float) num1 - a;
+      float num3 = (float) num1 + a;
+      if (this.isHorizontal)
+        this.mFG.drawRegion = this.isInverted ? new Vector4(1f - num3, 0.0f, 1f - num2, 1f) : new Vector4(num2, 0.0f, num3, 1f);
+      else
+        this.mFG.drawRegion = this.isInverted ? new Vector4(0.0f, 1f - num3, 1f, 1f - num2) : new Vector4(0.0f, num2, 1f, num3);
+      if (!((UnityEngine.Object) this.thumb != (UnityEngine.Object) null))
+        return;
+      Vector4 drawingDimensions = this.mFG.drawingDimensions;
+      this.SetThumbPosition(this.mFG.cachedTransform.TransformPoint(new Vector3(Mathf.Lerp(drawingDimensions.x, drawingDimensions.z, 0.5f), Mathf.Lerp(drawingDimensions.y, drawingDimensions.w, 0.5f))));
+    }
+    else
+      base.ForceUpdate();
+  }
 
-	// Token: 0x0400041B RID: 1051
-	[HideInInspector]
-	[SerializeField]
-	private float mScroll;
-
-	// Token: 0x0400041C RID: 1052
-	[HideInInspector]
-	[SerializeField]
-	private UIScrollBar.Direction mDir = UIScrollBar.Direction.Upgraded;
-
-	// Token: 0x020005E5 RID: 1509
-	private enum Direction
-	{
-		// Token: 0x04004E7E RID: 20094
-		Horizontal,
-		// Token: 0x04004E7F RID: 20095
-		Vertical,
-		// Token: 0x04004E80 RID: 20096
-		Upgraded
-	}
+  private new enum Direction
+  {
+    Horizontal,
+    Vertical,
+    Upgraded,
+  }
 }

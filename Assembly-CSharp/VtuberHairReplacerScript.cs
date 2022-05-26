@@ -1,24 +1,24 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: VtuberHairReplacerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020004BF RID: 1215
 public class VtuberHairReplacerScript : MonoBehaviour
 {
-	// Token: 0x06001FDB RID: 8155 RVA: 0x001C2A35 File Offset: 0x001C0C35
-	private void Start()
-	{
-		if (GameGlobals.VtuberID > 0)
-		{
-			this.YandereHair.SetActive(false);
-			this.VtuberHair[GameGlobals.VtuberID].SetActive(true);
-			return;
-		}
-		this.VtuberHair[1].SetActive(false);
-	}
+  public GameObject YandereHair;
+  public GameObject[] VtuberHair;
 
-	// Token: 0x0400429B RID: 17051
-	public GameObject YandereHair;
-
-	// Token: 0x0400429C RID: 17052
-	public GameObject[] VtuberHair;
+  private void Start()
+  {
+    if (GameGlobals.VtuberID > 0)
+    {
+      this.YandereHair.SetActive(false);
+      this.VtuberHair[GameGlobals.VtuberID].SetActive(true);
+    }
+    else
+      this.VtuberHair[1].SetActive(false);
+  }
 }

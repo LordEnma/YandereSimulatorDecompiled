@@ -1,19 +1,20 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: StandPunchScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200044A RID: 1098
 public class StandPunchScript : MonoBehaviour
 {
-	// Token: 0x06001D41 RID: 7489 RVA: 0x0015F008 File Offset: 0x0015D208
-	private void OnTriggerEnter(Collider other)
-	{
-		StudentScript component = other.gameObject.GetComponent<StudentScript>();
-		if (component != null && component.StudentID > 1)
-		{
-			component.JojoReact();
-		}
-	}
+  public Collider MyCollider;
 
-	// Token: 0x04003575 RID: 13685
-	public Collider MyCollider;
+  private void OnTriggerEnter(Collider other)
+  {
+    StudentScript component = other.gameObject.GetComponent<StudentScript>();
+    if (!((Object) component != (Object) null) || component.StudentID <= 1)
+      return;
+    component.JojoReact();
+  }
 }

@@ -1,219 +1,116 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: NotificationManagerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000382 RID: 898
 public class NotificationManagerScript : MonoBehaviour
 {
-	// Token: 0x06001A3E RID: 6718 RVA: 0x00115858 File Offset: 0x00113A58
-	private void Awake()
-	{
-		this.NotificationMessages = new NotificationTypeAndStringDictionary
-		{
-			{
-				NotificationType.Bloody,
-				"Visibly Bloody"
-			},
-			{
-				NotificationType.Body,
-				"Near Body"
-			},
-			{
-				NotificationType.Insane,
-				"Visibly Insane"
-			},
-			{
-				NotificationType.Armed,
-				"Visibly Armed"
-			},
-			{
-				NotificationType.Lewd,
-				"Visibly Lewd"
-			},
-			{
-				NotificationType.Intrude,
-				"Intruding"
-			},
-			{
-				NotificationType.Late,
-				"Late For Class"
-			},
-			{
-				NotificationType.Info,
-				"Learned New Info"
-			},
-			{
-				NotificationType.Topic,
-				"Learned New Topic: "
-			},
-			{
-				NotificationType.Opinion,
-				"Learned how a student feels about: "
-			},
-			{
-				NotificationType.Complete,
-				"Mission Complete"
-			},
-			{
-				NotificationType.Exfiltrate,
-				"Leave School"
-			},
-			{
-				NotificationType.Evidence,
-				"Evidence Recorded"
-			},
-			{
-				NotificationType.ClassSoon,
-				"Class Begins Soon"
-			},
-			{
-				NotificationType.ClassNow,
-				"Class Begins Now"
-			},
-			{
-				NotificationType.Eavesdropping,
-				"Eavesdropping"
-			},
-			{
-				NotificationType.Clothing,
-				"Cannot Attack; No Spare Clothing"
-			},
-			{
-				NotificationType.Persona,
-				"Persona"
-			},
-			{
-				NotificationType.Custom,
-				this.CustomText
-			}
-		};
-	}
+  public YandereScript Yandere;
+  public Transform NotificationSpawnPoint;
+  public Transform NotificationParent;
+  public GameObject Notification;
+  public int NotificationsSpawned;
+  public int Phase = 1;
+  public ClockScript Clock;
+  public string PersonaName;
+  public string PreviousText;
+  public string CustomText;
+  public string TopicName;
+  public string[] ClubNames;
+  private NotificationTypeAndStringDictionary NotificationMessages;
 
-	// Token: 0x06001A3F RID: 6719 RVA: 0x00115960 File Offset: 0x00113B60
-	private void Update()
-	{
-		if (this.NotificationParent.localPosition.y > 0.001f + -0.049f * (float)this.NotificationsSpawned)
-		{
-			this.NotificationParent.localPosition = new Vector3(this.NotificationParent.localPosition.x, Mathf.Lerp(this.NotificationParent.localPosition.y, -0.049f * (float)this.NotificationsSpawned, Time.deltaTime * 10f), this.NotificationParent.localPosition.z);
-		}
-		if (this.Phase == 1)
-		{
-			if (this.Clock.HourTime > 8.4f)
-			{
-				if (!this.Yandere.InClass)
-				{
-					this.Yandere.StudentManager.TutorialWindow.ShowClassMessage = true;
-					this.DisplayNotification(NotificationType.ClassSoon);
-				}
-				this.Phase++;
-				return;
-			}
-		}
-		else if (this.Phase == 2)
-		{
-			if (this.Clock.HourTime > 8.5f)
-			{
-				if (!this.Yandere.InClass)
-				{
-					this.DisplayNotification(NotificationType.ClassNow);
-				}
-				this.Phase++;
-				return;
-			}
-		}
-		else if (this.Phase == 3)
-		{
-			if (this.Clock.HourTime > 13.4f)
-			{
-				if (!this.Yandere.InClass)
-				{
-					this.DisplayNotification(NotificationType.ClassSoon);
-				}
-				this.Phase++;
-				return;
-			}
-		}
-		else if (this.Phase == 4 && this.Clock.HourTime > 13.5f)
-		{
-			if (!this.Yandere.InClass)
-			{
-				this.DisplayNotification(NotificationType.ClassNow);
-			}
-			this.Phase++;
-		}
-	}
+  private void Awake()
+  {
+    NotificationTypeAndStringDictionary stringDictionary = new NotificationTypeAndStringDictionary();
+    stringDictionary.Add(NotificationType.Bloody, "Visibly Bloody");
+    stringDictionary.Add(NotificationType.Body, "Near Body");
+    stringDictionary.Add(NotificationType.Insane, "Visibly Insane");
+    stringDictionary.Add(NotificationType.Armed, "Visibly Armed");
+    stringDictionary.Add(NotificationType.Lewd, "Visibly Lewd");
+    stringDictionary.Add(NotificationType.Intrude, "Intruding");
+    stringDictionary.Add(NotificationType.Late, "Late For Class");
+    stringDictionary.Add(NotificationType.Info, "Learned New Info");
+    stringDictionary.Add(NotificationType.Topic, "Learned New Topic: ");
+    stringDictionary.Add(NotificationType.Opinion, "Learned how a student feels about: ");
+    stringDictionary.Add(NotificationType.Complete, "Mission Complete");
+    stringDictionary.Add(NotificationType.Exfiltrate, "Leave School");
+    stringDictionary.Add(NotificationType.Evidence, "Evidence Recorded");
+    stringDictionary.Add(NotificationType.ClassSoon, "Class Begins Soon");
+    stringDictionary.Add(NotificationType.ClassNow, "Class Begins Now");
+    stringDictionary.Add(NotificationType.Eavesdropping, "Eavesdropping");
+    stringDictionary.Add(NotificationType.Clothing, "Cannot Attack; No Spare Clothing");
+    stringDictionary.Add(NotificationType.Persona, "Persona");
+    stringDictionary.Add(NotificationType.Custom, this.CustomText);
+    this.NotificationMessages = stringDictionary;
+  }
 
-	// Token: 0x06001A40 RID: 6720 RVA: 0x00115B08 File Offset: 0x00113D08
-	public void DisplayNotification(NotificationType Type)
-	{
-		if (!this.Yandere.Egg)
-		{
-			GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Notification);
-			NotificationScript component = gameObject.GetComponent<NotificationScript>();
-			gameObject.transform.parent = this.NotificationParent;
-			gameObject.transform.localPosition = new Vector3(0f, 0.60275f + 0.049f * (float)this.NotificationsSpawned, 0f);
-			gameObject.transform.localEulerAngles = Vector3.zero;
-			component.NotificationManager = this;
-			string text;
-			this.NotificationMessages.TryGetValue(Type, out text);
-			if (Type != NotificationType.Persona && Type != NotificationType.Custom)
-			{
-				string str = "";
-				if (Type == NotificationType.Topic || Type == NotificationType.Opinion)
-				{
-					str = this.TopicName;
-				}
-				component.Label.text = text + str;
-			}
-			else if (Type == NotificationType.Custom)
-			{
-				component.Label.text = this.CustomText;
-			}
-			else
-			{
-				component.Label.text = this.PersonaName + " " + text;
-			}
-			this.NotificationsSpawned++;
-			component.ID = this.NotificationsSpawned;
-			this.PreviousText = this.CustomText;
-		}
-	}
+  private void Update()
+  {
+    if ((double) this.NotificationParent.localPosition.y > 1.0 / 1000.0 + -0.0489999987185001 * (double) this.NotificationsSpawned)
+      this.NotificationParent.localPosition = new Vector3(this.NotificationParent.localPosition.x, Mathf.Lerp(this.NotificationParent.localPosition.y, -0.049f * (float) this.NotificationsSpawned, Time.deltaTime * 10f), this.NotificationParent.localPosition.z);
+    if (this.Phase == 1)
+    {
+      if ((double) this.Clock.HourTime <= 8.39999961853027)
+        return;
+      if (!this.Yandere.InClass)
+      {
+        this.Yandere.StudentManager.TutorialWindow.ShowClassMessage = true;
+        this.DisplayNotification(NotificationType.ClassSoon);
+      }
+      ++this.Phase;
+    }
+    else if (this.Phase == 2)
+    {
+      if ((double) this.Clock.HourTime <= 8.5)
+        return;
+      if (!this.Yandere.InClass)
+        this.DisplayNotification(NotificationType.ClassNow);
+      ++this.Phase;
+    }
+    else if (this.Phase == 3)
+    {
+      if ((double) this.Clock.HourTime <= 13.3999996185303)
+        return;
+      if (!this.Yandere.InClass)
+        this.DisplayNotification(NotificationType.ClassSoon);
+      ++this.Phase;
+    }
+    else
+    {
+      if (this.Phase != 4 || (double) this.Clock.HourTime <= 13.5)
+        return;
+      if (!this.Yandere.InClass)
+        this.DisplayNotification(NotificationType.ClassNow);
+      ++this.Phase;
+    }
+  }
 
-	// Token: 0x04002AF4 RID: 10996
-	public YandereScript Yandere;
-
-	// Token: 0x04002AF5 RID: 10997
-	public Transform NotificationSpawnPoint;
-
-	// Token: 0x04002AF6 RID: 10998
-	public Transform NotificationParent;
-
-	// Token: 0x04002AF7 RID: 10999
-	public GameObject Notification;
-
-	// Token: 0x04002AF8 RID: 11000
-	public int NotificationsSpawned;
-
-	// Token: 0x04002AF9 RID: 11001
-	public int Phase = 1;
-
-	// Token: 0x04002AFA RID: 11002
-	public ClockScript Clock;
-
-	// Token: 0x04002AFB RID: 11003
-	public string PersonaName;
-
-	// Token: 0x04002AFC RID: 11004
-	public string PreviousText;
-
-	// Token: 0x04002AFD RID: 11005
-	public string CustomText;
-
-	// Token: 0x04002AFE RID: 11006
-	public string TopicName;
-
-	// Token: 0x04002AFF RID: 11007
-	public string[] ClubNames;
-
-	// Token: 0x04002B00 RID: 11008
-	private NotificationTypeAndStringDictionary NotificationMessages;
+  public void DisplayNotification(NotificationType Type)
+  {
+    if (this.Yandere.Egg)
+      return;
+    GameObject gameObject = Object.Instantiate<GameObject>(this.Notification);
+    NotificationScript component = gameObject.GetComponent<NotificationScript>();
+    gameObject.transform.parent = this.NotificationParent;
+    gameObject.transform.localPosition = new Vector3(0.0f, (float) (0.60275000333786 + 0.0489999987185001 * (double) this.NotificationsSpawned), 0.0f);
+    gameObject.transform.localEulerAngles = Vector3.zero;
+    component.NotificationManager = this;
+    string str1;
+    this.NotificationMessages.TryGetValue(Type, out str1);
+    if (Type != NotificationType.Persona && Type != NotificationType.Custom)
+    {
+      string str2 = "";
+      if (Type == NotificationType.Topic || Type == NotificationType.Opinion)
+        str2 = this.TopicName;
+      component.Label.text = str1 + str2;
+    }
+    else
+      component.Label.text = Type != NotificationType.Custom ? this.PersonaName + " " + str1 : this.CustomText;
+    ++this.NotificationsSpawned;
+    component.ID = this.NotificationsSpawned;
+    this.PreviousText = this.CustomText;
+  }
 }

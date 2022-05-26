@@ -1,52 +1,37 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MGPMProjectileScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000013 RID: 19
 public class MGPMProjectileScript : MonoBehaviour
 {
-	// Token: 0x06000041 RID: 65 RVA: 0x00006CD6 File Offset: 0x00004ED6
-	private void Start()
-	{
-		if (this.Eighties)
-		{
-			base.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
-		}
-	}
+  public Transform Sprite;
+  public int Angle;
+  public float Speed;
+  public bool Eighties;
 
-	// Token: 0x06000042 RID: 66 RVA: 0x00006D00 File Offset: 0x00004F00
-	private void Update()
-	{
-		if (base.gameObject.layer == 8)
-		{
-			base.transform.Translate(Vector3.up * Time.deltaTime * this.Speed);
-		}
-		else
-		{
-			base.transform.Translate(Vector3.forward * Time.deltaTime * this.Speed);
-		}
-		if (this.Angle == 1)
-		{
-			base.transform.Translate(Vector3.right * Time.deltaTime * this.Speed * 0.2f);
-		}
-		else if (this.Angle == -1)
-		{
-			base.transform.Translate(Vector3.right * Time.deltaTime * this.Speed * -0.2f);
-		}
-		if (base.transform.localPosition.y > 300f || base.transform.localPosition.y < -300f || base.transform.localPosition.x > 134f || base.transform.localPosition.x < -134f)
-		{
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  private void Start()
+  {
+    if (!this.Eighties)
+      return;
+    this.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+  }
 
-	// Token: 0x040000F4 RID: 244
-	public Transform Sprite;
-
-	// Token: 0x040000F5 RID: 245
-	public int Angle;
-
-	// Token: 0x040000F6 RID: 246
-	public float Speed;
-
-	// Token: 0x040000F7 RID: 247
-	public bool Eighties;
+  private void Update()
+  {
+    if (this.gameObject.layer == 8)
+      this.transform.Translate(Vector3.up * Time.deltaTime * this.Speed);
+    else
+      this.transform.Translate(Vector3.forward * Time.deltaTime * this.Speed);
+    if (this.Angle == 1)
+      this.transform.Translate(Vector3.right * Time.deltaTime * this.Speed * 0.2f);
+    else if (this.Angle == -1)
+      this.transform.Translate(Vector3.right * Time.deltaTime * this.Speed * -0.2f);
+    if ((double) this.transform.localPosition.y <= 300.0 && (double) this.transform.localPosition.y >= -300.0 && (double) this.transform.localPosition.x <= 134.0 && (double) this.transform.localPosition.x >= -134.0)
+      return;
+    Object.Destroy((Object) this.gameObject);
+  }
 }

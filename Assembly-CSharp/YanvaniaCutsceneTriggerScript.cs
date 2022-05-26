@@ -1,23 +1,22 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YanvaniaCutsceneTriggerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020004E3 RID: 1251
 public class YanvaniaCutsceneTriggerScript : MonoBehaviour
 {
-	// Token: 0x060020DD RID: 8413 RVA: 0x001E5E90 File Offset: 0x001E4090
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.name == "YanmontChan")
-		{
-			this.BossBattleWall.SetActive(true);
-			this.Yanmont.EnterCutscene = true;
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  public YanvaniaYanmontScript Yanmont;
+  public GameObject BossBattleWall;
 
-	// Token: 0x04004834 RID: 18484
-	public YanvaniaYanmontScript Yanmont;
-
-	// Token: 0x04004835 RID: 18485
-	public GameObject BossBattleWall;
+  private void OnTriggerEnter(Collider other)
+  {
+    if (!(other.gameObject.name == "YanmontChan"))
+      return;
+    this.BossBattleWall.SetActive(true);
+    this.Yanmont.EnterCutscene = true;
+    Object.Destroy((Object) this.gameObject);
+  }
 }

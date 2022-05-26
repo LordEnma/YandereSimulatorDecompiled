@@ -1,28 +1,31 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityStandardAssets.Vehicles.Car.SkidTrail
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using System.Collections;
 using UnityEngine;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x02000537 RID: 1335
-	public class SkidTrail : MonoBehaviour
-	{
-		// Token: 0x060021FE RID: 8702 RVA: 0x001F491A File Offset: 0x001F2B1A
-		private IEnumerator Start()
-		{
-			for (;;)
-			{
-				yield return null;
-				if (base.transform.parent.parent == null)
-				{
-					UnityEngine.Object.Destroy(base.gameObject, this.m_PersistTime);
-				}
-			}
-			yield break;
-		}
+  public class SkidTrail : MonoBehaviour
+  {
+    [SerializeField]
+    private float m_PersistTime;
 
-		// Token: 0x04004AD0 RID: 19152
-		[SerializeField]
-		private float m_PersistTime;
-	}
+    private IEnumerator Start()
+    {
+      SkidTrail skidTrail = this;
+      while (true)
+      {
+        do
+        {
+          yield return (object) null;
+        }
+        while (!((Object) skidTrail.transform.parent.parent == (Object) null));
+        Object.Destroy((Object) skidTrail.gameObject, skidTrail.m_PersistTime);
+      }
+    }
+  }
 }

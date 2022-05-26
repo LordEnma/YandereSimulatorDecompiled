@@ -1,38 +1,36 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: EnterGuardStateColliderScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020002AA RID: 682
 public class EnterGuardStateColliderScript : MonoBehaviour
 {
-	// Token: 0x0600143C RID: 5180 RVA: 0x000C6FEC File Offset: 0x000C51EC
-	private void Update()
-	{
-		this.Frame++;
-		if (this.Frame > 1)
-		{
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  public int Frame;
 
-	// Token: 0x0600143D RID: 5181 RVA: 0x000C7010 File Offset: 0x000C5210
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.layer == 9)
-		{
-			StudentScript component = other.gameObject.GetComponent<StudentScript>();
-			if (component != null && component.Teacher)
-			{
-				component.CharacterAnimation.CrossFade(component.GuardAnim);
-				component.IgnoringPettyActions = true;
-				component.Pathfinding.canSearch = false;
-				component.Pathfinding.canMove = false;
-				component.ReportPhase = 6;
-				component.Guarding = true;
-				component.Routine = false;
-			}
-		}
-	}
+  private void Update()
+  {
+    ++this.Frame;
+    if (this.Frame <= 1)
+      return;
+    Object.Destroy((Object) this.gameObject);
+  }
 
-	// Token: 0x04001F06 RID: 7942
-	public int Frame;
+  private void OnTriggerEnter(Collider other)
+  {
+    if (other.gameObject.layer != 9)
+      return;
+    StudentScript component = other.gameObject.GetComponent<StudentScript>();
+    if (!((Object) component != (Object) null) || !component.Teacher)
+      return;
+    component.CharacterAnimation.CrossFade(component.GuardAnim);
+    component.IgnoringPettyActions = true;
+    component.Pathfinding.canSearch = false;
+    component.Pathfinding.canMove = false;
+    component.ReportPhase = 6;
+    component.Guarding = true;
+    component.Routine = false;
+  }
 }

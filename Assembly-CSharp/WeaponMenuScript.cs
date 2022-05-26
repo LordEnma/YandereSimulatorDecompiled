@@ -1,581 +1,492 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: WeaponMenuScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020004C5 RID: 1221
 public class WeaponMenuScript : MonoBehaviour
 {
-	// Token: 0x06002000 RID: 8192 RVA: 0x001C58DB File Offset: 0x001C3ADB
-	private void Start()
-	{
-		this.KeyboardMenu.localScale = Vector3.zero;
-		base.transform.localScale = Vector3.zero;
-		this.OriginalColor = this.BG[1].color;
-		this.UpdateSprites();
-	}
+  public StudentManagerScript StudentManager;
+  public InputDeviceScript InputDevice;
+  public PauseScreenScript PauseScreen;
+  public YandereScript Yandere;
+  public InputManagerScript IM;
+  public UIPanel KeyboardPanel;
+  public UIPanel Panel;
+  public Transform KeyboardMenu;
+  public bool KeyboardShow;
+  public bool Released = true;
+  public bool Show;
+  public UISprite[] BG;
+  public UISprite[] Outline;
+  public UISprite[] Item;
+  public UISprite[] KeyboardBG;
+  public UISprite[] KeyboardOutline;
+  public UISprite[] KeyboardItem;
+  public UISprite EquipCaseWeaponButton;
+  public UILabel EquipCaseWeaponKey;
+  public int Selected = 1;
+  public Color OriginalColor;
+  public Transform Button;
+  public float Timer;
 
-	// Token: 0x06002001 RID: 8193 RVA: 0x001C5918 File Offset: 0x001C3B18
-	private void Update()
-	{
-		if (!this.PauseScreen.Show && !this.Yandere.DebugMenu.activeInHierarchy)
-		{
-			if ((this.Yandere.CanMove && !this.Yandere.Aiming) || (this.Yandere.Chased && !this.Yandere.Struggling && !this.Yandere.Sprayed && !this.Yandere.DelinquentFighting))
-			{
-				if ((this.IM.DPadUp && this.IM.TappedUp) || (this.IM.DPadDown && this.IM.TappedDown) || (this.IM.DPadLeft && this.IM.TappedLeft) || (this.IM.DPadRight && this.IM.TappedRight))
-				{
-					this.Yandere.EmptyHands();
-					if (this.IM.DPadLeft)
-					{
-						this.Button.localPosition = new Vector3(-320f, 0f, 0f);
-						this.Selected = 1;
-					}
-					else if (this.IM.DPadRight)
-					{
-						this.Button.localPosition = new Vector3(320f, 0f, 0f);
-						this.Selected = 2;
-					}
-					else if (this.IM.DPadUp)
-					{
-						if (!this.Show)
-						{
-							this.Selected = 6;
-						}
-						if (this.Selected == 6)
-						{
-							this.Button.localPosition = new Vector3(64f, 190f, 0f);
-							this.Selected = 3;
-						}
-						else
-						{
-							this.Button.localPosition = new Vector3(64f, 380f, 0f);
-							this.Selected = 6;
-						}
-					}
-					else if (this.IM.DPadDown)
-					{
-						if (this.Selected == 4)
-						{
-							this.Button.localPosition = new Vector3(64f, -250f, 0f);
-							this.Selected = 5;
-						}
-						else
-						{
-							this.Button.localPosition = new Vector3(64f, -125f, 0f);
-							this.Selected = 4;
-						}
-					}
-					if (this.IM.DPadLeft || this.IM.DPadRight || this.IM.DPadUp || this.Yandere.Mask != null)
-					{
-						this.KeyboardShow = false;
-						this.Panel.enabled = true;
-						this.Show = true;
-					}
-					this.UpdateSprites();
-				}
-				if (!this.Yandere.EasterEggMenu.activeInHierarchy && !this.Yandere.DebugMenu.activeInHierarchy && (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Alpha5) || (Input.GetKeyDown(KeyCode.Alpha6) && this.Yandere.DebugTimer == 0f)))
-				{
-					this.Yandere.EmptyHands();
-					this.KeyboardPanel.enabled = true;
-					this.KeyboardShow = true;
-					this.Show = false;
-					this.Timer = 0f;
-					if (Input.GetKeyDown(KeyCode.Alpha1))
-					{
-						this.Selected = 4;
-						if (this.Yandere.Equipped > 0)
-						{
-							this.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
-							this.Yandere.ReachWeight = 1f;
-							this.Yandere.Unequip();
-						}
-						if (this.Yandere.PickUp != null)
-						{
-							this.Yandere.PickUp.Drop();
-						}
-						this.Yandere.Mopping = false;
-					}
-					else if (Input.GetKeyDown(KeyCode.Alpha2))
-					{
-						this.Selected = 1;
-						this.Equip();
-					}
-					else if (Input.GetKeyDown(KeyCode.Alpha3))
-					{
-						this.Selected = 2;
-						this.Equip();
-					}
-					else if (Input.GetKeyDown(KeyCode.Alpha4))
-					{
-						this.Selected = 3;
-						if (this.Yandere.Container != null)
-						{
-							this.Yandere.ObstacleDetector.gameObject.SetActive(true);
-						}
-					}
-					else if (Input.GetKeyDown(KeyCode.Alpha5))
-					{
-						this.Selected = 5;
-						this.DropMask();
-					}
-					else if (Input.GetKeyDown(KeyCode.Alpha6) && this.Yandere.DebugTimer == 0f)
-					{
-						this.Selected = 6;
-						this.DropBookbag();
-					}
-					this.UpdateSprites();
-				}
-			}
-			if (this.Yandere.CanMove || (this.Yandere.Chased && !this.Yandere.Sprayed && !this.StudentManager.PinningDown))
-			{
-				if (!this.Show)
-				{
-					if (Input.GetAxis("DpadY") < -0.5f)
-					{
-						if (this.Yandere.Equipped > 0)
-						{
-							if (this.Yandere.EquippedWeapon.Concealable)
-							{
-								this.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
-								this.Yandere.ReachWeight = 1f;
-							}
-							this.Yandere.Unequip();
-						}
-						if (this.Yandere.PickUp != null)
-						{
-							this.Yandere.PickUp.Drop();
-						}
-						this.Yandere.Mopping = false;
-					}
-				}
-				else
-				{
-					if (Input.GetButtonDown("A"))
-					{
-						if (this.Selected < 3)
-						{
-							if (this.Yandere.Weapon[this.Selected] != null)
-							{
-								this.Equip();
-							}
-						}
-						else if (this.Selected == 3)
-						{
-							if (this.Yandere.Container != null)
-							{
-								this.Yandere.ObstacleDetector.gameObject.SetActive(true);
-							}
-						}
-						else if (this.Selected == 5)
-						{
-							this.DropMask();
-						}
-						else if (this.Selected == 6)
-						{
-							this.DropBookbag();
-						}
-						else
-						{
-							if (this.Yandere.Equipped > 0)
-							{
-								this.Yandere.Unequip();
-							}
-							if (this.Yandere.PickUp != null)
-							{
-								this.Yandere.PickUp.Drop();
-							}
-							this.Yandere.Mopping = false;
-						}
-					}
-					if (this.EquipCaseWeaponButton.enabled && Input.GetButtonDown("Y"))
-					{
-						if (this.Yandere.Container.TrashCan.ConcealedWeapon != null)
-						{
-							WeaponScript concealedWeapon = this.Yandere.Container.TrashCan.ConcealedWeapon;
-						}
-						this.Yandere.Container.TrashCan.RemoveContents();
-						this.UpdateSprites();
-						this.Show = false;
-					}
-					if (Input.GetButtonDown("B"))
-					{
-						this.Show = false;
-					}
-				}
-			}
-		}
-		if (!this.Show)
-		{
-			if (base.transform.localScale.x > 0.1f)
-			{
-				base.transform.localScale = Vector3.Lerp(base.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
-			}
-			else if (this.Panel.enabled)
-			{
-				base.transform.localScale = Vector3.zero;
-				this.Panel.enabled = false;
-			}
-		}
-		else
-		{
-			base.transform.localScale = Vector3.Lerp(base.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-			if ((!this.Yandere.CanMove || this.Yandere.Aiming || this.PauseScreen.Show || this.InputDevice.Type == InputDeviceType.MouseAndKeyboard) && (!this.Yandere.Chased || this.Yandere.Sprayed))
-			{
-				this.Show = false;
-			}
-		}
-		if (!this.KeyboardShow)
-		{
-			if (this.KeyboardMenu.localScale.x > 0.1f)
-			{
-				this.KeyboardMenu.localScale = Vector3.Lerp(this.KeyboardMenu.localScale, Vector3.zero, Time.deltaTime * 10f);
-				return;
-			}
-			if (this.KeyboardPanel.enabled)
-			{
-				this.KeyboardMenu.localScale = Vector3.zero;
-				this.KeyboardPanel.enabled = false;
-				return;
-			}
-		}
-		else
-		{
-			this.KeyboardMenu.localScale = Vector3.Lerp(this.KeyboardMenu.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-			this.Timer += Time.deltaTime;
-			if (this.Timer > 5f)
-			{
-				this.KeyboardShow = false;
-			}
-			if (this.EquipCaseWeaponKey.enabled && Input.GetButtonDown("Y"))
-			{
-				if (this.Yandere.Container.TrashCan.ConcealedWeapon != null)
-				{
-					WeaponScript concealedWeapon2 = this.Yandere.Container.TrashCan.ConcealedWeapon;
-				}
-				this.Yandere.Container.TrashCan.RemoveContents();
-				this.UpdateSprites();
-			}
-			if (!this.Yandere.CanMove || this.Yandere.Aiming || this.PauseScreen.Show || this.InputDevice.Type == InputDeviceType.Gamepad || Input.GetButton("Y"))
-			{
-				this.KeyboardShow = false;
-			}
-		}
-	}
+  private void Start()
+  {
+    this.KeyboardMenu.localScale = Vector3.zero;
+    this.transform.localScale = Vector3.zero;
+    this.OriginalColor = this.BG[1].color;
+    this.UpdateSprites();
+  }
 
-	// Token: 0x06002002 RID: 8194 RVA: 0x001C6294 File Offset: 0x001C4494
-	public void Equip()
-	{
-		if (this.Yandere.Weapon[this.Selected] != null)
-		{
-			this.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0f;
-			this.Yandere.ReachWeight = 1f;
-			if (this.Yandere.PickUp != null)
-			{
-				this.Yandere.PickUp.Drop();
-			}
-			if (this.Yandere.Equipped == 3)
-			{
-				this.Yandere.Weapon[3].Drop();
-			}
-			if (this.Yandere.Weapon[1] != null)
-			{
-				this.Yandere.Weapon[1].gameObject.SetActive(false);
-			}
-			if (this.Yandere.Weapon[2] != null)
-			{
-				this.Yandere.Weapon[2].gameObject.SetActive(false);
-			}
-			this.Yandere.Equipped = this.Selected;
-			this.Yandere.EquippedWeapon.gameObject.SetActive(true);
-			if (this.Yandere.EquippedWeapon.Flaming)
-			{
-				this.Yandere.EquippedWeapon.FireEffect.Play();
-			}
-			if (!this.Yandere.Gloved)
-			{
-				this.Yandere.EquippedWeapon.FingerprintID = 100;
-			}
-			this.Yandere.StudentManager.UpdateStudents(0);
-			this.Yandere.WeaponManager.UpdateLabels();
-			if (this.Yandere.EquippedWeapon.Suspicious)
-			{
-				if (!this.Yandere.WeaponWarning)
-				{
-					this.Yandere.NotificationManager.DisplayNotification(NotificationType.Armed);
-					this.Yandere.WeaponWarning = true;
-				}
-			}
-			else
-			{
-				this.Yandere.WeaponWarning = false;
-			}
-			AudioSource.PlayClipAtPoint(this.Yandere.EquippedWeapon.EquipClip, Camera.main.transform.position);
-			this.Show = false;
-		}
-	}
+  private void Update()
+  {
+    if (!this.PauseScreen.Show && !this.Yandere.DebugMenu.activeInHierarchy)
+    {
+      if (this.Yandere.CanMove && !this.Yandere.Aiming || this.Yandere.Chased && !this.Yandere.Struggling && !this.Yandere.Sprayed && !this.Yandere.DelinquentFighting)
+      {
+        if (this.IM.DPadUp && this.IM.TappedUp || this.IM.DPadDown && this.IM.TappedDown || this.IM.DPadLeft && this.IM.TappedLeft || this.IM.DPadRight && this.IM.TappedRight)
+        {
+          this.Yandere.EmptyHands();
+          if (this.IM.DPadLeft)
+          {
+            this.Button.localPosition = new Vector3(-320f, 0.0f, 0.0f);
+            this.Selected = 1;
+          }
+          else if (this.IM.DPadRight)
+          {
+            this.Button.localPosition = new Vector3(320f, 0.0f, 0.0f);
+            this.Selected = 2;
+          }
+          else if (this.IM.DPadUp)
+          {
+            if (!this.Show)
+              this.Selected = 6;
+            if (this.Selected == 6)
+            {
+              this.Button.localPosition = new Vector3(64f, 190f, 0.0f);
+              this.Selected = 3;
+            }
+            else
+            {
+              this.Button.localPosition = new Vector3(64f, 380f, 0.0f);
+              this.Selected = 6;
+            }
+          }
+          else if (this.IM.DPadDown)
+          {
+            if (this.Selected == 4)
+            {
+              this.Button.localPosition = new Vector3(64f, -250f, 0.0f);
+              this.Selected = 5;
+            }
+            else
+            {
+              this.Button.localPosition = new Vector3(64f, -125f, 0.0f);
+              this.Selected = 4;
+            }
+          }
+          if (this.IM.DPadLeft || this.IM.DPadRight || this.IM.DPadUp || (Object) this.Yandere.Mask != (Object) null)
+          {
+            this.KeyboardShow = false;
+            this.Panel.enabled = true;
+            this.Show = true;
+          }
+          this.UpdateSprites();
+        }
+        if (!this.Yandere.EasterEggMenu.activeInHierarchy && !this.Yandere.DebugMenu.activeInHierarchy && (Input.GetKeyDown(KeyCode.Alpha1) || Input.GetKeyDown(KeyCode.Alpha2) || Input.GetKeyDown(KeyCode.Alpha3) || Input.GetKeyDown(KeyCode.Alpha4) || Input.GetKeyDown(KeyCode.Alpha5) || Input.GetKeyDown(KeyCode.Alpha6) && (double) this.Yandere.DebugTimer == 0.0))
+        {
+          this.Yandere.EmptyHands();
+          this.KeyboardPanel.enabled = true;
+          this.KeyboardShow = true;
+          this.Show = false;
+          this.Timer = 0.0f;
+          if (Input.GetKeyDown(KeyCode.Alpha1))
+          {
+            this.Selected = 4;
+            if (this.Yandere.Equipped > 0)
+            {
+              this.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0.0f;
+              this.Yandere.ReachWeight = 1f;
+              this.Yandere.Unequip();
+            }
+            if ((Object) this.Yandere.PickUp != (Object) null)
+              this.Yandere.PickUp.Drop();
+            this.Yandere.Mopping = false;
+          }
+          else if (Input.GetKeyDown(KeyCode.Alpha2))
+          {
+            this.Selected = 1;
+            this.Equip();
+          }
+          else if (Input.GetKeyDown(KeyCode.Alpha3))
+          {
+            this.Selected = 2;
+            this.Equip();
+          }
+          else if (Input.GetKeyDown(KeyCode.Alpha4))
+          {
+            this.Selected = 3;
+            if ((Object) this.Yandere.Container != (Object) null)
+              this.Yandere.ObstacleDetector.gameObject.SetActive(true);
+          }
+          else if (Input.GetKeyDown(KeyCode.Alpha5))
+          {
+            this.Selected = 5;
+            this.DropMask();
+          }
+          else if (Input.GetKeyDown(KeyCode.Alpha6) && (double) this.Yandere.DebugTimer == 0.0)
+          {
+            this.Selected = 6;
+            this.DropBookbag();
+          }
+          this.UpdateSprites();
+        }
+      }
+      if (this.Yandere.CanMove || this.Yandere.Chased && !this.Yandere.Sprayed && !this.StudentManager.PinningDown)
+      {
+        if (!this.Show)
+        {
+          if ((double) Input.GetAxis("DpadY") < -0.5)
+          {
+            if (this.Yandere.Equipped > 0)
+            {
+              if (this.Yandere.EquippedWeapon.Concealable)
+              {
+                this.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0.0f;
+                this.Yandere.ReachWeight = 1f;
+              }
+              this.Yandere.Unequip();
+            }
+            if ((Object) this.Yandere.PickUp != (Object) null)
+              this.Yandere.PickUp.Drop();
+            this.Yandere.Mopping = false;
+          }
+        }
+        else
+        {
+          if (Input.GetButtonDown("A"))
+          {
+            if (this.Selected < 3)
+            {
+              if ((Object) this.Yandere.Weapon[this.Selected] != (Object) null)
+                this.Equip();
+            }
+            else if (this.Selected == 3)
+            {
+              if ((Object) this.Yandere.Container != (Object) null)
+                this.Yandere.ObstacleDetector.gameObject.SetActive(true);
+            }
+            else if (this.Selected == 5)
+              this.DropMask();
+            else if (this.Selected == 6)
+            {
+              this.DropBookbag();
+            }
+            else
+            {
+              if (this.Yandere.Equipped > 0)
+                this.Yandere.Unequip();
+              if ((Object) this.Yandere.PickUp != (Object) null)
+                this.Yandere.PickUp.Drop();
+              this.Yandere.Mopping = false;
+            }
+          }
+          if (this.EquipCaseWeaponButton.enabled && Input.GetButtonDown("Y"))
+          {
+            if ((Object) this.Yandere.Container.TrashCan.ConcealedWeapon != (Object) null)
+            {
+              WeaponScript concealedWeapon = this.Yandere.Container.TrashCan.ConcealedWeapon;
+            }
+            this.Yandere.Container.TrashCan.RemoveContents();
+            this.UpdateSprites();
+            this.Show = false;
+          }
+          if (Input.GetButtonDown("B"))
+            this.Show = false;
+        }
+      }
+    }
+    if (!this.Show)
+    {
+      if ((double) this.transform.localScale.x > 0.100000001490116)
+        this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
+      else if (this.Panel.enabled)
+      {
+        this.transform.localScale = Vector3.zero;
+        this.Panel.enabled = false;
+      }
+    }
+    else
+    {
+      this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+      if ((!this.Yandere.CanMove || this.Yandere.Aiming || this.PauseScreen.Show || this.InputDevice.Type == InputDeviceType.MouseAndKeyboard) && (!this.Yandere.Chased || this.Yandere.Sprayed))
+        this.Show = false;
+    }
+    if (!this.KeyboardShow)
+    {
+      if ((double) this.KeyboardMenu.localScale.x > 0.100000001490116)
+      {
+        this.KeyboardMenu.localScale = Vector3.Lerp(this.KeyboardMenu.localScale, Vector3.zero, Time.deltaTime * 10f);
+      }
+      else
+      {
+        if (!this.KeyboardPanel.enabled)
+          return;
+        this.KeyboardMenu.localScale = Vector3.zero;
+        this.KeyboardPanel.enabled = false;
+      }
+    }
+    else
+    {
+      this.KeyboardMenu.localScale = Vector3.Lerp(this.KeyboardMenu.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
+      this.Timer += Time.deltaTime;
+      if ((double) this.Timer > 5.0)
+        this.KeyboardShow = false;
+      if (this.EquipCaseWeaponKey.enabled && Input.GetButtonDown("Y"))
+      {
+        if ((Object) this.Yandere.Container.TrashCan.ConcealedWeapon != (Object) null)
+        {
+          WeaponScript concealedWeapon = this.Yandere.Container.TrashCan.ConcealedWeapon;
+        }
+        this.Yandere.Container.TrashCan.RemoveContents();
+        this.UpdateSprites();
+      }
+      if (this.Yandere.CanMove && !this.Yandere.Aiming && !this.PauseScreen.Show && this.InputDevice.Type != InputDeviceType.Gamepad && !Input.GetButton("Y"))
+        return;
+      this.KeyboardShow = false;
+    }
+  }
 
-	// Token: 0x06002003 RID: 8195 RVA: 0x001C6490 File Offset: 0x001C4690
-	public void UpdateSprites()
-	{
-		this.EquipCaseWeaponButton.enabled = false;
-		this.EquipCaseWeaponKey.enabled = false;
-		for (int i = 1; i < 3; i++)
-		{
-			UISprite uisprite = this.KeyboardBG[i];
-			UISprite uisprite2 = this.BG[i];
-			if (this.Selected == i)
-			{
-				uisprite.color = new Color(1f, 1f, 1f, 1f);
-				uisprite2.color = new Color(1f, 1f, 1f, 1f);
-			}
-			else
-			{
-				uisprite.color = this.OriginalColor;
-				uisprite2.color = this.OriginalColor;
-			}
-			UISprite uisprite3 = this.Item[i];
-			UISprite uisprite4 = this.Outline[i];
-			UISprite uisprite5 = this.KeyboardItem[i];
-			UISprite uisprite6 = this.KeyboardOutline[i];
-			if (this.Yandere.Weapon[i] == null)
-			{
-				uisprite3.color = new Color(uisprite3.color.r, uisprite3.color.g, uisprite3.color.b, 0f);
-				uisprite2.color = new Color(uisprite2.color.r, uisprite2.color.g, uisprite2.color.b, 0.5f);
-				uisprite4.color = new Color(uisprite4.color.r, uisprite4.color.g, uisprite4.color.b, 0.5f);
-				uisprite5.color = new Color(uisprite5.color.r, uisprite5.color.g, uisprite5.color.b, 0f);
-				uisprite.color = new Color(uisprite.color.r, uisprite.color.g, uisprite.color.b, 0.5f);
-				uisprite6.color = new Color(uisprite6.color.r, uisprite6.color.g, uisprite6.color.b, 0.5f);
-			}
-			else
-			{
-				uisprite3.spriteName = this.Yandere.Weapon[i].SpriteName;
-				uisprite3.color = new Color(uisprite3.color.r, uisprite3.color.g, uisprite3.color.b, 1f);
-				uisprite2.color = new Color(uisprite2.color.r, uisprite2.color.g, uisprite2.color.b, 1f);
-				uisprite4.color = new Color(uisprite4.color.r, uisprite4.color.g, uisprite4.color.b, 1f);
-				uisprite5.spriteName = this.Yandere.Weapon[i].SpriteName;
-				uisprite5.color = new Color(uisprite5.color.r, uisprite5.color.g, uisprite5.color.b, 1f);
-				uisprite.color = new Color(uisprite.color.r, uisprite.color.g, uisprite.color.b, 1f);
-				uisprite6.color = new Color(uisprite6.color.r, uisprite6.color.g, uisprite6.color.b, 1f);
-			}
-		}
-		UISprite uisprite7 = this.KeyboardItem[3];
-		UISprite uisprite8 = this.Item[3];
-		UISprite uisprite9 = this.KeyboardBG[3];
-		UISprite uisprite10 = this.BG[3];
-		UISprite uisprite11 = this.Outline[3];
-		UISprite uisprite12 = this.KeyboardOutline[3];
-		if (this.Yandere.Container == null)
-		{
-			uisprite7.color = new Color(uisprite7.color.r, uisprite7.color.g, uisprite7.color.b, 0f);
-			uisprite8.color = new Color(uisprite8.color.r, uisprite8.color.g, uisprite8.color.b, 0f);
-			if (this.Selected == 3)
-			{
-				uisprite9.color = new Color(1f, 1f, 1f, 1f);
-				uisprite10.color = new Color(1f, 1f, 1f, 1f);
-			}
-			else
-			{
-				uisprite9.color = this.OriginalColor;
-				uisprite10.color = this.OriginalColor;
-			}
-			uisprite10.color = new Color(uisprite10.color.r, uisprite10.color.g, uisprite10.color.b, 0.5f);
-			uisprite11.color = new Color(uisprite11.color.r, uisprite11.color.g, uisprite11.color.b, 0.5f);
-			uisprite9.color = new Color(uisprite9.color.r, uisprite9.color.g, uisprite9.color.b, 0.5f);
-			uisprite12.color = new Color(uisprite12.color.r, uisprite12.color.g, uisprite12.color.b, 0.5f);
-		}
-		else
-		{
-			uisprite8.color = new Color(uisprite8.color.r, uisprite8.color.g, uisprite8.color.b, 1f);
-			uisprite10.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
-			uisprite11.color = new Color(uisprite11.color.r, uisprite11.color.g, uisprite11.color.b, 1f);
-			uisprite7.spriteName = this.Yandere.Container.SpriteName;
-			uisprite7.color = new Color(uisprite7.color.r, uisprite7.color.g, uisprite7.color.b, 1f);
-			uisprite9.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
-			uisprite12.color = new Color(uisprite12.color.r, uisprite12.color.g, uisprite12.color.b, 1f);
-		}
-		UISprite uisprite13 = this.KeyboardItem[5];
-		UISprite uisprite14 = this.Item[5];
-		UISprite uisprite15 = this.KeyboardBG[5];
-		UISprite uisprite16 = this.BG[5];
-		UISprite uisprite17 = this.Outline[5];
-		UISprite uisprite18 = this.KeyboardOutline[5];
-		if (this.Yandere.Mask == null)
-		{
-			uisprite13.color = new Color(uisprite13.color.r, uisprite13.color.g, uisprite13.color.b, 0f);
-			uisprite14.color = new Color(uisprite14.color.r, uisprite14.color.g, uisprite14.color.b, 0f);
-			if (this.Selected == 5)
-			{
-				uisprite15.color = new Color(1f, 1f, 1f, 1f);
-				uisprite16.color = new Color(1f, 1f, 1f, 1f);
-			}
-			else
-			{
-				uisprite15.color = this.OriginalColor;
-				uisprite16.color = this.OriginalColor;
-			}
-			uisprite16.color = new Color(uisprite16.color.r, uisprite16.color.g, uisprite16.color.b, 0.5f);
-			uisprite17.color = new Color(uisprite17.color.r, uisprite17.color.g, uisprite17.color.b, 0.5f);
-			uisprite15.color = new Color(uisprite15.color.r, uisprite15.color.g, uisprite15.color.b, 0.5f);
-			uisprite18.color = new Color(uisprite18.color.r, uisprite18.color.g, uisprite18.color.b, 0.5f);
-		}
-		else
-		{
-			uisprite13.color = new Color(uisprite13.color.r, uisprite13.color.g, uisprite13.color.b, 1f);
-			uisprite14.color = new Color(uisprite14.color.r, uisprite14.color.g, uisprite14.color.b, 1f);
-			uisprite16.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
-			uisprite17.color = new Color(uisprite17.color.r, uisprite17.color.g, uisprite17.color.b, 1f);
-			uisprite13.color = new Color(uisprite13.color.r, uisprite13.color.g, uisprite13.color.b, 1f);
-			uisprite15.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
-			uisprite18.color = new Color(uisprite18.color.r, uisprite18.color.g, uisprite18.color.b, 1f);
-		}
-		UISprite uisprite19 = this.KeyboardItem[6];
-		UISprite uisprite20 = this.Item[6];
-		UISprite uisprite21 = this.KeyboardBG[6];
-		UISprite uisprite22 = this.BG[6];
-		UISprite uisprite23 = this.Outline[6];
-		UISprite uisprite24 = this.KeyboardOutline[6];
-		if (this.Yandere.Bookbag == null)
-		{
-			uisprite19.color = new Color(uisprite19.color.r, uisprite19.color.g, uisprite19.color.b, 0f);
-			uisprite20.color = new Color(uisprite20.color.r, uisprite20.color.g, uisprite20.color.b, 0f);
-			if (this.Selected == 6)
-			{
-				uisprite21.color = new Color(1f, 1f, 1f, 1f);
-				uisprite22.color = new Color(1f, 1f, 1f, 1f);
-			}
-			else
-			{
-				uisprite21.color = this.OriginalColor;
-				uisprite22.color = this.OriginalColor;
-			}
-			uisprite22.color = new Color(uisprite22.color.r, uisprite22.color.g, uisprite22.color.b, 0.5f);
-			uisprite23.color = new Color(uisprite23.color.r, uisprite23.color.g, uisprite23.color.b, 0.5f);
-			uisprite21.color = new Color(uisprite21.color.r, uisprite21.color.g, uisprite21.color.b, 0.5f);
-			uisprite24.color = new Color(uisprite24.color.r, uisprite24.color.g, uisprite24.color.b, 0.5f);
-		}
-		else
-		{
-			uisprite19.color = new Color(uisprite19.color.r, uisprite19.color.g, uisprite19.color.b, 1f);
-			uisprite20.color = new Color(uisprite20.color.r, uisprite20.color.g, uisprite20.color.b, 1f);
-			uisprite22.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
-			uisprite23.color = new Color(uisprite23.color.r, uisprite23.color.g, uisprite23.color.b, 1f);
-			uisprite19.color = new Color(uisprite19.color.r, uisprite19.color.g, uisprite19.color.b, 1f);
-			uisprite21.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
-			uisprite24.color = new Color(uisprite24.color.r, uisprite24.color.g, uisprite24.color.b, 1f);
-		}
-		if (this.Selected == 4)
-		{
-			this.KeyboardBG[4].color = new Color(1f, 1f, 1f, 1f);
-			this.BG[4].color = new Color(1f, 1f, 1f, 1f);
-		}
-		else
-		{
-			this.KeyboardBG[4].color = this.OriginalColor;
-			this.BG[4].color = this.OriginalColor;
-		}
-		this.Yandere.UpdateConcealedWeaponStatus();
-	}
+  public void Equip()
+  {
+    if (!((Object) this.Yandere.Weapon[this.Selected] != (Object) null))
+      return;
+    this.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0.0f;
+    this.Yandere.ReachWeight = 1f;
+    if ((Object) this.Yandere.PickUp != (Object) null)
+      this.Yandere.PickUp.Drop();
+    if (this.Yandere.Equipped == 3)
+      this.Yandere.Weapon[3].Drop();
+    if ((Object) this.Yandere.Weapon[1] != (Object) null)
+      this.Yandere.Weapon[1].gameObject.SetActive(false);
+    if ((Object) this.Yandere.Weapon[2] != (Object) null)
+      this.Yandere.Weapon[2].gameObject.SetActive(false);
+    this.Yandere.Equipped = this.Selected;
+    this.Yandere.EquippedWeapon.gameObject.SetActive(true);
+    if (this.Yandere.EquippedWeapon.Flaming)
+      this.Yandere.EquippedWeapon.FireEffect.Play();
+    if (!this.Yandere.Gloved)
+      this.Yandere.EquippedWeapon.FingerprintID = 100;
+    this.Yandere.StudentManager.UpdateStudents();
+    this.Yandere.WeaponManager.UpdateLabels();
+    if (this.Yandere.EquippedWeapon.Suspicious)
+    {
+      if (!this.Yandere.WeaponWarning)
+      {
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Armed);
+        this.Yandere.WeaponWarning = true;
+      }
+    }
+    else
+      this.Yandere.WeaponWarning = false;
+    AudioSource.PlayClipAtPoint(this.Yandere.EquippedWeapon.EquipClip, Camera.main.transform.position);
+    this.Show = false;
+  }
 
-	// Token: 0x06002004 RID: 8196 RVA: 0x001C72C0 File Offset: 0x001C54C0
-	private void DropMask()
-	{
-		if (this.Yandere.Mask != null)
-		{
-			this.StudentManager.CanAnyoneSeeYandere();
-			if (!this.StudentManager.YandereVisible && !this.Yandere.Chased && this.Yandere.Chasers == 0)
-			{
-				this.Yandere.Mask.Drop();
-				this.UpdateSprites();
-				this.StudentManager.UpdateStudents(0);
-				return;
-			}
-			this.Yandere.NotificationManager.CustomText = "Not now. Too suspicious.";
-			this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-		}
-	}
+  public void UpdateSprites()
+  {
+    this.EquipCaseWeaponButton.enabled = false;
+    this.EquipCaseWeaponKey.enabled = false;
+    for (int index = 1; index < 3; ++index)
+    {
+      UISprite uiSprite1 = this.KeyboardBG[index];
+      UISprite uiSprite2 = this.BG[index];
+      if (this.Selected == index)
+      {
+        uiSprite1.color = new Color(1f, 1f, 1f, 1f);
+        uiSprite2.color = new Color(1f, 1f, 1f, 1f);
+      }
+      else
+      {
+        uiSprite1.color = this.OriginalColor;
+        uiSprite2.color = this.OriginalColor;
+      }
+      UISprite uiSprite3 = this.Item[index];
+      UISprite uiSprite4 = this.Outline[index];
+      UISprite uiSprite5 = this.KeyboardItem[index];
+      UISprite uiSprite6 = this.KeyboardOutline[index];
+      if ((Object) this.Yandere.Weapon[index] == (Object) null)
+      {
+        uiSprite3.color = new Color(uiSprite3.color.r, uiSprite3.color.g, uiSprite3.color.b, 0.0f);
+        uiSprite2.color = new Color(uiSprite2.color.r, uiSprite2.color.g, uiSprite2.color.b, 0.5f);
+        uiSprite4.color = new Color(uiSprite4.color.r, uiSprite4.color.g, uiSprite4.color.b, 0.5f);
+        uiSprite5.color = new Color(uiSprite5.color.r, uiSprite5.color.g, uiSprite5.color.b, 0.0f);
+        uiSprite1.color = new Color(uiSprite1.color.r, uiSprite1.color.g, uiSprite1.color.b, 0.5f);
+        uiSprite6.color = new Color(uiSprite6.color.r, uiSprite6.color.g, uiSprite6.color.b, 0.5f);
+      }
+      else
+      {
+        uiSprite3.spriteName = this.Yandere.Weapon[index].SpriteName;
+        uiSprite3.color = new Color(uiSprite3.color.r, uiSprite3.color.g, uiSprite3.color.b, 1f);
+        uiSprite2.color = new Color(uiSprite2.color.r, uiSprite2.color.g, uiSprite2.color.b, 1f);
+        uiSprite4.color = new Color(uiSprite4.color.r, uiSprite4.color.g, uiSprite4.color.b, 1f);
+        uiSprite5.spriteName = this.Yandere.Weapon[index].SpriteName;
+        uiSprite5.color = new Color(uiSprite5.color.r, uiSprite5.color.g, uiSprite5.color.b, 1f);
+        uiSprite1.color = new Color(uiSprite1.color.r, uiSprite1.color.g, uiSprite1.color.b, 1f);
+        uiSprite6.color = new Color(uiSprite6.color.r, uiSprite6.color.g, uiSprite6.color.b, 1f);
+      }
+    }
+    UISprite uiSprite7 = this.KeyboardItem[3];
+    UISprite uiSprite8 = this.Item[3];
+    UISprite uiSprite9 = this.KeyboardBG[3];
+    UISprite uiSprite10 = this.BG[3];
+    UISprite uiSprite11 = this.Outline[3];
+    UISprite uiSprite12 = this.KeyboardOutline[3];
+    if ((Object) this.Yandere.Container == (Object) null)
+    {
+      uiSprite7.color = new Color(uiSprite7.color.r, uiSprite7.color.g, uiSprite7.color.b, 0.0f);
+      uiSprite8.color = new Color(uiSprite8.color.r, uiSprite8.color.g, uiSprite8.color.b, 0.0f);
+      if (this.Selected == 3)
+      {
+        uiSprite9.color = new Color(1f, 1f, 1f, 1f);
+        uiSprite10.color = new Color(1f, 1f, 1f, 1f);
+      }
+      else
+      {
+        uiSprite9.color = this.OriginalColor;
+        uiSprite10.color = this.OriginalColor;
+      }
+      uiSprite10.color = new Color(uiSprite10.color.r, uiSprite10.color.g, uiSprite10.color.b, 0.5f);
+      uiSprite11.color = new Color(uiSprite11.color.r, uiSprite11.color.g, uiSprite11.color.b, 0.5f);
+      uiSprite9.color = new Color(uiSprite9.color.r, uiSprite9.color.g, uiSprite9.color.b, 0.5f);
+      uiSprite12.color = new Color(uiSprite12.color.r, uiSprite12.color.g, uiSprite12.color.b, 0.5f);
+    }
+    else
+    {
+      uiSprite8.color = new Color(uiSprite8.color.r, uiSprite8.color.g, uiSprite8.color.b, 1f);
+      uiSprite10.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
+      uiSprite11.color = new Color(uiSprite11.color.r, uiSprite11.color.g, uiSprite11.color.b, 1f);
+      uiSprite7.spriteName = this.Yandere.Container.SpriteName;
+      uiSprite7.color = new Color(uiSprite7.color.r, uiSprite7.color.g, uiSprite7.color.b, 1f);
+      uiSprite9.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
+      uiSprite12.color = new Color(uiSprite12.color.r, uiSprite12.color.g, uiSprite12.color.b, 1f);
+    }
+    UISprite uiSprite13 = this.KeyboardItem[5];
+    UISprite uiSprite14 = this.Item[5];
+    UISprite uiSprite15 = this.KeyboardBG[5];
+    UISprite uiSprite16 = this.BG[5];
+    UISprite uiSprite17 = this.Outline[5];
+    UISprite uiSprite18 = this.KeyboardOutline[5];
+    if ((Object) this.Yandere.Mask == (Object) null)
+    {
+      uiSprite13.color = new Color(uiSprite13.color.r, uiSprite13.color.g, uiSprite13.color.b, 0.0f);
+      uiSprite14.color = new Color(uiSprite14.color.r, uiSprite14.color.g, uiSprite14.color.b, 0.0f);
+      if (this.Selected == 5)
+      {
+        uiSprite15.color = new Color(1f, 1f, 1f, 1f);
+        uiSprite16.color = new Color(1f, 1f, 1f, 1f);
+      }
+      else
+      {
+        uiSprite15.color = this.OriginalColor;
+        uiSprite16.color = this.OriginalColor;
+      }
+      uiSprite16.color = new Color(uiSprite16.color.r, uiSprite16.color.g, uiSprite16.color.b, 0.5f);
+      uiSprite17.color = new Color(uiSprite17.color.r, uiSprite17.color.g, uiSprite17.color.b, 0.5f);
+      uiSprite15.color = new Color(uiSprite15.color.r, uiSprite15.color.g, uiSprite15.color.b, 0.5f);
+      uiSprite18.color = new Color(uiSprite18.color.r, uiSprite18.color.g, uiSprite18.color.b, 0.5f);
+    }
+    else
+    {
+      uiSprite13.color = new Color(uiSprite13.color.r, uiSprite13.color.g, uiSprite13.color.b, 1f);
+      uiSprite14.color = new Color(uiSprite14.color.r, uiSprite14.color.g, uiSprite14.color.b, 1f);
+      uiSprite16.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
+      uiSprite17.color = new Color(uiSprite17.color.r, uiSprite17.color.g, uiSprite17.color.b, 1f);
+      uiSprite13.color = new Color(uiSprite13.color.r, uiSprite13.color.g, uiSprite13.color.b, 1f);
+      uiSprite15.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
+      uiSprite18.color = new Color(uiSprite18.color.r, uiSprite18.color.g, uiSprite18.color.b, 1f);
+    }
+    UISprite uiSprite19 = this.KeyboardItem[6];
+    UISprite uiSprite20 = this.Item[6];
+    UISprite uiSprite21 = this.KeyboardBG[6];
+    UISprite uiSprite22 = this.BG[6];
+    UISprite uiSprite23 = this.Outline[6];
+    UISprite uiSprite24 = this.KeyboardOutline[6];
+    if ((Object) this.Yandere.Bookbag == (Object) null)
+    {
+      uiSprite19.color = new Color(uiSprite19.color.r, uiSprite19.color.g, uiSprite19.color.b, 0.0f);
+      uiSprite20.color = new Color(uiSprite20.color.r, uiSprite20.color.g, uiSprite20.color.b, 0.0f);
+      if (this.Selected == 6)
+      {
+        uiSprite21.color = new Color(1f, 1f, 1f, 1f);
+        uiSprite22.color = new Color(1f, 1f, 1f, 1f);
+      }
+      else
+      {
+        uiSprite21.color = this.OriginalColor;
+        uiSprite22.color = this.OriginalColor;
+      }
+      uiSprite22.color = new Color(uiSprite22.color.r, uiSprite22.color.g, uiSprite22.color.b, 0.5f);
+      uiSprite23.color = new Color(uiSprite23.color.r, uiSprite23.color.g, uiSprite23.color.b, 0.5f);
+      uiSprite21.color = new Color(uiSprite21.color.r, uiSprite21.color.g, uiSprite21.color.b, 0.5f);
+      uiSprite24.color = new Color(uiSprite24.color.r, uiSprite24.color.g, uiSprite24.color.b, 0.5f);
+    }
+    else
+    {
+      uiSprite19.color = new Color(uiSprite19.color.r, uiSprite19.color.g, uiSprite19.color.b, 1f);
+      uiSprite20.color = new Color(uiSprite20.color.r, uiSprite20.color.g, uiSprite20.color.b, 1f);
+      uiSprite22.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
+      uiSprite23.color = new Color(uiSprite23.color.r, uiSprite23.color.g, uiSprite23.color.b, 1f);
+      uiSprite19.color = new Color(uiSprite19.color.r, uiSprite19.color.g, uiSprite19.color.b, 1f);
+      uiSprite21.color = new Color(this.OriginalColor.r, this.OriginalColor.g, this.OriginalColor.b, 1f);
+      uiSprite24.color = new Color(uiSprite24.color.r, uiSprite24.color.g, uiSprite24.color.b, 1f);
+    }
+    if (this.Selected == 4)
+    {
+      this.KeyboardBG[4].color = new Color(1f, 1f, 1f, 1f);
+      this.BG[4].color = new Color(1f, 1f, 1f, 1f);
+    }
+    else
+    {
+      this.KeyboardBG[4].color = this.OriginalColor;
+      this.BG[4].color = this.OriginalColor;
+    }
+    this.Yandere.UpdateConcealedWeaponStatus();
+  }
 
-	// Token: 0x06002005 RID: 8197 RVA: 0x001C735C File Offset: 0x001C555C
-	private void DropBookbag()
-	{
-		if (this.Yandere.Bookbag != null)
-		{
-			this.Yandere.Bookbag.Drop();
-			this.Yandere.UpdateConcealedWeaponStatus();
-		}
-		this.UpdateSprites();
-	}
+  private void DropMask()
+  {
+    if (!((Object) this.Yandere.Mask != (Object) null))
+      return;
+    this.StudentManager.CanAnyoneSeeYandere();
+    if (!this.StudentManager.YandereVisible && !this.Yandere.Chased && this.Yandere.Chasers == 0)
+    {
+      this.Yandere.Mask.Drop();
+      this.UpdateSprites();
+      this.StudentManager.UpdateStudents();
+    }
+    else
+    {
+      this.Yandere.NotificationManager.CustomText = "Not now. Too suspicious.";
+      this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+    }
+  }
 
-	// Token: 0x06002006 RID: 8198 RVA: 0x001C7392 File Offset: 0x001C5592
-	public void InstantHide()
-	{
-		this.KeyboardMenu.localScale = Vector3.zero;
-		base.transform.localScale = Vector3.zero;
-	}
+  private void DropBookbag()
+  {
+    if ((Object) this.Yandere.Bookbag != (Object) null)
+    {
+      this.Yandere.Bookbag.Drop();
+      this.Yandere.UpdateConcealedWeaponStatus();
+    }
+    this.UpdateSprites();
+  }
 
-	// Token: 0x04004323 RID: 17187
-	public StudentManagerScript StudentManager;
-
-	// Token: 0x04004324 RID: 17188
-	public InputDeviceScript InputDevice;
-
-	// Token: 0x04004325 RID: 17189
-	public PauseScreenScript PauseScreen;
-
-	// Token: 0x04004326 RID: 17190
-	public YandereScript Yandere;
-
-	// Token: 0x04004327 RID: 17191
-	public InputManagerScript IM;
-
-	// Token: 0x04004328 RID: 17192
-	public UIPanel KeyboardPanel;
-
-	// Token: 0x04004329 RID: 17193
-	public UIPanel Panel;
-
-	// Token: 0x0400432A RID: 17194
-	public Transform KeyboardMenu;
-
-	// Token: 0x0400432B RID: 17195
-	public bool KeyboardShow;
-
-	// Token: 0x0400432C RID: 17196
-	public bool Released = true;
-
-	// Token: 0x0400432D RID: 17197
-	public bool Show;
-
-	// Token: 0x0400432E RID: 17198
-	public UISprite[] BG;
-
-	// Token: 0x0400432F RID: 17199
-	public UISprite[] Outline;
-
-	// Token: 0x04004330 RID: 17200
-	public UISprite[] Item;
-
-	// Token: 0x04004331 RID: 17201
-	public UISprite[] KeyboardBG;
-
-	// Token: 0x04004332 RID: 17202
-	public UISprite[] KeyboardOutline;
-
-	// Token: 0x04004333 RID: 17203
-	public UISprite[] KeyboardItem;
-
-	// Token: 0x04004334 RID: 17204
-	public UISprite EquipCaseWeaponButton;
-
-	// Token: 0x04004335 RID: 17205
-	public UILabel EquipCaseWeaponKey;
-
-	// Token: 0x04004336 RID: 17206
-	public int Selected = 1;
-
-	// Token: 0x04004337 RID: 17207
-	public Color OriginalColor;
-
-	// Token: 0x04004338 RID: 17208
-	public Transform Button;
-
-	// Token: 0x04004339 RID: 17209
-	public float Timer;
+  public void InstantHide()
+  {
+    this.KeyboardMenu.localScale = Vector3.zero;
+    this.transform.localScale = Vector3.zero;
+  }
 }

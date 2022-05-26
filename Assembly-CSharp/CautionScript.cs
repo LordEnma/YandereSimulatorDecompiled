@@ -1,44 +1,39 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: CautionScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200023A RID: 570
 public class CautionScript : MonoBehaviour
 {
-	// Token: 0x06001234 RID: 4660 RVA: 0x0008C38C File Offset: 0x0008A58C
-	private void Start()
-	{
-		this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, 0f);
-		if (GameGlobals.EightiesTutorial)
-		{
-			base.gameObject.SetActive(false);
-		}
-	}
+  public YandereScript Yandere;
+  public UISprite Sprite;
 
-	// Token: 0x06001235 RID: 4661 RVA: 0x0008C3F4 File Offset: 0x0008A5F4
-	private void Update()
-	{
-		if ((this.Yandere.Armed && this.Yandere.EquippedWeapon.Suspicious) || this.Yandere.Bloodiness > 0f || this.Yandere.Sanity < 33.333332f || this.Yandere.NearBodies > 0)
-		{
-			this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, this.Sprite.color.a + Time.deltaTime);
-			if (this.Sprite.color.a > 1f)
-			{
-				this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, 1f);
-				return;
-			}
-		}
-		else
-		{
-			this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, this.Sprite.color.a - Time.deltaTime);
-			if (this.Sprite.color.a < 0f)
-			{
-				this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, 0f);
-			}
-		}
-	}
+  private void Start()
+  {
+    this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, 0.0f);
+    if (!GameGlobals.EightiesTutorial)
+      return;
+    this.gameObject.SetActive(false);
+  }
 
-	// Token: 0x040016F3 RID: 5875
-	public YandereScript Yandere;
-
-	// Token: 0x040016F4 RID: 5876
-	public UISprite Sprite;
+  private void Update()
+  {
+    if (this.Yandere.Armed && this.Yandere.EquippedWeapon.Suspicious || (double) this.Yandere.Bloodiness > 0.0 || (double) this.Yandere.Sanity < 33.3333320617676 || this.Yandere.NearBodies > 0)
+    {
+      this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, this.Sprite.color.a + Time.deltaTime);
+      if ((double) this.Sprite.color.a <= 1.0)
+        return;
+      this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, 1f);
+    }
+    else
+    {
+      this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, this.Sprite.color.a - Time.deltaTime);
+      if ((double) this.Sprite.color.a >= 0.0)
+        return;
+      this.Sprite.color = new Color(this.Sprite.color.r, this.Sprite.color.g, this.Sprite.color.b, 0.0f);
+    }
+  }
 }

@@ -1,16 +1,21 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: StringArrayWrapper
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x0200049B RID: 1179
+using System;
+
 [Serializable]
 public class StringArrayWrapper : ArrayWrapper<string>
 {
-	// Token: 0x06001F71 RID: 8049 RVA: 0x001C08AB File Offset: 0x001BEAAB
-	public StringArrayWrapper(int size) : base(size)
-	{
-	}
+  public StringArrayWrapper(int size)
+    : base(size)
+  {
+  }
 
-	// Token: 0x06001F72 RID: 8050 RVA: 0x001C08B4 File Offset: 0x001BEAB4
-	public StringArrayWrapper(string[] elements) : base(elements)
-	{
-	}
+  public StringArrayWrapper(string[] elements)
+    : base(elements)
+  {
+  }
 }

@@ -1,341 +1,243 @@
-﻿using System;
-using System.Collections.Generic;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIToggle
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using AnimationOrTween;
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000067 RID: 103
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/Interaction/Toggle")]
 public class UIToggle : UIWidgetContainer
 {
-	// Token: 0x17000043 RID: 67
-	// (get) Token: 0x060002CE RID: 718 RVA: 0x0001E980 File Offset: 0x0001CB80
-	// (set) Token: 0x060002CF RID: 719 RVA: 0x0001E997 File Offset: 0x0001CB97
-	public bool value
-	{
-		get
-		{
-			if (!this.mStarted)
-			{
-				return this.startsActive;
-			}
-			return this.mIsActive;
-		}
-		set
-		{
-			if (!this.mStarted)
-			{
-				this.startsActive = value;
-				return;
-			}
-			if (this.group == 0 || value || this.optionCanBeNone || !this.mStarted)
-			{
-				this.Set(value, true);
-			}
-		}
-	}
+  public static BetterList<UIToggle> list = new BetterList<UIToggle>();
+  public static UIToggle current;
+  public int group;
+  public UIWidget activeSprite;
+  public bool invertSpriteState;
+  public Animation activeAnimation;
+  public Animator animator;
+  public UITweener tween;
+  public bool startsActive;
+  public bool instantTween;
+  public bool optionCanBeNone;
+  public List<EventDelegate> onChange = new List<EventDelegate>();
+  public UIToggle.Validate validator;
+  [HideInInspector]
+  [SerializeField]
+  private UISprite checkSprite;
+  [HideInInspector]
+  [SerializeField]
+  private Animation checkAnimation;
+  [HideInInspector]
+  [SerializeField]
+  private GameObject eventReceiver;
+  [HideInInspector]
+  [SerializeField]
+  private string functionName = "OnActivate";
+  [HideInInspector]
+  [SerializeField]
+  private bool startsChecked;
+  private bool mIsActive = true;
+  private bool mStarted;
 
-	// Token: 0x17000044 RID: 68
-	// (get) Token: 0x060002D0 RID: 720 RVA: 0x0001E9D0 File Offset: 0x0001CBD0
-	public bool isColliderEnabled
-	{
-		get
-		{
-			Collider component = base.GetComponent<Collider>();
-			if (component != null)
-			{
-				return component.enabled;
-			}
-			Collider2D component2 = base.GetComponent<Collider2D>();
-			return component2 != null && component2.enabled;
-		}
-	}
+  public bool value
+  {
+    get => !this.mStarted ? this.startsActive : this.mIsActive;
+    set
+    {
+      if (!this.mStarted)
+      {
+        this.startsActive = value;
+      }
+      else
+      {
+        if (!(this.group == 0 | value) && !this.optionCanBeNone && this.mStarted)
+          return;
+        this.Set(value);
+      }
+    }
+  }
 
-	// Token: 0x17000045 RID: 69
-	// (get) Token: 0x060002D1 RID: 721 RVA: 0x0001EA0C File Offset: 0x0001CC0C
-	// (set) Token: 0x060002D2 RID: 722 RVA: 0x0001EA14 File Offset: 0x0001CC14
-	[Obsolete("Use 'value' instead")]
-	public bool isChecked
-	{
-		get
-		{
-			return this.value;
-		}
-		set
-		{
-			this.value = value;
-		}
-	}
+  public bool isColliderEnabled
+  {
+    get
+    {
+      Collider component1 = this.GetComponent<Collider>();
+      if ((UnityEngine.Object) component1 != (UnityEngine.Object) null)
+        return component1.enabled;
+      Collider2D component2 = this.GetComponent<Collider2D>();
+      return (UnityEngine.Object) component2 != (UnityEngine.Object) null && component2.enabled;
+    }
+  }
 
-	// Token: 0x060002D3 RID: 723 RVA: 0x0001EA20 File Offset: 0x0001CC20
-	public static UIToggle GetActiveToggle(int group)
-	{
-		for (int i = 0; i < UIToggle.list.size; i++)
-		{
-			UIToggle uitoggle = UIToggle.list.buffer[i];
-			if (uitoggle != null && uitoggle.group == group && uitoggle.mIsActive)
-			{
-				return uitoggle;
-			}
-		}
-		return null;
-	}
+  [Obsolete("Use 'value' instead")]
+  public bool isChecked
+  {
+    get => this.value;
+    set => this.value = value;
+  }
 
-	// Token: 0x060002D4 RID: 724 RVA: 0x0001EA6C File Offset: 0x0001CC6C
-	private void OnEnable()
-	{
-		UIToggle.list.Add(this);
-	}
+  public static UIToggle GetActiveToggle(int group)
+  {
+    for (int index = 0; index < UIToggle.list.size; ++index)
+    {
+      UIToggle activeToggle = UIToggle.list.buffer[index];
+      if ((UnityEngine.Object) activeToggle != (UnityEngine.Object) null && activeToggle.group == group && activeToggle.mIsActive)
+        return activeToggle;
+    }
+    return (UIToggle) null;
+  }
 
-	// Token: 0x060002D5 RID: 725 RVA: 0x0001EA79 File Offset: 0x0001CC79
-	private void OnDisable()
-	{
-		UIToggle.list.Remove(this);
-	}
+  private void OnEnable() => UIToggle.list.Add(this);
 
-	// Token: 0x060002D6 RID: 726 RVA: 0x0001EA88 File Offset: 0x0001CC88
-	public void Start()
-	{
-		if (this.mStarted)
-		{
-			return;
-		}
-		if (this.startsChecked)
-		{
-			this.startsChecked = false;
-			this.startsActive = true;
-		}
-		if (!Application.isPlaying)
-		{
-			if (this.checkSprite != null && this.activeSprite == null)
-			{
-				this.activeSprite = this.checkSprite;
-				this.checkSprite = null;
-			}
-			if (this.checkAnimation != null && this.activeAnimation == null)
-			{
-				this.activeAnimation = this.checkAnimation;
-				this.checkAnimation = null;
-			}
-			if (Application.isPlaying && this.activeSprite != null)
-			{
-				this.activeSprite.alpha = (this.invertSpriteState ? (this.startsActive ? 0f : 1f) : (this.startsActive ? 1f : 0f));
-			}
-			if (EventDelegate.IsValid(this.onChange))
-			{
-				this.eventReceiver = null;
-				this.functionName = null;
-				return;
-			}
-		}
-		else
-		{
-			this.mIsActive = !this.startsActive;
-			this.mStarted = true;
-			bool flag = this.instantTween;
-			this.instantTween = true;
-			this.Set(this.startsActive, true);
-			this.instantTween = flag;
-		}
-	}
+  private void OnDisable() => UIToggle.list.Remove(this);
 
-	// Token: 0x060002D7 RID: 727 RVA: 0x0001EBC2 File Offset: 0x0001CDC2
-	private void OnClick()
-	{
-		if (base.enabled && this.isColliderEnabled && UICamera.currentTouchID != -2)
-		{
-			this.value = !this.value;
-		}
-	}
+  public void Start()
+  {
+    if (this.mStarted)
+      return;
+    if (this.startsChecked)
+    {
+      this.startsChecked = false;
+      this.startsActive = true;
+    }
+    if (!Application.isPlaying)
+    {
+      if ((UnityEngine.Object) this.checkSprite != (UnityEngine.Object) null && (UnityEngine.Object) this.activeSprite == (UnityEngine.Object) null)
+      {
+        this.activeSprite = (UIWidget) this.checkSprite;
+        this.checkSprite = (UISprite) null;
+      }
+      if ((UnityEngine.Object) this.checkAnimation != (UnityEngine.Object) null && (UnityEngine.Object) this.activeAnimation == (UnityEngine.Object) null)
+      {
+        this.activeAnimation = this.checkAnimation;
+        this.checkAnimation = (Animation) null;
+      }
+      if (Application.isPlaying && (UnityEngine.Object) this.activeSprite != (UnityEngine.Object) null)
+        this.activeSprite.alpha = this.invertSpriteState ? (this.startsActive ? 0.0f : 1f) : (this.startsActive ? 1f : 0.0f);
+      if (!EventDelegate.IsValid(this.onChange))
+        return;
+      this.eventReceiver = (GameObject) null;
+      this.functionName = (string) null;
+    }
+    else
+    {
+      this.mIsActive = !this.startsActive;
+      this.mStarted = true;
+      bool instantTween = this.instantTween;
+      this.instantTween = true;
+      this.Set(this.startsActive);
+      this.instantTween = instantTween;
+    }
+  }
 
-	// Token: 0x060002D8 RID: 728 RVA: 0x0001EBEC File Offset: 0x0001CDEC
-	public void Set(bool state, bool notify = true)
-	{
-		if (this.validator != null && !this.validator(state))
-		{
-			return;
-		}
-		if (!this.mStarted)
-		{
-			this.mIsActive = state;
-			this.startsActive = state;
-			if (this.activeSprite != null)
-			{
-				this.activeSprite.alpha = (this.invertSpriteState ? (state ? 0f : 1f) : (state ? 1f : 0f));
-				return;
-			}
-		}
-		else if (this.mIsActive != state)
-		{
-			if (this.group != 0 && state)
-			{
-				int i = 0;
-				int size = UIToggle.list.size;
-				while (i < size)
-				{
-					UIToggle uitoggle = UIToggle.list.buffer[i];
-					if (uitoggle != this && uitoggle.group == this.group)
-					{
-						uitoggle.Set(false, true);
-					}
-					if (UIToggle.list.size != size)
-					{
-						size = UIToggle.list.size;
-						i = 0;
-					}
-					else
-					{
-						i++;
-					}
-				}
-			}
-			this.mIsActive = state;
-			if (this.activeSprite != null)
-			{
-				if (this.instantTween || !NGUITools.GetActive(this))
-				{
-					this.activeSprite.alpha = (this.invertSpriteState ? (this.mIsActive ? 0f : 1f) : (this.mIsActive ? 1f : 0f));
-				}
-				else
-				{
-					TweenAlpha.Begin(this.activeSprite.gameObject, 0.15f, this.invertSpriteState ? (this.mIsActive ? 0f : 1f) : (this.mIsActive ? 1f : 0f), 0f);
-				}
-			}
-			if (notify && UIToggle.current == null)
-			{
-				UIToggle uitoggle2 = UIToggle.current;
-				UIToggle.current = this;
-				if (EventDelegate.IsValid(this.onChange))
-				{
-					EventDelegate.Execute(this.onChange);
-				}
-				else if (this.eventReceiver != null && !string.IsNullOrEmpty(this.functionName))
-				{
-					this.eventReceiver.SendMessage(this.functionName, this.mIsActive, SendMessageOptions.DontRequireReceiver);
-				}
-				UIToggle.current = uitoggle2;
-			}
-			if (this.animator != null)
-			{
-				ActiveAnimation activeAnimation = ActiveAnimation.Play(this.animator, null, state ? AnimationOrTween.Direction.Forward : AnimationOrTween.Direction.Reverse, EnableCondition.IgnoreDisabledState, DisableCondition.DoNotDisable);
-				if (activeAnimation != null && (this.instantTween || !NGUITools.GetActive(this)))
-				{
-					activeAnimation.Finish();
-					return;
-				}
-			}
-			else if (this.activeAnimation != null)
-			{
-				ActiveAnimation activeAnimation2 = ActiveAnimation.Play(this.activeAnimation, null, state ? AnimationOrTween.Direction.Forward : AnimationOrTween.Direction.Reverse, EnableCondition.IgnoreDisabledState, DisableCondition.DoNotDisable);
-				if (activeAnimation2 != null && (this.instantTween || !NGUITools.GetActive(this)))
-				{
-					activeAnimation2.Finish();
-					return;
-				}
-			}
-			else if (this.tween != null)
-			{
-				bool active = NGUITools.GetActive(this);
-				if (this.tween.tweenGroup != 0)
-				{
-					UITweener[] componentsInChildren = this.tween.GetComponentsInChildren<UITweener>(true);
-					int j = 0;
-					int num = componentsInChildren.Length;
-					while (j < num)
-					{
-						UITweener uitweener = componentsInChildren[j];
-						if (uitweener.tweenGroup == this.tween.tweenGroup)
-						{
-							uitweener.Play(state);
-							if (this.instantTween || !active)
-							{
-								uitweener.tweenFactor = (state ? 1f : 0f);
-							}
-						}
-						j++;
-					}
-					return;
-				}
-				this.tween.Play(state);
-				if (this.instantTween || !active)
-				{
-					this.tween.tweenFactor = (state ? 1f : 0f);
-				}
-			}
-		}
-	}
+  private void OnClick()
+  {
+    if (!this.enabled || !this.isColliderEnabled || UICamera.currentTouchID == -2)
+      return;
+    this.value = !this.value;
+  }
 
-	// Token: 0x04000458 RID: 1112
-	public static BetterList<UIToggle> list = new BetterList<UIToggle>();
+  public void Set(bool state, bool notify = true)
+  {
+    if (this.validator != null && !this.validator(state))
+      return;
+    if (!this.mStarted)
+    {
+      this.mIsActive = state;
+      this.startsActive = state;
+      if (!((UnityEngine.Object) this.activeSprite != (UnityEngine.Object) null))
+        return;
+      this.activeSprite.alpha = this.invertSpriteState ? (state ? 0.0f : 1f) : (state ? 1f : 0.0f);
+    }
+    else
+    {
+      if (this.mIsActive == state)
+        return;
+      if (this.group != 0 & state)
+      {
+        int index = 0;
+        int size = UIToggle.list.size;
+        while (index < size)
+        {
+          UIToggle uiToggle = UIToggle.list.buffer[index];
+          if ((UnityEngine.Object) uiToggle != (UnityEngine.Object) this && uiToggle.group == this.group)
+            uiToggle.Set(false);
+          if (UIToggle.list.size != size)
+          {
+            size = UIToggle.list.size;
+            index = 0;
+          }
+          else
+            ++index;
+        }
+      }
+      this.mIsActive = state;
+      if ((UnityEngine.Object) this.activeSprite != (UnityEngine.Object) null)
+      {
+        if (this.instantTween || !NGUITools.GetActive((Behaviour) this))
+          this.activeSprite.alpha = this.invertSpriteState ? (this.mIsActive ? 0.0f : 1f) : (this.mIsActive ? 1f : 0.0f);
+        else
+          TweenAlpha.Begin(this.activeSprite.gameObject, 0.15f, this.invertSpriteState ? (this.mIsActive ? 0.0f : 1f) : (this.mIsActive ? 1f : 0.0f));
+      }
+      if (notify && (UnityEngine.Object) UIToggle.current == (UnityEngine.Object) null)
+      {
+        UIToggle current = UIToggle.current;
+        UIToggle.current = this;
+        if (EventDelegate.IsValid(this.onChange))
+          EventDelegate.Execute(this.onChange);
+        else if ((UnityEngine.Object) this.eventReceiver != (UnityEngine.Object) null && !string.IsNullOrEmpty(this.functionName))
+          this.eventReceiver.SendMessage(this.functionName, (object) this.mIsActive, SendMessageOptions.DontRequireReceiver);
+        UIToggle.current = current;
+      }
+      if ((UnityEngine.Object) this.animator != (UnityEngine.Object) null)
+      {
+        ActiveAnimation activeAnimation = ActiveAnimation.Play(this.animator, (string) null, state ? AnimationOrTween.Direction.Forward : AnimationOrTween.Direction.Reverse, EnableCondition.IgnoreDisabledState, DisableCondition.DoNotDisable);
+        if (!((UnityEngine.Object) activeAnimation != (UnityEngine.Object) null) || !this.instantTween && NGUITools.GetActive((Behaviour) this))
+          return;
+        activeAnimation.Finish();
+      }
+      else if ((UnityEngine.Object) this.activeAnimation != (UnityEngine.Object) null)
+      {
+        ActiveAnimation activeAnimation = ActiveAnimation.Play(this.activeAnimation, (string) null, state ? AnimationOrTween.Direction.Forward : AnimationOrTween.Direction.Reverse, EnableCondition.IgnoreDisabledState, DisableCondition.DoNotDisable);
+        if (!((UnityEngine.Object) activeAnimation != (UnityEngine.Object) null) || !this.instantTween && NGUITools.GetActive((Behaviour) this))
+          return;
+        activeAnimation.Finish();
+      }
+      else
+      {
+        if (!((UnityEngine.Object) this.tween != (UnityEngine.Object) null))
+          return;
+        bool active = NGUITools.GetActive((Behaviour) this);
+        if (this.tween.tweenGroup != 0)
+        {
+          UITweener[] componentsInChildren = this.tween.GetComponentsInChildren<UITweener>(true);
+          int index = 0;
+          for (int length = componentsInChildren.Length; index < length; ++index)
+          {
+            UITweener uiTweener = componentsInChildren[index];
+            if (uiTweener.tweenGroup == this.tween.tweenGroup)
+            {
+              uiTweener.Play(state);
+              if (this.instantTween || !active)
+                uiTweener.tweenFactor = state ? 1f : 0.0f;
+            }
+          }
+        }
+        else
+        {
+          this.tween.Play(state);
+          if (!this.instantTween && active)
+            return;
+          this.tween.tweenFactor = state ? 1f : 0.0f;
+        }
+      }
+    }
+  }
 
-	// Token: 0x04000459 RID: 1113
-	public static UIToggle current;
-
-	// Token: 0x0400045A RID: 1114
-	public int group;
-
-	// Token: 0x0400045B RID: 1115
-	public UIWidget activeSprite;
-
-	// Token: 0x0400045C RID: 1116
-	public bool invertSpriteState;
-
-	// Token: 0x0400045D RID: 1117
-	public Animation activeAnimation;
-
-	// Token: 0x0400045E RID: 1118
-	public Animator animator;
-
-	// Token: 0x0400045F RID: 1119
-	public UITweener tween;
-
-	// Token: 0x04000460 RID: 1120
-	public bool startsActive;
-
-	// Token: 0x04000461 RID: 1121
-	public bool instantTween;
-
-	// Token: 0x04000462 RID: 1122
-	public bool optionCanBeNone;
-
-	// Token: 0x04000463 RID: 1123
-	public List<EventDelegate> onChange = new List<EventDelegate>();
-
-	// Token: 0x04000464 RID: 1124
-	public UIToggle.Validate validator;
-
-	// Token: 0x04000465 RID: 1125
-	[HideInInspector]
-	[SerializeField]
-	private UISprite checkSprite;
-
-	// Token: 0x04000466 RID: 1126
-	[HideInInspector]
-	[SerializeField]
-	private Animation checkAnimation;
-
-	// Token: 0x04000467 RID: 1127
-	[HideInInspector]
-	[SerializeField]
-	private GameObject eventReceiver;
-
-	// Token: 0x04000468 RID: 1128
-	[HideInInspector]
-	[SerializeField]
-	private string functionName = "OnActivate";
-
-	// Token: 0x04000469 RID: 1129
-	[HideInInspector]
-	[SerializeField]
-	private bool startsChecked;
-
-	// Token: 0x0400046A RID: 1130
-	private bool mIsActive = true;
-
-	// Token: 0x0400046B RID: 1131
-	private bool mStarted;
-
-	// Token: 0x020005EE RID: 1518
-	// (Invoke) Token: 0x0600257E RID: 9598
-	public delegate bool Validate(bool choice);
+  public delegate bool Validate(bool choice);
 }

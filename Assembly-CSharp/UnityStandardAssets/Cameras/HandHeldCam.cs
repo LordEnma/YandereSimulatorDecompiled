@@ -1,41 +1,37 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityStandardAssets.Cameras.HandHeldCam
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
 namespace UnityStandardAssets.Cameras
 {
-	// Token: 0x02000551 RID: 1361
-	public class HandHeldCam : LookatTarget
-	{
-		// Token: 0x060022DA RID: 8922 RVA: 0x001F7508 File Offset: 0x001F5708
-		protected override void FollowTarget(float deltaTime)
-		{
-			base.FollowTarget(deltaTime);
-			float num = Mathf.PerlinNoise(0f, Time.time * this.m_SwaySpeed) - 0.5f;
-			float num2 = Mathf.PerlinNoise(0f, Time.time * this.m_SwaySpeed + 100f) - 0.5f;
-			num *= this.m_BaseSwayAmount;
-			num2 *= this.m_BaseSwayAmount;
-			float num3 = Mathf.PerlinNoise(0f, Time.time * this.m_SwaySpeed) - 0.5f + this.m_TrackingBias;
-			float num4 = Mathf.PerlinNoise(0f, Time.time * this.m_SwaySpeed + 100f) - 0.5f + this.m_TrackingBias;
-			num3 *= -this.m_TrackingSwayAmount * this.m_FollowVelocity.x;
-			num4 *= this.m_TrackingSwayAmount * this.m_FollowVelocity.y;
-			base.transform.Rotate(num + num3, num2 + num4, 0f);
-		}
+  public class HandHeldCam : LookatTarget
+  {
+    [SerializeField]
+    private float m_SwaySpeed = 0.5f;
+    [SerializeField]
+    private float m_BaseSwayAmount = 0.5f;
+    [SerializeField]
+    private float m_TrackingSwayAmount = 0.5f;
+    [Range(-1f, 1f)]
+    [SerializeField]
+    private float m_TrackingBias;
 
-		// Token: 0x04004B84 RID: 19332
-		[SerializeField]
-		private float m_SwaySpeed = 0.5f;
-
-		// Token: 0x04004B85 RID: 19333
-		[SerializeField]
-		private float m_BaseSwayAmount = 0.5f;
-
-		// Token: 0x04004B86 RID: 19334
-		[SerializeField]
-		private float m_TrackingSwayAmount = 0.5f;
-
-		// Token: 0x04004B87 RID: 19335
-		[Range(-1f, 1f)]
-		[SerializeField]
-		private float m_TrackingBias;
-	}
+    protected override void FollowTarget(float deltaTime)
+    {
+      base.FollowTarget(deltaTime);
+      float num1 = Mathf.PerlinNoise(0.0f, Time.time * this.m_SwaySpeed) - 0.5f;
+      float num2 = Mathf.PerlinNoise(0.0f, (float) ((double) Time.time * (double) this.m_SwaySpeed + 100.0)) - 0.5f;
+      float num3 = num1 * this.m_BaseSwayAmount;
+      float num4 = num2 * this.m_BaseSwayAmount;
+      float num5 = Mathf.PerlinNoise(0.0f, Time.time * this.m_SwaySpeed) - 0.5f + this.m_TrackingBias;
+      float num6 = Mathf.PerlinNoise(0.0f, (float) ((double) Time.time * (double) this.m_SwaySpeed + 100.0)) - 0.5f + this.m_TrackingBias;
+      float num7 = num5 * (-this.m_TrackingSwayAmount * this.m_FollowVelocity.x);
+      float num8 = num6 * (this.m_TrackingSwayAmount * this.m_FollowVelocity.y);
+      this.transform.Rotate(num3 + num7, num4 + num8, 0.0f);
+    }
+  }
 }

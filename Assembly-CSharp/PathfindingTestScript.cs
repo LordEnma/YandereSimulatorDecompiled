@@ -1,23 +1,22 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PathfindingTestScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200050E RID: 1294
 public class PathfindingTestScript : MonoBehaviour
 {
-	// Token: 0x06002181 RID: 8577 RVA: 0x001EEF2C File Offset: 0x001ED12C
-	private void Update()
-	{
-		if (Input.GetKeyDown("left"))
-		{
-			this.bytes = AstarPath.active.astarData.SerializeGraphs();
-		}
-		if (Input.GetKeyDown("right"))
-		{
-			AstarPath.active.astarData.DeserializeGraphs(this.bytes);
-			AstarPath.active.Scan(null);
-		}
-	}
+  private byte[] bytes;
 
-	// Token: 0x040049DE RID: 18910
-	private byte[] bytes;
+  private void Update()
+  {
+    if (Input.GetKeyDown("left"))
+      this.bytes = AstarPath.active.astarData.SerializeGraphs();
+    if (!Input.GetKeyDown("right"))
+      return;
+    AstarPath.active.astarData.DeserializeGraphs(this.bytes);
+    AstarPath.active.Scan();
+  }
 }

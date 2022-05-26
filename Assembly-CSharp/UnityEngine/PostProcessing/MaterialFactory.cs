@@ -1,49 +1,41 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityEngine.PostProcessing.MaterialFactory
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using System.Collections.Generic;
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000589 RID: 1417
-	public sealed class MaterialFactory : IDisposable
-	{
-		// Token: 0x06002400 RID: 9216 RVA: 0x001FDF4D File Offset: 0x001FC14D
-		public MaterialFactory()
-		{
-			this.m_Materials = new Dictionary<string, Material>();
-		}
+  public sealed class MaterialFactory : IDisposable
+  {
+    private Dictionary<string, Material> m_Materials;
 
-		// Token: 0x06002401 RID: 9217 RVA: 0x001FDF60 File Offset: 0x001FC160
-		public Material Get(string shaderName)
-		{
-			Material material;
-			if (!this.m_Materials.TryGetValue(shaderName, out material))
-			{
-				Shader shader = Shader.Find(shaderName);
-				if (shader == null)
-				{
-					throw new ArgumentException(string.Format("Shader not found ({0})", shaderName));
-				}
-				material = new Material(shader)
-				{
-					name = string.Format("PostFX - {0}", shaderName.Substring(shaderName.LastIndexOf("/") + 1)),
-					hideFlags = HideFlags.DontSave
-				};
-				this.m_Materials.Add(shaderName, material);
-			}
-			return material;
-		}
+    public MaterialFactory() => this.m_Materials = new Dictionary<string, Material>();
 
-		// Token: 0x06002402 RID: 9218 RVA: 0x001FDFDC File Offset: 0x001FC1DC
-		public void Dispose()
-		{
-			foreach (KeyValuePair<string, Material> keyValuePair in this.m_Materials)
-			{
-				GraphicsUtils.Destroy(keyValuePair.Value);
-			}
-			this.m_Materials.Clear();
-		}
+    public Material Get(string shaderName)
+    {
+      Material material1;
+      if (!this.m_Materials.TryGetValue(shaderName, out material1))
+      {
+        Shader shader = Shader.Find(shaderName);
+        Material material2 = !((UnityEngine.Object) shader == (UnityEngine.Object) null) ? new Material(shader) : throw new ArgumentException(string.Format("Shader not found ({0})", (object) shaderName));
+        material2.name = string.Format("PostFX - {0}", (object) shaderName.Substring(shaderName.LastIndexOf("/") + 1));
+        material2.hideFlags = HideFlags.DontSave;
+        material1 = material2;
+        this.m_Materials.Add(shaderName, material1);
+      }
+      return material1;
+    }
 
-		// Token: 0x04004C5E RID: 19550
-		private Dictionary<string, Material> m_Materials;
-	}
+    public void Dispose()
+    {
+      Dictionary<string, Material>.Enumerator enumerator = this.m_Materials.GetEnumerator();
+      while (enumerator.MoveNext())
+        GraphicsUtils.Destroy((UnityEngine.Object) enumerator.Current.Value);
+      this.m_Materials.Clear();
+    }
+  }
 }

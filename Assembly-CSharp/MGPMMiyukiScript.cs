@@ -1,468 +1,324 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MGPMMiyukiScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000011 RID: 17
 public class MGPMMiyukiScript : MonoBehaviour
 {
-	// Token: 0x06000038 RID: 56 RVA: 0x00005C6C File Offset: 0x00003E6C
-	private void Start()
-	{
-		Time.timeScale = 1f;
-		if (!GameGlobals.EasyMode)
-		{
-			this.MagicBar.parent.gameObject.SetActive(false);
-		}
-		this.Eighties = GameGlobals.Eighties;
-		if (this.Eighties)
-		{
-			this.MyRenderer.enabled = false;
-			this.SpaceWitchSprite.SetActive(true);
-		}
-	}
+  public MGPMManagerScript GameplayManager;
+  public InputManagerScript InputManager;
+  public GameObject SpaceWitchSprite;
+  public GameObject DeathExplosion;
+  public GameObject Projectile;
+  public GameObject Explosion;
+  public AudioClip DamageSound;
+  public AudioClip PickUpSound;
+  public AudioClip DeathSound;
+  public Transform SpawnPoint;
+  public Transform MagicBar;
+  public Renderer MyRenderer;
+  public Texture[] ForwardSprite;
+  public Texture[] ReverseRightSprite;
+  public Texture[] TurnRightSprite;
+  public Texture[] RightSprite;
+  public Texture[] ReverseLeftSprite;
+  public Texture[] TurnLeftSprite;
+  public Texture[] LeftSprite;
+  public GameObject[] Hearts;
+  public int MagicLevel;
+  public int Frame;
+  public int RightPhase;
+  public int LeftPhase;
+  public int Health;
+  public float Invincibility;
+  public float MovementSpeed;
+  public float ShootTimer;
+  public float Magic;
+  public float Speed;
+  public float Timer;
+  public float FPS;
+  public float PositionX;
+  public float PositionY;
+  public bool Eighties;
+  public bool Gameplay;
 
-	// Token: 0x06000039 RID: 57 RVA: 0x00005CCC File Offset: 0x00003ECC
-	private void Update()
-	{
-		this.Timer += Time.deltaTime;
-		if (this.Timer > this.FPS)
-		{
-			this.Timer = 0f;
-			this.Frame++;
-			if (this.Frame == 3)
-			{
-				this.Frame = 0;
-				if (this.RightPhase == 1)
-				{
-					this.RightPhase = 2;
-				}
-				else if (this.RightPhase == 3)
-				{
-					this.RightPhase = 0;
-				}
-				if (this.LeftPhase == 1)
-				{
-					this.LeftPhase = 2;
-				}
-				else if (this.LeftPhase == 3)
-				{
-					this.LeftPhase = 0;
-				}
-			}
-			if (this.RightPhase == 0 && this.LeftPhase == 0)
-			{
-				this.MyRenderer.material.mainTexture = this.ForwardSprite[this.Frame];
-			}
-			else if (this.RightPhase == 1)
-			{
-				this.MyRenderer.material.mainTexture = this.TurnRightSprite[this.Frame];
-			}
-			else if (this.RightPhase == 2)
-			{
-				this.MyRenderer.material.mainTexture = this.RightSprite[this.Frame];
-			}
-			else if (this.RightPhase == 3)
-			{
-				this.MyRenderer.material.mainTexture = this.ReverseRightSprite[this.Frame];
-			}
-			else if (this.LeftPhase == 1)
-			{
-				this.MyRenderer.material.mainTexture = this.TurnLeftSprite[this.Frame];
-			}
-			else if (this.LeftPhase == 2)
-			{
-				this.MyRenderer.material.mainTexture = this.LeftSprite[this.Frame];
-			}
-			else if (this.LeftPhase == 3)
-			{
-				this.MyRenderer.material.mainTexture = this.ReverseLeftSprite[this.Frame];
-			}
-		}
-		this.MovementSpeed = 0f;
-		if (Input.GetButton("LB"))
-		{
-			this.MovementSpeed = this.Speed * 0.5f;
-		}
-		else
-		{
-			this.MovementSpeed = this.Speed;
-		}
-		if (this.Gameplay)
-		{
-			if (Input.GetKey("right") || this.InputManager.DPadRight || Input.GetAxis("Horizontal") > 0.5f)
-			{
-				if (!this.Eighties)
-				{
-					this.MoveRight();
-				}
-				else
-				{
-					this.PositionY += this.MovementSpeed * Time.deltaTime;
-				}
-			}
-			else if (!this.Eighties && (this.RightPhase == 1 || this.RightPhase == 2))
-			{
-				this.RightPhase = 3;
-				this.Frame = 0;
-			}
-			if (Input.GetKey("left") || this.InputManager.DPadLeft || Input.GetAxis("Horizontal") < -0.5f)
-			{
-				if (!this.Eighties)
-				{
-					this.MoveLeft();
-				}
-				else
-				{
-					this.PositionY -= this.MovementSpeed * Time.deltaTime;
-				}
-			}
-			else if (!this.Eighties && (this.LeftPhase == 1 || this.LeftPhase == 2))
-			{
-				this.LeftPhase = 3;
-				this.Frame = 0;
-			}
-			if (Input.GetKey("up") || this.InputManager.DPadUp || Input.GetAxis("Vertical") > 0.5f)
-			{
-				if (!this.Eighties)
-				{
-					this.PositionY += this.MovementSpeed * Time.deltaTime;
-				}
-				else
-				{
-					this.MoveLeft();
-				}
-			}
-			else if (this.Eighties && (this.RightPhase == 1 || this.RightPhase == 2))
-			{
-				this.RightPhase = 3;
-				this.Frame = 0;
-			}
-			if (Input.GetKey("down") || this.InputManager.DPadDown || Input.GetAxis("Vertical") < -0.5f)
-			{
-				if (!this.Eighties)
-				{
-					this.PositionY -= this.MovementSpeed * Time.deltaTime;
-				}
-				else
-				{
-					this.MoveRight();
-				}
-			}
-			else if (this.Eighties && (this.LeftPhase == 1 || this.LeftPhase == 2))
-			{
-				this.LeftPhase = 3;
-				this.Frame = 0;
-			}
-			if (this.PositionX > 108f)
-			{
-				this.PositionX = 108f;
-			}
-			if (this.PositionX < -110f)
-			{
-				this.PositionX = -110f;
-			}
-			if (this.PositionY > 224f)
-			{
-				this.PositionY = 224f;
-			}
-			if (this.PositionY < -224f)
-			{
-				this.PositionY = -224f;
-			}
-			base.transform.localPosition = new Vector3(this.PositionX, this.PositionY, 0f);
-			if (Input.GetKey("z") || Input.GetKey("y") || Input.GetButton("A"))
-			{
-				if (this.ShootTimer == 0f)
-				{
-					GameObject gameObject;
-					if (this.MagicLevel == 0)
-					{
-						gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position, Quaternion.identity);
-						gameObject.transform.parent = base.transform.parent;
-						gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 1f);
-						gameObject.transform.localScale = new Vector3(16f, 16f, 1f);
-					}
-					else if (this.MagicLevel == 1)
-					{
-						gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(0.1f, 0f, 0f), Quaternion.identity);
-						gameObject.transform.parent = base.transform.parent;
-						gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 1f);
-						gameObject.transform.localScale = new Vector3(16f, 16f, 1f);
-						gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(-0.1f, 0f, 0f), Quaternion.identity);
-						gameObject.transform.parent = base.transform.parent;
-						gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 1f);
-						gameObject.transform.localScale = new Vector3(16f, 16f, 1f);
-					}
-					else if (this.MagicLevel == 2)
-					{
-						gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position, Quaternion.identity);
-						gameObject.transform.parent = base.transform.parent;
-						gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 1f);
-						gameObject.transform.localScale = new Vector3(16f, 16f, 1f);
-						gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(0.2f, 0f, 0f), Quaternion.identity);
-						gameObject.transform.parent = base.transform.parent;
-						gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 1f);
-						gameObject.transform.localScale = new Vector3(16f, 16f, 1f);
-						gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(-0.2f, 0f, 0f), Quaternion.identity);
-						gameObject.transform.parent = base.transform.parent;
-						gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 1f);
-						gameObject.transform.localScale = new Vector3(16f, 16f, 1f);
-					}
-					else
-					{
-						gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position, Quaternion.identity);
-						gameObject.transform.parent = base.transform.parent;
-						gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 1f);
-						gameObject.transform.localScale = new Vector3(16f, 16f, 1f);
-						gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(0.2f, 0f, 0f), Quaternion.identity);
-						gameObject.transform.parent = base.transform.parent;
-						gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 1f);
-						gameObject.transform.localScale = new Vector3(16f, 16f, 1f);
-						gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(-0.2f, 0f, 0f), Quaternion.identity);
-						gameObject.transform.parent = base.transform.parent;
-						gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 1f);
-						gameObject.transform.localScale = new Vector3(16f, 16f, 1f);
-						gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(0.4f, 0f, 0f), Quaternion.identity);
-						gameObject.transform.parent = base.transform.parent;
-						gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 1f);
-						gameObject.transform.localScale = new Vector3(16f, 16f, 1f);
-						gameObject.GetComponent<MGPMProjectileScript>().Angle = 1;
-						gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(-0.4f, 0f, 0f), Quaternion.identity);
-						gameObject.transform.parent = base.transform.parent;
-						gameObject.transform.localPosition = new Vector3(gameObject.transform.localPosition.x, gameObject.transform.localPosition.y, 1f);
-						gameObject.transform.localScale = new Vector3(16f, 16f, 1f);
-						gameObject.GetComponent<MGPMProjectileScript>().Angle = -1;
-					}
-					if (this.Eighties)
-					{
-						gameObject.GetComponent<MGPMProjectileScript>().Eighties = this.Eighties;
-					}
-					this.ShootTimer = 0f;
-				}
-				this.ShootTimer += Time.deltaTime;
-				if (this.ShootTimer >= 0.075f)
-				{
-					this.ShootTimer = 0f;
-				}
-			}
-			if (Input.GetKeyUp("z") || Input.GetKeyUp("y") || Input.GetButtonUp("A"))
-			{
-				this.ShootTimer = 0f;
-			}
-			if (Input.GetKeyDown("r"))
-			{
-				Application.LoadLevel(Application.loadedLevel);
-			}
-		}
-		if (this.Invincibility > 0f)
-		{
-			this.Invincibility = Mathf.MoveTowards(this.Invincibility, 0f, Time.deltaTime);
-			if (this.Invincibility == 0f)
-			{
-				this.MyRenderer.material.SetColor("_EmissionColor", new Color(0f, 0f, 0f, 0f));
-			}
-		}
-	}
+  private void Start()
+  {
+    Time.timeScale = 1f;
+    if (!GameGlobals.EasyMode)
+      this.MagicBar.parent.gameObject.SetActive(false);
+    this.Eighties = GameGlobals.Eighties;
+    if (!this.Eighties)
+      return;
+    this.MyRenderer.enabled = false;
+    this.SpaceWitchSprite.SetActive(true);
+  }
 
-	// Token: 0x0600003A RID: 58 RVA: 0x00006948 File Offset: 0x00004B48
-	private void OnCollisionEnter(Collision collision)
-	{
-		if (collision.gameObject.layer == 9)
-		{
-			if (this.Invincibility == 0f)
-			{
-				this.Health--;
-				if (GameGlobals.EasyMode)
-				{
-					this.MyRenderer.material.SetColor("_EmissionColor", new Color(1f, 1f, 1f, 1f));
-					this.Invincibility = 1f;
-				}
-				if (this.Health > 0)
-				{
-					GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.Explosion, base.transform.position, Quaternion.identity);
-					gameObject.transform.parent = base.transform.parent;
-					gameObject.transform.localScale = new Vector3(64f, 64f, 1f);
-					if (!this.Eighties)
-					{
-						AudioSource.PlayClipAtPoint(this.DamageSound, base.transform.position);
-					}
-				}
-				else
-				{
-					GameObject gameObject2 = UnityEngine.Object.Instantiate<GameObject>(this.DeathExplosion, base.transform.position, Quaternion.identity);
-					gameObject2.transform.parent = base.transform.parent;
-					gameObject2.transform.localScale = new Vector3(128f, 128f, 1f);
-					if (!this.Eighties)
-					{
-						AudioSource.PlayClipAtPoint(this.DeathSound, base.transform.position);
-					}
-					this.GameplayManager.BeginGameOver();
-					base.gameObject.SetActive(false);
-				}
-			}
-			this.UpdateHearts();
-			return;
-		}
-		if (collision.gameObject.layer == 15)
-		{
-			AudioSource.PlayClipAtPoint(this.PickUpSound, base.transform.position);
-			this.GameplayManager.Score += 10;
-			this.Magic += 1f;
-			if (this.Magic == 20f)
-			{
-				this.MagicLevel++;
-				if (this.MagicLevel > 3 && this.Health < 3)
-				{
-					this.Health++;
-					this.UpdateHearts();
-				}
-				this.Magic = 0f;
-			}
-			this.MagicBar.localScale = new Vector3(this.Magic / 20f, 1f, 1f);
-			UnityEngine.Object.Destroy(collision.gameObject);
-		}
-	}
+  private void Update()
+  {
+    this.Timer += Time.deltaTime;
+    if ((double) this.Timer > (double) this.FPS)
+    {
+      this.Timer = 0.0f;
+      ++this.Frame;
+      if (this.Frame == 3)
+      {
+        this.Frame = 0;
+        if (this.RightPhase == 1)
+          this.RightPhase = 2;
+        else if (this.RightPhase == 3)
+          this.RightPhase = 0;
+        if (this.LeftPhase == 1)
+          this.LeftPhase = 2;
+        else if (this.LeftPhase == 3)
+          this.LeftPhase = 0;
+      }
+      if (this.RightPhase == 0 && this.LeftPhase == 0)
+        this.MyRenderer.material.mainTexture = this.ForwardSprite[this.Frame];
+      else if (this.RightPhase == 1)
+        this.MyRenderer.material.mainTexture = this.TurnRightSprite[this.Frame];
+      else if (this.RightPhase == 2)
+        this.MyRenderer.material.mainTexture = this.RightSprite[this.Frame];
+      else if (this.RightPhase == 3)
+        this.MyRenderer.material.mainTexture = this.ReverseRightSprite[this.Frame];
+      else if (this.LeftPhase == 1)
+        this.MyRenderer.material.mainTexture = this.TurnLeftSprite[this.Frame];
+      else if (this.LeftPhase == 2)
+        this.MyRenderer.material.mainTexture = this.LeftSprite[this.Frame];
+      else if (this.LeftPhase == 3)
+        this.MyRenderer.material.mainTexture = this.ReverseLeftSprite[this.Frame];
+    }
+    this.MovementSpeed = 0.0f;
+    this.MovementSpeed = !Input.GetButton("LB") ? this.Speed : this.Speed * 0.5f;
+    if (this.Gameplay)
+    {
+      if (Input.GetKey("right") || this.InputManager.DPadRight || (double) Input.GetAxis("Horizontal") > 0.5)
+      {
+        if (!this.Eighties)
+          this.MoveRight();
+        else
+          this.PositionY += this.MovementSpeed * Time.deltaTime;
+      }
+      else if (!this.Eighties && (this.RightPhase == 1 || this.RightPhase == 2))
+      {
+        this.RightPhase = 3;
+        this.Frame = 0;
+      }
+      if (Input.GetKey("left") || this.InputManager.DPadLeft || (double) Input.GetAxis("Horizontal") < -0.5)
+      {
+        if (!this.Eighties)
+          this.MoveLeft();
+        else
+          this.PositionY -= this.MovementSpeed * Time.deltaTime;
+      }
+      else if (!this.Eighties && (this.LeftPhase == 1 || this.LeftPhase == 2))
+      {
+        this.LeftPhase = 3;
+        this.Frame = 0;
+      }
+      if (Input.GetKey("up") || this.InputManager.DPadUp || (double) Input.GetAxis("Vertical") > 0.5)
+      {
+        if (!this.Eighties)
+          this.PositionY += this.MovementSpeed * Time.deltaTime;
+        else
+          this.MoveLeft();
+      }
+      else if (this.Eighties && (this.RightPhase == 1 || this.RightPhase == 2))
+      {
+        this.RightPhase = 3;
+        this.Frame = 0;
+      }
+      if (Input.GetKey("down") || this.InputManager.DPadDown || (double) Input.GetAxis("Vertical") < -0.5)
+      {
+        if (!this.Eighties)
+          this.PositionY -= this.MovementSpeed * Time.deltaTime;
+        else
+          this.MoveRight();
+      }
+      else if (this.Eighties && (this.LeftPhase == 1 || this.LeftPhase == 2))
+      {
+        this.LeftPhase = 3;
+        this.Frame = 0;
+      }
+      if ((double) this.PositionX > 108.0)
+        this.PositionX = 108f;
+      if ((double) this.PositionX < -110.0)
+        this.PositionX = -110f;
+      if ((double) this.PositionY > 224.0)
+        this.PositionY = 224f;
+      if ((double) this.PositionY < -224.0)
+        this.PositionY = -224f;
+      this.transform.localPosition = new Vector3(this.PositionX, this.PositionY, 0.0f);
+      if (Input.GetKey("z") || Input.GetKey("y") || Input.GetButton("A"))
+      {
+        if ((double) this.ShootTimer == 0.0)
+        {
+          GameObject gameObject1;
+          if (this.MagicLevel == 0)
+          {
+            gameObject1 = Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position, Quaternion.identity);
+            gameObject1.transform.parent = this.transform.parent;
+            gameObject1.transform.localPosition = new Vector3(gameObject1.transform.localPosition.x, gameObject1.transform.localPosition.y, 1f);
+            gameObject1.transform.localScale = new Vector3(16f, 16f, 1f);
+          }
+          else if (this.MagicLevel == 1)
+          {
+            GameObject gameObject2 = Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(0.1f, 0.0f, 0.0f), Quaternion.identity);
+            gameObject2.transform.parent = this.transform.parent;
+            gameObject2.transform.localPosition = new Vector3(gameObject2.transform.localPosition.x, gameObject2.transform.localPosition.y, 1f);
+            gameObject2.transform.localScale = new Vector3(16f, 16f, 1f);
+            gameObject1 = Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(-0.1f, 0.0f, 0.0f), Quaternion.identity);
+            gameObject1.transform.parent = this.transform.parent;
+            gameObject1.transform.localPosition = new Vector3(gameObject1.transform.localPosition.x, gameObject1.transform.localPosition.y, 1f);
+            gameObject1.transform.localScale = new Vector3(16f, 16f, 1f);
+          }
+          else if (this.MagicLevel == 2)
+          {
+            GameObject gameObject3 = Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position, Quaternion.identity);
+            gameObject3.transform.parent = this.transform.parent;
+            gameObject3.transform.localPosition = new Vector3(gameObject3.transform.localPosition.x, gameObject3.transform.localPosition.y, 1f);
+            gameObject3.transform.localScale = new Vector3(16f, 16f, 1f);
+            GameObject gameObject4 = Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(0.2f, 0.0f, 0.0f), Quaternion.identity);
+            gameObject4.transform.parent = this.transform.parent;
+            gameObject4.transform.localPosition = new Vector3(gameObject4.transform.localPosition.x, gameObject4.transform.localPosition.y, 1f);
+            gameObject4.transform.localScale = new Vector3(16f, 16f, 1f);
+            gameObject1 = Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(-0.2f, 0.0f, 0.0f), Quaternion.identity);
+            gameObject1.transform.parent = this.transform.parent;
+            gameObject1.transform.localPosition = new Vector3(gameObject1.transform.localPosition.x, gameObject1.transform.localPosition.y, 1f);
+            gameObject1.transform.localScale = new Vector3(16f, 16f, 1f);
+          }
+          else
+          {
+            GameObject gameObject5 = Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position, Quaternion.identity);
+            gameObject5.transform.parent = this.transform.parent;
+            gameObject5.transform.localPosition = new Vector3(gameObject5.transform.localPosition.x, gameObject5.transform.localPosition.y, 1f);
+            gameObject5.transform.localScale = new Vector3(16f, 16f, 1f);
+            GameObject gameObject6 = Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(0.2f, 0.0f, 0.0f), Quaternion.identity);
+            gameObject6.transform.parent = this.transform.parent;
+            gameObject6.transform.localPosition = new Vector3(gameObject6.transform.localPosition.x, gameObject6.transform.localPosition.y, 1f);
+            gameObject6.transform.localScale = new Vector3(16f, 16f, 1f);
+            GameObject gameObject7 = Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(-0.2f, 0.0f, 0.0f), Quaternion.identity);
+            gameObject7.transform.parent = this.transform.parent;
+            gameObject7.transform.localPosition = new Vector3(gameObject7.transform.localPosition.x, gameObject7.transform.localPosition.y, 1f);
+            gameObject7.transform.localScale = new Vector3(16f, 16f, 1f);
+            GameObject gameObject8 = Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(0.4f, 0.0f, 0.0f), Quaternion.identity);
+            gameObject8.transform.parent = this.transform.parent;
+            gameObject8.transform.localPosition = new Vector3(gameObject8.transform.localPosition.x, gameObject8.transform.localPosition.y, 1f);
+            gameObject8.transform.localScale = new Vector3(16f, 16f, 1f);
+            gameObject8.GetComponent<MGPMProjectileScript>().Angle = 1;
+            gameObject1 = Object.Instantiate<GameObject>(this.Projectile, this.SpawnPoint.position + new Vector3(-0.4f, 0.0f, 0.0f), Quaternion.identity);
+            gameObject1.transform.parent = this.transform.parent;
+            gameObject1.transform.localPosition = new Vector3(gameObject1.transform.localPosition.x, gameObject1.transform.localPosition.y, 1f);
+            gameObject1.transform.localScale = new Vector3(16f, 16f, 1f);
+            gameObject1.GetComponent<MGPMProjectileScript>().Angle = -1;
+          }
+          if (this.Eighties)
+            gameObject1.GetComponent<MGPMProjectileScript>().Eighties = this.Eighties;
+          this.ShootTimer = 0.0f;
+        }
+        this.ShootTimer += Time.deltaTime;
+        if ((double) this.ShootTimer >= 0.0750000029802322)
+          this.ShootTimer = 0.0f;
+      }
+      if (Input.GetKeyUp("z") || Input.GetKeyUp("y") || Input.GetButtonUp("A"))
+        this.ShootTimer = 0.0f;
+      if (Input.GetKeyDown("r"))
+        Application.LoadLevel(Application.loadedLevel);
+    }
+    if ((double) this.Invincibility <= 0.0)
+      return;
+    this.Invincibility = Mathf.MoveTowards(this.Invincibility, 0.0f, Time.deltaTime);
+    if ((double) this.Invincibility != 0.0)
+      return;
+    this.MyRenderer.material.SetColor("_EmissionColor", new Color(0.0f, 0.0f, 0.0f, 0.0f));
+  }
 
-	// Token: 0x0600003B RID: 59 RVA: 0x00006B9C File Offset: 0x00004D9C
-	private void UpdateHearts()
-	{
-		this.Hearts[1].SetActive(false);
-		this.Hearts[2].SetActive(false);
-		this.Hearts[3].SetActive(false);
-		for (int i = 1; i < this.Health + 1; i++)
-		{
-			this.Hearts[i].SetActive(true);
-		}
-	}
+  private void OnCollisionEnter(Collision collision)
+  {
+    if (collision.gameObject.layer == 9)
+    {
+      if ((double) this.Invincibility == 0.0)
+      {
+        --this.Health;
+        if (GameGlobals.EasyMode)
+        {
+          this.MyRenderer.material.SetColor("_EmissionColor", new Color(1f, 1f, 1f, 1f));
+          this.Invincibility = 1f;
+        }
+        if (this.Health > 0)
+        {
+          GameObject gameObject = Object.Instantiate<GameObject>(this.Explosion, this.transform.position, Quaternion.identity);
+          gameObject.transform.parent = this.transform.parent;
+          gameObject.transform.localScale = new Vector3(64f, 64f, 1f);
+          if (!this.Eighties)
+            AudioSource.PlayClipAtPoint(this.DamageSound, this.transform.position);
+        }
+        else
+        {
+          GameObject gameObject = Object.Instantiate<GameObject>(this.DeathExplosion, this.transform.position, Quaternion.identity);
+          gameObject.transform.parent = this.transform.parent;
+          gameObject.transform.localScale = new Vector3(128f, 128f, 1f);
+          if (!this.Eighties)
+            AudioSource.PlayClipAtPoint(this.DeathSound, this.transform.position);
+          this.GameplayManager.BeginGameOver();
+          this.gameObject.SetActive(false);
+        }
+      }
+      this.UpdateHearts();
+    }
+    else
+    {
+      if (collision.gameObject.layer != 15)
+        return;
+      AudioSource.PlayClipAtPoint(this.PickUpSound, this.transform.position);
+      this.GameplayManager.Score += 10;
+      ++this.Magic;
+      if ((double) this.Magic == 20.0)
+      {
+        ++this.MagicLevel;
+        if (this.MagicLevel > 3 && this.Health < 3)
+        {
+          ++this.Health;
+          this.UpdateHearts();
+        }
+        this.Magic = 0.0f;
+      }
+      this.MagicBar.localScale = new Vector3(this.Magic / 20f, 1f, 1f);
+      Object.Destroy((Object) collision.gameObject);
+    }
+  }
 
-	// Token: 0x0600003C RID: 60 RVA: 0x00006BF4 File Offset: 0x00004DF4
-	private void MoveRight()
-	{
-		if (this.RightPhase < 1)
-		{
-			this.RightPhase = 1;
-			this.LeftPhase = 0;
-			this.Frame = 0;
-		}
-		this.PositionX += this.MovementSpeed * Time.deltaTime;
-	}
+  private void UpdateHearts()
+  {
+    this.Hearts[1].SetActive(false);
+    this.Hearts[2].SetActive(false);
+    this.Hearts[3].SetActive(false);
+    for (int index = 1; index < this.Health + 1; ++index)
+      this.Hearts[index].SetActive(true);
+  }
 
-	// Token: 0x0600003D RID: 61 RVA: 0x00006C2D File Offset: 0x00004E2D
-	private void MoveLeft()
-	{
-		if (this.LeftPhase < 1)
-		{
-			this.RightPhase = 0;
-			this.LeftPhase = 1;
-			this.Frame = 0;
-		}
-		this.PositionX -= this.MovementSpeed * Time.deltaTime;
-	}
+  private void MoveRight()
+  {
+    if (this.RightPhase < 1)
+    {
+      this.RightPhase = 1;
+      this.LeftPhase = 0;
+      this.Frame = 0;
+    }
+    this.PositionX += this.MovementSpeed * Time.deltaTime;
+  }
 
-	// Token: 0x040000CF RID: 207
-	public MGPMManagerScript GameplayManager;
-
-	// Token: 0x040000D0 RID: 208
-	public InputManagerScript InputManager;
-
-	// Token: 0x040000D1 RID: 209
-	public GameObject SpaceWitchSprite;
-
-	// Token: 0x040000D2 RID: 210
-	public GameObject DeathExplosion;
-
-	// Token: 0x040000D3 RID: 211
-	public GameObject Projectile;
-
-	// Token: 0x040000D4 RID: 212
-	public GameObject Explosion;
-
-	// Token: 0x040000D5 RID: 213
-	public AudioClip DamageSound;
-
-	// Token: 0x040000D6 RID: 214
-	public AudioClip PickUpSound;
-
-	// Token: 0x040000D7 RID: 215
-	public AudioClip DeathSound;
-
-	// Token: 0x040000D8 RID: 216
-	public Transform SpawnPoint;
-
-	// Token: 0x040000D9 RID: 217
-	public Transform MagicBar;
-
-	// Token: 0x040000DA RID: 218
-	public Renderer MyRenderer;
-
-	// Token: 0x040000DB RID: 219
-	public Texture[] ForwardSprite;
-
-	// Token: 0x040000DC RID: 220
-	public Texture[] ReverseRightSprite;
-
-	// Token: 0x040000DD RID: 221
-	public Texture[] TurnRightSprite;
-
-	// Token: 0x040000DE RID: 222
-	public Texture[] RightSprite;
-
-	// Token: 0x040000DF RID: 223
-	public Texture[] ReverseLeftSprite;
-
-	// Token: 0x040000E0 RID: 224
-	public Texture[] TurnLeftSprite;
-
-	// Token: 0x040000E1 RID: 225
-	public Texture[] LeftSprite;
-
-	// Token: 0x040000E2 RID: 226
-	public GameObject[] Hearts;
-
-	// Token: 0x040000E3 RID: 227
-	public int MagicLevel;
-
-	// Token: 0x040000E4 RID: 228
-	public int Frame;
-
-	// Token: 0x040000E5 RID: 229
-	public int RightPhase;
-
-	// Token: 0x040000E6 RID: 230
-	public int LeftPhase;
-
-	// Token: 0x040000E7 RID: 231
-	public int Health;
-
-	// Token: 0x040000E8 RID: 232
-	public float Invincibility;
-
-	// Token: 0x040000E9 RID: 233
-	public float MovementSpeed;
-
-	// Token: 0x040000EA RID: 234
-	public float ShootTimer;
-
-	// Token: 0x040000EB RID: 235
-	public float Magic;
-
-	// Token: 0x040000EC RID: 236
-	public float Speed;
-
-	// Token: 0x040000ED RID: 237
-	public float Timer;
-
-	// Token: 0x040000EE RID: 238
-	public float FPS;
-
-	// Token: 0x040000EF RID: 239
-	public float PositionX;
-
-	// Token: 0x040000F0 RID: 240
-	public float PositionY;
-
-	// Token: 0x040000F1 RID: 241
-	public bool Eighties;
-
-	// Token: 0x040000F2 RID: 242
-	public bool Gameplay;
+  private void MoveLeft()
+  {
+    if (this.LeftPhase < 1)
+    {
+      this.RightPhase = 0;
+      this.LeftPhase = 1;
+      this.Frame = 0;
+    }
+    this.PositionX -= this.MovementSpeed * Time.deltaTime;
+  }
 }

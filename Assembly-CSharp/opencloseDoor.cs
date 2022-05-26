@@ -1,62 +1,51 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: opencloseDoor
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using System.Collections;
 using UnityEngine;
 
-// Token: 0x02000502 RID: 1282
 public class opencloseDoor : MonoBehaviour
 {
-	// Token: 0x0600214B RID: 8523 RVA: 0x001EE5D3 File Offset: 0x001EC7D3
-	private void Start()
-	{
-		this.open = false;
-	}
+  public Animator openandclose;
+  public bool open;
+  public Transform Player;
 
-	// Token: 0x0600214C RID: 8524 RVA: 0x001EE5DC File Offset: 0x001EC7DC
-	private void OnMouseOver()
-	{
-		if (this.Player && Vector3.Distance(this.Player.position, base.transform.position) < 15f)
-		{
-			if (!this.open)
-			{
-				if (Input.GetMouseButtonDown(0))
-				{
-					base.StartCoroutine(this.opening());
-					return;
-				}
-			}
-			else if (this.open && Input.GetMouseButtonDown(0))
-			{
-				base.StartCoroutine(this.closing());
-			}
-		}
-	}
+  private void Start() => this.open = false;
 
-	// Token: 0x0600214D RID: 8525 RVA: 0x001EE653 File Offset: 0x001EC853
-	private IEnumerator opening()
-	{
-		MonoBehaviour.print("you are opening the door");
-		this.openandclose.Play("Opening");
-		this.open = true;
-		yield return new WaitForSeconds(0.5f);
-		yield break;
-	}
+  private void OnMouseOver()
+  {
+    if (!(bool) (Object) this.Player || (double) Vector3.Distance(this.Player.position, this.transform.position) >= 15.0)
+      return;
+    if (!this.open)
+    {
+      if (!Input.GetMouseButtonDown(0))
+        return;
+      this.StartCoroutine(this.opening());
+    }
+    else
+    {
+      if (!this.open || !Input.GetMouseButtonDown(0))
+        return;
+      this.StartCoroutine(this.closing());
+    }
+  }
 
-	// Token: 0x0600214E RID: 8526 RVA: 0x001EE662 File Offset: 0x001EC862
-	private IEnumerator closing()
-	{
-		MonoBehaviour.print("you are closing the door");
-		this.openandclose.Play("Closing");
-		this.open = false;
-		yield return new WaitForSeconds(0.5f);
-		yield break;
-	}
+  private IEnumerator opening()
+  {
+    MonoBehaviour.print((object) "you are opening the door");
+    this.openandclose.Play("Opening");
+    this.open = true;
+    yield return (object) new WaitForSeconds(0.5f);
+  }
 
-	// Token: 0x040049B1 RID: 18865
-	public Animator openandclose;
-
-	// Token: 0x040049B2 RID: 18866
-	public bool open;
-
-	// Token: 0x040049B3 RID: 18867
-	public Transform Player;
+  private IEnumerator closing()
+  {
+    MonoBehaviour.print((object) "you are closing the door");
+    this.openandclose.Play("Closing");
+    this.open = false;
+    yield return (object) new WaitForSeconds(0.5f);
+  }
 }

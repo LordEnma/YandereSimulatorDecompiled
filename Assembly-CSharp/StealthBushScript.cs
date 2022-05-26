@@ -1,26 +1,26 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: StealthBushScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200044E RID: 1102
 public class StealthBushScript : MonoBehaviour
 {
-	// Token: 0x06001D50 RID: 7504 RVA: 0x00160450 File Offset: 0x0015E650
-	private void OnTriggerEnter(Collider other)
-	{
-		StalkerYandereScript component = other.gameObject.GetComponent<StalkerYandereScript>();
-		if (component != null)
-		{
-			component.Hidden = true;
-		}
-	}
+  private void OnTriggerEnter(Collider other)
+  {
+    StalkerYandereScript component = other.gameObject.GetComponent<StalkerYandereScript>();
+    if (!((Object) component != (Object) null))
+      return;
+    component.Hidden = true;
+  }
 
-	// Token: 0x06001D51 RID: 7505 RVA: 0x0016047C File Offset: 0x0015E67C
-	private void OnTriggerExit(Collider other)
-	{
-		StalkerYandereScript component = other.gameObject.GetComponent<StalkerYandereScript>();
-		if (component != null)
-		{
-			component.Hidden = false;
-		}
-	}
+  private void OnTriggerExit(Collider other)
+  {
+    StalkerYandereScript component = other.gameObject.GetComponent<StalkerYandereScript>();
+    if (!((Object) component != (Object) null))
+      return;
+    component.Hidden = false;
+  }
 }

@@ -1,42 +1,19 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BucketGas
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x020000FD RID: 253
+using System;
+
 [Serializable]
 public class BucketGas : BucketContents
 {
-	// Token: 0x17000206 RID: 518
-	// (get) Token: 0x06000A7D RID: 2685 RVA: 0x0005D70B File Offset: 0x0005B90B
-	public override BucketContentsType Type
-	{
-		get
-		{
-			return BucketContentsType.Gas;
-		}
-	}
+  public override BucketContentsType Type => BucketContentsType.Gas;
 
-	// Token: 0x17000207 RID: 519
-	// (get) Token: 0x06000A7E RID: 2686 RVA: 0x0005D70E File Offset: 0x0005B90E
-	public override bool IsCleaningAgent
-	{
-		get
-		{
-			return false;
-		}
-	}
+  public override bool IsCleaningAgent => false;
 
-	// Token: 0x17000208 RID: 520
-	// (get) Token: 0x06000A7F RID: 2687 RVA: 0x0005D711 File Offset: 0x0005B911
-	public override bool IsFlammable
-	{
-		get
-		{
-			return true;
-		}
-	}
+  public override bool IsFlammable => true;
 
-	// Token: 0x06000A80 RID: 2688 RVA: 0x0005D714 File Offset: 0x0005B914
-	public override bool CanBeLifted(int strength)
-	{
-		return true;
-	}
+  public override bool CanBeLifted(int strength) => true;
 }

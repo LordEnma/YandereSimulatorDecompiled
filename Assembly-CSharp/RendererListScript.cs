@@ -1,36 +1,34 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: RendererListScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003D6 RID: 982
 public class RendererListScript : MonoBehaviour
 {
-	// Token: 0x06001B92 RID: 7058 RVA: 0x00137E5C File Offset: 0x0013605C
-	private void Start()
-	{
-		Transform[] componentsInChildren = base.gameObject.GetComponentsInChildren<Transform>();
-		int num = 0;
-		foreach (Transform transform in componentsInChildren)
-		{
-			if (transform.gameObject.GetComponent<Renderer>() != null)
-			{
-				this.Renderers[num] = transform.gameObject.GetComponent<Renderer>();
-				num++;
-			}
-		}
-	}
+  public Renderer[] Renderers;
 
-	// Token: 0x06001B93 RID: 7059 RVA: 0x00137EB4 File Offset: 0x001360B4
-	private void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.LeftControl))
-		{
-			foreach (Renderer renderer in this.Renderers)
-			{
-				renderer.enabled = !renderer.enabled;
-			}
-		}
-	}
+  private void Start()
+  {
+    Transform[] componentsInChildren = this.gameObject.GetComponentsInChildren<Transform>();
+    int index = 0;
+    foreach (Transform transform in componentsInChildren)
+    {
+      if ((Object) transform.gameObject.GetComponent<Renderer>() != (Object) null)
+      {
+        this.Renderers[index] = transform.gameObject.GetComponent<Renderer>();
+        ++index;
+      }
+    }
+  }
 
-	// Token: 0x04002F63 RID: 12131
-	public Renderer[] Renderers;
+  private void Update()
+  {
+    if (!Input.GetKeyDown(KeyCode.LeftControl))
+      return;
+    foreach (Renderer renderer in this.Renderers)
+      renderer.enabled = !renderer.enabled;
+  }
 }

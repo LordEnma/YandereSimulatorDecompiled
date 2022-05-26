@@ -1,372 +1,290 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UITexture
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020000AF RID: 175
 [ExecuteInEditMode]
 [AddComponentMenu("NGUI/UI/Texture")]
 public class UITexture : UIBasicSprite
 {
-	// Token: 0x170001D0 RID: 464
-	// (get) Token: 0x060008C5 RID: 2245 RVA: 0x00047FF0 File Offset: 0x000461F0
-	// (set) Token: 0x060008C6 RID: 2246 RVA: 0x00048024 File Offset: 0x00046224
-	public override Texture mainTexture
-	{
-		get
-		{
-			if (this.mTexture != null)
-			{
-				return this.mTexture;
-			}
-			if (this.mMat != null)
-			{
-				return this.mMat.mainTexture;
-			}
-			return null;
-		}
-		set
-		{
-			if (this.mTexture != value)
-			{
-				if (this.drawCall != null && this.drawCall.widgetCount == 1 && this.mMat == null)
-				{
-					this.mTexture = value;
-					this.drawCall.mainTexture = value;
-					return;
-				}
-				base.RemoveFromPanel();
-				this.mTexture = value;
-				this.mPMA = -1;
-				this.MarkAsChanged();
-			}
-		}
-	}
+  [HideInInspector]
+  [SerializeField]
+  private Rect mRect = new Rect(0.0f, 0.0f, 1f, 1f);
+  [HideInInspector]
+  [SerializeField]
+  private Texture mTexture;
+  [HideInInspector]
+  [SerializeField]
+  private Shader mShader;
+  [HideInInspector]
+  [SerializeField]
+  private Vector4 mBorder = Vector4.zero;
+  [HideInInspector]
+  [SerializeField]
+  private bool mFixedAspect;
+  [NonSerialized]
+  private int mPMA = -1;
 
-	// Token: 0x170001D1 RID: 465
-	// (get) Token: 0x060008C7 RID: 2247 RVA: 0x00048097 File Offset: 0x00046297
-	// (set) Token: 0x060008C8 RID: 2248 RVA: 0x0004809F File Offset: 0x0004629F
-	public override Material material
-	{
-		get
-		{
-			return this.mMat;
-		}
-		set
-		{
-			if (this.mMat != value)
-			{
-				base.RemoveFromPanel();
-				this.mShader = null;
-				this.mMat = value;
-				this.mPMA = -1;
-				this.MarkAsChanged();
-			}
-		}
-	}
+  public override Texture mainTexture
+  {
+    get
+    {
+      if ((UnityEngine.Object) this.mTexture != (UnityEngine.Object) null)
+        return this.mTexture;
+      return (UnityEngine.Object) this.mMat != (UnityEngine.Object) null ? this.mMat.mainTexture : (Texture) null;
+    }
+    set
+    {
+      if (!((UnityEngine.Object) this.mTexture != (UnityEngine.Object) value))
+        return;
+      if ((UnityEngine.Object) this.drawCall != (UnityEngine.Object) null && this.drawCall.widgetCount == 1 && (UnityEngine.Object) this.mMat == (UnityEngine.Object) null)
+      {
+        this.mTexture = value;
+        this.drawCall.mainTexture = value;
+      }
+      else
+      {
+        this.RemoveFromPanel();
+        this.mTexture = value;
+        this.mPMA = -1;
+        this.MarkAsChanged();
+      }
+    }
+  }
 
-	// Token: 0x170001D2 RID: 466
-	// (get) Token: 0x060008C9 RID: 2249 RVA: 0x000480D0 File Offset: 0x000462D0
-	// (set) Token: 0x060008CA RID: 2250 RVA: 0x00048110 File Offset: 0x00046310
-	public override Shader shader
-	{
-		get
-		{
-			if (this.mMat != null)
-			{
-				return this.mMat.shader;
-			}
-			if (this.mShader == null)
-			{
-				this.mShader = Shader.Find("Unlit/Transparent Colored");
-			}
-			return this.mShader;
-		}
-		set
-		{
-			if (this.mShader != value)
-			{
-				if (this.drawCall != null && this.drawCall.widgetCount == 1 && this.mMat == null)
-				{
-					this.mShader = value;
-					this.drawCall.shader = value;
-					return;
-				}
-				base.RemoveFromPanel();
-				this.mShader = value;
-				this.mPMA = -1;
-				this.mMat = null;
-				this.MarkAsChanged();
-			}
-		}
-	}
+  public override Material material
+  {
+    get => this.mMat;
+    set
+    {
+      if (!((UnityEngine.Object) this.mMat != (UnityEngine.Object) value))
+        return;
+      this.RemoveFromPanel();
+      this.mShader = (Shader) null;
+      this.mMat = value;
+      this.mPMA = -1;
+      this.MarkAsChanged();
+    }
+  }
 
-	// Token: 0x170001D3 RID: 467
-	// (get) Token: 0x060008CB RID: 2251 RVA: 0x0004818C File Offset: 0x0004638C
-	public override bool premultipliedAlpha
-	{
-		get
-		{
-			if (this.mPMA == -1)
-			{
-				Material material = this.material;
-				this.mPMA = ((material != null && material.shader != null && material.shader.name.Contains("Premultiplied")) ? 1 : 0);
-			}
-			return this.mPMA == 1;
-		}
-	}
+  public override Shader shader
+  {
+    get
+    {
+      if ((UnityEngine.Object) this.mMat != (UnityEngine.Object) null)
+        return this.mMat.shader;
+      if ((UnityEngine.Object) this.mShader == (UnityEngine.Object) null)
+        this.mShader = Shader.Find("Unlit/Transparent Colored");
+      return this.mShader;
+    }
+    set
+    {
+      if (!((UnityEngine.Object) this.mShader != (UnityEngine.Object) value))
+        return;
+      if ((UnityEngine.Object) this.drawCall != (UnityEngine.Object) null && this.drawCall.widgetCount == 1 && (UnityEngine.Object) this.mMat == (UnityEngine.Object) null)
+      {
+        this.mShader = value;
+        this.drawCall.shader = value;
+      }
+      else
+      {
+        this.RemoveFromPanel();
+        this.mShader = value;
+        this.mPMA = -1;
+        this.mMat = (Material) null;
+        this.MarkAsChanged();
+      }
+    }
+  }
 
-	// Token: 0x170001D4 RID: 468
-	// (get) Token: 0x060008CC RID: 2252 RVA: 0x000481EA File Offset: 0x000463EA
-	// (set) Token: 0x060008CD RID: 2253 RVA: 0x000481F2 File Offset: 0x000463F2
-	public override Vector4 border
-	{
-		get
-		{
-			return this.mBorder;
-		}
-		set
-		{
-			if (this.mBorder != value)
-			{
-				this.mBorder = value;
-				this.MarkAsChanged();
-			}
-		}
-	}
+  public override bool premultipliedAlpha
+  {
+    get
+    {
+      if (this.mPMA == -1)
+      {
+        Material material = this.material;
+        this.mPMA = !((UnityEngine.Object) material != (UnityEngine.Object) null) || !((UnityEngine.Object) material.shader != (UnityEngine.Object) null) || !material.shader.name.Contains("Premultiplied") ? 0 : 1;
+      }
+      return this.mPMA == 1;
+    }
+  }
 
-	// Token: 0x170001D5 RID: 469
-	// (get) Token: 0x060008CE RID: 2254 RVA: 0x0004820F File Offset: 0x0004640F
-	// (set) Token: 0x060008CF RID: 2255 RVA: 0x00048217 File Offset: 0x00046417
-	public Rect uvRect
-	{
-		get
-		{
-			return this.mRect;
-		}
-		set
-		{
-			if (this.mRect != value)
-			{
-				this.mRect = value;
-				this.MarkAsChanged();
-			}
-		}
-	}
+  public override Vector4 border
+  {
+    get => this.mBorder;
+    set
+    {
+      if (!(this.mBorder != value))
+        return;
+      this.mBorder = value;
+      this.MarkAsChanged();
+    }
+  }
 
-	// Token: 0x170001D6 RID: 470
-	// (get) Token: 0x060008D0 RID: 2256 RVA: 0x00048234 File Offset: 0x00046434
-	public override Vector4 drawingDimensions
-	{
-		get
-		{
-			Vector2 pivotOffset = base.pivotOffset;
-			float num = -pivotOffset.x * (float)this.mWidth;
-			float num2 = -pivotOffset.y * (float)this.mHeight;
-			float num3 = num + (float)this.mWidth;
-			float num4 = num2 + (float)this.mHeight;
-			if (this.mTexture != null && this.mType != UIBasicSprite.Type.Tiled)
-			{
-				int width = this.mTexture.width;
-				int height = this.mTexture.height;
-				int num5 = 0;
-				int num6 = 0;
-				float num7 = 1f;
-				float num8 = 1f;
-				if (width > 0 && height > 0 && (this.mType == UIBasicSprite.Type.Simple || this.mType == UIBasicSprite.Type.Filled))
-				{
-					if ((width & 1) != 0)
-					{
-						num5++;
-					}
-					if ((height & 1) != 0)
-					{
-						num6++;
-					}
-					num7 = 1f / (float)width * (float)this.mWidth;
-					num8 = 1f / (float)height * (float)this.mHeight;
-				}
-				if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
-				{
-					num += (float)num5 * num7;
-				}
-				else
-				{
-					num3 -= (float)num5 * num7;
-				}
-				if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
-				{
-					num2 += (float)num6 * num8;
-				}
-				else
-				{
-					num4 -= (float)num6 * num8;
-				}
-			}
-			float num9;
-			float num10;
-			if (this.mFixedAspect)
-			{
-				num9 = 0f;
-				num10 = 0f;
-			}
-			else
-			{
-				Vector4 border = this.border;
-				num9 = border.x + border.z;
-				num10 = border.y + border.w;
-			}
-			float x = Mathf.Lerp(num, num3 - num9, this.mDrawRegion.x);
-			float y = Mathf.Lerp(num2, num4 - num10, this.mDrawRegion.y);
-			float z = Mathf.Lerp(num + num9, num3, this.mDrawRegion.z);
-			float w = Mathf.Lerp(num2 + num10, num4, this.mDrawRegion.w);
-			return new Vector4(x, y, z, w);
-		}
-	}
+  public Rect uvRect
+  {
+    get => this.mRect;
+    set
+    {
+      if (!(this.mRect != value))
+        return;
+      this.mRect = value;
+      this.MarkAsChanged();
+    }
+  }
 
-	// Token: 0x170001D7 RID: 471
-	// (get) Token: 0x060008D1 RID: 2257 RVA: 0x00048411 File Offset: 0x00046611
-	// (set) Token: 0x060008D2 RID: 2258 RVA: 0x00048419 File Offset: 0x00046619
-	public bool fixedAspect
-	{
-		get
-		{
-			return this.mFixedAspect;
-		}
-		set
-		{
-			if (this.mFixedAspect != value)
-			{
-				this.mFixedAspect = value;
-				this.mDrawRegion = new Vector4(0f, 0f, 1f, 1f);
-				this.MarkAsChanged();
-			}
-		}
-	}
+  public override Vector4 drawingDimensions
+  {
+    get
+    {
+      Vector2 pivotOffset = this.pivotOffset;
+      float a1 = -pivotOffset.x * (float) this.mWidth;
+      float a2 = -pivotOffset.y * (float) this.mHeight;
+      float b1 = a1 + (float) this.mWidth;
+      float b2 = a2 + (float) this.mHeight;
+      if ((UnityEngine.Object) this.mTexture != (UnityEngine.Object) null && this.mType != UIBasicSprite.Type.Tiled)
+      {
+        int width = this.mTexture.width;
+        int height = this.mTexture.height;
+        int num1 = 0;
+        int num2 = 0;
+        float num3 = 1f;
+        float num4 = 1f;
+        if (width > 0 && height > 0 && (this.mType == UIBasicSprite.Type.Simple || this.mType == UIBasicSprite.Type.Filled))
+        {
+          if ((width & 1) != 0)
+            ++num1;
+          if ((height & 1) != 0)
+            ++num2;
+          num3 = 1f / (float) width * (float) this.mWidth;
+          num4 = 1f / (float) height * (float) this.mHeight;
+        }
+        if (this.mFlip == UIBasicSprite.Flip.Horizontally || this.mFlip == UIBasicSprite.Flip.Both)
+          a1 += (float) num1 * num3;
+        else
+          b1 -= (float) num1 * num3;
+        if (this.mFlip == UIBasicSprite.Flip.Vertically || this.mFlip == UIBasicSprite.Flip.Both)
+          a2 += (float) num2 * num4;
+        else
+          b2 -= (float) num2 * num4;
+      }
+      float num5;
+      float num6;
+      if (this.mFixedAspect)
+      {
+        num5 = 0.0f;
+        num6 = 0.0f;
+      }
+      else
+      {
+        Vector4 border = this.border;
+        num5 = border.x + border.z;
+        num6 = border.y + border.w;
+      }
+      double x = (double) Mathf.Lerp(a1, b1 - num5, this.mDrawRegion.x);
+      float num7 = Mathf.Lerp(a2, b2 - num6, this.mDrawRegion.y);
+      float num8 = Mathf.Lerp(a1 + num5, b1, this.mDrawRegion.z);
+      float num9 = Mathf.Lerp(a2 + num6, b2, this.mDrawRegion.w);
+      double y = (double) num7;
+      double z = (double) num8;
+      double w = (double) num9;
+      return new Vector4((float) x, (float) y, (float) z, (float) w);
+    }
+  }
 
-	// Token: 0x060008D3 RID: 2259 RVA: 0x00048450 File Offset: 0x00046650
-	public override void MakePixelPerfect()
-	{
-		base.MakePixelPerfect();
-		if (this.mType == UIBasicSprite.Type.Tiled)
-		{
-			return;
-		}
-		Texture mainTexture = this.mainTexture;
-		if (mainTexture == null)
-		{
-			return;
-		}
-		if ((this.mType == UIBasicSprite.Type.Simple || this.mType == UIBasicSprite.Type.Filled || !base.hasBorder) && mainTexture != null)
-		{
-			int num = mainTexture.width;
-			int num2 = mainTexture.height;
-			if ((num & 1) == 1)
-			{
-				num++;
-			}
-			if ((num2 & 1) == 1)
-			{
-				num2++;
-			}
-			base.width = num;
-			base.height = num2;
-		}
-	}
+  public bool fixedAspect
+  {
+    get => this.mFixedAspect;
+    set
+    {
+      if (this.mFixedAspect == value)
+        return;
+      this.mFixedAspect = value;
+      this.mDrawRegion = new Vector4(0.0f, 0.0f, 1f, 1f);
+      this.MarkAsChanged();
+    }
+  }
 
-	// Token: 0x060008D4 RID: 2260 RVA: 0x000484D0 File Offset: 0x000466D0
-	protected override void OnUpdate()
-	{
-		base.OnUpdate();
-		if (this.mFixedAspect)
-		{
-			Texture mainTexture = this.mainTexture;
-			if (mainTexture != null)
-			{
-				int num = mainTexture.width;
-				int num2 = mainTexture.height;
-				if ((num & 1) == 1)
-				{
-					num++;
-				}
-				if ((num2 & 1) == 1)
-				{
-					num2++;
-				}
-				float num3 = (float)this.mWidth;
-				float num4 = (float)this.mHeight;
-				float num5 = num3 / num4;
-				float num6 = (float)num / (float)num2;
-				if (num6 < num5)
-				{
-					float num7 = (num3 - num4 * num6) / num3 * 0.5f;
-					base.drawRegion = new Vector4(num7, 0f, 1f - num7, 1f);
-					return;
-				}
-				float num8 = (num4 - num3 / num6) / num4 * 0.5f;
-				base.drawRegion = new Vector4(0f, num8, 1f, 1f - num8);
-			}
-		}
-	}
+  public override void MakePixelPerfect()
+  {
+    base.MakePixelPerfect();
+    if (this.mType == UIBasicSprite.Type.Tiled)
+      return;
+    Texture mainTexture = this.mainTexture;
+    if ((UnityEngine.Object) mainTexture == (UnityEngine.Object) null || this.mType != UIBasicSprite.Type.Simple && this.mType != UIBasicSprite.Type.Filled && this.hasBorder || !((UnityEngine.Object) mainTexture != (UnityEngine.Object) null))
+      return;
+    int width = mainTexture.width;
+    int height = mainTexture.height;
+    if ((width & 1) == 1)
+      ++width;
+    if ((height & 1) == 1)
+      ++height;
+    this.width = width;
+    this.height = height;
+  }
 
-	// Token: 0x060008D5 RID: 2261 RVA: 0x000485AC File Offset: 0x000467AC
-	public override void OnFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols)
-	{
-		Texture mainTexture = this.mainTexture;
-		if (mainTexture == null)
-		{
-			return;
-		}
-		Rect rect = new Rect(this.mRect.x * (float)mainTexture.width, this.mRect.y * (float)mainTexture.height, (float)mainTexture.width * this.mRect.width, (float)mainTexture.height * this.mRect.height);
-		Rect inner = rect;
-		Vector4 border = this.border;
-		inner.xMin += border.x;
-		inner.yMin += border.y;
-		inner.xMax -= border.z;
-		inner.yMax -= border.w;
-		float num = 1f / (float)mainTexture.width;
-		float num2 = 1f / (float)mainTexture.height;
-		rect.xMin *= num;
-		rect.xMax *= num;
-		rect.yMin *= num2;
-		rect.yMax *= num2;
-		inner.xMin *= num;
-		inner.xMax *= num;
-		inner.yMin *= num2;
-		inner.yMax *= num2;
-		int count = verts.Count;
-		base.Fill(verts, uvs, cols, rect, inner);
-		if (this.onPostFill != null)
-		{
-			this.onPostFill(this, count, verts, uvs, cols);
-		}
-	}
+  protected override void OnUpdate()
+  {
+    base.OnUpdate();
+    if (!this.mFixedAspect)
+      return;
+    Texture mainTexture = this.mainTexture;
+    if (!((UnityEngine.Object) mainTexture != (UnityEngine.Object) null))
+      return;
+    int width = mainTexture.width;
+    int height = mainTexture.height;
+    if ((width & 1) == 1)
+      ++width;
+    if ((height & 1) == 1)
+      ++height;
+    float mWidth = (float) this.mWidth;
+    float mHeight = (float) this.mHeight;
+    float num1 = mWidth / mHeight;
+    float num2 = (float) width / (float) height;
+    if ((double) num2 < (double) num1)
+    {
+      float x = (float) (((double) mWidth - (double) mHeight * (double) num2) / (double) mWidth * 0.5);
+      this.drawRegion = new Vector4(x, 0.0f, 1f - x, 1f);
+    }
+    else
+    {
+      float y = (float) (((double) mHeight - (double) mWidth / (double) num2) / (double) mHeight * 0.5);
+      this.drawRegion = new Vector4(0.0f, y, 1f, 1f - y);
+    }
+  }
 
-	// Token: 0x0400079F RID: 1951
-	[HideInInspector]
-	[SerializeField]
-	private Rect mRect = new Rect(0f, 0f, 1f, 1f);
-
-	// Token: 0x040007A0 RID: 1952
-	[HideInInspector]
-	[SerializeField]
-	private Texture mTexture;
-
-	// Token: 0x040007A1 RID: 1953
-	[HideInInspector]
-	[SerializeField]
-	private Shader mShader;
-
-	// Token: 0x040007A2 RID: 1954
-	[HideInInspector]
-	[SerializeField]
-	private Vector4 mBorder = Vector4.zero;
-
-	// Token: 0x040007A3 RID: 1955
-	[HideInInspector]
-	[SerializeField]
-	private bool mFixedAspect;
-
-	// Token: 0x040007A4 RID: 1956
-	[NonSerialized]
-	private int mPMA = -1;
+  public override void OnFill(List<Vector3> verts, List<Vector2> uvs, List<Color> cols)
+  {
+    Texture mainTexture = this.mainTexture;
+    if ((UnityEngine.Object) mainTexture == (UnityEngine.Object) null)
+      return;
+    Rect outer = new Rect(this.mRect.x * (float) mainTexture.width, this.mRect.y * (float) mainTexture.height, (float) mainTexture.width * this.mRect.width, (float) mainTexture.height * this.mRect.height);
+    Rect inner = outer;
+    Vector4 border = this.border;
+    inner.xMin += border.x;
+    inner.yMin += border.y;
+    inner.xMax -= border.z;
+    inner.yMax -= border.w;
+    float num1 = 1f / (float) mainTexture.width;
+    float num2 = 1f / (float) mainTexture.height;
+    outer.xMin *= num1;
+    outer.xMax *= num1;
+    outer.yMin *= num2;
+    outer.yMax *= num2;
+    inner.xMin *= num1;
+    inner.xMax *= num1;
+    inner.yMin *= num2;
+    inner.yMax *= num2;
+    int count = verts.Count;
+    this.Fill(verts, uvs, cols, outer, inner);
+    if (this.onPostFill == null)
+      return;
+    this.onPostFill((UIWidget) this, count, verts, uvs, cols);
+  }
 }

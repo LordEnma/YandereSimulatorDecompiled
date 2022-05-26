@@ -1,29 +1,27 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityStandardAssets.Vehicles.Car.CarUserControl
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets.Vehicles.Car
 {
-	// Token: 0x02000535 RID: 1333
-	[RequireComponent(typeof(CarController))]
-	public class CarUserControl : MonoBehaviour
-	{
-		// Token: 0x060021F8 RID: 8696 RVA: 0x001F487A File Offset: 0x001F2A7A
-		private void Awake()
-		{
-			this.m_Car = base.GetComponent<CarController>();
-		}
+  [RequireComponent(typeof (CarController))]
+  public class CarUserControl : MonoBehaviour
+  {
+    private CarController m_Car;
 
-		// Token: 0x060021F9 RID: 8697 RVA: 0x001F4888 File Offset: 0x001F2A88
-		private void FixedUpdate()
-		{
-			float axis = CrossPlatformInputManager.GetAxis("Horizontal");
-			float axis2 = CrossPlatformInputManager.GetAxis("Vertical");
-			float axis3 = CrossPlatformInputManager.GetAxis("Jump");
-			this.m_Car.Move(axis, axis2, axis2, axis3);
-		}
+    private void Awake() => this.m_Car = this.GetComponent<CarController>();
 
-		// Token: 0x04004ACD RID: 19149
-		private CarController m_Car;
-	}
+    private void FixedUpdate()
+    {
+      float axis1 = CrossPlatformInputManager.GetAxis("Horizontal");
+      float axis2 = CrossPlatformInputManager.GetAxis("Vertical");
+      float axis3 = CrossPlatformInputManager.GetAxis("Jump");
+      this.m_Car.Move(axis1, axis2, axis2, axis3);
+    }
+  }
 }

@@ -1,45 +1,32 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: WindowAutoYaw
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200003E RID: 62
 [AddComponentMenu("NGUI/Examples/Window Auto-Yaw")]
 public class WindowAutoYaw : MonoBehaviour
 {
-	// Token: 0x060000F7 RID: 247 RVA: 0x0001322E File Offset: 0x0001142E
-	private void OnDisable()
-	{
-		this.mTrans.localRotation = Quaternion.identity;
-	}
+  public int updateOrder;
+  public Camera uiCamera;
+  public float yawAmount = 20f;
+  private Transform mTrans;
 
-	// Token: 0x060000F8 RID: 248 RVA: 0x00013240 File Offset: 0x00011440
-	private void OnEnable()
-	{
-		if (this.uiCamera == null)
-		{
-			this.uiCamera = NGUITools.FindCameraForLayer(base.gameObject.layer);
-		}
-		this.mTrans = base.transform;
-	}
+  private void OnDisable() => this.mTrans.localRotation = Quaternion.identity;
 
-	// Token: 0x060000F9 RID: 249 RVA: 0x00013274 File Offset: 0x00011474
-	private void Update()
-	{
-		if (this.uiCamera != null)
-		{
-			Vector3 vector = this.uiCamera.WorldToViewportPoint(this.mTrans.position);
-			this.mTrans.localRotation = Quaternion.Euler(0f, (vector.x * 2f - 1f) * this.yawAmount, 0f);
-		}
-	}
+  private void OnEnable()
+  {
+    if ((Object) this.uiCamera == (Object) null)
+      this.uiCamera = NGUITools.FindCameraForLayer(this.gameObject.layer);
+    this.mTrans = this.transform;
+  }
 
-	// Token: 0x040002C7 RID: 711
-	public int updateOrder;
-
-	// Token: 0x040002C8 RID: 712
-	public Camera uiCamera;
-
-	// Token: 0x040002C9 RID: 713
-	public float yawAmount = 20f;
-
-	// Token: 0x040002CA RID: 714
-	private Transform mTrans;
+  private void Update()
+  {
+    if (!((Object) this.uiCamera != (Object) null))
+      return;
+    this.mTrans.localRotation = Quaternion.Euler(0.0f, (float) ((double) this.uiCamera.WorldToViewportPoint(this.mTrans.position).x * 2.0 - 1.0) * this.yawAmount, 0.0f);
+  }
 }

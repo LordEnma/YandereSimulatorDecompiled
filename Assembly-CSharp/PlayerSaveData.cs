@@ -1,193 +1,123 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PlayerSaveData
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x02000407 RID: 1031
 [Serializable]
 public class PlayerSaveData
 {
-	// Token: 0x06001C47 RID: 7239 RVA: 0x0014ADE0 File Offset: 0x00148FE0
-	public static PlayerSaveData ReadFromGlobals()
-	{
-		PlayerSaveData playerSaveData = new PlayerSaveData();
-		playerSaveData.alerts = PlayerGlobals.Alerts;
-		playerSaveData.enlightenment = PlayerGlobals.Enlightenment;
-		playerSaveData.enlightenmentBonus = PlayerGlobals.EnlightenmentBonus;
-		playerSaveData.headset = PlayerGlobals.Headset;
-		playerSaveData.kills = PlayerGlobals.Kills;
-		playerSaveData.numbness = PlayerGlobals.Numbness;
-		playerSaveData.numbnessBonus = PlayerGlobals.NumbnessBonus;
-		playerSaveData.pantiesEquipped = PlayerGlobals.PantiesEquipped;
-		playerSaveData.pantyShots = PlayerGlobals.PantyShots;
-		foreach (int num in PlayerGlobals.KeysOfPhoto())
-		{
-			if (PlayerGlobals.GetPhoto(num))
-			{
-				playerSaveData.photo.Add(num);
-			}
-		}
-		foreach (int num2 in PlayerGlobals.KeysOfPhotoOnCorkboard())
-		{
-			if (PlayerGlobals.GetPhotoOnCorkboard(num2))
-			{
-				playerSaveData.photoOnCorkboard.Add(num2);
-			}
-		}
-		foreach (int num3 in PlayerGlobals.KeysOfPhotoPosition())
-		{
-			playerSaveData.photoPosition.Add(num3, PlayerGlobals.GetPhotoPosition(num3));
-		}
-		foreach (int num4 in PlayerGlobals.KeysOfPhotoRotation())
-		{
-			playerSaveData.photoRotation.Add(num4, PlayerGlobals.GetPhotoRotation(num4));
-		}
-		playerSaveData.reputation = PlayerGlobals.Reputation;
-		playerSaveData.seduction = PlayerGlobals.Seduction;
-		playerSaveData.seductionBonus = PlayerGlobals.SeductionBonus;
-		foreach (int num5 in PlayerGlobals.KeysOfSenpaiPhoto())
-		{
-			if (PlayerGlobals.GetSenpaiPhoto(num5))
-			{
-				playerSaveData.senpaiPhoto.Add(num5);
-			}
-		}
-		playerSaveData.senpaiShots = PlayerGlobals.SenpaiShots;
-		playerSaveData.socialBonus = PlayerGlobals.SocialBonus;
-		playerSaveData.speedBonus = PlayerGlobals.SpeedBonus;
-		playerSaveData.stealthBonus = PlayerGlobals.StealthBonus;
-		foreach (int num6 in PlayerGlobals.KeysOfStudentFriend())
-		{
-			if (PlayerGlobals.GetStudentFriend(num6))
-			{
-				playerSaveData.studentFriend.Add(num6);
-			}
-		}
-		foreach (int num7 in PlayerGlobals.KeysOfStudentPantyShot())
-		{
-			if (PlayerGlobals.GetStudentPantyShot(num7))
-			{
-				playerSaveData.studentPantyShot.Add(num7);
-			}
-		}
-		return playerSaveData;
-	}
+  public int alerts;
+  public int enlightenment;
+  public int enlightenmentBonus;
+  public bool headset;
+  public int kills;
+  public int numbness;
+  public int numbnessBonus;
+  public int pantiesEquipped;
+  public int pantyShots;
+  public IntHashSet photo = new IntHashSet();
+  public IntHashSet photoOnCorkboard = new IntHashSet();
+  public IntAndVector2Dictionary photoPosition = new IntAndVector2Dictionary();
+  public IntAndFloatDictionary photoRotation = new IntAndFloatDictionary();
+  public float reputation;
+  public int seduction;
+  public int seductionBonus;
+  public IntHashSet senpaiPhoto = new IntHashSet();
+  public int senpaiShots;
+  public int socialBonus;
+  public int speedBonus;
+  public int stealthBonus;
+  public IntHashSet studentFriend = new IntHashSet();
+  public IntHashSet studentPantyShot = new IntHashSet();
 
-	// Token: 0x06001C48 RID: 7240 RVA: 0x0014AFEC File Offset: 0x001491EC
-	public static void WriteToGlobals(PlayerSaveData data)
-	{
-		PlayerGlobals.Alerts = data.alerts;
-		PlayerGlobals.Enlightenment = data.enlightenment;
-		PlayerGlobals.EnlightenmentBonus = data.enlightenmentBonus;
-		PlayerGlobals.Headset = data.headset;
-		PlayerGlobals.Kills = data.kills;
-		PlayerGlobals.Numbness = data.numbness;
-		PlayerGlobals.NumbnessBonus = data.numbnessBonus;
-		PlayerGlobals.PantiesEquipped = data.pantiesEquipped;
-		PlayerGlobals.PantyShots = data.pantyShots;
-		Debug.Log("Is this being called anywhere?");
-		foreach (int photoID in data.photo)
-		{
-			PlayerGlobals.SetPhoto(photoID, true);
-		}
-		foreach (int photoID2 in data.photoOnCorkboard)
-		{
-			PlayerGlobals.SetPhotoOnCorkboard(photoID2, true);
-		}
-		foreach (KeyValuePair<int, Vector2> keyValuePair in data.photoPosition)
-		{
-			PlayerGlobals.SetPhotoPosition(keyValuePair.Key, keyValuePair.Value);
-		}
-		foreach (KeyValuePair<int, float> keyValuePair2 in data.photoRotation)
-		{
-			PlayerGlobals.SetPhotoRotation(keyValuePair2.Key, keyValuePair2.Value);
-		}
-		PlayerGlobals.Reputation = data.reputation;
-		PlayerGlobals.Seduction = data.seduction;
-		PlayerGlobals.SeductionBonus = data.seductionBonus;
-		foreach (int photoID3 in data.senpaiPhoto)
-		{
-			PlayerGlobals.SetSenpaiPhoto(photoID3, true);
-		}
-		PlayerGlobals.SenpaiShots = data.senpaiShots;
-		PlayerGlobals.SocialBonus = data.socialBonus;
-		PlayerGlobals.SpeedBonus = data.speedBonus;
-		PlayerGlobals.StealthBonus = data.stealthBonus;
-		foreach (int studentID in data.studentFriend)
-		{
-			PlayerGlobals.SetStudentFriend(studentID, true);
-		}
-		foreach (int studentID2 in data.studentPantyShot)
-		{
-			PlayerGlobals.SetStudentPantyShot(studentID2, true);
-		}
-	}
+  public static PlayerSaveData ReadFromGlobals()
+  {
+    PlayerSaveData playerSaveData = new PlayerSaveData();
+    playerSaveData.alerts = PlayerGlobals.Alerts;
+    playerSaveData.enlightenment = PlayerGlobals.Enlightenment;
+    playerSaveData.enlightenmentBonus = PlayerGlobals.EnlightenmentBonus;
+    playerSaveData.headset = PlayerGlobals.Headset;
+    playerSaveData.kills = PlayerGlobals.Kills;
+    playerSaveData.numbness = PlayerGlobals.Numbness;
+    playerSaveData.numbnessBonus = PlayerGlobals.NumbnessBonus;
+    playerSaveData.pantiesEquipped = PlayerGlobals.PantiesEquipped;
+    playerSaveData.pantyShots = PlayerGlobals.PantyShots;
+    foreach (int photoID in PlayerGlobals.KeysOfPhoto())
+    {
+      if (PlayerGlobals.GetPhoto(photoID))
+        playerSaveData.photo.Add(photoID);
+    }
+    foreach (int photoID in PlayerGlobals.KeysOfPhotoOnCorkboard())
+    {
+      if (PlayerGlobals.GetPhotoOnCorkboard(photoID))
+        playerSaveData.photoOnCorkboard.Add(photoID);
+    }
+    foreach (int num in PlayerGlobals.KeysOfPhotoPosition())
+      playerSaveData.photoPosition.Add(num, PlayerGlobals.GetPhotoPosition(num));
+    foreach (int num in PlayerGlobals.KeysOfPhotoRotation())
+      playerSaveData.photoRotation.Add(num, PlayerGlobals.GetPhotoRotation(num));
+    playerSaveData.reputation = PlayerGlobals.Reputation;
+    playerSaveData.seduction = PlayerGlobals.Seduction;
+    playerSaveData.seductionBonus = PlayerGlobals.SeductionBonus;
+    foreach (int photoID in PlayerGlobals.KeysOfSenpaiPhoto())
+    {
+      if (PlayerGlobals.GetSenpaiPhoto(photoID))
+        playerSaveData.senpaiPhoto.Add(photoID);
+    }
+    playerSaveData.senpaiShots = PlayerGlobals.SenpaiShots;
+    playerSaveData.socialBonus = PlayerGlobals.SocialBonus;
+    playerSaveData.speedBonus = PlayerGlobals.SpeedBonus;
+    playerSaveData.stealthBonus = PlayerGlobals.StealthBonus;
+    foreach (int studentID in PlayerGlobals.KeysOfStudentFriend())
+    {
+      if (PlayerGlobals.GetStudentFriend(studentID))
+        playerSaveData.studentFriend.Add(studentID);
+    }
+    foreach (int studentID in PlayerGlobals.KeysOfStudentPantyShot())
+    {
+      if (PlayerGlobals.GetStudentPantyShot(studentID))
+        playerSaveData.studentPantyShot.Add(studentID);
+    }
+    return playerSaveData;
+  }
 
-	// Token: 0x040031E2 RID: 12770
-	public int alerts;
-
-	// Token: 0x040031E3 RID: 12771
-	public int enlightenment;
-
-	// Token: 0x040031E4 RID: 12772
-	public int enlightenmentBonus;
-
-	// Token: 0x040031E5 RID: 12773
-	public bool headset;
-
-	// Token: 0x040031E6 RID: 12774
-	public int kills;
-
-	// Token: 0x040031E7 RID: 12775
-	public int numbness;
-
-	// Token: 0x040031E8 RID: 12776
-	public int numbnessBonus;
-
-	// Token: 0x040031E9 RID: 12777
-	public int pantiesEquipped;
-
-	// Token: 0x040031EA RID: 12778
-	public int pantyShots;
-
-	// Token: 0x040031EB RID: 12779
-	public IntHashSet photo = new IntHashSet();
-
-	// Token: 0x040031EC RID: 12780
-	public IntHashSet photoOnCorkboard = new IntHashSet();
-
-	// Token: 0x040031ED RID: 12781
-	public IntAndVector2Dictionary photoPosition = new IntAndVector2Dictionary();
-
-	// Token: 0x040031EE RID: 12782
-	public IntAndFloatDictionary photoRotation = new IntAndFloatDictionary();
-
-	// Token: 0x040031EF RID: 12783
-	public float reputation;
-
-	// Token: 0x040031F0 RID: 12784
-	public int seduction;
-
-	// Token: 0x040031F1 RID: 12785
-	public int seductionBonus;
-
-	// Token: 0x040031F2 RID: 12786
-	public IntHashSet senpaiPhoto = new IntHashSet();
-
-	// Token: 0x040031F3 RID: 12787
-	public int senpaiShots;
-
-	// Token: 0x040031F4 RID: 12788
-	public int socialBonus;
-
-	// Token: 0x040031F5 RID: 12789
-	public int speedBonus;
-
-	// Token: 0x040031F6 RID: 12790
-	public int stealthBonus;
-
-	// Token: 0x040031F7 RID: 12791
-	public IntHashSet studentFriend = new IntHashSet();
-
-	// Token: 0x040031F8 RID: 12792
-	public IntHashSet studentPantyShot = new IntHashSet();
+  public static void WriteToGlobals(PlayerSaveData data)
+  {
+    PlayerGlobals.Alerts = data.alerts;
+    PlayerGlobals.Enlightenment = data.enlightenment;
+    PlayerGlobals.EnlightenmentBonus = data.enlightenmentBonus;
+    PlayerGlobals.Headset = data.headset;
+    PlayerGlobals.Kills = data.kills;
+    PlayerGlobals.Numbness = data.numbness;
+    PlayerGlobals.NumbnessBonus = data.numbnessBonus;
+    PlayerGlobals.PantiesEquipped = data.pantiesEquipped;
+    PlayerGlobals.PantyShots = data.pantyShots;
+    Debug.Log((object) "Is this being called anywhere?");
+    foreach (int photoID in (HashSet<int>) data.photo)
+      PlayerGlobals.SetPhoto(photoID, true);
+    foreach (int photoID in (HashSet<int>) data.photoOnCorkboard)
+      PlayerGlobals.SetPhotoOnCorkboard(photoID, true);
+    foreach (KeyValuePair<int, Vector2> keyValuePair in (Dictionary<int, Vector2>) data.photoPosition)
+      PlayerGlobals.SetPhotoPosition(keyValuePair.Key, keyValuePair.Value);
+    foreach (KeyValuePair<int, float> keyValuePair in (Dictionary<int, float>) data.photoRotation)
+      PlayerGlobals.SetPhotoRotation(keyValuePair.Key, keyValuePair.Value);
+    PlayerGlobals.Reputation = data.reputation;
+    PlayerGlobals.Seduction = data.seduction;
+    PlayerGlobals.SeductionBonus = data.seductionBonus;
+    foreach (int photoID in (HashSet<int>) data.senpaiPhoto)
+      PlayerGlobals.SetSenpaiPhoto(photoID, true);
+    PlayerGlobals.SenpaiShots = data.senpaiShots;
+    PlayerGlobals.SocialBonus = data.socialBonus;
+    PlayerGlobals.SpeedBonus = data.speedBonus;
+    PlayerGlobals.StealthBonus = data.stealthBonus;
+    foreach (int studentID in (HashSet<int>) data.studentFriend)
+      PlayerGlobals.SetStudentFriend(studentID, true);
+    foreach (int studentID in (HashSet<int>) data.studentPantyShot)
+      PlayerGlobals.SetStudentPantyShot(studentID, true);
+  }
 }

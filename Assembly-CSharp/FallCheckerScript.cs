@@ -1,55 +1,50 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: FallCheckerScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020002C8 RID: 712
 public class FallCheckerScript : MonoBehaviour
 {
-	// Token: 0x060014A3 RID: 5283 RVA: 0x000CA4A0 File Offset: 0x000C86A0
-	private void OnTriggerEnter(Collider other)
-	{
-		if (this.Ragdoll == null && other.gameObject.layer == 11)
-		{
-			this.Ragdoll = other.transform.root.gameObject.GetComponent<RagdollScript>();
-			this.Ragdoll.Prompt.Hide();
-			this.Ragdoll.Prompt.enabled = false;
-			this.Ragdoll.Prompt.MyCollider.enabled = false;
-			this.Ragdoll.BloodPoolSpawner.enabled = false;
-			this.Ragdoll.HideCollider = this.MyCollider;
-			if (!this.Ragdoll.Concealed)
-			{
-				this.Ragdoll.Police.HiddenCorpses++;
-			}
-			this.Ragdoll.Hidden = true;
-			this.Dumpster.Corpse = this.Ragdoll.gameObject;
-			this.Dumpster.Victim = this.Ragdoll.Student;
-		}
-	}
+  public DumpsterLidScript Dumpster;
+  public RagdollScript Ragdoll;
+  public Collider MyCollider;
 
-	// Token: 0x060014A4 RID: 5284 RVA: 0x000CA5A4 File Offset: 0x000C87A4
-	private void Update()
-	{
-		if (this.Ragdoll != null)
-		{
-			if (this.Ragdoll.Prompt.transform.localPosition.y > -10.5f)
-			{
-				this.Ragdoll.Prompt.transform.localEulerAngles = new Vector3(-90f, 90f, 0f);
-				this.Ragdoll.AllColliders[2].transform.localEulerAngles = Vector3.zero;
-				this.Ragdoll.AllColliders[7].transform.localEulerAngles = new Vector3(0f, 0f, -80f);
-				this.Ragdoll.Prompt.transform.position = new Vector3(this.Dumpster.transform.position.x, this.Ragdoll.Prompt.transform.position.y, this.Dumpster.transform.position.z);
-				return;
-			}
-			base.GetComponent<AudioSource>().Play();
-			this.Dumpster.Slide = true;
-			this.Ragdoll = null;
-		}
-	}
+  private void OnTriggerEnter(Collider other)
+  {
+    if (!((Object) this.Ragdoll == (Object) null) || other.gameObject.layer != 11)
+      return;
+    this.Ragdoll = other.transform.root.gameObject.GetComponent<RagdollScript>();
+    this.Ragdoll.Prompt.Hide();
+    this.Ragdoll.Prompt.enabled = false;
+    this.Ragdoll.Prompt.MyCollider.enabled = false;
+    this.Ragdoll.BloodPoolSpawner.enabled = false;
+    this.Ragdoll.HideCollider = this.MyCollider;
+    if (!this.Ragdoll.Concealed)
+      ++this.Ragdoll.Police.HiddenCorpses;
+    this.Ragdoll.Hidden = true;
+    this.Dumpster.Corpse = this.Ragdoll.gameObject;
+    this.Dumpster.Victim = this.Ragdoll.Student;
+  }
 
-	// Token: 0x0400201F RID: 8223
-	public DumpsterLidScript Dumpster;
-
-	// Token: 0x04002020 RID: 8224
-	public RagdollScript Ragdoll;
-
-	// Token: 0x04002021 RID: 8225
-	public Collider MyCollider;
+  private void Update()
+  {
+    if (!((Object) this.Ragdoll != (Object) null))
+      return;
+    if ((double) this.Ragdoll.Prompt.transform.localPosition.y > -10.5)
+    {
+      this.Ragdoll.Prompt.transform.localEulerAngles = new Vector3(-90f, 90f, 0.0f);
+      this.Ragdoll.AllColliders[2].transform.localEulerAngles = Vector3.zero;
+      this.Ragdoll.AllColliders[7].transform.localEulerAngles = new Vector3(0.0f, 0.0f, -80f);
+      this.Ragdoll.Prompt.transform.position = new Vector3(this.Dumpster.transform.position.x, this.Ragdoll.Prompt.transform.position.y, this.Dumpster.transform.position.z);
+    }
+    else
+    {
+      this.GetComponent<AudioSource>().Play();
+      this.Dumpster.Slide = true;
+      this.Ragdoll = (RagdollScript) null;
+    }
+  }
 }

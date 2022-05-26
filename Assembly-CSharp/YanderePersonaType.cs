@@ -1,32 +1,22 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YanderePersonaType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x020004D7 RID: 1239
 public enum YanderePersonaType
 {
-	// Token: 0x040044F4 RID: 17652
-	Default,
-	// Token: 0x040044F5 RID: 17653
-	Chill,
-	// Token: 0x040044F6 RID: 17654
-	Confident,
-	// Token: 0x040044F7 RID: 17655
-	Elegant,
-	// Token: 0x040044F8 RID: 17656
-	Girly,
-	// Token: 0x040044F9 RID: 17657
-	Graceful,
-	// Token: 0x040044FA RID: 17658
-	Haughty,
-	// Token: 0x040044FB RID: 17659
-	Lively,
-	// Token: 0x040044FC RID: 17660
-	Scholarly,
-	// Token: 0x040044FD RID: 17661
-	Shy,
-	// Token: 0x040044FE RID: 17662
-	Tough,
-	// Token: 0x040044FF RID: 17663
-	Aggressive,
-	// Token: 0x04004500 RID: 17664
-	Grunt
+  Default,
+  Chill,
+  Confident,
+  Elegant,
+  Girly,
+  Graceful,
+  Haughty,
+  Lively,
+  Scholarly,
+  Shy,
+  Tough,
+  Aggressive,
+  Grunt,
 }

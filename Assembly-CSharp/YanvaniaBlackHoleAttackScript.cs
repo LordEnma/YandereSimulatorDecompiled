@@ -1,43 +1,36 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: YanvaniaBlackHoleAttackScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020004DD RID: 1245
 public class YanvaniaBlackHoleAttackScript : MonoBehaviour
 {
-	// Token: 0x060020CC RID: 8396 RVA: 0x001E5855 File Offset: 0x001E3A55
-	private void Start()
-	{
-		this.Yanmont = GameObject.Find("YanmontChan").GetComponent<YanvaniaYanmontScript>();
-	}
+  public YanvaniaYanmontScript Yanmont;
+  public GameObject BlackExplosion;
 
-	// Token: 0x060020CD RID: 8397 RVA: 0x001E586C File Offset: 0x001E3A6C
-	private void Update()
-	{
-		base.transform.position = Vector3.MoveTowards(base.transform.position, this.Yanmont.transform.position + Vector3.up, Time.deltaTime);
-		if (Vector3.Distance(base.transform.position, this.Yanmont.transform.position) > 10f || this.Yanmont.EnterCutscene)
-		{
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  private void Start() => this.Yanmont = GameObject.Find("YanmontChan").GetComponent<YanvaniaYanmontScript>();
 
-	// Token: 0x060020CE RID: 8398 RVA: 0x001E58F4 File Offset: 0x001E3AF4
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.tag == "Player")
-		{
-			UnityEngine.Object.Instantiate<GameObject>(this.BlackExplosion, base.transform.position, Quaternion.identity);
-			this.Yanmont.TakeDamage(20);
-		}
-		if (other.gameObject.name == "Heart")
-		{
-			UnityEngine.Object.Instantiate<GameObject>(this.BlackExplosion, base.transform.position, Quaternion.identity);
-			UnityEngine.Object.Destroy(base.gameObject);
-		}
-	}
+  private void Update()
+  {
+    this.transform.position = Vector3.MoveTowards(this.transform.position, this.Yanmont.transform.position + Vector3.up, Time.deltaTime);
+    if ((double) Vector3.Distance(this.transform.position, this.Yanmont.transform.position) <= 10.0 && !this.Yanmont.EnterCutscene)
+      return;
+    Object.Destroy((Object) this.gameObject);
+  }
 
-	// Token: 0x0400481E RID: 18462
-	public YanvaniaYanmontScript Yanmont;
-
-	// Token: 0x0400481F RID: 18463
-	public GameObject BlackExplosion;
+  private void OnTriggerEnter(Collider other)
+  {
+    if (other.gameObject.tag == "Player")
+    {
+      Object.Instantiate<GameObject>(this.BlackExplosion, this.transform.position, Quaternion.identity);
+      this.Yanmont.TakeDamage(20);
+    }
+    if (!(other.gameObject.name == "Heart"))
+      return;
+    Object.Instantiate<GameObject>(this.BlackExplosion, this.transform.position, Quaternion.identity);
+    Object.Destroy((Object) this.gameObject);
+  }
 }

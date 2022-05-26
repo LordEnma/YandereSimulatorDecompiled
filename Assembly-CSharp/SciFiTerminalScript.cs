@@ -1,55 +1,41 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SciFiTerminalScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200041E RID: 1054
 public class SciFiTerminalScript : MonoBehaviour
 {
-	// Token: 0x06001C95 RID: 7317 RVA: 0x0014FA9A File Offset: 0x0014DC9A
-	private void Start()
-	{
-		if (this.Student.StudentID != 65)
-		{
-			base.enabled = false;
-			return;
-		}
-		this.RobotArms = this.Student.StudentManager.RobotArms;
-	}
+  public StudentScript Student;
+  public RobotArmScript RobotArms;
+  public Transform OtherFinger;
+  public bool Updated;
 
-	// Token: 0x06001C96 RID: 7318 RVA: 0x0014FACC File Offset: 0x0014DCCC
-	private void Update()
-	{
-		if (this.RobotArms != null)
-		{
-			if ((double)Vector3.Distance(this.RobotArms.TerminalTarget.position, base.transform.position) < 0.3 || (double)Vector3.Distance(this.RobotArms.TerminalTarget.position, this.OtherFinger.position) < 0.3)
-			{
-				if (!this.Updated)
-				{
-					this.Updated = true;
-					if (!this.RobotArms.On[0])
-					{
-						this.RobotArms.ActivateArms();
-						return;
-					}
-					this.RobotArms.ToggleWork();
-					return;
-				}
-			}
-			else
-			{
-				this.Updated = false;
-			}
-		}
-	}
+  private void Start()
+  {
+    if (this.Student.StudentID != 65)
+      this.enabled = false;
+    else
+      this.RobotArms = this.Student.StudentManager.RobotArms;
+  }
 
-	// Token: 0x040032FF RID: 13055
-	public StudentScript Student;
-
-	// Token: 0x04003300 RID: 13056
-	public RobotArmScript RobotArms;
-
-	// Token: 0x04003301 RID: 13057
-	public Transform OtherFinger;
-
-	// Token: 0x04003302 RID: 13058
-	public bool Updated;
+  private void Update()
+  {
+    if (!((Object) this.RobotArms != (Object) null))
+      return;
+    if ((double) Vector3.Distance(this.RobotArms.TerminalTarget.position, this.transform.position) < 0.3 || (double) Vector3.Distance(this.RobotArms.TerminalTarget.position, this.OtherFinger.position) < 0.3)
+    {
+      if (this.Updated)
+        return;
+      this.Updated = true;
+      if (!this.RobotArms.On[0])
+        this.RobotArms.ActivateArms();
+      else
+        this.RobotArms.ToggleWork();
+    }
+    else
+      this.Updated = false;
+  }
 }

@@ -1,28 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AmplifyMotionEffect
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000B4 RID: 180
-[RequireComponent(typeof(Camera))]
+[RequireComponent(typeof (Camera))]
 [AddComponentMenu("Image Effects/Amplify Motion")]
 public class AmplifyMotionEffect : AmplifyMotionEffectBase
 {
-	// Token: 0x170001ED RID: 493
-	// (get) Token: 0x06000948 RID: 2376 RVA: 0x0004B090 File Offset: 0x00049290
-	public new static AmplifyMotionEffect FirstInstance
-	{
-		get
-		{
-			return (AmplifyMotionEffect)AmplifyMotionEffectBase.FirstInstance;
-		}
-	}
+  public static AmplifyMotionEffect FirstInstance => (AmplifyMotionEffect) AmplifyMotionEffectBase.FirstInstance;
 
-	// Token: 0x170001EE RID: 494
-	// (get) Token: 0x06000949 RID: 2377 RVA: 0x0004B09C File Offset: 0x0004929C
-	public new static AmplifyMotionEffect Instance
-	{
-		get
-		{
-			return (AmplifyMotionEffect)AmplifyMotionEffectBase.Instance;
-		}
-	}
+  public static AmplifyMotionEffect Instance => (AmplifyMotionEffect) AmplifyMotionEffectBase.Instance;
 }

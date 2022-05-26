@@ -1,129 +1,106 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: GrassMaskGenerator
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using System.Collections.Generic;
 using UnityEngine;
 
-// Token: 0x020004FA RID: 1274
 [ExecuteInEditMode]
-[RequireComponent(typeof(Camera))]
+[RequireComponent(typeof (Camera))]
 public class GrassMaskGenerator : MonoBehaviour
 {
-	// Token: 0x06002132 RID: 8498 RVA: 0x001ED810 File Offset: 0x001EBA10
-	public void Start()
-	{
-		UnityEngine.Object.Destroy(base.gameObject);
-	}
+  [SerializeField]
+  private float aspectWidth;
+  [SerializeField]
+  private float aspectHeight;
+  [SerializeField]
+  private float mapScale;
+  [SerializeField]
+  private int mapUpscale;
+  private Camera camera;
+  private RenderTexture targetTexture;
 
-	// Token: 0x06002133 RID: 8499 RVA: 0x001ED820 File Offset: 0x001EBA20
-	private void Update()
-	{
-		if (this.camera == null)
-		{
-			this.camera = base.GetComponent<Camera>();
-		}
-		this.aspectWidth = Mathf.Clamp(this.aspectWidth, 1f, 2.1474836E+09f);
-		this.aspectHeight = Mathf.Clamp(this.aspectHeight, 1f, 2.1474836E+09f);
-		this.mapUpscale = Mathf.Clamp(this.mapUpscale, 1, 1000);
-		if (this.targetTexture == null || (float)this.targetTexture.width != this.aspectWidth * (float)this.mapUpscale || (float)this.targetTexture.height != this.aspectHeight * (float)this.mapUpscale)
-		{
-			if (this.targetTexture != null)
-			{
-				this.targetTexture.Release();
-			}
-			this.targetTexture = new RenderTexture(Mathf.RoundToInt(this.aspectWidth) * this.mapUpscale, Mathf.RoundToInt(this.aspectHeight) * this.mapUpscale, 1);
-		}
-		this.camera.enabled = false;
-		this.camera.farClipPlane = 0.1f;
-		this.camera.orthographic = true;
-		this.camera.orthographicSize = this.mapScale;
-		this.camera.targetTexture = this.targetTexture;
-	}
+  public void Start() => Object.Destroy((Object) this.gameObject);
 
-	// Token: 0x06002134 RID: 8500 RVA: 0x001ED970 File Offset: 0x001EBB70
-	[ContextMenu("Generate and save the grass occlusion map")]
-	public void GenerateMap()
-	{
-		base.GetComponent<Camera>().Render();
-		if (this.targetTexture == null || (float)this.targetTexture.width != this.aspectWidth * (float)this.mapUpscale || (float)this.targetTexture.height != this.aspectHeight * (float)this.mapUpscale)
-		{
-			if (this.targetTexture != null)
-			{
-				this.targetTexture.Release();
-			}
-			this.targetTexture = new RenderTexture(Mathf.RoundToInt(this.aspectWidth) * this.mapUpscale, Mathf.RoundToInt(this.aspectHeight) * this.mapUpscale, 1);
-		}
-		RenderTexture active = RenderTexture.active;
-		RenderTexture.active = this.targetTexture;
-		Texture2D texture2D = new Texture2D(this.targetTexture.width, this.targetTexture.height);
-		texture2D.ReadPixels(new Rect(0f, 0f, (float)this.targetTexture.width, (float)this.targetTexture.height), 0, 0);
-		RenderTexture.active = active;
-		List<Vector3> list = new List<Vector3>();
-		List<int> list2 = new List<int>();
-		int num = 0;
-		for (int i = 0; i < texture2D.width; i++)
-		{
-			for (int j = 0; j < texture2D.height; j++)
-			{
-				if (texture2D.GetPixel(i, j).a == 0f)
-				{
-					Vector3 b = new Vector3((float)i, 0f, (float)j) / 3f;
-					list.Add(new Vector3(0f, 0f, 0f) + b);
-					list.Add(new Vector3(0f, 0f, 1f) + b);
-					list.Add(new Vector3(1f, 0f, 1f) + b);
-					list.Add(new Vector3(1f, 0f, 0f) + b);
-					list2.Add(num);
-					list2.Add(num + 1);
-					list2.Add(num + 2);
-					list2.Add(num);
-					list2.Add(num + 2);
-					list2.Add(num + 3);
-					num += 4;
-				}
-			}
-		}
-		Mesh mesh = new Mesh();
-		mesh.subMeshCount = 1;
-		mesh.SetVertices(list);
-		mesh.SetIndices(list2.ToArray(), MeshTopology.Triangles, 0);
-		mesh.RecalculateNormals();
-		new GameObject("GrassMesh")
-		{
-			transform = 
-			{
-				position = base.transform.position
-			}
-		}.AddComponent<MeshRenderer>().gameObject.AddComponent<MeshFilter>().mesh = mesh;
-	}
+  private void Update()
+  {
+    if ((Object) this.camera == (Object) null)
+      this.camera = this.GetComponent<Camera>();
+    this.aspectWidth = Mathf.Clamp(this.aspectWidth, 1f, (float) int.MaxValue);
+    this.aspectHeight = Mathf.Clamp(this.aspectHeight, 1f, (float) int.MaxValue);
+    this.mapUpscale = Mathf.Clamp(this.mapUpscale, 1, 1000);
+    if ((Object) this.targetTexture == (Object) null || (double) this.targetTexture.width != (double) this.aspectWidth * (double) this.mapUpscale || (double) this.targetTexture.height != (double) this.aspectHeight * (double) this.mapUpscale)
+    {
+      if ((Object) this.targetTexture != (Object) null)
+        this.targetTexture.Release();
+      this.targetTexture = new RenderTexture(Mathf.RoundToInt(this.aspectWidth) * this.mapUpscale, Mathf.RoundToInt(this.aspectHeight) * this.mapUpscale, 1);
+    }
+    this.camera.enabled = false;
+    this.camera.farClipPlane = 0.1f;
+    this.camera.orthographic = true;
+    this.camera.orthographicSize = this.mapScale;
+    this.camera.targetTexture = this.targetTexture;
+  }
 
-	// Token: 0x06002135 RID: 8501 RVA: 0x001EDC10 File Offset: 0x001EBE10
-	private void OnDrawGizmosSelected()
-	{
-		Gizmos.color = Color.yellow;
-		Matrix4x4 matrix = Gizmos.matrix;
-		Gizmos.matrix = Matrix4x4.TRS(base.transform.position, base.transform.rotation, Vector3.one);
-		float z = this.camera.farClipPlane - this.camera.nearClipPlane;
-		float z2 = (this.camera.farClipPlane + this.camera.nearClipPlane) * 0.5f;
-		Gizmos.DrawWireCube(new Vector3(0f, 0f, z2), new Vector3(this.camera.orthographicSize * 2f * this.camera.aspect, this.camera.orthographicSize * 2f, z));
-	}
+  [ContextMenu("Generate and save the grass occlusion map")]
+  public void GenerateMap()
+  {
+    this.GetComponent<Camera>().Render();
+    if ((Object) this.targetTexture == (Object) null || (double) this.targetTexture.width != (double) this.aspectWidth * (double) this.mapUpscale || (double) this.targetTexture.height != (double) this.aspectHeight * (double) this.mapUpscale)
+    {
+      if ((Object) this.targetTexture != (Object) null)
+        this.targetTexture.Release();
+      this.targetTexture = new RenderTexture(Mathf.RoundToInt(this.aspectWidth) * this.mapUpscale, Mathf.RoundToInt(this.aspectHeight) * this.mapUpscale, 1);
+    }
+    RenderTexture active = RenderTexture.active;
+    RenderTexture.active = this.targetTexture;
+    Texture2D texture2D = new Texture2D(this.targetTexture.width, this.targetTexture.height);
+    texture2D.ReadPixels(new Rect(0.0f, 0.0f, (float) this.targetTexture.width, (float) this.targetTexture.height), 0, 0);
+    RenderTexture.active = active;
+    List<Vector3> vector3List = new List<Vector3>();
+    List<int> intList = new List<int>();
+    int num = 0;
+    for (int x = 0; x < texture2D.width; ++x)
+    {
+      for (int index = 0; index < texture2D.height; ++index)
+      {
+        if ((double) texture2D.GetPixel(x, index).a == 0.0)
+        {
+          Vector3 vector3 = new Vector3((float) x, 0.0f, (float) index) / 3f;
+          vector3List.Add(new Vector3(0.0f, 0.0f, 0.0f) + vector3);
+          vector3List.Add(new Vector3(0.0f, 0.0f, 1f) + vector3);
+          vector3List.Add(new Vector3(1f, 0.0f, 1f) + vector3);
+          vector3List.Add(new Vector3(1f, 0.0f, 0.0f) + vector3);
+          intList.Add(num);
+          intList.Add(num + 1);
+          intList.Add(num + 2);
+          intList.Add(num);
+          intList.Add(num + 2);
+          intList.Add(num + 3);
+          num += 4;
+        }
+      }
+    }
+    Mesh mesh = new Mesh();
+    mesh.subMeshCount = 1;
+    mesh.SetVertices(vector3List);
+    mesh.SetIndices(intList.ToArray(), MeshTopology.Triangles, 0);
+    mesh.RecalculateNormals();
+    new GameObject("GrassMesh")
+    {
+      transform = {
+        position = this.transform.position
+      }
+    }.AddComponent<MeshRenderer>().gameObject.AddComponent<MeshFilter>().mesh = mesh;
+  }
 
-	// Token: 0x04004999 RID: 18841
-	[SerializeField]
-	private float aspectWidth;
-
-	// Token: 0x0400499A RID: 18842
-	[SerializeField]
-	private float aspectHeight;
-
-	// Token: 0x0400499B RID: 18843
-	[SerializeField]
-	private float mapScale;
-
-	// Token: 0x0400499C RID: 18844
-	[SerializeField]
-	private int mapUpscale;
-
-	// Token: 0x0400499D RID: 18845
-	private Camera camera;
-
-	// Token: 0x0400499E RID: 18846
-	private RenderTexture targetTexture;
+  private void OnDrawGizmosSelected()
+  {
+    Gizmos.color = Color.yellow;
+    Matrix4x4 matrix = Gizmos.matrix;
+    Gizmos.matrix = Matrix4x4.TRS(this.transform.position, this.transform.rotation, Vector3.one);
+    Gizmos.DrawWireCube(new Vector3(0.0f, 0.0f, (float) (((double) this.camera.farClipPlane + (double) this.camera.nearClipPlane) * 0.5)), new Vector3(this.camera.orthographicSize * 2f * this.camera.aspect, this.camera.orthographicSize * 2f, this.camera.farClipPlane - this.camera.nearClipPlane));
+  }
 }

@@ -1,21 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: BeatEmUpHitboxScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020000E1 RID: 225
 public class BeatEmUpHitboxScript : MonoBehaviour
 {
-	// Token: 0x04000B26 RID: 2854
-	public int AttackID;
-
-	// Token: 0x04000B27 RID: 2855
-	public float Damage;
-
-	// Token: 0x04000B28 RID: 2856
-	public bool Enemy;
-
-	// Token: 0x04000B29 RID: 2857
-	public bool Heavy;
-
-	// Token: 0x04000B2A RID: 2858
-	public bool Super;
+  public int AttackID;
+  public float Damage;
+  public bool Enemy;
+  public bool Heavy;
+  public bool Super;
 }

@@ -1,405 +1,328 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UnityEngine.PostProcessing.ColorGradingComponent
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace UnityEngine.PostProcessing
 {
-	// Token: 0x02000564 RID: 1380
-	public sealed class ColorGradingComponent : PostProcessingComponentRenderTexture<ColorGradingModel>
-	{
-		// Token: 0x170004F4 RID: 1268
-		// (get) Token: 0x06002320 RID: 8992 RVA: 0x001F9860 File Offset: 0x001F7A60
-		public override bool active
-		{
-			get
-			{
-				return base.model.enabled && !this.context.interrupted;
-			}
-		}
+  public sealed class ColorGradingComponent : PostProcessingComponentRenderTexture<ColorGradingModel>
+  {
+    private const int k_InternalLogLutSize = 32;
+    private const int k_CurvePrecision = 128;
+    private const float k_CurveStep = 0.0078125f;
+    private Texture2D m_GradingCurves;
+    private Color[] m_pixels = new Color[256];
 
-		// Token: 0x06002321 RID: 8993 RVA: 0x001F987F File Offset: 0x001F7A7F
-		private float StandardIlluminantY(float x)
-		{
-			return 2.87f * x - 3f * x * x - 0.27509508f;
-		}
+    public override bool active => this.model.enabled && !this.context.interrupted;
 
-		// Token: 0x06002322 RID: 8994 RVA: 0x001F9898 File Offset: 0x001F7A98
-		private Vector3 CIExyToLMS(float x, float y)
-		{
-			float num = 1f;
-			float num2 = num * x / y;
-			float num3 = num * (1f - x - y) / y;
-			float x2 = 0.7328f * num2 + 0.4296f * num - 0.1624f * num3;
-			float y2 = -0.7036f * num2 + 1.6975f * num + 0.0061f * num3;
-			float z = 0.003f * num2 + 0.0136f * num + 0.9834f * num3;
-			return new Vector3(x2, y2, z);
-		}
+    private float StandardIlluminantY(float x) => (float) (2.86999988555908 * (double) x - 3.0 * (double) x * (double) x - 0.275095075368881);
 
-		// Token: 0x06002323 RID: 8995 RVA: 0x001F9910 File Offset: 0x001F7B10
-		private Vector3 CalculateColorBalance(float temperature, float tint)
-		{
-			float num = temperature / 55f;
-			float num2 = tint / 55f;
-			float x = 0.31271f - num * ((num < 0f) ? 0.1f : 0.05f);
-			float y = this.StandardIlluminantY(x) + num2 * 0.05f;
-			Vector3 vector = new Vector3(0.949237f, 1.03542f, 1.08728f);
-			Vector3 vector2 = this.CIExyToLMS(x, y);
-			return new Vector3(vector.x / vector2.x, vector.y / vector2.y, vector.z / vector2.z);
-		}
+    private Vector3 CIExyToLMS(float x, float y)
+    {
+      float num1 = 1f;
+      float num2 = num1 * x / y;
+      float num3 = num1 * (1f - x - y) / y;
+      double x1 = 0.732800006866455 * (double) num2 + 0.42960000038147 * (double) num1 - 0.162400007247925 * (double) num3;
+      float num4 = (float) (-0.703599989414215 * (double) num2 + 1.69749999046326 * (double) num1 + 0.00609999988228083 * (double) num3);
+      float num5 = (float) (3.0 / 1000.0 * (double) num2 + 0.0136000001803041 * (double) num1 + 0.983399987220764 * (double) num3);
+      double y1 = (double) num4;
+      double z = (double) num5;
+      return new Vector3((float) x1, (float) y1, (float) z);
+    }
 
-		// Token: 0x06002324 RID: 8996 RVA: 0x001F99AC File Offset: 0x001F7BAC
-		private static Color NormalizeColor(Color c)
-		{
-			float num = (c.r + c.g + c.b) / 3f;
-			if (Mathf.Approximately(num, 0f))
-			{
-				return new Color(1f, 1f, 1f, c.a);
-			}
-			return new Color
-			{
-				r = c.r / num,
-				g = c.g / num,
-				b = c.b / num,
-				a = c.a
-			};
-		}
+    private Vector3 CalculateColorBalance(float temperature, float tint)
+    {
+      float num1 = temperature / 55f;
+      float num2 = tint / 55f;
+      float x = (float) (0.312709987163544 - (double) num1 * ((double) num1 < 0.0 ? 0.100000001490116 : 0.0500000007450581));
+      float y = this.StandardIlluminantY(x) + num2 * 0.05f;
+      Vector3 vector3 = new Vector3(0.949237f, 1.03542f, 1.08728f);
+      Vector3 lms = this.CIExyToLMS(x, y);
+      return new Vector3(vector3.x / lms.x, vector3.y / lms.y, vector3.z / lms.z);
+    }
 
-		// Token: 0x06002325 RID: 8997 RVA: 0x001F9A3F File Offset: 0x001F7C3F
-		private static Vector3 ClampVector(Vector3 v, float min, float max)
-		{
-			return new Vector3(Mathf.Clamp(v.x, min, max), Mathf.Clamp(v.y, min, max), Mathf.Clamp(v.z, min, max));
-		}
+    private static Color NormalizeColor(Color c)
+    {
+      float a = (float) (((double) c.r + (double) c.g + (double) c.b) / 3.0);
+      if (Mathf.Approximately(a, 0.0f))
+        return new Color(1f, 1f, 1f, c.a);
+      return new Color()
+      {
+        r = c.r / a,
+        g = c.g / a,
+        b = c.b / a,
+        a = c.a
+      };
+    }
 
-		// Token: 0x06002326 RID: 8998 RVA: 0x001F9A70 File Offset: 0x001F7C70
-		public static Vector3 GetLiftValue(Color lift)
-		{
-			Color color = ColorGradingComponent.NormalizeColor(lift);
-			float num = (color.r + color.g + color.b) / 3f;
-			float x = (color.r - num) * 0.1f + lift.a;
-			float y = (color.g - num) * 0.1f + lift.a;
-			float z = (color.b - num) * 0.1f + lift.a;
-			return ColorGradingComponent.ClampVector(new Vector3(x, y, z), -1f, 1f);
-		}
+    private static Vector3 ClampVector(Vector3 v, float min, float max) => new Vector3(Mathf.Clamp(v.x, min, max), Mathf.Clamp(v.y, min, max), Mathf.Clamp(v.z, min, max));
 
-		// Token: 0x06002327 RID: 8999 RVA: 0x001F9AF8 File Offset: 0x001F7CF8
-		public static Vector3 GetGammaValue(Color gamma)
-		{
-			Color color = ColorGradingComponent.NormalizeColor(gamma);
-			float num = (color.r + color.g + color.b) / 3f;
-			gamma.a *= ((gamma.a < 0f) ? 0.8f : 5f);
-			float b = Mathf.Pow(2f, (color.r - num) * 0.5f) + gamma.a;
-			float b2 = Mathf.Pow(2f, (color.g - num) * 0.5f) + gamma.a;
-			float b3 = Mathf.Pow(2f, (color.b - num) * 0.5f) + gamma.a;
-			float x = 1f / Mathf.Max(0.01f, b);
-			float y = 1f / Mathf.Max(0.01f, b2);
-			float z = 1f / Mathf.Max(0.01f, b3);
-			return ColorGradingComponent.ClampVector(new Vector3(x, y, z), 0f, 5f);
-		}
+    public static Vector3 GetLiftValue(Color lift)
+    {
+      Color color = ColorGradingComponent.NormalizeColor(lift);
+      float num1 = (float) (((double) color.r + (double) color.g + (double) color.b) / 3.0);
+      double x = ((double) color.r - (double) num1) * 0.100000001490116 + (double) lift.a;
+      float num2 = (float) (((double) color.g - (double) num1) * 0.100000001490116) + lift.a;
+      float num3 = (float) (((double) color.b - (double) num1) * 0.100000001490116) + lift.a;
+      double y = (double) num2;
+      double z = (double) num3;
+      return ColorGradingComponent.ClampVector(new Vector3((float) x, (float) y, (float) z), -1f, 1f);
+    }
 
-		// Token: 0x06002328 RID: 9000 RVA: 0x001F9BFC File Offset: 0x001F7DFC
-		public static Vector3 GetGainValue(Color gain)
-		{
-			Color color = ColorGradingComponent.NormalizeColor(gain);
-			float num = (color.r + color.g + color.b) / 3f;
-			gain.a *= ((gain.a > 0f) ? 3f : 1f);
-			float x = Mathf.Pow(2f, (color.r - num) * 0.5f) + gain.a;
-			float y = Mathf.Pow(2f, (color.g - num) * 0.5f) + gain.a;
-			float z = Mathf.Pow(2f, (color.b - num) * 0.5f) + gain.a;
-			return ColorGradingComponent.ClampVector(new Vector3(x, y, z), 0f, 4f);
-		}
+    public static Vector3 GetGammaValue(Color gamma)
+    {
+      Color color = ColorGradingComponent.NormalizeColor(gamma);
+      float num1 = (float) (((double) color.r + (double) color.g + (double) color.b) / 3.0);
+      gamma.a *= (double) gamma.a < 0.0 ? 0.8f : 5f;
+      float b1 = Mathf.Pow(2f, (float) (((double) color.r - (double) num1) * 0.5)) + gamma.a;
+      float b2 = Mathf.Pow(2f, (float) (((double) color.g - (double) num1) * 0.5)) + gamma.a;
+      float b3 = Mathf.Pow(2f, (float) (((double) color.b - (double) num1) * 0.5)) + gamma.a;
+      double x = 1.0 / (double) Mathf.Max(0.01f, b1);
+      float num2 = 1f / Mathf.Max(0.01f, b2);
+      float num3 = 1f / Mathf.Max(0.01f, b3);
+      double y = (double) num2;
+      double z = (double) num3;
+      return ColorGradingComponent.ClampVector(new Vector3((float) x, (float) y, (float) z), 0.0f, 5f);
+    }
 
-		// Token: 0x06002329 RID: 9001 RVA: 0x001F9CC4 File Offset: 0x001F7EC4
-		public static void CalculateLiftGammaGain(Color lift, Color gamma, Color gain, out Vector3 outLift, out Vector3 outGamma, out Vector3 outGain)
-		{
-			outLift = ColorGradingComponent.GetLiftValue(lift);
-			outGamma = ColorGradingComponent.GetGammaValue(gamma);
-			outGain = ColorGradingComponent.GetGainValue(gain);
-		}
+    public static Vector3 GetGainValue(Color gain)
+    {
+      Color color = ColorGradingComponent.NormalizeColor(gain);
+      float num1 = (float) (((double) color.r + (double) color.g + (double) color.b) / 3.0);
+      gain.a *= (double) gain.a > 0.0 ? 3f : 1f;
+      double x = (double) Mathf.Pow(2f, (float) (((double) color.r - (double) num1) * 0.5)) + (double) gain.a;
+      float num2 = Mathf.Pow(2f, (float) (((double) color.g - (double) num1) * 0.5)) + gain.a;
+      float num3 = Mathf.Pow(2f, (float) (((double) color.b - (double) num1) * 0.5)) + gain.a;
+      double y = (double) num2;
+      double z = (double) num3;
+      return ColorGradingComponent.ClampVector(new Vector3((float) x, (float) y, (float) z), 0.0f, 4f);
+    }
 
-		// Token: 0x0600232A RID: 9002 RVA: 0x001F9CEC File Offset: 0x001F7EEC
-		public static Vector3 GetSlopeValue(Color slope)
-		{
-			Color color = ColorGradingComponent.NormalizeColor(slope);
-			float num = (color.r + color.g + color.b) / 3f;
-			slope.a *= 0.5f;
-			float x = (color.r - num) * 0.1f + slope.a + 1f;
-			float y = (color.g - num) * 0.1f + slope.a + 1f;
-			float z = (color.b - num) * 0.1f + slope.a + 1f;
-			return ColorGradingComponent.ClampVector(new Vector3(x, y, z), 0f, 2f);
-		}
+    public static void CalculateLiftGammaGain(
+      Color lift,
+      Color gamma,
+      Color gain,
+      out Vector3 outLift,
+      out Vector3 outGamma,
+      out Vector3 outGain)
+    {
+      outLift = ColorGradingComponent.GetLiftValue(lift);
+      outGamma = ColorGradingComponent.GetGammaValue(gamma);
+      outGain = ColorGradingComponent.GetGainValue(gain);
+    }
 
-		// Token: 0x0600232B RID: 9003 RVA: 0x001F9D94 File Offset: 0x001F7F94
-		public static Vector3 GetPowerValue(Color power)
-		{
-			Color color = ColorGradingComponent.NormalizeColor(power);
-			float num = (color.r + color.g + color.b) / 3f;
-			power.a *= 0.5f;
-			float b = (color.r - num) * 0.1f + power.a + 1f;
-			float b2 = (color.g - num) * 0.1f + power.a + 1f;
-			float b3 = (color.b - num) * 0.1f + power.a + 1f;
-			float x = 1f / Mathf.Max(0.01f, b);
-			float y = 1f / Mathf.Max(0.01f, b2);
-			float z = 1f / Mathf.Max(0.01f, b3);
-			return ColorGradingComponent.ClampVector(new Vector3(x, y, z), 0.5f, 2.5f);
-		}
+    public static Vector3 GetSlopeValue(Color slope)
+    {
+      Color color = ColorGradingComponent.NormalizeColor(slope);
+      float num1 = (float) (((double) color.r + (double) color.g + (double) color.b) / 3.0);
+      slope.a *= 0.5f;
+      double x = ((double) color.r - (double) num1) * 0.100000001490116 + (double) slope.a + 1.0;
+      float num2 = (float) (((double) color.g - (double) num1) * 0.100000001490116 + (double) slope.a + 1.0);
+      float num3 = (float) (((double) color.b - (double) num1) * 0.100000001490116 + (double) slope.a + 1.0);
+      double y = (double) num2;
+      double z = (double) num3;
+      return ColorGradingComponent.ClampVector(new Vector3((float) x, (float) y, (float) z), 0.0f, 2f);
+    }
 
-		// Token: 0x0600232C RID: 9004 RVA: 0x001F9E78 File Offset: 0x001F8078
-		public static Vector3 GetOffsetValue(Color offset)
-		{
-			Color color = ColorGradingComponent.NormalizeColor(offset);
-			float num = (color.r + color.g + color.b) / 3f;
-			offset.a *= 0.5f;
-			float x = (color.r - num) * 0.05f + offset.a;
-			float y = (color.g - num) * 0.05f + offset.a;
-			float z = (color.b - num) * 0.05f + offset.a;
-			return ColorGradingComponent.ClampVector(new Vector3(x, y, z), -0.8f, 0.8f);
-		}
+    public static Vector3 GetPowerValue(Color power)
+    {
+      Color color = ColorGradingComponent.NormalizeColor(power);
+      float num1 = (float) (((double) color.r + (double) color.g + (double) color.b) / 3.0);
+      power.a *= 0.5f;
+      float b1 = (float) (((double) color.r - (double) num1) * 0.100000001490116 + (double) power.a + 1.0);
+      float b2 = (float) (((double) color.g - (double) num1) * 0.100000001490116 + (double) power.a + 1.0);
+      float b3 = (float) (((double) color.b - (double) num1) * 0.100000001490116 + (double) power.a + 1.0);
+      double x = 1.0 / (double) Mathf.Max(0.01f, b1);
+      float num2 = 1f / Mathf.Max(0.01f, b2);
+      float num3 = 1f / Mathf.Max(0.01f, b3);
+      double y = (double) num2;
+      double z = (double) num3;
+      return ColorGradingComponent.ClampVector(new Vector3((float) x, (float) y, (float) z), 0.5f, 2.5f);
+    }
 
-		// Token: 0x0600232D RID: 9005 RVA: 0x001F9F0E File Offset: 0x001F810E
-		public static void CalculateSlopePowerOffset(Color slope, Color power, Color offset, out Vector3 outSlope, out Vector3 outPower, out Vector3 outOffset)
-		{
-			outSlope = ColorGradingComponent.GetSlopeValue(slope);
-			outPower = ColorGradingComponent.GetPowerValue(power);
-			outOffset = ColorGradingComponent.GetOffsetValue(offset);
-		}
+    public static Vector3 GetOffsetValue(Color offset)
+    {
+      Color color = ColorGradingComponent.NormalizeColor(offset);
+      float num1 = (float) (((double) color.r + (double) color.g + (double) color.b) / 3.0);
+      offset.a *= 0.5f;
+      double x = ((double) color.r - (double) num1) * 0.0500000007450581 + (double) offset.a;
+      float num2 = (float) (((double) color.g - (double) num1) * 0.0500000007450581) + offset.a;
+      float num3 = (float) (((double) color.b - (double) num1) * 0.0500000007450581) + offset.a;
+      double y = (double) num2;
+      double z = (double) num3;
+      return ColorGradingComponent.ClampVector(new Vector3((float) x, (float) y, (float) z), -0.8f, 0.8f);
+    }
 
-		// Token: 0x0600232E RID: 9006 RVA: 0x001F9F36 File Offset: 0x001F8136
-		private TextureFormat GetCurveFormat()
-		{
-			if (SystemInfo.SupportsTextureFormat(TextureFormat.RGBAHalf))
-			{
-				return TextureFormat.RGBAHalf;
-			}
-			return TextureFormat.RGBA32;
-		}
+    public static void CalculateSlopePowerOffset(
+      Color slope,
+      Color power,
+      Color offset,
+      out Vector3 outSlope,
+      out Vector3 outPower,
+      out Vector3 outOffset)
+    {
+      outSlope = ColorGradingComponent.GetSlopeValue(slope);
+      outPower = ColorGradingComponent.GetPowerValue(power);
+      outOffset = ColorGradingComponent.GetOffsetValue(offset);
+    }
 
-		// Token: 0x0600232F RID: 9007 RVA: 0x001F9F48 File Offset: 0x001F8148
-		private Texture2D GetCurveTexture()
-		{
-			if (this.m_GradingCurves == null)
-			{
-				this.m_GradingCurves = new Texture2D(128, 2, this.GetCurveFormat(), false, true)
-				{
-					name = "Internal Curves Texture",
-					hideFlags = HideFlags.DontSave,
-					anisoLevel = 0,
-					wrapMode = TextureWrapMode.Clamp,
-					filterMode = FilterMode.Bilinear
-				};
-			}
-			ColorGradingModel.CurvesSettings curves = base.model.settings.curves;
-			curves.hueVShue.Cache();
-			curves.hueVSsat.Cache();
-			for (int i = 0; i < 128; i++)
-			{
-				float t = (float)i * 0.0078125f;
-				float r = curves.hueVShue.Evaluate(t);
-				float g = curves.hueVSsat.Evaluate(t);
-				float b = curves.satVSsat.Evaluate(t);
-				float a = curves.lumVSsat.Evaluate(t);
-				this.m_pixels[i] = new Color(r, g, b, a);
-				float a2 = curves.master.Evaluate(t);
-				float r2 = curves.red.Evaluate(t);
-				float g2 = curves.green.Evaluate(t);
-				float b2 = curves.blue.Evaluate(t);
-				this.m_pixels[i + 128] = new Color(r2, g2, b2, a2);
-			}
-			this.m_GradingCurves.SetPixels(this.m_pixels);
-			this.m_GradingCurves.Apply(false, false);
-			return this.m_GradingCurves;
-		}
+    private TextureFormat GetCurveFormat() => SystemInfo.SupportsTextureFormat(TextureFormat.RGBAHalf) ? TextureFormat.RGBAHalf : TextureFormat.RGBA32;
 
-		// Token: 0x06002330 RID: 9008 RVA: 0x001FA0B4 File Offset: 0x001F82B4
-		private bool IsLogLutValid(RenderTexture lut)
-		{
-			return lut != null && lut.IsCreated() && lut.height == 32;
-		}
+    private Texture2D GetCurveTexture()
+    {
+      if ((Object) this.m_GradingCurves == (Object) null)
+      {
+        Texture2D texture2D = new Texture2D(128, 2, this.GetCurveFormat(), false, true);
+        texture2D.name = "Internal Curves Texture";
+        texture2D.hideFlags = HideFlags.DontSave;
+        texture2D.anisoLevel = 0;
+        texture2D.wrapMode = TextureWrapMode.Clamp;
+        texture2D.filterMode = FilterMode.Bilinear;
+        this.m_GradingCurves = texture2D;
+      }
+      ColorGradingModel.CurvesSettings curves = this.model.settings.curves;
+      curves.hueVShue.Cache();
+      curves.hueVSsat.Cache();
+      for (int index = 0; index < 128; ++index)
+      {
+        float t = (float) index * (1f / 128f);
+        float r1 = curves.hueVShue.Evaluate(t);
+        float g1 = curves.hueVSsat.Evaluate(t);
+        float b1 = curves.satVSsat.Evaluate(t);
+        float a1 = curves.lumVSsat.Evaluate(t);
+        this.m_pixels[index] = new Color(r1, g1, b1, a1);
+        float a2 = curves.master.Evaluate(t);
+        float r2 = curves.red.Evaluate(t);
+        float g2 = curves.green.Evaluate(t);
+        float b2 = curves.blue.Evaluate(t);
+        this.m_pixels[index + 128] = new Color(r2, g2, b2, a2);
+      }
+      this.m_GradingCurves.SetPixels(this.m_pixels);
+      this.m_GradingCurves.Apply(false, false);
+      return this.m_GradingCurves;
+    }
 
-		// Token: 0x06002331 RID: 9009 RVA: 0x001FA0D3 File Offset: 0x001F82D3
-		private RenderTextureFormat GetLutFormat()
-		{
-			if (SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGBHalf))
-			{
-				return RenderTextureFormat.ARGBHalf;
-			}
-			return RenderTextureFormat.ARGB32;
-		}
+    private bool IsLogLutValid(RenderTexture lut) => (Object) lut != (Object) null && lut.IsCreated() && lut.height == 32;
 
-		// Token: 0x06002332 RID: 9010 RVA: 0x001FA0E0 File Offset: 0x001F82E0
-		private void GenerateLut()
-		{
-			ColorGradingModel.Settings settings = base.model.settings;
-			if (!this.IsLogLutValid(base.model.bakedLut))
-			{
-				GraphicsUtils.Destroy(base.model.bakedLut);
-				base.model.bakedLut = new RenderTexture(1024, 32, 0, this.GetLutFormat())
-				{
-					name = "Color Grading Log LUT",
-					hideFlags = HideFlags.DontSave,
-					filterMode = FilterMode.Bilinear,
-					wrapMode = TextureWrapMode.Clamp,
-					anisoLevel = 0
-				};
-			}
-			Material material = this.context.materialFactory.Get("Hidden/Post FX/Lut Generator");
-			material.SetVector(ColorGradingComponent.Uniforms._LutParams, new Vector4(32f, 0.00048828125f, 0.015625f, 1.032258f));
-			material.shaderKeywords = null;
-			ColorGradingModel.TonemappingSettings tonemapping = settings.tonemapping;
-			ColorGradingModel.Tonemapper tonemapper = tonemapping.tonemapper;
-			if (tonemapper != ColorGradingModel.Tonemapper.ACES)
-			{
-				if (tonemapper == ColorGradingModel.Tonemapper.Neutral)
-				{
-					material.EnableKeyword("TONEMAPPING_NEUTRAL");
-					float num = tonemapping.neutralBlackIn * 20f + 1f;
-					float num2 = tonemapping.neutralBlackOut * 10f + 1f;
-					float num3 = tonemapping.neutralWhiteIn / 20f;
-					float num4 = 1f - tonemapping.neutralWhiteOut / 20f;
-					float t = num / num2;
-					float t2 = num3 / num4;
-					float y = Mathf.Max(0f, Mathf.LerpUnclamped(0.57f, 0.37f, t));
-					float z = Mathf.LerpUnclamped(0.01f, 0.24f, t2);
-					float w = Mathf.Max(0f, Mathf.LerpUnclamped(0.02f, 0.2f, t));
-					material.SetVector(ColorGradingComponent.Uniforms._NeutralTonemapperParams1, new Vector4(0.2f, y, z, w));
-					material.SetVector(ColorGradingComponent.Uniforms._NeutralTonemapperParams2, new Vector4(0.02f, 0.3f, tonemapping.neutralWhiteLevel, tonemapping.neutralWhiteClip / 10f));
-				}
-			}
-			else
-			{
-				material.EnableKeyword("TONEMAPPING_FILMIC");
-			}
-			material.SetFloat(ColorGradingComponent.Uniforms._HueShift, settings.basic.hueShift / 360f);
-			material.SetFloat(ColorGradingComponent.Uniforms._Saturation, settings.basic.saturation);
-			material.SetFloat(ColorGradingComponent.Uniforms._Contrast, settings.basic.contrast);
-			material.SetVector(ColorGradingComponent.Uniforms._Balance, this.CalculateColorBalance(settings.basic.temperature, settings.basic.tint));
-			Vector3 v;
-			Vector3 v2;
-			Vector3 v3;
-			ColorGradingComponent.CalculateLiftGammaGain(settings.colorWheels.linear.lift, settings.colorWheels.linear.gamma, settings.colorWheels.linear.gain, out v, out v2, out v3);
-			material.SetVector(ColorGradingComponent.Uniforms._Lift, v);
-			material.SetVector(ColorGradingComponent.Uniforms._InvGamma, v2);
-			material.SetVector(ColorGradingComponent.Uniforms._Gain, v3);
-			Vector3 v4;
-			Vector3 v5;
-			Vector3 v6;
-			ColorGradingComponent.CalculateSlopePowerOffset(settings.colorWheels.log.slope, settings.colorWheels.log.power, settings.colorWheels.log.offset, out v4, out v5, out v6);
-			material.SetVector(ColorGradingComponent.Uniforms._Slope, v4);
-			material.SetVector(ColorGradingComponent.Uniforms._Power, v5);
-			material.SetVector(ColorGradingComponent.Uniforms._Offset, v6);
-			material.SetVector(ColorGradingComponent.Uniforms._ChannelMixerRed, settings.channelMixer.red);
-			material.SetVector(ColorGradingComponent.Uniforms._ChannelMixerGreen, settings.channelMixer.green);
-			material.SetVector(ColorGradingComponent.Uniforms._ChannelMixerBlue, settings.channelMixer.blue);
-			material.SetTexture(ColorGradingComponent.Uniforms._Curves, this.GetCurveTexture());
-			Graphics.Blit(null, base.model.bakedLut, material, 0);
-		}
+    private RenderTextureFormat GetLutFormat() => SystemInfo.SupportsRenderTextureFormat(RenderTextureFormat.ARGBHalf) ? RenderTextureFormat.ARGBHalf : RenderTextureFormat.ARGB32;
 
-		// Token: 0x06002333 RID: 9011 RVA: 0x001FA48C File Offset: 0x001F868C
-		public override void Prepare(Material uberMaterial)
-		{
-			if (base.model.isDirty || !this.IsLogLutValid(base.model.bakedLut))
-			{
-				this.GenerateLut();
-				base.model.isDirty = false;
-			}
-			uberMaterial.EnableKeyword(this.context.profile.debugViews.IsModeActive(BuiltinDebugViewsModel.Mode.PreGradingLog) ? "COLOR_GRADING_LOG_VIEW" : "COLOR_GRADING");
-			RenderTexture bakedLut = base.model.bakedLut;
-			uberMaterial.SetTexture(ColorGradingComponent.Uniforms._LogLut, bakedLut);
-			uberMaterial.SetVector(ColorGradingComponent.Uniforms._LogLut_Params, new Vector3(1f / (float)bakedLut.width, 1f / (float)bakedLut.height, (float)bakedLut.height - 1f));
-			float value = Mathf.Exp(base.model.settings.basic.postExposure * 0.6931472f);
-			uberMaterial.SetFloat(ColorGradingComponent.Uniforms._ExposureEV, value);
-		}
+    private void GenerateLut()
+    {
+      ColorGradingModel.Settings settings = this.model.settings;
+      if (!this.IsLogLutValid(this.model.bakedLut))
+      {
+        GraphicsUtils.Destroy((Object) this.model.bakedLut);
+        ColorGradingModel model = this.model;
+        RenderTexture renderTexture = new RenderTexture(1024, 32, 0, this.GetLutFormat());
+        renderTexture.name = "Color Grading Log LUT";
+        renderTexture.hideFlags = HideFlags.DontSave;
+        renderTexture.filterMode = FilterMode.Bilinear;
+        renderTexture.wrapMode = TextureWrapMode.Clamp;
+        renderTexture.anisoLevel = 0;
+        model.bakedLut = renderTexture;
+      }
+      Material mat = this.context.materialFactory.Get("Hidden/Post FX/Lut Generator");
+      mat.SetVector(ColorGradingComponent.Uniforms._LutParams, new Vector4(32f, 0.0004882813f, 1f / 64f, 1.032258f));
+      mat.shaderKeywords = (string[]) null;
+      ColorGradingModel.TonemappingSettings tonemapping = settings.tonemapping;
+      switch (tonemapping.tonemapper)
+      {
+        case ColorGradingModel.Tonemapper.ACES:
+          mat.EnableKeyword("TONEMAPPING_FILMIC");
+          break;
+        case ColorGradingModel.Tonemapper.Neutral:
+          mat.EnableKeyword("TONEMAPPING_NEUTRAL");
+          float num1 = (float) ((double) tonemapping.neutralBlackIn * 20.0 + 1.0);
+          float num2 = (float) ((double) tonemapping.neutralBlackOut * 10.0 + 1.0);
+          double num3 = (double) tonemapping.neutralWhiteIn / 20.0;
+          float num4 = (float) (1.0 - (double) tonemapping.neutralWhiteOut / 20.0);
+          float t1 = num1 / num2;
+          double num5 = (double) num4;
+          float t2 = (float) (num3 / num5);
+          float y = Mathf.Max(0.0f, Mathf.LerpUnclamped(0.57f, 0.37f, t1));
+          float z = Mathf.LerpUnclamped(0.01f, 0.24f, t2);
+          float w = Mathf.Max(0.0f, Mathf.LerpUnclamped(0.02f, 0.2f, t1));
+          mat.SetVector(ColorGradingComponent.Uniforms._NeutralTonemapperParams1, new Vector4(0.2f, y, z, w));
+          mat.SetVector(ColorGradingComponent.Uniforms._NeutralTonemapperParams2, new Vector4(0.02f, 0.3f, tonemapping.neutralWhiteLevel, tonemapping.neutralWhiteClip / 10f));
+          break;
+      }
+      mat.SetFloat(ColorGradingComponent.Uniforms._HueShift, settings.basic.hueShift / 360f);
+      mat.SetFloat(ColorGradingComponent.Uniforms._Saturation, settings.basic.saturation);
+      mat.SetFloat(ColorGradingComponent.Uniforms._Contrast, settings.basic.contrast);
+      mat.SetVector(ColorGradingComponent.Uniforms._Balance, (Vector4) this.CalculateColorBalance(settings.basic.temperature, settings.basic.tint));
+      Vector3 outLift;
+      Vector3 outGamma;
+      Vector3 outGain;
+      ColorGradingComponent.CalculateLiftGammaGain(settings.colorWheels.linear.lift, settings.colorWheels.linear.gamma, settings.colorWheels.linear.gain, out outLift, out outGamma, out outGain);
+      mat.SetVector(ColorGradingComponent.Uniforms._Lift, (Vector4) outLift);
+      mat.SetVector(ColorGradingComponent.Uniforms._InvGamma, (Vector4) outGamma);
+      mat.SetVector(ColorGradingComponent.Uniforms._Gain, (Vector4) outGain);
+      Vector3 outSlope;
+      Vector3 outPower;
+      Vector3 outOffset;
+      ColorGradingComponent.CalculateSlopePowerOffset(settings.colorWheels.log.slope, settings.colorWheels.log.power, settings.colorWheels.log.offset, out outSlope, out outPower, out outOffset);
+      mat.SetVector(ColorGradingComponent.Uniforms._Slope, (Vector4) outSlope);
+      mat.SetVector(ColorGradingComponent.Uniforms._Power, (Vector4) outPower);
+      mat.SetVector(ColorGradingComponent.Uniforms._Offset, (Vector4) outOffset);
+      mat.SetVector(ColorGradingComponent.Uniforms._ChannelMixerRed, (Vector4) settings.channelMixer.red);
+      mat.SetVector(ColorGradingComponent.Uniforms._ChannelMixerGreen, (Vector4) settings.channelMixer.green);
+      mat.SetVector(ColorGradingComponent.Uniforms._ChannelMixerBlue, (Vector4) settings.channelMixer.blue);
+      mat.SetTexture(ColorGradingComponent.Uniforms._Curves, (Texture) this.GetCurveTexture());
+      Graphics.Blit((Texture) null, this.model.bakedLut, mat, 0);
+    }
 
-		// Token: 0x06002334 RID: 9012 RVA: 0x001FA578 File Offset: 0x001F8778
-		public void OnGUI()
-		{
-			RenderTexture bakedLut = base.model.bakedLut;
-			GUI.DrawTexture(new Rect(this.context.viewport.x * (float)Screen.width + 8f, 8f, (float)bakedLut.width, (float)bakedLut.height), bakedLut);
-		}
+    public override void Prepare(Material uberMaterial)
+    {
+      if (this.model.isDirty || !this.IsLogLutValid(this.model.bakedLut))
+      {
+        this.GenerateLut();
+        this.model.isDirty = false;
+      }
+      uberMaterial.EnableKeyword(this.context.profile.debugViews.IsModeActive(BuiltinDebugViewsModel.Mode.PreGradingLog) ? "COLOR_GRADING_LOG_VIEW" : "COLOR_GRADING");
+      RenderTexture bakedLut = this.model.bakedLut;
+      uberMaterial.SetTexture(ColorGradingComponent.Uniforms._LogLut, (Texture) bakedLut);
+      uberMaterial.SetVector(ColorGradingComponent.Uniforms._LogLut_Params, (Vector4) new Vector3(1f / (float) bakedLut.width, 1f / (float) bakedLut.height, (float) bakedLut.height - 1f));
+      float num = Mathf.Exp(this.model.settings.basic.postExposure * 0.6931472f);
+      uberMaterial.SetFloat(ColorGradingComponent.Uniforms._ExposureEV, num);
+    }
 
-		// Token: 0x06002335 RID: 9013 RVA: 0x001FA5CF File Offset: 0x001F87CF
-		public override void OnDisable()
-		{
-			GraphicsUtils.Destroy(this.m_GradingCurves);
-			GraphicsUtils.Destroy(base.model.bakedLut);
-			this.m_GradingCurves = null;
-			base.model.bakedLut = null;
-		}
+    public void OnGUI()
+    {
+      RenderTexture bakedLut = this.model.bakedLut;
+      GUI.DrawTexture(new Rect((float) ((double) this.context.viewport.x * (double) Screen.width + 8.0), 8f, (float) bakedLut.width, (float) bakedLut.height), (Texture) bakedLut);
+    }
 
-		// Token: 0x04004BEB RID: 19435
-		private const int k_InternalLogLutSize = 32;
+    public override void OnDisable()
+    {
+      GraphicsUtils.Destroy((Object) this.m_GradingCurves);
+      GraphicsUtils.Destroy((Object) this.model.bakedLut);
+      this.m_GradingCurves = (Texture2D) null;
+      this.model.bakedLut = (RenderTexture) null;
+    }
 
-		// Token: 0x04004BEC RID: 19436
-		private const int k_CurvePrecision = 128;
-
-		// Token: 0x04004BED RID: 19437
-		private const float k_CurveStep = 0.0078125f;
-
-		// Token: 0x04004BEE RID: 19438
-		private Texture2D m_GradingCurves;
-
-		// Token: 0x04004BEF RID: 19439
-		private Color[] m_pixels = new Color[256];
-
-		// Token: 0x020006A5 RID: 1701
-		private static class Uniforms
-		{
-			// Token: 0x04005150 RID: 20816
-			internal static readonly int _LutParams = Shader.PropertyToID("_LutParams");
-
-			// Token: 0x04005151 RID: 20817
-			internal static readonly int _NeutralTonemapperParams1 = Shader.PropertyToID("_NeutralTonemapperParams1");
-
-			// Token: 0x04005152 RID: 20818
-			internal static readonly int _NeutralTonemapperParams2 = Shader.PropertyToID("_NeutralTonemapperParams2");
-
-			// Token: 0x04005153 RID: 20819
-			internal static readonly int _HueShift = Shader.PropertyToID("_HueShift");
-
-			// Token: 0x04005154 RID: 20820
-			internal static readonly int _Saturation = Shader.PropertyToID("_Saturation");
-
-			// Token: 0x04005155 RID: 20821
-			internal static readonly int _Contrast = Shader.PropertyToID("_Contrast");
-
-			// Token: 0x04005156 RID: 20822
-			internal static readonly int _Balance = Shader.PropertyToID("_Balance");
-
-			// Token: 0x04005157 RID: 20823
-			internal static readonly int _Lift = Shader.PropertyToID("_Lift");
-
-			// Token: 0x04005158 RID: 20824
-			internal static readonly int _InvGamma = Shader.PropertyToID("_InvGamma");
-
-			// Token: 0x04005159 RID: 20825
-			internal static readonly int _Gain = Shader.PropertyToID("_Gain");
-
-			// Token: 0x0400515A RID: 20826
-			internal static readonly int _Slope = Shader.PropertyToID("_Slope");
-
-			// Token: 0x0400515B RID: 20827
-			internal static readonly int _Power = Shader.PropertyToID("_Power");
-
-			// Token: 0x0400515C RID: 20828
-			internal static readonly int _Offset = Shader.PropertyToID("_Offset");
-
-			// Token: 0x0400515D RID: 20829
-			internal static readonly int _ChannelMixerRed = Shader.PropertyToID("_ChannelMixerRed");
-
-			// Token: 0x0400515E RID: 20830
-			internal static readonly int _ChannelMixerGreen = Shader.PropertyToID("_ChannelMixerGreen");
-
-			// Token: 0x0400515F RID: 20831
-			internal static readonly int _ChannelMixerBlue = Shader.PropertyToID("_ChannelMixerBlue");
-
-			// Token: 0x04005160 RID: 20832
-			internal static readonly int _Curves = Shader.PropertyToID("_Curves");
-
-			// Token: 0x04005161 RID: 20833
-			internal static readonly int _LogLut = Shader.PropertyToID("_LogLut");
-
-			// Token: 0x04005162 RID: 20834
-			internal static readonly int _LogLut_Params = Shader.PropertyToID("_LogLut_Params");
-
-			// Token: 0x04005163 RID: 20835
-			internal static readonly int _ExposureEV = Shader.PropertyToID("_ExposureEV");
-		}
-	}
+    private static class Uniforms
+    {
+      internal static readonly int _LutParams = Shader.PropertyToID(nameof (_LutParams));
+      internal static readonly int _NeutralTonemapperParams1 = Shader.PropertyToID(nameof (_NeutralTonemapperParams1));
+      internal static readonly int _NeutralTonemapperParams2 = Shader.PropertyToID(nameof (_NeutralTonemapperParams2));
+      internal static readonly int _HueShift = Shader.PropertyToID(nameof (_HueShift));
+      internal static readonly int _Saturation = Shader.PropertyToID(nameof (_Saturation));
+      internal static readonly int _Contrast = Shader.PropertyToID(nameof (_Contrast));
+      internal static readonly int _Balance = Shader.PropertyToID(nameof (_Balance));
+      internal static readonly int _Lift = Shader.PropertyToID(nameof (_Lift));
+      internal static readonly int _InvGamma = Shader.PropertyToID(nameof (_InvGamma));
+      internal static readonly int _Gain = Shader.PropertyToID(nameof (_Gain));
+      internal static readonly int _Slope = Shader.PropertyToID(nameof (_Slope));
+      internal static readonly int _Power = Shader.PropertyToID(nameof (_Power));
+      internal static readonly int _Offset = Shader.PropertyToID(nameof (_Offset));
+      internal static readonly int _ChannelMixerRed = Shader.PropertyToID(nameof (_ChannelMixerRed));
+      internal static readonly int _ChannelMixerGreen = Shader.PropertyToID(nameof (_ChannelMixerGreen));
+      internal static readonly int _ChannelMixerBlue = Shader.PropertyToID(nameof (_ChannelMixerBlue));
+      internal static readonly int _Curves = Shader.PropertyToID(nameof (_Curves));
+      internal static readonly int _LogLut = Shader.PropertyToID(nameof (_LogLut));
+      internal static readonly int _LogLut_Params = Shader.PropertyToID(nameof (_LogLut_Params));
+      internal static readonly int _ExposureEV = Shader.PropertyToID(nameof (_ExposureEV));
+    }
+  }
 }

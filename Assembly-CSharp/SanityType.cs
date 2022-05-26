@@ -1,12 +1,12 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SanityType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x020004D3 RID: 1235
 public enum SanityType
 {
-	// Token: 0x040044CF RID: 17615
-	High,
-	// Token: 0x040044D0 RID: 17616
-	Medium,
-	// Token: 0x040044D1 RID: 17617
-	Low
+  High,
+  Medium,
+  Low,
 }

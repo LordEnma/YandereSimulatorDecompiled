@@ -1,92 +1,89 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PoseSerializer
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-// Token: 0x020003BA RID: 954
 public static class PoseSerializer
 {
-	// Token: 0x06001B19 RID: 6937 RVA: 0x0012D134 File Offset: 0x0012B334
-	public static void SerializePose(CosmeticScript cosmeticScript, Transform root, string poseName)
-	{
-		StudentCosmeticSheet studentCosmeticSheet = cosmeticScript.CosmeticSheet();
-		SerializedPose serializedPose;
-		serializedPose.CosmeticData = JsonUtility.ToJson(studentCosmeticSheet);
-		serializedPose.BoneData = PoseSerializer.getBoneData(root);
-		string contents = JsonUtility.ToJson(serializedPose);
-		string text = string.Format("{0}/Poses/{1}", Application.streamingAssetsPath, poseName + ".txt");
-		new FileInfo(text).Directory.Create();
-		File.WriteAllText(text, contents);
-	}
+  public const string SavePath = "{0}/Poses/{1}";
 
-	// Token: 0x06001B1A RID: 6938 RVA: 0x0012D1A4 File Offset: 0x0012B3A4
-	private static BoneData[] getBoneData(Transform root)
-	{
-		List<BoneData> list = new List<BoneData>();
-		foreach (Transform transform in root.GetComponentsInChildren<Transform>())
-		{
-			list.Add(new BoneData
-			{
-				BoneName = ((transform == root) ? "StudentRoot" : transform.name),
-				LocalPosition = transform.localPosition,
-				LocalRotation = transform.localRotation,
-				LocalScale = transform.localScale
-			});
-		}
-		return list.ToArray();
-	}
+  public static void SerializePose(CosmeticScript cosmeticScript, Transform root, string poseName)
+  {
+    StudentCosmeticSheet studentCosmeticSheet = cosmeticScript.CosmeticSheet();
+    SerializedPose serializedPose;
+    serializedPose.CosmeticData = JsonUtility.ToJson((object) studentCosmeticSheet);
+    serializedPose.BoneData = PoseSerializer.getBoneData(root);
+    string json = JsonUtility.ToJson((object) serializedPose);
+    string str = string.Format("{0}/Poses/{1}", (object) Application.streamingAssetsPath, (object) (poseName + ".txt"));
+    new FileInfo(str).Directory.Create();
+    File.WriteAllText(str, json);
+  }
 
-	// Token: 0x06001B1B RID: 6939 RVA: 0x0012D22C File Offset: 0x0012B42C
-	public static void DeserializePose(CosmeticScript cosmeticScript, Transform root, string poseName)
-	{
-		string path = string.Format("{0}/Poses/{1}", Application.streamingAssetsPath, poseName + ".txt");
-		if (File.Exists(path))
-		{
-			SerializedPose serializedPose = JsonUtility.FromJson<SerializedPose>(File.ReadAllText(path));
-			StudentCosmeticSheet studentCosmeticSheet = JsonUtility.FromJson<StudentCosmeticSheet>(serializedPose.CosmeticData);
-			cosmeticScript.LoadCosmeticSheet(studentCosmeticSheet);
-			cosmeticScript.CharacterAnimation.Stop();
-			bool flag = cosmeticScript.Male == studentCosmeticSheet.Male;
-			Transform[] componentsInChildren = root.GetComponentsInChildren<Transform>();
-			foreach (BoneData boneData2 in serializedPose.BoneData)
-			{
-				foreach (Transform transform in componentsInChildren)
-				{
-					if (transform.name == boneData2.BoneName && transform != cosmeticScript.LeftEyeRenderer.transform && transform != cosmeticScript.RightEyeRenderer.transform)
-					{
-						transform.localRotation = boneData2.LocalRotation;
-						if (flag)
-						{
-							transform.localPosition = boneData2.LocalPosition;
-							transform.localScale = boneData2.LocalScale;
-						}
-					}
-					else if (boneData2.BoneName == "StudentRoot" && transform == root)
-					{
-						transform.localPosition = boneData2.LocalPosition;
-						transform.localRotation = boneData2.LocalRotation;
-						transform.localScale = boneData2.LocalScale;
-					}
-				}
-			}
-		}
-	}
+  private static BoneData[] getBoneData(Transform root)
+  {
+    List<BoneData> boneDataList = new List<BoneData>();
+    foreach (Transform componentsInChild in root.GetComponentsInChildren<Transform>())
+      boneDataList.Add(new BoneData()
+      {
+        BoneName = (Object) componentsInChild == (Object) root ? "StudentRoot" : componentsInChild.name,
+        LocalPosition = componentsInChild.localPosition,
+        LocalRotation = componentsInChild.localRotation,
+        LocalScale = componentsInChild.localScale
+      });
+    return boneDataList.ToArray();
+  }
 
-	// Token: 0x06001B1C RID: 6940 RVA: 0x0012D3A0 File Offset: 0x0012B5A0
-	public static string[] GetSavedPoses()
-	{
-		string[] files = Directory.GetFiles(string.Format("{0}/Poses/{1}", Application.streamingAssetsPath, ""));
-		List<string> list = new List<string>();
-		foreach (string text in files)
-		{
-			if (text.EndsWith(".txt"))
-			{
-				list.Add(text);
-			}
-		}
-		return list.ToArray();
-	}
+  public static void DeserializePose(
+    CosmeticScript cosmeticScript,
+    Transform root,
+    string poseName)
+  {
+    string path = string.Format("{0}/Poses/{1}", (object) Application.streamingAssetsPath, (object) (poseName + ".txt"));
+    if (!File.Exists(path))
+      return;
+    SerializedPose serializedPose = JsonUtility.FromJson<SerializedPose>(File.ReadAllText(path));
+    StudentCosmeticSheet mySheet = JsonUtility.FromJson<StudentCosmeticSheet>(serializedPose.CosmeticData);
+    cosmeticScript.LoadCosmeticSheet(mySheet);
+    cosmeticScript.CharacterAnimation.Stop();
+    bool flag = cosmeticScript.Male == mySheet.Male;
+    Transform[] componentsInChildren = root.GetComponentsInChildren<Transform>();
+    foreach (BoneData boneData in serializedPose.BoneData)
+    {
+      foreach (Transform transform in componentsInChildren)
+      {
+        if (transform.name == boneData.BoneName && (Object) transform != (Object) cosmeticScript.LeftEyeRenderer.transform && (Object) transform != (Object) cosmeticScript.RightEyeRenderer.transform)
+        {
+          transform.localRotation = boneData.LocalRotation;
+          if (flag)
+          {
+            transform.localPosition = boneData.LocalPosition;
+            transform.localScale = boneData.LocalScale;
+          }
+        }
+        else if (boneData.BoneName == "StudentRoot" && (Object) transform == (Object) root)
+        {
+          transform.localPosition = boneData.LocalPosition;
+          transform.localRotation = boneData.LocalRotation;
+          transform.localScale = boneData.LocalScale;
+        }
+      }
+    }
+  }
 
-	// Token: 0x04002DEB RID: 11755
-	public const string SavePath = "{0}/Poses/{1}";
+  public static string[] GetSavedPoses()
+  {
+    string[] files = Directory.GetFiles(string.Format("{0}/Poses/{1}", (object) Application.streamingAssetsPath, (object) ""));
+    List<string> stringList = new List<string>();
+    foreach (string str in files)
+    {
+      if (str.EndsWith(".txt"))
+        stringList.Add(str);
+    }
+    return stringList.ToArray();
+  }
 }

@@ -1,16 +1,14 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: SchemeType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x02000418 RID: 1048
 public enum SchemeType
 {
-	// Token: 0x040032C2 RID: 12994
-	ExpelMonday = 1,
-	// Token: 0x040032C3 RID: 12995
-	ExpelTuesday,
-	// Token: 0x040032C4 RID: 12996
-	ExpelWednesday,
-	// Token: 0x040032C5 RID: 12997
-	ExpelThursday,
-	// Token: 0x040032C6 RID: 12998
-	ExpelFriday
+  ExpelMonday = 1,
+  ExpelTuesday = 2,
+  ExpelWednesday = 3,
+  ExpelThursday = 4,
+  ExpelFriday = 5,
 }

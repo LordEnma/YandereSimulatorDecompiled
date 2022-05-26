@@ -1,70 +1,59 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: CurtainScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x0200026C RID: 620
 public class CurtainScript : MonoBehaviour
 {
-	// Token: 0x06001312 RID: 4882 RVA: 0x000A9630 File Offset: 0x000A7830
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount < 1f && this.Prompt.Circle[0].fillAmount > 0f)
-		{
-			this.Prompt.Circle[0].fillAmount = 0f;
-			this.MyAudio.Play();
-			this.Animate = true;
-			this.Open = !this.Open;
-		}
-		if (this.Animate)
-		{
-			if (!this.Open)
-			{
-				this.Weight = Mathf.Lerp(this.Weight, 0f, Time.deltaTime * 10f);
-				if (this.Weight < 0.01f)
-				{
-					this.Animate = false;
-					this.Weight = 0f;
-				}
-			}
-			else
-			{
-				this.Weight = Mathf.Lerp(this.Weight, 100f, Time.deltaTime * 10f);
-				if (this.Weight > 99.99f)
-				{
-					this.Animate = false;
-					this.Weight = 100f;
-				}
-			}
-			this.Curtains[0].SetBlendShapeWeight(0, this.Weight);
-			this.Curtains[1].SetBlendShapeWeight(0, this.Weight);
-		}
-	}
+  public SkinnedMeshRenderer[] Curtains;
+  public PromptScript Prompt;
+  public AudioSource MyAudio;
+  public bool Animate;
+  public bool Open;
+  public float Weight;
 
-	// Token: 0x06001313 RID: 4883 RVA: 0x000A9764 File Offset: 0x000A7964
-	private void OnTriggerEnter(Collider other)
-	{
-		if ((other.gameObject.layer == 13 || other.gameObject.layer == 9) && !this.Open)
-		{
-			this.MyAudio.Play();
-			this.Animate = true;
-			this.Open = true;
-		}
-	}
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount < 1.0 && (double) this.Prompt.Circle[0].fillAmount > 0.0)
+    {
+      this.Prompt.Circle[0].fillAmount = 0.0f;
+      this.MyAudio.Play();
+      this.Animate = true;
+      this.Open = !this.Open;
+    }
+    if (!this.Animate)
+      return;
+    if (!this.Open)
+    {
+      this.Weight = Mathf.Lerp(this.Weight, 0.0f, Time.deltaTime * 10f);
+      if ((double) this.Weight < 0.00999999977648258)
+      {
+        this.Animate = false;
+        this.Weight = 0.0f;
+      }
+    }
+    else
+    {
+      this.Weight = Mathf.Lerp(this.Weight, 100f, Time.deltaTime * 10f);
+      if ((double) this.Weight > 99.9899978637695)
+      {
+        this.Animate = false;
+        this.Weight = 100f;
+      }
+    }
+    this.Curtains[0].SetBlendShapeWeight(0, this.Weight);
+    this.Curtains[1].SetBlendShapeWeight(0, this.Weight);
+  }
 
-	// Token: 0x04001B3B RID: 6971
-	public SkinnedMeshRenderer[] Curtains;
-
-	// Token: 0x04001B3C RID: 6972
-	public PromptScript Prompt;
-
-	// Token: 0x04001B3D RID: 6973
-	public AudioSource MyAudio;
-
-	// Token: 0x04001B3E RID: 6974
-	public bool Animate;
-
-	// Token: 0x04001B3F RID: 6975
-	public bool Open;
-
-	// Token: 0x04001B40 RID: 6976
-	public float Weight;
+  private void OnTriggerEnter(Collider other)
+  {
+    if (other.gameObject.layer != 13 && other.gameObject.layer != 9 || this.Open)
+      return;
+    this.MyAudio.Play();
+    this.Animate = true;
+    this.Open = true;
+  }
 }

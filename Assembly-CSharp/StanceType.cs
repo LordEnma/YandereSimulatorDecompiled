@@ -1,12 +1,12 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: StanceType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x020002B5 RID: 693
 public enum StanceType
 {
-	// Token: 0x04001F66 RID: 8038
-	Standing,
-	// Token: 0x04001F67 RID: 8039
-	Crouching,
-	// Token: 0x04001F68 RID: 8040
-	Crawling
+  Standing,
+  Crouching,
+  Crawling,
 }

@@ -1,107 +1,75 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: AbductionScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
-// Token: 0x020000BF RID: 191
 public class AbductionScript : MonoBehaviour
 {
-	// Token: 0x06000994 RID: 2452 RVA: 0x0004CC74 File Offset: 0x0004AE74
-	private void Start()
-	{
-		if (SchoolGlobals.SchoolAtmosphere > 0.5f)
-		{
-			this.Darkness.color = new Color(1f, 1f, 1f, 1f);
-		}
-		else
-		{
-			this.Darkness.color = new Color(0f, 0f, 0f, 1f);
-		}
-		this.UpdateDOF(1f);
-		if (GameGlobals.AbductionTarget > 0)
-		{
-			this.Renderer.material.SetTexture("_OverlayTex", this.RivalStockings[GameGlobals.AbductionTarget - 10]);
-		}
-	}
+  public SkinnedMeshRenderer Renderer;
+  public Texture[] RivalStockings;
+  public AudioSource MyAudio;
+  public UISprite Darkness;
+  public Camera MainCamera;
+  public float StartTimer;
+  public float Timer;
+  public bool PlayedAudio;
+  public int Phase;
+  public Animation Anim1;
+  public Animator Anim2;
+  public PostProcessingProfile Profile;
 
-	// Token: 0x06000995 RID: 2453 RVA: 0x0004CD10 File Offset: 0x0004AF10
-	private void Update()
-	{
-		this.StartTimer += Time.deltaTime;
-		if (this.StartTimer > 1f)
-		{
-			if ((double)this.StartTimer > 2.5 && !this.MyAudio.isPlaying && !this.PlayedAudio)
-			{
-				this.PlayedAudio = true;
-				this.MyAudio.Play();
-			}
-			if (this.Phase == 0)
-			{
-				this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0f, Time.deltaTime * 0.33333f);
-				if (this.Darkness.alpha == 0f)
-				{
-					this.Anim1.Play();
-					this.Anim2.enabled = true;
-					this.Phase++;
-					return;
-				}
-			}
-			else if (this.Anim1["Scene"].time >= this.Anim1["Scene"].length)
-			{
-				this.Timer += Time.deltaTime;
-				if (this.Timer > 2f)
-				{
-					this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 1f, Time.deltaTime * 0.33333f);
-					if (this.Darkness.alpha == 1f)
-					{
-						SceneManager.LoadScene("LoadingScene");
-					}
-				}
-			}
-		}
-	}
+  private void Start()
+  {
+    if ((double) SchoolGlobals.SchoolAtmosphere > 0.5)
+      this.Darkness.color = new Color(1f, 1f, 1f, 1f);
+    else
+      this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
+    this.UpdateDOF(1f);
+    if (GameGlobals.AbductionTarget <= 0)
+      return;
+    this.Renderer.material.SetTexture("_OverlayTex", this.RivalStockings[GameGlobals.AbductionTarget - 10]);
+  }
 
-	// Token: 0x06000996 RID: 2454 RVA: 0x0004CE7C File Offset: 0x0004B07C
-	private void UpdateDOF(float Focus)
-	{
-		DepthOfFieldModel.Settings settings = this.Profile.depthOfField.settings;
-		settings.focusDistance = Focus;
-		this.Profile.depthOfField.settings = settings;
-	}
+  private void Update()
+  {
+    this.StartTimer += Time.deltaTime;
+    if ((double) this.StartTimer <= 1.0)
+      return;
+    if ((double) this.StartTimer > 2.5 && !this.MyAudio.isPlaying && !this.PlayedAudio)
+    {
+      this.PlayedAudio = true;
+      this.MyAudio.Play();
+    }
+    if (this.Phase == 0)
+    {
+      this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0.0f, Time.deltaTime * 0.33333f);
+      if ((double) this.Darkness.alpha != 0.0)
+        return;
+      this.Anim1.Play();
+      this.Anim2.enabled = true;
+      ++this.Phase;
+    }
+    else
+    {
+      if ((double) this.Anim1["Scene"].time < (double) this.Anim1["Scene"].length)
+        return;
+      this.Timer += Time.deltaTime;
+      if ((double) this.Timer <= 2.0)
+        return;
+      this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 1f, Time.deltaTime * 0.33333f);
+      if ((double) this.Darkness.alpha != 1.0)
+        return;
+      SceneManager.LoadScene("LoadingScene");
+    }
+  }
 
-	// Token: 0x0400084A RID: 2122
-	public SkinnedMeshRenderer Renderer;
-
-	// Token: 0x0400084B RID: 2123
-	public Texture[] RivalStockings;
-
-	// Token: 0x0400084C RID: 2124
-	public AudioSource MyAudio;
-
-	// Token: 0x0400084D RID: 2125
-	public UISprite Darkness;
-
-	// Token: 0x0400084E RID: 2126
-	public Camera MainCamera;
-
-	// Token: 0x0400084F RID: 2127
-	public float StartTimer;
-
-	// Token: 0x04000850 RID: 2128
-	public float Timer;
-
-	// Token: 0x04000851 RID: 2129
-	public bool PlayedAudio;
-
-	// Token: 0x04000852 RID: 2130
-	public int Phase;
-
-	// Token: 0x04000853 RID: 2131
-	public Animation Anim1;
-
-	// Token: 0x04000854 RID: 2132
-	public Animator Anim2;
-
-	// Token: 0x04000855 RID: 2133
-	public PostProcessingProfile Profile;
+  private void UpdateDOF(float Focus) => this.Profile.depthOfField.settings = this.Profile.depthOfField.settings with
+  {
+    focusDistance = Focus
+  };
 }

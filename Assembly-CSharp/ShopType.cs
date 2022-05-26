@@ -1,26 +1,19 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ShopType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x02000453 RID: 1107
 public enum ShopType
 {
-	// Token: 0x040035CF RID: 13775
-	Nonfunctional,
-	// Token: 0x040035D0 RID: 13776
-	Hardware,
-	// Token: 0x040035D1 RID: 13777
-	Manga,
-	// Token: 0x040035D2 RID: 13778
-	Maid,
-	// Token: 0x040035D3 RID: 13779
-	Salon,
-	// Token: 0x040035D4 RID: 13780
-	Gift,
-	// Token: 0x040035D5 RID: 13781
-	Convenience,
-	// Token: 0x040035D6 RID: 13782
-	Games,
-	// Token: 0x040035D7 RID: 13783
-	Electronics,
-	// Token: 0x040035D8 RID: 13784
-	Lingerie
+  Nonfunctional,
+  Hardware,
+  Manga,
+  Maid,
+  Salon,
+  Gift,
+  Convenience,
+  Games,
+  Electronics,
+  Lingerie,
 }

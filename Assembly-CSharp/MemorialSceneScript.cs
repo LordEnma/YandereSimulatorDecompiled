@@ -1,252 +1,170 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MemorialSceneScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000368 RID: 872
 public class MemorialSceneScript : MonoBehaviour
 {
-	// Token: 0x060019C2 RID: 6594 RVA: 0x00107DE4 File Offset: 0x00105FE4
-	private void Start()
-	{
-		if (PlayerPrefs.GetInt("LoadingSave") == 1)
-		{
-			int profile = GameGlobals.Profile;
-			int @int = PlayerPrefs.GetInt("SaveSlot");
-			StudentGlobals.MemorialStudents = PlayerPrefs.GetInt(string.Concat(new string[]
-			{
-				"Profile_",
-				profile.ToString(),
-				"_Slot_",
-				@int.ToString(),
-				"_MemorialStudents"
-			}));
-		}
-		this.MemorialStudents = StudentGlobals.MemorialStudents;
-		if (this.MemorialStudents % 2 == 0)
-		{
-			this.CanvasGroup.transform.localPosition = new Vector3(-0.5f, 0f, -2f);
-		}
-		int num = 0;
-		int i;
-		for (i = 1; i < 10; i++)
-		{
-			this.Canvases[i].SetActive(false);
-		}
-		string text = "";
-		if (GameGlobals.Eighties)
-		{
-			this.StudentManager.IdolStage.SetActive(false);
-			text = "1989";
-			this.TurnYoung();
-		}
-		i = 0;
-		while (this.MemorialStudents > 0)
-		{
-			i++;
-			this.Canvases[i].SetActive(true);
-			if (this.MemorialStudents == 1)
-			{
-				num = StudentGlobals.MemorialStudent1;
-			}
-			else if (this.MemorialStudents == 2)
-			{
-				num = StudentGlobals.MemorialStudent2;
-			}
-			else if (this.MemorialStudents == 3)
-			{
-				num = StudentGlobals.MemorialStudent3;
-			}
-			else if (this.MemorialStudents == 4)
-			{
-				num = StudentGlobals.MemorialStudent4;
-			}
-			else if (this.MemorialStudents == 5)
-			{
-				num = StudentGlobals.MemorialStudent5;
-			}
-			else if (this.MemorialStudents == 6)
-			{
-				num = StudentGlobals.MemorialStudent6;
-			}
-			else if (this.MemorialStudents == 7)
-			{
-				num = StudentGlobals.MemorialStudent7;
-			}
-			else if (this.MemorialStudents == 8)
-			{
-				num = StudentGlobals.MemorialStudent8;
-			}
-			else if (this.MemorialStudents == 9)
-			{
-				num = StudentGlobals.MemorialStudent9;
-			}
-			WWW www = new WWW(string.Concat(new string[]
-			{
-				"file:///",
-				Application.streamingAssetsPath,
-				"/Portraits",
-				text,
-				"/Student_",
-				num.ToString(),
-				".png"
-			}));
-			this.Portraits[i].mainTexture = www.texture;
-			GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.FlowerVase, base.transform.position, Quaternion.identity);
-			StudentJson studentJson = this.StudentManager.JSON.Students[num];
-			Transform transform = this.StudentManager.Seats[studentJson.Class].List[studentJson.Seat];
-			if (transform.position.x > 0f)
-			{
-				gameObject.transform.position = transform.position + new Vector3(0.33333f, 0.7711f, 0f);
-			}
-			else
-			{
-				gameObject.transform.position = transform.position + new Vector3(-0.33333f, 0.7711f, 0f);
-				gameObject.transform.eulerAngles = new Vector3(0f, 90f, 0f);
-			}
-			this.MemorialStudents--;
-		}
-	}
+  public StudentManagerScript StudentManager;
+  public CameraEffectsScript CameraEffects;
+  public GameObject[] Canvases;
+  public UITexture[] Portraits;
+  public GameObject CanvasGroup;
+  public GameObject FlowerVase;
+  public GameObject Headmaster;
+  public GameObject Counselor;
+  public int MemorialStudents;
+  public float BloomIntensity = 1f;
+  public float BloomRadius = 4f;
+  public float Speed;
+  public bool Eulogized;
+  public bool FadeOut;
+  public GameObject YoungHeadmaster;
+  public Material Transparency;
+  public GameObject[] HeadmasterMesh;
+  public GameObject CounselorMother;
+  public GameObject[] CounselorMesh;
 
-	// Token: 0x060019C3 RID: 6595 RVA: 0x001080DC File Offset: 0x001062DC
-	private void Update()
-	{
-		this.Speed += Time.deltaTime;
-		if (this.Speed > 1f)
-		{
-			if (!this.Eulogized)
-			{
-				if (!this.StudentManager.Eighties)
-				{
-					this.StudentManager.Yandere.Subtitle.UpdateLabel(SubtitleType.Eulogy, 0, 8f);
-				}
-				else
-				{
-					this.StudentManager.Yandere.Subtitle.UpdateLabel(SubtitleType.Eulogy, 1, 8f);
-				}
-				this.StudentManager.Yandere.PromptBar.Label[0].text = "Continue";
-				this.StudentManager.Yandere.PromptBar.UpdateButtons();
-				this.StudentManager.Yandere.PromptBar.Show = true;
-				this.Eulogized = true;
-			}
-			this.StudentManager.MainCamera.position = Vector3.Lerp(this.StudentManager.MainCamera.position, new Vector3(38f, 4.125f, 68.825f), (this.Speed - 1f) * Time.deltaTime * 0.15f);
-			if (Input.GetButtonDown("A"))
-			{
-				this.StudentManager.Yandere.PromptBar.Show = false;
-				this.FadeOut = true;
-			}
-		}
-		if (this.FadeOut)
-		{
-			this.BloomIntensity = Mathf.MoveTowards(this.BloomIntensity, 500f, Time.deltaTime * 500f);
-			this.BloomRadius = Mathf.MoveTowards(this.BloomRadius, 7f, Time.deltaTime * 7f);
-			this.CameraEffects.UpdateBloom(this.BloomIntensity);
-			this.CameraEffects.UpdateBloomRadius(this.BloomRadius);
-			if (this.BloomIntensity == 500f)
-			{
-				if (this.StudentManager.Eighties && DateGlobals.Week == 6)
-				{
-					this.StudentManager.IdolStage.SetActive(true);
-					base.gameObject.SetActive(false);
-				}
-				this.StudentManager.Yandere.Casual = !this.StudentManager.Yandere.Casual;
-				this.StudentManager.Yandere.ChangeSchoolwear();
-				this.StudentManager.Yandere.transform.position = new Vector3(12f, 0f, 72f);
-				this.StudentManager.Yandere.transform.eulerAngles = new Vector3(0f, -90f, 0f);
-				this.StudentManager.Yandere.HeartCamera.enabled = true;
-				this.StudentManager.Yandere.RPGCamera.enabled = true;
-				this.StudentManager.Yandere.CanMove = true;
-				this.StudentManager.Yandere.HUD.alpha = 1f;
-				this.StudentManager.Clock.BloomIntensity = this.BloomIntensity;
-				this.StudentManager.Clock.BloomRadius = this.BloomRadius;
-				this.StudentManager.Clock.UpdateBloom = true;
-				this.StudentManager.Clock.ReduceKnee = false;
-				this.StudentManager.Clock.Lerp = true;
-				this.StudentManager.Clock.StopTime = false;
-				this.StudentManager.Clock.PresentTime = 450f;
-				this.StudentManager.Clock.HourTime = 7.5f;
-				this.StudentManager.Unstop();
-				this.StudentManager.SkipTo8();
-				this.Headmaster.SetActive(false);
-				this.Counselor.SetActive(false);
-				this.StudentManager.UpdateAllSleuthClothing();
-				this.StudentManager.Clock.GivePlayerBroughtWeapon();
-				base.enabled = false;
-			}
-		}
-	}
+  private void Start()
+  {
+    if (PlayerPrefs.GetInt("LoadingSave") == 1)
+    {
+      int profile = GameGlobals.Profile;
+      int num = PlayerPrefs.GetInt("SaveSlot");
+      StudentGlobals.MemorialStudents = PlayerPrefs.GetInt("Profile_" + profile.ToString() + "_Slot_" + num.ToString() + "_MemorialStudents");
+    }
+    this.MemorialStudents = StudentGlobals.MemorialStudents;
+    if (this.MemorialStudents % 2 == 0)
+      this.CanvasGroup.transform.localPosition = new Vector3(-0.5f, 0.0f, -2f);
+    int index1 = 0;
+    for (int index2 = 1; index2 < 10; ++index2)
+      this.Canvases[index2].SetActive(false);
+    string str = "";
+    if (GameGlobals.Eighties)
+    {
+      this.StudentManager.IdolStage.SetActive(false);
+      str = "1989";
+      this.TurnYoung();
+    }
+    int index3 = 0;
+    for (; this.MemorialStudents > 0; --this.MemorialStudents)
+    {
+      ++index3;
+      this.Canvases[index3].SetActive(true);
+      if (this.MemorialStudents == 1)
+        index1 = StudentGlobals.MemorialStudent1;
+      else if (this.MemorialStudents == 2)
+        index1 = StudentGlobals.MemorialStudent2;
+      else if (this.MemorialStudents == 3)
+        index1 = StudentGlobals.MemorialStudent3;
+      else if (this.MemorialStudents == 4)
+        index1 = StudentGlobals.MemorialStudent4;
+      else if (this.MemorialStudents == 5)
+        index1 = StudentGlobals.MemorialStudent5;
+      else if (this.MemorialStudents == 6)
+        index1 = StudentGlobals.MemorialStudent6;
+      else if (this.MemorialStudents == 7)
+        index1 = StudentGlobals.MemorialStudent7;
+      else if (this.MemorialStudents == 8)
+        index1 = StudentGlobals.MemorialStudent8;
+      else if (this.MemorialStudents == 9)
+        index1 = StudentGlobals.MemorialStudent9;
+      WWW www = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + str + "/Student_" + index1.ToString() + ".png");
+      this.Portraits[index3].mainTexture = (Texture) www.texture;
+      GameObject gameObject = Object.Instantiate<GameObject>(this.FlowerVase, this.transform.position, Quaternion.identity);
+      StudentJson student = this.StudentManager.JSON.Students[index1];
+      Transform transform = this.StudentManager.Seats[student.Class].List[student.Seat];
+      if ((double) transform.position.x > 0.0)
+      {
+        gameObject.transform.position = transform.position + new Vector3(0.33333f, 0.7711f, 0.0f);
+      }
+      else
+      {
+        gameObject.transform.position = transform.position + new Vector3(-0.33333f, 0.7711f, 0.0f);
+        gameObject.transform.eulerAngles = new Vector3(0.0f, 90f, 0.0f);
+      }
+    }
+  }
 
-	// Token: 0x060019C4 RID: 6596 RVA: 0x001084A4 File Offset: 0x001066A4
-	private void TurnYoung()
-	{
-		this.YoungHeadmaster.SetActive(true);
-		this.HeadmasterMesh[1].SetActive(false);
-		this.HeadmasterMesh[2].SetActive(false);
-		this.HeadmasterMesh[3].SetActive(false);
-		this.HeadmasterMesh[4].SetActive(false);
-		this.HeadmasterMesh[5].SetActive(false);
-		this.CounselorMother.SetActive(true);
-		this.CounselorMesh[1].SetActive(false);
-		this.CounselorMesh[2].SetActive(false);
-		this.CounselorMesh[3].SetActive(false);
-		this.CounselorMesh[4].SetActive(false);
-		this.CounselorMesh[5].SetActive(false);
-		this.CounselorMesh[6].SetActive(false);
-		this.CounselorMesh[7].SetActive(true);
-	}
+  private void Update()
+  {
+    this.Speed += Time.deltaTime;
+    if ((double) this.Speed > 1.0)
+    {
+      if (!this.Eulogized)
+      {
+        if (!this.StudentManager.Eighties)
+          this.StudentManager.Yandere.Subtitle.UpdateLabel(SubtitleType.Eulogy, 0, 8f);
+        else
+          this.StudentManager.Yandere.Subtitle.UpdateLabel(SubtitleType.Eulogy, 1, 8f);
+        this.StudentManager.Yandere.PromptBar.Label[0].text = "Continue";
+        this.StudentManager.Yandere.PromptBar.UpdateButtons();
+        this.StudentManager.Yandere.PromptBar.Show = true;
+        this.Eulogized = true;
+      }
+      this.StudentManager.MainCamera.position = Vector3.Lerp(this.StudentManager.MainCamera.position, new Vector3(38f, 4.125f, 68.825f), (float) (((double) this.Speed - 1.0) * (double) Time.deltaTime * 0.150000005960464));
+      if (Input.GetButtonDown("A"))
+      {
+        this.StudentManager.Yandere.PromptBar.Show = false;
+        this.FadeOut = true;
+      }
+    }
+    if (!this.FadeOut)
+      return;
+    this.BloomIntensity = Mathf.MoveTowards(this.BloomIntensity, 500f, Time.deltaTime * 500f);
+    this.BloomRadius = Mathf.MoveTowards(this.BloomRadius, 7f, Time.deltaTime * 7f);
+    this.CameraEffects.UpdateBloom(this.BloomIntensity);
+    this.CameraEffects.UpdateBloomRadius(this.BloomRadius);
+    if ((double) this.BloomIntensity != 500.0)
+      return;
+    if (this.StudentManager.Eighties && DateGlobals.Week == 6)
+    {
+      this.StudentManager.IdolStage.SetActive(true);
+      this.gameObject.SetActive(false);
+    }
+    this.StudentManager.Yandere.Casual = !this.StudentManager.Yandere.Casual;
+    this.StudentManager.Yandere.ChangeSchoolwear();
+    this.StudentManager.Yandere.transform.position = new Vector3(12f, 0.0f, 72f);
+    this.StudentManager.Yandere.transform.eulerAngles = new Vector3(0.0f, -90f, 0.0f);
+    this.StudentManager.Yandere.HeartCamera.enabled = true;
+    this.StudentManager.Yandere.RPGCamera.enabled = true;
+    this.StudentManager.Yandere.CanMove = true;
+    this.StudentManager.Yandere.HUD.alpha = 1f;
+    this.StudentManager.Clock.BloomIntensity = this.BloomIntensity;
+    this.StudentManager.Clock.BloomRadius = this.BloomRadius;
+    this.StudentManager.Clock.UpdateBloom = true;
+    this.StudentManager.Clock.ReduceKnee = false;
+    this.StudentManager.Clock.Lerp = true;
+    this.StudentManager.Clock.StopTime = false;
+    this.StudentManager.Clock.PresentTime = 450f;
+    this.StudentManager.Clock.HourTime = 7.5f;
+    this.StudentManager.Unstop();
+    this.StudentManager.SkipTo8();
+    this.Headmaster.SetActive(false);
+    this.Counselor.SetActive(false);
+    this.StudentManager.UpdateAllSleuthClothing();
+    this.StudentManager.Clock.GivePlayerBroughtWeapon();
+    this.enabled = false;
+  }
 
-	// Token: 0x0400296F RID: 10607
-	public StudentManagerScript StudentManager;
-
-	// Token: 0x04002970 RID: 10608
-	public CameraEffectsScript CameraEffects;
-
-	// Token: 0x04002971 RID: 10609
-	public GameObject[] Canvases;
-
-	// Token: 0x04002972 RID: 10610
-	public UITexture[] Portraits;
-
-	// Token: 0x04002973 RID: 10611
-	public GameObject CanvasGroup;
-
-	// Token: 0x04002974 RID: 10612
-	public GameObject FlowerVase;
-
-	// Token: 0x04002975 RID: 10613
-	public GameObject Headmaster;
-
-	// Token: 0x04002976 RID: 10614
-	public GameObject Counselor;
-
-	// Token: 0x04002977 RID: 10615
-	public int MemorialStudents;
-
-	// Token: 0x04002978 RID: 10616
-	public float BloomIntensity = 1f;
-
-	// Token: 0x04002979 RID: 10617
-	public float BloomRadius = 4f;
-
-	// Token: 0x0400297A RID: 10618
-	public float Speed;
-
-	// Token: 0x0400297B RID: 10619
-	public bool Eulogized;
-
-	// Token: 0x0400297C RID: 10620
-	public bool FadeOut;
-
-	// Token: 0x0400297D RID: 10621
-	public GameObject YoungHeadmaster;
-
-	// Token: 0x0400297E RID: 10622
-	public Material Transparency;
-
-	// Token: 0x0400297F RID: 10623
-	public GameObject[] HeadmasterMesh;
-
-	// Token: 0x04002980 RID: 10624
-	public GameObject CounselorMother;
-
-	// Token: 0x04002981 RID: 10625
-	public GameObject[] CounselorMesh;
+  private void TurnYoung()
+  {
+    this.YoungHeadmaster.SetActive(true);
+    this.HeadmasterMesh[1].SetActive(false);
+    this.HeadmasterMesh[2].SetActive(false);
+    this.HeadmasterMesh[3].SetActive(false);
+    this.HeadmasterMesh[4].SetActive(false);
+    this.HeadmasterMesh[5].SetActive(false);
+    this.CounselorMother.SetActive(true);
+    this.CounselorMesh[1].SetActive(false);
+    this.CounselorMesh[2].SetActive(false);
+    this.CounselorMesh[3].SetActive(false);
+    this.CounselorMesh[4].SetActive(false);
+    this.CounselorMesh[5].SetActive(false);
+    this.CounselorMesh[6].SetActive(false);
+    this.CounselorMesh[7].SetActive(true);
+  }
 }

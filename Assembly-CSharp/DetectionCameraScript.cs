@@ -1,16 +1,18 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: DetectionCameraScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000283 RID: 643
 public class DetectionCameraScript : MonoBehaviour
 {
-	// Token: 0x06001396 RID: 5014 RVA: 0x000B48D0 File Offset: 0x000B2AD0
-	private void Update()
-	{
-		base.transform.position = this.YandereChan.transform.position + Vector3.up * 100f;
-		base.transform.eulerAngles = new Vector3(90f, base.transform.eulerAngles.y, base.transform.eulerAngles.z);
-	}
+  public Transform YandereChan;
 
-	// Token: 0x04001CF8 RID: 7416
-	public Transform YandereChan;
+  private void Update()
+  {
+    this.transform.position = this.YandereChan.transform.position + Vector3.up * 100f;
+    this.transform.eulerAngles = new Vector3(90f, this.transform.eulerAngles.y, this.transform.eulerAngles.z);
+  }
 }

@@ -1,23 +1,23 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: RaincoatScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x020003CF RID: 975
 public class RaincoatScript : MonoBehaviour
 {
-	// Token: 0x06001B82 RID: 7042 RVA: 0x00136DBC File Offset: 0x00134FBC
-	private void Update()
-	{
-		if (this.Prompt.Circle[0].fillAmount == 0f)
-		{
-			this.Prompt.Circle[0].fillAmount = 1f;
-			if (this.Prompt.Yandere.Invisible)
-			{
-				this.Prompt.Yandere.WearRaincoat();
-				UnityEngine.Object.Destroy(base.gameObject);
-			}
-		}
-	}
+  public PromptScript Prompt;
 
-	// Token: 0x04002F47 RID: 12103
-	public PromptScript Prompt;
+  private void Update()
+  {
+    if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
+      return;
+    this.Prompt.Circle[0].fillAmount = 1f;
+    if (!this.Prompt.Yandere.Invisible)
+      return;
+    this.Prompt.Yandere.WearRaincoat();
+    Object.Destroy((Object) this.gameObject);
+  }
 }

@@ -1,17 +1,19 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: ArrayLayout
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x020000D5 RID: 213
+using System;
+
 [Serializable]
 public class ArrayLayout
 {
-	// Token: 0x04000A93 RID: 2707
-	public ArrayLayout.rowData[] rows = new ArrayLayout.rowData[6];
+  public ArrayLayout.rowData[] rows = new ArrayLayout.rowData[6];
 
-	// Token: 0x02000657 RID: 1623
-	[Serializable]
-	public struct rowData
-	{
-		// Token: 0x04004FC6 RID: 20422
-		public bool[] row;
-	}
+  [Serializable]
+  public struct rowData
+  {
+    public bool[] row;
+  }
 }

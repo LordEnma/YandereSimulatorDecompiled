@@ -1,15 +1,14 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: Rotator
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000500 RID: 1280
 public class Rotator : MonoBehaviour
 {
-	// Token: 0x06002146 RID: 8518 RVA: 0x001EE52B File Offset: 0x001EC72B
-	private void Update()
-	{
-		base.transform.Rotate(0f, this.speed * Time.deltaTime, 0f);
-	}
+  public float speed = 15f;
 
-	// Token: 0x040049B0 RID: 18864
-	public float speed = 15f;
+  private void Update() => this.transform.Rotate(0.0f, this.speed * Time.deltaTime, 0.0f);
 }

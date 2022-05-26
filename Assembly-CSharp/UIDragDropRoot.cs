@@ -1,25 +1,22 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: UIDragDropRoot
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000050 RID: 80
 [AddComponentMenu("NGUI/Interaction/Drag and Drop Root")]
 public class UIDragDropRoot : MonoBehaviour
 {
-	// Token: 0x06000182 RID: 386 RVA: 0x000161F8 File Offset: 0x000143F8
-	private void OnEnable()
-	{
-		UIDragDropRoot.root = base.transform;
-	}
+  public static Transform root;
 
-	// Token: 0x06000183 RID: 387 RVA: 0x00016205 File Offset: 0x00014405
-	private void OnDisable()
-	{
-		if (UIDragDropRoot.root == base.transform)
-		{
-			UIDragDropRoot.root = null;
-		}
-	}
+  private void OnEnable() => UIDragDropRoot.root = this.transform;
 
-	// Token: 0x0400033C RID: 828
-	public static Transform root;
+  private void OnDisable()
+  {
+    if (!((Object) UIDragDropRoot.root == (Object) this.transform))
+      return;
+    UIDragDropRoot.root = (Transform) null;
+  }
 }

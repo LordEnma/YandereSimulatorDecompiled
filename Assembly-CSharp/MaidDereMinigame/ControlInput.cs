@@ -1,12 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: MaidDereMinigame.ControlInput
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using System;
 
 namespace MaidDereMinigame
 {
-	// Token: 0x0200059D RID: 1437
-	[Serializable]
-	public struct ControlInput
-	{
-		// Token: 0x04004D0C RID: 19724
-		public float horizontal;
-	}
+  [Serializable]
+  public struct ControlInput
+  {
+    public float horizontal;
+  }
 }

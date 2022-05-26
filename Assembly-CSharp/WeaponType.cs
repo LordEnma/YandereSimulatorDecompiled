@@ -1,20 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: WeaponType
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
-// Token: 0x020004C6 RID: 1222
 public enum WeaponType
 {
-	// Token: 0x0400433B RID: 17211
-	Knife = 1,
-	// Token: 0x0400433C RID: 17212
-	Katana,
-	// Token: 0x0400433D RID: 17213
-	Bat,
-	// Token: 0x0400433E RID: 17214
-	Saw,
-	// Token: 0x0400433F RID: 17215
-	Syringe,
-	// Token: 0x04004340 RID: 17216
-	Weight,
-	// Token: 0x04004341 RID: 17217
-	Garrote
+  Knife = 1,
+  Katana = 2,
+  Bat = 3,
+  Saw = 4,
+  Syringe = 5,
+  Weight = 6,
+  Garrote = 7,
 }

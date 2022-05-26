@@ -1,21 +1,16 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: CheapFilmGrainScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000240 RID: 576
 public class CheapFilmGrainScript : MonoBehaviour
 {
-	// Token: 0x06001243 RID: 4675 RVA: 0x0008CF22 File Offset: 0x0008B122
-	private void Update()
-	{
-		this.MyRenderer.material.mainTextureScale = new Vector2(UnityEngine.Random.Range(this.Floor, this.Ceiling), UnityEngine.Random.Range(this.Floor, this.Ceiling));
-	}
+  public Renderer MyRenderer;
+  public float Floor = 100f;
+  public float Ceiling = 200f;
 
-	// Token: 0x0400171B RID: 5915
-	public Renderer MyRenderer;
-
-	// Token: 0x0400171C RID: 5916
-	public float Floor = 100f;
-
-	// Token: 0x0400171D RID: 5917
-	public float Ceiling = 200f;
+  private void Update() => this.MyRenderer.material.mainTextureScale = new Vector2(Random.Range(this.Floor, this.Ceiling), Random.Range(this.Floor, this.Ceiling));
 }

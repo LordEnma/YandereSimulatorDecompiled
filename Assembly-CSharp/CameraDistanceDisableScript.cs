@@ -1,26 +1,22 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: CameraDistanceDisableScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000234 RID: 564
 public class CameraDistanceDisableScript : MonoBehaviour
 {
-	// Token: 0x06001219 RID: 4633 RVA: 0x0008B78B File Offset: 0x0008998B
-	private void Update()
-	{
-		if (Vector3.Distance(this.Yandere.position, this.RenderTarget.position) > 15f)
-		{
-			this.MyCamera.enabled = false;
-			return;
-		}
-		this.MyCamera.enabled = true;
-	}
+  public Transform RenderTarget;
+  public Transform Yandere;
+  public Camera MyCamera;
 
-	// Token: 0x040016D7 RID: 5847
-	public Transform RenderTarget;
-
-	// Token: 0x040016D8 RID: 5848
-	public Transform Yandere;
-
-	// Token: 0x040016D9 RID: 5849
-	public Camera MyCamera;
+  private void Update()
+  {
+    if ((double) Vector3.Distance(this.Yandere.position, this.RenderTarget.position) > 15.0)
+      this.MyCamera.enabled = false;
+    else
+      this.MyCamera.enabled = true;
+  }
 }

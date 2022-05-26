@@ -1,12 +1,13 @@
-﻿using System;
+﻿// Decompiled with JetBrains decompiler
+// Type: PantyListScript
+// Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
+// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
 using UnityEngine;
 
-// Token: 0x02000396 RID: 918
 public class PantyListScript : MonoBehaviour
 {
-	// Token: 0x04002B8D RID: 11149
-	public Texture[] ModernPanties;
-
-	// Token: 0x04002B8E RID: 11150
-	public Texture[] EightiesPanties;
+  public Texture[] ModernPanties;
+  public Texture[] EightiesPanties;
 }
