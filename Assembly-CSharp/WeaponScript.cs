@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
-// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -50,11 +50,9 @@ public class WeaponScript : MonoBehaviour
   public bool Suspicious;
   public bool Dangerous;
   public bool Misplaced;
-  public bool Evidence;
   public bool Innocent;
   public bool StartLow;
   public bool Flaming;
-  public bool Bloody;
   public bool Dumped;
   public bool Heated;
   public bool Rotate;
@@ -78,12 +76,14 @@ public class WeaponScript : MonoBehaviour
   public int WeaponID;
   public int AnimID;
   public WeaponType Type = WeaponType.Knife;
-  public bool[] Victims;
   private AudioClip OriginalClip;
   private int ID;
   public MeshFilter MyMeshFilter;
   public Mesh EightiesCircularSaw;
   public Texture EightiesCircularSawTexture;
+  public bool Evidence;
+  public bool Bloody;
+  public bool[] Victims;
   public GameObject HeartBurst;
 
   public void Start()
@@ -171,8 +171,8 @@ public class WeaponScript : MonoBehaviour
           this.Yandere.Bloodiness += 25f;
           this.ShortBloodSpray[0].Play();
           this.ShortBloodSpray[1].Play();
-          this.Blood.enabled = true;
-          this.MurderWeapon = true;
+          if (!this.Blood.enabled)
+            this.Yandere.StainWeapon();
           ++this.DismemberPhase;
           if (this.Yandere.Gloved && !this.Yandere.Gloves.Blood.enabled)
           {
@@ -190,7 +190,6 @@ public class WeaponScript : MonoBehaviour
         if (!this.MyAudio.isPlaying)
         {
           this.MyAudio.clip = this.OriginalClip;
-          this.Yandere.StainWeapon();
           this.Dismembering = false;
           this.DismemberPhase = 0;
           this.Rotation = 0.0f;

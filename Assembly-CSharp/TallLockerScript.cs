@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TallLockerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
-// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -135,9 +135,24 @@ public class TallLockerScript : MonoBehaviour
         if (this.Yandere.Schoolwear > 0)
         {
           Debug.Log((object) "Checking to see if it's okay for the player to take off clothing.");
-          this.CheckAvailableUniforms();
-          if (this.AvailableUniforms > 0)
-            flag = true;
+          if (this.Yandere.Schoolwear == 2 && (double) this.Yandere.Bloodiness > 0.0)
+          {
+            this.Yandere.NotificationManager.CustomText = "Take a shower first!";
+            this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+          }
+          else
+          {
+            this.CheckAvailableUniforms();
+            if (this.AvailableUniforms > 0)
+            {
+              flag = true;
+            }
+            else
+            {
+              this.Yandere.NotificationManager.CustomText = "Bring a clean uniform here first!";
+              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+            }
+          }
         }
         else
           flag = true;
@@ -164,8 +179,6 @@ public class TallLockerScript : MonoBehaviour
         }
         else
         {
-          this.Yandere.NotificationManager.CustomText = "Bring a clean uniform here first!";
-          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
           this.Prompt.Circle[2].fillAmount = 1f;
           Debug.Log((object) "Error Message.");
         }

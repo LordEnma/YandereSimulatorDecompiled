@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: IncineratorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
-// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -108,7 +108,7 @@ public class IncineratorScript : MonoBehaviour
       if (!this.YandereHoldingEvidence)
         this.YandereHoldingEvidence = (Object) this.Yandere.PickUp != (Object) null && (this.Yandere.PickUp.Evidence || this.Yandere.PickUp.Garbage);
       if (!this.YandereHoldingEvidence)
-        this.YandereHoldingEvidence = (Object) this.Yandere.EquippedWeapon != (Object) null && this.Yandere.EquippedWeapon.MurderWeapon;
+        this.YandereHoldingEvidence = (Object) this.Yandere.EquippedWeapon != (Object) null && this.Yandere.EquippedWeapon.Bloody;
       if (!this.YandereHoldingEvidence)
       {
         if (!this.Prompt.HideButton[3])
@@ -215,7 +215,9 @@ public class IncineratorScript : MonoBehaviour
       this.Prompt.Hide();
       this.Prompt.enabled = false;
       Debug.Log((object) ("Incinerating " + this.BloodyClothing.ToString() + " bloody clothing."));
-      this.Yandere.Police.IncineratedWeapons += this.MurderWeapons;
+      Debug.Log((object) ("Incinerating " + this.BloodyWeapons.ToString() + " bloody weapons."));
+      Debug.Log((object) ("Incinerating " + this.MurderWeapons.ToString() + " murder weapons."));
+      this.Yandere.Police.IncineratedWeapons += this.BloodyWeapons;
       this.Yandere.Police.BloodyClothing -= this.BloodyClothing;
       this.Yandere.Police.MurderWeapons -= this.MurderWeapons;
       this.Yandere.Police.BloodyWeapons -= this.BloodyWeapons;

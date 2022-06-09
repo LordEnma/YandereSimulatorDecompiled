@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
-// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
 using System;
@@ -3011,9 +3011,15 @@ label_185:
                 if (!this.CharacterAnimation.IsPlaying(this.WalkAnim))
                 {
                   if (this.Persona == PersonaType.PhoneAddict && this.Actions[this.Phase] == StudentActionType.Clean)
+                  {
                     this.CharacterAnimation.CrossFade(this.OriginalWalkAnim);
+                  }
                   else
+                  {
+                    if (this.WalkAnim == "")
+                      this.WalkAnim = this.OriginalWalkAnim;
                     this.CharacterAnimation.CrossFade(this.WalkAnim);
+                  }
                 }
               }
               else if (!this.Dying)
@@ -3675,6 +3681,7 @@ label_185:
                 {
                   if (this.GetNewAnimation)
                     this.StudentManager.ConvoManager.MartialArtsCheck();
+                  this.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
                   if ((double) this.CharacterAnimation[this.ClubAnim].time >= (double) this.CharacterAnimation[this.ClubAnim].length)
                     this.GetNewAnimation = true;
                 }
@@ -7500,16 +7507,17 @@ label_185:
               this.DistractTimer -= Time.deltaTime;
               if ((double) this.DistractTimer <= 0.0)
               {
-                if (this.SunbathePhase == 0)
+                if (this.DistractionTarget.SunbathePhase == 0)
                 {
-                  this.CurrentDestination = this.Destinations[this.Phase];
-                  this.Pathfinding.target = this.Destinations[this.Phase];
+                  this.DistractionTarget.CurrentDestination = this.DistractionTarget.Destinations[this.DistractionTarget.Phase];
+                  this.DistractionTarget.Pathfinding.target = this.DistractionTarget.Destinations[this.DistractionTarget.Phase];
                 }
                 else
                 {
-                  this.CurrentDestination = this.StudentManager.SunbatheSpots[this.StudentID];
-                  this.Pathfinding.target = this.StudentManager.SunbatheSpots[this.StudentID];
-                  Debug.Log((object) "This sunbathing student should be returning to their sunbathing spot now.");
+                  this.DistractionTarget.CurrentDestination = this.StudentManager.SunbatheSpots[this.DistractionTarget.StudentID];
+                  this.DistractionTarget.Pathfinding.target = this.StudentManager.SunbatheSpots[this.DistractionTarget.StudentID];
+                  Debug.Log((object) (this.DistractionTarget.Name + " was sunbathing at the time of being distracted, and should be returning to their sunbathing spot now."));
+                  this.DistractionTarget.SunbathePhase = 2;
                 }
                 this.DistractionTarget.TargetedForDistraction = false;
                 this.DistractionTarget.Pathfinding.canSearch = true;
@@ -7523,8 +7531,6 @@ label_185:
                 this.DistractionTarget.EquipCleaningItems();
                 this.DistractionTarget.EatingSnack = false;
                 this.Private = false;
-                this.DistractionTarget.CurrentDestination = this.DistractionTarget.Destinations[this.Phase];
-                this.DistractionTarget.Pathfinding.target = this.DistractionTarget.Destinations[this.Phase];
                 if (this.DistractionTarget.Persona == PersonaType.PhoneAddict)
                   this.DistractionTarget.SmartPhone.SetActive(true);
                 this.DistractionTarget.Distractor = (StudentScript) null;
@@ -10374,12 +10380,13 @@ label_185:
     }
     else
     {
+      Debug.Log((object) (this.Name + " was just attacked, either because the player pressed the X button, or because Yandere-chan had low sanity."));
       this.Yandere.AttackManager.Stealth = (double) Mathf.Abs(Vector3.Angle(-this.transform.forward, this.Yandere.transform.position - this.transform.position)) <= 45.0;
       bool flag10 = false;
       if (this.Yandere.AttackManager.Stealth && (this.Yandere.EquippedWeapon.Type == WeaponType.Bat || this.Yandere.EquippedWeapon.Type == WeaponType.Weight))
         flag10 = true;
       Debug.Log((object) ("Before attacking, # of OriginalUniforms was: " + this.StudentManager.OriginalUniforms.ToString() + " and # of NewUniforms was: " + this.StudentManager.NewUniforms.ToString()));
-      if (flag10 || this.StudentManager.OriginalUniforms + this.StudentManager.NewUniforms > 1)
+      if (flag10 || this.Yandere.Schoolwear == 2 || this.StudentManager.OriginalUniforms + this.StudentManager.NewUniforms > 1)
       {
         if (this.ClubActivityPhase >= 16)
           return;
@@ -10598,6 +10605,7 @@ label_185:
       }
       else
         this.CharacterAnimation.CrossFade(this.ScaredAnim);
+      Debug.Log((object) (this.Name + " is currently watching the player commit murder."));
       this.targetRotation = Quaternion.LookRotation(new Vector3(this.Yandere.Hips.position.x, this.transform.position.y, this.Yandere.Hips.position.z) - this.transform.position);
       this.transform.rotation = Quaternion.Slerp(this.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
       if (!this.Yandere.Struggling)
@@ -10645,6 +10653,7 @@ label_185:
                 Debug.Log((object) "This is the exact moment that Raibaru witnesses Yandere-chan commit murder.");
                 this.Subtitle.UpdateLabel(SubtitleType.ObstacleMurderReaction, 1, 3f);
                 ++this.Yandere.Chasers;
+                this.Urgent = true;
               }
               else
                 this.Subtitle.UpdateLabel(SubtitleType.MurderReaction, 1, 3f);
@@ -11043,6 +11052,7 @@ label_185:
               }
               else
                 this.Subtitle.UpdateLabel(SubtitleType.HmmReaction, 0, 3f);
+              this.WitnessedSomething = false;
             }
             else if (this.Witnessed == StudentWitnessType.None)
             {
@@ -12893,7 +12903,11 @@ label_185:
         {
           Debug.Log((object) (this.Name + "'s ''Flee'' was set to ''true'' because Hero persona reaction was called."));
           if (this.Persona == PersonaType.Protective)
+          {
+            this.Subtitle.PreviousSubtitle = SubtitleType.AcceptFood;
+            Debug.Log((object) "You won't get away with this!");
             this.Subtitle.UpdateLabel(SubtitleType.ObstacleMurderReaction, 2, 3f);
+          }
           else if (this.Persona != PersonaType.Violent)
             this.Subtitle.UpdateLabel(SubtitleType.HeroMurderReaction, 3, 3f);
           else if (this.Defeats > 0)
@@ -13745,6 +13759,7 @@ label_185:
       }
       if (!this.Tranquil)
       {
+        Debug.Log((object) ("This part of " + this.Name + "'s code is now updating globals and police numbers."));
         StudentGlobals.SetStudentDying(this.StudentID, true);
         if (!this.Ragdoll.Burning && !this.Ragdoll.Disturbing)
         {
@@ -14673,7 +14688,7 @@ label_185:
 
   public void ForgetGiggle()
   {
-    Debug.Log((object) ("For some reason, " + this.Name + " was just told to ForgetGiggle() and stop investigating."));
+    Debug.Log((object) (this.Name + " was just told to ForgetGiggle() and stop investigating."));
     this.Giggle = (GameObject) null;
     this.InvestigationTimer = 0.0f;
     this.InvestigationPhase = 0;
@@ -14925,6 +14940,8 @@ label_185:
   {
     if (this.Yandere.Shoved || this.Dying || this.Yandere.Egg || this.Yandere.Lifting || this.Yandere.SneakingShot || this.ShoeRemoval.enabled || this.Yandere.Talking || this.SentToLocker)
       return;
+    if ((UnityEngine.Object) this.Giggle != (UnityEngine.Object) null)
+      this.ForgetGiggle();
     this.ForgetRadio();
     this.GetComponent<AudioSource>();
     if (this.StudentID == 86)

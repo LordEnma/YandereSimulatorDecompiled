@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
-// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
 using Pathfinding;
@@ -981,6 +981,7 @@ public class YandereScript : MonoBehaviour
         this.BloodyWarning = true;
         if (this.Schoolwear > 0 && !this.WearingRaincoat)
         {
+          Debug.Log((object) "From YandereScript, incrementing Police.BloodyClothing.");
           ++this.Police.BloodyClothing;
           if (!this.ClubAttire)
           {
@@ -1664,35 +1665,9 @@ public class YandereScript : MonoBehaviour
               this.Invisible = !this.Invisible;
               Debug.Log((object) ("Invisibility is: " + this.Invisible.ToString()));
               if (this.Invisible)
-              {
-                this.EightiesPonytailRenderer.material = this.CloakMaterial;
-                this.PonytailRenderer.material = this.CloakMaterial;
-                this.MyRenderer.materials = this.CloakMaterials;
-                this.Outline.h.ReinitMaterials();
-                this.Hairstyle = this.StudentManager.Eighties ? 203 : 1;
-                this.UpdateHair();
-              }
+                this.Decloak();
               else
-              {
-                this.PauseScreen.NewSettings.QualityManager.UpdateOutlinesAndRimlight();
-                this.SetUniform();
-                this.MyRenderer.materials[0].color = Color.white;
-                this.MyRenderer.materials[1].color = Color.white;
-                this.MyRenderer.materials[2].color = Color.white;
-                this.MyRenderer.materials[0].SetFloat("_BlendAmount", 0.0f);
-                this.MyRenderer.materials[1].SetFloat("_BlendAmount", 0.0f);
-                this.MyRenderer.materials[2].SetFloat("_BlendAmount", 0.0f);
-                this.MyRenderer.materials[0].SetFloat("_Outline", 1f / 500f);
-                this.MyRenderer.materials[1].SetFloat("_Outline", 1f / 500f);
-                this.MyRenderer.materials[2].SetFloat("_Outline", 1f / 500f);
-                this.PonytailRenderer.material.color = new Color(0.25f, 0.25f, 0.25f, 1f);
-                this.PonytailRenderer.material.SetFloat("_Outline", 1f / 500f);
-                this.EightiesPonytailRenderer.material.color = new Color(0.25f, 0.25f, 0.25f, 1f);
-                this.EightiesPonytailRenderer.material.SetFloat("_Outline", 1f / 500f);
-                this.Hairstyle = this.StudentManager.Eighties ? 203 : 1;
-                this.UpdateHair();
-              }
-              this.PantyAttacher.newRenderer.enabled = !this.Invisible;
+                this.Cloak();
             }
             if (this.Stance.Current != StanceType.Crouching && this.Stance.Current != StanceType.Crawling)
             {
@@ -5161,6 +5136,7 @@ public class YandereScript : MonoBehaviour
   public void StainWeapon()
   {
     Debug.Log((object) "Time to run the code for staining a weapon with blood and marking it as evidence.");
+    Debug.Log((object) ("Dismembering is: " + this.Dismembering.ToString()));
     if (!((Object) this.EquippedWeapon != (Object) null))
       return;
     if ((Object) this.TargetStudent != (Object) null && this.TargetStudent.StudentID < this.EquippedWeapon.Victims.Length)
@@ -5169,10 +5145,18 @@ public class YandereScript : MonoBehaviour
     {
       this.EquippedWeapon.Evidence = true;
       this.EquippedWeapon.Bloody = true;
-      ++this.Police.MurderWeapons;
+      if (!this.Dismembering)
+        ++this.Police.MurderWeapons;
     }
     this.EquippedWeapon.Blood.enabled = true;
-    this.EquippedWeapon.MurderWeapon = true;
+    if (!this.Dismembering)
+    {
+      this.EquippedWeapon.MurderWeapon = true;
+    }
+    else
+    {
+      int num = this.EquippedWeapon.Blood.enabled ? 1 : 0;
+    }
     if (this.EquippedWeapon.Type == WeaponType.Bat)
       this.NoStainGloves = true;
     if (this.NoStainGloves)
@@ -7104,5 +7088,38 @@ public class YandereScript : MonoBehaviour
     this.Hairstyle = 207;
     this.UpdateHair();
     this.VtuberFace();
+  }
+
+  public void Cloak()
+  {
+    this.EightiesPonytailRenderer.material = this.CloakMaterial;
+    this.PonytailRenderer.material = this.CloakMaterial;
+    this.MyRenderer.materials = this.CloakMaterials;
+    this.Outline.h.ReinitMaterials();
+    this.Hairstyle = this.StudentManager.Eighties ? 203 : 1;
+    this.UpdateHair();
+    this.PantyAttacher.newRenderer.enabled = !this.Invisible;
+  }
+
+  public void Decloak()
+  {
+    this.PauseScreen.NewSettings.QualityManager.UpdateOutlinesAndRimlight();
+    this.SetUniform();
+    this.MyRenderer.materials[0].color = Color.white;
+    this.MyRenderer.materials[1].color = Color.white;
+    this.MyRenderer.materials[2].color = Color.white;
+    this.MyRenderer.materials[0].SetFloat("_BlendAmount", 0.0f);
+    this.MyRenderer.materials[1].SetFloat("_BlendAmount", 0.0f);
+    this.MyRenderer.materials[2].SetFloat("_BlendAmount", 0.0f);
+    this.MyRenderer.materials[0].SetFloat("_Outline", 1f / 500f);
+    this.MyRenderer.materials[1].SetFloat("_Outline", 1f / 500f);
+    this.MyRenderer.materials[2].SetFloat("_Outline", 1f / 500f);
+    this.PonytailRenderer.material.color = new Color(0.25f, 0.25f, 0.25f, 1f);
+    this.PonytailRenderer.material.SetFloat("_Outline", 1f / 500f);
+    this.EightiesPonytailRenderer.material.color = new Color(0.25f, 0.25f, 0.25f, 1f);
+    this.EightiesPonytailRenderer.material.SetFloat("_Outline", 1f / 500f);
+    this.Hairstyle = this.StudentManager.Eighties ? 203 : 1;
+    this.UpdateHair();
+    this.PantyAttacher.newRenderer.enabled = !this.Invisible;
   }
 }

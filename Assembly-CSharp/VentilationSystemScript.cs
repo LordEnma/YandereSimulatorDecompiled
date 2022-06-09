@@ -1,14 +1,17 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: VentilationSystemScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
-// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
 public class VentilationSystemScript : MonoBehaviour
 {
+  public GameObject FirstFloorShadow;
+  public GameObject ThirdFloorShadow;
   public GameObject StinkBombCloud;
+  public GameObject Window;
   public PromptBarScript PromptBar;
   public UILabel ExplanationLabel;
   public string[] Floor1RoomNames;
@@ -20,7 +23,6 @@ public class VentilationSystemScript : MonoBehaviour
   public Transform Highlight;
   public UILabel FloorLabel;
   public Transform[] Rooms;
-  public GameObject Window;
   public bool CanStink;
   public bool Show;
   public int RoomID;
@@ -37,7 +39,7 @@ public class VentilationSystemScript : MonoBehaviour
 
   private void Update()
   {
-    if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
+    if ((double) this.Prompt.Circle[1].fillAmount == 0.0)
     {
       Time.timeScale = 0.0001f;
       this.PromptBar.ClearButtons();
@@ -52,7 +54,6 @@ public class VentilationSystemScript : MonoBehaviour
       this.Prompt.Yandere.RPGCamera.enabled = false;
       this.Prompt.Yandere.CanMove = false;
       this.Window.SetActive(true);
-      this.CanStink = false;
       this.Show = true;
       this.CheckForStinkBombs();
     }
@@ -66,6 +67,8 @@ public class VentilationSystemScript : MonoBehaviour
       PickUpScript pickUp = this.Prompt.Yandere.PickUp;
       this.Prompt.Yandere.PickUp.Drop();
       Object.Destroy((Object) pickUp.gameObject);
+      if (this.Floor == 3 && this.RoomID == 23)
+        this.Prompt.Yandere.StudentManager.Portal.GetComponent<PortalScript>().Headmaster.SetActive(false);
       this.Exit();
     }
     if (Input.GetButtonDown("B"))
@@ -126,15 +129,21 @@ public class VentilationSystemScript : MonoBehaviour
 
   private void CheckForStinkBombs()
   {
-    if ((Object) this.Prompt.Yandere.PickUp != (Object) null && this.Prompt.Yandere.PickUp.StinkBombs)
+    this.CanStink = false;
+    this.PromptBar.Label[0].text = "";
+    if (this.Floor == 1 && this.RoomID == 6)
+      this.ExplanationLabel.text = "The guidance counselor is too professional to abandon her duties because of a bad smell.";
+    else if (this.Floor == 3 && this.RoomID == 3)
+      this.ExplanationLabel.text = "It looks like Info-chan has hacked the ventilation system and made it impossible to send any gases into her room...";
+    else if ((Object) this.Prompt.Yandere.PickUp != (Object) null && this.Prompt.Yandere.PickUp.StinkBombs)
     {
       this.ExplanationLabel.text = "You have a box of stink bombs! Choose a room and press the 'accept' button to fill that room with a horrible stench, causing its inhabitants to evacuate it for a few minutes.";
       this.PromptBar.Label[0].text = "Accept";
-      this.PromptBar.UpdateButtons();
       this.CanStink = true;
     }
     else
       this.ExplanationLabel.text = "If you come here with a box of stink bombs, you can fill one room with a horrible stench, causing its inhabitants to evacuate it for a few minutes.";
+    this.PromptBar.UpdateButtons();
   }
 
   private void Exit()
@@ -153,6 +162,7 @@ public class VentilationSystemScript : MonoBehaviour
   {
     this.Highlight.localPosition = new Vector3((float) (180 * this.Column - 540), (float) (540 - 180 * this.Row), 0.0f);
     this.RoomID = this.Column + (this.Row - 1) * 5;
+    this.CheckForStinkBombs();
   }
 
   public void UpdateRoomNameLabels()
@@ -170,5 +180,21 @@ public class VentilationSystemScript : MonoBehaviour
           this.RoomLabels[index].text = this.Floor3RoomNames[index];
       }
     }
+    if (this.Floor == 1)
+    {
+      this.FirstFloorShadow.SetActive(true);
+      this.ThirdFloorShadow.SetActive(false);
+    }
+    else if (this.Floor == 3)
+    {
+      this.FirstFloorShadow.SetActive(false);
+      this.ThirdFloorShadow.SetActive(true);
+    }
+    else
+    {
+      this.FirstFloorShadow.SetActive(false);
+      this.ThirdFloorShadow.SetActive(false);
+    }
+    this.CheckForStinkBombs();
   }
 }

@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
-// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using UnityEngine;
@@ -476,6 +476,10 @@ public class StudentManagerScript : MonoBehaviour
   public UIPanel FreeFloatingPanel;
   public bool[] RivalKilledSelf;
   public PantyListScript PantyList;
+  public Collider EastFemaleBathroomCollider;
+  public Collider WestFemaleBathroomCollider;
+  public Collider EastMaleBathroomCollider;
+  public Collider WestMaleBathroomCollider;
 
   private void Awake()
   {
@@ -654,6 +658,7 @@ public class StudentManagerScript : MonoBehaviour
       }
       if (this.MissionMode)
       {
+        Debug.Log((object) "We believe that we're in Mission Mode, so we're switching to the Mission Mode Uniform.");
         StudentGlobals.FemaleUniform = 5;
         StudentGlobals.MaleUniform = 5;
         this.RedString.gameObject.SetActive(false);
@@ -2924,14 +2929,20 @@ public class StudentManagerScript : MonoBehaviour
           this.Students[this.ID].MyController.enabled = false;
           this.Students[this.ID].Pathfinding.enabled = false;
           this.Students[this.ID].HipCollider.enabled = true;
-          this.Police.CorpseList[this.Police.Corpses] = this.Students[this.ID].Ragdoll;
-          ++this.Police.Corpses;
-          ++this.Police.Deaths;
-          if (this.Students[this.ID].Removed)
+          if (!StudentGlobals.GetStudentDying(this.ID))
           {
-            this.Students[this.ID].Ragdoll.Remove();
-            --this.Police.Corpses;
+            Debug.Log((object) ("For some reason, " + this.Students[this.ID].Name + " may not have been added to the Police CorpseList, so we're doing it manually."));
+            this.Police.CorpseList[this.Police.Corpses] = this.Students[this.ID].Ragdoll;
+            ++this.Police.Corpses;
+            ++this.Police.Deaths;
+            if (this.Students[this.ID].Removed)
+            {
+              this.Students[this.ID].Ragdoll.Remove();
+              --this.Police.Corpses;
+            }
           }
+          else
+            Debug.Log((object) ("It looks like " + this.Students[this.ID].Name + " has already added themself to the Police CorpseList, so we won't be doing that manually."));
         }
         else
         {
@@ -3003,6 +3014,12 @@ public class StudentManagerScript : MonoBehaviour
             --this.Students[this.ID].Phase;
           if (this.OsanaPoolEvent.Phase > 2)
             this.OsanaPoolEvent.ReturnFromSave();
+          if (!this.Students[this.ID].Teacher && this.Students[this.ID].Indoors)
+          {
+            if ((UnityEngine.Object) this.Students[this.ID].ShoeRemoval.Locker == (UnityEngine.Object) null)
+              this.Students[this.ID].ShoeRemoval.Start();
+            this.Students[this.ID].ShoeRemoval.PutOnShoes();
+          }
         }
       }
     }
@@ -3016,6 +3033,7 @@ public class StudentManagerScript : MonoBehaviour
     this.Yandere.WeaponManager.EquipWeaponsFromSave();
     this.Yandere.WeaponManager.RestoreWeaponToStudent();
     this.Yandere.WeaponManager.UpdateDelinquentWeapons();
+    this.Yandere.WeaponManager.RestoreBlood();
     this.Mirror.UpdatePersona();
     if (this.Yandere.ClubAttire)
     {
@@ -3085,6 +3103,11 @@ public class StudentManagerScript : MonoBehaviour
       this.WeaponBag.AttachToBack();
     }
     this.Yandere.WeaponManager.PutWeaponInBag();
+    if ((double) this.Yandere.Bloodiness > 0.0 && this.Yandere.Schoolwear > 0 && !this.Yandere.WearingRaincoat)
+    {
+      Debug.Log((object) "The player was bloody when returning from a save, so we're going to prevent her from incrementing Police.BloodyClothing unnecessarily.");
+      --this.Police.BloodyClothing;
+    }
     this.LoadedSave = true;
   }
 
@@ -3214,7 +3237,10 @@ public class StudentManagerScript : MonoBehaviour
     {
       StudentScript student = this.Students[this.ID];
       if ((UnityEngine.Object) student != (UnityEngine.Object) null)
+      {
+        student.FocusOnYandere = false;
         student.IgnoreTimer = Length;
+      }
     }
   }
 
@@ -3861,8 +3887,44 @@ public class StudentManagerScript : MonoBehaviour
       {
         if (index1 > 9 && index1 < 21)
           ++index1;
-        while ((UnityEngine.Object) this.Students[index1] == (UnityEngine.Object) null || !this.Students[index1].gameObject.activeInHierarchy)
+        while (true)
+        {
+          if (!((UnityEngine.Object) this.Students[index1] == (UnityEngine.Object) null) && this.Students[index1].gameObject.activeInHierarchy)
+            goto label_6;
+label_4:
           ++index1;
+          continue;
+label_6:
+          Bounds bounds;
+          if (!this.Students[index1].Male)
+          {
+            bounds = this.WestMaleBathroomCollider.bounds;
+            if (bounds.Contains(this.GarbageBagList[index2].transform.position))
+              goto label_4;
+          }
+          if (!this.Students[index1].Male)
+          {
+            bounds = this.EastMaleBathroomCollider.bounds;
+            if (bounds.Contains(this.GarbageBagList[index2].transform.position))
+              goto label_4;
+          }
+          if (this.Students[index1].Male)
+          {
+            bounds = this.WestFemaleBathroomCollider.bounds;
+            if (bounds.Contains(this.GarbageBagList[index2].transform.position))
+              goto label_4;
+          }
+          if (this.Students[index1].Male)
+          {
+            bounds = this.EastFemaleBathroomCollider.bounds;
+            if (bounds.Contains(this.GarbageBagList[index2].transform.position))
+              goto label_4;
+            else
+              break;
+          }
+          else
+            break;
+        }
         this.GarbageBagList[index2].GetComponent<PickUpScript>().DisableGarbageBag();
         this.Students[index1].TakingOutTrash = true;
         this.Students[index1].TrashDestination = this.GarbageBagList[index2].transform;

@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PauseScreenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
-// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class PauseScreenScript : MonoBehaviour
 {
   public StudentInfoMenuScript StudentInfoMenu;
+  public YouTubeChatMenuScript YouTubeChatMenu;
   public InventoryMenuScript InventoryMenu;
   public InputManagerScript InputManager;
   public PhotoGalleryScript PhotoGallery;
@@ -62,8 +63,9 @@ public class PauseScreenScript : MonoBehaviour
   public string[] SelectionNames;
   public Transform[] Eggs;
   public float Speed;
-  public int Prompts;
   public int Selected = 1;
+  public int Prompts;
+  public int Secret;
   public bool ShowMissionModeDetails;
   public bool ViewingControlMenu;
   public bool CorrectingTime;
@@ -98,8 +100,11 @@ public class PauseScreenScript : MonoBehaviour
     this.transform.localPosition = new Vector3(1350f, 0.0f, 0.0f);
     this.transform.localScale = new Vector3(0.9133334f, 0.9133334f, 0.9133334f);
     this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, 0.0f);
+    if (!this.Home)
+      this.YouTubeChatMenu.CommandChecker.CountdownCircle.transform.parent.gameObject.SetActive(false);
     this.FavorMenu.BountyMenu.gameObject.SetActive(false);
     this.StudentInfoMenu.gameObject.SetActive(false);
+    this.YouTubeChatMenu.gameObject.SetActive(false);
     this.InventoryMenu.gameObject.SetActive(false);
     this.PhotoGallery.gameObject.SetActive(false);
     this.SaveLoadMenu.gameObject.SetActive(false);
@@ -119,6 +124,8 @@ public class PauseScreenScript : MonoBehaviour
     this.StudentInfo.SetActive(false);
     this.DropsMenu.SetActive(false);
     this.MainMenu.SetActive(true);
+    this.YouTubeChatMenu.InitializeWindow.SetActive(true);
+    this.YouTubeChatMenu.CommandWindow.SetActive(false);
     if (!(SceneManager.GetActiveScene().name == "SchoolScene"))
     {
       this.MissionModeIcons.SetActive(false);
@@ -136,17 +143,19 @@ public class PauseScreenScript : MonoBehaviour
       phoneIcon6.color = new Color(phoneIcon6.color.r, phoneIcon6.color.g, phoneIcon6.color.b, 0.5f);
       UISprite phoneIcon7 = this.PhoneIcons[17];
       phoneIcon7.color = new Color(phoneIcon7.color.r, phoneIcon7.color.g, phoneIcon7.color.b, 0.5f);
+      UISprite phoneIcon8 = this.PhoneIcons[16];
+      phoneIcon8.color = new Color(phoneIcon8.color.r, phoneIcon8.color.g, phoneIcon8.color.b, 0.5f);
       if ((Object) this.NewMissionModeWindow != (Object) null)
         this.NewMissionModeWindow.SetActive(false);
     }
     if (MissionModeGlobals.MissionMode)
     {
-      UISprite phoneIcon8 = this.PhoneIcons[7];
-      phoneIcon8.color = new Color(phoneIcon8.color.r, phoneIcon8.color.g, phoneIcon8.color.b, 0.5f);
-      UISprite phoneIcon9 = this.PhoneIcons[9];
+      UISprite phoneIcon9 = this.PhoneIcons[7];
       phoneIcon9.color = new Color(phoneIcon9.color.r, phoneIcon9.color.g, phoneIcon9.color.b, 0.5f);
-      UISprite phoneIcon10 = this.PhoneIcons[10];
-      phoneIcon10.color = new Color(phoneIcon10.color.r, phoneIcon10.color.g, phoneIcon10.color.b, 1f);
+      UISprite phoneIcon10 = this.PhoneIcons[9];
+      phoneIcon10.color = new Color(phoneIcon10.color.r, phoneIcon10.color.g, phoneIcon10.color.b, 0.5f);
+      UISprite phoneIcon11 = this.PhoneIcons[10];
+      phoneIcon11.color = new Color(phoneIcon11.color.r, phoneIcon11.color.g, phoneIcon11.color.b, 1f);
     }
     this.UpdateSelection();
     this.CorrectingTime = false;
@@ -580,8 +589,33 @@ public class PauseScreenScript : MonoBehaviour
                 this.ResettingDay = true;
                 this.Quitting = true;
               }
+              else if (this.Selected == 16)
+              {
+                this.YouTubeChatMenu.gameObject.SetActive(true);
+                this.MainMenu.SetActive(false);
+                this.Sideways = true;
+                this.PromptBar.ClearButtons();
+                this.PromptBar.Label[0].text = "Confirm";
+                this.PromptBar.Label[1].text = "Back";
+                if (!this.YouTubeChatMenu.InitializeWindow.activeInHierarchy)
+                {
+                  this.PromptBar.Label[0].text = "Toggle";
+                  this.PromptBar.Label[2].text = "Connect";
+                  this.PromptBar.Label[4].text = "Scroll";
+                  Cursor.lockState = CursorLockMode.None;
+                  Cursor.visible = true;
+                }
+                this.PromptBar.UpdateButtons();
+                this.PromptBar.Show = true;
+              }
               else if (this.Selected == 17)
                 this.ShowScheduleScreen();
+            }
+            else if (!this.Home && this.Selected == 16)
+            {
+              ++this.Secret;
+              if (this.Secret == 10)
+                this.PhoneIcons[16].alpha = 1f;
             }
           }
           else if (!this.PressedB)
@@ -666,6 +700,7 @@ public class PauseScreenScript : MonoBehaviour
             else
             {
               Debug.Log((object) ("We are now returning to the title screen. Currently, GameGlobals.Profile is: " + GameGlobals.Profile.ToString()));
+              GameGlobals.AlphabetMode = false;
               SceneManager.LoadScene("NewTitleScene");
             }
           }

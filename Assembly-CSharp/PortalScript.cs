@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PortalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
-// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -103,13 +103,19 @@ public class PortalScript : MonoBehaviour
     if ((double) this.Prompt.Circle[0].fillAmount == 0.0 | flag1)
     {
       this.Prompt.Circle[0].fillAmount = 1f;
-      if (!this.BypassWarning && this.Police.Corpses - this.Police.HiddenCorpses > 0 || !this.BypassWarning && this.Police.LimbParent.childCount > 0 || !this.BypassWarning && this.Police.BloodParent.childCount > 0 || !this.BypassWarning && this.Police.BloodyClothing > 0 || !this.BypassWarning && this.Police.BloodyWeapons > 0)
+      int num = 0;
+      foreach (Component component in this.Police.LimbParent)
+      {
+        if (component.gameObject.activeInHierarchy)
+          ++num;
+      }
+      if (!this.BypassWarning && this.Police.Corpses - this.Police.HiddenCorpses > 0 || !this.BypassWarning && num > 0 || !this.BypassWarning && this.Police.BloodParent.childCount > 0 || !this.BypassWarning && this.Police.BloodyClothing > 0 || !this.BypassWarning && this.Police.BloodyWeapons > 0)
       {
         string str = "";
         if (this.WashingMachine.Washing)
-          str = "     (The washing machine is still running.)";
+          str = " (The washing machine is still running.)";
         this.CorpsesLabel.text = "Corpses: " + (this.Police.Corpses - this.Police.HiddenCorpses).ToString();
-        this.BodyPartsLabel.text = "Body Parts: " + this.Police.LimbParent.childCount.ToString();
+        this.BodyPartsLabel.text = "Body Parts: " + num.ToString();
         this.BloodStainsLabel.text = "Blood Stains: " + this.Police.BloodParent.childCount.ToString();
         this.BloodyClothingLabel.text = "Bloody Clothing: " + this.Police.BloodyClothing.ToString() + str;
         this.BloodyWeaponsLabel.text = "Bloody Weapons: " + this.Police.BloodyWeapons.ToString();
@@ -118,6 +124,7 @@ public class PortalScript : MonoBehaviour
           this.BottomLabel.text = "If you try to leave school right now, the police will be called.";
           this.AttendClassLabel.text = "Leave School";
         }
+        this.Yandere.CharacterAnimation.CrossFade(this.Yandere.IdleAnim);
         this.EvidenceWarning.SetActive(true);
         this.Yandere.CanMove = false;
       }

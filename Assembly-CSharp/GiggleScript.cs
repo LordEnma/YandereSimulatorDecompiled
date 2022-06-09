@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GiggleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 5F8D6662-C74B-4D30-A4EA-D74F7A9A95B9
-// Assembly location: C:\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -38,7 +38,7 @@ public class GiggleScript : MonoBehaviour
       return;
     if (this.Student.StudentManager.LockerRoomArea.bounds.Contains(this.transform.position) || this.Student.StudentManager.WestBathroomArea.bounds.Contains(this.transform.position) || this.Student.StudentManager.EastBathroomArea.bounds.Contains(this.transform.position) || this.Student.Club != ClubType.Delinquent && this.Student.StudentManager.IncineratorArea.bounds.Contains(this.transform.position) || this.Student.StudentManager.HeadmasterArea.bounds.Contains(this.transform.position))
     {
-      Debug.Log((object) "Ignored for this reason?!");
+      Debug.Log((object) "Ignored because the giggle came from a bathroom/locker room.");
       if (this.Student.Yandere.NotificationManager.NotificationParent.childCount != 0)
         return;
       this.Student.Yandere.NotificationManager.CustomText = "Nobody will investigate a sound from there...";
