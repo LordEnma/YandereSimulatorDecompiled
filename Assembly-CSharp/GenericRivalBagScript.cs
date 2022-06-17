@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericRivalBagScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -207,34 +207,25 @@ public class GenericRivalBagScript : MonoBehaviour
           {
             if (this.Selected == 1)
             {
-              if (this.Prompt.Yandere.Inventory.RatPoison)
-                this.Prompt.Yandere.Inventory.RatPoison = false;
-              else
-                this.Prompt.Yandere.Inventory.EmeticPoison = false;
+              --this.Prompt.Yandere.Inventory.EmeticPoisons;
               this.Rival.MyBento.Tampered = true;
               this.Rival.MyBento.Emetic = true;
             }
             else if (this.Selected == 2)
             {
+              --this.Prompt.Yandere.Inventory.LethalPoisons;
               this.Rival.MyBento.Tampered = true;
               this.Rival.MyBento.Lethal = true;
-              if (this.Prompt.Yandere.Inventory.LethalPoison)
-                this.Prompt.Yandere.Inventory.LethalPoison = false;
-              else
-                this.Prompt.Yandere.Inventory.ChemicalPoison = false;
-              --this.Prompt.Yandere.Inventory.LethalPoisons;
             }
             else if (this.Selected == 3)
             {
+              --this.Prompt.Yandere.Inventory.HeadachePoisons;
               this.Rival.MyBento.Tampered = true;
               this.Rival.MyBento.Headache = true;
             }
             else if (this.Selected == 4)
             {
-              if (this.Prompt.Yandere.Inventory.Tranquilizer)
-                this.Prompt.Yandere.Inventory.Tranquilizer = false;
-              else
-                this.Prompt.Yandere.Inventory.Sedative = false;
+              --this.Prompt.Yandere.Inventory.SedativePoisons;
               this.Rival.MyBento.Tampered = true;
               this.Rival.MyBento.Tranquil = true;
             }
@@ -432,13 +423,13 @@ public class GenericRivalBagScript : MonoBehaviour
       this.Label[4].text = "PUT SEDATIVE POISON IN BENTO";
       this.Label[5].text = "STEAL BENTO";
       this.Label[6].text = "BACK";
-      if (!this.Prompt.Yandere.Inventory.EmeticPoison && !this.Prompt.Yandere.Inventory.RatPoison)
+      if (this.Prompt.Yandere.Inventory.EmeticPoisons == 0)
         this.Label[1].color = new Color(1f, 1f, 1f, 0.5f);
       if (this.Prompt.Yandere.Inventory.LethalPoisons == 0)
         this.Label[2].color = new Color(1f, 1f, 1f, 0.5f);
-      if (!this.Prompt.Yandere.Inventory.HeadachePoison)
+      if (this.Prompt.Yandere.Inventory.HeadachePoisons == 0)
         this.Label[3].color = new Color(1f, 1f, 1f, 0.5f);
-      if (!this.Prompt.Yandere.Inventory.Sedative && !this.Prompt.Yandere.Inventory.Tranquilizer)
+      if (this.Prompt.Yandere.Inventory.SedativePoisons == 0)
         this.Label[4].color = new Color(1f, 1f, 1f, 0.5f);
       this.Limit = 6;
     }

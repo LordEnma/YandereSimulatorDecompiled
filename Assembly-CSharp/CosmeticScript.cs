@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CosmeticScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -211,6 +211,7 @@ public class CosmeticScript : MonoBehaviour
   public int FacialHairstyle;
   public int FemaleUniformID;
   public int MaleUniformID;
+  public int PrisonerID;
   public int Accessory;
   public int Direction;
   public int Hairstyle;
@@ -449,8 +450,7 @@ public class CosmeticScript : MonoBehaviour
       }
       else
       {
-        for (int index = 0; index < 10; ++index)
-          this.Fingernails[index].gameObject.SetActive(false);
+        this.DisableFingernails();
         if (this.Club == ClubType.Gardening && !this.TakingPortrait && !this.Kidnapped)
           this.CanRenderer.material.mainTexture = this.CanTextures[this.StudentID];
       }
@@ -1381,6 +1381,8 @@ public class CosmeticScript : MonoBehaviour
   {
     if (this.Club != ClubType.Council)
     {
+      if (this.FemaleUniformID == 0 && this.Eighties)
+        this.FemaleUniformID = 6;
       this.MyRenderer.sharedMesh = this.FemaleUniforms[this.FemaleUniformID];
       this.SchoolUniform = this.FemaleUniforms[this.FemaleUniformID];
       if (this.Club == ClubType.Delinquent)
@@ -2135,7 +2137,7 @@ public class CosmeticScript : MonoBehaviour
       if ((Object) ring != (Object) null)
         ring.SetActive(true);
     }
-    if (!this.StudentManager.Yandere.Inventory.Ring)
+    if (!((Object) this.StudentManager != (Object) null) || !((Object) this.StudentManager.Yandere != (Object) null) || !this.StudentManager.Yandere.Inventory.Ring)
       return;
     this.Rings[DateGlobals.Week].gameObject.SetActive(false);
   }
@@ -2164,5 +2166,11 @@ public class CosmeticScript : MonoBehaviour
     }
     else
       this.enabled = false;
+  }
+
+  public void DisableFingernails()
+  {
+    for (int index = 0; index < 10; ++index)
+      this.Fingernails[index].gameObject.SetActive(false);
   }
 }

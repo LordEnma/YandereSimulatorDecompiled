@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TrashCanScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -20,6 +20,7 @@ public class TrashCanScript : MonoBehaviour
   public bool Weapon;
   public bool Worn;
   public float KinematicTimer;
+  public int BagID;
 
   private void Update()
   {
@@ -219,6 +220,7 @@ public class TrashCanScript : MonoBehaviour
     this.Item = this.ConcealedWeapon.gameObject;
     this.ConcealedWeapon.MyRigidbody.isKinematic = true;
     this.ConcealedWeapon.InBag = true;
+    this.ConcealedWeapon.BagID = this.BagID;
     this.Weapon = true;
     this.PositionItem();
   }

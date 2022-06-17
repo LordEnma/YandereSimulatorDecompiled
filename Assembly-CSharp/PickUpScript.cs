@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PickUpScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -33,6 +33,7 @@ public class PickUpScript : MonoBehaviour
   public ClockScript Clock;
   public MopScript Mop;
   public GameObject PuddleSparks;
+  public GameObject SmokeCloud;
   public GameObject TarpObject;
   public GameObject Explosion;
   public GameObject Flame;
@@ -67,6 +68,7 @@ public class PickUpScript : MonoBehaviour
   public bool BangSnaps;
   public bool Blowtorch;
   public bool OpenFlame;
+  public bool SmokeBomb;
   public bool Clothing;
   public bool Evidence;
   public bool JerryCan;
@@ -284,7 +286,7 @@ public class PickUpScript : MonoBehaviour
       else
         this.Prompt.HideButton[0] = true;
     }
-    else if (this.Usable && (Object) this.Bucket == (Object) null && (Object) this.Mop == (Object) null && !this.StinkBombs && !this.BangSnaps)
+    else if (this.Usable && (Object) this.Bucket == (Object) null && (Object) this.Mop == (Object) null && !this.StinkBombs && !this.BangSnaps && !this.SmokeBomb)
     {
       if (this.Prompt.Carried)
       {
@@ -302,12 +304,30 @@ public class PickUpScript : MonoBehaviour
       else
         this.Prompt.HideButton[0] = true;
     }
-    else if ((Object) this.Flame != (Object) null && (double) this.Prompt.Circle[0].fillAmount == 0.0)
+    else if ((Object) this.Flame != (Object) null)
     {
-      this.Prompt.Circle[0].fillAmount = 1f;
-      this.Flame.SetActive(!this.Flame.activeInHierarchy);
+      if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
+      {
+        this.Prompt.Circle[0].fillAmount = 1f;
+        this.Flame.SetActive(!this.Flame.activeInHierarchy);
+      }
     }
-    if (!((Object) this.Flame != (Object) null) || !this.Flame.activeInHierarchy)
+    else if (this.SmokeBomb)
+    {
+      if (this.Prompt.Carried)
+      {
+        this.Prompt.HideButton[0] = false;
+        this.Prompt.HideButton[3] = true;
+      }
+      if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
+      {
+        this.Prompt.Circle[0].fillAmount = 1f;
+        Object.Instantiate<GameObject>(this.SmokeCloud, this.Yandere.transform.position, Quaternion.identity);
+        this.Drop();
+        Object.Destroy((Object) this.gameObject);
+      }
+    }
+    if (!((Object) this.Flame != (Object) null) || !this.Flame.activeInHierarchy || (double) Time.timeScale <= 0.100000001490116)
       return;
     this.Flame.transform.localScale = new Vector3(Random.Range(17.5f, 22.5f), Random.Range(17.5f, 22.5f), Random.Range(17.5f, 22.5f));
   }
@@ -490,7 +510,7 @@ public class PickUpScript : MonoBehaviour
         this.transform.eulerAngles = new Vector3(90f, 0.0f, 0.0f);
       }
     }
-    if (this.StinkBombs || this.BangSnaps)
+    if (this.StinkBombs || this.BangSnaps || this.SmokeBomb)
     {
       this.Prompt.Yandere.Arc.SetActive(false);
       this.Prompt.HideButton[3] = false;

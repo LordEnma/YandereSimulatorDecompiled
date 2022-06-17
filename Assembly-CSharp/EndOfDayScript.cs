@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -12,6 +12,7 @@ using UnityEngine.SceneManagement;
 
 public class EndOfDayScript : MonoBehaviour
 {
+  public RemovableItemManagerScript RemovableItemManager;
   public SecuritySystemScript SecuritySystem;
   public StudentManagerScript StudentManager;
   public WeaponManagerScript WeaponManager;
@@ -554,7 +555,7 @@ public class EndOfDayScript : MonoBehaviour
           if ((UnityEngine.Object) this.MurderWeapon == (UnityEngine.Object) null)
           {
             WeaponScript weapon = this.WeaponManager.Weapons[this.ID];
-            if ((UnityEngine.Object) weapon != (UnityEngine.Object) null && weapon.Blood.enabled)
+            if ((UnityEngine.Object) weapon != (UnityEngine.Object) null && weapon.gameObject.activeInHierarchy && weapon.Blood.enabled)
             {
               if (!weapon.AlreadyExamined)
               {
@@ -844,7 +845,7 @@ public class EndOfDayScript : MonoBehaviour
       if (this.StudentManager.RivalEliminated || this.RivalEliminationMethod != RivalEliminationType.None)
         ++this.Phase;
       else if (DateGlobals.Weekday == DayOfWeek.Friday)
-        this.Phase = 23;
+        this.Phase = 24;
       else
         this.Phase += 2;
     }
@@ -1237,8 +1238,33 @@ public class EndOfDayScript : MonoBehaviour
       }
     }
     else if (this.Phase == 22)
-      this.Finish();
+    {
+      Debug.Log((object) "The End-of-Day sequence is now checking whether or not we need to boot the player out of a club.");
+      Debug.Log((object) ("ClubGlobals.Club is: " + ClubGlobals.Club.ToString()));
+      Debug.Log((object) ("DateGlobals.Weekday is: " + DateGlobals.Weekday.ToString()));
+      Debug.Log((object) ("ClubManager.ActivitiesAttended is: " + this.ClubManager.ActivitiesAttended.ToString()));
+      if (this.Yandere.Club != ClubType.None && DateGlobals.Weekday == DayOfWeek.Friday && this.ClubManager.ActivitiesAttended == 0)
+      {
+        this.TeleportYandere();
+        this.Yandere.CharacterAnimation.Play("f02_disappointed_00");
+        if (this.Yandere.StudentManager.Eighties)
+          this.Yandere.LoseGentleEyes();
+        if (this.StudentManager.Eighties)
+          this.Protagonist = "Ryoba";
+        this.Label.text = this.Protagonist + " did not participate in any activities with her club this week. She been kicked out of the club.";
+        ClubGlobals.SetClubKicked(this.Yandere.Club, true);
+        ClubGlobals.Club = ClubType.None;
+        this.Yandere.Club = ClubType.None;
+      }
+      else
+      {
+        ++this.Phase;
+        this.UpdateScene();
+      }
+    }
     else if (this.Phase == 23)
+      this.Finish();
+    else if (this.Phase == 24)
     {
       this.Senpai.enabled = false;
       this.Senpai.Pathfinding.enabled = false;
@@ -1265,7 +1291,7 @@ public class EndOfDayScript : MonoBehaviour
       this.Label.text = "After the police investigation ends, " + this.RivalName + " asks Senpai to speak with her under the cherry tree behind the school.";
       ++this.Phase;
     }
-    else if (this.Phase == 24)
+    else if (this.Phase == 25)
     {
       for (int DisableID = 1; DisableID < 101; ++DisableID)
         this.StudentManager.DisableStudent(DisableID);
@@ -1295,6 +1321,8 @@ public class EndOfDayScript : MonoBehaviour
       Physics.SyncTransforms();
       this.Label.text = this.Protagonist + " is arrested by the police. She will never have Senpai.";
       this.GameOver = true;
+      this.Heartbroken.Arrested = true;
+      this.Heartbroken.NoSnap = true;
     }
     else if (this.Phase == 101)
     {
@@ -1377,7 +1405,7 @@ public class EndOfDayScript : MonoBehaviour
       if (!this.StudentManager.Students[this.Police.SuicideID].Ragdoll.Disposed)
       {
         this.MurderScene.SetActive(true);
-        this.Label.text = !this.Police.SuicideNote ? "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police treat the incident as a murder case, and search the school for any other victims." : "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police find a suicide note, but still treat the incident as a potential murder case, and search the school for any other victims.";
+        this.Label.text = !this.Police.SuicideNote ? "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police treat the incident as a murder case, and search the school for any other victims." : "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police find a suicide note, and conclude that the deceased student probably took their own lide. However, they still search the school for clues and evidence.";
         if (this.Police.SuicideID == this.StudentManager.RivalID)
           this.RivalEliminationMethod = RivalEliminationType.SuicideFake;
         this.ErectFence = true;
@@ -1601,8 +1629,44 @@ public class EndOfDayScript : MonoBehaviour
     HomeGlobals.Night = true;
     this.Police.KillStudents();
     DateGlobals.PassDays = !this.Police.Suspended ? 1 : this.Police.SuspensionLength;
-    if ((UnityEngine.Object) this.StudentManager.Students[SchoolGlobals.KidnapVictim] != (UnityEngine.Object) null && this.StudentManager.Students[SchoolGlobals.KidnapVictim].Ragdoll.enabled)
-      SchoolGlobals.KidnapVictim = 0;
+    if ((UnityEngine.Object) this.StudentManager.Students[StudentGlobals.StudentSlave] != (UnityEngine.Object) null && this.StudentManager.Students[StudentGlobals.StudentSlave].Ragdoll.enabled)
+    {
+      StudentGlobals.StudentSlave = 0;
+      --StudentGlobals.Prisoners;
+      switch (StudentGlobals.PrisonerChosen)
+      {
+        case 1:
+          StudentGlobals.Prisoner1 = 0;
+          break;
+        case 2:
+          StudentGlobals.Prisoner2 = 0;
+          break;
+        case 3:
+          StudentGlobals.Prisoner3 = 0;
+          break;
+        case 4:
+          StudentGlobals.Prisoner4 = 0;
+          break;
+        case 5:
+          StudentGlobals.Prisoner5 = 0;
+          break;
+        case 6:
+          StudentGlobals.Prisoner6 = 0;
+          break;
+        case 7:
+          StudentGlobals.Prisoner7 = 0;
+          break;
+        case 8:
+          StudentGlobals.Prisoner8 = 0;
+          break;
+        case 9:
+          StudentGlobals.Prisoner9 = 0;
+          break;
+        case 10:
+          StudentGlobals.Prisoner10 = 0;
+          break;
+      }
+    }
     for (int elimID = 1; elimID < 11; ++elimID)
     {
       if (this.StudentManager.RivalKilledSelf[elimID])
@@ -1625,7 +1689,40 @@ public class EndOfDayScript : MonoBehaviour
     }
     else
     {
-      SchoolGlobals.KidnapVictim = this.TranqCase.VictimID;
+      ++StudentGlobals.Prisoners;
+      switch (StudentGlobals.Prisoners)
+      {
+        case 1:
+          StudentGlobals.Prisoner1 = this.TranqCase.VictimID;
+          break;
+        case 2:
+          StudentGlobals.Prisoner2 = this.TranqCase.VictimID;
+          break;
+        case 3:
+          StudentGlobals.Prisoner3 = this.TranqCase.VictimID;
+          break;
+        case 4:
+          StudentGlobals.Prisoner4 = this.TranqCase.VictimID;
+          break;
+        case 5:
+          StudentGlobals.Prisoner5 = this.TranqCase.VictimID;
+          break;
+        case 6:
+          StudentGlobals.Prisoner6 = this.TranqCase.VictimID;
+          break;
+        case 7:
+          StudentGlobals.Prisoner7 = this.TranqCase.VictimID;
+          break;
+        case 8:
+          StudentGlobals.Prisoner8 = this.TranqCase.VictimID;
+          break;
+        case 9:
+          StudentGlobals.Prisoner9 = this.TranqCase.VictimID;
+          break;
+        case 10:
+          StudentGlobals.Prisoner10 = this.TranqCase.VictimID;
+          break;
+      }
       StudentGlobals.SetStudentKidnapped(this.TranqCase.VictimID, true);
       StudentGlobals.SetStudentSanity(this.TranqCase.VictimID, 100f);
       if (flag)
@@ -1740,7 +1837,7 @@ public class EndOfDayScript : MonoBehaviour
       if ((UnityEngine.Object) this.WeaponManager.BroughtWeapons[ID] == (UnityEngine.Object) null)
         PlayerGlobals.SetCannotBringItem(ID, true);
     }
-    if (this.Yandere.Inventory.ArrivedWithRatPoison && !this.Yandere.Inventory.RatPoison)
+    if (this.Yandere.Inventory.ArrivedWithRatPoison && this.Yandere.Inventory.EmeticPoisons == 0)
       PlayerGlobals.SetCannotBringItem(4, true);
     if (this.Yandere.Inventory.ArrivedWithSake && !this.Yandere.Inventory.Sake)
       PlayerGlobals.SetCannotBringItem(5, true);
@@ -1748,14 +1845,14 @@ public class EndOfDayScript : MonoBehaviour
       PlayerGlobals.SetCannotBringItem(6, true);
     if (this.Yandere.Inventory.ArrivedWithCondoms && !this.Yandere.Inventory.Condoms)
       PlayerGlobals.SetCannotBringItem(7, true);
-    if (this.Yandere.Inventory.ArrivedWithSedative && !this.Yandere.Inventory.Sedative)
+    if (this.Yandere.Inventory.ArrivedWithSedative && this.Yandere.Inventory.SedativePoisons == 0)
     {
       PlayerGlobals.SetCannotBringItem(9, true);
       PlayerGlobals.BoughtSedative = false;
     }
-    if (this.Yandere.Inventory.ArrivedWithPoison && !this.Yandere.Inventory.LethalPoison)
+    if (this.Yandere.Inventory.ArrivedWithPoison && this.Yandere.Inventory.LethalPoisons == 0)
     {
-      Debug.Log((object) "The player arrived with poison. The player doesn't have that poison anymore.");
+      Debug.Log((object) "The player arrived with lethal poison. The player doesn't have lethal poison anymore.");
       PlayerGlobals.SetCannotBringItem(11, true);
       PlayerGlobals.BoughtPoison = false;
     }
@@ -1764,7 +1861,7 @@ public class EndOfDayScript : MonoBehaviour
       Debug.Log((object) "The player is bringing some poison home from school.");
       PlayerGlobals.BoughtPoison = true;
     }
-    if (this.Yandere.Inventory.Sedative)
+    if (this.Yandere.Inventory.SedativePoisons > 0)
       PlayerGlobals.BoughtSedative = true;
     if (this.Yandere.Inventory.LockPick)
       PlayerGlobals.BoughtLockpick = true;
@@ -1776,9 +1873,9 @@ public class EndOfDayScript : MonoBehaviour
       PlayerGlobals.SetCannotBringItem(6, false);
     if (this.Yandere.Inventory.Sake)
       PlayerGlobals.SetCannotBringItem(5, false);
-    if (this.Yandere.Inventory.EmeticPoison || this.Yandere.Inventory.RatPoison)
+    if (this.Yandere.Inventory.EmeticPoisons > 0)
       PlayerGlobals.SetCannotBringItem(4, false);
-    if (this.Yandere.Inventory.Sedative || this.Yandere.Inventory.Tranquilizer)
+    if (this.Yandere.Inventory.SedativePoisons > 0)
     {
       PlayerGlobals.BoughtSedative = true;
       PlayerGlobals.SetCannotBringItem(9, false);
@@ -1793,7 +1890,9 @@ public class EndOfDayScript : MonoBehaviour
     PlayerGlobals.WeaponWitnessed += this.WeaponWitnessed;
     this.ClubManager.UpdateQuitClubs();
     StudentGlobals.UpdateRivalReputation = false;
+    ClubGlobals.ActivitiesAttended = DateGlobals.Weekday != DayOfWeek.Friday ? this.ClubManager.ActivitiesAttended : 0;
     this.ArrestStudents();
+    this.RemovableItemManager.RemoveItems();
     this.Yandere.CameraEffects.UpdateVignette(0.0f);
   }
 

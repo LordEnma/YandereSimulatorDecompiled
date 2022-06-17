@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeDarknessScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 
 public class HomeDarknessScript : MonoBehaviour
 {
+  public PrisonerManagerScript PrisonerManager;
   public HomeVideoGamesScript HomeVideoGames;
   public HomeYandereScript HomeYandere;
   public HomeCameraScript HomeCamera;
@@ -67,8 +68,9 @@ public class HomeDarknessScript : MonoBehaviour
         }
         else if (this.HomeCamera.ID == 10)
         {
-          StudentGlobals.SetStudentKidnapped(SchoolGlobals.KidnapVictim, false);
-          StudentGlobals.StudentSlave = SchoolGlobals.KidnapVictim;
+          StudentGlobals.SetStudentKidnapped(this.PrisonerManager.StudentID, false);
+          StudentGlobals.StudentSlave = this.PrisonerManager.StudentID;
+          StudentGlobals.PrisonerChosen = this.PrisonerManager.ChosenPrisoner;
           this.CheckForOsanaThursday();
         }
         else if (this.HomeCamera.ID == 11)

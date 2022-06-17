@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GameGlobals
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -53,6 +53,7 @@ public static class GameGlobals
   private const string Str_AbductionTarget = "AbductionTarget";
   private const string Str_CameFromTitleScreen = "CameFromTitleScreen";
   private const string Str_VtuberID = "VtuberID";
+  private const string Str_ItemRemoved = "ItemRemoved";
 
   public static int Profile
   {
@@ -334,6 +335,17 @@ public static class GameGlobals
     set => PlayerPrefs.SetInt(nameof (VtuberID), value);
   }
 
+  public static int GetItemRemoved(int itemID) => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_ItemRemoved" + itemID.ToString());
+
+  public static void SetItemRemoved(int itemID, int value)
+  {
+    string id = itemID.ToString();
+    KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_ItemRemoved", id);
+    PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_ItemRemoved" + id, value);
+  }
+
+  public static int[] KeysOfItemRemoved() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_ItemRemoved");
+
   public static void DeleteAll()
   {
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_LoveSick");
@@ -382,5 +394,6 @@ public static class GameGlobals
       GameGlobals.SetSpecificEliminations(elimID, 0);
     Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminations", GameGlobals.KeysOfRivalEliminations());
     Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_SpecificEliminations", GameGlobals.KeysOfSpecificEliminations());
+    Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_ItemRemoved", GameGlobals.KeysOfItemRemoved());
   }
 }

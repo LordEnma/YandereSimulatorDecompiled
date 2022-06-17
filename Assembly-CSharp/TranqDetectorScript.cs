@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TranqDetectorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -20,13 +20,13 @@ public class TranqDetectorScript : MonoBehaviour
   public UISprite DoorIcon;
   public bool StopChecking;
   public bool CannotKidnap;
-  public int BasementPrisoner;
+  public int BasementPrisoners;
   public AudioClip[] TranqClips;
 
   private void Start()
   {
     this.Checklist.alpha = 0.0f;
-    this.BasementPrisoner = SchoolGlobals.KidnapVictim;
+    this.BasementPrisoners = StudentGlobals.Prisoners;
   }
 
   private void Update()
@@ -35,14 +35,14 @@ public class TranqDetectorScript : MonoBehaviour
     {
       if (this.MyCollider.bounds.Contains(this.Yandere.transform.position))
       {
-        if (this.BasementPrisoner > 0)
+        if (this.BasementPrisoners > 9)
         {
           this.KidnappingLabel.text = "There is no room for another prisoner in your basement.";
           this.CannotKidnap = true;
         }
         else
         {
-          this.TranquilizerIcon.spriteName = this.Yandere.Inventory.Tranquilizer || this.Yandere.Inventory.Sedative ? "Yes" : "No";
+          this.TranquilizerIcon.spriteName = this.Yandere.Inventory.SedativePoisons <= 0 ? "No" : "Yes";
           if (this.Yandere.Followers != 1)
             this.FollowerIcon.spriteName = "No";
           else if (this.Yandere.Follower.Male)
@@ -89,10 +89,7 @@ public class TranqDetectorScript : MonoBehaviour
     this.Door.Prompt.Hide();
     this.Door.Prompt.enabled = false;
     this.Door.enabled = false;
-    if (this.Yandere.Inventory.Tranquilizer)
-      this.Yandere.Inventory.Tranquilizer = false;
-    else
-      this.Yandere.Inventory.Sedative = false;
+    --this.Yandere.Inventory.SedativePoisons;
     if (!this.Yandere.Follower.Male)
       this.Yandere.CanTranq = true;
     this.Yandere.EquippedWeapon.Type = WeaponType.Syringe;

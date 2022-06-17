@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GloveScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -45,6 +45,7 @@ public class GloveScript : MonoBehaviour
         if (this.Raincoat)
           this.Prompt.Yandere.WearingRaincoat = true;
         this.Prompt.Yandere.StudentManager.GloveID = this.GloveID;
+        Debug.Log((object) ("The StudentManager was just informed that GloveID should be: " + this.GloveID.ToString()));
         this.Prompt.Yandere.Gloves = this;
         this.Prompt.Yandere.WearGloves();
         this.gameObject.SetActive(false);

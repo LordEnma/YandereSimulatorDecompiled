@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClassScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -287,6 +287,7 @@ public class ClassScript : MonoBehaviour
             this.GradeUpName.text = "PSYCHOLOGY RANK UP";
             this.GradeUpDesc.text = this.Subject5GradeText[this.Grade];
           }
+          this.GradeUpDesc.text = this.GradeUpDesc.text.Replace("\\n", "\n\n");
           this.PromptBar.ClearButtons();
           this.PromptBar.Label[0].text = "Continue";
           this.PromptBar.UpdateButtons();
@@ -562,6 +563,7 @@ public class ClassScript : MonoBehaviour
 
   private void GivePoints()
   {
+    this.StudyPoints = 500;
     this.BiologyGrade = 0;
     this.ChemistryGrade = 0;
     this.LanguageGrade = 0;

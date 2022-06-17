@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HeadmasterScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -364,7 +364,11 @@ public class HeadmasterScript : MonoBehaviour
       this.Jaw.transform.localEulerAngles = new Vector3(0.0f, 0.0f, this.JawRot);
     }
     else
+    {
+      if ((double) Time.timeScale <= 0.100000001490116)
+        return;
       this.Jaw.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 30f);
+    }
   }
 
   private void AimBodyAtYandere()

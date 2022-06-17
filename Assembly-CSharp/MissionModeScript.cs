@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MissionModeScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -779,6 +779,7 @@ public class MissionModeScript : MonoBehaviour
           this.ExitPortalPrompt.Label[0].text = "     Exfiltrate";
           if ((double) this.ExitPortalPrompt.Circle[0].fillAmount == 0.0)
           {
+            this.Yandere.EmptyHands();
             this.StudentManager.DisableChaseCameras();
             this.MainCamera.transform.position = new Vector3(0.5f, 2.25f, -100.5f);
             this.MainCamera.transform.eulerAngles = Vector3.zero;

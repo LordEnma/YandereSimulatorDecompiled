@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SmokeBombScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -49,6 +49,7 @@ public class SmokeBombScript : MonoBehaviour
     {
       if (this.Amnesia && !component.Chasing)
         component.ReturnToNormal();
+      Debug.Log((object) (component.Name + " has been blinded."));
       this.Students[this.ID] = component;
       component.Blind = true;
       ++this.ID;

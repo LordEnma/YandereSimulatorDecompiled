@@ -1,9 +1,10 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
+using System;
 using UnityEngine;
 
 public class WeaponManagerScript : MonoBehaviour
@@ -36,11 +37,25 @@ public class WeaponManagerScript : MonoBehaviour
 
   public void Start()
   {
-    for (int weaponID = 0; weaponID < this.Weapons.Length; ++weaponID)
+    bool flag = false;
+    if (DateGlobals.Weekday == DayOfWeek.Monday)
+      flag = true;
+    for (int index = 0; index < this.Weapons.Length; ++index)
     {
-      this.Weapons[weaponID].GlobalID = weaponID;
-      if (WeaponGlobals.GetWeaponStatus(weaponID) == 1)
-        this.Weapons[weaponID].gameObject.SetActive(false);
+      this.Weapons[index].GlobalID = index;
+      if (WeaponGlobals.GetWeaponStatus(index) == 1)
+      {
+        if (this.Weapons[index].ClubProperty & flag)
+        {
+          Debug.Log((object) ("Weapon #" + index.ToString() + " was destroyed by the player, but it has been replaced."));
+          GameGlobals.SetItemRemoved(index, 0);
+        }
+        else
+        {
+          Debug.Log((object) ("Weapon #" + index.ToString() + " was destroyed! Disabling it!"));
+          this.Weapons[index].gameObject.SetActive(false);
+        }
+      }
     }
     int bringingItem = PlayerGlobals.BringingItem;
     if (bringingItem > 0 && bringingItem < this.BroughtWeapons.Length)
@@ -59,7 +74,7 @@ public class WeaponManagerScript : MonoBehaviour
   {
     foreach (WeaponScript weapon in this.Weapons)
     {
-      if ((Object) weapon != (Object) null)
+      if ((UnityEngine.Object) weapon != (UnityEngine.Object) null)
         weapon.UpdateLabel();
     }
   }
@@ -72,7 +87,7 @@ public class WeaponManagerScript : MonoBehaviour
       this.Victims[index] = 0;
     foreach (WeaponScript weapon in this.Weapons)
     {
-      if ((Object) weapon != (Object) null && weapon.Blood.enabled && !weapon.AlreadyExamined)
+      if ((UnityEngine.Object) weapon != (UnityEngine.Object) null && weapon.gameObject.activeInHierarchy && weapon.Blood.enabled && !weapon.AlreadyExamined)
       {
         ++this.MurderWeapons;
         if (weapon.FingerprintID > 0)
@@ -92,7 +107,7 @@ public class WeaponManagerScript : MonoBehaviour
   {
     foreach (WeaponScript weapon in this.Weapons)
     {
-      if ((Object) weapon != (Object) null)
+      if ((UnityEngine.Object) weapon != (UnityEngine.Object) null)
       {
         weapon.Blood.enabled = false;
         weapon.FingerprintID = 0;
@@ -104,7 +119,7 @@ public class WeaponManagerScript : MonoBehaviour
   {
     foreach (WeaponScript weapon in this.Weapons)
     {
-      if ((Object) weapon != (Object) null)
+      if ((UnityEngine.Object) weapon != (UnityEngine.Object) null)
       {
         if (!GameGlobals.CensorBlood)
         {
@@ -131,20 +146,11 @@ public class WeaponManagerScript : MonoBehaviour
     ++this.Frame;
   }
 
-  public void TrackDumpedWeapons()
-  {
-    for (int index = 0; index < this.Weapons.Length; ++index)
-    {
-      if ((Object) this.Weapons[index] == (Object) null)
-        Debug.Log((object) ("Weapon #" + index.ToString() + " was destroyed! Setting status to 1!"));
-    }
-  }
-
   public void SetEquippedWeapon1(WeaponScript Weapon)
   {
     for (int index = 0; index < this.Weapons.Length; ++index)
     {
-      if ((Object) this.Weapons[index] == (Object) Weapon)
+      if ((UnityEngine.Object) this.Weapons[index] == (UnityEngine.Object) Weapon)
         this.YandereWeapon1 = index;
     }
   }
@@ -153,7 +159,7 @@ public class WeaponManagerScript : MonoBehaviour
   {
     for (int index = 0; index < this.Weapons.Length; ++index)
     {
-      if ((Object) this.Weapons[index] == (Object) Weapon)
+      if ((UnityEngine.Object) this.Weapons[index] == (UnityEngine.Object) Weapon)
         this.YandereWeapon2 = index;
     }
   }
@@ -162,7 +168,7 @@ public class WeaponManagerScript : MonoBehaviour
   {
     for (int index = 0; index < this.Weapons.Length; ++index)
     {
-      if ((Object) this.Weapons[index] == (Object) Weapon)
+      if ((UnityEngine.Object) this.Weapons[index] == (UnityEngine.Object) Weapon)
         this.YandereWeapon3 = index;
     }
   }
@@ -171,7 +177,7 @@ public class WeaponManagerScript : MonoBehaviour
   {
     for (int index = 0; index < this.Weapons.Length; ++index)
     {
-      if ((Object) this.Weapons[index] != (Object) null && this.Weapons[index].Bloody)
+      if ((UnityEngine.Object) this.Weapons[index] != (UnityEngine.Object) null && this.Weapons[index].Bloody)
       {
         this.Weapons[index].Blood.enabled = true;
         ++this.Yandere.Police.BloodyWeapons;
@@ -190,9 +196,9 @@ public class WeaponManagerScript : MonoBehaviour
       this.OriginalWeapon = this.YandereWeapon3;
     if (this.Yandere.Equipped > 0)
       this.Yandere.Unequip();
-    if ((Object) this.Yandere.Weapon[1] != (Object) null)
+    if ((UnityEngine.Object) this.Yandere.Weapon[1] != (UnityEngine.Object) null)
       this.Yandere.Weapon[1].Drop();
-    if ((Object) this.Yandere.Weapon[2] != (Object) null)
+    if ((UnityEngine.Object) this.Yandere.Weapon[2] != (UnityEngine.Object) null)
       this.Yandere.Weapon[2].Drop();
     if (this.YandereWeapon1 > -1)
     {
@@ -257,7 +263,7 @@ public class WeaponManagerScript : MonoBehaviour
     this.BloodyWeapons = 0;
     for (int index = 1; index < this.Weapons.Length; ++index)
     {
-      if ((Object) this.Weapons[index] != (Object) null && this.Weapons[index].gameObject.activeInHierarchy && this.Weapons[index].Bloody)
+      if ((UnityEngine.Object) this.Weapons[index] != (UnityEngine.Object) null && this.Weapons[index].gameObject.activeInHierarchy && this.Weapons[index].Bloody)
         ++this.BloodyWeapons;
     }
   }
@@ -276,8 +282,9 @@ public class WeaponManagerScript : MonoBehaviour
       if (this.Weapons[index].InBag)
       {
         Debug.Log((object) "A weapon belongs in a bag!");
-        this.Yandere.StudentManager.WeaponBag.ConcealedWeapon = this.Weapons[index];
-        this.Yandere.StudentManager.WeaponBag.PutWeaponInBag();
+        TrashCanScript trashCan = this.Yandere.StudentManager.TrashCans[this.Weapons[index].BagID];
+        trashCan.ConcealedWeapon = this.Weapons[index];
+        trashCan.PutWeaponInBag();
       }
     }
   }
@@ -286,10 +293,22 @@ public class WeaponManagerScript : MonoBehaviour
   {
     for (int index = 1; index < this.Dumbbells.Length; ++index)
     {
-      if ((Object) this.Dumbbells[index] != (Object) null && (double) Vector3.Distance(this.Dumbbells[index].position, this.Yandere.StudentManager.Students[StudentID].transform.position) < 2.0)
+      if ((UnityEngine.Object) this.Dumbbells[index] != (UnityEngine.Object) null && (double) Vector3.Distance(this.Dumbbells[index].position, this.Yandere.StudentManager.Students[StudentID].transform.position) < 2.0)
       {
         this.DumbbellNear = true;
         this.ChosenDumbbell = this.Dumbbells[index];
+      }
+    }
+  }
+
+  public void TrackDumpedWeapons()
+  {
+    for (int weaponID = 0; weaponID < this.Weapons.Length; ++weaponID)
+    {
+      if (this.Weapons[weaponID].Dumped && (this.Weapons[weaponID].OneOfAKind || this.Weapons[weaponID].ClubProperty))
+      {
+        Debug.Log((object) ("The one-of-a-kind " + this.Weapons[weaponID].Name + " was destroyed! Setting status to 1!"));
+        WeaponGlobals.SetWeaponStatus(weaponID, 1);
       }
     }
   }

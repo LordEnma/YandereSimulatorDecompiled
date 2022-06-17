@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DebugMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -332,7 +332,7 @@ public class DebugMenuScript : MonoBehaviour
           }
           else if (Input.GetKeyDown(KeyCode.K))
           {
-            SchoolGlobals.KidnapVictim = this.KidnappedVictim;
+            StudentGlobals.Prisoner1 = this.KidnappedVictim;
             StudentGlobals.StudentSlave = this.KidnappedVictim;
             SceneManager.LoadScene("LoadingScene");
           }
@@ -594,7 +594,7 @@ public class DebugMenuScript : MonoBehaviour
             {
               StudentGlobals.FragileSlave = 5;
               StudentGlobals.FragileTarget = 10;
-              SchoolGlobals.KidnapVictim = this.KidnappedVictim;
+              StudentGlobals.Prisoner1 = this.KidnappedVictim;
               StudentGlobals.StudentSlave = this.KidnappedVictim;
               SceneManager.LoadScene("LoadingScene");
             }

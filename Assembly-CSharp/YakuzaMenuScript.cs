@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YakuzaMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -72,7 +72,11 @@ public class YakuzaMenuScript : MonoBehaviour
   public UILabel RansomConfirmationLabel;
   public UITexture[] RansomPortrait;
   public UILabel PrisonerLabel;
+  public int[] KidnapTargets;
+  public int[] PrisonerList;
   public int[] Ransom;
+  public int Prisoners;
+  public int Payout;
   public AudioClip[] Greeting;
   public AudioClip AssassinationPurchase;
   public AudioClip OpenAssassinationMenu;
@@ -136,7 +140,8 @@ public class YakuzaMenuScript : MonoBehaviour
       if (StudentGlobals.GetStudentDead(79))
         this.Yakuza.gameObject.SetActive(false);
     }
-    this.PrisonerLabel.text = SchoolGlobals.KidnapVictim != 0 ? "You currently have a prisoner in your basement." : "Come back when you have a prisoner in your basement.";
+    this.CountPrisoners();
+    this.PrisonerLabel.text = this.Prisoners != 0 ? (this.Prisoners != 1 ? "Some of these girls are currently in your basement." : "One of these girls is currently in your basement.") : "Come back after kidnapping one of these girls.";
     this.OriginalItemPrice[5] = DateGlobals.Week * 1000;
     this.ItemPrice[5] = DateGlobals.Week * 1000;
   }
@@ -216,7 +221,7 @@ public class YakuzaMenuScript : MonoBehaviour
               else
               {
                 this.PromptBar.ClearButtons();
-                if (SchoolGlobals.KidnapVictim > 0)
+                if (this.Prisoners > 0)
                   this.PromptBar.Label[0].text = "Sell";
                 this.PromptBar.Label[1].text = "Back";
                 this.PromptBar.UpdateButtons();
@@ -463,10 +468,10 @@ public class YakuzaMenuScript : MonoBehaviour
           {
             if (Input.GetButtonDown("A"))
             {
-              if (SchoolGlobals.KidnapVictim > 0)
+              if (this.Prisoners > 0)
               {
                 this.RansomConfirmationWindow.SetActive(true);
-                this.RansomConfirmationLabel.text = "Give the kidnapped student in your basement to the yakuza in exchange for $" + this.Ransom[SchoolGlobals.KidnapVictim].ToString() + "?";
+                this.RansomConfirmationLabel.text = this.Prisoners != 1 ? "Give some kidnapped prisoners to the yakuza in exchange for $" + this.Payout.ToString() + "?" : "Give a kidnapped prisoner to the yakuza in exchange for $" + this.Payout.ToString() + "?";
                 this.PromptBar.Show = false;
               }
             }
@@ -484,18 +489,22 @@ public class YakuzaMenuScript : MonoBehaviour
           else if (Input.GetButtonDown("A"))
           {
             AudioSource.PlayClipAtPoint(this.ContrabandPurchase, this.Yandere.MainCamera.transform.position);
-            StudentGlobals.SetStudentKidnapped(SchoolGlobals.KidnapVictim, false);
-            StudentGlobals.SetStudentMissing(SchoolGlobals.KidnapVictim, false);
-            StudentGlobals.SetStudentRansomed(SchoolGlobals.KidnapVictim, true);
-            StudentGlobals.SetStudentBroken(SchoolGlobals.KidnapVictim, true);
-            PlayerGlobals.Money += (float) this.Ransom[SchoolGlobals.KidnapVictim];
+            for (; this.Prisoners > 0; --this.Prisoners)
+            {
+              StudentGlobals.SetStudentKidnapped(this.PrisonerList[this.Prisoners], false);
+              StudentGlobals.SetStudentMissing(this.PrisonerList[this.Prisoners], false);
+              StudentGlobals.SetStudentRansomed(this.PrisonerList[this.Prisoners], true);
+              StudentGlobals.SetStudentBroken(this.PrisonerList[this.Prisoners], true);
+            }
+            PlayerGlobals.Money += (float) this.Payout;
             this.UpdateMoneyLabel();
             if ((double) PlayerGlobals.Money > 1000.0)
               PlayerPrefs.SetInt("RichGirl", 1);
+            this.DeprisonStudents();
+            this.CountPrisoners();
             this.UpdateRansomPortraits();
-            SchoolGlobals.KidnapVictim = 0;
             this.RansomConfirmationWindow.SetActive(false);
-            this.PrisonerLabel.text = "Come back when you have a prisoner in your basement.";
+            this.PrisonerLabel.text = "Come back after kidnapping one of these girls.";
             this.PromptBar.ClearButtons();
             this.PromptBar.Label[1].text = "Back";
             this.PromptBar.UpdateButtons();
@@ -891,7 +900,7 @@ public class YakuzaMenuScript : MonoBehaviour
   private void SummonKidnappingMenu()
   {
     this.PromptBar.ClearButtons();
-    if (SchoolGlobals.KidnapVictim > 0)
+    if (this.Prisoners > 0)
       this.PromptBar.Label[0].text = "Sell";
     this.PromptBar.Label[1].text = "Back";
     this.PromptBar.UpdateButtons();
@@ -908,4 +917,78 @@ public class YakuzaMenuScript : MonoBehaviour
   }
 
   private void UpdateMoneyLabel() => this.MoneyLabel.text = "$" + PlayerGlobals.Money.ToString("F2");
+
+  private void CountPrisoners()
+  {
+    if (StudentGlobals.Prisoners == 0)
+    {
+      this.Prisoners = 0;
+    }
+    else
+    {
+      for (int index = 1; index < 11; ++index)
+      {
+        if (StudentGlobals.Prisoner1 == this.KidnapTargets[index] || StudentGlobals.Prisoner2 == this.KidnapTargets[index] || StudentGlobals.Prisoner3 == this.KidnapTargets[index] || StudentGlobals.Prisoner4 == this.KidnapTargets[index] || StudentGlobals.Prisoner5 == this.KidnapTargets[index] || StudentGlobals.Prisoner6 == this.KidnapTargets[index] || StudentGlobals.Prisoner7 == this.KidnapTargets[index] || StudentGlobals.Prisoner8 == this.KidnapTargets[index] || StudentGlobals.Prisoner9 == this.KidnapTargets[index] || StudentGlobals.Prisoner10 == this.KidnapTargets[index])
+        {
+          this.Payout += this.Ransom[this.KidnapTargets[index]];
+          ++this.Prisoners;
+          Debug.Log((object) ("We have counted " + this.Prisoners.ToString() + " prisoners."));
+          this.PrisonerList[this.Prisoners] = this.KidnapTargets[index];
+        }
+      }
+    }
+  }
+
+  private void DeprisonStudents()
+  {
+    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner1))
+    {
+      StudentGlobals.Prisoner1 = 0;
+      --StudentGlobals.Prisoners;
+    }
+    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner2))
+    {
+      StudentGlobals.Prisoner2 = 0;
+      --StudentGlobals.Prisoners;
+    }
+    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner3))
+    {
+      StudentGlobals.Prisoner3 = 0;
+      --StudentGlobals.Prisoners;
+    }
+    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner4))
+    {
+      StudentGlobals.Prisoner4 = 0;
+      --StudentGlobals.Prisoners;
+    }
+    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner5))
+    {
+      StudentGlobals.Prisoner5 = 0;
+      --StudentGlobals.Prisoners;
+    }
+    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner6))
+    {
+      StudentGlobals.Prisoner6 = 0;
+      --StudentGlobals.Prisoners;
+    }
+    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner7))
+    {
+      StudentGlobals.Prisoner7 = 0;
+      --StudentGlobals.Prisoners;
+    }
+    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner8))
+    {
+      StudentGlobals.Prisoner8 = 0;
+      --StudentGlobals.Prisoners;
+    }
+    if (StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner9))
+    {
+      StudentGlobals.Prisoner9 = 0;
+      --StudentGlobals.Prisoners;
+    }
+    if (!StudentGlobals.GetStudentRansomed(StudentGlobals.Prisoner10))
+      return;
+    StudentGlobals.Prisoner10 = 0;
+    --StudentGlobals.Prisoners;
+  }
 }

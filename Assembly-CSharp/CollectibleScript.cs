@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CollectibleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -15,7 +15,7 @@ public class CollectibleScript : MonoBehaviour
 
   private void Start()
   {
-    if ((this.CollectibleType == CollectibleType.BasementTape && CollectibleGlobals.GetBasementTapeCollected(this.ID) || this.CollectibleType == CollectibleType.Manga && CollectibleGlobals.GetMangaCollected(this.ID) || this.CollectibleType == CollectibleType.Tape && CollectibleGlobals.GetTapeCollected(this.ID) ? 1 : (this.CollectibleType != CollectibleType.Panty ? 0 : (CollectibleGlobals.GetPantyPurchased(11) ? 1 : 0))) != 0)
+    if ((this.CollectibleType == CollectibleType.HeadmasterTape && CollectibleGlobals.GetHeadmasterTapeCollected(this.ID) || this.CollectibleType == CollectibleType.BasementTape && CollectibleGlobals.GetBasementTapeCollected(this.ID) || this.CollectibleType == CollectibleType.Manga && CollectibleGlobals.GetMangaCollected(this.ID) || this.CollectibleType == CollectibleType.Tape && CollectibleGlobals.GetTapeCollected(this.ID) ? 1 : (this.CollectibleType != CollectibleType.Panty ? 0 : (CollectibleGlobals.GetPantyPurchased(11) ? 1 : 0))) != 0)
     {
       int collectibleType = (int) this.CollectibleType;
       Object.Destroy((Object) this.gameObject);

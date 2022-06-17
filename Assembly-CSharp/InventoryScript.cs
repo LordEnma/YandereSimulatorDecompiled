@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: InventoryScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -36,13 +36,6 @@ public class InventoryScript : MonoBehaviour
   public bool AmnesiaBomb;
   public bool SmokeBomb;
   public bool StinkBomb;
-  public bool LethalPoison;
-  public bool ChemicalPoison;
-  public bool EmeticPoison;
-  public bool RatPoison;
-  public bool HeadachePoison;
-  public bool Tranquilizer;
-  public bool Sedative;
   public bool CabinetKey;
   public bool CaseKey;
   public bool SafeKey;
@@ -57,8 +50,25 @@ public class InventoryScript : MonoBehaviour
   public bool PaperClips;
   public bool SilverFulminate;
   public bool WoodenSticks;
-  public int MysteriousKeys;
+  public bool Mustard;
+  public bool Salt;
+  public bool Tyramine;
+  public bool Phenylethylamine;
+  public bool Acetone;
+  public bool Chloroform;
+  public bool AceticAcid;
+  public bool BariumCarbonate;
+  public bool PotassiumNitrate;
+  public bool Sugar;
+  public bool EmeticChemical;
+  public bool HeadacheChemical;
+  public bool SedativeChemical;
+  public bool LethalChemical;
+  public int EmeticPoisons;
+  public int SedativePoisons;
+  public int HeadachePoisons;
   public int LethalPoisons;
+  public int MysteriousKeys;
   public int RivalPhoneID;
   public int SenpaiShots;
   public int PantyShots;
@@ -86,7 +96,7 @@ public class InventoryScript : MonoBehaviour
     {
       case 4:
         this.ArrivedWithRatPoison = true;
-        this.RatPoison = true;
+        ++this.EmeticPoisons;
         break;
       case 5:
         this.ArrivedWithSake = true;
@@ -105,14 +115,13 @@ public class InventoryScript : MonoBehaviour
         break;
       case 9:
         this.ArrivedWithSedative = true;
-        this.Sedative = true;
+        ++this.SedativePoisons;
         break;
       case 10:
         this.Narcotics = true;
         break;
       case 11:
         this.ArrivedWithPoison = true;
-        this.LethalPoison = true;
         ++this.LethalPoisons;
         break;
       case 12:

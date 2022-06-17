@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WashingMachineScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -94,6 +94,9 @@ public class WashingMachineScript : MonoBehaviour
                 Object.Instantiate<GameObject>(this.CleanUniform, this.transform.position + new Vector3(0.0f, 0.6f, -0.66666f), Quaternion.identity);
                 Object.Destroy((Object) this.ClothingList[index].gameObject);
               }
+              component.gameObject.GetComponent<PickUpScript>().OriginalColor = new Color(0.0f, 1f, 1f, 1f);
+              foreach (OutlineScript outlineScript in component.gameObject.GetComponent<PickUpScript>().Outline)
+                outlineScript.color = new Color(0.0f, 1f, 1f, 1f);
             }
             --this.Prompt.Yandere.Police.BloodyClothing;
             this.ClothingList[index] = (PickUpScript) null;

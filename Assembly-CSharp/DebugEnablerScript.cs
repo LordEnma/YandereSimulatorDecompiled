@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DebugEnablerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -24,8 +24,15 @@ public class DebugEnablerScript : MonoBehaviour
 
   private void Start()
   {
+    this.StandWeapons.SetActive(false);
+    this.Keys.SetActive(false);
     if (MissionModeGlobals.MissionMode || GameGlobals.AlphabetMode || GameGlobals.LoveSick || !GameGlobals.Eighties && DateGlobals.Week == 2)
-      Object.Destroy((Object) this.gameObject);
+    {
+      if (GameGlobals.Debug || this.Editor)
+        this.gameObject.SetActive(false);
+      else
+        Object.Destroy((Object) this.gameObject);
+    }
     if (!GameGlobals.Debug && !this.Editor)
       return;
     this.Editor = true;
@@ -45,7 +52,8 @@ public class DebugEnablerScript : MonoBehaviour
     this.VoidGoddess.SetActive(true);
     this.MurderKit.SetActive(true);
     this.Memes.SetActive(true);
-    this.Keys.SetActive(true);
+    if (!GameGlobals.Eighties)
+      this.Keys.SetActive(true);
     this.DebugMenu.MissionMode = false;
     this.DebugMenu.NoDebug = false;
     this.Yandere.NoDebug = false;

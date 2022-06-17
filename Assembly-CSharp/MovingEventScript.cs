@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MovingEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -133,7 +133,7 @@ public class MovingEventScript : MonoBehaviour
         }
         if ((double) this.Timer > 2.0)
         {
-          if (this.Yandere.Inventory.ChemicalPoison || this.Yandere.Inventory.LethalPoison)
+          if (this.Yandere.Inventory.LethalPoisons > 0)
             this.Prompt.HideButton[0] = false;
           this.EventStudent.CurrentDestination = this.EventLocation[3];
           this.EventStudent.Pathfinding.target = this.EventLocation[3];

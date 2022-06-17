@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NewSettingsScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -536,9 +536,20 @@ public class NewSettingsScript : MonoBehaviour
         }
         else if (this.Selection == 7)
         {
-          if (this.NewTitleScreen.InputManager.TappedRight || this.NewTitleScreen.InputManager.TappedLeft)
+          if (this.NewTitleScreen.InputManager.TappedRight)
           {
-            OptionGlobals.SubtitleSize = !OptionGlobals.SubtitleSize;
+            ++OptionGlobals.SubtitleSize;
+            if (OptionGlobals.SubtitleSize > 3)
+              OptionGlobals.SubtitleSize = 1;
+            if ((Object) this.PauseScreen != (Object) null)
+              this.PauseScreen.UpdateSubtitleSize();
+            this.UpdateLabels();
+          }
+          else if (this.NewTitleScreen.InputManager.TappedLeft)
+          {
+            --OptionGlobals.SubtitleSize;
+            if (OptionGlobals.SubtitleSize < 1)
+              OptionGlobals.SubtitleSize = 3;
             if ((Object) this.PauseScreen != (Object) null)
               this.PauseScreen.UpdateSubtitleSize();
             this.UpdateLabels();
@@ -818,7 +829,18 @@ public class NewSettingsScript : MonoBehaviour
     }
     this.Labels[28].text = OptionGlobals.InvertAxisX ? "Yes" : "No";
     this.Labels[29].text = OptionGlobals.InvertAxisY ? "Yes" : "No";
-    this.Labels[30].text = OptionGlobals.SubtitleSize ? "Large" : "Normal";
+    switch (OptionGlobals.SubtitleSize)
+    {
+      case 1:
+        this.Labels[30].text = "None";
+        break;
+      case 2:
+        this.Labels[30].text = "Medium";
+        break;
+      case 3:
+        this.Labels[30].text = "Large";
+        break;
+    }
     this.Labels[42].text = OptionGlobals.RivalDeathSlowMo ? "Disabled" : "Enabled";
     this.Labels[31].text = GameGlobals.CensorKillingAnims ? "Yes" : "No";
     this.Labels[32].text = GameGlobals.CensorPanties ? "Yes" : "No";

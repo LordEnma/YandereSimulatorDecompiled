@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CombatMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -436,6 +436,11 @@ public class CombatMinigameScript : MonoBehaviour
               this.Delinquent.MyWeapon.DelinquentOwned = false;
               this.Delinquent.MyWeapon = (WeaponScript) null;
             }
+            else
+            {
+              this.Delinquent.MyWeapon.Prompt.Hide();
+              this.Delinquent.MyWeapon.Prompt.enabled = false;
+            }
           }
           this.Shake += this.ShakeFactor;
           ++this.Strike;
@@ -530,6 +535,8 @@ public class CombatMinigameScript : MonoBehaviour
       }
       else
       {
+        this.PracticeWindow.DefeatedSho = true;
+        this.PracticeWindow.StudentManager.TaskManager.UpdateTaskStatus();
         this.Delinquent.Threatened = false;
         this.Delinquent.Alarmed = false;
         this.PracticeWindow.Finish();

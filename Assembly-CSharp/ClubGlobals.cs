@@ -1,8 +1,10 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClubGlobals
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+
+using UnityEngine;
 
 public static class ClubGlobals
 {
@@ -10,6 +12,7 @@ public static class ClubGlobals
   private const string Str_ClubClosed = "ClubClosed_";
   private const string Str_ClubKicked = "ClubKicked_";
   private const string Str_QuitClub = "QuitClub_";
+  private const string Str_ActivitiesAttended = "ActivitiesAttended_";
 
   public static ClubType Club
   {
@@ -71,6 +74,12 @@ public static class ClubGlobals
 
   public static ClubType[] KeysOfQuitClub() => KeysHelper.GetEnumKeys<ClubType>("Profile_" + GameGlobals.Profile.ToString() + "_QuitClub_");
 
+  public static int ActivitiesAttended
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_ActivitiesAttended_");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_ActivitiesAttended_", value);
+  }
+
   public static void DeleteAll()
   {
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Club");
@@ -104,5 +113,7 @@ public static class ClubGlobals
     KeysHelper.Delete("Profile_" + profile.ToString() + "_ClubKicked_");
     profile = GameGlobals.Profile;
     KeysHelper.Delete("Profile_" + profile.ToString() + "_QuitClub_");
+    profile = GameGlobals.Profile;
+    Globals.Delete("Profile_" + profile.ToString() + "_ActivitiesAttended_");
   }
 }

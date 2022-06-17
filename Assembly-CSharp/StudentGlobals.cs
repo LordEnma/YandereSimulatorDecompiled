@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentGlobals
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -54,6 +54,18 @@ public static class StudentGlobals
   private const string Str_MemorialStudent7 = "MemorialStudent7";
   private const string Str_MemorialStudent8 = "MemorialStudent8";
   private const string Str_MemorialStudent9 = "MemorialStudent9";
+  private const string Str_Prisoner1 = "Prisoner1";
+  private const string Str_Prisoner2 = "Prisoner2";
+  private const string Str_Prisoner3 = "Prisoner3";
+  private const string Str_Prisoner4 = "Prisoner4";
+  private const string Str_Prisoner5 = "Prisoner5";
+  private const string Str_Prisoner6 = "Prisoner6";
+  private const string Str_Prisoner7 = "Prisoner7";
+  private const string Str_Prisoner8 = "Prisoner8";
+  private const string Str_Prisoner9 = "Prisoner9";
+  private const string Str_Prisoner10 = "Prisoner10";
+  private const string Str_Prisoners = "Prisoners";
+  private const string Str_PrisonerChosen = "PrisonerChosen";
   private const string Str_UpdateRivalReputation = "UpdateRivalReputation";
 
   public static bool CustomSuitor
@@ -180,6 +192,78 @@ public static class StudentGlobals
   {
     get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_MemorialStudent9");
     set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_MemorialStudent9", value);
+  }
+
+  public static int Prisoner1
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner1");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner1", value);
+  }
+
+  public static int Prisoner2
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner2");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner2", value);
+  }
+
+  public static int Prisoner3
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner3");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner3", value);
+  }
+
+  public static int Prisoner4
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner4");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner4", value);
+  }
+
+  public static int Prisoner5
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner5");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner5", value);
+  }
+
+  public static int Prisoner6
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner6");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner6", value);
+  }
+
+  public static int Prisoner7
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner7");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner7", value);
+  }
+
+  public static int Prisoner8
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner8");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner8", value);
+  }
+
+  public static int Prisoner9
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner9");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner9", value);
+  }
+
+  public static int Prisoner10
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner10");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner10", value);
+  }
+
+  public static int Prisoners
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoners");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Prisoners", value);
+  }
+
+  public static int PrisonerChosen
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_PrisonerChosen");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_PrisonerChosen", value);
   }
 
   public static string GetStudentAccessory(int studentID) => PlayerPrefs.GetString("Profile_" + GameGlobals.Profile.ToString() + "_StudentAccessory_" + studentID.ToString());
@@ -489,5 +573,17 @@ public static class StudentGlobals
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MemorialStudent7");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MemorialStudent8");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MemorialStudent9");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner1");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner2");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner3");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner4");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner5");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner6");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner7");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner8");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner9");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner10");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoners");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_PrisonerChosen");
   }
 }

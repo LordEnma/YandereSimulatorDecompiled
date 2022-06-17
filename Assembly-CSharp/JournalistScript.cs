@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: JournalistScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
@@ -67,7 +67,7 @@ public class JournalistScript : MonoBehaviour
       if ((double) this.DistanceToPlayer < 5.0)
         this.SpeechCheck();
       this.WaitTimer += Time.deltaTime;
-      if ((double) this.WaitTimer <= 5.0 || !((Object) this.RivalEvent == (Object) null))
+      if ((double) this.WaitTimer <= 5.0 || !((Object) this.RivalEvent == (Object) null) && !this.Yandere.Armed)
         return;
       this.Pathfinding.canSearch = true;
       this.Pathfinding.canMove = true;
@@ -108,10 +108,8 @@ public class JournalistScript : MonoBehaviour
       if ((double) this.Yandere.transform.position.z < -50.0 && this.Yandere.Attacking)
       {
         this.MyAnimation.CrossFade("sprint_00");
-        this.Pathfinding.target = this.Yandere.transform;
-        this.Pathfinding.canSearch = true;
-        this.Pathfinding.canMove = true;
-        this.Pathfinding.speed = 5f;
+        this.transform.LookAt(this.Yandere.transform.position);
+        int num = (int) this.MyController.Move(this.transform.forward * Time.deltaTime * 5f);
         this.AwareOfMurder = true;
         if ((double) this.DistanceToPlayer < 15.0 && this.CanSeeYandere() || (double) this.DistanceToPlayer < 5.0 && this.AwareOfMurder)
           this.CheckBehavior();
@@ -169,8 +167,10 @@ public class JournalistScript : MonoBehaviour
         return;
       if (this.Yandere.StudentManager.MurderTakingPlace)
       {
-        if (this.Yandere.StudentManager.MindBrokenSlave.MurderSuicidePhase <= 0 || (double) Vector3.Distance(this.transform.position, this.Yandere.StudentManager.MindBrokenSlave.transform.position) >= 10.0)
+        Debug.Log((object) "Journalist acknowledges that a mind-broken slave murder is walking around..");
+        if (this.Yandere.StudentManager.MindBrokenSlave.MurderSuicidePhase <= 1 || (double) Vector3.Distance(this.transform.position, this.Yandere.StudentManager.MindBrokenSlave.transform.position) >= 10.0)
           return;
+        Debug.Log((object) "A mind-broken murder is taking place within 10 meters of the Journalist!");
         this.Freeze = true;
       }
       else

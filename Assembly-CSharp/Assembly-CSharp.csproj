@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5145E16A-C67F-4B6B-BE82-D9CC69C9EEB4}</ProjectGuid>
+    <ProjectGuid>{D5D5886D-B91C-4930-A8BA-BF914AC4312E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <ApplicationVersion>0.0.0.0</ApplicationVersion>
@@ -1069,6 +1069,7 @@
     <Compile Include="PowerSwitchScript.cs" />
     <Compile Include="PracticeWindowScript.cs" />
     <Compile Include="PrayScript.cs" />
+    <Compile Include="PrisonerManagerScript.cs" />
     <Compile Include="PromoCameraScript.cs" />
     <Compile Include="PromptBarScript.cs" />
     <Compile Include="PromptManagerScript.cs" />
@@ -1089,6 +1090,8 @@
     <Compile Include="RandomStabScript.cs" />
     <Compile Include="RedStringScript.cs" />
     <Compile Include="RefrigeratorScript.cs" />
+    <Compile Include="RemovableItemManagerScript.cs" />
+    <Compile Include="RemovableItemScript.cs" />
     <Compile Include="RendererListScript.cs" />
     <Compile Include="ReputationScript.cs" />
     <Compile Include="ReputationSetterScript.cs" />

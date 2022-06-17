@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PassTimeBookScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -61,9 +61,11 @@ public class PassTimeBookScript : MonoBehaviour
     }
     else
     {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime));
-      if ((double) this.Darkness.color.a != 0.0)
+      this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0.0f, Time.deltaTime);
+      Debug.Log((object) ("Darkness.color.a is: " + this.Darkness.color.a.ToString()));
+      if ((double) this.Darkness.color.a >= 0.100000001490116)
         return;
+      this.Darkness.alpha = 0.0f;
       if (PlayerGlobals.PantiesEquipped == 7)
       {
         this.Yandere.StudentManager.Reputation.Portal.Class.BonusPoints += 2;

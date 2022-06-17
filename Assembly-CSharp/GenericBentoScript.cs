@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericBentoScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -28,43 +28,22 @@ public class GenericBentoScript : MonoBehaviour
     {
       if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
       {
-        if (this.Prompt.Yandere.Inventory.EmeticPoison)
-        {
-          this.Prompt.Yandere.Inventory.EmeticPoison = false;
-          this.Prompt.Yandere.PoisonType = 1;
-        }
-        else
-        {
-          this.Prompt.Yandere.Inventory.RatPoison = false;
-          this.Prompt.Yandere.PoisonType = 3;
-        }
+        --this.Prompt.Yandere.Inventory.EmeticPoisons;
+        this.Prompt.Yandere.PoisonType = 1;
         this.Emetic = true;
         this.ShutOff();
       }
       else if ((double) this.Prompt.Circle[1].fillAmount == 0.0)
       {
-        if (this.Prompt.Yandere.Inventory.Sedative)
-          this.Prompt.Yandere.Inventory.Sedative = false;
-        else
-          this.Prompt.Yandere.Inventory.Tranquilizer = false;
+        --this.Prompt.Yandere.Inventory.SedativePoisons;
         this.Prompt.Yandere.PoisonType = 4;
         this.Tranquil = true;
         this.ShutOff();
       }
       else if ((double) this.Prompt.Circle[2].fillAmount == 0.0)
       {
-        if (this.Prompt.Yandere.Inventory.LethalPoison)
-        {
-          this.Prompt.Yandere.Inventory.LethalPoison = false;
-          --this.Prompt.Yandere.Inventory.LethalPoisons;
-          this.Prompt.Yandere.PoisonType = 2;
-        }
-        else
-        {
-          this.Prompt.Yandere.Inventory.ChemicalPoison = false;
-          --this.Prompt.Yandere.Inventory.LethalPoisons;
-          this.Prompt.Yandere.PoisonType = 2;
-        }
+        --this.Prompt.Yandere.Inventory.LethalPoisons;
+        this.Prompt.Yandere.PoisonType = 2;
         this.Lethal = true;
         this.ShutOff();
       }
@@ -72,7 +51,7 @@ public class GenericBentoScript : MonoBehaviour
       {
         if ((double) this.Prompt.Circle[3].fillAmount != 0.0)
           return;
-        this.Prompt.Yandere.Inventory.HeadachePoison = false;
+        --this.Prompt.Yandere.Inventory.HeadachePoisons;
         this.Prompt.Yandere.PoisonType = 5;
         this.Headache = true;
         this.ShutOff();
@@ -116,13 +95,13 @@ public class GenericBentoScript : MonoBehaviour
     this.Prompt.HideButton[1] = true;
     this.Prompt.HideButton[2] = true;
     this.Prompt.HideButton[3] = true;
-    if (this.Prompt.Yandere.Inventory.EmeticPoison || this.Prompt.Yandere.Inventory.RatPoison)
+    if (this.Prompt.Yandere.Inventory.EmeticPoisons > 0)
       this.Prompt.HideButton[0] = false;
-    if (this.Prompt.Yandere.Inventory.Tranquilizer || this.Prompt.Yandere.Inventory.Sedative)
+    if (this.Prompt.Yandere.Inventory.SedativePoisons > 0)
       this.Prompt.HideButton[1] = false;
-    if (this.Prompt.Yandere.Inventory.LethalPoison || this.Prompt.Yandere.Inventory.ChemicalPoison)
+    if (this.Prompt.Yandere.Inventory.LethalPoisons > 0)
       this.Prompt.HideButton[2] = false;
-    if (this.Prompt.Yandere.Inventory.HeadachePoison)
+    if (this.Prompt.Yandere.Inventory.HeadachePoisons > 0)
       this.Prompt.HideButton[3] = false;
     this.Prompt.Yandere.EmptyHands();
   }

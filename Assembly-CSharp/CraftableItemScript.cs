@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CraftableItemScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -48,6 +48,36 @@ public class CraftableItemScript : MonoBehaviour
         break;
       case 10:
         this.Prompt.Yandere.Inventory.WoodenSticks = true;
+        break;
+      case 11:
+        this.Prompt.Yandere.Inventory.Mustard = true;
+        break;
+      case 12:
+        this.Prompt.Yandere.Inventory.Salt = true;
+        break;
+      case 13:
+        this.Prompt.Yandere.Inventory.Tyramine = true;
+        break;
+      case 14:
+        this.Prompt.Yandere.Inventory.Phenylethylamine = true;
+        break;
+      case 15:
+        this.Prompt.Yandere.Inventory.Acetone = true;
+        break;
+      case 16:
+        this.Prompt.Yandere.Inventory.Chloroform = true;
+        break;
+      case 17:
+        this.Prompt.Yandere.Inventory.AceticAcid = true;
+        break;
+      case 18:
+        this.Prompt.Yandere.Inventory.BariumCarbonate = true;
+        break;
+      case 19:
+        this.Prompt.Yandere.Inventory.PotassiumNitrate = true;
+        break;
+      case 20:
+        this.Prompt.Yandere.Inventory.Sugar = true;
         break;
     }
     this.Prompt.Hide();

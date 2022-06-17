@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: LivingRoomCutsceneScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -776,7 +776,41 @@ public class LivingRoomCutsceneScript : MonoBehaviour
   {
     StudentGlobals.SetStudentKidnapped(10 + DateGlobals.Week, true);
     StudentGlobals.SetStudentSanity(10 + DateGlobals.Week, 100f);
-    SchoolGlobals.KidnapVictim = 10 + DateGlobals.Week;
+    int num = 10 + DateGlobals.Week;
+    ++StudentGlobals.Prisoners;
+    switch (StudentGlobals.Prisoners)
+    {
+      case 1:
+        StudentGlobals.Prisoner1 = num;
+        break;
+      case 2:
+        StudentGlobals.Prisoner2 = num;
+        break;
+      case 3:
+        StudentGlobals.Prisoner3 = num;
+        break;
+      case 4:
+        StudentGlobals.Prisoner4 = num;
+        break;
+      case 5:
+        StudentGlobals.Prisoner5 = num;
+        break;
+      case 6:
+        StudentGlobals.Prisoner6 = num;
+        break;
+      case 7:
+        StudentGlobals.Prisoner7 = num;
+        break;
+      case 8:
+        StudentGlobals.Prisoner8 = num;
+        break;
+      case 9:
+        StudentGlobals.Prisoner9 = num;
+        break;
+      case 10:
+        StudentGlobals.Prisoner10 = num;
+        break;
+    }
     EventGlobals.OsanaConversation = true;
     SceneManager.LoadScene("GenocideScene");
     GameGlobals.RivalEliminationID = 11;

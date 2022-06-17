@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TutorialWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -9,6 +9,7 @@ using UnityEngine;
 public class TutorialWindowScript : MonoBehaviour
 {
   public YandereScript Yandere;
+  public bool ShowDistractionMessage;
   public bool ShowClothingMessage;
   public bool ShowCouncilMessage;
   public bool ShowTeacherMessage;
@@ -26,6 +27,7 @@ public class TutorialWindowScript : MonoBehaviour
   public bool ShowInfoMessage;
   public bool ShowPoolMessage;
   public bool ShowRepMessage;
+  public bool IgnoreDistraction;
   public bool IgnoreClothing;
   public bool IgnoreCouncil;
   public bool IgnoreTeacher;
@@ -58,6 +60,9 @@ public class TutorialWindowScript : MonoBehaviour
   public string CouncilShortString;
   public string CouncilString;
   public Texture CouncilTexture;
+  public string DistractionShortString;
+  public string DistractionString;
+  public Texture DistractionTexture;
   public string TeacherShortString;
   public string TeacherString;
   public Texture TeacherTexture;
@@ -123,6 +128,7 @@ public class TutorialWindowScript : MonoBehaviour
     }
     else
     {
+      this.IgnoreDistraction = TutorialGlobals.IgnoreDistraction;
       this.IgnoreClothing = TutorialGlobals.IgnoreClothing;
       this.IgnoreCouncil = TutorialGlobals.IgnoreCouncil;
       this.IgnoreTeacher = TutorialGlobals.IgnoreTeacher;
@@ -375,6 +381,20 @@ label_51:
         this.ShortLabel.text = this.ClassShortString;
         this.DisplayHint();
       }
+      if ((this.ForcingTutorial || !this.IgnoreDistraction) && this.ShowDistractionMessage && !this.Show)
+      {
+        if (!this.ForcingTutorial)
+        {
+          TutorialGlobals.IgnoreDistraction = true;
+          this.IgnoreDistraction = true;
+        }
+        this.TitleLabel.text = "Causing Distractions";
+        this.TutorialLabel.text = this.DistractionString;
+        this.TutorialLabel.text = this.TutorialLabel.text.Replace('@', '\n');
+        this.TutorialImage.mainTexture = this.DistractionTexture;
+        this.ShortLabel.text = this.DistractionShortString;
+        this.DisplayHint();
+      }
       if ((this.ForcingTutorial || !this.IgnoreMoney) && this.ShowMoneyMessage && !this.Show)
       {
         if (!this.ForcingTutorial)
@@ -521,6 +541,7 @@ label_51:
       this.ForcingTutorial = false;
       this.Timer = 0.0f;
     }
+    this.ShowDistractionMessage = false;
     this.ShowClothingMessage = false;
     this.ShowCouncilMessage = false;
     this.ShowTeacherMessage = false;
@@ -608,6 +629,10 @@ label_51:
         this.ShowMoneyMessage = this.ForcingTutorial;
         this.IgnoreMoney = false;
         break;
+      case 18:
+        this.ShowDistractionMessage = this.ForcingTutorial;
+        this.IgnoreDistraction = false;
+        break;
     }
     this.Update();
     switch (this.ForceID)
@@ -679,6 +704,10 @@ label_51:
       case 17:
         this.ShowMoneyMessage = this.ForcingTutorial;
         this.IgnoreMoney = true;
+        break;
+      case 18:
+        this.ShowDistractionMessage = this.ForcingTutorial;
+        this.IgnoreDistraction = true;
         break;
     }
   }

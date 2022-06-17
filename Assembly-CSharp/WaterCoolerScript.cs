@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WaterCoolerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -83,7 +83,10 @@ public class WaterCoolerScript : MonoBehaviour
     }
     else if (!this.TrapSet)
     {
-      if (this.Yandere.Inventory.String && this.Yandere.Inventory.MaskingTape && (Object) this.Yandere.Weapon[1] != (Object) null && this.Yandere.Weapon[1].Type == WeaponType.Knife)
+      bool flag = false;
+      if (this.Yandere.Armed && this.Yandere.EquippedWeapon.Type == WeaponType.Knife || (Object) this.Yandere.Weapon[1] != (Object) null && this.Yandere.Weapon[1].Type == WeaponType.Knife || (Object) this.Yandere.Weapon[2] != (Object) null && this.Yandere.Weapon[2].Type == WeaponType.Knife)
+        flag = true;
+      if (((!this.Yandere.Inventory.String ? 0 : (this.Yandere.Inventory.MaskingTape ? 1 : 0)) & (flag ? 1 : 0)) != 0)
       {
         this.Prompt.HideButton[1] = false;
         this.Prompt.Label[1].applyGradient = false;
@@ -136,7 +139,10 @@ public class WaterCoolerScript : MonoBehaviour
           this.Yandere.PauseScreen.Schemes.UpdateInstructions();
         }
       }
-      this.WeaponCheckmark.spriteName = !((Object) this.Yandere.Weapon[1] != (Object) null) || this.Yandere.Weapon[1].Type != WeaponType.Knife ? "No" : "Yes";
+      bool flag = false;
+      if (this.Yandere.Armed && this.Yandere.EquippedWeapon.Type == WeaponType.Knife || (Object) this.Yandere.Weapon[1] != (Object) null && this.Yandere.Weapon[1].Type == WeaponType.Knife || (Object) this.Yandere.Weapon[2] != (Object) null && this.Yandere.Weapon[2].Type == WeaponType.Knife)
+        flag = true;
+      this.WeaponCheckmark.spriteName = flag ? "Yes" : "No";
       this.TapeCheckmark.spriteName = this.Yandere.Inventory.MaskingTape ? "Yes" : "No";
       this.ThreadCheckmark.spriteName = this.Yandere.Inventory.String ? "Yes" : "No";
       this.LiquidCheckmark.spriteName = !this.Empty ? "Yes" : "No";

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GazerEyesScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -180,6 +180,8 @@ public class GazerEyesScript : MonoBehaviour
       Target.CharacterAnimation[Target.ElectroAnim].time = 2f;
       Target.CharacterAnimation.CrossFade(Target.ElectroAnim);
       Target.CharacterAnimation[Target.WetAnim].weight = 0.0f;
+      Target.InvestigatingBloodPool = false;
+      Target.FocusOnYandere = false;
       Target.EatingSnack = false;
       Target.Electrified = true;
       Target.Fleeing = false;

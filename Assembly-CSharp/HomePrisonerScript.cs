@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomePrisonerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -11,6 +11,7 @@ using UnityEngine.SceneManagement;
 public class HomePrisonerScript : MonoBehaviour
 {
   public HomePrisonerChanScript EightiesPrisoner;
+  public PrisonerManagerScript PrisonerManager;
   public InputManagerScript InputManager;
   public HomePrisonerChanScript Prisoner;
   public HomeYandereScript HomeYandere;
@@ -50,14 +51,16 @@ public class HomePrisonerScript : MonoBehaviour
   public AudioClip[] NoSanityBanter;
   public AudioClip[] Banter;
   public float BanterTimer;
+  public bool Initialized;
   public bool Bantering;
   public int BanterID;
   public string[] AnimName;
   public int AnimID;
 
-  private void Start()
+  public void Start()
   {
-    this.Sanity = StudentGlobals.GetStudentSanity(SchoolGlobals.KidnapVictim);
+    if (this.PrisonerManager.StudentID > 0)
+      this.Sanity = StudentGlobals.GetStudentSanity(this.PrisonerManager.StudentID);
     this.SanityLabel.text = "Sanity: " + this.Sanity.ToString() + "%";
     this.Prisoner.Sanity = this.Sanity;
     this.Subtitle.text = string.Empty;
@@ -85,6 +88,11 @@ public class HomePrisonerScript : MonoBehaviour
     }
     if ((double) this.Sanity < 100.0)
       this.Prisoner.Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
+    this.OptionLabels[1].alpha = 1f;
+    this.OptionLabels[2].alpha = 1f;
+    this.OptionLabels[3].alpha = 1f;
+    this.OptionLabels[4].alpha = 1f;
+    this.OptionLabels[5].alpha = 1f;
     if (!HomeGlobals.Night)
     {
       UILabel optionLabel1 = this.OptionLabels[2];
@@ -140,8 +148,12 @@ public class HomePrisonerScript : MonoBehaviour
       UILabel optionLabel = this.OptionLabels[1];
       optionLabel.color = new Color(optionLabel.color.r, optionLabel.color.g, optionLabel.color.b, 0.5f);
     }
-    this.UpdateDesc();
-    if (SchoolGlobals.KidnapVictim == 0)
+    if (!this.Initialized)
+    {
+      this.Initialized = true;
+      this.UpdateDesc();
+    }
+    if (StudentGlobals.Prisoners == 0)
       this.enabled = false;
     if (GameGlobals.Eighties)
       this.Prisoner = this.EightiesPrisoner;
@@ -193,10 +205,8 @@ public class HomePrisonerScript : MonoBehaviour
     }
     if (Input.GetKeyDown(KeyCode.X))
     {
-      this.Sanity -= 10f;
-      if ((double) this.Sanity < 0.0)
-        this.Sanity = 100f;
-      StudentGlobals.SetStudentSanity(SchoolGlobals.KidnapVictim, this.Sanity);
+      this.Sanity = 0.0f;
+      StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity);
       this.SanityLabel.text = "Sanity: " + this.Sanity.ToString("f0") + "%";
       this.Prisoner.UpdateSanity();
     }
@@ -225,6 +235,8 @@ public class HomePrisonerScript : MonoBehaviour
           this.Prisoner.RightEyeRotOrigin.x = -6f;
           this.Prisoner.LeftEyeRotOrigin.x = 6f;
           this.ZoomIn = true;
+          if (this.PrisonerManager.ChosenPrisoner > 1)
+            this.Darkness.Sprite.alpha = 1f;
           this.HomeCamera.UpdateDOF(0.6f);
         }
         else
@@ -274,17 +286,21 @@ public class HomePrisonerScript : MonoBehaviour
         this.PlayedAudio = true;
         component.Play();
       }
-      if ((double) this.Timer > 10.0 && (double) this.Darkness.Sprite.color.a != 1.0)
+      if ((double) this.Timer > 10.0)
       {
-        this.Darkness.enabled = false;
-        this.Darkness.Sprite.color = new Color(this.Darkness.Sprite.color.r, this.Darkness.Sprite.color.g, this.Darkness.Sprite.color.b, 1f);
-        component.clip = this.TortureHit;
-        component.Play();
+        if ((double) this.Darkness.Sprite.color.a != 1.0)
+        {
+          this.Darkness.enabled = false;
+          this.Darkness.Sprite.color = new Color(this.Darkness.Sprite.color.r, this.Darkness.Sprite.color.g, this.Darkness.Sprite.color.b, 1f);
+          component.clip = this.TortureHit;
+          component.Play();
+        }
       }
+      else if (this.PrisonerManager.ChosenPrisoner > 1)
+        this.Darkness.Sprite.alpha = 0.99999f;
       if ((double) this.Timer <= 15.0)
         return;
-      float studentSanity = StudentGlobals.GetStudentSanity(SchoolGlobals.KidnapVictim);
-      Debug.Log((object) ("StudentGlobals.SetStudentSanity was: " + studentSanity.ToString()));
+      Debug.Log((object) ("StudentGlobals.GetStudentSanity was: " + StudentGlobals.GetStudentSanity(this.PrisonerManager.StudentID).ToString()));
       if (this.ID == 1)
       {
         Time.timeScale = 1f;
@@ -297,7 +313,7 @@ public class HomePrisonerScript : MonoBehaviour
         }
         else
           SceneManager.LoadScene("LoadingScene");
-        StudentGlobals.SetStudentSanity(SchoolGlobals.KidnapVictim, this.Sanity - 2f - (float) (ClassGlobals.PsychologyGrade * 10));
+        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 2f - (float) (ClassGlobals.PsychologyGrade * 10));
       }
       else if (this.ID == 2)
       {
@@ -306,13 +322,13 @@ public class HomePrisonerScript : MonoBehaviour
         if (DateGlobals.Weekday == DayOfWeek.Sunday)
           DateGlobals.ForceSkip = true;
         SceneManager.LoadScene("CalendarScene");
-        StudentGlobals.SetStudentSanity(SchoolGlobals.KidnapVictim, this.Sanity - 8f - (float) (ClassGlobals.PsychologyGrade * 10));
+        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 8f - (float) (ClassGlobals.PsychologyGrade * 10));
       }
       else if (this.ID == 3)
       {
         HomeGlobals.Night = true;
         SceneManager.LoadScene("HomeScene");
-        StudentGlobals.SetStudentSanity(SchoolGlobals.KidnapVictim, this.Sanity - 24f - (float) (ClassGlobals.PsychologyGrade * 10));
+        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 24f - (float) (ClassGlobals.PsychologyGrade * 10));
         PlayerGlobals.Reputation -= 20f;
       }
       else if (this.ID == 4)
@@ -324,17 +340,17 @@ public class HomePrisonerScript : MonoBehaviour
         else
           PlayerGlobals.Reputation -= 20f;
         SceneManager.LoadScene("CalendarScene");
-        StudentGlobals.SetStudentSanity(SchoolGlobals.KidnapVictim, this.Sanity - 36f - (float) (ClassGlobals.PsychologyGrade * 10));
+        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 36f - (float) (ClassGlobals.PsychologyGrade * 10));
       }
-      if ((double) StudentGlobals.GetStudentSanity(SchoolGlobals.KidnapVictim) < 0.0)
-        StudentGlobals.SetStudentSanity(SchoolGlobals.KidnapVictim, 0.0f);
-      studentSanity = StudentGlobals.GetStudentSanity(SchoolGlobals.KidnapVictim);
-      Debug.Log((object) ("And now, StudentGlobals.SetStudentSanity is: " + studentSanity.ToString()));
+      if ((double) StudentGlobals.GetStudentSanity(this.PrisonerManager.StudentID) < 0.0)
+        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, 0.0f);
+      Debug.Log((object) ("And now, StudentGlobals.GetStudentSanity is: " + StudentGlobals.GetStudentSanity(this.PrisonerManager.StudentID).ToString()));
     }
   }
 
   public void UpdateDesc()
   {
+    this.Start();
     this.HomeCamera.PromptBar.Label[0].text = "Accept";
     this.DescLabel.text = this.Descriptions[this.ID];
     if (!HomeGlobals.Night)

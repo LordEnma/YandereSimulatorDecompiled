@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClubManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -66,6 +66,7 @@ public class ClubManagerScript : MonoBehaviour
   public bool LeaderAshamed;
   public bool ClubEffect;
   public AudioClip OccultAmbience;
+  public int ActivitiesAttended;
   public int ClubPhase;
   public int Phase = 1;
   public ClubType Club;
@@ -96,6 +97,7 @@ public class ClubManagerScript : MonoBehaviour
 
   private void Start()
   {
+    this.ActivitiesAttended = ClubGlobals.ActivitiesAttended;
     this.MyAudio = this.GetComponent<AudioSource>();
     this.ClubWindow.ActivityWindow.localScale = Vector3.zero;
     this.ClubWindow.ActivityWindow.gameObject.SetActive(false);
@@ -164,6 +166,7 @@ public class ClubManagerScript : MonoBehaviour
         this.ClubWindow.ActivityWindow.gameObject.SetActive(true);
         this.ClubWindow.ActivityLabel.text = this.ClubWindow.ActivityDescs[(int) this.Club];
         this.StudentManager.Portal.GetComponent<PortalScript>().EndFinalEvents();
+        ++this.ActivitiesAttended;
         ++this.Phase;
       }
       else if (this.Phase == 2)
@@ -934,5 +937,6 @@ public class ClubManagerScript : MonoBehaviour
       if (this.QuitClub[this.ID])
         ClubGlobals.SetQuitClub(this.ClubArray[this.ID], true);
     }
+    this.ActivitiesAttended = 0;
   }
 }

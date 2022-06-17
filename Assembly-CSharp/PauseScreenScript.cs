@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PauseScreenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -611,12 +611,6 @@ public class PauseScreenScript : MonoBehaviour
               else if (this.Selected == 17)
                 this.ShowScheduleScreen();
             }
-            else if (!this.Home && this.Selected == 16)
-            {
-              ++this.Secret;
-              if (this.Secret == 10)
-                this.PhoneIcons[16].alpha = 1f;
-            }
           }
           else if (!this.PressedB)
           {
@@ -712,7 +706,7 @@ public class PauseScreenScript : MonoBehaviour
               if (StudentGlobals.StudentSlave > 0)
               {
                 StudentGlobals.SetStudentKidnapped(StudentGlobals.StudentSlave, true);
-                SchoolGlobals.KidnapVictim = StudentGlobals.StudentSlave;
+                StudentGlobals.PrisonerChosen = 0;
                 StudentGlobals.StudentSlave = 0;
               }
               SceneManager.LoadScene("HomeScene");
@@ -837,12 +831,17 @@ public class PauseScreenScript : MonoBehaviour
         if (this.Yandere.StudentManager.Students[index].Investigating || this.Yandere.StudentManager.Students[index].Alarmed || this.Yandere.StudentManager.Students[index].Fleeing || this.Yandere.StudentManager.Students[index].Ragdoll.Zs.activeInHierarchy && this.Yandere.StudentManager.Police.EndOfDay.TranqCase.VictimID != index || this.Yandere.StudentManager.Students[index].Wet)
         {
           this.PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-          this.Reason = "You cannot save the game while a student is investigating, alarmed, fleeing, wet, or sleeping on the ground.";
+          this.Reason = "You cannot save the game while a student is investigating, alarmed, fleeing, wet, or asleep on the ground.";
         }
         if ((Object) this.Yandere.PickUp != (Object) null)
         {
           this.PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
           this.Reason = "You cannot save the game while you are holding that object.";
+        }
+        if (this.Police.BloodyClothing > 0)
+        {
+          this.PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
+          this.Reason = "You cannot save the game while a bloody uniform is present at school.";
         }
       }
     }
@@ -850,15 +849,20 @@ public class PauseScreenScript : MonoBehaviour
 
   public void UpdateSubtitleSize()
   {
-    if (!OptionGlobals.SubtitleSize)
+    switch (OptionGlobals.SubtitleSize)
     {
-      this.SubtitlePanel.localPosition = new Vector3(0.0f, 0.0f, 1f);
-      this.SubtitlePanel.localScale = new Vector3(1f / 1000f, 1f / 1000f, 1f / 1000f);
-    }
-    else
-    {
-      this.SubtitlePanel.localPosition = new Vector3(0.0f, 0.1133333f, 1f);
-      this.SubtitlePanel.localScale = new Vector3(0.00133333f, 0.00133333f, 0.00133333f);
+      case 1:
+        this.SubtitlePanel.localPosition = new Vector3(0.0f, 1f, 0.0f);
+        this.SubtitlePanel.localScale = new Vector3(0.0f, 0.0f, 0.0f);
+        break;
+      case 2:
+        this.SubtitlePanel.localPosition = new Vector3(0.0f, 0.0f, 1f);
+        this.SubtitlePanel.localScale = new Vector3(1f / 1000f, 1f / 1000f, 1f / 1000f);
+        break;
+      case 3:
+        this.SubtitlePanel.localPosition = new Vector3(0.0f, 0.1133333f, 1f);
+        this.SubtitlePanel.localScale = new Vector3(0.00133333f, 0.00133333f, 0.00133333f);
+        break;
     }
   }
 

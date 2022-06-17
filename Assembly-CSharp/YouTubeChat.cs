@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YouTubeChat
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using OpenQA.Selenium;
@@ -11,41 +11,44 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Net;
+using System.Threading;
 using UnityEngine;
 
 public class YouTubeChat : MonoBehaviour
 {
   public static YouTubeChat instance;
   public WebDriver driver;
-  public string youtubeChatPopoutUrl = "https://www.youtube.com/live_chat?is_popout=1&v=MZ_JdsAnBag";
+  public string youtubeChatPopoutUrl;
   private string pathToDriver = Directory.GetCurrentDirectory() + "\\Assets\\Packages\\Selenium.WebDriver.GeckoDriver.0.30.0.1\\driver\\";
   private string defaultPathToDriver = Directory.GetCurrentDirectory() + "\\Assets\\Packages\\Selenium.WebDriver.GeckoDriver.0.30.0.1\\driver\\";
   private FirefoxOptions options;
   private FirefoxDriverService FFDriverService;
-  public List<YouTubeChatMessage> MessagesList = new List<YouTubeChatMessage>();
   private int previousLength;
   public Queue<YouTubeChatMessage> MessageQueue = new Queue<YouTubeChatMessage>();
+  private Thread updateThread;
   private bool hasSetVersion;
   private string _youtubeChatPopoutUrl;
   public bool isValidURL;
   public float Timer;
   public bool TimeBased;
-  private int Checks;
-
-  private void Start()
-  {
-  }
 
   private void OnEnable()
   {
     YouTubeChat.instance = this;
     this.options = this.getFirefoxOptions();
+    if (this.updateThread != null && this.updateThread.IsAlive)
+    {
+      this.updateThread.Abort();
+      this.updateThread = (Thread) null;
+    }
     this.StartDriver();
     this._youtubeChatPopoutUrl = this.youtubeChatPopoutUrl;
   }
 
   private void StartDriver()
   {
+    if (this.FFDriverService != null)
+      this.FFDriverService = (FirefoxDriverService) null;
     this.FFDriverService = FirefoxDriverService.CreateDefaultService(this.getVersionPath());
     this.FFDriverService.HideCommandPromptWindow = true;
     this.ActivateDriver();
@@ -59,43 +62,63 @@ public class YouTubeChat : MonoBehaviour
 
   private void Update()
   {
-    if (!this.TimeBased)
-      return;
-    this.Timer += Time.unscaledDeltaTime;
-    if ((double) this.Timer < 10.0)
-      return;
     this.AssureDriverActivated();
-    if (this.isValidURL)
-      this.UpdateMessagesList(false);
-    this.Timer = 0.0f;
+    if (this.isValidURL || this.updateThread == null || !this.updateThread.IsAlive)
+      return;
+    this.updateThread.Abort();
   }
 
   public YouTubeChatMessage NextInQueue() => this.MessageQueue.Count != 0 ? this.MessageQueue.Peek() : (YouTubeChatMessage) null;
 
   public void Dequeue() => this.MessageQueue.Dequeue();
 
+  private void _messageUpdate()
+  {
+    while (true)
+    {
+      try
+      {
+        this.UpdateMessagesList(false);
+      }
+      catch (Exception ex)
+      {
+      }
+    }
+  }
+
   public void UpdateMessagesList(bool initialRun)
   {
-    ++this.Checks;
-    Debug.Log((object) ("Check #" + this.Checks.ToString()));
-    this.MessagesList.Clear();
     ReadOnlyCollection<IWebElement> elements = this.driver.FindElements(By.TagName("YT-LIVE-CHAT-TEXT-MESSAGE-RENDERER"));
-    for (int index = 0; index < elements.Count; ++index)
-    {
-      if (elements[index] != null)
-        this.MessagesList.Add(new YouTubeChatMessage(elements[index].FindElement(By.Id("author-name")).Text, elements[index].GetAttribute("timestampString"), elements[index].FindElement(By.Id("message")).Text));
-    }
     if (!initialRun)
     {
-      if (this.previousLength < this.MessagesList.Count)
-      {
-        for (int previousLength = this.previousLength; previousLength < this.MessagesList.Count; ++previousLength)
-          this.MessageQueue.Enqueue(this.MessagesList[previousLength]);
-      }
-      if (this.previousLength > this.MessagesList.Count)
+      if (this.previousLength > elements.Count)
         this.UpdateMessagesList(true);
+      if (this.previousLength < elements.Count)
+      {
+        for (int previousLength = this.previousLength; previousLength < elements.Count; ++previousLength)
+        {
+          try
+          {
+            IWebElement element = elements[previousLength].FindElement(By.Id("message"));
+            if (element != null)
+            {
+              if (element.Text != string.Empty)
+              {
+                if (element.Text[0] == '!')
+                  this.MessageQueue.Enqueue(new YouTubeChatMessage(elements[previousLength].FindElement(By.Id("author-name")).Text, elements[previousLength].GetAttribute("timestampString"), element.Text));
+              }
+            }
+          }
+          catch
+          {
+          }
+        }
+      }
     }
-    this.previousLength = this.MessagesList.Count;
+    this.previousLength = elements.Count;
+    if (this.previousLength < 100)
+      return;
+    this.driver.Navigate().Refresh();
   }
 
   public void AssureDriverActivated()
@@ -111,24 +134,51 @@ public class YouTubeChat : MonoBehaviour
   private void ActivateDriver()
   {
     Debug.Log((object) this.pathToDriver);
-    this.driver = (WebDriver) new FirefoxDriver(this.FFDriverService, this.options);
-    if (!string.IsNullOrEmpty(this.youtubeChatPopoutUrl) && this.youtubeChatPopoutUrl.Contains("https://www.youtube.") && this.youtubeChatPopoutUrl.Contains("/live_chat?is_popout=") && this.youtubeChatPopoutUrl.Contains("&v="))
+    if (this.FFDriverService == null)
     {
-      if (((HttpWebResponse) WebRequest.Create(this.youtubeChatPopoutUrl).GetResponse()).StatusCode != HttpStatusCode.OK)
-        return;
-      try
+      this.FFDriverService = FirefoxDriverService.CreateDefaultService(this.getVersionPath());
+      this.FFDriverService.HideCommandPromptWindow = true;
+    }
+    this.driver = (WebDriver) new FirefoxDriver(this.FFDriverService, this.options);
+    if (!string.IsNullOrEmpty(this.youtubeChatPopoutUrl) && this.youtubeChatPopoutUrl.Contains("https://www.youtube.") && this.youtubeChatPopoutUrl.Contains("/live_chat?is_popout="))
+    {
+      if (this.youtubeChatPopoutUrl.Contains("&v="))
       {
-        this.driver.Navigate().GoToUrl(this.youtubeChatPopoutUrl);
-        this.UpdateMessagesList(true);
-        this.isValidURL = true;
-      }
-      catch (Exception ex)
-      {
-        this.isValidURL = false;
+        try
+        {
+          HttpWebResponse response = (HttpWebResponse) WebRequest.Create(this.youtubeChatPopoutUrl).GetResponse();
+          if (response.StatusCode == HttpStatusCode.OK)
+          {
+            try
+            {
+              this.driver.Navigate().GoToUrl(this.youtubeChatPopoutUrl);
+              this.UpdateMessagesList(true);
+              this.isValidURL = true;
+              if (this.updateThread != null && this.updateThread.IsAlive)
+              {
+                this.updateThread.Abort();
+                this.updateThread = (Thread) null;
+              }
+              this.updateThread = new Thread(new ThreadStart(this._messageUpdate));
+              this.updateThread.Start();
+            }
+            catch (Exception ex)
+            {
+              this.isValidURL = false;
+            }
+          }
+          response.Dispose();
+          return;
+        }
+        catch
+        {
+          this.isValidURL = false;
+          this._youtubeChatPopoutUrl = string.Empty;
+          return;
+        }
       }
     }
-    else
-      this.isValidURL = false;
+    this.isValidURL = false;
   }
 
   private void OnApplicationQuit() => this.CloseDriver();
@@ -140,6 +190,15 @@ public class YouTubeChat : MonoBehaviour
     this.driver.Close();
     this.driver.Quit();
     this.driver = (WebDriver) null;
+    if (this.FFDriverService != null)
+    {
+      this.FFDriverService.Dispose();
+      this.FFDriverService = (FirefoxDriverService) null;
+    }
+    if (this.updateThread == null)
+      return;
+    this.updateThread.Abort();
+    this.updateThread = (Thread) null;
   }
 
   private string getVersionPath()

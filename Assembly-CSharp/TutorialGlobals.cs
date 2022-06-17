@@ -1,11 +1,12 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TutorialGlobals
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 public static class TutorialGlobals
 {
+  private const string Str_IgnoreDistraction = "IgnoreDistraction";
   private const string Str_IgnoreClothing = "IgnoreClothing";
   private const string Str_IgnoreCouncil = "IgnoreCouncil";
   private const string Str_IgnoreTeacher = "IgnoreTeacher";
@@ -23,6 +24,12 @@ public static class TutorialGlobals
   private const string Str_IgnoreInfo = "IgnoreInfo";
   private const string Str_IgnorePool = "IgnorePool";
   private const string Str_IgnoreRep = "IgnoreClass";
+
+  public static bool IgnoreDistraction
+  {
+    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreDistraction");
+    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreDistraction", value);
+  }
 
   public static bool IgnoreClothing
   {
@@ -128,6 +135,7 @@ public static class TutorialGlobals
 
   public static void DeleteAll()
   {
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreDistraction");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClothing");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreCouncil");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreTeacher");

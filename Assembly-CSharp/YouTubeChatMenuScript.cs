@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YouTubeChatMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -33,6 +33,8 @@ public class YouTubeChatMenuScript : MonoBehaviour
 
   private void Update()
   {
+    Cursor.lockState = CursorLockMode.None;
+    Cursor.visible = true;
     if (this.Frame == 1)
     {
       this.InitializeWindow.SetActive(false);
@@ -44,10 +46,19 @@ public class YouTubeChatMenuScript : MonoBehaviour
       this.PauseScreen.PromptBar.UpdateButtons();
       ++this.Frame;
     }
-    if (this.Frame == 3)
+    else if (this.Frame == 3)
     {
+      this.Chat.youtubeChatPopoutUrl = "";
       this.Chat.youtubeChatPopoutUrl = this.URL.text;
+      ++this.Frame;
+    }
+    else if (this.Frame == 4)
+    {
       this.Chat.AssureDriverActivated();
+      ++this.Frame;
+    }
+    else if (this.Frame == 5)
+    {
       if (this.Chat.isValidURL)
         this.Chat.UpdateMessagesList(false);
       ++this.Frame;
@@ -56,8 +67,7 @@ public class YouTubeChatMenuScript : MonoBehaviour
     {
       if (Input.GetButtonDown("A"))
       {
-        ++this.Pushes;
-        if (this.Pushes != 10)
+        if ((double) this.PauseScreen.transform.localEulerAngles.z <= 89.0)
           return;
         this.InitializationLabel.text = "Now initializing the chat-checking system! Please wait...";
         this.InitializationLabel.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
@@ -76,13 +86,11 @@ public class YouTubeChatMenuScript : MonoBehaviour
     }
     else
     {
-      this.ClickHitbox.size = new Vector3(640f, 64f, Random.RandomRange(1f, 64f));
-      if (this.Frame == 4)
+      if (this.Frame == 6)
       {
         if (this.Chat.isValidURL)
         {
-          if (this.Chat.TimeBased)
-            this.CommandChecker.CountdownCircle.transform.parent.gameObject.SetActive(true);
+          int num = this.Chat.TimeBased ? 1 : 0;
           this.ValidURL.text = "Connected to chat! Have fun!";
           this.ValidURL.color = new Color(0.0f, 1f, 0.0f, 1f);
         }
@@ -96,8 +104,7 @@ public class YouTubeChatMenuScript : MonoBehaviour
       {
         if (this.Column == 1 && this.Row == 1)
         {
-          if (this.Chat.TimeBased)
-            this.CommandChecker.CountdownCircle.transform.parent.gameObject.SetActive(true);
+          int num = this.Chat.TimeBased ? 1 : 0;
           this.CommandChecker.Chat.TimeBased = true;
           this.Automatic = true;
           this.AutomaticSprite.spriteName = "Yes";
@@ -133,33 +140,18 @@ public class YouTubeChatMenuScript : MonoBehaviour
       }
       else if (this.PauseScreen.InputManager.TappedLeft)
       {
-        --this.Column;
-        if (this.Column < 1)
-          this.Column = 3;
-        if (this.Column == 1 && this.Row > 2)
-          this.Row = 2;
+        this.Column = this.Column != 1 ? 1 : 2;
         this.UpdateHighlight();
       }
       else if (this.PauseScreen.InputManager.TappedRight)
       {
-        ++this.Column;
-        if (this.Column > 3)
-        {
-          this.Column = 1;
-          if (this.Row > 2)
-            this.Row = 2;
-        }
+        this.Column = this.Column != 1 ? 1 : 2;
         this.UpdateHighlight();
       }
       else if (this.PauseScreen.InputManager.TappedDown)
       {
         ++this.Row;
-        if (this.Column == 1)
-        {
-          if (this.Row > 2)
-            this.Row = 1;
-        }
-        else if (this.Row > 5)
+        if (this.Row > 5)
           this.Row = 1;
         this.UpdateHighlight();
       }
@@ -168,12 +160,7 @@ public class YouTubeChatMenuScript : MonoBehaviour
         if (!this.PauseScreen.InputManager.TappedUp)
           return;
         --this.Row;
-        if (this.Column == 1)
-        {
-          if (this.Row < 1)
-            this.Row = 2;
-        }
-        else if (this.Row < 1)
+        if (this.Row < 1)
           this.Row = 5;
         this.UpdateHighlight();
       }
@@ -182,15 +169,8 @@ public class YouTubeChatMenuScript : MonoBehaviour
 
   private void UpdateHighlight()
   {
-    if (this.Column == 1)
-    {
-      this.Highlight.localPosition = new Vector3(-500f, (float) (125 - this.Row * 125), 0.0f);
-    }
-    else
-    {
-      this.Highlight.localPosition = new Vector3((float) (this.Column * 225 - 525), (float) (50 - this.Row * 50), 0.0f);
-      this.ID = this.Row + (this.Column - 2) * 5;
-    }
+    this.Highlight.localPosition = new Vector3((float) ((this.Column - 1) * 200 - 500), (float) (50 - this.Row * 50), 0.0f);
+    this.ID = this.Row + (this.Column - 1) * 5;
   }
 
   private void Exit()

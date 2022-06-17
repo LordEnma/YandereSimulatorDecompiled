@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -266,6 +266,7 @@ public class StudentManagerScript : MonoBehaviour
   public Transform[] FemaleRestSpots;
   public Transform[] MaleRestSpots;
   public GameObject ModernRivalBookBag;
+  public GameObject DelinquentVoices;
   public GameObject LovestruckCamera;
   public GameObject WednesdayGiftBox;
   public GameObject DelinquentRadio;
@@ -832,7 +833,7 @@ public class StudentManagerScript : MonoBehaviour
   {
     if (!this.TakingPortraits)
     {
-      if (!this.Yandere.ShoulderCamera.Counselor.Interrogating)
+      if (!this.Yandere.ShoulderCamera.Counselor.Interrogating && !this.Yandere.PauseScreen.YouTubeChatMenu.isActiveAndEnabled)
       {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -1025,6 +1026,19 @@ public class StudentManagerScript : MonoBehaviour
               this.BookBag.Wear();
             this.LoadedSave = false;
             this.Reputation.UpdatePendingRepLabel();
+            if (!this.Eighties)
+            {
+              if ((UnityEngine.Object) this.Students[10] != (UnityEngine.Object) null)
+                this.Students[10].Cosmetic.SetFemaleUniform();
+              if ((UnityEngine.Object) this.Students[86] != (UnityEngine.Object) null)
+                this.Students[86].Cosmetic.SetFemaleUniform();
+              if ((UnityEngine.Object) this.Students[87] != (UnityEngine.Object) null)
+                this.Students[87].Cosmetic.SetFemaleUniform();
+              if ((UnityEngine.Object) this.Students[88] != (UnityEngine.Object) null)
+                this.Students[88].Cosmetic.SetFemaleUniform();
+              if ((UnityEngine.Object) this.Students[89] != (UnityEngine.Object) null)
+                this.Students[89].Cosmetic.SetFemaleUniform();
+            }
           }
           if (Screen.width < 1280 || Screen.height < 720)
             Screen.SetResolution(1280, 720, false);
@@ -1351,6 +1365,7 @@ public class StudentManagerScript : MonoBehaviour
       student.StudentManager = this;
       student.StudentID = spawnID;
       student.JSON = this.JSON;
+      student.Ragdoll.StudentID = spawnID;
       student.BloodSpawnerIdentifier.ObjectID = "Student_" + spawnID.ToString() + "_BloodSpawner";
       student.HipsIdentifier.ObjectID = "Student_" + spawnID.ToString() + "_Hips";
       student.YanSave.ObjectID = "Student_" + spawnID.ToString();
@@ -1593,6 +1608,14 @@ public class StudentManagerScript : MonoBehaviour
         if (student.Drownable && !this.Yandere.Armed && (UnityEngine.Object) this.Yandere.PickUp == (UnityEngine.Object) null)
         {
           student.Prompt.Label[2].text = "     Drown";
+          student.Prompt.HideButton[0] = true;
+          student.Prompt.HideButton[2] = false;
+          student.Prompt.MinimumDistance = 1f;
+          student.Prompt.Attack = true;
+        }
+        if (student.Pushable && !this.Yandere.Armed && (UnityEngine.Object) this.Yandere.PickUp == (UnityEngine.Object) null)
+        {
+          student.Prompt.Label[2].text = "     Push";
           student.Prompt.HideButton[0] = true;
           student.Prompt.HideButton[2] = false;
           student.Prompt.MinimumDistance = 1f;
@@ -2893,6 +2916,7 @@ public class StudentManagerScript : MonoBehaviour
     this.PuddleParent.RecordAllPuddles();
     YanSave.SaveData("Profile_" + profile.ToString() + "_Slot_" + num.ToString());
     PlayerPrefs.SetInt("Profile_" + profile.ToString() + "_Slot_" + num.ToString() + "_MemorialStudents", StudentGlobals.MemorialStudents);
+    Debug.Log((object) ("At the time of saving, StudentManager's GloveID was: " + this.GloveID.ToString()));
   }
 
   public void Load()
@@ -3034,6 +3058,7 @@ public class StudentManagerScript : MonoBehaviour
     this.Yandere.WeaponManager.RestoreWeaponToStudent();
     this.Yandere.WeaponManager.UpdateDelinquentWeapons();
     this.Yandere.WeaponManager.RestoreBlood();
+    this.Yandere.ChangeSchoolwear();
     this.Mirror.UpdatePersona();
     if (this.Yandere.ClubAttire)
     {
@@ -3066,6 +3091,7 @@ public class StudentManagerScript : MonoBehaviour
       this.OsanaThursdayAfterClassEvent.ReturningFromSave = true;
     if ((UnityEngine.Object) this.Students[10] != (UnityEngine.Object) null && (UnityEngine.Object) this.Students[10].Cheer != (UnityEngine.Object) null)
       this.Students[10].Cheer.enabled = false;
+    Debug.Log((object) ("At the time of loading, StudentManager's GloveID was: " + this.GloveID.ToString()));
     if (this.Yandere.Gloved)
     {
       this.Yandere.Gloves = this.GloveList[this.GloveID];
@@ -3889,7 +3915,7 @@ public class StudentManagerScript : MonoBehaviour
           ++index1;
         while (true)
         {
-          if (!((UnityEngine.Object) this.Students[index1] == (UnityEngine.Object) null) && this.Students[index1].gameObject.activeInHierarchy)
+          if (!((UnityEngine.Object) this.Students[index1] == (UnityEngine.Object) null) && this.Students[index1].gameObject.activeInHierarchy && !this.Students[index1].Slave)
             goto label_6;
 label_4:
           ++index1;

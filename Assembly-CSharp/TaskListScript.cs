@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TaskListScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -43,10 +43,7 @@ public class TaskListScript : MonoBehaviour
   private void Update()
   {
     if (this.InputManager.DPadUp || this.InputManager.StickUp || Input.GetKey("w") || Input.GetKey("up"))
-    {
-      Debug.Log((object) "yes, it's up...");
       this.HeldUp += Time.unscaledDeltaTime;
-    }
     else
       this.HeldUp = 0.0f;
     if (this.InputManager.DPadDown || this.InputManager.StickDown || Input.GetKey("s") || Input.GetKey("down"))

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WorkbenchScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -14,10 +14,12 @@ public class WorkbenchScript : MonoBehaviour
   public PromptBarScript PromptBar;
   public PromptScript Prompt;
   public GameObject ConfirmationWindow;
+  public GameObject EleventhOption;
   public GameObject OutcomeCamera;
   public Transform WorkbenchWindow;
   public Transform Highlight;
   public UILabel ConfirmationLabel;
+  public UILabel HeaderLabel;
   public AudioSource MyAudio;
   public UISprite Darkness;
   public GameObject[] MaterialModel;
@@ -28,6 +30,7 @@ public class WorkbenchScript : MonoBehaviour
   public bool[] InStock;
   public int[] Material;
   public bool CraftingSequence;
+  public bool Chemistry;
   public bool Triple;
   public bool Return;
   public bool Show;
@@ -35,9 +38,14 @@ public class WorkbenchScript : MonoBehaviour
   public int Checkmarks;
   public int Selection = 1;
   public int OutcomeID = 1;
+  public int Limit = 11;
   public float Rotation;
 
-  private void Start() => this.RemoveCheckmarks();
+  private void Start()
+  {
+    this.WorkbenchWindow.gameObject.SetActive(false);
+    this.RemoveCheckmarks();
+  }
 
   private void Update()
   {
@@ -48,9 +56,18 @@ public class WorkbenchScript : MonoBehaviour
       this.Prompt.Circle[0].fillAmount = 1f;
       if (this.Prompt.Yandere.Chased || this.Prompt.Yandere.Chasers != 0)
         return;
-      this.Prompt.Yandere.MainCamera.transform.position = new Vector3(26f, 5.55f, 5f);
-      this.Prompt.Yandere.MainCamera.transform.eulerAngles = new Vector3(54f, 0.0f, 0.0f);
-      this.Prompt.Yandere.transform.position = new Vector3(26f, 4f, 4f);
+      if (!this.Chemistry)
+      {
+        this.Prompt.Yandere.MainCamera.transform.position = new Vector3(26f, 5.55f, 5f);
+        this.Prompt.Yandere.MainCamera.transform.eulerAngles = new Vector3(54f, 0.0f, 0.0f);
+        this.Prompt.Yandere.transform.position = new Vector3(26f, 4f, 4f);
+      }
+      else
+      {
+        this.Prompt.Yandere.MainCamera.transform.position = new Vector3(26f, 5.55f, -9.307f);
+        this.Prompt.Yandere.MainCamera.transform.eulerAngles = new Vector3(54f, 180f, 0.0f);
+        this.Prompt.Yandere.transform.position = new Vector3(26f, 4f, -8.5f);
+      }
       this.Prompt.Yandere.MyController.enabled = false;
       this.Prompt.Yandere.RPGCamera.enabled = false;
       this.Prompt.Yandere.CanMove = false;
@@ -59,8 +76,23 @@ public class WorkbenchScript : MonoBehaviour
       this.PromptBar.Label[1].text = "Exit";
       this.PromptBar.UpdateButtons();
       this.PromptBar.Show = true;
-      this.CheckInventory();
       this.Show = true;
+      this.Selection = 1;
+      this.UpdateHighlight();
+      if (!this.Chemistry)
+      {
+        this.Limit = 11;
+        this.CheckInventory();
+        this.EleventhOption.SetActive(true);
+        this.HeaderLabel.text = "Materials";
+      }
+      else
+      {
+        this.Limit = 10;
+        this.CheckChemicals();
+        this.EleventhOption.SetActive(false);
+        this.HeaderLabel.text = "Chemicals";
+      }
     }
     else
     {
@@ -118,15 +150,28 @@ public class WorkbenchScript : MonoBehaviour
           {
             if (!Input.GetButtonDown("X") || !(this.PromptBar.Label[2].text != ""))
               return;
-            this.PromptBar.Label[0].text = "Yes";
+            this.ConfirmationWindow.SetActive(true);
+            this.PromptBar.Label[0].text = "";
+            if (!this.Chemistry)
+            {
+              this.ConfirmationLabel.text = "Combine these objects to make " + this.Outcome + "?";
+              this.PromptBar.Label[0].text = "Yes";
+            }
+            else if (this.Prompt.Yandere.Class.ChemistryGrade + this.Prompt.Yandere.Class.ChemistryBonus < this.OutcomeID)
+            {
+              this.ConfirmationLabel.text = "You lack the chemistry knowledge to combine these chemicals effectively. Raise your Chemistry stat to at least " + this.OutcomeID.ToString() + " and try again.";
+            }
+            else
+            {
+              this.ConfirmationLabel.text = "Synthesize these chemicals to create " + this.Outcome + "?";
+              this.PromptBar.Label[0].text = "Yes";
+            }
             this.PromptBar.Label[1].text = "No";
             this.PromptBar.Label[2].text = "";
             this.PromptBar.UpdateButtons();
-            this.ConfirmationWindow.SetActive(true);
-            this.ConfirmationLabel.text = "Combine these objects to make " + this.Outcome + "?";
           }
         }
-        else if (Input.GetButtonDown("A"))
+        else if (this.PromptBar.Label[0].text != "" && Input.GetButtonDown("A"))
         {
           this.ConfirmationWindow.SetActive(false);
           this.OutcomeModel[this.OutcomeID].transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
@@ -158,49 +203,96 @@ public class WorkbenchScript : MonoBehaviour
         this.Darkness.alpha = Mathf.Lerp(this.Darkness.alpha, 0.5f, Time.deltaTime * 10f);
         if ((double) this.Darkness.alpha <= 0.490000009536743 || !Input.GetButtonDown("A"))
           return;
-        if (this.OutcomeID == 1)
+        if (!this.Chemistry)
         {
-          this.Inventory.Ammonium = false;
-          this.Inventory.Balloons = false;
-          GameObject gameObject = Object.Instantiate<GameObject>(this.Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[13], this.Prompt.Yandere.transform.position + new Vector3(0.0f, 1f, 0.5f), Quaternion.identity);
-          gameObject.GetComponent<Rigidbody>().useGravity = true;
-          gameObject.GetComponent<Rigidbody>().isKinematic = false;
-          gameObject.name = "Box of Stink Bombs";
+          if (this.OutcomeID == 1)
+          {
+            this.Inventory.Ammonium = false;
+            this.Inventory.Balloons = false;
+            GameObject gameObject = Object.Instantiate<GameObject>(this.Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[13], this.Prompt.Yandere.transform.position + new Vector3(0.0f, 1f, 0.5f), Quaternion.identity);
+            gameObject.GetComponent<Rigidbody>().useGravity = true;
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            gameObject.name = "Box of Stink Bombs";
+          }
+          else if (this.OutcomeID == 2)
+          {
+            this.Inventory.Hairpins = false;
+            this.Inventory.PaperClips = false;
+            this.Inventory.LockPick = true;
+          }
+          else if (this.OutcomeID == 3)
+          {
+            this.Inventory.SilverFulminate = false;
+            this.Inventory.Paper = false;
+            GameObject gameObject = Object.Instantiate<GameObject>(this.Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[12], this.Prompt.Yandere.transform.position + new Vector3(0.0f, 1f, 0.5f), Quaternion.identity);
+            gameObject.GetComponent<Rigidbody>().useGravity = true;
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            gameObject.name = "Box of Bang Snaps";
+          }
+          else if (this.OutcomeID == 4)
+          {
+            this.Inventory.Nails = false;
+            this.Prompt.Yandere.EquippedWeapon.Nails.SetActive(true);
+          }
+          else if (this.OutcomeID == 5)
+          {
+            this.Inventory.Bandages = false;
+            this.Inventory.WoodenSticks = false;
+            this.Inventory.Glass = false;
+            this.MakeshiftKnife = this.Prompt.Yandere.WeaponManager.Weapons[45];
+            this.MakeshiftKnife.gameObject.SetActive(true);
+            this.MakeshiftKnife.transform.position = this.Prompt.Yandere.transform.position + new Vector3(0.0f, 1f, 0.5f);
+            this.MakeshiftKnife.Start();
+            this.MakeshiftKnife.MyRigidbody.useGravity = true;
+            this.MakeshiftKnife.MyRigidbody.isKinematic = false;
+          }
         }
-        else if (this.OutcomeID == 2)
+        else
         {
-          this.Inventory.Hairpins = false;
-          this.Inventory.PaperClips = false;
-          this.Inventory.LockPick = true;
-        }
-        else if (this.OutcomeID == 3)
-        {
-          this.Inventory.SilverFulminate = false;
-          this.Inventory.Paper = false;
-          GameObject gameObject = Object.Instantiate<GameObject>(this.Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[12], this.Prompt.Yandere.transform.position + new Vector3(0.0f, 1f, 0.5f), Quaternion.identity);
-          gameObject.GetComponent<Rigidbody>().useGravity = true;
-          gameObject.GetComponent<Rigidbody>().isKinematic = false;
-          gameObject.name = "Box of Bang Snaps";
-        }
-        else if (this.OutcomeID == 4)
-        {
-          this.Inventory.Nails = false;
-          this.Prompt.Yandere.EquippedWeapon.Nails.SetActive(true);
-        }
-        else if (this.OutcomeID == 5)
-        {
-          this.Inventory.Bandages = false;
-          this.Inventory.WoodenSticks = false;
-          this.Inventory.Glass = false;
-          this.MakeshiftKnife = this.Prompt.Yandere.WeaponManager.Weapons[45];
-          this.MakeshiftKnife.gameObject.SetActive(true);
-          this.MakeshiftKnife.transform.position = this.Prompt.Yandere.transform.position + new Vector3(0.0f, 1f, 0.5f);
-          this.MakeshiftKnife.Start();
-          this.MakeshiftKnife.MyRigidbody.useGravity = true;
-          this.MakeshiftKnife.MyRigidbody.isKinematic = false;
+          if (this.OutcomeID == 1)
+          {
+            this.Inventory.Mustard = false;
+            this.Inventory.Salt = false;
+            this.Inventory.EmeticChemical = true;
+            ++this.Inventory.EmeticPoisons;
+          }
+          else if (this.OutcomeID == 2)
+          {
+            this.Inventory.Tyramine = false;
+            this.Inventory.Phenylethylamine = false;
+            this.Inventory.HeadacheChemical = true;
+            ++this.Inventory.HeadachePoisons;
+          }
+          else if (this.OutcomeID == 3)
+          {
+            this.Inventory.Acetone = false;
+            this.Inventory.Chloroform = false;
+            this.Inventory.SedativeChemical = true;
+            ++this.Inventory.SedativePoisons;
+          }
+          else if (this.OutcomeID == 4)
+          {
+            this.Inventory.AceticAcid = false;
+            this.Inventory.BariumCarbonate = false;
+            this.Inventory.LethalChemical = true;
+            ++this.Inventory.LethalPoisons;
+          }
+          else if (this.OutcomeID == 5)
+          {
+            this.Inventory.PotassiumNitrate = false;
+            this.Inventory.Sugar = false;
+            GameObject gameObject = Object.Instantiate<GameObject>(this.Prompt.Yandere.PauseScreen.FavorMenu.DropsMenu.InfoChanWindow.Drops[14], this.Prompt.Yandere.transform.position + new Vector3(0.0f, 1f, 0.5f), Quaternion.identity);
+            gameObject.GetComponent<Rigidbody>().useGravity = true;
+            gameObject.GetComponent<Rigidbody>().isKinematic = false;
+            gameObject.name = "Smoke Bomb";
+          }
+          this.Prompt.Yandere.StudentManager.UpdateAllBentos();
         }
         this.RemoveCheckmarks();
-        this.CheckInventory();
+        if (!this.Chemistry)
+          this.CheckInventory();
+        else
+          this.CheckChemicals();
         this.Return = true;
       }
       else
@@ -301,12 +393,78 @@ public class WorkbenchScript : MonoBehaviour
     }
   }
 
+  private void CheckChemicals()
+  {
+    Debug.Log((object) "The game is now checking what chemicals are currently in Yandere-chan's inventory.");
+    for (int index = 1; index < this.Checkmark.Length; ++index)
+    {
+      this.Label[index].color = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+      this.Label[index].text = "?????";
+      this.InStock[index] = false;
+    }
+    if (this.Inventory.Mustard)
+    {
+      this.Label[1].text = "Mustard";
+      this.InStock[1] = true;
+    }
+    if (this.Inventory.Salt)
+    {
+      this.Label[2].text = "Salt";
+      this.InStock[2] = true;
+    }
+    if (this.Inventory.Tyramine)
+    {
+      this.Label[3].text = "Tyramine";
+      this.InStock[3] = true;
+    }
+    if (this.Inventory.Phenylethylamine)
+    {
+      this.Label[4].text = "Phenylethylamine";
+      this.InStock[4] = true;
+    }
+    if (this.Inventory.Acetone)
+    {
+      this.Label[5].text = "Acetone";
+      this.InStock[5] = true;
+    }
+    if (this.Inventory.Chloroform)
+    {
+      this.Label[6].text = "Chloroform";
+      this.InStock[6] = true;
+    }
+    if (this.Inventory.AceticAcid)
+    {
+      this.Label[7].text = "Acetic Acid";
+      this.InStock[7] = true;
+    }
+    if (this.Inventory.BariumCarbonate)
+    {
+      this.Label[8].text = "Barium Carbonate";
+      this.InStock[8] = true;
+    }
+    if (this.Inventory.PotassiumNitrate)
+    {
+      this.Label[9].text = "Potassium Nitrate";
+      this.InStock[9] = true;
+    }
+    if (this.Inventory.Sugar)
+    {
+      this.Label[10].text = "Sugar";
+      this.InStock[10] = true;
+    }
+    for (int index = 1; index < this.Checkmark.Length; ++index)
+    {
+      if (this.Label[index].text != "?????")
+        this.Label[index].color = new Color(0.0f, 0.0f, 0.0f, 1f);
+    }
+  }
+
   private void UpdateHighlight()
   {
-    if (this.Selection > 11)
+    if (this.Selection > this.Limit)
       this.Selection = 1;
     else if (this.Selection < 1)
-      this.Selection = 11;
+      this.Selection = this.Limit;
     this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (440.0 - 80.0 * (double) this.Selection), this.Highlight.localPosition.z);
   }
 
@@ -321,7 +479,7 @@ public class WorkbenchScript : MonoBehaviour
       if (this.Checkmark[index].activeInHierarchy)
       {
         ++this.Checkmarks;
-        if (index == 3 || index == 4 || index == 10)
+        if (!this.Chemistry && (index == 3 || index == 4 || index == 10))
           this.Triple = true;
       }
     }
@@ -330,12 +488,15 @@ public class WorkbenchScript : MonoBehaviour
     else if (this.Checkmarks == 3)
       this.PromptBar.Label[2].text = "Combine";
     this.PromptBar.UpdateButtons();
-    this.DisableInvalidOptions();
+    if (!this.Chemistry)
+      this.DisableInvalidOptions();
+    else
+      this.DisableInvalidChemicals();
   }
 
   private void RemoveCheckmarks()
   {
-    for (int index = 1; index < this.Checkmark.Length; ++index)
+    for (int index = 1; index < this.Limit + 1; ++index)
     {
       this.MaterialModel[index].SetActive(false);
       this.Checkmark[index].SetActive(false);
@@ -391,6 +552,61 @@ public class WorkbenchScript : MonoBehaviour
       this.Label[10].color = new Color(0.0f, 0.0f, 0.0f, 1f);
       this.Outcome = "a makeshift knife";
       this.OutcomeID = 5;
+    }
+    for (int index = 1; index < this.Checkmark.Length; ++index)
+    {
+      if (this.Label[index].text == "?????")
+        this.Label[index].color = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+    }
+  }
+
+  private void DisableInvalidChemicals()
+  {
+    Debug.Log((object) "The player has picked a chemical, and the game is now disabling the chemicals that cannot be synthesized with that chemical.");
+    for (int index = 1; index < this.Checkmark.Length; ++index)
+    {
+      if (this.Checkmarks > 0)
+        this.Label[index].color = new Color(0.0f, 0.0f, 0.0f, 0.5f);
+      else
+        this.Label[index].color = new Color(0.0f, 0.0f, 0.0f, 1f);
+    }
+    if (!this.Triple)
+    {
+      if (this.Material[1] == 1 || this.Material[1] == 2)
+      {
+        this.Label[1].color = new Color(0.0f, 0.0f, 0.0f, 1f);
+        this.Label[2].color = new Color(0.0f, 0.0f, 0.0f, 1f);
+        this.Outcome = "emetic poison";
+        this.OutcomeID = 1;
+      }
+      else if (this.Material[1] == 3 || this.Material[1] == 4)
+      {
+        this.Label[3].color = new Color(0.0f, 0.0f, 0.0f, 1f);
+        this.Label[4].color = new Color(0.0f, 0.0f, 0.0f, 1f);
+        this.Outcome = "headache poison";
+        this.OutcomeID = 2;
+      }
+      else if (this.Material[1] == 5 || this.Material[1] == 6)
+      {
+        this.Label[5].color = new Color(0.0f, 0.0f, 0.0f, 1f);
+        this.Label[6].color = new Color(0.0f, 0.0f, 0.0f, 1f);
+        this.Outcome = "a sedative";
+        this.OutcomeID = 3;
+      }
+      else if (this.Material[1] == 7 || this.Material[1] == 8)
+      {
+        this.Label[7].color = new Color(0.0f, 0.0f, 0.0f, 1f);
+        this.Label[8].color = new Color(0.0f, 0.0f, 0.0f, 1f);
+        this.Outcome = "lethal poison";
+        this.OutcomeID = 4;
+      }
+      else if (this.Material[1] == 9 || this.Material[1] == 10)
+      {
+        this.Label[9].color = new Color(0.0f, 0.0f, 0.0f, 1f);
+        this.Label[10].color = new Color(0.0f, 0.0f, 0.0f, 1f);
+        this.Outcome = "a smoke bomb";
+        this.OutcomeID = 5;
+      }
     }
     for (int index = 1; index < this.Checkmark.Length; ++index)
     {

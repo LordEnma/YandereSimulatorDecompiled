@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomePrisonerChanScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -50,13 +50,34 @@ public class HomePrisonerChanScript : MonoBehaviour
   public bool Tortured;
   public bool Eighties;
   public bool Male;
+  public int PrisonerID;
   public int StudentID;
+  public string IdleAnim;
 
   private void Start()
   {
-    if (SchoolGlobals.KidnapVictim > 0)
+    if (this.PrisonerID == 1)
+      this.StudentID = StudentGlobals.Prisoner1;
+    if (this.PrisonerID == 2)
+      this.StudentID = StudentGlobals.Prisoner2;
+    if (this.PrisonerID == 3)
+      this.StudentID = StudentGlobals.Prisoner3;
+    if (this.PrisonerID == 4)
+      this.StudentID = StudentGlobals.Prisoner4;
+    if (this.PrisonerID == 5)
+      this.StudentID = StudentGlobals.Prisoner5;
+    if (this.PrisonerID == 6)
+      this.StudentID = StudentGlobals.Prisoner6;
+    if (this.PrisonerID == 7)
+      this.StudentID = StudentGlobals.Prisoner7;
+    if (this.PrisonerID == 8)
+      this.StudentID = StudentGlobals.Prisoner8;
+    if (this.PrisonerID == 9)
+      this.StudentID = StudentGlobals.Prisoner9;
+    if (this.PrisonerID == 10)
+      this.StudentID = StudentGlobals.Prisoner10;
+    if (this.StudentID > 0)
     {
-      this.StudentID = SchoolGlobals.KidnapVictim;
       if ((double) StudentGlobals.GetStudentSanity(this.StudentID) == 100.0)
         this.AnkleRopes.SetActive(false);
       this.PermanentAngleR = this.TwintailR.eulerAngles;
@@ -82,16 +103,14 @@ public class HomePrisonerChanScript : MonoBehaviour
         }
       }
       else
-      {
-        SchoolGlobals.KidnapVictim = 0;
         this.gameObject.SetActive(false);
-      }
+      if (this.IdleAnim == "")
+        this.IdleAnim = "f02_kidnapIdle_01";
+      this.Character.GetComponent<Animation>().CrossFade(this.IdleAnim);
     }
     else
       this.gameObject.SetActive(false);
-    if (!GameGlobals.Eighties)
-      return;
-    if (this.Eighties)
+    if ((Object) this.Cosmetic.Student.Ragdoll != (Object) null)
     {
       for (int index = 0; index < this.Cosmetic.Student.Ragdoll.AllRigidbodies.Length; ++index)
       {
@@ -103,6 +122,10 @@ public class HomePrisonerChanScript : MonoBehaviour
       this.Cosmetic.Student.DisableProps();
       this.Blindfold.SetActive(true);
     }
+    if (!GameGlobals.Eighties)
+      return;
+    if (this.Eighties)
+      this.Blindfold.SetActive(true);
     else
       this.gameObject.SetActive(false);
   }
@@ -111,7 +134,7 @@ public class HomePrisonerChanScript : MonoBehaviour
   {
     this.Skirt.transform.localPosition = new Vector3(0.0f, -0.135f, 0.01f);
     this.Skirt.transform.localScale = new Vector3(this.Skirt.transform.localScale.x, 1.2f, this.Skirt.transform.localScale.z);
-    if (!this.Tortured)
+    if (!this.Tortured && this.PrisonerID == 1)
     {
       if ((double) this.Sanity > 0.0)
       {

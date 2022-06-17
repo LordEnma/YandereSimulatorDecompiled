@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EmergencyShowerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -26,7 +26,7 @@ public class EmergencyShowerScript : MonoBehaviour
 
   private void Update()
   {
-    if ((double) this.Yandere.Bloodiness > 0.0 && (Object) this.Yandere.PickUp != (Object) null && this.Yandere.PickUp.Clothing && !this.Yandere.PickUp.Evidence && (Object) this.Yandere.PickUp.Gloves == (Object) null)
+    if (this.Yandere.Schoolwear == 2 && (double) this.Yandere.Bloodiness > 0.0 || this.Yandere.Schoolwear != 2 && (double) this.Yandere.Bloodiness > 0.0 && (Object) this.Yandere.PickUp != (Object) null && this.Yandere.PickUp.Clothing && !this.Yandere.PickUp.Evidence && (Object) this.Yandere.PickUp.Gloves == (Object) null)
     {
       this.Prompt.HideButton[0] = false;
       if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
@@ -37,9 +37,12 @@ public class EmergencyShowerScript : MonoBehaviour
           this.Yandere.CharacterAnimation.CrossFade(this.Yandere.IdleAnim);
           this.Yandere.CannotBeSprayed = true;
           this.Yandere.CanMove = false;
-          this.CleanUniform = this.Yandere.PickUp.gameObject.GetComponent<FoldedUniformScript>();
-          this.Yandere.EmptyHands();
-          this.CleanUniform.transform.position = this.transform.position + this.transform.up + this.transform.forward * 1.5f;
+          if ((Object) this.Yandere.PickUp != (Object) null)
+          {
+            this.CleanUniform = this.Yandere.PickUp.gameObject.GetComponent<FoldedUniformScript>();
+            this.Yandere.EmptyHands();
+            this.CleanUniform.transform.position = this.transform.position + this.transform.up + this.transform.forward * 1.5f;
+          }
           AudioSource.PlayClipAtPoint(this.CurtainClose, this.transform.position);
           this.Bathing = true;
           this.Phase = 1;
@@ -60,18 +63,23 @@ public class EmergencyShowerScript : MonoBehaviour
       this.Curtain.SetBlendShapeWeight(1, this.OpenValue);
       if ((double) this.Timer <= 1.0)
         return;
-      PickUpScript component;
-      if (this.Yandere.ClubAttire)
+      if (this.Yandere.Schoolwear != 2)
       {
-        component = Object.Instantiate<GameObject>(this.TallLocker.BloodyClubUniform[(int) this.Yandere.Club], this.Yandere.transform.position + this.Yandere.transform.forward + this.Yandere.transform.right * -0.5f, Quaternion.identity).GetComponent<PickUpScript>();
-        this.Yandere.StudentManager.ChangingBooths[(int) this.Yandere.Club].CannotChange = true;
-        this.Yandere.StudentManager.ChangingBooths[(int) this.Yandere.Club].CheckYandereClub();
+        PickUpScript component;
+        if (this.Yandere.ClubAttire)
+        {
+          component = Object.Instantiate<GameObject>(this.TallLocker.BloodyClubUniform[(int) this.Yandere.Club], this.Yandere.transform.position + this.Yandere.transform.forward + this.Yandere.transform.right * -0.5f, Quaternion.identity).GetComponent<PickUpScript>();
+          this.Yandere.StudentManager.ChangingBooths[(int) this.Yandere.Club].CannotChange = true;
+          this.Yandere.StudentManager.ChangingBooths[(int) this.Yandere.Club].CheckYandereClub();
+        }
+        else
+          component = Object.Instantiate<GameObject>(this.TallLocker.BloodyUniform[this.Yandere.Schoolwear], this.Yandere.transform.position + this.Yandere.transform.forward + this.Yandere.transform.right * -0.5f, Quaternion.identity).GetComponent<PickUpScript>();
+        AudioSource.PlayClipAtPoint(this.ClothRustle, this.transform.position);
+        if (this.Yandere.RedPaint)
+          component.RedPaint = true;
       }
       else
-        component = Object.Instantiate<GameObject>(this.TallLocker.BloodyUniform[this.Yandere.Schoolwear], this.Yandere.transform.position + this.Yandere.transform.forward + this.Yandere.transform.right * -0.5f, Quaternion.identity).GetComponent<PickUpScript>();
-      AudioSource.PlayClipAtPoint(this.ClothRustle, this.transform.position);
-      if (this.Yandere.RedPaint)
-        component.RedPaint = true;
+        ++this.Timer;
       ++this.Phase;
     }
     else if (this.Phase == 2)
@@ -86,14 +94,19 @@ public class EmergencyShowerScript : MonoBehaviour
     {
       if ((double) this.Timer <= 6.5)
         return;
-      this.CleanUniform.Prompt.Hide();
-      Object.Destroy((Object) this.CleanUniform.gameObject);
-      --this.Yandere.StudentManager.NewUniforms;
-      this.Yandere.ClubAttire = false;
-      this.Yandere.Schoolwear = 1;
-      this.Yandere.ChangeSchoolwear();
+      if (this.Yandere.Schoolwear != 2)
+      {
+        this.CleanUniform.Prompt.Hide();
+        Object.Destroy((Object) this.CleanUniform.gameObject);
+        --this.Yandere.StudentManager.NewUniforms;
+        this.Yandere.ClubAttire = false;
+        this.Yandere.Schoolwear = 1;
+        this.Yandere.ChangeSchoolwear();
+        AudioSource.PlayClipAtPoint(this.ClothRustle, this.transform.position);
+      }
+      else
+        ++this.Timer;
       this.Yandere.Bloodiness = 0.0f;
-      AudioSource.PlayClipAtPoint(this.ClothRustle, this.transform.position);
       ++this.Phase;
     }
     else if (this.Phase == 4)

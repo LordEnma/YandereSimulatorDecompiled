@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AlarmDiscScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -21,6 +21,7 @@ public class AlarmDiscScript : MonoBehaviour
   public bool Delinquent;
   public bool NoScream;
   public bool Shocking;
+  public bool Persist;
   public bool Radio;
   public bool Male;
   public bool Long;
@@ -67,7 +68,8 @@ public class AlarmDiscScript : MonoBehaviour
       this.Student = other.gameObject.GetComponent<StudentScript>();
       if ((Object) this.Student != (Object) null && this.Student.enabled && this.Student.DistractionSpot != new Vector3(this.transform.position.x, this.Student.transform.position.y, this.transform.position.z))
       {
-        Object.Destroy((Object) this.Student.Giggle);
+        if (!this.Persist)
+          Object.Destroy((Object) this.Student.Giggle);
         this.Student.InvestigationTimer = 0.0f;
         this.Student.InvestigationPhase = 0;
         this.Student.Investigating = false;
@@ -89,7 +91,7 @@ public class AlarmDiscScript : MonoBehaviour
             {
               int currentAction = (int) this.Student.CurrentAction;
             }
-            if (!this.Student.TurnOffRadio && this.Student.Alive && !this.Student.Pushed && !this.Student.Dying && !this.Student.Alarmed && !this.Student.Guarding && !this.Student.Wet && !this.Student.Slave && !this.Student.CheckingNote && !this.Student.WitnessedMurder && !this.Student.WitnessedCorpse && !this.Student.Emetic && !this.Student.Confessing && !this.StudentIsBusy && !this.Student.FocusOnYandere && !this.Student.Fleeing && !this.Student.Shoving && !this.Student.SentHome && this.Student.ClubActivityPhase < 16 && !this.Student.Vomiting && !this.Student.Lethal && !this.Student.Headache && !this.Student.Sedated && !this.Student.SenpaiWitnessingRivalDie && !this.Student.Hunted && !this.Student.Drowned && !this.Student.DramaticReaction && !this.Student.Blind && !this.Student.Yandere.Chased && !this.Student.ImmuneToLaughter && !this.Student.ListeningToReport || this.Student.Persona == PersonaType.Protective && (Object) this.Originator != (Object) null && this.Originator.StudentID == 11 && !this.Student.Hunted && !this.Student.Emetic && !this.Student.Headache)
+            if (!this.Student.TurnOffRadio && this.Student.Alive && !this.Student.Pushed && !this.Student.Dying && !this.Student.Alarmed && !this.Student.Guarding && !this.Student.Wet && !this.Student.Slave && !this.Student.CheckingNote && !this.Student.WitnessedMurder && !this.Student.WitnessedCorpse && !this.Student.Emetic && !this.Student.Confessing && !this.StudentIsBusy && !this.Student.FocusOnYandere && !this.Student.Fleeing && !this.Student.Shoving && !this.Student.SentHome && this.Student.ClubActivityPhase < 16 && !this.Student.Vomiting && !this.Student.Lethal && !this.Student.Headache && !this.Student.Sedated && !this.Student.SenpaiWitnessingRivalDie && !this.Student.Hunted && !this.Student.Drowned && !this.Student.DramaticReaction && !this.Student.Yandere.Chased && !this.Student.ImmuneToLaughter && !this.Student.ListeningToReport || this.Student.Persona == PersonaType.Protective && (Object) this.Originator != (Object) null && this.Originator.StudentID == 11 && !this.Student.Hunted && !this.Student.Emetic && !this.Student.Headache)
             {
               int num = this.Student.Male ? 1 : 0;
               if (!this.Student.Struggling)

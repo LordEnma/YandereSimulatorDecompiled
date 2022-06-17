@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -50,9 +50,11 @@ public class WeaponScript : MonoBehaviour
   public bool Suspicious;
   public bool Dangerous;
   public bool Misplaced;
+  public bool Evidence;
   public bool Innocent;
   public bool StartLow;
   public bool Flaming;
+  public bool Bloody;
   public bool Dumped;
   public bool Heated;
   public bool Rotate;
@@ -75,15 +77,16 @@ public class WeaponScript : MonoBehaviour
   public int GlobalID;
   public int WeaponID;
   public int AnimID;
+  public int BagID;
   public WeaponType Type = WeaponType.Knife;
   private AudioClip OriginalClip;
   private int ID;
   public MeshFilter MyMeshFilter;
   public Mesh EightiesCircularSaw;
   public Texture EightiesCircularSawTexture;
-  public bool Evidence;
-  public bool Bloody;
   public bool[] Victims;
+  public bool ClubProperty;
+  public bool OneOfAKind;
   public GameObject HeartBurst;
 
   public void Start()
@@ -397,7 +400,7 @@ public class WeaponScript : MonoBehaviour
           ++this.Yandere.Incinerator.MurderWeapons;
         if (this.Bloody)
           ++this.Yandere.Incinerator.BloodyWeapons;
-        Object.Destroy((Object) this.gameObject);
+        this.gameObject.SetActive(false);
       }
     }
     if (!((Object) this.transform.parent == (Object) this.Yandere.ItemParent) || !this.Concealable || !((Object) this.Yandere.Weapon[1] != (Object) this) || !((Object) this.Yandere.Weapon[2] != (Object) this))

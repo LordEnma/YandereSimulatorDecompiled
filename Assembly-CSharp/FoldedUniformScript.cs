@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: FoldedUniformScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -87,14 +87,21 @@ public class FoldedUniformScript : MonoBehaviour
       }
       this.Timer += Time.deltaTime;
     }
-    if ((double) this.Timer <= 0.0)
+    if ((double) this.Timer > 0.0)
+    {
+      this.Timer += Time.deltaTime;
+      if ((double) this.Timer > 1.5)
+      {
+        this.Yandere.Schoolwear = this.Type;
+        this.Yandere.ChangeSchoolwear();
+        Object.Destroy((Object) this.gameObject);
+      }
+    }
+    if (!((Object) this.CleanTexture != (Object) null) || !((Object) this.MyRenderer[1].material.mainTexture != (Object) this.CleanTexture))
       return;
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer <= 1.5)
-      return;
-    this.Yandere.Schoolwear = this.Type;
-    this.Yandere.ChangeSchoolwear();
-    Object.Destroy((Object) this.gameObject);
+    Debug.Log((object) ("My name is " + this.gameObject.name + " and for some reason I had the incorrect texture a moment ago."));
+    for (int index = 1; index < this.MyRenderer.Length; ++index)
+      this.MyRenderer[index].material.mainTexture = this.CleanTexture;
   }
 
   public void CleanUp()

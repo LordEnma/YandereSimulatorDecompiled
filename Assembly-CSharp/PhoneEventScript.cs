@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PhoneEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -154,7 +154,7 @@ public class PhoneEventScript : MonoBehaviour
           if ((double) this.Timer > 1.5)
           {
             this.EventStudent.SmartPhone.SetActive(true);
-            this.EventStudent.SmartPhone.transform.localPosition = new Vector3(-0.015f, -0.005f, -0.015f);
+            this.EventStudent.SmartPhone.transform.localPosition = new Vector3(0.01f, -0.005f, -0.025f);
             this.EventStudent.SmartPhone.transform.localEulerAngles = new Vector3(0.0f, -150f, 165f);
           }
           if ((double) this.Timer > 2.0)

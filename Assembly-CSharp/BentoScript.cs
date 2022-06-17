@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BentoScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -30,26 +30,18 @@ public class BentoScript : MonoBehaviour
         return;
       this.Yandere = this.Prompt.Yandere;
     }
-    else if (this.Yandere.Inventory.EmeticPoison || this.Yandere.Inventory.RatPoison || this.Yandere.Inventory.LethalPoison || this.Yandere.Inventory.ChemicalPoison)
+    else if (this.Yandere.Inventory.EmeticPoisons > 0 || this.Yandere.Inventory.LethalPoisons > 0)
     {
       this.Prompt.enabled = true;
-      this.Prompt.HideButton[0] = !this.Yandere.Inventory.EmeticPoison && !this.Yandere.Inventory.RatPoison;
+      this.Prompt.HideButton[0] = this.Yandere.Inventory.EmeticPoisons > 0;
       if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
       {
         this.Prompt.Circle[0].fillAmount = 1f;
         this.Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
         if (!this.Prompt.Yandere.StudentManager.YandereVisible)
         {
-          if (this.Yandere.Inventory.EmeticPoison)
-          {
-            this.Yandere.Inventory.EmeticPoison = false;
-            this.Yandere.PoisonType = 1;
-          }
-          else
-          {
-            this.Yandere.Inventory.RatPoison = false;
-            this.Yandere.PoisonType = 3;
-          }
+          --this.Yandere.Inventory.EmeticPoisons;
+          this.Yandere.PoisonType = 1;
           this.StudentManager.Students[this.ID].MyBento.Tampered = true;
           this.StudentManager.Students[this.ID].MyBento.Emetic = true;
           this.StudentManager.Students[this.ID].Emetic = true;
@@ -73,13 +65,9 @@ public class BentoScript : MonoBehaviour
       }
       if (this.ID != 11 && this.ID != 6)
         return;
-      this.Prompt.HideButton[1] = !this.Prompt.Yandere.Inventory.LethalPoison && !this.Prompt.Yandere.Inventory.ChemicalPoison;
+      this.Prompt.HideButton[1] = this.Prompt.Yandere.Inventory.LethalPoisons <= 0;
       if ((double) this.Prompt.Circle[1].fillAmount != 0.0)
         return;
-      if (this.Yandere.Inventory.LethalPoison)
-        this.Yandere.Inventory.LethalPoison = false;
-      else
-        this.Yandere.Inventory.ChemicalPoison = false;
       --this.Prompt.Yandere.Inventory.LethalPoisons;
       this.Prompt.Yandere.CharacterAnimation.CrossFade("f02_poisoning_00");
       this.StudentManager.Students[this.ID].MyBento.Tampered = true;

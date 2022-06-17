@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: InventoryMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: F9DCDD8C-888A-4877-BE40-0221D34B07CB
+// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -25,13 +25,6 @@ public class InventoryMenuScript : MonoBehaviour
     this.Labels[8].alpha = !this.Inventory.FakeID ? 0.75f : 1f;
     this.Labels[9].alpha = !this.Inventory.IDCard ? 0.75f : 1f;
     this.Labels[10].alpha = !this.Inventory.Book ? 0.75f : 1f;
-    this.Labels[11].alpha = !this.Inventory.LethalPoison ? 0.75f : 1f;
-    this.Labels[12].alpha = !this.Inventory.ChemicalPoison ? 0.75f : 1f;
-    this.Labels[13].alpha = !this.Inventory.EmeticPoison ? 0.75f : 1f;
-    this.Labels[14].alpha = !this.Inventory.RatPoison ? 0.75f : 1f;
-    this.Labels[15].alpha = !this.Inventory.HeadachePoison ? 0.75f : 1f;
-    this.Labels[16].alpha = !this.Inventory.Tranquilizer ? 0.75f : 1f;
-    this.Labels[17].alpha = !this.Inventory.Sedative ? 0.75f : 1f;
     this.Labels[18].alpha = !this.Inventory.Cigs ? 0.75f : 1f;
     this.Labels[19].alpha = !this.Inventory.Ring ? 0.75f : 1f;
     this.Labels[20].alpha = !this.Inventory.Sake ? 0.75f : 1f;
