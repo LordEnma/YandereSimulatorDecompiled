@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TalkingScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -1012,15 +1012,28 @@ public class TalkingScript : MonoBehaviour
       if ((double) this.S.TalkTimer == 3.0)
       {
         if (this.S.Male)
+        {
           this.S.Subtitle.UpdateLabel(SubtitleType.SuitorLove, 3, 5f);
+          this.S.CharacterAnimation.CrossFade(this.S.Nod1Anim);
+        }
+        else if (this.S.BikiniAttacher.enabled && !this.S.MyRenderer.enabled)
+        {
+          this.S.Subtitle.CustomText = "Bad timing. As you can see, I'm in a swimsuit right now. Maybe later.";
+          this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 10f);
+          this.S.CharacterAnimation.CrossFade(this.S.GossipAnim);
+          this.Refuse = true;
+        }
         else if (this.S.HelpOffered)
         {
           this.S.Subtitle.UpdateLabel(SubtitleType.SuitorLove, 6, 5f);
+          this.S.CharacterAnimation.CrossFade(this.S.GossipAnim);
           this.Refuse = true;
         }
         else
+        {
           this.S.Subtitle.UpdateLabel(SubtitleType.SuitorLove, 4, 5f);
-        this.S.CharacterAnimation.CrossFade(this.S.Nod1Anim);
+          this.S.CharacterAnimation.CrossFade(this.S.Nod1Anim);
+        }
       }
       else
       {

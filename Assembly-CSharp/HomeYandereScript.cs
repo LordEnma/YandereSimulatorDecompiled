@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeYandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -151,13 +151,16 @@ public class HomeYandereScript : MonoBehaviour
           this.MyRenderer.SetBlendShapeWeight(5, 25f);
           this.MyRenderer.SetBlendShapeWeight(9, 0.0f);
           this.MyRenderer.SetBlendShapeWeight(12, 100f);
-          this.ChangeSchoolwear();
+          if (!this.Pajamas.gameObject.activeInHierarchy)
+            this.ChangeSchoolwear();
         }
         this.MyRenderer.materials[0].mainTexture = this.EightiesSocks;
       }
       this.BreastSize = 1.5f;
       this.BreastR.localScale = new Vector3(this.BreastSize, this.BreastSize, this.BreastSize);
       this.BreastL.localScale = new Vector3(this.BreastSize, this.BreastSize, this.BreastSize);
+      if (HomeGlobals.Night)
+        this.UpdateFace = true;
     }
     else
     {
@@ -183,10 +186,12 @@ public class HomeYandereScript : MonoBehaviour
   {
     if (this.UpdateFace)
     {
+      Debug.Log((object) "UpdateFace was true, so...");
       if ((UnityEngine.Object) this.Pajamas.newRenderer != (UnityEngine.Object) null)
       {
         if (!this.Vtuber)
         {
+          Debug.Log((object) "We're in our pajamas. Let's try to update Ryoba's face.");
           this.Pajamas.newRenderer.SetBlendShapeWeight(0, 50f);
           this.Pajamas.newRenderer.SetBlendShapeWeight(5, 25f);
           this.Pajamas.newRenderer.SetBlendShapeWeight(9, 0.0f);
@@ -201,8 +206,8 @@ public class HomeYandereScript : MonoBehaviour
           this.Pajamas.newRenderer.materials[1].mainTexture = this.FaceTexture;
           Debug.Log((object) "Updating pajama mesh with Vtuber face.");
         }
+        this.UpdateFace = false;
       }
-      this.UpdateFace = false;
     }
     if (!this.Disc.activeInHierarchy)
     {

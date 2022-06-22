@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClubManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -98,6 +98,7 @@ public class ClubManagerScript : MonoBehaviour
   private void Start()
   {
     this.ActivitiesAttended = ClubGlobals.ActivitiesAttended;
+    Debug.Log((object) ("ClubGlobals.ActivitiesAttended was " + ClubGlobals.ActivitiesAttended.ToString() + ", so, as of now, at the start of the school day, ClubManager.ActivitiesAttended is being set to " + this.ActivitiesAttended.ToString() + "."));
     this.MyAudio = this.GetComponent<AudioSource>();
     this.ClubWindow.ActivityWindow.localScale = Vector3.zero;
     this.ClubWindow.ActivityWindow.gameObject.SetActive(false);
@@ -627,7 +628,6 @@ public class ClubManagerScript : MonoBehaviour
         studentID = 36;
         break;
     }
-    Debug.Log((object) "Checking the status of a club leader...");
     if (StudentGlobals.GetStudentDead(studentID) || StudentGlobals.GetStudentDying(studentID) || StudentGlobals.GetStudentArrested(studentID) || StudentGlobals.GetStudentReputation(studentID) <= -100 || (Object) this.StudentManager.Students[studentID] != (Object) null && !this.StudentManager.Students[studentID].Alive && !this.StudentManager.Students[studentID].Ragdoll.Disposed)
     {
       Debug.Log((object) "A club leader is dead!");
@@ -935,8 +935,10 @@ public class ClubManagerScript : MonoBehaviour
     for (this.ID = 1; this.ID < this.ClubArray.Length; ++this.ID)
     {
       if (this.QuitClub[this.ID])
+      {
         ClubGlobals.SetQuitClub(this.ClubArray[this.ID], true);
+        this.ActivitiesAttended = 0;
+      }
     }
-    this.ActivitiesAttended = 0;
   }
 }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YouTubeChat
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using OpenQA.Selenium;
@@ -35,6 +35,8 @@ public class YouTubeChat : MonoBehaviour
   private void OnEnable()
   {
     YouTubeChat.instance = this;
+    this.pathToDriver = Application.dataPath + "/StreamingAssets/Packages/Selenium.WebDriver.GeckoDriver.0.30.0.1/driver/";
+    this.defaultPathToDriver = this.pathToDriver;
     this.options = this.getFirefoxOptions();
     if (this.updateThread != null && this.updateThread.IsAlive)
     {
@@ -238,7 +240,7 @@ public class YouTubeChat : MonoBehaviour
   private FirefoxOptions getFirefoxOptions()
   {
     FirefoxOptions firefoxOptions = new FirefoxOptions();
-    firefoxOptions.BrowserExecutableLocation = this.defaultPathToDriver + "MozillaFirefox\\firefox.exe";
+    firefoxOptions.BrowserExecutableLocation = this.defaultPathToDriver + "MozillaFirefox/firefox.exe";
     firefoxOptions.AddArguments((IEnumerable<string>) new List<string>()
     {
       "--silent-launch",

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SinkScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -12,14 +12,22 @@ public class SinkScript : MonoBehaviour
   public Transform WashPosition;
   public YandereScript Yandere;
   public PromptScript Prompt;
+  public bool WashingDisabled;
 
-  private void Start() => this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
+  private void Start()
+  {
+    this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
+    if (!GameGlobals.EightiesTutorial)
+      return;
+    this.WashingDisabled = true;
+  }
 
   private void Update()
   {
     if ((Object) this.Yandere.PickUp != (Object) null)
     {
       this.Prompt.HideButton[0] = false;
+      this.Prompt.HideButton[1] = true;
       if ((Object) this.Yandere.PickUp.Bucket != (Object) null)
       {
         if (this.Yandere.PickUp.Bucket.Dumbbells == 0)
@@ -52,7 +60,7 @@ public class SinkScript : MonoBehaviour
         this.Prompt.enabled = false;
       }
     }
-    else if (this.Prompt.Yandere.Armed && this.Prompt.Yandere.EquippedWeapon.Blood.enabled)
+    else if (!this.WashingDisabled && this.Prompt.Yandere.Armed && this.Prompt.Yandere.EquippedWeapon.Blood.enabled)
     {
       if (this.Prompt.HideButton[1])
       {

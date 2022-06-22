@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PauseScreenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -214,6 +214,11 @@ public class PauseScreenScript : MonoBehaviour
       }
       if (!Input.GetButtonDown("Start"))
         return;
+      if ((Object) this.Police.StudentManager != (Object) null)
+      {
+        this.Police.StudentManager.Portal.GetComponent<PortalScript>().OsanaEvent.EventSubtitle.text = "";
+        this.Yandere.Subtitle.Label.text = "";
+      }
       if (this.Eighties)
         this.BlackenAllText();
       if (!this.Home)
@@ -458,7 +463,6 @@ public class PauseScreenScript : MonoBehaviour
                 this.PromptBar.ClearButtons();
                 this.PromptBar.Label[0].text = "Choose";
                 this.PromptBar.Label[1].text = "Back";
-                this.PromptBar.Label[2].text = "Debug";
                 this.PromptBar.Label[4].text = "Change";
                 this.PromptBar.Label[5].text = "Change";
                 this.PromptBar.UpdateButtons();

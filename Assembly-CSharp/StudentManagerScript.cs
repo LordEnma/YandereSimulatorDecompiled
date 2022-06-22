@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -16,6 +16,7 @@ public class StudentManagerScript : MonoBehaviour
   private GameObject NewStudent;
   public StudentScript[] Students;
   public OsanaThursdayAfterClassEventScript OsanaThursdayAfterClassEvent;
+  public SpawnedObjectManagerScript SpawnedObjectManager;
   public SelectiveGrayscale SmartphoneSelectiveGreyscale;
   public PickpocketMinigameScript PickpocketMinigame;
   public FindStudentLockerScript FindStudentLocker;
@@ -2914,6 +2915,7 @@ public class StudentManagerScript : MonoBehaviour
     int num = PlayerPrefs.GetInt("SaveSlot");
     this.BloodParent.RecordAllBlood();
     this.PuddleParent.RecordAllPuddles();
+    this.SpawnedObjectManager.RememberObjects();
     YanSave.SaveData("Profile_" + profile.ToString() + "_Slot_" + num.ToString());
     PlayerPrefs.SetInt("Profile_" + profile.ToString() + "_Slot_" + num.ToString() + "_MemorialStudents", StudentGlobals.MemorialStudents);
     Debug.Log((object) ("At the time of saving, StudentManager's GloveID was: " + this.GloveID.ToString()));
@@ -3134,7 +3136,10 @@ public class StudentManagerScript : MonoBehaviour
       Debug.Log((object) "The player was bloody when returning from a save, so we're going to prevent her from incrementing Police.BloodyClothing unnecessarily.");
       --this.Police.BloodyClothing;
     }
+    this.SpawnedObjectManager.RespawnObjects();
     this.LoadedSave = true;
+    Debug.Log((object) ("End of loading sequence. ClubManager.ActivitiesAttended is now: " + this.ClubManager.ActivitiesAttended.ToString()));
+    Debug.Log((object) ("End of loading sequence. ClubGlobals.ActivitiesAttended is now: " + ClubGlobals.ActivitiesAttended.ToString()));
   }
 
   public void UpdateBlood()

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NewSettingsScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -41,11 +41,7 @@ public class NewSettingsScript : MonoBehaviour
   public Shader ToonOutline;
   public Shader Toon;
 
-  private void Start()
-  {
-    Debug.Log((object) "The NewSettings script is running.");
-    this.UpdateLabels();
-  }
+  private void Start() => this.UpdateLabels();
 
   private void Update()
   {

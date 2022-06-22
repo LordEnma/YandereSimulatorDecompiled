@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CalendarScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -20,6 +20,7 @@ public class CalendarScript : MonoBehaviour
   public GameObject CongratulationsWindow;
   public GameObject ConfirmationWindow;
   public GameObject ResetWeekWindow;
+  public GameObject ClubKickWindow;
   public GameObject AmaiWindow;
   public GameObject DeadlineLabel;
   public GameObject StatsButton;
@@ -70,10 +71,6 @@ public class CalendarScript : MonoBehaviour
       Debug.Log((object) "Upon entering the Calendar screen, the rival was dead, but RivalEliminationID was 0. Setting it to 1.");
       GameGlobals.RivalEliminationID = 1;
     }
-    string str1 = StudentGlobals.FemaleUniform.ToString();
-    int num = StudentGlobals.MaleUniform;
-    string str2 = num.ToString();
-    Debug.Log((object) ("Entering the Calendar screen! FemaleUniform is: " + str1 + " and MaleUniform is: " + str2));
     if (DateGlobals.Week == 0)
     {
       Debug.Log((object) "Save file had to be deleted because Week was '0''.");
@@ -149,10 +146,7 @@ public class CalendarScript : MonoBehaviour
     Time.timeScale = 1f;
     if (GameGlobals.RivalEliminationID > 0)
       this.DeadlineLabel.SetActive(false);
-    UILabel weekNumber = this.WeekNumber;
-    num = DateGlobals.Week;
-    string str3 = "WEEK " + num.ToString();
-    weekNumber.text = str3;
+    this.WeekNumber.text = "WEEK " + DateGlobals.Week.ToString();
     this.LoveSickCheck();
     this.ChangeDayColor();
     if (GameGlobals.Eighties)
@@ -192,10 +186,12 @@ public class CalendarScript : MonoBehaviour
     this.Highlight.localPosition = new Vector3((float) ((double) this.Offset - 750.0 + 250.0 * (double) DateGlobals.Weekday) + (float) this.Adjustment, this.Highlight.localPosition.y, this.Highlight.localPosition.z);
     if (DateGlobals.Weekday == DayOfWeek.Saturday)
       this.Highlight.localPosition = new Vector3(-1150f, this.Highlight.localPosition.y, this.Highlight.localPosition.z);
-    if (!GameGlobals.CameFromTitleScreen)
-      return;
-    GameGlobals.CameFromTitleScreen = false;
-    this.CameFromTitleScreen = true;
+    if (GameGlobals.CameFromTitleScreen)
+    {
+      GameGlobals.CameFromTitleScreen = false;
+      this.CameFromTitleScreen = true;
+    }
+    this.SkipConfirmationWindow.SetActive(false);
   }
 
   private void Update()
@@ -363,7 +359,11 @@ public class CalendarScript : MonoBehaviour
             if (this.SkipButton.activeInHierarchy)
             {
               if (Input.GetButtonDown("Y"))
+              {
                 this.SkipConfirmationWindow.SetActive(true);
+                if (ClubGlobals.Club != ClubType.None && ClubGlobals.ActivitiesAttended == 0)
+                  this.ClubKickWindow.SetActive(true);
+              }
             }
             else if (this.AmaiButton.activeInHierarchy && Input.GetButtonDown("Y"))
               this.AmaiWindow.SetActive(true);
@@ -377,6 +377,12 @@ public class CalendarScript : MonoBehaviour
       this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, this.Darkness.color.a + Time.deltaTime);
       if ((double) this.Darkness.color.a >= 1.0)
       {
+        if (DateGlobals.Weekday == DayOfWeek.Saturday && ClubGlobals.Club != ClubType.None && ClubGlobals.ActivitiesAttended == 0)
+        {
+          Debug.Log((object) "Kicking player out of club.");
+          ClubGlobals.SetClubKicked(ClubGlobals.Club, true);
+          ClubGlobals.Club = ClubType.None;
+        }
         if (this.ResetWeek)
         {
           int profile = GameGlobals.Profile;
@@ -430,20 +436,20 @@ public class CalendarScript : MonoBehaviour
               if (!this.Eighties)
               {
                 SceneManager.LoadScene("BusStopScene");
-                goto label_89;
+                goto label_92;
               }
               else
               {
                 GameGlobals.EightiesCutsceneID = DateGlobals.Week + 1;
                 SceneManager.LoadScene("EightiesCutsceneScene");
-                goto label_89;
+                goto label_92;
               }
           }
           SceneManager.LoadScene("HomeScene");
         }
       }
     }
-label_89:
+label_92:
     if (this.Incremented)
       this.Highlight.localPosition = new Vector3(Mathf.Lerp(this.Highlight.localPosition.x, this.Offset - 750f + this.Target, Time.deltaTime * 10f), this.Highlight.localPosition.y, this.Highlight.localPosition.z);
     if (this.Switch)
@@ -727,13 +733,8 @@ label_89:
     int profile = GameGlobals.Profile;
     bool eighties = GameGlobals.Eighties;
     bool debug = GameGlobals.Debug;
-    int femaleUniform1 = StudentGlobals.FemaleUniform;
+    int femaleUniform = StudentGlobals.FemaleUniform;
     int maleUniform = StudentGlobals.MaleUniform;
-    int femaleUniform2 = StudentGlobals.FemaleUniform;
-    string str1 = femaleUniform2.ToString();
-    femaleUniform2 = StudentGlobals.FemaleUniform;
-    string str2 = femaleUniform2.ToString();
-    Debug.Log((object) ("Time to reset the save file! StudentGlobals.FemaleUniform is currently " + str1 + " and StudentGlobals.MaleUniform is currently " + str2));
     Globals.DeleteAll();
     if (eighties && profile < 11)
       profile += 10;
@@ -741,12 +742,8 @@ label_89:
     GameGlobals.Eighties = eighties;
     GameGlobals.Profile = profile;
     GameGlobals.Debug = debug;
-    StudentGlobals.FemaleUniform = femaleUniform1;
+    StudentGlobals.FemaleUniform = femaleUniform;
     StudentGlobals.MaleUniform = maleUniform;
-    string str3 = StudentGlobals.FemaleUniform.ToString();
-    int num = StudentGlobals.FemaleUniform;
-    string str4 = num.ToString();
-    Debug.Log((object) ("And, as of now, StudentGlobals.FemaleUniform is " + str3 + " and StudentGlobals.MaleUniform is " + str4));
     GameGlobals.LoveSick = this.LoveSick;
     DateGlobals.PassDays = 1;
     if (GameGlobals.Eighties)
@@ -755,10 +752,7 @@ label_89:
         StudentGlobals.SetStudentPhotographed(studentID, true);
     }
     OptionGlobals.DisableTint = !eighties;
-    string str5 = profile.ToString();
-    num = 11;
-    string str6 = num.ToString();
-    YanSave.SaveData("Profile_" + str5 + "_Slot_" + str6);
+    YanSave.SaveData("Profile_" + profile.ToString() + "_Slot_" + 11.ToString());
     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
   }
 }

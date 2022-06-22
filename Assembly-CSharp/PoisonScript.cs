@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PoisonScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -15,15 +15,9 @@ public class PoisonScript : MonoBehaviour
   public void Start()
   {
     if (this.Yandere.Class.ChemistryGrade + this.Yandere.Class.ChemistryBonus < 1 && ClassGlobals.ChemistryGrade + ClassGlobals.ChemistryGrade < 1)
-    {
-      Debug.Log((object) "Yandere-chan doesn't have enough chemistry to find the poison bottle.");
       this.gameObject.SetActive(false);
-    }
     else
-    {
-      Debug.Log((object) "Yandere-chan has enough chemistry to find the poison bottle!");
       this.gameObject.SetActive(true);
-    }
   }
 
   private void Update()

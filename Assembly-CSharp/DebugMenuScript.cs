@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DebugMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -699,6 +699,7 @@ public class DebugMenuScript : MonoBehaviour
       Debug.Log((object) "Going to class at lunchtime should get your rival expelled!");
       if (!this.StudentManager.Eighties)
         SchemeGlobals.SetSchemeStage(5, 100);
+      this.Counselor.RivalExpelProgress = 4;
       StudentGlobals.ExpelProgress = 4;
       this.Counselor.CutsceneManager.Scheme = 5;
       this.Counselor.LectureID = 5;

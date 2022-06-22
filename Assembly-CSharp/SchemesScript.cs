@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SchemesScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -80,6 +80,7 @@ public class SchemesScript : MonoBehaviour
     {
       this.DisableScheme[2] = false;
       this.DisableScheme[22] = false;
+      this.DisableScheme[27] = true;
     }
     if (DateGlobals.Weekday == DayOfWeek.Wednesday)
     {

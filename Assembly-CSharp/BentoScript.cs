@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BentoScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -33,7 +33,7 @@ public class BentoScript : MonoBehaviour
     else if (this.Yandere.Inventory.EmeticPoisons > 0 || this.Yandere.Inventory.LethalPoisons > 0)
     {
       this.Prompt.enabled = true;
-      this.Prompt.HideButton[0] = this.Yandere.Inventory.EmeticPoisons > 0;
+      this.Prompt.HideButton[0] = this.Yandere.Inventory.EmeticPoisons <= 0;
       if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
       {
         this.Prompt.Circle[0].fillAmount = 1f;

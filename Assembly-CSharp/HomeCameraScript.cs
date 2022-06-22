@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeCameraScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -341,6 +341,8 @@ public class HomeCameraScript : MonoBehaviour
 
   private void BecomeEighties()
   {
+    this.Butsudan.localPosition = new Vector3(0.2095f, 0.0721f, -0.25f);
+    this.Butsudan.localEulerAngles = new Vector3(0.0f, -50f, 0.0f);
     this.Eighties = true;
     this.CassetteTapes.SetActive(false);
     this.ModernDayRoom.SetActive(false);

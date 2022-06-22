@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D5D5886D-B91C-4930-A8BA-BF914AC4312E}</ProjectGuid>
+    <ProjectGuid>{159AAF11-15B2-4F26-8D10-FDDF9F92BAC9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <ApplicationVersion>0.0.0.0</ApplicationVersion>
@@ -1196,6 +1196,8 @@
     <Compile Include="SniperScript.cs" />
     <Compile Include="SodaScript.cs" />
     <Compile Include="SpawnPointSpawnerScript.cs" />
+    <Compile Include="SpawnedObjectType.cs" />
+    <Compile Include="SpawnedObjectManagerScript.cs" />
     <Compile Include="SpeedrunMenuScript.cs" />
     <Compile Include="SpeedrunTimerScript.cs" />
     <Compile Include="SpinScript.cs" />

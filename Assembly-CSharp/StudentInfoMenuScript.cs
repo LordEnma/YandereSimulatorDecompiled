@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentInfoMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -303,7 +303,7 @@ public class StudentInfoMenuScript : MonoBehaviour
       this.PromptBar.Label[0].text = string.Empty;
       this.PromptBar.UpdateButtons();
     }
-    if (this.Gossiping && (this.StudentID == 1 || this.StudentID == this.PauseScreen.Yandere.TargetStudent.StudentID || this.JSON.Students[this.StudentID].Club == ClubType.Sports || (Object) this.StudentManager.Students[this.StudentID] == (Object) null || StudentGlobals.GetStudentDead(this.StudentID) || this.StudentID > 89))
+    if (this.Gossiping && (this.StudentID == 1 || this.StudentID == this.PauseScreen.Yandere.TargetStudent.StudentID || this.JSON.Students[this.StudentID].Club == ClubType.Sports || (Object) this.StudentManager.Students[this.StudentID] == (Object) null || StudentGlobals.GetStudentDead(this.StudentID) || this.StudentID == this.StudentManager.RivalID && this.StudentManager.Police.EndOfDay.RivalEliminationMethod == RivalEliminationType.Expelled || this.StudentID > 89))
     {
       this.PromptBar.Label[0].text = string.Empty;
       this.PromptBar.UpdateButtons();

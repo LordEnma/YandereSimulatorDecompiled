@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentInfoScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -111,9 +111,9 @@ public class StudentInfoScript : MonoBehaviour
     {
       this.LeftCrushLabel.text = "Crush";
       if (this.CurrentStudent > 10 && this.CurrentStudent < 21)
-        this.CrushLabel.text = this.CurrentStudent != this.StudentManager.RivalID ? "None Anymore" : this.JSON.Students[student.Crush].Name;
+        this.CrushLabel.text = !((Object) this.StudentManager != (Object) null) || this.CurrentStudent != this.StudentManager.RivalID ? "None Anymore" : this.JSON.Students[student.Crush].Name;
       if (this.CurrentStudent == num2)
-        this.CrushLabel.text = this.StudentManager.LoveManager.SuitorProgress != 0 ? this.JSON.Students[student.Crush].Name : "Unknown";
+        this.CrushLabel.text = !((Object) this.StudentManager != (Object) null) || this.StudentManager.LoveManager.SuitorProgress != 0 ? this.JSON.Students[student.Crush].Name : "Unknown";
       else if (student.Crush == 0)
         this.CrushLabel.text = "Unknown";
       else if (student.Crush == 99)
@@ -125,7 +125,7 @@ public class StudentInfoScript : MonoBehaviour
         this.CrushLabel.text = this.JSON.Students[student.Crush].Name;
         for (int index = 2; index < 11; ++index)
         {
-          if (this.CurrentStudent == this.StudentManager.SuitorIDs[index] && this.StudentManager.Week < index)
+          if ((Object) this.StudentManager != (Object) null && this.CurrentStudent == this.StudentManager.SuitorIDs[index] && this.StudentManager.Week < index)
             this.CrushLabel.text = "Unknown";
         }
       }

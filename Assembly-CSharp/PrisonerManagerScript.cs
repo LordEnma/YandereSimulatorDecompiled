@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PrisonerManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -31,39 +31,7 @@ public class PrisonerManagerScript : MonoBehaviour
     this.OriginalTarget = this.Target[0].transform.position;
     for (int index = 1; index < this.Boxes.Length; ++index)
       this.Boxes[index].SetActive(true);
-    Debug.Log((object) ("Prisoners are: " + StudentGlobals.Prisoner1.ToString() + ", " + StudentGlobals.Prisoner2.ToString() + ", " + StudentGlobals.Prisoner3.ToString() + ", " + StudentGlobals.Prisoner4.ToString() + ", " + StudentGlobals.Prisoner5.ToString() + ", " + StudentGlobals.Prisoner6.ToString() + ", " + StudentGlobals.Prisoner7.ToString() + ", " + StudentGlobals.Prisoner8.ToString() + ", " + StudentGlobals.Prisoner9.ToString() + ", and " + StudentGlobals.Prisoner10.ToString() + "."));
     this.ShufflePrisoners();
-    string[] strArray = new string[21];
-    strArray[0] = "And now, prisoners are: ";
-    strArray[1] = StudentGlobals.Prisoner1.ToString();
-    strArray[2] = ", ";
-    strArray[3] = StudentGlobals.Prisoner2.ToString();
-    strArray[4] = ", ";
-    int num = StudentGlobals.Prisoner3;
-    strArray[5] = num.ToString();
-    strArray[6] = ", ";
-    num = StudentGlobals.Prisoner4;
-    strArray[7] = num.ToString();
-    strArray[8] = ", ";
-    num = StudentGlobals.Prisoner5;
-    strArray[9] = num.ToString();
-    strArray[10] = ", ";
-    num = StudentGlobals.Prisoner6;
-    strArray[11] = num.ToString();
-    strArray[12] = ", ";
-    num = StudentGlobals.Prisoner7;
-    strArray[13] = num.ToString();
-    strArray[14] = ", ";
-    num = StudentGlobals.Prisoner8;
-    strArray[15] = num.ToString();
-    strArray[16] = ", ";
-    num = StudentGlobals.Prisoner9;
-    strArray[17] = num.ToString();
-    strArray[18] = ", and ";
-    num = StudentGlobals.Prisoner10;
-    strArray[19] = num.ToString();
-    strArray[20] = ".";
-    Debug.Log((object) string.Concat(strArray));
     if (StudentGlobals.Prisoner1 > 0)
       ++this.PrisonersToSpawn;
     if (StudentGlobals.Prisoner2 > 0)

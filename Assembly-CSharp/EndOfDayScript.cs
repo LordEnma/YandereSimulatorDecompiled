@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -120,6 +120,7 @@ public class EndOfDayScript : MonoBehaviour
   public string[] RivalNames;
   public AudioClip EightiesBGM;
   public string[] VtuberNames;
+  public bool WeaponsChecked;
 
   public void Start()
   {
@@ -230,6 +231,7 @@ public class EndOfDayScript : MonoBehaviour
         if ((UnityEngine.Object) this.KidnappedVictim != (UnityEngine.Object) null)
           this.KidnappedVictim.gameObject.SetActive(false);
         this.CardboardBox.parent = (Transform) null;
+        this.Yandere.LifeNotePen.SetActive(false);
         this.SearchingCop.SetActive(false);
         this.MurderScene.SetActive(false);
         this.Cops.SetActive(false);
@@ -319,16 +321,23 @@ public class EndOfDayScript : MonoBehaviour
   public void UpdateScene()
   {
     this.Label.color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    if (this.Counselor.LectureID == 0)
-    {
-      for (this.ID = 0; this.ID < this.WeaponManager.Weapons.Length; ++this.ID)
-      {
-        if ((UnityEngine.Object) this.WeaponManager.Weapons[this.ID] != (UnityEngine.Object) null)
-          this.WeaponManager.Weapons[this.ID].gameObject.SetActive(false);
-      }
-    }
     if (!this.PoliceArrived)
       return;
+    for (int index = 0; index < this.Yandere.Weapon.Length; ++index)
+    {
+      if ((UnityEngine.Object) this.Yandere.Weapon[index] != (UnityEngine.Object) null && this.Yandere.Weapon[index].Bloody)
+        this.Yandere.Weapon[index].Drop();
+    }
+    if (!this.WeaponsChecked)
+    {
+      this.WeaponManager.CheckWeapons();
+      this.WeaponsChecked = true;
+    }
+    for (this.ID = 0; this.ID < this.WeaponManager.Weapons.Length; ++this.ID)
+    {
+      if ((UnityEngine.Object) this.WeaponManager.Weapons[this.ID] != (UnityEngine.Object) null)
+        this.WeaponManager.Weapons[this.ID].gameObject.SetActive(false);
+    }
     if (Input.GetKeyDown(KeyCode.Backspace))
       this.Finish();
     if (this.Phase == 1)
@@ -532,7 +541,6 @@ public class EndOfDayScript : MonoBehaviour
     }
     else if (this.Phase == 3)
     {
-      this.WeaponManager.CheckWeapons();
       if (this.WeaponManager.MurderWeapons == 0)
       {
         this.ShruggingCops.SetActive(true);
@@ -555,10 +563,11 @@ public class EndOfDayScript : MonoBehaviour
           if ((UnityEngine.Object) this.MurderWeapon == (UnityEngine.Object) null)
           {
             WeaponScript weapon = this.WeaponManager.Weapons[this.ID];
-            if ((UnityEngine.Object) weapon != (UnityEngine.Object) null && weapon.gameObject.activeInHierarchy && weapon.Blood.enabled)
+            if ((UnityEngine.Object) weapon != (UnityEngine.Object) null && weapon.Blood.enabled)
             {
               if (!weapon.AlreadyExamined)
               {
+                --this.WeaponManager.MurderWeapons;
                 weapon.gameObject.SetActive(true);
                 weapon.AlreadyExamined = true;
                 this.MurderWeapon = weapon;
@@ -677,12 +686,25 @@ public class EndOfDayScript : MonoBehaviour
     }
     else if (this.Phase == 7)
     {
-      for (this.ID = 1; this.ID < this.StudentManager.Students.Length; ++this.ID)
+      Debug.Log((object) "Counting eyewitnesses.");
+      for (int index = 1; index < this.StudentManager.Students.Length; ++index)
       {
-        if ((UnityEngine.Object) this.StudentManager.Students[this.ID] != (UnityEngine.Object) null && this.StudentManager.Students[this.ID].Alive && this.StudentManager.Students[this.ID].Persona != PersonaType.Coward && this.StudentManager.Students[this.ID].Persona != PersonaType.Spiteful && this.StudentManager.Students[this.ID].Club != ClubType.Delinquent && !this.StudentManager.Students[this.ID].SawMask && this.StudentManager.Students[this.ID].WitnessedMurder)
+        Debug.Log((object) ("Checking Student #" + index.ToString() + "."));
+        if ((UnityEngine.Object) this.StudentManager.Students[index] != (UnityEngine.Object) null)
         {
-          ++this.EyeWitnesses;
-          this.WitnessList[this.EyeWitnesses] = this.StudentManager.Students[this.ID];
+          Debug.Log((object) ("Student #" + index.ToString() + " was not null."));
+          if (this.StudentManager.Students[index].WitnessedMurder)
+          {
+            Debug.Log((object) ("Student #" + index.ToString() + " witnessed murder! But, are they a valid eyewitness?"));
+            if (this.StudentManager.Students[index].Alive && this.StudentManager.Students[index].Persona != PersonaType.Coward && this.StudentManager.Students[index].Persona != PersonaType.Spiteful && this.StudentManager.Students[index].Persona != PersonaType.Evil && this.StudentManager.Students[index].Club != ClubType.Delinquent && !this.StudentManager.Students[index].SawMask)
+            {
+              Debug.Log((object) ("Yes, Student #" + index.ToString() + " is a valid eyewitness!"));
+              ++this.EyeWitnesses;
+              this.WitnessList[this.EyeWitnesses] = this.StudentManager.Students[index];
+            }
+            else
+              Debug.Log((object) ("No, Student #" + index.ToString() + " is not a valid eyewitness!"));
+          }
         }
       }
       if (this.EyeWitnesses > 0)
@@ -1030,7 +1052,6 @@ public class EndOfDayScript : MonoBehaviour
     }
     else if (this.Phase == 17)
     {
-      Debug.Log((object) "Phase 17 - checking for clubs shutting down.");
       this.ClubLimit = this.ClubArray.Length;
       if (!GameGlobals.Eighties)
         --this.ClubLimit;
@@ -1240,7 +1261,7 @@ public class EndOfDayScript : MonoBehaviour
     else if (this.Phase == 22)
     {
       Debug.Log((object) "The End-of-Day sequence is now checking whether or not we need to boot the player out of a club.");
-      Debug.Log((object) ("ClubGlobals.Club is: " + ClubGlobals.Club.ToString()));
+      Debug.Log((object) ("Yandere.Club is: " + this.Yandere.Club.ToString()));
       Debug.Log((object) ("DateGlobals.Weekday is: " + DateGlobals.Weekday.ToString()));
       Debug.Log((object) ("ClubManager.ActivitiesAttended is: " + this.ClubManager.ActivitiesAttended.ToString()));
       if (this.Yandere.Club != ClubType.None && DateGlobals.Weekday == DayOfWeek.Friday && this.ClubManager.ActivitiesAttended == 0)
@@ -1890,7 +1911,8 @@ public class EndOfDayScript : MonoBehaviour
     PlayerGlobals.WeaponWitnessed += this.WeaponWitnessed;
     this.ClubManager.UpdateQuitClubs();
     StudentGlobals.UpdateRivalReputation = false;
-    ClubGlobals.ActivitiesAttended = DateGlobals.Weekday != DayOfWeek.Friday ? this.ClubManager.ActivitiesAttended : 0;
+    Debug.Log((object) ("Making the game aware of the fact that ClubManager.ActivitiesAttended was " + this.ClubManager.ActivitiesAttended.ToString() + " at the end of this day."));
+    ClubGlobals.ActivitiesAttended = this.ClubManager.ActivitiesAttended;
     this.ArrestStudents();
     this.RemovableItemManager.RemoveItems();
     this.Yandere.CameraEffects.UpdateVignette(0.0f);

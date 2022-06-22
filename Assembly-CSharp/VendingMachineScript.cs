@@ -1,13 +1,14 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: VendingMachineScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
 public class VendingMachineScript : MonoBehaviour
 {
+  public AudioSource MyAudio;
   public PromptScript Prompt;
   public Transform CanSpawn;
   public GameObject[] Cans;
@@ -29,7 +30,11 @@ public class VendingMachineScript : MonoBehaviour
     if ((double) this.Prompt.Yandere.Inventory.Money >= (double) this.Price)
     {
       if (!this.Sabotaged)
-        Object.Instantiate<GameObject>(this.Cans[Random.Range(0, this.Cans.Length)], this.CanSpawn.position, this.CanSpawn.rotation).GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.1f);
+      {
+        Object.Instantiate<GameObject>(this.Cans[Random.Range(0, this.Cans.Length)], this.CanSpawn.position, this.CanSpawn.rotation);
+        this.MyAudio.Play();
+        this.MyAudio.pitch = Random.Range(0.9f, 1.1f);
+      }
       if (this.SnackMachine && SchemeGlobals.GetSchemeStage(4) == 3)
       {
         SchemeGlobals.SetSchemeStage(4, 4);

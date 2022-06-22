@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericRivalEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -1619,6 +1619,14 @@ public class GenericRivalEventScript : MonoBehaviour
       {
         if ((double) this.Timer > (double) this.SpeechTime[this.SpeechPhase])
         {
+          if ((UnityEngine.Object) this.Senpai == (UnityEngine.Object) null)
+          {
+            this.Senpai = this.StudentManager.Students[1];
+            if ((UnityEngine.Object) this.StudentManager.Students[this.StudentManager.RivalID] != (UnityEngine.Object) null)
+              this.Rival = this.StudentManager.Students[this.StudentManager.RivalID];
+            else
+              this.enabled = false;
+          }
           this.Senpai.CharacterAnimation.CrossFade(this.Senpai.IdleAnim);
           this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
           if ((double) Vector3.Distance(this.Yandere.transform.position, this.Epicenter.position) < 11.0)

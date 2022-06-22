@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeekSelectScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -44,6 +44,7 @@ public class WeekSelectScript : MonoBehaviour
     for (int index = 1; index < 11; ++index)
       this.StartingPosition[index] = this.Sleeve[index].position;
     this.DetermineSelectedWeek();
+    StudentGlobals.Prisoners = 0;
   }
 
   private void Update()
@@ -64,21 +65,38 @@ public class WeekSelectScript : MonoBehaviour
         this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 1f, Time.deltaTime);
         if ((double) this.Darkness.alpha == 1.0)
         {
-          for (int elimID = 1; elimID < 11; ++elimID)
+          for (int index = 1; index < 11; ++index)
           {
-            if (GameGlobals.GetSpecificEliminations(elimID) == 1 || GameGlobals.GetSpecificEliminations(elimID) == 5 || GameGlobals.GetSpecificEliminations(elimID) == 6 || GameGlobals.GetSpecificEliminations(elimID) == 7 || GameGlobals.GetSpecificEliminations(elimID) == 8 || GameGlobals.GetSpecificEliminations(elimID) == 10 || GameGlobals.GetSpecificEliminations(elimID) == 14 || GameGlobals.GetSpecificEliminations(elimID) == 15 || GameGlobals.GetSpecificEliminations(elimID) == 16 || GameGlobals.GetSpecificEliminations(elimID) == 17 || GameGlobals.GetSpecificEliminations(elimID) == 19 || GameGlobals.GetSpecificEliminations(elimID) == 20)
+            if (GameGlobals.GetSpecificEliminations(index) == 1 || GameGlobals.GetSpecificEliminations(index) == 5 || GameGlobals.GetSpecificEliminations(index) == 6 || GameGlobals.GetSpecificEliminations(index) == 7 || GameGlobals.GetSpecificEliminations(index) == 8 || GameGlobals.GetSpecificEliminations(index) == 10 || GameGlobals.GetSpecificEliminations(index) == 14 || GameGlobals.GetSpecificEliminations(index) == 15 || GameGlobals.GetSpecificEliminations(index) == 16 || GameGlobals.GetSpecificEliminations(index) == 17 || GameGlobals.GetSpecificEliminations(index) == 19 || GameGlobals.GetSpecificEliminations(index) == 20)
             {
-              Debug.Log((object) ("Rival #" + elimID.ToString() + " is dead."));
-              StudentGlobals.SetStudentDead(elimID + 10, true);
+              Debug.Log((object) ("Rival #" + index.ToString() + " is dead."));
+              StudentGlobals.SetStudentDead(index + 10, true);
             }
-            else if (GameGlobals.GetSpecificEliminations(elimID) == 3 || GameGlobals.GetSpecificEliminations(elimID) == 4)
-              StudentGlobals.SetStudentMissing(elimID + 10, true);
-            else if (GameGlobals.GetSpecificEliminations(elimID) == 9)
-              StudentGlobals.SetStudentExpelled(elimID + 10, true);
-            else if (GameGlobals.GetSpecificEliminations(elimID) == 11)
-              StudentGlobals.SetStudentArrested(elimID + 10, true);
-            else if (GameGlobals.GetSpecificEliminations(elimID) == 12)
-              StudentGlobals.SetStudentKidnapped(elimID + 10, true);
+            else
+            {
+              StudentGlobals.SetStudentDead(index + 10, false);
+              if (GameGlobals.GetSpecificEliminations(index) == 3 || GameGlobals.GetSpecificEliminations(index) == 4)
+              {
+                StudentGlobals.SetStudentMissing(index + 10, true);
+                if (GameGlobals.GetSpecificEliminations(index) == 3)
+                {
+                  Debug.Log((object) ("Rival #" + index.ToString() + " was betrayed, so she will appear in the basement as a prisoner."));
+                  ++StudentGlobals.Prisoners;
+                  this.AssignPrisoner(index);
+                }
+              }
+              else if (GameGlobals.GetSpecificEliminations(index) == 9)
+                StudentGlobals.SetStudentExpelled(index + 10, true);
+              else if (GameGlobals.GetSpecificEliminations(index) == 11)
+                StudentGlobals.SetStudentArrested(index + 10, true);
+              else if (GameGlobals.GetSpecificEliminations(index) == 12)
+              {
+                Debug.Log((object) ("Rival #" + index.ToString() + " was kidnapped, so she will appear in the basement as a prisoner."));
+                StudentGlobals.SetStudentKidnapped(index + 10, true);
+                ++StudentGlobals.Prisoners;
+                this.AssignPrisoner(index);
+              }
+            }
           }
           ClassGlobals.BonusStudyPoints = DateGlobals.Week * 50 - 50;
           GameGlobals.EightiesCutsceneID = DateGlobals.Week;
@@ -344,5 +362,42 @@ public class WeekSelectScript : MonoBehaviour
     }
     DateGlobals.Week = this.CurrentWeek;
     this.UpdateText();
+  }
+
+  private void AssignPrisoner(int ID)
+  {
+    switch (StudentGlobals.Prisoners)
+    {
+      case 1:
+        StudentGlobals.Prisoner1 = 10 + ID;
+        break;
+      case 2:
+        StudentGlobals.Prisoner2 = 10 + ID;
+        break;
+      case 3:
+        StudentGlobals.Prisoner3 = 10 + ID;
+        break;
+      case 4:
+        StudentGlobals.Prisoner4 = 10 + ID;
+        break;
+      case 5:
+        StudentGlobals.Prisoner5 = 10 + ID;
+        break;
+      case 6:
+        StudentGlobals.Prisoner6 = 10 + ID;
+        break;
+      case 7:
+        StudentGlobals.Prisoner7 = 10 + ID;
+        break;
+      case 8:
+        StudentGlobals.Prisoner8 = 10 + ID;
+        break;
+      case 9:
+        StudentGlobals.Prisoner9 = 10 + ID;
+        break;
+      case 10:
+        StudentGlobals.Prisoner10 = 10 + ID;
+        break;
+    }
   }
 }

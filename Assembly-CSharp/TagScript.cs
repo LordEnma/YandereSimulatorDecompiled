@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TagScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -22,9 +22,15 @@ public class TagScript : MonoBehaviour
 
   private void Update()
   {
-    if (!((Object) this.Target != (Object) null) || (double) Vector3.Angle(this.MainCamera.forward, this.MainCamera.position - this.Target.position) <= 90.0)
+    if (!((Object) this.Target != (Object) null))
       return;
-    Vector2 screenPoint = (Vector2) this.MainCameraCamera.WorldToScreenPoint(this.Target.position);
-    this.transform.position = this.UICamera.ScreenToWorldPoint(new Vector3(screenPoint.x, screenPoint.y, 1f));
+    if ((double) Vector3.Angle(this.MainCamera.forward, this.MainCamera.position - this.Target.position) > 90.0)
+    {
+      Vector2 screenPoint = (Vector2) this.MainCameraCamera.WorldToScreenPoint(this.Target.position);
+      this.transform.position = this.UICamera.ScreenToWorldPoint(new Vector3(screenPoint.x, screenPoint.y, 1f));
+    }
+    if (this.Target.gameObject.activeInHierarchy)
+      return;
+    this.Target = (Transform) null;
   }
 }

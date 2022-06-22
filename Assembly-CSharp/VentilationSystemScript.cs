@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: VentilationSystemScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -24,6 +24,7 @@ public class VentilationSystemScript : MonoBehaviour
   public UILabel FloorLabel;
   public Transform[] Rooms;
   public bool CanStink;
+  public bool Eighties;
   public bool Show;
   public int RoomID;
   public int Floor = 1;
@@ -35,6 +36,10 @@ public class VentilationSystemScript : MonoBehaviour
     this.Window.SetActive(false);
     this.UpdateHighlight();
     this.UpdateRoomNameLabels();
+    if (!GameGlobals.Eighties)
+      return;
+    this.Floor3RoomNames[3] = "Newspaper Club";
+    this.Eighties = true;
   }
 
   private void Update()
@@ -133,7 +138,7 @@ public class VentilationSystemScript : MonoBehaviour
     this.PromptBar.Label[0].text = "";
     if (this.Floor == 1 && this.RoomID == 6)
       this.ExplanationLabel.text = "The guidance counselor is too professional to abandon her duties because of a bad smell.";
-    else if (this.Floor == 3 && this.RoomID == 3)
+    else if (this.Floor == 3 && this.RoomID == 3 && !this.Eighties)
       this.ExplanationLabel.text = "It looks like Info-chan has hacked the ventilation system and made it impossible to send any gases into her room...";
     else if ((Object) this.Prompt.Yandere.PickUp != (Object) null && this.Prompt.Yandere.PickUp.StinkBombs)
     {
@@ -188,7 +193,8 @@ public class VentilationSystemScript : MonoBehaviour
     else if (this.Floor == 3)
     {
       this.FirstFloorShadow.SetActive(false);
-      this.ThirdFloorShadow.SetActive(true);
+      if (!this.Eighties)
+        this.ThirdFloorShadow.SetActive(true);
     }
     else
     {

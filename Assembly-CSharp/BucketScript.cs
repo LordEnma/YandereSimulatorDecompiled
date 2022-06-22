@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BucketScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -471,10 +471,18 @@ public class BucketScript : MonoBehaviour
 
   public void Spill()
   {
-    GameObject gameObject = Object.Instantiate<GameObject>(!this.DyedBrown ? ((double) this.Bloodiness <= 50.0 ? (!this.Gasoline ? this.Yandere.StudentManager.WaterCooler.Tripwire.WaterPuddle : this.Yandere.StudentManager.WaterCooler.Tripwire.GasolinePuddle) : this.Yandere.StudentManager.WaterCooler.Tripwire.BloodPuddle) : this.Yandere.StudentManager.WaterCooler.Tripwire.BrownPaintPuddle, this.Yandere.transform.position + this.Yandere.transform.forward * 0.5f + new Vector3(0.0f, 0.0001f, 0.0f), Quaternion.identity);
-    gameObject.transform.eulerAngles = new Vector3(90f, 0.0f, 0.0f);
-    gameObject.transform.parent = (double) this.Bloodiness <= 50.0 ? this.Yandere.StudentManager.PuddleParent.transform : this.Yandere.StudentManager.BloodParent.transform;
-    this.Empty();
-    this.Yandere.SuspiciousActionTimer = 1f;
+    if (this.Yandere.StudentManager.GardenArea.bounds.Contains(this.Yandere.transform.position) || this.Yandere.StudentManager.NEStairs.bounds.Contains(this.Yandere.transform.position) || this.Yandere.StudentManager.NWStairs.bounds.Contains(this.Yandere.transform.position) || this.Yandere.StudentManager.SEStairs.bounds.Contains(this.Yandere.transform.position) || this.Yandere.StudentManager.SWStairs.bounds.Contains(this.Yandere.transform.position) || this.Yandere.StudentManager.PoolStairs.bounds.Contains(this.Yandere.transform.position))
+    {
+      this.Yandere.NotificationManager.CustomText = "Not here!";
+      this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+    }
+    else
+    {
+      GameObject gameObject = Object.Instantiate<GameObject>(!this.DyedBrown ? ((double) this.Bloodiness <= 50.0 ? (!this.Gasoline ? this.Yandere.StudentManager.WaterCooler.Tripwire.WaterPuddle : this.Yandere.StudentManager.WaterCooler.Tripwire.GasolinePuddle) : this.Yandere.StudentManager.WaterCooler.Tripwire.BloodPuddle) : this.Yandere.StudentManager.WaterCooler.Tripwire.BrownPaintPuddle, this.Yandere.transform.position + this.Yandere.transform.forward * 0.5f + new Vector3(0.0f, 0.0001f, 0.0f), Quaternion.identity);
+      gameObject.transform.eulerAngles = new Vector3(90f, 0.0f, 0.0f);
+      gameObject.transform.parent = (double) this.Bloodiness <= 50.0 ? this.Yandere.StudentManager.PuddleParent.transform : this.Yandere.StudentManager.BloodParent.transform;
+      this.Empty();
+      this.Yandere.SuspiciousActionTimer = 1f;
+    }
   }
 }

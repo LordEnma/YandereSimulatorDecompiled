@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomePrisonerChanScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -82,6 +82,8 @@ public class HomePrisonerChanScript : MonoBehaviour
         this.AnkleRopes.SetActive(false);
       this.PermanentAngleR = this.TwintailR.eulerAngles;
       this.PermanentAngleL = this.TwintailL.eulerAngles;
+      StudentGlobals.GetStudentArrested(this.StudentID);
+      StudentGlobals.GetStudentDead(this.StudentID);
       if (!StudentGlobals.GetStudentArrested(this.StudentID) && !StudentGlobals.GetStudentDead(this.StudentID))
       {
         this.Cosmetic.StudentID = this.StudentID;

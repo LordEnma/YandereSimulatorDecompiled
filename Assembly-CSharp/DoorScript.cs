@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DoorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -140,9 +140,16 @@ label_7:
     if (!this.StudentManager.Eighties && this.RoomID == 22)
       this.Club = ClubType.None;
     if ((double) this.transform.position.z < 55.0 && (double) Mathf.Abs(this.transform.position.x) < 62.0)
+    {
       this.GetComponent<BoxCollider>().size = new Vector3(0.2f, 0.01f, 0.2f);
+    }
     else
+    {
       this.GetComponent<BoxCollider>().size = new Vector3(0.2f, 0.1f, 0.2f);
+      if ((double) this.transform.position.x >= -64.0)
+        return;
+      this.GetComponent<BoxCollider>().size = new Vector3(0.2f, 0.2f, 0.2f);
+    }
   }
 
   private void Update()

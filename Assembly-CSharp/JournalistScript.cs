@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: JournalistScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
@@ -85,6 +85,8 @@ public class JournalistScript : MonoBehaviour
       this.MyAnimation.CrossFade("readyToFight_00");
       this.Pathfinding.canSearch = false;
       this.Pathfinding.canMove = false;
+      if (this.AwareOfMurder)
+        return;
       if ((Object) this.Corpse != (Object) null)
       {
         this.FreezeTimer += Time.deltaTime;
@@ -105,18 +107,31 @@ public class JournalistScript : MonoBehaviour
     }
     else if (!this.Chasing)
     {
-      if ((double) this.Yandere.transform.position.z < -50.0 && this.Yandere.Attacking)
+      if ((double) this.Yandere.transform.position.z < -50.0 && this.Yandere.Attacking || this.AwareOfMurder)
       {
-        this.MyAnimation.CrossFade("sprint_00");
-        this.transform.LookAt(this.Yandere.transform.position);
-        int num = (int) this.MyController.Move(this.transform.forward * Time.deltaTime * 5f);
+        Debug.Log((object) "Journo is aware of murder.");
+        this.Yandere.RunSpeed = 0.0f;
         this.AwareOfMurder = true;
+        if ((double) this.DistanceToPlayer > 1.0)
+        {
+          Debug.Log((object) "Journo is runnin'...");
+          this.MyAnimation.CrossFade("sprint_00");
+          this.transform.LookAt(this.Yandere.transform.position);
+          int num = (int) this.MyController.Move(this.transform.forward * Time.deltaTime * 5f);
+        }
+        else
+        {
+          Debug.Log((object) "Journo is close enough, he can stop now.");
+          this.MyAnimation.CrossFade("readyToFight_00");
+          if (!this.Yandere.Attacking)
+            this.Chase();
+        }
         if ((double) this.DistanceToPlayer < 15.0 && this.CanSeeYandere() || (double) this.DistanceToPlayer < 5.0 && this.AwareOfMurder)
           this.CheckBehavior();
       }
       else
       {
-        if ((double) this.Yandere.transform.position.z < -50.0)
+        if ((double) this.Yandere.transform.position.z < -50.0 && (double) this.Yandere.transform.position.z > -75.0)
           this.Pathfinding.target = this.Yandere.transform;
         else if ((Object) this.Pathfinding.target == (Object) this.Yandere.transform)
           this.Pathfinding.target = this.Destinations[0];
@@ -163,7 +178,7 @@ public class JournalistScript : MonoBehaviour
       }
       if ((double) this.DistanceToPlayer < 15.0 && this.CanSeeYandere() || (double) this.DistanceToPlayer < 5.0 && this.AwareOfMurder)
         this.CheckBehavior();
-      if (this.Chasing)
+      if (this.Chasing || this.AwareOfMurder)
         return;
       if (this.Yandere.StudentManager.MurderTakingPlace)
       {

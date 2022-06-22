@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CounselorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -633,6 +633,11 @@ public class CounselorScript : MonoBehaviour
               this.EndOfDay.RivalEliminationMethod = RivalEliminationType.Expelled;
               this.StudentManager.RivalEliminated = true;
             }
+            if ((Object) this.StudentManager.Students[this.StudentManager.SuitorID] != (Object) null)
+            {
+              Debug.Log((object) "Commanding the rival's suitor to stop trying to spy on her, since she's gone now.");
+              this.StudentManager.Students[this.StudentManager.SuitorID].Curious = false;
+            }
           }
           else
           {
@@ -666,11 +671,24 @@ public class CounselorScript : MonoBehaviour
                 this.StudentManager.Students[this.StudentManager.RivalID].WalkAnim = this.StudentManager.Students[this.StudentManager.RivalID].BulliedWalkAnim;
                 if (this.Eighties)
                 {
-                  if (this.LectureID == 4 && (Object) this.StudentManager.Students[30] != (Object) null)
+                  if (this.LectureID == 4)
                   {
-                    Debug.Log((object) "Attempting to update Himedere's routine...");
-                    this.StudentManager.Students[30].Cosmetic.EnableRings();
-                    this.StudentManager.Students[30].Depressed = false;
+                    if ((Object) this.StudentManager.Students[30] != (Object) null)
+                    {
+                      Debug.Log((object) "Attempting to update Himedere's routine...");
+                      this.StudentManager.Students[30].Cosmetic.EnableRings();
+                      this.StudentManager.Students[30].Depressed = false;
+                    }
+                  }
+                  else if (this.LectureID == 6)
+                  {
+                    Debug.Log((object) "Disabling the rival, since she was expelled.");
+                    this.StudentManager.Students[this.StudentManager.RivalID].gameObject.SetActive(false);
+                    if ((Object) this.StudentManager.Students[this.StudentManager.SuitorID] != (Object) null)
+                    {
+                      Debug.Log((object) "Commanding the rival's suitor to stop trying to spy on her, since she's gone now.");
+                      this.StudentManager.Students[this.StudentManager.SuitorID].Curious = false;
+                    }
                   }
                 }
                 else if (this.LectureID == 2)

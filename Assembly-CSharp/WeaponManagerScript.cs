@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -81,6 +81,7 @@ public class WeaponManagerScript : MonoBehaviour
 
   public void CheckWeapons()
   {
+    Debug.Log((object) "The WeaponManager is, at this moment, counting how many murder weapons are lying around at school.");
     this.MurderWeapons = 0;
     this.Fingerprints = 0;
     for (int index = 0; index < this.Victims.Length; ++index)
@@ -101,6 +102,7 @@ public class WeaponManagerScript : MonoBehaviour
         }
       }
     }
+    Debug.Log((object) (this.MurderWeapons.ToString() + " murder weapons were counted."));
   }
 
   public void CleanWeapons()

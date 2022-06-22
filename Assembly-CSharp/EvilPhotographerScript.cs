@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EvilPhotographerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -232,9 +232,9 @@ public class EvilPhotographerScript : MonoBehaviour
 
   private bool YandereIsInLOS()
   {
-    Debug.DrawLine(this.Head.position, new Vector3(this.Yandere.transform.position.x, this.Yandere.MyController.height - 0.2f, this.Yandere.transform.position.z), Color.red);
+    Debug.DrawLine(this.Head.position, new Vector3(this.Yandere.transform.position.x, (float) ((double) this.Yandere.transform.position.y + (double) this.Yandere.MyController.height - 0.200000002980232), this.Yandere.transform.position.z), Color.red);
     RaycastHit hitInfo;
-    return Physics.Linecast(this.Head.position, new Vector3(this.Yandere.transform.position.x, this.Yandere.MyController.height - 0.2f, this.Yandere.transform.position.z), out hitInfo) && hitInfo.collider.gameObject.layer == 13;
+    return Physics.Linecast(this.Head.position, new Vector3(this.Yandere.transform.position.x, (float) ((double) this.Yandere.transform.position.y + (double) this.Yandere.MyController.height - 0.200000002980232), this.Yandere.transform.position.z), out hitInfo) && hitInfo.collider.gameObject.layer == 13;
   }
 
   private void TransitionToGameOver()
@@ -253,18 +253,19 @@ public class EvilPhotographerScript : MonoBehaviour
 
   private void LookForYandere()
   {
-    if (this.Yandere.Invisible)
-      return;
-    this.NoticeSpeed = (this.MinimumDistance - this.Distance) * this.Awareness;
-    this.Alpha = !this.YandereIsInFOV() ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime) : (!this.YandereIsInLOS() ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime) : Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * this.NoticeSpeed));
-    if ((double) this.Alpha == 1.0)
+    if (!this.Yandere.Invisible)
     {
-      Debug.Log((object) ("Got a ''witnessed'' game over from " + this.gameObject.name));
-      AudioSource.PlayClipAtPoint(this.GameOverSound, Camera.main.transform.position);
-      this.TransitionToGameOver();
+      this.NoticeSpeed = (this.MinimumDistance - this.Distance) * this.Awareness;
+      this.Alpha = !this.YandereIsInFOV() ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime) : (!this.YandereIsInLOS() ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime) : Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * this.NoticeSpeed));
+      if ((double) this.Alpha == 1.0)
+      {
+        Debug.Log((object) ("Got a ''witnessed'' game over from " + this.gameObject.name));
+        AudioSource.PlayClipAtPoint(this.GameOverSound, Camera.main.transform.position);
+        this.TransitionToGameOver();
+      }
     }
-    if ((double) this.Alpha < 0.0)
-      this.Alpha = 0.0f;
+    else
+      this.Alpha = Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime);
     this.Marker.Tex.transform.localScale = new Vector3(1f, this.Alpha, 1f);
     this.Marker.Tex.color = new Color(1f, 0.0f, 0.0f, this.Alpha);
   }

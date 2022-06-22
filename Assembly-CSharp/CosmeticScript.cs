@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CosmeticScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -929,7 +929,7 @@ public class CosmeticScript : MonoBehaviour
     }
     else if ((Object) this.MaleAccessories[this.Accessory] != (Object) null)
       this.MaleAccessories[this.Accessory].SetActive(true);
-    if ((Object) this.StudentManager == (Object) null || !this.Empty && !this.StudentManager.TutorialActive)
+    if (((Object) this.StudentManager == (Object) null || !this.Empty && !this.StudentManager.TutorialActive) && !this.Kidnapped)
     {
       if ((Object) this.StudentManager == (Object) null || !this.Eighties)
       {

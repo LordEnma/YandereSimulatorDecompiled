@@ -1,10 +1,11 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenocideEndingScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
+using UnityEngine.PostProcessing;
 using UnityEngine.SceneManagement;
 
 public class GenocideEndingScript : MonoBehaviour
@@ -39,9 +40,11 @@ public class GenocideEndingScript : MonoBehaviour
   public bool FadeOut;
   public GameObject[] RivalHair;
   public Font Arial;
+  public PostProcessingProfile Profile;
 
   private void Start()
   {
+    this.UpdateDOF(1f);
     Time.timeScale = 1f;
     if (GameGlobals.EightiesCutsceneID == 12)
     {
@@ -197,5 +200,14 @@ public class GenocideEndingScript : MonoBehaviour
     Label.color = new Color(1f, 1f, 0.0f, 1f);
     Label.fontStyle = FontStyle.Bold;
     Label.effectDistance = new Vector2(4f, 4f);
+  }
+
+  private void UpdateDOF(float Focus)
+  {
+    Focus *= (float) (((double) Screen.width / 1280.0 + (double) Screen.height / 720.0) * 0.5);
+    this.Profile.depthOfField.settings = this.Profile.depthOfField.settings with
+    {
+      focusDistance = Focus
+    };
   }
 }

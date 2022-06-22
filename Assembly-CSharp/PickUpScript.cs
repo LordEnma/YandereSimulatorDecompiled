@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PickUpScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 75854DFC-6606-4168-9C8E-2538EB1902DD
+// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -48,6 +48,7 @@ public class PickUpScript : MonoBehaviour
   public Vector3 HoldRotation;
   public Color EvidenceColor;
   public Color OriginalColor;
+  public bool InstantiatedObject;
   public bool ConcealedBodyPart;
   public bool CleaningProduct;
   public bool DisableAtStart;
@@ -95,6 +96,7 @@ public class PickUpScript : MonoBehaviour
   public float DumpTimer;
   public Vector3 OriginalPosition;
   public Vector3 OriginalRotation;
+  public SpawnedObjectType ObjectType;
 
   private void Start()
   {
@@ -129,6 +131,11 @@ public class PickUpScript : MonoBehaviour
     ++this.Yandere.StudentManager.PickUpID;
     this.OriginalPosition = this.transform.position;
     this.OriginalRotation = this.transform.eulerAngles;
+    if (!this.InstantiatedObject)
+      return;
+    this.Yandere.StudentManager.SpawnedObjectManager.SpawnedObjectList[this.Yandere.StudentManager.SpawnedObjectManager.ObjectsSpawned] = this.ObjectType;
+    this.Yandere.StudentManager.SpawnedObjectManager.SpawnedTransforms[this.Yandere.StudentManager.SpawnedObjectManager.ObjectsSpawned] = this.transform;
+    ++this.Yandere.StudentManager.SpawnedObjectManager.ObjectsSpawned;
   }
 
   private void LateUpdate()
