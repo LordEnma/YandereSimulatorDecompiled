@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EventManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -229,6 +229,7 @@ public class EventManagerScript : MonoBehaviour
           }
           else if (this.OsanaID < 2 && !this.Yandere.Police.EndOfDay.LearnedOsanaInfo2)
           {
+            Debug.Log((object) "We just eavesdropped on Osana. Her profile should update.");
             this.Yandere.NotificationManager.DisplayNotification(NotificationType.Info);
             this.Yandere.Police.EndOfDay.LearnedOsanaInfo2 = true;
             this.StudentManager.OsanaOfferHelp.Eavesdropped = true;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RagdollScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -437,6 +437,7 @@ public class RagdollScript : MonoBehaviour
         this.DumpTimer += Time.deltaTime;
         if ((double) this.Student.CharacterAnimation[this.DumpedAnim].time >= (double) this.Student.CharacterAnimation[this.DumpedAnim].length)
         {
+          this.Student.Cosmetic.FemaleHair[this.Student.Cosmetic.Hairstyle].SetActive(false);
           this.TranqCase.Open = false;
           if (this.AddingToCount)
             --this.Yandere.NearBodies;
@@ -847,6 +848,7 @@ public class RagdollScript : MonoBehaviour
 
   public void Remove()
   {
+    Debug.Log((object) ("The Remove() function has been called on " + this.Student.Name + "'s RagdollScript."));
     this.Student.Removed = true;
     this.BloodPoolSpawner.enabled = false;
     if (this.AddingToCount)

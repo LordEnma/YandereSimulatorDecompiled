@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GardenHoleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -99,6 +99,7 @@ public class GardenHoleScript : MonoBehaviour
       this.Yandere.Police.MurderScene = false;
     this.VictimID = this.Corpse.StudentID;
     this.Corpse.Remove();
+    this.Corpse.transform.parent = this.transform;
     if (this.Corpse.StudentID == this.Yandere.StudentManager.RivalID)
     {
       Debug.Log((object) "Just buried Osana's corpse.");

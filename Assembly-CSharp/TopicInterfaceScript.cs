@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TopicInterfaceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -145,17 +145,17 @@ public class TopicInterfaceScript : MonoBehaviour
 
   public void UpdateOpinions()
   {
-    for (int topicID = 1; topicID <= 25; ++topicID)
+    for (int Topic = 1; Topic <= 25; ++Topic)
     {
-      UISprite opinionIcon = this.OpinionIcons[topicID];
-      if (!ConversationGlobals.GetTopicLearnedByStudent(topicID, this.StudentID))
+      UISprite opinionIcon = this.OpinionIcons[Topic];
+      if (!this.StudentManager.GetTopicLearnedByStudent(Topic, this.StudentID))
       {
         opinionIcon.spriteName = "Unknown";
       }
       else
       {
         int[] topics = this.JSON.Topics[this.StudentID].Topics;
-        opinionIcon.spriteName = this.OpinionSpriteNames[topics[topicID]];
+        opinionIcon.spriteName = this.OpinionSpriteNames[topics[Topic]];
       }
     }
   }

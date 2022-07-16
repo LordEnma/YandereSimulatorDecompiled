@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TrashCanScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -36,7 +36,13 @@ public class TrashCanScript : MonoBehaviour
         if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
         {
           this.Prompt.Circle[0].fillAmount = 1f;
-          this.StashItem();
+          if ((Object) this.Yandere.PickUp != (Object) null && (Object) this.Yandere.PickUp.TrashCan != (Object) null)
+          {
+            this.Yandere.NotificationManager.CustomText = "You can't fit that in there.";
+            this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+          }
+          else
+            this.StashItem();
         }
         if (!this.Yandere.Armed)
           this.UpdatePrompt();

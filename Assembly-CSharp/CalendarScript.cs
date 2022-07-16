@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CalendarScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -119,7 +119,6 @@ public class CalendarScript : MonoBehaviour
       Debug.Log((object) "Save file had to be deleted because 80s and 202X got mixed up.");
       this.ResetSaveFile();
     }
-    this.LoveSickCheck();
     if (!ConversationGlobals.GetTopicDiscovered(1))
     {
       for (int topicID = 1; topicID < 26; ++topicID)
@@ -135,6 +134,7 @@ public class CalendarScript : MonoBehaviour
       PlayerGlobals.SetCannotBringItem(6, true);
       PlayerGlobals.SetCannotBringItem(7, true);
     }
+    this.LoveSickCheck();
     if (DateGlobals.PassDays > 0 && !SchoolGlobals.HighSecurity && (double) SchoolGlobals.SchoolAtmosphere >= (double) SchoolGlobals.PreviousSchoolAtmosphere)
       SchoolGlobals.SchoolAtmosphere += 0.05f;
     this.ImproveSchoolAtmosphere();

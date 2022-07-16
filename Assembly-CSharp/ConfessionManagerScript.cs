@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ConfessionManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -19,7 +19,6 @@ public class ConfessionManagerScript : MonoBehaviour
   public AudioClip[] ConfessionMusic;
   public GameObject OriginalBlossoms;
   public GameObject HeartBeatCamera;
-  public GameObject ContinueButton;
   public GameObject MainCamera;
   public Transform ConfessionCamera;
   public Transform OriginalPOV;
@@ -33,6 +32,8 @@ public class ConfessionManagerScript : MonoBehaviour
   public float[] AcceptTimes;
   public float[] RejectTimes;
   public UISprite TimelessDarkness;
+  public UISprite ContinueButton;
+  public UILabel ContinueLabel;
   public UILabel SubtitleLabel;
   public UISprite Darkness;
   public UIPanel Panel;
@@ -49,6 +50,7 @@ public class ConfessionManagerScript : MonoBehaviour
   public bool CheatRejection;
   public bool ReverseTears;
   public bool Eighties;
+  public bool Skipping;
   public bool FadeOut;
   public bool Reject;
   public int TearPhase;
@@ -65,6 +67,7 @@ public class ConfessionManagerScript : MonoBehaviour
     this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
     this.SubtitleLabel.text = "";
     this.Eighties = this.StudentManager.Eighties;
+    this.ContinueButton.alpha = 0.0f;
     if (this.Eighties)
     {
       this.ConfessionMusic[1] = this.ConfessionMusic[5];
@@ -72,6 +75,11 @@ public class ConfessionManagerScript : MonoBehaviour
       this.ConfessionMusic[3] = this.ConfessionMusic[5];
       this.ConfessionMusic[4] = this.ConfessionMusic[5];
       this.Jukebox.clip = this.ConfessionMusic[5];
+      this.ContinueLabel.text = "CONTINUE";
+      this.StudentManager.EightiesifyLabel(this.ContinueLabel);
+      this.ContinueButton.transform.localPosition = new Vector3(680f, 370f, 0.0f);
+      this.ContinueButton.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+      this.ContinueLabel.transform.localPosition = new Vector3(-30f, 2.5f, 0.0f);
     }
     Time.timeScale = 1f;
   }
@@ -122,17 +130,17 @@ public class ConfessionManagerScript : MonoBehaviour
     }
     else if (this.Phase == 0)
     {
-      if (this.Eighties && (double) this.Darkness.color.a == 0.0)
+      if ((double) this.Darkness.color.a == 0.0)
       {
-        this.ContinueButton.SetActive(true);
-        if (Input.GetButtonDown("A"))
+        this.ContinueButton.alpha = Mathf.MoveTowards(this.ContinueButton.alpha, 1f, Time.deltaTime);
+        if ((double) this.ContinueButton.alpha == 1.0 && Input.GetButtonDown("A"))
           this.Timer = 11f;
       }
       if ((double) this.Timer > 11.0)
       {
         if (!this.CheatRejection)
         {
-          this.ContinueButton.SetActive(false);
+          this.ContinueButton.alpha = 0.0f;
           this.FadeOut = true;
           this.Timer = 0.0f;
           ++this.Phase;
@@ -177,21 +185,27 @@ public class ConfessionManagerScript : MonoBehaviour
         {
           this.SubtitleLabel.text = "(Your rival confesses her feelings to Senpai...)";
           if (this.SubID > 0)
-            this.ContinueButton.SetActive(true);
+            this.ContinueButton.alpha = 1f;
         }
         ++this.SubID;
       }
       this.RotateSpeed += Time.deltaTime * 0.2f;
       this.ConfessionCamera.eulerAngles = Vector3.Lerp(this.ConfessionCamera.eulerAngles, new Vector3(0.0f, 0.0f, 0.0f), Time.deltaTime * this.RotateSpeed);
       this.ConfessionCamera.position = Vector3.Lerp(this.ConfessionCamera.position, new Vector3(0.0f, 7.85f, 118f), Time.deltaTime * this.RotateSpeed);
-      if (this.Eighties && this.ContinueButton.activeInHierarchy && Input.GetButtonDown("A"))
+      if ((double) this.Darkness.color.a == 0.0)
       {
-        this.Osana["OsanaConfession"].time = this.Osana["OsanaConfession"].length;
-        this.ContinueButton.SetActive(false);
+        this.ContinueButton.alpha = Mathf.MoveTowards(this.ContinueButton.alpha, 1f, Time.deltaTime);
+        if ((double) this.ContinueButton.alpha == 1.0 && Input.GetButtonDown("A"))
+        {
+          this.ConfessionCamera.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+          this.ConfessionCamera.position = new Vector3(0.0f, 7.85f, 118f);
+          this.Osana["OsanaConfession"].time = this.Osana["OsanaConfession"].length;
+          this.ContinueButton.alpha = 0.0f;
+        }
       }
       if ((double) this.Osana["OsanaConfession"].time >= (double) this.Osana["OsanaConfession"].length)
       {
-        this.ContinueButton.SetActive(false);
+        this.ContinueButton.alpha = 0.0f;
         if (this.StudentManager.SabotageProgress > 4)
           this.Reject = true;
         if (!this.Reject)
@@ -222,16 +236,7 @@ public class ConfessionManagerScript : MonoBehaviour
       {
         if (this.SubID < this.AcceptTimes.Length && (double) this.Osana["OsanaConfessionAccepted"].time > (double) this.AcceptTimes[this.SubID])
         {
-          if (!this.Eighties)
-          {
-            this.SubtitleLabel.text = this.AcceptSubs[this.SubID] ?? "";
-          }
-          else
-          {
-            this.SubtitleLabel.text = "Senpai accepts your rival's confession...";
-            if (this.SubID > 0)
-              this.ContinueButton.SetActive(true);
-          }
+          this.SubtitleLabel.text = this.Eighties ? "Senpai accepts your rival's confession..." : this.AcceptSubs[this.SubID] ?? "";
           ++this.SubID;
         }
         if (this.TearPhase == 0)
@@ -290,11 +295,23 @@ public class ConfessionManagerScript : MonoBehaviour
             this.Tears.materials[0].SetFloat("_TearReveal", this.TearTimer);
           this.Tears.materials[1].SetFloat("_TearReveal", this.TearTimer);
         }
-        if (this.Eighties && this.ContinueButton.activeInHierarchy && Input.GetButtonDown("A"))
-          this.Timer = 43f;
-        if ((double) this.Timer > 43.0)
+        if ((double) this.Darkness.color.a == 0.0)
         {
-          this.ContinueButton.SetActive(false);
+          if (this.SubID > 0)
+            this.ContinueButton.alpha = Mathf.MoveTowards(this.ContinueButton.alpha, 1f, Time.deltaTime);
+          if ((double) this.ContinueButton.alpha == 1.0 && Input.GetButtonDown("A"))
+          {
+            Debug.Log((object) "Skippin'.");
+            this.MyAudio.enabled = false;
+            this.MyAudio.volume = 0.0f;
+            this.MyAudio.Stop();
+            this.Skipping = true;
+            this.Timer = 43f;
+          }
+        }
+        if ((double) this.Timer >= 43.0)
+        {
+          this.ContinueButton.alpha = 0.0f;
           this.TearSpeed = 0.1f;
           this.FadeOut = true;
           this.Timer = 0.0f;
@@ -305,16 +322,7 @@ public class ConfessionManagerScript : MonoBehaviour
       {
         if (this.SubID < this.RejectTimes.Length && (double) this.Osana["OsanaConfessionRejected"].time > (double) this.RejectTimes[this.SubID])
         {
-          if (!this.Eighties)
-          {
-            this.SubtitleLabel.text = this.RejectSubs[this.SubID] ?? "";
-          }
-          else
-          {
-            this.SubtitleLabel.text = "(Senpai rejects your rival's confession!)";
-            if (this.SubID > 0)
-              this.ContinueButton.SetActive(true);
-          }
+          this.SubtitleLabel.text = this.Eighties ? "(Senpai rejects your rival's confession!)" : this.RejectSubs[this.SubID] ?? "";
           ++this.SubID;
         }
         if (this.Eighties && (double) this.Timer < 41.0)
@@ -334,11 +342,23 @@ public class ConfessionManagerScript : MonoBehaviour
           this.ConfessionCamera.eulerAngles = new Vector3(this.ConfessionCamera.eulerAngles.x, this.ConfessionCamera.eulerAngles.y - this.RotateSpeed * 2f, this.ConfessionCamera.eulerAngles.z);
           this.ConfessionCamera.position = new Vector3(this.ConfessionCamera.position.x, this.ConfessionCamera.position.y, this.ConfessionCamera.position.z - this.RotateSpeed * 0.05f);
         }
-        if (this.Eighties && this.ContinueButton.activeInHierarchy && Input.GetButtonDown("A"))
-          this.Timer = 51f;
+        if ((double) this.Darkness.color.a == 0.0)
+        {
+          if (this.SubID > 0)
+            this.ContinueButton.alpha = Mathf.MoveTowards(this.ContinueButton.alpha, 1f, Time.deltaTime);
+          if ((double) this.ContinueButton.alpha == 1.0 && Input.GetButtonDown("A"))
+          {
+            Debug.Log((object) "Skippin'.");
+            this.MyAudio.enabled = false;
+            this.MyAudio.volume = 0.0f;
+            this.MyAudio.Stop();
+            this.Skipping = true;
+            this.Timer = 51f;
+          }
+        }
         if ((double) this.Timer > 51.0)
         {
-          this.ContinueButton.SetActive(false);
+          this.ContinueButton.alpha = 0.0f;
           this.FadeOut = true;
           this.Timer = 0.0f;
           ++this.Phase;
@@ -370,6 +390,23 @@ public class ConfessionManagerScript : MonoBehaviour
         {
           this.Senpai.Play("SenpaiConfessionRejected");
           this.Senpai["SenpaiConfessionRejected"].time += 2f;
+        }
+        if (this.Skipping)
+        {
+          if (this.Reject)
+          {
+            this.Osana.Play("OsanaConfessionRejected");
+            this.Osana["OsanaConfessionRejected"].time = 47f;
+            this.Senpai.Play("SenpaiConfessionRejected");
+            this.Senpai["SenpaiConfessionRejected"].time = 47f;
+          }
+          else
+          {
+            this.Osana.Play("OsanaConfessionAccepted");
+            this.Osana["OsanaConfessionAccepted"].time = 47f;
+            this.Senpai.Play("SenpaiConfessionAccepted");
+            this.Senpai["SenpaiConfessionAccepted"].time = 47f;
+          }
         }
         this.SubtitleLabel.text = "";
         this.FadeOut = false;

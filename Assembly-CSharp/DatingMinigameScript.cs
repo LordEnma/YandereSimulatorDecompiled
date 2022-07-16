@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DatingMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -62,6 +62,7 @@ public class DatingMinigameScript : MonoBehaviour
   public bool[] GiftsPurchased;
   public bool[] GiftsGiven;
   public bool SuitorAndRivalTalking;
+  public bool GiftStatusNeedsSaving;
   public bool DataNeedsSaving;
   public bool SelectingTopic;
   public bool AffectionGrow;
@@ -429,8 +430,8 @@ public class DatingMinigameScript : MonoBehaviour
           topicIcon.color = new Color(topicIcon.color.r, topicIcon.color.g, topicIcon.color.b, 0.5f);
           this.TopicsDiscussed[this.TopicSelected] = true;
           this.DetermineOpinion();
-          if (!ConversationGlobals.GetTopicLearnedByStudent(this.Opinion, this.LoveManager.RivalID))
-            ConversationGlobals.SetTopicLearnedByStudent(this.Opinion, this.LoveManager.RivalID, true);
+          if (!this.Yandere.StudentManager.GetTopicLearnedByStudent(this.Opinion, this.LoveManager.RivalID))
+            this.Yandere.StudentManager.SetTopicLearnedByStudent(this.Opinion, this.LoveManager.RivalID, true);
           if (this.Negative)
           {
             UILabel label = this.Labels[1];
@@ -609,6 +610,7 @@ public class DatingMinigameScript : MonoBehaviour
         {
           if (this.GiftIcons[this.GiftSelected].enabled)
           {
+            this.GiftStatusNeedsSaving = true;
             this.GiftsPurchased[this.GiftSelected] = false;
             this.GiftsGiven[this.GiftSelected] = true;
             this.Rival.Cosmetic.CatGifts[this.GiftSelected].SetActive(true);
@@ -835,17 +837,17 @@ public class DatingMinigameScript : MonoBehaviour
       else
         topicIcon.spriteName = topicID.ToString();
     }
-    for (int topicID = 1; topicID <= 25; ++topicID)
+    for (int Topic = 1; Topic <= 25; ++Topic)
     {
-      UISprite opinionIcon = this.OpinionIcons[topicID];
-      if (!ConversationGlobals.GetTopicLearnedByStudent(topicID, this.LoveManager.RivalID))
+      UISprite opinionIcon = this.OpinionIcons[Topic];
+      if (!this.StudentManager.GetTopicLearnedByStudent(Topic, this.LoveManager.RivalID))
       {
         opinionIcon.spriteName = "Unknown";
       }
       else
       {
         int[] topics = this.JSON.Topics[this.LoveManager.RivalID].Topics;
-        opinionIcon.spriteName = this.OpinionSpriteNames[topics[topicID]];
+        opinionIcon.spriteName = this.OpinionSpriteNames[topics[Topic]];
       }
     }
   }
@@ -895,6 +897,7 @@ public class DatingMinigameScript : MonoBehaviour
 
   public void SaveTopicsAndCompliments()
   {
+    Debug.Log((object) "Saving Dating Minigame data.");
     for (int topicID = 1; topicID < 26; ++topicID)
       DatingGlobals.SetTopicDiscussed(topicID, this.TopicsDiscussed[topicID]);
     for (int complimentID = 1; complimentID < 11; ++complimentID)
@@ -905,12 +908,16 @@ public class DatingMinigameScript : MonoBehaviour
     DatingGlobals.SetSuitorTrait(1, this.CourageTrait);
     DatingGlobals.SetSuitorTrait(2, this.WisdomTrait);
     DatingGlobals.SetSuitorTrait(3, this.StrengthTrait);
+    DatingGlobals.Affection = this.Affection;
+  }
+
+  public void SaveGiftStatus()
+  {
+    Debug.Log((object) "Saving Dating Minigame gift status.");
     for (int giftID = 1; giftID < 5; ++giftID)
     {
       CollectibleGlobals.SetGiftPurchased(giftID + 5, this.GiftsPurchased[giftID]);
       CollectibleGlobals.SetGiftGiven(giftID, this.GiftsGiven[giftID]);
     }
-    DatingGlobals.Affection = this.Affection;
-    Debug.Log((object) "Saving Dating Minigame data.");
   }
 }

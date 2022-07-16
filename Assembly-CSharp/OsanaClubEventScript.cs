@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaClubEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -113,14 +113,14 @@ public class OsanaClubEventScript : MonoBehaviour
               Debug.Log((object) "Current EventPhase is: 30 and Osana is talking about the delinquents.");
               this.Yandere.NotificationManager.TopicName = "Violence";
               this.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-              ConversationGlobals.SetTopicLearnedByStudent(this.ClubIDs[this.EventPhase], 11, true);
+              this.StudentManager.SetTopicLearnedByStudent(this.ClubIDs[this.EventPhase], 11, true);
             }
             else
             {
               Debug.Log((object) ("Current EventPhase is: " + this.EventPhase.ToString() + " and ClubID is: " + this.ClubIDs[this.EventPhase].ToString()));
               this.Yandere.NotificationManager.TopicName = this.Yandere.NotificationManager.ClubNames[this.ClubIDs[this.EventPhase]];
               this.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-              ConversationGlobals.SetTopicLearnedByStudent(this.ClubIDs[this.EventPhase], 11, true);
+              this.StudentManager.SetTopicLearnedByStudent(this.ClubIDs[this.EventPhase], 11, true);
             }
           }
           else

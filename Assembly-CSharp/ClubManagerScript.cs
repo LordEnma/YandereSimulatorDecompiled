@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClubManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -98,7 +98,6 @@ public class ClubManagerScript : MonoBehaviour
   private void Start()
   {
     this.ActivitiesAttended = ClubGlobals.ActivitiesAttended;
-    Debug.Log((object) ("ClubGlobals.ActivitiesAttended was " + ClubGlobals.ActivitiesAttended.ToString() + ", so, as of now, at the start of the school day, ClubManager.ActivitiesAttended is being set to " + this.ActivitiesAttended.ToString() + "."));
     this.MyAudio = this.GetComponent<AudioSource>();
     this.ClubWindow.ActivityWindow.localScale = Vector3.zero;
     this.ClubWindow.ActivityWindow.gameObject.SetActive(false);

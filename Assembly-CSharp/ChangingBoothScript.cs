@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ChangingBoothScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -25,7 +25,13 @@ public class ChangingBoothScript : MonoBehaviour
   public ClubType ClubID;
   public int Phase;
 
-  private void Start() => this.CheckYandereClub();
+  private void Start()
+  {
+    if ((Object) this.Curtains == (Object) null)
+      Debug.Log((object) this.gameObject.name);
+    this.Curtains.SetBlendShapeWeight(1, 100f);
+    this.CheckYandereClub();
+  }
 
   private void Update()
   {
@@ -64,13 +70,13 @@ public class ChangingBoothScript : MonoBehaviour
       {
         this.Yandere.CharacterAnimation.CrossFade(this.Yandere.IdleAnim);
         this.Weight = Mathf.Lerp(this.Weight, 0.0f, Time.deltaTime * 10f);
-        this.Curtains.SetBlendShapeWeight(0, this.Weight);
+        this.Curtains.SetBlendShapeWeight(1, this.Weight);
         this.Yandere.MoveTowardsTarget(this.transform.position);
       }
       else if ((double) this.OccupyTimer < 3.0)
       {
         this.Weight = Mathf.Lerp(this.Weight, 100f, Time.deltaTime * 10f);
-        this.Curtains.SetBlendShapeWeight(0, this.Weight);
+        this.Curtains.SetBlendShapeWeight(1, this.Weight);
         if (this.Phase < 2)
         {
           this.MyAudioSource.clip = this.CurtainSound;
@@ -96,12 +102,12 @@ public class ChangingBoothScript : MonoBehaviour
     else if ((double) this.OccupyTimer < 2.0)
     {
       this.Weight = Mathf.Lerp(this.Weight, 0.0f, Time.deltaTime * 10f);
-      this.Curtains.SetBlendShapeWeight(0, this.Weight);
+      this.Curtains.SetBlendShapeWeight(1, this.Weight);
     }
     else if ((double) this.OccupyTimer < 3.0)
     {
       this.Weight = Mathf.Lerp(this.Weight, 100f, Time.deltaTime * 10f);
-      this.Curtains.SetBlendShapeWeight(0, this.Weight);
+      this.Curtains.SetBlendShapeWeight(1, this.Weight);
       if (this.Phase >= 2)
         return;
       if ((double) this.Yandere.transform.position.y > (double) this.transform.position.y - 1.0 && (double) this.Yandere.transform.position.y < (double) this.transform.position.y + 1.0)

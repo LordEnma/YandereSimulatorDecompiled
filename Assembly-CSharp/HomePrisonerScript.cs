@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomePrisonerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -155,10 +155,7 @@ public class HomePrisonerScript : MonoBehaviour
     }
     if (StudentGlobals.Prisoners == 0)
       this.enabled = false;
-    if (GameGlobals.Eighties)
-      this.Prisoner = this.EightiesPrisoner;
-    else
-      this.EightiesPrisoner.gameObject.SetActive(false);
+    this.Prisoner = this.EightiesPrisoner;
   }
 
   private void Update()

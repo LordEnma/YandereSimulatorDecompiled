@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -28,6 +28,7 @@ public class StudentManagerScript : MonoBehaviour
   public StolenPhoneSpotScript StolenPhoneSpot;
   public SelectiveGrayscale SelectiveGreyscale;
   public InterestManagerScript InterestManager;
+  public OpinionsLearnedScript OpinionsLearned;
   public CombatMinigameScript CombatMinigame;
   public DatingMinigameScript DatingMinigame;
   public SnappedYandereScript SnappedYandere;
@@ -147,6 +148,7 @@ public class StudentManagerScript : MonoBehaviour
   public GradingPaperScript[] FacultyDesks;
   public DynamicBone[] AllDynamicBones;
   public AudioSource[] PyroFlameSounds;
+  public ListScript[] InterestsLearned;
   public StudentScript[] WitnessList;
   public TrashCanScript[] TrashCans;
   public StudentScript[] Teachers;
@@ -478,6 +480,9 @@ public class StudentManagerScript : MonoBehaviour
   public UIPanel FreeFloatingPanel;
   public bool[] RivalKilledSelf;
   public PantyListScript PantyList;
+  public int MeetStudentID;
+  public float MeetTime;
+  public int MeetID;
   public Collider EastFemaleBathroomCollider;
   public Collider WestFemaleBathroomCollider;
   public Collider EastMaleBathroomCollider;
@@ -678,18 +683,23 @@ public class StudentManagerScript : MonoBehaviour
         this.Students[studentSlave].Slave = true;
         this.SpawnID = 0;
       }
-      if (StudentGlobals.FragileSlave > 0 && !StudentGlobals.GetStudentDead(StudentGlobals.FragileSlave))
+      if (StudentGlobals.FragileSlave > 0)
       {
-        int fragileSlave = StudentGlobals.FragileSlave;
-        this.ForceSpawn = true;
-        this.SpawnPositions[fragileSlave] = this.FragileSlaveSpot;
-        this.SpawnID = fragileSlave;
-        StudentGlobals.SetStudentDead(fragileSlave, false);
-        this.SpawnStudent(this.SpawnID);
-        this.Students[fragileSlave].FragileSlave = true;
-        this.Students[fragileSlave].Slave = true;
-        this.SpawnID = 0;
+        if (!StudentGlobals.GetStudentDead(StudentGlobals.FragileSlave))
+        {
+          int fragileSlave = StudentGlobals.FragileSlave;
+          this.ForceSpawn = true;
+          this.SpawnPositions[fragileSlave] = this.FragileSlaveSpot;
+          this.SpawnID = fragileSlave;
+          StudentGlobals.SetStudentDead(fragileSlave, false);
+          this.SpawnStudent(this.SpawnID);
+          this.Students[fragileSlave].FragileSlave = true;
+          this.Students[fragileSlave].Slave = true;
+          this.SpawnID = 0;
+        }
       }
+      else if ((UnityEngine.Object) this.FragileWeapon != (UnityEngine.Object) null)
+        this.FragileWeapon.gameObject.SetActive(false);
       this.NPCsTotal = this.StudentsTotal + this.TeachersTotal;
       this.SpawnID = 1;
       if (StudentGlobals.MaleUniform == 0)
@@ -786,9 +796,9 @@ public class StudentManagerScript : MonoBehaviour
       this.Yandere.UICamera.gameObject.SetActive(false);
       this.Yandere.MainCamera.gameObject.SetActive(false);
     }
-    if (!StudentGlobals.UpdateRivalReputation)
-      return;
-    this.StudentReps[this.RivalID] = this.StudentReps[this.RivalID] - 50f;
+    if (StudentGlobals.UpdateRivalReputation)
+      this.StudentReps[this.RivalID] = this.StudentReps[this.RivalID] - 50f;
+    this.LoadTopicsLearned();
   }
 
   public void SetAtmosphere()
@@ -1039,6 +1049,29 @@ public class StudentManagerScript : MonoBehaviour
                 this.Students[88].Cosmetic.SetFemaleUniform();
               if ((UnityEngine.Object) this.Students[89] != (UnityEngine.Object) null)
                 this.Students[89].Cosmetic.SetFemaleUniform();
+            }
+            else
+            {
+              if ((UnityEngine.Object) this.Students[86] != (UnityEngine.Object) null)
+                this.Students[86].Cosmetic.SetMaleUniform();
+              if ((UnityEngine.Object) this.Students[87] != (UnityEngine.Object) null)
+                this.Students[87].Cosmetic.SetMaleUniform();
+              if ((UnityEngine.Object) this.Students[88] != (UnityEngine.Object) null)
+                this.Students[88].Cosmetic.SetMaleUniform();
+              if ((UnityEngine.Object) this.Students[89] != (UnityEngine.Object) null)
+                this.Students[89].Cosmetic.SetMaleUniform();
+            }
+            foreach (StudentScript student in this.Students)
+            {
+              if ((UnityEngine.Object) student != (UnityEngine.Object) null && student.Meeting)
+              {
+                Debug.Log((object) "A student was in the middle of meeting someone when this save file was made. Attempting to update their schedule accordingly.");
+                this.NoteWindow.NoteLocker.StudentID = this.MeetStudentID;
+                this.NoteWindow.NoteLocker.MeetTime = this.MeetTime;
+                this.NoteWindow.NoteLocker.MeetID = this.MeetID;
+                this.NoteWindow.NoteLocker.DetermineSchedule();
+                student.MeetTimer = 0.0f;
+              }
             }
           }
           if (Screen.width < 1280 || Screen.height < 720)
@@ -1510,7 +1543,7 @@ public class StudentManagerScript : MonoBehaviour
               }
             }
           }
-          if (student.FightingSlave && this.Yandere.Armed)
+          if (student.FightingSlave && this.Yandere.Armed && this.Yandere.EquippedWeapon.Type == WeaponType.Knife)
           {
             Debug.Log((object) "Fighting with a slave!");
             student.Prompt.Label[0].text = "     Stab";
@@ -2968,7 +3001,15 @@ public class StudentManagerScript : MonoBehaviour
             }
           }
           else
+          {
             Debug.Log((object) ("It looks like " + this.Students[this.ID].Name + " has already added themself to the Police CorpseList, so we won't be doing that manually."));
+            if (this.Students[this.ID].Removed)
+            {
+              Debug.Log((object) (this.Students[this.ID].Name + "'s ''Removed'' boolean was true, so we're removing them from the Police CorpseList."));
+              this.Students[this.ID].Ragdoll.Remove();
+              --this.Police.Corpses;
+            }
+          }
         }
         else
         {
@@ -3046,6 +3087,14 @@ public class StudentManagerScript : MonoBehaviour
               this.Students[this.ID].ShoeRemoval.Start();
             this.Students[this.ID].ShoeRemoval.PutOnShoes();
           }
+          if ((double) this.Students[this.ID].MeetTime > 0.0)
+          {
+            Debug.Log((object) "A student was planning to meet someone when this save file was made. Attempting to update their schedule accordingly.");
+            this.NoteWindow.NoteLocker.StudentID = this.MeetStudentID;
+            this.NoteWindow.NoteLocker.MeetTime = this.MeetTime;
+            this.NoteWindow.NoteLocker.MeetID = this.MeetID;
+            this.NoteWindow.NoteLocker.DetermineSchedule();
+          }
         }
       }
     }
@@ -3093,7 +3142,6 @@ public class StudentManagerScript : MonoBehaviour
       this.OsanaThursdayAfterClassEvent.ReturningFromSave = true;
     if ((UnityEngine.Object) this.Students[10] != (UnityEngine.Object) null && (UnityEngine.Object) this.Students[10].Cheer != (UnityEngine.Object) null)
       this.Students[10].Cheer.enabled = false;
-    Debug.Log((object) ("At the time of loading, StudentManager's GloveID was: " + this.GloveID.ToString()));
     if (this.Yandere.Gloved)
     {
       this.Yandere.Gloves = this.GloveList[this.GloveID];
@@ -3138,8 +3186,7 @@ public class StudentManagerScript : MonoBehaviour
     }
     this.SpawnedObjectManager.RespawnObjects();
     this.LoadedSave = true;
-    Debug.Log((object) ("End of loading sequence. ClubManager.ActivitiesAttended is now: " + this.ClubManager.ActivitiesAttended.ToString()));
-    Debug.Log((object) ("End of loading sequence. ClubGlobals.ActivitiesAttended is now: " + ClubGlobals.ActivitiesAttended.ToString()));
+    Debug.Log((object) "The entire loading process has been completed.");
   }
 
   public void UpdateBlood()
@@ -3176,6 +3223,7 @@ public class StudentManagerScript : MonoBehaviour
     {
       if ((UnityEngine.Object) student != (UnityEngine.Object) null && student.gameObject.activeInHierarchy && student.Alive && student.CanSeeObject(student.Yandere.gameObject, student.Yandere.HeadPosition))
       {
+        Debug.Log((object) ("Student #" + student.StudentID.ToString() + ", " + student.Name + ", can see Yandere-chan right now."));
         this.YandereVisible = true;
         break;
       }
@@ -4367,5 +4415,19 @@ label_6:
     Student.GetDestinations();
     Student.Pathfinding.target = Student.Destinations[Student.Phase];
     Student.CurrentDestination = Student.Destinations[Student.Phase];
+  }
+
+  public void SetTopicLearnedByStudent(int Topic, int StudentID, bool boolean) => this.OpinionsLearned.StudentOpinions[StudentID].Opinions[Topic] = boolean;
+
+  public bool GetTopicLearnedByStudent(int Topic, int StudentID) => this.OpinionsLearned.StudentOpinions[StudentID].Opinions[Topic];
+
+  public void LoadTopicsLearned()
+  {
+    Debug.Log((object) "Attempting to load all of the ''topics learned''.");
+    for (int index1 = 1; index1 < 101; ++index1)
+    {
+      for (int index2 = 1; index2 < 26; ++index2)
+        this.SetTopicLearnedByStudent(index2, index1, ConversationGlobals.GetTopicLearnedByStudent(index2, index1));
+    }
   }
 }

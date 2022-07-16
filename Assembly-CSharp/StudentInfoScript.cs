@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentInfoScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -324,6 +324,7 @@ public class StudentInfoScript : MonoBehaviour
         this.NoteLocker.Prompt.Label[0].text = "     Leave note for " + this.StudentManager.Students[this.StudentInfoMenu.StudentID].Name;
         this.NoteLocker.Student = this.StudentManager.Students[this.StudentInfoMenu.StudentID];
         this.NoteLocker.LockerOwner = this.StudentInfoMenu.StudentID;
+        this.NoteLocker.StudentID = this.StudentInfoMenu.StudentID;
         this.NoteLocker.Prompt.enabled = true;
         this.NoteLocker.transform.GetChild(0).gameObject.SetActive(true);
         this.NoteLocker.CheckingNote = false;
@@ -383,10 +384,10 @@ public class StudentInfoScript : MonoBehaviour
       }
       else if (this.StudentInfoMenu.GettingOpinions)
       {
-        for (int topicID = 1; topicID < 26; ++topicID)
+        for (int index = 1; index < 26; ++index)
         {
-          ConversationGlobals.SetTopicDiscovered(topicID, true);
-          ConversationGlobals.SetTopicLearnedByStudent(topicID, this.CurrentStudent, true);
+          ConversationGlobals.SetTopicDiscovered(index, true);
+          this.StudentManager.SetTopicLearnedByStudent(index, this.CurrentStudent, true);
         }
         this.StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
         this.gameObject.SetActive(false);
@@ -568,20 +569,20 @@ public class StudentInfoScript : MonoBehaviour
     int num2 = 0;
     for (int topicID = 1; topicID < this.TopicIcons.Length; ++topicID)
       this.TopicIcons[topicID].spriteName = (!ConversationGlobals.GetTopicDiscovered(topicID) ? 0 : topicID).ToString();
-    for (int topicID = 1; topicID <= 25; ++topicID)
+    for (int Topic = 1; Topic <= 25; ++Topic)
     {
-      UISprite topicOpinionIcon = this.TopicOpinionIcons[topicID];
-      if (!ConversationGlobals.GetTopicLearnedByStudent(topicID, this.CurrentStudent))
+      UISprite topicOpinionIcon = this.TopicOpinionIcons[Topic];
+      if (!this.StudentManager.GetTopicLearnedByStudent(Topic, this.CurrentStudent))
       {
         topicOpinionIcon.spriteName = "Unknown";
       }
       else
       {
         int[] topics = this.JSON.Topics[this.CurrentStudent].Topics;
-        topicOpinionIcon.spriteName = this.OpinionSpriteNames[topics[topicID]];
-        if (topics[topicID] == 1)
+        topicOpinionIcon.spriteName = this.OpinionSpriteNames[topics[Topic]];
+        if (topics[Topic] == 1)
           ++num2;
-        if (topics[topicID] == 2)
+        if (topics[Topic] == 2)
           ++num1;
       }
     }

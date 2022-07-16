@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
@@ -244,6 +244,7 @@ public class StudentScript : MonoBehaviour
   public GameObject Handcuffs;
   public GameObject HealthBar;
   public GameObject OsanaHair;
+  public GameObject PaperFire;
   public GameObject WeaponBag;
   public GameObject CandyBar;
   public GameObject Earpiece;
@@ -1474,8 +1475,13 @@ public class StudentScript : MonoBehaviour
           this.ClubThreshold = 100f;
         if (this.StudentID > 10 && this.StudentID < 21)
           this.OriginalPersona = this.Persona;
-        if (this.Male && this.Club == ClubType.Delinquent)
-          this.CharacterAnimation[this.WalkAnim].speed += 0.01f * (float) (this.StudentID - 76);
+        if (this.Club == ClubType.Delinquent)
+        {
+          if (this.Male)
+            this.CharacterAnimation[this.WalkAnim].speed += 0.01f * (float) (this.StudentID - 76);
+          else
+            this.Jaw.gameObject.name += "_RENAMED";
+        }
         this.GuardID = this.StudentID != 20 ? 20 : 1;
       }
       this.OriginalWalkAnim = this.WalkAnim;
@@ -1570,15 +1576,12 @@ public class StudentScript : MonoBehaviour
           this.Pathfinding.canSearch = false;
           this.Pathfinding.canMove = false;
           this.Paired = true;
-          if (this.Male)
-          {
-            this.TaskAnims[0] = str + "delinquentTalk_04";
-            this.TaskAnims[1] = str + "delinquentTalk_01";
-            this.TaskAnims[2] = str + "delinquentTalk_02";
-            this.TaskAnims[3] = str + "delinquentTalk_03";
-            this.TaskAnims[4] = str + "delinquentTalk_00";
-            this.TaskAnims[5] = str + "delinquentTalk_03";
-          }
+          this.TaskAnims[0] = str + "delinquentTalk_04";
+          this.TaskAnims[1] = str + "delinquentTalk_01";
+          this.TaskAnims[2] = str + "delinquentTalk_02";
+          this.TaskAnims[3] = str + "delinquentTalk_03";
+          this.TaskAnims[4] = str + "delinquentTalk_00";
+          this.TaskAnims[5] = str + "delinquentTalk_03";
         }
       }
       else
@@ -2805,32 +2808,38 @@ public class StudentScript : MonoBehaviour
         this.CharacterAnimation[this.SitAnim].weight = 0.0f;
         this.CharacterAnimation[this.SocialSitAnim].weight = 0.0f;
       }
-      if ((double) this.MeetTime > 0.0 && !this.InEvent && (double) this.Clock.HourTime > (double) this.MeetTime)
+      if ((double) this.MeetTime > 0.0)
       {
-        Debug.Log((object) (this.Name + " acknowledges that it is time to go to a MeetSpot to have a Meeting."));
-        if ((UnityEngine.Object) this.Follower != (UnityEngine.Object) null)
+        bool flag = false;
+        if ((UnityEngine.Object) this.MyPlate != (UnityEngine.Object) null && (UnityEngine.Object) this.MyPlate.parent == (UnityEngine.Object) this.RightHand)
+          flag = true;
+        if (!this.InEvent && (double) this.Clock.HourTime > (double) this.MeetTime && !flag)
         {
-          ScheduleBlock scheduleBlock = this.Follower.ScheduleBlocks[this.Follower.Phase];
-          scheduleBlock.destination = "Follow";
-          scheduleBlock.action = "Follow";
-          this.Follower.Actions[this.Follower.Phase] = StudentActionType.Follow;
-          this.CurrentAction = StudentActionType.Follow;
-          this.Follower.GetDestinations();
-          this.Follower.CurrentDestination = this.Follower.Destinations[this.Follower.Phase];
-          this.Follower.Pathfinding.target = this.Follower.Destinations[this.Follower.Phase];
+          Debug.Log((object) (this.Name + " acknowledges that it is time to go to a MeetSpot to have a Meeting."));
+          if ((UnityEngine.Object) this.MyPlate != (UnityEngine.Object) null && (UnityEngine.Object) this.MyPlate.parent == (UnityEngine.Object) this.RightHand && (UnityEngine.Object) this.Follower != (UnityEngine.Object) null)
+          {
+            ScheduleBlock scheduleBlock = this.Follower.ScheduleBlocks[this.Follower.Phase];
+            scheduleBlock.destination = "Follow";
+            scheduleBlock.action = "Follow";
+            this.Follower.Actions[this.Follower.Phase] = StudentActionType.Follow;
+            this.CurrentAction = StudentActionType.Follow;
+            this.Follower.GetDestinations();
+            this.Follower.CurrentDestination = this.Follower.Destinations[this.Follower.Phase];
+            this.Follower.Pathfinding.target = this.Follower.Destinations[this.Follower.Phase];
+          }
+          this.CurrentDestination = this.MeetSpot;
+          this.Pathfinding.target = this.MeetSpot;
+          this.DistanceToDestination = Vector3.Distance(this.transform.position, this.CurrentDestination.position);
+          this.Pathfinding.canSearch = true;
+          this.Pathfinding.canMove = true;
+          this.Pathfinding.speed = 4f;
+          this.SpeechLines.Stop();
+          this.EmptyHands();
+          this.Meeting = true;
+          this.MeetTime = 0.0f;
+          if (this.Rival)
+            this.StudentManager.UpdateInfatuatedTargetDistances();
         }
-        this.CurrentDestination = this.MeetSpot;
-        this.Pathfinding.target = this.MeetSpot;
-        this.DistanceToDestination = Vector3.Distance(this.transform.position, this.CurrentDestination.position);
-        this.Pathfinding.canSearch = true;
-        this.Pathfinding.canMove = true;
-        this.Pathfinding.speed = 4f;
-        this.SpeechLines.Stop();
-        this.EmptyHands();
-        this.Meeting = true;
-        this.MeetTime = 0.0f;
-        if (this.Rival)
-          this.StudentManager.UpdateInfatuatedTargetDistances();
       }
       if ((double) this.DistanceToDestination > (double) this.TargetDistance)
       {
@@ -2857,7 +2866,7 @@ public class StudentScript : MonoBehaviour
               {
                 bounds = this.StudentManager.MaleLockerRoomArea.bounds;
                 if (!bounds.Contains(this.CurrentDestination.position))
-                  goto label_185;
+                  goto label_188;
               }
               this.GetSleuthTarget();
             }
@@ -2878,7 +2887,7 @@ public class StudentScript : MonoBehaviour
           this.Pathfinding.speed = 4f;
           this.StalkerFleeing = true;
         }
-label_185:
+label_188:
         if (this.StudentID == 10)
         {
           if (this.Actions[this.Phase] == StudentActionType.Follow)
@@ -2996,7 +3005,6 @@ label_185:
               this.Spawned = true;
               if (this.StudentID == 10 && (UnityEngine.Object) this.StudentManager.Students[11] == (UnityEngine.Object) null && !this.StudentManager.Eighties)
               {
-                Debug.Log((object) "Raibaru runs this code.");
                 this.transform.position = new Vector3(-4f, 0.0f, -96f);
                 Physics.SyncTransforms();
               }
@@ -3078,16 +3086,24 @@ label_185:
         if (this.CuriosityPhase == 1 && this.CurrentAction == StudentActionType.Relax)
         {
           bounds = this.StudentManager.LockerRoomArea.bounds;
-          if (bounds.Contains(this.StudentManager.Students[this.Crush].transform.position))
+          if (!bounds.Contains(this.StudentManager.Students[this.Crush].transform.position))
           {
-            Debug.Log((object) "This code is called when a student is stalking their crush and their crush is in the shower room.");
-            this.Pathfinding.target = this.Destinations[this.Phase];
-            this.CurrentDestination = this.Destinations[this.Phase];
-            this.TargetDistance = 0.5f;
-            this.CuriosityTimer = 0.0f;
-            --this.CuriosityPhase;
+            bounds = this.StudentManager.EastBathroomArea.bounds;
+            if (!bounds.Contains(this.StudentManager.Students[this.Crush].transform.position))
+            {
+              bounds = this.StudentManager.WestBathroomArea.bounds;
+              if (!bounds.Contains(this.StudentManager.Students[this.Crush].transform.position))
+                goto label_267;
+            }
           }
+          Debug.Log((object) "This code is called when a student is stalking their crush and their crush is in the locker room or shower room.");
+          this.Pathfinding.target = this.Destinations[this.Phase];
+          this.CurrentDestination = this.Destinations[this.Phase];
+          this.TargetDistance = 0.5f;
+          this.CuriosityTimer = 0.0f;
+          --this.CuriosityPhase;
         }
+label_267:
         if (!this.Infatuated || this.Actions[this.Phase] != StudentActionType.Socializing)
           return;
         this.TargetDistance = (double) this.transform.position.y > (double) this.CurrentDestination.position.y + 1.0 || (double) this.transform.position.y < (double) this.CurrentDestination.position.y - 1.0 ? 2f : (this.StudentManager.Students[this.StudentManager.RivalID].Meeting || this.StudentManager.Students[this.StudentManager.RivalID].InEvent ? 10f : 5f);
@@ -3138,7 +3154,7 @@ label_185:
                 this.targetRotation = Quaternion.LookRotation(this.FollowTarget.transform.position - this.transform.position);
                 this.transform.rotation = Quaternion.Slerp(this.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
               }
-              if (this.FollowTarget.Attacked && this.FollowTarget.Alive && !this.FollowTarget.Tranquil)
+              if (this.FollowTarget.Attacked && this.FollowTarget.Alive && !this.FollowTarget.Tranquil && !this.Blind)
               {
                 Debug.Log((object) "Raibaru should be aware that Osana is being attacked.");
                 this.AwareOfMurder = true;
@@ -3473,7 +3489,7 @@ label_185:
                 this.CuriosityTimer += Time.deltaTime;
                 if ((double) this.CuriosityTimer <= 30.0)
                   return;
-                if (!this.StudentManager.Students[this.Crush].Private && !this.StudentManager.Students[this.Crush].Wet && !this.StudentManager.LockerRoomArea.bounds.Contains(this.StudentManager.Students[this.Crush].transform.position))
+                if (!this.StudentManager.Students[this.Crush].Private && !this.StudentManager.Students[this.Crush].Wet && !this.StudentManager.LockerRoomArea.bounds.Contains(this.StudentManager.Students[this.Crush].transform.position) && !this.StudentManager.EastBathroomArea.bounds.Contains(this.StudentManager.Students[this.Crush].transform.position) && !this.StudentManager.WestBathroomArea.bounds.Contains(this.StudentManager.Students[this.Crush].transform.position))
                 {
                   this.Pathfinding.target = this.StudentManager.Students[this.Crush].transform;
                   this.CurrentDestination = this.StudentManager.Students[this.Crush].transform;
@@ -3482,7 +3498,10 @@ label_185:
                   ++this.CuriosityPhase;
                 }
                 else
+                {
+                  Debug.Log((object) "Suitor is deciding not to go visit the rival, since the rival is in the locker room or bathroom.");
                   this.CuriosityTimer = 0.0f;
+                }
               }
               else
               {
@@ -3510,8 +3529,11 @@ label_185:
             }
             else if (this.Actions[this.Phase] == StudentActionType.SitAndTakeNotes)
             {
-              if ((UnityEngine.Object) this.Follower != (UnityEngine.Object) null && this.Follower.Actions[this.Phase] != StudentActionType.SitAndTakeNotes && (double) this.Clock.HourTime < 15.5)
+              if ((UnityEngine.Object) this.Follower != (UnityEngine.Object) null && this.Follower.Actions[this.Follower.Phase] != StudentActionType.SitAndTakeNotes && (double) this.Clock.HourTime < 15.5)
+              {
+                Debug.Log((object) "Ribaru has been instructed to go sit down in her seat.");
                 this.Follower.GoToClass();
+              }
               if ((UnityEngine.Object) this.MyPlate != (UnityEngine.Object) null && (UnityEngine.Object) this.MyPlate.parent == (UnityEngine.Object) this.RightHand)
               {
                 this.MyPlate.parent = (Transform) null;
@@ -5503,14 +5525,38 @@ label_185:
                   this.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
                   this.PyroPhase = 4;
                 }
-                else
+                else if ((double) this.CharacterAnimation["f02_startFire_00"].time > (double) this.CharacterAnimation["f02_startFire_00"].length)
+                  ++this.PyroPhase;
+                else if ((double) this.CharacterAnimation["f02_startFire_00"].time > 13.0)
                 {
-                  if ((double) this.CharacterAnimation["f02_startFire_00"].time <= (double) this.CharacterAnimation["f02_startFire_00"].length)
+                  if (this.StudentManager.PyroFlames.isPlaying)
                     return;
                   this.StudentManager.PyroFlames.Play();
                   this.StudentManager.PyroFlameSounds[1].Play();
                   this.StudentManager.PyroFlameSounds[2].Play();
-                  ++this.PyroPhase;
+                }
+                else if ((double) this.CharacterAnimation["f02_startFire_00"].time > 11.75)
+                {
+                  this.Note.transform.parent = (Transform) null;
+                  this.Note.transform.position -= new Vector3(0.0f, Time.deltaTime, 0.0f);
+                }
+                else if ((double) this.CharacterAnimation["f02_startFire_00"].time > 11.5)
+                  this.Lighter.SetActive(false);
+                else if ((double) this.CharacterAnimation["f02_startFire_00"].time > 8.0)
+                  this.PaperFire.SetActive(true);
+                else if ((double) this.CharacterAnimation["f02_startFire_00"].time > 4.5)
+                {
+                  this.Lighter.SetActive(true);
+                }
+                else
+                {
+                  if ((double) this.CharacterAnimation["f02_startFire_00"].time <= 1.0 || this.Note.gameObject.activeInHierarchy)
+                    return;
+                  this.Note.transform.parent = this.RightHand;
+                  this.Note.transform.localPosition = new Vector3(0.0f, -0.1f, -0.004f);
+                  this.Note.transform.localEulerAngles = new Vector3(0.0f, 135f, 45f);
+                  this.Note.transform.localScale = new Vector3(0.1f, 0.2f, 1f);
+                  this.Note.SetActive(true);
                 }
               }
               else if (this.PyroPhase == 2)
@@ -5541,6 +5587,13 @@ label_185:
                 this.StudentManager.PyroWateringCan.parent = this.RightHand;
                 this.StudentManager.PyroWateringCan.localPosition = new Vector3(0.14f, -0.15f, -0.05f);
                 this.StudentManager.PyroWateringCan.localEulerAngles = new Vector3(10f, 15f, 45f);
+                this.Note.transform.parent = this.RightHand;
+                this.Note.transform.localPosition = new Vector3(0.0f, -0.1f, -0.004f);
+                this.Note.transform.localEulerAngles = new Vector3(0.0f, 135f, 45f);
+                this.Note.transform.localScale = new Vector3(0.1f, 0.2f, 1f);
+                this.PaperFire.SetActive(false);
+                this.Lighter.SetActive(false);
+                this.Note.SetActive(false);
                 ++this.PyroPhase;
               }
               else if (this.PyroPhase == 3)
@@ -5822,6 +5875,7 @@ label_185:
         {
           if ((double) this.MeetTimer == 0.0)
           {
+            Debug.Log((object) (this.Name + " has arrived at their meeting spot."));
             if ((double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood == 0.0 && (double) this.Yandere.Sanity >= 66.66666 && ((UnityEngine.Object) this.CurrentDestination == (UnityEngine.Object) this.StudentManager.MeetSpots.List[8] || (UnityEngine.Object) this.CurrentDestination == (UnityEngine.Object) this.StudentManager.MeetSpots.List[9] || (UnityEngine.Object) this.CurrentDestination == (UnityEngine.Object) this.StudentManager.MeetSpots.List[10]))
             {
               if (this.StudentManager.Eighties && this.StudentID == this.StudentManager.RivalID)
@@ -6662,12 +6716,24 @@ label_185:
                           this.Subtitle.UpdateLabel(SubtitleType.TeacherCorpseInspection, 5, 5f);
                         }
                       }
-                      PromptScript component = this.BloodPool.GetComponent<PromptScript>();
-                      if ((UnityEngine.Object) component != (UnityEngine.Object) null)
+                      PromptScript component1 = this.BloodPool.GetComponent<PromptScript>();
+                      WeaponScript component2 = this.BloodPool.GetComponent<WeaponScript>();
+                      bool flag = false;
+                      if ((UnityEngine.Object) component2 != (UnityEngine.Object) null)
+                      {
+                        if (component2.BroughtFromHome)
+                        {
+                          Debug.Log((object) "This weapon was brought from home!");
+                          flag = true;
+                        }
+                        else
+                          Debug.Log((object) "This weapon was not brought from home.");
+                      }
+                      if ((UnityEngine.Object) component1 != (UnityEngine.Object) null && !flag)
                       {
                         Debug.Log((object) "Disabling an object's prompt.");
-                        component.Hide();
-                        component.enabled = false;
+                        component1.Hide();
+                        component1.enabled = false;
                         this.TargetDistance = 1.5f;
                       }
                       ++this.ReportPhase;
@@ -7632,7 +7698,7 @@ label_185:
                   this.Ragdoll.Disturbing = true;
                   this.Dying = true;
                   this.HipCollider.enabled = true;
-                  this.HipCollider.radius = 1f;
+                  this.HipCollider.radius = 0.5f;
                   this.MurderSuicidePhase = 9;
                 }
                 this.Pathfinding.canSearch = false;
@@ -7907,6 +7973,7 @@ label_185:
                   this.CharacterAnimation.CrossFade("f02_brokenAttackFailA_00");
                   if ((double) this.CharacterAnimation["f02_brokenAttackFailA_00"].time >= (double) this.CharacterAnimation["f02_brokenAttackFailA_00"].length)
                   {
+                    Debug.Log((object) "A mind-broken slave just failed to kill her target.");
                     this.Yandere.NearMindSlave = false;
                     this.MurderSuicidePhase = 1;
                     this.Hunting = false;
@@ -7914,11 +7981,18 @@ label_185:
                     this.HuntTarget.MyController.radius = 0.1f;
                     this.HuntTarget.Distracted = false;
                     this.HuntTarget.Routine = true;
+                    this.HuntTarget.FightingSlave = false;
+                    this.StudentManager.UpdateMe(this.HuntTarget.StudentID);
                     if (this.StudentID > 10 && this.StudentID < 21)
                     {
                       Debug.Log((object) "A former rival killed herself as a mind-broken slave. StudentManager will be informed.");
                       this.StudentManager.UpdateRivalEliminationDetails(this.StudentID);
                     }
+                  }
+                  else if ((double) this.CharacterAnimation["f02_brokenAttackFailA_00"].time >= 6.5 && this.HuntTarget.FightingSlave)
+                  {
+                    this.HuntTarget.FightingSlave = false;
+                    this.StudentManager.UpdateMe(this.HuntTarget.StudentID);
                   }
                 }
               }
@@ -8799,44 +8873,47 @@ label_185:
               }
             }
           }
-          else if (this.Persona == PersonaType.Strict)
+          else
           {
-            if (this.WitnessedWeapon && (bool) (UnityEngine.Object) this.BloodPool.GetComponent<WeaponScript>().Returner)
+            if (this.Persona == PersonaType.Strict)
             {
-              this.Subtitle.UpdateLabel(SubtitleType.StudentFarewell, 0, 3f);
-              this.CurrentDestination = this.Destinations[this.Phase];
-              this.Pathfinding.target = this.Destinations[this.Phase];
-              this.InvestigatingBloodPool = false;
-              this.WitnessedBloodyWeapon = false;
-              this.WitnessedBloodPool = false;
-              this.WitnessedSomething = false;
-              this.WitnessedWeapon = false;
-              this.Distracted = false;
-              this.Routine = true;
-              this.BloodPool = (Transform) null;
-              this.WitnessCooldownTimer = 5f;
-            }
-            else if ((UnityEngine.Object) this.BloodPool.parent == (UnityEngine.Object) this.Yandere.RightHand || !this.BloodPool.gameObject.activeInHierarchy)
-            {
-              Debug.Log((object) "Yandere-chan just picked up the weapon that was being investigated.");
-              this.InvestigatingBloodPool = false;
-              this.WitnessedBloodyWeapon = false;
-              this.WitnessedBloodPool = false;
-              this.WitnessedSomething = false;
-              this.WitnessedWeapon = false;
-              this.Distracted = false;
-              this.Routine = true;
-              if ((UnityEngine.Object) this.BloodPool.GetComponent<WeaponScript>() != (UnityEngine.Object) null && this.BloodPool.GetComponent<WeaponScript>().Suspicious)
+              if (this.WitnessedWeapon && (bool) (UnityEngine.Object) this.BloodPool.GetComponent<WeaponScript>().Returner)
               {
+                this.Subtitle.UpdateLabel(SubtitleType.StudentFarewell, 0, 3f);
+                this.CurrentDestination = this.Destinations[this.Phase];
+                this.Pathfinding.target = this.Destinations[this.Phase];
+                this.InvestigatingBloodPool = false;
+                this.WitnessedBloodyWeapon = false;
+                this.WitnessedBloodPool = false;
+                this.WitnessedSomething = false;
+                this.WitnessedWeapon = false;
+                this.Distracted = false;
+                this.Routine = true;
+                this.BloodPool = (Transform) null;
                 this.WitnessCooldownTimer = 5f;
-                this.AlarmTimer = 0.0f;
-                this.Alarm = 200f;
               }
-              this.BloodPool = (Transform) null;
+              else if ((UnityEngine.Object) this.BloodPool.parent == (UnityEngine.Object) this.Yandere.RightHand || !this.BloodPool.gameObject.activeInHierarchy)
+              {
+                Debug.Log((object) "Yandere-chan just picked up the weapon that was being investigated.");
+                this.InvestigatingBloodPool = false;
+                this.WitnessedBloodyWeapon = false;
+                this.WitnessedBloodPool = false;
+                this.WitnessedSomething = false;
+                this.WitnessedWeapon = false;
+                this.Distracted = false;
+                this.Routine = true;
+                if ((UnityEngine.Object) this.BloodPool.GetComponent<WeaponScript>() != (UnityEngine.Object) null && this.BloodPool.GetComponent<WeaponScript>().Suspicious)
+                {
+                  this.WitnessCooldownTimer = 5f;
+                  this.AlarmTimer = 0.0f;
+                  this.Alarm = 200f;
+                }
+                this.BloodPool = (Transform) null;
+              }
             }
+            if ((UnityEngine.Object) this.BloodPool == (UnityEngine.Object) null || this.WitnessedWeapon && (UnityEngine.Object) this.BloodPool.parent != (UnityEngine.Object) null || this.WitnessedBloodPool && (UnityEngine.Object) this.BloodPool.parent == (UnityEngine.Object) this.Yandere.RightHand || this.WitnessedWeapon && (bool) (UnityEngine.Object) this.BloodPool.GetComponent<WeaponScript>().Returner)
+              this.ForgetAboutBloodPool();
           }
-          else if ((UnityEngine.Object) this.BloodPool == (UnityEngine.Object) null || this.WitnessedWeapon && (UnityEngine.Object) this.BloodPool.parent != (UnityEngine.Object) null || this.WitnessedBloodPool && (UnityEngine.Object) this.BloodPool.parent == (UnityEngine.Object) this.Yandere.RightHand || this.WitnessedWeapon && (bool) (UnityEngine.Object) this.BloodPool.GetComponent<WeaponScript>().Returner)
-            this.ForgetAboutBloodPool();
         }
         else
           this.ForgetAboutBloodPool();
@@ -9072,7 +9149,6 @@ label_185:
       }
       if (this.GoAway)
       {
-        Debug.Log((object) "Uh, is this happening?");
         this.GoAwayTimer += Time.deltaTime;
         if ((double) this.GoAwayTimer > (double) this.GoAwayLimit)
         {
@@ -9180,6 +9256,7 @@ label_185:
           this.StudentManager.LowerBloodPosition();
           this.StudentManager.BloodReporter = this;
           this.ReportingBlood = true;
+          Debug.Log((object) (this.Name + " has just appointed themself as a BloodReporter."));
           this.DetermineBloodLocation();
         }
       }
@@ -9508,9 +9585,9 @@ label_185:
             if (!this.Yandere.Noticed && !this.Yandere.Invisible)
             {
               bool flag3 = false;
-              if (this.Guarding || this.Fleeing || this.InvestigatingBloodPool)
+              if (this.Guarding || this.Fleeing || this.InvestigatingBloodPool && this.WitnessedBloodPool)
                 flag3 = true;
-              if (this.Yandere.Armed && this.Yandere.EquippedWeapon.Suspicious || this.Yandere.Armed && this.Yandere.EquippedWeapon.Bloody || this.StudentID > 1 && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && this.Yandere.PickUp.Suspicious || this.StudentID > 1 && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && this.Yandere.PickUp.CleaningProduct && this.Clock.Period != 5 || (double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood > 0.0 && !this.Yandere.Paint || (double) this.Yandere.Sanity < 33.3330001831055 || this.Yandere.Pickpocketing || this.Yandere.Attacking || this.Yandere.Cauterizing || this.Yandere.Struggling || this.Yandere.Dragging && !this.Yandere.CurrentRagdoll.Concealed || this.Yandere.Dragging && this.Yandere.CurrentRagdoll.Concealed && this.Clock.Period != 5 || !this.IgnoringPettyActions && this.Yandere.Lewd || this.Yandere.Carrying && !this.Yandere.CurrentRagdoll.Concealed || this.Yandere.Carrying && this.Yandere.CurrentRagdoll.Concealed && this.Clock.Period != 5 || this.Yandere.Medusa || this.Yandere.Poisoning || this.Yandere.Pickpocketing || (double) this.Yandere.WeaponTimer > 0.0 || this.Yandere.WearingRaincoat || (double) this.Yandere.MurderousActionTimer > 0.0 || !this.IgnoringPettyActions && this.Yandere.Schoolwear == 2 && (double) this.Yandere.transform.position.z < 30.0 || (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && (UnityEngine.Object) this.Yandere.PickUp.BodyPart != (UnityEngine.Object) null && !this.Yandere.PickUp.Garbage || !this.IgnoringPettyActions && (double) this.Yandere.SuspiciousActionTimer > 0.0 || !this.IgnoringPettyActions && this.Yandere.Laughing && (double) this.Yandere.LaughIntensity > 15.0 || !this.IgnoringPettyActions && this.Yandere.Stance.Current == StanceType.Crouching || !this.IgnoringPettyActions && this.Yandere.Stance.Current == StanceType.Crawling || this.Yandere.Trespassing || this.Private && this.Yandere.Eavesdropping || this.Teacher && !this.WitnessedCorpse && this.Yandere.Trespassing || this.Teacher && !this.IgnoringPettyActions && this.Yandere.Rummaging || !this.IgnoringPettyActions && (double) this.Yandere.TheftTimer > 0.0 || this.StudentID == 1 && this.Yandere.NearSenpai && !this.Yandere.Talking || this.Yandere.Eavesdropping && this.Private || !this.IgnoringPettyActions && !this.StudentManager.CombatMinigame.Practice && this.Yandere.DelinquentFighting && this.StudentID != 10 && this.StudentManager.CombatMinigame.Path < 4 && !this.StudentManager.CombatMinigame.Practice && !this.Yandere.SeenByAuthority || flag3 && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && (UnityEngine.Object) this.Yandere.PickUp.Mop != (UnityEngine.Object) null && (double) this.Yandere.PickUp.Mop.Bloodiness > 0.0 || flag3 && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && (UnityEngine.Object) this.Yandere.PickUp.BodyPart != (UnityEngine.Object) null && !this.Yandere.PickUp.Garbage || (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && this.Yandere.PickUp.Clothing && this.Yandere.PickUp.Evidence)
+              if (this.Yandere.Armed && this.Yandere.EquippedWeapon.Suspicious || this.Yandere.Armed && this.Yandere.EquippedWeapon.Bloody || !this.IgnoringPettyActions && this.StudentID > 1 && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && this.Yandere.PickUp.Suspicious || !this.IgnoringPettyActions && this.StudentID > 1 && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && this.Yandere.PickUp.CleaningProduct && this.Clock.Period != 5 || (double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood > 0.0 && !this.Yandere.Paint || (double) this.Yandere.Sanity < 33.3330001831055 || this.Yandere.Pickpocketing || this.Yandere.Attacking || this.Yandere.Cauterizing || this.Yandere.Struggling || this.Yandere.Dragging && !this.Yandere.CurrentRagdoll.Concealed || this.Yandere.Dragging && this.Yandere.CurrentRagdoll.Concealed && this.Clock.Period != 5 || !this.IgnoringPettyActions && this.Yandere.Lewd || this.Yandere.Carrying && !this.Yandere.CurrentRagdoll.Concealed || this.Yandere.Carrying && this.Yandere.CurrentRagdoll.Concealed && this.Clock.Period != 5 || this.Yandere.Medusa || this.Yandere.Poisoning || this.Yandere.Pickpocketing || (double) this.Yandere.WeaponTimer > 0.0 || this.Yandere.WearingRaincoat || (double) this.Yandere.MurderousActionTimer > 0.0 || !this.IgnoringPettyActions && this.Yandere.Schoolwear == 2 && (double) this.Yandere.transform.position.z < 30.0 || !this.IgnoringPettyActions && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && (UnityEngine.Object) this.Yandere.PickUp.BodyPart != (UnityEngine.Object) null && !this.Yandere.PickUp.Garbage || !this.IgnoringPettyActions && (double) this.Yandere.SuspiciousActionTimer > 0.0 || !this.IgnoringPettyActions && this.Yandere.Laughing && (double) this.Yandere.LaughIntensity > 15.0 || !this.IgnoringPettyActions && this.Yandere.Stance.Current == StanceType.Crouching || !this.IgnoringPettyActions && this.Yandere.Stance.Current == StanceType.Crawling || this.Yandere.Trespassing || this.Private && this.Yandere.Eavesdropping || this.Teacher && !this.WitnessedCorpse && this.Yandere.Trespassing || this.Teacher && !this.IgnoringPettyActions && this.Yandere.Rummaging || !this.IgnoringPettyActions && (double) this.Yandere.TheftTimer > 0.0 || this.StudentID == 1 && this.Yandere.NearSenpai && !this.Yandere.Talking || this.Yandere.Eavesdropping && this.Private || !this.IgnoringPettyActions && !this.StudentManager.CombatMinigame.Practice && this.Yandere.DelinquentFighting && this.StudentID != 10 && this.StudentManager.CombatMinigame.Path < 4 && !this.StudentManager.CombatMinigame.Practice && !this.Yandere.SeenByAuthority || flag3 && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && (UnityEngine.Object) this.Yandere.PickUp.Mop != (UnityEngine.Object) null && (double) this.Yandere.PickUp.Mop.Bloodiness > 50.0 || !this.IgnoringPettyActions & flag3 && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && (UnityEngine.Object) this.Yandere.PickUp.BodyPart != (UnityEngine.Object) null && !this.Yandere.PickUp.Garbage || (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && this.Yandere.PickUp.Clothing && this.Yandere.PickUp.Evidence)
               {
                 bool flag4 = false;
                 if ((double) this.Yandere.transform.position.y < (double) this.transform.position.y + 4.0)
@@ -9519,7 +9596,7 @@ label_185:
                 if (flag4 && this.CanSeeObject(this.Yandere.gameObject, headPosition) || this.AwareOfMurder)
                 {
                   this.YandereVisible = true;
-                  if (this.Yandere.Attacking || this.Yandere.Cauterizing || this.Yandere.Struggling || this.WitnessedCorpse && this.Yandere.NearBodies > 0 && (double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood > 0.0 && !this.Yandere.Paint || this.WitnessedCorpse && this.Yandere.NearBodies > 0 && this.Yandere.Armed || this.WitnessedCorpse && this.Yandere.NearBodies > 0 && (double) this.Yandere.Sanity < 66.6666564941406 || this.Yandere.Carrying && !this.Yandere.CurrentRagdoll.Concealed || this.Yandere.Dragging && !this.Yandere.CurrentRagdoll.Concealed || (double) this.Yandere.MurderousActionTimer > 0.0 || this.Guarding && (double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood > 0.0 && !this.Yandere.Paint || this.Guarding && this.Yandere.Armed || this.Guarding && (double) this.Yandere.Sanity < 66.6666564941406 || !this.IgnoringPettyActions && !this.StudentManager.CombatMinigame.Practice && this.Club == ClubType.Council && this.Yandere.DelinquentFighting && this.StudentManager.CombatMinigame.Path < 4 && !this.Yandere.SeenByAuthority || !this.StudentManager.CombatMinigame.Practice && this.Teacher && this.Yandere.DelinquentFighting && this.StudentManager.CombatMinigame.Path < 4 && !this.Yandere.SeenByAuthority || flag3 && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && (UnityEngine.Object) this.Yandere.PickUp.Mop != (UnityEngine.Object) null && (double) this.Yandere.PickUp.Mop.Bloodiness > 0.0 || flag3 && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && (UnityEngine.Object) this.Yandere.PickUp.BodyPart != (UnityEngine.Object) null && !this.Yandere.PickUp.Garbage || (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && this.Teacher && this.Yandere.PickUp.Clothing && this.Yandere.PickUp.Evidence || (double) this.StudentManager.Atmosphere < 0.333330005407333 && (double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood > 0.0 && this.Yandere.Armed)
+                  if (this.Yandere.Attacking || this.Yandere.Cauterizing || this.Yandere.Struggling || this.WitnessedCorpse && this.Yandere.NearBodies > 0 && (double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood > 0.0 && !this.Yandere.Paint || this.WitnessedCorpse && this.Yandere.NearBodies > 0 && this.Yandere.Armed || this.WitnessedCorpse && this.Yandere.NearBodies > 0 && (double) this.Yandere.Sanity < 66.6666564941406 || this.Yandere.Carrying && !this.Yandere.CurrentRagdoll.Concealed || this.Yandere.Dragging && !this.Yandere.CurrentRagdoll.Concealed || (double) this.Yandere.MurderousActionTimer > 0.0 || this.Guarding && (double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood > 0.0 && !this.Yandere.Paint || this.Guarding && this.Yandere.Armed && this.Yandere.EquippedWeapon.Dangerous || this.Guarding && this.Yandere.Armed && this.Yandere.EquippedWeapon.Suspicious || this.Guarding && (double) this.Yandere.Sanity < 66.6666564941406 || !this.IgnoringPettyActions && !this.StudentManager.CombatMinigame.Practice && this.Club == ClubType.Council && this.Yandere.DelinquentFighting && this.StudentManager.CombatMinigame.Path < 4 && !this.Yandere.SeenByAuthority || !this.StudentManager.CombatMinigame.Practice && this.Teacher && this.Yandere.DelinquentFighting && this.StudentManager.CombatMinigame.Path < 4 && !this.Yandere.SeenByAuthority || flag3 && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && (UnityEngine.Object) this.Yandere.PickUp.Mop != (UnityEngine.Object) null && (double) this.Yandere.PickUp.Mop.Bloodiness > 0.0 || flag3 && (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && (UnityEngine.Object) this.Yandere.PickUp.BodyPart != (UnityEngine.Object) null && !this.Yandere.PickUp.Garbage || (UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && this.Teacher && this.Yandere.PickUp.Clothing && this.Yandere.PickUp.Evidence || (double) this.StudentManager.Atmosphere < 0.333330005407333 && (double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood > 0.0 && this.Yandere.Armed)
                   {
                     Debug.Log((object) (this.Name + " is aware that Yandere-chan is misbehaving."));
                     if (this.Yandere.Hungry || !this.Yandere.Egg)
@@ -9617,7 +9694,6 @@ label_185:
           this.Alarm = 0.0f;
         if ((double) this.Alarm <= 100.0)
           return;
-        Debug.Log((object) (this.Name + " is about to call the BecomeAlarmed() function from here, specifically."));
         this.BecomeAlarmed();
       }
       else
@@ -9657,7 +9733,6 @@ label_185:
 
   public void BecomeAlarmed()
   {
-    Debug.Log((object) (this.Name + " just called the BecomeAlarmed() function."));
     if (this.Yandere.Medusa && this.YandereVisible)
     {
       this.TurnToStone();
@@ -9671,7 +9746,6 @@ label_185:
       }
       if (!this.Alarmed || this.DiscCheck)
       {
-        Debug.Log((object) (this.Name + " has become alarmed by something."));
         bool flag = false;
         if (this.CurrentAction == StudentActionType.Sunbathe && this.SunbathePhase > 2)
         {
@@ -9871,7 +9945,6 @@ label_185:
           }
           else
           {
-            Debug.Log((object) (this.Name + " was alarmed by something, but didn't see what it was."));
             this.Witnessed = StudentWitnessType.None;
             this.DiscCheck = true;
             this.Witness = false;
@@ -9921,7 +9994,7 @@ label_185:
   {
     if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
     {
-      if (!this.StudentManager.EmptyDemon && ((double) this.Alarm > 0.0 || (double) this.AlarmTimer > 0.0 || this.Yandere.Armed || this.Yandere.Shoved || this.Waiting || this.InEvent || this.SentHome || this.Threatened || this.Guarding || this.Distracted && !this.Drownable || this.StudentID == 1 || this.Yandere.YandereVision) && (!this.Slave && !this.BadTime && !this.Yandere.Gazing && !this.FightingSlave || this.Yandere.YandereVision))
+      if (!this.StudentManager.EmptyDemon && ((double) this.Alarm > 0.0 || (double) this.AlarmTimer > 0.0 || this.Yandere.Armed || this.Yandere.Shoved || this.Waiting || this.InEvent || this.SentHome || this.Threatened || this.Guarding || this.Distracted && !this.Drownable || this.StudentID == 1 || this.Yandere.YandereVision || this.TakingOutTrash) && (!this.Slave && !this.BadTime && !this.Yandere.Gazing && !this.FightingSlave || this.Yandere.YandereVision))
       {
         if (this.InEvent)
         {
@@ -9962,6 +10035,9 @@ label_185:
         bool flag7 = false;
         if ((UnityEngine.Object) this.Yandere.PickUp != (UnityEngine.Object) null && this.Yandere.PickUp.Salty && !this.Indoors)
           flag7 = true;
+        bool flag8 = false;
+        if (this.Teacher && this.StudentManager.CanSelfReport)
+          flag8 = true;
         if (this.StudentManager.Pose)
         {
           this.MyController.enabled = false;
@@ -10090,7 +10166,7 @@ label_185:
           this.Pathfinding.canMove = true;
           this.Pathfinding.speed = this.WalkSpeed;
         }
-        else if (this.Clock.Period == 2 || this.Clock.Period == 4 || this.StudentID < 90 && (UnityEngine.Object) this.CurrentDestination == (UnityEngine.Object) this.Seat)
+        else if (this.Clock.Period == 2 && !flag8 || this.Clock.Period == 4 && !flag8 || this.StudentID < 90 && (UnityEngine.Object) this.CurrentDestination == (UnityEngine.Object) this.Seat)
         {
           Debug.Log((object) "This character won't talk because Class is in session, or because their destination is ''seat''.");
           if (this.Club != ClubType.Delinquent)
@@ -10099,12 +10175,16 @@ label_185:
             this.Subtitle.UpdateLabel(SubtitleType.DelinquentAnnoy, UnityEngine.Random.Range(0, this.Subtitle.DelinquentAnnoyClips.Length), 3f);
           this.Prompt.Circle[0].fillAmount = 1f;
         }
-        else if (((this.InEvent || !this.CanTalk || this.GoAway || this.Fleeing || this.Meeting && !this.Drownable || this.Wet || this.TurnOffRadio || this.InvestigatingBloodPool ? 1 : (!((UnityEngine.Object) this.MyPlate != (UnityEngine.Object) null) ? 0 : ((UnityEngine.Object) this.MyPlate.parent == (UnityEngine.Object) this.RightHand ? 1 : 0))) | (flag7 ? 1 : 0)) != 0 || this.ReturningMisplacedWeapon || this.Actions[this.Phase] == StudentActionType.Bully || this.Actions[this.Phase] == StudentActionType.Graffiti || this.CanTakeSnack && (double) this.IgnoreFoodTimer > 0.0 || !this.StudentManager.Eighties && this.StudentID == 12 || this.Rival && !this.Indoors)
+        else if (((this.InEvent || !this.CanTalk || this.GoAway || this.Fleeing || this.Meeting && !this.Drownable || this.Wet || this.TurnOffRadio || this.InvestigatingBloodPool ? 1 : (!((UnityEngine.Object) this.MyPlate != (UnityEngine.Object) null) ? 0 : ((UnityEngine.Object) this.MyPlate.parent == (UnityEngine.Object) this.RightHand ? 1 : 0))) | (flag7 ? 1 : 0)) != 0 || this.ReturningMisplacedWeapon || this.Actions[this.Phase] == StudentActionType.Bully || this.Actions[this.Phase] == StudentActionType.Graffiti || this.CanTakeSnack && (double) this.IgnoreFoodTimer > 0.0 || !this.StudentManager.Eighties && this.StudentID == 12 || this.Rival && !this.Indoors || (UnityEngine.Object) this.FollowTarget != (UnityEngine.Object) null && this.FollowTarget.InEvent)
         {
-          if (!this.StudentManager.Eighties && this.StudentID == 10 && TaskGlobals.GetTaskStatus(46) == 1 && !this.NoMentor && (this.Clock.Period == 3 || this.Clock.Period == 5))
+          if (!this.StudentManager.Eighties && this.StudentID == 10 && TaskGlobals.GetTaskStatus(46) == 1 && !this.NoMentor)
           {
-            this.Yandere.NotificationManager.CustomText = "Martial Arts Club is not training now";
-            this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+            Debug.Log((object) ("The game thinks that the current period is: " + this.Clock.Period.ToString()));
+            if (this.Clock.Period == 3 || this.Clock.Period == 5)
+            {
+              this.Yandere.NotificationManager.CustomText = "Martial Arts Club is not training now";
+              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+            }
           }
           this.Subtitle.UpdateLabel(SubtitleType.EventApology, 1, 3f);
           this.Prompt.Circle[0].fillAmount = 1f;
@@ -10160,12 +10240,18 @@ label_185:
           this.Distracted = true;
           this.Routine = false;
         }
+        else if (this.Actions[this.Phase] == StudentActionType.LightFire)
+        {
+          this.Yandere.NotificationManager.CustomText = "She doesn't seem to notice you...";
+          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+          this.Prompt.Circle[0].fillAmount = 1f;
+        }
         else
         {
-          bool flag8 = false;
+          bool flag9 = false;
           if ((double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood > 0.0 && !this.Yandere.Paint)
-            flag8 = true;
-          if (!this.Witness & flag8)
+            flag9 = true;
+          if (!this.Witness & flag9)
           {
             this.Prompt.Circle[0].fillAmount = 1f;
             this.YandereVisible = true;
@@ -10211,11 +10297,20 @@ label_185:
               }
               else if (!this.StudentManager.Eighties && this.StudentID == 10 && this.StudentManager.TaskManager.TaskStatus[46] == 1 && (UnityEngine.Object) this.Yandere.PickUp == (UnityEngine.Object) null)
               {
-                if ((UnityEngine.Object) this.FollowTarget != (UnityEngine.Object) null)
-                  this.StudentManager.LastKnownOsana.position = this.FollowTarget.transform.position;
-                this.Interaction = StudentInteractionType.Idle;
-                this.Yandere.Interaction = YandereInteractionType.TaskInquiry;
-                this.Yandere.TalkTimer = 5f;
+                Debug.Log((object) ("The game thinks that the current period is: " + this.Clock.Period.ToString()));
+                if (this.Clock.Period == 3 || this.Clock.Period == 5)
+                {
+                  this.Yandere.NotificationManager.CustomText = "Martial Arts Club is not training now!";
+                  this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+                }
+                else
+                {
+                  if ((UnityEngine.Object) this.FollowTarget != (UnityEngine.Object) null)
+                    this.StudentManager.LastKnownOsana.position = this.FollowTarget.transform.position;
+                  this.Interaction = StudentInteractionType.Idle;
+                  this.Yandere.Interaction = YandereInteractionType.TaskInquiry;
+                  this.Yandere.TalkTimer = 5f;
+                }
               }
               else if (this.StudentID > 89 && this.StudentManager.CanSelfReport)
               {
@@ -10240,6 +10335,8 @@ label_185:
                     num = (int) this.Club * -1;
                   this.Subtitle.UpdateLabel(SubtitleType.ClubGreeting, (int) (this.Club + num), 4f);
                   this.DialogueWheel.ClubLeader = true;
+                  this.Yandere.Jukebox.ClubTheme.clip = this.Yandere.Jukebox.ClubThemes[(int) this.Club];
+                  this.Yandere.Jukebox.ClubTheme.Play();
                 }
                 else
                   this.Subtitle.UpdateLabel(SubtitleType.Greeting, 0, 3f);
@@ -10291,11 +10388,11 @@ label_185:
             this.CuriosityPhase = 0;
             this.ReadPhase = 0;
             this.EmptyHands();
-            bool flag9 = false;
+            bool flag10 = false;
             if (this.CurrentAction == StudentActionType.Sunbathe && this.SunbathePhase > 2)
             {
               this.SunbathePhase = 2;
-              flag9 = true;
+              flag10 = true;
             }
             if (this.Phoneless)
               this.SmartPhone.SetActive(false);
@@ -10308,7 +10405,7 @@ label_185:
             }
             else if (this.Persona != PersonaType.PhoneAddict)
               this.SmartPhone.SetActive(false);
-            else if (!this.Scrubber.activeInHierarchy && !flag9)
+            else if (!this.Scrubber.activeInHierarchy && !flag10)
               this.SmartPhone.SetActive(true);
             this.ChalkDust.Stop();
             this.StopPairing();
@@ -10376,20 +10473,22 @@ label_185:
     {
       Debug.Log((object) (this.Name + " was just attacked, either because the player pressed the X button, or because Yandere-chan had low sanity."));
       this.Yandere.AttackManager.Stealth = (double) Mathf.Abs(Vector3.Angle(-this.transform.forward, this.Yandere.transform.position - this.transform.position)) <= 45.0;
-      bool flag10 = false;
+      bool flag11 = false;
       if (this.Yandere.AttackManager.Stealth && (this.Yandere.EquippedWeapon.Type == WeaponType.Bat || this.Yandere.EquippedWeapon.Type == WeaponType.Weight))
-        flag10 = true;
+        flag11 = true;
+      if ((double) this.Yandere.Bloodiness > 0.0)
+        flag11 = true;
       Debug.Log((object) ("Before attacking, # of OriginalUniforms was: " + this.StudentManager.OriginalUniforms.ToString() + " and # of NewUniforms was: " + this.StudentManager.NewUniforms.ToString()));
-      if (flag10 || this.Yandere.Schoolwear == 2 || this.StudentManager.OriginalUniforms + this.StudentManager.NewUniforms > 1)
+      if (flag11 || this.Yandere.Schoolwear == 2 || this.StudentManager.OriginalUniforms + this.StudentManager.NewUniforms > 1)
       {
         if (this.ClubActivityPhase >= 16)
           return;
-        bool flag11 = false;
-        if (this.Club == ClubType.Delinquent && !this.Injured && !this.Yandere.AttackManager.Stealth && !this.RespectEarned && !this.SolvingPuzzle)
+        bool flag12 = false;
+        if (this.Club == ClubType.Delinquent && !this.Injured && !this.Yandere.AttackManager.Stealth && !this.RespectEarned && !this.SolvingPuzzle && !this.Wet)
         {
           Debug.Log((object) (this.Name + " knows that Yandere-chan is trying to attack them."));
           this.Persona = PersonaType.Violent;
-          flag11 = true;
+          flag12 = true;
           this.RespectEarned = false;
           this.Fleeing = false;
           this.Patience = 1;
@@ -10398,7 +10497,7 @@ label_185:
         }
         if (this.Yandere.AttackManager.Stealth)
           this.SpawnSmallAlarmDisc();
-        if (flag11 || this.Yandere.NearSenpai || this.Yandere.Attacking || this.Yandere.Stance.Current == StanceType.Crouching)
+        if (flag12 || this.Yandere.NearSenpai || this.Yandere.Attacking || this.Yandere.Stance.Current == StanceType.Crouching)
           return;
         if (this.Yandere.EquippedWeapon.Flaming || this.Yandere.CyborgParts[1].activeInHierarchy)
           this.Yandere.SanityBased = false;
@@ -10838,12 +10937,27 @@ label_185:
                 Debug.Log((object) ("The teacher was alarmed because she saw something weird on the ground - a " + this.BloodPool.name));
                 UnityEngine.Object.Destroy((UnityEngine.Object) this.Subtitle.CurrentClip);
                 this.Subtitle.UpdateLabel(SubtitleType.BloodPoolReaction, 2, 5f);
-                PromptScript component = this.BloodPool.GetComponent<PromptScript>();
-                if ((UnityEngine.Object) component != (UnityEngine.Object) null)
+                PromptScript component1 = this.BloodPool.GetComponent<PromptScript>();
+                if ((UnityEngine.Object) component1 != (UnityEngine.Object) null)
                 {
-                  Debug.Log((object) "Disabling a bloody object's prompt because a teacher is heading for it.");
-                  component.Hide();
-                  component.enabled = false;
+                  WeaponScript component2 = this.BloodPool.GetComponent<WeaponScript>();
+                  bool flag = false;
+                  if ((UnityEngine.Object) component2 != (UnityEngine.Object) null)
+                  {
+                    if (component2.BroughtFromHome)
+                    {
+                      Debug.Log((object) "This weapon was brought from home!");
+                      flag = true;
+                    }
+                    else
+                      Debug.Log((object) "This weapon was not brought from home.");
+                  }
+                  if (!flag)
+                  {
+                    Debug.Log((object) "Disabling a bloody object's prompt because a teacher is heading for it.");
+                    component1.Hide();
+                    component1.enabled = false;
+                  }
                 }
               }
             }
@@ -10899,7 +11013,6 @@ label_185:
             }
             else if (this.Club != ClubType.Delinquent)
             {
-              Debug.Log((object) ("We are now determining what subtitle " + this.Name + " should be saying."));
               if (this.Witnessed == StudentWitnessType.WeaponAndBloodAndInsanity)
                 this.Subtitle.UpdateLabel(SubtitleType.WeaponAndBloodAndInsanityReaction, 1, 3f);
               else if (this.Witnessed == StudentWitnessType.WeaponAndBlood)
@@ -11236,7 +11349,7 @@ label_185:
           this.ThreatPhase = 3;
           this.ThreatTimer = 0.0f;
         }
-        if (this.Yandere.Shoved || this.Yandere.Dumping || this.Yandere.SneakingShot)
+        if (this.Yandere.Dumping || this.Yandere.SneakingShot)
           return;
         if ((double) this.DistanceToPlayer > 1.0 && this.Patience > 0)
         {
@@ -11295,6 +11408,7 @@ label_185:
         }
         else if (!this.NoTalk)
         {
+          this.Yandere.Shoved = false;
           Debug.Log((object) "The combat minigame is now beginning.");
           string str = "";
           if (!this.Male)
@@ -11858,7 +11972,6 @@ label_185:
             {
               if (this.Investigating)
                 this.StopInvestigating();
-              Debug.Log((object) (this.Name + " was alarmed because Yandere-chan was running nearby."));
               this.DistractionSpot = this.Yandere.transform.position;
               this.Alarm = 200f;
               this.TemporarilyBlind = true;
@@ -12240,6 +12353,11 @@ label_185:
         Debug.Log((object) "A reporter died before being able to report a corpse. Corpse position reset.");
         this.StudentManager.CorpseLocation.position = Vector3.zero;
       }
+    }
+    if ((UnityEngine.Object) this.StudentManager.BloodReporter == (UnityEngine.Object) this)
+    {
+      Debug.Log((object) (this.Name + " just set StudentManager.BloodReporter to ''null''."));
+      this.StudentManager.BloodReporter = (StudentScript) null;
     }
     if (this.Club == ClubType.Delinquent && (UnityEngine.Object) this.MyWeapon != (UnityEngine.Object) null && (UnityEngine.Object) this.MyWeapon.transform.parent == (UnityEngine.Object) this.ItemParent)
     {
@@ -13310,10 +13428,7 @@ label_185:
       {
         this.Destinations[this.ID] = this.StudentManager.Patrols.List[this.StudentID].GetChild(0);
         if ((this.OriginalClub == ClubType.Gardening || this.OriginalClub == ClubType.Occult) && this.Club == ClubType.None)
-        {
-          Debug.Log((object) "This student's club disbanded, so their destination has been set to ''Hangout''.");
           this.Destinations[this.ID] = this.StudentManager.Hangouts.List[this.StudentID];
-        }
       }
       else if (scheduleBlock.destination == "Search Patrol")
       {
@@ -13519,7 +13634,6 @@ label_185:
 
   private void UpdateOutlines()
   {
-    Debug.Log((object) ("Turning " + this.Name + "'s outlines orange."));
     for (this.ID = 0; this.ID < this.Outlines.Length; ++this.ID)
     {
       if ((UnityEngine.Object) this.Outlines[this.ID] != (UnityEngine.Object) null)
@@ -13610,10 +13724,10 @@ label_185:
         this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
         ConversationGlobals.SetTopicDiscovered(19, true);
       }
-      if (ConversationGlobals.GetTopicLearnedByStudent(19, this.StudentID))
+      if (this.StudentManager.GetTopicLearnedByStudent(19, this.StudentID))
         return;
       this.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-      ConversationGlobals.SetTopicLearnedByStudent(19, this.StudentID, true);
+      this.StudentManager.SetTopicLearnedByStudent(19, this.StudentID, true);
     }
   }
 
@@ -13783,7 +13897,6 @@ label_185:
       }
       if (!this.Tranquil)
       {
-        Debug.Log((object) ("This part of " + this.Name + "'s code is now updating globals and police numbers."));
         StudentGlobals.SetStudentDying(this.StudentID, true);
         if (!this.Ragdoll.Burning && !this.Ragdoll.Disturbing)
         {
@@ -14537,7 +14650,6 @@ label_185:
 
   public void HideLabCoatPanties()
   {
-    Debug.Log((object) "Hiding the panties of this character who is changing into a lab coat.");
     this.MyRenderer.materials[0].SetFloat("_BlendAmount", 0.0f);
     this.MyRenderer.materials[1].SetFloat("_BlendAmount", 0.0f);
     this.SkirtCollider.gameObject.SetActive(false);
@@ -14680,7 +14792,12 @@ label_185:
   {
     Debug.Log((object) (this.Name + " was investigating something, but has stopped."));
     this.Giggle = (GameObject) null;
-    if (!this.Sleuthing)
+    if (this.Sleuthing && this.CurrentAction != StudentActionType.SitAndEatBento)
+    {
+      this.CurrentDestination = this.SleuthTarget;
+      this.Pathfinding.target = this.SleuthTarget;
+    }
+    else
     {
       this.CurrentDestination = this.Destinations[this.Phase];
       this.Pathfinding.target = this.Destinations[this.Phase];
@@ -14689,11 +14806,6 @@ label_185:
         this.CurrentDestination = this.StudentManager.SunbatheSpots[this.StudentID];
         this.Pathfinding.target = this.StudentManager.SunbatheSpots[this.StudentID];
       }
-    }
-    else
-    {
-      this.CurrentDestination = this.SleuthTarget;
-      this.Pathfinding.target = this.SleuthTarget;
     }
     this.InvestigationTimer = 0.0f;
     this.InvestigationPhase = 0;
@@ -15342,7 +15454,6 @@ label_185:
 
   private void EndAlarm()
   {
-    Debug.Log((object) (this.Name + " has stopped being alarmed."));
     if (this.ReturnToRoutineAfter)
     {
       this.CurrentDestination = this.Destinations[this.Phase];

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeYandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -184,30 +184,25 @@ public class HomeYandereScript : MonoBehaviour
 
   private void Update()
   {
-    if (this.UpdateFace)
+    if (this.UpdateFace && (UnityEngine.Object) this.Pajamas.newRenderer != (UnityEngine.Object) null)
     {
-      Debug.Log((object) "UpdateFace was true, so...");
-      if ((UnityEngine.Object) this.Pajamas.newRenderer != (UnityEngine.Object) null)
+      if (!this.Vtuber)
       {
-        if (!this.Vtuber)
-        {
-          Debug.Log((object) "We're in our pajamas. Let's try to update Ryoba's face.");
-          this.Pajamas.newRenderer.SetBlendShapeWeight(0, 50f);
-          this.Pajamas.newRenderer.SetBlendShapeWeight(5, 25f);
-          this.Pajamas.newRenderer.SetBlendShapeWeight(9, 0.0f);
-          this.Pajamas.newRenderer.SetBlendShapeWeight(12, 100f);
-        }
-        else
-        {
-          for (int index = 0; index < 13; ++index)
-            this.Pajamas.newRenderer.SetBlendShapeWeight(index, 0.0f);
-          this.Pajamas.newRenderer.SetBlendShapeWeight(0, 100f);
-          this.Pajamas.newRenderer.SetBlendShapeWeight(9, 100f);
-          this.Pajamas.newRenderer.materials[1].mainTexture = this.FaceTexture;
-          Debug.Log((object) "Updating pajama mesh with Vtuber face.");
-        }
-        this.UpdateFace = false;
+        this.Pajamas.newRenderer.SetBlendShapeWeight(0, 50f);
+        this.Pajamas.newRenderer.SetBlendShapeWeight(5, 25f);
+        this.Pajamas.newRenderer.SetBlendShapeWeight(9, 0.0f);
+        this.Pajamas.newRenderer.SetBlendShapeWeight(12, 100f);
       }
+      else
+      {
+        for (int index = 0; index < 13; ++index)
+          this.Pajamas.newRenderer.SetBlendShapeWeight(index, 0.0f);
+        this.Pajamas.newRenderer.SetBlendShapeWeight(0, 100f);
+        this.Pajamas.newRenderer.SetBlendShapeWeight(9, 100f);
+        this.Pajamas.newRenderer.materials[1].mainTexture = this.FaceTexture;
+        Debug.Log((object) "Updating pajama mesh with Vtuber face.");
+      }
+      this.UpdateFace = false;
     }
     if (!this.Disc.activeInHierarchy)
     {

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OfferHelpScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -415,11 +415,11 @@ public class OfferHelpScript : MonoBehaviour
         this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
         ConversationGlobals.SetTopicDiscovered(23, true);
       }
-      if (!ConversationGlobals.GetTopicLearnedByStudent(23, this.EventStudentID))
+      if (!this.StudentManager.GetTopicLearnedByStudent(23, this.EventStudentID))
       {
         this.Yandere.NotificationManager.TopicName = "Family";
         this.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-        ConversationGlobals.SetTopicLearnedByStudent(23, this.EventStudentID, true);
+        this.StudentManager.SetTopicLearnedByStudent(23, this.EventStudentID, true);
       }
     }
     if (this.EventPhase == this.EventSpeech.Length - 1)
@@ -441,6 +441,7 @@ public class OfferHelpScript : MonoBehaviour
     {
       if (this.EventPhase != this.EventSpeech.Length)
         return;
+      Debug.Log((object) "The Offer Help prompt believes that it's time to fire StopMeeting().");
       this.Student.CurrentDestination = this.Student.Destinations[this.Student.Phase];
       this.Student.Pathfinding.target = this.Student.Destinations[this.Student.Phase];
       this.Student.StopMeeting();

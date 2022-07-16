@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RadioScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -94,6 +94,7 @@ public class RadioScript : MonoBehaviour
         }
       }
     }
+    this.MyAudio.volume = !this.Prompt.Yandere.Talking || !this.Prompt.Yandere.StudentManager.DialogueWheel.ClubLeader ? 0.1f : 0.0f;
     if (this.Proximity > 0)
     {
       if (!this.MyAudio.isPlaying)

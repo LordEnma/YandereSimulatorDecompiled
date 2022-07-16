@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeDarknessScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -137,6 +137,27 @@ public class HomeDarknessScript : MonoBehaviour
         else if (DateGlobals.PassDays < 1)
           DateGlobals.PassDays = 1;
         SceneManager.LoadScene("CalendarScene");
+        if (StudentGlobals.UpdateRivalReputation)
+        {
+          StudentGlobals.SetStudentReputation(11, StudentGlobals.GetStudentReputation(11) - 50);
+          if (StudentGlobals.GetStudentReputation(11) <= -100)
+          {
+            GameGlobals.SpecificEliminationID = 4;
+            if (StudentGlobals.GetStudentReputation(11) <= -150)
+            {
+              GameGlobals.SpecificEliminationID = 19;
+              if (!GameGlobals.Debug)
+                PlayerPrefs.SetInt("Suicide", 1);
+            }
+            else
+            {
+              Debug.Log((object) "Informing the Content Checklist that the player eliminated their rival by bullying.");
+              if (!GameGlobals.Debug)
+                PlayerPrefs.SetInt("Bully", 1);
+            }
+          }
+          StudentGlobals.UpdateRivalReputation = false;
+        }
         Debug.Log((object) "Went to sleep.");
       }
       else

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DialogueWheelScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -493,6 +493,8 @@ public class DialogueWheelScript : MonoBehaviour
         else if (this.SwitchTopicsWindow.activeInHierarchy)
         {
           this.ClubLeader = !this.ClubLeader;
+          if (!this.ClubLeader)
+            this.RestoreMusic();
           this.HideShadows();
         }
       }
@@ -515,6 +517,7 @@ public class DialogueWheelScript : MonoBehaviour
   public void HideShadows()
   {
     this.Jukebox.Dip = 0.5f;
+    int num1 = this.ClubLeader ? 1 : 0;
     this.TaskDialogueWindow.SetActive(false);
     this.ClubLeaderWindow.SetActive(false);
     this.LockerWindow.SetActive(false);
@@ -740,17 +743,17 @@ public class DialogueWheelScript : MonoBehaviour
     }
     if (this.Yandere.TargetStudent.StudentID == 51 || this.Yandere.TargetStudent.StudentID == 76)
     {
-      int num = 4;
+      int num2 = 4;
       if (this.Yandere.TargetStudent.StudentID == 51 && (this.Yandere.Club != ClubType.LightMusic || this.PracticeWindow.PlayedRhythmMinigame))
-        num = 0;
+        num2 = 0;
       for (int index = this.Yandere.TargetStudent.StudentID + 1; index < this.Yandere.TargetStudent.StudentID + 5; ++index)
       {
         if ((Object) this.Yandere.StudentManager.Students[index] == (Object) null)
-          --num;
+          --num2;
         else if (!this.Yandere.StudentManager.Students[index].gameObject.activeInHierarchy || this.Yandere.StudentManager.Students[index].Investigating || this.Yandere.StudentManager.Students[index].Distracting || this.Yandere.StudentManager.Students[index].Distracted || this.Yandere.StudentManager.Students[index].SentHome || this.Yandere.StudentManager.Students[index].Tranquil || this.Yandere.StudentManager.Students[index].GoAway || !this.Yandere.StudentManager.Students[index].Routine || !this.Yandere.StudentManager.Students[index].Alive)
-          --num;
+          --num2;
       }
-      if (num < 4)
+      if (num2 < 4)
       {
         UISprite uiSprite = this.ClubShadow[6];
         uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
@@ -957,6 +960,7 @@ public class DialogueWheelScript : MonoBehaviour
     }
     this.Yandere.CameraEffects.UpdateDOF(2f);
     this.Yandere.StudentManager.VolumeUp();
+    this.RestoreMusic();
     this.Jukebox.Dip = 1f;
     this.AskingFavor = false;
     this.Matchmaking = false;
@@ -964,4 +968,6 @@ public class DialogueWheelScript : MonoBehaviour
     this.Pestered = false;
     this.Show = false;
   }
+
+  private void RestoreMusic() => this.Jukebox.ClubTheme.Stop();
 }

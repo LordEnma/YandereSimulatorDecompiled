@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeVideoGamesScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -23,9 +23,11 @@ public class HomeVideoGamesScript : MonoBehaviour
   public int ID = 1;
   public GameObject EightiesController;
   public GameObject Controller;
+  public Vector3 OriginalPosition;
 
   private void Start()
   {
+    this.OriginalPosition = this.Controller.transform.position;
     if (GameGlobals.Eighties)
     {
       this.GameTitles[2].text = "Space Witch";
@@ -75,7 +77,7 @@ public class HomeVideoGamesScript : MonoBehaviour
         if (Input.GetButtonDown("A") && (double) this.GameTitles[this.ID].color.a == 1.0)
         {
           Transform target = this.HomeCamera.Targets[5];
-          target.localPosition = this.HomeCamera.Eighties ? new Vector3(target.localPosition.x, 0.948f, target.localPosition.z) : new Vector3(target.localPosition.x, 1.153333f, target.localPosition.z);
+          target.localPosition = this.HomeCamera.Eighties ? new Vector3(target.localPosition.x, 0.948f, target.localPosition.z) : new Vector3(target.localPosition.x, 1.128f, target.localPosition.z);
           this.HomeDarkness.Sprite.color = new Color(this.HomeDarkness.Sprite.color.r, this.HomeDarkness.Sprite.color.g, this.HomeDarkness.Sprite.color.b, -1f);
           this.HomeDarkness.FadeOut = true;
           this.HomeWindow.Show = false;
@@ -101,7 +103,7 @@ public class HomeVideoGamesScript : MonoBehaviour
   {
     if (!this.HomeCamera.Eighties)
     {
-      this.Controller.transform.localPosition = new Vector3(0.20385f, 0.0595f, 0.0215f);
+      this.Controller.transform.position = this.OriginalPosition;
       this.Controller.transform.localEulerAngles = new Vector3(-90f, -90f, 0.0f);
     }
     else

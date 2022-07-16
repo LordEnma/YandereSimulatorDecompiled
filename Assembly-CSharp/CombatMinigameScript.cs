@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CombatMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -420,27 +420,24 @@ public class CombatMinigameScript : MonoBehaviour
         if ((double) this.Yandere.CharacterAnimation["Yandere_CombatD"].time > 4.0)
         {
           Object.Instantiate<GameObject>(this.HitEffect, this.Yandere.RightKnee.position, Quaternion.identity);
-          if (!this.Delinquent.WitnessedMurder && !this.Delinquent.WitnessedCorpse)
+          this.Delinquent.MyWeapon.transform.parent = (Transform) null;
+          this.Delinquent.MyWeapon.MyCollider.enabled = true;
+          this.Delinquent.MyWeapon.MyCollider.isTrigger = false;
+          this.Delinquent.MyWeapon.Prompt.enabled = true;
+          this.Delinquent.IgnoreBlood = true;
+          Rigidbody component = this.Delinquent.MyWeapon.GetComponent<Rigidbody>();
+          component.constraints = RigidbodyConstraints.None;
+          component.isKinematic = false;
+          component.useGravity = true;
+          if (!this.Practice)
           {
-            this.Delinquent.MyWeapon.transform.parent = (Transform) null;
-            this.Delinquent.MyWeapon.MyCollider.enabled = true;
-            this.Delinquent.MyWeapon.MyCollider.isTrigger = false;
-            this.Delinquent.MyWeapon.Prompt.enabled = true;
-            this.Delinquent.IgnoreBlood = true;
-            Rigidbody component = this.Delinquent.MyWeapon.GetComponent<Rigidbody>();
-            component.constraints = RigidbodyConstraints.None;
-            component.isKinematic = false;
-            component.useGravity = true;
-            if (!this.Practice)
-            {
-              this.Delinquent.MyWeapon.DelinquentOwned = false;
-              this.Delinquent.MyWeapon = (WeaponScript) null;
-            }
-            else
-            {
-              this.Delinquent.MyWeapon.Prompt.Hide();
-              this.Delinquent.MyWeapon.Prompt.enabled = false;
-            }
+            this.Delinquent.MyWeapon.DelinquentOwned = false;
+            this.Delinquent.MyWeapon = (WeaponScript) null;
+          }
+          else
+          {
+            this.Delinquent.MyWeapon.Prompt.Hide();
+            this.Delinquent.MyWeapon.Prompt.enabled = false;
           }
           this.Shake += this.ShakeFactor;
           ++this.Strike;
@@ -456,16 +453,11 @@ public class CombatMinigameScript : MonoBehaviour
       }
       if ((double) this.Yandere.CharacterAnimation["Yandere_CombatD"].time <= (double) this.Yandere.CharacterAnimation["Yandere_CombatD"].length)
         return;
-      if (this.Delinquent.WitnessedMurder)
-      {
-        this.Yandere.Subtitle.UpdateLabel(SubtitleType.DelinquentNoSurrender, 0, 5f);
-        if (!this.Delinquent.WillChase)
-        {
-          this.Delinquent.WillChase = true;
-          ++this.Yandere.Chasers;
-        }
-      }
-      else if (!this.Practice)
+      Debug.Log((object) "Player won.");
+      this.Delinquent.WillChase = false;
+      if (this.Delinquent.WitnessedMurder || this.Delinquent.WitnessedCorpse)
+        this.ExitSchoolWhenDone = true;
+      if (!this.Practice)
       {
         this.Yandere.Subtitle.UpdateLabel(SubtitleType.DelinquentSurrender, 0, 5f);
         this.Delinquent.Persona = PersonaType.Loner;
@@ -475,7 +467,7 @@ public class CombatMinigameScript : MonoBehaviour
         Debug.Log((object) "Deciding what to do now that the minigame is over.");
         if (this.Delinquent.FoundEnemyCorpse)
           this.ExitSchoolWhenDone = true;
-        if (this.Delinquent.WitnessedCorpse || this.ExitSchoolWhenDone)
+        if (this.Delinquent.WitnessedCorpse || this.Delinquent.WitnessedMurder || this.ExitSchoolWhenDone)
         {
           Debug.Log((object) "The delinquent will now run for the exit.");
           for (int index = 1; index < this.Delinquent.ScheduleBlocks.Length; ++index)

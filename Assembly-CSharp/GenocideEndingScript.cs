@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenocideEndingScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -10,9 +10,11 @@ using UnityEngine.SceneManagement;
 
 public class GenocideEndingScript : MonoBehaviour
 {
-  public AudioSource MyAudio;
   public UISprite SecondDarkness;
   public UISprite Darkness;
+  public AudioSource MyAudio;
+  public UISprite SkipCircle;
+  public UIPanel SkipPanel;
   public UILabel Subtitle;
   public Animation Senpai;
   public Transform Neck;
@@ -46,8 +48,13 @@ public class GenocideEndingScript : MonoBehaviour
   {
     this.UpdateDOF(1f);
     Time.timeScale = 1f;
+    this.SkipPanel.gameObject.SetActive(false);
     if (GameGlobals.EightiesCutsceneID == 12)
     {
+      this.SecondDarkness.color = new Color(0.1f, 0.1f, 0.1f, 0.0f);
+      this.Darkness.color = new Color(0.1f, 0.1f, 0.1f, 1f);
+      this.SkipPanel.gameObject.SetActive(true);
+      this.SkipPanel.alpha = 0.0f;
       Debug.Log((object) "We're here for the end of 1980s Mode.");
       this.SpeechText = this.EightiesText;
       this.Subtitle.text = this.SpeechText[1];
@@ -167,6 +174,19 @@ public class GenocideEndingScript : MonoBehaviour
       if (!this.FadeOut)
       {
         this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0.0f, Time.deltaTime * this.FadeSpeed);
+        if ((double) this.SkipPanel.alpha < 1.0)
+          this.SkipPanel.alpha = Mathf.MoveTowards(this.SkipPanel.alpha, 1f, Time.deltaTime);
+        else if (Input.GetButton("X"))
+        {
+          this.SkipCircle.fillAmount += Time.deltaTime;
+          if ((double) this.SkipCircle.fillAmount >= 1.0)
+          {
+            this.FadeOut = true;
+            this.FadeSpeed = 1f;
+          }
+        }
+        else
+          this.SkipCircle.fillAmount = 0.0f;
       }
       else
       {
@@ -176,6 +196,9 @@ public class GenocideEndingScript : MonoBehaviour
           GameGlobals.DarkEnding = false;
           SceneManager.LoadScene("CreditsScene");
         }
+        this.SkipPanel.alpha = Mathf.MoveTowards(this.SkipPanel.alpha, 0.0f, Time.deltaTime);
+        if ((double) this.SkipCircle.fillAmount >= 1.0)
+          this.MyAudio.volume -= Time.deltaTime;
       }
       if (Input.GetButtonDown("A"))
         this.MyAudio.Stop();

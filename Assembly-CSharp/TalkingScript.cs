@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TalkingScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -132,22 +132,22 @@ public class TalkingScript : MonoBehaviour
           this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
           ConversationGlobals.SetTopicDiscovered(20, true);
         }
-        if (!ConversationGlobals.GetTopicLearnedByStudent(20, this.S.StudentID))
+        if (!this.S.StudentManager.GetTopicLearnedByStudent(20, this.S.StudentID))
         {
           this.S.Yandere.NotificationManager.TopicName = "Socializing";
           this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-          ConversationGlobals.SetTopicLearnedByStudent(20, this.S.StudentID, true);
+          this.S.StudentManager.SetTopicLearnedByStudent(20, this.S.StudentID, true);
         }
         if (this.S.Club != ClubType.Delinquent)
         {
           this.S.CharacterAnimation.CrossFade(this.S.LookDownAnim);
           this.CalculateRepBonus();
           int topicSelected = this.S.StudentManager.DialogueWheel.TopicInterface.TopicSelected;
-          if (!ConversationGlobals.GetTopicLearnedByStudent(topicSelected, this.S.StudentID))
+          if (!this.S.StudentManager.GetTopicLearnedByStudent(topicSelected, this.S.StudentID))
           {
             this.S.Yandere.NotificationManager.TopicName = this.S.StudentManager.InterestManager.TopicNames[topicSelected];
             this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-            ConversationGlobals.SetTopicLearnedByStudent(topicSelected, this.S.StudentID, true);
+            this.S.StudentManager.SetTopicLearnedByStudent(topicSelected, this.S.StudentID, true);
           }
           if (this.S.DialogueWheel.TopicInterface.Success)
           {
@@ -221,17 +221,17 @@ public class TalkingScript : MonoBehaviour
             --this.S.PendingRep;
           }
           int topicSelected = this.S.StudentManager.DialogueWheel.TopicInterface.TopicSelected;
-          if (!ConversationGlobals.GetTopicLearnedByStudent(topicSelected, this.S.StudentID))
+          if (!this.S.StudentManager.GetTopicLearnedByStudent(topicSelected, this.S.StudentID))
           {
             this.S.Yandere.NotificationManager.TopicName = this.S.StudentManager.InterestManager.TopicNames[topicSelected];
             this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-            ConversationGlobals.SetTopicLearnedByStudent(topicSelected, this.S.StudentID, true);
+            this.S.StudentManager.SetTopicLearnedByStudent(topicSelected, this.S.StudentID, true);
           }
-          if (!ConversationGlobals.GetTopicLearnedByStudent(19, this.S.StudentID))
+          if (!this.S.StudentManager.GetTopicLearnedByStudent(19, this.S.StudentID))
           {
             this.S.Yandere.NotificationManager.TopicName = "Gossip";
             this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-            ConversationGlobals.SetTopicLearnedByStudent(19, this.S.StudentID, true);
+            this.S.StudentManager.SetTopicLearnedByStudent(19, this.S.StudentID, true);
           }
         }
         else
@@ -318,11 +318,11 @@ public class TalkingScript : MonoBehaviour
             this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
             ConversationGlobals.SetTopicDiscovered(21, true);
           }
-          if (!ConversationGlobals.GetTopicLearnedByStudent(21, this.S.StudentID))
+          if (!this.S.StudentManager.GetTopicLearnedByStudent(21, this.S.StudentID))
           {
             this.S.Yandere.NotificationManager.TopicName = "Solitude";
             this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-            ConversationGlobals.SetTopicLearnedByStudent(21, this.S.StudentID, true);
+            this.S.StudentManager.SetTopicLearnedByStudent(21, this.S.StudentID, true);
           }
           this.S.DialogueWheel.TaskWindow.TaskComplete = true;
           this.S.StudentManager.TaskManager.TaskStatus[this.S.StudentID] = 3;
@@ -390,7 +390,7 @@ public class TalkingScript : MonoBehaviour
               flag6 = true;
             }
           }
-          if ((double) this.S.Clock.HourTime > 8.0 && (double) this.S.Clock.HourTime < 13.0 || (double) this.S.Clock.HourTime > 13.375 && (double) this.S.Clock.HourTime < 15.5 || this.S.StudentID == this.S.StudentManager.RivalID & flag5 || this.S.StudentID == this.S.StudentManager.RivalID & flag6 || (double) SchoolGlobals.SchoolAtmosphere <= 0.5)
+          if ((double) this.S.Clock.HourTime > 8.0 && (double) this.S.Clock.HourTime < 13.0 || (double) this.S.Clock.HourTime > 13.375 && (double) this.S.Clock.HourTime < 15.5 || this.S.StudentID == this.S.StudentManager.RivalID & flag5 || this.S.StudentID == this.S.StudentManager.RivalID & flag6 || (double) SchoolGlobals.SchoolAtmosphere <= 0.5 || this.S.Schoolwear == 2)
           {
             this.S.CharacterAnimation.CrossFade(this.S.GossipAnim);
             this.NegativeResponse = true;
@@ -418,6 +418,13 @@ public class TalkingScript : MonoBehaviour
                 this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
                 this.S.TalkTimer = 5f;
               }
+            }
+            else if (this.S.Schoolwear == 2)
+            {
+              this.S.Subtitle.CustomText = "Uh...I'm wearing a swimsuit right now. I can't really do that for you. Maybe later...?";
+              this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
+              this.S.TalkTimer = 7.5f;
+              this.Refuse = true;
             }
             else if ((double) SchoolGlobals.SchoolAtmosphere <= 0.5)
             {
@@ -490,9 +497,16 @@ public class TalkingScript : MonoBehaviour
       {
         if (this.S.Club != ClubType.Delinquent)
         {
-          if ((double) this.S.Clock.HourTime > 8.0 && (double) this.S.Clock.HourTime < 13.0 || (double) this.S.Clock.HourTime > 13.375 && (double) this.S.Clock.HourTime < 15.5 || (double) SchoolGlobals.SchoolAtmosphere <= 0.5)
+          if ((double) this.S.Clock.HourTime > 8.0 && (double) this.S.Clock.HourTime < 13.0 || (double) this.S.Clock.HourTime > 13.375 && (double) this.S.Clock.HourTime < 15.5 || (double) SchoolGlobals.SchoolAtmosphere <= 0.5 || this.S.Schoolwear == 2)
           {
-            if ((double) SchoolGlobals.SchoolAtmosphere <= 0.5)
+            if (this.S.Schoolwear == 2)
+            {
+              this.S.Subtitle.CustomText = "Uh...I'm wearing a swimsuit right now. I can't really do that for you. Maybe later...?";
+              this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
+              this.S.TalkTimer = 7.5f;
+              this.Refuse = true;
+            }
+            else if ((double) SchoolGlobals.SchoolAtmosphere <= 0.5)
             {
               this.S.Subtitle.CustomText = "I'm sorry, I wouldn't be comfortable with that...I'm not even sure if we're safe right now.";
               this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
@@ -538,9 +552,16 @@ public class TalkingScript : MonoBehaviour
       {
         if (this.S.Club != ClubType.Delinquent)
         {
-          if ((double) this.S.Clock.HourTime > 8.0 && (double) this.S.Clock.HourTime < 13.0 || (double) this.S.Clock.HourTime > 13.375 && (double) this.S.Clock.HourTime < 15.5 || (double) SchoolGlobals.SchoolAtmosphere <= 0.5)
+          if ((double) this.S.Clock.HourTime > 8.0 && (double) this.S.Clock.HourTime < 13.0 || (double) this.S.Clock.HourTime > 13.375 && (double) this.S.Clock.HourTime < 15.5 || (double) SchoolGlobals.SchoolAtmosphere <= 0.5 || this.S.Schoolwear == 2)
           {
-            if ((double) SchoolGlobals.SchoolAtmosphere <= 0.5)
+            if (this.S.Schoolwear == 2)
+            {
+              this.S.Subtitle.CustomText = "Uh...I'm wearing a swimsuit right now. I can't really do that for you. Maybe later...?";
+              this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
+              this.S.TalkTimer = 7.5f;
+              this.Refuse = true;
+            }
+            else if ((double) SchoolGlobals.SchoolAtmosphere <= 0.5)
             {
               this.S.Subtitle.CustomText = "I'm sorry, I wouldn't be comfortable with that...I'm not even sure if we're safe right now.";
               this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 7.5f);
@@ -1349,11 +1370,21 @@ public class TalkingScript : MonoBehaviour
         if (!flag)
         {
           this.Refuse = false;
-          if ((double) this.S.Clock.HourTime > 8.0 && (double) this.S.Clock.HourTime < 13.0 || (double) this.S.Clock.HourTime > 13.375 && (double) this.S.Clock.HourTime < 15.5)
+          if ((double) this.S.Clock.HourTime > 8.0 && (double) this.S.Clock.HourTime < 13.0 || (double) this.S.Clock.HourTime > 13.375 && (double) this.S.Clock.HourTime < 15.5 || this.S.Schoolwear == 2)
           {
-            this.S.CharacterAnimation.CrossFade(this.S.GossipAnim);
-            this.S.Subtitle.UpdateLabel(SubtitleType.SendToLocker, 1, 5f);
-            this.Refuse = true;
+            if (this.S.Schoolwear == 2)
+            {
+              this.S.CharacterAnimation.CrossFade(this.S.GossipAnim);
+              this.S.Subtitle.CustomText = "Thanks for letting me know, but...I'm in a swimsuit right now. It'll just have to wait.";
+              this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+              this.Refuse = true;
+            }
+            else
+            {
+              this.S.CharacterAnimation.CrossFade(this.S.GossipAnim);
+              this.S.Subtitle.UpdateLabel(SubtitleType.SendToLocker, 1, 5f);
+              this.Refuse = true;
+            }
           }
           else if (this.S.Club == ClubType.Council)
           {

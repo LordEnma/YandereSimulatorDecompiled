@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CosmeticScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -88,6 +88,7 @@ public class CosmeticScript : MonoBehaviour
   public Color[] BullyColor;
   public SkinnedMeshRenderer CardiganRenderer;
   public SkinnedMeshRenderer MyRenderer;
+  public Renderer TurtleEyewearRenderer;
   public Renderer FacialHairRenderer;
   public Renderer RightEyeRenderer;
   public Renderer LeftEyeRenderer;
@@ -1901,6 +1902,107 @@ public class CosmeticScript : MonoBehaviour
       this.MyRenderer.SetBlendShapeWeight(12, 10f);
       ++this.StudentManager.Rival1s;
       num = this.StudentManager.Rival1s;
+    }
+    else if (this.EyeType == "Eighties1")
+    {
+      this.MyRenderer.SetBlendShapeWeight(6, 15f);
+      this.MyRenderer.SetBlendShapeWeight(8, 5f);
+      this.MyRenderer.SetBlendShapeWeight(9, 100f);
+      this.MyRenderer.SetBlendShapeWeight(10, 15f);
+      this.MyRenderer.SetBlendShapeWeight(12, 100f);
+    }
+    else if (this.EyeType == "Eighties2")
+    {
+      this.MyRenderer.SetBlendShapeWeight(1, 15f);
+      this.MyRenderer.SetBlendShapeWeight(5, 10f);
+      this.MyRenderer.SetBlendShapeWeight(8, 25f);
+      this.MyRenderer.SetBlendShapeWeight(9, 100f);
+      this.MyRenderer.SetBlendShapeWeight(11, 25f);
+      this.MyRenderer.SetBlendShapeWeight(12, 15f);
+    }
+    else if (this.EyeType == "Eighties3")
+    {
+      this.MyRenderer.SetBlendShapeWeight(5, 10f);
+      this.MyRenderer.SetBlendShapeWeight(6, 75f);
+      this.MyRenderer.SetBlendShapeWeight(8, 25f);
+      this.MyRenderer.SetBlendShapeWeight(9, 75f);
+      this.MyRenderer.SetBlendShapeWeight(11, 15f);
+      this.MyRenderer.SetBlendShapeWeight(12, 15f);
+    }
+    else if (this.EyeType == "Eighties4")
+    {
+      this.MyRenderer.SetBlendShapeWeight(5, 10f);
+      this.MyRenderer.SetBlendShapeWeight(9, 10f);
+      this.MyRenderer.SetBlendShapeWeight(10, 25f);
+      this.MyRenderer.SetBlendShapeWeight(11, 25f);
+      this.MyRenderer.SetBlendShapeWeight(12, 50f);
+    }
+    else if (this.EyeType == "Eighties5")
+    {
+      this.MyRenderer.SetBlendShapeWeight(5, 10f);
+      this.MyRenderer.SetBlendShapeWeight(6, 20f);
+      this.MyRenderer.SetBlendShapeWeight(8, 25f);
+      this.MyRenderer.SetBlendShapeWeight(9, 25f);
+      this.MyRenderer.SetBlendShapeWeight(10, 15f);
+      this.MyRenderer.SetBlendShapeWeight(11, 50f);
+      this.MyRenderer.SetBlendShapeWeight(12, 10f);
+    }
+    else if (this.EyeType == "Eighties6")
+    {
+      this.MyRenderer.SetBlendShapeWeight(5, 10f);
+      this.MyRenderer.SetBlendShapeWeight(8, 15f);
+      this.MyRenderer.SetBlendShapeWeight(9, 100f);
+      this.MyRenderer.SetBlendShapeWeight(10, 10f);
+      this.MyRenderer.SetBlendShapeWeight(12, 25f);
+    }
+    else if (this.EyeType == "Eighties7")
+    {
+      this.MyRenderer.SetBlendShapeWeight(0, 20f);
+      this.MyRenderer.SetBlendShapeWeight(5, 20f);
+      this.MyRenderer.SetBlendShapeWeight(6, 25f);
+      this.MyRenderer.SetBlendShapeWeight(8, 35f);
+      this.MyRenderer.SetBlendShapeWeight(9, 50f);
+      this.MyRenderer.SetBlendShapeWeight(11, 15f);
+      this.MyRenderer.SetBlendShapeWeight(12, 25f);
+    }
+    else if (this.EyeType == "Eighties8")
+    {
+      this.MyRenderer.SetBlendShapeWeight(5, 10f);
+      this.MyRenderer.SetBlendShapeWeight(6, 20f);
+      this.MyRenderer.SetBlendShapeWeight(8, 50f);
+      this.MyRenderer.SetBlendShapeWeight(9, 40f);
+      this.MyRenderer.SetBlendShapeWeight(10, 20f);
+      this.MyRenderer.SetBlendShapeWeight(11, 15f);
+      this.MyRenderer.SetBlendShapeWeight(12, 10f);
+    }
+    else if (this.EyeType == "Eighties9")
+    {
+      this.MyRenderer.SetBlendShapeWeight(5, 10f);
+      this.MyRenderer.SetBlendShapeWeight(6, 20f);
+      this.MyRenderer.SetBlendShapeWeight(8, 50f);
+      this.MyRenderer.SetBlendShapeWeight(9, 40f);
+      this.MyRenderer.SetBlendShapeWeight(10, 20f);
+      this.MyRenderer.SetBlendShapeWeight(11, 15f);
+      this.MyRenderer.SetBlendShapeWeight(12, 10f);
+    }
+    else if (this.EyeType == "Eighties10")
+    {
+      this.MyRenderer.SetBlendShapeWeight(1, 10f);
+      this.MyRenderer.SetBlendShapeWeight(5, 25f);
+      this.MyRenderer.SetBlendShapeWeight(8, 25f);
+      this.MyRenderer.SetBlendShapeWeight(9, 75f);
+      this.MyRenderer.SetBlendShapeWeight(10, 30f);
+      this.MyRenderer.SetBlendShapeWeight(11, 15f);
+      this.MyRenderer.SetBlendShapeWeight(12, 25f);
+    }
+    else if (this.EyeType == "Witness")
+    {
+      this.MyRenderer.SetBlendShapeWeight(5, 15f);
+      this.MyRenderer.SetBlendShapeWeight(6, 25f);
+      this.MyRenderer.SetBlendShapeWeight(8, 25f);
+      this.MyRenderer.SetBlendShapeWeight(9, 50f);
+      this.MyRenderer.SetBlendShapeWeight(10, 5f);
+      this.MyRenderer.SetBlendShapeWeight(12, 50f);
     }
     if (this.Modified)
       return;

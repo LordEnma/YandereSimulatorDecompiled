@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMondayBeforeClassEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -55,7 +55,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
           {
             if ((UnityEngine.Object) this.Rival == (UnityEngine.Object) null)
               this.Rival = this.StudentManager.Students[this.RivalID];
-            else if (this.Rival.enabled && this.Rival.Indoors && !this.Rival.Alarmed && !this.Rival.WitnessedCorpse && !this.Rival.WitnessedMurder)
+            else if (this.Rival.enabled && this.Rival.Indoors && !this.Rival.Alarmed && !this.Rival.WitnessedCorpse && !this.Rival.WitnessedMurder && !this.Rival.Meeting)
             {
               Debug.Log((object) "Osana's before class event has begun. Putting two bento boxes on her desk.");
               this.Rival.CharacterAnimation["f02_pondering_00"].speed = 0.65f;

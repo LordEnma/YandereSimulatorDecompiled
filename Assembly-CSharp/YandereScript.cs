@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
@@ -790,6 +790,7 @@ public class YandereScript : MonoBehaviour
   public GameObject EightiesCamera;
   public Transform ModernCamera;
   public Renderer EightiesPonytailRenderer;
+  public Mesh EightiesKerchiefMesh;
   public Texture[] VtuberFaces;
   public int VtuberID;
   public float DebugTimer;
@@ -977,6 +978,7 @@ public class YandereScript : MonoBehaviour
         this.StudentManager.TutorialWindow.ShowBloodMessage = true;
       if (!this.BloodyWarning && (double) this.Bloodiness > 0.0)
       {
+        Debug.Log((object) "We just went from ''no blood'' to ''bloody''.");
         this.NotificationManager.DisplayNotification(NotificationType.Bloody);
         this.BloodyWarning = true;
         if (this.Schoolwear > 0 && !this.WearingRaincoat)
@@ -1665,9 +1667,9 @@ public class YandereScript : MonoBehaviour
               this.Invisible = !this.Invisible;
               Debug.Log((object) ("Invisibility is: " + this.Invisible.ToString()));
               if (this.Invisible)
-                this.Decloak();
-              else
                 this.Cloak();
+              else
+                this.Decloak();
             }
             if (this.Stance.Current != StanceType.Crouching && this.Stance.Current != StanceType.Crawling)
             {
@@ -5521,6 +5523,8 @@ public class YandereScript : MonoBehaviour
     this.Gloved = true;
     if (this.WearingRaincoat)
     {
+      if ((double) this.Bloodiness > (double) this.CoatBloodiness)
+        this.CoatBloodiness = this.Bloodiness;
       this.WearRaincoat();
       if ((Object) this.RaincoatAttacher.newRenderer != (Object) null)
         this.RaincoatAttacher.newRenderer.enabled = true;
@@ -7029,6 +7033,7 @@ public class YandereScript : MonoBehaviour
     this.CasualTextures[6] = this.EightiesCasual;
     this.ModernCamera.localScale = new Vector3(0.0f, 0.0f, 0.0f);
     this.EightiesCamera.SetActive(true);
+    this.ClubAccessories[1].GetComponent<MeshFilter>().mesh = this.EightiesKerchiefMesh;
   }
 
   public void LoseGentleEyes()
@@ -7104,7 +7109,7 @@ public class YandereScript : MonoBehaviour
 
   public void Decloak()
   {
-    this.PauseScreen.NewSettings.QualityManager.UpdateOutlinesAndRimlight();
+    this.PauseScreen.NewSettings.QualityManager.UpdateYandereChan();
     this.SetUniform();
     this.MyRenderer.materials[0].color = Color.white;
     this.MyRenderer.materials[1].color = Color.white;

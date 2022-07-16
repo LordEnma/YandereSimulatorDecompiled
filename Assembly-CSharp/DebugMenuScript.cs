@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DebugMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -395,6 +395,7 @@ public class DebugMenuScript : MonoBehaviour
               if ((UnityEngine.Object) this.StudentManager.Students[this.ID] != (UnityEngine.Object) null)
                 this.StudentManager.Students[this.ID].Friend = true;
             }
+            this.StudentManager.Students[46].Friend = false;
             this.Window.SetActive(false);
           }
           else if (Input.GetKeyDown(KeyCode.T))
@@ -410,8 +411,8 @@ public class DebugMenuScript : MonoBehaviour
             this.StudentManager.Students[this.StudentManager.RivalID].Friend = true;
             for (this.ID = 1; this.ID < 26; ++this.ID)
             {
-              ConversationGlobals.SetTopicLearnedByStudent(this.ID, this.StudentManager.RivalID, true);
               ConversationGlobals.SetTopicDiscovered(this.ID, true);
+              this.StudentManager.SetTopicLearnedByStudent(this.ID, this.StudentManager.RivalID, true);
             }
             this.Window.SetActive(false);
           }
@@ -540,8 +541,8 @@ public class DebugMenuScript : MonoBehaviour
                 DatingGlobals.SetComplimentGiven(complimentID, false);
               for (this.ID = 1; this.ID < 26; ++this.ID)
               {
-                ConversationGlobals.SetTopicLearnedByStudent(this.ID, 11, true);
                 ConversationGlobals.SetTopicDiscovered(this.ID, true);
+                this.StudentManager.SetTopicLearnedByStudent(this.ID, 11, true);
               }
               StudentScript student1 = this.StudentManager.Students[11];
               if ((UnityEngine.Object) student1 != (UnityEngine.Object) null)
@@ -625,7 +626,10 @@ public class DebugMenuScript : MonoBehaviour
           SceneManager.LoadScene("LoadingScene");
         }
         if (Input.GetKeyDown(KeyCode.CapsLock))
+        {
+          Debug.Log((object) "The rival should be confessing to the suitor at the end of the day.");
           this.StudentManager.LoveManager.ConfessToSuitor = true;
+        }
       }
       else
       {

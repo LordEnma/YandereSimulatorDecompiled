@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -81,7 +81,6 @@ public class WeaponManagerScript : MonoBehaviour
 
   public void CheckWeapons()
   {
-    Debug.Log((object) "The WeaponManager is, at this moment, counting how many murder weapons are lying around at school.");
     this.MurderWeapons = 0;
     this.Fingerprints = 0;
     for (int index = 0; index < this.Victims.Length; ++index)
@@ -102,7 +101,6 @@ public class WeaponManagerScript : MonoBehaviour
         }
       }
     }
-    Debug.Log((object) (this.MurderWeapons.ToString() + " murder weapons were counted."));
   }
 
   public void CleanWeapons()
@@ -179,11 +177,20 @@ public class WeaponManagerScript : MonoBehaviour
   {
     for (int index = 0; index < this.Weapons.Length; ++index)
     {
-      if ((UnityEngine.Object) this.Weapons[index] != (UnityEngine.Object) null && this.Weapons[index].Bloody)
+      if ((UnityEngine.Object) this.Weapons[index] != (UnityEngine.Object) null && !this.Weapons[index].Disposed && this.Weapons[index].Bloody)
       {
         this.Weapons[index].Blood.enabled = true;
         ++this.Yandere.Police.BloodyWeapons;
       }
+    }
+  }
+
+  public void IncinerateWeapons()
+  {
+    for (int index = 0; index < this.Weapons.Length; ++index)
+    {
+      if ((UnityEngine.Object) this.Weapons[index] != (UnityEngine.Object) null && this.Weapons[index].InsideIncinerator)
+        this.Weapons[index].Disposed = true;
     }
   }
 
@@ -278,7 +285,6 @@ public class WeaponManagerScript : MonoBehaviour
 
   public void PutWeaponInBag()
   {
-    Debug.Log((object) "Checking whether or not a weapon was in the weapon bag at the time of saving.");
     for (int index = 1; index < this.Weapons.Length; ++index)
     {
       if (this.Weapons[index].InBag)

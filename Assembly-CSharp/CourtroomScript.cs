@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CourtroomScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -284,6 +284,7 @@ public class CourtroomScript : MonoBehaviour
         }
         else
         {
+          this.MyRenderer.SetBlendShapeWeight(0, 0.0f);
           this.Subtitle.text = "...that Ryoba Aishi is innocent of all charges.";
           this.MyAudio.clip = this.InnocentClip;
           this.Innocent = true;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SchemesScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -48,6 +48,8 @@ public class SchemesScript : MonoBehaviour
   public Transform[] Scheme4Destinations;
   public Transform[] Scheme5Destinations;
   public bool[] DisableScheme;
+  public float HeldDown;
+  public float HeldUp;
   public GameObject HUDIcon;
   public UILabel HUDInstructions;
 
@@ -108,8 +110,18 @@ public class SchemesScript : MonoBehaviour
 
   private void Update()
   {
-    if (this.InputManager.TappedUp)
+    if (this.InputManager.DPadUp || this.InputManager.StickUp || Input.GetKey("w") || Input.GetKey("up"))
+      this.HeldUp += Time.unscaledDeltaTime;
+    else
+      this.HeldUp = 0.0f;
+    if (this.InputManager.DPadDown || this.InputManager.StickDown || Input.GetKey("s") || Input.GetKey("down"))
+      this.HeldDown += Time.unscaledDeltaTime;
+    else
+      this.HeldDown = 0.0f;
+    if (this.InputManager.TappedUp || (double) this.HeldUp > 0.5)
     {
+      if ((double) this.HeldUp > 0.5)
+        this.HeldUp = 0.45f;
       if (this.ID == 1)
       {
         --this.ListPosition;
@@ -123,8 +135,10 @@ public class SchemesScript : MonoBehaviour
         --this.ID;
       this.UpdateSchemeInfo();
     }
-    if (this.InputManager.TappedDown)
+    if (this.InputManager.TappedDown || (double) this.HeldDown > 0.5)
     {
+      if ((double) this.HeldDown > 0.5)
+        this.HeldDown = 0.45f;
       if (this.ID == 15)
       {
         ++this.ListPosition;

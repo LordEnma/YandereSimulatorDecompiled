@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YanvaniaDraculaScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -27,10 +27,13 @@ public class YanvaniaDraculaScript : MonoBehaviour
   public GameObject Character;
   public Transform HealthBar;
   public Transform RightHand;
+  public Transform Head;
   public Renderer MyRenderer;
+  public UILabel Label;
   public AudioClip[] Injuries;
   public float ExplosionTimer;
   public float TeleportTimer = 10f;
+  public float AttackTimer;
   public float FinalTimer;
   public float DeathTimer;
   public float FlashTimer;
@@ -59,6 +62,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
   private void Update()
   {
     Animation component1 = this.Character.GetComponent<Animation>();
+    this.Label.enabled = false;
     if ((double) this.Yanmont.Health > 0.0)
     {
       if ((double) this.Health > 0.0)
@@ -76,6 +80,8 @@ public class YanvaniaDraculaScript : MonoBehaviour
             {
               this.AttackID = Random.Range(1, 3);
               this.TeleportTimer = 5f;
+              this.AttackTimer = 0.0f;
+              this.NewAttack = (GameObject) null;
               if (this.AttackID == 1)
               {
                 component1["succubus_a_charm_02"].time = 0.0f;
@@ -89,9 +95,10 @@ public class YanvaniaDraculaScript : MonoBehaviour
             }
             else
             {
+              this.AttackTimer += Time.deltaTime;
               if (this.AttackID == 1)
               {
-                if ((double) component1["succubus_a_charm_02"].time > 4.0 && (Object) this.NewAttack == (Object) null)
+                if ((double) component1["succubus_a_charm_02"].time > 3.5 && (Object) this.NewAttack == (Object) null)
                 {
                   this.NewAttack = Object.Instantiate<GameObject>(this.TripleFireball, this.RightHand.position, Quaternion.identity);
                   this.NewAttack.GetComponent<YanvaniaTripleFireballScript>().Dracula = this.transform;
@@ -125,7 +132,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
         {
           if (this.Shrink)
           {
-            this.transform.localScale = Vector3.MoveTowards(this.transform.localScale, new Vector3(0.0f, 2f, 0.0f), Time.deltaTime * 0.5f);
+            this.transform.localScale = Vector3.MoveTowards(this.transform.localScale, new Vector3(0.0f, 2f, 0.0f), (float) ((double) Time.deltaTime * 0.5 * 2.0));
             if ((double) this.transform.localScale.x == 0.0)
             {
               this.NewTeleportEffect = (GameObject) null;
@@ -135,7 +142,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
           }
           if (this.Grow)
           {
-            this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(1.5f, 1.5f, 1.5f), Time.deltaTime * 1.5f);
+            this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(1.5f, 1.5f, 1.5f), (float) ((double) Time.deltaTime * 1.5 * 2.0));
             if ((double) this.transform.localScale.x > 1.49000000953674)
             {
               this.NewTeleportEffect = (GameObject) null;
@@ -257,7 +264,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
     {
       this.NewTeleportEffect = Object.Instantiate<GameObject>(this.TeleportEffect, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
       component["DraculaTeleport"].time = component["DraculaTeleport"].length;
-      component["DraculaTeleport"].speed = -1f;
+      component["DraculaTeleport"].speed = -2f;
       component.Play("DraculaTeleport");
       this.Shrink = true;
     }
@@ -265,7 +272,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
     {
       this.Teleport();
       this.NewTeleportEffect = Object.Instantiate<GameObject>(this.TeleportEffect, new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z), Quaternion.identity);
-      component["DraculaTeleport"].speed = 0.85f;
+      component["DraculaTeleport"].speed = 1.7f;
       component["DraculaTeleport"].time = 0.0f;
       component.Play("DraculaTeleport");
       this.Grow = true;

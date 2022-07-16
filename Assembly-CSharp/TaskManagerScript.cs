@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TaskManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -47,7 +47,7 @@ public class TaskManagerScript : MonoBehaviour
         this.StudentManager.Students[11].TaskPhase = 5;
       this.Yandere.NotificationManager.TopicName = "Cats";
       this.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-      ConversationGlobals.SetTopicLearnedByStudent(15, 11, true);
+      this.StudentManager.SetTopicLearnedByStudent(15, 11, true);
       this.TaskStatus[11] = 2;
       Object.Destroy((Object) this.TaskObjects[11]);
     }

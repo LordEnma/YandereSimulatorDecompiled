@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereShowerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -13,6 +13,7 @@ public class YandereShowerScript : MonoBehaviour
   public YandereScript Yandere;
   public PromptScript Prompt;
   public Transform BatheSpot;
+  public float WarningTimer;
   public float OpenValue;
   public float Timer;
   public bool UpdateCurtain;
@@ -27,6 +28,17 @@ public class YandereShowerScript : MonoBehaviour
 
   private void Update()
   {
+    if ((double) this.Prompt.DistanceSqr < 1.0 && (double) this.Yandere.Bloodiness > 0.0 && this.Yandere.Schoolwear > 0 && this.Yandere.Schoolwear != 2)
+    {
+      if ((double) this.WarningTimer <= 0.0)
+      {
+        this.Yandere.NotificationManager.CustomText = "Take off your clothes at your locker!";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+        this.WarningTimer = 5f;
+      }
+      else
+        this.WarningTimer -= Time.deltaTime;
+    }
     if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
     {
       if (this.Yandere.Schoolwear > 0 && this.Yandere.Schoolwear != 2 || this.Yandere.Chased || this.Yandere.Chasers > 0 || (double) this.Yandere.Bloodiness == 0.0)
@@ -64,12 +76,12 @@ public class YandereShowerScript : MonoBehaviour
     if (this.Open)
     {
       this.OpenValue = Mathf.Lerp(this.OpenValue, 0.0f, Time.deltaTime * 10f);
-      this.Curtain.SetBlendShapeWeight(0, this.OpenValue);
+      this.Curtain.SetBlendShapeWeight(1, this.OpenValue);
     }
     else
     {
       this.OpenValue = Mathf.Lerp(this.OpenValue, 100f, Time.deltaTime * 10f);
-      this.Curtain.SetBlendShapeWeight(0, this.OpenValue);
+      this.Curtain.SetBlendShapeWeight(1, this.OpenValue);
     }
   }
 }

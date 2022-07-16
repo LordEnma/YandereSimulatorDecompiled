@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NoteLockerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -33,6 +33,7 @@ public class NoteLockerScript : MonoBehaviour
   public float MeetTime;
   public float Timer;
   public int LockerOwner;
+  public int StudentID;
   public int MeetID;
   public int Phase = 1;
 
@@ -118,6 +119,9 @@ public class NoteLockerScript : MonoBehaviour
         this.Finish();
       if ((double) this.Student.CharacterAnimation[this.Student.KeepNoteAnim].time >= (double) this.Student.CharacterAnimation[this.Student.KeepNoteAnim].length)
       {
+        this.StudentManager.MeetStudentID = this.StudentID;
+        this.StudentManager.MeetTime = this.MeetTime;
+        this.StudentManager.MeetID = this.MeetID;
         this.DetermineSchedule();
         this.Finish();
       }
@@ -262,9 +266,17 @@ public class NoteLockerScript : MonoBehaviour
     int num = (Object) this.Student.Follower != (Object) null ? 1 : 0;
   }
 
-  private void DetermineSchedule()
+  public void DetermineSchedule()
   {
-    this.Student.MeetSpot = this.MeetSpots.List[this.MeetID];
-    this.Student.MeetTime = this.MeetTime;
+    Debug.Log((object) ("At the time of DetermineSchedule() being called, StudentID was: " + this.StudentID.ToString() + " and MeetID was: " + this.MeetID.ToString()));
+    if ((Object) this.Student == (Object) null)
+      this.Student = this.StudentManager.Students[this.StudentID];
+    if ((Object) this.Student != (Object) null)
+    {
+      this.Student.MeetSpot = this.MeetSpots.List[this.MeetID];
+      this.Student.MeetTime = this.MeetTime;
+    }
+    else
+      Debug.Log((object) "''Student'' was null, somehow...");
   }
 }

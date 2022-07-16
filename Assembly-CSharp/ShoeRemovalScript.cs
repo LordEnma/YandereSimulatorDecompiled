@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ShoeRemovalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -315,7 +315,6 @@ public class ShoeRemovalScript : MonoBehaviour
     this.Student.StopPairing();
     if (this.Student.StudentID != this.Student.StudentManager.RivalID || this.Student.StudentManager.MissionMode || GameGlobals.AlphabetMode || GameGlobals.Eighties || DateGlobals.Week != 1)
       return;
-    Debug.Log((object) ("Apparently, GameGlobals.Eighties is: " + GameGlobals.Eighties.ToString()));
     this.Student.StudentManager.UpdateExteriorStudents();
   }
 

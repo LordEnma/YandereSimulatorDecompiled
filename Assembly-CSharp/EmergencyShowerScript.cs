@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EmergencyShowerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -125,6 +125,7 @@ public class EmergencyShowerScript : MonoBehaviour
       this.Curtain.SetBlendShapeWeight(1, this.OpenValue);
       if ((double) this.Timer <= 8.5)
         return;
+      Debug.Log((object) ("As of now, # of OriginalUniforms is: " + this.Yandere.StudentManager.OriginalUniforms.ToString() + " and # of NewUniforms is: " + this.Yandere.StudentManager.NewUniforms.ToString()));
       this.CensorSteam.SetActive(false);
       this.Yandere.CannotBeSprayed = false;
       this.Yandere.CanMove = true;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericRivalBagScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -14,9 +14,17 @@ public class GenericRivalBagScript : MonoBehaviour
   public StudentScript Rival;
   public PromptScript Prompt;
   public JsonScript JSON;
-  public Transform Highlight;
+  public GameObject MagazineButton;
+  public GameObject DiaryButton;
   public GameObject Window;
+  public Transform Highlight;
+  public Transform Magazine;
+  public Transform Diary;
+  public UILabel DiaryLabelRight;
+  public UILabel DiaryLabelLeft;
   public UILabel[] Label;
+  public UITexture DiaryBG;
+  public Texture[] DiaryTextures;
   public bool BorrowedBook;
   public bool Alcohol;
   public bool Condoms;
@@ -26,6 +34,7 @@ public class GenericRivalBagScript : MonoBehaviour
   public bool Narcotics;
   public bool ShowMagazine;
   public bool BentoStolen;
+  public bool ShowDiary;
   public bool NoBento;
   public int Selected;
   public int Limit;
@@ -43,6 +52,8 @@ public class GenericRivalBagScript : MonoBehaviour
   public string[] DesiredHairColors;
   public bool[] DesiredJewelries;
   public int[] DesiredTraits;
+  public string[] DiaryEntryLeft;
+  public string[] DiaryEntryRight;
   public int DesiredHairstyle;
   public int DesiredAccessory;
   public int DesiredEyewear;
@@ -58,8 +69,6 @@ public class GenericRivalBagScript : MonoBehaviour
   public string DesiredJewelryText;
   public string DesiredTraitText;
   public bool Initialized;
-  public GameObject MagazineButton;
-  public Transform Magazine;
   public int Page = 1;
   public GameObject TanHearts;
   public GameObject PiercingHearts;
@@ -86,6 +95,10 @@ public class GenericRivalBagScript : MonoBehaviour
     this.MagazineButton.SetActive(false);
     this.Magazine.localPosition = new Vector3(-700f, -1470f, 0.0f);
     this.Magazine.localEulerAngles = new Vector3(0.0f, 0.0f, 45f);
+    this.Diary.gameObject.SetActive(false);
+    this.DiaryButton.SetActive(false);
+    this.Diary.localPosition = new Vector3(-700f, -1470f, 0.0f);
+    this.Diary.localEulerAngles = new Vector3(0.0f, 0.0f, 45f);
     this.gameObject.SetActive(false);
     this.Window.SetActive(false);
     this.Prompt.enabled = false;
@@ -186,6 +199,7 @@ public class GenericRivalBagScript : MonoBehaviour
             }
             else if (this.Selected == 3)
             {
+              this.DiaryButton.SetActive(true);
               this.GrabRivalInfo();
               this.Highlight.gameObject.SetActive(false);
               this.PromptBar.ClearButtons();
@@ -288,6 +302,12 @@ public class GenericRivalBagScript : MonoBehaviour
           this.Page = 1;
           this.UpdateHearts();
         }
+        else if (this.Menu == 6)
+        {
+          this.Diary.gameObject.SetActive(true);
+          this.DiaryButton.SetActive(false);
+          this.ShowDiary = true;
+        }
       }
       else if (Input.GetButtonDown("B"))
       {
@@ -298,9 +318,17 @@ public class GenericRivalBagScript : MonoBehaviour
           this.MagazineButton.SetActive(true);
           this.ShowMagazine = false;
         }
+        else if (this.ShowDiary)
+        {
+          this.PromptBar.Label[5].text = "";
+          this.PromptBar.UpdateButtons();
+          this.DiaryButton.SetActive(true);
+          this.ShowDiary = false;
+        }
         else
         {
           this.MagazineButton.SetActive(false);
+          this.DiaryButton.SetActive(false);
           this.Highlight.gameObject.SetActive(true);
           this.PromptBar.ClearButtons();
           this.PromptBar.Label[0].text = "Confirm";
@@ -339,20 +367,32 @@ public class GenericRivalBagScript : MonoBehaviour
           this.Pivot.localEulerAngles = Vector3.Lerp(this.Pivot.localEulerAngles, new Vector3(0.0f, 0.0f, 0.0f), Time.unscaledDeltaTime * 36f);
           if ((double) this.Pivot.localEulerAngles.y < 90.0)
             this.Pages[2].enabled = true;
-          double y = (double) this.Pivot.localEulerAngles.y;
+          if ((double) this.Pivot.localEulerAngles.y >= 1.0)
+            ;
         }
         else
         {
           this.Pivot.localEulerAngles = Vector3.Lerp(this.Pivot.localEulerAngles, new Vector3(0.0f, 180f, 0.0f), Time.unscaledDeltaTime * 36f);
           if ((double) this.Pivot.localEulerAngles.y > 90.0)
             this.Pages[2].enabled = false;
-          double y = (double) this.Pivot.localEulerAngles.y;
+          if ((double) this.Pivot.localEulerAngles.y <= 179.0)
+            ;
         }
       }
       else
       {
-        this.Magazine.localPosition = Vector3.Lerp(this.Magazine.localPosition, new Vector3(-700f, -1470f, 0.0f), Time.unscaledDeltaTime * 10f);
+        this.Magazine.localPosition = Vector3.Lerp(this.Magazine.localPosition, new Vector3(-735f, -1470f, 0.0f), Time.unscaledDeltaTime * 10f);
         this.Magazine.localEulerAngles = Vector3.Lerp(this.Magazine.localEulerAngles, new Vector3(0.0f, 0.0f, 45f), Time.unscaledDeltaTime * 10f);
+      }
+      if (this.ShowDiary)
+      {
+        this.Diary.localPosition = Vector3.Lerp(this.Diary.localPosition, new Vector3(0.0f, 50f, 0.0f), Time.unscaledDeltaTime * 10f);
+        this.Diary.localEulerAngles = Vector3.Lerp(this.Diary.localEulerAngles, new Vector3(0.0f, 0.0f, 0.0f), Time.unscaledDeltaTime * 10f);
+      }
+      else
+      {
+        this.Diary.localPosition = Vector3.Lerp(this.Diary.localPosition, new Vector3(-765f, -1530f, 0.0f), Time.unscaledDeltaTime * 10f);
+        this.Diary.localEulerAngles = Vector3.Lerp(this.Diary.localEulerAngles, new Vector3(0.0f, 0.0f, 45f), Time.unscaledDeltaTime * 10f);
       }
     }
   }
@@ -464,7 +504,7 @@ public class GenericRivalBagScript : MonoBehaviour
     {
       if (this.Menu != 6)
         return;
-      this.Label[8].text = "You look through your rival's diary. \n\nShe likes " + this.RivalLikes[1] + ", " + this.RivalLikes[2] + ", " + this.RivalLikes[3] + ", " + this.RivalLikes[4] + ", and " + this.RivalLikes[5] + ".\n\nShe dislikes " + this.RivalDislikes[1] + ", " + this.RivalDislikes[2] + ", " + this.RivalDislikes[3] + ", " + this.RivalDislikes[4] + ", and " + this.RivalDislikes[5] + ".\n\nYou learn some embarassing secrets that will help you spread gossip about her.\n\nMost recent diary entry: \n\n''I can't sleep! I'm too worried about that EVIL PHOTOGRAPHER!''\n\nPerhaps you should befriend her and put a note in her locker to arrange a discussion about that topic.";
+      this.Label[8].text = "You find a diary in your rival's bookbag.\n\nBy reading your rival's diary, you will be able to learn her likes and dislikes,\n\nembarassing secrets that will allow you to spread gossip about her,\n\nand personal problems that you can discuss with her by leaving a note in her locker.\n\nTo look inside the diary, press:\n\n";
       this.Prompt.Yandere.Police.EndOfDay.LearnedAboutPhotographer = true;
       this.Prompt.Yandere.StudentManager.EmbarassingSecret = true;
     }
@@ -504,6 +544,9 @@ public class GenericRivalBagScript : MonoBehaviour
     this.DesiredHairColor = this.DesiredHairColors[index3];
     this.DesiredJewelry = this.DesiredJewelries[index3];
     this.DesiredTrait = this.DesiredTraits[index3];
+    this.DiaryLabelLeft.text = "My best friend asked me to name the 5 things I love the most. It was difficult, but I narrowed it down to:\n\n" + this.RivalLikes[1] + ", " + this.RivalLikes[2] + ", " + this.RivalLikes[3] + ", " + this.RivalLikes[4] + ", and " + this.RivalLikes[5] + ".\n\nNext, she wanted me to name my 5 least favorite things. I decided on:\n\n" + this.RivalDislikes[1] + ", " + this.RivalDislikes[2] + ", " + this.RivalDislikes[3] + ", " + this.RivalDislikes[4] + ", and " + this.RivalDislikes[5] + ".\n\nLast night, I had a nightmare that everyone at Akademi learned my most embarassing secret:\n\n" + this.DiaryEntryLeft[index3];
+    this.DiaryLabelRight.text = this.DiaryEntryRight[index3];
+    this.DiaryBG.mainTexture = this.DiaryTextures[index3];
   }
 
   private void HideAllHearts()

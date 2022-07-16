@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GiggleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -129,51 +129,6 @@ public class GiggleScript : MonoBehaviour
       }
       else
       {
-        if (this.Student.YandereVisible)
-          Debug.Log((object) "YandereVisible was true.");
-        if (this.Student.Alarmed)
-          Debug.Log((object) "Alarmed was true.");
-        if (this.Student.Distracted)
-          Debug.Log((object) "Distracted was true.");
-        if (this.Student.Wet)
-          Debug.Log((object) "Wet was true.");
-        if (this.Student.Slave)
-          Debug.Log((object) "Slave was true.");
-        if (this.Student.WitnessedMurder)
-          Debug.Log((object) "WitnessedMurder was true.");
-        if (this.Student.WitnessedCorpse)
-          Debug.Log((object) "WitnessedCorpse was true.");
-        if (this.Student.Investigating)
-          Debug.Log((object) "Investigating was true.");
-        if (this.Student.InEvent)
-          Debug.Log((object) "InEvent was true.");
-        if (this.Student.Following)
-          Debug.Log((object) "Following was true.");
-        if (this.Student.Confessing)
-          Debug.Log((object) "Confessing was true.");
-        if (this.Student.Meeting)
-          Debug.Log((object) "Meeting was true.");
-        if (this.Student.TurnOffRadio)
-          Debug.Log((object) "TurnOffRadio was true.");
-        if (this.Student.Fleeing)
-          Debug.Log((object) "Fleeing was true.");
-        if (this.Student.Distracting)
-          Debug.Log((object) "Distracting was true.");
-        if (this.Student.GoAway)
-          Debug.Log((object) "GoAway was true.");
-        if (this.Student.FocusOnYandere)
-          Debug.Log((object) "FocusOnYandere was true.");
-        if (this.StudentIsBusy)
-          Debug.Log((object) "StudentIsBusy was true.");
-        if (this.Student.MyBento.Tampered)
-          Debug.Log((object) "MyBento.Tampered was true.");
-        if (this.Student.Headache)
-          Debug.Log((object) "Headache was true.");
-        if (this.Student.Routine)
-          Debug.Log((object) "Routine was true.");
-        if (this.Student.Indoors)
-          Debug.Log((object) "Indoors was true.");
-        Debug.Log((object) ("CurrentAction was " + this.Student.CurrentAction.ToString()));
         if (this.Student.InEvent)
         {
           this.Student.Yandere.NotificationManager.CustomText = this.Student.Name + " is in an event right now.";

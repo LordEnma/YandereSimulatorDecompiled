@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WorkbenchScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -20,6 +20,7 @@ public class WorkbenchScript : MonoBehaviour
   public Transform Highlight;
   public UILabel ConfirmationLabel;
   public UILabel HeaderLabel;
+  public UILabel HintLabel;
   public AudioSource MyAudio;
   public UISprite Darkness;
   public GameObject[] MaterialModel;
@@ -27,6 +28,7 @@ public class WorkbenchScript : MonoBehaviour
   public GameObject[] Checkmark;
   public AudioClip[] SFX;
   public UILabel[] Label;
+  public string[] Hints;
   public bool[] InStock;
   public int[] Material;
   public bool CraftingSequence;
@@ -466,6 +468,7 @@ public class WorkbenchScript : MonoBehaviour
     else if (this.Selection < 1)
       this.Selection = this.Limit;
     this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (440.0 - 80.0 * (double) this.Selection), this.Highlight.localPosition.z);
+    this.HintLabel.text = this.Hints[this.Selection];
   }
 
   private void CountCheckmarks()

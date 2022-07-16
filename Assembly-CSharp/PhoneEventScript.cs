@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PhoneEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -63,7 +63,7 @@ public class PhoneEventScript : MonoBehaviour
       {
         if ((UnityEngine.Object) this.EventStudent == (UnityEngine.Object) null)
           this.EventStudent = this.StudentManager.Students[this.EventStudentID];
-        if ((UnityEngine.Object) this.EventStudent != (UnityEngine.Object) null && !this.EventStudent.InEvent && !this.EventStudent.Meeting && (double) this.EventStudent.DistanceToDestination < 1.0 && !this.EventStudent.Phoneless)
+        if ((UnityEngine.Object) this.EventStudent != (UnityEngine.Object) null && !this.EventStudent.InEvent && !this.EventStudent.Meeting && this.EventStudent.Alive && (double) this.EventStudent.DistanceToDestination < 1.0 && !this.EventStudent.Phoneless)
         {
           this.Timer += Time.deltaTime;
           if ((double) this.Timer > 1.0)
@@ -240,7 +240,7 @@ public class PhoneEventScript : MonoBehaviour
               this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
               this.Yandere.NotificationManager.TopicName = "Money";
               this.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-              ConversationGlobals.SetTopicLearnedByStudent(25, this.EventStudentID, true);
+              this.StudentManager.SetTopicLearnedByStudent(25, this.EventStudentID, true);
             }
           }
           else if (!this.Yandere.Police.EndOfDay.LearnedOsanaInfo1)

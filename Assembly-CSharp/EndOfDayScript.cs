@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -46,7 +46,9 @@ public class EndOfDayScript : MonoBehaviour
   public UILabel Label;
   public bool RivalDismemberedAndIncinerated;
   public bool RivalBuried;
+  public bool CurrentMurderWeaponKilledRival;
   public bool LearnedAboutPhotographer;
+  public bool InvolvementNotSuspected;
   public bool ExplosiveDeviceUsed;
   public bool PreviouslyActivated;
   public bool LearnedOsanaInfo1;
@@ -230,6 +232,8 @@ public class EndOfDayScript : MonoBehaviour
         this.EODCamera.localEulerAngles = new Vector3(22.5f, -22.5f, 0.0f);
         if ((UnityEngine.Object) this.KidnappedVictim != (UnityEngine.Object) null)
           this.KidnappedVictim.gameObject.SetActive(false);
+        if ((UnityEngine.Object) this.StudentManager.Students[this.StudentManager.SuitorID] != (UnityEngine.Object) null)
+          this.StudentManager.Students[this.StudentManager.SuitorID].gameObject.SetActive(false);
         this.CardboardBox.parent = (Transform) null;
         this.Yandere.LifeNotePen.SetActive(false);
         this.SearchingCop.SetActive(false);
@@ -579,10 +583,15 @@ public class EndOfDayScript : MonoBehaviour
           }
         }
         List<string> stringList = new List<string>();
+        this.CurrentMurderWeaponKilledRival = false;
         for (this.ID = 0; this.ID < this.MurderWeapon.Victims.Length; ++this.ID)
         {
           if (this.MurderWeapon.Victims[this.ID])
+          {
             stringList.Add(this.JSON.Students[this.ID].Name);
+            if (this.MurderWeapon.Victims[this.StudentManager.RivalID])
+              this.CurrentMurderWeaponKilledRival = true;
+          }
         }
         stringList.Sort();
         this.Victims = stringList.Count;
@@ -686,25 +695,12 @@ public class EndOfDayScript : MonoBehaviour
     }
     else if (this.Phase == 7)
     {
-      Debug.Log((object) "Counting eyewitnesses.");
       for (int index = 1; index < this.StudentManager.Students.Length; ++index)
       {
-        Debug.Log((object) ("Checking Student #" + index.ToString() + "."));
-        if ((UnityEngine.Object) this.StudentManager.Students[index] != (UnityEngine.Object) null)
+        if ((UnityEngine.Object) this.StudentManager.Students[index] != (UnityEngine.Object) null && this.StudentManager.Students[index].WitnessedMurder && this.StudentManager.Students[index].Alive && this.StudentManager.Students[index].Persona != PersonaType.Coward && this.StudentManager.Students[index].Persona != PersonaType.Spiteful && this.StudentManager.Students[index].Persona != PersonaType.Evil && this.StudentManager.Students[index].Club != ClubType.Delinquent && !this.StudentManager.Students[index].SawMask)
         {
-          Debug.Log((object) ("Student #" + index.ToString() + " was not null."));
-          if (this.StudentManager.Students[index].WitnessedMurder)
-          {
-            Debug.Log((object) ("Student #" + index.ToString() + " witnessed murder! But, are they a valid eyewitness?"));
-            if (this.StudentManager.Students[index].Alive && this.StudentManager.Students[index].Persona != PersonaType.Coward && this.StudentManager.Students[index].Persona != PersonaType.Spiteful && this.StudentManager.Students[index].Persona != PersonaType.Evil && this.StudentManager.Students[index].Club != ClubType.Delinquent && !this.StudentManager.Students[index].SawMask)
-            {
-              Debug.Log((object) ("Yes, Student #" + index.ToString() + " is a valid eyewitness!"));
-              ++this.EyeWitnesses;
-              this.WitnessList[this.EyeWitnesses] = this.StudentManager.Students[index];
-            }
-            else
-              Debug.Log((object) ("No, Student #" + index.ToString() + " is not a valid eyewitness!"));
-          }
+          ++this.EyeWitnesses;
+          this.WitnessList[this.EyeWitnesses] = this.StudentManager.Students[index];
         }
       }
       if (this.EyeWitnesses > 0)
@@ -1261,9 +1257,6 @@ public class EndOfDayScript : MonoBehaviour
     else if (this.Phase == 22)
     {
       Debug.Log((object) "The End-of-Day sequence is now checking whether or not we need to boot the player out of a club.");
-      Debug.Log((object) ("Yandere.Club is: " + this.Yandere.Club.ToString()));
-      Debug.Log((object) ("DateGlobals.Weekday is: " + DateGlobals.Weekday.ToString()));
-      Debug.Log((object) ("ClubManager.ActivitiesAttended is: " + this.ClubManager.ActivitiesAttended.ToString()));
       if (this.Yandere.Club != ClubType.None && DateGlobals.Weekday == DayOfWeek.Friday && this.ClubManager.ActivitiesAttended == 0)
       {
         this.TeleportYandere();
@@ -1287,30 +1280,66 @@ public class EndOfDayScript : MonoBehaviour
       this.Finish();
     else if (this.Phase == 24)
     {
-      this.Senpai.enabled = false;
-      this.Senpai.Pathfinding.enabled = false;
-      this.Senpai.transform.parent = this.transform;
-      this.Senpai.gameObject.SetActive(true);
-      this.Senpai.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-      this.Senpai.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-      this.Senpai.EmptyHands();
-      this.Senpai.MyController.enabled = false;
-      this.Senpai.CharacterAnimation.enabled = true;
-      this.Senpai.CharacterAnimation.CrossFade(this.Senpai.IdleAnim);
-      this.Rival.enabled = false;
-      this.Rival.Pathfinding.enabled = false;
-      this.Rival.transform.parent = this.transform;
-      this.Rival.gameObject.SetActive(true);
-      this.Rival.transform.localPosition = new Vector3(0.0f, 0.0f, 1f);
-      this.Rival.transform.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
-      this.Rival.EmptyHands();
-      this.Rival.MyController.enabled = false;
-      this.Rival.CharacterAnimation.enabled = true;
-      this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
-      this.Rival.CharacterAnimation["f02_shy_00"].weight = 1f;
-      this.Rival.CharacterAnimation.Play("f02_shy_00");
-      this.Label.text = "After the police investigation ends, " + this.RivalName + " asks Senpai to speak with her under the cherry tree behind the school.";
-      ++this.Phase;
+      if (!this.LoveManager.ConfessToSuitor && this.StudentManager.Students[this.StudentManager.SuitorID].Alive)
+      {
+        this.Senpai.enabled = false;
+        this.Senpai.Pathfinding.enabled = false;
+        this.Senpai.transform.parent = this.transform;
+        this.Senpai.gameObject.SetActive(true);
+        this.Senpai.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        this.Senpai.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        this.Senpai.EmptyHands();
+        this.Senpai.MyController.enabled = false;
+        this.Senpai.CharacterAnimation.enabled = true;
+        this.Senpai.CharacterAnimation.CrossFade(this.Senpai.IdleAnim);
+        this.Rival.enabled = false;
+        this.Rival.Pathfinding.enabled = false;
+        this.Rival.transform.parent = this.transform;
+        this.Rival.gameObject.SetActive(true);
+        this.Rival.transform.localPosition = new Vector3(0.0f, 0.0f, 1f);
+        this.Rival.transform.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
+        this.Rival.EmptyHands();
+        this.Rival.MyController.enabled = false;
+        this.Rival.CharacterAnimation.enabled = true;
+        this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
+        this.Rival.CharacterAnimation["f02_shy_00"].weight = 1f;
+        this.Rival.CharacterAnimation.Play("f02_shy_00");
+        this.Label.text = "After the police investigation ends, " + this.RivalName + " asks Senpai to speak with her under the cherry tree behind the school.";
+        ++this.Phase;
+      }
+      else
+      {
+        StudentScript student = this.StudentManager.Students[this.StudentManager.SuitorID];
+        student.enabled = false;
+        student.Pathfinding.enabled = false;
+        student.transform.parent = this.transform;
+        student.gameObject.SetActive(true);
+        student.transform.localPosition = new Vector3(-0.4f, 0.0f, 0.0f);
+        student.transform.localEulerAngles = new Vector3(0.0f, 90f, 0.0f);
+        student.EmptyHands();
+        student.MyController.enabled = false;
+        student.CharacterAnimation.enabled = true;
+        student.CharacterAnimation.Play("holdHandsLoop_00");
+        student.Hearts.emission.enabled = true;
+        student.Hearts.Play();
+        this.Rival.enabled = false;
+        this.Rival.Pathfinding.enabled = false;
+        this.Rival.transform.parent = this.transform;
+        this.Rival.gameObject.SetActive(true);
+        this.Rival.transform.localPosition = new Vector3(0.4f, 0.0f, 0.0f);
+        this.Rival.transform.localEulerAngles = new Vector3(0.0f, -90f, 0.0f);
+        this.Rival.EmptyHands();
+        this.Rival.MyController.enabled = false;
+        this.Rival.CharacterAnimation.enabled = true;
+        this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
+        this.Rival.CharacterAnimation["f02_shy_00"].weight = 1f;
+        this.Rival.CharacterAnimation.Play("f02_holdHandsLoop_00");
+        this.Rival.Hearts.emission.enabled = true;
+        this.Rival.Hearts.Play();
+        this.RivalEliminationMethod = RivalEliminationType.Matchmade;
+        this.Label.text = "After the police investigation ends, " + this.RivalName + " confesses to a boy that she has fallen in love with. She will no longer attempt to pursue a relationship with " + this.Protagonist + "'s Senpai.";
+        this.Phase = 12;
+      }
     }
     else if (this.Phase == 25)
     {
@@ -1418,6 +1447,11 @@ public class EndOfDayScript : MonoBehaviour
             this.Label.text = this.JSON.Students[fingerprintId].Name + "'s fingerprints are on the same weapon that killed them. The police cannot solve this mystery.";
         }
       }
+      if (this.CurrentMurderWeaponKilledRival)
+      {
+        Debug.Log((object) "The police believe that they know who killed the rival. ''Details'' for this rival should be set to ''14'' - ''Ryoba's involvement not suspected.''");
+        this.InvolvementNotSuspected = true;
+      }
       this.Phase = 3;
     }
     else if (this.Phase == 102)
@@ -1426,7 +1460,7 @@ public class EndOfDayScript : MonoBehaviour
       if (!this.StudentManager.Students[this.Police.SuicideID].Ragdoll.Disposed)
       {
         this.MurderScene.SetActive(true);
-        this.Label.text = !this.Police.SuicideNote ? "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police treat the incident as a murder case, and search the school for any other victims." : "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police find a suicide note, and conclude that the deceased student probably took their own lide. However, they still search the school for clues and evidence.";
+        this.Label.text = !this.Police.SuicideNote ? "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police treat the incident as a murder case, and search the school for any other victims." : "The police inspect the corpse of a student who appears to have fallen to their death from the school rooftop. The police find a suicide note, and conclude that the deceased student probably took their own life. However, they still search the school for clues and evidence.";
         if (this.Police.SuicideID == this.StudentManager.RivalID)
           this.RivalEliminationMethod = RivalEliminationType.SuicideFake;
         this.ErectFence = true;
@@ -1551,11 +1585,16 @@ public class EndOfDayScript : MonoBehaviour
       this.RivalEliminationMethod = RivalEliminationType.Arrested;
     if (this.RivalEliminationMethod == RivalEliminationType.Murdered)
     {
-      Debug.Log((object) "The rival died.");
+      Debug.Log((object) "The rival was attacked with a weapon.");
       GameGlobals.RivalEliminationID = 1;
       GameGlobals.NonlethalElimination = false;
       if (this.StudentManager.Students[1].SenpaiWitnessingRivalDie)
         GameGlobals.RivalEliminationID = 2;
+      if (this.InvolvementNotSuspected)
+      {
+        Debug.Log((object) "The police found someone's fingerprints on the murder weapon, so Ryoba is not a suspect.");
+        GameGlobals.RivalEliminationID = 14;
+      }
     }
     else if (this.RivalEliminationMethod == RivalEliminationType.Arrested)
     {
@@ -1827,8 +1866,12 @@ public class EndOfDayScript : MonoBehaviour
     this.StudentManager.SaveReps();
     if (this.StudentManager.DatingMinigame.DataNeedsSaving)
       this.StudentManager.DatingMinigame.SaveTopicsAndCompliments();
+    if (this.StudentManager.DatingMinigame.GiftStatusNeedsSaving)
+      this.StudentManager.DatingMinigame.SaveGiftStatus();
     if (this.StudentManager.DialogueWheel.AdviceWindow.DataNeedsSaving)
       this.StudentManager.DialogueWheel.AdviceWindow.SaveTopicsAndCompliments();
+    if (this.StudentManager.DialogueWheel.AdviceWindow.GiftDataNeedsSaving)
+      this.StudentManager.DialogueWheel.AdviceWindow.SaveGiftStatus();
     if (SchemeGlobals.GetSchemeStage(6) == 8)
     {
       SchemeGlobals.SetSchemeStage(6, 9);
@@ -1914,6 +1957,7 @@ public class EndOfDayScript : MonoBehaviour
     Debug.Log((object) ("Making the game aware of the fact that ClubManager.ActivitiesAttended was " + this.ClubManager.ActivitiesAttended.ToString() + " at the end of this day."));
     ClubGlobals.ActivitiesAttended = this.ClubManager.ActivitiesAttended;
     this.ArrestStudents();
+    this.SaveTopicsLearned();
     this.RemovableItemManager.RemoveItems();
     this.Yandere.CameraEffects.UpdateVignette(0.0f);
   }
@@ -2067,6 +2111,16 @@ public class EndOfDayScript : MonoBehaviour
     {
       if (this.StudentsToArrest[studentID])
         StudentGlobals.SetStudentArrested(studentID, true);
+    }
+  }
+
+  public void SaveTopicsLearned()
+  {
+    Debug.Log((object) "Attempting to save all of the ''topics learned''.");
+    for (int index1 = 1; index1 < 101; ++index1)
+    {
+      for (int index2 = 1; index2 < 26; ++index2)
+        ConversationGlobals.SetTopicLearnedByStudent(index2, index1, this.StudentManager.GetTopicLearnedByStudent(index2, index1));
     }
   }
 }

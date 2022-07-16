@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomePantyChangerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -117,7 +117,7 @@ public class HomePantyChangerScript : MonoBehaviour
     {
       this.PantyNameLabel.text = "?????";
       this.PantyBuffLabel.text = "?????";
-      this.PantyDescLabel.text = this.Selected >= 11 ? "Unlock these panties by locating them and picking them up!" : "Unlock these panties by going shopping in town at night!";
+      this.PantyDescLabel.text = this.Selected >= 11 ? "Unlock these panties by locating them and picking them up!" : "Unlock these panties by purchasing them from the lingerie store in town!";
     }
     if (this.Selected == 0 || CollectibleGlobals.GetPantyPurchased(this.Selected))
       this.ButtonLabel.text = this.Selected == PlayerGlobals.PantiesEquipped ? "Equipped" : "Wear";

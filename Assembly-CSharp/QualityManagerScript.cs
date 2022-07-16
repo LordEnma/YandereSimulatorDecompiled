@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: QualityManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using RetroAesthetics;
@@ -241,7 +241,7 @@ public class QualityManagerScript : MonoBehaviour
               student.Cosmetic.Bookbag.GetComponent<Renderer>().material.shader = this.NewHairShader;
               student.Cosmetic.LeftWristband.GetComponent<Renderer>().material.shader = this.NewHairShader;
               student.Cosmetic.RightWristband.GetComponent<Renderer>().material.shader = this.NewHairShader;
-              student.Cosmetic.HoodieRenderer.GetComponent<Renderer>().material.shader = this.NewHairShader;
+              student.Cosmetic.HoodieRenderer.material.shader = this.NewHairShader;
             }
             if (student.StudentID == 87)
               student.Cosmetic.ScarfRenderer.material.shader = this.NewHairShader;
@@ -593,10 +593,26 @@ public class QualityManagerScript : MonoBehaviour
                 student.Cosmetic.FemaleAccessories[student.Cosmetic.Accessory].GetComponent<Renderer>().material.shader = this.NewBodyShader;
                 this.AdjustRimLight(student.Cosmetic.FemaleAccessories[student.Cosmetic.Accessory].GetComponent<Renderer>().material);
               }
+              if (student.Club == ClubType.Bully)
+              {
+                student.Cosmetic.Bookbag.GetComponent<Renderer>().material.shader = this.NewHairShader;
+                student.Cosmetic.LeftWristband.GetComponent<Renderer>().material.shader = this.NewHairShader;
+                student.Cosmetic.RightWristband.GetComponent<Renderer>().material.shader = this.NewHairShader;
+                student.Cosmetic.HoodieRenderer.material.shader = this.NewHairShader;
+              }
+              student.Cosmetic.RightStockings[0].GetComponent<Renderer>().material.shader = this.NewHairShader;
+              student.Cosmetic.LeftStockings[0].GetComponent<Renderer>().material.shader = this.NewHairShader;
+              if (student.Club == ClubType.Council)
+              {
+                student.Cosmetic.TurtleEyewearRenderer.material.shader = this.NewHairShader;
+                student.Cosmetic.ScarfRenderer.material.shader = this.NewHairShader;
+              }
             }
             else
             {
               student.Cosmetic.TeacherHairRenderers[student.Cosmetic.Hairstyle].material.shader = this.NewBodyShader;
+              if (student.Cosmetic.Accessory > 0)
+                student.Cosmetic.TeacherAccessories[student.Cosmetic.Accessory].GetComponent<Renderer>().material.shader = this.NewHairShader;
               this.AdjustRimLight(student.Cosmetic.TeacherHairRenderers[student.Cosmetic.Hairstyle].material);
               student.MyRenderer.materials[0].SetFloat("_BlendAmount1", 0.0f);
               student.MyRenderer.materials[1].SetFloat("_BlendAmount1", 0.0f);
@@ -638,26 +654,15 @@ public class QualityManagerScript : MonoBehaviour
               this.AdjustRimLight(component.material);
             }
           }
+          if (student.Cosmetic.EyewearID > 0)
+            student.Cosmetic.Eyewear[student.Cosmetic.EyewearID].GetComponent<Renderer>().material.shader = this.NewHairShader;
+          student.SmartPhone.GetComponent<Renderer>().material.shader = this.NewHairShader;
+          student.Armband.GetComponent<Renderer>().material.shader = this.NewHairShader;
+          if ((Object) student.ApronAttacher.newRenderer != (Object) null)
+            student.ApronAttacher.newRenderer.material.shader = this.NewHairShader;
         }
       }
-      this.Yandere.MyRenderer.materials[0].shader = this.NewBodyShader;
-      this.Yandere.MyRenderer.materials[1].shader = this.NewBodyShader;
-      this.Yandere.MyRenderer.materials[2].shader = this.NewBodyShader;
-      this.AdjustRimLight(this.Yandere.MyRenderer.materials[0]);
-      this.AdjustRimLight(this.Yandere.MyRenderer.materials[1]);
-      this.AdjustRimLight(this.Yandere.MyRenderer.materials[2]);
-      for (int index = 1; index < this.Yandere.Hairstyles.Length; ++index)
-      {
-        Renderer component = this.Yandere.Hairstyles[index].GetComponent<Renderer>();
-        if ((Object) component != (Object) null)
-        {
-          this.Yandere.EightiesPonytailRenderer.material.shader = this.NewBodyShader;
-          this.YandereHairRenderer.material.shader = this.NewBodyShader;
-          component.material.shader = this.NewBodyShader;
-          this.AdjustRimLight(this.YandereHairRenderer.material);
-          this.AdjustRimLight(component.material);
-        }
-      }
+      this.UpdateYandereChan();
       this.Nemesis.Cosmetic.MyRenderer.materials[0].shader = this.NewBodyShader;
       this.Nemesis.Cosmetic.MyRenderer.materials[1].shader = this.NewBodyShader;
       this.Nemesis.Cosmetic.MyRenderer.materials[2].shader = this.NewBodyShader;
@@ -668,6 +673,28 @@ public class QualityManagerScript : MonoBehaviour
       this.AdjustRimLight(this.Nemesis.NemesisHair.GetComponent<Renderer>().material);
     }
     this.UpdateStockings();
+  }
+
+  public void UpdateYandereChan()
+  {
+    this.Yandere.MyRenderer.materials[0].shader = this.NewBodyShader;
+    this.Yandere.MyRenderer.materials[1].shader = this.NewBodyShader;
+    this.Yandere.MyRenderer.materials[2].shader = this.NewBodyShader;
+    this.AdjustRimLight(this.Yandere.MyRenderer.materials[0]);
+    this.AdjustRimLight(this.Yandere.MyRenderer.materials[1]);
+    this.AdjustRimLight(this.Yandere.MyRenderer.materials[2]);
+    for (int index = 1; index < this.Yandere.Hairstyles.Length; ++index)
+    {
+      Renderer component = this.Yandere.Hairstyles[index].GetComponent<Renderer>();
+      if ((Object) component != (Object) null)
+      {
+        this.Yandere.EightiesPonytailRenderer.material.shader = this.NewBodyShader;
+        this.YandereHairRenderer.material.shader = this.NewBodyShader;
+        component.material.shader = this.NewBodyShader;
+        this.AdjustRimLight(this.YandereHairRenderer.material);
+        this.AdjustRimLight(component.material);
+      }
+    }
   }
 
   public void UpdateObscurance()

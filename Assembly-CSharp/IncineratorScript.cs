@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: IncineratorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -179,6 +179,7 @@ public class IncineratorScript : MonoBehaviour
       {
         ++this.DestroyedEvidence;
         this.EvidenceList[this.DestroyedEvidence] = equippedWeapon.WeaponID;
+        equippedWeapon.InsideIncinerator = true;
         equippedWeapon.Incinerator = this;
         equippedWeapon.Dumped = true;
         equippedWeapon.Drop();
@@ -250,6 +251,7 @@ public class IncineratorScript : MonoBehaviour
         this.Yandere.StudentManager.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Vanished;
       }
       this.Yandere.StudentManager.UpdateStudents();
+      this.Yandere.WeaponManager.IncinerateWeapons();
     }
     if (this.Smoke.isPlaying)
     {

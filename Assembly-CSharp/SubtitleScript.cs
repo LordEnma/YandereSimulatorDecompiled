@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SubtitleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -482,7 +482,7 @@ public class SubtitleScript : MonoBehaviour
       this.PlayerLove[4] = "She's at the east fountain. Go there and use the advice I gave you.";
       this.Task79Lines = this.Task79LinesEighties;
       this.Task79Clips = this.Task79ClipsEighties;
-      this.Club1Info[1] = "This is the cooking club! Everyone here enjoys preparing food! We also like to hang out our food to people around school!";
+      this.Club1Info[1] = "This is the cooking club! Everyone here enjoys preparing food! We also like to hand out our food to people around school!";
       this.Club1Info[2] = "If you join our club, you'll get access to our ingredients, and you'll be able to prepare snacks to hand out to people.";
       this.Club1Info[3] = "Giving people food is a very effective way to get people to like you!";
       this.Club2Info[1] = "This is the drama club! Everyone here is very passionate about acting, especially stage plays!";

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AdviceWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -50,6 +50,7 @@ public class AdviceWindowScript : MonoBehaviour
   public int ComplimentID = 1;
   public int ShowOffID = 1;
   public int GiftID = 1;
+  public bool GiftDataNeedsSaving;
   public bool DataNeedsSaving;
   public bool Initialized;
   public StudentScript Suitor;
@@ -490,8 +491,10 @@ public class AdviceWindowScript : MonoBehaviour
     this.ResultLabel.text = this.Outcomes[1] + "\n\n" + this.Outcomes[2] + "\n\n" + this.Outcomes[3] + "\n\n" + this.Outcomes[4] + "\n\n" + this.Outcomes[5] + "\n\n" + this.Outcomes[6] + "\n\n" + this.Outcomes[7];
     this.ResultsScreen.gameObject.SetActive(true);
     Time.timeScale = 0.0001f;
+    this.GiftDataNeedsSaving = true;
     this.DataNeedsSaving = true;
     Debug.Log((object) ("Affection is now: " + this.Affection.ToString()));
+    Debug.Log((object) "The game now believes that we need to update which matchmaking gifts are in the player's possession.");
   }
 
   public void SaveTopicsAndCompliments()
@@ -502,12 +505,17 @@ public class AdviceWindowScript : MonoBehaviour
       DatingGlobals.SetComplimentGiven(complimentID, this.ComplimentsGiven[complimentID]);
     for (int traitID = 1; traitID < 4; ++traitID)
       DatingGlobals.SetTraitDemonstrated(traitID, this.TraitsDemonstrated[traitID]);
+    DatingGlobals.Affection = this.Affection;
+    Debug.Log((object) "Saving suitor data stored in AdviceWindowScript.");
+  }
+
+  public void SaveGiftStatus()
+  {
+    Debug.Log((object) "The game is now saving which matchmaking gifts are in the player's possession.");
     for (int giftID = 1; giftID < 5; ++giftID)
     {
       CollectibleGlobals.SetGiftPurchased(giftID + 5, this.GiftsInPossession[giftID]);
       CollectibleGlobals.SetGiftGiven(giftID, this.GiftsGiven[giftID]);
     }
-    DatingGlobals.Affection = this.Affection;
-    Debug.Log((object) "Saving suitor data stored in AdviceWindowScript.");
   }
 }

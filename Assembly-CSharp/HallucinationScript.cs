@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HallucinationScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -29,6 +29,8 @@ public class HallucinationScript : MonoBehaviour
   public GameObject RyobaHair;
   public SkinnedMeshRenderer RyobaHairRenderer;
   public Mesh LongSleeveUniform;
+  public GameObject HallucinatedYandere;
+  public GameObject HallucinatedRival;
 
   private void Start()
   {
@@ -51,18 +53,21 @@ public class HallucinationScript : MonoBehaviour
       this.EightiesRivalHair[index].SetActive(false);
     if (GameGlobals.Eighties)
     {
-      if (DateGlobals.Week <= 0 || DateGlobals.Week >= 11)
-        return;
-      this.YandereHairRenderer.transform.parent.gameObject.SetActive(false);
-      this.RivalHair[1].SetActive(false);
-      this.EightiesRivalHair[DateGlobals.Week].SetActive(true);
-      this.YandereHairRenderer = this.RyobaHairRenderer;
-      this.RivalHairRenderer = this.EightiesRivalHair[DateGlobals.Week].transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
-      this.YandereRenderer.sharedMesh = this.LongSleeveUniform;
-      this.RivalRenderer.sharedMesh = this.LongSleeveUniform;
+      if (DateGlobals.Week > 0 && DateGlobals.Week < 11)
+      {
+        this.YandereHairRenderer.transform.parent.gameObject.SetActive(false);
+        this.RivalHair[1].SetActive(false);
+        this.EightiesRivalHair[DateGlobals.Week].SetActive(true);
+        this.YandereHairRenderer = this.RyobaHairRenderer;
+        this.RivalHairRenderer = this.EightiesRivalHair[DateGlobals.Week].transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
+        this.YandereRenderer.sharedMesh = this.LongSleeveUniform;
+        this.RivalRenderer.sharedMesh = this.LongSleeveUniform;
+      }
     }
     else
       this.RyobaHair.SetActive(false);
+    this.HallucinatedYandere.SetActive(false);
+    this.HallucinatedRival.SetActive(false);
   }
 
   private void Update()
@@ -73,6 +78,8 @@ public class HallucinationScript : MonoBehaviour
         this.Timer += Time.deltaTime;
       if ((double) this.Timer > 6.0)
       {
+        this.HallucinatedYandere.SetActive(true);
+        this.HallucinatedRival.SetActive(true);
         this.Weapon = Random.Range(1, 6);
         this.transform.position = this.Yandere.transform.position + this.Yandere.transform.forward;
         this.transform.eulerAngles = this.Yandere.transform.eulerAngles;

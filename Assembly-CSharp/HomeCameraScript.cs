@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeCameraScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -65,6 +65,7 @@ public class HomeCameraScript : MonoBehaviour
   public CosmeticScript SenpaiCosmetic;
   public Renderer HairLock;
   public AudioClip OpenDrawer;
+  public SkinnedMeshRenderer BedroomRenderer;
   public Transform PromptBarPanel;
   public Transform PauseScreen;
   public GameObject CassetteTapes;
@@ -99,6 +100,7 @@ public class HomeCameraScript : MonoBehaviour
       this.RoomJukebox.clip = this.NightRoom;
       this.PlayMusic();
       this.PantiesMangaLabel.text = "Read Manga";
+      this.BedroomRenderer.SetBlendShapeWeight(1, 100f);
     }
     else
     {

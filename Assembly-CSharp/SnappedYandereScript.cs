@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SnappedYandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -97,6 +97,16 @@ public class SnappedYandereScript : MonoBehaviour
     this.MyAnim[this.AttackAnims[3]].speed = 1.5f;
     this.MyAnim[this.AttackAnims[4]].speed = 1.5f;
     this.MyAnim[this.AttackAnims[5]].speed = 1.5f;
+    if (ClubGlobals.GetClubClosed(ClubType.Cooking))
+    {
+      this.Weapons[0] = (WeaponScript) null;
+      this.Weapons[5] = (WeaponScript) null;
+    }
+    if (ClubGlobals.GetClubClosed(ClubType.Art))
+      this.Weapons[3] = (WeaponScript) null;
+    if (!ClubGlobals.GetClubClosed(ClubType.Occult))
+      return;
+    this.Weapons[6] = (WeaponScript) null;
   }
 
   private void Update()
@@ -158,7 +168,7 @@ public class SnappedYandereScript : MonoBehaviour
     {
       foreach (WeaponScript weapon in this.Weapons)
       {
-        if ((Object) weapon != (Object) null && weapon.gameObject.activeInHierarchy && weapon.gameObject.name != "RoofKnife" && (double) Vector3.Distance(this.transform.position, weapon.transform.position) < 1.5)
+        if ((Object) weapon != (Object) null && weapon.gameObject.activeInHierarchy && (double) Vector3.Distance(this.transform.position, weapon.transform.position) < 1.5)
         {
           weapon.Prompt.Circle[3].fillAmount = 0.0f;
           this.SNAPLabel.text = "Kill him.";
@@ -579,7 +589,7 @@ public class SnappedYandereScript : MonoBehaviour
       {
         foreach (WeaponScript weapon in this.Weapons)
         {
-          if ((Object) weapon != (Object) null && weapon.gameObject.name != "RoofKnife")
+          if ((Object) weapon != (Object) null)
           {
             this.SetGlitches(true);
             this.GlitchTimeLimit = 1f;

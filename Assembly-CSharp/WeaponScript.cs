@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -37,6 +37,7 @@ public class WeaponScript : MonoBehaviour
   public Vector3 StartingPosition;
   public Vector3 StartingRotation;
   public bool UnequipImmediately;
+  public bool InsideIncinerator;
   public bool AlreadyExamined;
   public bool BroughtFromHome;
   public bool DelinquentOwned;
@@ -50,6 +51,7 @@ public class WeaponScript : MonoBehaviour
   public bool Suspicious;
   public bool Dangerous;
   public bool Misplaced;
+  public bool Disposed;
   public bool Evidence;
   public bool Innocent;
   public bool StartLow;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ServicesScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -38,6 +38,8 @@ public class ServicesScript : MonoBehaviour
   public AudioClip InfoUnavailable;
   public AudioClip InfoPurchase;
   public AudioClip InfoAfford;
+  public float HeldDown;
+  public float HeldUp;
 
   private void Start()
   {
@@ -54,15 +56,27 @@ public class ServicesScript : MonoBehaviour
 
   private void Update()
   {
-    if (this.InputManager.TappedUp)
+    if (this.InputManager.DPadUp || this.InputManager.StickUp || Input.GetKey("w") || Input.GetKey("up"))
+      this.HeldUp += Time.unscaledDeltaTime;
+    else
+      this.HeldUp = 0.0f;
+    if (this.InputManager.DPadDown || this.InputManager.StickDown || Input.GetKey("s") || Input.GetKey("down"))
+      this.HeldDown += Time.unscaledDeltaTime;
+    else
+      this.HeldDown = 0.0f;
+    if (this.InputManager.TappedUp || (double) this.HeldUp > 0.5)
     {
+      if ((double) this.HeldUp > 0.5)
+        this.HeldUp = 0.45f;
       --this.Selected;
       if (this.Selected < 1)
         this.Selected = this.ServiceNames.Length - 1;
       this.UpdateDesc();
     }
-    if (this.InputManager.TappedDown)
+    if (this.InputManager.TappedDown || (double) this.HeldDown > 0.5)
     {
+      if ((double) this.HeldDown > 0.5)
+        this.HeldDown = 0.45f;
       ++this.Selected;
       if (this.Selected > this.ServiceNames.Length - 1)
         this.Selected = 1;
@@ -174,6 +188,11 @@ public class ServicesScript : MonoBehaviour
             this.ServicePurchased[this.Selected] = true;
             this.Yandere.Police.EndOfDay.LearnedOsanaInfo1 = true;
             this.Yandere.Police.EndOfDay.LearnedOsanaInfo2 = true;
+            if (SchemeGlobals.GetSchemeStage(6) == 1 || SchemeGlobals.GetSchemeStage(6) == 2)
+            {
+              SchemeGlobals.SetSchemeStage(6, 3);
+              this.Yandere.PauseScreen.Schemes.UpdateInstructions();
+            }
             this.Purchase();
           }
         }

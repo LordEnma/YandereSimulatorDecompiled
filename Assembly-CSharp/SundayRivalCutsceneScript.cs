@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SundayRivalCutsceneScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -127,11 +127,13 @@ public class SundayRivalCutsceneScript : MonoBehaviour
     {
       this.Timer += Time.deltaTime;
       this.Speed += Time.deltaTime;
-      this.HomeYandere.HomeCamera.transform.position = Vector3.Lerp(this.HomeYandere.HomeCamera.transform.position, new Vector3(-1.966666f, 1.07f, 1.943333f), Time.deltaTime * this.Speed);
+      this.HomeYandere.HomeCamera.transform.position = Vector3.Lerp(this.HomeYandere.HomeCamera.transform.position, new Vector3(-2.055f, 1.075f, 1.99f), Time.deltaTime * this.Speed);
       this.X = Mathf.Lerp(this.X, 67.5f, Time.deltaTime * this.Speed);
       this.Y = Mathf.Lerp(this.Y, -22.5f, Time.deltaTime * this.Speed);
       this.Z = Mathf.Lerp(this.Z, 0.0f, Time.deltaTime * this.Speed);
       this.HomeYandere.HomeCamera.transform.eulerAngles = new Vector3(this.X, this.Y, this.Z);
+      if ((double) this.Timer > 2.0)
+        this.HomeYandere.gameObject.SetActive(false);
       if ((double) this.Timer > 2.5)
         this.GrabbyHand.SetActive(true);
       if ((double) this.Timer <= 4.5)

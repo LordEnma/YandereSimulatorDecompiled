@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DropsScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -31,6 +31,8 @@ public class DropsScript : MonoBehaviour
   public AudioClip InfoUnavailable;
   public AudioClip InfoPurchase;
   public AudioClip InfoAfford;
+  public float HeldDown;
+  public float HeldUp;
 
   private void Start()
   {
@@ -38,6 +40,9 @@ public class DropsScript : MonoBehaviour
       this.NameLabels[this.ID].text = this.DropNames[this.ID];
     if (!MissionModeGlobals.MissionMode)
       return;
+    this.CostLabels[5].text = "10";
+    this.InfiniteSupply[5] = true;
+    this.DropCosts[5] = 10;
     this.CostLabels[6].text = "10";
     this.InfiniteSupply[6] = true;
     this.DropCosts[6] = 10;
@@ -45,15 +50,27 @@ public class DropsScript : MonoBehaviour
 
   private void Update()
   {
-    if (this.InputManager.TappedUp)
+    if (this.InputManager.DPadUp || this.InputManager.StickUp || Input.GetKey("w") || Input.GetKey("up"))
+      this.HeldUp += Time.unscaledDeltaTime;
+    else
+      this.HeldUp = 0.0f;
+    if (this.InputManager.DPadDown || this.InputManager.StickDown || Input.GetKey("s") || Input.GetKey("down"))
+      this.HeldDown += Time.unscaledDeltaTime;
+    else
+      this.HeldDown = 0.0f;
+    if (this.InputManager.TappedUp || (double) this.HeldUp > 0.5)
     {
+      if ((double) this.HeldUp > 0.5)
+        this.HeldUp = 0.45f;
       --this.Selected;
       if (this.Selected < 1)
         this.Selected = this.DropNames.Length - 1;
       this.UpdateDesc();
     }
-    if (this.InputManager.TappedDown)
+    if (this.InputManager.TappedDown || (double) this.HeldDown > 0.5)
     {
+      if ((double) this.HeldDown > 0.5)
+        this.HeldDown = 0.45f;
       ++this.Selected;
       if (this.Selected > this.DropNames.Length - 1)
         this.Selected = 1;

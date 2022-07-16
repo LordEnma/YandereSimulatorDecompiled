@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: JukeboxScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -9,6 +9,7 @@ using UnityEngine;
 public class JukeboxScript : MonoBehaviour
 {
   public YandereScript Yandere;
+  public AudioSource ClubTheme;
   public AudioSource SFX;
   public AudioSource AttackOnTitan;
   public AudioSource Megalovania;
@@ -112,6 +113,9 @@ public class JukeboxScript : MonoBehaviour
   public AudioClip[] EightiesSixFull;
   public AudioClip[] EightiesSixHalf;
   public AudioClip[] EightiesSixNo;
+  public AudioClip[] ClubThemes;
+  public AudioClip LowPhotographyClubTheme;
+  public AudioClip EightiesMusicClubTheme;
 
   public void Start()
   {
@@ -136,6 +140,7 @@ public class JukeboxScript : MonoBehaviour
       this.SixthFull = this.EightiesSixFull;
       this.SixthHalf = this.EightiesSixHalf;
       this.SixthNo = this.EightiesSixNo;
+      this.ClubThemes[5] = this.EightiesMusicClubTheme;
     }
     if (!this.Initialized)
     {
@@ -235,6 +240,8 @@ public class JukeboxScript : MonoBehaviour
         index = 1;
         break;
     }
+    if ((double) SchoolGlobals.SchoolAtmosphere <= 0.800000011920929)
+      this.ClubThemes[7] = this.LowPhotographyClubTheme;
     this.FullSanity.clip = this.FullSanities[index];
     this.HalfSanity.clip = this.HalfSanities[index];
     this.NoSanity.clip = this.NoSanities[index];
@@ -258,23 +265,32 @@ public class JukeboxScript : MonoBehaviour
           this.NoSanity.Play();
           this.StartMusic = true;
         }
-        if ((double) this.Yandere.Sanity >= 66.6666641235352)
+        if (!this.ClubTheme.isPlaying)
         {
-          this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
-          this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
-          this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
-        }
-        else if ((double) this.Yandere.Sanity >= 33.3333320617676)
-        {
-          this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
-          this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
-          this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+          if ((double) this.Yandere.Sanity >= 66.6666641235352)
+          {
+            this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
+            this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+            this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+          }
+          else if ((double) this.Yandere.Sanity >= 33.3333320617676)
+          {
+            this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+            this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
+            this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+          }
+          else
+          {
+            this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+            this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+            this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
+          }
         }
         else
         {
           this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
           this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
-          this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
+          this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
         }
       }
     }

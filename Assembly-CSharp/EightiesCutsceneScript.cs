@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EightiesCutsceneScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -61,7 +61,7 @@ public class EightiesCutsceneScript : MonoBehaviour
     if (GameGlobals.EightiesCutsceneID < 2)
       this.Darkness.color = new Color(1f, 1f, 1f, 1f);
     else
-      this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
+      this.Darkness.color = new Color(0.1f, 0.1f, 0.1f, 1f);
     this.Typewriter.gameObject.SetActive(false);
     if (GameGlobals.EightiesCutsceneID == 0)
       this.DarkLine = 13;
@@ -252,7 +252,7 @@ public class EightiesCutsceneScript : MonoBehaviour
     else if (this.Phase == 2)
     {
       if (GameGlobals.EightiesCutsceneID > 0)
-        this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+        this.Darkness.color = new Color(0.1f, 0.1f, 0.1f, 0.0f);
       ++this.Phase;
     }
     else

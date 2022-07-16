@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SmokeBombScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 41FC567F-B14D-47B6-963A-CEFC38C7B329
+// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -117,6 +117,7 @@ public class SmokeBombScript : MonoBehaviour
     Student.DistanceToDestination = 100f;
     Student.Pathfinding.speed = 4f;
     Student.AmnesiaTimer = 10f;
+    Student.FocusOnYandere = false;
     Student.Distracted = true;
     Student.Alarmed = false;
     Student.Routine = false;
