@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericRivalBagScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -245,8 +245,12 @@ public class GenericRivalBagScript : MonoBehaviour
             }
             else if (this.Selected == 5)
             {
-              this.Rival.ScheduleBlocks[4].action = "Shamed";
-              this.Rival.GetDestinations();
+              if (this.Rival.ScheduleBlocks[4].action != "Search Patrol")
+              {
+                Debug.Log((object) "The current rival should spend her lunchtime looking sad.");
+                this.Rival.ScheduleBlocks[4].action = "Shamed";
+                this.Rival.GetDestinations();
+              }
               this.BentoStolen = true;
             }
             this.Menu = 1;

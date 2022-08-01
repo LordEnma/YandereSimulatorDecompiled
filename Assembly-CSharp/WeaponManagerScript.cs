@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -175,6 +175,7 @@ public class WeaponManagerScript : MonoBehaviour
 
   public void RestoreBlood()
   {
+    Debug.Log((object) "The ''restore blood'' command is being fired.");
     for (int index = 0; index < this.Weapons.Length; ++index)
     {
       if ((UnityEngine.Object) this.Weapons[index] != (UnityEngine.Object) null && !this.Weapons[index].Disposed && this.Weapons[index].Bloody)

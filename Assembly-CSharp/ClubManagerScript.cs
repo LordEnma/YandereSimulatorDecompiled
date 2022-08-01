@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClubManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -119,10 +119,7 @@ public class ClubManagerScript : MonoBehaviour
         else if (this.ClubArray[this.ID] == ClubType.Gaming)
           this.ClubPatrolPoints[this.ID].transform.position = new Vector3(20f, this.ClubPatrolPoints[this.ID].transform.position.y, this.ClubPatrolPoints[this.ID].transform.position.z);
         else if (this.ClubArray[this.ID] != ClubType.Sports)
-        {
-          Debug.Log((object) ("Adjusting patrol point of Club #" + this.ID.ToString() + ", the " + this.ClubArray[this.ID].ToString() + " Club"));
           this.ClubPatrolPoints[this.ID].transform.position = new Vector3(this.ClubPatrolPoints[this.ID].transform.position.x, this.ClubPatrolPoints[this.ID].transform.position.y, 20f);
-        }
         ++num;
       }
       if (ClubGlobals.GetQuitClub(this.ClubArray[this.ID]))
@@ -225,6 +222,8 @@ public class ClubManagerScript : MonoBehaviour
     this.MainCamera.enabled = false;
     this.MainCamera.transform.position = this.ClubVantages[(int) this.Club].position;
     this.MainCamera.transform.rotation = this.ClubVantages[(int) this.Club].rotation;
+    if (this.Club != ClubType.LightMusic)
+      this.StudentManager.PracticeMusic.gameObject.SetActive(false);
     if (this.Club == ClubType.Cooking)
     {
       this.Cake.SetActive(true);

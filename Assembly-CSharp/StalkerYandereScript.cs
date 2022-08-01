@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StalkerYandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Bayat.SaveSystem;
@@ -11,9 +11,11 @@ using UnityEngine.PostProcessing;
 
 public class StalkerYandereScript : MonoBehaviour
 {
+  public StalkerPromptScript StalkerDoorPrompt;
   public CharacterController MyController;
   public PostProcessingProfile Profile;
   public AutoSaveManager SaveManager;
+  public UILabel InstructionLabel;
   public StalkerScript Stalker;
   public ArcScript Arc;
   public Transform TrellisClimbSpot;
@@ -52,6 +54,7 @@ public class StalkerYandereScript : MonoBehaviour
   public float CrouchWalkSpeed;
   public float CrouchRunSpeed;
   public float Intensity = 0.45f;
+  public int InstructionPhase = 1;
   public int ClimbPhase;
   public int Pebbles;
   public int Frame;
@@ -189,6 +192,8 @@ public class StalkerYandereScript : MonoBehaviour
     }
     if (this.CanMove)
     {
+      if ((UnityEngine.Object) this.InstructionLabel != (UnityEngine.Object) null)
+        this.InstructionLabel.alpha = Mathf.MoveTowards(this.InstructionLabel.alpha, 1f, Time.deltaTime);
       if ((UnityEngine.Object) this.CameraTarget != (UnityEngine.Object) null)
         this.CameraTarget.localPosition = new Vector3(0.0f, (float) (1.0 + ((double) this.RPGCamera.distanceMax - (double) this.RPGCamera.distance) * 0.200000002980232), 0.0f);
       if (this.InDesert && (double) this.transform.position.y < 13.6999998092651)
@@ -229,62 +234,90 @@ public class StalkerYandereScript : MonoBehaviour
         }
       }
     }
-    else if ((UnityEngine.Object) this.CameraTarget != (UnityEngine.Object) null)
+    else
     {
-      if (this.Climbing)
+      if ((UnityEngine.Object) this.InstructionLabel != (UnityEngine.Object) null)
+        this.InstructionLabel.alpha = Mathf.MoveTowards(this.InstructionLabel.alpha, 0.0f, Time.deltaTime);
+      if ((UnityEngine.Object) this.CameraTarget != (UnityEngine.Object) null)
       {
-        if (this.ClimbPhase == 1)
+        if (this.Climbing)
         {
-          this.CameraTarget.position = (double) this.MyAnimation["f02_climbTrellis_00"].time >= (double) this.MyAnimation["f02_climbTrellis_00"].length - 1.0 ? Vector3.MoveTowards(this.CameraTarget.position, new Vector3(-9.5f, 5f, -2.5f), Time.deltaTime) : Vector3.MoveTowards(this.CameraTarget.position, this.Hips.position + new Vector3(0.0f, 0.103729f, 0.003539f), Time.deltaTime);
-          this.MoveTowardsTarget(this.TrellisClimbSpot.position);
-          this.SpinTowardsTarget(this.TrellisClimbSpot.rotation);
-          if ((double) this.MyAnimation["f02_climbTrellis_00"].time > 7.5)
+          if (this.ClimbPhase == 1)
+          {
+            this.CameraTarget.position = (double) this.MyAnimation["f02_climbTrellis_00"].time >= (double) this.MyAnimation["f02_climbTrellis_00"].length - 1.0 ? Vector3.MoveTowards(this.CameraTarget.position, new Vector3(-9.5f, 5f, -2.5f), Time.deltaTime) : Vector3.MoveTowards(this.CameraTarget.position, this.Hips.position + new Vector3(0.0f, 0.103729f, 0.003539f), Time.deltaTime);
+            this.MoveTowardsTarget(this.TrellisClimbSpot.position);
+            this.SpinTowardsTarget(this.TrellisClimbSpot.rotation);
+            if ((double) this.MyAnimation["f02_climbTrellis_00"].time > 7.5)
+            {
+              this.RPGCamera.transform.position = this.EntryPOV.position;
+              this.RPGCamera.transform.eulerAngles = this.EntryPOV.eulerAngles;
+              this.RPGCamera.enabled = false;
+              RenderSettings.ambientIntensity = 8f;
+              ++this.ClimbPhase;
+            }
+          }
+          else
           {
             this.RPGCamera.transform.position = this.EntryPOV.position;
             this.RPGCamera.transform.eulerAngles = this.EntryPOV.eulerAngles;
-            this.RPGCamera.enabled = false;
-            RenderSettings.ambientIntensity = 8f;
-            ++this.ClimbPhase;
+            if ((double) this.MyAnimation["f02_climbTrellis_00"].time > 11.0)
+              this.transform.position = Vector3.MoveTowards(this.transform.position, this.TrellisClimbSpot.position + new Vector3(0.4f, 0.0f, 0.0f), Time.deltaTime * 0.5f);
+          }
+          if ((double) this.MyAnimation["f02_climbTrellis_00"].time > (double) this.MyAnimation["f02_climbTrellis_00"].length)
+          {
+            this.MyAnimation.Play("f02_idleShort_00");
+            this.transform.position = new Vector3(-9.1f, 4f, -2.5f);
+            this.CameraTarget.position = this.transform.position + new Vector3(0.0f, 1f, 0.0f);
+            this.RPGCamera.enabled = true;
+            this.Climbing = false;
+            this.CanMove = true;
+            Physics.SyncTransforms();
           }
         }
-        else
-        {
-          this.RPGCamera.transform.position = this.EntryPOV.position;
-          this.RPGCamera.transform.eulerAngles = this.EntryPOV.eulerAngles;
-          if ((double) this.MyAnimation["f02_climbTrellis_00"].time > 11.0)
-            this.transform.position = Vector3.MoveTowards(this.transform.position, this.TrellisClimbSpot.position + new Vector3(0.4f, 0.0f, 0.0f), Time.deltaTime * 0.5f);
-        }
-        if ((double) this.MyAnimation["f02_climbTrellis_00"].time > (double) this.MyAnimation["f02_climbTrellis_00"].length)
-        {
-          this.MyAnimation.Play("f02_idleShort_00");
-          this.transform.position = new Vector3(-9.1f, 4f, -2.5f);
-          this.CameraTarget.position = this.transform.position + new Vector3(0.0f, 1f, 0.0f);
-          this.RPGCamera.enabled = true;
-          this.Climbing = false;
-          this.CanMove = true;
-          Physics.SyncTransforms();
-        }
+        else if (this.Chased)
+          this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(this.Stalker.transform.position - this.transform.position), 10f * Time.deltaTime);
       }
-      else if (this.Chased)
-        this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(this.Stalker.transform.position - this.transform.position), 10f * Time.deltaTime);
     }
     if (this.Street && (double) this.transform.position.x < -16.0)
       this.transform.position = new Vector3(-16f, 0.0f, this.transform.position.z);
-    if (!((UnityEngine.Object) this.Profile != (UnityEngine.Object) null))
-      return;
-    if (this.Stance.Current == StanceType.Crouching && this.Hidden)
+    if ((UnityEngine.Object) this.Profile != (UnityEngine.Object) null)
     {
-      if ((double) this.Intensity == 1.0)
+      if (this.Stance.Current == StanceType.Crouching && this.Hidden)
+      {
+        if ((double) this.Intensity != 1.0)
+        {
+          this.Intensity = Mathf.MoveTowards(this.Intensity, 1f, Time.deltaTime);
+          this.UpdateVignette();
+        }
+      }
+      else if ((double) this.Intensity != 0.449999988079071)
+      {
+        this.Intensity = Mathf.MoveTowards(this.Intensity, 0.45f, Time.deltaTime);
+        this.UpdateVignette();
+      }
+    }
+    if (!((UnityEngine.Object) this.InstructionLabel != (UnityEngine.Object) null))
+      return;
+    if (this.InstructionPhase == 1)
+    {
+      if ((double) this.transform.position.z >= 11.0 || (double) this.transform.position.z <= -11.0 || (double) this.transform.position.x <= -11.0 || (double) this.transform.position.x >= 11.0)
         return;
-      this.Intensity = Mathf.MoveTowards(this.Intensity, 1f, Time.deltaTime);
-      this.UpdateVignette();
+      this.InstructionLabel.text = "Find the stalker's room on the first floor of the house.";
+      ++this.InstructionPhase;
+    }
+    else if (this.InstructionPhase == 2)
+    {
+      if (!this.StalkerDoorPrompt.OpenDoor)
+        return;
+      this.InstructionLabel.text = "Pick up the pet carrier.";
+      ++this.InstructionPhase;
     }
     else
     {
-      if ((double) this.Intensity == 0.449999988079071)
+      if (this.InstructionPhase != 3 || !((UnityEngine.Object) this.Object != (UnityEngine.Object) null))
         return;
-      this.Intensity = Mathf.MoveTowards(this.Intensity, 0.45f, Time.deltaTime);
-      this.UpdateVignette();
+      this.InstructionLabel.text = "Exit the house.";
+      ++this.InstructionPhase;
     }
   }
 

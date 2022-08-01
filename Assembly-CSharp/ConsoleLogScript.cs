@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ConsoleLogScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -31,7 +31,7 @@ public class ConsoleLogScript : MonoBehaviour
     if (this.id >= this.code.Length || !Input.GetKeyDown(this.code[this.id]))
       return;
     ++this.id;
-    if (this.id != this.code.Length)
+    if (this.id != this.code.Length || !((Object) this.debug.gameObject != (Object) null))
       return;
     this.debug.EnableDebug();
   }

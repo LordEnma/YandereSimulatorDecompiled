@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomePrisonerChanScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -78,7 +78,7 @@ public class HomePrisonerChanScript : MonoBehaviour
       this.StudentID = StudentGlobals.Prisoner10;
     if (this.StudentID > 0)
     {
-      if ((double) StudentGlobals.GetStudentSanity(this.StudentID) == 100.0)
+      if (StudentGlobals.GetStudentSanity(this.StudentID) == 100)
         this.AnkleRopes.SetActive(false);
       this.PermanentAngleR = this.TwintailR.eulerAngles;
       this.PermanentAngleL = this.TwintailL.eulerAngles;
@@ -198,7 +198,7 @@ public class HomePrisonerChanScript : MonoBehaviour
 
   public void UpdateSanity()
   {
-    this.Sanity = StudentGlobals.GetStudentSanity(this.StudentID);
+    this.Sanity = (float) StudentGlobals.GetStudentSanity(this.StudentID);
     bool flag = (double) this.Sanity == 0.0;
     this.RightMindbrokenEye.SetActive(flag);
     this.LeftMindbrokenEye.SetActive(flag);

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DoorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -123,10 +123,13 @@ label_7:
     }
     if (this.Club != ClubType.None && ClubGlobals.GetClubClosed(this.Club))
     {
-      this.Prompt.Hide();
-      this.Prompt.enabled = false;
-      this.enabled = false;
+      this.Locked = true;
+      this.Prompt.Label[0].text = "     Locked";
+      this.Prompt.Label[2].text = "     Pick Lock";
+      this.Prompt.OffsetY[2] = 1.2f;
     }
+    else
+      this.Prompt.HideButton[2] = true;
     if (this.DisableSelf)
       this.enabled = false;
     this.Prompt.Student = false;
@@ -297,6 +300,7 @@ label_7:
         if ((double) this.Prompt.Circle[2].fillAmount == 0.0)
         {
           this.Prompt.Yandere.Inventory.LockPick = false;
+          this.Prompt.Label[0].text = "     Open";
           this.Prompt.HideButton[2] = true;
           this.Locked = false;
         }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HeartbrokenCursorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.IO;
@@ -113,6 +113,9 @@ public class HeartbrokenCursorScript : MonoBehaviour
           }
           else
           {
+            this.HeartbrokenCamera.nearClipPlane -= 0.1f;
+            if ((double) this.HeartbrokenCamera.nearClipPlane <= 0.0)
+              this.HeartbrokenCamera.nearClipPlane = 0.01f;
             this.StudentManager.Yandere.ShoulderCamera.enabled = false;
             if (this.CracksSpawned == 0)
             {
@@ -216,7 +219,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
       if (this.SnapSequence)
       {
         this.SnapTimer += Time.deltaTime;
-        if ((double) this.SnapTimer > 10.0)
+        if ((double) this.SnapTimer > 9.0)
         {
           GameObjectUtils.SetLayerRecursively(this.StudentManager.Yandere.gameObject, 13);
           this.StudentManager.Yandere.CharacterAnimation["f02_sadEyebrows_00"].weight = 0.0f;
@@ -233,7 +236,7 @@ public class HeartbrokenCursorScript : MonoBehaviour
           this.MyAudio.Stop();
           Debug.Log((object) "The player now has control over Yandere-chan again.");
         }
-        else if ((double) this.SnapTimer > 3.0)
+        else if ((double) this.SnapTimer > 2.0)
         {
           if ((Object) this.MyAudio.clip != (Object) this.ReverseHit)
           {
@@ -288,6 +291,8 @@ public class HeartbrokenCursorScript : MonoBehaviour
           {
             int profile = GameGlobals.Profile;
             int num = 11;
+            int femaleUniform = StudentGlobals.FemaleUniform;
+            int maleUniform = StudentGlobals.MaleUniform;
             if (File.Exists(Application.streamingAssetsPath + "/SaveFiles/Profile_" + profile.ToString() + "_Slot_" + num.ToString() + ".yansave"))
             {
               YanSave.LoadData("Profile_" + profile.ToString() + "_Slot_" + num.ToString());
@@ -298,6 +303,8 @@ public class HeartbrokenCursorScript : MonoBehaviour
               Debug.Log((object) ("Attempted to load a save from Slot #" + num.ToString() + ", but apparently it didn't exist."));
             StudentGlobals.SetStudentDead(10 + DateGlobals.Week, false);
             StudentGlobals.SetStudentDying(10 + DateGlobals.Week, false);
+            StudentGlobals.FemaleUniform = femaleUniform;
+            StudentGlobals.MaleUniform = maleUniform;
             SceneManager.LoadScene("CalendarScene");
           }
         }

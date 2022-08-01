@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GazerEyesScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -166,6 +166,8 @@ public class GazerEyesScript : MonoBehaviour
     Target.Pathfinding.canMove = false;
     Target.Routine = false;
     Target.EmptyHands();
+    if ((Object) this.StudentManager.BloodReporter != (Object) null && (Object) this.StudentManager.BloodReporter.MyTeacher == (Object) Target)
+      this.StudentManager.BloodReporter.ReturnToNormal();
     if (Target.StudentID == 1)
     {
       Debug.Log((object) (Target.Name + " just ''dodged'' some electricity."));

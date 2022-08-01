@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ScheduleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -133,8 +133,6 @@ public class ScheduleScript : MonoBehaviour
     }
     this.EventIcons[31].SetActive(true);
     this.Descriptions[31] = "Sakyu and Inkyu are going to sit down on a bench and have a conversation about the school.";
-    this.EventIcons[37].SetActive(true);
-    this.Descriptions[37] = "Before eating lunch, Sakyu is going to remove the large, gaudy ring that she usually wears.";
     this.EventIcons[47].SetActive(true);
     this.Descriptions[47] = "Before eating lunch, Horo and Yaku are going to have a conversation about a popular anime show called ''Magical Girl Pretty Miyuki''.";
     if (this.Weekday != DayOfWeek.Monday)

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -1270,7 +1270,7 @@ public class StudentManagerScript : MonoBehaviour
       this.OpenValue = Mathf.Lerp(this.OpenValue, 100f, Time.deltaTime * 10f);
       if ((double) this.OpenValue > 99.0)
         this.OpenCurtain = false;
-      this.FemaleShowerCurtain.SetBlendShapeWeight(0, this.OpenValue);
+      this.FemaleShowerCurtain.SetBlendShapeWeight(1, this.OpenValue);
     }
     if (this.AoT)
     {
@@ -3243,6 +3243,18 @@ public class StudentManagerScript : MonoBehaviour
     }
   }
 
+  public void PutStudentsToSleep()
+  {
+    foreach (StudentScript student in this.Students)
+    {
+      if ((UnityEngine.Object) student != (UnityEngine.Object) null && student.Sleepy)
+      {
+        student.transform.position = student.Pathfinding.target.position;
+        Physics.SyncTransforms();
+      }
+    }
+  }
+
   public void SetFaces(float alpha)
   {
     foreach (StudentScript student in this.Students)
@@ -3502,7 +3514,6 @@ public class StudentManagerScript : MonoBehaviour
 
   public void Week1RoutineAdjustments()
   {
-    Debug.Log((object) "Making week 1 routine adjustments.");
     this.UpdateWeek1Hangout(25);
     this.UpdateWeek1Hangout(30);
     this.UpdateWeek1Hangout(24);
@@ -4423,7 +4434,6 @@ label_6:
 
   public void LoadTopicsLearned()
   {
-    Debug.Log((object) "Attempting to load all of the ''topics learned''.");
     for (int index1 = 1; index1 < 101; ++index1)
     {
       for (int index2 = 1; index2 < 26; ++index2)

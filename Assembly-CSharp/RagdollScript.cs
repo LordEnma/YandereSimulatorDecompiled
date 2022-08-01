@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RagdollScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -727,7 +727,7 @@ public class RagdollScript : MonoBehaviour
               if (!this.Male)
               {
                 this.Student.Cosmetic.FemaleHair[this.Student.Cosmetic.Hairstyle].transform.parent = gameObject.transform;
-                if ((Object) this.Student.Cosmetic.FemaleAccessories[this.Student.Cosmetic.Accessory] != (Object) null && this.Student.Cosmetic.Accessory != 3 && this.Student.Cosmetic.Accessory != 6)
+                if ((Object) this.Student.Cosmetic.FemaleAccessories[this.Student.Cosmetic.Accessory] != (Object) null && this.Student.Cosmetic.Accessory != 3 && this.Student.Cosmetic.Accessory != 6 && this.Student.Cosmetic.Accessory != 9)
                   this.Student.Cosmetic.FemaleAccessories[this.Student.Cosmetic.Accessory].transform.parent = gameObject.transform;
               }
               else
@@ -744,7 +744,7 @@ public class RagdollScript : MonoBehaviour
             else
             {
               this.Student.Cosmetic.TeacherHair[this.Student.Cosmetic.Hairstyle].transform.parent = gameObject.transform;
-              if ((Object) this.Student.Cosmetic.TeacherAccessories[this.Student.Cosmetic.Accessory] != (Object) null)
+              if ((Object) this.Student.Cosmetic.TeacherAccessories[this.Student.Cosmetic.Accessory] != (Object) null && this.Student.Cosmetic.Accessory != 7)
                 this.Student.Cosmetic.TeacherAccessories[this.Student.Cosmetic.Accessory].transform.parent = gameObject.transform;
             }
             if (this.Student.Club != ClubType.Photography && this.Student.Club < ClubType.Gaming && (Object) this.Student.Cosmetic.ClubAccessories[(int) this.Student.Club] != (Object) null)

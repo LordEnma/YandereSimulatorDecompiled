@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomePrisonerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -33,8 +33,8 @@ public class HomePrisonerScript : MonoBehaviour
   public UILabel Subtitle;
   public bool PlayedAudio;
   public bool ZoomIn;
-  public float Sanity = 100f;
   public float Timer;
+  public int Sanity = 100;
   public int ID = 1;
   public AudioClip FirstTorture;
   public AudioClip Under50Torture;
@@ -62,7 +62,7 @@ public class HomePrisonerScript : MonoBehaviour
     if (this.PrisonerManager.StudentID > 0)
       this.Sanity = StudentGlobals.GetStudentSanity(this.PrisonerManager.StudentID);
     this.SanityLabel.text = "Sanity: " + this.Sanity.ToString() + "%";
-    this.Prisoner.Sanity = this.Sanity;
+    this.Prisoner.Sanity = (float) this.Sanity;
     this.Subtitle.text = string.Empty;
     for (int index = 1; index < this.Descriptions.Length - 1; ++index)
       this.Descriptions[index] = "If you torture your prisoner for " + this.Hours[index] + ", you will reduce her sanity by " + (this.SanityNumbers[index] + ClassGlobals.PsychologyGrade * 10).ToString() + "%, and " + this.Notes[index];
@@ -119,7 +119,7 @@ public class HomePrisonerScript : MonoBehaviour
       UILabel optionLabel7 = this.OptionLabels[4];
       optionLabel7.color = new Color(optionLabel7.color.r, optionLabel7.color.g, optionLabel7.color.b, 0.5f);
     }
-    if ((double) this.Sanity > 0.0)
+    if (this.Sanity > 0)
     {
       this.OptionLabels[5].text = "?????";
       UILabel optionLabel = this.OptionLabels[5];
@@ -202,7 +202,7 @@ public class HomePrisonerScript : MonoBehaviour
     }
     if (Input.GetKeyDown(KeyCode.X))
     {
-      this.Sanity = 0.0f;
+      this.Sanity = 0;
       StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity);
       this.SanityLabel.text = "Sanity: " + this.Sanity.ToString("f0") + "%";
       this.Prisoner.UpdateSanity();
@@ -310,7 +310,7 @@ public class HomePrisonerScript : MonoBehaviour
         }
         else
           SceneManager.LoadScene("LoadingScene");
-        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 2f - (float) (ClassGlobals.PsychologyGrade * 10));
+        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 2 - ClassGlobals.PsychologyGrade * 10);
       }
       else if (this.ID == 2)
       {
@@ -319,13 +319,13 @@ public class HomePrisonerScript : MonoBehaviour
         if (DateGlobals.Weekday == DayOfWeek.Sunday)
           DateGlobals.ForceSkip = true;
         SceneManager.LoadScene("CalendarScene");
-        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 8f - (float) (ClassGlobals.PsychologyGrade * 10));
+        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 8 - ClassGlobals.PsychologyGrade * 10);
       }
       else if (this.ID == 3)
       {
         HomeGlobals.Night = true;
         SceneManager.LoadScene("HomeScene");
-        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 24f - (float) (ClassGlobals.PsychologyGrade * 10));
+        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 24 - ClassGlobals.PsychologyGrade * 10);
         PlayerGlobals.Reputation -= 20f;
       }
       else if (this.ID == 4)
@@ -337,10 +337,10 @@ public class HomePrisonerScript : MonoBehaviour
         else
           PlayerGlobals.Reputation -= 20f;
         SceneManager.LoadScene("CalendarScene");
-        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 36f - (float) (ClassGlobals.PsychologyGrade * 10));
+        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, this.Sanity - 36 - ClassGlobals.PsychologyGrade * 10);
       }
       if ((double) StudentGlobals.GetStudentSanity(this.PrisonerManager.StudentID) < 0.0)
-        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, 0.0f);
+        StudentGlobals.SetStudentSanity(this.PrisonerManager.StudentID, 0);
       Debug.Log((object) ("And now, StudentGlobals.GetStudentSanity is: " + StudentGlobals.GetStudentSanity(this.PrisonerManager.StudentID).ToString()));
     }
   }

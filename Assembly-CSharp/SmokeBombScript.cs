@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SmokeBombScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -109,19 +109,32 @@ public class SmokeBombScript : MonoBehaviour
       Student.PuzzleTimer = 0.0f;
       Student.DropPuzzle();
     }
-    Student.CurrentDestination = Student.StudentManager.GoAwaySpots.List[Student.StudentID];
-    Student.Pathfinding.target = Student.StudentManager.GoAwaySpots.List[Student.StudentID];
-    Student.Pathfinding.canSearch = true;
-    Student.Pathfinding.canMove = true;
-    Student.CharacterAnimation.CrossFade(Student.SprintAnim);
-    Student.DistanceToDestination = 100f;
-    Student.Pathfinding.speed = 4f;
-    Student.AmnesiaTimer = 10f;
+    if (Student.InEvent && Student.StinkBombSpecialCase > 0)
+    {
+      Debug.Log((object) "Hit a student who was in an event with a stink bomb special case.");
+      Student.Subtitle.CustomText = "Ew! Something STINKS! Gonna hold my breath until it's gone...";
+      Student.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+      Student.CharacterAnimation.CrossFade("f02_idleShame_00");
+      Student.Pathfinding.canSearch = false;
+      Student.Pathfinding.canMove = false;
+      Student.StinkBombSpecialCase = 2;
+    }
+    else
+    {
+      Student.CurrentDestination = Student.StudentManager.GoAwaySpots.List[Student.StudentID];
+      Student.Pathfinding.target = Student.StudentManager.GoAwaySpots.List[Student.StudentID];
+      Student.Pathfinding.canSearch = true;
+      Student.Pathfinding.canMove = true;
+      Student.CharacterAnimation.CrossFade(Student.SprintAnim);
+      Student.DistanceToDestination = 100f;
+      Student.Pathfinding.speed = 4f;
+      Student.AmnesiaTimer = 10f;
+      Student.GoAway = true;
+    }
     Student.FocusOnYandere = false;
     Student.Distracted = true;
     Student.Alarmed = false;
     Student.Routine = false;
-    Student.GoAway = true;
     if (this.BigStink)
       Student.GoAwayLimit = 60f;
     Student.AlarmTimer = 0.0f;

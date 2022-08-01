@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMondayBeforeClassEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -198,7 +198,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
     this.Bentos[2].GetComponent<PromptScript>().enabled = true;
     if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
       UnityEngine.Object.Destroy((UnityEngine.Object) this.VoiceClip);
-    if (!this.Rival.Alarmed && !this.Rival.Electrified && !this.Rival.Splashed)
+    if (!this.Rival.Alarmed && !this.Rival.Electrified && !this.Rival.Splashed && (UnityEngine.Object) this.Rival.Hunter == (UnityEngine.Object) null)
     {
       this.Rival.CurrentDestination = this.Rival.Destinations[this.Rival.Phase];
       this.Rival.Pathfinding.target = this.Rival.Destinations[this.Rival.Phase];

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMondayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -91,8 +91,9 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
         if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
         {
           this.Friend.FocusOnYandere = false;
-          this.Friend.InEvent = true;
+          this.Friend.CanTalk = false;
           this.Friend.EmptyHands();
+          this.Friend.SpeechLines.Stop();
         }
         this.Yandere.PauseScreen.Hint.Show = true;
         this.Yandere.PauseScreen.Hint.QuickID = 7;
@@ -107,8 +108,11 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
         this.EventSubtitle.text = this.SpeechText[this.SpeechPhase];
         ++this.SpeechPhase;
         AudioClipPlayer.Play(this.SpeechClip[0], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
+        this.Rival.CharacterAnimation["f02_pondering_00"].speed = 2f;
         this.Rival.CharacterAnimation.CrossFade("f02_pondering_00");
         this.Epicenter.position = this.Rival.transform.position;
+        this.Rival.Pathfinding.canSearch = false;
+        this.Rival.Pathfinding.canMove = false;
         ++this.Phase;
       }
     }
@@ -134,6 +138,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
         this.Bento[2].gameObject.SetActive(false);
         if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
         {
+          this.Rival.FollowTargetDestination.localPosition = new Vector3(0.0f, 0.0f, -0.5f);
           this.Friend.Pathfinding.target = this.Rival.FollowTargetDestination;
           this.Friend.CurrentDestination = this.Rival.FollowTargetDestination;
         }
@@ -358,6 +363,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 
   private void SettleFriend()
   {
+    Debug.Log((object) "SettleFriend() is running.");
     this.Friend.MoveTowardsTarget(this.Location[3].position);
     if ((double) Quaternion.Angle(this.Friend.transform.rotation, this.Location[3].rotation) <= 1.0)
       return;
@@ -411,6 +417,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
       {
         this.Friend.Pathfinding.canSearch = true;
         this.Friend.Pathfinding.canMove = true;
+        this.Friend.CanTalk = true;
         this.Friend.Routine = true;
       }
       this.Friend.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;

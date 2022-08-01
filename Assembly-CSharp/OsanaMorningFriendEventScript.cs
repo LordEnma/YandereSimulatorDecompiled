@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMorningFriendEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -262,8 +262,16 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
       {
         this.Friend.CharacterAnimation.CrossFade(this.Friend.WalkAnim);
         this.Friend.DistanceToDestination = 100f;
-        this.Friend.CurrentDestination = this.Rival.FollowTargetDestination;
-        this.Friend.Pathfinding.target = this.Rival.FollowTargetDestination;
+        if (!this.LosingFriend)
+        {
+          this.Friend.CurrentDestination = this.Rival.FollowTargetDestination;
+          this.Friend.Pathfinding.target = this.Rival.FollowTargetDestination;
+        }
+        else
+        {
+          this.Friend.CurrentDestination = this.Friend.Destinations[this.Friend.Phase];
+          this.Friend.Pathfinding.target = this.Friend.Destinations[this.Friend.Phase];
+        }
         this.Friend.Pathfinding.canSearch = true;
         this.Friend.Pathfinding.canMove = true;
         this.Friend.Routine = true;

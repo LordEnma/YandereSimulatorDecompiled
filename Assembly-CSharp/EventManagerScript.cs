@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EventManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -141,15 +141,22 @@ public class EventManagerScript : MonoBehaviour
           this.EventStudent[2].Pathfinding.target = this.EventLocation[2];
           this.EventStudent[2].EventManager = this;
         }
-        else
+        else if (this.EventStudent[1].Pathfinding.canMove)
         {
-          if (this.EventStudent[1].Pathfinding.canMove)
+          if ((double) this.EventStudent[1].Pathfinding.speed == 1.0)
             this.EventStudent[1].CharacterAnimation.CrossFade(this.EventStudent[1].WalkAnim);
-          if ((double) this.EventStudent[2].DistanceToDestination > 1.0)
-            this.EventStudent[2].CharacterAnimation.CrossFade(this.EventStudent[2].WalkAnim);
-          this.EventStudent[2].CurrentDestination = this.EventStudent[1].FollowTargetDestination;
-          this.EventStudent[2].Pathfinding.target = this.EventStudent[1].FollowTargetDestination;
+          else
+            this.EventStudent[1].CharacterAnimation.CrossFade(this.EventStudent[1].SprintAnim);
         }
+        if ((double) this.EventStudent[2].DistanceToDestination > 1.0 && this.EventStudent[2].Pathfinding.canMove)
+        {
+          if ((double) this.EventStudent[2].Pathfinding.speed == 1.0)
+            this.EventStudent[2].CharacterAnimation.CrossFade(this.EventStudent[2].WalkAnim);
+          else
+            this.EventStudent[2].CharacterAnimation.CrossFade(this.EventStudent[2].SprintAnim);
+        }
+        this.EventStudent[2].CurrentDestination = this.EventStudent[1].FollowTargetDestination;
+        this.EventStudent[2].Pathfinding.target = this.EventStudent[1].FollowTargetDestination;
       }
       else
       {

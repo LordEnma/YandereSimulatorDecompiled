@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BookbagScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -36,35 +36,9 @@ public class BookbagScript : MonoBehaviour
       {
         this.Prompt.Circle[0].fillAmount = 1f;
         if ((Object) this.ConcealedPickup == (Object) null)
-        {
-          if (this.Prompt.Yandere.PickUp.OpenFlame)
-          {
-            this.Prompt.Yandere.NotificationManager.CustomText = "That's too dangerous!";
-            this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-          }
-          else if ((Object) this.Prompt.Yandere.PickUp.TrashCan == (Object) null && !this.Prompt.Yandere.PickUp.JerryCan && !(bool) (Object) this.Prompt.Yandere.PickUp.Mop && !(bool) (Object) this.Prompt.Yandere.PickUp.Bucket && !this.Prompt.Yandere.PickUp.Bleach && !this.Prompt.Yandere.PickUp.TooBig)
-          {
-            this.ConcealedPickup = this.Prompt.Yandere.PickUp;
-            this.ConcealedPickup.InsideBookbag = true;
-            this.ConcealedPickup.Drop();
-            this.ConcealedPickup.gameObject.SetActive(false);
-            this.Prompt.Label[0].text = !(this.ConcealedPickup.Prompt.Text[3] != "") ? "     Retrieve " + this.ConcealedPickup.name : "     Retrieve " + this.ConcealedPickup.Prompt.Text[3];
-          }
-          else
-          {
-            this.Prompt.Yandere.NotificationManager.CustomText = "That wouldn't fit!";
-            this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-          }
-        }
+          this.TryToStashItem();
         else
-        {
-          this.ConcealedPickup.transform.position = this.transform.position;
-          this.ConcealedPickup.gameObject.SetActive(true);
-          this.ConcealedPickup.Prompt.Circle[3].fillAmount = -1f;
-          this.ConcealedPickup.InsideBookbag = false;
-          this.ConcealedPickup = (PickUpScript) null;
-          this.Prompt.Label[0].text = "     Conceal Item";
-        }
+          this.RemoveContents();
       }
     }
     else
@@ -72,6 +46,45 @@ public class BookbagScript : MonoBehaviour
     if ((double) this.Prompt.Circle[3].fillAmount != 0.0)
       return;
     this.Wear();
+  }
+
+  public void TryToStashItem()
+  {
+    if (this.Prompt.Yandere.PickUp.OpenFlame)
+    {
+      this.Prompt.Yandere.NotificationManager.CustomText = "That's too dangerous!";
+      this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+    }
+    else if ((Object) this.Prompt.Yandere.PickUp.TrashCan == (Object) null && !this.Prompt.Yandere.PickUp.JerryCan && !(bool) (Object) this.Prompt.Yandere.PickUp.Mop && !(bool) (Object) this.Prompt.Yandere.PickUp.Bucket && !this.Prompt.Yandere.PickUp.Bleach && !this.Prompt.Yandere.PickUp.TooBig)
+    {
+      this.Prompt.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0.0f;
+      this.Prompt.Yandere.ReachWeight = 1f;
+      this.ConcealedPickup = this.Prompt.Yandere.PickUp;
+      this.ConcealedPickup.InsideBookbag = true;
+      this.ConcealedPickup.Drop();
+      this.ConcealedPickup.gameObject.SetActive(false);
+      if (this.ConcealedPickup.Prompt.Text[3] != "")
+        this.Prompt.Label[0].text = "     Retrieve " + this.ConcealedPickup.Prompt.Text[3];
+      else
+        this.Prompt.Label[0].text = "     Retrieve " + this.ConcealedPickup.name;
+    }
+    else
+    {
+      this.Prompt.Yandere.NotificationManager.CustomText = "That wouldn't fit!";
+      this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+    }
+  }
+
+  public void RemoveContents()
+  {
+    this.Prompt.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0.0f;
+    this.Prompt.Yandere.ReachWeight = 1f;
+    this.ConcealedPickup.transform.position = this.transform.position;
+    this.ConcealedPickup.gameObject.SetActive(true);
+    this.ConcealedPickup.Prompt.Circle[3].fillAmount = -1f;
+    this.ConcealedPickup.InsideBookbag = false;
+    this.ConcealedPickup = (PickUpScript) null;
+    this.Prompt.Label[0].text = "     Conceal Item";
   }
 
   public void Drop()

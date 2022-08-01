@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DropsScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -95,7 +95,7 @@ public class DropsScript : MonoBehaviour
             this.UpdateDesc();
             component.clip = this.InfoPurchase;
             component.Play();
-            if (this.Selected == 2)
+            if (this.Selected == 2 && SchemeGlobals.GetSchemeStage(3) < 2)
             {
               SchemeGlobals.SetSchemeStage(3, 2);
               this.Schemes.UpdateInstructions();

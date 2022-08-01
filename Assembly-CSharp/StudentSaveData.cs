@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentSaveData
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -125,7 +125,7 @@ public class StudentSaveData
     foreach (int num in StudentGlobals.KeysOfStudentReputation())
       studentSaveData.studentReputation.Add(num, StudentGlobals.GetStudentReputation(num));
     foreach (int num in StudentGlobals.KeysOfStudentSanity())
-      studentSaveData.studentSanity.Add(num, StudentGlobals.GetStudentSanity(num));
+      studentSaveData.studentSanity.Add(num, (float) StudentGlobals.GetStudentSanity(num));
     return studentSaveData;
   }
 
@@ -177,7 +177,5 @@ public class StudentSaveData
       StudentGlobals.SetStudentReplaced(studentID, true);
     foreach (KeyValuePair<int, int> keyValuePair in (Dictionary<int, int>) data.studentReputation)
       StudentGlobals.SetStudentReputation(keyValuePair.Key, keyValuePair.Value);
-    foreach (KeyValuePair<int, float> keyValuePair in (Dictionary<int, float>) data.studentSanity)
-      StudentGlobals.SetStudentSanity(keyValuePair.Key, keyValuePair.Value);
   }
 }

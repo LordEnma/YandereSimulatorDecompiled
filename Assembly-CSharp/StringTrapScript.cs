@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StringTrapScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -21,13 +21,15 @@ public class StringTrapScript : MonoBehaviour
   public Transform[] PuddleSpawn;
   public Transform Spawn;
 
-  private void OnTriggerEnter(Collider other)
+  private void OnTriggerStay(Collider other)
   {
     if (other.gameObject.layer != 9)
       return;
     Debug.Log((object) "A character just came into contact with a tripwire trap!");
     StudentScript component = other.gameObject.GetComponent<StudentScript>();
-    if ((Object) component != (Object) null && component.Club == ClubType.Council || (Object) component != (Object) null && component.Teacher)
+    if (!((Object) component != (Object) null) || component.ClubActivityPhase >= 16)
+      return;
+    if (component.Club == ClubType.Council || (Object) component != (Object) null && component.Teacher)
     {
       this.WaterCooler.Yandere.NotificationManager.CustomText = "Tripwire Trap Dismantled!";
       this.WaterCooler.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);

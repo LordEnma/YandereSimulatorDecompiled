@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: IncineratorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -108,7 +108,15 @@ public class IncineratorScript : MonoBehaviour
       if (!this.YandereHoldingEvidence)
         this.YandereHoldingEvidence = (Object) this.Yandere.PickUp != (Object) null && (this.Yandere.PickUp.Evidence || this.Yandere.PickUp.Garbage);
       if (!this.YandereHoldingEvidence)
-        this.YandereHoldingEvidence = (Object) this.Yandere.EquippedWeapon != (Object) null && this.Yandere.EquippedWeapon.Bloody;
+      {
+        if ((Object) this.Yandere.EquippedWeapon != (Object) null)
+        {
+          if (this.Yandere.EquippedWeapon.Bloody || this.Yandere.EquippedWeapon.MurderWeapon)
+            this.YandereHoldingEvidence = true;
+        }
+        else
+          this.YandereHoldingEvidence = false;
+      }
       if (!this.YandereHoldingEvidence)
       {
         if (!this.Prompt.HideButton[3])

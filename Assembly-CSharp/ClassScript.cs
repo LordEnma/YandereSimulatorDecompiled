@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClassScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -32,6 +32,7 @@ public class ClassScript : MonoBehaviour
   public string[] Subject3GradeTextEighties;
   public string[] Subject4GradeText;
   public string[] Subject5GradeText;
+  public Transform WarningWindow;
   public Transform GradeUpWindow;
   public Transform Highlight;
   public int[] SubjectTemp;
@@ -42,6 +43,7 @@ public class ClassScript : MonoBehaviour
   public int StudyPoints;
   public int Selected;
   public int Grade;
+  public bool ShowWarning;
   public bool GradeUp;
   public bool Show;
   public int Biology;
@@ -151,69 +153,91 @@ public class ClassScript : MonoBehaviour
     if (this.Show)
     {
       this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0.0f, Time.deltaTime);
-      if ((double) this.Darkness.alpha != 0.0)
-        return;
-      if (!this.Portal.Yandere.NoDebug)
+      if ((double) this.Darkness.alpha == 0.0)
       {
-        if (Input.GetKeyDown(KeyCode.Backslash))
-          this.GivePoints();
-        if (Input.GetKeyDown(KeyCode.P))
-          this.MaxPhysical();
+        if (!this.Portal.Yandere.NoDebug)
+        {
+          if (Input.GetKeyDown(KeyCode.Backslash))
+            this.GivePoints();
+          if (Input.GetKeyDown(KeyCode.P))
+            this.MaxPhysical();
+        }
+        if (!this.ShowWarning)
+        {
+          if (this.InputManager.TappedDown)
+          {
+            ++this.Selected;
+            if (this.Selected > 5)
+              this.Selected = 1;
+            this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (375.0 - 125.0 * (double) this.Selected), this.Highlight.localPosition.z);
+            this.DescLabel.text = this.Desc[this.Selected];
+            this.UpdateSubjectLabels();
+          }
+          if (this.InputManager.TappedUp)
+          {
+            --this.Selected;
+            if (this.Selected < 1)
+              this.Selected = 5;
+            this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (375.0 - 125.0 * (double) this.Selected), this.Highlight.localPosition.z);
+            this.DescLabel.text = this.Desc[this.Selected];
+            this.UpdateSubjectLabels();
+          }
+          if (this.InputManager.TappedRight)
+            this.AddStudyPoints();
+          if (this.InputManager.TappedLeft)
+            this.SubtractStudyPoints();
+          if ((double) Input.GetAxisRaw("DpadX") > 0.5 || (double) Input.GetAxisRaw("Horizontal") > 0.5)
+          {
+            this.HoldRightTimer += Time.deltaTime;
+            if ((double) this.HoldRightTimer > 0.5)
+              this.AddStudyPoints();
+          }
+          else
+            this.HoldRightTimer = 0.0f;
+          if ((double) Input.GetAxisRaw("DpadX") < -0.5 || (double) Input.GetAxisRaw("Horizontal") < -0.5)
+          {
+            this.HoldLeftTimer += Time.deltaTime;
+            if ((double) this.HoldLeftTimer > 0.5)
+              this.SubtractStudyPoints();
+          }
+          else
+            this.HoldLeftTimer = 0.0f;
+          if (Input.GetButtonDown("A"))
+          {
+            if (this.StudyPoints == 0)
+            {
+              this.ExitClass();
+            }
+            else
+            {
+              this.ShowWarning = true;
+              this.PromptBar.ClearButtons();
+              this.PromptBar.Label[0].text = "Finish Class";
+              this.PromptBar.Label[1].text = "Allocate Points";
+              this.PromptBar.UpdateButtons();
+            }
+          }
+        }
+        else if ((double) this.WarningWindow.localScale.x > 0.899999976158142)
+        {
+          if (Input.GetButtonDown("A"))
+            this.ExitClass();
+          if (Input.GetButtonDown("B"))
+          {
+            this.PromptBar.ClearButtons();
+            this.PromptBar.Label[0].text = "Finish Class";
+            this.PromptBar.Label[4].text = "Choose";
+            this.PromptBar.Label[5].text = "Allocate";
+            this.PromptBar.UpdateButtons();
+            this.PromptBar.Show = true;
+            this.ShowWarning = false;
+          }
+        }
       }
-      if (this.InputManager.TappedDown)
-      {
-        ++this.Selected;
-        if (this.Selected > 5)
-          this.Selected = 1;
-        this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (375.0 - 125.0 * (double) this.Selected), this.Highlight.localPosition.z);
-        this.DescLabel.text = this.Desc[this.Selected];
-        this.UpdateSubjectLabels();
-      }
-      if (this.InputManager.TappedUp)
-      {
-        --this.Selected;
-        if (this.Selected < 1)
-          this.Selected = 5;
-        this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (375.0 - 125.0 * (double) this.Selected), this.Highlight.localPosition.z);
-        this.DescLabel.text = this.Desc[this.Selected];
-        this.UpdateSubjectLabels();
-      }
-      if (this.InputManager.TappedRight)
-        this.AddStudyPoints();
-      if (this.InputManager.TappedLeft)
-        this.SubtractStudyPoints();
-      if ((double) Input.GetAxisRaw("DpadX") > 0.5 || (double) Input.GetAxisRaw("Horizontal") > 0.5)
-      {
-        this.HoldRightTimer += Time.deltaTime;
-        if ((double) this.HoldRightTimer > 0.5)
-          this.AddStudyPoints();
-      }
+      if (this.ShowWarning)
+        this.WarningWindow.localScale = Vector3.Lerp(this.WarningWindow.localScale, Vector3.one, Time.deltaTime * 10f);
       else
-        this.HoldRightTimer = 0.0f;
-      if ((double) Input.GetAxisRaw("DpadX") < -0.5 || (double) Input.GetAxisRaw("Horizontal") < -0.5)
-      {
-        this.HoldLeftTimer += Time.deltaTime;
-        if ((double) this.HoldLeftTimer > 0.5)
-          this.SubtractStudyPoints();
-      }
-      else
-        this.HoldLeftTimer = 0.0f;
-      if (!Input.GetButtonDown("A"))
-        return;
-      this.Show = false;
-      this.PromptBar.ClearButtons();
-      this.PromptBar.Show = false;
-      this.Biology = this.Subject[1] + this.SubjectTemp[1];
-      this.Chemistry = this.Subject[2] + this.SubjectTemp[2];
-      this.Language = this.Subject[3] + this.SubjectTemp[3];
-      this.Physical = this.Subject[4] + this.SubjectTemp[4];
-      this.Psychology = this.Subject[5] + this.SubjectTemp[5];
-      for (int index = 0; index < 6; ++index)
-      {
-        this.Subject[index] += this.SubjectTemp[index];
-        this.SubjectTemp[index] = 0;
-      }
-      this.CheckForGradeUp();
+        this.WarningWindow.localScale = Vector3.Lerp(this.WarningWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
     }
     else
     {
@@ -310,12 +334,7 @@ public class ClassScript : MonoBehaviour
     this.SubjectLabels[this.Selected].color = new Color(1f, 1f, 1f, 1f);
   }
 
-  public void UpdateLabel()
-  {
-    this.StudyPointsLabel.text = "STUDY POINTS: " + this.StudyPoints.ToString();
-    this.PromptBar.Label[0].text = "Confirm";
-    this.PromptBar.UpdateButtons();
-  }
+  public void UpdateLabel() => this.StudyPointsLabel.text = "STUDY POINTS: " + this.StudyPoints.ToString();
 
   private void UpdateBars()
   {
@@ -608,5 +627,25 @@ public class ClassScript : MonoBehaviour
     ++this.StudyPoints;
     this.UpdateLabel();
     this.UpdateBars();
+  }
+
+  private void ExitClass()
+  {
+    this.WarningWindow.localScale = Vector3.zero;
+    this.ShowWarning = false;
+    this.Show = false;
+    this.PromptBar.ClearButtons();
+    this.PromptBar.Show = false;
+    this.Biology = this.Subject[1] + this.SubjectTemp[1];
+    this.Chemistry = this.Subject[2] + this.SubjectTemp[2];
+    this.Language = this.Subject[3] + this.SubjectTemp[3];
+    this.Physical = this.Subject[4] + this.SubjectTemp[4];
+    this.Psychology = this.Subject[5] + this.SubjectTemp[5];
+    for (int index = 0; index < 6; ++index)
+    {
+      this.Subject[index] += this.SubjectTemp[index];
+      this.SubjectTemp[index] = 0;
+    }
+    this.CheckForGradeUp();
   }
 }

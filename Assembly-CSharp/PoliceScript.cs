@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PoliceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -271,27 +271,31 @@ public class PoliceScript : MonoBehaviour
       }
       this.PauseScreen.Panel.alpha = Mathf.MoveTowards(this.PauseScreen.Panel.alpha, 0.0f, Time.deltaTime);
       this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      if ((double) this.Darkness.color.a >= 1.0 && !this.ShowResults)
+      if ((double) this.Darkness.color.a > 0.999000012874603)
       {
-        this.HeartbeatCamera.SetActive(false);
-        this.DetectionCamera.SetActive(false);
-        if (this.ClubActivity)
+        this.Darkness.alpha = 1f;
+        if (!this.ShowResults)
         {
-          this.ClubManager.Club = this.Yandere.Club;
-          this.ClubManager.ClubActivity();
-          this.FadeOut = false;
+          this.HeartbeatCamera.SetActive(false);
+          this.DetectionCamera.SetActive(false);
+          if (this.ClubActivity)
+          {
+            this.ClubManager.Club = this.Yandere.Club;
+            this.ClubManager.ClubActivity();
+            this.FadeOut = false;
+          }
+          else
+          {
+            this.Yandere.MyController.enabled = false;
+            this.Yandere.enabled = false;
+            this.DetermineResults();
+            this.ShowResults = true;
+            Time.timeScale = 2f;
+            this.Jukebox.Volume = 0.0f;
+          }
+          if (this.GenocideEnding)
+            SceneManager.LoadScene("GenocideScene");
         }
-        else
-        {
-          this.Yandere.MyController.enabled = false;
-          this.Yandere.enabled = false;
-          this.DetermineResults();
-          this.ShowResults = true;
-          Time.timeScale = 2f;
-          this.Jukebox.Volume = 0.0f;
-        }
-        if (this.GenocideEnding)
-          SceneManager.LoadScene("GenocideScene");
       }
     }
     if (this.ShowResults)
@@ -746,12 +750,12 @@ public class PoliceScript : MonoBehaviour
     if (this.Deaths > 0)
     {
       PlayerGlobals.Kills += this.Deaths;
-      Debug.Log((object) "There were deaths at school today. As a result, PlayerGlobals.Kills is being incremented.");
+      Debug.Log((object) ("There were " + this.Deaths.ToString() + " deaths at school today. As a result, PlayerGlobals.Kills is being incremented."));
       for (int studentID = 2; studentID < this.StudentManager.NPCsTotal + 1; ++studentID)
       {
-        if (StudentGlobals.GetStudentDying(studentID) || (UnityEngine.Object) this.StudentManager.Students[studentID] != (UnityEngine.Object) null && !this.StudentManager.Students[studentID].Alive)
+        if (StudentGlobals.GetStudentDying(studentID) && !StudentGlobals.GetStudentDead(studentID) || (UnityEngine.Object) this.StudentManager.Students[studentID] != (UnityEngine.Object) null && !this.StudentManager.Students[studentID].Alive)
         {
-          Debug.Log((object) "Subtracting 10% school atmosphere because someone died.");
+          Debug.Log((object) "Subtracting 10% school atmosphere because someone died. Atmosphere will go down further if everyone *knows* they are dead.");
           SchoolGlobals.SchoolAtmosphere -= 0.1f;
           if (this.JSON.Students[studentID].Club == ClubType.Council)
           {
@@ -768,7 +772,11 @@ public class PoliceScript : MonoBehaviour
           StudentGlobals.SetStudentGrudge(studentID, false);
         }
       }
-      SchoolGlobals.SchoolAtmosphere -= (float) this.Corpses * 0.1f;
+      if (this.Corpses > 0)
+      {
+        Debug.Log((object) ("Subtracting " + (this.Corpses * 10).ToString() + "% school atmosphere because " + this.Corpses.ToString() + " murders are confirmed."));
+        SchoolGlobals.SchoolAtmosphere -= (float) this.Corpses * 0.1f;
+      }
       if (this.DrownVictims + this.Corpses > 0)
       {
         foreach (RagdollScript corpse in this.CorpseList)

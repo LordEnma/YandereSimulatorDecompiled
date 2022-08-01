@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentInfoMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -247,36 +247,39 @@ public class StudentInfoMenuScript : MonoBehaviour
         this.PromptBar.Show = true;
       }
     }
-    float t = Time.unscaledDeltaTime * 10f;
-    this.PortraitGrid.localPosition = new Vector3(this.PortraitGrid.localPosition.x, Mathf.Lerp(this.PortraitGrid.localPosition.y, 320f * (this.Row % 2 == 0 ? (float) (this.Row / 2) : (float) ((this.Row - 1) / 2)), t), this.PortraitGrid.localPosition.z);
-    this.Scrollbar.localPosition = new Vector3(this.Scrollbar.localPosition.x, Mathf.Lerp(this.Scrollbar.localPosition.y, (float) (175.0 - 350.0 * ((double) this.PortraitGrid.localPosition.y / 2880.0)), t), this.Scrollbar.localPosition.z);
-    if (this.InputManager.TappedUp)
+    else
     {
-      --this.Row;
-      if (this.Row < 0)
-        this.Row = this.Rows - 1;
-      this.UpdateHighlight();
-    }
-    if (this.InputManager.TappedDown)
-    {
-      ++this.Row;
-      if (this.Row > this.Rows - 1)
-        this.Row = 0;
-      this.UpdateHighlight();
-    }
-    if (this.InputManager.TappedRight)
-    {
-      ++this.Column;
-      if (this.Column > this.Columns - 1)
-        this.Column = 0;
-      this.UpdateHighlight();
-    }
-    if (this.InputManager.TappedLeft)
-    {
-      --this.Column;
-      if (this.Column < 0)
-        this.Column = this.Columns - 1;
-      this.UpdateHighlight();
+      float t = Time.unscaledDeltaTime * 10f;
+      this.PortraitGrid.localPosition = new Vector3(this.PortraitGrid.localPosition.x, Mathf.Lerp(this.PortraitGrid.localPosition.y, 320f * (this.Row % 2 == 0 ? (float) (this.Row / 2) : (float) ((this.Row - 1) / 2)), t), this.PortraitGrid.localPosition.z);
+      this.Scrollbar.localPosition = new Vector3(this.Scrollbar.localPosition.x, Mathf.Lerp(this.Scrollbar.localPosition.y, (float) (175.0 - 350.0 * ((double) this.PortraitGrid.localPosition.y / 2880.0)), t), this.Scrollbar.localPosition.z);
+      if (this.InputManager.TappedUp)
+      {
+        --this.Row;
+        if (this.Row < 0)
+          this.Row = this.Rows - 1;
+        this.UpdateHighlight();
+      }
+      if (this.InputManager.TappedDown)
+      {
+        ++this.Row;
+        if (this.Row > this.Rows - 1)
+          this.Row = 0;
+        this.UpdateHighlight();
+      }
+      if (this.InputManager.TappedRight)
+      {
+        ++this.Column;
+        if (this.Column > this.Columns - 1)
+          this.Column = 0;
+        this.UpdateHighlight();
+      }
+      if (this.InputManager.TappedLeft)
+      {
+        --this.Column;
+        if (this.Column < 0)
+          this.Column = this.Columns - 1;
+        this.UpdateHighlight();
+      }
     }
     if (!this.GrabPortraitsNextFrame)
       return;

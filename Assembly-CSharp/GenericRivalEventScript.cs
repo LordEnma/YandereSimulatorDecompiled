@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericRivalEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -1512,6 +1512,7 @@ public class GenericRivalEventScript : MonoBehaviour
             flag1 = true;
           if (flag1 && !this.Senpai.InEvent)
           {
+            Debug.Log((object) (this.gameObject.name + " has begun."));
             this.Senpai.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
             this.Senpai.CharacterAnimation.CrossFade(this.Senpai.WalkAnim);
             this.Senpai.Pathfinding.target = this.Location[1];
@@ -1539,6 +1540,7 @@ public class GenericRivalEventScript : MonoBehaviour
             flag2 = true;
           if (flag2 && !this.Rival.InEvent)
           {
+            Debug.Log((object) "The rival is being put into an event now.");
             this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
             this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
             this.Rival.Pathfinding.target = this.Location[2];
@@ -1596,7 +1598,7 @@ public class GenericRivalEventScript : MonoBehaviour
           }
           if (!((UnityEngine.Object) this.Senpai.CurrentDestination == (UnityEngine.Object) this.Location[1]) || !((UnityEngine.Object) this.Rival.CurrentDestination == (UnityEngine.Object) this.Location[2]) || (double) this.Senpai.DistanceToDestination >= 0.5 || (double) this.Rival.DistanceToDestination >= 0.5 || this.Impatient)
             return;
-          Debug.Log((object) (this.gameObject.name + " has begun."));
+          Debug.Log((object) (this.gameObject.name + " are now talking."));
           this.StartPeriod = this.Clock.Period;
           ++this.Phase;
         }

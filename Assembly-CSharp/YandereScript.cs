@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
@@ -55,6 +55,7 @@ public class YandereScript : MonoBehaviour
   public RagdollScript CurrentRagdoll;
   public StudentScript TargetStudent;
   public WeaponMenuScript WeaponMenu;
+  public UILabel ConcealedItemLabel;
   public PromptScript NearestPrompt;
   public UIPanel YandereVisionPanel;
   public ContainerScript Container;
@@ -794,6 +795,12 @@ public class YandereScript : MonoBehaviour
   public Texture[] VtuberFaces;
   public int VtuberID;
   public float DebugTimer;
+  public RaycastHit corpseHit;
+  public Transform corpseOrigin;
+  public bool TooCloseToWall;
+  public bool WallToRight;
+  public bool WallToLeft;
+  public int Direction;
 
   private void Start()
   {
@@ -1261,7 +1268,12 @@ public class YandereScript : MonoBehaviour
       if (!this.NoDebug)
         this.UpdateDebugFunctionality();
       if (!this.EasterEggMenu.activeInHierarchy && !this.DebugMenu.activeInHierarchy && !this.Aiming && this.CanMove && (double) Time.timeScale > 0.0 && !this.StudentManager.TutorialActive && Input.GetKeyDown(KeyCode.Escape))
+      {
+        this.PauseScreen.QuitLabel.text = "Do you wish to return to the main menu?";
+        this.PauseScreen.YesLabel.text = "Yes";
+        this.PauseScreen.HomeButton.SetActive(false);
         this.PauseScreen.JumpToQuit();
+      }
       if ((double) this.transform.position.y < 0.0)
         this.transform.position = new Vector3(this.transform.position.x, 0.0f, this.transform.position.z);
       if ((double) this.transform.position.z < -99.5)
@@ -1543,7 +1555,7 @@ public class YandereScript : MonoBehaviour
             }
             else
             {
-              this.MainCamera.nearClipPlane = 0.12f;
+              this.MainCamera.nearClipPlane = 0.181f;
               this.HandCamera.nearClipPlane = 0.35f;
               this.Smartphone.nearClipPlane = 0.12f;
             }
@@ -3726,6 +3738,7 @@ public class YandereScript : MonoBehaviour
           this.LeftYandereEye.material.color = new Color(1f, 1f, 1f, 0.0f);
           this.SenpaiShotLabel.text = this.Inventory.SenpaiShots > 0 || this.StudentManager.MissionMode || this.StudentManager.Eighties ? "Speed Up Time" : "Speed Up Time (Requires Photo of Senpai)";
           this.UpdateConcealedWeaponStatus();
+          this.UpdateConcealedItemStatus();
         }
         this.YandereVisionPanel.alpha = Mathf.MoveTowards(this.YandereVisionPanel.alpha, 1f, Time.unscaledDeltaTime * 10f);
       }
@@ -3780,10 +3793,6 @@ public class YandereScript : MonoBehaviour
         {
           if ((Object) this.Container.TrashCan.Item != (Object) null)
           {
-            if ((Object) this.Container.TrashCan.ConcealedWeapon != (Object) null)
-            {
-              WeaponScript concealedWeapon = this.Container.TrashCan.ConcealedWeapon;
-            }
             this.CharacterAnimation["f02_reachForWeapon_00"].time = 0.0f;
             this.ReachWeight = 1f;
             this.Container.TrashCan.RemoveContents();
@@ -3792,6 +3801,16 @@ public class YandereScript : MonoBehaviour
           {
             this.Container.TrashCan.StashItem();
             this.UpdateConcealedWeaponStatus();
+          }
+        }
+        else if ((double) this.ConcealedItemLabel.alpha == 1.0 && Input.GetButtonDown("X"))
+        {
+          if ((Object) this.Bookbag.ConcealedPickup != (Object) null)
+            this.Bookbag.RemoveContents();
+          else if ((Object) this.PickUp != (Object) null)
+          {
+            this.Bookbag.TryToStashItem();
+            this.UpdateConcealedItemStatus();
           }
         }
       }
@@ -4089,6 +4108,7 @@ public class YandereScript : MonoBehaviour
           this.CharacterAnimation.CrossFade(this.IdleAnim);
         if ((double) this.TalkTimer <= 0.0)
         {
+          Debug.Log((object) "The game believes that the protagonist's TalkTimer just reached 0.");
           this.TargetStudent.Interaction = StudentInteractionType.ChangingAppearance;
           this.TargetStudent.TalkTimer = 3f;
           this.Interaction = YandereInteractionType.Idle;
@@ -4282,6 +4302,7 @@ public class YandereScript : MonoBehaviour
         this.CameraTarget.localPosition = new Vector3(0.0f, 1f, 0.0f);
         this.TargetStudent.DeathType = DeathType.Falling;
         this.SplashCamera.transform.parent = (Transform) null;
+        this.FollowHips = false;
         this.Attacking = false;
         this.RoofPush = false;
         this.CanMove = true;
@@ -5344,6 +5365,7 @@ public class YandereScript : MonoBehaviour
     for (this.ID = 1; this.ID < this.Poisons.Length; ++this.ID)
       this.Poisons[this.ID].SetActive(false);
     this.Mopping = false;
+    this.UpdateConcealedItemStatus();
   }
 
   public void UpdateNumbness() => this.Numbness = (float) (1.0 - 0.100000001490116 * (double) (this.Class.Numbness + this.Class.NumbnessBonus + this.Class.PsychologyGrade + this.Class.PsychologyBonus));
@@ -6728,7 +6750,29 @@ public class YandereScript : MonoBehaviour
   {
     this.CurrentRagdoll = (RagdollScript) null;
     if ((Object) this.Ragdoll != (Object) null)
+    {
+      this.TooCloseToWall = false;
+      this.WallToRight = false;
+      this.WallToLeft = false;
+      this.Direction = 0;
+      while (this.Direction < 3)
+      {
+        ++this.Direction;
+        this.CheckForWall();
+      }
+      if (this.TooCloseToWall)
+      {
+        this.Ragdoll.transform.position = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z);
+        if (this.WallToRight && this.WallToLeft)
+          this.Ragdoll.transform.Translate(this.transform.worldToLocalMatrix.MultiplyVector(this.transform.forward * -0.5f));
+        else if (this.WallToRight)
+          this.Ragdoll.transform.Translate(this.transform.worldToLocalMatrix.MultiplyVector(this.transform.right * -0.5f));
+        else if (this.WallToLeft)
+          this.Ragdoll.transform.Translate(this.transform.worldToLocalMatrix.MultiplyVector(this.transform.right * 0.5f));
+        Physics.SyncTransforms();
+      }
       this.Ragdoll.GetComponent<RagdollScript>().Fall();
+    }
     this.HeavyWeight = false;
     this.Carrying = false;
     this.IdleAnim = this.OriginalIdleAnim;
@@ -7054,18 +7098,6 @@ public class YandereScript : MonoBehaviour
     this.MyRenderer.SetBlendShapeWeight(12, 100f);
   }
 
-  public void VtuberFace()
-  {
-    if (this.Egg)
-      return;
-    this.LoseGentleEyes();
-    this.MyRenderer.SetBlendShapeWeight(0, 100f);
-    this.MyRenderer.SetBlendShapeWeight(5, 0.0f);
-    this.MyRenderer.SetBlendShapeWeight(8, 0.0f);
-    this.MyRenderer.SetBlendShapeWeight(9, 100f);
-    this.MyRenderer.SetBlendShapeWeight(12, 0.0f);
-  }
-
   public void UpdateConcealedWeaponStatus()
   {
     this.ConcealedWeaponLabel.alpha = 0.5f;
@@ -7083,6 +7115,37 @@ public class YandereScript : MonoBehaviour
       this.ConcealedWeaponLabel.text = "Conceal Weapon In Bag";
       this.ConcealedWeaponLabel.alpha = 1f;
     }
+  }
+
+  public void UpdateConcealedItemStatus()
+  {
+    this.ConcealedItemLabel.alpha = 0.5f;
+    if (!((Object) this.Bookbag != (Object) null))
+      return;
+    if ((Object) this.Bookbag.ConcealedPickup != (Object) null)
+    {
+      this.ConcealedItemLabel.text = "Equip Item From Bookbag";
+      this.ConcealedItemLabel.alpha = 1f;
+    }
+    else
+    {
+      if (!((Object) this.PickUp != (Object) null))
+        return;
+      this.ConcealedItemLabel.text = "Conceal Item In Bookbag";
+      this.ConcealedItemLabel.alpha = 1f;
+    }
+  }
+
+  public void VtuberFace()
+  {
+    if (this.Egg)
+      return;
+    this.LoseGentleEyes();
+    this.MyRenderer.SetBlendShapeWeight(0, 100f);
+    this.MyRenderer.SetBlendShapeWeight(5, 0.0f);
+    this.MyRenderer.SetBlendShapeWeight(8, 0.0f);
+    this.MyRenderer.SetBlendShapeWeight(9, 100f);
+    this.MyRenderer.SetBlendShapeWeight(12, 0.0f);
   }
 
   public void VtuberCheck()
@@ -7127,5 +7190,34 @@ public class YandereScript : MonoBehaviour
     this.Hairstyle = this.StudentManager.Eighties ? 203 : 1;
     this.UpdateHair();
     this.PantyAttacher.newRenderer.enabled = !this.Invisible;
+  }
+
+  public int OnlyDefault => 1;
+
+  private void CheckForWall()
+  {
+    Vector3 direction = Vector3.zero;
+    this.corpseOrigin = this.Hips;
+    if (this.Direction == 1)
+      direction = this.corpseOrigin.TransformDirection(this.transform.worldToLocalMatrix.MultiplyVector(this.transform.forward));
+    else if (this.Direction == 2)
+      direction = this.corpseOrigin.TransformDirection(this.transform.worldToLocalMatrix.MultiplyVector(this.transform.right));
+    else if (this.Direction == 3)
+      direction = this.corpseOrigin.TransformDirection(this.transform.worldToLocalMatrix.MultiplyVector(this.transform.right * -1f));
+    if (!Physics.Raycast(this.corpseOrigin.position, direction, out this.corpseHit, 1f, this.OnlyDefault))
+      return;
+    if (this.Direction == 1)
+      Debug.Log((object) "Wall in front!");
+    else if (this.Direction == 2)
+    {
+      Debug.Log((object) "Wall to the right!");
+      this.WallToRight = true;
+    }
+    else if (this.Direction == 3)
+    {
+      Debug.Log((object) "Wall to the left!");
+      this.WallToLeft = true;
+    }
+    this.TooCloseToWall = true;
   }
 }

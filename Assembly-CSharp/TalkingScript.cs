@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TalkingScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -92,10 +92,23 @@ public class TalkingScript : MonoBehaviour
             this.S.RepRecovery += 2.5f;
           this.S.PendingRep += this.S.RepRecovery;
           this.S.Reputation.PendingRep += this.S.RepRecovery;
-          for (this.S.ID = 0; this.S.ID < this.S.Outlines.Length; ++this.S.ID)
+          Debug.Log((object) "Time to change this student's outlines!");
+          for (int index = 0; index < this.S.Outlines.Length; ++index)
           {
-            if ((Object) this.S.Outlines[this.S.ID] != (Object) null)
-              this.S.Outlines[this.S.ID].color = new Color(0.0f, 1f, 0.0f, 1f);
+            if ((Object) this.S.Outlines[index] != (Object) null)
+            {
+              if (!this.S.Rival)
+              {
+                Debug.Log((object) "They're not a rival, so they should be green!");
+                this.S.Outlines[index].color = new Color(0.0f, 1f, 0.0f);
+              }
+              else
+              {
+                Debug.Log((object) "She's a rival! She's going back to being red!");
+                this.S.Outlines[index].color = new Color(1f, 0.0f, 0.0f);
+              }
+              this.S.Outlines[index].enabled = true;
+            }
           }
           this.S.Forgave = true;
           if (this.S.Witnessed == StudentWitnessType.Insanity || this.S.Witnessed == StudentWitnessType.WeaponAndBloodAndInsanity || this.S.Witnessed == StudentWitnessType.WeaponAndInsanity || this.S.Witnessed == StudentWitnessType.BloodAndInsanity)
@@ -1012,21 +1025,27 @@ public class TalkingScript : MonoBehaviour
     }
     else if (this.S.Interaction == StudentInteractionType.ChangingAppearance)
     {
-      if ((double) this.S.TalkTimer == 3.0)
+      if (!this.S.StudentManager.DialogueWheel.AppearanceWindow.Show)
       {
-        this.S.Subtitle.UpdateLabel(SubtitleType.SuitorLove, 2, 3f);
-        this.S.CharacterAnimation.CrossFade(this.S.Nod1Anim);
+        if ((double) this.S.TalkTimer == 3.0)
+        {
+          this.S.Subtitle.UpdateLabel(SubtitleType.SuitorLove, 2, 3f);
+          this.S.CharacterAnimation.CrossFade(this.S.Nod1Anim);
+        }
+        else
+        {
+          if (Input.GetButtonDown("A"))
+            this.S.TalkTimer = 0.0f;
+          if ((double) this.S.CharacterAnimation[this.S.Nod1Anim].time >= (double) this.S.CharacterAnimation[this.S.Nod1Anim].length)
+            this.S.CharacterAnimation.CrossFade(this.IdleAnim);
+          if ((double) this.S.TalkTimer <= 0.0)
+          {
+            Debug.Log((object) ("Apparently, " + this.name + "'s TalkTimer just reached 0."));
+            this.S.DialogueWheel.End();
+          }
+        }
+        this.S.TalkTimer -= Time.deltaTime;
       }
-      else
-      {
-        if (Input.GetButtonDown("A"))
-          this.S.TalkTimer = 0.0f;
-        if ((double) this.S.CharacterAnimation[this.S.Nod1Anim].time >= (double) this.S.CharacterAnimation[this.S.Nod1Anim].length)
-          this.S.CharacterAnimation.CrossFade(this.IdleAnim);
-        if ((double) this.S.TalkTimer <= 0.0)
-          this.S.DialogueWheel.End();
-      }
-      this.S.TalkTimer -= Time.deltaTime;
     }
     else if (this.S.Interaction == StudentInteractionType.Court)
     {
@@ -1189,6 +1208,7 @@ public class TalkingScript : MonoBehaviour
           if ((Object) this.S.FollowTarget != (Object) null)
             this.S.FollowTarget.Follower = (StudentScript) null;
           this.S.Pathfinding.speed = 4f;
+          this.S.Mentoring = true;
           this.S.InEvent = true;
           this.S.Hurry = true;
         }

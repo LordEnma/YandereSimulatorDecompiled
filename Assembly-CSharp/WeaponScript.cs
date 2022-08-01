@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -222,14 +222,16 @@ public class WeaponScript : MonoBehaviour
       }
       if ((double) this.transform.position.x > -71.0 && (double) this.transform.position.x < -61.0 && (double) this.transform.position.z > -37.5 && (double) this.transform.position.z < -27.5)
       {
-        this.Yandere.NotificationManager.CustomText = "You can't drop that there!";
+        this.Yandere.NotificationManager.CustomText = "The weapon has been placed nearby.";
         this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
         this.transform.position = new Vector3(-63f, 1f, -26.5f);
         this.KinematicTimer = 0.0f;
       }
       if ((double) this.transform.position.x > -21.0 && (double) this.transform.position.x < 21.0 && (double) this.transform.position.z > 100.0 && (double) this.transform.position.z < 135.0)
       {
-        this.transform.position = new Vector3(0.0f, 1f, 100f);
+        this.Yandere.NotificationManager.CustomText = "It rolled to the bottom of the hill.";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+        this.transform.position = new Vector3(0.0f, 0.5f, 99.5f);
         this.KinematicTimer = 0.0f;
       }
       if ((double) this.transform.position.x > -46.0 && (double) this.transform.position.x < -18.0 && (double) this.transform.position.z > 66.0 && (double) this.transform.position.z < 78.0)
@@ -419,6 +421,7 @@ public class WeaponScript : MonoBehaviour
       SchemeGlobals.SetSchemeStage(4, 1);
       this.Yandere.PauseScreen.Schemes.UpdateInstructions();
     }
+    Debug.Log((object) ("A " + this.gameObject.name + " has just been dropped."));
     if (this.WeaponID == 11)
     {
       this.Yandere.IdleAnim = "CyborgNinja_Idle_Unarmed";

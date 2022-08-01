@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PassTimeBookScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -13,13 +13,19 @@ public class PassTimeBookScript : MonoBehaviour
   public UISprite Darkness;
   public bool TimeSkipping;
   public bool FadeOut;
+  public float CooldownTimer;
 
   private void Update()
   {
     if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
     {
       this.Prompt.Circle[0].fillAmount = 1f;
-      if (this.Yandere.Police.Show)
+      if ((double) this.CooldownTimer > 0.0)
+      {
+        this.Yandere.NotificationManager.CustomText = "Try again in a few seconds...";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+      }
+      else if (this.Yandere.Police.Show)
       {
         this.Yandere.NotificationManager.CustomText = "Not when police are coming!";
         this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
@@ -48,40 +54,44 @@ public class PassTimeBookScript : MonoBehaviour
         this.FadeOut = true;
       }
     }
-    if (!this.TimeSkipping)
-      return;
-    if (this.FadeOut)
+    if (this.TimeSkipping)
     {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      if ((double) this.Darkness.color.a <= 0.999989986419678)
-        return;
-      this.Yandere.StudentManager.Clock.PresentTime += 30f;
-      this.Yandere.StudentManager.Clock.UpdateClock();
-      this.FadeOut = false;
-    }
-    else
-    {
-      this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0.0f, Time.deltaTime);
-      Debug.Log((object) ("Darkness.color.a is: " + this.Darkness.color.a.ToString()));
-      if ((double) this.Darkness.color.a >= 0.100000001490116)
-        return;
-      this.Darkness.alpha = 0.0f;
-      if (PlayerGlobals.PantiesEquipped == 7)
+      if (this.FadeOut)
       {
-        this.Yandere.StudentManager.Reputation.Portal.Class.BonusPoints += 2;
-        this.Yandere.NotificationManager.CustomText = "Gained 2 extra Study Points!";
+        this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
+        if ((double) this.Darkness.color.a <= 0.999989986419678)
+          return;
+        this.Yandere.StudentManager.PutStudentsToSleep();
+        this.Yandere.StudentManager.Clock.PresentTime += 30f;
+        this.Yandere.StudentManager.Clock.UpdateClock();
+        this.CooldownTimer = 4f;
+        this.FadeOut = false;
       }
       else
       {
-        ++this.Yandere.StudentManager.Reputation.Portal.Class.BonusPoints;
-        this.Yandere.NotificationManager.CustomText = "Gained 1 extra Study Point!";
+        this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0.0f, Time.deltaTime);
+        if ((double) this.Darkness.color.a >= 0.100000001490116)
+          return;
+        this.Darkness.alpha = 0.0f;
+        if (PlayerGlobals.PantiesEquipped == 7)
+        {
+          this.Yandere.StudentManager.Reputation.Portal.Class.BonusPoints += 2;
+          this.Yandere.NotificationManager.CustomText = "Gained 2 extra Study Points!";
+        }
+        else
+        {
+          ++this.Yandere.StudentManager.Reputation.Portal.Class.BonusPoints;
+          this.Yandere.NotificationManager.CustomText = "Gained 1 extra Study Point!";
+        }
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+        this.Yandere.RPGCamera.enabled = true;
+        this.Darkness.enabled = false;
+        this.Yandere.CanMove = true;
+        this.TimeSkipping = false;
       }
-      this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      this.Yandere.RPGCamera.enabled = true;
-      this.Darkness.enabled = false;
-      this.Yandere.CanMove = true;
-      this.TimeSkipping = false;
     }
+    else
+      this.CooldownTimer = Mathf.MoveTowards(this.CooldownTimer, 0.0f, Time.deltaTime);
   }
 
   public void DisplayErrorMessage()

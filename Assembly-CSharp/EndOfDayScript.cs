@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -28,6 +28,7 @@ public class EndOfDayScript : MonoBehaviour
   public CounselorScript Counselor;
   public WeaponScript MurderWeapon;
   public TranqCaseScript TranqCase;
+  public AudioListener MyListener;
   public YandereScript Yandere;
   public RagdollScript Corpse;
   public StudentScript Senpai;
@@ -203,12 +204,12 @@ public class EndOfDayScript : MonoBehaviour
       this.EndOfDayDarkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
       this.Darken = true;
     }
-    if ((double) this.EndOfDayDarkness.color.a == 0.0 && Input.GetButtonDown("A"))
+    if ((double) this.EndOfDayDarkness.color.a < 1.0 / 1000.0 && Input.GetButtonDown("A"))
       this.Darken = true;
     if (this.Darken)
     {
       this.EndOfDayDarkness.color = new Color(this.EndOfDayDarkness.color.r, this.EndOfDayDarkness.color.g, this.EndOfDayDarkness.color.b, Mathf.MoveTowards(this.EndOfDayDarkness.color.a, 1f, Time.deltaTime * 2f));
-      if ((double) this.EndOfDayDarkness.color.a == 1.0)
+      if ((double) this.EndOfDayDarkness.color.a > 0.999000012874603)
       {
         if ((UnityEngine.Object) this.Senpai == (UnityEngine.Object) null && (UnityEngine.Object) this.StudentManager.Students[1] != (UnityEngine.Object) null)
         {
@@ -327,15 +328,21 @@ public class EndOfDayScript : MonoBehaviour
     this.Label.color = new Color(0.0f, 0.0f, 0.0f, 1f);
     if (!this.PoliceArrived)
       return;
-    for (int index = 0; index < this.Yandere.Weapon.Length; ++index)
+    this.MyListener.enabled = false;
+    if (this.Phase != 14)
     {
-      if ((UnityEngine.Object) this.Yandere.Weapon[index] != (UnityEngine.Object) null && this.Yandere.Weapon[index].Bloody)
-        this.Yandere.Weapon[index].Drop();
-    }
-    if (!this.WeaponsChecked)
-    {
-      this.WeaponManager.CheckWeapons();
-      this.WeaponsChecked = true;
+      for (int index = 0; index < this.Yandere.Weapon.Length; ++index)
+      {
+        if ((UnityEngine.Object) this.Yandere.Weapon[index] != (UnityEngine.Object) null && this.Yandere.Weapon[index].Bloody)
+          this.Yandere.Weapon[index].Drop();
+      }
+      if (!this.WeaponsChecked)
+      {
+        Debug.Log((object) "We're counting the number of bloody weapons at school right now...");
+        this.WeaponManager.CheckWeapons();
+        this.WeaponsChecked = true;
+        Debug.Log((object) (this.WeaponManager.MurderWeapons.ToString() + " bloody weapons were found."));
+      }
     }
     for (this.ID = 0; this.ID < this.WeaponManager.Weapons.Length; ++this.ID)
     {
@@ -695,12 +702,12 @@ public class EndOfDayScript : MonoBehaviour
     }
     else if (this.Phase == 7)
     {
-      for (int index = 1; index < this.StudentManager.Students.Length; ++index)
+      for (this.ID = 1; this.ID < this.StudentManager.Students.Length; ++this.ID)
       {
-        if ((UnityEngine.Object) this.StudentManager.Students[index] != (UnityEngine.Object) null && this.StudentManager.Students[index].WitnessedMurder && this.StudentManager.Students[index].Alive && this.StudentManager.Students[index].Persona != PersonaType.Coward && this.StudentManager.Students[index].Persona != PersonaType.Spiteful && this.StudentManager.Students[index].Persona != PersonaType.Evil && this.StudentManager.Students[index].Club != ClubType.Delinquent && !this.StudentManager.Students[index].SawMask)
+        if ((UnityEngine.Object) this.StudentManager.Students[this.ID] != (UnityEngine.Object) null && this.StudentManager.Students[this.ID].WitnessedMurder && this.StudentManager.Students[this.ID].Alive && this.StudentManager.Students[this.ID].Persona != PersonaType.Coward && this.StudentManager.Students[this.ID].Persona != PersonaType.Spiteful && this.StudentManager.Students[this.ID].Persona != PersonaType.Evil && this.StudentManager.Students[this.ID].Club != ClubType.Delinquent && !this.StudentManager.Students[this.ID].SawMask)
         {
           ++this.EyeWitnesses;
-          this.WitnessList[this.EyeWitnesses] = this.StudentManager.Students[index];
+          this.WitnessList[this.EyeWitnesses] = this.StudentManager.Students[this.ID];
         }
       }
       if (this.EyeWitnesses > 0)
@@ -830,10 +837,13 @@ public class EndOfDayScript : MonoBehaviour
       this.KidnappedVictim.transform.localEulerAngles = new Vector3(0.0f, 90f, 0.0f);
       this.KidnappedVictim.CharacterAnimation.Play("f02_sit_06");
       this.KidnappedVictim.WhiteQuestionMark.SetActive(true);
+      this.KidnappedVictim.Cosmetic.FemaleHair[this.KidnappedVictim.Cosmetic.Hairstyle].SetActive(true);
       this.OpenTranqCase.SetActive(true);
       this.Label.text = "The police discover " + this.JSON.Students[this.TranqCase.VictimID].Name + " inside of a musical instrument case. However, she is unable to recall how she got inside of the case. The police are unable to determine what happened.";
       StudentGlobals.SetStudentKidnapped(this.TranqCase.VictimID, false);
       StudentGlobals.SetStudentMissing(this.TranqCase.VictimID, false);
+      if (this.TranqCase.VictimID == this.StudentManager.RivalID)
+        this.StudentManager.RivalEliminated = false;
       this.TranqCase.VictimClubType = ClubType.None;
       this.TranqCase.VictimID = 0;
       this.TranqCase.Occupied = false;
@@ -888,7 +898,7 @@ public class EndOfDayScript : MonoBehaviour
           this.Senpai.CharacterAnimation.Play("kneelCry_00");
           if (DateGlobals.Weekday != DayOfWeek.Friday)
           {
-            str = "\nSenpai will stay home from school for one day to mourn her death.";
+            str = "Senpai will stay home from school for one day to mourn her death.";
             GameGlobals.SenpaiMourning = true;
           }
           this.Label.text = "Senpai is absolutely devastated by the death of his childhood friend. His mental stability has been greatly affected." + str;
@@ -1207,7 +1217,6 @@ public class EndOfDayScript : MonoBehaviour
     }
     else if (this.Phase == 21)
     {
-      Debug.Log((object) "The End-of-Day sequence is now checking the rival's reputation.");
       this.Rival = this.StudentManager.Students[this.StudentManager.RivalID];
       if (this.ArticleID == 2)
       {
@@ -1256,7 +1265,6 @@ public class EndOfDayScript : MonoBehaviour
     }
     else if (this.Phase == 22)
     {
-      Debug.Log((object) "The End-of-Day sequence is now checking whether or not we need to boot the player out of a club.");
       if (this.Yandere.Club != ClubType.None && DateGlobals.Weekday == DayOfWeek.Friday && this.ClubManager.ActivitiesAttended == 0)
       {
         this.TeleportYandere();
@@ -1320,7 +1328,10 @@ public class EndOfDayScript : MonoBehaviour
         student.MyController.enabled = false;
         student.CharacterAnimation.enabled = true;
         student.CharacterAnimation.Play("holdHandsLoop_00");
-        student.Hearts.emission.enabled = true;
+        ParticleSystem.EmissionModule emission = student.Hearts.emission with
+        {
+          enabled = true
+        };
         student.Hearts.Play();
         this.Rival.enabled = false;
         this.Rival.Pathfinding.enabled = false;
@@ -1334,7 +1345,10 @@ public class EndOfDayScript : MonoBehaviour
         this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
         this.Rival.CharacterAnimation["f02_shy_00"].weight = 1f;
         this.Rival.CharacterAnimation.Play("f02_holdHandsLoop_00");
-        this.Rival.Hearts.emission.enabled = true;
+        emission = this.Rival.Hearts.emission with
+        {
+          enabled = true
+        };
         this.Rival.Hearts.Play();
         this.RivalEliminationMethod = RivalEliminationType.Matchmade;
         this.Label.text = "After the police investigation ends, " + this.RivalName + " confesses to a boy that she has fallen in love with. She will no longer attempt to pursue a relationship with " + this.Protagonist + "'s Senpai.";
@@ -1784,7 +1798,7 @@ public class EndOfDayScript : MonoBehaviour
           break;
       }
       StudentGlobals.SetStudentKidnapped(this.TranqCase.VictimID, true);
-      StudentGlobals.SetStudentSanity(this.TranqCase.VictimID, 100f);
+      StudentGlobals.SetStudentSanity(this.TranqCase.VictimID, 100);
       if (flag)
       {
         GameGlobals.JustKidnapped = true;
@@ -1823,7 +1837,11 @@ public class EndOfDayScript : MonoBehaviour
       PlayerGlobals.Friends += this.NewFriends;
     if (this.Yandere.Alerts > 0)
       PlayerGlobals.Alerts += this.Yandere.Alerts;
-    SchoolGlobals.SchoolAtmosphere += (float) this.Arrests * 0.1f;
+    if (this.Arrests > 0)
+    {
+      Debug.Log((object) "Increasing Atmosphere by 10% because a culprit was arrested.");
+      SchoolGlobals.SchoolAtmosphere += (float) this.Arrests * 0.1f;
+    }
     if (this.Counselor.ExpelledDelinquents)
       SchoolGlobals.SchoolAtmosphere += 0.25f;
     if (this.Yandere.Inventory.FakeID)
@@ -1884,7 +1902,6 @@ public class EndOfDayScript : MonoBehaviour
     PlayerGlobals.PersonaID = this.Yandere.PersonaID;
     PlayerGlobals.CorpsesDiscovered += this.Police.Corpses;
     ClassGlobals.BonusStudyPoints = this.Class.StudyPoints + this.Class.BonusPoints;
-    Debug.Log((object) ("Adding " + this.Class.BonusPoints.ToString() + " Bonus Study Points."));
     HomeGlobals.LateForSchool = false;
     PlayerGlobals.ShrineItems += this.ShrineItemsCollected;
     this.Counselor.SaveExcusesUsed();
@@ -1954,7 +1971,6 @@ public class EndOfDayScript : MonoBehaviour
     PlayerGlobals.WeaponWitnessed += this.WeaponWitnessed;
     this.ClubManager.UpdateQuitClubs();
     StudentGlobals.UpdateRivalReputation = false;
-    Debug.Log((object) ("Making the game aware of the fact that ClubManager.ActivitiesAttended was " + this.ClubManager.ActivitiesAttended.ToString() + " at the end of this day."));
     ClubGlobals.ActivitiesAttended = this.ClubManager.ActivitiesAttended;
     this.ArrestStudents();
     this.SaveTopicsLearned();
@@ -2116,7 +2132,6 @@ public class EndOfDayScript : MonoBehaviour
 
   public void SaveTopicsLearned()
   {
-    Debug.Log((object) "Attempting to save all of the ''topics learned''.");
     for (int index1 = 1; index1 < 101; ++index1)
     {
       for (int index2 = 1; index2 < 26; ++index2)

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaTuesdayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -26,8 +26,10 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
   public string[] EventAnim;
   public GameObject AlarmDisc;
   public GameObject VoiceClip;
+  public bool DoneStretching;
   public bool Sabotaging;
   public bool Sabotaged;
+  public float StinkTimer;
   public float Distance;
   public float Scale;
   public float Timer;
@@ -75,6 +77,8 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
           this.Rival.Routine = false;
           this.Rival.InEvent = true;
           this.Rival.EmptyHands();
+          Debug.Log((object) "Osana's ''StinkBombSpecialCase'' has been set to ''1''.");
+          this.Rival.StinkBombSpecialCase = 1;
           Debug.Log((object) ("PlayerGlobals.RaibaruLoner is: " + PlayerGlobals.RaibaruLoner.ToString()));
           bool flag = true;
           if (PlayerGlobals.RaibaruLoner || this.StudentManager.Police.EndOfDay.RaibaruLoner)
@@ -101,197 +105,218 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
     }
     else
     {
-      if ((double) this.Rival.DistanceToDestination < 0.5)
+      if (this.Rival.StinkBombSpecialCase == 2)
       {
-        this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
-        this.Rival.targetRotation = this.Rival.CurrentDestination.rotation;
-        this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.targetRotation, 10f * Time.deltaTime);
-        this.Rival.Pathfinding.canSearch = false;
-        this.Rival.Pathfinding.canMove = false;
+        Debug.Log((object) "Osana is holding her breath.");
+        this.StinkTimer += Time.deltaTime;
+        if ((double) this.StinkTimer > 1.0)
+        {
+          this.Rival.StinkBombSpecialCase = 1;
+          this.StinkTimer = 0.0f;
+          if (this.Phase < 4)
+            this.Phase = 1;
+          else if (this.Phase > 6)
+            this.Phase = 7;
+          else
+            this.DoneStretching = true;
+        }
       }
-      if (this.Phase == 1)
+      else
       {
         if ((double) this.Rival.DistanceToDestination < 0.5)
         {
-          AudioClipPlayer.Play(this.SpeechClip[1], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-          this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[1]);
-          this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[1]);
+          this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
+          this.Rival.targetRotation = this.Rival.CurrentDestination.rotation;
+          this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.targetRotation, 10f * Time.deltaTime);
           this.Rival.Pathfinding.canSearch = false;
           this.Rival.Pathfinding.canMove = false;
-          this.Rival.Obstacle.enabled = true;
-          ++this.Phase;
         }
-      }
-      else if (this.Phase == 2)
-      {
-        if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[1]].time >= 0.833333015441895)
-          this.Rival.AnimatedBook.SetActive(true);
-        if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[1]].time >= 5.0)
-          this.EventSubtitle.text = this.SpeechText[1];
-        if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[1]].time >= (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[1]].length)
+        if (this.Phase == 1)
         {
-          this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[2]);
-          this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[2]);
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 3)
-      {
-        this.Timer += Time.deltaTime;
-        if ((double) this.Timer > 60.0)
-        {
-          AudioClipPlayer.Play(this.SpeechClip[2], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-          this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[3]);
-          this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[3]);
-          this.EventSubtitle.text = this.SpeechText[2];
-          this.StretchPhase = 2;
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 4)
-      {
-        if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[3]].time >= (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[3]].length)
-        {
-          this.Rival.AnimatedBook.transform.parent = (Transform) null;
-          this.PushPrompt.gameObject.SetActive(true);
-          this.PushPrompt.enabled = true;
-          this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
-          this.Rival.Pathfinding.target = this.Location[this.StretchPhase];
-          this.Rival.CurrentDestination = this.Location[this.StretchPhase];
-          this.Rival.DistanceToDestination = 100f;
-          this.Rival.Pathfinding.canSearch = true;
-          this.Rival.Pathfinding.canMove = true;
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 5)
-      {
-        if ((double) this.Rival.DistanceToDestination < 0.5)
-        {
-          if (this.StretchPhase == 2)
+          if ((double) this.Rival.DistanceToDestination < 0.5)
           {
-            AudioClipPlayer.Play(this.SpeechClip[3], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-            this.EventSubtitle.text = this.SpeechText[3];
+            AudioClipPlayer.Play(this.SpeechClip[1], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
+            this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[1]);
+            this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[1]);
+            this.Rival.Pathfinding.canSearch = false;
+            this.Rival.Pathfinding.canMove = false;
+            this.Rival.Obstacle.enabled = true;
+            ++this.Phase;
           }
-          this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[4]);
-          this.Rival.Pathfinding.canSearch = false;
-          this.Rival.Pathfinding.canMove = false;
-          ++this.Phase;
         }
-      }
-      else if (this.Phase == 6)
-      {
-        if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[4]].time >= (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[4]].length)
+        else if (this.Phase == 2)
         {
-          this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
-          ++this.StretchPhase;
-          if (this.StretchPhase < 6)
+          if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[1]].time >= 0.833333015441895)
+            this.Rival.AnimatedBook.SetActive(true);
+          if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[1]].time >= 5.0)
+            this.EventSubtitle.text = this.SpeechText[1];
+          if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[1]].time >= (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[1]].length)
           {
+            this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[2]);
+            this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[2]);
+            ++this.Phase;
+          }
+        }
+        else if (this.Phase == 3)
+        {
+          this.Timer += Time.deltaTime;
+          if ((double) this.Timer > 60.0)
+          {
+            AudioClipPlayer.Play(this.SpeechClip[2], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
+            this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[3]);
+            this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[3]);
+            this.EventSubtitle.text = this.SpeechText[2];
+            this.StretchPhase = 2;
+            ++this.Phase;
+          }
+        }
+        else if (this.Phase == 4)
+        {
+          if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[3]].time >= (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[3]].length)
+          {
+            this.Rival.AnimatedBook.transform.parent = (Transform) null;
+            this.PushPrompt.gameObject.SetActive(true);
+            this.PushPrompt.enabled = true;
+            this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
             this.Rival.Pathfinding.target = this.Location[this.StretchPhase];
             this.Rival.CurrentDestination = this.Location[this.StretchPhase];
             this.Rival.DistanceToDestination = 100f;
             this.Rival.Pathfinding.canSearch = true;
             this.Rival.Pathfinding.canMove = true;
-            --this.Phase;
+            ++this.Phase;
           }
-          else
+        }
+        else if (this.Phase == 5)
+        {
+          if ((double) this.Rival.DistanceToDestination < 0.5 || this.DoneStretching)
           {
-            this.PushPrompt.gameObject.SetActive(false);
-            if (!this.Sabotaged)
+            if (this.StretchPhase == 2)
             {
-              this.Rival.Pathfinding.target = this.Location[1];
-              this.Rival.CurrentDestination = this.Location[1];
+              AudioClipPlayer.Play(this.SpeechClip[3], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
+              this.EventSubtitle.text = this.SpeechText[3];
+            }
+            this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[4]);
+            this.Rival.Pathfinding.canSearch = false;
+            this.Rival.Pathfinding.canMove = false;
+            this.DoneStretching = false;
+            ++this.Phase;
+          }
+        }
+        else if (this.Phase == 6)
+        {
+          if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[4]].time >= (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[4]].length || this.DoneStretching)
+          {
+            this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
+            ++this.StretchPhase;
+            this.DoneStretching = false;
+            if (this.StretchPhase < 6)
+            {
+              this.Rival.Pathfinding.target = this.Location[this.StretchPhase];
+              this.Rival.CurrentDestination = this.Location[this.StretchPhase];
               this.Rival.DistanceToDestination = 100f;
               this.Rival.Pathfinding.canSearch = true;
               this.Rival.Pathfinding.canMove = true;
+              --this.Phase;
             }
             else
             {
-              this.Rival.Pathfinding.target = this.Location[7];
-              this.Rival.CurrentDestination = this.Location[7];
-              this.Rival.DistanceToDestination = 100f;
-              this.Rival.Pathfinding.canSearch = true;
-              this.Rival.Pathfinding.canMove = true;
-              if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
+              this.PushPrompt.gameObject.SetActive(false);
+              if (!this.Sabotaged)
               {
-                ScheduleBlock scheduleBlock1 = this.Friend.ScheduleBlocks[4];
-                scheduleBlock1.destination = "Follow";
-                scheduleBlock1.action = "Follow";
-                ScheduleBlock scheduleBlock2 = this.Friend.ScheduleBlocks[6];
-                scheduleBlock2.destination = "Follow";
-                scheduleBlock2.action = "Follow";
-                this.Friend.GetDestinations();
+                this.Rival.Pathfinding.target = this.Location[1];
+                this.Rival.CurrentDestination = this.Location[1];
+                this.Rival.DistanceToDestination = 100f;
+                this.Rival.Pathfinding.canSearch = true;
+                this.Rival.Pathfinding.canMove = true;
               }
+              else
+              {
+                this.Rival.Pathfinding.target = this.Location[7];
+                this.Rival.CurrentDestination = this.Location[7];
+                this.Rival.DistanceToDestination = 100f;
+                this.Rival.Pathfinding.canSearch = true;
+                this.Rival.Pathfinding.canMove = true;
+                if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
+                {
+                  ScheduleBlock scheduleBlock1 = this.Friend.ScheduleBlocks[4];
+                  scheduleBlock1.destination = "Follow";
+                  scheduleBlock1.action = "Follow";
+                  ScheduleBlock scheduleBlock2 = this.Friend.ScheduleBlocks[6];
+                  scheduleBlock2.destination = "Follow";
+                  scheduleBlock2.action = "Follow";
+                  this.Friend.GetDestinations();
+                }
+              }
+              ++this.Phase;
             }
+          }
+        }
+        else if (this.Phase == 7)
+        {
+          if (!this.Sabotaged)
+          {
+            if ((double) this.Rival.DistanceToDestination < 0.5)
+            {
+              AudioClipPlayer.Play(this.SpeechClip[4], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
+              this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[5]);
+              this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[5]);
+              this.EventSubtitle.text = this.SpeechText[4];
+              ++this.Phase;
+            }
+          }
+          else if ((double) this.Rival.DistanceToDestination < 0.5)
+          {
+            this.Rival.WalkAnim = "f02_sadWalk_00";
+            this.Rival.SitAnim = "f02_sadDeskSit_00";
+            AudioClipPlayer.Play(this.SpeechClip[6], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
+            this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[8]);
+            this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[8]);
+            this.EventSubtitle.text = this.SpeechText[6];
+            this.Rival.Depressed = true;
+            this.Phase = 11;
+          }
+        }
+        else if (this.Phase == 8)
+        {
+          if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[5]].time >= (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[5]].length)
+          {
+            this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[2]);
+            this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[2]);
             ++this.Phase;
           }
         }
-      }
-      else if (this.Phase == 7)
-      {
-        if (!this.Sabotaged)
+        else if (this.Phase == 9)
         {
-          if ((double) this.Rival.DistanceToDestination < 0.5)
+          if ((double) this.Clock.HourTime > 13.375)
           {
-            AudioClipPlayer.Play(this.SpeechClip[4], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-            this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[5]);
-            this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[5]);
-            this.EventSubtitle.text = this.SpeechText[4];
+            AudioClipPlayer.Play(this.SpeechClip[5], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
+            this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[6]);
+            this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[6]);
+            this.EventSubtitle.text = this.SpeechText[5];
             ++this.Phase;
           }
         }
-        else if ((double) this.Rival.DistanceToDestination < 0.5)
+        else if (this.Phase == 10)
         {
-          this.Rival.WalkAnim = "f02_sadWalk_00";
-          this.Rival.SitAnim = "f02_sadDeskSit_00";
-          AudioClipPlayer.Play(this.SpeechClip[6], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-          this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[8]);
-          this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[8]);
-          this.EventSubtitle.text = this.SpeechText[6];
-          this.Rival.Depressed = true;
-          this.Phase = 11;
+          if (this.Rival.AnimatedBook.activeInHierarchy && (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[6]].time > 2.0)
+            this.Rival.AnimatedBook.SetActive(false);
+          if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[6]].time >= (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[6]].length)
+            this.EndEvent();
         }
-      }
-      else if (this.Phase == 8)
-      {
-        if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[5]].time >= (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[5]].length)
+        else if (this.Phase == 11)
         {
-          this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[2]);
-          this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[2]);
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 9)
-      {
-        if ((double) this.Clock.HourTime > 13.375)
-        {
-          AudioClipPlayer.Play(this.SpeechClip[5], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
-          this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[6]);
-          this.Rival.AnimatedBook.GetComponent<Animation>().CrossFade(this.EventAnim[6]);
-          this.EventSubtitle.text = this.SpeechText[5];
-          ++this.Phase;
-        }
-      }
-      else if (this.Phase == 10)
-      {
-        if (this.Rival.AnimatedBook.activeInHierarchy && (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[6]].time > 2.0)
-          this.Rival.AnimatedBook.SetActive(false);
-        if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[6]].time >= (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[6]].length)
-          this.EndEvent();
-      }
-      else if (this.Phase == 11)
-      {
-        if (this.Rival.AnimatedBook.activeInHierarchy && (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[8]].time > 7.0)
-          this.Rival.AnimatedBook.SetActive(false);
-        if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[8]].time >= (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[8]].length)
-        {
-          this.Rival.Destinations[4] = this.Location[8];
-          if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
+          if (this.Rival.AnimatedBook.activeInHierarchy && (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[8]].time > 7.0)
+            this.Rival.AnimatedBook.SetActive(false);
+          if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[8]].time >= (double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[8]].length)
           {
-            this.Friend.Destinations[4] = this.Location[9];
-            this.StudentManager.LunchSpots.List[this.FriendID] = this.Location[9];
+            this.Rival.Destinations[4] = this.Location[8];
+            if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
+            {
+              this.Friend.Destinations[4] = this.Location[9];
+              this.StudentManager.LunchSpots.List[this.FriendID] = this.Location[9];
+            }
+            this.EndEvent();
           }
-          this.EndEvent();
         }
       }
       if ((double) this.PushPrompt.Circle[0].fillAmount == 0.0)
@@ -381,6 +406,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
     }
     this.Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
     this.Rival.AnimatedBook.SetActive(false);
+    this.Rival.StinkBombSpecialCase = 0;
     this.Rival.Obstacle.enabled = false;
     this.Rival.Prompt.enabled = true;
     this.Rival.InEvent = false;

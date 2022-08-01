@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: LivingRoomCutsceneScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -589,7 +589,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
           StudentGlobals.SetStudentBroken(81, true);
           SchoolGlobals.KidnapVictim = 0;
           StudentGlobals.SetStudentKidnapped(30, true);
-          StudentGlobals.SetStudentSanity(30, 100f);
+          StudentGlobals.SetStudentSanity(30, 100);
           SchoolGlobals.KidnapVictim = 30;
           if (DateGlobals.PassDays < 1)
             DateGlobals.PassDays = 1;
@@ -775,7 +775,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
   private void BetrayRival()
   {
     StudentGlobals.SetStudentKidnapped(10 + DateGlobals.Week, true);
-    StudentGlobals.SetStudentSanity(10 + DateGlobals.Week, 100f);
+    StudentGlobals.SetStudentSanity(10 + DateGlobals.Week, 100);
     int num = 10 + DateGlobals.Week;
     Debug.Log((object) ("The player had " + StudentGlobals.Prisoners.ToString() + " prisoners in their basement before betraying their rival."));
     ++StudentGlobals.Prisoners;

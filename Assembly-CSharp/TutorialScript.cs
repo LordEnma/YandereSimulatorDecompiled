@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TutorialScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -869,6 +869,11 @@ public class TutorialScript : MonoBehaviour
             cosmetic.HairRenderer = this.StudentManager.Students[2].Cosmetic.FemaleHairRenderers[57];
             cosmetic.FemaleHair[57].SetActive(true);
             cosmetic.Hairstyle = 57;
+            cosmetic.MyStockings = cosmetic.EightiesRivalStockings[11];
+            cosmetic.MyRenderer.materials[0].SetTexture("_OverlayTex", cosmetic.MyStockings);
+            cosmetic.MyRenderer.materials[1].SetTexture("_OverlayTex", cosmetic.MyStockings);
+            cosmetic.MyRenderer.materials[0].SetFloat("_BlendAmount", 1f);
+            cosmetic.MyRenderer.materials[1].SetFloat("_BlendAmount", 1f);
             this.Ragdoll = this.StudentManager.Students[2].Ragdoll;
             this.Ragdoll.Tutorial = true;
           }

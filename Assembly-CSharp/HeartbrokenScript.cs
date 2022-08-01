@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HeartbrokenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -51,6 +51,7 @@ public class HeartbrokenScript : MonoBehaviour
 
   private void Start()
   {
+    this.Yandere.CameraEffects.UpdateDOF(1.5f);
     this.Week = DateGlobals.Week;
     if (GameGlobals.MostRecentSlot == 0)
       this.TargetAlpha[2] = 0.5f;
@@ -229,7 +230,7 @@ public class HeartbrokenScript : MonoBehaviour
       option.color = new Color(option.color.r, option.color.g, option.color.b, 0.0f);
     }
     this.ID = 0;
-    this.Subtitle.color = new Color(this.Subtitle.color.r, this.Subtitle.color.g, this.Subtitle.color.b, 0.0f);
+    this.Subtitle.alpha = 0.0f;
     if (this.Noticed)
     {
       this.Background.color = new Color(this.Background.color.r, this.Background.color.g, this.Background.color.b, 0.0f);
@@ -334,7 +335,8 @@ public class HeartbrokenScript : MonoBehaviour
     {
       if ((double) this.Options[0].color.a == 0.0)
       {
-        this.Subtitle.color = new Color(this.Subtitle.color.r, this.Subtitle.color.g, this.Subtitle.color.b, 0.0f);
+        this.Subtitle.alpha = 0.0f;
+        this.Yandere.Subtitle.transform.localPosition = new Vector3(0.0f, 1000f, 0.0f);
         component.Play();
       }
       if (this.ID < this.Options.Length)
@@ -369,7 +371,7 @@ public class HeartbrokenScript : MonoBehaviour
     StudentScript component = this.Yandere.Senpai.GetComponent<StudentScript>();
     if ((Object) component != (Object) null && !component.Teacher && this.Yandere.Noticed)
     {
-      this.Subtitle.color = new Color(this.Subtitle.color.r, this.Subtitle.color.g, this.Subtitle.color.b, 1f);
+      this.Subtitle.alpha = 1f;
       GameOverType gameOverCause = component.GameOverCause;
       int index = 0;
       switch (gameOverCause)
@@ -401,7 +403,7 @@ public class HeartbrokenScript : MonoBehaviour
     {
       if (!this.Headmaster)
         return;
-      this.Subtitle.color = new Color(this.Subtitle.color.r, this.Subtitle.color.g, this.Subtitle.color.b, 1f);
+      this.Subtitle.alpha = 1f;
       if (!this.Yandere.StudentManager.Eighties)
       {
         this.Subtitle.text = this.NoticedLines[8];

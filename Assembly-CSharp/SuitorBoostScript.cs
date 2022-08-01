@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SuitorBoostScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -80,7 +80,7 @@ public class SuitorBoostScript : MonoBehaviour
     if (this.FadeOut)
     {
       this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      if ((double) this.Darkness.color.a != 1.0)
+      if ((double) this.Darkness.color.a <= 0.999000012874603)
         return;
       this.Timer += Time.deltaTime;
       if ((double) this.Timer <= 1.0)
@@ -139,7 +139,7 @@ public class SuitorBoostScript : MonoBehaviour
     else
     {
       this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime));
-      if ((double) this.Darkness.color.a != 0.0)
+      if ((double) this.Darkness.color.a >= 1.0 / 1000.0)
         return;
       if (this.Phase == 2)
       {

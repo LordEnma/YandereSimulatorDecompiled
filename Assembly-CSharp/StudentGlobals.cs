@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentGlobals
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -475,13 +475,13 @@ public static class StudentGlobals
 
   public static int[] KeysOfStudentReputation() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentReputation_");
 
-  public static float GetStudentSanity(int studentID) => PlayerPrefs.GetFloat("Profile_" + GameGlobals.Profile.ToString() + "_StudentSanity_" + studentID.ToString());
+  public static int GetStudentSanity(int studentID) => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_StudentSanity_" + studentID.ToString());
 
-  public static void SetStudentSanity(int studentID, float value)
+  public static void SetStudentSanity(int studentID, int value)
   {
     string id = studentID.ToString();
     KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_StudentSanity_", id);
-    PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_StudentSanity_" + id, value);
+    PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_StudentSanity_" + id, value);
   }
 
   public static int[] KeysOfStudentSanity() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentSanity_");

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PhoneEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -318,6 +318,7 @@ public class PhoneEventScript : MonoBehaviour
         this.EventFriend.Obstacle.checkTime = 1f;
         this.EventFriend.Pathfinding.speed = 1f;
         this.EventFriend.TargetDistance = 1f;
+        this.EventFriend.IgnoringThingsOnGround = true;
         this.EventFriend.InEvent = false;
         this.EventFriend.Private = false;
         this.EventFriend.Routine = true;

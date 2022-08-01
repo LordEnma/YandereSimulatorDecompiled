@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YakuzaMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -142,8 +142,8 @@ public class YakuzaMenuScript : MonoBehaviour
     }
     this.CountPrisoners();
     this.PrisonerLabel.text = this.Prisoners != 0 ? (this.Prisoners != 1 ? "Some of these girls are currently in your basement." : "One of these girls is currently in your basement.") : "Come back after kidnapping one of these girls.";
-    this.OriginalItemPrice[5] = DateGlobals.Week * 1000;
-    this.ItemPrice[5] = DateGlobals.Week * 1000;
+    this.OriginalItemPrice[5] += DateGlobals.Week * 100;
+    this.ItemPrice[5] += DateGlobals.Week * 100;
   }
 
   private void Update()

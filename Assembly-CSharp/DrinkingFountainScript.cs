@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DrinkingFountainScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -20,6 +20,15 @@ public class DrinkingFountainScript : MonoBehaviour
   public bool Sabotagable;
   public bool Sabotaged;
   public bool Occupied;
+
+  private void Start()
+  {
+    if (!GameGlobals.EightiesTutorial)
+      return;
+    this.Prompt.Hide();
+    this.Prompt.enabled = false;
+    this.enabled = false;
+  }
 
   private void Update()
   {

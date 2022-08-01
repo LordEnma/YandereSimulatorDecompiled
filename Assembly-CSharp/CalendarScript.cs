@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CalendarScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -197,7 +197,6 @@ public class CalendarScript : MonoBehaviour
   private void Update()
   {
     this.Timer += Time.deltaTime;
-    Scene activeScene;
     if (!this.FadeOut)
     {
       this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, this.Darkness.color.a - Time.deltaTime);
@@ -387,15 +386,10 @@ public class CalendarScript : MonoBehaviour
         {
           int profile = GameGlobals.Profile;
           int num = 11;
-          int femaleUniform1 = StudentGlobals.FemaleUniform;
+          int femaleUniform = StudentGlobals.FemaleUniform;
           int maleUniform = StudentGlobals.MaleUniform;
           Debug.Log((object) "We've been instructed to reset the week.");
           Debug.Log((object) ("We're currently on Profile #" + profile.ToString()));
-          int femaleUniform2 = StudentGlobals.FemaleUniform;
-          string str1 = femaleUniform2.ToString();
-          femaleUniform2 = StudentGlobals.FemaleUniform;
-          string str2 = femaleUniform2.ToString();
-          Debug.Log((object) ("Resetting the week! StudentGlobals.FemaleUniform is: " + str1 + " and StudentGlobals.MaleUniform is: " + str2));
           if (this.Eighties && profile < 11)
           {
             Debug.Log((object) "...but we're in the 80s! Let's adjust that!");
@@ -409,11 +403,9 @@ public class CalendarScript : MonoBehaviour
           }
           else
             Debug.Log((object) ("Attempted to load a save from Slot #" + num.ToString() + ", but apparently it didn't exist."));
-          StudentGlobals.FemaleUniform = femaleUniform1;
+          StudentGlobals.FemaleUniform = femaleUniform;
           StudentGlobals.MaleUniform = maleUniform;
-          Debug.Log((object) ("Loaded preferences! StudentGlobals.FemaleUniform is: " + StudentGlobals.FemaleUniform.ToString() + " and StudentGlobals.MaleUniform is: " + StudentGlobals.FemaleUniform.ToString()));
-          activeScene = SceneManager.GetActiveScene();
-          SceneManager.LoadScene(activeScene.name);
+          SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
         else if (this.Reset)
         {
@@ -493,8 +485,7 @@ label_92:
     if (!Input.GetKeyDown(KeyCode.L))
       return;
     GameGlobals.LoveSick = !GameGlobals.LoveSick;
-    activeScene = SceneManager.GetActiveScene();
-    SceneManager.LoadScene(activeScene.name);
+    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
   }
 
   public void ChangeDayColor()

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AppearanceWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -188,6 +188,7 @@ public class AppearanceWindowScript : MonoBehaviour
           }
           else if (this.Selected == 11)
           {
+            Debug.Log((object) "The game believes that we just exited the Appearance Window.");
             this.StudentManager.LoveManager.CustomSuitor = true;
             this.PromptBar.ClearButtons();
             this.PromptBar.UpdateButtons();

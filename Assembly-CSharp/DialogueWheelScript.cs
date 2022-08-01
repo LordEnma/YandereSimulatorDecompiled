@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DialogueWheelScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -531,7 +531,7 @@ public class DialogueWheelScript : MonoBehaviour
       this.LockerWindow.SetActive(true);
     if (this.Yandere.TargetStudent.Club == ClubType.Bully && this.TaskManager.TaskStatus[36] == 1)
       this.TaskDialogueWindow.SetActive(true);
-    if (!this.Yandere.StudentManager.Eighties && this.Yandere.TargetStudent.StudentID == 10 && this.TaskManager.TaskStatus[46] == 1)
+    if (!this.Yandere.StudentManager.Eighties && this.Yandere.TargetStudent.StudentID == 10 && this.TaskManager.TaskStatus[46] == 1 && this.Clock.Period != 3 && this.Clock.Period != 5)
       this.TaskDialogueWindow.SetActive(true);
     this.TaskIcon.spriteName = this.Yandere.TargetStudent.Friend ? "Heart" : "Task";
     this.Impatience.fillAmount = 0.0f;
@@ -886,8 +886,10 @@ public class DialogueWheelScript : MonoBehaviour
 
   public void End()
   {
+    Debug.Log((object) "The DialogueWheel is calling End() now.");
     if ((Object) this.Yandere.TargetStudent != (Object) null)
     {
+      Debug.Log((object) "TargetStudent was not null.");
       if (this.Yandere.TargetStudent.Pestered >= 10)
         this.Yandere.TargetStudent.Ignoring = true;
       if (!this.Pestered)
@@ -896,6 +898,7 @@ public class DialogueWheelScript : MonoBehaviour
       this.Yandere.TargetStudent.WaitTimer = 1f;
       if (this.Yandere.TargetStudent.enabled)
       {
+        Debug.Log((object) (this.Yandere.TargetStudent.Name + " has just been released from the DialogueWheel."));
         this.Yandere.TargetStudent.CurrentDestination = this.Yandere.TargetStudent.Destinations[this.Yandere.TargetStudent.Phase];
         this.Yandere.TargetStudent.Pathfinding.target = this.Yandere.TargetStudent.Destinations[this.Yandere.TargetStudent.Phase];
         if (this.Yandere.TargetStudent.Actions[this.Yandere.TargetStudent.Phase] == StudentActionType.Clean)
@@ -958,15 +961,21 @@ public class DialogueWheelScript : MonoBehaviour
       this.Yandere.TargetStudent.Waiting = true;
       this.Yandere.TargetStudent = (StudentScript) null;
     }
+    this.Yandere.Interaction = YandereInteractionType.Idle;
     this.Yandere.CameraEffects.UpdateDOF(2f);
     this.Yandere.StudentManager.VolumeUp();
     this.RestoreMusic();
     this.Jukebox.Dip = 1f;
+    this.AppearanceWindow.gameObject.SetActive(false);
+    this.AppearanceWindow.Show = false;
     this.AskingFavor = false;
     this.Matchmaking = false;
     this.ClubLeader = false;
     this.Pestered = false;
     this.Show = false;
+    this.PromptBar.ClearButtons();
+    this.PromptBar.UpdateButtons();
+    this.PromptBar.Show = false;
   }
 
   private void RestoreMusic() => this.Jukebox.ClubTheme.Stop();

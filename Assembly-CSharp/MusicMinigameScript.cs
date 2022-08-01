@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MusicMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -158,7 +158,7 @@ public class MusicMinigameScript : MonoBehaviour
       this.Timer += Time.deltaTime;
       if (!this.MyAudio.isPlaying)
       {
-        if ((double) this.Timer > 3.0 || Input.GetKeyDown("space"))
+        if ((double) this.Timer > 3.0)
         {
           if ((double) this.Timer < (double) this.MyAudio.clip.length)
           {
@@ -189,11 +189,6 @@ public class MusicMinigameScript : MonoBehaviour
       }
       else
       {
-        if (Input.GetKeyDown("space"))
-        {
-          this.MyAudio.time += 10f;
-          this.Timer = this.MyAudio.time + 3f;
-        }
         if (Input.GetKeyDown("z"))
         {
           this.Won = true;

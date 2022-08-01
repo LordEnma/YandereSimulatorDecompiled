@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PickUpScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 142BD599-F469-4844-AAF7-649036ADC83B
+// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -129,8 +129,11 @@ public class PickUpScript : MonoBehaviour
     }
     this.Yandere.StudentManager.AllPickUps[this.Yandere.StudentManager.PickUpID] = this;
     ++this.Yandere.StudentManager.PickUpID;
-    this.OriginalPosition = this.transform.position;
-    this.OriginalRotation = this.transform.eulerAngles;
+    if (!this.Clothing && (Object) this.BodyPart == (Object) null)
+    {
+      this.OriginalPosition = this.transform.position;
+      this.OriginalRotation = this.transform.eulerAngles;
+    }
     if (!this.InstantiatedObject)
       return;
     this.Yandere.StudentManager.SpawnedObjectManager.SpawnedObjectList[this.Yandere.StudentManager.SpawnedObjectManager.ObjectsSpawned] = this.ObjectType;
@@ -414,9 +417,9 @@ public class PickUpScript : MonoBehaviour
     this.KinematicTimer = 0.0f;
     if ((Object) this.PickUpSound != (Object) null)
       AudioSource.PlayClipAtPoint(this.PickUpSound, this.transform.position);
-    if (!this.StinkBombs && !this.BangSnaps)
-      return;
-    this.Prompt.Yandere.Arc.SetActive(true);
+    if (this.StinkBombs || this.BangSnaps)
+      this.Prompt.Yandere.Arc.SetActive(true);
+    this.Yandere.UpdateConcealedItemStatus();
   }
 
   public void Drop()
