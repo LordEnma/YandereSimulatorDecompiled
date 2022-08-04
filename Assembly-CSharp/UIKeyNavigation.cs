@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UIKeyNavigation
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -119,7 +119,7 @@ public class UIKeyNavigation : MonoBehaviour
         if (!((UnityEngine.Object) component != (UnityEngine.Object) null) || (double) component.alpha != 0.0)
         {
           Vector3 direction = UIKeyNavigation.GetCenter(uiKeyNavigation.gameObject) - center;
-          if ((double) Vector3.Dot(myDir, direction.normalized) >= 0.707000017166138)
+          if ((double) Vector3.Dot(myDir, direction.normalized) >= 0.7070000171661377)
           {
             Vector3 vector3 = transform.InverseTransformDirection(direction);
             vector3.x *= x;

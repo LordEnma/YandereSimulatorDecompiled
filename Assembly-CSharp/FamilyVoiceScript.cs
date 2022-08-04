@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: FamilyVoiceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -80,7 +80,7 @@ public class FamilyVoiceScript : MonoBehaviour
                   this.MyAnimation["fatherFixing_00"].time -= this.MyAnimation["fatherFixing_00"].length;
                 if (this.AnimPhase == 0)
                 {
-                  if ((double) this.MyAnimation["fatherFixing_00"].time > 18.0 && (double) this.MyAnimation["fatherFixing_00"].time < 18.1000003814697)
+                  if ((double) this.MyAnimation["fatherFixing_00"].time > 18.0 && (double) this.MyAnimation["fatherFixing_00"].time < 18.100000381469727)
                   {
                     this.Subtitle.text = this.SpeechText[this.SpeechPhase];
                     this.MyAudio.clip = this.SpeechClip[this.SpeechPhase];
@@ -108,14 +108,14 @@ public class FamilyVoiceScript : MonoBehaviour
                 this.Scale = 0.0f;
               if ((double) this.Scale > 1.0)
                 this.Scale = 1f;
-              this.Jukebox.volume = (float) (1.0 - 0.899999976158142 * (double) this.Scale);
+              this.Jukebox.volume = (float) (1.0 - 0.89999997615814209 * (double) this.Scale);
               this.Subtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
               this.MyAudio.volume = this.Scale;
             }
             for (int index = 0; index < this.Boundary.Length; ++index)
             {
               Transform transform = this.Boundary[index];
-              if ((Object) transform != (Object) null && (double) Vector3.Distance(this.Yandere.transform.position, transform.position) < 0.333330005407333)
+              if ((Object) transform != (Object) null && (double) Vector3.Distance(this.Yandere.transform.position, transform.position) < 0.33333000540733337)
               {
                 Debug.Log((object) ("Got a ''proximity'' game over from " + this.gameObject.name));
                 AudioSource.PlayClipAtPoint(this.CrunchSound, Camera.main.transform.position);
@@ -141,7 +141,7 @@ public class FamilyVoiceScript : MonoBehaviour
         this.transform.parent.position = Vector3.MoveTowards(this.transform.parent.position, this.Node[this.CurrentNode].position, Time.deltaTime);
         if ((double) this.FixTimer == 0.0 || (double) this.FixTimer == 5.0)
           this.transform.parent.rotation = Quaternion.Slerp(this.transform.parent.rotation, Quaternion.LookRotation(this.Node[this.CurrentNode].position - this.transform.parent.position), Time.deltaTime * 10f);
-        if ((double) Vector3.Distance(this.transform.parent.position, this.Node[this.CurrentNode].position) < 0.100000001490116)
+        if ((double) Vector3.Distance(this.transform.parent.position, this.Node[this.CurrentNode].position) < 0.10000000149011612)
         {
           if (this.CurrentNode == this.Node.Length - 1)
             this.Return = true;

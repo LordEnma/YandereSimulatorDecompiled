@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MusicNoteScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -55,7 +55,7 @@ public class MusicNoteScript : MonoBehaviour
       {
         if (this.MusicMinigame.CurrentNote == this.ID)
         {
-          if ((double) this.transform.localPosition.x > -0.600000023841858 && (double) this.transform.localPosition.x < -0.400000005960464)
+          if ((double) this.transform.localPosition.x > -0.60000002384185791 && (double) this.transform.localPosition.x < -0.40000000596046448)
           {
             this.Rating = Object.Instantiate<GameObject>(this.Perfect, this.transform.position, Quaternion.identity);
             this.Proceed = true;
@@ -63,13 +63,13 @@ public class MusicNoteScript : MonoBehaviour
             this.MusicMinigame.CringeTimer = 0.0f;
             this.MusicMinigame.UpdateHealthBar();
           }
-          else if ((double) this.transform.localPosition.x > -0.400000005960464 && (double) this.transform.localPosition.x < -0.200000002980232)
+          else if ((double) this.transform.localPosition.x > -0.40000000596046448 && (double) this.transform.localPosition.x < -0.20000000298023224)
           {
             this.Rating = Object.Instantiate<GameObject>(this.Early, this.transform.position, Quaternion.identity);
             this.MusicMinigame.CringeTimer = 0.0f;
             this.Proceed = true;
           }
-          else if ((double) this.transform.localPosition.x > -0.800000011920929 && (double) this.transform.localPosition.x < -0.400000005960464)
+          else if ((double) this.transform.localPosition.x > -0.800000011920929 && (double) this.transform.localPosition.x < -0.40000000596046448)
           {
             this.Rating = Object.Instantiate<GameObject>(this.Late, this.transform.position, Quaternion.identity);
             this.MusicMinigame.CringeTimer = 0.0f;
@@ -77,7 +77,7 @@ public class MusicNoteScript : MonoBehaviour
           }
         }
       }
-      else if (Input.anyKeyDown && (double) this.transform.localPosition.x > -0.800000011920929 && (double) this.transform.localPosition.x < -0.200000002980232 && !this.MusicMinigame.GameOver)
+      else if (Input.anyKeyDown && (double) this.transform.localPosition.x > -0.800000011920929 && (double) this.transform.localPosition.x < -0.20000000298023224 && !this.MusicMinigame.GameOver)
       {
         this.Rating = Object.Instantiate<GameObject>(this.Wrong, this.transform.position, Quaternion.identity);
         this.Proceed = true;
@@ -99,9 +99,9 @@ public class MusicNoteScript : MonoBehaviour
       this.MusicMinigame.KeyDown = true;
       Object.Destroy((Object) this.gameObject);
     }
-    else if ((double) this.transform.localPosition.x < -0.649999976158142 && this.MusicMinigame.CurrentNote == this.ID)
+    else if ((double) this.transform.localPosition.x < -0.64999997615814209 && this.MusicMinigame.CurrentNote == this.ID)
       ++this.MusicMinigame.CurrentNote;
-    if ((double) this.transform.localPosition.x >= -0.939999997615814 || this.MusicMinigame.GameOver)
+    if ((double) this.transform.localPosition.x >= -0.93999999761581421 || this.MusicMinigame.GameOver)
       return;
     this.Rating = Object.Instantiate<GameObject>(this.Miss, this.transform.position, Quaternion.identity);
     this.Rating.transform.parent = this.transform.parent;

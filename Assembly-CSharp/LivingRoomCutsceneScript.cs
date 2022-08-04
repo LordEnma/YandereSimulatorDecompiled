@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: LivingRoomCutsceneScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -700,13 +700,13 @@ public class LivingRoomCutsceneScript : MonoBehaviour
       {
         if (this.OsanaCutscene)
         {
-          if ((double) this.FriendshipCamera.position.z > 2.40000009536743)
-            this.transform.localPosition = new Vector3((float) ((double) this.ShakeStrength * (double) Random.Range(-1f, 1f) - 1.39999997615814), this.ShakeStrength * Random.Range(-1f, 1f), this.ShakeStrength * Random.Range(-1f, 1f));
+          if ((double) this.FriendshipCamera.position.z > 2.4000000953674316)
+            this.transform.localPosition = new Vector3((float) ((double) this.ShakeStrength * (double) Random.Range(-1f, 1f) - 1.3999999761581421), this.ShakeStrength * Random.Range(-1f, 1f), this.ShakeStrength * Random.Range(-1f, 1f));
           else if (this.Branch != 3)
-            this.transform.localPosition = new Vector3((float) ((double) this.ShakeStrength * (double) Random.Range(-1f, 1f) - 0.649999976158142), this.ShakeStrength * Random.Range(-1f, 1f), this.ShakeStrength * Random.Range(-1f, 1f));
+            this.transform.localPosition = new Vector3((float) ((double) this.ShakeStrength * (double) Random.Range(-1f, 1f) - 0.64999997615814209), this.ShakeStrength * Random.Range(-1f, 1f), this.ShakeStrength * Random.Range(-1f, 1f));
         }
         else
-          this.transform.localPosition = new Vector3((float) ((double) this.ShakeStrength * (double) Random.Range(-1f, 1f) - 0.649999976158142), this.ShakeStrength * Random.Range(-1f, 1f), this.ShakeStrength * Random.Range(-1f, 1f));
+          this.transform.localPosition = new Vector3((float) ((double) this.ShakeStrength * (double) Random.Range(-1f, 1f) - 0.64999997615814209), this.ShakeStrength * Random.Range(-1f, 1f), this.ShakeStrength * Random.Range(-1f, 1f));
       }
       this.CutsceneCamera.position = new Vector3(this.CutsceneCamera.position.x + this.xOffset, this.CutsceneCamera.position.y, this.CutsceneCamera.position.z + this.zOffset);
       this.LeftEye.localPosition = new Vector3(this.LeftEye.localPosition.x, this.LeftEye.localPosition.y, this.LeftEyeOrigin.z - this.EyeShrink * 0.01f);
@@ -731,7 +731,7 @@ public class LivingRoomCutsceneScript : MonoBehaviour
     this.Noise.intensityMultiplier = Mathf.MoveTowards(this.Noise.intensityMultiplier, 3f, (float) ((double) Time.deltaTime * 3.0 / 10.0));
     this.Obscurance.intensity = Mathf.MoveTowards(this.Obscurance.intensity, 3f, (float) ((double) Time.deltaTime * 3.0 / 10.0));
     if (!this.OsanaCutscene)
-      this.ShakeStrength = Mathf.MoveTowards(this.ShakeStrength, 0.01f, (float) ((double) Time.deltaTime * 0.00999999977648258 / 10.0));
+      this.ShakeStrength = Mathf.MoveTowards(this.ShakeStrength, 0.01f, (float) ((double) Time.deltaTime * 0.0099999997764825821 / 10.0));
     this.EyeShrink = Mathf.MoveTowards(this.EyeShrink, 0.9f, Time.deltaTime);
     if ((double) this.MyAudio.time <= 45.0)
       return;
@@ -760,14 +760,14 @@ public class LivingRoomCutsceneScript : MonoBehaviour
   private void DecreaseYandereEffects()
   {
     this.Jukebox.volume = Mathf.MoveTowards(this.Jukebox.volume, 0.0f, Time.deltaTime / 5f);
-    this.MyAudio.volume = Mathf.MoveTowards(this.MyAudio.volume, 1f, (float) ((double) Time.deltaTime * 0.100000001490116 / 5.0));
+    this.MyAudio.volume = Mathf.MoveTowards(this.MyAudio.volume, 1f, (float) ((double) Time.deltaTime * 0.10000000149011612 / 5.0));
     this.Vignette.intensity = Mathf.MoveTowards(this.Vignette.intensity, 1f, (float) ((double) Time.deltaTime * 4.0 / 5.0));
     this.Vignette.blur = this.Vignette.intensity;
     this.Vignette.chromaticAberration = this.Vignette.intensity;
     this.ColorCorrection.saturation = Mathf.MoveTowards(this.ColorCorrection.saturation, 1f, Time.deltaTime / 5f);
     this.Noise.intensityMultiplier = Mathf.MoveTowards(this.Noise.intensityMultiplier, 0.0f, (float) ((double) Time.deltaTime * 3.0 / 5.0));
     this.Obscurance.intensity = Mathf.MoveTowards(this.Obscurance.intensity, 0.0f, (float) ((double) Time.deltaTime * 3.0 / 5.0));
-    this.ShakeStrength = Mathf.MoveTowards(this.ShakeStrength, 0.0f, (float) ((double) Time.deltaTime * 0.00999999977648258 / 5.0));
+    this.ShakeStrength = Mathf.MoveTowards(this.ShakeStrength, 0.0f, (float) ((double) Time.deltaTime * 0.0099999997764825821 / 5.0));
     this.EliminationPanel.alpha = Mathf.MoveTowards(this.EliminationPanel.alpha, 0.0f, Time.deltaTime);
     this.EyeShrink = Mathf.MoveTowards(this.EyeShrink, 0.0f, Time.deltaTime);
   }

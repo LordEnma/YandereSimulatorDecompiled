@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BucketScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -91,7 +91,7 @@ public class BucketScript : MonoBehaviour
         if ((Object) this.Yandere.Bucket == (Object) null)
         {
           RaycastHit hitInfo;
-          if ((double) this.transform.position.y > (double) this.Yandere.transform.position.y - 0.100000001490116 && (double) this.transform.position.y < (double) this.Yandere.transform.position.y + 0.100000001490116 && Physics.Linecast(this.transform.position, this.Yandere.transform.position + Vector3.up, out hitInfo) && (Object) hitInfo.collider.gameObject == (Object) this.Yandere.gameObject)
+          if ((double) this.transform.position.y > (double) this.Yandere.transform.position.y - 0.10000000149011612 && (double) this.transform.position.y < (double) this.Yandere.transform.position.y + 0.10000000149011612 && Physics.Linecast(this.transform.position, this.Yandere.transform.position + Vector3.up, out hitInfo) && (Object) hitInfo.collider.gameObject == (Object) this.Yandere.gameObject)
             this.Yandere.Bucket = this;
         }
         else
@@ -99,7 +99,7 @@ public class BucketScript : MonoBehaviour
           RaycastHit hitInfo;
           if (Physics.Linecast(this.transform.position, this.Yandere.transform.position + Vector3.up, out hitInfo) && (Object) hitInfo.collider.gameObject != (Object) this.Yandere.gameObject)
             this.Yandere.Bucket = (BucketScript) null;
-          if ((double) this.transform.position.y < (double) this.Yandere.transform.position.y - 0.100000001490116 || (double) this.transform.position.y > (double) this.Yandere.transform.position.y + 0.100000001490116)
+          if ((double) this.transform.position.y < (double) this.Yandere.transform.position.y - 0.10000000149011612 || (double) this.transform.position.y > (double) this.Yandere.transform.position.y + 0.10000000149011612)
             this.Yandere.Bucket = (BucketScript) null;
         }
       }

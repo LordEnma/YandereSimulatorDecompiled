@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ShoeRemovalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -53,7 +53,7 @@ public class ShoeRemovalScript : MonoBehaviour
     GameObject gameObject = Object.Instantiate<GameObject>(this.NewPairOfShoes, this.transform.position, Quaternion.identity);
     gameObject.transform.parent = this.Locker;
     gameObject.transform.localEulerAngles = new Vector3(0.0f, -180f, 0.0f);
-    gameObject.transform.localPosition = new Vector3(0.0f, (float) (0.300000011920929 * (double) this.Height - 0.28999999165535), this.Male ? 0.04f : 0.05f);
+    gameObject.transform.localPosition = new Vector3(0.0f, (float) (0.30000001192092896 * (double) this.Height - 0.28999999165534973), this.Male ? 0.04f : 0.05f);
     this.LeftSchoolShoe = gameObject.transform.GetChild(0);
     this.RightSchoolShoe = gameObject.transform.GetChild(1);
     this.RemovalAnim = this.RemoveCasualAnim;
@@ -106,7 +106,7 @@ public class ShoeRemovalScript : MonoBehaviour
       this.Student.CharacterAnimation.CrossFade(this.RemovalAnim);
       if (this.Phase == 1)
       {
-        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 0.833333015441895)
+        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 0.83333301544189453)
           return;
         int num = (Object) this.Student.Follower != (Object) null ? 1 : 0;
         if (this.Student.StudentID == this.Student.StudentManager.RivalID && !this.Student.StudentManager.MissionMode && !GameGlobals.AlphabetMode && !GameGlobals.Eighties && DateGlobals.Week == 1)
@@ -119,7 +119,7 @@ public class ShoeRemovalScript : MonoBehaviour
       }
       else if (this.Phase == 2)
       {
-        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 1.83333301544189)
+        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 1.8333330154418945)
           return;
         this.ShoeParent.parent = this.Locker;
         this.X = this.ShoeParent.localEulerAngles.x;
@@ -169,7 +169,7 @@ public class ShoeRemovalScript : MonoBehaviour
       }
       else if (this.Phase == 7)
       {
-        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 6.66665983200073)
+        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 6.6666598320007324)
           return;
         if (!this.Student.AoT)
         {
@@ -190,7 +190,7 @@ public class ShoeRemovalScript : MonoBehaviour
       }
       else if (this.Phase == 8)
       {
-        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 7.66666603088379)
+        if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 7.6666660308837891)
           return;
         this.ShoeParent.transform.position = (this.RightCurrentShoe.position - this.LeftCurrentShoe.position) * 0.5f;
         this.RightCurrentShoe.parent = this.ShoeParent;
@@ -203,7 +203,7 @@ public class ShoeRemovalScript : MonoBehaviour
         if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 8.5)
           return;
         this.ShoeParent.parent = this.Locker;
-        this.ShoeParent.localPosition = new Vector3(0.0f, (float) (((Object) this.TargetShoes == (Object) this.IndoorShoes ? -0.140000000596046 : -0.28999999165535) + 0.300000011920929 * (double) this.Height), -0.01f);
+        this.ShoeParent.localPosition = new Vector3(0.0f, (float) (((Object) this.TargetShoes == (Object) this.IndoorShoes ? -0.14000000059604645 : -0.28999999165534973) + 0.30000001192092896 * (double) this.Height), -0.01f);
         this.ShoeParent.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
         this.RightCurrentShoe.localPosition = new Vector3(0.041f, 0.04271515f, 0.0f);
         this.LeftCurrentShoe.localPosition = new Vector3(-0.041f, 0.04271515f, 0.0f);
@@ -304,7 +304,7 @@ public class ShoeRemovalScript : MonoBehaviour
     this.LeftCurrentShoe.parent = this.ShoeParent;
     this.ShoeParent.parent = this.RightHand;
     this.ShoeParent.parent = this.Locker;
-    this.ShoeParent.localPosition = new Vector3(0.0f, (float) (((Object) this.TargetShoes == (Object) this.IndoorShoes ? -0.140000000596046 : -0.28999999165535) + 0.300000011920929 * (double) this.Height), -0.01f);
+    this.ShoeParent.localPosition = new Vector3(0.0f, (float) (((Object) this.TargetShoes == (Object) this.IndoorShoes ? -0.14000000059604645 : -0.28999999165534973) + 0.30000001192092896 * (double) this.Height), -0.01f);
     this.ShoeParent.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
     this.RightCurrentShoe.localPosition = new Vector3(0.041f, 0.04271515f, 0.0f);
     this.LeftCurrentShoe.localPosition = new Vector3(-0.041f, 0.04271515f, 0.0f);

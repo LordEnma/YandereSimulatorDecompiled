@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PoliceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -271,7 +271,7 @@ public class PoliceScript : MonoBehaviour
       }
       this.PauseScreen.Panel.alpha = Mathf.MoveTowards(this.PauseScreen.Panel.alpha, 0.0f, Time.deltaTime);
       this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      if ((double) this.Darkness.color.a > 0.999000012874603)
+      if ((double) this.Darkness.color.a > 0.99900001287460327)
       {
         this.Darkness.alpha = 1f;
         if (!this.ShowResults)
@@ -508,7 +508,7 @@ public class PoliceScript : MonoBehaviour
         this.BloodyClothing -= this.RedPaintClothing;
         if (this.Corpses == 0 && this.LimbParent.childCount == 0 && this.BloodParent.childCount == 0 && this.BloodyWeapons == 0 && this.BloodyClothing == 0 && !this.SuicideScene)
         {
-          if ((double) this.Yandere.Sanity < 66.6666564941406 || (double) this.Yandere.Bloodiness > 0.0 && !this.Yandere.RedPaint)
+          if ((double) this.Yandere.Sanity < 66.666656494140625 || (double) this.Yandere.Bloodiness > 0.0 && !this.Yandere.RedPaint)
           {
             this.ResultsLabels[1].text = this.Protagonist + " is approached by a faculty member.";
             if ((double) this.Yandere.Bloodiness > 0.0)

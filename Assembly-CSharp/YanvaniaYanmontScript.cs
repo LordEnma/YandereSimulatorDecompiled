@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YanvaniaYanmontScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -171,7 +171,7 @@ public class YanvaniaYanmontScript : MonoBehaviour
           else
             this.inputX = (double) Input.GetAxis("VaniaHorizontal") == 0.0 ? Mathf.MoveTowards(this.inputX, 0.0f, Time.deltaTime * 10f) : ((double) Input.GetAxis("VaniaHorizontal") <= 0.0 ? ((double) Input.GetAxis("VaniaHorizontal") >= 0.0 ? 0.0f : -1f) : 1f);
           float num1 = 0.0f;
-          float num2 = (double) this.inputX == 0.0 || (double) num1 == 0.0 || !this.limitDiagonalSpeed ? 1f : 0.7071068f;
+          float num2 = (double) this.inputX == 0.0 || (double) num1 == 0.0 || !this.limitDiagonalSpeed ? 1f : 0.707106769f;
           if (!this.Attacking)
           {
             if ((double) Input.GetAxis("VaniaHorizontal") < 0.0)

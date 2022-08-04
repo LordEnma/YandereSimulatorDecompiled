@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClubManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -168,7 +168,7 @@ public class ClubManagerScript : MonoBehaviour
       }
       else if (this.Phase == 2)
       {
-        if ((double) this.ClubWindow.ActivityWindow.localScale.x > 0.899999976158142)
+        if ((double) this.ClubWindow.ActivityWindow.localScale.x > 0.89999997615814209)
         {
           if (this.Club == ClubType.MartialArts)
           {
@@ -202,7 +202,7 @@ public class ClubManagerScript : MonoBehaviour
           }
         }
       }
-      else if ((double) this.ClubWindow.ActivityWindow.localScale.x < 0.100000001490116)
+      else if ((double) this.ClubWindow.ActivityWindow.localScale.x < 0.10000000149011612)
       {
         this.Police.Darkness.enabled = true;
         this.Police.ClubActivity = false;

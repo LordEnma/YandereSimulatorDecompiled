@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AmplifyMotionEffectBase
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using AmplifyMotion;
@@ -640,8 +640,8 @@ public class AmplifyMotionEffectBase : MonoBehaviour
     {
       float num = Application.isPlaying ? Time.unscaledDeltaTime : Time.fixedDeltaTime;
       float fixedDeltaTime = Time.fixedDeltaTime;
-      this.m_deltaTime = (double) num > 1.40129846432482E-45 ? num : this.m_deltaTime;
-      this.m_fixedDeltaTime = (double) num > 1.40129846432482E-45 ? fixedDeltaTime : this.m_fixedDeltaTime;
+      this.m_deltaTime = (double) num > 1.4012984643248171E-45 ? num : this.m_deltaTime;
+      this.m_fixedDeltaTime = (double) num > 1.4012984643248171E-45 ? fixedDeltaTime : this.m_fixedDeltaTime;
     }
     this.QualitySteps = Mathf.Clamp(this.QualitySteps, 0, 16);
     this.MotionScale = Mathf.Max(this.MotionScale, 0.0f);
@@ -702,7 +702,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
 
   private void OnPreRender()
   {
-    if (!this.m_camera.enabled || Time.frameCount != 1 && (double) Mathf.Abs(Time.unscaledDeltaTime) <= 1.40129846432482E-45)
+    if (!this.m_camera.enabled || Time.frameCount != 1 && (double) Mathf.Abs(Time.unscaledDeltaTime) <= 1.4012984643248171E-45)
       return;
     if (this.m_linkedCamerasChanged)
       this.UpdateLinkedCameras();
@@ -720,11 +720,11 @@ public class AmplifyMotionEffectBase : MonoBehaviour
     this.m_qualityLevel = this.QualityLevel;
     this.UpdateRenderTextures(qualityChanged);
     this.ResetObjectId();
-    bool flag = (double) this.CameraMotionMult > 1.40129846432482E-45;
+    bool flag = (double) this.CameraMotionMult > 1.4012984643248171E-45;
     bool clearColor = !flag || this.m_starting;
-    float num1 = (double) this.DepthThreshold > 1.40129846432482E-45 ? 1f / this.DepthThreshold : float.MaxValue;
-    this.m_motionScaleNorm = (double) this.m_deltaTime >= 1.40129846432482E-45 ? this.MotionScale * (1f / this.m_deltaTime) : 0.0f;
-    this.m_fixedMotionScaleNorm = (double) this.m_fixedDeltaTime >= 1.40129846432482E-45 ? this.MotionScale * (1f / this.m_fixedDeltaTime) : 0.0f;
+    float num1 = (double) this.DepthThreshold > 1.4012984643248171E-45 ? 1f / this.DepthThreshold : float.MaxValue;
+    this.m_motionScaleNorm = (double) this.m_deltaTime >= 1.4012984643248171E-45 ? this.MotionScale * (1f / this.m_deltaTime) : 0.0f;
+    this.m_fixedMotionScaleNorm = (double) this.m_fixedDeltaTime >= 1.4012984643248171E-45 ? this.MotionScale * (1f / this.m_fixedDeltaTime) : 0.0f;
     float scale1 = !this.m_starting ? this.m_motionScaleNorm : 0.0f;
     float fixedScale = !this.m_starting ? this.m_fixedMotionScaleNorm : 0.0f;
     Shader.SetGlobalFloat("_AM_MIN_VELOCITY", this.MinVelocity);
@@ -744,7 +744,7 @@ public class AmplifyMotionEffectBase : MonoBehaviour
     }
     if (flag)
     {
-      float num2 = (double) this.m_deltaTime >= 1.40129846432482E-45 ? (float) ((double) this.MotionScale * (double) this.CameraMotionMult * (1.0 / (double) this.m_deltaTime)) : 0.0f;
+      float num2 = (double) this.m_deltaTime >= 1.4012984643248171E-45 ? (float) ((double) this.MotionScale * (double) this.CameraMotionMult * (1.0 / (double) this.m_deltaTime)) : 0.0f;
       float scale2 = !this.m_starting ? num2 : 0.0f;
       this.m_motionRT.DiscardContents();
       this.m_baseCamera.RenderReprojectionVectors(this.m_motionRT, scale2);

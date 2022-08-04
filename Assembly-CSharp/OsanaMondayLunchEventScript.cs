@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMondayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -210,7 +210,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
       this.RotationZ = Mathf.Lerp(this.RotationZ, 102.5f, Time.deltaTime);
       this.Senpai.Bento.transform.localPosition = Vector3.Lerp(this.Senpai.Bento.transform.localPosition, new Vector3(-0.045f, -0.08f, -0.025f), Time.deltaTime);
       this.Senpai.Bento.transform.localEulerAngles = new Vector3(this.RotationX, this.RotationY, this.RotationZ);
-      if ((double) this.Timer > 29.8333339691162)
+      if ((double) this.Timer > 29.833333969116211)
       {
         this.Senpai.Lid.transform.parent = this.Senpai.RightHand;
         this.Senpai.Lid.transform.localPosition = new Vector3(-0.025f, -0.025f, -0.015f);
@@ -223,7 +223,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
         this.Sabotaged = true;
         this.SpeechPhase = 0;
       }
-      if ((double) this.Timer > 30.4333324432373)
+      if ((double) this.Timer > 30.433332443237305)
       {
         this.Senpai.Lid.transform.parent = (Transform) null;
         this.Senpai.Lid.transform.position = new Vector3(-0.31f, 12.501f, -29.335f);
@@ -241,7 +241,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
       this.Timer += Time.deltaTime;
       if (!this.Sabotaged)
       {
-        if ((double) this.Timer > 37.1500015258789)
+        if ((double) this.Timer > 37.150001525878906)
         {
           AudioClipPlayer.Play(this.SpeechClip[2], this.Epicenter.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
           ++this.Phase;

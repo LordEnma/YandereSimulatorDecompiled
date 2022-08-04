@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UIDragObject
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -85,7 +85,7 @@ public class UIDragObject : MonoBehaviour
     if (UICamera.currentTouchID == -2 || UICamera.currentTouchID == -3)
       return;
     float timeScale = Time.timeScale;
-    if ((double) timeScale < 0.00999999977648258 && (double) timeScale != 0.0 || !this.enabled || !NGUITools.GetActive(this.gameObject) || !((Object) this.target != (Object) null))
+    if ((double) timeScale < 0.0099999997764825821 && (double) timeScale != 0.0 || !this.enabled || !NGUITools.GetActive(this.gameObject) || !((Object) this.target != (Object) null))
       return;
     if (pressed)
     {
@@ -189,7 +189,7 @@ public class UIDragObject : MonoBehaviour
     float deltaTime = RealTime.deltaTime;
     this.mMomentum -= this.mScroll;
     this.mScroll = NGUIMath.SpringLerp(this.mScroll, Vector3.zero, 20f, deltaTime);
-    if ((double) this.mMomentum.magnitude < 9.99999974737875E-05)
+    if ((double) this.mMomentum.magnitude < 9.9999997473787516E-05)
       return;
     if (!this.mPressed)
     {
@@ -205,7 +205,7 @@ public class UIDragObject : MonoBehaviour
           this.CancelSpring();
       }
       NGUIMath.SpringDampen(ref this.mMomentum, 9f, deltaTime);
-      if ((double) this.mMomentum.magnitude >= 9.99999974737875E-05)
+      if ((double) this.mMomentum.magnitude >= 9.9999997473787516E-05)
         return;
       this.CancelMovement();
     }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AsylumIntroScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -80,7 +80,7 @@ public class AsylumIntroScript : MonoBehaviour
         return;
       this.Yandere.MyAnimation.Play("f02_idleShort_00");
       this.Yandere.transform.position = new Vector3(-21.7985f, 0.03203398f, -29f);
-      this.transform.position = new Vector3(-21.3985f, 1.332034f, -28.4f);
+      this.transform.position = new Vector3(-21.3985f, 1.33203387f, -28.4f);
       this.transform.eulerAngles = new Vector3(0.0f, -135f, 0.0f);
       Physics.SyncTransforms();
       this.DOF = 0.5f;

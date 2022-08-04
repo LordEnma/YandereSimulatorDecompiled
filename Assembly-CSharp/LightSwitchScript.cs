@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: LightSwitchScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -31,7 +31,7 @@ public class LightSwitchScript : MonoBehaviour
     if (this.Flicker)
     {
       this.FlickerTimer += Time.deltaTime;
-      if ((double) this.FlickerTimer > 0.100000001490116)
+      if ((double) this.FlickerTimer > 0.10000000149011612)
       {
         this.FlickerTimer = 0.0f;
         this.BathroomLight.SetActive(!this.BathroomLight.activeInHierarchy);

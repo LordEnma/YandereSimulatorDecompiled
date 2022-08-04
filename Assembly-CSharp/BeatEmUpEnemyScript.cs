@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BeatEmUpEnemyScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -113,7 +113,7 @@ public class BeatEmUpEnemyScript : MonoBehaviour
       }
       else
       {
-        if (this.HitboxSpawned || (double) this.MyAnimation[this.AttackAnim].time < (double) this.MyAnimation[this.AttackAnim].length * 0.449999988079071)
+        if (this.HitboxSpawned || (double) this.MyAnimation[this.AttackAnim].time < (double) this.MyAnimation[this.AttackAnim].length * 0.44999998807907104)
           return;
         Object.Instantiate<GameObject>(this.Hitbox, this.transform.position + this.transform.forward * 0.67f + new Vector3(0.0f, 1f, 0.0f), this.transform.rotation);
         this.HitboxSpawned = true;
@@ -121,7 +121,7 @@ public class BeatEmUpEnemyScript : MonoBehaviour
     }
     else if (this.StraightSpecial)
     {
-      if ((double) this.MyAnimation[this.StraightSpecialAnim].time >= (double) this.MyAnimation[this.StraightSpecialAnim].length * 0.899999976158142)
+      if ((double) this.MyAnimation[this.StraightSpecialAnim].time >= (double) this.MyAnimation[this.StraightSpecialAnim].length * 0.89999997615814209)
       {
         this.StraightSpecialHitbox.SetActive(false);
         this.EyeTwinkle.SetActive(false);
@@ -131,7 +131,7 @@ public class BeatEmUpEnemyScript : MonoBehaviour
       }
       else if (!this.HitboxSpawned)
       {
-        if ((double) this.MyAnimation[this.StraightSpecialAnim].time < (double) this.MyAnimation[this.StraightSpecialAnim].length * 0.389999985694885)
+        if ((double) this.MyAnimation[this.StraightSpecialAnim].time < (double) this.MyAnimation[this.StraightSpecialAnim].length * 0.38999998569488525)
           return;
         this.StraightSpecialHitbox.SetActive(true);
         this.HitboxSpawned = true;
@@ -157,13 +157,13 @@ public class BeatEmUpEnemyScript : MonoBehaviour
         this.transform.LookAt(this.Player.transform.position);
       if ((double) this.MyAnimation[this.ArcSpecialAnimA].time >= (double) this.MyAnimation[this.ArcSpecialAnimA].length)
         this.MyAnimation.CrossFade(this.ArcSpecialAnimB);
-      else if ((double) this.MyAnimation[this.ArcSpecialAnimA].time >= (double) this.MyAnimation[this.ArcSpecialAnimA].length * 0.349999994039536)
+      else if ((double) this.MyAnimation[this.ArcSpecialAnimA].time >= (double) this.MyAnimation[this.ArcSpecialAnimA].length * 0.34999999403953552)
       {
         this.Weapons[this.MyWeapon].transform.parent = this.RightHand;
         this.Weapons[this.MyWeapon].transform.localPosition = Vector3.zero;
         this.Weapons[this.MyWeapon].transform.localEulerAngles = Vector3.zero;
       }
-      if ((double) this.MyAnimation[this.ArcSpecialAnimB].time >= (double) this.MyAnimation[this.ArcSpecialAnimB].length * 0.899999976158142)
+      if ((double) this.MyAnimation[this.ArcSpecialAnimB].time >= (double) this.MyAnimation[this.ArcSpecialAnimB].length * 0.89999997615814209)
       {
         this.Weapons[this.MyWeapon].transform.parent = this.WeaponParent;
         this.Weapons[this.MyWeapon].transform.localPosition = Vector3.zero;
@@ -175,14 +175,14 @@ public class BeatEmUpEnemyScript : MonoBehaviour
       }
       else if (!this.HitboxSpawned)
       {
-        if ((double) this.MyAnimation[this.ArcSpecialAnimB].time < (double) this.MyAnimation[this.ArcSpecialAnimB].length * 0.340000003576279)
+        if ((double) this.MyAnimation[this.ArcSpecialAnimB].time < (double) this.MyAnimation[this.ArcSpecialAnimB].length * 0.34000000357627869)
           return;
         this.ArcSpecialHitbox.SetActive(true);
         this.HitboxSpawned = true;
       }
       else
       {
-        if ((double) this.MyAnimation[this.ArcSpecialAnimB].time < (double) this.MyAnimation[this.ArcSpecialAnimB].length * 0.439999997615814)
+        if ((double) this.MyAnimation[this.ArcSpecialAnimB].time < (double) this.MyAnimation[this.ArcSpecialAnimB].length * 0.43999999761581421)
           return;
         this.ArcSpecialHitbox.SetActive(false);
       }

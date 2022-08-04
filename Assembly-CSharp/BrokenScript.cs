@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BrokenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -77,7 +77,7 @@ public class BrokenScript : MonoBehaviour
             this.Subtitle.text = "...kill...kill...kill...";
             AudioClipPlayer.PlayAttached(this.KillKillKill, this.transform.position, this.transform, 1f, 5f, out this.VoiceClip, this.Yandere.transform.position.y);
           }
-          float num2 = Mathf.Abs((float) (((double) num1 - 5.0) * 0.200000002980232));
+          float num2 = Mathf.Abs((float) (((double) num1 - 5.0) * 0.20000000298023224));
           float num3 = (double) num2 > 1.0 ? 1f : num2;
           this.Subtitle.transform.localScale = new Vector3(num3, num3, num3);
         }

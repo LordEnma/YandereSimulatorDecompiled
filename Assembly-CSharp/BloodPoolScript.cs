@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BloodPoolScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -45,7 +45,7 @@ public class BloodPoolScript : MonoBehaviour
     if (this.Grow)
     {
       this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(this.TargetSize, this.TargetSize, this.TargetSize), Time.deltaTime);
-      if ((double) this.transform.localScale.x > (double) this.TargetSize * 0.990000009536743)
+      if ((double) this.transform.localScale.x > (double) this.TargetSize * 0.99000000953674316)
         this.Grow = false;
     }
     if (!this.Water || (double) this.ElectroTimer <= 0.0)

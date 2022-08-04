@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ZoomScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -31,7 +31,7 @@ public class ZoomScript : MonoBehaviour
     if (!this.Yandere.FollowHips)
     {
       if (this.Yandere.FlameDemonic)
-        this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.MoveTowards(this.transform.localPosition.y, (float) ((double) this.Height + (double) this.Zoom + 0.400000005960464), Time.deltaTime), this.transform.localPosition.z);
+        this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.MoveTowards(this.transform.localPosition.y, (float) ((double) this.Height + (double) this.Zoom + 0.40000000596046448), Time.deltaTime), this.transform.localPosition.z);
       else if (this.Yandere.Slender)
         this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.MoveTowards(this.transform.localPosition.y, this.Height + this.Zoom + this.Slender, Time.deltaTime), this.transform.localPosition.z);
       else if (this.Yandere.Stand.Stand.activeInHierarchy)
@@ -50,10 +50,10 @@ public class ZoomScript : MonoBehaviour
       this.TargetZoom = 0.0f;
     if (this.Yandere.Stance.Current == StanceType.Crawling)
     {
-      if ((double) this.TargetZoom > 0.300000011920929)
+      if ((double) this.TargetZoom > 0.30000001192092896)
         this.TargetZoom = 0.3f;
     }
-    else if ((double) this.TargetZoom > 0.400000005960464)
+    else if ((double) this.TargetZoom > 0.40000000596046448)
       this.TargetZoom = 0.4f;
     if ((double) this.Zoom != (double) this.TargetZoom)
     {
@@ -62,9 +62,9 @@ public class ZoomScript : MonoBehaviour
     }
     if (!this.Yandere.Possessed)
     {
-      this.CameraScript.distance = (float) (2.0 - (double) this.Zoom * 3.33332991600037) + this.Slender;
-      this.CameraScript.distanceMax = (float) (2.0 - (double) this.Zoom * 3.33332991600037) + this.Slender;
-      this.CameraScript.distanceMin = (float) (2.0 - (double) this.Zoom * 3.33332991600037) + this.Slender;
+      this.CameraScript.distance = (float) (2.0 - (double) this.Zoom * 3.3333299160003662) + this.Slender;
+      this.CameraScript.distanceMax = (float) (2.0 - (double) this.Zoom * 3.3333299160003662) + this.Slender;
+      this.CameraScript.distanceMin = (float) (2.0 - (double) this.Zoom * 3.3333299160003662) + this.Slender;
       if (this.Yandere.TornadoHair.activeInHierarchy || (Object) this.CardboardBox != (Object) null && (Object) this.CardboardBox.transform.parent == (Object) this.Yandere.Hips)
         this.CameraScript.distanceMax += 3f;
     }
@@ -76,8 +76,8 @@ public class ZoomScript : MonoBehaviour
     if (!this.Yandere.TimeSkipping)
     {
       this.Timer += Time.deltaTime;
-      this.ShakeStrength = Mathf.Lerp(this.ShakeStrength, (float) (1.0 - (double) this.Yandere.Sanity * 0.00999999977648258), Time.deltaTime);
-      if ((double) this.Timer > 0.100000001490116 + (double) this.Yandere.Sanity * 0.00999999977648258)
+      this.ShakeStrength = Mathf.Lerp(this.ShakeStrength, (float) (1.0 - (double) this.Yandere.Sanity * 0.0099999997764825821), Time.deltaTime);
+      if ((double) this.Timer > 0.10000000149011612 + (double) this.Yandere.Sanity * 0.0099999997764825821)
       {
         this.Target.x = Random.Range(-this.ShakeStrength, this.ShakeStrength);
         this.Target.y = this.transform.localPosition.y;
@@ -90,7 +90,7 @@ public class ZoomScript : MonoBehaviour
     if (this.Yandere.RoofPush)
       this.transform.position = new Vector3(Mathf.MoveTowards(this.transform.position.x, this.Yandere.Hips.position.x, Time.deltaTime * 10f), this.transform.position.y, Mathf.MoveTowards(this.transform.position.z, this.Yandere.Hips.position.z, Time.deltaTime * 10f));
     else
-      this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, this.Target, (float) ((double) Time.deltaTime * (double) this.ShakeStrength * 0.100000001490116));
+      this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, this.Target, (float) ((double) Time.deltaTime * (double) this.ShakeStrength * 0.10000000149011612));
   }
 
   public void LateUpdate()

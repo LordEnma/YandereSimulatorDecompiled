@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CounselorDoorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -35,7 +35,7 @@ public class CounselorDoorScript : MonoBehaviour
           flag = true;
         }
       }
-      if (!flag && !this.Prompt.Yandere.Chased && this.Prompt.Yandere.Chasers == 0 && !this.FadeIn && (double) this.Prompt.Yandere.Bloodiness == 0.0 && (double) this.Prompt.Yandere.Sanity > 66.6666564941406 && !this.Prompt.Yandere.Carrying && !this.Prompt.Yandere.Dragging)
+      if (!flag && !this.Prompt.Yandere.Chased && this.Prompt.Yandere.Chasers == 0 && !this.FadeIn && (double) this.Prompt.Yandere.Bloodiness == 0.0 && (double) this.Prompt.Yandere.Sanity > 66.666656494140625 && !this.Prompt.Yandere.Carrying && !this.Prompt.Yandere.Dragging)
       {
         if (!this.Counselor.Busy)
         {

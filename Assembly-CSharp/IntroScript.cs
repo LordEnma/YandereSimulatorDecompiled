@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: IntroScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -240,12 +240,12 @@ public class IntroScript : MonoBehaviour
         this.Logo.color = new Color(this.Logo.color.r, this.Logo.color.g, this.Logo.color.b, 1f);
         this.LoveSickLogo.color = new Color(this.LoveSickLogo.color.r, this.LoveSickLogo.color.g, this.LoveSickLogo.color.b, 1f);
       }
-      if ((double) this.Narration.time > 155.897994995117)
+      if ((double) this.Narration.time > 155.89799499511719)
       {
         this.Logo.color = new Color(this.Logo.color.r, this.Logo.color.g, this.Logo.color.b, 0.0f);
         this.LoveSickLogo.color = new Color(this.LoveSickLogo.color.r, this.LoveSickLogo.color.g, this.LoveSickLogo.color.b, 0.0f);
       }
-      if ((double) this.Narration.time > 159.897994995117)
+      if ((double) this.Narration.time > 159.89799499511719)
         SceneManager.LoadScene("PhoneScene");
     }
     if (!this.New)
@@ -340,7 +340,7 @@ public class IntroScript : MonoBehaviour
         GameObject gameObject = Object.Instantiate<GameObject>(this.MontagePrefab, this.transform.position, Quaternion.identity);
         gameObject.GetComponent<Renderer>().material.mainTexture = this.Textures[this.TextureID];
         gameObject.transform.parent = this.MontageParent;
-        gameObject.transform.localScale = new Vector3(0.6833265f, 0.3844405f, 0.33333f);
+        gameObject.transform.localScale = new Vector3(0.6833265f, 0.384440482f, 0.33333f);
         gameObject.transform.localPosition = new Vector3(Random.Range(-0.633333f, 0.633333f), Random.Range(-0.29f, 0.29f), (float) this.PhotosSpawned * -0.0001f);
         gameObject.transform.localEulerAngles = new Vector3(0.0f, 0.0f, Random.Range(-15f, 15f));
         this.Montage.material.mainTexture = this.Textures[this.TextureID];
@@ -432,7 +432,7 @@ public class IntroScript : MonoBehaviour
           this.DeathCorridor.SetActive(true);
           this.Alpha = 1f;
         }
-        else if ((double) this.Timer > 185.600006103516)
+        else if ((double) this.Timer > 185.60000610351563)
         {
           this.AttackPair[2].SetActive(false);
           this.AttackPair[3].SetActive(true);
@@ -441,9 +441,9 @@ public class IntroScript : MonoBehaviour
           this.VibrationTimer = 0.2f;
           this.Alpha = 0.0f;
         }
-        else if ((double) this.Timer > 185.199996948242)
+        else if ((double) this.Timer > 185.19999694824219)
           this.Alpha = 1f;
-        else if ((double) this.Timer > 184.800003051758)
+        else if ((double) this.Timer > 184.80000305175781)
         {
           this.AttackPair[1].SetActive(false);
           this.AttackPair[2].SetActive(true);
@@ -452,7 +452,7 @@ public class IntroScript : MonoBehaviour
           this.VibrationTimer = 0.2f;
           this.Alpha = 0.0f;
         }
-        else if ((double) this.Timer > 184.399993896484)
+        else if ((double) this.Timer > 184.39999389648438)
           this.Alpha = 1f;
         else if ((double) this.Timer > 184.0)
         {
@@ -492,7 +492,7 @@ public class IntroScript : MonoBehaviour
       }
       this.transform.Translate(Vector3.forward * 0.01f * Time.deltaTime, Space.Self);
       this.TurnRed();
-      if ((double) this.Narration.time <= 156.199996948242)
+      if ((double) this.Narration.time <= 156.19999694824219)
         return;
       this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
       this.Alpha = 1f;
@@ -545,7 +545,7 @@ public class IntroScript : MonoBehaviour
         };
       }
       this.EyeTimer += Time.deltaTime;
-      if ((double) this.EyeTimer > 0.100000001490116)
+      if ((double) this.EyeTimer > 0.10000000149011612)
       {
         this.Yandere.materials[2].SetTextureOffset("_OverlayTex", new Vector2(Random.Range(-0.01f, 0.01f), Random.Range(-0.01f, 0.01f)));
         this.EyeTimer -= 0.1f;
@@ -572,7 +572,7 @@ public class IntroScript : MonoBehaviour
         };
         this.Yandere.materials[2].SetFloat("_BlendAmount", 0.0f);
       }
-      if ((double) this.Narration.time < 94.8980026245117)
+      if ((double) this.Narration.time < 94.898002624511719)
       {
         this.transform.position = Vector3.MoveTowards(this.transform.position, new Vector3(0.0f, 1f, -2f), Time.deltaTime * 1.09f);
       }
@@ -642,7 +642,7 @@ public class IntroScript : MonoBehaviour
         };
       }
       this.transform.position -= new Vector3(0.0f, 0.0f, (float) ((double) Time.deltaTime * (double) this.Speed * 0.75));
-      this.Alpha = (double) this.Narration.time <= 88.8980026245117 ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * 0.2f) : Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * 0.66666f);
+      this.Alpha = (double) this.Narration.time <= 88.898002624511719 ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * 0.2f) : Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * 0.66666f);
       this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, this.Alpha);
     }
     else if (this.ID > 13)
@@ -673,7 +673,7 @@ public class IntroScript : MonoBehaviour
         };
       }
       this.transform.position -= new Vector3(0.0f, 0.0f, Time.deltaTime * this.Speed);
-      this.Alpha = (double) this.Narration.time <= 69.8980026245117 ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * 0.2f) : Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * 0.5f);
+      this.Alpha = (double) this.Narration.time <= 69.898002624511719 ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * 0.2f) : Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * 0.5f);
       this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, this.Alpha);
     }
     else if (this.ID > 9)
@@ -715,7 +715,7 @@ public class IntroScript : MonoBehaviour
         this.Profile.bloom.settings = settings4;
         this.Profile.colorGrading.settings = settings3;
       }
-      this.Alpha = (double) this.Narration.time <= 56.8979988098145 ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * 0.2f) : Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * 0.5f);
+      this.Alpha = (double) this.Narration.time <= 56.897998809814453 ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * 0.2f) : Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * 0.5f);
       this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, this.Alpha);
     }
     else if (this.ID > 4)
@@ -732,7 +732,7 @@ public class IntroScript : MonoBehaviour
       }
       this.Speed = Mathf.MoveTowards(this.Speed, 0.1f, Time.deltaTime * 0.01f);
       this.transform.position -= new Vector3(0.0f, 0.0f, Time.deltaTime * this.Speed);
-      if ((double) this.transform.position.z < -0.0500000007450581)
+      if ((double) this.transform.position.z < -0.05000000074505806)
       {
         this.SecondSpeed = Mathf.MoveTowards(this.SecondSpeed, 0.1f, Time.deltaTime * 0.1f);
         this.transform.position = Vector3.Lerp(this.transform.position, new Vector3(this.transform.position.x, 1f, this.transform.position.z), Time.deltaTime * this.SecondSpeed);
@@ -791,7 +791,7 @@ public class IntroScript : MonoBehaviour
           this.BookLeft.localEulerAngles = new Vector3(0.0f, 180f, 45f);
         }
       }
-      else if ((double) this.Narration.time > 94.8980026245117)
+      else if ((double) this.Narration.time > 94.898002624511719)
         this.Rotation = 22.5f;
     }
     if ((double) this.Narration.time > 104.0 && (double) this.Narration.time < 190.0)
@@ -802,7 +802,7 @@ public class IntroScript : MonoBehaviour
     this.Neck.localEulerAngles += new Vector3(this.Rotation, 0.0f, 0.0f);
     if ((double) this.Narration.time > 99.0)
       this.Weight = Mathf.MoveTowards(this.Weight, 0.0f, Time.deltaTime * 20f);
-    else if ((double) this.Narration.time > 96.6480026245117)
+    else if ((double) this.Narration.time > 96.648002624511719)
       this.Weight = Mathf.MoveTowards(this.Weight, 50f, Time.deltaTime * 100f);
     this.Yandere.SetBlendShapeWeight(5, this.Weight);
     this.Ponytail.transform.eulerAngles = new Vector3(this.X, this.Y, this.Z);

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SplashCameraScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -32,7 +32,7 @@ public class SplashCameraScript : MonoBehaviour
     else
     {
       this.MyCamera.rect = new Rect(this.MyCamera.rect.x, this.MyCamera.rect.y, Mathf.Lerp(this.MyCamera.rect.width, 0.0f, Time.deltaTime * 10f), Mathf.Lerp(this.MyCamera.rect.height, 0.0f, Time.deltaTime * 10f));
-      if (!this.MyCamera.enabled || (double) this.MyCamera.rect.width >= 0.100000001490116)
+      if (!this.MyCamera.enabled || (double) this.MyCamera.rect.width >= 0.10000000149011612)
         return;
       this.MyCamera.enabled = false;
     }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ActivateOsuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -32,7 +32,7 @@ public class ActivateOsuScript : MonoBehaviour
       this.Student = this.StudentManager.Students[this.PlayerID];
     else if (!this.Osu.activeInHierarchy)
     {
-      if ((double) Vector3.Distance(this.transform.position, this.Student.transform.position) >= 0.100000001490116 || !this.Student.Routine || !((Object) this.Student.CurrentDestination == (Object) this.Student.Destinations[this.Student.Phase]) || this.Student.Actions[this.Student.Phase] != StudentActionType.Gaming)
+      if ((double) Vector3.Distance(this.transform.position, this.Student.transform.position) >= 0.10000000149011612 || !this.Student.Routine || !((Object) this.Student.CurrentDestination == (Object) this.Student.Destinations[this.Student.Phase]) || this.Student.Actions[this.Student.Phase] != StudentActionType.Gaming)
         return;
       this.ActivateOsu();
     }

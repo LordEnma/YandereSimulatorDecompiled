@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SecurityCameraScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -38,7 +38,7 @@ public class SecurityCameraScript : MonoBehaviour
       return;
     if (other.gameObject.layer == 13)
     {
-      if ((!this.Yandere.Armed || !this.Yandere.EquippedWeapon.Suspicious) && ((double) this.Yandere.Bloodiness <= 0.0 || this.Yandere.RedPaint) && (double) this.Yandere.Sanity >= 33.3330001831055 && !this.Yandere.Attacking && !this.Yandere.Struggling && !this.Yandere.Dragging && !this.Yandere.Lewd && !this.Yandere.Dragging && !this.Yandere.Carrying && (!this.Yandere.Laughing || (double) this.Yandere.LaughIntensity <= 15.0) && (!((Object) this.Yandere.PickUp != (Object) null) || !this.Yandere.PickUp.Clothing || !this.Yandere.PickUp.Evidence || this.Yandere.PickUp.RedPaint))
+      if ((!this.Yandere.Armed || !this.Yandere.EquippedWeapon.Suspicious) && ((double) this.Yandere.Bloodiness <= 0.0 || this.Yandere.RedPaint) && (double) this.Yandere.Sanity >= 33.333000183105469 && !this.Yandere.Attacking && !this.Yandere.Struggling && !this.Yandere.Dragging && !this.Yandere.Lewd && !this.Yandere.Dragging && !this.Yandere.Carrying && (!this.Yandere.Laughing || (double) this.Yandere.LaughIntensity <= 15.0) && (!((Object) this.Yandere.PickUp != (Object) null) || !this.Yandere.PickUp.Clothing || !this.Yandere.PickUp.Evidence || this.Yandere.PickUp.RedPaint))
         return;
       if ((Object) this.Yandere.Mask == (Object) null)
       {

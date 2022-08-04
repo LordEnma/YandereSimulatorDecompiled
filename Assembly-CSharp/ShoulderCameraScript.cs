@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ShoulderCameraScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -317,14 +317,14 @@ public class ShoulderCameraScript : MonoBehaviour
         this.Yandere.Jukebox.GameOver();
         ++this.Phase;
       }
-      if ((double) this.Timer > 1.39999997615814 && this.Phase < 3)
+      if ((double) this.Timer > 1.3999999761581421 && this.Phase < 3)
       {
         this.Yandere.Subtitle.UpdateLabel(SubtitleType.TeacherAttackReaction, 1, 4f);
         ++this.Phase;
       }
       if ((double) this.Timer > 6.0 && this.Yandere.Armed)
         this.Yandere.EquippedWeapon.Drop();
-      if ((double) this.Timer > 6.66665983200073 && this.Phase < 4)
+      if ((double) this.Timer > 6.6666598320007324 && this.Phase < 4)
       {
         this.GetComponent<AudioSource>().PlayOneShot(this.Slam);
         ++this.Phase;
@@ -341,7 +341,7 @@ public class ShoulderCameraScript : MonoBehaviour
       }
       else if ((double) this.Timer < 10.0)
       {
-        this.PullBackTimer = (double) this.Timer >= 6.5 ? Mathf.MoveTowards(this.PullBackTimer, 0.0f, Time.deltaTime * 0.4285714f) : Mathf.MoveTowards(this.PullBackTimer, 1.5f, Time.deltaTime);
+        this.PullBackTimer = (double) this.Timer >= 6.5 ? Mathf.MoveTowards(this.PullBackTimer, 0.0f, Time.deltaTime * 0.428571433f) : Mathf.MoveTowards(this.PullBackTimer, 1.5f, Time.deltaTime);
         this.transform.Translate(Vector3.back * Time.deltaTime * 10f * this.PullBackTimer);
         this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(0.0f, 0.3f, -0.766666f), Time.deltaTime);
         this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(0.75f, 0.3f, -0.966666f), Time.deltaTime);
@@ -372,7 +372,7 @@ public class ShoulderCameraScript : MonoBehaviour
         this.Yandere.Jukebox.GameOver();
         ++this.Phase;
       }
-      if ((double) this.Timer > 7.59999990463257 && this.Phase < 3)
+      if ((double) this.Timer > 7.5999999046325684 && this.Phase < 3)
       {
         if (this.Yandere.Armed)
           this.Yandere.EquippedWeapon.Drop();

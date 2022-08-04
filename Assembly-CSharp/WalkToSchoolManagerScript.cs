@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WalkToSchoolManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -263,14 +263,14 @@ public class WalkToSchoolManagerScript : MonoBehaviour
     if (this.Speakers[this.ID])
     {
       this.RivalJaw.localEulerAngles = new Vector3(this.RivalJaw.localEulerAngles.x, this.RivalJaw.localEulerAngles.y, Mathf.Lerp(this.RivalJaw.localEulerAngles.z, this.MouthTarget, Time.deltaTime * this.TalkSpeed));
-      this.RivalLipL.localPosition = new Vector3(this.RivalLipL.localPosition.x, Mathf.Lerp(this.RivalLipL.localPosition.y, (float) (0.02632812038064 + (double) this.MouthTarget * (double) this.LipStrength), Time.deltaTime * this.TalkSpeed), this.RivalLipL.localPosition.z);
-      this.RivalLipR.localPosition = new Vector3(this.RivalLipR.localPosition.x, Mathf.Lerp(this.RivalLipR.localPosition.y, (float) (0.02632812038064 + (double) this.MouthTarget * (double) this.LipStrength), Time.deltaTime * this.TalkSpeed), this.RivalLipR.localPosition.z);
+      this.RivalLipL.localPosition = new Vector3(this.RivalLipL.localPosition.x, Mathf.Lerp(this.RivalLipL.localPosition.y, (float) (0.02632812038064003 + (double) this.MouthTarget * (double) this.LipStrength), Time.deltaTime * this.TalkSpeed), this.RivalLipL.localPosition.z);
+      this.RivalLipR.localPosition = new Vector3(this.RivalLipR.localPosition.x, Mathf.Lerp(this.RivalLipR.localPosition.y, (float) (0.02632812038064003 + (double) this.MouthTarget * (double) this.LipStrength), Time.deltaTime * this.TalkSpeed), this.RivalLipR.localPosition.z);
     }
     else
     {
       this.SenpaiJaw.localEulerAngles = new Vector3(this.SenpaiJaw.localEulerAngles.x, this.SenpaiJaw.localEulerAngles.y, Mathf.Lerp(this.SenpaiJaw.localEulerAngles.z, this.MouthTarget, Time.deltaTime * this.TalkSpeed));
-      this.SenpaiLipL.localPosition = new Vector3(this.SenpaiLipL.localPosition.x, Mathf.Lerp(this.SenpaiLipL.localPosition.y, (float) (0.02632812038064 + (double) this.MouthTarget * (double) this.LipStrength), Time.deltaTime * this.TalkSpeed), this.SenpaiLipL.localPosition.z);
-      this.SenpaiLipR.localPosition = new Vector3(this.SenpaiLipR.localPosition.x, Mathf.Lerp(this.SenpaiLipR.localPosition.y, (float) (0.02632812038064 + (double) this.MouthTarget * (double) this.LipStrength), Time.deltaTime * this.TalkSpeed), this.SenpaiLipR.localPosition.z);
+      this.SenpaiLipL.localPosition = new Vector3(this.SenpaiLipL.localPosition.x, Mathf.Lerp(this.SenpaiLipL.localPosition.y, (float) (0.02632812038064003 + (double) this.MouthTarget * (double) this.LipStrength), Time.deltaTime * this.TalkSpeed), this.SenpaiLipL.localPosition.z);
+      this.SenpaiLipR.localPosition = new Vector3(this.SenpaiLipR.localPosition.x, Mathf.Lerp(this.SenpaiLipR.localPosition.y, (float) (0.02632812038064003 + (double) this.MouthTarget * (double) this.LipStrength), Time.deltaTime * this.TalkSpeed), this.SenpaiLipR.localPosition.z);
     }
   }
 

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -150,9 +150,9 @@ public class WeaponScript : MonoBehaviour
     AudioClip[] audioClipArray = this.Clips2.Length != 0 ? (Random.Range(2, 4) == 2 ? this.Clips2 : this.Clips3) : this.Clips;
     if (stealth)
       return audioClipArray[0];
-    if ((double) sanity > 0.666666686534882)
+    if ((double) sanity > 0.66666668653488159)
       return audioClipArray[1];
-    return (double) sanity > 0.333333343267441 ? audioClipArray[2] : audioClipArray[3];
+    return (double) sanity > 0.3333333432674408 ? audioClipArray[2] : audioClipArray[3];
   }
 
   private void Update()

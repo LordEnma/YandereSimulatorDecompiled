@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YanvaniaZombieScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -66,7 +66,7 @@ public class YanvaniaZombieScript : MonoBehaviour
           this.EffectSpawned = true;
         }
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - Time.deltaTime, this.transform.position.z);
-        if ((double) this.transform.position.y < -0.400000005960464)
+        if ((double) this.transform.position.y < -0.40000000596046448)
           Object.Destroy((Object) this.gameObject);
       }
     }
@@ -76,7 +76,7 @@ public class YanvaniaZombieScript : MonoBehaviour
       if (this.Sink)
       {
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - Time.deltaTime * 0.74f, this.transform.position.z);
-        if ((double) this.transform.position.y < -0.629999995231628)
+        if ((double) this.transform.position.y < -0.62999999523162842)
           Object.Destroy((Object) this.gameObject);
       }
       else if (this.Walk)
@@ -104,7 +104,7 @@ public class YanvaniaZombieScript : MonoBehaviour
           if ((double) this.transform.position.y > 0.0)
             this.transform.position = new Vector3(this.transform.position.x, 0.0f, this.transform.position.z);
         }
-        if ((double) this.Timer > 0.850000023841858)
+        if ((double) this.Timer > 0.85000002384185791)
         {
           this.Walk = true;
           this.MyCollider.enabled = true;

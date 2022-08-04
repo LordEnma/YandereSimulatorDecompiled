@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PauseScreenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -203,10 +203,10 @@ public class PauseScreenScript : MonoBehaviour
         this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(0.9133334f, 0.9133334f, 0.9133334f), this.Speed);
         this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, Mathf.Lerp(this.transform.localEulerAngles.z, 0.0f, this.Speed));
       }
-      if (this.CorrectingTime && (double) Time.timeScale < 0.899999976158142)
+      if (this.CorrectingTime && (double) Time.timeScale < 0.89999997615814209)
       {
         Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, this.Speed);
-        if ((double) Time.timeScale > 0.899999976158142)
+        if ((double) Time.timeScale > 0.89999997615814209)
         {
           this.CorrectingTime = false;
           Time.timeScale = 1f;
@@ -223,7 +223,7 @@ public class PauseScreenScript : MonoBehaviour
         this.BlackenAllText();
       if (!this.Home)
       {
-        if (this.Yandere.Shutter.Snapping || this.Yandere.TimeSkipping || this.Yandere.Talking || this.Yandere.Noticed || this.Yandere.InClass || this.Yandere.Struggling || this.Yandere.Won || this.Yandere.Dismembering || this.Yandere.Attacked || !this.Yandere.CanMove || this.Yandere.Chased || this.Yandere.Chasers != 0 || this.Yandere.YandereVision || (double) Time.timeScale <= 9.99999974737875E-05 || (double) this.Hint.transform.localPosition.x != 0.204300001263618 || this.Schedule.gameObject.activeInHierarchy)
+        if (this.Yandere.Shutter.Snapping || this.Yandere.TimeSkipping || this.Yandere.Talking || this.Yandere.Noticed || this.Yandere.InClass || this.Yandere.Struggling || this.Yandere.Won || this.Yandere.Dismembering || this.Yandere.Attacked || !this.Yandere.CanMove || this.Yandere.Chased || this.Yandere.Chasers != 0 || this.Yandere.YandereVision || (double) Time.timeScale <= 9.9999997473787516E-05 || (double) this.Hint.transform.localPosition.x != 0.20430000126361847 || this.Schedule.gameObject.activeInHierarchy)
           return;
         this.Yandere.StopAiming();
         this.PromptParent.localScale = Vector3.zero;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BoundaryScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -29,7 +29,7 @@ public class BoundaryScript : MonoBehaviour
       color2.a = this.Intensity / 5f;
       this.Static.color = color1;
       this.Label.color = color2;
-      this.GetComponent<AudioSource>().volume = (float) ((double) this.Intensity / 5.0 * 0.100000001490116);
+      this.GetComponent<AudioSource>().volume = (float) ((double) this.Intensity / 5.0 * 0.10000000149011612);
       this.Label.transform.localPosition = this.Label.transform.localPosition with
       {
         x = Random.Range(-10f, 10f),

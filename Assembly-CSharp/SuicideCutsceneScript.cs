@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SuicideCutsceneScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -51,7 +51,7 @@ public class SuicideCutsceneScript : MonoBehaviour
       {
         this.Speed += Time.deltaTime * 0.66666f;
         this.Rotation = Mathf.Lerp(this.Rotation, -45f, Time.deltaTime * this.Speed);
-        this.PointLight.color = new Color((float) (0.100000001490116 + (double) this.Rotation / -45.0 * 0.899999976158142), (float) (0.100000001490116 + (double) this.Rotation / -45.0 * 0.899999976158142), (float) (0.100000001490116 + (double) this.Rotation / -45.0 * 0.899999976158142), 1f);
+        this.PointLight.color = new Color((float) (0.10000000149011612 + (double) this.Rotation / -45.0 * 0.89999997615814209), (float) (0.10000000149011612 + (double) this.Rotation / -45.0 * 0.89999997615814209), (float) (0.10000000149011612 + (double) this.Rotation / -45.0 * 0.89999997615814209), 1f);
         this.Door.eulerAngles = new Vector3(0.0f, this.Rotation, 0.0f);
       }
       if ((double) this.Timer > 8.5)

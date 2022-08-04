@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RivalMorningEventManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -54,7 +54,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
       this.Spy.Prompt.enabled = false;
       this.enabled = false;
     }
-    if (!this.enabled || (double) StudentGlobals.GetStudentReputation(10) > -33.3333282470703)
+    if (!this.enabled || (double) StudentGlobals.GetStudentReputation(10) > -33.333328247070313)
       return;
     this.OsanaLoseFriendEvent.OtherEvent = this;
   }
@@ -78,7 +78,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
           this.Friend = this.StudentManager.Students[this.FriendID];
           if (this.Friend.Investigating)
             this.Friend.StopInvestigating();
-          if ((double) StudentGlobals.GetStudentReputation(10) > -33.3333282470703)
+          if ((double) StudentGlobals.GetStudentReputation(10) > -33.333328247070313)
           {
             this.Friend.CharacterAnimation.Play("f02_cornerPeek_00");
             this.Friend.Cheer.enabled = true;

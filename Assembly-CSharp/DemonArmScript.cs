@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DemonArmScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -36,14 +36,14 @@ public class DemonArmScript : MonoBehaviour
         this.MyAnimation.CrossFade(this.IdleAnim);
       else if (!this.Attacked)
       {
-        if ((double) this.MyAnimation[this.AttackAnim].time < (double) this.MyAnimation[this.AttackAnim].length * 0.150000005960464)
+        if ((double) this.MyAnimation[this.AttackAnim].time < (double) this.MyAnimation[this.AttackAnim].length * 0.15000000596046448)
           return;
         this.ClawCollider.enabled = true;
         this.Attacked = true;
       }
       else
       {
-        if ((double) this.MyAnimation[this.AttackAnim].time >= (double) this.MyAnimation[this.AttackAnim].length * 0.400000005960464)
+        if ((double) this.MyAnimation[this.AttackAnim].time >= (double) this.MyAnimation[this.AttackAnim].length * 0.40000000596046448)
           this.ClawCollider.enabled = false;
         if ((double) this.MyAnimation[this.AttackAnim].time < (double) this.MyAnimation[this.AttackAnim].length)
           return;

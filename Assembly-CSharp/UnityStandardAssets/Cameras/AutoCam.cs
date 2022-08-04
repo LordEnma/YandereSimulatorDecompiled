@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UnityStandardAssets.Cameras.AutoCam
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -66,7 +66,7 @@ namespace UnityStandardAssets.Cameras
       if (!this.m_FollowTilt)
       {
         forward.y = 0.0f;
-        if ((double) forward.sqrMagnitude < 1.40129846432482E-45)
+        if ((double) forward.sqrMagnitude < 1.4012984643248171E-45)
           forward = this.transform.forward;
       }
       Quaternion b = Quaternion.LookRotation(forward, this.m_RollUp);

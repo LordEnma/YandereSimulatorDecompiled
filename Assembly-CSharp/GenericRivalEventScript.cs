@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericRivalEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -1575,7 +1575,7 @@ public class GenericRivalEventScript : MonoBehaviour
               this.Senpai.CharacterAnimation.CrossFade("waiting_00");
               this.Senpai.Pathfinding.canSearch = false;
               this.Senpai.Pathfinding.canMove = false;
-              if ((double) this.Clock.HourTime > 17.9166660308838)
+              if ((double) this.Clock.HourTime > 17.916666030883789)
               {
                 this.Senpai.CharacterAnimation.CrossFade("impatience_00");
                 this.EventSubtitle.text = "I understand being a few minutes late, but this is just too much...";

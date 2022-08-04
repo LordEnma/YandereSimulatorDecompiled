@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DumpsterLidScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -61,7 +61,7 @@ public class DumpsterLidScript : MonoBehaviour
         this.Prompt.HideButton[3] = false;
         this.Fill = true;
       }
-      if ((double) this.transform.position.z > (double) this.DisposalSpot - 0.0500000007450581 && (double) this.transform.position.z < (double) this.DisposalSpot + 0.0500000007450581)
+      if ((double) this.transform.position.z > (double) this.DisposalSpot - 0.05000000074505806 && (double) this.transform.position.z < (double) this.DisposalSpot + 0.05000000074505806)
         this.FallChecker.SetActive(this.Prompt.Yandere.RoofPush);
       else
         this.FallChecker.SetActive(false);
@@ -70,7 +70,7 @@ public class DumpsterLidScript : MonoBehaviour
         this.transform.eulerAngles = Vector3.Lerp(this.transform.eulerAngles, this.SlideLocation.eulerAngles, Time.deltaTime * 10f);
         this.transform.position = Vector3.Lerp(this.transform.position, this.SlideLocation.position, Time.deltaTime * 10f);
         this.Corpse.GetComponent<RagdollScript>().Student.Hips.position = this.transform.position + new Vector3(0.0f, 1f, 0.0f);
-        if ((double) Vector3.Distance(this.transform.position, this.SlideLocation.position) < 0.00999999977648258)
+        if ((double) Vector3.Distance(this.transform.position, this.SlideLocation.position) < 0.0099999997764825821)
         {
           this.DragPrompts[0].enabled = false;
           this.DragPrompts[1].enabled = false;
@@ -83,7 +83,7 @@ public class DumpsterLidScript : MonoBehaviour
     if (!this.Fill)
       return;
     this.GarbageDebris.localPosition = new Vector3(this.GarbageDebris.localPosition.x, Mathf.Lerp(this.GarbageDebris.localPosition.y, 1f, Time.deltaTime * 10f), this.GarbageDebris.localPosition.z);
-    if ((double) this.GarbageDebris.localPosition.y <= 0.990000009536743)
+    if ((double) this.GarbageDebris.localPosition.y <= 0.99000000953674316)
       return;
     this.Prompt.Yandere.Police.SuicideScene = false;
     this.Prompt.Yandere.Police.Suicide = false;

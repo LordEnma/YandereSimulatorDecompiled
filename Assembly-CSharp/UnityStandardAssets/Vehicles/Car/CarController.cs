@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UnityStandardAssets.Vehicles.Car.CarController
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -65,7 +65,7 @@ namespace UnityStandardAssets.Vehicles.Car
 
     public float CurrentSteerAngle => this.m_SteerAngle;
 
-    public float CurrentSpeed => this.m_Rigidbody.velocity.magnitude * 2.236936f;
+    public float CurrentSpeed => this.m_Rigidbody.velocity.magnitude * 2.23693633f;
 
     public float MaxSpeed => this.m_Topspeed;
 
@@ -152,9 +152,9 @@ namespace UnityStandardAssets.Vehicles.Car
       switch (this.m_SpeedType)
       {
         case SpeedType.MPH:
-          if ((double) (magnitude * 2.236936f) <= (double) this.m_Topspeed)
+          if ((double) (magnitude * 2.23693633f) <= (double) this.m_Topspeed)
             break;
-          this.m_Rigidbody.velocity = this.m_Topspeed / 2.236936f * this.m_Rigidbody.velocity.normalized;
+          this.m_Rigidbody.velocity = this.m_Topspeed / 2.23693633f * this.m_Rigidbody.velocity.normalized;
           break;
         case SpeedType.KPH:
           if ((double) (magnitude * 3.6f) <= (double) this.m_Topspeed)

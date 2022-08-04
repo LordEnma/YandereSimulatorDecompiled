@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CombatMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -117,7 +117,7 @@ public class CombatMinigameScript : MonoBehaviour
     if (this.ButtonID > 0)
     {
       this.Timer += Time.deltaTime;
-      this.Circle.fillAmount = (float) (1.0 - (double) this.Timer / 0.333330005407333);
+      this.Circle.fillAmount = (float) (1.0 - (double) this.Timer / 0.33333000540733337);
       if (Input.GetButtonDown("A") && this.CurrentButton != "A" || Input.GetButtonDown("B") && this.CurrentButton != "B" || Input.GetButtonDown("X") && this.CurrentButton != "X" || Input.GetButtonDown("Y") && this.CurrentButton != "Y")
       {
         Time.timeScale = 1f;
@@ -148,7 +148,7 @@ public class CombatMinigameScript : MonoBehaviour
       }
       else if (this.Phase == 2)
       {
-        if ((double) this.Yandere.CharacterAnimation["Yandere_CombatA"].time > 1.33333003520966)
+        if ((double) this.Yandere.CharacterAnimation["Yandere_CombatA"].time > 1.3333300352096558)
         {
           Time.timeScale = 1f;
           this.MyVocals.pitch = 1f;
@@ -185,7 +185,7 @@ public class CombatMinigameScript : MonoBehaviour
           return;
         if (this.Strike < 1)
         {
-          if ((double) this.Yandere.CharacterAnimation["Yandere_CombatA"].time > 1.66665995121002)
+          if ((double) this.Yandere.CharacterAnimation["Yandere_CombatA"].time > 1.666659951210022)
           {
             Object.Instantiate<GameObject>(this.HitEffect, this.Yandere.LeftArmRoll.position, Quaternion.identity);
             this.Shake += this.ShakeFactor;
@@ -275,7 +275,7 @@ public class CombatMinigameScript : MonoBehaviour
     {
       if (this.Phase == 3)
       {
-        if ((double) this.Yandere.CharacterAnimation["Yandere_CombatB"].time <= 1.83333301544189)
+        if ((double) this.Yandere.CharacterAnimation["Yandere_CombatB"].time <= 1.8333330154418945)
           return;
         this.StartTime = this.Yandere.CharacterAnimation["Yandere_CombatB"].time - 1.833333f;
         this.ChooseButton();
@@ -284,7 +284,7 @@ public class CombatMinigameScript : MonoBehaviour
       }
       else if (this.Phase == 4)
       {
-        if ((double) this.Yandere.CharacterAnimation["Yandere_CombatB"].time > 2.16666603088379)
+        if ((double) this.Yandere.CharacterAnimation["Yandere_CombatB"].time > 2.1666660308837891)
         {
           Time.timeScale = 1f;
           this.MyVocals.pitch = 1f;
@@ -320,7 +320,7 @@ public class CombatMinigameScript : MonoBehaviour
       {
         if (this.Phase != 5)
           return;
-        if (this.Strike < 1 && (double) this.Yandere.CharacterAnimation["Yandere_CombatB"].time > 2.66666007041931)
+        if (this.Strike < 1 && (double) this.Yandere.CharacterAnimation["Yandere_CombatB"].time > 2.6666600704193115)
         {
           Object.Instantiate<GameObject>(this.HitEffect, this.Delinquent.LeftHand.position, Quaternion.identity);
           this.Shake += this.ShakeFactor;
@@ -352,7 +352,7 @@ public class CombatMinigameScript : MonoBehaviour
           this.Shake += this.ShakeFactor;
           ++this.Strike;
         }
-        if ((double) this.Yandere.CharacterAnimation["Yandere_CombatC"].time <= 3.16666603088379)
+        if ((double) this.Yandere.CharacterAnimation["Yandere_CombatC"].time <= 3.1666660308837891)
           return;
         this.StartTime = this.Yandere.CharacterAnimation["Yandere_CombatC"].time - 3.166666f;
         this.ChooseButton();
@@ -568,7 +568,7 @@ public class CombatMinigameScript : MonoBehaviour
     {
       if (this.Phase != 4)
         return;
-      if ((double) this.Yandere.CharacterAnimation["Yandere_CombatF"].time > 6.33333015441895)
+      if ((double) this.Yandere.CharacterAnimation["Yandere_CombatF"].time > 6.3333301544189453)
       {
         this.MainCamera.transform.parent = (Transform) null;
         this.Strength += Time.deltaTime;
@@ -576,7 +576,7 @@ public class CombatMinigameScript : MonoBehaviour
         this.RedVignette.color = (Color) Vector4.Lerp((Vector4) this.RedVignette.color, new Vector4(1f, 0.0f, 0.0f, 0.0f), Time.deltaTime * this.Strength);
         this.Zoom = false;
       }
-      if ((double) this.Delinquent.CharacterAnimation[this.Prefix + "Delinquent_CombatF"].time > 7.83333015441895)
+      if ((double) this.Delinquent.CharacterAnimation[this.Prefix + "Delinquent_CombatF"].time > 7.8333301544189453)
       {
         this.Delinquent.MyWeapon.transform.parent = this.Delinquent.WeaponBagParent;
         this.Delinquent.MyWeapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
@@ -630,7 +630,7 @@ public class CombatMinigameScript : MonoBehaviour
         this.RedVignette.color = (Color) Vector4.Lerp((Vector4) this.RedVignette.color, new Vector4(1f, 0.0f, 0.0f, 0.0f), Time.deltaTime * this.Strength);
         this.Zoom = false;
       }
-      if ((double) this.Delinquent.CharacterAnimation[this.StopFightingAnim].time > 3.83332991600037)
+      if ((double) this.Delinquent.CharacterAnimation[this.StopFightingAnim].time > 3.8333299160003662)
       {
         this.Delinquent.MyWeapon.transform.parent = this.Delinquent.WeaponBagParent;
         this.Delinquent.MyWeapon.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);

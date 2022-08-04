@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UITweener
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -189,13 +189,13 @@ public abstract class UITweener : MonoBehaviour
     float num1 = Mathf.Clamp01(factor);
     if (this.method == UITweener.Method.EaseIn)
     {
-      num1 = 1f - Mathf.Sin((float) (1.57079637050629 * (1.0 - (double) num1)));
+      num1 = 1f - Mathf.Sin((float) (1.5707963705062866 * (1.0 - (double) num1)));
       if (this.steeperCurves)
         num1 *= num1;
     }
     else if (this.method == UITweener.Method.EaseOut)
     {
-      num1 = Mathf.Sin(1.570796f * num1);
+      num1 = Mathf.Sin(1.57079637f * num1);
       if (this.steeperCurves)
       {
         float num2 = 1f - num1;
@@ -204,7 +204,7 @@ public abstract class UITweener : MonoBehaviour
     }
     else if (this.method == UITweener.Method.EaseInOut)
     {
-      num1 -= Mathf.Sin(num1 * 6.283185f) / 6.283185f;
+      num1 -= Mathf.Sin(num1 * 6.28318548f) / 6.28318548f;
       if (this.steeperCurves)
       {
         float f = (float) ((double) num1 * 2.0 - 1.0);
@@ -223,7 +223,7 @@ public abstract class UITweener : MonoBehaviour
 
   private float BounceLogic(float val)
   {
-    val = (double) val >= 0.363635987043381 ? ((double) val >= 0.727271974086761 ? ((double) val >= 0.909089982509613 ? (float) (121.0 / 16.0 * (double) (val -= 0.9545454f) * (double) val + 63.0 / 64.0) : (float) (121.0 / 16.0 * (double) (val -= 0.818181f) * (double) val + 15.0 / 16.0)) : (float) (121.0 / 16.0 * (double) (val -= 0.545454f) * (double) val + 0.75)) : 7.5685f * val * val;
+    val = (double) val >= 0.36363598704338074 ? ((double) val >= 0.72727197408676147 ? ((double) val >= 0.909089982509613 ? (float) (121.0 / 16.0 * (double) (val -= 0.9545454f) * (double) val + 63.0 / 64.0) : (float) (121.0 / 16.0 * (double) (val -= 0.818181f) * (double) val + 15.0 / 16.0)) : (float) (121.0 / 16.0 * (double) (val -= 0.545454f) * (double) val + 0.75)) : 7.5685f * val * val;
     return val;
   }
 

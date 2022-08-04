@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RefrigeratorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -67,7 +67,7 @@ public class RefrigeratorScript : MonoBehaviour
       if ((double) this.Yandere.Character.GetComponent<Animation>()["f02_prepareFood_00"].time <= 3.0)
         return;
       this.Jar.parent = this.Yandere.RightHand;
-      this.Jar.localPosition = new Vector3(0.0f, -0.03333334f, -0.14f);
+      this.Jar.localPosition = new Vector3(0.0f, -0.0333333351f, -0.14f);
       this.Jar.localEulerAngles = new Vector3(90f, 0.0f, 0.0f);
       ++this.EventPhase;
     }
@@ -76,7 +76,7 @@ public class RefrigeratorScript : MonoBehaviour
       if ((double) this.Yandere.Character.GetComponent<Animation>()["f02_prepareFood_00"].time <= 5.0)
         return;
       this.JarLid.transform.parent = this.Yandere.LeftHand;
-      this.JarLid.localPosition = new Vector3(0.03333334f, 0.0f, 0.0f);
+      this.JarLid.localPosition = new Vector3(0.0333333351f, 0.0f, 0.0f);
       this.JarLid.localEulerAngles = Vector3.zero;
       ++this.EventPhase;
     }
@@ -112,7 +112,7 @@ public class RefrigeratorScript : MonoBehaviour
     }
     else if (this.EventPhase == 7)
     {
-      if ((double) this.Yandere.Character.GetComponent<Animation>()["f02_cutFood_00"].time <= 2.66666007041931)
+      if ((double) this.Yandere.Character.GetComponent<Animation>()["f02_cutFood_00"].time <= 2.6666600704193115)
         return;
       this.Octodog.SetActive(true);
       this.Sausage.SetActive(false);
@@ -147,7 +147,7 @@ public class RefrigeratorScript : MonoBehaviour
       if ((double) this.Yandere.Character.GetComponent<Animation>()["f02_prepareFood_00"].time >= (double) this.Yandere.Character.GetComponent<Animation>()["f02_prepareFood_00"].length - 1.0)
         return;
       this.Knife.parent = this.CookingClub;
-      this.Knife.localPosition = new Vector3(0.197f, 1.1903f, -0.3333333f);
+      this.Knife.localPosition = new Vector3(0.197f, 1.1903f, -0.333333343f);
       this.Knife.localEulerAngles = new Vector3(45f, -90f, -90f);
       ++this.EventPhase;
     }
@@ -156,10 +156,10 @@ public class RefrigeratorScript : MonoBehaviour
       if ((double) this.Yandere.Character.GetComponent<Animation>()["f02_prepareFood_00"].time >= (double) this.Yandere.Character.GetComponent<Animation>()["f02_prepareFood_00"].length - 2.0)
         return;
       this.JarLid.parent = this.Yandere.LeftHand;
-      this.JarLid.localPosition = new Vector3(0.03333334f, 0.0f, 0.0f);
+      this.JarLid.localPosition = new Vector3(0.0333333351f, 0.0f, 0.0f);
       this.JarLid.localEulerAngles = Vector3.zero;
       this.Jar.parent = this.Yandere.RightHand;
-      this.Jar.localPosition = new Vector3(0.0f, -0.03333334f, -0.14f);
+      this.Jar.localPosition = new Vector3(0.0f, -0.0333333351f, -0.14f);
       this.Jar.localEulerAngles = new Vector3(90f, 0.0f, 0.0f);
       ++this.EventPhase;
     }

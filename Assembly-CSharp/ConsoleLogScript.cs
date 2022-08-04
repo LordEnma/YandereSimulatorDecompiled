@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ConsoleLogScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -11,10 +11,13 @@ public class ConsoleLogScript : MonoBehaviour
   public DebugEnablerScript debug;
   private string myLog = "Debug Console Output:";
   private bool doShow;
-  private int kChars = 700;
+  private bool Long;
+  public int kChars = 700;
   private int enters;
   private int id;
   public string[] code;
+
+  private void Start() => this.kChars = 2100;
 
   private void OnEnable() => Application.logMessageReceived += new Application.LogCallback(this.Log);
 
@@ -25,8 +28,21 @@ public class ConsoleLogScript : MonoBehaviour
     if (Input.GetKeyDown(KeyCode.KeypadEnter))
     {
       ++this.enters;
-      if (this.enters > 9)
-        this.doShow = !this.doShow;
+      if (this.enters == 10)
+      {
+        this.doShow = true;
+        this.Long = false;
+      }
+      else if (this.enters == 11)
+      {
+        this.doShow = true;
+        this.Long = true;
+      }
+      else if (this.enters == 12)
+      {
+        this.doShow = false;
+        this.enters = 9;
+      }
     }
     if (this.id >= this.code.Length || !Input.GetKeyDown(this.code[this.id]))
       return;
@@ -48,7 +64,15 @@ public class ConsoleLogScript : MonoBehaviour
   {
     if (!this.doShow)
       return;
-    GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3((float) Screen.width / 1280f, (float) Screen.height / 720f, 1f));
-    GUI.TextArea(new Rect(0.0f, 479.9952f, 426.6624f, 239.9976f), this.myLog);
+    if (this.Long)
+    {
+      GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3((float) Screen.width / 1280f, (float) Screen.height / 720f, 1f));
+      GUI.TextArea(new Rect(0.0f, 0.0f, 426.6624f, (float) Screen.height), this.myLog);
+    }
+    else
+    {
+      GUI.matrix = Matrix4x4.TRS(Vector3.zero, Quaternion.identity, new Vector3((float) Screen.width / 1280f, (float) Screen.height / 720f, 1f));
+      GUI.TextArea(new Rect(0.0f, 479.9952f, 426.6624f, 239.9976f), this.myLog);
+    }
   }
 }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StreetManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -155,7 +155,7 @@ public class StreetManagerScript : MonoBehaviour
           this.JukeboxNight.volume = Mathf.Lerp(this.JukeboxNight.volume, this.DesiredValue, Time.deltaTime * 10f);
         }
       }
-      if ((double) Vector3.Distance(this.Yandere.position, this.Yakuza.transform.position) < 0.100000001490116 && !this.Threatened)
+      if ((double) Vector3.Distance(this.Yandere.position, this.Yakuza.transform.position) < 0.10000000149011612 && !this.Threatened)
       {
         this.Threatened = true;
         this.Yakuza.Play();

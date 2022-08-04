@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClockScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -211,7 +211,7 @@ public class ClockScript : MonoBehaviour
             {
               this.BloomIntensity = Mathf.Lerp(this.BloomIntensity, 1f, Time.deltaTime);
               this.BloomRadius = Mathf.Lerp(this.BloomRadius, 4f, Time.deltaTime);
-              if ((double) this.BloomIntensity < 1.10000002384186)
+              if ((double) this.BloomIntensity < 1.1000000238418579)
               {
                 this.BloomIntensity = 1f;
                 this.BloomRadius = 4f;
@@ -259,9 +259,9 @@ public class ClockScript : MonoBehaviour
     if (!this.StopTime)
     {
       if (this.Period == 3)
-        this.PresentTime += (float) ((double) Time.deltaTime * 0.0166666675359011 * (double) this.TimeSpeed * 0.5);
+        this.PresentTime += (float) ((double) Time.deltaTime * 0.01666666753590107 * (double) this.TimeSpeed * 0.5);
       else
-        this.PresentTime += Time.deltaTime * 0.01666667f * this.TimeSpeed;
+        this.PresentTime += Time.deltaTime * 0.0166666675f * this.TimeSpeed;
     }
     this.HourTime = this.PresentTime / 60f;
     this.Hour = Mathf.Floor(this.PresentTime / 60f);
@@ -270,7 +270,7 @@ public class ClockScript : MonoBehaviour
       this.UpdateClock();
     this.MinuteHand.localEulerAngles = new Vector3(this.MinuteHand.localEulerAngles.x, this.MinuteHand.localEulerAngles.y, this.Minute * 6f);
     this.HourHand.localEulerAngles = new Vector3(this.HourHand.localEulerAngles.x, this.HourHand.localEulerAngles.y, this.Hour * 30f);
-    if (this.LateStudent && (double) this.HourTime > 7.90000009536743)
+    if (this.LateStudent && (double) this.HourTime > 7.9000000953674316)
       this.ActivateLateStudent();
     if ((double) this.HourTime < 8.5)
     {
@@ -374,9 +374,9 @@ label_71:
       if ((double) this.PresentTime > 930.0)
       {
         this.DayProgress = (float) (((double) this.PresentTime - 930.0) / 150.0);
-        this.MainLight.color = new Color((float) (1.0 - 0.149019598960876 * (double) this.DayProgress), (float) (1.0 - 0.403921544551849 * (double) this.DayProgress), (float) (1.0 - 0.709803938865662 * (double) this.DayProgress));
-        RenderSettings.ambientLight = new Color((float) (1.0 - 0.149019598960876 * (double) this.DayProgress - (1.0 - (double) this.AmbientLightDim) * (1.0 - (double) this.DayProgress)), (float) (1.0 - 0.403921544551849 * (double) this.DayProgress - (1.0 - (double) this.AmbientLightDim) * (1.0 - (double) this.DayProgress)), (float) (1.0 - 0.709803938865662 * (double) this.DayProgress - (1.0 - (double) this.AmbientLightDim) * (1.0 - (double) this.DayProgress)));
-        this.SkyboxColor = new Color((float) (1.0 - 0.149019598960876 * (double) this.DayProgress - 0.5 * (1.0 - (double) this.DayProgress)), (float) (1.0 - 0.403921544551849 * (double) this.DayProgress - 0.5 * (1.0 - (double) this.DayProgress)), (float) (1.0 - 0.709803938865662 * (double) this.DayProgress - 0.5 * (1.0 - (double) this.DayProgress)));
+        this.MainLight.color = new Color((float) (1.0 - 0.14901959896087646 * (double) this.DayProgress), (float) (1.0 - 0.40392154455184937 * (double) this.DayProgress), (float) (1.0 - 0.70980393886566162 * (double) this.DayProgress));
+        RenderSettings.ambientLight = new Color((float) (1.0 - 0.14901959896087646 * (double) this.DayProgress - (1.0 - (double) this.AmbientLightDim) * (1.0 - (double) this.DayProgress)), (float) (1.0 - 0.40392154455184937 * (double) this.DayProgress - (1.0 - (double) this.AmbientLightDim) * (1.0 - (double) this.DayProgress)), (float) (1.0 - 0.70980393886566162 * (double) this.DayProgress - (1.0 - (double) this.AmbientLightDim) * (1.0 - (double) this.DayProgress)));
+        this.SkyboxColor = new Color((float) (1.0 - 0.14901959896087646 * (double) this.DayProgress - 0.5 * (1.0 - (double) this.DayProgress)), (float) (1.0 - 0.40392154455184937 * (double) this.DayProgress - 0.5 * (1.0 - (double) this.DayProgress)), (float) (1.0 - 0.70980393886566162 * (double) this.DayProgress - 0.5 * (1.0 - (double) this.DayProgress)));
         RenderSettings.skybox.SetColor("_Tint", new Color(this.SkyboxColor.r, this.SkyboxColor.g, this.SkyboxColor.b));
       }
       else

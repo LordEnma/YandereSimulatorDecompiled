@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PanWithMouse
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -27,7 +27,7 @@ public class PanWithMouse : MonoBehaviour
     Vector3 lastEventPosition = (Vector3) UICamera.lastEventPosition;
     float num1 = (float) Screen.width * 0.5f;
     float num2 = (float) Screen.height * 0.5f;
-    if ((double) this.range < 0.100000001490116)
+    if ((double) this.range < 0.10000000149011612)
       this.range = 0.1f;
     this.mRot = Vector2.Lerp(this.mRot, new Vector2(Mathf.Clamp((lastEventPosition.x - num1) / num1 / this.range, -1f, 1f), Mathf.Clamp((lastEventPosition.y - num2) / num2 / this.range, -1f, 1f)), deltaTime * 5f);
     this.mTrans.localRotation = this.mStart * Quaternion.Euler(-this.mRot.y * this.degrees.y, this.mRot.x * this.degrees.x, 0.0f);

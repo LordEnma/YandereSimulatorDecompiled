@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DialogueWheelScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -78,7 +78,7 @@ public class DialogueWheelScript : MonoBehaviour
   {
     if (!this.Show)
     {
-      if ((double) this.transform.localScale.x > 0.100000001490116)
+      if ((double) this.transform.localScale.x > 0.10000000149011612)
         this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
       else if (this.Panel.enabled)
       {
@@ -570,7 +570,7 @@ public class DialogueWheelScript : MonoBehaviour
       UISprite uiSprite = this.Shadow[3];
       uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);
     }
-    if ((double) this.Yandere.Bloodiness > 0.0 || (double) this.Yandere.Sanity < 33.3333282470703 || this.Yandere.TargetStudent.Club == ClubType.Council)
+    if ((double) this.Yandere.Bloodiness > 0.0 || (double) this.Yandere.Sanity < 33.333328247070313 || this.Yandere.TargetStudent.Club == ClubType.Council)
     {
       UISprite uiSprite1 = this.Shadow[3];
       uiSprite1.color = new Color(uiSprite1.color.r, uiSprite1.color.g, uiSprite1.color.b, 0.75f);
@@ -578,7 +578,7 @@ public class DialogueWheelScript : MonoBehaviour
       UISprite uiSprite2 = this.Shadow[6];
       uiSprite2.color = new Color(uiSprite2.color.r, uiSprite2.color.g, uiSprite2.color.b, 0.75f);
     }
-    else if ((double) this.Reputation.Reputation < -33.3333282470703)
+    else if ((double) this.Reputation.Reputation < -33.333328247070313)
     {
       UISprite uiSprite = this.Shadow[3];
       uiSprite.color = new Color(uiSprite.color.r, uiSprite.color.g, uiSprite.color.b, 0.75f);

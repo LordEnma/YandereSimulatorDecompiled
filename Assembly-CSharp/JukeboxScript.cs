@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: JukeboxScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -267,65 +267,65 @@ public class JukeboxScript : MonoBehaviour
         }
         if (!this.ClubTheme.isPlaying)
         {
-          if ((double) this.Yandere.Sanity >= 66.6666641235352)
+          if ((double) this.Yandere.Sanity >= 66.666664123535156)
           {
-            this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
-            this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
-            this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+            this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.0166666675f * this.FadeSpeed);
+            this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0.0f, 0.0166666675f * this.FadeSpeed);
+            this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.0166666675f * this.FadeSpeed);
           }
-          else if ((double) this.Yandere.Sanity >= 33.3333320617676)
+          else if ((double) this.Yandere.Sanity >= 33.333332061767578)
           {
-            this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
-            this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
-            this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+            this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0.0f, 0.0166666675f * this.FadeSpeed);
+            this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.0166666675f * this.FadeSpeed);
+            this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.0166666675f * this.FadeSpeed);
           }
           else
           {
-            this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
-            this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
-            this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
+            this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0.0f, 0.0166666675f * this.FadeSpeed);
+            this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0.0f, 0.0166666675f * this.FadeSpeed);
+            this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, this.Volume * this.Dip - this.ClubDip, 0.0166666675f * this.FadeSpeed);
           }
         }
         else
         {
-          this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
-          this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
-          this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.01666667f * this.FadeSpeed);
+          this.FullSanity.volume = Mathf.MoveTowards(this.FullSanity.volume, 0.0f, 0.0166666675f * this.FadeSpeed);
+          this.HalfSanity.volume = Mathf.MoveTowards(this.HalfSanity.volume, 0.0f, 0.0166666675f * this.FadeSpeed);
+          this.NoSanity.volume = Mathf.MoveTowards(this.NoSanity.volume, 0.0f, 0.0166666675f * this.FadeSpeed);
         }
       }
     }
     else
     {
-      this.AttackOnTitan.volume = Mathf.MoveTowards(this.AttackOnTitan.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Megalovania.volume = Mathf.MoveTowards(this.Megalovania.volume, this.Volume * this.Dip, 0.1666667f);
-      this.MissionMode.volume = Mathf.MoveTowards(this.MissionMode.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Skeletons.volume = Mathf.MoveTowards(this.Skeletons.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Vaporwave.volume = Mathf.MoveTowards(this.Vaporwave.volume, this.Volume * this.Dip, 0.1666667f);
-      this.AzurLane.volume = Mathf.MoveTowards(this.AzurLane.volume, this.Volume * this.Dip, 0.1666667f);
-      this.LifeNote.volume = Mathf.MoveTowards(this.LifeNote.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Berserk.volume = Mathf.MoveTowards(this.Berserk.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Metroid.volume = Mathf.MoveTowards(this.Metroid.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Nuclear.volume = Mathf.MoveTowards(this.Nuclear.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Slender.volume = Mathf.MoveTowards(this.Slender.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Sukeban.volume = Mathf.MoveTowards(this.Sukeban.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Hatred.volume = Mathf.MoveTowards(this.Hatred.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Hitman.volume = Mathf.MoveTowards(this.Hitman.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Touhou.volume = Mathf.MoveTowards(this.Touhou.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Falcon.volume = Mathf.MoveTowards(this.Falcon.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Miyuki.volume = Mathf.MoveTowards(this.Miyuki.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Demon.volume = Mathf.MoveTowards(this.Demon.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Ebola.volume = Mathf.MoveTowards(this.Ebola.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Ninja.volume = Mathf.MoveTowards(this.Ninja.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Punch.volume = Mathf.MoveTowards(this.Punch.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Galo.volume = Mathf.MoveTowards(this.Galo.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Jojo.volume = Mathf.MoveTowards(this.Jojo.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Lied.volume = Mathf.MoveTowards(this.Lied.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Nier.volume = Mathf.MoveTowards(this.Nier.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Sith.volume = Mathf.MoveTowards(this.Sith.volume, this.Volume * this.Dip, 0.1666667f);
-      this.DK.volume = Mathf.MoveTowards(this.DK.volume, this.Volume * this.Dip, 0.1666667f);
-      this.Horror.volume = Mathf.MoveTowards(this.Horror.volume, this.Volume * this.Dip, 0.1666667f);
+      this.AttackOnTitan.volume = Mathf.MoveTowards(this.AttackOnTitan.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Megalovania.volume = Mathf.MoveTowards(this.Megalovania.volume, this.Volume * this.Dip, 0.166666672f);
+      this.MissionMode.volume = Mathf.MoveTowards(this.MissionMode.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Skeletons.volume = Mathf.MoveTowards(this.Skeletons.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Vaporwave.volume = Mathf.MoveTowards(this.Vaporwave.volume, this.Volume * this.Dip, 0.166666672f);
+      this.AzurLane.volume = Mathf.MoveTowards(this.AzurLane.volume, this.Volume * this.Dip, 0.166666672f);
+      this.LifeNote.volume = Mathf.MoveTowards(this.LifeNote.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Berserk.volume = Mathf.MoveTowards(this.Berserk.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Metroid.volume = Mathf.MoveTowards(this.Metroid.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Nuclear.volume = Mathf.MoveTowards(this.Nuclear.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Slender.volume = Mathf.MoveTowards(this.Slender.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Sukeban.volume = Mathf.MoveTowards(this.Sukeban.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Hatred.volume = Mathf.MoveTowards(this.Hatred.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Hitman.volume = Mathf.MoveTowards(this.Hitman.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Touhou.volume = Mathf.MoveTowards(this.Touhou.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Falcon.volume = Mathf.MoveTowards(this.Falcon.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Miyuki.volume = Mathf.MoveTowards(this.Miyuki.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Demon.volume = Mathf.MoveTowards(this.Demon.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Ebola.volume = Mathf.MoveTowards(this.Ebola.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Ninja.volume = Mathf.MoveTowards(this.Ninja.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Punch.volume = Mathf.MoveTowards(this.Punch.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Galo.volume = Mathf.MoveTowards(this.Galo.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Jojo.volume = Mathf.MoveTowards(this.Jojo.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Lied.volume = Mathf.MoveTowards(this.Lied.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Nier.volume = Mathf.MoveTowards(this.Nier.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Sith.volume = Mathf.MoveTowards(this.Sith.volume, this.Volume * this.Dip, 0.166666672f);
+      this.DK.volume = Mathf.MoveTowards(this.DK.volume, this.Volume * this.Dip, 0.166666672f);
+      this.Horror.volume = Mathf.MoveTowards(this.Horror.volume, this.Volume * this.Dip, 0.166666672f);
       if (this.Custom.enabled)
-        this.Custom.volume = Mathf.MoveTowards(this.Custom.volume, this.Volume * this.Dip - this.ClubDip, 0.01666667f * this.FadeSpeed);
+        this.Custom.volume = Mathf.MoveTowards(this.Custom.volume, this.Volume * this.Dip - this.ClubDip, 0.0166666675f * this.FadeSpeed);
     }
     if (this.Yandere.PauseScreen.Show || this.Yandere.Noticed || !this.Yandere.CanMove || !this.Yandere.EasterEggMenu.activeInHierarchy || this.Egg)
       return;

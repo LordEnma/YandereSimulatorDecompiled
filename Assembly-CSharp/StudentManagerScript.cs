@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -480,6 +480,7 @@ public class StudentManagerScript : MonoBehaviour
   public UIPanel FreeFloatingPanel;
   public bool[] RivalKilledSelf;
   public PantyListScript PantyList;
+  public bool AttackPromptActive;
   public int MeetStudentID;
   public float MeetTime;
   public int MeetID;
@@ -487,6 +488,7 @@ public class StudentManagerScript : MonoBehaviour
   public Collider WestFemaleBathroomCollider;
   public Collider EastMaleBathroomCollider;
   public Collider WestMaleBathroomCollider;
+  public Transform DisabledObjectParent;
 
   private void Awake()
   {
@@ -712,7 +714,7 @@ public class StudentManagerScript : MonoBehaviour
       if (!this.TakingPortraits)
       {
         for (this.ID = 1; this.ID < 101; ++this.ID)
-          this.TargetSize[this.ID] = (float) (2.0 + (double) this.ID * 0.100000001490116);
+          this.TargetSize[this.ID] = (float) (2.0 + (double) this.ID * 0.10000000149011612);
         this.TargetSize[11] = 20f;
         for (this.ID = 1; this.ID < this.Lockers.List.Length; ++this.ID)
         {
@@ -1516,7 +1518,7 @@ public class StudentManagerScript : MonoBehaviour
                 if (student.WitnessedMurder || student.WitnessedCorpse || student.Private)
                   student.Prompt.HideButton[0] = true;
               }
-              if (this.Yandere.NearBodies > 0 || (double) this.Yandere.Sanity < 33.3333282470703)
+              if (this.Yandere.NearBodies > 0 || (double) this.Yandere.Sanity < 33.333328247070313)
                 student.Prompt.HideButton[0] = true;
               if (student.Teacher)
                 this.CheckSelfReportStatus(student);
@@ -1660,7 +1662,7 @@ public class StudentManagerScript : MonoBehaviour
           student.Prompt.HideButton[0] = true;
           student.Prompt.HideButton[2] = true;
         }
-        if (this.Yandere.NearBodies > 0 || (double) this.Yandere.Sanity < 33.3333282470703)
+        if (this.Yandere.NearBodies > 0 || (double) this.Yandere.Sanity < 33.333328247070313)
           student.Prompt.HideButton[0] = true;
         if (student.Teacher)
           this.CheckSelfReportStatus(student);
@@ -1907,7 +1909,7 @@ public class StudentManagerScript : MonoBehaviour
             student.GetDestinations();
           }
           student.SpeechLines.Stop();
-          student.transform.position = new Vector3((float) (20.0 + (double) num1 * 1.10000002384186), 0.0f, (float) (82 - num2 * 5));
+          student.transform.position = new Vector3((float) (20.0 + (double) num1 * 1.1000000238418579), 0.0f, (float) (82 - num2 * 5));
           ++num2;
           if (num2 > 4)
           {
@@ -2286,7 +2288,7 @@ public class StudentManagerScript : MonoBehaviour
   public void LowerCorpsePosition()
   {
     Debug.Log((object) ("Corpse's Y position is: " + this.CorpseLocation.position.y.ToString()));
-    this.CorpseLocation.position = new Vector3(this.CorpseLocation.position.x, (double) this.CorpseLocation.position.y <= 1.39999997615814 || (double) this.CorpseLocation.position.y >= 1.60000002384186 ? ((double) this.CorpseLocation.position.y >= 2.0 ? ((double) this.CorpseLocation.position.y >= 4.0 ? ((double) this.CorpseLocation.position.y >= 6.0 ? ((double) this.CorpseLocation.position.y >= 8.0 ? ((double) this.CorpseLocation.position.y >= 10.0 ? ((double) this.CorpseLocation.position.y >= 12.0 ? 12f : 10f) : 8f) : 6f) : 4f) : 2f) : 0.0f) : 1.4f, this.CorpseLocation.position.z);
+    this.CorpseLocation.position = new Vector3(this.CorpseLocation.position.x, (double) this.CorpseLocation.position.y <= 1.3999999761581421 || (double) this.CorpseLocation.position.y >= 1.6000000238418579 ? ((double) this.CorpseLocation.position.y >= 2.0 ? ((double) this.CorpseLocation.position.y >= 4.0 ? ((double) this.CorpseLocation.position.y >= 6.0 ? ((double) this.CorpseLocation.position.y >= 8.0 ? ((double) this.CorpseLocation.position.y >= 10.0 ? ((double) this.CorpseLocation.position.y >= 12.0 ? 12f : 10f) : 8f) : 6f) : 4f) : 2f) : 0.0f) : 1.4f, this.CorpseLocation.position.z);
   }
 
   public void LowerBloodPosition() => this.BloodLocation.position = new Vector3(this.BloodLocation.position.x, (double) this.BloodLocation.position.y >= 2.0 ? ((double) this.BloodLocation.position.y >= 4.0 ? ((double) this.BloodLocation.position.y >= 6.0 ? ((double) this.BloodLocation.position.y >= 8.0 ? ((double) this.BloodLocation.position.y >= 10.0 ? ((double) this.BloodLocation.position.y >= 12.0 ? 12f : 10f) : 8f) : 6f) : 4f) : 2f) : 0.0f, this.BloodLocation.position.z);
@@ -2515,7 +2517,7 @@ public class StudentManagerScript : MonoBehaviour
     for (this.ID = 2; this.ID < this.Students.Length; ++this.ID)
     {
       StudentScript student = this.Students[this.ID];
-      if ((UnityEngine.Object) student != (UnityEngine.Object) null && (double) this.StudentReps[this.ID] < -33.3333282470703 && (this.ID != 36 || this.TaskManager.TaskStatus[36] != 3) && !student.Teacher && !student.Slave && student.Club != ClubType.Bully && student.Club != ClubType.Council && student.Club != ClubType.Photography && student.Club != ClubType.Delinquent && (double) this.StudentReps[this.ID] < (double) this.LowestRep)
+      if ((UnityEngine.Object) student != (UnityEngine.Object) null && (double) this.StudentReps[this.ID] < -33.333328247070313 && (this.ID != 36 || this.TaskManager.TaskStatus[36] != 3) && !student.Teacher && !student.Slave && student.Club != ClubType.Bully && student.Club != ClubType.Council && student.Club != ClubType.Photography && student.Club != ClubType.Delinquent && (double) this.StudentReps[this.ID] < (double) this.LowestRep)
       {
         bool flag = false;
         if (!this.Eighties && this.ID == 11)
@@ -2791,7 +2793,7 @@ public class StudentManagerScript : MonoBehaviour
     int num = 0;
     for (this.ID = 51; this.ID < 56; ++this.ID)
     {
-      if ((UnityEngine.Object) this.Students[this.ID] != (UnityEngine.Object) null && this.Students[this.ID].Routine && (double) this.Students[this.ID].DistanceToDestination < 0.100000001490116)
+      if ((UnityEngine.Object) this.Students[this.ID] != (UnityEngine.Object) null && this.Students[this.ID].Routine && (double) this.Students[this.ID].DistanceToDestination < 0.10000000149011612)
         ++num;
     }
     if (num == 5)
@@ -3434,7 +3436,7 @@ public class StudentManagerScript : MonoBehaviour
   {
     if (!((UnityEngine.Object) this.WindowOccluder != (UnityEngine.Object) null) || this.TransparentWindows)
       return;
-    if ((double) this.Yandere.transform.position.y > 0.100000001490116 && (double) this.Yandere.transform.position.y < 11.0)
+    if ((double) this.Yandere.transform.position.y > 0.10000000149011612 && (double) this.Yandere.transform.position.y < 11.0)
       this.WindowOccluder.open = false;
     else
       this.WindowOccluder.open = true;
@@ -4438,6 +4440,20 @@ label_6:
     {
       for (int index2 = 1; index2 < 26; ++index2)
         this.SetTopicLearnedByStudent(index2, index1, ConversationGlobals.GetTopicLearnedByStudent(index2, index1));
+    }
+  }
+
+  public void CheckForAttackPrompt()
+  {
+    Debug.Log((object) "Checking to see if any attack prompts are active.");
+    this.AttackPromptActive = false;
+    for (int index = 1; index < 101; ++index)
+    {
+      if ((UnityEngine.Object) this.Students[index] != (UnityEngine.Object) null && this.Students[index].gameObject.activeInHierarchy && (UnityEngine.Object) this.Yandere.NearestPrompt == (UnityEngine.Object) this.Students[index].Prompt && !this.Students[index].Prompt.HideButton[2])
+      {
+        Debug.Log((object) ("Under the impression that Student #" + index.ToString() + "'s Attack Prompt is visible."));
+        this.AttackPromptActive = true;
+      }
     }
   }
 }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericPromptScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -429,7 +429,7 @@ public class GenericPromptScript : MonoBehaviour
         this.SpawnedEffect = true;
       }
       this.transform.position -= new Vector3(0.0f, Time.deltaTime, 0.0f);
-      if ((double) this.transform.localPosition.y <= 3.15370011329651)
+      if ((double) this.transform.localPosition.y <= 3.1537001132965088)
         return;
       StudentScript student = this.Prompt.Yandere.StudentManager.Students[15];
       student.Drowned = true;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HallucinationScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -72,7 +72,7 @@ public class HallucinationScript : MonoBehaviour
 
   private void Update()
   {
-    if ((double) this.Yandere.Sanity < 33.3333282470703)
+    if ((double) this.Yandere.Sanity < 33.333328247070313)
     {
       if (!this.Yandere.Aiming && this.Yandere.CanMove)
         this.Timer += Time.deltaTime;

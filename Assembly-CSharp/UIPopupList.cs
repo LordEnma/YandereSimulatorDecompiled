@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UIPopupList
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -35,7 +35,7 @@ public class UIPopupList : UIWidgetContainer
   public Vector2 padding = (Vector2) new Vector3(4f, 4f);
   public Color textColor = Color.white;
   public Color backgroundColor = Color.white;
-  public Color highlightColor = new Color(0.8823529f, 0.7843137f, 0.5882353f, 1f);
+  public Color highlightColor = new Color(0.882352948f, 0.784313738f, 0.5882353f, 1f);
   public bool isAnimated = true;
   public bool isLocalized;
   public UILabel.Modifier textModifier;
@@ -813,7 +813,7 @@ public class UIPopupList : UIWidgetContainer
         if (this.isAnimated)
         {
           this.AnimateColor((UIWidget) this.mBackground);
-          if ((double) Time.timeScale == 0.0 || (double) Time.timeScale >= 0.100000001490116)
+          if ((double) Time.timeScale == 0.0 || (double) Time.timeScale >= 0.10000000149011612)
           {
             float bottom = num7 + num4;
             this.Animate((UIWidget) this.mHighlight, placeAbove, bottom);

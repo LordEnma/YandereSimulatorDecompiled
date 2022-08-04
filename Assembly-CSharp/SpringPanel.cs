@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SpringPanel
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -39,7 +39,7 @@ public class SpringPanel : MonoBehaviour
     bool flag = false;
     Vector3 localPosition = this.mTrans.localPosition;
     Vector3 vector3_1 = NGUIMath.SpringLerp(localPosition, this.target, this.strength, this.mDelta);
-    if ((double) (localPosition - this.target).sqrMagnitude < 0.00999999977648258)
+    if ((double) (localPosition - this.target).sqrMagnitude < 0.0099999997764825821)
     {
       vector3_1 = this.target;
       this.enabled = false;
@@ -51,7 +51,7 @@ public class SpringPanel : MonoBehaviour
       vector3_1.x = Mathf.Round(vector3_1.x);
       vector3_1.y = Mathf.Round(vector3_1.y);
       vector3_1.z = Mathf.Round(vector3_1.z);
-      if ((double) (vector3_1 - localPosition).sqrMagnitude < 0.00999999977648258)
+      if ((double) (vector3_1 - localPosition).sqrMagnitude < 0.0099999997764825821)
         return;
       this.mDelta = 0.0f;
     }

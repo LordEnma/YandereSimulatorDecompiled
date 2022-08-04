@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GrassPlaneGenerator
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections.Generic;
@@ -33,9 +33,9 @@ public class GrassPlaneGenerator : MonoBehaviour
       Gizmos.DrawCube(position + Vector3.up * this.IntersectHeight / 2f, size1 + Vector3.up * this.IntersectHeight);
     }
     Gizmos.color = Color.cyan;
-    for (float x = 0.0f; (double) x < (double) this.Width + 0.0900000035762787 - (double) this.quadSize; x += this.quadSize)
+    for (float x = 0.0f; (double) x < (double) this.Width + 0.090000003576278687 - (double) this.quadSize; x += this.quadSize)
     {
-      for (float z = 0.0f; (double) z < (double) this.Height + 0.0900000035762787 - (double) this.quadSize; z += this.quadSize)
+      for (float z = 0.0f; (double) z < (double) this.Height + 0.090000003576278687 - (double) this.quadSize; z += this.quadSize)
         Gizmos.DrawWireCube(position - size1 / 2f + size2 / 2f + new Vector3(x, 0.0f, z), size2);
     }
   }
@@ -82,9 +82,9 @@ public class GrassPlaneGenerator : MonoBehaviour
       Object.DestroyImmediate((Object) camera.gameObject);
     }
     int num7 = 0;
-    for (float num8 = 0.0f; (double) num8 < (double) this.Width + 0.0900000035762787 - (double) this.quadSize; num8 += this.quadSize)
+    for (float num8 = 0.0f; (double) num8 < (double) this.Width + 0.090000003576278687 - (double) this.quadSize; num8 += this.quadSize)
     {
-      for (float num9 = 0.0f; (double) num9 < (double) this.Height + 0.0900000035762787 - (double) this.quadSize; num9 += this.quadSize)
+      for (float num9 = 0.0f; (double) num9 < (double) this.Height + 0.090000003576278687 - (double) this.quadSize; num9 += this.quadSize)
       {
         if (this.Intersect)
         {

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NGUIText
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -510,7 +510,7 @@ public static class NGUIText
         }
         break;
       case NGUIText.Alignment.Justified:
-        if ((double) printedWidth < (double) NGUIText.rectWidth * 0.649999976158142 || ((double) NGUIText.rectWidth - (double) printedWidth) * 0.5 < 1.0)
+        if ((double) printedWidth < (double) NGUIText.rectWidth * 0.64999997615814209 || ((double) NGUIText.rectWidth - (double) printedWidth) * 0.5 < 1.0)
           break;
         int num5 = (verts.Count - indexOffset) / elements;
         if (num5 < 1)
@@ -786,12 +786,12 @@ public static class NGUIText
                   NGUIText.IsSpace(ch);
                   continue;
                 case 1:
-                  float num8 = (float) ((double) NGUIText.fontScale * (double) NGUIText.fontSize * 0.400000005960464);
+                  float num8 = (float) ((double) NGUIText.fontScale * (double) NGUIText.fontSize * 0.40000000596046448);
                   glyph.v0.y -= num8;
                   glyph.v1.y -= num8;
                   goto case 0;
                 default:
-                  float num9 = (float) ((double) NGUIText.fontScale * (double) NGUIText.fontSize * 0.0500000007450581);
+                  float num9 = (float) ((double) NGUIText.fontScale * (double) NGUIText.fontSize * 0.05000000074505806);
                   glyph.v0.y += num9;
                   glyph.v1.y += num9;
                   goto case 0;
@@ -1420,7 +1420,7 @@ public static class NGUIText
                     }
                     else
                     {
-                      float num17 = (float) ((double) NGUIText.fontSize * 0.100000001490116 * (((double) y4 - (double) y3) / (double) NGUIText.fontSize));
+                      float num17 = (float) ((double) NGUIText.fontSize * 0.10000000149011612 * (((double) y4 - (double) y3) / (double) NGUIText.fontSize));
                       verts.Add(new Vector3(x4 - num17, y3));
                       verts.Add(new Vector3(x4 + num17, y4));
                       verts.Add(new Vector3(x5 + num17, y4));
@@ -1433,7 +1433,7 @@ public static class NGUIText
                     {
                       float num18 = NGUIText.mBoldOffset[index10 * 2];
                       float num19 = NGUIText.mBoldOffset[index10 * 2 + 1];
-                      float num20 = italic ? (float) ((double) NGUIText.fontSize * 0.100000001490116 * (((double) y4 - (double) y3) / (double) NGUIText.fontSize)) : 0.0f;
+                      float num20 = italic ? (float) ((double) NGUIText.fontSize * 0.10000000149011612 * (((double) y4 - (double) y3) / (double) NGUIText.fontSize)) : 0.0f;
                       verts.Add(new Vector3(x4 + num18 - num20, y3 + num19));
                       verts.Add(new Vector3(x4 + num18 + num20, y4 + num19));
                       verts.Add(new Vector3(x5 + num18 + num20, y4 + num19));
@@ -1514,12 +1514,12 @@ public static class NGUIText
                 }
                 continue;
               case 1:
-                float num28 = (float) ((double) NGUIText.fontScale * (double) NGUIText.fontSize * 0.400000005960464);
+                float num28 = (float) ((double) NGUIText.fontScale * (double) NGUIText.fontSize * 0.40000000596046448);
                 glyph1.v0.y -= num28;
                 glyph1.v1.y -= num28;
                 goto case 0;
               default:
-                float num29 = (float) ((double) NGUIText.fontScale * (double) NGUIText.fontSize * 0.0500000007450581);
+                float num29 = (float) ((double) NGUIText.fontScale * (double) NGUIText.fontSize * 0.05000000074505806);
                 glyph1.v0.y += num29;
                 glyph1.v1.y += num29;
                 goto case 0;

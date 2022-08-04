@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YakuzaMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -594,7 +594,7 @@ public class YakuzaMenuScript : MonoBehaviour
         if (!this.Jukebox.isPlaying)
           this.Jukebox.Play();
         this.Speed += Time.deltaTime;
-        this.Yandere.MainCamera.transform.position = Vector3.Lerp(this.Yandere.MainCamera.transform.position, new Vector3(-2.25f, 1.5f, -5.5f), (float) ((double) Time.deltaTime * (double) this.Speed * 0.00999999977648258));
+        this.Yandere.MainCamera.transform.position = Vector3.Lerp(this.Yandere.MainCamera.transform.position, new Vector3(-2.25f, 1.5f, -5.5f), (float) ((double) Time.deltaTime * (double) this.Speed * 0.0099999997764825821));
         if (this.Dialogue.isPlaying && !Input.GetButtonDown("A"))
           return;
         ++this.CutscenePhase;

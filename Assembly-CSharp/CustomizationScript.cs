@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CustomizationScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections.Generic;
@@ -406,7 +406,7 @@ public class CustomizationScript : MonoBehaviour
       }
       this.Rotation = Mathf.Lerp(this.Rotation, (float) (45.0 - (double) this.Adjustment * 30.0), Time.deltaTime * 10f);
       this.AbsoluteRotation = 45f - Mathf.Abs(this.Rotation);
-      this.LoveSickCamera.transform.position = this.Selected != 1 ? new Vector3(Mathf.Lerp(this.LoveSickCamera.transform.position.x, (float) ((double) this.Adjustment * 0.333330005407333 - 0.5), this.CameraSpeed), Mathf.Lerp(this.LoveSickCamera.transform.position.y, 0.5f, this.CameraSpeed), Mathf.Lerp(this.LoveSickCamera.transform.position.z, (float) (1.5 - (double) this.AbsoluteRotation * 0.0149999996647239 * 0.333330005407333), this.CameraSpeed)) : new Vector3(Mathf.Lerp(this.LoveSickCamera.transform.position.x, this.Adjustment - 1.5f, this.CameraSpeed), Mathf.Lerp(this.LoveSickCamera.transform.position.y, 0.0f, this.CameraSpeed), Mathf.Lerp(this.LoveSickCamera.transform.position.z, (float) (0.5 - (double) this.AbsoluteRotation * 0.0149999996647239), this.CameraSpeed));
+      this.LoveSickCamera.transform.position = this.Selected != 1 ? new Vector3(Mathf.Lerp(this.LoveSickCamera.transform.position.x, (float) ((double) this.Adjustment * 0.33333000540733337 - 0.5), this.CameraSpeed), Mathf.Lerp(this.LoveSickCamera.transform.position.y, 0.5f, this.CameraSpeed), Mathf.Lerp(this.LoveSickCamera.transform.position.z, (float) (1.5 - (double) this.AbsoluteRotation * 0.014999999664723873 * 0.33333000540733337), this.CameraSpeed)) : new Vector3(Mathf.Lerp(this.LoveSickCamera.transform.position.x, this.Adjustment - 1.5f, this.CameraSpeed), Mathf.Lerp(this.LoveSickCamera.transform.position.y, 0.0f, this.CameraSpeed), Mathf.Lerp(this.LoveSickCamera.transform.position.z, (float) (0.5 - (double) this.AbsoluteRotation * 0.014999999664723873), this.CameraSpeed));
       this.LoveSickCamera.transform.eulerAngles = new Vector3(0.0f, this.Rotation, 0.0f);
       this.transform.eulerAngles = this.LoveSickCamera.transform.eulerAngles;
       this.transform.position = this.LoveSickCamera.transform.position;
@@ -416,7 +416,7 @@ public class CustomizationScript : MonoBehaviour
       this.Adjustment = Mathf.Lerp(this.Adjustment, 0.0f, Time.deltaTime * 10f);
       this.Rotation = Mathf.Lerp(this.Rotation, 45f, Time.deltaTime * 10f);
       this.AbsoluteRotation = 45f - Mathf.Abs(this.Rotation);
-      this.LoveSickCamera.transform.position = new Vector3(Mathf.Lerp(this.LoveSickCamera.transform.position.x, this.Adjustment - 1.5f, this.CameraSpeed), Mathf.Lerp(this.LoveSickCamera.transform.position.y, 0.0f, this.CameraSpeed), Mathf.Lerp(this.LoveSickCamera.transform.position.z, (float) (0.5 - (double) this.AbsoluteRotation * 0.0149999996647239), this.CameraSpeed));
+      this.LoveSickCamera.transform.position = new Vector3(Mathf.Lerp(this.LoveSickCamera.transform.position.x, this.Adjustment - 1.5f, this.CameraSpeed), Mathf.Lerp(this.LoveSickCamera.transform.position.y, 0.0f, this.CameraSpeed), Mathf.Lerp(this.LoveSickCamera.transform.position.z, (float) (0.5 - (double) this.AbsoluteRotation * 0.014999999664723873), this.CameraSpeed));
       this.LoveSickCamera.transform.eulerAngles = new Vector3(0.0f, this.Rotation, 0.0f);
       this.transform.eulerAngles = this.LoveSickCamera.transform.eulerAngles;
       this.transform.position = this.LoveSickCamera.transform.position;
@@ -588,7 +588,7 @@ public class CustomizationScript : MonoBehaviour
     }
     else
     {
-      this.ApologyWindow.localPosition = new Vector3(Mathf.Abs((float) (((double) this.ApologyWindow.localPosition.x - (double) Time.deltaTime) * 0.00999999977648258)) * (Time.deltaTime * 1000f), this.ApologyWindow.localPosition.y, this.ApologyWindow.localPosition.z);
+      this.ApologyWindow.localPosition = new Vector3(Mathf.Abs((float) (((double) this.ApologyWindow.localPosition.x - (double) Time.deltaTime) * 0.0099999997764825821)) * (Time.deltaTime * 1000f), this.ApologyWindow.localPosition.y, this.ApologyWindow.localPosition.z);
       if ((double) this.ApologyWindow.localPosition.x >= -1555.0)
         return;
       this.ApologyWindow.localPosition = new Vector3(1555f, this.ApologyWindow.localPosition.y, this.ApologyWindow.localPosition.z);

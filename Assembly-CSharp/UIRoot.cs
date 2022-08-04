@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UIRoot
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections.Generic;
@@ -133,7 +133,7 @@ public class UIRoot : MonoBehaviour
       return;
     float num = 2f / activeHeight;
     Vector3 localScale = this.mTrans.localScale;
-    if ((double) Mathf.Abs(localScale.x - num) <= 1.40129846432482E-45 && (double) Mathf.Abs(localScale.y - num) <= 1.40129846432482E-45 && (double) Mathf.Abs(localScale.z - num) <= 1.40129846432482E-45)
+    if ((double) Mathf.Abs(localScale.x - num) <= 1.4012984643248171E-45 && (double) Mathf.Abs(localScale.y - num) <= 1.4012984643248171E-45 && (double) Mathf.Abs(localScale.z - num) <= 1.4012984643248171E-45)
       return;
     this.mTrans.localScale = new Vector3(num, num, num);
     if (!updateAnchors)

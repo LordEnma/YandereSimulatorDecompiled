@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GrowShrinkScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -52,7 +52,7 @@ public class GrowShrinkScript : MonoBehaviour
         this.Shrink = false;
       }
     }
-    if ((double) this.Timer > 3.33332991600037)
+    if ((double) this.Timer > 3.3333299160003662)
     {
       this.FallSpeed += (float) ((double) Time.deltaTime * 10.0 * 2.0);
       this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y - (float) ((double) this.FallSpeed * (double) this.FallSpeed * 2.0), this.transform.localPosition.z);

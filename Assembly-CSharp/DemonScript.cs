@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DemonScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -75,7 +75,7 @@ public class DemonScript : MonoBehaviour
       this.DemonSubtitle.transform.localPosition = new Vector3(Random.Range(-this.Intensity, this.Intensity), Random.Range(-this.Intensity, this.Intensity), Random.Range(-this.Intensity, this.Intensity));
       this.DemonSubtitle.color = new Color(this.DemonSubtitle.color.r, this.DemonSubtitle.color.g, this.DemonSubtitle.color.b, Mathf.MoveTowards(this.DemonSubtitle.color.a, 1f, Time.deltaTime));
       this.Button.color = new Color(this.Button.color.r, this.Button.color.g, this.Button.color.b, Mathf.MoveTowards(this.Button.color.a, 1f, Time.deltaTime));
-      if ((double) this.DemonSubtitle.color.a <= 0.899999976158142 || !Input.GetButtonDown("A"))
+      if ((double) this.DemonSubtitle.color.a <= 0.89999997615814209 || !Input.GetButtonDown("A"))
         return;
       ++this.Phase;
     }

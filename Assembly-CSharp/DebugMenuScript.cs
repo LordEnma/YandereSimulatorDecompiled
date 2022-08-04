@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DebugMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -319,7 +319,7 @@ public class DebugMenuScript : MonoBehaviour
                 student.Meeting = true;
                 student.MeetTime = 0.0f;
               }
-              if ((double) this.Clock.HourTime < 7.09999990463257)
+              if ((double) this.Clock.HourTime < 7.0999999046325684)
                 this.Clock.PresentTime = 426f;
             }
             else
@@ -378,7 +378,7 @@ public class DebugMenuScript : MonoBehaviour
           else if (Input.GetKeyDown(KeyCode.R))
           {
             Debug.Log((object) "Attempting to update reputation.");
-            PlayerGlobals.Reputation = (double) PlayerGlobals.Reputation != -100.0 ? ((double) PlayerGlobals.Reputation != -66.6666564941406 ? ((double) PlayerGlobals.Reputation != 0.0 ? ((double) PlayerGlobals.Reputation != 66.6666564941406 ? ((double) PlayerGlobals.Reputation != 100.0 ? 0.0f : -100f) : 100f) : 66.66666f) : 0.0f) : -66.66666f;
+            PlayerGlobals.Reputation = (double) PlayerGlobals.Reputation != -100.0 ? ((double) PlayerGlobals.Reputation != -66.666656494140625 ? ((double) PlayerGlobals.Reputation != 0.0 ? ((double) PlayerGlobals.Reputation != 66.666656494140625 ? ((double) PlayerGlobals.Reputation != 100.0 ? 0.0f : -100f) : 100f) : 66.66666f) : 0.0f) : -66.66666f;
             this.Reputation.PreviousRep = 999f;
             this.Reputation.PendingRep = PlayerGlobals.Reputation;
             this.Reputation.UpdateRep();

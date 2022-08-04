@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StalkerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -140,9 +140,9 @@ public class StalkerScript : MonoBehaviour
         }
         this.Yandere.MyAnimation.CrossFade("f02_struggleWinA_00");
         this.MyAnimation.CrossFade("struggleWinB_00");
-        if ((double) this.MyAnimation["struggleWinB_00"].time >= 0.666660010814667)
+        if ((double) this.MyAnimation["struggleWinB_00"].time >= 0.66666001081466675)
           this.BonkEffect[1].SetActive(true);
-        if ((double) this.MyAnimation["struggleWinB_00"].time >= 1.33333003520966)
+        if ((double) this.MyAnimation["struggleWinB_00"].time >= 1.3333300352096558)
         {
           this.KnockoutStars.SetActive(true);
           this.BonkEffect[2].SetActive(true);

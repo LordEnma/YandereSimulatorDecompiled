@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CosmeticScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -225,6 +225,8 @@ public class CosmeticScript : MonoBehaviour
   public Material[] EightiesNurseMaterials;
   public Material[] NurseMaterials;
   public GameObject CardiganPrefab;
+  public GameObject BackupOsanaHair;
+  public Renderer BackupOsanaHairRenderer;
   public int FaceID;
   public int SkinID;
   public int UniformID;
@@ -233,6 +235,11 @@ public class CosmeticScript : MonoBehaviour
 
   public void Start()
   {
+    if (this.Kidnapped && (Object) this.FemaleHair[20] == (Object) null)
+    {
+      this.FemaleHair[20] = this.BackupOsanaHair;
+      this.FemaleHairRenderers[20] = this.BackupOsanaHairRenderer;
+    }
     this.Eighties = !((Object) this.StudentManager != (Object) null) ? GameGlobals.Eighties : this.StudentManager.Eighties;
     if (this.Eighties && this.Male)
     {
@@ -262,6 +269,8 @@ public class CosmeticScript : MonoBehaviour
     string str1 = string.Empty;
     if (!this.Initialized)
     {
+      if ((Object) this.JSON == (Object) null)
+        this.JSON = this.StudentManager.JSON;
       this.Accessory = int.Parse(this.JSON.Students[this.StudentID].Accessory);
       this.Hairstyle = int.Parse(this.JSON.Students[this.StudentID].Hairstyle);
       this.Stockings = this.JSON.Students[this.StudentID].Stockings;
@@ -378,6 +387,7 @@ public class CosmeticScript : MonoBehaviour
       flag1 = true;
     if (flag1 && StudentGlobals.CustomSuitor && StudentGlobals.CustomSuitorEyewear > 0)
       this.Eyewear[StudentGlobals.CustomSuitorEyewear].SetActive(true);
+    Scene activeScene;
     if (!this.Male)
     {
       this.FemaleUniformID = StudentGlobals.FemaleUniform;
@@ -455,202 +465,206 @@ public class CosmeticScript : MonoBehaviour
         if (this.Club == ClubType.Gardening && !this.TakingPortrait && !this.Kidnapped)
           this.CanRenderer.material.mainTexture = this.CanTextures[this.StudentID];
       }
-      if (!this.Kidnapped && SceneManager.GetActiveScene().name == "PortraitScene")
+      if (!this.Kidnapped)
       {
-        if (!this.Eighties)
+        activeScene = SceneManager.GetActiveScene();
+        if (activeScene.name == "PortraitScene")
         {
-          if (this.StudentID == 2)
+          if (!this.Eighties)
           {
-            this.CharacterAnimation.Play("succubus_a_idle_twins_01");
-            this.transform.position = new Vector3(0.094f, 0.0f, 0.0f);
-            this.LookCamera = true;
-            this.CharacterAnimation["f02_smile_00"].layer = 1;
-            this.CharacterAnimation.Play("f02_smile_00");
-            this.CharacterAnimation["f02_smile_00"].weight = 1f;
+            if (this.StudentID == 2)
+            {
+              this.CharacterAnimation.Play("succubus_a_idle_twins_01");
+              this.transform.position = new Vector3(0.094f, 0.0f, 0.0f);
+              this.LookCamera = true;
+              this.CharacterAnimation["f02_smile_00"].layer = 1;
+              this.CharacterAnimation.Play("f02_smile_00");
+              this.CharacterAnimation["f02_smile_00"].weight = 1f;
+            }
+            else if (this.StudentID == 3)
+            {
+              this.CharacterAnimation.Play("succubus_b_idle_twins_02");
+              this.transform.position = new Vector3(-0.322f, 0.04f, 0.0f);
+              this.LookCamera = true;
+              this.CharacterAnimation["f02_smile_00"].layer = 1;
+              this.CharacterAnimation.Play("f02_smile_00");
+              this.CharacterAnimation["f02_smile_00"].weight = 1f;
+            }
+            else if (this.StudentID == 4)
+            {
+              this.CharacterAnimation.Play("f02_idleShort_00");
+              this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
+              this.LookCamera = true;
+            }
+            else if (this.StudentID == 5)
+            {
+              this.CharacterAnimation[this.Student.ShyAnim].layer = 5;
+              this.CharacterAnimation.Play(this.Student.ShyAnim);
+              this.CharacterAnimation[this.Student.ShyAnim].weight = 0.5f;
+            }
+            else if (this.StudentID == 10)
+              this.CharacterAnimation.Play("f02_raibaruPortraitPose_00");
+            else if (this.StudentID == 11)
+            {
+              this.CharacterAnimation.Play("f02_rivalPortraitPose_01");
+              this.transform.position = new Vector3(-0.045f, 0.0f, 0.0f);
+            }
+            else if (this.StudentID == 24)
+            {
+              this.CharacterAnimation.Play("f02_idleGirly_00");
+              this.CharacterAnimation["f02_idleGirly_00"].time = 1f;
+            }
+            else if (this.StudentID == 25)
+            {
+              this.CharacterAnimation.Play("f02_idleGirly_00");
+              this.CharacterAnimation["f02_idleGirly_00"].time = 0.0f;
+            }
+            else if (this.StudentID == 30)
+            {
+              this.CharacterAnimation.Play("f02_idleGirly_00");
+              this.CharacterAnimation["f02_idleGirly_00"].time = 0.0f;
+            }
+            else if (this.StudentID == 34)
+            {
+              this.CharacterAnimation.Play("f02_idleShort_00");
+              this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
+              this.LookCamera = true;
+            }
+            else if (this.StudentID == 35)
+            {
+              this.CharacterAnimation.Play("f02_idleShort_00");
+              this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
+              this.LookCamera = true;
+            }
+            else if (this.StudentID == 38)
+            {
+              this.CharacterAnimation.Play("f02_idleGirly_00");
+              this.CharacterAnimation["f02_idleGirly_00"].time = 0.0f;
+            }
+            else if (this.StudentID == 39)
+            {
+              this.CharacterAnimation.Play("f02_socialCameraPose_00");
+              this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.05f, this.transform.position.z);
+            }
+            else if (this.StudentID == 40)
+            {
+              this.CharacterAnimation.Play("f02_idleGirly_00");
+              this.CharacterAnimation["f02_idleGirly_00"].time = 1f;
+            }
+            else if (this.StudentID == 51)
+            {
+              this.CharacterAnimation.Play("f02_musicPose_00");
+              this.Tongue.SetActive(true);
+            }
+            else if (this.StudentID == 59)
+              this.CharacterAnimation.Play("f02_sleuthPortrait_00");
+            else if (this.StudentID == 60)
+              this.CharacterAnimation.Play("f02_sleuthPortrait_01");
+            else if (this.StudentID == 64)
+            {
+              this.CharacterAnimation.Play("f02_idleShort_00");
+              this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
+              this.LookCamera = true;
+            }
+            else if (this.StudentID == 65)
+            {
+              this.CharacterAnimation.Play("f02_idleShort_00");
+              this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
+              this.LookCamera = true;
+            }
+            else if (this.StudentID == 71)
+            {
+              this.CharacterAnimation.Play("f02_idleGirly_00");
+              this.CharacterAnimation["f02_idleGirly_00"].time = 0.0f;
+            }
+            else if (this.StudentID == 72)
+            {
+              this.CharacterAnimation.Play("f02_idleGirly_00");
+              this.CharacterAnimation["f02_idleGirly_00"].time = 0.66666f;
+            }
+            else if (this.StudentID == 73)
+            {
+              this.CharacterAnimation.Play("f02_idleGirly_00");
+              this.CharacterAnimation["f02_idleGirly_00"].time = 1.33332f;
+            }
+            else if (this.StudentID == 74)
+            {
+              this.CharacterAnimation.Play("f02_idleGirly_00");
+              this.CharacterAnimation["f02_idleGirly_00"].time = 1.99998f;
+            }
+            else if (this.StudentID == 75)
+            {
+              this.CharacterAnimation.Play("f02_idleGirly_00");
+              this.CharacterAnimation["f02_idleGirly_00"].time = 2.66664f;
+            }
+            else if (this.StudentID == 81)
+            {
+              string str4 = "Casual";
+              this.CharacterAnimation["f02_faceCouncil" + str4 + "_00"].layer = 1;
+              this.CharacterAnimation.Play("f02_faceCouncil" + str4 + "_00");
+              this.CharacterAnimation.Play("f02_socialCameraPose_00");
+              this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.05f, this.transform.position.z);
+            }
+            else if (this.StudentID == 82 || this.StudentID == 52)
+              this.CharacterAnimation.Play("f02_galPose_01");
+            else if (this.StudentID == 83 || this.StudentID == 53)
+              this.CharacterAnimation.Play("f02_galPose_02");
+            else if (this.StudentID == 84 || this.StudentID == 54)
+              this.CharacterAnimation.Play("f02_galPose_03");
+            else if (this.StudentID == 85 || this.StudentID == 55)
+              this.CharacterAnimation.Play("f02_galPose_04");
+            else if (this.StudentID == 90)
+              this.CharacterAnimation.Play("f02_nursePortraitPose_00");
+            else if (this.StudentID == 91)
+            {
+              this.CharacterAnimation.Play("f02_teacherPortraitPose_11");
+              this.transform.position = new Vector3(0.0233333f, 0.0f, 0.0f);
+            }
+            else if (this.StudentID == 92)
+            {
+              this.CharacterAnimation.Play("f02_teacherPortraitPose_12");
+              this.transform.position = new Vector3(-0.045f, 0.0f, 0.0f);
+            }
+            else if (this.StudentID == 93)
+              this.CharacterAnimation.Play("f02_teacherPortraitPose_21");
+            else if (this.StudentID == 94)
+              this.CharacterAnimation.Play("f02_teacherPortraitPose_22");
+            else if (this.StudentID == 95)
+              this.CharacterAnimation.Play("f02_teacherPortraitPose_31");
+            else if (this.StudentID == 96)
+              this.CharacterAnimation.Play("f02_teacherPortraitPose_32");
+            else if (this.StudentID == 97)
+            {
+              this.CharacterAnimation.Play("f02_coachPortraitPose_00");
+              this.transform.position = new Vector3(-0.029f, 0.0f, 0.0f);
+            }
+            else if (this.Club != ClubType.Council)
+            {
+              this.CharacterAnimation.Play("f02_idleShort_01");
+              this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
+              this.LookCamera = true;
+            }
           }
-          else if (this.StudentID == 3)
+          else
           {
-            this.CharacterAnimation.Play("succubus_b_idle_twins_02");
-            this.transform.position = new Vector3(-0.322f, 0.04f, 0.0f);
-            this.LookCamera = true;
-            this.CharacterAnimation["f02_smile_00"].layer = 1;
-            this.CharacterAnimation.Play("f02_smile_00");
-            this.CharacterAnimation["f02_smile_00"].weight = 1f;
-          }
-          else if (this.StudentID == 4)
-          {
-            this.CharacterAnimation.Play("f02_idleShort_00");
             this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
-            this.LookCamera = true;
-          }
-          else if (this.StudentID == 5)
-          {
-            this.CharacterAnimation[this.Student.ShyAnim].layer = 5;
-            this.CharacterAnimation.Play(this.Student.ShyAnim);
-            this.CharacterAnimation[this.Student.ShyAnim].weight = 0.5f;
-          }
-          else if (this.StudentID == 10)
-            this.CharacterAnimation.Play("f02_raibaruPortraitPose_00");
-          else if (this.StudentID == 11)
-          {
-            this.CharacterAnimation.Play("f02_rivalPortraitPose_01");
-            this.transform.position = new Vector3(-0.045f, 0.0f, 0.0f);
-          }
-          else if (this.StudentID == 24)
-          {
-            this.CharacterAnimation.Play("f02_idleGirly_00");
-            this.CharacterAnimation["f02_idleGirly_00"].time = 1f;
-          }
-          else if (this.StudentID == 25)
-          {
-            this.CharacterAnimation.Play("f02_idleGirly_00");
-            this.CharacterAnimation["f02_idleGirly_00"].time = 0.0f;
-          }
-          else if (this.StudentID == 30)
-          {
-            this.CharacterAnimation.Play("f02_idleGirly_00");
-            this.CharacterAnimation["f02_idleGirly_00"].time = 0.0f;
-          }
-          else if (this.StudentID == 34)
-          {
-            this.CharacterAnimation.Play("f02_idleShort_00");
-            this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
-            this.LookCamera = true;
-          }
-          else if (this.StudentID == 35)
-          {
-            this.CharacterAnimation.Play("f02_idleShort_00");
-            this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
-            this.LookCamera = true;
-          }
-          else if (this.StudentID == 38)
-          {
-            this.CharacterAnimation.Play("f02_idleGirly_00");
-            this.CharacterAnimation["f02_idleGirly_00"].time = 0.0f;
-          }
-          else if (this.StudentID == 39)
-          {
-            this.CharacterAnimation.Play("f02_socialCameraPose_00");
-            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.05f, this.transform.position.z);
-          }
-          else if (this.StudentID == 40)
-          {
-            this.CharacterAnimation.Play("f02_idleGirly_00");
-            this.CharacterAnimation["f02_idleGirly_00"].time = 1f;
-          }
-          else if (this.StudentID == 51)
-          {
-            this.CharacterAnimation.Play("f02_musicPose_00");
-            this.Tongue.SetActive(true);
-          }
-          else if (this.StudentID == 59)
-            this.CharacterAnimation.Play("f02_sleuthPortrait_00");
-          else if (this.StudentID == 60)
-            this.CharacterAnimation.Play("f02_sleuthPortrait_01");
-          else if (this.StudentID == 64)
-          {
-            this.CharacterAnimation.Play("f02_idleShort_00");
-            this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
-            this.LookCamera = true;
-          }
-          else if (this.StudentID == 65)
-          {
-            this.CharacterAnimation.Play("f02_idleShort_00");
-            this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
-            this.LookCamera = true;
-          }
-          else if (this.StudentID == 71)
-          {
-            this.CharacterAnimation.Play("f02_idleGirly_00");
-            this.CharacterAnimation["f02_idleGirly_00"].time = 0.0f;
-          }
-          else if (this.StudentID == 72)
-          {
-            this.CharacterAnimation.Play("f02_idleGirly_00");
-            this.CharacterAnimation["f02_idleGirly_00"].time = 0.66666f;
-          }
-          else if (this.StudentID == 73)
-          {
-            this.CharacterAnimation.Play("f02_idleGirly_00");
-            this.CharacterAnimation["f02_idleGirly_00"].time = 1.33332f;
-          }
-          else if (this.StudentID == 74)
-          {
-            this.CharacterAnimation.Play("f02_idleGirly_00");
-            this.CharacterAnimation["f02_idleGirly_00"].time = 1.99998f;
-          }
-          else if (this.StudentID == 75)
-          {
-            this.CharacterAnimation.Play("f02_idleGirly_00");
-            this.CharacterAnimation["f02_idleGirly_00"].time = 2.66664f;
-          }
-          else if (this.StudentID == 81)
-          {
-            string str4 = "Casual";
-            this.CharacterAnimation["f02_faceCouncil" + str4 + "_00"].layer = 1;
-            this.CharacterAnimation.Play("f02_faceCouncil" + str4 + "_00");
-            this.CharacterAnimation.Play("f02_socialCameraPose_00");
-            this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.05f, this.transform.position.z);
-          }
-          else if (this.StudentID == 82 || this.StudentID == 52)
-            this.CharacterAnimation.Play("f02_galPose_01");
-          else if (this.StudentID == 83 || this.StudentID == 53)
-            this.CharacterAnimation.Play("f02_galPose_02");
-          else if (this.StudentID == 84 || this.StudentID == 54)
-            this.CharacterAnimation.Play("f02_galPose_03");
-          else if (this.StudentID == 85 || this.StudentID == 55)
-            this.CharacterAnimation.Play("f02_galPose_04");
-          else if (this.StudentID == 90)
-            this.CharacterAnimation.Play("f02_nursePortraitPose_00");
-          else if (this.StudentID == 91)
-          {
-            this.CharacterAnimation.Play("f02_teacherPortraitPose_11");
-            this.transform.position = new Vector3(0.0233333f, 0.0f, 0.0f);
-          }
-          else if (this.StudentID == 92)
-          {
-            this.CharacterAnimation.Play("f02_teacherPortraitPose_12");
-            this.transform.position = new Vector3(-0.045f, 0.0f, 0.0f);
-          }
-          else if (this.StudentID == 93)
-            this.CharacterAnimation.Play("f02_teacherPortraitPose_21");
-          else if (this.StudentID == 94)
-            this.CharacterAnimation.Play("f02_teacherPortraitPose_22");
-          else if (this.StudentID == 95)
-            this.CharacterAnimation.Play("f02_teacherPortraitPose_31");
-          else if (this.StudentID == 96)
-            this.CharacterAnimation.Play("f02_teacherPortraitPose_32");
-          else if (this.StudentID == 97)
-          {
-            this.CharacterAnimation.Play("f02_coachPortraitPose_00");
-            this.transform.position = new Vector3(-0.029f, 0.0f, 0.0f);
-          }
-          else if (this.Club != ClubType.Council)
-          {
-            this.CharacterAnimation.Play("f02_idleShort_01");
-            this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
-            this.LookCamera = true;
-          }
-        }
-        else
-        {
-          this.transform.position = new Vector3(0.015f, 0.0f, 0.0f);
-          int studentId = this.StudentID;
-          if (this.StudentID > 10 && this.StudentID < 20)
-          {
-            this.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
-            this.CharacterAnimation.Play("f02_eightiesRivalPose_0" + (this.StudentID - 10).ToString());
-          }
-          else if (this.StudentID == 20)
-          {
-            this.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
-            this.CharacterAnimation.Play("f02_eightiesRivalPose_10");
-          }
-          if (this.StudentID > 2 && this.StudentID < 7)
-          {
-            this.CharacterAnimation["f02_smile_00"].layer = 1;
-            this.CharacterAnimation.Play("f02_smile_00");
-            this.CharacterAnimation["f02_smile_00"].weight = 1f;
+            int studentId = this.StudentID;
+            if (this.StudentID > 10 && this.StudentID < 20)
+            {
+              this.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+              this.CharacterAnimation.Play("f02_eightiesRivalPose_0" + (this.StudentID - 10).ToString());
+            }
+            else if (this.StudentID == 20)
+            {
+              this.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
+              this.CharacterAnimation.Play("f02_eightiesRivalPose_10");
+            }
+            if (this.StudentID > 2 && this.StudentID < 7)
+            {
+              this.CharacterAnimation["f02_smile_00"].layer = 1;
+              this.CharacterAnimation.Play("f02_smile_00");
+              this.CharacterAnimation["f02_smile_00"].weight = 1f;
+            }
           }
         }
       }
@@ -702,7 +716,8 @@ public class CosmeticScript : MonoBehaviour
           if (this.StudentID == 66)
             this.ThickBrows.SetActive(true);
         }
-        if (SceneManager.GetActiveScene().name == "PortraitScene")
+        activeScene = SceneManager.GetActiveScene();
+        if (activeScene.name == "PortraitScene")
         {
           if (this.StudentID == 26)
             this.CharacterAnimation.Play("idleHaughty_00");
@@ -1003,12 +1018,16 @@ public class CosmeticScript : MonoBehaviour
       if (!this.Eighties && this.StudentID == 36 && (Object) this.StudentManager != (Object) null && (Object) this.StudentManager.TaskManager != (Object) null && this.StudentManager.TaskManager.TaskStatus[36] == 3)
         this.ClubAccessories[(int) this.Club].SetActive(false);
     }
-    if (this.StudentID == 11 && !this.TakingPortrait && !this.Cutscene && !this.Kidnapped && SceneManager.GetActiveScene().name == "SchoolScene")
+    if (this.StudentID == 11 && !this.TakingPortrait && !this.Cutscene && !this.Kidnapped)
     {
-      this.CatGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
-      this.CatGifts[2].SetActive(CollectibleGlobals.GetGiftGiven(2));
-      this.CatGifts[3].SetActive(CollectibleGlobals.GetGiftGiven(3));
-      this.CatGifts[4].SetActive(CollectibleGlobals.GetGiftGiven(4));
+      activeScene = SceneManager.GetActiveScene();
+      if (activeScene.name == "SchoolScene")
+      {
+        this.CatGifts[1].SetActive(CollectibleGlobals.GetGiftGiven(1));
+        this.CatGifts[2].SetActive(CollectibleGlobals.GetGiftGiven(2));
+        this.CatGifts[3].SetActive(CollectibleGlobals.GetGiftGiven(3));
+        this.CatGifts[4].SetActive(CollectibleGlobals.GetGiftGiven(4));
+      }
     }
     if (!this.Male)
       this.StartCoroutine(this.PutOnStockings());
@@ -1150,7 +1169,8 @@ public class CosmeticScript : MonoBehaviour
         this.RightIrisLight.SetActive(false);
         this.LeftIrisLight.SetActive(false);
       }
-      if (SceneManager.GetActiveScene().name == "PortraitScene")
+      activeScene = SceneManager.GetActiveScene();
+      if (activeScene.name == "PortraitScene")
         this.Character.transform.localScale = new Vector3(0.93f, 0.93f, 0.93f);
       if ((Object) this.FacialHairRenderer != (Object) null)
       {
@@ -1166,7 +1186,7 @@ public class CosmeticScript : MonoBehaviour
         if (this.StudentID == 25 || this.StudentID == 30)
         {
           this.FemaleAccessories[6].SetActive(true);
-          if ((double) StudentGlobals.GetStudentReputation(this.StudentID) < -33.3333282470703)
+          if ((double) StudentGlobals.GetStudentReputation(this.StudentID) < -33.333328247070313)
             this.FemaleAccessories[6].SetActive(false);
         }
         else if (this.StudentID == 2)

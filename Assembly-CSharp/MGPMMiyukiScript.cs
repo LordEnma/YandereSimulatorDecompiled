@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MGPMMiyukiScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -220,7 +220,7 @@ public class MGPMMiyukiScript : MonoBehaviour
           this.ShootTimer = 0.0f;
         }
         this.ShootTimer += Time.deltaTime;
-        if ((double) this.ShootTimer >= 0.0750000029802322)
+        if ((double) this.ShootTimer >= 0.075000002980232239)
           this.ShootTimer = 0.0f;
       }
       if (Input.GetKeyUp("z") || Input.GetKeyUp("y") || Input.GetButtonUp("A"))

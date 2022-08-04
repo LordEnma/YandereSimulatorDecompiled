@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PoseModeScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -234,11 +234,11 @@ public class PoseModeScript : MonoBehaviour
         {
           this.CalculateValue();
           if (this.Selected == 1)
-            this.Bone.localPosition = new Vector3(this.Bone.localPosition.x + (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 0.100000001490116), this.Bone.localPosition.y, this.Bone.localPosition.z);
+            this.Bone.localPosition = new Vector3(this.Bone.localPosition.x + (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 0.10000000149011612), this.Bone.localPosition.y, this.Bone.localPosition.z);
           else if (this.Selected == 2)
-            this.Bone.localPosition = new Vector3(this.Bone.localPosition.x, this.Bone.localPosition.y + (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 0.100000001490116), this.Bone.localPosition.z);
+            this.Bone.localPosition = new Vector3(this.Bone.localPosition.x, this.Bone.localPosition.y + (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 0.10000000149011612), this.Bone.localPosition.z);
           else if (this.Selected == 3)
-            this.Bone.localPosition = new Vector3(this.Bone.localPosition.x, this.Bone.localPosition.y, this.Bone.localPosition.z + (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 0.100000001490116));
+            this.Bone.localPosition = new Vector3(this.Bone.localPosition.x, this.Bone.localPosition.y, this.Bone.localPosition.z + (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 0.10000000149011612));
           else if (this.Selected == 4)
             this.Bone.Rotate(Vector3.right * (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 36.0));
           else if (this.Selected == 5)
@@ -246,11 +246,11 @@ public class PoseModeScript : MonoBehaviour
           else if (this.Selected == 6)
             this.Bone.Rotate(Vector3.forward * (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 36.0));
           else if (this.Selected == 7)
-            this.Bone.localScale = new Vector3(this.Bone.localScale.x + (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 0.100000001490116), this.Bone.localScale.y, this.Bone.localScale.z);
+            this.Bone.localScale = new Vector3(this.Bone.localScale.x + (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 0.10000000149011612), this.Bone.localScale.y, this.Bone.localScale.z);
           else if (this.Selected == 8)
-            this.Bone.localScale = new Vector3(this.Bone.localScale.x, this.Bone.localScale.y + (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 0.100000001490116), this.Bone.localScale.z);
+            this.Bone.localScale = new Vector3(this.Bone.localScale.x, this.Bone.localScale.y + (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 0.10000000149011612), this.Bone.localScale.z);
           else if (this.Selected == 9)
-            this.Bone.localScale = new Vector3(this.Bone.localScale.x, this.Bone.localScale.y, this.Bone.localScale.z + (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 0.100000001490116));
+            this.Bone.localScale = new Vector3(this.Bone.localScale.x, this.Bone.localScale.y, this.Bone.localScale.z + (float) ((double) Time.deltaTime * (double) this.Value * (double) this.Degree * 0.10000000149011612));
         }
         if (this.Selected == 10)
         {
@@ -564,7 +564,7 @@ public class PoseModeScript : MonoBehaviour
     }
     else
     {
-      if ((double) this.transform.localScale.x > 0.100000001490116)
+      if ((double) this.transform.localScale.x > 0.10000000149011612)
         this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
       else if (this.Panel.enabled)
       {

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -209,7 +209,7 @@ public class EndOfDayScript : MonoBehaviour
     if (this.Darken)
     {
       this.EndOfDayDarkness.color = new Color(this.EndOfDayDarkness.color.r, this.EndOfDayDarkness.color.g, this.EndOfDayDarkness.color.b, Mathf.MoveTowards(this.EndOfDayDarkness.color.a, 1f, Time.deltaTime * 2f));
-      if ((double) this.EndOfDayDarkness.color.a > 0.999000012874603)
+      if ((double) this.EndOfDayDarkness.color.a > 0.99900001287460327)
       {
         if ((UnityEngine.Object) this.Senpai == (UnityEngine.Object) null && (UnityEngine.Object) this.StudentManager.Students[1] != (UnityEngine.Object) null)
         {
@@ -756,7 +756,7 @@ public class EndOfDayScript : MonoBehaviour
     else if (this.Phase == 8)
     {
       this.ShruggingCops.SetActive(false);
-      if ((double) this.Yandere.Sanity > 33.3333282470703)
+      if ((double) this.Yandere.Sanity > 33.333328247070313)
       {
         if ((double) this.Yandere.Bloodiness > 0.0 && !this.Yandere.RedPaint || this.Yandere.Gloved && this.Yandere.Gloves.Blood.enabled)
         {
@@ -1220,7 +1220,7 @@ public class EndOfDayScript : MonoBehaviour
       this.Rival = this.StudentManager.Students[this.StudentManager.RivalID];
       if (this.ArticleID == 2)
       {
-        this.StudentManager.StudentReps[this.StudentManager.RivalID] -= (float) (20.0 * (1.0 + (double) this.Class.LanguageGrade * 0.200000002980232));
+        this.StudentManager.StudentReps[this.StudentManager.RivalID] -= (float) (20.0 * (1.0 + (double) this.Class.LanguageGrade * 0.20000000298023224));
         StudentGlobals.SetStudentReputation(this.StudentManager.RivalID, Mathf.RoundToInt(this.StudentManager.StudentReps[this.StudentManager.RivalID]));
       }
       if ((UnityEngine.Object) this.Rival != (UnityEngine.Object) null && this.Rival.Alive && (double) this.StudentManager.StudentReps[this.StudentManager.RivalID] <= -100.0)
@@ -1962,9 +1962,9 @@ public class EndOfDayScript : MonoBehaviour
       PlayerGlobals.SetCannotBringItem(9, false);
     }
     if (this.ArticleID == 1)
-      PlayerGlobals.Reputation += (float) (20.0 * (1.0 + (double) ClassGlobals.LanguageGrade * 0.200000002980232));
+      PlayerGlobals.Reputation += (float) (20.0 * (1.0 + (double) ClassGlobals.LanguageGrade * 0.20000000298023224));
     else if (this.ArticleID == 3)
-      SchoolGlobals.SchoolAtmosphere += (float) (20.0 * (1.0 + (double) ClassGlobals.LanguageGrade * 0.200000002980232));
+      SchoolGlobals.SchoolAtmosphere += (float) (20.0 * (1.0 + (double) ClassGlobals.LanguageGrade * 0.20000000298023224));
     if (GameGlobals.PoliceYesterday)
       ++PlayerGlobals.PoliceVisits;
     PlayerGlobals.BloodWitnessed += this.BloodWitnessed;

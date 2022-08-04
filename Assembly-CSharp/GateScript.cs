@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GateScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -54,7 +54,7 @@ public class GateScript : MonoBehaviour
     {
       if (this.StudentManager.Students[97].CurrentAction == StudentActionType.AtLocker && this.StudentManager.Students[97].Routine && this.StudentManager.Students[97].Alive)
       {
-        if ((double) Vector3.Distance(this.StudentManager.Students[97].transform.position, this.StudentManager.Podiums.List[0].position) < 0.100000001490116)
+        if ((double) Vector3.Distance(this.StudentManager.Students[97].transform.position, this.StudentManager.Podiums.List[0].position) < 0.10000000149011612)
         {
           if (this.ManuallyAdjusted)
             this.ManuallyAdjusted = false;
@@ -97,13 +97,13 @@ public class GateScript : MonoBehaviour
     }
     else
     {
-      if ((double) this.RightGate.localPosition.x == 2.32500004768372)
+      if ((double) this.RightGate.localPosition.x == 2.3250000476837158)
         return;
-      if ((double) this.RightGate.localPosition.x < 2.40000009536743)
+      if ((double) this.RightGate.localPosition.x < 2.4000000953674316)
         this.Crushing = true;
       this.RightGate.localPosition = new Vector3(Mathf.MoveTowards(this.RightGate.localPosition.x, 2.325f, Time.deltaTime), this.RightGate.localPosition.y, this.RightGate.localPosition.z);
       this.LeftGate.localPosition = new Vector3(Mathf.MoveTowards(this.LeftGate.localPosition.x, -2.325f, Time.deltaTime), this.LeftGate.localPosition.y, this.LeftGate.localPosition.z);
-      if (this.AudioPlayed || (double) this.RightGate.localPosition.x != 2.32500004768372)
+      if (this.AudioPlayed || (double) this.RightGate.localPosition.x != 2.3250000476837158)
         return;
       this.RightGateAudio.clip = this.StopOpen;
       this.LeftGateAudio.clip = this.StopOpen;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YanvaniaTitleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -118,7 +118,7 @@ public class YanvaniaTitleScript : MonoBehaviour
               {
                 this.ErrorWindow.SetActive(true);
                 this.ErrorWindow.transform.localScale = Vector3.Lerp(this.ErrorWindow.transform.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-                if ((double) this.ErrorWindow.transform.localScale.x <= 0.899999976158142 || !Input.anyKeyDown)
+                if ((double) this.ErrorWindow.transform.localScale.x <= 0.89999997615814209 || !Input.anyKeyDown)
                   return;
                 AudioSource component2 = this.ErrorWindow.GetComponent<AudioSource>();
                 component2.clip = this.ExitSound;

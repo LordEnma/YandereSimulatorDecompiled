@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StruggleBarScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -78,7 +78,7 @@ public class StruggleBarScript : MonoBehaviour
         this.Intensity = 0.0f;
       }
     }
-    else if ((double) this.transform.localScale.x > 0.100000001490116)
+    else if ((double) this.transform.localScale.x > 0.10000000149011612)
     {
       this.transform.localScale = Vector3.Lerp(this.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
     }

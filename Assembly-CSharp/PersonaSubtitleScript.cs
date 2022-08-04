@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PersonaSubtitleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -88,7 +88,7 @@ public class PersonaSubtitleScript : MonoBehaviour
         this.SubtitleArray = this.NemesisReactions;
         break;
     }
-    this.Subtitle.Label.text = (double) Reputation >= -0.333333343267441 ? ((double) Reputation <= 0.333333343267441 ? this.SubtitleArray[2] : this.SubtitleArray[3]) : this.SubtitleArray[1];
+    this.Subtitle.Label.text = (double) Reputation >= -0.3333333432674408 ? ((double) Reputation <= 0.3333333432674408 ? this.SubtitleArray[2] : this.SubtitleArray[3]) : this.SubtitleArray[1];
     this.Subtitle.Timer = Duration;
   }
 }

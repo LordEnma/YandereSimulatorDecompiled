@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BusStopScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -140,7 +140,7 @@ public class BusStopScript : MonoBehaviour
     {
       this.Alpha = Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * 0.2f);
       this.Renderer.material.color = new Color(0.0f, 0.0f, 0.0f, this.Alpha);
-      this.MeetingJukebox.volume = (float) ((1.0 - (double) this.Alpha) * 0.100000001490116);
+      this.MeetingJukebox.volume = (float) ((1.0 - (double) this.Alpha) * 0.10000000149011612);
       if ((double) this.Alpha == 0.0)
       {
         if (this.SpeechID == 0)
@@ -584,7 +584,7 @@ public class BusStopScript : MonoBehaviour
       {
         this.Alpha = Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * 0.5f);
         this.Renderer.material.color = new Color(0.0f, 0.0f, 0.0f, this.Alpha);
-        this.MeetingJukebox.volume = (float) ((1.0 - (double) this.Alpha) * 0.200000002980232);
+        this.MeetingJukebox.volume = (float) ((1.0 - (double) this.Alpha) * 0.20000000298023224);
         this.Subtitle.text = "";
         if ((double) this.Alpha == 1.0)
         {

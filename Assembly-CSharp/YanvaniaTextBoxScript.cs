@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YanvaniaTextBoxScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -159,7 +159,7 @@ public class YanvaniaTextBoxScript : MonoBehaviour
         if ((Object) this.Glass != (Object) null)
         {
           Rigidbody component3 = this.Glass.GetComponent<Rigidbody>();
-          if ((double) this.AnimTimer > 1.39999997615814 && !component3.useGravity)
+          if ((double) this.AnimTimer > 1.3999999761581421 && !component3.useGravity)
           {
             component3.useGravity = true;
             this.Glass.transform.parent = (Transform) null;

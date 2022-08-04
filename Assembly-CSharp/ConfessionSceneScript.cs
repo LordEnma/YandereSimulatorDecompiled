@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ConfessionSceneScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -154,7 +154,7 @@ public class ConfessionSceneScript : MonoBehaviour
     else if (this.Phase == 3)
     {
       this.LetterTimer += Time.deltaTime;
-      if ((double) this.LetterTimer > 0.100000001490116 && this.LetterID < this.Letters.Length)
+      if ((double) this.LetterTimer > 0.10000000149011612 && this.LetterID < this.Letters.Length)
       {
         this.Letters[this.LetterID].SetActive(true);
         this.LetterTimer = 0.0f;
@@ -214,7 +214,7 @@ public class ConfessionSceneScript : MonoBehaviour
     }
     if (this.Kissing)
     {
-      if ((double) this.Suitor.CharacterAnimation["kiss_00"].time >= (double) this.Suitor.CharacterAnimation["kiss_00"].length * 0.666660010814667)
+      if ((double) this.Suitor.CharacterAnimation["kiss_00"].time >= (double) this.Suitor.CharacterAnimation["kiss_00"].length * 0.66666001081466675)
         this.Suitor.Character.transform.localScale = Vector3.Lerp(this.Suitor.Character.transform.localScale, new Vector3(0.94f, 0.94f, 0.94f), Time.deltaTime);
       if ((double) this.Suitor.CharacterAnimation["kiss_00"].time < (double) this.Suitor.CharacterAnimation["kiss_00"].length)
         return;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaPoolEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -133,6 +133,7 @@ public class OsanaPoolEventScript : MonoBehaviour
           this.Rival.Pathfinding.canSearch = false;
           this.Rival.Pathfinding.canMove = false;
           this.Rival.Pathfinding.speed = 0.0f;
+          this.Rival.transform.eulerAngles = this.Location[1].eulerAngles;
           ++this.Phase;
         }
         else
@@ -146,7 +147,8 @@ public class OsanaPoolEventScript : MonoBehaviour
       else if (this.Phase == 4)
       {
         this.Timer += Time.deltaTime;
-        if ((double) this.Timer > 5.53332996368408)
+        this.Rival.MoveTowardsTarget(this.Location[1].position);
+        if ((double) this.Timer > 5.533329963684082)
         {
           this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[2]);
           this.Rival.OsanaHair.GetComponent<Animation>().CrossFade("Hair_" + this.EventAnim[2]);
@@ -203,8 +205,9 @@ public class OsanaPoolEventScript : MonoBehaviour
       else if (this.Phase == 8)
       {
         this.Timer += Time.deltaTime;
-        if ((double) this.Timer > 4.33333015441895)
+        if ((double) this.Timer > 4.3333301544189453)
         {
+          Debug.Log((object) "Now moving from Phase 8 to Phase 9.");
           this.Rival.OsanaHair.GetComponent<Animation>().Stop();
           this.Rival.OsanaHair.transform.parent = this.Rival.Head;
           this.Rival.OsanaHair.transform.localEulerAngles = Vector3.zero;
@@ -215,6 +218,9 @@ public class OsanaPoolEventScript : MonoBehaviour
           this.Rival.Pathfinding.target = this.StudentManager.FemaleStripSpot;
           this.Rival.CurrentDestination = this.StudentManager.FemaleStripSpot;
           this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
+          this.Rival.Pathfinding.canSearch = true;
+          this.Rival.Pathfinding.canMove = true;
+          this.Rival.Pathfinding.speed = 1f;
           if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
           {
             ScheduleBlock scheduleBlock = this.Friend.ScheduleBlocks[this.Friend.Phase];
@@ -225,6 +231,7 @@ public class OsanaPoolEventScript : MonoBehaviour
             this.Friend.Pathfinding.target = this.Friend.FollowTarget.transform;
             this.Friend.Pathfinding.canSearch = true;
             this.Friend.Pathfinding.canMove = true;
+            this.Friend.Pathfinding.speed = 1f;
           }
           ++this.Phase;
         }
@@ -311,7 +318,7 @@ public class OsanaPoolEventScript : MonoBehaviour
             ++this.MurderPhase;
           }
         }
-        else if (this.MurderPhase == 3 && (double) this.Yandere.CharacterAnimation["f02_" + this.EventAnim[5]].time > 14.8333330154419)
+        else if (this.MurderPhase == 3 && (double) this.Yandere.CharacterAnimation["f02_" + this.EventAnim[5]].time > 14.833333015441895)
         {
           GameObject gameObject = UnityEngine.Object.Instantiate<GameObject>(this.BigSplash, this.Location[4].position, Quaternion.identity);
           gameObject.transform.eulerAngles = new Vector3(-90f, gameObject.transform.eulerAngles.y, gameObject.transform.eulerAngles.z);

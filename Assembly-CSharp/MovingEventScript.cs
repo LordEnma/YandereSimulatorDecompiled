@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MovingEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -80,7 +80,7 @@ public class MovingEventScript : MonoBehaviour
       if (this.EventPhase == 0)
       {
         this.EventStudent.Character.GetComponent<Animation>().CrossFade(this.EventStudent.IdleAnim);
-        if ((double) this.Clock.HourTime > 13.0500001907349)
+        if ((double) this.Clock.HourTime > 13.050000190734863)
         {
           this.EventStudent.CurrentDestination = this.EventLocation[1];
           this.EventStudent.Pathfinding.target = this.EventLocation[1];
@@ -234,7 +234,7 @@ public class MovingEventScript : MonoBehaviour
         {
           component1.CrossFade("f02_poisonDeath_00");
           this.Timer += Time.deltaTime;
-          if ((double) this.Timer < 13.5500001907349)
+          if ((double) this.Timer < 13.550000190734863)
           {
             if (!this.EventStudent.Chopsticks[0].activeInHierarchy)
             {
@@ -244,7 +244,7 @@ public class MovingEventScript : MonoBehaviour
               this.EventStudent.Distracted = true;
             }
           }
-          else if ((double) this.Timer < 16.3333301544189)
+          else if ((double) this.Timer < 16.333330154418945)
           {
             if ((UnityEngine.Object) this.EventStudent.Chopsticks[0].transform.parent != (UnityEngine.Object) this.EventStudent.Bento.transform)
             {
@@ -252,7 +252,7 @@ public class MovingEventScript : MonoBehaviour
               this.EventStudent.Chopsticks[1].transform.parent = this.EventStudent.Bento.transform;
             }
             this.EventStudent.EyeShrink += Time.deltaTime;
-            if ((double) this.EventStudent.EyeShrink > 0.899999976158142)
+            if ((double) this.EventStudent.EyeShrink > 0.89999997615814209)
               this.EventStudent.EyeShrink = 0.9f;
           }
           else if ((UnityEngine.Object) this.EventStudent.Bento.transform.parent != (UnityEngine.Object) null)
@@ -279,7 +279,7 @@ public class MovingEventScript : MonoBehaviour
         return;
       if ((double) this.Distance < 10.0)
       {
-        float num = Mathf.Abs((float) (((double) this.Distance - 10.0) * 0.200000002980232));
+        float num = Mathf.Abs((float) (((double) this.Distance - 10.0) * 0.20000000298023224));
         if ((double) num < 0.0)
           num = 0.0f;
         if ((double) num > 1.0)

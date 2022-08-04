@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CameraEffectsScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -51,7 +51,7 @@ public class CameraEffectsScript : MonoBehaviour
     }
     if ((double) this.MurderStreaks.color.a > 0.0)
       this.MurderStreaks.color = new Color(this.MurderStreaks.color.r, this.MurderStreaks.color.g, this.MurderStreaks.color.b, this.MurderStreaks.color.a - Time.deltaTime);
-    float target = (float) (1.0 - (double) this.Yandere.Sanity * 0.00999999977648258);
+    float target = (float) (1.0 - (double) this.Yandere.Sanity * 0.0099999997764825821);
     if ((double) this.EffectStrength == (double) target)
       return;
     this.EffectStrength = Mathf.MoveTowards(this.EffectStrength, target, Time.deltaTime * 10f);

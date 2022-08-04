@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UIDraggableCamera
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -143,7 +143,7 @@ public class UIDraggableCamera : MonoBehaviour
     {
       this.mMomentum += this.scale * (this.mScroll * 20f);
       this.mScroll = NGUIMath.SpringLerp(this.mScroll, 0.0f, 20f, deltaTime);
-      if ((double) this.mMomentum.magnitude > 0.00999999977648258)
+      if ((double) this.mMomentum.magnitude > 0.0099999997764825821)
       {
         this.mTrans.localPosition += (Vector3) NGUIMath.SpringDampen(ref this.mMomentum, 9f, deltaTime);
         this.mBounds = NGUIMath.CalculateAbsoluteWidgetBounds(this.rootForBounds);

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UnityStandardAssets.Vehicles.Car.CarAIControl
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -69,7 +69,7 @@ namespace UnityStandardAssets.Vehicles.Car
       else
       {
         Vector3 to = this.transform.forward;
-        if ((double) this.m_Rigidbody.velocity.magnitude > (double) this.m_CarController.MaxSpeed * 0.100000001490116)
+        if ((double) this.m_Rigidbody.velocity.magnitude > (double) this.m_CarController.MaxSpeed * 0.10000000149011612)
           to = this.m_Rigidbody.velocity;
         float num1 = this.m_CarController.MaxSpeed;
         switch (this.m_BrakeCondition)

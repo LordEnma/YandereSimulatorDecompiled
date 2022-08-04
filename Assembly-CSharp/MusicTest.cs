@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MusicTest
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -33,7 +33,7 @@ public class MusicTest : MonoBehaviour
       this.g[x] = GameObject.CreatePrimitive(PrimitiveType.Sphere);
       this.g[x].transform.position = new Vector3((float) x, 0.0f, 0.0f);
     }
-    this.InvokeRepeating("check", 0.0f, 0.03333334f);
+    this.InvokeRepeating("check", 0.0f, 0.0333333351f);
   }
 
   private void check()

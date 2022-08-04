@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaClubEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -145,7 +145,7 @@ public class OsanaClubEventScript : MonoBehaviour
                 if ((double) num < 10.0)
                 {
                   this.EventSubtitle.text = (double) this.Timer <= (double) this.EventClip[this.EventPhase].length ? this.EventSpeech[this.EventPhase] : string.Empty;
-                  this.Scale = Mathf.Abs((float) (((double) num - 10.0) * 0.200000002980232));
+                  this.Scale = Mathf.Abs((float) (((double) num - 10.0) * 0.20000000298023224));
                   if ((double) this.Scale < 0.0)
                     this.Scale = 0.0f;
                   if ((double) this.Scale > 1.0)

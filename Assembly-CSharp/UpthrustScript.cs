@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UpthrustScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -20,10 +20,10 @@ public class UpthrustScript : MonoBehaviour
 
   private void Update()
   {
-    float num = this.amplitude * Mathf.Sin(6.283185f * this.frequency * Time.time);
+    float num = this.amplitude * Mathf.Sin(6.28318548f * this.frequency * Time.time);
     this.transform.localPosition = this.startPosition + this.evaluatePosition(Time.time);
     this.transform.Rotate(this.rotationAmplitude * num);
   }
 
-  private Vector3 evaluatePosition(float time) => new Vector3(0.0f, this.amplitude * Mathf.Sin(6.283185f * this.frequency * time), 0.0f);
+  private Vector3 evaluatePosition(float time) => new Vector3(0.0f, this.amplitude * Mathf.Sin(6.28318548f * this.frequency * time), 0.0f);
 }

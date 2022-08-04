@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TimePortalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -22,7 +22,7 @@ public class TimePortalScript : MonoBehaviour
       return;
     Object.Instantiate<GameObject>(this.BlackHole, this.transform.position + new Vector3(0.0f, 1f, 0.0f), Quaternion.identity);
     this.Timer += Time.deltaTime;
-    if ((double) this.Timer <= 1.10000002384186)
+    if ((double) this.Timer <= 1.1000000238418579)
       return;
     this.Delinquent[this.ID].Suck = true;
     this.Timer = 1f;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaFridayBeforeClassEvent2Script
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -45,7 +45,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
   private void Start()
   {
     this.EventSubtitle.transform.localScale = Vector3.zero;
-    if (DateGlobals.Weekday == this.EventDay && !StudentGlobals.GetStudentKidnapped(this.RivalID) && StudentGlobals.StudentSlave != this.RivalID && StudentGlobals.StudentSlave != 81 && !StudentGlobals.GetStudentDead(81) && !StudentGlobals.GetStudentKidnapped(81) && !StudentGlobals.GetStudentArrested(81) && !StudentGlobals.GetStudentExpelled(81) && (double) StudentGlobals.GetStudentReputation(81) >= -33.3333282470703 && !GameGlobals.Eighties)
+    if (DateGlobals.Weekday == this.EventDay && !StudentGlobals.GetStudentKidnapped(this.RivalID) && StudentGlobals.StudentSlave != this.RivalID && StudentGlobals.StudentSlave != 81 && !StudentGlobals.GetStudentDead(81) && !StudentGlobals.GetStudentKidnapped(81) && !StudentGlobals.GetStudentArrested(81) && !StudentGlobals.GetStudentExpelled(81) && (double) StudentGlobals.GetStudentReputation(81) >= -33.333328247070313 && !GameGlobals.Eighties)
       return;
     this.enabled = false;
   }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaTuesdayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -146,7 +146,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
         }
         else if (this.Phase == 2)
         {
-          if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[1]].time >= 0.833333015441895)
+          if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[1]].time >= 0.83333301544189453)
             this.Rival.AnimatedBook.SetActive(true);
           if ((double) this.Rival.CharacterAnimation["f02_" + this.EventAnim[1]].time >= 5.0)
             this.EventSubtitle.text = this.SpeechText[1];

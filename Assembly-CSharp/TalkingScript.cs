@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TalkingScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -43,7 +43,7 @@ public class TalkingScript : MonoBehaviour
           this.S.FollowTarget.FocusOnYandere = true;
           this.S.FollowTarget.Routine = false;
         }
-        this.IdleAnim = !this.S.Sleuthing ? (this.S.Club != ClubType.Art || !this.S.DialogueWheel.ClubLeader || !this.S.Paintbrush.activeInHierarchy || this.S.StudentManager.Eighties ? (this.S.Club == ClubType.Bully ? ((double) this.S.StudentManager.Reputation.Reputation < 33.3333282470703 || this.S.Persona == PersonaType.Coward ? (this.S.CurrentAction != StudentActionType.Sunbathe || this.S.SunbathePhase <= 2 ? this.S.IdleAnim : this.S.OriginalIdleAnim) : this.S.CuteAnim) : this.S.IdleAnim) : "paintingIdle_00") : this.S.SleuthCalmAnim;
+        this.IdleAnim = !this.S.Sleuthing ? (this.S.Club != ClubType.Art || !this.S.DialogueWheel.ClubLeader || !this.S.Paintbrush.activeInHierarchy || this.S.StudentManager.Eighties ? (this.S.Club == ClubType.Bully ? ((double) this.S.StudentManager.Reputation.Reputation < 33.333328247070313 || this.S.Persona == PersonaType.Coward ? (this.S.CurrentAction != StudentActionType.Sunbathe || this.S.SunbathePhase <= 2 ? this.S.IdleAnim : this.S.OriginalIdleAnim) : this.S.CuteAnim) : this.S.IdleAnim) : "paintingIdle_00") : this.S.SleuthCalmAnim;
         this.S.CharacterAnimation.CrossFade(this.IdleAnim);
       }
       else if (this.IdleAnim != "")
@@ -208,7 +208,7 @@ public class TalkingScript : MonoBehaviour
               ++this.S.GossipBonus;
             if (this.S.Male && this.S.Yandere.Class.Seduction + this.S.Yandere.Class.SeductionBonus > 0 || this.S.Yandere.Class.Seduction == 5)
               ++this.S.GossipBonus;
-            if ((double) this.S.Reputation.Reputation > 33.3333282470703)
+            if ((double) this.S.Reputation.Reputation > 33.333328247070313)
               ++this.S.GossipBonus;
             if (this.S.Club == ClubType.Bully)
               ++this.S.GossipBonus;
@@ -1362,7 +1362,7 @@ public class TalkingScript : MonoBehaviour
             this.StuckBoxCutter.transform.localEulerAngles = new Vector3(0.0f, -90f, 0.0f);
           }
         }
-        else if ((double) this.S.CharacterAnimation[this.S.PullBoxCutterAnim].time >= 1.16666603088379 && (Object) this.StuckBoxCutter == (Object) null)
+        else if ((double) this.S.CharacterAnimation[this.S.PullBoxCutterAnim].time >= 1.1666660308837891 && (Object) this.StuckBoxCutter == (Object) null)
         {
           this.StuckBoxCutter = this.S.Yandere.PickUp.StuckBoxCutter;
           this.S.Yandere.PickUp.StuckBoxCutter = (WeaponScript) null;

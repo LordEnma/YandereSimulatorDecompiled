@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DayNightController
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -47,11 +47,11 @@ public class DayNightController : MonoBehaviour
     this.dayCycleLength = 120f;
     this.hoursPerDay = 24f;
     this.dawnTimeOffset = 3f;
-    this.fullDark = new Color(0.1254902f, 0.1098039f, 0.1803922f);
-    this.fullLight = new Color(0.9921569f, 0.972549f, 0.8745098f);
-    this.dawnDuskFog = new Color(0.5215687f, 0.4862745f, 0.4f);
-    this.dayFog = new Color(0.7058824f, 0.8156863f, 0.8196079f);
-    this.nightFog = new Color(0.04705882f, 0.05882353f, 0.3568628f);
+    this.fullDark = new Color(0.1254902f, 0.109803922f, 0.180392161f);
+    this.fullLight = new Color(0.992156863f, 0.972549f, 0.8745098f);
+    this.dawnDuskFog = new Color(0.521568656f, 0.4862745f, 0.4f);
+    this.dayFog = new Color(0.7058824f, 0.8156863f, 0.819607854f);
+    this.nightFog = new Color(0.0470588244f, 0.05882353f, 0.356862754f);
     foreach (Skybox skybox in Resources.FindObjectsOfTypeAll<Skybox>())
     {
       if (skybox.name == "DawnDusk Skybox")

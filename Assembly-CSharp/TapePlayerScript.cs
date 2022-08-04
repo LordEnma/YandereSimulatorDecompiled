@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TapePlayerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -52,26 +52,26 @@ public class TapePlayerScript : MonoBehaviour
     if (this.Spin)
     {
       Transform roll1 = this.Rolls[0];
-      roll1.localEulerAngles = new Vector3(roll1.localEulerAngles.x, roll1.localEulerAngles.y + (float) (0.0166666675359011 * (360.0 * (double) this.SpinSpeed)), roll1.localEulerAngles.z);
+      roll1.localEulerAngles = new Vector3(roll1.localEulerAngles.x, roll1.localEulerAngles.y + (float) (0.01666666753590107 * (360.0 * (double) this.SpinSpeed)), roll1.localEulerAngles.z);
       Transform roll2 = this.Rolls[1];
-      roll2.localEulerAngles = new Vector3(roll2.localEulerAngles.x, roll2.localEulerAngles.y + (float) (0.0166666675359011 * (360.0 * (double) this.SpinSpeed)), roll2.localEulerAngles.z);
+      roll2.localEulerAngles = new Vector3(roll2.localEulerAngles.x, roll2.localEulerAngles.y + (float) (0.01666666753590107 * (360.0 * (double) this.SpinSpeed)), roll2.localEulerAngles.z);
     }
     if (this.FastForward)
     {
-      this.FFButton.localEulerAngles = new Vector3(Mathf.MoveTowards(this.FFButton.localEulerAngles.x, 6.25f, 1.666667f), this.FFButton.localEulerAngles.y, this.FFButton.localEulerAngles.z);
+      this.FFButton.localEulerAngles = new Vector3(Mathf.MoveTowards(this.FFButton.localEulerAngles.x, 6.25f, 1.66666663f), this.FFButton.localEulerAngles.y, this.FFButton.localEulerAngles.z);
       this.SpinSpeed = 2f;
     }
     else
     {
-      this.FFButton.localEulerAngles = new Vector3(Mathf.MoveTowards(this.FFButton.localEulerAngles.x, 0.0f, 1.666667f), this.FFButton.localEulerAngles.y, this.FFButton.localEulerAngles.z);
+      this.FFButton.localEulerAngles = new Vector3(Mathf.MoveTowards(this.FFButton.localEulerAngles.x, 0.0f, 1.66666663f), this.FFButton.localEulerAngles.y, this.FFButton.localEulerAngles.z);
       this.SpinSpeed = 1f;
     }
     if (this.Rewind)
     {
-      this.RWButton.localEulerAngles = new Vector3(Mathf.MoveTowards(this.RWButton.localEulerAngles.x, 6.25f, 1.666667f), this.RWButton.localEulerAngles.y, this.RWButton.localEulerAngles.z);
+      this.RWButton.localEulerAngles = new Vector3(Mathf.MoveTowards(this.RWButton.localEulerAngles.x, 6.25f, 1.66666663f), this.RWButton.localEulerAngles.y, this.RWButton.localEulerAngles.z);
       this.SpinSpeed = -2f;
     }
     else
-      this.RWButton.localEulerAngles = new Vector3(Mathf.MoveTowards(this.RWButton.localEulerAngles.x, 0.0f, 1.666667f), this.RWButton.localEulerAngles.y, this.RWButton.localEulerAngles.z);
+      this.RWButton.localEulerAngles = new Vector3(Mathf.MoveTowards(this.RWButton.localEulerAngles.x, 0.0f, 1.66666663f), this.RWButton.localEulerAngles.y, this.RWButton.localEulerAngles.z);
   }
 }

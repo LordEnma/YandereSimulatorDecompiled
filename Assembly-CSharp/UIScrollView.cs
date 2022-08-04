@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UIScrollView
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -223,7 +223,7 @@ public class UIScrollView : MonoBehaviour
       constrainOffset.x = 0.0f;
     if (!vertical)
       constrainOffset.y = 0.0f;
-    if ((double) constrainOffset.sqrMagnitude <= 0.100000001490116)
+    if ((double) constrainOffset.sqrMagnitude <= 0.10000000149011612)
       return false;
     if (!instant && this.dragEffect == UIScrollView.DragEffect.MomentumAndSpring)
     {
@@ -235,11 +235,11 @@ public class UIScrollView : MonoBehaviour
     else
     {
       this.MoveRelative(constrainOffset);
-      if ((double) Mathf.Abs(constrainOffset.x) > 0.00999999977648258)
+      if ((double) Mathf.Abs(constrainOffset.x) > 0.0099999997764825821)
         this.mMomentum.x = 0.0f;
-      if ((double) Mathf.Abs(constrainOffset.y) > 0.00999999977648258)
+      if ((double) Mathf.Abs(constrainOffset.y) > 0.0099999997764825821)
         this.mMomentum.y = 0.0f;
-      if ((double) Mathf.Abs(constrainOffset.z) > 0.00999999977648258)
+      if ((double) Mathf.Abs(constrainOffset.z) > 0.0099999997764825821)
         this.mMomentum.z = 0.0f;
       this.mScroll = 0.0f;
     }
@@ -594,7 +594,7 @@ public class UIScrollView : MonoBehaviour
     {
       bool flag1 = false;
       bool flag2 = false;
-      if (this.showScrollBars != UIScrollView.ShowCondition.WhenDragging || this.mDragID != -10 || (double) this.mMomentum.magnitude > 0.00999999977648258)
+      if (this.showScrollBars != UIScrollView.ShowCondition.WhenDragging || this.mDragID != -10 || (double) this.mMomentum.magnitude > 0.0099999997764825821)
       {
         flag1 = this.shouldMoveVertically;
         flag2 = this.shouldMoveHorizontally;
@@ -616,7 +616,7 @@ public class UIScrollView : MonoBehaviour
       return;
     if (!this.mPressed)
     {
-      if ((double) this.mMomentum.magnitude > 9.99999974737875E-05 || (double) Mathf.Abs(this.mScroll) > 9.99999974737875E-05)
+      if ((double) this.mMomentum.magnitude > 9.9999997473787516E-05 || (double) Mathf.Abs(this.mScroll) > 9.9999997473787516E-05)
       {
         if (this.movement == UIScrollView.Movement.Horizontal)
           this.mMomentum -= this.mTrans.TransformDirection(new Vector3(this.mScroll * 0.05f, 0.0f, 0.0f));
@@ -625,7 +625,7 @@ public class UIScrollView : MonoBehaviour
         else if (this.movement == UIScrollView.Movement.Unrestricted)
           this.mMomentum -= this.mTrans.TransformDirection(new Vector3(this.mScroll * 0.05f, this.mScroll * 0.05f, 0.0f));
         else
-          this.mMomentum -= this.mTrans.TransformDirection(new Vector3((float) ((double) this.mScroll * (double) this.customMovement.x * 0.0500000007450581), (float) ((double) this.mScroll * (double) this.customMovement.y * 0.0500000007450581), 0.0f));
+          this.mMomentum -= this.mTrans.TransformDirection(new Vector3((float) ((double) this.mScroll * (double) this.customMovement.x * 0.05000000074505806), (float) ((double) this.mScroll * (double) this.customMovement.y * 0.05000000074505806), 0.0f));
         this.mScroll = NGUIMath.SpringLerp(this.mScroll, 0.0f, 20f, deltaTime);
         this.MoveAbsolute(NGUIMath.SpringDampen(ref this.mMomentum, this.dampenStrength, deltaTime));
         if (this.restrictWithinPanel && this.mPanel.clipping != UIDrawCall.Clipping.None)

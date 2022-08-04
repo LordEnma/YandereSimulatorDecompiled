@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BloodCleanerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
@@ -49,7 +49,7 @@ public class BloodCleanerScript : MonoBehaviour
           this.Blood += Time.deltaTime;
           if ((double) this.Blood >= 100.0)
             this.Lens.SetActive(true);
-          if ((double) child.transform.localScale.x >= 0.100000001490116)
+          if ((double) child.transform.localScale.x >= 0.10000000149011612)
             return;
           Object.Destroy((Object) child.gameObject);
         }

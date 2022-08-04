@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GazerEyesScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -42,7 +42,7 @@ public class GazerEyesScript : MonoBehaviour
         this.AnimTime = 0.0f;
     }
     else
-      this.AnimTime = (double) this.AnimTime >= 72.0 ? Mathf.Lerp(this.AnimTime, 144f, (float) ((double) Time.deltaTime * 1.44000005722046 * 5.0)) : Mathf.Lerp(this.AnimTime, 0.0f, (float) ((double) Time.deltaTime * 1.44000005722046 * 5.0));
+      this.AnimTime = (double) this.AnimTime >= 72.0 ? Mathf.Lerp(this.AnimTime, 144f, (float) ((double) Time.deltaTime * 1.440000057220459 * 5.0)) : Mathf.Lerp(this.AnimTime, 0.0f, (float) ((double) Time.deltaTime * 1.440000057220459 * 5.0));
     this.GetComponent<Animation>()["Eyeballs_Run"].time = this.AnimTime;
     this.GetComponent<Animation>()["Eyeballs_Walk"].time = this.AnimTime;
     this.GetComponent<Animation>()["Eyeballs_Idle"].time = this.AnimTime;

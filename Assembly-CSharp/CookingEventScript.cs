@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CookingEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -202,7 +202,7 @@ public class CookingEventScript : MonoBehaviour
       }
       else if (this.EventPhase == 7)
       {
-        if ((double) this.EventStudent.CharacterAnimation["f02_cutFood_00"].time > 2.66666007041931)
+        if ((double) this.EventStudent.CharacterAnimation["f02_cutFood_00"].time > 2.6666600704193115)
         {
           this.Octodog.SetActive(true);
           this.Sausage.SetActive(false);
@@ -314,7 +314,7 @@ public class CookingEventScript : MonoBehaviour
       float num1 = Vector3.Distance(this.Yandere.transform.position, this.EventStudent.transform.position);
       if ((double) num1 < 10.0)
       {
-        float num2 = Mathf.Abs((float) (((double) num1 - 10.0) * 0.200000002980232));
+        float num2 = Mathf.Abs((float) (((double) num1 - 10.0) * 0.20000000298023224));
         if ((double) num2 < 0.0)
           num2 = 0.0f;
         if ((double) num2 > 1.0)

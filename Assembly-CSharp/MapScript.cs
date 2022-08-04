@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MapScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -89,7 +89,7 @@ public class MapScript : MonoBehaviour
       this.W = Mathf.Lerp(this.W, 0.8f, Time.unscaledDeltaTime * 10f);
       this.H = Mathf.Lerp(this.H, 0.8f, Time.unscaledDeltaTime * 10f);
       this.MyCamera.rect = new Rect(this.X, this.Y, this.W, this.H);
-      if ((double) this.Border.transform.localScale.x <= 1.20000004768372)
+      if ((double) this.Border.transform.localScale.x <= 1.2000000476837158)
         return;
       if (this.InputDevice.Type == InputDeviceType.MouseAndKeyboard)
       {
@@ -127,7 +127,7 @@ public class MapScript : MonoBehaviour
         this.ElevationLabel.text = "Floor 3";
       else if ((double) this.transform.position.y == 15.0)
         this.ElevationLabel.text = "The Rooftop";
-      this.HorizontalLimit = (float) (70.7200012207031 - (double) this.MyCamera.orthographicSize / 40.75 * 70.7200012207031);
+      this.HorizontalLimit = (float) (70.720001220703125 - (double) this.MyCamera.orthographicSize / 40.75 * 70.720001220703125);
       if ((double) this.transform.position.x > (double) this.HorizontalLimit)
         this.transform.position = new Vector3(this.HorizontalLimit, this.transform.position.y, this.transform.position.z);
       if ((double) this.transform.position.x < (double) this.HorizontalLimit * -1.0)
@@ -166,7 +166,7 @@ public class MapScript : MonoBehaviour
       this.W = Mathf.Lerp(this.W, 0.0f, Time.unscaledDeltaTime * 10f);
       this.H = Mathf.Lerp(this.H, 0.0f, Time.unscaledDeltaTime * 10f);
       this.MyCamera.rect = new Rect(this.X, this.Y, this.W, this.H);
-      if ((double) this.W >= 0.00999999977648258)
+      if ((double) this.W >= 0.0099999997764825821)
         return;
       this.DisableCamera();
     }

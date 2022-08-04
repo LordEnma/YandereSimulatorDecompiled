@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DelinquentScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -224,7 +224,7 @@ public class DelinquentScript : MonoBehaviour
           {
             if (this.AudioPhase == 1)
             {
-              if ((double) this.Character.GetComponent<Animation>()[this.SwingAnim].time >= (double) this.Character.GetComponent<Animation>()[this.SwingAnim].length * 0.300000011920929)
+              if ((double) this.Character.GetComponent<Animation>()[this.SwingAnim].time >= (double) this.Character.GetComponent<Animation>()[this.SwingAnim].length * 0.30000001192092896)
               {
                 this.Jukebox.SetActive(false);
                 ++this.AudioPhase;
@@ -233,7 +233,7 @@ public class DelinquentScript : MonoBehaviour
                 component1.Play();
               }
             }
-            else if (this.AudioPhase == 2 && (double) this.Character.GetComponent<Animation>()[this.SwingAnim].time >= (double) this.Character.GetComponent<Animation>()[this.SwingAnim].length * 0.850000023841858)
+            else if (this.AudioPhase == 2 && (double) this.Character.GetComponent<Animation>()[this.SwingAnim].time >= (double) this.Character.GetComponent<Animation>()[this.SwingAnim].length * 0.85000002384185791)
             {
               ++this.AudioPhase;
               component1.pitch = 1f;

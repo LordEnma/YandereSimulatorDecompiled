@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TutorialScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -680,7 +680,7 @@ public class TutorialScript : MonoBehaviour
               {
                 this.StudentManager.Students[25].Reputation.PendingRep = 0.0f;
                 this.Yandere.RPGCamera.enabled = false;
-                this.MainCamera.transform.position = new Vector3(0.0f, 14f, -38.56667f);
+                this.MainCamera.transform.position = new Vector3(0.0f, 14f, -38.5666656f);
                 this.MainCamera.transform.eulerAngles = Vector3.zero;
                 this.StudentManager.Students[25].gameObject.SetActive(false);
                 this.Blocker[5].SetActive(false);
@@ -831,7 +831,7 @@ public class TutorialScript : MonoBehaviour
           this.Animator[2]["f02_knifeStealthB_00"].speed = Mathf.MoveTowards(this.Animator[2]["f02_knifeStealthB_00"].speed, 0.1f, Time.deltaTime);
           if ((double) this.Yandere.CharacterAnimation["f02_knifeStealthA_00"].time > 0.5)
             this.EyeShrink = Mathf.MoveTowards(this.EyeShrink, 1f, Time.deltaTime);
-          if ((double) this.Yandere.CharacterAnimation["f02_knifeStealthA_00"].time > (double) this.Yandere.CharacterAnimation["f02_knifeStealthA_00"].length * 0.474999994039536)
+          if ((double) this.Yandere.CharacterAnimation["f02_knifeStealthA_00"].time > (double) this.Yandere.CharacterAnimation["f02_knifeStealthA_00"].length * 0.47499999403953552)
           {
             this.Yandere.RPGCamera.mouseX = 45f;
             this.Yandere.RPGCamera.mouseY = 45f;
@@ -877,7 +877,7 @@ public class TutorialScript : MonoBehaviour
             this.Ragdoll = this.StudentManager.Students[2].Ragdoll;
             this.Ragdoll.Tutorial = true;
           }
-          if ((double) this.MyAudio.time > (double) this.MyAudio.clip.length - 0.200000002980232 && !this.Yandere.RPGCamera.enabled)
+          if ((double) this.MyAudio.time > (double) this.MyAudio.clip.length - 0.20000000298023224 && !this.Yandere.RPGCamera.enabled)
             this.ReturnToGameplay();
           if (!this.MyAudio.isPlaying)
           {

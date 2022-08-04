@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WorkbenchScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -203,7 +203,7 @@ public class WorkbenchScript : MonoBehaviour
         this.OutcomeModel[this.OutcomeID].transform.localScale = Vector3.Lerp(this.OutcomeModel[this.OutcomeID].transform.localScale, Vector3.one, Time.deltaTime * 10f);
         this.OutcomeModel[this.OutcomeID].transform.localEulerAngles = new Vector3(0.0f, this.Rotation, 0.0f);
         this.Darkness.alpha = Mathf.Lerp(this.Darkness.alpha, 0.5f, Time.deltaTime * 10f);
-        if ((double) this.Darkness.alpha <= 0.490000009536743 || !Input.GetButtonDown("A"))
+        if ((double) this.Darkness.alpha <= 0.49000000953674316 || !Input.GetButtonDown("A"))
           return;
         if (!this.Chemistry)
         {

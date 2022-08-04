@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UnityEngine.PostProcessing.ScreenSpaceReflectionComponent
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine.Rendering;
@@ -56,7 +56,7 @@ namespace UnityEngine.PostProcessing
       mat.SetInt(ScreenSpaceReflectionComponent.Uniforms._FullResolutionFiltering, 0);
       mat.SetInt(ScreenSpaceReflectionComponent.Uniforms._HalfResolution, settings.reflection.reflectionQuality != ScreenSpaceReflectionModel.SSRResolution.High ? 1 : 0);
       mat.SetInt(ScreenSpaceReflectionComponent.Uniforms._HighlightSuppression, this.k_HighlightSuppression ? 1 : 0);
-      float num6 = width / (-2f * Mathf.Tan((float) ((double) camera.fieldOfView / 180.0 * 3.14159274101257 * 0.5)));
+      float num6 = width / (-2f * Mathf.Tan((float) ((double) camera.fieldOfView / 180.0 * 3.1415927410125732 * 0.5)));
       mat.SetFloat(ScreenSpaceReflectionComponent.Uniforms._PixelsPerMeterAtOneMeter, num6);
       mat.SetFloat(ScreenSpaceReflectionComponent.Uniforms._ScreenEdgeFading, settings.screenEdgeMask.intensity);
       mat.SetFloat(ScreenSpaceReflectionComponent.Uniforms._ReflectionBlur, settings.reflection.reflectionBlur);

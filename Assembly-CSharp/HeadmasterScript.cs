@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HeadmasterScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -244,7 +244,7 @@ public class HeadmasterScript : MonoBehaviour
         this.LookAtPlayer = true;
         if (!this.Threatened)
         {
-          if (this.StudentManager.Eighties && (double) this.Yandere.transform.position.z < -32.6333312988281)
+          if (this.StudentManager.Eighties && (double) this.Yandere.transform.position.z < -32.633331298828125)
           {
             this.MyAnimation.CrossFade(this.IdleAnim, 1f);
             this.LookAtPlayer = false;
@@ -332,7 +332,7 @@ public class HeadmasterScript : MonoBehaviour
         if (this.Shooting)
           this.Taze();
       }
-      if (!this.Yandere.Attacked || (double) this.Yandere.CharacterAnimation["f02_swingB_00"].time < (double) this.Yandere.CharacterAnimation["f02_swingB_00"].length * 0.850000023841858)
+      if (!this.Yandere.Attacked || (double) this.Yandere.CharacterAnimation["f02_swingB_00"].time < (double) this.Yandere.CharacterAnimation["f02_swingB_00"].length * 0.85000002384185791)
         return;
       this.MyAudio.clip = this.Crumple;
       this.MyAudio.Play();
@@ -365,7 +365,7 @@ public class HeadmasterScript : MonoBehaviour
     }
     else
     {
-      if ((double) Time.timeScale <= 0.100000001490116)
+      if ((double) Time.timeScale <= 0.10000000149011612)
         return;
       this.Jaw.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 30f);
     }

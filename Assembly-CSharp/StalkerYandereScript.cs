@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StalkerYandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Bayat.SaveSystem;
@@ -195,8 +195,8 @@ public class StalkerYandereScript : MonoBehaviour
       if ((UnityEngine.Object) this.InstructionLabel != (UnityEngine.Object) null)
         this.InstructionLabel.alpha = Mathf.MoveTowards(this.InstructionLabel.alpha, 1f, Time.deltaTime);
       if ((UnityEngine.Object) this.CameraTarget != (UnityEngine.Object) null)
-        this.CameraTarget.localPosition = new Vector3(0.0f, (float) (1.0 + ((double) this.RPGCamera.distanceMax - (double) this.RPGCamera.distance) * 0.200000002980232), 0.0f);
-      if (this.InDesert && (double) this.transform.position.y < 13.6999998092651)
+        this.CameraTarget.localPosition = new Vector3(0.0f, (float) (1.0 + ((double) this.RPGCamera.distanceMax - (double) this.RPGCamera.distance) * 0.20000000298023224), 0.0f);
+      if (this.InDesert && (double) this.transform.position.y < 13.699999809265137)
       {
         UnityEngine.Object.Instantiate<GameObject>(this.GroundImpact, this.transform.position + new Vector3(0.0f, 0.1f, 0.0f), Quaternion.identity);
         this.InDesert = false;
@@ -290,7 +290,7 @@ public class StalkerYandereScript : MonoBehaviour
           this.UpdateVignette();
         }
       }
-      else if ((double) this.Intensity != 0.449999988079071)
+      else if ((double) this.Intensity != 0.44999998807907104)
       {
         this.Intensity = Mathf.MoveTowards(this.Intensity, 0.45f, Time.deltaTime);
         this.UpdateVignette();

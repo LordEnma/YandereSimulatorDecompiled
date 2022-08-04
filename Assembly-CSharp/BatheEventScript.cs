@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BatheEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -119,7 +119,7 @@ public class BatheEventScript : MonoBehaviour
         return;
       if ((double) num1 < 10.0)
       {
-        float num2 = Mathf.Abs((float) (((double) num1 - 10.0) * 0.200000002980232));
+        float num2 = Mathf.Abs((float) (((double) num1 - 10.0) * 0.20000000298023224));
         if ((double) num2 < 0.0)
           num2 = 0.0f;
         if ((double) num2 > 1.0)

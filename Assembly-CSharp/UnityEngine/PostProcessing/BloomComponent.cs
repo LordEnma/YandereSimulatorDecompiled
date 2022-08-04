@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UnityEngine.PostProcessing.BloomComponent
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace UnityEngine.PostProcessing
@@ -29,7 +29,7 @@ namespace UnityEngine.PostProcessing
       int num4 = Mathf.Clamp(num3, 1, 16);
       float thresholdLinear = bloom.thresholdLinear;
       mat.SetFloat(BloomComponent.Uniforms._Threshold, thresholdLinear);
-      float num5 = (float) ((double) thresholdLinear * (double) bloom.softKnee + 9.99999974737875E-06);
+      float num5 = (float) ((double) thresholdLinear * (double) bloom.softKnee + 9.9999997473787516E-06);
       Vector3 vector3 = new Vector3(thresholdLinear - num5, num5 * 2f, 0.25f / num5);
       mat.SetVector(BloomComponent.Uniforms._Curve, (Vector4) vector3);
       mat.SetFloat(BloomComponent.Uniforms._PrefilterOffs, bloom.antiFlicker ? -0.5f : 0.0f);

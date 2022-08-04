@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NoteLockerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -139,7 +139,7 @@ public class NoteLockerScript : MonoBehaviour
     {
       if ((double) this.Timer > 10.0 && (Object) this.NewNote != (Object) null)
       {
-        if ((double) this.NewNote.transform.localScale.z > 0.100000001490116)
+        if ((double) this.NewNote.transform.localScale.z > 0.10000000149011612)
           this.NewNote.transform.localScale = Vector3.MoveTowards(this.NewNote.transform.localScale, Vector3.zero, Time.deltaTime * 2f);
         else
           Object.Destroy((Object) this.NewNote);
@@ -155,14 +155,14 @@ public class NoteLockerScript : MonoBehaviour
     }
     else if ((double) this.Timer > 12.5 && (Object) this.NewNote != (Object) null)
     {
-      if ((double) this.NewNote.transform.localScale.z > 0.100000001490116)
+      if ((double) this.NewNote.transform.localScale.z > 0.10000000149011612)
         this.NewNote.transform.localScale = Vector3.MoveTowards(this.NewNote.transform.localScale, Vector3.zero, Time.deltaTime * 2f);
       else
         Object.Destroy((Object) this.NewNote);
     }
     if (this.Phase == 1)
     {
-      if ((double) this.Timer <= 2.33333325386047)
+      if ((double) this.Timer <= 2.3333332538604736)
         return;
       if (!this.Student.Male)
       {
@@ -182,7 +182,7 @@ public class NoteLockerScript : MonoBehaviour
         return;
       if (!this.Success)
       {
-        if ((double) this.Timer <= 9.66666698455811)
+        if ((double) this.Timer <= 9.6666669845581055)
           return;
         if (!this.Student.Male)
         {
@@ -198,7 +198,7 @@ public class NoteLockerScript : MonoBehaviour
       }
       else
       {
-        if ((double) this.Timer <= 10.1666669845581)
+        if ((double) this.Timer <= 10.166666984558105)
           return;
         if (!this.Student.Male)
         {

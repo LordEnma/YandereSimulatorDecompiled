@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: FanCoverScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -46,7 +46,7 @@ public class FanCoverScript : MonoBehaviour
   private void Update()
   {
     if ((double) Vector3.Distance(this.transform.position, this.Yandere.transform.position) < 2.0)
-      this.Prompt.HideButton[0] = !this.Yandere.Armed || this.Yandere.EquippedWeapon.WeaponID != 6 || !this.Rival.Meeting || (double) this.Rival.DistanceToDestination >= 0.100000001490116 || this.NoteWindow.MeetID != 9;
+      this.Prompt.HideButton[0] = !this.Yandere.Armed || this.Yandere.EquippedWeapon.WeaponID != 6 || !this.Rival.Meeting || (double) this.Rival.DistanceToDestination >= 0.10000000149011612 || this.NoteWindow.MeetID != 9;
     if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
     {
       this.Yandere.CharacterAnimation.CrossFade("f02_fanMurderA_00");

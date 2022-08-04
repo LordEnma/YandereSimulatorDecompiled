@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClassScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -218,7 +218,7 @@ public class ClassScript : MonoBehaviour
             }
           }
         }
-        else if ((double) this.WarningWindow.localScale.x > 0.899999976158142)
+        else if ((double) this.WarningWindow.localScale.x > 0.89999997615814209)
         {
           if (Input.GetButtonDown("A"))
             this.ExitClass();
@@ -246,8 +246,8 @@ public class ClassScript : MonoBehaviour
         return;
       if (!this.GradeUp)
       {
-        this.GradeUpWindow.localScale = (double) this.GradeUpWindow.localScale.x <= 0.100000001490116 ? Vector3.zero : Vector3.Lerp(this.GradeUpWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
-        if ((double) this.GradeUpWindow.localScale.x >= 0.00999999977648258)
+        this.GradeUpWindow.localScale = (double) this.GradeUpWindow.localScale.x <= 0.10000000149011612 ? Vector3.zero : Vector3.Lerp(this.GradeUpWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
+        if ((double) this.GradeUpWindow.localScale.x >= 0.0099999997764825821)
           return;
         this.GradeUpWindow.localScale = Vector3.zero;
         this.CheckForGradeUp();
@@ -317,7 +317,7 @@ public class ClassScript : MonoBehaviour
           this.PromptBar.UpdateButtons();
           this.PromptBar.Show = true;
         }
-        else if ((double) this.GradeUpWindow.localScale.x > 0.990000009536743 && Input.GetButtonDown("A"))
+        else if ((double) this.GradeUpWindow.localScale.x > 0.99000000953674316 && Input.GetButtonDown("A"))
         {
           this.PromptBar.ClearButtons();
           this.GradeUp = false;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AmbientEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -174,7 +174,7 @@ public class AmbientEventScript : MonoBehaviour
             if ((double) num < 10.0)
             {
               this.EventSubtitle.text = (double) this.Timer <= (double) this.EventClip[this.EventPhase].length ? this.EventSpeech[this.EventPhase] : string.Empty;
-              this.Scale = Mathf.Abs((float) (((double) num - 10.0) * 0.200000002980232));
+              this.Scale = Mathf.Abs((float) (((double) num - 10.0) * 0.20000000298023224));
               if ((double) this.Scale < 0.0)
                 this.Scale = 0.0f;
               if ((double) this.Scale > 1.0)
@@ -241,8 +241,8 @@ public class AmbientEventScript : MonoBehaviour
     Transform lipL = this.EventStudent[this.EventSpeaker[this.EventPhase]].LipL;
     Transform lipR = this.EventStudent[this.EventSpeaker[this.EventPhase]].LipR;
     jaw.localEulerAngles = new Vector3(jaw.localEulerAngles.x, jaw.localEulerAngles.y, Mathf.Lerp(jaw.localEulerAngles.z, this.MouthTarget, Time.deltaTime * this.TalkSpeed));
-    lipL.localPosition = new Vector3(lipL.localPosition.x, Mathf.Lerp(lipL.localPosition.y, (float) (0.02632812038064 + (double) this.MouthTarget * (double) this.LipStrength), Time.deltaTime * this.TalkSpeed), lipL.localPosition.z);
-    lipR.localPosition = new Vector3(lipR.localPosition.x, Mathf.Lerp(lipR.localPosition.y, (float) (0.02632812038064 + (double) this.MouthTarget * (double) this.LipStrength), Time.deltaTime * this.TalkSpeed), lipR.localPosition.z);
+    lipL.localPosition = new Vector3(lipL.localPosition.x, Mathf.Lerp(lipL.localPosition.y, (float) (0.02632812038064003 + (double) this.MouthTarget * (double) this.LipStrength), Time.deltaTime * this.TalkSpeed), lipL.localPosition.z);
+    lipR.localPosition = new Vector3(lipR.localPosition.x, Mathf.Lerp(lipR.localPosition.y, (float) (0.02632812038064003 + (double) this.MouthTarget * (double) this.LipStrength), Time.deltaTime * this.TalkSpeed), lipR.localPosition.z);
   }
 
   public void EndEvent()

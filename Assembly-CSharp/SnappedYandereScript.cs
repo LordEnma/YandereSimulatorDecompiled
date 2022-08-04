@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SnappedYandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -136,7 +136,7 @@ public class SnappedYandereScript : MonoBehaviour
           this.MainCamera.transform.localPosition = new Vector3(0.0f, 0.0f, -1f);
           this.MainCamera.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
           this.SnapAttackPivot.localEulerAngles = new Vector3(Random.Range(-45f, 45f), Random.Range(0.0f, 360f), 0.0f);
-          while ((double) this.MainCamera.transform.position.y < (double) this.transform.position.y + 0.100000001490116)
+          while ((double) this.MainCamera.transform.position.y < (double) this.transform.position.y + 0.10000000149011612)
             this.SnapAttackPivot.localEulerAngles = new Vector3(Random.Range(-45f, 45f), Random.Range(0.0f, 360f), 0.0f);
           this.MyAnim[this.AttackAnims[this.AttackID]].time = 0.0f;
           this.MyAnim.Play(this.AttackAnims[this.AttackID]);
@@ -186,7 +186,7 @@ public class SnappedYandereScript : MonoBehaviour
     {
       this.SNAPLabel.alpha = Mathf.MoveTowards(this.SNAPLabel.alpha, 1f, Time.deltaTime * 0.2f);
       this.HurryTimer += Time.deltaTime;
-      if ((double) this.HurryTimer > 40.0 || (double) this.transform.position.y < -0.100000001490116 || this.StudentManager.MaleLockerRoomArea.bounds.Contains(this.transform.position))
+      if ((double) this.HurryTimer > 40.0 || (double) this.transform.position.y < -0.10000000149011612 || this.StudentManager.MaleLockerRoomArea.bounds.Contains(this.transform.position))
       {
         this.Teleport();
         this.HurryTimer = 0.0f;
@@ -282,7 +282,7 @@ public class SnappedYandereScript : MonoBehaviour
               ++this.BloodSpawned;
             }
           }
-          else if ((double) this.MyAnim[this.AttackAnims[this.AttackID]].time > 0.899999976158142)
+          else if ((double) this.MyAnim[this.AttackAnims[this.AttackID]].time > 0.89999997615814209)
           {
             Object.Instantiate<GameObject>(this.BloodEffect, this.RightFoot.position, Quaternion.identity);
             ++this.BloodSpawned;
@@ -297,7 +297,7 @@ public class SnappedYandereScript : MonoBehaviour
       this.StaticNoise.volume -= Time.deltaTime * 0.5f;
       this.Static.Fade = Mathf.MoveTowards(this.Static.Fade, 0.0f, Time.deltaTime * 0.5f);
       this.Jukebox.volume -= Time.deltaTime * 0.5f;
-      this.SnapStatic.volume -= (float) ((double) Time.deltaTime * 0.5 * 0.200000002980232);
+      this.SnapStatic.volume -= (float) ((double) Time.deltaTime * 0.5 * 0.20000000298023224);
       this.SNAPLabel.alpha = Mathf.MoveTowards(this.SNAPLabel.alpha, 0.0f, Time.deltaTime * 0.5f);
       this.SnapVoice.volume -= Time.deltaTime;
       this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(this.TargetStudent.transform.position - this.transform.position), Time.deltaTime);
@@ -305,13 +305,13 @@ public class SnappedYandereScript : MonoBehaviour
       this.Speed += Time.deltaTime;
       if (this.AttackPhase < 3)
       {
-        this.MainCamera.transform.position = Vector3.Lerp(this.MainCamera.transform.position, this.FinalSnapPOV.position, (float) ((double) Time.deltaTime * (double) this.Speed * 0.333330005407333));
-        this.MainCamera.transform.rotation = Quaternion.Slerp(this.MainCamera.transform.rotation, this.FinalSnapPOV.rotation, (float) ((double) Time.deltaTime * (double) this.Speed * 0.333330005407333));
+        this.MainCamera.transform.position = Vector3.Lerp(this.MainCamera.transform.position, this.FinalSnapPOV.position, (float) ((double) Time.deltaTime * (double) this.Speed * 0.33333000540733337));
+        this.MainCamera.transform.rotation = Quaternion.Slerp(this.MainCamera.transform.rotation, this.FinalSnapPOV.rotation, (float) ((double) Time.deltaTime * (double) this.Speed * 0.33333000540733337));
       }
       else
       {
-        this.MainCamera.transform.position = Vector3.Lerp(this.MainCamera.transform.position, this.SuicidePOV.position, (float) ((double) Time.deltaTime * (double) this.Speed * 0.100000001490116));
-        this.MainCamera.transform.rotation = Quaternion.Slerp(this.MainCamera.transform.rotation, this.SuicidePOV.rotation, (float) ((double) Time.deltaTime * (double) this.Speed * 0.100000001490116));
+        this.MainCamera.transform.position = Vector3.Lerp(this.MainCamera.transform.position, this.SuicidePOV.position, (float) ((double) Time.deltaTime * (double) this.Speed * 0.10000000149011612));
+        this.MainCamera.transform.rotation = Quaternion.Slerp(this.MainCamera.transform.rotation, this.SuicidePOV.rotation, (float) ((double) Time.deltaTime * (double) this.Speed * 0.10000000149011612));
         if (this.Whisper)
         {
           this.Rumble.volume = Mathf.MoveTowards(this.Rumble.volume, 0.5f, Time.deltaTime * 0.05f);
@@ -330,7 +330,7 @@ public class SnappedYandereScript : MonoBehaviour
       }
       if (this.AttackPhase == 0)
       {
-        if ((double) this.MyAnim["f02_snapKill_00"].time > (double) this.MyAnim["f02_snapKill_00"].length * 0.200000002980232)
+        if ((double) this.MyAnim["f02_snapKill_00"].time > (double) this.MyAnim["f02_snapKill_00"].length * 0.20000000298023224)
         {
           Object.Instantiate<GameObject>(this.BloodEffect, this.Knife.transform.position, Quaternion.identity);
           ++this.AttackPhase;
@@ -338,7 +338,7 @@ public class SnappedYandereScript : MonoBehaviour
       }
       else if (this.AttackPhase == 1)
       {
-        if ((double) this.MyAnim["f02_snapKill_00"].time > (double) this.MyAnim["f02_snapKill_00"].length * 0.360000014305115)
+        if ((double) this.MyAnim["f02_snapKill_00"].time > (double) this.MyAnim["f02_snapKill_00"].length * 0.36000001430511475)
         {
           Object.Instantiate<GameObject>(this.BloodEffect, this.Knife.transform.position, Quaternion.identity);
           ++this.AttackPhase;
@@ -361,7 +361,7 @@ public class SnappedYandereScript : MonoBehaviour
       {
         this.Knife.transform.localEulerAngles = Vector3.Lerp(this.Knife.transform.localEulerAngles, new Vector3(0.0f, 0.0f, 0.0f), Time.deltaTime * this.Speed);
         this.MyAnim["f02_stareAtKnife_00"].weight = Mathf.Lerp(this.MyAnim["f02_stareAtKnife_00"].weight, 1f, Time.deltaTime * this.Speed);
-        if ((double) this.MyAnim["f02_stareAtKnife_00"].weight > 0.999000012874603)
+        if ((double) this.MyAnim["f02_stareAtKnife_00"].weight > 0.99900001287460327)
         {
           this.SuicidePrompt.alpha += Time.deltaTime;
           this.ImpatienceTimer += Time.deltaTime;
@@ -437,7 +437,7 @@ public class SnappedYandereScript : MonoBehaviour
         else
           this.AnimSpeed = Mathf.MoveTowards(this.AnimSpeed, 0.0f, Time.deltaTime);
         this.MyAnim["f02_suicide_00"].time = Mathf.Lerp(this.MyAnim["f02_suicide_00"].time, this.Target, this.AnimSpeed * Time.deltaTime);
-        if ((double) this.MyAnim["f02_suicide_00"].time >= 3.66666007041931)
+        if ((double) this.MyAnim["f02_suicide_00"].time >= 3.6666600704193115)
         {
           this.MyAnim["f02_suicide_00"].speed = 1f;
           this.SuicidePrompt.alpha = 0.0f;
@@ -449,13 +449,13 @@ public class SnappedYandereScript : MonoBehaviour
       }
       else if (this.AttackPhase == 6)
       {
-        if ((double) this.MyAnim["f02_suicide_00"].time >= (double) this.MyAnim["f02_suicide_00"].length * 0.354999989271164)
+        if ((double) this.MyAnim["f02_suicide_00"].time >= (double) this.MyAnim["f02_suicide_00"].length * 0.35499998927116394)
         {
           Object.Instantiate<GameObject>(this.StabBloodEffect, this.Knife.transform.position, Quaternion.identity);
           ++this.AttackPhase;
         }
       }
-      else if ((double) this.MyAnim["f02_suicide_00"].time >= (double) this.MyAnim["f02_suicide_00"].length * 0.474999994039536)
+      else if ((double) this.MyAnim["f02_suicide_00"].time >= (double) this.MyAnim["f02_suicide_00"].length * 0.47499999403953552)
       {
         this.MyListener.enabled = false;
         this.MainCamera.transform.parent = (Transform) null;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EventManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -141,12 +141,17 @@ public class EventManagerScript : MonoBehaviour
           this.EventStudent[2].Pathfinding.target = this.EventLocation[2];
           this.EventStudent[2].EventManager = this;
         }
-        else if (this.EventStudent[1].Pathfinding.canMove)
+        else
         {
-          if ((double) this.EventStudent[1].Pathfinding.speed == 1.0)
-            this.EventStudent[1].CharacterAnimation.CrossFade(this.EventStudent[1].WalkAnim);
-          else
-            this.EventStudent[1].CharacterAnimation.CrossFade(this.EventStudent[1].SprintAnim);
+          if (this.EventStudent[1].Pathfinding.canMove)
+          {
+            if ((double) this.EventStudent[1].Pathfinding.speed == 1.0)
+              this.EventStudent[1].CharacterAnimation.CrossFade(this.EventStudent[1].WalkAnim);
+            else
+              this.EventStudent[1].CharacterAnimation.CrossFade(this.EventStudent[1].SprintAnim);
+          }
+          this.EventStudent[2].CurrentDestination = this.EventStudent[1].FollowTargetDestination;
+          this.EventStudent[2].Pathfinding.target = this.EventStudent[1].FollowTargetDestination;
         }
         if ((double) this.EventStudent[2].DistanceToDestination > 1.0 && this.EventStudent[2].Pathfinding.canMove)
         {
@@ -155,8 +160,6 @@ public class EventManagerScript : MonoBehaviour
           else
             this.EventStudent[2].CharacterAnimation.CrossFade(this.EventStudent[2].SprintAnim);
         }
-        this.EventStudent[2].CurrentDestination = this.EventStudent[1].FollowTargetDestination;
-        this.EventStudent[2].Pathfinding.target = this.EventStudent[1].FollowTargetDestination;
       }
       else
       {
@@ -203,7 +206,7 @@ public class EventManagerScript : MonoBehaviour
           this.EventSubtitle.transform.localScale = Vector3.zero;
         else if ((double) num < 10.0)
         {
-          this.Scale = Mathf.Abs((float) (((double) num - 10.0) * 0.200000002980232));
+          this.Scale = Mathf.Abs((float) (((double) num - 10.0) * 0.20000000298023224));
           if ((double) this.Scale < 0.0)
             this.Scale = 0.0f;
           if ((double) this.Scale > 1.0)

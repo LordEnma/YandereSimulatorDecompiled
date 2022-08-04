@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YanvaniaCameraScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -31,14 +31,14 @@ public class YanvaniaCameraScript : MonoBehaviour
     this.TargetZoom += Input.GetAxis("Mouse ScrollWheel") * 10f;
     if ((double) this.TargetZoom < 0.0)
       this.TargetZoom = 0.0f;
-    if ((double) this.TargetZoom > 3.84999990463257)
+    if ((double) this.TargetZoom > 3.8499999046325684)
       this.TargetZoom = 3.85f;
     this.Zoom = Mathf.Lerp(this.Zoom, this.TargetZoom, Time.deltaTime);
     if (!this.Cutscene)
     {
       this.TargetZoom += Input.GetAxis("Mouse ScrollWheel") * 10f;
       this.transform.position = this.Yanmont.transform.position + new Vector3(0.0f, 1.5f, this.Zoom - 5.85f);
-      if ((double) this.transform.position.x <= 47.9000015258789)
+      if ((double) this.transform.position.x <= 47.900001525878906)
         return;
       this.transform.position = new Vector3(47.9f, this.transform.position.y, this.transform.position.z);
     }

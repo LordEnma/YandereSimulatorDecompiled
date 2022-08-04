@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MemorialSceneScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -105,7 +105,7 @@ public class MemorialSceneScript : MonoBehaviour
         this.StudentManager.Yandere.PromptBar.Show = true;
         this.Eulogized = true;
       }
-      this.StudentManager.MainCamera.position = Vector3.Lerp(this.StudentManager.MainCamera.position, new Vector3(38f, 4.125f, 68.825f), (float) (((double) this.Speed - 1.0) * (double) Time.deltaTime * 0.150000005960464));
+      this.StudentManager.MainCamera.position = Vector3.Lerp(this.StudentManager.MainCamera.position, new Vector3(38f, 4.125f, 68.825f), (float) (((double) this.Speed - 1.0) * (double) Time.deltaTime * 0.15000000596046448));
       if (Input.GetButtonDown("A"))
       {
         this.StudentManager.Yandere.PromptBar.Show = false;

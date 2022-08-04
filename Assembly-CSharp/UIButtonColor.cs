@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UIButtonColor
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -12,8 +12,8 @@ using UnityEngine;
 public class UIButtonColor : UIWidgetContainer
 {
   public GameObject tweenTarget;
-  public Color hover = new Color(0.8823529f, 0.7843137f, 0.5882353f, 1f);
-  public Color pressed = new Color(0.7176471f, 0.6392157f, 0.4823529f, 1f);
+  public Color hover = new Color(0.882352948f, 0.784313738f, 0.5882353f, 1f);
+  public Color pressed = new Color(0.7176471f, 0.6392157f, 0.482352942f, 1f);
   public Color disabledColor = Color.grey;
   public float duration = 0.2f;
   [NonSerialized]

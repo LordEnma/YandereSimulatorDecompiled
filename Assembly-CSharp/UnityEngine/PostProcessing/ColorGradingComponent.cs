@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UnityEngine.PostProcessing.ColorGradingComponent
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 namespace UnityEngine.PostProcessing
@@ -16,16 +16,16 @@ namespace UnityEngine.PostProcessing
 
     public override bool active => this.model.enabled && !this.context.interrupted;
 
-    private float StandardIlluminantY(float x) => (float) (2.86999988555908 * (double) x - 3.0 * (double) x * (double) x - 0.275095075368881);
+    private float StandardIlluminantY(float x) => (float) (2.869999885559082 * (double) x - 3.0 * (double) x * (double) x - 0.27509507536888123);
 
     private Vector3 CIExyToLMS(float x, float y)
     {
       float num1 = 1f;
       float num2 = num1 * x / y;
       float num3 = num1 * (1f - x - y) / y;
-      double x1 = 0.732800006866455 * (double) num2 + 0.42960000038147 * (double) num1 - 0.162400007247925 * (double) num3;
-      float num4 = (float) (-0.703599989414215 * (double) num2 + 1.69749999046326 * (double) num1 + 0.00609999988228083 * (double) num3);
-      float num5 = (float) (3.0 / 1000.0 * (double) num2 + 0.0136000001803041 * (double) num1 + 0.983399987220764 * (double) num3);
+      double x1 = 0.73280000686645508 * (double) num2 + 0.42960000038146973 * (double) num1 - 0.1624000072479248 * (double) num3;
+      float num4 = (float) (-0.70359998941421509 * (double) num2 + 1.6974999904632568 * (double) num1 + 0.0060999998822808266 * (double) num3);
+      float num5 = (float) (3.0 / 1000.0 * (double) num2 + 0.01360000018030405 * (double) num1 + 0.98339998722076416 * (double) num3);
       double y1 = (double) num4;
       double z = (double) num5;
       return new Vector3((float) x1, (float) y1, (float) z);
@@ -35,7 +35,7 @@ namespace UnityEngine.PostProcessing
     {
       float num1 = temperature / 55f;
       float num2 = tint / 55f;
-      float x = (float) (0.312709987163544 - (double) num1 * ((double) num1 < 0.0 ? 0.100000001490116 : 0.0500000007450581));
+      float x = (float) (0.3127099871635437 - (double) num1 * ((double) num1 < 0.0 ? 0.10000000149011612 : 0.05000000074505806));
       float y = this.StandardIlluminantY(x) + num2 * 0.05f;
       Vector3 vector3 = new Vector3(0.949237f, 1.03542f, 1.08728f);
       Vector3 lms = this.CIExyToLMS(x, y);
@@ -62,9 +62,9 @@ namespace UnityEngine.PostProcessing
     {
       Color color = ColorGradingComponent.NormalizeColor(lift);
       float num1 = (float) (((double) color.r + (double) color.g + (double) color.b) / 3.0);
-      double x = ((double) color.r - (double) num1) * 0.100000001490116 + (double) lift.a;
-      float num2 = (float) (((double) color.g - (double) num1) * 0.100000001490116) + lift.a;
-      float num3 = (float) (((double) color.b - (double) num1) * 0.100000001490116) + lift.a;
+      double x = ((double) color.r - (double) num1) * 0.10000000149011612 + (double) lift.a;
+      float num2 = (float) (((double) color.g - (double) num1) * 0.10000000149011612) + lift.a;
+      float num3 = (float) (((double) color.b - (double) num1) * 0.10000000149011612) + lift.a;
       double y = (double) num2;
       double z = (double) num3;
       return ColorGradingComponent.ClampVector(new Vector3((float) x, (float) y, (float) z), -1f, 1f);
@@ -117,9 +117,9 @@ namespace UnityEngine.PostProcessing
       Color color = ColorGradingComponent.NormalizeColor(slope);
       float num1 = (float) (((double) color.r + (double) color.g + (double) color.b) / 3.0);
       slope.a *= 0.5f;
-      double x = ((double) color.r - (double) num1) * 0.100000001490116 + (double) slope.a + 1.0;
-      float num2 = (float) (((double) color.g - (double) num1) * 0.100000001490116 + (double) slope.a + 1.0);
-      float num3 = (float) (((double) color.b - (double) num1) * 0.100000001490116 + (double) slope.a + 1.0);
+      double x = ((double) color.r - (double) num1) * 0.10000000149011612 + (double) slope.a + 1.0;
+      float num2 = (float) (((double) color.g - (double) num1) * 0.10000000149011612 + (double) slope.a + 1.0);
+      float num3 = (float) (((double) color.b - (double) num1) * 0.10000000149011612 + (double) slope.a + 1.0);
       double y = (double) num2;
       double z = (double) num3;
       return ColorGradingComponent.ClampVector(new Vector3((float) x, (float) y, (float) z), 0.0f, 2f);
@@ -130,9 +130,9 @@ namespace UnityEngine.PostProcessing
       Color color = ColorGradingComponent.NormalizeColor(power);
       float num1 = (float) (((double) color.r + (double) color.g + (double) color.b) / 3.0);
       power.a *= 0.5f;
-      float b1 = (float) (((double) color.r - (double) num1) * 0.100000001490116 + (double) power.a + 1.0);
-      float b2 = (float) (((double) color.g - (double) num1) * 0.100000001490116 + (double) power.a + 1.0);
-      float b3 = (float) (((double) color.b - (double) num1) * 0.100000001490116 + (double) power.a + 1.0);
+      float b1 = (float) (((double) color.r - (double) num1) * 0.10000000149011612 + (double) power.a + 1.0);
+      float b2 = (float) (((double) color.g - (double) num1) * 0.10000000149011612 + (double) power.a + 1.0);
+      float b3 = (float) (((double) color.b - (double) num1) * 0.10000000149011612 + (double) power.a + 1.0);
       double x = 1.0 / (double) Mathf.Max(0.01f, b1);
       float num2 = 1f / Mathf.Max(0.01f, b2);
       float num3 = 1f / Mathf.Max(0.01f, b3);
@@ -146,9 +146,9 @@ namespace UnityEngine.PostProcessing
       Color color = ColorGradingComponent.NormalizeColor(offset);
       float num1 = (float) (((double) color.r + (double) color.g + (double) color.b) / 3.0);
       offset.a *= 0.5f;
-      double x = ((double) color.r - (double) num1) * 0.0500000007450581 + (double) offset.a;
-      float num2 = (float) (((double) color.g - (double) num1) * 0.0500000007450581) + offset.a;
-      float num3 = (float) (((double) color.b - (double) num1) * 0.0500000007450581) + offset.a;
+      double x = ((double) color.r - (double) num1) * 0.05000000074505806 + (double) offset.a;
+      float num2 = (float) (((double) color.g - (double) num1) * 0.05000000074505806) + offset.a;
+      float num3 = (float) (((double) color.b - (double) num1) * 0.05000000074505806) + offset.a;
       double y = (double) num2;
       double z = (double) num3;
       return ColorGradingComponent.ClampVector(new Vector3((float) x, (float) y, (float) z), -0.8f, 0.8f);
@@ -223,7 +223,7 @@ namespace UnityEngine.PostProcessing
         model.bakedLut = renderTexture;
       }
       Material mat = this.context.materialFactory.Get("Hidden/Post FX/Lut Generator");
-      mat.SetVector(ColorGradingComponent.Uniforms._LutParams, new Vector4(32f, 0.0004882813f, 1f / 64f, 1.032258f));
+      mat.SetVector(ColorGradingComponent.Uniforms._LutParams, new Vector4(32f, 0.00048828125f, 1f / 64f, 1.032258f));
       mat.shaderKeywords = (string[]) null;
       ColorGradingModel.TonemappingSettings tonemapping = settings.tonemapping;
       switch (tonemapping.tonemapper)

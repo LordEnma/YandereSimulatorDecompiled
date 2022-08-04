@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaThursdayAfterClassEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -58,7 +58,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
           this.Rival = this.StudentManager.Students[this.RivalID];
         if ((UnityEngine.Object) this.StudentManager.Students[this.FriendID] != (UnityEngine.Object) null && !PlayerGlobals.RaibaruLoner)
           this.Friend = this.StudentManager.Students[this.FriendID];
-        if ((double) this.Clock.HourTime > 16.0100002288818 && this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Phoneless && !this.Rival.EndSearch)
+        if ((double) this.Clock.HourTime > 16.010000228881836 && this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Phoneless && !this.Rival.EndSearch)
           this.BeginEvent();
       }
       ++this.Frame;

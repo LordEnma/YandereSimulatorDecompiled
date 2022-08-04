@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeYandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -46,6 +46,7 @@ public class HomeYandereScript : MonoBehaviour
   public float BreastSize = 1f;
   public Transform BreastR;
   public Transform BreastL;
+  private int Kidnap;
   public int AlphabetID;
   public string[] Letter;
   public SkinnedMeshRenderer MyRenderer;
@@ -263,6 +264,28 @@ public class HomeYandereScript : MonoBehaviour
     Rigidbody component = this.GetComponent<Rigidbody>();
     if ((UnityEngine.Object) component != (UnityEngine.Object) null)
       component.velocity = Vector3.zero;
+    if (Input.GetKeyDown(KeyCode.K))
+    {
+      ++this.Kidnap;
+      if (this.Kidnap > 10)
+      {
+        StudentGlobals.Prisoners = 1;
+        StudentGlobals.Prisoner1 = 11;
+        StudentGlobals.SetStudentSanity(11, 100);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+      }
+    }
+    if (Input.GetKeyDown(KeyCode.J))
+    {
+      ++this.Kidnap;
+      if (this.Kidnap > 10)
+      {
+        StudentGlobals.Prisoners = 1;
+        StudentGlobals.Prisoner1 = 10;
+        StudentGlobals.SetStudentSanity(10, 100);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+      }
+    }
     if ((double) this.transform.position.y >= -10.0)
       return;
     this.transform.position = new Vector3(this.transform.position.x, -10f, this.transform.position.z);

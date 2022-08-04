@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UnityStandardAssets.Cameras.FreeLookCam
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -67,7 +67,7 @@ namespace UnityStandardAssets.Cameras
 
     private void HandleRotationMovement()
     {
-      if ((double) Time.timeScale < 1.40129846432482E-45)
+      if ((double) Time.timeScale < 1.4012984643248171E-45)
         return;
       float axis1 = CrossPlatformInputManager.GetAxis("Mouse X");
       float axis2 = CrossPlatformInputManager.GetAxis("Mouse Y");

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NemesisScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -337,21 +337,21 @@ public class NemesisScript : MonoBehaviour
     Animation component = this.Student.Character.GetComponent<Animation>();
     if (this.EffectPhase == 0)
     {
-      if ((double) component["f02_knifeLowSanityA_00"].time <= 2.76666665077209)
+      if ((double) component["f02_knifeLowSanityA_00"].time <= 2.7666666507720947)
         return;
       Object.Instantiate<GameObject>(this.BloodEffect, this.Knife.transform.position + this.Knife.transform.forward * 0.1f, Quaternion.identity);
       ++this.EffectPhase;
     }
     else if (this.EffectPhase == 1)
     {
-      if ((double) component["f02_knifeLowSanityA_00"].time <= 3.53333330154419)
+      if ((double) component["f02_knifeLowSanityA_00"].time <= 3.5333333015441895)
         return;
       Object.Instantiate<GameObject>(this.BloodEffect, this.Knife.transform.position + this.Knife.transform.forward * 0.1f, Quaternion.identity);
       ++this.EffectPhase;
     }
     else
     {
-      if (this.EffectPhase != 2 || (double) component["f02_knifeLowSanityA_00"].time <= 4.16666650772095)
+      if (this.EffectPhase != 2 || (double) component["f02_knifeLowSanityA_00"].time <= 4.1666665077209473)
         return;
       Object.Instantiate<GameObject>(this.BloodEffect, this.Knife.transform.position + this.Knife.transform.forward * 0.1f, Quaternion.identity);
       ++this.EffectPhase;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PortalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -75,12 +75,12 @@ public class PortalScript : MonoBehaviour
 
   private void Update()
   {
-    if ((double) this.Clock.HourTime > 8.52000045776367 && (double) this.Clock.HourTime < 8.52999973297119 && !this.Yandere.InClass && !this.LateReport1)
+    if ((double) this.Clock.HourTime > 8.5200004577636719 && (double) this.Clock.HourTime < 8.5299997329711914 && !this.Yandere.InClass && !this.LateReport1)
     {
       this.LateReport1 = true;
       this.Yandere.NotificationManager.DisplayNotification(NotificationType.Late);
     }
-    if ((double) this.Clock.HourTime > 13.5200004577637 && (double) this.Clock.HourTime < 13.5299997329712 && !this.Yandere.InClass && !this.LateReport2)
+    if ((double) this.Clock.HourTime > 13.520000457763672 && (double) this.Clock.HourTime < 13.529999732971191 && !this.Yandere.InClass && !this.LateReport2)
     {
       this.LateReport2 = true;
       this.Yandere.NotificationManager.DisplayNotification(NotificationType.Late);
@@ -374,7 +374,7 @@ public class PortalScript : MonoBehaviour
     }
     else
     {
-      if (this.Yandere.Police.FadeOut || (double) Vector3.Distance(this.Yandere.transform.position, this.transform.position) >= 1.39999997615814)
+      if (this.Yandere.Police.FadeOut || (double) Vector3.Distance(this.Yandere.transform.position, this.transform.position) >= 1.3999999761581421)
         return;
       this.CanAttendClass = true;
       this.CheckForProblems();
@@ -386,7 +386,7 @@ public class PortalScript : MonoBehaviour
             this.Yandere.NotificationManager.CustomText = "Carrying Weapon";
           else if ((double) this.Yandere.Bloodiness > 0.0)
             this.Yandere.NotificationManager.CustomText = "Bloody";
-          else if ((double) this.Yandere.Sanity < 33.3330001831055)
+          else if ((double) this.Yandere.Sanity < 33.333000183105469)
             this.Yandere.NotificationManager.CustomText = "Visibly Insane";
           else if (this.Yandere.Attacking)
             this.Yandere.NotificationManager.CustomText = "In Combat";
@@ -418,7 +418,7 @@ public class PortalScript : MonoBehaviour
 
   public void CheckForProblems()
   {
-    if (!this.Yandere.Armed && (double) this.Yandere.Bloodiness <= 0.0 && (double) this.Yandere.Sanity >= 33.3330001831055 && !this.Yandere.Attacking && !this.Yandere.Dragging && !this.Yandere.Carrying && !((Object) this.Yandere.PickUp != (Object) null) && !this.Yandere.Chased && this.Yandere.Chasers <= 0 && (!((Object) this.StudentManager.Reporter != (Object) null) || this.Police.Show) && !this.StudentManager.MurderTakingPlace)
+    if (!this.Yandere.Armed && (double) this.Yandere.Bloodiness <= 0.0 && (double) this.Yandere.Sanity >= 33.333000183105469 && !this.Yandere.Attacking && !this.Yandere.Dragging && !this.Yandere.Carrying && !((Object) this.Yandere.PickUp != (Object) null) && !this.Yandere.Chased && this.Yandere.Chasers <= 0 && (!((Object) this.StudentManager.Reporter != (Object) null) || this.Police.Show) && !this.StudentManager.MurderTakingPlace)
       return;
     this.CanAttendClass = false;
   }
@@ -461,7 +461,7 @@ public class PortalScript : MonoBehaviour
     this.Late = 0;
     if ((double) this.Clock.HourTime < 13.0)
     {
-      if ((double) this.Clock.HourTime < 8.52000045776367)
+      if ((double) this.Clock.HourTime < 8.5200004577636719)
         this.Late = 0;
       else if ((double) this.Clock.HourTime < 10.0)
         this.Late = 1;
@@ -472,7 +472,7 @@ public class PortalScript : MonoBehaviour
       else if ((double) this.Clock.HourTime < 13.0)
         this.Late = 4;
     }
-    else if ((double) this.Clock.HourTime < 13.5200004577637)
+    else if ((double) this.Clock.HourTime < 13.520000457763672)
       this.Late = 0;
     else if ((double) this.Clock.HourTime < 14.0)
       this.Late = 1;

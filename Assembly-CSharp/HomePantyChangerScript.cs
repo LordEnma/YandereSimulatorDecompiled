@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomePantyChangerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -99,7 +99,7 @@ public class HomePantyChangerScript : MonoBehaviour
     else
     {
       this.PantyParent.localScale = Vector3.Lerp(this.PantyParent.localScale, Vector3.zero, Time.deltaTime * 10f);
-      if ((double) this.PantyParent.localScale.x >= 0.00999999977648258)
+      if ((double) this.PantyParent.localScale.x >= 0.0099999997764825821)
         return;
       this.PantyParent.gameObject.SetActive(false);
     }

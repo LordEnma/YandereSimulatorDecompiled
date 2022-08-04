@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SchoolAtmosphere
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 public static class SchoolAtmosphere
@@ -11,9 +11,9 @@ public static class SchoolAtmosphere
     get
     {
       float schoolAtmosphere = SchoolGlobals.SchoolAtmosphere;
-      if ((double) schoolAtmosphere > 0.666666686534882)
+      if ((double) schoolAtmosphere > 0.66666668653488159)
         return SchoolAtmosphereType.High;
-      return (double) schoolAtmosphere > 0.333333343267441 ? SchoolAtmosphereType.Medium : SchoolAtmosphereType.Low;
+      return (double) schoolAtmosphere > 0.3333333432674408 ? SchoolAtmosphereType.Medium : SchoolAtmosphereType.Low;
     }
   }
 }

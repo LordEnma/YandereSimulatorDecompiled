@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: LaptopScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -86,13 +86,17 @@ public class LaptopScript : MonoBehaviour
         else
           component["f02_scp_00"].time = this.MyAudio.time;
         if ((double) this.Timer > 1.0 || (double) Vector3.Distance(this.Yandere.transform.position, new Vector3(this.transform.position.x, 4f, this.transform.position.z)) > 5.0)
+        {
+          this.MyAudio.clip = this.ShutDown;
+          this.MyAudio.Play();
           this.TurnOff();
+        }
       }
       if ((double) this.Yandere.StudentManager.Clock.HourTime <= 16.0 && !this.Yandere.Police.FadeOut)
         return;
       this.TurnOff();
     }
-    else if ((double) this.LaptopScreen.localScale.x > 0.100000001490116)
+    else if ((double) this.LaptopScreen.localScale.x > 0.10000000149011612)
     {
       this.LaptopScreen.localScale = Vector3.Lerp(this.LaptopScreen.localScale, Vector3.zero, Time.deltaTime * 10f);
     }
@@ -108,8 +112,6 @@ public class LaptopScript : MonoBehaviour
 
   private void TurnOff()
   {
-    this.MyAudio.clip = this.ShutDown;
-    this.MyAudio.Play();
     this.EventSubtitle.text = string.Empty;
     SchoolGlobals.SCP = true;
     this.LaptopCamera.enabled = false;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PhotoGalleryScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -56,7 +56,7 @@ public class PhotoGalleryScript : MonoBehaviour
   public float MaxPhotoY = 2500f;
   private const float MaxCursorX = 4788f;
   private const float MaxCursorY = 3122f;
-  private const float CorkboardAspectRatio = 1.533632f;
+  private const float CorkboardAspectRatio = 1.53363228f;
   public float SpeedLimit;
 
   private void Start()
@@ -332,14 +332,14 @@ public class PhotoGalleryScript : MonoBehaviour
     }
     else
       transform = this.String.Target;
-    transform.localPosition = new Vector3(transform.localPosition.x - (float) ((double) this.MouseDelta.x * (double) Time.deltaTime * 0.333330005407333), transform.localPosition.y + (float) ((double) this.MouseDelta.y * (double) Time.deltaTime * 0.333330005407333), 0.0f);
-    if ((double) transform.localPosition.x > 0.971000015735626)
+    transform.localPosition = new Vector3(transform.localPosition.x - (float) ((double) this.MouseDelta.x * (double) Time.deltaTime * 0.33333000540733337), transform.localPosition.y + (float) ((double) this.MouseDelta.y * (double) Time.deltaTime * 0.33333000540733337), 0.0f);
+    if ((double) transform.localPosition.x > 0.97100001573562622)
       transform.localPosition = new Vector3(0.971f, transform.localPosition.y, transform.localPosition.z);
-    else if ((double) transform.localPosition.x < -0.971000015735626)
+    else if ((double) transform.localPosition.x < -0.97100001573562622)
       transform.localPosition = new Vector3(-0.971f, transform.localPosition.y, transform.localPosition.z);
-    if ((double) transform.localPosition.y > 0.637000024318695)
+    if ((double) transform.localPosition.y > 0.63700002431869507)
       transform.localPosition = new Vector3(transform.localPosition.x, 0.637f, transform.localPosition.z);
-    else if ((double) transform.localPosition.y < -0.637000024318695)
+    else if ((double) transform.localPosition.y < -0.63700002431869507)
       transform.localPosition = new Vector3(transform.localPosition.x, -0.637f, transform.localPosition.z);
     if (!Input.GetButtonDown("A"))
       return;

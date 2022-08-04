@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MissionModeScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -261,9 +261,9 @@ public class MissionModeScript : MonoBehaviour
       ClassGlobals.PsychologyGrade = 1;
       OptionGlobals.TutorialsOff = true;
       SchoolGlobals.SchoolAtmosphereSet = true;
-      SchoolGlobals.SchoolAtmosphere = (float) (1.0 - (double) this.Difficulty * 0.100000001490116);
+      SchoolGlobals.SchoolAtmosphere = (float) (1.0 - (double) this.Difficulty * 0.10000000149011612);
       PlayerGlobals.Money = 20f;
-      this.StudentManager.Atmosphere = (float) (1.0 - (double) this.Difficulty * 0.100000001490116);
+      this.StudentManager.Atmosphere = (float) (1.0 - (double) this.Difficulty * 0.10000000149011612);
       this.StudentManager.SetAtmosphere();
       for (this.ID = 1; this.ID < this.PoliceLabel.Length; ++this.ID)
       {
@@ -408,7 +408,7 @@ public class MissionModeScript : MonoBehaviour
       {
         this.Speed += Time.deltaTime / 3f;
         this.MainCamera.transform.position = new Vector3(this.MainCamera.transform.position.x, Mathf.Lerp(this.MainCamera.transform.position.y, this.TargetHeight, Time.deltaTime * this.Speed), this.MainCamera.transform.position.z);
-        if ((double) this.MainCamera.transform.position.y < (double) this.TargetHeight + 0.100000001490116)
+        if ((double) this.MainCamera.transform.position.y < (double) this.TargetHeight + 0.10000000149011612)
         {
           this.Yandere.HUD.alpha = Mathf.MoveTowards(this.Yandere.HUD.alpha, 1f, Time.deltaTime / 3f);
           if ((double) this.Yandere.HUD.alpha == 1.0)
@@ -840,7 +840,7 @@ public class MissionModeScript : MonoBehaviour
     {
       if (this.Phase != 4)
         return;
-      this.Timer += 0.01666667f;
+      this.Timer += 0.0166666675f;
       if ((double) this.Timer > 1.0)
       {
         if (!this.FadeOut)
@@ -874,8 +874,8 @@ public class MissionModeScript : MonoBehaviour
         }
         else
         {
-          this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, 0.01666667f));
-          this.Jukebox.Dip = Mathf.MoveTowards(this.Jukebox.Dip, 0.0f, 0.01666667f);
+          this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, 0.0166666675f));
+          this.Jukebox.Dip = Mathf.MoveTowards(this.Jukebox.Dip, 0.0f, 0.0166666675f);
           if ((double) this.Darkness.color.a > (double) sbyte.MaxValue / 128.0)
           {
             if (this.Destination == 1)
@@ -1008,7 +1008,7 @@ public class MissionModeScript : MonoBehaviour
       PlayerPrefs.SetInt("MissionModeTarget" + index.ToString(), this.Target[index]);
       PlayerPrefs.SetInt("MissionModeMethod" + index.ToString(), this.Method[index]);
     }
-    SchoolGlobals.SchoolAtmosphere = (float) (1.0 - (double) this.Difficulty * 0.100000001490116);
+    SchoolGlobals.SchoolAtmosphere = (float) (1.0 - (double) this.Difficulty * 0.10000000149011612);
     MissionModeGlobals.MissionTargetName = missionTargetName;
     MissionModeGlobals.MissionDifficulty = this.Difficulty;
     OptionGlobals.HighPopulation = highPopulation;

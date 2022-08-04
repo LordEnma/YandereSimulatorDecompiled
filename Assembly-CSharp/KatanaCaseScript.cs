@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: KatanaCaseScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -54,7 +54,7 @@ public class KatanaCaseScript : MonoBehaviour
       return;
     this.Rotation = Mathf.Lerp(this.Rotation, -180f, Time.deltaTime * 10f);
     this.Door.eulerAngles = new Vector3(this.Door.eulerAngles.x, this.Door.eulerAngles.y, this.Rotation);
-    if ((double) this.Rotation >= -179.899993896484)
+    if ((double) this.Rotation >= -179.89999389648438)
       return;
     this.enabled = false;
   }

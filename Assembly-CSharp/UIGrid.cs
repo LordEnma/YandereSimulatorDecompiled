@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UIGrid
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -194,7 +194,7 @@ public class UIGrid : UIWidgetContainer
       }
       else
         pos = this.arrangement == UIGrid.Arrangement.Horizontal ? new Vector3(this.cellWidth * (float) b1, -this.cellHeight * (float) b2, z) : new Vector3(this.cellWidth * (float) b2, -this.cellHeight * (float) b1, z);
-      if (this.animateSmoothly && Application.isPlaying && (this.pivot != UIWidget.Pivot.TopLeft || (double) Vector3.SqrMagnitude(transform.localPosition - pos) >= 9.99999974737875E-05))
+      if (this.animateSmoothly && Application.isPlaying && (this.pivot != UIWidget.Pivot.TopLeft || (double) Vector3.SqrMagnitude(transform.localPosition - pos) >= 9.9999997473787516E-05))
       {
         SpringPosition springPosition = SpringPosition.Begin(transform.gameObject, pos, 15f);
         springPosition.updateScrollView = true;

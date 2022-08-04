@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UIColorPicker
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -177,34 +177,34 @@ public class UIColorPicker : MonoBehaviour
       UIColorPicker.mRed = new AnimationCurve(new Keyframe[8]
       {
         new Keyframe(0.0f, 1f),
-        new Keyframe(0.1428571f, 1f),
+        new Keyframe(0.142857149f, 1f),
         new Keyframe(0.2857143f, 0.0f),
-        new Keyframe(0.4285714f, 0.0f),
+        new Keyframe(0.428571433f, 0.0f),
         new Keyframe(0.5714286f, 0.0f),
-        new Keyframe(0.7142857f, 1f),
-        new Keyframe(0.8571429f, 1f),
+        new Keyframe(0.714285731f, 1f),
+        new Keyframe(0.857142866f, 1f),
         new Keyframe(1f, 0.5f)
       });
       UIColorPicker.mGreen = new AnimationCurve(new Keyframe[8]
       {
         new Keyframe(0.0f, 0.0f),
-        new Keyframe(0.1428571f, 1f),
+        new Keyframe(0.142857149f, 1f),
         new Keyframe(0.2857143f, 1f),
-        new Keyframe(0.4285714f, 1f),
+        new Keyframe(0.428571433f, 1f),
         new Keyframe(0.5714286f, 0.0f),
-        new Keyframe(0.7142857f, 0.0f),
-        new Keyframe(0.8571429f, 0.0f),
+        new Keyframe(0.714285731f, 0.0f),
+        new Keyframe(0.857142866f, 0.0f),
         new Keyframe(1f, 0.5f)
       });
       UIColorPicker.mBlue = new AnimationCurve(new Keyframe[8]
       {
         new Keyframe(0.0f, 0.0f),
-        new Keyframe(0.1428571f, 0.0f),
+        new Keyframe(0.142857149f, 0.0f),
         new Keyframe(0.2857143f, 0.0f),
-        new Keyframe(0.4285714f, 1f),
+        new Keyframe(0.428571433f, 1f),
         new Keyframe(0.5714286f, 1f),
-        new Keyframe(0.7142857f, 1f),
-        new Keyframe(0.8571429f, 0.0f),
+        new Keyframe(0.714285731f, 1f),
+        new Keyframe(0.857142866f, 0.0f),
         new Keyframe(1f, 0.5f)
       });
     }

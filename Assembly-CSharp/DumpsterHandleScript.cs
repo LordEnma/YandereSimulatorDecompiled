@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DumpsterHandleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -42,7 +42,7 @@ public class DumpsterHandleScript : MonoBehaviour
     if (!this.Grabbed)
       return;
     this.Prompt.Yandere.transform.rotation = Quaternion.Lerp(this.Prompt.Yandere.transform.rotation, this.GrabSpot.rotation, Time.deltaTime * 10f);
-    if ((double) Vector3.Distance(this.Prompt.Yandere.transform.position, this.GrabSpot.position) > 0.100000001490116)
+    if ((double) Vector3.Distance(this.Prompt.Yandere.transform.position, this.GrabSpot.position) > 0.10000000149011612)
       this.Prompt.Yandere.MoveTowardsTarget(this.GrabSpot.position);
     else
       this.Prompt.Yandere.transform.position = this.GrabSpot.position;
@@ -61,7 +61,7 @@ public class DumpsterHandleScript : MonoBehaviour
       this.transform.parent.transform.position = new Vector3(this.transform.parent.transform.position.x, this.transform.parent.transform.position.y, this.PullLimit);
     else if ((double) this.transform.parent.transform.position.z < (double) this.PushLimit)
       this.transform.parent.transform.position = new Vector3(this.transform.parent.transform.position.x, this.transform.parent.transform.position.y, this.PushLimit);
-    this.Panel.SetActive((double) this.DumpsterLid.transform.position.z > (double) this.DumpsterLid.DisposalSpot - 0.0500000007450581 && (double) this.DumpsterLid.transform.position.z < (double) this.DumpsterLid.DisposalSpot + 0.0500000007450581);
+    this.Panel.SetActive((double) this.DumpsterLid.transform.position.z > (double) this.DumpsterLid.DisposalSpot - 0.05000000074505806 && (double) this.DumpsterLid.transform.position.z < (double) this.DumpsterLid.DisposalSpot + 0.05000000074505806);
     if (!this.Prompt.Yandere.Chased && this.Prompt.Yandere.Chasers <= 0 && !Input.GetButtonDown("B"))
       return;
     this.StopGrabbing();

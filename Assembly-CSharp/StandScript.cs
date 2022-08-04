@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StandScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -36,7 +36,7 @@ public class StandScript : MonoBehaviour
   {
     if (!this.Stand.activeInHierarchy)
     {
-      if (this.Weapons != 8 || (double) this.Yandere.transform.position.y <= 11.8999996185303 || !Input.GetButtonDown("RB") || MissionModeGlobals.MissionMode || this.Yandere.Laughing || !this.Yandere.CanMove)
+      if (this.Weapons != 8 || (double) this.Yandere.transform.position.y <= 11.899999618530273 || !Input.GetButtonDown("RB") || MissionModeGlobals.MissionMode || this.Yandere.Laughing || !this.Yandere.CanMove)
         return;
       this.Yandere.Jojo();
     }
@@ -79,7 +79,7 @@ public class StandScript : MonoBehaviour
           return;
         if (this.Yandere.Laughing)
         {
-          if ((double) Vector3.Distance(this.Stand.transform.localPosition, new Vector3(0.0f, 0.2f, -0.4f)) > 0.00999999977648258)
+          if ((double) Vector3.Distance(this.Stand.transform.localPosition, new Vector3(0.0f, 0.2f, -0.4f)) > 0.0099999997764825821)
           {
             this.Stand.transform.localPosition = Vector3.Lerp(this.Stand.transform.localPosition, new Vector3(0.0f, 0.2f, 0.1f), Time.deltaTime * 10f);
             this.Stand.transform.localEulerAngles = new Vector3(Mathf.Lerp(this.Stand.transform.localEulerAngles.x, 22.5f, Time.deltaTime * 10f), this.Stand.transform.localEulerAngles.y, this.Stand.transform.localEulerAngles.z);
@@ -133,7 +133,7 @@ public class StandScript : MonoBehaviour
 
   private void Return()
   {
-    if ((double) Vector3.Distance(this.Stand.transform.localPosition, new Vector3(0.0f, 0.0f, -0.5f)) <= 0.00999999977648258)
+    if ((double) Vector3.Distance(this.Stand.transform.localPosition, new Vector3(0.0f, 0.0f, -0.5f)) <= 0.0099999997764825821)
       return;
     this.Stand.transform.localPosition = Vector3.Lerp(this.Stand.transform.localPosition, new Vector3(0.0f, 0.0f, -0.5f), Time.deltaTime * 10f);
     this.Stand.transform.localEulerAngles = new Vector3(Mathf.Lerp(this.Stand.transform.localEulerAngles.x, 0.0f, Time.deltaTime * 10f), this.Stand.transform.localEulerAngles.y, this.Stand.transform.localEulerAngles.z);

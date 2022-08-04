@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RadioScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -79,7 +79,7 @@ public class RadioScript : MonoBehaviour
     this.Proximity = 0;
     for (this.ID = 1; this.ID < 6; ++this.ID)
     {
-      if ((Object) this.StudentManager.Students[75 + this.ID] != (Object) null && (double) Vector3.Distance(this.transform.position, this.StudentManager.Students[75 + this.ID].transform.position) < 1.10000002384186)
+      if ((Object) this.StudentManager.Students[75 + this.ID] != (Object) null && (double) Vector3.Distance(this.transform.position, this.StudentManager.Students[75 + this.ID].transform.position) < 1.1000000238418579)
       {
         if (!this.StudentManager.Students[75 + this.ID].Alarmed && !this.StudentManager.Students[75 + this.ID].Threatened && this.StudentManager.Students[75 + this.ID].Alive)
         {
@@ -102,7 +102,7 @@ public class RadioScript : MonoBehaviour
       float num = Vector3.Distance(this.Prompt.Yandere.transform.position, this.transform.position);
       if ((double) num >= 11.0)
         return;
-      this.Jukebox.ClubDip = Mathf.MoveTowards(this.Jukebox.ClubDip, (float) ((10.0 - (double) num) * 0.200000002980232) * this.Jukebox.Volume, Time.deltaTime);
+      this.Jukebox.ClubDip = Mathf.MoveTowards(this.Jukebox.ClubDip, (float) ((10.0 - (double) num) * 0.20000000298023224) * this.Jukebox.Volume, Time.deltaTime);
       if ((double) this.Jukebox.ClubDip < 0.0)
         this.Jukebox.ClubDip = 0.0f;
       if ((double) this.Jukebox.ClubDip <= (double) this.Jukebox.Volume)

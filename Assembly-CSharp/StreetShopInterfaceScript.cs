@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StreetShopInterfaceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -140,7 +140,7 @@ public class StreetShopInterfaceScript : MonoBehaviour
             this.SpeechBubbleParent.localScale = new Vector3(0.0f, 0.0f, 0.0f);
             ++this.SpeechPhase;
           }
-          else if (this.SpeechPhase == 2 && (double) this.Timer > 10.1000003814697)
+          else if (this.SpeechPhase == 2 && (double) this.Timer > 10.100000381469727)
           {
             this.Shopkeeper.mainTexture = this.IdlePortrait[UnityEngine.Random.Range(0, this.IdlePortrait.Length)];
             this.Timer = 10f;

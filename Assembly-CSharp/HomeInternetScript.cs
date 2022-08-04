@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeInternetScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -430,7 +430,7 @@ public class HomeInternetScript : MonoBehaviour
       {
         if (this.Height == 0 || this.Height > 1)
         {
-          if ((double) PlayerGlobals.Money > 33.3300018310547)
+          if ((double) PlayerGlobals.Money > 33.330001831054688)
           {
             if (!this.AreYouSure.activeInHierarchy)
             {
@@ -451,7 +451,7 @@ public class HomeInternetScript : MonoBehaviour
         }
         else if (this.Height == 1)
         {
-          if ((double) PlayerGlobals.Money > 8.48999977111816)
+          if ((double) PlayerGlobals.Money > 8.4899997711181641)
           {
             if (!this.AreYouSure.activeInHierarchy)
             {

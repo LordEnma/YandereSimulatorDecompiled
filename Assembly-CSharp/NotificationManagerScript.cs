@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NotificationManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -49,11 +49,11 @@ public class NotificationManagerScript : MonoBehaviour
 
   private void Update()
   {
-    if ((double) this.NotificationParent.localPosition.y > 1.0 / 1000.0 + -0.0489999987185001 * (double) this.NotificationsSpawned)
+    if ((double) this.NotificationParent.localPosition.y > 1.0 / 1000.0 + -0.048999998718500137 * (double) this.NotificationsSpawned)
       this.NotificationParent.localPosition = new Vector3(this.NotificationParent.localPosition.x, Mathf.Lerp(this.NotificationParent.localPosition.y, -0.049f * (float) this.NotificationsSpawned, Time.deltaTime * 10f), this.NotificationParent.localPosition.z);
     if (this.Phase == 1)
     {
-      if ((double) this.Clock.HourTime <= 8.39999961853027)
+      if ((double) this.Clock.HourTime <= 8.3999996185302734)
         return;
       if (!this.Yandere.InClass)
       {
@@ -72,7 +72,7 @@ public class NotificationManagerScript : MonoBehaviour
     }
     else if (this.Phase == 3)
     {
-      if ((double) this.Clock.HourTime <= 13.3999996185303)
+      if ((double) this.Clock.HourTime <= 13.399999618530273)
         return;
       if (!this.Yandere.InClass)
         this.DisplayNotification(NotificationType.ClassSoon);
@@ -95,7 +95,7 @@ public class NotificationManagerScript : MonoBehaviour
     GameObject gameObject = Object.Instantiate<GameObject>(this.Notification);
     NotificationScript component = gameObject.GetComponent<NotificationScript>();
     gameObject.transform.parent = this.NotificationParent;
-    gameObject.transform.localPosition = new Vector3(0.0f, (float) (0.60275000333786 + 0.0489999987185001 * (double) this.NotificationsSpawned), 0.0f);
+    gameObject.transform.localPosition = new Vector3(0.0f, (float) (0.60275000333786011 + 0.048999998718500137 * (double) this.NotificationsSpawned), 0.0f);
     gameObject.transform.localEulerAngles = Vector3.zero;
     component.NotificationManager = this;
     string str1;

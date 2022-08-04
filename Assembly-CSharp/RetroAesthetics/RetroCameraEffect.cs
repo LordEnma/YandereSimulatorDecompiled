@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RetroAesthetics.RetroCameraEffect
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -196,7 +196,7 @@ namespace RetroAesthetics
       this._material.SetFloat("_RadialDistortion", this.radialIntensity * 0.01f);
       this._material.SetFloat("_RadialDistortionCurvature", this.radialCurvature);
       this._material.SetFloat("_ScanlineSize", this.scanlineSize);
-      this._material.SetFloat("_ScanlineIntensity", (float) ((1.0 - (double) this.scanlineIntensity) * 1.3400000333786));
+      this._material.SetFloat("_ScanlineIntensity", (float) ((1.0 - (double) this.scanlineIntensity) * 1.3400000333786011));
       this._material.SetFloat("_Gamma", this.gammaScale);
       Graphics.Blit((Texture) source, destination, this._material);
     }

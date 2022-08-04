@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YanvaniaCandlestickHeadScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -24,7 +24,7 @@ public class YanvaniaCandlestickHeadScript : MonoBehaviour
   {
     this.Rotation += new Vector3(this.Value, this.Value, this.Value);
     this.transform.localEulerAngles = this.Rotation;
-    if ((double) this.transform.localPosition.y >= 0.230000004172325)
+    if ((double) this.transform.localPosition.y >= 0.23000000417232513)
       return;
     Object.Instantiate<GameObject>(this.Fire, this.transform.position, Quaternion.identity);
     Object.Destroy((Object) this.gameObject);

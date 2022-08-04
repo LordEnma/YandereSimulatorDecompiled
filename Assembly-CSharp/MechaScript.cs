@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MechaScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -89,7 +89,7 @@ public class MechaScript : MonoBehaviour
         }
         else if (this.ShotsFired < 2)
         {
-          if ((double) this.Timer > 0.100000001490116)
+          if ((double) this.Timer > 0.10000000149011612)
           {
             Object.Instantiate<GameObject>(this.ShellType, this.SpawnPoints[2].position, this.transform.rotation);
             ++this.ShotsFired;
@@ -97,13 +97,13 @@ public class MechaScript : MonoBehaviour
         }
         else if (this.ShotsFired < 3)
         {
-          if ((double) this.Timer > 0.200000002980232)
+          if ((double) this.Timer > 0.20000000298023224)
           {
             Object.Instantiate<GameObject>(this.ShellType, this.SpawnPoints[3].position, this.transform.rotation);
             ++this.ShotsFired;
           }
         }
-        else if (this.ShotsFired < 4 && (double) this.Timer > 0.300000011920929)
+        else if (this.ShotsFired < 4 && (double) this.Timer > 0.30000001192092896)
         {
           Object.Instantiate<GameObject>(this.ShellType, this.SpawnPoints[4].position, this.transform.rotation);
           this.ShotsFired = 0;

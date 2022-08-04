@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EvilPhotographerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -111,7 +111,7 @@ public class EvilPhotographerScript : MonoBehaviour
                 this.Scale = 0.0f;
               if ((double) this.Scale > 1.0)
                 this.Scale = 1f;
-              this.Jukebox.volume = (float) (1.0 - 0.899999976158142 * (double) this.Scale);
+              this.Jukebox.volume = (float) (1.0 - 0.89999997615814209 * (double) this.Scale);
               this.Subtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
               this.MyAudio.volume = this.Scale;
             }
@@ -140,7 +140,7 @@ public class EvilPhotographerScript : MonoBehaviour
       }
       if (!this.Distracted)
       {
-        if ((double) Vector3.Distance(this.transform.position, this.Node[this.CurrentNode].position) < 0.100000001490116)
+        if ((double) Vector3.Distance(this.transform.position, this.Node[this.CurrentNode].position) < 0.10000000149011612)
         {
           this.transform.rotation = Quaternion.Slerp(this.transform.rotation, this.Node[this.CurrentNode].rotation, Time.deltaTime * 10f);
           this.MyAnimation.CrossFade(this.WaitAnim);
@@ -232,9 +232,9 @@ public class EvilPhotographerScript : MonoBehaviour
 
   private bool YandereIsInLOS()
   {
-    Debug.DrawLine(this.Head.position, new Vector3(this.Yandere.transform.position.x, (float) ((double) this.Yandere.transform.position.y + (double) this.Yandere.MyController.height - 0.200000002980232), this.Yandere.transform.position.z), Color.red);
+    Debug.DrawLine(this.Head.position, new Vector3(this.Yandere.transform.position.x, (float) ((double) this.Yandere.transform.position.y + (double) this.Yandere.MyController.height - 0.20000000298023224), this.Yandere.transform.position.z), Color.red);
     RaycastHit hitInfo;
-    return Physics.Linecast(this.Head.position, new Vector3(this.Yandere.transform.position.x, (float) ((double) this.Yandere.transform.position.y + (double) this.Yandere.MyController.height - 0.200000002980232), this.Yandere.transform.position.z), out hitInfo) && hitInfo.collider.gameObject.layer == 13;
+    return Physics.Linecast(this.Head.position, new Vector3(this.Yandere.transform.position.x, (float) ((double) this.Yandere.transform.position.y + (double) this.Yandere.MyController.height - 0.20000000298023224), this.Yandere.transform.position.z), out hitInfo) && hitInfo.collider.gameObject.layer == 13;
   }
 
   private void TransitionToGameOver()

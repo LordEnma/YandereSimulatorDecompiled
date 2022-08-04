@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NGUITools
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -206,12 +206,12 @@ public static class NGUITools
   public static AudioSource PlaySound(AudioClip clip, float volume, float pitch)
   {
     float time = RealTime.time;
-    if ((UnityEngine.Object) NGUITools.mLastClip == (UnityEngine.Object) clip && (double) NGUITools.mLastTimestamp + 0.100000001490116 > (double) time)
+    if ((UnityEngine.Object) NGUITools.mLastClip == (UnityEngine.Object) clip && (double) NGUITools.mLastTimestamp + 0.10000000149011612 > (double) time)
       return (AudioSource) null;
     NGUITools.mLastClip = clip;
     NGUITools.mLastTimestamp = time;
     volume *= NGUITools.soundVolume;
-    if ((UnityEngine.Object) clip != (UnityEngine.Object) null && (double) volume > 0.00999999977648258)
+    if ((UnityEngine.Object) clip != (UnityEngine.Object) null && (double) volume > 0.0099999997764825821)
     {
       if ((UnityEngine.Object) NGUITools.mListener == (UnityEngine.Object) null || !NGUITools.GetActive((Behaviour) NGUITools.mListener))
       {

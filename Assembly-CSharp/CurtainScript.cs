@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CurtainScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -29,7 +29,7 @@ public class CurtainScript : MonoBehaviour
     if (!this.Open)
     {
       this.Weight = Mathf.Lerp(this.Weight, 0.0f, Time.deltaTime * 10f);
-      if ((double) this.Weight < 0.00999999977648258)
+      if ((double) this.Weight < 0.0099999997764825821)
       {
         this.Animate = false;
         this.Weight = 0.0f;
@@ -38,7 +38,7 @@ public class CurtainScript : MonoBehaviour
     else
     {
       this.Weight = Mathf.Lerp(this.Weight, 100f, Time.deltaTime * 10f);
-      if ((double) this.Weight > 99.9899978637695)
+      if ((double) this.Weight > 99.989997863769531)
       {
         this.Animate = false;
         this.Weight = 100f;

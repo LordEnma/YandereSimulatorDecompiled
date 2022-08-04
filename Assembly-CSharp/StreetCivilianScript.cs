@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StreetCivilianScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
@@ -42,7 +42,7 @@ public class StreetCivilianScript : MonoBehaviour
   public void MoveTowardsTarget(Vector3 target)
   {
     Vector3 vector3 = target - this.transform.position;
-    if ((double) vector3.sqrMagnitude > 9.99999997475243E-07)
+    if ((double) vector3.sqrMagnitude > 9.9999999747524271E-07)
     {
       int num = (int) this.MyController.Move(vector3 * (Time.deltaTime * 1f / Time.timeScale));
     }

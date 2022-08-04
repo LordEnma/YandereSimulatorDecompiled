@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DDRManager
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -117,7 +117,7 @@ public class DDRManager : MonoBehaviour
       Debug.Log((object) "End() was called because song ended.");
       this.StartCoroutine(this.End());
     }
-    if ((double) this.GameState.Health > 0.0 || (double) this.audioSource.pitch >= 0.00999999977648258)
+    if ((double) this.GameState.Health > 0.0 || (double) this.audioSource.pitch >= 0.0099999997764825821)
       return;
     this.OverlayCanvas.SetActive(false);
     this.GameUI.SetActive(false);
@@ -167,7 +167,7 @@ public class DDRManager : MonoBehaviour
     {
       yield return (object) new WaitForSecondsRealtime(0.2f);
       ddrManager.StartCoroutine(ddrManager.fade(false, (MaskableGraphic) ddrManager.fadeImage));
-      while ((double) ddrManager.fadeImage.color.a > 0.400000005960464)
+      while ((double) ddrManager.fadeImage.color.a > 0.40000000596046448)
         yield return (object) null;
       ddrManager.machineScreenAnimation.Play();
       ddrManager.booted = true;

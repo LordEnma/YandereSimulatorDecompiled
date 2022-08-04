@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UIWidget
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -817,7 +817,7 @@ public class UIWidget : UIRect
       float y4 = y3 + (float) this.mHeight;
       Vector3 vector3_1 = this.panel.worldToLocal.MultiplyPoint3x4(cachedTransform.TransformPoint(x3, y3, 0.0f));
       Vector3 vector3_2 = this.panel.worldToLocal.MultiplyPoint3x4(cachedTransform.TransformPoint(x4, y4, 0.0f));
-      if ((double) Vector3.SqrMagnitude(this.mOldV0 - vector3_1) > 9.99999997475243E-07 || (double) Vector3.SqrMagnitude(this.mOldV1 - vector3_2) > 9.99999997475243E-07)
+      if ((double) Vector3.SqrMagnitude(this.mOldV0 - vector3_1) > 9.9999999747524271E-07 || (double) Vector3.SqrMagnitude(this.mOldV1 - vector3_2) > 9.9999999747524271E-07)
       {
         this.mMoved = true;
         this.mOldV0 = vector3_1;

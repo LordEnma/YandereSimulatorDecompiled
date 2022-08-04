@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ReputationScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -105,7 +105,7 @@ public class ReputationScript : MonoBehaviour
     ++this.CheckedRep;
     if (this.StudentManager.Yandere.Club == ClubType.Delinquent)
     {
-      if ((double) this.Reputation > -33.3333282470703)
+      if ((double) this.Reputation > -33.333328247070313)
         this.Reputation = -33.33333f;
     }
     else if ((double) this.Reputation > 100.0)

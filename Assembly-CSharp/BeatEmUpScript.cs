@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BeatEmUpScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -326,7 +326,7 @@ public class BeatEmUpScript : MonoBehaviour
         {
           if (this.AttackID < 14)
           {
-            if ((double) this.MyAnimation[this.AttackAnim[this.AttackID]].time >= (double) this.MyAnimation[this.AttackAnim[this.AttackID]].length * 0.400000005960464)
+            if ((double) this.MyAnimation[this.AttackAnim[this.AttackID]].time >= (double) this.MyAnimation[this.AttackAnim[this.AttackID]].length * 0.40000000596046448)
             {
               if (!this.Heavy)
               {
@@ -343,7 +343,7 @@ public class BeatEmUpScript : MonoBehaviour
               this.HitboxSpawned = true;
             }
           }
-          else if (this.AttackID == 14 && (double) this.MyAnimation[this.AttackAnim[this.AttackID]].time >= 0.524999976158142)
+          else if (this.AttackID == 14 && (double) this.MyAnimation[this.AttackAnim[this.AttackID]].time >= 0.52499997615814209)
           {
             BeatEmUpHitboxScript component = Object.Instantiate<GameObject>(this.Hitbox, this.transform.position + this.transform.forward * 0.75f + new Vector3(0.0f, 1f, 0.0f), this.transform.rotation).GetComponent<BeatEmUpHitboxScript>();
             component.Damage = this.Damages[this.AttackID];
@@ -357,7 +357,7 @@ public class BeatEmUpScript : MonoBehaviour
       {
         this.IntroTimer += Time.deltaTime;
         this.SuperTimer += Time.deltaTime;
-        if ((double) this.IntroTimer > 0.100000001490116)
+        if ((double) this.IntroTimer > 0.10000000149011612)
         {
           this.MyAudio.clip = this.AttackVoices[Random.Range(1, this.AttackVoices.Length)];
           this.MyAudio.Play();
@@ -369,7 +369,7 @@ public class BeatEmUpScript : MonoBehaviour
           component.Damage = 5f;
           this.IntroTimer = 0.0f;
         }
-        if ((double) this.SuperTimer > 2.09999990463257)
+        if ((double) this.SuperTimer > 2.0999999046325684)
         {
           this.MyController.enabled = true;
           this.CanMove = true;
@@ -411,7 +411,7 @@ public class BeatEmUpScript : MonoBehaviour
         else
         {
           this.IntroTimer += Time.deltaTime;
-          if ((double) this.IntroTimer > 2.66666007041931)
+          if ((double) this.IntroTimer > 2.6666600704193115)
           {
             this.CameraSpeed += Time.deltaTime * (0.1f + this.CameraSpeed);
             this.MainCamera.transform.position = Vector3.Lerp(this.MainCamera.transform.position, new Vector3(0.0f, 1.773969f, -7.888118f), Time.deltaTime * this.CameraSpeed);

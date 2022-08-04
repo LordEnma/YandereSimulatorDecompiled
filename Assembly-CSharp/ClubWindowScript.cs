@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClubWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -38,7 +38,7 @@ public class ClubWindowScript : MonoBehaviour
       this.ActivityDescs[7] = "The Photography Club review each others' photographs and share advice on how to improve.";
       this.ClubDescs[8] = "If you join the Science Club, you will have easy access to an emergency shower that can be used for changing out of a bloody outfit, and a vat of acid that can be used for disposing of corpses.";
     }
-    if ((double) SchoolGlobals.SchoolAtmosphere <= 0.899999976158142)
+    if ((double) SchoolGlobals.SchoolAtmosphere <= 0.89999997615814209)
     {
       this.ActivityDescs[7] = this.LowAtmosphereDesc;
     }
@@ -121,7 +121,7 @@ public class ClubWindowScript : MonoBehaviour
     }
     if (this.PerformingActivity)
       this.ActivityWindow.localScale = Vector3.Lerp(this.ActivityWindow.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-    else if ((double) this.ActivityWindow.localScale.x > 0.100000001490116)
+    else if ((double) this.ActivityWindow.localScale.x > 0.10000000149011612)
     {
       this.ActivityWindow.localScale = Vector3.Lerp(this.ActivityWindow.localScale, Vector3.zero, Time.deltaTime * 10f);
     }

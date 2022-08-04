@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TapePlayerMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -27,6 +27,7 @@ public class TapePlayerMenuScript : MonoBehaviour
   public AudioClip TapeStop;
   public string CurrentTime;
   public string ClipLength;
+  public bool ButtonPressed;
   public bool Listening;
   public bool Show;
   public UILabel HeaderLabel;
@@ -136,9 +137,10 @@ public class TapePlayerMenuScript : MonoBehaviour
       else if (this.Phase == 2)
       {
         this.Timer += Time.unscaledDeltaTime;
+        this.ButtonPressed = false;
         if (this.MyAudio.isPlaying)
         {
-          if ((double) this.Timer > 0.100000001490116)
+          if ((double) this.Timer > 0.10000000149011612)
           {
             this.TapePlayerAnim["PressPlay"].time += Time.unscaledDeltaTime;
             if ((double) this.TapePlayerAnim["PressPlay"].time > (double) this.TapePlayerAnim["PressPlay"].length)
@@ -152,10 +154,12 @@ public class TapePlayerMenuScript : MonoBehaviour
             this.TapePlayerAnim["PressPlay"].time = 0.0f;
           if (Input.GetButtonDown("A"))
           {
+            Debug.Log((object) "The player just pressed the ''A'' button to pause it.");
             this.PromptBar.Label[0].text = "PAUSE";
             this.TapePlayer.Spin = true;
             this.MyAudio.time = this.ResumeTime;
             this.MyAudio.Play();
+            this.ButtonPressed = true;
           }
         }
         if ((double) this.TapePlayerAnim["PressPlay"].time >= (double) this.TapePlayerAnim["PressPlay"].length)
@@ -178,12 +182,16 @@ public class TapePlayerMenuScript : MonoBehaviour
             this.Subtitle.text = string.Empty;
             ++this.Phase;
           }
-          if (Input.GetButtonDown("A") && this.MyAudio.isPlaying)
+          if (!this.ButtonPressed && Input.GetButtonDown("A"))
           {
-            this.PromptBar.Label[0].text = "PLAY";
-            this.TapePlayer.Spin = false;
-            this.ResumeTime = this.MyAudio.time;
-            this.MyAudio.Stop();
+            Debug.Log((object) "The player just pressed the ''A'' button to unpause it.");
+            if (this.MyAudio.isPlaying)
+            {
+              this.PromptBar.Label[0].text = "PLAY";
+              this.TapePlayer.Spin = false;
+              this.ResumeTime = this.MyAudio.time;
+              this.MyAudio.Stop();
+            }
           }
         }
         if (Input.GetButtonDown("B"))
@@ -234,16 +242,16 @@ public class TapePlayerMenuScript : MonoBehaviour
       {
         if (this.InputManager.DPadRight || Input.GetKey(KeyCode.RightArrow))
         {
-          this.ResumeTime += 1.666667f;
-          this.MyAudio.time += 1.666667f;
+          this.ResumeTime += 1.66666663f;
+          this.MyAudio.time += 1.66666663f;
           this.TapePlayer.FastForward = true;
         }
         else
           this.TapePlayer.FastForward = false;
         if (this.InputManager.DPadLeft || Input.GetKey(KeyCode.LeftArrow))
         {
-          this.ResumeTime -= 1.666667f;
-          this.MyAudio.time -= 1.666667f;
+          this.ResumeTime -= 1.66666663f;
+          this.MyAudio.time -= 1.66666663f;
           this.TapePlayer.Rewind = true;
         }
         else

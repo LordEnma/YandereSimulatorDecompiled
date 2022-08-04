@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HintScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -42,7 +42,7 @@ public class HintScript : MonoBehaviour
       this.Timer += Time.deltaTime;
       if ((double) this.Timer > 5.0)
         this.Show = false;
-      if (!Input.GetButtonDown("Start") || this.PauseScreen.Yandere.Shutter.Snapping || this.PauseScreen.Yandere.TimeSkipping || this.PauseScreen.Yandere.Talking || this.PauseScreen.Yandere.Noticed || this.PauseScreen.Yandere.InClass || this.PauseScreen.Yandere.Struggling || this.PauseScreen.Yandere.Won || this.PauseScreen.Yandere.Dismembering || this.PauseScreen.Yandere.Attacked || !this.PauseScreen.Yandere.CanMove || this.PauseScreen.Yandere.Chased || this.PauseScreen.Yandere.Chasers != 0 || this.PauseScreen.Yandere.YandereVision || (double) Time.timeScale <= 9.99999974737875E-05 || this.PauseScreen.Schedule.gameObject.activeInHierarchy)
+      if (!Input.GetButtonDown("Start") || this.PauseScreen.Yandere.Shutter.Snapping || this.PauseScreen.Yandere.TimeSkipping || this.PauseScreen.Yandere.Talking || this.PauseScreen.Yandere.Noticed || this.PauseScreen.Yandere.InClass || this.PauseScreen.Yandere.Struggling || this.PauseScreen.Yandere.Won || this.PauseScreen.Yandere.Dismembering || this.PauseScreen.Yandere.Attacked || !this.PauseScreen.Yandere.CanMove || this.PauseScreen.Yandere.Chased || this.PauseScreen.Yandere.Chasers != 0 || this.PauseScreen.Yandere.YandereVision || (double) Time.timeScale <= 9.9999997473787516E-05 || this.PauseScreen.Schedule.gameObject.activeInHierarchy)
         return;
       if (this.DisplayTutorial)
       {
@@ -66,13 +66,13 @@ public class HintScript : MonoBehaviour
         return;
       this.Timer = 0.0f;
       this.Speed = Mathf.MoveTowards(this.Speed, 5f, Time.deltaTime);
-      this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, new Vector3(0.2043f, 0.0f, 1f), (float) ((double) this.Speed * (double) Time.deltaTime * 0.0166666004806757));
+      this.transform.localPosition = Vector3.MoveTowards(this.transform.localPosition, new Vector3(0.2043f, 0.0f, 1f), (float) ((double) this.Speed * (double) Time.deltaTime * 0.016666600480675697));
       if ((double) this.Speed == 5.0)
       {
         this.transform.localPosition = new Vector3(0.2043f, 0.0f, 1f);
         this.DisplayTutorial = false;
       }
-      if (!Input.GetButtonDown("Start") || this.PauseScreen.Yandere.Shutter.Snapping || this.PauseScreen.Yandere.TimeSkipping || this.PauseScreen.Yandere.Talking || this.PauseScreen.Yandere.Noticed || this.PauseScreen.Yandere.InClass || this.PauseScreen.Yandere.Struggling || this.PauseScreen.Yandere.Won || this.PauseScreen.Yandere.Dismembering || this.PauseScreen.Yandere.Attacked || !this.PauseScreen.Yandere.CanMove || this.PauseScreen.Yandere.Chased || this.PauseScreen.Yandere.Chasers != 0 || this.PauseScreen.Yandere.YandereVision || (double) Time.timeScale <= 9.99999974737875E-05 || this.PauseScreen.Schedule.gameObject.activeInHierarchy)
+      if (!Input.GetButtonDown("Start") || this.PauseScreen.Yandere.Shutter.Snapping || this.PauseScreen.Yandere.TimeSkipping || this.PauseScreen.Yandere.Talking || this.PauseScreen.Yandere.Noticed || this.PauseScreen.Yandere.InClass || this.PauseScreen.Yandere.Struggling || this.PauseScreen.Yandere.Won || this.PauseScreen.Yandere.Dismembering || this.PauseScreen.Yandere.Attacked || !this.PauseScreen.Yandere.CanMove || this.PauseScreen.Yandere.Chased || this.PauseScreen.Yandere.Chasers != 0 || this.PauseScreen.Yandere.YandereVision || (double) Time.timeScale <= 9.9999997473787516E-05 || this.PauseScreen.Schedule.gameObject.activeInHierarchy)
         return;
       if (this.DisplayTutorial)
       {

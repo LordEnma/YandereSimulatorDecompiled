@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UIBasicSprite
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -807,12 +807,12 @@ public abstract class UIBasicSprite : UIWidget
       return false;
     if ((corner & 1) == 1)
       invert = !invert;
-    if (!invert && (double) fill > 0.999000012874603)
+    if (!invert && (double) fill > 0.99900001287460327)
       return true;
     float num = Mathf.Clamp01(fill);
     if (invert)
       num = 1f - num;
-    float f = num * 1.570796f;
+    float f = num * 1.57079637f;
     float cos = Mathf.Cos(f);
     float sin = Mathf.Sin(f);
     UIBasicSprite.RadialCut(xy, cos, sin, invert, corner);

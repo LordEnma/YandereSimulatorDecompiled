@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BloodPoolSpawnerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -82,7 +82,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
       Vector3 position = this.transform.position;
       if (SceneManager.GetActiveScene().name == "SchoolScene")
         this.CanSpawn = !this.GardenArea.bounds.Contains(position) && !this.TreeArea.bounds.Contains(position) && !this.NEStairs.bounds.Contains(position) && !this.NWStairs.bounds.Contains(position) && !this.SEStairs.bounds.Contains(position) && !this.SWStairs.bounds.Contains(position);
-      if (!this.CanSpawn || (double) position.y >= (double) this.Height + 0.333333343267441)
+      if (!this.CanSpawn || (double) position.y >= (double) this.Height + 0.3333333432674408)
         return;
       if (this.NearbyBlood > 0 && (Object) this.LastBloodPool == (Object) null)
         --this.NearbyBlood;
@@ -107,7 +107,7 @@ public class BloodPoolSpawnerScript : MonoBehaviour
         gameObject.GetComponent<BloodPoolScript>().StudentBloodID = this.Ragdoll.StudentID;
         ++this.PoolsSpawned;
         ++this.Ragdoll.Student.BloodPoolsSpawned;
-        gameObject.GetComponent<BloodPoolScript>().TargetSize = (float) (1.0 - (double) (this.PoolsSpawned - 10) * 0.100000001490116);
+        gameObject.GetComponent<BloodPoolScript>().TargetSize = (float) (1.0 - (double) (this.PoolsSpawned - 10) * 0.10000000149011612);
         if (this.PoolsSpawned == 20)
           this.gameObject.SetActive(false);
       }

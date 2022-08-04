@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YanvaniaDraculaScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -74,7 +74,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
           if ((double) this.transform.position.y > 0.0)
           {
             this.Distance = Mathf.Abs(this.Yanmont.transform.position.x) - Mathf.Abs(this.transform.position.x);
-            if ((double) Mathf.Abs(this.Distance) < 0.610000014305115 && (double) this.Yanmont.FlashTimer == 0.0)
+            if ((double) Mathf.Abs(this.Distance) < 0.61000001430511475 && (double) this.Yanmont.FlashTimer == 0.0)
               this.Yanmont.TakeDamage(5);
             if (this.AttackID == 0)
             {
@@ -143,7 +143,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
           if (this.Grow)
           {
             this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(1.5f, 1.5f, 1.5f), (float) ((double) Time.deltaTime * 1.5 * 2.0));
-            if ((double) this.transform.localScale.x > 1.49000000953674)
+            if ((double) this.transform.localScale.x > 1.4900000095367432)
             {
               this.NewTeleportEffect = (GameObject) null;
               this.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
@@ -200,7 +200,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
             component2.clip = this.FinalLine;
             component2.Play();
           }
-          if ((double) this.ExplosionTimer > 0.100000001490116)
+          if ((double) this.ExplosionTimer > 0.10000000149011612)
           {
             Object.Instantiate<GameObject>(this.Explosion, this.transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(0.0f, 2.5f), Random.Range(-1f, 1f)), Quaternion.identity);
             this.ExplosionTimer = 0.0f;
@@ -218,7 +218,7 @@ public class YanvaniaDraculaScript : MonoBehaviour
           {
             if (!this.PhotoTaken)
             {
-              Time.timeScale = Mathf.MoveTowards(Time.timeScale, 0.0f, 0.01666667f);
+              Time.timeScale = Mathf.MoveTowards(Time.timeScale, 0.0f, 0.0166666675f);
               if ((double) Time.timeScale == 0.0)
               {
                 ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/Dracula.png");

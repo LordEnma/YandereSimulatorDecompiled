@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WitnessCameraScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -24,7 +24,7 @@ public class WitnessCameraScript : MonoBehaviour
   {
     if (this.Show)
     {
-      this.MyCamera.rect = new Rect(this.MyCamera.rect.x, this.MyCamera.rect.y, Mathf.Lerp(this.MyCamera.rect.width, 0.25f, Time.deltaTime * 10f), Mathf.Lerp(this.MyCamera.rect.height, 0.4444444f, Time.deltaTime * 10f));
+      this.MyCamera.rect = new Rect(this.MyCamera.rect.x, this.MyCamera.rect.y, Mathf.Lerp(this.MyCamera.rect.width, 0.25f, Time.deltaTime * 10f), Mathf.Lerp(this.MyCamera.rect.height, 0.444444448f, Time.deltaTime * 10f));
       this.transform.localPosition = new Vector3(this.transform.localPosition.x, this.transform.localPosition.y, this.transform.localPosition.z + Time.deltaTime * 0.09f);
       this.WitnessTimer += Time.deltaTime;
       if ((double) this.WitnessTimer > 5.0)
@@ -40,7 +40,7 @@ public class WitnessCameraScript : MonoBehaviour
     else
     {
       this.MyCamera.rect = new Rect(this.MyCamera.rect.x, this.MyCamera.rect.y, Mathf.Lerp(this.MyCamera.rect.width, 0.0f, Time.deltaTime * 10f), Mathf.Lerp(this.MyCamera.rect.height, 0.0f, Time.deltaTime * 10f));
-      if (!this.MyCamera.enabled || (double) this.MyCamera.rect.width >= 0.100000001490116)
+      if (!this.MyCamera.enabled || (double) this.MyCamera.rect.width >= 0.10000000149011612)
         return;
       this.MyCamera.enabled = false;
       this.transform.parent = (Transform) null;

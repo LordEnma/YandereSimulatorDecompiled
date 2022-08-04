@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ConvoManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -40,7 +40,7 @@ public class ConvoManagerScript : MonoBehaviour
           this.SM.Students[3].Alone = !this.SM.Students[2].Routine || (double) Vector3.Distance(this.SM.Students[3].transform.position, this.SM.Students[2].transform.position) >= 1.4;
           break;
         case 11:
-          this.SM.Students[11].Alone = !((Object) this.SM.Students[10] != (Object) null) || !this.SM.Students[10].Routine || (double) Vector3.Distance(this.SM.Students[11].transform.position, this.SM.Students[10].transform.position) >= 2.09999990463257;
+          this.SM.Students[11].Alone = !((Object) this.SM.Students[10] != (Object) null) || !this.SM.Students[10].Routine || (double) Vector3.Distance(this.SM.Students[11].transform.position, this.SM.Students[10].transform.position) >= 2.0999999046325684;
           break;
         default:
           if (StudentID > 20 && StudentID < 26)
@@ -179,7 +179,7 @@ public class ConvoManagerScript : MonoBehaviour
                   {
                     if ((Object) this.SM.Students[this.ID] != (Object) null)
                     {
-                      if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.66666007041931)
+                      if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.6666600704193115)
                       {
                         this.SM.Students[StudentID].Alone = false;
                         break;
@@ -200,7 +200,7 @@ public class ConvoManagerScript : MonoBehaviour
                   {
                     if ((Object) this.SM.Students[this.ID] != (Object) null)
                     {
-                      if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.66666007041931)
+                      if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.6666600704193115)
                       {
                         this.SM.Students[StudentID].Alone = false;
                         break;
@@ -221,7 +221,7 @@ public class ConvoManagerScript : MonoBehaviour
                   {
                     if ((Object) this.SM.Students[this.ID] != (Object) null)
                     {
-                      if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.66666007041931)
+                      if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.6666600704193115)
                       {
                         this.SM.Students[StudentID].Alone = false;
                         break;
@@ -323,7 +323,7 @@ public class ConvoManagerScript : MonoBehaviour
         {
           if ((Object) this.SM.Students[this.ID] != (Object) null)
           {
-            if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.66666007041931)
+            if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.6666600704193115)
             {
               this.SM.Students[StudentID].Alone = false;
               break;
@@ -345,7 +345,7 @@ public class ConvoManagerScript : MonoBehaviour
         {
           if ((Object) this.SM.Students[this.ID] != (Object) null)
           {
-            if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.66666007041931)
+            if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.6666600704193115)
             {
               this.SM.Students[StudentID].Alone = false;
               break;
@@ -362,7 +362,7 @@ public class ConvoManagerScript : MonoBehaviour
   public void MartialArtsCheck()
   {
     this.CheckTimer += Time.deltaTime;
-    if ((double) this.CheckTimer <= 1.0 && !this.Confirmed || !((Object) this.SM.Students[47] != (Object) null) || !((Object) this.SM.Students[49] != (Object) null) || !this.SM.Students[47].Routine || !this.SM.Students[49].Routine || (double) this.SM.Students[47].DistanceToDestination >= 0.100000001490116 || (double) this.SM.Students[49].DistanceToDestination >= 0.100000001490116)
+    if ((double) this.CheckTimer <= 1.0 && !this.Confirmed || !((Object) this.SM.Students[47] != (Object) null) || !((Object) this.SM.Students[49] != (Object) null) || !this.SM.Students[47].Routine || !this.SM.Students[49].Routine || (double) this.SM.Students[47].DistanceToDestination >= 0.10000000149011612 || (double) this.SM.Students[49].DistanceToDestination >= 0.10000000149011612)
       return;
     this.Confirmed = true;
     ++this.CombatAnimID;

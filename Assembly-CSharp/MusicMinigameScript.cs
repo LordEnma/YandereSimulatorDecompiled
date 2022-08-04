@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MusicMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -301,7 +301,7 @@ public class MusicMinigameScript : MonoBehaviour
           this.ChibiSway[5] = false;
           this.ChibiSway[4] = false;
         }
-        this.ChibiSway[1] = (double) this.MyAudio.time > 33.0 && (double) this.MyAudio.time < 36.8333320617676 || (double) this.MyAudio.time > 39.5 && (double) this.MyAudio.time < 43.25 || (double) this.MyAudio.time > 46.8333320617676 && (double) this.MyAudio.time < 49.75 || (double) this.MyAudio.time > 50.3833351135254 && (double) this.MyAudio.time < 53.0 || (double) this.MyAudio.time > 53.9166679382324 && (double) this.MyAudio.time < 59.0 || (double) this.MyAudio.time > 59.5 && (double) this.MyAudio.time < 74.3333282470703 || (double) this.MyAudio.time > 77.0 && (double) this.MyAudio.time < 80.3333282470703 || (double) this.MyAudio.time > 84.0500030517578 && (double) this.MyAudio.time < 88.1666641235352 || (double) this.MyAudio.time > 91.0 && (double) this.MyAudio.time < 98.5 || (double) this.MyAudio.time > 101.833335876465 && (double) this.MyAudio.time < 130.58332824707;
+        this.ChibiSway[1] = (double) this.MyAudio.time > 33.0 && (double) this.MyAudio.time < 36.833332061767578 || (double) this.MyAudio.time > 39.5 && (double) this.MyAudio.time < 43.25 || (double) this.MyAudio.time > 46.833332061767578 && (double) this.MyAudio.time < 49.75 || (double) this.MyAudio.time > 50.383335113525391 && (double) this.MyAudio.time < 53.0 || (double) this.MyAudio.time > 53.916667938232422 && (double) this.MyAudio.time < 59.0 || (double) this.MyAudio.time > 59.5 && (double) this.MyAudio.time < 74.333328247070313 || (double) this.MyAudio.time > 77.0 && (double) this.MyAudio.time < 80.333328247070313 || (double) this.MyAudio.time > 84.050003051757813 && (double) this.MyAudio.time < 88.166664123535156 || (double) this.MyAudio.time > 91.0 && (double) this.MyAudio.time < 98.5 || (double) this.MyAudio.time > 101.83333587646484 && (double) this.MyAudio.time < 130.58332824707031;
         if ((double) this.CringeTimer == 0.0)
           this.MyAudio.volume = 1f;
         for (this.ID = 1; this.ID < this.ChibiSway.Length; ++this.ID)
@@ -318,7 +318,7 @@ public class MusicMinigameScript : MonoBehaviour
             if (!this.MusicNotes[this.ID].isPlaying)
               this.MusicNotes[this.ID].Play();
             this.AnimTimer[this.ID] += Time.deltaTime;
-            if ((double) this.AnimTimer[this.ID] > 0.200000002980232)
+            if ((double) this.AnimTimer[this.ID] > 0.20000000298023224)
             {
               this.FrameB[this.ID] = !this.FrameB[this.ID];
               this.AnimTimer[this.ID] = 0.0f;
@@ -455,7 +455,7 @@ public class MusicMinigameScript : MonoBehaviour
         {
           this.ChibiRenderer[this.ID].transform.localPosition += new Vector3(0.0f, this.Jump[this.ID], 0.0f);
           this.Jump[this.ID] -= Time.deltaTime * 0.01f;
-          if ((double) this.ChibiRenderer[this.ID].transform.localPosition.y < 0.150000005960464)
+          if ((double) this.ChibiRenderer[this.ID].transform.localPosition.y < 0.15000000596046448)
           {
             this.ChibiRenderer[this.ID].transform.localPosition = new Vector3(0.0f, 0.15f, 0.0f);
             this.Jump[this.ID] = this.JumpStrength;

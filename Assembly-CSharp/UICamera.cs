@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UICamera
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -1126,17 +1126,17 @@ public class UICamera : MonoBehaviour
     if (UICamera.ignoreControllerInput || !UICamera.disableControllerCheck || !this.useController || !this.handlesEvents)
       return;
     UICamera.disableControllerCheck = false;
-    if (!string.IsNullOrEmpty(this.horizontalAxisName) && (double) Mathf.Abs(UICamera.GetAxis(this.horizontalAxisName)) > 0.100000001490116)
+    if (!string.IsNullOrEmpty(this.horizontalAxisName) && (double) Mathf.Abs(UICamera.GetAxis(this.horizontalAxisName)) > 0.10000000149011612)
       UICamera.ignoreControllerInput = true;
-    else if (!string.IsNullOrEmpty(this.verticalAxisName) && (double) Mathf.Abs(UICamera.GetAxis(this.verticalAxisName)) > 0.100000001490116)
+    else if (!string.IsNullOrEmpty(this.verticalAxisName) && (double) Mathf.Abs(UICamera.GetAxis(this.verticalAxisName)) > 0.10000000149011612)
       UICamera.ignoreControllerInput = true;
-    else if (!string.IsNullOrEmpty(this.horizontalPanAxisName) && (double) Mathf.Abs(UICamera.GetAxis(this.horizontalPanAxisName)) > 0.100000001490116)
+    else if (!string.IsNullOrEmpty(this.horizontalPanAxisName) && (double) Mathf.Abs(UICamera.GetAxis(this.horizontalPanAxisName)) > 0.10000000149011612)
     {
       UICamera.ignoreControllerInput = true;
     }
     else
     {
-      if (string.IsNullOrEmpty(this.verticalPanAxisName) || (double) Mathf.Abs(UICamera.GetAxis(this.verticalPanAxisName)) <= 0.100000001490116)
+      if (string.IsNullOrEmpty(this.verticalPanAxisName) || (double) Mathf.Abs(UICamera.GetAxis(this.verticalPanAxisName)) <= 0.10000000149011612)
         return;
       UICamera.ignoreControllerInput = true;
     }
@@ -1689,7 +1689,7 @@ public class UICamera : MonoBehaviour
           if (UICamera.onClick != null)
             UICamera.onClick(UICamera.currentTouch.pressed);
           UICamera.Notify(UICamera.currentTouch.pressed, "OnClick", (object) null);
-          if ((double) UICamera.currentTouch.clickTime + 0.349999994039536 > (double) time && (UnityEngine.Object) UICamera.currentTouch.lastClickGO == (UnityEngine.Object) UICamera.currentTouch.pressed)
+          if ((double) UICamera.currentTouch.clickTime + 0.34999999403953552 > (double) time && (UnityEngine.Object) UICamera.currentTouch.lastClickGO == (UnityEngine.Object) UICamera.currentTouch.pressed)
           {
             if (UICamera.onDoubleClick != null)
               UICamera.onDoubleClick(UICamera.currentTouch.pressed);

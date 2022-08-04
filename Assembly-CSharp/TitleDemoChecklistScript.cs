@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TitleDemoChecklistScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -107,7 +107,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
       {
         this.Items[this.Selected].transform.localPosition = Vector3.Lerp(this.Items[this.Selected].transform.localPosition, this.OriginalPosition, Time.deltaTime * 10f);
         this.Items[this.Selected].transform.localScale = Vector3.Lerp(this.Items[this.Selected].transform.localScale, new Vector3(0.195f, 0.195f, 0.195f), Time.deltaTime * 10f);
-        if ((double) this.Items[this.Selected].transform.localScale.x >= 0.200000002980232)
+        if ((double) this.Items[this.Selected].transform.localScale.x >= 0.20000000298023224)
           return;
         this.Items[this.Selected].transform.localPosition = this.OriginalPosition;
         this.Items[this.Selected].transform.localScale = new Vector3(0.195f, 0.195f, 0.195f);

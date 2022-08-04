@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DatingMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -301,8 +301,8 @@ public class DatingMinigameScript : MonoBehaviour
         this.Suitor.Earpiece.transform.parent = this.Suitor.Head;
         this.Suitor.Earpiece.transform.localPosition = new Vector3(0.0f, -1.12f, 1.14f);
         this.Suitor.Earpiece.transform.localEulerAngles = new Vector3(45f, -180f, 0.0f);
-        this.MainCamera.transform.position = Vector3.Lerp(this.MainCamera.transform.position, new Vector3(45.11f, 1.375f, -44f), (float) (((double) this.Timer - 4.0) * 0.0199999995529652));
-        this.Rotation = Mathf.Lerp(this.Rotation, 90f, (float) (((double) this.Timer - 4.0) * 0.0199999995529652));
+        this.MainCamera.transform.position = Vector3.Lerp(this.MainCamera.transform.position, new Vector3(45.11f, 1.375f, -44f), (float) (((double) this.Timer - 4.0) * 0.019999999552965164));
+        this.Rotation = Mathf.Lerp(this.Rotation, 90f, (float) (((double) this.Timer - 4.0) * 0.019999999552965164));
         this.MainCamera.transform.eulerAngles = new Vector3(this.MainCamera.transform.eulerAngles.x, this.Rotation, this.MainCamera.transform.eulerAngles.z);
         if ((double) this.Rotation > 89.9000015258789)
         {

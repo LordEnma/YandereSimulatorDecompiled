@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CameraShake
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -28,7 +28,7 @@ public class CameraShake : MonoBehaviour
     if ((double) this.shake > 0.0)
     {
       this.camTransform.localPosition = this.originalPos + Random.insideUnitSphere * this.shakeAmount;
-      this.shake -= 0.01666667f * this.decreaseFactor;
+      this.shake -= 0.0166666675f * this.decreaseFactor;
     }
     else
     {

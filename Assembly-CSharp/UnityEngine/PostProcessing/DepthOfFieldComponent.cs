@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UnityEngine.PostProcessing.DepthOfFieldComponent
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -50,7 +50,7 @@ namespace UnityEngine.PostProcessing
       float focalLength = this.CalculateFocalLength();
       float x = Mathf.Max(settings.focusDistance, focalLength);
       float num = (float) source.width / (float) source.height;
-      float y = (float) ((double) focalLength * (double) focalLength / ((double) settings.aperture * ((double) x - (double) focalLength) * 0.0240000002086163 * 2.0));
+      float y = (float) ((double) focalLength * (double) focalLength / ((double) settings.aperture * ((double) x - (double) focalLength) * 0.024000000208616257 * 2.0));
       float maxCoCradius = this.CalculateMaxCoCRadius(source.height);
       Material mat = this.context.materialFactory.Get("Hidden/Post FX/Depth Of Field");
       mat.SetFloat(DepthOfFieldComponent.Uniforms._Distance, x);

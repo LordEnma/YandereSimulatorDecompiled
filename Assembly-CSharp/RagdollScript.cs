@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RagdollScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -174,7 +174,7 @@ public class RagdollScript : MonoBehaviour
     }
     if ((Object) this.DetectionMarker != (Object) null)
     {
-      if ((double) this.DetectionMarker.Tex.color.a > 0.100000001490116)
+      if ((double) this.DetectionMarker.Tex.color.a > 0.10000000149011612)
       {
         this.DetectionMarker.Tex.color = new Color(this.DetectionMarker.Tex.color.r, this.DetectionMarker.Tex.color.g, this.DetectionMarker.Tex.color.b, Mathf.MoveTowards(this.DetectionMarker.Tex.color.a, 0.0f, Time.deltaTime * 10f));
       }
@@ -362,8 +362,8 @@ public class RagdollScript : MonoBehaviour
               Rigidbody allRigidbody = this.AllRigidbodies[0];
               allRigidbody.transform.parent.transform.localPosition = new Vector3(allRigidbody.transform.parent.transform.localPosition.x, 0.2f, allRigidbody.transform.parent.transform.localPosition.z);
             }
-            this.Yandere.CharacterAnimation["f02_carryLiftA_00"].speed = (float) (1.0 + (double) (this.Yandere.Class.PhysicalGrade + this.Yandere.Class.PhysicalBonus) * 0.200000002980232);
-            this.Student.CharacterAnimation[this.LiftAnim].speed = (float) (1.0 + (double) (this.Yandere.Class.PhysicalGrade + this.Yandere.Class.PhysicalBonus) * 0.200000002980232);
+            this.Yandere.CharacterAnimation["f02_carryLiftA_00"].speed = (float) (1.0 + (double) (this.Yandere.Class.PhysicalGrade + this.Yandere.Class.PhysicalBonus) * 0.20000000298023224);
+            this.Student.CharacterAnimation[this.LiftAnim].speed = (float) (1.0 + (double) (this.Yandere.Class.PhysicalGrade + this.Yandere.Class.PhysicalBonus) * 0.20000000298023224);
             this.Yandere.CharacterAnimation.Play("f02_carryLiftA_00");
             this.Student.CharacterAnimation.enabled = true;
             this.Student.CharacterAnimation.Play(this.LiftAnim);
@@ -734,7 +734,7 @@ public class RagdollScript : MonoBehaviour
               {
                 Transform transform = this.Student.Cosmetic.MaleHair[this.Student.Cosmetic.Hairstyle].transform;
                 transform.parent = gameObject.transform;
-                transform.localScale *= 1.06383f;
+                transform.localScale *= 1.06382978f;
                 if ((double) transform.transform.localPosition.y < -1.0)
                   transform.transform.localPosition = new Vector3(transform.transform.localPosition.x, transform.transform.localPosition.y - 0.095f, transform.transform.localPosition.z);
                 if ((Object) this.Student.Cosmetic.MaleAccessories[this.Student.Cosmetic.Accessory] != (Object) null)
@@ -839,6 +839,7 @@ public class RagdollScript : MonoBehaviour
     this.Police.BodyParts += 6;
     --this.Yandere.NearBodies;
     --this.Police.Corpses;
+    this.transform.parent = this.Student.StudentManager.DisabledObjectParent;
     this.gameObject.SetActive(false);
     this.Dismembered = true;
     if (!((Object) this.MyTarp != (Object) null))

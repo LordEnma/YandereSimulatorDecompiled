@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NoteWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -105,7 +105,7 @@ public class NoteWindowScript : MonoBehaviour
       this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, this.Rotation);
       if (!this.Selecting)
       {
-        if ((double) this.SubMenu.transform.localScale.x > 0.100000001490116)
+        if ((double) this.SubMenu.transform.localScale.x > 0.10000000149011612)
           this.SubMenu.transform.localScale = Vector3.Lerp(this.SubMenu.transform.localScale, Vector3.zero, t);
         else
           this.SubMenu.transform.localScale = Vector3.zero;
@@ -297,14 +297,14 @@ public class NoteWindowScript : MonoBehaviour
       UISprite slotHighlight = this.SlotHighlights[this.Slot];
       if (!this.Fade)
       {
-        slotHighlight.color = new Color(slotHighlight.color.r, slotHighlight.color.g, slotHighlight.color.b, slotHighlight.color.a + 0.01666667f);
+        slotHighlight.color = new Color(slotHighlight.color.r, slotHighlight.color.g, slotHighlight.color.b, slotHighlight.color.a + 0.0166666675f);
         if ((double) slotHighlight.color.a < 0.5)
           return;
         this.Fade = true;
       }
       else
       {
-        slotHighlight.color = new Color(slotHighlight.color.r, slotHighlight.color.g, slotHighlight.color.b, slotHighlight.color.a - 0.01666667f);
+        slotHighlight.color = new Color(slotHighlight.color.r, slotHighlight.color.g, slotHighlight.color.b, slotHighlight.color.a - 0.0166666675f);
         if ((double) slotHighlight.color.a > 0.0)
           return;
         this.Fade = false;

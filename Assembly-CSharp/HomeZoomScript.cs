@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeZoomScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -26,8 +26,8 @@ public class HomeZoomScript : MonoBehaviour
     }
     if (this.Zoom)
     {
-      this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.MoveTowards(this.transform.localPosition.y, 1.5f, Time.deltaTime * 0.03333334f), this.transform.localPosition.z);
-      this.YandereDestination.localPosition = Vector3.MoveTowards(this.YandereDestination.localPosition, new Vector3(-1.5f, 1.5f, 1f), Time.deltaTime * 0.03333334f);
+      this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.MoveTowards(this.transform.localPosition.y, 1.5f, Time.deltaTime * 0.0333333351f), this.transform.localPosition.z);
+      this.YandereDestination.localPosition = Vector3.MoveTowards(this.YandereDestination.localPosition, new Vector3(-1.5f, 1.5f, 1f), Time.deltaTime * 0.0333333351f);
       component.volume += Time.deltaTime * 0.01f;
     }
     else

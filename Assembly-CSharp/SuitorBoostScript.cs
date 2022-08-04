@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SuitorBoostScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -80,7 +80,7 @@ public class SuitorBoostScript : MonoBehaviour
     if (this.FadeOut)
     {
       this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      if ((double) this.Darkness.color.a <= 0.999000012874603)
+      if ((double) this.Darkness.color.a <= 0.99900001287460327)
         return;
       this.Timer += Time.deltaTime;
       if ((double) this.Timer <= 1.0)
@@ -124,8 +124,8 @@ public class SuitorBoostScript : MonoBehaviour
         this.Yandere.Follower.Character.transform.localScale = new Vector3(0.94f, 0.94f, 0.94f);
         if (this.TraitID == 2)
         {
-          this.YandereChair.transform.localPosition = new Vector3(this.YandereChair.transform.localPosition.x, this.YandereChair.transform.localPosition.y, -0.3333333f);
-          this.SuitorChair.transform.localPosition = new Vector3(this.SuitorChair.transform.localPosition.x, this.SuitorChair.transform.localPosition.y, -0.3333333f);
+          this.YandereChair.transform.localPosition = new Vector3(this.YandereChair.transform.localPosition.x, this.YandereChair.transform.localPosition.y, -0.333333343f);
+          this.SuitorChair.transform.localPosition = new Vector3(this.SuitorChair.transform.localPosition.x, this.SuitorChair.transform.localPosition.y, -0.333333343f);
         }
         this.Yandere.CharacterAnimation.Play(this.Yandere.IdleAnim);
         this.Yandere.Follower.CharacterAnimation.Play(this.Yandere.Follower.IdleAnim);
@@ -145,7 +145,7 @@ public class SuitorBoostScript : MonoBehaviour
       {
         this.TextBox.gameObject.SetActive(true);
         this.TextBox.localScale = Vector3.Lerp(this.TextBox.localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
-        if ((double) this.TextBox.localScale.x <= 0.899999976158142)
+        if ((double) this.TextBox.localScale.x <= 0.89999997615814209)
           return;
         if (!this.PromptBar.Show)
         {
@@ -161,7 +161,7 @@ public class SuitorBoostScript : MonoBehaviour
       }
       else if (this.Phase == 3)
       {
-        if ((double) this.TextBox.localScale.x > 0.100000001490116)
+        if ((double) this.TextBox.localScale.x > 0.10000000149011612)
         {
           this.TextBox.localScale = Vector3.Lerp(this.TextBox.localScale, Vector3.zero, Time.deltaTime * 10f);
         }

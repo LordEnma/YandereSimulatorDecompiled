@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PassTimeBookScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -40,7 +40,7 @@ public class PassTimeBookScript : MonoBehaviour
         this.Yandere.NotificationManager.CustomText = "Not available after 5:30 PM";
         this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
       }
-      else if (this.Yandere.Armed || (double) this.Yandere.Bloodiness > 0.0 || (double) this.Yandere.Sanity < 33.3330001831055 || this.Yandere.Attacking || this.Yandere.Dragging || this.Yandere.Carrying || (Object) this.Yandere.PickUp != (Object) null || this.Yandere.Chased || this.Yandere.Chasers > 0 || (Object) this.Yandere.StudentManager.Reporter != (Object) null && !this.Yandere.Police.Show || this.Yandere.StudentManager.MurderTakingPlace)
+      else if (this.Yandere.Armed || (double) this.Yandere.Bloodiness > 0.0 || (double) this.Yandere.Sanity < 33.333000183105469 || this.Yandere.Attacking || this.Yandere.Dragging || this.Yandere.Carrying || (Object) this.Yandere.PickUp != (Object) null || this.Yandere.Chased || this.Yandere.Chasers > 0 || (Object) this.Yandere.StudentManager.Reporter != (Object) null && !this.Yandere.Police.Show || this.Yandere.StudentManager.MurderTakingPlace)
       {
         this.DisplayErrorMessage();
       }
@@ -59,7 +59,7 @@ public class PassTimeBookScript : MonoBehaviour
       if (this.FadeOut)
       {
         this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-        if ((double) this.Darkness.color.a <= 0.999989986419678)
+        if ((double) this.Darkness.color.a <= 0.99998998641967773)
           return;
         this.Yandere.StudentManager.PutStudentsToSleep();
         this.Yandere.StudentManager.Clock.PresentTime += 30f;
@@ -70,7 +70,7 @@ public class PassTimeBookScript : MonoBehaviour
       else
       {
         this.Darkness.alpha = Mathf.MoveTowards(this.Darkness.alpha, 0.0f, Time.deltaTime);
-        if ((double) this.Darkness.color.a >= 0.100000001490116)
+        if ((double) this.Darkness.color.a >= 0.10000000149011612)
           return;
         this.Darkness.alpha = 0.0f;
         if (PlayerGlobals.PantiesEquipped == 7)
@@ -100,7 +100,7 @@ public class PassTimeBookScript : MonoBehaviour
       this.Yandere.NotificationManager.CustomText = "Carrying Weapon";
     else if ((double) this.Yandere.Bloodiness > 0.0)
       this.Yandere.NotificationManager.CustomText = "Bloody";
-    else if ((double) this.Yandere.Sanity < 33.3330001831055)
+    else if ((double) this.Yandere.Sanity < 33.333000183105469)
       this.Yandere.NotificationManager.CustomText = "Visibly Insane";
     else if (this.Yandere.Attacking)
       this.Yandere.NotificationManager.CustomText = "In Combat";

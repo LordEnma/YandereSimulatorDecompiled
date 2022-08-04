@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereSimulator.Yancord.YancordManager
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections.Generic;
@@ -305,7 +305,7 @@ namespace YandereSimulator.Yancord
     {
       for (int index = 1; index < this.Dialogue.Count; ++index)
       {
-        this.Messages.Add(Object.Instantiate<MessageScript>(this.MessagePrefab, new Vector3(0.0f, this.Messages[index - 1].transform.position.y - (float) ((double) this.Messages[index - 1].MessageLabel.height * 0.00167239445727319 + (double) this.Distance * 0.00167239445727319), 0.0f), Quaternion.identity, this.ConversationParent));
+        this.Messages.Add(Object.Instantiate<MessageScript>(this.MessagePrefab, new Vector3(0.0f, this.Messages[index - 1].transform.position.y - (float) ((double) this.Messages[index - 1].MessageLabel.height * 0.0016723944572731853 + (double) this.Distance * 0.0016723944572731853), 0.0f), Quaternion.identity, this.ConversationParent));
         this.Messages[index].MessageLabel.text = this.Dialogue[index].Message;
         if (this.Dialogue[index].isQuestion)
           this.Dialogue[index + 1].sentByPlayer = true;
@@ -325,11 +325,11 @@ namespace YandereSimulator.Yancord
         this.Messages[this.currentPhase].MessageLabel.text = this.Dialogue[this.currentPhase].Message;
         float num = (float) ((double) this.Messages[this.currentPhase].MessageLabel.height - 400.0 - 10.0);
         Vector3 position = this.Messages[this.currentPhase].transform.position;
-        this.Messages[this.currentPhase].transform.position = new Vector3(0.0f, num * 0.001672394f, 0.0f);
+        this.Messages[this.currentPhase].transform.position = new Vector3(0.0f, num * 0.00167239446f, 0.0f);
         for (int index = this.currentPhase - 1; index >= 0; --index)
-          this.Messages[index].transform.position = new Vector3(0.0f, this.Messages[index + 1].transform.position.y + (float) ((double) this.Messages[index].MessageLabel.height * 0.00167239445727319 + (double) this.Distance * 0.00167239445727319), 0.0f);
+          this.Messages[index].transform.position = new Vector3(0.0f, this.Messages[index + 1].transform.position.y + (float) ((double) this.Messages[index].MessageLabel.height * 0.0016723944572731853 + (double) this.Distance * 0.0016723944572731853), 0.0f);
         for (int index = 1; index < this.Messages.Count; ++index)
-          this.Messages[index].transform.position = new Vector3(0.0f, this.Messages[index - 1].transform.position.y - (float) ((double) this.Messages[index - 1].MessageLabel.height * 0.00167239445727319 + (double) this.Distance * 0.00167239445727319), 0.0f);
+          this.Messages[index].transform.position = new Vector3(0.0f, this.Messages[index - 1].transform.position.y - (float) ((double) this.Messages[index - 1].MessageLabel.height * 0.0016723944572731853 + (double) this.Distance * 0.0016723944572731853), 0.0f);
       }
       else
       {
@@ -338,7 +338,7 @@ namespace YandereSimulator.Yancord
         this.Messages[this.currentPhase].gameObject.SetActive(true);
         this.Messages[this.currentPhase].MessageLabel.text = this.Dialogue[this.currentPhase].Message;
         for (int currentPhase = this.currentPhase; currentPhase < this.Messages.Count; ++currentPhase)
-          this.Messages[currentPhase].transform.position = new Vector3(0.0f, this.Messages[currentPhase - 1].transform.position.y - (float) ((double) this.Messages[currentPhase - 1].MessageLabel.height * 0.00167239445727319 + (double) this.Distance * 0.00167239445727319), 0.0f);
+          this.Messages[currentPhase].transform.position = new Vector3(0.0f, this.Messages[currentPhase - 1].transform.position.y - (float) ((double) this.Messages[currentPhase - 1].MessageLabel.height * 0.0016723944572731853 + (double) this.Distance * 0.0016723944572731853), 0.0f);
       }
     }
 
@@ -347,7 +347,7 @@ namespace YandereSimulator.Yancord
       this.NewServer.SetActive(true);
       this.SelectedServer.gameObject.SetActive(true);
       this.SelectedServer.position = new Vector3(this.SelectedServer.position.x, this.NewServer.transform.position.y, this.SelectedServer.position.z);
-      this.CreateNewServer.position = new Vector3(this.CreateNewServer.position.x, 0.3740741f, this.CreateNewServer.position.z);
+      this.CreateNewServer.position = new Vector3(this.CreateNewServer.position.x, 0.374074072f, this.CreateNewServer.position.z);
       this.DirectMessages.SetActive(false);
       this.FindLabel.SetActive(false);
       this.ServerRelated.SetActive(true);

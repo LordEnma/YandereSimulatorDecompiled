@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMorningFriendEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: B122114D-AAD1-4BC3-90AB-645D18AE6C10
+// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -58,13 +58,13 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
     this.EventSubtitle.transform.localScale = Vector3.zero;
     if (this.LosingFriend)
     {
-      if ((double) StudentGlobals.GetStudentReputation(10) <= -33.3333282470703 && StudentGlobals.StudentSlave != this.FriendID && StudentGlobals.StudentSlave != this.RivalID && !PlayerGlobals.RaibaruLoner)
+      if ((double) StudentGlobals.GetStudentReputation(10) <= -33.333328247070313 && StudentGlobals.StudentSlave != this.FriendID && StudentGlobals.StudentSlave != this.RivalID && !PlayerGlobals.RaibaruLoner)
         return;
       this.enabled = false;
     }
     else
     {
-      if ((double) StudentGlobals.GetStudentReputation(10) > -33.3333282470703 && DateGlobals.Weekday == this.EventDay && !HomeGlobals.LateForSchool && !this.StudentManager.YandereLate && DatingGlobals.SuitorProgress != 2 && StudentGlobals.MemorialStudents <= 0 && StudentGlobals.StudentSlave != this.FriendID && StudentGlobals.StudentSlave != this.RivalID && GameGlobals.RivalEliminationID <= 0 && !PlayerGlobals.RaibaruLoner && !GameGlobals.AlphabetMode && !MissionModeGlobals.MissionMode && DateGlobals.Week <= 1 && !GameGlobals.Eighties)
+      if ((double) StudentGlobals.GetStudentReputation(10) > -33.333328247070313 && DateGlobals.Weekday == this.EventDay && !HomeGlobals.LateForSchool && !this.StudentManager.YandereLate && DatingGlobals.SuitorProgress != 2 && StudentGlobals.MemorialStudents <= 0 && StudentGlobals.StudentSlave != this.FriendID && StudentGlobals.StudentSlave != this.RivalID && GameGlobals.RivalEliminationID <= 0 && !PlayerGlobals.RaibaruLoner && !GameGlobals.AlphabetMode && !MissionModeGlobals.MissionMode && DateGlobals.Week <= 1 && !GameGlobals.Eighties)
         return;
       this.enabled = false;
     }
@@ -113,7 +113,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
               this.Speaker = this.InterruptedSpeaker;
             }
             bool flag = false;
-            if (StudentGlobals.GetStudentDead(81) || StudentGlobals.GetStudentKidnapped(81) || StudentGlobals.GetStudentArrested(81) || StudentGlobals.GetStudentExpelled(81) || StudentGlobals.GetStudentBroken(81) || StudentGlobals.StudentSlave == 81 || (double) StudentGlobals.GetStudentReputation(81) < -33.3333282470703)
+            if (StudentGlobals.GetStudentDead(81) || StudentGlobals.GetStudentKidnapped(81) || StudentGlobals.GetStudentArrested(81) || StudentGlobals.GetStudentExpelled(81) || StudentGlobals.GetStudentBroken(81) || StudentGlobals.StudentSlave == 81 || (double) StudentGlobals.GetStudentReputation(81) < -33.333328247070313)
             {
               Debug.Log((object) "Musume's unavailable.");
               flag = true;
