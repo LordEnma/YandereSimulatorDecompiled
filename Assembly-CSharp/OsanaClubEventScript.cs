@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaClubEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -235,7 +235,7 @@ public class OsanaClubEventScript : MonoBehaviour
 
   public void CheckForRooftopConvo()
   {
-    if (!((UnityEngine.Object) this.StudentManager.Students[10] != (UnityEngine.Object) null) || this.StudentManager.Students[10].CurrentAction != StudentActionType.Follow)
+    if (!((UnityEngine.Object) this.StudentManager.Students[10] != (UnityEngine.Object) null) || !((UnityEngine.Object) this.StudentManager.Students[11] != (UnityEngine.Object) null) || !this.StudentManager.Students[11].Alive || this.StudentManager.Students[10].CurrentAction != StudentActionType.Follow)
       return;
     Debug.Log((object) "Osana's rooftop conversation with Raibaru can happen.");
     this.RooftopConversation.CanHappen = true;

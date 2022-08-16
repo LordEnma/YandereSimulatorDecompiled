@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BentoScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -12,6 +12,7 @@ public class BentoScript : MonoBehaviour
   public YandereScript Yandere;
   public Transform PoisonSpot;
   public PromptScript Prompt;
+  public bool BeingPoisoned;
   public int Poison;
   public int ID;
 
@@ -56,6 +57,7 @@ public class BentoScript : MonoBehaviour
           this.Prompt.Hide();
           this.Prompt.enabled = false;
           this.Prompt.Yandere.StudentManager.UpdateAllBentos();
+          this.BeingPoisoned = true;
         }
         else
         {
@@ -68,6 +70,7 @@ public class BentoScript : MonoBehaviour
       this.Prompt.HideButton[1] = this.Prompt.Yandere.Inventory.LethalPoisons <= 0;
       if ((double) this.Prompt.Circle[1].fillAmount != 0.0)
         return;
+      this.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Yandere.Numbness;
       --this.Prompt.Yandere.Inventory.LethalPoisons;
       this.Prompt.Yandere.CharacterAnimation.CrossFade("f02_poisoning_00");
       this.StudentManager.Students[this.ID].MyBento.Tampered = true;
@@ -82,6 +85,7 @@ public class BentoScript : MonoBehaviour
       this.Prompt.Hide();
       this.Prompt.enabled = false;
       this.Prompt.Yandere.StudentManager.UpdateAllBentos();
+      this.BeingPoisoned = true;
     }
     else
       this.Prompt.enabled = false;

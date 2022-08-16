@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeCorkboardScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -29,6 +29,8 @@ public class HomeCorkboardScript : MonoBehaviour
     }
     if (this.PhotoGallery.Adjusting || this.PhotoGallery.Viewing || this.PhotoGallery.LoadingScreen.activeInHierarchy || !Input.GetButtonDown("B"))
       return;
+    Cursor.lockState = CursorLockMode.None;
+    Cursor.visible = true;
     this.HomeCamera.Destination = this.HomeCamera.Destinations[0];
     this.HomeCamera.Target = this.HomeCamera.Targets[0];
     this.HomeCamera.CorkboardLabel.SetActive(true);

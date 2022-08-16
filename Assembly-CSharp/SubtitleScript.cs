@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SubtitleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -2068,11 +2068,18 @@ public class SubtitleScript : MonoBehaviour
 
   private void PlayVoice(SubtitleType subtitleType, int ID)
   {
-    if ((Object) this.CurrentClip != (Object) null)
-      Object.Destroy((Object) this.CurrentClip);
     this.Jukebox.Dip = 0.5f;
     AudioClipArrayWrapper clipArrayWrapper;
     this.SubtitleClipArrays.TryGetValue(subtitleType, out clipArrayWrapper);
+    if ((Object) this.CurrentClip != (Object) null)
+    {
+      Debug.Log((object) "A voice clip was already playing.");
+      if ((Object) clipArrayWrapper[ID] != (Object) this.HmmClips[0])
+      {
+        Debug.Log((object) "We are not being told to play HmmClip, so we should destroy the previously existing clip.");
+        Object.Destroy((Object) this.CurrentClip);
+      }
+    }
     if (ID < clipArrayWrapper.Length)
       this.PlayClip(clipArrayWrapper[ID], this.transform.position);
     else

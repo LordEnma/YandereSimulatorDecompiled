@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ShoulderCameraScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -235,7 +235,8 @@ public class ShoulderCameraScript : MonoBehaviour
         this.NoticedPOV.Translate(Vector3.forward * Time.deltaTime * 0.075f);
         if ((double) this.Yandere.Police.Darkness.color.a >= 1.0)
         {
-          if ((double) this.Yandere.Police.Timer != 300.0 || this.Yandere.Police.Corpses - this.Yandere.Police.HiddenCorpses > 0)
+          Debug.Log((object) ("As of this exact moment, the game believes that there are " + this.Yandere.Police.BloodyWeapons.ToString() + " bloody weapons on school grounds."));
+          if ((double) this.Yandere.Police.Timer != 300.0 || this.Yandere.Police.Corpses - this.Yandere.Police.HiddenCorpses > 0 || this.Yandere.Police.BloodyWeapons > 0)
           {
             Debug.Log((object) "Ending day instead of going to counselor.");
             this.HUD.SetActive(true);
@@ -244,6 +245,7 @@ public class ShoulderCameraScript : MonoBehaviour
           }
           else
           {
+            Debug.Log((object) "This part of the code, specifically, is now sending Yandere-chan to the counselor.");
             if ((Object) this.Yandere.Mask != (Object) null)
               this.Yandere.Mask.Drop();
             this.Yandere.StudentManager.PreventAlarm();
@@ -412,6 +414,8 @@ public class ShoulderCameraScript : MonoBehaviour
         this.StruggleFocus.localPosition = Vector3.Lerp(this.StruggleFocus.localPosition, new Vector3(-0.85f, 1.1f, 1.75f), Time.deltaTime * 2f);
         this.StrugglePOV.localPosition = Vector3.Lerp(this.StrugglePOV.localPosition, new Vector3(-0.85f, 1f, 4f), Time.deltaTime * 2f);
       }
+      if (this.HeartbrokenCamera.activeInHierarchy)
+        return;
       this.Yandere.CameraEffects.UpdateDOF(this.StruggleDOF);
     }
     else if (this.Struggle)

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeDarknessScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -139,21 +139,24 @@ public class HomeDarknessScript : MonoBehaviour
         SceneManager.LoadScene("CalendarScene");
         if (StudentGlobals.UpdateRivalReputation)
         {
-          StudentGlobals.SetStudentReputation(11, StudentGlobals.GetStudentReputation(11) - 50);
-          if (StudentGlobals.GetStudentReputation(11) <= -100)
+          StudentGlobals.SetStudentReputation(DateGlobals.Week + 10, StudentGlobals.GetStudentReputation(DateGlobals.Week + 10) - 50);
+          if (StudentGlobals.GetStudentReputation(DateGlobals.Week + 10) <= -100)
           {
-            GameGlobals.SpecificEliminationID = 4;
-            if (StudentGlobals.GetStudentReputation(11) <= -150)
+            GameGlobals.RivalEliminationID = 8;
+            if (StudentGlobals.GetStudentReputation(DateGlobals.Week + 10) <= -150)
             {
               GameGlobals.SpecificEliminationID = 19;
               if (!GameGlobals.Debug)
                 PlayerPrefs.SetInt("Suicide", 1);
+              GameGlobals.NonlethalElimination = false;
             }
             else
             {
               Debug.Log((object) "Informing the Content Checklist that the player eliminated their rival by bullying.");
+              GameGlobals.SpecificEliminationID = 4;
               if (!GameGlobals.Debug)
                 PlayerPrefs.SetInt("Bully", 1);
+              GameGlobals.NonlethalElimination = true;
             }
           }
           StudentGlobals.UpdateRivalReputation = false;

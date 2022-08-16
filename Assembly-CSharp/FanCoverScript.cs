@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: FanCoverScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -91,7 +91,7 @@ public class FanCoverScript : MonoBehaviour
     }
     if (this.Phase <= 0)
       return;
-    this.Yandere.Sanity -= Time.deltaTime * 10f * this.Yandere.Numbness;
+    this.Yandere.Sanity -= Time.deltaTime * (PlayerGlobals.PantiesEquipped == 10 ? 5f : 10f) * this.Yandere.Numbness;
     if (this.Phase == 1)
     {
       this.Yandere.transform.rotation = Quaternion.Slerp(this.Yandere.transform.rotation, this.MurderSpot.rotation, Time.deltaTime * 10f);

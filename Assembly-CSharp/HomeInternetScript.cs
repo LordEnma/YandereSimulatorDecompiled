@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeInternetScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -472,7 +472,7 @@ public class HomeInternetScript : MonoBehaviour
         }
       }
       this.Shake = Mathf.MoveTowards(this.Shake, 0.0f, Time.deltaTime * 10f);
-      this.MoneyLabel.transform.localPosition = new Vector3(522.5f + UnityEngine.Random.Range(this.Shake * -1f, this.Shake * 1f), 410f + UnityEngine.Random.Range(this.Shake * -1f, this.Shake * 1f), 0.0f);
+      this.MoneyLabel.transform.localPosition = new Vector3(570f + UnityEngine.Random.Range(this.Shake * -1f, this.Shake * 1f), 420f + UnityEngine.Random.Range(this.Shake * -1f, this.Shake * 1f), 0.0f);
       if (Input.GetButtonDown("B"))
       {
         if (!this.AreYouSure.activeInHierarchy)
@@ -483,10 +483,13 @@ public class HomeInternetScript : MonoBehaviour
         else
           this.AreYouSure.SetActive(false);
       }
-      if (this.InputManager.TappedDown)
-        ++this.Height;
-      if (this.InputManager.TappedUp)
-        --this.Height;
+      if (!this.AreYouSure.activeInHierarchy)
+      {
+        if (this.InputManager.TappedDown)
+          ++this.Height;
+        if (this.InputManager.TappedUp)
+          --this.Height;
+      }
       if (this.Height < 0)
         this.Height = 0;
       if (this.Height > 4)

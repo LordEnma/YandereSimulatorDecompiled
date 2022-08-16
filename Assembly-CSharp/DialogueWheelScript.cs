@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DialogueWheelScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -889,7 +889,6 @@ public class DialogueWheelScript : MonoBehaviour
     Debug.Log((object) "The DialogueWheel is calling End() now.");
     if ((Object) this.Yandere.TargetStudent != (Object) null)
     {
-      Debug.Log((object) "TargetStudent was not null.");
       if (this.Yandere.TargetStudent.Pestered >= 10)
         this.Yandere.TargetStudent.Ignoring = true;
       if (!this.Pestered)
@@ -949,11 +948,14 @@ public class DialogueWheelScript : MonoBehaviour
       }
       if (this.Yandere.TargetStudent.StudentID == 10 && (Object) this.Yandere.TargetStudent.FollowTarget != (Object) null && this.Yandere.TargetStudent.FollowTarget.FocusOnYandere)
       {
-        Debug.Log((object) "Osana was stopped, but she should continue walking now.");
-        this.Yandere.TargetStudent.FollowTarget.Pathfinding.canSearch = true;
-        this.Yandere.TargetStudent.FollowTarget.Pathfinding.canMove = true;
+        if ((Object) this.Yandere.TargetStudent.FollowTarget.Hunter == (Object) null)
+        {
+          Debug.Log((object) "Osana was stopped, but she should continue walking now.");
+          this.Yandere.TargetStudent.FollowTarget.Pathfinding.canSearch = true;
+          this.Yandere.TargetStudent.FollowTarget.Pathfinding.canMove = true;
+          this.Yandere.TargetStudent.FollowTarget.Routine = true;
+        }
         this.Yandere.TargetStudent.FollowTarget.FocusOnYandere = false;
-        this.Yandere.TargetStudent.FollowTarget.Routine = true;
       }
       this.Yandere.TargetStudent.Talk.NegativeResponse = false;
       this.Yandere.ShoulderCamera.OverShoulder = false;
@@ -978,5 +980,5 @@ public class DialogueWheelScript : MonoBehaviour
     this.PromptBar.Show = false;
   }
 
-  private void RestoreMusic() => this.Jukebox.ClubTheme.Stop();
+  public void RestoreMusic() => this.Jukebox.ClubTheme.Stop();
 }

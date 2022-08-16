@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TimelineScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -160,6 +160,9 @@ public class TimelineScript : MonoBehaviour
     this.SpawnMiscData("Kocho Shuyona observes Ryoba entering the office of Saisho Saikou.");
     this.SpawnSaikouData("Ichirou Saikou enrolls in Akademi.");
     this.Height -= 150;
+    this.SpawnYear(2001);
+    this.SpawnSaikouData("Ichirou Saikou graduates from Akademi.");
+    this.Height -= 150;
     this.SpawnYear(2004);
     this.SpawnMiscData("A woman falls in love with the investigative journalist who accused Ryoba of murder.");
     this.Height -= 200;
@@ -195,7 +198,7 @@ public class TimelineScript : MonoBehaviour
 
   private void Update()
   {
-    if ((double) this.transform.localPosition.y > 9.75)
+    if ((double) this.transform.localPosition.y > 9.8000001907348633)
     {
       this.Speed = Mathf.MoveTowards(this.Speed, 0.0f, Time.deltaTime * 0.01f);
       this.Ambience.volume = Mathf.MoveTowards(this.Ambience.volume, 0.0f, Time.deltaTime * 0.1f);
@@ -222,7 +225,7 @@ public class TimelineScript : MonoBehaviour
     }
     else
     {
-      if ((double) this.transform.localPosition.y > 9.25 && (double) this.transform.localPosition.y < 9.75)
+      if ((double) this.transform.localPosition.y > 9.3000001907348633 && (double) this.transform.localPosition.y < 9.8000001907348633)
         this.Speed = Mathf.Lerp(this.Speed, 0.05f, Time.deltaTime * 10f);
       else if ((double) this.transform.localPosition.y < 9.5)
       {

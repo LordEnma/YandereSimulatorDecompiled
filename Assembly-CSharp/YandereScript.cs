@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
@@ -183,6 +183,7 @@ public class YandereScript : MonoBehaviour
   public Renderer PigtailL;
   public Renderer Drills;
   public float PotentiallyMurderousTimer;
+  public float PotentiallyAnnoyingTimer;
   public float SuspiciousActionTimer;
   public float MurderousActionTimer;
   public float CinematicTimer;
@@ -985,7 +986,6 @@ public class YandereScript : MonoBehaviour
         this.StudentManager.TutorialWindow.ShowBloodMessage = true;
       if (!this.BloodyWarning && (double) this.Bloodiness > 0.0)
       {
-        Debug.Log((object) "We just went from ''no blood'' to ''bloody''.");
         this.NotificationManager.DisplayNotification(NotificationType.Bloody);
         this.BloodyWarning = true;
         if (this.Schoolwear > 0 && !this.WearingRaincoat)
@@ -1774,6 +1774,7 @@ public class YandereScript : MonoBehaviour
                       }
                       this.GiggleLines.Play();
                       Object.Instantiate<GameObject>(this.GiggleDisc, this.transform.position + Vector3.up, Quaternion.identity);
+                      this.PotentiallyAnnoyingTimer = 1f;
                       this.MyAudio.volume = 1f;
                       this.LaughTimer = 0.5f;
                       this.Laughing = true;
@@ -1833,6 +1834,7 @@ public class YandereScript : MonoBehaviour
               this.MyAudio.Play();
               this.GiggleLines.Play();
               Object.Instantiate<GameObject>(this.GiggleDisc, this.transform.position + Vector3.up, Quaternion.identity);
+              this.PotentiallyAnnoyingTimer = 1f;
             }
             this.YandereTimer = 0.0f;
           }
@@ -2090,6 +2092,8 @@ public class YandereScript : MonoBehaviour
         Debug.Log((object) "If a student sees a student being electrocuted right now, they should check for Yandere-chan.");
         this.PotentiallyMurderousTimer = Mathf.MoveTowards(this.PotentiallyMurderousTimer, 0.0f, Time.deltaTime);
       }
+      if ((double) this.PotentiallyAnnoyingTimer > 0.0)
+        this.PotentiallyAnnoyingTimer = Mathf.MoveTowards(this.PotentiallyAnnoyingTimer, 0.0f, Time.deltaTime);
       if (this.Chased)
       {
         this.PreparedForStruggle = true;
@@ -2652,7 +2656,7 @@ public class YandereScript : MonoBehaviour
               this.TargetStudent.DeathCause = this.EquippedWeapon.WeaponID;
               Object.Instantiate<GameObject>(this.TargetStudent.StabBloodEffect, this.TargetStudent.Teacher ? this.EquippedWeapon.transform.position : this.TargetStudent.Head.position, Quaternion.identity);
               this.Bloodiness += 20f;
-              this.Sanity -= 20f * this.Numbness;
+              this.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Numbness;
               this.StainWeapon();
               ++this.StrugglePhase;
             }
@@ -2703,7 +2707,10 @@ public class YandereScript : MonoBehaviour
             this.CharacterAnimation["f02_kick_23"].time = 0.0f;
         }
         else if (this.Club == ClubType.Photography)
-          this.CharacterAnimation.Play("f02_sit_00");
+        {
+          if (!this.StudentManager.Eighties)
+            this.CharacterAnimation.Play("f02_sit_00");
+        }
         else if (this.Club == ClubType.Gaming)
           this.CharacterAnimation.Play("f02_playingGames_00");
       }
@@ -2858,6 +2865,7 @@ public class YandereScript : MonoBehaviour
         }
         else if ((double) this.CharacterAnimation["f02_bucketDrop_00"].time >= 1.0 && (Object) this.PickUp != (Object) null)
         {
+          this.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Numbness;
           GameObjectUtils.SetLayerRecursively(this.PickUp.Bucket.gameObject, 0);
           this.PickUp.Bucket.UpdateAppearance = true;
           this.PickUp.Bucket.Dropped = true;
@@ -3618,6 +3626,8 @@ public class YandereScript : MonoBehaviour
     }
     if ((double) this.CharacterAnimation["f02_poisoning_00"].time >= (double) this.CharacterAnimation["f02_poisoning_00"].length)
     {
+      this.StudentManager.Portal.GetComponent<PortalScript>().OsanaEvent.Bentos[1].GetComponent<BentoScript>().BeingPoisoned = false;
+      this.StudentManager.Portal.GetComponent<PortalScript>().OsanaEvent.Bentos[1].GetComponent<BentoScript>().BeingPoisoned = false;
       this.CharacterAnimation["f02_poisoning_00"].speed = 1f;
       this.Poisons[this.PoisonType].SetActive(false);
       this.PoisonSpot = (Transform) null;
@@ -4298,11 +4308,19 @@ public class YandereScript : MonoBehaviour
           this.Shoes[1].SetActive(false);
         }
       }
-      else if ((double) this.CharacterAnimation["f02_roofPushA_00"].time > 2.1666667461395264 && this.TargetStudent.Schoolwear == 1 && !this.TargetStudent.ClubAttire && !this.Shoes[0].activeInHierarchy)
+      else if ((double) this.CharacterAnimation["f02_roofPushA_00"].time > 2.1666667461395264)
       {
-        this.TargetStudent.RemoveShoes();
-        this.Shoes[0].SetActive(true);
-        this.Shoes[1].SetActive(true);
+        if ((double) this.TargetStudent.SnackTimer == 0.0)
+        {
+          this.TargetStudent.SpawnAlarmDisc();
+          this.TargetStudent.SnackTimer = 1f;
+        }
+        if (this.TargetStudent.Schoolwear == 1 && !this.TargetStudent.ClubAttire && !this.Shoes[0].activeInHierarchy)
+        {
+          this.TargetStudent.RemoveShoes();
+          this.Shoes[0].SetActive(true);
+          this.Shoes[1].SetActive(true);
+        }
       }
       if ((double) this.CharacterAnimation["f02_roofPushA_00"].time > (this.TargetStudent.Schoolwear != 1 || this.TargetStudent.ClubAttire ? 3.5 : (double) this.CharacterAnimation["f02_roofPushA_00"].length))
       {
@@ -4313,7 +4331,7 @@ public class YandereScript : MonoBehaviour
         this.Attacking = false;
         this.RoofPush = false;
         this.CanMove = true;
-        this.Sanity -= 20f * this.Numbness;
+        this.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Numbness;
       }
       if (!Input.GetButtonDown("B"))
         return;
@@ -4393,7 +4411,7 @@ public class YandereScript : MonoBehaviour
         this.MyController.radius = 0.2f;
         this.Attacking = false;
         this.AttackPhase = 1;
-        this.Sanity -= 20f * this.Numbness;
+        this.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Numbness;
         this.TargetStudent.DeathType = DeathType.Weapon;
         this.TargetStudent.BecomeRagdoll();
         if (!this.Noticed)
@@ -4415,7 +4433,7 @@ public class YandereScript : MonoBehaviour
           this.AttackPhase = 2;
           this.Bloodiness += 20f;
           this.StainWeapon();
-          this.Sanity -= 20f * this.Numbness;
+          this.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Numbness;
         }
         else
         {
@@ -4462,7 +4480,7 @@ public class YandereScript : MonoBehaviour
           this.StudentManager.Reporter = (StudentScript) null;
         AudioSource.PlayClipAtPoint(this.Stabs[Random.Range(0, this.Stabs.Length)], this.transform.position + Vector3.up);
         this.AttackPhase = 2;
-        this.Sanity -= 20f * this.Numbness;
+        this.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Numbness;
         if (this.EquippedWeapon.WeaponID != 8)
           return;
         this.TargetStudent.Ragdoll.Sacrifice = true;
@@ -5167,7 +5185,6 @@ public class YandereScript : MonoBehaviour
   public void StainWeapon()
   {
     Debug.Log((object) "Time to run the code for staining a weapon with blood and marking it as evidence.");
-    Debug.Log((object) ("Dismembering is: " + this.Dismembering.ToString()));
     if (!((Object) this.EquippedWeapon != (Object) null))
       return;
     if ((Object) this.TargetStudent != (Object) null && this.TargetStudent.StudentID < this.EquippedWeapon.Victims.Length)

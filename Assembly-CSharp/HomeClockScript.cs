@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeClockScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -22,7 +22,7 @@ public class HomeClockScript : MonoBehaviour
 
   private void Start()
   {
-    this.DayLabel.text = this.GetWeekdayText(DateGlobals.Weekday);
+    this.DayLabel.text = this.GetWeekdayText(DateGlobals.Weekday) + ", WEEK " + DateGlobals.Week.ToString();
     this.HourLabel.text = !HomeGlobals.Night ? (HomeGlobals.LateForSchool ? "7:30 AM" : "6:30 AM") : "8:00 PM";
     this.UpdateMoneyLabel();
   }

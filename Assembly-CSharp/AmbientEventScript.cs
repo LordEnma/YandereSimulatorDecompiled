@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AmbientEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -47,7 +47,10 @@ public class AmbientEventScript : MonoBehaviour
     if (this.Sitting)
     {
       if (DateGlobals.Weekday != this.EventDay || GameGlobals.Eighties)
+      {
+        this.gameObject.SetActive(false);
         this.enabled = false;
+      }
       else if (StudentGlobals.GetStudentGrudge(2) || StudentGlobals.GetStudentGrudge(3))
       {
         this.EventClip = this.GrudgeReaction.EventClip;
@@ -67,6 +70,7 @@ public class AmbientEventScript : MonoBehaviour
     {
       if (DateGlobals.Weekday == this.EventDay && !GameGlobals.Eighties)
         return;
+      this.gameObject.SetActive(false);
       this.enabled = false;
     }
   }
@@ -107,7 +111,7 @@ public class AmbientEventScript : MonoBehaviour
       }
       this.EventOn = true;
     }
-    else if ((double) this.Clock.HourTime > (double) this.StartTime + 0.5 || this.EventStudent[1].WitnessedCorpse || this.EventStudent[2].WitnessedCorpse || this.EventStudent[1].Alarmed || this.EventStudent[2].Alarmed || this.EventStudent[1].Dying || this.EventStudent[2].Dying || this.Yandere.Noticed)
+    else if ((double) this.Clock.HourTime > (double) this.StartTime + 0.5 || this.EventStudent[1].WitnessedCorpse || this.EventStudent[2].WitnessedCorpse || this.EventStudent[1].Alarmed || this.EventStudent[2].Alarmed || this.EventStudent[1].Dying || this.EventStudent[2].Dying || this.EventStudent[1].GoAway || this.EventStudent[2].GoAway || this.Yandere.Noticed)
     {
       this.EndEvent();
     }

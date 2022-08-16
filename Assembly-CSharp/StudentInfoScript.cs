@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentInfoScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -115,18 +115,30 @@ public class StudentInfoScript : MonoBehaviour
       if (this.CurrentStudent == num2)
         this.CrushLabel.text = !((Object) this.StudentManager != (Object) null) || this.StudentManager.LoveManager.SuitorProgress != 0 ? this.JSON.Students[student.Crush].Name : "Unknown";
       else if (student.Crush == 0)
-        this.CrushLabel.text = "Unknown";
+        this.CrushLabel.text = "None";
       else if (student.Crush == 99)
       {
-        this.CrushLabel.text = "?????";
+        this.CrushLabel.text = "None";
       }
       else
       {
         this.CrushLabel.text = this.JSON.Students[student.Crush].Name;
-        for (int index = 2; index < 11; ++index)
+        bool flag = false;
+        for (int index = this.StudentManager.Week + 1; index < 11; ++index)
         {
-          if ((Object) this.StudentManager != (Object) null && this.CurrentStudent == this.StudentManager.SuitorIDs[index] && this.StudentManager.Week < index)
-            this.CrushLabel.text = "Unknown";
+          if (this.CurrentStudent == this.StudentManager.SuitorIDs[index])
+          {
+            Debug.Log((object) "This guy will be a suitor one day.");
+            flag = true;
+          }
+        }
+        if (flag)
+        {
+          for (int index = 2; index < 11; ++index)
+          {
+            if ((Object) this.StudentManager != (Object) null && this.CurrentStudent == this.StudentManager.SuitorIDs[index] && this.StudentManager.Week < index)
+              this.CrushLabel.text = "Unknown";
+          }
         }
       }
     }

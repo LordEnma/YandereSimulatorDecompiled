@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -512,6 +512,8 @@ public class StudentManagerScript : MonoBehaviour
     }
     else
     {
+      for (int index = 2; index < 11; ++index)
+        this.SuitorIDs[index] = 0;
       this.PortraitChan = this.StudentChan;
       this.PortraitKun = this.StudentKun;
       if ((UnityEngine.Object) this.IdolStage != (UnityEngine.Object) null)
@@ -667,7 +669,6 @@ public class StudentManagerScript : MonoBehaviour
       }
       if (this.MissionMode)
       {
-        Debug.Log((object) "We believe that we're in Mission Mode, so we're switching to the Mission Mode Uniform.");
         StudentGlobals.FemaleUniform = 5;
         StudentGlobals.MaleUniform = 5;
         this.RedString.gameObject.SetActive(false);
@@ -3566,6 +3567,12 @@ public class StudentManagerScript : MonoBehaviour
     this.scheduleBlock.destination = "Week1Hangout";
     this.scheduleBlock.action = "Socialize";
     this.Students[StudentID].GetDestinations();
+    if (DateGlobals.Weekday != DayOfWeek.Friday || this.Students[StudentID].Club != ClubType.Art)
+      return;
+    ScheduleBlock scheduleBlock = this.Students[StudentID].ScheduleBlocks[7];
+    scheduleBlock.destination = "Paint";
+    scheduleBlock.action = "Paint";
+    this.Students[StudentID].VisionDistance += 5f;
   }
 
   public void UpdateExteriorStudents()
@@ -3581,7 +3588,7 @@ public class StudentManagerScript : MonoBehaviour
 
   public void UpdateLunchtimeStudents()
   {
-    Debug.Log((object) "Osana is about to eat lunch, so certain students are having their routines adjusted.");
+    Debug.Log((object) "It's lunchtime during Osana's week, so certain students are having their routines adjusted.");
     this.UpdateLunchtimeHangout(25);
     this.UpdateLunchtimeHangout(30);
     this.UpdateLunchtimeHangout(24);

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GazerEyesScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -217,10 +217,14 @@ public class GazerEyesScript : MonoBehaviour
       gameObject6.transform.parent = Target.Hips;
       gameObject6.transform.localPosition = Vector3.zero;
       AudioSource.PlayClipAtPoint(this.StudentManager.LightSwitch.Flick[2], Target.transform.position + Vector3.up);
-      if (!((Object) Target.OsanaHairL != (Object) null))
-        return;
-      Target.OsanaHairL.GetComponent<DynamicBone>().enabled = false;
-      Target.OsanaHairR.GetComponent<DynamicBone>().enabled = false;
+      if ((Object) Target.OsanaHairL != (Object) null)
+      {
+        Target.OsanaHairL.GetComponent<DynamicBone>().enabled = false;
+        Target.OsanaHairR.GetComponent<DynamicBone>().enabled = false;
+      }
     }
+    if ((double) this.Yandere.PotentiallyMurderousTimer <= 0.0)
+      return;
+    this.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Yandere.Numbness;
   }
 }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericBentoScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -42,6 +42,7 @@ public class GenericBentoScript : MonoBehaviour
       }
       else if ((double) this.Prompt.Circle[2].fillAmount == 0.0)
       {
+        this.Prompt.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Prompt.Yandere.Numbness;
         --this.Prompt.Yandere.Inventory.LethalPoisons;
         this.Prompt.Yandere.PoisonType = 2;
         this.Lethal = true;

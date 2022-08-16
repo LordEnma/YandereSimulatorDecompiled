@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ManholeScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -15,6 +15,7 @@ public class ManholeScript : MonoBehaviour
   public AudioClip MoveCover;
   public float AnimateTimer;
   public float SewerTimer;
+  public bool ForceDown;
   public bool Open;
 
   private void Update()
@@ -50,21 +51,25 @@ public class ManholeScript : MonoBehaviour
       }
       if ((double) this.SewerTimer > 0.0)
       {
-        if ((double) this.Corpse.Student.Hips.transform.position.y < -5.0)
+        if ((double) this.Corpse.Student.Hips.transform.position.y < -5.0 || this.ForceDown)
         {
           if ((double) this.Corpse.Student.Hips.transform.position.y > -5.0)
             this.Corpse.Student.Hips.transform.position = new Vector3(this.Corpse.Student.Hips.transform.position.x, -5f, this.Corpse.Student.Hips.transform.position.z);
           if (this.Corpse.AllRigidbodies[0].useGravity)
           {
+            Debug.Log((object) "This corpse just struck the water.");
             Object.Instantiate<GameObject>(this.BigSewerWaterSplash, this.Corpse.Student.Hips.transform.position, Quaternion.identity).transform.eulerAngles = new Vector3(-90f, 0.0f, 0.0f);
             for (int index = 0; index < this.Corpse.AllRigidbodies.Length; ++index)
               this.Corpse.AllRigidbodies[index].useGravity = false;
+            this.ForceDown = true;
           }
+          Debug.Log((object) "The corpse is now being pushed downstream.");
           this.Corpse.AllRigidbodies[0].AddForce(new Vector3(-100f, -50f, 0.0f));
         }
         this.SewerTimer -= Time.deltaTime;
         if ((double) this.SewerTimer <= 0.0)
         {
+          Debug.Log((object) "We're done watching the corpse, and we are now returning to gameplay.");
           if (this.Corpse.Concealed)
             --this.Prompt.Yandere.Police.HiddenCorpses;
           --this.Prompt.Yandere.Police.Corpses;
@@ -77,6 +82,7 @@ public class ManholeScript : MonoBehaviour
           }
           this.SewerCamera.SetActive(false);
           this.Prompt.Yandere.StudentManager.UpdateStudents();
+          this.ForceDown = false;
         }
       }
       if ((Object) this.Prompt.Yandere.Ragdoll != (Object) null)
@@ -85,6 +91,7 @@ public class ManholeScript : MonoBehaviour
         this.Prompt.HideButton[0] = false;
         if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
           return;
+        Debug.Log((object) "The player has just dumped a corpse.");
         this.Corpse = this.Prompt.Yandere.Ragdoll.GetComponent<RagdollScript>();
         this.Prompt.Yandere.EmptyHands();
         this.Corpse.Student.Hips.transform.position = this.transform.position + new Vector3(0.0f, -1f, 0.0f);

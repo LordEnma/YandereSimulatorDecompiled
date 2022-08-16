@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ConfessionManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -458,11 +458,13 @@ public class ConfessionManagerScript : MonoBehaviour
       {
         this.RotateSpeed += Time.deltaTime * 0.5f;
         this.ConfessionCamera.position = Vector3.Lerp(this.ConfessionCamera.position, new Vector3(4f, 7f, 119f), Time.deltaTime * this.RotateSpeed);
+        Debug.Log((object) ("Timer is: " + this.Timer.ToString()));
         if ((double) this.Timer > 5.0)
         {
           this.FadeOut = true;
           if ((double) this.Darkness.color.a == 1.0)
           {
+            Debug.Log((object) "Confession cutscene ended. Deciding where to go next.");
             this.StudentManager.RivalEliminated = true;
             this.StudentManager.Yandere.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Rejected;
             this.MainCamera.SetActive(true);
@@ -474,6 +476,13 @@ public class ConfessionManagerScript : MonoBehaviour
             this.StudentManager.Police.gameObject.SetActive(true);
             this.StudentManager.Police.BeginConfession = false;
             this.StudentManager.Police.enabled = true;
+            if (this.StudentManager.Police.EndOfDay.Phase == 25)
+            {
+              this.StudentManager.Police.EndOfDay.Phase = 13;
+              this.StudentManager.Police.EndOfDay.Darken = true;
+              this.StudentManager.Police.EndOfDay.EndOfDayDarkness.alpha = 1f;
+              this.StudentManager.Police.EndOfDay.gameObject.SetActive(true);
+            }
           }
         }
       }

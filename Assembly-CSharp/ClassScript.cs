@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClassScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -38,9 +38,10 @@ public class ClassScript : MonoBehaviour
   public int[] SubjectTemp;
   public int[] Subject;
   public string[] Desc;
-  public int GradeUpSubject;
+  public int StartingPoints;
   public int BonusPoints;
   public int StudyPoints;
+  public int GradeUpSubject;
   public int Selected;
   public int Grade;
   public bool ShowWarning;
@@ -204,11 +205,10 @@ public class ClassScript : MonoBehaviour
             this.HoldLeftTimer = 0.0f;
           if (Input.GetButtonDown("A"))
           {
-            if (this.StudyPoints == 0)
-            {
-              this.ExitClass();
-            }
-            else
+            bool flag = true;
+            if (this.BiologyGrade == 5 && this.ChemistryGrade == 5 && this.LanguageGrade == 5 && this.PhysicalGrade == 5 && this.PsychologyGrade == 5)
+              flag = false;
+            if (this.StudyPoints == this.StartingPoints & flag)
             {
               this.ShowWarning = true;
               this.PromptBar.ClearButtons();
@@ -216,6 +216,8 @@ public class ClassScript : MonoBehaviour
               this.PromptBar.Label[1].text = "Allocate Points";
               this.PromptBar.UpdateButtons();
             }
+            else
+              this.ExitClass();
           }
         }
         else if ((double) this.WarningWindow.localScale.x > 0.89999997615814209)
@@ -317,7 +319,7 @@ public class ClassScript : MonoBehaviour
           this.PromptBar.UpdateButtons();
           this.PromptBar.Show = true;
         }
-        else if ((double) this.GradeUpWindow.localScale.x > 0.99000000953674316 && Input.GetButtonDown("A"))
+        else if ((double) this.GradeUpWindow.localScale.x > 0.89999997615814209 && Input.GetButtonDown("A"))
         {
           this.PromptBar.ClearButtons();
           this.GradeUp = false;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MissionModeMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -902,7 +902,6 @@ public class MissionModeMenuScript : MonoBehaviour
 
   private void ChooseTarget()
   {
-    Debug.Log((object) "Calling the ChooseTarget() function.");
     if (this.Phase != 5)
     {
       this.TargetID = Random.Range(2, 90);
@@ -1040,7 +1039,6 @@ public class MissionModeMenuScript : MonoBehaviour
 
   public void UpdateGraphics()
   {
-    Debug.Log((object) "Populating the Mission Mode criteria list!");
     this.TargetID = MissionModeGlobals.MissionTarget;
     if (this.TargetNumber > 11 && this.TargetNumber < 21)
     {
@@ -1144,6 +1142,8 @@ public class MissionModeMenuScript : MonoBehaviour
   private void StartMission()
   {
     this.MyAudio.PlayOneShot(this.InfoLines[6]);
+    Debug.Log((object) "Switching GameGlobals.Profile to 4, since we are beginning a Mission Mode mission, and nothing we do in here should carry over to any of the player's other save files.");
+    GameGlobals.Profile = 4;
     Globals.DeleteAll();
     OptionGlobals.TutorialsOff = true;
     SchoolGlobals.SchoolAtmosphere = (float) (1.0 - (double) this.Difficulty * 0.10000000149011612);

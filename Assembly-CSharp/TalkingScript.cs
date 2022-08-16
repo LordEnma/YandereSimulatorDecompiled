@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TalkingScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -392,6 +392,7 @@ public class TalkingScript : MonoBehaviour
         {
           bool flag5 = false;
           bool flag6 = false;
+          bool flag7 = false;
           if (this.S.StudentID == this.S.StudentManager.RivalID)
           {
             if ((Object) this.S.Follower != (Object) null && this.S.Follower.CurrentAction == StudentActionType.Follow && !this.S.Follower.Distracting && !this.S.Follower.GoAway && !this.S.Follower.EatingSnack)
@@ -400,10 +401,12 @@ public class TalkingScript : MonoBehaviour
             {
               this.S.Yandere.NotificationManager.CustomText = "You need at least " + (DateGlobals.Week * 10).ToString() + " Reputation Points";
               this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-              flag6 = true;
+              flag7 = true;
             }
+            else if (this.S.CurrentAction == StudentActionType.SitAndEatBento)
+              flag6 = true;
           }
-          if ((double) this.S.Clock.HourTime > 8.0 && (double) this.S.Clock.HourTime < 13.0 || (double) this.S.Clock.HourTime > 13.375 && (double) this.S.Clock.HourTime < 15.5 || this.S.StudentID == this.S.StudentManager.RivalID & flag5 || this.S.StudentID == this.S.StudentManager.RivalID & flag6 || (double) SchoolGlobals.SchoolAtmosphere <= 0.5 || this.S.Schoolwear == 2)
+          if ((double) this.S.Clock.HourTime > 8.0 && (double) this.S.Clock.HourTime < 13.0 || (double) this.S.Clock.HourTime > 13.375 && (double) this.S.Clock.HourTime < 15.5 || this.S.StudentID == this.S.StudentManager.RivalID & flag5 || this.S.StudentID == this.S.StudentManager.RivalID & flag7 || this.S.StudentID == this.S.StudentManager.RivalID & flag6 || (double) SchoolGlobals.SchoolAtmosphere <= 0.5 || this.S.Schoolwear == 2)
           {
             this.S.CharacterAnimation.CrossFade(this.S.GossipAnim);
             this.NegativeResponse = true;
@@ -420,10 +423,16 @@ public class TalkingScript : MonoBehaviour
                 this.S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 2, 5f);
                 this.S.TalkTimer = 5f;
               }
-              else if (flag6)
+              else if (flag7)
               {
                 this.S.Subtitle.UpdateLabel(SubtitleType.StudentStay, 3, 13f);
                 this.S.TalkTimer = 13f;
+              }
+              else if (flag6)
+              {
+                this.S.Subtitle.CustomText = "Now? I'm busy eating...can you show me later, instead?";
+                this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+                this.S.TalkTimer = 5f;
               }
               else if ((double) SchoolGlobals.SchoolAtmosphere <= 0.5)
               {

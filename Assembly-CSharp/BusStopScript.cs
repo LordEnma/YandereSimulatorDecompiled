@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BusStopScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -99,7 +99,9 @@ public class BusStopScript : MonoBehaviour
       GameGlobals.NonlethalElimination = false;
     }
     this.RivalEliminationID = GameGlobals.RivalEliminationID;
-    Debug.Log((object) ("GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID.ToString()));
+    if (GameGlobals.RivalEliminationID == 14)
+      this.RivalEliminationID = 1;
+    Debug.Log((object) ("GameGlobals.RivalEliminationID is: " + GameGlobals.RivalEliminationID.ToString() + ", and this cutscene's RivalEliminationID is: " + this.RivalEliminationID.ToString()));
   }
 
   private void Update()

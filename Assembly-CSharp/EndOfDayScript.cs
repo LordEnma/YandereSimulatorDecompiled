@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -954,6 +954,8 @@ public class EndOfDayScript : MonoBehaviour
       this.Senpai.gameObject.SetActive(true);
       this.Senpai.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
       this.Senpai.transform.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
+      this.Senpai.Character.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+      this.Senpai.Character.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
       this.Senpai.EmptyHands();
       if (this.StudentManager.RivalEliminated)
         this.Senpai.CharacterAnimation.Play(this.Senpai.BulliedWalkAnim);
@@ -1703,42 +1705,47 @@ public class EndOfDayScript : MonoBehaviour
     HomeGlobals.Night = true;
     this.Police.KillStudents();
     DateGlobals.PassDays = !this.Police.Suspended ? 1 : this.Police.SuspensionLength;
-    if ((UnityEngine.Object) this.StudentManager.Students[StudentGlobals.StudentSlave] != (UnityEngine.Object) null && this.StudentManager.Students[StudentGlobals.StudentSlave].Ragdoll.enabled)
+    if ((UnityEngine.Object) this.StudentManager.Students[StudentGlobals.StudentSlave] != (UnityEngine.Object) null)
     {
-      StudentGlobals.StudentSlave = 0;
-      --StudentGlobals.Prisoners;
-      switch (StudentGlobals.PrisonerChosen)
+      Debug.Log((object) "A mind-broken slave came to school today.");
+      if (this.StudentManager.Students[StudentGlobals.StudentSlave].Ragdoll.enabled || !this.StudentManager.Students[StudentGlobals.StudentSlave].Alive)
       {
-        case 1:
-          StudentGlobals.Prisoner1 = 0;
-          break;
-        case 2:
-          StudentGlobals.Prisoner2 = 0;
-          break;
-        case 3:
-          StudentGlobals.Prisoner3 = 0;
-          break;
-        case 4:
-          StudentGlobals.Prisoner4 = 0;
-          break;
-        case 5:
-          StudentGlobals.Prisoner5 = 0;
-          break;
-        case 6:
-          StudentGlobals.Prisoner6 = 0;
-          break;
-        case 7:
-          StudentGlobals.Prisoner7 = 0;
-          break;
-        case 8:
-          StudentGlobals.Prisoner8 = 0;
-          break;
-        case 9:
-          StudentGlobals.Prisoner9 = 0;
-          break;
-        case 10:
-          StudentGlobals.Prisoner10 = 0;
-          break;
+        Debug.Log((object) "That slave died. Reducing the number of slaves by one, and removing them from the prisoner array.");
+        StudentGlobals.StudentSlave = 0;
+        --StudentGlobals.Prisoners;
+        switch (StudentGlobals.PrisonerChosen)
+        {
+          case 1:
+            StudentGlobals.Prisoner1 = 0;
+            break;
+          case 2:
+            StudentGlobals.Prisoner2 = 0;
+            break;
+          case 3:
+            StudentGlobals.Prisoner3 = 0;
+            break;
+          case 4:
+            StudentGlobals.Prisoner4 = 0;
+            break;
+          case 5:
+            StudentGlobals.Prisoner5 = 0;
+            break;
+          case 6:
+            StudentGlobals.Prisoner6 = 0;
+            break;
+          case 7:
+            StudentGlobals.Prisoner7 = 0;
+            break;
+          case 8:
+            StudentGlobals.Prisoner8 = 0;
+            break;
+          case 9:
+            StudentGlobals.Prisoner9 = 0;
+            break;
+          case 10:
+            StudentGlobals.Prisoner10 = 0;
+            break;
+        }
       }
     }
     for (int elimID = 1; elimID < 11; ++elimID)
@@ -1763,6 +1770,8 @@ public class EndOfDayScript : MonoBehaviour
     }
     else
     {
+      Debug.Log((object) "Subtracting 10% school atmosphere because someone went missing today.");
+      SchoolGlobals.SchoolAtmosphere -= 0.1f;
       ++StudentGlobals.Prisoners;
       switch (StudentGlobals.Prisoners)
       {
@@ -1843,7 +1852,11 @@ public class EndOfDayScript : MonoBehaviour
       SchoolGlobals.SchoolAtmosphere += (float) this.Arrests * 0.1f;
     }
     if (this.Counselor.ExpelledDelinquents)
+    {
       SchoolGlobals.SchoolAtmosphere += 0.25f;
+      if (ClubGlobals.Club == ClubType.Delinquent)
+        ClubGlobals.Club = ClubType.None;
+    }
     if (this.Yandere.Inventory.FakeID)
       PlayerGlobals.FakeID = true;
     if (this.RaibaruLoner)

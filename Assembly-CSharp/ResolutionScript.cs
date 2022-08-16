@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ResolutionScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Globalization;
@@ -27,17 +27,27 @@ public class ResolutionScript : MonoBehaviour
   public int[] Heights;
   public int QualityID;
   public int ResID = 1;
+  public int Rs;
   public int ID = 1;
 
   private void Start()
   {
     if (Screen.width < 1280 || Screen.height < 720)
+    {
       Screen.SetResolution(1280, 720, false);
+      this.ResID = 0;
+    }
     this.Darkness.color = new Color(1f, 1f, 1f, 1f);
     Cursor.visible = false;
     Screen.fullScreen = false;
     Screen.SetResolution(Screen.width, Screen.height, false);
-    this.ResolutionLabel.text = Screen.width.ToString() + " x " + Screen.height.ToString();
+    UILabel resolutionLabel = this.ResolutionLabel;
+    int num = Screen.width;
+    string str1 = num.ToString();
+    num = Screen.height;
+    string str2 = num.ToString();
+    string str3 = str1 + " x " + str2;
+    resolutionLabel.text = str3;
     this.QualityLabel.text = this.Qualities[QualitySettings.GetQualityLevel()] ?? "";
     this.FullScreenLabel.text = "No";
     Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
@@ -50,6 +60,7 @@ public class ResolutionScript : MonoBehaviour
     {
       Screen.SetResolution(1280, 720, false);
       this.ResolutionLabel.text = Screen.width.ToString() + " x " + Screen.height.ToString();
+      this.ResID = 0;
     }
     if (this.FadeOut)
     {
@@ -119,9 +130,16 @@ public class ResolutionScript : MonoBehaviour
         this.FadeOut = true;
     }
     this.Highlight.localPosition = Vector3.Lerp(this.Highlight.localPosition, new Vector3(-307.5f, (float) (250 - this.ID * 100), 0.0f), Time.deltaTime * 10f);
-    if (!Input.GetKeyDown(KeyCode.KeypadEnter))
+    if (Input.GetKeyDown(KeyCode.KeypadEnter))
+      SceneManager.LoadScene("NewTitleScene");
+    if (!Input.GetKeyDown("r"))
       return;
-    SceneManager.LoadScene("NewTitleScene");
+    ++this.Rs;
+    if (this.Rs != 10)
+      return;
+    PlayerPrefs.DeleteAll();
+    Screen.SetResolution(1280, 720, false);
+    SceneManager.LoadScene("ResolutionScene");
   }
 
   private void UpdateRes()

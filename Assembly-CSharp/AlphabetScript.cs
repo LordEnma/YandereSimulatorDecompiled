@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AlphabetScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -10,6 +10,7 @@ using UnityEngine.SceneManagement;
 public class AlphabetScript : MonoBehaviour
 {
   public StudentManagerScript StudentManager;
+  public MissionModeScript MissionMode;
   public InventoryScript Inventory;
   public ClassScript Class;
   public GameObject BodyHidingLockers;
@@ -60,6 +61,7 @@ public class AlphabetScript : MonoBehaviour
         this.IDs = this.EightiesIDs;
         this.Limit = 79;
       }
+      this.MissionMode.RemoveBoxes();
       this.UpdateText();
       this.UpdateDifficultyLabel();
     }

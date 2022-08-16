@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EventManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -130,6 +130,10 @@ public class EventManagerScript : MonoBehaviour
     if ((double) this.Clock.HourTime > (double) this.EndTime || this.EventStudent[1].WitnessedCorpse || this.EventStudent[2].WitnessedCorpse || this.EventStudent[1].Dying || this.EventStudent[2].Dying || this.EventStudent[1].Splashed || this.EventStudent[2].Splashed || this.EventStudent[1].Alarmed || this.EventStudent[2].Alarmed)
     {
       this.EndEvent();
+      if (!this.EventStudent[1].Alarmed)
+        return;
+      this.EventStudent[2].FocusOnYandere = true;
+      this.EventStudent[2].Alarm = 200f;
     }
     else
     {
@@ -273,6 +277,8 @@ public class EventManagerScript : MonoBehaviour
 
   public void EndEvent()
   {
+    if (this.Osana)
+      Debug.Log((object) "One of Osana's ''talk privately with Raibaru'' events just ended.");
     if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
       UnityEngine.Object.Destroy((UnityEngine.Object) this.VoiceClip);
     this.EventStudent[1].CurrentDestination = this.EventStudent[1].Destinations[this.EventStudent[1].Phase];

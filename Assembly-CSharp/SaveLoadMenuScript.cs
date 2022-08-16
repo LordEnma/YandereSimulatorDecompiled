@@ -1,12 +1,11 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SaveLoadMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using System.Collections;
-using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -35,9 +34,11 @@ public class SaveLoadMenuScript : MonoBehaviour
 
   public void Start()
   {
+    Debug.Log((object) ("SaveLoadMenu.Start() - At this moment, GameGlobals.Profile was: " + GameGlobals.Profile.ToString()));
     if (GameGlobals.Profile == 0)
       GameGlobals.Profile = 1;
     this.Profile = GameGlobals.Profile;
+    Debug.Log((object) ("And now it is: " + GameGlobals.Profile.ToString()));
     this.WarningWindow.SetActive(true);
     this.ConfirmWindow.SetActive(false);
     this.StartCoroutine(this.GetThumbnails());
@@ -161,44 +162,6 @@ public class SaveLoadMenuScript : MonoBehaviour
             this.PauseScreen.Yandere.Blur.enabled = false;
             this.UICamera.enabled = false;
             this.GrabScreenshot = true;
-          }
-        }
-      }
-      if (Input.GetButtonDown("X"))
-      {
-        if (this.Loading)
-        {
-          if (this.DataLabels[this.Selected].text != "No Data")
-          {
-            PlayerPrefs.SetInt("SaveSlot", this.Selected);
-            this.StudentManager.Load();
-            Physics.SyncTransforms();
-            if (PlayerPrefs.GetInt("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_Weekday") == 1)
-              DateGlobals.Weekday = DayOfWeek.Monday;
-            else if (PlayerPrefs.GetInt("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_Weekday") == 2)
-              DateGlobals.Weekday = DayOfWeek.Tuesday;
-            else if (PlayerPrefs.GetInt("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_Weekday") == 3)
-              DateGlobals.Weekday = DayOfWeek.Wednesday;
-            else if (PlayerPrefs.GetInt("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_Weekday") == 4)
-              DateGlobals.Weekday = DayOfWeek.Tuesday;
-            else if (PlayerPrefs.GetInt("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_Weekday") == 5)
-              DateGlobals.Weekday = DayOfWeek.Wednesday;
-            this.Clock.DayLabel.text = this.Clock.GetWeekdayText(DateGlobals.Weekday);
-            this.PauseScreen.MainMenu.SetActive(true);
-            this.PauseScreen.Sideways = false;
-            this.PauseScreen.PressedB = true;
-            this.gameObject.SetActive(false);
-            this.PauseScreen.ExitPhone();
-          }
-        }
-        else if (this.Saving)
-        {
-          if (PlayerPrefs.GetString("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_DateTime") != "")
-          {
-            File.Delete(Application.streamingAssetsPath + "/SaveData/Profile_" + this.Profile.ToString() + "/Slot_" + this.Selected.ToString() + "_Thumbnail.png");
-            PlayerPrefs.SetString("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_DateTime", "");
-            this.Thumbnails[this.Selected].mainTexture = this.DefaultThumbnail;
-            this.DataLabels[this.Selected].text = "No Data";
           }
         }
       }

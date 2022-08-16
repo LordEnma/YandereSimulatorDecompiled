@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DebugMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -288,45 +288,37 @@ public class DebugMenuScript : MonoBehaviour
           else if (Input.GetKeyDown(KeyCode.G))
           {
             StudentScript student = this.StudentManager.Students[this.RooftopStudent];
-            if ((double) this.Clock.HourTime < 15.0)
+            PlayerGlobals.SetStudentFriend(this.RooftopStudent, true);
+            this.StudentManager.Students[this.RooftopStudent].Friend = true;
+            this.Yandere.transform.position = this.RooftopSpot.position + new Vector3(1f, 0.0f, 0.0f);
+            this.WeaponManager.Weapons[6].transform.position = this.Yandere.transform.position + new Vector3(0.0f, 0.0f, 1.915f);
+            if ((UnityEngine.Object) student != (UnityEngine.Object) null)
             {
-              PlayerGlobals.SetStudentFriend(this.RooftopStudent, true);
-              this.StudentManager.Students[this.RooftopStudent].Friend = true;
-              this.Yandere.transform.position = this.RooftopSpot.position + new Vector3(1f, 0.0f, 0.0f);
-              this.WeaponManager.Weapons[6].transform.position = this.Yandere.transform.position + new Vector3(0.0f, 0.0f, 1.915f);
-              if ((UnityEngine.Object) student != (UnityEngine.Object) null)
+              this.StudentManager.OsanaOfferHelp.UpdateLocation();
+              this.StudentManager.OsanaOfferHelp.enabled = true;
+              this.StudentManager.NoteWindow.MeetID = 9;
+              if (!student.Indoors)
               {
-                this.StudentManager.OsanaOfferHelp.UpdateLocation();
-                this.StudentManager.OsanaOfferHelp.enabled = true;
-                this.StudentManager.NoteWindow.MeetID = 9;
-                if (!student.Indoors)
-                {
-                  if ((UnityEngine.Object) student.ShoeRemoval.Locker == (UnityEngine.Object) null)
-                    student.ShoeRemoval.Start();
-                  student.ShoeRemoval.PutOnShoes();
-                }
-                student.CharacterAnimation.Play(student.IdleAnim);
-                student.transform.position = this.RooftopSpot.position;
-                student.transform.rotation = this.RooftopSpot.rotation;
-                student.Prompt.Label[0].text = "     Push";
-                student.CurrentDestination = this.RooftopSpot;
-                student.Pathfinding.target = this.RooftopSpot;
-                student.Pathfinding.canSearch = false;
-                student.Pathfinding.canMove = false;
-                student.SpeechLines.Stop();
-                student.Pushable = true;
-                student.Routine = false;
-                student.Meeting = true;
-                student.MeetTime = 0.0f;
+                if ((UnityEngine.Object) student.ShoeRemoval.Locker == (UnityEngine.Object) null)
+                  student.ShoeRemoval.Start();
+                student.ShoeRemoval.PutOnShoes();
               }
-              if ((double) this.Clock.HourTime < 7.0999999046325684)
-                this.Clock.PresentTime = 426f;
+              student.CharacterAnimation.Play(student.IdleAnim);
+              student.transform.position = this.RooftopSpot.position;
+              student.transform.rotation = this.RooftopSpot.rotation;
+              student.Prompt.Label[0].text = "     Push";
+              student.CurrentDestination = this.RooftopSpot;
+              student.Pathfinding.target = this.RooftopSpot;
+              student.Pathfinding.canSearch = false;
+              student.Pathfinding.canMove = false;
+              student.SpeechLines.Stop();
+              student.Pushable = true;
+              student.Routine = false;
+              student.Meeting = true;
+              student.MeetTime = 0.0f;
             }
-            else
-            {
-              this.Clock.PresentTime = 960f;
-              student.transform.position = this.Lockers.position;
-            }
+            if ((double) this.Clock.HourTime < 7.0999999046325684)
+              this.Clock.PresentTime = 426f;
             Physics.SyncTransforms();
             this.Window.SetActive(false);
           }

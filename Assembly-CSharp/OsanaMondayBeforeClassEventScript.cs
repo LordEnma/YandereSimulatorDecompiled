@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMondayBeforeClassEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -119,8 +119,11 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
     }
     else
     {
-      this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
-      this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
+      if (!this.Rival.GoAway)
+      {
+        this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
+        this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
+      }
       if ((UnityEngine.Object) this.Rival.Follower != (UnityEngine.Object) null && this.Rival.Follower.InEvent)
       {
         if ((double) this.Rival.Follower.DistanceToDestination >= (double) this.Rival.Follower.TargetDistance + 0.10000000149011612)
@@ -137,6 +140,10 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
         {
           if ((UnityEngine.Object) this.Rival.Follower == (UnityEngine.Object) null || !this.Rival.Follower.InEvent)
           {
+            if ((UnityEngine.Object) this.Rival.Follower == (UnityEngine.Object) null)
+              Debug.Log((object) "Ending because Raibaru wasn't there.");
+            else
+              Debug.Log((object) "For some reason, Raibaru's ''InEvent'' was false.");
             this.EndEvent();
           }
           else
@@ -147,14 +154,21 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
         }
       }
       else if ((double) this.Rival.CharacterAnimation["f02_pondering_00"].time > (double) this.Rival.CharacterAnimation["f02_pondering_00"].length || (double) this.Timer > 20.0)
-        this.EndEvent();
-      if (this.Rival.Alarmed || this.Rival.Splashed || (UnityEngine.Object) this.Rival.Follower != (UnityEngine.Object) null && this.Rival.Follower.DramaticReaction)
       {
+        Debug.Log((object) "Ending naturally.");
+        this.EndEvent();
+      }
+      if (this.Rival.Alarmed || this.Rival.Splashed || this.Rival.GoAway || (UnityEngine.Object) this.Rival.Follower != (UnityEngine.Object) null && this.Rival.Follower.DramaticReaction)
+      {
+        Debug.Log((object) "Ending because alarmed/slashed/stinkbombed/Raibaru saw murder.");
         UnityEngine.Object.Instantiate<GameObject>(this.AlarmDisc, this.Yandere.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
         this.EndEvent();
       }
       else if (this.Rival.Dying)
+      {
+        Debug.Log((object) "Ending because dying.");
         this.EndEvent();
+      }
       this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Rival.transform.position);
       if (this.enabled)
       {
@@ -181,9 +195,13 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
     if (this.Phase <= 0)
       return;
     if (this.Clock.Period > 1 || this.Rival.Splashed || this.Rival.Electrified)
+    {
+      Debug.Log((object) "Ending because of clock, splash, or electricity.");
       this.EndEvent();
+    }
     if (this.Yandere.NoDebug || !Input.GetKeyDown(KeyCode.LeftControl))
       return;
+    Debug.Log((object) "Ending because of debug command.");
     this.Bentos[1].SetActive(true);
     this.Bentos[2].SetActive(true);
     this.EndEvent();
@@ -198,7 +216,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
     this.Bentos[2].GetComponent<PromptScript>().enabled = true;
     if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
       UnityEngine.Object.Destroy((UnityEngine.Object) this.VoiceClip);
-    if (!this.Rival.Alarmed && !this.Rival.Electrified && !this.Rival.Splashed && (UnityEngine.Object) this.Rival.Hunter == (UnityEngine.Object) null)
+    if (!this.Rival.Alarmed && !this.Rival.Electrified && !this.Rival.Splashed && (UnityEngine.Object) this.Rival.Hunter == (UnityEngine.Object) null && !this.Rival.GoAway)
     {
       this.Rival.CurrentDestination = this.Rival.Destinations[this.Rival.Phase];
       this.Rival.Pathfinding.target = this.Rival.Destinations[this.Rival.Phase];
@@ -208,7 +226,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
     }
     else
     {
-      Debug.Log((object) "The event ended specifically because Osana was alarmed, splashed, or killed.");
+      Debug.Log((object) "The event ended specifically because Osana was alarmed, splashed, stink bombed, or killed.");
       this.Rival.Pathfinding.canSearch = false;
       this.Rival.Pathfinding.canMove = false;
     }

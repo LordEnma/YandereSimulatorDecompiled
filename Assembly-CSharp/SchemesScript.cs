@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SchemesScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -106,6 +106,10 @@ public class SchemesScript : MonoBehaviour
     if ((UnityEngine.Object) this.NextStepInput != (UnityEngine.Object) null)
       this.NextStepInput.SetActive(false);
     this.UpdateSchemeInfo();
+    if (!this.StudentManager.MissionMode)
+      return;
+    this.SchemeInstructions.color = Color.white;
+    this.SchemeDesc.color = Color.white;
   }
 
   private void Update()
@@ -298,6 +302,8 @@ public class SchemesScript : MonoBehaviour
     this.Steps = this.SchemeSteps[SchemeGlobals.CurrentScheme].Split('\n');
     if (SchemeGlobals.CurrentScheme > 0)
     {
+      if (SchemeGlobals.CurrentScheme == 4 && SchemeGlobals.GetSchemeStage(4) == 1 && ((UnityEngine.Object) this.StudentManager.Yandere.Weapon[1] != (UnityEngine.Object) null && this.StudentManager.Yandere.Weapon[1].WeaponID == 6 || (UnityEngine.Object) this.StudentManager.Yandere.Weapon[2] != (UnityEngine.Object) null && this.StudentManager.Yandere.Weapon[2].WeaponID == 6))
+        SchemeGlobals.SetSchemeStage(4, 2);
       if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) < 100)
       {
         if (SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) < 1)

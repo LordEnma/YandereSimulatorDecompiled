@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GiggleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -59,6 +59,7 @@ public class GiggleScript : MonoBehaviour
         this.Student.CharacterAnimation.CrossFade(this.Student.IdleAnim);
         this.Giggle = Object.Instantiate<GameObject>(this.EmptyGameObject, new Vector3(this.transform.position.x, this.Student.transform.position.y, this.transform.position.z), Quaternion.identity);
         this.Student.Giggle = this.Giggle;
+        ++this.Student.AnnoyedByGiggles;
         if ((Object) this.Student.Pathfinding != (Object) null && !this.Student.Nemesis)
         {
           if (this.Student.Drownable)

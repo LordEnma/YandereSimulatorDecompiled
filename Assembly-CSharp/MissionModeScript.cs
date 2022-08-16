@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MissionModeScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -53,6 +53,7 @@ public class MissionModeScript : MonoBehaviour
   public UILabel FPS;
   public GardenHoleScript[] GardenHoles;
   public GameObject[] ReputationIcons;
+  public GameObject[] CardboardBoxes;
   public string[] GameOverReasons;
   public AudioClip[] StealthMusic;
   public Transform[] SpawnPoints;
@@ -194,10 +195,10 @@ public class MissionModeScript : MonoBehaviour
         this.PoliceIcon[this.ID].color = new Color(1f, 0.0f, 0.0f, 1f);
         this.PoliceIcon[this.ID].applyGradient = false;
       }
-      this.PhoneBar.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+      this.PhoneBar.color = new Color(0.0f, 0.0f, 0.0f, 1f);
       this.PhoneBG.color = new Color(0.5f, 0.5f, 0.5f, 1f);
       this.PhoneBG.gradientTop = new Color(1f, 1f, 1f, 1f);
-      this.PhoneBG.gradientBottom = new Color(0.0f, 0.0f, 0.0f, 1f);
+      this.PhoneBG.gradientBottom = new Color(0.5f, 0.5f, 0.5f, 1f);
     }
     this.NewFPSLabel.transform.parent.parent.gameObject.SetActive(true);
     if (MissionModeGlobals.MissionMode)
@@ -385,10 +386,10 @@ public class MissionModeScript : MonoBehaviour
           this.Method[index] = PlayerPrefs.GetInt("MissionModeMethod" + index.ToString());
         }
       }
-      this.PhoneBar.color = new Color(0.5f, 0.5f, 0.5f, 1f);
+      this.PhoneBar.color = new Color(0.0f, 0.0f, 0.0f, 1f);
       this.PhoneBG.color = new Color(0.5f, 0.5f, 0.5f, 1f);
       this.PhoneBG.gradientTop = new Color(1f, 1f, 1f, 1f);
-      this.PhoneBG.gradientBottom = new Color(0.0f, 0.0f, 0.0f, 1f);
+      this.PhoneBG.gradientBottom = new Color(0.5f, 0.5f, 0.5f, 1f);
       this.Enabled = true;
     }
     else
@@ -413,7 +414,6 @@ public class MissionModeScript : MonoBehaviour
           this.Yandere.HUD.alpha = Mathf.MoveTowards(this.Yandere.HUD.alpha, 1f, Time.deltaTime / 3f);
           if ((double) this.Yandere.HUD.alpha == 1.0)
           {
-            Debug.Log((object) "Incrementing phase.");
             this.Yandere.RPGCamera.enabled = true;
             this.HeartbeatCamera.SetActive(true);
             this.Yandere.CanMove = true;
@@ -1061,5 +1061,11 @@ public class MissionModeScript : MonoBehaviour
     if (this.Checking[1] || this.Checking[2] || this.Checking[3] || this.Checking[4] || this.Checking[5] || this.Checking[6] || this.Checking[7] || this.Checking[8] || this.Checking[9] || this.Checking[10])
       return;
     this.TargetDead = true;
+  }
+
+  public void RemoveBoxes()
+  {
+    for (int index = 1; index < this.CardboardBoxes.Length; ++index)
+      this.CardboardBoxes[index].SetActive(false);
   }
 }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NemesisScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -28,6 +28,7 @@ public class NemesisScript : MonoBehaviour
   public bool Dying;
   public int EffectPhase;
   public int Difficulty;
+  public int Frame;
   public int ID;
   public float OriginalYPosition;
   public float ScanTimer = 6f;
@@ -128,8 +129,9 @@ public class NemesisScript : MonoBehaviour
 
   private void Update()
   {
-    if (this.PutOnDisguise)
+    if (this.Frame > 1 && this.PutOnDisguise)
     {
+      Debug.Log((object) "Nemesis is supposed to be choosing a disguise right now.");
       bool flag = false;
       int index1 = 1;
       while ((((Object) this.Student.StudentManager.Students[index1] != (Object) null && this.Student.StudentManager.Students[index1].Male || index1 > 5 && index1 < 21 || index1 == 21 || index1 == 26 || index1 == 31 || index1 == 36 || index1 == 41 || index1 == 46 || index1 == 51 || index1 == 56 || index1 == 61 || index1 == 66 || index1 == 71 ? 1 : (index1 == this.MissionMode.TargetID ? 1 : 0)) | (flag ? 1 : 0)) != 0)
@@ -145,6 +147,7 @@ public class NemesisScript : MonoBehaviour
           }
         }
       }
+      Debug.Log((object) ("Nemesis is replacing Student# " + index1.ToString() + " - " + this.Student.StudentManager.Students[index1].Name));
       this.Student.StudentManager.Students[index1].gameObject.SetActive(false);
       this.Student.StudentManager.Students[index1].Replaced = true;
       this.Cosmetic.StudentID = index1;
@@ -161,9 +164,10 @@ public class NemesisScript : MonoBehaviour
           component2.enabled = false;
       }
       this.Student.FaceCollider.tag = "Disguise";
-      Debug.Log((object) ("Nemesis has disguised herself as " + this.Student.StudentManager.Students[index1].Name));
+      Debug.Log((object) ("As of now, Nemesis should have disguised herself as " + this.Student.StudentManager.Students[index1].Name));
       this.PutOnDisguise = false;
     }
+    ++this.Frame;
     if (!this.Dying)
     {
       if (!this.Attacking)

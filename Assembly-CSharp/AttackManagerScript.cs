@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AttackManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -92,7 +92,6 @@ public class AttackManagerScript : MonoBehaviour
       if (weapon.WeaponID == 23)
         str1 = "extin";
       this.AnimName = "f02_" + str1 + sanityString + "SanityA_00";
-      Debug.Log((object) ("VictimAnimName is: " + this.VictimAnimName));
     }
     else
     {

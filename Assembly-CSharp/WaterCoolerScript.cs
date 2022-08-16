@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WaterCoolerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -81,47 +81,52 @@ public class WaterCoolerScript : MonoBehaviour
         this.Prompt.HideButton[0] = true;
       this.Prompt.HideButton[1] = true;
     }
-    else if (!this.TrapSet)
+    else
     {
-      bool flag = false;
-      if (this.Yandere.Armed && this.Yandere.EquippedWeapon.Type == WeaponType.Knife || (Object) this.Yandere.Weapon[1] != (Object) null && this.Yandere.Weapon[1].Type == WeaponType.Knife || (Object) this.Yandere.Weapon[2] != (Object) null && this.Yandere.Weapon[2].Type == WeaponType.Knife)
-        flag = true;
-      if (((!this.Yandere.Inventory.String ? 0 : (this.Yandere.Inventory.MaskingTape ? 1 : 0)) & (flag ? 1 : 0)) != 0)
+      if (!this.TrapSet)
       {
-        this.Prompt.HideButton[1] = false;
+        bool flag = false;
+        if (this.Yandere.Armed && this.Yandere.EquippedWeapon.Type == WeaponType.Knife || (Object) this.Yandere.Weapon[1] != (Object) null && this.Yandere.Weapon[1].Type == WeaponType.Knife || (Object) this.Yandere.Weapon[2] != (Object) null && this.Yandere.Weapon[2].Type == WeaponType.Knife)
+          flag = true;
+        if (((!this.Yandere.Inventory.String ? 0 : (this.Yandere.Inventory.MaskingTape ? 1 : 0)) & (flag ? 1 : 0)) != 0)
+        {
+          this.Prompt.HideButton[1] = false;
+          this.Prompt.Label[1].applyGradient = false;
+          this.Prompt.Label[1].color = Color.red;
+          if (SchemeGlobals.GetSchemeStage(1) == 2 || SchemeGlobals.GetSchemeStage(2) == 2)
+          {
+            SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) + 1);
+            this.Yandere.PauseScreen.Schemes.UpdateInstructions();
+          }
+          if ((double) this.Prompt.Circle[1].fillAmount == 0.0)
+          {
+            this.Prompt.Circle[1].fillAmount = 1f;
+            this.Yandere.SuspiciousActionTimer = 1f;
+            this.SetTrap();
+          }
+        }
+        else
+        {
+          this.Prompt.HideButton[1] = true;
+          this.Prompt.Label[1].applyGradient = true;
+          this.Prompt.Label[1].gradientTop = this.OriginalColor[0];
+          this.Prompt.Label[1].gradientBottom = this.OriginalColor[1];
+        }
+      }
+      else if ((double) this.Prompt.Circle[1].fillAmount == 0.0)
+      {
+        this.Prompt.Circle[1].fillAmount = 1f;
+        this.Prompt.Label[1].text = "     Create Tripwire Trap";
         this.Prompt.Label[1].applyGradient = false;
         this.Prompt.Label[1].color = Color.red;
-        if (SchemeGlobals.GetSchemeStage(1) == 2 || SchemeGlobals.GetSchemeStage(2) == 2)
-        {
-          SchemeGlobals.SetSchemeStage(SchemeGlobals.CurrentScheme, SchemeGlobals.GetSchemeStage(SchemeGlobals.CurrentScheme) + 1);
-          this.Yandere.PauseScreen.Schemes.UpdateInstructions();
-        }
-        if ((double) this.Prompt.Circle[1].fillAmount == 0.0)
-        {
-          this.Prompt.Circle[1].fillAmount = 1f;
-          this.Yandere.SuspiciousActionTimer = 1f;
-          this.SetTrap();
-        }
+        this.TripwireTrap.SetActive(false);
+        this.TrapSet = false;
+        this.Prompt.HideButton[3] = false;
+        this.PickUp.enabled = true;
+        this.MyRigidbody.isKinematic = false;
       }
-      else
-      {
-        this.Prompt.HideButton[1] = true;
-        this.Prompt.Label[1].applyGradient = true;
-        this.Prompt.Label[1].gradientTop = this.OriginalColor[0];
-        this.Prompt.Label[1].gradientBottom = this.OriginalColor[1];
-      }
-    }
-    else if ((double) this.Prompt.Circle[1].fillAmount == 0.0)
-    {
-      this.Prompt.Circle[1].fillAmount = 1f;
-      this.Prompt.Label[1].text = "     Create Tripwire Trap";
-      this.Prompt.Label[1].applyGradient = false;
-      this.Prompt.Label[1].color = Color.red;
-      this.TripwireTrap.SetActive(false);
-      this.TrapSet = false;
-      this.Prompt.HideButton[3] = false;
-      this.PickUp.enabled = true;
-      this.MyRigidbody.isKinematic = false;
+      if (this.Yandere.YandereVision && !this.Empty)
+        this.UpdateCylinderColor();
     }
     if ((double) this.Timer > 0.0)
     {

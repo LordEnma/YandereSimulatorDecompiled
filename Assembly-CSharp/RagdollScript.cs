@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RagdollScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -56,6 +56,7 @@ public class RagdollScript : MonoBehaviour
   public bool AddedOutline;
   public bool Cauterizable;
   public bool Electrocuted;
+  public bool StruckGround;
   public bool StopAnimation = true;
   public bool Decapitated;
   public bool Dismembered;
@@ -478,6 +479,12 @@ public class RagdollScript : MonoBehaviour
         this.Falling = false;
       }
     }
+    if (this.Pushed && !this.StruckGround && !this.Hidden && (double) this.SettleTimer > 1.5)
+    {
+      Debug.Log((object) "A student who was shoved from the school rooftop just hit the ground.");
+      Object.Instantiate<GameObject>(this.Student.AlarmDisc, new Vector3(this.Student.Hips.position.x, 1f, this.Student.Hips.position.z), Quaternion.identity).transform.localScale = new Vector3(1000f, 1f, 1000f);
+      this.StruckGround = true;
+    }
     if (this.Burning)
     {
       for (int index = 0; index < 3; ++index)
@@ -563,7 +570,7 @@ public class RagdollScript : MonoBehaviour
       Rigidbody allRigidbody = this.AllRigidbodies[0];
       allRigidbody.transform.parent.transform.localPosition = new Vector3(allRigidbody.transform.parent.transform.localPosition.x, 0.2f, allRigidbody.transform.parent.transform.localPosition.z);
     }
-    if (!this.Yandere.Struggling && !this.Yandere.DelinquentFighting && !this.Yandere.Sprayed)
+    if (!this.Yandere.Struggling && !this.Yandere.DelinquentFighting && !this.Yandere.Sprayed && !this.Yandere.Noticed)
       return;
     this.Fall();
   }

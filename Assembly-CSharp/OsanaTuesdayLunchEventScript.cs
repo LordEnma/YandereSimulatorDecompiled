@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaTuesdayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -344,7 +344,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
           this.Sabotaged = true;
         }
       }
-      if (this.Clock.Period > 3 || this.Rival.Wet || this.Rival.Alarmed)
+      if (this.Clock.Period > 3 || this.Rival.Wet || this.Rival.Alarmed || this.Rival.Attacked || !this.Rival.Alive)
         this.EndEvent();
       this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Rival.transform.position);
       if ((double) this.Distance - 4.0 < 15.0)
@@ -395,17 +395,19 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
     this.Rival.Routine = !this.Rival.Splashed;
     if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
     {
-      ScheduleBlock scheduleBlock = this.Friend.ScheduleBlocks[4];
-      scheduleBlock.destination = "Follow";
-      scheduleBlock.action = "Follow";
-      this.Friend.GetDestinations();
-      this.Friend.Pathfinding.target = this.Friend.FollowTarget.transform;
-      this.Friend.CurrentDestination = this.Friend.FollowTarget.transform;
-      this.Friend.CanTalk = true;
-      Debug.Log((object) "Raibaru was told to resume ''Follow'' protocol.");
+      if (!this.Friend.ReturningMisplacedWeapon)
+      {
+        this.Friend.ResumeFollowing();
+        Debug.Log((object) "Raibaru was told to resume ''Follow'' protocol.");
+      }
+      else
+        this.Friend.ResumeFollowingAfter = true;
     }
+    if ((UnityEngine.Object) this.Rival.AnimatedBook.transform.parent != (UnityEngine.Object) null)
+      this.Rival.AnimatedBook.SetActive(false);
+    this.PushPrompt.enabled = false;
+    this.PushPrompt.Hide();
     this.Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
-    this.Rival.AnimatedBook.SetActive(false);
     this.Rival.StinkBombSpecialCase = 0;
     this.Rival.Obstacle.enabled = false;
     this.Rival.Prompt.enabled = true;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CalendarScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -721,18 +721,22 @@ label_92:
 
   public void ResetSaveFile()
   {
-    int profile = GameGlobals.Profile;
-    bool eighties = GameGlobals.Eighties;
+    int profile1 = GameGlobals.Profile;
+    int num = GameGlobals.Eighties ? 1 : 0;
     bool debug = GameGlobals.Debug;
     int femaleUniform = StudentGlobals.FemaleUniform;
     int maleUniform = StudentGlobals.MaleUniform;
     Globals.DeleteAll();
-    if (eighties && profile < 11)
-      profile += 10;
-    PlayerPrefs.SetInt("ProfileCreated_" + profile.ToString(), 1);
-    GameGlobals.Eighties = eighties;
-    GameGlobals.Profile = profile;
+    if (num != 0 && profile1 < 11)
+      profile1 += 10;
+    PlayerPrefs.SetInt("ProfileCreated_" + profile1.ToString(), 1);
+    int profile2 = GameGlobals.Profile;
+    Debug.Log((object) ("ResetSaveFile() - At this moment, GameGlobals.Profile was: " + profile2.ToString()));
+    GameGlobals.Eighties = num != 0;
+    GameGlobals.Profile = profile1;
     GameGlobals.Debug = debug;
+    profile2 = GameGlobals.Profile;
+    Debug.Log((object) ("And now it is: " + profile2.ToString()));
     StudentGlobals.FemaleUniform = femaleUniform;
     StudentGlobals.MaleUniform = maleUniform;
     GameGlobals.LoveSick = this.LoveSick;
@@ -742,8 +746,7 @@ label_92:
       for (int studentID = 1; studentID < 101; ++studentID)
         StudentGlobals.SetStudentPhotographed(studentID, true);
     }
-    OptionGlobals.DisableTint = !eighties;
-    YanSave.SaveData("Profile_" + profile.ToString() + "_Slot_" + 11.ToString());
+    YanSave.SaveData("Profile_" + profile1.ToString() + "_Slot_" + 11.ToString());
     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
   }
 }

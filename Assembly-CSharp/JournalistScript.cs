@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: JournalistScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
@@ -204,6 +204,7 @@ public class JournalistScript : MonoBehaviour
     }
     else
     {
+      this.Yandere.CanMove = false;
       this.targetRotation = Quaternion.LookRotation(this.transform.position - this.Yandere.transform.position);
       this.Yandere.transform.rotation = Quaternion.Slerp(this.Yandere.transform.rotation, this.targetRotation, 10f * Time.deltaTime);
       this.ChaseTimer += Time.deltaTime;
@@ -288,6 +289,8 @@ public class JournalistScript : MonoBehaviour
     this.Subtitle.CustomText = "I knew it was you!";
     this.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 4f);
     this.MyAnimation.CrossFade("readyToFight_00");
+    if (this.Yandere.Laughing)
+      this.Yandere.StopLaughing();
     this.Yandere.CharacterAnimation.CrossFade("f02_readyToFight_00");
     this.Yandere.CanMove = false;
     this.Pathfinding.target = this.Yandere.transform;

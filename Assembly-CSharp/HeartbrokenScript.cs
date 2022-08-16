@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HeartbrokenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -51,7 +51,8 @@ public class HeartbrokenScript : MonoBehaviour
 
   private void Start()
   {
-    this.Yandere.CameraEffects.UpdateDOF(1.5f);
+    if ((Object) this.Yandere != (Object) null)
+      this.Yandere.CameraEffects.UpdateDOF(1.5f);
     this.Week = DateGlobals.Week;
     if (GameGlobals.MostRecentSlot == 0)
       this.TargetAlpha[2] = 0.5f;
@@ -336,7 +337,8 @@ public class HeartbrokenScript : MonoBehaviour
       if ((double) this.Options[0].color.a == 0.0)
       {
         this.Subtitle.alpha = 0.0f;
-        this.Yandere.Subtitle.transform.localPosition = new Vector3(0.0f, 1000f, 0.0f);
+        if ((bool) (Object) this.Yandere)
+          this.Yandere.Subtitle.transform.localPosition = new Vector3(0.0f, 1000f, 0.0f);
         component.Play();
       }
       if (this.ID < this.Options.Length)

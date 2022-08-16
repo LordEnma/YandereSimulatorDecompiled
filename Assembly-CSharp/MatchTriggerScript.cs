@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MatchTriggerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -19,6 +19,8 @@ public class MatchTriggerScript : MonoBehaviour
     this.Student = other.gameObject.transform.root.gameObject.GetComponent<StudentScript>();
     if (!((Object) this.Student != (Object) null) || this.Student.StudentID <= 1 || !this.Student.Gas && !this.Fireball)
       return;
+    if ((Object) this.Student.Yandere.PickUp != (Object) null && this.Student.Yandere.PickUp.OpenFlame)
+      this.Student.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Student.Yandere.Numbness;
     this.Student.Combust();
     if (this.Candle)
       return;

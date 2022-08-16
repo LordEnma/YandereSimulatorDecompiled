@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: FallCheckerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -42,6 +42,8 @@ public class FallCheckerScript : MonoBehaviour
     }
     else
     {
+      Debug.Log((object) "A student who was shoved from the school rooftop just landed in a dumpster.");
+      Object.Instantiate<GameObject>(this.Ragdoll.Student.AlarmDisc, this.Dumpster.SlideLocation.position + new Vector3(0.0f, 1f, 0.0f), Quaternion.identity).transform.localScale = new Vector3(1000f, 1f, 1000f);
       this.GetComponent<AudioSource>().Play();
       this.Dumpster.Slide = true;
       this.Ragdoll = (RagdollScript) null;

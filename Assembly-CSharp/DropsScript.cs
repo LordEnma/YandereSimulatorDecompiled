@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DropsScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -15,6 +15,7 @@ public class DropsScript : MonoBehaviour
   public SchemesScript Schemes;
   public GameObject FavorMenu;
   public Transform Highlight;
+  public UILabel ExplanationLabel;
   public UILabel PantyCount;
   public UITexture DropIcon;
   public UILabel DropDesc;
@@ -46,6 +47,8 @@ public class DropsScript : MonoBehaviour
     this.CostLabels[6].text = "10";
     this.InfiniteSupply[6] = true;
     this.DropCosts[6] = 10;
+    this.ExplanationLabel.color = Color.white;
+    this.DropDesc.color = Color.white;
   }
 
   private void Update()

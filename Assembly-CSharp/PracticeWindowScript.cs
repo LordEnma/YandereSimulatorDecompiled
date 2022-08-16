@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PracticeWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -183,6 +183,7 @@ public class PracticeWindowScript : MonoBehaviour
       this.Timer += Time.deltaTime;
       if ((double) this.Timer <= 1.0)
         return;
+      this.Yandere.PauseScreen.NewSettings.QualityManager.UpdateFPSIndex();
       this.Yandere.SetAnimationLayers();
       this.StudentManager.UpdateAllAnimLayers();
       this.StudentManager.Reputation.PendingRep += PlayerPrefs.GetFloat("TempReputation");
@@ -225,6 +226,7 @@ public class PracticeWindowScript : MonoBehaviour
       this.StudentManager.UpdateAllAnimLayers();
       this.FadeIn = false;
       this.Timer = 0.0f;
+      this.DialogueWheel.RestoreMusic();
     }
   }
 

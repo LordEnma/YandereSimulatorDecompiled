@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericPromptScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -221,6 +221,7 @@ public class GenericPromptScript : MonoBehaviour
           }
           else
           {
+            this.Prompt.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Prompt.Yandere.Numbness;
             this.Prompt.Yandere.CharacterAnimation.CrossFade("f02_bookcasePush_00");
             this.Prompt.Yandere.transform.position = this.PlayerSpot.position;
             this.Prompt.Yandere.transform.rotation = this.PlayerSpot.rotation;
@@ -248,6 +249,7 @@ public class GenericPromptScript : MonoBehaviour
             this.Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
             if (!this.Prompt.Yandere.StudentManager.YandereVisible)
             {
+              this.Prompt.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Prompt.Yandere.Numbness;
               student.transform.parent = this.transform.parent;
               student.transform.localPosition = new Vector3(1.374146f, 7f / 400f, 0.05f);
               this.PerformingAction = true;

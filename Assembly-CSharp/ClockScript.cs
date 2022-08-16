@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClockScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -152,7 +152,7 @@ public class ClockScript : MonoBehaviour
       this.BloomIntensity = 11f;
       this.UpdateBloom = true;
     }
-    this.DayLabel.text = this.GetWeekdayText(DateGlobals.Weekday);
+    this.DayLabel.text = this.GetWeekdayText(DateGlobals.Weekday) + ", WEEK " + DateGlobals.Week.ToString();
     this.MainLight.color = new Color(1f, 1f, 1f, 1f);
     RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f, 1f);
     RenderSettings.skybox.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f));
@@ -305,10 +305,7 @@ public class ClockScript : MonoBehaviour
         this.StudentManager.RivalBookBag.NoBento = true;
         this.StudentManager.Unstop();
         if (!GameGlobals.Eighties && DateGlobals.Week == 1 && !this.StudentManager.MissionMode)
-        {
-          Debug.Log((object) ("Apparently, GameGlobals.Eighties is: " + GameGlobals.Eighties.ToString()));
           this.StudentManager.UpdateLunchtimeStudents();
-        }
         this.UpdateClock();
       }
     }

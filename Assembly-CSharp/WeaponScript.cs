@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -172,7 +172,7 @@ public class WeaponScript : MonoBehaviour
         }
         if ((double) this.MyAudio.time > (double) this.SoundTime[this.DismemberPhase])
         {
-          this.Yandere.Sanity -= 5f * this.Yandere.Numbness;
+          this.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 2.5f : 5f) * this.Yandere.Numbness;
           this.Yandere.Bloodiness += 25f;
           this.ShortBloodSpray[0].Play();
           this.ShortBloodSpray[1].Play();

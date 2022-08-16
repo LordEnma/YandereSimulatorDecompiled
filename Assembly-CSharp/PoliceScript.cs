@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PoliceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -58,6 +58,7 @@ public class PoliceScript : MonoBehaviour
   public bool SuicideScene;
   public bool PoisonScene;
   public bool MurderScene;
+  public bool WasHoldingBloodyWeapon;
   public bool SkippingPastPoison;
   public bool StudentFoundCorpse;
   public bool BeginConfession;
@@ -420,6 +421,7 @@ public class PoliceScript : MonoBehaviour
 
   private void DetermineResults()
   {
+    Debug.Log((object) "DetermineResults() has been called.");
     if (this.Yandere.VtuberID > 0)
       this.Protagonist = this.VtuberNames[this.Yandere.VtuberID];
     this.ResultsLabels[0].transform.parent.gameObject.SetActive(true);
@@ -435,11 +437,30 @@ public class PoliceScript : MonoBehaviour
     }
     else if (this.Yandere.ShoulderCamera.GoingToCounselor)
     {
-      this.ResultsLabels[0].text = "While " + this.Protagonist + " was in the counselor's office,";
-      this.ResultsLabels[1].text = "a corpse was discovered on school grounds.";
-      this.ResultsLabels[2].text = "The school faculty was informed of the corpse,";
-      this.ResultsLabels[3].text = "and the police were called to the school.";
-      this.ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
+      if (this.Yandere.Police.Corpses - this.Yandere.Police.HiddenCorpses > 0)
+      {
+        this.ResultsLabels[0].text = "While " + this.Protagonist + " was in the counselor's office,";
+        this.ResultsLabels[1].text = "a corpse was discovered on school grounds.";
+        this.ResultsLabels[2].text = "The school faculty was informed of the corpse,";
+        this.ResultsLabels[3].text = "and the police were called to the school.";
+        this.ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
+      }
+      else if (this.WasHoldingBloodyWeapon)
+      {
+        this.ResultsLabels[0].text = "When " + this.Protagonist + " was caught,";
+        this.ResultsLabels[1].text = "a blood-stained weapon was found in her possession.";
+        this.ResultsLabels[2].text = "The school faculty was informed of the weapon,";
+        this.ResultsLabels[3].text = "and the police were called to the school.";
+        this.ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
+      }
+      else if (this.Yandere.Police.BloodyWeapons > 0)
+      {
+        this.ResultsLabels[0].text = "While " + this.Protagonist + " was in the counselor's office,";
+        this.ResultsLabels[1].text = "a faculty member discovered a mysterious bloody weapon.";
+        this.ResultsLabels[2].text = "The school faculty was informed of the weapon,";
+        this.ResultsLabels[3].text = "and the police were called to the school.";
+        this.ResultsLabels[4].text = "No one is allowed to leave school until a police investigation has taken place.";
+      }
       this.TeacherReport = true;
       this.Show = true;
     }
@@ -468,7 +489,7 @@ public class PoliceScript : MonoBehaviour
           this.RemainingDays = 2;
         else if (this.Clock.Weekday == 5)
           this.RemainingDays = 1;
-        if (this.EndOfDay.Counselor.CounselorPunishments > 5)
+        if (this.EndOfDay.Counselor.CounselorPunishments > 5 || this.EndOfDay.Counselor.Expelled)
         {
           this.ResultsLabels[0].text = this.Protagonist + " is no longer allowed";
           this.ResultsLabels[1].text = "to attend Akademi.";
@@ -841,6 +862,7 @@ public class PoliceScript : MonoBehaviour
 
   public void BeginFadingOut()
   {
+    Debug.Log((object) "PoliceScript's BeginFadingOut() has been called.");
     this.DayOver = true;
     this.StudentManager.StopMoving();
     this.Darkness.enabled = true;

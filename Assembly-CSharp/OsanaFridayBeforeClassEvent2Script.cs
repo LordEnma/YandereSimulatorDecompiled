@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaFridayBeforeClassEvent2Script
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DF03FFAE-974C-4193-BB83-3E6945841C76
+// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -62,7 +62,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
           this.Rival = this.StudentManager.Students[this.RivalID];
         if ((UnityEngine.Object) this.Friend == (UnityEngine.Object) null && (UnityEngine.Object) this.StudentManager.Students[this.FriendID] != (UnityEngine.Object) null && !PlayerGlobals.RaibaruLoner)
           this.Friend = this.StudentManager.Students[this.FriendID];
-        if ((double) this.Clock.HourTime > 7.25 && this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Meeting && this.Rival.Indoors && !this.Rival.Wet && !this.Rival.Following && (double) this.Rival.DistanceToDestination < 1.0)
+        if ((double) this.Clock.HourTime > 7.25 && this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Meeting && this.Rival.Indoors && !this.Rival.Wet && !this.Rival.Following && (UnityEngine.Object) this.Rival.Pathfinding.target == (UnityEngine.Object) this.Rival.Destinations[2] && (double) this.Rival.DistanceToDestination < 1.0 && !this.Rival.Phoneless && !this.Rival.EndSearch)
         {
           Debug.Log((object) "Osana's ''Talk with Musume'' event has begun.");
           this.Ganguro.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
