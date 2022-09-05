@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ManholeScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -54,13 +54,16 @@ public class ManholeScript : MonoBehaviour
         if ((double) this.Corpse.Student.Hips.transform.position.y < -5.0 || this.ForceDown)
         {
           if ((double) this.Corpse.Student.Hips.transform.position.y > -5.0)
+          {
+            Debug.Log((object) "Hey! Stay DOWN!");
             this.Corpse.Student.Hips.transform.position = new Vector3(this.Corpse.Student.Hips.transform.position.x, -5f, this.Corpse.Student.Hips.transform.position.z);
+            this.MakeRigidbodiesUseGravity();
+          }
           if (this.Corpse.AllRigidbodies[0].useGravity)
           {
             Debug.Log((object) "This corpse just struck the water.");
             Object.Instantiate<GameObject>(this.BigSewerWaterSplash, this.Corpse.Student.Hips.transform.position, Quaternion.identity).transform.eulerAngles = new Vector3(-90f, 0.0f, 0.0f);
-            for (int index = 0; index < this.Corpse.AllRigidbodies.Length; ++index)
-              this.Corpse.AllRigidbodies[index].useGravity = false;
+            this.MakeRigidbodiesUseGravity();
             this.ForceDown = true;
           }
           Debug.Log((object) "The corpse is now being pushed downstream.");
@@ -96,6 +99,8 @@ public class ManholeScript : MonoBehaviour
         this.Prompt.Yandere.EmptyHands();
         this.Corpse.Student.Hips.transform.position = this.transform.position + new Vector3(0.0f, -1f, 0.0f);
         this.Corpse.BloodPoolSpawner.enabled = false;
+        if ((Object) this.Corpse.Student.Cosmetic.BurlapSack != (Object) null && (Object) this.Corpse.Student.Cosmetic.BurlapSack.newRenderer != (Object) null)
+          this.Corpse.Student.Cosmetic.BurlapSack.newRenderer.updateWhenOffscreen = true;
         Physics.SyncTransforms();
         this.SewerCamera.SetActive(true);
         this.SewerTimer = 5f;
@@ -128,5 +133,11 @@ public class ManholeScript : MonoBehaviour
       else
         this.Prompt.HideButton[0] = true;
     }
+  }
+
+  public void MakeRigidbodiesUseGravity()
+  {
+    for (int index = 0; index < this.Corpse.AllRigidbodies.Length; ++index)
+      this.Corpse.AllRigidbodies[index].useGravity = false;
   }
 }

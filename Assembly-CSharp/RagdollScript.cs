@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RagdollScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -668,6 +668,9 @@ public class RagdollScript : MonoBehaviour
       this.AllRigidbodies[index].isKinematic = false;
       this.AllColliders[index].enabled = true;
     }
+    if (!((Object) this.Student.Cosmetic.BurlapSack != (Object) null) || !((Object) this.Student.Cosmetic.BurlapSack.newRenderer != (Object) null))
+      return;
+    this.Student.Cosmetic.BurlapSack.newRenderer.updateWhenOffscreen = true;
   }
 
   public void QuickDismember()

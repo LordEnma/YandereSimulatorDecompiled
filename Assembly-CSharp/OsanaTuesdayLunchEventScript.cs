@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaTuesdayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -78,7 +78,6 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
           this.Rival.InEvent = true;
           this.Rival.EmptyHands();
           Debug.Log((object) "Osana's ''StinkBombSpecialCase'' has been set to ''1''.");
-          this.Rival.StinkBombSpecialCase = 1;
           Debug.Log((object) ("PlayerGlobals.RaibaruLoner is: " + PlayerGlobals.RaibaruLoner.ToString()));
           bool flag = true;
           if (PlayerGlobals.RaibaruLoner || this.StudentManager.Police.EndOfDay.RaibaruLoner)
@@ -125,7 +124,8 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
       {
         if ((double) this.Rival.DistanceToDestination < 0.5)
         {
-          this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
+          if (!this.Rival.GoAway)
+            this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
           this.Rival.targetRotation = this.Rival.CurrentDestination.rotation;
           this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.targetRotation, 10f * Time.deltaTime);
           this.Rival.Pathfinding.canSearch = false;
@@ -183,6 +183,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
             this.Rival.DistanceToDestination = 100f;
             this.Rival.Pathfinding.canSearch = true;
             this.Rival.Pathfinding.canMove = true;
+            this.Rival.StinkBombSpecialCase = 1;
             ++this.Phase;
           }
         }
@@ -221,6 +222,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
             else
             {
               this.PushPrompt.gameObject.SetActive(false);
+              this.Rival.StinkBombSpecialCase = 0;
               if (!this.Sabotaged)
               {
                 this.Rival.Pathfinding.target = this.Location[1];
@@ -266,6 +268,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
           }
           else if ((double) this.Rival.DistanceToDestination < 0.5)
           {
+            this.Rival.EventSpecialCase = true;
             this.Rival.WalkAnim = "f02_sadWalk_00";
             this.Rival.SitAnim = "f02_sadDeskSit_00";
             AudioClipPlayer.Play(this.SpeechClip[6], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
@@ -344,7 +347,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
           this.Sabotaged = true;
         }
       }
-      if (this.Clock.Period > 3 || this.Rival.Wet || this.Rival.Alarmed || this.Rival.Attacked || !this.Rival.Alive)
+      if (this.Clock.Period > 3 || this.Rival.Wet || this.Rival.Alarmed || this.Rival.Attacked || !this.Rival.Alive || this.Rival.GoAway)
         this.EndEvent();
       this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Rival.transform.position);
       if ((double) this.Distance - 4.0 < 15.0)
@@ -409,6 +412,7 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
     this.PushPrompt.Hide();
     this.Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
     this.Rival.StinkBombSpecialCase = 0;
+    this.Rival.EventSpecialCase = false;
     this.Rival.Obstacle.enabled = false;
     this.Rival.Prompt.enabled = true;
     this.Rival.InEvent = false;
@@ -418,5 +422,9 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
     this.Jukebox.Dip = 1f;
     this.EventSubtitle.text = string.Empty;
     this.enabled = false;
+    if (!this.Rival.GoAway)
+      return;
+    this.Rival.Subtitle.CustomText = "Ugh, seriously?! Whatever, I'll read it later...";
+    this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
   }
 }

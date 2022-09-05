@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaThursdayAfterClassEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -58,7 +58,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
           this.Rival = this.StudentManager.Students[this.RivalID];
         if ((UnityEngine.Object) this.StudentManager.Students[this.FriendID] != (UnityEngine.Object) null && !PlayerGlobals.RaibaruLoner)
           this.Friend = this.StudentManager.Students[this.FriendID];
-        if ((double) this.Clock.HourTime > 16.010000228881836 && this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Phoneless && !this.Rival.EndSearch)
+        if ((double) this.Clock.HourTime > 16.010000228881836 && this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Phoneless && !this.Rival.EndSearch && !this.Rival.Meeting)
           this.BeginEvent();
       }
       ++this.Frame;
@@ -200,7 +200,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
       }
       else if (this.Phase == 10 && (double) this.Rival.CharacterAnimation[this.EventAnim[3]].time >= (double) this.Rival.CharacterAnimation[this.EventAnim[3]].length)
         this.EndEvent();
-      if (this.Rival.Alarmed || this.Rival.Splashed || this.Rival.Dodging || this.Rival.DiscCheck || this.Rival.Dying)
+      if (this.Rival.Alarmed || this.Rival.Splashed || this.Rival.Dodging || this.Rival.DiscCheck || this.Rival.Dying || this.Rival.GoAway)
         this.EndEvent();
       if (!this.Sabotaged)
       {
@@ -240,7 +240,7 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
     Debug.Log((object) "Osana's Thursday after class event has ended.");
     if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
       UnityEngine.Object.Destroy((UnityEngine.Object) this.VoiceClip);
-    if (!this.Rival.Alarmed && !this.Rival.Attacked)
+    if (!this.Rival.Alarmed && !this.Rival.Attacked && !this.Rival.Hunted)
     {
       this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
       this.Rival.DistanceToDestination = 100f;
@@ -280,6 +280,10 @@ public class OsanaThursdayAfterClassEventScript : MonoBehaviour
     this.Jukebox.Dip = 1f;
     this.EventSubtitle.text = string.Empty;
     this.enabled = false;
+    if (!this.Rival.GoAway)
+      return;
+    this.Rival.Subtitle.CustomText = "Ugh, seriously?! Guess I'm not taking a nap after all...";
+    this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
   }
 
   public void ReturnFromSave()

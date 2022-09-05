@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NewTitleScreenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using RetroAesthetics;
@@ -460,10 +460,7 @@ public class NewTitleScreenScript : MonoBehaviour
           if (Input.GetKeyDown(KeyCode.Return))
           {
             if (this.CheatLabel.text == "debug" || this.CheatLabel.text == "Debug")
-            {
               this.CheatLabel.text = "Type 'debug' while at school!";
-              GameGlobals.Debug = true;
-            }
             else if (this.CheatLabel.text == "Nice Boat")
               this.CheatLabel.text = "Awwwww, you remembered!";
           }

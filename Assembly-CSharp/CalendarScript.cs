@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CalendarScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -56,6 +56,10 @@ public class CalendarScript : MonoBehaviour
   public int Adjustment;
   public int Phase = 1;
   public AudioClip EightiesJingle;
+  public UILabel CongratsConfirmLabel;
+  public UILabel CongratsLabel;
+  public UISprite CongratsBorder;
+  public UISprite CongratsBG;
   public UILabel[] Labels;
   public GameObject SundayLabel;
   public GameObject EndingLabel;
@@ -248,7 +252,7 @@ public class CalendarScript : MonoBehaviour
             DateGlobals.Weekday = DayOfWeek.Sunday;
             this.Target = (float) this.Adjustment;
           }
-          if (!this.Eighties && DateGlobals.Weekday != DayOfWeek.Sunday && DateGlobals.Weekday < DayOfWeek.Saturday && GameGlobals.RivalEliminationID > 0 && !GameGlobals.InformedAboutSkipping && DateGlobals.Week < 2)
+          if (DateGlobals.Weekday != DayOfWeek.Sunday && DateGlobals.Weekday < DayOfWeek.Saturday && GameGlobals.RivalEliminationID > 0 && !GameGlobals.InformedAboutSkipping && DateGlobals.Week < 2)
           {
             GameGlobals.InformedAboutSkipping = true;
             this.CongratulationsWindow.SetActive(true);
@@ -314,6 +318,7 @@ public class CalendarScript : MonoBehaviour
               }
               this.SkipConfirmationWindow.SetActive(false);
               ClassGlobals.BonusStudyPoints += 10;
+              GameGlobals.SenpaiMourning = false;
               GameGlobals.ShowAbduction = false;
               ++DateGlobals.Weekday;
               this.Incremented = false;
@@ -575,10 +580,7 @@ label_92:
     if (DateGlobals.ForceSkip)
       this.SundayLabel.SetActive(false);
     this.Eighties = true;
-    this.Labels = UnityEngine.Object.FindSceneObjectsOfType(typeof (UILabel)) as UILabel[];
-    for (int index = 0; index < this.Labels.Length; ++index)
-      this.EightiesifyLabel(this.Labels[index]);
-    this.EightiesifyLabel(this.SkipLabel);
+    this.EightiesifyAllLabels();
     for (int index = 1; index < this.DayNumber.Length; ++index)
     {
       this.DayNumber[index].fontSize = 150;
@@ -710,6 +712,18 @@ label_92:
     this.AtmosphereLabel.color = new Color(1f, 1f, 1f);
   }
 
+  public void EightiesifyAllLabels()
+  {
+    this.Labels = UnityEngine.Object.FindSceneObjectsOfType(typeof (UILabel)) as UILabel[];
+    for (int index = 0; index < this.Labels.Length; ++index)
+      this.EightiesifyLabel(this.Labels[index]);
+    this.EightiesifyLabel(this.SkipLabel);
+    this.CongratsBorder.color = new Color(1f, 1f, 1f, 1f);
+    this.CongratsBG.color = new Color(0.0f, 0.0f, 0.75f, 1f);
+    this.EightiesifyLabel(this.CongratsConfirmLabel);
+    this.EightiesifyLabel(this.CongratsLabel);
+  }
+
   public void EightiesifyLabel(UILabel Label)
   {
     Label.trueTypeFont = this.VCR;
@@ -721,22 +735,18 @@ label_92:
 
   public void ResetSaveFile()
   {
-    int profile1 = GameGlobals.Profile;
+    int profile = GameGlobals.Profile;
     int num = GameGlobals.Eighties ? 1 : 0;
     bool debug = GameGlobals.Debug;
     int femaleUniform = StudentGlobals.FemaleUniform;
     int maleUniform = StudentGlobals.MaleUniform;
     Globals.DeleteAll();
-    if (num != 0 && profile1 < 11)
-      profile1 += 10;
-    PlayerPrefs.SetInt("ProfileCreated_" + profile1.ToString(), 1);
-    int profile2 = GameGlobals.Profile;
-    Debug.Log((object) ("ResetSaveFile() - At this moment, GameGlobals.Profile was: " + profile2.ToString()));
+    if (num != 0 && profile < 11)
+      profile += 10;
+    PlayerPrefs.SetInt("ProfileCreated_" + profile.ToString(), 1);
     GameGlobals.Eighties = num != 0;
-    GameGlobals.Profile = profile1;
+    GameGlobals.Profile = profile;
     GameGlobals.Debug = debug;
-    profile2 = GameGlobals.Profile;
-    Debug.Log((object) ("And now it is: " + profile2.ToString()));
     StudentGlobals.FemaleUniform = femaleUniform;
     StudentGlobals.MaleUniform = maleUniform;
     GameGlobals.LoveSick = this.LoveSick;
@@ -746,7 +756,7 @@ label_92:
       for (int studentID = 1; studentID < 101; ++studentID)
         StudentGlobals.SetStudentPhotographed(studentID, true);
     }
-    YanSave.SaveData("Profile_" + profile1.ToString() + "_Slot_" + 11.ToString());
+    YanSave.SaveData("Profile_" + profile.ToString() + "_Slot_" + 11.ToString());
     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
   }
 }

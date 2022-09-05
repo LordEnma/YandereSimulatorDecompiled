@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaFridayBeforeClassEvent1Script
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -49,7 +49,7 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
       {
         if ((UnityEngine.Object) this.Rival == (UnityEngine.Object) null)
           this.Rival = this.StudentManager.Students[this.RivalID];
-        if (this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Phoneless && this.Rival.Indoors && !this.OtherEvent.enabled)
+        if (this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Phoneless && this.Rival.Indoors && !this.OtherEvent.enabled && !this.Rival.GoAway && !this.Rival.Meeting)
         {
           Debug.Log((object) "Osana's ''make playlist'' event has begun.");
           this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
@@ -86,7 +86,8 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
       }
       else if (this.Phase == 2)
       {
-        this.Rival.MoveTowardsTarget(this.Location.position);
+        if (!this.Rival.GoAway)
+          this.Rival.MoveTowardsTarget(this.Location.position);
         if ((double) Quaternion.Angle(this.Rival.transform.rotation, this.Location.rotation) > 1.0)
           this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Location.rotation, 10f * Time.deltaTime);
         this.Timer += Time.deltaTime;
@@ -95,7 +96,7 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
         if ((double) this.Timer > 60.0)
           this.EndEvent();
       }
-      if (this.Rival.Alarmed || (double) this.Clock.HourTime > 8.0 || this.Rival.Splashed || this.Rival.Dodging)
+      if (this.Rival.Alarmed || (double) this.Clock.HourTime > 8.0 || this.Rival.Splashed || this.Rival.Dodging || this.Rival.GoAway)
         this.EndEvent();
       this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Rival.transform.position);
       if ((double) this.Distance - 4.0 < 15.0)
@@ -105,7 +106,8 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
           this.Scale = 0.0f;
         if ((double) this.Scale > 1.0)
           this.Scale = 1f;
-        this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
+        if (this.enabled)
+          this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
         this.EventSubtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
         if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
           this.VoiceClip.GetComponent<AudioSource>().volume = this.Scale;
@@ -157,5 +159,9 @@ public class OsanaFridayBeforeClassEvent1Script : MonoBehaviour
     this.Jukebox.Dip = 1f;
     this.EventSubtitle.text = string.Empty;
     this.enabled = false;
+    if (!this.Rival.GoAway)
+      return;
+    this.Rival.Subtitle.CustomText = "Ugh, seriously?! Guess I'll just do it later...";
+    this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
   }
 }

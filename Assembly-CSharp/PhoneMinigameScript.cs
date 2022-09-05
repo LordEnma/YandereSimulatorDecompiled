@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PhoneMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -43,7 +43,7 @@ public class PhoneMinigameScript : MonoBehaviour
     if (!this.Tampering)
       return;
     this.Prompt.Yandere.MoveTowardsTarget(new Vector3(0.0f, 12f, -28.66666f));
-    if (!this.PickpocketMinigame.Failure)
+    if (!this.PickpocketMinigame.Failure && this.Event.enabled)
     {
       if (this.PickpocketMinigame.Progress == 1)
         this.Smartphone.position = Vector3.Lerp(this.Smartphone.position, new Vector3(0.4f, this.Smartphone.position.y, this.Smartphone.position.z), Time.deltaTime * 10f);
@@ -69,6 +69,8 @@ public class PhoneMinigameScript : MonoBehaviour
     }
     else
     {
+      if (!this.Event.enabled)
+        this.PickpocketMinigame.End();
       this.Prompt.Yandere.transform.position = new Vector3(0.0f, 12f, -28.5f);
       this.Prompt.Yandere.TheftTimer = 1f;
       this.Event.EndEvent();

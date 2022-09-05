@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ShutterScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -362,14 +362,15 @@ public class ShutterScript : MonoBehaviour
             this.PauseScreen.Panel.enabled = true;
             this.PromptBar.ClearButtons();
             this.PromptBar.Label[1].text = "Exit";
+            this.StudentInfo.UpdateTagButton();
             this.PromptBar.Label[3].text = this.InfoX.activeInHierarchy ? "" : "Interests";
             this.PromptBar.UpdateButtons();
             if (!this.InfoX.activeInHierarchy)
             {
               this.PauseScreen.Sideways = true;
-              if (!StudentGlobals.GetStudentPhotographed(this.Student.StudentID))
+              if (!this.StudentManager.StudentPhotographed[this.Student.StudentID])
                 ++this.Yandere.Inventory.PantyShots;
-              StudentGlobals.SetStudentPhotographed(this.Student.StudentID, true);
+              this.StudentManager.StudentPhotographed[this.Student.StudentID] = true;
               for (this.ID = 0; this.ID < this.Student.Outlines.Length; ++this.ID)
               {
                 if ((UnityEngine.Object) this.Student.Outlines[this.ID] != (UnityEngine.Object) null)

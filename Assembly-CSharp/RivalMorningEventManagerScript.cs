@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RivalMorningEventManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -206,7 +206,8 @@ public class RivalMorningEventManagerScript : MonoBehaviour
             this.Scale = 0.0f;
           if ((double) this.Scale > 1.0)
             this.Scale = 1f;
-          this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
+          if (this.enabled)
+            this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
           this.EventSubtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
           if ((UnityEngine.Object) this.VoiceClipSource != (UnityEngine.Object) null)
             this.VoiceClipSource.volume = this.Scale;

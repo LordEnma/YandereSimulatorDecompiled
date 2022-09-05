@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RivalAfterClassEventManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -303,7 +303,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
         this.Senpai.SmartPhone.SetActive(false);
         this.Return = false;
       }
-      if (this.Senpai.Alarmed || this.Rival.Alarmed || this.Rival.Splashed)
+      if (this.Senpai.Alarmed || this.Rival.Alarmed || this.Rival.Splashed || this.Rival.GoAway)
       {
         UnityEngine.Object.Instantiate<GameObject>(this.AlarmDisc, this.Yandere.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
         this.EndEvent();
@@ -360,6 +360,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
 
   private void EndEvent()
   {
+    Debug.Log((object) "Osana's talking-with-Senpai-before-going-home event ended.");
     if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
       UnityEngine.Object.Destroy((UnityEngine.Object) this.VoiceClip);
     if (this.Senpai.InEvent)
@@ -390,7 +391,7 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
         this.Friend.Pathfinding.canSearch = true;
         this.Friend.Pathfinding.canMove = true;
       }
-      if (this.NaturalEnd)
+      if (this.NaturalEnd || this.Rival.GoAway)
       {
         this.Friend.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
         this.Friend.Pathfinding.target = this.Rival.transform;
@@ -421,6 +422,10 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
     this.EventSubtitle.text = string.Empty;
     this.enabled = false;
     this.Jukebox.Dip = 1f;
+    if (!this.Rival.GoAway)
+      return;
+    this.Rival.Subtitle.CustomText = "Ugh, seriously?! Forget it, let's just go home...";
+    this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
   }
 
   private void EndSenpai()
@@ -438,6 +443,8 @@ public class RivalAfterClassEventManagerScript : MonoBehaviour
     this.Senpai.CurrentDestination = this.Senpai.Destinations[this.Senpai.Phase];
     this.Senpai.Pathfinding.target = this.Senpai.Destinations[this.Senpai.Phase];
     this.Senpai.DistanceToDestination = 100f;
+    if (this.EventDay != DayOfWeek.Thursday)
+      return;
     this.OsanaThursdayRooftopEvent.enabled = false;
   }
 }

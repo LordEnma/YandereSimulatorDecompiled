@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YouTubeChatMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -102,33 +102,13 @@ public class YouTubeChatMenuScript : MonoBehaviour
       }
       if (Input.GetButtonDown("A"))
       {
-        if (this.Column == 1 && this.Row == 1)
-        {
-          int num = this.Chat.TimeBased ? 1 : 0;
-          this.CommandChecker.Chat.TimeBased = true;
-          this.Automatic = true;
-          this.AutomaticSprite.spriteName = "Yes";
-          this.ManualSprite.spriteName = "No";
-        }
-        else if (this.Column == 1 && this.Row == 2)
-        {
-          if (this.Chat.TimeBased)
-            this.CommandChecker.CountdownCircle.transform.parent.gameObject.SetActive(false);
-          this.CommandChecker.Chat.TimeBased = false;
-          this.Automatic = false;
-          this.AutomaticSprite.spriteName = "No";
-          this.ManualSprite.spriteName = "Yes";
-        }
+        Debug.Log((object) "Updating sprites...or trying to.");
+        this.Commands[this.ID] = !this.Commands[this.ID];
+        this.CommandChecker.Check[this.ID] = this.Commands[this.ID];
+        if (this.Commands[this.ID])
+          this.Checkmarks[this.ID].spriteName = "Yes";
         else
-        {
-          Debug.Log((object) "Updating sprites...or trying to.");
-          this.Commands[this.ID] = !this.Commands[this.ID];
-          this.CommandChecker.Check[this.ID] = this.Commands[this.ID];
-          if (this.Commands[this.ID])
-            this.Checkmarks[this.ID].spriteName = "Yes";
-          else
-            this.Checkmarks[this.ID].spriteName = "No";
-        }
+          this.Checkmarks[this.ID].spriteName = "No";
       }
       else if (Input.GetButtonDown("B"))
         this.Exit();

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MissionModeMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -680,7 +680,7 @@ public class MissionModeMenuScript : MonoBehaviour
           this.Valid = false;
           this.GetNumbers();
           bool flag = false;
-          if (this.TargetNumber > 11 && this.TargetNumber < 21 || this.TargetNumber > 97)
+          if (this.TargetNumber > 11 && this.TargetNumber < 21 || this.TargetNumber > 89)
             flag = true;
           if (this.TargetNumber == 0)
             this.ErrorLabel.text = "Invalid Mission ID (No target specified)";

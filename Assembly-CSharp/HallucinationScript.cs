@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HallucinationScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -20,7 +20,9 @@ public class HallucinationScript : MonoBehaviour
   public float Alpha;
   public float Timer;
   public int Weapon;
+  public SkinnedMeshRenderer[] EightiesRivalHairRenderers;
   public Renderer[] WeaponRenderers;
+  public Renderer RichGirlHairRenderer;
   public Renderer SawRenderer;
   public GameObject[] Weapons;
   public string[] WeaponName;
@@ -34,6 +36,7 @@ public class HallucinationScript : MonoBehaviour
 
   private void Start()
   {
+    int week = DateGlobals.Week;
     this.YandereHairRenderer.material = this.Black;
     this.RivalHairRenderer.material = this.Black;
     this.YandereRenderer.materials[0] = this.Black;
@@ -53,13 +56,13 @@ public class HallucinationScript : MonoBehaviour
       this.EightiesRivalHair[index].SetActive(false);
     if (GameGlobals.Eighties)
     {
-      if (DateGlobals.Week > 0 && DateGlobals.Week < 11)
+      if (week > 0 && week < 11)
       {
         this.YandereHairRenderer.transform.parent.gameObject.SetActive(false);
         this.RivalHair[1].SetActive(false);
-        this.EightiesRivalHair[DateGlobals.Week].SetActive(true);
+        this.EightiesRivalHair[week].SetActive(true);
         this.YandereHairRenderer = this.RyobaHairRenderer;
-        this.RivalHairRenderer = this.EightiesRivalHair[DateGlobals.Week].transform.GetChild(0).GetComponent<SkinnedMeshRenderer>();
+        this.RivalHairRenderer = this.EightiesRivalHairRenderers[week];
         this.YandereRenderer.sharedMesh = this.LongSleeveUniform;
         this.RivalRenderer.sharedMesh = this.LongSleeveUniform;
       }
@@ -107,7 +110,10 @@ public class HallucinationScript : MonoBehaviour
       return;
     this.Alpha = (double) this.YandereAnimation["f02_" + this.WeaponName[this.Weapon] + "LowSanityA_00"].time >= 3.0 ? Mathf.MoveTowards(this.Alpha, 0.0f, Time.deltaTime * 0.33333f) : Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * 0.33333f);
     this.YandereHairRenderer.material.SetFloat("_Alpha", this.Alpha);
-    this.RivalHairRenderer.material.SetFloat("_Alpha", this.Alpha);
+    if ((Object) this.RivalHairRenderer != (Object) null)
+      this.RivalHairRenderer.material.SetFloat("_Alpha", this.Alpha);
+    else
+      this.RichGirlHairRenderer.material.SetFloat("_Alpha", this.Alpha);
     this.YandereRenderer.materials[0].SetFloat("_Alpha", this.Alpha);
     this.YandereRenderer.materials[1].SetFloat("_Alpha", this.Alpha);
     this.YandereRenderer.materials[2].SetFloat("_Alpha", this.Alpha);

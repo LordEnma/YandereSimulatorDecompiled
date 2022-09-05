@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YanSave
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Newtonsoft.Json;
@@ -749,10 +749,7 @@ public static class YanSave
       else if (type == typeof (string))
         PlayerPrefs.SetString(serializedPlayerPref.Key, (string) obj);
       else if (type == typeof (short) || type == typeof (int) || type == typeof (long))
-      {
-        Debug.Log((object) ("Currently loading key: " + serializedPlayerPref.Key));
         PlayerPrefs.SetInt(serializedPlayerPref.Key, Convert.ToInt32(obj));
-      }
     }
   }
 

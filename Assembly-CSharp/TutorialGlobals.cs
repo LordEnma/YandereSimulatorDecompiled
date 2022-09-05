@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TutorialGlobals
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 public static class TutorialGlobals
@@ -10,6 +10,7 @@ public static class TutorialGlobals
   private const string Str_IgnoreClothing = "IgnoreClothing";
   private const string Str_IgnoreCouncil = "IgnoreCouncil";
   private const string Str_IgnoreTeacher = "IgnoreTeacher";
+  private const string Str_IgnorePersona = "IgnorePersona";
   private const string Str_IgnoreLocker = "IgnoreLocker";
   private const string Str_IgnorePolice = "IgnorePolice";
   private const string Str_IgnoreSanity = "IgnoreSanity";
@@ -47,6 +48,12 @@ public static class TutorialGlobals
   {
     get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreTeacher");
     set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreTeacher", value);
+  }
+
+  public static bool IgnorePersona
+  {
+    get => GlobalsHelper.GetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePersona");
+    set => GlobalsHelper.SetBool("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePersona", value);
   }
 
   public static bool IgnoreLocker
@@ -139,6 +146,7 @@ public static class TutorialGlobals
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreClothing");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreCouncil");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreTeacher");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePersona");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreLocker");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnorePolice");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_IgnoreSanity");

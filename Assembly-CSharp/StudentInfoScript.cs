@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentInfoScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -54,9 +54,6 @@ public class StudentInfoScript : MonoBehaviour
 
   private void Start()
   {
-    StudentGlobals.SetStudentPhotographed(98, true);
-    StudentGlobals.SetStudentPhotographed(99, true);
-    StudentGlobals.SetStudentPhotographed(100, true);
     this.Topics.SetActive(false);
     this.Eighties = GameGlobals.Eighties;
     if (this.Eighties)
@@ -87,20 +84,18 @@ public class StudentInfoScript : MonoBehaviour
     this.ClassLabel.text = "Class " + (student.Class.ToString() ?? "").Insert(1, "-");
     if (ID == 90 || ID > 96)
       this.ClassLabel.text = "";
-    float num1 = !((Object) this.StudentManager != (Object) null) ? (float) StudentGlobals.GetStudentReputation(ID) : this.StudentManager.StudentReps[ID];
-    this.ReputationLabel.text = (double) num1 >= 0.0 ? ((double) num1 <= 0.0 ? "0" : "+" + num1.ToString()) : num1.ToString() ?? "";
-    this.ReputationBar.localPosition = new Vector3(num1 * 0.96f, this.ReputationBar.localPosition.y, this.ReputationBar.localPosition.z);
+    float studentRep = this.StudentManager.StudentReps[ID];
+    this.ReputationLabel.text = (double) studentRep >= 0.0 ? ((double) studentRep <= 0.0 ? "0" : "+" + studentRep.ToString()) : studentRep.ToString() ?? "";
+    this.ReputationBar.localPosition = new Vector3(studentRep * 0.96f, this.ReputationBar.localPosition.y, this.ReputationBar.localPosition.z);
     if ((double) this.ReputationBar.localPosition.x > 96.0)
       this.ReputationBar.localPosition = new Vector3(96f, this.ReputationBar.localPosition.y, this.ReputationBar.localPosition.z);
     if ((double) this.ReputationBar.localPosition.x < -96.0)
       this.ReputationBar.localPosition = new Vector3(-96f, this.ReputationBar.localPosition.y, this.ReputationBar.localPosition.z);
-    this.PersonaLabel.text = !((Object) this.StudentManager != (Object) null) || !((Object) this.StudentManager.Students[this.CurrentStudent] != (Object) null) ? Persona.PersonaNames[student.Persona] : Persona.PersonaNames[this.StudentManager.Students[this.CurrentStudent].Persona];
+    this.PersonaLabel.text = !((Object) this.StudentManager.Students[this.CurrentStudent] != (Object) null) ? Persona.PersonaNames[student.Persona] : Persona.PersonaNames[this.StudentManager.Students[this.CurrentStudent].Persona];
     if (student.Persona == PersonaType.Strict && student.Club == ClubType.GymTeacher && !StudentGlobals.GetStudentReplaced(ID))
       this.PersonaLabel.text = "Friendly but Strict";
     this.MatchmadeCheck();
-    int num2 = 0;
-    if ((Object) this.StudentManager != (Object) null)
-      num2 = this.StudentManager.SuitorID;
+    int suitorId = this.StudentManager.SuitorID;
     if (this.Matchmade)
     {
       this.LeftCrushLabel.text = "Relationship";
@@ -111,9 +106,9 @@ public class StudentInfoScript : MonoBehaviour
     {
       this.LeftCrushLabel.text = "Crush";
       if (this.CurrentStudent > 10 && this.CurrentStudent < 21)
-        this.CrushLabel.text = !((Object) this.StudentManager != (Object) null) || this.CurrentStudent != this.StudentManager.RivalID ? "None Anymore" : this.JSON.Students[student.Crush].Name;
-      if (this.CurrentStudent == num2)
-        this.CrushLabel.text = !((Object) this.StudentManager != (Object) null) || this.StudentManager.LoveManager.SuitorProgress != 0 ? this.JSON.Students[student.Crush].Name : "Unknown";
+        this.CrushLabel.text = this.CurrentStudent != this.StudentManager.RivalID ? "None Anymore" : this.JSON.Students[student.Crush].Name;
+      if (this.CurrentStudent == suitorId)
+        this.CrushLabel.text = (Object) this.StudentManager.LoveManager != (Object) null && this.StudentManager.LoveManager.SuitorProgress == 0 || DatingGlobals.SuitorProgress == 0 ? "Unknown" : this.JSON.Students[student.Crush].Name;
       else if (student.Crush == 0)
         this.CrushLabel.text = "None";
       else if (student.Crush == 99)
@@ -136,7 +131,7 @@ public class StudentInfoScript : MonoBehaviour
         {
           for (int index = 2; index < 11; ++index)
           {
-            if ((Object) this.StudentManager != (Object) null && this.CurrentStudent == this.StudentManager.SuitorIDs[index] && this.StudentManager.Week < index)
+            if (this.CurrentStudent == this.StudentManager.SuitorIDs[index] && this.StudentManager.Week < index)
               this.CrushLabel.text = "Unknown";
           }
         }
@@ -163,7 +158,7 @@ public class StudentInfoScript : MonoBehaviour
         if (!StudentGlobals.GetStudentReplaced(ID))
           this.Portrait.mainTexture = (Texture) www.texture;
         else
-          this.Portrait.mainTexture = this.BlankPortrait;
+          this.Portrait.mainTexture = this.StudentInfoMenu.BlankPortrait;
         if (this.Eighties && this.CurrentStudent > 10 && this.CurrentStudent < 21 && DateGlobals.Week < this.CurrentStudent - 10)
           this.Portrait.mainTexture = this.StudentInfoMenu.EightiesUnknown;
       }
@@ -200,6 +195,7 @@ public class StudentInfoScript : MonoBehaviour
     this.UpdateAdditionalInfo(ID);
     this.UpdateRepChart();
     this.CensorUnknownRivalInfo();
+    this.UpdateTagButton();
   }
 
   private void Update()
@@ -301,30 +297,30 @@ public class StudentInfoScript : MonoBehaviour
           this.PromptBar.Label[1].text = "Back";
           this.PromptBar.UpdateButtons();
         }
-        else if (this.StudentManager.Students[this.CurrentStudent].Routine && !this.StudentManager.Students[this.CurrentStudent].InEvent && !this.StudentManager.Students[this.CurrentStudent].TargetedForDistraction && this.StudentManager.Students[this.CurrentStudent].ClubActivityPhase < 16 && !this.StudentManager.Students[this.CurrentStudent].MyBento.Tampered)
-        {
-          this.StudentManager.Students[this.CurrentStudent].Routine = false;
-          this.StudentManager.Students[this.CurrentStudent].SentHome = true;
-          this.StudentManager.Students[this.CurrentStudent].CameraReacting = false;
-          this.StudentManager.Students[this.CurrentStudent].SpeechLines.Stop();
-          this.StudentManager.Students[this.CurrentStudent].EmptyHands();
-          this.StudentInfoMenu.PauseScreen.ServiceMenu.gameObject.SetActive(true);
-          this.StudentInfoMenu.PauseScreen.ServiceMenu.UpdateList();
-          this.StudentInfoMenu.PauseScreen.ServiceMenu.UpdateDesc();
-          this.StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
-          this.StudentInfoMenu.SendingHome = false;
-          this.gameObject.SetActive(false);
-          this.PromptBar.ClearButtons();
-          this.PromptBar.Show = false;
-        }
         else
         {
-          this.StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(0);
+          if (this.StudentManager.Students[this.CurrentStudent].Routine && !this.StudentManager.Students[this.CurrentStudent].InEvent && !this.StudentManager.Students[this.CurrentStudent].TargetedForDistraction && this.StudentManager.Students[this.CurrentStudent].ClubActivityPhase < 16 && !this.StudentManager.Students[this.CurrentStudent].MyBento.Tampered)
+          {
+            this.StudentManager.Students[this.CurrentStudent].Routine = false;
+            this.StudentManager.Students[this.CurrentStudent].SentHome = true;
+            this.StudentManager.Students[this.CurrentStudent].CameraReacting = false;
+            this.StudentManager.Students[this.CurrentStudent].SpeechLines.Stop();
+            this.StudentManager.Students[this.CurrentStudent].EmptyHands();
+            this.Yandere.PauseScreen.ServiceMenu.ServicePurchased[this.Yandere.PauseScreen.ServiceMenu.Selected] = true;
+            this.StudentInfoMenu.PauseScreen.ServiceMenu.gameObject.SetActive(true);
+            this.StudentInfoMenu.PauseScreen.ServiceMenu.UpdateList();
+            this.StudentInfoMenu.PauseScreen.ServiceMenu.UpdateDesc();
+            this.StudentInfoMenu.PauseScreen.ServiceMenu.Purchase();
+            this.StudentInfoMenu.SendingHome = false;
+          }
+          else
+            this.StudentInfoMenu.PauseScreen.ServiceMenu.TextMessageManager.SpawnMessage(0);
           this.gameObject.SetActive(false);
           this.PromptBar.ClearButtons();
           this.PromptBar.Label[0].text = string.Empty;
           this.PromptBar.Label[1].text = "Back";
           this.PromptBar.UpdateButtons();
+          this.PromptBar.Show = true;
         }
       }
       else if (this.StudentInfoMenu.FindingLocker)
@@ -492,7 +488,7 @@ public class StudentInfoScript : MonoBehaviour
         ++this.CurrentStudent;
         if (this.CurrentStudent > 100)
           this.CurrentStudent = 1;
-        while (!StudentGlobals.GetStudentPhotographed(this.CurrentStudent))
+        while (!this.StudentManager.StudentPhotographed[this.CurrentStudent])
         {
           ++this.CurrentStudent;
           if (this.CurrentStudent > 100)
@@ -506,7 +502,7 @@ public class StudentInfoScript : MonoBehaviour
         --this.CurrentStudent;
         if (this.CurrentStudent < 1)
           this.CurrentStudent = 100;
-        while (!StudentGlobals.GetStudentPhotographed(this.CurrentStudent))
+        while (!this.StudentManager.StudentPhotographed[this.CurrentStudent])
         {
           --this.CurrentStudent;
           if (this.CurrentStudent < 1)
@@ -694,6 +690,14 @@ public class StudentInfoScript : MonoBehaviour
     this.InfoLabel.text = "?????";
     this.ReputationLabel.text = "";
     this.ReputationBar.localPosition = new Vector3(0.0f, -10f, 0.0f);
+  }
+
+  public void UpdateTagButton()
+  {
+    if (this.StudentManager.TagStudentID == this.CurrentStudent)
+      this.PromptBar.Label[2].text = "Untag";
+    else
+      this.PromptBar.Label[2].text = "Tag";
   }
 
   static StudentInfoScript()

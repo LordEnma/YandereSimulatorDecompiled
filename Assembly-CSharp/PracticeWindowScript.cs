@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PracticeWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -69,6 +69,7 @@ public class PracticeWindowScript : MonoBehaviour
             this.PromptBar.Show = false;
             this.Window.SetActive(false);
             this.ButtonUp = false;
+            Time.timeScale = 1f;
           }
         }
         else if (Input.GetButtonDown("B"))
@@ -80,6 +81,7 @@ public class PracticeWindowScript : MonoBehaviour
           this.PromptBar.Show = false;
           this.Window.SetActive(false);
           this.ButtonUp = false;
+          Time.timeScale = 1f;
         }
       }
       else if (Input.GetButtonUp("A"))
@@ -337,6 +339,7 @@ public class PracticeWindowScript : MonoBehaviour
     }
     this.Window.SetActive(true);
     this.UpdateHighlight();
+    Time.timeScale = 0.0001f;
   }
 
   public void UpdateHighlight()

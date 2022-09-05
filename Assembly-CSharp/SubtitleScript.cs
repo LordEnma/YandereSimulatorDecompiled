@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SubtitleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -552,11 +552,11 @@ public class SubtitleScript : MonoBehaviour
         this.ClubNoClips[index] = this.LongestSilence;
       }
       this.Shoving[1] = "Back off.";
-      this.Shoving[2] = "Desculpe!";
+      this.Shoving[2] = "Desculpa!";
       this.Shoving[3] = "Oops, sorry!";
       this.Shoving[4] = "Too close, girlie.";
       this.Chasing[1] = "How dare you!";
-      this.Chasing[2] = "Oh meu Deus!";
+      this.Chasing[2] = "Ai meu Deus!";
       this.Chasing[3] = "How could you do that?!";
       this.Chasing[4] = "I'm taking you down!";
       this.Spraying[1] = "Take this!";
@@ -572,15 +572,15 @@ public class SubtitleScript : MonoBehaviour
       this.CouncilToCounselors[3] = "Um, I'm really sorry, but the counselor will need to hear about this...";
       this.CouncilToCounselors[4] = "What the hell do you think you're doing? Get your ass to the counelsor's office.";
       this.CouncilCorpseReactions[1] = "A dead body?!";
-      this.CouncilCorpseReactions[2] = "Você está morto?!";
+      this.CouncilCorpseReactions[2] = "Você morreu?!";
       this.CouncilCorpseReactions[3] = "Oh, no! This is horrible!";
       this.CouncilCorpseReactions[4] = "Damn! This is serious!";
       this.StrictReport[1] = "The faculty must be informed!";
       this.StrictReport[2] = "I've discovered a dead body! Come with me!";
       this.StrictReport[3] = "...no...impossible...";
-      this.CasualReport[1] = "Devo contar a um professor!";
+      this.CasualReport[1] = "Devo contar a um professora!";
       this.CasualReport[2] = "Emergency! Dead body! Follow me!";
-      this.CasualReport[3] = "Que diabos está acontecendo aqui...";
+      this.CasualReport[3] = "O que está acontecendo aqui...";
       this.GraceReport[1] = "The teachers need to hear about this!";
       this.GraceReport[2] = "Help! Help! Somebody's dead!";
       this.GraceReport[3] = "No! Wait! I'm telling the truth! I swear!";
@@ -2071,15 +2071,8 @@ public class SubtitleScript : MonoBehaviour
     this.Jukebox.Dip = 0.5f;
     AudioClipArrayWrapper clipArrayWrapper;
     this.SubtitleClipArrays.TryGetValue(subtitleType, out clipArrayWrapper);
-    if ((Object) this.CurrentClip != (Object) null)
-    {
-      Debug.Log((object) "A voice clip was already playing.");
-      if ((Object) clipArrayWrapper[ID] != (Object) this.HmmClips[0])
-      {
-        Debug.Log((object) "We are not being told to play HmmClip, so we should destroy the previously existing clip.");
-        Object.Destroy((Object) this.CurrentClip);
-      }
-    }
+    if ((Object) this.CurrentClip != (Object) null && (Object) clipArrayWrapper[ID] != (Object) this.HmmClips[0])
+      Object.Destroy((Object) this.CurrentClip);
     if (ID < clipArrayWrapper.Length)
       this.PlayClip(clipArrayWrapper[ID], this.transform.position);
     else

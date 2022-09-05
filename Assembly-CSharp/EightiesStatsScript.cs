@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EightiesStatsScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -42,15 +42,11 @@ public class EightiesStatsScript : MonoBehaviour
     {
       this.EliminationIDs[elimID2] = GameGlobals.GetSpecificEliminations(elimID2);
       this.DetailIDs[elimID2] = GameGlobals.GetRivalEliminations(elimID2);
-      if (this.EliminationIDs[elimID2] == 14)
-        this.DetailIDs[elimID2] = 13;
     }
     if (GameGlobals.RivalEliminationID > 0)
     {
       this.EliminationIDs[DateGlobals.Week] = GameGlobals.SpecificEliminationID;
       this.DetailIDs[DateGlobals.Week] = GameGlobals.RivalEliminationID;
-      if (this.EliminationIDs[DateGlobals.Week] == 14)
-        this.DetailIDs[DateGlobals.Week] = 13;
     }
     this.Label[0].text = "Rival #1: " + this.Eliminations[this.EliminationIDs[1]] + "\n" + this.Details[this.DetailIDs[1]] + "\n\nRival #2: " + this.Eliminations[this.EliminationIDs[2]] + "\n" + this.Details[this.DetailIDs[2]] + "\n\nRival #3: " + this.Eliminations[this.EliminationIDs[3]] + "\n" + this.Details[this.DetailIDs[3]] + "\n\nRival #4: " + this.Eliminations[this.EliminationIDs[4]] + "\n" + this.Details[this.DetailIDs[4]] + "\n\nRival #5: " + this.Eliminations[this.EliminationIDs[5]] + "\n" + this.Details[this.DetailIDs[5]];
     this.Label[1].text = "Rival #6: " + this.Eliminations[this.EliminationIDs[6]] + "\n" + this.Details[this.DetailIDs[6]] + "\n\nRival #7: " + this.Eliminations[this.EliminationIDs[7]] + "\n" + this.Details[this.DetailIDs[7]] + "\n\nRival #8: " + this.Eliminations[this.EliminationIDs[8]] + "\n" + this.Details[this.DetailIDs[8]] + "\n\nRival #9: " + this.Eliminations[this.EliminationIDs[9]] + "\n" + this.Details[this.DetailIDs[9]] + "\n\nRival #10: " + this.Eliminations[this.EliminationIDs[10]] + "\n" + this.Details[this.DetailIDs[10]];

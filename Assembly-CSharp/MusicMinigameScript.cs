@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MusicMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -189,14 +189,6 @@ public class MusicMinigameScript : MonoBehaviour
       }
       else
       {
-        if (Input.GetKeyDown("z"))
-        {
-          this.Won = true;
-          this.Health = 200f;
-          this.LockHealth = true;
-          this.UpdateHealthBar();
-          this.MyAudio.time = this.MyAudio.clip.length - Time.deltaTime;
-        }
         if ((double) this.MyAudio.time > 131.0)
         {
           this.ChibiSway[2] = false;

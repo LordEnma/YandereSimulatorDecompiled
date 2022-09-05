@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericRivalBagScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -70,6 +70,8 @@ public class GenericRivalBagScript : MonoBehaviour
   public string DesiredTraitText;
   public bool Initialized;
   public int Page = 1;
+  public Vector3 CorrectPosition;
+  public Vector3 CorrectRotation;
   public GameObject TanHearts;
   public GameObject PiercingHearts;
   public GameObject DarkHairHearts;
@@ -207,6 +209,10 @@ public class GenericRivalBagScript : MonoBehaviour
               this.PromptBar.UpdateButtons();
               this.Menu = 6;
               this.UpdateMenuLabels();
+              for (int Topic = 1; Topic < 26; ++Topic)
+                this.Prompt.Yandere.StudentManager.SetTopicLearnedByStudent(Topic, this.Prompt.Yandere.StudentManager.RivalID, true);
+              this.Prompt.Yandere.NotificationManager.CustomText = "Learned the rival's likes & dislikes";
+              this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
             }
             else if (this.Selected == 4)
             {
@@ -613,5 +619,11 @@ public class GenericRivalBagScript : MonoBehaviour
         return;
       this.SlickHearts.SetActive(true);
     }
+  }
+
+  public void UpdatePosition()
+  {
+    this.transform.position = this.CorrectPosition;
+    this.transform.eulerAngles = this.CorrectRotation;
   }
 }

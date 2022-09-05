@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ResolutionScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Globalization;
@@ -27,6 +27,7 @@ public class ResolutionScript : MonoBehaviour
   public int[] Heights;
   public int QualityID;
   public int ResID = 1;
+  public int Enters;
   public int Rs;
   public int ID = 1;
 
@@ -130,16 +131,22 @@ public class ResolutionScript : MonoBehaviour
         this.FadeOut = true;
     }
     this.Highlight.localPosition = Vector3.Lerp(this.Highlight.localPosition, new Vector3(-307.5f, (float) (250 - this.ID * 100), 0.0f), Time.deltaTime * 10f);
-    if (Input.GetKeyDown(KeyCode.KeypadEnter))
-      SceneManager.LoadScene("NewTitleScene");
-    if (!Input.GetKeyDown("r"))
+    if (Input.GetKeyDown("r"))
+    {
+      ++this.Rs;
+      if (this.Rs == 10)
+      {
+        PlayerPrefs.DeleteAll();
+        Screen.SetResolution(1280, 720, false);
+        SceneManager.LoadScene("ResolutionScene");
+      }
+    }
+    if (!Input.GetKeyDown(KeyCode.KeypadEnter))
       return;
-    ++this.Rs;
-    if (this.Rs != 10)
+    ++this.Enters;
+    if (this.Enters != 10)
       return;
-    PlayerPrefs.DeleteAll();
-    Screen.SetResolution(1280, 720, false);
-    SceneManager.LoadScene("ResolutionScene");
+    SceneManager.LoadScene("CalendarScene");
   }
 
   private void UpdateRes()

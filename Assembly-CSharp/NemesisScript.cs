@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NemesisScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -129,43 +129,47 @@ public class NemesisScript : MonoBehaviour
 
   private void Update()
   {
-    if (this.Frame > 1 && this.PutOnDisguise)
+    if (this.Frame > 1)
     {
-      Debug.Log((object) "Nemesis is supposed to be choosing a disguise right now.");
-      bool flag = false;
-      int index1 = 1;
-      while ((((Object) this.Student.StudentManager.Students[index1] != (Object) null && this.Student.StudentManager.Students[index1].Male || index1 > 5 && index1 < 21 || index1 == 21 || index1 == 26 || index1 == 31 || index1 == 36 || index1 == 41 || index1 == 46 || index1 == 51 || index1 == 56 || index1 == 61 || index1 == 66 || index1 == 71 ? 1 : (index1 == this.MissionMode.TargetID ? 1 : 0)) | (flag ? 1 : 0)) != 0)
+      this.Student.FaceCollider.enabled = true;
+      if (this.PutOnDisguise)
       {
-        index1 = Random.Range(2, 90);
-        if (this.MissionMode.MultiMission)
+        Debug.Log((object) "Nemesis is supposed to be choosing a disguise right now.");
+        bool flag = false;
+        int index1 = 1;
+        while ((((Object) this.Student.StudentManager.Students[index1] != (Object) null && this.Student.StudentManager.Students[index1].Male || index1 > 5 && index1 < 21 || index1 == 21 || index1 == 26 || index1 == 31 || index1 == 36 || index1 == 41 || index1 == 46 || index1 == 51 || index1 == 56 || index1 == 61 || index1 == 66 || index1 == 71 ? 1 : (index1 == this.MissionMode.TargetID ? 1 : 0)) | (flag ? 1 : 0)) != 0)
         {
-          flag = false;
-          for (int index2 = 1; index2 < 11; ++index2)
+          index1 = Random.Range(2, 90);
+          if (this.MissionMode.MultiMission)
           {
-            if (index1 == PlayerPrefs.GetInt("MissionModeTarget" + index2.ToString()))
-              flag = true;
+            flag = false;
+            for (int index2 = 1; index2 < 11; ++index2)
+            {
+              if (index1 == PlayerPrefs.GetInt("MissionModeTarget" + index2.ToString()))
+                flag = true;
+            }
           }
         }
+        Debug.Log((object) ("Nemesis is replacing Student# " + index1.ToString() + " - " + this.Student.StudentManager.Students[index1].Name));
+        this.Student.StudentManager.Students[index1].gameObject.SetActive(false);
+        this.Student.StudentManager.Students[index1].Replaced = true;
+        this.Cosmetic.StudentID = index1;
+        this.Cosmetic.Start();
+        OutlineScript component1 = this.Cosmetic.FemaleHair[this.Cosmetic.Hairstyle].GetComponent<OutlineScript>();
+        if ((Object) component1 != (Object) null)
+        {
+          component1.enabled = false;
+        }
+        else
+        {
+          OutlineScript component2 = this.Cosmetic.FemaleHairRenderers[this.Cosmetic.Hairstyle].GetComponent<OutlineScript>();
+          if ((Object) component2 != (Object) null)
+            component2.enabled = false;
+        }
+        this.Student.FaceCollider.tag = "Disguise";
+        Debug.Log((object) ("As of now, Nemesis should have disguised herself as " + this.Student.StudentManager.Students[index1].Name));
+        this.PutOnDisguise = false;
       }
-      Debug.Log((object) ("Nemesis is replacing Student# " + index1.ToString() + " - " + this.Student.StudentManager.Students[index1].Name));
-      this.Student.StudentManager.Students[index1].gameObject.SetActive(false);
-      this.Student.StudentManager.Students[index1].Replaced = true;
-      this.Cosmetic.StudentID = index1;
-      this.Cosmetic.Start();
-      OutlineScript component1 = this.Cosmetic.FemaleHair[this.Cosmetic.Hairstyle].GetComponent<OutlineScript>();
-      if ((Object) component1 != (Object) null)
-      {
-        component1.enabled = false;
-      }
-      else
-      {
-        OutlineScript component2 = this.Cosmetic.FemaleHairRenderers[this.Cosmetic.Hairstyle].GetComponent<OutlineScript>();
-        if ((Object) component2 != (Object) null)
-          component2.enabled = false;
-      }
-      this.Student.FaceCollider.tag = "Disguise";
-      Debug.Log((object) ("As of now, Nemesis should have disguised herself as " + this.Student.StudentManager.Students[index1].Name));
-      this.PutOnDisguise = false;
     }
     ++this.Frame;
     if (!this.Dying)

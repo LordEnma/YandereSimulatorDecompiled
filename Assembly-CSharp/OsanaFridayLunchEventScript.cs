@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaFridayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -267,7 +267,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
         this.Rival.SmartPhone.transform.localPosition = this.OriginalPosition;
         this.Return = false;
       }
-      if (this.Senpai.Alarmed || this.Rival.Alarmed || this.Rival.Splashed || this.Rival.Dodging || this.Clock.Period == 4)
+      if (this.Senpai.Alarmed || this.Rival.Alarmed || this.Rival.Splashed || this.Rival.Dodging || this.Clock.Period == 4 || this.Rival.GoAway)
       {
         if (!this.Rival.Splashed)
           UnityEngine.Object.Instantiate<GameObject>(this.AlarmDisc, this.Yandere.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
@@ -357,6 +357,10 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
     this.Yandere.Eavesdropping = false;
     this.EventSubtitle.text = string.Empty;
     this.enabled = false;
+    if (!this.Rival.GoAway)
+      return;
+    this.Rival.Subtitle.CustomText = "Ugh, seriously?! Maybe some other time, Senpai...";
+    this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
   }
 
   private void EndSenpai()

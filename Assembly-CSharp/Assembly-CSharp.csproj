@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{65B9C818-1F09-4680-BA28-BA840E05836F}</ProjectGuid>
+    <ProjectGuid>{93A3C15B-0220-47DC-B26F-B318147A707F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <ApplicationVersion>0.0.0.0</ApplicationVersion>
@@ -835,6 +835,7 @@
     <Compile Include="FootprintScript.cs" />
     <Compile Include="FootprintSpawnerScript.cs" />
     <Compile Include="FootstepScript.cs" />
+    <Compile Include="ForceRotationScript.cs" />
     <Compile Include="FountainScript.cs" />
     <Compile Include="FramerateScript.cs" />
     <Compile Include="FunGirlScript.cs" />
@@ -1079,6 +1080,7 @@
     <Compile Include="PromptOwnerType.cs" />
     <Compile Include="PromptScript.cs" />
     <Compile Include="PromptSwapScript.cs" />
+    <Compile Include="PuddleDetectorScript.cs" />
     <Compile Include="PuddleParentScript.cs" />
     <Compile Include="QualityManagerScript.cs" />
     <Compile Include="RadioScript.cs" />
@@ -1200,6 +1202,7 @@
     <Compile Include="SpawnPointSpawnerScript.cs" />
     <Compile Include="SpawnedObjectType.cs" />
     <Compile Include="SpawnedObjectManagerScript.cs" />
+    <Compile Include="SpeechBubbleScript.cs" />
     <Compile Include="SpeedrunMenuScript.cs" />
     <Compile Include="SpeedrunTimerScript.cs" />
     <Compile Include="SpinScript.cs" />
@@ -1532,6 +1535,25 @@
     <Compile Include="YandereSimulator\Yancord\Profile.cs" />
     <Compile Include="YandereSimulator\Yancord\Status.cs" />
     <Compile Include="YandereSimulator\Yancord\YancordManager.cs" />
+    <Compile Include="RetroAesthetics\CombineMeshes.cs" />
+    <Compile Include="RetroAesthetics\SceneField.cs" />
+    <Compile Include="RetroAesthetics\UVScroller.cs" />
+    <Compile Include="RetroAesthetics\RetroCameraEffect.cs" />
+    <Compile Include="RetroAesthetics\Demos\MenuScripts.cs" />
+    <Compile Include="RetroAesthetics\Demos\SpeedTilt.cs" />
+    <Compile Include="AmplifyMotion\Quality.cs" />
+    <Compile Include="AmplifyMotion\ObjectType.cs" />
+    <Compile Include="AmplifyMotion\MotionState.cs" />
+    <Compile Include="AmplifyMotion\ClothState.cs" />
+    <Compile Include="AmplifyMotion\ParticleState.cs" />
+    <Compile Include="AmplifyMotion\VersionInfo.cs" />
+    <Compile Include="AmplifyMotion\SkinnedState.cs" />
+    <Compile Include="AmplifyMotion\SolidState.cs" />
+    <Compile Include="AmplifyMotion\WorkerThreadPool.cs" />
+    <Compile Include="AnimationOrTween\Trigger.cs" />
+    <Compile Include="AnimationOrTween\Direction.cs" />
+    <Compile Include="AnimationOrTween\EnableCondition.cs" />
+    <Compile Include="AnimationOrTween\DisableCondition.cs" />
     <Compile Include="MaidDereMinigame\Chef.cs" />
     <Compile Include="MaidDereMinigame\CharacterHairPlacer.cs" />
     <Compile Include="MaidDereMinigame\CustomerSpawner.cs" />
@@ -1575,25 +1597,6 @@
     <Compile Include="MaidDereMinigame\TipPage.cs" />
     <Compile Include="MaidDereMinigame\Malee\ReorderableAttribute.cs" />
     <Compile Include="MaidDereMinigame\Malee\ReorderableArray`1.cs" />
-    <Compile Include="AnimationOrTween\Trigger.cs" />
-    <Compile Include="AnimationOrTween\Direction.cs" />
-    <Compile Include="AnimationOrTween\EnableCondition.cs" />
-    <Compile Include="AnimationOrTween\DisableCondition.cs" />
-    <Compile Include="AmplifyMotion\Quality.cs" />
-    <Compile Include="AmplifyMotion\ObjectType.cs" />
-    <Compile Include="AmplifyMotion\MotionState.cs" />
-    <Compile Include="AmplifyMotion\ClothState.cs" />
-    <Compile Include="AmplifyMotion\ParticleState.cs" />
-    <Compile Include="AmplifyMotion\VersionInfo.cs" />
-    <Compile Include="AmplifyMotion\SkinnedState.cs" />
-    <Compile Include="AmplifyMotion\SolidState.cs" />
-    <Compile Include="AmplifyMotion\WorkerThreadPool.cs" />
-    <Compile Include="RetroAesthetics\CombineMeshes.cs" />
-    <Compile Include="RetroAesthetics\SceneField.cs" />
-    <Compile Include="RetroAesthetics\UVScroller.cs" />
-    <Compile Include="RetroAesthetics\RetroCameraEffect.cs" />
-    <Compile Include="RetroAesthetics\Demos\MenuScripts.cs" />
-    <Compile Include="RetroAesthetics\Demos\SpeedTilt.cs" />
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

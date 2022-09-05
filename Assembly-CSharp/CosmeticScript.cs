@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CosmeticScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -111,6 +111,7 @@ public class CosmeticScript : MonoBehaviour
   public Texture CasualTexture;
   public Texture SocksTexture;
   public Texture FaceTexture;
+  public Texture ShortWhiteSocks;
   public Texture PurpleStockings;
   public Texture YellowStockings;
   public Texture BlackStockings;
@@ -635,7 +636,7 @@ public class CosmeticScript : MonoBehaviour
               this.CharacterAnimation.Play("f02_teacherPortraitPose_32");
             else if (this.StudentID == 97)
             {
-              this.CharacterAnimation.Play("f02_coachPortraitPose_00");
+              this.CharacterAnimation.Play("f02_coachPortraitPose_02");
               this.transform.position = new Vector3(-0.029f, 0.0f, 0.0f);
             }
             else if (this.Club != ClubType.Council)
@@ -658,6 +659,12 @@ public class CosmeticScript : MonoBehaviour
             {
               this.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
               this.CharacterAnimation.Play("f02_eightiesRivalPose_10");
+            }
+            else if (this.StudentID == 36)
+            {
+              this.CharacterAnimation["f02_smile_00"].layer = 1;
+              this.CharacterAnimation.Play("f02_smile_00");
+              this.CharacterAnimation["f02_smile_00"].weight = 1f;
             }
             if (this.StudentID > 2 && this.StudentID < 7)
             {
@@ -795,9 +802,6 @@ public class CosmeticScript : MonoBehaviour
     {
       if (!StudentGlobals.GetStudentReplaced(this.StudentID))
       {
-        this.CharacterAnimation["f02_smile_00"].layer = 1;
-        this.CharacterAnimation.Play("f02_smile_00");
-        this.CharacterAnimation["f02_smile_00"].weight = 1f;
         this.RightEyeRenderer.gameObject.SetActive(false);
         this.LeftEyeRenderer.gameObject.SetActive(false);
       }
@@ -940,7 +944,7 @@ public class CosmeticScript : MonoBehaviour
         if ((Object) this.FemaleAccessories[this.Accessory] != (Object) null)
           this.FemaleAccessories[this.Accessory].SetActive(true);
       }
-      else if ((Object) this.TeacherAccessories[this.Accessory] != (Object) null)
+      else if ((Object) this.TeacherAccessories[this.Accessory] != (Object) null && (!this.TakingPortrait || this.Eighties || this.TakingPortrait && this.StudentID < 97))
         this.TeacherAccessories[this.Accessory].SetActive(true);
     }
     else if ((Object) this.MaleAccessories[this.Accessory] != (Object) null)
@@ -1693,6 +1697,8 @@ public class CosmeticScript : MonoBehaviour
       this.MyStockings = this.SakyuStockings;
     else if (this.Stockings == "Inkyu")
       this.MyStockings = this.InkyuStockings;
+    else if (this.Stockings == "Socks")
+      this.MyStockings = this.ShortWhiteSocks;
     else if (this.Stockings == "Custom1")
     {
       NewCustomStockings = new WWW("file:///" + Application.streamingAssetsPath + "/CustomStockings1.png");

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaVendingMachineEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -83,7 +83,8 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
       }
       if ((double) this.Rival.DistanceToDestination < (double) this.MinimumDistance)
       {
-        this.Rival.MoveTowardsTarget(this.Location.position);
+        if (!this.Rival.GoAway)
+          this.Rival.MoveTowardsTarget(this.Location.position);
         if ((double) Quaternion.Angle(this.Rival.transform.rotation, this.Location.rotation) > 1.0)
           this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Location.rotation, 10f * Time.deltaTime);
       }
@@ -173,7 +174,7 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
         if ((double) this.Timer > 5.0)
           this.EndEvent();
       }
-      if (this.Clock.Period > this.StartPeriod || this.Rival.Alarmed || this.Rival.Splashed || this.Rival.Dodging)
+      if (this.Clock.Period > this.StartPeriod || this.Rival.Alarmed || this.Rival.Splashed || this.Rival.Dodging || this.Rival.GoAway)
         this.EndEvent();
       this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Rival.transform.position);
       if ((double) this.Distance - 4.0 < 15.0)
@@ -226,5 +227,9 @@ public class OsanaVendingMachineEventScript : MonoBehaviour
     this.Jukebox.Dip = 1f;
     this.EventSubtitle.text = string.Empty;
     this.enabled = false;
+    if (!this.Rival.GoAway)
+      return;
+    this.Rival.Subtitle.CustomText = "Ugh, seriously?! It's not important anymore...";
+    this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
   }
 }

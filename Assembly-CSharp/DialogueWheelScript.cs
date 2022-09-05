@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DialogueWheelScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -393,9 +393,12 @@ public class DialogueWheelScript : MonoBehaviour
           else if (this.Selected == 3)
           {
             this.PauseScreen.StudentInfoMenu.Gossiping = true;
+            this.PromptBar.ClearButtons();
+            this.PromptBar.Label[0].text = string.Empty;
+            this.PromptBar.Label[1].text = "Cancel";
+            this.PromptBar.UpdateButtons();
+            this.PromptBar.Show = true;
             this.PauseScreen.StudentInfoMenu.gameObject.SetActive(true);
-            this.PauseScreen.StudentInfoMenu.Column = 0;
-            this.PauseScreen.StudentInfoMenu.Row = 0;
             this.PauseScreen.StudentInfoMenu.UpdateHighlight();
             this.StartCoroutine(this.PauseScreen.StudentInfoMenu.UpdatePortraits());
             this.PauseScreen.MainMenu.SetActive(false);
@@ -403,11 +406,6 @@ public class DialogueWheelScript : MonoBehaviour
             this.PauseScreen.Sideways = true;
             this.PauseScreen.Show = true;
             Time.timeScale = 0.0001f;
-            this.PromptBar.ClearButtons();
-            this.PromptBar.Label[0].text = string.Empty;
-            this.PromptBar.Label[1].text = "Cancel";
-            this.PromptBar.UpdateButtons();
-            this.PromptBar.Show = true;
             this.Yandere.Subtitle.Label.text = "";
             this.transform.localScale = Vector3.zero;
             this.Impatience.fillAmount = 0.0f;

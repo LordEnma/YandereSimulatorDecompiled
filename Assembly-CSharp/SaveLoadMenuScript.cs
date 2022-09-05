@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SaveLoadMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -34,11 +34,9 @@ public class SaveLoadMenuScript : MonoBehaviour
 
   public void Start()
   {
-    Debug.Log((object) ("SaveLoadMenu.Start() - At this moment, GameGlobals.Profile was: " + GameGlobals.Profile.ToString()));
     if (GameGlobals.Profile == 0)
       GameGlobals.Profile = 1;
     this.Profile = GameGlobals.Profile;
-    Debug.Log((object) ("And now it is: " + GameGlobals.Profile.ToString()));
     this.WarningWindow.SetActive(true);
     this.ConfirmWindow.SetActive(false);
     this.StartCoroutine(this.GetThumbnails());

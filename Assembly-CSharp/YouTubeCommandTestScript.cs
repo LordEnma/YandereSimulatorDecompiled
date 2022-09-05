@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YouTubeCommandTestScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -117,13 +117,18 @@ public class YouTubeCommandTestScript : MonoBehaviour
       else if (this.Check[5] && message.Contains(this.CloakKeyword))
       {
         Debug.Log((object) "Someone typed ''!cloak''.");
+        Debug.Log((object) "Attempting to disable ShoeLocker...");
         this.ShoeLocker.enabled = false;
+        Debug.Log((object) "Attempting to turn the girl invisible...");
         this.Yandere.Invisible = true;
         this.Yandere.Cloak();
         this.CloakTimer = 10f;
+        Debug.Log((object) "Attempting to spawn a notification...");
         this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " cloaked you for 10 seconds!";
         this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+        Debug.Log((object) "Attempting to remove this message from the deqeue...");
         YouTubeChat.instance.Dequeue();
+        Debug.Log((object) "We made it!");
       }
       else if (this.Check[6] && message.Contains(this.MoneyKeyword))
       {
@@ -149,7 +154,7 @@ public class YouTubeCommandTestScript : MonoBehaviour
                   if ((UnityEngine.Object) this.Yandere.StudentManager.Students[int32] != (UnityEngine.Object) null)
                   {
                     this.Yandere.StudentManager.Students[int32].Friend = true;
-                    StudentGlobals.SetStudentPhotographed(int32, true);
+                    this.Yandere.StudentManager.StudentPhotographed[int32] = true;
                     this.Yandere.NotificationManager.CustomText = YouTubeChat.instance.NextInQueue().Author + " made you friends with Student #" + int32.ToString() + "!";
                     this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
                   }

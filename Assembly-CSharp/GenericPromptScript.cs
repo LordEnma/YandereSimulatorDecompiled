@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericPromptScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -246,20 +246,12 @@ public class GenericPromptScript : MonoBehaviour
         {
           if (student.Blind)
           {
-            this.Prompt.Yandere.StudentManager.CanAnyoneSeeYandere();
-            if (!this.Prompt.Yandere.StudentManager.YandereVisible)
-            {
-              this.Prompt.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Prompt.Yandere.Numbness;
-              student.transform.parent = this.transform.parent;
-              student.transform.localPosition = new Vector3(1.374146f, 7f / 400f, 0.05f);
-              this.PerformingAction = true;
-              student.enabled = false;
-            }
-            else
-            {
-              this.Prompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
-              this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-            }
+            this.Prompt.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Prompt.Yandere.Numbness;
+            student.transform.parent = this.transform.parent;
+            student.transform.localPosition = new Vector3(1.374146f, 7f / 400f, 0.05f);
+            this.Prompt.Yandere.MurderousActionTimer = 1f;
+            this.PerformingAction = true;
+            student.enabled = false;
           }
           else
           {

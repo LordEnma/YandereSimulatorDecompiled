@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: LoveManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -121,7 +121,7 @@ public class LoveManagerScript : MonoBehaviour
       {
         this.WaitingToConfess = true;
         float num = Vector3.Distance(this.Yandere.transform.position, this.MythHill.position);
-        if (this.WaitingToConfess && !this.Yandere.Chased && this.Yandere.Chasers == 0 && (double) num > 10.0 && (double) num < 25.0)
+        if (this.WaitingToConfess && !this.Yandere.Chased && this.Yandere.Chasers == 0 && !this.Yandere.Noticed && (double) num > 10.0 && (double) num < 25.0)
           this.BeginConfession();
       }
     }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
@@ -1083,7 +1083,7 @@ public class YandereScript : MonoBehaviour
     return sanityType == SanityType.Medium ? "Med" : "Low";
   }
 
-  public Vector3 HeadPosition => new Vector3(this.transform.position.x, this.transform.position.y + this.Zoom.Height, this.transform.position.z);
+  public Vector3 HeadPosition => new Vector3(this.transform.position.x, (float) ((double) this.transform.position.y + (double) this.Zoom.Height + 0.10000000149011612), this.transform.position.z);
 
   public void SetAnimationLayers()
   {
@@ -2200,7 +2200,7 @@ public class YandereScript : MonoBehaviour
     {
       if (this.Egg && this.TitanSword[0].activeInHierarchy)
         this.UpdateODM();
-      if (this.Chased && !this.Sprayed && !this.Attacking && !this.Dumping && !this.StudentManager.PinningDown && !this.DelinquentFighting && !this.ShoulderCamera.HeartbrokenCamera.activeInHierarchy)
+      if (this.Chased && !this.Sprayed && !this.Attacking && !this.Dumping && !this.StudentManager.PinningDown && !this.DelinquentFighting && !this.Struggling && !this.ShoulderCamera.HeartbrokenCamera.activeInHierarchy)
       {
         if ((Object) this.Pursuer != (Object) null)
         {
@@ -2212,6 +2212,7 @@ public class YandereScript : MonoBehaviour
         }
         else
         {
+          Debug.Log((object) "Whoa! Did this code just run?");
           this.PreparedForStruggle = false;
           this.CanMove = true;
           this.Chased = false;
@@ -2674,6 +2675,30 @@ public class YandereScript : MonoBehaviour
             Object.Instantiate<GameObject>(this.TargetStudent.StabBloodEffect, this.EquippedWeapon.transform.position, Quaternion.identity);
             ++this.StrugglePhase;
           }
+          if (this.TargetStudent.Teacher && (double) this.CharacterAnimation["f02_teacherStruggleWinA_00"].time > 2.5)
+          {
+            Debug.Log((object) "A teacher is falling. Checking for nearby walls.");
+            this.TargetStudent.TooCloseToWall = false;
+            this.TargetStudent.CheckForWallToLeft();
+            if (this.TargetStudent.TooCloseToWall)
+            {
+              this.TargetStudent.StopSliding = true;
+              Debug.Log((object) "Too close to a wall!");
+              int num = (int) this.TargetStudent.MyController.Move(this.TargetStudent.transform.right * Time.deltaTime * -1f);
+            }
+          }
+          if (!this.TargetStudent.Teacher && (double) this.CharacterAnimation["f02_struggleWinA_00"].time > 2.5)
+          {
+            Debug.Log((object) "A student is falling. Checking for nearby walls.");
+            this.TargetStudent.TooCloseToWall = false;
+            this.TargetStudent.CheckForWallToRight();
+            if (this.TargetStudent.TooCloseToWall)
+            {
+              this.TargetStudent.StopSliding = true;
+              Debug.Log((object) "Too close to a wall!");
+              int num = (int) this.TargetStudent.MyController.Move(this.TargetStudent.transform.right * Time.deltaTime);
+            }
+          }
           if (!this.TargetStudent.Teacher && (double) this.CharacterAnimation["f02_struggleWinA_00"].time > (double) this.CharacterAnimation["f02_struggleWinA_00"].length || this.TargetStudent.Teacher && (double) this.CharacterAnimation["f02_teacherStruggleWinA_00"].time > (double) this.CharacterAnimation["f02_teacherStruggleWinA_00"].length)
           {
             this.MyController.radius = 0.2f;
@@ -2790,15 +2815,7 @@ public class YandereScript : MonoBehaviour
         }
       }
       if (this.Dismembering && (double) this.CharacterAnimation["f02_dismember_00"].time >= (double) this.CharacterAnimation["f02_dismember_00"].length)
-      {
-        this.CameraEffects.UpdateDOF(2f);
-        this.Ragdoll.GetComponent<RagdollScript>().Dismember();
-        this.RPGCamera.enabled = true;
-        this.TargetStudent = (StudentScript) null;
-        this.Dismembering = false;
-        this.CanMove = true;
-        this.Ragdoll = (GameObject) null;
-      }
+        this.StopDismembering();
       if (this.Shoved)
       {
         if ((double) this.CharacterAnimation["f02_shoveA_01"].time >= (double) this.CharacterAnimation["f02_shoveA_01"].length)
@@ -5148,7 +5165,7 @@ public class YandereScript : MonoBehaviour
         this.StudentManager.SetFaces(0.0f);
       this.SanityLabel.text = ((float) (100.0 - (double) a * 100.0)).ToString("0") + "%";
     }
-    if (this.CanMove && (double) this.sanity < 33.333000183105469 && !this.NearSenpai)
+    if (this.CanMove && (double) this.sanity < 33.333000183105469 && !this.NearSenpai && (Object) this.NearestPrompt == (Object) null)
     {
       this.GiggleTimer += Time.deltaTime * (float) (1.0 - (double) this.sanity / 33.333000183105469);
       if ((double) this.GiggleTimer > 10.0)
@@ -6555,7 +6572,7 @@ public class YandereScript : MonoBehaviour
   private void LifeNote()
   {
     for (this.ID = 1; this.ID < 101; ++this.ID)
-      StudentGlobals.SetStudentPhotographed(this.ID, true);
+      this.StudentManager.StudentPhotographed[this.ID] = true;
     this.MyRenderer.materials[0].SetFloat("_BlendAmount", 0.0f);
     this.MyRenderer.materials[1].SetFloat("_BlendAmount", 0.0f);
     this.LifeNotebook.transform.position = this.transform.position + this.transform.forward + new Vector3(0.0f, 2.5f, 0.0f);
@@ -7243,5 +7260,16 @@ public class YandereScript : MonoBehaviour
       this.WallToLeft = true;
     }
     this.TooCloseToWall = true;
+  }
+
+  public void StopDismembering()
+  {
+    this.CameraEffects.UpdateDOF(2f);
+    this.Ragdoll.GetComponent<RagdollScript>().Dismember();
+    this.RPGCamera.enabled = true;
+    this.TargetStudent = (StudentScript) null;
+    this.Dismembering = false;
+    this.CanMove = true;
+    this.Ragdoll = (GameObject) null;
   }
 }

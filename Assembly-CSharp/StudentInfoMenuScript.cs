@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentInfoMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -52,6 +52,7 @@ public class StudentInfoMenuScript : MonoBehaviour
   public bool SendingHome;
   public bool Gossiping;
   public bool Targeting;
+  public bool Started;
   public bool Dead;
   public int[] SetSizes;
   public int StudentID;
@@ -62,12 +63,27 @@ public class StudentInfoMenuScript : MonoBehaviour
   public int Rows;
   public bool GrabPortraitsNextFrame;
   public int Frame;
+  public float HeldDown;
+  public float HeldUp;
   public bool GrabbedPortraits;
   public bool Debugging;
 
-  private void Start()
+  public void Start()
   {
-    StudentGlobals.GetStudentPhotographed(11);
+    if (this.Started)
+      return;
+    StudentGlobals.SetStudentPhotographed(this.StudentManager.RivalID, true);
+    this.StudentManager.StudentPhotographed[this.StudentManager.RivalID] = true;
+    StudentGlobals.SetStudentPhotographed(0, true);
+    StudentGlobals.SetStudentPhotographed(1, true);
+    this.StudentManager.StudentPhotographed[0] = true;
+    this.StudentManager.StudentPhotographed[1] = true;
+    StudentGlobals.SetStudentPhotographed(98, true);
+    StudentGlobals.SetStudentPhotographed(99, true);
+    StudentGlobals.SetStudentPhotographed(100, true);
+    this.StudentManager.StudentPhotographed[98] = true;
+    this.StudentManager.StudentPhotographed[99] = true;
+    this.StudentManager.StudentPhotographed[100] = true;
     this.BusyBlocker.position = new Vector3(0.0f, 0.0f, 0.0f);
     for (int index = 1; index < 101; ++index)
     {
@@ -87,12 +103,20 @@ public class StudentInfoMenuScript : MonoBehaviour
     if (this.PauseScreen.Eighties)
     {
       this.UnknownPortrait = this.EightiesUnknown;
+      this.BlankPortrait = this.EightiesUnknown;
       this.Headmaster = this.EightiesHeadmaster;
       this.Counselor = this.EightiesCounselor;
       this.InfoChan = this.Journalist;
     }
+    if (this.PauseScreen.Home)
+    {
+      this.StudentManager.InitializeReputations();
+      this.StudentManager.LoadPhotographs();
+      this.StudentManager.LoadPantyshots();
+    }
     this.Column = 0;
     this.Row = 0;
+    this.Started = true;
   }
 
   private void Update()
@@ -108,7 +132,7 @@ public class StudentInfoMenuScript : MonoBehaviour
     {
       if (this.PromptBar.Label[0].text != string.Empty)
       {
-        if (StudentGlobals.GetStudentPhotographed(this.StudentID) || this.StudentID > 97)
+        if (this.StudentManager.StudentPhotographed[this.StudentID] || this.StudentID > 97)
         {
           if (this.UsingLifeNote)
           {
@@ -159,7 +183,7 @@ public class StudentInfoMenuScript : MonoBehaviour
         }
         else
         {
-          StudentGlobals.SetStudentPhotographed(this.StudentID, true);
+          this.StudentManager.StudentPhotographed[this.StudentID] = true;
           if ((Object) this.StudentManager.Students[this.StudentID] != (Object) null)
           {
             for (int index = 0; index < this.StudentManager.Students[this.StudentID].Outlines.Length; ++index)
@@ -252,15 +276,37 @@ public class StudentInfoMenuScript : MonoBehaviour
       float t = Time.unscaledDeltaTime * 10f;
       this.PortraitGrid.localPosition = new Vector3(this.PortraitGrid.localPosition.x, Mathf.Lerp(this.PortraitGrid.localPosition.y, 320f * (this.Row % 2 == 0 ? (float) (this.Row / 2) : (float) ((this.Row - 1) / 2)), t), this.PortraitGrid.localPosition.z);
       this.Scrollbar.localPosition = new Vector3(this.Scrollbar.localPosition.x, Mathf.Lerp(this.Scrollbar.localPosition.y, (float) (175.0 - 350.0 * ((double) this.PortraitGrid.localPosition.y / 2880.0)), t), this.Scrollbar.localPosition.z);
-      if (this.InputManager.TappedUp)
+      if (this.Row > 0)
       {
+        if (this.InputManager.DPadUp || this.InputManager.StickUp || Input.GetKey("w") || Input.GetKey("up"))
+          this.HeldUp += Time.unscaledDeltaTime;
+        else
+          this.HeldUp = 0.0f;
+      }
+      else
+        this.HeldUp = 0.0f;
+      if (this.Row < 19)
+      {
+        if (this.InputManager.DPadDown || this.InputManager.StickDown || Input.GetKey("s") || Input.GetKey("down"))
+          this.HeldDown += Time.unscaledDeltaTime;
+        else
+          this.HeldDown = 0.0f;
+      }
+      else
+        this.HeldDown = 0.0f;
+      if (this.InputManager.TappedUp || (double) this.HeldUp > 0.5)
+      {
+        if ((double) this.HeldUp > 0.5)
+          this.HeldUp = 0.45f;
         --this.Row;
         if (this.Row < 0)
           this.Row = this.Rows - 1;
         this.UpdateHighlight();
       }
-      if (this.InputManager.TappedDown)
+      if (this.InputManager.TappedDown || (double) this.HeldDown > 0.5)
       {
+        if ((double) this.HeldDown > 0.5)
+          this.HeldDown = 0.45f;
         ++this.Row;
         if (this.Row > this.Rows - 1)
           this.Row = 0;
@@ -296,7 +342,7 @@ public class StudentInfoMenuScript : MonoBehaviour
     this.Highlight.localPosition = new Vector3((float) ((double) this.Column * 150.0 - 300.0), (float) (80.0 - (double) this.Row * 160.0), this.Highlight.localPosition.z);
     this.BusyBlocker.position = new Vector3(0.0f, 0.0f, 0.0f);
     this.StudentID = 1 + (this.Column + this.Row * this.Columns);
-    if (StudentGlobals.GetStudentPhotographed(this.StudentID) || this.StudentID > 97)
+    if (this.StudentManager.StudentPhotographed[this.StudentID] || this.StudentID > 97)
     {
       this.PromptBar.Label[0].text = "View Info";
       this.PromptBar.UpdateButtons();
@@ -356,22 +402,18 @@ public class StudentInfoMenuScript : MonoBehaviour
       this.PromptBar.Label[0].text = string.Empty;
       this.PromptBar.UpdateButtons();
     }
-    if (this.SendingHome)
+    if (this.SendingHome && (Object) this.StudentManager.Students[this.StudentID] != (Object) null)
     {
-      Debug.Log((object) ("Highlighting student number " + this.StudentID.ToString()));
-      if ((Object) this.StudentManager.Students[this.StudentID] != (Object) null)
+      StudentScript student = this.StudentManager.Students[this.StudentID];
+      if (this.StudentID == 1 || StudentGlobals.GetStudentDead(this.StudentID) || this.StudentID < 98 && student.SentHome || this.StudentID > 97 || StudentGlobals.StudentSlave == this.StudentID || student.Club == ClubType.MartialArts && student.ClubAttire || student.Club == ClubType.Sports && student.ClubAttire || this.StudentManager.Students[this.StudentID].CameraReacting || !this.StudentManager.StudentPhotographed[this.StudentID] || student.Wet || student.Slave || student.Phoneless)
       {
-        StudentScript student = this.StudentManager.Students[this.StudentID];
-        if (this.StudentID == 1 || StudentGlobals.GetStudentDead(this.StudentID) || this.StudentID < 98 && student.SentHome || this.StudentID > 97 || StudentGlobals.StudentSlave == this.StudentID || student.Club == ClubType.MartialArts && student.ClubAttire || student.Club == ClubType.Sports && student.ClubAttire || this.StudentManager.Students[this.StudentID].CameraReacting || !StudentGlobals.GetStudentPhotographed(this.StudentID) || student.Wet || student.Slave || student.Phoneless)
-        {
-          this.PromptBar.Label[0].text = string.Empty;
-          this.PromptBar.UpdateButtons();
-        }
+        this.PromptBar.Label[0].text = string.Empty;
+        this.PromptBar.UpdateButtons();
       }
     }
     if (this.GettingInfo)
     {
-      this.PromptBar.Label[0].text = StudentGlobals.GetStudentPhotographed(this.StudentID) || this.StudentID > 97 ? string.Empty : "Get Info";
+      this.PromptBar.Label[0].text = this.StudentManager.StudentPhotographed[this.StudentID] || this.StudentID > 97 ? string.Empty : "Get Info";
       this.PromptBar.UpdateButtons();
     }
     if (this.GettingOpinions)
@@ -387,7 +429,7 @@ public class StudentInfoMenuScript : MonoBehaviour
     if (this.FiringCouncilMember)
     {
       if ((Object) this.StudentManager.Students[this.StudentID] != (Object) null)
-        this.PromptBar.Label[0].text = !StudentGlobals.GetStudentPhotographed(this.StudentID) || this.StudentManager.Students[this.StudentID].Club != ClubType.Council ? "" : "Fire";
+        this.PromptBar.Label[0].text = !this.StudentManager.StudentPhotographed[this.StudentID] || this.StudentManager.Students[this.StudentID].Club != ClubType.Council ? "" : "Fire";
       this.PromptBar.UpdateButtons();
     }
     if (MissionModeGlobals.MissionMode && this.StudentID == 1)
@@ -409,7 +451,7 @@ public class StudentInfoMenuScript : MonoBehaviour
 
   private void UpdateNameLabel()
   {
-    if (this.StudentID > 97 || StudentGlobals.GetStudentPhotographed(this.StudentID) || this.GettingInfo)
+    if (this.StudentID > 97 || this.StudentManager.StudentPhotographed[this.StudentID] || this.GettingInfo)
     {
       this.NameLabel.text = this.JSON.Students[this.StudentID].Name;
       if (!this.StudentManager.Eighties || this.StudentID <= 10 || this.StudentID >= 21 || DateGlobals.Week >= this.StudentID - 10)
@@ -437,7 +479,7 @@ public class StudentInfoMenuScript : MonoBehaviour
         {
           if (this.PauseScreen.Eighties || !this.PauseScreen.Eighties && ID < 12 || !this.PauseScreen.Eighties && ID > 20)
           {
-            if (StudentGlobals.GetStudentPhotographed(ID))
+            if (this.StudentManager.StudentPhotographed[ID])
             {
               WWW www = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + EightiesPrefix + "/Student_" + ID.ToString() + ".png");
               yield return (object) www;
@@ -456,13 +498,13 @@ public class StudentInfoMenuScript : MonoBehaviour
               this.PortraitLoaded[ID] = true;
               www = (WWW) null;
             }
-            else
+            else if ((Object) this.StudentPortraits[ID] != (Object) null)
               this.StudentPortraits[ID].Portrait.mainTexture = this.UnknownPortrait;
           }
-          else
+          else if ((Object) this.StudentPortraits[ID] != (Object) null)
             this.StudentPortraits[ID].Portrait.mainTexture = this.RivalPortraits[ID];
         }
-        else
+        else if ((Object) this.StudentPortraits[ID] != (Object) null)
         {
           switch (ID)
           {
@@ -485,7 +527,7 @@ public class StudentInfoMenuScript : MonoBehaviour
         this.StudentPortraits[ID].Panties.SetActive(true);
       if ((Object) this.StudentManager.Students[ID] != (Object) null)
         this.StudentPortraits[ID].Friend.SetActive(this.StudentManager.Students[ID].Friend);
-      else
+      else if ((Object) this.StudentPortraits[ID] != (Object) null)
         this.StudentPortraits[ID].Friend.SetActive(PlayerGlobals.GetStudentFriend(ID));
       if (StudentGlobals.GetStudentDying(ID) || StudentGlobals.GetStudentDead(ID) || (Object) this.StudentManager.Students[ID] != (Object) null && !this.StudentManager.Students[ID].Alive)
         this.StudentPortraits[ID].DeathShadow.SetActive(true);
@@ -498,7 +540,7 @@ public class StudentInfoMenuScript : MonoBehaviour
         this.StudentPortraits[ID].PrisonBars.SetActive(true);
         this.StudentPortraits[ID].DeathShadow.SetActive(true);
       }
-      if (this.StudentManager.Eighties && ID > 11 && ID < 21 && DateGlobals.Week < ID - 10)
+      if (this.StudentManager.Eighties && ID > 11 && ID < 21 && DateGlobals.Week < ID - 10 && (Object) this.StudentPortraits[ID] != (Object) null)
         this.StudentPortraits[ID].Portrait.mainTexture = this.UnknownPortrait;
     }
   }

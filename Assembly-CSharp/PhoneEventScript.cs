@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PhoneEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -11,6 +11,7 @@ public class PhoneEventScript : MonoBehaviour
 {
   public OsanaClubEventScript OsanaClubEvent;
   public StudentManagerScript StudentManager;
+  public OsanaClubEventScript ClubEvent;
   public BucketPourScript DumpPoint;
   public YandereScript Yandere;
   public JukeboxScript Jukebox;
@@ -132,7 +133,7 @@ public class PhoneEventScript : MonoBehaviour
       this.EventStudent.Pathfinding.canSearch = false;
       this.EventStudent.Pathfinding.canMove = false;
     }
-    if ((double) this.Clock.HourTime > (double) this.EventTime + 0.5 || this.EventStudent.WitnessedMurder || this.EventStudent.Splashed || this.EventStudent.Alarmed || this.EventStudent.Dodging || this.EventStudent.Dying || !this.EventStudent.Alive)
+    if ((double) this.Clock.HourTime > (double) this.EventTime + 0.5 || this.EventStudent.WitnessedMurder || this.EventStudent.Splashed || this.EventStudent.Alarmed || this.EventStudent.Dodging || this.EventStudent.Dying || this.EventStudent.GoAway || !this.EventStudent.Alive)
     {
       this.EndedPrematurely = true;
       this.EndEvent();
@@ -212,45 +213,48 @@ public class PhoneEventScript : MonoBehaviour
           if ((double) this.EventStudent.Character.GetComponent<Animation>()[this.EventAnim[2]].time >= (double) this.EventStudent.Character.GetComponent<Animation>()[this.EventAnim[2]].length)
             this.EndEvent();
         }
-        float num1 = Vector3.Distance(this.Yandere.transform.position, this.EventStudent.transform.position);
-        if ((double) num1 < 10.0)
+        if ((double) this.Yandere.transform.position.z >= -38.0 && (double) this.Yandere.transform.position.x <= -18.0)
         {
-          float num2 = Mathf.Abs((float) (((double) num1 - 10.0) * 0.20000000298023224));
-          if ((double) num2 < 0.0)
-            num2 = 0.0f;
-          if ((double) num2 > 1.0)
-            num2 = 1f;
-          this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) num2);
-          this.EventSubtitle.transform.localScale = new Vector3(num2, num2, num2);
-        }
-        else
-          this.EventSubtitle.transform.localScale = Vector3.zero;
-        if (this.enabled && this.EventPhase > 4)
-          this.Yandere.Eavesdropping = (double) num1 < 5.0;
-        if (this.EventPhase == 11 && (double) num1 < 5.0)
-        {
-          if (this.EventStudentID == 30)
+          float num1 = Vector3.Distance(this.Yandere.transform.position, this.EventStudent.transform.position);
+          if ((double) num1 < 10.0)
           {
-            if (!EventGlobals.Event2)
-            {
-              EventGlobals.Event2 = true;
-              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Info);
-              ConversationGlobals.SetTopicDiscovered(25, true);
-              this.Yandere.NotificationManager.TopicName = "Money";
-              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
-              this.Yandere.NotificationManager.TopicName = "Money";
-              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-              this.StudentManager.SetTopicLearnedByStudent(25, this.EventStudentID, true);
-            }
+            float num2 = Mathf.Abs((float) (((double) num1 - 10.0) * 0.20000000298023224));
+            if ((double) num2 < 0.0)
+              num2 = 0.0f;
+            if ((double) num2 > 1.0)
+              num2 = 1f;
+            this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) num2);
+            this.EventSubtitle.transform.localScale = new Vector3(num2, num2, num2);
           }
-          else if (!this.Yandere.Police.EndOfDay.LearnedOsanaInfo1)
+          else
+            this.EventSubtitle.transform.localScale = Vector3.zero;
+          if (this.enabled && this.EventPhase > 4)
+            this.Yandere.Eavesdropping = (double) num1 < 5.0;
+          if (this.EventPhase == 11 && (double) num1 < 5.0)
           {
-            this.Yandere.Police.EndOfDay.LearnedOsanaInfo1 = true;
-            this.Yandere.NotificationManager.DisplayNotification(NotificationType.Info);
-            if (SchemeGlobals.GetSchemeStage(6) == 1)
+            if (this.EventStudentID == 30)
             {
-              SchemeGlobals.SetSchemeStage(6, 2);
-              this.Yandere.PauseScreen.Schemes.UpdateInstructions();
+              if (!EventGlobals.Event2)
+              {
+                EventGlobals.Event2 = true;
+                this.Yandere.NotificationManager.DisplayNotification(NotificationType.Info);
+                ConversationGlobals.SetTopicDiscovered(25, true);
+                this.Yandere.NotificationManager.TopicName = "Money";
+                this.Yandere.NotificationManager.DisplayNotification(NotificationType.Topic);
+                this.Yandere.NotificationManager.TopicName = "Money";
+                this.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
+                this.StudentManager.SetTopicLearnedByStudent(25, this.EventStudentID, true);
+              }
+            }
+            else if (!this.Yandere.Police.EndOfDay.LearnedOsanaInfo1)
+            {
+              this.Yandere.Police.EndOfDay.LearnedOsanaInfo1 = true;
+              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Info);
+              if (SchemeGlobals.GetSchemeStage(6) == 1)
+              {
+                SchemeGlobals.SetSchemeStage(6, 2);
+                this.Yandere.PauseScreen.Schemes.UpdateInstructions();
+              }
             }
           }
         }
@@ -325,6 +329,11 @@ public class PhoneEventScript : MonoBehaviour
         this.EventFriend.CanTalk = true;
         if (!this.EndedPrematurely)
           this.OsanaClubEvent.enabled = true;
+        if (this.EventFriend.Alarmed)
+        {
+          this.EventFriend.Pathfinding.canSearch = false;
+          this.EventFriend.Pathfinding.canMove = false;
+        }
       }
       this.EventStudent.CurrentDestination = this.EventStudent.Destinations[this.EventStudent.Phase];
       this.EventStudent.Pathfinding.target = this.EventStudent.Destinations[this.EventStudent.Phase];
@@ -341,6 +350,8 @@ public class PhoneEventScript : MonoBehaviour
       this.EventStudent.CanTalk = true;
       this.EventSubtitle.text = string.Empty;
       this.StudentManager.UpdateStudents();
+      if (this.EventStudent.GoAway)
+        this.ClubEvent.enabled = false;
     }
     this.EventStudent.Hurry = false;
     this.Yandere.Eavesdropping = false;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaFridayBeforeClassEvent2Script
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -62,7 +62,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
           this.Rival = this.StudentManager.Students[this.RivalID];
         if ((UnityEngine.Object) this.Friend == (UnityEngine.Object) null && (UnityEngine.Object) this.StudentManager.Students[this.FriendID] != (UnityEngine.Object) null && !PlayerGlobals.RaibaruLoner)
           this.Friend = this.StudentManager.Students[this.FriendID];
-        if ((double) this.Clock.HourTime > 7.25 && this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Meeting && this.Rival.Indoors && !this.Rival.Wet && !this.Rival.Following && (UnityEngine.Object) this.Rival.Pathfinding.target == (UnityEngine.Object) this.Rival.Destinations[2] && (double) this.Rival.DistanceToDestination < 1.0 && !this.Rival.Phoneless && !this.Rival.EndSearch)
+        if ((double) this.Clock.HourTime > 7.25 && this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Meeting && this.Rival.Indoors && !this.Rival.Wet && !this.Rival.Following && !this.Rival.Meeting && (UnityEngine.Object) this.Rival.Pathfinding.target == (UnityEngine.Object) this.Rival.Destinations[2] && (double) this.Rival.DistanceToDestination < 1.0 && !this.Rival.Phoneless && !this.Rival.EndSearch)
         {
           Debug.Log((object) "Osana's ''Talk with Musume'' event has begun.");
           this.Ganguro.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
@@ -125,6 +125,8 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
           this.Ganguro.Pathfinding.speed = 1f;
           ++this.Phase;
         }
+        if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
+          this.Friend.Distracted = true;
       }
       else if (this.Phase == 3)
       {
@@ -199,7 +201,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
         if ((double) this.Rival.CharacterAnimation[this.EventAnim[3]].time >= (double) this.Rival.CharacterAnimation[this.EventAnim[3]].length)
           this.EndEvent();
       }
-      if (this.Rival.Alarmed || (double) this.Clock.HourTime > 8.0 || this.Rival.Splashed)
+      if (this.Rival.Alarmed || (double) this.Clock.HourTime > 8.0 || this.Rival.Splashed || this.Rival.GoAway)
         this.EndEvent();
       this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Rival.transform.position);
       if ((double) this.Distance - 4.0 < 15.0)
@@ -270,6 +272,7 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
         this.Friend.IdleAnim = this.Friend.OriginalIdleAnim;
         this.Friend.DistanceToDestination = 1f;
         this.Friend.SlideIn = false;
+        this.Friend.Distracted = false;
       }
     }
     this.Spy.Prompt.enabled = false;
@@ -283,11 +286,16 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
     this.EventSubtitle.text = string.Empty;
     this.Jukebox.Dip = 0.0f;
     this.enabled = false;
+    if (!this.Rival.GoAway)
+      return;
+    this.Rival.Subtitle.CustomText = "Ugh, seriously?! I'm not in the mood for this...";
+    this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
   }
 
   private void SettleRival()
   {
-    this.Rival.MoveTowardsTarget(this.Location[1].position);
+    if (!this.Rival.GoAway)
+      this.Rival.MoveTowardsTarget(this.Location[1].position);
     if ((double) Quaternion.Angle(this.Rival.transform.rotation, this.Location[1].rotation) <= 1.0)
       return;
     this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Location[1].rotation, 10f * Time.deltaTime);
@@ -295,7 +303,8 @@ public class OsanaFridayBeforeClassEvent2Script : MonoBehaviour
 
   private void SettleGanguro()
   {
-    this.Ganguro.MoveTowardsTarget(this.Location[2].position);
+    if (!this.Ganguro.GoAway)
+      this.Ganguro.MoveTowardsTarget(this.Location[2].position);
     if ((double) Quaternion.Angle(this.Ganguro.transform.rotation, this.Location[2].rotation) <= 1.0)
       return;
     this.Ganguro.transform.rotation = Quaternion.Slerp(this.Ganguro.transform.rotation, this.Location[2].rotation, 10f * Time.deltaTime);

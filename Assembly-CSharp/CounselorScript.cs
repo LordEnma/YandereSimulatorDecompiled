@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CounselorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -302,6 +302,7 @@ public class CounselorScript : MonoBehaviour
   public int TrespassExcuseUsed;
   public int WeaponExcuseUsed;
   public AudioClip LongestSilence;
+  public AudioClip LongSilence;
 
   private void Start()
   {
@@ -376,6 +377,10 @@ public class CounselorScript : MonoBehaviour
       this.MouthOpenID = 9;
       this.transform.position += new Vector3(0.0f, -0.1f, 0.0f);
       this.RedPen.SetActive(true);
+      this.LewdLectureClips[0] = this.LongSilence;
+      this.LewdLectureClips[1] = this.LongSilence;
+      this.LewdLectures[0] = "You've been caught aiming a camera at a student's unmentionables. Start talking.";
+      this.LewdLectures[1] = "Once again, you're here because you stuck a camera up someone's skirt. Oh, I can't wait to hear your excuse this time.";
     }
   }
 

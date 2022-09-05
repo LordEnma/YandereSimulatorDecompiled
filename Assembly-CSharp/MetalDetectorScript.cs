@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MetalDetectorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -90,8 +90,24 @@ public class MetalDetectorScript : MonoBehaviour
       flag = ((flag ? 1 : 0) | (!((Object) weaponScript != (Object) null) ? 0 : (weaponScript.Metal ? 1 : 0))) != 0;
       if (!flag)
       {
-        if ((Object) this.Yandere.Container != (Object) null && (Object) this.Yandere.Container.Weapon != (Object) null)
-          flag = this.Yandere.Container.Weapon.Metal;
+        if ((Object) this.Yandere.Container != (Object) null)
+        {
+          Debug.Log((object) "Yandere-chan is wearing a weapon bag on her back...");
+          if ((Object) this.Yandere.Container.Weapon != (Object) null)
+          {
+            Debug.Log((object) "There is a weapon in the bag ...");
+            flag = this.Yandere.Container.Weapon.Metal;
+            if (flag)
+              Debug.Log((object) "It's metal!");
+          }
+          else if ((Object) this.Yandere.Container.TrashCan != (Object) null && (Object) this.Yandere.Container.TrashCan.ConcealedWeapon != (Object) null)
+          {
+            Debug.Log((object) "There is a weapon in the bag ...");
+            flag = this.Yandere.Container.TrashCan.ConcealedWeapon.Metal;
+            if (flag)
+              Debug.Log((object) "It's metal!");
+          }
+        }
         if ((Object) this.Yandere.PickUp != (Object) null)
         {
           if ((Object) this.Yandere.PickUp.TrashCan != (Object) null && this.Yandere.PickUp.TrashCan.Weapon)

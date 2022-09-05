@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DebugMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -380,10 +380,12 @@ public class DebugMenuScript : MonoBehaviour
           {
             this.Yandere.Class.PhysicalGrade = 5;
             this.Yandere.Class.Seduction = 5;
+            ClassGlobals.PsychologyGrade = 5;
             this.StudentManager.Police.UpdateCorpses();
             for (this.ID = 1; this.ID < 101; ++this.ID)
             {
               StudentGlobals.SetStudentPhotographed(this.ID, true);
+              this.StudentManager.StudentPhotographed[this.ID] = true;
               if ((UnityEngine.Object) this.StudentManager.Students[this.ID] != (UnityEngine.Object) null)
                 this.StudentManager.Students[this.ID].Friend = true;
             }

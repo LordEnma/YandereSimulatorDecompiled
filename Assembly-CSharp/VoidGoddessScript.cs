@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: VoidGoddessScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -37,6 +37,7 @@ public class VoidGoddessScript : MonoBehaviour
 
   public void Start()
   {
+    this.Window.parent.gameObject.SetActive(false);
     if (this.Initialized)
       return;
     if (this.gameObject.activeInHierarchy)
@@ -80,7 +81,7 @@ public class VoidGoddessScript : MonoBehaviour
         ++this.Row;
       }
     }
-    this.Window.parent.gameObject.SetActive(false);
+    Debug.Log((object) "The Void Goddess is done grabbing portraits now.");
     this.Selected = 1;
     this.Column = 0;
     this.Row = 0;
@@ -344,5 +345,11 @@ public class VoidGoddessScript : MonoBehaviour
           this.Portraits[this.ID].color = new Color(1f, 1f, 1f, 0.5f);
       }
     }
+    if (!this.StudentManager.Eighties || !((Object) this.Portraits[100] != (Object) null))
+      return;
+    if (this.StudentManager.Journalist.activeInHierarchy)
+      this.Portraits[100].color = new Color(1f, 1f, 1f, 1f);
+    else
+      this.Portraits[100].color = new Color(1f, 1f, 1f, 0.5f);
   }
 }

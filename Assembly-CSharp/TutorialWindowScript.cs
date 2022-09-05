@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TutorialWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -13,6 +13,7 @@ public class TutorialWindowScript : MonoBehaviour
   public bool ShowClothingMessage;
   public bool ShowCouncilMessage;
   public bool ShowTeacherMessage;
+  public bool ShowPersonaMessage;
   public bool ShowLockerMessage;
   public bool ShowPoliceMessage;
   public bool ShowSanityMessage;
@@ -31,6 +32,7 @@ public class TutorialWindowScript : MonoBehaviour
   public bool IgnoreClothing;
   public bool IgnoreCouncil;
   public bool IgnoreTeacher;
+  public bool IgnorePersona;
   public bool IgnoreLocker;
   public bool IgnorePolice;
   public bool IgnoreSanity;
@@ -66,6 +68,9 @@ public class TutorialWindowScript : MonoBehaviour
   public string TeacherShortString;
   public string TeacherString;
   public Texture TeacherTexture;
+  public string PersonaShortString;
+  public string PersonaString;
+  public Texture PersonaTexture;
   public string LockerShortString;
   public string LockerString;
   public Texture LockerTexture;
@@ -132,6 +137,7 @@ public class TutorialWindowScript : MonoBehaviour
       this.IgnoreClothing = TutorialGlobals.IgnoreClothing;
       this.IgnoreCouncil = TutorialGlobals.IgnoreCouncil;
       this.IgnoreTeacher = TutorialGlobals.IgnoreTeacher;
+      this.IgnorePersona = TutorialGlobals.IgnorePersona;
       this.IgnoreLocker = TutorialGlobals.IgnoreLocker;
       this.IgnorePolice = TutorialGlobals.IgnorePolice;
       this.IgnoreSanity = TutorialGlobals.IgnoreSanity;
@@ -252,6 +258,20 @@ public class TutorialWindowScript : MonoBehaviour
         this.ShortLabel.text = this.TeacherShortString;
         this.DisplayHint();
       }
+      if ((this.ForcingTutorial || !this.IgnorePersona) && this.ShowPersonaMessage && !this.Show)
+      {
+        if (!this.ForcingTutorial)
+        {
+          TutorialGlobals.IgnorePersona = true;
+          this.IgnorePersona = true;
+        }
+        this.TitleLabel.text = "Personas";
+        this.TutorialLabel.text = this.PersonaString;
+        this.TutorialLabel.text = this.TutorialLabel.text.Replace('@', '\n');
+        this.TutorialImage.mainTexture = this.PersonaTexture;
+        this.ShortLabel.text = this.PersonaShortString;
+        this.DisplayHint();
+      }
       if ((this.ForcingTutorial || !this.IgnoreLocker) && this.ShowLockerMessage && !this.Show)
       {
         if (!this.ForcingTutorial)
@@ -315,10 +335,10 @@ public class TutorialWindowScript : MonoBehaviour
         {
           bounds = this.Yandere.StudentManager.EastBathroomArea.bounds;
           if (!bounds.Contains(this.Yandere.transform.position))
-            goto label_51;
+            goto label_55;
         }
         this.ShowVisionMessage = true;
-label_51:
+label_55:
         if (this.ShowVisionMessage && !this.Show)
         {
           if (!this.ForcingTutorial)
@@ -545,6 +565,7 @@ label_51:
     this.ShowClothingMessage = false;
     this.ShowCouncilMessage = false;
     this.ShowTeacherMessage = false;
+    this.ShowPersonaMessage = false;
     this.ShowLockerMessage = false;
     this.ShowPoliceMessage = false;
     this.ShowSanityMessage = false;
@@ -633,6 +654,10 @@ label_51:
         this.ShowDistractionMessage = this.ForcingTutorial;
         this.IgnoreDistraction = false;
         break;
+      case 19:
+        this.ShowPersonaMessage = this.ForcingTutorial;
+        this.IgnorePersona = false;
+        break;
     }
     this.Update();
     switch (this.ForceID)
@@ -708,6 +733,10 @@ label_51:
       case 18:
         this.ShowDistractionMessage = this.ForcingTutorial;
         this.IgnoreDistraction = true;
+        break;
+      case 19:
+        this.ShowPersonaMessage = this.ForcingTutorial;
+        this.IgnorePersona = true;
         break;
     }
   }

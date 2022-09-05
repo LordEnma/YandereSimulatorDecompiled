@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MirrorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -35,24 +35,26 @@ public class MirrorScript : MonoBehaviour
   {
     if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
     {
-      if (this.Prompt.Yandere.Health <= 0)
-        return;
-      this.Prompt.Circle[0].fillAmount = 1f;
-      ++this.Prompt.Yandere.PersonaID;
-      if (this.Prompt.Yandere.PersonaID == this.Limit)
-        this.Prompt.Yandere.PersonaID = 0;
-      this.UpdatePersona();
+      if (this.Prompt.Yandere.Health > 0)
+      {
+        this.Prompt.Circle[0].fillAmount = 1f;
+        ++this.Prompt.Yandere.PersonaID;
+        if (this.Prompt.Yandere.PersonaID == this.Limit)
+          this.Prompt.Yandere.PersonaID = 0;
+        this.UpdatePersona();
+      }
     }
-    else
+    else if ((double) this.Prompt.Circle[1].fillAmount == 0.0 && this.Prompt.Yandere.Health > 0)
     {
-      if ((double) this.Prompt.Circle[1].fillAmount != 0.0 || this.Prompt.Yandere.Health <= 0)
-        return;
       this.Prompt.Circle[1].fillAmount = 1f;
       --this.Prompt.Yandere.PersonaID;
       if (this.Prompt.Yandere.PersonaID < 0)
         this.Prompt.Yandere.PersonaID = this.Limit - 1;
       this.UpdatePersona();
     }
+    if (!this.Prompt.InSight)
+      return;
+    this.Prompt.Yandere.StudentManager.TutorialWindow.ShowPersonaMessage = true;
   }
 
   public void UpdatePersona()

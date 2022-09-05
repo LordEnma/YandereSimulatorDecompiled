@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMondayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -118,7 +118,8 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
     }
     else if (this.Phase == 2)
     {
-      this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
+      if (!this.Rival.GoAway)
+        this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
       this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
       if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
       {
@@ -167,7 +168,8 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
         if ((double) this.Senpai.DistanceToDestination < 0.5)
         {
           this.Senpai.CharacterAnimation.CrossFade("thinking_00");
-          this.Senpai.MoveTowardsTarget(this.Senpai.CurrentDestination.position);
+          if (!this.Senpai.GoAway)
+            this.Senpai.MoveTowardsTarget(this.Senpai.CurrentDestination.position);
           this.Senpai.transform.rotation = Quaternion.Slerp(this.Senpai.transform.rotation, this.Senpai.CurrentDestination.rotation, 10f * Time.deltaTime);
           this.Senpai.Pathfinding.canSearch = false;
           this.Senpai.Pathfinding.canMove = false;
@@ -175,7 +177,8 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
         if ((double) this.Rival.DistanceToDestination < 0.5)
         {
           this.Rival.CharacterAnimation.CrossFade("f02_pondering_00");
-          this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
+          if (!this.Rival.GoAway)
+            this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
           this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
           this.Rival.Pathfinding.canSearch = false;
           this.Rival.Pathfinding.canMove = false;
@@ -186,9 +189,11 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
     {
       this.Timer += Time.deltaTime;
       this.MakeRaibaruGoHide();
-      this.Senpai.MoveTowardsTarget(this.Senpai.CurrentDestination.position);
+      if (!this.Senpai.GoAway)
+        this.Senpai.MoveTowardsTarget(this.Senpai.CurrentDestination.position);
       this.Senpai.transform.rotation = Quaternion.Slerp(this.Senpai.transform.rotation, this.Senpai.CurrentDestination.rotation, 10f * Time.deltaTime);
-      this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
+      if (!this.Rival.GoAway)
+        this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
       this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
       if ((double) this.Timer > 21.5)
       {
@@ -326,7 +331,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
     }
     if (this.Phase <= 0)
       return;
-    if (this.Clock.Period > 3 || this.Senpai.Alarmed || this.Rival.Alarmed || this.Rival.Wet)
+    if (this.Clock.Period > 3 || this.Senpai.Alarmed || this.Rival.Alarmed || this.Rival.Wet || this.Rival.GoAway || this.Senpai.GoAway)
     {
       if (this.Senpai.Alarmed || this.Rival.Alarmed && !this.Rival.Wet)
         UnityEngine.Object.Instantiate<GameObject>(this.AlarmDisc, this.Yandere.transform.position + Vector3.up, Quaternion.identity).GetComponent<AlarmDiscScript>().NoScream = true;
@@ -363,7 +368,8 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 
   private void SettleFriend()
   {
-    this.Friend.MoveTowardsTarget(this.Location[3].position);
+    if (this.Friend.GoAway)
+      this.Friend.MoveTowardsTarget(this.Location[3].position);
     if ((double) Quaternion.Angle(this.Friend.transform.rotation, this.Location[3].rotation) <= 1.0)
       return;
     this.Friend.transform.rotation = Quaternion.Slerp(this.Friend.transform.rotation, this.Location[3].rotation, 10f * Time.deltaTime);
@@ -384,6 +390,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
       this.Senpai.Routine = true;
     }
     this.Rival.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
+    this.Rival.DistanceToDestination = 100f;
     this.Rival.Prompt.enabled = true;
     this.Rival.InEvent = false;
     this.Rival.Private = false;
@@ -447,6 +454,11 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
     this.enabled = false;
     this.Jukebox.Dip = 1f;
     Debug.Log((object) "Ending Osana's Monday Lunch Event.");
+    if (this.Rival.GoAway)
+    {
+      this.Rival.Subtitle.CustomText = "Ugh, seriously?! Nevermind, Senpai...just forget it...";
+      this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+    }
     this.DisableBentos();
   }
 

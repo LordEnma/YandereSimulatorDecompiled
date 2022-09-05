@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PortalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -460,7 +460,10 @@ public class PortalScript : MonoBehaviour
 
   private void CheckForLateness()
   {
+    Debug.Log((object) "Determining if Yandere-chan is late to class.");
     this.Late = 0;
+    if (!((Object) this.StudentManager.Teachers[21] != (Object) null) || !this.StudentManager.Teachers[21].Alive || (double) this.StudentManager.Teachers[21].DistanceToDestination >= 1.0)
+      return;
     if ((double) this.Clock.HourTime < 13.0)
     {
       if ((double) this.Clock.HourTime < 8.5200004577636719)
@@ -485,7 +488,6 @@ public class PortalScript : MonoBehaviour
     else if ((double) this.Clock.HourTime < 15.5)
       this.Late = 4;
     this.Reputation.PendingRep -= (float) (5 * this.Late);
-    int late = this.Late;
   }
 
   public void EndEvents()

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClubManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -21,6 +21,7 @@ public class ClubManagerScript : MonoBehaviour
   public TranqCaseScript TranqCase;
   public YandereScript Yandere;
   public RPG_Camera MainCamera;
+  public PickUpScript Candle;
   public DoorScript ShedDoor;
   public PoliceScript Police;
   public GloveScript Gloves;
@@ -772,6 +773,7 @@ public class ClubManagerScript : MonoBehaviour
     {
       this.StudentManager.UpdatePerception();
       this.Yandere.Numbness -= 0.5f;
+      this.Candle.Suspicious = false;
     }
     else if (this.Yandere.Club == ClubType.Art)
       this.StudentManager.UpdateBooths();
@@ -853,6 +855,7 @@ public class ClubManagerScript : MonoBehaviour
       this.Yandere.Club = ClubType.None;
       this.StudentManager.UpdatePerception();
       this.Yandere.Numbness += 0.5f;
+      this.Candle.Suspicious = true;
     }
     else
     {

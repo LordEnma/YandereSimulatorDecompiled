@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PauseScreenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -95,8 +95,6 @@ public class PauseScreenScript : MonoBehaviour
     if (!MissionModeGlobals.MultiMission)
       this.MissionModeLabel.SetActive(false);
     this.MultiMission = MissionModeGlobals.MultiMission;
-    StudentGlobals.SetStudentPhotographed(0, true);
-    StudentGlobals.SetStudentPhotographed(1, true);
     this.transform.localPosition = new Vector3(1350f, 0.0f, 0.0f);
     this.transform.localScale = new Vector3(0.9133334f, 0.9133334f, 0.9133334f);
     this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, 0.0f);
@@ -439,7 +437,9 @@ public class PauseScreenScript : MonoBehaviour
               else if (this.Selected == 6)
               {
                 this.StudentInfoMenu.gameObject.SetActive(true);
+                this.StudentInfoMenu.Start();
                 this.StartCoroutine(this.StudentInfoMenu.UpdatePortraits());
+                this.StudentInfoMenu.GrabbedPortraits = true;
                 this.MainMenu.SetActive(false);
                 this.Sideways = true;
                 this.PromptBar.ClearButtons();

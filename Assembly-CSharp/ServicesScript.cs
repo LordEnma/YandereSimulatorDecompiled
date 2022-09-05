@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ServicesScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -48,10 +48,17 @@ public class ServicesScript : MonoBehaviour
       this.ServicePurchased[serviceID] = SchemeGlobals.GetServicePurchased(serviceID);
       this.NameLabels[serviceID].text = this.ServiceNames[serviceID];
     }
-    if (!MissionModeGlobals.MissionMode)
-      return;
-    this.ServiceLimit.color = new Color(1f, 1f, 1f, 1f);
-    this.ServiceDesc.color = new Color(1f, 1f, 1f, 1f);
+    if (MissionModeGlobals.MissionMode)
+    {
+      this.ServiceLimit.color = new Color(1f, 1f, 1f, 1f);
+      this.ServiceDesc.color = new Color(1f, 1f, 1f, 1f);
+    }
+    else
+    {
+      this.ServiceDescs[9] = "This service is not available right now.";
+      this.ServiceNames[9] = "?????";
+      this.NameLabels[9].text = this.ServiceNames[9];
+    }
   }
 
   private void Update()

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericRivalEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -1540,7 +1540,6 @@ public class GenericRivalEventScript : MonoBehaviour
             flag2 = true;
           if (flag2 && !this.Rival.InEvent)
           {
-            Debug.Log((object) "The rival is being put into an event now.");
             this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
             this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
             this.Rival.Pathfinding.target = this.Location[2];

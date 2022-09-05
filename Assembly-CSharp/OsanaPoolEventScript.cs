@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaPoolEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -26,6 +26,7 @@ public class OsanaPoolEventScript : MonoBehaviour
   public GameObject VoiceClip;
   public GameObject Weight;
   public bool Murdering;
+  public float StinkTimer;
   public float Distance;
   public float Scale;
   public float Timer;
@@ -67,6 +68,7 @@ public class OsanaPoolEventScript : MonoBehaviour
         this.Rival.Pen.SetActive(false);
         this.Rival.Routine = false;
         this.Rival.InEvent = true;
+        this.Rival.StinkBombSpecialCase = 1;
         this.Rival.SmartPhone.SetActive(false);
         this.Yandere.PauseScreen.Hint.Show = true;
         this.Yandere.PauseScreen.Hint.QuickID = 17;
@@ -76,7 +78,17 @@ public class OsanaPoolEventScript : MonoBehaviour
     }
     else
     {
-      if (this.Phase == 1)
+      if (this.Rival.StinkBombSpecialCase == 2)
+      {
+        Debug.Log((object) "Osana is holding her breath.");
+        this.StinkTimer += Time.deltaTime;
+        if ((double) this.StinkTimer > 1.0)
+        {
+          this.Rival.StinkBombSpecialCase = 1;
+          this.StinkTimer = 0.0f;
+        }
+      }
+      else if (this.Phase == 1)
       {
         if ((double) this.Rival.DistanceToDestination < 0.5)
         {
@@ -147,7 +159,8 @@ public class OsanaPoolEventScript : MonoBehaviour
       else if (this.Phase == 4)
       {
         this.Timer += Time.deltaTime;
-        this.Rival.MoveTowardsTarget(this.Location[1].position);
+        if (!this.Rival.GoAway)
+          this.Rival.MoveTowardsTarget(this.Location[1].position);
         if ((double) this.Timer > 5.533329963684082)
         {
           this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[2]);
@@ -208,13 +221,7 @@ public class OsanaPoolEventScript : MonoBehaviour
         if ((double) this.Timer > 4.3333301544189453)
         {
           Debug.Log((object) "Now moving from Phase 8 to Phase 9.");
-          this.Rival.OsanaHair.GetComponent<Animation>().Stop();
-          this.Rival.OsanaHair.transform.parent = this.Rival.Head;
-          this.Rival.OsanaHair.transform.localEulerAngles = Vector3.zero;
-          this.Rival.OsanaHair.transform.localPosition = new Vector3(0.0f, -1.442789f, 0.01900469f);
-          this.Rival.OsanaHair.transform.localScale = new Vector3(1f, 1f, 1f);
-          this.Rival.OsanaHairL.enabled = true;
-          this.Rival.OsanaHairR.enabled = true;
+          this.AttachHair();
           this.Rival.Pathfinding.target = this.StudentManager.FemaleStripSpot;
           this.Rival.CurrentDestination = this.StudentManager.FemaleStripSpot;
           this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
@@ -335,8 +342,14 @@ public class OsanaPoolEventScript : MonoBehaviour
           this.Yandere.Police.EndOfDay.PoolEvent = true;
         }
       }
-      if ((double) this.Clock.HourTime > 13.5 || this.Rival.Alarmed || this.Rival.Splashed)
+      if ((double) this.Clock.HourTime > 13.5 || this.Rival.Alarmed || this.Rival.Splashed || this.Rival.Attacked || this.Rival.Stop)
         this.EndEvent();
+      if (this.Phase > 2 && this.Phase < 8 && this.Rival.StinkBombSpecialCase == 2)
+      {
+        Debug.Log((object) "Skipping directly to Phase 8 now.");
+        this.AttachHair();
+        this.Phase = 8;
+      }
       this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Rival.transform.position);
       if ((double) this.Distance - 4.0 < 15.0)
       {
@@ -367,7 +380,8 @@ public class OsanaPoolEventScript : MonoBehaviour
     Debug.Log((object) "Osana's pool event has ended.");
     if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
       UnityEngine.Object.Destroy((UnityEngine.Object) this.VoiceClip);
-    if (!this.Rival.Alarmed)
+    this.Rival.Pathfinding.speed = 1f;
+    if (!this.Rival.Alarmed && !this.Rival.Attacked && !this.Rival.Stop)
     {
       this.Rival.Pathfinding.canSearch = true;
       this.Rival.Pathfinding.canMove = true;
@@ -386,6 +400,7 @@ public class OsanaPoolEventScript : MonoBehaviour
     this.Rival.MyRenderer.updateWhenOffscreen = false;
     this.Rival.Ragdoll.Zs.SetActive(false);
     this.Rival.Obstacle.enabled = false;
+    this.Rival.StinkBombSpecialCase = 0;
     this.Rival.Prompt.enabled = true;
     this.Rival.InEvent = false;
     this.Rival.Private = false;
@@ -416,6 +431,10 @@ public class OsanaPoolEventScript : MonoBehaviour
     this.EventSubtitle.text = string.Empty;
     this.enabled = false;
     this.Jukebox.Dip = 1f;
+    if (!this.Rival.GoAway)
+      return;
+    this.Rival.Subtitle.CustomText = "Ugh, seriously?! Forget about sunbathing...";
+    this.Rival.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
   }
 
   public void ReturnFromSave()
@@ -438,5 +457,16 @@ public class OsanaPoolEventScript : MonoBehaviour
     this.Rival.Pathfinding.target = this.Location[1];
     this.Rival.CurrentDestination = this.Location[1];
     this.Phase = 3;
+  }
+
+  public void AttachHair()
+  {
+    this.Rival.OsanaHair.GetComponent<Animation>().Stop();
+    this.Rival.OsanaHair.transform.parent = this.Rival.Head;
+    this.Rival.OsanaHair.transform.localEulerAngles = Vector3.zero;
+    this.Rival.OsanaHair.transform.localPosition = new Vector3(0.0f, -1.442789f, 0.01900469f);
+    this.Rival.OsanaHair.transform.localScale = new Vector3(1f, 1f, 1f);
+    this.Rival.OsanaHairL.enabled = true;
+    this.Rival.OsanaHairR.enabled = true;
   }
 }

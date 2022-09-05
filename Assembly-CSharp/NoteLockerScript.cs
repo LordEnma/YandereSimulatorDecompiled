@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NoteLockerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FD17A22F-B301-43EA-811A-FA797D0BA442
+// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -125,6 +125,8 @@ public class NoteLockerScript : MonoBehaviour
         this.DetermineSchedule();
         this.Finish();
       }
+      if (this.Student.Attacked)
+        this.ReleaseStudent();
     }
     if ((double) this.Timer > 3.5 && !this.SpawnedNote)
     {
@@ -258,6 +260,18 @@ public class NoteLockerScript : MonoBehaviour
     this.Student.SentToLocker = false;
     this.Student.InEvent = false;
     this.Student.Routine = true;
+    this.CheckingNote = false;
+    this.NoteLeft = false;
+    ++this.Phase;
+    this.NewBall = (GameObject) null;
+    this.Timer = 0.0f;
+    int num = (Object) this.Student.Follower != (Object) null ? 1 : 0;
+  }
+
+  public void ReleaseStudent()
+  {
+    if ((Object) this.NewNote != (Object) null)
+      Object.Destroy((Object) this.NewNote);
     this.CheckingNote = false;
     this.NoteLeft = false;
     ++this.Phase;
