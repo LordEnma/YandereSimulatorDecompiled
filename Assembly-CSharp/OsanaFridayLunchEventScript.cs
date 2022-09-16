@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaFridayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -103,7 +103,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
             this.Senpai.DistanceToDestination = 100f;
             this.Spy.Prompt.enabled = true;
           }
-          if (this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Phoneless)
+          if (this.Rival.enabled && !this.Rival.InEvent && !this.Rival.Phoneless && !this.Rival.EndSearch)
           {
             Debug.Log((object) "Osana's Friday lunch event has begun.");
             this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
@@ -113,6 +113,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
             this.Rival.Pathfinding.canSearch = true;
             this.Rival.Pathfinding.canMove = true;
             this.Rival.SmartPhone.SetActive(false);
+            this.Rival.Routine = false;
             this.Rival.InEvent = true;
             this.Rival.DistanceToDestination = 100f;
             this.Spy.Prompt.enabled = true;
@@ -277,7 +278,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
     if (!this.enabled || this.Phase <= 0 && !this.Impatient)
       return;
     this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Epicenter.position);
-    if ((double) this.Distance - 4.0 < 15.0)
+    if ((double) this.Yandere.transform.position.y > (double) this.Rival.transform.position.y - 0.10000000149011612 && (double) this.Yandere.transform.position.y < (double) this.Rival.transform.position.y + 0.10000000149011612 && (double) this.Distance - 4.0 < 15.0)
     {
       this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 4.0) / 15.0));
       if ((double) this.Scale < 0.0)

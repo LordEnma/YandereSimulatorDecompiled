@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: QualityManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using RetroAesthetics;
@@ -24,6 +24,8 @@ public class QualityManagerScript : MonoBehaviour
   public Light Sun;
   public ParticleSystem EastRomanceBlossoms;
   public ParticleSystem WestRomanceBlossoms;
+  public ParticleSystem[] EastGardenBlossoms;
+  public ParticleSystem[] WestGardenBlossoms;
   public ParticleSystem CorridorBlossoms;
   public ParticleSystem PlazaBlossoms;
   public ParticleSystem MythBlossoms;
@@ -126,13 +128,21 @@ public class QualityManagerScript : MonoBehaviour
       return;
     ParticleSystem.EmissionModule emission1 = this.EastRomanceBlossoms.emission;
     ParticleSystem.EmissionModule emission2 = this.WestRomanceBlossoms.emission;
-    ParticleSystem.EmissionModule emission3 = this.CorridorBlossoms.emission;
-    ParticleSystem.EmissionModule emission4 = this.PlazaBlossoms.emission;
-    ParticleSystem.EmissionModule emission5 = this.MythBlossoms.emission;
-    ParticleSystem.EmissionModule emission6 = this.Steam[1].emission;
-    ParticleSystem.EmissionModule emission7 = this.Fountains[1].emission;
-    ParticleSystem.EmissionModule emission8 = this.Fountains[2].emission;
-    ParticleSystem.EmissionModule emission9 = this.Fountains[3].emission;
+    ParticleSystem.EmissionModule emission3 = this.EastGardenBlossoms[1].emission;
+    ParticleSystem.EmissionModule emission4 = this.EastGardenBlossoms[2].emission;
+    ParticleSystem.EmissionModule emission5 = this.EastGardenBlossoms[3].emission;
+    ParticleSystem.EmissionModule emission6 = this.EastGardenBlossoms[4].emission;
+    ParticleSystem.EmissionModule emission7 = this.WestGardenBlossoms[1].emission;
+    ParticleSystem.EmissionModule emission8 = this.WestGardenBlossoms[2].emission;
+    ParticleSystem.EmissionModule emission9 = this.WestGardenBlossoms[3].emission;
+    ParticleSystem.EmissionModule emission10 = this.WestGardenBlossoms[4].emission;
+    ParticleSystem.EmissionModule emission11 = this.CorridorBlossoms.emission;
+    ParticleSystem.EmissionModule emission12 = this.PlazaBlossoms.emission;
+    ParticleSystem.EmissionModule emission13 = this.MythBlossoms.emission;
+    ParticleSystem.EmissionModule emission14 = this.Steam[1].emission;
+    ParticleSystem.EmissionModule emission15 = this.Fountains[1].emission;
+    ParticleSystem.EmissionModule emission16 = this.Fountains[2].emission;
+    ParticleSystem.EmissionModule emission17 = this.Fountains[3].emission;
     emission1.enabled = true;
     emission2.enabled = true;
     emission3.enabled = true;
@@ -142,6 +152,14 @@ public class QualityManagerScript : MonoBehaviour
     emission7.enabled = true;
     emission8.enabled = true;
     emission9.enabled = true;
+    emission10.enabled = true;
+    emission11.enabled = true;
+    emission12.enabled = true;
+    emission13.enabled = true;
+    emission14.enabled = true;
+    emission15.enabled = true;
+    emission16.enabled = true;
+    emission17.enabled = true;
     switch (OptionGlobals.ParticleCount)
     {
       case 1:
@@ -154,28 +172,52 @@ public class QualityManagerScript : MonoBehaviour
         emission7.enabled = false;
         emission8.enabled = false;
         emission9.enabled = false;
+        emission10.enabled = false;
+        emission11.enabled = false;
+        emission12.enabled = false;
+        emission13.enabled = false;
+        emission14.enabled = false;
+        emission15.enabled = false;
+        emission16.enabled = false;
+        emission17.enabled = false;
         break;
       case 2:
         emission1.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
         emission2.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
-        emission3.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
-        emission4.rateOverTime = (ParticleSystem.MinMaxCurve) 40f;
+        emission3.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
+        emission4.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
         emission5.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
         emission6.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
         emission7.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
         emission8.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
         emission9.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
+        emission10.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
+        emission11.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
+        emission12.rateOverTime = (ParticleSystem.MinMaxCurve) 40f;
+        emission13.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
+        emission14.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
+        emission15.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
+        emission16.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
+        emission17.rateOverTime = (ParticleSystem.MinMaxCurve) 10f;
         break;
       case 3:
         emission1.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
         emission2.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
-        emission3.rateOverTime = (ParticleSystem.MinMaxCurve) 1000f;
-        emission4.rateOverTime = (ParticleSystem.MinMaxCurve) 400f;
+        emission3.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
+        emission4.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
         emission5.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
         emission6.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
         emission7.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
         emission8.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
         emission9.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
+        emission10.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
+        emission11.rateOverTime = (ParticleSystem.MinMaxCurve) 1000f;
+        emission12.rateOverTime = (ParticleSystem.MinMaxCurve) 400f;
+        emission13.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
+        emission14.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
+        emission15.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
+        emission16.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
+        emission17.rateOverTime = (ParticleSystem.MinMaxCurve) 100f;
         break;
     }
   }

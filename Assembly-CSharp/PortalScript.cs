@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PortalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -194,7 +194,7 @@ public class PortalScript : MonoBehaviour
           if ((double) this.Clock.HourTime < 15.5)
           {
             this.Yandere.InClass = true;
-            if ((double) this.Clock.HourTime < 8.5)
+            if ((double) this.Clock.HourTime < 13.0)
             {
               this.EndEvents();
             }

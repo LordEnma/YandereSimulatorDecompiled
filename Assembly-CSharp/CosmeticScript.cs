@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CosmeticScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -366,21 +366,14 @@ public class CosmeticScript : MonoBehaviour
         str1 = MissionModeGlobals.MissionTargetName;
       }
     }
-    if (this.Randomize)
+    if (this.Randomize && this.StudentID < 90)
     {
-      this.Teacher = false;
+      Debug.Log((object) ("The student with ID " + this.StudentID.ToString() + " is selecting a random hair color and skin color."));
       this.BreastSize = Random.Range(0.5f, 2f);
       this.Accessory = 0;
       this.Club = ClubType.None;
-      if (!this.Male)
-      {
-        this.Hairstyle = Random.Range(1, this.FemaleHair.Length);
-      }
-      else
-      {
-        this.SkinColor = Random.Range(0, this.SkinTextures.Length);
-        this.Hairstyle = Random.Range(1, this.MaleHair.Length);
-      }
+      this.Student.Persona = PersonaType.Coward;
+      this.Hairstyle = this.Male ? Random.Range(1, this.MaleHair.Length) : Random.Range(1, this.FemaleHair.Length);
     }
     this.DisableAccessories();
     bool flag1 = false;
@@ -955,7 +948,7 @@ public class CosmeticScript : MonoBehaviour
       {
         if ((this.Club < ClubType.Gaming || this.Club == ClubType.Newspaper) && (Object) this.ClubAccessories[(int) this.Club] != (Object) null && !ClubGlobals.GetClubClosed(this.Club) && this.StudentID != 26)
           this.ClubAccessories[(int) this.Club].SetActive(true);
-        if (!this.Eighties && this.StudentID == 36)
+        if (!this.Eighties && !this.Randomize && this.StudentID == 36)
           this.ClubAccessories[(int) this.Club].SetActive(true);
         if (this.Club == ClubType.Cooking)
         {
@@ -1162,6 +1155,12 @@ public class CosmeticScript : MonoBehaviour
     {
       Color studentColor = StudentGlobals.GetStudentColor(this.StudentID);
       Color studentEyeColor = StudentGlobals.GetStudentEyeColor(this.StudentID);
+      this.Student.OriginalHairR = studentColor.r;
+      this.Student.OriginalHairG = studentColor.g;
+      this.Student.OriginalHairB = studentColor.b;
+      this.Student.OriginalEyeR = studentColor.r;
+      this.Student.OriginalEyeG = studentColor.g;
+      this.Student.OriginalEyeB = studentColor.b;
       this.HairRenderer.material.color = studentColor;
       this.RightEyeRenderer.material.color = studentEyeColor;
       this.LeftEyeRenderer.material.color = studentEyeColor;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DialogueWheelScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -590,8 +590,12 @@ public class DialogueWheelScript : MonoBehaviour
       {
         if (this.Yandere.TargetStudent.StudentID != 79)
           flag = true;
+        this.HideTaskButtonIfNecessary();
         if (flag && this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] == 1 && this.Yandere.Inventory.FinishedHomework)
+        {
+          Debug.Log((object) "The player has finished another student's homework, and can turn in a task right now.");
           this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+        }
       }
       else
       {
@@ -608,14 +612,7 @@ public class DialogueWheelScript : MonoBehaviour
         }
         else
         {
-          this.TaskManager.UpdateTaskStatus();
-          if (this.Yandere.TargetStudent.TaskPhase > 0 && this.Yandere.TargetStudent.TaskPhase < 5 || this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] > 0 && this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] < 5 && this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] != 2 || this.Yandere.TargetStudent.TaskPhase == 100)
-          {
-            Debug.Log((object) "Hiding task button.");
-            this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
-          }
-          if (this.Yandere.TargetStudent.TaskPhase == 5)
-            this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+          this.HideTaskButtonIfNecessary();
           if (this.Yandere.TargetStudent.StudentID == 6)
           {
             if ((Object) this.Yandere.StudentManager.Students[11] == (Object) null)
@@ -979,4 +976,20 @@ public class DialogueWheelScript : MonoBehaviour
   }
 
   public void RestoreMusic() => this.Jukebox.ClubTheme.Stop();
+
+  public void HideTaskButtonIfNecessary()
+  {
+    this.TaskManager.UpdateTaskStatus();
+    if (this.Yandere.TargetStudent.TaskPhase > 0 && this.Yandere.TargetStudent.TaskPhase < 5 || this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] > 0 && this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] < 5 && this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID] != 2 || this.Yandere.TargetStudent.TaskPhase == 100)
+    {
+      Debug.Log((object) "Hiding task button.");
+      this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
+    }
+    Debug.Log((object) ("TargetStudent.TaskPhase is: " + this.Yandere.TargetStudent.TaskPhase.ToString()));
+    Debug.Log((object) ("TaskManager.TaskStatus[TargetStudent.StudentID] is: " + this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID].ToString()));
+    if (this.Yandere.TargetStudent.TaskPhase != 5)
+      return;
+    Debug.Log((object) "Task Phase is 5. Unhiding task button.");
+    this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
+  }
 }

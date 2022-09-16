@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CounselorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -193,6 +193,7 @@ public class CounselorScript : MonoBehaviour
   public float BS_SadBrow;
   public float BS_AngryEyes;
   public DetectClickScript[] CounselorOption;
+  public CabinetDoorScript InfirmaryCabinetDoor;
   public InputDeviceScript InputDevice;
   public StudentWitnessType Crime;
   public UITexture GenkaChibi;
@@ -647,6 +648,7 @@ public class CounselorScript : MonoBehaviour
           else
           {
             Debug.Log((object) "The lecture is over. Now, the game decides where to go next.");
+            this.Yandere.Subtitle.gameObject.SetActive(true);
             if (!this.EndOfDay.Police.Show)
             {
               this.Lecturing = false;
@@ -916,6 +918,7 @@ public class CounselorScript : MonoBehaviour
   public void Quit()
   {
     Debug.Log((object) "CounselorScript has called the Quit() function.");
+    this.CounselorSubtitle.text = "";
     if ((Object) this.StudentManager.Students[1] != (Object) null)
       this.Yandere.Senpai = this.StudentManager.Students[1].transform;
     this.Yandere.PauseScreen.Hint.MyPanel.alpha = 1f;
@@ -925,6 +928,7 @@ public class CounselorScript : MonoBehaviour
     this.Yandere.WeaponTimer = 0.0f;
     this.Yandere.TheftTimer = 0.0f;
     this.Yandere.HeartRate.gameObject.SetActive(true);
+    this.Yandere.Subtitle.gameObject.SetActive(true);
     this.Yandere.CannotRecover = false;
     this.Yandere.Noticed = false;
     this.Yandere.Talking = true;
@@ -1583,7 +1587,8 @@ public class CounselorScript : MonoBehaviour
       this.Yandere.Police.FadeOut = true;
       this.Yandere.ShoulderCamera.HUD.SetActive(true);
       ++this.InterrogationPhase;
-      this.Expelled = true;
+      if (this.Patience == -6)
+        this.Expelled = true;
       this.Timer = 0.0f;
       this.Yandere.Senpai = this.StudentManager.Students[1].transform;
       this.StudentManager.Reputation.PendingRep -= 10f;

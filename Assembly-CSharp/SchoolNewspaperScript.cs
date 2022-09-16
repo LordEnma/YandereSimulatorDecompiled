@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SchoolNewspaperScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -39,6 +39,7 @@ public class SchoolNewspaperScript : MonoBehaviour
   {
     if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
     {
+      this.Prompt.Yandere.RPGCamera.ZeroEverything();
       this.Prompt.Circle[0].fillAmount = 1f;
       this.PromptBar.ClearButtons();
       this.PromptBar.Label[1].text = "Back";
@@ -50,7 +51,7 @@ public class SchoolNewspaperScript : MonoBehaviour
       this.NewspaperLabel.text = this.NewspaperLabel.text.Replace('@', '\n');
       if (this.NewspaperLabel.text == "")
         this.NewspaperLabel.text = "Whoops! Sorry, this article is coming in a future update.";
-      Time.timeScale = 0.0f;
+      Time.timeScale = 0.0001f;
       this.Show = true;
     }
     if (!this.Show || !Input.GetButtonDown("B"))

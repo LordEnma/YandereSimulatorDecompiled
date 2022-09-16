@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClockScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -413,6 +413,7 @@ label_71:
 
   public void EndTimeSkip()
   {
+    Debug.Log((object) "Ending TimeSkip now.");
     if (GameGlobals.AlphabetMode)
       this.StopTime = true;
     this.Yandere.PauseScreen.PromptBar.ClearButtons();
@@ -425,7 +426,7 @@ label_71:
     this.TimeSkip = false;
     this.HalfwayTime = 0.0f;
     this.TimeSkipSpeed = 1f;
-    if (this.Yandere.Noticed || this.Police.FadeOut)
+    if (this.Yandere.Noticed || this.Police.FadeOut || this.Yandere.Attacked)
       return;
     this.Yandere.CharacterAnimation.CrossFade(this.Yandere.IdleAnim);
     this.Yandere.CanMoveTimer = 0.5f;

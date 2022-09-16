@@ -1,19 +1,21 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BloodPoolScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
 public class BloodPoolScript : MonoBehaviour
 {
+  public PowerSwitchScript PowerSwitch;
   public float TargetSize;
   public bool Gasoline;
   public bool Brown;
   public bool Water;
   public bool Blood = true;
   public bool Grow;
+  public GameObject NewElectricity;
   public GameObject Electricity;
   public Renderer MyRenderer;
   public Material BloodPool;
@@ -51,18 +53,28 @@ public class BloodPoolScript : MonoBehaviour
     if (!this.Water || (double) this.ElectroTimer <= 0.0)
       return;
     this.ElectroTimer = Mathf.MoveTowards(this.ElectroTimer, 0.0f, Time.deltaTime);
+    if ((Object) this.PowerSwitch != (Object) null && this.PowerSwitch.On)
+      this.ElectroTimer = 0.1f;
+    if ((double) this.ElectroTimer != 0.0)
+      return;
+    Object.Destroy((Object) this.NewElectricity);
   }
 
   private void OnTriggerEnter(Collider other)
   {
     if (!this.Water || (double) this.ElectroTimer != 0.0 || !(other.gameObject.tag == "E"))
       return;
-    Object.Instantiate<GameObject>(this.Electricity, this.transform.position, Quaternion.identity);
+    this.NewElectricity = Object.Instantiate<GameObject>(this.Electricity, this.transform.position, Quaternion.identity);
     this.ElectroTimer = 1f;
-    if (!(other.gameObject.name == "CarBattery"))
+    if (other.gameObject.name == "CarBattery")
+    {
+      Object.Instantiate<GameObject>(other.gameObject.GetComponent<PickUpScript>().PuddleSparks, this.transform.position, Quaternion.identity);
+      other.gameObject.GetComponent<PickUpScript>().Smoke.Play();
+      other.gameObject.tag = "Untagged";
+    }
+    if (!((Object) other.gameObject.GetComponent<ElectrifiedPuddleScript>() != (Object) null) || !((Object) other.gameObject.GetComponent<ElectrifiedPuddleScript>().PowerSwitch != (Object) null))
       return;
-    Object.Instantiate<GameObject>(other.gameObject.GetComponent<PickUpScript>().PuddleSparks, this.transform.position, Quaternion.identity);
-    other.gameObject.GetComponent<PickUpScript>().Smoke.Play();
-    other.gameObject.tag = "Untagged";
+    this.PowerSwitch = other.gameObject.GetComponent<ElectrifiedPuddleScript>().PowerSwitch;
+    this.NewElectricity.GetComponent<SM_destroyThisTimed>().enabled = false;
   }
 }

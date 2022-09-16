@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeYandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -13,6 +13,7 @@ public class HomeYandereScript : MonoBehaviour
 {
   public CharacterController MyController;
   public StudentManagerScript StudentManager;
+  public PauseScreenScript PauseScreen;
   public HomeVideoGamesScript HomeVideoGames;
   public HomeCameraScript HomeCamera;
   public UISprite HomeDarkness;
@@ -291,21 +292,30 @@ public class HomeYandereScript : MonoBehaviour
 
   private void LateUpdate()
   {
-    if (this.CannotAlphabet || !Input.GetKeyDown(this.Letter[this.AlphabetID]))
-      return;
-    ++this.AlphabetID;
-    if (this.AlphabetID != this.Letter.Length)
-      return;
-    GameGlobals.AlphabetMode = true;
-    StudentGlobals.MemorialStudents = 0;
-    for (int studentID = 1; studentID < 101; ++studentID)
+    if (!this.CannotAlphabet && Input.GetKeyDown(this.Letter[this.AlphabetID]))
     {
-      StudentGlobals.SetStudentDead(studentID, false);
-      StudentGlobals.SetStudentKidnapped(studentID, false);
-      StudentGlobals.SetStudentArrested(studentID, false);
-      StudentGlobals.SetStudentExpelled(studentID, false);
+      ++this.AlphabetID;
+      if (this.AlphabetID == this.Letter.Length)
+      {
+        GameGlobals.AlphabetMode = true;
+        StudentGlobals.MemorialStudents = 0;
+        for (int studentID = 1; studentID < 101; ++studentID)
+        {
+          StudentGlobals.SetStudentDead(studentID, false);
+          StudentGlobals.SetStudentKidnapped(studentID, false);
+          StudentGlobals.SetStudentArrested(studentID, false);
+          StudentGlobals.SetStudentExpelled(studentID, false);
+        }
+        SceneManager.LoadScene("LoadingScene");
+      }
     }
-    SceneManager.LoadScene("LoadingScene");
+    if (!this.CanMove || !Input.GetKeyDown(KeyCode.Escape))
+      return;
+    this.PauseScreen.QuitLabel.text = "Do you wish to return to the main menu?";
+    this.PauseScreen.YesLabel.text = "Yes";
+    this.PauseScreen.HomeButton.SetActive(false);
+    this.PauseScreen.JumpToQuit();
+    this.CanMove = false;
   }
 
   private void UpdateHair()

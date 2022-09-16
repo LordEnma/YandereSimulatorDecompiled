@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DoorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -209,11 +209,14 @@ label_7:
               this.DoorColliders[1].isTrigger = true;
             }
             this.Prompt.Label[1].text = "     Remove Bucket";
+            this.Prompt.Label[1].color = Color.white;
             this.Prompt.HideButton[0] = true;
             this.CanSetBucket = false;
             this.BucketSet = true;
             this.Open = false;
             this.Timer = 0.0f;
+            this.Yandere.SuspiciousActionTimer = 1f;
+            this.Yandere.CreatingBucketTrap = true;
           }
           else
           {
@@ -221,6 +224,7 @@ label_7:
             this.Bucket.PickUp.BePickedUp();
             this.Prompt.HideButton[0] = false;
             this.Prompt.Label[1].text = "     Set Trap";
+            this.Prompt.Label[1].color = Color.red;
             this.BucketSet = false;
             this.Bucket = (BucketScript) null;
             this.Timer = 0.0f;
@@ -236,7 +240,7 @@ label_7:
     if ((double) this.Timer < (double) this.TimeLimit)
     {
       this.Timer += Time.deltaTime;
-      if (!this.Open && !this.OneWayDoor && (double) this.Timer >= (double) this.TimeLimit)
+      if (!this.Open && (double) this.Timer >= (double) this.TimeLimit)
       {
         this.DoorColliders[0].isTrigger = false;
         if ((Object) this.DoorColliders[1] != (Object) null)
@@ -318,6 +322,7 @@ label_7:
           {
             if ((Object) this.Bucket == (Object) null)
             {
+              this.Prompt.Label[1].color = Color.red;
               this.Prompt.HideButton[1] = false;
               this.CanSetBucket = true;
             }
@@ -364,14 +369,27 @@ label_7:
     this.CheckDirection();
     if (this.BucketSet)
     {
-      this.Bucket.GetComponent<Rigidbody>().isKinematic = false;
-      this.Bucket.GetComponent<Rigidbody>().useGravity = true;
-      this.Bucket.UpdateAppearance = true;
+      if (this.Student.WillRemoveBucket)
+      {
+        this.Yandere.NotificationManager.CustomText = this.Student.Name + " removed bucket trap.";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+        this.Yandere.Subtitle.CustomText = "Let's set this on the ground...";
+        this.Yandere.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+        this.Bucket.transform.position = this.transform.position;
+        this.Student.WillRemoveBucket = false;
+      }
+      else
+      {
+        this.Bucket.GetComponent<Rigidbody>().isKinematic = false;
+        this.Bucket.GetComponent<Rigidbody>().useGravity = true;
+        this.Bucket.UpdateAppearance = true;
+        this.Bucket.Fly = true;
+      }
       this.Bucket.Prompt.enabled = true;
-      this.Bucket.Fly = true;
       this.Prompt.HideButton[0] = false;
       this.Prompt.HideButton[1] = true;
       this.Prompt.Label[1].text = "     Set Trap";
+      this.Prompt.Label[1].color = Color.red;
       this.Prompt.enabled = true;
       this.BucketSet = false;
       this.Bucket = (BucketScript) null;
@@ -380,6 +398,7 @@ label_7:
       AudioSource.PlayClipAtPoint(this.StudentManager.SwingingDoorOpen, this.transform.position);
     else
       AudioSource.PlayClipAtPoint(this.StudentManager.SlidingDoorOpen, this.transform.position);
+    this.Student = (StudentScript) null;
   }
 
   private void LockDoor()
@@ -392,28 +411,33 @@ label_7:
   private void CheckDirection()
   {
     this.North = false;
-    if (!this.OneWayDoor)
+    if (this.OneWayDoor)
+      return;
+    this.RelativeCharacter = (Object) this.Student != (Object) null ? this.Student.transform : this.Yandere.transform;
+    if (this.Facing == "North")
     {
-      this.RelativeCharacter = (Object) this.Student != (Object) null ? this.Student.transform : this.Yandere.transform;
-      if (this.Facing == "North")
-      {
-        if ((double) this.RelativeCharacter.position.z < (double) this.transform.position.z)
-          this.North = true;
-      }
-      else if (this.Facing == "South")
-      {
-        if ((double) this.RelativeCharacter.position.z > (double) this.transform.position.z)
-          this.North = true;
-      }
-      else if (this.Facing == "East")
-      {
-        if ((double) this.RelativeCharacter.position.x < (double) this.transform.position.x)
-          this.North = true;
-      }
-      else if (this.Facing == "West" && (double) this.RelativeCharacter.position.x > (double) this.transform.position.x)
-        this.North = true;
+      if ((double) this.RelativeCharacter.position.z >= (double) this.transform.position.z)
+        return;
+      this.North = true;
     }
-    this.Student = (StudentScript) null;
+    else if (this.Facing == "South")
+    {
+      if ((double) this.RelativeCharacter.position.z <= (double) this.transform.position.z)
+        return;
+      this.North = true;
+    }
+    else if (this.Facing == "East")
+    {
+      if ((double) this.RelativeCharacter.position.x >= (double) this.transform.position.x)
+        return;
+      this.North = true;
+    }
+    else
+    {
+      if (!(this.Facing == "West") || (double) this.RelativeCharacter.position.x <= (double) this.transform.position.x)
+        return;
+      this.North = true;
+    }
   }
 
   public void CloseDoor()

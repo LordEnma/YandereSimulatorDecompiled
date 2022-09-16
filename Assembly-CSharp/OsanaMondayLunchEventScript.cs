@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMondayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -313,7 +313,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
         this.EventSubtitle.text = this.SabotagedSpeechText[this.SpeechPhase];
         ++this.SpeechPhase;
       }
-      if ((double) this.Friend.DistanceToDestination < 1.0)
+      if ((double) this.Friend.DistanceToDestination < 0.5)
       {
         this.Friend.CharacterAnimation.CrossFade("f02_cornerPeek_00");
         this.Friend.Pathfinding.canSearch = false;
@@ -342,7 +342,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
     this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Epicenter.position);
     if (!this.enabled)
       return;
-    if ((double) this.Distance - 4.0 < 15.0)
+    if ((double) this.Yandere.transform.position.y > (double) this.Rival.transform.position.y - 0.10000000149011612 && (double) this.Yandere.transform.position.y < (double) this.Rival.transform.position.y + 0.10000000149011612 && (double) this.Distance - 4.0 < 15.0)
     {
       this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 4.0) / 15.0));
       if ((double) this.Scale < 0.0)
@@ -368,8 +368,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
 
   private void SettleFriend()
   {
-    if (this.Friend.GoAway)
-      this.Friend.MoveTowardsTarget(this.Location[3].position);
+    this.Friend.MoveTowardsTarget(this.Location[3].position);
     if ((double) Quaternion.Angle(this.Friend.transform.rotation, this.Location[3].rotation) <= 1.0)
       return;
     this.Friend.transform.rotation = Quaternion.Slerp(this.Friend.transform.rotation, this.Location[3].rotation, 10f * Time.deltaTime);

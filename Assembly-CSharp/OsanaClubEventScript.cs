@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaClubEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -81,7 +81,7 @@ public class OsanaClubEventScript : MonoBehaviour
     {
       float num = Vector3.Distance(this.Yandere.transform.position, (this.EventStudent[1].transform.position - this.EventStudent[2].transform.position) * 0.5f + this.EventStudent[2].transform.position);
       this.Yandere.Eavesdropping = this.EventPhase > 1 && this.EventPhase < 7 && (double) num < 3.0;
-      if ((double) this.Clock.HourTime > 13.5 || this.EventStudent[1].WitnessedCorpse || this.EventStudent[2].WitnessedCorpse || this.EventStudent[1].Alarmed || this.EventStudent[2].Alarmed || this.EventStudent[1].Dying || this.EventStudent[2].Dying || this.EventStudent[1].Splashed || this.EventStudent[1].Dodging || this.Clock.Police.EndOfDay.gameObject.activeInHierarchy)
+      if ((double) this.Clock.HourTime > 13.5 || this.EventStudent[1].WitnessedCorpse || this.EventStudent[2].WitnessedCorpse || this.EventStudent[1].Alarmed || this.EventStudent[2].Alarmed || this.EventStudent[1].Dying || this.EventStudent[2].Dying || this.EventStudent[1].Splashed || this.EventStudent[1].Dodging || this.EventStudent[1].GoAway || this.Clock.Police.EndOfDay.gameObject.activeInHierarchy)
       {
         this.EndEvent();
       }
@@ -230,6 +230,11 @@ public class OsanaClubEventScript : MonoBehaviour
     this.Jukebox.Dip = 1f;
     this.EventSubtitle.text = string.Empty;
     this.ReachedTheEnd = true;
+    if (this.EventStudent[1].GoAway)
+    {
+      this.EventStudent[1].Subtitle.CustomText = "Ugh, seriously?! Guess we'll just talk about it later...";
+      this.EventStudent[1].Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+    }
     this.enabled = false;
   }
 

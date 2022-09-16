@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RPG_Camera
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -89,7 +89,7 @@ public class RPG_Camera : MonoBehaviour
 
   private void LateUpdate()
   {
-    if ((double) Time.deltaTime <= 0.0)
+    if ((double) Time.deltaTime <= 9.9999997473787516E-05)
       return;
     if ((UnityEngine.Object) this.cameraPivot == (UnityEngine.Object) null)
     {
@@ -261,6 +261,14 @@ public class RPG_Camera : MonoBehaviour
   }
 
   public void RotateWithCharacter() => this.mouseX += Input.GetAxis("Horizontal") * RPG_Controller.instance.turnSpeed;
+
+  public void ZeroEverything()
+  {
+    this.mouseX = 0.0f;
+    this.mouseXSmooth = 0.0f;
+    this.mouseY = 0.0f;
+    this.mouseYSmooth = 0.0f;
+  }
 
   public struct ClipPlaneVertexes
   {

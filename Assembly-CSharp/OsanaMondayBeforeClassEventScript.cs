@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMondayBeforeClassEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -172,7 +172,7 @@ public class OsanaMondayBeforeClassEventScript : MonoBehaviour
       this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Rival.transform.position);
       if (this.enabled)
       {
-        if ((double) this.Distance - 4.0 < 15.0)
+        if ((double) this.Yandere.transform.position.y > (double) this.Rival.transform.position.y - 0.10000000149011612 && (double) this.Yandere.transform.position.y < (double) this.Rival.transform.position.y + 0.10000000149011612 && (double) this.Distance - 4.0 < 15.0)
         {
           this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 4.0) / 15.0));
           if ((double) this.Scale < 0.0)

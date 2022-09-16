@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PickUpScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -53,6 +53,7 @@ public class PickUpScript : MonoBehaviour
   public bool CleaningProduct;
   public bool DisableAtStart;
   public bool PreventTipping;
+  public bool DoNotTeleport;
   public bool GarbageBagBox;
   public bool InsideBookbag;
   public bool LockRotation;
@@ -60,6 +61,7 @@ public class PickUpScript : MonoBehaviour
   public bool KeepGravity;
   public bool BrownPaint;
   public bool CanCollide;
+  public bool CarBattery;
   public bool Electronic;
   public bool Flashlight;
   public bool PuzzleCube;
@@ -305,7 +307,9 @@ public class PickUpScript : MonoBehaviour
         if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
         {
           this.Prompt.Circle[0].fillAmount = 1f;
+          this.DoNotTeleport = true;
           this.Drop();
+          this.DoNotTeleport = false;
           this.MyRigidbody.AddForce((this.Prompt.Yandere.transform.forward + this.Prompt.Yandere.transform.up) * 100f);
           this.Prompt.HideButton[3] = false;
           this.Prompt.Yandere.PotentiallyMurderousTimer = 1f;
@@ -424,6 +428,11 @@ public class PickUpScript : MonoBehaviour
 
   public void Drop()
   {
+    this.Yandere.Direction = 1;
+    this.Yandere.CheckForWall();
+    if (this.Yandere.WallInFront)
+      this.transform.position = new Vector3(this.Yandere.transform.position.x, this.transform.position.y, this.Yandere.transform.position.z);
+    this.Yandere.WallInFront = false;
     if (this.Salty && SchemeGlobals.GetSchemeStage(4) == 5)
     {
       SchemeGlobals.SetSchemeStage(4, 4);
@@ -532,13 +541,15 @@ public class PickUpScript : MonoBehaviour
       this.Prompt.HideButton[3] = false;
       this.Prompt.OffsetY[0] = 0.5f;
     }
-    if ((double) Vector3.Distance(this.transform.position, this.OriginalPosition) >= 1.0 && (double) Vector3.Distance(this.Yandere.transform.position, this.OriginalPosition) >= 1.0)
-      return;
-    this.transform.position = this.OriginalPosition;
-    this.transform.eulerAngles = this.OriginalRotation;
-    this.MyRigidbody.isKinematic = true;
-    this.MyRigidbody.useGravity = false;
-    this.MyCollider.isTrigger = true;
+    if (!this.DoNotTeleport && ((double) Vector3.Distance(this.transform.position, this.OriginalPosition) < 1.0 || (double) Vector3.Distance(this.Yandere.transform.position, this.OriginalPosition) < 1.0))
+    {
+      this.transform.position = this.OriginalPosition;
+      this.transform.eulerAngles = this.OriginalRotation;
+      this.MyRigidbody.isKinematic = true;
+      this.MyRigidbody.useGravity = false;
+      this.MyCollider.isTrigger = true;
+    }
+    this.DoNotTeleport = false;
   }
 
   public void DisableGarbageBag()

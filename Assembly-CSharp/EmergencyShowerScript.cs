@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EmergencyShowerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -26,7 +26,7 @@ public class EmergencyShowerScript : MonoBehaviour
 
   private void Update()
   {
-    if (this.Yandere.Schoolwear == 2 && (double) this.Yandere.Bloodiness > 0.0 || this.Yandere.Schoolwear != 2 && (double) this.Yandere.Bloodiness > 0.0 && (Object) this.Yandere.PickUp != (Object) null && this.Yandere.PickUp.Clothing && !this.Yandere.PickUp.Evidence && (Object) this.Yandere.PickUp.Gloves == (Object) null)
+    if (this.Yandere.Schoolwear == 2 && (double) this.Yandere.Bloodiness > 0.0 || this.Yandere.Schoolwear != 2 && (double) this.Yandere.Bloodiness > 0.0 && (Object) this.Yandere.PickUp != (Object) null && this.Yandere.PickUp.Clothing && !this.Yandere.PickUp.Evidence && (Object) this.Yandere.PickUp.Gloves == (Object) null && (Object) this.Yandere.PickUp.GetComponent<FoldedUniformScript>() != (Object) null && !this.Yandere.PickUp.GetComponent<FoldedUniformScript>().ClubAttire)
     {
       this.Prompt.HideButton[0] = false;
       if ((double) this.Prompt.Circle[0].fillAmount == 0.0)
@@ -68,6 +68,7 @@ public class EmergencyShowerScript : MonoBehaviour
         PickUpScript component;
         if (this.Yandere.ClubAttire)
         {
+          Debug.Log((object) "Player was wearing club attire when entered shower.");
           component = Object.Instantiate<GameObject>(this.TallLocker.BloodyClubUniform[(int) this.Yandere.Club], this.Yandere.transform.position + this.Yandere.transform.forward + this.Yandere.transform.right * -0.5f, Quaternion.identity).GetComponent<PickUpScript>();
           this.Yandere.StudentManager.ChangingBooths[(int) this.Yandere.Club].CannotChange = true;
           this.Yandere.StudentManager.ChangingBooths[(int) this.Yandere.Club].CheckYandereClub();

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -1104,6 +1104,14 @@ public class StudentManagerScript : MonoBehaviour
               }
             }
           }
+          foreach (StudentScript student in this.Students)
+          {
+            if ((UnityEngine.Object) student != (UnityEngine.Object) null)
+            {
+              student.SetOriginalScheduleBlocks();
+              student.SetOriginalActions();
+            }
+          }
           if (Screen.width < 1280 || Screen.height < 720)
             Screen.SetResolution(1280, 720, false);
         }
@@ -1423,6 +1431,8 @@ public class StudentManagerScript : MonoBehaviour
       component.Randomize = this.Randomize;
       component.StudentID = spawnID;
       component.JSON = this.JSON;
+      if (spawnID == 4)
+        component.Randomize = false;
       if (this.JSON.Students[spawnID].Name == "Random")
       {
         this.NewStudent.GetComponent<StudentScript>().CleaningSpot = this.CleaningSpots.List[spawnID];
@@ -3315,10 +3325,10 @@ public class StudentManagerScript : MonoBehaviour
           if (student.MyRenderer.materials.Length > 2)
             student.MyRenderer.materials[2].color = new Color(1f - alpha, 1f - alpha, 1f - alpha, 1f);
         }
-        student.Cosmetic.LeftEyeRenderer.material.color = new Color(1f - alpha, 1f - alpha, 1f - alpha, 1f);
-        student.Cosmetic.RightEyeRenderer.material.color = new Color(1f - alpha, 1f - alpha, 1f - alpha, 1f);
+        student.Cosmetic.LeftEyeRenderer.material.color = new Color(student.OriginalEyeR - alpha, student.OriginalEyeG - alpha, student.OriginalEyeB - alpha, 1f);
+        student.Cosmetic.RightEyeRenderer.material.color = new Color(student.OriginalEyeR - alpha, student.OriginalEyeG - alpha, student.OriginalEyeB - alpha, 1f);
         if ((UnityEngine.Object) student.Cosmetic.HairRenderer != (UnityEngine.Object) null)
-          student.Cosmetic.HairRenderer.material.color = new Color(1f - alpha, 1f - alpha, 1f - alpha, 1f);
+          student.Cosmetic.HairRenderer.material.color = new Color(student.OriginalHairR - alpha, student.OriginalHairG - alpha, student.OriginalHairB - alpha, 1f);
       }
     }
   }
@@ -3636,12 +3646,15 @@ public class StudentManagerScript : MonoBehaviour
     this.scheduleBlock.destination = "Week1Hangout";
     this.scheduleBlock.action = "Socialize";
     this.Students[StudentID].GetDestinations();
-    if (DateGlobals.Weekday != DayOfWeek.Friday || this.Students[StudentID].Club != ClubType.Art)
-      return;
-    ScheduleBlock scheduleBlock = this.Students[StudentID].ScheduleBlocks[7];
-    scheduleBlock.destination = "Paint";
-    scheduleBlock.action = "Paint";
-    this.Students[StudentID].VisionDistance += 5f;
+    if (DateGlobals.Weekday == DayOfWeek.Friday && this.Students[StudentID].Club == ClubType.Art)
+    {
+      ScheduleBlock scheduleBlock = this.Students[StudentID].ScheduleBlocks[7];
+      scheduleBlock.destination = "Paint";
+      scheduleBlock.action = "Paint";
+      this.Students[StudentID].VisionDistance += 5f;
+    }
+    this.Students[StudentID].SetOriginalScheduleBlocks();
+    this.Students[StudentID].SetOriginalActions();
   }
 
   public void UpdateExteriorStudents()
@@ -3950,7 +3963,7 @@ public class StudentManagerScript : MonoBehaviour
 
   public void BecomeSleuth(int ID)
   {
-    if (!((UnityEngine.Object) this.Students[ID] != (UnityEngine.Object) null))
+    if (!((UnityEngine.Object) this.Students[ID] != (UnityEngine.Object) null) || this.Students[ID].Slave)
       return;
     this.Students[ID].Persona = PersonaType.Sleuth;
     this.Students[ID].BecomeSleuth();

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WaterCoolerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -17,10 +17,11 @@ public class WaterCoolerScript : MonoBehaviour
   public UISprite WeaponCheckmark;
   public UISprite ThreadCheckmark;
   public UISprite TapeCheckmark;
+  public Transform StringTrapParent;
+  public Transform Cylinder;
   public Renderer CylinderRenderer;
   public GameObject TripwireTrap;
   public Rigidbody MyRigidbody;
-  public Transform Cylinder;
   public bool BrownPaint;
   public bool Gasoline;
   public bool Water;
@@ -29,6 +30,7 @@ public class WaterCoolerScript : MonoBehaviour
   public bool Empty;
   public float Timer;
   public Color[] OriginalColor;
+  public bool TooCloseToWall;
 
   private void Start()
   {
@@ -101,8 +103,18 @@ public class WaterCoolerScript : MonoBehaviour
           if ((double) this.Prompt.Circle[1].fillAmount == 0.0)
           {
             this.Prompt.Circle[1].fillAmount = 1f;
-            this.Yandere.SuspiciousActionTimer = 1f;
-            this.SetTrap();
+            this.CheckForWallInFront();
+            if (this.TooCloseToWall)
+            {
+              this.Yandere.NotificationManager.CustomText = "Too close to wall!";
+              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+            }
+            else
+            {
+              this.Yandere.SuspiciousActionTimer = 1f;
+              this.Yandere.CreatingTripwireTrap = true;
+              this.SetTrap();
+            }
           }
         }
         else
@@ -170,6 +182,31 @@ public class WaterCoolerScript : MonoBehaviour
       this.CylinderRenderer.material.color = new Color(1f, 1f, 0.0f, 1f);
     else
       this.CylinderRenderer.material.color = new Color(0.0f, 1f, 1f, 1f);
+  }
+
+  private void CheckForWallInFront()
+  {
+    this.StringTrapParent.localScale = new Vector3(1f, 1f, 1f);
+    this.TooCloseToWall = false;
+    Debug.Log((object) "Checking for a wall in front of this object.");
+    Transform transform = this.transform;
+    Vector3 vector3 = this.transform.TransformDirection(this.transform.worldToLocalMatrix.MultiplyVector(this.transform.forward));
+    Debug.DrawRay(transform.position + Vector3.up, vector3, Color.red);
+    RaycastHit hitInfo;
+    if (!Physics.Raycast(transform.position + Vector3.up, vector3, out hitInfo, float.PositiveInfinity, this.Yandere.StudentManager.Students[1].OnlyDefault))
+      return;
+    float num = Vector3.Distance(transform.position + Vector3.up, hitInfo.point);
+    Debug.Log((object) ("There is a wall " + num.ToString() + " meters away."));
+    if ((double) num > 3.5)
+      this.StringTrapParent.localScale = new Vector3(1f, 1f, 1f);
+    else if ((double) num > 2.5)
+      this.StringTrapParent.localScale = new Vector3(1f, 1f, 0.75f);
+    else if ((double) num > 1.5)
+      this.StringTrapParent.localScale = new Vector3(1f, 1f, 0.5f);
+    else if ((double) num > 0.5)
+      this.StringTrapParent.localScale = new Vector3(1f, 1f, 0.25f);
+    else
+      this.TooCloseToWall = true;
   }
 
   public void SetTrap()

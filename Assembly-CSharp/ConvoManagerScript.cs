@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ConvoManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -171,6 +171,27 @@ public class ConvoManagerScript : MonoBehaviour
               this.SM.Students[11].Alone = !((Object) this.SM.Students[6] != (Object) null) || !this.SM.Students[6].Routine || (double) Vector3.Distance(this.SM.Students[11].transform.position, this.SM.Students[6].transform.position) >= 1.4;
               break;
             default:
+              if (StudentID > 40 && StudentID < 46)
+              {
+                for (this.ID = 40; this.ID < 46; ++this.ID)
+                {
+                  if (this.ID != StudentID)
+                  {
+                    if ((Object) this.SM.Students[this.ID] != (Object) null)
+                    {
+                      if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.6666600704193115)
+                      {
+                        this.SM.Students[StudentID].Alone = false;
+                        break;
+                      }
+                      this.SM.Students[StudentID].Alone = true;
+                    }
+                    else
+                      this.SM.Students[StudentID].Alone = true;
+                  }
+                }
+                break;
+              }
               if (StudentID > 55 && StudentID < 61)
               {
                 for (this.ID = 56; this.ID < 61; ++this.ID)

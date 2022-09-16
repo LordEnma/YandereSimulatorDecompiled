@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMorningFriendEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -90,6 +90,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
           this.Friend.CurrentDestination = this.Location[1];
           this.Friend.Pathfinding.canSearch = true;
           this.Friend.Pathfinding.canMove = true;
+          this.Friend.Pathfinding.maxSpeed = 1f;
           this.Friend.Routine = false;
           this.Friend.InEvent = true;
           this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
@@ -177,7 +178,8 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
           this.VoiceClip.GetComponent<AudioSource>().pitch = Time.timeScale;
         if (this.SpeechPhase < this.SpeechTime.Length && (double) this.Timer > (double) this.SpeechTime[this.SpeechPhase])
         {
-          this.EventSubtitle.text = this.SpeechText[this.SpeechPhase];
+          if ((double) this.Yandere.transform.position.z < -50.0)
+            this.EventSubtitle.text = this.SpeechText[this.SpeechPhase];
           this.PlayRelevantAnim();
           ++this.SpeechPhase;
         }
@@ -201,6 +203,8 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
           this.Rival.ShoeRemoval.Start();
         this.Rival.ShoeRemoval.PutOnShoes();
       }
+      if ((double) this.Yandere.transform.position.z >= -50.0)
+        return;
       this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Epicenter.position);
       if ((double) this.Distance - 4.0 < 15.0)
       {

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PauseScreenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -705,13 +705,23 @@ public class PauseScreenScript : MonoBehaviour
           {
             if (this.ResettingDay && !this.Yandere.StudentManager.MissionMode)
             {
-              Debug.Log((object) ("Apparently, StudentGlobals.StudentSlave is: " + StudentGlobals.StudentSlave.ToString()));
+              Debug.Log((object) ("We're returning home. StudentGlobals.StudentSlave is: " + StudentGlobals.StudentSlave.ToString()));
+              Debug.Log((object) ("and StudentGlobals.PreviousPrisoner is: " + StudentGlobals.PreviousPrisoner.ToString()));
               if (StudentGlobals.StudentSlave > 0)
               {
                 StudentGlobals.SetStudentKidnapped(StudentGlobals.StudentSlave, true);
                 StudentGlobals.PrisonerChosen = 0;
                 StudentGlobals.StudentSlave = 0;
               }
+              else if (StudentGlobals.PreviousPrisoner > 0)
+              {
+                Debug.Log((object) ("StudentGlobals.PreviousSanity is: " + StudentGlobals.PreviousSanity.ToString()));
+                StudentGlobals.SetStudentSanity(StudentGlobals.PreviousPrisoner, StudentGlobals.PreviousSanity);
+                StudentGlobals.PreviousPrisoner = 0;
+                StudentGlobals.PreviousSanity = 0;
+                Debug.Log((object) ("So, StudentGlobals.GetStudentSanity(StudentGlobals.PreviousPrisoner) should now be: " + StudentGlobals.GetStudentSanity(StudentGlobals.PreviousPrisoner).ToString()));
+              }
+              HomeGlobals.LateForSchool = false;
               SceneManager.LoadScene("HomeScene");
             }
           }
@@ -763,11 +773,11 @@ public class PauseScreenScript : MonoBehaviour
 
   public void JumpToQuit()
   {
-    if (this.Police.FadeOut || this.Clock.TimeSkip || this.Yandere.Noticed)
+    if (!this.Home && (this.Police.FadeOut || this.Clock.TimeSkip || this.Yandere.Noticed))
       return;
     this.transform.localPosition = new Vector3(0.0f, -1200f, 0.0f);
     this.Yandere.YandereVision = false;
-    if (!this.Yandere.Talking && !this.Yandere.Dismembering)
+    if (!this.Yandere.Talking && !this.Yandere.Dismembering && (Object) this.RPGCamera != (Object) null)
     {
       this.RPGCamera.enabled = false;
       this.Yandere.StopAiming();
@@ -775,7 +785,8 @@ public class PauseScreenScript : MonoBehaviour
     this.QuitLabel.text = "Do you wish to return to the main menu?";
     this.PromptBar.ClearButtons();
     this.PromptBar.Show = false;
-    this.Yandere.Blur.enabled = true;
+    if ((Object) this.Yandere.Blur != (Object) null)
+      this.Yandere.Blur.enabled = true;
     this.ResettingDay = false;
     this.Panel.enabled = true;
     this.BypassPhone = true;
@@ -844,7 +855,7 @@ public class PauseScreenScript : MonoBehaviour
         if (this.Police.BloodyClothing > 0)
         {
           this.PhoneIcons[9].color = new Color(1f, 1f, 1f, 0.5f);
-          this.Reason = "You cannot save the game while a bloody uniform is present at school.";
+          this.Reason = "You cannot save the game while bloody clothing is present at school.";
         }
       }
     }

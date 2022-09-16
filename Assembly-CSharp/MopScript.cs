@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MopScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -74,7 +74,18 @@ public class MopScript : MonoBehaviour
               {
                 this.Prompt.Label[0].text = "     Dip";
                 if (Input.GetButtonDown("A"))
-                  this.Dip();
+                {
+                  if ((double) this.Yandere.Bucket.transform.position.y < (double) this.Yandere.transform.position.y + 0.10000000149011612)
+                  {
+                    this.Dip();
+                  }
+                  else
+                  {
+                    Debug.Log((object) "Cannot Dip Now.");
+                    this.Yandere.NotificationManager.CustomText = "Lower Bucket First";
+                    this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+                  }
+                }
               }
               else
                 this.Prompt.Label[0].text = "     Water Too Bloody!";

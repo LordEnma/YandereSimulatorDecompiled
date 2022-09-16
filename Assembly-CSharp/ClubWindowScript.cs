@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClubWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -36,6 +36,7 @@ public class ClubWindowScript : MonoBehaviour
     if (GameGlobals.Eighties)
     {
       this.ActivityDescs[7] = "The Photography Club review each others' photographs and share advice on how to improve.";
+      this.ClubDescs[7] = "If you join the Photography Club, you will gain access to a camera, and the Photography Club will not consider you to be a potential suspect if they are searching for a killer at school.";
       this.ClubDescs[8] = "If you join the Science Club, you will have easy access to an emergency shower that can be used for changing out of a bloody outfit, and a vat of acid that can be used for disposing of corpses.";
     }
     if ((double) SchoolGlobals.SchoolAtmosphere <= 0.89999997615814209)

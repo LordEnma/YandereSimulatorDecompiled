@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ShutterScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -143,6 +143,7 @@ public class ShutterScript : MonoBehaviour
             this.PromptBar.Label[0].text = "";
           if (this.StudentManager.Eighties)
             this.PromptBar.Label[2].text = "";
+          this.Yandere.DetectionPanel.alpha = 0.0f;
           this.PromptBar.UpdateButtons();
           this.PromptBar.Show = true;
           Time.timeScale = 0.0001f;
@@ -362,11 +363,11 @@ public class ShutterScript : MonoBehaviour
             this.PauseScreen.Panel.enabled = true;
             this.PromptBar.ClearButtons();
             this.PromptBar.Label[1].text = "Exit";
-            this.StudentInfo.UpdateTagButton();
             this.PromptBar.Label[3].text = this.InfoX.activeInHierarchy ? "" : "Interests";
             this.PromptBar.UpdateButtons();
             if (!this.InfoX.activeInHierarchy)
             {
+              this.StudentInfo.UpdateTagButton();
               this.PauseScreen.Sideways = true;
               if (!this.StudentManager.StudentPhotographed[this.Student.StudentID])
                 ++this.Yandere.Inventory.PantyShots;
@@ -450,7 +451,7 @@ public class ShutterScript : MonoBehaviour
     this.Nemesis = false;
     this.NotFace = false;
     this.Skirt = false;
-    Transform transform = !this.Yandere.Aiming ? this.Palm : this.SmartphoneCamera.transform;
+    Transform transform = !this.Yandere.Aiming ? (!this.Yandere.WallInFront ? this.Palm : this.Yandere.StudentManager.transform) : this.SmartphoneCamera.transform;
     Vector3 direction = this.Yandere.Selfie ? this.SelfieRayParent.TransformDirection(Vector3.forward) : transform.TransformDirection(Vector3.forward);
     this.StudentManager.UpdatePanties(true);
     this.StudentManager.UpdateSkirts(true);
@@ -784,6 +785,7 @@ public class ShutterScript : MonoBehaviour
     this.HeartbeatCamera.SetActive(true);
     this.TextMessages.gameObject.SetActive(false);
     this.StudentInfo.gameObject.SetActive(false);
+    this.Yandere.DetectionPanel.alpha = 1f;
     this.MainCamera.enabled = true;
     this.PhotoIcons.SetActive(false);
     this.PauseScreen.Show = false;

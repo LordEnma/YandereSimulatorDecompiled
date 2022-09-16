@@ -1,9 +1,10 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NoteWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
+using System;
 using UnityEngine;
 
 public class NoteWindowScript : MonoBehaviour
@@ -66,7 +67,7 @@ public class NoteWindowScript : MonoBehaviour
     this.Background2.color = new Color(0.0f, 0.0f, 0.0f, 1f);
     foreach (UILabel label in this.Labels)
     {
-      if ((Object) label != (Object) null)
+      if ((UnityEngine.Object) label != (UnityEngine.Object) null)
         label.color = new Color(1f, 1f, 1f, 1f);
     }
     this.Labels[1].color = new Color(1f, 1f, 1f, 0.0f);
@@ -78,7 +79,7 @@ public class NoteWindowScript : MonoBehaviour
     this.SlotHighlights[1].transform.localPosition = new Vector3(-100f, 280f, 0.0f);
     foreach (UILabel subLabel in this.SubLabels)
     {
-      if ((Object) subLabel != (Object) null)
+      if ((UnityEngine.Object) subLabel != (UnityEngine.Object) null)
         subLabel.color = new Color(1f, 1f, 1f, 1f);
     }
     this.LifeNote = true;
@@ -187,7 +188,9 @@ public class NoteWindowScript : MonoBehaviour
             }
             else if (this.NoteLocker.Student.StudentID == this.Yandere.StudentManager.RivalID)
             {
-              if (this.NoteSubject == NoteWindowScript.NoteSubjectType.DomesticAbuse)
+              if (DateGlobals.Weekday == DayOfWeek.Friday && (double) this.TimeID == 17.0)
+                Debug.Log((object) "Note must fail because she wouldn't accept a note that close to confessing to Senpai.");
+              else if (this.NoteSubject == NoteWindowScript.NoteSubjectType.DomesticAbuse)
               {
                 this.NoteLocker.Success = true;
                 if (SchemeGlobals.GetSchemeStage(6) == 5)

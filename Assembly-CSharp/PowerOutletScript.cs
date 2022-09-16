@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PowerOutletScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -61,6 +61,7 @@ public class PowerOutletScript : MonoBehaviour
       }
       if ((double) this.Prompt.Circle[1].fillAmount != 0.0)
         return;
+      this.Prompt.Yandere.SuspiciousActionTimer = 1f;
       this.Prompt.Circle[1].fillAmount = 1f;
       this.SabotagedOutlet.SetActive(true);
       this.PluggedOutlet.SetActive(false);

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
@@ -277,6 +277,8 @@ public class YandereScript : MonoBehaviour
   public bool CorpseWarning;
   public bool SanityWarning;
   public bool WeaponWarning;
+  public bool CreatingTripwireTrap;
+  public bool CreatingBucketTrap;
   public bool DelinquentFighting;
   public bool DumpsterGrabbing;
   public bool FakingReaction;
@@ -799,6 +801,7 @@ public class YandereScript : MonoBehaviour
   public RaycastHit corpseHit;
   public Transform corpseOrigin;
   public bool TooCloseToWall;
+  public bool WallInFront;
   public bool WallToRight;
   public bool WallToLeft;
   public int Direction;
@@ -840,6 +843,7 @@ public class YandereScript : MonoBehaviour
     this.ResetSenpaiEffects();
     this.Sanity = 100f;
     this.Bloodiness = 0.0f;
+    this.YandereFade = 100f;
     this.EasterEggMenu.transform.localPosition = new Vector3(this.EasterEggMenu.transform.localPosition.x, 0.0f, this.EasterEggMenu.transform.localPosition.z);
     this.ProgressBar.transform.parent.gameObject.SetActive(false);
     this.Smartphone.transform.parent.gameObject.SetActive(false);
@@ -1826,7 +1830,7 @@ public class YandereScript : MonoBehaviour
                 }
               }
             }
-            else
+            else if ((double) this.YandereFade == 100.0)
             {
               this.MyAudio.clip = this.Laugh1;
               this.MyAudio.volume = 1f;
@@ -2086,7 +2090,11 @@ public class YandereScript : MonoBehaviour
           this.TargetStudent = (StudentScript) null;
       }
       if ((double) this.SuspiciousActionTimer > 0.0)
+      {
         this.SuspiciousActionTimer = Mathf.MoveTowards(this.SuspiciousActionTimer, 0.0f, Time.deltaTime);
+        this.CreatingTripwireTrap = false;
+        this.CreatingBucketTrap = false;
+      }
       if ((double) this.PotentiallyMurderousTimer > 0.0)
       {
         Debug.Log((object) "If a student sees a student being electrocuted right now, they should check for Yandere-chan.");
@@ -2912,7 +2920,7 @@ public class YandereScript : MonoBehaviour
       {
         this.MoveTowardsTarget(this.RummageSpot.Target.position);
         this.transform.rotation = Quaternion.Slerp(this.transform.rotation, this.RummageSpot.Target.rotation, Time.deltaTime * 10f);
-        this.RummageTimer += Time.deltaTime;
+        this.RummageTimer += Time.deltaTime * 2f;
         this.ProgressBar.transform.localScale = new Vector3(this.RummageTimer / 10f, this.ProgressBar.transform.localScale.y, this.ProgressBar.transform.localScale.z);
         if ((double) this.RummageTimer > 10.0)
         {
@@ -3145,6 +3153,9 @@ public class YandereScript : MonoBehaviour
               this.SneakingShot = false;
               this.CanMove = true;
               this.Lewd = false;
+              this.WallToLeft = false;
+              this.WallToRight = false;
+              this.WallInFront = false;
               this.SneakShotTimer = 0.0f;
             }
           }
@@ -3810,6 +3821,13 @@ public class YandereScript : MonoBehaviour
       {
         if ((double) this.SneakShotLabel.alpha == 1.0 && Input.GetButtonDown("B"))
         {
+          this.Direction = 1;
+          this.CheckForWall();
+          if (this.WallInFront)
+          {
+            this.NotificationManager.CustomText = "Camera's view is blocked!";
+            this.NotificationManager.DisplayNotification(NotificationType.Custom);
+          }
           this.EmptyHands();
           this.YandereVision = false;
           this.SneakingShot = true;
@@ -5160,7 +5178,11 @@ public class YandereScript : MonoBehaviour
       this.SanitySmudges.color = new Color(1f, 1f, 1f, a);
       this.StudentManager.SelectiveGreyscale.desaturation = 1f - this.StudentManager.Atmosphere + a;
       if ((double) a > 0.66666001081466675)
-        this.StudentManager.SetFaces((float) (1.0 - (1.0 - (double) a) / 0.33333000540733337));
+      {
+        float alpha = (float) (1.0 - (1.0 - (double) a) / 0.33333000540733337);
+        if (!this.StudentManager.Randomize)
+          this.StudentManager.SetFaces(alpha);
+      }
       else
         this.StudentManager.SetFaces(0.0f);
       this.SanityLabel.text = ((float) (100.0 - (double) a * 100.0)).ToString("0") + "%";
@@ -7235,20 +7257,28 @@ public class YandereScript : MonoBehaviour
 
   public int OnlyDefault => 1;
 
-  private void CheckForWall()
+  public void CheckForWall()
   {
+    Debug.Log((object) "Checking for a wall.");
     Vector3 direction = Vector3.zero;
     this.corpseOrigin = this.Hips;
+    float maxDistance = 1f;
     if (this.Direction == 1)
+    {
       direction = this.corpseOrigin.TransformDirection(this.transform.worldToLocalMatrix.MultiplyVector(this.transform.forward));
+      maxDistance = 0.66666f;
+    }
     else if (this.Direction == 2)
       direction = this.corpseOrigin.TransformDirection(this.transform.worldToLocalMatrix.MultiplyVector(this.transform.right));
     else if (this.Direction == 3)
       direction = this.corpseOrigin.TransformDirection(this.transform.worldToLocalMatrix.MultiplyVector(this.transform.right * -1f));
-    if (!Physics.Raycast(this.corpseOrigin.position, direction, out this.corpseHit, 1f, this.OnlyDefault))
+    if (!Physics.Raycast(this.corpseOrigin.position, direction, out this.corpseHit, maxDistance, this.OnlyDefault))
       return;
     if (this.Direction == 1)
+    {
       Debug.Log((object) "Wall in front!");
+      this.WallInFront = true;
+    }
     else if (this.Direction == 2)
     {
       Debug.Log((object) "Wall to the right!");

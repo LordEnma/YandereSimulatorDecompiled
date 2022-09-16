@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BucketScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -217,8 +217,17 @@ public class BucketScript : MonoBehaviour
     if ((Object) this.Yandere.Mop != (Object) null && this.Dippable && (double) this.Prompt.Circle[3].fillAmount == 0.0)
     {
       this.Prompt.Circle[3].fillAmount = 1f;
-      this.Yandere.Bucket = this;
-      this.Yandere.Mop.Dip();
+      if ((double) this.transform.position.y < (double) this.Yandere.transform.position.y + 0.10000000149011612)
+      {
+        this.Yandere.Bucket = this;
+        this.Yandere.Mop.Dip();
+      }
+      else
+      {
+        Debug.Log((object) "Cannot Dip Now.");
+        this.Yandere.NotificationManager.CustomText = "Lower Bucket First";
+        this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+      }
     }
     if (this.Dumbbells > 1)
     {

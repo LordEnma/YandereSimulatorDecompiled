@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StringTrapScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -29,12 +29,21 @@ public class StringTrapScript : MonoBehaviour
     StudentScript component = other.gameObject.GetComponent<StudentScript>();
     if (!((Object) component != (Object) null) || component.ClubActivityPhase >= 16)
       return;
-    if (component.Club == ClubType.Council || (Object) component != (Object) null && component.Teacher)
+    if (component.Club == ClubType.Council || (Object) component != (Object) null && component.Teacher || component.WillRemoveTripwire)
     {
-      this.WaterCooler.Yandere.NotificationManager.CustomText = "Tripwire Trap Dismantled!";
+      this.WaterCooler.Yandere.NotificationManager.CustomText = component.Name + " dismantled tripwire trap!";
       this.WaterCooler.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-      this.WaterCooler.Yandere.Subtitle.CustomText = "Someone tried to pull a prank? How childish...";
-      this.WaterCooler.Yandere.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+      if (component.WillRemoveTripwire)
+      {
+        this.WaterCooler.Yandere.Subtitle.CustomText = "Let's get rid of this real quick...";
+        this.WaterCooler.Yandere.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+        component.WillRemoveTripwire = false;
+      }
+      else
+      {
+        this.WaterCooler.Yandere.Subtitle.CustomText = "Someone tried to pull a prank? How childish...";
+        this.WaterCooler.Yandere.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+      }
       this.transform.parent.gameObject.SetActive(false);
       this.WaterCooler.Prompt.HideButton[3] = false;
       this.WaterCooler.PickUp.enabled = true;

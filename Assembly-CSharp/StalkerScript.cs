@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StalkerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -71,14 +71,15 @@ public class StalkerScript : MonoBehaviour
         if (!this.Started)
         {
           this.Timer += Time.deltaTime;
-          if ((double) this.Timer <= 1.0)
-            return;
-          this.Subtitle.transform.localScale = new Vector3(1f, 1f, 1f);
-          this.Subtitle.text = this.SpeechText[0];
-          this.MyAudio.clip = this.SpeechClip[0];
-          this.MyAudio.Play();
-          this.Started = true;
-          ++this.SpeechPhase;
+          if ((double) this.Timer > 1.0)
+          {
+            this.Subtitle.transform.localScale = new Vector3(1f, 1f, 1f);
+            this.Subtitle.text = this.SpeechText[0];
+            this.MyAudio.clip = this.SpeechClip[0];
+            this.MyAudio.Play();
+            this.Started = true;
+            ++this.SpeechPhase;
+          }
         }
         else
         {
@@ -102,10 +103,7 @@ public class StalkerScript : MonoBehaviour
             if (this.Limit == 10 && this.SpeechPhase == this.Limit)
               this.ChaseNow();
           }
-          if (this.MyAudio.isPlaying)
-            this.Jukebox.volume = 0.1f;
-          else
-            this.Jukebox.volume = 1f;
+          this.Jukebox.volume = !this.MyAudio.isPlaying ? 1f : 0.1f;
         }
       }
       else
@@ -116,59 +114,67 @@ public class StalkerScript : MonoBehaviour
       this.transform.LookAt(this.Yandere.transform.position);
       this.transform.Translate(this.transform.forward * Time.deltaTime * 5f, Space.World);
       this.MyAnimation.CrossFade("newSprint_00");
-      if ((double) Vector3.Distance(this.transform.position, this.Yandere.transform.position) >= 1.0)
-        return;
-      this.MyAnimation.CrossFade("struggleB_00");
-      this.Yandere.BeginStruggle();
-      this.Struggling = true;
-      this.StruggleBar.gameObject.SetActive(true);
-      this.StruggleBar.Struggling = true;
-      this.Subtitle.text = "";
+      if ((double) Vector3.Distance(this.transform.position, this.Yandere.transform.position) < 1.0)
+      {
+        this.MyAnimation.CrossFade("struggleB_00");
+        this.Yandere.BeginStruggle();
+        this.Struggling = true;
+        this.StruggleBar.gameObject.SetActive(true);
+        this.StruggleBar.Struggling = true;
+        this.Subtitle.text = "";
+      }
     }
     else
     {
       this.transform.position = Vector3.MoveTowards(this.transform.position, this.Yandere.transform.position + this.Yandere.transform.forward * 0.5f, Time.deltaTime * 10f);
       this.transform.rotation = this.Yandere.transform.rotation;
-      if (this.StruggleBar.Struggling)
-        return;
-      if (this.StruggleBar.Yandere.Won)
+      if (!this.StruggleBar.Struggling)
       {
-        if (!this.PlayedAudio)
+        if (this.StruggleBar.Yandere.Won)
         {
-          AudioSource.PlayClipAtPoint(this.StalkerKnockout, this.Yandere.MainCamera.transform.position);
-          this.PlayedAudio = true;
+          if (!this.PlayedAudio)
+          {
+            AudioSource.PlayClipAtPoint(this.StalkerKnockout, this.Yandere.MainCamera.transform.position);
+            this.PlayedAudio = true;
+          }
+          this.Yandere.MyAnimation.CrossFade("f02_struggleWinA_00");
+          this.MyAnimation.CrossFade("struggleWinB_00");
+          if ((double) this.MyAnimation["struggleWinB_00"].time >= 0.66666001081466675)
+            this.BonkEffect[1].SetActive(true);
+          if ((double) this.MyAnimation["struggleWinB_00"].time >= 1.3333300352096558)
+          {
+            this.KnockoutStars.SetActive(true);
+            this.BonkEffect[2].SetActive(true);
+          }
+          if ((double) this.MyAnimation["struggleWinB_00"].time >= (double) this.MyAnimation["struggleWinB_00"].length)
+          {
+            this.CatPrompt.BeginCarryingCat();
+            this.Yandere.CanMove = true;
+            this.enabled = false;
+          }
         }
-        this.Yandere.MyAnimation.CrossFade("f02_struggleWinA_00");
-        this.MyAnimation.CrossFade("struggleWinB_00");
-        if ((double) this.MyAnimation["struggleWinB_00"].time >= 0.66666001081466675)
-          this.BonkEffect[1].SetActive(true);
-        if ((double) this.MyAnimation["struggleWinB_00"].time >= 1.3333300352096558)
+        else
         {
-          this.KnockoutStars.SetActive(true);
-          this.BonkEffect[2].SetActive(true);
+          if (!this.PlayedAudio)
+          {
+            AudioSource.PlayClipAtPoint(this.StalkerWon, this.Yandere.MainCamera.transform.position);
+            this.PlayedAudio = true;
+            this.Jukebox.Stop();
+          }
+          this.Yandere.MyAnimation.CrossFade("f02_struggleLoseA_00");
+          this.MyAnimation.CrossFade("struggleLoseB_00");
+          if ((double) this.MyAnimation["struggleLoseB_00"].time >= (double) this.MyAnimation["struggleLoseB_00"].length)
+          {
+            this.Heartbroken.SetActive(true);
+            this.enabled = false;
+          }
         }
-        if ((double) this.MyAnimation["struggleWinB_00"].time < (double) this.MyAnimation["struggleWinB_00"].length)
-          return;
-        this.CatPrompt.BeginCarryingCat();
-        this.Yandere.CanMove = true;
-        this.enabled = false;
-      }
-      else
-      {
-        if (!this.PlayedAudio)
-        {
-          AudioSource.PlayClipAtPoint(this.StalkerWon, this.Yandere.MainCamera.transform.position);
-          this.PlayedAudio = true;
-          this.Jukebox.Stop();
-        }
-        this.Yandere.MyAnimation.CrossFade("f02_struggleLoseA_00");
-        this.MyAnimation.CrossFade("struggleLoseB_00");
-        if ((double) this.MyAnimation["struggleLoseB_00"].time < (double) this.MyAnimation["struggleLoseB_00"].length)
-          return;
-        this.Heartbroken.SetActive(true);
-        this.enabled = false;
       }
     }
+    if ((double) this.Yandere.transform.position.x < 1.0)
+      this.MyAudio.volume = 1f;
+    else
+      this.MyAudio.volume = 0.0f;
   }
 
   private void ChaseNow()

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentGlobals
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -66,6 +66,8 @@ public static class StudentGlobals
   private const string Str_Prisoner10 = "Prisoner10";
   private const string Str_Prisoners = "Prisoners";
   private const string Str_PrisonerChosen = "PrisonerChosen";
+  private const string Str_PreviousSanity = "PreviousSanity";
+  private const string Str_PreviousPrisoner = "PreviousPrisoner";
   private const string Str_UpdateRivalReputation = "UpdateRivalReputation";
 
   public static bool CustomSuitor
@@ -264,6 +266,18 @@ public static class StudentGlobals
   {
     get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_PrisonerChosen");
     set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_PrisonerChosen", value);
+  }
+
+  public static int PreviousSanity
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_PreviousSanity");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_PreviousSanity", value);
+  }
+
+  public static int PreviousPrisoner
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_PreviousPrisoner");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_PreviousPrisoner", value);
   }
 
   public static string GetStudentAccessory(int studentID) => PlayerPrefs.GetString("Profile_" + GameGlobals.Profile.ToString() + "_StudentAccessory_" + studentID.ToString());
@@ -585,5 +599,7 @@ public static class StudentGlobals
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoner10");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Prisoners");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_PrisonerChosen");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_PreviousSanity");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_PreviousPrisoner");
   }
 }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BoundaryScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -13,6 +13,13 @@ public class BoundaryScript : MonoBehaviour
   public UITexture Static;
   public UILabel Label;
   public float Intensity;
+
+  private void Start()
+  {
+    if (!MissionModeGlobals.MissionMode)
+      return;
+    this.Label.text = "No...I must complete my mission.";
+  }
 
   private void Update()
   {

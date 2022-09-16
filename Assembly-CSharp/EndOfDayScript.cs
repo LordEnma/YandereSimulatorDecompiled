@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 1A8EFE0B-B8E4-42A1-A228-F35734F77857
+// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -59,6 +59,7 @@ public class EndOfDayScript : MonoBehaviour
   public bool PoliceArrived;
   public bool RaibaruLoner;
   public bool StopMourning;
+  public bool HeardMegami;
   public bool ClubClosed;
   public bool ClubKicked;
   public bool ErectFence;
@@ -191,9 +192,11 @@ public class EndOfDayScript : MonoBehaviour
       this.EODCamera.localEulerAngles = new Vector3(22.5f, -22.5f, 0.0f);
       this.TextWindow.SetActive(true);
     }
-    if (this.Yandere.VtuberID <= 0)
-      return;
-    this.Protagonist = this.VtuberNames[this.Yandere.VtuberID];
+    if (this.Yandere.VtuberID > 0)
+      this.Protagonist = this.VtuberNames[this.Yandere.VtuberID];
+    if (this.Yandere.RedPaint)
+      ++this.ClothingWithRedPaint;
+    Debug.Log((object) ("Clothing with red paint is: " + this.ClothingWithRedPaint.ToString()));
   }
 
   private void Update()
@@ -328,7 +331,6 @@ public class EndOfDayScript : MonoBehaviour
     this.Label.color = new Color(0.0f, 0.0f, 0.0f, 1f);
     if (!this.PoliceArrived)
       return;
-    this.MyListener.enabled = false;
     if (this.Phase != 14)
     {
       for (int index = 0; index < this.Yandere.Weapon.Length; ++index)
@@ -343,11 +345,11 @@ public class EndOfDayScript : MonoBehaviour
         this.WeaponsChecked = true;
         Debug.Log((object) (this.WeaponManager.MurderWeapons.ToString() + " bloody weapons were found."));
       }
-    }
-    for (this.ID = 0; this.ID < this.WeaponManager.Weapons.Length; ++this.ID)
-    {
-      if ((UnityEngine.Object) this.WeaponManager.Weapons[this.ID] != (UnityEngine.Object) null)
-        this.WeaponManager.Weapons[this.ID].gameObject.SetActive(false);
+      for (this.ID = 0; this.ID < this.WeaponManager.Weapons.Length; ++this.ID)
+      {
+        if ((UnityEngine.Object) this.WeaponManager.Weapons[this.ID] != (UnityEngine.Object) null)
+          this.WeaponManager.Weapons[this.ID].gameObject.SetActive(false);
+      }
     }
     if (Input.GetKeyDown(KeyCode.Backspace))
       this.Finish();
@@ -1121,6 +1123,7 @@ public class EndOfDayScript : MonoBehaviour
         }
         if (!ClubGlobals.GetClubClosed(this.ClubArray[this.ClubID]) && !ClubGlobals.GetClubKicked(this.ClubArray[this.ClubID]) && this.Yandere.Club == this.ClubArray[this.ClubID])
         {
+          Debug.Log((object) ("Checking to see if anyone in Club #" + this.ClubID.ToString() + " has a grudge on Ayano."));
           this.ClubManager.CheckGrudge(this.ClubArray[this.ClubID]);
           if (this.ClubManager.LeaderGrudge)
           {
@@ -1134,6 +1137,7 @@ public class EndOfDayScript : MonoBehaviour
           }
           else if (this.ClubManager.ClubGrudge)
           {
+            Debug.Log((object) "Yeah, someone does.");
             this.EODCamera.position = this.ClubManager.ClubVantages[this.ClubID].position;
             this.EODCamera.eulerAngles = this.ClubManager.ClubVantages[this.ClubID].eulerAngles;
             this.EODCamera.Translate(Vector3.forward * this.DistanceToMoveForward, Space.Self);
@@ -1330,10 +1334,7 @@ public class EndOfDayScript : MonoBehaviour
         student.MyController.enabled = false;
         student.CharacterAnimation.enabled = true;
         student.CharacterAnimation.Play("holdHandsLoop_00");
-        ParticleSystem.EmissionModule emission = student.Hearts.emission with
-        {
-          enabled = true
-        };
+        student.Hearts.emission.enabled = true;
         student.Hearts.Play();
         this.Rival.enabled = false;
         this.Rival.Pathfinding.enabled = false;
@@ -1347,10 +1348,7 @@ public class EndOfDayScript : MonoBehaviour
         this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
         this.Rival.CharacterAnimation["f02_shy_00"].weight = 1f;
         this.Rival.CharacterAnimation.Play("f02_holdHandsLoop_00");
-        emission = this.Rival.Hearts.emission with
-        {
-          enabled = true
-        };
+        this.Rival.Hearts.emission.enabled = true;
         this.Rival.Hearts.Play();
         this.RivalEliminationMethod = RivalEliminationType.Matchmade;
         this.Label.text = "After the police investigation ends, " + this.RivalName + " confesses to a boy that she has fallen in love with. She will no longer attempt to pursue a relationship with " + this.Protagonist + "'s Senpai.";
@@ -1981,11 +1979,14 @@ public class EndOfDayScript : MonoBehaviour
       SchoolGlobals.SchoolAtmosphere += (float) (20.0 * (1.0 + (double) ClassGlobals.LanguageGrade * 0.20000000298023224));
     if (GameGlobals.PoliceYesterday)
       ++PlayerGlobals.PoliceVisits;
+    if (this.HeardMegami)
+      SchoolGlobals.SCP = true;
     PlayerGlobals.BloodWitnessed += this.BloodWitnessed;
     PlayerGlobals.WeaponWitnessed += this.WeaponWitnessed;
     this.ClubManager.UpdateQuitClubs();
     StudentGlobals.UpdateRivalReputation = false;
     ClubGlobals.ActivitiesAttended = this.ClubManager.ActivitiesAttended;
+    this.UpdatePreviousRivalFriendships();
     this.ArrestStudents();
     this.SaveTopicsLearned();
     this.RemovableItemManager.RemoveItems();
@@ -2133,6 +2134,32 @@ public class EndOfDayScript : MonoBehaviour
     else if (Rival.DeathType == DeathType.Weapon)
       GameGlobals.SetSpecificEliminations(RivalID, 1);
     GameGlobals.SetRivalEliminations(RivalID, 14);
+  }
+
+  private void UpdatePreviousRivalFriendships()
+  {
+    Debug.Log((object) "Checking to see if it's necessary to update any rivals' friendship statuses.");
+    if (GameGlobals.SpecificEliminationID == 2)
+    {
+      Debug.Log((object) "This week's rival was befriended.");
+      if ((UnityEngine.Object) this.StudentManager.Students[this.StudentManager.RivalID] != (UnityEngine.Object) null && this.StudentManager.Students[this.StudentManager.RivalID].Grudge || StudentGlobals.GetStudentGrudge(this.StudentManager.RivalID))
+      {
+        Debug.Log((object) "However, she witnessed the player commit murder! Not friends anymore!");
+        GameGlobals.RivalEliminationID = 7;
+      }
+    }
+    for (int elimID = 1; elimID < DateGlobals.Week; ++elimID)
+    {
+      if (GameGlobals.GetSpecificEliminations(elimID) == 2)
+      {
+        Debug.Log((object) ("Rival #" + elimID.ToString() + " was befriended."));
+        if ((UnityEngine.Object) this.StudentManager.Students[this.StudentManager.RivalID + 10] != (UnityEngine.Object) null && this.StudentManager.Students[this.StudentManager.RivalID + 10].Grudge || StudentGlobals.GetStudentGrudge(elimID + 10))
+        {
+          Debug.Log((object) "However, she witnessed the player commit murder! Not friends anymore!");
+          GameGlobals.SetRivalEliminations(elimID, 7);
+        }
+      }
+    }
   }
 
   public void ArrestStudents()
