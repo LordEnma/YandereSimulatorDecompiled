@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MetalDetectorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -100,7 +100,7 @@ public class MetalDetectorScript : MonoBehaviour
             if (flag)
               Debug.Log((object) "It's metal!");
           }
-          else if ((Object) this.Yandere.Container.TrashCan != (Object) null && (Object) this.Yandere.Container.TrashCan.ConcealedWeapon != (Object) null)
+          else if ((Object) this.Yandere.Container.TrashCan != (Object) null && !this.Yandere.Container.TrashCan.Foil && (Object) this.Yandere.Container.TrashCan.ConcealedWeapon != (Object) null)
           {
             Debug.Log((object) "There is a weapon in the bag ...");
             flag = this.Yandere.Container.TrashCan.ConcealedWeapon.Metal;

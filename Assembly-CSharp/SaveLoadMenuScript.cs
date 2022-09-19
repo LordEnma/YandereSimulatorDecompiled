@@ -1,11 +1,12 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SaveLoadMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -161,6 +162,16 @@ public class SaveLoadMenuScript : MonoBehaviour
             this.UICamera.enabled = false;
             this.GrabScreenshot = true;
           }
+        }
+      }
+      if (Input.GetButtonDown("X") && this.Saving)
+      {
+        if (PlayerPrefs.GetString("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_DateTime") != "")
+        {
+          File.Delete(Application.streamingAssetsPath + "/SaveData/Profile_" + this.Profile.ToString() + "/Slot_" + this.Selected.ToString() + "_Thumbnail.png");
+          PlayerPrefs.SetString("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_DateTime", "");
+          this.Thumbnails[this.Selected].mainTexture = this.DefaultThumbnail;
+          this.DataLabels[this.Selected].text = "No Data";
         }
       }
       if (!Input.GetButtonDown("B"))

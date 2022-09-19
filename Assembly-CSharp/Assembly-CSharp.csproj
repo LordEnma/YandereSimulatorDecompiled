@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2FEA1702-16CC-49D6-89AE-271ABBF5D2C1}</ProjectGuid>
+    <ProjectGuid>{A5EA56D9-8726-45C2-B028-F571833386D9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <ApplicationVersion>0.0.0.0</ApplicationVersion>
@@ -1536,6 +1536,25 @@
     <Compile Include="YandereSimulator\Yancord\Profile.cs" />
     <Compile Include="YandereSimulator\Yancord\Status.cs" />
     <Compile Include="YandereSimulator\Yancord\YancordManager.cs" />
+    <Compile Include="RetroAesthetics\CombineMeshes.cs" />
+    <Compile Include="RetroAesthetics\SceneField.cs" />
+    <Compile Include="RetroAesthetics\UVScroller.cs" />
+    <Compile Include="RetroAesthetics\RetroCameraEffect.cs" />
+    <Compile Include="RetroAesthetics\Demos\MenuScripts.cs" />
+    <Compile Include="RetroAesthetics\Demos\SpeedTilt.cs" />
+    <Compile Include="AmplifyMotion\Quality.cs" />
+    <Compile Include="AmplifyMotion\ObjectType.cs" />
+    <Compile Include="AmplifyMotion\MotionState.cs" />
+    <Compile Include="AmplifyMotion\ClothState.cs" />
+    <Compile Include="AmplifyMotion\ParticleState.cs" />
+    <Compile Include="AmplifyMotion\VersionInfo.cs" />
+    <Compile Include="AmplifyMotion\SkinnedState.cs" />
+    <Compile Include="AmplifyMotion\SolidState.cs" />
+    <Compile Include="AmplifyMotion\WorkerThreadPool.cs" />
+    <Compile Include="AnimationOrTween\Trigger.cs" />
+    <Compile Include="AnimationOrTween\Direction.cs" />
+    <Compile Include="AnimationOrTween\EnableCondition.cs" />
+    <Compile Include="AnimationOrTween\DisableCondition.cs" />
     <Compile Include="MaidDereMinigame\Chef.cs" />
     <Compile Include="MaidDereMinigame\CharacterHairPlacer.cs" />
     <Compile Include="MaidDereMinigame\CustomerSpawner.cs" />
@@ -1579,25 +1598,6 @@
     <Compile Include="MaidDereMinigame\TipPage.cs" />
     <Compile Include="MaidDereMinigame\Malee\ReorderableAttribute.cs" />
     <Compile Include="MaidDereMinigame\Malee\ReorderableArray`1.cs" />
-    <Compile Include="AnimationOrTween\Trigger.cs" />
-    <Compile Include="AnimationOrTween\Direction.cs" />
-    <Compile Include="AnimationOrTween\EnableCondition.cs" />
-    <Compile Include="AnimationOrTween\DisableCondition.cs" />
-    <Compile Include="AmplifyMotion\Quality.cs" />
-    <Compile Include="AmplifyMotion\ObjectType.cs" />
-    <Compile Include="AmplifyMotion\MotionState.cs" />
-    <Compile Include="AmplifyMotion\ClothState.cs" />
-    <Compile Include="AmplifyMotion\ParticleState.cs" />
-    <Compile Include="AmplifyMotion\VersionInfo.cs" />
-    <Compile Include="AmplifyMotion\SkinnedState.cs" />
-    <Compile Include="AmplifyMotion\SolidState.cs" />
-    <Compile Include="AmplifyMotion\WorkerThreadPool.cs" />
-    <Compile Include="RetroAesthetics\CombineMeshes.cs" />
-    <Compile Include="RetroAesthetics\SceneField.cs" />
-    <Compile Include="RetroAesthetics\UVScroller.cs" />
-    <Compile Include="RetroAesthetics\RetroCameraEffect.cs" />
-    <Compile Include="RetroAesthetics\Demos\MenuScripts.cs" />
-    <Compile Include="RetroAesthetics\Demos\SpeedTilt.cs" />
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

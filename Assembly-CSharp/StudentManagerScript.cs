@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -353,6 +353,7 @@ public class StudentManagerScript : MonoBehaviour
   public bool YandereVisible;
   public bool CanSelfReport;
   public bool NoClubMeeting;
+  public bool CameFromLoad;
   public bool UpdatedBlood;
   public bool YandereDying;
   public bool FirstUpdate;
@@ -3056,6 +3057,7 @@ public class StudentManagerScript : MonoBehaviour
             ++this.Police.Deaths;
             if (this.Students[this.ID].Removed)
             {
+              Debug.Log((object) ("Oh, wait! " + this.Students[this.ID].Name + " should be removed from the Police CorpseList. Removing her now."));
               this.Students[this.ID].Ragdoll.Remove();
               --this.Police.Corpses;
             }
@@ -3244,6 +3246,7 @@ public class StudentManagerScript : MonoBehaviour
     if (this.RivalBookBag.gameObject.activeInHierarchy)
       this.RivalBookBag.UpdatePosition();
     Debug.Log((object) "The entire loading process has been completed.");
+    this.CameFromLoad = true;
   }
 
   public void UpdateBlood()

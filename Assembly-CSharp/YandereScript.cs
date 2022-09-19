@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
@@ -466,6 +466,7 @@ public class YandereScript : MonoBehaviour
   private int DebugInt;
   public GameObject CreepyArms;
   public bool SetUpRaincoatOutline;
+  public bool DropSpecifically;
   public Texture[] GloveTextures;
   public float OriginalBloodiness;
   public float CoatBloodiness;
@@ -5381,6 +5382,7 @@ public class YandereScript : MonoBehaviour
 
   public void Unequip()
   {
+    Debug.Log((object) "Yandere-chan has been told to de-equip this weapon.");
     if (this.CanMove || this.Noticed)
     {
       if (this.Equipped < 3)
@@ -5417,10 +5419,16 @@ public class YandereScript : MonoBehaviour
 
   public void EmptyHands()
   {
+    Debug.Log((object) "Yandere-chan has been told to empty her hands.");
     if (this.Carrying || this.HeavyWeight)
       this.StopCarrying();
     if (this.Armed)
-      this.Unequip();
+    {
+      if (this.DropSpecifically)
+        this.EquippedWeapon.Drop();
+      else
+        this.Unequip();
+    }
     if ((Object) this.PickUp != (Object) null)
       this.PickUp.Drop();
     if (this.Dragging)

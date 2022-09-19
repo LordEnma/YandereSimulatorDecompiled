@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PowerSwitchScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -69,7 +69,7 @@ public class PowerSwitchScript : MonoBehaviour
 
   public void CheckPuddle()
   {
-    Debug.Log((object) ("Player just turned the light " + this.On.ToString()));
+    Debug.Log((object) ("The lightswitch is currently: " + this.On.ToString()));
     if (this.On)
     {
       this.NewPuddleDetector = Object.Instantiate<GameObject>(this.PuddleDetector, this.PowerOutlet.SabotagedOutlet.transform.position, Quaternion.identity);

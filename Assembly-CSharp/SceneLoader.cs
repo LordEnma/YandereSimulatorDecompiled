@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SceneLoader
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -101,13 +101,9 @@ public class SceneLoader : MonoBehaviour
 
   private void Update()
   {
-    if ((double) this.Timer == 1.0)
+    if ((double) this.Timer == 10.0)
       this.StartCoroutine(this.LoadNewScene());
     ++this.Timer;
-    if (!Input.GetKeyDown("a"))
-      return;
-    SchoolGlobals.SchoolAtmosphere = (double) SchoolGlobals.SchoolAtmosphere <= 0.0 ? 1f : 0.0f;
-    SceneManager.LoadScene("LoadingScene");
   }
 
   private IEnumerator LoadNewScene()

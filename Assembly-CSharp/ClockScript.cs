@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClockScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -196,7 +196,11 @@ public class ClockScript : MonoBehaviour
         this.Yandere.RPGCamera.mouseX = 0.0f;
         this.Yandere.RPGCamera.enabled = true;
         this.Yandere.CanMove = true;
-        this.GivePlayerBroughtWeapon();
+        if (!this.StudentManager.CameFromLoad)
+        {
+          Debug.Log((object) "We did NOT just come from a load, so...");
+          this.GivePlayerBroughtWeapon();
+        }
       }
     }
     if ((double) this.PresentTime < 1080.0)
@@ -355,7 +359,7 @@ public class ClockScript : MonoBehaviour
         if (!bounds.Contains(this.Yandere.transform.position))
         {
           this.BathroomDim = 0.0f;
-          goto label_71;
+          goto label_72;
         }
       }
       for (int index = 1; index < this.Bathroom.Length; ++index)
@@ -364,7 +368,7 @@ public class ClockScript : MonoBehaviour
         if (bounds.Contains(this.Yandere.transform.position))
           this.BathroomDim = this.BathroomLight[index].enabled ? 0.0f : 0.5f;
       }
-label_71:
+label_72:
       if ((double) this.BathroomDimSprite.alpha != (double) this.BathroomDim)
         this.BathroomDimSprite.alpha = Mathf.MoveTowards(this.BathroomDimSprite.alpha, this.BathroomDim, Time.deltaTime * 10f);
       this.AmbientLightDim = 0.75f;
@@ -520,6 +524,7 @@ label_71:
 
   public void GivePlayerBroughtWeapon()
   {
+    Debug.Log((object) "Giving the player the weapon that was brought from home.");
     int bringingItem = PlayerGlobals.BringingItem;
     if (bringingItem <= 0 || bringingItem >= this.Police.EndOfDay.WeaponManager.BroughtWeapons.Length)
       return;

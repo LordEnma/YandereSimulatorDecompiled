@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TrashCanScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -18,6 +18,7 @@ public class TrashCanScript : MonoBehaviour
   public bool Occupied;
   public bool Wearable;
   public bool Weapon;
+  public bool Foil;
   public bool Worn;
   public float KinematicTimer;
   public int BagID;
@@ -100,6 +101,20 @@ public class TrashCanScript : MonoBehaviour
       else
         this.AttachToBack();
     }
+    if ((Object) this.Yandere.PickUp != (Object) null && this.Yandere.PickUp.Tinfoil)
+    {
+      this.Prompt.HideButton[1] = false;
+      if ((double) this.Prompt.Circle[1].fillAmount == 0.0)
+      {
+        this.Prompt.Circle[1].fillAmount = 1f;
+        this.Foil = true;
+        GameObject gameObject = this.Yandere.PickUp.gameObject;
+        this.Yandere.EmptyHands();
+        gameObject.SetActive(false);
+      }
+    }
+    else
+      this.Prompt.HideButton[1] = true;
     if (this.MyRigidbody.isKinematic)
       return;
     this.KinematicTimer = Mathf.MoveTowards(this.KinematicTimer, 5f, Time.deltaTime);

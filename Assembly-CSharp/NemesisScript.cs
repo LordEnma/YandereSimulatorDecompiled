@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NemesisScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -155,6 +155,8 @@ public class NemesisScript : MonoBehaviour
         this.Student.StudentManager.Students[index1].Replaced = true;
         this.Cosmetic.StudentID = index1;
         this.Cosmetic.Start();
+        this.Cosmetic.MyRenderer.materials[0].mainTexture = this.Cosmetic.FemaleUniformTextures[5];
+        this.Cosmetic.MyRenderer.materials[1].mainTexture = this.Cosmetic.FemaleUniformTextures[5];
         OutlineScript component1 = this.Cosmetic.FemaleHair[this.Cosmetic.Hairstyle].GetComponent<OutlineScript>();
         if ((Object) component1 != (Object) null)
         {

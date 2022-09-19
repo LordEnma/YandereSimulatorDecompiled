@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
@@ -8904,6 +8904,7 @@ label_272:
       {
         if ((double) this.CharacterAnimation[this.DodgeAnim].time >= (double) this.CharacterAnimation[this.DodgeAnim].length)
         {
+          Debug.Log((object) (this.Name + " has finished her dodging animation."));
           this.Dodging = false;
           if (!this.TurnOffRadio)
           {
@@ -8914,6 +8915,8 @@ label_272:
             Debug.Log((object) "Hey. You. Walk.");
             this.CharacterAnimation.CrossFade(this.WalkAnim);
           }
+          this.CurrentDestination = this.Destinations[this.Phase];
+          this.Pathfinding.target = this.Destinations[this.Phase];
           this.Pathfinding.canSearch = true;
           this.Pathfinding.canMove = true;
           if (this.GasWarned)

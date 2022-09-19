@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: LiquidColliderScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -99,6 +99,7 @@ public class LiquidColliderScript : MonoBehaviour
       component.Dodging = true;
       if (component.Following)
       {
+        Debug.Log((object) "This student was following at the time they were slashed.");
         component.Hearts.emission.enabled = false;
         component.FollowCountdown.gameObject.SetActive(false);
         component.Yandere.Follower = (StudentScript) null;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ManholeScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -77,6 +77,7 @@ public class ManholeScript : MonoBehaviour
             --this.Prompt.Yandere.Police.HiddenCorpses;
           --this.Prompt.Yandere.Police.Corpses;
           this.Corpse.gameObject.SetActive(false);
+          this.Corpse.Student.Removed = true;
           this.Corpse.Disposed = true;
           if (this.Corpse.StudentID == this.Prompt.Yandere.StudentManager.RivalID)
           {
@@ -113,7 +114,9 @@ public class ManholeScript : MonoBehaviour
           return;
         if (this.Prompt.Yandere.Armed)
         {
+          Debug.Log((object) "Attempting to dispose of weapon.");
           WeaponScript equippedWeapon = this.Prompt.Yandere.EquippedWeapon;
+          this.Prompt.Yandere.DropSpecifically = true;
           this.Prompt.Yandere.EmptyHands();
           --this.Prompt.Yandere.Police.BloodyWeapons;
           equippedWeapon.Disposed = true;

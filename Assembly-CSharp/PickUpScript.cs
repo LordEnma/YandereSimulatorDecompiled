@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PickUpScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: DEBC9029-E754-4F76-ACC2-E5BB554B97F0
+// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -79,6 +79,7 @@ public class PickUpScript : MonoBehaviour
   public bool RedPaint;
   public bool Cheated;
   public bool Garbage;
+  public bool Tinfoil;
   public bool Bleach;
   public bool Dumped;
   public bool Remote;
@@ -428,8 +429,11 @@ public class PickUpScript : MonoBehaviour
 
   public void Drop()
   {
-    this.Yandere.Direction = 1;
-    this.Yandere.CheckForWall();
+    if (!this.Yandere.BucketDropping)
+    {
+      this.Yandere.Direction = 1;
+      this.Yandere.CheckForWall();
+    }
     if (this.Yandere.WallInFront)
       this.transform.position = new Vector3(this.Yandere.transform.position.x, this.transform.position.y, this.Yandere.transform.position.z);
     this.Yandere.WallInFront = false;
