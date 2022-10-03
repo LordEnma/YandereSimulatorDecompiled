@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: LifeNoteScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -112,7 +112,14 @@ public class LifeNoteScript : MonoBehaviour
         this.Alpha = Mathf.MoveTowards(this.Alpha, 1f, Time.deltaTime * 0.2f);
         this.FinalDarkness.color = new Color(0.0f, 0.0f, 0.0f, this.Alpha);
         if ((double) this.Alpha == 1.0)
+        {
+          if (!GameGlobals.Debug)
+          {
+            PlayerPrefs.SetInt("LifeNote", 1);
+            PlayerPrefs.SetInt("a", 1);
+          }
           SceneManager.LoadScene("HomeScene");
+        }
       }
     }
     if ((double) this.TextWindow.color.a >= 1.0)

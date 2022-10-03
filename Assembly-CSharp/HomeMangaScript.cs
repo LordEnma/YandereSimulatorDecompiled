@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeMangaScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -46,6 +46,7 @@ public class HomeMangaScript : MonoBehaviour
   public GameObject AreYouSure;
   public GameObject MangaGroup;
   public GameObject[] MangaList;
+  public UILabel AreYouSureLabel;
   public UILabel MangaNameLabel;
   public UILabel MangaDescLabel;
   public UILabel MangaBuffLabel;
@@ -142,6 +143,9 @@ public class HomeMangaScript : MonoBehaviour
         {
           this.MangaGroup.SetActive(false);
           this.AreYouSure.SetActive(true);
+          int num = this.Selected >= 5 ? (this.Selected >= 10 ? CollectibleGlobals.EnlightenedMangaProgress : CollectibleGlobals.HorrorMangaProgress) : CollectibleGlobals.RomanceMangaProgress;
+          Debug.Log((object) ("Selected is: " + this.Selected.ToString() + " and Percent is: " + num.ToString()));
+          this.AreYouSureLabel.text = "You have read " + num.ToString() + "% of this manga.\n\nWould you like to read " + (20 + ClassGlobals.LanguageGrade * 6).ToString() + "% of it before you go to sleep?";
         }
         if (Input.GetButtonDown("B"))
         {
@@ -160,11 +164,32 @@ public class HomeMangaScript : MonoBehaviour
         if (Input.GetButtonDown("A"))
         {
           if (this.Selected < 5)
-            ++PlayerGlobals.Seduction;
+          {
+            CollectibleGlobals.RomanceMangaProgress += 20 + ClassGlobals.LanguageGrade * 6;
+            if (CollectibleGlobals.RomanceMangaProgress >= 100)
+            {
+              ++PlayerGlobals.Seduction;
+              CollectibleGlobals.RomanceMangaProgress = 0;
+            }
+          }
           else if (this.Selected < 10)
-            ++PlayerGlobals.Numbness;
+          {
+            CollectibleGlobals.HorrorMangaProgress += 20 + ClassGlobals.LanguageGrade * 6;
+            if (CollectibleGlobals.HorrorMangaProgress >= 100)
+            {
+              ++PlayerGlobals.Numbness;
+              CollectibleGlobals.HorrorMangaProgress = 0;
+            }
+          }
           else
-            ++PlayerGlobals.Enlightenment;
+          {
+            CollectibleGlobals.EnlightenedMangaProgress += 20 + ClassGlobals.LanguageGrade * 6;
+            if (CollectibleGlobals.EnlightenedMangaProgress >= 100)
+            {
+              ++PlayerGlobals.Enlightenment;
+              CollectibleGlobals.EnlightenedMangaProgress = 0;
+            }
+          }
           this.AreYouSure.SetActive(false);
           this.Darkness.FadeOut = true;
         }

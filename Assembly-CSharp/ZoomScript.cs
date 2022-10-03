@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ZoomScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -27,7 +27,7 @@ public class ZoomScript : MonoBehaviour
   {
     if (this.Yandere.FollowHips)
       this.transform.position = new Vector3(Mathf.MoveTowards(this.transform.position.x, this.Yandere.Hips.position.x, Time.deltaTime), this.transform.position.y, Mathf.MoveTowards(this.transform.position.z, this.Yandere.Hips.position.z, Time.deltaTime));
-    this.Height = this.Yandere.Stance.Current != StanceType.Crawling ? (this.Yandere.Stance.Current != StanceType.Crouching ? 1f : 0.4f) : 0.05f;
+    this.Height = this.Yandere.Stance.Current != StanceType.Crawling ? (this.Yandere.Stance.Current != StanceType.Crouching ? 1f : 0.6f) : 0.2f;
     if (!this.Yandere.FollowHips)
     {
       if (this.Yandere.FlameDemonic)
@@ -37,7 +37,7 @@ public class ZoomScript : MonoBehaviour
       else if (this.Yandere.Stand.Stand.activeInHierarchy)
         this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.MoveTowards(this.transform.localPosition.y, (float) ((double) this.Height - (double) this.Zoom * 0.5 + (double) this.Slender * 0.5), Time.deltaTime), this.transform.localPosition.z);
       else
-        this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.MoveTowards(this.transform.localPosition.y, this.Height + this.Zoom, Time.deltaTime), this.transform.localPosition.z);
+        this.transform.localPosition = new Vector3(this.transform.localPosition.x, Mathf.Lerp(this.transform.localPosition.y, this.Height + this.Zoom, Time.deltaTime * 5f), this.transform.localPosition.z);
     }
     else if (!this.Yandere.SithLord)
       this.transform.position = new Vector3(this.transform.position.x, Mathf.MoveTowards(this.transform.position.y, this.Yandere.Hips.position.y + this.Zoom, Time.deltaTime), this.transform.position.z);

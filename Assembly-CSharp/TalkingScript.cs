@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TalkingScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -1216,6 +1216,7 @@ public class TalkingScript : MonoBehaviour
           this.S.CurrentAction = StudentActionType.Socializing;
           if ((Object) this.S.FollowTarget != (Object) null)
             this.S.FollowTarget.Follower = (StudentScript) null;
+          this.S.StudentManager.TaskManager.Mentored = true;
           this.S.Pathfinding.speed = 4f;
           this.S.Mentoring = true;
           this.S.InEvent = true;
@@ -1529,7 +1530,7 @@ public class TalkingScript : MonoBehaviour
         }
       }
     }
-    if (this.S.StudentID == 41 && !this.S.DialogueWheel.ClubLeader && this.S.Interaction != StudentInteractionType.ClubUnwelcome && !this.S.StudentManager.Eighties && (double) this.S.TalkTimer > 0.0)
+    if (this.S.StudentID == 41 && !this.S.DialogueWheel.ClubLeader && this.S.Interaction != StudentInteractionType.ClubUnwelcome && this.S.Interaction != StudentInteractionType.GivingTask && !this.S.StudentManager.Eighties && (double) this.S.TalkTimer > 0.0)
     {
       Debug.Log((object) "Geiju response.");
       if (this.S.Grudge)

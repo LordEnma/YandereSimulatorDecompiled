@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DialogueWheelScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -529,8 +529,10 @@ public class DialogueWheelScript : MonoBehaviour
       this.LockerWindow.SetActive(true);
     if (this.Yandere.TargetStudent.Club == ClubType.Bully && this.TaskManager.TaskStatus[36] == 1)
       this.TaskDialogueWindow.SetActive(true);
-    if (!this.Yandere.StudentManager.Eighties && this.Yandere.TargetStudent.StudentID == 10 && this.TaskManager.TaskStatus[46] == 1 && this.Clock.Period != 3 && this.Clock.Period != 5)
-      this.TaskDialogueWindow.SetActive(true);
+    if (!this.Yandere.StudentManager.Eighties && this.Yandere.TargetStudent.StudentID == 10 && this.TaskManager.TaskStatus[46] == 1 && this.Clock.Period != 3)
+    {
+      int period = this.Clock.Period;
+    }
     this.TaskIcon.spriteName = this.Yandere.TargetStudent.Friend ? "Heart" : "Task";
     this.Impatience.fillAmount = 0.0f;
     for (int index = 1; index < 7; ++index)
@@ -606,7 +608,7 @@ public class DialogueWheelScript : MonoBehaviour
           Debug.Log((object) "Speaking to Osana's suitor.");
           flag = false;
         }
-        if (this.Yandere.TargetStudent.StudentID == 1 || this.Yandere.TargetStudent.StudentID == 10 || this.Yandere.TargetStudent.StudentID == 41)
+        if (this.Yandere.TargetStudent.StudentID == 1 || this.Yandere.TargetStudent.StudentID == 10)
         {
           this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
         }

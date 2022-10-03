@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DDRMinigame
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -43,7 +43,7 @@ public class DDRMinigame : MonoBehaviour
   [SerializeField]
   private RectTransform gameplayUiParent;
   [SerializeField]
-  private RectTransform[] uiTracks;
+  public RectTransform[] uiTracks;
   [SerializeField]
   private Vector2 offset;
   [SerializeField]
@@ -175,7 +175,8 @@ public class DDRMinigame : MonoBehaviour
           this.removeNodeAt(((IEnumerable<Dictionary<float, RectTransform>>) this.trackCache).ToList<Dictionary<float, RectTransform>>().IndexOf(dictionary));
           return;
         }
-        dictionary[key].anchoredPosition = new Vector2(0.0f, -num * this.speed) + this.offset;
+        if ((UnityEngine.Object) dictionary[key] != (UnityEngine.Object) null)
+          dictionary[key].anchoredPosition = new Vector2(0.0f, -num * this.speed) + this.offset;
       }
     }
   }

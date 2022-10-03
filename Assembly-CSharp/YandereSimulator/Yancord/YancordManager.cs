@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereSimulator.Yancord.YancordManager
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections.Generic;
@@ -187,6 +187,11 @@ namespace YandereSimulator.Yancord
           {
             Debug.Log((object) "Quitting!");
             ++YancordGlobals.CurrentConversation;
+            if (YancordGlobals.CurrentConversation > 5 && !GameGlobals.Debug)
+            {
+              PlayerPrefs.SetInt("Selene", 1);
+              PlayerPrefs.SetInt("a", 1);
+            }
             this.FadeOut = true;
           }
         }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PortalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -183,7 +183,6 @@ public class PortalScript : MonoBehaviour
           {
             this.Yandere.CharacterAnimation.CrossFade("f02_takingNotes_00");
             this.Yandere.LifeNotePen.SetActive(true);
-            this.Yandere.LifeNotePen.GetComponent<Renderer>().material.color = new Color(1f, 0.0f, 0.0f, 1f);
             this.Yandere.transform.localEulerAngles = new Vector3(0.0f, -90f, 0.0f);
             this.Paper.SetActive(true);
           }
@@ -234,8 +233,11 @@ public class PortalScript : MonoBehaviour
     {
       if (this.FadeOut)
       {
-        this.Yandere.CharacterAnimation.CrossFade("f02_takingNotes_00");
-        this.Yandere.MoveTowardsTarget(new Vector3(-9.62f, 4f, -26f));
+        if (!this.Yandere.Resting)
+        {
+          this.Yandere.CharacterAnimation.CrossFade("f02_takingNotes_00");
+          this.Yandere.MoveTowardsTarget(new Vector3(-9.62f, 4f, -26f));
+        }
         if (this.LoveManager.HoldingHands)
           this.LoveManager.Rival.transform.position = new Vector3(0.0f, 0.0f, -50f);
         this.ClassDarkness.alpha = Mathf.MoveTowards(this.ClassDarkness.alpha, 1f, Time.deltaTime);
@@ -253,7 +255,6 @@ public class PortalScript : MonoBehaviour
             this.FadeOut = false;
             this.Proceed = true;
             this.ClassDarkness.alpha = 1f;
-            this.Yandere.CameraEffects.UpdateDOF(this.OriginalDOF);
           }
           else
           {
@@ -296,7 +297,8 @@ public class PortalScript : MonoBehaviour
         {
           this.ClassDarkness.alpha = 1f;
           this.ReturningFromLecture = false;
-          this.Yandere.CameraEffects.UpdateDOF(this.OriginalDOF);
+          if (!this.Yandere.Resting)
+            this.Yandere.CameraEffects.UpdateDOF(this.OriginalDOF);
         }
         if ((double) this.ClassDarkness.color.a == 1.0)
         {
@@ -332,7 +334,6 @@ public class PortalScript : MonoBehaviour
           this.Yandere.InClass = false;
           this.Yandere.CanMove = true;
           this.Yandere.LifeNotePen.SetActive(false);
-          this.Yandere.LifeNotePen.GetComponent<Renderer>().material.color = new Color(1f, 1f, 1f, 1f);
           this.Paper.SetActive(false);
           this.Clock.gameObject.SetActive(true);
           this.StudentManager.Reputation.gameObject.SetActive(true);

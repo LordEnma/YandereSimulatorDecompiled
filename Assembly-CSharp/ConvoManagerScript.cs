@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ConvoManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -318,7 +318,19 @@ public class ConvoManagerScript : MonoBehaviour
       if (StudentID == 25)
         this.SM.Students[25].Alone = !((Object) this.SM.Students[30] != (Object) null) || !this.SM.Students[30].Routine || (double) Vector3.Distance(this.SM.Students[25].transform.position, this.SM.Students[30].transform.position) >= 1.4;
       else if (StudentID == 30)
-        this.SM.Students[30].Alone = !((Object) this.SM.Students[25] != (Object) null) || !this.SM.Students[25].Routine || (double) Vector3.Distance(this.SM.Students[25].transform.position, this.SM.Students[25].transform.position) >= 1.4;
+        this.SM.Students[30].Alone = !((Object) this.SM.Students[25] != (Object) null) || !this.SM.Students[25].Routine || (double) Vector3.Distance(this.SM.Students[30].transform.position, this.SM.Students[25].transform.position) >= 1.4;
+      if (StudentID == 55)
+        this.SM.Students[55].Alone = !((Object) this.SM.Students[54] != (Object) null) || !this.SM.Students[54].Routine || (double) Vector3.Distance(this.SM.Students[55].transform.position, this.SM.Students[54].transform.position) >= 1.4;
+      else if (StudentID == 54)
+        this.SM.Students[54].Alone = !((Object) this.SM.Students[55] != (Object) null) || !this.SM.Students[55].Routine || (double) Vector3.Distance(this.SM.Students[54].transform.position, this.SM.Students[55].transform.position) >= 1.4;
+      if (StudentID == 72)
+        this.SM.Students[72].Alone = !((Object) this.SM.Students[73] != (Object) null) || !this.SM.Students[73].Routine || (double) Vector3.Distance(this.SM.Students[72].transform.position, this.SM.Students[73].transform.position) >= 1.4;
+      else if (StudentID == 73)
+        this.SM.Students[73].Alone = !((Object) this.SM.Students[72] != (Object) null) || !this.SM.Students[72].Routine || (double) Vector3.Distance(this.SM.Students[73].transform.position, this.SM.Students[72].transform.position) >= 1.4;
+      if (StudentID == 74)
+        this.SM.Students[74].Alone = !((Object) this.SM.Students[75] != (Object) null) || !this.SM.Students[75].Routine || (double) Vector3.Distance(this.SM.Students[75].transform.position, this.SM.Students[74].transform.position) >= 1.4;
+      else if (StudentID == 75)
+        this.SM.Students[75].Alone = !((Object) this.SM.Students[74] != (Object) null) || !this.SM.Students[74].Routine || (double) Vector3.Distance(this.SM.Students[75].transform.position, this.SM.Students[74].transform.position) >= 1.4;
       if (StudentID == 24)
       {
         if ((Object) this.SM.Students[27] != (Object) null && this.SM.Students[27].Routine && (double) Vector3.Distance(this.SM.Students[24].transform.position, this.SM.Students[27].transform.position) < 1.4)

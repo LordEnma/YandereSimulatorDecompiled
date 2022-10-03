@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
@@ -63,6 +63,7 @@ public class YandereScript : MonoBehaviour
   public TallLockerScript MyLocker;
   public PromptBarScript PromptBar;
   public TranqCaseScript TranqCase;
+  public AudioListener MyListener;
   public UISprite SneakShotButton;
   public AlphabetScript Alphabet;
   public UILabel SenpaiShotLabel;
@@ -189,6 +190,7 @@ public class YandereScript : MonoBehaviour
   public float CinematicTimer;
   public float SneakShotTimer;
   public float ClothingTimer;
+  public float ImmunityTimer;
   public float BreakUpTimer;
   public float CanMoveTimer;
   public float RummageTimer;
@@ -2076,6 +2078,8 @@ public class YandereScript : MonoBehaviour
       }
       else
         this.StopArmedAnim();
+      if ((double) this.ImmunityTimer > 0.0)
+        this.ImmunityTimer = Mathf.MoveTowards(this.ImmunityTimer, 0.0f, Time.deltaTime);
       if ((double) this.TheftTimer > 0.0)
       {
         this.TheftTimer = Mathf.MoveTowards(this.TheftTimer, 0.0f, Time.deltaTime);
@@ -5224,9 +5228,10 @@ public class YandereScript : MonoBehaviour
 
   public void StainWeapon()
   {
-    Debug.Log((object) "Time to run the code for staining a weapon with blood and marking it as evidence.");
+    Debug.Log((object) "Yandere-chan is running the code for staining her equipped weapon with blood and marking it as evidence.");
     if (!((Object) this.EquippedWeapon != (Object) null))
       return;
+    Debug.Log((object) ("Yandere-chan's eqipped weapon is: " + ((object) this.EquippedWeapon)?.ToString()));
     if ((Object) this.TargetStudent != (Object) null && this.TargetStudent.StudentID < this.EquippedWeapon.Victims.Length)
       this.EquippedWeapon.Victims[this.TargetStudent.StudentID] = true;
     if (!this.EquippedWeapon.Blood.enabled)
@@ -5382,7 +5387,6 @@ public class YandereScript : MonoBehaviour
 
   public void Unequip()
   {
-    Debug.Log((object) "Yandere-chan has been told to de-equip this weapon.");
     if (this.CanMove || this.Noticed)
     {
       if (this.Equipped < 3)
@@ -5419,7 +5423,6 @@ public class YandereScript : MonoBehaviour
 
   public void EmptyHands()
   {
-    Debug.Log((object) "Yandere-chan has been told to empty her hands.");
     if (this.Carrying || this.HeavyWeight)
       this.StopCarrying();
     if (this.Armed)

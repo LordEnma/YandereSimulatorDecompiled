@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BakeSaleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -45,6 +45,11 @@ public class BakeSaleScript : MonoBehaviour
     {
       if (!((Object) this.StudentManager.Students[12] != (Object) null) || !this.StudentManager.Students[12].Ragdoll.Disposed)
         return;
+      if (!this.AmaiSuccess.activeInHierarchy && !GameGlobals.Debug)
+      {
+        PlayerPrefs.SetInt("Amai", 1);
+        PlayerPrefs.SetInt("a", 1);
+      }
       this.AmaiSuccess.SetActive(true);
     }
   }

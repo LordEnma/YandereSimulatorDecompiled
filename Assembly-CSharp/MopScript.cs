@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MopScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -13,6 +13,7 @@ public class MopScript : MonoBehaviour
   public PromptScript Prompt;
   public PickUpScript PickUp;
   public Collider HeadCollider;
+  public AudioSource MyAudio;
   public Vector3 Rotation;
   public Renderer Blood;
   public Transform Head;
@@ -23,6 +24,7 @@ public class MopScript : MonoBehaviour
   private void Start()
   {
     this.Yandere = GameObject.Find("YandereChan").GetComponent<YandereScript>();
+    this.MyAudio = this.GetComponent<AudioSource>();
     this.HeadCollider.enabled = false;
     this.UpdateBlood();
   }
@@ -103,11 +105,14 @@ public class MopScript : MonoBehaviour
       {
         this.Head.LookAt(this.Head.position + Vector3.down);
         this.Head.localEulerAngles = new Vector3(this.Head.localEulerAngles.x + 90f, this.Head.localEulerAngles.y, 180f);
+        if (!this.MyAudio.isPlaying)
+          this.MyAudio.Play();
       }
       else
       {
         this.Rotation = Vector3.Lerp(this.Head.localEulerAngles, Vector3.zero, Time.deltaTime * 10f);
         this.Head.localEulerAngles = this.Rotation;
+        this.MyAudio.Stop();
       }
     }
     else

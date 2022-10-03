@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MaidDereMinigame.GameController
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using MaidDereMinigame.Malee;
@@ -49,9 +49,19 @@ namespace MaidDereMinigame
 
     public static void GoToExitScene(bool fadeOut = true) => GameController.Instance.StartCoroutine(GameController.Instance.FadeWithAction((System.Action) (() =>
     {
+      if ((double) GameController.Instance.totalPayout > 0.0 && !GameGlobals.Debug)
+      {
+        PlayerPrefs.SetInt("Maid", 1);
+        PlayerPrefs.SetInt("a", 1);
+      }
       PlayerGlobals.Money += GameController.Instance.totalPayout;
       if ((double) PlayerGlobals.Money > 1000.0)
-        PlayerPrefs.SetInt("RichGirl", 1);
+      {
+        if (!GameGlobals.Debug)
+          PlayerPrefs.SetInt("RichGirl", 1);
+        if (!GameGlobals.Debug)
+          PlayerPrefs.SetInt("a", 1);
+      }
       if (SceneManager.GetActiveScene().name == "MaidMenuScene")
       {
         SceneManager.LoadScene("StreetScene");

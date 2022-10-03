@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: LiquidColliderScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -53,7 +53,7 @@ public class LiquidColliderScript : MonoBehaviour
     StudentScript component = other.gameObject.GetComponent<StudentScript>();
     if (!((Object) component != (Object) null))
       return;
-    if (component.Wet || component.Fleeing || component.SenpaiWitnessingRivalDie || component.Schoolwear == 2 && !this.Brown && !this.Blood && !this.Gas || component.Club == ClubType.Sports && component.ClubAttire && component.Clock.Period > 5 && !this.Brown && !this.Blood && !this.Gas)
+    if (component.Wet || component.Fleeing || component.SenpaiWitnessingRivalDie || component.Schoolwear == 2 && !this.Brown && !this.Blood && !this.Gas || component.Confessing || component.Club == ClubType.Sports && component.ClubAttire && component.Clock.Period > 5 && !this.Brown && !this.Blood && !this.Gas)
     {
       component.Yandere.NotificationManager.CustomText = "Didn't care.";
       component.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);

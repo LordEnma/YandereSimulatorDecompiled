@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TutorialScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -16,6 +16,7 @@ public class TutorialScript : MonoBehaviour
   public PostProcessingProfile Profile;
   public InputDeviceScript InputDevice;
   public WeaponMenuScript WeaponMenu;
+  public PickUpScript GarbageBagBox;
   public PromptScript VictimPrompt;
   public UILabel InstructionLabel;
   public TallLockerScript Locker;
@@ -408,6 +409,7 @@ public class TutorialScript : MonoBehaviour
                 this.Yandere.CharacterAnimation.CrossFade("f02_knifeStealthA_00");
                 this.Animator[2].CrossFade("f02_knifeStealthB_00");
                 this.DOF = this.Profile.depthOfField.enabled;
+                this.GarbageBagBox.transform.position = this.GarbageBagBox.OriginalPosition;
                 this.Profile.depthOfField.enabled = false;
                 this.Yandere.RPGCamera.enabled = false;
                 this.PickUpBlocker.SetActive(false);

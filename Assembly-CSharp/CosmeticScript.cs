@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CosmeticScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -795,6 +795,9 @@ public class CosmeticScript : MonoBehaviour
     {
       if (!StudentGlobals.GetStudentReplaced(this.StudentID))
       {
+        this.CharacterAnimation["f02_smile_00"].layer = 1;
+        this.CharacterAnimation.Play("f02_smile_00");
+        this.CharacterAnimation["f02_smile_00"].weight = 1f;
         this.RightEyeRenderer.gameObject.SetActive(false);
         this.LeftEyeRenderer.gameObject.SetActive(false);
       }

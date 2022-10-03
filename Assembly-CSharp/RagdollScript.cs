@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RagdollScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -709,8 +709,15 @@ public class RagdollScript : MonoBehaviour
     Debug.Log((object) "Dismembering a character.");
     if (this.Dismembered)
       return;
-    if (!GameGlobals.Debug)
-      PlayerPrefs.SetInt("HeadHunter", PlayerPrefs.GetInt("HeadHunter") + 1);
+    if (!GameGlobals.Debug && !GameGlobals.Debug)
+    {
+      PlayerPrefs.SetInt("HeadsHunted", PlayerPrefs.GetInt("HeadsHunted") + 1);
+      if (PlayerPrefs.GetInt("HeadsHunted") > 9)
+      {
+        PlayerPrefs.SetInt("HeadHunter", 1);
+        PlayerPrefs.SetInt("a", 1);
+      }
+    }
     this.Student.LiquidProjector.material.mainTexture = this.Student.BloodTexture;
     if ((Object) this.MyTarp == (Object) null)
     {

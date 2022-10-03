@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BucketScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -330,6 +330,13 @@ public class BucketScript : MonoBehaviour
       this.Timer = Mathf.MoveTowards(this.Timer, 5f, Time.deltaTime);
       if ((double) this.Timer == 5.0)
       {
+        if (!this.Full)
+        {
+          this.Blood.material.color = new Color(this.Blood.material.color.r, this.Blood.material.color.g, this.Blood.material.color.b, 0.0f);
+          this.Brown.material.color = new Color(this.Brown.material.color.r, this.Brown.material.color.g, this.Brown.material.color.b, 0.0f);
+          this.Water.material.color = new Color(this.Water.material.color.r, this.Water.material.color.g, this.Water.material.color.b, 0.0f);
+          this.Gas.material.color = new Color(this.Gas.material.color.r, this.Gas.material.color.g, this.Gas.material.color.b, 0.0f);
+        }
         this.UpdateAppearance = false;
         this.Timer = 0.0f;
       }
@@ -487,7 +494,7 @@ public class BucketScript : MonoBehaviour
     }
     else
     {
-      GameObject gameObject = Object.Instantiate<GameObject>(!this.DyedBrown ? ((double) this.Bloodiness <= 50.0 ? (!this.Gasoline ? this.Yandere.StudentManager.WaterCooler.Tripwire.WaterPuddle : this.Yandere.StudentManager.WaterCooler.Tripwire.GasolinePuddle) : this.Yandere.StudentManager.WaterCooler.Tripwire.BloodPuddle) : this.Yandere.StudentManager.WaterCooler.Tripwire.BrownPaintPuddle, this.Yandere.transform.position + this.Yandere.transform.forward * 0.5f + new Vector3(0.0f, 0.0001f, 0.0f), Quaternion.identity);
+      GameObject gameObject = Object.Instantiate<GameObject>(!this.DyedBrown ? ((double) this.Bloodiness <= 50.0 ? (!this.Gasoline ? this.Yandere.StudentManager.WaterCooler.Tripwire.WaterPuddle : this.Yandere.StudentManager.WaterCooler.Tripwire.GasolinePuddle) : this.Yandere.StudentManager.WaterCooler.Tripwire.BloodPuddle) : this.Yandere.StudentManager.WaterCooler.Tripwire.BrownPaintPuddle, this.Yandere.transform.position + this.Yandere.transform.forward * 0.5f + new Vector3(0.0f, 1f / 1000f, 0.0f), Quaternion.identity);
       gameObject.transform.eulerAngles = new Vector3(90f, 0.0f, 0.0f);
       gameObject.transform.parent = (double) this.Bloodiness <= 50.0 ? this.Yandere.StudentManager.PuddleParent.transform : this.Yandere.StudentManager.BloodParent.transform;
       this.Empty();

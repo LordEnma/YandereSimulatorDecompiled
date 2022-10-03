@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TaskManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -17,6 +17,7 @@ public class TaskManagerScript : MonoBehaviour
   public GameObject FixedDummy;
   public int[] TaskStatus;
   public bool Initialized;
+  public bool Mentored;
 
   public void Start()
   {
@@ -41,6 +42,13 @@ public class TaskManagerScript : MonoBehaviour
   {
     if (this.StudentManager.Eighties)
       return;
+    if (this.TaskStatus[4] == 1 && (Object) this.Prompts[4].Circle[3] != (Object) null && (double) this.Prompts[4].Circle[3].fillAmount == 0.0)
+    {
+      if ((Object) this.StudentManager.Students[4] != (Object) null)
+        this.StudentManager.Students[4].TaskPhase = 5;
+      this.TaskStatus[4] = 2;
+      Object.Destroy((Object) this.TaskObjects[4]);
+    }
     if (this.TaskStatus[11] == 1 && (Object) this.Prompts[11].Circle[3] != (Object) null && (double) this.Prompts[11].Circle[3].fillAmount == 0.0)
     {
       if ((Object) this.StudentManager.Students[11] != (Object) null)
@@ -58,18 +66,36 @@ public class TaskManagerScript : MonoBehaviour
       this.TaskStatus[25] = 2;
       Object.Destroy((Object) this.TaskObjects[25]);
     }
-    if (this.TaskStatus[37] != 1 || !((Object) this.Prompts[37].Circle[3] != (Object) null) || (double) this.Prompts[37].Circle[3].fillAmount != 0.0)
+    if (this.TaskStatus[37] == 1 && (Object) this.Prompts[37].Circle[3] != (Object) null && (double) this.Prompts[37].Circle[3].fillAmount == 0.0)
+    {
+      if ((Object) this.StudentManager.Students[37] != (Object) null)
+        this.StudentManager.Students[37].TaskPhase = 5;
+      this.TaskStatus[37] = 2;
+      Object.Destroy((Object) this.TaskObjects[37]);
+    }
+    if (this.TaskStatus[41] != 1 || !((Object) this.Prompts[41].Circle[3] != (Object) null) || (double) this.Prompts[41].Circle[3].fillAmount != 0.0)
       return;
-    if ((Object) this.StudentManager.Students[37] != (Object) null)
-      this.StudentManager.Students[37].TaskPhase = 5;
-    this.TaskStatus[37] = 2;
-    Object.Destroy((Object) this.TaskObjects[37]);
+    if ((Object) this.StudentManager.Students[41] != (Object) null)
+      this.StudentManager.Students[41].TaskPhase = 5;
+    this.TaskStatus[41] = 2;
+    Object.Destroy((Object) this.TaskObjects[41]);
   }
 
   public void UpdateTaskStatus()
   {
     if (!this.StudentManager.Eighties)
     {
+      if (this.TaskStatus[4] == 1)
+      {
+        if ((Object) this.StudentManager.Students[4] != (Object) null)
+        {
+          if (this.StudentManager.Students[4].TaskPhase == 0)
+            this.StudentManager.Students[4].TaskPhase = 4;
+          this.TaskObjects[4].SetActive(true);
+        }
+      }
+      else if ((Object) this.TaskObjects[4] != (Object) null)
+        this.TaskObjects[4].SetActive(false);
       if (this.TaskStatus[8] == 1 && (Object) this.StudentManager.Students[8] != (Object) null)
       {
         if (this.StudentManager.Students[8].TaskPhase == 0)
@@ -142,6 +168,17 @@ public class TaskManagerScript : MonoBehaviour
       }
       else if (this.TaskStatus[38] == 2 && (Object) this.StudentManager.Students[38] != (Object) null)
         this.StudentManager.Students[38].TaskPhase = 5;
+      if (this.TaskStatus[41] == 1)
+      {
+        if ((Object) this.StudentManager.Students[41] != (Object) null)
+        {
+          if (this.StudentManager.Students[41].TaskPhase == 0)
+            this.StudentManager.Students[41].TaskPhase = 4;
+          this.TaskObjects[41].SetActive(true);
+        }
+      }
+      else if ((Object) this.TaskObjects[41] != (Object) null)
+        this.TaskObjects[41].SetActive(false);
       if (this.TaskStatus[46] == 1 && (Object) this.StudentManager.Students[46] != (Object) null)
       {
         if (this.StudentManager.Students[46].TaskPhase == 0)

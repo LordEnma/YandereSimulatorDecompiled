@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PoliceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -295,7 +295,14 @@ public class PoliceScript : MonoBehaviour
             this.Jukebox.Volume = 0.0f;
           }
           if (this.GenocideEnding)
+          {
             SceneManager.LoadScene("GenocideScene");
+            if (!GameGlobals.Debug)
+            {
+              PlayerPrefs.SetInt("Genocide", 1);
+              PlayerPrefs.SetInt("a", 1);
+            }
+          }
         }
       }
     }
@@ -401,6 +408,7 @@ public class PoliceScript : MonoBehaviour
     {
       if (this.EndOfDay.Phase != 1)
         return;
+      this.Yandere.MyListener.enabled = false;
       this.EndOfDay.gameObject.SetActive(true);
       this.EndOfDay.enabled = true;
       this.EndOfDay.Phase = 14;
@@ -427,6 +435,7 @@ public class PoliceScript : MonoBehaviour
     this.ResultsLabels[0].transform.parent.gameObject.SetActive(true);
     if (this.Show)
     {
+      this.Yandere.MyListener.enabled = false;
       this.EndOfDay.gameObject.SetActive(true);
       this.EndOfDay.enabled = true;
       this.enabled = false;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: LowRepGameOverScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -36,6 +36,7 @@ public class LowRepGameOverScript : MonoBehaviour
     this.Yandere.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
     this.Yandere.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
     this.Yandere.CharacterAnimation.Play("f02_LowRepGO_A");
+    this.Yandere.LifeNotePen.SetActive(false);
     this.MyCamera.eulerAngles = this.CameraPosition[0].eulerAngles;
     this.MyCamera.position = this.CameraPosition[0].position;
     this.Senpai.Chopsticks[0].SetActive(false);

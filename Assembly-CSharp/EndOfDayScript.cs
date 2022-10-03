@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -356,7 +356,6 @@ public class EndOfDayScript : MonoBehaviour
     if (this.Phase == 1)
     {
       Time.timeScale = 1f;
-      GameGlobals.PoliceYesterday = true;
       this.CopAnimation[1]["walk_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
       this.CopAnimation[2]["walk_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
       this.CopAnimation[3]["walk_00"].speed = UnityEngine.Random.Range(0.9f, 1.1f);
@@ -443,6 +442,8 @@ public class EndOfDayScript : MonoBehaviour
                 GameGlobals.SpecificEliminationID = 5;
                 if (!GameGlobals.Debug)
                   PlayerPrefs.SetInt("Burn", 1);
+                if (!GameGlobals.Debug)
+                  PlayerPrefs.SetInt("a", 1);
               }
               else if (corpse.Student.DeathType == DeathType.Electrocution)
               {
@@ -450,12 +451,16 @@ public class EndOfDayScript : MonoBehaviour
                 GameGlobals.SpecificEliminationID = 8;
                 if (!GameGlobals.Debug)
                   PlayerPrefs.SetInt("Electrocute", 1);
+                if (!GameGlobals.Debug)
+                  PlayerPrefs.SetInt("a", 1);
               }
               else if (corpse.Student.DeathType == DeathType.Weight)
               {
                 GameGlobals.SpecificEliminationID = 6;
                 if (!GameGlobals.Debug)
                   PlayerPrefs.SetInt("Crush", 1);
+                if (!GameGlobals.Debug)
+                  PlayerPrefs.SetInt("a", 1);
               }
               else if (corpse.Student.DeathType == DeathType.Drowning)
               {
@@ -466,6 +471,8 @@ public class EndOfDayScript : MonoBehaviour
                   GameGlobals.SpecificEliminationID = 16;
                   if (!GameGlobals.Debug)
                     PlayerPrefs.SetInt("Pool", 1);
+                  if (!GameGlobals.Debug)
+                    PlayerPrefs.SetInt("a", 1);
                 }
                 else
                 {
@@ -473,6 +480,8 @@ public class EndOfDayScript : MonoBehaviour
                   GameGlobals.SpecificEliminationID = 7;
                   if (!GameGlobals.Debug)
                     PlayerPrefs.SetInt("Drown", 1);
+                  if (!GameGlobals.Debug)
+                    PlayerPrefs.SetInt("a", 1);
                 }
               }
               else if (corpse.Decapitated)
@@ -480,18 +489,24 @@ public class EndOfDayScript : MonoBehaviour
                 GameGlobals.SpecificEliminationID = 10;
                 if (!GameGlobals.Debug)
                   PlayerPrefs.SetInt("Fan", 1);
+                if (!GameGlobals.Debug)
+                  PlayerPrefs.SetInt("a", 1);
               }
               else if (corpse.Student.DeathType == DeathType.Poison)
               {
                 GameGlobals.SpecificEliminationID = 15;
                 if (!GameGlobals.Debug)
                   PlayerPrefs.SetInt("Poison", 1);
+                if (!GameGlobals.Debug)
+                  PlayerPrefs.SetInt("a", 1);
               }
               else if (corpse.Student.DeathType == DeathType.Falling)
               {
                 GameGlobals.SpecificEliminationID = 17;
                 if (!GameGlobals.Debug)
                   PlayerPrefs.SetInt("Push", 1);
+                if (!GameGlobals.Debug)
+                  PlayerPrefs.SetInt("a", 1);
               }
               else if (corpse.Student.Hunted)
               {
@@ -499,9 +514,19 @@ public class EndOfDayScript : MonoBehaviour
                 if (!GameGlobals.Debug)
                 {
                   if (corpse.Student.MurderedByFragile)
-                    PlayerPrefs.SetInt("DrivenToMurder", 1);
+                  {
+                    if (!GameGlobals.Debug)
+                      PlayerPrefs.SetInt("DrivenToMurder", 1);
+                    if (!GameGlobals.Debug)
+                      PlayerPrefs.SetInt("a", 1);
+                  }
                   else
-                    PlayerPrefs.SetInt("MurderSuicide", 1);
+                  {
+                    if (!GameGlobals.Debug)
+                      PlayerPrefs.SetInt("MurderSuicide", 1);
+                    if (!GameGlobals.Debug)
+                      PlayerPrefs.SetInt("a", 1);
+                  }
                 }
                 Debug.Log((object) "The game knows that the rival died as part of a murder-suicide.");
               }
@@ -511,6 +536,8 @@ public class EndOfDayScript : MonoBehaviour
                 GameGlobals.SpecificEliminationID = 1;
                 if (!GameGlobals.Debug)
                   PlayerPrefs.SetInt("Attack", 1);
+                if (!GameGlobals.Debug)
+                  PlayerPrefs.SetInt("a", 1);
               }
               else if (corpse.Student.DeathType == DeathType.Explosion)
               {
@@ -518,6 +545,8 @@ public class EndOfDayScript : MonoBehaviour
                 GameGlobals.SpecificEliminationID = 20;
                 if (!GameGlobals.Debug)
                   PlayerPrefs.SetInt("Attack", 1);
+                if (!GameGlobals.Debug)
+                  PlayerPrefs.SetInt("a", 1);
               }
               else
                 Debug.Log((object) "We know that the rival died, but we didn't get any noteworthy information about her death...");
@@ -576,7 +605,7 @@ public class EndOfDayScript : MonoBehaviour
           if ((UnityEngine.Object) this.MurderWeapon == (UnityEngine.Object) null)
           {
             WeaponScript weapon = this.WeaponManager.Weapons[this.ID];
-            if ((UnityEngine.Object) weapon != (UnityEngine.Object) null && weapon.Blood.enabled)
+            if ((UnityEngine.Object) weapon != (UnityEngine.Object) null && !weapon.Disposed && weapon.Blood.enabled)
             {
               if (!weapon.AlreadyExamined)
               {
@@ -1175,6 +1204,8 @@ public class EndOfDayScript : MonoBehaviour
           GameGlobals.SpecificEliminationID = 12;
           if (!GameGlobals.Debug)
             PlayerPrefs.SetInt("Kidnap", 1);
+          if (!GameGlobals.Debug)
+            PlayerPrefs.SetInt("a", 1);
         }
         ++this.Phase;
       }
@@ -1254,12 +1285,16 @@ public class EndOfDayScript : MonoBehaviour
           GameGlobals.SpecificEliminationID = 19;
           if (!GameGlobals.Debug)
             PlayerPrefs.SetInt("Suicide", 1);
+          if (!GameGlobals.Debug)
+            PlayerPrefs.SetInt("a", 1);
         }
         else
         {
           Debug.Log((object) "Informing the Content Checklist.");
           if (!GameGlobals.Debug)
             PlayerPrefs.SetInt("Bully", 1);
+          if (!GameGlobals.Debug)
+            PlayerPrefs.SetInt("a", 1);
         }
         ++this.Phase;
       }
@@ -1279,7 +1314,7 @@ public class EndOfDayScript : MonoBehaviour
           this.Yandere.LoseGentleEyes();
         if (this.StudentManager.Eighties)
           this.Protagonist = "Ryoba";
-        this.Label.text = this.Protagonist + " did not participate in any activities with her club this week. She been kicked out of the club.";
+        this.Label.text = this.Protagonist + " did not participate in any activities with her club this week. She has been kicked out of the club.";
         ClubGlobals.SetClubKicked(this.Yandere.Club, true);
         ClubGlobals.Club = ClubType.None;
         this.Yandere.Club = ClubType.None;
@@ -1514,6 +1549,8 @@ public class EndOfDayScript : MonoBehaviour
         GameGlobals.SpecificEliminationID = 15;
         if (!GameGlobals.Debug)
           PlayerPrefs.SetInt("Poison", 1);
+        if (!GameGlobals.Debug)
+          PlayerPrefs.SetInt("a", 1);
       }
       this.Phase = 2;
     }
@@ -1534,6 +1571,8 @@ public class EndOfDayScript : MonoBehaviour
             GameGlobals.SpecificEliminationID = 7;
             if (!GameGlobals.Debug)
               PlayerPrefs.SetInt("Drown", 1);
+            if (!GameGlobals.Debug)
+              PlayerPrefs.SetInt("a", 1);
           }
           if (corpse.Drowned)
           {
@@ -1558,6 +1597,8 @@ public class EndOfDayScript : MonoBehaviour
             Debug.Log((object) "The game should now be informing the Content Checklist that the player has performed an electrocution.");
             if (!GameGlobals.Debug)
               PlayerPrefs.SetInt("Electrocute", 1);
+            if (!GameGlobals.Debug)
+              PlayerPrefs.SetInt("a", 1);
           }
           if (this.Police.Corpses > 0)
             --this.Police.Corpses;
@@ -1618,6 +1659,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.SpecificEliminationID = 11;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Frame", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
       StudentGlobals.SetStudentArrested(this.StudentManager.RivalID, true);
     }
     else if (this.RivalEliminationMethod == RivalEliminationType.Expelled)
@@ -1629,6 +1672,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.SpecificEliminationID = 9;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Expel", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
     }
     else if (this.RivalEliminationMethod == RivalEliminationType.Matchmade)
     {
@@ -1638,6 +1683,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.SpecificEliminationID = 13;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Matchmake", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
     }
     else if (this.RivalEliminationMethod == RivalEliminationType.Rejected)
     {
@@ -1647,6 +1694,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.SpecificEliminationID = 18;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Reject", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
     }
     else if (this.RivalEliminationMethod == RivalEliminationType.Ruined)
     {
@@ -1655,6 +1704,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.NonlethalElimination = true;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Bully", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
     }
     else if (this.RivalEliminationMethod == RivalEliminationType.SuicideBully)
     {
@@ -1670,6 +1721,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.SpecificEliminationID = 17;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Push", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
     }
     else if (this.RivalEliminationMethod == RivalEliminationType.Vanished || this.RivalDismemberedAndIncinerated || this.RivalBuried)
     {
@@ -1990,6 +2043,8 @@ public class EndOfDayScript : MonoBehaviour
     this.ArrestStudents();
     this.SaveTopicsLearned();
     this.RemovableItemManager.RemoveItems();
+    if (this.PoliceArrived)
+      GameGlobals.PoliceYesterday = true;
     this.Yandere.CameraEffects.UpdateVignette(0.0f);
   }
 
@@ -2022,6 +2077,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.SpecificEliminationID = 5;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Burn", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
       Debug.Log((object) "The game knows that she was burned, though.");
     }
     else if (ragdoll.Student.DeathType == DeathType.Electrocution)
@@ -2029,6 +2086,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.SpecificEliminationID = 8;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Electrocute", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
       Debug.Log((object) "The game knows that she was electrocuted, though.");
       Debug.Log((object) "The game should now be informing the Content Checklist that the player has performed an electrocution.");
     }
@@ -2037,6 +2096,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.SpecificEliminationID = 6;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Crush", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
       Debug.Log((object) "The game knows that she was crushed, though.");
     }
     else if (ragdoll.Student.DeathType == DeathType.Drowning)
@@ -2045,17 +2106,21 @@ public class EndOfDayScript : MonoBehaviour
       {
         Debug.Log((object) "The player eliminated the rival during a pool event.");
         GameGlobals.SpecificEliminationID = 16;
+        if (!GameGlobals.Debug)
+          PlayerPrefs.SetInt("Pool", 1);
         if (GameGlobals.Debug)
           return;
-        PlayerPrefs.SetInt("Pool", 1);
+        PlayerPrefs.SetInt("a", 1);
       }
       else
       {
         Debug.Log((object) "The game knows that she drowned, though.");
         GameGlobals.SpecificEliminationID = 7;
+        if (!GameGlobals.Debug)
+          PlayerPrefs.SetInt("Drown", 1);
         if (GameGlobals.Debug)
           return;
-        PlayerPrefs.SetInt("Drown", 1);
+        PlayerPrefs.SetInt("a", 1);
       }
     }
     else if (ragdoll.Decapitated)
@@ -2063,6 +2128,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.SpecificEliminationID = 10;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Fan", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
       Debug.Log((object) "The game knows that she was decapitated, though.");
     }
     else if (ragdoll.Student.DeathType == DeathType.Poison)
@@ -2070,6 +2137,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.SpecificEliminationID = 15;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Poison", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
       Debug.Log((object) "The game knows that she was poisoned, though.");
     }
     else if (ragdoll.Student.DeathType == DeathType.Falling)
@@ -2077,6 +2146,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.SpecificEliminationID = 17;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Push", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
       Debug.Log((object) "The game knows that she was pushed, though.");
     }
     else if (ragdoll.Student.Hunted)
@@ -2085,9 +2156,19 @@ public class EndOfDayScript : MonoBehaviour
       if (!GameGlobals.Debug)
       {
         if (ragdoll.Student.MurderedByFragile)
-          PlayerPrefs.SetInt("DrivenToMurder", 1);
+        {
+          if (!GameGlobals.Debug)
+            PlayerPrefs.SetInt("DrivenToMurder", 1);
+          if (!GameGlobals.Debug)
+            PlayerPrefs.SetInt("a", 1);
+        }
         else
-          PlayerPrefs.SetInt("MurderSuicide", 1);
+        {
+          if (!GameGlobals.Debug)
+            PlayerPrefs.SetInt("MurderSuicide", 1);
+          if (!GameGlobals.Debug)
+            PlayerPrefs.SetInt("a", 1);
+        }
       }
       Debug.Log((object) "The game knows that the rival died as part of a murder-suicide, though.");
     }
@@ -2096,6 +2177,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.SpecificEliminationID = 1;
       if (!GameGlobals.Debug)
         PlayerPrefs.SetInt("Attack", 1);
+      if (!GameGlobals.Debug)
+        PlayerPrefs.SetInt("a", 1);
       Debug.Log((object) "The game knows that she was attacked, though.");
     }
     else

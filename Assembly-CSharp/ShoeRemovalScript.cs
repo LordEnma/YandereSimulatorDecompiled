@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ShoeRemovalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -109,8 +109,13 @@ public class ShoeRemovalScript : MonoBehaviour
         if ((double) this.Student.CharacterAnimation[this.RemovalAnim].time < 0.83333301544189453)
           return;
         int num = (Object) this.Student.Follower != (Object) null ? 1 : 0;
-        if (this.Student.StudentID == this.Student.StudentManager.RivalID && !this.Student.StudentManager.MissionMode && !GameGlobals.AlphabetMode && !GameGlobals.Eighties && DateGlobals.Week == 1)
-          this.Student.StudentManager.UpdateExteriorStudents();
+        if (this.Student.StudentID == this.Student.StudentManager.RivalID && !this.Student.StudentManager.MissionMode && !GameGlobals.AlphabetMode)
+        {
+          if (GameGlobals.Eighties)
+            this.Student.StudentManager.UpdateExteriorEightiesStudents();
+          else if (DateGlobals.Week == 1)
+            this.Student.StudentManager.UpdateExteriorStudents();
+        }
         this.ShoeParent.parent = this.LeftHand;
         ++this.Phase;
       }
@@ -312,9 +317,20 @@ public class ShoeRemovalScript : MonoBehaviour
     this.enabled = false;
     this.Student.CharacterAnimation.cullingType = AnimationCullingType.BasedOnRenderers;
     this.Student.StopPairing();
-    if (this.Student.StudentID != this.Student.StudentManager.RivalID || this.Student.StudentManager.MissionMode || GameGlobals.AlphabetMode || GameGlobals.Eighties || DateGlobals.Week != 1)
+    if (this.Student.StudentID != this.Student.StudentManager.RivalID || this.Student.StudentManager.MissionMode || GameGlobals.AlphabetMode)
       return;
-    this.Student.StudentManager.UpdateExteriorStudents();
+    Debug.Log((object) "A rival character just put her shoes on.");
+    if (GameGlobals.Eighties)
+    {
+      Debug.Log((object) "It's the 80s, so...");
+      this.Student.StudentManager.UpdateExteriorEightiesStudents();
+    }
+    else
+    {
+      if (DateGlobals.Week != 1)
+        return;
+      this.Student.StudentManager.UpdateExteriorStudents();
+    }
   }
 
   public void CloseLocker()

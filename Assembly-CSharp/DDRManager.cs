@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DDRManager
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -15,6 +15,7 @@ public class DDRManager : MonoBehaviour
   public YandereScript Yandere;
   public Transform FinishLocation;
   public Renderer OriginalRenderer;
+  public AudioListener YandereListener;
   public GameObject OverlayCanvas;
   public GameObject GameUI;
   [Header("General")]
@@ -123,7 +124,7 @@ public class DDRManager : MonoBehaviour
     this.GameUI.SetActive(false);
     if (!this.audioSource.isPlaying)
       return;
-    Debug.Log((object) "End() was called because we ranout of health.");
+    Debug.Log((object) "End() was called because we ran out of health.");
     this.StartCoroutine(this.End());
   }
 
@@ -144,6 +145,7 @@ public class DDRManager : MonoBehaviour
     this.GameUI.SetActive(true);
     this.ddrMinigame.LoadLevelSelect(this.levels);
     this.StartCoroutine(this.minigameFlow());
+    this.YandereListener.enabled = false;
   }
 
   public void BootOut()
@@ -190,6 +192,7 @@ public class DDRManager : MonoBehaviour
     ddrManager.StartCoroutine(ddrManager.fadeGameUI(true));
     ddrManager.backgroundVideo.playbackSpeed = 1f;
     ddrManager.audioSource.clip = ddrManager.LoadedLevel.Song;
+    ddrManager.audioSource.time = 0.0f;
     ddrManager.audioSource.Play();
     ddrManager.CheckingForEnd = true;
     while ((double) ddrManager.audioSource.time < (double) ddrManager.audioSource.clip.length)
@@ -226,6 +229,11 @@ public class DDRManager : MonoBehaviour
     {
       ddrManager.endScreen.gameObject.SetActive(true);
       ddrManager.ddrMinigame.UpdateEndcard(ddrManager.GameState);
+      if ((Object) ddrManager.LoadedLevel != (Object) ddrManager.levels[4] && !GameGlobals.Debug)
+      {
+        PlayerPrefs.SetInt("Dance", 1);
+        PlayerPrefs.SetInt("a", 1);
+      }
     }
     else
       ddrManager.defeatScreen.SetActive(true);
@@ -276,6 +284,14 @@ public class DDRManager : MonoBehaviour
 
   public void ReturnToNormalGameplay()
   {
+    for (int index = 0; index < 4; ++index)
+    {
+      foreach (Transform transform in (Transform) this.ddrMinigame.uiTracks[index])
+      {
+        if (transform.gameObject.name != "TrackSymbol")
+          Object.Destroy((Object) transform.gameObject);
+      }
+    }
     Debug.Log((object) "ReturnToNormalGameplay() was called.");
     this.yandereAnim["f02_danceMachineIdle_00"].weight = 0.0f;
     this.yandereAnim["f02_danceRight_00"].weight = 0.0f;
@@ -297,5 +313,7 @@ public class DDRManager : MonoBehaviour
     this.OriginalRenderer.enabled = true;
     Physics.SyncTransforms();
     this.transform.parent.gameObject.SetActive(false);
+    this.YandereListener.enabled = true;
+    this.continueText.color = new Color(1f, 1f, 1f, 0.0f);
   }
 }

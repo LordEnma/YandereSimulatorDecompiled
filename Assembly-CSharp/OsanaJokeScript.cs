@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaJokeScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -18,6 +18,14 @@ public class OsanaJokeScript : MonoBehaviour
   public bool Advance;
   public float Timer;
   public int ID;
+
+  private void Start()
+  {
+    if (GameGlobals.Debug)
+      return;
+    PlayerPrefs.SetInt("Alphabet", 1);
+    PlayerPrefs.SetInt("a", 1);
+  }
 
   private void Update()
   {

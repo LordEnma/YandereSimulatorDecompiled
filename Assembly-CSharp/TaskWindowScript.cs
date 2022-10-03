@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TaskWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -172,7 +172,7 @@ public class TaskWindowScript : MonoBehaviour
     }
     else
     {
-      if (this.Yandere.TargetStudent.StudentID == 6 || this.Yandere.TargetStudent.StudentID == 8 || this.Yandere.TargetStudent.StudentID == 11 || this.Yandere.TargetStudent.StudentID == 25 || this.Yandere.TargetStudent.StudentID == 28 || this.Yandere.TargetStudent.StudentID == 30 || this.Yandere.TargetStudent.StudentID == 36 || this.Yandere.TargetStudent.StudentID == 37 || this.Yandere.TargetStudent.StudentID == 38 || this.Yandere.TargetStudent.StudentID == 46 || this.Yandere.TargetStudent.StudentID == 47 || this.Yandere.TargetStudent.StudentID == 48 || this.Yandere.TargetStudent.StudentID == 49 || this.Yandere.TargetStudent.StudentID == 50 || this.Yandere.TargetStudent.StudentID == 52 || this.Yandere.TargetStudent.StudentID == 76 || this.Yandere.TargetStudent.StudentID == 77 || this.Yandere.TargetStudent.StudentID == 78 || this.Yandere.TargetStudent.StudentID == 79 || this.Yandere.TargetStudent.StudentID == 80 || this.Yandere.TargetStudent.StudentID == 81)
+      if (this.Yandere.TargetStudent.StudentID == 4 || this.Yandere.TargetStudent.StudentID == 6 || this.Yandere.TargetStudent.StudentID == 8 || this.Yandere.TargetStudent.StudentID == 11 || this.Yandere.TargetStudent.StudentID == 25 || this.Yandere.TargetStudent.StudentID == 28 || this.Yandere.TargetStudent.StudentID == 30 || this.Yandere.TargetStudent.StudentID == 36 || this.Yandere.TargetStudent.StudentID == 37 || this.Yandere.TargetStudent.StudentID == 38 || this.Yandere.TargetStudent.StudentID == 41 || this.Yandere.TargetStudent.StudentID == 46 || this.Yandere.TargetStudent.StudentID == 47 || this.Yandere.TargetStudent.StudentID == 48 || this.Yandere.TargetStudent.StudentID == 49 || this.Yandere.TargetStudent.StudentID == 50 || this.Yandere.TargetStudent.StudentID == 52 || this.Yandere.TargetStudent.StudentID == 76 || this.Yandere.TargetStudent.StudentID == 77 || this.Yandere.TargetStudent.StudentID == 78 || this.Yandere.TargetStudent.StudentID == 79 || this.Yandere.TargetStudent.StudentID == 80 || this.Yandere.TargetStudent.StudentID == 81)
         return;
       this.Generic = true;
     }
@@ -189,7 +189,7 @@ public class TaskWindowScript : MonoBehaviour
     }
     else
     {
-      if (TempID == 6 || TempID == 8 || TempID == 11 || TempID == 25 || TempID == 28 || TempID == 30 || TempID == 36 || TempID == 37 || TempID == 38 || TempID == 46 || TempID == 47 || TempID == 48 || TempID == 49 || TempID == 50 || TempID == 52 || TempID == 76 || TempID == 77 || TempID == 78 || TempID == 79 || TempID == 80 || TempID == 81)
+      if (TempID == 6 || TempID == 8 || TempID == 11 || TempID == 25 || TempID == 28 || TempID == 30 || TempID == 36 || TempID == 37 || TempID == 38 || TempID == 41 || TempID == 46 || TempID == 47 || TempID == 48 || TempID == 49 || TempID == 50 || TempID == 52 || TempID == 76 || TempID == 77 || TempID == 78 || TempID == 79 || TempID == 80 || TempID == 81)
         return;
       this.Generic = true;
     }

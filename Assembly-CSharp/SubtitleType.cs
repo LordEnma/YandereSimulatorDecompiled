@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SubtitleType
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 public enum SubtitleType
@@ -199,6 +199,7 @@ public enum SubtitleType
   StudentMidCompliment,
   StudentMurderReport,
   StudentStay,
+  Task4Line,
   Task6Line,
   Task7Line,
   Task8Line,
@@ -215,6 +216,7 @@ public enum SubtitleType
   Task36Line,
   Task37Line,
   Task38Line,
+  Task41Line,
   Task46Line,
   Task47Line,
   Task48Line,

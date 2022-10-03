@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HeartbrokenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -14,6 +14,7 @@ public class HeartbrokenScript : MonoBehaviour
   public CounselorScript Counselor;
   public YandereScript Yandere;
   public ClockScript Clock;
+  public RadioScript Radio;
   public AudioListener Listener;
   public AudioClip[] NoticedClips;
   public string[] NoticedLines;
@@ -331,6 +332,8 @@ public class HeartbrokenScript : MonoBehaviour
         if (this.LetterID == this.StopID)
           this.ID = 0;
       }
+      if ((Object) this.Radio != (Object) null)
+        this.Radio.MyAudio.volume -= Time.deltaTime;
     }
     else if (this.Phase == 3)
     {

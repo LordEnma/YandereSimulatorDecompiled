@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMondayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -91,6 +91,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
         if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
         {
           this.Friend.FocusOnYandere = false;
+          this.Friend.Distracted = true;
           this.Friend.CanTalk = false;
           this.Friend.EmptyHands();
           this.Friend.SpeechLines.Stop();
@@ -483,6 +484,7 @@ public class OsanaMondayLunchEventScript : MonoBehaviour
     this.Friend.CurrentDestination = this.Location[3];
     this.Friend.Pathfinding.canSearch = true;
     this.Friend.Pathfinding.canMove = true;
+    this.Friend.Distracted = false;
     this.Friend.Routine = false;
     this.Friend.InEvent = true;
   }

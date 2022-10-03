@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ShutterScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -101,10 +101,8 @@ public class ShutterScript : MonoBehaviour
     int num = this.Yandere.Selfie ? 1 : 0;
     if (this.Snapping)
     {
-      Debug.Log((object) "Snapping.");
       if (this.Yandere.Noticed)
       {
-        Debug.Log((object) "Noticed.");
         this.ResumeGameplay();
         this.Yandere.StopAiming();
       }

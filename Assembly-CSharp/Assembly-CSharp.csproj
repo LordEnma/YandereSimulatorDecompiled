@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A5EA56D9-8726-45C2-B028-F571833386D9}</ProjectGuid>
+    <ProjectGuid>{CDAB2E9B-A55B-4BCD-A6D6-C3E265C3DA64}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <ApplicationVersion>0.0.0.0</ApplicationVersion>
@@ -302,6 +302,7 @@
     <Compile Include="AboutScript.cs" />
     <Compile Include="AccessoryGroupScript.cs" />
     <Compile Include="AccessoryScript.cs" />
+    <Compile Include="AchievementPopUpScript.cs" />
     <Compile Include="AdviceWindowScript.cs" />
     <Compile Include="AlarmDiscScript.cs" />
     <Compile Include="AlphabetScript.cs" />
@@ -825,6 +826,7 @@
     <Compile Include="FamilyVoiceScript.cs" />
     <Compile Include="FanCoverScript.cs" />
     <Compile Include="FavorMenuScript.cs" />
+    <Compile Include="FeedListScript.cs" />
     <Compile Include="FindStudentLockerScript.cs" />
     <Compile Include="FixDummyScript.cs" />
     <Compile Include="FloatAbovePointScript.cs" />
@@ -1185,6 +1187,7 @@
     <Compile Include="ShoulderCameraScript.cs" />
     <Compile Include="ShutterScript.cs" />
     <Compile Include="SimpleDetectClickScript.cs" />
+    <Compile Include="SimpleLookScript.cs" />
     <Compile Include="SinkScript.cs" />
     <Compile Include="SithBeamScript.cs" />
     <Compile Include="SkinnedMeshUpdater.cs" />
@@ -1542,19 +1545,6 @@
     <Compile Include="RetroAesthetics\RetroCameraEffect.cs" />
     <Compile Include="RetroAesthetics\Demos\MenuScripts.cs" />
     <Compile Include="RetroAesthetics\Demos\SpeedTilt.cs" />
-    <Compile Include="AmplifyMotion\Quality.cs" />
-    <Compile Include="AmplifyMotion\ObjectType.cs" />
-    <Compile Include="AmplifyMotion\MotionState.cs" />
-    <Compile Include="AmplifyMotion\ClothState.cs" />
-    <Compile Include="AmplifyMotion\ParticleState.cs" />
-    <Compile Include="AmplifyMotion\VersionInfo.cs" />
-    <Compile Include="AmplifyMotion\SkinnedState.cs" />
-    <Compile Include="AmplifyMotion\SolidState.cs" />
-    <Compile Include="AmplifyMotion\WorkerThreadPool.cs" />
-    <Compile Include="AnimationOrTween\Trigger.cs" />
-    <Compile Include="AnimationOrTween\Direction.cs" />
-    <Compile Include="AnimationOrTween\EnableCondition.cs" />
-    <Compile Include="AnimationOrTween\DisableCondition.cs" />
     <Compile Include="MaidDereMinigame\Chef.cs" />
     <Compile Include="MaidDereMinigame\CharacterHairPlacer.cs" />
     <Compile Include="MaidDereMinigame\CustomerSpawner.cs" />
@@ -1598,6 +1588,19 @@
     <Compile Include="MaidDereMinigame\TipPage.cs" />
     <Compile Include="MaidDereMinigame\Malee\ReorderableAttribute.cs" />
     <Compile Include="MaidDereMinigame\Malee\ReorderableArray`1.cs" />
+    <Compile Include="AnimationOrTween\Trigger.cs" />
+    <Compile Include="AnimationOrTween\Direction.cs" />
+    <Compile Include="AnimationOrTween\EnableCondition.cs" />
+    <Compile Include="AnimationOrTween\DisableCondition.cs" />
+    <Compile Include="AmplifyMotion\Quality.cs" />
+    <Compile Include="AmplifyMotion\ObjectType.cs" />
+    <Compile Include="AmplifyMotion\MotionState.cs" />
+    <Compile Include="AmplifyMotion\ClothState.cs" />
+    <Compile Include="AmplifyMotion\ParticleState.cs" />
+    <Compile Include="AmplifyMotion\VersionInfo.cs" />
+    <Compile Include="AmplifyMotion\SkinnedState.cs" />
+    <Compile Include="AmplifyMotion\SolidState.cs" />
+    <Compile Include="AmplifyMotion\WorkerThreadPool.cs" />
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

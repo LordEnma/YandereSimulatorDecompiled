@@ -1,13 +1,14 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StringTrapScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
 public class StringTrapScript : MonoBehaviour
 {
+  public StudentManagerScript StudentManager;
   public WaterCoolerScript WaterCooler;
   public GameObject BrownPaintPuddle;
   public GameObject GasolinePuddle;
@@ -21,6 +22,17 @@ public class StringTrapScript : MonoBehaviour
   public Transform[] PuddleSpawn;
   public Transform Spawn;
 
+  private void Update()
+  {
+    if (!this.WaterCooler.Gasoline || !((Object) this.StudentManager.Students[this.StudentManager.RivalID] != (Object) null) || this.StudentManager.Students[this.StudentManager.RivalID].GasWarned)
+      return;
+    StudentScript follower = this.StudentManager.Students[this.StudentManager.RivalID].Follower;
+    if (!((Object) follower != (Object) null) || !follower.Alive || follower.CurrentAction != StudentActionType.Follow || (double) Vector3.Distance(this.StudentManager.Students[this.StudentManager.RivalID].transform.position, follower.transform.position) >= 10.0 || (double) Vector3.Distance(this.transform.position, this.StudentManager.Students[this.StudentManager.RivalID].transform.position) >= 10.0)
+      return;
+    this.WaterCooler.Prompt.Yandere.Subtitle.UpdateLabel(SubtitleType.GasWarning, 1, 5f);
+    this.StudentManager.Students[this.StudentManager.RivalID].GasWarned = true;
+  }
+
   private void OnTriggerStay(Collider other)
   {
     if (other.gameObject.layer != 9)
@@ -29,7 +41,7 @@ public class StringTrapScript : MonoBehaviour
     StudentScript component = other.gameObject.GetComponent<StudentScript>();
     if (!((Object) component != (Object) null) || component.ClubActivityPhase >= 16)
       return;
-    if (component.Club == ClubType.Council || (Object) component != (Object) null && component.Teacher || component.WillRemoveTripwire)
+    if (component.Club == ClubType.Council || (Object) component != (Object) null && component.Teacher || component.WillRemoveTripwire || component.GasWarned)
     {
       this.WaterCooler.Yandere.NotificationManager.CustomText = component.Name + " dismantled tripwire trap!";
       this.WaterCooler.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DatingMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -690,7 +690,7 @@ public class DatingMinigameScript : MonoBehaviour
           this.LoveManager.ConfessToSuitor = true;
         this.PromptBar.ClearButtons();
         this.PromptBar.Show = false;
-        if ((Object) this.StudentManager.Students[10] != (Object) null)
+        if ((Object) this.StudentManager.Students[10] != (Object) null && (Object) this.StudentManager.Students[10].FollowTarget != (Object) null)
         {
           this.StudentManager.Students[10].CurrentDestination = this.StudentManager.Students[10].FollowTarget.transform;
           this.StudentManager.Students[10].Pathfinding.target = this.StudentManager.Students[10].FollowTarget.transform;

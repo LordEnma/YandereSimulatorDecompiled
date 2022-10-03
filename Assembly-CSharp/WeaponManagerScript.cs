@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -81,22 +81,27 @@ public class WeaponManagerScript : MonoBehaviour
 
   public void CheckWeapons()
   {
+    Debug.Log((object) "The WeaponManager is, at this moment, counting how many murder weapons are lying around at school.");
     this.MurderWeapons = 0;
     this.Fingerprints = 0;
     for (int index = 0; index < this.Victims.Length; ++index)
       this.Victims[index] = 0;
     foreach (WeaponScript weapon in this.Weapons)
     {
-      if ((UnityEngine.Object) weapon != (UnityEngine.Object) null && weapon.gameObject.activeInHierarchy && weapon.Blood.enabled && !weapon.AlreadyExamined)
+      if ((UnityEngine.Object) weapon != (UnityEngine.Object) null && weapon.gameObject.activeInHierarchy && !weapon.Disposed && weapon.Blood.enabled)
       {
-        ++this.MurderWeapons;
-        if (weapon.FingerprintID > 0)
+        Debug.Log((object) (weapon.name + " had blood on it. Name is: " + weapon.Name));
+        if (!weapon.AlreadyExamined)
         {
-          ++this.Fingerprints;
-          for (int index = 0; index < weapon.Victims.Length; ++index)
+          ++this.MurderWeapons;
+          if (weapon.FingerprintID > 0)
           {
-            if (weapon.Victims[index])
-              this.Victims[index] = weapon.FingerprintID;
+            ++this.Fingerprints;
+            for (int index = 0; index < weapon.Victims.Length; ++index)
+            {
+              if (weapon.Victims[index])
+                this.Victims[index] = weapon.FingerprintID;
+            }
           }
         }
       }
@@ -191,7 +196,10 @@ public class WeaponManagerScript : MonoBehaviour
     for (int index = 0; index < this.Weapons.Length; ++index)
     {
       if ((UnityEngine.Object) this.Weapons[index] != (UnityEngine.Object) null && this.Weapons[index].InsideIncinerator)
+      {
+        Debug.Log((object) (((object) this.Weapons[index])?.ToString() + " has been incinerated and marked as ''disposed''."));
         this.Weapons[index].Disposed = true;
+      }
     }
   }
 

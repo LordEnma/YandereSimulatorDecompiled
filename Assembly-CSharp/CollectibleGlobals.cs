@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CollectibleGlobals
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -13,6 +13,9 @@ public static class CollectibleGlobals
   private const string Str_BasementTapeCollected = "BasementTapeCollected_";
   private const string Str_BasementTapeListened = "BasementTapeListened_";
   private const string Str_MangaCollected = "MangaCollected_";
+  private const string Str_HorrorMangaProgress = "HorrorMangaProgress";
+  private const string Str_RomanceMangaProgress = "RomanceMangaProgress";
+  private const string Str_EnlightenedMangaProgress = "EnlightenedMangaProgress";
   private const string Str_GiftPurchased = "GiftPurchased_";
   private const string Str_GiftGiven = "GiftGiven_";
   private const string Str_MatchmakingGifts = "MatchmakingGifts";
@@ -155,6 +158,24 @@ public static class CollectibleGlobals
 
   public static int[] KeysOfTapeListened() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_TapeListened_");
 
+  public static int HorrorMangaProgress
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_HorrorMangaProgress");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_HorrorMangaProgress", value);
+  }
+
+  public static int RomanceMangaProgress
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_RomanceMangaProgress");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_RomanceMangaProgress", value);
+  }
+
+  public static int EnlightenedMangaProgress
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_EnlightenedMangaProgress");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_EnlightenedMangaProgress", value);
+  }
+
   public static void DeleteAll()
   {
     Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_HeadmasterTapeCollected_", CollectibleGlobals.KeysOfHeadmasterTapeCollected());
@@ -170,5 +191,8 @@ public static class CollectibleGlobals
     Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_TapeListened_", CollectibleGlobals.KeysOfTapeListened());
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MatchmakingGifts");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_SenpaiGifts");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_HorrorMangaProgress");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_RomanceMangaProgress");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_EnlightenedMangaProgress");
   }
 }

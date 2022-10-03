@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AmbientEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -111,7 +111,7 @@ public class AmbientEventScript : MonoBehaviour
       }
       this.EventOn = true;
     }
-    else if ((double) this.Clock.HourTime > (double) this.StartTime + 0.5 || this.EventStudent[1].WitnessedCorpse || this.EventStudent[2].WitnessedCorpse || this.EventStudent[1].Alarmed || this.EventStudent[2].Alarmed || this.EventStudent[1].Dying || this.EventStudent[2].Dying || this.EventStudent[1].GoAway || this.EventStudent[2].GoAway || this.Yandere.Noticed)
+    else if (!this.Sitting && (double) this.Clock.HourTime > (double) this.StartTime + 0.5 || this.EventStudent[1].WitnessedCorpse || this.EventStudent[2].WitnessedCorpse || this.EventStudent[1].Alarmed || this.EventStudent[2].Alarmed || this.EventStudent[1].Dying || this.EventStudent[2].Dying || this.EventStudent[1].GoAway || this.EventStudent[2].GoAway || this.Yandere.Noticed)
     {
       this.EndEvent();
     }
@@ -211,11 +211,12 @@ public class AmbientEventScript : MonoBehaviour
       }
       else
       {
-        double num1 = (double) Vector3.Distance(this.EventStudent[1].transform.position, this.EventLocation[1].parent.position);
-        float num2 = Vector3.Distance(this.EventStudent[2].transform.position, this.EventLocation[1].parent.position);
-        float num3 = Vector3.Distance(this.Yandere.transform.position, this.EventLocation[1].parent.position);
-        if ((num1 >= 5.0 || (double) num3 >= 5.0) && ((double) num2 >= 5.0 || (double) num3 >= 5.0))
+        if ((double) Vector3.Distance(this.Yandere.transform.position, this.EventLocation[1].parent.position) >= 5.0)
           return;
+        Debug.Log((object) "Ayano is intrusively close to the place where a private convo is supposed to take place...");
+        if (!this.EventStudent[1].CanSeeObject(this.Yandere.gameObject) && !this.EventStudent[2].CanSeeObject(this.Yandere.gameObject))
+          return;
+        Debug.Log((object) "...AND is visible, too.");
         this.EndEvent();
       }
     }

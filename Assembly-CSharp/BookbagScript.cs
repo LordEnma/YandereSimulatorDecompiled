@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BookbagScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -55,7 +55,7 @@ public class BookbagScript : MonoBehaviour
       this.Prompt.Yandere.NotificationManager.CustomText = "That's too dangerous!";
       this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
     }
-    else if ((Object) this.Prompt.Yandere.PickUp.TrashCan == (Object) null && !this.Prompt.Yandere.PickUp.JerryCan && !(bool) (Object) this.Prompt.Yandere.PickUp.Mop && !(bool) (Object) this.Prompt.Yandere.PickUp.Bucket && !this.Prompt.Yandere.PickUp.Bleach && !this.Prompt.Yandere.PickUp.TooBig)
+    else if ((Object) this.Prompt.Yandere.PickUp.TrashCan == (Object) null && !this.Prompt.Yandere.PickUp.JerryCan && !(bool) (Object) this.Prompt.Yandere.PickUp.Mop && !(bool) (Object) this.Prompt.Yandere.PickUp.Bucket && !this.Prompt.Yandere.PickUp.Bleach && !this.Prompt.Yandere.PickUp.TooBig && !this.Prompt.Yandere.PickUp.Weight)
     {
       this.Prompt.Yandere.CharacterAnimation["f02_reachForWeapon_00"].time = 0.0f;
       this.Prompt.Yandere.ReachWeight = 1f;

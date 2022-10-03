@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SubtitleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -208,6 +208,7 @@ public class SubtitleScript : MonoBehaviour
   public string[] RivalSplashReactions;
   public string[] LightSwitchReactions;
   public string[] PhotoAnnoyances;
+  public string[] Task4Lines;
   public string[] Task6Lines;
   public string[] Task7Lines;
   public string[] Task8Lines;
@@ -224,6 +225,7 @@ public class SubtitleScript : MonoBehaviour
   public string[] Task36Lines;
   public string[] Task37Lines;
   public string[] Task38Lines;
+  public string[] Task41Lines;
   public string[] Task46Lines;
   public string[] Task47Lines;
   public string[] Task48Lines;
@@ -349,6 +351,7 @@ public class SubtitleScript : MonoBehaviour
   public AudioClip[] RivalSplashReactionClips;
   public AudioClip[] DrownReactionClips;
   public AudioClip[] LightSwitchClips;
+  public AudioClip[] Task4Clips;
   public AudioClip[] Task6Clips;
   public AudioClip[] Task7Clips;
   public AudioClip[] Task8Clips;
@@ -365,6 +368,7 @@ public class SubtitleScript : MonoBehaviour
   public AudioClip[] Task36Clips;
   public AudioClip[] Task37Clips;
   public AudioClip[] Task38Clips;
+  public AudioClip[] Task41Clips;
   public AudioClip[] Task46Clips;
   public AudioClip[] Task47Clips;
   public AudioClip[] Task48Clips;
@@ -765,6 +769,7 @@ public class SubtitleScript : MonoBehaviour
     clipArrayDictionary.Add(SubtitleType.SplashReactionMale, new AudioClipArrayWrapper(this.SplashReactionMaleClips));
     clipArrayDictionary.Add(SubtitleType.TutorialReaction, new AudioClipArrayWrapper(this.TutorialReactionClips));
     clipArrayDictionary.Add(SubtitleType.TrespassReaction, new AudioClipArrayWrapper(this.TrespassReactionClips));
+    clipArrayDictionary.Add(SubtitleType.Task4Line, new AudioClipArrayWrapper(this.Task4Clips));
     clipArrayDictionary.Add(SubtitleType.Task6Line, new AudioClipArrayWrapper(this.Task6Clips));
     clipArrayDictionary.Add(SubtitleType.Task7Line, new AudioClipArrayWrapper(this.Task7Clips));
     clipArrayDictionary.Add(SubtitleType.Task8Line, new AudioClipArrayWrapper(this.Task8Clips));
@@ -779,6 +784,7 @@ public class SubtitleScript : MonoBehaviour
     clipArrayDictionary.Add(SubtitleType.Task36Line, new AudioClipArrayWrapper(this.Task36Clips));
     clipArrayDictionary.Add(SubtitleType.Task37Line, new AudioClipArrayWrapper(this.Task37Clips));
     clipArrayDictionary.Add(SubtitleType.Task38Line, new AudioClipArrayWrapper(this.Task38Clips));
+    clipArrayDictionary.Add(SubtitleType.Task41Line, new AudioClipArrayWrapper(this.Task41Clips));
     clipArrayDictionary.Add(SubtitleType.Task46Line, new AudioClipArrayWrapper(this.Task46Clips));
     clipArrayDictionary.Add(SubtitleType.Task47Line, new AudioClipArrayWrapper(this.Task47Clips));
     clipArrayDictionary.Add(SubtitleType.Task48Line, new AudioClipArrayWrapper(this.Task48Clips));
@@ -1637,6 +1643,11 @@ public class SubtitleScript : MonoBehaviour
         this.PreviousRandom = this.RandomID;
         this.Label.text = this.PhotoAnnoyances[this.RandomID];
       }
+      else if (subtitleType == SubtitleType.Task4Line)
+      {
+        this.Label.text = this.Task4Lines[ID];
+        this.PlayVoice(subtitleType, ID);
+      }
       else if (subtitleType == SubtitleType.Task6Line)
       {
         this.Label.text = this.Task6Lines[ID];
@@ -1715,6 +1726,11 @@ public class SubtitleScript : MonoBehaviour
       else if (subtitleType == SubtitleType.Task38Line)
       {
         this.Label.text = this.Task38Lines[ID];
+        this.PlayVoice(subtitleType, ID);
+      }
+      else if (subtitleType == SubtitleType.Task41Line)
+      {
+        this.Label.text = this.Task41Lines[ID];
         this.PlayVoice(subtitleType, ID);
       }
       else if (subtitleType == SubtitleType.Task46Line)
@@ -2083,6 +2099,8 @@ public class SubtitleScript : MonoBehaviour
   {
     switch (StudentID)
     {
+      case 4:
+        return this.Task4Clips[TaskPhase].length + 0.5f;
       case 6:
         return this.Task6Clips[TaskPhase].length + 0.5f;
       case 8:
@@ -2101,6 +2119,8 @@ public class SubtitleScript : MonoBehaviour
         return this.Task37Clips[TaskPhase].length;
       case 38:
         return this.Task38Clips[TaskPhase].length;
+      case 41:
+        return this.Task41Clips[TaskPhase].length;
       case 46:
         return this.Task46Clips[TaskPhase].length;
       case 47:

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TapePlayerMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -236,6 +236,12 @@ public class TapePlayerMenuScript : MonoBehaviour
           this.PromptBar.Label[4].text = "CHOOSE";
           this.PromptBar.Label[5].text = "CATEGORY";
           this.PromptBar.UpdateButtons();
+          if (this.Category == 1)
+            this.CheckJournalistCompletion();
+          else if (this.Category == 2)
+            this.CheckBasementCompletion();
+          else if (this.Category == 3)
+            this.CheckHeadmasterCompletion();
         }
       }
       if (this.Phase == 2)
@@ -633,6 +639,60 @@ public class TapePlayerMenuScript : MonoBehaviour
     {
       this.TapePlayer.PromptBar.Label[0].text = this.StudentManager.HeadmasterTapesCollected[this.Selected] ? "PLAY" : string.Empty;
       this.TapePlayer.PromptBar.UpdateButtons();
+    }
+  }
+
+  public void CheckBasementCompletion()
+  {
+    Debug.Log((object) "Checking to see if the player has collected *and* listened to all of the basement tapes.");
+    int num = 0;
+    for (int tapeID = 1; tapeID < 11; ++tapeID)
+    {
+      if (CollectibleGlobals.GetBasementTapeCollected(tapeID) && CollectibleGlobals.GetBasementTapeListened(tapeID))
+      {
+        ++num;
+        if (num == 2 && !GameGlobals.Debug)
+        {
+          PlayerPrefs.SetInt("Basement", 1);
+          PlayerPrefs.SetInt("a", 1);
+        }
+      }
+    }
+  }
+
+  public void CheckHeadmasterCompletion()
+  {
+    Debug.Log((object) "Checking to see if the player has collected *and* listened to all of the headmaster tapes.");
+    int num = 0;
+    for (int tapeID = 1; tapeID < 11; ++tapeID)
+    {
+      if (CollectibleGlobals.GetHeadmasterTapeCollected(tapeID) && CollectibleGlobals.GetHeadmasterTapeListened(tapeID))
+      {
+        ++num;
+        if (num == 10 && !GameGlobals.Debug)
+        {
+          PlayerPrefs.SetInt("Headmaster", 1);
+          PlayerPrefs.SetInt("a", 1);
+        }
+      }
+    }
+  }
+
+  public void CheckJournalistCompletion()
+  {
+    Debug.Log((object) "Checking to see if the player has collected *and* listened to all of the journalist tapes.");
+    int num = 0;
+    for (int tapeID = 1; tapeID < 11; ++tapeID)
+    {
+      if (CollectibleGlobals.GetTapeCollected(tapeID) && CollectibleGlobals.GetTapeListened(tapeID))
+      {
+        ++num;
+        if (num == 10 && !GameGlobals.Debug)
+        {
+          PlayerPrefs.SetInt("Journalist", 1);
+          PlayerPrefs.SetInt("a", 1);
+        }
+      }
     }
   }
 }

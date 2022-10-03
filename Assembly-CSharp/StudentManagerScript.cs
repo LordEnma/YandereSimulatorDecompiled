@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -114,6 +114,7 @@ public class StudentManagerScript : MonoBehaviour
   public OfferHelpScript OsanaOfferHelp;
   public OfferHelpScript OfferHelp;
   public Transform MaleLockerRoomChangingSpot;
+  public Transform SukebanHangoutParent;
   public Transform AltFemaleVomitSpot;
   public Transform RaibaruMentorSpot;
   public Transform SleepSpot;
@@ -180,6 +181,7 @@ public class StudentManagerScript : MonoBehaviour
   public Transform[] PerformSpots;
   public Transform[] PinDownSpots;
   public Transform[] ShockedSpots;
+  public Transform[] SukebanSpots;
   public Transform[] FridaySpots;
   public Transform[] MiyukiSpots;
   public Transform[] RandomSpots;
@@ -227,6 +229,7 @@ public class StudentManagerScript : MonoBehaviour
   public Transform EightiesLyricDesk;
   public Transform FragileSlaveSpot;
   public Transform FemaleCoupleSpot;
+  public Transform LookTargetParent;
   public Transform YandereStripSpot;
   public Transform FemaleBatheSpot;
   public Transform FemaleStalkSpot;
@@ -336,6 +339,7 @@ public class StudentManagerScript : MonoBehaviour
   public int ID;
   public bool DisableRivalDeathSloMo;
   public bool ReactedToGameLeader;
+  public bool UnequipImmediately;
   public bool EmbarassingSecret;
   public bool MurderTakingPlace;
   public bool ControllerShrink;
@@ -806,7 +810,12 @@ public class StudentManagerScript : MonoBehaviour
       this.Yandere.MainCamera.gameObject.SetActive(false);
     }
     if (StudentGlobals.UpdateRivalReputation)
+    {
+      Debug.Log((object) "''StudentGlobals.UpdateRivalReputation'' was ''true'', so we're performing math on the rival's rep now.");
+      Debug.Log((object) ("Rival's rep was: " + this.StudentReps[this.RivalID].ToString()));
       this.StudentReps[this.RivalID] = this.StudentReps[this.RivalID] - 50f;
+      Debug.Log((object) ("And now it is: " + this.StudentReps[this.RivalID].ToString()));
+    }
     this.LoadTopicsLearned();
     if (!((UnityEngine.Object) this.Police != (UnityEngine.Object) null))
       return;
@@ -962,6 +971,8 @@ public class StudentManagerScript : MonoBehaviour
             this.IdolStage.SetActive(false);
             if ((UnityEngine.Object) this.Students[this.RivalID] != (UnityEngine.Object) null)
             {
+              if (this.Week > 1)
+                this.RivalPostWeekRoutineAdjustments();
               if (this.Week == 3)
                 this.EightiesWeek3RoutineAdjustments();
               else if (this.Week == 4)
@@ -1113,8 +1124,26 @@ public class StudentManagerScript : MonoBehaviour
               student.SetOriginalActions();
             }
           }
+          if (this.Eighties)
+          {
+            for (int index = 81; index < 86; ++index)
+            {
+              if ((UnityEngine.Object) this.Students[index] != (UnityEngine.Object) null)
+              {
+                this.Students[index].Indoors = true;
+                this.Students[index].Spawned = true;
+                this.Students[index].Paired = false;
+                if ((UnityEngine.Object) this.Students[index].ShoeRemoval.Locker == (UnityEngine.Object) null)
+                  this.Students[index].ShoeRemoval.Start();
+                this.Students[index].ShoeRemoval.PutOnShoes();
+                this.Students[index].transform.position = this.SukebanHangoutParent.position;
+              }
+            }
+          }
+          Physics.SyncTransforms();
           if (Screen.width < 1280 || Screen.height < 720)
             Screen.SetResolution(1280, 720, false);
+          this.Yandere.EmptyHands();
         }
       }
       if ((double) this.Clock.HourTime > 16.9)
@@ -1749,6 +1778,8 @@ public class StudentManagerScript : MonoBehaviour
       StudentScript student = this.Students[this.ID];
       if ((UnityEngine.Object) student != (UnityEngine.Object) null)
       {
+        student.AlreadyFed = false;
+        student.Attempts = 0;
         if (student.Meeting)
           student.StopMeeting();
         if (student.WitnessedBloodPool && !student.WitnessedMurder && !student.WitnessedCorpse)
@@ -3164,6 +3195,9 @@ public class StudentManagerScript : MonoBehaviour
     this.Clock.UpdateBloom = true;
     this.Alphabet.UpdateText();
     this.ClubManager.ActivateClubBenefit();
+    this.UnequipImmediately = false;
+    if (!this.Yandere.Armed)
+      this.UnequipImmediately = true;
     this.Yandere.CanMove = true;
     this.Yandere.ClubAccessory();
     this.Yandere.Inventory.UpdateMoney();
@@ -3171,6 +3205,7 @@ public class StudentManagerScript : MonoBehaviour
     this.Yandere.WeaponManager.RestoreWeaponToStudent();
     this.Yandere.WeaponManager.UpdateDelinquentWeapons();
     this.Yandere.WeaponManager.RestoreBlood();
+    this.Yandere.ImmunityTimer = 1f;
     this.Yandere.ChangeSchoolwear();
     this.Mirror.UpdatePersona();
     if (this.Yandere.ClubAttire)
@@ -3671,6 +3706,12 @@ public class StudentManagerScript : MonoBehaviour
     this.UpdateExteriorHangout(35);
   }
 
+  public void UpdateExteriorEightiesStudents()
+  {
+    this.SukebanHangoutParent.position = this.SukebanSpots[this.Week].position;
+    this.SukebanHangoutParent.eulerAngles = this.SukebanSpots[this.Week].eulerAngles;
+  }
+
   public void UpdateLunchtimeStudents()
   {
     Debug.Log((object) "It's lunchtime during Osana's week, so certain students are having their routines adjusted.");
@@ -3813,6 +3854,23 @@ public class StudentManagerScript : MonoBehaviour
     this.scheduleBlock.destination = "Week2Hangout";
     this.scheduleBlock.action = "Socialize";
     this.Students[StudentID].GetDestinations();
+  }
+
+  public void RivalPostWeekRoutineAdjustments()
+  {
+    if (this.Week <= 1 || !((UnityEngine.Object) this.Students[11] != (UnityEngine.Object) null))
+      return;
+    Debug.Log((object) "Attempting to update Rival #1's routine.");
+    this.EightiesHangouts.List[11].position = new Vector3(-31f, 0.0f, 0.0f);
+    this.EightiesHangouts.List[11].eulerAngles = new Vector3(0.0f, 90f, 0.0f);
+    this.scheduleBlock = this.Students[11].ScheduleBlocks[2];
+    this.scheduleBlock.destination = "Hangout";
+    this.scheduleBlock.action = "Gaming";
+    this.scheduleBlock = this.Students[11].ScheduleBlocks[7];
+    this.scheduleBlock.destination = "Hangout";
+    this.scheduleBlock.action = "Gaming";
+    this.Students[11].GameAnim = "f02_observeKitten_00";
+    this.Students[11].GetDestinations();
   }
 
   public void EightiesWeek3RoutineAdjustments()
@@ -4547,6 +4605,15 @@ label_6:
         Debug.Log((object) ("Under the impression that Student #" + index.ToString() + "'s Attack Prompt is visible."));
         this.AttackPromptActive = true;
       }
+    }
+  }
+
+  public void LookAtTest()
+  {
+    foreach (StudentScript student in this.Students)
+    {
+      if ((UnityEngine.Object) student != (UnityEngine.Object) null)
+        student.SimpleLook.enabled = true;
     }
   }
 }

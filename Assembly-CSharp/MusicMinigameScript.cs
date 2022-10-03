@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MusicMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -529,6 +529,13 @@ public class MusicMinigameScript : MonoBehaviour
       PlayerPrefs.SetFloat("TempReputation", this.Health - 100f);
     else
       PlayerPrefs.SetFloat("TempReputation", 0.0f);
+    Debug.Log((object) ("Health is: " + this.Health.ToString()));
+    if ((double) this.Health > 0.0 && !GameGlobals.Debug)
+    {
+      Debug.Log((object) "Setting ''Panther'' achievement true.");
+      PlayerPrefs.SetInt("Panther", 1);
+      PlayerPrefs.SetInt("a", 1);
+    }
     Debug.Log((object) ("And now, after playing the Light Music Club minigame, we should gain " + PlayerPrefs.GetFloat("TempReputation").ToString() + " reputation points."));
     foreach (GameObject rootGameObject in SceneManager.GetActiveScene().GetRootGameObjects())
       rootGameObject.SetActive(true);

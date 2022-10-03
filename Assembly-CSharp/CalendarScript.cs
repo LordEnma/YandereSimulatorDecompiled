@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CalendarScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -63,6 +63,8 @@ public class CalendarScript : MonoBehaviour
   public UILabel[] Labels;
   public GameObject SundayLabel;
   public GameObject EndingLabel;
+  public UISprite[] Borders;
+  public UISprite[] BGs;
   public Font VCR;
 
   private void Start()
@@ -714,14 +716,30 @@ label_92:
 
   public void EightiesifyAllLabels()
   {
+    this.ResetWeekWindow.SetActive(true);
+    this.ConfirmationWindow.SetActive(true);
+    this.SkipConfirmationWindow.SetActive(true);
+    this.CongratulationsWindow.SetActive(true);
+    this.ClubKickWindow.SetActive(true);
+    this.AmaiWindow.SetActive(true);
     this.Labels = UnityEngine.Object.FindSceneObjectsOfType(typeof (UILabel)) as UILabel[];
     for (int index = 0; index < this.Labels.Length; ++index)
       this.EightiesifyLabel(this.Labels[index]);
     this.EightiesifyLabel(this.SkipLabel);
+    foreach (UIWidget border in this.Borders)
+      border.color = new Color(1f, 1f, 1f, 1f);
+    foreach (UIWidget bg in this.BGs)
+      bg.color = new Color(0.0f, 0.0f, 0.75f, 1f);
     this.CongratsBorder.color = new Color(1f, 1f, 1f, 1f);
     this.CongratsBG.color = new Color(0.0f, 0.0f, 0.75f, 1f);
     this.EightiesifyLabel(this.CongratsConfirmLabel);
     this.EightiesifyLabel(this.CongratsLabel);
+    this.ResetWeekWindow.SetActive(false);
+    this.ConfirmationWindow.SetActive(false);
+    this.SkipConfirmationWindow.SetActive(false);
+    this.CongratulationsWindow.SetActive(false);
+    this.ClubKickWindow.SetActive(false);
+    this.AmaiWindow.SetActive(false);
   }
 
   public void EightiesifyLabel(UILabel Label)
@@ -731,6 +749,9 @@ label_92:
     Label.color = new Color(1f, 1f, 1f, 1f);
     Label.effectStyle = UILabel.Effect.Outline8;
     Label.effectColor = new Color(0.0f, 0.0f, 0.0f, 1f);
+    if (!Label.text.Contains("Warning") || (double) Label.transform.localPosition.y >= 0.0)
+      return;
+    Label.color = new Color(1f, 0.0f, 0.0f, 1f);
   }
 
   public void ResetSaveFile()

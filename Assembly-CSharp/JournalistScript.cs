@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: JournalistScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
@@ -194,7 +194,7 @@ public class JournalistScript : MonoBehaviour
           return;
         for (int index = 0; index < this.Yandere.StudentManager.Police.Corpses; ++index)
         {
-          if ((Object) this.Yandere.StudentManager.Police.CorpseList[index] != (Object) null && (double) Vector3.Distance(this.transform.position, this.Yandere.StudentManager.Police.CorpseList[index].transform.position) < 10.0)
+          if ((Object) this.Yandere.StudentManager.Police.CorpseList[index] != (Object) null && !this.Yandere.StudentManager.Police.CorpseList[index].Concealed && (double) Vector3.Distance(this.transform.position, this.Yandere.StudentManager.Police.CorpseList[index].transform.position) < 10.0)
           {
             this.Corpse = this.Yandere.StudentManager.Police.CorpseList[index];
             this.Freeze = true;
@@ -272,6 +272,8 @@ public class JournalistScript : MonoBehaviour
   {
     if (!this.Yandere.CanMove || this.Yandere.Egg || !this.Yandere.Chased && this.Yandere.Chasers <= 0 && (double) this.Yandere.MurderousActionTimer <= 0.0 && (double) this.Yandere.PotentiallyMurderousTimer <= 0.0 && (!this.Yandere.Armed || !this.Yandere.EquippedWeapon.Bloody) && (!this.Yandere.Carrying || this.Yandere.CurrentRagdoll.Concealed) && (!this.Yandere.Dragging || this.Yandere.CurrentRagdoll.Concealed) && ((double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood <= 0.0 || this.Yandere.Paint || !this.Yandere.MyProjector.enabled) && (!((Object) this.Yandere.PickUp != (Object) null) || !(bool) (Object) this.Yandere.PickUp.BodyPart || this.Yandere.PickUp.Garbage))
       return;
+    if (this.Yandere.Carrying)
+      Debug.Log((object) ("Yandere.CurrentRagdoll.Concealed is: " + this.Yandere.CurrentRagdoll.Concealed.ToString()));
     this.Chase();
   }
 

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YanvaniaYanmontScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -310,14 +310,14 @@ public class YanvaniaYanmontScript : MonoBehaviour
           this.moveDirection.x = 0.0f;
           if (this.grounded)
           {
-            if ((double) this.transform.position.x > -34.0)
+            if ((double) this.transform.position.x > -33.900001525878906)
             {
               this.Character.transform.localEulerAngles = new Vector3(this.Character.transform.localEulerAngles.x, -90f, this.Character.transform.localEulerAngles.z);
               this.Character.transform.localScale = new Vector3(1f, this.Character.transform.localScale.y, this.Character.transform.localScale.z);
               this.transform.position = new Vector3(Mathf.MoveTowards(this.transform.position.x, -34f, Time.deltaTime * this.walkSpeed), this.transform.position.y, this.transform.position.z);
               this.MyAnimation.CrossFade(this.WalkAnim);
             }
-            else if ((double) this.transform.position.x < -34.0)
+            else if ((double) this.transform.position.x < -34.099998474121094)
             {
               this.Character.transform.localEulerAngles = new Vector3(this.Character.transform.localEulerAngles.x, 90f, this.Character.transform.localEulerAngles.z);
               this.Character.transform.localScale = new Vector3(-1f, this.Character.transform.localScale.y, this.Character.transform.localScale.z);

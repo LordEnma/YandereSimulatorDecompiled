@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YakuzaMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -501,7 +501,12 @@ public class YakuzaMenuScript : MonoBehaviour
             PlayerGlobals.Money += (float) this.Payout;
             this.UpdateMoneyLabel();
             if ((double) PlayerGlobals.Money > 1000.0)
-              PlayerPrefs.SetInt("RichGirl", 1);
+            {
+              if (!GameGlobals.Debug)
+                PlayerPrefs.SetInt("RichGirl", 1);
+              if (!GameGlobals.Debug)
+                PlayerPrefs.SetInt("a", 1);
+            }
             this.DeprisonStudents();
             this.CountPrisoners();
             this.UpdateRansomPortraits();
@@ -839,6 +844,10 @@ public class YakuzaMenuScript : MonoBehaviour
     this.Speed = 0.0f;
     this.PromptBar.ClearButtons();
     this.PromptBar.Show = false;
+    if (GameGlobals.Debug)
+      return;
+    PlayerPrefs.SetInt("Yakuza", 1);
+    PlayerPrefs.SetInt("a", 1);
   }
 
   private void SummonContrabandMenu()

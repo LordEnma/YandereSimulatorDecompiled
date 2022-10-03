@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClockScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 76B31E51-17DB-470B-BEBA-6CF1F4AD2F4E
+// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -152,7 +152,7 @@ public class ClockScript : MonoBehaviour
       this.BloomIntensity = 11f;
       this.UpdateBloom = true;
     }
-    this.DayLabel.text = this.GetWeekdayText(DateGlobals.Weekday) + ", WEEK " + DateGlobals.Week.ToString();
+    this.DayLabel.text = !GameGlobals.Eighties ? this.GetWeekdayText(DateGlobals.Weekday) + ", WEEK " + DateGlobals.Week.ToString() : this.GetWeekdayText(DateGlobals.Weekday) ?? "";
     this.MainLight.color = new Color(1f, 1f, 1f, 1f);
     RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f, 1f);
     RenderSettings.skybox.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f));
@@ -197,10 +197,7 @@ public class ClockScript : MonoBehaviour
         this.Yandere.RPGCamera.enabled = true;
         this.Yandere.CanMove = true;
         if (!this.StudentManager.CameFromLoad)
-        {
-          Debug.Log((object) "We did NOT just come from a load, so...");
           this.GivePlayerBroughtWeapon();
-        }
       }
     }
     if ((double) this.PresentTime < 1080.0)
@@ -486,7 +483,8 @@ label_72:
 
   public void ActivateLateStudent()
   {
-    if (!this.StudentManager.MissionMode && (UnityEngine.Object) this.StudentManager.Students[7] != (UnityEngine.Object) null)
+    Debug.Log((object) "Activating the late student, Otohiko.");
+    if (!this.StudentManager.MissionMode && (UnityEngine.Object) this.StudentManager.Students[7] != (UnityEngine.Object) null && this.StudentManager.Students[7].Alive)
     {
       this.StudentManager.Students[7].gameObject.SetActive(true);
       this.StudentManager.Students[7].Pathfinding.speed = 4f;
@@ -524,7 +522,6 @@ label_72:
 
   public void GivePlayerBroughtWeapon()
   {
-    Debug.Log((object) "Giving the player the weapon that was brought from home.");
     int bringingItem = PlayerGlobals.BringingItem;
     if (bringingItem <= 0 || bringingItem >= this.Police.EndOfDay.WeaponManager.BroughtWeapons.Length)
       return;
