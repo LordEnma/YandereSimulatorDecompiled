@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YakuzaMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -941,10 +941,15 @@ public class YakuzaMenuScript : MonoBehaviour
       {
         if (StudentGlobals.Prisoner1 == this.KidnapTargets[index] || StudentGlobals.Prisoner2 == this.KidnapTargets[index] || StudentGlobals.Prisoner3 == this.KidnapTargets[index] || StudentGlobals.Prisoner4 == this.KidnapTargets[index] || StudentGlobals.Prisoner5 == this.KidnapTargets[index] || StudentGlobals.Prisoner6 == this.KidnapTargets[index] || StudentGlobals.Prisoner7 == this.KidnapTargets[index] || StudentGlobals.Prisoner8 == this.KidnapTargets[index] || StudentGlobals.Prisoner9 == this.KidnapTargets[index] || StudentGlobals.Prisoner10 == this.KidnapTargets[index])
         {
-          this.Payout += this.Ransom[this.KidnapTargets[index]];
-          ++this.Prisoners;
-          Debug.Log((object) ("We have counted " + this.Prisoners.ToString() + " prisoners."));
-          this.PrisonerList[this.Prisoners] = this.KidnapTargets[index];
+          if (StudentGlobals.GetStudentHealth(this.KidnapTargets[index]) > 0)
+          {
+            this.Payout += this.Ransom[this.KidnapTargets[index]];
+            ++this.Prisoners;
+            Debug.Log((object) ("We have counted " + this.Prisoners.ToString() + " prisoners."));
+            this.PrisonerList[this.Prisoners] = this.KidnapTargets[index];
+          }
+          else
+            Debug.Log((object) "One of the Yakuza's desired girls is a prisoner in our basement, but she's dead.");
         }
       }
     }

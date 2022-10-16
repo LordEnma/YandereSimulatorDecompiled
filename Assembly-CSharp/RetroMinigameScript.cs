@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RetroMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -11,8 +11,11 @@ public class RetroMinigameScript : MonoBehaviour
   public GameObject GameOverGraphic;
   public GameObject MinigameCamera;
   public GameObject Heart;
+  public Texture ModernTexture;
+  public UITexture MyRenderer;
   public GameObject[] PipeSet;
   public UILabel ScoreLabel;
+  public float GameOverTimer;
   public float Momentum;
   public bool GameOver;
   public float Speed;
@@ -21,7 +24,7 @@ public class RetroMinigameScript : MonoBehaviour
 
   private void Start()
   {
-    this.Heart.transform.localPosition = new Vector3(-3.125f, 0.0f, 1.5f);
+    this.Heart.transform.localPosition = new Vector3(-3.125f, 0.0f, 1f);
     this.PipeSet[1].transform.localPosition = new Vector3(8f, Random.RandomRange(-1.52f, 1.52f), 1f);
     this.PipeSet[2].transform.localPosition = new Vector3(13f, Random.RandomRange(-1.52f, 1.52f), 1f);
     this.PipeSet[3].transform.localPosition = new Vector3(18f, Random.RandomRange(-1.52f, 1.52f), 1f);
@@ -29,8 +32,9 @@ public class RetroMinigameScript : MonoBehaviour
     this.PipeSet[5].transform.localPosition = new Vector3(28f, Random.RandomRange(-1.52f, 1.52f), 1f);
     this.GameOverGraphic.SetActive(false);
     this.ScoreLabel.text = "0";
+    this.GameOverTimer = 0.0f;
     this.GameOver = false;
-    this.Momentum = 1f;
+    this.Momentum = 2f;
     this.Score = 0;
     this.Speed = 2f;
   }
@@ -66,17 +70,18 @@ public class RetroMinigameScript : MonoBehaviour
           this.Momentum = 1f;
         if ((double) this.Heart.transform.localPosition.y > 4.5999999046325684)
         {
-          this.Heart.transform.localPosition = new Vector3(-3.125f, 4.6f, 1.5f);
+          this.Heart.transform.localPosition = new Vector3(-3.125f, 4.6f, 1f);
           this.Momentum = 0.0f;
         }
         if ((double) this.Heart.transform.localPosition.y > -4.5999999046325684)
           return;
-        this.Heart.transform.localPosition = new Vector3(-3.125f, -4.6f, 1.5f);
+        this.Heart.transform.localPosition = new Vector3(-3.125f, -4.6f, 1f);
         this.GetGameOver();
       }
       else
       {
-        if (!Input.GetButtonDown("A"))
+        this.GameOverTimer += Time.unscaledDeltaTime;
+        if ((double) this.GameOverTimer <= 1.0 || !Input.GetButtonDown("A"))
           return;
         this.Start();
       }

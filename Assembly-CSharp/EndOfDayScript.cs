@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using System.Collections.Generic;
@@ -331,8 +331,6 @@ public class EndOfDayScript : MonoBehaviour
   public void UpdateScene()
   {
     this.Label.color = new Color(0.0f, 0.0f, 0.0f, 1f);
-    if (!this.PoliceArrived)
-      return;
     if (this.Phase != 14)
     {
       for (int index = 0; index < this.Yandere.Weapon.Length; ++index)
@@ -1021,7 +1019,7 @@ public class EndOfDayScript : MonoBehaviour
         if (this.Counselor.LectureID > 0)
         {
           this.Yandere.gameObject.SetActive(false);
-          for (int DisableID = 1; DisableID < 101; ++DisableID)
+          for (int DisableID = 1; DisableID < 100; ++DisableID)
             this.StudentManager.DisableStudent(DisableID);
           this.EODCamera.position = new Vector3(-18.5f, 1f, 6.5f);
           this.EODCamera.eulerAngles = new Vector3(0.0f, -45f, 0.0f);
@@ -1394,7 +1392,7 @@ public class EndOfDayScript : MonoBehaviour
     }
     else if (this.Phase == 25)
     {
-      for (int DisableID = 1; DisableID < 101; ++DisableID)
+      for (int DisableID = 1; DisableID < 100; ++DisableID)
         this.StudentManager.DisableStudent(DisableID);
       this.LoveManager.Suitor = this.Senpai;
       this.LoveManager.Rival = this.Rival;
@@ -2047,6 +2045,7 @@ public class EndOfDayScript : MonoBehaviour
     this.RemovableItemManager.RemoveItems();
     if (this.PoliceArrived)
     {
+      Debug.Log((object) "THE POLICE ARRIVED, ALLEGEDLY?????");
       GameGlobals.PoliceYesterday = true;
       ++PlayerGlobals.PoliceVisits;
     }

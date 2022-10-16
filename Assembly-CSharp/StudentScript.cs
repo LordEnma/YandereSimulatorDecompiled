@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
 using System;
@@ -7022,6 +7022,8 @@ label_273:
                           if ((UnityEngine.Object) this.MyReporter.Outlines[this.ID] != (UnityEngine.Object) null)
                             this.MyReporter.Outlines[this.ID].color = new Color(1f, 1f, 0.0f, 1f);
                         }
+                        if (this.MyReporter.BeforeReturnAnim != "")
+                          this.MyReporter.WalkAnim = this.MyReporter.BeforeReturnAnim;
                       }
                       this.BloodPool.GetComponent<WeaponScript>().Prompt.enabled = false;
                       this.BloodPool.GetComponent<WeaponScript>().Prompt.Hide();
@@ -15191,6 +15193,9 @@ label_273:
     this.HeardScream = false;
     this.DiscCheck = false;
     this.Routine = true;
+    if (!(this.BeforeReturnAnim != ""))
+      return;
+    this.WalkAnim = this.BeforeReturnAnim;
   }
 
   public void Jog()
@@ -15862,6 +15867,7 @@ label_273:
         --this.Yandere.Followers;
         this.Following = false;
       }
+      this.BeforeReturnAnim = this.WalkAnim;
       this.WalkAnim = this.OriginalWalkAnim;
       this.CharacterAnimation.CrossFade(this.WalkAnim);
       this.CurrentDestination = this.BloodPool;

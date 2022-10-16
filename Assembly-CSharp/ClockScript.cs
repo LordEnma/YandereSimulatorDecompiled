@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClockScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using UnityEngine;
@@ -408,8 +408,10 @@ label_72:
     this.Yandere.CharacterAnimation["f02_timeSkip_00"].speed = 1f / Time.timeScale;
     if ((double) this.PresentTime > (double) this.TargetTime)
       this.EndTimeSkip();
-    if (Input.GetButtonDown("A"))
+    if ((double) this.Yandere.PauseScreen.transform.localPosition.x == 1351.0 && Input.GetButtonDown("A"))
     {
+      if (!this.StudentManager.Eighties)
+        this.RetroMinigame.MyRenderer.mainTexture = this.RetroMinigame.ModernTexture;
       this.Yandere.PauseScreen.PromptBar.Label[0].text = "Jump / Retry";
       this.RetroMinigame.gameObject.SetActive(true);
       this.RetroMinigame.Show = true;

@@ -1,14 +1,15 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CraftableItemScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
 public class CraftableItemScript : MonoBehaviour
 {
   public PromptScript Prompt;
+  public bool DoNotDisappear;
   public bool Chemistry;
   public int ID;
 
@@ -81,6 +82,8 @@ public class CraftableItemScript : MonoBehaviour
         break;
     }
     this.Prompt.Hide();
+    if (this.DoNotDisappear)
+      return;
     this.gameObject.SetActive(false);
   }
 }

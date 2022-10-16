@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomePrisonerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using UnityEngine;
@@ -27,6 +27,7 @@ public class HomePrisonerScript : MonoBehaviour
   public Transform TortureDestination;
   public Transform TortureTarget;
   public GameObject NowLoading;
+  public GameObject YesButton;
   public Transform Highlight;
   public AudioSource Jukebox;
   public GameObject MyFlies;
@@ -35,6 +36,7 @@ public class HomePrisonerScript : MonoBehaviour
   public UILabel SanityLabel;
   public UILabel DescLabel;
   public UILabel Subtitle;
+  public UILabel NoLabel;
   public bool PlayedAudio;
   public bool ZoomIn;
   public float Timer;
@@ -182,6 +184,12 @@ public class HomePrisonerScript : MonoBehaviour
       this.OptionLabels[5].alpha = 0.5f;
       if (HomeGlobals.Night)
         this.ConfirmationLabel.text = "Disposing of this corpse will take several hours. You will go to sleep after completing the task. Are you ready to dispose of the corpse now?";
+      else if (DateGlobals.Weekday == DayOfWeek.Friday && GameGlobals.RivalEliminationID == 0)
+      {
+        this.ConfirmationLabel.text = "You can't dispose of a corpse today. You need to go to school and eliminate your rival before she confesses to the boy you love.";
+        this.YesButton.SetActive(false);
+        this.NoLabel.text = "Back";
+      }
     }
     if (!this.Initialized)
     {
@@ -249,7 +257,7 @@ public class HomePrisonerScript : MonoBehaviour
     {
       if (this.ConfirmationWindow.activeInHierarchy)
       {
-        if (Input.GetButtonDown("A"))
+        if (this.YesButton.activeInHierarchy && Input.GetButtonDown("A"))
         {
           StudentGlobals.SetStudentDead(this.PrisonerManager.StudentID, true);
           if (this.PrisonerManager.ChosenPrisoner == 1)

@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PoliceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using System.Collections.Generic;
@@ -442,6 +442,7 @@ public class PoliceScript : MonoBehaviour
     if (this.Show)
     {
       this.Yandere.MyListener.enabled = false;
+      this.EndOfDay.PoliceArrived = true;
       this.EndOfDay.gameObject.SetActive(true);
       this.EndOfDay.enabled = true;
       this.enabled = false;
