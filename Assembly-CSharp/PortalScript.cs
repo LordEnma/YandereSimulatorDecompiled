@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PortalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -109,7 +109,22 @@ public class PortalScript : MonoBehaviour
         if (component.gameObject.activeInHierarchy)
           ++num;
       }
-      if (!this.BypassWarning && this.Police.Corpses - this.Police.HiddenCorpses > 0 || !this.BypassWarning && num > 0 || !this.BypassWarning && this.Police.BloodParent.childCount > 0 || !this.BypassWarning && this.Police.BloodyClothing > 0 || !this.BypassWarning && this.Police.BloodyWeapons > 0)
+      int bloodyWeapons = this.Police.BloodyWeapons;
+      Debug.Log((object) ("Counting bloody weapons. For starters, Police.BloodyWeapons is: " + this.Police.BloodyWeapons.ToString()));
+      foreach (TrashCanScript trashCan in this.StudentManager.TrashCans)
+      {
+        if ((Object) trashCan.ConcealedWeapon != (Object) null && trashCan.ConcealedWeapon.Bloody)
+        {
+          Debug.Log((object) "One of the bloody weapons is inside of a trash can, though, so we should subtract it from the list...");
+          --bloodyWeapons;
+        }
+      }
+      if ((Object) this.StudentManager.WeaponBag.Container.TrashCan.ConcealedWeapon != (Object) null && this.StudentManager.WeaponBag.Container.TrashCan.ConcealedWeapon.Bloody)
+      {
+        Debug.Log((object) "One of the bloody weapons is inside of the weapon bag, though, so we should subtract it from the list...");
+        --bloodyWeapons;
+      }
+      if (!this.BypassWarning && this.Police.Corpses - this.Police.HiddenCorpses > 0 || !this.BypassWarning && num > 0 || !this.BypassWarning && this.Police.BloodParent.childCount > 0 || !this.BypassWarning && this.Police.BloodyClothing > 0 || !this.BypassWarning && bloodyWeapons > 0)
       {
         string str = "";
         if (this.WashingMachine.Washing)
@@ -118,7 +133,7 @@ public class PortalScript : MonoBehaviour
         this.BodyPartsLabel.text = "Body Parts: " + num.ToString();
         this.BloodStainsLabel.text = "Blood Stains: " + this.Police.BloodParent.childCount.ToString();
         this.BloodyClothingLabel.text = "Bloody Clothing: " + this.Police.BloodyClothing.ToString() + str;
-        this.BloodyWeaponsLabel.text = "Bloody Weapons: " + this.Police.BloodyWeapons.ToString();
+        this.BloodyWeaponsLabel.text = "Bloody Weapons: " + bloodyWeapons.ToString();
         if ((double) this.Clock.HourTime > 13.5)
         {
           this.BottomLabel.text = "If you try to leave school right now, the police will be called.";

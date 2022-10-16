@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PrisonerManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -15,6 +15,7 @@ public class PrisonerManagerScript : MonoBehaviour
   public Transform[] Target;
   public UILabel[] PrisonerLabel;
   public GameObject[] Boxes;
+  public GameObject[] Tapes;
   public string[] IdleAnims;
   public Vector3 OriginalDestination;
   public Vector3 OriginalTarget;
@@ -24,13 +25,18 @@ public class PrisonerManagerScript : MonoBehaviour
   public int PrisonersSpawned;
   public int ChosenPrisoner;
   public int StudentID;
+  public int TotalShuffles;
 
   private void Start()
   {
     this.OriginalDestination = this.Destination[0].transform.position;
     this.OriginalTarget = this.Target[0].transform.position;
     for (int index = 1; index < this.Boxes.Length; ++index)
+    {
       this.Boxes[index].SetActive(true);
+      if ((Object) this.Tapes[index] != (Object) null)
+        this.Tapes[index].SetActive(false);
+    }
     this.ShufflePrisoners();
     if (StudentGlobals.Prisoner1 > 0)
       ++this.PrisonersToSpawn;
@@ -88,7 +94,30 @@ public class PrisonerManagerScript : MonoBehaviour
         component2.Cosmetic.Start();
       }
       this.Boxes[this.PrisonersSpawned + 1].SetActive(false);
+      if ((Object) this.Tapes[this.PrisonersSpawned + 1] != (Object) null)
+        this.Tapes[this.PrisonersSpawned + 1].SetActive(true);
     }
+    if (StudentGlobals.Prisoner1 > 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner1) < 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner1, 0);
+    if (StudentGlobals.Prisoner2 > 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner2) < 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner2, 0);
+    if (StudentGlobals.Prisoner3 > 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner3) < 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner3, 0);
+    if (StudentGlobals.Prisoner4 > 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner4) < 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner4, 0);
+    if (StudentGlobals.Prisoner5 > 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner5) < 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner5, 0);
+    if (StudentGlobals.Prisoner6 > 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner6) < 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner6, 0);
+    if (StudentGlobals.Prisoner7 > 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner7) < 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner7, 0);
+    if (StudentGlobals.Prisoner8 > 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner8) < 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner8, 0);
+    if (StudentGlobals.Prisoner9 > 0 && StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner9) < 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner9, 0);
+    if (StudentGlobals.Prisoner10 <= 0 || StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner10) >= 0)
+      return;
+    StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner10, 0);
   }
 
   private void Update()
@@ -267,6 +296,10 @@ public class PrisonerManagerScript : MonoBehaviour
     if (num <= 0)
       return;
     Debug.Log((object) "Yeah, we needed to shuffle 'em!");
-    this.ShufflePrisoners();
+    ++this.TotalShuffles;
+    if (this.TotalShuffles < 100)
+      this.ShufflePrisoners();
+    else
+      Debug.Log((object) "Holy fuck, we just shuffled over 100 times. Something went wrong.");
   }
 }

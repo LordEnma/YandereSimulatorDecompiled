@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeDarknessScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -19,6 +19,7 @@ public class HomeDarknessScript : MonoBehaviour
   public UILabel BasementLabel;
   public UISprite Sprite;
   public bool Cyberstalking;
+  public bool Disposing;
   public bool FadeSlow;
   public bool FadeOut;
 
@@ -48,6 +49,8 @@ public class HomeDarknessScript : MonoBehaviour
           {
             if (DateGlobals.PassDays < 1)
               DateGlobals.PassDays = 1;
+            if (DateGlobals.Weekday != DayOfWeek.Friday)
+              DateGlobals.ForceSkip = true;
             SceneManager.LoadScene("CalendarScene");
           }
           else
@@ -70,10 +73,29 @@ public class HomeDarknessScript : MonoBehaviour
         }
         else if (this.HomeCamera.ID == 10)
         {
-          StudentGlobals.SetStudentKidnapped(this.PrisonerManager.StudentID, false);
-          StudentGlobals.StudentSlave = this.PrisonerManager.StudentID;
-          StudentGlobals.PrisonerChosen = this.PrisonerManager.ChosenPrisoner;
-          this.CheckForOsanaThursday();
+          if (this.Disposing)
+          {
+            if (!HomeGlobals.Night)
+            {
+              HomeGlobals.Night = true;
+              SceneManager.LoadScene("HomeScene");
+            }
+            else
+            {
+              if (DateGlobals.PassDays < 1)
+                DateGlobals.PassDays = 1;
+              if (DateGlobals.Weekday != DayOfWeek.Friday)
+                DateGlobals.ForceSkip = true;
+              SceneManager.LoadScene("CalendarScene");
+            }
+          }
+          else
+          {
+            StudentGlobals.SetStudentKidnapped(this.PrisonerManager.StudentID, false);
+            StudentGlobals.StudentSlave = this.PrisonerManager.StudentID;
+            StudentGlobals.PrisonerChosen = this.PrisonerManager.ChosenPrisoner;
+            this.CheckForOsanaThursday();
+          }
         }
         else if (this.HomeCamera.ID == 11)
         {

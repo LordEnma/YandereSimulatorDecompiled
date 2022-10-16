@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TreeTestScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -15,8 +15,13 @@ public class TreeTestScript : MonoBehaviour
   public int Command;
   public int PetalID;
   public int TreeID;
+  public int Is;
   public int Us;
   public int Ys;
+  public GameObject MinimapCamera;
+  public CameraFilterPack_Color_BrightContrastSaturation Contrast;
+  public CameraFilterPack_Color_GrayScale Gray;
+  public CameraFilterPack_Color_RGB RGB;
 
   private void Update()
   {
@@ -67,11 +72,39 @@ public class TreeTestScript : MonoBehaviour
         }
       }
     }
-    if (!Input.GetKeyDown("u"))
+    if (!Input.GetKeyDown("i"))
       return;
-    ++this.Us;
-    if (this.Us <= 9)
-      return;
-    this.StudentManager.LookAtTest();
+    ++this.Is;
+    if (this.Is == 10)
+      this.StudentManager.MiniMapTest();
+    else if (this.Is == 11)
+    {
+      if ((Object) this.Gray == (Object) null)
+      {
+        this.Gray = this.MinimapCamera.AddComponent<CameraFilterPack_Color_GrayScale>();
+        this.RGB = this.MinimapCamera.AddComponent<CameraFilterPack_Color_RGB>();
+        this.Contrast = this.MinimapCamera.AddComponent<CameraFilterPack_Color_BrightContrastSaturation>();
+        this.RGB.ColorRGB = new Color(1f, 0.75f, 1f, 1f);
+        this.Contrast.Brightness = 2f;
+        this.Contrast.Saturation = 1f;
+        this.Contrast.Contrast = 0.5f;
+      }
+      else
+      {
+        this.Gray.enabled = true;
+        this.RGB.enabled = true;
+        this.Contrast.enabled = true;
+      }
+    }
+    else
+    {
+      if (this.Is != 12)
+        return;
+      this.StudentManager.MiniMap.SetActive(false);
+      this.Gray.enabled = false;
+      this.RGB.enabled = false;
+      this.Contrast.enabled = false;
+      this.Is = 9;
+    }
   }
 }

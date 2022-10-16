@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClockScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -15,6 +15,7 @@ public class ClockScript : MonoBehaviour
   public Collider MeetingRoomTrespassZone;
   public Collider[] TrespassZones;
   public PostProcessingProfile Profile;
+  public RetroMinigameScript RetroMinigame;
   public StudentManagerScript StudentManager;
   public CameraEffectsScript CameraEffects;
   public LoveManagerScript LoveManager;
@@ -152,7 +153,7 @@ public class ClockScript : MonoBehaviour
       this.BloomIntensity = 11f;
       this.UpdateBloom = true;
     }
-    this.DayLabel.text = !GameGlobals.Eighties ? this.GetWeekdayText(DateGlobals.Weekday) + ", WEEK " + DateGlobals.Week.ToString() : this.GetWeekdayText(DateGlobals.Weekday) ?? "";
+    this.DayLabel.text = !GameGlobals.EightiesTutorial ? this.GetWeekdayText(DateGlobals.Weekday) + ", WEEK " + DateGlobals.Week.ToString() : this.GetWeekdayText(DateGlobals.Weekday) ?? "";
     this.MainLight.color = new Color(1f, 1f, 1f, 1f);
     RenderSettings.ambientLight = new Color(0.75f, 0.75f, 0.75f, 1f);
     RenderSettings.skybox.SetColor("_Tint", new Color(0.5f, 0.5f, 0.5f));
@@ -407,9 +408,18 @@ label_72:
     this.Yandere.CharacterAnimation["f02_timeSkip_00"].speed = 1f / Time.timeScale;
     if ((double) this.PresentTime > (double) this.TargetTime)
       this.EndTimeSkip();
-    if ((double) this.Yandere.CameraEffects.Streaks.color.a <= 0.0 && (double) this.Yandere.CameraEffects.MurderStreaks.color.a <= 0.0 && !this.Yandere.NearSenpai && !Input.GetButtonDown("B"))
-      return;
-    this.EndTimeSkip();
+    if (Input.GetButtonDown("A"))
+    {
+      this.Yandere.PauseScreen.PromptBar.Label[0].text = "Jump / Retry";
+      this.RetroMinigame.gameObject.SetActive(true);
+      this.RetroMinigame.Show = true;
+    }
+    else
+    {
+      if ((double) this.Yandere.CameraEffects.Streaks.color.a <= 0.0 && (double) this.Yandere.CameraEffects.MurderStreaks.color.a <= 0.0 && !this.Yandere.NearSenpai && !Input.GetButtonDown("B"))
+        return;
+      this.EndTimeSkip();
+    }
   }
 
   public void EndTimeSkip()
@@ -427,10 +437,13 @@ label_72:
     this.TimeSkip = false;
     this.HalfwayTime = 0.0f;
     this.TimeSkipSpeed = 1f;
-    if (this.Yandere.Noticed || this.Police.FadeOut || this.Yandere.Attacked)
-      return;
-    this.Yandere.CharacterAnimation.CrossFade(this.Yandere.IdleAnim);
-    this.Yandere.CanMoveTimer = 0.5f;
+    if (!this.Yandere.Noticed && !this.Police.FadeOut && !this.Yandere.Attacked)
+    {
+      this.Yandere.CharacterAnimation.CrossFade(this.Yandere.IdleAnim);
+      this.Yandere.CanMoveTimer = 0.5f;
+    }
+    this.RetroMinigame.MinigameCamera.SetActive(false);
+    this.RetroMinigame.Show = false;
   }
 
   public string GetWeekdayText(DayOfWeek weekday)

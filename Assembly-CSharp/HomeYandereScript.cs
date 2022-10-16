@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeYandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -263,28 +263,6 @@ public class HomeYandereScript : MonoBehaviour
     Rigidbody component = this.GetComponent<Rigidbody>();
     if ((UnityEngine.Object) component != (UnityEngine.Object) null)
       component.velocity = Vector3.zero;
-    if (Input.GetKeyDown(KeyCode.K))
-    {
-      ++this.Kidnap;
-      if (this.Kidnap > 10)
-      {
-        StudentGlobals.Prisoners = 1;
-        StudentGlobals.Prisoner1 = 11;
-        StudentGlobals.SetStudentSanity(11, 100);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-      }
-    }
-    if (Input.GetKeyDown(KeyCode.J))
-    {
-      ++this.Kidnap;
-      if (this.Kidnap > 10)
-      {
-        StudentGlobals.Prisoners = 1;
-        StudentGlobals.Prisoner1 = 10;
-        StudentGlobals.SetStudentSanity(10, 100);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-      }
-    }
     if ((double) this.transform.position.y >= -10.0)
       return;
     this.transform.position = new Vector3(this.transform.position.x, -10f, this.transform.position.z);

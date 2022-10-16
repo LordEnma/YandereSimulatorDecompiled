@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -258,6 +258,7 @@ public class EndOfDayScript : MonoBehaviour
         this.EyeWitnessScene.SetActive(false);
         this.ScaredCops.SetActive(false);
         this.EightiesGaudyRing.SetActive(false);
+        this.Yandere.LookAt.enabled = false;
         if ((UnityEngine.Object) this.WitnessList[1] != (UnityEngine.Object) null)
           this.WitnessList[1].gameObject.SetActive(false);
         if ((UnityEngine.Object) this.WitnessList[2] != (UnityEngine.Object) null)
@@ -291,6 +292,7 @@ public class EndOfDayScript : MonoBehaviour
           }
           this.MainCamera.SetActive(false);
           this.gameObject.SetActive(false);
+          this.Yandere.MyListener.enabled = true;
           Time.timeScale = 1f;
         }
         if (this.RivalName == "")
@@ -1329,34 +1331,7 @@ public class EndOfDayScript : MonoBehaviour
       this.Finish();
     else if (this.Phase == 24)
     {
-      if (!this.LoveManager.ConfessToSuitor && this.StudentManager.Students[this.StudentManager.SuitorID].Alive)
-      {
-        this.Senpai.enabled = false;
-        this.Senpai.Pathfinding.enabled = false;
-        this.Senpai.transform.parent = this.transform;
-        this.Senpai.gameObject.SetActive(true);
-        this.Senpai.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        this.Senpai.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-        this.Senpai.EmptyHands();
-        this.Senpai.MyController.enabled = false;
-        this.Senpai.CharacterAnimation.enabled = true;
-        this.Senpai.CharacterAnimation.CrossFade(this.Senpai.IdleAnim);
-        this.Rival.enabled = false;
-        this.Rival.Pathfinding.enabled = false;
-        this.Rival.transform.parent = this.transform;
-        this.Rival.gameObject.SetActive(true);
-        this.Rival.transform.localPosition = new Vector3(0.0f, 0.0f, 1f);
-        this.Rival.transform.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
-        this.Rival.EmptyHands();
-        this.Rival.MyController.enabled = false;
-        this.Rival.CharacterAnimation.enabled = true;
-        this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
-        this.Rival.CharacterAnimation["f02_shy_00"].weight = 1f;
-        this.Rival.CharacterAnimation.Play("f02_shy_00");
-        this.Label.text = "After the police investigation ends, " + this.RivalName + " asks Senpai to speak with her under the cherry tree behind the school.";
-        ++this.Phase;
-      }
-      else
+      if (this.LoveManager.ConfessToSuitor && this.StudentManager.Students[this.StudentManager.SuitorID].Alive)
       {
         StudentScript student = this.StudentManager.Students[this.StudentManager.SuitorID];
         student.enabled = false;
@@ -1389,6 +1364,33 @@ public class EndOfDayScript : MonoBehaviour
         this.Label.text = "After the police investigation ends, " + this.RivalName + " confesses to a boy that she has fallen in love with. She will no longer attempt to pursue a relationship with " + this.Protagonist + "'s Senpai.";
         this.Phase = 12;
       }
+      else
+      {
+        this.Senpai.enabled = false;
+        this.Senpai.Pathfinding.enabled = false;
+        this.Senpai.transform.parent = this.transform;
+        this.Senpai.gameObject.SetActive(true);
+        this.Senpai.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+        this.Senpai.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+        this.Senpai.EmptyHands();
+        this.Senpai.MyController.enabled = false;
+        this.Senpai.CharacterAnimation.enabled = true;
+        this.Senpai.CharacterAnimation.CrossFade(this.Senpai.IdleAnim);
+        this.Rival.enabled = false;
+        this.Rival.Pathfinding.enabled = false;
+        this.Rival.transform.parent = this.transform;
+        this.Rival.gameObject.SetActive(true);
+        this.Rival.transform.localPosition = new Vector3(0.0f, 0.0f, 1f);
+        this.Rival.transform.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
+        this.Rival.EmptyHands();
+        this.Rival.MyController.enabled = false;
+        this.Rival.CharacterAnimation.enabled = true;
+        this.Rival.CharacterAnimation.CrossFade(this.Rival.IdleAnim);
+        this.Rival.CharacterAnimation["f02_shy_00"].weight = 1f;
+        this.Rival.CharacterAnimation.Play("f02_shy_00");
+        this.Label.text = "After the police investigation ends, " + this.RivalName + " asks Senpai to speak with her under the cherry tree behind the school.";
+        ++this.Phase;
+      }
     }
     else if (this.Phase == 25)
     {
@@ -1400,6 +1402,7 @@ public class EndOfDayScript : MonoBehaviour
       this.LoveManager.Suitor.gameObject.SetActive(true);
       this.LoveManager.Rival.gameObject.SetActive(true);
       this.Yandere.gameObject.SetActive(true);
+      this.Yandere.MyListener.enabled = true;
       this.LoveManager.Suitor.transform.parent = (Transform) null;
       this.LoveManager.Rival.transform.parent = (Transform) null;
       this.Yandere.gameObject.transform.parent = (Transform) null;
@@ -1858,6 +1861,7 @@ public class EndOfDayScript : MonoBehaviour
           break;
       }
       StudentGlobals.SetStudentKidnapped(this.TranqCase.VictimID, true);
+      StudentGlobals.SetStudentHealth(this.TranqCase.VictimID, 100);
       StudentGlobals.SetStudentSanity(this.TranqCase.VictimID, 100);
       if (flag)
       {
@@ -2011,7 +2015,7 @@ public class EndOfDayScript : MonoBehaviour
       PlayerGlobals.BoughtSedative = true;
     if (this.Yandere.Inventory.LockPick)
       PlayerGlobals.BoughtLockpick = true;
-    if (this.Counselor.ReportedNarcotics)
+    if (this.Counselor.ReportedNarcotics || this.Yandere.Inventory.ArrivedWithNarcotics && !this.Yandere.Inventory.Narcotics)
       PlayerGlobals.BoughtNarcotics = false;
     if (this.ExplosiveDeviceUsed)
       PlayerGlobals.BoughtExplosive = false;
@@ -2030,8 +2034,6 @@ public class EndOfDayScript : MonoBehaviour
       PlayerGlobals.Reputation += (float) (20.0 * (1.0 + (double) ClassGlobals.LanguageGrade * 0.20000000298023224));
     else if (this.ArticleID == 3)
       SchoolGlobals.SchoolAtmosphere += (float) (20.0 * (1.0 + (double) ClassGlobals.LanguageGrade * 0.20000000298023224));
-    if (GameGlobals.PoliceYesterday)
-      ++PlayerGlobals.PoliceVisits;
     if (this.HeardMegami)
       SchoolGlobals.SCP = true;
     PlayerGlobals.BloodWitnessed += this.BloodWitnessed;
@@ -2044,7 +2046,10 @@ public class EndOfDayScript : MonoBehaviour
     this.SaveTopicsLearned();
     this.RemovableItemManager.RemoveItems();
     if (this.PoliceArrived)
+    {
       GameGlobals.PoliceYesterday = true;
+      ++PlayerGlobals.PoliceVisits;
+    }
     this.Yandere.CameraEffects.UpdateVignette(0.0f);
   }
 

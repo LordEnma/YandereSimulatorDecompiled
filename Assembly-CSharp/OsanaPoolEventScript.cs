@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaPoolEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -283,8 +283,8 @@ public class OsanaPoolEventScript : MonoBehaviour
         this.Murdering = true;
         this.Rival.Blind = true;
         this.Yandere.CanMove = false;
+        this.Rival.Distracted = true;
         this.Rival.Ragdoll.Zs.SetActive(false);
-        this.Yandere.MurderousActionTimer = 999f;
         this.Yandere.CharacterAnimation.CrossFade("f02_" + this.EventAnim[5]);
         this.Rival.CharacterAnimation.CrossFade("f02_" + this.EventAnim[6]);
         this.Rival.OsanaHair.GetComponent<Animation>().CrossFade("Hair_" + this.EventAnim[6]);
@@ -313,6 +313,7 @@ public class OsanaPoolEventScript : MonoBehaviour
         {
           if ((double) this.Yandere.CharacterAnimation["f02_" + this.EventAnim[5]].time > 10.0)
           {
+            this.Yandere.MurderousActionTimer = 999f;
             this.Rival.SpawnAlarmDisc();
             AudioClipPlayer.Play(this.SpeechClip[5], this.Rival.transform.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
             this.EventSubtitle.text = this.SpeechText[5];

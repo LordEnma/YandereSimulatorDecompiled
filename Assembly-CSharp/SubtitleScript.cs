@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SubtitleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -457,6 +457,32 @@ public class SubtitleScript : MonoBehaviour
   public AudioClip[] DelinquentGrudgeClips;
   public AudioClip[] DismissiveClips;
   public AudioClip[] EvilDelinquentCorpseReactionClips;
+  public AudioClip[] AltDelinquentAnnoyClips;
+  public AudioClip[] AltDelinquentCaseClips;
+  public AudioClip[] AltDelinquentShoveClips;
+  public AudioClip[] AltDelinquentReactionClips;
+  public AudioClip[] AltDelinquentWeaponReactionClips;
+  public AudioClip[] AltDelinquentThreatenedClips;
+  public AudioClip[] AltDelinquentTauntClips;
+  public AudioClip[] AltDelinquentCalmClips;
+  public AudioClip[] AltDelinquentFightClips;
+  public AudioClip[] AltDelinquentAvengeClips;
+  public AudioClip[] AltDelinquentWinClips;
+  public AudioClip[] AltDelinquentSurrenderClips;
+  public AudioClip[] AltDelinquentNoSurrenderClips;
+  public AudioClip[] AltDelinquentMurderReactionClips;
+  public AudioClip[] AltDelinquentCorpseReactionClips;
+  public AudioClip[] AltDelinquentFriendCorpseReactionClips;
+  public AudioClip[] AltDelinquentResumeClips;
+  public AudioClip[] AltDelinquentFleeClips;
+  public AudioClip[] AltDelinquentEnemyFleeClips;
+  public AudioClip[] AltDelinquentFriendFleeClips;
+  public AudioClip[] AltDelinquentInjuredFleeClips;
+  public AudioClip[] AltDelinquentCheerClips;
+  public AudioClip[] AltDelinquentHmmClips;
+  public AudioClip[] AltDelinquentGrudgeClips;
+  public AudioClip[] AltDismissiveClips;
+  public AudioClip[] AltEvilDelinquentCorpseReactionClips;
   public AudioClip[] EulogyClips;
   public AudioClip[] ObstacleMurderReactionClips;
   public AudioClip[] ObstaclePoisonReactionClips;

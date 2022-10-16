@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CounselorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -918,6 +918,7 @@ public class CounselorScript : MonoBehaviour
   public void Quit()
   {
     Debug.Log((object) "CounselorScript has called the Quit() function.");
+    int num = this.Yandere.ShoulderCamera.Noticed ? 1 : 0;
     this.CounselorSubtitle.text = "";
     if ((Object) this.StudentManager.Students[1] != (Object) null)
       this.Yandere.Senpai = this.StudentManager.Students[1].transform;
@@ -973,7 +974,8 @@ public class CounselorScript : MonoBehaviour
     if (!this.StudentManager.TutorialActive)
       this.StudentManager.ComeBack();
     this.StudentManager.GracePeriod(10f);
-    this.StudentManager.Reputation.UpdateRep();
+    if (num != 0)
+      this.StudentManager.Reputation.UpdateRep();
     this.Yandere.CameraEffects.UpdateDOF(2f);
     Physics.SyncTransforms();
   }
@@ -1056,7 +1058,7 @@ public class CounselorScript : MonoBehaviour
             ++this.BloodVisits;
           this.CrimeID = 1;
         }
-        else if (this.Crime == StudentWitnessType.Insanity || this.Crime == StudentWitnessType.CleaningItem || this.Crime == StudentWitnessType.HoldingBloodyClothing || this.Crime == StudentWitnessType.Poisoning)
+        else if (this.Crime == StudentWitnessType.Insanity || this.Crime == StudentWitnessType.CleaningItem || this.Crime == StudentWitnessType.HoldingBloodyClothing || this.Crime == StudentWitnessType.Poisoning || this.Crime == StudentWitnessType.Stalking)
         {
           this.MyAudio.clip = this.InsanityLectureClips[this.InsanityVisits];
           this.CounselorSubtitle.text = this.InsanityLectures[this.InsanityVisits];

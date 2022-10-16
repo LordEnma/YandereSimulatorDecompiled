@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaFridayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -193,6 +193,18 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
     }
     else
     {
+      if (!this.LookAtSenpai)
+      {
+        this.Rival.MoveTowardsTarget(this.Rival.CurrentDestination.position);
+        this.Rival.transform.rotation = Quaternion.Slerp(this.Rival.transform.rotation, this.Rival.CurrentDestination.rotation, 10f * Time.deltaTime);
+      }
+      if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null && (double) this.Friend.DistanceToDestination < 0.5)
+      {
+        this.Friend.MoveTowardsTarget(this.Friend.CurrentDestination.position);
+        this.Friend.transform.rotation = Quaternion.Slerp(this.Friend.transform.rotation, this.Friend.CurrentDestination.rotation, 10f * Time.deltaTime);
+        this.Friend.CharacterAnimation.CrossFade(this.Friend.IdleAnim);
+        this.Friend.Routine = false;
+      }
       this.Timer += Time.deltaTime;
       if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
         this.VoiceClip.GetComponent<AudioSource>().pitch = Time.timeScale;
@@ -338,6 +350,7 @@ public class OsanaFridayLunchEventScript : MonoBehaviour
       this.Friend.DistanceToDestination = 100f;
       this.Friend.IdleAnim = this.Friend.OriginalIdleAnim;
       this.Friend.SlideIn = false;
+      this.Friend.Routine = true;
       Debug.Log((object) "''Friend'' is being told to set her destination to her current phase's destination.");
     }
     if (!this.StudentManager.Stop)

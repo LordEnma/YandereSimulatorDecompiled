@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -25,6 +25,7 @@ public class StudentManagerScript : MonoBehaviour
   public ReputationSetterScript ReputationSetter;
   public SkinnedMeshRenderer FemaleShowerCurtain;
   public CleaningManagerScript CleaningManager;
+  public GenericRivalBagScript GenericRivalBag;
   public StolenPhoneSpotScript StolenPhoneSpot;
   public SelectiveGrayscale SelectiveGreyscale;
   public InterestManagerScript InterestManager;
@@ -310,6 +311,7 @@ public class StudentManagerScript : MonoBehaviour
   public int SedatedStudents;
   public int StudentsTotal = 13;
   public int TeachersTotal = 6;
+  public int Photographers;
   public int GirlsSpawned;
   public int TagStudentID;
   public int GarbageBags;
@@ -497,6 +499,7 @@ public class StudentManagerScript : MonoBehaviour
   public Collider WestMaleBathroomCollider;
   public Transform DisabledObjectParent;
   public GameObject Whistle;
+  public GameObject MiniMap;
 
   private void Awake()
   {
@@ -992,20 +995,16 @@ public class StudentManagerScript : MonoBehaviour
               {
                 Debug.Log((object) "Adjusting everyone's routine because of the gravure rival.");
                 this.EightiesWeek9RoutineAdjustments();
-                int num = 0;
                 for (int index = 57; index < 61; ++index)
                 {
                   if ((UnityEngine.Object) this.Students[index] != (UnityEngine.Object) null)
-                    ++num;
+                    ++this.Photographers;
                 }
-                if ((double) SchoolGlobals.SchoolAtmosphere > 0.800000011920929 && num > 0)
+                if ((double) SchoolGlobals.SchoolAtmosphere > 0.800000011920929 && this.Photographers > 0)
                   this.PoolPhotoShootCameras.SetActive(true);
                 else if ((UnityEngine.Object) this.Students[19] != (UnityEngine.Object) null)
                 {
                   Debug.Log((object) "Changing Gravure Idol's routine.");
-                  this.scheduleBlock = this.Students[19].ScheduleBlocks[2];
-                  this.scheduleBlock.destination = "Patrol";
-                  this.scheduleBlock.action = "Patrol";
                   this.scheduleBlock = this.Students[19].ScheduleBlocks[7];
                   this.scheduleBlock.destination = "Patrol";
                   this.scheduleBlock.action = "Patrol";
@@ -1124,7 +1123,7 @@ public class StudentManagerScript : MonoBehaviour
               student.SetOriginalActions();
             }
           }
-          if (this.Eighties)
+          if (this.Eighties && !this.RivalEliminated)
           {
             for (int index = 81; index < 86; ++index)
             {
@@ -1143,6 +1142,7 @@ public class StudentManagerScript : MonoBehaviour
           Physics.SyncTransforms();
           if (Screen.width < 1280 || Screen.height < 720)
             Screen.SetResolution(1280, 720, false);
+          this.LookAtTest();
           this.Yandere.EmptyHands();
         }
       }
@@ -1274,6 +1274,8 @@ public class StudentManagerScript : MonoBehaviour
           this.PinDownTimer += Time.deltaTime;
           if ((double) this.PinDownTimer > 10.0 || (double) this.WitnessList[1].DistanceToDestination < 1.0 && (double) this.WitnessList[2].DistanceToDestination < 1.0 && (double) this.WitnessList[3].DistanceToDestination < 1.0 && (double) this.WitnessList[4].DistanceToDestination < 1.0)
           {
+            Time.timeScale = 1f;
+            this.CombatMinigame.DisablePrompts();
             this.Clock.StopTime = true;
             this.Yandere.HUD.enabled = false;
             if (this.Yandere.Aiming)
@@ -1480,6 +1482,7 @@ public class StudentManagerScript : MonoBehaviour
       student.JSON = this.JSON;
       student.Ragdoll.StudentID = spawnID;
       student.BloodSpawnerIdentifier.ObjectID = "Student_" + spawnID.ToString() + "_BloodSpawner";
+      student.BentoIdentifier.ObjectID = "Student_" + spawnID.ToString() + "_Bento";
       student.HipsIdentifier.ObjectID = "Student_" + spawnID.ToString() + "_Hips";
       student.YanSave.ObjectID = "Student_" + spawnID.ToString();
       if ((UnityEngine.Object) student.Miyuki != (UnityEngine.Object) null)
@@ -1510,6 +1513,10 @@ public class StudentManagerScript : MonoBehaviour
         ++this.GirlsSpawned;
         student.GirlID = this.GirlsSpawned;
       }
+      if (spawnID == 1)
+        student.MiniMapIcon.icon = student.SenpaiSprite;
+      else if (spawnID == this.RivalID)
+        student.MiniMapIcon.icon = student.RivalSprite;
       this.OccupySeat();
     }
     ++this.NPCsSpawned;
@@ -1778,6 +1785,7 @@ public class StudentManagerScript : MonoBehaviour
       StudentScript student = this.Students[this.ID];
       if ((UnityEngine.Object) student != (UnityEngine.Object) null)
       {
+        student.VisitSenpaiDesk = false;
         student.AlreadyFed = false;
         student.Attempts = 0;
         if (student.Meeting)
@@ -3034,6 +3042,7 @@ public class StudentManagerScript : MonoBehaviour
     int num = PlayerPrefs.GetInt("SaveSlot");
     this.BloodParent.RecordAllBlood();
     this.PuddleParent.RecordAllPuddles();
+    this.GenericRivalBag.RememberBentoStatus();
     this.SpawnedObjectManager.RememberObjects();
     YanSave.SaveData("Profile_" + profile.ToString() + "_Slot_" + num.ToString());
     PlayerPrefs.SetInt("Profile_" + profile.ToString() + "_Slot_" + num.ToString() + "_MemorialStudents", StudentGlobals.MemorialStudents);
@@ -3110,6 +3119,12 @@ public class StudentManagerScript : MonoBehaviour
           this.Students[this.ID].PhaseFromSave = this.Students[this.ID].Phase;
           if (this.Students[this.ID].ChangingShoes)
             this.Students[this.ID].ShoeRemoval.enabled = true;
+          if (!this.Students[this.ID].Teacher && this.Students[this.ID].Indoors)
+          {
+            if ((UnityEngine.Object) this.Students[this.ID].ShoeRemoval.Locker == (UnityEngine.Object) null)
+              this.Students[this.ID].ShoeRemoval.Start();
+            this.Students[this.ID].ShoeRemoval.PutOnShoes();
+          }
           if (this.Students[this.ID].ClubAttire)
           {
             int clubActivityPhase = this.Students[this.ID].ClubActivityPhase;
@@ -3174,12 +3189,6 @@ public class StudentManagerScript : MonoBehaviour
             --this.Students[this.ID].Phase;
           if (this.OsanaPoolEvent.Phase > 2)
             this.OsanaPoolEvent.ReturnFromSave();
-          if (!this.Students[this.ID].Teacher && this.Students[this.ID].Indoors)
-          {
-            if ((UnityEngine.Object) this.Students[this.ID].ShoeRemoval.Locker == (UnityEngine.Object) null)
-              this.Students[this.ID].ShoeRemoval.Start();
-            this.Students[this.ID].ShoeRemoval.PutOnShoes();
-          }
           if ((double) this.Students[this.ID].MeetTime > 0.0)
           {
             Debug.Log((object) "A student was planning to meet someone when this save file was made. Attempting to update their schedule accordingly.");
@@ -3222,6 +3231,11 @@ public class StudentManagerScript : MonoBehaviour
     {
       if ((UnityEngine.Object) bug != (UnityEngine.Object) null)
         bug.CheckStatus();
+    }
+    foreach (BucketScript allBucket in this.AllBuckets)
+    {
+      if ((UnityEngine.Object) allBucket != (UnityEngine.Object) null)
+        allBucket.UpdateAppearance = true;
     }
     foreach (BodyHidingLockerScript bodyHidingLocker in this.BodyHidingLockers)
     {
@@ -3278,9 +3292,18 @@ public class StudentManagerScript : MonoBehaviour
     }
     this.SpawnedObjectManager.RespawnObjects();
     this.LoadedSave = true;
-    if (this.RivalBookBag.gameObject.activeInHierarchy)
-      this.RivalBookBag.UpdatePosition();
+    if ((UnityEngine.Object) this.Students[this.RivalID] != (UnityEngine.Object) null)
+    {
+      Debug.Log((object) ("Rival's Phase is: " + this.Students[this.RivalID].Phase.ToString()));
+      if (this.Students[this.RivalID].Phase == 1 && this.Students[this.RivalID].Indoors && this.Students[this.RivalID].BagPlaced)
+      {
+        Debug.Log((object) "Placing bag due to reloading.");
+        this.Students[this.RivalID].PlaceBag();
+        this.GenericRivalBag.RestoreBentoStatus();
+      }
+    }
     Debug.Log((object) "The entire loading process has been completed.");
+    this.Week = DateGlobals.Week;
     this.CameFromLoad = true;
   }
 
@@ -3708,6 +3731,8 @@ public class StudentManagerScript : MonoBehaviour
 
   public void UpdateExteriorEightiesStudents()
   {
+    if (this.Week == 0)
+      this.Week = DateGlobals.Week;
     this.SukebanHangoutParent.position = this.SukebanSpots[this.Week].position;
     this.SukebanHangoutParent.eulerAngles = this.SukebanSpots[this.Week].eulerAngles;
   }
@@ -4615,5 +4640,16 @@ label_6:
       if ((UnityEngine.Object) student != (UnityEngine.Object) null)
         student.SimpleLook.enabled = true;
     }
+  }
+
+  public void MiniMapTest()
+  {
+    this.MiniMap.SetActive(true);
+    foreach (StudentScript student in this.Students)
+    {
+      if ((UnityEngine.Object) student != (UnityEngine.Object) null)
+        student.MiniMapIcon.enabled = true;
+    }
+    this.Yandere.MiniMapIcon.enabled = true;
   }
 }

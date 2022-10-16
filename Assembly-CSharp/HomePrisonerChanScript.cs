@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomePrisonerChanScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -35,6 +35,7 @@ public class HomePrisonerChanScript : MonoBehaviour
   public GameObject Blindfold;
   public GameObject Character;
   public GameObject Tripod;
+  public GameObject Flies;
   public float HairRotation;
   public float TwitchTimer;
   public float NextTwitch;
@@ -52,10 +53,12 @@ public class HomePrisonerChanScript : MonoBehaviour
   public bool Male;
   public int PrisonerID;
   public int StudentID;
+  public int Health = 100;
   public string IdleAnim;
 
   private void Start()
   {
+    Debug.Log((object) ("HomePrisonerChan #" + this.PrisonerID.ToString() + " has been told to run her Start() function."));
     if (this.PrisonerID == 1)
       this.StudentID = StudentGlobals.Prisoner1;
     if (this.PrisonerID == 2)
@@ -109,6 +112,19 @@ public class HomePrisonerChanScript : MonoBehaviour
       if (this.IdleAnim == "")
         this.IdleAnim = "f02_kidnapIdle_01";
       this.Character.GetComponent<Animation>().CrossFade(this.IdleAnim);
+      this.Health = StudentGlobals.GetStudentHealth(this.StudentID);
+      if (this.Health == 0)
+      {
+        if (this.PrisonerID == 1)
+        {
+          Debug.Log((object) ("Prisoner #" + this.PrisonerID.ToString() + "'s Health is 0."));
+          this.Character.GetComponent<Animation>().CrossFade("f02_kidnapIdle_02");
+          this.Character.GetComponent<Animation>()["f02_kidnapIdle_02"].speed = 0.0f;
+        }
+        else
+          this.Character.GetComponent<Animation>()[this.IdleAnim].speed = 0.0f;
+        Object.Instantiate<GameObject>(this.Flies, this.transform.position, Quaternion.identity);
+      }
     }
     else
       this.gameObject.SetActive(false);
@@ -136,7 +152,7 @@ public class HomePrisonerChanScript : MonoBehaviour
   {
     this.Skirt.transform.localPosition = new Vector3(0.0f, -0.135f, 0.01f);
     this.Skirt.transform.localScale = new Vector3(this.Skirt.transform.localScale.x, 1.2f, this.Skirt.transform.localScale.z);
-    if (!this.Tortured && this.PrisonerID == 1)
+    if (!this.Tortured && this.PrisonerID == 1 && this.Health > 0)
     {
       if ((double) this.Sanity > 0.0)
       {

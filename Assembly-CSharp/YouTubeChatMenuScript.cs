@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YouTubeChatMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -20,7 +20,9 @@ public class YouTubeChatMenuScript : MonoBehaviour
   public UISprite ManualSprite;
   public BoxCollider ClickHitbox;
   public UISprite[] Checkmarks;
+  public string[] Descriptions;
   public Transform Highlight;
+  public UILabel DescLabel;
   public YouTubeChat Chat;
   public bool[] Commands;
   public bool Automatic;
@@ -29,7 +31,13 @@ public class YouTubeChatMenuScript : MonoBehaviour
   public int Pushes;
   public int Frame;
   public int ID;
-  public int X;
+
+  public void Start()
+  {
+    this.UpdateHighlight();
+    for (int index = 1; index < 26; ++index)
+      this.Checkmarks[index].spriteName = !this.Commands[index] ? "No" : "Yes";
+  }
 
   private void Update()
   {
@@ -90,7 +98,6 @@ public class YouTubeChatMenuScript : MonoBehaviour
       {
         if (this.Chat.isValidURL)
         {
-          int num = this.Chat.TimeBased ? 1 : 0;
           this.ValidURL.text = "Connected to chat! Have fun!";
           this.ValidURL.color = new Color(0.0f, 1f, 0.0f, 1f);
         }
@@ -120,18 +127,27 @@ public class YouTubeChatMenuScript : MonoBehaviour
       }
       else if (this.PauseScreen.InputManager.TappedLeft)
       {
-        this.Column = this.Column != 1 ? 1 : 2;
+        --this.Column;
+        if (this.Column < 1)
+          this.Column = 3;
         this.UpdateHighlight();
       }
       else if (this.PauseScreen.InputManager.TappedRight)
       {
-        this.Column = this.Column != 1 ? 1 : 2;
+        ++this.Column;
+        if (this.Column > 3)
+          this.Column = 1;
         this.UpdateHighlight();
       }
       else if (this.PauseScreen.InputManager.TappedDown)
       {
         ++this.Row;
-        if (this.Row > 5)
+        if (this.Column < 3)
+        {
+          if (this.Row > 10)
+            this.Row = 1;
+        }
+        else if (this.Row > 5)
           this.Row = 1;
         this.UpdateHighlight();
       }
@@ -140,7 +156,12 @@ public class YouTubeChatMenuScript : MonoBehaviour
         if (!this.PauseScreen.InputManager.TappedUp)
           return;
         --this.Row;
-        if (this.Row < 1)
+        if (this.Column < 3)
+        {
+          if (this.Row < 1)
+            this.Row = 10;
+        }
+        else if (this.Row < 1)
           this.Row = 5;
         this.UpdateHighlight();
       }
@@ -149,8 +170,11 @@ public class YouTubeChatMenuScript : MonoBehaviour
 
   private void UpdateHighlight()
   {
-    this.Highlight.localPosition = new Vector3((float) ((this.Column - 1) * 200 - 500), (float) (50 - this.Row * 50), 0.0f);
-    this.ID = this.Row + (this.Column - 1) * 5;
+    if (this.Column == 3 && this.Row > 5)
+      this.Row = 5;
+    this.Highlight.localPosition = new Vector3((float) ((this.Column - 1) * 150 - 500), 37.5f - (float) (this.Row * 25), 0.0f);
+    this.ID = this.Row + (this.Column - 1) * 10;
+    this.DescLabel.text = this.Descriptions[this.ID];
   }
 
   private void Exit()

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TalkingScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -36,7 +36,7 @@ public class TalkingScript : MonoBehaviour
     {
       if (!this.Fake)
       {
-        if ((Object) this.S.Yandere.TargetStudent != (Object) null && this.S.StudentID == 10 && (Object) this.S.FollowTarget != (Object) null && this.S.FollowTarget.Routine)
+        if ((Object) this.S.Yandere.TargetStudent != (Object) null && this.S.StudentID == 10 && (Object) this.S.FollowTarget != (Object) null && this.S.FollowTarget.Routine && !this.S.FollowTarget.Distracted)
         {
           this.S.FollowTarget.Pathfinding.canSearch = false;
           this.S.FollowTarget.Pathfinding.canMove = false;
@@ -940,7 +940,15 @@ public class TalkingScript : MonoBehaviour
       this.S.CharacterAnimation.CrossFade(this.S.IdleAnim);
       if ((double) this.S.TalkTimer == 5.0)
       {
-        this.S.Subtitle.UpdateLabel(SubtitleType.ClubGrudge, (int) (this.S.Club + this.ClubBonus), 99f);
+        if (this.S.ClubManager.ClubGrudge)
+        {
+          this.S.Subtitle.UpdateLabel(SubtitleType.ClubGrudge, (int) (this.S.Club + this.ClubBonus), 99f);
+        }
+        else
+        {
+          this.S.Subtitle.CustomText = "You joined our club, and then you just...never showed up. I don't see a reason to let you join the club again...";
+          this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 99f);
+        }
         this.S.TalkTimer = this.S.Subtitle.CurrentClip.GetComponent<AudioSource>().clip.length;
       }
       else

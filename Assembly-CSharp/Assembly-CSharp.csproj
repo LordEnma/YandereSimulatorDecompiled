@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CDAB2E9B-A55B-4BCD-A6D6-C3E265C3DA64}</ProjectGuid>
+    <ProjectGuid>{C30FB1B5-35C0-421B-AEF9-D19B1F2734D3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <ApplicationVersion>0.0.0.0</ApplicationVersion>
@@ -86,6 +86,9 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>lib\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>lib\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.UnityWebRequestModule">
       <HintPath>lib\UnityEngine.UnityWebRequestModule.dll</HintPath>
     </Reference>
@@ -119,6 +122,11 @@
     <Compile Include="DDRScoreData.cs" />
     <Compile Include="ScrollingImage.cs" />
     <Compile Include="GrassGenerator.cs" />
+    <Compile Include="Player.cs" />
+    <Compile Include="MapObject.cs" />
+    <Compile Include="MiniMapEntity.cs" />
+    <Compile Include="MiniMapComponent.cs" />
+    <Compile Include="MiniMapController.cs" />
     <Compile Include="MGPMEnemyScript.cs" />
     <Compile Include="MGPMExplosionScript.cs" />
     <Compile Include="MGPMGifScript.cs" />
@@ -831,6 +839,7 @@
     <Compile Include="FixDummyScript.cs" />
     <Compile Include="FloatAbovePointScript.cs" />
     <Compile Include="FloatScript.cs" />
+    <Compile Include="FlySwarmScript.cs" />
     <Compile Include="FoldedUniformScript.cs" />
     <Compile Include="FollowSkirtScript.cs" />
     <Compile Include="FollowYandereScript.cs" />
@@ -1103,6 +1112,8 @@
     <Compile Include="ReputationSetterScript.cs" />
     <Compile Include="ResolutionScript.cs" />
     <Compile Include="RestScript.cs" />
+    <Compile Include="RetroHeartScript.cs" />
+    <Compile Include="RetroMinigameScript.cs" />
     <Compile Include="RichPresenceHelper.cs" />
     <Compile Include="RingEventScript.cs" />
     <Compile Include="RingScript.cs" />
@@ -1545,6 +1556,19 @@
     <Compile Include="RetroAesthetics\RetroCameraEffect.cs" />
     <Compile Include="RetroAesthetics\Demos\MenuScripts.cs" />
     <Compile Include="RetroAesthetics\Demos\SpeedTilt.cs" />
+    <Compile Include="AmplifyMotion\Quality.cs" />
+    <Compile Include="AmplifyMotion\ObjectType.cs" />
+    <Compile Include="AmplifyMotion\MotionState.cs" />
+    <Compile Include="AmplifyMotion\ClothState.cs" />
+    <Compile Include="AmplifyMotion\ParticleState.cs" />
+    <Compile Include="AmplifyMotion\VersionInfo.cs" />
+    <Compile Include="AmplifyMotion\SkinnedState.cs" />
+    <Compile Include="AmplifyMotion\SolidState.cs" />
+    <Compile Include="AmplifyMotion\WorkerThreadPool.cs" />
+    <Compile Include="AnimationOrTween\Trigger.cs" />
+    <Compile Include="AnimationOrTween\Direction.cs" />
+    <Compile Include="AnimationOrTween\EnableCondition.cs" />
+    <Compile Include="AnimationOrTween\DisableCondition.cs" />
     <Compile Include="MaidDereMinigame\Chef.cs" />
     <Compile Include="MaidDereMinigame\CharacterHairPlacer.cs" />
     <Compile Include="MaidDereMinigame\CustomerSpawner.cs" />
@@ -1588,19 +1612,6 @@
     <Compile Include="MaidDereMinigame\TipPage.cs" />
     <Compile Include="MaidDereMinigame\Malee\ReorderableAttribute.cs" />
     <Compile Include="MaidDereMinigame\Malee\ReorderableArray`1.cs" />
-    <Compile Include="AnimationOrTween\Trigger.cs" />
-    <Compile Include="AnimationOrTween\Direction.cs" />
-    <Compile Include="AnimationOrTween\EnableCondition.cs" />
-    <Compile Include="AnimationOrTween\DisableCondition.cs" />
-    <Compile Include="AmplifyMotion\Quality.cs" />
-    <Compile Include="AmplifyMotion\ObjectType.cs" />
-    <Compile Include="AmplifyMotion\MotionState.cs" />
-    <Compile Include="AmplifyMotion\ClothState.cs" />
-    <Compile Include="AmplifyMotion\ParticleState.cs" />
-    <Compile Include="AmplifyMotion\VersionInfo.cs" />
-    <Compile Include="AmplifyMotion\SkinnedState.cs" />
-    <Compile Include="AmplifyMotion\SolidState.cs" />
-    <Compile Include="AmplifyMotion\WorkerThreadPool.cs" />
     <Compile Include="AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

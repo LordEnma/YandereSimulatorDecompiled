@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PauseScreenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -95,7 +95,7 @@ public class PauseScreenScript : MonoBehaviour
     if (!MissionModeGlobals.MultiMission)
       this.MissionModeLabel.SetActive(false);
     this.MultiMission = MissionModeGlobals.MultiMission;
-    this.transform.localPosition = new Vector3(1350f, 0.0f, 0.0f);
+    this.transform.localPosition = new Vector3(1351f, 0.0f, 0.0f);
     this.transform.localScale = new Vector3(0.9133334f, 0.9133334f, 0.9133334f);
     this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, 0.0f);
     if (!this.Home)
@@ -185,19 +185,19 @@ public class PauseScreenScript : MonoBehaviour
       return;
     if (!this.Show)
     {
-      if ((double) this.transform.localPosition.x > 1349.0)
+      if ((double) this.transform.localPosition.x > 1350.0)
       {
         if (this.Panel.enabled)
         {
           this.Panel.enabled = false;
-          this.transform.localPosition = new Vector3(1350f, 50f, 0.0f);
+          this.transform.localPosition = new Vector3(1351f, 50f, 0.0f);
           this.transform.localScale = new Vector3(0.9133334f, 0.9133334f, 0.9133334f);
           this.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
         }
       }
       else
       {
-        this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, new Vector3(1350f, 50f, 0.0f), this.Speed);
+        this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, new Vector3(1351f, 50f, 0.0f), this.Speed);
         this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(0.9133334f, 0.9133334f, 0.9133334f), this.Speed);
         this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, this.transform.localEulerAngles.y, Mathf.Lerp(this.transform.localEulerAngles.z, 0.0f, this.Speed));
       }
@@ -641,6 +641,7 @@ public class PauseScreenScript : MonoBehaviour
             this.MainMenu.SetActive(true);
             this.Show = false;
             this.PromptBar.ClearButtons();
+            this.PromptBar.Label[0].text = "Minigame";
             this.PromptBar.Label[1].text = "Stop";
             this.PromptBar.UpdateButtons();
             this.Clock.TargetTime = (float) this.PassTime.TargetTime;
@@ -738,7 +739,7 @@ public class PauseScreenScript : MonoBehaviour
             this.Quitting = false;
             if (this.BypassPhone)
             {
-              this.transform.localPosition = new Vector3(1350f, 0.0f, 0.0f);
+              this.transform.localPosition = new Vector3(1351f, 0.0f, 0.0f);
               this.ExitPhone();
             }
           }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: InventoryScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -75,6 +75,7 @@ public class InventoryScript : MonoBehaviour
   public float Money;
   public bool[] ShrineCollectibles;
   public UILabel MoneyLabel;
+  public bool ArrivedWithNarcotics;
   public bool ArrivedWithRatPoison;
   public bool ArrivedWithSake;
   public bool ArrivedWithCigs;
@@ -118,6 +119,7 @@ public class InventoryScript : MonoBehaviour
         ++this.SedativePoisons;
         break;
       case 10:
+        this.ArrivedWithNarcotics = true;
         this.Narcotics = true;
         break;
       case 11:

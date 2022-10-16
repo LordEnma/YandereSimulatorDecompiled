@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: FeedListScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -147,7 +147,7 @@ public class FeedListScript : MonoBehaviour
     if (this.Row > this.RowLimit)
       this.Row = this.RowLimit;
     this.Selected = (this.Column - 1) * 23 + this.Row;
-    this.Highlight.localPosition = new Vector3((float) this.PositionX[this.Column], (float) (477 - 37 * this.Row), 0.0f);
+    this.Highlight.localPosition = new Vector3((float) this.PositionX[this.Column], (float) (475.0 - 36.799999237060547 * (double) this.Row), 0.0f);
   }
 
   private void CrossOutStudents()

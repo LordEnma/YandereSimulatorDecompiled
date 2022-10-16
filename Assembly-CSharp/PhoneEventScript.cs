@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PhoneEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -213,7 +213,12 @@ public class PhoneEventScript : MonoBehaviour
           if ((double) this.EventStudent.Character.GetComponent<Animation>()[this.EventAnim[2]].time >= (double) this.EventStudent.Character.GetComponent<Animation>()[this.EventAnim[2]].length)
             this.EndEvent();
         }
-        if ((double) this.Yandere.transform.position.z >= -38.0 && (double) this.Yandere.transform.position.x <= -18.0)
+        if ((double) this.Yandere.transform.position.z < -38.0 || (double) this.Yandere.transform.position.x > -18.0)
+        {
+          if ((double) this.EventSubtitle.transform.localScale.x > 0.0)
+            this.EventSubtitle.transform.localScale = Vector3.zero;
+        }
+        else
         {
           float num1 = Vector3.Distance(this.Yandere.transform.position, this.EventStudent.transform.position);
           if ((double) num1 < 10.0)

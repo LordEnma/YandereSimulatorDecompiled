@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TitleDemoChecklistScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -81,7 +81,7 @@ public class TitleDemoChecklistScript : MonoBehaviour
       this.Items[19].mainTexture = this.ItemTextures[19];
     if (PlayerPrefs.GetInt("DrivenToMurder") == 1)
       this.Items[20].mainTexture = this.ItemTextures[20];
-    if (PlayerPrefs.GetInt("HeadHunter") > 9)
+    if (PlayerPrefs.GetInt("HeadHunter") == 1)
       this.Items[21].mainTexture = this.ItemTextures[21];
     if (PlayerPrefs.GetInt("PantyQueen") == 1)
       this.Items[22].mainTexture = this.ItemTextures[22];

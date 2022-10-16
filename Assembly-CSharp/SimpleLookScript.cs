@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SimpleLookScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -27,8 +27,11 @@ public class SimpleLookScript : MonoBehaviour
   public float PreviousNeck;
   public float PreviousSpine;
   public float Rotation;
+  public float IgnoreTimer;
+  public float LookTimer;
   public float Speed;
   public float Timer;
+  public bool Ignore;
   public bool Look;
 
   private void Start()
@@ -47,18 +50,36 @@ public class SimpleLookScript : MonoBehaviour
     {
       if ((double) this.Student.DistanceToPlayer < 2.0 || this.Look)
       {
-        if ((double) Mathf.Abs(Vector3.Angle(-this.transform.forward, this.Yandere.transform.position - this.transform.position)) >= 90.0 && (double) this.Student.DistanceToPlayer < 2.0)
+        if ((double) Mathf.Abs(Vector3.Angle(-this.transform.forward, this.Yandere.transform.position - this.transform.position)) >= 90.0 && (double) this.Student.DistanceToPlayer < 2.0 && !this.Ignore)
         {
+          this.LookTimer += Time.deltaTime;
+          if ((double) this.LookTimer > 5.0)
+          {
+            this.LookTimer = 0.0f;
+            this.Ignore = true;
+          }
           this.Look = true;
           this.Timer = 0.0f;
         }
-        else if (this.Look)
+        else
         {
-          this.Timer += Time.deltaTime;
-          if ((double) this.Timer > 2.0)
+          if (this.Ignore)
           {
-            this.Look = false;
-            this.Timer = 0.0f;
+            this.IgnoreTimer += Time.deltaTime;
+            if ((double) this.IgnoreTimer > 5.0)
+            {
+              this.IgnoreTimer = 0.0f;
+              this.Ignore = false;
+            }
+          }
+          if (this.Look)
+          {
+            this.Timer += Time.deltaTime;
+            if ((double) this.Timer > 2.0)
+            {
+              this.Look = false;
+              this.Timer = 0.0f;
+            }
           }
         }
       }
@@ -70,7 +91,7 @@ public class SimpleLookScript : MonoBehaviour
       double f = (double) Vector3.Angle(this.transform.forward, this.Yandere.transform.position - this.transform.position);
       Vector3 vector3 = this.YandereHead.transform.position - this.MyHead.transform.position;
       float num = Vector3.Angle(this.transform.right, new Vector3(vector3.x, 0.0f, vector3.z));
-      this.Rotation = (double) Mathf.Abs((float) f) > 90.0 || (double) this.Student.DistanceToPlayer >= 2.0 ? Mathf.Lerp(this.Rotation, 0.0f, (float) ((double) Time.deltaTime * 3.5999999046325684 * 0.5)) : ((double) num > 90.0 ? Mathf.Lerp(this.Rotation, -10f * (float) ((90.0 - (180.0 - (double) num)) / 90.0), Time.deltaTime * 3.6f) : Mathf.Lerp(this.Rotation, 10f * (float) ((90.0 - (double) num) / 90.0), Time.deltaTime * 3.6f));
+      this.Rotation = (double) Mathf.Abs((float) f) > 90.0 || (double) this.Student.DistanceToPlayer >= 2.0 || this.Ignore ? Mathf.Lerp(this.Rotation, 0.0f, (float) ((double) Time.deltaTime * 3.5999999046325684 * 0.5)) : ((double) num > 90.0 ? Mathf.Lerp(this.Rotation, -10f * (float) ((90.0 - (180.0 - (double) num)) / 90.0), Time.deltaTime * 3.6f) : Mathf.Lerp(this.Rotation, 10f * (float) ((90.0 - (double) num) / 90.0), Time.deltaTime * 3.6f));
       if ((double) this.EyeL.localEulerAngles.y != (double) this.PreviousEye)
       {
         this.EyeL.localEulerAngles += new Vector3(0.0f, this.Rotation, 0.0f);
@@ -90,17 +111,5 @@ public class SimpleLookScript : MonoBehaviour
     if (this.Student.Alive)
       return;
     this.enabled = false;
-  }
-
-  private void ShutItDown()
-  {
-    this.HeadLookAt.m_Weight = 0.0f;
-    this.NeckLookAt.m_Weight = 0.0f;
-    this.SpineLookAt.m_Weight = 0.0f;
-    this.Timer = 0.0f;
-    this.HeadLookAt.enabled = false;
-    this.NeckLookAt.enabled = false;
-    this.SpineLookAt.enabled = false;
-    this.Look = false;
   }
 }

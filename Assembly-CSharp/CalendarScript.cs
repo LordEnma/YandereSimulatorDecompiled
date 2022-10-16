@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CalendarScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -142,7 +142,10 @@ public class CalendarScript : MonoBehaviour
     }
     this.LoveSickCheck();
     if (DateGlobals.PassDays > 0 && !SchoolGlobals.HighSecurity && (double) SchoolGlobals.SchoolAtmosphere >= (double) SchoolGlobals.PreviousSchoolAtmosphere)
+    {
       SchoolGlobals.SchoolAtmosphere += 0.05f;
+      this.ReducePrisonerHealth();
+    }
     this.ImproveSchoolAtmosphere();
     DateGlobals.DayPassed = true;
     this.Continue.transform.localPosition = new Vector3(this.Continue.transform.localPosition.x, -610f, this.Continue.transform.localPosition.z);
@@ -327,6 +330,7 @@ public class CalendarScript : MonoBehaviour
               this.Skipping = true;
               if (!SchoolGlobals.HighSecurity && (double) SchoolGlobals.SchoolAtmosphere >= (double) SchoolGlobals.PreviousSchoolAtmosphere)
                 SchoolGlobals.SchoolAtmosphere += 0.05f;
+              this.ReducePrisonerHealth();
               this.ImproveSchoolAtmosphere();
               if (GameGlobals.RivalEliminationID == 0 && DateGlobals.Weekday == DayOfWeek.Friday || DateGlobals.Weekday > DayOfWeek.Friday)
               {
@@ -348,6 +352,7 @@ public class CalendarScript : MonoBehaviour
               this.Incremented = false;
               if (!SchoolGlobals.HighSecurity)
                 SchoolGlobals.SchoolAtmosphere += 0.05f;
+              this.ReducePrisonerHealth();
               this.ImproveSchoolAtmosphere();
               this.AmaiWindow.SetActive(false);
             }
@@ -724,7 +729,10 @@ label_92:
     this.AmaiWindow.SetActive(true);
     this.Labels = UnityEngine.Object.FindSceneObjectsOfType(typeof (UILabel)) as UILabel[];
     for (int index = 0; index < this.Labels.Length; ++index)
-      this.EightiesifyLabel(this.Labels[index]);
+    {
+      if (this.Labels[index].gameObject.layer != 25)
+        this.EightiesifyLabel(this.Labels[index]);
+    }
     this.EightiesifyLabel(this.SkipLabel);
     foreach (UIWidget border in this.Borders)
       border.color = new Color(1f, 1f, 1f, 1f);
@@ -779,5 +787,30 @@ label_92:
     }
     YanSave.SaveData("Profile_" + profile.ToString() + "_Slot_" + 11.ToString());
     SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+  }
+
+  public void ReducePrisonerHealth()
+  {
+    if (StudentGlobals.Prisoner1 != 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner1, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner1) - 10);
+    if (StudentGlobals.Prisoner2 != 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner2, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner2) - 10);
+    if (StudentGlobals.Prisoner3 != 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner3, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner3) - 10);
+    if (StudentGlobals.Prisoner4 != 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner4, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner4) - 10);
+    if (StudentGlobals.Prisoner5 != 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner5, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner5) - 10);
+    if (StudentGlobals.Prisoner6 != 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner6, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner6) - 10);
+    if (StudentGlobals.Prisoner7 != 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner7, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner7) - 10);
+    if (StudentGlobals.Prisoner8 != 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner8, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner8) - 10);
+    if (StudentGlobals.Prisoner9 != 0)
+      StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner9, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner9) - 10);
+    if (StudentGlobals.Prisoner10 == 0)
+      return;
+    StudentGlobals.SetStudentHealth(StudentGlobals.Prisoner10, StudentGlobals.GetStudentHealth(StudentGlobals.Prisoner10) - 10);
   }
 }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentGlobals
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -44,6 +44,7 @@ public static class StudentGlobals
   private const string Str_FragileTarget = "FragileTarget";
   private const string Str_ReputationTriangle = "ReputatonTriangle";
   private const string Str_StudentRansomed = "StudentRansomed_";
+  private const string Str_StudentHealth = "StudentHealth_";
   private const string Str_MemorialStudents = "MemorialStudents";
   private const string Str_MemorialStudent1 = "MemorialStudent1";
   private const string Str_MemorialStudent2 = "MemorialStudent2";
@@ -500,6 +501,17 @@ public static class StudentGlobals
 
   public static int[] KeysOfStudentSanity() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentSanity_");
 
+  public static int GetStudentHealth(int studentID) => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_StudentHealth_" + studentID.ToString());
+
+  public static void SetStudentHealth(int studentID, int value)
+  {
+    string id = studentID.ToString();
+    KeysHelper.AddIfMissing("Profile_" + GameGlobals.Profile.ToString() + "_StudentHealth_", id);
+    PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_StudentHealth_" + id, value);
+  }
+
+  public static int[] KeysOfStudentHealth() => KeysHelper.GetIntegerKeys("Profile_" + GameGlobals.Profile.ToString() + "_StudentHealth_");
+
   public static int StudentSlave
   {
     get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_StudentSlave");
@@ -577,6 +589,7 @@ public static class StudentGlobals
     Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_StudentReputation_", StudentGlobals.KeysOfStudentReputation());
     Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_StudentSanity_", StudentGlobals.KeysOfStudentSanity());
     Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_StudentRansomed_", StudentGlobals.KeysOfStudentRansomed());
+    Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_StudentRansomed_", StudentGlobals.KeysOfStudentHealth());
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MemorialStudents");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MemorialStudent1");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_MemorialStudent2");

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OfferHelpScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -22,6 +22,7 @@ public class OfferHelpScript : MonoBehaviour
   public string[] EventSpeech;
   public string[] EventAnim;
   public int[] EventSpeaker;
+  public bool SimpleLookStatus;
   public bool Eavesdropped;
   public bool Eighties;
   public bool Offering;
@@ -257,6 +258,8 @@ public class OfferHelpScript : MonoBehaviour
           if (this.EventStudentID == 11 && (Object) this.Student.Follower != (Object) null)
           {
             this.Student.Follower.IdleAnim = "f02_nervousLeftRight_00";
+            this.SimpleLookStatus = this.Student.Follower.SimpleLook.enabled;
+            this.Student.Follower.SimpleLook.enabled = false;
             this.Student.Follower.SpeechLines.Stop();
             this.OriginalPosition = this.StudentManager.Hangouts.List[10].position;
             this.OriginalRotation = this.StudentManager.Hangouts.List[10].eulerAngles;
@@ -452,6 +455,7 @@ public class OfferHelpScript : MonoBehaviour
       if (this.EventStudentID == 11 && (Object) this.Student.Follower != (Object) null)
       {
         this.Student.Follower.IdleAnim = this.Student.Follower.OriginalIdleAnim;
+        this.Student.Follower.SimpleLook.enabled = this.SimpleLookStatus;
         this.StudentManager.Hangouts.List[10].position = this.OriginalPosition;
         this.StudentManager.Hangouts.List[10].eulerAngles = this.OriginalRotation;
         ScheduleBlock scheduleBlock = this.Student.Follower.ScheduleBlocks[this.Student.Follower.Phase];

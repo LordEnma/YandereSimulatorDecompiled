@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DokiScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -43,7 +43,7 @@ public class DokiScript : MonoBehaviour
         this.ID = 1;
       this.Credits.SongLabel.text = this.DokiName[this.ID] + " from Doki Doki Literature Club";
       this.Credits.BandLabel.text = "by Team Salvato";
-      this.Credits.Panel.enabled = true;
+      this.Credits.Sprite.enabled = true;
       this.Credits.Slide = true;
       this.Credits.Timer = 0.0f;
       if (this.ID == 1)

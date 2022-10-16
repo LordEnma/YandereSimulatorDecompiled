@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PhotoGalleryScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -191,7 +191,8 @@ public class PhotoGalleryScript : MonoBehaviour
         TaskGlobals.SetGuitarPhoto(currentIndex, false);
         TaskGlobals.SetKittenPhoto(currentIndex, false);
         this.Hearts[currentIndex].gameObject.SetActive(false);
-        this.TaskManager.UpdateTaskStatus();
+        if ((Object) this.TaskManager != (Object) null)
+          this.TaskManager.UpdateTaskStatus();
       }
       this.UpdateButtonPrompts();
     }
@@ -783,26 +784,22 @@ public class PhotoGalleryScript : MonoBehaviour
   {
     for (int index1 = 0; index1 < 100; ++index1)
     {
-      if (PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index1.ToString() + "_Exists") == 1)
+      string[] strArray1 = new string[5]
       {
-        GameObject gameObject = Object.Instantiate<GameObject>(this.Photograph, this.transform.position, Quaternion.identity);
-        gameObject.transform.parent = this.CorkboardPanel;
-        Transform transform1 = gameObject.transform;
-        double x1 = (double) PlayerPrefs.GetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index1.ToString() + "_PositionX");
-        string[] strArray1 = new string[5]
-        {
-          "Profile_",
-          null,
-          null,
-          null,
-          null
-        };
-        int profile1 = GameGlobals.Profile;
-        strArray1[1] = profile1.ToString();
-        strArray1[2] = "_CorkboardPhoto_";
-        strArray1[3] = index1.ToString();
-        strArray1[4] = "_PositionY";
-        double y1 = (double) PlayerPrefs.GetFloat(string.Concat(strArray1));
+        "Profile_",
+        null,
+        null,
+        null,
+        null
+      };
+      int profile = GameGlobals.Profile;
+      strArray1[1] = profile.ToString();
+      strArray1[2] = "_CorkboardPhoto_";
+      strArray1[3] = index1.ToString();
+      strArray1[4] = "_Exists";
+      if (PlayerPrefs.GetInt(string.Concat(strArray1)) == 1)
+      {
+        UITexture[] photographs1 = this.Photographs;
         string[] strArray2 = new string[5]
         {
           "Profile_",
@@ -811,126 +808,207 @@ public class PhotoGalleryScript : MonoBehaviour
           null,
           null
         };
-        profile1 = GameGlobals.Profile;
-        strArray2[1] = profile1.ToString();
+        profile = GameGlobals.Profile;
+        strArray2[1] = profile.ToString();
         strArray2[2] = "_CorkboardPhoto_";
         strArray2[3] = index1.ToString();
-        strArray2[4] = "_PositionZ";
-        double z1 = (double) PlayerPrefs.GetFloat(string.Concat(strArray2));
-        Vector3 vector3_1 = new Vector3((float) x1, (float) y1, (float) z1);
-        transform1.localPosition = vector3_1;
-        Transform transform2 = gameObject.transform;
-        string[] strArray3 = new string[5]
+        strArray2[4] = "_PhotoID";
+        int index2 = PlayerPrefs.GetInt(string.Concat(strArray2));
+        if ((Object) photographs1[index2].mainTexture == (Object) this.NoPhoto)
         {
-          "Profile_",
-          null,
-          null,
-          null,
-          null
-        };
-        profile1 = GameGlobals.Profile;
-        strArray3[1] = profile1.ToString();
-        strArray3[2] = "_CorkboardPhoto_";
-        strArray3[3] = index1.ToString();
-        strArray3[4] = "_RotationX";
-        double x2 = (double) PlayerPrefs.GetFloat(string.Concat(strArray3));
-        string[] strArray4 = new string[5]
+          Debug.Log((object) "This photo was destroyed.");
+          string[] strArray3 = new string[5]
+          {
+            "Profile_",
+            null,
+            null,
+            null,
+            null
+          };
+          profile = GameGlobals.Profile;
+          strArray3[1] = profile.ToString();
+          strArray3[2] = "_CorkboardPhoto_";
+          strArray3[3] = index1.ToString();
+          strArray3[4] = "_Exists";
+          PlayerPrefs.SetInt(string.Concat(strArray3), 0);
+        }
+        else
         {
-          "Profile_",
-          null,
-          null,
-          null,
-          null
-        };
-        int profile2 = GameGlobals.Profile;
-        strArray4[1] = profile2.ToString();
-        strArray4[2] = "_CorkboardPhoto_";
-        strArray4[3] = index1.ToString();
-        strArray4[4] = "_RotationY";
-        double y2 = (double) PlayerPrefs.GetFloat(string.Concat(strArray4));
-        string[] strArray5 = new string[5]
-        {
-          "Profile_",
-          null,
-          null,
-          null,
-          null
-        };
-        profile2 = GameGlobals.Profile;
-        strArray5[1] = profile2.ToString();
-        strArray5[2] = "_CorkboardPhoto_";
-        strArray5[3] = index1.ToString();
-        strArray5[4] = "_RotationZ";
-        double z2 = (double) PlayerPrefs.GetFloat(string.Concat(strArray5));
-        Vector3 vector3_2 = new Vector3((float) x2, (float) y2, (float) z2);
-        transform2.localEulerAngles = vector3_2;
-        Transform transform3 = gameObject.transform;
-        string[] strArray6 = new string[5]
-        {
-          "Profile_",
-          null,
-          null,
-          null,
-          null
-        };
-        profile2 = GameGlobals.Profile;
-        strArray6[1] = profile2.ToString();
-        strArray6[2] = "_CorkboardPhoto_";
-        strArray6[3] = index1.ToString();
-        strArray6[4] = "_ScaleX";
-        double x3 = (double) PlayerPrefs.GetFloat(string.Concat(strArray6));
-        string[] strArray7 = new string[5]
-        {
-          "Profile_",
-          null,
-          null,
-          null,
-          null
-        };
-        int profile3 = GameGlobals.Profile;
-        strArray7[1] = profile3.ToString();
-        strArray7[2] = "_CorkboardPhoto_";
-        strArray7[3] = index1.ToString();
-        strArray7[4] = "_ScaleY";
-        double y3 = (double) PlayerPrefs.GetFloat(string.Concat(strArray7));
-        string[] strArray8 = new string[5]
-        {
-          "Profile_",
-          null,
-          null,
-          null,
-          null
-        };
-        profile3 = GameGlobals.Profile;
-        strArray8[1] = profile3.ToString();
-        strArray8[2] = "_CorkboardPhoto_";
-        strArray8[3] = index1.ToString();
-        strArray8[4] = "_ScaleZ";
-        double z3 = (double) PlayerPrefs.GetFloat(string.Concat(strArray8));
-        Vector3 vector3_3 = new Vector3((float) x3, (float) y3, (float) z3);
-        transform3.localScale = vector3_3;
-        UITexture component = gameObject.GetComponent<UITexture>();
-        UITexture[] photographs = this.Photographs;
-        string[] strArray9 = new string[5]
-        {
-          "Profile_",
-          null,
-          null,
-          null,
-          null
-        };
-        profile3 = GameGlobals.Profile;
-        strArray9[1] = profile3.ToString();
-        strArray9[2] = "_CorkboardPhoto_";
-        strArray9[3] = index1.ToString();
-        strArray9[4] = "_PhotoID";
-        int index2 = PlayerPrefs.GetInt(string.Concat(strArray9));
-        Texture mainTexture = photographs[index2].mainTexture;
-        component.mainTexture = mainTexture;
-        this.CorkboardPhotographs[this.Photos] = gameObject.GetComponent<HomeCorkboardPhotoScript>();
-        this.CorkboardPhotographs[this.Photos].ID = PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardPhoto_" + index1.ToString() + "_PhotoID");
-        this.CorkboardPhotographs[this.Photos].ArrayID = this.Photos;
-        ++this.Photos;
+          GameObject gameObject = Object.Instantiate<GameObject>(this.Photograph, this.transform.position, Quaternion.identity);
+          gameObject.transform.parent = this.CorkboardPanel;
+          Transform transform1 = gameObject.transform;
+          string[] strArray4 = new string[5]
+          {
+            "Profile_",
+            null,
+            null,
+            null,
+            null
+          };
+          profile = GameGlobals.Profile;
+          strArray4[1] = profile.ToString();
+          strArray4[2] = "_CorkboardPhoto_";
+          strArray4[3] = index1.ToString();
+          strArray4[4] = "_PositionX";
+          double x1 = (double) PlayerPrefs.GetFloat(string.Concat(strArray4));
+          string[] strArray5 = new string[5]
+          {
+            "Profile_",
+            null,
+            null,
+            null,
+            null
+          };
+          profile = GameGlobals.Profile;
+          strArray5[1] = profile.ToString();
+          strArray5[2] = "_CorkboardPhoto_";
+          strArray5[3] = index1.ToString();
+          strArray5[4] = "_PositionY";
+          double y1 = (double) PlayerPrefs.GetFloat(string.Concat(strArray5));
+          string[] strArray6 = new string[5]
+          {
+            "Profile_",
+            null,
+            null,
+            null,
+            null
+          };
+          profile = GameGlobals.Profile;
+          strArray6[1] = profile.ToString();
+          strArray6[2] = "_CorkboardPhoto_";
+          strArray6[3] = index1.ToString();
+          strArray6[4] = "_PositionZ";
+          double z1 = (double) PlayerPrefs.GetFloat(string.Concat(strArray6));
+          Vector3 vector3_1 = new Vector3((float) x1, (float) y1, (float) z1);
+          transform1.localPosition = vector3_1;
+          Transform transform2 = gameObject.transform;
+          string[] strArray7 = new string[5]
+          {
+            "Profile_",
+            null,
+            null,
+            null,
+            null
+          };
+          profile = GameGlobals.Profile;
+          strArray7[1] = profile.ToString();
+          strArray7[2] = "_CorkboardPhoto_";
+          strArray7[3] = index1.ToString();
+          strArray7[4] = "_RotationX";
+          double x2 = (double) PlayerPrefs.GetFloat(string.Concat(strArray7));
+          string[] strArray8 = new string[5]
+          {
+            "Profile_",
+            null,
+            null,
+            null,
+            null
+          };
+          profile = GameGlobals.Profile;
+          strArray8[1] = profile.ToString();
+          strArray8[2] = "_CorkboardPhoto_";
+          strArray8[3] = index1.ToString();
+          strArray8[4] = "_RotationY";
+          double y2 = (double) PlayerPrefs.GetFloat(string.Concat(strArray8));
+          string[] strArray9 = new string[5]
+          {
+            "Profile_",
+            null,
+            null,
+            null,
+            null
+          };
+          profile = GameGlobals.Profile;
+          strArray9[1] = profile.ToString();
+          strArray9[2] = "_CorkboardPhoto_";
+          strArray9[3] = index1.ToString();
+          strArray9[4] = "_RotationZ";
+          double z2 = (double) PlayerPrefs.GetFloat(string.Concat(strArray9));
+          Vector3 vector3_2 = new Vector3((float) x2, (float) y2, (float) z2);
+          transform2.localEulerAngles = vector3_2;
+          Transform transform3 = gameObject.transform;
+          string[] strArray10 = new string[5]
+          {
+            "Profile_",
+            null,
+            null,
+            null,
+            null
+          };
+          profile = GameGlobals.Profile;
+          strArray10[1] = profile.ToString();
+          strArray10[2] = "_CorkboardPhoto_";
+          strArray10[3] = index1.ToString();
+          strArray10[4] = "_ScaleX";
+          double x3 = (double) PlayerPrefs.GetFloat(string.Concat(strArray10));
+          string[] strArray11 = new string[5]
+          {
+            "Profile_",
+            null,
+            null,
+            null,
+            null
+          };
+          profile = GameGlobals.Profile;
+          strArray11[1] = profile.ToString();
+          strArray11[2] = "_CorkboardPhoto_";
+          strArray11[3] = index1.ToString();
+          strArray11[4] = "_ScaleY";
+          double y3 = (double) PlayerPrefs.GetFloat(string.Concat(strArray11));
+          string[] strArray12 = new string[5]
+          {
+            "Profile_",
+            null,
+            null,
+            null,
+            null
+          };
+          profile = GameGlobals.Profile;
+          strArray12[1] = profile.ToString();
+          strArray12[2] = "_CorkboardPhoto_";
+          strArray12[3] = index1.ToString();
+          strArray12[4] = "_ScaleZ";
+          double z3 = (double) PlayerPrefs.GetFloat(string.Concat(strArray12));
+          Vector3 vector3_3 = new Vector3((float) x3, (float) y3, (float) z3);
+          transform3.localScale = vector3_3;
+          UITexture component = gameObject.GetComponent<UITexture>();
+          UITexture[] photographs2 = this.Photographs;
+          string[] strArray13 = new string[5]
+          {
+            "Profile_",
+            null,
+            null,
+            null,
+            null
+          };
+          profile = GameGlobals.Profile;
+          strArray13[1] = profile.ToString();
+          strArray13[2] = "_CorkboardPhoto_";
+          strArray13[3] = index1.ToString();
+          strArray13[4] = "_PhotoID";
+          int index3 = PlayerPrefs.GetInt(string.Concat(strArray13));
+          Texture mainTexture = photographs2[index3].mainTexture;
+          component.mainTexture = mainTexture;
+          this.CorkboardPhotographs[this.Photos] = gameObject.GetComponent<HomeCorkboardPhotoScript>();
+          HomeCorkboardPhotoScript corkboardPhotograph = this.CorkboardPhotographs[this.Photos];
+          string[] strArray14 = new string[5]
+          {
+            "Profile_",
+            null,
+            null,
+            null,
+            null
+          };
+          profile = GameGlobals.Profile;
+          strArray14[1] = profile.ToString();
+          strArray14[2] = "_CorkboardPhoto_";
+          strArray14[3] = index1.ToString();
+          strArray14[4] = "_PhotoID";
+          int num = PlayerPrefs.GetInt(string.Concat(strArray14));
+          corkboardPhotograph.ID = num;
+          this.CorkboardPhotographs[this.Photos].ArrayID = this.Photos;
+          ++this.Photos;
+        }
       }
     }
     this.SpawnedPhotos = true;

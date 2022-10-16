@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeSenpaiShrineScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -27,6 +27,8 @@ public class HomeSenpaiShrineScript : MonoBehaviour
   private int Columns = 3;
   private int X = 1;
   private int Y = 3;
+  public AudioClip ShrineClose;
+  public AudioClip ShrineOpen;
   public bool Open;
 
   public void Start()
@@ -74,6 +76,7 @@ public class HomeSenpaiShrineScript : MonoBehaviour
           this.HomeYandere.CanMove = true;
           this.HomeYandere.gameObject.SetActive(true);
           this.HomeWindow.Show = false;
+          AudioSource.PlayClipAtPoint(this.ShrineClose, this.HomeCamera.transform.position);
         }
       }
     }

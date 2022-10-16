@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AmbientEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -111,7 +111,7 @@ public class AmbientEventScript : MonoBehaviour
       }
       this.EventOn = true;
     }
-    else if (!this.Sitting && (double) this.Clock.HourTime > (double) this.StartTime + 0.5 || this.EventStudent[1].WitnessedCorpse || this.EventStudent[2].WitnessedCorpse || this.EventStudent[1].Alarmed || this.EventStudent[2].Alarmed || this.EventStudent[1].Dying || this.EventStudent[2].Dying || this.EventStudent[1].GoAway || this.EventStudent[2].GoAway || this.Yandere.Noticed)
+    else if (!this.Sitting && (double) this.Clock.HourTime > (double) this.StartTime + 0.5 || this.Sitting && (double) this.Clock.HourTime > (double) this.StartTime + 1.0 || this.EventStudent[1].WitnessedCorpse || this.EventStudent[2].WitnessedCorpse || this.EventStudent[1].Alarmed || this.EventStudent[2].Alarmed || this.EventStudent[1].Dying || this.EventStudent[2].Dying || this.EventStudent[1].GoAway || this.EventStudent[2].GoAway || this.Yandere.Noticed)
     {
       this.EndEvent();
     }

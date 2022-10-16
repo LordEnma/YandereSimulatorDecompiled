@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PlayerGlobals
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -53,6 +53,7 @@ public static class PlayerGlobals
   private const string Str_PoliceVisits = "PoliceVisits";
   private const string Str_BloodWitnessed = "BloodWitnessed";
   private const string Str_WeaponWitnessed = "WeaponWitnessed";
+  private const string Str_Meals = "Meals";
 
   public static float Money
   {
@@ -374,6 +375,12 @@ public static class PlayerGlobals
     set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_WeaponWitnessed", value);
   }
 
+  public static int Meals
+  {
+    get => PlayerPrefs.GetInt("Profile_" + GameGlobals.Profile.ToString() + "_Meals");
+    set => PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_Meals", value);
+  }
+
   public static void DeleteAll()
   {
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Money");
@@ -420,5 +427,6 @@ public static class PlayerGlobals
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_PoliceVisits");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_BloodWitnessed");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_WeaponWitnessed");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_Meals");
   }
 }

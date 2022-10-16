@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
@@ -25,6 +25,7 @@ public class StudentScript : MonoBehaviour
   public ChangingBoothScript ChangingBooth;
   public DialogueWheelScript DialogueWheel;
   public WitnessCameraScript WitnessCamera;
+  public YanSaveIdentifier BentoIdentifier;
   public YanSaveIdentifier HipsIdentifier;
   public StudentScript DistractionTarget;
   public CookingEventScript CookingEvent;
@@ -860,6 +861,7 @@ public class StudentScript : MonoBehaviour
   public RiggedAccessoryAttacher ApronAttacher;
   public Mesh HeadAndHands;
   private bool NoMentor;
+  public bool BagPlaced;
   public RaycastHit hit;
   public Transform RaycastOrigin;
   public bool TooCloseToWall;
@@ -870,6 +872,9 @@ public class StudentScript : MonoBehaviour
   public string[] OriginalActs;
   public OutlineScript[] RiggedAccessoryOutlines;
   public int RiggedAccessoryOutlineID;
+  public MiniMapComponent MiniMapIcon;
+  public UnityEngine.Sprite SenpaiSprite;
+  public UnityEngine.Sprite RivalSprite;
   public float SavePositionX;
   public float SavePositionY;
   public float SavePositionZ;
@@ -888,8 +893,6 @@ public class StudentScript : MonoBehaviour
       this.OriginalIdleAnim = this.IdleAnim;
       this.OriginalLeanAnim = this.LeanAnim;
       this.Friend = PlayerGlobals.GetStudentFriend(this.StudentID);
-      if (!this.StudentManager.LoveSick && SchoolAtmosphere.Type == SchoolAtmosphereType.Low && this.Club != ClubType.Council && this.StudentID < 90 && (this.Club <= ClubType.Gaming || this.Club == ClubType.Newspaper))
-        this.IdleAnim = this.ParanoidAnim;
       if (ClubGlobals.Club == ClubType.Occult)
         this.Perception = 0.5f;
       this.Hearts.emission.enabled = false;
@@ -910,6 +913,12 @@ public class StudentScript : MonoBehaviour
       this.Accessory = student.Accessory;
       this.Name = student.Name;
       this.OriginalClub = this.Club;
+      if (!this.StudentManager.LoveSick && SchoolAtmosphere.Type == SchoolAtmosphereType.Low && this.Club != ClubType.Council && this.Persona != PersonaType.Heroic && this.Persona != PersonaType.Violent && this.StudentID < 90)
+      {
+        Debug.Log((object) ("Name is: " + this.Name + " and Persona is: " + this.Persona.ToString()));
+        if (this.Club <= ClubType.Gaming || this.Club == ClubType.Newspaper)
+          this.IdleAnim = this.ParanoidAnim;
+      }
       if (StudentGlobals.GetStudentBroken(this.StudentID))
       {
         this.Cosmetic.RightEyeRenderer.gameObject.SetActive(false);
@@ -2060,7 +2069,6 @@ public class StudentScript : MonoBehaviour
     }
     if ((double) this.StudentManager.Atmosphere < 0.33333000540733337 && this.Teacher)
     {
-      Debug.Log((object) ("Manually setting idle anim for Student#" + this.StudentID.ToString()));
       this.OriginalIdleAnim = "f02_idleShort_00";
       this.IdleAnim = "f02_idleShort_00";
       if (this.StudentID == 97)
@@ -10231,7 +10239,6 @@ label_273:
       bool flag1 = false;
       if (!this.StudentManager.EmptyDemon)
       {
-        Debug.Log((object) "Checking if Raibaru can mentor the Martial Arts Club...");
         if (!this.StudentManager.Eighties && this.StudentID == 10 && this.StudentManager.TaskManager.TaskStatus[46] == 1 && !this.NoMentor && !this.StudentManager.TaskManager.Mentored)
         {
           Debug.Log((object) "Nothing should be stopping her, but what time is it?");
@@ -10517,6 +10524,11 @@ label_273:
               }
               else if (ClubGlobals.GetClubKicked(this.Club) & flag2)
               {
+                Debug.Log((object) "Player was kicked out of this club.");
+                if (this.ClubManager.ClubGrudge)
+                  Debug.Log((object) "Someone in the club hates the player.");
+                else
+                  Debug.Log((object) "Player never showed up for club activities, got kicked.");
                 this.Interaction = StudentInteractionType.ClubGrudge;
                 this.TalkTimer = 5f;
                 this.Warned = true;
@@ -12247,7 +12259,7 @@ label_273:
       {
         if ((double) this.transform.position.y < -0.10000000149011612)
           this.transform.position = new Vector3(this.transform.position.x, 0.0f, this.transform.position.z);
-        if (this.Dying || this.Distracted || this.WalkBack || this.Waiting || this.Guarding || this.WitnessedMurder || this.WitnessedCorpse || this.Blind || this.SentHome || this.TurnOffRadio || this.Wet || this.InvestigatingBloodPool || this.ReturningMisplacedWeapon || this.Yandere.Egg || this.StudentManager.Pose || this.ShoeRemoval.enabled || this.Drownable)
+        if (this.Dying || this.Distracted || this.WalkBack || this.Waiting || this.Guarding || this.WitnessedMurder || this.WitnessedCorpse || this.Blind || this.SentHome || this.SentToLocker || this.TurnOffRadio || this.Wet || this.InvestigatingBloodPool || this.ReturningMisplacedWeapon || this.Yandere.Egg || this.StudentManager.Pose || this.ShoeRemoval.enabled || this.Drownable)
           return;
         if (this.StudentManager.MissionMode && (double) this.DistanceToPlayer < 0.5)
         {
@@ -12265,6 +12277,7 @@ label_273:
             {
               if (this.Investigating)
                 this.StopInvestigating();
+              Debug.Log((object) (this.Name + " was alarmed because Yandere-chan was moving nearby."));
               this.DistractionSpot = this.Yandere.transform.position;
               this.Alarm = 200f;
               this.TemporarilyBlind = true;
@@ -13794,17 +13807,7 @@ label_273:
       else if (scheduleBlock.destination == "Peek")
         this.Destinations[this.ID] = this.Male ? this.StudentManager.MaleStalkSpot : this.StudentManager.FemaleStalkSpot;
       else if (scheduleBlock.destination == "Club")
-      {
-        if (this.Club > ClubType.None)
-        {
-          this.Destinations[this.ID] = this.Club != ClubType.Sports ? this.StudentManager.Clubs.List[this.StudentID] : this.StudentManager.Clubs.List[this.StudentID].GetChild(0);
-        }
-        else
-        {
-          Debug.Log((object) (this.Name + " was in a club, but the club shut down, so their routine is being adjusted."));
-          this.Destinations[this.ID] = this.StudentManager.Hangouts.List[this.StudentID];
-        }
-      }
+        this.Destinations[this.ID] = this.Club <= ClubType.None ? this.StudentManager.Hangouts.List[this.StudentID] : (this.Club != ClubType.Sports ? this.StudentManager.Clubs.List[this.StudentID] : this.StudentManager.Clubs.List[this.StudentID].GetChild(0));
       else if (scheduleBlock.destination == "Sulk")
         this.Destinations[this.ID] = this.StudentManager.SulkSpots[this.StudentID];
       else if (scheduleBlock.destination == "Sleuth")
@@ -14862,6 +14865,7 @@ label_273:
       {
         if (this.Clock.Period < 3 || this.StudentManager.PoolClosed)
         {
+          Debug.Log((object) "A Sports Club student is now changing clothing...");
           if (this.StudentManager.Eighties)
             this.GymTexture = this.EightiesGymTexture;
           this.MyRenderer.sharedMesh = this.GymUniform;
@@ -17121,6 +17125,7 @@ label_273:
 
   public void PlaceBag()
   {
+    Debug.Log((object) (this.Name + " just put her bookbag on her desk."));
     if ((double) this.Seat.position.x < 0.0)
     {
       this.StudentManager.RivalBookBag.transform.position = this.Seat.position + new Vector3(-0.33333f, 0.342f, 0.3585f);
@@ -17143,6 +17148,7 @@ label_273:
       this.StudentManager.WednesdayGiftBox.transform.position = (double) this.transform.position.x >= 0.0 ? this.Seat.position + new Vector3(0.4f, 1.02f, 0.0f) : this.Seat.position + new Vector3(-0.4f, 1.02f, 0.0f);
       this.GiftBox = false;
     }
+    this.BagPlaced = true;
     if (this.VisitSenpaiDesk)
     {
       if ((UnityEngine.Object) this.CurrentDestination == (UnityEngine.Object) this.StudentManager.Students[1].Seat)
@@ -17208,8 +17214,16 @@ label_273:
       else if (this.StudentID == 19)
       {
         ScheduleBlock scheduleBlock = this.ScheduleBlocks[2];
-        scheduleBlock.destination = "Sunbathe";
-        scheduleBlock.action = "GravurePose";
+        if ((double) SchoolGlobals.SchoolAtmosphere > 0.800000011920929 && this.StudentManager.Photographers > 0)
+        {
+          scheduleBlock.destination = "Sunbathe";
+          scheduleBlock.action = "GravurePose";
+        }
+        else
+        {
+          scheduleBlock.destination = "Patrol";
+          scheduleBlock.action = "Patrol";
+        }
       }
       else if (this.StudentID == 20)
       {

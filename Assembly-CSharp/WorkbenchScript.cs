@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WorkbenchScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -22,15 +22,19 @@ public class WorkbenchScript : MonoBehaviour
   public UILabel HeaderLabel;
   public UILabel HintLabel;
   public AudioSource MyAudio;
+  public AudioClip Success;
   public UISprite Darkness;
   public GameObject[] MaterialModel;
   public GameObject[] OutcomeModel;
   public GameObject[] Checkmark;
+  public AudioClip[] LiquidSFX;
+  public AudioClip[] SolidSFX;
   public AudioClip[] SFX;
   public UILabel[] Label;
   public string[] Hints;
-  public bool[] InStock;
   public int[] Material;
+  public bool[] InStock;
+  public bool[] Solids;
   public bool CraftingSequence;
   public bool Chemistry;
   public bool Triple;
@@ -184,7 +188,13 @@ public class WorkbenchScript : MonoBehaviour
           this.PromptBar.Label[1].text = "";
           this.PromptBar.UpdateButtons();
           this.PromptBar.Show = true;
-          this.PlayRandomSound();
+          if (this.Chemistry)
+          {
+            this.MyAudio.clip = this.Success;
+            this.MyAudio.Play();
+          }
+          else
+            this.PlayRandomSound();
         }
         else
         {
@@ -320,7 +330,7 @@ public class WorkbenchScript : MonoBehaviour
 
   private void PlayRandomSound()
   {
-    this.MyAudio.clip = this.SFX[Random.Range(1, this.SFX.Length)];
+    this.MyAudio.clip = !this.Chemistry ? this.SFX[Random.Range(1, this.SFX.Length)] : (!this.Solids[this.Selection] ? this.LiquidSFX[Random.Range(1, this.LiquidSFX.Length)] : this.SolidSFX[Random.Range(1, this.SolidSFX.Length)]);
     this.MyAudio.Play();
   }
 

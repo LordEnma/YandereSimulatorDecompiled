@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RagdollScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -709,11 +709,13 @@ public class RagdollScript : MonoBehaviour
     Debug.Log((object) "Dismembering a character.");
     if (this.Dismembered)
       return;
-    if (!GameGlobals.Debug && !GameGlobals.Debug)
+    if (!GameGlobals.Debug)
     {
+      Debug.Log((object) ("Decapitations: " + PlayerPrefs.GetInt("HeadsHunted").ToString()));
       PlayerPrefs.SetInt("HeadsHunted", PlayerPrefs.GetInt("HeadsHunted") + 1);
       if (PlayerPrefs.GetInt("HeadsHunted") > 9)
       {
+        Debug.Log((object) "Headhunter Achievement should unlock now.");
         PlayerPrefs.SetInt("HeadHunter", 1);
         PlayerPrefs.SetInt("a", 1);
       }
@@ -873,6 +875,8 @@ public class RagdollScript : MonoBehaviour
       --this.Yandere.NearBodies;
     if (this.Poisoned)
       this.Police.PoisonScene = false;
+    if (this.Concealed)
+      --this.Police.HiddenCorpses;
     this.gameObject.SetActive(false);
   }
 

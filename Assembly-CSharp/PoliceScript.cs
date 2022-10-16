@@ -1,10 +1,12 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PoliceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -104,6 +106,8 @@ public class PoliceScript : MonoBehaviour
   public int Seconds;
   public string Protagonist = "Ayano";
   public string[] VtuberNames;
+  public int[] IDsToIgnore;
+  public int IDsCounted;
   public int SuspensionLength;
   public int RemainingDays;
   public bool Suspended;
@@ -140,6 +144,7 @@ public class PoliceScript : MonoBehaviour
           foreach (UILabel componentsInChild in this.gameObject.GetComponentsInChildren<UILabel>())
             this.StudentManager.EightiesifyLabel(componentsInChild);
           this.TextUpdated = true;
+          this.Yandere.CinematicCamera.SetActive(false);
         }
       }
       this.StudentManager.TutorialWindow.ShowPoliceMessage = true;
@@ -262,6 +267,7 @@ public class PoliceScript : MonoBehaviour
         this.Yandere.CanMove = false;
         this.Yandere.YandereVision = false;
         this.Yandere.PauseScreen.enabled = false;
+        this.Yandere.CinematicCamera.SetActive(false);
         this.Yandere.CharacterAnimation.CrossFade("f02_idleShort_00");
         if ((UnityEngine.Object) this.Yandere.Mask != (UnityEngine.Object) null)
           this.Yandere.Mask.Drop();
@@ -715,6 +721,10 @@ public class PoliceScript : MonoBehaviour
       this.ResultsLabels[4].text = "The faculty members agree to call the police and report the student's death.";
       this.TeacherReport = true;
       this.Show = true;
+      if (!this.SelfReported)
+        return;
+      this.ResultsLabels[0].text = this.Protagonist + " informs a faculty member that something alarming is present at school.";
+      this.ResultsLabels[1].text = "The faculty member confirms that " + this.Protagonist + " is telling the truth.";
     }
     else
     {
@@ -809,10 +819,12 @@ public class PoliceScript : MonoBehaviour
       }
       if (this.DrownVictims + this.Corpses > 0)
       {
+        Debug.Log((object) "Today, there were corpses on school grounds.");
         foreach (RagdollScript corpse in this.CorpseList)
         {
           if ((UnityEngine.Object) corpse != (UnityEngine.Object) null && !corpse.Disposed && StudentGlobals.MemorialStudents < 9)
           {
+            Debug.Log((object) "''MemorialStudents'' is being incremented upwards.");
             ++StudentGlobals.MemorialStudents;
             switch (StudentGlobals.MemorialStudents)
             {
@@ -845,6 +857,66 @@ public class PoliceScript : MonoBehaviour
                 continue;
               default:
                 continue;
+            }
+          }
+        }
+      }
+      if (this.LimbParent.childCount > 0)
+      {
+        Debug.Log((object) ("Today, there were " + this.LimbParent.childCount.ToString() + " body parts on school grounds."));
+        foreach (Transform transform in this.LimbParent)
+        {
+          if ((UnityEngine.Object) transform.gameObject != (UnityEngine.Object) null && (UnityEngine.Object) transform.GetComponent<BodyPartScript>() != (UnityEngine.Object) null)
+          {
+            Debug.Log((object) ("This limb's name is " + transform.name + "."));
+            int studentId = transform.GetComponent<BodyPartScript>().StudentID;
+            Debug.Log((object) ("Limb belonged to Student # " + studentId.ToString() + "."));
+            if (!((IEnumerable<int>) this.IDsToIgnore).Contains<int>(studentId))
+            {
+              ++PlayerGlobals.CorpsesDiscovered;
+              SchoolGlobals.SchoolAtmosphere -= 0.1f;
+              if (StudentGlobals.MemorialStudents < 9)
+              {
+                Debug.Log((object) "''MemorialStudents'' is being incremented upwards.");
+                ++StudentGlobals.MemorialStudents;
+                switch (StudentGlobals.MemorialStudents)
+                {
+                  case 1:
+                    StudentGlobals.MemorialStudent1 = studentId;
+                    break;
+                  case 2:
+                    StudentGlobals.MemorialStudent2 = studentId;
+                    break;
+                  case 3:
+                    StudentGlobals.MemorialStudent3 = studentId;
+                    break;
+                  case 4:
+                    StudentGlobals.MemorialStudent4 = studentId;
+                    break;
+                  case 5:
+                    StudentGlobals.MemorialStudent5 = studentId;
+                    break;
+                  case 6:
+                    StudentGlobals.MemorialStudent6 = studentId;
+                    break;
+                  case 7:
+                    StudentGlobals.MemorialStudent7 = studentId;
+                    break;
+                  case 8:
+                    StudentGlobals.MemorialStudent8 = studentId;
+                    break;
+                  case 9:
+                    StudentGlobals.MemorialStudent9 = studentId;
+                    break;
+                }
+              }
+            }
+            else
+              Debug.Log((object) "Wait, we already counted a limb from that student! Ignore it.");
+            if (this.IDsCounted < 99)
+            {
+              this.IDsToIgnore[this.IDsCounted] = studentId;
+              ++this.IDsCounted;
             }
           }
         }

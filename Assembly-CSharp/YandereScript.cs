@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
@@ -808,6 +808,12 @@ public class YandereScript : MonoBehaviour
   public bool WallToRight;
   public bool WallToLeft;
   public int Direction;
+  public bool AudioPlayed;
+  public AudioClip YandereVisionOn;
+  public AudioClip YandereVisionOff;
+  public AudioSource YandereVisionAudio;
+  public AudioSource YandereVisionDrone;
+  public MiniMapComponent MiniMapIcon;
 
   private void Start()
   {
@@ -969,7 +975,7 @@ public class YandereScript : MonoBehaviour
       this.HeartRate.BeatsPerMinute = (int) (240.0 - (double) this.sanity * 1.7999999523162842);
       if (!this.Laughing)
         this.Teeth.SetActive(this.SanityWarning);
-      if ((Object) this.MyRenderer.sharedMesh != (Object) this.NudeMesh)
+      if ((Object) this.MyRenderer.sharedMesh != (Object) this.NudeMesh && !this.ClubAttire)
       {
         if (!this.Slender)
           this.MyRenderer.materials[2].SetFloat("_BlendAmount", (float) (1.0 - (double) this.sanity / 100.0));
@@ -1651,7 +1657,16 @@ public class YandereScript : MonoBehaviour
             if ((double) this.YandereTimer > 0.5)
             {
               if (!this.Sans && !this.BlackRobe.activeInHierarchy)
+              {
                 this.YandereVision = true;
+                if (!this.AudioPlayed)
+                {
+                  this.YandereVisionAudio.clip = this.YandereVisionOn;
+                  this.YandereVisionAudio.Play();
+                  this.YandereVisionDrone.Play();
+                  this.AudioPlayed = true;
+                }
+              }
               else if (this.Sans)
               {
                 this.SansEyes[0].SetActive(true);
@@ -3899,6 +3914,12 @@ public class YandereScript : MonoBehaviour
         this.LeftRedEye.material.color = new Color(this.LeftRedEye.material.color.r, this.LeftRedEye.material.color.g, this.LeftRedEye.material.color.b, (float) (1.0 - (double) this.YandereFade / 100.0));
         this.RightYandereEye.material.color = new Color(this.RightYandereEye.material.color.r, this.YandereFade / 100f, this.YandereFade / 100f, this.RightYandereEye.material.color.a);
         this.LeftYandereEye.material.color = new Color(this.LeftYandereEye.material.color.r, this.YandereFade / 100f, this.YandereFade / 100f, this.LeftYandereEye.material.color.a);
+        if (!this.AudioPlayed)
+          return;
+        this.YandereVisionAudio.clip = this.YandereVisionOff;
+        this.YandereVisionAudio.Play();
+        this.YandereVisionDrone.Stop();
+        this.AudioPlayed = false;
       }
       else
       {
@@ -5653,7 +5674,7 @@ public class YandereScript : MonoBehaviour
     this.RunSpeed *= 2f;
     this.MusicCredit.SongLabel.text = "Now Playing: This Is My Choice";
     this.MusicCredit.BandLabel.text = "By: The Kira Justice";
-    this.MusicCredit.Panel.enabled = true;
+    this.MusicCredit.Sprite.enabled = true;
     this.MusicCredit.Slide = true;
     this.EasterEggMenu.SetActive(false);
     this.Egg = true;
@@ -5915,7 +5936,7 @@ public class YandereScript : MonoBehaviour
   {
     this.MusicCredit.SongLabel.text = "Now Playing: Unknown Hero";
     this.MusicCredit.BandLabel.text = "By: The Kira Justice";
-    this.MusicCredit.Panel.enabled = true;
+    this.MusicCredit.Sprite.enabled = true;
     this.MusicCredit.Slide = true;
     this.MyRenderer.sharedMesh = this.SchoolSwimsuit;
     this.PantyAttacher.newRenderer.enabled = false;

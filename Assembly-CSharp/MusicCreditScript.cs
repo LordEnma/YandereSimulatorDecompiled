@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MusicCreditScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -10,14 +10,14 @@ public class MusicCreditScript : MonoBehaviour
 {
   public UILabel SongLabel;
   public UILabel BandLabel;
-  public UIPanel Panel;
+  public UISprite Sprite;
   public bool Slide;
   public float Timer;
 
   private void Start()
   {
     this.transform.localPosition = new Vector3(400f, this.transform.localPosition.y, this.transform.localPosition.z);
-    this.Panel.enabled = false;
+    this.Sprite.enabled = false;
   }
 
   private void Update()
@@ -36,7 +36,7 @@ public class MusicCreditScript : MonoBehaviour
       if ((double) this.transform.localPosition.x <= 400.0)
         return;
       this.transform.localPosition = new Vector3(400f, this.transform.localPosition.y, this.transform.localPosition.z);
-      this.Panel.enabled = false;
+      this.Sprite.enabled = false;
       this.Slide = false;
       this.Timer = 0.0f;
     }

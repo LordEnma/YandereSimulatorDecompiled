@@ -1,13 +1,14 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GenericRivalBagScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
 public class GenericRivalBagScript : MonoBehaviour
 {
+  public StudentManagerScript StudentManager;
   public InputManagerScript InputManager;
   public GenericRivalEventScript Event;
   public PromptBarScript PromptBar;
@@ -72,6 +73,11 @@ public class GenericRivalBagScript : MonoBehaviour
   public int Page = 1;
   public Vector3 CorrectPosition;
   public Vector3 CorrectRotation;
+  public bool EmeticStatus;
+  public bool TranquilStatus;
+  public bool HeadacheStatus;
+  public bool LethalStatus;
+  public bool TamperedStatus;
   public GameObject TanHearts;
   public GameObject PiercingHearts;
   public GameObject DarkHairHearts;
@@ -446,7 +452,10 @@ public class GenericRivalBagScript : MonoBehaviour
       this.Label[3].text = "CONTRABAND";
       this.Label[4].text = "EXIT";
       if ((Object) this.Rival == (Object) null)
+      {
+        Debug.Log((object) "Rival was null, grabbing her info now.");
         this.GrabRivalInfo();
+      }
       if (this.Rival.MyBento.Tampered || this.BentoStolen || this.NoBento)
       {
         this.Label[2].color = new Color(1f, 1f, 1f, 0.5f);
@@ -625,5 +634,27 @@ public class GenericRivalBagScript : MonoBehaviour
   {
     this.transform.position = this.CorrectPosition;
     this.transform.eulerAngles = this.CorrectRotation;
+  }
+
+  public void RememberBentoStatus()
+  {
+    if (!((Object) this.Rival != (Object) null))
+      return;
+    this.EmeticStatus = this.Rival.MyBento.Emetic;
+    this.TranquilStatus = this.Rival.MyBento.Tranquil;
+    this.HeadacheStatus = this.Rival.MyBento.Headache;
+    this.LethalStatus = this.Rival.MyBento.Lethal;
+    this.TamperedStatus = this.Rival.MyBento.Tampered;
+  }
+
+  public void RestoreBentoStatus()
+  {
+    if (!((Object) this.Rival != (Object) null))
+      return;
+    this.Rival.MyBento.Emetic = this.EmeticStatus;
+    this.Rival.MyBento.Tranquil = this.TranquilStatus;
+    this.Rival.MyBento.Headache = this.HeadacheStatus;
+    this.Rival.MyBento.Lethal = this.LethalStatus;
+    this.Rival.MyBento.Tampered = this.TamperedStatus;
   }
 }

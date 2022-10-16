@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TributeScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: BA643F73-9C44-4160-857E-C8D73B77B12F
+// MVID: 12831466-57D6-4F5A-B867-CD140BE439C0
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -13,11 +13,13 @@ public class TributeScript : MonoBehaviour
   public HenshinScript Henshin;
   public YandereScript Yandere;
   public GameObject Rainey;
+  public string[] MinecraftLetters;
   public string[] MedibangLetters;
   public string[] MiyukiLetters;
   public string[] NurseLetters;
   public string[] AzurLane;
   public string[] Letter;
+  public int MinecraftID;
   public int MedibangID;
   public int MiyukiID;
   public int NurseID;
@@ -25,6 +27,7 @@ public class TributeScript : MonoBehaviour
   public int ID;
   public Mesh ThiccMesh;
   public bool TransformNurse;
+  public Material MinecraftMaterial;
 
   private void Start()
   {
