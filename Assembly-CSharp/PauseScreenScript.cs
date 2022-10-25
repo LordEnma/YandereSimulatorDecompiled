@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PauseScreenScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -124,39 +124,6 @@ public class PauseScreenScript : MonoBehaviour
     this.MainMenu.SetActive(true);
     this.YouTubeChatMenu.InitializeWindow.SetActive(true);
     this.YouTubeChatMenu.CommandWindow.SetActive(false);
-    if (!(SceneManager.GetActiveScene().name == "SchoolScene"))
-    {
-      this.MissionModeIcons.SetActive(false);
-      UISprite phoneIcon1 = this.PhoneIcons[5];
-      phoneIcon1.color = new Color(phoneIcon1.color.r, phoneIcon1.color.g, phoneIcon1.color.b, 0.5f);
-      UISprite phoneIcon2 = this.PhoneIcons[8];
-      phoneIcon2.color = new Color(phoneIcon2.color.r, phoneIcon2.color.g, phoneIcon2.color.b, 0.5f);
-      UISprite phoneIcon3 = this.PhoneIcons[9];
-      phoneIcon3.color = new Color(phoneIcon3.color.r, phoneIcon3.color.g, phoneIcon3.color.b, 0.5f);
-      UISprite phoneIcon4 = this.PhoneIcons[11];
-      phoneIcon4.color = new Color(phoneIcon4.color.r, phoneIcon4.color.g, phoneIcon4.color.b, 0.5f);
-      UISprite phoneIcon5 = this.PhoneIcons[13];
-      phoneIcon5.color = new Color(phoneIcon5.color.r, phoneIcon5.color.g, phoneIcon5.color.b, 0.5f);
-      UISprite phoneIcon6 = this.PhoneIcons[15];
-      phoneIcon6.color = new Color(phoneIcon6.color.r, phoneIcon6.color.g, phoneIcon6.color.b, 0.5f);
-      UISprite phoneIcon7 = this.PhoneIcons[17];
-      phoneIcon7.color = new Color(phoneIcon7.color.r, phoneIcon7.color.g, phoneIcon7.color.b, 0.5f);
-      UISprite phoneIcon8 = this.PhoneIcons[16];
-      phoneIcon8.color = new Color(phoneIcon8.color.r, phoneIcon8.color.g, phoneIcon8.color.b, 0.5f);
-      if ((Object) this.NewMissionModeWindow != (Object) null)
-        this.NewMissionModeWindow.SetActive(false);
-    }
-    if (MissionModeGlobals.MissionMode)
-    {
-      UISprite phoneIcon9 = this.PhoneIcons[7];
-      phoneIcon9.color = new Color(phoneIcon9.color.r, phoneIcon9.color.g, phoneIcon9.color.b, 0.5f);
-      UISprite phoneIcon10 = this.PhoneIcons[9];
-      phoneIcon10.color = new Color(phoneIcon10.color.r, phoneIcon10.color.g, phoneIcon10.color.b, 0.5f);
-      UISprite phoneIcon11 = this.PhoneIcons[10];
-      phoneIcon11.color = new Color(phoneIcon11.color.r, phoneIcon11.color.g, phoneIcon11.color.b, 1f);
-    }
-    this.UpdateSelection();
-    this.CorrectingTime = false;
     if (GameGlobals.Eighties)
     {
       this.Eighties = true;
@@ -173,6 +140,42 @@ public class PauseScreenScript : MonoBehaviour
       this.Phone.SetActive(false);
       this.Wifi.gameObject.SetActive(false);
     }
+    if (!(SceneManager.GetActiveScene().name == "SchoolScene"))
+    {
+      this.MissionModeIcons.SetActive(false);
+      if (!this.Eighties)
+      {
+        UISprite phoneIcon = this.PhoneIcons[5];
+        phoneIcon.color = new Color(phoneIcon.color.r, phoneIcon.color.g, phoneIcon.color.b, 0.5f);
+      }
+      UISprite phoneIcon1 = this.PhoneIcons[8];
+      phoneIcon1.color = new Color(phoneIcon1.color.r, phoneIcon1.color.g, phoneIcon1.color.b, 0.5f);
+      UISprite phoneIcon2 = this.PhoneIcons[9];
+      phoneIcon2.color = new Color(phoneIcon2.color.r, phoneIcon2.color.g, phoneIcon2.color.b, 0.5f);
+      UISprite phoneIcon3 = this.PhoneIcons[11];
+      phoneIcon3.color = new Color(phoneIcon3.color.r, phoneIcon3.color.g, phoneIcon3.color.b, 0.5f);
+      UISprite phoneIcon4 = this.PhoneIcons[13];
+      phoneIcon4.color = new Color(phoneIcon4.color.r, phoneIcon4.color.g, phoneIcon4.color.b, 0.5f);
+      UISprite phoneIcon5 = this.PhoneIcons[15];
+      phoneIcon5.color = new Color(phoneIcon5.color.r, phoneIcon5.color.g, phoneIcon5.color.b, 0.5f);
+      UISprite phoneIcon6 = this.PhoneIcons[17];
+      phoneIcon6.color = new Color(phoneIcon6.color.r, phoneIcon6.color.g, phoneIcon6.color.b, 0.5f);
+      UISprite phoneIcon7 = this.PhoneIcons[16];
+      phoneIcon7.color = new Color(phoneIcon7.color.r, phoneIcon7.color.g, phoneIcon7.color.b, 0.5f);
+      if ((Object) this.NewMissionModeWindow != (Object) null)
+        this.NewMissionModeWindow.SetActive(false);
+    }
+    if (MissionModeGlobals.MissionMode)
+    {
+      UISprite phoneIcon8 = this.PhoneIcons[7];
+      phoneIcon8.color = new Color(phoneIcon8.color.r, phoneIcon8.color.g, phoneIcon8.color.b, 0.5f);
+      UISprite phoneIcon9 = this.PhoneIcons[9];
+      phoneIcon9.color = new Color(phoneIcon9.color.r, phoneIcon9.color.g, phoneIcon9.color.b, 0.5f);
+      UISprite phoneIcon10 = this.PhoneIcons[10];
+      phoneIcon10.color = new Color(phoneIcon10.color.r, phoneIcon10.color.g, phoneIcon10.color.b, 1f);
+    }
+    this.UpdateSelection();
+    this.CorrectingTime = false;
     this.QuitLabel.text = "Do you wish to return to the main menu?";
     this.YesLabel.text = "Yes";
     this.HomeButton.SetActive(false);
@@ -724,6 +727,7 @@ public class PauseScreenScript : MonoBehaviour
                 Debug.Log((object) ("So, StudentGlobals.GetStudentSanity(StudentGlobals.PreviousPrisoner) should now be: " + StudentGlobals.GetStudentSanity(StudentGlobals.PreviousPrisoner).ToString()));
               }
               HomeGlobals.LateForSchool = false;
+              HomeGlobals.Night = false;
               SceneManager.LoadScene("HomeScene");
             }
           }

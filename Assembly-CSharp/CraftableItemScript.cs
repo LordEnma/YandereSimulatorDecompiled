@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CraftableItemScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -11,12 +11,15 @@ public class CraftableItemScript : MonoBehaviour
   public PromptScript Prompt;
   public bool DoNotDisappear;
   public bool Chemistry;
+  public string Name;
   public int ID;
 
   private void Update()
   {
     if ((double) this.Prompt.Circle[0].fillAmount != 0.0)
       return;
+    this.Prompt.Yandere.NotificationManager.CustomText = "Grabbed some " + this.Name + "!";
+    this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
     this.Prompt.Circle[0].fillAmount = 1f;
     switch (this.ID)
     {

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: QualityManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using RetroAesthetics;
@@ -245,7 +245,7 @@ public class QualityManagerScript : MonoBehaviour
           student.MyRenderer.materials[0].SetFloat("_BlendAmount", 0.0f);
           student.MyRenderer.materials[1].SetFloat("_BlendAmount", 0.0f);
         }
-        if (student.LabcoatAttacher.enabled && !student.Male)
+        if (!student.Male && (student.LabcoatAttacher.enabled || student.ClubAttire))
           student.HideLabCoatPanties();
       }
     }

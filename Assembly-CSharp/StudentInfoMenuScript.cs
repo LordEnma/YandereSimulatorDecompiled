@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentInfoMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -526,7 +526,7 @@ public class StudentInfoMenuScript : MonoBehaviour
       }
       if (this.StudentManager.PantyShotTaken[ID] || PlayerGlobals.GetStudentPantyShot(ID))
         this.StudentPortraits[ID].Panties.SetActive(true);
-      if ((Object) this.StudentManager.Students[ID] != (Object) null)
+      if ((Object) this.StudentManager.Students[ID] != (Object) null && (Object) this.StudentPortraits[ID] != (Object) null)
         this.StudentPortraits[ID].Friend.SetActive(this.StudentManager.Students[ID].Friend);
       else if ((Object) this.StudentPortraits[ID] != (Object) null)
         this.StudentPortraits[ID].Friend.SetActive(PlayerGlobals.GetStudentFriend(ID));

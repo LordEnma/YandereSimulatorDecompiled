@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AchievementPopUpScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -27,6 +27,7 @@ public class AchievementPopUpScript : MonoBehaviour
     this.transform.localPosition = new Vector3(637f, -613f, 0.0f);
     for (int index = 1; index < this.AchievementNames.Length; ++index)
       this.PreviousNumber[index] = PlayerPrefs.GetInt(this.AchievementNames[index]);
+    this.MyCamera.enabled = false;
   }
 
   private void Update()

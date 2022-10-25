@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CounselorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -689,13 +689,18 @@ public class CounselorScript : MonoBehaviour
                   }
                   else if (this.LectureID == 6)
                   {
-                    Debug.Log((object) "Disabling the rival, since she was expelled.");
+                    Debug.Log((object) "Disabling the rival and her bag, since she was expelled.");
                     this.StudentManager.Students[this.StudentManager.RivalID].gameObject.SetActive(false);
                     if ((Object) this.StudentManager.Students[this.StudentManager.SuitorID] != (Object) null)
                     {
                       Debug.Log((object) "Commanding the rival's suitor to stop trying to spy on her, since she's gone now.");
                       this.StudentManager.Students[this.StudentManager.SuitorID].Curious = false;
                     }
+                  }
+                  if ((Object) this.StudentManager.Students[this.StudentManager.RivalID] != (Object) null && !this.StudentManager.Students[this.StudentManager.RivalID].gameObject.activeInHierarchy)
+                  {
+                    Debug.Log((object) "Disabling the rival's bag, since she was expelled.");
+                    this.StudentManager.GenericRivalBag.gameObject.SetActive(false);
                   }
                 }
                 else if (this.LectureID == 2)
@@ -926,6 +931,7 @@ public class CounselorScript : MonoBehaviour
     this.Yandere.DetectionPanel.alpha = 1f;
     this.Yandere.RPGCamera.mouseSpeed = 8f;
     this.Yandere.HUD.alpha = 1f;
+    this.Yandere.SuspiciousActionTimer = 0.0f;
     this.Yandere.WeaponTimer = 0.0f;
     this.Yandere.TheftTimer = 0.0f;
     this.Yandere.HeartRate.gameObject.SetActive(true);
@@ -1156,6 +1162,7 @@ public class CounselorScript : MonoBehaviour
       }
       else
       {
+        this.Reticle.SetActive(true);
         Cursor.visible = true;
         this.Reticle.transform.localPosition += new Vector3(Input.GetAxis("Horizontal") * 20f, Input.GetAxis("Vertical") * 20f, 0.0f);
       }
@@ -1587,6 +1594,9 @@ public class CounselorScript : MonoBehaviour
       this.Yandere.Police.ClubActivity = false;
       this.Yandere.Police.Suspended = true;
       this.Yandere.Police.FadeOut = true;
+      this.Yandere.Police.HiddenCorpses = 0;
+      if (this.Yandere.Police.Corpses > 0)
+        this.Yandere.ShoulderCamera.GoingToCounselor = true;
       this.Yandere.ShoulderCamera.HUD.SetActive(true);
       ++this.InterrogationPhase;
       if (this.Patience == -6)

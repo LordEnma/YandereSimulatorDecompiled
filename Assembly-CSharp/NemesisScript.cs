@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NemesisScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -139,7 +139,7 @@ public class NemesisScript : MonoBehaviour
         int index1 = 1;
         while ((((Object) this.Student.StudentManager.Students[index1] != (Object) null && this.Student.StudentManager.Students[index1].Male || index1 > 5 && index1 < 21 || index1 == 21 || index1 == 26 || index1 == 31 || index1 == 36 || index1 == 41 || index1 == 46 || index1 == 51 || index1 == 56 || index1 == 61 || index1 == 66 || index1 == 71 ? 1 : (index1 == this.MissionMode.TargetID ? 1 : 0)) | (flag ? 1 : 0)) != 0)
         {
-          index1 = 86;
+          index1 = Random.Range(2, 90);
           if (this.MissionMode.MultiMission)
           {
             flag = false;
@@ -184,7 +184,7 @@ public class NemesisScript : MonoBehaviour
       }
     }
     ++this.Frame;
-    if (!this.Dying)
+    if (!this.Dying && !this.Student.Dying)
     {
       if (!this.Attacking)
       {
@@ -318,7 +318,7 @@ public class NemesisScript : MonoBehaviour
           SceneManager.LoadScene("LoadingScene");
       }
     }
-    else if (this.Student.Alive)
+    else if (this.Student.Alive && !this.Student.Electrified)
     {
       this.Student.MoveTowardsTarget(this.Yandere.transform.position + this.Yandere.transform.forward * this.Yandere.AttackManager.Distance);
       this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(this.transform.position - new Vector3(this.Yandere.transform.position.x, this.transform.position.y, this.Yandere.transform.position.z)), Time.deltaTime * 10f);

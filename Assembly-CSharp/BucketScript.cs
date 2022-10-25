@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BucketScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -483,6 +483,7 @@ public class BucketScript : MonoBehaviour
     GameObjectUtils.SetLayerRecursively(this.gameObject, 15);
     component1.MapMarker.gameObject.layer = 10;
     Debug.Log((object) (component1.Name + "'s ''Alive'' variable is: " + component1.Alive.ToString()));
+    Object.Instantiate<GameObject>(component1.AlarmDisc, new Vector3(component1.Hips.position.x, 1f, component1.Hips.position.z), Quaternion.identity).transform.localScale = new Vector3(1000f, 1f, 1000f);
   }
 
   public void Spill()

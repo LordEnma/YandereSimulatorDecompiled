@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: FeedListScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -17,6 +17,7 @@ public class FeedListScript : MonoBehaviour
   public JsonScript JSON;
   public GameObject[] Lines;
   public UILabel[] Names;
+  public string[] StudentNames;
   public int RowLimit = 23;
   public int Selected = 1;
   public int Column = 1;
@@ -27,24 +28,32 @@ public class FeedListScript : MonoBehaviour
   private void Start()
   {
     this.FeedList.localPosition = new Vector3(0.0f, -1200f, 0.0f);
-    this.Names[1].text = this.JSON.Students[1].Name + "\n" + this.JSON.Students[2].Name + "\n" + this.JSON.Students[3].Name + "\n" + this.JSON.Students[4].Name + "\n" + this.JSON.Students[5].Name + "\n" + this.JSON.Students[6].Name + "\n" + this.JSON.Students[7].Name + "\n" + this.JSON.Students[8].Name + "\n" + this.JSON.Students[9].Name + "\n" + this.JSON.Students[10].Name + "\n" + this.JSON.Students[11].Name + "\n" + this.JSON.Students[12].Name + "\n" + this.JSON.Students[13].Name + "\n" + this.JSON.Students[14].Name + "\n" + this.JSON.Students[15].Name + "\n" + this.JSON.Students[16].Name + "\n" + this.JSON.Students[17].Name + "\n" + this.JSON.Students[18].Name + "\n" + this.JSON.Students[19].Name + "\n" + this.JSON.Students[20].Name + "\n" + this.JSON.Students[21].Name + "\n" + this.JSON.Students[22].Name + "\n" + this.JSON.Students[23].Name;
-    this.Names[2].text = this.JSON.Students[24].Name + "\n" + this.JSON.Students[25].Name + "\n" + this.JSON.Students[26].Name + "\n" + this.JSON.Students[27].Name + "\n" + this.JSON.Students[28].Name + "\n" + this.JSON.Students[29].Name + "\n" + this.JSON.Students[30].Name + "\n" + this.JSON.Students[31].Name + "\n" + this.JSON.Students[32].Name + "\n" + this.JSON.Students[33].Name + "\n" + this.JSON.Students[34].Name + "\n" + this.JSON.Students[35].Name + "\n" + this.JSON.Students[36].Name + "\n" + this.JSON.Students[37].Name + "\n" + this.JSON.Students[38].Name + "\n" + this.JSON.Students[39].Name + "\n" + this.JSON.Students[40].Name + "\n" + this.JSON.Students[41].Name + "\n" + this.JSON.Students[42].Name + "\n" + this.JSON.Students[43].Name + "\n" + this.JSON.Students[44].Name + "\n" + this.JSON.Students[45].Name + "\n" + this.JSON.Students[46].Name;
-    this.Names[3].text = this.JSON.Students[47].Name + "\n" + this.JSON.Students[48].Name + "\n" + this.JSON.Students[49].Name + "\n" + this.JSON.Students[50].Name + "\n" + this.JSON.Students[51].Name + "\n" + this.JSON.Students[52].Name + "\n" + this.JSON.Students[53].Name + "\n" + this.JSON.Students[54].Name + "\n" + this.JSON.Students[55].Name + "\n" + this.JSON.Students[56].Name + "\n" + this.JSON.Students[57].Name + "\n" + this.JSON.Students[58].Name + "\n" + this.JSON.Students[59].Name + "\n" + this.JSON.Students[60].Name + "\n" + this.JSON.Students[61].Name + "\n" + this.JSON.Students[62].Name + "\n" + this.JSON.Students[63].Name + "\n" + this.JSON.Students[64].Name + "\n" + this.JSON.Students[65].Name + "\n" + this.JSON.Students[66].Name + "\n" + this.JSON.Students[67].Name + "\n" + this.JSON.Students[68].Name + "\n" + this.JSON.Students[69].Name;
-    this.Names[4].text = this.JSON.Students[70].Name + "\n" + this.JSON.Students[71].Name + "\n" + this.JSON.Students[72].Name + "\n" + this.JSON.Students[73].Name + "\n" + this.JSON.Students[74].Name + "\n" + this.JSON.Students[75].Name + "\n" + this.JSON.Students[76].Name + "\n" + this.JSON.Students[77].Name + "\n" + this.JSON.Students[78].Name + "\n" + this.JSON.Students[79].Name + "\n" + this.JSON.Students[80].Name + "\n" + this.JSON.Students[81].Name + "\n" + this.JSON.Students[82].Name + "\n" + this.JSON.Students[83].Name + "\n" + this.JSON.Students[84].Name + "\n" + this.JSON.Students[85].Name + "\n" + this.JSON.Students[86].Name + "\n" + this.JSON.Students[87].Name + "\n" + this.JSON.Students[88].Name + "\n" + this.JSON.Students[89].Name;
-    int index = 1;
+    for (int index = 1; index < 101; ++index)
+      this.StudentNames[index] = this.JSON.Students[index].Name;
+    int week = DateGlobals.Week;
+    for (int index = 2; index < 11; ++index)
+    {
+      if (index > week)
+        this.StudentNames[10 + index] = "";
+    }
+    this.Names[1].text = this.StudentNames[1] + "\n" + this.StudentNames[2] + "\n" + this.StudentNames[3] + "\n" + this.StudentNames[4] + "\n" + this.StudentNames[5] + "\n" + this.StudentNames[6] + "\n" + this.StudentNames[7] + "\n" + this.StudentNames[8] + "\n" + this.StudentNames[9] + "\n" + this.StudentNames[10] + "\n" + this.StudentNames[11] + "\n" + this.StudentNames[12] + "\n" + this.StudentNames[13] + "\n" + this.StudentNames[14] + "\n" + this.StudentNames[15] + "\n" + this.StudentNames[16] + "\n" + this.StudentNames[17] + "\n" + this.StudentNames[18] + "\n" + this.StudentNames[19] + "\n" + this.StudentNames[20] + "\n" + this.StudentNames[21] + "\n" + this.StudentNames[22] + "\n" + this.StudentNames[23];
+    this.Names[2].text = this.StudentNames[24] + "\n" + this.StudentNames[25] + "\n" + this.StudentNames[26] + "\n" + this.StudentNames[27] + "\n" + this.StudentNames[28] + "\n" + this.StudentNames[29] + "\n" + this.StudentNames[30] + "\n" + this.StudentNames[31] + "\n" + this.StudentNames[32] + "\n" + this.StudentNames[33] + "\n" + this.StudentNames[34] + "\n" + this.StudentNames[35] + "\n" + this.StudentNames[36] + "\n" + this.StudentNames[37] + "\n" + this.StudentNames[38] + "\n" + this.StudentNames[39] + "\n" + this.StudentNames[40] + "\n" + this.StudentNames[41] + "\n" + this.StudentNames[42] + "\n" + this.StudentNames[43] + "\n" + this.StudentNames[44] + "\n" + this.StudentNames[45] + "\n" + this.StudentNames[46];
+    this.Names[3].text = this.StudentNames[47] + "\n" + this.StudentNames[48] + "\n" + this.StudentNames[49] + "\n" + this.StudentNames[50] + "\n" + this.StudentNames[51] + "\n" + this.StudentNames[52] + "\n" + this.StudentNames[53] + "\n" + this.StudentNames[54] + "\n" + this.StudentNames[55] + "\n" + this.StudentNames[56] + "\n" + this.StudentNames[57] + "\n" + this.StudentNames[58] + "\n" + this.StudentNames[59] + "\n" + this.StudentNames[60] + "\n" + this.StudentNames[61] + "\n" + this.StudentNames[62] + "\n" + this.StudentNames[63] + "\n" + this.StudentNames[64] + "\n" + this.StudentNames[65] + "\n" + this.StudentNames[66] + "\n" + this.StudentNames[67] + "\n" + this.StudentNames[68] + "\n" + this.StudentNames[69];
+    this.Names[4].text = this.StudentNames[70] + "\n" + this.StudentNames[71] + "\n" + this.StudentNames[72] + "\n" + this.StudentNames[73] + "\n" + this.StudentNames[74] + "\n" + this.StudentNames[75] + "\n" + this.StudentNames[76] + "\n" + this.StudentNames[77] + "\n" + this.StudentNames[78] + "\n" + this.StudentNames[79] + "\n" + this.StudentNames[80] + "\n" + this.StudentNames[81] + "\n" + this.StudentNames[82] + "\n" + this.StudentNames[83] + "\n" + this.StudentNames[84] + "\n" + this.StudentNames[85] + "\n" + this.StudentNames[86] + "\n" + this.StudentNames[87] + "\n" + this.StudentNames[88] + "\n" + this.StudentNames[89];
+    int index1 = 1;
     this.Selected = 1;
     this.Column = 1;
     this.Row = 1;
     this.UpdateHighlight();
-    while (index < 90)
+    while (index1 < 90)
     {
       GameObject gameObject = Object.Instantiate<GameObject>(this.Line, this.Highlight.position, Quaternion.identity);
       gameObject.transform.parent = this.Highlight.parent;
       gameObject.transform.localScale = new Vector3(0.2f, 0.2f, 0.2f);
       gameObject.SetActive(false);
-      this.Lines[index] = gameObject;
-      ++index;
-      if (index < 90)
+      this.Lines[index1] = gameObject;
+      ++index1;
+      if (index1 < 90)
       {
         ++this.Row;
         if (this.Row > this.RowLimit)
@@ -111,7 +120,8 @@ public class FeedListScript : MonoBehaviour
       }
       if (Input.GetButtonDown("A"))
       {
-        this.Lines[this.Selected].SetActive(!this.Lines[this.Selected].activeInHierarchy);
+        if (this.StudentNames[this.Selected] != "")
+          this.Lines[this.Selected].SetActive(!this.Lines[this.Selected].activeInHierarchy);
         this.CrossOutStudents();
       }
       if (!Input.GetButtonDown("B"))

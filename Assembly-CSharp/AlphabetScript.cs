@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AlphabetScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -79,6 +79,7 @@ public class AlphabetScript : MonoBehaviour
   {
     if (!this.Began && this.StudentManager.Yandere.CanMove)
     {
+      this.StudentManager.TeleportEveryoneToDestination();
       this.MusicPlayer.Play();
       this.Began = true;
     }
@@ -140,7 +141,7 @@ public class AlphabetScript : MonoBehaviour
       this.ChallengeFailed.enabled = true;
     for (int index = this.CurrentTarget + 1; index < this.IDs.Length; ++index)
     {
-      if (!this.StudentManager.Students[this.IDs[index]].gameObject.activeInHierarchy)
+      if (!this.StudentManager.Students[this.IDs[index]].gameObject.activeInHierarchy || !this.StudentManager.Students[this.IDs[index]].Alive)
         this.ChallengeFailed.enabled = true;
     }
     if (!this.StudentManager.Students[this.IDs[this.CurrentTarget]].Alive)
@@ -157,7 +158,7 @@ public class AlphabetScript : MonoBehaviour
     if (!this.ChallengeFailed.enabled)
       return;
     this.Timer += Time.deltaTime;
-    if ((double) this.Timer <= 3.0)
+    if ((double) this.Timer <= 5.0)
       return;
     SceneManager.LoadScene("LoadingScene");
   }

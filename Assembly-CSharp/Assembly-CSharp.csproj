@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{22624143-6419-4580-B2DC-F70BD5837692}</ProjectGuid>
+    <ProjectGuid>{1D81B194-CC0E-4831-BF64-FA7A098E68F7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <ApplicationVersion>0.0.0.0</ApplicationVersion>
@@ -1456,6 +1456,46 @@
     <Compile Include="LookAtCamera.cs" />
     <Compile Include="LookAtSCP.cs" />
     <Compile Include="RoseSpawnerScript.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Car\BrakeLight.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Car\CarAIControl.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Car\CarAudio.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Car\CarDriveType.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Car\SpeedType.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Car\CarController.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Car\CarSelfRighting.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Car\CarUserControl.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Car\Mudguard.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Car\SkidTrail.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Car\Suspension.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Car\WheelEffects.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplaneAiControl.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplaneAudio.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplaneControlSurfaceAnimator.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplaneController.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplanePropellerAnimator.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplaneUserControl2Axis.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplaneUserControl4Axis.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\JetParticleEffect.cs" />
+    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\LandingGear.cs" />
+    <Compile Include="UnityStandardAssets\CrossPlatformInput\AxisTouchButton.cs" />
+    <Compile Include="UnityStandardAssets\CrossPlatformInput\ButtonHandler.cs" />
+    <Compile Include="UnityStandardAssets\CrossPlatformInput\CrossPlatformInputManager.cs" />
+    <Compile Include="UnityStandardAssets\CrossPlatformInput\InputAxisScrollbar.cs" />
+    <Compile Include="UnityStandardAssets\CrossPlatformInput\Joystick.cs" />
+    <Compile Include="UnityStandardAssets\CrossPlatformInput\MobileControlRig.cs" />
+    <Compile Include="UnityStandardAssets\CrossPlatformInput\TiltInput.cs" />
+    <Compile Include="UnityStandardAssets\CrossPlatformInput\TouchPad.cs" />
+    <Compile Include="UnityStandardAssets\CrossPlatformInput\VirtualInput.cs" />
+    <Compile Include="UnityStandardAssets\CrossPlatformInput\PlatformSpecific\MobileInput.cs" />
+    <Compile Include="UnityStandardAssets\CrossPlatformInput\PlatformSpecific\StandaloneInput.cs" />
+    <Compile Include="UnityStandardAssets\Cameras\AbstractTargetFollower.cs" />
+    <Compile Include="UnityStandardAssets\Cameras\AutoCam.cs" />
+    <Compile Include="UnityStandardAssets\Cameras\FreeLookCam.cs" />
+    <Compile Include="UnityStandardAssets\Cameras\HandHeldCam.cs" />
+    <Compile Include="UnityStandardAssets\Cameras\LookatTarget.cs" />
+    <Compile Include="UnityStandardAssets\Cameras\PivotBasedCameraRig.cs" />
+    <Compile Include="UnityStandardAssets\Cameras\ProtectCameraFromWallClip.cs" />
+    <Compile Include="UnityStandardAssets\Cameras\TargetFieldOfView.cs" />
     <Compile Include="UnityEngine\PostProcessing\GetSetAttribute.cs" />
     <Compile Include="UnityEngine\PostProcessing\MinAttribute.cs" />
     <Compile Include="UnityEngine\PostProcessing\TrackballAttribute.cs" />
@@ -1503,46 +1543,6 @@
     <Compile Include="UnityEngine\PostProcessing\GraphicsUtils.cs" />
     <Compile Include="UnityEngine\PostProcessing\MaterialFactory.cs" />
     <Compile Include="UnityEngine\PostProcessing\RenderTextureFactory.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Car\BrakeLight.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Car\CarAIControl.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Car\CarAudio.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Car\CarDriveType.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Car\SpeedType.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Car\CarController.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Car\CarSelfRighting.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Car\CarUserControl.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Car\Mudguard.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Car\SkidTrail.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Car\Suspension.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Car\WheelEffects.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplaneAiControl.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplaneAudio.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplaneControlSurfaceAnimator.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplaneController.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplanePropellerAnimator.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplaneUserControl2Axis.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\AeroplaneUserControl4Axis.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\JetParticleEffect.cs" />
-    <Compile Include="UnityStandardAssets\Vehicles\Aeroplane\LandingGear.cs" />
-    <Compile Include="UnityStandardAssets\CrossPlatformInput\AxisTouchButton.cs" />
-    <Compile Include="UnityStandardAssets\CrossPlatformInput\ButtonHandler.cs" />
-    <Compile Include="UnityStandardAssets\CrossPlatformInput\CrossPlatformInputManager.cs" />
-    <Compile Include="UnityStandardAssets\CrossPlatformInput\InputAxisScrollbar.cs" />
-    <Compile Include="UnityStandardAssets\CrossPlatformInput\Joystick.cs" />
-    <Compile Include="UnityStandardAssets\CrossPlatformInput\MobileControlRig.cs" />
-    <Compile Include="UnityStandardAssets\CrossPlatformInput\TiltInput.cs" />
-    <Compile Include="UnityStandardAssets\CrossPlatformInput\TouchPad.cs" />
-    <Compile Include="UnityStandardAssets\CrossPlatformInput\VirtualInput.cs" />
-    <Compile Include="UnityStandardAssets\CrossPlatformInput\PlatformSpecific\MobileInput.cs" />
-    <Compile Include="UnityStandardAssets\CrossPlatformInput\PlatformSpecific\StandaloneInput.cs" />
-    <Compile Include="UnityStandardAssets\Cameras\AbstractTargetFollower.cs" />
-    <Compile Include="UnityStandardAssets\Cameras\AutoCam.cs" />
-    <Compile Include="UnityStandardAssets\Cameras\FreeLookCam.cs" />
-    <Compile Include="UnityStandardAssets\Cameras\HandHeldCam.cs" />
-    <Compile Include="UnityStandardAssets\Cameras\LookatTarget.cs" />
-    <Compile Include="UnityStandardAssets\Cameras\PivotBasedCameraRig.cs" />
-    <Compile Include="UnityStandardAssets\Cameras\ProtectCameraFromWallClip.cs" />
-    <Compile Include="UnityStandardAssets\Cameras\TargetFieldOfView.cs" />
     <Compile Include="YandereSimulator\Yancord\ChatPartnerScript.cs" />
     <Compile Include="YandereSimulator\Yancord\PlayerPrefsHelper.cs" />
     <Compile Include="YandereSimulator\Yancord\MessageScript.cs" />

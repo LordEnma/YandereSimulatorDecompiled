@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMorningFriendEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -305,6 +305,8 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
     Debug.Log((object) "Raibaru will no longer hang out with Osana.");
     this.EndOfDay.RaibaruLoner = true;
     Debug.Log((object) "Raibaru has become a loner, so Osana's schedule has changed.");
+    if (!((UnityEngine.Object) this.Rival != (UnityEngine.Object) null))
+      return;
     ScheduleBlock scheduleBlock1 = this.Rival.ScheduleBlocks[2];
     scheduleBlock1.destination = "Patrol";
     scheduleBlock1.action = "Patrol";

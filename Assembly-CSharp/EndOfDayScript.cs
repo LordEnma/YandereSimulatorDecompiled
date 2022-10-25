@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -2045,7 +2045,6 @@ public class EndOfDayScript : MonoBehaviour
     this.RemovableItemManager.RemoveItems();
     if (this.PoliceArrived)
     {
-      Debug.Log((object) "THE POLICE ARRIVED, ALLEGEDLY?????");
       GameGlobals.PoliceYesterday = true;
       ++PlayerGlobals.PoliceVisits;
     }
@@ -2217,9 +2216,21 @@ public class EndOfDayScript : MonoBehaviour
     else if (Rival.DeathType == DeathType.Falling)
       GameGlobals.SetSpecificEliminations(RivalID, 17);
     else if (Rival.Hunted)
+    {
+      Debug.Log((object) "Was killed by a mind-broken slave.");
       GameGlobals.SetSpecificEliminations(RivalID, 14);
+    }
     else if (Rival.DeathType == DeathType.Weapon)
+    {
+      Debug.Log((object) "Was killed by a weapon.");
       GameGlobals.SetSpecificEliminations(RivalID, 1);
+    }
+    else
+      Debug.Log((object) "Specific method of death wasn't listed in the chain.");
+    if (this.PoliceArrived)
+      Debug.Log((object) "The police arrived.");
+    else
+      Debug.Log((object) "The police didn't arrived.");
     GameGlobals.SetRivalEliminations(RivalID, 14);
   }
 

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PortalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -159,7 +159,7 @@ public class PortalScript : MonoBehaviour
             bool flag3 = false;
             if ((Object) this.StudentManager.Teachers[21] != (Object) null && (double) this.StudentManager.Teachers[21].DistanceToDestination < 1.0)
               flag3 = true;
-            if (this.StudentManager.Eighties && (Object) this.StudentManager.Students[this.StudentManager.RivalID] != (Object) null)
+            if (this.StudentManager.Eighties && (Object) this.StudentManager.Students[this.StudentManager.RivalID] != (Object) null && this.StudentManager.Students[this.StudentManager.RivalID].gameObject.activeInHierarchy)
               this.StudentManager.Students[this.StudentManager.RivalID].PlaceBag();
             if (this.Late > 0 & flag3)
             {

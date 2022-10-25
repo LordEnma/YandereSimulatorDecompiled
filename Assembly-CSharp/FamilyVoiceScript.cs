@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: FamilyVoiceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -51,6 +51,7 @@ public class FamilyVoiceScript : MonoBehaviour
   public bool GameOver;
   public bool Started;
   public bool Return;
+  public bool ProximityGameOver;
 
   private void Start() => this.Subtitle.transform.localScale = new Vector3(0.0f, 0.0f, 0.0f);
 
@@ -118,7 +119,7 @@ public class FamilyVoiceScript : MonoBehaviour
               if ((Object) transform != (Object) null && (double) Vector3.Distance(this.Yandere.transform.position, transform.position) < 0.33333000540733337)
               {
                 Debug.Log((object) ("Got a ''proximity'' game over from " + this.gameObject.name));
-                AudioSource.PlayClipAtPoint(this.CrunchSound, Camera.main.transform.position);
+                this.ProximityGameOver = true;
                 this.TransitionToGameOver();
               }
             }
@@ -190,26 +191,30 @@ public class FamilyVoiceScript : MonoBehaviour
         this.Door.transform.localEulerAngles = new Vector3(this.Door.transform.localEulerAngles.x, this.Rotation, this.Door.transform.localEulerAngles.z);
       }
     }
-    else if (this.GameOverPhase == 0)
-    {
-      this.Timer += Time.deltaTime;
-      if ((double) this.Timer <= 1.0 || this.MyAudio.isPlaying)
-        return;
-      Debug.Log((object) "Should be updating the subtitle with the Game Over text.");
-      this.Subtitle.transform.localScale = new Vector3(1f, 1f, 1f);
-      this.Subtitle.text = this.GameOverText ?? "";
-      this.MyAudio.clip = this.GameOverLine;
-      this.MyAudio.Play();
-      ++this.GameOverPhase;
-    }
     else
     {
-      if (this.MyAudio.isPlaying && !Input.GetButton("A"))
-        return;
-      this.Heartbroken.SetActive(true);
-      this.Subtitle.text = "";
-      this.enabled = false;
-      this.MyAudio.Stop();
+      this.MyAudio.pitch = Time.timeScale;
+      if (this.GameOverPhase == 0)
+      {
+        this.Timer += Time.deltaTime;
+        if ((double) this.Timer <= 1.0 || this.MyAudio.isPlaying)
+          return;
+        Debug.Log((object) "Should be updating the subtitle with the Game Over text.");
+        this.Subtitle.transform.localScale = new Vector3(1f, 1f, 1f);
+        this.Subtitle.text = this.GameOverText ?? "";
+        this.MyAudio.clip = this.GameOverLine;
+        this.MyAudio.Play();
+        ++this.GameOverPhase;
+      }
+      else
+      {
+        if (this.MyAudio.isPlaying && !Input.GetButton("A"))
+          return;
+        this.Heartbroken.SetActive(true);
+        this.Subtitle.text = "";
+        this.enabled = false;
+        this.MyAudio.Stop();
+      }
     }
   }
 
@@ -229,11 +234,17 @@ public class FamilyVoiceScript : MonoBehaviour
 
   private void TransitionToGameOver()
   {
+    this.Yandere.RPGCamera.transform.position += new Vector3(0.0f, 100f, 0.0f);
+    if (!this.ProximityGameOver)
+      AudioSource.PlayClipAtPoint(this.GameOverSound, this.Yandere.RPGCamera.transform.position);
+    else
+      AudioSource.PlayClipAtPoint(this.CrunchSound, Camera.main.transform.position);
     this.Marker.Tex.transform.localScale = new Vector3(1f, 0.0f, 1f);
     this.Marker.Tex.color = new Color(1f, 0.0f, 0.0f, 0.0f);
     this.Darkness.material.color = new Color(0.0f, 0.0f, 0.0f, 1f);
     this.Yandere.RPGCamera.enabled = false;
     this.Yandere.CanMove = false;
+    Time.timeScale = 1f;
     this.Subtitle.text = "";
     this.GameOver = true;
     this.Jukebox.Stop();
@@ -256,7 +267,6 @@ public class FamilyVoiceScript : MonoBehaviour
     if ((double) this.Alpha == 1.0)
     {
       Debug.Log((object) ("Got a ''witnessed'' game over from " + this.gameObject.name));
-      AudioSource.PlayClipAtPoint(this.GameOverSound, Camera.main.transform.position);
       this.TransitionToGameOver();
     }
     this.Marker.Tex.transform.localScale = new Vector3(1f, this.Alpha, 1f);

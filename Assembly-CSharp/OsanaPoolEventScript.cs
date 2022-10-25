@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaPoolEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -48,31 +48,36 @@ public class OsanaPoolEventScript : MonoBehaviour
   {
     if (this.Phase == 0)
     {
-      if (this.Frame > 0 && (UnityEngine.Object) this.StudentManager.Students[this.RivalID] != (UnityEngine.Object) null && this.StudentManager.Students[this.RivalID].enabled && this.Clock.Period == 3)
+      if (this.Frame > 0)
       {
-        Debug.Log((object) "Osana's pool event has begun.");
-        if ((UnityEngine.Object) this.StudentManager.Students[this.FriendID] != (UnityEngine.Object) null && (UnityEngine.Object) this.StudentManager.Students[this.FriendID].FollowTarget != (UnityEngine.Object) null)
+        if (this.StudentManager.VictimID == this.RivalID)
+          this.enabled = false;
+        else if ((UnityEngine.Object) this.StudentManager.Students[this.RivalID] != (UnityEngine.Object) null && this.StudentManager.Students[this.RivalID].enabled && this.Clock.Period == 3)
         {
-          this.Friend = this.StudentManager.Students[this.FriendID];
-          if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
-            this.Friend.CanTalk = false;
+          Debug.Log((object) "Osana's pool event has begun.");
+          if ((UnityEngine.Object) this.StudentManager.Students[this.FriendID] != (UnityEngine.Object) null && (UnityEngine.Object) this.StudentManager.Students[this.FriendID].FollowTarget != (UnityEngine.Object) null)
+          {
+            this.Friend = this.StudentManager.Students[this.FriendID];
+            if ((UnityEngine.Object) this.Friend != (UnityEngine.Object) null)
+              this.Friend.CanTalk = false;
+          }
+          this.Rival = this.StudentManager.Students[this.RivalID];
+          this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
+          this.Rival.MyRenderer.updateWhenOffscreen = true;
+          this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
+          this.Rival.Pathfinding.target = this.StudentManager.FemaleStripSpot;
+          this.Rival.CurrentDestination = this.StudentManager.FemaleStripSpot;
+          this.Rival.Pathfinding.canSearch = true;
+          this.Rival.Pathfinding.canMove = true;
+          this.Rival.Pen.SetActive(false);
+          this.Rival.Routine = false;
+          this.Rival.InEvent = true;
+          this.Rival.StinkBombSpecialCase = 1;
+          this.Rival.SmartPhone.SetActive(false);
+          this.Yandere.PauseScreen.Hint.Show = true;
+          this.Yandere.PauseScreen.Hint.QuickID = 17;
+          ++this.Phase;
         }
-        this.Rival = this.StudentManager.Students[this.RivalID];
-        this.Rival.CharacterAnimation.cullingType = AnimationCullingType.AlwaysAnimate;
-        this.Rival.MyRenderer.updateWhenOffscreen = true;
-        this.Rival.CharacterAnimation.CrossFade(this.Rival.WalkAnim);
-        this.Rival.Pathfinding.target = this.StudentManager.FemaleStripSpot;
-        this.Rival.CurrentDestination = this.StudentManager.FemaleStripSpot;
-        this.Rival.Pathfinding.canSearch = true;
-        this.Rival.Pathfinding.canMove = true;
-        this.Rival.Pen.SetActive(false);
-        this.Rival.Routine = false;
-        this.Rival.InEvent = true;
-        this.Rival.StinkBombSpecialCase = 1;
-        this.Rival.SmartPhone.SetActive(false);
-        this.Yandere.PauseScreen.Hint.Show = true;
-        this.Yandere.PauseScreen.Hint.QuickID = 17;
-        ++this.Phase;
       }
       ++this.Frame;
     }

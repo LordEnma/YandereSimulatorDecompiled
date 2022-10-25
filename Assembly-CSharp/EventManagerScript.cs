@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EventManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -31,6 +31,7 @@ public class EventManagerScript : MonoBehaviour
   public bool Suitor;
   public bool Spoken;
   public bool Osana;
+  public bool AboutStalker;
   public float StartTimer;
   public float Timer;
   public float Scale;
@@ -68,7 +69,7 @@ public class EventManagerScript : MonoBehaviour
     }
     if (!this.Clock.StopTime && this.EventCheck && this.CanHappen)
     {
-      if ((double) this.Clock.HourTime > (double) this.StartTime + 1.0)
+      if ((double) this.Clock.HourTime > (double) this.StartTime + 1.0 || this.AboutStalker && this.StudentManager.RaibaruKnowsAboutStalker)
         this.enabled = false;
       else if ((double) this.Clock.HourTime > (double) this.StartTime)
       {

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TalkingScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -15,6 +15,8 @@ public class TalkingScript : MonoBehaviour
   public StudentScript S;
   public WeaponScript StuckBoxCutter;
   public bool NegativeResponse;
+  public bool RejectGossip;
+  public bool Eighties;
   public bool FadeIn;
   public bool Follow;
   public bool Grudge;
@@ -23,6 +25,9 @@ public class TalkingScript : MonoBehaviour
   public string IdleAnim = "";
   public float Timer;
   public int ClubBonus;
+  public string RejectGossipLine;
+
+  private void Start() => this.Eighties = GameGlobals.Eighties;
 
   private void Update()
   {
@@ -192,59 +197,70 @@ public class TalkingScript : MonoBehaviour
         if (this.S.Club != ClubType.Delinquent)
         {
           this.S.Gossiped = true;
-          if (this.S.DialogueWheel.TopicInterface.Success)
+          this.CheckForGossipSpecialCase();
+          if (this.RejectGossip)
           {
-            this.S.CharacterAnimation.CrossFade(this.S.GossipAnim);
-            this.S.Subtitle.CustomText = "Ugh, I can't get along with people like that...";
+            this.S.Subtitle.CustomText = this.RejectGossipLine;
             this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
-            this.S.GossipBonus = 0;
-            if (PlayerGlobals.PantiesEquipped == 9)
-              ++this.S.GossipBonus;
-            if (this.S.Yandere.Class.SocialBonus > 0)
-              ++this.S.GossipBonus;
-            if (this.S.Friend)
-              ++this.S.GossipBonus;
-            if (this.S.StudentManager.EmbarassingSecret && this.S.DialogueWheel.Victim == this.S.StudentManager.RivalID)
-              ++this.S.GossipBonus;
-            if (this.S.Male && this.S.Yandere.Class.Seduction + this.S.Yandere.Class.SeductionBonus > 0 || this.S.Yandere.Class.Seduction == 5)
-              ++this.S.GossipBonus;
-            if ((double) this.S.Reputation.Reputation > 33.333328247070313)
-              ++this.S.GossipBonus;
-            if (this.S.Club == ClubType.Bully)
-              ++this.S.GossipBonus;
-            this.S.GossipBonus += this.S.Yandere.Class.PsychologyGrade + this.S.Yandere.Class.PsychologyBonus;
-            this.S.StudentManager.StudentReps[this.S.DialogueWheel.Victim] -= (float) (1 + this.S.GossipBonus);
-            if (this.S.Club != ClubType.Bully)
-            {
-              this.S.Reputation.PendingRep -= 2f;
-              this.S.PendingRep -= 2f;
-            }
-            this.S.Gossiped = true;
-            this.S.Yandere.NotificationManager.TopicName = "Gossip";
-            if ((Object) this.S.StudentManager.Students[this.S.DialogueWheel.Victim] != (Object) null)
-            {
-              this.S.Yandere.NotificationManager.CustomText = this.S.StudentManager.Students[this.S.DialogueWheel.Victim].Name + "'s rep is now " + this.S.StudentManager.StudentReps[this.S.DialogueWheel.Victim].ToString();
-              this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
-            }
-          }
-          else
-          {
-            this.S.Subtitle.PersonaSubtitle.UpdateLabel(PersonaType.None, this.S.Reputation.Reputation, 5f);
             --this.S.Reputation.PendingRep;
             --this.S.PendingRep;
           }
-          int topicSelected = this.S.StudentManager.DialogueWheel.TopicInterface.TopicSelected;
-          if (!this.S.StudentManager.GetTopicLearnedByStudent(topicSelected, this.S.StudentID))
+          else
           {
-            this.S.Yandere.NotificationManager.TopicName = this.S.StudentManager.InterestManager.TopicNames[topicSelected];
-            this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-            this.S.StudentManager.SetTopicLearnedByStudent(topicSelected, this.S.StudentID, true);
-          }
-          if (!this.S.StudentManager.GetTopicLearnedByStudent(19, this.S.StudentID))
-          {
-            this.S.Yandere.NotificationManager.TopicName = "Gossip";
-            this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
-            this.S.StudentManager.SetTopicLearnedByStudent(19, this.S.StudentID, true);
+            if (this.S.DialogueWheel.TopicInterface.Success)
+            {
+              this.S.CharacterAnimation.CrossFade(this.S.GossipAnim);
+              this.S.Subtitle.CustomText = "Ugh, I can't get along with people like that...";
+              this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+              this.S.GossipBonus = 0;
+              if (PlayerGlobals.PantiesEquipped == 9)
+                ++this.S.GossipBonus;
+              if (this.S.Yandere.Class.SocialBonus > 0)
+                ++this.S.GossipBonus;
+              if (this.S.Friend)
+                ++this.S.GossipBonus;
+              if (this.S.StudentManager.EmbarassingSecret && this.S.DialogueWheel.Victim == this.S.StudentManager.RivalID)
+                ++this.S.GossipBonus;
+              if (this.S.Male && this.S.Yandere.Class.Seduction + this.S.Yandere.Class.SeductionBonus > 0 || this.S.Yandere.Class.Seduction == 5)
+                ++this.S.GossipBonus;
+              if ((double) this.S.Reputation.Reputation > 33.333328247070313)
+                ++this.S.GossipBonus;
+              if (this.S.Club == ClubType.Bully)
+                ++this.S.GossipBonus;
+              this.S.GossipBonus += this.S.Yandere.Class.PsychologyGrade + this.S.Yandere.Class.PsychologyBonus;
+              this.S.StudentManager.StudentReps[this.S.DialogueWheel.Victim] -= (float) (1 + this.S.GossipBonus);
+              if (this.S.Club != ClubType.Bully)
+              {
+                this.S.Reputation.PendingRep -= 2f;
+                this.S.PendingRep -= 2f;
+              }
+              this.S.Gossiped = true;
+              this.S.Yandere.NotificationManager.TopicName = "Gossip";
+              if ((Object) this.S.StudentManager.Students[this.S.DialogueWheel.Victim] != (Object) null)
+              {
+                this.S.Yandere.NotificationManager.CustomText = this.S.StudentManager.Students[this.S.DialogueWheel.Victim].Name + "'s rep is now " + this.S.StudentManager.StudentReps[this.S.DialogueWheel.Victim].ToString();
+                this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+              }
+            }
+            else
+            {
+              this.S.Subtitle.PersonaSubtitle.UpdateLabel(PersonaType.None, this.S.Reputation.Reputation, 5f);
+              --this.S.Reputation.PendingRep;
+              --this.S.PendingRep;
+            }
+            int topicSelected = this.S.StudentManager.DialogueWheel.TopicInterface.TopicSelected;
+            if (!this.S.StudentManager.GetTopicLearnedByStudent(topicSelected, this.S.StudentID))
+            {
+              this.S.Yandere.NotificationManager.TopicName = this.S.StudentManager.InterestManager.TopicNames[topicSelected];
+              this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
+              this.S.StudentManager.SetTopicLearnedByStudent(topicSelected, this.S.StudentID, true);
+            }
+            if (!this.S.StudentManager.GetTopicLearnedByStudent(19, this.S.StudentID))
+            {
+              this.S.Yandere.NotificationManager.TopicName = "Gossip";
+              this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Opinion);
+              this.S.StudentManager.SetTopicLearnedByStudent(19, this.S.StudentID, true);
+            }
           }
         }
         else
@@ -395,7 +411,7 @@ public class TalkingScript : MonoBehaviour
           bool flag7 = false;
           if (this.S.StudentID == this.S.StudentManager.RivalID)
           {
-            if ((Object) this.S.Follower != (Object) null && this.S.Follower.CurrentAction == StudentActionType.Follow && !this.S.Follower.Distracting && !this.S.Follower.GoAway && !this.S.Follower.EatingSnack)
+            if ((Object) this.S.Follower != (Object) null && this.S.Follower.CurrentAction == StudentActionType.Follow && !this.S.Follower.Distracting && !this.S.Follower.GoAway && !this.S.Follower.EatingSnack && this.S.gameObject.activeInHierarchy)
               flag5 = true;
             else if ((double) this.S.Reputation.Reputation < (double) (DateGlobals.Week * 10))
             {
@@ -949,7 +965,7 @@ public class TalkingScript : MonoBehaviour
           this.S.Subtitle.CustomText = "You joined our club, and then you just...never showed up. I don't see a reason to let you join the club again...";
           this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 99f);
         }
-        this.S.TalkTimer = this.S.Subtitle.CurrentClip.GetComponent<AudioSource>().clip.length;
+        this.S.TalkTimer = 10f;
       }
       else
       {
@@ -1589,6 +1605,16 @@ public class TalkingScript : MonoBehaviour
       this.S.targetRotation = Quaternion.LookRotation(new Vector3(this.S.Yandere.transform.position.x, this.transform.position.y, this.S.Yandere.transform.position.z) - this.transform.position);
       this.transform.rotation = Quaternion.Slerp(this.transform.rotation, this.S.targetRotation, 10f * Time.deltaTime);
     }
+  }
+
+  private void CheckForGossipSpecialCase()
+  {
+    Debug.Log((object) "Checking for gossip speacial case.");
+    this.RejectGossip = false;
+    if (this.Eighties || (this.S.StudentID != 2 || this.S.DialogueWheel.Victim != 3) && (this.S.StudentID != 3 || this.S.DialogueWheel.Victim != 2) && (this.S.StudentID != 10 || this.S.DialogueWheel.Victim != 11) && (this.S.StudentID != 11 || this.S.DialogueWheel.Victim != 10))
+      return;
+    this.RejectGossipLine = this.S.DialogueWheel.Victim >= 4 ? "Hey! That's my friend! Don't say anything weird about her!" : "Hey! That's my sister! Don't say anything weird about her!";
+    this.RejectGossip = true;
   }
 
   private void CalculateRepBonus()

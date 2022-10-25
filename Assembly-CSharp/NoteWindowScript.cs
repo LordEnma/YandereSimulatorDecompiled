@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NoteWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -57,7 +57,7 @@ public class NoteWindowScript : MonoBehaviour
     if (!GameGlobals.Eighties)
       return;
     this.Subjects[10] = "''Evil Photographer''";
-    this.Subjects[6] = "''Technology''";
+    this.Subjects[6] = "technology";
   }
 
   public void BecomeLifeNote()
@@ -176,14 +176,19 @@ public class NoteWindowScript : MonoBehaviour
             this.NoteLocker.Prompt.enabled = false;
             this.NoteLocker.CanLeaveNote = false;
             this.NoteLocker.NoteLeft = true;
-            if (this.NoteLocker.Student.StudentID == 30)
+            if (!this.NoteLocker.StudentManager.Eighties)
             {
-              if (this.NoteSubject == NoteWindowScript.NoteSubjectType.CompensatedDating || this.NoteSubject == NoteWindowScript.NoteSubjectType.DomesticAbuse)
-                this.NoteLocker.Success = true;
-            }
-            else if (this.NoteLocker.Student.StudentID == 5)
-            {
-              if (this.NoteLocker.Student.Bullied && this.NoteSubject == NoteWindowScript.NoteSubjectType.Bullying && this.MeetID > 7 || this.NoteLocker.StudentManager.MissionMode)
+              if (this.NoteLocker.Student.StudentID == 30)
+              {
+                if (this.NoteSubject == NoteWindowScript.NoteSubjectType.CompensatedDating || this.NoteSubject == NoteWindowScript.NoteSubjectType.DomesticAbuse)
+                  this.NoteLocker.Success = true;
+              }
+              else if (this.NoteLocker.Student.StudentID == 5)
+              {
+                if (this.NoteLocker.Student.Bullied && this.NoteSubject == NoteWindowScript.NoteSubjectType.Bullying && this.MeetID > 7 || this.NoteLocker.StudentManager.MissionMode)
+                  this.NoteLocker.Success = true;
+              }
+              else if ((this.NoteLocker.Student.StudentID == 2 || this.NoteLocker.Student.StudentID == 3 || this.NoteLocker.Student.Club == ClubType.Occult) && this.NoteSubject == NoteWindowScript.NoteSubjectType.TheSupernatural)
                 this.NoteLocker.Success = true;
             }
             else if (this.NoteLocker.Student.StudentID == this.Yandere.StudentManager.RivalID)
@@ -199,11 +204,6 @@ public class NoteWindowScript : MonoBehaviour
                   this.Yandere.PauseScreen.Schemes.UpdateInstructions();
                 }
               }
-            }
-            else if (this.NoteLocker.Student.StudentID == 2 || this.NoteLocker.Student.StudentID == 3 || this.NoteLocker.Student.Club == ClubType.Occult)
-            {
-              if (this.NoteSubject == NoteWindowScript.NoteSubjectType.TheSupernatural)
-                this.NoteLocker.Success = true;
             }
             else if (this.NoteLocker.Student.Persona == PersonaType.Loner && this.NoteSubject == NoteWindowScript.NoteSubjectType.MakingFriends)
               this.NoteLocker.Success = true;

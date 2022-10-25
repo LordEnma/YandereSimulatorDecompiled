@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -79,6 +79,7 @@ public class StudentManagerScript : MonoBehaviour
   public PoseModeScript PoseMode;
   public TutorialScript Tutorial;
   public Collider LockerRoomArea;
+  public PickUpScript FoodPlate;
   public StudentScript Reporter;
   public BookbagScript BookBag;
   public DoorScript GamingDoor;
@@ -339,7 +340,9 @@ public class StudentManagerScript : MonoBehaviour
   public int SpawnID;
   public int GloveID;
   public int ID;
+  public bool RaibaruKnowsAboutStalker;
   public bool DisableRivalDeathSloMo;
+  public bool ReplaceSparringPartner;
   public bool ReactedToGameLeader;
   public bool UnequipImmediately;
   public bool EmbarassingSecret;
@@ -915,7 +918,7 @@ public class StudentManagerScript : MonoBehaviour
           this.ClubManager.gameObject.SetActive(true);
           if (!this.YandereLate)
           {
-            if (StudentGlobals.MemorialStudents > 0 && !this.ReturnedFromSave && DateGlobals.Week < 11)
+            if (!this.LoadedSave && StudentGlobals.MemorialStudents > 0 && !this.ReturnedFromSave && DateGlobals.Week < 11)
             {
               this.Yandere.HUD.alpha = 0.0f;
               this.Yandere.RPGCamera.transform.position = new Vector3(38f, 4.125f, 68.825f);
@@ -1125,6 +1128,8 @@ public class StudentManagerScript : MonoBehaviour
           }
           if (this.Eighties && !this.RivalEliminated)
           {
+            if (GameGlobals.AlphabetMode)
+              this.UpdateExteriorEightiesStudents();
             for (int index = 81; index < 86; ++index)
             {
               if ((UnityEngine.Object) this.Students[index] != (UnityEngine.Object) null)
@@ -1769,7 +1774,7 @@ public class StudentManagerScript : MonoBehaviour
 
   public void AttendClass()
   {
-    this.ConvoManager.Confirmed = false;
+    this.ConvoManager.BothCharactersInPosition = false;
     this.SleuthPhase = 3;
     if (this.RingEvent.EventActive)
       this.RingEvent.ReturnRing();
@@ -2754,7 +2759,7 @@ public class StudentManagerScript : MonoBehaviour
     ++this.SleuthPhase;
     for (this.ID = 56; this.ID < 61; ++this.ID)
     {
-      if ((UnityEngine.Object) this.Students[this.ID] != (UnityEngine.Object) null && !this.Students[this.ID].Slave && !this.Students[this.ID].Following && !this.Students[this.ID].Meeting && !this.Students[this.ID].SentToLocker)
+      if ((UnityEngine.Object) this.Students[this.ID] != (UnityEngine.Object) null && this.Students[this.ID].Actions[this.Students[this.ID].Phase] == StudentActionType.Sleuth && this.Students[this.ID].Routine && !this.Students[this.ID].Slave && !this.Students[this.ID].Following && !this.Students[this.ID].Meeting && !this.Students[this.ID].SentToLocker)
       {
         if (this.SleuthPhase < 3)
         {
@@ -2770,7 +2775,8 @@ public class StudentManagerScript : MonoBehaviour
           this.Students[this.ID].Pathfinding.target = this.Students[this.ID].SleuthTarget;
           this.Students[this.ID].CurrentDestination = this.Students[this.ID].SleuthTarget;
         }
-        this.Students[this.ID].SmartPhone.SetActive(true);
+        if (!this.Students[this.ID].Phoneless)
+          this.Students[this.ID].SmartPhone.SetActive(true);
         this.Students[this.ID].SpeechLines.Stop();
       }
     }
@@ -2825,7 +2831,7 @@ public class StudentManagerScript : MonoBehaviour
 
   public void UpdateMartialArts()
   {
-    this.ConvoManager.Confirmed = false;
+    this.ConvoManager.BothCharactersInPosition = false;
     ++this.MartialArtsPhase;
     for (this.ID = 46; this.ID < 51; ++this.ID)
     {
@@ -2890,8 +2896,16 @@ public class StudentManagerScript : MonoBehaviour
     }
     if (num == 5)
     {
-      this.PracticeVocals.pitch = Time.timeScale;
-      this.PracticeMusic.pitch = Time.timeScale;
+      if (!this.Police.FadeOut && !this.Police.FadeResults)
+      {
+        this.PracticeVocals.pitch = Time.timeScale;
+        this.PracticeMusic.pitch = Time.timeScale;
+      }
+      else
+      {
+        this.PracticeVocals.pitch = 1f;
+        this.PracticeMusic.pitch = 1f;
+      }
       if (this.PracticeMusic.isPlaying)
         return;
       this.PracticeVocals.Play();
@@ -3284,6 +3298,11 @@ public class StudentManagerScript : MonoBehaviour
       Debug.Log((object) "The player was wearing the WeaponBag at the time the save file was made.");
       this.WeaponBag.AttachToBack();
     }
+    if (this.BookBag.Worn)
+    {
+      Debug.Log((object) "The player was wearing the BookBag at the time the save file was made.");
+      this.BookBag.Wear();
+    }
     this.Yandere.WeaponManager.PutWeaponInBag();
     if ((double) this.Yandere.Bloodiness > 0.0 && this.Yandere.Schoolwear > 0 && !this.Yandere.WearingRaincoat)
     {
@@ -3302,6 +3321,7 @@ public class StudentManagerScript : MonoBehaviour
         this.GenericRivalBag.RestoreBentoStatus();
       }
     }
+    this.FoodPlate.UpdateFood();
     Debug.Log((object) "The entire loading process has been completed.");
     this.Week = DateGlobals.Week;
     this.CameFromLoad = true;
@@ -4604,6 +4624,7 @@ label_6:
     Student.GetDestinations();
     Student.Pathfinding.target = Student.Destinations[Student.Phase];
     Student.CurrentDestination = Student.Destinations[Student.Phase];
+    Student.DressCode = false;
   }
 
   public void SetTopicLearnedByStudent(int Topic, int StudentID, bool boolean) => this.OpinionsLearned.StudentOpinions[StudentID].Opinions[Topic] = boolean;
@@ -4651,5 +4672,15 @@ label_6:
         student.MiniMapIcon.enabled = true;
     }
     this.Yandere.MiniMapIcon.enabled = true;
+  }
+
+  public void TeleportEveryoneToDestination()
+  {
+    foreach (StudentScript student in this.Students)
+    {
+      if ((UnityEngine.Object) student != (UnityEngine.Object) null)
+        student.transform.position = student.CurrentDestination.position;
+    }
+    Physics.SyncTransforms();
   }
 }

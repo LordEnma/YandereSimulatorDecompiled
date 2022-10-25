@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StruggleBarScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -27,6 +27,7 @@ public class StruggleBarScript : MonoBehaviour
 
   private void Start()
   {
+    Debug.Log((object) "StruggleBar fired Start()");
     this.transform.localScale = Vector3.zero;
     this.ChooseButton();
   }
@@ -117,10 +118,12 @@ public class StruggleBarScript : MonoBehaviour
 
   public void HeroWins()
   {
+    Debug.Log((object) "StruggleBar fired HeroWins()");
     if (this.Yandere.enabled && this.Yandere.Armed)
       this.Yandere.EquippedWeapon.Drop();
     this.Yandere.Lost = true;
-    this.Student.Won = true;
+    if ((Object) this.Student != (Object) null)
+      this.Student.Won = true;
     this.Struggling = false;
     this.Victory = 0.0f;
     if (!this.Yandere.StudentManager.enabled)
@@ -130,6 +133,7 @@ public class StruggleBarScript : MonoBehaviour
 
   private void ChooseButton()
   {
+    Debug.Log((object) "StruggleBar fired ChooseButton()");
     int buttonId = this.ButtonID;
     for (int index = 1; index < 5; ++index)
     {

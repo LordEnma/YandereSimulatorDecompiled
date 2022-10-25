@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StalkerYandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Bayat.SaveSystem;
@@ -128,7 +128,6 @@ public class StalkerYandereScript : MonoBehaviour
       }
       if ((UnityEngine.Object) this.ClothingAttacher != (UnityEngine.Object) null && !this.Initialized)
       {
-        Debug.Log((object) "Regular Renderer disabled, ClothingAttacher activated.");
         this.ClothingAttacher.SetActive(true);
         this.MyRenderer.gameObject.SetActive(false);
         this.Initialized = true;
@@ -200,8 +199,6 @@ public class StalkerYandereScript : MonoBehaviour
         this.InDesert = false;
       }
       this.UpdateMovement();
-      if ((UnityEngine.Object) this.YandereFilter != (UnityEngine.Object) null)
-        this.UpdateYandereVision();
       if (this.Pebbles > 0)
       {
         if (!this.Arc.gameObject.activeInHierarchy)
@@ -276,6 +273,8 @@ public class StalkerYandereScript : MonoBehaviour
           this.transform.rotation = Quaternion.Slerp(this.transform.rotation, Quaternion.LookRotation(this.Stalker.transform.position - this.transform.position), 10f * Time.deltaTime);
       }
     }
+    if ((UnityEngine.Object) this.YandereFilter != (UnityEngine.Object) null)
+      this.UpdateYandereVision();
     if (this.Street && (double) this.transform.position.x < -16.0)
       this.transform.position = new Vector3(-16f, 0.0f, this.transform.position.z);
     if ((UnityEngine.Object) this.Profile != (UnityEngine.Object) null)
@@ -433,7 +432,7 @@ public class StalkerYandereScript : MonoBehaviour
 
   public void UpdateYandereVision()
   {
-    if (Input.GetButton("RB"))
+    if (this.CanMove & Input.GetButton("RB"))
     {
       if ((double) this.YandereFilter.FadeFX >= 1.0)
         return;

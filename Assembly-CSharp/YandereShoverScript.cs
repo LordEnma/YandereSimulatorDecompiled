@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereShoverScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -59,9 +59,9 @@ public class YandereShoverScript : MonoBehaviour
         this.Yandere.v = 0.0f;
         this.Yandere.ShoveSpeed = 2f;
       }
-      if (!this.Yandere.Talking)
+      if (this.Yandere.Schoolwear != 0 || !this.Yandere.Talking)
         return;
-      this.Yandere.transform.position = new Vector3(14f, 0.0f, -12f);
+      this.Yandere.transform.position = new Vector3(11f, 0.0f, 49f);
     }
     else
     {

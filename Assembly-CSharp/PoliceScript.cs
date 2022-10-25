@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PoliceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -823,41 +823,49 @@ public class PoliceScript : MonoBehaviour
         Debug.Log((object) "Today, there were corpses on school grounds.");
         foreach (RagdollScript corpse in this.CorpseList)
         {
-          if ((UnityEngine.Object) corpse != (UnityEngine.Object) null && !corpse.Disposed && StudentGlobals.MemorialStudents < 9)
+          if ((UnityEngine.Object) corpse != (UnityEngine.Object) null && !corpse.Disposed)
           {
-            Debug.Log((object) "''MemorialStudents'' is being incremented upwards.");
-            ++StudentGlobals.MemorialStudents;
-            switch (StudentGlobals.MemorialStudents)
+            if (this.IDsCounted < 99)
             {
-              case 1:
-                StudentGlobals.MemorialStudent1 = corpse.Student.StudentID;
-                continue;
-              case 2:
-                StudentGlobals.MemorialStudent2 = corpse.Student.StudentID;
-                continue;
-              case 3:
-                StudentGlobals.MemorialStudent3 = corpse.Student.StudentID;
-                continue;
-              case 4:
-                StudentGlobals.MemorialStudent4 = corpse.Student.StudentID;
-                continue;
-              case 5:
-                StudentGlobals.MemorialStudent5 = corpse.Student.StudentID;
-                continue;
-              case 6:
-                StudentGlobals.MemorialStudent6 = corpse.Student.StudentID;
-                continue;
-              case 7:
-                StudentGlobals.MemorialStudent7 = corpse.Student.StudentID;
-                continue;
-              case 8:
-                StudentGlobals.MemorialStudent8 = corpse.Student.StudentID;
-                continue;
-              case 9:
-                StudentGlobals.MemorialStudent9 = corpse.Student.StudentID;
-                continue;
-              default:
-                continue;
+              this.IDsToIgnore[this.IDsCounted] = corpse.StudentID;
+              ++this.IDsCounted;
+            }
+            if (StudentGlobals.MemorialStudents < 9)
+            {
+              Debug.Log((object) "''MemorialStudents'' is being incremented upwards.");
+              ++StudentGlobals.MemorialStudents;
+              switch (StudentGlobals.MemorialStudents)
+              {
+                case 1:
+                  StudentGlobals.MemorialStudent1 = corpse.Student.StudentID;
+                  continue;
+                case 2:
+                  StudentGlobals.MemorialStudent2 = corpse.Student.StudentID;
+                  continue;
+                case 3:
+                  StudentGlobals.MemorialStudent3 = corpse.Student.StudentID;
+                  continue;
+                case 4:
+                  StudentGlobals.MemorialStudent4 = corpse.Student.StudentID;
+                  continue;
+                case 5:
+                  StudentGlobals.MemorialStudent5 = corpse.Student.StudentID;
+                  continue;
+                case 6:
+                  StudentGlobals.MemorialStudent6 = corpse.Student.StudentID;
+                  continue;
+                case 7:
+                  StudentGlobals.MemorialStudent7 = corpse.Student.StudentID;
+                  continue;
+                case 8:
+                  StudentGlobals.MemorialStudent8 = corpse.Student.StudentID;
+                  continue;
+                case 9:
+                  StudentGlobals.MemorialStudent9 = corpse.Student.StudentID;
+                  continue;
+                default:
+                  continue;
+              }
             }
           }
         }
@@ -913,7 +921,7 @@ public class PoliceScript : MonoBehaviour
               }
             }
             else
-              Debug.Log((object) "Wait, we already counted a limb from that student! Ignore it.");
+              Debug.Log((object) "Wait, we already acknowledged that student's corpse or counted a limb from that student! Ignore it.");
             if (this.IDsCounted < 99)
             {
               this.IDsToIgnore[this.IDsCounted] = studentId;

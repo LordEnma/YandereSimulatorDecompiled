@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: JournalistScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
@@ -270,7 +270,7 @@ public class JournalistScript : MonoBehaviour
 
   private void CheckBehavior()
   {
-    if (!this.Yandere.CanMove || this.Yandere.Egg || !this.Yandere.Chased && this.Yandere.Chasers <= 0 && (double) this.Yandere.MurderousActionTimer <= 0.0 && (double) this.Yandere.PotentiallyMurderousTimer <= 0.0 && (!this.Yandere.Armed || !this.Yandere.EquippedWeapon.Bloody) && (!this.Yandere.Carrying || this.Yandere.CurrentRagdoll.Concealed) && (!this.Yandere.Dragging || this.Yandere.CurrentRagdoll.Concealed) && ((double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood <= 0.0 || this.Yandere.Paint || !this.Yandere.MyProjector.enabled) && (!((Object) this.Yandere.PickUp != (Object) null) || !(bool) (Object) this.Yandere.PickUp.BodyPart || this.Yandere.PickUp.Garbage))
+    if (!this.Yandere.CanMove || this.Yandere.Egg || this.Yandere.Invisible || !this.Yandere.Chased && this.Yandere.Chasers <= 0 && (double) this.Yandere.MurderousActionTimer <= 0.0 && (double) this.Yandere.PotentiallyMurderousTimer <= 0.0 && (!this.Yandere.Armed || !this.Yandere.EquippedWeapon.Bloody) && (!this.Yandere.Carrying || this.Yandere.CurrentRagdoll.Concealed) && (!this.Yandere.Dragging || this.Yandere.CurrentRagdoll.Concealed) && ((double) this.Yandere.Bloodiness + (double) this.Yandere.GloveBlood <= 0.0 || this.Yandere.Paint || !this.Yandere.MyProjector.enabled) && (!((Object) this.Yandere.PickUp != (Object) null) || !(bool) (Object) this.Yandere.PickUp.BodyPart || this.Yandere.PickUp.Garbage))
       return;
     if (this.Yandere.Carrying)
       Debug.Log((object) ("Yandere.CurrentRagdoll.Concealed is: " + this.Yandere.CurrentRagdoll.Concealed.ToString()));

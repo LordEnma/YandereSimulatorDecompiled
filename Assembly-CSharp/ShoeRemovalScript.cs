@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ShoeRemovalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -286,7 +286,7 @@ public class ShoeRemovalScript : MonoBehaviour
     this.LeftNewShoe.parent = this.LeftFoot;
     this.LeftNewShoe.localPosition = this.LeftShoePosition;
     this.LeftNewShoe.localEulerAngles = Vector3.zero;
-    if (!this.Student.AoT)
+    if (!this.Student.AoT && (Object) this.TargetShoes != (Object) null)
     {
       if (!this.Male)
       {

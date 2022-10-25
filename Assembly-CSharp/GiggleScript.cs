@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GiggleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -48,7 +48,7 @@ public class GiggleScript : MonoBehaviour
     {
       if (this.Student.Clock.Period == 3 && this.Student.BusyAtLunch)
         this.StudentIsBusy = true;
-      if ((this.Student.StudentID == 47 || this.Student.StudentID == 49) && this.Student.StudentManager.ConvoManager.Confirmed)
+      if ((this.Student.StudentID == 47 || this.Student.StudentID == 49) && this.Student.StudentManager.ConvoManager.BothCharactersInPosition)
         this.StudentIsBusy = true;
       if (this.Student.StudentID == this.Student.StudentManager.RivalID || this.Student.StudentID == 1)
       {
@@ -125,6 +125,8 @@ public class GiggleScript : MonoBehaviour
           }
           this.Student.Yandere.NotificationManager.CustomText = !this.BangSnap ? this.Student.Name + " heard a giggle." : this.Student.Name + " heard a sound.";
           this.Student.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+          this.Student.CuriosityPhase = 0;
+          this.Student.CuriosityTimer = 0.0f;
         }
         this.Distracted = true;
       }

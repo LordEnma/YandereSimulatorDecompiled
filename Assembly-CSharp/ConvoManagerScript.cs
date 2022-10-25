@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ConvoManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -9,16 +9,18 @@ using UnityEngine;
 public class ConvoManagerScript : MonoBehaviour
 {
   public StudentManagerScript SM;
-  public int NearbyStudents;
   public int Week;
   public int ID;
   public bool Eighties;
   public string[] FemaleCombatAnims;
   public string[] MaleCombatAnims;
-  public int CombatAnimID;
+  public bool BothCharactersInPosition;
+  public float PatienceTimer;
   public float CheckTimer;
-  public bool Confirmed;
+  public float KickTimer;
+  public int CombatAnimID;
   public int Cycles;
+  public int[] MartialArtist;
 
   public void Start()
   {
@@ -29,6 +31,62 @@ public class ConvoManagerScript : MonoBehaviour
 
   public void CheckMe(int StudentID)
   {
+    if (StudentID > 20 && StudentID < 26)
+      this.CheckGroup(StudentID, 21, 26);
+    else if (StudentID > 25 && StudentID < 31)
+      this.CheckGroup(StudentID, 26, 31);
+    else if (StudentID > 30 && StudentID < 36)
+      this.CheckGroup(StudentID, 31, 36);
+    else if (StudentID > 35 && StudentID < 41)
+      this.CheckGroup(StudentID, 36, 41);
+    else if (StudentID > 40 && StudentID < 46)
+      this.CheckGroup(StudentID, 41, 46);
+    else if (StudentID > 45 && StudentID < 51)
+      this.CheckGroup(StudentID, 46, 51);
+    else if (StudentID > 50 && StudentID < 56)
+      this.CheckGroup(StudentID, 51, 56);
+    else if (StudentID > 55 && StudentID < 61)
+      this.CheckGroup(StudentID, 56, 61);
+    else if (StudentID > 60 && StudentID < 66)
+      this.CheckGroup(StudentID, 61, 66);
+    else if (StudentID > 65 && StudentID < 71)
+      this.CheckGroup(StudentID, 66, 71);
+    else if (StudentID > 70 && StudentID < 76)
+      this.CheckGroup(StudentID, 71, 76);
+    else if (StudentID > 75 && StudentID < 81)
+    {
+      for (this.ID = 76; this.ID < 81; ++this.ID)
+      {
+        if (this.ID != StudentID)
+        {
+          if ((Object) this.SM.Students[this.ID] != (Object) null)
+          {
+            if ((double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.5)
+            {
+              this.SM.Students[StudentID].TrueAlone = false;
+              if (this.SM.Students[this.ID].Routine)
+              {
+                this.SM.Students[StudentID].Alone = false;
+                break;
+              }
+              this.SM.Students[StudentID].Alone = true;
+            }
+            else
+            {
+              this.SM.Students[StudentID].TrueAlone = true;
+              this.SM.Students[StudentID].Alone = true;
+            }
+          }
+          else
+          {
+            this.SM.Students[StudentID].TrueAlone = true;
+            this.SM.Students[StudentID].Alone = true;
+          }
+        }
+      }
+    }
+    else if (StudentID > 80 && StudentID < 86)
+      this.CheckGroup(StudentID, 81, 86);
     if (!this.Eighties)
     {
       switch (StudentID)
@@ -39,278 +97,11 @@ public class ConvoManagerScript : MonoBehaviour
         case 3:
           this.SM.Students[3].Alone = !this.SM.Students[2].Routine || (double) Vector3.Distance(this.SM.Students[3].transform.position, this.SM.Students[2].transform.position) >= 1.4;
           break;
+        case 10:
+          this.SM.Students[10].Alone = !((Object) this.SM.Students[11] != (Object) null) || !this.SM.Students[11].Routine || (double) Vector3.Distance(this.SM.Students[10].transform.position, this.SM.Students[11].transform.position) >= 2.0999999046325684;
+          break;
         case 11:
           this.SM.Students[11].Alone = !((Object) this.SM.Students[10] != (Object) null) || !this.SM.Students[10].Routine || (double) Vector3.Distance(this.SM.Students[11].transform.position, this.SM.Students[10].transform.position) >= 2.0999999046325684;
-          break;
-        default:
-          if (StudentID > 20 && StudentID < 26)
-          {
-            this.NearbyStudents = 0;
-            this.ID = 21;
-            while (this.ID < 26)
-            {
-              if (this.ID != StudentID)
-              {
-                if ((Object) this.SM.Students[this.ID] != (Object) null)
-                {
-                  if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.5)
-                  {
-                    this.SM.Students[StudentID].Alone = false;
-                    break;
-                  }
-                  this.SM.Students[StudentID].Alone = true;
-                }
-                else
-                  this.SM.Students[StudentID].Alone = true;
-              }
-              ++this.ID;
-              if (this.ID == StudentID)
-                this.SM.Students[StudentID].Alone = true;
-            }
-            break;
-          }
-          if (StudentID > 25 && StudentID < 31)
-          {
-            for (this.ID = 26; this.ID < 31; ++this.ID)
-            {
-              if (this.ID != StudentID)
-              {
-                if ((Object) this.SM.Students[this.ID] != (Object) null)
-                {
-                  if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.5)
-                  {
-                    this.SM.Students[StudentID].Alone = false;
-                    break;
-                  }
-                  this.SM.Students[StudentID].Alone = true;
-                }
-                else
-                  this.SM.Students[StudentID].Alone = true;
-              }
-            }
-            break;
-          }
-          if (StudentID > 35 && StudentID < 41)
-          {
-            this.NearbyStudents = 0;
-            this.ID = 36;
-            while (this.ID < 41)
-            {
-              if (this.ID != StudentID)
-              {
-                if ((Object) this.SM.Students[this.ID] != (Object) null)
-                {
-                  if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.5)
-                  {
-                    this.SM.Students[StudentID].Alone = false;
-                    break;
-                  }
-                  this.SM.Students[StudentID].Alone = true;
-                }
-                else
-                  this.SM.Students[StudentID].Alone = true;
-              }
-              ++this.ID;
-              if (this.ID == StudentID)
-                this.SM.Students[StudentID].Alone = true;
-            }
-            break;
-          }
-          if (StudentID > 45 && StudentID < 51)
-          {
-            for (this.ID = 46; this.ID < 51; ++this.ID)
-            {
-              if (this.ID != StudentID)
-              {
-                if ((Object) this.SM.Students[this.ID] != (Object) null)
-                {
-                  if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.5)
-                  {
-                    this.SM.Students[StudentID].Alone = false;
-                    break;
-                  }
-                  this.SM.Students[StudentID].Alone = true;
-                }
-                else
-                  this.SM.Students[StudentID].Alone = true;
-              }
-            }
-            break;
-          }
-          if (StudentID > 30 && StudentID < 36)
-          {
-            for (this.ID = 31; this.ID < 36; ++this.ID)
-            {
-              if (this.ID != StudentID)
-              {
-                if ((Object) this.SM.Students[this.ID] != (Object) null)
-                {
-                  if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.5)
-                  {
-                    this.SM.Students[StudentID].Alone = false;
-                    break;
-                  }
-                  this.SM.Students[StudentID].Alone = true;
-                }
-                else
-                  this.SM.Students[StudentID].Alone = true;
-              }
-            }
-            break;
-          }
-          switch (StudentID)
-          {
-            case 6:
-              if ((Object) this.SM.Students[11] != (Object) null)
-              {
-                this.SM.Students[6].Alone = !this.SM.Students[11].Routine || (double) Vector3.Distance(this.SM.Students[6].transform.position, this.SM.Students[11].transform.position) >= 1.4;
-                break;
-              }
-              break;
-            case 11:
-              this.SM.Students[11].Alone = !((Object) this.SM.Students[6] != (Object) null) || !this.SM.Students[6].Routine || (double) Vector3.Distance(this.SM.Students[11].transform.position, this.SM.Students[6].transform.position) >= 1.4;
-              break;
-            default:
-              if (StudentID > 40 && StudentID < 46)
-              {
-                for (this.ID = 40; this.ID < 46; ++this.ID)
-                {
-                  if (this.ID != StudentID)
-                  {
-                    if ((Object) this.SM.Students[this.ID] != (Object) null)
-                    {
-                      if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.6666600704193115)
-                      {
-                        this.SM.Students[StudentID].Alone = false;
-                        break;
-                      }
-                      this.SM.Students[StudentID].Alone = true;
-                    }
-                    else
-                      this.SM.Students[StudentID].Alone = true;
-                  }
-                }
-                break;
-              }
-              if (StudentID > 55 && StudentID < 61)
-              {
-                for (this.ID = 56; this.ID < 61; ++this.ID)
-                {
-                  if (this.ID != StudentID)
-                  {
-                    if ((Object) this.SM.Students[this.ID] != (Object) null)
-                    {
-                      if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.6666600704193115)
-                      {
-                        this.SM.Students[StudentID].Alone = false;
-                        break;
-                      }
-                      this.SM.Students[StudentID].Alone = true;
-                    }
-                    else
-                      this.SM.Students[StudentID].Alone = true;
-                  }
-                }
-                break;
-              }
-              if (StudentID > 60 && StudentID < 66)
-              {
-                for (this.ID = 61; this.ID < 66; ++this.ID)
-                {
-                  if (this.ID != StudentID)
-                  {
-                    if ((Object) this.SM.Students[this.ID] != (Object) null)
-                    {
-                      if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.6666600704193115)
-                      {
-                        this.SM.Students[StudentID].Alone = false;
-                        break;
-                      }
-                      this.SM.Students[StudentID].Alone = true;
-                    }
-                    else
-                      this.SM.Students[StudentID].Alone = true;
-                  }
-                }
-                break;
-              }
-              if (StudentID > 65 && StudentID < 71)
-              {
-                for (this.ID = 66; this.ID < 71; ++this.ID)
-                {
-                  if (this.ID != StudentID)
-                  {
-                    if ((Object) this.SM.Students[this.ID] != (Object) null)
-                    {
-                      if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.6666600704193115)
-                      {
-                        this.SM.Students[StudentID].Alone = false;
-                        break;
-                      }
-                      this.SM.Students[StudentID].Alone = true;
-                    }
-                    else
-                      this.SM.Students[StudentID].Alone = true;
-                  }
-                }
-                break;
-              }
-              if (StudentID > 75 && StudentID < 81)
-              {
-                for (this.ID = 76; this.ID < 81; ++this.ID)
-                {
-                  if (this.ID != StudentID)
-                  {
-                    if ((Object) this.SM.Students[this.ID] != (Object) null)
-                    {
-                      if ((double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.5)
-                      {
-                        this.SM.Students[StudentID].TrueAlone = false;
-                        if (this.SM.Students[this.ID].Routine)
-                        {
-                          this.SM.Students[StudentID].Alone = false;
-                          break;
-                        }
-                        this.SM.Students[StudentID].Alone = true;
-                      }
-                      else
-                      {
-                        this.SM.Students[StudentID].TrueAlone = true;
-                        this.SM.Students[StudentID].Alone = true;
-                      }
-                    }
-                    else
-                    {
-                      this.SM.Students[StudentID].TrueAlone = true;
-                      this.SM.Students[StudentID].Alone = true;
-                    }
-                  }
-                }
-                break;
-              }
-              if (StudentID > 80 && StudentID < 86)
-              {
-                for (this.ID = 81; this.ID < 86; ++this.ID)
-                {
-                  if (this.ID != StudentID)
-                  {
-                    if ((Object) this.SM.Students[this.ID] != (Object) null)
-                    {
-                      if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.5)
-                      {
-                        this.SM.Students[StudentID].Alone = false;
-                        break;
-                      }
-                      this.SM.Students[StudentID].Alone = true;
-                    }
-                    else
-                      this.SM.Students[StudentID].Alone = true;
-                  }
-                }
-                break;
-              }
-              break;
-          }
           break;
       }
       if (this.Week != 1)
@@ -348,31 +139,11 @@ public class ConvoManagerScript : MonoBehaviour
           this.SM.Students[27].Alone = true;
       }
     }
-    else if (StudentID < 13)
-    {
-      for (this.ID = 2; this.ID < 13; ++this.ID)
-      {
-        if (this.ID != StudentID)
-        {
-          if ((Object) this.SM.Students[this.ID] != (Object) null)
-          {
-            if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.6666600704193115)
-            {
-              this.SM.Students[StudentID].Alone = false;
-              break;
-            }
-            this.SM.Students[StudentID].Alone = true;
-          }
-          else
-            this.SM.Students[StudentID].Alone = true;
-        }
-      }
-    }
     else
     {
-      if (StudentID <= 75 || StudentID >= 86)
+      if (StudentID >= 13)
         return;
-      for (this.ID = 75; this.ID < 86; ++this.ID)
+      for (this.ID = 2; this.ID < 13; ++this.ID)
       {
         if (this.ID != StudentID)
         {
@@ -395,43 +166,162 @@ public class ConvoManagerScript : MonoBehaviour
   public void MartialArtsCheck()
   {
     this.CheckTimer += Time.deltaTime;
-    if ((double) this.CheckTimer <= 1.0 && !this.Confirmed || !((Object) this.SM.Students[47] != (Object) null) || !((Object) this.SM.Students[49] != (Object) null) || !this.SM.Students[47].Routine || !this.SM.Students[49].Routine || (double) this.SM.Students[47].DistanceToDestination >= 0.10000000149011612 || (double) this.SM.Students[49].DistanceToDestination >= 0.10000000149011612)
+    if ((double) this.CheckTimer <= 1.0 && !this.BothCharactersInPosition || !((Object) this.SM.Students[this.MartialArtist[1]] != (Object) null) || !((Object) this.SM.Students[this.MartialArtist[2]] != (Object) null) || !this.SM.Students[this.MartialArtist[1]].Routine || !this.SM.Students[this.MartialArtist[2]].Routine || (double) this.SM.Students[this.MartialArtist[1]].DistanceToDestination >= 0.10000000149011612 || (double) this.SM.Students[this.MartialArtist[2]].DistanceToDestination >= 0.10000000149011612)
       return;
-    this.Confirmed = true;
+    this.BothCharactersInPosition = true;
+    this.PatienceTimer = 0.0f;
     ++this.CombatAnimID;
     if (this.CombatAnimID > 2)
       this.CombatAnimID = 1;
-    this.SM.Students[47].ClubAnim = this.MaleCombatAnims[this.CombatAnimID];
-    this.SM.Students[49].ClubAnim = this.FemaleCombatAnims[this.CombatAnimID];
-    this.SM.Students[47].GetNewAnimation = false;
-    this.SM.Students[49].GetNewAnimation = false;
+    this.SM.Students[this.MartialArtist[1]].ClubAnim = this.MaleCombatAnims[this.CombatAnimID];
+    this.SM.Students[this.MartialArtist[2]].ClubAnim = this.FemaleCombatAnims[this.CombatAnimID];
+    this.SM.Students[this.MartialArtist[1]].GetNewAnimation = false;
+    this.SM.Students[this.MartialArtist[2]].GetNewAnimation = false;
     ++this.Cycles;
     if (this.Cycles != 10)
       return;
     this.SM.UpdateMartialArts();
+    this.KickTimer = 0.0f;
     this.Cycles = 0;
   }
 
   public void LateUpdate()
   {
+    StudentScript student1 = this.SM.Students[this.MartialArtist[1]];
+    StudentScript student2 = this.SM.Students[this.MartialArtist[2]];
     this.CheckTimer = Mathf.MoveTowards(this.CheckTimer, 0.0f, Time.deltaTime);
-    if (!this.Confirmed)
-      return;
-    if (this.SM.Students[47].Routine && this.SM.Students[49].Routine)
+    if (this.BothCharactersInPosition)
     {
-      if ((double) this.SM.Students[47].DistanceToPlayer >= 1.5 && (double) this.SM.Students[49].DistanceToPlayer >= 1.5 && !this.SM.Students[47].Talking && !this.SM.Students[49].Talking && !this.SM.Students[47].Distracted && !this.SM.Students[49].Distracted && !this.SM.Students[47].TurnOffRadio && !this.SM.Students[49].TurnOffRadio)
-        return;
-      if ((double) this.SM.Students[47].DistanceToPlayer < 1.5 || (double) this.SM.Students[49].DistanceToPlayer < 1.5)
-        this.SM.Students[47].Subtitle.UpdateLabel(SubtitleType.IntrusionReaction, 2, 5f);
-      this.SM.Students[47].ClubAnim = "idle_20";
-      this.SM.Students[49].ClubAnim = "f02_idle_20";
-      this.Confirmed = false;
+      if (this.SM.Students[this.MartialArtist[1]].Routine && this.SM.Students[this.MartialArtist[2]].Routine)
+      {
+        if ((double) this.SM.Students[this.MartialArtist[1]].DistanceToPlayer >= 1.5 && (double) this.SM.Students[this.MartialArtist[2]].DistanceToPlayer >= 1.5 && !this.SM.Students[this.MartialArtist[1]].Talking && !this.SM.Students[this.MartialArtist[2]].Talking && !this.SM.Students[this.MartialArtist[1]].Distracted && !this.SM.Students[this.MartialArtist[2]].Distracted && !this.SM.Students[this.MartialArtist[1]].TurnOffRadio && !this.SM.Students[this.MartialArtist[2]].TurnOffRadio)
+          return;
+        if ((double) this.SM.Students[this.MartialArtist[1]].DistanceToPlayer < 1.5 || (double) this.SM.Students[this.MartialArtist[2]].DistanceToPlayer < 1.5)
+          this.SM.Students[this.MartialArtist[1]].Subtitle.UpdateLabel(SubtitleType.IntrusionReaction, 2, 5f);
+        this.SM.Students[this.MartialArtist[1]].ClubAnim = "idle_20";
+        this.SM.Students[this.MartialArtist[2]].ClubAnim = "f02_idle_20";
+        this.BothCharactersInPosition = false;
+      }
+      else
+      {
+        this.SM.Students[this.MartialArtist[1]].ClubAnim = "idle_20";
+        this.SM.Students[this.MartialArtist[2]].ClubAnim = "f02_idle_20";
+        this.BothCharactersInPosition = false;
+      }
     }
     else
     {
-      this.SM.Students[47].ClubAnim = "idle_20";
-      this.SM.Students[49].ClubAnim = "f02_idle_20";
-      this.Confirmed = false;
+      if ((Object) student1 != (Object) null && student1.ClubAttire && student1.Actions[student1.Phase] == StudentActionType.ClubAction && (double) Vector3.Distance(student1.transform.position, this.SM.Clubs.List[this.MartialArtist[1]].position) < 1.5)
+      {
+        if (student1.Talking || student1.Distracted || student1.TurnOffRadio)
+        {
+          student1.ClubAnim = "idle_20";
+          if ((Object) student2 != (Object) null)
+            student2.ClubAnim = "f02_idle_20";
+          this.PatienceTimer = 0.0f;
+        }
+        else if ((double) student1.DistanceToPlayer < 1.5)
+        {
+          student1.Subtitle.UpdateLabel(SubtitleType.IntrusionReaction, 2, 5f);
+          student1.ClubAnim = "idle_20";
+          if ((Object) student2 != (Object) null)
+            student2.ClubAnim = "f02_idle_20";
+          this.PatienceTimer = 0.0f;
+        }
+        else
+        {
+          this.PatienceTimer += Time.deltaTime;
+          if ((double) this.PatienceTimer < 5.0)
+          {
+            student1.ClubAnim = "idle_20";
+            if ((Object) student2 != (Object) null)
+              student2.ClubAnim = "f02_idle_20";
+          }
+          else
+          {
+            student1.ClubAnim = "loopingKick";
+            if ((Object) student2 != (Object) null)
+              student2.ClubAnim = "f02_loopingKick";
+            if ((double) student1.DistanceToDestination < 1.0)
+            {
+              this.KickTimer += Time.deltaTime;
+              if ((double) this.KickTimer >= 60.0)
+              {
+                this.SM.UpdateMartialArts();
+                this.KickTimer = 0.0f;
+                this.Cycles = 0;
+              }
+            }
+          }
+        }
+      }
+      if (!((Object) student2 != (Object) null) || !student2.ClubAttire || student2.Actions[student2.Phase] != StudentActionType.ClubAction || (double) Vector3.Distance(student2.transform.position, this.SM.Clubs.List[this.MartialArtist[2]].position) >= 1.5)
+        return;
+      if (student2.Talking || student2.Distracted || student2.TurnOffRadio)
+      {
+        student1.ClubAnim = "f02_idle_20";
+        if ((Object) student1 != (Object) null)
+          student1.ClubAnim = "idle_20";
+        this.PatienceTimer = 0.0f;
+      }
+      else if ((double) student2.DistanceToPlayer < 1.5)
+      {
+        student2.Subtitle.UpdateLabel(SubtitleType.IntrusionReaction, 2, 5f);
+        student2.ClubAnim = "f02_idle_20";
+        if ((Object) student1 != (Object) null)
+          student1.ClubAnim = "idle_20";
+        this.PatienceTimer = 0.0f;
+      }
+      else
+      {
+        this.PatienceTimer += Time.deltaTime;
+        if ((double) this.PatienceTimer < 5.0)
+        {
+          student2.ClubAnim = "f02_idle_20";
+          if (!((Object) student1 != (Object) null))
+            return;
+          student1.ClubAnim = "idle_20";
+        }
+        else
+        {
+          student2.ClubAnim = "f02_loopingKick";
+          if ((Object) student1 != (Object) null)
+            student1.ClubAnim = "loopingKick";
+          if ((double) student2.DistanceToDestination >= 1.0)
+            return;
+          this.KickTimer += Time.deltaTime;
+          if ((double) this.KickTimer < 60.0)
+            return;
+          this.SM.UpdateMartialArts();
+          this.KickTimer = 0.0f;
+          this.Cycles = 0;
+        }
+      }
+    }
+  }
+
+  public void CheckGroup(int StudentID, int StartID, int EndID)
+  {
+    this.ID = StartID;
+    while (this.ID < EndID)
+    {
+      if (this.ID != StudentID)
+      {
+        if ((Object) this.SM.Students[this.ID] != (Object) null)
+        {
+          if (this.SM.Students[this.ID].Routine && (double) Vector3.Distance(this.SM.Students[this.ID].transform.position, this.SM.Students[StudentID].transform.position) < 2.5)
+          {
+            this.SM.Students[StudentID].Alone = false;
+            break;
+          }
+          this.SM.Students[StudentID].Alone = true;
+        }
+        else
+          this.SM.Students[StudentID].Alone = true;
+      }
+      ++this.ID;
+      if (this.ID == StudentID)
+        this.SM.Students[StudentID].Alone = true;
     }
   }
 }

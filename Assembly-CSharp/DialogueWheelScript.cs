@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DialogueWheelScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -883,7 +883,6 @@ public class DialogueWheelScript : MonoBehaviour
 
   public void End()
   {
-    Debug.Log((object) "The DialogueWheel is calling End() now.");
     if ((Object) this.Yandere.TargetStudent != (Object) null)
     {
       if (this.Yandere.TargetStudent.Pestered >= 10)
@@ -894,7 +893,6 @@ public class DialogueWheelScript : MonoBehaviour
       this.Yandere.TargetStudent.WaitTimer = 1f;
       if (this.Yandere.TargetStudent.enabled)
       {
-        Debug.Log((object) (this.Yandere.TargetStudent.Name + " has just been released from the DialogueWheel."));
         this.Yandere.TargetStudent.CurrentDestination = this.Yandere.TargetStudent.Destinations[this.Yandere.TargetStudent.Phase];
         this.Yandere.TargetStudent.Pathfinding.target = this.Yandere.TargetStudent.Destinations[this.Yandere.TargetStudent.Phase];
         if (this.Yandere.TargetStudent.Actions[this.Yandere.TargetStudent.Phase] == StudentActionType.Clean)
@@ -954,11 +952,14 @@ public class DialogueWheelScript : MonoBehaviour
         }
         this.Yandere.TargetStudent.FollowTarget.FocusOnYandere = false;
       }
-      this.Yandere.TargetStudent.Talk.NegativeResponse = false;
-      this.Yandere.ShoulderCamera.OverShoulder = false;
-      this.Yandere.TargetStudent.DiscCheck = false;
-      this.Yandere.TargetStudent.Waiting = true;
-      this.Yandere.TargetStudent = (StudentScript) null;
+      if ((Object) this.Yandere.TargetStudent != (Object) null && (Object) this.Yandere.TargetStudent.Talk != (Object) null)
+      {
+        this.Yandere.TargetStudent.Talk.NegativeResponse = false;
+        this.Yandere.ShoulderCamera.OverShoulder = false;
+        this.Yandere.TargetStudent.DiscCheck = false;
+        this.Yandere.TargetStudent.Waiting = true;
+        this.Yandere.TargetStudent = (StudentScript) null;
+      }
     }
     this.Yandere.Interaction = YandereInteractionType.Idle;
     this.Yandere.CameraEffects.UpdateDOF(2f);
@@ -987,8 +988,6 @@ public class DialogueWheelScript : MonoBehaviour
       Debug.Log((object) "Hiding task button.");
       this.Shadow[5].color = new Color(0.0f, 0.0f, 0.0f, 0.75f);
     }
-    Debug.Log((object) ("TargetStudent.TaskPhase is: " + this.Yandere.TargetStudent.TaskPhase.ToString()));
-    Debug.Log((object) ("TaskManager.TaskStatus[TargetStudent.StudentID] is: " + this.TaskManager.TaskStatus[this.Yandere.TargetStudent.StudentID].ToString()));
     if (this.Yandere.TargetStudent.TaskPhase != 5)
       return;
     Debug.Log((object) "Task Phase is 5. Unhiding task button.");

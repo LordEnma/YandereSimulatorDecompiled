@@ -1,13 +1,14 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RetroMinigameScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
 public class RetroMinigameScript : MonoBehaviour
 {
+  public YandereScript Yandere;
   public GameObject GameOverGraphic;
   public GameObject MinigameCamera;
   public GameObject Heart;
@@ -46,10 +47,11 @@ public class RetroMinigameScript : MonoBehaviour
       if ((double) this.transform.localPosition.y < -1.0)
       {
         this.transform.localPosition = Vector3.Lerp(this.transform.localPosition, new Vector3(0.0f, 0.0f, 0.0f), Time.unscaledDeltaTime * 10f);
-        if ((double) this.transform.localPosition.y <= -1.0)
-          return;
-        this.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-        this.MinigameCamera.SetActive(true);
+        if ((double) this.transform.localPosition.y > -1.0)
+        {
+          this.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+          this.MinigameCamera.SetActive(true);
+        }
       }
       else if (!this.GameOver)
       {
@@ -73,18 +75,22 @@ public class RetroMinigameScript : MonoBehaviour
           this.Heart.transform.localPosition = new Vector3(-3.125f, 4.6f, 1f);
           this.Momentum = 0.0f;
         }
-        if ((double) this.Heart.transform.localPosition.y > -4.5999999046325684)
-          return;
-        this.Heart.transform.localPosition = new Vector3(-3.125f, -4.6f, 1f);
-        this.GetGameOver();
+        if ((double) this.Heart.transform.localPosition.y <= -4.5999999046325684)
+        {
+          this.Heart.transform.localPosition = new Vector3(-3.125f, -4.6f, 1f);
+          this.GetGameOver();
+        }
       }
       else
       {
         this.GameOverTimer += Time.unscaledDeltaTime;
-        if ((double) this.GameOverTimer <= 1.0 || !Input.GetButtonDown("A"))
-          return;
-        this.Start();
+        if ((double) this.GameOverTimer > 1.0 && Input.GetButtonDown("A"))
+          this.Start();
       }
+      if (!this.Yandere.CanMove)
+        return;
+      this.MinigameCamera.SetActive(false);
+      this.Show = false;
     }
     else
     {

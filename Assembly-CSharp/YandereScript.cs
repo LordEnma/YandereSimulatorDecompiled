@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
@@ -2703,28 +2703,28 @@ public class YandereScript : MonoBehaviour
             Object.Instantiate<GameObject>(this.TargetStudent.StabBloodEffect, this.EquippedWeapon.transform.position, Quaternion.identity);
             ++this.StrugglePhase;
           }
-          if (this.TargetStudent.Teacher && (double) this.CharacterAnimation["f02_teacherStruggleWinA_00"].time > 2.5)
+          if (this.TargetStudent.Teacher && (double) this.CharacterAnimation["f02_teacherStruggleWinA_00"].time > 2.25)
           {
-            Debug.Log((object) "A teacher is falling. Checking for nearby walls.");
+            Debug.Log((object) "A teacher lost a struggle and is falling now. Checking for nearby walls.");
             this.TargetStudent.TooCloseToWall = false;
             this.TargetStudent.CheckForWallToLeft();
             if (this.TargetStudent.TooCloseToWall)
             {
               this.TargetStudent.StopSliding = true;
-              Debug.Log((object) "Too close to a wall!");
-              int num = (int) this.TargetStudent.MyController.Move(this.TargetStudent.transform.right * Time.deltaTime * -1f);
+              Debug.Log((object) "Too close to a wall! Trying to slide the character to the side.");
+              int num = (int) this.TargetStudent.MyController.Move(this.TargetStudent.transform.right * Time.deltaTime * -2f);
             }
           }
-          if (!this.TargetStudent.Teacher && (double) this.CharacterAnimation["f02_struggleWinA_00"].time > 2.5)
+          if (!this.TargetStudent.Teacher && (double) this.CharacterAnimation["f02_struggleWinA_00"].time > 2.25)
           {
-            Debug.Log((object) "A student is falling. Checking for nearby walls.");
+            Debug.Log((object) "A student lost a struggle and is falling now. Checking for nearby walls.");
             this.TargetStudent.TooCloseToWall = false;
             this.TargetStudent.CheckForWallToRight();
             if (this.TargetStudent.TooCloseToWall)
             {
               this.TargetStudent.StopSliding = true;
-              Debug.Log((object) "Too close to a wall!");
-              int num = (int) this.TargetStudent.MyController.Move(this.TargetStudent.transform.right * Time.deltaTime);
+              Debug.Log((object) "Too close to a wall! Trying to slide the character to the side.");
+              int num = (int) this.TargetStudent.MyController.Move(this.TargetStudent.transform.right * Time.deltaTime * 2f);
             }
           }
           if (!this.TargetStudent.Teacher && (double) this.CharacterAnimation["f02_struggleWinA_00"].time > (double) this.CharacterAnimation["f02_struggleWinA_00"].length || this.TargetStudent.Teacher && (double) this.CharacterAnimation["f02_teacherStruggleWinA_00"].time > (double) this.CharacterAnimation["f02_teacherStruggleWinA_00"].length)
@@ -7291,7 +7291,6 @@ public class YandereScript : MonoBehaviour
 
   public void CheckForWall()
   {
-    Debug.Log((object) "Checking for a wall.");
     Vector3 direction = Vector3.zero;
     this.corpseOrigin = this.Hips;
     float maxDistance = 1f;

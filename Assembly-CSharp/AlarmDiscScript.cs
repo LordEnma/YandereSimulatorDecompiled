@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AlarmDiscScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -84,7 +84,7 @@ public class AlarmDiscScript : MonoBehaviour
           {
             if (this.Student.Clock.Period == 3 && this.Student.BusyAtLunch)
               this.StudentIsBusy = true;
-            if ((this.Student.StudentID == 47 || this.Student.StudentID == 49) && this.Student.StudentManager.ConvoManager.Confirmed)
+            if ((this.Student.StudentID == 47 || this.Student.StudentID == 49) && this.Student.StudentManager.ConvoManager.BothCharactersInPosition)
               this.StudentIsBusy = true;
             if (this.Student.StudentID == 7 && this.Student.Hurry)
               this.Student.Distracted = false;
@@ -92,12 +92,33 @@ public class AlarmDiscScript : MonoBehaviour
             {
               int currentAction = (int) this.Student.CurrentAction;
             }
-            if (!this.Student.TurnOffRadio && this.Student.Alive && !this.Student.Blind && !this.Student.Pushed && !this.Student.Dying && !this.Student.Alarmed && !this.Student.Guarding && !this.Student.Wet && !this.Student.Slave && !this.Student.CheckingNote && !this.Student.WitnessedMurder && !this.Student.WitnessedCorpse && !this.Student.Emetic && !this.Student.Confessing && !this.StudentIsBusy && !this.Student.FocusOnYandere && !this.Student.Fleeing && !this.Student.Shoving && !this.Student.SentHome && this.Student.ClubActivityPhase < 16 && !this.Student.Vomiting && !this.Student.Lethal && !this.Student.Headache && !this.Student.Sedated && !this.Student.SenpaiWitnessingRivalDie && !this.Student.Hunted && !this.Student.Drowned && !this.Student.DramaticReaction && !this.Student.Yandere.Chased && !this.Student.ImmuneToLaughter && !this.Student.ListeningToReport || this.Student.Persona == PersonaType.Protective && (Object) this.Originator != (Object) null && this.Originator.StudentID == 11 && !this.Student.Hunted && !this.Student.Emetic && !this.Student.Headache)
+            if (!this.Student.TurnOffRadio && this.Student.Alive && !this.Student.Blind && !this.Student.Pushed && !this.Student.Dying && !this.Student.Alarmed && !this.Student.Guarding && !this.Student.Wet && !this.Student.Slave && !this.Student.CheckingNote && !this.Student.WitnessedMurder && !this.Student.WitnessedCorpse && !this.Student.Emetic && !this.Student.Confessing && !this.StudentIsBusy && !this.Student.FocusOnYandere && !this.Student.Fleeing && !this.Student.Shoving && !this.Student.SentHome && this.Student.ClubActivityPhase < 16 && !this.Student.Vomiting && !this.Student.Lethal && !this.Student.Headache && !this.Student.Sedated && !this.Student.SenpaiWitnessingRivalDie && !this.Student.Hunted && !this.Student.Drowned && !this.Student.DramaticReaction && !this.Student.Yandere.Chased && !this.Student.Hunting && !this.Student.ImmuneToLaughter && !this.Student.ListeningToReport && !this.Student.Distracted || this.Student.Persona == PersonaType.Protective && (Object) this.Originator != (Object) null && this.Originator.StudentID == 11 && !this.Student.Hunted && !this.Student.Emetic && !this.Student.Headache)
             {
               int num = this.Student.Male ? 1 : 0;
               if (!this.Student.Struggling)
-                this.Student.Character.GetComponent<Animation>().CrossFade(this.Student.LeanAnim);
-              this.Student.DistractionSpot = !((Object) this.Originator != (Object) null) ? new Vector3(this.transform.position.x, this.Student.transform.position.y, this.transform.position.z) : (!this.Originator.WitnessedMurder ? (!((Object) this.Originator.Corpse == (Object) null) ? new Vector3(this.Originator.Corpse.transform.position.x, this.Student.transform.position.y, this.Originator.Corpse.transform.position.z) : new Vector3(this.transform.position.x, this.Student.transform.position.y, this.transform.position.z)) : new Vector3(this.transform.position.x, this.Student.Yandere.transform.position.y, this.transform.position.z));
+                this.Student.CharacterAnimation.CrossFade(this.Student.LeanAnim);
+              if ((Object) this.Originator != (Object) null)
+              {
+                Debug.Log((object) (this.Student.Name + " just heard an alarm disc that originated from " + this.Originator.Name + "."));
+                if (this.Originator.WitnessedMurder)
+                {
+                  Debug.Log((object) (this.Originator.Name + " witnessed murder, and so " + this.Student.Name + " should look towards Yandere-chan."));
+                  this.Student.DistractionSpot = new Vector3(this.transform.position.x, this.Student.Yandere.transform.position.y, this.transform.position.z);
+                  this.Student.FocusOnYandere = true;
+                }
+                else if (this.Originator.Hunting)
+                {
+                  Debug.Log((object) (this.Originator.Name + " is a mind-broken slave! People should be staring."));
+                  this.Student.DistractionSpot = new Vector3(this.transform.position.x, this.Originator.transform.position.y, this.transform.position.z);
+                  this.Student.FocusOnStudent = true;
+                  this.Student.WeirdStudent = this.Originator.transform;
+                  this.Student.CharacterAnimation.CrossFade(this.Student.LeanAnim);
+                }
+                else
+                  this.Student.DistractionSpot = !((Object) this.Originator.Corpse == (Object) null) ? new Vector3(this.Originator.Corpse.transform.position.x, this.Student.transform.position.y, this.Originator.Corpse.transform.position.z) : new Vector3(this.transform.position.x, this.Student.transform.position.y, this.transform.position.z);
+              }
+              else
+                this.Student.DistractionSpot = new Vector3(this.transform.position.x, this.Student.transform.position.y, this.transform.position.z);
               this.Student.DiscCheck = true;
               Debug.Log((object) (this.Student.Name + "'s ''DiskCheck'' was just set to ''true''."));
               if (this.Shocking)

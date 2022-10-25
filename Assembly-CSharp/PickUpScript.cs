@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PickUpScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -313,7 +313,8 @@ public class PickUpScript : MonoBehaviour
           this.DoNotTeleport = false;
           this.MyRigidbody.AddForce((this.Prompt.Yandere.transform.forward + this.Prompt.Yandere.transform.up) * 100f);
           this.Prompt.HideButton[3] = false;
-          this.Prompt.Yandere.PotentiallyMurderousTimer = 1f;
+          if (!this.Prompt.Yandere.Invisible)
+            this.Prompt.Yandere.PotentiallyMurderousTimer = 1f;
         }
       }
       else
@@ -566,5 +567,15 @@ public class PickUpScript : MonoBehaviour
     this.MyRigidbody.useGravity = false;
     this.MyRigidbody.isKinematic = true;
     this.enabled = false;
+  }
+
+  public void UpdateFood()
+  {
+    int index = 0;
+    while (index < this.Food)
+    {
+      ++index;
+      this.FoodPieces[index].SetActive(true);
+    }
   }
 }

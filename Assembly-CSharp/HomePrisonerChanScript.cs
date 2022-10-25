@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomePrisonerChanScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -58,7 +58,6 @@ public class HomePrisonerChanScript : MonoBehaviour
 
   private void Start()
   {
-    Debug.Log((object) ("HomePrisonerChan #" + this.PrisonerID.ToString() + " has been told to run her Start() function."));
     if (this.PrisonerID == 1)
       this.StudentID = StudentGlobals.Prisoner1;
     if (this.PrisonerID == 2)

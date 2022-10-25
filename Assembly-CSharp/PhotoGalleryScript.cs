@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PhotoGalleryScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -1016,19 +1016,109 @@ public class PhotoGalleryScript : MonoBehaviour
 
   public void SaveAllStrings()
   {
-    Debug.Log((object) "Saved strings.");
     for (int index = 0; index < 100; ++index)
     {
       if ((Object) this.CorkboardStrings[index] != (Object) null)
       {
         Debug.Log((object) ("Now saving the data for StringSet #" + index.ToString()));
-        PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString_" + index.ToString() + "_Exists", 1);
-        PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString_" + index.ToString() + "_PositionX", this.CorkboardStrings[index].Origin.localPosition.x);
-        PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString_" + index.ToString() + "_PositionY", this.CorkboardStrings[index].Origin.localPosition.y);
-        PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString_" + index.ToString() + "_PositionZ", this.CorkboardStrings[index].Origin.localPosition.z);
-        PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString2_" + index.ToString() + "_PositionX", this.CorkboardStrings[index].Target.localPosition.x);
-        PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString2_" + index.ToString() + "_PositionY", this.CorkboardStrings[index].Target.localPosition.y);
-        PlayerPrefs.SetFloat("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString2_" + index.ToString() + "_PositionZ", this.CorkboardStrings[index].Target.localPosition.z);
+        string[] strArray1 = new string[5]
+        {
+          "Profile_",
+          null,
+          null,
+          null,
+          null
+        };
+        int profile = GameGlobals.Profile;
+        strArray1[1] = profile.ToString();
+        strArray1[2] = "_CorkboardString_";
+        strArray1[3] = index.ToString();
+        strArray1[4] = "_Exists";
+        PlayerPrefs.SetInt(string.Concat(strArray1), 1);
+        string[] strArray2 = new string[5]
+        {
+          "Profile_",
+          null,
+          null,
+          null,
+          null
+        };
+        profile = GameGlobals.Profile;
+        strArray2[1] = profile.ToString();
+        strArray2[2] = "_CorkboardString_";
+        strArray2[3] = index.ToString();
+        strArray2[4] = "_PositionX";
+        PlayerPrefs.SetFloat(string.Concat(strArray2), this.CorkboardStrings[index].Origin.localPosition.x);
+        string[] strArray3 = new string[5]
+        {
+          "Profile_",
+          null,
+          null,
+          null,
+          null
+        };
+        profile = GameGlobals.Profile;
+        strArray3[1] = profile.ToString();
+        strArray3[2] = "_CorkboardString_";
+        strArray3[3] = index.ToString();
+        strArray3[4] = "_PositionY";
+        PlayerPrefs.SetFloat(string.Concat(strArray3), this.CorkboardStrings[index].Origin.localPosition.y);
+        string[] strArray4 = new string[5]
+        {
+          "Profile_",
+          null,
+          null,
+          null,
+          null
+        };
+        profile = GameGlobals.Profile;
+        strArray4[1] = profile.ToString();
+        strArray4[2] = "_CorkboardString_";
+        strArray4[3] = index.ToString();
+        strArray4[4] = "_PositionZ";
+        PlayerPrefs.SetFloat(string.Concat(strArray4), this.CorkboardStrings[index].Origin.localPosition.z);
+        string[] strArray5 = new string[5]
+        {
+          "Profile_",
+          null,
+          null,
+          null,
+          null
+        };
+        profile = GameGlobals.Profile;
+        strArray5[1] = profile.ToString();
+        strArray5[2] = "_CorkboardString2_";
+        strArray5[3] = index.ToString();
+        strArray5[4] = "_PositionX";
+        PlayerPrefs.SetFloat(string.Concat(strArray5), this.CorkboardStrings[index].Target.localPosition.x);
+        string[] strArray6 = new string[5]
+        {
+          "Profile_",
+          null,
+          null,
+          null,
+          null
+        };
+        profile = GameGlobals.Profile;
+        strArray6[1] = profile.ToString();
+        strArray6[2] = "_CorkboardString2_";
+        strArray6[3] = index.ToString();
+        strArray6[4] = "_PositionY";
+        PlayerPrefs.SetFloat(string.Concat(strArray6), this.CorkboardStrings[index].Target.localPosition.y);
+        string[] strArray7 = new string[5]
+        {
+          "Profile_",
+          null,
+          null,
+          null,
+          null
+        };
+        profile = GameGlobals.Profile;
+        strArray7[1] = profile.ToString();
+        strArray7[2] = "_CorkboardString2_";
+        strArray7[3] = index.ToString();
+        strArray7[4] = "_PositionZ";
+        PlayerPrefs.SetFloat(string.Concat(strArray7), this.CorkboardStrings[index].Target.localPosition.z);
         Debug.Log((object) ("Saved Origin should be " + this.CorkboardStrings[index].Origin.localPosition.ToString()));
         Debug.Log((object) ("Saved Target should be " + this.CorkboardStrings[index].Target.localPosition.ToString()));
       }

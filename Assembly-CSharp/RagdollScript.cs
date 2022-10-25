@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RagdollScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: FF8D8C5E-5AC0-4805-AE57-A7C2932057BA
+// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -49,6 +49,7 @@ public class RagdollScript : MonoBehaviour
   public bool BurningAnimation;
   public bool ChokingAnimation;
   public bool RigidbodiesManuallyDisabled;
+  public bool InsideIncinerator;
   public bool TeleportNextFrame;
   public bool ColoredOutline;
   public bool AddingToCount;
@@ -423,7 +424,10 @@ public class RagdollScript : MonoBehaviour
         if ((double) this.Student.CharacterAnimation[this.DumpedAnim].time >= (double) this.Student.CharacterAnimation[this.DumpedAnim].length)
         {
           if (this.Concealed)
+          {
             ++this.Incinerator.HiddenCorpses;
+            this.InsideIncinerator = true;
+          }
           ++this.Incinerator.Corpses;
           this.Incinerator.CorpseList[this.Incinerator.Corpses] = this.StudentID;
           this.Remove();
@@ -466,14 +470,19 @@ public class RagdollScript : MonoBehaviour
     if (this.Hidden && (Object) this.HideCollider == (Object) null)
     {
       if (!this.Concealed)
+      {
+        Debug.Log((object) "This is the exact moment a corpse was subtracted from the HiddenCorpses count. 2");
         --this.Police.HiddenCorpses;
+      }
       this.Hidden = false;
     }
     if (this.Falling)
     {
       this.FallTimer += Time.deltaTime;
-      if ((double) this.FallTimer > 2.0)
+      if ((double) this.FallTimer > 1.6000000238418579)
       {
+        Debug.Log((object) "A corpse that was dropped from the school rooftop just hit the ground.");
+        this.SpawnAlarmDisc();
         this.BloodSpawnerCollider.enabled = true;
         this.FallTimer = 0.0f;
         this.Falling = false;
@@ -482,7 +491,7 @@ public class RagdollScript : MonoBehaviour
     if (this.Pushed && !this.StruckGround && !this.Hidden && (double) this.SettleTimer > 1.5)
     {
       Debug.Log((object) "A student who was shoved from the school rooftop just hit the ground.");
-      Object.Instantiate<GameObject>(this.Student.AlarmDisc, new Vector3(this.Student.Hips.position.x, 1f, this.Student.Hips.position.z), Quaternion.identity).transform.localScale = new Vector3(1000f, 1f, 1000f);
+      this.SpawnAlarmDisc();
       this.StruckGround = true;
     }
     if (this.Burning)
@@ -875,8 +884,11 @@ public class RagdollScript : MonoBehaviour
       --this.Yandere.NearBodies;
     if (this.Poisoned)
       this.Police.PoisonScene = false;
-    if (this.Concealed)
+    if (this.Concealed && !this.InsideIncinerator)
+    {
+      Debug.Log((object) "This is the exact moment a corpse was subtracted from the HiddenCorpses count. 1");
       --this.Police.HiddenCorpses;
+    }
     this.gameObject.SetActive(false);
   }
 
@@ -985,4 +997,6 @@ public class RagdollScript : MonoBehaviour
       return;
     this.Student.Cosmetic.DisableFingernails();
   }
+
+  private void SpawnAlarmDisc() => Object.Instantiate<GameObject>(this.Student.AlarmDisc, new Vector3(this.Student.Hips.position.x, 1f, this.Student.Hips.position.z), Quaternion.identity).transform.localScale = new Vector3(1000f, 1f, 1000f);
 }
