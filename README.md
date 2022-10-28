@@ -4,7 +4,7 @@ Decompiled Code from the game Yandere Simulator. The version of the game is from
 
 This is being provided as is, and I will try to update whenever a new build is released
 
-In case your curious, I used dotPeek for decompiling the code
+In case your curious, I used Jetbrains dotPeek for decompiling the code
 
 ## LEGAL NOTICE
 
