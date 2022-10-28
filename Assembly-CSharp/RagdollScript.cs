@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RagdollScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
+// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -49,6 +49,7 @@ public class RagdollScript : MonoBehaviour
   public bool BurningAnimation;
   public bool ChokingAnimation;
   public bool RigidbodiesManuallyDisabled;
+  public bool DroppedFromRooftop;
   public bool InsideIncinerator;
   public bool TeleportNextFrame;
   public bool ColoredOutline;
@@ -481,8 +482,12 @@ public class RagdollScript : MonoBehaviour
       this.FallTimer += Time.deltaTime;
       if ((double) this.FallTimer > 1.6000000238418579)
       {
-        Debug.Log((object) "A corpse that was dropped from the school rooftop just hit the ground.");
-        this.SpawnAlarmDisc();
+        if (this.DroppedFromRooftop)
+        {
+          Debug.Log((object) "A corpse that was dropped from the school rooftop just hit the ground.");
+          this.SpawnAlarmDisc();
+          this.DroppedFromRooftop = false;
+        }
         this.BloodSpawnerCollider.enabled = true;
         this.FallTimer = 0.0f;
         this.Falling = false;

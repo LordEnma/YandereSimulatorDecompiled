@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
+// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
@@ -591,6 +591,7 @@ public class StudentScript : MonoBehaviour
   public int CuriosityPhase;
   public int DramaticPhase;
   public int GraffitiPhase;
+  public int InfatuationID;
   public int SentHomePhase;
   public int SunbathePhase;
   public int ConfessPhase = 1;
@@ -3247,7 +3248,7 @@ label_280:
           return;
         this.TargetDistance = (double) this.transform.position.y > (double) this.CurrentDestination.position.y + 1.0 || (double) this.transform.position.y < (double) this.CurrentDestination.position.y - 1.0 ? 2f : (this.StudentManager.Students[this.StudentManager.RivalID].Meeting || this.StudentManager.Students[this.StudentManager.RivalID].InEvent ? 10f : 5f);
         bounds = this.StudentManager.LockerRoomArea.bounds;
-        if (bounds.Contains(this.CurrentDestination.position) || this.StudentManager.Students[19].Meeting)
+        if (bounds.Contains(this.CurrentDestination.position) || this.StudentManager.Students[this.InfatuationID].Meeting)
         {
           this.CharacterAnimation.CrossFade(this.IdleAnim);
           this.Pathfinding.canSearch = false;
@@ -3312,10 +3313,10 @@ label_280:
           {
             if (this.Infatuated)
             {
-              this.targetRotation = Quaternion.LookRotation(new Vector3(this.StudentManager.Students[19].transform.position.x, this.transform.position.y, this.StudentManager.Students[19].transform.position.z) - this.transform.position);
-              StudentScript student = this.StudentManager.Students[19];
+              this.targetRotation = Quaternion.LookRotation(new Vector3(this.StudentManager.Students[this.InfatuationID].transform.position.x, this.transform.position.y, this.StudentManager.Students[this.InfatuationID].transform.position.z) - this.transform.position);
+              StudentScript student = this.StudentManager.Students[this.InfatuationID];
               if ((UnityEngine.Object) student != (UnityEngine.Object) null && (!student.gameObject.activeInHierarchy || !student.enabled))
-                this.BoyCannotFindGravureModel();
+                this.CannotFindInfatuationTarget();
             }
             else if (this.Actions[this.Phase] == StudentActionType.Sleuth || this.Actions[this.Phase] == StudentActionType.Stalk)
               this.targetRotation = Quaternion.LookRotation(this.SleuthTarget.position - this.transform.position);
@@ -4804,8 +4805,8 @@ label_280:
                 {
                   Debug.Log((object) "Senpai is now changing his routine to go stalk the gravure idol.");
                   this.StudentManager.FollowGravureIdol(1);
-                  this.CurrentDestination = this.StudentManager.Students[19].transform;
-                  this.Pathfinding.target = this.StudentManager.Students[19].transform;
+                  this.CurrentDestination = this.StudentManager.Students[this.InfatuationID].transform;
+                  this.Pathfinding.target = this.StudentManager.Students[this.InfatuationID].transform;
                 }
               }
               this.PatrolTimer += Time.deltaTime * this.CharacterAnimation[this.PatrolAnim].speed;
@@ -7329,7 +7330,7 @@ label_280:
           this.Pathfinding.canMove = false;
           this.Obstacle.enabled = true;
         }
-        if (this.Phase < this.ScheduleBlocks.Length && ((double) this.FollowCountdown.Sprite.fillAmount == 0.0 || (double) this.Clock.HourTime >= (double) this.ScheduleBlocks[this.Phase].time || this.StudentManager.LockerRoomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.WestBathroomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.EastBathroomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.IncineratorArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.HeadmasterArea.bounds.Contains(this.Yandere.transform.position) || this.Yandere.Trespassing))
+        if (this.Phase < this.ScheduleBlocks.Length && ((double) this.FollowCountdown.Sprite.fillAmount == 0.0 || (double) this.Clock.HourTime >= (double) this.ScheduleBlocks[this.Phase].time || this.StudentManager.LockerRoomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.WestBathroomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.EastBathroomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.IncineratorArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.HeadmasterArea.bounds.Contains(this.Yandere.transform.position) || this.Yandere.TimeSkipping || this.Yandere.Trespassing))
         {
           if ((double) this.Clock.HourTime >= (double) this.ScheduleBlocks[this.Phase].time)
             ++this.Phase;
@@ -7346,6 +7347,11 @@ label_280:
           this.Pathfinding.speed = this.WalkSpeed;
           if (this.StudentManager.LockerRoomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.WestBathroomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.EastBathroomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.IncineratorArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.HeadmasterArea.bounds.Contains(this.Yandere.transform.position) || this.Yandere.Trespassing)
             this.Subtitle.UpdateLabel(SubtitleType.StopFollowApology, 1, 3f);
+          else if (this.Yandere.TimeSkipping)
+          {
+            this.Subtitle.CustomText = "If you're just going to stand there spacing out, I'm leaving...";
+            this.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 10f);
+          }
           else
             this.Subtitle.UpdateLabel(SubtitleType.StopFollowApology, 0, 3f);
           this.Prompt.Label[0].text = "     Talk";
@@ -14952,6 +14958,12 @@ label_280:
       this.ClubAttire = true;
       if (this.Club == ClubType.Art)
       {
+        Debug.Log((object) "An art club member is now changing into an art apron.");
+        if (!this.Male)
+        {
+          this.RightBreast.gameObject.name = "RightBreastRENAMED";
+          this.LeftBreast.gameObject.name = "LeftBreastRENAMED";
+        }
         if (!this.Attacher.gameObject.activeInHierarchy)
           this.Attacher.gameObject.SetActive(true);
         else
@@ -17179,7 +17191,7 @@ label_280:
     this.FollowTarget = (StudentScript) null;
   }
 
-  private void BoyStopsFollowingGravureModel()
+  private void StopFollowingGravureModel()
   {
     ScheduleBlock scheduleBlock1 = this.ScheduleBlocks[2];
     scheduleBlock1.destination = "Seat";
@@ -17234,15 +17246,15 @@ label_280:
     this.SnackTimer = 0.0f;
   }
 
-  public void BoyCannotFindGravureModel()
+  public void CannotFindInfatuationTarget()
   {
-    Debug.Log((object) "A boy cannot find the gravure model he's supposed to be following.");
+    Debug.Log((object) "A student cannot find the student they are supposed to be following.");
     this.CharacterAnimation.CrossFade(this.ParanoidAnim);
     this.SnackTimer += Time.deltaTime;
     if ((double) this.SnackTimer <= 5.0)
       return;
-    Debug.Log((object) "The boy has decided to give up on following the gravure model.");
-    this.BoyStopsFollowingGravureModel();
+    Debug.Log((object) "The student has decided to give up on following the gravure model.");
+    this.StopFollowingGravureModel();
     this.GetDestinations();
     this.CurrentDestination = this.Destinations[this.Phase];
     this.Pathfinding.target = this.Destinations[this.Phase];
@@ -17432,8 +17444,8 @@ label_280:
       else if (this.StudentID == 18)
       {
         ScheduleBlock scheduleBlock = this.ScheduleBlocks[2];
-        scheduleBlock.destination = "Hangout";
-        scheduleBlock.action = "Socialize";
+        scheduleBlock.destination = "Patrol";
+        scheduleBlock.action = "Patrol";
       }
       else if (this.StudentID == 19)
       {

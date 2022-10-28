@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: DebugMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
+// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -758,7 +758,10 @@ public class DebugMenuScript : MonoBehaviour
       {
         this.Yandere.MyRenderer.materials[0].SetFloat("_BlendAmount1", 0.0f);
         this.Yandere.MyRenderer.materials[0].SetFloat("_BlendAmount", 0.0f);
-        this.Yandere.PantyAttacher.newRenderer.enabled = true;
+        if (this.Yandere.Schoolwear == 1)
+          this.Yandere.PantyAttacher.newRenderer.enabled = true;
+        else
+          this.Yandere.PantyAttacher.newRenderer.enabled = false;
         if ((UnityEngine.Object) this.Yandere.MyRenderer.sharedMesh == (UnityEngine.Object) this.Yandere.Uniforms[2])
         {
           Debug.Log((object) "Long-sleeved school uniform. Changing which variable get set to 0.");

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
+// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -1074,9 +1074,6 @@ public class StudentManagerScript : MonoBehaviour
             }
             this.LoadAllStudentPositions();
             Physics.SyncTransforms();
-            this.Eighties = GameGlobals.Eighties;
-            if (!this.Eighties && (UnityEngine.Object) this.Students[this.RivalID] != (UnityEngine.Object) null && this.Students[this.RivalID].Indoors)
-              this.UpdateExteriorStudents();
             if (this.BookBag.Worn)
               this.BookBag.Wear();
             this.LoadedSave = false;
@@ -1126,6 +1123,9 @@ public class StudentManagerScript : MonoBehaviour
               student.SetOriginalActions();
             }
           }
+          this.Eighties = GameGlobals.Eighties;
+          if (!this.Eighties && (UnityEngine.Object) this.Students[this.RivalID] != (UnityEngine.Object) null && this.Students[this.RivalID].Indoors)
+            this.UpdateExteriorStudents();
           if (this.Eighties && !this.RivalEliminated)
           {
             if (GameGlobals.AlphabetMode)
@@ -3288,6 +3288,7 @@ public class StudentManagerScript : MonoBehaviour
     {
       if ((UnityEngine.Object) allPickUp != (UnityEngine.Object) null && allPickUp.InsideBookbag)
       {
+        Debug.Log((object) (allPickUp.name + " is supposed to be inside of the bookbag."));
         this.BookBag.ConcealedPickup = allPickUp;
         allPickUp.gameObject.SetActive(false);
         this.BookBag.Prompt.Label[0].text = !(allPickUp.Prompt.Text[3] != "") ? "     Retrieve " + allPickUp.name : "     Retrieve " + allPickUp.Prompt.Text[3];
@@ -4001,11 +4002,10 @@ public class StudentManagerScript : MonoBehaviour
 
   public void EightiesWeek8RoutineAdjustments()
   {
-    for (int index = 2; index < 11; ++index)
-    {
-      this.Hangouts.List[index].position = this.PopularGirlSpots[index].position;
-      this.Hangouts.List[index].LookAt(this.EightiesHangouts.List[18]);
-    }
+    if (!((UnityEngine.Object) this.Students[18] != (UnityEngine.Object) null) || StudentGlobals.StudentSlave == 18)
+      return;
+    for (int ID = 2; ID < 11; ++ID)
+      this.FollowTraditionalGirl(ID);
   }
 
   public void EightiesWeek9RoutineAdjustments()
@@ -4097,6 +4097,31 @@ public class StudentManagerScript : MonoBehaviour
     this.Students[ID].GetDestinations();
   }
 
+  public void FollowTraditionalGirl(int ID)
+  {
+    if (!((UnityEngine.Object) this.Students[ID] != (UnityEngine.Object) null))
+      return;
+    this.Hangouts.List[ID] = this.Students[18].transform;
+    this.scheduleBlock = this.Students[ID].ScheduleBlocks[2];
+    this.scheduleBlock.destination = "Hangout";
+    this.scheduleBlock.action = "Socialize";
+    if (!this.Students[ID].Male)
+    {
+      this.scheduleBlock = this.Students[ID].ScheduleBlocks[4];
+      this.scheduleBlock.destination = "Hangout";
+      this.scheduleBlock.action = "Socialize";
+    }
+    this.scheduleBlock = this.Students[ID].ScheduleBlocks[6];
+    this.scheduleBlock.destination = "Hangout";
+    this.scheduleBlock.action = "Socialize";
+    this.scheduleBlock = this.Students[ID].ScheduleBlocks[7];
+    this.scheduleBlock.destination = "Hangout";
+    this.scheduleBlock.action = "Socialize";
+    this.Students[ID].GetDestinations();
+    this.Students[ID].Infatuated = true;
+    this.Students[ID].InfatuationID = 18;
+  }
+
   public void FollowGravureIdol(int ID)
   {
     if (!((UnityEngine.Object) this.Students[ID] != (UnityEngine.Object) null))
@@ -4119,6 +4144,7 @@ public class StudentManagerScript : MonoBehaviour
     this.scheduleBlock.action = "Socialize";
     this.Students[ID].GetDestinations();
     this.Students[ID].Infatuated = true;
+    this.Students[ID].InfatuationID = 19;
   }
 
   public void SunbatheAllDay(int ID)

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NoteWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 03C576EE-B2A0-4A87-90DA-D90BE80DF8AE
+// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
 // Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -180,7 +180,7 @@ public class NoteWindowScript : MonoBehaviour
             {
               if (this.NoteLocker.Student.StudentID == 30)
               {
-                if (this.NoteSubject == NoteWindowScript.NoteSubjectType.CompensatedDating || this.NoteSubject == NoteWindowScript.NoteSubjectType.DomesticAbuse)
+                if (this.NoteSubject == NoteWindowScript.NoteSubjectType.CompensatedDating)
                   this.NoteLocker.Success = true;
               }
               else if (this.NoteLocker.Student.StudentID == 5)
@@ -191,7 +191,7 @@ public class NoteWindowScript : MonoBehaviour
               else if ((this.NoteLocker.Student.StudentID == 2 || this.NoteLocker.Student.StudentID == 3 || this.NoteLocker.Student.Club == ClubType.Occult) && this.NoteSubject == NoteWindowScript.NoteSubjectType.TheSupernatural)
                 this.NoteLocker.Success = true;
             }
-            else if (this.NoteLocker.Student.StudentID == this.Yandere.StudentManager.RivalID)
+            if (this.NoteLocker.Student.StudentID == this.Yandere.StudentManager.RivalID)
             {
               if (DateGlobals.Weekday == DayOfWeek.Friday && (double) this.TimeID == 17.0)
                 Debug.Log((object) "Note must fail because she wouldn't accept a note that close to confessing to Senpai.");
