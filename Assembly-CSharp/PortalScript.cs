@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PortalScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -406,8 +406,14 @@ public class PortalScript : MonoBehaviour
             this.Yandere.NotificationManager.CustomText = "Bloody";
           else if ((double) this.Yandere.Sanity < 33.333000183105469)
             this.Yandere.NotificationManager.CustomText = "Visibly Insane";
+          else if ((Object) this.Yandere.Mask != (Object) null)
+            this.Yandere.NotificationManager.CustomText = "Wearing a mask";
           else if (this.Yandere.Attacking)
             this.Yandere.NotificationManager.CustomText = "In Combat";
+          else if (this.Yandere.WearingRaincoat)
+            this.Yandere.NotificationManager.CustomText = "Wearing a raincoat";
+          else if (this.Yandere.Schoolwear == 2)
+            this.Yandere.NotificationManager.CustomText = "Wearing a swimsuit";
           else if (this.Yandere.Dragging || this.Yandere.Carrying)
             this.Yandere.NotificationManager.CustomText = "Holding Corpse";
           else if ((Object) this.Yandere.PickUp != (Object) null)
@@ -436,7 +442,7 @@ public class PortalScript : MonoBehaviour
 
   public void CheckForProblems()
   {
-    if (!this.Yandere.Armed && (double) this.Yandere.Bloodiness <= 0.0 && (double) this.Yandere.Sanity >= 33.333000183105469 && !this.Yandere.Attacking && !this.Yandere.Dragging && !this.Yandere.Carrying && !((Object) this.Yandere.PickUp != (Object) null) && !this.Yandere.Chased && this.Yandere.Chasers <= 0 && (!((Object) this.StudentManager.Reporter != (Object) null) || this.Police.Show) && !this.StudentManager.MurderTakingPlace)
+    if (!this.Yandere.Armed && (double) this.Yandere.Bloodiness <= 0.0 && (double) this.Yandere.Sanity >= 33.333000183105469 && this.Yandere.Schoolwear != 2 && !this.Yandere.Attacking && !this.Yandere.Dragging && !this.Yandere.Carrying && !((Object) this.Yandere.PickUp != (Object) null) && !this.Yandere.Chased && this.Yandere.Chasers <= 0 && !((Object) this.Yandere.Mask != (Object) null) && !this.Yandere.WearingRaincoat && (!((Object) this.StudentManager.Reporter != (Object) null) || this.Police.Show) && !this.StudentManager.MurderTakingPlace)
       return;
     this.CanAttendClass = false;
   }
@@ -609,7 +615,7 @@ public class PortalScript : MonoBehaviour
   {
     for (int index = 0; index < this.StudentManager.Students.Length; ++index)
     {
-      if ((Object) this.StudentManager.Students[index] != (Object) null && this.StudentManager.Students[index].Alive && this.StudentManager.Students[index].MyBento.Lethal)
+      if ((Object) this.StudentManager.Students[index] != (Object) null && this.StudentManager.Students[index].Alive && !this.StudentManager.Students[index].NotEating && this.StudentManager.Students[index].MyBento.Lethal)
       {
         this.Police.SkippingPastPoison = true;
         this.StudentManager.Students[index].Ragdoll.Poisoned = true;

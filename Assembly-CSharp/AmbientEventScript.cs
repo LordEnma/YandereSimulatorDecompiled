@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AmbientEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using UnityEngine;
@@ -23,6 +23,7 @@ public class AmbientEventScript : MonoBehaviour
   public string[] EventAnim;
   public int[] EventSpeaker;
   public GameObject VoiceClip;
+  public bool GrudgeConversation;
   public bool RotateSpine;
   public bool Sitting;
   public bool EventOn;
@@ -51,11 +52,12 @@ public class AmbientEventScript : MonoBehaviour
         this.gameObject.SetActive(false);
         this.enabled = false;
       }
-      else if (StudentGlobals.GetStudentGrudge(2) || StudentGlobals.GetStudentGrudge(3))
+      else if (!GameGlobals.GrudgeConversationHappened && StudentGlobals.GetStudentGrudge(2) || !GameGlobals.GrudgeConversationHappened && StudentGlobals.GetStudentGrudge(3))
       {
         this.EventClip = this.GrudgeReaction.EventClip;
         this.EventSpeech = this.GrudgeReaction.EventSpeech;
         this.EventSpeaker = this.GrudgeReaction.EventSpeaker;
+        this.GrudgeConversation = true;
       }
       else
       {
@@ -280,6 +282,9 @@ public class AmbientEventScript : MonoBehaviour
       }
       this.EventStudent[index].InEvent = false;
       this.EventStudent[index].Private = false;
+      this.StudentManager.UpdateMe(this.EventStudent[index].StudentID);
+      if (this.GrudgeConversation)
+        this.StudentManager.Police.EndOfDay.GrudgeConversationHappened = true;
     }
     if (!this.StudentManager.Stop)
       this.StudentManager.UpdateStudents();

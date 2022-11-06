@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClubManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -76,6 +76,7 @@ public class ClubManagerScript : MonoBehaviour
   public float TimeLimit;
   public float Timer;
   public ClubType[] ClubArray;
+  public bool[] ClubsKickedFrom;
   public bool[] QuitClub;
   public bool LeaderMissing;
   public bool LeaderDead;
@@ -99,6 +100,7 @@ public class ClubManagerScript : MonoBehaviour
 
   private void Start()
   {
+    this.LearnKickedClubs();
     this.ActivitiesAttended = ClubGlobals.ActivitiesAttended;
     this.MyAudio = this.GetComponent<AudioSource>();
     this.ClubWindow.ActivityWindow.localScale = Vector3.zero;
@@ -166,6 +168,7 @@ public class ClubManagerScript : MonoBehaviour
         this.ClubWindow.ActivityLabel.text = this.ClubWindow.ActivityDescs[(int) this.Club];
         this.StudentManager.Portal.GetComponent<PortalScript>().EndFinalEvents();
         ++this.ActivitiesAttended;
+        Debug.Log((object) ("Incremending ActivitiesAttended. That number is now " + this.ActivitiesAttended.ToString()));
         ++this.Phase;
       }
       else if (this.Phase == 2)
@@ -206,6 +209,7 @@ public class ClubManagerScript : MonoBehaviour
       }
       else if ((double) this.ClubWindow.ActivityWindow.localScale.x < 0.10000000149011612)
       {
+        this.StudentManager.Reputation.UpdateRep();
         this.Police.Darkness.enabled = true;
         this.Police.ClubActivity = false;
         this.Police.FadeOut = true;
@@ -647,6 +651,7 @@ public class ClubManagerScript : MonoBehaviour
 
   public void CheckGrudge(ClubType Check)
   {
+    Debug.Log((object) ("Checking " + Check.ToString() + " Club for a grudge..."));
     switch (Check)
     {
       case ClubType.Cooking:
@@ -681,6 +686,9 @@ public class ClubManagerScript : MonoBehaviour
         break;
       case ClubType.Gaming:
         this.ClubIDs = this.Club11IDs;
+        break;
+      case ClubType.Delinquent:
+        this.ClubIDs = this.Club14IDs;
         break;
       case ClubType.Newspaper:
         this.ClubIDs = this.Club15IDs;
@@ -748,6 +756,11 @@ public class ClubManagerScript : MonoBehaviour
       case ClubType.Gaming:
       case ClubType.Newspaper:
         if (!this.StudentManager.Students[36].Grudge)
+          break;
+        this.LeaderGrudge = true;
+        break;
+      case ClubType.Delinquent:
+        if (!this.StudentManager.Students[76].Grudge)
           break;
         this.LeaderGrudge = true;
         break;
@@ -948,8 +961,33 @@ public class ClubManagerScript : MonoBehaviour
     {
       if (this.QuitClub[this.ID])
       {
+        Debug.Log((object) "Because we quit a club, ActivitiesAttended is now being set to 0.");
         ClubGlobals.SetQuitClub(this.ClubArray[this.ID], true);
         this.ActivitiesAttended = 0;
+      }
+    }
+  }
+
+  public void LearnKickedClubs()
+  {
+    for (this.ID = 1; this.ID < this.ClubArray.Length; ++this.ID)
+    {
+      if (ClubGlobals.GetClubKicked(this.ClubArray[this.ID]))
+      {
+        Debug.Log((object) "Because we were kicked from a club, ClubManager.ClubsKickedFrom is being updated.");
+        this.ClubsKickedFrom[this.ID] = true;
+      }
+    }
+  }
+
+  public void UpdateKickedClubs()
+  {
+    for (this.ID = 1; this.ID < this.ClubArray.Length; ++this.ID)
+    {
+      if (this.ClubsKickedFrom[this.ID])
+      {
+        Debug.Log((object) "Because we were kicked from a club, ClubGlobals.SetClubKicked is being updated.");
+        ClubGlobals.SetClubKicked(this.ClubArray[this.ID], true);
       }
     }
   }

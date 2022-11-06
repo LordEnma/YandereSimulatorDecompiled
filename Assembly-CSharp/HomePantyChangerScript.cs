@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomePantyChangerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -88,13 +88,27 @@ public class HomePantyChangerScript : MonoBehaviour
           Debug.Log((object) "Yandere-chan doesn't own those panties.");
         this.UpdatePantyLabels();
       }
-      if (!Input.GetButtonDown("B"))
+      if (Input.GetButtonDown("B"))
+      {
+        this.HomeCamera.Destination = this.HomeCamera.Destinations[0];
+        this.HomeCamera.Target = this.HomeCamera.Targets[0];
+        this.HomeYandere.CanMove = true;
+        this.HomeWindow.Show = false;
+        AudioSource.PlayClipAtPoint(this.CloseDrawer, this.transform.position);
+      }
+      if (!Input.GetKeyDown("z"))
         return;
-      this.HomeCamera.Destination = this.HomeCamera.Destinations[0];
-      this.HomeCamera.Target = this.HomeCamera.Targets[0];
-      this.HomeYandere.CanMove = true;
-      this.HomeWindow.Show = false;
-      AudioSource.PlayClipAtPoint(this.CloseDrawer, this.transform.position);
+      CollectibleGlobals.SetPantyPurchased(1, true);
+      CollectibleGlobals.SetPantyPurchased(2, true);
+      CollectibleGlobals.SetPantyPurchased(3, true);
+      CollectibleGlobals.SetPantyPurchased(4, true);
+      CollectibleGlobals.SetPantyPurchased(5, true);
+      CollectibleGlobals.SetPantyPurchased(6, true);
+      CollectibleGlobals.SetPantyPurchased(7, true);
+      CollectibleGlobals.SetPantyPurchased(8, true);
+      CollectibleGlobals.SetPantyPurchased(9, true);
+      CollectibleGlobals.SetPantyPurchased(10, true);
+      CollectibleGlobals.SetPantyPurchased(11, true);
     }
     else
     {

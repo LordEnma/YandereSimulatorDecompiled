@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using System.Collections.Generic;
@@ -48,6 +48,7 @@ public class EndOfDayScript : MonoBehaviour
   public bool RivalDismemberedAndIncinerated;
   public bool RivalBuried;
   public bool CurrentMurderWeaponKilledRival;
+  public bool GrudgeConversationHappened;
   public bool LearnedAboutPhotographer;
   public bool InvolvementNotSuspected;
   public bool ExplosiveDeviceUsed;
@@ -194,9 +195,9 @@ public class EndOfDayScript : MonoBehaviour
     }
     if (this.Yandere.VtuberID > 0)
       this.Protagonist = this.VtuberNames[this.Yandere.VtuberID];
-    if (this.Yandere.RedPaint)
-      ++this.ClothingWithRedPaint;
-    Debug.Log((object) ("Clothing with red paint is: " + this.ClothingWithRedPaint.ToString()));
+    if (!this.Yandere.RedPaint)
+      return;
+    ++this.ClothingWithRedPaint;
   }
 
   private void Update()
@@ -232,6 +233,7 @@ public class EndOfDayScript : MonoBehaviour
           this.Rival.gameObject.SetActive(false);
         this.Yandere.transform.parent = (Transform) null;
         this.Yandere.transform.position = new Vector3(0.0f, 0.0f, -75f);
+        this.Yandere.gameObject.SetActive(true);
         this.EODCamera.localPosition = new Vector3(1f, 1.8f, -2.5f);
         this.EODCamera.localEulerAngles = new Vector3(22.5f, -22.5f, 0.0f);
         if ((UnityEngine.Object) this.KidnappedVictim != (UnityEngine.Object) null)
@@ -997,6 +999,7 @@ public class EndOfDayScript : MonoBehaviour
       this.Yandere.transform.parent = this.transform;
       this.Yandere.transform.localPosition = new Vector3(2.5f, 0.0f, 2.5f);
       this.Yandere.transform.localEulerAngles = new Vector3(0.0f, 180f, 0.0f);
+      this.Yandere.gameObject.SetActive(true);
       this.Yandere.CharacterAnimation.Play(this.Yandere.WalkAnim);
       this.Label.text = this.Protagonist + " stalks Senpai until he has returned home, and then returns to her own home.";
       if (GameGlobals.SenpaiMourning)
@@ -1306,6 +1309,10 @@ public class EndOfDayScript : MonoBehaviour
     }
     else if (this.Phase == 22)
     {
+      Debug.Log((object) "The End-of-Day sequence is now checking whether or not we need to boot the player out of a club.");
+      Debug.Log((object) ("Yandere.Club is: " + this.Yandere.Club.ToString()));
+      Debug.Log((object) ("DateGlobals.Weekday is: " + DateGlobals.Weekday.ToString()));
+      Debug.Log((object) ("ClubManager.ActivitiesAttended is: " + this.ClubManager.ActivitiesAttended.ToString()));
       if (this.Yandere.Club != ClubType.None && DateGlobals.Weekday == DayOfWeek.Friday && this.ClubManager.ActivitiesAttended == 0)
       {
         this.TeleportYandere();
@@ -1415,6 +1422,7 @@ public class EndOfDayScript : MonoBehaviour
       this.Yandere.transform.parent = this.transform;
       this.Yandere.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
       this.Yandere.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+      this.Yandere.gameObject.SetActive(true);
       this.Yandere.CharacterAnimation.Play("f02_handcuffs_00");
       this.Yandere.Handcuffs.SetActive(true);
       this.ArrestingCops.SetActive(true);
@@ -1616,6 +1624,7 @@ public class EndOfDayScript : MonoBehaviour
       this.Yandere.transform.parent = this.transform;
       this.Yandere.transform.localPosition = new Vector3(0.0f, 0.0f, -1f);
       this.Yandere.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+      this.Yandere.gameObject.SetActive(true);
       Physics.SyncTransforms();
       this.Label.text = "The police witness actual evidence of the supernatural, are absolutely horrified, and run for their lives.";
       if (this.StudentManager.RivalEliminated)
@@ -1631,6 +1640,7 @@ public class EndOfDayScript : MonoBehaviour
     this.Yandere.transform.parent = this.transform;
     this.Yandere.transform.localPosition = new Vector3(0.75f, 0.33333f, -1.9f);
     this.Yandere.transform.localEulerAngles = new Vector3(-22.5f, 157.5f, 0.0f);
+    this.Yandere.gameObject.SetActive(true);
     Physics.SyncTransforms();
   }
 
@@ -2037,7 +2047,9 @@ public class EndOfDayScript : MonoBehaviour
     PlayerGlobals.BloodWitnessed += this.BloodWitnessed;
     PlayerGlobals.WeaponWitnessed += this.WeaponWitnessed;
     this.ClubManager.UpdateQuitClubs();
+    this.ClubManager.UpdateKickedClubs();
     StudentGlobals.UpdateRivalReputation = false;
+    Debug.Log((object) ("Making the game aware of the fact that ClubManager.ActivitiesAttended was " + this.ClubManager.ActivitiesAttended.ToString() + " at the end of this day."));
     ClubGlobals.ActivitiesAttended = this.ClubManager.ActivitiesAttended;
     this.UpdatePreviousRivalFriendships();
     this.ArrestStudents();
@@ -2048,6 +2060,8 @@ public class EndOfDayScript : MonoBehaviour
       GameGlobals.PoliceYesterday = true;
       ++PlayerGlobals.PoliceVisits;
     }
+    if (this.GrudgeConversationHappened)
+      GameGlobals.GrudgeConversationHappened = true;
     this.Yandere.CameraEffects.UpdateVignette(0.0f);
   }
 

@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MopScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -68,7 +68,7 @@ public class MopScript : MonoBehaviour
       {
         if (this.Yandere.Bucket.Full)
         {
-          if (!this.Yandere.Bucket.Gasoline)
+          if (!this.Yandere.Bucket.Gasoline && !this.Yandere.Bucket.DyedBrown)
           {
             if (this.Yandere.Bucket.Bleached)
             {
@@ -96,7 +96,7 @@ public class MopScript : MonoBehaviour
               this.Prompt.Label[0].text = "     Add Bleach First!";
           }
           else
-            this.Prompt.Label[0].text = "     Can't Use Gasoline!";
+            this.Prompt.Label[0].text = !this.Yandere.Bucket.Gasoline ? "     Can't Use Brown Paint!" : "     Can't Use Gasoline!";
         }
         else
           this.Prompt.Label[0].text = "     Fill Bucket First!";

@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PaintBucketScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -22,6 +22,9 @@ public class PaintBucketScript : MonoBehaviour
       ++this.Prompt.Yandere.Police.RedPaintClothing;
       this.Prompt.Yandere.Bloodiness += 100f;
       this.Prompt.Yandere.RedPaint = true;
+      if (!((Object) this.Prompt.Yandere.Gloves != (Object) null))
+        return;
+      this.Prompt.Yandere.Gloves.PickUp.RedPaint = true;
     }
     else
     {

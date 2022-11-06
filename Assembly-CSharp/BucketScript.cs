@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BucketScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -115,7 +115,7 @@ public class BucketScript : MonoBehaviour
     {
       if ((Object) this.Yandere.Mop != (Object) null)
       {
-        if (!this.Yandere.Chased && this.Yandere.Chasers == 0 && this.Full && !this.Gasoline && this.Bleached && (double) this.Bloodiness < 100.0)
+        if (!this.Yandere.Chased && this.Yandere.Chasers == 0 && this.Full && !this.Gasoline && this.Bleached && !this.DyedBrown && (double) this.Bloodiness < 100.0)
         {
           this.Prompt.Label[3].text = "     Dip";
           this.Dippable = true;

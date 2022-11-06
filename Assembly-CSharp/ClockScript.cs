@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClockScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using UnityEngine;
@@ -324,6 +324,7 @@ public class ClockScript : MonoBehaviour
     {
       if (this.Period < 5)
       {
+        this.StudentManager.Reputation.RepUpdateLabel.text = "REP WILL UPDATE AFTER SCHOOL";
         if (this.StudentManager.Bully && this.StudentManager.Bullies > 0)
           this.StudentManager.UpdateGraffiti();
         this.PeriodLabel.text = "CLEANING TIME";
@@ -498,7 +499,6 @@ label_72:
 
   public void ActivateLateStudent()
   {
-    Debug.Log((object) "Activating the late student, Otohiko.");
     if (!this.StudentManager.MissionMode && (UnityEngine.Object) this.StudentManager.Students[7] != (UnityEngine.Object) null && this.StudentManager.Students[7].Alive)
     {
       this.StudentManager.Students[7].gameObject.SetActive(true);

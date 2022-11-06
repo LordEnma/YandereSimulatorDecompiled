@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PoliceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using System.Collections.Generic;
@@ -945,6 +945,11 @@ public class PoliceScript : MonoBehaviour
           StudentGlobals.SetStudentGrudge(58, true);
           StudentGlobals.SetStudentGrudge(59, true);
           StudentGlobals.SetStudentGrudge(60, true);
+        }
+        if (!this.StudentManager.Eighties && (student.StudentID == 2 || student.StudentID == 3))
+        {
+          StudentGlobals.SetStudentGrudge(2, true);
+          StudentGlobals.SetStudentGrudge(3, true);
         }
       }
     }

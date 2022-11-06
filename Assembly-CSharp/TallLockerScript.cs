@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TallLockerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -342,7 +342,6 @@ public class TallLockerScript : MonoBehaviour
 
   public void SpawnSteamNoSideEffects(StudentScript SteamStudent)
   {
-    Debug.Log((object) ("Student #" + SteamStudent.StudentID.ToString() + ", " + SteamStudent.Name + ", is changing clothes, no strings attached."));
     Object.Instantiate<GameObject>(this.SteamCloud, SteamStudent.transform.position + Vector3.up * 0.81f, Quaternion.identity).transform.parent = SteamStudent.transform;
     SteamStudent.CharacterAnimation.CrossFade(SteamStudent.StripAnim);
     SteamStudent.Pathfinding.canSearch = false;

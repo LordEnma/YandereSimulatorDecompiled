@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
 using Pathfinding;
@@ -622,6 +622,7 @@ public class YandereScript : MonoBehaviour
   public AudioClip KaguneSwoosh;
   public GameObject DemonSlash;
   public int KagunePhase;
+  public GameObject BerserkHitbox;
   public GameObject[] Armor;
   public Texture Chainmail;
   public Texture Scarface;
@@ -3332,7 +3333,7 @@ public class YandereScript : MonoBehaviour
           {
             if ((double) this.CharacterAnimation["f02_" + this.AttackPrefix + "Attack" + this.SithPrefix + "_0" + this.SithCombo.ToString()].time >= (double) this.SithHardSpawnTime1[this.SithCombo] && this.SithAttacks == 0)
             {
-              Object.Instantiate<GameObject>(this.SithHitbox, this.transform.position + this.transform.forward * 1.5f + this.transform.up, this.transform.rotation).GetComponent<SithBeamScript>().Damage = 20f;
+              Object.Instantiate<GameObject>(this.BerserkHitbox, this.transform.position + this.transform.forward * 1.5f + this.transform.up, this.transform.rotation).GetComponent<SithBeamScript>().Damage = 20f;
               ++this.SithAttacks;
               if (this.SithCombo < 2)
                 Object.Instantiate<GameObject>(this.GroundImpact, this.transform.position + this.transform.forward * 1.5f, this.transform.rotation).transform.localScale = new Vector3(2f, 2f, 2f);
@@ -6819,11 +6820,13 @@ public class YandereScript : MonoBehaviour
         this.MyRenderer.materials[2].mainTexture = this.NudeTexture;
         this.Schoolwear = 6;
       }
+      this.MyRenderer.materials[2].SetFloat("_BlendAmount", 0.0f);
     }
     else
     {
       this.ChangeSchoolwear();
       this.ClubAttire = false;
+      this.MyRenderer.materials[2].SetFloat("_BlendAmount", (float) (1.0 - (double) this.sanity / 100.0));
     }
     this.MyLocker.UpdateButtons();
   }

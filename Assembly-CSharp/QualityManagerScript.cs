@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: QualityManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using RetroAesthetics;
 using UnityEngine;
@@ -275,7 +275,11 @@ public class QualityManagerScript : MonoBehaviour
             student.MyRenderer.materials[0].shader = this.NewBodyShader;
             student.MyRenderer.materials[1].shader = this.NewBodyShader;
             if (student.MyRenderer.materials.Length > 2)
+            {
               student.MyRenderer.materials[2].shader = this.NewBodyShader;
+              if (student.MyRenderer.materials.Length > 3)
+                student.MyRenderer.materials[3].shader = this.NewBodyShader;
+            }
             student.Cosmetic.RightStockings[0].GetComponent<Renderer>().material.shader = this.NewBodyShader;
             student.Cosmetic.LeftStockings[0].GetComponent<Renderer>().material.shader = this.NewBodyShader;
             if (student.Club == ClubType.Bully)
@@ -610,6 +614,11 @@ public class QualityManagerScript : MonoBehaviour
           {
             student.MyRenderer.materials[2].shader = this.NewBodyShader;
             this.AdjustRimLight(student.MyRenderer.materials[2]);
+            if (student.MyRenderer.materials.Length > 3)
+            {
+              student.MyRenderer.materials[3].shader = this.NewBodyShader;
+              this.AdjustRimLight(student.MyRenderer.materials[3]);
+            }
           }
           if (!student.Male)
           {

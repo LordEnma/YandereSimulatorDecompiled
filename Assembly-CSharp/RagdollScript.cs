@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RagdollScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -51,6 +51,7 @@ public class RagdollScript : MonoBehaviour
   public bool RigidbodiesManuallyDisabled;
   public bool DroppedFromRooftop;
   public bool InsideIncinerator;
+  public bool InsideWoodchipper;
   public bool TeleportNextFrame;
   public bool ColoredOutline;
   public bool AddingToCount;
@@ -461,7 +462,10 @@ public class RagdollScript : MonoBehaviour
           this.WoodChipper = this.Yandere.WoodChipper;
           Debug.Log((object) ("Student #" + this.StudentID.ToString() + " is now updating " + this.WoodChipper.gameObject.name + " with an ID number."));
           if (this.Concealed)
+          {
             ++this.WoodChipper.HiddenCorpses;
+            this.InsideWoodchipper = true;
+          }
           this.WoodChipper.VictimID = this.StudentID;
           this.Remove();
           this.enabled = false;
@@ -889,7 +893,7 @@ public class RagdollScript : MonoBehaviour
       --this.Yandere.NearBodies;
     if (this.Poisoned)
       this.Police.PoisonScene = false;
-    if (this.Concealed && !this.InsideIncinerator)
+    if (this.Concealed && !this.InsideIncinerator && !this.InsideWoodchipper)
     {
       Debug.Log((object) "This is the exact moment a corpse was subtracted from the HiddenCorpses count. 1");
       --this.Police.HiddenCorpses;

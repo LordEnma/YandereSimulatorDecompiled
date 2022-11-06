@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AlarmDiscScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -92,7 +92,7 @@ public class AlarmDiscScript : MonoBehaviour
             {
               int currentAction = (int) this.Student.CurrentAction;
             }
-            if (!this.Student.TurnOffRadio && this.Student.Alive && !this.Student.Blind && !this.Student.Pushed && !this.Student.Dying && !this.Student.Alarmed && !this.Student.Guarding && !this.Student.Wet && !this.Student.Slave && !this.Student.CheckingNote && !this.Student.WitnessedMurder && !this.Student.WitnessedCorpse && !this.Student.Emetic && !this.Student.Confessing && !this.StudentIsBusy && !this.Student.FocusOnYandere && !this.Student.Fleeing && !this.Student.Shoving && !this.Student.SentHome && this.Student.ClubActivityPhase < 16 && !this.Student.Vomiting && !this.Student.Lethal && !this.Student.Headache && !this.Student.Sedated && !this.Student.SenpaiWitnessingRivalDie && !this.Student.Hunted && !this.Student.Drowned && !this.Student.DramaticReaction && !this.Student.Yandere.Chased && !this.Student.Hunting && !this.Student.ImmuneToLaughter && !this.Student.ListeningToReport && !this.Student.Distracted || this.Student.Persona == PersonaType.Protective && (Object) this.Originator != (Object) null && this.Originator.StudentID == 11 && !this.Student.Hunted && !this.Student.Emetic && !this.Student.Headache)
+            if (!this.Student.TurnOffRadio && this.Student.Alive && !this.Student.Blind && !this.Student.Pushed && !this.Student.Dying && !this.Student.Alarmed && !this.Student.Guarding && !this.Student.Wet && !this.Student.Slave && !this.Student.CheckingNote && !this.Student.WitnessedMurder && !this.Student.WitnessedCorpse && !this.Student.Emetic && !this.Student.Confessing && !this.StudentIsBusy && !this.Student.FocusOnYandere && !this.Student.Fleeing && !this.Student.Shoving && !this.Student.SentHome && this.Student.ClubActivityPhase < 16 && !this.Student.Vomiting && !this.Student.Lethal && !this.Student.Headache && !this.Student.Sedated && !this.Student.SenpaiWitnessingRivalDie && !this.Student.Hunted && !this.Student.Drowned && !this.Student.DramaticReaction && !this.Student.Yandere.Chased && !this.Student.Hunting && !this.Student.ImmuneToLaughter && !this.Student.ListeningToReport && !this.Student.Distracted && !this.Student.RetreivingMedicine || this.Student.Persona == PersonaType.Protective && (Object) this.Originator != (Object) null && this.Originator.StudentID == 11 && !this.Student.Hunted && !this.Student.Emetic && !this.Student.Headache)
             {
               int num = this.Student.Male ? 1 : 0;
               if (!this.Student.Struggling)

@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
 using System;
@@ -482,6 +482,7 @@ public class StudentScript : MonoBehaviour
   public bool WasHurrying;
   public bool Struggling;
   public bool Following;
+  public bool NotEating;
   public bool Sleuthing;
   public bool Stripping;
   public bool Fighting;
@@ -2899,7 +2900,7 @@ public class StudentScript : MonoBehaviour
               this.Hurry = true;
               this.Pathfinding.speed = 4f;
             }
-            if (this.CurrentAction == StudentActionType.AtLocker || this.CurrentAction == StudentActionType.ChangeShoes)
+            if (this.CurrentAction == StudentActionType.AtLocker || this.CurrentAction == StudentActionType.ChangeShoes || this.CurrentAction == StudentActionType.SitAndTakeNotes)
             {
               Debug.Log((object) (this.Name + " is firing the GoChange() function."));
               this.ChangeClothingPhase = 0;
@@ -2962,6 +2963,7 @@ public class StudentScript : MonoBehaviour
           this.Pathfinding.canSearch = true;
           this.Pathfinding.canMove = true;
           this.Pathfinding.speed = 4f;
+          this.TargetDistance = 1f;
           this.SpeechLines.Stop();
           this.EmptyHands();
           this.Meeting = true;
@@ -3874,7 +3876,10 @@ label_280:
                   {
                     if (this.Phoneless)
                     {
-                      this.CharacterAnimation.CrossFade("f02_sit_01");
+                      if (!this.Male)
+                        this.CharacterAnimation.CrossFade("f02_sit_01");
+                      else
+                        this.CharacterAnimation.CrossFade("sit_01");
                     }
                     else
                     {
@@ -6181,9 +6186,9 @@ label_280:
               {
                 if (!this.StudentManager.Jammed)
                 {
-                  if (this.Persona == PersonaType.PhoneAddict && this.WitnessedMurder)
+                  if (this.Persona == PersonaType.PhoneAddict && this.WitnessedMurder && !this.SawMask)
                     this.PhoneAddictGameOver();
-                  else if (this.Persona != PersonaType.Evil)
+                  else if (this.Persona != PersonaType.Evil && this.Persona != PersonaType.Coward)
                   {
                     this.Police.Called = true;
                     this.Police.Show = true;
@@ -7330,7 +7335,7 @@ label_280:
           this.Pathfinding.canMove = false;
           this.Obstacle.enabled = true;
         }
-        if (this.Phase < this.ScheduleBlocks.Length && ((double) this.FollowCountdown.Sprite.fillAmount == 0.0 || (double) this.Clock.HourTime >= (double) this.ScheduleBlocks[this.Phase].time || this.StudentManager.LockerRoomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.WestBathroomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.EastBathroomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.IncineratorArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.HeadmasterArea.bounds.Contains(this.Yandere.transform.position) || this.Yandere.TimeSkipping || this.Yandere.Trespassing))
+        if (this.Phase < this.ScheduleBlocks.Length && ((double) this.FollowCountdown.Sprite.fillAmount == 0.0 || (double) this.Clock.HourTime >= (double) this.ScheduleBlocks[this.Phase].time || this.StudentManager.LockerRoomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.WestBathroomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.EastBathroomArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.IncineratorArea.bounds.Contains(this.Yandere.transform.position) || this.StudentManager.HeadmasterArea.bounds.Contains(this.Yandere.transform.position) || this.Yandere.Class.Portal.Transition || this.Yandere.TimeSkipping || this.Yandere.Trespassing))
         {
           if ((double) this.Clock.HourTime >= (double) this.ScheduleBlocks[this.Phase].time)
             ++this.Phase;
@@ -7974,7 +7979,11 @@ label_280:
                 }
                 this.HuntTarget.CharacterAnimation[this.HuntTarget.WetAnim].weight = 0.0f;
                 if (!this.HuntTarget.Male)
+                {
                   this.HuntTarget.CharacterAnimation[this.HuntTarget.ShyAnim].weight = 0.0f;
+                  if (this.HuntTarget.Club == ClubType.LightMusic)
+                    this.HuntTarget.Instruments[this.HuntTarget.ClubMemberID].gameObject.SetActive(false);
+                }
                 if (this.HuntTarget.Rival)
                   this.HuntTarget.MapMarker.gameObject.SetActive(false);
                 this.HuntTarget.TargetedForDistraction = false;
@@ -8933,6 +8942,7 @@ label_280:
           this.StudentManager.CabinetDoor.Open = false;
           this.StudentManager.CabinetDoor.Timer = 0.0f;
           this.RetreivingMedicine = false;
+          this.RetrieveMedicinePhase = 0;
           this.Routine = true;
         }
       }
@@ -9830,7 +9840,7 @@ label_280:
         {
           if ((double) this.WitnessCooldownTimer > 0.0)
             this.WitnessCooldownTimer = Mathf.MoveTowards(this.WitnessCooldownTimer, 0.0f, Time.deltaTime);
-          else if ((this.StudentID == this.StudentManager.CurrentID || this.Persona == PersonaType.Strict && this.Fleeing) && !this.Wet && !this.Guarding && !this.IgnoreBlood && !this.InvestigatingPossibleDeath && !this.Spraying && !this.Emetic && !this.Threatened && !this.Sedated && !this.Headache && !this.SentHome && !this.Slave && !this.Talking && !this.Confessing && !this.SentToLocker && !this.Meeting && !this.IgnoringThingsOnGround)
+          else if ((this.StudentID == this.StudentManager.CurrentID || this.Persona == PersonaType.Strict && this.Fleeing) && !this.Wet && !this.Guarding && !this.IgnoreBlood && !this.InvestigatingPossibleDeath && !this.Spraying && !this.Emetic && !this.Threatened && !this.Sedated && !this.Headache && !this.SentHome && !this.Slave && !this.Talking && !this.Confessing && !this.SentToLocker && !this.Meeting && !this.IgnoringThingsOnGround && !this.RetreivingMedicine)
           {
             if ((UnityEngine.Object) this.BloodPool == (UnityEngine.Object) null && this.StudentManager.Police.LimbParent.childCount > 0)
               this.UpdateVisibleLimbs();
@@ -10623,7 +10633,7 @@ label_280:
               else if (this.Yandere.Club == this.Club & flag2 && this.ClubManager.ClubGrudge)
               {
                 this.Interaction = StudentInteractionType.ClubKick;
-                ClubGlobals.SetClubKicked(this.Club, true);
+                this.ClubManager.ClubsKickedFrom[(int) this.Club] = true;
                 this.TalkTimer = 5f;
                 this.Warned = true;
               }
@@ -11494,7 +11504,9 @@ label_280:
                   }
                   else
                   {
+                    Debug.Log((object) (this.Name + " witnessed their own bento being poisoned."));
                     this.Subtitle.UpdateLabel(SubtitleType.PoisonReaction, 2, 5f);
+                    this.NotEating = true;
                     if (this.Clock.Period == 3)
                     {
                       ++this.Phase;
@@ -12577,16 +12589,26 @@ label_280:
 
   public void CalculateReputationPenalty()
   {
+    Debug.Log((object) "Calculating reputation penalty now.");
     if (this.Male && this.Yandere.Class.Seduction + this.Yandere.Class.SeductionBonus > 2 || this.Yandere.Class.Seduction + this.Yandere.Class.SeductionBonus > 4)
       this.RepDeduction += this.RepLoss * 0.2f;
     if ((double) PlayerGlobals.Reputation < -33.333328247070313)
-      this.RepDeduction += this.RepLoss * 0.2f;
-    if ((double) PlayerGlobals.Reputation > 33.333328247070313)
+    {
+      Debug.Log((object) "Rep is low. Rep loss should be harsher.");
       this.RepDeduction -= this.RepLoss * 0.2f;
+    }
+    if ((double) PlayerGlobals.Reputation > 33.333328247070313)
+    {
+      Debug.Log((object) "Rep is high. Rep loss should be lower.");
+      this.RepDeduction += this.RepLoss * 0.2f;
+    }
     if (this.Friend)
       this.RepDeduction += this.RepLoss * 0.2f;
     if (PlayerGlobals.PantiesEquipped == 1)
+    {
+      Debug.Log((object) "Wearing the less-rep-loss panties.");
       this.RepDeduction += this.RepLoss * 0.2f;
+    }
     if (this.Yandere.Class.SocialBonus > 0)
       this.RepDeduction += this.RepLoss * 0.2f;
     this.ChameleonCheck();
@@ -13972,7 +13994,10 @@ label_280:
       else if (scheduleBlock.destination == "Wait")
         this.Destinations[this.ID] = this.StudentManager.WaitSpots[this.StudentID];
       else if (scheduleBlock.destination == "SleepSpot")
+      {
+        Debug.Log((object) (this.Name + " is setting destination to ''SleepSpot''."));
         this.Destinations[this.ID] = this.StudentManager.SleepSpot;
+      }
       else if (scheduleBlock.destination == "LightFire")
         this.Destinations[this.ID] = this.StudentManager.PyroSpot;
       else if (scheduleBlock.destination == "EightiesSpot")
@@ -14077,7 +14102,10 @@ label_280:
       else if (scheduleBlock.action == "PlaceBag")
         this.Actions[this.ID] = StudentActionType.PlaceBag;
       else if (scheduleBlock.action == "Sleep")
+      {
+        Debug.Log((object) (this.Name + " is setting action to ''Sleep''."));
         this.Actions[this.ID] = StudentActionType.Sleep;
+      }
       else if (scheduleBlock.action == "LightFire")
         this.Actions[this.ID] = StudentActionType.LightFire;
       else if (scheduleBlock.action == "Jog")
@@ -14723,7 +14751,6 @@ label_280:
 
   public void ChangeSchoolwear()
   {
-    Debug.Log((object) "ChangeSchoolwear() is being called.");
     for (this.ID = 0; this.ID < this.CensorSteam.Length; ++this.ID)
       this.CensorSteam[this.ID].SetActive(false);
     if (this.Attacher.gameObject.activeInHierarchy)
@@ -14958,7 +14985,6 @@ label_280:
       this.ClubAttire = true;
       if (this.Club == ClubType.Art)
       {
-        Debug.Log((object) "An art club member is now changing into an art apron.");
         if (!this.Male)
         {
           this.RightBreast.gameObject.name = "RightBreastRENAMED";
@@ -14994,7 +15020,6 @@ label_280:
       {
         if (this.Clock.Period < 3 || this.StudentManager.PoolClosed)
         {
-          Debug.Log((object) "A Sports Club student is now changing clothing...");
           if (this.StudentManager.Eighties)
             this.GymTexture = this.EightiesGymTexture;
           this.MyRenderer.sharedMesh = this.GymUniform;
@@ -15439,7 +15464,7 @@ label_280:
       this.Subtitle.UpdateLabel(SubtitleType.SenpaiBloodReaction, 1, 4.5f);
     else if (this.Witnessed == StudentWitnessType.Insanity)
       this.Subtitle.UpdateLabel(SubtitleType.SenpaiInsanityReaction, 1, 4.5f);
-    else if (this.Witnessed == StudentWitnessType.Lewd || this.Witnessed == StudentWitnessType.Poisoning || this.Witnessed == StudentWitnessType.Pickpocketing)
+    else if (this.Witnessed == StudentWitnessType.Lewd || this.Witnessed == StudentWitnessType.Poisoning || this.Witnessed == StudentWitnessType.Pickpocketing || this.Witnessed == StudentWitnessType.Theft)
     {
       Debug.Log((object) "Senpai is supposed to choose the ''Lewd'' reaction now.");
       this.Subtitle.UpdateLabel(SubtitleType.SenpaiLewdReaction, 1, 4.5f);
@@ -15493,7 +15518,6 @@ label_280:
 
   public void TeleportToDestination()
   {
-    Debug.Log((object) (this.Name + " fired ''TeleportToDestination.''"));
     this.GetDestinations();
     int phase = this.Phase;
     if (this.Phase >= this.ScheduleBlocks.Length || (double) this.Clock.HourTime < (double) this.ScheduleBlocks[this.Phase].time)
@@ -17603,6 +17627,7 @@ label_280:
   {
     if (this.StudentID == 15 || this.ScheduleBlocks.Length != 10)
       return;
+    Debug.Log((object) ("Giving " + this.Name + " the ''Oversleep'' routine."));
     ScheduleBlock scheduleBlock1 = this.ScheduleBlocks[6];
     scheduleBlock1.destination = "SleepSpot";
     scheduleBlock1.action = "Sleep";

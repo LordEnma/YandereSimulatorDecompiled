@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CalendarScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using System.IO;
@@ -322,7 +322,11 @@ public class CalendarScript : MonoBehaviour
                 StudentGlobals.MemorialStudent9 = 0;
               }
               this.SkipConfirmationWindow.SetActive(false);
-              ClassGlobals.BonusStudyPoints += 10;
+              if (DateGlobals.Weekday != DayOfWeek.Sunday && DateGlobals.Weekday != DayOfWeek.Saturday)
+              {
+                Debug.Log((object) "Skipping day. Not Saturday or Sunday. Awarding 10 bonus study points.");
+                ClassGlobals.BonusStudyPoints += 10;
+              }
               GameGlobals.SenpaiMourning = false;
               GameGlobals.ShowAbduction = false;
               ++DateGlobals.Weekday;
@@ -372,7 +376,7 @@ public class CalendarScript : MonoBehaviour
               if (Input.GetButtonDown("Y"))
               {
                 this.SkipConfirmationWindow.SetActive(true);
-                if (ClubGlobals.Club != ClubType.None && ClubGlobals.ActivitiesAttended == 0)
+                if (DateGlobals.Weekday > DayOfWeek.Sunday && ClubGlobals.Club != ClubType.None && ClubGlobals.ActivitiesAttended == 0)
                   this.ClubKickWindow.SetActive(true);
               }
             }
@@ -440,20 +444,20 @@ public class CalendarScript : MonoBehaviour
               if (!this.Eighties)
               {
                 SceneManager.LoadScene("BusStopScene");
-                goto label_92;
+                goto label_94;
               }
               else
               {
                 GameGlobals.EightiesCutsceneID = DateGlobals.Week + 1;
                 SceneManager.LoadScene("EightiesCutsceneScene");
-                goto label_92;
+                goto label_94;
               }
           }
           SceneManager.LoadScene("HomeScene");
         }
       }
     }
-label_92:
+label_94:
     if (this.Incremented)
       this.Highlight.localPosition = new Vector3(Mathf.Lerp(this.Highlight.localPosition.x, this.Offset - 750f + this.Target, Time.deltaTime * 10f), this.Highlight.localPosition.y, this.Highlight.localPosition.z);
     if (this.Switch)

@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NemesisScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -158,8 +158,16 @@ public class NemesisScript : MonoBehaviour
         if (this.Student.StudentManager.Students[index1].Club != ClubType.Council)
         {
           Debug.Log((object) "Not council member. Putting on black blazer.");
-          this.Cosmetic.MyRenderer.materials[0].mainTexture = this.Cosmetic.FemaleUniformTextures[5];
-          this.Cosmetic.MyRenderer.materials[1].mainTexture = this.Cosmetic.FemaleUniformTextures[5];
+          if (this.Cosmetic.StudentID > 80)
+          {
+            this.Cosmetic.MyRenderer.materials[0].mainTexture = this.Cosmetic.GanguroUniformTextures[5];
+            this.Cosmetic.MyRenderer.materials[1].mainTexture = this.Cosmetic.GanguroUniformTextures[5];
+          }
+          else
+          {
+            this.Cosmetic.MyRenderer.materials[0].mainTexture = this.Cosmetic.FemaleUniformTextures[5];
+            this.Cosmetic.MyRenderer.materials[1].mainTexture = this.Cosmetic.FemaleUniformTextures[5];
+          }
         }
         else
         {

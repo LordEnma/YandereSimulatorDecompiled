@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PickpocketScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -152,6 +152,11 @@ public class PickpocketScript : MonoBehaviour
       this.Prompt.gameObject.GetComponent<Rigidbody>().useGravity = true;
       this.Prompt.enabled = true;
       this.transform.parent = (Transform) null;
+      if ((double) this.transform.position.x <= -71.0 || (double) this.transform.position.x >= -61.0 || (double) this.transform.position.z <= -37.5 || (double) this.transform.position.z >= -27.5)
+        return;
+      this.Prompt.Yandere.NotificationManager.CustomText = "The dropped keys have been placed nearby.";
+      this.Prompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+      this.transform.position = new Vector3(-63f, 1f, -26.5f);
     }
     else
     {

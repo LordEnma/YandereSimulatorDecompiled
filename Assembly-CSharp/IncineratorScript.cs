@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: IncineratorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -63,6 +63,8 @@ public class IncineratorScript : MonoBehaviour
     }
     this.MyAudio = this.GetComponent<AudioSource>();
   }
+
+  public void ReturnFromSave() => this.Yandere.Police.Corpses += this.Corpses;
 
   private void Update()
   {

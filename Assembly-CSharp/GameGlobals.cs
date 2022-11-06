@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GameGlobals
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -53,6 +53,7 @@ public static class GameGlobals
   private const string Str_AbductionTarget = "AbductionTarget";
   private const string Str_CameFromTitleScreen = "CameFromTitleScreen";
   private const string Str_VtuberID = "VtuberID";
+  private const string Str_GrudgeConversationHappened = "GrudgeConversationHappened";
   private const string Str_ItemRemoved = "ItemRemoved";
 
   public static int Profile
@@ -329,6 +330,12 @@ public static class GameGlobals
     set => GlobalsHelper.SetBool(nameof (CameFromTitleScreen), value);
   }
 
+  public static bool GrudgeConversationHappened
+  {
+    get => GlobalsHelper.GetBool(nameof (GrudgeConversationHappened));
+    set => GlobalsHelper.SetBool(nameof (GrudgeConversationHappened), value);
+  }
+
   public static int VtuberID
   {
     get => PlayerPrefs.GetInt(nameof (VtuberID));
@@ -390,6 +397,7 @@ public static class GameGlobals
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_AbductionTarget");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_CameFromTitleScreen");
     Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_VtuberID");
+    Globals.Delete("Profile_" + GameGlobals.Profile.ToString() + "_GrudgeConversationHappened");
     for (int elimID = 1; elimID < 11; ++elimID)
       GameGlobals.SetSpecificEliminations(elimID, 0);
     Globals.DeleteCollection("Profile_" + GameGlobals.Profile.ToString() + "_RivalEliminations", GameGlobals.KeysOfRivalEliminations());

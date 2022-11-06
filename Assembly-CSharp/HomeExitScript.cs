@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeExitScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using UnityEngine;
@@ -26,10 +26,8 @@ public class HomeExitScript : MonoBehaviour
     if (HomeGlobals.Night)
     {
       label1.color = new Color(label1.color.r, label1.color.g, label1.color.b, 0.5f);
-      Debug.Log((object) ("Scheme #6 is at stage: " + SchemeGlobals.GetSchemeStage(6).ToString()));
       if (SchemeGlobals.GetSchemeStage(6) == 9 && !StudentGlobals.GetStudentDead(10 + DateGlobals.Week) && !StudentGlobals.GetStudentKidnapped(10 + DateGlobals.Week) && GameGlobals.RivalEliminationID == 0)
       {
-        Debug.Log((object) "We got here?");
         UILabel label2 = this.Labels[4];
         label2.color = new Color(label2.color.r, label2.color.g, label2.color.b, 1f);
         label2.text = "Stalker's House";

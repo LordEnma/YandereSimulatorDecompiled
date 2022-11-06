@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MemorialSceneScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -74,17 +74,20 @@ public class MemorialSceneScript : MonoBehaviour
         index1 = StudentGlobals.MemorialStudent9;
       WWW www = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits" + str + "/Student_" + index1.ToString() + ".png");
       this.Portraits[index3].mainTexture = (Texture) www.texture;
-      GameObject gameObject = Object.Instantiate<GameObject>(this.FlowerVase, this.transform.position, Quaternion.identity);
-      StudentJson student = this.StudentManager.JSON.Students[index1];
-      Transform transform = this.StudentManager.Seats[student.Class].List[student.Seat];
-      if ((double) transform.position.x > 0.0)
+      if (index1 < 90)
       {
-        gameObject.transform.position = transform.position + new Vector3(0.33333f, 0.7711f, 0.0f);
-      }
-      else
-      {
-        gameObject.transform.position = transform.position + new Vector3(-0.33333f, 0.7711f, 0.0f);
-        gameObject.transform.eulerAngles = new Vector3(0.0f, 90f, 0.0f);
+        StudentJson student = this.StudentManager.JSON.Students[index1];
+        GameObject gameObject = Object.Instantiate<GameObject>(this.FlowerVase, this.transform.position, Quaternion.identity);
+        Transform transform = this.StudentManager.Seats[student.Class].List[student.Seat];
+        if ((double) transform.position.x > 0.0)
+        {
+          gameObject.transform.position = transform.position + new Vector3(0.33333f, 0.7711f, 0.0f);
+        }
+        else
+        {
+          gameObject.transform.position = transform.position + new Vector3(-0.33333f, 0.7711f, 0.0f);
+          gameObject.transform.eulerAngles = new Vector3(0.0f, 90f, 0.0f);
+        }
       }
     }
   }
@@ -120,6 +123,11 @@ public class MemorialSceneScript : MonoBehaviour
     this.CameraEffects.UpdateBloomRadius(this.BloomRadius);
     if ((double) this.BloomIntensity != 500.0)
       return;
+    if (this.StudentManager.Clock.BloomDisabled)
+    {
+      OptionGlobals.DisableBloom = true;
+      this.StudentManager.Clock.Profile.bloom.enabled = false;
+    }
     if (this.StudentManager.Eighties && DateGlobals.Week == 6)
     {
       this.StudentManager.IdolStage.SetActive(true);

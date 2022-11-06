@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WaterCoolerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -103,17 +103,25 @@ public class WaterCoolerScript : MonoBehaviour
           if ((double) this.Prompt.Circle[1].fillAmount == 0.0)
           {
             this.Prompt.Circle[1].fillAmount = 1f;
-            this.CheckForWallInFront();
-            if (this.TooCloseToWall)
+            if ((double) this.transform.position.y < 0.10000000149011612 || (double) this.transform.position.y > 3.9000000953674316 && (double) this.transform.position.y < 4.0999999046325684 || (double) this.transform.position.y > 7.9000000953674316 && (double) this.transform.position.y < 8.1000003814697266 || (double) this.transform.position.y > 11.899999618530273 && (double) this.transform.position.y < 12.100000381469727)
             {
-              this.Yandere.NotificationManager.CustomText = "Too close to wall!";
-              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+              this.CheckForWallInFront();
+              if (this.TooCloseToWall)
+              {
+                this.Yandere.NotificationManager.CustomText = "Too close to wall!";
+                this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+              }
+              else
+              {
+                this.Yandere.SuspiciousActionTimer = 1f;
+                this.Yandere.CreatingTripwireTrap = true;
+                this.SetTrap();
+              }
             }
             else
             {
-              this.Yandere.SuspiciousActionTimer = 1f;
-              this.Yandere.CreatingTripwireTrap = true;
-              this.SetTrap();
+              this.Yandere.NotificationManager.CustomText = "Set it on the ground!";
+              this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
             }
           }
         }

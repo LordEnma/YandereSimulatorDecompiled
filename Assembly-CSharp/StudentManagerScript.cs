@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using UnityEngine;
@@ -1104,14 +1104,22 @@ public class StudentManagerScript : MonoBehaviour
             }
             foreach (StudentScript student in this.Students)
             {
-              if ((UnityEngine.Object) student != (UnityEngine.Object) null && student.Meeting)
+              if ((UnityEngine.Object) student != (UnityEngine.Object) null)
               {
-                Debug.Log((object) "A student was in the middle of meeting someone when this save file was made. Attempting to update their schedule accordingly.");
-                this.NoteWindow.NoteLocker.StudentID = this.MeetStudentID;
-                this.NoteWindow.NoteLocker.MeetTime = this.MeetTime;
-                this.NoteWindow.NoteLocker.MeetID = this.MeetID;
-                this.NoteWindow.NoteLocker.DetermineSchedule();
-                student.MeetTimer = 0.0f;
+                if (student.Meeting)
+                {
+                  Debug.Log((object) "A student was in the middle of meeting someone when this save file was made. Attempting to update their schedule accordingly.");
+                  this.NoteWindow.NoteLocker.StudentID = this.MeetStudentID;
+                  this.NoteWindow.NoteLocker.MeetTime = this.MeetTime;
+                  this.NoteWindow.NoteLocker.MeetID = this.MeetID;
+                  this.NoteWindow.NoteLocker.DetermineSchedule();
+                  student.MeetTimer = 0.0f;
+                }
+                if (student.Schoolwear != 1)
+                {
+                  Debug.Log((object) (student.Name + " was not wearing their school uniform when the save was made, so we're manually changing their clothing now."));
+                  student.ChangeSchoolwear();
+                }
               }
             }
           }
@@ -3078,12 +3086,16 @@ public class StudentManagerScript : MonoBehaviour
     YanSave.LoadData("Profile_" + profile.ToString() + "_Slot_" + num.ToString());
     this.Yandere.Class.gameObject.SetActive(false);
     Physics.SyncTransforms();
+    this.Yandere.Incinerator.ReturnFromSave();
     for (this.ID = 1; this.ID < 101; ++this.ID)
     {
       if ((UnityEngine.Object) this.Students[this.ID] != (UnityEngine.Object) null)
       {
         if (this.Students[this.ID].Schoolwear != 1)
+        {
+          Debug.Log((object) ("At time of loading, " + this.Students[this.ID].Name + " needed to change clothing."));
           this.Students[this.ID].ChangeSchoolwear();
+        }
         if (!this.Students[this.ID].Alive)
         {
           Debug.Log((object) (this.Students[this.ID].Name + " is confirmed to be dead. Transforming them into a ragdoll now."));
@@ -3378,6 +3390,7 @@ public class StudentManagerScript : MonoBehaviour
         Debug.Log((object) ("Yandere-chan put sedative into " + student.Name + "'s bento, so that student is being marked as ''Sleepy''."));
         student.Sleepy = true;
         student.Oversleep();
+        student.GetDestinations();
       }
     }
   }
@@ -3405,7 +3418,11 @@ public class StudentManagerScript : MonoBehaviour
           student.MyRenderer.materials[0].color = new Color(1f - alpha, 1f - alpha, 1f - alpha, 1f);
           student.MyRenderer.materials[1].color = new Color(1f - alpha, 1f - alpha, 1f - alpha, 1f);
           if (student.MyRenderer.materials.Length > 2)
+          {
             student.MyRenderer.materials[2].color = new Color(1f - alpha, 1f - alpha, 1f - alpha, 1f);
+            if (student.MyRenderer.materials.Length > 3)
+              student.MyRenderer.materials[3].color = new Color(1f - alpha, 1f - alpha, 1f - alpha, 1f);
+          }
         }
         student.Cosmetic.LeftEyeRenderer.material.color = new Color(student.OriginalEyeR - alpha, student.OriginalEyeG - alpha, student.OriginalEyeB - alpha, 1f);
         student.Cosmetic.RightEyeRenderer.material.color = new Color(student.OriginalEyeR - alpha, student.OriginalEyeG - alpha, student.OriginalEyeB - alpha, 1f);
@@ -3525,6 +3542,11 @@ public class StudentManagerScript : MonoBehaviour
         {
           student.MyRenderer.materials[2].mainTexture = this.PureWhite;
           student.MyRenderer.materials[2].color = new Color(1f, 1f, 1f, 1f);
+          if (student.MyRenderer.materials.Length > 3)
+          {
+            student.MyRenderer.materials[3].mainTexture = this.PureWhite;
+            student.MyRenderer.materials[3].color = new Color(1f, 1f, 1f, 1f);
+          }
         }
         student.Cosmetic.LeftEyeRenderer.material.mainTexture = this.PureWhite;
         student.Cosmetic.RightEyeRenderer.material.mainTexture = this.PureWhite;
@@ -3667,6 +3689,8 @@ public class StudentManagerScript : MonoBehaviour
 
   public void SaveReps()
   {
+    Debug.Log((object) "Saving reputations.");
+    Debug.Log((object) ("Osana's rep, for example, is " + ((int) this.StudentReps[11]).ToString()));
     this.ID = 1;
     foreach (double studentRep in this.StudentReps)
     {
@@ -3834,9 +3858,6 @@ public class StudentManagerScript : MonoBehaviour
       this.scheduleBlock = this.Students[21].ScheduleBlocks[4];
       this.scheduleBlock.destination = "Week2Hangout";
       this.scheduleBlock.action = "Stand";
-      this.scheduleBlock = this.Students[21].ScheduleBlocks[6];
-      this.scheduleBlock.destination = "Week2Hangout";
-      this.scheduleBlock.action = "Stand";
       this.scheduleBlock = this.Students[21].ScheduleBlocks[7];
       this.scheduleBlock.destination = "Week2Hangout";
       this.scheduleBlock.action = "Stand";
@@ -3891,9 +3912,6 @@ public class StudentManagerScript : MonoBehaviour
     this.scheduleBlock.destination = "Week2Hangout";
     this.scheduleBlock.action = "Socialize";
     this.scheduleBlock = this.Students[StudentID].ScheduleBlocks[4];
-    this.scheduleBlock.destination = "Week2Hangout";
-    this.scheduleBlock.action = "Socialize";
-    this.scheduleBlock = this.Students[StudentID].ScheduleBlocks[6];
     this.scheduleBlock.destination = "Week2Hangout";
     this.scheduleBlock.action = "Socialize";
     this.scheduleBlock = this.Students[StudentID].ScheduleBlocks[7];

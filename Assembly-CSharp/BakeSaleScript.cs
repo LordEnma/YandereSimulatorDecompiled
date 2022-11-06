@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BakeSaleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: CC755693-C2BE-45B9-A389-81C492F832E2
-// Assembly location: C:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,21 +18,25 @@ public class BakeSaleScript : MonoBehaviour
 
   private void Update()
   {
-    this.Timer += Time.deltaTime;
-    if ((double) this.Timer > 60.0 && (Object) this.StudentManager.Students[this.ID] != (Object) null)
+    float hourTime = this.StudentManager.Clock.HourTime;
+    if ((double) hourTime < 8.0 || (double) hourTime > 13.0 && (double) hourTime < 13.5 || (double) hourTime > 16.0 && (double) hourTime < 17.0)
     {
-      if (this.StudentManager.Students[this.ID].Routine)
+      this.Timer += Time.deltaTime;
+      if ((double) this.Timer > 60.0 && (Object) this.StudentManager.Students[this.ID] != (Object) null)
       {
-        Debug.Log((object) (this.StudentManager.Students[this.ID].Name + " has decided to go to the bake sale."));
-        this.Timer = 0.0f;
-        this.StudentManager.Students[this.ID].Meeting = true;
-        this.StudentManager.Students[this.ID].BakeSale = true;
-        this.StudentManager.Students[this.ID].MeetTime = 0.0001f;
-        this.StudentManager.Students[this.ID].MeetSpot = this.MeetSpot;
-        this.IncreaseID();
+        if (this.StudentManager.Students[this.ID].Routine)
+        {
+          Debug.Log((object) (this.StudentManager.Students[this.ID].Name + " has decided to go to the bake sale."));
+          this.Timer = 0.0f;
+          this.StudentManager.Students[this.ID].Meeting = true;
+          this.StudentManager.Students[this.ID].BakeSale = true;
+          this.StudentManager.Students[this.ID].MeetTime = 0.0001f;
+          this.StudentManager.Students[this.ID].MeetSpot = this.MeetSpot;
+          this.IncreaseID();
+        }
+        else
+          this.IncreaseID();
       }
-      else
-        this.IncreaseID();
     }
     if (this.StudentManager.Yandere.Alerts > 0 || this.StudentManager.Yandere.Police.StudentFoundCorpse)
     {
