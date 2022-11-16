@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AttackManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -66,6 +66,12 @@ public class AttackManagerScript : MonoBehaviour
         if (this.Stealth || sanityType == SanityType.High)
           return 0.75f;
         return 0.75f;
+      case WeaponType.Scythe:
+        if (this.Stealth)
+          return 0.45f;
+        if (sanityType == SanityType.High)
+          return 0.75f;
+        return sanityType == SanityType.Medium ? 0.95f : 1f;
       case WeaponType.Garrote:
         return 0.5f;
       default:
@@ -754,10 +760,17 @@ public class AttackManagerScript : MonoBehaviour
 
   private void CheckForSpecialCase(WeaponScript weapon)
   {
-    if (weapon.WeaponID != 8 || !GameGlobals.Paranormal)
-      return;
-    this.Yandere.TargetStudent.Ragdoll.Sacrifice = true;
-    weapon.Effect();
+    if (weapon.Type == WeaponType.Scythe)
+    {
+      weapon.MyRenderer.transform.localEulerAngles = new Vector3(12.5f, 7.5f, 90f);
+    }
+    else
+    {
+      if (weapon.WeaponID != 8 || !GameGlobals.Paranormal)
+        return;
+      this.Yandere.TargetStudent.Ragdoll.Sacrifice = true;
+      weapon.Effect();
+    }
   }
 
   public int OnlyDefault => 1;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentInfoScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -445,6 +445,7 @@ public class StudentInfoScript : MonoBehaviour
         this.StudentManager.Tag.Target = (Transform) null;
         this.PromptBar.Label[2].text = "Tag";
       }
+      this.PromptBar.UpdateButtons();
     }
     if (Input.GetButtonDown("Y") && this.PromptBar.Button[3].enabled)
     {
@@ -694,10 +695,8 @@ public class StudentInfoScript : MonoBehaviour
 
   public void UpdateTagButton()
   {
-    if (this.StudentManager.TagStudentID == this.CurrentStudent)
-      this.PromptBar.Label[2].text = "Untag";
-    else
-      this.PromptBar.Label[2].text = "Tag";
+    this.PromptBar.Label[2].text = this.StudentManager.TagStudentID != this.CurrentStudent ? "Tag" : "Untag";
+    this.PromptBar.UpdateButtons();
   }
 
   static StudentInfoScript()

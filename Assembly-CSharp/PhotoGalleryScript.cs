@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PhotoGalleryScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -58,13 +58,36 @@ public class PhotoGalleryScript : MonoBehaviour
   private const float MaxCursorY = 3122f;
   private const float CorkboardAspectRatio = 1.53363228f;
   public float SpeedLimit;
+  public bool[] PhotographTaken;
+  public bool[] GuitarPhoto;
+  public bool[] HorudaPhoto;
+  public bool[] KittenPhoto;
+  public bool[] SenpaiPhoto;
+  public int[] BullyPhoto;
 
-  private void Start()
+  public void Start()
   {
     if ((Object) this.HomeCursor != (Object) null)
     {
       this.HomeCursor.gameObject.SetActive(false);
       this.enabled = false;
+    }
+    for (int photoID = 1; photoID < 26; ++photoID)
+    {
+      if (PlayerGlobals.GetPhoto(photoID))
+      {
+        this.PhotographTaken[photoID] = true;
+        if (PlayerGlobals.GetSenpaiPhoto(photoID))
+          this.SenpaiPhoto[photoID] = true;
+        else if (PlayerGlobals.GetBullyPhoto(photoID) > 0)
+          this.BullyPhoto[photoID] = PlayerGlobals.GetBullyPhoto(photoID);
+        else if (TaskGlobals.GetKittenPhoto(photoID))
+          this.KittenPhoto[photoID] = true;
+        else if (TaskGlobals.GetGuitarPhoto(photoID))
+          this.GuitarPhoto[photoID] = true;
+        else if (TaskGlobals.GetHorudaPhoto(photoID))
+          this.HorudaPhoto[photoID] = true;
+      }
     }
     if (!this.Corkboard)
       return;
@@ -152,9 +175,9 @@ public class PhotoGalleryScript : MonoBehaviour
         }
         this.UpdateButtonPrompts();
       }
-      else if ((Object) this.Photographs[this.CurrentIndex].mainTexture != (Object) this.NoPhoto && PlayerGlobals.GetBullyPhoto(this.CurrentIndex) > 0)
+      else if ((Object) this.Photographs[this.CurrentIndex].mainTexture != (Object) this.NoPhoto && this.BullyPhoto[this.CurrentIndex] > 0)
       {
-        this.Yandere.Police.EndOfDay.FragileTarget = PlayerGlobals.GetBullyPhoto(this.CurrentIndex);
+        this.Yandere.Police.EndOfDay.FragileTarget = this.BullyPhoto[this.CurrentIndex];
         this.Yandere.StudentManager.FragileOfferHelp.Continue();
         this.PauseScreen.MainMenu.SetActive(true);
         this.Yandere.RPGCamera.enabled = true;
@@ -186,10 +209,11 @@ public class PhotoGalleryScript : MonoBehaviour
       if ((Object) this.Photographs[currentIndex].mainTexture != (Object) this.NoPhoto)
       {
         this.Photographs[currentIndex].mainTexture = this.NoPhoto;
-        PlayerGlobals.SetPhoto(currentIndex, false);
-        PlayerGlobals.SetSenpaiPhoto(currentIndex, false);
-        TaskGlobals.SetGuitarPhoto(currentIndex, false);
-        TaskGlobals.SetKittenPhoto(currentIndex, false);
+        this.PhotographTaken[currentIndex] = false;
+        this.GuitarPhoto[currentIndex] = false;
+        this.SenpaiPhoto[currentIndex] = false;
+        this.KittenPhoto[currentIndex] = false;
+        this.BullyPhoto[currentIndex] = 0;
         this.Hearts[currentIndex].gameObject.SetActive(false);
         if ((Object) this.TaskManager != (Object) null)
           this.TaskManager.UpdateTaskStatus();
@@ -206,13 +230,13 @@ public class PhotoGalleryScript : MonoBehaviour
         this.UpdateButtonPrompts();
       }
     }
-    else if (Input.GetButtonDown("Y") && PlayerGlobals.GetSenpaiPhoto(this.CurrentIndex))
+    else if (Input.GetButtonDown("Y") && this.SenpaiPhoto[this.CurrentIndex])
     {
       int currentIndex = this.CurrentIndex;
       --PlayerGlobals.SenpaiShots;
       --this.Yandere.Inventory.SenpaiShots;
-      PlayerGlobals.SetPhoto(currentIndex, false);
-      PlayerGlobals.SetSenpaiPhoto(currentIndex, false);
+      this.PhotographTaken[currentIndex] = false;
+      this.SenpaiPhoto[currentIndex] = false;
       this.Hearts[currentIndex].gameObject.SetActive(false);
       this.Photographs[currentIndex].mainTexture = this.NoPhoto;
       this.TaskManager.UpdateTaskStatus();
@@ -274,11 +298,11 @@ public class PhotoGalleryScript : MonoBehaviour
     }
     else
     {
-      for (int photoID = 1; photoID < 26; ++photoID)
+      for (int index = 1; index < 26; ++index)
       {
-        if (PlayerGlobals.GetSenpaiPhoto(photoID))
+        if (this.SenpaiPhoto[index])
         {
-          this.Hearts[photoID].gameObject.SetActive(true);
+          this.Hearts[index].gameObject.SetActive(true);
           this.CanAdjust = true;
         }
       }
@@ -469,20 +493,20 @@ public class PhotoGalleryScript : MonoBehaviour
     }
     for (int ID = 1; ID < 26; ++ID)
     {
-      if (PlayerGlobals.GetPhoto(ID))
+      if (photoGalleryScript.PhotographTaken[ID])
       {
         WWW www = new WWW("file:///" + Application.streamingAssetsPath + "/Photographs/Photo_" + ID.ToString() + ".png");
         yield return (object) www;
         if (www.error == null)
         {
           photoGalleryScript.Photographs[ID].mainTexture = (Texture) www.texture;
-          if (!photoGalleryScript.Corkboard && PlayerGlobals.GetSenpaiPhoto(ID))
+          if (!photoGalleryScript.Corkboard && photoGalleryScript.SenpaiPhoto[ID])
             photoGalleryScript.Hearts[ID].gameObject.SetActive(true);
         }
         else
         {
           Debug.Log((object) ("Could not retrieve Photo " + ID.ToString() + ". Maybe it was deleted from Streaming Assets? Setting Photo " + ID.ToString() + " to ''false''."));
-          PlayerGlobals.SetPhoto(ID, false);
+          photoGalleryScript.PhotographTaken[ID] = false;
         }
         www = (WWW) null;
       }
@@ -500,7 +524,7 @@ public class PhotoGalleryScript : MonoBehaviour
   {
     if (this.NamingBully)
     {
-      this.PromptBar.Label[0].text = !((Object) this.Photographs[this.CurrentIndex].mainTexture != (Object) this.NoPhoto) || PlayerGlobals.GetBullyPhoto(this.CurrentIndex) <= 0 ? string.Empty : (PlayerGlobals.GetBullyPhoto(this.CurrentIndex) <= 0 ? string.Empty : "Name Bully");
+      this.PromptBar.Label[0].text = !((Object) this.Photographs[this.CurrentIndex].mainTexture != (Object) this.NoPhoto) || this.BullyPhoto[this.CurrentIndex] <= 0 ? string.Empty : (this.BullyPhoto[this.CurrentIndex] <= 0 ? string.Empty : "Name Bully");
       this.PromptBar.Label[1].text = string.Empty;
       this.PromptBar.Label[2].text = string.Empty;
       this.PromptBar.Label[3].text = string.Empty;
@@ -557,7 +581,7 @@ public class PhotoGalleryScript : MonoBehaviour
         this.PromptBar.Label[0].text = string.Empty;
         this.PromptBar.Label[2].text = string.Empty;
       }
-      this.PromptBar.Label[3].text = this.Corkboard ? "Corkboard" : (PlayerGlobals.GetSenpaiPhoto(currentIndex) ? "Use" : string.Empty);
+      this.PromptBar.Label[3].text = this.Corkboard ? "Corkboard" : (this.SenpaiPhoto[currentIndex] ? "Use" : string.Empty);
       this.PromptBar.Label[1].text = "Back";
       this.PromptBar.Label[4].text = "Choose";
       this.PromptBar.Label[5].text = "Choose";
@@ -1224,6 +1248,27 @@ public class PhotoGalleryScript : MonoBehaviour
       }
       else
         PlayerPrefs.SetInt("Profile_" + GameGlobals.Profile.ToString() + "_CorkboardString_" + index.ToString() + "_Exists", 0);
+    }
+  }
+
+  public void SavePhotosTaken()
+  {
+    for (int photoID = 1; photoID < 26; ++photoID)
+    {
+      if (this.PhotographTaken[photoID])
+      {
+        PlayerGlobals.SetPhoto(photoID, true);
+        if (this.SenpaiPhoto[photoID])
+          PlayerGlobals.SetSenpaiPhoto(photoID, true);
+        else if (this.BullyPhoto[photoID] > 0)
+          PlayerGlobals.SetBullyPhoto(photoID, this.BullyPhoto[photoID]);
+        else if (this.KittenPhoto[photoID])
+          TaskGlobals.SetKittenPhoto(photoID, true);
+        else if (this.GuitarPhoto[photoID])
+          TaskGlobals.SetGuitarPhoto(photoID, true);
+        else if (this.HorudaPhoto[photoID])
+          TaskGlobals.SetHorudaPhoto(photoID, true);
+      }
     }
   }
 }

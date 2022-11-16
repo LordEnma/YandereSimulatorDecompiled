@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GazerEyesScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -223,8 +223,8 @@ public class GazerEyesScript : MonoBehaviour
         Target.OsanaHairR.GetComponent<DynamicBone>().enabled = false;
       }
     }
-    if ((double) this.Yandere.PotentiallyMurderousTimer <= 0.0)
-      return;
-    this.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Yandere.Numbness;
+    if ((double) this.Yandere.PotentiallyMurderousTimer > 0.0)
+      this.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Yandere.Numbness;
+    Target.Ragdoll.AllColliders[0].enabled = true;
   }
 }

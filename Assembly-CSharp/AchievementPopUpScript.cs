@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AchievementPopUpScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -62,11 +62,6 @@ public class AchievementPopUpScript : MonoBehaviour
       {
         if (PlayerPrefs.GetInt(this.AchievementNames[index]) != this.PreviousNumber[index])
         {
-          Debug.Log((object) ("ID is : " + index.ToString() + "."));
-          Debug.Log((object) ("AchievementNames[ID] is : " + this.AchievementNames[index] + "."));
-          Debug.Log((object) ("PlayerPrefs.GetInt(AchievementNames[ID]) is : " + PlayerPrefs.GetInt(this.AchievementNames[index]).ToString() + "."));
-          Debug.Log((object) ("PreviousNumber[ID] is : " + this.PreviousNumber[index].ToString() + "."));
-          Debug.Log((object) ("Achievement #" + index.ToString() + " was obtained. Attempting to update label and icon."));
           this.PreviousNumber[index] = PlayerPrefs.GetInt(this.AchievementNames[index]);
           this.Label.text = this.AchievementFancyNames[index] ?? "";
           this.Icon.mainTexture = this.AchievementIcons[index];

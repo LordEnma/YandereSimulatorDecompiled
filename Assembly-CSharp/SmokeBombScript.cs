@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SmokeBombScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -65,7 +65,13 @@ public class SmokeBombScript : MonoBehaviour
       StudentScript component = other.gameObject.GetComponent<StudentScript>();
       if (!((Object) component != (Object) null) || component.Yandere.Noticed || component.Guarding || component.Fleeing)
         return;
-      this.GoAway(component);
+      if (component.Actions[component.Phase] == StudentActionType.ClubAction && component.Club == ClubType.Cooking && component.ClubActivityPhase > 0)
+      {
+        component.Subtitle.CustomText = "Ew, something stinks! I want to run from the smell, but I can't run while holding this tray...";
+        component.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
+      }
+      else
+        this.GoAway(component);
     }
     else
     {

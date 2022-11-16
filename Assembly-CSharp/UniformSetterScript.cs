@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: UniformSetterScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -28,6 +28,8 @@ public class UniformSetterScript : MonoBehaviour
   public GameObject[] Hair;
   public int HairID;
   public int ForceUniform;
+  public bool Ryoba;
+  public Texture RyobaTexture;
 
   public void Start()
   {
@@ -84,6 +86,11 @@ public class UniformSetterScript : MonoBehaviour
     this.MyRenderer.sharedMesh = this.FemaleUniforms[index];
     this.MyRenderer.materials[0].mainTexture = this.FemaleUniformTextures[index];
     this.MyRenderer.materials[1].mainTexture = this.FemaleUniformTextures[index];
+    if (this.Ryoba)
+    {
+      this.MyRenderer.materials[0].mainTexture = this.RyobaTexture;
+      this.MyRenderer.materials[1].mainTexture = this.RyobaTexture;
+    }
     if (this.StudentID == 0)
       this.MyRenderer.materials[2].mainTexture = this.RyobaFace;
     else if (this.StudentID == 1)

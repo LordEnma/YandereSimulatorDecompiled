@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OfferHelpScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -234,10 +234,10 @@ public class OfferHelpScript : MonoBehaviour
         {
           Debug.Log((object) "Checking to see if we have a bully photo...");
           flag = false;
-          for (int photoID = 1; photoID < 26; ++photoID)
+          for (int index = 1; index < 26; ++index)
           {
-            Debug.Log((object) ("PlayerGlobals.GetBullyPhoto(ID) is: " + PlayerGlobals.GetBullyPhoto(photoID).ToString() + "!"));
-            if (PlayerGlobals.GetBullyPhoto(photoID) > 0)
+            Debug.Log((object) ("PhotoGallery.BullyPhoto[ID] is: " + this.Yandere.PauseScreen.PhotoGallery.BullyPhoto[index].ToString() + "!"));
+            if (this.Yandere.PauseScreen.PhotoGallery.PhotographTaken[index] && this.Yandere.PauseScreen.PhotoGallery.BullyPhoto[index] > 0)
               flag = true;
           }
         }
@@ -280,7 +280,7 @@ public class OfferHelpScript : MonoBehaviour
         }
         else if (!flag)
         {
-          this.Yandere.NotificationManager.CustomText = "You lack a valid photo";
+          this.Yandere.NotificationManager.CustomText = "You lack a valid photo.";
           this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
         }
       }

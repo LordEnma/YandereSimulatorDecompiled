@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ShutterScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -283,7 +283,7 @@ public class ShutterScript : MonoBehaviour
             while (this.ID < 26)
             {
               ++this.ID;
-              if (!PlayerGlobals.GetPhoto(this.ID))
+              if (!this.Yandere.PauseScreen.PhotoGallery.PhotographTaken[this.ID])
               {
                 this.FreeSpace = true;
                 this.Slot = this.ID;
@@ -292,40 +292,37 @@ public class ShutterScript : MonoBehaviour
             }
             if (this.FreeSpace)
             {
+              Debug.Log((object) ("We're going to save a photo into Slot #" + this.Slot.ToString()));
               if (this.StudentManager.Eighties)
                 this.Yandere.HandCamera.gameObject.SetActive(true);
               ScreenCapture.CaptureScreenshot(Application.streamingAssetsPath + "/Photographs/Photo_" + this.Slot.ToString() + ".png");
               this.TookPhoto = true;
               Debug.Log((object) ("Setting Photo " + this.Slot.ToString() + " to ''true''."));
-              PlayerGlobals.SetPhoto(this.Slot, true);
+              this.PauseScreen.PhotoGallery.PhotographTaken[this.Slot] = true;
               if (flag1)
               {
                 Debug.Log((object) "Saving a bully photo!");
                 int studentId = this.BullyPhotoCollider.transform.parent.gameObject.GetComponent<StudentScript>().StudentID;
-                if (this.StudentManager.Students[studentId].Club != ClubType.Bully)
-                  PlayerGlobals.SetBullyPhoto(this.Slot, studentId);
-                else
-                  PlayerGlobals.SetBullyPhoto(this.Slot, this.StudentManager.Students[studentId].DistractionTarget.StudentID);
+                this.Yandere.PauseScreen.PhotoGallery.BullyPhoto[this.Slot] = this.StudentManager.Students[studentId].Club == ClubType.Bully ? this.StudentManager.Students[studentId].DistractionTarget.StudentID : studentId;
               }
               if (flag2)
               {
-                PlayerGlobals.SetSenpaiPhoto(this.Slot, true);
-                ++PlayerGlobals.SenpaiShots;
+                this.Yandere.PauseScreen.PhotoGallery.SenpaiPhoto[this.Slot] = true;
                 ++this.Yandere.Inventory.SenpaiShots;
               }
               if (this.AirGuitarShot)
               {
-                TaskGlobals.SetGuitarPhoto(this.Slot, true);
+                this.Yandere.PauseScreen.PhotoGallery.GuitarPhoto[this.Slot] = true;
                 this.TaskManager.UpdateTaskStatus();
               }
               if (this.KittenShot)
               {
-                TaskGlobals.SetKittenPhoto(this.Slot, true);
+                this.Yandere.PauseScreen.PhotoGallery.KittenPhoto[this.Slot] = true;
                 this.TaskManager.UpdateTaskStatus();
               }
               if (this.HorudaShot)
               {
-                TaskGlobals.SetHorudaPhoto(this.Slot, true);
+                this.Yandere.PauseScreen.PhotoGallery.HorudaPhoto[this.Slot] = true;
                 this.TaskManager.UpdateTaskStatus();
               }
               if (this.OsanaShot && DateGlobals.Weekday == DayOfWeek.Thursday)

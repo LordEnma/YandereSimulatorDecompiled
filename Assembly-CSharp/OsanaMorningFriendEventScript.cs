@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaMorningFriendEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -52,6 +52,7 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
   public Vector3 OriginalPosition;
   public Vector3 OriginalRotation;
   public bool LosingFriend;
+  public bool Listening;
 
   private void Start()
   {
@@ -203,34 +204,45 @@ public class OsanaMorningFriendEventScript : MonoBehaviour
           this.Rival.ShoeRemoval.Start();
         this.Rival.ShoeRemoval.PutOnShoes();
       }
-      if ((double) this.Yandere.transform.position.z >= -50.0)
-        return;
-      this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Epicenter.position);
-      if ((double) this.Distance - 4.0 < 15.0)
+      if ((double) this.Yandere.transform.position.z < -50.0)
       {
-        this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 4.0) / 15.0));
-        if ((double) this.Scale < 0.0)
-          this.Scale = 0.0f;
-        if ((double) this.Scale > 1.0)
-          this.Scale = 1f;
-        if (this.enabled)
-          this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
-        this.EventSubtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
-        if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-          this.VoiceClip.GetComponent<AudioSource>().volume = this.Scale;
-        if (this.Phase > 1)
-          this.Yandere.Eavesdropping = (double) this.Distance < 3.0;
+        this.Listening = true;
+        this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Epicenter.position);
+        if (!this.enabled)
+          return;
+        if ((double) this.Distance - 4.0 < 15.0)
+        {
+          this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 4.0) / 15.0));
+          if ((double) this.Scale < 0.0)
+            this.Scale = 0.0f;
+          if ((double) this.Scale > 1.0)
+            this.Scale = 1f;
+          if (this.enabled)
+            this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
+          this.EventSubtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
+          if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
+            this.VoiceClip.GetComponent<AudioSource>().volume = this.Scale;
+          if (this.Phase > 1)
+            this.Yandere.Eavesdropping = (double) this.Distance < 3.0;
+        }
+        else
+        {
+          if ((double) this.Distance - 4.0 < 16.0)
+            this.EventSubtitle.transform.localScale = Vector3.zero;
+          if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
+            this.VoiceClip.GetComponent<AudioSource>().volume = 0.0f;
+        }
+        if (!((UnityEngine.Object) this.VoiceClip == (UnityEngine.Object) null))
+          return;
+        this.EventSubtitle.text = string.Empty;
       }
       else
       {
-        if ((double) this.Distance - 4.0 < 16.0)
-          this.EventSubtitle.transform.localScale = Vector3.zero;
-        if ((UnityEngine.Object) this.VoiceClip != (UnityEngine.Object) null)
-          this.VoiceClip.GetComponent<AudioSource>().volume = 0.0f;
+        if (!this.Listening)
+          return;
+        this.EventSubtitle.transform.localScale = Vector3.zero;
+        this.Listening = false;
       }
-      if (!((UnityEngine.Object) this.VoiceClip == (UnityEngine.Object) null))
-        return;
-      this.EventSubtitle.text = string.Empty;
     }
   }
 

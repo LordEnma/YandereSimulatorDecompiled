@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: OsanaTuesdayLunchEventScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -324,15 +324,25 @@ public class OsanaTuesdayLunchEventScript : MonoBehaviour
       }
       if ((double) this.PushPrompt.Circle[0].fillAmount == 0.0)
       {
-        this.PushPrompt.Hide();
-        this.PushPrompt.gameObject.SetActive(false);
-        this.Sabotaging = true;
-        this.Yandere.CanMove = false;
-        this.Yandere.CharacterAnimation.CrossFade("f02_" + this.EventAnim[7]);
-        this.Rival.AnimatedBook.GetComponent<Animation>().Play(this.EventAnim[7]);
-        this.Rival.AnimatedBook.transform.eulerAngles = new Vector3(this.Rival.AnimatedBook.transform.eulerAngles.x, 0.0f, this.Rival.AnimatedBook.transform.eulerAngles.z);
-        this.Rival.AnimatedBook.transform.position = new Vector3(this.Rival.AnimatedBook.transform.position.x, this.Rival.AnimatedBook.transform.position.y, -2.8f);
-        this.AfterClassEvent.Sabotaged = true;
+        this.PushPrompt.Circle[0].fillAmount = 1f;
+        this.PushPrompt.Yandere.StudentManager.CanAnyoneSeeYandere();
+        if (!this.PushPrompt.Yandere.StudentManager.YandereVisible)
+        {
+          this.PushPrompt.Hide();
+          this.PushPrompt.gameObject.SetActive(false);
+          this.Sabotaging = true;
+          this.Yandere.CanMove = false;
+          this.Yandere.CharacterAnimation.CrossFade("f02_" + this.EventAnim[7]);
+          this.Rival.AnimatedBook.GetComponent<Animation>().Play(this.EventAnim[7]);
+          this.Rival.AnimatedBook.transform.eulerAngles = new Vector3(this.Rival.AnimatedBook.transform.eulerAngles.x, 0.0f, this.Rival.AnimatedBook.transform.eulerAngles.z);
+          this.Rival.AnimatedBook.transform.position = new Vector3(this.Rival.AnimatedBook.transform.position.x, this.Rival.AnimatedBook.transform.position.y, -2.8f);
+          this.AfterClassEvent.Sabotaged = true;
+        }
+        else
+        {
+          this.PushPrompt.Yandere.NotificationManager.CustomText = "No! Someone is watching!";
+          this.PushPrompt.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+        }
       }
       if (this.Sabotaging)
       {

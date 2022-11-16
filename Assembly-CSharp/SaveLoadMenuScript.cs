@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SaveLoadMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -164,7 +164,7 @@ public class SaveLoadMenuScript : MonoBehaviour
           }
         }
       }
-      if (Input.GetButtonDown("X") && this.Saving)
+      if (Input.GetButtonDown("X"))
       {
         if (PlayerPrefs.GetString("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_DateTime") != "")
         {
@@ -172,6 +172,8 @@ public class SaveLoadMenuScript : MonoBehaviour
           PlayerPrefs.SetString("Profile_" + this.Profile.ToString() + "_Slot_" + this.Selected.ToString() + "_DateTime", "");
           this.Thumbnails[this.Selected].mainTexture = this.DefaultThumbnail;
           this.DataLabels[this.Selected].text = "No Data";
+          if (this.Selected == GameGlobals.MostRecentSlot)
+            GameGlobals.MostRecentSlot = 0;
         }
       }
       if (!Input.GetButtonDown("B"))

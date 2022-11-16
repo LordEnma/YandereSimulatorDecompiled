@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ClassScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -270,10 +270,8 @@ public class ClassScript : MonoBehaviour
         }
         else
         {
-          Debug.Log((object) "We don't need to go to the counselor's office.");
           if (this.Portal.FadeOut)
             return;
-          Debug.Log((object) "Instructing the portal to proceed with its code.");
           this.Portal.Yandere.PhysicalGrade = this.PhysicalGrade;
           this.Portal.Yandere.CameraEffects.UpdateDOF(this.Portal.OriginalDOF);
           this.Portal.ClassDarkness.alpha = 1f;

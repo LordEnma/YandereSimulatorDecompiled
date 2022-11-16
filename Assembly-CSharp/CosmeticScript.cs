@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CosmeticScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System.Collections;
@@ -332,7 +332,10 @@ public class CosmeticScript : MonoBehaviour
         }
       }
       else if (this.StudentID == 51 && ClubGlobals.GetClubClosed(ClubType.LightMusic))
+      {
+        this.Stockings = "Music6";
         this.Hairstyle = 51;
+      }
     }
     if ((Object) this.StudentManager != (Object) null && this.StudentManager.EmptyDemon && (this.StudentID == 21 || this.StudentID == 26 || this.StudentID == 31 || this.StudentID == 36 || this.StudentID == 41 || this.StudentID == 46 || this.StudentID == 51 || this.StudentID == 56 || this.StudentID == 61 || this.StudentID == 66 || this.StudentID == 71))
     {
@@ -1695,6 +1698,8 @@ public class CosmeticScript : MonoBehaviour
       this.MyStockings = this.MusicStockings[4];
     else if (this.Stockings == "Music5")
       this.MyStockings = this.MusicStockings[5];
+    else if (this.Stockings == "Music6")
+      this.MyStockings = this.MusicStockings[6];
     else if (this.Stockings == "Sakyu")
       this.MyStockings = this.SakyuStockings;
     else if (this.Stockings == "Inkyu")

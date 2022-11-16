@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
@@ -346,6 +346,7 @@ public class YandereScript : MonoBehaviour
   public bool SeenByAuthority;
   public bool CameFromCrouch;
   public bool CannotRecover;
+  public bool FilterUpdated;
   public bool NearMindSlave;
   public bool NoStainGloves;
   public bool YandereVision;
@@ -845,10 +846,7 @@ public class YandereScript : MonoBehaviour
     this.CharacterAnimation["f02_sithAttackHard_01"].speed = 1.5f;
     this.CharacterAnimation["f02_sithAttackHard_02"].speed = 1.5f;
     this.CharacterAnimation["f02_nierRun_00"].speed = 1.5f;
-    CameraFilterPack_Colors_Adjust_PreFilters[] components = this.MainCamera.GetComponents<CameraFilterPack_Colors_Adjust_PreFilters>();
-    this.YandereFilter = components[0];
-    this.SenpaiFilter = components[1];
-    this.HollowFilter = components[3];
+    this.AssignFilters();
     this.ResetYandereEffects();
     this.ResetSenpaiEffects();
     this.Sanity = 100f;
@@ -1147,72 +1145,75 @@ public class YandereScript : MonoBehaviour
     this.CharacterAnimation["f02_carryShoulder_00"].layer = 15;
     this.CharacterAnimation.Play("f02_carryShoulder_00");
     this.CharacterAnimation["f02_carryShoulder_00"].weight = 0.0f;
-    this.CharacterAnimation["f02_carryFlashlight_00"].layer = 16;
+    this.CharacterAnimation["f02_holdScythe_00"].layer = 16;
+    this.CharacterAnimation.Play("f02_holdScythe_00");
+    this.CharacterAnimation["f02_holdScythe_00"].weight = 0.0f;
+    this.CharacterAnimation["f02_carryFlashlight_00"].layer = 17;
     this.CharacterAnimation.Play("f02_carryFlashlight_00");
     this.CharacterAnimation["f02_carryFlashlight_00"].weight = 0.0f;
-    this.CharacterAnimation["f02_carryBox_00"].layer = 17;
+    this.CharacterAnimation["f02_carryBox_00"].layer = 18;
     this.CharacterAnimation.Play("f02_carryBox_00");
     this.CharacterAnimation["f02_carryBox_00"].weight = 0.0f;
-    this.CharacterAnimation["f02_holdBook_00"].layer = 18;
+    this.CharacterAnimation["f02_holdBook_00"].layer = 19;
     this.CharacterAnimation.Play("f02_holdBook_00");
     this.CharacterAnimation["f02_holdBook_00"].weight = 0.0f;
     this.CharacterAnimation["f02_holdBook_00"].speed = 0.5f;
-    this.CharacterAnimation[this.CreepyIdles[1]].layer = 19;
+    this.CharacterAnimation[this.CreepyIdles[1]].layer = 20;
     this.CharacterAnimation.Play(this.CreepyIdles[1]);
     this.CharacterAnimation[this.CreepyIdles[1]].weight = 0.0f;
-    this.CharacterAnimation[this.CreepyIdles[2]].layer = 20;
+    this.CharacterAnimation[this.CreepyIdles[2]].layer = 21;
     this.CharacterAnimation.Play(this.CreepyIdles[2]);
     this.CharacterAnimation[this.CreepyIdles[2]].weight = 0.0f;
-    this.CharacterAnimation[this.CreepyIdles[3]].layer = 21;
+    this.CharacterAnimation[this.CreepyIdles[3]].layer = 22;
     this.CharacterAnimation.Play(this.CreepyIdles[3]);
     this.CharacterAnimation[this.CreepyIdles[3]].weight = 0.0f;
-    this.CharacterAnimation[this.CreepyIdles[4]].layer = 22;
+    this.CharacterAnimation[this.CreepyIdles[4]].layer = 23;
     this.CharacterAnimation.Play(this.CreepyIdles[4]);
     this.CharacterAnimation[this.CreepyIdles[4]].weight = 0.0f;
-    this.CharacterAnimation[this.CreepyIdles[5]].layer = 23;
+    this.CharacterAnimation[this.CreepyIdles[5]].layer = 24;
     this.CharacterAnimation.Play(this.CreepyIdles[5]);
     this.CharacterAnimation[this.CreepyIdles[5]].weight = 0.0f;
-    this.CharacterAnimation[this.CreepyWalks[1]].layer = 24;
+    this.CharacterAnimation[this.CreepyWalks[1]].layer = 25;
     this.CharacterAnimation.Play(this.CreepyWalks[1]);
     this.CharacterAnimation[this.CreepyWalks[1]].weight = 0.0f;
-    this.CharacterAnimation[this.CreepyWalks[2]].layer = 25;
+    this.CharacterAnimation[this.CreepyWalks[2]].layer = 26;
     this.CharacterAnimation.Play(this.CreepyWalks[2]);
     this.CharacterAnimation[this.CreepyWalks[2]].weight = 0.0f;
-    this.CharacterAnimation[this.CreepyWalks[3]].layer = 26;
+    this.CharacterAnimation[this.CreepyWalks[3]].layer = 27;
     this.CharacterAnimation.Play(this.CreepyWalks[3]);
     this.CharacterAnimation[this.CreepyWalks[3]].weight = 0.0f;
-    this.CharacterAnimation[this.CreepyWalks[4]].layer = 27;
+    this.CharacterAnimation[this.CreepyWalks[4]].layer = 28;
     this.CharacterAnimation.Play(this.CreepyWalks[4]);
     this.CharacterAnimation[this.CreepyWalks[4]].weight = 0.0f;
-    this.CharacterAnimation[this.CreepyWalks[5]].layer = 28;
+    this.CharacterAnimation[this.CreepyWalks[5]].layer = 29;
     this.CharacterAnimation.Play(this.CreepyWalks[5]);
     this.CharacterAnimation[this.CreepyWalks[5]].weight = 0.0f;
-    this.CharacterAnimation["f02_carryDramatic_00"].layer = 29;
+    this.CharacterAnimation["f02_carryDramatic_00"].layer = 30;
     this.CharacterAnimation.Play("f02_carryDramatic_00");
     this.CharacterAnimation["f02_carryDramatic_00"].weight = 0.0f;
-    this.CharacterAnimation["f02_selfie_00"].layer = 30;
+    this.CharacterAnimation["f02_selfie_00"].layer = 31;
     this.CharacterAnimation.Play("f02_selfie_00");
     this.CharacterAnimation["f02_selfie_00"].weight = 0.0f;
-    this.CharacterAnimation["f02_selfie_01"].layer = 31;
+    this.CharacterAnimation["f02_selfie_01"].layer = 32;
     this.CharacterAnimation.Play("f02_selfie_01");
     this.CharacterAnimation["f02_selfie_01"].weight = 0.0f;
-    this.CharacterAnimation["f02_dramaticWriting_00"].layer = 32;
+    this.CharacterAnimation["f02_dramaticWriting_00"].layer = 33;
     this.CharacterAnimation.Play("f02_dramaticWriting_00");
     this.CharacterAnimation["f02_dramaticWriting_00"].weight = 0.0f;
-    this.CharacterAnimation["f02_reachForWeapon_00"].layer = 33;
+    this.CharacterAnimation["f02_reachForWeapon_00"].layer = 34;
     this.CharacterAnimation.Play("f02_reachForWeapon_00");
     this.CharacterAnimation["f02_reachForWeapon_00"].weight = 0.0f;
     this.CharacterAnimation["f02_reachForWeapon_00"].speed = 2f;
-    this.CharacterAnimation["f02_gutsEye_00"].layer = 34;
+    this.CharacterAnimation["f02_gutsEye_00"].layer = 35;
     this.CharacterAnimation.Play("f02_gutsEye_00");
     this.CharacterAnimation["f02_gutsEye_00"].weight = 0.0f;
-    this.CharacterAnimation["f02_fingerSnap_00"].layer = 35;
+    this.CharacterAnimation["f02_fingerSnap_00"].layer = 36;
     this.CharacterAnimation.Play("f02_fingerSnap_00");
     this.CharacterAnimation["f02_fingerSnap_00"].weight = 0.0f;
-    this.CharacterAnimation["f02_sadEyebrows_00"].layer = 36;
+    this.CharacterAnimation["f02_sadEyebrows_00"].layer = 37;
     this.CharacterAnimation.Play("f02_sadEyebrows_00");
     this.CharacterAnimation["f02_sadEyebrows_00"].weight = 0.0f;
-    this.CharacterAnimation["f02_phonePose_00"].layer = 37;
+    this.CharacterAnimation["f02_phonePose_00"].layer = 38;
     this.CharacterAnimation.Play("f02_phonePose_00");
     this.CharacterAnimation["f02_phonePose_00"].weight = 0.0f;
     this.CharacterAnimation["f02_dipping_00"].speed = 2f;
@@ -1583,6 +1584,8 @@ public class YandereScript : MonoBehaviour
             this.UpdateSelfieStatus();
             this.StudentManager.UpdatePanties(true);
             this.CameraEffects.SmartphoneCamera.depthTextureMode = DepthTextureMode.DepthNormals;
+            if (this.Club == ClubType.Newspaper)
+              this.ClubAccessories[(int) this.Club].transform.localScale = new Vector3(1f, 1f, 0.9f);
           }
         }
         this.PermitLaugh += Time.deltaTime;
@@ -2113,8 +2116,11 @@ public class YandereScript : MonoBehaviour
       if ((double) this.SuspiciousActionTimer > 0.0)
       {
         this.SuspiciousActionTimer = Mathf.MoveTowards(this.SuspiciousActionTimer, 0.0f, Time.deltaTime);
-        this.CreatingTripwireTrap = false;
-        this.CreatingBucketTrap = false;
+        if ((double) this.SuspiciousActionTimer == 0.0)
+        {
+          this.CreatingTripwireTrap = false;
+          this.CreatingBucketTrap = false;
+        }
       }
       if ((double) this.PotentiallyMurderousTimer > 0.0)
       {
@@ -3664,7 +3670,8 @@ public class YandereScript : MonoBehaviour
       return;
     if ((Object) this.PoisonSpot != (Object) null)
     {
-      this.MoveTowardsTarget(this.PoisonSpot.position);
+      if ((double) Vector3.Distance(this.transform.position, this.PoisonSpot.position) > 0.10000000149011612)
+        this.MoveTowardsTarget(this.PoisonSpot.position);
       this.transform.rotation = Quaternion.Slerp(this.transform.rotation, this.PoisonSpot.rotation, Time.deltaTime * 10f);
     }
     else
@@ -3730,6 +3737,11 @@ public class YandereScript : MonoBehaviour
     }
     if (this.NearSenpai && !this.Noticed)
     {
+      if (!this.FilterUpdated)
+      {
+        this.AssignFilters();
+        this.FilterUpdated = true;
+      }
       this.SenpaiFilter.enabled = true;
       this.SenpaiFilter.FadeFX = Mathf.Lerp(this.SenpaiFilter.FadeFX, 1f, Time.deltaTime * 10f);
       this.SenpaiFade = Mathf.Lerp(this.SenpaiFade, 0.0f, Time.deltaTime * 10f);
@@ -3900,6 +3912,7 @@ public class YandereScript : MonoBehaviour
       }
       if ((double) this.YandereFade < 99.0)
       {
+        Debug.Log((object) "Fading Yandere Effects now.");
         if (!this.Aiming)
           Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, Time.unscaledDeltaTime * 10f);
         this.Phone.SetActive(false);
@@ -5003,10 +5016,13 @@ public class YandereScript : MonoBehaviour
     float num1 = 1f;
     if (this.Stance.Current == StanceType.Crouching)
       num1 = 3.66666f;
-    Transform transform1 = this.Arm[0].transform;
-    transform1.localEulerAngles = new Vector3(transform1.localEulerAngles.x, transform1.localEulerAngles.y, transform1.localEulerAngles.z - this.Slouch * (3f + num1));
-    Transform transform2 = this.Arm[1].transform;
-    transform2.localEulerAngles = new Vector3(transform2.localEulerAngles.x, transform2.localEulerAngles.y, transform2.localEulerAngles.z + this.Slouch * (3f + num1));
+    if (!this.Armed || this.Armed && this.EquippedWeapon.Type != WeaponType.Scythe)
+    {
+      Transform transform1 = this.Arm[0].transform;
+      transform1.localEulerAngles = new Vector3(transform1.localEulerAngles.x, transform1.localEulerAngles.y, transform1.localEulerAngles.z - this.Slouch * (3f + num1));
+      Transform transform2 = this.Arm[1].transform;
+      transform2.localEulerAngles = new Vector3(transform2.localEulerAngles.x, transform2.localEulerAngles.y, transform2.localEulerAngles.z + this.Slouch * (3f + num1));
+    }
     if (!this.Aiming)
       this.Head.localEulerAngles += this.Twitch;
     if (this.Aiming)
@@ -5328,9 +5344,11 @@ public class YandereScript : MonoBehaviour
     this.Selfie = false;
     this.Lewd = false;
     this.StudentManager.UpdatePanties(false);
-    if (!OptionGlobals.DepthOfField)
+    if (OptionGlobals.DepthOfField)
+      this.PauseScreen.NewSettings.Profile.depthOfField.enabled = true;
+    if (this.Club != ClubType.Newspaper)
       return;
-    this.PauseScreen.NewSettings.Profile.depthOfField.enabled = true;
+    this.ClubAccessories[(int) this.Club].transform.localScale = new Vector3(1f, 1f, 1f);
   }
 
   public void FixCamera()
@@ -6933,9 +6951,9 @@ public class YandereScript : MonoBehaviour
   public void BullyPhotoCheck()
   {
     Debug.Log((object) "We are now going to perform a bully photo check.");
-    for (int photoID = 1; photoID < 26; ++photoID)
+    for (int index = 1; index < 26; ++index)
     {
-      if (PlayerGlobals.GetPhoto(photoID) && PlayerGlobals.GetBullyPhoto(photoID) > 0)
+      if (this.PauseScreen.PhotoGallery.PhotographTaken[index] && this.PauseScreen.PhotoGallery.BullyPhoto[index] > 0)
       {
         Debug.Log((object) "Yandere-chan has a bully photo in her photo gallery!");
         this.BullyPhoto = true;
@@ -7335,5 +7353,18 @@ public class YandereScript : MonoBehaviour
     this.Dismembering = false;
     this.CanMove = true;
     this.Ragdoll = (GameObject) null;
+  }
+
+  public void AssignFilters()
+  {
+    CameraFilterPack_Colors_Adjust_PreFilters[] components = this.MainCamera.GetComponents<CameraFilterPack_Colors_Adjust_PreFilters>();
+    for (int index = 0; index < 3; ++index)
+    {
+      if (components[index].filterchoice == CameraFilterPack_Colors_Adjust_PreFilters.filters.BlueLagoon)
+        this.YandereFilter = components[index];
+      else if (components[index].filterchoice == CameraFilterPack_Colors_Adjust_PreFilters.filters.PopRocket)
+        this.SenpaiFilter = components[index];
+    }
+    this.HollowFilter = components[3];
   }
 }

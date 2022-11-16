@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: NewMissionWindowScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -41,6 +41,7 @@ public class NewMissionWindowScript : MonoBehaviour
     this.UpdateHighlight();
     for (int index = 1; index < 11; ++index)
     {
+      Debug.Log((object) "Updating portraits in Start() function.");
       this.Portrait[index].mainTexture = this.BlankPortrait;
       this.NameLabel[index].text = "Kill: (Nobody)";
       this.MethodLabel[index].text = "By: Attacking";
@@ -274,6 +275,7 @@ public class NewMissionWindowScript : MonoBehaviour
       this.Target[this.Column + Number] = 0;
     this.NameLabel[this.Column + Number].text = this.Target[this.Column + Number] != 0 ? "Kill: " + this.JSON.Students[this.Target[this.Column + Number]].Name : "Kill: Nobody";
     WWW www = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + this.Target[this.Column + Number].ToString() + ".png");
+    Debug.Log((object) "Updating portraits in Increment() function.");
     if (this.Target[this.Column + Number] > 0)
       this.Portrait[this.Column + Number].mainTexture = (Texture) www.texture;
     else
@@ -301,6 +303,7 @@ public class NewMissionWindowScript : MonoBehaviour
     }
     this.NameLabel[this.Column + Number].text = this.Target[this.Column + Number] != 0 ? "Kill: " + this.JSON.Students[this.Target[this.Column + Number]].Name : "Kill: Nobody";
     WWW www = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + this.Target[this.Column + Number].ToString() + ".png");
+    Debug.Log((object) "Updating portraits in Decrement() function.");
     if (this.Target[this.Column + Number] > 0)
       this.Portrait[this.Column + Number].mainTexture = (Texture) www.texture;
     else
@@ -382,9 +385,17 @@ public class NewMissionWindowScript : MonoBehaviour
       this.ChangeFont(this.MethodLabel[index]);
       this.Target[index] = PlayerPrefs.GetInt("MissionModeTarget" + index.ToString());
       this.Method[index] = PlayerPrefs.GetInt("MissionModeMethod" + index.ToString());
-      this.NameLabel[index].text = this.Target[index] != 0 ? "Kill: " + this.JSON.Students[this.Target[index]].Name : "Kill: Nobody";
       WWW www = new WWW("file:///" + Application.streamingAssetsPath + "/Portraits/Student_" + this.Target[index].ToString() + ".png");
-      this.Portrait[index].mainTexture = (Texture) www.texture;
+      if (this.Target[index] == 0)
+      {
+        this.NameLabel[index].text = "Kill: Nobody";
+        this.Portrait[index].mainTexture = this.BlankPortrait;
+      }
+      else
+      {
+        this.NameLabel[index].text = "Kill: " + this.JSON.Students[this.Target[index]].Name;
+        this.Portrait[index].mainTexture = (Texture) www.texture;
+      }
       this.MethodLabel[index].text = "By: " + this.MethodNames[this.Method[index]];
       this.DeathSkulls[index].SetActive(false);
     }

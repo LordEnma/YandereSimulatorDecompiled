@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RagdollScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -519,16 +519,11 @@ public class RagdollScript : MonoBehaviour
     }
     if (this.Burned)
       this.Sacrifice = (double) Vector3.Distance(this.Prompt.transform.position, this.Yandere.StudentManager.SacrificeSpot.position) < 1.5;
-    if (!this.Concealed || this.AddedOutline || this.ColoredOutline)
+    if (!this.Concealed || this.AddedOutline || this.ColoredOutline || !this.Student.GarbageBag.activeInHierarchy)
       return;
-    Debug.Log((object) "We have not yet confirmed that an outline has been added to a garbage bag.");
-    if (!this.Student.GarbageBag.activeInHierarchy)
-      return;
-    Debug.Log((object) "The garbage bag is definitely active...");
     RiggedAccessoryAttacher component = this.Student.GarbageBag.GetComponent<RiggedAccessoryAttacher>();
     if (!((Object) component != (Object) null) || !((Object) component.newRenderer != (Object) null) || !((Object) component.newRenderer.gameObject.GetComponent<OutlineScript>() != (Object) null))
       return;
-    Debug.Log((object) "Confirming that the outline is orange and enabled.");
     component.newRenderer.gameObject.GetComponent<OutlineScript>().color = new Color(1f, 0.5f, 0.0f);
     component.newRenderer.gameObject.GetComponent<OutlineScript>().enabled = true;
     this.AddedOutline = true;

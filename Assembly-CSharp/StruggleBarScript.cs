@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StruggleBarScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -62,6 +62,9 @@ public class StruggleBarScript : MonoBehaviour
         this.Student.Lost = true;
         this.Struggling = false;
         this.Victory = 0.0f;
+        if (this.Yandere.Chasers <= 0 || !((Object) this.Yandere.Pursuer != (Object) null) || !((Object) this.Yandere.Pursuer == (Object) this.Student))
+          return;
+        --this.Yandere.Chasers;
       }
       else if ((double) this.Victory == -100.0)
       {

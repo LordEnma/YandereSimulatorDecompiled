@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CounselorDoorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -55,8 +55,9 @@ public class CounselorDoorScript : MonoBehaviour
     if (this.FadeOut)
     {
       this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, Mathf.MoveTowards(this.Darkness.color.a, 1f, Time.deltaTime));
-      if ((double) this.Darkness.color.a == 1.0)
+      if ((double) this.Darkness.color.a > 0.89999997615814209)
       {
+        this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 1f);
         if (!this.Exit)
         {
           this.Prompt.Yandere.CharacterAnimation.Play("f02_sit_00");
@@ -73,6 +74,7 @@ public class CounselorDoorScript : MonoBehaviour
           else if (this.Counselor.Eighties)
             this.Counselor.Yandere.RestoreGentleEyes();
           this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 2f);
+          Debug.Log((object) "Darkness.color.a just became 2.");
           this.Counselor.Quit();
           this.FadeOut = false;
           this.FadeIn = true;
@@ -83,8 +85,9 @@ public class CounselorDoorScript : MonoBehaviour
     if (!this.FadeIn)
       return;
     this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime));
-    if ((double) this.Darkness.color.a != 0.0)
+    if ((double) this.Darkness.color.a >= 0.10000000149011612)
       return;
+    this.Darkness.color = new Color(0.0f, 0.0f, 0.0f, 0.0f);
     this.FadeIn = false;
   }
 }

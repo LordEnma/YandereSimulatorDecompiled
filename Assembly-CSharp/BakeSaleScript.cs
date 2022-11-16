@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BakeSaleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -24,7 +24,7 @@ public class BakeSaleScript : MonoBehaviour
       this.Timer += Time.deltaTime;
       if ((double) this.Timer > 60.0 && (Object) this.StudentManager.Students[this.ID] != (Object) null)
       {
-        if (this.StudentManager.Students[this.ID].Routine)
+        if (this.ID < 86 && this.StudentManager.Students[this.ID].Routine && this.StudentManager.Students[this.ID].Indoors)
         {
           Debug.Log((object) (this.StudentManager.Students[this.ID].Name + " has decided to go to the bake sale."));
           this.Timer = 0.0f;

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TalkingScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -415,6 +415,12 @@ public class TalkingScript : MonoBehaviour
               flag5 = true;
             else if ((double) this.S.Reputation.Reputation < (double) (DateGlobals.Week * 10))
             {
+              Debug.Log((object) ("Reputation + PendingRep is: " + (this.S.Reputation.Reputation + this.S.Reputation.PendingRep).ToString()));
+              if ((double) this.S.Reputation.Reputation + (double) this.S.Reputation.PendingRep >= (double) (DateGlobals.Week * 10))
+              {
+                this.S.Yandere.NotificationManager.CustomText = this.S.Clock.Period >= 5 ? "Your rep will update tomorrow." : "Your rep will update after you attend class.";
+                this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+              }
               this.S.Yandere.NotificationManager.CustomText = "You need at least " + (DateGlobals.Week * 10).ToString() + " Reputation Points";
               this.S.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
               flag7 = true;
@@ -1415,7 +1421,7 @@ public class TalkingScript : MonoBehaviour
     else if (this.S.Interaction == StudentInteractionType.SentToLocker)
     {
       bool flag = false;
-      if (this.S.Club == ClubType.Delinquent)
+      if (this.S.Club == ClubType.Delinquent && !this.S.StudentManager.MissionMode)
         flag = true;
       if (this.S.Friend)
         flag = false;

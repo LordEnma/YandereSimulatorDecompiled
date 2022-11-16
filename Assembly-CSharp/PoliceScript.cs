@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: PoliceScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -451,7 +451,7 @@ public class PoliceScript : MonoBehaviour
       for (int index = 0; index < 5; ++index)
         this.ResultsLabels[index].text = string.Empty;
     }
-    else if (this.Yandere.ShoulderCamera.GoingToCounselor)
+    else if (this.Yandere.ShoulderCamera.GoingToCounselor && !this.EndOfDay.Counselor.Expelled)
     {
       if (this.Yandere.Police.Corpses - this.Yandere.Police.HiddenCorpses > 0)
       {

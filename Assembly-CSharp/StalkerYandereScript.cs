@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StalkerYandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Bayat.SaveSystem;
@@ -12,6 +12,7 @@ using UnityEngine.PostProcessing;
 public class StalkerYandereScript : MonoBehaviour
 {
   public StalkerPromptScript StalkerDoorPrompt;
+  public UniformSetterScript UniformSetter;
   public CharacterController MyController;
   public PostProcessingProfile Profile;
   public AutoSaveManager SaveManager;
@@ -99,7 +100,15 @@ public class StalkerYandereScript : MonoBehaviour
       this.RyobaHair.SetActive(false);
     if (GameGlobals.Eighties && (UnityEngine.Object) this.EightiesAttacher != (UnityEngine.Object) null)
     {
-      this.EightiesAttacher.SetActive(true);
+      if (HomeGlobals.Night)
+      {
+        this.EightiesAttacher.SetActive(true);
+      }
+      else
+      {
+        Debug.Log((object) "Daytime. Staying in school uniform...");
+        this.UniformSetter.enabled = true;
+      }
       this.MyRenderer.sharedMesh = this.HeadOnlyMesh;
       this.PonytailRenderer.gameObject.SetActive(false);
       this.RyobaHair.SetActive(true);
@@ -127,8 +136,16 @@ public class StalkerYandereScript : MonoBehaviour
       }
       if ((UnityEngine.Object) this.ClothingAttacher != (UnityEngine.Object) null && !this.Initialized)
       {
-        this.ClothingAttacher.SetActive(true);
-        this.MyRenderer.gameObject.SetActive(false);
+        if (HomeGlobals.Night)
+        {
+          this.ClothingAttacher.SetActive(true);
+          this.MyRenderer.gameObject.SetActive(false);
+        }
+        else
+        {
+          Debug.Log((object) "Daytime. Staying in school uniform...");
+          this.UniformSetter.enabled = true;
+        }
         this.Initialized = true;
       }
       this.UpdatePebbles();

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MissionModeScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -404,25 +404,25 @@ public class MissionModeScript : MonoBehaviour
   {
     if (this.Phase == 1)
     {
-      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime / 3f));
-      if ((double) this.Darkness.color.a == 0.0)
+      this.Darkness.color = new Color(this.Darkness.color.r, this.Darkness.color.g, this.Darkness.color.b, Mathf.MoveTowards(this.Darkness.color.a, 0.0f, Time.deltaTime / 1f));
+      if ((double) this.Darkness.color.a != 0.0)
+        return;
+      this.Speed += Time.deltaTime / 3f;
+      this.MainCamera.transform.position = new Vector3(this.MainCamera.transform.position.x, Mathf.Lerp(this.MainCamera.transform.position.y, this.TargetHeight, Time.deltaTime * this.Speed), this.MainCamera.transform.position.z);
+      if ((double) this.MainCamera.transform.position.y < (double) this.TargetHeight + 0.10000000149011612)
       {
-        this.Speed += Time.deltaTime / 3f;
-        this.MainCamera.transform.position = new Vector3(this.MainCamera.transform.position.x, Mathf.Lerp(this.MainCamera.transform.position.y, this.TargetHeight, Time.deltaTime * this.Speed), this.MainCamera.transform.position.z);
-        if ((double) this.MainCamera.transform.position.y < (double) this.TargetHeight + 0.10000000149011612)
+        this.Yandere.HUD.alpha = Mathf.MoveTowards(this.Yandere.HUD.alpha, 1f, Time.deltaTime / 3f);
+        if ((double) this.Yandere.HUD.alpha == 1.0)
         {
-          this.Yandere.HUD.alpha = Mathf.MoveTowards(this.Yandere.HUD.alpha, 1f, Time.deltaTime / 3f);
-          if ((double) this.Yandere.HUD.alpha == 1.0)
-          {
-            this.Yandere.RPGCamera.enabled = true;
-            this.HeartbeatCamera.SetActive(true);
-            this.Yandere.CanMove = true;
-            ++this.Phase;
-          }
+          this.Yandere.RPGCamera.enabled = true;
+          this.HeartbeatCamera.SetActive(true);
+          this.Yandere.CanMove = true;
+          ++this.Phase;
         }
       }
       if (!Input.GetButtonDown("A"))
         return;
+      Debug.Log((object) "Player skipped Misson Mode intro sequence.");
       this.MainCamera.transform.position = new Vector3(this.MainCamera.transform.position.x, this.TargetHeight, this.MainCamera.transform.position.z);
       this.Yandere.RPGCamera.enabled = true;
       this.HeartbeatCamera.SetActive(true);

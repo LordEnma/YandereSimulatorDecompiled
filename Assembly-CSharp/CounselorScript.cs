@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: CounselorScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -1135,6 +1135,11 @@ public class CounselorScript : MonoBehaviour
         this.CounselorSubtitle.text = "";
         this.MyAudio.clip = this.Countdown;
         this.MyAudio.Play();
+        this.PromptBar.Label[0].text = "Accept";
+        this.PromptBar.Label[4].text = "Choose";
+        this.PromptBar.Label[5].text = "Choose";
+        this.PromptBar.UpdateButtons();
+        this.PromptBar.Show = true;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         this.Yandere.CameraEffects.UpdateDOF(0.4f);
@@ -1186,6 +1191,7 @@ public class CounselorScript : MonoBehaviour
           ++this.InterrogationPhase;
           this.Answer = index1;
           this.Timer = 0.0f;
+          this.PromptBar.ClearButtons();
         }
       }
       if ((double) this.Timer > 10.0)
@@ -1196,6 +1202,7 @@ public class CounselorScript : MonoBehaviour
         this.SilentTreatment = true;
         ++this.InterrogationPhase;
         this.Timer = 0.0f;
+        this.PromptBar.ClearButtons();
       }
     }
     else if (this.InterrogationPhase == 5)

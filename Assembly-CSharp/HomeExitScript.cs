@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: HomeExitScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -62,8 +62,10 @@ public class HomeExitScript : MonoBehaviour
         this.ID = 4;
       this.Highlight.localPosition = new Vector3(this.Highlight.localPosition.x, (float) (50.0 - (double) this.ID * 50.0), this.Highlight.localPosition.z);
     }
-    if (Input.GetButtonDown("A") && (double) this.Labels[this.ID].color.a == 1.0)
+    if (Input.GetButtonDown("A"))
     {
+      if ((double) this.Labels[this.ID].color.a != 1.0)
+        return;
       if (this.ID == 1)
       {
         this.HomeBringItem.HomeWindow.Show = true;
@@ -82,13 +84,16 @@ public class HomeExitScript : MonoBehaviour
         this.enabled = false;
       }
     }
-    if (!Input.GetButtonDown("B"))
-      return;
-    this.HomeCamera.Destination = this.HomeCamera.Destinations[0];
-    this.HomeCamera.Target = this.HomeCamera.Targets[0];
-    this.HomeYandere.CanMove = true;
-    this.HomeWindow.Show = false;
-    this.enabled = false;
+    else
+    {
+      if (!Input.GetButtonDown("B"))
+        return;
+      this.HomeCamera.Destination = this.HomeCamera.Destinations[0];
+      this.HomeCamera.Target = this.HomeCamera.Targets[0];
+      this.HomeYandere.CanMove = true;
+      this.HomeWindow.Show = false;
+      this.enabled = false;
+    }
   }
 
   public void GoToSchool()

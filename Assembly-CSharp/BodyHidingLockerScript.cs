@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: BodyHidingLockerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -92,6 +92,8 @@ public class BodyHidingLockerScript : MonoBehaviour
         }
         this.Corpse.Student.CharacterAnimation.enabled = true;
         this.Corpse.Student.CharacterAnimation.Play("f02_lockerPose_00");
+        if (this.Corpse.Decapitated)
+          this.Corpse.Head.transform.localScale = Vector3.zero;
         this.Rotation = -180f;
         this.Outline.color = new Color(1f, 0.5f, 0.0f, 1f);
       }
@@ -131,6 +133,14 @@ public class BodyHidingLockerScript : MonoBehaviour
       this.Outline.color = new Color(0.0f, 1f, 1f, 1f);
       this.StudentID = 0;
     }
+  }
+
+  public void LateUpdate()
+  {
+    if ((double) this.Rotation == 0.0 || !((Object) this.Corpse != (Object) null) || !this.Corpse.Decapitated)
+      return;
+    Debug.Log((object) "Trying to shrink Corpse head?");
+    this.Corpse.Head.transform.localScale = Vector3.zero;
   }
 
   public void UpdateCorpse()

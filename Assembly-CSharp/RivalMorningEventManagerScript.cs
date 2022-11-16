@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: RivalMorningEventManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -28,6 +28,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
   public GameObject VoiceClip;
   public AudioSource VoiceClipSource;
   public bool NaturalEnd;
+  public bool Listening;
   public bool HintGiven;
   public bool Transfer;
   public bool End;
@@ -42,6 +43,7 @@ public class RivalMorningEventManagerScript : MonoBehaviour
   public int Phase;
   public int Frame;
   public string Weekday = string.Empty;
+  public float AnimationTime;
 
   private void Start()
   {
@@ -145,6 +147,21 @@ public class RivalMorningEventManagerScript : MonoBehaviour
     }
     else
     {
+      if ((double) this.AnimationTime > 0.0)
+      {
+        Debug.Log((object) "Attempting to restore animation.");
+        this.Rival.CharacterAnimation.Play("f02_" + this.Weekday + "_1");
+        this.Senpai.CharacterAnimation.Play(this.Weekday + "_1");
+        this.Rival.CharacterAnimation["f02_" + this.Weekday + "_1"].time = this.AnimationTime;
+        this.Senpai.CharacterAnimation[this.Weekday + "_1"].time = this.AnimationTime;
+        if ((UnityEngine.Object) this.VoiceClipSource != (UnityEngine.Object) null)
+        {
+          this.VoiceClipSource.time = this.AnimationTime;
+          this.AnimationTime = 0.0f;
+        }
+        else
+          AudioClipPlayer.Play(this.SpeechClip, this.Epicenter.position + Vector3.up * 1.5f, 5f, 10f, out this.VoiceClip, this.Yandere.transform.position.y);
+      }
       this.Timer += Time.deltaTime;
       if ((double) this.Timer > 1.0 && !this.HintGiven)
       {
@@ -196,30 +213,39 @@ public class RivalMorningEventManagerScript : MonoBehaviour
       }
       if (!this.Yandere.NoDebug && Input.GetKeyDown(KeyCode.LeftControl))
         this.EndEvent();
-      this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Epicenter.position);
-      if (this.enabled)
+      if ((double) this.Yandere.transform.position.z < -50.0)
       {
-        if ((double) this.Distance - 4.0 < 15.0)
+        this.Listening = true;
+        this.Distance = Vector3.Distance(this.Yandere.transform.position, this.Epicenter.position);
+        if (this.enabled)
         {
-          this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 4.0) / 15.0));
-          if ((double) this.Scale < 0.0)
-            this.Scale = 0.0f;
-          if ((double) this.Scale > 1.0)
-            this.Scale = 1f;
-          if (this.enabled)
-            this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
-          this.EventSubtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
-          if ((UnityEngine.Object) this.VoiceClipSource != (UnityEngine.Object) null)
-            this.VoiceClipSource.volume = this.Scale;
-          this.Yandere.Eavesdropping = (double) this.Distance < 3.0;
+          if ((double) this.Distance - 4.0 < 15.0)
+          {
+            this.Scale = Mathf.Abs((float) (1.0 - ((double) this.Distance - 4.0) / 15.0));
+            if ((double) this.Scale < 0.0)
+              this.Scale = 0.0f;
+            if ((double) this.Scale > 1.0)
+              this.Scale = 1f;
+            if (this.enabled)
+              this.Jukebox.Dip = (float) (1.0 - 0.5 * (double) this.Scale);
+            this.EventSubtitle.transform.localScale = new Vector3(this.Scale, this.Scale, this.Scale);
+            if ((UnityEngine.Object) this.VoiceClipSource != (UnityEngine.Object) null)
+              this.VoiceClipSource.volume = this.Scale;
+            this.Yandere.Eavesdropping = (double) this.Distance < 3.0;
+          }
+          else
+          {
+            if ((double) this.Distance - 4.0 < 16.0)
+              this.EventSubtitle.transform.localScale = Vector3.zero;
+            if ((UnityEngine.Object) this.VoiceClipSource != (UnityEngine.Object) null)
+              this.VoiceClipSource.volume = 0.0f;
+          }
         }
-        else
-        {
-          if ((double) this.Distance - 4.0 < 16.0)
-            this.EventSubtitle.transform.localScale = Vector3.zero;
-          if ((UnityEngine.Object) this.VoiceClipSource != (UnityEngine.Object) null)
-            this.VoiceClipSource.volume = 0.0f;
-        }
+      }
+      else if (this.Listening)
+      {
+        this.EventSubtitle.transform.localScale = Vector3.zero;
+        this.Listening = false;
       }
     }
     if (!this.End)
@@ -300,5 +326,13 @@ public class RivalMorningEventManagerScript : MonoBehaviour
     this.EventSubtitle.text = string.Empty;
     this.enabled = false;
     this.Jukebox.Dip = 1f;
+  }
+
+  public void SaveAnimationTime()
+  {
+    if (this.Phase <= 1 || !this.enabled)
+      return;
+    this.AnimationTime = this.Rival.CharacterAnimation["f02_" + this.Weekday + "_1"].time;
+    Debug.Log((object) ("AnimationTime was: " + this.AnimationTime.ToString()));
   }
 }

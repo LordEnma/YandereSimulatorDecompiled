@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WorkbenchScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -547,7 +547,7 @@ public class WorkbenchScript : MonoBehaviour
       {
         this.Label[7].color = new Color(0.0f, 0.0f, 0.0f, 1f);
         this.Label[9].color = new Color(0.0f, 0.0f, 0.0f, 1f);
-        this.Outcome = "five bang snaps";
+        this.Outcome = "twenty bang snaps";
         this.OutcomeID = 3;
       }
       else if (this.Material[1] == 6 || this.Material[1] == 11)

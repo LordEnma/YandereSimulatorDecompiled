@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FC2C470E-94FE-4EB3-81FC-E91032F083D7}</ProjectGuid>
+    <ProjectGuid>{189FE350-7922-4A5D-8BBC-59DD73A749B7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <ApplicationVersion>0.0.0.0</ApplicationVersion>
@@ -781,6 +781,7 @@
     <Compile Include="DumpScript.cs" />
     <Compile Include="DumpsterHandleScript.cs" />
     <Compile Include="DumpsterLidScript.cs" />
+    <Compile Include="DuplicateFootprintDetectorScript.cs" />
     <Compile Include="GameController.cs" />
     <Compile Include="DynamicBone.cs" />
     <Compile Include="DynamicBoneCollider.cs" />

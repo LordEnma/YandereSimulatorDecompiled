@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TaskManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -129,9 +129,9 @@ public class TaskManagerScript : MonoBehaviour
       {
         if (this.StudentManager.Students[28].TaskPhase == 0)
           this.StudentManager.Students[28].TaskPhase = 4;
-        for (int photoID = 1; photoID < 26; ++photoID)
+        for (int index = 1; index < 26; ++index)
         {
-          if (TaskGlobals.GetKittenPhoto(photoID))
+          if (this.Yandere.PauseScreen.PhotoGallery.KittenPhoto[index])
           {
             Debug.Log((object) "Riku's Task can be turned in.");
             this.StudentManager.Students[28].TaskPhase = 5;
@@ -239,9 +239,9 @@ public class TaskManagerScript : MonoBehaviour
       else if (this.TaskStatus[52] == 1 && (Object) this.StudentManager.Students[52] != (Object) null)
       {
         this.StudentManager.Students[52].TaskPhase = 4;
-        for (int photoID = 1; photoID < 52; ++photoID)
+        for (int index = 1; index < 52; ++index)
         {
-          if (TaskGlobals.GetGuitarPhoto(photoID))
+          if (this.Yandere.PauseScreen.PhotoGallery.GuitarPhoto[index])
             this.StudentManager.Students[52].TaskPhase = 5;
         }
       }
@@ -249,9 +249,9 @@ public class TaskManagerScript : MonoBehaviour
         return;
       if (this.StudentManager.Students[81].TaskPhase == 0)
         this.StudentManager.Students[81].TaskPhase = 4;
-      for (int photoID = 1; photoID < 26; ++photoID)
+      for (int index = 1; index < 26; ++index)
       {
-        if (TaskGlobals.GetHorudaPhoto(photoID))
+        if (this.Yandere.PauseScreen.PhotoGallery.HorudaPhoto[index])
         {
           Debug.Log((object) "Musume's Task can be turned in.");
           this.StudentManager.Students[81].TaskPhase = 5;

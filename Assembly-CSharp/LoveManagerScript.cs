@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: LoveManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -26,6 +26,7 @@ public class LoveManagerScript : MonoBehaviour
   public int ID;
   public int SuitorID = 28;
   public int RivalID = 30;
+  public float ProximityWarningTimer;
   public float AngleLimit;
   public bool WaitingToConfess;
   public bool ConfessToSuitor;
@@ -121,6 +122,13 @@ public class LoveManagerScript : MonoBehaviour
       {
         this.WaitingToConfess = true;
         float num = Vector3.Distance(this.Yandere.transform.position, this.MythHill.position);
+        this.ProximityWarningTimer = Mathf.MoveTowards(this.ProximityWarningTimer, 0.0f, Time.deltaTime);
+        if ((double) this.ProximityWarningTimer == 0.0)
+        {
+          this.Yandere.NotificationManager.CustomText = (double) num >= 10.0 ? "Approach the tree to watch the confession." : "Back away from the tree to watch the confession.";
+          this.Yandere.NotificationManager.DisplayNotification(NotificationType.Custom);
+          this.ProximityWarningTimer = 5f;
+        }
         if (this.WaitingToConfess && !this.Yandere.Chased && this.Yandere.Chasers == 0 && !this.Yandere.Noticed && (double) num > 10.0 && (double) num < 25.0)
           this.BeginConfession();
       }

@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
@@ -433,6 +433,7 @@ public class StudentManagerScript : MonoBehaviour
   public AudioClip SwingingDoorShut;
   public PickUpScript[] AllPickUps;
   public int PickUpID;
+  public RadioScript Radio;
   public bool SeatOccupied;
   public int Class = 1;
   public int Thins;
@@ -823,9 +824,9 @@ public class StudentManagerScript : MonoBehaviour
       Debug.Log((object) ("And now it is: " + this.StudentReps[this.RivalID].ToString()));
     }
     this.LoadTopicsLearned();
-    if (!((UnityEngine.Object) this.Police != (UnityEngine.Object) null))
-      return;
-    this.Police.EndOfDay.VoidGoddess.Window.parent.gameObject.SetActive(false);
+    if ((UnityEngine.Object) this.Police != (UnityEngine.Object) null)
+      this.Police.EndOfDay.VoidGoddess.Window.parent.gameObject.SetActive(false);
+    this.Yandere.PauseScreen.PhotoGallery.Start();
   }
 
   public void SetAtmosphere()
@@ -963,7 +964,7 @@ public class StudentManagerScript : MonoBehaviour
           {
             if (!this.MissionMode && !GameGlobals.AlphabetMode)
             {
-              if (this.Week == 1)
+              if (this.Week == 1 && (UnityEngine.Object) this.Students[this.RivalID] != (UnityEngine.Object) null)
                 this.Week1RoutineAdjustments();
               if (this.Week == 2)
               {
@@ -1120,7 +1121,29 @@ public class StudentManagerScript : MonoBehaviour
                   Debug.Log((object) (student.Name + " was not wearing their school uniform when the save was made, so we're manually changing their clothing now."));
                   student.ChangeSchoolwear();
                 }
+                if (student.Actions[student.Phase] == StudentActionType.ClubAction && student.Club == ClubType.Cooking && student.ClubActivityPhase > 0)
+                {
+                  student.MyPlate.parent = student.RightHand;
+                  student.MyPlate.localPosition = new Vector3(0.02f, -0.02f, -0.15f);
+                  student.MyPlate.localEulerAngles = new Vector3(-5f, -90f, 172.5f);
+                  student.IdleAnim = student.PlateIdleAnim;
+                  student.WalkAnim = student.PlateWalkAnim;
+                  student.LeanAnim = student.PlateIdleAnim;
+                  student.Attempts = 0;
+                  --student.SleuthID;
+                  Debug.Log((object) ("Loading save. Instructing " + student.Name + " to GetFoodTarget()."));
+                  student.GetFoodTarget();
+                  student.ClubTimer = 0.0f;
+                }
               }
+            }
+            if (StudentGlobals.MemorialStudents > 0)
+            {
+              Debug.Log((object) "We loaded a save, and had a memorial before the save was loaded. Restoring the memorial scene.");
+              this.MemorialScene.gameObject.SetActive(true);
+              this.MemorialScene.Start();
+              this.MemorialScene.Headmaster.SetActive(false);
+              this.MemorialScene.Counselor.SetActive(false);
             }
           }
           foreach (StudentScript student in this.Students)
@@ -1132,7 +1155,7 @@ public class StudentManagerScript : MonoBehaviour
             }
           }
           this.Eighties = GameGlobals.Eighties;
-          if (!this.Eighties && (UnityEngine.Object) this.Students[this.RivalID] != (UnityEngine.Object) null && this.Students[this.RivalID].Indoors)
+          if (!GameGlobals.AlphabetMode && !this.Eighties && (UnityEngine.Object) this.Students[this.RivalID] != (UnityEngine.Object) null && this.Students[this.RivalID].Indoors)
             this.UpdateExteriorStudents();
           if (this.Eighties && !this.RivalEliminated)
           {
@@ -1157,6 +1180,7 @@ public class StudentManagerScript : MonoBehaviour
             Screen.SetResolution(1280, 720, false);
           this.LookAtTest();
           this.Yandere.EmptyHands();
+          this.Yandere.FilterUpdated = false;
         }
       }
       if ((double) this.Clock.HourTime > 16.9)
@@ -1270,6 +1294,9 @@ public class StudentManagerScript : MonoBehaviour
               witness.Routine = false;
               witness.Fleeing = true;
               witness.AlarmTimer = 0.0f;
+              witness.LowPoly.MyMesh.enabled = false;
+              witness.MyRenderer.enabled = true;
+              witness.LowPoly.enabled = false;
               witness.SmartPhone.SetActive(false);
               witness.Safe = true;
               witness.Prompt.Hide();
@@ -2106,6 +2133,7 @@ public class StudentManagerScript : MonoBehaviour
 
   public void StopMoving()
   {
+    this.Radio.TurnOff();
     this.CombatMinigame.enabled = false;
     this.Stop = true;
     if (this.GameOverIminent)
@@ -3066,6 +3094,8 @@ public class StudentManagerScript : MonoBehaviour
     this.PuddleParent.RecordAllPuddles();
     this.GenericRivalBag.RememberBentoStatus();
     this.SpawnedObjectManager.RememberObjects();
+    foreach (RivalMorningEventManagerScript morningEvent in this.Yandere.Class.Portal.MorningEvents)
+      morningEvent.SaveAnimationTime();
     YanSave.SaveData("Profile_" + profile.ToString() + "_Slot_" + num.ToString());
     PlayerPrefs.SetInt("Profile_" + profile.ToString() + "_Slot_" + num.ToString() + "_MemorialStudents", StudentGlobals.MemorialStudents);
     Debug.Log((object) ("At the time of saving, StudentManager's GloveID was: " + this.GloveID.ToString()));
@@ -3202,14 +3232,8 @@ public class StudentManagerScript : MonoBehaviour
           }
           if (this.Students[this.ID].Actions[this.Students[this.ID].Phase] == StudentActionType.ClubAction && this.Students[this.ID].Club == ClubType.Cooking && this.Students[this.ID].ClubActivityPhase > 0)
           {
-            this.Students[this.ID].MyPlate.parent = this.Students[this.ID].RightHand;
-            this.Students[this.ID].MyPlate.localPosition = new Vector3(0.02f, -0.02f, -0.15f);
-            this.Students[this.ID].MyPlate.localEulerAngles = new Vector3(-5f, -90f, 172.5f);
-            this.Students[this.ID].IdleAnim = this.Students[this.ID].PlateIdleAnim;
-            this.Students[this.ID].WalkAnim = this.Students[this.ID].PlateWalkAnim;
-            this.Students[this.ID].LeanAnim = this.Students[this.ID].PlateIdleAnim;
-            this.Students[this.ID].GetFoodTarget();
-            this.Students[this.ID].ClubTimer = 0.0f;
+            Debug.Log((object) ("Upon loading, " + this.Students[this.ID].Name + "'s FoodTarget was Student #" + this.Students[this.ID].SleuthID.ToString() + " : " + this.Students[this.Students[this.ID].SleuthID].Name + "."));
+            this.Students[this.Students[this.ID].SleuthID].TargetedForDistraction = false;
           }
           else if (this.Students[this.ID].Phase > 1)
             --this.Students[this.ID].Phase;
@@ -4147,22 +4171,23 @@ public class StudentManagerScript : MonoBehaviour
     this.Hangouts.List[ID] = this.Students[19].transform;
     this.scheduleBlock = this.Students[ID].ScheduleBlocks[2];
     this.scheduleBlock.destination = "Hangout";
-    this.scheduleBlock.action = "Socialize";
+    this.scheduleBlock.action = "Admire";
     if (ID > 1)
     {
       this.scheduleBlock = this.Students[ID].ScheduleBlocks[4];
       this.scheduleBlock.destination = "Hangout";
-      this.scheduleBlock.action = "Socialize";
+      this.scheduleBlock.action = "Admire";
     }
     this.scheduleBlock = this.Students[ID].ScheduleBlocks[6];
     this.scheduleBlock.destination = "Hangout";
-    this.scheduleBlock.action = "Socialize";
+    this.scheduleBlock.action = "Admire";
     this.scheduleBlock = this.Students[ID].ScheduleBlocks[7];
     this.scheduleBlock.destination = "Hangout";
-    this.scheduleBlock.action = "Socialize";
+    this.scheduleBlock.action = "Admire";
     this.Students[ID].GetDestinations();
     this.Students[ID].Infatuated = true;
     this.Students[ID].InfatuationID = 19;
+    this.Students[ID].AdmireAnim = this.Students[ID].AdmireAnims[UnityEngine.Random.Range(0, 3)];
   }
 
   public void SunbatheAllDay(int ID)

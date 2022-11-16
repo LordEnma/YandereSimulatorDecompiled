@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -127,22 +127,29 @@ public class WeaponScript : MonoBehaviour
 
   public string GetTypePrefix()
   {
-    if (this.Type == WeaponType.Knife)
-      return "knife";
-    if (this.Type == WeaponType.Katana)
-      return "katana";
-    if (this.Type == WeaponType.Bat)
-      return "bat";
-    if (this.Type == WeaponType.Saw)
-      return "saw";
-    if (this.Type == WeaponType.Syringe)
-      return "syringe";
-    if (this.Type == WeaponType.Weight)
-      return "weight";
-    if (this.Type == WeaponType.Garrote)
-      return "syringe";
-    Debug.LogError((object) ("Weapon type \"" + this.Type.ToString() + "\" not implemented."));
-    return string.Empty;
+    Debug.Log((object) ("WeaponType is: " + this.Type.ToString()));
+    switch (this.Type)
+    {
+      case WeaponType.Knife:
+        return "knife";
+      case WeaponType.Katana:
+        return "katana";
+      case WeaponType.Bat:
+        return "bat";
+      case WeaponType.Saw:
+        return "saw";
+      case WeaponType.Syringe:
+        return "syringe";
+      case WeaponType.Weight:
+        return "weight";
+      case WeaponType.Scythe:
+        return "scythe";
+      case WeaponType.Garrote:
+        return "syringe";
+      default:
+        Debug.LogError((object) ("Weapon type \"" + this.Type.ToString() + "\" not implemented."));
+        return string.Empty;
+    }
   }
 
   public AudioClip GetClip(float sanity, bool stealth)
@@ -208,8 +215,22 @@ public class WeaponScript : MonoBehaviour
       {
         if (this.Type == WeaponType.Knife)
           this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, Mathf.Lerp(this.transform.localEulerAngles.y, this.Flip ? 180f : 0.0f, Time.deltaTime * 10f), this.transform.localEulerAngles.z);
-        else if (this.Type == WeaponType.Saw && this.Spin)
-          this.Blade.transform.localEulerAngles = new Vector3(this.Blade.transform.localEulerAngles.x + Time.deltaTime * 360f, this.Blade.transform.localEulerAngles.y, this.Blade.transform.localEulerAngles.z);
+        else if (this.Type == WeaponType.Saw)
+        {
+          if (this.Spin)
+            this.Blade.transform.localEulerAngles = new Vector3(this.Blade.transform.localEulerAngles.x + Time.deltaTime * 360f, this.Blade.transform.localEulerAngles.y, this.Blade.transform.localEulerAngles.z);
+        }
+        else if (this.Type == WeaponType.Scythe)
+        {
+          if (this.Yandere.AttackManager.Stealth)
+            this.MyRenderer.transform.localEulerAngles = new Vector3(11.5f, 8f, 90f);
+          else if (this.Yandere.SanityType == SanityType.High)
+            this.MyRenderer.transform.localEulerAngles = new Vector3(5f, 15f, 180f);
+          else if (this.Yandere.SanityType == SanityType.Medium)
+            this.MyRenderer.transform.localEulerAngles = new Vector3(-1f, 13f, -135f);
+          else if (this.Yandere.SanityType == SanityType.Low)
+            this.MyRenderer.transform.localEulerAngles = new Vector3(8f, 14f, 150f);
+        }
       }
     }
     else if (!this.MyRigidbody.isKinematic)
@@ -427,7 +448,6 @@ public class WeaponScript : MonoBehaviour
       SchemeGlobals.SetSchemeStage(4, 1);
       this.Yandere.PauseScreen.Schemes.UpdateInstructions();
     }
-    Debug.Log((object) ("A " + this.gameObject.name + " has just been dropped."));
     if (this.WeaponID == 11)
     {
       this.Yandere.IdleAnim = "CyborgNinja_Idle_Unarmed";

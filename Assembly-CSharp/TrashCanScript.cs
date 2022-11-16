@@ -1,7 +1,7 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TrashCanScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 6DC2A12D-6390-4505-844F-2E3192236485
+// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
 // Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
@@ -177,7 +177,6 @@ public class TrashCanScript : MonoBehaviour
 
   public void RemoveContents()
   {
-    Debug.Log((object) "The object that was in this container has been removed.");
     this.Prompt.Circle[0].fillAmount = 1f;
     this.Item.GetComponent<PromptScript>().Circle[3].fillAmount = -1f;
     this.Item.GetComponent<PromptScript>().enabled = true;
