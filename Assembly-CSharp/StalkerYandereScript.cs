@@ -1,11 +1,12 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StalkerYandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Bayat.SaveSystem;
 using HighlightingSystem;
+using System;
 using UnityEngine;
 using UnityEngine.PostProcessing;
 
@@ -100,13 +101,13 @@ public class StalkerYandereScript : MonoBehaviour
       this.RyobaHair.SetActive(false);
     if (GameGlobals.Eighties && (UnityEngine.Object) this.EightiesAttacher != (UnityEngine.Object) null)
     {
-      if (HomeGlobals.Night)
+      if (HomeGlobals.Night || DateGlobals.Weekday != DayOfWeek.Sunday || DateGlobals.Weekday != DayOfWeek.Saturday)
       {
         this.EightiesAttacher.SetActive(true);
       }
       else
       {
-        Debug.Log((object) "Daytime. Staying in school uniform...");
+        Debug.Log((object) "Daytime or weekend. Staying in school uniform.");
         this.UniformSetter.enabled = true;
       }
       this.MyRenderer.sharedMesh = this.HeadOnlyMesh;
@@ -114,7 +115,7 @@ public class StalkerYandereScript : MonoBehaviour
       this.RyobaHair.SetActive(true);
       this.MyRenderer.SetBlendShapeWeight(0, 50f);
       this.MyRenderer.SetBlendShapeWeight(5, 25f);
-      this.MyRenderer.SetBlendShapeWeight(9, 0.0f);
+      this.MyRenderer.SetBlendShapeWeight(8, 0.0f);
       this.MyRenderer.SetBlendShapeWeight(12, 100f);
       this.IdleAnim = "f02_ryobaIdle_00";
       this.WalkAnim = "f02_ryobaWalk_00";
@@ -136,14 +137,15 @@ public class StalkerYandereScript : MonoBehaviour
       }
       if ((UnityEngine.Object) this.ClothingAttacher != (UnityEngine.Object) null && !this.Initialized)
       {
-        if (HomeGlobals.Night)
+        if (HomeGlobals.Night || DateGlobals.Weekday != DayOfWeek.Sunday || DateGlobals.Weekday != DayOfWeek.Saturday)
         {
           this.ClothingAttacher.SetActive(true);
           this.MyRenderer.gameObject.SetActive(false);
         }
         else
         {
-          Debug.Log((object) "Daytime. Staying in school uniform...");
+          Debug.Log((object) "Daytime or weekend. Staying in school uniform.");
+          this.UniformSetter.Ryoba = false;
           this.UniformSetter.enabled = true;
         }
         this.Initialized = true;
@@ -192,7 +194,7 @@ public class StalkerYandereScript : MonoBehaviour
       this.MyRenderer = this.EightiesAttacher.GetComponent<RiggedAccessoryAttacher>().newRenderer;
       this.MyRenderer.SetBlendShapeWeight(0, 50f);
       this.MyRenderer.SetBlendShapeWeight(5, 25f);
-      this.MyRenderer.SetBlendShapeWeight(9, 0.0f);
+      this.MyRenderer.SetBlendShapeWeight(8, 0.0f);
       this.MyRenderer.SetBlendShapeWeight(12, 100f);
       this.UpdateBlendshapes = false;
     }

@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MissionModeScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -23,10 +23,12 @@ public class MissionModeScript : MonoBehaviour
   public WoodChipperScript WoodChipper;
   public AlphabetScript AlphabetArrow;
   public ReputationScript Reputation;
+  public WoodChipperScript AcidVat;
   public GrayscaleEffect Grayscale;
   public PromptBarScript PromptBar;
   public BoundaryScript Boundary;
   public JukeboxScript Jukebox;
+  public ManholeScript Manhole;
   public YandereScript Yandere;
   public PoliceScript Police;
   public ClockScript Clock;
@@ -422,7 +424,7 @@ public class MissionModeScript : MonoBehaviour
       }
       if (!Input.GetButtonDown("A"))
         return;
-      Debug.Log((object) "Player skipped Misson Mode intro sequence.");
+      Debug.Log((object) "The player skipped the Misson Mode intro sequence.");
       this.MainCamera.transform.position = new Vector3(this.MainCamera.transform.position.x, this.TargetHeight, this.MainCamera.transform.position.z);
       this.Yandere.RPGCamera.enabled = true;
       this.HeartbeatCamera.SetActive(true);
@@ -594,6 +596,7 @@ public class MissionModeScript : MonoBehaviour
       {
         if (this.Yandere.Schoolwear != this.RequiredClothingID)
         {
+          Debug.Log((object) ("RequiredClothingID was: " + this.RequiredClothingID.ToString() + " and player's Schoolwear was: " + this.Yandere.Schoolwear.ToString()));
           this.Chastise = true;
           this.GameOverID = 3;
           this.GameOver();
@@ -626,6 +629,16 @@ public class MissionModeScript : MonoBehaviour
         {
           if (this.GardenHoles[this.ID].VictimID == this.TargetID && !this.GardenHoles[this.ID].enabled)
             this.DisposalMethod = 3;
+        }
+        for (this.ID = 1; this.ID < this.AcidVat.Victims + 1; ++this.ID)
+        {
+          if (this.AcidVat.VictimList[this.ID] == this.TargetID)
+            this.DisposalMethod = 4;
+        }
+        for (this.ID = 1; this.ID < this.Manhole.Victims + 1; ++this.ID)
+        {
+          if (this.Manhole.VictimList[this.ID] == this.TargetID)
+            this.DisposalMethod = 5;
         }
         if (this.DisposalMethod > 0)
         {

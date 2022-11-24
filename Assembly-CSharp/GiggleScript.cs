@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GiggleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -86,7 +86,6 @@ public class GiggleScript : MonoBehaviour
           this.Student.CleanTimer = 0.0f;
           this.Student.ReadPhase = 0;
           this.Student.StopPairing();
-          Debug.Log((object) (this.Student.Name + " just heard a giggle, so their ''DiskCheck'' was set to ''true''."));
           if (this.Student.SunbathePhase > 2)
             this.Student.SunbathePhase = 2;
           if (this.Student.Persona != PersonaType.PhoneAddict && !this.Student.Sleuthing)

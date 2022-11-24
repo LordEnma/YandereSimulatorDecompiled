@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!--Project was exported from assembly: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll-->
+  <!--Project was exported from assembly: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll-->
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{189FE350-7922-4A5D-8BBC-59DD73A749B7}</ProjectGuid>
+    <ProjectGuid>{5EC35135-9BF4-4BBE-9DE3-5FDB1CBCC371}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AssemblyName>Assembly-CSharp</AssemblyName>
     <ApplicationVersion>0.0.0.0</ApplicationVersion>

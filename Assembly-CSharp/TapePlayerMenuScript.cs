@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TapePlayerMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -644,7 +644,6 @@ public class TapePlayerMenuScript : MonoBehaviour
 
   public void CheckBasementCompletion()
   {
-    Debug.Log((object) "Checking to see if the player has collected *and* listened to all of the basement tapes.");
     int num = 0;
     for (int tapeID = 1; tapeID < 11; ++tapeID)
     {
@@ -662,11 +661,10 @@ public class TapePlayerMenuScript : MonoBehaviour
 
   public void CheckHeadmasterCompletion()
   {
-    Debug.Log((object) "Checking to see if the player has collected *and* listened to all of the headmaster tapes.");
     int num = 0;
     for (int tapeID = 1; tapeID < 11; ++tapeID)
     {
-      if (CollectibleGlobals.GetHeadmasterTapeCollected(tapeID) && CollectibleGlobals.GetHeadmasterTapeListened(tapeID))
+      if (CollectibleGlobals.GetHeadmasterTapeCollected(tapeID) && CollectibleGlobals.GetHeadmasterTapeListened(tapeID) || this.StudentManager.HeadmasterTapesCollected[tapeID] && CollectibleGlobals.GetHeadmasterTapeListened(tapeID))
       {
         ++num;
         if (num == 10 && !GameGlobals.Debug)
@@ -680,11 +678,10 @@ public class TapePlayerMenuScript : MonoBehaviour
 
   public void CheckJournalistCompletion()
   {
-    Debug.Log((object) "Checking to see if the player has collected *and* listened to all of the journalist tapes.");
     int num = 0;
     for (int tapeID = 1; tapeID < 11; ++tapeID)
     {
-      if (CollectibleGlobals.GetTapeCollected(tapeID) && CollectibleGlobals.GetTapeListened(tapeID))
+      if (CollectibleGlobals.GetTapeCollected(tapeID) && CollectibleGlobals.GetTapeListened(tapeID) || this.StudentManager.TapesCollected[tapeID] && CollectibleGlobals.GetTapeListened(tapeID))
       {
         ++num;
         if (num == 10 && !GameGlobals.Debug)

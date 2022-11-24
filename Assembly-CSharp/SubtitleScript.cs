@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: SubtitleScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -608,7 +608,7 @@ public class SubtitleScript : MonoBehaviour
       this.StrictReport[1] = "The faculty must be informed!";
       this.StrictReport[2] = "I've discovered a dead body! Come with me!";
       this.StrictReport[3] = "...no...impossible...";
-      this.CasualReport[1] = "Devo contar a um professora!";
+      this.CasualReport[1] = "Devo contar a uma professora!";
       this.CasualReport[2] = "Emergency! Dead body! Follow me!";
       this.CasualReport[3] = "O que está acontecendo aqui...";
       this.GraceReport[1] = "The teachers need to hear about this!";

@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TalkingScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -200,6 +200,7 @@ public class TalkingScript : MonoBehaviour
           this.CheckForGossipSpecialCase();
           if (this.RejectGossip)
           {
+            this.S.CharacterAnimation.CrossFade(this.S.GossipAnim);
             this.S.Subtitle.CustomText = this.RejectGossipLine;
             this.S.Subtitle.UpdateLabel(SubtitleType.Custom, 0, 5f);
             --this.S.Reputation.PendingRep;
@@ -1617,10 +1618,46 @@ public class TalkingScript : MonoBehaviour
   {
     Debug.Log((object) "Checking for gossip speacial case.");
     this.RejectGossip = false;
-    if (this.Eighties || (this.S.StudentID != 2 || this.S.DialogueWheel.Victim != 3) && (this.S.StudentID != 3 || this.S.DialogueWheel.Victim != 2) && (this.S.StudentID != 10 || this.S.DialogueWheel.Victim != 11) && (this.S.StudentID != 11 || this.S.DialogueWheel.Victim != 10))
-      return;
-    this.RejectGossipLine = this.S.DialogueWheel.Victim >= 4 ? "Hey! That's my friend! Don't say anything weird about her!" : "Hey! That's my sister! Don't say anything weird about her!";
-    this.RejectGossip = true;
+    if (!this.Eighties)
+    {
+      if (this.S.StudentID == 2 && this.S.DialogueWheel.Victim == 3 || this.S.StudentID == 3 && this.S.DialogueWheel.Victim == 2 || this.S.StudentID == 10 && this.S.DialogueWheel.Victim == 11 || this.S.StudentID == 11 && this.S.DialogueWheel.Victim == 10 || this.S.StudentID == 25 && this.S.DialogueWheel.Victim == 30 || this.S.StudentID == 30 && this.S.DialogueWheel.Victim == 25)
+      {
+        this.RejectGossipLine = this.S.DialogueWheel.Victim >= 4 ? "Hey! She's my friend! Don't say anything weird about her!" : "Hey! She's my sister! Don't say anything weird about her!";
+        this.RejectGossip = true;
+      }
+    }
+    else if (this.S.StudentID > 1 && this.S.DialogueWheel.Victim < 6)
+    {
+      this.RejectGossipLine = "Hey! She's my friend! Don't say anything weird about her!";
+      this.RejectGossip = true;
+    }
+    else if (this.S.StudentID > 5 && this.S.DialogueWheel.Victim < 11)
+    {
+      this.RejectGossipLine = "Hey! He's my friend! Don't say anything weird about him!";
+      this.RejectGossip = true;
+    }
+    if (this.S.Club != ClubType.None && this.S.Club == this.S.StudentManager.Students[this.S.DialogueWheel.Victim].Club)
+    {
+      this.RejectGossipLine = !this.S.StudentManager.Students[this.S.DialogueWheel.Victim].Male ? "Hey! She's my clubmate! Don't say anything weird about her!" : "Hey! He's my clubmate! Don't say anything weird about him!";
+      this.RejectGossip = true;
+    }
+    if (this.S.InCouple && this.S.DialogueWheel.Victim == this.S.PartnerID)
+    {
+      this.RejectGossipLine = !this.S.StudentManager.Students[this.S.DialogueWheel.Victim].Male ? "Hey! She's my girlfriend! Don't say anything weird about her!" : "Hey! He's my boyfriend! Don't say anything weird about him!";
+      this.RejectGossip = true;
+    }
+    for (int index = 1; index < 11; ++index)
+    {
+      if (this.S.StudentID == this.S.StudentManager.SuitorIDs[index])
+      {
+        Debug.Log((object) "This guy's ID is in the suitor list.");
+        if (this.S.DialogueWheel.Victim == this.S.Crush)
+        {
+          this.RejectGossipLine = "Hey! I don't appreciate you saying things like that about her!";
+          this.RejectGossip = true;
+        }
+      }
+    }
   }
 
   private void CalculateRepBonus()

@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: TrespassScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -14,10 +14,11 @@ public class TrespassScript : MonoBehaviour
   public bool HideNotification;
   public bool OffLimits;
   public bool FacultyRoom;
+  public bool CookingClub;
 
   private void OnTriggerEnter(Collider other)
   {
-    if (!this.enabled || other.gameObject.layer != 13)
+    if (!this.enabled || this.CookingClub || other.gameObject.layer != 13)
       return;
     this.YandereObject = other.gameObject;
     this.Yandere = other.gameObject.GetComponent<YandereScript>();

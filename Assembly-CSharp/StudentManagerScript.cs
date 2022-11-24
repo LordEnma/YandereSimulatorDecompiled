@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using UnityEngine;
@@ -3713,8 +3713,6 @@ public class StudentManagerScript : MonoBehaviour
 
   public void SaveReps()
   {
-    Debug.Log((object) "Saving reputations.");
-    Debug.Log((object) ("Osana's rep, for example, is " + ((int) this.StudentReps[11]).ToString()));
     this.ID = 1;
     foreach (double studentRep in this.StudentReps)
     {
@@ -3946,19 +3944,44 @@ public class StudentManagerScript : MonoBehaviour
 
   public void RivalPostWeekRoutineAdjustments()
   {
-    if (this.Week <= 1 || !((UnityEngine.Object) this.Students[11] != (UnityEngine.Object) null))
+    if (this.Week > 1 && (UnityEngine.Object) this.Students[11] != (UnityEngine.Object) null)
+    {
+      Debug.Log((object) "Attempting to update Rival #1's routine.");
+      this.EightiesHangouts.List[11].position = new Vector3(-31f, 0.0f, 0.0f);
+      this.EightiesHangouts.List[11].eulerAngles = new Vector3(0.0f, 90f, 0.0f);
+      this.scheduleBlock = this.Students[11].ScheduleBlocks[2];
+      this.scheduleBlock.destination = "Hangout";
+      this.scheduleBlock.action = "Gaming";
+      this.scheduleBlock = this.Students[11].ScheduleBlocks[7];
+      this.scheduleBlock.destination = "Hangout";
+      this.scheduleBlock.action = "Gaming";
+      this.Students[11].GameAnim = "f02_observeKitten_00";
+      this.Students[11].GetDestinations();
+    }
+    if (this.Week > 2 && (UnityEngine.Object) this.Students[12] != (UnityEngine.Object) null)
+    {
+      Debug.Log((object) "Attempting to update Rival #2's routine.");
+      this.EightiesHangouts.List[12].position = new Vector3(-2f, 0.0f, 56f);
+      this.EightiesHangouts.List[12].eulerAngles = new Vector3(0.0f, 90f, 0.0f);
+      this.scheduleBlock = this.Students[12].ScheduleBlocks[2];
+      this.scheduleBlock.destination = "Hangout";
+      this.scheduleBlock.action = "Gaming";
+      this.scheduleBlock = this.Students[12].ScheduleBlocks[7];
+      this.scheduleBlock.destination = "Hangout";
+      this.scheduleBlock.action = "Gaming";
+      this.Students[12].GameAnim = "f02_nervousLeftRight_00";
+      this.Students[12].GetDestinations();
+    }
+    if (this.Week <= 9 || !((UnityEngine.Object) this.Students[19] != (UnityEngine.Object) null))
       return;
-    Debug.Log((object) "Attempting to update Rival #1's routine.");
-    this.EightiesHangouts.List[11].position = new Vector3(-31f, 0.0f, 0.0f);
-    this.EightiesHangouts.List[11].eulerAngles = new Vector3(0.0f, 90f, 0.0f);
-    this.scheduleBlock = this.Students[11].ScheduleBlocks[2];
-    this.scheduleBlock.destination = "Hangout";
-    this.scheduleBlock.action = "Gaming";
-    this.scheduleBlock = this.Students[11].ScheduleBlocks[7];
-    this.scheduleBlock.destination = "Hangout";
-    this.scheduleBlock.action = "Gaming";
-    this.Students[11].GameAnim = "f02_observeKitten_00";
-    this.Students[11].GetDestinations();
+    Debug.Log((object) "Attempting to update Rival #2's routine.");
+    this.scheduleBlock = this.Students[19].ScheduleBlocks[2];
+    this.scheduleBlock.destination = "Patrol";
+    this.scheduleBlock.action = "Patrol";
+    this.scheduleBlock = this.Students[19].ScheduleBlocks[7];
+    this.scheduleBlock.destination = "Patrol";
+    this.scheduleBlock.action = "Patrol";
+    this.Students[19].GetDestinations();
   }
 
   public void EightiesWeek3RoutineAdjustments()
@@ -4086,17 +4109,6 @@ public class StudentManagerScript : MonoBehaviour
   public void EightiesWeek10RoutineAdjustments()
   {
     Debug.Log((object) "Changing student routines for Week 10.");
-    if ((UnityEngine.Object) this.Students[19] != (UnityEngine.Object) null)
-    {
-      Debug.Log((object) "Changing Gravure Idol's routine.");
-      this.scheduleBlock = this.Students[19].ScheduleBlocks[2];
-      this.scheduleBlock.destination = "Patrol";
-      this.scheduleBlock.action = "Patrol";
-      this.scheduleBlock = this.Students[19].ScheduleBlocks[7];
-      this.scheduleBlock.destination = "Patrol";
-      this.scheduleBlock.action = "Patrol";
-      this.Students[19].GetDestinations();
-    }
     for (int ID = 2; ID < 11; ++ID)
       this.BecomeSleuth(ID);
     this.BecomeSleuth(20);
@@ -4162,6 +4174,8 @@ public class StudentManagerScript : MonoBehaviour
     this.Students[ID].GetDestinations();
     this.Students[ID].Infatuated = true;
     this.Students[ID].InfatuationID = 18;
+    this.Students[ID].Obstacle.enabled = false;
+    Physics.IgnoreCollision((Collider) this.Students[ID].MyController, (Collider) this.Students[18].MyController);
   }
 
   public void FollowGravureIdol(int ID)
@@ -4187,7 +4201,9 @@ public class StudentManagerScript : MonoBehaviour
     this.Students[ID].GetDestinations();
     this.Students[ID].Infatuated = true;
     this.Students[ID].InfatuationID = 19;
+    this.Students[ID].Obstacle.enabled = false;
     this.Students[ID].AdmireAnim = this.Students[ID].AdmireAnims[UnityEngine.Random.Range(0, 3)];
+    Physics.IgnoreCollision((Collider) this.Students[ID].MyController, (Collider) this.Students[19].MyController);
   }
 
   public void SunbatheAllDay(int ID)

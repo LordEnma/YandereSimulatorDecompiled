@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: ManholeScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -17,6 +17,8 @@ public class ManholeScript : MonoBehaviour
   public float SewerTimer;
   public bool ForceDown;
   public bool Open;
+  public int Victims;
+  public int[] VictimList;
 
   private void Update()
   {
@@ -84,6 +86,8 @@ public class ManholeScript : MonoBehaviour
             Debug.Log((object) "Just dumped Osana's corpse into the sewer.");
             this.Prompt.Yandere.Police.EndOfDay.RivalEliminationMethod = RivalEliminationType.Vanished;
           }
+          ++this.Victims;
+          this.VictimList[this.Victims] = this.Corpse.StudentID;
           this.SewerCamera.SetActive(false);
           this.Prompt.Yandere.StudentManager.UpdateStudents();
           this.ForceDown = false;

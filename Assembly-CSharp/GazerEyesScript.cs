@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: GazerEyesScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -225,6 +225,6 @@ public class GazerEyesScript : MonoBehaviour
     }
     if ((double) this.Yandere.PotentiallyMurderousTimer > 0.0)
       this.Yandere.Sanity -= (PlayerGlobals.PantiesEquipped == 10 ? 10f : 20f) * this.Yandere.Numbness;
-    Target.Ragdoll.AllColliders[0].enabled = true;
+    Target.HipCollider.enabled = true;
   }
 }

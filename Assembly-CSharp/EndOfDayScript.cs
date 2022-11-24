@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: EndOfDayScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using System;
 using System.Collections.Generic;
@@ -2049,7 +2049,6 @@ public class EndOfDayScript : MonoBehaviour
     this.ClubManager.UpdateQuitClubs();
     this.ClubManager.UpdateKickedClubs();
     StudentGlobals.UpdateRivalReputation = false;
-    Debug.Log((object) ("Making the game aware of the fact that ClubManager.ActivitiesAttended was " + this.ClubManager.ActivitiesAttended.ToString() + " at the end of this day."));
     ClubGlobals.ActivitiesAttended = this.ClubManager.ActivitiesAttended;
     this.UpdatePreviousRivalFriendships();
     this.ArrestStudents();
@@ -2251,7 +2250,6 @@ public class EndOfDayScript : MonoBehaviour
 
   private void UpdatePreviousRivalFriendships()
   {
-    Debug.Log((object) "Checking to see if it's necessary to update any rivals' friendship statuses.");
     if (GameGlobals.SpecificEliminationID == 2)
     {
       Debug.Log((object) "This week's rival was befriended.");

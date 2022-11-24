@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using Pathfinding;
 using System;
@@ -568,6 +568,7 @@ public class StudentScript : MonoBehaviour
   public float PendingRep;
   public float Perception = 1f;
   public float EyeShrink;
+  public float PyroLimit;
   public float WalkSpeed = 1f;
   public float MeetTime;
   public float Paranoia;
@@ -1454,6 +1455,9 @@ public class StudentScript : MonoBehaviour
           this.IdleAnim = "f02_idleConfident_01";
           this.WalkAnim = "f02_walkConfident_01";
           this.PyroUrge = true;
+          this.PyroLimit = 60f;
+          if (this.StudentManager.Week > 2)
+            this.PyroLimit = 10f;
           if (!this.Rival)
             this.Persona = PersonaType.LandlineUser;
         }
@@ -2262,7 +2266,7 @@ public class StudentScript : MonoBehaviour
       {
         Debug.DrawLine(position, targetPoint, Color.green);
         RaycastHit hitInfo;
-        if (Physics.Linecast(position, targetPoint, out hitInfo, mask) && (UnityEngine.Object) hitInfo.collider.gameObject == (UnityEngine.Object) obj)
+        if (Physics.Linecast(position, targetPoint, out hitInfo, mask) && ((UnityEngine.Object) hitInfo.collider.gameObject == (UnityEngine.Object) obj || (UnityEngine.Object) hitInfo.collider.gameObject.transform.root.gameObject == (UnityEngine.Object) obj))
         {
           foreach (int layer in layers)
           {
@@ -3281,7 +3285,7 @@ label_280:
             this.TargetDistance = 2f;
             flag = true;
           }
-          else if (this.Actions[this.Phase] == StudentActionType.Admire && this.Infatuated)
+          else if (this.Infatuated && this.Actions[this.Phase] == StudentActionType.Admire)
           {
             this.TargetDistance = (double) this.transform.position.y > (double) this.CurrentDestination.position.y + 1.0 || (double) this.transform.position.y < (double) this.CurrentDestination.position.y - 1.0 ? 2f : 5f;
             flag = true;
@@ -3335,7 +3339,7 @@ label_280:
         {
           this.Pathfinding.canSearch = false;
           this.Pathfinding.canMove = false;
-          if (this.Actions[this.Phase] != StudentActionType.Clean)
+          if (this.Actions[this.Phase] != StudentActionType.Clean && !this.Infatuated)
             this.Obstacle.enabled = true;
         }
         if (!this.InEvent && !this.Meeting && this.DressCode)
@@ -3559,18 +3563,7 @@ label_280:
               }
               if (!this.PyroUrge)
                 return;
-              this.PyroTimer += Time.deltaTime;
-              if ((double) this.PyroTimer <= 60.0)
-                return;
-              this.SpeechLines.Stop();
-              ScheduleBlock scheduleBlock = this.ScheduleBlocks[this.Phase];
-              scheduleBlock.destination = "LightFire";
-              scheduleBlock.action = "LightFire";
-              this.GetDestinations();
-              this.Pathfinding.target = this.Destinations[this.Phase];
-              this.CurrentDestination = this.Destinations[this.Phase];
-              this.PyroPhase = 1;
-              this.PyroTimer = 0.0f;
+              this.UpdatePyroUrge();
             }
             else if (this.Actions[this.Phase] == StudentActionType.Gossip)
             {
@@ -3608,7 +3601,12 @@ label_280:
               }
             }
             else if (this.Actions[this.Phase] == StudentActionType.Gaming)
+            {
               this.CharacterAnimation.CrossFade(this.GameAnim);
+              if (!this.PyroUrge)
+                return;
+              this.UpdatePyroUrge();
+            }
             else if (this.Actions[this.Phase] == StudentActionType.Shamed)
               this.CharacterAnimation.CrossFade(this.SadSitAnim);
             else if (this.Actions[this.Phase] == StudentActionType.Slave)
@@ -8508,7 +8506,6 @@ label_280:
           }
           else
           {
-            Debug.Log((object) (this.Name + " reached the part of Investigating where they are being told to begin walking/running."));
             if ((UnityEngine.Object) this.Giggle != (UnityEngine.Object) null)
             {
               this.Pathfinding.target = this.Giggle.transform;
@@ -8555,10 +8552,7 @@ label_280:
           else
             this.InvestigationTimer += Time.deltaTime;
           if ((double) this.InvestigationTimer > 10.0)
-          {
-            Debug.Log((object) "This character has investigated for 10 seconds, and is done investigating now.");
             this.StopInvestigating();
-          }
         }
         else if (this.InvestigationPhase == 100)
         {
@@ -10104,7 +10098,6 @@ label_280:
 
   public void BecomeAlarmed()
   {
-    Debug.Log((object) (this.Name + " just fired the BecomeAlarmed() function."));
     if (this.Yandere.Medusa && this.YandereVisible)
     {
       this.TurnToStone();
@@ -11225,7 +11218,6 @@ label_280:
           }
           else
           {
-            Debug.Log((object) (this.Name + " is supposed to be walking backwards right now."));
             this.Pathfinding.canSearch = false;
             this.Pathfinding.canMove = false;
             int num = (int) this.MyController.Move(this.transform.forward * (-0.5f * Time.deltaTime));
@@ -12447,7 +12439,6 @@ label_280:
           return;
         if (this.StudentManager.MissionMode && (double) this.DistanceToPlayer < 0.5)
         {
-          Debug.Log((object) "This student cannot be interacted with right now.");
           this.Yandere.Shutter.FaceStudent = this;
           this.Yandere.Shutter.Penalize();
         }
@@ -17598,7 +17589,7 @@ label_280:
 
   public void BecomeSleuth()
   {
-    Debug.Log((object) "BecomeSleuth() was called.");
+    Debug.Log((object) (this.Name + "fired the BecomeSleuth() function."));
     if (this.Club != ClubType.Newspaper && this.Club != ClubType.Photography)
     {
       int club = (int) this.Club;
@@ -17780,6 +17771,8 @@ label_280:
     ScheduleBlock scheduleBlock = this.ScheduleBlocks[this.Phase];
     scheduleBlock.destination = "Hangout";
     scheduleBlock.action = "Socialize";
+    if (this.StudentManager.Week > 2)
+      scheduleBlock.action = "Gaming";
     this.GetDestinations();
     this.Pathfinding.target = this.Destinations[this.Phase];
     this.CurrentDestination = this.Destinations[this.Phase];
@@ -17928,5 +17921,21 @@ label_280:
       ++this.ChangeClothingPhase;
       this.MustChangeClothing = false;
     }
+  }
+
+  public void UpdatePyroUrge()
+  {
+    this.PyroTimer += Time.deltaTime;
+    if ((double) this.PyroTimer <= (double) this.PyroLimit)
+      return;
+    this.SpeechLines.Stop();
+    ScheduleBlock scheduleBlock = this.ScheduleBlocks[this.Phase];
+    scheduleBlock.destination = "LightFire";
+    scheduleBlock.action = "LightFire";
+    this.GetDestinations();
+    this.Pathfinding.target = this.Destinations[this.Phase];
+    this.CurrentDestination = this.Destinations[this.Phase];
+    this.PyroPhase = 1;
+    this.PyroTimer = 0.0f;
   }
 }

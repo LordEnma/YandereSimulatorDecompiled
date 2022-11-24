@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: StudentInfoScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -117,13 +117,19 @@ public class StudentInfoScript : MonoBehaviour
       }
       else
       {
+        Debug.Log((object) "The JSON has an entry for this character's crush...");
         this.CrushLabel.text = this.JSON.Students[student.Crush].Name;
         bool flag = false;
+        if (this.StudentManager.Week == 0)
+        {
+          Debug.Log((object) "Week was 0. Are we in the HomeScene?");
+          this.StudentManager.Week = DateGlobals.Week;
+        }
         for (int index = this.StudentManager.Week + 1; index < 11; ++index)
         {
           if (this.CurrentStudent == this.StudentManager.SuitorIDs[index])
           {
-            Debug.Log((object) "This guy will be a suitor one day.");
+            Debug.Log((object) "This guy's ID is in the suitor list.");
             flag = true;
           }
         }
@@ -132,8 +138,22 @@ public class StudentInfoScript : MonoBehaviour
           for (int index = 2; index < 11; ++index)
           {
             if (this.CurrentStudent == this.StudentManager.SuitorIDs[index] && this.StudentManager.Week < index)
+            {
+              Debug.Log((object) "This guy will be a suitor one day in the future.");
               this.CrushLabel.text = "Unknown";
+            }
           }
+        }
+        if (this.CurrentStudent == this.StudentManager.SuitorIDs[this.StudentManager.Week])
+        {
+          Debug.Log((object) "This guy is the CURRENT rival's suitor!");
+          if ((!((Object) this.StudentManager.LoveManager != (Object) null) ? DatingGlobals.SuitorProgress : this.StudentManager.LoveManager.SuitorProgress) == 0)
+          {
+            Debug.Log((object) "We don't know who he has a crush on yet.");
+            this.CrushLabel.text = "Unknown";
+          }
+          else
+            Debug.Log((object) "We know who he has a crush on.");
         }
       }
     }

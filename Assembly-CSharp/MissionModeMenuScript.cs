@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: MissionModeMenuScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 using UnityEngine.PostProcessing;
@@ -31,6 +31,7 @@ public class MissionModeMenuScript : MonoBehaviour
   public UILabel Header;
   public UISprite Highlight;
   public UISprite Darkness;
+  public Transform NemesisAggressionWindow;
   public Transform CustomMissionWindow;
   public Transform MultiMissionWindow;
   public Transform ObjectiveHighlight;
@@ -76,6 +77,7 @@ public class MissionModeMenuScript : MonoBehaviour
   public AudioSource MyAudio;
   public AudioClip[] InfoLines;
   public bool[] InfoSpoke;
+  public bool NemesisAggression;
   public bool Toggling;
   public bool Valid;
   public int TargetNumber;
@@ -587,10 +589,10 @@ public class MissionModeMenuScript : MonoBehaviour
         else if (this.CustomSelected == 2)
         {
           ++this.RequiredWeaponID;
-          if (this.RequiredWeaponID == 11)
-            ++this.RequiredWeaponID;
           if (this.RequiredWeaponID > this.WeaponNames.Length - 1)
             this.RequiredWeaponID = 1;
+          while (this.WeaponNames[this.RequiredWeaponID] == "")
+            ++this.RequiredWeaponID;
           this.CustomDescs[2].text = this.ConditionDescs[1] + " " + this.WeaponNames[this.RequiredWeaponID];
         }
         else if (this.CustomSelected == 3)
@@ -614,11 +616,8 @@ public class MissionModeMenuScript : MonoBehaviour
         }
         this.CalculateMissionID();
       }
-      else if (Input.GetButtonDown("Y"))
-      {
-        this.UpdatePopulation();
-        this.CalculateMissionID();
-      }
+      else if (Input.GetButtonDown("Y") && this.CustomSelected == 12)
+        this.NemesisAggression = !this.NemesisAggression;
       if (this.NemesisDifficulty == 0)
       {
         this.CustomNemesisObjectives[1].localScale = Vector3.Lerp(this.CustomNemesisObjectives[1].localScale, Vector3.zero, Time.deltaTime * 10f);
@@ -649,6 +648,7 @@ public class MissionModeMenuScript : MonoBehaviour
         this.CustomNemesisObjectives[2].localScale = Vector3.Lerp(this.CustomNemesisObjectives[2].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
         this.CustomNemesisObjectives[3].localScale = Vector3.Lerp(this.CustomNemesisObjectives[3].localScale, new Vector3(1f, 1f, 1f), Time.deltaTime * 10f);
       }
+      this.NemesisAggressionWindow.localScale = !this.NemesisAggression ? Vector3.Lerp(this.NemesisAggressionWindow.localScale, new Vector3(0.0f, 0.0f, 0.0f), Time.deltaTime * 10f) : Vector3.Lerp(this.NemesisAggressionWindow.localScale, new Vector3(0.749f, 0.749f, 0.749f), Time.deltaTime * 10f);
       this.MissionIDLabel.gameObject.GetComponent<UIInput>().value = this.MissionID;
     }
     else if (this.Phase == 6)
@@ -1121,6 +1121,7 @@ public class MissionModeMenuScript : MonoBehaviour
       this.Toggling = true;
     }
     this.PromptBar.Label[2].text = this.CustomSelected == 1 || this.CustomSelected == 12 ? "Backward" : (this.CustomSelected <= 4 ? "Change" : string.Empty);
+    this.PromptBar.Label[3].text = this.CustomSelected != 12 ? "" : "Aggression";
     this.PromptBar.UpdateButtons();
   }
 
@@ -1148,6 +1149,7 @@ public class MissionModeMenuScript : MonoBehaviour
     OptionGlobals.TutorialsOff = true;
     SchoolGlobals.SchoolAtmosphere = (float) (1.0 - (double) this.Difficulty * 0.10000000149011612);
     MissionModeGlobals.NemesisDifficulty = this.NemesisDifficulty;
+    MissionModeGlobals.NemesisAggression = this.NemesisAggression;
     MissionModeGlobals.MissionTargetName = this.TargetName;
     MissionModeGlobals.MissionDifficulty = this.Difficulty;
     MissionModeGlobals.MissionTarget = this.TargetID;

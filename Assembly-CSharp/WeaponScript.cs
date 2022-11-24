@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: WeaponScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
@@ -54,6 +54,7 @@ public class WeaponScript : MonoBehaviour
   public bool Disposed;
   public bool Evidence;
   public bool Innocent;
+  public bool LeftHand;
   public bool StartLow;
   public bool Flaming;
   public bool Bloody;
@@ -89,7 +90,9 @@ public class WeaponScript : MonoBehaviour
   public bool[] Victims;
   public bool ClubProperty;
   public bool OneOfAKind;
+  public ClubType Club;
   public GameObject HeartBurst;
+  public BoxCollider CookingClub;
 
   public void Start()
   {
@@ -221,16 +224,7 @@ public class WeaponScript : MonoBehaviour
             this.Blade.transform.localEulerAngles = new Vector3(this.Blade.transform.localEulerAngles.x + Time.deltaTime * 360f, this.Blade.transform.localEulerAngles.y, this.Blade.transform.localEulerAngles.z);
         }
         else if (this.Type == WeaponType.Scythe)
-        {
-          if (this.Yandere.AttackManager.Stealth)
-            this.MyRenderer.transform.localEulerAngles = new Vector3(11.5f, 8f, 90f);
-          else if (this.Yandere.SanityType == SanityType.High)
-            this.MyRenderer.transform.localEulerAngles = new Vector3(5f, 15f, 180f);
-          else if (this.Yandere.SanityType == SanityType.Medium)
-            this.MyRenderer.transform.localEulerAngles = new Vector3(-1f, 13f, -135f);
-          else if (this.Yandere.SanityType == SanityType.Low)
-            this.MyRenderer.transform.localEulerAngles = new Vector3(8f, 14f, 150f);
-        }
+          this.MyRenderer.transform.localEulerAngles = new Vector3(12.5f, 7.5f, 90f);
       }
     }
     else if (!this.MyRigidbody.isKinematic)
@@ -305,7 +299,10 @@ public class WeaponScript : MonoBehaviour
         if ((Object) this.Outline[this.ID] != (Object) null)
           this.Outline[this.ID].color = new Color(0.0f, 0.0f, 0.0f, 1f);
       }
-      this.transform.parent = this.Yandere.ItemParent;
+      if (this.LeftHand)
+        this.transform.parent = this.Yandere.LeftItemParent;
+      else
+        this.transform.parent = this.Yandere.ItemParent;
       this.transform.localPosition = Vector3.zero;
       if (this.Type == WeaponType.Bat)
         this.transform.localEulerAngles = new Vector3(0.0f, 0.0f, -90f);
@@ -405,22 +402,27 @@ public class WeaponScript : MonoBehaviour
       }
       this.Yandere.UpdateConcealedWeaponStatus();
     }
-    if ((Object) this.Yandere.EquippedWeapon == (Object) this && this.Yandere.Armed)
+    if ((Object) this.Yandere.EquippedWeapon == (Object) this)
     {
-      this.transform.localScale = new Vector3(1f, 1f, 1f);
-      if (!this.Yandere.Struggling)
+      if (this.Yandere.Armed)
       {
-        if (this.Yandere.CanMove)
+        this.transform.localScale = new Vector3(1f, 1f, 1f);
+        if (!this.Yandere.Struggling)
         {
-          this.transform.localPosition = Vector3.zero;
-          if (this.Type == WeaponType.Bat)
-            this.transform.localEulerAngles = new Vector3(0.0f, 0.0f, -90f);
-          else
-            this.transform.localEulerAngles = Vector3.zero;
+          if (this.Yandere.CanMove)
+          {
+            this.transform.localPosition = Vector3.zero;
+            if (this.Type == WeaponType.Bat)
+              this.transform.localEulerAngles = new Vector3(0.0f, 0.0f, -90f);
+            else
+              this.transform.localEulerAngles = Vector3.zero;
+          }
         }
+        else
+          this.transform.localPosition = new Vector3(-0.01f, 0.005f, -0.01f);
       }
-      else
-        this.transform.localPosition = new Vector3(-0.01f, 0.005f, -0.01f);
+      if (this.Club == ClubType.Cooking && this.Yandere.Club == ClubType.Cooking)
+        this.SuspicionCheck();
     }
     if (this.Dumped)
     {
@@ -434,7 +436,7 @@ public class WeaponScript : MonoBehaviour
         this.gameObject.SetActive(false);
       }
     }
-    if (!((Object) this.transform.parent == (Object) this.Yandere.ItemParent) || !this.Concealable || !((Object) this.Yandere.Weapon[1] != (Object) this) || !((Object) this.Yandere.Weapon[2] != (Object) this))
+    if (!((Object) this.transform.parent == (Object) this.Yandere.ItemParent) && !((Object) this.transform.parent == (Object) this.Yandere.LeftItemParent) || !this.Concealable || !((Object) this.Yandere.Weapon[1] != (Object) this) || !((Object) this.Yandere.Weapon[2] != (Object) this))
       return;
     this.Drop();
   }
@@ -578,7 +580,23 @@ public class WeaponScript : MonoBehaviour
 
   public void SuspicionCheck()
   {
-    this.Suspicious = !this.Innocent && (this.WeaponID != 9 || this.Yandere.Club != ClubType.Sports) && (this.WeaponID != 10 || this.Yandere.Club != ClubType.Gardening) && (this.WeaponID != 12 || this.Yandere.Club != ClubType.Sports) && (this.WeaponID != 14 || this.Yandere.Club != ClubType.Drama) && (this.WeaponID != 16 || this.Yandere.Club != ClubType.Drama) && (this.WeaponID != 22 || this.Yandere.Club != ClubType.Drama) && (this.WeaponID != 25 || this.Yandere.Club != ClubType.LightMusic);
+    if (this.Innocent)
+      this.Suspicious = false;
+    else if (this.Club == ClubType.Cooking && this.Yandere.Club == ClubType.Cooking)
+    {
+      if (this.CookingClub.bounds.Contains(this.Yandere.transform.position))
+      {
+        Debug.Log((object) "Ayano is inside of the Cooking Club.");
+        this.Suspicious = false;
+      }
+      else
+      {
+        Debug.Log((object) "Ayano is not inside of the Cooking Club.");
+        this.Suspicious = true;
+      }
+    }
+    else
+      this.Suspicious = (this.WeaponID != 9 || this.Yandere.Club != ClubType.Sports) && (this.WeaponID != 10 || this.Yandere.Club != ClubType.Gardening) && (this.WeaponID != 12 || this.Yandere.Club != ClubType.Sports) && (this.WeaponID != 14 || this.Yandere.Club != ClubType.Drama) && (this.WeaponID != 16 || this.Yandere.Club != ClubType.Drama) && (this.WeaponID != 22 || this.Yandere.Club != ClubType.Drama) && (this.WeaponID != 25 || this.Yandere.Club != ClubType.LightMusic);
     if (this.Bloody)
     {
       this.Suspicious = true;

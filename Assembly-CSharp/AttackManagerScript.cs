@@ -1,14 +1,15 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: AttackManagerScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using UnityEngine;
 
 public class AttackManagerScript : MonoBehaviour
 {
   public GameObject BloodEffect;
+  public GameObject LargeBloodEffect;
   private GameObject OriginalBloodEffect;
   private GameObject Victim;
   private YandereScript Yandere;
@@ -663,6 +664,88 @@ public class AttackManagerScript : MonoBehaviour
         this.Yandere.TargetStudent.NeckSnapped = true;
       }
     }
+    else if (weapon.Type == WeaponType.Scythe)
+    {
+      if (!this.Stealth)
+      {
+        switch (sanityType)
+        {
+          case SanityType.High:
+            if (this.EffectPhase != 0 || (double) this.YandereAnim[this.AnimName].time <= 0.83333331346511841)
+              break;
+            this.Yandere.Bloodiness += 20f;
+            this.Yandere.StainWeapon();
+            Object.Instantiate<GameObject>(this.LargeBloodEffect, this.Yandere.TargetStudent.Neck.position, Quaternion.identity);
+            ++this.EffectPhase;
+            break;
+          case SanityType.Medium:
+            if (this.EffectPhase == 0)
+            {
+              if ((double) this.YandereAnim[this.AnimName].time <= 1.0833333730697632)
+                break;
+              this.Yandere.Bloodiness += 20f;
+              this.Yandere.StainWeapon();
+              Object.Instantiate<GameObject>(this.LargeBloodEffect, this.Yandere.TargetStudent.Head.position, Quaternion.identity);
+              ++this.EffectPhase;
+              break;
+            }
+            if (this.EffectPhase != 1 || (double) this.YandereAnim[this.AnimName].time <= 3.0833332538604736)
+              break;
+            Object.Instantiate<GameObject>(this.LargeBloodEffect, this.Yandere.TargetStudent.Head.position, Quaternion.identity);
+            ++this.EffectPhase;
+            break;
+          default:
+            if (this.EffectPhase == 0)
+            {
+              if ((double) this.YandereAnim[this.AnimName].time <= 0.5)
+                break;
+              this.Yandere.Bloodiness += 20f;
+              this.Yandere.StainWeapon();
+              Object.Instantiate<GameObject>(this.LargeBloodEffect, this.Yandere.TargetStudent.transform.position + Vector3.up * 0.5f, Quaternion.identity);
+              ++this.EffectPhase;
+              break;
+            }
+            if (this.EffectPhase == 1)
+            {
+              if ((double) this.YandereAnim[this.AnimName].time <= 1.5833333730697632)
+                break;
+              Object.Instantiate<GameObject>(this.LargeBloodEffect, this.Yandere.TargetStudent.Head.position, Quaternion.identity);
+              ++this.EffectPhase;
+              break;
+            }
+            if (this.EffectPhase == 2)
+            {
+              if ((double) this.YandereAnim[this.AnimName].time <= 3.0)
+                break;
+              Object.Instantiate<GameObject>(this.LargeBloodEffect, this.Yandere.TargetStudent.Spine.position, Quaternion.identity);
+              ++this.EffectPhase;
+              break;
+            }
+            if (this.EffectPhase == 3)
+            {
+              if ((double) this.YandereAnim[this.AnimName].time <= 4.0)
+                break;
+              Object.Instantiate<GameObject>(this.LargeBloodEffect, this.Yandere.TargetStudent.Spine.position, Quaternion.identity);
+              ++this.EffectPhase;
+              break;
+            }
+            if (this.EffectPhase != 4 || (double) this.YandereAnim[this.AnimName].time <= 5.0)
+              break;
+            Object.Instantiate<GameObject>(this.LargeBloodEffect, this.Yandere.TargetStudent.Spine.position, Quaternion.identity);
+            ++this.EffectPhase;
+            break;
+        }
+      }
+      else
+      {
+        if (this.EffectPhase != 0 || (double) this.YandereAnim[this.AnimName].time <= 1.0)
+          return;
+        this.Yandere.Bloodiness += 20f;
+        this.Yandere.StainWeapon();
+        Object.Instantiate<GameObject>(this.LargeBloodEffect, this.Yandere.TargetStudent.Head.position, Quaternion.identity);
+        ++this.EffectPhase;
+      }
+    }
     else
     {
       if (weapon.Type != WeaponType.Garrote)
@@ -716,10 +799,20 @@ public class AttackManagerScript : MonoBehaviour
           this.PingPong = true;
         }
       }
-      else if (weapon.Type == WeaponType.Weight && (double) this.YandereAnim[this.AnimName].time > 3.0 && (double) this.YandereAnim[this.AnimName].time < 4.5)
+      else if (weapon.Type == WeaponType.Weight)
+      {
+        if ((double) this.YandereAnim[this.AnimName].time > 3.0 && (double) this.YandereAnim[this.AnimName].time < 4.5)
+        {
+          this.LoopStart = 90f;
+          this.LoopEnd = 135f;
+          this.LoopPhase = 1;
+          this.Loop = true;
+        }
+      }
+      else if (weapon.Type == WeaponType.Scythe && (double) this.YandereAnim[this.AnimName].time > 3.0 && (double) this.YandereAnim[this.AnimName].time < 4.0)
       {
         this.LoopStart = 90f;
-        this.LoopEnd = 135f;
+        this.LoopEnd = 120f;
         this.LoopPhase = 1;
         this.Loop = true;
       }

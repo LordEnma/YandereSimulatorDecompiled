@@ -1,8 +1,8 @@
 ﻿// Decompiled with JetBrains decompiler
 // Type: YandereScript
 // Assembly: Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-// MVID: 8D5F971C-3CB1-4F04-A688-57005AB18418
-// Assembly location: C:\YandereSimulator\YandereSimulator\YandereSimulator_Data\Managed\Assembly-CSharp.dll
+// MVID: F38A0724-AA2E-44D4-AF10-35004D386EF8
+// Assembly location: D:\YandereSimulator\latest\YandereSimulator_Data\Managed\Assembly-CSharp.dll
 
 using HighlightingSystem;
 using Pathfinding;
@@ -1579,6 +1579,7 @@ public class YandereScript : MonoBehaviour
             this.Mopping = false;
             this.Selfie = false;
             this.Aiming = true;
+            this.MyController.radius = 0.45f;
             this.PhonePromptBar.Label.text = !this.Inventory.RivalPhone ? "AR GAME ON/OFF" : (this.RivalPhone ? "SWITCH TO YOUR PHONE" : "SWITCH TO STOLEN PHONE");
             Time.timeScale = 1f;
             this.UpdateSelfieStatus();
@@ -2611,6 +2612,8 @@ public class YandereScript : MonoBehaviour
             this.RaincoatAttacher.newRenderer.enabled = false;
             this.CoatBloodiness = this.Bloodiness;
             this.Bloodiness = this.OriginalBloodiness;
+            this.LeftFootprintSpawner.Bloodiness = 0;
+            this.RightFootprintSpawner.Bloodiness = 0;
             this.WearingRaincoat = false;
             if (this.Schoolwear == 1)
             {
@@ -3912,7 +3915,6 @@ public class YandereScript : MonoBehaviour
       }
       if ((double) this.YandereFade < 99.0)
       {
-        Debug.Log((object) "Fading Yandere Effects now.");
         if (!this.Aiming)
           Time.timeScale = Mathf.Lerp(Time.timeScale, 1f, Time.unscaledDeltaTime * 10f);
         this.Phone.SetActive(false);
@@ -5346,9 +5348,9 @@ public class YandereScript : MonoBehaviour
     this.StudentManager.UpdatePanties(false);
     if (OptionGlobals.DepthOfField)
       this.PauseScreen.NewSettings.Profile.depthOfField.enabled = true;
-    if (this.Club != ClubType.Newspaper)
-      return;
-    this.ClubAccessories[(int) this.Club].transform.localScale = new Vector3(1f, 1f, 1f);
+    if (this.Club == ClubType.Newspaper)
+      this.ClubAccessories[(int) this.Club].transform.localScale = new Vector3(1f, 1f, 1f);
+    this.MyController.radius = 0.2f;
   }
 
   public void FixCamera()
@@ -5402,6 +5404,7 @@ public class YandereScript : MonoBehaviour
     this.LeftYandereEye.material.color = new Color(1f, 1f, 1f, 1f);
     this.HighlightingR.enabled = false;
     this.HighlightingB.enabled = false;
+    this.YandereVisionDrone.Stop();
   }
 
   private void DumpRagdoll(RagdollDumpType Type)
